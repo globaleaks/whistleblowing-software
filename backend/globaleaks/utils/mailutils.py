@@ -16,11 +16,9 @@ from email.header import Header
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
-from OpenSSL import SSL
 from datetime import datetime
 from twisted.internet import reactor, defer
 from twisted.internet.endpoints import TCP4ClientEndpoint
-from twisted.internet.ssl import ClientContextFactory
 from twisted.mail.smtp import ESMTPSenderFactory, SMTPError
 from twisted.protocols import tls
 from twisted.python.failure import Failure
@@ -29,6 +27,7 @@ from txsocksx.client import SOCKS5ClientEndpoint
 from globaleaks import __version__
 from globaleaks.security import GLBPGP, sha256
 from globaleaks.settings import GLSettings
+from globaleaks.utils.tls import TLSClientContextFactory
 from globaleaks.utils.utility import log
 
 
@@ -41,28 +40,6 @@ def rfc822_date():
     nowtuple = nowdt.utctimetuple()
     nowtimestamp = timegm(nowtuple)
     return mailutils.formatdate(nowtimestamp)
-
-
-class GLClientContextFactory(ClientContextFactory):
-    # evilaliv3:
-    #   this is the same solution I applied to tor2web:
-    #     as discussed on https://trac.torproject.org/projects/tor/ticket/11598
-    #     there is no way of enabling all TLS methods excluding SSL.
-    #     the problem lies in the fact that SSL.TLSv1_METHOD | SSL.TLSv1_1_METHOD | SSL.TLSv1_2_METHOD
-    #     is denied by OpenSSL.
-    #
-    #     The solution implemented is to enable SSL.SSLv23_METHOD then explicitly
-    #     use options: SSL_OP_NO_SSLv2 and SSL_OP_NO_SSLv3
-    #
-    #     This trick make openssl consider valid all TLS methods.
-    method = SSL.SSLv23_METHOD
-
-    _contextFactory = SSL.Context
-
-    def getContext(self):
-        ctx = self._contextFactory(self.method)
-        ctx.set_options(SSL.OP_NO_SSLv2 | SSL.OP_NO_SSLv3)
-        return ctx
 
 
 def sendmail(to_address, subject, body):
@@ -110,7 +87,7 @@ def sendmail(to_address, subject, body):
                   smtp_port,
                   security)
 
-        context_factory = GLClientContextFactory()
+        context_factory = TLSClientContextFactory()
 
         esmtp_deferred = defer.Deferred()
         esmtp_deferred.addCallbacks(result_deferred.callback, errback)
