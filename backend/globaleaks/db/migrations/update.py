@@ -10,7 +10,7 @@ from storm.variables import UnicodeVariable, JSONVariable
 from globaleaks import DATABASE_VERSION, FIRST_DATABASE_VERSION_SUPPORTED
 from globaleaks.db.appdata import load_appdata
 from globaleaks.settings import GLSettings
-from globaleaks.utils.utility import every_language
+from globaleaks.utils.utility import every_language_dict
 
 
 def variableToSQL(var, db_type):
@@ -229,7 +229,7 @@ class MigrationBase(object):
             if var_name in templates_dict:
                 template_text = templates_dict[var_name]
             else:
-                template_text = every_language("")
+                template_text = every_language_dict()
 
             setattr(model_obj, var_name, template_text)
             return True

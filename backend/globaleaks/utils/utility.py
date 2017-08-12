@@ -2,7 +2,7 @@
 #   utility
 #   *******
 #
-# GlobaLeaks Utility Functions
+# Utility Functions
 from __future__ import print_function
 
 import cgi
@@ -41,16 +41,11 @@ def sum_dicts(*dicts):
         for k, v in d.items():
             ret[k] = v
 
-    return dict(ret)
-
-
-def every_language(default_text):
-    ret = {}
-
-    for code in LANGUAGES_SUPPORTED_CODES:
-        ret.update({code : default_text})
-
     return ret
+
+
+def every_language_dict(default_text=''):
+    return {code : default_text for code in LANGUAGES_SUPPORTED_CODES}
 
 
 def randint(start, end=None):
@@ -247,11 +242,6 @@ def is_expired(check_date, seconds=0, minutes=0, hours=0, day=0):
         if now > check_date + (seconds+minutes+hours)
         True is returned, else False
     """
-    # TODO: this check may hide a bug a should be removed.
-    #       (see commit message for details)
-    if not check_date:
-        return False
-
     total_hours = (day * 24) + hours
     check = check_date + timedelta(seconds=seconds, minutes=minutes, hours=total_hours)
 
@@ -276,23 +266,13 @@ def ISO8601_to_datetime(isodate):
     """
     isodate = isodate[:19] # we srip the eventual Z at the end
 
-    try:
-        ret = datetime.strptime(isodate, "%Y-%m-%dT%H:%M:%S")
-    except ValueError :
-        ret = datetime.strptime(isodate, "%Y-%m-%dT%H:%M:%S.%f")
-        ret.replace(microsecond=0)
-    return ret
+    return datetime.strptime(isodate, "%Y-%m-%dT%H:%M:%S")
 
 
 def datetime_to_pretty_str(date):
     """
     print a datetime in pretty formatted str format
     """
-    # TODO: this check may hide a bug a should be removed.
-    #       (see commit message for details)
-    if date is None:
-        date = datetime_null()
-
     return date.strftime("%A %d %B %Y %H:%M (UTC)")
 
 
@@ -300,11 +280,6 @@ def ISO8601_to_day_str(isodate, tz=0):
     """
     print a ISO8601 in DD/MM/YYYY formatted str
     """
-    # TODO: this check may hide a bug a should be removed.
-    #       (see commit message for details)
-    if isodate is None:
-        isodate = datetime_null().isoformat()
-
     date = datetime(year=int(isodate[0:4]),
                     month=int(isodate[5:7]),
                     day=int(isodate[8:10]),
@@ -349,14 +324,9 @@ def timedelta_to_milliseconds(t):
 
 def asn1_datestr_to_datetime(s):
     """
-    Returns a datetime for the passed asn1 formatted string or None if the date.
-    cannot be converted.
+    Returns a datetime for the passed asn1 formatted string
     """
-    s = s[:14]
-    try:
-        return datetime.strptime(s, "%Y%m%d%H%M%S")
-    except:
-        return None
+    return datetime.strptime(s[:14], "%Y%m%d%H%M%S")
 
 
 def format_cert_expr_date(s):
@@ -364,11 +334,10 @@ def format_cert_expr_date(s):
     Takes a asn1 formatted date string and tries to create an expiration date
     out of it. If that does not work, the returned expiration date is never.
     """
-
-    dt = asn1_datestr_to_datetime(s)
-    if dt is None:
+    try:
+        return asn1_datestr_to_datetime(s)
+    except:
         return datetime_never()
-    return dt
 
 
 def iso_year_start(iso_year):
@@ -385,9 +354,6 @@ def iso_to_gregorian(iso_year, iso_week, iso_day):
 
 
 def bytes_to_pretty_str(b):
-    if b is None:
-        b = 0
-
     if isinstance(b, str):
         b = int(b)
 
