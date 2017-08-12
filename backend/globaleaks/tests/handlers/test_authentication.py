@@ -62,10 +62,10 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
         })
 
         failed_login = 5
-        for _ in xrange(0, failed_login):
+        for _ in range(0, failed_login):
             yield self.assertFailure(handler.post(), errors.InvalidAuthentication)
 
-        receiver_status = yield admin.receiver.get_receiver(self.dummyReceiver_1['id'], 'en')
+        yield admin.receiver.get_receiver(self.dummyReceiver_1['id'], 'en')
         self.assertEqual(GLSettings.failed_login_attempts, failed_login)
 
     @inlineCallbacks

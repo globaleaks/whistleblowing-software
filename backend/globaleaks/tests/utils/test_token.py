@@ -42,7 +42,7 @@ class TestToken(helpers.TestGL):
         file_list = []
 
         token_collection = []
-        for _ in xrange(20):
+        for _ in range(20):
             st = Token('submission')
             token_collection.append(st)
 
@@ -95,7 +95,7 @@ class TestToken(helpers.TestGL):
         # validate with right value: OK
         token.update({'human_captcha_answer': 1})
 
-        for i in range(0, token.MAX_USES-1):
+        for _ in range(token.MAX_USES-1):
             token.use()
 
         # validate with right value but with no additional
@@ -129,7 +129,7 @@ class TestToken(helpers.TestGL):
     def test_tokens_garbage_collected(self):
         self.assertTrue(len(TokenList) == 0)
 
-        for i in range(100):
+        for x in range(100):
             Token('submission')
 
         self.assertTrue(len(TokenList) == 100)

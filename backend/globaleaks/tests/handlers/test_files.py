@@ -25,7 +25,7 @@ class TestFileInstance(helpers.TestHandlerWithPopulatedDB):
         self.dummyToken = token.Token(token_kind='submission')
         self.dummyToken.proof_of_work = False
 
-        for i in range(0, 3):
+        for _ in range(3):
             handler = self.request()
             yield handler.post(self.dummyToken.id)
 

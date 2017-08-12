@@ -29,7 +29,7 @@ class TestStatsCollection(helpers.TestHandler):
         yield AnomaliesSchedule().run()
         yield StatisticsSchedule().run()
 
-        for i in range(0, 2):
+        for i in range(2):
             handler = self.request({}, role='admin')
             response = yield handler.get(i)
             self.assertEqual(len(response), 3)

@@ -416,7 +416,7 @@ class TestGL(unittest.TestCase):
         """
         This emulates the file upload of an incomplete submission
         """
-        for i in range(0, n):
+        for _ in range(n):
             dummyFile = self.get_dummy_file()
 
 
@@ -449,15 +449,15 @@ class TestGL(unittest.TestCase):
         self.assertFalse(existing, msg)
 
     def pollute_events(self, number_of_times=10):
-        for _ in xrange(number_of_times):
+        for _ in range(number_of_times):
             for event_obj in event.events_monitored:
-                for x in xrange(2):
+                for x in range(2):
                     event.EventTrack(event_obj, timedelta(seconds=1.0 * x))
 
     def pollute_events_and_perform_synthesis(self, number_of_times=10):
-        for _ in xrange(number_of_times):
+        for _ in range(number_of_times):
             for event_obj in event.events_monitored:
-                for x in xrange(2):
+                for x in range(2):
                     event.EventTrack(event_obj, timedelta(seconds=1.0 * x)).synthesis()
     @transact
     def get_rtips(self, store):
@@ -633,7 +633,7 @@ class TestGLWithPopulatedDB(TestGL):
     @inlineCallbacks
     def perform_full_submission_actions(self):
         """Populates the DB with tips, comments, messages and files"""
-        for x in range(0, self.population_of_submissions):
+        for x in range(self.population_of_submissions):
             self.perform_submission_start()
             yield self.perform_submission_uploads()
             yield self.perform_submission_actions()
