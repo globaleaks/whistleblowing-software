@@ -156,24 +156,24 @@ api_spec = [
 
 
 def decorate_method(h, method):
-   decorator_authentication = getattr(h, 'authentication')
-   value = getattr(h, 'check_roles')
-   if type(value) is str:
-       value = {value}
+    decorator_authentication = getattr(h, 'authentication')
+    value = getattr(h, 'check_roles')
+    if type(value) is str:
+        value = {value}
 
-   f = getattr(h, method)
+    f = getattr(h, method)
 
-   if method == 'get':
-       if h.cache_resource:
-           f = apicache.decorator_cache_get(f)
+    if method == 'get':
+        if h.cache_resource:
+            f = apicache.decorator_cache_get(f)
 
-   else:
-       if h.invalidate_cache:
-           f = apicache.decorator_cache_invalidate(f)
+    else:
+        if h.invalidate_cache:
+            f = apicache.decorator_cache_invalidate(f)
 
-   f = decorator_authentication(f, value)
+    f = decorator_authentication(f, value)
 
-   setattr(h, method, f)
+    setattr(h, method, f)
 
 
 class APIResourceWrapper(Resource):

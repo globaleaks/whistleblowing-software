@@ -69,7 +69,7 @@ def update_db():
     This function handles update of an existing database
     """
     try:
-        db_version, db_file_path = get_db_file(GLSettings.db_path)
+        db_version, _ = get_db_file(GLSettings.db_path)
         if db_version == 0:
             return 0
 

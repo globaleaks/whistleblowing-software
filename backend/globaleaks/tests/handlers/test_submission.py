@@ -69,7 +69,7 @@ class TestSubmissionEncryptedScenario(helpers.TestHandlerWithPopulatedDB):
             'reference': 0
         }
 
-        for i in range(0, self.files_created):
+        for i in range(self.files_created):
             if self.rfi[i]['status'] not in counters:
                 counters[self.rfi[i]['status']] = 1
             else:

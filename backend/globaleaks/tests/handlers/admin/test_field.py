@@ -157,7 +157,7 @@ class TestFieldTemplatesCollection(helpers.TestHandlerWithPopulatedDB):
             """
             n = 3
             ids = []
-            for i in range(n):
+            for _ in range(n):
                 values = helpers.get_dummy_field()
                 values['instance'] = 'template'
                 handler = self.request(values, role='admin')

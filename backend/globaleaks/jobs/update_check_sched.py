@@ -27,8 +27,8 @@ class UpdateCheckJob(LoopingJob):
     def operation(self):
         try:
             log.debug('Fetching latest GlobaLeaks version from repository')
-            p = yield self.fetch_packages_file()
-            versions = [p['Version'] for p in deb822.Deb822.iter_paragraphs(p)]
+            packages_file = yield self.fetch_packages_file()
+            versions = [p['Version'] for p in deb822.Deb822.iter_paragraphs(packages_file)]
             versions.sort(key=V)
             GLSettings.appstate.latest_version = versions[-1]
             log.debug('The newest version in the repository is: %s', GLSettings.appstate.latest_version)

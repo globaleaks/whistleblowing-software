@@ -43,7 +43,7 @@ class TestNotificationSchedule(helpers.TestGLWithPopulatedDB):
 
         notification_schedule.sendmail = sendmail_failure
 
-        for i in range(0, 10):
+        for _ in range(10):
             yield notification_schedule.run()
 
             count = yield get_scheduled_email_count()
