@@ -3,6 +3,7 @@ import re
 import sys
 
 from datetime import datetime
+from twisted.python import log as twlog
 from twisted.python.failure import Failure
 from twisted.trial import unittest
 
@@ -91,6 +92,7 @@ class TestUtility(unittest.TestCase):
     def test_is_expired(self):
         self.assertTrue(utility.is_expired(utility.datetime_null()))
         self.assertTrue(utility.is_expired(utility.datetime_now()))
+        self.assertFalse(utility.is_expired(utility.datetime_never()))
 
     def test_datetime_to_ISO8601_to_datetime_to_dot_dot_dot(self):
         a = utility.datetime_null()
@@ -153,9 +155,9 @@ class TestLogging(unittest.TestCase):
         e2 = {'time': 100001, 'message': 'x', 'system': 'ut', 'failure': f}
         observer.emit(e2)
 
-        # Emit logs through twisted's interface. Import is required now b/c of stdout hack
-        from twisted.python import log as twlog
         twlog.err("error")
+
+        # Emit logs through twisted's interface. Import is required now b/c of stdout hack
         observer.stop()
 
         s = output_buff.getvalue()

@@ -25,7 +25,7 @@ from globaleaks.settings import GLSettings
 from globaleaks.transactions import db_schedule_email
 from globaleaks.utils.singleton import Singleton
 from globaleaks.utils.templating import Templating
-from globaleaks.utils.utility import log, datetime_now, is_expired, bytes_to_pretty_str
+from globaleaks.utils.utility import log, datetime_now, datetime_null, is_expired, bytes_to_pretty_str
 
 ANOMALY_MAP = {
     'started_submissions': 50,
@@ -103,6 +103,23 @@ def get_disk_anomaly_conditions(free_workdir_bytes, total_workdir_bytes, free_ra
     return conditions
 
 
+@transact
+def generate_admin_alert_mail(store, alert):
+    for user_desc in db_get_admin_users(store):
+        user_language = user_desc['language']
+
+        data = {
+            'type': u'admin_anomaly',
+            'node': db_admin_serialize_node(store, user_language),
+            'notification': db_get_notification(store, user_language),
+            'alert': alert
+        }
+
+        subject, body = Templating().get_mail_subject_and_body(data)
+
+        db_schedule_email(store, user_desc['mail_address'], subject, body)
+
+
 class AlarmClass(object):
     """
     This class implement some classmethod used to report general
@@ -123,7 +140,7 @@ class AlarmClass(object):
     latest_measured_totalspace = 0
 
     # keep track of the last sent email
-    last_alarm_email = None
+    last_alarm_email = datetime_null()
 
     def __init__(self):
         self.current_time = datetime_now()
@@ -211,8 +228,6 @@ class AlarmClass(object):
 
         defer.returnValue(ret if ret > 0 else 0)
 
-
-    @defer.inlineCallbacks
     def generate_admin_alert_mail(self, event_matrix):
         """
         This function put a mail in queue for the Admin, if the
@@ -228,8 +243,7 @@ class AlarmClass(object):
         if GLSettings.memory_copy.notif.disable_admin_notification_emails:
             return
 
-        if self.last_alarm_email and not is_expired(self.last_alarm_email,
-                                                     minutes=do_not_stress_admin_with_more_than_an_email_every_minutes):
+        if not is_expired(self.last_alarm_email, minutes=do_not_stress_admin_with_more_than_an_email_every_minutes):
             return
 
         alert = {
@@ -239,24 +253,8 @@ class AlarmClass(object):
             'event_matrix': copy.deepcopy(event_matrix)
         }
 
-        @transact
-        def _generate_admin_alert_mail(store, alert):
-            for user_desc in db_get_admin_users(store):
-                user_language = user_desc['language']
-
-                data = {
-                    'type': u'admin_anomaly',
-                    'node': db_admin_serialize_node(store, user_language),
-                    'notification': db_get_notification(store, user_language),
-                    'alert': alert
-                }
-
-                subject, body = Templating().get_mail_subject_and_body(data)
-
-                db_schedule_email(store, user_desc['mail_address'], subject, body)
-
         self.last_alarm_email = datetime_now()
-        yield _generate_admin_alert_mail(alert)
+        return generate_admin_alert_mail(alert)
 
     def check_disk_anomalies(self, free_workdir_bytes, total_workdir_bytes, free_ramdisk_bytes, total_ramdisk_bytes):
         """
