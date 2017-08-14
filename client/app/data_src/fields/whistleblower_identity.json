@@ -1,6 +1,5 @@
 {
   "id": "whistleblower_identity",
-  "key": "whistleblower_identity",
   "label": {
     "en": "Do you want to provide your identification information?"
   },
@@ -54,7 +53,6 @@
   "children": [
     {
       "id": "",
-      "key": "",
       "label": {
         "en": "First name"
       },
@@ -105,7 +103,6 @@
     },
     {
       "id": "",
-      "key": "",
       "label": {
         "en": "Last name"
       },
@@ -156,7 +153,6 @@
     },
     {
       "id": "",
-      "key": "",
       "label": {
         "en": "Gender"
       },
@@ -216,7 +212,6 @@
     },
     {
       "id": "",
-      "key": "",
       "label": {
         "en": "Date of birth"
       },
@@ -259,7 +254,6 @@
     },
     {
       "id": "",
-      "key": "",
       "label": {
         "en": "Place of birth"
       },
@@ -310,7 +304,6 @@
     },
     {
       "id": "",
-      "key": "",
       "label": {
         "en": "Social security number"
       },
@@ -361,7 +354,6 @@
     },
     {
       "id": "",
-      "key": "",
       "label": {
         "en": "Residence"
       },
@@ -393,7 +385,6 @@
       "children": [
         {
           "id": "",
-          "key": "",
           "label": {
             "en": "Address"
           },
@@ -444,7 +435,6 @@
         },
         {
           "id": "",
-          "key": "",
           "label": {
             "en": "Zip code / Postal code"
           },
@@ -495,7 +485,6 @@
         },
         {
           "id": "",
-          "key": "",
           "label": {
             "en": "City"
           },
@@ -546,7 +535,6 @@
         },
         {
           "id": "",
-          "key": "",
           "label": {
             "en": "Province"
           },
@@ -597,7 +585,6 @@
         },
         {
           "id": "",
-          "key": "",
           "label": {
             "en": "State"
           },
@@ -650,7 +637,6 @@
     },
     {
       "id": "",
-      "key": "",
       "label": {
         "en": "Current job title"
       },
@@ -701,7 +687,6 @@
     },
     {
       "id": "",
-      "key": "",
       "label": {
         "en": "Current job responsibility (role)"
       },
@@ -752,7 +737,6 @@
     },
     {
       "id": "",
-      "key": "",
       "label": {
         "en": "Current organization unit and job location"
       },
@@ -803,7 +787,6 @@
     },
     {
       "id": "",
-      "key": "",
       "label": {
         "en": "Job title at the time of the reported fact"
       },
@@ -854,7 +837,6 @@
     },
     {
       "id": "",
-      "key": "",
       "label": {
         "en": "Job responsibility (role) at the time of the reported fact"
       },
@@ -905,7 +887,6 @@
     },
     {
       "id": "",
-      "key": "",
       "label": {
         "en": "Organization unit and job location at the time of the reported fact"
       },
@@ -956,7 +937,6 @@
     },
     {
       "id": "",
-      "key": "",
       "label": {
         "en": "Phone number"
       },
@@ -1007,7 +987,6 @@
     },
     {
       "id": "",
-      "key": "",
       "label": {
         "en": "Email address"
       },

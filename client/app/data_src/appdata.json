@@ -39,7 +39,7 @@
     }
   },
   "default_questionnaire" : {
-    "key": "default",
+    "id": "default",
     "name": "Default",
     "editable": false,
     "layout": "horizontal",

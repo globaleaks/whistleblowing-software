@@ -33,7 +33,7 @@ def load_default_questionnaires(store):
     steps = appdata.default_questionnaire['steps']
     del appdata.default_questionnaire['steps']
 
-    questionnaire = store.find(models.Questionnaire, models.Questionnaire.key == u'default').one()
+    questionnaire = store.find(models.Questionnaire, models.Questionnaire.id == u'default').one()
     if questionnaire is None:
         questionnaire = models.db_forge_obj(store, models.Questionnaire, appdata.default_questionnaire)
     else:
@@ -54,10 +54,9 @@ def load_default_fields(store):
         with file(fpath, 'r') as f:
             json_string = f.read()
             field_dict = json.loads(json_string)
-            old_field = store.find(models.Field, models.Field.key == field_dict['key']).one()
+            old_field = store.find(models.Field, models.Field.id == field_dict['id']).one()
 
             if old_field is not None:
-                field_dict['id'] = old_field.id
                 store.remove(old_field)
 
             db_create_field(store, field_dict, None)
@@ -96,6 +95,8 @@ def db_fix_fields_attrs(store):
         json_string = f.read()
         field_attrs = json.loads(json_string)
 
+    special_lst = ['whistleblower_identity']
+
     std_lst = ['inputbox', 'textarea', 'multichoice', 'checkbox', 'tos', 'date']
 
     for field_type, attrs_dict in field_attrs.iteritems():
@@ -105,12 +106,12 @@ def db_fix_fields_attrs(store):
             res = store.find(models.FieldAttr, Not(In(models.FieldAttr.name, attrs_to_keep_for_type)),
                                                models.FieldAttr.field_id == models.Field.id,
                                                models.Field.type == field_type,
-                                               models.Field.key == unicode(''))
+                                               Not(In(models.Field.id, special_lst)))
         else:
             # Look for dropped attrs in non-standard field_groups like whistleblower_identity
             res = store.find(models.FieldAttr, Not(In(models.FieldAttr.name, attrs_to_keep_for_type)),
                                                models.FieldAttr.field_id == models.Field.id,
-                                               models.Field.key == field_type)
+                                               models.Field.id == field_type)
 
         count = res.count()
         if count:
@@ -120,7 +121,7 @@ def db_fix_fields_attrs(store):
 
     # Add keys to the db that have been added to field_attrs
     for field in store.find(models.Field):
-        typ = field.type if field.key == '' else field.key
+        typ = field.type if field.id not in special_lst else field.id
         attrs = field_attrs.get(typ, {})
         for attr_name, attr_dict in attrs.iteritems():
             if not store.find(models.FieldAttr,

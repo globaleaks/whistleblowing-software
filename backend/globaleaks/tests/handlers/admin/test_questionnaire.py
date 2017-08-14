@@ -5,6 +5,7 @@ from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.handlers.admin import questionnaire
 from globaleaks.handlers.admin.context import ContextInstance
+from globaleaks.handlers.admin.questionnaire import get_questionnaire
 from globaleaks.models import Questionnaire
 from globaleaks.rest import requests, errors
 from globaleaks.tests import helpers
@@ -13,7 +14,7 @@ from globaleaks.tests import helpers
 stuff = u"³²¼½¬¼³²"
 
 
-class TestQuestionnaireCollection(helpers.TestHandlerWithPopulatedDB):
+class TestQuestionnaireCollection(helpers.TestHandler):
     _handler = questionnaire.QuestionnairesCollection
 
     def test_get(self):
@@ -22,6 +23,9 @@ class TestQuestionnaireCollection(helpers.TestHandlerWithPopulatedDB):
 
     @inlineCallbacks
     def test_post(self):
+        self.dummyQuestionnaire = yield get_questionnaire(u'default', 'en')
+        self.dummyQuestionnaire['id'] = ''
+
         for attrname in Questionnaire.unicode_keys:
             self.dummyQuestionnaire[attrname] = stuff
 

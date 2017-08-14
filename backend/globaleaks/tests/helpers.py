@@ -151,7 +151,6 @@ def get_dummy_step():
 def get_dummy_field():
     return {
         'id': '',
-        'key': '',
         'instance': 'template',
         'editable': True,
         'template_id': '',
@@ -563,7 +562,7 @@ class TestGLWithPopulatedDB(TestGL):
 
     @transact
     def add_whistleblower_identity_field_to_step(self, store, step_id):
-        wbf = store.find(models.Field, models.Field.key == u'whistleblower_identity').one()
+        wbf = store.find(models.Field, models.Field.id == u'whistleblower_identity').one()
 
         reference_field = get_dummy_field()
         reference_field['instance'] = 'reference'

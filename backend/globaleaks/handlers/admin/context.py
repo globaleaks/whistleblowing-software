@@ -5,7 +5,6 @@
 # Implementation of the code executed on handler /admin/contexts
 #
 from globaleaks import models
-from globaleaks.handlers.admin.questionnaire import db_get_default_questionnaire_id
 from globaleaks.handlers.admin.step import db_create_step
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.public import serialize_step
@@ -123,7 +122,7 @@ def db_update_context(store, context, request, language):
     request = fill_context_request(request, language)
 
     if request['questionnaire_id'] == '':
-        request['questionnaire_id'] = db_get_default_questionnaire_id(store)
+        request['questionnaire_id'] = u'default'
 
     context.update(request)
 
@@ -149,7 +148,7 @@ def db_create_context(store, request, language):
     request = fill_context_request(request, language)
 
     if request['questionnaire_id'] == '':
-        request['questionnaire_id'] = db_get_default_questionnaire_id(store)
+        request['questionnaire_id'] = u'default'
 
     if not request['allow_recipients_selection']:
         request['select_all_receivers'] = True
