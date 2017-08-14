@@ -875,7 +875,7 @@ else
       echo "deb http://deb.globaleaks.org unstable/" > /etc/apt/sources.list.d/globaleaks.list
     fi
   fi
-  DO "apt-get update -y"
+  DO "apt-get update -y -o Dir::Etc::sourcelist=/etc/apt/sources.list.d/globaleaks.list"
   DO "apt-get install globaleaks -y"
 fi
 
