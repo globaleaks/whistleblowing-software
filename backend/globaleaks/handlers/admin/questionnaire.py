@@ -43,10 +43,6 @@ def get_questionnaire(store, questionnaire_id, language):
     return serialize_questionnaire(store, questionnaire, language)
 
 
-def db_get_default_questionnaire_id(store):
-    return store.find(models.Questionnaire, models.Questionnaire.key == u'default').one().id
-
-
 def db_get_questionnaire_steps(store, questionnaire_id, language):
     """
     Returns:

@@ -5,8 +5,7 @@ from storm.locals import Int, Bool, Unicode, JSON, ReferenceSet
 from globaleaks.db.appdata import load_appdata
 from globaleaks.db.migrations.update import MigrationBase
 from globaleaks.handlers.admin.field import db_import_fields
-from globaleaks.handlers.admin.questionnaire import db_get_default_questionnaire_id
-from globaleaks.models import ModelWithID, Model, Questionnaire, Step, db_forge_obj
+from globaleaks.models import ModelWithID, Model, db_forge_obj
 
 
 class Node_v_29(ModelWithID):
@@ -146,12 +145,13 @@ class MigrationScript(MigrationBase):
         steps = appdata['default_questionnaire']['steps']
         del appdata['default_questionnaire']['steps']
 
-        questionnaire = db_forge_obj(self.store_new, Questionnaire, appdata['default_questionnaire'])
+        questionnaire = db_forge_obj(self.store_new, self.model_to['Questionnaire'], appdata['default_questionnaire'])
+        questionnaire.key = u'default'
 
         for step in steps:
             f_children = step['children']
             del step['children']
-            s = db_forge_obj(self.store_new, Step, step)
+            s = db_forge_obj(self.store_new, self.model_to['Step'], step)
             db_import_fields(self.store_new, s, None, f_children)
             s.questionnaire_id = questionnaire.id
 
@@ -204,7 +204,6 @@ class MigrationScript(MigrationBase):
         Context_v_29.steps = ReferenceSet(Context_v_29.id, Step_v_29.context_id)
         Step_v_29.children = ReferenceSet(Step_v_29.id, self.model_from['Field'].step_id)
 
-        default_questionnaire_id = db_get_default_questionnaire_id(self.store_new)
         default_language = self.store_old.find(self.model_from['Node']).one().default_language
 
         old_contexts = self.store_old.find(self.model_from['Context'])
@@ -252,7 +251,7 @@ class MigrationScript(MigrationBase):
                     continue
 
                 if v.name == 'questionnaire_id':
-                    new_context.questionnaire_id = default_questionnaire_id if new_questionnaire_id is None else new_questionnaire_id
+                    new_context.questionnaire_id = u'default' if new_questionnaire_id is None else new_questionnaire_id
                     continue
 
                 setattr(new_context, v.name, getattr(old_context, v.name))

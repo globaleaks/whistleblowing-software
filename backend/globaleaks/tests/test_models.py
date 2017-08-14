@@ -3,7 +3,6 @@
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import models, LANGUAGES_SUPPORTED
-from globaleaks.handlers.admin.questionnaire import db_get_default_questionnaire_id
 from globaleaks.models import config
 from globaleaks.models.config_desc import GLConfig
 from globaleaks.models.l10n import NodeL10NFactory, EnabledLanguage, ConfigL10N
@@ -127,7 +126,7 @@ class TestModels(helpers.TestGL):
     def context_add(self, store):
         c = self.localization_set(self.dummyContext, models.Context, 'en')
         context = models.Context(c)
-        context.questionnaire_id = db_get_default_questionnaire_id(store)
+        context.questionnaire_id = u'default'
         context.tip_timetolive = 1000
         context.description = context.name = \
             context.submission_disclaimer = \
@@ -204,7 +203,7 @@ class TestModels(helpers.TestGL):
 
         c = self.localization_set(self.dummyContext, models.Context, 'en')
         context = models.Context(c)
-        context.questionnaire_id = db_get_default_questionnaire_id(store)
+        context.questionnaire_id = u'default'
         context.tip_timetolive = 1000
         context.description = context.name = \
             context.submission_disclaimer = \
@@ -257,14 +256,14 @@ class TestModels(helpers.TestGL):
         receiver.mail_address = u'y@y.it'
 
         context1 = models.Context(c)
-        context1.questionnaire_id = db_get_default_questionnaire_id(store)
+        context1.questionnaire_id = u'default'
         context1.tip_timetolive = 1000
         context1.description = context1.name = \
             context1.submission_disclaimer = \
             context1.submission_introduction = {'en': 'Valar Morghulis'}
 
         context2 = models.Context(c)
-        context2.questionnaire_id = db_get_default_questionnaire_id(store)
+        context2.questionnaire_id = u'default'
         context2.tip_timetolive = 1000
         context2.description = context2.name = \
             context2.submission_disclaimer = \

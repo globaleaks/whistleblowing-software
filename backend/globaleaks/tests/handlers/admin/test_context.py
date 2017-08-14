@@ -13,7 +13,7 @@ from globaleaks.tests import helpers
 stuff = u"³²¼½¬¼³²"
 
 
-class TestContextsCollection(helpers.TestHandlerWithPopulatedDB):
+class TestContextsCollection(helpers.TestHandler):
     _handler = context.ContextsCollection
 
     def test_get(self):

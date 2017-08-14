@@ -30,8 +30,6 @@ class Context_v_34(ModelWithID):
     questionnaire_id = Unicode()
     img_id = Unicode()
 
-    localized_keys = ['name', 'description', 'recipients_clarification', 'status_page_message']
-
 
 class WhistleblowerTip_v_34(ModelWithID):
     __storm_table__ = 'whistleblowertip'
@@ -58,7 +56,6 @@ class InternalTip_v_34(ModelWithID):
     enable_attachments = Bool(default=True)
     enable_whistleblower_identity = Bool(default=False)
     wb_last_access = DateTime(default_factory=datetime_now)
-
 
 class MigrationScript(MigrationBase):
     def migrate_Context(self):

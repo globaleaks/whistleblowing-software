@@ -197,7 +197,6 @@ def serialize_questionnaire(store, questionnaire, language):
     """
     ret_dict = {
         'id': questionnaire.id,
-        'key': questionnaire.key,
         'editable': questionnaire.editable,
         'name': questionnaire.name,
         'show_steps_navigation_bar': questionnaire.show_steps_navigation_bar,
@@ -277,7 +276,6 @@ def serialize_field(store, field, language, data=None):
 
     ret_dict = {
         'id': field.id,
-        'key': f_to_serialize.key,
         'instance': field.instance,
         'editable': field.editable,
         'type': f_to_serialize.type,
