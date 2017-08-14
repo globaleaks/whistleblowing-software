@@ -137,9 +137,9 @@ def db_create_field(store, field_dict, language):
 
     if field.template:
         # special handling of the whistleblower_identity field
-        if field.template.key == 'whistleblower_identity':
+        if field.template.id == 'whistleblower_identity':
             if field.step:
-                if store.find(models.Field, models.Field.key == u'whistleblower_identity',
+                if store.find(models.Field, models.Field.id == u'whistleblower_identity',
                                             models.Field.step_id == models.Step.id,
                                             models.Step.questionnaire_id == models.Questionnaire.id,
                                             models.Questionnaire.id == field.step.questionnaire_id).count() == 0:
@@ -250,7 +250,7 @@ def delete_field(store, field_id):
 
     if field.template:
         # special handling of the whistleblower_identity field
-        if field.template.key == 'whistleblower_identity':
+        if field.template.id == 'whistleblower_identity':
             if field.step is not None:
                 field.step.questionnaire.enable_whistleblower_identity = False
 

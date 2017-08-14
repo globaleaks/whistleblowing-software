@@ -267,7 +267,6 @@ CREATE TABLE field (
     id TEXT NOT NULL,
     fieldgroup_id TEXT,
     step_id TEXT,
-    key TEXT NOT NULL,
     label TEXT NOT NULL,
     description TEXT NOT NULL,
     hint TEXT DEFAULT '' NOT NULL,
@@ -341,7 +340,6 @@ CREATE TABLE fieldoption (
 
 CREATE TABLE questionnaire (
     id TEXT NOT NULL,
-    key TEXT NOT NULL,
     name TEXT NOT NULL,
     show_steps_navigation_bar INTEGER NOT NULL,
     steps_navigation_requires_completion INTEGER NOT NULL,

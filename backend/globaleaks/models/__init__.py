@@ -59,6 +59,9 @@ class Model(Storm):
         if values is None:
             return
 
+        if 'id' in values and values['id'] != '':
+            setattr(self, 'id', values['id'])
+
         for k in getattr(self, 'unicode_keys'):
             if k in values and values[k] is not None:
                 value = unicode(values[k])
@@ -477,8 +480,6 @@ class Field(ModelWithID):
     y = Int(default=0)
     width = Int(default=0)
 
-    key = Unicode(default=u'')
-
     label = JSON(validator=longlocal_v)
     description = JSON(validator=longlocal_v)
     hint = JSON(validator=longlocal_v)
@@ -591,7 +592,6 @@ class Step(ModelWithID):
 
 
 class Questionnaire(ModelWithID):
-    key = Unicode(default=u'')
     name = Unicode()
     show_steps_navigation_bar = Bool(default=False)
     steps_navigation_requires_completion = Bool(default=False)
@@ -599,7 +599,7 @@ class Questionnaire(ModelWithID):
 
     editable = Bool(default=True)
 
-    unicode_keys = ['name', 'key']
+    unicode_keys = ['name']
 
     bool_keys = [
       'editable',
