@@ -99,6 +99,7 @@ GLConfig = {
 
         'default_language': Unicode(validator=shorttext_v, default=u'en'),
         'default_password': Unicode(validator=longtext_v, default=u'globaleaks'),
+        'default_questionnaire': Unicode(validator=shorttext_v, default=u'default'),
 
         # Advanced settings
         'maximum_namesize': Int(validator=natnum_v, default=128),
