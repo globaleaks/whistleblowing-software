@@ -10,6 +10,7 @@ from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.public import serialize_step
 from globaleaks.orm import transact
 from globaleaks.rest import errors, requests
+from globaleaks.settings import GLSettings
 from globaleaks.utils.structures import fill_localized_keys, get_localized_values
 from globaleaks.utils.utility import log
 
@@ -104,7 +105,7 @@ def db_update_context(store, context, request, language):
     request = fill_context_request(request, language)
 
     if request['questionnaire_id'] == '':
-        request['questionnaire_id'] = u'default'
+        request['questionnaire_id'] = GLSettings.memory_copy.default_questionnaire
 
     context.update(request)
 

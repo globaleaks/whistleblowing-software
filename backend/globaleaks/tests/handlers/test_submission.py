@@ -82,7 +82,7 @@ class TestSubmissionEncryptedScenario(helpers.TestHandlerWithPopulatedDB):
     def test_update_submission(self):
         self.submission_desc = yield self.get_dummy_submission(self.dummyContext['id'])
 
-        self.submission_desc['answers'] = yield self.fill_random_answers(self.dummyContext['id'])
+        self.submission_desc['answers'] = yield self.fill_random_answers(self.dummyContext['questionnaire_id'])
         receipt = yield self.create_submission(self.submission_desc)
 
         wbtip_id = yield authentication.login_whistleblower(receipt, True)

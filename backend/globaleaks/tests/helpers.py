@@ -913,6 +913,7 @@ class MockDict:
             'disable_donation_panel': False,
             'default_language': u'en',
             'default_password': u'globaleaks',
+            'default_questionnaire': u'default',
             'admin_language': u'en',
             'simplified_login': False,
             'enable_captcha': False,
