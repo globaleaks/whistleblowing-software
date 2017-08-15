@@ -16,12 +16,11 @@ from globaleaks.handlers import rtip, wbtip
 from globaleaks.handlers.authentication import db_get_wbtip_by_receipt
 from globaleaks.handlers.base import BaseHandler, GLSessions, new_session, \
     write_upload_encrypted_to_disk
-from globaleaks.handlers.admin.context import create_context, \
-    get_context, db_get_context_steps
+from globaleaks.handlers.admin.context import create_context, get_context
 from globaleaks.handlers.admin.receiver import create_receiver
 from globaleaks.handlers.admin.field import db_create_field
 from globaleaks.handlers.admin.step import create_step
-from globaleaks.handlers.admin.questionnaire import get_questionnaire
+from globaleaks.handlers.admin.questionnaire import get_questionnaire, db_get_questionnaire
 from globaleaks.handlers.admin.user import create_admin_user, create_custodian_user
 from globaleaks.handlers.submission import create_submission
 from globaleaks.rest.apicache import GLApiCache
@@ -367,15 +366,15 @@ class TestGL(unittest.TestCase):
         answers[field['id']] = [value]
 
     @transact
-    def fill_random_answers(self, store, context_id, value=None):
+    def fill_random_answers(self, store, questionnaire_id, value=None):
         """
-        return randomly populated contexts associated to specified context
+        return randomly populated questionnaire
         """
         answers = {}
 
-        steps = db_get_context_steps(store, context_id, 'en')
+        questionnaire = db_get_questionnaire(store, questionnaire_id, 'en')
 
-        for step in steps:
+        for step in questionnaire['steps']:
             for field in step['children']:
                 self.fill_random_field_recursively(answers, field)
 
@@ -390,15 +389,18 @@ class TestGL(unittest.TestCase):
 
         need to be enhanced generating appropriate data based on the fields.type
         """
+        context = yield get_context(context_id, 'en')
+        answers = yield self.fill_random_answers(context['questionnaire_id'])
+
         defer.returnValue({
             'context_id': context_id,
-            'receivers': (yield get_context(context_id, 'en'))['receivers'],
+            'receivers': context['receivers'],
             'files': [],
             'human_captcha_answer': 0,
             'proof_of_work_answer': 0,
             'identity_provided': False,
             'total_score': 0,
-            'answers': (yield self.fill_random_answers(context_id))
+            'answers': answers
         })
 
     def get_dummy_file(self):
@@ -583,7 +585,7 @@ class TestGLWithPopulatedDB(TestGL):
         self.dummySubmission['context_id'] = self.dummyContext['id']
         self.dummySubmission['receivers'] = self.dummyContext['receivers']
         self.dummySubmission['identity_provided'] = False
-        self.dummySubmission['answers'] = yield self.fill_random_answers(self.dummyContext['id'])
+        self.dummySubmission['answers'] = yield self.fill_random_answers(self.dummyContext['questionnaire_id'])
         self.dummySubmission['total_score'] = 0
 
         self.dummySubmission = yield create_submission(self.dummySubmission,

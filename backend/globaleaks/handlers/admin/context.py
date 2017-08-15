@@ -86,24 +86,6 @@ def get_context(store, context_id, language):
     return admin_serialize_context(store, context, language)
 
 
-def db_get_context_steps(store, context_id, language):
-    """
-    Returns:
-        (dict) the questionnaire associated with the context with the specified id.
-    """
-    context = store.find(models.Context, models.Context.id == context_id).one()
-
-    if not context:
-        raise errors.ContextIdNotFound
-
-    return [serialize_step(store, s, language) for s in context.questionnaire.steps]
-
-
-@transact
-def get_context_steps(*args):
-    return db_get_context_steps(*args)
-
-
 def fill_context_request(request, language):
     fill_localized_keys(request, models.Context.localized_keys, language)
 
@@ -129,19 +111,6 @@ def db_update_context(store, context, request, language):
     db_associate_context_receivers(store, context, request['receivers'])
 
     return context
-
-
-def db_create_steps(store, context, steps, language):
-    """
-    Create the specified steps
-    :param store: the store on which perform queries.
-    :param context: the context on which register specified steps.
-    :param steps: a dictionary containing the new steps.
-    :param language: the language of the specified steps.
-    """
-    for step in steps:
-        step['context_id'] = context.id
-        context.steps.add(db_create_step(store, step, language))
 
 
 def db_create_context(store, request, language):

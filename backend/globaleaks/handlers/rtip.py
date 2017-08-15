@@ -80,11 +80,10 @@ def receiver_serialize_wbfile(f):
 def serialize_comment(comment):
     if comment.type == 'whistleblower':
         author = 'Whistleblower'
+    elif comment.author is not None:
+        author = comment.author.public_name
     else:
-        if comment.author is not None:
-            author = comment.author.public_name
-        else:
-            author = 'Recipient'
+        author = 'Recipient'
 
     return {
         'id': comment.id,
@@ -371,12 +370,6 @@ def create_message(store, user_id, rtip_id, request):
     store.add(msg)
 
     return serialize_message(msg)
-
-
-@transact
-def set_wbfile_description(store, user_id, file_id, description):
-    wbfile = db_access_wbfile(store, user_id, file_id)
-    wbfile.description = description
 
 
 @transact

@@ -247,15 +247,6 @@ class MigrationBase(object):
 
             self.store_new.add(new_obj)
 
-    def migration_fix_Notification(self, old_obj, new_obj):
-        if self.appdata is not None:
-            for key in self.appdata['templates'].keys():
-                old_keys = [v.name for _, v in old_obj._storm_columns.iteritems()]
-                new_keys = [v.name for _, v in new_obj._storm_columns.iteritems()]
-                if key in new_keys and key not in old_keys:
-                    # write the new keys
-                    setattr(new_obj, key, self.appdata['templates'][key])
-
     def migrate_model(self, model_name):
         objs_count = self.store_old.find(self.model_from[model_name]).count()
 

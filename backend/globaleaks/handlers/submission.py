@@ -13,8 +13,8 @@ from storm.expr import And, In
 from twisted.internet import defer
 
 from globaleaks import models
-from globaleaks.handlers.admin.context import db_get_context_steps
 from globaleaks.handlers.base import BaseHandler
+from globaleaks.handlers.admin.questionnaire import db_get_questionnaire
 from globaleaks.orm import transact
 from globaleaks.rest import errors, requests
 from globaleaks.security import hash_password, sha256, generateRandomReceipt
@@ -316,7 +316,7 @@ def db_create_submission(store, request, uploaded_files, client_using_tor, langu
         submission.identity_provided_date = datetime_now()
 
     try:
-        questionnaire = db_get_context_steps(store, context.id, None)
+        questionnaire = db_get_questionnaire(store, context.questionnaire_id, None)['steps']
         questionnaire_hash = unicode(sha256(json.dumps(questionnaire)))
 
         submission.questionnaire_hash = questionnaire_hash
