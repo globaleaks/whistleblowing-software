@@ -182,6 +182,7 @@ AdminNodeDesc = {
     'languages_supported': list,
     'default_language': unicode,
     'default_password': unicode,
+    'default_questionnaire': unicode,
     'maximum_namesize': int,
     'maximum_textsize': int,
     'maximum_filesize': int,
