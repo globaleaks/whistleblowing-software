@@ -6,13 +6,18 @@
 #
 
 from globaleaks import models
-from globaleaks.handlers.admin.step import db_create_step
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.public import serialize_step, serialize_questionnaire
 from globaleaks.orm import transact
 from globaleaks.rest import errors, requests
 from globaleaks.utils.structures import fill_localized_keys
 from globaleaks.utils.utility import log
+
+
+def db_get_questionnaire_list(store, language):
+    questionnaires = store.find(models.Questionnaire)
+
+    return [serialize_questionnaire(store, questionnaire, language) for questionnaire in questionnaires]
 
 
 @transact
@@ -24,12 +29,10 @@ def get_questionnaire_list(store, language):
     :param language: the language in which to localize data.
     :return: a dictionary representing the serialization of the questionnaires.
     """
-    return [serialize_questionnaire(store, questionnaire, language)
-        for questionnaire in store.find(models.Questionnaire)]
+    return db_get_questionnaire_list(store, language)
 
 
-@transact
-def get_questionnaire(store, questionnaire_id, language):
+def db_get_questionnaire(store, questionnaire_id, language):
     """
     Returns:
         (dict) the questionnaire with the specified id.
@@ -43,28 +46,15 @@ def get_questionnaire(store, questionnaire_id, language):
     return serialize_questionnaire(store, questionnaire, language)
 
 
-def db_get_questionnaire_steps(store, questionnaire_id, language):
-    """
-    Returns:
-        (dict) the questionnaire associated with the questionnaire with the specified id.
-    """
-    questionnaire = store.find(models.Questionnaire, models.Questionnaire.id == questionnaire_id).one()
-
-    if not questionnaire:
-        log.err("Requested invalid questionnaire")
-        raise errors.QuestionnaireIdNotFound
-
-    return [serialize_step(store, s, language) for s in questionnaire.steps]
-
-
 @transact
-def get_questionnaire_steps(*args):
-    return db_get_questionnaire_steps(*args)
+def get_questionnaire(store, questionnaire_id, language):
+    return db_get_questionnaire(store, questionnaire_id, language)
 
 
 def fill_questionnaire_request(request, language):
     fill_localized_keys(request, models.Questionnaire.localized_keys, language)
     return request
+
 
 def db_update_questionnaire(store, questionnaire, request, language):
     request = fill_questionnaire_request(request, language)
@@ -72,19 +62,6 @@ def db_update_questionnaire(store, questionnaire, request, language):
     questionnaire.update(request)
 
     return questionnaire
-
-
-def db_create_steps(store, questionnaire, steps, language):
-    """
-    Create the specified steps
-    :param store: the store on which perform queries.
-    :param questionnaire: the questionnaire on which register specified steps.
-    :param steps: a dictionary containing the new steps.
-    :param language: the language of the specified steps.
-    """
-    for step in steps:
-        step['questionnaire_id'] = questionnaire.id
-        questionnaire.steps.add(db_create_step(store, step, language))
 
 
 def db_create_questionnaire(store, request, language):
