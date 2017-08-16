@@ -8,7 +8,7 @@ import traceback
 from storm import exceptions
 
 from globaleaks import models, security, DATABASE_VERSION, FIRST_DATABASE_VERSION_SUPPORTED
-from globaleaks.db.appdata import db_update_appdata, db_fix_fields_attrs
+from globaleaks.db.appdata import db_fix_fields_attrs, db_update_defaults, load_appdata
 from globaleaks.handlers.admin import files
 from globaleaks.handlers.base import GLSession
 from globaleaks.models import config, l10n, User
@@ -43,17 +43,20 @@ def db_create_tables(store):
 
 @transact_sync
 def init_db(store, use_single_lang=False):
+    appdata = load_appdata()
+
     db_create_tables(store)
-    appdata_dict = db_update_appdata(store)
+
+    db_update_defaults(store)
 
     log.debug("Performing database initialization...")
 
     config.system_cfg_init(store)
 
     if not use_single_lang:
-        EnabledLanguage.add_all_supported_langs(store, appdata_dict)
+        EnabledLanguage.add_all_supported_langs(store, appdata)
     else:
-        EnabledLanguage.add_new_lang(store, u'en', appdata_dict)
+        EnabledLanguage.add_new_lang(store, u'en', appdata)
 
     with open(os.path.join(GLSettings.client_path, 'data/logo.png'), 'r') as logo_file:
         data = logo_file.read()

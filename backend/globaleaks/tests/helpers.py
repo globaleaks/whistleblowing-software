@@ -10,7 +10,7 @@ sys.setdefaultencoding('utf8')
 
 from globaleaks import db, models, security, event, jobs, __version__
 from globaleaks.anomaly import Alarm
-from globaleaks.db.appdata import load_appdata
+from globaleaks.db.appdata import load_appdata, read_json_file
 from globaleaks.orm import transact
 from globaleaks.handlers import rtip, wbtip
 from globaleaks.handlers.authentication import db_get_wbtip_by_receipt
@@ -144,6 +144,7 @@ def get_dummy_step():
         'description': u'Step Description',
         'presentation_order': 0,
         'triggered_by_score': 0,
+        'questionnaire_id': '',
         'children': []
     }
 
@@ -172,6 +173,13 @@ def get_dummy_field():
         'width': 0,
         'triggered_by_score': 0
     }
+
+
+def get_dummy_questionnaire():
+    q = read_json_file(os.path.join(GLSettings.questionnaires_path, 'default.json'))
+    q['id'] = u''
+    return q
+
 
 files_count = 0
 
@@ -380,7 +388,7 @@ class TestGL(unittest.TestCase):
 
         return answers
 
-    @defer.inlineCallbacks
+    @inlineCallbacks
     def get_dummy_submission(self, context_id):
         """
         this may works until the content of the fields do not start to be validated. like

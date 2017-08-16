@@ -1,86 +1,56 @@
 # -*- coding: UTF-8
 # datainit.py: database initialization
 #   ******************
-import json
 import os
 
 from storm.expr import And, Not, In
 
 from globaleaks import models
 from globaleaks.handlers.admin.field import db_create_field, db_import_fields
+from globaleaks.handlers.admin.questionnaire import db_create_questionnaire
 from globaleaks.orm import transact
 from globaleaks.settings import GLSettings
-from globaleaks.utils.utility import log
-
-
-def read_appdata(p):
-    with file(p, 'r') as f:
-        json_string = f.read()
-        appdata_dict = json.loads(json_string)
-        return appdata_dict
+from globaleaks.utils.utility import log, read_json_file
 
 
 def load_appdata():
-    return read_appdata(GLSettings.appdata_file)
-
-
-def load_archived_appdata(p):
-    return read_appdata(p)
+    return read_json_file(GLSettings.appdata_file)
 
 
 def load_default_questionnaires(store):
-    appdata = store.find(models.ApplicationData).one()
-    steps = appdata.default_questionnaire['steps']
-    del appdata.default_questionnaire['steps']
+    qfiles = [os.path.join(GLSettings.questionnaires_path, path) for path in os.listdir(GLSettings.questionnaires_path)]
+    for qfile in qfiles:
+        questionnaire = read_json_file(qfile)
+        steps = questionnaire['steps']
+        del questionnaire['steps']
 
-    questionnaire = store.find(models.Questionnaire, models.Questionnaire.id == u'default').one()
-    if questionnaire is None:
-        questionnaire = models.db_forge_obj(store, models.Questionnaire, appdata.default_questionnaire)
-    else:
-        for step in questionnaire.steps:
-            store.remove(step)
+        q = store.find(models.Questionnaire, models.Questionnaire.id == questionnaire['id']).one()
+        if q is None:
+            q = models.db_forge_obj(store, models.Questionnaire, questionnaire)
+        else:
+            for step in q.steps:
+                store.remove(step)
 
-    for step in steps:
-        f_children = step['children']
-        del step['children']
-        s = models.db_forge_obj(store, models.Step, step)
-        db_import_fields(store, s, None, f_children)
-        s.questionnaire_id = questionnaire.id
+        for step in steps:
+            f_children = step['children']
+            del step['children']
+            s = models.db_forge_obj(store, models.Step, step)
+            s.questionnaire_id = q.id
+            db_import_fields(store, s, None, f_children)
+
 
 
 def load_default_fields(store):
-    for fname in os.listdir(GLSettings.fields_path):
-        fpath = os.path.join(GLSettings.fields_path, fname)
-        with file(fpath, 'r') as f:
-            json_string = f.read()
-            field_dict = json.loads(json_string)
-            old_field = store.find(models.Field, models.Field.id == field_dict['id']).one()
-
-            if old_field is not None:
-                store.remove(old_field)
-
-            db_create_field(store, field_dict, None)
+    ffiles = [os.path.join(GLSettings.questions_path, path) for path in os.listdir(GLSettings.questions_path)]
+    for ffile in ffiles:
+        question = read_json_file(ffile)
+        store.find(models.Field, models.Field.id == question['id']).remove()
+        db_create_field(store, question, None)
 
 
-def db_update_appdata(store):
-    # Load new appdata
-    appdata_dict = load_appdata()
-
-    # Drop old appdata
-    store.find(models.ApplicationData).remove()
-
-    # Load and setup new appdata
-    store.add(models.ApplicationData(appdata_dict))
-
+def db_update_defaults(store):
     load_default_questionnaires(store)
     load_default_fields(store)
-
-    return appdata_dict
-
-
-@transact
-def update_appdata(store):
-    return db_update_appdata(store)
 
 
 def db_fix_fields_attrs(store):
@@ -89,11 +59,7 @@ def db_fix_fields_attrs(store):
     The content of the field_attrs dict is used to add and remove all of the
     excepted forms of field_attrs for FieldAttrs in the db.
     """
-
-    # Load the field attributes descriptors
-    with file(GLSettings.field_attrs_file, 'r') as f:
-        json_string = f.read()
-        field_attrs = json.loads(json_string)
+    field_attrs = read_json_file(GLSettings.field_attrs_file)
 
     special_lst = ['whistleblower_identity']
 

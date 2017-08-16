@@ -1,0 +1,119 @@
+{
+  "id": "default",
+  "name": "Default",
+  "editable": false,
+  "layout": "horizontal",
+  "show_steps_navigation_bar": true,
+  "steps_navigation_requires_completion": true,
+  "steps": [
+    {
+      "label": {
+        "en": "Fill out your submission"
+      },
+      "description": {
+        "en": ""
+      },
+      "presentation_order": 0,
+      "children": [
+        {
+          "label": {
+            "en": "Short title"
+          },
+          "type": "inputbox",
+          "preview": true,
+          "hint": {
+            "en": "Describe your submission in a few words"
+          },
+          "description": {
+            "en": ""
+          },
+          "multi_entry": false,
+          "multi_entry_hint": {
+            "en": ""
+          },
+          "stats_enabled": false,
+          "required": false,
+          "attrs": {
+            "min_len": {
+              "type": "int",
+              "value": "-1"
+            },
+            "max_len": {
+              "type": "int",
+              "value": "-1"
+            },
+            "input_validation": {
+              "type": "unicode",
+              "value": "none"
+            },
+            "regexp": {
+              "type": "unicode",
+              "value": ""
+            }
+          },
+          "options": [],
+          "children": [],
+          "y": 1,
+          "x": 0
+        },
+        {
+          "label": {
+            "en": "Full description"
+          },
+          "type": "textarea",
+          "preview": false,
+          "hint": {
+            "en": "Describe your submission in detail"
+          },
+          "description": {
+            "en": ""
+          },
+          "multi_entry": false,
+          "multi_entry_hint": {
+            "en": ""
+          },
+          "stats_enabled": false,
+          "required": false,
+          "attrs": {
+            "min_len": {
+              "type": "int",
+              "value": "-1"
+            },
+            "max_len": {
+              "type": "int",
+              "value": "-1"
+            }
+          },
+          "options": [],
+          "children": [],
+          "y": 2,
+          "x": 0
+        },
+        {
+          "label": {
+            "en": "Attachments"
+          },
+          "type": "fileupload",
+          "preview": false,
+          "hint": {
+            "en": "Attach files relevant to the submission"
+          },
+          "description": {
+            "en": ""
+          },
+          "multi_entry": true,
+          "multi_entry_hint": {
+            "en": ""
+          },
+          "stats_enabled": false,
+          "required": false,
+          "attrs": {},
+          "options": [],
+          "children": [],
+          "y": 3,
+          "x": 0
+        }
+      ]
+    }
+  ]
+}

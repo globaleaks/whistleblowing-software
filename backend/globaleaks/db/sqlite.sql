@@ -240,13 +240,6 @@ CREATE TABLE whistleblowertip (
     PRIMARY KEY (id)
 );
 
-CREATE TABLE applicationdata (
-    id TEXT NOT NULL,
-    version INTEGER NOT NULL,
-    default_questionnaire BLOB NOT NULL,
-    PRIMARY KEY (id)
-);
-
 CREATE TABLE anomalies (
     id TEXT NOT NULL,
     date TEXT NOT NULL,

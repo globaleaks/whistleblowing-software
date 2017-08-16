@@ -268,7 +268,8 @@ class GLSettingsClass(object):
             self.client_path = custom_client_path
 
         self.appdata_file = os.path.join(self.client_path, 'data/appdata.json')
-        self.fields_path = os.path.join(self.client_path, 'data/fields')
+        self.questionnaires_path = os.path.join(self.client_path, 'data/questionnaires')
+        self.questions_path = os.path.join(self.client_path, 'data/questions')
         self.field_attrs_file = os.path.join(self.client_path, 'data/field_attrs.json')
 
         self.torbrowser_path = os.path.join(self.working_path, 'torbrowser')

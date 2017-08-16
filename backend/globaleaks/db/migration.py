@@ -8,7 +8,7 @@ from storm.database import create_database
 from storm.store import Store
 
 from globaleaks import __version__, models, DATABASE_VERSION, FIRST_DATABASE_VERSION_SUPPORTED, LANGUAGES_SUPPORTED_CODES, security
-from globaleaks.db.appdata import db_update_appdata, db_fix_fields_attrs
+from globaleaks.db.appdata import db_update_defaults, db_fix_fields_attrs, load_appdata
 from globaleaks.db.migrations.update_21 import Node_v_20, Notification_v_20, Receiver_v_20, User_v_20, \
     Context_v_20, Step_v_20, Field_v_20, FieldOption_v_20, InternalTip_v_20
 from globaleaks.db.migrations.update_22 import Context_v_21, InternalTip_v_21
@@ -36,7 +36,6 @@ from globaleaks.utils.utility import log
 
 migration_mapping = OrderedDict([
     ('Anomalies', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, models.Anomalies, 0, 0, 0, 0, 0, 0, 0, 0]),
-    ('ApplicationData', [-1, -1, -1, -1, models.ApplicationData, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
     ('ArchivedSchema', [-1, -1, -1, ArchivedSchema_v_23, models.ArchivedSchema, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
     ('Comment', [Comment_v_22, 0, 0, Comment_v_31, 0, 0, 0, 0, 0, 0, 0, 0, models.Comment, 0, 0, 0, 0, 0, 0]),
     ('Config', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, config.Config, 0, 0, 0, 0]),
@@ -86,7 +85,8 @@ def db_perform_data_update(store):
 
         # The below commands can change the current store based on the what is
         # currently stored in the DB.
-        appdata = db_update_appdata(store)
+        appdata = load_appdata()
+        db_update_defaults(store)
         l10n.update_defaults(store, appdata)
         config.update_defaults(store)
         db_fix_fields_attrs(store)
@@ -201,9 +201,6 @@ def perform_schema_migration(version):
             store_verify = Store(create_database(GLSettings.make_db_uri(new_db_file)))
 
             for model_name, _ in migration_mapping.iteritems():
-                if model_name == 'ApplicationData':
-                    continue
-
                 if migration_script.model_from[model_name] is not None and migration_script.model_to[model_name] is not None:
                      count = store_verify.find(migration_script.model_to[model_name]).count()
                      if migration_script.entries_count[model_name] != count:
