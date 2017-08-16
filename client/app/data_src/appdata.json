@@ -3,113 +3,41 @@
   "node": {
     "contexts_clarification": {
       "en": "Select the context of your submission:"
-    },
+   },
     "security_awareness_title": {
       "en": "Warning! You are not anonymous."
-    },
+   },
     "security_awareness_text": {
       "en": "Sending submissions over HTTPS exposes the act of doing so, but not the content.\n\nAlso, hiding the fact that you are submitting something makes the submission anonymous, which is strongly recommended.\n\nThis can be achieved with the use of the Tor Browser, providing anonymisation not found in other browsers like Internet Explorer, Firefox, Chrome, Opera etc."
-    },
+   },
     "whistleblowing_question": {
       "en": "Are you a whistleblower?"
-    },
+   },
     "whistleblowing_button": {
       "en": "Blow the whistle"
-    },
+   },
     "whistleblowing_receipt_prompt": {
       "en": "Have you already filed a submission? Enter your key code."
-    },
+   },
     "header_title_submissionpage": {
       "en": "Blow the whistle"
-    },
+   },
     "header_title_receiptpage": {
       "en": "Your submission was successful."
-    },
+   },
     "header_title_tippage": {
       "en": "Tip status page"
-    },
+   },
     "widget_comments_title": {
       "en": "Comments"
-    },
+   },
     "widget_messages_title": {
       "en": "Private messages"
-    },
+   },
     "widget_files_title": {
       "en": "Attachments"
-    }
-  },
-  "default_questionnaire" : {
-    "id": "default",
-    "name": "Default",
-    "editable": false,
-    "layout": "horizontal",
-    "show_steps_navigation_bar": true,
-    "steps_navigation_requires_completion": true,
-    "steps": [
-      {
-        "label": { "en": "Fill out your submission" },
-        "description": {"en": ""},
-        "presentation_order": 0,
-        "children" : [
-          {
-            "label": { "en": "Short title" },
-            "type": "inputbox",
-            "preview": true,
-            "hint": {"en": "Describe your submission in a few words"},
-            "description": {"en": ""},
-            "multi_entry": false,
-            "multi_entry_hint": {"en": ""},
-            "stats_enabled": false,
-            "required": false,
-            "attrs": {
-              "min_len": {"type": "int", "value": "-1"},
-              "max_len": {"type": "int", "value": "-1"},
-              "input_validation": {"type": "unicode", "value": "none"},
-              "regexp": {"type": "unicode", "value": ""}
-            },
-            "options": [],
-            "children": [],
-            "y": 1,
-            "x": 0
-          },
-          {
-            "label": { "en": "Full description" },
-            "type": "textarea",
-            "preview": false,
-            "hint": {"en": "Describe your submission in detail"},
-            "description": {"en": ""},
-            "multi_entry": false,
-            "multi_entry_hint": {"en": ""},
-            "stats_enabled": false,
-            "required": false,
-            "attrs": {
-              "min_len": {"type": "int", "value": "-1"},
-              "max_len": {"type": "int", "value": "-1"}
-            },
-            "options": [],
-            "children": [],
-            "y": 2,
-            "x": 0
-          },
-          {
-            "label": { "en": "Attachments" },
-            "type": "fileupload",
-            "preview": false,
-            "hint": {"en": "Attach files relevant to the submission"},
-            "description": {"en": ""},
-            "multi_entry": true,
-            "multi_entry_hint": {"en": ""},
-            "stats_enabled": false,
-            "required": false,
-            "attrs": {},
-            "options": [],
-            "children": [],
-            "y": 3,
-            "x": 0
-          }
-        ]
-      }]
-  },
+   }
+ },
   "templates" : {
-  }
+ }
 }

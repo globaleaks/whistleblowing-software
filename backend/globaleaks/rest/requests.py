@@ -314,7 +314,7 @@ AdminStepDesc = {
     'label': unicode,
     'description': unicode,
     'children': [AdminFieldDesc],
-    'questionnaire_id': questionnaire_id_regexp,
+    'questionnaire_id': questionnaire_id_regexp_or_empty,
     'presentation_order': int,
     'triggered_by_score': int
 }
