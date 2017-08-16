@@ -118,12 +118,12 @@ class transact(object):
                 store.close()
 
                 duration = timedelta_to_milliseconds(datetime.now() - start_time)
-                msg = "Query [%s] executed in %.1fms", self.method.__name__, duration
+                err_tup = "Query [%s] executed in %.1fms", self.method.__name__, duration
                 if duration > self.timelimit:
-                    log.err(*msg)
-                    schedule_exception_email(*msg)
+                    log.err(*err_tup)
+                    schedule_exception_email(*err_tup)
                 else:
-                    log.debug(*msg)
+                    log.debug(*err_tup)
 
 
 class transact_sync(transact):
