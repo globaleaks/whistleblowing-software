@@ -634,14 +634,6 @@ class SecureFileDelete(ModelWithID):
     filepath = Unicode()
 
 
-class ApplicationData(ModelWithID):
-    version = Int()
-    default_questionnaire = JSON()
-
-    int_keys = ['version']
-    json_keys = ['default_questionnaire']
-
-
 # Follow classes used for Many to Many references
 class ReceiverContext(Model):
     """

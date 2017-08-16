@@ -6,6 +6,7 @@
 #
 
 from globaleaks import models
+from globaleaks.handlers.admin.field import db_import_fields
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.public import serialize_step, serialize_questionnaire
 from globaleaks.orm import transact
@@ -66,6 +67,9 @@ def db_update_questionnaire(store, questionnaire, request, language):
 
 def db_create_questionnaire(store, request, language):
     request = fill_questionnaire_request(request, language)
+
+    steps = request['steps']
+    del request['steps']
 
     questionnaire = models.Questionnaire(request)
 

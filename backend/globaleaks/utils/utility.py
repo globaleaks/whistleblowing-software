@@ -10,6 +10,7 @@ import codecs
 import ctypes
 import inspect
 import logging
+import json
 import os
 import re
 import sys
@@ -23,6 +24,15 @@ from twisted.python import log as twlog
 from twisted.python import util, failure
 
 from globaleaks import LANGUAGES_SUPPORTED_CODES
+
+
+def read_file(p):
+    with file(p, 'r') as f:
+        return f.read()
+
+
+def read_json_file(p):
+    return json.loads(read_file(p))
 
 
 def uuid4():
