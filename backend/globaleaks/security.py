@@ -247,7 +247,7 @@ class GLSecureTemporaryFile(_TemporaryFileWrapper):
             self.seek(0, 0)  # this is a trick just to misc write and read
             self.initialize_cipher()
             self.last_action = 'read'
-            log.debug("First seek on %s",  self.filepath)
+            log.debug("First seek on %s", self.filepath)
 
         if c is None:
             data = self.file.read()
@@ -306,7 +306,7 @@ def directory_traversal_check(trusted_absolute_prefix, untrusted_path):
     untrusted_path = os.path.abspath(untrusted_path)
 
     if trusted_absolute_prefix != os.path.commonprefix([trusted_absolute_prefix, untrusted_path]):
-        log.err("Blocked file operation out of the expected path: (\"%s\], \"%s\"",
+        log.err("Blocked file operation for: (prefix, attempted_path) : ('%s', '%s')",
                 trusted_absolute_prefix, untrusted_path)
 
         raise errors.DirectoryTraversalError
@@ -362,7 +362,7 @@ class GLBPGP(object):
             self.gnupg = GPG(gnupghome=temp_pgproot, options=['--trust-model', 'always'])
             self.gnupg.encoding = "UTF-8"
         except OSError as ose:
-            log.err("Critical, OS error in operating with GnuPG home: %s",  ose)
+            log.err("Critical, OS error in operating with GnuPG home: %s", ose)
             raise
         except Exception as excep:
             log.err("Unable to instance PGP object: %s" % excep)
@@ -376,7 +376,7 @@ class GLBPGP(object):
         try:
             import_result = self.gnupg.import_keys(key)
         except Exception as excep:
-            log.err("Error in PGP import_keys: %s",  excep)
+            log.err("Error in PGP import_keys: %s", excep)
             raise errors.PGPKeyInvalid
 
         if len(import_result.fingerprints) == 0:

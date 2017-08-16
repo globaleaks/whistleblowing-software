@@ -129,7 +129,7 @@ class TestToken(helpers.TestGL):
     def test_tokens_garbage_collected(self):
         self.assertTrue(len(TokenList) == 0)
 
-        for x in range(100):
+        for _ in range(100):
             Token('submission')
 
         self.assertTrue(len(TokenList) == 100)

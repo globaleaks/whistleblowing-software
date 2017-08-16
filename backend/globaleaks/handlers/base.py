@@ -512,10 +512,10 @@ class BaseHandler(object):
         self.request.execution_time = datetime.now() - self.request.start_time
 
         if self.request.execution_time.seconds > self.handler_exec_time_threshold:
-            error = ("Handler [%s] exceeded execution threshold (of %d secs) with an execution time of %.2f seconds",
-                    self.name, self.handler_exec_time_threshold, self.request.execution_time.seconds)
-            log.err(*error)
-            schedule_exception_email(*error)
+            err_tup = ("Handler [%s] exceeded execution threshold (of %d secs) with an execution time of %.2f seconds",
+                       self.name, self.handler_exec_time_threshold, self.request.execution_time.seconds)
+            log.err(*err_tup)
+            schedule_exception_email(*err_tup)
 
         track_handler(self)
 
