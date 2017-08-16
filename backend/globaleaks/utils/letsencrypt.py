@@ -46,7 +46,10 @@ def run_acme_reg_to_finish(domain, regr_uri, accnt_key, site_key, csr, tmp_chall
     log.debug('Created auth client %s', authzr)
 
     def get_http_challenge(x, y):
-         return x if type(y.chall) is challenges.HTTP01 else y
+        if type(y.chall) is challenges.HTTP01:
+            return y
+        else:
+            return x
 
     challb = reduce(get_http_challenge, authzr.body.challenges, None)
     chall_tok = challb.chall.validation(accnt_key)

@@ -17,7 +17,7 @@ class SessionManagementSchedule(LoopingJob):
         """
         This scheduler is responsible for:
             - Reset of failed login attempts counters
-            - Reset the api_token suspension
+            - Refresh of the api_token's suspension
         """
         GLSettings.failed_login_attempts = 0
         GLSettings.appstate.api_token_session_suspended = False
