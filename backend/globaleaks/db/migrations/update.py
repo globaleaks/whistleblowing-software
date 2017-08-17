@@ -8,6 +8,7 @@ from storm.variables import IntVariable
 from storm.variables import UnicodeVariable, JSONVariable
 
 from globaleaks import DATABASE_VERSION, FIRST_DATABASE_VERSION_SUPPORTED
+from globaleaks.db import db_create_tables
 from globaleaks.db.appdata import load_appdata
 from globaleaks.settings import GLSettings
 from globaleaks.utils.utility import every_language_dict
@@ -109,7 +110,6 @@ class MigrationBase(object):
 
         self.migration_mapping = migration_mapping
         self.start_version = start_version
-        self.last_migration = start_version + 1 == DATABASE_VERSION
 
         self.store_old = store_old
         self.store_new = store_new
@@ -133,24 +133,14 @@ class MigrationBase(object):
             if self.model_from[model_name] is not None and self.model_to[model_name] is not None:
                 self.entries_count[model_name] = self.store_old.find(self.model_from[model_name]).count()
 
-        if self.last_migration:
-            # we are there!
-            if not os.access(GLSettings.db_schema, os.R_OK):
-                GLSettings.print_msg("Unable to access %s ' % GLSettings.db_schema")
-                raise IOError('Unable to access db schema file')
-            with open(GLSettings.db_schema) as f:
-                queries = ''.join(f).split(';')
-                for query in queries:
-                    self.execute_query(query)
-
-        else: # manage the migration here
+        if start_version + 1 < DATABASE_VERSION:
             for k, _ in self.migration_mapping.iteritems():
                 query = self.get_right_sql_version(k, self.start_version + 1)
-                if not query:
-                    # the table has been removed
-                    continue
+                if query: # the query is missing when the table has been removed
+                    self.execute_query(query)
 
-                self.execute_query(query)
+        else: # the last commit is the only one that use the actual sqlite.sql file
+            db_create_tables(self.store_new)
 
         self.store_new.commit()
 
