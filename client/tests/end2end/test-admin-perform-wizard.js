@@ -15,7 +15,7 @@ describe('globaLeaks setup wizard', function() {
 
     element.all(by.id('ButtonNext')).get(1).click();
 
-    element(by.id('profile-1')).click();
+    element(by.id('profile-0')).click();
 
     element.all(by.id('ButtonNext')).get(2).click();
 
