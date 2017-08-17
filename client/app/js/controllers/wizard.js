@@ -28,30 +28,19 @@ GLClient.controller('WizardCtrl', ['$scope', '$location', '$route', '$http', 'Au
 
       $scope.config_profiles = [
         {
-          active: true,
           name:  'default',
           title: 'Use default settings',
-        },
-        {
-          name:  'journo',
-          title: 'Investigative journalism',
-        },
-        {
-          name:  'transparency',
-          title: 'NGO anticorruption reporting',
-        },
-        {
-          name:  'public',
-          title: 'Public administration compliant whistleblowing',
+          active: true
         },
       ];
 
-      $scope.selectProfile = function(profile) {
+      $scope.selectProfile = function(name) {
         angular.forEach($scope.config_profiles, function(p) {
-          p.active = false;
+          p.active = p.name === name ? true : false;
+          if (p.active) {
+            $scope.wizard.profile = p.name;
+          }
         });
-        profile.active = true;
-        $scope.wizard.profile = profile.name;
       }
 
       var context = AdminUtils.new_context();
@@ -63,7 +52,8 @@ GLClient.controller('WizardCtrl', ['$scope', '$location', '$route', '$http', 'Au
           'password': ''
         },
         'receiver': receiver,
-        'context': context
+        'context': context,
+        'profile': 'default'
       };
     }
   }

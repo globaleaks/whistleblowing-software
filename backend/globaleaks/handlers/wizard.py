@@ -42,6 +42,8 @@ def wizard(store, request, language):
     node_l10n.set_val('description', language, request['node']['description'])
     node_l10n.set_val('header_title_homepage', language, request['node']['name'])
 
+    profiles.load_profile(store, request['profile'])
+
     context = db_create_context(store, request['context'], language)
 
     langs_to_drop = EnabledLanguage.list(store)
@@ -72,8 +74,6 @@ def wizard(store, request, language):
     }
 
     db_create_admin_user(store, admin_dict, language)
-
-    profiles.load_profile(store, request['profile'])
 
     db_refresh_memory_variables(store)
 
