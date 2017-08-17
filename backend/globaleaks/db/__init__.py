@@ -33,12 +33,13 @@ def get_db_file(db_path):
 def db_create_tables(store):
     with open(GLSettings.db_schema) as f:
         create_queries = ''.join(f.readlines()).split(';')
-        for create_query in create_queries:
-            try:
-                store.execute(create_query + ';')
-            except exceptions.OperationalError as exc:
-                log.err("OperationalError in [%s]", create_query)
-                log.err(exc)
+
+    for create_query in create_queries:
+        try:
+            store.execute(create_query + ';')
+        except exceptions.OperationalError as exc:
+            log.err("OperationalError in [%s]", create_query)
+            log.err(exc)
 
 
 @transact_sync
