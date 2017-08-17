@@ -1,7 +1,7 @@
 <div class="list-group">
   <div data-ng-repeat="profile in config_profiles">
     <a id="profile-{{$index}}" href="#" class="configItem list-group-item" name="editQuestionnaire" data-ng-class="{active: profile.active}"
-           data-ng-click="selectProfile(profile)">
+           data-ng-click="selectProfile(profile.name)">
       <h4>{{ profile.title | translate }}</h4>
     </a>
   </div>
