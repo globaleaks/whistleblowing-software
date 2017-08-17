@@ -75,13 +75,7 @@ def generateCreateQuery(model):
     """
     This takes as input a Storm model and outputs the creation query for it.
     """
-    prehistory = model.__storm_table__.find("_v_")
-    if prehistory != -1:
-        model_name = model.__storm_table__[:prehistory]
-    else:
-        model_name = model.__storm_table__
-
-    query = "CREATE TABLE " + model_name + " "
+    query = "CREATE TABLE " +  model.__storm_table__.split("_v_") + " "
 
     variables = []
     primary_keys = []
