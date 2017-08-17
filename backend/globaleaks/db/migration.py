@@ -8,6 +8,7 @@ from storm.database import create_database
 from storm.store import Store
 
 from globaleaks import __version__, models, DATABASE_VERSION, FIRST_DATABASE_VERSION_SUPPORTED, LANGUAGES_SUPPORTED_CODES, security
+from globaleaks.db import db_create_tables
 from globaleaks.db.appdata import db_update_defaults, db_fix_fields_attrs, load_appdata
 from globaleaks.db.migrations.update_21 import Node_v_20, Notification_v_20, Receiver_v_20, User_v_20, \
     Context_v_20, Step_v_20, Field_v_20, FieldOption_v_20, InternalTip_v_20
@@ -231,7 +232,6 @@ def perform_schema_migration(version):
     finally:
         # Always cleanup the temporary directory used for the migration
         for f in os.listdir(tmpdir):
-            tmp_db_file = os.path.join(tmpdir, f)
-            security.overwrite_and_remove(tmp_db_file)
+            security.overwrite_and_remove(os.path.join(tmpdir, f))
 
         shutil.rmtree(tmpdir)
