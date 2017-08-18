@@ -1,3 +1,6 @@
+Changes in version 2.71.2 - 2017-08-18
+    o Apply bugfixing to HTTPS detection and warning
+
 Changes in version 2.71.1 - 2017-08-10
     o Apply bugfixing to update detection feature
     o Apply bugfixing to HTTPS detection and warning
