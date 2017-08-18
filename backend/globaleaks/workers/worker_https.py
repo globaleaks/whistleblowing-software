@@ -14,6 +14,13 @@ from globaleaks.utils.tls import TLSServerContextFactory, ChainValidator
 from globaleaks.utils.httpsproxy import HTTPStreamFactory
 
 
+def make_TLSContextFactory(site_cfg):
+    return TLSServerContextFactory(site_cfg['ssl_key'],
+                                   site_cfg['ssl_cert'],
+                                   site_cfg['ssl_intermediate'],
+                                   site_cfg['ssl_dh'])
+
+
 class HTTPSProcess(Process):
     name = 'gl-https-proxy'
     ports = []
@@ -25,17 +32,20 @@ class HTTPSProcess(Process):
 
         http_proxy_factory = HTTPStreamFactory(proxy_url)
 
-        cv = ChainValidator()
-        ok, err = cv.validate(self.cfg, must_be_disabled=False, check_expiration=False)
-        if not ok or not err is None:
-            raise err
+        for site_cfg in self.cfg['site_cfgs']:
+            cv = ChainValidator()
+            ok, err = cv.validate(site_cfg, must_be_disabled=False, check_expiration=False)
+            if not ok or not err is None:
+                raise err
 
-        snimap = SNIMap({
-            'DEFAULT': TLSServerContextFactory(self.cfg['ssl_key'],
-                                               self.cfg['ssl_cert'],
-                                               self.cfg['ssl_intermediate'],
-                                               self.cfg['ssl_dh'])
-        })
+        default_site = self.cfg['site_cfgs'].pop(0)
+        sni_dict = {'DEFAULT': make_TLSContextFactory(default_site)}
+
+        # TODO(multiten) check if hostname is used multiple times.
+        for site_cfg in self.cfg['site_cfgs']:
+            sni_dict[site_cfg['hostname']] = make_TLSContextFactory(site_cfg)
+
+        snimap = SNIMap(sni_dict)
 
         socket_fds = self.cfg['tls_socket_fds']
 
