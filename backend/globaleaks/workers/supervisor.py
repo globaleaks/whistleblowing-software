@@ -7,7 +7,7 @@ from sys import executable
 
 from twisted.internet import defer, reactor
 
-from globaleaks.models.config import PrivateFactory, load_tls_dict
+from globaleaks.models.config import PrivateFactory, load_tls_dict_list
 from globaleaks.orm import transact
 from globaleaks.utils import tls
 from globaleaks.utils.utility import log, datetime_now, datetime_to_ISO8601
@@ -42,13 +42,13 @@ class ProcessSupervisor(object):
           'proxy_ip': proxy_ip,
           'proxy_port': proxy_port,
           'debug': log.loglevel <= logging.DEBUG,
+          'site_cfgs': [],
         }
 
         if len(net_sockets) == 0:
             log.err("No ports to bind to! Spawning processes will not work!")
 
         self.tls_cfg['tls_socket_fds'] = [ns.fileno() for ns in net_sockets]
-
 
     @transact
     def maybe_launch_https_workers(self, store):
@@ -64,13 +64,19 @@ class ProcessSupervisor(object):
             yield defer.succeed(None)
             return
 
-        db_cfg = load_tls_dict(store)
-        self.tls_cfg.update(db_cfg)
+        site_cfgs = load_tls_dict_list(store)
 
-        chnv = tls.ChainValidator()
-        ok, err = chnv.validate(db_cfg, must_be_disabled=False, check_expiration=False)
+        valid_cfgs, err = [], None
+        # Determine which site_cfgs are valid and only pass those to the child.
+        for db_cfg in site_cfgs:
+            chnv = tls.ChainValidator()
+            ok, err = chnv.validate(db_cfg, must_be_disabled=False, check_expiration=False)
+            if ok and err is None:
+                valid_cfgs.append(db_cfg)
 
-        if ok and err is None:
+        self.tls_cfg['site_cfgs'] = valid_cfgs
+
+        if len(valid_cfgs) != 0:
             log.info("Decided to launch https workers")
             yield self.launch_https_workers()
         else:

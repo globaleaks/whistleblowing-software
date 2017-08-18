@@ -12,7 +12,7 @@ import signal
 from twisted.internet import threads, reactor
 from twisted.internet.defer import inlineCallbacks, Deferred
 
-from globaleaks.models.config import PrivateFactory, load_tls_dict
+from globaleaks.models.config import PrivateFactory, load_tls_dict_list
 from globaleaks.utils.sock import reserve_port_for_ip
 from globaleaks.orm import transact
 from globaleaks.workers import supervisor, process
@@ -95,8 +95,7 @@ class TestSubprocessRun(helpers.TestGL):
             'tls_socket_fds': [sock.fileno() for sock in self.https_socks],
             'debug': False,
         }
-        db_cfg = yield wrap_db_tx(load_tls_dict)
-        valid_cfg.update(db_cfg)
+        valid_cfg['site_cfgs'] = yield wrap_db_tx(load_tls_dict_list)
 
         tmp = tempfile.TemporaryFile()
         tmp.write(json.dumps(valid_cfg))

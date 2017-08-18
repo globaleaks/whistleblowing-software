@@ -274,10 +274,11 @@ def update_defaults(store):
     prv.set_val('version', __version__)
 
 
-def load_tls_dict(store):
+def load_tls_dict(store, tid=None):
     """
     A quick and dirty function to grab all of the tls config for use in subprocesses
     """
+    # TODO(multiten) parameterize factory query with tid
     privFact = PrivateFactory(store)
 
     # /START ssl_* is used here to indicate the quality of the implementation
@@ -291,6 +292,12 @@ def load_tls_dict(store):
         'hostname': NodeFactory(store).get_val('hostname'),
     }
     return tls_cfg
+
+
+def load_tls_dict_list(store):
+    # TODO(multiten) iterate through all the tenants here.
+    tls_cfg = load_tls_dict(store)
+    return [tls_cfg]
 
 
 def add_raw_config(store, group, name, customized, value):

@@ -482,7 +482,6 @@ class AcmeAccntKeyRes:
             key_size=2048,
             backend=default_backend())
 
-
         log.debug("Saving the ACME key")
         b = priv_key.private_bytes(
                 encoding=serialization.Encoding.PEM,
