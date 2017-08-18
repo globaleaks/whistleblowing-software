@@ -474,7 +474,7 @@ var GLClient = angular.module('GLClient', [
       }
 
       if ($location.path() === '/submission' &&
-          $rootScope.tor === false &&
+          $rootScope.connection.tor === false &&
           $rootScope.node.tor2web_whistleblower === false) {
         $location.path("/");
       }
@@ -524,6 +524,7 @@ var GLClient = angular.module('GLClient', [
 
     $rootScope.evaluateConfidentialityModalOpening = function () {
       if (!Test && // NOTE used by protractor
+          !$rootScope.connection.tor &&
           !$rootScope.connection.https &&
           !$rootScope.confidentiality_warning_accepted &&
           ['localhost', '127.0.0.1'].indexOf($location.host()) === -1) {
@@ -537,18 +538,12 @@ var GLClient = angular.module('GLClient', [
     }
 
     $rootScope.evaluateAnonimityModalOpening = function () {
-      if ($rootScope.confidentiality_warning_opened) {
-        return false;
-      }
-
-      if (!$rootScope.connection.tor && !$rootScope.anonimity_warning_accepted) {
-        if (!$rootScope.tor) {
-          if (!$rootScope.anonimity_warning_opened) {
-            $rootScope.anonimity_warning_opened = true;
-            $rootScope.open_anonimity_modal();
-            return true;
-          }
-        }
+      if (!$rootScope.confidentiality_warning_opened &&
+          !$rootScope.connection.tor &&
+          !$rootScope.anonimity_warning_accepted) {
+        $rootScope.anonimity_warning_opened = true;
+        $rootScope.open_anonimity_modal();
+        return true;
       }
 
       return false;
