@@ -465,7 +465,7 @@ var GLClient = angular.module('GLClient', [
     };
 
     var route_check = function () {
-      if ($rootScope.node.wizard_done === false) {
+      if (!$rootScope.node.wizard_done) {
         $location.path('/wizard');
       }
 
@@ -474,8 +474,8 @@ var GLClient = angular.module('GLClient', [
       }
 
       if ($location.path() === '/submission' &&
-          $rootScope.connection.tor === false &&
-          $rootScope.node.tor2web_whistleblower === false) {
+          !$rootScope.connection.tor &&
+          !$rootScope.node.tor2web_whistleblower) {
         $location.path("/");
       }
     };

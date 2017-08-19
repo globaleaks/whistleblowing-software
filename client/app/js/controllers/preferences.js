@@ -42,7 +42,7 @@ GLClient.controller('PreferencesCtrl', ['$scope', '$rootScope', 'CONSTANTS',
     $scope.email_regexp = CONSTANTS.email_regexp;
 
     $scope.save = function() {
-      if ($scope.preferences.pgp_key_remove === true) {
+      if ($scope.preferences.pgp_key_remove) {
         $scope.preferences.pgp_key_public = '';
       }
 

@@ -19,7 +19,7 @@ GLClient.controller('SubmissionCtrl',
     $scope.problemModal = undefined;
     $scope.submission._token.$update(function(token) {
       $scope.submission._token = token;
-      $scope.problemToBeSolved = $scope.submission._token.human_captcha !== false;
+      $scope.problemToBeSolved = $scope.submission._token.human_captcha;
       if ($scope.problemToBeSolved) {
         $scope.openProblemDialog($scope.submission);
       }
@@ -256,7 +256,7 @@ GLClient.controller('SubmissionCtrl',
 
     if (field.type === 'checkbox') {
       for(i=0; i<field.options.length; i++) {
-        if (entry[field.options[i].id] === true) {
+        if (entry[field.options[i].id]) {
           score += field.options[i].score_points;
         }
       }
@@ -310,7 +310,7 @@ GLClient.controller('SubmissionCtrl',
     $scope.submission.create(context.id, receivers_ids, function () {
       startCountdown();
 
-      $scope.problemToBeSolved = $scope.submission._token.human_captcha !== false;
+      $scope.problemToBeSolved = $scope.submission._token.human_captcha;
 
       if ($scope.node.enable_proof_of_work) {
         glbcProofOfWork.proofOfWork($scope.submission._token.proof_of_work).then(function(result) {
@@ -520,7 +520,7 @@ controller('SubmissionFieldCtrl', ['$scope', 'fieldUtilities', function ($scope,
     }
 
     for (var i=0; i<field.options.length; i++) {
-      if (entry[field.options[i].id] && entry[field.options[i].id] === true) {
+      if (entry[field.options[i].id] && entry[field.options[i].id]) {
         return true;
       }
     }
