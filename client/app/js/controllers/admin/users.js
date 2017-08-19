@@ -2,7 +2,7 @@ GLClient.controller('AdminUsersCtrl', ['$scope', '$uibModal', 'AdminUserResource
   function($scope, $uibModal, AdminUserResource) {
 
   $scope.save_user = function(user) {
-    if (user.pgp_key_remove === true) {
+    if (user.pgp_key_remove) {
       user.pgp_key_public = '';
     }
 
