@@ -41,7 +41,6 @@ class HTTPSProcess(Process):
         default_site = self.cfg['site_cfgs'].pop(0)
         sni_dict = {'DEFAULT': make_TLSContextFactory(default_site)}
 
-        # TODO(multiten) check if hostname is used multiple times.
         for site_cfg in self.cfg['site_cfgs']:
             sni_dict[site_cfg['hostname']] = make_TLSContextFactory(site_cfg)
 
