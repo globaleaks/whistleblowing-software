@@ -750,6 +750,12 @@ if which lsb_release >/dev/null; then
   DISTRO_CODENAME="$(lsb_release -cs)"
 fi
 
+# LinuxMint is based on Ubuntu, if we encounter Mint just allign the Ubuntu version is based upon
+if (test "$DISTRO" ==  "LinuxMint"); then
+        DISTRO="Ubuntu"
+        DISTRO_CODENAME=`grep UBUNTU_CODENAME /etc/os-release | sed -e 's/UBUNTU_CODENAME=//'`
+fi
+
 # Report last executed command and its status
 TMPDIR=`mktemp -d`
 echo '' > $TMPDIR/last_command
@@ -847,14 +853,20 @@ else
   DO "apt-get install software-properties-common -y"
 fi
 
+# Check if we will need python-dev package for source installation of dependencies from pip
+# otherwise will fail for missing Python.h in compiling CFFI pip module
+if ! (echo "$DISTRO_CODENAME" | grep -qE "^(jessie)|(xenial)$"); then
+  DO "apt-get install python-dev"
+fi
+
 if ! grep -q "^deb .*universe" /etc/apt/sources.list /etc/apt/sources.list.d/*; then
   echo "Adding Ubuntu Universe repository"
-  DO "add-apt-repository 'deb http://archive.ubuntu.com/ubuntu $(lsb_release -sc) universe'"
+  DO "add-apt-repository 'deb http://archive.ubuntu.com/ubuntu $DISTRO_CODENAME universe'"
 fi
 
 if ! grep -q "^deb .*torproject" /etc/apt/sources.list /etc/apt/sources.list.d/*; then
   echo "Adding Tor repository"
-  DO "add-apt-repository 'deb http://deb.torproject.org/torproject.org $(lsb_release -sc) main'"
+  DO "add-apt-repository 'deb http://deb.torproject.org/torproject.org $DISTRO_CODENAME main'"
 fi
 
 if [ -d /globaleaks/deb ]; then
