@@ -63,6 +63,8 @@ class HTTPSProcess(Process):
         for port in self.ports:
             port.loseConnection()
 
+        Process.shutdown(self)
+
 
 if __name__ == '__main__':
     HTTPSProcess().start()

@@ -2,6 +2,7 @@
 import logging
 import multiprocessing
 import os
+import signal
 
 from sys import executable
 
@@ -18,10 +19,7 @@ class ProcessSupervisor(object):
     """
     A supervisor for all subprocesses that the main globaleaks process can launch
     """
-
-    # TODO One child process death every 5 minutes is acceptable. Four every minute
-    # is excessive.
-    MAX_MORTALITY_RATE = 4 # 0.2
+    MAX_MORTALITY_RATE = 0.2
 
     def __init__(self, net_sockets, proxy_ip, proxy_port):
         log.info("Starting process monitor")
@@ -50,19 +48,13 @@ class ProcessSupervisor(object):
 
         self.tls_cfg['tls_socket_fds'] = [ns.fileno() for ns in net_sockets]
 
-    @transact
-    def maybe_launch_https_workers(self, store):
-        self.db_maybe_launch_https_workers(store)
-
-    @defer.inlineCallbacks
     def db_maybe_launch_https_workers(self, store):
         privFact = PrivateFactory(store)
 
         on = privFact.get_val('https_enabled')
         if not on:
             log.info("Not launching workers")
-            yield defer.succeed(None)
-            return
+            return defer.succeed(None)
 
         site_cfgs = load_tls_dict_list(store)
 
@@ -76,22 +68,24 @@ class ProcessSupervisor(object):
 
         self.tls_cfg['site_cfgs'] = valid_cfgs
 
-        if len(valid_cfgs) != 0:
+        if len(valid_cfgs) > 0:
             log.info("Decided to launch https workers")
-            yield self.launch_https_workers()
+            return self.launch_https_workers()
         else:
             log.info("Not launching https workers due to %s", err)
-            yield defer.fail(err)
+            return defer.fail(err)
+
+    @transact
+    def maybe_launch_https_workers(self, store):
+        self.db_maybe_launch_https_workers(store)
 
     def launch_https_workers(self):
         self.tls_process_state['deaths'] = 0
         self.tls_process_state['last_death'] = datetime_now()
 
-        d_lst = []
-        for i in range(self.tls_process_state['target_proc_num']):
-            d_lst.append(self.launch_worker())
-        d = defer.DeferredList(d_lst)
-        return d
+        d_lst = [self.launch_worker() for i in range(self.tls_process_state['target_proc_num'])]
+
+        return defer.DeferredList(d_lst)
 
     def launch_worker(self):
         pp = HTTPSProcProtocol(self, self.tls_cfg)
@@ -196,7 +190,7 @@ class ProcessSupervisor(object):
 
         for pp in self.tls_process_pool:
             try:
-                pp.transport.signalProcess('KILL')
+                pp.transport.signalProcess(signal.SIGUSR1)
             except OSError as e:
                 log.debug('Tried to signal: %d got: %s', pp.transport.pid, e)
 
