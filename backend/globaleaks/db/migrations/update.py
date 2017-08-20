@@ -58,8 +58,10 @@ def varsToParametersSQL(variables, primary_keys, db_type):
         output: "(var1 INTEGER, var2 BOOL, var3 INTEGER PRIMARY KEY (var1))"
     """
     params = "("
+
     for var in variables[:-1]:
         params += "%s %s, " % (var[0], var[1])
+
     if len(primary_keys) > 0:
         params += "%s %s, " % variables[-1]
         params += "PRIMARY KEY ("
@@ -68,6 +70,7 @@ def varsToParametersSQL(variables, primary_keys, db_type):
         params += "%s))" % primary_keys[-1]
     else:
         params += "%s %s)" % variables[-1]
+
     return params
 
 
@@ -75,7 +78,7 @@ def generateCreateQuery(model):
     """
     This takes as input a Storm model and outputs the creation query for it.
     """
-    query = "CREATE TABLE " +  model.__storm_table__.split("_v_") + " "
+    query = "CREATE TABLE " +  model.__storm_table__.split("_v_")[0] + " "
 
     variables = []
     primary_keys = []
