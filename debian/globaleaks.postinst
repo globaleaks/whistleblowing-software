@@ -15,18 +15,18 @@ exit(v(pip.__version__) < v('1.3'))
 DISTRO="unknown"
 DISTRO_CODENAME="unknown"
 if which lsb_release >/dev/null; then
-  DISTRO="$( lsb_release -is )"
-  DISTRO_CODENAME="$( lsb_release -cs )"
+  DISTRO="$(lsb_release -is)"
+  DISTRO_CODENAME="$(lsb_release -cs)"
 fi
 
-if (test "$DISTRO" =  "LinuxMint"); then
-        DISTRO="Ubuntu"
-        DISTRO_CODENAME=`grep UBUNTU_CODENAME /etc/os-release | sed -e 's/UBUNTU_CODENAME=//'`
+if [ "$DISTRO" ==  "LinuxMint" ]; then
+  DISTRO="Ubuntu"
+  DISTRO_CODENAME=`grep UBUNTU_CODENAME /etc/os-release | sed -e 's/UBUNTU_CODENAME=//'`
 fi
 
-PIP_NEEDED=1
-if echo "$DISTRO_CODENAME" | grep -qE "^(jessie)|(xenial)$"; then
-  PIP_NEEDED=0
+PIP_NEEDED=0
+if echo "$DISTRO_CODENAME" | grep -qE "^(precise)|(trusty|jessie)$"; then
+  PIP_NEEDED=1
 fi
 
 if [ $PIP_NEEDED -eq 1 ]; then

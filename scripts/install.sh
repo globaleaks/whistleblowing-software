@@ -751,9 +751,9 @@ if which lsb_release >/dev/null; then
 fi
 
 # LinuxMint is based on Ubuntu, if we encounter Mint just allign the Ubuntu version is based upon
-if (test "$DISTRO" ==  "LinuxMint"); then
-        DISTRO="Ubuntu"
-        DISTRO_CODENAME=`grep UBUNTU_CODENAME /etc/os-release | sed -e 's/UBUNTU_CODENAME=//'`
+if [ "$DISTRO" == "LinuxMint" ]; then
+  DISTRO="Ubuntu"
+  DISTRO_CODENAME=`grep UBUNTU_CODENAME /etc/os-release | sed -e 's/UBUNTU_CODENAME=//'`
 fi
 
 # Report last executed command and its status
@@ -825,7 +825,7 @@ fi
 # a not supported distro we using the experimental package if it exists
 # or xenial as fallback.
 if echo "$DISTRO_CODENAME" | grep -vqE "^(trusty|xenial|wheezy|jessie)$"; then
-  # In case of unsupported platforms we fallback on Trusty
+  # In case of unsupported platforms we fallback on Xenial
   echo "No packages available for the current distribution; the install script will use the xenial repository."
   echo "In case of a failure refer to the wiki for manual setup possibilities."
   echo "GlobaLeaks Wiki: https://github.com/globaleaks/GlobaLeaks/wiki"
@@ -851,12 +851,6 @@ if echo "$DISTRO_CODENAME" | grep -qE "^(wheezy)$"; then
 else
   echo "Installing software-properties-common"
   DO "apt-get install software-properties-common -y"
-fi
-
-# Check if we will need python-dev package for source installation of dependencies from pip
-# otherwise will fail for missing Python.h in compiling CFFI pip module
-if ! (echo "$DISTRO_CODENAME" | grep -qE "^(jessie)|(xenial)$"); then
-  DO "apt-get install python-dev"
 fi
 
 if ! grep -q "^deb .*universe" /etc/apt/sources.list /etc/apt/sources.list.d/*; then
