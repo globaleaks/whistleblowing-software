@@ -19,6 +19,11 @@ if which lsb_release >/dev/null; then
   DISTRO_CODENAME="$( lsb_release -cs )"
 fi
 
+if (test "$DISTRO" =  "LinuxMint"); then
+        DISTRO="Ubuntu"
+        DISTRO_CODENAME=`grep UBUNTU_CODENAME /etc/os-release | sed -e 's/UBUNTU_CODENAME=//'`
+fi
+
 PIP_NEEDED=1
 if echo "$DISTRO_CODENAME" | grep -qE "^(jessie)|(xenial)$"; then
   PIP_NEEDED=0
