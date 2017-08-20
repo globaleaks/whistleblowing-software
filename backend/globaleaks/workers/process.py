@@ -8,7 +8,7 @@ import traceback
 from twisted.internet import defer, reactor
 from twisted.internet.protocol import ProcessProtocol
 
-from globaleaks.utils.process import set_proc_title, set_pdeathsig, disable_swap, SigQUIT
+from globaleaks.utils.process import set_proc_title, set_pdeathsig, disable_swap
 from globaleaks.utils.utility import log
 
 class Process(object):
@@ -18,35 +18,37 @@ class Process(object):
     def __init__(self, fd=42):
         self.pid = os.getpid()
 
-        signal.signal(signal.SIGTERM, SigQUIT)
-        signal.signal(signal.SIGINT, SigQUIT)
         set_proc_title(self.name)
         set_pdeathsig(signal.SIGINT)
 
-        self._log = os.fdopen(0, 'w', 1).write
+        def _shutdown(SIG, FRM):
+            self.shutdown()
+
+        signal.signal(signal.SIGINT, _shutdown)
+        signal.signal(signal.SIGTERM, _shutdown)
+        signal.signal(signal.SIGUSR1, _shutdown)
 
         def excepthook(*exc_info):
             self.log("".join(traceback.format_exception(*exc_info)))
 
         sys.excepthook = excepthook
 
-        f = os.fdopen(fd, 'r')
+        with os.fdopen(fd, 'r') as f:
+            self.cfg = json.loads(f.read())
 
-        try:
-            s = f.read()
-        except:
-            raise
-        finally:
-            f.close()
-
-        self.cfg = json.loads(s)
+    def shutdown(self):
+        if reactor.running:
+            reactor.stop()
+        else:
+            sys.exit(0)
 
     def start(self):
         reactor.run()
 
     def log(self, m):
         if self.cfg.get('debug', False):
-            self._log('[%s:%d] %s\n' % (self.name, self.pid, m))
+            with os.fdopen(0, 'w', 1) as f:
+                f.write('[%s:%d] %s\n' % (self.name, self.pid, m))
 
 
 class CfgFDProcProtocol(ProcessProtocol):

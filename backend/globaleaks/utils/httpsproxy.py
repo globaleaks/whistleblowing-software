@@ -184,5 +184,4 @@ class HTTPStreamFactory(http.HTTPFactory):
         self.proxy_url = proxy_url
 
     def buildProtocol(self, addr):
-        proto = HTTPStreamChannel(self.proxy_url)
-        return proto
+        return HTTPStreamChannel(self.proxy_url)

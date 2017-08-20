@@ -91,7 +91,6 @@ class GLService(service.Service):
         except Exception as excep:
             fail_startup(excep)
 
-    @defer.inlineCallbacks
     def _deferred_start(self):
         ret = update_db()
 
@@ -119,7 +118,7 @@ class GLService(service.Service):
                                                                 '127.0.0.1',
                                                                 8082)
 
-        yield GLSettings.appstate.process_supervisor.maybe_launch_https_workers()
+        GLSettings.appstate.process_supervisor.maybe_launch_https_workers()
 
         GLSettings.start_jobs()
         GLSettings.start_services()
