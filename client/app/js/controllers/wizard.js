@@ -29,7 +29,7 @@ GLClient.controller('WizardCtrl', ['$scope', '$location', '$route', '$http', 'Au
       $scope.config_profiles = [
         {
           name:  'default',
-          title: 'Use default settings',
+          title: 'Default profile',
           active: true
         },
       ];
