@@ -1,4 +1,4 @@
-describe('adming configure mail', function() {
+describe('admin configure mail', function() {
   it('should configure mail', function() {
     browser.setLocation('admin/mail');
 
