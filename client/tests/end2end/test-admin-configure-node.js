@@ -1,4 +1,4 @@
-describe('adming configure node', function() {
+describe('admin configure node', function() {
   it('should configure node en internalization', function() {
     browser.setLocation('admin/content');
     element(by.model('GLTranslate.indirect.appLanguage')).element(by.xpath(".//*[text()='English']")).click();
