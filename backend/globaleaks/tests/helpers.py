@@ -145,6 +145,7 @@ def get_dummy_step():
         'children': []
     }
 
+
 def get_dummy_field():
     return {
         'id': '',
@@ -154,7 +155,7 @@ def get_dummy_field():
         'step_id': '',
         'fieldgroup_id': '',
         'label': u'antani',
-        'type': u'inputbox',
+        'type': u'multichoice',
         'preview': False,
         'description': u'field description',
         'hint': u'field hint',
@@ -163,13 +164,35 @@ def get_dummy_field():
         'stats_enabled': False,
         'required': False,
         'attrs': {},
-        'options': [],
+        'options': get_dummy_fieldoption_list(),
         'children': [],
         'y': 1,
         'x': 1,
         'width': 0,
         'triggered_by_score': 0
     }
+
+
+def get_dummy_fieldoption_list():
+    return [
+        {
+          'id': 'beefcafe',
+          'label': {}, # TODO fill with a localized key
+          'presentation_order': 0,
+          'score_points': 100,
+          'trigger_field': '',
+          'trigger_step': '',
+        },
+        {
+          'id': 'feddad',
+          'label': {}, # TODO fill with a localized key
+          'presentation_order': 0,
+          'score_points': 97.5,
+          'trigger_field': '',
+          'trigger_step': '',
+        }
+    ]
+ 
 
 
 def get_dummy_questionnaire():
@@ -179,6 +202,7 @@ def get_dummy_questionnaire():
 
 
 files_count = 0
+
 
 def get_dummy_file(filename=None, content_type=None, content=None):
     global files_count

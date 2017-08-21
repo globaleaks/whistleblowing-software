@@ -174,7 +174,7 @@ def db_update_field(store, field_id, field_dict, language):
     if not field:
         raise errors.FieldIdNotFound
 
-    # To be uncommented upon completion of fields implementaion
+    # Uncomment when fields exits beta!
     # if not field.editable:
     #     raise errors.FieldNotEditable
 
