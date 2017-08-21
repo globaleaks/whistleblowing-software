@@ -110,8 +110,6 @@ class ProcessSupervisor(object):
             self.launch_worker()
         elif self.last_one_out():
             self.shutting_down = False
-            self.shutdown_d.callback(None)
-            self.shutdown_d = None
             log.info("Supervisor has turned off all children")
         else:
             log.err("Not relaunching child process")
@@ -122,10 +120,10 @@ class ProcessSupervisor(object):
         if self.shutting_down:
             return False
 
-        nrml_deaths = 3*self.tls_process_state['target_proc_num']
+        nrml_deaths = 3 * self.tls_process_state['target_proc_num']
 
         # TODO hitting this condition means something is really wrong. Log it.
-        max_deaths = nrml_deaths*150
+        max_deaths = nrml_deaths * 150
 
         num_deaths = self.tls_process_state['deaths']
 
@@ -143,8 +141,7 @@ class ProcessSupervisor(object):
     def calc_mort_rate(self):
         d = self.tls_process_state['deaths']
         window = (datetime_now() - self.start_time).total_seconds()
-        r = d / (window / 60.0) # deaths per minute
-        return r
+        return d / (window / 60.0) # deaths per minute
 
     def account_death(self):
         self.tls_process_state['deaths'] += 1
@@ -185,7 +182,6 @@ class ProcessSupervisor(object):
         if not self.is_running():
             return defer.succeed(None)
 
-        self.shutdown_d = defer.Deferred()
         self.shutting_down = True
 
         for pp in self.tls_process_pool:
@@ -193,5 +189,3 @@ class ProcessSupervisor(object):
                 pp.transport.signalProcess(signal.SIGUSR1)
             except OSError as e:
                 log.debug('Tried to signal: %d got: %s', pp.transport.pid, e)
-
-        return self.shutdown_d
