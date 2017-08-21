@@ -4,6 +4,9 @@
 #   *****
 # Implementation of the code executed on handler /admin/questionnaires
 #
+import json
+
+from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import models
 from globaleaks.handlers.base import BaseHandler
@@ -197,3 +200,72 @@ class QuestionnaireInstance(BaseHandler):
         Errors: InvalidInputFormat, QuestionnaireIdNotFound
         """
         return delete_questionnaire(questionnaire_id)
+
+    def get(self, questionnaire_id):
+        """
+        Export questionnaire JSON
+        """
+        # TODO For each language export questionnaire also internationalized.
+
+        # TODO scrub IDs from step, fields, field_option_id.
+        return get_questionnaire(questionnaire_id, None)
+
+    @inlineCallbacks
+    def post(self, json_q):
+        """
+        Import questionnaire JSON
+        """
+        #TODO check JSON for evilness
+        new_q = json.loads(json_q)
+
+        yield import_questionnaire(new_q)
+
+
+def replace_field_ids(obj, parent_id, i, parent_is_step=False):
+    cur_id = u'{}_field_{}'.format(parent_id, i)
+    obj['id'] = cur_id
+    if parent_is_step:
+        obj['instance'] = 'instance'
+        obj['step_id'] = parent_id
+    else:
+        obj['instance'] = 'reference'
+        obj['fieldgroup_id'] = parent_id
+
+    # TODO ensure that FieldAttrs and FieldOptiions use a namespaced ID
+    # Currently, this cannot be done because neither update func touches the ID
+    # and there is create fieldoption or fieldattr funcs
+    '''
+    for key, attr in obj['attrs'].iteritems():
+        obj['attrs'][key]['id'] = u'{}_attrs_{}'.format(cur_id, key)
+        attr['field_id'] = cur_id
+
+    for j, option in enumerate(obj['options']):
+        option['id'] = u'{}_option_{}'.format(j)
+        option['field_id'] = cur_id
+    '''
+
+    for k, child in enumerate(obj['children']):
+        replace_field_ids(child['children'], cur_id, k)
+
+
+@transact
+def import_questionnaire(store, q_obj):
+    # Performs the creation of questionnaire, step, field, field_options for passed json objs
+    name_id = q_obj['name']
+    new_q = models.Questionnaire()
+    new_q.update(q_obj)
+
+    # TODO ensure name_id is exported
+    new_q.id = name_id
+
+    store.add(new_q)
+
+    for i, step_obj in enumerate(q_obj['steps']):
+        step_obj['questionnaire_id'] = name_id
+        step_obj['id'] = u'{}_step_{}'.format(name_id, i)
+
+        for j, child in enumerate(step_obj['children']):
+            replace_field_ids(child, step_obj['id'], j, parent_is_step=True)
+
+        # TODO steps are not super important with attached step id
+        db_create_step(store, step_obj, None)

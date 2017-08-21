@@ -36,7 +36,6 @@ def load_default_questionnaires(store):
             db_import_fields(store, s, None, f_children)
 
 
-
 def load_default_fields(store):
     ffiles = [os.path.join(GLSettings.questions_path, path) for path in os.listdir(GLSettings.questions_path)]
     for ffile in ffiles:

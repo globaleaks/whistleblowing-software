@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.handlers.admin import questionnaire
 from globaleaks.handlers.admin.context import ContextInstance
@@ -6,7 +7,7 @@ from globaleaks.handlers.admin.questionnaire import get_questionnaire
 from globaleaks.models import Questionnaire
 from globaleaks.rest import errors
 from globaleaks.tests import helpers
-from twisted.internet.defer import inlineCallbacks
+from globaleaks.tests.helpers import get_dummy_fieldoption_list
 
 # special guest:
 stuff = u"³²¼½¬¼³²"
@@ -56,3 +57,19 @@ class TestQuestionnaireInstance(helpers.TestHandlerWithPopulatedDB):
         yield handler.delete(self.dummyQuestionnaire['id'])
         yield self.assertFailure(handler.delete(self.dummyQuestionnaire['id']),
                                  errors.QuestionnaireIdNotFound)
+
+    @inlineCallbacks
+    def test_export_import(self):
+        handler = self.request(role='admin')
+
+        questionnaire = yield handler.get(self.dummyQuestionnaire['id'])
+
+        questionnaire['name'] = 'testing_quests'
+
+        questionnaire['steps'][0]['type'] = 'multichoice'
+        questionnaire['steps'][0]['options'] = get_dummy_fieldoption_list()
+
+        q_json = json.dumps(questionnaire)
+        print '-. . .\nCOMMITING\n-. . .\n-. . .\n-. . .\n'
+
+        yield handler.post(q_json)
