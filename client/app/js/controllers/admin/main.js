@@ -83,26 +83,8 @@ controller('AdminCtrl',
     }, true);
   }
 
-  // We need to have a special function for updating the node since we need to add old_password and password attribute
-  // if they are not present
   $scope.updateNode = function(node) {
-    if (node.password === undefined) {
-      node.password = "";
-    }
-
-    if (node.check_password === undefined) {
-      node.password = "";
-    }
-
-    if (node.old_password === undefined) {
-      node.old_password = "";
-    }
-
-    var cb = function() {
-      $scope.$emit("REFRESH");
-    };
-
-    $scope.Utils.update(node, cb);
+    $scope.Utils.update(node, function() { $scope.$emit("REFRESH"); });
   };
 
   $scope.newItemOrder = function(objects, key) {
