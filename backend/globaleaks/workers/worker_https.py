@@ -5,13 +5,16 @@ import sys
 if os.path.dirname(__file__) != '/usr/lib/python2.7/dist-packages/globaleaks/workers':
     sys.path.insert(1, os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
 
+from datetime import timedelta
 from twisted.internet import reactor
+from twisted.internet.task import LoopingCall
 
 from globaleaks.workers.process import Process
 from globaleaks.utils.sock import listen_tls_on_sock
 from globaleaks.utils.sni import SNIMap
 from globaleaks.utils.tls import TLSServerContextFactory, ChainValidator
 from globaleaks.utils.httpsproxy import HTTPStreamFactory
+from globaleaks.utils.utility import datetime_now
 
 
 def make_TLSContextFactory(site_cfg):
@@ -30,7 +33,7 @@ class HTTPSProcess(Process):
 
         proxy_url = 'http://' + self.cfg['proxy_ip'] + ':' + str(self.cfg['proxy_port'])
 
-        http_proxy_factory = HTTPStreamFactory(proxy_url)
+        self.http_proxy_factory = HTTPStreamFactory(proxy_url)
 
         for site_cfg in self.cfg['site_cfgs']:
             cv = ChainValidator()
@@ -44,26 +47,34 @@ class HTTPSProcess(Process):
         for site_cfg in self.cfg['site_cfgs']:
             sni_dict[site_cfg['hostname']] = make_TLSContextFactory(site_cfg)
 
-        snimap = SNIMap(sni_dict)
+        self.snimap = SNIMap(sni_dict)
 
-        socket_fds = self.cfg['tls_socket_fds']
-
-        for socket_fd in socket_fds:
+        for socket_fd in self.cfg['tls_socket_fds']:
             self.log("Opening socket: %d : %s" % (socket_fd, os.fstat(socket_fd)))
 
             port = listen_tls_on_sock(reactor,
                                       fd=socket_fd,
-                                      contextFactory=snimap,
-                                      factory=http_proxy_factory)
+                                      contextFactory=self.snimap,
+                                      factory=self.http_proxy_factory)
 
             self.ports.append(port)
             self.log("HTTPS proxy listening on %s" % port)
 
+    def sigusr1(self):
+        self.shutdown()
+
+        check = datetime_now() + timedelta(seconds=120)
+
+        def timeout():
+            if self.http_proxy_factory.active_connections <= 0 or \
+               datetime_now() > check:
+                reactor.stop()
+
+        LoopingCall(timeout).start(0.1)
+
     def shutdown(self):
         for port in self.ports:
-            port.loseConnection()
-
-        Process.shutdown(self)
+            os.close(port.fileno())
 
 
 if __name__ == '__main__':

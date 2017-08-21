@@ -961,7 +961,7 @@ class SimpleServerPP(ProcessProtocol):
     def __init__(self):
         self.welcome_msg = False
         self.start_defer = Deferred()
-        process.set_pdeathsig(signal.SIGINT)
+        process.set_pdeathsig(signal.SIGTERM)
 
     def outReceived(self, data):
         # When the HTTPServer is ready it will produce a msg which we can hook
