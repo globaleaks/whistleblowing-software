@@ -14,8 +14,8 @@ GLClient.controller('AdminNetworkCtrl', ['$scope', function($scope) {
     }
   ];
 }]).
-controller('AdminHTTPSConfigCtrl', ['$q', '$location', '$http', '$scope', '$uibModal', 'FileSaver', 'AdminTLSConfigResource', 'AdminTLSCfgFileResource', 'AdminAcmeResource', 'Utils',
-  function($q, $location, $http, $scope, $uibModal, FileSaver, tlsConfigResource, cfgFileResource, adminAcmeResource, Utils) {
+controller('AdminHTTPSConfigCtrl', ['$q', '$location', '$http', '$scope', '$uibModal', 'FileSaver', 'AdminTLSConfigResource', 'AdminTLSCfgFileResource', 'AdminAcmeResource',
+  function($q, $location, $http, $scope, $uibModal, FileSaver, tlsConfigResource, cfgFileResource, adminAcmeResource) {
   $scope.state = 0;
   $scope.menuState = 'setup';
   $scope.showHostnameSetter = false;
@@ -26,6 +26,10 @@ controller('AdminHTTPSConfigCtrl', ['$q', '$location', '$http', '$scope', '$uibM
 
   $scope.setMenu = function(state) {
     $scope.menuState = state;
+  };
+
+  $scope.saveNodeAndProceed = function() {
+    $scope.Utils.update($scope.admin.node, function(){ $scope.setMenu('choice'); });
   };
 
   $scope.parseTLSConfig = function(tlsConfig) {
@@ -102,7 +106,7 @@ controller('AdminHTTPSConfigCtrl', ['$q', '$location', '$http', '$scope', '$uibM
   };
 
   $scope.postFile = function(file, resource) {
-    Utils.readFileAsText(file).then(function(str) {
+    $scope.Utils.readFileAsText(file).then(function(str) {
       resource.content = str;
       return resource.$save();
     }).then(refreshConfig);
