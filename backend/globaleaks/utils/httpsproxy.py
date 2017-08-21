@@ -182,6 +182,22 @@ class HTTPStreamFactory(http.HTTPFactory):
     def __init__(self, proxy_url, *args, **kwargs):
         http.HTTPFactory.__init__(self, *args, **kwargs)
         self.proxy_url = proxy_url
+        self.active_connections = 0
 
     def buildProtocol(self, addr):
-        return HTTPStreamChannel(self.proxy_url)
+        proto = HTTPStreamChannel(self.proxy_url)
+        _connectionMade = proto.connectionMade
+        _connectionLost = proto.connectionLost
+
+        def connectionMade(*args):
+            self.active_connections += 1
+            return _connectionMade(*args)
+
+        def connectionLost(*args):
+            self.active_connections -= 1
+            return _connectionLost(*args)
+
+        proto.connectionMade = connectionMade
+        proto.connectionLost = connectionLost
+
+        return proto

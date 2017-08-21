@@ -18,37 +18,46 @@ class Process(object):
     def __init__(self, fd=42):
         self.pid = os.getpid()
 
+        with os.fdopen(fd, 'r') as f:
+            self.cfg = json.loads(f.read())
+
+        self._log = os.fdopen(0, 'w', 1).write
+
         set_proc_title(self.name)
-        set_pdeathsig(signal.SIGINT)
+        set_pdeathsig(signal.SIGTERM)
 
-        def _shutdown(SIG, FRM):
-            self.shutdown()
+        def _sigusr1(SIG, FRM):
+            self.sigusr1()
 
-        signal.signal(signal.SIGINT, _shutdown)
-        signal.signal(signal.SIGTERM, _shutdown)
-        signal.signal(signal.SIGUSR1, _shutdown)
+        signal.signal(signal.SIGUSR1, _sigusr1)
+
+        def _sigusr2(SIG, FRM):
+            self.sigusr2()
+
+        signal.signal(signal.SIGUSR2, _sigusr2)
 
         def excepthook(*exc_info):
             self.log("".join(traceback.format_exception(*exc_info)))
 
         sys.excepthook = excepthook
 
-        with os.fdopen(fd, 'r') as f:
-            self.cfg = json.loads(f.read())
-
-    def shutdown(self):
-        if reactor.running:
-            reactor.stop()
-        else:
-            sys.exit(0)
+        reactor.addSystemEventTrigger("before", "shutdown", self.shutdown)
 
     def start(self):
         reactor.run()
 
+    def sigusr1(self):
+        pass
+
+    def sigusr2(self):
+        pass
+
+    def shutdown(self):
+        pass
+
     def log(self, m):
         if self.cfg.get('debug', False):
-            with os.fdopen(0, 'w', 1) as f:
-                f.write('[%s:%d] %s\n' % (self.name, self.pid, m))
+            self._log('[%s:%d] %s\n' % (self.name, self.pid, m))
 
 
 class CfgFDProcProtocol(ProcessProtocol):
