@@ -2,7 +2,7 @@
   <img src="/client/app/data/logo.png" width="300">
 </p>
 
-[GlobaLeaks](https://www.globaleaks.org/) is an open-source, free software intended to enable secure and anonymous whistleblowing initiatives developed by the [Hermes Center for Transparency and Digital Human Rights](https://www.hermescenter.org/).
+[GlobaLeaks](https://www.globaleaks.org/) is open-source  / free software intended to enable secure and anonymous whistleblowing initiatives developed by the [Hermes Center for Transparency and Digital Human Rights](https://www.hermescenter.org/).
 
 To learn how to setup your own GlobaLeaks platform, read the [wiki documentation](https://github.com/globaleaks/GlobaLeaks/wiki).
 
@@ -13,7 +13,7 @@ If your non-profit needs support for investigative journalism, activism or a hum
 
 If you are a journalist or have a media inquiry, [send us an email](mailto:media@globaleaks.org).
 
-If you want to contribute to software development or report a bug, please open an issue on [Github](https://github.com/globaleaks/GlobaLeaks/issues/).
+If you want to contribute to software development or report a bug, please open an issue on [GitHub](https://github.com/globaleaks/GlobaLeaks/issues/).
 
 If you need professional support, please use this form: [https://www.globaleaks.org/contact/](https://www.globaleaks.org/contact/ )
 
