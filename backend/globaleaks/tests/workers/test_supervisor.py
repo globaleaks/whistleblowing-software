@@ -148,13 +148,10 @@ class TestSubprocessRun(helpers.TestGL):
         self.assertEqual(data, 'Hello, world!\n')
 
     def tearDown(self):
-        for sock in self.https_socks:
-            sock.close()
-
         if hasattr(self, 'http_process'):
             self.http_process.shutdown()
+
         if hasattr(self, 'pp'):
             self.pp.transport.loseConnection()
-            self.pp.transport.signalProcess('KILL')
 
         helpers.TestGL.tearDown(self)

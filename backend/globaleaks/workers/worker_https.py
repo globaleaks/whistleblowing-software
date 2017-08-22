@@ -61,20 +61,34 @@ class HTTPSProcess(Process):
             self.log("HTTPS proxy listening on %s" % port)
 
     def sigusr1(self):
-        self.shutdown()
+        def _sigusr1():
+            self.shutdown()
 
-        check = datetime_now() + timedelta(seconds=120)
+            check = datetime_now() + timedelta(seconds=120)
 
-        def timeout():
-            if self.http_proxy_factory.active_connections <= 0 or \
-               datetime_now() > check:
-                reactor.stop()
+            def timeout():
+                if self.http_proxy_factory.active_connections <= 0 or \
+                   datetime_now() > check:
+                    reactor.stop()
 
-        LoopingCall(timeout).start(0.1)
+            LoopingCall(timeout).start(0.1)
+
+        reactor.callFromThread(_sigusr1)
 
     def shutdown(self):
         for port in self.ports:
-            os.close(port.fileno())
+            port.connectionLost(None)
+
+        del self.ports[:]
+
+        for socket_fd in self.cfg['tls_socket_fds']:
+            os.close(socket_fd)
+
+        del self.cfg['tls_socket_fds'][:]
+
+        #self.http_proxy_factory.stopFactory()
+
+        Process.shutdown(self)
 
 
 if __name__ == '__main__':
