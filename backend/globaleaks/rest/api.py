@@ -382,8 +382,6 @@ class APIResourceWrapper(Resource):
         # to avoid information leakage via referrer
         request.setHeader("Referrer-Policy", "no-referrer")
 
-        request.setHeader("Connection", "close")
-
         # to avoid Robots spidering, indexing, caching
         if not GLSettings.memory_copy.allow_indexing:
             request.setHeader("X-Robots-Tag", "noindex")
