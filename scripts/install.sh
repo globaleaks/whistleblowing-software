@@ -826,9 +826,9 @@ fi
 # or xenial as fallback.
 if echo "$DISTRO_CODENAME" | grep -vqE "^(trusty|xenial|wheezy|jessie)$"; then
   # In case of unsupported platforms we fallback on Xenial
-  echo "No packages available for the current distribution; the install script will use the xenial repository."
+  echo "No packages available for the current distribution; the install script will use the Xenial repository."
   echo "In case of a failure refer to the wiki for manual setup possibilities."
-  echo "GlobaLeaks Wiki: https://github.com/globaleaks/GlobaLeaks/wiki"
+  echo "GlobaLeaks wiki: https://github.com/globaleaks/GlobaLeaks/wiki"
   DISTRO="Ubuntu"
   DISTRO_CODENAME="xenial"
 fi
