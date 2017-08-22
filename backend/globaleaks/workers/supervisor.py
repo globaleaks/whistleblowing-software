@@ -25,6 +25,7 @@ class ProcessSupervisor(object):
         log.info("Starting process monitor")
 
         self.shutting_down = False
+        self.shutdown_d = defer.Deferred()
 
         self.start_time = datetime_now()
         self.tls_process_pool = []
@@ -110,6 +111,8 @@ class ProcessSupervisor(object):
             self.launch_worker()
         elif self.last_one_out():
             self.shutting_down = False
+            self.shutdown_d.callback(None)
+            self.shutdown_d = defer.Deferred()
             log.info("Supervisor has turned off all children")
         else:
             log.err("Not relaunching child process")
@@ -189,3 +192,5 @@ class ProcessSupervisor(object):
                 pp.transport.signalProcess(signal.SIGUSR1)
             except OSError as e:
                 log.debug('Tried to signal: %d got: %s', pp.transport.pid, e)
+
+        return self.shutdown_d

@@ -396,13 +396,13 @@ class ConfigHandler(BaseHandler):
         """
         yield disable_https()
         GLSettings.memory_copy.private.https_enabled = False
-        yield GLSettings.appstate.process_supervisor.shutdown()
+        GLSettings.appstate.process_supervisor.shutdown()
 
     @inlineCallbacks
     def delete(self):
         yield disable_https()
         GLSettings.memory_copy.private.https_enabled = False
-        yield GLSettings.appstate.process_supervisor.shutdown()
+        GLSettings.appstate.process_supervisor.shutdown()
         yield _delete_all_cfg()
 
 
