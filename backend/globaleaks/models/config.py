@@ -14,12 +14,10 @@ class ConfigFactory(object):
     update_set = frozenset() # keys updated when fact.update(d) is called
     group_desc = dict() # the corresponding dict in GLConfig
 
-    def __init__(self, group, store, lazy=True, *args, **kwargs):
-        self.group = unicode(group)
+    def __init__(self, store, group, *args, **kwargs):
         self.store = store
+        self.group = unicode(group)
         self.res = None
-        if not lazy:
-            self._query_group()
 
     def _query_group(self):
         cur = self.store.find(Config, And(Config.var_group == self.group))
@@ -33,22 +31,17 @@ class ConfigFactory(object):
             self.res[key].set_v(request[key])
 
     def get_cfg(self, var_name):
-        if self.res is None:
-            where = And(Config.var_group == self.group, Config.var_name == unicode(var_name))
-            return self.store.find(Config, where).one()
-        else:
-            return self.res[var_name]
+        where = And(Config.var_group == self.group, Config.var_name == unicode(var_name))
+        return self.store.find(Config, where).one()
 
     def get_val(self, var_name):
         return self.get_cfg(var_name).get_v()
 
     def set_val(self, var_name, value):
-        if self.res is None:
-            self.get_cfg(var_name).set_v(value)
-        elif not var_name in self.res:
-            raise KeyError("Factory is not initialized with %s" % var_name)
-        else:
+        if self.res is not None and var_name in self.res:
             self.res[var_name].set_v(value)
+        else:
+            self.get_cfg(var_name).set_v(value)
 
     def _export_group_dict(self, safe_set):
         self._query_group()
@@ -63,6 +56,8 @@ class ConfigFactory(object):
         return k == g
 
     def clean_and_add(self):
+        self._query_group()
+
         cur = self.store.find(Config, Config.var_group == self.group)
         res = {c.var_name : c for c in cur}
 
@@ -107,7 +102,7 @@ class NodeFactory(ConfigFactory):
     group_desc = GLConfig['node']
 
     def __init__(self, store, *args, **kwargs):
-        ConfigFactory.__init__(self, 'node', store, *args, **kwargs)
+        ConfigFactory.__init__(self, store, 'node', *args, **kwargs)
 
     def public_export(self):
         return self._export_group_dict(self.public_node)
@@ -123,7 +118,7 @@ class NotificationFactory(ConfigFactory):
     group_desc = GLConfig['notification']
 
     def __init__(self, store, *args, **kwargs):
-        ConfigFactory.__init__(self, 'notification', store, *args, **kwargs)
+        ConfigFactory.__init__(self, store, 'notification', *args, **kwargs)
 
     def admin_export(self):
         return self._export_group_dict(self.admin_notification)
@@ -144,7 +139,7 @@ class PrivateFactory(ConfigFactory):
     group_desc = GLConfig['private']
 
     def __init__(self, store, *args, **kwargs):
-        ConfigFactory.__init__(self, 'private', store, *args, **kwargs)
+        ConfigFactory.__init__(self, store, 'private', *args, **kwargs)
 
     def mem_copy_export(self):
         return self._export_group_dict(self.mem_export_set)
@@ -224,9 +219,7 @@ def system_cfg_init(store):
 def del_cfg_not_in_groups(store):
     where = And(Not(Config.var_group == u'node'), Not(Config.var_group == u'notification'),
                 Not(Config.var_group == u'private'))
-    res = store.find(Config, where)
-    for c in res:
-        log.info("Removing extra Config <%s>", c)
+
     store.find(Config, where).remove()
 
 
@@ -236,10 +229,8 @@ def is_cfg_valid(store):
             return False
 
     s = {r.var_group for r in store.find(Config).group_by(Config.var_group)}
-    if s != set(GLConfig.keys()):
-        return False
 
-    return True
+    return s == set(GLConfig.keys())
 
 
 def update_defaults(store):
@@ -247,14 +238,12 @@ def update_defaults(store):
         log.info("This update will change system configuration")
 
         for fact_model in factories:
-            factory = fact_model(store, lazy=False)
-            factory.clean_and_add()
+            fact_model(store).clean_and_add()
 
         del_cfg_not_in_groups(store)
 
     # Set the system version to the current aligned cfg
-    prv = PrivateFactory(store)
-    prv.set_val('version', __version__)
+    PrivateFactory(store).set_val('version', __version__)
 
 
 def load_tls_dict(store):
@@ -263,9 +252,7 @@ def load_tls_dict(store):
     """
     privFact = PrivateFactory(store)
 
-    # /START ssl_* is used here to indicate the quality of the implementation
-    # /END Tongue in cheek.
-    tls_cfg = {
+    return {
         'ssl_key': privFact.get_val('https_priv_key'),
         'ssl_cert': privFact.get_val('https_cert'),
         'ssl_intermediate': privFact.get_val('https_chain'),
@@ -273,7 +260,6 @@ def load_tls_dict(store):
         'https_enabled': privFact.get_val('https_enabled'),
         'hostname': NodeFactory(store).get_val('hostname'),
     }
-    return tls_cfg
 
 
 def load_tls_dict_list(store):
