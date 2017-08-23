@@ -87,8 +87,6 @@ class ConfigL10NFactory(object):
         self.store = store
         self.group = unicode(group)
 
-        #TODO use lazy loading to optimize query performance
-
     def initialize(self, lang_code, l10n_data_src, keys=None):
         if keys is None:
             keys = self.localized_keys
