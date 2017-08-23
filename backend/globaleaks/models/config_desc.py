@@ -12,7 +12,7 @@ class Item:
     _type = None
 
     def __init__(self, *args, **kwargs):
-        self.default = kwargs['default'] if 'default' in kwargs else ''
+        self.default = kwargs['default']
         self.validator = kwargs.get('validator', None)
 
     def __repr__(self):
@@ -22,8 +22,11 @@ class Item:
 class Unicode(Item):
     _type = unicode
 
-    def __init__(self, default=u'', *args, **kwargs):
-        Item.__init__(self,  default=default, *args, **kwargs)
+    def __init__(self, *args, **kwargs):
+        if 'default' not in kwargs:
+            kwargs['default'] = ''
+
+        Item.__init__(self,  *args, **kwargs)
 
 
 class Int(Item):
