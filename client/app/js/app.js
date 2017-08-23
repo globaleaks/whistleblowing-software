@@ -526,7 +526,7 @@ var GLClient = angular.module('GLClient', [
       if (!Test && // NOTE used by protractor
           !$rootScope.connection.tor &&
           !$rootScope.connection.https &&
-          !$rootScope.confidentiality_warning_accepted &&
+          !$rootScope.confidentiality_warning_opened &&
           ['localhost', '127.0.0.1'].indexOf($location.host()) === -1) {
 
         $rootScope.confidentiality_warning_opened = true;
@@ -540,7 +540,7 @@ var GLClient = angular.module('GLClient', [
     $rootScope.evaluateAnonimityModalOpening = function () {
       if (!$rootScope.confidentiality_warning_opened &&
           !$rootScope.connection.tor &&
-          !$rootScope.anonimity_warning_accepted) {
+          !$rootScope.anonimity_warning_opened) {
         $rootScope.anonimity_warning_opened = true;
         $rootScope.open_anonimity_modal();
         return true;
