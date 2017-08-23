@@ -5,18 +5,14 @@ from globaleaks.models.properties import iso_strf_time
 from globaleaks.models.validators import shorttext_v, longtext_v, \
     natnum_v, range_v
 from globaleaks.security import generateRandomSalt as salt
-from globaleaks.utils.utility import datetime_null
+from globaleaks.utils.utility import datetime_null, datetime_now
 
 
 class Item:
     _type = None
 
     def __init__(self, *args, **kwargs):
-        if 'default' in kwargs:
-            self.default = kwargs['default']
-        else:
-            raise KeyError('No default set! %s, %s' % (args, kwargs))
-
+        self.default = kwargs['default'] if 'default' in kwargs else ''
         self.validator = kwargs.get('validator', None)
 
     def __repr__(self):
