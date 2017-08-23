@@ -22,9 +22,6 @@ class ConfigFactory(object):
             self._query_group()
 
     def _query_group(self):
-        if self.res is not None:
-            return
-
         cur = self.store.find(Config, And(Config.var_group == self.group))
         self.res = {c.var_name: c for c in cur}
 
@@ -38,10 +35,7 @@ class ConfigFactory(object):
     def get_cfg(self, var_name):
         if self.res is None:
             where = And(Config.var_group == self.group, Config.var_name == unicode(var_name))
-            r = self.store.find(Config, where).one()
-            if r is None:
-                raise KeyError("No such config item: %s:%s" % (self.group, var_name))
-            return r
+            return self.store.find(Config, where).one()
         else:
             return self.res[var_name]
 
@@ -61,19 +55,12 @@ class ConfigFactory(object):
         return {k : self.res[k].get_v() for k in safe_set}
 
     def db_corresponds(self):
-        self.res = None
-        try:
-            self._query_group()
-        except ValueError:
-            return False
+        self._query_group()
 
         k = set(self.res.keys())
         g = set(self.group_desc)
 
-        if k != g:
-            return False
-
-        return True
+        return k == g
 
     def clean_and_add(self):
         cur = self.store.find(Config, Config.var_group == self.group)
@@ -85,16 +72,13 @@ class ConfigFactory(object):
         missing = allowed - actual
 
         for key in missing:
-            desc = self.group_desc[key]
-            c = Config(self.group, key, desc.default)
-            self.store.add(c)
+            self.store.add(Config(self.group, key, self.group_desc[key].default))
 
         extra = actual - allowed
 
         for key in extra:
-            c = res[key]
-            log.info("Removing unused config: %s", c)
-            self.store.remove(c)
+            log.info("Removing unused config key: %s", key)
+            self.store.remove(res[key])
 
         return len(missing), len(extra)
 
@@ -198,20 +182,19 @@ class Config(Storm):
 
     @staticmethod
     def find_descriptor(config_desc_root, var_group, var_name):
-        d = config_desc_root.get(var_group, {}).get(var_name, None)
-        if d is None:
-            raise ValueError('%s.%s descriptor cannot be None' % (var_group, var_name))
-
-        return d
+        return config_desc_root.get(var_group, {}).get(var_name, None)
 
     def set_v(self, val):
         desc = self.find_descriptor(self.cfg_desc, self.var_group, self.var_name)
         if val is None:
             val = desc._type()
+
         if isinstance(desc, config_desc.Unicode) and isinstance(val, str):
             val = unicode(val)
+
         if not isinstance(val, desc._type):
             raise ValueError("Cannot assign %s with %s" % (self, type(val)))
+
         if desc.validator is not None:
             desc.validator(self, self.var_name, val)
 
@@ -234,8 +217,8 @@ factories = [NodeFactory, NotificationFactory, PrivateFactory]
 
 def system_cfg_init(store):
     for gname, group in GLConfig.iteritems():
-        for var_name, cfg_desc in group.iteritems():
-            store.add(Config(gname, var_name, cfg_desc.default))
+        for var_name, desc in group.iteritems():
+            store.add(Config(gname, var_name, desc.default))
 
 
 def del_cfg_not_in_groups(store):
