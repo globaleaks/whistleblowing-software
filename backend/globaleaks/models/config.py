@@ -7,6 +7,68 @@ from globaleaks.models.config_desc import GLConfig
 from globaleaks.utils.utility import log
 
 
+class Config(Storm):
+    __storm_table__ = 'config'
+    __storm_primary__ = ('var_group', 'var_name')
+
+    cfg_desc = GLConfig
+    var_group = Unicode()
+    var_name = Unicode()
+    value = JSON()
+    customized = Bool(default=False)
+
+    def __init__(self, group=None, name=None, value=None, cfg_desc=None, migrate=False):
+        """
+        :param value:    This input is passed directly into set_v
+        :param migrate:  Added to comply with models.Model constructor which is
+                         used to copy every field returned by storm from the db
+                         from an old_obj to a new one.
+        :param cfg_desc: Used to specify where to look for the Config objs descripitor.
+                         This is used in mig 34.
+        """
+        if cfg_desc is not None:
+            self.cfg_desc = cfg_desc
+
+        if migrate:
+            return
+
+        self.var_group = unicode(group)
+        self.var_name = unicode(name)
+
+        self.set_v(value)
+
+    @staticmethod
+    def find_descriptor(config_desc_root, var_group, var_name):
+        return config_desc_root.get(var_group, {}).get(var_name, None)
+
+    def set_v(self, val):
+        desc = self.find_descriptor(self.cfg_desc, self.var_group, self.var_name)
+        if val is None:
+            val = desc._type()
+
+        if isinstance(desc, config_desc.Unicode) and isinstance(val, str):
+            val = unicode(val)
+
+        if not isinstance(val, desc._type):
+            raise ValueError("Cannot assign %s with %s" % (self, type(val)))
+
+        if desc.validator is not None:
+            desc.validator(self, self.var_name, val)
+
+        if self.value is None:
+            self.value = {'v': val}
+
+        elif self.value['v'] != val:
+            self.customized = True
+            self.value = {'v': val}
+
+    def get_v(self):
+        return self.value['v']
+
+    def __repr__(self):
+        return "<Config: %s.%s>" % (self.var_group, self.var_name)
+
+
 class ConfigFactory(object):
     """
     This factory depends on the following attributes set by the sub class:
@@ -143,68 +205,6 @@ class PrivateFactory(ConfigFactory):
 
     def mem_copy_export(self):
         return self._export_group_dict(self.mem_export_set)
-
-
-class Config(Storm):
-    __storm_table__ = 'config'
-    __storm_primary__ = ('var_group', 'var_name')
-
-    cfg_desc = GLConfig
-    var_group = Unicode()
-    var_name = Unicode()
-    value = JSON()
-    customized = Bool(default=False)
-
-    def __init__(self, group=None, name=None, value=None, cfg_desc=None, migrate=False):
-        """
-        :param value:    This input is passed directly into set_v
-        :param migrate:  Added to comply with models.Model constructor which is
-                         used to copy every field returned by storm from the db
-                         from an old_obj to a new one.
-        :param cfg_desc: Used to specify where to look for the Config objs descripitor.
-                         This is used in mig 34.
-        """
-        if cfg_desc is not None:
-            self.cfg_desc = cfg_desc
-
-        if migrate:
-            return
-
-        self.var_group = unicode(group)
-        self.var_name = unicode(name)
-
-        self.set_v(value)
-
-    @staticmethod
-    def find_descriptor(config_desc_root, var_group, var_name):
-        return config_desc_root.get(var_group, {}).get(var_name, None)
-
-    def set_v(self, val):
-        desc = self.find_descriptor(self.cfg_desc, self.var_group, self.var_name)
-        if val is None:
-            val = desc._type()
-
-        if isinstance(desc, config_desc.Unicode) and isinstance(val, str):
-            val = unicode(val)
-
-        if not isinstance(val, desc._type):
-            raise ValueError("Cannot assign %s with %s" % (self, type(val)))
-
-        if desc.validator is not None:
-            desc.validator(self, self.var_name, val)
-
-        if self.value is None:
-            self.value = {'v': val}
-
-        elif self.value['v'] != val:
-            self.customized = True
-            self.value = {'v': val}
-
-    def get_v(self):
-        return self.value['v']
-
-    def __repr__(self):
-        return "<Config: %s.%s>" % (self.var_group, self.var_name)
 
 
 factories = [NodeFactory, NotificationFactory, PrivateFactory]
