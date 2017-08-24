@@ -73,9 +73,7 @@ def db_prepare_fields_serialization(store, fields):
     }
 
     fields_ids = [f.id for f in fields]
-    for f in fields:
-        if f.template_id is not None:
-            fields_ids.append(f.template_id)
+    fields_ids.extend([f.template_id for f in fields if f.template is not None])
 
     while len(fields_ids):
         fs = store.find(models.Field, In(models.Field.fieldgroup_id, fields_ids))
@@ -92,8 +90,7 @@ def db_prepare_fields_serialization(store, fields):
 
         # this del/append trick is required to update the same object
         del fields_ids[:]
-        for f in tmp:
-            fields_ids.append(f)
+        fields_ids.extend(tmp)
 
     objs = store.find(models.FieldAttr, In(models.FieldAttr.field_id, ret['fields'].keys()))
     for obj in objs:
@@ -139,9 +136,7 @@ def db_serialize_node(store, language):
 
     l10n_dict = NodeL10NFactory(store).localized_dict(language)
 
-    ret = disjoint_union(ro_node, l10n_dict, misc_dict)
-
-    return ret
+    return disjoint_union(ro_node, l10n_dict, misc_dict)
 
 
 @transact
@@ -157,10 +152,9 @@ def serialize_context(store, context, language, data=None):
     @return: a dict describing the contexts available for submission,
         (e.g. checks if almost one receiver is associated)
     """
+    img = ''
     if context.img_id is not None and context.img_id in data['imgs']:
         img = data['imgs'][context.img_id]
-    else:
-        img = ''
 
     ret_dict = {
         'id': context.id,
@@ -339,10 +333,9 @@ def serialize_receiver(store, receiver, language, data=None):
 
     user = data['users'][receiver.id]
 
+    img = ''
     if user.img_id is not None and user.img_id in data['imgs']:
         img = data['imgs'][user.img_id]
-    else:
-        img = ''
 
     ret_dict = {
         'id': receiver.id,
