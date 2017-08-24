@@ -15,6 +15,7 @@ class EnabledLanguage(Storm):
     def __init__(self, name=None, migrate=False):
         if migrate:
             return
+
         self.name = unicode(name)
 
     def __repr__(self):
@@ -59,6 +60,7 @@ class ConfigL10N(Storm):
     def __init__(self, lang_code=None, group=None, var_name=None, value='', migrate=False):
         if migrate:
             return
+
         self.lang = unicode(lang_code)
         self.var_group = unicode(group)
         self.var_name = unicode(var_name)
@@ -93,8 +95,7 @@ class ConfigL10NFactory(object):
 
         for key in keys:
             value = l10n_data_src[key][lang_code] if key in l10n_data_src else ''
-            entry = ConfigL10N(lang_code, self.group, key, value)
-            self.store.add(entry)
+            self.store.add(ConfigL10N(lang_code, self.group, key, value))
 
     def retrieve_rows(self, lang_code):
         selector = And(ConfigL10N.var_group == self.group, ConfigL10N.lang == unicode(lang_code))
@@ -102,16 +103,13 @@ class ConfigL10NFactory(object):
 
     def localized_dict(self, lang_code):
         rows = self.retrieve_rows(lang_code)
-        loc_dict = {c.var_name : c.value for c in rows if c.var_name in self.localized_keys}
-        return loc_dict
+        return {c.var_name : c.value for c in rows if c.var_name in self.localized_keys}
 
     def update(self, request, lang_code):
         c_map = {c.var_name : c for c in self.retrieve_rows(lang_code)}
 
         for key in self.localized_keys - self.unmodifiable_keys:
-            c = c_map[key]
-            new_val = unicode(request[key])
-            c.set_v(new_val)
+            c_map[key].set_v(request[key])
 
     def update_defaults(self, langs, l10n_data_src, reset=False):
         for lang_code in langs:
@@ -174,8 +172,7 @@ class NodeL10NFactory(ConfigL10NFactory):
         ConfigL10NFactory.__init__(self, store, 'node', *args, **kwargs)
 
     def initialize(self, lang_code, appdata_dict):
-        l10n_data_src = appdata_dict['node']
-        ConfigL10NFactory.initialize(self, lang_code, l10n_data_src)
+        ConfigL10NFactory.initialize(self, lang_code, appdata_dict['node'])
 
 
 class NotificationL10NFactory(ConfigL10NFactory):
@@ -253,8 +250,7 @@ class NotificationL10NFactory(ConfigL10NFactory):
         ConfigL10NFactory.__init__(self, store, 'notification', *args, **kwargs)
 
     def initialize(self, lang_code, appdata_dict):
-        l10n_data_src = appdata_dict['templates']
-        ConfigL10NFactory.initialize(self, lang_code, l10n_data_src)
+        ConfigL10NFactory.initialize(self, lang_code, appdata_dict['templates'])
 
     def reset_templates(self, l10n_data_src):
         langs = EnabledLanguage.list(self.store)
