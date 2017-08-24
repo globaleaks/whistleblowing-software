@@ -75,15 +75,15 @@ describe('admin configure https', function() {
     if (browser.gl.utils.testFileUpload()) {
       // Upload key
       browser.executeScript('angular.element(document.querySelectorAll(\'div.panel.priv-key input[type="file"]\')).attr("style", "display: block; visibility: visible")');
-      element(by.id("keyUpload")).sendKeys(files.priv_key);
+      element(by.css("div.panel.priv-key input[type=\"file\"]")).sendKeys(files.priv_key);
 
       // Upload cert
       browser.executeScript('angular.element(document.querySelectorAll(\'div.panel.cert input[type="file"]\')).attr("style", "display: block; visibility: visible")');
-      element(by.id("certUpload")).sendKeys(files.cert);
+      element(by.css("div.panel.cert input[type=\"file\"]")).sendKeys(files.cert);
 
       // Upload chain
       browser.executeScript('angular.element(document.querySelectorAll(\'div.panel.chain input[type="file"]\')).attr("style", "display: block; visibility: visible")');
-      element(by.id("chainUpload")).sendKeys(files.chain);
+      element(by.css("div.panel.chain input[type=\"file\"]")).sendKeys(files.chain);
 
       // Download the cert and chain
       if (browser.gl.utils.testFileDownload()) {
