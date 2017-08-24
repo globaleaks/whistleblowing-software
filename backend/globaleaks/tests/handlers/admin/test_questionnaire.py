@@ -62,14 +62,19 @@ class TestQuestionnaireInstance(helpers.TestHandlerWithPopulatedDB):
     def test_export_import(self):
         handler = self.request(role='admin')
 
-        questionnaire = yield handler.get(self.dummyQuestionnaire['id'])
+        raw_s = yield handler.get(self.dummyQuestionnaire['id'])
+        q = json.loads(raw_s)
 
-        questionnaire['name'] = 'testing_quests'
+        q['name'] = 'testing_quests'
 
-        questionnaire['steps'][0]['type'] = 'multichoice'
-        questionnaire['steps'][0]['options'] = get_dummy_fieldoption_list()
+        q['steps'][0]['type'] = 'multichoice'
+        q['steps'][0]['options'] = get_dummy_fieldoption_list()
 
-        q_json = json.dumps(questionnaire)
-        print '-. . .\nCOMMITING\n-. . .\n-. . .\n-. . .\n'
+        #print '-. . .\n-. . .\nCOMMITING\n-. . .\n-. . .\n-. . .\n'
+        #import pprint
+        #pprint.pprint(q)
 
-        yield handler.post(q_json)
+        handler = self.request(q, role='admin',
+                               handler_cls=questionnaire.QuestionnairesCollection)
+        handler.request.args = {'full': ['1']}
+        yield handler.post()

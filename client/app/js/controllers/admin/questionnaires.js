@@ -1,6 +1,6 @@
 GLClient.controller('AdminQuestionnaireCtrl',
-  ['$scope', 'AdminQuestionnaireResource',
-  function($scope, AdminQuestionnaireResource){
+  ['$scope', 'Utils', 'AdminQuestionnaireResource',
+  function($scope, Utils, AdminQuestionnaireResource){
   $scope.tabs = [
     {
       title:"Questionnaire configuration",
@@ -34,9 +34,18 @@ GLClient.controller('AdminQuestionnaireCtrl',
       $scope.admin.questionnaires.splice(idx, 1);
     });
   };
+
+  $scope.importQuestionnaire = function(file) {
+    Utils.readFileAsJson(file).then(function(obj) {
+      var questionnaire = new AdminQuestionnaireResource(obj);
+      return questionnaire.$save({full: '1'}).$promise;
+    }).then(function(new_q) {
+      $scope.admin.questionnaire.push(new_q);
+    }, Utils.displayErrorMsg);
+  };
 }]).
-controller('AdminQuestionnaireEditorCtrl', ['$scope', 'AdminStepResource',
-  function($scope, AdminStepResource) {
+controller('AdminQuestionnaireEditorCtrl', ['$scope', 'FileSaver', 'AdminStepResource', 'AdminQuestionnaireResource',
+  function($scope, FileSaver, AdminStepResource, AdminQuestionnaireResource) {
 
   $scope.editing = false;
 
@@ -50,6 +59,13 @@ controller('AdminQuestionnaireEditorCtrl', ['$scope', 'AdminStepResource',
     }, function() {
       $scope.questionnaire.steps.splice($scope.questionnaire.steps.indexOf(step), 1);
     });
+  };
+
+  $scope.downloadQuestionnaire = function(obj) {
+    //var q = new AdminQuestionnaireResource(obj.id);
+    AdminQuestionnaireResource.get({id: obj.id}).$promise.then(function(res) {
+       FileSaver.saveAs(res, obj.name + '.json');
+    }, $scope.Utils.displayErrorMsg);
   };
 }]).
 controller('AdminQuestionnaireAddCtrl', ['$scope', 'Utils', 'AdminQuestionnaireResource', function($scope, Utils, AdminQuestionnaireResource) {
