@@ -1014,7 +1014,26 @@ factory('AdminUtils', ['AdminContextResource', 'AdminQuestionnaireResource', 'Ad
         reader.readAsText(file);
 
         return deferred.promise;
-      }
+      },
+
+      readFileAsJson: function (file) {
+        return this.readFileAsText(file).then(function(txt) {
+          try {
+            return JSON.parse(txt);
+          } catch (excep) {
+            return $q.reject(excep);
+          }
+        });
+      },
+
+      displayErrorMsg: function(reason) {
+        var error = {
+          'message': 'local-failure',
+          'arguments': [reason],
+          'code': 10,
+        };
+        $rootScope.errors.push(error);
+      },
     }
 }]).
   factory('fieldUtilities', ['$filter', 'CONSTANTS', function($filter, CONSTANTS) {
