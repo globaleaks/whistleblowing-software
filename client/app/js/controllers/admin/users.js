@@ -34,8 +34,8 @@ GLClient.controller('AdminUsersCtrl', ['$scope', '$uibModal', 'AdminUserResource
     );
   };
 }]).
-controller('AdminUserEditorCtrl', ['$scope', 'Utils',
-  function($scope, Utils) {
+controller('AdminUserEditorCtrl', ['$scope',
+  function($scope) {
 
     $scope.editing = false;
 
@@ -54,9 +54,9 @@ controller('AdminUserEditorCtrl', ['$scope', 'Utils',
     $scope.updateUserImgUrl();
 
     $scope.loadPublicKeyFile = function(file) {
-      Utils.readFileAsText(file).then(function(txt) {
+      $scope.Utils.readFileAsText(file).then(function(txt) {
         $scope.user.pgp_key_public = txt;
-      }, Utils.displayErrorMsg);
+      }, $scope.Utils.displayErrorMsg);
     }
 }]).
 controller('AdminUserAddCtrl', ['$scope',

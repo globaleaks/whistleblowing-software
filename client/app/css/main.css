@@ -424,20 +424,23 @@ textarea.form-control {
   resize: vertical;
 }
 
-div.pgp-choose-box {
+.position-relative {
   position: relative;
 }
 
-label.select-pubkey-btn {
+.textarea-btn {
   position: absolute;
-  bottom: 10px;
-  right: 10px;
+  top: 2.4em;
+}
+
+html[dir="ltr"] .textarea-btn {
+  right: 1em;
+}
+
+html[dir="rtl"] .textarea-btn {
+  left: 1em;
 }
 
 .file-upload input[type="file"] {
   display: none;
-}
-
-label[file-change-input] {
-  margin-bottom: 0px !important;
 }

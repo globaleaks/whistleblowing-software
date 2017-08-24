@@ -340,18 +340,18 @@ directive('wbfile', [function() {
     templateUrl: 'views/partials/wbfile.html',
   };
 }]).
-directive('fileChangeInput', function() {
+directive('filePickerInput', function() {
   return {
     restrict: 'A',
-    templateUrl: 'views/partials/file_change_input.html',
+    templateUrl: 'views/partials/textarea_file_input.html',
     scope: {
-      fileChangeInput: '&',
+      filePickerInput: '&',
       labelText: '@',
     },
     link: function (scope, iElement) {
       iElement.find('input').on('change', function (event) {
         scope.$apply(function(){
-          scope.fileChangeInput({file: event.target.files[0]});
+          scope.filePickerInput({file: event.target.files[0]});
         });
       });
     },

@@ -1,5 +1,5 @@
-GLClient.controller('PreferencesCtrl', ['$scope', '$rootScope', '$q', 'Utils', 'CONSTANTS',
-  function($scope, $rootScope, $q, Utils, CONSTANTS) {
+GLClient.controller('PreferencesCtrl', ['$scope', '$rootScope', 'CONSTANTS',
+  function($scope, $rootScope, CONSTANTS) {
     if ($scope.session.role === 'receiver') {
       // Receivers currently are the only user that benefit of specialized preferences.
       $scope.tabs = [
@@ -52,8 +52,8 @@ GLClient.controller('PreferencesCtrl', ['$scope', '$rootScope', '$q', 'Utils', '
     };
 
     $scope.loadPublicKeyFile = function(file) {
-      Utils.readFileAsText(file).then(function(txt) {
+      $scope.Utils.readFileAsText(file).then(function(txt) {
         $scope.preferences.pgp_key_public = txt;
-       }, Utils.displayErrorMsg);
+       }, $scope.Utils.displayErrorMsg);
     };
 }]);
