@@ -48,7 +48,7 @@ def user_serialize_user(store, user, language):
     :param username: the username of the user to be serialized
     :return: a serialization of the object
     """
-    picture = db_get_model_img(store, models.User, user.id)
+    picture = db_get_model_img(store, 'users', user.id)
 
     ret_dict = {
         'id': user.id,

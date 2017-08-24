@@ -4,8 +4,8 @@
 #   *****
 # Implementation of the Tenant handlers
 #
+from globaleaks import models
 from globaleaks.handlers.base import BaseHandler
-from globaleaks.models import Tenant
 from globaleaks.orm import transact
 from globaleaks.rest import requests
 
@@ -19,9 +19,7 @@ def serialize_tenant(store, tenant):
 
 
 def db_create(store, desc):
-    tenant = Tenant(desc)
-
-    store.add(tenant)
+    tenant = models.db_forge_obj(store, models.Tenant, desc)
 
     # required to generate/retrive the id
     store.flush()
@@ -35,7 +33,7 @@ def create(store, desc, *args, **kwargs):
 
 
 def db_get_tenant_list(store):
-    return [serialize_tenant(store, tenant) for tenant in store.find(Tenant)]
+    return [serialize_tenant(store, tenant) for tenant in store.find(models.Tenant)]
 
 
 @transact
@@ -44,14 +42,14 @@ def get_tenant_list(store):
 
 
 @transact
-def get(store, tid):
-    return serialize_tenant(store, Tenant.get(store, id=tid))
+def get(store, id):
+    return serialize_tenant(store, models.db_get(store, models.Tenant, id=id))
 
 
 @transact
-def update(store, tid, request):
-    tenant = Tenant.get(store, id=tid)
-    Tenant.update(tenant, request)
+def update(store, id, request):
+    tenant = models.db_get(store, models.Tenant, id=id)
+    tenant.update(request)
 
 
 class TenantCollection(BaseHandler):
@@ -82,7 +80,7 @@ class TenantInstance(BaseHandler):
         """
         Delete the specified tenant.
         """
-        return Tenant.delete(id=int(tenant_id))
+        return models.delete(models.Tenant, id=int(tenant_id))
 
 
     def put(self, tenant_id):
@@ -95,4 +93,4 @@ class TenantInstance(BaseHandler):
         return update(int(tenant_id), request)
 
     def get(self, tenant_id):
-        return get(tid=int(tenant_id))
+        return get(id=int(tenant_id))

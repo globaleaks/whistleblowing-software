@@ -11,36 +11,34 @@ from globaleaks.handlers.base import BaseHandler
 from globaleaks.orm import transact
 
 model_map = {
-  'users': models.User,
-  'contexts': models.Context
+  'users': models.UserImg,
+  'contexts': models.ContextImg
 }
 
 
-def db_get_model_img(store, model, obj_id):
-    obj = store.find(model, model.id == obj_id).one()
-    if obj.img_id is None:
+def db_get_model_img(store, obj_key, obj_id):
+    model = model_map[obj_key]
+    img =  store.find(model, model.id == obj_id).one()
+    if img is None:
         return ''
-
-    return store.find(models.File, models.File.id == obj.img_id).one().data
-
-
-@transact
-def get_model_img(store, model, obj_id):
-    return db_get_model_img(store, model, obj_id)
-
-
-@transact
-def add_model_img(store, model, obj_id, data):
-    data = base64.b64encode(data)
-    obj = store.find(model, model.id == obj_id).one()
-    if obj.img_id is not None:
-        picture = store.find(models.File, models.File.id == obj.img_id).one()
     else:
-        picture = models.File({'data': data})
-        store.add(picture)
-        obj.img_id = picture.id
+        return img.data
 
-    picture.data = data
+
+@transact
+def get_model_img(store, obj_key, obj_id):
+    return db_get_model_img(store, obj_key, obj_id)
+
+
+@transact
+def add_model_img(store, obj_key, obj_id, data):
+    model = model_map[obj_key]
+    data = base64.b64encode(data)
+    img = store.find(model, model.id == obj_id).one()
+    if img is None:
+        store.add(model({'id': obj_id, 'data': data}))
+    else:
+        img.data = data
 
 
 @transact
@@ -62,9 +60,9 @@ class ModelImgInstance(BaseHandler):
         # The error is suppressed here because add_model_img is wrapped with a
         # transact returns a deferred which we attach events to.
         # pylint: disable=assignment-from-no-return
-        d = add_model_img(model_map[obj_key], obj_id, uploaded_file['body'].read())
+        d = add_model_img(obj_key, obj_id, uploaded_file['body'].read())
         d.addBoth(lambda ignore: uploaded_file['body'].close)
         return d
 
     def delete(self, obj_key, obj_id):
-        return del_model_img(model_map[obj_key], obj_id)
+        return del_model_img(obj_key, obj_id)

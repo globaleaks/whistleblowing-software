@@ -22,15 +22,9 @@ from globaleaks.utils.structures import get_localized_values
 def db_prepare_contexts_serialization(store, contexts):
     data = {'imgs': {}, 'receivers': {}}
 
-    contexts_ids = []
-    img_ids = []
+    contexts_ids = [c.id for c in contexts]
 
-    for c in contexts:
-        contexts_ids.append(c.id)
-        if c.img_id is not None:
-            img_ids.append(c.img_id)
-
-    for o in store.find(models.File, In(models.File.id, img_ids)):
+    for o in store.find(models.Context, In(models.ContextImg.id, contexts_ids)):
         data['imgs'][o.id] = o.data
 
     for o in store.find(models.ReceiverContext, In(models.ReceiverContext.context_id, contexts_ids)):
@@ -44,17 +38,12 @@ def db_prepare_contexts_serialization(store, contexts):
 def db_prepare_receivers_serialization(store, receivers):
     data = {'users': {}, 'imgs': {}}
 
-    receivers_ids = []
-    img_ids = []
-
-    for r in receivers:
-        receivers_ids.append(r.id)
+    receivers_ids = [r.id for r in receivers]
 
     for o in store.find(models.User, In(models.User.id, receivers_ids)):
         data['users'][o.id] = o
-        img_ids.append(o.img_id)
 
-    for o in store.find(models.File, In(models.File.id, img_ids)):
+    for o in store.find(models.UserImg, In(models.UserImg.id, receivers_ids)):
         data['imgs'][o.id] = o.data
 
     return data
@@ -170,7 +159,7 @@ def serialize_context(store, context, language, data=None):
         'show_receivers_in_alphabetical_order': context.show_receivers_in_alphabetical_order,
         'questionnaire_id': context.questionnaire_id,
         'receivers': data['receivers'].get(context.id, []),
-        'picture': data['imgs'].get(context.img_id, '')
+        'picture': data['imgs'].get(context.id, '')
     }
 
     return get_localized_values(ret_dict, context, context.localized_keys, language)
@@ -339,7 +328,8 @@ def serialize_receiver(store, receiver, language, data=None):
         'can_delete_submission': receiver.can_delete_submission,
         'can_postpone_expiration': receiver.can_postpone_expiration,
         'can_grant_permissions': receiver.can_grant_permissions,
-        'picture': data['imgs'].get(user.img_id, '')
+        'contexts': data['contexts'].get(receiver.id, []),
+        'picture': data['imgs'].get(user.id, '')
     }
 
     # description and eventually other localized strings should be taken from user model
