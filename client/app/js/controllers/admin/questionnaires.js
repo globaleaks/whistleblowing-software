@@ -52,7 +52,7 @@ controller('AdminQuestionnaireEditorCtrl', ['$scope', 'AdminStepResource',
     });
   };
 }]).
-controller('AdminQuestionnaireAddCtrl', ['$scope', function($scope) {
+controller('AdminQuestionnaireAddCtrl', ['$scope', 'Utils', 'AdminQuestionnaireResource', function($scope, Utils, AdminQuestionnaireResource) {
   $scope.new_questionnaire = {};
 
   $scope.add_questionnaire = function() {
@@ -63,6 +63,18 @@ controller('AdminQuestionnaireAddCtrl', ['$scope', function($scope) {
     questionnaire.$save(function(new_questionnaire){
       $scope.admin.questionnaires.push(new_questionnaire);
       $scope.new_questionnaire = {};
+    });
+  };
+
+  $scope.importQuestionnaire = function(file) {
+    Utils.readFileAsJson(file).then(function(obj) {
+        var questionnaire = new AdminQuestionnaireResource(obj);
+
+        return questionnaire.$save().$promise;
+    }).then(function(new_q) {
+      $scope.admin.questionnaire.push(new_q);
+    }, function(err) {
+      Utils.displayErrorMsg(err);
     });
   };
 }]);

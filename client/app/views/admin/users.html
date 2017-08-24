@@ -177,9 +177,10 @@
                       <div data-translate>Encryption is not enabled!</div>
                       <div data-translate>Email notifications won't be encrypted.</div>
                     </div>
-                    <div>
+                    <div class="pgp-choose-box">
                       <label data-translate>Set up encryption by providing a PGP public key</label>
                       <textarea class="form-control" name="pgp_key" data-ng-attr-placeholder="{{'Copy and paste the PGP public key here' | translate}}" data-ng-model="user.pgp_key_public" data-pgp-pubkey-validator="canBeEmpty"></textarea>
+                      <label file-change-input="loadPublicKeyFile(file)" data-label-text="Select" class="btn btn-default select-pubkey-btn"></label>
                     </div>
                   </div>
                 </div>
