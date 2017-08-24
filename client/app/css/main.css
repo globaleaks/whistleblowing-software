@@ -423,3 +423,21 @@ html[dir="rtl"] #UserBox  {
 textarea.form-control {
   resize: vertical;
 }
+
+div.pgp-choose-box {
+  position: relative;
+}
+
+label.select-pubkey-btn {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+}
+
+.file-upload input[type="file"] {
+  display: none;
+}
+
+label[file-change-input] {
+  margin-bottom: 0px !important;
+}

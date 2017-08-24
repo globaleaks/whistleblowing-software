@@ -234,8 +234,8 @@ controller('AdminAdvancedCtrl', ['$scope', '$uibModal',
     });
   };
 }]).
-controller('AdminMailCtrl', ['$scope', '$http', 'AdminNotificationResource',
-  function($scope, $http, AdminNotificationResource){
+controller('AdminMailCtrl', ['$scope', '$http', 'Utils', 'AdminNotificationResource',
+  function($scope, $http, Utils, AdminNotificationResource){
 
   $scope.tabs = [
     {
@@ -266,6 +266,12 @@ controller('AdminMailCtrl', ['$scope', '$http', 'AdminNotificationResource',
   $scope.updateThenTestMail = function() {
     AdminNotificationResource.update($scope.admin.notification)
     .$promise.then(function() { sendTestMail(); }, function() { });
+  };
+
+  $scope.loadPublicKeyFile = function(file) {
+    Utils.readFileAsText(file).then(function(txt) {
+      $scope.admin.notification.exception_email_pgp_key_public = txt;
+    }, Utils.displayErrorMsg);
   };
 }]).
 controller('AdminReviewModalCtrl', ['$scope', '$uibModalInstance', 'targetFunc',
