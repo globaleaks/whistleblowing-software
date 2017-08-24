@@ -271,17 +271,18 @@ directive('pgpPubkeyDisplay', ['pgp', 'glbcKeyLib', function(pgp, glbcKeyLib) {
       keyStr: '=keyStr',
 
     },
-    controller: ['$scope', function($scope) {
-      $scope.$watch('keyStr', function(newVal) {
+    link: function(scope) {
+      scope.$watch('keyStr', function(newVal) {
         if (newVal === "") {
           return;
         }
-        $scope.is_valid_key = glbcKeyLib.validPublicKey(newVal);
-        if ($scope.is_valid_key) {
-          $scope.key_details = pgpKeyDetails(newVal);
+        scope.is_valid_key = glbcKeyLib.validPublicKey(newVal);
+        if (scope.is_valid_key) {
+          scope.key_details = pgpKeyDetails(newVal);
         }
       });
-  }]};
+    },
+  };
 }]).
 // pgpPubkeyValidator binds to text-areas to provide input validation on user
 // input PGP public keys. Note that the directive attaches itself to the
@@ -339,19 +340,21 @@ directive('wbfile', [function() {
     templateUrl: 'views/partials/wbfile.html',
   };
 }]).
-directive('fileChange', function() {
+directive('fileChangeInput', function() {
   return {
     restrict: 'A',
+    templateUrl: 'views/partials/file_change_input.html',
     scope: {
-      handler: '&',
+      fileChangeInput: '&',
+      labelText: '@',
     },
-    link: function (scope, element) {
-      element.on('change', function (event) {
-      scope.$apply(function(){
-        scope.handler({files: event.target.files});
+    link: function (scope, iElement) {
+      iElement.find('input').on('change', function (event) {
+        scope.$apply(function(){
+          scope.fileChangeInput({file: event.target.files[0]});
+        });
       });
-    });
-    }
+    },
   };
 }).
 directive('requiredAsterisk', function() {
