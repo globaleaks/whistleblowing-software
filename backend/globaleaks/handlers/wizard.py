@@ -17,7 +17,7 @@ from globaleaks.utils.utility import log, datetime_null
 def wizard(store, request, language):
     models.db_delete(store, l10n.EnabledLanguage, l10n.EnabledLanguage.name != language)
 
-    tenant = store.find(models.Tenant, id=1)
+    tenant = models.db_get(store, models.Tenant, id=1)
     tenant.label = request['node']['name']
 
     node = config.NodeFactory(store)

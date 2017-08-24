@@ -2,14 +2,15 @@ from storm.expr import Not, In
 from storm.locals import Bool, Unicode, JSON
 
 from globaleaks import __version__
-from globaleaks.models import config_desc, Model
+from globaleaks.models import config_desc, ModelWithTID
 from globaleaks.models.config_desc import GLConfig
 from globaleaks.utils.utility import log
 
+XTIDX = 1
 
-class Config(Model):
+class Config(ModelWithTID):
     __storm_table__ = 'config'
-    __storm_primary__ = ('var_group', 'var_name')
+    __storm_primary__ = ('tid', 'var_group', 'var_name')
 
     cfg_desc = GLConfig
     var_group = Unicode()
@@ -74,7 +75,7 @@ class ConfigFactory(object):
     update_set = frozenset() # keys updated when fact.update(d) is called
     group_desc = dict() # the corresponding dict in GLConfig
 
-    def __init__(self, store, group, *args, **kwargs):
+    def __init__(self, store, tid, group, *args, **kwargs):
         self.store = store
         self.group = unicode(group)
         self.res = None
@@ -157,7 +158,7 @@ class NodeFactory(ConfigFactory):
     group_desc = GLConfig['node']
 
     def __init__(self, store, *args, **kwargs):
-        ConfigFactory.__init__(self, store, 'node', *args, **kwargs)
+        ConfigFactory.__init__(self, store, XTIDX, 'node', *args, **kwargs)
 
     def public_export(self):
         return self._export_group_dict(self.public_node)
@@ -173,7 +174,7 @@ class NotificationFactory(ConfigFactory):
     group_desc = GLConfig['notification']
 
     def __init__(self, store, *args, **kwargs):
-        ConfigFactory.__init__(self, store, 'notification', *args, **kwargs)
+        ConfigFactory.__init__(self, store, XTIDX, 'notification', *args, **kwargs)
 
     def admin_export(self):
         return self._export_group_dict(self.admin_notification)
@@ -194,7 +195,7 @@ class PrivateFactory(ConfigFactory):
     group_desc = GLConfig['private']
 
     def __init__(self, store, *args, **kwargs):
-        ConfigFactory.__init__(self, store, 'private', *args, **kwargs)
+        ConfigFactory.__init__(self, store, XTIDX, 'private', *args, **kwargs)
 
     def mem_copy_export(self):
         return self._export_group_dict(self.mem_export_set)

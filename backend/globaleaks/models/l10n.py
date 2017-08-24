@@ -3,11 +3,13 @@ from storm.locals import Unicode, Bool
 
 from globaleaks import LANGUAGES_SUPPORTED_CODES, models
 
+XTIDX = 1
 
-class EnabledLanguage(models.Model):
+class EnabledLanguage(models.ModelWithTID):
     __storm_table__ = 'enabledlanguage'
+    __storm_primary__ = ('tid', 'name')
 
-    name = Unicode(primary=True)
+    name = Unicode()
 
     def __init__(self, name=None, migrate=False):
         if migrate:
@@ -27,12 +29,16 @@ class EnabledLanguage(models.Model):
         NodeL10NFactory(store).initialize(lang_code, appdata_dict)
 
     @classmethod
+    def list(cls, store, tid=XTIDX):
+        return [e.name for e in store.find(cls, tid)]
+
+    @classmethod
     def add_all_supported_langs(cls, store, appdata_dict):
         for lang_code in LANGUAGES_SUPPORTED_CODES:
             cls.add_new_lang(store, lang_code, appdata_dict)
 
 
-class ConfigL10N(models.Model):
+class ConfigL10N(models.ModelWithTID):
     __storm_table__ = 'config_l10n'
     __storm_primary__ = ('lang', 'var_group', 'var_name')
 

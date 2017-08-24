@@ -41,13 +41,15 @@ def db_create_tables(store):
 
 @transact_sync
 def init_db(store):
+    log.debug("Performing database initialization...")
+
     appdata = load_appdata()
 
     db_create_tables(store)
 
-    db_update_defaults(store)
+    store.add(models.Tenant())
 
-    log.debug("Performing database initialization...")
+    db_update_defaults(store)
 
     models.config.system_cfg_init(store)
 
