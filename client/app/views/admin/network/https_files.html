@@ -12,12 +12,17 @@
       </span>
       <span class="pull-right">
         <span class="file-upload" data-ng-if="!tls_config.files.priv_key.set">
-          <label for="keyUpload" class="btn btn-xs btn-primary" data-translate>Upload</label>
-          <input id="keyUpload" type="file" file-change handler="postFile(files[0], file_resources.priv_key)" />
+          <label id="keyUpload" file-picker-input="postFile(file, file_resources.priv_key)" data-label-text="Upload" class="btn btn-xs btn-primary"></label>
         </span>
-        <button id="pkGen" class="btn btn-xs btn-success" data-ng-if="!tls_config.files.priv_key.set" data-ng-click="gen_priv_key()" data-translate>Generate</button>
+        <button id="pkGen" class="btn btn-xs btn-success" data-ng-if="!tls_config.files.priv_key.set" data-ng-click="gen_priv_key()">
+            <i class="glyphicon glyphicon-cog"></i>
+          <span data-translate>Generate</span>
+        </button>
         <span data-ng-if="tls_config.files.priv_key.set">
-          <button id="deleteKey" class="btn btn-xs btn-danger" data-ng-click="deleteFile(file_resources.priv_key)" data-translate>Delete</button>
+          <button id="deleteKey" class="btn btn-xs btn-danger" data-ng-click="deleteFile(file_resources.priv_key)">
+            <i class="glyphicon glyphicon-remove"></i>
+            <span data-translate>Delete</span>
+          </button>
         </span>
       </span>
     </div>
@@ -42,8 +47,14 @@
       </span>
       <span data-ng-if="tls_config.files.csr.set">
         <span class="pull-right">
-          <button id="downloadCsr" class="btn btn-xs btn-primary" data-ng-click="downloadFile(file_resources.csr)" data-translate>Download</button>
-          <button id="deleteCsr" class="btn btn-xs btn-danger" data-ng-click="deleteFile(file_resources.csr)" data-translate>Delete</button>
+          <button id="downloadCsr" class="btn btn-xs btn-primary" data-ng-click="downloadFile(file_resources.csr)">
+            <i class="glyphicon glyphicon-save-file"></i>
+            <span data-translate>Download</span>
+          </button>
+          <button id="deleteCsr" class="btn btn-xs btn-danger" data-ng-click="deleteFile(file_resources.csr)">
+            <i class="glyphicon glyphicon-remove"></i>
+            <span data-translate>Delete</span>
+          </button>
         </span>
       </span>
     </div>
@@ -62,12 +73,17 @@
       </span>
       <span class="pull-right">
         <span class="file-upload" data-ng-if="!tls_config.files.cert.set">
-          <label for="certUpload" class="btn btn-xs btn-primary" data-ng-translate>Upload</label>
-          <input id="certUpload" type="file" file-change handler="postFile(files[0], file_resources.cert)"  />
+          <label id="certUpload" file-picker-input="postFile(file, file_resources.cert)" data-label-text="Upload" class="btn btn-xs btn-primary"></label>
         </span>
         <span data-ng-if="tls_config.files.cert.set">
-          <button id="downloadCert" class="btn btn-xs btn-primary" data-ng-click="downloadFile(file_resources.cert)" data-translate>Download</button>
-          <button id="deleteCert" class="btn btn-xs btn-danger" data-ng-click="deleteFile(file_resources.cert)" data-translate>Delete</button>
+          <button id="downloadCert" class="btn btn-xs btn-primary" data-ng-click="downloadFile(file_resources.cert)">
+            <i class="glyphicon glyphicon-save-file"></i>
+            <span data-translate>Download</span>
+          </button>
+          <button id="deleteCert" class="btn btn-xs btn-danger" data-ng-click="deleteFile(file_resources.cert)">
+            <i class="glyphicon glyphicon-remove"></i>
+            <span data-translate>Delete</span>
+          </button>
         </span>
       </span>
     </div>
@@ -86,12 +102,17 @@
       </span>
       <div class="pull-right">
         <span class="file-upload" data-ng-if="!tls_config.files.chain.set">
-          <label for="chainUpload" class="btn btn-xs btn-primary" data-translate>Upload</label>
-          <input id="chainUpload" type="file" file-change handler="postFile(files[0], file_resources.chain)" />
+          <label id="chainUpload" file-picker-input="postFile(file, file_resources.chain)" data-label-text="Upload" class="btn btn-xs btn-primary"></label>
         </span>
         <span data-ng-if="tls_config.files.chain.set">
-          <button id="downloadChain" class="btn btn-xs btn-primary" data-ng-click="downloadFile(file_resources.chain)" data-translate>Download</button>
-          <button id="deleteChain" class="btn btn-xs btn-danger" data-ng-click="deleteFile(file_resources.chain)" data-translate>Delete</button>
+          <button id="downloadChain" class="btn btn-xs btn-primary" data-ng-click="downloadFile(file_resources.chain)">
+            <i class="glyphicon glyphicon-save-file"></i>
+            <span data-translate>Download</span>
+          </button>
+          <button id="deleteChain" class="btn btn-xs btn-danger" data-ng-click="deleteFile(file_resources.chain)">
+            <i class="glyphicon glyphicon-remove"></i>
+            <span data-translate>Delete</span>
+          </button>
         </span>
       </div>
     </div>
