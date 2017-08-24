@@ -3,12 +3,15 @@ exports.receiver = function() {
     return element(by.id('tip-0')).click();
   };
 
-  this.addPublicKey = function(pub_pgp_key) {
+  this.addPublicKey = function(pgp_key_path) {
     browser.setLocation('receiver/preferences');
     element(by.cssContainingText("a", "Encryption settings")).click();
-    var pgpTxtArea = element(by.model('preferences.pgp_key_public'));
-    pgpTxtArea.clear();
-    pgpTxtArea.sendKeys(pub_pgp_key);
+
+    browser.executeScript('angular.element(document.querySelector(\'input[type="file"]\')).attr("style", "visibility: visible")');
+    element(by.xpath("//input[@type='file']")).sendKeys(pgp_key_path).then(function() {
+      return browser.waitForAngular();
+    });
+
     return element(by.cssContainingText("span", "Update notification and encryption settings")).click();
   };
 
