@@ -8,13 +8,12 @@ from globaleaks.rest import errors
 
 
 class EnabledLanguage(Storm):
-    __storm_table__ = 'enabledlanguage'
-
     name = Unicode(primary=True)
 
     def __init__(self, name=None, migrate=False):
         if migrate:
             return
+
         self.name = unicode(name)
 
     def __repr__(self):

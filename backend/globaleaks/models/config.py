@@ -8,7 +8,6 @@ from globaleaks.utils.utility import log
 
 
 class Config(Storm):
-    __storm_table__ = 'config'
     __storm_primary__ = ('var_group', 'var_name')
 
     cfg_desc = GLConfig
