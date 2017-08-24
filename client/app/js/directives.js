@@ -343,7 +343,7 @@ directive('wbfile', [function() {
 directive('filePickerInput', function() {
   return {
     restrict: 'A',
-    templateUrl: 'views/partials/textarea_file_input.html',
+    templateUrl: 'views/partials/file_picker_input.html',
     scope: {
       filePickerInput: '&',
       labelText: '@',
