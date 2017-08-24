@@ -1,8 +1,8 @@
 var receiver = new browser.gl.pages.receiver();
 
-var fs = require('fs');
-var opts = { encoding: 'utf8', flag: 'r' };
-var pgp_key = fs.readFileSync('../backend/globaleaks/tests/data/gpg/VALID_PGP_KEY1_PUB', opts);
+var path = require('path');
+
+var pgp_key_path = path.resolve('../backend/globaleaks/tests/data/gpg/VALID_PGP_KEY1_PUB');
 
 describe('receiver first login', function() {
   it('should redirect to /firstlogin upon successful authentication', function() {
@@ -32,6 +32,6 @@ describe('receiver first login', function() {
   });
 
   it('should be able to load his/her public PGP key', function() {
-    receiver.addPublicKey(pgp_key);
+    receiver.addPublicKey(pgp_key_path);
   });
 });
