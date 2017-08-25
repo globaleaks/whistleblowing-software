@@ -15,7 +15,7 @@
         <i class="glyphicon glyphicon-plus-sign"></i>
         <span data-translate>Add</span>
       </button>
-      <label file-change-input="importQuestionnaire(file)" data-text-label="Import" class="btn btn-default"></label>
+      <label file-picker-input="importQuestionnaire(file)" data-label-text="Import" class="btn btn-default"></label>
     </div>
   </form>
 </div>
@@ -28,7 +28,7 @@
           <div class="editorHeader row" data-ng-click="questionnaire.editable && toggleEditing(); $event.stopPropagation();">
             <span class="col-md-7 editorHeaderTitle">{{questionnaire.name}}
               <a class="downloadButton btn btn-xs btn-default"
-                  data-ng-if="!editing"
+                  data-ng-if="!editing && questionnaire.name !== 'default'"
                   data-ng-click="downloadQuestionnaire(questionnaire); $event.stopPropagation()">
                   <i class="glyphicon glyphicon-download"></i>
                   <span data-translate>Download</span>

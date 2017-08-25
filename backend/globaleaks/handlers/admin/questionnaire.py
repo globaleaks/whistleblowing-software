@@ -106,6 +106,7 @@ def create_questionnaire(store, request, language):
     Returns:
         (dict) representing the configured questionnaire
     """
+    # TODO handle existing ID interaction with import. Currently throws 500s
     questionnaire = db_create_questionnaire(store, request, language)
 
     return serialize_questionnaire(store, questionnaire, language)

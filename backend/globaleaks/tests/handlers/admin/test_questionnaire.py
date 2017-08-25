@@ -70,10 +70,6 @@ class TestQuestionnaireInstance(helpers.TestHandlerWithPopulatedDB):
         q['steps'][0]['type'] = 'multichoice'
         q['steps'][0]['options'] = get_dummy_fieldoption_list()
 
-        #print '-. . .\n-. . .\nCOMMITING\n-. . .\n-. . .\n-. . .\n'
-        #import pprint
-        #pprint.pprint(q)
-
         handler = self.request(q, role='admin',
                                handler_cls=questionnaire.QuestionnairesCollection)
         handler.request.args = {'full': ['1']}
