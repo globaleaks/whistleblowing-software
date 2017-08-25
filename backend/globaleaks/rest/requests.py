@@ -7,6 +7,8 @@
 # These specifications may be used with rest.validateMessage() inside each of the API
 # handler in order to verify if the request is correct.
 
+import copy
+
 from globaleaks import models
 from globaleaks.models.l10n import NotificationL10NFactory
 from globaleaks.utils.sets import disjoint_union
@@ -277,7 +279,7 @@ AdminFieldOptionDesc = {
     'trigger_step': uuid_regexp_or_empty
 }
 
-AdminFieldOptionDescRaw =get_multilang_request_format(AdminFieldOptionDesc, models.FieldOption.localized_keys)
+AdminFieldOptionDescRaw = get_multilang_request_format(AdminFieldOptionDesc, models.FieldOption.localized_keys)
 
 AdminFieldAttrDesc = {
     'id': uuid_regexp_or_empty,
@@ -286,7 +288,7 @@ AdminFieldAttrDesc = {
     'value': SkipSpecificValidation
 }
 
-AdminFieldAttrDescRaw =get_multilang_request_format(AdminFieldAttrDesc, models.FieldAttr.localized_keys)
+AdminFieldAttrDescRaw = get_multilang_request_format(AdminFieldAttrDesc, models.FieldAttr.localized_keys)
 
 AdminFieldDesc = {
     'id': field_id_regexp_or_empty,
@@ -313,7 +315,7 @@ AdminFieldDesc = {
     'triggered_by_score': int
 }
 
-AdminFieldDescRaw =get_multilang_request_format(AdminFieldDesc, models.Field.localized_keys)
+AdminFieldDescRaw = get_multilang_request_format(AdminFieldDesc, models.Field.localized_keys)
 AdminFieldDescRaw['options'] = [AdminFieldOptionDescRaw]
 # AdminFieldDescRaw['attrs']; FIXME: we still miss a way for validating a hierarchy where
 #                                    we have a variable dictionary like the attrs dictionary.
@@ -328,7 +330,7 @@ AdminStepDesc = {
     'triggered_by_score': int
 }
 
-AdminStepDescRaw =get_multilang_request_format(AdminStepDesc, models.Step.localized_keys)
+AdminStepDescRaw = get_multilang_request_format(AdminStepDesc, models.Step.localized_keys)
 AdminStepDescRaw['children'] = [AdminFieldDescRaw]
 
 AdminQuestionnaireDesc = {
@@ -339,7 +341,7 @@ AdminQuestionnaireDesc = {
     'steps': [AdminStepDesc]
 }
 
-AdminQuestionnaireDescRaw =get_multilang_request_format(AdminQuestionnaireDesc, models.Questionnaire.localized_keys)
+AdminQuestionnaireDescRaw = get_multilang_request_format(AdminQuestionnaireDesc, models.Questionnaire.localized_keys)
 AdminQuestionnaireDescRaw['steps'] = [AdminStepDescRaw]
 
 AdminContextDesc = {
@@ -367,7 +369,7 @@ AdminContextDesc = {
     'questionnaire_id': questionnaire_id_regexp_or_empty
 }
 
-AdminContextDescRaw =get_multilang_request_format(AdminContextDesc, models.Context.localized_keys)
+AdminContextDescRaw = get_multilang_request_format(AdminContextDesc, models.Context.localized_keys)
 
 AdminReceiverDesc = {
     'id': uuid_regexp_or_empty,
