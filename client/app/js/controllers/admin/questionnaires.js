@@ -44,8 +44,8 @@ GLClient.controller('AdminQuestionnaireCtrl',
     }, Utils.displayErrorMsg);
   };
 }]).
-controller('AdminQuestionnaireEditorCtrl', ['$scope', 'FileSaver', 'AdminStepResource', 'AdminQuestionnaireResource',
-  function($scope, FileSaver, AdminStepResource, AdminQuestionnaireResource) {
+controller('AdminQuestionnaireEditorCtrl', ['$scope', '$http', 'FileSaver', 'AdminStepResource',
+  function($scope, $http, FileSaver, AdminStepResource) {
 
   $scope.editing = false;
 
@@ -62,10 +62,13 @@ controller('AdminQuestionnaireEditorCtrl', ['$scope', 'FileSaver', 'AdminStepRes
   };
 
   $scope.downloadQuestionnaire = function(obj) {
-    //var q = new AdminQuestionnaireResource(obj.id);
-    AdminQuestionnaireResource.get({id: obj.id}).$promise.then(function(res) {
-       FileSaver.saveAs(res, obj.name + '.json');
-    }, $scope.Utils.displayErrorMsg);
+    $http({
+      method: 'GET',
+      url: 'admin/questionnaires/' + obj.id,
+      responseType: 'blob',
+    }).then(function (response) {
+      FileSaver.saveAs(response.data, obj.name + '.json');
+    });
   };
 }]).
 controller('AdminQuestionnaireAddCtrl', ['$scope', 'Utils', 'AdminQuestionnaireResource', function($scope, Utils, AdminQuestionnaireResource) {
