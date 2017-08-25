@@ -17,31 +17,6 @@ from globaleaks.utils.structures import fill_localized_keys
 from globaleaks.utils.utility import log, datetime_to_ISO8601, datetime_now
 
 
-def replace_field_ids(obj, parent_id, i, parent_is_step=False):
-    cur_id = u'{}_field_{}'.format(parent_id, i)
-    obj['id'] = cur_id
-    if parent_is_step:
-        obj['instance'] = 'instance'
-        obj['step_id'] = parent_id
-    else:
-        obj['instance'] = 'reference'
-        obj['fieldgroup_id'] = parent_id
-
-    # TODO ensure that FieldAttrs and FieldOptiions use a namespaced ID
-    # Currently, this cannot be done because neither update func touches the ID
-    # and there is create fieldoption or fieldattr funcs
-    for key, attr in obj['attrs'].iteritems():
-        obj['attrs'][key]['id'] = u'{}_attrs_{}'.format(cur_id, key)
-        attr['field_id'] = cur_id
-
-    for j, option in enumerate(obj['options']):
-        option['id'] = u'{}_option_{}'.format(j)
-        option['field_id'] = cur_id
-
-    for k, child in enumerate(obj['children']):
-        replace_field_ids(child['children'], cur_id, k)
-
-
 def db_get_questionnaire_list(store, language):
     questionnaires = store.find(models.Questionnaire)
 
@@ -103,31 +78,6 @@ def db_create_steps(store, questionnaire, steps, language):
     for step in steps:
         step['questionnaire_id'] = questionnaire.id
         questionnaire.steps.add(db_create_step(store, step, language))
-
-
-@transact
-def create_full_questionnaire(store, q_obj):
-    """
-    # Performs the creation of questionnaire, step, field, field_options for passed json objs
-    """
-    name_id = q_obj['name']
-    new_q = models.Questionnaire()
-    new_q.update(q_obj)
-
-    # TODO ensure name_id is exported
-    new_q.id = name_id
-
-    store.add(new_q)
-
-    for i, step_obj in enumerate(q_obj['steps']):
-        step_obj['questionnaire_id'] = name_id
-        step_obj['id'] = u'{}_step_{}'.format(name_id, i)
-
-        for j, child in enumerate(step_obj['children']):
-            replace_field_ids(child, step_obj['id'], j, parent_is_step=True)
-
-        # TODO steps are not super important with attached step id
-        db_create_step(store, step_obj, None)
 
 
 def db_create_questionnaire(store, request, language):
@@ -229,20 +179,17 @@ class QuestionnairesCollection(BaseHandler):
         Response: AdminQuestionnaireDesc
         Errors: InvalidInputFormat, ReceiverIdNotFound
         """
-        full_import = False
-        validator = requests.AdminQuestionnaireDesc
+        language = self.request.language
+        if 'full' in self.request.args and self.request.args['full'] == ['1']:
+            language = None
 
-        if (self.request.language is None or
-           ('full' in self.request.args and self.request.args['full'] == ['1'])):
-            full_import = True
+        validator = requests.AdminQuestionnaireDesc
+        if language is None:
             validator = requests.AdminQuestionnaireDescRaw
 
         request = self.validate_message(self.request.content.read(), validator)
 
-        if full_import:
-            return create_full_questionnaire(request)
-        else:
-            return create_questionnaire(request, self.request.language)
+        return create_questionnaire(request, language)
 
 
 class QuestionnaireInstance(BaseHandler):
@@ -280,9 +227,7 @@ class QuestionnaireInstance(BaseHandler):
         """
         Export questionnaire JSON
         """
-        # TODO scrub IDs from step, fields, field_option_id.
         q = yield get_questionnaire(questionnaire_id, None)
         q['export_date'] = datetime_to_ISO8601(datetime_now())
         q['export_version'] = '0.0.1'
         returnValue(json.dumps(q, sort_keys=True, indent=2))
-
