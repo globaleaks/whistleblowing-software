@@ -1,6 +1,6 @@
 GLClient.controller('AdminQuestionnaireCtrl',
-  ['$scope', 'Utils', 'AdminQuestionnaireResource',
-  function($scope, Utils, AdminQuestionnaireResource){
+  ['$scope', 'AdminQuestionnaireResource',
+  function($scope, AdminQuestionnaireResource){
   $scope.tabs = [
     {
       title:"Questionnaire configuration",
@@ -34,15 +34,6 @@ GLClient.controller('AdminQuestionnaireCtrl',
       $scope.admin.questionnaires.splice(idx, 1);
     });
   };
-
-  $scope.importQuestionnaire = function(file) {
-    Utils.readFileAsJson(file).then(function(obj) {
-      var questionnaire = new AdminQuestionnaireResource(obj);
-      return questionnaire.$save({full: '1'}).$promise;
-    }).then(function(new_q) {
-      $scope.admin.questionnaire.push(new_q);
-    }, Utils.displayErrorMsg);
-  };
 }]).
 controller('AdminQuestionnaireEditorCtrl', ['$scope', '$http', 'FileSaver', 'AdminStepResource',
   function($scope, $http, FileSaver, AdminStepResource) {
@@ -71,7 +62,7 @@ controller('AdminQuestionnaireEditorCtrl', ['$scope', '$http', 'FileSaver', 'Adm
     });
   };
 }]).
-controller('AdminQuestionnaireAddCtrl', ['$scope', 'Utils', 'AdminQuestionnaireResource', function($scope, Utils, AdminQuestionnaireResource) {
+controller('AdminQuestionnaireAddCtrl', ['$scope', '$http', 'AdminQuestionnaireResource', function($scope, $http, AdminQuestionnaireResource) {
   $scope.new_questionnaire = {};
 
   $scope.add_questionnaire = function() {
@@ -86,14 +77,16 @@ controller('AdminQuestionnaireAddCtrl', ['$scope', 'Utils', 'AdminQuestionnaireR
   };
 
   $scope.importQuestionnaire = function(file) {
-    Utils.readFileAsJson(file).then(function(obj) {
-        var questionnaire = new AdminQuestionnaireResource(obj);
-
-        return questionnaire.$save().$promise;
-    }).then(function(new_q) {
-      $scope.admin.questionnaire.push(new_q);
-    }, function(err) {
-      Utils.displayErrorMsg(err);
-    });
+    $scope.Utils.readFileAsText(file).then(function(txt) {
+      return $http({
+        method: 'POST',
+        url: 'admin/questionnaires?full=1',
+        data: txt,
+      })
+    }).then(function(resp) {
+      var new_q = new AdminQuestionnaireResource(resp.data);
+      $scope.admin.questionnaires.push(new_q);
+    }, $scope.Utils.displayErrorMsg);
   };
+
 }]);
