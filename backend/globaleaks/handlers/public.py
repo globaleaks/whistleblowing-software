@@ -4,6 +4,7 @@
 #
 # Implementation of classes handling the HTTP request to /node, public
 # exposed API.
+import copy
 from storm.expr import In, Select
 
 from globaleaks import models, LANGUAGES_SUPPORTED
@@ -72,39 +73,41 @@ def db_prepare_fields_serialization(store, fields):
         'triggers': {}
     }
 
-    fields_ids = [f.id for f in fields]
-    fields_ids.extend([f.template_id for f in fields if f.template is not None])
+    fields_ids = []
+    for f in fields:
+        fields_ids.append(f.id)
+        if f.template_id is not None:
+            fields_ids.append(f.id)
 
-    while len(fields_ids):
-        fs = store.find(models.Field, In(models.Field.fieldgroup_id, fields_ids))
+    tmp = copy.deepcopy(fields_ids)
+    while len(tmp):
+        fs = store.find(models.Field, In(models.Field.fieldgroup_id, tmp))
 
         tmp = []
         for f in fs:
+            tmp.append(f.id)
+            if f.template_id is not None:
+                tmp.append(f.template_id)
+
             if f.fieldgroup_id not in ret['fields']:
                ret['fields'][f.fieldgroup_id] = []
             ret['fields'][f.fieldgroup_id].append(f)
-            tmp.append(f.id)
-            if f.template_id is not None:
-                fields_ids.append(f.template_id)
-                tmp.append(f.template_id)
 
-        # this del/append trick is required to update the same object
-        del fields_ids[:]
         fields_ids.extend(tmp)
 
-    objs = store.find(models.FieldAttr, In(models.FieldAttr.field_id, ret['fields'].keys()))
+    objs = store.find(models.FieldAttr, In(models.FieldAttr.field_id, fields_ids))
     for obj in objs:
        if obj.field_id not in ret['attrs']:
            ret['attrs'][obj.field_id] = []
        ret['attrs'][obj.field_id].append(obj)
 
-    objs = store.find(models.FieldOption, In(models.FieldOption.field_id, ret['fields'].keys()))
+    objs = store.find(models.FieldOption, In(models.FieldOption.field_id, fields_ids))
     for obj in objs:
        if obj.field_id not in ret['options']:
            ret['options'][obj.field_id] = []
        ret['options'][obj.field_id].append(obj)
 
-    objs = store.find(models.FieldOption, In(models.FieldOption.trigger_field, ret['fields'].keys()))
+    objs = store.find(models.FieldOption, In(models.FieldOption.trigger_field, fields_ids))
     for obj in objs:
        if obj.field_id not in ret['triggers']:
            ret['triggers'][obj.field_id] = []
@@ -260,7 +263,7 @@ def serialize_field(store, field, language, data=None):
         f_to_serialize = field
 
     attrs = {}
-    for attr in store.find(models.FieldAttr, models.FieldAttr.field_id == f_to_serialize.id):
+    for attr in data['attrs'].get(f_to_serialize.id, {}):
         attrs[attr.name] = serialize_field_attr(attr, language)
 
     triggered_by_options = [{
@@ -286,8 +289,8 @@ def serialize_field(store, field, language, data=None):
         'width': field.width,
         'triggered_by_score': field.triggered_by_score,
         'triggered_by_options': triggered_by_options,
-        'options': [serialize_field_option(o, language) for o in f_to_serialize.options],
-        'children': [serialize_field(store, f, language) for f in f_to_serialize.children]
+        'options': [serialize_field_option(o, language) for o in data['options'].get(f_to_serialize.id, [])],
+        'children': [serialize_field(store, f, language) for f in data['fields'].get(f_to_serialize.id, [])]
     }
 
     return get_localized_values(ret_dict, f_to_serialize, field.localized_keys, language)
