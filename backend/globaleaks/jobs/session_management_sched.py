@@ -3,7 +3,6 @@
 
 from globaleaks.jobs.base import LoopingJob
 from globaleaks.settings import GLSettings
-from globaleaks.utils.utility import log
 
 __all__ = ['SessionManagementSchedule']
 

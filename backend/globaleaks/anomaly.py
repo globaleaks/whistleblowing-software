@@ -14,7 +14,6 @@ import copy
 
 from twisted.internet import defer
 
-from globaleaks import models
 from globaleaks.event import EventTrackQueue
 from globaleaks.handlers.admin.node import db_admin_serialize_node
 from globaleaks.handlers.admin.notification import db_get_notification
@@ -25,7 +24,7 @@ from globaleaks.settings import GLSettings
 from globaleaks.transactions import db_schedule_email
 from globaleaks.utils.singleton import Singleton
 from globaleaks.utils.templating import Templating
-from globaleaks.utils.utility import log, datetime_now, datetime_null, is_expired, bytes_to_pretty_str
+from globaleaks.utils.utility import log, datetime_now, datetime_null, is_expired
 
 ANOMALY_MAP = {
     'started_submissions': 50,

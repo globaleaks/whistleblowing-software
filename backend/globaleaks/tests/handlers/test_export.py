@@ -1,10 +1,9 @@
 # -*- coding: utf-8 -*-
 
-from twisted.internet.defer import inlineCallbacks
-
 from globaleaks.handlers import export
 from globaleaks.jobs.delivery_sched import DeliverySchedule
 from globaleaks.tests import helpers
+from twisted.internet.defer import inlineCallbacks
 
 class TestExportHandler(helpers.TestHandlerWithPopulatedDB):
     complex_field_population = True

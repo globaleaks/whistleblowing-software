@@ -5,9 +5,7 @@
 # Implementation of the code executed on handler /admin/contexts
 #
 from globaleaks import models
-from globaleaks.handlers.admin.step import db_create_step
 from globaleaks.handlers.base import BaseHandler
-from globaleaks.handlers.public import serialize_step
 from globaleaks.orm import transact
 from globaleaks.rest import errors, requests
 from globaleaks.settings import GLSettings

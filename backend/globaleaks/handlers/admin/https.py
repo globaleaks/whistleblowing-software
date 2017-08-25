@@ -1,29 +1,26 @@
 # -*- coding: utf-8 -*-
 import urlparse
 
-from datetime import datetime
-from functools import wraps
-
-from cryptography.hazmat.primitives.asymmetric import rsa
-from cryptography.hazmat.backends import default_backend
-from cryptography.hazmat.primitives.serialization import load_pem_private_key
-from cryptography.hazmat.primitives import serialization
-from OpenSSL import crypto, SSL
+from OpenSSL import crypto
 from OpenSSL.crypto import load_certificate, FILETYPE_PEM
-from twisted.internet.defer import inlineCallbacks, returnValue
-from twisted.internet.threads import deferToThread
-from twisted.internet.error import ConnectError
-from twisted.web.client import Agent, readBody
+from cryptography.hazmat.backends import default_backend
+from cryptography.hazmat.primitives import serialization
+from cryptography.hazmat.primitives.asymmetric import rsa
 
-from globaleaks.orm import transact, transact_sync
-from globaleaks.settings import GLSettings
+from twisted.internet.defer import inlineCallbacks, returnValue
+from twisted.internet.error import ConnectError
+from twisted.internet.threads import deferToThread
+from twisted.web.client import readBody
+
 from globaleaks.handlers.base import BaseHandler, HANDLER_EXEC_TIME_THRESHOLD
-from globaleaks.models.config import PrivateFactory, NodeFactory, load_tls_dict
+from globaleaks.models.config import PrivateFactory, load_tls_dict
+from globaleaks.orm import transact, transact_sync
 from globaleaks.rest import errors, requests
-from globaleaks.utils import tls, agent
+from globaleaks.settings import GLSettings
 from globaleaks.utils import letsencrypt
-from globaleaks.utils.utility import datetime_to_ISO8601, format_cert_expr_date, log
+from globaleaks.utils import tls
 from globaleaks.utils.tempdict import TempDict
+from globaleaks.utils.utility import datetime_to_ISO8601, format_cert_expr_date, log
 
 
 # Access auth tokens expire after a 5 minutes

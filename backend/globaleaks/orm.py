@@ -1,23 +1,20 @@
 # -*- coding: UTF-8
 # orm: contains main hooks to storm ORM
 # ******
+import storm.databases.sqlite
 import sys
 import threading
-
-import storm.databases.sqlite
-
 from datetime import datetime
-
 from storm import tracer
 from storm.database import create_database
 from storm.databases.sqlite import sqlite
 from storm.store import Store
-from twisted.internet import reactor, defer
-from twisted.internet.threads import deferToThreadPool
 
 from globaleaks.settings import GLSettings
 from globaleaks.utils.mailutils import schedule_exception_email
-from globaleaks.utils.utility import caller_name, log, timedelta_to_milliseconds
+from globaleaks.utils.utility import log, timedelta_to_milliseconds
+from twisted.internet import reactor
+from twisted.internet.threads import deferToThreadPool
 
 
 class SQLite(storm.databases.sqlite.Database):

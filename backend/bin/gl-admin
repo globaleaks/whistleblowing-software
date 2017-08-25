@@ -1,24 +1,22 @@
 #!/usr/bin/env python
 # -*- encoding: utf-8 -*-
 
+import argparse
 import json
-import re
 import os
-import sys
+import re
 import sqlite3
 import subprocess as sp
+import sys
 from datetime import datetime
-import argparse
-
-from storm.store import Store
 from storm.database import create_database
+from storm.store import Store
 
-from globaleaks import models, security
+from globaleaks import security
 from globaleaks.db import get_db_file
-from globaleaks.settings import GLSettings
 from globaleaks.models import config, config_desc
 from globaleaks.rest.requests import AdminNotificationDesc, AdminNodeDesc
-from globaleaks import DATABASE_VERSION
+from globaleaks.settings import GLSettings
 
 
 def check_file(f):

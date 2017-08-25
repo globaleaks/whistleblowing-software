@@ -1,9 +1,8 @@
 # -*- coding: utf-8 -*-
-from twisted.internet.defer import inlineCallbacks
-
 from globaleaks import anomaly
 from globaleaks.jobs import statistics_sched
 from globaleaks.tests import helpers
+from twisted.internet.defer import inlineCallbacks
 
 # E non è la distanza ad abitare l'assenza.
 # https://www.youtube.com/watch?v=UBdlNlDZDZA

@@ -1,5 +1,4 @@
 # -*- encoding: utf-8 -*-
-import os
 
 from storm.exceptions import OperationalError
 from storm.properties import PropertyColumn

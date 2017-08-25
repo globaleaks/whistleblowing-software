@@ -1,15 +1,13 @@
 # -*- encoding: utf-8 -*-
+from distutils.version import StrictVersion as V  # pylint: disable=no-name-in-module,import-error
+
 from debian import deb822
-from distutils.version import StrictVersion as V # pylint: disable=no-name-in-module,import-error
-
-from twisted.internet.defer import inlineCallbacks, returnValue
-from twisted.internet.error import ConnectionRefusedError
-
-from globaleaks.settings import GLSettings
 from globaleaks.jobs.base import LoopingJob
-from globaleaks.utils.utility import log
+from globaleaks.settings import GLSettings
 from globaleaks.utils.agent import get_page
-
+from globaleaks.utils.utility import log
+from twisted.internet.defer import inlineCallbacks
+from twisted.internet.error import ConnectionRefusedError
 
 DEB_PACKAGE_URL = 'https://deb.globaleaks.org/xenial/Packages'
 

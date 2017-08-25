@@ -1,14 +1,13 @@
 # -*- coding: utf-8 -*-
 import os
 
-from twisted.internet.defer import inlineCallbacks
-
 from globaleaks.handlers import wizard
-from globaleaks.rest import errors
-from globaleaks.tests import helpers
-from globaleaks.settings import GLSettings
-from globaleaks.orm import transact
 from globaleaks.models.profiles import load_profile
+from globaleaks.orm import transact
+from globaleaks.rest import errors
+from globaleaks.settings import GLSettings
+from globaleaks.tests import helpers
+from twisted.internet.defer import inlineCallbacks
 
 
 class TestWizard(helpers.TestHandler):

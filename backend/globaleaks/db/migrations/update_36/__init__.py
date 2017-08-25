@@ -1,11 +1,10 @@
 # -*- coding: UTF-8
 
+from urlparse import urlparse
+
 from globaleaks.db.migrations.update import MigrationBase
 from globaleaks.models import *
-from globaleaks.models.config import Config, NodeFactory, add_raw_config, del_config
-from globaleaks.models.l10n import EnabledLanguage
-
-from urlparse import urlparse
+from globaleaks.models.config import NodeFactory, add_raw_config, del_config
 
 
 class MigrationScript(MigrationBase):

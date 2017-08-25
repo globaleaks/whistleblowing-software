@@ -4,10 +4,10 @@ import StringIO
 import os
 from zipfile import ZipFile
 
-from twisted.internet.defer import inlineCallbacks
-
 from globaleaks.tests import helpers
 from globaleaks.utils.zipstream import ZipStream
+from twisted.internet.defer import inlineCallbacks
+
 
 class TestZipStream(helpers.TestGL):
     @inlineCallbacks

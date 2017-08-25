@@ -1,18 +1,11 @@
 import os
 
 from OpenSSL import crypto
+from globaleaks.tests import helpers
+from globaleaks.utils import letsencrypt
 from twisted.trial.unittest import TestCase
 
-from globaleaks.utils import letsencrypt
-
-from globaleaks.tests import helpers
-
 class TestRunAcmeReg(TestCase):
-    def test_run_acme(self):
-        # TODO handle registration
-        bad_regr = 'https://not-lets-encrypt.undomain/account/23434'
-        pass
-
     def test_format_asn1_date(self):
         s = '20170827153000Z'
 

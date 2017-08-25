@@ -6,6 +6,7 @@
 # Files collection handlers and utils
 
 from storm.expr import And
+
 from twisted.internet.defer import inlineCallbacks, returnValue
 
 from globaleaks import security

@@ -1,14 +1,12 @@
 # -*- coding: utf-8 -*-
-import json
-
-from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.handlers.admin import questionnaire
 from globaleaks.handlers.admin.context import ContextInstance
 from globaleaks.handlers.admin.questionnaire import get_questionnaire
 from globaleaks.models import Questionnaire
-from globaleaks.rest import requests, errors
+from globaleaks.rest import errors
 from globaleaks.tests import helpers
+from twisted.internet.defer import inlineCallbacks
 
 # special guest:
 stuff = u"³²¼½¬¼³²"

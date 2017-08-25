@@ -2,12 +2,11 @@
 
 import os
 
-from twisted.internet.defer import inlineCallbacks
-
 from globaleaks.anomaly import Alarm
 from globaleaks.rest import errors
 from globaleaks.tests import helpers
 from globaleaks.utils.token import Token, TokenList
+from twisted.internet.defer import inlineCallbacks
 
 
 class TestToken(helpers.TestGL):

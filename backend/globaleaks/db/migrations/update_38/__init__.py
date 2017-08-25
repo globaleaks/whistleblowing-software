@@ -1,10 +1,9 @@
 # -*- coding: UTF-8
-from storm.locals import Int, Bool, Unicode, DateTime, JSON
+from storm.locals import Int, Bool, Unicode, JSON
 
 from globaleaks.db.migrations.update import MigrationBase
 from globaleaks.models import *
-from globaleaks.models.config import NodeFactory
-from globaleaks.models.l10n import EnabledLanguage
+
 
 class Field_v_37(ModelWithID):
     __storm_table__ = 'field'

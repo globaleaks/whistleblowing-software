@@ -1,11 +1,10 @@
 # -*- coding: utf-8 -*-
 
-from twisted.internet.defer import inlineCallbacks
-
 from globaleaks.handlers import robots
 from globaleaks.rest import errors
 from globaleaks.settings import GLSettings
 from globaleaks.tests import helpers
+from twisted.internet.defer import inlineCallbacks
 
 
 class TestRobotstxtHandlerHandler(helpers.TestHandler):

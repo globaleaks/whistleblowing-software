@@ -49,10 +49,8 @@ from twisted.web.test.requesthelper import DummyRequest
 from twisted.internet import threads, defer, task
 from twisted.internet.address import IPv4Address
 from twisted.internet.defer import inlineCallbacks, Deferred
-from twisted.test.proto_helpers import StringTransport
 from twisted.trial import unittest
 from twisted.internet.protocol import ProcessProtocol
-from twisted.web import server
 from storm.twisted.testing import FakeThreadPool
 
 
@@ -139,7 +137,6 @@ def update_node_setting(store, var_name, value):
 def get_dummy_step():
     return {
         'id': '',
-        'questionnaire_id': '',
         'label': u'Step 1',
         'description': u'Step Description',
         'presentation_order': 0,

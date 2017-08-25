@@ -1,11 +1,10 @@
 # -*- coding: utf-8 -*-
 
-from twisted.internet.defer import inlineCallbacks
-
 from globaleaks.handlers.admin import receiver
 from globaleaks.rest import errors
 from globaleaks.tests import helpers
 from globaleaks.utils.utility import uuid4
+from twisted.internet.defer import inlineCallbacks
 
 
 class TestReceiversCollection(helpers.TestHandlerWithPopulatedDB):

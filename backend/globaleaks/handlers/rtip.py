@@ -8,10 +8,7 @@
 
 import os
 import string
-
 from storm.expr import In
-from twisted.internet import threads
-from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.handlers.base import BaseHandler, \
     directory_traversal_check, write_upload_plaintext_to_disk
@@ -29,6 +26,8 @@ from globaleaks.rest import errors, requests
 from globaleaks.settings import GLSettings
 from globaleaks.utils.utility import log, get_expiration, datetime_now, \
     datetime_to_ISO8601, datetime_to_pretty_str
+from twisted.internet import threads
+from twisted.internet.defer import inlineCallbacks
 
 
 def receiver_serialize_rfile(receiverfile):

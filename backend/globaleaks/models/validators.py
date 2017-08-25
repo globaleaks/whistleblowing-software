@@ -9,7 +9,6 @@ import re
 from globaleaks import LANGUAGES_SUPPORTED_CODES
 from globaleaks.rest import errors
 from globaleaks.settings import GLSettings
-from globaleaks.utils.utility import log
 
 
 def natnum_v(self, attr, value):

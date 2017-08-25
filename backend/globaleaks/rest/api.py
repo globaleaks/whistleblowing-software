@@ -6,26 +6,18 @@
 
 import json
 import re
-
 import urlparse
 
-from twisted.internet import reactor, defer
-from twisted.web.resource import Resource, NoResource
-from twisted.web.server import NOT_DONE_YET
-from twisted.python.failure import Failure
-
 from globaleaks import LANGUAGES_SUPPORTED_CODES
-
 from globaleaks.handlers import exception, \
-                                receiver, custodian, \
-                                public, \
-                                submission, \
-                                rtip, wbtip, \
-                                files, authentication, token, \
-                                export, l10n, wizard, \
-                                base, user, shorturl, \
-                                robots
-
+    receiver, custodian, \
+    public, \
+    submission, \
+    rtip, wbtip, \
+    files, authentication, token, \
+    export, l10n, wizard, \
+    base, user, shorturl, \
+    robots
 from globaleaks.handlers.admin import context as admin_context
 from globaleaks.handlers.admin import field as admin_field
 from globaleaks.handlers.admin import files as admin_files
@@ -42,12 +34,12 @@ from globaleaks.handlers.admin import staticfiles as admin_staticfiles
 from globaleaks.handlers.admin import statistics as admin_statistics
 from globaleaks.handlers.admin import step as admin_step
 from globaleaks.handlers.admin import user as admin_user
-
 from globaleaks.rest import apicache, requests, errors
 from globaleaks.settings import GLSettings
-from globaleaks.utils.utility import randbits
 from globaleaks.utils.mailutils import extract_exception_traceback_and_send_email
-
+from twisted.internet import defer
+from twisted.web.resource import Resource
+from twisted.web.server import NOT_DONE_YET
 
 uuid_regexp = r'([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})'
 
@@ -227,12 +219,12 @@ class APIResourceWrapper(Resource):
         request.setHeader(b"location", url)
 
     def redirect_https(self, request):
-        _, host, path, query, frag = urlparse.urlsplit(request.uri)
+        _, _, path, query, frag = urlparse.urlsplit(request.uri)
         redirect_url = urlparse.urlunsplit(('https', GLSettings.memory_copy.hostname, path, query, frag))
         self.redirect(request, redirect_url)
 
     def redirect_tor(self, request):
-        _, host, path, query, frag = urlparse.urlsplit(request.uri)
+        _, _, path, query, frag = urlparse.urlsplit(request.uri)
         redirect_url = urlparse.urlunsplit(('http', GLSettings.memory_copy.onionservice, path, query, frag))
         self.redirect(request, redirect_url)
 

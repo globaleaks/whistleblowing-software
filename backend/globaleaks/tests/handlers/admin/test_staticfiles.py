@@ -2,13 +2,12 @@
 
 import os
 
-from twisted.internet.defer import inlineCallbacks
-
 from globaleaks.handlers.admin import staticfiles
 from globaleaks.handlers.base import write_upload_plaintext_to_disk
 from globaleaks.rest import errors
 from globaleaks.settings import GLSettings
 from globaleaks.tests import helpers
+from twisted.internet.defer import inlineCallbacks
 
 
 class TestStaticFileInstance(helpers.TestHandler):

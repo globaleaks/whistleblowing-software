@@ -17,14 +17,13 @@ from distutils.version import StrictVersion
 # pylint: enable=no-name-in-module,import-error
 from optparse import OptionParser
 
-from twisted.python.threadpool import ThreadPool
-
 from globaleaks import __version__, DATABASE_VERSION
+from globaleaks.utils.agent import get_tor_agent, get_web_agent
 from globaleaks.utils.objectdict import ObjectDict
 from globaleaks.utils.singleton import Singleton
-from globaleaks.utils.utility import datetime_now, log
 from globaleaks.utils.tor_exit_set import TorExitSet
-from globaleaks.utils.agent import get_tor_agent, get_web_agent
+from globaleaks.utils.utility import datetime_now, log
+from twisted.python.threadpool import ThreadPool
 
 this_directory = os.path.dirname(__file__)
 

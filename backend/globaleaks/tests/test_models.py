@@ -1,13 +1,12 @@
 # -*- coding: utf-8 -*-
 
-from twisted.internet.defer import inlineCallbacks
-
 from globaleaks import models, LANGUAGES_SUPPORTED
 from globaleaks.models import config
 from globaleaks.models.config_desc import GLConfig
 from globaleaks.models.l10n import NodeL10NFactory, EnabledLanguage, ConfigL10N
 from globaleaks.orm import transact
 from globaleaks.tests import helpers
+from twisted.internet.defer import inlineCallbacks
 
 
 class TestSystemConfigModels(helpers.TestGL):
@@ -99,7 +98,7 @@ class TestConfigL10N(helpers.TestGL):
         self.assertTrue(len(res) == len(LANGUAGES_SUPPORTED))
 
         c = store.find(ConfigL10N).count()
-        self.assertTrue(c > 1500 and c < 2300)
+        self.assertTrue(1500 < c < 2300)
 
     @inlineCallbacks
     def test_disable_langs(self):

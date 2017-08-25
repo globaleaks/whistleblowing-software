@@ -5,7 +5,6 @@
 # Implementation of the code executed on handler /admin/node
 #
 import os
-
 from storm.expr import In
 
 from globaleaks import models, utils, LANGUAGES_SUPPORTED_CODES, LANGUAGES_SUPPORTED

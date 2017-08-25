@@ -1,12 +1,11 @@
 # -*- encoding: utf-8 -*-
-from twisted.internet.defer import inlineCallbacks, returnValue
-
 from globaleaks.handlers import authentication, wbtip
 from globaleaks.handlers.submission import SubmissionInstance
 from globaleaks.jobs import delivery_sched
 from globaleaks.rest import errors
 from globaleaks.tests import helpers
 from globaleaks.utils.token import Token
+from twisted.internet.defer import inlineCallbacks, returnValue
 
 # eccolo quel grand genio del mio amico
 
@@ -47,7 +46,7 @@ class TestSubmissionEncryptedScenario(helpers.TestHandlerWithPopulatedDB):
     @inlineCallbacks
     def test_create_submission_valid_submission(self):
         self.submission_desc = yield self.get_dummy_submission(self.dummyContext['id'])
-        receipt = yield self.create_submission(self.submission_desc)
+        yield self.create_submission(self.submission_desc)
 
     @inlineCallbacks
     def test_create_submission_attach_files_finalize_and_verify_file_creation(self):

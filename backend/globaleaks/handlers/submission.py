@@ -8,13 +8,11 @@
 
 import copy
 import json
-
 from storm.expr import And, In
-from twisted.internet import defer
 
 from globaleaks import models
-from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.admin.questionnaire import db_get_questionnaire
+from globaleaks.handlers.base import BaseHandler
 from globaleaks.orm import transact
 from globaleaks.rest import errors, requests
 from globaleaks.security import hash_password, sha256, generateRandomReceipt

@@ -1,11 +1,10 @@
 # -*- coding: utf-8 -*-
 import random
 
-from twisted.internet.defer import inlineCallbacks
-
 from globaleaks.handlers.admin import user
 from globaleaks.rest import errors
 from globaleaks.tests import helpers
+from twisted.internet.defer import inlineCallbacks
 
 
 class TestUsersCollection(helpers.TestHandlerWithPopulatedDB):

@@ -5,6 +5,7 @@
 #
 # API handling static files upload/download/delete
 import os
+
 from twisted.internet import threads
 
 from globaleaks.handlers.base import BaseHandler, write_upload_plaintext_to_disk

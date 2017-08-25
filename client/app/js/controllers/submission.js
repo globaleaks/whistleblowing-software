@@ -53,7 +53,7 @@ GLClient.controller('SubmissionCtrl',
 
   $scope.singleStepForm = function() {
     return $scope.firstStepIndex() === $scope.lastStepIndex();
-  }
+  };
 
   if ($scope.receivers_ids) {
     try {
@@ -223,7 +223,7 @@ GLClient.controller('SubmissionCtrl',
     }
 
     return false;
-  }
+  };
 
   $scope.submissionHasErrors = function() {
     if (angular.isDefined($scope.vars.submissionForm)) {
@@ -368,13 +368,13 @@ GLClient.controller('SubmissionCtrl',
     if (index !== -1) {
       return $scope.vars.submissionForm['step-' + index];
     }
-  }
+  };
 
   $scope.displayStepErrors = function(index) {
     if (index !== -1) {
       return $scope.stepForm(index).$invalid;
     }
-  }
+  };
 
   $scope.displayErrors = function() {
     if (!($scope.navigation > $scope.selection || $scope.submitPressed || $scope.submission.done)) {

@@ -1,12 +1,11 @@
 # -*- coding: utf-8 -*-
 import json
 
-from twisted.internet.defer import inlineCallbacks
-
-from globaleaks.handlers.base import GLSession, GLSessions, BaseHandler, StaticFileHandler
+from globaleaks.handlers.base import BaseHandler, StaticFileHandler
 from globaleaks.rest.errors import InvalidInputFormat, ResourceNotFound
 from globaleaks.settings import GLSettings
 from globaleaks.tests import helpers
+from twisted.internet.defer import inlineCallbacks
 
 FUTURE = 100
 

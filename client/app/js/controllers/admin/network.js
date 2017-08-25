@@ -174,12 +174,12 @@ controller('AdminHTTPSConfigCtrl', ['$q', '$location', '$http', '$scope', '$uibM
     }, function() {
       $scope.verifyFailed = true;
     });
-  }
+  };
 
   $scope.chooseManCfg = function() {
     $scope.choseManCfg = true;
     $scope.setMenu('files');
-  }
+  };
 
   $scope.toggleCfg = function() {
     var open_promise = $q.defer();
@@ -235,7 +235,7 @@ controller('AdminHTTPSConfigCtrl', ['$q', '$location', '$http', '$scope', '$uibM
 
   $scope.toggleShowHostname = function() {
     $scope.showHostnameSetter = !$scope.showHostnameSetter;
-  }
+  };
 
   $scope.resetCfg = function() {
     var targetFunc = function() {

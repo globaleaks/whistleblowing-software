@@ -2,7 +2,6 @@
 
 import json
 import os
-
 from storm.locals import Int, Bool, Unicode, DateTime, JSON, ReferenceSet
 
 from globaleaks.db.migrations.update import MigrationBase

@@ -10,18 +10,17 @@ import binascii
 import json
 import os
 import random
+import scrypt
 import shutil
 import string
 import time
+from datetime import datetime
+from gnupg import GPG
 from tempfile import _TemporaryFileWrapper
 
-import scrypt
 from cryptography.hazmat.backends import default_backend
 from cryptography.hazmat.primitives import constant_time, hashes
 from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
-from datetime import datetime
-from gnupg import GPG
-
 from globaleaks.rest import errors
 from globaleaks.settings import GLSettings
 from globaleaks.utils.utility import log

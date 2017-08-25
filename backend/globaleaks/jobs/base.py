@@ -1,10 +1,9 @@
 # -*- coding: UTF-8
 import time
 
-from twisted.internet import task, defer, reactor, threads
-
 from globaleaks.utils.mailutils import schedule_exception_email, extract_exception_traceback_and_send_email
 from globaleaks.utils.utility import log
+from twisted.internet import task, defer, reactor, threads
 
 test_reactor = None
 
@@ -147,6 +146,6 @@ class ServiceJob(BaseJob):
     interval = 1
 
     def on_error(self, excep):
-        log.err("Exception while running %s" % (self.name))
+        log.err("Exception while running %s" % self.name)
         log.exception(excep)
         extract_exception_traceback_and_send_email(excep)

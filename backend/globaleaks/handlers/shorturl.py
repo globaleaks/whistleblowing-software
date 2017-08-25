@@ -1,8 +1,7 @@
-from twisted.internet.defer import inlineCallbacks
-
 from globaleaks import models
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.orm import transact
+from twisted.internet.defer import inlineCallbacks
 
 
 @transact

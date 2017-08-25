@@ -1,10 +1,8 @@
-from distutils.version import StrictVersion # pylint: disable=no-name-in-module,import-error
-
-from twisted.internet.defer import inlineCallbacks, succeed
-
-from globaleaks.settings import GLSettings
+# -*- coding: utf-8 -*-
 from globaleaks.jobs.update_check_sched import UpdateCheckJob
+from globaleaks.settings import GLSettings
 from globaleaks.tests import helpers
+from twisted.internet.defer import inlineCallbacks, succeed
 
 packages="Package: globaleaks\n" \
          "Version: 0.0.1\n" \

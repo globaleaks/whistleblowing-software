@@ -1,9 +1,8 @@
 # -*- coding: utf-8 -*-
-from twisted.internet.defer import inlineCallbacks
-
 from globaleaks import models
 from globaleaks.handlers import wbtip, rtip
 from globaleaks.tests import helpers
+from twisted.internet.defer import inlineCallbacks
 
 class TestWhistleblowerFileWorkFlow(helpers.TestHandlerWithPopulatedDB):
     _handler = None

@@ -9,10 +9,10 @@ import operator
 from datetime import timedelta
 from storm.expr import Desc, And
 
-from globaleaks.orm import transact
 from globaleaks.event import EventTrackQueue, events_monitored
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.models import Stats, Anomalies
+from globaleaks.orm import transact
 from globaleaks.settings import GLSettings
 from globaleaks.utils.utility import datetime_to_ISO8601, datetime_now, \
     iso_to_gregorian, log

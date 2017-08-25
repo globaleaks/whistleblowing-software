@@ -1,10 +1,9 @@
 # -*- coding: utf-8 -*-
 import json
 
-from twisted.internet.defer import inlineCallbacks
-
 from globaleaks.handlers import wbtip
 from globaleaks.tests import helpers
+from twisted.internet.defer import inlineCallbacks
 
 
 class TestWBTipInstance(helpers.TestHandlerWithPopulatedDB):

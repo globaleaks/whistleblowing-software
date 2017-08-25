@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.db import db_refresh_memory_variables

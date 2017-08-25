@@ -3,16 +3,14 @@ import logging
 import multiprocessing
 import os
 import signal
-
 from sys import executable
-
-from twisted.internet import defer, reactor
 
 from globaleaks.models.config import PrivateFactory, load_tls_dict_list
 from globaleaks.orm import transact
 from globaleaks.utils import tls
 from globaleaks.utils.utility import log, datetime_now, datetime_to_ISO8601
 from globaleaks.workers.process import HTTPSProcProtocol
+from twisted.internet import defer, reactor
 
 
 class ProcessSupervisor(object):
@@ -84,7 +82,7 @@ class ProcessSupervisor(object):
         self.tls_process_state['deaths'] = 0
         self.tls_process_state['last_death'] = datetime_now()
 
-        d_lst = [self.launch_worker() for i in range(self.tls_process_state['target_proc_num'])]
+        d_lst = [self.launch_worker() for _ in range(self.tls_process_state['target_proc_num'])]
 
         return defer.DeferredList(d_lst)
 

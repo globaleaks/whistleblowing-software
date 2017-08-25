@@ -8,11 +8,9 @@
 
 import collections
 
-from zope.interface import implementer
-
 from OpenSSL.SSL import Connection
-
 from twisted.internet.interfaces import IOpenSSLServerConnectionCreator
+from zope.interface import implementer
 
 class _NegotiationData(object):
     """

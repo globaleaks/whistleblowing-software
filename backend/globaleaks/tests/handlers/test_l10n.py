@@ -1,12 +1,10 @@
 # -*- coding: utf-8 -*-
 import json
-from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.handlers import l10n
 from globaleaks.handlers.admin import l10n as admin_l10n
-from globaleaks.rest.apicache import GLApiCache
 from globaleaks.tests import helpers
-
+from twisted.internet.defer import inlineCallbacks
 
 custom_texts = {
    '12345': '54321'

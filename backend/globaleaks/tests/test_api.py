@@ -1,12 +1,12 @@
-import re
+# -*- encoding: utf-8 -*-
 import urlparse
-
-from twisted.internet.address import IPv4Address
-from twisted.internet.defer import inlineCallbacks, Deferred
-from twisted.web.test.requesthelper import DummyRequest
+from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.settings import GLSettings
 from globaleaks.tests.helpers import TestGL
+from twisted.internet.address import IPv4Address
+from twisted.internet.defer import inlineCallbacks, Deferred
+from twisted.web.test.requesthelper import DummyRequest
 
 
 def forge_request(uri='https://www.globaleaks.org/', headers={}, method=b'GET', client_addr=None):

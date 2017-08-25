@@ -2,8 +2,8 @@
 #-*- coding: utf-8 -*-
 from __future__ import print_function
 
-from importlib import import_module
 import sys
+from importlib import import_module
 
 import pip
 from setuptools import find_packages, setup

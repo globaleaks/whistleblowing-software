@@ -1,12 +1,11 @@
 # -*- coding: UTF-8
 # Implement refresh of the list of exit nodes IPs.
 
-from twisted.internet.defer import inlineCallbacks
-from twisted.internet.error import ConnectionRefusedError
-
 from globaleaks.jobs.base import LoopingJob
 from globaleaks.settings import GLSettings
 from globaleaks.utils.utility import log
+from twisted.internet.defer import inlineCallbacks
+from twisted.internet.error import ConnectionRefusedError
 
 __all__ = ['ExitNodesRefreshSchedule']
 

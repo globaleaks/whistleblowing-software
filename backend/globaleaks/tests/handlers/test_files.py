@@ -1,12 +1,11 @@
 # -*- coding: utf-8 -*-
 import os
 
-from twisted.internet.defer import inlineCallbacks
-
 from globaleaks.handlers import files
 from globaleaks.rest import errors
 from globaleaks.tests import helpers
 from globaleaks.utils import token
+from twisted.internet.defer import inlineCallbacks
 
 
 class TestFileInstance(helpers.TestHandlerWithPopulatedDB):

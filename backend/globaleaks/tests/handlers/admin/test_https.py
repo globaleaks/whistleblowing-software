@@ -1,21 +1,16 @@
-import os
-import SimpleHTTPServer
-import twisted
+from requests.exceptions import ConnectionError
 
 from OpenSSL import crypto, SSL
-from requests.exceptions import ConnectionError
-from twisted.internet import reactor
-from twisted.internet.defer import inlineCallbacks, returnValue
-
 from globaleaks.handlers.admin import https
 from globaleaks.models.config import PrivateFactory, NodeFactory
 from globaleaks.orm import transact
 from globaleaks.rest import errors
 from globaleaks.settings import GLSettings
-from globaleaks.utils.letsencrypt import ChallTok
-
 from globaleaks.tests import helpers
 from globaleaks.tests.utils import test_tls
+from globaleaks.utils.letsencrypt import ChallTok
+from twisted.internet import reactor
+from twisted.internet.defer import inlineCallbacks, returnValue
 
 
 @transact

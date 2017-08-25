@@ -6,25 +6,23 @@ for each version one an empty and a populated db must be stored in directories:
  - db/populated
 """
 
-import re
 import os
+import re
 import shutil
-
 from storm.locals import create_database, Store
-from twisted.trial import unittest
 
 from globaleaks import __version__, DATABASE_VERSION, FIRST_DATABASE_VERSION_SUPPORTED
-from globaleaks.db import migration, migrations, update_db
+from globaleaks.db import migration, update_db
 from globaleaks.db.migrations import update_37
 from globaleaks.db.migrations.update import MigrationBase
-from globaleaks.handlers.admin.field import db_create_field
-from globaleaks.models import config, Field
+from globaleaks.models import config
 from globaleaks.models.config_desc import GLConfig
 from globaleaks.models.l10n import EnabledLanguage, NotificationL10NFactory
-from globaleaks.settings import GLSettings
 from globaleaks.rest import errors
-
+from globaleaks.settings import GLSettings
 from globaleaks.tests import helpers, config as test_config
+from twisted.trial import unittest
+
 
 class TestMigrationRoutines(unittest.TestCase):
     def setUp(self):

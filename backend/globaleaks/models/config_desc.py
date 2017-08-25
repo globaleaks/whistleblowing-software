@@ -5,7 +5,7 @@ from globaleaks.models.properties import iso_strf_time
 from globaleaks.models.validators import shorttext_v, longtext_v, \
     natnum_v, range_v
 from globaleaks.security import generateRandomSalt as salt
-from globaleaks.utils.utility import datetime_null, datetime_now
+from globaleaks.utils.utility import datetime_null
 
 
 class Item:

@@ -2,29 +2,15 @@
 # Implements configuration of Tor hidden service
 
 import os
-from datetime import timedelta
-
-from globaleaks import models
-from globaleaks.handlers.admin.node import db_admin_serialize_node
-from globaleaks.handlers.admin.notification import db_get_notification
-from globaleaks.handlers.admin.user import db_get_admin_users
-from globaleaks.handlers.user import user_serialize_user
-from globaleaks.jobs.base import ServiceJob
-from globaleaks.orm import transact
-from globaleaks.settings import GLSettings
-from globaleaks.utils.templating import Templating
-from globaleaks.utils.utility import datetime_now, datetime_null
-
-import txtorcon
 from txtorcon import build_local_tor_connection
-from twisted.internet import reactor
-from twisted.internet.error import ConnectionRefusedError
-from twisted.internet.defer import inlineCallbacks, Deferred
 
-from globaleaks.rest.apicache import GLApiCache
+from globaleaks.jobs.base import ServiceJob
 from globaleaks.models.config import NodeFactory, PrivateFactory
+from globaleaks.orm import transact
 from globaleaks.rest.apicache import GLApiCache
 from globaleaks.utils.utility import deferred_sleep, log
+from twisted.internet import reactor
+from twisted.internet.defer import inlineCallbacks, Deferred
 
 try:
    from txtorcon.torconfig import EphemeralHiddenService

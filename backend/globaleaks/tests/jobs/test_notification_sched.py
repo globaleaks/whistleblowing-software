@@ -1,10 +1,8 @@
-from twisted.internet.defer import inlineCallbacks, succeed
-
 from globaleaks.jobs.delivery_sched import DeliverySchedule
 from globaleaks.jobs.notification_sched import NotificationSchedule
-
 from globaleaks.tests import helpers
 from globaleaks.tests.jobs.test_base import get_scheduled_email_count
+from twisted.internet.defer import inlineCallbacks, succeed
 
 
 class TestNotificationSchedule(helpers.TestGLWithPopulatedDB):

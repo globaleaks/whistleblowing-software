@@ -3,6 +3,7 @@ import sys
 
 from twisted.trial import unittest
 
+
 def exec_parser():
     op = argparse.ArgumentParser()
     op.add_argument("--skip-migs", nargs=0, action=SkipMigrations, default=0, help="Skip running migrations")

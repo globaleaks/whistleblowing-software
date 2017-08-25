@@ -1,5 +1,3 @@
-from twisted.internet.defer import inlineCallbacks
-
 from globaleaks.handlers import authentication, admin
 from globaleaks.handlers.base import GLSessions
 from globaleaks.handlers.user import UserInstance
@@ -7,6 +5,7 @@ from globaleaks.handlers.wbtip import WBTipInstance
 from globaleaks.rest import errors
 from globaleaks.settings import GLSettings
 from globaleaks.tests import helpers
+from twisted.internet.defer import inlineCallbacks
 
 
 class TestAuthentication(helpers.TestHandlerWithPopulatedDB):

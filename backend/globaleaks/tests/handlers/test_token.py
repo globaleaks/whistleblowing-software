@@ -1,11 +1,10 @@
 # -*- encoding: utf-8 -*-
-from twisted.internet.defer import inlineCallbacks
-
 from globaleaks.anomaly import Alarm
 from globaleaks.handlers import token
 from globaleaks.rest import errors
 from globaleaks.tests import helpers
 from globaleaks.utils.token import Token
+from twisted.internet.defer import inlineCallbacks
 
 
 class Test_TokenCreate(helpers.TestHandlerWithPopulatedDB):

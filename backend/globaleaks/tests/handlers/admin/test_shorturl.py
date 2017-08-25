@@ -1,9 +1,8 @@
 # -*- coding: utf-8 -*-
 
-from twisted.internet.defer import inlineCallbacks
-
 from globaleaks.handlers.admin import shorturl
 from globaleaks.tests import helpers
+from twisted.internet.defer import inlineCallbacks
 
 
 class TestShortURLCollection(helpers.TestHandlerWithPopulatedDB):

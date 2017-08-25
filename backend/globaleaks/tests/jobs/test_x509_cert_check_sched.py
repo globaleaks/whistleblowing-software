@@ -1,18 +1,14 @@
 # -*- coding: utf-8 -*-
 
-from twisted.internet.defer import inlineCallbacks
-
-from globaleaks.db import db_refresh_memory_variables, refresh_memory_variables
-from globaleaks.handlers.admin import https
+from globaleaks.db import db_refresh_memory_variables
 from globaleaks.jobs.x509_cert_check_sched import X509CertCheckSchedule
 from globaleaks.models.config import PrivateFactory
-from globaleaks.settings import GLSettings
 from globaleaks.orm import transact
-
+from globaleaks.settings import GLSettings
 from globaleaks.tests import helpers
-from globaleaks.tests.handlers.admin import test_https
 from globaleaks.tests.jobs.test_base import get_scheduled_email_count
 from globaleaks.tests.utils import test_tls
+from twisted.internet.defer import inlineCallbacks
 
 
 class TestX509CertCheckSched(helpers.TestGLWithPopulatedDB):

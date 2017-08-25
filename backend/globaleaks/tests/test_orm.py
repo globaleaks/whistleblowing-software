@@ -1,9 +1,8 @@
-from twisted.internet.defer import inlineCallbacks
-
 from globaleaks.models import *
 from globaleaks.orm import get_store
 from globaleaks.tests import helpers
 from globaleaks.utils.utility import datetime_null
+from twisted.internet.defer import inlineCallbacks
 
 
 class TestORM(helpers.TestGL):

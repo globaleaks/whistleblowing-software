@@ -1,9 +1,7 @@
 import binascii
 import os
-
 import scrypt
 from datetime import datetime
-from twisted.trial import unittest
 
 from globaleaks.rest import errors
 from globaleaks.security import generateRandomSalt, hash_password, check_password, change_password, \
@@ -11,6 +9,7 @@ from globaleaks.security import generateRandomSalt, hash_password, check_passwor
     GLBPGP
 from globaleaks.settings import GLSettings
 from globaleaks.tests import helpers
+from twisted.trial import unittest
 
 
 class TestPasswordManagement(unittest.TestCase):
