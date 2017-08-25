@@ -26,8 +26,6 @@ def db_prepare_contexts_serialization(store, contexts):
     img_ids = []
 
     for c in contexts:
-        data['imgs'][c.id] = None
-        data['receivers'][c.id] = []
         contexts_ids.append(c.id)
         if c.img_id is not None:
             img_ids.append(c.img_id)
@@ -36,6 +34,8 @@ def db_prepare_contexts_serialization(store, contexts):
         data['imgs'][o.id] = o.data
 
     for o in store.find(models.ReceiverContext, In(models.ReceiverContext.context_id, contexts_ids)):
+        if o.context_id not in data['receivers']:
+            data['receivers'][o.context_id] = []
         data['receivers'][o.context_id].append(o.receiver_id)
 
     return data
@@ -48,8 +48,6 @@ def db_prepare_receivers_serialization(store, receivers):
     img_ids = []
 
     for r in receivers:
-        data['imgs'][r.id] = None
-        data['contexts'][r.id] = []
         receivers_ids.append(r.id)
 
     for o in store.find(models.User, In(models.User.id, receivers_ids)):
@@ -60,6 +58,8 @@ def db_prepare_receivers_serialization(store, receivers):
         data['imgs'][o.id] = o.data
 
     for o in store.find(models.ReceiverContext, In(models.ReceiverContext.receiver_id, receivers_ids)):
+        if o.receiver_id not in data['contexts']:
+            data['contexts'][o.receiver_id] = []
         data['contexts'][o.receiver_id].append(o.context_id)
 
     return data
@@ -155,10 +155,6 @@ def serialize_context(store, context, language, data=None):
     @return: a dict describing the contexts available for submission,
         (e.g. checks if almost one receiver is associated)
     """
-    img = ''
-    if context.img_id is not None and context.img_id in data['imgs']:
-        img = data['imgs'][context.img_id]
-
     ret_dict = {
         'id': context.id,
         'presentation_order': context.presentation_order,
@@ -177,8 +173,8 @@ def serialize_context(store, context, language, data=None):
         'enable_rc_to_wb_files': context.enable_rc_to_wb_files,
         'show_receivers_in_alphabetical_order': context.show_receivers_in_alphabetical_order,
         'questionnaire_id': context.questionnaire_id,
-        'receivers': data['receivers'][context.id],
-        'picture': img
+        'receivers': data['receivers'].get(context.id, []),
+        'picture': data['imgs'].get(context.img_id, '')
     }
 
     return get_localized_values(ret_dict, context, context.localized_keys, language)
@@ -336,10 +332,6 @@ def serialize_receiver(store, receiver, language, data=None):
 
     user = data['users'][receiver.id]
 
-    img = ''
-    if user.img_id is not None and user.img_id in data['imgs']:
-        img = data['imgs'][user.img_id]
-
     ret_dict = {
         'id': receiver.id,
         'name': user.public_name,
@@ -350,8 +342,8 @@ def serialize_receiver(store, receiver, language, data=None):
         'can_delete_submission': receiver.can_delete_submission,
         'can_postpone_expiration': receiver.can_postpone_expiration,
         'can_grant_permissions': receiver.can_grant_permissions,
-        'picture': img,
-        'contexts': data['contexts'][receiver.id]
+        'contexts': data['contexts'].get(receiver.id, []),
+        'picture': data['imgs'].get(user.img_id, '')
     }
 
     # description and eventually other localized strings should be taken from user model
