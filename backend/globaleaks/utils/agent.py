@@ -1,9 +1,11 @@
 # -*- coding: utf-8 -*-
 
-from twisted.internet import defer, reactor
+from txsocksx.http import SOCKS5Agent
+
+from twisted.internet import reactor
 from twisted.internet.endpoints import TCP4ClientEndpoint
 from twisted.web.client import Agent, readBody
-from txsocksx.http import SOCKS5Agent
+
 
 def get_tor_agent(socks_host='127.0.0.1', socks_port=9050):
     """

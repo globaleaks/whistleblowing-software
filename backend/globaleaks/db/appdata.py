@@ -2,13 +2,10 @@
 # datainit.py: database initialization
 #   ******************
 import os
-
 from storm.expr import And, Not, In
 
 from globaleaks import models
 from globaleaks.handlers.admin.field import db_create_field, db_import_fields
-from globaleaks.handlers.admin.questionnaire import db_create_questionnaire
-from globaleaks.orm import transact
 from globaleaks.settings import GLSettings
 from globaleaks.utils.utility import log, read_json_file
 

@@ -1,11 +1,10 @@
 # -*- coding: utf-8 -*-
-from twisted.internet.defer import inlineCallbacks
-
 from globaleaks import models
 from globaleaks.handlers import receiver, admin
 from globaleaks.orm import transact
 from globaleaks.tests import helpers
 from globaleaks.utils.utility import datetime_never
+from twisted.internet.defer import inlineCallbacks
 
 @transact
 def set_expiration_of_all_rtips_to_unlimited(store):

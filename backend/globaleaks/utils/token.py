@@ -7,9 +7,8 @@
 #   operation by anonymous user.
 
 import os
-from random import randint
-
 from datetime import datetime, timedelta
+from random import randint
 
 from globaleaks.anomaly import Alarm
 from globaleaks.rest import errors

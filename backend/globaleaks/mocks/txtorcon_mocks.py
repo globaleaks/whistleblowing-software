@@ -1,10 +1,10 @@
 # A shim taken from v0.18.0 release to support EphemeralHiddenServices
 
-import types
-
-from twisted.python import log
-from twisted.internet import defer
 from txtorcon.util import find_keywords
+
+import types
+from twisted.internet import defer
+from twisted.python import log
 
 
 class EphemeralHiddenService(object):

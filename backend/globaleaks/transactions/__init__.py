@@ -4,7 +4,6 @@ ORM Transactions definitions.
 """
 from globaleaks import models
 from globaleaks.orm import transact
-from globaleaks.settings import GLSettings
 
 
 def db_schedule_email(store, address, subject, body):

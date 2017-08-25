@@ -30,7 +30,7 @@ GLClient.factory('uploadUtils', ['$filter', function($filter) {
     },
 
     'translateInvalidTypeErr': function(filename, validTypes) {
-      var uppercaseTypes = []
+      var uppercaseTypes = [];
       for (var i=0; i<validTypes.length; i++) {
         uppercaseTypes.push(validTypes[i].toUpperCase());
       }

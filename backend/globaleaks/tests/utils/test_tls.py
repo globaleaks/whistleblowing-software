@@ -1,14 +1,12 @@
 import os
 
 from OpenSSL import crypto
-from OpenSSL.crypto import load_certificate, FILETYPE_PEM
-from twisted.trial.unittest import TestCase
-
+from OpenSSL.crypto import FILETYPE_PEM
 from globaleaks.models.config import PrivateFactory, NodeFactory
 from globaleaks.orm import transact
-from globaleaks.utils import tls
-
 from globaleaks.tests import helpers
+from globaleaks.utils import tls
+from twisted.trial.unittest import TestCase
 
 class TestKeyGen(TestCase):
     def test_dh_params(self):

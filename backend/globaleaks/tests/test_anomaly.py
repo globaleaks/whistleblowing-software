@@ -1,10 +1,10 @@
 # -*- encoding: utf-8 -*-
 from datetime import timedelta
-from twisted.internet import defer
 
 from globaleaks import event
 from globaleaks.anomaly import Alarm
 from globaleaks.tests import helpers
+from twisted.internet import defer
 
 
 class TestAlarm(helpers.TestGL):

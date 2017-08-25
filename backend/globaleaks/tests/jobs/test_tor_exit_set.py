@@ -1,8 +1,7 @@
-from twisted.internet.defer import inlineCallbacks
-
-from globaleaks.settings import GLSettings
 from globaleaks.jobs.exit_nodes_refresh_sched import ExitNodesRefreshSchedule
+from globaleaks.settings import GLSettings
 from globaleaks.tests import helpers
+from twisted.internet.defer import inlineCallbacks
 
 class TestExitNodesRefresh(helpers.TestGL):
     def setUp(self):

@@ -1,8 +1,5 @@
 # -*- coding: UTF-8
 # Implementation of the cleaning operations.
-
-import time
-
 from datetime import timedelta
 
 from globaleaks import models
@@ -16,7 +13,7 @@ from globaleaks.orm import transact_sync
 from globaleaks.security import overwrite_and_remove
 from globaleaks.settings import GLSettings
 from globaleaks.utils.templating import Templating
-from globaleaks.utils.utility import log, datetime_now, datetime_never, \
+from globaleaks.utils.utility import datetime_now, datetime_never, \
     datetime_to_ISO8601
 
 
@@ -142,10 +139,8 @@ class CleaningSchedule(LoopingJob):
         files_to_delete = self.get_files_to_secure_delete()
 
         for file_to_delete in files_to_delete:
-            self.start_time = time.time()
             overwrite_and_remove(file_to_delete)
             self.commit_file_deletion(file_to_delete)
-            current_run_time = time.time() - self.start_time
 
     def operation(self):
         self.clean_expired_wbtips()

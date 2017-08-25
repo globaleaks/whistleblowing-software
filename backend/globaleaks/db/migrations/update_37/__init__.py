@@ -1,6 +1,7 @@
 # -*- coding: UTF-8
 
-import os, re, shutil
+import os
+import re
 
 from globaleaks.db.migrations.update import MigrationBase
 from globaleaks.models.config import add_raw_config, del_config

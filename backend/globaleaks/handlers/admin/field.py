@@ -5,7 +5,6 @@
 # Implementation of the code executed on handler /admin/fields
 #
 import copy
-
 from storm.expr import And, Not, In
 
 from globaleaks import models
@@ -14,7 +13,6 @@ from globaleaks.handlers.public import serialize_field
 from globaleaks.orm import transact
 from globaleaks.rest import errors, requests
 from globaleaks.utils.structures import fill_localized_keys
-from globaleaks.utils.utility import log
 
 
 def db_import_fields(store, step, fieldgroup, fields):

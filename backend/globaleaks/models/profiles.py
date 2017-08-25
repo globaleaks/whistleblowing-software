@@ -1,10 +1,9 @@
 # -*- coding: utf-8 -*-
-import json, os
-
-from globaleaks.settings import GLSettings
-from globaleaks.rest.errors import ValidationError
+import json
+import os
 
 from globaleaks.models.config import NodeFactory
+from globaleaks.settings import GLSettings
 
 
 def load_profile(store, name):

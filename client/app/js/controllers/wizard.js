@@ -41,7 +41,7 @@ GLClient.controller('WizardCtrl', ['$scope', '$location', '$route', '$http', 'Au
             $scope.wizard.profile = p.name;
           }
         });
-      }
+      };
 
       var context = AdminUtils.new_context();
 

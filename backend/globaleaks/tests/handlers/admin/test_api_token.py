@@ -1,16 +1,12 @@
-from twisted.internet.defer import inlineCallbacks, returnValue
-
 from globaleaks import db
 from globaleaks.handlers.admin import shorturl
-from globaleaks.handlers.base import GLSessions
 from globaleaks.jobs.session_management_sched import SessionManagementSchedule
 from globaleaks.models.config import PrivateFactory
 from globaleaks.orm import transact
 from globaleaks.rest import errors
 from globaleaks.security import generate_api_token
-from globaleaks.settings import GLSettings
-
 from globaleaks.tests import helpers
+from twisted.internet.defer import inlineCallbacks
 
 
 @transact

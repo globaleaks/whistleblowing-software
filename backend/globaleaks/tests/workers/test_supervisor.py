@@ -1,25 +1,20 @@
 import gzip
 import json
 import ssl
-import time
-from StringIO import StringIO
 import tempfile
 import urllib2
-import SimpleHTTPServer
-import SocketServer
-import signal
-
-from twisted.internet import threads, reactor
-from twisted.internet.defer import inlineCallbacks, Deferred
+from StringIO import StringIO
 
 from globaleaks.models.config import PrivateFactory, load_tls_dict_list
-from globaleaks.utils.sock import reserve_port_for_ip
 from globaleaks.orm import transact
-from globaleaks.workers import supervisor, process
-from globaleaks.workers.worker_https import HTTPSProcess
-
 from globaleaks.tests import helpers
 from globaleaks.tests.utils import test_tls
+from globaleaks.utils.sock import reserve_port_for_ip
+from globaleaks.workers import supervisor
+from globaleaks.workers.worker_https import HTTPSProcess
+from twisted.internet import threads, reactor
+from twisted.internet.defer import inlineCallbacks
+
 
 @transact
 def toggle_https(store, enabled):

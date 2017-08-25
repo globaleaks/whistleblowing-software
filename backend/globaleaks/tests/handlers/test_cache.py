@@ -1,11 +1,9 @@
 # -*- coding: utf-8 -*-
-from twisted.internet.defer import inlineCallbacks
-
 from globaleaks import handlers
-from globaleaks.orm import transact
-from globaleaks.rest.apicache import GLApiCache, decorator_cache_get
 from globaleaks.handlers import public
+from globaleaks.rest.apicache import GLApiCache, decorator_cache_get
 from globaleaks.tests import helpers
+from twisted.internet.defer import inlineCallbacks
 
 
 class TestGLApiCache(helpers.TestGL):

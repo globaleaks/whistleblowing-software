@@ -1,32 +1,25 @@
 # -*- encoding: utf-8 -*-
 import base64
 import collections
-import functools
 import json
 import mimetypes
 import os
 import re
 import shutil
-import sys
-import time
-import types
-import urlparse
-
 from datetime import datetime
 
+import types
 from cryptography.hazmat.primitives import constant_time
-from twisted.internet import fdesc, defer
+
+from twisted.internet import defer
 from twisted.internet.defer import inlineCallbacks
-from twisted.python.failure import Failure
-from twisted.web.resource import Resource
-from twisted.web.static import File
 
 from globaleaks.event import track_handler
 from globaleaks.rest import errors, requests
 from globaleaks.security import GLSecureTemporaryFile, directory_traversal_check, generateRandomKey, sha512
 from globaleaks.settings import GLSettings
 from globaleaks.transactions import schedule_email_for_all_admins
-from globaleaks.utils.mailutils import mail_exception_handler, schedule_exception_email
+from globaleaks.utils.mailutils import schedule_exception_email
 from globaleaks.utils.tempdict import TempDict
 from globaleaks.utils.utility import log, deferred_sleep
 

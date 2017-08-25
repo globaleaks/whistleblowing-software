@@ -1,14 +1,13 @@
 # -*- coding: utf-8 -*-
 import json
 
-from twisted.internet.defer import inlineCallbacks
-
 from globaleaks import models
 from globaleaks.handlers import rtip
 from globaleaks.jobs.delivery_sched import DeliverySchedule
 from globaleaks.rest import errors
 from globaleaks.settings import GLSettings
 from globaleaks.tests import helpers
+from twisted.internet.defer import inlineCallbacks
 
 
 class TestRTipInstance(helpers.TestHandlerWithPopulatedDB):

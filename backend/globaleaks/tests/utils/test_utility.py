@@ -1,13 +1,12 @@
 import StringIO
 import re
 import sys
-
 from datetime import datetime
+
+from globaleaks.utils import utility
 from twisted.python import log as twlog
 from twisted.python.failure import Failure
 from twisted.trial import unittest
-
-from globaleaks.utils import utility
 
 
 class TestUtility(unittest.TestCase):

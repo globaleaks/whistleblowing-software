@@ -1,10 +1,9 @@
 # -*- coding: utf-8 -*-
 
-from twisted.internet.defer import inlineCallbacks
-
 from globaleaks import models
 from globaleaks.handlers.admin import modelimgs
 from globaleaks.tests import helpers
+from twisted.internet.defer import inlineCallbacks
 
 
 class TestModelImgInstance(helpers.TestHandlerWithPopulatedDB):

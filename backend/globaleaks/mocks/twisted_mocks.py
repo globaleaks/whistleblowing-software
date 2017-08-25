@@ -1,15 +1,10 @@
 # -*- coding: UTF-8
-import json
-import types
 from io import BytesIO as StringIO
 
 from twisted.internet import defer
 from twisted.protocols import policies
-from twisted.web import http
 from twisted.web.client import HTTPPageGetter
 from twisted.web.http import HTTPChannel, HTTPFactory, Request
-
-from globaleaks.settings import GLSettings
 
 
 HTTPFactory__init__orig = HTTPFactory.__init__

@@ -7,23 +7,21 @@ from __future__ import print_function
 
 import cgi
 import codecs
-import ctypes
 import inspect
-import logging
 import json
+import logging
 import os
 import re
 import sys
 import traceback
 import uuid
-
 from datetime import datetime, timedelta
+
+from globaleaks import LANGUAGES_SUPPORTED_CODES
 from twisted.internet import reactor
 from twisted.internet.defer import Deferred
 from twisted.python import log as twlog
 from twisted.python import util, failure
-
-from globaleaks import LANGUAGES_SUPPORTED_CODES
 
 
 def read_file(p):

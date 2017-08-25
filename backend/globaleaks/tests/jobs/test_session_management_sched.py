@@ -1,10 +1,9 @@
 # -*- coding: utf-8 -*-
-from twisted.internet.defer import inlineCallbacks
-
 from globaleaks.handlers.base import GLSessions, new_session
 from globaleaks.jobs import session_management_sched
 from globaleaks.settings import GLSettings
 from globaleaks.tests import helpers
+from twisted.internet.defer import inlineCallbacks
 
 
 class TestSessionManagementSched(helpers.TestGL):

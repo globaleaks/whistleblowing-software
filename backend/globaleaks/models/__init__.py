@@ -8,10 +8,11 @@ from datetime import timedelta
 from storm.locals import Bool, Int, Reference, ReferenceSet, Unicode, Storm, JSON
 
 from globaleaks.models.validators import shorttext_v, longtext_v, \
-    shortlocal_v, longlocal_v, shorturl_v, longurl_v, natnum_v, range_v
+    shortlocal_v, longlocal_v, shorturl_v, longurl_v, range_v
 from globaleaks.orm import transact
 from globaleaks.settings import GLSettings
 from globaleaks.utils.utility import datetime_now, datetime_null, uuid4
+
 from .properties import MetaModel, DateTime
 
 empty_localization = {}

@@ -42,7 +42,6 @@ from twisted.scripts._twistd_unix import ServerOptions, UnixApplicationRunner
 
 
 from globaleaks import DATABASE_VERSION
-from globaleaks.utils.utility import log
 from globaleaks.utils.mailutils import mail_exception_handler
 from globaleaks.settings import GLSettings
 

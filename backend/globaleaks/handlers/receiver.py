@@ -12,7 +12,8 @@ from globaleaks.handlers.rtip import db_postpone_expiration_date, db_delete_rtip
 from globaleaks.handlers.submission import db_serialize_archived_preview_schema
 from globaleaks.handlers.user import db_user_update_user
 from globaleaks.handlers.user import user_serialize_user
-from globaleaks.models import ArchivedSchema, Comment, Context, InternalFile, InternalTip, Message, Receiver, ReceiverTip
+from globaleaks.models import ArchivedSchema, Comment, Context, InternalFile, InternalTip, Message, Receiver, \
+    ReceiverTip
 from globaleaks.orm import transact
 from globaleaks.rest import requests, errors
 from globaleaks.settings import GLSettings

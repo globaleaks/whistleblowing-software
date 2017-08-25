@@ -1,12 +1,9 @@
 # -*- coding: utf-8 -*-
-import json
-
-from twisted.internet.defer import inlineCallbacks
-
 from globaleaks.handlers.admin import context
 from globaleaks.models import Context
-from globaleaks.rest import requests, errors
+from globaleaks.rest import errors
 from globaleaks.tests import helpers
+from twisted.internet.defer import inlineCallbacks
 
 # special guest:
 

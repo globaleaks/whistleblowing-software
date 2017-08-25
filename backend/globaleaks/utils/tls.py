@@ -3,10 +3,9 @@
 import re
 
 from OpenSSL import crypto, SSL
-from OpenSSL.crypto import load_certificate, dump_certificate, load_privatekey, FILETYPE_PEM, TYPE_RSA, PKey, dump_certificate_request, X509Req, _new_mem_buf, _bio_to_string
 from OpenSSL._util import lib as _lib, ffi as _ffi
-from pyasn1.type import univ, constraint, char, namedtype, tag
-from pyasn1.codec.der.decoder import decode
+from OpenSSL.crypto import load_certificate, load_privatekey, FILETYPE_PEM, TYPE_RSA, PKey, dump_certificate_request, \
+    X509Req, _new_mem_buf, _bio_to_string
 from twisted.internet import ssl
 
 

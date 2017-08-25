@@ -1,7 +1,6 @@
 # -*- encoding: utf-8 -*-
 import base64
 import os
-
 from storm.locals import Int, Bool, Unicode, DateTime, JSON
 
 from globaleaks.db.migrations.update import MigrationBase

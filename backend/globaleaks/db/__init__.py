@@ -4,14 +4,13 @@
 import os
 import sys
 import traceback
-
 from storm import exceptions
 
 from globaleaks import models, security, DATABASE_VERSION, FIRST_DATABASE_VERSION_SUPPORTED
-from globaleaks.db.appdata import db_fix_fields_attrs, db_update_defaults, load_appdata
+from globaleaks.db.appdata import db_update_defaults, load_appdata
 from globaleaks.handlers.admin import files
 from globaleaks.handlers.base import GLSession
-from globaleaks.models import config, l10n, User
+from globaleaks.models import config, User
 from globaleaks.models.config import NodeFactory, NotificationFactory, PrivateFactory
 from globaleaks.models.l10n import EnabledLanguage
 from globaleaks.orm import transact, transact_sync
@@ -81,7 +80,7 @@ def update_db():
 
         log.err("Found an already initialized database version: %d", db_version)
 
-        if db_version >= FIRST_DATABASE_VERSION_SUPPORTED and db_version < DATABASE_VERSION:
+        if FIRST_DATABASE_VERSION_SUPPORTED <= db_version < DATABASE_VERSION:
             log.err("Performing schema migration from version %d to version %d", db_version, DATABASE_VERSION)
             migration.perform_schema_migration(db_version)
             log.err("Migration completed with success!")

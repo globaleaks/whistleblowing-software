@@ -3,12 +3,11 @@ import importlib
 import os
 import shutil
 from collections import OrderedDict
-
 from storm.database import create_database
 from storm.store import Store
 
-from globaleaks import __version__, models, DATABASE_VERSION, FIRST_DATABASE_VERSION_SUPPORTED, LANGUAGES_SUPPORTED_CODES, security
-from globaleaks.db import db_create_tables
+from globaleaks import __version__, models, DATABASE_VERSION, FIRST_DATABASE_VERSION_SUPPORTED, \
+    LANGUAGES_SUPPORTED_CODES, security
 from globaleaks.db.appdata import db_update_defaults, db_fix_fields_attrs, load_appdata
 from globaleaks.db.migrations.update_21 import Node_v_20, Notification_v_20, Receiver_v_20, User_v_20, \
     Context_v_20, Step_v_20, Field_v_20, FieldOption_v_20, InternalTip_v_20
@@ -22,7 +21,8 @@ from globaleaks.db.migrations.update_26 import InternalFile_v_25
 from globaleaks.db.migrations.update_27 import Node_v_26, Context_v_26, Notification_v_26
 from globaleaks.db.migrations.update_28 import Field_v_27, Step_v_27, FieldField_v_27, StepField_v_27, FieldOption_v_27
 from globaleaks.db.migrations.update_29 import Context_v_28, Node_v_28
-from globaleaks.db.migrations.update_30 import Node_v_29, Context_v_29, Step_v_29, FieldAnswer_v_29, FieldAnswerGroup_v_29, FieldAnswerGroupFieldAnswer_v_29
+from globaleaks.db.migrations.update_30 import Node_v_29, Context_v_29, Step_v_29, FieldAnswer_v_29, \
+    FieldAnswerGroup_v_29, FieldAnswerGroupFieldAnswer_v_29
 from globaleaks.db.migrations.update_31 import Node_v_30, Context_v_30, User_v_30, ReceiverTip_v_30, Notification_v_30
 from globaleaks.db.migrations.update_32 import Node_v_31, Comment_v_31, Message_v_31, User_v_31
 from globaleaks.db.migrations.update_33 import Node_v_32, WhistleblowerTip_v_32, InternalTip_v_32, User_v_32
@@ -33,7 +33,6 @@ from globaleaks.models import config, l10n
 from globaleaks.models.config import PrivateFactory
 from globaleaks.settings import GLSettings
 from globaleaks.utils.utility import log
-
 
 migration_mapping = OrderedDict([
     ('Anomalies', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, models.Anomalies, 0, 0, 0, 0, 0, 0, 0, 0]),

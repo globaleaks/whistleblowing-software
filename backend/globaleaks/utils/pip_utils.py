@@ -1,11 +1,12 @@
 #!/usr/bin/env python
 # -*- encoding: utf-8 -*-
 
-import pip
 import re
 import sys
 
+import pip
 from pkg_resources import parse_version
+
 
 def version_number_compare(version1, version2):
     return cmp(parse_version(version1), parse_version(version2))

@@ -1,18 +1,18 @@
 # -*- encoding: utf-8 -*-
 
 import os
-
 from storm.locals import Int, Bool, Unicode, DateTime, JSON
 
 from globaleaks.db.migrations.update import MigrationBase
+from globaleaks.db.migrations.update_34.config import GLConfig_v_35
 from globaleaks.handlers.admin import files
 from globaleaks.models import *
 from globaleaks.models import l10n, properties
 from globaleaks.models.config import Config
 from globaleaks.models.l10n import ConfigL10N
+from globaleaks.models.validators import shorttext_v, longtext_v, \
+    natnum_v, range_v
 from globaleaks.settings import GLSettings
-
-from globaleaks.db.migrations.update_34.config import GLConfig_v_35
 
 class Node_v_33(ModelWithID):
     __storm_table__ = 'node'

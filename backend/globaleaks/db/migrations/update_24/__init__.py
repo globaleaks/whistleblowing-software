@@ -1,7 +1,6 @@
 # -*- encoding: utf-8 -*-
 
 import string
-
 from storm.expr import And
 from storm.locals import Int, Bool, Unicode, DateTime, JSON, Reference
 

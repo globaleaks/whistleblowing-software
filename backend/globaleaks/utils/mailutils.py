@@ -10,18 +10,12 @@ import re
 import sys
 import traceback
 from calendar import timegm
-from email import Charset # pylint: disable=no-name-in-module
+from datetime import datetime
+from email import Charset  # pylint: disable=no-name-in-module
 from email import utils as mailutils
 from email.header import Header
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
-
-from datetime import datetime
-from twisted.internet import reactor, defer
-from twisted.internet.endpoints import TCP4ClientEndpoint
-from twisted.mail.smtp import ESMTPSenderFactory, SMTPError
-from twisted.protocols import tls
-from twisted.python.failure import Failure
 from txsocksx.client import SOCKS5ClientEndpoint
 
 from globaleaks import __version__
@@ -29,6 +23,11 @@ from globaleaks.security import GLBPGP, sha256
 from globaleaks.settings import GLSettings
 from globaleaks.utils.tls import TLSClientContextFactory
 from globaleaks.utils.utility import log
+from twisted.internet import reactor, defer
+from twisted.internet.endpoints import TCP4ClientEndpoint
+from twisted.mail.smtp import ESMTPSenderFactory, SMTPError
+from twisted.protocols import tls
+from twisted.python.failure import Failure
 
 
 def rfc822_date():

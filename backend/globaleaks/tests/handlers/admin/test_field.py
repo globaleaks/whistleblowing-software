@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
 import copy
 
-from twisted.internet.defer import inlineCallbacks
-
 from globaleaks import models
 from globaleaks.handlers import admin
 from globaleaks.handlers.admin.context import create_context
@@ -10,6 +8,7 @@ from globaleaks.handlers.admin.field import create_field
 from globaleaks.orm import transact
 from globaleaks.rest import errors
 from globaleaks.tests import helpers
+from twisted.internet.defer import inlineCallbacks
 
 
 @transact
