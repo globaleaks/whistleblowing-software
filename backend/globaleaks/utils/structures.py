@@ -87,12 +87,3 @@ def get_localized_values(dictionary, obj, keys, language):
             dictionary.update({key: value})
 
     return dictionary
-
-
-def get_raw_request_format(request, localized_strings):
-    ret = copy.deepcopy(request)
-
-    for ls in localized_strings:
-        ret[ls] = dict
-
-    return ret
