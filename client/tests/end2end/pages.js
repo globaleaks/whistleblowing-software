@@ -7,10 +7,18 @@ exports.receiver = function() {
     browser.setLocation('receiver/preferences');
     element(by.cssContainingText("a", "Encryption settings")).click();
 
-    browser.executeScript('angular.element(document.querySelector(\'input[type="file"]\')).attr("style", "visibility: visible")');
-    element(by.xpath("//input[@type='file']")).sendKeys(pgp_key_path).then(function() {
-      return browser.waitForAngular();
-    });
+    if (browser.gl.utils.testFileUpload()) {
+      browser.executeScript('angular.element(document.querySelector(\'input[type="file"]\')).attr("style", "visibility: visible;");');
+      element(by.xpath("//input[@type='file']")).sendKeys(pgp_key_path).then(function() {
+        return browser.waitForAngular();
+      });
+    } else {
+      var fs = require('fs');
+      var pgp_key = fs.readFileSync(pgp_key_path, {encoding: 'utf8', flag: 'r'});
+      var pgpTxtArea = element(by.model('preferences.pgp_key_public'));
+      pgpTxtArea.clear();
+      pgpTxtArea.sendKeys(pgp_key);
+    }
 
     return element(by.cssContainingText("span", "Update notification and encryption settings")).click();
   };
