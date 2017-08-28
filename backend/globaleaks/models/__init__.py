@@ -48,6 +48,7 @@ class Model(Storm):
     bool_keys = []
     datetime_keys = []
     json_keys = []
+    optional_references = []
 
     def __init__(self, values=None, migrate=False):
         self.update(values)
@@ -101,6 +102,11 @@ class Model(Storm):
 
         for k in getattr(self, 'json_keys'):
             if k in values and values[k] is not None:
+                value = values[k]
+                setattr(self, k, value)
+
+        for k in getattr(self, 'optional_references'):
+            if k in values and values[k] != '':
                 value = values[k]
                 setattr(self, k, value)
 
@@ -510,6 +516,7 @@ class Field(ModelWithID):
     int_keys = ['x', 'y', 'width', 'triggered_by_score']
     localized_keys = ['label', 'description', 'hint', 'multi_entry_hint']
     bool_keys = ['editable', 'multi_entry', 'preview', 'required', 'stats_enabled']
+    optional_references = ['template_id', 'step_id', 'fieldgroup_id']
 
 
 class FieldAttr(ModelWithID):

@@ -15,33 +15,6 @@ from globaleaks.rest import errors, requests
 from globaleaks.utils.structures import fill_localized_keys
 
 
-def db_import_field(store, parent, field):
-    f_attrs = field['attrs']
-    f_options = field['options']
-    f_children = field['children']
-
-    del field['attrs'], field['options'], field['children']
-
-    f = models.db_forge_obj(store, models.Field, field)
-
-    for attr in f_attrs:
-        f_attrs[attr]['name'] = attr
-        f.attrs.add(models.db_forge_obj(store, models.FieldAttr, f_attrs[attr]))
-
-    for option in f_options:
-        f.options.add(models.db_forge_obj(store, models.FieldOption, option))
-
-    if f_children:
-        db_import_fields(store, f, f_children)
-
-    parent.children.add(f)
-
-
-def db_import_fields(store, parent, fields):
-    for field in fields:
-        db_import_field(store, parent, field)
-
-
 def db_update_fieldoption(store, fieldoption_id, option, language):
     fill_localized_keys(option, models.FieldOption.localized_keys, language)
 
@@ -114,21 +87,19 @@ def db_create_field(store, field_dict, language):
     """
     fill_localized_keys(field_dict, models.Field.localized_keys, language)
 
+    f_attrs = field_dict['attrs']
+    f_options = field_dict['options']
+    f_children = field_dict['children']
+
+    del field_dict['attrs'], field_dict['options'], field_dict['children']
+
     field = models.Field(field_dict)
 
-    if field_dict['template_id'] != '':
-        field.template_id = field_dict['template_id']
-
-    if field_dict['step_id'] != '':
-        field.step_id = field_dict['step_id']
-
-    if field_dict['fieldgroup_id'] != '':
+    if field_dict.get('fieldgroup_id', '') != '':
         ancestors = set(fieldtree_ancestors(store, field_dict['fieldgroup_id']))
 
         if field.id == field_dict['fieldgroup_id'] or field.id in ancestors:
             raise errors.InvalidInputFormat("Provided field association would cause recursion loop")
-
-        field.fieldgroup_id = field_dict['fieldgroup_id']
 
     store.add(field)
 
@@ -147,11 +118,15 @@ def db_create_field(store, field_dict, language):
                 raise errors.InvalidInputFormat("Cannot associate whistleblower identity field to a fieldgroup")
 
     else:
-        db_update_fieldattrs(store, field.id, field_dict['attrs'], language)
-        db_update_fieldoptions(store, field.id, field_dict['options'], language)
+        for attr in f_attrs:
+            f_attrs[attr]['name'] = attr
+            field.attrs.add(models.db_forge_obj(store, models.FieldAttr, f_attrs[attr]))
+
+        for option in f_options:
+            field.options.add(models.db_forge_obj(store, models.FieldOption, option))
 
     if field.instance != 'reference':
-        for c in field_dict['children']:
+        for c in field_dict.get('children', []):
             c['fieldgroup_id'] = field.id
             db_create_field(store, c, language)
 

@@ -5,7 +5,9 @@ import os
 from storm.expr import And, Not, In
 
 from globaleaks import models
-from globaleaks.handlers.admin.field import db_create_field, db_import_fields
+from globaleaks.handlers.admin.field import db_create_field
+from globaleaks.handlers.admin.questionnaire import db_create_questionnaire
+from globaleaks.handlers.admin.step import db_create_step
 from globaleaks.settings import GLSettings
 from globaleaks.utils.utility import log, read_json_file
 
@@ -18,6 +20,7 @@ def load_default_questionnaires(store):
     qfiles = [os.path.join(GLSettings.questionnaires_path, path) for path in os.listdir(GLSettings.questionnaires_path)]
     for qfile in qfiles:
         questionnaire = read_json_file(qfile)
+
         steps = questionnaire['steps']
         del questionnaire['steps']
 
@@ -29,12 +32,8 @@ def load_default_questionnaires(store):
                 store.remove(step)
 
         for step in steps:
-            f_children = step['children']
-            del step['children']
-            s = models.db_forge_obj(store, models.Step, step)
-            s.questionnaire_id = q.id
-            db_import_fields(store, s, f_children)
-
+            step['questionnaire_id'] = q.id
+            db_create_step(store, step, None)
 
 
 def load_default_fields(store):
