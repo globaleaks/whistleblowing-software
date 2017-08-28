@@ -27,12 +27,6 @@
         <div>
           <div class="editorHeader row" data-ng-click="questionnaire.editable && toggleEditing(); $event.stopPropagation();">
             <span class="col-md-7 editorHeaderTitle">{{questionnaire.name}}
-              <a class="downloadButton btn btn-xs btn-default"
-                  data-ng-if="!editing"
-                  data-ng-click="downloadQuestionnaire(questionnaire); $event.stopPropagation()">
-                  <i class="glyphicon glyphicon-download"></i>
-                  <span data-translate>Download</span>
-              </a>
             </span>
             <span class="col-md-5" data-ng-if="questionnaire.editable">
               <span class="pull-right">
@@ -55,6 +49,12 @@
                   data-ng-click="toggleEditing(); $event.stopPropagation();">
                   <span data-translate>Cancel</span>
                 </button>
+                <a class="downloadButton btn btn-xs btn-default"
+                  data-ng-if="editing"
+                  data-ng-click="downloadQuestionnaire(questionnaire); $event.stopPropagation()">
+                  <i class="glyphicon glyphicon-download"></i>
+                  <span data-translate>Download</span>
+                </a>
                 <button
                   class="actionButton actionButtonDelete btn btn-xs btn-danger"
                   data-ng-if="questionnaire.editable"

@@ -175,13 +175,13 @@ class QuestionnairesCollection(BaseHandler):
         Create a new questionnaire.
 
         Parameters:
-            ?full=(0|1) selects whether the questionnaire passed contains all langs, steps, and fields
+            ?multilang=(0|1) selects whether the questionnaire passed contains all langs, steps, and fields
         Request: AdminQuestionnaireDesc
         Response: AdminQuestionnaireDesc
         Errors: InvalidInputFormat, ReceiverIdNotFound
         """
         language = self.request.language
-        if 'full' in self.request.args and self.request.args['full'] == ['1']:
+        if 'full' in self.request.args and self.request.args['multilang'] == ['1']:
             language = None
 
         validator = requests.AdminQuestionnaireDesc

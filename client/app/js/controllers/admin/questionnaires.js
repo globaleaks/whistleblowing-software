@@ -80,7 +80,7 @@ controller('AdminQuestionnaireAddCtrl', ['$scope', '$http', 'AdminQuestionnaireR
     $scope.Utils.readFileAsText(file).then(function(txt) {
       return $http({
         method: 'POST',
-        url: 'admin/questionnaires?full=1',
+        url: 'admin/questionnaires?multilang=1',
         data: txt,
       })
     }).then(function(resp) {
