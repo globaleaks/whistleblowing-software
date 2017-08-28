@@ -327,7 +327,7 @@
               <label data-translate>Add new question</label>
               <div data-ng-include="'views/admin/questionnaires/add_field.html'"></div>
             </div>
-            <div class="col-md-12" data-ng-if="admin.node.enable_experimental_features && field.instance === 'instance' && admin.fieldtemplates.length > 0">
+            <div class="col-md-12" data-ng-if="field.instance === 'instance' && admin.fieldtemplates.length > 0">
             <label data-translate>Add question from template</label>
               <div data-ng-include="'views/admin/questionnaires/add_field_from_template.html'"></div>
             </div>

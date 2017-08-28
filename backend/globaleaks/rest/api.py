@@ -103,6 +103,7 @@ api_spec = [
     (r'/admin/(users|contexts)/' + uuid_regexp  + r'/img', admin_modelimgs.ModelImgInstance),
     (r'/admin/questionnaires', admin_questionnaire.QuestionnairesCollection),
     (r'/admin/questionnaires/' + uuid_regexp, admin_questionnaire.QuestionnaireInstance),
+    (r'/admin/questionnaires/([a-z0-9_]{1,90})', admin_questionnaire.QuestionnaireInstance),
     (r'/admin/receivers', admin_receiver.ReceiversCollection),
     (r'/admin/receivers/' + uuid_regexp, admin_receiver.ReceiverInstance),
     (r'/admin/notification', admin_notification.NotificationInstance),
