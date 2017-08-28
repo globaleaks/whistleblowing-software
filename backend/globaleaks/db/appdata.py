@@ -33,7 +33,6 @@ def load_default_questionnaires(store):
             step['questionnaire_id'] = q.id
             db_create_step(store, step, None)
 
-
 def load_default_fields(store):
     ffiles = [os.path.join(GLSettings.questions_path, path) for path in os.listdir(GLSettings.questions_path)]
     for ffile in ffiles:

@@ -4,6 +4,9 @@
 #   *****
 # Implementation of the code executed on handler /admin/questionnaires
 #
+import json
+
+from twisted.internet.defer import inlineCallbacks, returnValue
 
 from globaleaks import models
 from globaleaks.handlers.base import BaseHandler
@@ -12,7 +15,7 @@ from globaleaks.handlers.public import serialize_questionnaire
 from globaleaks.orm import transact
 from globaleaks.rest import errors, requests
 from globaleaks.utils.structures import fill_localized_keys
-from globaleaks.utils.utility import log
+from globaleaks.utils.utility import log, datetime_to_ISO8601, datetime_now
 
 
 def db_get_questionnaire_list(store, language):
@@ -99,6 +102,7 @@ def create_questionnaire(store, request, language):
     Returns:
         (dict) representing the configured questionnaire
     """
+    # TODO handle existing ID interaction with import. Currently throws 500s
     questionnaire = db_create_questionnaire(store, request, language)
 
     return serialize_questionnaire(store, questionnaire, language)
@@ -166,15 +170,23 @@ class QuestionnairesCollection(BaseHandler):
         """
         Create a new questionnaire.
 
+        Parameters:
+            ?multilang=(0|1) selects whether the questionnaire passed contains all langs, steps, and fields
         Request: AdminQuestionnaireDesc
         Response: AdminQuestionnaireDesc
         Errors: InvalidInputFormat, ReceiverIdNotFound
         """
-        validator = requests.AdminQuestionnaireDesc if self.request.language is not None else requests.AdminQuestionnaireDescRaw
+        language = self.request.language
+        if 'full' in self.request.args and self.request.args['multilang'] == ['1']:
+            language = None
+
+        validator = requests.AdminQuestionnaireDesc
+        if language is None:
+            validator = requests.AdminQuestionnaireDescRaw
 
         request = self.validate_message(self.request.content.read(), validator)
 
-        return create_questionnaire(request, self.request.language)
+        return create_questionnaire(request, language)
 
 
 class QuestionnaireInstance(BaseHandler):
@@ -206,3 +218,13 @@ class QuestionnaireInstance(BaseHandler):
         Errors: InvalidInputFormat, QuestionnaireIdNotFound
         """
         return delete_questionnaire(questionnaire_id)
+
+    @inlineCallbacks
+    def get(self, questionnaire_id):
+        """
+        Export questionnaire JSON
+        """
+        q = yield get_questionnaire(questionnaire_id, None)
+        q['export_date'] = datetime_to_ISO8601(datetime_now())
+        q['export_version'] = '0.0.1'
+        returnValue(json.dumps(q, sort_keys=True, indent=2))
