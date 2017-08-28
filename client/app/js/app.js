@@ -538,7 +538,8 @@ var GLClient = angular.module('GLClient', [
     }
 
     $rootScope.evaluateAnonimityModalOpening = function () {
-      if (!$rootScope.confidentiality_warning_opened &&
+      if (!$rootScope.node.disable_security_awareness_badge &&
+          !$rootScope.confidentiality_warning_opened &&
           !$rootScope.connection.tor &&
           !$rootScope.anonimity_warning_opened) {
         $rootScope.anonimity_warning_opened = true;
