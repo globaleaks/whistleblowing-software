@@ -176,7 +176,7 @@ def get_dummy_field():
 def get_dummy_fieldoption_list():
     return [
         {
-          'id': 'beefcafe',
+          'id': u'beefcafe',
           'label': {}, # TODO fill with a localized key
           'presentation_order': 0,
           'score_points': 100,
@@ -184,7 +184,7 @@ def get_dummy_fieldoption_list():
           'trigger_step': '',
         },
         {
-          'id': 'feddad',
+          'id': u'feddad',
           'label': {}, # TODO fill with a localized key
           'presentation_order': 0,
           'score_points': 97.5,

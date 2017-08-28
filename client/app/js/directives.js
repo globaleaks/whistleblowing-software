@@ -360,8 +360,7 @@ directive('filePickerInput', function() {
 directive('requiredAsterisk', function() {
   return {
     restrict: 'A',
-    // TODO Lacks a binding for field.required
-    templateUrl: 'views/partials/required_aster.html',
+    templateUrl: 'views/partials/required_asterisk.html',
   }
 }).
 directive('releaseMsg', function() {
