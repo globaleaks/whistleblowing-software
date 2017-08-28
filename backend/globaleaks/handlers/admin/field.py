@@ -4,7 +4,6 @@
 #   *****
 # Implementation of the code executed on handler /admin/fields
 #
-import copy
 from storm.expr import And, Not, In
 
 from globaleaks import models

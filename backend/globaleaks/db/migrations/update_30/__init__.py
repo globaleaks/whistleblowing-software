@@ -143,7 +143,7 @@ class MigrationScript(MigrationBase):
     def prologue(self):
         default_questionnaire = read_json_file(os.path.join(GLSettings.questionnaires_path, 'default.json'))
 
-        steps = default_questionnaire.pop('steps'])
+        steps = default_questionnaire.pop('steps')
 
         questionnaire = db_forge_obj(self.store_new, self.model_to['Questionnaire'], default_questionnaire)
         questionnaire.key = u'default'
