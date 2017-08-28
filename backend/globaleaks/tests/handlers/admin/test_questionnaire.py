@@ -10,6 +10,7 @@ from globaleaks.handlers.admin.questionnaire import get_questionnaire
 from globaleaks.handlers.admin.field import FieldCollection
 from globaleaks.models import Questionnaire
 from globaleaks.rest import errors
+from globaleaks.rest.errors import InternalServerError
 from globaleaks.tests import helpers
 from globaleaks.tests.helpers import get_dummy_fieldoption_list
 
@@ -39,12 +40,12 @@ class TestQuestionnaireCollection(helpers.TestHandler):
             self.assertEqual(response[attrname], stuff)
 
     @inlineCallbacks
-    def test_import_valid_json(self):
+    def test_post_valid_json(self):
         self.test_data_dir = os.path.join(helpers.DATA_DIR, 'questionnaires')
         self.valid_files = [
-          'normal-custom-template.json',
-          'normal.json',
-          'normal-whistleblower-id.json',
+            'normal.json',
+            'normal-whistleblower-id.json',
+            'normal-custom-template.json',
         ]
 
         for fname in self.valid_files:
@@ -62,8 +63,29 @@ class TestQuestionnaireCollection(helpers.TestHandler):
             handler.request.args = {'multilang': ['1']}
 
             resp_q = yield handler.post()
-
             self.assertEqual(new_q, resp_q)
+
+    def test_post_invalid_json(self):
+        self.test_data_dir = os.path.join(helpers.DATA_DIR, 'questionnaires')
+
+        invalid_test_cases = [
+            ('cyclic_groupid.json', InternalServerError),
+            ('duplicate_ids.json', InternalServerError),
+            ('invalid_ids.json', InternalServerError),
+            ('invalid_attrs.json', InternalServerError),
+            ('invalid_opts.json', InternalServerError),
+        ]
+
+        for fname, err in invalid_test_cases:
+            p = os.path.join(self.test_data_dir, 'invalid', fname)
+            with open(p) as f:
+                new_q = json.loads(f.read())
+
+            handler = self.request(new_q, role='admin')
+            handler.request.args = {'multilang': ['1']}
+
+            yield self.assertFailure(err, handler.post)
+
 
 class TestQuestionnaireInstance(helpers.TestHandlerWithPopulatedDB):
     _handler = questionnaire.QuestionnaireInstance
@@ -96,11 +118,19 @@ class TestQuestionnaireInstance(helpers.TestHandlerWithPopulatedDB):
         q = json.loads(raw_s)
 
         q['name'] = 'testing_quests'
+        q['id'] =   'testing_quests_id'
 
         q['steps'][0]['type'] = 'multichoice'
         q['steps'][0]['options'] = get_dummy_fieldoption_list()
 
-        handler = self.request(q, role='admin',
-                               handler_cls=questionnaire.QuestionnairesCollection)
-        handler.request.args = {'full': ['1']}
-        yield handler.post()
+        sub_handler = self.request(q, role='admin',
+                                   handler_cls=questionnaire.QuestionnairesCollection)
+        sub_handler.request.args = {'multilang': ['1']}
+
+        yield sub_handler.post()
+
+        # TODO get the questionnaire and assert that is the same as the one orignially returned
+        yield handler.get(self.dummyQuestionnaire['id'])
+
+        self.assertEqual(raw_s, raw_s_fin)
+
