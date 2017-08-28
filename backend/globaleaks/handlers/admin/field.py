@@ -242,7 +242,7 @@ def get_fieldtemplate_list(store, language):
     templates = store.find(models.Field, And(models.Field.instance == u'template',
                                              models.Field.fieldgroup_id == None))
 
-    return [serialize_field(store, f, language) for template in templates]
+    return [serialize_field(store, f, language) for f in templates]
 
 
 class FieldTemplatesCollection(BaseHandler):
