@@ -566,6 +566,7 @@ class FieldOption(ModelWithID):
     unicode_keys = ['field_id']
     int_keys = ['presentation_order', 'score_points']
     localized_keys = ['label']
+    optional_references = ['trigger_field', 'trigger_step']
 
 
 class FieldAnswer(ModelWithID):
