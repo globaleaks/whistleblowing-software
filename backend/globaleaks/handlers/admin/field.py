@@ -87,11 +87,9 @@ def db_create_field(store, field_dict, language):
     """
     fill_localized_keys(field_dict, models.Field.localized_keys, language)
 
-    f_attrs = field_dict['attrs']
-    f_options = field_dict['options']
-    f_children = field_dict['children']
-
-    del field_dict['attrs'], field_dict['options'], field_dict['children']
+    f_attrs = field_dict.pop('attrs')
+    f_options = field_dict.pop('options')
+    f_children = field_dict.pop('children')
 
     field = models.Field(field_dict)
 
