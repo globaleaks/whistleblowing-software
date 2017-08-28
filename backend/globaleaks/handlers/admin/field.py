@@ -15,39 +15,39 @@ from globaleaks.rest import errors, requests
 from globaleaks.utils.structures import fill_localized_keys
 
 
-def db_import_fields(store, step, fieldgroup, fields):
+def db_import_field(store, parent, field):
+    f_attrs = field['attrs']
+    f_options = field['options']
+    f_children = field['children']
+
+    del field['attrs'], field['options'], field['children']
+
+    f = models.db_forge_obj(store, models.Field, field)
+
+    for attr in f_attrs:
+        f_attrs[attr]['name'] = attr
+        f.attrs.add(models.db_forge_obj(store, models.FieldAttr, f_attrs[attr]))
+
+    for option in f_options:
+        f.options.add(models.db_forge_obj(store, models.FieldOption, option))
+
+    if f_children:
+        db_import_fields(store, f, f_children)
+
+    parent.children.add(f)
+
+
+def db_import_fields(store, parent, fields):
     for field in fields:
-        f_attrs = copy.deepcopy(field['attrs'])
-        f_options = copy.deepcopy(field['options'])
-        f_children = copy.deepcopy(field['children'])
-
-        del field['attrs'], field['options'], field['children']
-
-        f = models.db_forge_obj(store, models.Field, field)
-
-        for attr in f_attrs:
-            f_attrs[attr]['name'] = attr
-            f.attrs.add(models.db_forge_obj(store, models.FieldAttr, f_attrs[attr]))
-
-        for option in f_options:
-            f.options.add(models.db_forge_obj(store, models.FieldOption, option))
-
-        if step:
-            step.children.add(f)
-        else:
-            fieldgroup.children.add(f)
-
-        if f_children:
-            db_import_fields(store, None, f, f_children)
+        db_import_field(store, parent, field)
 
 
 def db_update_fieldoption(store, fieldoption_id, option, language):
     fill_localized_keys(option, models.FieldOption.localized_keys, language)
 
+    o = None
     if fieldoption_id is not None:
         o = store.find(models.FieldOption, models.FieldOption.id == fieldoption_id).one()
-    else:
-        o = None
 
     if o is None:
         o = models.FieldOption()
@@ -82,6 +82,7 @@ def db_update_fieldattr(store, field_id, attr_name, attr_dict, language):
     attr = store.find(models.FieldAttr, And(models.FieldAttr.field_id == field_id, models.FieldAttr.name == attr_name)).one()
     if not attr:
         attr = models.FieldAttr()
+        store.add(attr)
 
     attr_dict['name'] = attr_name
     attr_dict['field_id'] = field_id
@@ -92,8 +93,6 @@ def db_update_fieldattr(store, field_id, attr_name, attr_dict, language):
         fill_localized_keys(attr_dict, ['value'], language)
 
     attr.update(attr_dict)
-
-    store.add(attr)
 
     return attr.id
 

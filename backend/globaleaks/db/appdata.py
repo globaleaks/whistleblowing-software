@@ -33,7 +33,7 @@ def load_default_questionnaires(store):
             del step['children']
             s = models.db_forge_obj(store, models.Step, step)
             s.questionnaire_id = q.id
-            db_import_fields(store, s, None, f_children)
+            db_import_fields(store, s, f_children)
 
 
 
