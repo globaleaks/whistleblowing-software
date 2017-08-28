@@ -58,13 +58,14 @@ def init_db(store, use_single_lang=False):
     else:
         EnabledLanguage.add_new_lang(store, u'en', appdata)
 
-    with open(os.path.join(GLSettings.client_path, 'data/logo.png'), 'r') as logo_file:
-        data = logo_file.read()
-        files.db_add_file(store, data, u'logo')
+    file_descs = [
+      (u'logo', 'data/logo.png'),
+      (u'favicon', 'data/favicon.ico')
+    ]
 
-    with open(os.path.join(GLSettings.client_path, 'data/favicon.ico'), 'r') as favicon_file:
-        data = favicon_file.read()
-        files.db_add_file(store, data, u'favicon')
+    for file_desc in file_descs:
+        with open(os.path.join(GLSettings.client_path, file_desc[1]), 'r') as f:
+            files.db_add_file(store, f.read(), file_desc[0])
 
 
 def update_db():
