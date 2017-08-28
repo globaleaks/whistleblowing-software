@@ -1,3 +1,15 @@
+Changes in version 2.72.0 - 2017-08-27
+    o Add profile select logic to the wizard #2039
+    o Add "Select" buttons to PGP key UI elements #792
+    o Optimize image serialization for contexts and receivers
+    o Improve exception mail spooling performance and robustness
+    o Migrate the field, context and questionnaire tables removing key column
+    o Apply bugfixing to HTTPS detection and warning #2067
+    o Apply improvments to UI texts thanks to @comradekingu
+    o Apply minor SSL, logging and python packaging changes
+    o Update translations
+    o Update client dependencies
+
 Changes in version 2.71.3 - 2017-08-23
     o Apply bugfixing to HTTPS detection and warning
 
