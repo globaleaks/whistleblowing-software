@@ -153,7 +153,7 @@ class MigrationScript(MigrationBase):
             f_children = step['children']
             del step['children']
             s = db_forge_obj(self.store_new, self.model_to['Step'], step)
-            db_import_fields(self.store_new, s, None, f_children)
+            db_import_fields(self.store_new, s, f_children)
             s.questionnaire_id = questionnaire.id
 
         self.store_new.commit()
