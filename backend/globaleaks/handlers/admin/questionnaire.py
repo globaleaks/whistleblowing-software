@@ -7,6 +7,7 @@
 
 from globaleaks import models
 from globaleaks.handlers.base import BaseHandler
+from globaleaks.handlers.admin.field import db_create_field
 from globaleaks.handlers.public import serialize_questionnaire
 from globaleaks.orm import transact
 from globaleaks.rest import errors, requests
@@ -64,16 +65,24 @@ def db_update_questionnaire(store, questionnaire, request, language):
     return questionnaire
 
 
-def db_create_questionnaire(store, request, language):
-    request = fill_questionnaire_request(request, language)
+def db_create_questionnaire(store, questionnaire_dict, language):
+    questionnaire_dict = fill_questionnaire_request(questionnaire_dict, language)
 
-    del request['steps']
+    q = models.Questionnaire(questionnaire_dict)
 
-    questionnaire = models.Questionnaire(request)
+    steps = questionnaire_dict.pop('steps')
 
-    store.add(questionnaire)
+    for step in steps:
+        f_children = step.pop('children')
+        s = models.db_forge_obj(store, models.Step, step)
+        s.questionnaire_id = q.id
+        for child in f_children:
+            child['step_id'] = s.id
+            db_create_field(store, child, None)
 
-    return questionnaire
+    store.add(q)
+
+    return q
 
 
 @transact

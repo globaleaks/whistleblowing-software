@@ -98,7 +98,7 @@ CREATE TABLE context (
     show_receivers_in_alphabetical_order INTEGER NOT NULL,
     questionnaire_id TEXT NOT NULL,
     img_id TEXT,
-    FOREIGN KEY (questionnaire_id) REFERENCES questionnaire(id) ON DELETE SET NULL,
+    FOREIGN KEY (questionnaire_id) REFERENCES questionnaire(id),
     FOREIGN KEY (img_id) REFERENCES file(id) ON DELETE SET NULL,
     PRIMARY KEY (id)
 );

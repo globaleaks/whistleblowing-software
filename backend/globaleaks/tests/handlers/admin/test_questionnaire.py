@@ -27,6 +27,8 @@ class TestQuestionnaireCollection(helpers.TestHandler):
         for attrname in Questionnaire.unicode_keys:
             self.dummyQuestionnaire[attrname] = stuff
 
+        self.dummyQuestionnaire['steps'] = []
+
         handler = self.request(self.dummyQuestionnaire, role='admin')
         response = yield handler.post()
 
