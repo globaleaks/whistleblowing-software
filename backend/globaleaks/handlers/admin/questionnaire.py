@@ -11,6 +11,7 @@ from twisted.internet.defer import inlineCallbacks, returnValue
 from globaleaks import models
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.admin.field import db_create_field
+from globaleaks.handlers.admin.step import db_create_step
 from globaleaks.handlers.public import serialize_questionnaire
 from globaleaks.orm import transact
 from globaleaks.rest import errors, requests
@@ -73,17 +74,10 @@ def db_create_questionnaire(store, questionnaire_dict, language):
 
     q = models.Questionnaire(questionnaire_dict)
 
-    steps = questionnaire_dict.pop('steps')
-
-    for step in steps:
-        f_children = step.pop('children')
-        s = models.db_forge_obj(store, models.Step, step)
-        s.questionnaire_id = q.id
-        for child in f_children:
-            child['step_id'] = s.id
-            db_create_field(store, child, None)
-
     store.add(q)
+
+    for step in questionnaire_dict['steps']:
+        db_create_step(store, step)
 
     return q
 
