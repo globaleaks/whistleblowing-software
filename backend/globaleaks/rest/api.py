@@ -280,7 +280,10 @@ class APIResourceWrapper(Resource):
 
         self.detect_language(request)
 
-        self.set_default_headers(request)
+        self.set_headers(request)
+
+        if 'multilang' in request.args:
+            request.language = None
 
     def render(self, request):
         """
@@ -359,9 +362,11 @@ class APIResourceWrapper(Resource):
         return NOT_DONE_YET
 
     @staticmethod
-    def set_default_headers(request):
+    def set_headers(request):
         # to avoid version attacks
         request.setHeader("Server", "Globaleaks")
+
+        request.setHeader('Content-Language', request.language)
 
         # to reduce possibility for XSS attacks.
         request.setHeader("X-Content-Type-Options", "nosniff")
@@ -406,18 +411,15 @@ class APIResourceWrapper(Resource):
         return GLSettings.memory_copy.default_language
 
     def detect_language(self, request):
-        language = request.headers.get('gl-language')
+        request.language = request.headers.get('gl-language')
 
-        if language is None:
+        if request.language is None:
             for l in self.parse_accept_language_header(request):
                 if l in GLSettings.memory_copy.languages_enabled:
-                    language = l
+                    request.language = l
                     break
 
-        if language is None or language not in GLSettings.memory_copy.languages_enabled:
-            language = GLSettings.memory_copy.default_language
+        if request.language is None or request.language not in GLSettings.memory_copy.languages_enabled:
+            request.language = GLSettings.memory_copy.default_language
 
-        request.language = language
-        request.setHeader('Content-Language', language)
-
-        return language
+        return request.language

@@ -96,7 +96,6 @@ def create_questionnaire(store, request, language):
     Returns:
         (dict) representing the configured questionnaire
     """
-    # TODO handle existing ID interaction with import. Currently throws 500s
     questionnaire = db_create_questionnaire(store, request, language)
 
     return serialize_questionnaire(store, questionnaire, language)
@@ -170,10 +169,6 @@ class QuestionnairesCollection(BaseHandler):
         Response: AdminQuestionnaireDesc
         Errors: InvalidInputFormat, ReceiverIdNotFound
         """
-        language = self.request.language
-        if 'full' in self.request.args and self.request.args['multilang'] == ['1']:
-            language = None
-
         validator = requests.AdminQuestionnaireDesc
         if language is None:
             validator = requests.AdminQuestionnaireDescRaw
@@ -220,5 +215,4 @@ class QuestionnaireInstance(BaseHandler):
         """
         q = yield get_questionnaire(questionnaire_id, None)
         q['export_date'] = datetime_to_ISO8601(datetime_now())
-        q['export_version'] = '0.0.1'
         returnValue(json.dumps(q, sort_keys=True, indent=2))
