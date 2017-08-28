@@ -25,9 +25,6 @@ def db_update_fieldoption(store, fieldoption_id, option, language):
         o = models.FieldOption()
         store.add(o)
 
-    o.trigger_field = option['trigger_field'] if option['trigger_field'] != '' else None
-    o.trigger_step = option['trigger_step'] if option['trigger_step'] != '' else None
-
     o.update(option)
 
     return o.id
@@ -86,10 +83,6 @@ def db_create_field(store, field_dict, language):
     """
     fill_localized_keys(field_dict, models.Field.localized_keys, language)
 
-    f_attrs = field_dict.pop('attrs')
-    f_options = field_dict.pop('options')
-    f_children = field_dict.pop('children')
-
     field = models.Field(field_dict)
 
     if field_dict.get('fieldgroup_id', '') != '':
@@ -115,12 +108,8 @@ def db_create_field(store, field_dict, language):
                 raise errors.InvalidInputFormat("Cannot associate whistleblower identity field to a fieldgroup")
 
     else:
-        for attr in f_attrs:
-            f_attrs[attr]['name'] = attr
-            field.attrs.add(models.db_forge_obj(store, models.FieldAttr, f_attrs[attr]))
-
-        for option in f_options:
-            field.options.add(models.db_forge_obj(store, models.FieldOption, option))
+        db_update_fieldattrs(store, field.id, field_dict['attrs'], language)
+        db_update_fieldoptions(store, field.id, field_dict['options'], language)
 
     if field.instance != 'reference':
         for c in field_dict.get('children', []):
@@ -250,12 +239,10 @@ def get_fieldtemplate_list(store, language):
     :return: the current field list serialized.
     :rtype: list of dict
     """
-    ret = []
-    for f in store.find(models.Field, And(models.Field.instance == u'template',
-                                          models.Field.fieldgroup_id == None)):
-        ret.append(serialize_field(store, f, language))
+    templates = store.find(models.Field, And(models.Field.instance == u'template',
+                                             models.Field.fieldgroup_id == None))
 
-    return ret
+    return [serialize_field(store, f, language) for template in templates]
 
 
 class FieldTemplatesCollection(BaseHandler):
