@@ -6,7 +6,6 @@ from storm.expr import And, Not, In
 
 from globaleaks import models
 from globaleaks.handlers.admin.field import db_create_field
-from globaleaks.handlers.admin.questionnaire import db_create_questionnaire
 from globaleaks.handlers.admin.step import db_create_step
 from globaleaks.settings import GLSettings
 from globaleaks.utils.utility import log, read_json_file
@@ -21,8 +20,7 @@ def load_default_questionnaires(store):
     for qfile in qfiles:
         questionnaire = read_json_file(qfile)
 
-        steps = questionnaire['steps']
-        del questionnaire['steps']
+        steps = questionnaire.pop('steps')
 
         q = store.find(models.Questionnaire, models.Questionnaire.id == questionnaire['id']).one()
         if q is None:
@@ -78,8 +76,7 @@ def db_fix_fields_attrs(store):
         count = res.count()
         if count:
             log.debug("Removing %d attributes from fields of type %s", count, field_type)
-            for r in res:
-                store.remove(r)
+            res.remove()
 
     # Add keys to the db that have been added to field_attrs
     for field in store.find(models.Field):
