@@ -1,9 +1,13 @@
 # -*- coding: utf-8 -*-
+import json
+import os
+
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.handlers.admin import questionnaire
 from globaleaks.handlers.admin.context import ContextInstance
 from globaleaks.handlers.admin.questionnaire import get_questionnaire
+from globaleaks.handlers.admin.field import FieldCollection
 from globaleaks.models import Questionnaire
 from globaleaks.rest import errors
 from globaleaks.tests import helpers
@@ -34,6 +38,32 @@ class TestQuestionnaireCollection(helpers.TestHandler):
         for attrname in Questionnaire.unicode_keys:
             self.assertEqual(response[attrname], stuff)
 
+    @inlineCallbacks
+    def test_import_valid_json(self):
+        self.test_data_dir = os.path.join(helpers.DATA_DIR, 'questionnaires')
+        self.valid_files = [
+          'normal-custom-template.json',
+          'normal.json',
+          'normal-whistleblower-id.json',
+        ]
+
+        for fname in self.valid_files:
+            p = os.path.join(self.test_data_dir, 'valid', fname)
+            with open(p) as f:
+                new_q = json.loads(f.read())
+
+            if fname == 'normal-custom-template.json':
+                with open(os.path.join(self.test_data_dir, 'valid', 'custom_template.json')) as f:
+                    template = json.loads(f.read())
+                h = self.request(template, role='admin', handler_cls=FieldCollection)
+                yield h.post()
+
+            handler = self.request(new_q, role='admin')
+            handler.request.args = {'multilang': ['1']}
+
+            resp_q = yield handler.post()
+
+            self.assertEqual(new_q, resp_q)
 
 class TestQuestionnaireInstance(helpers.TestHandlerWithPopulatedDB):
     _handler = questionnaire.QuestionnaireInstance
