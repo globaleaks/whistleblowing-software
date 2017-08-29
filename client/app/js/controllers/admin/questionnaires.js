@@ -52,7 +52,7 @@ controller('AdminQuestionnaireEditorCtrl', ['$scope', '$http', 'FileSaver', 'Adm
     });
   };
 
-  $scope.exportdQuestionnaire = function(obj) {
+  $scope.exportQuestionnaire = function(obj) {
     $http({
       method: 'GET',
       url: 'admin/questionnaires/' + obj.id,

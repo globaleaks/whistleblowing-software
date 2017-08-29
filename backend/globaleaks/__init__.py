@@ -65,3 +65,6 @@ LANGUAGES_SUPPORTED.sort(key=operator.itemgetter('code'))
 
 # Creating LANGUAGES_SUPPORTED_CODES form the ordered LANGUAGES_SUPPORTED
 LANGUAGES_SUPPORTED_CODES = {i['code'] for i in LANGUAGES_SUPPORTED}
+
+# Versioning for exported questionnaire's
+QUESTIONNAIRE_EXPORT_VERSION = u'0.0.1'
