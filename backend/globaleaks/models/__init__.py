@@ -66,18 +66,15 @@ class Model(Storm):
 
         for k in getattr(self, 'unicode_keys'):
             if k in values and values[k] is not None:
-                value = unicode(values[k])
-                setattr(self, k, value)
+                setattr(self, k, unicode(values[k]))
 
         for k in getattr(self, 'int_keys'):
             if k in values and values[k] is not None:
-                value = int(values[k])
-                setattr(self, k, value)
+                setattr(self, k, int(values[k]))
 
         for k in getattr(self, 'datetime_keys'):
             if k in values and values[k] is not None:
-                value = values[k]
-                setattr(self, k, value)
+                setattr(self, k, values[k])
 
         for k in getattr(self, 'bool_keys'):
             if k in values and values[k] is not None:
@@ -102,13 +99,11 @@ class Model(Storm):
 
         for k in getattr(self, 'json_keys'):
             if k in values and values[k] is not None:
-                value = values[k]
-                setattr(self, k, value)
+                setattr(self, k, values[k])
 
         for k in getattr(self, 'optional_references'):
             if k in values and values[k] != '':
-                value = values[k]
-                setattr(self, k, value)
+                setattr(self, k, values[k])
 
     def __str__(self):
         # pylint: disable=no-member
