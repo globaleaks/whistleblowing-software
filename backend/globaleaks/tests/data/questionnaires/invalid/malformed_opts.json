@@ -34,8 +34,8 @@
               "label": {
                 "en": "a"
               },
-              "presentation_order": 0,
-              "score_points": 0,
+              "presentation_order": 1,
+              "score_points": "999",
               "trigger_field": "",
               "trigger_step": ""
             },
@@ -44,7 +44,7 @@
               "label": {
                 "en": "b"
               },
-              "presentation_order": 1,
+              "presentation_order": -1.7975e308,
               "score_points": 0,
               "trigger_field": "",
               "trigger_step": ""
@@ -54,7 +54,7 @@
               "label": {
                 "en": "c"
               },
-              "presentation_order": 2,
+              "presentation_order": 1,
               "score_points": 0,
               "trigger_field": "",
               "trigger_step": ""
@@ -64,7 +64,7 @@
               "label": {
                 "en": "d"
               },
-              "presentation_order": 3,
+              "presentation_order": 1,
               "score_points": 0,
               "trigger_field": "",
               "trigger_step": ""
@@ -91,54 +91,6 @@
         "en": "generic step"
       },
       "presentation_order": 0,
-      "questionnaire_id": "b170589b-30d6-4ec1-ae52-18659b2a606b",
-      "triggered_by_options": [],
-      "triggered_by_score": 0
-    },
-    {
-      "children": [
-        {
-          "attrs": {},
-          "children": [],
-          "description": {
-            "en": ""
-          },
-          "editable": true,
-          "fieldgroup_id": "",
-          "hint": {
-            "en": ""
-          },
-          "id": "87289a6a-e5a3-491b-88e3-6253cd8ff6a4",
-          "instance": "instance",
-          "label": {
-            "en": "attach something"
-          },
-          "multi_entry": true,
-          "multi_entry_hint": {
-            "en": ""
-          },
-          "options": [],
-          "preview": false,
-          "required": false,
-          "stats_enabled": false,
-          "step_id": "3aefbee3-cca3-4db2-b9f9-b22f64fc186e",
-          "template_id": "",
-          "triggered_by_options": [],
-          "triggered_by_score": 0,
-          "type": "fileupload",
-          "width": 0,
-          "x": 0,
-          "y": 0
-        }
-      ],
-      "description": {
-        "en": ""
-      },
-      "id": "3aefbee3-cca3-4db2-b9f9-b22f64fc186e",
-      "label": {
-        "en": "final step"
-      },
-      "presentation_order": 1,
       "questionnaire_id": "b170589b-30d6-4ec1-ae52-18659b2a606b",
       "triggered_by_options": [],
       "triggered_by_score": 0

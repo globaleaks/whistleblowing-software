@@ -7,10 +7,77 @@
   "show_steps_navigation_bar": true,
   "steps": [
     {
-      "children": [
-        {
-          "attrs": {},
-          "children": [],
+      "children": [{
+                     "attrs": {},
+                     "children": [{
+                     "attrs": {},
+                     "children": [{
+                                   "attrs": {},
+                                   "children": [],
+                                   "description": {
+                                     "en": ""
+                                   },
+                                   "editable": true,
+                                   "fieldgroup_id": "aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa",
+                                   "hint": {
+                                     "en": ""
+                                   },
+                                   "id": "aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa",
+                                   "instance": "instance",
+                                   "label": {
+                                     "en": "FGroupC"
+                                   },
+                                   "multi_entry": false,
+                                   "multi_entry_hint": {
+                                     "en": ""
+                                   },
+                                   "options": [],
+                                   "preview": false,
+                                   "required": false,
+                                   "stats_enabled": false,
+                                   "step_id": "",
+                                   "template_id": "",
+                                   "triggered_by_options": [],
+                                   "triggered_by_score": 0,
+                                   "type": "fieldgroup",
+
+                                   "width": 0,
+                                   "x": 0,
+                                   "y": 3
+                                 }
+                     ],
+                     "description": {
+                       "en": ""
+                     },
+                     "editable": true,
+                     "fieldgroup_id": "aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa",
+                     "hint": {
+                       "en": ""
+                     },
+                     "id": "bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb",
+                     "instance": "instance",
+                     "label": {
+                       "en": "FGroupB"
+                     },
+                     "multi_entry": false,
+                     "multi_entry_hint": {
+                       "en": ""
+                     },
+                     "options": [],
+                     "preview": false,
+                     "required": false,
+                     "stats_enabled": false,
+                     "template_id": "",
+                     "triggered_by_options": [],
+                     "triggered_by_score": 0,
+                     "type": "fieldgroup",
+                     "step_id": "",
+                     "width": 0,
+                     "x": 0,
+                     "y": 2
+                   }
+
+          ],
           "description": {
             "en": ""
           },
@@ -40,72 +107,6 @@
           "width": 0,
           "x": 0,
           "y": 1
-        },
-        {
-          "attrs": {},
-          "children": [],
-          "description": {
-            "en": ""
-          },
-          "editable": true,
-          "fieldgroup_id": "",
-          "hint": {
-            "en": ""
-          },
-          "id": "bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb",
-          "instance": "instance",
-          "label": {
-            "en": "FGroupB"
-          },
-          "multi_entry": false,
-          "multi_entry_hint": {
-            "en": ""
-          },
-          "options": [],
-          "preview": false,
-          "required": false,
-          "stats_enabled": false,
-          "fieldgroup_id": "cccccccc-cccc-cccc-cccc-cccccccccccc",
-          "template_id": "",
-          "triggered_by_options": [],
-          "triggered_by_score": 0,
-          "type": "fieldgroup",
-          "width": 0,
-          "x": 0,
-          "y": 2
-        },
-        {
-          "attrs": {},
-          "children": [],
-          "description": {
-            "en": ""
-          },
-          "editable": true,
-          "fieldgroup_id": "bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb",
-          "hint": {
-            "en": ""
-          },
-          "id": "cccccccc-cccc-cccc-cccc-cccccccccccc",
-          "instance": "instance",
-          "label": {
-            "en": "FGroupC"
-          },
-          "multi_entry": false,
-          "multi_entry_hint": {
-            "en": ""
-          },
-          "options": [],
-          "preview": false,
-          "required": false,
-          "stats_enabled": false,
-          "fieldgroup_id": "",
-          "template_id": "",
-          "triggered_by_options": [],
-          "triggered_by_score": 0,
-          "type": "fieldgroup",
-          "width": 0,
-          "x": 0,
-          "y": 3
         }
       ],
       "description": {
