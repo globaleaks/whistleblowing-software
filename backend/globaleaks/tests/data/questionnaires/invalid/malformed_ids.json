@@ -9,30 +9,56 @@
     {
       "children": [
         {
-          "attrs": {},
+          "attrs":
+            {
+                "input_validation": {
+                  "id": "470afb34-97fb-4007-93be-e6a255ec0895",
+                  "name": "input_validation",
+                  "type": "unicode",
+                  "value": "alert('xss')"
+                },
+                "max_len": {
+                  "id": "adb47e76-9c54-4524-ae82-2fc09019f5a7",
+                  "name": "max_len",
+                  "type": "int",
+                  "value": "alert('xss')"
+                },
+                "min_len": {
+                  "id": "dddddce1-9e46-4bea-9534-33d08a1d646e",
+                  "name": "min_len",
+                  "type": "int",
+                  "value": "alert('xss')"
+                },
+                "regexp": {
+                  "id": "cccccc01-8d44-45dd-adc4-fbd9eb5cb44b",
+                  "name": "regexp",
+                  "type": "unicode",
+                  "value": "alert('xss')"
+                }
+          },
           "children": [],
           "description": {
-            "en": ""
+            "en": "alert('hello there!')"
           },
           "editable": true,
           "fieldgroup_id": "",
           "hint": {
-            "en": "Pick one choice."
+            "en": "alert('hello there!')"
           },
-          "id": "a598920b-0477-4ddb-818a-004c945e810d",
+          "id": "cccccc01-8d44-ffff-ffff-fbd9eb5cb44b",
           "instance": "instance",
           "label": {
-            "en": "Would you rather?"
+            "en": "alert('hello there!')"
           },
           "multi_entry": false,
           "multi_entry_hint": {
-            "en": ""
+            "en": "alert('hello there!')"
           },
           "options": [
             {
-              "id": "52657696-ff88-4d5c-a41c-d50956f33071",
+              "id": "dddddd01-8d44-ffff-dddd-fbd9eb5cb44b",
               "label": {
-                "en": "a"
+                "en": "alert('hello there!')"
               },
               "presentation_order": 0,
               "score_points": 0,
@@ -42,7 +68,7 @@
             {
               "id": "e9cee72c-2c00-4e8d-b468-6f9cd70f1fb7",
               "label": {
-                "en": "b"
+                "en": "alert('xss')"
               },
               "presentation_order": 1,
               "score_points": 0,
@@ -50,9 +76,9 @@
               "trigger_step": ""
             },
             {
-              "id": "c23121fb-51da-4128-8c57-bb1b6406f8e0",
+              "id": "e9cee72c-dddd-bbbb-aaaa-832344444444",
               "label": {
-                "en": "c"
+                "en": "alert('hello there!')"
               },
               "presentation_order": 2,
               "score_points": 0,
@@ -73,7 +99,7 @@
           "preview": true,
           "required": true,
           "stats_enabled": false,
-          "step_id": "8b2edda9-976e-486f-8dbd-deed917ca904",
+          "step_id": "ffffffff-ffff-ffff-ffff-ffffffffffff",
           "template_id": "",
           "triggered_by_options": [],
           "triggered_by_score": 0,
@@ -86,12 +112,12 @@
       "description": {
         "en": ""
       },
-      "id": "8b2edda9-976e-486f-8dbd-deed917ca904",
+      "id": "cbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb",
       "label": {
         "en": "generic step"
       },
       "presentation_order": 0,
-      "questionnaire_id": "b170589b-30d6-4ec1-ae52-18659b2a606b",
+      "questionnaire_id": "bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb",
       "triggered_by_options": [],
       "triggered_by_score": 0
     },
@@ -139,7 +165,7 @@
         "en": "final step"
       },
       "presentation_order": 1,
-      "questionnaire_id": "b170589b-30d6-4ec1-ae52-18659b2a606b",
+      "questionnaire_id": "bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb",
       "triggered_by_options": [],
       "triggered_by_score": 0
     }
