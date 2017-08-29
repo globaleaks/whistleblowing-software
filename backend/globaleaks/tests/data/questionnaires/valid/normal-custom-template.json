@@ -1,218 +1,73 @@
 {
-  "editable": true, 
-  "export_date": "2017-08-28T11:17:15.162250Z", 
-  "export_version": "0.0.1", 
-  "id": "cbc7e8bd-1e1c-4d53-8841-feb97d6c05b4", 
-  "name": "normal-custom-template", 
-  "show_steps_navigation_bar": true, 
-  "steps": [
-    {
-      "children": [
-        {
-          "attrs": {}, 
-          "children": [
+   "id" : "cbc7e8bd-1e1c-4d53-8841-feb97d6c05b4",
+   "steps_navigation_requires_completion" : false,
+   "export_version" : "0.0.1",
+   "name" : "normal-custom-template",
+   "steps" : [
+      {
+         "label" : {
+            "en" : "Custom template step"
+         },
+         "description" : {
+            "en" : "this is some text"
+         },
+         "triggered_by_options" : [],
+         "presentation_order" : 0,
+         "questionnaire_id" : "cbc7e8bd-1e1c-4d53-8841-feb97d6c05b4",
+         "id" : "95518ce5-057f-4fde-9e52-d8e7f3911514",
+         "children" : [
             {
-              "attrs": {
-                "layout_orientation": {
-                  "id": "ee9f9ca0-5eca-4772-bf01-945699289fb8", 
-                  "name": "layout_orientation", 
-                  "type": "unicode", 
-                  "value": "vertical"
-                }
-              }, 
-              "children": [], 
-              "description": {
-                "ca": "", 
-                "en": ""
-              }, 
-              "editable": true, 
-              "fieldgroup_id": "a411f2bf-cc48-4053-a04d-eb49dcaba061", 
-              "hint": {
-                "ca": "", 
-                "en": ""
-              }, 
-              "id": "49ea1feb-5645-4ad4-a0e4-50ffa13d6073", 
-              "instance": "template", 
-              "label": {
-                "ca": "Tipo di incedente", 
-                "en": "Type of vehicle"
-              }, 
-              "multi_entry": false, 
-              "multi_entry_hint": {
-                "ca": "", 
-                "en": ""
-              }, 
-              "options": [
-                {
-                  "id": "10113d15-90ae-40ff-98e1-b160457459ab", 
-                  "label": {
-                    "ca": "e", 
-                    "en": "a"
-                  }, 
-                  "presentation_order": 0, 
-                  "score_points": 0, 
-                  "trigger_field": "", 
-                  "trigger_step": ""
-                }, 
-                {
-                  "id": "06e8e077-9784-4216-bb6f-1cb55a33a3ed", 
-                  "label": {
-                    "ca": "f", 
-                    "en": "b"
-                  }, 
-                  "presentation_order": 1, 
-                  "score_points": 0, 
-                  "trigger_field": "", 
-                  "trigger_step": ""
-                }, 
-                {
-                  "id": "705d287d-c3df-41ec-a0c6-89ad14720dd3", 
-                  "label": {
-                    "ca": "g", 
-                    "en": "c"
-                  }, 
-                  "presentation_order": 2, 
-                  "score_points": 0, 
-                  "trigger_field": "", 
-                  "trigger_step": ""
-                }, 
-                {
-                  "id": "787da9b4-f763-46e9-8943-f1184bb71d7b", 
-                  "label": {
-                    "ca": "h", 
-                    "en": "d"
-                  }, 
-                  "presentation_order": 3, 
-                  "score_points": 0, 
-                  "trigger_field": "", 
-                  "trigger_step": ""
-                }
-              ], 
-              "preview": false, 
-              "required": false, 
-              "stats_enabled": false, 
-              "step_id": "", 
-              "template_id": "", 
-              "triggered_by_options": [], 
-              "triggered_by_score": 0, 
-              "type": "multichoice", 
-              "width": 0, 
-              "x": 0, 
-              "y": 0
+               "multi_entry_hint" : {
+                  "en" : ""
+               },
+               "fieldgroup_id" : "",
+               "children" : [],
+               "id" : "2886ec8d-f816-47ae-8fed-5c4aaca8755d",
+               "x" : 0,
+               "instance" : "reference",
+               "options" : [],
+               "y" : 0,
+               "label" : {
+                  "en" : "Road Incedentesque Template"
+               },
+               "type" : "fieldgroup",
+               "step_id" : "95518ce5-057f-4fde-9e52-d8e7f3911514",
+               "editable" : true,
+               "triggered_by_score" : 0,
+               "attrs" : {},
+               "required" : false,
+               "stats_enabled" : false,
+               "preview" : false,
+               "multi_entry" : false,
+               "hint" : {
+                  "en" : ""
+               },
+               "triggered_by_options" : [],
+               "template_id" : "a411f2bf-cc48-4053-a04d-eb49dcaba061",
+               "width" : 0,
+               "description" : {
+                  "en" : "Describe the type of accident you had"
+               }
             }
-          ], 
-          "description": {
-            "ca": "", 
-            "en": ""
-          }, 
-          "editable": true, 
-          "fieldgroup_id": "", 
-          "hint": {
-            "ca": "", 
-            "en": ""
-          }, 
-          "id": "2886ec8d-f816-47ae-8fed-5c4aaca8755d", 
-          "instance": "reference", 
-          "label": {
-            "ca": "Momento pericoloso", 
-            "en": "Road Incedentesque Template"
-          }, 
-          "multi_entry": false, 
-          "multi_entry_hint": {
-            "ca": "", 
-            "en": ""
-          }, 
-          "options": [], 
-          "preview": false, 
-          "required": false, 
-          "stats_enabled": false, 
-          "step_id": "95518ce5-057f-4fde-9e52-d8e7f3911514", 
-          "template_id": "a411f2bf-cc48-4053-a04d-eb49dcaba061", 
-          "triggered_by_options": [], 
-          "triggered_by_score": 0, 
-          "type": "fieldgroup", 
-          "width": 0, 
-          "x": 0, 
-          "y": 0
-        }
-      ], 
-      "description": {
-        "en": ""
-      }, 
-      "id": "95518ce5-057f-4fde-9e52-d8e7f3911514", 
-      "label": {
-        "en": "Custom template step"
-      }, 
-      "presentation_order": 0, 
-      "questionnaire_id": "cbc7e8bd-1e1c-4d53-8841-feb97d6c05b4", 
-      "triggered_by_options": [], 
-      "triggered_by_score": 0
-    }, 
-    {
-      "children": [
-        {
-          "attrs": {
-            "agreement_statement": {
-              "id": "abd335c6-8613-45f9-9684-2e5ecd6e320e", 
-              "name": "agreement_statement", 
-              "type": "localized", 
-              "value": {
-                "en": "By agreeing you are bound by law"
-              }
-            }, 
-            "clause": {
-              "id": "187d5fcd-cd44-448d-9447-a642284676b7", 
-              "name": "clause", 
-              "type": "localized", 
-              "value": {
-                "en": "The privacy terms are described elsewhere"
-              }
-            }
-          }, 
-          "children": [], 
-          "description": {
-            "en": "This is a TOS to agree to"
-          }, 
-          "editable": true, 
-          "fieldgroup_id": "", 
-          "hint": {
-            "en": "Try clicking accept"
-          }, 
-          "id": "5d73a114-6a02-45f4-a7b6-8410f3143269", 
-          "instance": "instance", 
-          "label": {
-            "en": "TOS bubkiss"
-          }, 
-          "multi_entry": false, 
-          "multi_entry_hint": {
-            "en": ""
-          }, 
-          "options": [], 
-          "preview": true, 
-          "required": true, 
-          "stats_enabled": false, 
-          "step_id": "82a042e7-fcde-49e2-995f-b536ca96d703", 
-          "template_id": "", 
-          "triggered_by_options": [], 
-          "triggered_by_score": 0, 
-          "type": "tos", 
-          "width": 0, 
-          "x": 0, 
-          "y": 0
-        }
-      ], 
-      "description": {
-        "en": ""
-      }, 
-      "id": "82a042e7-fcde-49e2-995f-b536ca96d703", 
-      "label": {
-        "en": "Final step"
-      }, 
-      "presentation_order": 1, 
-      "questionnaire_id": "cbc7e8bd-1e1c-4d53-8841-feb97d6c05b4", 
-      "triggered_by_options": [], 
-      "triggered_by_score": 0
-    }
-  ], 
-  "steps_navigation_requires_completion": false
+         ],
+         "triggered_by_score" : 0
+      },
+      {
+         "presentation_order" : 1,
+         "questionnaire_id" : "cbc7e8bd-1e1c-4d53-8841-feb97d6c05b4",
+         "triggered_by_score" : 0,
+         "children" : [],
+         "id" : "82a042e7-fcde-49e2-995f-b536ca96d703",
+         "description" : {
+            "en" : ""
+         },
+         "triggered_by_options" : [],
+         "label" : {
+            "en" : "Final step"
+         }
+      }
+   ],
+   "export_date" : "2017-08-29T09:20:19.391592Z",
+   "editable" : true,
+   "show_steps_navigation_bar" : true
 }

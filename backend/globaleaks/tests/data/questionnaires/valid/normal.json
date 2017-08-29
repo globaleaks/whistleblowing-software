@@ -12,12 +12,14 @@
           "attrs": {}, 
           "children": [], 
           "description": {
-            "en": ""
+            "en": "Select your favorite letter",
+            "it": "Scegle la tua lettera preferita"
           }, 
           "editable": true, 
           "fieldgroup_id": "", 
           "hint": {
-            "en": "Pick one choice."
+            "en": "Pick one choice.",
+            "it": "Prende una sola."
           }, 
           "id": "a598920b-0477-4ddb-818a-004c945e810d", 
           "instance": "instance", 
@@ -52,7 +54,8 @@
             {
               "id": "c23121fb-51da-4128-8c57-bb1b6406f8e0", 
               "label": {
-                "en": "c"
+                "en": "c",
+                "it": "cee"
               }, 
               "presentation_order": 2, 
               "score_points": 0, 
@@ -129,7 +132,90 @@
           "width": 0, 
           "x": 0, 
           "y": 0
-        }
+        },
+        {
+               "triggered_by_score" : 0,
+               "attrs" : {
+                  "agreement_statement" : {
+                     "value" : {
+                        "en" : "By agreeing you are bound by law",
+                        "it" : "La lege ti constringe"
+                     },
+                     "type" : "localized",
+                     "name" : "agreement_statement",
+                     "id" : "abd335c6-8613-45f9-9684-2e5ecd6e320e"
+                  },
+                  "clause" : {
+                     "name" : "clause",
+                     "id" : "187d5fcd-cd44-448d-9447-a642284676b7",
+                     "value" : {
+                        "en" : "The privacy terms are described elsewhere",
+                        "it" : "Puoi trovare i termini privacy in un'altra parte"
+                     },
+                     "type" : "localized"
+                  }
+               },
+               "required" : true,
+               "stats_enabled" : false,
+               "preview" : true,
+               "hint" : {
+                  "en" : "Try clicking accept"
+               },
+               "multi_entry" : false,
+               "triggered_by_options" : [],
+               "width" : 0,
+               "template_id" : "",
+               "description" : {
+                  "en" : "This is a TOS to agree to"
+               },
+               "id" : "5d73a114-6a02-45f4-a7b6-8410f3143269",
+               "fieldgroup_id" : "",
+               "children" : [],
+               "multi_entry_hint" : {
+                  "en" : ""
+               },
+               "x" : 0,
+               "instance" : "instance",
+               "options" : [],
+               "label" : {
+                  "en" : "TOS bubkiss",
+                  "ca" : "TSO merda"
+               },
+               "type" : "tos",
+               "y" : 0,
+               "editable" : true,
+               "step_id" : "3aefbee3-cca3-4db2-b9f9-b22f64fc186e"
+      },
+      {"attrs": {"max_date": {"id": "2433c887-b45f-4e6d-8314-843d8b7e718d",
+                                                     "name": "max_date",
+                                                     "type": "unicode",
+                                                     "value": "2017-08-24T22:00:00.000Z"},
+                                       "min_date": {"id": "4d0f0253-8593-4134-b5ca-e3d4fda9e3ce",
+                                                     "name": "min_date",
+                                                     "type": "unicode",
+                                                     "value": "2017-08-15T22:00:00.000Z"}},
+                            "children": [],
+                            "description": {"en": ""},
+                            "editable": true,
+                            "fieldgroup_id": "",
+                            "hint": {"en": ""},
+                            "id": "78c62196-a402-4c38-85f5-f74cd43bc5d8",
+                            "instance": "instance",
+                            "label": {"en": "What year is it?"},
+                            "multi_entry": true,
+                            "multi_entry_hint": {"en": "More answers?"},
+                            "options": [],
+                            "preview": false,
+                            "required": true,
+                            "stats_enabled": false,
+                            "step_id": "3aefbee3-cca3-4db2-b9f9-b22f64fc186e",
+                            "template_id": "",
+                            "triggered_by_options": [],
+                            "triggered_by_score": 0,
+                            "type": "date",
+                            "width": 0,
+                            "x": 0,
+                            "y": 0}
       ], 
       "description": {
         "en": ""
