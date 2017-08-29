@@ -57,7 +57,6 @@ class Model(Storm):
         """
         Updated Models attributes from dict.
         """
-        # May raise ValueError and AttributeError
         if values is None:
             return
 
@@ -523,19 +522,16 @@ class FieldAttr(ModelWithID):
     # FieldAttr is a special model.
     # Here we consider all its attributes as unicode, then
     # depending on the type we handle the value as a localized value
-    unicode_keys = ['field_id', 'name', 'type', 'value']
+    unicode_keys = ['field_id', 'name', 'type']
 
     def update(self, values=None):
         """
         Updated ModelWithIDs attributes from dict.
         """
-        # May raise ValueError and AttributeError
+        super(FieldAttr, self).update(values)
+
         if values is None:
             return
-
-        setattr(self, 'field_id', unicode(values['field_id']))
-        setattr(self, 'name', unicode(values['name']))
-        setattr(self, 'type', unicode(values['type']))
 
         if self.type == 'localized':
             value = values['value']
@@ -543,7 +539,6 @@ class FieldAttr(ModelWithID):
 
             if previous and isinstance(previous, dict):
                 previous.update(value)
-                setattr(self, 'value', previous)
             else:
                 setattr(self, 'value', value)
         else:
