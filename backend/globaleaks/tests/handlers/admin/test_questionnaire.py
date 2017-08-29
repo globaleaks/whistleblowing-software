@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
+import exceptions
 import json
 import os
 
+import sqlite3
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.handlers.admin import questionnaire
@@ -12,7 +14,6 @@ from globaleaks.models import Questionnaire
 from globaleaks.rest import errors
 from globaleaks.rest.errors import InternalServerError
 from globaleaks.tests import helpers
-from globaleaks.tests.helpers import get_dummy_fieldoption_list
 
 # special guest:
 stuff = u"³²¼½¬¼³²"
@@ -59,23 +60,29 @@ class TestQuestionnaireCollection(helpers.TestHandler):
                 with open(os.path.join(self.test_data_dir, 'valid', 'custom_template.json')) as f:
                     template = json.loads(f.read())
                 h = self.request(template, role='admin', handler_cls=FieldCollection)
-                yield h.post()
+                res = yield h.post()
 
             handler = self.request(new_q, role='admin')
-            handler.request.args = {'multilang': ['1']}
+            handler.request.language = None
 
             resp_q = yield handler.post()
+            resp_q = json.loads(json.dumps(resp_q))
+
+            new_q.pop('export_date')
+            new_q.pop('export_version')
             self.assertEqual(new_q, resp_q)
 
+    @inlineCallbacks
     def test_post_invalid_json(self):
         self.test_data_dir = os.path.join(helpers.DATA_DIR, 'questionnaires')
 
         invalid_test_cases = [
-            ('cyclic_groupid.json', InternalServerError),
-            ('duplicate_ids.json', InternalServerError),
-            ('invalid_ids.json', InternalServerError),
-            ('invalid_attrs.json', InternalServerError),
-            ('invalid_opts.json', InternalServerError),
+            ('cyclic_groupid.json', errors.InvalidInputFormat),
+            ('duplicate_ids.json', sqlite3.IntegrityError),
+            ('malformed_ids.json', sqlite3.IntegrityError),
+            ('malformed_attrs.json', sqlite3.IntegrityError),
+            ('malformed_opts.json', exceptions.OverflowError),
+            ('blank_ids.json', sqlite3.IntegrityError),
         ]
 
         for fname, err in invalid_test_cases:
@@ -84,9 +91,9 @@ class TestQuestionnaireCollection(helpers.TestHandler):
                 new_q = json.loads(f.read())
 
             handler = self.request(new_q, role='admin')
-            handler.request.args = {'multilang': ['1']}
+            handler.request.language = None
 
-            yield self.assertFailure(err, handler.post)
+            yield self.assertFailure(handler.post(), err)
 
 
 class TestQuestionnaireInstance(helpers.TestHandlerWithPopulatedDB):
@@ -111,28 +118,3 @@ class TestQuestionnaireInstance(helpers.TestHandlerWithPopulatedDB):
         yield handler.delete(self.dummyQuestionnaire['id'])
         yield self.assertFailure(handler.delete(self.dummyQuestionnaire['id']),
                                  errors.QuestionnaireIdNotFound)
-
-    @inlineCallbacks
-    def test_export_import(self):
-        handler = self.request(role='admin')
-
-        raw_s = yield handler.get(self.dummyQuestionnaire['id'])
-        q = json.loads(raw_s)
-
-        q['name'] = 'testing_quests'
-        q['id'] =   'testing_quests_id'
-
-        q['steps'][0]['type'] = 'multichoice'
-        q['steps'][0]['options'] = get_dummy_fieldoption_list()
-
-        sub_handler = self.request(q, role='admin',
-                                   handler_cls=questionnaire.QuestionnairesCollection)
-        sub_handler.request.args = {'multilang': ['1']}
-
-        yield sub_handler.post()
-
-        # TODO get the questionnaire and assert that is the same as the one orignially returned
-        yield handler.get(self.dummyQuestionnaire['id'])
-
-        self.assertEqual(raw_s, raw_s_fin)
-

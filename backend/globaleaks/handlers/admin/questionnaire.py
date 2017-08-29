@@ -77,7 +77,7 @@ def db_create_questionnaire(store, questionnaire_dict, language):
     store.add(q)
 
     for step in questionnaire_dict['steps']:
-        db_create_step(store, step)
+        db_create_step(store, step, language)
 
     return q
 
@@ -168,12 +168,12 @@ class QuestionnairesCollection(BaseHandler):
         Errors: InvalidInputFormat, ReceiverIdNotFound
         """
         validator = requests.AdminQuestionnaireDesc
-        if language is None:
+        if self.request.language is None:
             validator = requests.AdminQuestionnaireDescRaw
 
         request = self.validate_message(self.request.content.read(), validator)
 
-        return create_questionnaire(request, language)
+        return create_questionnaire(request, self.request.language)
 
 
 class QuestionnaireInstance(BaseHandler):
@@ -214,4 +214,4 @@ class QuestionnaireInstance(BaseHandler):
         q = yield get_questionnaire(questionnaire_id, None)
         q['export_date'] = datetime_to_ISO8601(datetime_now())
         q['export_version'] = QUESTIONNAIRE_EXPORT_VERSION
-        returnValue(json.dumps(q, sort_keys=True, indent=2))
+        returnValue(q)
