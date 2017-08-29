@@ -36,8 +36,7 @@ class Rosetta(object):
         ret = {}
 
         for key in self._localized_keys:
-            value = {language: obj[key]} if key in obj else {language: ''}
-            ret[key] = value
+            ret[key] = {language: obj[key]} if key in obj else {language: ''}
 
         return ret
 

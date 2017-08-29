@@ -19,6 +19,7 @@ def natnum_v(self, attr, value):
         raise errors.InvalidModelInput("natnum_v: expected val to be in Z+ (%s:%d)" % (attr, value))
     return value
 
+
 class range_v(object):
     def __call__(self, model_obj, attr, value):
         if not isinstance(value, int):
@@ -32,6 +33,7 @@ class range_v(object):
     def __init__(self, start, stop):
         self.start = start
         self.stop = stop
+
 
 def shorttext_v(self, attr, value):
     if isinstance(value, str):
@@ -73,7 +75,7 @@ def dict_v(self, attr, value):
     if not isinstance(value, dict):
         raise errors.InvalidModelInput("dict_v: expected dict (%s)" % attr)
 
-    for key, subvalue in value.iteritems():
+    for key, subvalue in value.items():
         if isinstance(subvalue, str):
             subvalue = unicode(subvalue)
 
@@ -100,7 +102,7 @@ def dict_v(self, attr, value):
 def shortlocal_v(self, attr, value):
     value = dict_v(self, attr, value)
 
-    for _, text in value.iteritems():
+    for _, text in value.items():
         shorttext_v(None, None, text)
 
     return value
@@ -109,7 +111,7 @@ def shortlocal_v(self, attr, value):
 def longlocal_v(self, attr, value):
     value = dict_v(self, attr, value)
 
-    for _, text in value.iteritems():
+    for _, text in value.items():
         longtext_v(None, attr, text)
 
     return value
