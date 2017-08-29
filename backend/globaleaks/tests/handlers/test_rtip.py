@@ -22,8 +22,8 @@ class TestRTipInstance(helpers.TestHandlerWithPopulatedDB):
 
     @inlineCallbacks
     def test_get(self):
-        rtips_desc = yield self.get_rtips()
-        for rtip_desc in rtips_desc:
+        rtip_descs = yield self.get_rtips()
+        for rtip_desc in rtip_descs:
             handler = self.request(role='receiver', user_id = rtip_desc['receiver_id'])
             yield handler.get(rtip_desc['id'])
 
@@ -33,9 +33,9 @@ class TestRTipInstance(helpers.TestHandlerWithPopulatedDB):
 
         yield self.force_itip_expiration()
 
-        rtips_desc = yield self.get_rtips()
+        rtip_descs = yield self.get_rtips()
 
-        for rtip_desc in rtips_desc:
+        for rtip_desc in rtip_descs:
             self.assertTrue(rtip_desc['expiration_date'] == '1970-01-01T00:00:00Z')
             operation = {
               'operation': 'postpone',
@@ -46,7 +46,7 @@ class TestRTipInstance(helpers.TestHandlerWithPopulatedDB):
             yield handler.put(rtip_desc['id'])
             self.assertEqual(handler.request.code, 200)
 
-        rtips_desc = yield self.get_rtips()
+        rtip_descs = yield self.get_rtips()
         for rtip_desc in rtip_descs:
             self.assertTrue(ISO8601_to_datetime(rtip_desc['expiration_date']) >= now)
 
@@ -58,9 +58,9 @@ class TestRTipInstance(helpers.TestHandlerWithPopulatedDB):
 
         yield self.set_contexts_timetolive(-1)
 
-        rtips_desc = yield self.get_rtips()
+        rtip_descs = yield self.get_rtips()
 
-        for rtip_desc in rtips_desc:
+        for rtip_desc in rtip_descs:
             self.assertTrue(rtip_desc['expiration_date'] == '1970-01-01T00:00:00Z')
             operation = {
               'operation': 'postpone',
@@ -71,15 +71,15 @@ class TestRTipInstance(helpers.TestHandlerWithPopulatedDB):
             yield handler.put(rtip_desc['id'])
             self.assertEqual(handler.request.code, 200)
 
-        rtips_desc = yield self.get_rtips()
+        rtip_descs = yield self.get_rtips()
         for rtip_desc in rtip_descs:
             self.assertTrue(rtip_desc['expiration_date'] == '3000-01-01T00:00:00Z')
 
 
     @inlineCallbacks
     def switch_enabler(self, key):
-        rtips_desc = yield self.get_rtips()
-        for rtip_desc in rtips_desc:
+        rtip_descs = yield self.get_rtips()
+        for rtip_desc in rtip_descs:
             operation = {
                 'operation': 'set',
                 'args': {
@@ -143,8 +143,8 @@ class TestRTipInstance(helpers.TestHandlerWithPopulatedDB):
 
     @inlineCallbacks
     def test_put_label(self):
-        rtips_desc = yield self.get_rtips()
-        for rtip_desc in rtips_desc:
+        rtip_descs = yield self.get_rtips()
+        for rtip_desc in rtip_descs:
             operation = {
               'operation': 'set',
               'args': {
@@ -162,8 +162,8 @@ class TestRTipInstance(helpers.TestHandlerWithPopulatedDB):
 
     @inlineCallbacks
     def test_put_silence_notify(self):
-        rtips_desc = yield self.get_rtips()
-        for rtip_desc in rtips_desc:
+        rtip_descs = yield self.get_rtips()
+        for rtip_desc in rtip_descs:
 
             operation = {
               'operation': 'set',
@@ -182,33 +182,33 @@ class TestRTipInstance(helpers.TestHandlerWithPopulatedDB):
 
     @inlineCallbacks
     def test_delete(self):
-        rtips_desc = yield self.get_rtips()
-        self.assertEqual(len(rtips_desc), self.population_of_submissions * self.population_of_recipients)
+        rtip_descs = yield self.get_rtips()
+        self.assertEqual(len(rtip_descs), self.population_of_submissions * self.population_of_recipients)
 
         # we delete the first and then we verify that the second does not exist anymore
-        handler = self.request(role='receiver', user_id = rtips_desc[0]['receiver_id'])
-        yield handler.delete(rtips_desc[0]['id'])
+        handler = self.request(role='receiver', user_id = rtip_descs[0]['receiver_id'])
+        yield handler.delete(rtip_descs[0]['id'])
 
-        rtips_desc = yield self.get_rtips()
+        rtip_descs = yield self.get_rtips()
 
-        self.assertEqual(len(rtips_desc), self.population_of_submissions * self.population_of_recipients - self.population_of_recipients)
+        self.assertEqual(len(rtip_descs), self.population_of_submissions * self.population_of_recipients - self.population_of_recipients)
 
         yield self.test_model_count(models.SecureFileDelete, self.population_of_attachments)
 
 
     @inlineCallbacks
     def test_delete_unexistent_tip_by_existent_and_logged_receiver(self):
-        rtips_desc = yield self.get_rtips()
+        rtip_descs = yield self.get_rtips()
 
-        for rtip_desc in rtips_desc:
+        for rtip_desc in rtip_descs:
             handler = self.request(role='receiver', user_id = rtip_desc['receiver_id'])
             yield self.assertFailure(handler.delete("unexistent_tip"), errors.TipIdNotFound)
 
     @inlineCallbacks
     def test_delete_existent_tip_by_existent_and_logged_but_wrong_receiver(self):
-        rtips_desc = yield self.get_rtips()
+        rtip_descs = yield self.get_rtips()
 
-        for rtip_desc in rtips_desc:
+        for rtip_desc in rtip_descs:
             handler = self.request(role='receiver', user_id = rtip_desc['receiver_id'])
             yield self.assertFailure(handler.delete("unexistent_tip"), errors.TipIdNotFound)
 
@@ -227,8 +227,8 @@ class TestRTipCommentCollection(helpers.TestHandlerWithPopulatedDB):
             'content': "can you provide an evidence of what you are telling?",
         }
 
-        rtips_desc = yield self.get_rtips()
-        for rtip_desc in rtips_desc:
+        rtip_descs = yield self.get_rtips()
+        for rtip_desc in rtip_descs:
             handler = self.request(role='receiver', user_id = rtip_desc['receiver_id'], body=json.dumps(body))
             yield handler.post(rtip_desc['id'])
 
@@ -247,8 +247,8 @@ class TestReceiverMsgCollection(helpers.TestHandlerWithPopulatedDB):
             'content': "can you provide an evidence of what you are telling?",
         }
 
-        rtips_desc = yield self.get_rtips()
-        for rtip_desc in rtips_desc:
+        rtip_descs = yield self.get_rtips()
+        for rtip_desc in rtip_descs:
             handler = self.request(role='receiver', user_id = rtip_desc['receiver_id'], body=json.dumps(body))
             yield handler.post(rtip_desc['id'])
 
@@ -261,8 +261,8 @@ class TestReceiverFileDownload(helpers.TestHandlerWithPopulatedDB):
         yield self.perform_minimal_submission()
         yield DeliverySchedule().run()
 
-        rtips_desc = yield self.get_rtips()
-        for rtip_desc in rtips_desc:
+        rtip_descs = yield self.get_rtips()
+        for rtip_desc in rtip_descs:
             rfiles_desc = yield self.get_rfiles(rtip_desc['id'])
             for rfile_desc in rfiles_desc:
                 handler = self.request(role='receiver', user_id = rtip_desc['receiver_id'])
@@ -284,7 +284,7 @@ class TestIdentityAccessRequestsCollection(helpers.TestHandlerWithPopulatedDB):
             'request_motivation': ''
         }
 
-        rtips_desc = yield self.get_rtips()
-        for rtip_desc in rtips_desc:
+        rtip_descs = yield self.get_rtips()
+        for rtip_desc in rtip_descs:
             handler = self.request(role='receiver', user_id = rtip_desc['receiver_id'], body=json.dumps(body))
             yield handler.post(rtip_desc['id'])
