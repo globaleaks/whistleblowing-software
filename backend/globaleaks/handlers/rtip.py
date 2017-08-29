@@ -273,7 +273,7 @@ def delete_rtip(store, user_id, rtip_id):
     rtip = db_access_rtip(store, user_id, rtip_id)
 
     if not (GLSettings.memory_copy.can_delete_submission or
-                rtip.receiver.can_delete_submission):
+            rtip.receiver.can_delete_submission):
         raise errors.ForbiddenOperation
 
     db_delete_rtip(store, rtip)
@@ -284,21 +284,20 @@ def postpone_expiration_date(store, user_id, rtip_id):
     rtip = db_access_rtip(store, user_id, rtip_id)
 
     if not (GLSettings.memory_copy.can_postpone_expiration or
-                rtip.receiver.can_postpone_expiration):
+            rtip.receiver.can_postpone_expiration):
 
         raise errors.ExtendTipLifeNotEnabled
 
-    log.debug("Postpone check: Node %s, Receiver %s" % (
-       "True" if GLSettings.memory_copy.can_postpone_expiration else "False",
-       "True" if rtip.receiver.can_postpone_expiration else "False"
-    ))
+    log.debug("Postpone check: Node %s, Receiver %s",
+              "True" if GLSettings.memory_copy.can_postpone_expiration else "False",
+              "True" if rtip.receiver.can_postpone_expiration else "False")
 
     db_postpone_expiration_date(rtip)
 
-    log.debug(" [%s] in %s has postponed expiration time to %s" % (
-        rtip.receiver.user.name,
-        datetime_to_pretty_str(datetime_now()),
-        datetime_to_pretty_str(rtip.internaltip.expiration_date)))
+    log.debug(" [%s] in %s has postponed expiration time to %s",
+              rtip.receiver.user.name,
+              datetime_to_pretty_str(datetime_now()),
+              datetime_to_pretty_str(rtip.internaltip.expiration_date))
 
 
 @transact

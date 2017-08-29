@@ -11,18 +11,6 @@ from twisted.internet.defer import inlineCallbacks
 
 
 class TestCleaningSched(helpers.TestGLWithPopulatedDB):
-    #population_of_submissions = 10
-
-    @transact
-    def force_wbtip_expiration(self, store):
-        for itip in store.find(models.InternalTip):
-            itip.wb_last_access = datetime_null()
-
-    @transact
-    def force_itip_expiration(self, store):
-        for itip in store.find(models.InternalTip):
-            itip.expiration_date = datetime_null()
-
     @transact
     def check0(self, store):
         self.assertTrue(os.listdir(GLSettings.submission_path) == [])

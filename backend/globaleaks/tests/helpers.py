@@ -654,6 +654,18 @@ class TestGLWithPopulatedDB(TestGL):
         yield self.perform_submission_uploads()
         yield self.perform_submission_actions()
 
+    @transact
+    def force_wbtip_expiration(self, store):
+        store.find(models.InternalTip).set(wb_last_access = datetime_null())
+
+    @transact
+    def force_itip_expiration(self, store):
+        store.find(models.InternalTip).set(expiration_date = datetime_null())
+
+    @transact
+    def set_contexts_timetolive(self, store, ttl):
+        store.find(models.Context).set(tip_timetolive = ttl)
+
 
 class TestHandler(TestGLWithPopulatedDB):
     """
