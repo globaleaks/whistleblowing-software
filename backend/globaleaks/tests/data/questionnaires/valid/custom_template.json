@@ -78,7 +78,7 @@
    "id" : "a411f2bf-cc48-4053-a04d-eb49dcaba061",
    "y" : 0,
    "width" : 0,
-   "description" : "",
+   "description" : "Describe the type of accident you had",
    "required" : false,
    "attrs" : {},
    "step_id" : "",
