@@ -8,7 +8,7 @@ import json
 
 from twisted.internet.defer import inlineCallbacks, returnValue
 
-from globaleaks import models
+from globaleaks import models, QUESTIONNAIRE_EXPORT_VERSION
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.admin.field import db_create_field
 from globaleaks.handlers.admin.step import db_create_step
@@ -163,8 +163,6 @@ class QuestionnairesCollection(BaseHandler):
         """
         Create a new questionnaire.
 
-        Parameters:
-            ?multilang=(0|1) selects whether the questionnaire passed contains all langs, steps, and fields
         Request: AdminQuestionnaireDesc
         Response: AdminQuestionnaireDesc
         Errors: InvalidInputFormat, ReceiverIdNotFound
@@ -215,4 +213,5 @@ class QuestionnaireInstance(BaseHandler):
         """
         q = yield get_questionnaire(questionnaire_id, None)
         q['export_date'] = datetime_to_ISO8601(datetime_now())
+        q['export_version'] = QUESTIONNAIRE_EXPORT_VERSION
         returnValue(json.dumps(q, sort_keys=True, indent=2))
