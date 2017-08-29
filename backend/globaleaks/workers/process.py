@@ -5,10 +5,11 @@ import signal
 import sys
 import traceback
 
-from globaleaks.utils.process import set_proc_title, set_pdeathsig
-from globaleaks.utils.utility import log
 from twisted.internet import defer, reactor
 from twisted.internet.protocol import ProcessProtocol
+
+from globaleaks.utils.process import set_proc_title, set_pdeathsig
+from globaleaks.utils.utility import log
 
 
 class Process(object):

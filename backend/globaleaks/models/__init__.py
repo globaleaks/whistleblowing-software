@@ -49,6 +49,7 @@ class Model(Storm):
     datetime_keys = []
     json_keys = []
     optional_references = []
+    list_keys = []
 
     def __init__(self, values=None, migrate=False):
         self.update(values)
@@ -132,7 +133,11 @@ class Model(Storm):
         if not_allowed_keys:
             raise KeyError('Invalid keys: {}'.format(not_allowed_keys))
 
-        return {key: getattr(self, key) for key in keys & self._public_attrs}
+        ret = {key: getattr(self, key) for key in keys & self._public_attrs}
+        for k in self.list_keys:
+            ret[k] = []
+
+        return ret
 
 
 class ModelWithID(Model):
@@ -161,7 +166,7 @@ class User(ModelWithID):
     deletable = Bool(default=True)
 
     name = Unicode(validator=shorttext_v, default=u'')
-    description = JSON(validator=longlocal_v, default={})
+    description = JSON(validator=longlocal_v, default='{}')
 
     public_name = Unicode(validator=shorttext_v, default=u'')
 
@@ -212,17 +217,17 @@ class Context(ModelWithID):
     tip_timetolive = Int(validator=range_v(-1, 5*365), default=15) # in days, -1 indicates no expiration
 
     # localized strings
-    name = JSON(validator=shortlocal_v, default={})
-    description = JSON(validator=longlocal_v, default={})
-    recipients_clarification = JSON(validator=longlocal_v, default={})
+    name = JSON(validator=shortlocal_v, default='{}')
+    description = JSON(validator=longlocal_v, default='{}')
+    recipients_clarification = JSON(validator=longlocal_v, default='{}')
 
-    status_page_message = JSON(validator=longlocal_v, default={})
+    status_page_message = JSON(validator=longlocal_v, default='{}')
 
     show_receivers_in_alphabetical_order = Bool(default=False)
 
     presentation_order = Int(default=0)
 
-    questionnaire_id = Unicode()
+    questionnaire_id = Unicode(default=u'')
 
     img_id = Unicode()
 
@@ -251,6 +256,8 @@ class Context(ModelWithID):
       'enable_attachments',
       'enable_rc_to_wb_files'
     ]
+
+    list_keys = ['receivers']
 
 class InternalTip(ModelWithID):
     """
@@ -591,11 +598,10 @@ class Step(ModelWithID):
 
 
 class Questionnaire(ModelWithID):
-    name = Unicode()
+    name = Unicode(default=u'')
     show_steps_navigation_bar = Bool(default=False)
     steps_navigation_requires_completion = Bool(default=False)
     enable_whistleblower_identity = Bool(default=False)
-
     editable = Bool(default=True)
 
     unicode_keys = ['name']
@@ -605,6 +611,8 @@ class Questionnaire(ModelWithID):
       'show_steps_navigation_bar',
       'steps_navigation_requires_completion'
     ]
+
+    list_keys = ['steps']
 
 
 class ArchivedSchema(Model):

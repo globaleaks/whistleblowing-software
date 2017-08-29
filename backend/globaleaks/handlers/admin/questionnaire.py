@@ -73,7 +73,7 @@ def db_create_questionnaire(store, questionnaire_dict, language):
 
     store.add(q)
 
-    for step in questionnaire_dict['steps']:
+    for step in questionnaire_dict.get('steps', []):
         db_create_step(store, step, language)
 
     return q
@@ -115,7 +115,7 @@ def update_questionnaire(store, questionnaire_id, request, language):
     Returns:
             (dict) the serialized object updated
     """
-    questionnaire = store.find(models.Questionnaire, models.Questionnaire.id == questionnaire_id).one()
+    questionnaire = store.find(models.Questionnaire, models.Questionnaire.id == unicode(questionnaire_id)).one()
     if not questionnaire:
         raise errors.QuestionnaireIdNotFound
 
@@ -133,7 +133,7 @@ def delete_questionnaire(store, questionnaire_id):
     Args:
         questionnaire_id: the questionnaire id of the questionnaire to remove.
     """
-    questionnaire = store.find(models.Questionnaire, models.Questionnaire.id == questionnaire_id).one()
+    questionnaire = store.find(models.Questionnaire, models.Questionnaire.id == unicode(questionnaire_id)).one()
     if not questionnaire:
         log.err("Invalid questionnaire requested in removal")
         raise errors.QuestionnaireIdNotFound
@@ -164,7 +164,9 @@ class QuestionnairesCollection(BaseHandler):
         Response: AdminQuestionnaireDesc
         Errors: InvalidInputFormat, ReceiverIdNotFound
         """
-        validator = requests.AdminQuestionnaireDesc if self.request.language is not None else requests.AdminQuestionnaireDescRaw
+        validator = requests.AdminQuestionnaireDesc
+        if self.request.language is None:
+            validator = requests.AdminQuestionnaireDescRaw
 
         request = self.validate_message(self.request.content.read(), validator)
 

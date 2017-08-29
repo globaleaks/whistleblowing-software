@@ -24,6 +24,7 @@ from globaleaks.handlers.admin.questionnaire import get_questionnaire, db_get_qu
 from globaleaks.handlers.admin.user import create_admin_user, create_custodian_user
 from globaleaks.handlers.submission import create_submission
 from globaleaks.rest.apicache import GLApiCache
+from globaleaks.rest import errors
 from globaleaks.settings import GLSettings
 from globaleaks.security import GLSecureTemporaryFile
 from globaleaks.utils import tempdict, token, utility
@@ -48,7 +49,7 @@ from datetime import timedelta
 from twisted.web.test.requesthelper import DummyRequest
 from twisted.internet import threads, defer, task
 from twisted.internet.address import IPv4Address
-from twisted.internet.defer import inlineCallbacks, Deferred
+from twisted.internet.defer import inlineCallbacks, Deferred, returnValue
 from twisted.trial import unittest
 from twisted.internet.protocol import ProcessProtocol
 from storm.twisted.testing import FakeThreadPool
@@ -170,12 +171,6 @@ def get_dummy_field():
         'width': 0,
         'triggered_by_score': 0
     }
-
-
-def get_dummy_questionnaire():
-    q = read_json_file(os.path.join(GLSettings.questionnaires_path, 'default.json'))
-    q['id'] = u''
-    return q
 
 
 files_count = 0
@@ -672,6 +667,14 @@ class TestHandler(TestGLWithPopulatedDB):
     :attr _handler: handler class to be tested
     """
     _handler = None
+    _test_desc = None
+    #_test_desc = {
+    #  'model': Context
+    #  'create': context.create_context
+    #  'data': {
+    #
+    #  }
+    #}
 
     @inlineCallbacks
     def setUp(self):
@@ -807,6 +810,65 @@ class TestHandler(TestGLWithPopulatedDB):
         Constructs a request_dec parser of a handler that uses a safe_set in its serialization
         """
         return {k : v for k, v in request_desc.iteritems() if k in safe_set}
+
+    def get_dummy_request(self):
+        return self._test_desc['model']().dict()
+
+
+class TestCollectionHandler(TestHandler):
+    @inlineCallbacks
+    def test_get(self):
+        if self._test_desc is None:
+            return
+
+        data = self.get_dummy_request()
+
+        data = yield self._test_desc['create'](data, 'en')
+
+        handler = self.request(role='admin')
+
+
+    @inlineCallbacks
+    def test_post(self):
+        if self._test_desc is None:
+            return
+
+        data = self.get_dummy_request()
+
+        handler = self.request(data, role='admin')
+
+        data = yield handler.post()
+
+
+class TestInstanceHandler(TestHandler):
+    @inlineCallbacks
+    def test_put(self):
+        if self._test_desc is None:
+            return
+
+        data = self.get_dummy_request()
+
+        data = yield self._test_desc['create'](data, 'en')
+
+        handler = self.request(data, role='admin')
+        data = yield handler.put(data['id'])
+
+    @inlineCallbacks
+    def test_delete(self):
+        if self._test_desc is None:
+            return
+
+        data = self.get_dummy_request()
+
+        data = yield self._test_desc['create'](data, 'en')
+
+        handler = self.request(data, role='admin')
+
+        yield handler.delete(data['id'])
+
+        yield self.assertFailure(handler.delete(data['id']),
+                                 errors.ResourceNotFound)
+
 
 
 class TestHandlerWithPopulatedDB(TestHandler):

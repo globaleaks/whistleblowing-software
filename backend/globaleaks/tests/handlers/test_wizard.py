@@ -17,10 +17,6 @@ class TestWizard(helpers.TestHandler):
     def setUp(self):
         yield helpers.TestHandler.setUp(self)
 
-        # FIX currently wizard create contexts only with default fields
-        # so only valid requests are the one with steps = []
-        self.dummyContext['steps'] = []
-
         admin = {
             'old_password': 'globaleaks',
             'password': 'P4ssword',  # <- hackingteam password! :)
@@ -42,8 +38,6 @@ class TestWizard(helpers.TestHandler):
 
     @inlineCallbacks
     def test_fail_after_first_post(self):
-        self.dummyContext['steps'] = []
-
         handler = self.request(self.wizard_blob)
         yield handler.post()
 

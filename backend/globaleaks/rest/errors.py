@@ -90,7 +90,7 @@ class ResourceNotFound(GLException):
     status_code = 404  # Not Found
 
 
-class ContextIdNotFound(GLException):
+class ContextIdNotFound(ResourceNotFound):
     """
     The context_id used does not exist in the database.
     """
@@ -99,7 +99,7 @@ class ContextIdNotFound(GLException):
     status_code = 404  # Not Found
 
 
-class QuestionnaireIdNotFound(GLException):
+class QuestionnaireIdNotFound(ResourceNotFound):
     """
     The questionnaire_id used does not exist in the database.
     """
@@ -108,7 +108,7 @@ class QuestionnaireIdNotFound(GLException):
     status_code = 404  # Not Found
 
 
-class TipIdNotFound(GLException):
+class TipIdNotFound(ResourceNotFound):
     """
     The Tip Id requested does not exist in the database.
     """
@@ -117,7 +117,7 @@ class TipIdNotFound(GLException):
     status_code = 404  # Not Found
 
 
-class TipReceiptNotFound(GLException):
+class TipReceiptNotFound(ResourceNotFound):
     """
     The WhistleBlower receipt is not related to any of the whistleblower tips
     """
@@ -126,7 +126,7 @@ class TipReceiptNotFound(GLException):
     status_code = 404  # Not Found
 
 
-class StepIdNotFound(GLException):
+class StepIdNotFound(ResourceNotFound):
     """
     The Step Id requested does not exist in the database.
     """
@@ -145,7 +145,7 @@ class InvalidModelInput(GLException):
         self.reason = "Invalid Model Input [%s]" % wrong_source
         self.arguments = [wrong_source]
 
-class WBFileIdNotFound(GLException):
+class WBFileIdNotFound(ResourceNotFound):
     """
     The wbfile_id used do not exist in the database.
     """
@@ -153,7 +153,7 @@ class WBFileIdNotFound(GLException):
     error_code = 17
     status_code = 404 # Not Found
 
-class UserIdNotFound(GLException):
+class UserIdNotFound(ResourceNotFound):
     """
     Unable to find a user with the specified id.
     """
@@ -162,7 +162,7 @@ class UserIdNotFound(GLException):
     status_code = 404  # Not Found
 
 
-class AdminIdNotFound(GLException):
+class AdminIdNotFound(ResourceNotFound):
     """
     Unable to find an admin with the specified id.
     """
@@ -171,7 +171,7 @@ class AdminIdNotFound(GLException):
     status_code = 404  # Not Found
 
 
-class CustodianIdNotFound(GLException):
+class CustodianIdNotFound(ResourceNotFound):
     """
     Unable to find a custodian with the specified id.
     """
@@ -180,7 +180,7 @@ class CustodianIdNotFound(GLException):
     status_code = 404  # Not Found
 
 
-class ReceiverIdNotFound(GLException):
+class ReceiverIdNotFound(ResourceNotFound):
     """
     Unable to find a receiver with the specified id.
     """
@@ -230,7 +230,7 @@ class ForbiddenOperation(GLException):
     status_code = 403  # Forbidden
 
 
-class FileIdNotFound(GLException):
+class FileIdNotFound(ResourceNotFound):
     """
     The requested file Id do not exist in the database
     """
@@ -239,7 +239,7 @@ class FileIdNotFound(GLException):
     status_code = 404  # Not Found
 
 
-class ShortURLIdNotFound(GLException):
+class ShortURLIdNotFound(ResourceNotFound):
     """
     The requested shorturl id do not exist in the database
     """
@@ -349,7 +349,7 @@ class ExtendTipLifeNotEnabled(GLException):
     status_code = 403
 
 
-class StaticFileNotFound(GLException):
+class StaticFileNotFound(ResourceNotFound):
     """
     It has been requested an operation on a non existent static file
     """
@@ -358,7 +358,7 @@ class StaticFileNotFound(GLException):
     status_code = 404
 
 
-class LangFileNotFound(GLException):
+class LangFileNotFound(ResourceNotFound):
     """
     It has been requested an operation on a non existent language file
     """
@@ -385,13 +385,13 @@ class SubmissionDisabled(GLException):
 # UNUSED ERROR CODE 53, 54, 55, 56, 57 HERE!
 
 
-class FieldIdNotFound(GLException):
+class FieldIdNotFound(ResourceNotFound):
     error_code = 58
     status_code = 404
     reason = "Not found a field with the specified id"
 
 
-class ModelNotFound(GLException):
+class ModelNotFound(ResourceNotFound):
     """
     Error class for a generic model
     """
