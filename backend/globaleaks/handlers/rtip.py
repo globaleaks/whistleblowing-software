@@ -10,6 +10,9 @@ import os
 import string
 from storm.expr import In
 
+from twisted.internet import threads
+from twisted.internet.defer import inlineCallbacks
+
 from globaleaks.handlers.base import BaseHandler, \
     directory_traversal_check, write_upload_plaintext_to_disk
 from globaleaks.handlers.custodian import serialize_identityaccessrequest
@@ -24,10 +27,8 @@ from globaleaks.models import serializers, \
 from globaleaks.orm import transact
 from globaleaks.rest import errors, requests
 from globaleaks.settings import GLSettings
-from globaleaks.utils.utility import log, get_expiration, datetime_now, \
+from globaleaks.utils.utility import log, get_expiration, datetime_now, datetime_never, \
     datetime_to_ISO8601, datetime_to_pretty_str
-from twisted.internet import threads
-from twisted.internet.defer import inlineCallbacks
 
 
 def receiver_serialize_rfile(receiverfile):
@@ -259,6 +260,8 @@ def db_postpone_expiration_date(rtip):
     if rtip.internaltip.context.tip_timetolive > -1:
         rtip.internaltip.expiration_date = \
             get_expiration(rtip.internaltip.context.tip_timetolive)
+    else:
+        rtip.internaltip.expiration_date = datetime_never()
 
 
 @transact

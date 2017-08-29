@@ -996,10 +996,10 @@ factory('AdminUtils', ['AdminContextResource', 'AdminQuestionnaireResource', 'Ad
       },
 
       getPostponeDate: function(ttl) {
-        var e = new Date(new Date().getTime());
-        e.setUTCHours(0, 0, 0, 0);
-        e.setDate(ttl + 1);
-        return e;
+        var date = new Date();
+        date.setDate(date.getDate() + ttl + 1);
+        date.setUTCHours(0, 0, 0, 0);
+        return date;
       },
 
       readFileAsText: function (file) {
