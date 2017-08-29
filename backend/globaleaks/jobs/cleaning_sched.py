@@ -66,7 +66,8 @@ class CleaningSchedule(LoopingJob):
                                                    models.ReceiverTip.receiver_id == models.Receiver.id,
                                                    models.Receiver.id == receiver.id)
 
-            if rtips.count() == 0:
+            count = rtips.count()
+            if count == 0:
               continue
 
             user = receiver.user
@@ -76,7 +77,7 @@ class CleaningSchedule(LoopingJob):
 
             receiver_desc = admin_serialize_receiver(store, receiver, language)
 
-            if rtips.count() == 1:
+            if count == 1:
                 rtip = rtips[0]
                 tip_desc = serialize_rtip(store, rtip, user.language)
                 context_desc = admin_serialize_context(store, rtip.internaltip.context, language)

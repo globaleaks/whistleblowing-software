@@ -1,13 +1,15 @@
 # -*- coding: utf-8 -*-
 import json
 
+from twisted.internet.defer import inlineCallbacks
+
 from globaleaks import models
 from globaleaks.handlers import rtip
 from globaleaks.jobs.delivery_sched import DeliverySchedule
 from globaleaks.rest import errors
 from globaleaks.settings import GLSettings
 from globaleaks.tests import helpers
-from twisted.internet.defer import inlineCallbacks
+from globaleaks.utils.utility import datetime_now, ISO8601_to_datetime
 
 
 class TestRTipInstance(helpers.TestHandlerWithPopulatedDB):
@@ -23,14 +25,18 @@ class TestRTipInstance(helpers.TestHandlerWithPopulatedDB):
         rtips_desc = yield self.get_rtips()
         for rtip_desc in rtips_desc:
             handler = self.request(role='receiver', user_id = rtip_desc['receiver_id'])
-
             yield handler.get(rtip_desc['id'])
 
     @inlineCallbacks
     def test_put_postpone(self):
-        rtips_desc = yield self.get_rtips()
-        for rtip_desc in rtips_desc:
+        now = datetime_now()
 
+        yield self.force_itip_expiration()
+
+        rtips_desc = yield self.get_rtips()
+
+        for rtip_desc in rtips_desc:
+            self.assertTrue(rtip_desc['expiration_date'] == '1970-01-01T00:00:00Z')
             operation = {
               'operation': 'postpone',
               'args': {}
@@ -40,10 +46,34 @@ class TestRTipInstance(helpers.TestHandlerWithPopulatedDB):
             yield handler.put(rtip_desc['id'])
             self.assertEqual(handler.request.code, 200)
 
-            handler = self.request(role='receiver', user_id = rtip_desc['receiver_id'])
-            yield handler.get(rtip_desc['id'])
+        rtips_desc = yield self.get_rtips()
+        for rtip_desc in rtip_descs:
+            self.assertTrue(ISO8601_to_datetime(rtip_desc['expiration_date']) >= now)
+
+    @inlineCallbacks
+    def test_put_postpone_never(self):
+        now = datetime_now()
+
+        yield self.force_itip_expiration()
+
+        yield self.set_contexts_timetolive(-1)
+
+        rtips_desc = yield self.get_rtips()
+
+        for rtip_desc in rtips_desc:
+            self.assertTrue(rtip_desc['expiration_date'] == '1970-01-01T00:00:00Z')
+            operation = {
+              'operation': 'postpone',
+              'args': {}
+            }
+
+            handler = self.request(operation, role='receiver', user_id = rtip_desc['receiver_id'])
+            yield handler.put(rtip_desc['id'])
             self.assertEqual(handler.request.code, 200)
 
+        rtips_desc = yield self.get_rtips()
+        for rtip_desc in rtip_descs:
+            self.assertTrue(rtip_desc['expiration_date'] == '3000-01-01T00:00:00Z')
 
 
     @inlineCallbacks
@@ -172,7 +202,6 @@ class TestRTipInstance(helpers.TestHandlerWithPopulatedDB):
 
         for rtip_desc in rtips_desc:
             handler = self.request(role='receiver', user_id = rtip_desc['receiver_id'])
-
             yield self.assertFailure(handler.delete("unexistent_tip"), errors.TipIdNotFound)
 
     @inlineCallbacks
@@ -181,7 +210,6 @@ class TestRTipInstance(helpers.TestHandlerWithPopulatedDB):
 
         for rtip_desc in rtips_desc:
             handler = self.request(role='receiver', user_id = rtip_desc['receiver_id'])
-
             yield self.assertFailure(handler.delete("unexistent_tip"), errors.TipIdNotFound)
 
 
@@ -202,7 +230,6 @@ class TestRTipCommentCollection(helpers.TestHandlerWithPopulatedDB):
         rtips_desc = yield self.get_rtips()
         for rtip_desc in rtips_desc:
             handler = self.request(role='receiver', user_id = rtip_desc['receiver_id'], body=json.dumps(body))
-
             yield handler.post(rtip_desc['id'])
 
 
@@ -223,7 +250,6 @@ class TestReceiverMsgCollection(helpers.TestHandlerWithPopulatedDB):
         rtips_desc = yield self.get_rtips()
         for rtip_desc in rtips_desc:
             handler = self.request(role='receiver', user_id = rtip_desc['receiver_id'], body=json.dumps(body))
-
             yield handler.post(rtip_desc['id'])
 
 
@@ -261,5 +287,4 @@ class TestIdentityAccessRequestsCollection(helpers.TestHandlerWithPopulatedDB):
         rtips_desc = yield self.get_rtips()
         for rtip_desc in rtips_desc:
             handler = self.request(role='receiver', user_id = rtip_desc['receiver_id'], body=json.dumps(body))
-
             yield handler.post(rtip_desc['id'])
