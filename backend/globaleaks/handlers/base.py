@@ -339,7 +339,7 @@ class BaseHandler(object):
         if isinstance(message_template, dict):
             success_check = 0
             keys_to_strip = []
-            for key, value in jmessage.iteritems():
+            for key, value in jmessage.items():
                 if key not in message_template:
                     # strip whatever is not validated
                     #
@@ -362,7 +362,7 @@ class BaseHandler(object):
             for key in keys_to_strip:
                 del jmessage[key]
 
-            for key, value in message_template.iteritems():
+            for key, value in message_template.items():
                 if key not in jmessage:
                     log.debug("Key %s expected but missing!",  key)
                     log.debug("Received schema %s - Expected %s",
@@ -386,8 +386,7 @@ class BaseHandler(object):
             return True
 
         elif isinstance(message_template, list):
-            ret = all(BaseHandler.validate_type(x, message_template[0]) for x in jmessage)
-            if not ret:
+            if not all(BaseHandler.validate_type(x, message_template[0]) for x in jmessage):
                 raise errors.InvalidInputFormat("Not every element in %s is %s" %
                                                 (jmessage, message_template[0]))
             return True
