@@ -46,14 +46,13 @@
             <i class="glyphicon glyphicon-time"></i>
             <span data-translate>Last update</span>
           </th>
-          <th data-ng-if="tip.timetolive > -1">
+          <th>
             <i class="glyphicon glyphicon-hourglass"></i>
             <span data-translate>Expiration date</span>
           </th>
-          <th data-ng-if="::session.role == 'receiver'">
+          <th data-ng-if="::session.role === 'receiver'">
             <i class="glyphicon glyphicon-hourglass"></i>
-            <span data-ng-if="!tip.wb_access_revoked" data-translate>Access expiration</span>
-            <span data-ng-if="tip.wb_access_revoked" data-translate>Whistleblower access</span>
+            <span data-translate>Access expiration</span>
           </th>
           <th>
             <i class="glyphicon glyphicon-send"></i>
@@ -71,8 +70,11 @@
           <td>{{::tip.context_name}}</td>
           <td>{{::tip.creation_date | date:'dd-MM-yyyy HH:mm'}}</td>
           <td>{{::tip.update_date | date:'dd-MM-yyyy HH:mm'}}</td>
-          <td data-ng-if="!Utils.isNever(tip.expiration_date)">{{::tip.expiration_date | date:'dd-MM-yyyy HH:mm'}}</td>
-          <td data-ng-if="::session.role == 'receiver'">
+          <td>
+            <span data-ng-if="!Utils.isNever(tip.expiration_date)">{{::tip.expiration_date | date:'dd-MM-yyyy HH:mm'}}</span>
+            <span data-ng-if="Utils.isNever(tip.expiration_date)" data-translate>Never</span>
+          </td>
+          <td data-ng-if="::session.role === 'receiver'">
             <span data-ng-if="!tip.wb_access_revoked"
               uib-popover="{{'Unless the whistleblower checks the submission by this time, their access to it will expire.' | translate}}"
               popover-placement="left" popover-trigger="'mouseenter'">
