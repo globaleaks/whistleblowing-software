@@ -74,7 +74,7 @@ def db_create_questionnaire(store, questionnaire_dict, language):
     store.add(q)
 
     for step in questionnaire_dict['steps']:
-        db_create_step(store, step)
+        db_create_step(store, step, language)
 
     return q
 
