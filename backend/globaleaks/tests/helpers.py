@@ -716,7 +716,7 @@ class TestHandler(TestGLWithPopulatedDB):
         # we need to reset GLApiCache to keep each test independent
         GLApiCache.invalidate()
 
-    def request(self, jbody=None, user_id=None, role=None, headers=None, body='', path=None,
+    def request(self, jbody=None, user_id=None, role=None, multilang=False, headers=None, body='', path=None,
                 remote_ip='0.0.0.0', method='MOCK', handler_cls=None, attached_file={}, kwargs={}):
         """
         Constructs a handler for preforming mock requests using the bag of params described below.
@@ -738,6 +738,9 @@ class TestHandler(TestGLWithPopulatedDB):
                 when simulating authentication the session should be bound
                 to a certain role.
 
+            multilang:
+                A boolan to mark the request as multilang request
+
             method:
                 HTTP method, e.g. "GET" or "POST"
 
@@ -753,6 +756,8 @@ class TestHandler(TestGLWithPopulatedDB):
             attached_file:
                 A dict to place in the request.args.files obj
         """
+        from globaleaks.rest import api
+
         if jbody and not body:
             body = json.dumps(jbody)
         elif body and jbody:
@@ -768,7 +773,7 @@ class TestHandler(TestGLWithPopulatedDB):
 
         request.path = ''
         request.code = 200
-        request.language = 'en'
+
         request.client_ip = '127.0.0.1'
         request.client_proto = 'https'
         request.client_using_tor = False
@@ -787,9 +792,11 @@ class TestHandler(TestGLWithPopulatedDB):
 
         request.headers = request.getAllHeaders()
 
-        from globaleaks.rest import api
         x = api.APIResourceWrapper()
         x.preprocess(request)
+
+        if multilang:
+            request.language = None
 
         if path is not None:
             if not path.startswith('/'):
@@ -846,7 +853,7 @@ class TestCollectionHandler(TestHandler):
 
         data = self.get_dummy_request()
 
-        data = yield self._test_desc['create'](data, 'en')
+        data = yield self._test_desc['create'](data, None)
 
         handler = self.request(role='admin')
 
@@ -858,9 +865,16 @@ class TestCollectionHandler(TestHandler):
 
         data = self.get_dummy_request()
 
-        handler = self.request(data, role='admin')
+        for k, v in self._test_desc['data'].items():
+            self.assertNotEqual(data[k], v)
+            data[k] = v
+
+        handler = self.request(data, role='admin', multilang=True)
 
         data = yield handler.post()
+
+        for k, v in self._test_desc['data'].items():
+            self.assertTrue(data[k], v)
 
 
 class TestInstanceHandler(TestHandler):
@@ -871,10 +885,16 @@ class TestInstanceHandler(TestHandler):
 
         data = self.get_dummy_request()
 
-        data = yield self._test_desc['create'](data, 'en')
+        data = yield self._test_desc['create'](data, None)
 
-        handler = self.request(data, role='admin')
+        for k, v in self._test_desc['data'].items():
+            data[k] = v
+
+        handler = self.request(data, role='admin', multilang=True)
         data = yield handler.put(data['id'])
+
+        for k, v in self._test_desc['data'].items():
+            self.assertTrue(data[k], v)
 
     @inlineCallbacks
     def test_delete(self):
@@ -883,7 +903,7 @@ class TestInstanceHandler(TestHandler):
 
         data = self.get_dummy_request()
 
-        data = yield self._test_desc['create'](data, 'en')
+        data = yield self._test_desc['create'](data, None)
 
         handler = self.request(data, role='admin')
 
