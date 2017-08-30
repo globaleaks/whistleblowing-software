@@ -417,3 +417,5 @@ class APIResourceWrapper(Resource):
 
         if request.language is None or request.language not in GLSettings.memory_copy.languages_enabled:
             request.language = GLSettings.memory_copy.default_language
+
+        return request.language
