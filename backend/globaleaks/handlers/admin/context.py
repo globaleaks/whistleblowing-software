@@ -217,7 +217,9 @@ class ContextsCollection(BaseHandler):
         Response: AdminContextDesc
         Errors: InvalidInputFormat, ReceiverIdNotFound
         """
-        validator = requests.AdminContextDesc if self.request.language is not None else requests.AdminContextDescRaw
+        validator = requests.AdminContextDesc
+        if self.request.language is None:
+            validator = requests.AdminContextDescRaw
 
         request = self.validate_message(self.request.content.read(), validator)
 
@@ -239,8 +241,12 @@ class ContextInstance(BaseHandler):
 
         Updates the specified context.
         """
+        validator = requests.AdminContextDesc
+        if self.request.language is None:
+            validator = requests.AdminContextDescRaw
+
         request = self.validate_message(self.request.content.read(),
-                                        requests.AdminContextDesc)
+                                        validator)
 
         return update_context(context_id, request, self.request.language)
 

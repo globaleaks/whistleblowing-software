@@ -102,14 +102,20 @@ def dict_v(self, attr, value):
 def shortlocal_v(self, attr, value):
     value = dict_v(self, attr, value)
 
+    if len(value) == 0:
+        return value
+
     for _, text in value.items():
-        shorttext_v(None, None, text)
+        shorttext_v(None, attr, text)
 
     return value
 
 
 def longlocal_v(self, attr, value):
     value = dict_v(self, attr, value)
+
+    if len(value) == 0:
+        return value
 
     for _, text in value.items():
         longtext_v(None, attr, text)
