@@ -73,11 +73,16 @@ class TestFieldInstance(helpers.TestHandler):
             updated_sample_field['instance'] = 'instance'
             context = yield create_context(copy.deepcopy(self.dummyContext), 'en')
             updated_sample_field['step_id'] = yield get_id_of_first_step_of_questionnaire(context['questionnaire_id'])
-            updated_sample_field.update(type='inputbox')
+            updated_sample_field.update(type=u'inputbox', options=[], x=3, y=3)
+
             handler = self.request(updated_sample_field, role='admin')
             response = yield handler.put(field['id'])
+
             self.assertEqual(field['id'], response['id'])
-            self.assertEqual(response['type'], 'inputbox')
+            self.assertEqual(3, response['x'])
+            self.assertEqual(3, response['y'])
+            # assert that it is impossible to change field type
+            self.assertEqual(response['type'], 'multichoice')
 
             wrong_sample_field = helpers.get_dummy_field()
             values['instance'] = 'instance'
@@ -118,11 +123,19 @@ class TestFieldTemplateInstance(helpers.TestHandlerWithPopulatedDB):
 
             updated_sample_field = helpers.get_dummy_field()
             updated_sample_field['instance'] = 'template'
-            updated_sample_field['type'] ='inputbox'
+            updated_sample_field['type'] = 'inputbox'
+            updated_sample_field['options'] = []
+            updated_sample_field['x'] = 3
+            updated_sample_field['y'] = 3
+
             handler = self.request(updated_sample_field, role='admin')
             response = yield handler.put(field['id'])
             self.assertEqual(field['id'], response['id'])
-            self.assertEqual(response['type'], 'inputbox')
+            self.assertEqual(3, response['x'])
+            self.assertEqual(3, response['y'])
+
+            # assert that the type is unchanged
+            self.assertEqual(response['type'], 'multichoice')
 
             wrong_sample_field = helpers.get_dummy_field()
             wrong_sample_field.update(type='nonexistingfieldtype')

@@ -176,16 +176,16 @@ def get_dummy_field():
 def get_dummy_fieldoption_list():
     return [
         {
-          'id': u'beefcafe',
-          'label': {'en': 'Cafe del mare'},
+          'id': u'beefcafe-beef-cafe-beef-cafebeefcafe',
+          'label': u'Cafe del mare',
           'presentation_order': 0,
           'score_points': 100,
           'trigger_field': '',
           'trigger_step': '',
         },
         {
-          'id': u'feddad',
-          'label': {'en': 'skrilx was here'},
+          'id': u'feefbead-feef-bead-feef-feeffeefbead',
+          'label': u'skrilx is here',
           'presentation_order': 0,
           'score_points': 97.5,
           'trigger_field': '',
