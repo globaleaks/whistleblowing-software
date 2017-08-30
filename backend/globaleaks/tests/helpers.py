@@ -146,6 +146,7 @@ def get_dummy_step():
         'children': []
     }
 
+
 def get_dummy_field():
     return {
         'id': '',
@@ -155,7 +156,7 @@ def get_dummy_field():
         'step_id': '',
         'fieldgroup_id': '',
         'label': u'antani',
-        'type': u'inputbox',
+        'type': u'multichoice',
         'preview': False,
         'description': u'field description',
         'hint': u'field hint',
@@ -164,7 +165,7 @@ def get_dummy_field():
         'stats_enabled': False,
         'required': False,
         'attrs': {},
-        'options': [],
+        'options': get_dummy_fieldoption_list(),
         'children': [],
         'y': 1,
         'x': 1,
@@ -173,7 +174,29 @@ def get_dummy_field():
     }
 
 
+def get_dummy_fieldoption_list():
+    return [
+        {
+          'id': u'beefcafe-beef-cafe-beef-cafebeefcafe',
+          'label': u'Cafe del mare',
+          'presentation_order': 0,
+          'score_points': 100,
+          'trigger_field': '',
+          'trigger_step': '',
+        },
+        {
+          'id': u'feefbead-feef-bead-feef-feeffeefbead',
+          'label': u'skrilx is here',
+          'presentation_order': 0,
+          'score_points': 97.5,
+          'trigger_field': '',
+          'trigger_step': '',
+        }
+    ]
+ 
+
 files_count = 0
+
 
 def get_dummy_file(filename=None, content_type=None, content=None):
     global files_count
@@ -667,7 +690,7 @@ class TestHandler(TestGLWithPopulatedDB):
     :attr _handler: handler class to be tested
     """
     _handler = None
-    _test_desc = None
+    _test_desc = {}
     #_test_desc = {
     #  'model': Context
     #  'create': context.create_context
@@ -818,7 +841,7 @@ class TestHandler(TestGLWithPopulatedDB):
 class TestCollectionHandler(TestHandler):
     @inlineCallbacks
     def test_get(self):
-        if self._test_desc is None:
+        if not self._test_desc:
             return
 
         data = self.get_dummy_request()
@@ -830,7 +853,7 @@ class TestCollectionHandler(TestHandler):
 
     @inlineCallbacks
     def test_post(self):
-        if self._test_desc is None:
+        if not self._test_desc:
             return
 
         data = self.get_dummy_request()
@@ -843,7 +866,7 @@ class TestCollectionHandler(TestHandler):
 class TestInstanceHandler(TestHandler):
     @inlineCallbacks
     def test_put(self):
-        if self._test_desc is None:
+        if not self._test_desc:
             return
 
         data = self.get_dummy_request()
@@ -855,7 +878,7 @@ class TestInstanceHandler(TestHandler):
 
     @inlineCallbacks
     def test_delete(self):
-        if self._test_desc is None:
+        if not self._test_desc:
             return
 
         data = self.get_dummy_request()
