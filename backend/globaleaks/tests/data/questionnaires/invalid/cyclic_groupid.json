@@ -1,0 +1,126 @@
+{
+  "editable": true,
+  "export_date": "2017-08-28T13:51:13.518706Z",
+  "export_version": "0.0.1",
+  "id": "b170589b-30d6-4ec1-ae52-18659b2a606b",
+  "name": "cyclic_id",
+  "show_steps_navigation_bar": true,
+  "steps": [
+    {
+      "children": [{
+                     "attrs": {},
+                     "children": [{
+                     "attrs": {},
+                     "children": [{
+                                   "attrs": {},
+                                   "children": [],
+                                   "description": {
+                                     "en": ""
+                                   },
+                                   "editable": true,
+                                   "fieldgroup_id": "aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa",
+                                   "hint": {
+                                     "en": ""
+                                   },
+                                   "id": "aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa",
+                                   "instance": "instance",
+                                   "label": {
+                                     "en": "FGroupC"
+                                   },
+                                   "multi_entry": false,
+                                   "multi_entry_hint": {
+                                     "en": ""
+                                   },
+                                   "options": [],
+                                   "preview": false,
+                                   "required": false,
+                                   "stats_enabled": false,
+                                   "step_id": "",
+                                   "template_id": "",
+                                   "triggered_by_options": [],
+                                   "triggered_by_score": 0,
+                                   "type": "fieldgroup",
+
+                                   "width": 0,
+                                   "x": 0,
+                                   "y": 3
+                                 }
+                     ],
+                     "description": {
+                       "en": ""
+                     },
+                     "editable": true,
+                     "fieldgroup_id": "aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa",
+                     "hint": {
+                       "en": ""
+                     },
+                     "id": "bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb",
+                     "instance": "instance",
+                     "label": {
+                       "en": "FGroupB"
+                     },
+                     "multi_entry": false,
+                     "multi_entry_hint": {
+                       "en": ""
+                     },
+                     "options": [],
+                     "preview": false,
+                     "required": false,
+                     "stats_enabled": false,
+                     "template_id": "",
+                     "triggered_by_options": [],
+                     "triggered_by_score": 0,
+                     "type": "fieldgroup",
+                     "step_id": "",
+                     "width": 0,
+                     "x": 0,
+                     "y": 2
+                   }
+
+          ],
+          "description": {
+            "en": ""
+          },
+          "editable": true,
+          "fieldgroup_id": "",
+          "hint": {
+            "en": ""
+          },
+          "id": "aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa",
+          "instance": "instance",
+          "label": {
+            "en": "FGroupA"
+          },
+          "multi_entry": false,
+          "multi_entry_hint": {
+            "en": ""
+          },
+          "options": [],
+          "preview": false,
+          "required": false,
+          "stats_enabled": false,
+          "step_id": "8b2edda9-976e-486f-8dbd-deed917ca904",
+          "template_id": "",
+          "triggered_by_options": [],
+          "triggered_by_score": 0,
+          "type": "fieldgroup",
+          "width": 0,
+          "x": 0,
+          "y": 1
+        }
+      ],
+      "description": {
+        "en": ""
+      },
+      "id": "8b2edda9-976e-486f-8dbd-deed917ca904",
+      "label": {
+        "en": "generic step"
+      },
+      "presentation_order": 0,
+      "questionnaire_id": "b170589b-30d6-4ec1-ae52-18659b2a606b",
+      "triggered_by_options": [],
+      "triggered_by_score": 0
+    }
+  ],
+  "steps_navigation_requires_completion": true
+}

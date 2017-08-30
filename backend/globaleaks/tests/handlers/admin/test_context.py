@@ -3,7 +3,6 @@ from globaleaks.handlers.admin import context
 from globaleaks.models import Context
 from globaleaks.rest import errors
 from globaleaks.tests import helpers
-from twisted.internet.defer import inlineCallbacks
 
 class TestContextsCollection(helpers.TestCollectionHandler):
     _handler = context.ContextsCollection

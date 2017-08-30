@@ -4,8 +4,11 @@
 #   *****
 # Implementation of the code executed on handler /admin/questionnaires
 #
+import json
 
-from globaleaks import models
+from twisted.internet.defer import inlineCallbacks, returnValue
+
+from globaleaks import models, QUESTIONNAIRE_EXPORT_VERSION
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.admin.field import db_create_field
 from globaleaks.handlers.admin.step import db_create_step
@@ -13,7 +16,7 @@ from globaleaks.handlers.public import serialize_questionnaire
 from globaleaks.orm import transact
 from globaleaks.rest import errors, requests
 from globaleaks.utils.structures import fill_localized_keys
-from globaleaks.utils.utility import log
+from globaleaks.utils.utility import log, datetime_to_ISO8601, datetime_now
 
 
 def db_get_questionnaire_list(store, language):
@@ -202,3 +205,13 @@ class QuestionnaireInstance(BaseHandler):
         Errors: InvalidInputFormat, QuestionnaireIdNotFound
         """
         return delete_questionnaire(questionnaire_id)
+
+    @inlineCallbacks
+    def get(self, questionnaire_id):
+        """
+        Export questionnaire JSON
+        """
+        q = yield get_questionnaire(questionnaire_id, None)
+        q['export_date'] = datetime_to_ISO8601(datetime_now())
+        q['export_version'] = QUESTIONNAIRE_EXPORT_VERSION
+        returnValue(q)
