@@ -8,8 +8,8 @@ fi
 
 # Preliminary requirements check
 ERR=0
-echo "Checking preliminary GlobaLeaks requirements"
-for REQ in apt-key apt-get curl
+echo "Checking preliminary packaging GlobaLeaks requirements"
+for REQ in apt-key apt-get
 do
   if which $REQ >/dev/null; then
     echo " + $REQ requirement meet"
@@ -23,6 +23,23 @@ if [ $ERR -ne 0 ]; then
   echo "Error: Found ${ERR} unmet requirements"
   exit 1
 fi
+
+# fix curl requirement
+if which curl >/dev/null; then
+    echo " + curl requirement meet"
+  else
+    echo " - curl requirement not meet. Installing curl"
+    apt-get install curl
+fi
+
+# fix netstat requirement
+if which netstat >/dev/null; then
+    echo " + netstat requirement meet"
+  else
+    echo " - netstat requirement not meet. Installing net-tools"
+    apt-get install net-tools
+fi
+
 
 DO () {
   if [ -z "$2" ]; then
