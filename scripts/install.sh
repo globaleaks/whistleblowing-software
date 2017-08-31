@@ -765,12 +765,15 @@ DISTRO_CODENAME="unknown"
 if which lsb_release >/dev/null; then
   DISTRO="$(lsb_release -is)"
   DISTRO_CODENAME="$(lsb_release -cs)"
+  REAL_DISTRO_CODENAME=$DISTRO_CODENAME
+
 fi
 
 # LinuxMint is based on Ubuntu, if we encounter Mint just allign the Ubuntu version is based upon
 if [ "$DISTRO" == "LinuxMint" ]; then
   DISTRO="Ubuntu"
   DISTRO_CODENAME=`grep UBUNTU_CODENAME /etc/os-release | sed -e 's/UBUNTU_CODENAME=//'`
+  REAL_DISTRO_CODENAME=$DISTRO_CODENAME
 fi
 
 # Report last executed command and its status
@@ -791,7 +794,7 @@ function atexit {
 
   curl "https://deb.globaleaks.org/install-globaleaks.sh" \
        -G -m 10 \
-       --data-urlencode "DISTRO=$DISTRO_CODENAME" \
+        --data-urlencode "DISTRO=$REAL_DISTRO_CODENAME" \
        --data-urlencode "LAST_COMMAND=$LAST_COMMAND" \
        --data-urlencode "LAST_STATUS=$LAST_STATUS" \
        >/dev/null 2>/dev/null
