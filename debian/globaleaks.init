@@ -218,7 +218,7 @@ do_start()
     network_sandboxing_start
 
     if [ "${APPARMOR_SANDBOXING}" -eq "1" ]; then
-        STARTCMD="/usr/sbin/aa-exec --profile=usr.bin.globaleaks -- $STARTCMD"
+        STARTCMD="aa-exec --profile=usr.bin.globaleaks -- $STARTCMD"
     fi
 
     # This is a little hack to avoid python doing os.chdir('.') and getting mad.
