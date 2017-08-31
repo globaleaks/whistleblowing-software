@@ -853,7 +853,7 @@ class TestCollectionHandler(TestHandler):
 
         data = self.get_dummy_request()
 
-        data = yield self._test_desc['create'](data, None)
+        data = yield self._test_desc['create'](data, u'en')
 
         handler = self.request(role='admin')
 
@@ -869,7 +869,7 @@ class TestCollectionHandler(TestHandler):
             self.assertNotEqual(data[k], v)
             data[k] = v
 
-        handler = self.request(data, role='admin', multilang=True)
+        handler = self.request(data, role='admin')
 
         data = yield handler.post()
 
@@ -885,12 +885,12 @@ class TestInstanceHandler(TestHandler):
 
         data = self.get_dummy_request()
 
-        data = yield self._test_desc['create'](data, None)
+        data = yield self._test_desc['create'](data, u'en')
 
         for k, v in self._test_desc['data'].items():
             data[k] = v
 
-        handler = self.request(data, role='admin', multilang=True)
+        handler = self.request(data, role='admin')
         data = yield handler.put(data['id'])
 
         for k, v in self._test_desc['data'].items():
@@ -903,7 +903,7 @@ class TestInstanceHandler(TestHandler):
 
         data = self.get_dummy_request()
 
-        data = yield self._test_desc['create'](data, None)
+        data = yield self._test_desc['create'](data, u'en')
 
         handler = self.request(data, role='admin')
 

@@ -88,6 +88,17 @@ def create_receiver_user(store, request, language):
     return user_serialize_user(receiver.user, language)
 
 
+def create(request, language):
+    if request['role'] == 'receiver':
+        return create_receiver_user(request, language)
+    elif request['role'] == 'custodian':
+        return create_custodian_user(request, language)
+    elif request['role'] == 'admin':
+        return create_admin_user(request, language)
+    else:
+        raise errors.InvalidInputFormat
+
+
 def db_create_user(store, request, language):
     fill_localized_keys(request, models.User.localized_keys, language)
 
@@ -182,7 +193,7 @@ def db_get_admin_users(store):
 
 @transact
 def delete_user(store, user_id):
-    user = db_get_user(store, user_id)
+    user = db_get_user(store, unicode(user_id))
 
     if not user.deletable:
         raise errors.UserNotDeletable
@@ -226,15 +237,7 @@ class UsersCollection(BaseHandler):
         request = self.validate_message(self.request.content.read(),
                                         requests.AdminUserDesc)
 
-        if request['role'] == 'receiver':
-            return create_receiver_user(request, self.request.language)
-        elif request['role'] == 'custodian':
-            return create_custodian_user(request, self.request.language)
-        elif request['role'] == 'admin':
-            return create_admin_user(request, self.request.language)
-        else:
-            raise errors.InvalidInputFormat
-
+        return create(request, self.request.language)
 
 class UserInstance(BaseHandler):
     check_roles = 'admin'

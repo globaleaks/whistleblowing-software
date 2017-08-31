@@ -877,8 +877,7 @@ factory('AdminUtils', ['AdminContextResource', 'AdminQuestionnaireResource', 'Ad
       },
 
       showLoginForm: function () {
-        var path = $location.path();
-        return path === '/submission';
+        return $location.path() === '/submission';
       },
 
       showUserStatusBox: function() {
