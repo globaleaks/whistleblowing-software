@@ -825,7 +825,7 @@ fi
 echo "Detected OS: $DISTRO - $DISTRO_CODENAME"
 
 if echo "$DISTRO_CODENAME" | grep -vqE "^xenial$" ; then
-  echo "WARNING: GlobaLeaks is supproted and tested only on Ubuntu Xenial (16.04)"
+  echo "WARNING: GlobaLeaks is supported and tested only on Ubuntu Xenial (16.04)"
   echo "WARNING: It may works on other platform but require hacking around"
   
   if [ $ASSUMEYES -eq 0 ]; then
@@ -860,10 +860,6 @@ TMPFILE=$TMPDIR/globaleaks_key
 echo "$GLOBALEAKS_PGP_KEY" > $TMPFILE
 DO "apt-key add $TMPFILE"
 
-echo "Adding Tor PGP key to trusted APT"
-TMPFILE=$TMPDIR/torproject_key
-echo "$TOR_PGP_KEY" > $TMPFILE
-DO "apt-key add $TMPFILE"
 
 if echo "$DISTRO_CODENAME" | grep -qE "^(wheezy)$"; then
   echo "Installing python-software-properties"
@@ -882,8 +878,14 @@ if echo "$REAL_DISTRO" | grep -qE "^(Ubuntu)$"; then
   fi
 fi
 
-# add repository of Tor for Tor =>0.2.9, skipping distro that already have it (we start with ubuntu 17.10 artful)
+# Add repository and Tor key for Tor =>0.2.9, skipping distro that already have it (we start with ubuntu 17.10 artful)
 if echo "$REAL_DISTRO_CODENAME" | grep -vqE "^artful$" ; then
+
+   echo "Adding Tor PGP key to trusted APT"
+   TMPFILE=$TMPDIR/torproject_key
+   echo "$TOR_PGP_KEY" > $TMPFILE
+   DO "apt-key add $TMPFILE"
+
   if ! grep -q "^deb .*torproject" /etc/apt/sources.list /etc/apt/sources.list.d/*; then
     echo "Adding Tor repository"
     DO "add-apt-repository 'deb http://deb.torproject.org/torproject.org $DISTRO_CODENAME main'"
