@@ -764,6 +764,7 @@ DISTRO="unknown"
 DISTRO_CODENAME="unknown"
 if which lsb_release >/dev/null; then
   DISTRO="$(lsb_release -is)"
+  REAL_DISTRO=$REAL_DISTRO
   DISTRO_CODENAME="$(lsb_release -cs)"
   REAL_DISTRO_CODENAME=$DISTRO_CODENAME
 
