@@ -170,7 +170,7 @@ class AlarmClass(object):
 
         requests_timing = []
 
-        for _, event_obj in EventTrackQueue.iteritems():
+        for _, event_obj in EventTrackQueue.items():
             current_event_matrix.setdefault(event_obj.event_type, 0)
             current_event_matrix[event_obj.event_type] += 1
             requests_timing.append(event_obj.request_time)
@@ -181,7 +181,7 @@ class AlarmClass(object):
                      round(max(requests_timing), 2),
                      round(min(requests_timing), 2))
 
-        for event_name, threshold in ANOMALY_MAP.iteritems():
+        for event_name, threshold in ANOMALY_MAP.items():
             if event_name in current_event_matrix:
                 if current_event_matrix[event_name] > threshold:
                     self.number_of_anomalies += 1

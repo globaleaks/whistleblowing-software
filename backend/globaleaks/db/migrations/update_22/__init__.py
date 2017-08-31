@@ -41,7 +41,7 @@ class MigrationScript(MigrationBase):
         old_objs = self.store_old.find(self.model_from['InternalTip'])
         for old_obj in old_objs:
             new_obj = self.model_to['InternalTip']()
-            for _, v in new_obj._storm_columns.iteritems():
+            for _, v in new_obj._storm_columns.items():
                 if v.name == 'tor2web':
                     new_obj.tor2web = False
                     continue

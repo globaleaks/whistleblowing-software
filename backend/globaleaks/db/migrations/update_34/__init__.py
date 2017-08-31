@@ -240,12 +240,12 @@ class MigrationScript(MigrationBase):
         #### Create Config table and rows ####
 
         # Migrate Config saved in Node
-        for var_name, _ in GLConfig_v_35['node'].iteritems():
+        for var_name, _ in GLConfig_v_35['node'].items():
             old_val = getattr(old_node, var_name)
             self.store_new.add(Config('node', var_name, old_val, cfg_desc=GLConfig_v_35))
 
         # Migrate Config saved in Notification
-        for var_name, _ in GLConfig_v_35['notification'].iteritems():
+        for var_name, _ in GLConfig_v_35['notification'].items():
             old_val = getattr(old_notif, var_name)
 
             if var_name == 'exception_email_pgp_key_expiration' and old_val is not None:
@@ -294,7 +294,7 @@ class MigrationScript(MigrationBase):
         old_objs = self.store_old.find(self.model_from['Field'])
         for old_obj in old_objs:
             new_obj = self.model_to['Field']()
-            for _, v in new_obj._storm_columns.iteritems():
+            for _, v in new_obj._storm_columns.items():
                 setattr(new_obj, v.name, getattr(old_obj, v.name))
 
             if (new_obj.instance == 'instance' and new_obj.step_id is None and new_obj.fieldgroup_id is None or

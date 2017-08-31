@@ -136,7 +136,7 @@ class MigrationScript(MigrationBase):
         for old_obj in old_objs:
             new_obj = self.model_to['File']()
 
-            for _, v in new_obj._storm_columns.iteritems():
+            for _, v in new_obj._storm_columns.items():
                 if v.name == 'id':
                     if getattr(old_obj, v.name) == old_node.logo_id:
                         new_obj.id = 'logo'
@@ -155,7 +155,7 @@ class MigrationScript(MigrationBase):
         old_objs = self.store_old.find(self.model_from['Comment'])
         for old_obj in old_objs:
             new_obj = self.model_to['Comment']()
-            for _, v in new_obj._storm_columns.iteritems():
+            for _, v in new_obj._storm_columns.items():
                 if v.name == 'author_id':
                     if old_obj.type == 'whistleblower':
                         continue
@@ -180,7 +180,7 @@ class MigrationScript(MigrationBase):
         old_objs = self.store_old.find(self.model_from['User'])
         for old_obj in old_objs:
             new_obj = self.model_to['User']()
-            for _, v in new_obj._storm_columns.iteritems():
+            for _, v in new_obj._storm_columns.items():
                 if v.name == 'public_name':
                     new_obj.public_name = old_obj.name
                     continue

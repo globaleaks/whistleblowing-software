@@ -48,7 +48,7 @@ def db_assign_submission_progressive(store):
 
 
 def _db_serialize_archived_field_recursively(field, language):
-    for key, _ in field.get('attrs', {}).iteritems():
+    for key, _ in field.get('attrs', {}).items():
         if key not in field['attrs']: continue
         if 'type' not in field['attrs'][key]: continue
 
@@ -133,7 +133,7 @@ def db_serialize_questionnaire_answers(store, usertip):
 def db_save_questionnaire_answers(store, internaltip_id, entries):
     ret = []
 
-    for key, value in entries.iteritems():
+    for key, value in entries.items():
         field_answer = models.FieldAnswer({
             'internaltip_id': internaltip_id,
             'key': key

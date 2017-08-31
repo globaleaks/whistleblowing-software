@@ -99,7 +99,7 @@ class MigrationScript(MigrationBase):
         old_node = self.store_old.find(self.model_from['Node']).one()
         new_node = self.model_to['Node']()
 
-        for _, v in new_node._storm_columns.iteritems():
+        for _, v in new_node._storm_columns.items():
             if v.name == 'disable_submissions':
                 new_node.disable_submissions = False
                 continue
@@ -113,7 +113,7 @@ class MigrationScript(MigrationBase):
         old_objs = self.store_old.find(self.model_from['Context'])
         for old_obj in old_objs:
             new_obj = self.model_to['Context']()
-            for _, v in new_obj._storm_columns.iteritems():
+            for _, v in new_obj._storm_columns.items():
                 if v.name == 'show_steps_navigation_bar':
                     new_obj.show_steps_navigation_bar = True
                     continue

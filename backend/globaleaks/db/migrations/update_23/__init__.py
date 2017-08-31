@@ -139,7 +139,7 @@ class MigrationScript(MigrationBase):
     def db_save_questionnaire_answers(self, store, internaltip_id, entries):
         ret = []
 
-        for key, value in entries.iteritems():
+        for key, value in entries.items():
             field_answer = self.model_to['FieldAnswer']()
             field_answer.internaltip_id = internaltip_id
             field_answer.key = key
@@ -169,7 +169,7 @@ class MigrationScript(MigrationBase):
             for x in self.store_old.find(self.model_from['Field']):
                 try:
                     if isinstance(x.label, dict):
-                        for _, v in x.label.iteritems():
+                        for _, v in x.label.items():
                             if unicode(v).find(unicode(f['label'])) != -1:
                                 f['id'] = x.id
                                 break
@@ -192,7 +192,7 @@ class MigrationScript(MigrationBase):
         elif f['type'] == 'checkbox':
             if 'value' in f:
                 try:
-                    for oid, ovalue in f['value'].iteritems():
+                    for oid, ovalue in f['value'].items():
                         if 'value' in ovalue:
                             answers[oid] = ovalue['value']
                         else:
@@ -264,7 +264,7 @@ class MigrationScript(MigrationBase):
         old_objs = self.store_old.find(self.model_from['InternalTip'])
         for old_obj in old_objs:
             new_obj = self.model_to['InternalTip']()
-            for _, v in new_obj._storm_columns.iteritems():
+            for _, v in new_obj._storm_columns.items():
                 if v.name == 'questionnaire_hash' or v.name == 'preview':
                     continue
 
@@ -278,7 +278,7 @@ class MigrationScript(MigrationBase):
         old_objs = self.store_old.find(self.model_from['InternalFile'])
         for old_obj in old_objs:
             new_obj = self.model_to['InternalFile']()
-            for _, v in new_obj._storm_columns.iteritems():
+            for _, v in new_obj._storm_columns.items():
                 if v.name == 'processing_attempts':
                     new_obj.processing_attempts = 0
                     continue
@@ -299,7 +299,7 @@ class MigrationScript(MigrationBase):
                 continue
 
             new_obj = self.model_to['Comment']()
-            for _, v in new_obj._storm_columns.iteritems():
+            for _, v in new_obj._storm_columns.items():
                 setattr(new_obj, v.name, getattr(old_obj, v.name))
 
             self.store_new.add(new_obj)
@@ -308,7 +308,7 @@ class MigrationScript(MigrationBase):
         old_objs = self.store_old.find(self.model_from['Context'])
         for old_obj in old_objs:
             new_obj = self.model_to['Context']()
-            for _, v in new_obj._storm_columns.iteritems():
+            for _, v in new_obj._storm_columns.items():
                 if v.name == 'steps_arrangement':
                     new_obj.steps_arrangement = 'horizontal'
                     continue
@@ -327,7 +327,7 @@ class MigrationScript(MigrationBase):
                 db_update_fieldattr(self.store_new, old_obj.id, u'max_len', {'name': u'max_len', 'type': u'int', 'value':'-1'}, 'en')
                 db_update_fieldattr(self.store_new, old_obj.id, u'regex', {'name': u'regexp', 'type': u'unicode', 'value':''}, 'en')
 
-            for _, v in new_obj._storm_columns.iteritems():
+            for _, v in new_obj._storm_columns.items():
                 if v.name == 'template_id':
                     # simply skip so to inizialize to NULL
                     continue
@@ -351,7 +351,7 @@ class MigrationScript(MigrationBase):
         for old_obj in old_objs:
             skip_add = False
             new_obj = self.model_to['FieldOption']()
-            for _, v in new_obj._storm_columns.iteritems():
+            for _, v in new_obj._storm_columns.items():
                 if v.name == 'score_points':
                     new_obj.score_points = 0
                     continue

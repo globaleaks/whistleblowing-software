@@ -124,7 +124,7 @@ def get_anomaly_history(store, limit):
             'alarm': anomaly.alarm,
             'events': [],
         })
-        for event_type, event_count in anomaly.events.iteritems():
+        for event_type, event_count in anomaly.events.items():
             anomaly_entry['events'].append({
                 'type': event_type,
                 'count': event_count,

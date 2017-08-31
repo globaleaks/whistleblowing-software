@@ -145,7 +145,7 @@ class TipKeyword(NodeKeyword, ContextKeyword, ReceiverKeyword):
     def dump_field_entry(self, output, field, entry, indent_n):
         field_type = field['type']
         if field_type == 'checkbox':
-            for k, v in entry.iteritems():
+            for k, v in entry.items():
                 for option in field['options']:
                     if k == option.get('id', '') and v == 'True':
                         output += indent(indent_n) + option['label'] + '\n'
@@ -178,7 +178,7 @@ class TipKeyword(NodeKeyword, ContextKeyword, ReceiverKeyword):
         for r in rows:
             rows[r] = sorted(rows[r], key=lambda k: k['x'])
 
-        for _, row in rows.iteritems():
+        for _, row in rows.items():
             for field in row:
                 if field['type'] != 'fileupload' and field['id'] in answers:
                     output += indent(indent_n) + field['label'] + '\n'
@@ -427,7 +427,7 @@ class AnomalyKeyword(NodeKeyword):
     def ActivityDump(self):
         retstr = ''
 
-        for event, count in self.data['alert']['event_matrix'].iteritems():
+        for event, count in self.data['alert']['event_matrix'].items():
             if not count:
                 continue
             retstr = '%s%s%d\n%s' % (event, (25 - len(event)) * ' ', count, retstr)

@@ -46,7 +46,7 @@ class MigrationScript(MigrationBase):
         old_objs = self.store_old.find(self.model_from['Context'])
         for old_obj in old_objs:
             new_obj = self.model_to['Context']()
-            for _, v in new_obj._storm_columns.iteritems():
+            for _, v in new_obj._storm_columns.items():
                 setattr(new_obj, v.name, getattr(old_obj, v.name))
 
             if old_obj.questionnaire_id == questionnaire_default_id:
@@ -61,7 +61,7 @@ class MigrationScript(MigrationBase):
         old_objs = self.store_old.find(self.model_from['Field'])
         for old_obj in old_objs:
             new_obj = self.model_to['Field']()
-            for _, v in new_obj._storm_columns.iteritems():
+            for _, v in new_obj._storm_columns.items():
                 setattr(new_obj, v.name, getattr(old_obj, v.name))
 
             if old_obj.key == 'whistleblower_identity':
@@ -79,7 +79,7 @@ class MigrationScript(MigrationBase):
         old_objs = self.store_old.find(self.model_from['Questionnaire'])
         for old_obj in old_objs:
             new_obj = self.model_to['Questionnaire']()
-            for _, v in new_obj._storm_columns.iteritems():
+            for _, v in new_obj._storm_columns.items():
                 setattr(new_obj, v.name, getattr(old_obj, v.name))
 
             if old_obj.key == 'default':

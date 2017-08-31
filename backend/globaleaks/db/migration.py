@@ -172,7 +172,7 @@ def perform_schema_migration(version):
                     log.err("Failure while executing migration prologue: %s" % exception)
                     raise exception
 
-                for model_name, _ in migration_mapping.iteritems():
+                for model_name, _ in migration_mapping.items():
                     if migration_script.model_from[model_name] is not None and migration_script.model_to[model_name] is not None:
                         try:
                             migration_script.migrate_model(model_name)
@@ -200,7 +200,7 @@ def perform_schema_migration(version):
             # we open a new db in order to verify integrity of the generated file
             store_verify = Store(create_database(GLSettings.make_db_uri(new_db_file)))
 
-            for model_name, _ in migration_mapping.iteritems():
+            for model_name, _ in migration_mapping.items():
                 if migration_script.model_from[model_name] is not None and migration_script.model_to[model_name] is not None:
                      count = store_verify.find(migration_script.model_to[model_name]).count()
                      if migration_script.entries_count[model_name] != count:

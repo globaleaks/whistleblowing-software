@@ -199,7 +199,7 @@ class MigrationScript(MigrationBase):
             'whistleblowing_receipt_prompt'
         ]
 
-        for _, v in new_node._storm_columns.iteritems():
+        for _, v in new_node._storm_columns.items():
             if self.update_model_with_new_templates(new_node, v.name, new_templates, self.appdata['node']):
                 continue
 
@@ -280,7 +280,7 @@ class MigrationScript(MigrationBase):
         old_objs = self.store_old.find(self.model_from['User'])
         for old_obj in old_objs:
             new_obj = self.model_to['User']()
-            for _, v in new_obj._storm_columns.iteritems():
+            for _, v in new_obj._storm_columns.items():
                 if v.name == 'img_id':
                     img_path = os.path.join(GLSettings.static_path, old_obj.id + ".png")
                     if not os.path.exists(img_path):
@@ -305,7 +305,7 @@ class MigrationScript(MigrationBase):
         old_objs = self.store_old.find(self.model_from['Context'])
         for old_obj in old_objs:
             new_obj = self.model_to['Context']()
-            for _, v in new_obj._storm_columns.iteritems():
+            for _, v in new_obj._storm_columns.items():
                 if v.name == 'img_id':
                     continue
 
@@ -322,7 +322,7 @@ class MigrationScript(MigrationBase):
         old_objs = self.store_old.find(self.model_from['ReceiverTip'])
         for old_obj in old_objs:
             new_obj = self.model_to['ReceiverTip']()
-            for _, v in new_obj._storm_columns.iteritems():
+            for _, v in new_obj._storm_columns.items():
                 if v.name == 'enable_notifications':
                     new_obj.enable_notifications = True
                     continue
@@ -336,7 +336,7 @@ class MigrationScript(MigrationBase):
         old_objs = self.store_old.find(self.model_from['Field'])
         for old_obj in old_objs:
             new_obj = self.model_to['Field']()
-            for _, v in new_obj._storm_columns.iteritems():
+            for _, v in new_obj._storm_columns.items():
                 if v.name == 'type':
                     # specific field types email and number have been removed
                     # and the current implementation makes use of inputboxes

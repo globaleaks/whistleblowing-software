@@ -787,7 +787,7 @@ class TestHandler(TestGLWithPopulatedDB):
             request.args = {'file': [attached_file]}
 
         if headers is not None:
-            for k, v in headers.iteritems():
+            for k, v in headers.items():
                 request.requestHeaders.setRawHeaders(bytes(k), [bytes(v)])
 
         request.headers = request.getAllHeaders()
@@ -839,7 +839,7 @@ class TestHandler(TestGLWithPopulatedDB):
         """
         Constructs a request_dec parser of a handler that uses a safe_set in its serialization
         """
-        return {k : v for k, v in request_desc.iteritems() if k in safe_set}
+        return {k : v for k, v in request_desc.items() if k in safe_set}
 
     def get_dummy_request(self):
         return self._test_desc['model']().dict()

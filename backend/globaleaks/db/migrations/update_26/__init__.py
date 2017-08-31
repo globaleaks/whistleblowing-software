@@ -24,7 +24,7 @@ class MigrationScript(MigrationBase):
         old_objs = self.store_old.find(self.model_from['InternalFile'])
         for old_obj in old_objs:
             new_obj = self.model_to['InternalFile']()
-            for _, v in new_obj._storm_columns.iteritems():
+            for _, v in new_obj._storm_columns.items():
                 if v.name == 'submission':
                     new_obj.submission = True
                     continue

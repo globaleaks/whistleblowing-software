@@ -36,7 +36,7 @@ def save_anomalies(store, anomaly_list):
 
 def get_anomalies():
     anomalies = []
-    for when, anomaly_blob in dict(GLSettings.RecentAnomaliesQ).iteritems():
+    for when, anomaly_blob in dict(GLSettings.RecentAnomaliesQ).items():
         anomalies.append([when, anomaly_blob[0], anomaly_blob[1]])
 
     return anomalies

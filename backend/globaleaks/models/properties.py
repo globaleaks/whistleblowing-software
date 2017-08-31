@@ -18,7 +18,7 @@ class MetaModel(PropertyPublisherMeta):
         elif cls.__storm_table__ is None:
             del cls.__storm_table__
 
-        properties = set([key for key, val in attrs.iteritems() if isinstance(val, Property)])
+        properties = set([key for key, val in attrs.items() if isinstance(val, Property)])
 
         for base in bases:
             properties |= getattr(base, 'properties', set())

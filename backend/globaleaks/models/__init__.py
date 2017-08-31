@@ -20,7 +20,7 @@ empty_localization = {}
 
 def db_forge_obj(store, mock_class, mock_fields):
     obj = mock_class()
-    for key, val in mock_fields.iteritems():
+    for key, val in mock_fields.items():
         setattr(obj, key, val)
     store.add(obj)
     return obj

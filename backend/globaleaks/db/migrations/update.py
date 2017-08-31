@@ -115,7 +115,7 @@ class MigrationBase(object):
         self.entries_count = {}
         self.fail_on_count_mismatch = {}
 
-        for model_name, model_history in migration_mapping.iteritems():
+        for model_name, model_history in migration_mapping.items():
             length = DATABASE_VERSION + 1 - FIRST_DATABASE_VERSION_SUPPORTED
             if len(model_history) != length:
                 raise TypeError('Expecting a table with {} statuses ({})'.format(length, model_name))
@@ -130,7 +130,7 @@ class MigrationBase(object):
                 self.entries_count[model_name] = self.store_old.find(self.model_from[model_name]).count()
 
         if start_version + 1 < DATABASE_VERSION:
-            for k, _ in self.migration_mapping.iteritems():
+            for k, _ in self.migration_mapping.items():
                 query = self.get_right_sql_version(k, self.start_version + 1)
                 if query: # the query is missing when the table has been removed
                     self.execute_query(query)
@@ -205,7 +205,7 @@ class MigrationBase(object):
         if old_key is None:
             old_key = key
 
-        old_keys = [v.name for _, v in old_obj._storm_columns.iteritems()]
+        old_keys = [v.name for _, v in old_obj._storm_columns.items()]
         if old_key in old_keys:
             setattr(new_obj, key, getattr(old_obj, old_key))
 
@@ -228,7 +228,7 @@ class MigrationBase(object):
         for old_obj in old_objects:
             new_obj = self.model_to[model_name](migrate=True)
 
-            for _, v in new_obj._storm_columns.iteritems():
+            for _, v in new_obj._storm_columns.items():
                 self.migrate_model_key(old_obj, new_obj, v.name)
 
             self.store_new.add(new_obj)

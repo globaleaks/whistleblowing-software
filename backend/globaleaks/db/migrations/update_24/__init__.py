@@ -230,7 +230,7 @@ class MigrationScript(MigrationBase):
             'widget_files_title'
         ]
 
-        for _, v in new_node._storm_columns.iteritems():
+        for _, v in new_node._storm_columns.items():
             if self.update_model_with_new_templates(new_node, v.name, new_templates, self.appdata['node']):
                 continue
 
@@ -315,7 +315,7 @@ class MigrationScript(MigrationBase):
             'identity_provided_mail_title'
         ]
 
-        for _, v in new_notification._storm_columns.iteritems():
+        for _, v in new_notification._storm_columns.items():
             if self.update_model_with_new_templates(new_notification, v.name, new_templates, self.appdata['templates']):
                 continue
 
@@ -382,7 +382,7 @@ class MigrationScript(MigrationBase):
             new_user = self.model_to['User']()
             new_receiver = self.model_to['Receiver']()
 
-            for _, v in new_user._storm_columns.iteritems():
+            for _, v in new_user._storm_columns.items():
                 if v.name == 'name':
                     new_user.name = old_receiver.name
                     continue
@@ -417,7 +417,7 @@ class MigrationScript(MigrationBase):
 
                 setattr(new_user, v.name, getattr(old_receiver.user, v.name))
 
-            for _, v in new_receiver._storm_columns.iteritems():
+            for _, v in new_receiver._storm_columns.items():
                 if v.name == 'can_grant_permissions':
                     new_receiver.can_grant_permissions = False
                     continue
@@ -437,7 +437,7 @@ class MigrationScript(MigrationBase):
         old_admin = self.store_old.find(old_user_model, old_user_model.username == u'admin').one()
 
         new_admin = self.model_to['User']()
-        for _, v in new_admin._storm_columns.iteritems():
+        for _, v in new_admin._storm_columns.items():
             if v.name == 'name':
                 new_admin.name = u'Admin'
                 continue
@@ -478,7 +478,7 @@ class MigrationScript(MigrationBase):
         old_objs = self.store_old.find(self.model_from['Context'])
         for old_obj in old_objs:
             new_obj = self.model_to['Context']()
-            for _, v in new_obj._storm_columns.iteritems():
+            for _, v in new_obj._storm_columns.items():
                 if v.name == 'show_context':
                     new_obj.show_context = True
                     continue
@@ -523,7 +523,7 @@ class MigrationScript(MigrationBase):
         old_objs = self.store_old.find(self.model_from['InternalTip'])
         for old_obj in old_objs:
             new_obj = self.model_to['InternalTip']()
-            for _, v in new_obj._storm_columns.iteritems():
+            for _, v in new_obj._storm_columns.items():
                 if v.name == 'update_date':
                     new_obj.update_date = old_obj.creation_date
                     continue
@@ -564,7 +564,7 @@ class MigrationScript(MigrationBase):
         old_objs = self.store_old.find(self.model_from['ReceiverTip'])
         for old_obj in old_objs:
             new_obj = self.model_to['ReceiverTip']()
-            for _, v in new_obj._storm_columns.iteritems():
+            for _, v in new_obj._storm_columns.items():
                 if v.name == 'can_access_whistleblower_identity':
                     new_obj.can_access_whistleblower_identity = False
                     continue
@@ -577,7 +577,7 @@ class MigrationScript(MigrationBase):
         old_objs = self.store_old.find(self.model_from['Field'])
         for old_obj in old_objs:
             new_obj = self.model_to['Field']()
-            for _, v in new_obj._storm_columns.iteritems():
+            for _, v in new_obj._storm_columns.items():
                 if v.name == 'key':
                     new_obj.key = ''
                     continue
@@ -647,7 +647,7 @@ class MigrationScript(MigrationBase):
             if not new_obj:
                 new_obj = new_obj_model()
 
-            for _, v in new_obj._storm_columns.iteritems():
+            for _, v in new_obj._storm_columns.items():
                 if v.name == 'schema':
                     if not isinstance(new_obj.schema, dict):
                         new_obj.value = {}

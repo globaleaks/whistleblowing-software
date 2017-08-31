@@ -25,7 +25,7 @@ def get_valid_setup():
 
     d = {
         k : open(os.path.join(test_data_dir, 'valid', fname), 'r').read() \
-            for k, fname in valid_setup_files.iteritems()
+            for k, fname in valid_setup_files.items()
     }
     d['hostname'] = 'localhost:9999'
     return d
