@@ -105,10 +105,7 @@ table {
 #LogoBox, #TitleBox, #UserBox {
   z-index: 10;
   width: auto;
-  padding-top: 1em;
-  padding-bottom: 1em;
-  padding-left: 0;
-  padding-right: 1em;
+  padding: 1em 1em 1em 0;
 }
 
 html[dir="rtl"] #LogoBox,
