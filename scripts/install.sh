@@ -824,8 +824,9 @@ fi
 echo "Detected OS: $DISTRO - $DISTRO_CODENAME"
 
 if echo "$DISTRO_CODENAME" | grep -vqE "^xenial$" ; then
-  echo "WARNING: The up-to-date required platform is Ubuntu Xenial (16.04)"
-
+  echo "WARNING: GlobaLeaks is supproted and tested only on Ubuntu Xenial (16.04)"
+  echo "WARNING: It may works on other platform but require hacking around"
+  
   if [ $ASSUMEYES -eq 0 ]; then
     while true; do
       read -p "Do you wish to continue anyway? [y|n]?" yn
