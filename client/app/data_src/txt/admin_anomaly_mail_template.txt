@@ -4,9 +4,8 @@ GlobaLeaks technology includes a server status checking component which will ale
 
 %AnomalyDetailDisk%
 %AnomalyDetailActivities%
-%NotificationsSuppressed%
 
-For more information, log in to the Administration interface and look at the “System Stats” and “Anomalies” sections.
+For more information, log in to the Administration interface and look at the "System Stats" and "Anomalies" sections.
 
 Kind regards,
 %NodeName%
