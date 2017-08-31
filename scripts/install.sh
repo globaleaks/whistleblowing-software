@@ -873,9 +873,13 @@ else
   DO "apt-get install software-properties-common -y"
 fi
 
-if ! grep -q "^deb .*universe" /etc/apt/sources.list /etc/apt/sources.list.d/*; then
-  echo "Adding Ubuntu Universe repository"
-  DO "add-apt-repository 'deb http://archive.ubuntu.com/ubuntu $DISTRO_CODENAME universe'"
+# try adding universe repo only on Ubuntu
+if echo "$REAL_DISTRO" | grep -qE "^(Ubuntu)$"; then
+
+  if ! grep -q "^deb .*universe" /etc/apt/sources.list /etc/apt/sources.list.d/*; then
+    echo "Adding Ubuntu Universe repository"
+    DO "add-apt-repository 'deb http://archive.ubuntu.com/ubuntu $DISTRO_CODENAME universe'"
+  fi
 fi
 
 # add repository of Tor for Tor =>0.2.9, skipping distro that already have it (we start with ubuntu 17.10 artful)
