@@ -62,7 +62,7 @@ class MigrationScript(MigrationBase):
         old_objs = self.store_old.find(self.model_from['Context'])
         for old_obj in old_objs:
             new_obj = self.model_to['Context']()
-            for _, v in new_obj._storm_columns.iteritems():
+            for _, v in new_obj._storm_columns.items():
                 if v.name == 'tip_timetolive':
                     # NOTE hardcoded policy. . . .
                     tip_ttl = 5*365
@@ -93,7 +93,7 @@ class MigrationScript(MigrationBase):
         old_objs = self.store_old.find(self.model_from['User'])
         for old_obj in old_objs:
             new_obj = self.model_to['User']()
-            for _, v in new_obj._storm_columns.iteritems():
+            for _, v in new_obj._storm_columns.items():
                 if v.name in ['pgp_key_public', 'pgp_key_fingerprint']:
                     if getattr(old_obj, v.name) is None:
                         setattr(new_obj, v.name, '')
@@ -117,7 +117,7 @@ class MigrationScript(MigrationBase):
         old_objs = self.store_old.find(self.model_from['WhistleblowerTip'])
         for old_obj in old_objs:
             new_obj = self.model_to['WhistleblowerTip']()
-            for _, v in new_obj._storm_columns.iteritems():
+            for _, v in new_obj._storm_columns.items():
                 if v.name == 'id':
                     new_obj.id = old_obj.internaltip_id
                     continue

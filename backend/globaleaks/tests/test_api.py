@@ -43,7 +43,7 @@ def forge_request(uri='https://www.globaleaks.org/', headers={}, method=b'GET', 
 
     ret.notifyFinish = notifyFinish
 
-    for k, v in headers.iteritems():
+    for k, v in headers.items():
         ret.requestHeaders.setRawHeaders(bytes(k), [bytes(v)])
 
     ret.headers = ret.getAllHeaders()

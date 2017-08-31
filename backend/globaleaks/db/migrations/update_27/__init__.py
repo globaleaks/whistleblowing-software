@@ -160,7 +160,7 @@ class MigrationScript(MigrationBase):
         old_node = self.store_old.find(self.model_from['Node']).one()
         new_node = self.model_to['Node']()
 
-        for _, v in new_node._storm_columns.iteritems():
+        for _, v in new_node._storm_columns.items():
             if v.name == 'enable_experimental_features':
                 new_node.enable_experimental_features = False
                 continue
@@ -173,7 +173,7 @@ class MigrationScript(MigrationBase):
         old_objs = self.store_old.find(self.model_from['Context'])
         for old_obj in old_objs:
             new_obj = self.model_to['Context']()
-            for _, v in new_obj._storm_columns.iteritems():
+            for _, v in new_obj._storm_columns.items():
                 if v.name == 'show_recipients_details':
                     new_obj.show_recipients_details = old_obj.show_receivers
                     continue

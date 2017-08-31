@@ -58,7 +58,7 @@ def db_fix_fields_attrs(store):
 
     std_lst = ['inputbox', 'textarea', 'multichoice', 'checkbox', 'tos', 'date']
 
-    for field_type, attrs_dict in field_attrs.iteritems():
+    for field_type, attrs_dict in field_attrs.items():
         attrs_to_keep_for_type = attrs_dict.keys()
         if field_type in std_lst:
             # Ensure that the standard field attrs do not have extra attr rows
@@ -82,7 +82,7 @@ def db_fix_fields_attrs(store):
     for field in store.find(models.Field):
         typ = field.type if field.id not in special_lst else field.id
         attrs = field_attrs.get(typ, {})
-        for attr_name, attr_dict in attrs.iteritems():
+        for attr_name, attr_dict in attrs.items():
             if not store.find(models.FieldAttr,
                               And(models.FieldAttr.field_id == field.id,
                                   models.FieldAttr.name == attr_name)).one():

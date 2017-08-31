@@ -333,7 +333,7 @@ def serialize_https_config_summary(store):
 
     file_summaries = {}
 
-    for key, file_res_cls in FileHandler.mapped_file_resources.iteritems():
+    for key, file_res_cls in FileHandler.mapped_file_resources.items():
         file_summaries[key] = file_res_cls.db_serialize(store)
 
     ret = {

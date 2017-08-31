@@ -170,7 +170,7 @@ class EventTrackQueueClass(TempDict):
         return self.event_absolute_counter
 
     def take_current_snapshot(self):
-        return [event_obj.serialize_event() for _, event_obj in EventTrackQueue.iteritems()]
+        return [event_obj.serialize_event() for _, event_obj in EventTrackQueue.items()]
 
 
 EventTrackQueue = EventTrackQueueClass(timeout=60)

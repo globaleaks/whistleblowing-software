@@ -18,7 +18,7 @@ class TestSystemConfigModels(helpers.TestGL):
     def _test_config_import(self, store):
         c = store.find(config.Config).count()
 
-        stated_conf = reduce(lambda x,y: x+y, [len(v) for k, v in GLConfig.iteritems()], 0)
+        stated_conf = reduce(lambda x,y: x+y, [len(v) for k, v in GLConfig.items()], 0)
         self.assertEqual(c, stated_conf)
 
     @inlineCallbacks

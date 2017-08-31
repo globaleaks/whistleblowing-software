@@ -233,7 +233,7 @@ class MigrationScript(MigrationBase):
         old_node = self.store_old.find(self.model_from['Node']).one()
         new_node = self.model_to['Node']()
 
-        for _, v in new_node._storm_columns.iteritems():
+        for _, v in new_node._storm_columns.items():
             if v.name == 'submission_minimum_delay':
                 setattr(new_node, v.name, 10)
                 continue
@@ -250,7 +250,7 @@ class MigrationScript(MigrationBase):
         old_notification = self.store_old.find(self.model_from['Notification']).one()
         new_notification = self.model_to['Notification']()
 
-        for _, v in new_notification._storm_columns.iteritems():
+        for _, v in new_notification._storm_columns.items():
             if v.name == 'notification_threshold_per_hour':
                 setattr(new_notification, v.name, 20)
                 continue
@@ -278,7 +278,7 @@ class MigrationScript(MigrationBase):
         old_node = self.store_old.find(self.model_from['Node']).one()
 
         new_admin = self.model_to['User']()
-        for _, v in new_admin._storm_columns.iteritems():
+        for _, v in new_admin._storm_columns.items():
             if v.name == 'mail_address':
                 new_admin.mail_address = old_node.email
                 continue
@@ -294,14 +294,14 @@ class MigrationScript(MigrationBase):
             new_user = self.model_to['User']()
             new_receiver = self.model_to['Receiver']()
 
-            for _, v in new_user._storm_columns.iteritems():
+            for _, v in new_user._storm_columns.items():
                 if v.name == 'mail_address':
                     new_user.mail_address = old_receiver.mail_address
                     continue
 
                 setattr(new_user, v.name, getattr(old_receiver.user, v.name))
 
-            for _, v in new_receiver._storm_columns.iteritems():
+            for _, v in new_receiver._storm_columns.items():
                 if v.name == 'tip_expiration_threshold':
                     new_receiver.tip_expiration_threshold = 72
                     continue
@@ -318,7 +318,7 @@ class MigrationScript(MigrationBase):
         old_objs = self.store_old.find(self.model_from['Context'])
         for old_obj in old_objs:
             new_obj = self.model_to['Context']()
-            for _, v in new_obj._storm_columns.iteritems():
+            for _, v in new_obj._storm_columns.items():
                 if v.name == 'enable_comments':
                     if old_obj.enable_private_messages and old_obj.receivers.count() == 1:
                         new_obj.enable_comments = False
@@ -334,7 +334,7 @@ class MigrationScript(MigrationBase):
         old_objs = self.store_old.find(self.model_from['Step'])
         for old_obj in old_objs:
             new_obj = self.model_to['Step']()
-            for _, v in new_obj._storm_columns.iteritems():
+            for _, v in new_obj._storm_columns.items():
                 if v.name == 'presentation_order':
                     if old_obj.number:
                         new_obj.presentation_order = old_obj.number
@@ -350,7 +350,7 @@ class MigrationScript(MigrationBase):
         old_objs = self.store_old.find(self.model_from['Field'])
         for old_obj in old_objs:
             new_obj = self.model_to['Field']()
-            for _, v in new_obj._storm_columns.iteritems():
+            for _, v in new_obj._storm_columns.items():
                 if v.name == 'presentation_order':
                     if old_obj.number:
                         new_obj.presentation_order = old_obj.number
@@ -366,7 +366,7 @@ class MigrationScript(MigrationBase):
         old_objs = self.store_old.find(self.model_from['FieldOption'])
         for old_obj in old_objs:
             new_obj = self.model_to['FieldOption']()
-            for _, v in new_obj._storm_columns.iteritems():
+            for _, v in new_obj._storm_columns.items():
                 if v.name == 'presentation_order':
                     if old_obj.number:
                         new_obj.presentation_order = old_obj.number
@@ -382,7 +382,7 @@ class MigrationScript(MigrationBase):
         old_objs = self.store_old.find(self.model_from['InternalTip'])
         for old_obj in old_objs:
             new_obj = self.model_to['InternalTip']()
-            for _, v in new_obj._storm_columns.iteritems():
+            for _, v in new_obj._storm_columns.items():
                 if v.name == 'preview':
                     preview_data = []
                     for s in old_obj.wb_steps:

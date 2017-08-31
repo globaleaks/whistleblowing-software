@@ -162,7 +162,7 @@ class MigrationScript(MigrationBase):
         old_node = self.store_old.find(self.model_from['Node']).one()
         new_node = self.model_to['Node']()
 
-        for _, v in new_node._storm_columns.iteritems():
+        for _, v in new_node._storm_columns.items():
             if v.name == 'disable_encryption_warnings':
                 new_node.disable_encryption_warnings = False
                 continue
@@ -175,7 +175,7 @@ class MigrationScript(MigrationBase):
         old_objs = self.store_old.find(self.model_from['FieldAnswer'])
         for old_obj in old_objs:
             new_obj = self.model_to['FieldAnswer']()
-            for _, v in new_obj._storm_columns.iteritems():
+            for _, v in new_obj._storm_columns.items():
                 if v.name == 'fieldanswergroup_id':
                     old_ref = self.store_old.find(FieldAnswerGroupFieldAnswer_v_29,
                                                   FieldAnswerGroupFieldAnswer_v_29.fieldanswer_id == old_obj.id).one()
@@ -236,7 +236,7 @@ class MigrationScript(MigrationBase):
 
                 for old_step in old_context.steps:
                     new_step = self.model_to['Step']()
-                    for _, v in new_step._storm_columns.iteritems():
+                    for _, v in new_step._storm_columns.items():
                         if v.name == 'questionnaire_id':
                             new_step.questionnaire_id = new_questionnaire.id
                             continue
@@ -246,7 +246,7 @@ class MigrationScript(MigrationBase):
                     self.store_new.add(new_step)
 
             new_context = self.model_to['Context']()
-            for _, v in new_context._storm_columns.iteritems():
+            for _, v in new_context._storm_columns.items():
                 if v.name == 'status_page_message':
                     new_context.status_page_message = ''
                     continue

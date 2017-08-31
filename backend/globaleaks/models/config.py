@@ -211,8 +211,8 @@ factories = [NodeFactory, NotificationFactory, PrivateFactory]
 
 
 def system_cfg_init(store):
-    for gname, group in GLConfig.iteritems():
-        for var_name, desc in group.iteritems():
+    for gname, group in GLConfig.items():
+        for var_name, desc in group.items():
             store.add(Config(gname, var_name, desc.default))
 
 

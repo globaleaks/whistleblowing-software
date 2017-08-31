@@ -64,7 +64,7 @@ class MigrationScript(MigrationBase):
         old_objs = self.store_old.find(self.model_from['Step'])
         for old_obj in old_objs:
             new_obj = self.model_to['Step']()
-            for _, v in new_obj._storm_columns.iteritems():
+            for _, v in new_obj._storm_columns.items():
                 if v.name == 'triggered_by_score':
                     new_obj.triggered_by_score = 0
                     continue
@@ -77,7 +77,7 @@ class MigrationScript(MigrationBase):
         old_objs = self.store_old.find(self.model_from['Field'])
         for old_obj in old_objs:
             new_obj = self.model_to['Field']()
-            for _, v in new_obj._storm_columns.iteritems():
+            for _, v in new_obj._storm_columns.items():
                 if v.name == 'preview':
                     if old_obj.preview is None:
                         new_obj.preview = False
@@ -109,7 +109,7 @@ class MigrationScript(MigrationBase):
         old_objs = self.store_old.find(self.model_from['FieldOption'])
         for old_obj in old_objs:
             new_obj = self.model_to['FieldOption']()
-            for _, v in new_obj._storm_columns.iteritems():
+            for _, v in new_obj._storm_columns.items():
                 if v.name == 'trigger_field':
                     continue
 

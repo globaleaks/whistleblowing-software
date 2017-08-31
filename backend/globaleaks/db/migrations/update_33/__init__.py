@@ -167,7 +167,7 @@ class MigrationScript(MigrationBase):
                 self.entries_count['InternalTip'] -= 1
                 continue
 
-            for _, v in new_obj._storm_columns.iteritems():
+            for _, v in new_obj._storm_columns.items():
                 if v.name == 'wb_last_access':
                     if old_wbtip.last_access != datetime_null():
                         new_obj.wb_last_access = old_wbtip.last_access
@@ -183,7 +183,7 @@ class MigrationScript(MigrationBase):
         old_node = self.store_old.find(self.model_from['Node']).one()
         new_node = self.model_to['Node']()
 
-        for _, v in new_node._storm_columns.iteritems():
+        for _, v in new_node._storm_columns.items():
             if v.name == 'tb_download_link':
                 continue
 

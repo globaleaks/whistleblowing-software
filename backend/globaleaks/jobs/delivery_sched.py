@@ -123,7 +123,7 @@ def process_files(receiverfiles_maps):
     @param receiverfiles_maps: the mapping of ifile/rfiles to be created on filesystem
     @return: return None
     """
-    for ifile_id, receiverfiles_map in receiverfiles_maps.iteritems():
+    for ifile_id, receiverfiles_map in receiverfiles_maps.items():
         ifile_path = receiverfiles_map['ifile_path']
         ifile_name = os.path.basename(ifile_path).split('.')[0]
         plain_path = os.path.join(GLSettings.submission_path, "%s.plain" % ifile_name)
@@ -194,7 +194,7 @@ def process_files(receiverfiles_maps):
 
 @transact_sync
 def update_internalfile_and_store_receiverfiles(store, receiverfiles_maps):
-    for ifile_id, receiverfiles_map in receiverfiles_maps.iteritems():
+    for ifile_id, receiverfiles_map in receiverfiles_maps.items():
         ifile = store.find(InternalFile, InternalFile.id == ifile_id).one()
         if ifile is None:
             continue
