@@ -878,9 +878,12 @@ if ! grep -q "^deb .*universe" /etc/apt/sources.list /etc/apt/sources.list.d/*; 
   DO "add-apt-repository 'deb http://archive.ubuntu.com/ubuntu $DISTRO_CODENAME universe'"
 fi
 
-if ! grep -q "^deb .*torproject" /etc/apt/sources.list /etc/apt/sources.list.d/*; then
-  echo "Adding Tor repository"
-  DO "add-apt-repository 'deb http://deb.torproject.org/torproject.org $DISTRO_CODENAME main'"
+# add repository of Tor for Tor =>0.2.9, skipping distro that already have it (we start with ubuntu 17.10 artful)
+if echo "$REAL_DISTRO_CODENAME" | grep -vqE "^artful$" ; then
+  if ! grep -q "^deb .*torproject" /etc/apt/sources.list /etc/apt/sources.list.d/*; then
+    echo "Adding Tor repository"
+    DO "add-apt-repository 'deb http://deb.torproject.org/torproject.org $DISTRO_CODENAME main'"
+  fi
 fi
 
 if [ -d /globaleaks/deb ]; then
