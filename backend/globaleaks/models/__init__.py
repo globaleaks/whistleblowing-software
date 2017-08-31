@@ -42,6 +42,7 @@ class Model(Storm):
     __storm_table__ = None
 
     # initialize empty list for the base classes
+    properties = []
     unicode_keys = []
     localized_keys = []
     int_keys = []
