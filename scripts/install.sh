@@ -864,8 +864,6 @@ TMPFILE=$TMPDIR/torproject_key
 echo "$TOR_PGP_KEY" > $TMPFILE
 DO "apt-key add $TMPFILE"
 
-DO "apt-get update -y"
-
 if echo "$DISTRO_CODENAME" | grep -qE "^(wheezy)$"; then
   echo "Installing python-software-properties"
   DO "apt-get install python-software-properties -y"
