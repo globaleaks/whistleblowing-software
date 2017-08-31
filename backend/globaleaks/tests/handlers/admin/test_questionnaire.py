@@ -73,6 +73,7 @@ class TestQuestionnairesCollection(helpers.TestCollectionHandler):
 
             yield self.assertFailure(handler.post(), err)
 
+
 class TestQuestionnaireInstance(helpers.TestInstanceHandler):
     _handler = questionnaire.QuestionnaireInstance
     _test_desc = {

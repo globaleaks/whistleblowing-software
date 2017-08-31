@@ -17,9 +17,8 @@ class TestStepCollection(helpers.TestHandler):
             """
             Attempt to create a new step via a post request.
             """
-            context = yield create_context(copy.deepcopy(self.dummyContext), 'en')
             step = helpers.get_dummy_step()
-            step['questionnaire_id'] = context['questionnaire_id']
+            step['questionnaire_id'] = 'default'
             handler = self.request(step, role='admin')
             response = yield handler.post()
             self.assertIn('id', response)
@@ -34,9 +33,8 @@ class TestStepInstance(helpers.TestHandler):
             """
             Attempt to update a step, changing it presentation order
             """
-            context = yield create_context(copy.deepcopy(self.dummyContext), 'en')
             step = helpers.get_dummy_step()
-            step['questionnaire_id'] = context['questionnaire_id']
+            step['questionnaire_id'] = 'default'
             step = yield create_step(step, 'en')
 
             step['presentation_order'] = 666
@@ -51,9 +49,8 @@ class TestStepInstance(helpers.TestHandler):
             """
             Create a new step, then attempt to delete it.
             """
-            context = yield create_context(copy.deepcopy(self.dummyContext), 'en')
             step = helpers.get_dummy_step()
-            step['questionnaire_id'] = context['questionnaire_id']
+            step['questionnaire_id'] = 'default'
             step = yield create_step(step, 'en')
 
             handler = self.request(role='admin')

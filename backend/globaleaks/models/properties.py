@@ -17,28 +17,17 @@ class MetaModel(PropertyPublisherMeta):
     - Provide a default naming for database table.
     """
     def __init__(cls, name, bases, attrs):
-        # guess public attributes, as they define the object.
-        public_attrs = set([key for key, val in attrs.iteritems()
-        # it is not private
-                            if not key.startswith('_')
-        # this is going to be dealt at metaclass level shortly. aha.
-                            if key not in ('int_keys', 'bool_keys', 'unicode_keys', 'localized_keys')
-        # it is not a public method, but a column
-                            if isinstance(val, Property)
-        ])
-
-        for base in bases:
-            public_attrs |= getattr(base, '_public_attrs', set())
-
         if not hasattr(cls, '__storm_table__'):
             cls.__storm_table__ = cls.__name__.lower()
-        # if storm_table is none, this means the model is abstract and no table
-        # shall be created for it.
         elif cls.__storm_table__ is None:
             del cls.__storm_table__
 
-        # populate class attributes with the inferred new informations.
-        cls._public_attrs = public_attrs
+        properties = set([key for key, val in attrs.iteritems() if isinstance(val, Property)])
+
+        for base in bases:
+            properties |= getattr(base, 'properties', set())
+
+        cls.properties = properties
 
         super(MetaModel, cls).__init__(name, bases, attrs)
 

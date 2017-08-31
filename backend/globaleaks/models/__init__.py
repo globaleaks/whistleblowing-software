@@ -11,7 +11,7 @@ from globaleaks.models.validators import shorttext_v, longtext_v, \
     shortlocal_v, longlocal_v, shorturl_v, longurl_v, range_v
 from globaleaks.orm import transact
 from globaleaks.settings import GLSettings
-from globaleaks.utils.utility import datetime_now, datetime_null, uuid4
+from globaleaks.utils.utility import datetime_now, datetime_null, datetime_to_ISO8601, uuid4
 
 from .properties import MetaModel, DateTime
 
@@ -48,6 +48,7 @@ class Model(Storm):
     bool_keys = []
     datetime_keys = []
     json_keys = []
+    date_keys = []
     optional_references = []
     list_keys = []
 
@@ -107,7 +108,7 @@ class Model(Storm):
 
     def __str__(self):
         # pylint: disable=no-member
-        values = ['{}={}'.format(attr, getattr(self, attr)) for attr in self._public_attrs]
+        values = ['{}={}'.format(attr, getattr(self, attr)) for attr in self.properties]
         return '<%s model with values %s>' % (self.__class__.__name__, ', '.join(values))
 
     def __repr__(self):
@@ -120,20 +121,25 @@ class Model(Storm):
 
         return super(Model, self).__setattr__(name, value)
 
-    def dict(self, *keys):
+    def dict(self, language=None):
         """
         Return a dictionary serialization of the current model.
-        if no filter is provided, returns every single attribute.
-
-        :raises KeyError: if a key is not recognized as public attribute.
         """
-        # pylint: disable=no-member
-        keys = set(keys or self._public_attrs)
-        not_allowed_keys = keys - self._public_attrs
-        if not_allowed_keys:
-            raise KeyError('Invalid keys: {}'.format(not_allowed_keys))
+        language = GLSettings.memory_copy.default_language if language is None else language
 
-        ret = {key: getattr(self, key) for key in keys & self._public_attrs}
+        ret = {}
+
+        for k in self.properties:
+            value = getattr(self, k)
+
+            if k in self.localized_keys:
+                value = value[language] if language in value else u''
+
+            elif k in self.date_keys:
+                value = datetime_to_ISO8601(value)
+
+            ret[k] = value
+
         for k in self.list_keys:
             ret[k] = []
 
@@ -149,7 +155,7 @@ class ModelWithID(Model):
 
     @classmethod
     def get(cls, store, obj_id):
-        return store.find(cls, cls.id == obj_id).one()
+        return store.find(cls, cls.id == unicode(obj_id)).one()
 
 
 class User(ModelWithID):
@@ -158,9 +164,9 @@ class User(ModelWithID):
     """
     creation_date = DateTime(default_factory=datetime_now)
 
-    username = Unicode(validator=shorttext_v)
+    username = Unicode(validator=shorttext_v, default=u'')
 
-    password = Unicode()
+    password = Unicode(default=u'')
     salt = Unicode()
 
     deletable = Bool(default=True)
@@ -171,7 +177,7 @@ class User(ModelWithID):
     public_name = Unicode(validator=shorttext_v, default=u'')
 
     # roles: 'admin', 'receiver', 'custodian'
-    role = Unicode()
+    role = Unicode(default=u'receiver')
     state = Unicode(default=u'enabled')
     last_login = DateTime(default_factory=datetime_null)
     mail_address = Unicode(default=u'')
@@ -189,11 +195,13 @@ class User(ModelWithID):
 
     unicode_keys = ['username', 'role', 'state',
                     'language', 'mail_address', 'name',
-                    'public_name']
+                    'public_name', 'language']
 
     localized_keys = ['description']
 
     bool_keys = ['deletable', 'password_change_needed']
+
+    date_keys = ['creation_date', 'last_login', 'password_change_date', 'pgp_key_expiration']
 
 
 class Context(ModelWithID):
@@ -259,6 +267,7 @@ class Context(ModelWithID):
 
     list_keys = ['receivers']
 
+
 class InternalTip(ModelWithID):
     """
     This is the internal representation of a Tip that has been submitted to the
@@ -297,6 +306,7 @@ class InternalTip(ModelWithID):
 
     def is_wb_access_revoked(self):
         return self.whistleblowertip is None
+
 
 class ReceiverTip(ModelWithID):
     """
