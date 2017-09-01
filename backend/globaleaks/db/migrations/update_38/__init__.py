@@ -5,10 +5,10 @@ from globaleaks.db.migrations.update import MigrationBase
 from globaleaks.models import *
 
 
-old_keys = ["%NodeName%", "%HiddenService%", "%PublicSite%", "%ContextName%", "%RecipientName%", "%TipID%", "%TipNum%", "%TipLabel%", "%EventTime%", "%SubmissionDate%", "%ExpirationDate%", "%ExpirationWatch%", "%QuestionnaireAnswers%", "%Comments%", "%Messages%", "%TorURL%", "%T2WURL%", "%FileName%", "%FileSize%", "%Content%", "%ExpiringSubmissionCount%", "%EarliestExpirationDate%", "%PGPKeyInfoList%", "%PGPKeyInfo%", "%AnomalyDetailDisk%", "%AnomalyDetailActivities%", "%ActivityAlarmLevel%", "%ActivityDump%", "%NodeName%", "%FreeMemory%", "%TotalMemory%", "%ExpirationDate%"]
+old_keys = ["%NodeName%", "%HiddenService%", "%PublicSite%", "%ContextName%", "%RecipientName%", "%TipID%", "%TipNum%", "%TipLabel%", "%EventTime%", "%SubmissionDate%", "%ExpirationDate%", "%ExpirationWatch%", "%QuestionnaireAnswers%", "%Comments%", "%Messages%", "%TorURL%", "%T2WURL%", "%FileName%", "%FileSize%", "%Content%", "%ExpiringSubmissionCount%", "%EarliestExpirationDate%", "%PGPKeyInfoList%", "%PGPKeyInfo%", "%AnomalyDetailDisk%", "%AnomalyDetailActivities%", "%ActivityAlarmLevel%", "%ActivityDump%", "%NodeName%", "%FreeMemory%", "%TotalMemory%", "%ExpirationDate%", "%TipTorURL", "TipT2WURL"]
 
 
-new_keys = ["{NodeName}", "{HiddenService}", "{PublicSite}", "{ContextName}", "{RecipientName}", "{TipID}", "{TipNum}", "{TipLabel}", "{EventTime}", "{SubmissionDate}", "{ExpirationDate}", "{ExpirationWatch}", "{QuestionnaireAnswers}", "{Comments}", "{Messages}", "{TorUrl}", "{HTTPSUrl}", "{FileName}", "{FileSize}", "{Content}", "{ExpiringSubmissionCount}", "{EarliestExpirationDate}", "{PGPKeyInfoList}", "{PGPKeyInfo}", "{AnomalyDetailDisk}", "{AnomalyDetailActivities}", "{ActivityAlarmLevel}", "{ActivityDump}", "{NodeName}", "{FreeMemory}", "{TotalMemory}", "{ExpirationDate}"]
+new_keys = ["{NodeName}", "{HiddenService}", "{PublicSite}", "{ContextName}", "{RecipientName}", "{TipID}", "{TipNum}", "{TipLabel}", "{EventTime}", "{SubmissionDate}", "{ExpirationDate}", "{ExpirationWatch}", "{QuestionnaireAnswers}", "{Comments}", "{Messages}", "{TorUrl}", "{HTTPSUrl}", "{FileName}", "{FileSize}", "{Content}", "{ExpiringSubmissionCount}", "{EarliestExpirationDate}", "{PGPKeyInfoList}", "{PGPKeyInfo}", "{AnomalyDetailDisk}", "{AnomalyDetailActivities}", "{ActivityAlarmLevel}", "{ActivityDump}", "{NodeName}", "{FreeMemory}", "{TotalMemory}", "{ExpirationDate}", "{TorUrl}", "{HTTPSUrl}"]
 
 
 class Field_v_37(ModelWithID):
