@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 from globaleaks.handlers.admin import user
 from globaleaks.models import User
-from globaleaks.rest import errors
 from globaleaks.tests import helpers
 
 class TestAdminCollection(helpers.TestCollectionHandler):

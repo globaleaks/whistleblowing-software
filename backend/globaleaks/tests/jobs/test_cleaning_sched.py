@@ -6,7 +6,6 @@ from globaleaks.jobs import cleaning_sched
 from globaleaks.orm import transact
 from globaleaks.settings import GLSettings
 from globaleaks.tests import helpers
-from globaleaks.utils.utility import datetime_null
 from twisted.internet.defer import inlineCallbacks
 
 
