@@ -220,7 +220,7 @@ class TipKeyword(NodeKeyword, ContextKeyword, ReceiverKeyword):
     def TipID(self):
         return self.data['tip']['id']
 
-    def TorURL(self):
+    def TorUrl(self):
         if self.data['node']['onionservice']:
             hidden_service = 'http://' + self.data['node']['onionservice']
         else:
@@ -233,7 +233,7 @@ class TipKeyword(NodeKeyword, ContextKeyword, ReceiverKeyword):
 
         return retstr
 
-    def T2WURL(self):
+    def HTTPSUrl(self):
         if self.data['node']['hostname']:
             public_site = 'https://' + self.data['node']['hostname']
         else:
@@ -342,7 +342,7 @@ class ExpirationSummaryKeyword(NodeKeyword, ContextKeyword, ReceiverKeyword):
     def EarliestExpirationDate(self):
         return ISO8601_to_pretty_str(self.data['earliest_expiration_date'])
 
-    def TorURL(self):
+    def TorUrl(self):
         if self.data['node']['onionservice']:
             hidden_service = 'http://' + self.data['node']['onionservice']
         else:
@@ -355,7 +355,7 @@ class ExpirationSummaryKeyword(NodeKeyword, ContextKeyword, ReceiverKeyword):
 
         return retstr
 
-    def T2WURL(self):
+    def HTTPSUrl(self):
         if self.data['node']['hostname']:
             public_site = 'https://' + self.data['node']['hostname']
         else:
@@ -449,8 +449,7 @@ class CertificateExprKeyword(NodeKeyword):
         # is not time zone dependent, is UTC for everyone
         return ISO8601_to_day_str(self.data['expiration_date'])
 
-    # TODO convert this into a reusable function under Node
-    def TorURL(self):
+    def TorUrl(self):
         if self.data['node']['onionservice']:
             hidden_service = 'http://' + self.data['node']['onionservice']
         else:
@@ -463,7 +462,7 @@ class CertificateExprKeyword(NodeKeyword):
 
         return retstr
 
-    def T2WURL(self):
+    def HTTPSUrl(self):
         if self.data['node']['hostname']:
             public_site = 'https://' + self.data['node']['hostname']
         else:
