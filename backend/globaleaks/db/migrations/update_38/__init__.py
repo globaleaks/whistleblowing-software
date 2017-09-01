@@ -59,9 +59,13 @@ class MigrationScript(MigrationBase):
             for _, v in new_obj._storm_columns.items():
                 value = getattr(old_obj, v.name)
                 if v.name == 'value':
+<<<<<<< f67a4ee23b9b8e28021dc674ea2a7973b6f68d99
                     print value
                     value = replace_templates_variables(value)
                     print value
+=======
+                    value = replace_templates_variables(value)
+>>>>>>> Implement migration script for new template keywords and format
 
                 setattr(new_obj, v.name, value)
 
