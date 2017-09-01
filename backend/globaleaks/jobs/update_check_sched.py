@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-from distutils.version import StrictVersion as V  # pylint: disable=no-name-in-module,import-error
+from distutils.version import LooseVersion as V  # pylint: disable=no-name-in-module,import-error
 
 from debian import deb822
 from globaleaks.jobs.base import LoopingJob
@@ -18,8 +18,7 @@ class UpdateCheckJob(LoopingJob):
     threaded = False
 
     def fetch_packages_file(self):
-        agent = GLSettings.get_agent()
-        return get_page(agent, DEB_PACKAGE_URL)
+        return get_page(GLSettings.get_agent(), DEB_PACKAGE_URL)
 
     @inlineCallbacks
     def operation(self):

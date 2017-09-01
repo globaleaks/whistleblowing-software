@@ -13,7 +13,7 @@ import re
 import sys
 # pylint: disable=no-name-in-module,import-error
 from distutils import dir_util
-from distutils.version import StrictVersion
+from distutils.version import LooseVersion
 # pylint: enable=no-name-in-module,import-error
 from optparse import OptionParser
 
@@ -217,7 +217,7 @@ class GLSettingsClass(object):
         self.appstate = ObjectDict()
         self.appstate.process_supervisor = None
         self.appstate.tor_exit_set = TorExitSet()
-        self.appstate.latest_version = StrictVersion(__version__)
+        self.appstate.latest_version = LooseVersion(__version__)
         self.appstate.api_token_session = None
         self.appstate.api_token_session_suspended = False
 
