@@ -17,71 +17,71 @@ from globaleaks.utils.utility import ISO8601_to_pretty_str, ISO8601_to_day_str, 
     ISO8601_to_datetime, datetime_now, bytes_to_pretty_str
 
 node_keywords = [
-    '%NodeName%',
-    '%HiddenService%',
-    '%PublicSite%'
+    '{NodeName}',
+    '{HiddenService}',
+    '{PublicSite}'
 ]
 
 context_keywords = [
-    '%ContextName%'
+    '{ContextName}'
 ]
 
 receiver_keywords = [
-    '%RecipientName%'
+    '{RecipientName}'
 ]
 
 tip_keywords = [
-    '%TipID%',
-    '%TipNum%',
-    '%TipLabel%',
-    '%EventTime%',
-    '%SubmissionDate%',
-    '%ExpirationDate%',
-    '%ExpirationWatch%',
-    '%QuestionnaireAnswers%',
-    '%Comments%',
-    '%Messages%',
-    '%TorURL%',
-    '%T2WURL%'
+    '{TipID}',
+    '{TipNum}',
+    '{TipLabel}',
+    '{EventTime}',
+    '{SubmissionDate}',
+    '{ExpirationDate}',
+    '{ExpirationWatch}',
+    '{QuestionnaireAnswers}',
+    '{Comments}',
+    '{Messages}',
+    '{TorUrl}',
+    '{HTTPSUrl}'
 ]
 
 file_keywords = [
-    '%FileName%',
-    '%FileSize%'
+    '{FileName}',
+    '{FileSize}'
 ]
 
 export_message_keywords = [
-    '%Content%'
+    '{Content}'
 ]
 
 expiration_summary_keywords = [
-    '%ExpiringSubmissionCount%',
-    '%EarliestExpirationDate%',
-    '%TorURL%',
-    '%T2WURL%'
+    '{ExpiringSubmissionCount}',
+    '{EarliestExpirationDate}',
+    '{TorUrl}',
+    '{HTTPSUrl}'
 ]
 
 admin_pgp_alert_keywords = [
-    '%PGPKeyInfoList%'
+    '{PGPKeyInfoList}'
 ]
 
 user_pgp_alert_keywords = [
-    '%PGPKeyInfo%'
+    '{PGPKeyInfo}'
 ]
 
 admin_anomaly_keywords = [
-    '%AnomalyDetailDisk%',
-    '%AnomalyDetailActivities%',
-    '%ActivityAlarmLevel%',
-    '%ActivityDump%',
-    '%NodeName%',
-    '%FreeMemory%',
-    '%TotalMemory%'
+    '{AnomalyDetailDisk}',
+    '{AnomalyDetailActivities}',
+    '{ActivityAlarmLevel}',
+    '{ActivityDump}',
+    '{NodeName}',
+    '{FreeMemory}',
+    '{TotalMemory}'
 ]
 
 https_expr_keywords = [
-    '%ExpirationDate%',
-    '%TorURL%',
+    '{ExpirationDate}',
+    '{TorUrl}',
 ]
 
 
@@ -537,9 +537,9 @@ class Templating(object):
             raise NotImplementedError('This data_type (%s) is not supported' % ['data.type'])
 
         if data['type'] in [u'tip', u'comment', u'file', u'message', u'tip_expiration']:
-            prefix = '%TipNum% '
+            prefix = '{TipNum} '
             if data['tip']['label'] != '':
-                prefix += '[%TipLabel%] '
+                prefix += '[{TipLabel}] '
 
             subject_template = prefix + subject_template
 
