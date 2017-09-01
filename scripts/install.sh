@@ -24,6 +24,9 @@ if [ $ERR -ne 0 ]; then
   exit 1
 fi
 
+# align apt-get cache to up-to-date state on configured repositories
+apt-get update -y
+
 # fix curl requirement
 if which curl >/dev/null; then
     echo " + curl requirement meet"
