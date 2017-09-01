@@ -901,7 +901,7 @@ if [ -d /globaleaks/deb ]; then
     echo "deb file:///globaleaks/deb/ /" >> /etc/apt/sources.list.d/globaleaks.local.list
   fi
   DO "apt-get update -y"
-  DO "apt-get install globaleaks -y --allow-unauthenticated -o Dpkg::Options::=--force-confdef -o Dpkg::Options::=--force-confnew"
+  DO "apt-get install globaleaks -y --allow-unauthenticated"
 else
   if [ ! -f /etc/apt/sources.list.d/globaleaks.list ]; then
     if [ $EXPERIMENTAL -eq 0 ]; then
@@ -910,7 +910,7 @@ else
       echo "deb http://deb.globaleaks.org unstable/" > /etc/apt/sources.list.d/globaleaks.list
     fi
   fi
-  DO "apt-get update -y -o Dir::Etc::sourcelist=/etc/apt/sources.list.d/globaleaks.list"
+  DO "apt-get update -y"
   DO "apt-get install globaleaks -y"
 fi
 
