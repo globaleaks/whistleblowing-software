@@ -4,23 +4,23 @@
     "max_len": {"type": "int", "value": "-1"},
     "input_validation": {"type": "unicode", "value": "none"},
     "regexp": {"type": "unicode", "value": ""}
-  },
+ },
   "textarea": {
     "min_len": {"type": "int", "value": "-1"},
     "max_len": {"type": "int", "value": "-1"}
-  },
+ },
   "multichoice": {
     "layout_orientation": {"type": "unicode", "value": "vertical"}
-  },
+ },
   "checkbox": {
     "layout_orientation": {"type": "unicode", "value": "vertical"}
-  },
+ },
   "tos": {
     "clause": {"type": "localized", "value": ""},
     "agreement_statement": {"type": "localized", "value": ""}
-  },
+ },
   "date": {
     "min_date": {"type": "unicode", "value": ""},
     "max_date": {"type": "unicode", "value": ""}
-  }
+ }
 }
