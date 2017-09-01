@@ -24,26 +24,6 @@ if [ $ERR -ne 0 ]; then
   exit 1
 fi
 
-# align apt-get cache to up-to-date state on configured repositories
-apt-get update -y
-
-# fix curl requirement
-if which curl >/dev/null; then
-    echo " + curl requirement meet"
-  else
-    echo " - curl requirement not meet. Installing curl"
-    apt-get install curl
-fi
-
-# fix netstat requirement
-if which netstat >/dev/null; then
-    echo " + netstat requirement meet"
-  else
-    echo " - netstat requirement not meet. Installing net-tools"
-    apt-get install net-tools
-fi
-
-
 DO () {
   if [ -z "$2" ]; then
     EXPECTED_RET=0
@@ -841,6 +821,25 @@ if echo "$DISTRO_CODENAME" | grep -vqE "^xenial$" ; then
       esac
     done
   fi
+fi
+
+# align apt-get cache to up-to-date state on configured repositories
+DO "apt-get update -y"
+
+# fix curl requirement
+if which curl >/dev/null; then
+    echo " + curl requirement meet"
+  else
+    echo " - curl requirement not meet. Installing curl"
+    DO "apt-get install curl -y"
+fi
+
+# fix netstat requirement
+if which netstat >/dev/null; then
+    echo " + netstat requirement meet"
+  else
+    echo " - netstat requirement not meet. Installing net-tools"
+    DO "apt-get install net-tools -y"
 fi
 
 # The supported platforms are experimentally more than only Ubuntu as
