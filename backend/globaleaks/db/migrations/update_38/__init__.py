@@ -5,6 +5,12 @@ from globaleaks.db.migrations.update import MigrationBase
 from globaleaks.models import *
 
 
+old_keys = ["%NodeName%", "%HiddenService%", "%PublicSite%", "%ContextName%", "%RecipientName%", "%TipID%", "%TipNum%", "%TipLabel%", "%EventTime%", "%SubmissionDate%", "%ExpirationDate%", "%ExpirationWatch%", "%QuestionnaireAnswers%", "%Comments%", "%Messages%", "%TorURL%", "%T2WURL%", "%FileName%", "%FileSize%", "%Content%", "%ExpiringSubmissionCount%", "%EarliestExpirationDate%", "%PGPKeyInfoList%", "%PGPKeyInfo%", "%AnomalyDetailDisk%", "%AnomalyDetailActivities%", "%ActivityAlarmLevel%", "%ActivityDump%", "%NodeName%", "%FreeMemory%", "%TotalMemory%", "%ExpirationDate%"]
+
+
+new_keys = ["{NodeName}", "{HiddenService}", "{PublicSite}", "{ContextName}", "{RecipientName}", "{TipID}", "{TipNum}", "{TipLabel}", "{EventTime}", "{SubmissionDate}", "{ExpirationDate}", "{ExpirationWatch}", "{QuestionnaireAnswers}", "{Comments}", "{Messages}", "{TorUrl}", "{HTTPSUrl}", "{FileName}", "{FileSize}", "{Content}", "{ExpiringSubmissionCount}", "{EarliestExpirationDate}", "{PGPKeyInfoList}", "{PGPKeyInfo}", "{AnomalyDetailDisk}", "{AnomalyDetailActivities}", "{ActivityAlarmLevel}", "{ActivityDump}", "{NodeName}", "{FreeMemory}", "{TotalMemory}", "{ExpirationDate}"]
+
+
 class Field_v_37(ModelWithID):
     __storm_table__ = 'field'
     x = Int(default=0)
@@ -38,7 +44,29 @@ class Questionnaire_v_37(ModelWithID):
     editable = Bool(default=True)
 
 
+def replace_templates_variables(value):
+    for i in range(len(old_keys)):
+        value = value.replace(old_keys[i], new_keys[i])
+
+    return value
+
+
 class MigrationScript(MigrationBase):
+    def migrate_ConfigL10N(self):
+        old_objs = self.store_old.find(self.model_from['ConfigL10N'])
+        for old_obj in old_objs:
+            new_obj = self.model_to['ConfigL10N']()
+            for _, v in new_obj._storm_columns.items():
+                value = getattr(old_obj, v.name)
+                if v.name == 'value':
+                    print value
+                    value = replace_templates_variables(value)
+                    print value
+
+                setattr(new_obj, v.name, value)
+
+            self.store_new.add(new_obj)
+
     def migrate_Context(self):
         questionnaire_default = self.store_old.find(self.model_from['Questionnaire'], self.model_from['Questionnaire'].key == u'default').one()
         questionnaire_default_id = questionnaire_default.id if questionnaire_default is not None else 'hack'

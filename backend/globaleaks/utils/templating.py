@@ -500,9 +500,7 @@ supported_template_types = {
 class Templating(object):
     def format_template(self, raw_template, data):
         keyword_converter = supported_template_types[data['type']](data)
-        iterations = 3
-        while iterations > 0:
-            iterations -= 1
+        for _ in range(3):
             count = 0
 
             for kw in keyword_converter.keyword_list:
