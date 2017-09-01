@@ -6,7 +6,7 @@ import traceback
 
 from datetime import datetime
 
-from twisted.application import internet, service
+from twisted.application import service
 from twisted.internet import reactor, defer
 from twisted.python import log as txlog, logfile as txlogfile
 from twisted.web.http import _escape

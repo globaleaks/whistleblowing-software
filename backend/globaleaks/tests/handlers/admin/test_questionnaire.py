@@ -9,7 +9,6 @@ from globaleaks.handlers.admin import questionnaire
 from globaleaks.handlers.admin.field import FieldCollection
 from globaleaks.models import Questionnaire
 from globaleaks.rest import errors
-from globaleaks.rest.errors import InternalServerError
 from globaleaks.tests import helpers
 from globaleaks.utils.utility import read_json_file
 
@@ -40,7 +39,7 @@ class TestQuestionnairesCollection(helpers.TestCollectionHandler):
             if fname == 'normal-custom-template.json':
                 template = read_json_file(os.path.join(self.test_data_dir, 'valid', 'custom_template.json'))
                 h = self.request(template, role='admin', handler_cls=FieldCollection)
-                res = yield h.post()
+                yield h.post()
 
             handler = self.request(new_q, role='admin')
             handler.request.language = None
