@@ -121,6 +121,18 @@ class NodeKeyword(Keyword):
     def PublicSite(self):
         return 'https://' + self.data['node']['hostname']
 
+    def TorUrl(self):
+        if self.data['node']['onionservice'] == '':
+            return '[NOT CONFIGURED]'
+
+        return self._TorUrl()
+
+    def HTTPSUrl(self):
+        if self.data['node']['hostname'] == '':
+            return '[NOT CONFIGURED]'
+
+        return self._HTTPSUrl()
+
 
 class ContextKeyword(Keyword):
     keyword_list = context_keywords
@@ -220,33 +232,11 @@ class TipKeyword(NodeKeyword, ContextKeyword, ReceiverKeyword):
     def TipID(self):
         return self.data['tip']['id']
 
-    def TorUrl(self):
-        if self.data['node']['onionservice']:
-            hidden_service = 'http://' + self.data['node']['onionservice']
-        else:
-            hidden_service = ''
+    def _TorUrl(self):
+        return 'http://' + self.data['node']['onionservice'] + '/#/status/' + self.data['tip']['id']
 
-        if len(hidden_service):
-            retstr = '%s/#/status/%s' % (hidden_service, self.data['tip']['id'])
-        else:
-            retstr = '[NOT CONFIGURED]'
-
-        return retstr
-
-    def HTTPSUrl(self):
-        if self.data['node']['hostname']:
-            public_site = 'https://' + self.data['node']['hostname']
-        else:
-            public_site = ''
-
-        if not GLSettings.memory_copy.accept_tor2web_access['receiver']:
-            retstr = 'DISABLED'
-        elif len(public_site):
-            retstr =  '%s/#/status/%s' % (public_site, self.data['tip']['id'])
-        else:
-            retstr = '[NOT CONFIGURED]'
-
-        return retstr
+    def _HTTPSUrl(self):
+        return 'https://' + self.data['node']['hostname'] + '/#/status/' + self.data['tip']['id']
 
     def TipNum(self):
         return self.data['tip']['sequence_number']
@@ -342,33 +332,11 @@ class ExpirationSummaryKeyword(NodeKeyword, ContextKeyword, ReceiverKeyword):
     def EarliestExpirationDate(self):
         return ISO8601_to_pretty_str(self.data['earliest_expiration_date'])
 
-    def TorUrl(self):
-        if self.data['node']['onionservice']:
-            hidden_service = 'http://' + self.data['node']['onionservice']
-        else:
-            hidden_service = ''
+    def _TorUrl(self):
+        return 'http://' + self.data['node']['onionservice'] + '/#/receiver/tips'
 
-        if len(hidden_service):
-            retstr = '%s/#/receiver/tips' % hidden_service
-        else:
-            retstr = '[NOT CONFIGURED]'
-
-        return retstr
-
-    def HTTPSUrl(self):
-        if self.data['node']['hostname']:
-            public_site = 'https://' + self.data['node']['hostname']
-        else:
-            public_site = ''
-
-        if not GLSettings.memory_copy.accept_tor2web_access['receiver']:
-            retstr = 'DISABLED'
-        elif len(public_site):
-            retstr =  '%s/#/receiver/tips' % public_site
-        else:
-            retstr = '[NOT CONFIGURED]'
-
-        return retstr
+    def _HTTPSUrl(self):
+        return 'https://' + self.data['node']['hostname'] + '/#/receiver/tips'
 
 
 class AdminPGPAlertKeyword(NodeKeyword):
@@ -449,33 +417,11 @@ class CertificateExprKeyword(NodeKeyword):
         # is not time zone dependent, is UTC for everyone
         return ISO8601_to_day_str(self.data['expiration_date'])
 
-    def TorUrl(self):
-        if self.data['node']['onionservice']:
-            hidden_service = 'http://' + self.data['node']['onionservice']
-        else:
-            hidden_service = ''
+    def _TorUrl(self):
+        return 'http://' + self.data['node']['onionservice'] + '/#/admin/network'
 
-        if len(hidden_service):
-            retstr = '%s/#/admin/network' % hidden_service
-        else:
-            retstr = '[NOT CONFIGURED]'
-
-        return retstr
-
-    def HTTPSUrl(self):
-        if self.data['node']['hostname']:
-            public_site = 'https://' + self.data['node']['hostname']
-        else:
-            public_site = ''
-
-        if not GLSettings.memory_copy.accept_tor2web_access['receiver']:
-            retstr = 'DISABLED'
-        elif len(public_site):
-            retstr =  '%s/#/admin/network' % public_site
-        else:
-            retstr = '[NOT CONFIGURED]'
-
-        return retstr
+    def _HTTPSUrl(self):
+        return 'https://' + self.data['node']['hostname'] + '/#/admin/network'
 
 
 supported_template_types = {
