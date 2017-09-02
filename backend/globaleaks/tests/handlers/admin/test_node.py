@@ -62,11 +62,18 @@ class TestNodeInstance(helpers.TestHandlerWithPopulatedDB):
 
     @inlineCallbacks
     def test_put_update_node_languages_removing_en_adding_fr(self):
+        # this tests start setting en as the only enabled language and
+        # ends keeping enabled only french.
+        self.dummyNode['languages_enabled'] = ["en"]
+        self.dummyNode['default_language'] = "en"
+        handler = self.request(self.dummyNode, role='admin')
+        yield handler.put()
+
         self.dummyNode['languages_enabled'] = ["fr"]
         self.dummyNode['default_language'] = "fr"
         handler = self.request(self.dummyNode, role='admin')
-
         yield handler.put()
+
 
     @inlineCallbacks
     def test_update_ignore_onionservice(self):
