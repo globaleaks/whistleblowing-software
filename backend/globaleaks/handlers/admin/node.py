@@ -37,7 +37,7 @@ def db_admin_serialize_node(store, language):
 
     l10n_dict = NodeL10NFactory(store).localized_dict(language)
 
-    return utils.sets.disjoint_union(node_dict, misc_dict, l10n_dict)
+    return utils.sets.merge_dicts(node_dict, misc_dict, l10n_dict)
 
 
 @transact

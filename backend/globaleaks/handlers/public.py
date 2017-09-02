@@ -15,7 +15,7 @@ from globaleaks.models.config import NodeFactory
 from globaleaks.models.l10n import NodeL10NFactory
 from globaleaks.orm import transact
 from globaleaks.settings import GLSettings
-from globaleaks.utils.sets import disjoint_union
+from globaleaks.utils.sets import merge_dicts
 from globaleaks.utils.structures import get_localized_values
 
 
@@ -139,7 +139,7 @@ def db_serialize_node(store, language):
 
     l10n_dict = NodeL10NFactory(store).localized_dict(language)
 
-    return disjoint_union(ro_node, l10n_dict, misc_dict)
+    return merge_dicts(ro_node, l10n_dict, misc_dict)
 
 
 @transact

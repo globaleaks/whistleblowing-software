@@ -11,7 +11,7 @@ import copy
 
 from globaleaks import models
 from globaleaks.models.l10n import NotificationL10NFactory
-from globaleaks.utils.sets import disjoint_union
+from globaleaks.utils.sets import merge_dicts
 
 
 def get_multilang_request_format(request_format, localized_strings):
@@ -247,7 +247,7 @@ AdminNodeDesc = {
     'anonymize_outgoing_connections': bool
 }
 
-AdminNotificationDesc = disjoint_union({
+AdminNotificationDesc = merge_dicts({
     'server': unicode,
     'port': int,
     'security': unicode, # 'TLS' or 'SSL' only

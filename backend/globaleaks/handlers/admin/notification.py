@@ -14,7 +14,7 @@ from globaleaks.rest import requests
 from globaleaks.security import parse_pgp_key
 from globaleaks.settings import GLSettings
 from globaleaks.utils.mailutils import sendmail
-from globaleaks.utils.sets import disjoint_union
+from globaleaks.utils.sets import merge_dicts
 from globaleaks.utils.templating import Templating
 from globaleaks.utils.utility import log
 
@@ -55,7 +55,7 @@ def admin_serialize_notification(store, language):
 
     conf_l10n_dict = NotificationL10NFactory(store).localized_dict(language)
 
-    return disjoint_union(config_dict, cmd_flags, conf_l10n_dict)
+    return merge_dicts(config_dict, cmd_flags, conf_l10n_dict)
 
 
 def db_get_notification(store, language):

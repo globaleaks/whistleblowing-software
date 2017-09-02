@@ -117,32 +117,15 @@ class EventTrack(object):
     - Anomaly check is based on those elements.
     - Real-time analysis is based on these, too.
     """
-
-    def serialize_event(self):
-        return {
-            # if the [:-8] I'll strip "." + $millisecond "Z"
-            'creation_date': datetime_to_ISO8601(self.creation_date)[:-8],
-            'event': self.event_type,
-            'id': self.event_id,
-            'duration': self.request_time
-        }
-
-    def __init__(self, event_obj, request_time, debug=False):
-        self.debug = debug
-        self.creation_date = datetime_now()
+    def __init__(self, event_obj, request_time):
         self.event_id = EventTrackQueue.event_number()
         self.event_type = event_obj['name']
+        self.creation_date = datetime_now()
         self.request_time = round(request_time.total_seconds(), 1)
-
-        if self.debug:
-            log.debug("Creation of Event %s", self.serialize_event())
 
         EventTrackQueue.set(self.event_id, self)
 
-    def __repr__(self):
-        return "%s" % self.serialize_event()
-
-    def synthesis(self):
+    def serialize(self):
         return {
             'id': self.event_id,
             'creation_date': datetime_to_ISO8601(self.creation_date)[:-8],
@@ -163,14 +146,14 @@ class EventTrackQueueClass(TempDict):
         On expiration of an event perform the synthesis and
         append them to the RecentEventQueue.
         """
-        GLSettings.RecentEventQ.append(event.synthesis())
+        GLSettings.RecentEventQ.append(event.serialize())
 
     def event_number(self):
         self.event_absolute_counter += 1
         return self.event_absolute_counter
 
     def take_current_snapshot(self):
-        return [event_obj.serialize_event() for _, event_obj in EventTrackQueue.items()]
+        return [event_obj.serialize() for _, event_obj in EventTrackQueue.items()]
 
 
 EventTrackQueue = EventTrackQueueClass(timeout=60)
