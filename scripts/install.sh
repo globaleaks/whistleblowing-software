@@ -747,17 +747,15 @@ DISTRO="unknown"
 DISTRO_CODENAME="unknown"
 if which lsb_release >/dev/null; then
   DISTRO="$(lsb_release -is)"
-  REAL_DISTRO=$REAL_DISTRO
   DISTRO_CODENAME="$(lsb_release -cs)"
+  REAL_DISTRO=$DISTRO
   REAL_DISTRO_CODENAME=$DISTRO_CODENAME
-
 fi
 
 # LinuxMint is based on Ubuntu, if we encounter Mint just allign the Ubuntu version is based upon
 if [ "$DISTRO" == "LinuxMint" ]; then
   DISTRO="Ubuntu"
   DISTRO_CODENAME=`grep UBUNTU_CODENAME /etc/os-release | sed -e 's/UBUNTU_CODENAME=//'`
-  REAL_DISTRO_CODENAME=$DISTRO_CODENAME
 fi
 
 # Report last executed command and its status
@@ -770,7 +768,7 @@ function atexit {
   echo "Please report encountered issues to the Community Forum at https://forum.globaleaks.org"
 
   if [ $TEST -eq 1 ]; then
-    DISTRO_CODENAME="test-$DISTRO_CODENAME"
+    REAL_DISTRO_CODENAME="test-$REAL_DISTRO_CODENAME"
   fi
 
   LAST_COMMAND=$(cat $TMPDIR/last_command)
@@ -778,7 +776,7 @@ function atexit {
 
   curl "https://deb.globaleaks.org/install-globaleaks.sh" \
        -G -m 10 \
-        --data-urlencode "DISTRO=$REAL_DISTRO_CODENAME" \
+       --data-urlencode "DISTRO=$REAL_DISTRO_CODENAME" \
        --data-urlencode "LAST_COMMAND=$LAST_COMMAND" \
        --data-urlencode "LAST_STATUS=$LAST_STATUS" \
        >/dev/null 2>/dev/null
@@ -809,7 +807,6 @@ echo "Detected OS: $DISTRO - $DISTRO_CODENAME"
 
 if echo "$DISTRO_CODENAME" | grep -vqE "^xenial$" ; then
   echo "WARNING: GlobaLeaks is supported and tested only on Ubuntu Xenial (16.04)"
-  echo "WARNING: It may works on other platform but require hacking around"
   
   if [ $ASSUMEYES -eq 0 ]; then
     while true; do
@@ -872,7 +869,7 @@ else
 fi
 
 # try adding universe repo only on Ubuntu
-if echo "$REAL_DISTRO" | grep -qE "^(Ubuntu)$"; then
+if echo "$DISTRO" | grep -qE "^(Ubuntu)$"; then
 
   if ! grep -q "^deb .*universe" /etc/apt/sources.list /etc/apt/sources.list.d/*; then
     echo "Adding Ubuntu Universe repository"
@@ -881,7 +878,7 @@ if echo "$REAL_DISTRO" | grep -qE "^(Ubuntu)$"; then
 fi
 
 # Add repository and Tor key for Tor =>0.2.9, skipping distro that already have it (we start with ubuntu 17.10 artful)
-if echo "$REAL_DISTRO_CODENAME" | grep -vqE "^artful$" ; then
+if echo "$DISTRO_CODENAME" | grep -vqE "^artful$" ; then
 
    echo "Adding Tor PGP key to trusted APT"
    TMPFILE=$TMPDIR/torproject_key
