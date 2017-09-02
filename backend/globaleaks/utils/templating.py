@@ -275,7 +275,7 @@ class TipKeyword(NodeKeyword, ContextKeyword, ReceiverKeyword):
     def Comments(self):
         comments = self.data.get('comments', [])
         if len(comments) == 0:
-            return '%Blank%'
+            return '{Blank}'
 
         ret = self.data['node']['widget_comments_title'] + ':\n'
         ret += self.dump_messages(comments) + '\n'
@@ -284,7 +284,7 @@ class TipKeyword(NodeKeyword, ContextKeyword, ReceiverKeyword):
     def Messages(self):
         messages = self.data.get('messages', [])
         if len(messages) == 0:
-            return '%Blank%'
+            return '{Blank}'
 
         ret = self.data['node']['widget_messages_title'] + ':\n'
         ret += self.dump_messages(messages)
@@ -510,11 +510,11 @@ class Templating(object):
 
                     count += 1
 
-            # remobe lines with only %Blank%
-            raw_template = raw_template.replace('\n%Blank%\n', '\n')
+            # remobe lines with only {Blank}
+            raw_template = raw_template.replace('\n{Blank}\n', '\n')
 
             # remove remaining $Blank% tokens
-            raw_template = raw_template.replace('\n%Blank%\n', '')
+            raw_template = raw_template.replace('\n{Blank}\n', '')
 
             if count == 0:
                 # finally!
