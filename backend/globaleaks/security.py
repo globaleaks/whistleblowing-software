@@ -60,13 +60,6 @@ def generateRandomSalt():
     return base64.b64encode(os.urandom(16))
 
 
-def generateRandomPassword():
-    """
-    Return a random password of 10 characters in a-zA-Z0-9
-    """
-    return generateRandomKey(10)
-
-
 def generate_api_token():
     """
     creates an api token along with its corresponding hash digest.
@@ -431,17 +424,15 @@ class GLBPGP(object):
             log.err("Unable to clean temporary PGP environment: %s: %s", self.gnupg.gnupghome, excep)
 
 
-def encrypt_pgp_message(pgp_key_public, pgp_key_fingerprint, msg):
+def encrypt_message(pgp_key_public, msg):
     gpob = GLBPGP()
 
     try:
-        gpob.load_key(pgp_key_public)
-        body = gpob.encrypt_message(pgp_key_fingerprint, msg)
+        fingerprint = gpob.load_key(pgp_key_public)['fingerprint']
+        body = gpob.encrypt_message(fingerprint, msg)
     except:
         raise
     finally:
-        # The finally statement is always called also if except contains a
-        # return or a raise
         gpob.destroy_environment()
 
     return body
