@@ -8,7 +8,7 @@ from globaleaks.handlers.admin.notification import db_get_notification
 from globaleaks.handlers.admin.user import db_get_admin_users
 from globaleaks.jobs.base import LoopingJob
 from globaleaks.orm import transact_sync
-from globaleaks.security import encrypt_pgp_message
+from globaleaks.security import encrypt_message
 from globaleaks.settings import GLSettings
 from globaleaks.utils import letsencrypt
 from globaleaks.utils.templating import Templating
@@ -98,9 +98,8 @@ class X509CertCheckSchedule(LoopingJob):
             subject, body = Templating().get_mail_subject_and_body(template_vars)
 
             # encrypt the notification if the admin has configured the issue.
-            pub_key = user_desc['pgp_key_public']
-            if len(pub_key) > 0:
-                body = encrypt_pgp_message(pub_key, user_desc['pgp_key_fingerprint'], body)
+            if len(user_desc['pgp_key_public']) > 0:
+                body = encrypt_message(user_desc['pgp_key_public'], body)
 
             store.add(models.Mail({
                 'address': user_desc['mail_address'],

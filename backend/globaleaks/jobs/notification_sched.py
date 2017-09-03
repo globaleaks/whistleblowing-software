@@ -11,7 +11,7 @@ from globaleaks.handlers.admin.receiver import admin_serialize_receiver
 from globaleaks.handlers.rtip import serialize_rtip, serialize_message, serialize_comment
 from globaleaks.jobs.base import LoopingJob
 from globaleaks.orm import transact, transact_sync
-from globaleaks.security import GLBPGP
+from globaleaks.security import encrypt_message
 from globaleaks.settings import GLSettings
 from globaleaks.utils.mailutils import sendmail
 from globaleaks.utils.templating import Templating
@@ -166,20 +166,7 @@ class MailGenerator(object):
 
         # If the receiver has encryption enabled encrypt the mail body
         if len(data['receiver']['pgp_key_public']):
-            gpob = GLBPGP()
-
-            try:
-                gpob.load_key(data['receiver']['pgp_key_public'])
-                body = gpob.encrypt_message(data['receiver']['pgp_key_fingerprint'], body)
-            except Exception as excep:
-                log.err("Error in PGP interface object (for %s: %s)! (notification+encryption)",
-                        data['receiver']['username'], str(excep))
-
-                return
-            finally:
-                # the finally statement is always called also if
-                # except contains a return or a raise
-                gpob.destroy_environment()
+            body = encrypt_message(data['receiver']['pgp_key_public'], body)
 
         store.add(models.Mail({
             'address': data['receiver']['mail_address'],

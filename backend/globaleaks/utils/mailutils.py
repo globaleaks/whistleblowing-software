@@ -248,17 +248,7 @@ def schedule_exception_email(exception_text, *args):
             # Opportunisticly encrypt the mail body. NOTE that mails will go out
             # unencrypted if one address in the list does not have a public key set.
             if len(pub_key):
-                gpob = GLBPGP()
-                try:
-                    r = gpob.load_key(pub_key)
-                    mail_body = gpob.encrypt_message(r['fingerprint'], mail_body)
-                    gpob.destroy_environment()
-                except Exception as excep:
-                    # If this exception email is configured to be subject to encryption
-                    # and the encryption step throws, log the error and move on.
-                    log.err("Error while encrypting exception email: %s", str(excep))
-                    gpob.destroy_environment()
-                    continue
+                body = encrypt_message(pub_key, body)
 
             # avoid waiting for the notification to send and instead rely on threads to handle it
             schedule_email(mail_address, mail_subject, mail_body)
