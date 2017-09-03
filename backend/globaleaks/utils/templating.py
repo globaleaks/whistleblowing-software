@@ -121,6 +121,12 @@ class NodeKeyword(Keyword):
     def PublicSite(self):
         return 'https://' + self.data['node']['hostname']
 
+    def _TorUrl(self):
+        return 'http://' + self.data['node']['onionservice'] + '/'
+
+    def _HTTPSUrl(self):
+        return 'https://' + self.data['node']['hostname'] + '/'
+
     def TorUrl(self):
         if self.data['node']['onionservice'] == '':
             return '[NOT CONFIGURED]'
