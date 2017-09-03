@@ -1,12 +1,12 @@
-Dear %RecipientName%,
+Dear {RecipientName},
 
 This is an email to notify you that a whistleblower has selected you as a valuable recipient of their submission.
 
 You are asked to pay special attention to the information and material contained therein. Please keep in mind that whistleblowers often expose themselves to high personal risks in the interest of the public. Therefore the material provided within this submission should be considered to be of high importance.
 
 The submission can be accessed:
-via Tor at: %TorURL%
-via HTTPS at: %T2WURL%
+via Tor at: {TorUrl}
+via HTTPS at: {HTTPSUrl}
 
 Kind regards,
-%NodeName%
+{NodeName}

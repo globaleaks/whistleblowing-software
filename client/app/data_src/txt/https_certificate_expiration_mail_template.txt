@@ -6,9 +6,9 @@ Without a valid certificate, the platform will be accessible in a secure way onl
 
 Log in to solve the issue.
 
-via Tor at: %TorURL%
-via HTTPS at: %T2WURL%
+via Tor at: {TorUrl}
+via HTTPS at: {HTTPSUrl}
 
 
 Kind Regards,
-%NodeName%
+{NodeName}

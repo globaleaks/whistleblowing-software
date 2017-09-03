@@ -1,15 +1,15 @@
-Dear %RecipientName%,
+Dear {RecipientName},
 
-The submission [%TipNum%] related to context %ContextName% is going to expire in %ExpirationWatch% hours.
+The submission {TipNum} related to context {ContextName} is going to expire in {ExpirationWatch} hours.
 
 Please check the platform for more information.
 
 The submission can be accessed:
-via Tor at: %TorURL%
-via HTTPS at: %T2WURL%
+via Tor at: {TorUrl}
+via HTTPS at: {HTTPSUrl}
 
-Submission date: %EventTime%
-Expiration date: %ExpirationDate%
+Submission date: {EventTime}
+Expiration date: {ExpirationDate}
 
 Kind regards,
-%NodeName%
+{NodeName}

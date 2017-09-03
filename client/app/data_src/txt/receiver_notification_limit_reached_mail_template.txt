@@ -1,10 +1,10 @@
-Dear %RecipientName%,
+Dear {RecipientName},
 
-It appears that %NodeName% is receiving a large number of requests.
+It appears that {NodeName} is receiving a large number of requests.
 
 To prevent sending you too many emails, the system has disabled email notifications until the load returns to normal. In the meantime, you can normally log onto the platform and manually check for new submissions.
 
 If you don’t mind and would rather receive such a large number of email notifications anyhow, please contact your technical support to have them modify this setting accordingly.
 
 Kind regards,
-%NodeName%
+{NodeName}

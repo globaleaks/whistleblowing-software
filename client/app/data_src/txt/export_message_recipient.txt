@@ -1,4 +1,4 @@
-From: %RecipientName%
-Date: %EventTime%
+From: {RecipientName}
+Date: {EventTime}
 
-%Content%
+{Content}

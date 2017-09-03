@@ -1,8 +1,8 @@
-ID: %TipNum%
-Date: %SubmissionDate%
-Label: %TipLabel%
-Context: %ContextName%
+ID: {TipNum}
+Date: {SubmissionDate}
+Label: {TipLabel}
+Context: {ContextName}
 
-%QuestionnaireAnswers%
-%Comments%
-%Messages%
+{QuestionnaireAnswers}
+{Comments}
+{Messages}

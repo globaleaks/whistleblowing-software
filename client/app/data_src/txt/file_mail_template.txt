@@ -1,10 +1,10 @@
-Dear %RecipientName%,
+Dear {RecipientName},
 
-This is an email to notify you that the whistleblower of submission %TipNum% has attached new material.
+This is an email to notify you that the whistleblower of submission {TipNum} has attached new material.
 
 The updated information can be accessed:
-via Tor at: %TorURL%
-via HTTPS at: %T2WURL%
+via Tor at: {TorUrl}
+via HTTPS at: {HTTPSUrl}
 
 Kind regards,
-%NodeName%
+{NodeName}

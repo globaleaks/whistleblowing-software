@@ -1,6 +1,6 @@
 Dear Administrator,
 
-The disk usage is %FreeMemory% of %TotalMemory%.
+The disk usage is {FreeMemory} of {TotalMemory}.
 
 Please consider asking your technical support to add more server disk space.
 
@@ -9,4 +9,4 @@ This email will be resent in the next hours if the issue is not resolved.
 The level of this alarm is LOW; don’t panic, your system is doing well.
 
 Kind regards,
-%NodeName%
+{NodeName}
