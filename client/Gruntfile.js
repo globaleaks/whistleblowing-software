@@ -579,7 +579,7 @@ module.exports = function(grunt) {
 
       for (var i=0; i<lines.length; i++){
         // we skip adding empty strings and variable only strings
-        if (lines[i] !== '' && !lines[i].match(/^%[a-zA-Z0-9]+%/g)) {
+        if (lines[i] !== '' && !lines[i].match(/^{[a-zA-Z0-9]+}/g)) {
           addString(lines[i]);
         }
       }
@@ -748,7 +748,7 @@ module.exports = function(grunt) {
 
         for (var i=0; i<lines.length; i++){
           // we skip adding empty strings and variable only strings
-          if (lines[i] !== '' && !lines[i].match(/^%[a-zA-Z0-9]+%/g)) {
+          if (lines[i] !== '' && !lines[i].match(/^{[a-zA-Z0-9]+}/g)) {
             tmp = tmp.replace(lines[i], str_unescape(gt.dgettext(lang_code, str_escape(lines[i]))));
           }
         }
