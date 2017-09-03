@@ -752,9 +752,9 @@
       "dev": true
     },
     "d3": {
-      "version": "4.10.0",
-      "from": "d3@4.10.0",
-      "resolved": "https://registry.npmjs.org/d3/-/d3-4.10.0.tgz"
+      "version": "4.10.2",
+      "from": "d3@4.10.2",
+      "resolved": "https://registry.npmjs.org/d3/-/d3-4.10.2.tgz"
     },
     "d3-array": {
       "version": "1.2.0",
@@ -797,9 +797,9 @@
       "resolved": "https://registry.npmjs.org/d3-drag/-/d3-drag-1.1.1.tgz"
     },
     "d3-dsv": {
-      "version": "1.0.5",
-      "from": "d3-dsv@1.0.5",
-      "resolved": "https://registry.npmjs.org/d3-dsv/-/d3-dsv-1.0.5.tgz"
+      "version": "1.0.7",
+      "from": "d3-dsv@1.0.7",
+      "resolved": "https://registry.npmjs.org/d3-dsv/-/d3-dsv-1.0.7.tgz"
     },
     "d3-ease": {
       "version": "1.0.3",
@@ -857,9 +857,9 @@
       "resolved": "https://registry.npmjs.org/d3-random/-/d3-random-1.1.0.tgz"
     },
     "d3-request": {
-      "version": "1.0.5",
-      "from": "d3-request@1.0.5",
-      "resolved": "https://registry.npmjs.org/d3-request/-/d3-request-1.0.5.tgz"
+      "version": "1.0.6",
+      "from": "d3-request@1.0.6",
+      "resolved": "https://registry.npmjs.org/d3-request/-/d3-request-1.0.6.tgz"
     },
     "d3-scale": {
       "version": "1.0.6",
@@ -887,9 +887,9 @@
       "resolved": "https://registry.npmjs.org/d3-time-format/-/d3-time-format-2.0.5.tgz"
     },
     "d3-timer": {
-      "version": "1.0.6",
-      "from": "d3-timer@1.0.6",
-      "resolved": "https://registry.npmjs.org/d3-timer/-/d3-timer-1.0.6.tgz"
+      "version": "1.0.7",
+      "from": "d3-timer@1.0.7",
+      "resolved": "https://registry.npmjs.org/d3-timer/-/d3-timer-1.0.7.tgz"
     },
     "d3-transition": {
       "version": "1.1.0",
@@ -1067,9 +1067,9 @@
       }
     },
     "eslint": {
-      "version": "4.5.0",
-      "from": "eslint@4.5.0",
-      "resolved": "https://registry.npmjs.org/eslint/-/eslint-4.5.0.tgz",
+      "version": "4.6.0",
+      "from": "eslint@4.6.0",
+      "resolved": "https://registry.npmjs.org/eslint/-/eslint-4.6.0.tgz",
       "dev": true,
       "dependencies": {
         "ansi-regex": {
@@ -2568,15 +2568,15 @@
       "dev": true
     },
     "mime-db": {
-      "version": "1.29.0",
-      "from": "mime-db@>=1.29.0 <1.30.0",
-      "resolved": "https://registry.npmjs.org/mime-db/-/mime-db-1.29.0.tgz",
+      "version": "1.30.0",
+      "from": "mime-db@>=1.30.0 <1.31.0",
+      "resolved": "https://registry.npmjs.org/mime-db/-/mime-db-1.30.0.tgz",
       "dev": true
     },
     "mime-types": {
-      "version": "2.1.16",
+      "version": "2.1.17",
       "from": "mime-types@>=2.1.7 <2.2.0",
-      "resolved": "https://registry.npmjs.org/mime-types/-/mime-types-2.1.16.tgz",
+      "resolved": "https://registry.npmjs.org/mime-types/-/mime-types-2.1.17.tgz",
       "dev": true
     },
     "mimic-fn": {
@@ -3257,9 +3257,9 @@
       "resolved": "https://registry.npmjs.org/source-map/-/source-map-0.5.6.tgz"
     },
     "source-map-support": {
-      "version": "0.4.16",
+      "version": "0.4.17",
       "from": "source-map-support@>=0.4.0 <0.5.0",
-      "resolved": "https://registry.npmjs.org/source-map-support/-/source-map-support-0.4.16.tgz",
+      "resolved": "https://registry.npmjs.org/source-map-support/-/source-map-support-0.4.17.tgz",
       "dev": true
     },
     "spdx-correct": {
