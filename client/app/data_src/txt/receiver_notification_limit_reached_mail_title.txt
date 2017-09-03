@@ -1,1 +1,1 @@
-Notifications from %NodeName% have been temporarily suspended
+Notifications from {NodeName} have been temporarily suspended

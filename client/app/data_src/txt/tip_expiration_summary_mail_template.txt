@@ -1,13 +1,13 @@
-Dear %RecipientName%,
+Dear {RecipientName},
 
-%ExpiringSubmissionCount% submissions are expiring and will be soon deleted.
+{ExpiringSubmissionCount} submissions are expiring and will be soon deleted.
 
-The earliest expiration date is %EarliestExpirationDate%.
+The earliest expiration date is {EarliestExpirationDate}.
 
 Please remember to check them before they are deleted.
 
-via Tor at: %TorURL%
-via HTTPS at: %T2WURL%
+via Tor at: {TorUrl}
+via HTTPS at: {HTTPSUrl}
 
 Kind regards,
-%NodeName%
+{NodeName}
