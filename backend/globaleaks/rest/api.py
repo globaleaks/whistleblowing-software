@@ -108,7 +108,7 @@ api_spec = [
     (r'/admin/receivers/' + uuid_regexp, admin_receiver.ReceiverInstance),
     (r'/admin/notification', admin_notification.NotificationInstance),
     (r'/admin/notification/mail', admin_notification.NotificationTestInstance),
-    (r'/admin/fields', admin_field.FieldCollection),
+    (r'/admin/fields', admin_field.FieldsCollection),
     (r'/admin/fields/' + uuid_regexp, admin_field.FieldInstance),
     (r'/admin/steps', admin_step.StepCollection),
     (r'/admin/steps/' + uuid_regexp, admin_step.StepInstance),

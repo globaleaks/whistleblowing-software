@@ -93,7 +93,7 @@ def db_create_field(store, field_dict, language):
 
     store.add(field)
 
-    if field.template:
+    if field.template_id is not None:
         # special handling of the whistleblower_identity field
         if field.template.id == 'whistleblower_identity':
             if field.step:
@@ -108,8 +108,8 @@ def db_create_field(store, field_dict, language):
                 raise errors.InvalidInputFormat("Cannot associate whistleblower identity field to a fieldgroup")
 
     else:
-        db_update_fieldattrs(store, field.id, field_dict['attrs'], language)
-        db_update_fieldoptions(store, field.id, field_dict['options'], language)
+        db_update_fieldattrs(store, field.id, field_dict.get('attrs', []), language)
+        db_update_fieldoptions(store, field.id, field_dict.get('options', []), language)
 
     if field.instance != 'reference':
         for c in field_dict.get('children', []):
@@ -300,7 +300,7 @@ class FieldTemplateInstance(BaseHandler):
         return delete_field(field_id)
 
 
-class FieldCollection(BaseHandler):
+class FieldsCollection(BaseHandler):
     """
     Operation to create a field
 

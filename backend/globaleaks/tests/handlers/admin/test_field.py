@@ -17,7 +17,7 @@ def get_id_of_first_step_of_questionnaire(store, questionnaire_id):
 
 
 class TestFieldCreate(helpers.TestHandler):
-        _handler = admin.field.FieldCollection
+        _handler = admin.field.FieldsCollection
 
         @inlineCallbacks
         def test_post(self):
