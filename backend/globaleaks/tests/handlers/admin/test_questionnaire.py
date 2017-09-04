@@ -6,7 +6,7 @@ import sqlite3
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.handlers.admin import questionnaire
-from globaleaks.handlers.admin.field import FieldCollection
+from globaleaks.handlers.admin.field import FieldsCollection
 from globaleaks.models import Questionnaire
 from globaleaks.rest import errors
 from globaleaks.tests import helpers
@@ -23,34 +23,6 @@ class TestQuestionnairesCollection(helpers.TestCollectionHandler):
       }
     }
 
-
-    @inlineCallbacks
-    def test_post_valid_json(self):
-        self.test_data_dir = os.path.join(helpers.DATA_DIR, 'questionnaires')
-        self.valid_files = [
-            'normal.json',
-            'normal-whistleblower-id.json',
-            'normal-custom-template.json',
-        ]
-
-        for fname in self.valid_files:
-            new_q = read_json_file(os.path.join(self.test_data_dir, 'valid', fname))
-
-            if fname == 'normal-custom-template.json':
-                template = read_json_file(os.path.join(self.test_data_dir, 'valid', 'custom_template.json'))
-                h = self.request(template, role='admin', handler_cls=FieldCollection)
-                yield h.post()
-
-            handler = self.request(new_q, role='admin')
-            handler.request.language = None
-
-            resp_q = yield handler.post()
-            resp_q = json.loads(json.dumps(resp_q))
-
-            new_q.pop('export_date')
-            new_q.pop('export_version')
-            self.assertEqual(new_q, resp_q)
-
     @inlineCallbacks
     def test_post_invalid_json(self):
         self.test_data_dir = os.path.join(helpers.DATA_DIR, 'questionnaires')
@@ -65,7 +37,7 @@ class TestQuestionnairesCollection(helpers.TestCollectionHandler):
         ]
 
         for fname, err in invalid_test_cases:
-            new_q = read_json_file(os.path.join(self.test_data_dir, 'invalid', fname))
+            new_q = read_json_file(os.path.join(self.test_data_dir, fname))
 
             handler = self.request(new_q, role='admin')
             handler.request.language = None
