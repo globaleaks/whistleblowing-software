@@ -285,7 +285,7 @@ pw_p = subp.add_parser("resetpass", help="reset a user's password")
 add_db_path_arg(pw_p)
 pw_p.add_argument("username", help="the username used to login into GL")
 pw_p.add_argument("password", nargs="?", help="if not set a random password is generated",
-                  default=security.generateRandomPassword())
+                  default=security.generateRandomKey(16))
 pw_p.set_defaults(func=reset_pass)
 
 rv_p = subp.add_parser("readvar", help="read database config variable")
