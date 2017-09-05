@@ -1,10 +1,10 @@
 Dear Administrator,
 
-The disk usage is {FreeMemory} of {TotalMemory}.
+{FreeMemory} of {TotalMemory} available diskspace used.
 
 The server cannot guarantee that a new submission can be stored, so submissions have been disabled.
 
-The level of this alarm is HIGH; Tip submission has been disabled for any potential whistleblower; To re-enable it, add disk space.
+This is a HIGH level alarm. Tip submission has been disabled for any potential whistleblower. To re-enable it, create disk space.
 
 Kind regards,
 {NodeName}
