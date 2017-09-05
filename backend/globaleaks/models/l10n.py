@@ -197,8 +197,6 @@ class NotificationL10NFactory(ConfigL10NFactory):
         'comment_mail_title',
         'message_mail_template',
         'message_mail_title',
-        'tip_expiration_mail_template',
-        'tip_expiration_mail_title',
         'tip_expiration_summary_mail_template',
         'tip_expiration_summary_mail_title',
         'receiver_notification_limit_reached_mail_template',

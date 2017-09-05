@@ -683,6 +683,12 @@ class TestGLWithPopulatedDB(TestGL):
         store.find(models.InternalTip).set(expiration_date = datetime_null())
 
     @transact
+    def set_itips_near_to_expire(self, store):
+        date = datetime_now() + timedelta(hours=GLSettings.memory_copy.notif.tip_expiration_threshold - 1)
+        store.find(models.InternalTip).set(expiration_date = date)
+
+
+    @transact
     def set_contexts_timetolive(self, store, ttl):
         store.find(models.Context).set(tip_timetolive = ttl)
 

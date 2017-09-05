@@ -1,1 +1,0 @@
-Submission {TipNum} is going to expire in {ExpirationWatch} hours

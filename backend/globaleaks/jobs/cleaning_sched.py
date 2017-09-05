@@ -77,38 +77,23 @@ class CleaningSchedule(LoopingJob):
 
             receiver_desc = admin_serialize_receiver(store, receiver, language)
 
-            if count == 1:
-                rtip = rtips[0]
-                tip_desc = serialize_rtip(store, rtip, user.language)
-                context_desc = admin_serialize_context(store, rtip.internaltip.context, language)
+            tips_desc = []
+            earliest_expiration_date = datetime_never()
 
-                data = {
-                   'type': u'tip_expiration',
-                   'node': node_desc,
-                   'context': context_desc,
-                   'receiver': receiver_desc,
-                   'notification': notification_desc,
-                   'tip': tip_desc
-                }
+            for rtip in rtips:
+                if rtip.internaltip.expiration_date < earliest_expiration_date:
+                    earliest_expiration_date = rtip.internaltip.expiration_date
 
-            else:
-                tips_desc = []
-                earliest_expiration_date = datetime_never()
+                tips_desc.append(serialize_rtip(store, rtip, user.language))
 
-                for rtip in rtips:
-                    if rtip.internaltip.expiration_date < earliest_expiration_date:
-                        earliest_expiration_date = rtip.internaltip.expiration_date
-
-                    tips_desc.append(serialize_rtip(store, rtip, user.language))
-
-                data = {
-                   'type': u'tip_expiration_summary',
-                   'node': node_desc,
-                   'notification': notification_desc,
-                   'receiver': receiver_desc,
-                   'expiring_submission_count': rtips.count(),
-                   'earliest_expiration_date': datetime_to_ISO8601(earliest_expiration_date)
-                }
+            data = {
+               'type': u'tip_expiration_summary',
+               'node': node_desc,
+               'notification': notification_desc,
+               'receiver': receiver_desc,
+               'expiring_submission_count': rtips.count(),
+               'earliest_expiration_date': datetime_to_ISO8601(earliest_expiration_date)
+            }
 
             subject, body = Templating().get_mail_subject_and_body(data)
 
