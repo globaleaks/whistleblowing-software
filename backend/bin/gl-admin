@@ -1,5 +1,11 @@
 #!/usr/bin/env python
 # -*- encoding: utf-8 -*-
+from __future__ import print_function
+
+try:
+    input = raw_input
+except NameError:
+    pass
 
 import argparse
 import json
@@ -21,24 +27,24 @@ from globaleaks.settings import GLSettings
 
 def check_file(f):
     if not os.path.isfile(f):
-        print >> sys.stderr, "Missing file: %s" % f
+        print("Missing file: {}".format(f), file=sys.stderr)
     try:
         with open(f, 'r'):
             pass
     except IOError as err:
-        print >> sys.stderr, err
+        print(err, file=sys.stderr)
         sys.exit(1)
 
 
 def check_dir(d):
     if not os.path.isdir(d):
-        print >> sys.stderr, "Missing dir: %s" % d
+        print("Missing dir: {}".format(d), file=sys.stderr)
         sys.exit(1)
 
 
 def default_backup_path():
     t = datetime.now().strftime("%y_%m_%d")
-    name = "globaleaks_backup_%s.tar.gz" % t
+    name = "globaleaks_backup_{}.tar.gz".format(t)
     return os.path.join("/tmp", name)
 
 
@@ -70,14 +76,14 @@ def backup(args):
     must_stop = is_gl_running()
 
     if must_stop: sp.check_call("service globaleaks stop", shell=True)
-    print "Creating an archive backup of the globaleaks setup. . ."
+    print("Creating an archive backup of the globaleaks setup. . .")
     p_head, p_tail = os.path.split(args.workdir)
 
     # Looks like: > tar -zcf globaleaks_backup_16_08_07.tar.gz -C /var/ globaleaks
     sp.check_call(["tar", "-zcf", args.backuppath, "-C", p_head, p_tail])
 
     if must_stop: sp.check_call("service globaleaks start", shell=True)
-    print "Success: The archived backup was created at:", args.backuppath
+    print("Success: The archived backup was created at:", args.backuppath)
 
 
 def restore(args):
@@ -85,17 +91,17 @@ def restore(args):
 
     check_file(args.backuppath)
 
-    print "\n", "-"*72
-    print "WARNING this command will DELETE everything currently in %s"% args.workdir
-    print "-"*72
-    ans = raw_input("Are you sure that you want to continue? [y/n] ")
+    print("\n", "-"*72)
+    print("WARNING this command will DELETE everything currently in {}".format(args.workdir))
+    print("-"*72)
+    ans = input("Are you sure that you want to continue? [y/n] ")
     if not ans == "y":
         sys.exit(0)
-    print "-"*72
+    print("-"*72)
 
     must_stop = is_gl_running()
     if must_stop: sp.check_call("service globaleaks stop", shell=True)
-    print "Deleting %s . . ." % args.workdir
+    print("Deleting {} . . .".format(args.workdir))
 
     p_head, p_tail = os.path.split(args.workdir)
 
@@ -103,13 +109,13 @@ def restore(args):
     sp.check_call("find %s -type f -exec shred -vzn 3 {} \;" % args.workdir, shell=True)
     sp.check_call(["rm", "-rf", args.workdir])
 
-    print "Extracting the archive %s" % args.backuppath
+    print("Extracting the archive {}".format(args.backuppath))
     # Looks like: > tar -xf globaleaks_backup_16_08_07.tar.gz -C /var/ globaleaks
     sp.check_call(["tar", "-xf", args.backuppath, "-C", p_head, p_tail])
 
     if must_stop: sp.check_call("service globaleaks start", shell=True)
 
-    print "Success! globaleaks has been restored from a backup"
+    print("Success! globaleaks has been restored from a backup")
 
 
 def reset_pass(args):
@@ -132,18 +138,19 @@ def reset_pass(args):
     c.execute(QUERY, (salt, hashed_password, args.username))
 
     if c.rowcount != 1:
-        print "Failed! The user '%s' does not exist." % args.username
+        print("Failed! The user '{}' does not exist.".format(args.username))
         sys.exit(1)
 
     conn.commit()
     conn.close()
 
-    print "================================="
-    print "||  Password reset completed   ||"
-    print "================================="
-    print "     Username: %s" % args.username
-    print "     Password: %s" % args.password
-    print "================================="
+    print(("=================================\n"
+           "||  Password reset completed   ||\n"
+           "=================================\n"
+           "     Username: {}\n"
+           "     Password: {}\n"
+           "=================================\n"
+         ).format(args.username, args.password))
 
 
 def read_var(args):
@@ -162,16 +169,16 @@ def read_var(args):
         c.execute(QUERY, (args.varname, ))
         ret = c.fetchone()
         if ret is None:
-            print "Failed to read value of var '%s'." % args.varname
+            print("Failed to read value of var '{}'.".format(args.varname))
             sys.exit(1)
 
         conn.close()
 
-        print json.loads(str(ret[0]))['v']
+        print(json.loads(str(ret[0]))['v'])
     except Exception as e:
         # This string is dumped into stdout to ensure an exact string match
         # will fail
-        print "ERROR"
+        print("ERROR")
         raise e
 
 
@@ -181,9 +188,9 @@ def select_cfg_factory(varname):
         'node': (config.NodeFactory, AdminNodeDesc),
         'private': (config.PrivateFactory, {}),
     }
-    for fact_key, fact_dict in config_desc.GLConfig.iteritems():
+    for fact_key, fact_dict in config_desc.GLConfig.items():
         factCls, req_validator = fact_map[fact_key]
-        for var_key, item in fact_dict.iteritems():
+        for var_key, item in fact_dict.items():
             if var_key == varname:
                 return factCls, item, req_validator.get(var_key, None)
     return None, None, None
@@ -225,9 +232,9 @@ def set_var(args, silent=False):
         store.commit()
         out_val = fact.get_val(args.varname)
         if not silent:
-            print "Success! {}:{} set to '{}'".format(args.varname, item, out_val)
+            print("Success! {}:{} set to '{}'".format(args.varname, item, out_val))
     except Exception as e:
-        print >> sys.stderr, "Save failed! {}".format(e)
+        print("Save failed! {}".format(e), file=sys.stderr)
         sys.exit(1)
 
 def enable_api_token(args):
@@ -236,15 +243,15 @@ def enable_api_token(args):
     token, args.value = security.generate_api_token()
 
     set_var(args, silent=True)
-    print 'The API token is: {}'.format(token)
-    print 'You now have the only copy, keep it somewhere safe.'
+    print('The API token is: {}'.format(token))
+    print('You now have the only copy, keep it somewhere safe.')
 
 def disable_api_token(args):
     args.varname = 'admin_api_token'
     args.value = ''
 
     set_var(args, silent=True)
-    print 'The API token was deleted'
+    print('The API token was deleted')
 
 
 def add_db_path_arg(parser):
