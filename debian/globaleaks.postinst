@@ -19,7 +19,7 @@ if which lsb_release >/dev/null; then
   DISTRO_CODENAME="$(lsb_release -cs)"
 fi
 
-if [ "$DISTRO" ==  "LinuxMint" ]; then
+if [ "$DISTRO" = "LinuxMint" ]; then
   DISTRO="Ubuntu"
   DISTRO_CODENAME=`grep UBUNTU_CODENAME /etc/os-release | sed -e 's/UBUNTU_CODENAME=//'`
 fi
