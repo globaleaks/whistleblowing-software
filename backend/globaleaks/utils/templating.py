@@ -36,8 +36,6 @@ tip_keywords = [
     '{TipLabel}',
     '{EventTime}',
     '{SubmissionDate}',
-    '{ExpirationDate}',
-    '{ExpirationWatch}',
     '{QuestionnaireAnswers}',
     '{Comments}',
     '{Messages}',
@@ -255,15 +253,6 @@ class TipKeyword(NodeKeyword, ContextKeyword, ReceiverKeyword):
 
     def SubmissionDate(self):
         return self.EventTime()
-
-    def ExpirationDate(self):
-        # is not time zone dependent, is UTC for everyone
-        return ISO8601_to_day_str(self.data['tip']['expiration_date'])
-
-    def ExpirationWatch(self):
-        missing_time = ISO8601_to_datetime(self.data['tip']['expiration_date']) - datetime_now()
-        missing_hours = int(divmod(missing_time.total_seconds(), 3600)[0])
-        return str(missing_hours)
 
     def QuestionnaireAnswers(self):
         return self.dump_questionnaire_answers(self.data['tip']['questionnaire'], self.data['tip']['answers'])
