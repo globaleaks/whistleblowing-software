@@ -87,3 +87,8 @@ text.axis-worktime {
   white-space: pre-line;
   width: 85ch;
 }
+
+#wizardLicense {
+  max-height: 400px;
+  overflow-y: scroll;
+}
