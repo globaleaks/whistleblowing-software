@@ -1,3 +1,6 @@
+Changes in version 2.72.1 - 2017-09-05
+    o Apply bugfixing of postinst script
+
 Changes in version 2.72.0 - 2017-08-27
     o Add profile select logic to the wizard #2039
     o Add "Select" buttons to PGP key UI elements #792
