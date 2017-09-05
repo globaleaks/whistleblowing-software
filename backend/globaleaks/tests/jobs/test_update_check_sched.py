@@ -24,7 +24,7 @@ packages="Package: globaleaks\n" \
          "Filename: xenial/tor2web_31337_all.deb\n\n"
 
 
-class TestExitNodesRefresh(helpers.TestGL):
+class TestUpdateCheckJob(helpers.TestGL):
     @inlineCallbacks
     def test_refresh_works(self):
         GLSettings.memory_copy.anonymize_outgoing_connections = False
