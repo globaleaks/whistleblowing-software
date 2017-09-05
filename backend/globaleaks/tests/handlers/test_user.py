@@ -21,10 +21,12 @@ class TestUserInstance(helpers.TestHandlerWithPopulatedDB):
         yield handler.get()
 
     @inlineCallbacks
-    def test_put_data_obtained_with_get(self):
+    def test_put_change_password(self):
         handler = self.request(user_id = self.rcvr_id, role='receiver')
 
         response = yield handler.get()
+        response['password'] = 'new 1337 password!'
+        response['old_password'] = helpers.VALID_PASSWORD1
 
         handler = self.request(response, user_id = self.rcvr_id, role='receiver')
         yield handler.put()
