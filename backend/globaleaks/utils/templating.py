@@ -435,7 +435,6 @@ supported_template_types = {
     u'comment': CommentKeyword,
     u'message': MessageKeyword,
     u'file': FileKeyword,
-    u'tip_expiration': TipKeyword,
     u'tip_expiration_summary': ExpirationSummaryKeyword,
     u'pgp_alert': PGPAlertKeyword,
     u'admin_pgp_alert': AdminPGPAlertKeyword,
@@ -487,7 +486,7 @@ class Templating(object):
         else:
             raise NotImplementedError('This data_type (%s) is not supported' % ['data.type'])
 
-        if data['type'] in [u'tip', u'comment', u'file', u'message', u'tip_expiration']:
+        if data['type'] in [u'tip', u'comment', u'file', u'message']:
             prefix = '{TipNum} '
             if data['tip']['label'] != '':
                 prefix += '[{TipLabel}] '
