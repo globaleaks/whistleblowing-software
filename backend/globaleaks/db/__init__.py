@@ -11,7 +11,6 @@ from globaleaks import models, security, DATABASE_VERSION, FIRST_DATABASE_VERSIO
 from globaleaks.db.appdata import db_update_defaults, load_appdata
 from globaleaks.handlers.admin import files
 from globaleaks.handlers.base import GLSession
-from globaleaks.models import config, User
 from globaleaks.models.config import NodeFactory, NotificationFactory, PrivateFactory
 from globaleaks.models.l10n import EnabledLanguage
 from globaleaks.orm import transact, transact_sync
@@ -52,7 +51,7 @@ def init_db(store, use_single_lang=False):
 
     log.debug("Performing database initialization...")
 
-    config.system_cfg_init(store)
+    models.config.system_cfg_init(store)
 
     if not use_single_lang:
         EnabledLanguage.add_all_supported_langs(store, appdata)
@@ -139,8 +138,8 @@ def db_refresh_exception_delivery_list(store):
 
     lst = [(error_addr, error_pk)]
 
-    results = store.find(User, User.role==unicode('admin')) \
-                   .values(User.mail_address, User.pgp_key_public)
+    results = store.find(models.User, models.User.role==unicode('admin')) \
+                   .values(models.User.mail_address, models.User.pgp_key_public)
 
     lst.extend([(mail, pub_key) for (mail, pub_key) in results])
     trimmed = filter(lambda x: x[0] != '', lst)
@@ -179,7 +178,7 @@ def db_refresh_memory_variables(store):
     GLSettings.memory_copy.private = ObjectDict(PrivateFactory(store).mem_copy_export())
 
     if GLSettings.memory_copy.private.admin_api_token_digest != '':
-        api_id = store.find(User.id, User.role==u'admin').order_by(User.creation_date).first()
+        api_id = store.find(models.User.id, models.User.role==u'admin').order_by(models.User.creation_date).first()
         if api_id is not None:
             GLSettings.appstate.api_token_session = GLSession(api_id, 'admin', 'enabled')
 
