@@ -9,11 +9,14 @@ from globaleaks.settings import GLSettings
 from globaleaks.tests.helpers import TestGL
 
 
-def forge_request(uri='https://www.globaleaks.org/', headers={}, method=b'GET', client_addr=None):
+def forge_request(uri='https://www.globaleaks.org/', headers=None, method=b'GET', client_addr=None):
     """
     Creates a twisted.web.Request compliant request that is from an external
     IP address.
     """
+    if headers is None:
+        headers = {}
+
     _, host, path, query, frag = urlparse.urlsplit(uri)
 
     x = host.split (':')

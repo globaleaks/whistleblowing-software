@@ -1,5 +1,6 @@
-from globaleaks.models import *
-from globaleaks.orm import get_store
+# -*- coding: utf-8 -*-
+from globaleaks.models import Counter
+from globaleaks.orm import get_store, transact
 from globaleaks.tests import helpers
 from globaleaks.utils.utility import datetime_null
 from twisted.internet.defer import inlineCallbacks
@@ -19,37 +20,16 @@ class TestORM(helpers.TestGL):
         self.assertEqual(store.execute("PRAGMA secure_delete").get_one()[0], 1) # ON
         self.assertEqual(store.execute("PRAGMA auto_vacuum").get_one()[0], 1)   # FULL
 
-    def db_add_receiver(self, store):
-        r = self.localization_set(self.dummyReceiver_1, Receiver, 'en')
-        receiver_user = User(self.dummyReceiverUser_1)
-        receiver_user.password = self.dummyReceiverUser_1['password']
-        receiver_user.salt = self.dummyReceiverUser_1['salt']
-        receiver_user.last_login = self.dummyReceiverUser_1['last_login']
-        receiver_user.password_change_needed = self.dummyReceiverUser_1['password_change_needed']
-        receiver_user.password_change_date = datetime_null()
-        receiver_user.mail_address = self.dummyReceiverUser_1['mail_address']
-
-        # Avoid receivers with the same username!
-        receiver_user.username = unicode("xxx")
-
-        store.add(receiver_user)
-
-        receiver = Receiver(r)
-        receiver.user_id = receiver_user.id
-        store.add(receiver)
-
-        # Set receiver.id = receiver.user.username = receiver_user.id
-        receiver.id = receiver_user.username = receiver_user.id
-
-        return receiver.id
+    def db_add_config(self, store):
+        store.add(Counter({'key': 'antani', 'number': 31337}))
 
     @transact
     def _transact_with_success(self, store):
-        self.db_add_receiver(store)
+        self.db_add_config(store)
 
     @transact
     def _transact_with_exception(self, store):
-        self.db_add_receiver(store)
+        self.db_add_config(store)
         raise Exception("antani")
 
     def test_transaction_pragmas(self):
@@ -61,17 +41,16 @@ class TestORM(helpers.TestGL):
 
         # now check data actually written
         store = get_store()
-        self.assertEqual(store.find(Receiver).count(), 1)
+        self.assertEqual(store.find(Counter).count(), 1)
 
     @inlineCallbacks
     def test_transaction_with_exception(self):
         store = get_store()
-        count1 = store.find(Receiver).count()
+        count1 = store.find(Counter).count()
 
         yield self.assertFailure(self._transact_with_exception(), Exception)
 
-        store = get_store()
-        count2 = store.find(Receiver).count()
+        count2 = store.find(Counter).count()
 
         self.assertEqual(count1, count2)
 

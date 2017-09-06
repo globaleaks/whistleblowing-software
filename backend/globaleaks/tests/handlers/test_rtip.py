@@ -52,8 +52,6 @@ class TestRTipInstance(helpers.TestHandlerWithPopulatedDB):
 
     @inlineCallbacks
     def test_put_postpone_never(self):
-        now = datetime_now()
-
         yield self.force_itip_expiration()
 
         yield self.set_contexts_timetolive(-1)

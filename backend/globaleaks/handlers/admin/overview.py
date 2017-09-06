@@ -14,20 +14,19 @@ from globaleaks.utils.utility import datetime_to_ISO8601
 def collect_tip_overview(store, language):
     tip_description_list = []
 
-    all_itips = store.find(models.InternalTip)
-    for itip in all_itips:
-        tip_description = {
+    for itip, context in store.find((models.InternalTip, models.Context),
+                                    models.InternalTip.context_id == models.Context.id):
+
+        mo = Rosetta(context.localized_keys)
+        mo.acquire_storm_object(context)
+
+        tip_description_list.append({
             'id': itip.id,
             'creation_date': datetime_to_ISO8601(itip.creation_date),
             'expiration_date': datetime_to_ISO8601(itip.expiration_date),
-            'context_id': itip.context_id
-        }
-
-        mo = Rosetta(itip.context.localized_keys)
-        mo.acquire_storm_object(itip.context)
-        tip_description['context_name'] = mo.dump_localized_key('name', language)
-
-        tip_description_list.append(tip_description)
+            'context_id': itip.context_id,
+            'context_name': mo.dump_localized_key('name', language)
+        })
 
     return tip_description_list
 
@@ -37,25 +36,22 @@ def collect_files_overview(store):
     file_description_list = []
 
     for ifile in store.find(models.InternalFile):
-        file_desc = {
+        file_description_list.append({
             'id': ifile.id,
             'itip': ifile.internaltip_id,
             'path': ifile.file_path,
             'size': ifile.size
-        }
+        })
 
-        file_description_list.append(file_desc)
-
-    for rfile in store.find(models.ReceiverFile):
-        file_desc = {
+    for rfile, itip in store.find((models.ReceiverFile, models.InternalFile),
+                                  models.ReceiverFile.internalfile_id == models.InternalFile.id):
+        file_description_list.append({
             'id': rfile.internalfile_id,
-            'itip': rfile.internalfile.internaltip_id,
+            'itip': itip.id,
             'path': rfile.file_path,
             'size': rfile.size
 
-        }
-
-        file_description_list.append(file_desc)
+        })
 
     return file_description_list
 

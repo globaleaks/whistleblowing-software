@@ -3,7 +3,6 @@
 from datetime import timedelta
 
 from globaleaks import models
-from globaleaks.handlers.admin.context import admin_serialize_context
 from globaleaks.handlers.admin.node import db_admin_serialize_node
 from globaleaks.handlers.admin.notification import db_get_notification
 from globaleaks.handlers.admin.receiver import admin_serialize_receiver
@@ -59,8 +58,8 @@ class CleaningSchedule(LoopingJob):
     @transact_sync
     def check_for_expiring_submissions(self, store):
         threshold = datetime_now() + timedelta(hours=GLSettings.memory_copy.notif.tip_expiration_threshold)
-        receivers = store.find(models.Receiver)
-        for receiver in receivers:
+        for user, receiver in store.find((models.User, models.Receiver),
+                                         models.User.id == models.Receiver.id):
             rtips = store.find(models.ReceiverTip, models.ReceiverTip.internaltip_id == models.InternalTip.id,
                                                    models.InternalTip.expiration_date < threshold,
                                                    models.ReceiverTip.receiver_id == models.Receiver.id,
@@ -70,7 +69,6 @@ class CleaningSchedule(LoopingJob):
             if count == 0:
               continue
 
-            user = receiver.user
             language = user.language
             node_desc = db_admin_serialize_node(store, language)
             notification_desc = db_get_notification(store, language)
@@ -81,8 +79,11 @@ class CleaningSchedule(LoopingJob):
             earliest_expiration_date = datetime_never()
 
             for rtip in rtips:
-                if rtip.internaltip.expiration_date < earliest_expiration_date:
-                    earliest_expiration_date = rtip.internaltip.expiration_date
+                internaltip = store.find(models.InternalTip,
+                                         models.InternalTip.id == rtip.internaltip_id).one()
+
+                if internaltip.expiration_date < earliest_expiration_date:
+                    earliest_expiration_date = internaltip.expiration_date
 
                 tips_desc.append(serialize_rtip(store, rtip, user.language))
 

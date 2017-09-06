@@ -95,13 +95,15 @@ def db_create_field(store, field_dict, language):
 
     if field.template_id is not None:
         # special handling of the whistleblower_identity field
-        if field.template.id == 'whistleblower_identity':
-            if field.step:
-                if store.find(models.Field, models.Field.id == u'whistleblower_identity',
-                                            models.Field.step_id == models.Step.id,
-                                            models.Step.questionnaire_id == models.Questionnaire.id,
-                                            models.Questionnaire.id == field.step.questionnaire_id).count() == 0:
-                    field.step.questionnaire.enable_whistleblower_identity = True
+        if field.template_id == 'whistleblower_identity':
+            if field.step_id is not None:
+                questionnaire = store.find(models.Questionnaire,
+                                           models.Field.id == field.id,
+                                           models.Field.step_id == models.Step.id,
+                                           models.Step.questionnaire_id == models.Questionnaire.id).one()
+
+                if questionnaire.enable_whistleblower_identity is False:
+                    questionnaire.enable_whistleblower_identity = True
                 else:
                     raise errors.InvalidInputFormat("Whistleblower identity field already present")
             else:
@@ -134,10 +136,6 @@ def db_update_field(store, field_id, field_dict, language):
     if not field:
         raise errors.FieldIdNotFound
 
-    # Uncomment when fields exits beta!
-    # if not field.editable:
-    #     raise errors.FieldNotEditable
-
     # make not possible to change field type
     field_dict['type'] = field.type
     if field_dict['instance'] != 'reference':
@@ -151,14 +149,12 @@ def db_update_field(store, field_id, field_dict, language):
 
     else:
         # partial update
-        partial_update = {
+        field.update({
           'x': field_dict['x'],
           'y': field_dict['y'],
           'width': field_dict['width'],
           'multi_entry': field_dict['multi_entry']
-        }
-
-        field.update(partial_update)
+        })
 
     return field
 
@@ -197,20 +193,18 @@ def delete_field(store, field_id):
     if not field:
         raise errors.FieldIdNotFound
 
-    # TODO: to be uncommented upon completion of fields implementaion
-    # if not field.editable:
-    #     raise errors.FieldNotEditable
+    if not field.editable:
+        raise errors.FieldNotEditable
 
     if field.instance == 'template':
         if store.find(models.Field, models.Field.template_id == field.id).count():
             raise errors.InvalidInputFormat("Cannot remove the field template as it is used by one or more questionnaires")
 
 
-    if field.template:
-        # special handling of the whistleblower_identity field
-        if field.template.id == 'whistleblower_identity':
-            if field.step is not None:
-                field.step.questionnaire.enable_whistleblower_identity = False
+    if field.template_id == 'whistleblower_identity' and field.step_id is not None:
+        store.find(models.Questionnaire,
+                   models.Step.id == field.step_id,
+                   models.Questionnaire.id == models.Step.questionnaire_id).set(enable_whistleblower_identity = False)
 
     store.remove(field)
 

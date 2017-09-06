@@ -17,11 +17,10 @@ from globaleaks.handlers.authentication import db_get_wbtip_by_receipt
 from globaleaks.handlers.base import BaseHandler, GLSessions, new_session, \
     write_upload_encrypted_to_disk
 from globaleaks.handlers.admin.context import create_context, get_context
-from globaleaks.handlers.admin.receiver import create_receiver
 from globaleaks.handlers.admin.field import db_create_field
 from globaleaks.handlers.admin.step import create_step
 from globaleaks.handlers.admin.questionnaire import get_questionnaire, db_get_questionnaire
-from globaleaks.handlers.admin.user import create_admin_user, create_custodian_user
+from globaleaks.handlers.admin.user import create_admin_user, create_custodian_user, create_receiver_user
 from globaleaks.handlers.submission import create_submission
 from globaleaks.rest.apicache import GLApiCache
 from globaleaks.rest import errors
@@ -454,24 +453,6 @@ class TestGL(unittest.TestCase):
 
             dummyFile['body'].close()
 
-    @transact
-    def _exists(self, store, model, *id_args, **id_kwargs):
-        if not id_args and not id_kwargs:
-            raise ValueError
-        return model.get(store, *id_args, **id_kwargs) is not None
-
-    @inlineCallbacks
-    def assert_model_exists(self, model, *id_args, **id_kwargs):
-        existing = yield self._exists(model, *id_args, **id_kwargs)
-        msg = 'The following has *NOT* been found on the store: {} {}'.format(id_args, id_kwargs)
-        self.assertTrue(existing, msg)
-
-    @inlineCallbacks
-    def assert_model_not_exists(self, model, *id_args, **id_kwargs):
-        existing = yield self._exists(model, *id_args, **id_kwargs)
-        msg = 'The following model has been found on the store: {} {}'.format(id_args, id_kwargs)
-        self.assertFalse(existing, msg)
-
     def pollute_events(self, number_of_times=10):
         for _ in range(number_of_times):
             for event_obj in event.events_monitored:
@@ -504,7 +485,10 @@ class TestGL(unittest.TestCase):
         ret = []
         for tip in store.find(models.WhistleblowerTip):
             x = wbtip.serialize_wbtip(store, tip, 'en')
-            x['receivers_ids'] = [rtip.receiver_id for rtip in tip.internaltip.receivertips]
+            r_ids = store.find(models.ReceiverTip.receiver_id,
+                               models.ReceiverTip.internaltip_id == tip.id)
+
+            x['receivers_ids'] = [r_id for r_id in r_ids]
             ret.append(x)
 
         return ret
@@ -521,7 +505,7 @@ class TestGL(unittest.TestCase):
         wbtip = db_get_wbtip_by_receipt(store, receipt)
         ifiles = store.find(models.InternalFile, models.InternalFile.internaltip_id == unicode(wbtip.id))
 
-        return [models.serializers.serialize_ifile(ifile) for ifile in ifiles]
+        return [models.serializers.serialize_ifile(store, ifile) for ifile in ifiles]
 
 
     @transact
@@ -530,13 +514,7 @@ class TestGL(unittest.TestCase):
         rfiles = store.find(models.ReceiverFile, models.ReceiverFile.receivertip_id == models.ReceiverTip.id,
                                                  models.ReceiverTip.internaltip_id == unicode(wbtip.id))
 
-        ret = []
-        for rfile in rfiles:
-            f = models.serializers.serialize_rfile(rfile)
-            f['status'] = rfile.status
-            ret.append(f)
-
-        return ret
+        return [models.serializers.serialize_rfile(store, rfile) for rfile in rfiles]
 
     def db_test_model_count(self, store, model, n):
         self.assertEqual(store.find(model).count(), n)
@@ -566,9 +544,9 @@ class TestGLWithPopulatedDB(TestGL):
         self.dummyCustodianUser = yield create_custodian_user(copy.deepcopy(self.dummyCustodianUser), 'en')
 
         # fill_data/create_receiver
-        self.dummyReceiver_1 = yield create_receiver(copy.deepcopy(self.dummyReceiver_1), 'en')
+        self.dummyReceiver_1 = yield create_receiver_user(copy.deepcopy(self.dummyReceiver_1), 'en')
         self.dummyReceiverUser_1['id'] = self.dummyReceiver_1['id']
-        self.dummyReceiver_2 = yield create_receiver(copy.deepcopy(self.dummyReceiver_2), 'en')
+        self.dummyReceiver_2 = yield create_receiver_user(copy.deepcopy(self.dummyReceiver_2), 'en')
         self.dummyReceiverUser_2['id'] = self.dummyReceiver_2['id']
         receivers_ids = [self.dummyReceiver_1['id'], self.dummyReceiver_2['id']]
 
@@ -615,7 +593,7 @@ class TestGLWithPopulatedDB(TestGL):
 
         self.dummySubmission = yield create_submission(self.dummySubmission,
                                                        self.dummyToken.uploaded_files,
-                                                       True, 'en')
+                                                       True)
 
     @inlineCallbacks
     def perform_post_submission_actions(self):
@@ -644,8 +622,7 @@ class TestGLWithPopulatedDB(TestGL):
 
             yield rtip.create_identityaccessrequest(rtip_desc['receiver_id'],
                                                     rtip_desc['id'],
-                                                    identityaccessrequestCreation,
-                                                    'en')
+                                                    identityaccessrequestCreation)
 
         self.dummyWBTips = yield self.get_wbtips()
 
@@ -861,9 +838,11 @@ class TestCollectionHandler(TestHandler):
 
         data = self.get_dummy_request()
 
-        data = yield self._test_desc['create'](data, u'en')
+        yield self._test_desc['create'](data, u'en')
 
         handler = self.request(role='admin')
+
+        yield handler.get()
 
 
     @inlineCallbacks

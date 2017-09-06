@@ -5,38 +5,13 @@
 # Implementation of the code executed on handler /admin/receivers
 #
 from globaleaks import models
-from globaleaks.handlers.admin.user import db_create_receiver
+from globaleaks.handlers.admin.user import db_associate_context_receivers, admin_serialize_receiver
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.user import user_serialize_user
 from globaleaks.orm import transact
 from globaleaks.rest import errors, requests
 from globaleaks.settings import GLSettings
-from globaleaks.utils.structures import fill_localized_keys, get_localized_values
-
-
-def admin_serialize_receiver(store, receiver, language):
-    """
-    Serialize the specified receiver
-
-    :param language: the language in which to localize data
-    :return: a dictionary representing the serialization of the receiver
-    """
-    contexts = [rc.context_id for rc in store.find(models.ReceiverContext, models.ReceiverContext.receiver_id == receiver.id)]
-
-    ret_dict = user_serialize_user(receiver.user, language)
-
-    ret_dict.update({
-        'can_delete_submission': receiver.can_delete_submission,
-        'can_postpone_expiration': receiver.can_postpone_expiration,
-        'can_grant_permissions': receiver.can_grant_permissions,
-        'mail_address': receiver.user.mail_address,
-        'configuration': receiver.configuration,
-        'contexts': contexts,
-        'tip_notification': receiver.tip_notification,
-        'presentation_order': receiver.presentation_order
-    })
-
-    return get_localized_values(ret_dict, receiver, receiver.localized_keys, language)
+from globaleaks.utils.structures import fill_localized_keys
 
 
 @transact
@@ -47,13 +22,6 @@ def get_receiver_list(store, language):
     """
     return [admin_serialize_receiver(store, receiver, language)
         for receiver in store.find(models.Receiver)]
-
-
-@transact
-def create_receiver(store, request, language):
-    request['tip_expiration_threshold'] = GLSettings.memory_copy.notif.tip_expiration_threshold
-    receiver = db_create_receiver(store, request, language)
-    return admin_serialize_receiver(store, receiver, language)
 
 
 def db_get_receiver(store, receiver_id):
@@ -89,18 +57,9 @@ def update_receiver(store, receiver_id, request, language):
 
     fill_localized_keys(request, models.Receiver.localized_keys, language)
 
-    contexts = request.get('contexts', [])
-
-    receiver.contexts.clear()
-
-    for context_id in contexts:
-        context = models.Context.get(store, context_id)
-        if not context:
-            raise errors.ContextIdNotFound
-
-        receiver.contexts.add(context)
-
     receiver.update(request)
+
+    db_associate_context_receivers(store, receiver, request['contexts'])
 
     return admin_serialize_receiver(store, receiver, language)
 

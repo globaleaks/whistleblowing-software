@@ -5,42 +5,44 @@
 #
 #   Contains all the logic for handling tip related operations, managed by
 #   the whistleblower, handled and executed within /wbtip/* URI PATH interaction.
-
+from globaleaks import models
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.rtip import serialize_comment, serialize_message, db_get_itip_comment_list, WhistleblowerFileInstanceHandler
-from globaleaks.handlers.submission import serialize_usertip, \
+from globaleaks.handlers.submission import serialize_usertip, db_get_internaltip_from_usertip, \
     db_save_questionnaire_answers, db_serialize_archived_questionnaire_schema
-from globaleaks.models import InternalFile, WhistleblowerFile, \
-    ReceiverTip, WhistleblowerTip, Comment, Message
 from globaleaks.orm import transact
 from globaleaks.rest import errors, requests
 from globaleaks.utils.utility import log, datetime_now, datetime_to_ISO8601
 
 
-def wb_serialize_ifile(f):
+def wb_serialize_ifile(store, ifile):
     return {
-        'id': f.id,
-        'creation_date': datetime_to_ISO8601(f.creation_date),
-        'name': f.name,
-        'size': f.size,
-        'content_type': f.content_type
+        'id': ifile.id,
+        'creation_date': datetime_to_ISO8601(ifile.creation_date),
+        'name': ifile.name,
+        'size': ifile.size,
+        'content_type': ifile.content_type
     }
 
 
-def wb_serialize_wbfile(f):
+def wb_serialize_wbfile(store, wbfile):
+    receiver_id = store.find(models.ReceiverTip.receiver_id,
+                             models.ReceiverTip.id == wbfile.receivertip_id).one()
+
     return {
-        'id': f.id,
-        'creation_date': datetime_to_ISO8601(f.creation_date),
-        'name': f.name,
-        'description': f.description,
-        'size': f.size,
-        'content_type': f.content_type,
-        'author': f.receivertip.receiver_id
+        'id': wbfile.id,
+        'creation_date': datetime_to_ISO8601(wbfile.creation_date),
+        'name': wbfile.name,
+        'description': wbfile.description,
+        'size': wbfile.size,
+        'content_type': wbfile.content_type,
+        'author': receiver_id
     }
 
 
 def db_access_wbtip(store, wbtip_id):
-    wbtip = store.find(WhistleblowerTip, WhistleblowerTip.id == wbtip_id).one()
+    wbtip = store.find(models.WhistleblowerTip,
+                       models.WhistleblowerTip.id == wbtip_id).one()
 
     if not wbtip:
         raise errors.TipReceiptNotFound
@@ -49,26 +51,23 @@ def db_access_wbtip(store, wbtip_id):
 
 
 def db_get_rfile_list(store, itip_id):
-    ifiles = store.find(InternalFile, InternalFile.internaltip_id == itip_id)
-
-    return [wb_serialize_ifile(ifile) for ifile in ifiles]
-
+    return [wb_serialize_ifile(store, ifile) for ifile in store.find(models.InternalFile, models.InternalFile.internaltip_id == itip_id)]
 
 def db_get_wbfile_list(store, itip_id):
-    wbfiles = store.find(WhistleblowerFile, WhistleblowerFile.receivertip_id == ReceiverTip.id,
-                                           ReceiverTip.internaltip_id == itip_id)
+    wbfiles = store.find(models.WhistleblowerFile,
+                         models.WhistleblowerFile.receivertip_id == models.ReceiverTip.id,
+                         models.ReceiverTip.internaltip_id == itip_id)
 
-    return [wb_serialize_wbfile(wbfile) for wbfile in wbfiles]
+    return [wb_serialize_wbfile(store, wbfile) for wbfile in wbfiles]
 
 
 def db_get_wbtip(store, wbtip_id, language):
     wbtip = db_access_wbtip(store, wbtip_id)
 
-    wbtip.internaltip.wb_access_counter += 1
-    wbtip.internaltip.wb_last_access = datetime_now()
+    internaltip = db_get_internaltip_from_usertip(store, wbtip)
 
-    log.debug("Tip %s access granted to whistleblower (%d)",
-              wbtip.id, wbtip.internaltip.wb_access_counter)
+    internaltip.wb_access_counter += 1
+    internaltip.wb_last_access = datetime_now()
 
     return serialize_wbtip(store, wbtip, language)
 
@@ -81,13 +80,15 @@ def get_wbtip(store, wbtip_id, language):
 def serialize_wbtip(store, wbtip, language):
     ret = serialize_usertip(store, wbtip, language)
 
+    internaltip = db_get_internaltip_from_usertip(store, wbtip)
+
     # filter submission progressive
     # to prevent a fake whistleblower to assess every day how many
     # submissions are received by the platform.
     del ret['progressive']
 
     ret['id'] = wbtip.id
-    ret['comments'] = db_get_itip_comment_list(store, wbtip.internaltip)
+    ret['comments'] = db_get_itip_comment_list(store, internaltip)
     ret['rfiles'] = db_get_rfile_list(store, wbtip.id)
     ret['wbfiles'] = db_get_wbfile_list(store, wbtip.id)
 
@@ -97,16 +98,19 @@ def serialize_wbtip(store, wbtip, language):
 @transact
 def create_comment(store, wbtip_id, request):
     wbtip = db_access_wbtip(store, wbtip_id)
-    wbtip.internaltip.update_date = datetime_now()
 
-    comment = Comment()
+    internaltip = db_get_internaltip_from_usertip(store, wbtip)
+
+    internaltip.update_date = datetime_now()
+
+    comment = models.Comment()
     comment.content = request['content']
     comment.internaltip_id = wbtip.id
     comment.type = u'whistleblower'
 
-    wbtip.internaltip.comments.add(comment)
+    store.add(comment)
 
-    return serialize_comment(comment)
+    return serialize_comment(store, comment)
 
 
 @transact
@@ -117,40 +121,45 @@ def get_itip_message_list(store, wbtip_id, receiver_id):
     """
     wbtip = db_access_wbtip(store, wbtip_id)
 
-    rtip = store.find(ReceiverTip, ReceiverTip.internaltip_id == wbtip.id,
-                      ReceiverTip.receiver_id == receiver_id).one()
+    rtip = store.find(models.ReceiverTip,
+                      models.ReceiverTip.internaltip_id == wbtip.id,
+                      models.ReceiverTip.receiver_id == receiver_id).one()
 
     if not rtip:
         raise errors.TipIdNotFound
 
-    return [serialize_message(message) for message in rtip.messages]
-
+    return [serialize_message(store, message) for message in store.find(models.Message, models.Message.receivertip_id == rtip.id)]
 
 @transact
 def create_message(store, wbtip_id, receiver_id, request):
     wbtip = db_access_wbtip(store, wbtip_id)
-    wbtip.internaltip.update_date = datetime_now()
 
-    rtip = store.find(ReceiverTip, ReceiverTip.internaltip_id == wbtip.id,
-                      ReceiverTip.receiver_id == receiver_id).one()
+    rtip, internaltip = store.find((models.ReceiverTip, models.InternalTip),
+                                   models.ReceiverTip.internaltip_id == wbtip.id,
+                                   models.InternalTip.id == wbtip.id,
+                                   models.ReceiverTip.receiver_id == receiver_id).one()
 
     if not rtip:
         raise errors.TipIdNotFound
 
-    msg = Message()
+    internaltip.update_date = datetime_now()
+
+    msg = models.Message()
     msg.content = request['content']
     msg.receivertip_id = rtip.id
     msg.type = u'whistleblower'
 
     store.add(msg)
 
-    return serialize_message(msg)
+    return serialize_message(store, msg)
 
 
 @transact
 def update_identity_information(store, tip_id, identity_field_id, identity_field_answers, language):
     wbtip = db_access_wbtip(store, tip_id)
-    internaltip = wbtip.internaltip
+
+    internaltip = db_get_internaltip_from_usertip(store, wbtip)
+
     identity_provided = internaltip.identity_provided
 
     if not identity_provided:
@@ -228,13 +237,18 @@ class WBTipMessageCollection(BaseHandler):
 class WBTipWBFileInstanceHandler(WhistleblowerFileInstanceHandler):
     check_roles = 'whistleblower'
 
-    def user_can_access(self, wbfile):
-        return self.current_user.user_id == wbfile.receivertip.internaltip.whistleblowertip.id
+    def user_can_access(self, store, wbfile):
+        wbtip_id = store.find(models.WhistleblowerTip.id,
+                              models.WhistleblowerTip.id == models.InternalTip.id,
+                              models.InternalTip.id == models.ReceiverTip.internaltip_id,
+                              models.ReceiverTip.id == wbfile.receivertip_id).one()
 
-    def access_wbfile(self, wbfile):
+        return wbtip_id is not None and self.current_user.user_id == wbtip_id
+
+    def access_wbfile(self, store, wbfile):
+        wbfile.downloads += 1
         log.debug("Download of file %s by whistleblower %s",
                   wbfile.id, self.current_user.user_id)
-        wbfile.downloads += 1
 
 
 class WBTipIdentityHandler(BaseHandler):

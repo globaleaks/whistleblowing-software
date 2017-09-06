@@ -13,17 +13,12 @@ from storm.expr import In
 from twisted.internet import threads
 from twisted.internet.defer import inlineCallbacks
 
+from globaleaks import models
 from globaleaks.handlers.base import BaseHandler, \
     directory_traversal_check, write_upload_plaintext_to_disk
 from globaleaks.handlers.custodian import serialize_identityaccessrequest
-from globaleaks.handlers.submission import serialize_usertip
-from globaleaks.models import serializers, \
-    ArchivedSchema, \
-    Comment, Message, \
-    InternalTip, \
-    ReceiverFile, ReceiverTip, \
-    WhistleblowerFile, \
-    SecureFileDelete, IdentityAccessRequest
+from globaleaks.handlers.submission import serialize_usertip, db_get_internaltip_from_usertip
+from globaleaks.models import serializers
 from globaleaks.orm import transact
 from globaleaks.rest import errors, requests
 from globaleaks.settings import GLSettings
@@ -31,57 +26,63 @@ from globaleaks.utils.utility import log, get_expiration, datetime_now, datetime
     datetime_to_ISO8601, datetime_to_pretty_str
 
 
-def receiver_serialize_rfile(receiverfile):
-    internalfile = receiverfile.internalfile
+def receiver_serialize_rfile(store, rfile):
+    ifile = store.find(models.InternalFile,
+                       models.InternalFile.id == models.ReceiverFile.internalfile_id,
+                       models.ReceiverFile.id == rfile.id).one()
 
-    if receiverfile.status != 'unavailable':
+    if rfile.status != 'unavailable':
         ret_dict = {
-            'id': receiverfile.id,
-            'internalfile_id': internalfile.id,
-            'status': receiverfile.status,
-            'href': "/rtip/" + receiverfile.receivertip_id + "/download/" + receiverfile.id,
+            'id': rfile.id,
+            'internalfile_id': ifile.id,
+            'status': rfile.status,
+            'href': "/rtip/" + rfile.receivertip_id + "/download/" + rfile.id,
             # if the ReceiverFile has encrypted status, we append ".pgp" to the filename, to avoid mistake on Receiver side.
-            'name': ("%s.pgp" % internalfile.name) if receiverfile.status == u'encrypted' else internalfile.name,
-            'content_type': internalfile.content_type,
-            'creation_date': datetime_to_ISO8601(internalfile.creation_date),
-            'size': receiverfile.size,
-            'downloads': receiverfile.downloads
+            'name': ("%s.pgp" % ifile.name) if rfile.status == u'encrypted' else ifile.name,
+            'content_type': ifile.content_type,
+            'creation_date': datetime_to_ISO8601(ifile.creation_date),
+            'size': rfile.size,
+            'downloads': rfile.downloads
         }
 
     else:  # == 'unavailable' in this case internal file metadata is returned.
         ret_dict = {
-            'id': receiverfile.id,
-            'internalfile_id': internalfile.id,
+            'id': rfile.id,
+            'internalfile_id': ifile.id,
             'status': 'unavailable',
             'href': "",
-            'name': internalfile.name,
-            'content_type': internalfile.content_type,
-            'creation_date': datetime_to_ISO8601(internalfile.creation_date),
-            'size': int(internalfile.size),
-            'downloads': receiverfile.downloads
+            'name': ifile.name,
+            'content_type': ifile.content_type,
+            'creation_date': datetime_to_ISO8601(ifile.creation_date),
+            'size': int(ifile.size),
+            'downloads': rfile.downloads
         }
 
     return ret_dict
 
 
-def receiver_serialize_wbfile(f):
+def receiver_serialize_wbfile(store, wbfile):
+    rtip = store.find(models.ReceiverTip,
+                      models.ReceiverTip.id == wbfile.receivertip_id).one()
+
     return {
-        'id': f.id,
-        'creation_date': datetime_to_ISO8601(f.creation_date),
-        'name': f.name,
-        'description': f.description,
-        'size': f.size,
-        'content_type': f.content_type,
-        'downloads': f.downloads,
-        'author': f.receivertip.receiver_id
+        'id': wbfile.id,
+        'creation_date': datetime_to_ISO8601(wbfile.creation_date),
+        'name': wbfile.name,
+        'description': wbfile.description,
+        'size': wbfile.size,
+        'content_type': wbfile.content_type,
+        'downloads': wbfile.downloads,
+        'author': rtip.receiver_id
     }
 
 
-def serialize_comment(comment):
+def serialize_comment(store, comment):
     if comment.type == 'whistleblower':
         author = 'Whistleblower'
-    elif comment.author is not None:
-        author = comment.author.public_name
+    elif comment.author_id is not None:
+        author = store.find(models.User,
+                            models.User.id == comment.author_id).one().public_name
     else:
         author = 'Recipient'
 
@@ -94,26 +95,36 @@ def serialize_comment(comment):
     }
 
 
-def serialize_message(msg):
+def serialize_message(store, message):
+    if message.type == 'whistleblower':
+        author = 'Whistleblower'
+    else:
+        author = store.find(models.User,
+                            models.User.id == models.ReceiverTip.receiver_id,
+                            models.ReceiverTip.id == models.Message.receivertip_id,
+                            models.Message.id == message.id).one().public_name
+
     return {
-        'id': msg.id,
-        'author': msg.receivertip.receiver.user.public_name,
-        'type': msg.type,
-        'creation_date': datetime_to_ISO8601(msg.creation_date),
-        'content': msg.content
+        'id': message.id,
+        'author': author,
+        'type': message.type,
+        'creation_date': datetime_to_ISO8601(message.creation_date),
+        'content': message.content
     }
 
 
 def serialize_rtip(store, rtip, language):
-    user_id = rtip.receiver.id
+    user_id = rtip.receiver_id
 
     ret = serialize_usertip(store, rtip, language)
+
+    internaltip = db_get_internaltip_from_usertip(store, rtip)
 
     ret['id'] = rtip.id
     ret['receiver_id'] = user_id
     ret['label'] = rtip.label
-    ret['comments'] = db_get_itip_comment_list(store, rtip.internaltip)
-    ret['messages'] = db_get_itip_message_list(rtip)
+    ret['comments'] = db_get_itip_comment_list(store, internaltip)
+    ret['messages'] = db_get_itip_message_list(store, rtip)
     ret['rfiles'] = db_receiver_get_rfile_list(store, rtip.id)
     ret['wbfiles'] = db_receiver_get_wbfile_list(store, rtip.internaltip_id)
     ret['iars'] = db_get_identityaccessrequest_list(store, rtip.id, language)
@@ -123,8 +134,9 @@ def serialize_rtip(store, rtip, language):
 
 
 def db_access_rtip(store, user_id, rtip_id):
-    rtip = store.find(ReceiverTip, ReceiverTip.id == unicode(rtip_id),
-                      ReceiverTip.receiver_id == user_id).one()
+    rtip = store.find(models.ReceiverTip,
+                      models.ReceiverTip.id == unicode(rtip_id),
+                      models.ReceiverTip.receiver_id == user_id).one()
 
     if not rtip:
         raise errors.TipIdNotFound
@@ -133,15 +145,16 @@ def db_access_rtip(store, user_id, rtip_id):
 
 
 def db_access_wbfile(store, user_id, wbfile_id):
-    itips = store.find(InternalTip, InternalTip.id == ReceiverTip.internaltip_id,
-                                    ReceiverTip.receiver_id == user_id)
+    itips = store.find(models.InternalTip,
+                       models.InternalTip.id == models.ReceiverTip.internaltip_id,
+                       models.ReceiverTip.receiver_id == user_id)
 
     itips_ids = [itip.id for itip in itips]
 
-    wbfile = store.find(WhistleblowerFile,
-                        WhistleblowerFile.id == unicode(wbfile_id),
-                        WhistleblowerFile.receivertip_id == ReceiverTip.id,
-                        In(ReceiverTip.internaltip_id, itips_ids)).one()
+    wbfile = store.find(models.WhistleblowerFile,
+                        models.WhistleblowerFile.id == unicode(wbfile_id),
+                        models.WhistleblowerFile.receivertip_id == models.ReceiverTip.id,
+                        In(models.ReceiverTip.internaltip_id, itips_ids)).one()
 
     if not wbfile:
         raise errors.WBFileIdNotFound
@@ -150,28 +163,30 @@ def db_access_wbfile(store, user_id, wbfile_id):
 
 
 def db_receiver_get_rfile_list(store, rtip_id):
-    receiver_files = store.find(ReceiverFile,
-                                ReceiverFile.receivertip_id == ReceiverTip.id,
-                                ReceiverTip.id == rtip_id)
+    rfiles = store.find(models.ReceiverFile,
+                        models.ReceiverFile.receivertip_id == models.ReceiverTip.id,
+                        models.ReceiverTip.id == rtip_id)
 
-    return [receiver_serialize_rfile(receiverfile) for receiverfile in receiver_files]
+    return [receiver_serialize_rfile(store, rfile) for rfile in rfiles]
 
 
 def db_receiver_get_wbfile_list(store, itip_id):
-    rtips = store.find(ReceiverTip, ReceiverTip.internaltip_id == itip_id)
+    rtips = store.find(models.ReceiverTip, models.ReceiverTip.internaltip_id == itip_id)
     rtips_ids = [rt.id for rt in rtips]
-    wbfiles = store.find(WhistleblowerFile, In(WhistleblowerFile.receivertip_id, rtips_ids))
+    wbfiles = store.find(models.WhistleblowerFile, In(models.WhistleblowerFile.receivertip_id, rtips_ids))
 
-    return [receiver_serialize_wbfile(wbfile) for wbfile in wbfiles]
+    return [receiver_serialize_wbfile(store, wbfile) for wbfile in wbfiles]
 
 
 @transact
 def register_wbfile_on_db(store, rtip_id, uploaded_file):
-    rtip = store.find(ReceiverTip, ReceiverTip.id == rtip_id).one()
+    rtip, internaltip = store.find((models.ReceiverTip, models.InternalTip),
+                                   models.ReceiverTip.id == rtip_id,
+                                   models.InternalTip.id == models.ReceiverTip.internaltip_id).one()
 
-    rtip.internaltip.update_date = rtip.last_access = datetime_now()
+    internaltip.update_date = rtip.last_access = datetime_now()
 
-    new_file = WhistleblowerFile()
+    new_file = models.WhistleblowerFile()
     new_file.name = uploaded_file['name']
     new_file.description = uploaded_file['description']
     new_file.content_type = uploaded_file['type']
@@ -181,7 +196,7 @@ def register_wbfile_on_db(store, rtip_id, uploaded_file):
 
     store.add(new_file)
 
-    return serializers.serialize_wbfile(new_file)
+    return serializers.serialize_wbfile(store, new_file)
 
 
 @transact
@@ -195,16 +210,13 @@ def db_get_rtip(store, user_id, rtip_id, language):
     rtip.access_counter += 1
     rtip.last_access = datetime_now()
 
-    log.debug("Tip %s access granted to user %s (%d)" %
-              (rtip.internaltip_id, rtip.receiver.user.name, rtip.access_counter))
-
     return serialize_rtip(store, rtip, language)
 
 
 def db_mark_file_for_secure_deletion(store, relpath):
     abspath = os.path.join(GLSettings.submission_path, relpath)
     if os.path.isfile(abspath):
-        secure_file_delete = SecureFileDelete()
+        secure_file_delete = models.SecureFileDelete()
         secure_file_delete.filepath = abspath
         store.add(secure_file_delete)
     else:
@@ -213,12 +225,13 @@ def db_mark_file_for_secure_deletion(store, relpath):
 
 def db_delete_itip_files(store, itip):
     log.debug("Removing files associated to InternalTip %s" % itip.id)
-    for ifile in itip.internalfiles:
+    for ifile in store.find(models.InternalFile,
+                            models.InternalFile.internaltip_id == itip.id):
         log.debug("Marking internalfile %s for secure deletion" % ifile.file_path)
 
         db_mark_file_for_secure_deletion(store, ifile.file_path)
 
-        for rfile in store.find(ReceiverFile, ReceiverFile.internalfile_id == ifile.id):
+        for rfile in store.find(models.ReceiverFile, models.ReceiverFile.internalfile_id == ifile.id):
             # The following code must be bypassed if rfile.file_path == ifile.filepath,
             # this mean that is referenced the plaintext file instead having E2E.
             if rfile.file_path == ifile.file_path:
@@ -228,8 +241,9 @@ def db_delete_itip_files(store, itip):
 
             db_mark_file_for_secure_deletion(store, rfile.file_path)
 
-    for wbfile in store.find(WhistleblowerFile, WhistleblowerFile.receivertip_id == ReceiverTip.id,
-                                                ReceiverTip.internaltip_id == itip.id):
+    for wbfile in store.find(models.WhistleblowerFile,
+                             models.WhistleblowerFile.receivertip_id == models.ReceiverTip.id,
+                             models.ReceiverTip.internaltip_id == itip.id):
         log.debug("Marking whistleblowerfile %s for secure deletion" % wbfile.file_path)
         db_mark_file_for_secure_deletion(store, wbfile.file_path)
 
@@ -241,27 +255,29 @@ def db_delete_itip(store, itip):
 
     store.remove(itip)
 
-    if store.find(InternalTip, InternalTip.questionnaire_hash == itip.questionnaire_hash).count() == 0:
-        store.find(ArchivedSchema, ArchivedSchema.hash == itip.questionnaire_hash).remove()
+    if store.find(models.InternalTip, models.InternalTip.questionnaire_hash == itip.questionnaire_hash).count() == 0:
+        store.find(models.ArchivedSchema, models.ArchivedSchema.hash == itip.questionnaire_hash).remove()
 
 
 def db_delete_itips(store, itips):
     for itip in itips:
-        db_delete_itip_files(store, itip)
-
-    itips.remove()
+        db_delete_itip(store, itip)
 
 
 def db_delete_rtip(store, rtip):
-    return db_delete_itip(store, rtip.internaltip)
+    internaltip = db_get_internaltip_from_usertip(store, rtip)
+    return db_delete_itip(store, internaltip)
 
 
-def db_postpone_expiration_date(rtip):
-    if rtip.internaltip.context.tip_timetolive > -1:
-        rtip.internaltip.expiration_date = \
-            get_expiration(rtip.internaltip.context.tip_timetolive)
+def db_postpone_expiration_date(store, rtip):
+    internaltip, context = store.find((models.InternalTip, models.Context),
+                                      models.InternalTip.id == rtip.internaltip_id,
+                                      models.Context.id == models.InternalTip.context_id).one()
+
+    if context.tip_timetolive > -1:
+        internaltip.expiration_date = get_expiration(context.tip_timetolive)
     else:
-        rtip.internaltip.expiration_date = datetime_never()
+        internaltip.expiration_date = datetime_never()
 
 
 @transact
@@ -272,8 +288,11 @@ def delete_rtip(store, user_id, rtip_id):
     """
     rtip = db_access_rtip(store, user_id, rtip_id)
 
+    receiver = store.find(models.Receiver,
+                          models.Receiver.id == rtip.receiver_id).one()
+
     if not (GLSettings.memory_copy.can_delete_submission or
-            rtip.receiver.can_delete_submission):
+            receiver.can_delete_submission):
         raise errors.ForbiddenOperation
 
     db_delete_rtip(store, rtip)
@@ -283,32 +302,30 @@ def delete_rtip(store, user_id, rtip_id):
 def postpone_expiration_date(store, user_id, rtip_id):
     rtip = db_access_rtip(store, user_id, rtip_id)
 
-    if not (GLSettings.memory_copy.can_postpone_expiration or
-            rtip.receiver.can_postpone_expiration):
+    receiver = store.find(models.Receiver,
+                          models.Receiver.id == rtip.receiver_id).one()
 
+    if not (GLSettings.memory_copy.can_postpone_expiration or
+            receiver.can_postpone_expiration):
         raise errors.ExtendTipLifeNotEnabled
 
-    log.debug("Postpone check: Node %s, Receiver %s",
-              "True" if GLSettings.memory_copy.can_postpone_expiration else "False",
-              "True" if rtip.receiver.can_postpone_expiration else "False")
-
-    db_postpone_expiration_date(rtip)
-
-    log.debug(" [%s] in %s has postponed expiration time to %s",
-              rtip.receiver.user.name,
-              datetime_to_pretty_str(datetime_now()),
-              datetime_to_pretty_str(rtip.internaltip.expiration_date))
+    db_postpone_expiration_date(store, rtip)
 
 
 @transact
 def set_internaltip_variable(store, user_id, rtip_id, key, value):
     rtip = db_access_rtip(store, user_id, rtip_id)
 
+    receiver = store.find(models.Receiver,
+                          models.Receiver.id == rtip.receiver_id).one()
+
     if not (GLSettings.memory_copy.can_grant_permissions or
-            rtip.receiver.can_grant_permissions):
+            receiver.can_grant_permissions):
         raise errors.ForbiddenOperation
 
-    setattr(rtip.internaltip, key, value)
+    internaltip = db_get_internaltip_from_usertip(store, rtip)
+
+    setattr(internaltip, key, value)
 
 
 @transact
@@ -322,55 +339,61 @@ def get_rtip(store, user_id, rtip_id, language):
     return db_get_rtip(store, user_id, rtip_id, language)
 
 
-def db_get_itip_comment_list(store, internaltip):
-    return [serialize_comment(comment) for comment in internaltip.comments]
+def db_get_itip_comment_list(store, itip):
+    return [serialize_comment(store, comment) for comment in store.find(models.Comment, models.Comment.internaltip_id == itip.id)]
 
 
 @transact
-def create_identityaccessrequest(store, user_id, rtip_id, request, language):
+def create_identityaccessrequest(store, user_id, rtip_id, request):
     rtip = db_access_rtip(store, user_id, rtip_id)
 
-    iar = IdentityAccessRequest()
+    iar = models.IdentityAccessRequest()
     iar.request_motivation = request['request_motivation']
     iar.receivertip_id = rtip.id
     store.add(iar)
 
-    return serialize_identityaccessrequest(iar, language)
+    return serialize_identityaccessrequest(store, iar)
 
 
 @transact
 def create_comment(store, user_id, rtip_id, request):
     rtip = db_access_rtip(store, user_id, rtip_id)
-    rtip.internaltip.update_date = rtip.last_access = datetime_now()
 
-    comment = Comment()
+    internaltip = db_get_internaltip_from_usertip(store, rtip)
+
+    internaltip.update_date = rtip.last_access = datetime_now()
+
+    comment = models.Comment()
     comment.content = request['content']
     comment.internaltip_id = rtip.internaltip_id
     comment.type = u'receiver'
-    comment.author = rtip.receiver.id
+    comment.author = rtip.receiver_id
 
-    rtip.internaltip.comments.add(comment)
+    store.add(comment)
 
-    return serialize_comment(comment)
+    return serialize_comment(store, comment)
 
 
-def db_get_itip_message_list(rtip):
-    return [serialize_message(message) for message in rtip.messages]
+def db_get_itip_message_list(store, rtip):
+    return [serialize_message(store, message) for message in store.find(models.Message, models.Message.receivertip_id == rtip.id)]
 
 
 @transact
 def create_message(store, user_id, rtip_id, request):
     rtip = db_access_rtip(store, user_id, rtip_id)
-    rtip.internaltip.update_date = rtip.last_access = datetime_now()
 
-    msg = Message()
+    internaltip = db_get_internaltip_from_usertip(store, rtip)
+
+    internaltip.update_date = rtip.last_access = datetime_now()
+
+    msg = models.Message()
     msg.content = request['content']
     msg.receivertip_id = rtip.id
     msg.type = u'receiver'
 
     store.add(msg)
 
-    return serialize_message(msg)
+    return serialize_message(store, msg)
 
 
 @transact
@@ -381,9 +404,9 @@ def delete_wbfile(store, user_id, file_id):
 
 
 def db_get_identityaccessrequest_list(store, rtip_id, language):
-    iars = store.find(IdentityAccessRequest, IdentityAccessRequest.receivertip_id == rtip_id)
+    iars = store.find(models.IdentityAccessRequest, models.IdentityAccessRequest.receivertip_id == rtip_id)
 
-    return [serialize_identityaccessrequest(iar, language) for iar in iars]
+    return [serialize_identityaccessrequest(store, iar) for iar in iars]
 
 
 class RTipInstance(BaseHandler):
@@ -481,19 +504,13 @@ class WhistleblowerFileHandler(BaseHandler):
     @transact
     def can_perform_action(self, store, tip_id, filename):
         rtip = db_access_rtip(store, self.current_user.user_id, tip_id)
-        if not rtip.internaltip.context.enable_rc_to_wb_files:
-            return errors.ForbiddenOperation()
-        n = store.find(WhistleblowerFile, WhistleblowerFile.receivertip_id == rtip.id).count()
-        if n > 100:
-            return errors.FailedSanityCheck()
 
-        rtip_dict = serialize_rtip(store, rtip, self.request.language)
-        wbfile_names = [f['name'] for f in rtip_dict['wbfiles']]
+        enable_rc_to_wb_files = store.find(models.Context.enable_rc_to_wb_files,
+                                           models.Context.id == models.InternalTip.context_id,
+                                           models.InternalTip.id == rtip.internaltip_id).one()
 
-        if filename in wbfile_names:
-            return errors.FailedSanityCheck()
-
-        return None
+        if not enable_rc_to_wb_files:
+            raise errors.ForbiddenOperation()
 
     @inlineCallbacks
     def post(self, tip_id):
@@ -504,9 +521,7 @@ class WhistleblowerFileHandler(BaseHandler):
         if uploaded_file is None:
             return
 
-        err = yield self.can_perform_action(tip_id, uploaded_file['name'])
-        if err is not None:
-            raise err
+        yield self.can_perform_action(tip_id, uploaded_file['name'])
 
         rtip = yield get_rtip(self.current_user.user_id, tip_id, self.request.language)
 
@@ -537,23 +552,23 @@ class WhistleblowerFileInstanceHandler(BaseHandler):
     """
     check_roles = 'receiver'
 
-    def user_can_access(self, wbfile):
+    def user_can_access(self, store, wbfile):
         raise NotImplementedError("This class defines the user_can_access interface.")
 
-    def access_wbfile(self, wbfile):
+    def access_wbfile(self, store, wbfile):
         pass
 
     @transact
     def download_wbfile(self, store, user_id, file_id):
-        wbfile = store.find(WhistleblowerFile,
-                            WhistleblowerFile.id == file_id).one()
+        wbfile = store.find(models.WhistleblowerFile,
+                            models.WhistleblowerFile.id == file_id).one()
 
-        if wbfile is None or not self.user_can_access(wbfile):
+        if wbfile is None or not self.user_can_access(store, wbfile):
             raise errors.FileIdNotFound
 
-        self.access_wbfile(wbfile)
+        self.access_wbfile(store, wbfile)
 
-        return serializers.serialize_wbfile(wbfile)
+        return serializers.serialize_wbfile(store, wbfile)
 
     @inlineCallbacks
     def get(self, wbfile_id):
@@ -573,9 +588,12 @@ class RTipWBFileInstanceHandler(WhistleblowerFileInstanceHandler):
     """
     check_roles = 'receiver'
 
-    def user_can_access(self, wbfile):
-        r_ids = [rtip.receiver_id for rtip in wbfile.receivertip.internaltip.receivertips]
-        return self.current_user.user_id in r_ids
+    def user_can_access(self, store, wbfile):
+        internaltip_id = store.find(models.ReceiverTip.internaltip_id,
+                                    models.ReceiverTip.id == wbfile.receivertip_id).one()
+
+        return self.current_user.user_id in store.find(models.ReceiverTip.receiver_id,
+                                                       models.ReceiverTip.internaltip_id == internaltip_id)
 
     def delete(self, file_id):
         """
@@ -592,20 +610,20 @@ class ReceiverFileDownload(BaseHandler):
 
     @transact
     def download_rfile(self, store, user_id, file_id):
-        rfile = store.find(ReceiverFile,
-                           ReceiverFile.id == file_id,
-                           ReceiverFile.receivertip_id == ReceiverTip.id,
-                           ReceiverTip.receiver_id == user_id).one()
+        rfile, receiver_id = store.find((models.ReceiverFile, models.ReceiverTip.receiver_id),
+                                        models.ReceiverFile.id == file_id,
+                                        models.ReceiverFile.receivertip_id == models.ReceiverTip.id,
+                                        models.ReceiverTip.receiver_id == user_id).one()
 
         if not rfile:
             raise errors.FileIdNotFound
 
         log.debug("Download of file %s by receiver %s (%d)" %
-                  (rfile.internalfile_id, rfile.receivertip.receiver_id, rfile.downloads))
+                  (rfile.internalfile_id, receiver_id, rfile.downloads))
 
         rfile.downloads += 1
 
-        return serializers.serialize_rfile(rfile)
+        return serializers.serialize_rfile(store, rfile)
 
     @inlineCallbacks
     def get(self, rfile_id):
@@ -634,5 +652,4 @@ class IdentityAccessRequestsCollection(BaseHandler):
 
         return create_identityaccessrequest(self.current_user.user_id,
                                             tip_id,
-                                            request,
-                                            self.request.language)
+                                            request)

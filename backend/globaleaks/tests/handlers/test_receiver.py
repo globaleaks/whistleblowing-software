@@ -6,10 +6,10 @@ from globaleaks.tests import helpers
 from globaleaks.utils.utility import datetime_never
 from twisted.internet.defer import inlineCallbacks
 
+
 @transact
 def set_expiration_of_all_rtips_to_unlimited(store):
-    for rtip in store.find(models.ReceiverTip):
-        rtip.internaltip.expiration_date = datetime_never()
+    store.find(models.InternalTip).set(expiration_date = datetime_never())
 
 
 class TestUserInstance(helpers.TestHandlerWithPopulatedDB):

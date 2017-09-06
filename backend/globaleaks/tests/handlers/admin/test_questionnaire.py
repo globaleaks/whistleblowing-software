@@ -6,7 +6,6 @@ import sqlite3
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.handlers.admin import questionnaire
-from globaleaks.handlers.admin.field import FieldsCollection
 from globaleaks.models import Questionnaire
 from globaleaks.rest import errors
 from globaleaks.tests import helpers

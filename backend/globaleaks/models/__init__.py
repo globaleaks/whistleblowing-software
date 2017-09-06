@@ -5,7 +5,7 @@ ORM Models definitions.
 from __future__ import absolute_import
 
 from datetime import timedelta
-from storm.locals import Bool, Int, Reference, ReferenceSet, Unicode, Storm, JSON
+from storm.locals import Bool, Int, Unicode, Storm, JSON
 
 from globaleaks.models.validators import shorttext_v, longtext_v, \
     shortlocal_v, longlocal_v, shorturl_v, longurl_v, range_v
@@ -35,7 +35,7 @@ class Model(Storm):
     """
     Globaleaks's most basic model.
 
-    Define a set of methods  on the top of Storm to simplify
+    Define a set of methods on the top of Storm to simplify
     creation/access/update/deletions of data.
     """
     __metaclass__ = MetaModel
@@ -271,13 +271,7 @@ class Context(ModelWithID):
 
 class InternalTip(ModelWithID):
     """
-    This is the internal representation of a Tip that has been submitted to the
-    GlobaLeaks node.
-
-    It has a not associated map for keep track of Receivers, Tips,
-    Comments and WhistleblowerTip.
-    All of those element has a Storm Reference with the InternalTip.id,
-    never vice-versa
+    This is the internal representation of a Tip that has been submitted
     """
     creation_date = DateTime(default_factory=datetime_now)
     update_date = DateTime(default_factory=datetime_now)
@@ -304,9 +298,6 @@ class InternalTip(ModelWithID):
 
     def wb_revoke_access_date(self):
         return self.wb_last_access + timedelta(days=GLSettings.memory_copy.wbtip_timetolive)
-
-    def is_wb_access_revoked(self):
-        return self.whistleblowertip is None
 
 
 class ReceiverTip(ModelWithID):
@@ -493,6 +484,8 @@ class Receiver(ModelWithID):
         'tip_notification',
     ]
 
+    list_keys = ['contexts']
+
 
 class Field(ModelWithID):
     x = Int(default=0)
@@ -660,6 +653,8 @@ class ReceiverContext(Model):
     __storm_table__ = 'receiver_context'
     __storm_primary__ = 'context_id', 'receiver_id'
 
+    unicode_keys = ['context_id', 'receiver_id']
+
     context_id = Unicode()
     receiver_id = Unicode()
 
@@ -704,146 +699,3 @@ class CustomTexts(Model):
 
     unicode_keys = ['lang']
     json_keys = ['texts']
-
-
-Context.picture = Reference(Context.img_id, File.id)
-User.picture = Reference(User.img_id, File.id)
-
-
-Field.fieldgroup = Reference(Field.fieldgroup_id, Field.id)
-Field.step = Reference(Field.step_id, Step.id)
-Field.template = Reference(Field.template_id, Field.id)
-
-Field.options = ReferenceSet(
-    Field.id,
-    FieldOption.field_id
-)
-
-Field.children = ReferenceSet(
-    Field.id,
-    Field.fieldgroup_id
-)
-
-Field.attrs = ReferenceSet(Field.id, FieldAttr.field_id)
-
-Field.triggered_by_options = ReferenceSet(Field.id, FieldOption.trigger_field)
-Step.triggered_by_options = ReferenceSet(Step.id, FieldOption.trigger_step)
-
-FieldAnswer.groups = ReferenceSet(FieldAnswer.id, FieldAnswerGroup.fieldanswer_id)
-
-FieldAnswerGroup.fieldanswers = ReferenceSet(
-    FieldAnswerGroup.id,
-    FieldAnswer.fieldanswergroup_id
-)
-
-Step.children = ReferenceSet(
-    Step.id,
-    Field.step_id
-)
-
-Context.questionnaire = Reference(Context.questionnaire_id, Questionnaire.id)
-
-Questionnaire.steps = ReferenceSet(Questionnaire.id, Step.questionnaire_id)
-
-Step.questionnaire = Reference(Step.questionnaire_id, Questionnaire.id)
-
-Receiver.user = Reference(Receiver.id, User.id)
-
-InternalTip.context = Reference(
-    InternalTip.context_id,
-    Context.id
-)
-
-InternalTip.answers = ReferenceSet(
-    InternalTip.id,
-    FieldAnswer.internaltip_id
-)
-
-InternalTip.comments = ReferenceSet(
-    InternalTip.id,
-    Comment.internaltip_id
-)
-
-InternalTip.whistleblowertip = Reference(
-    InternalTip.id,
-    WhistleblowerTip.id
-)
-
-InternalTip.receivertips = ReferenceSet(
-    InternalTip.id,
-    ReceiverTip.internaltip_id
-)
-
-ReceiverTip.messages = ReferenceSet(
-    ReceiverTip.id,
-    Message.receivertip_id
-)
-
-ReceiverTip.identityaccessrequests = ReferenceSet(
-    ReceiverTip.id,
-    IdentityAccessRequest.receivertip_id
-)
-
-InternalTip.internalfiles = ReferenceSet(
-    InternalTip.id,
-    InternalFile.internaltip_id
-)
-
-ReceiverFile.internalfile = Reference(
-    ReceiverFile.internalfile_id,
-    InternalFile.id
-)
-
-ReceiverFile.receivertip = Reference(
-    ReceiverFile.receivertip_id,
-    ReceiverTip.id
-)
-
-WhistleblowerFile.receivertip = Reference(
-    WhistleblowerFile.receivertip_id,
-    ReceiverTip.id
-)
-
-WhistleblowerTip.internaltip = Reference(
-    WhistleblowerTip.id,
-    InternalTip.id
-)
-
-InternalFile.internaltip = Reference(
-    InternalFile.internaltip_id,
-    InternalTip.id
-)
-
-
-ReceiverTip.internaltip = Reference(ReceiverTip.internaltip_id, InternalTip.id)
-
-ReceiverTip.receiver = Reference(ReceiverTip.receiver_id, Receiver.id)
-
-Comment.internaltip = Reference(Comment.internaltip_id, InternalTip.id)
-Comment.author = Reference(Comment.author_id, User.id)
-
-Message.receivertip = Reference(Message.receivertip_id, ReceiverTip.id)
-
-IdentityAccessRequest.receivertip = Reference(
-    IdentityAccessRequest.receivertip_id,
-    ReceiverTip.id
-)
-
-IdentityAccessRequest.reply_user = Reference(
-    IdentityAccessRequest.reply_user_id,
-    User.id
-)
-
-Context.receivers = ReferenceSet(
-    Context.id,
-    ReceiverContext.context_id,
-    ReceiverContext.receiver_id,
-    Receiver.id
-)
-
-Receiver.contexts = ReferenceSet(
-    Receiver.id,
-    ReceiverContext.receiver_id,
-    ReceiverContext.context_id,
-    Context.id
-)

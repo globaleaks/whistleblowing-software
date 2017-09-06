@@ -35,7 +35,7 @@ class TestNotificationSchedule(helpers.TestGLWithPopulatedDB):
         notification_schedule = NotificationSchedule()
         notification_schedule.skip_sleep = True
 
-        def sendmail_failure(x):
+        def sendmail_failure(_):
             # simulate the failure just returning with no action
             return succeed(None)
 

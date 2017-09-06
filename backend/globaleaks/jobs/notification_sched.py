@@ -67,22 +67,26 @@ class MailGenerator(object):
             elif key == 'receiver':
                 cache_obj = admin_serialize_receiver(store, obj, language)
             elif key == 'message':
-                cache_obj = serialize_message(obj)
+                cache_obj = serialize_message(store, obj)
             elif key == 'comment':
-                cache_obj = serialize_comment(obj)
+                cache_obj = serialize_comment(store, obj)
             elif key == 'file':
-                cache_obj = models.serializers.serialize_ifile(obj)
+                cache_obj = models.serializers.serialize_ifile(store, obj)
 
             self.cache[cache_key] = cache_obj
 
         return self.cache[cache_key]
 
     def process_ReceiverTip(self, store, rtip, data):
-        language = rtip.receiver.user.language
+        language, context, receiver = store.find((models.User.language, models.Context, models.Receiver),
+                                                 models.User.id == models.Receiver.id,
+                                                 models.Receiver.id == rtip.receiver_id,
+                                                 models.InternalTip.id == rtip.internaltip_id,
+                                                 models.Context.id == models.InternalTip.context_id).one()
 
         data['tip'] = self.serialize_obj(store, 'tip', rtip, language)
-        data['context'] = self.serialize_obj(store, 'context', rtip.internaltip.context, language)
-        data['receiver'] = self.serialize_obj(store, 'receiver', rtip.receiver, language)
+        data['context'] = self.serialize_obj(store, 'context', context, language)
+        data['receiver'] = self.serialize_obj(store, 'receiver', receiver, language)
 
         self.process_mail_creation(store, data)
 
@@ -91,41 +95,57 @@ class MailGenerator(object):
         if message.type == u"receiver":
             return
 
-        language = message.receivertip.receiver.user.language
+        language, context, receiver, rtip = store.find((models.User.language, models.Context, models.Receiver, models.ReceiverTip),
+                                                       models.User.id == models.Receiver.id,
+                                                       models.Receiver.id == models.ReceiverTip.receiver_id,
+                                                       models.ReceiverTip.id == models.Message.receivertip_id,
+                                                       models.Context.id == models.InternalTip.context_id,
+                                                       models.InternalTip.id == models.ReceiverTip.internaltip_id,
+                                                       models.Message.id == message.id).one()
 
-        data['tip'] = self.serialize_obj(store, 'tip', message.receivertip, language)
-        data['context'] = self.serialize_obj(store, 'context', message.receivertip.internaltip.context, language)
-        data['receiver'] = self.serialize_obj(store, 'receiver', message.receivertip.receiver, language)
+        data['tip'] = self.serialize_obj(store, 'tip', rtip, language)
+        data['context'] = self.serialize_obj(store, 'context', context, language)
+        data['receiver'] = self.serialize_obj(store, 'receiver', receiver, language)
         data['message'] = self.serialize_obj(store, 'message', message, language)
 
         self.process_mail_creation(store, data)
 
     def process_Comment(self, store, comment, data):
-        for rtip in comment.internaltip.receivertips:
-            if comment.type == u'receiver' and comment.author == rtip.receiver.user.name:
+        for language, context, receiver, rtip in store.find((models.User.language, models.Context, models.Receiver, models.ReceiverTip),
+                                                             models.User.id == models.Receiver.id,
+                                                             models.Receiver.id == models.ReceiverTip.receiver_id,
+                                                             models.ReceiverTip.internaltip_id == comment.internaltip_id,
+                                                             models.Context.id == models.InternalTip.context_id,
+                                                             models.InternalTip.id == comment.internaltip_id,
+                                                             models.ReceiverTip.internaltip_id == comment.internaltip_id):
+            if comment.type == u'receiver' and comment.author_id == rtip.receiver_id:
                 continue
-
-            language = rtip.receiver.user.language
 
             dataX = copy.deepcopy(data)
             dataX['tip'] = self.serialize_obj(store, 'tip', rtip, language)
-            dataX['context'] = self.serialize_obj(store, 'context', comment.internaltip.context, language)
-            dataX['receiver'] = self.serialize_obj(store, 'receiver', rtip.receiver, language)
+            dataX['context'] = self.serialize_obj(store, 'context', context, language)
+            dataX['receiver'] = self.serialize_obj(store, 'receiver', receiver, language)
             dataX['comment'] = self.serialize_obj(store, 'comment', comment, language)
 
             self.process_mail_creation(store, dataX)
 
     def process_ReceiverFile(self, store, rfile, data):
+        language, context, receiver, rtip, ifile = store.find((models.User.language, models.Context, models.Receiver, models.ReceiverTip, models.InternalFile),
+                                                              models.User.id == models.Receiver.id,
+                                                              models.Receiver.id == models.ReceiverTip.receiver_id,
+                                                              models.InternalFile.id == rfile.internalfile_id,
+                                                              models.InternalTip.id == models.InternalFile.internaltip_id,
+                                                              models.ReceiverTip.id == rfile.receivertip_id,
+                                                              models.Context.id == models.InternalTip.context_id).one()
+
         # avoid sending an email for the files that have been loaded during the initial submission
-        if rfile.internalfile.submission:
+        if ifile.submission:
             return
 
-        language = rfile.receivertip.receiver.user.language
-
-        data['tip'] = self.serialize_obj(store, 'tip', rfile.receivertip, language)
-        data['context'] = self.serialize_obj(store, 'context', rfile.internalfile.internaltip.context, language)
-        data['receiver'] = self.serialize_obj(store, 'receiver', rfile.receivertip.receiver, language)
-        data['file'] = self.serialize_obj(store, 'file', rfile.internalfile, language)
+        data['tip'] = self.serialize_obj(store, 'tip', rtip, language)
+        data['context'] = self.serialize_obj(store, 'context', context, language)
+        data['receiver'] = self.serialize_obj(store, 'receiver', receiver, language)
+        data['file'] = self.serialize_obj(store, 'file', ifile, language)
 
         self.process_mail_creation(store, data)
 

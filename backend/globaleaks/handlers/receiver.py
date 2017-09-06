@@ -7,13 +7,12 @@
 
 from storm.expr import And, In, Count
 
+from globaleaks import models
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.rtip import db_postpone_expiration_date, db_delete_rtip
 from globaleaks.handlers.submission import db_serialize_archived_preview_schema
 from globaleaks.handlers.user import db_user_update_user
 from globaleaks.handlers.user import user_serialize_user
-from globaleaks.models import ArchivedSchema, Comment, Context, InternalFile, InternalTip, Message, Receiver, \
-    ReceiverTip
 from globaleaks.orm import transact
 from globaleaks.rest import requests, errors
 from globaleaks.settings import GLSettings
@@ -21,15 +20,19 @@ from globaleaks.utils.structures import Rosetta, get_localized_values
 from globaleaks.utils.utility import log, datetime_to_ISO8601
 
 
-def receiver_serialize_receiver(receiver, language):
-    ret_dict = user_serialize_user(receiver.user, language)
+def receiver_serialize_receiver(store, receiver, language):
+    user = store.find(models.User, models.User.id == receiver.id).one()
+
+    contexts = [id for id in store.find(models.ReceiverContext.context_id, models.ReceiverContext.receiver_id == receiver.id)]
+
+    ret_dict = user_serialize_user(store, user, language)
 
     ret_dict.update({
         'can_postpone_expiration': GLSettings.memory_copy.can_postpone_expiration or receiver.can_postpone_expiration,
         'can_delete_submission': GLSettings.memory_copy.can_delete_submission or receiver.can_delete_submission,
         'can_grant_permissions': GLSettings.memory_copy.can_grant_permissions or receiver.can_grant_permissions,
         'tip_notification': receiver.tip_notification,
-        'contexts': [c.id for c in receiver.contexts]
+        'contexts': contexts
     })
 
     return get_localized_values(ret_dict, receiver, receiver.localized_keys, language)
@@ -37,34 +40,34 @@ def receiver_serialize_receiver(receiver, language):
 
 @transact
 def get_receiver_settings(store, receiver_id, language):
-    receiver = store.find(Receiver, Receiver.id == receiver_id).one()
+    receiver = store.find(models.Receiver, models.Receiver.id == receiver_id).one()
 
     if not receiver:
         raise errors.ReceiverIdNotFound
 
-    return receiver_serialize_receiver(receiver, language)
+    return receiver_serialize_receiver(store, receiver, language)
 
 
 @transact
 def update_receiver_settings(store, receiver_id, request, language):
-    user = db_user_update_user(store, receiver_id, request, language)
+    user = db_user_update_user(store, receiver_id, request)
     if not user:
         raise errors.UserIdNotFound
 
-    receiver = store.find(Receiver, Receiver.id == receiver_id).one()
+    receiver = store.find(models.Receiver, models.Receiver.id == receiver_id).one()
     if not receiver:
         raise errors.ReceiverIdNotFound
 
     receiver.tip_notification = request['tip_notification']
 
-    return receiver_serialize_receiver(receiver, language)
+    return receiver_serialize_receiver(store, receiver, language)
 
 
 @transact
 def get_receivertip_list(store, receiver_id, language):
     rtip_summary_list = []
 
-    rtips = store.find(ReceiverTip, ReceiverTip.receiver_id == receiver_id)
+    rtips = store.find(models.ReceiverTip, models.ReceiverTip.receiver_id == receiver_id)
     itips_ids = [rtip.internaltip_id for rtip in rtips]
 
     itips_by_id = {}
@@ -74,24 +77,24 @@ def get_receivertip_list(store, receiver_id, language):
     internalfiles_by_itip = {}
     messages_by_rtip = {}
 
-    for itip, context, archivedschema in store.find((InternalTip, Context, ArchivedSchema),
-                                                     In(InternalTip.id, itips_ids),
-                                                     Context.id == InternalTip.context_id,
-                                                     ArchivedSchema.hash == InternalTip.questionnaire_hash,
-                                                     ArchivedSchema.type == u'preview'):
+    for itip, context, archivedschema in store.find((models.InternalTip, models.Context, models.ArchivedSchema),
+                                                     In(models.InternalTip.id, itips_ids),
+                                                     models.Context.id == models.InternalTip.context_id,
+                                                     models.ArchivedSchema.hash == models.InternalTip.questionnaire_hash,
+                                                     models.ArchivedSchema.type == u'preview'):
         itips_by_id[itip.id] = itip
         contexts_by_id[context.id] = context
         aqs_by_itip[itip.id] = archivedschema
 
-    result = store.find((ReceiverTip.id, Count()),  ReceiverTip.receiver_id == receiver_id, ReceiverTip.id == Message.receivertip_id).group_by(ReceiverTip)
+    result = store.find((models.ReceiverTip.id, Count()), models.ReceiverTip.receiver_id == receiver_id, models.ReceiverTip.id == models.Message.receivertip_id).group_by(models.ReceiverTip)
     for rtip_id, count in result:
         messages_by_rtip[rtip_id] = count
 
-    result = store.find((InternalTip.id, Count()), In(InternalTip.id, itips_ids), InternalTip.id == Comment.internaltip_id).group_by(InternalTip)
+    result = store.find((models.InternalTip.id, Count()), In(models.InternalTip.id, itips_ids), models.InternalTip.id == models.Comment.internaltip_id).group_by(models.InternalTip)
     for itip_id, count in result:
         comments_by_itip[itip_id] = count
 
-    result = store.find((InternalTip.id, Count()), In(InternalTip.id, itips_ids), InternalTip.id == InternalFile.internaltip_id).group_by(InternalTip)
+    result = store.find((models.InternalTip.id, Count()), In(models.InternalTip.id, itips_ids), models.InternalTip.id == models.InternalFile.internaltip_id).group_by(models.InternalTip)
     for itip_id, count in result:
         internalfiles_by_itip[itip_id] = count
 
@@ -127,10 +130,10 @@ def get_receivertip_list(store, receiver_id, language):
 
 @transact
 def perform_tips_operation(store, receiver_id, operation, rtips_ids):
-    receiver = store.find(Receiver, Receiver.id == receiver_id).one()
+    receiver = store.find(models.Receiver, models.Receiver.id == receiver_id).one()
 
-    rtips = store.find(ReceiverTip, And(ReceiverTip.receiver_id == receiver_id,
-                                        In(ReceiverTip.id, rtips_ids)))
+    rtips = store.find(models.ReceiverTip, And(models.ReceiverTip.receiver_id == receiver_id,
+                                           In(models.ReceiverTip.id, rtips_ids)))
 
     if operation == 'postpone':
         can_postpone_expiration = GLSettings.memory_copy.can_postpone_expiration or receiver.can_postpone_expiration
@@ -138,7 +141,7 @@ def perform_tips_operation(store, receiver_id, operation, rtips_ids):
             raise errors.ForbiddenOperation
 
         for rtip in rtips:
-            db_postpone_expiration_date(rtip)
+            db_postpone_expiration_date(store, rtip)
 
     elif operation == 'delete':
         can_delete_submission =  GLSettings.memory_copy.can_delete_submission or receiver.can_delete_submission

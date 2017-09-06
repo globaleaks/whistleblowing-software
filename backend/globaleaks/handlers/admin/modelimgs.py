@@ -17,8 +17,11 @@ model_map = {
 
 
 def db_get_model_img(store, model, obj_id):
-    picture = store.find(model, model.id == obj_id).one().picture
-    return picture.data if picture is not None else ''
+    obj = store.find(model, model.id == obj_id).one()
+    if obj.img_id is None:
+        return ''
+    else:
+        return store.find(models.File, models.File.id == obj.img_id).one().data
 
 
 @transact
@@ -28,19 +31,23 @@ def get_model_img(store, model, obj_id):
 
 @transact
 def add_model_img(store, model, obj_id, data):
+    data = base64.b64encode(data)
     obj = store.find(model, model.id == obj_id).one()
-    if obj is not None:
-        if obj.picture is None:
-            obj.picture = models.File()
+    if obj.img_id is not None:
+        picture = store.find(models.File, models.File.id == obj.img_id).one()
+    else:
+        picture = models.File({'data': data})
+        store.add(picture)
+        obj.img_id = picture.id
 
-        obj.picture.data = base64.b64encode(data)
+    picture.data = data
 
 
 @transact
 def del_model_img(store, model, obj_id):
     obj = store.find(model, model.id == obj_id).one()
-    if obj is not None and obj.picture is not None:
-        store.remove(obj.picture)
+    if obj.img_id != '':
+        store.find(models.File, models.File.id == obj.img_id).remove()
 
 
 class ModelImgInstance(BaseHandler):

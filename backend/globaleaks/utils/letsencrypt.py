@@ -61,7 +61,7 @@ def run_acme_reg_to_finish(domain, regr_uri, accnt_key, site_key, csr, tmp_chall
        resp = urlopen(test_path)
        t = resp.read().decode('utf-8').strip()
        assert t == chall_tok
-    except (IOError, AssertionError) as e:
+    except (IOError, AssertionError):
        log.info('Resolving challenge locally failed. ACME request will fail. %s', test_path)
        raise
 
