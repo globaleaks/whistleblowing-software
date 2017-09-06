@@ -414,18 +414,3 @@ CREATE TABLE customtexts (
     texts BLOB NOT NULL,
     PRIMARY KEY (lang)
 );
-
-CREATE INDEX fieldattr__field_id_index ON fieldattr(field_id);
-CREATE INDEX fieldoption__field_id_index ON fieldoption(field_id);
-CREATE INDEX field__template_id_index ON field(template_id);
-CREATE INDEX step__questionnaire_id_index ON step(questionnaire_id);
-CREATE INDEX field__step_id_index ON field(step_id);
-CREATE INDEX field__group_id_index ON field(fieldgroup_id);
-CREATE INDEX fieldoption__trigger_step_id_index ON fieldoption(trigger_step);
-CREATE INDEX fieldoption__trigger_field_id_index ON fieldoption(trigger_field);
-CREATE INDEX context_questionnaire_id_index ON context(questionnaire_id);
-CREATE INDEX fieldanswer__internaltip_id_index ON fieldanswer(internaltip_id);
-CREATE INDEX config_group_index ON config(var_group);
-CREATE INDEX config_item_index ON config(var_group, var_name);
-CREATE INDEX config_l10n_group_index ON config_l10n(var_group);
-CREATE INDEX config_l10n_item_index ON config_l10n(lang, var_group, var_name);
