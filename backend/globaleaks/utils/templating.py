@@ -12,7 +12,6 @@ import collections
 import copy
 
 from globaleaks.rest import errors
-from globaleaks.settings import GLSettings
 from globaleaks.utils.utility import ISO8601_to_pretty_str, ISO8601_to_day_str, \
     ISO8601_to_datetime, datetime_now, bytes_to_pretty_str
 

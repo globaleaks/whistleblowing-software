@@ -1,10 +1,4 @@
 # -*- coding: UTF-8
-# public
-#   ****
-#
-# Implementation of classes handling the HTTP request to /node, public
-# exposed API.
-
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.rest import errors
 from globaleaks.settings import GLSettings

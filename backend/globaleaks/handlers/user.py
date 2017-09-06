@@ -5,6 +5,7 @@
 # Implement the classes handling the requests performed to /user/* URI PATH
 
 from globaleaks import models
+from globaleaks.handlers.admin.modelimgs import db_get_model_img
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.orm import transact
 from globaleaks.rest import requests, errors
@@ -39,7 +40,7 @@ def parse_pgp_options(user, request):
         user.pgp_key_expiration = datetime_null()
 
 
-def user_serialize_user(user, language):
+def user_serialize_user(store, user, language):
     """
     Serialize user description
 
@@ -47,6 +48,8 @@ def user_serialize_user(user, language):
     :param username: the username of the user to be serialized
     :return: a serialization of the object
     """
+    picture = db_get_model_img(store, models.User, user.id)
+
     ret_dict = {
         'id': user.id,
         'username': user.username,
@@ -68,7 +71,7 @@ def user_serialize_user(user, language):
         'pgp_key_public': user.pgp_key_public,
         'pgp_key_expiration': datetime_to_ISO8601(user.pgp_key_expiration),
         'pgp_key_remove': False,
-        'picture': user.picture.data if user.picture is not None else ''
+        'picture': picture
     }
 
     return get_localized_values(ret_dict, user, user.localized_keys, language)
@@ -81,10 +84,10 @@ def get_user_settings(store, user_id, language):
     if not user:
         raise errors.UserIdNotFound
 
-    return user_serialize_user(user, language)
+    return user_serialize_user(store, user, language)
 
 
-def db_user_update_user(store, user_id, request, language):
+def db_user_update_user(store, user_id, request):
     """
     Updates the specified user.
     This version of the function is specific for users that with comparison with
@@ -123,9 +126,9 @@ def db_user_update_user(store, user_id, request, language):
 
 @transact
 def update_user_settings(store, user_id, request, language):
-    user = db_user_update_user(store, user_id, request, language)
+    user = db_user_update_user(store, user_id, request)
 
-    return user_serialize_user(user, language)
+    return user_serialize_user(store, user, language)
 
 
 class UserInstance(BaseHandler):

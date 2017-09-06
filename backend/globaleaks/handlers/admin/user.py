@@ -11,8 +11,36 @@ from globaleaks.handlers.user import parse_pgp_options, user_serialize_user
 from globaleaks.orm import transact
 from globaleaks.rest import requests, errors
 from globaleaks.settings import GLSettings
-from globaleaks.utils.structures import fill_localized_keys
+from globaleaks.utils.structures import fill_localized_keys, get_localized_values
 from globaleaks.utils.utility import log, datetime_now
+
+
+def admin_serialize_receiver(store, receiver, language):
+    """
+    Serialize the specified receiver
+
+    :param language: the language in which to localize data
+    :return: a dictionary representing the serialization of the receiver
+    """
+    contexts = [id for id in store.find(models.ReceiverContext.context_id, models.ReceiverContext.receiver_id == receiver.id)]
+
+    user = store.find(models.User,
+                      models.User.id == receiver.id).one()
+
+    ret_dict = user_serialize_user(store, user, language)
+
+    ret_dict.update({
+        'can_delete_submission': receiver.can_delete_submission,
+        'can_postpone_expiration': receiver.can_postpone_expiration,
+        'can_grant_permissions': receiver.can_grant_permissions,
+        'mail_address': user.mail_address,
+        'configuration': receiver.configuration,
+        'contexts': contexts,
+        'tip_notification': receiver.tip_notification,
+        'presentation_order': receiver.presentation_order
+    })
+
+    return get_localized_values(ret_dict, receiver, receiver.localized_keys, language)
 
 
 def db_create_admin_user(store, request, language):
@@ -32,7 +60,7 @@ def db_create_admin_user(store, request, language):
 
 @transact
 def create_admin_user(store, request, language):
-    return user_serialize_user(db_create_admin_user(store, request, language), language)
+    return user_serialize_user(store, db_create_admin_user(store, request, language), language)
 
 
 def db_create_custodian_user(store, request, language):
@@ -50,10 +78,19 @@ def db_create_custodian_user(store, request, language):
 
 @transact
 def create_custodian_user(store, request, language):
-    return user_serialize_user(db_create_custodian_user(store, request, language), language)
+    return user_serialize_user(store, db_create_custodian_user(store, request, language), language)
 
 
-def db_create_receiver(store, request, language):
+def db_associate_context_receivers(store, receiver, contexts_ids):
+    store.find(models.ReceiverContext, models.ReceiverContext.receiver_id == receiver.id).remove()
+
+    for context_id in contexts_ids:
+        store.add(models.ReceiverContext({'context_id': context_id,
+                                          'receiver_id': receiver.id}))
+
+
+
+def db_create_receiver_user(store, request, language):
     """
     Creates a new receiver
     Returns:
@@ -71,11 +108,8 @@ def db_create_receiver(store, request, language):
     store.add(receiver)
 
     contexts = request.get('contexts', [])
-    for context_id in contexts:
-        context = models.Context.get(store, context_id)
-        if not context:
-            raise errors.ContextIdNotFound
-        context.receivers.add(receiver)
+
+    db_associate_context_receivers(store, receiver, contexts)
 
     log.debug("Created new receiver")
 
@@ -84,8 +118,8 @@ def db_create_receiver(store, request, language):
 
 @transact
 def create_receiver_user(store, request, language):
-    receiver = db_create_receiver(store, request, language)
-    return user_serialize_user(receiver.user, language)
+    receiver = db_create_receiver_user(store, request, language)
+    return admin_serialize_receiver(store, receiver, language)
 
 
 def create(request, language):
@@ -162,7 +196,7 @@ def db_admin_update_user(store, user_id, request, language):
 
 @transact
 def admin_update_user(store, user_id, request, language):
-    return user_serialize_user(db_admin_update_user(store, user_id, request, language), language)
+    return user_serialize_user(store, db_admin_update_user(store, user_id, request, language), language)
 
 
 def db_get_user(store, user_id):
@@ -183,11 +217,11 @@ def db_get_user(store, user_id):
 @transact
 def get_user(store, user_id, language):
     user = db_get_user(store, user_id)
-    return user_serialize_user(user, language)
+    return user_serialize_user(store, user, language)
 
 
 def db_get_admin_users(store):
-    return [user_serialize_user(user, GLSettings.memory_copy.default_language)
+    return [user_serialize_user(store, user, GLSettings.memory_copy.default_language)
             for user in store.find(models.User,models.User.role == u'admin')]
 
 
@@ -208,7 +242,7 @@ def get_user_list(store, language):
         (list) the list of users
     """
     users = store.find(models.User)
-    return [user_serialize_user(user, language) for user in users]
+    return [user_serialize_user(store, user, language) for user in users]
 
 
 class UsersCollection(BaseHandler):

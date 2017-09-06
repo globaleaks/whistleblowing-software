@@ -3,8 +3,7 @@
 # wizard
 from globaleaks.db import db_refresh_memory_variables
 from globaleaks.handlers.admin.context import db_create_context
-from globaleaks.handlers.admin.receiver import db_create_receiver
-from globaleaks.handlers.admin.user import db_create_admin_user
+from globaleaks.handlers.admin.user import db_create_admin_user, db_create_receiver_user
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.public import serialize_node
 from globaleaks.models import profiles
@@ -52,7 +51,7 @@ def wizard(store, request, language):
 
     request['receiver']['contexts'] = [context.id]
     request['receiver']['language'] = language
-    db_create_receiver(store, request['receiver'], language)
+    db_create_receiver_user(store, request['receiver'], language)
 
     admin_dict = {
         'username': u'admin',

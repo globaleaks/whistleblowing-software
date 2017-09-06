@@ -17,6 +17,7 @@ class Config(Storm):
     value = JSON()
     customized = Bool(default=False)
 
+
     def __init__(self, group=None, name=None, value=None, cfg_desc=None, migrate=False):
         """
         :param value:    This input is passed directly into set_v

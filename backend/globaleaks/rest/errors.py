@@ -399,7 +399,7 @@ class ModelNotFound(ResourceNotFound):
     status_code = 404
 
     def __init__(self, model=None):
-        Exception.__init__(self)
+        ResourceNotFound.__init__(self)
         if model is None:
             self.reason = "Model not found"
         else:

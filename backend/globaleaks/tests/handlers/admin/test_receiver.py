@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 
+import sqlite3
+
 from globaleaks.handlers.admin import receiver
 from globaleaks.rest import errors
 from globaleaks.tests import helpers
@@ -27,4 +29,4 @@ class TestReceiverInstance(helpers.TestHandlerWithPopulatedDB):
         handler = self.request(self.dummyReceiver_1, role='admin')
 
         yield self.assertFailure(handler.put(self.dummyReceiver_1['id']),
-                                 errors.ContextIdNotFound)
+                                 sqlite3.IntegrityError)

@@ -26,8 +26,7 @@ def load_default_questionnaires(store):
         if q is None:
             q = models.db_forge_obj(store, models.Questionnaire, questionnaire)
         else:
-            for step in q.steps:
-                store.remove(step)
+            store.find(models.Step, models.Step.questionnaire_id == q.id).remove()
 
         for step in steps:
             step['questionnaire_id'] = q.id
@@ -88,4 +87,5 @@ def db_fix_fields_attrs(store):
                                   models.FieldAttr.name == attr_name)).one():
                 log.debug("Adding new field attr %s.%s", typ, attr_name)
                 attr_dict['name'] = attr_name
-                field.attrs.add(models.db_forge_obj(store, models.FieldAttr, attr_dict))
+                attr_dict['field_id'] = field.id
+                models.db_forge_obj(store, models.FieldAttr, attr_dict)

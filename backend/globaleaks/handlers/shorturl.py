@@ -1,3 +1,4 @@
+# -*- coding: UTF-8
 from globaleaks import models
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.orm import transact

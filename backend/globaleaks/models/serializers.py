@@ -1,8 +1,11 @@
+# -*- coding: UTF-8
+
+from globaleaks import models
 from globaleaks.utils.utility import datetime_to_ISO8601
 
 
 # InternaltFile
-def serialize_ifile(ifile):
+def serialize_ifile(store, ifile):
     return {
         'id': ifile.id,
         'creation_date': datetime_to_ISO8601(ifile.creation_date),
@@ -13,8 +16,10 @@ def serialize_ifile(ifile):
 
 
 # ReceiverFile
-def serialize_rfile(rfile):
-    ifile = rfile.internalfile
+def serialize_rfile(store, rfile):
+    ifile = store.find(models.InternalFile,
+                       models.InternalFile.id == models.ReceiverFile.internalfile_id,
+                       models.ReceiverFile.id == rfile.id).one()
 
     return {
         'id': rfile.id,
@@ -23,11 +28,15 @@ def serialize_rfile(rfile):
         'size': rfile.size,
         'content_type': ifile.content_type,
         'path': rfile.file_path,
-        'downloads': rfile.downloads
+        'downloads': rfile.downloads,
+        'status': rfile.status
     }
 
 # WhistleblowerFile
-def serialize_wbfile(wbfile):
+def serialize_wbfile(store, wbfile):
+    receiver_id = store.find(models.ReceiverTip.receiver_id,
+                             models.ReceiverTip.id == wbfile.receivertip_id).one()
+
     return {
         'id': wbfile.id,
         'creation_date': datetime_to_ISO8601(wbfile.creation_date),
@@ -36,5 +45,5 @@ def serialize_wbfile(wbfile):
         'content_type': wbfile.content_type,
         'path': wbfile.file_path,
         'downloads': wbfile.downloads,
-        'author': wbfile.receivertip.receiver_id
+        'author': receiver_id,
     }

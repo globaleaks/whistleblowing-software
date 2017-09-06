@@ -29,7 +29,7 @@ def get_submission_sequence_number(itip):
 
 def db_assign_submission_progressive(store):
     counter = store.find(models.Counter, models.Counter.key == u'submission_sequence').one()
-    if not counter:
+    if counter is None:
         counter = models.Counter({'key': u'submission_sequence'})
         store.add(counter)
     else:
@@ -96,20 +96,29 @@ def db_serialize_archived_preview_schema(store, aqs, language):
     return _db_serialize_archived_questionnaire_schema(store, aqs, language)
 
 
-def db_serialize_questionnaire_answers_recursively(answers):
+def db_serialize_questionnaire_answers_recursively(store, answers):
     ret = {}
 
     for answer in answers:
         if answer.is_leaf:
             ret[answer.key] = answer.value
         else:
-            ret[answer.key] = [db_serialize_questionnaire_answers_recursively(group.fieldanswers)
-                               for group in answer.groups.order_by(models.FieldAnswerGroup.number)]
+            _groups = store.find(models.FieldAnswerGroup,
+                                 models.FieldAnswerGroup.fieldanswer_id == answer.id).order_by(models.FieldAnswerGroup.number)
+
+            groups = []
+            for group in _groups:
+                answers = store.find(models.FieldAnswer,
+                                     models.FieldAnswer.fieldanswergroup_id == group.id)
+                groups.append(db_serialize_questionnaire_answers_recursively(store, answers))
+
+            ret[answer.key] = groups
+
     return ret
 
 
 def db_serialize_questionnaire_answers(store, usertip):
-    internaltip = usertip.internaltip
+    internaltip = db_get_internaltip_from_usertip(store, usertip)
 
     questionnaire = db_serialize_archived_questionnaire_schema(store, internaltip.questionnaire_hash, GLSettings.memory_copy.default_language)
 
@@ -127,7 +136,7 @@ def db_serialize_questionnaire_answers(store, usertip):
     answers = store.find(models.FieldAnswer, And(models.FieldAnswer.internaltip_id == internaltip.id,
                                                  In(models.FieldAnswer.key, answers_ids)))
 
-    return db_serialize_questionnaire_answers_recursively(answers)
+    return db_serialize_questionnaire_answers_recursively(store, answers)
 
 
 def db_save_questionnaire_answers(store, internaltip_id, entries):
@@ -151,7 +160,8 @@ def db_save_questionnaire_answers(store, internaltip_id, entries):
                 store.add(group)
                 group_elems = db_save_questionnaire_answers(store, internaltip_id, entries)
                 for group_elem in group_elems:
-                    group.fieldanswers.add(group_elem)
+                    group_elem.fieldanswergroup_id = group.id
+
                 n += 1
         else:
             field_answer.is_leaf = True
@@ -188,20 +198,32 @@ def db_archive_questionnaire_schema(store, questionnaire, questionnaire_hash):
         store.add(aqsp)
 
 
-def db_get_itip_receiver_list(store, itip, language):
-    return [{
-        "id": rtip.receiver.id,
-        "name": rtip.receiver.user.public_name,
-        "pgp_key_public": rtip.receiver.user.pgp_key_public,
-        "last_access": datetime_to_ISO8601(rtip.last_access),
-        "access_counter": rtip.access_counter,
-    } for rtip in itip.receivertips]
+def db_get_itip_receiver_list(store, itip):
+    ret = []
+
+    for rtip, user in store.find((models.ReceiverTip, models.User),
+                                 models.ReceiverTip.internaltip_id == itip.id,
+                                 models.User.id == models.ReceiverTip.receiver_id):
+
+        ret.append({
+            "id": rtip.receiver_id,
+            "name": user.public_name,
+            "pgp_key_public": user.pgp_key_public,
+            "last_access": datetime_to_ISO8601(rtip.last_access),
+            "access_counter": rtip.access_counter,
+        })
+
+    return ret
 
 
 def serialize_itip(store, internaltip, language):
-    context = internaltip.context
+    context = store.find(models.Context, models.Context.id == internaltip.context_id).one()
+
     mo = Rosetta(context.localized_keys)
     mo.acquire_storm_object(context)
+
+    wb_access_revoked = store.find(models.WhistleblowerTip,
+                                   models.WhistleblowerTip.id == internaltip.id).count() == 0
 
     return {
         'id': internaltip.id,
@@ -213,7 +235,7 @@ def serialize_itip(store, internaltip, language):
         'context_id': internaltip.context_id,
         'context_name': mo.dump_localized_key('name', language),
         'questionnaire': db_serialize_archived_questionnaire_schema(store, internaltip.questionnaire_hash, language),
-        'receivers': db_get_itip_receiver_list(store, internaltip, language),
+        'receivers': db_get_itip_receiver_list(store, internaltip),
         'tor2web': internaltip.tor2web,
         'timetolive': context.tip_timetolive,
         'enable_comments': context.enable_comments,
@@ -227,18 +249,27 @@ def serialize_itip(store, internaltip, language):
         'show_recipients_details': context.show_recipients_details,
         'status_page_message': mo.dump_localized_key('status_page_message', language),
         'wb_last_access': datetime_to_ISO8601(internaltip.wb_last_access),
-        'wb_access_revoked': internaltip.is_wb_access_revoked()
+        'wb_access_revoked': wb_access_revoked
     }
 
 
+def db_get_internaltip_from_usertip(store, usertip):
+    if isinstance(usertip, models.WhistleblowerTip):
+        return store.find(models.InternalTip,
+                          models.InternalTip.id == usertip.id).one()
+    else:
+        return store.find(models.InternalTip,
+                          models.InternalTip.id == usertip.internaltip_id).one()
+
+
 def serialize_usertip(store, usertip, language):
-    internaltip = usertip.internaltip
+    internaltip = db_get_internaltip_from_usertip(store, usertip)
 
     ret = serialize_itip(store, internaltip, language)
     ret['id'] = usertip.id
     ret['internaltip_id'] = internaltip.id
     ret['answers'] = db_serialize_questionnaire_answers(store, usertip)
-    ret['total_score'] = usertip.internaltip.total_score
+    ret['total_score'] = internaltip.total_score
 
     return ret
 
@@ -277,12 +308,17 @@ def create_whistleblowertip(*args):
     return db_create_whistleblowertip(*args)[0] # here is exported only the receipt
 
 
-def db_create_submission(store, request, uploaded_files, client_using_tor, language):
+def db_create_submission(store, request, uploaded_files, client_using_tor):
     answers = request['answers']
 
-    context = store.find(models.Context, models.Context.id == request['context_id']).one()
+    context, questionnaire = store.find((models.Context, models.Questionnaire),
+                                        models.Context.id == request['context_id'],
+                                        models.Questionnaire.id == models.Context.questionnaire_id).one()
     if not context:
         raise errors.ContextIdNotFound
+
+    steps = db_get_questionnaire(store, context.questionnaire_id, None)['steps']
+    questionnaire_hash = unicode(sha256(json.dumps(steps)))
 
     submission = models.InternalTip()
 
@@ -303,76 +339,65 @@ def db_create_submission(store, request, uploaded_files, client_using_tor, langu
     submission.tor2web = not client_using_tor
 
     submission.context_id = context.id
-
     submission.enable_two_way_comments = context.enable_two_way_comments
     submission.enable_two_way_messages = context.enable_two_way_messages
     submission.enable_attachments = context.enable_attachments
-    submission.enable_whistleblower_identity = context.questionnaire.enable_whistleblower_identity
+    submission.enable_whistleblower_identity = questionnaire.enable_whistleblower_identity
 
     if submission.enable_whistleblower_identity and request['identity_provided']:
         submission.identity_provided = True
         submission.identity_provided_date = datetime_now()
 
-    try:
-        questionnaire = db_get_questionnaire(store, context.questionnaire_id, None)['steps']
-        questionnaire_hash = unicode(sha256(json.dumps(questionnaire)))
+    submission.questionnaire_hash = questionnaire_hash
+    submission.preview = extract_answers_preview(steps, answers)
 
-        submission.questionnaire_hash = questionnaire_hash
-        submission.preview = extract_answers_preview(questionnaire, answers)
+    store.add(submission)
 
-        store.add(submission)
+    db_archive_questionnaire_schema(store, steps, questionnaire_hash)
+    db_save_questionnaire_answers(store, submission.id, answers)
 
-        db_archive_questionnaire_schema(store, questionnaire, questionnaire_hash)
-
-        db_save_questionnaire_answers(store, submission.id, answers)
-    except Exception as excep:
-        log.err("Submission create: fields validation fail: %s", excep)
-        raise excep
-
-    try:
-        for filedesc in uploaded_files:
-            new_file = models.InternalFile()
-            new_file.name = filedesc['name']
-            new_file.description = ""
-            new_file.content_type = filedesc['type']
-            new_file.size = filedesc['size']
-            new_file.internaltip_id = submission.id
-            new_file.submission = filedesc['submission']
-            new_file.file_path = filedesc['path']
-            store.add(new_file)
-            log.debug("=> file associated %s|%s (%d bytes)",
-                      new_file.name, new_file.content_type, new_file.size)
-    except Exception as excep:
-        log.err("Submission create: unable to create db entry for files: %s", excep)
-        raise excep
+    for filedesc in uploaded_files:
+        new_file = models.InternalFile()
+        new_file.name = filedesc['name']
+        new_file.description = ""
+        new_file.content_type = filedesc['type']
+        new_file.size = filedesc['size']
+        new_file.internaltip_id = submission.id
+        new_file.submission = filedesc['submission']
+        new_file.file_path = filedesc['path']
+        store.add(new_file)
+        log.debug("=> file associated %s|%s (%d bytes)",
+                  new_file.name, new_file.content_type, new_file.size)
 
     receipt = db_create_whistleblowertip(store, submission)
 
-    if submission.context.maximum_selectable_receivers > 0 and \
-                    len(request['receivers']) > submission.context.maximum_selectable_receivers:
+    if context.maximum_selectable_receivers > 0 and \
+                    len(request['receivers']) > context.maximum_selectable_receivers:
         raise errors.SubmissionValidationFailure("selected an invalid number of recipients")
 
-    rtips = []
-    for receiver in store.find(models.Receiver, In(models.Receiver.id, request['receivers'])):
-        if submission.context not in receiver.contexts:
+    rtips_count = 0
+    for receiver, user, in store.find((models.Receiver, models.User),
+                                      In(models.Receiver.id, request['receivers']),
+                                      models.ReceiverContext.receiver_id == models.Receiver.id,
+                                      models.ReceiverContext.context_id == context.id,
+                                      models.User.id == models.Receiver.id):
+        if not GLSettings.memory_copy.allow_unencrypted and len(user.pgp_key_public) == 0:
             continue
 
-        if not GLSettings.memory_copy.allow_unencrypted and len(receiver.user.pgp_key_public) == 0:
-            continue
+        db_create_receivertip(store, receiver, submission)
+        rtips_count += 1
 
-        rtips.append(db_create_receivertip(store, receiver, submission))
-
-    if len(rtips) == 0:
+    if rtips_count == 0:
         raise errors.SubmissionValidationFailure("need at least one recipient")
 
-    log.debug("The finalized submission had created %d models.ReceiverTip(s)", len(rtips))
+    log.debug("The finalized submission had created %d models.ReceiverTip(s)", rtips_count)
 
     return {'receipt': receipt}
 
 
 @transact
-def create_submission(store, request, uploaded_files, client_using_tor, language):
-    return db_create_submission(store, request, uploaded_files, client_using_tor, language)
+def create_submission(store, request, uploaded_files, client_using_tor):
+    return db_create_submission(store, request, uploaded_files, client_using_tor)
 
 
 class SubmissionInstance(BaseHandler):
@@ -397,8 +422,7 @@ class SubmissionInstance(BaseHandler):
 
         submission = create_submission(request,
                                        token.uploaded_files,
-                                       self.request.client_using_tor,
-                                       self.request.language)
+                                       self.request.client_using_tor)
 
         # Delete the token only when a valid submission has been stored in the DB
         TokenList.delete(token_id)

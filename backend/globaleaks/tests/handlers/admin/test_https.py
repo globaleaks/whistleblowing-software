@@ -59,7 +59,9 @@ class TestFileHandler(helpers.TestHandler):
         # Upload a valid key
         good_key = self.valid_setup['key']
         handler = self.request({'name': 'priv_key', 'content': good_key}, role='admin')
-        response = yield handler.post(n)
+
+        yield handler.post(n)
+
         response = yield self.get_and_check(n, True)
 
         was_generated = response['files']['priv_key']['gen']

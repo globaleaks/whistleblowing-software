@@ -40,7 +40,7 @@ def register_ifile_on_db(store, uploaded_file, internaltip_id):
 
     store.add(new_file)
 
-    return serializers.serialize_ifile(new_file)
+    return serializers.serialize_ifile(store, new_file)
 
 
 @transact

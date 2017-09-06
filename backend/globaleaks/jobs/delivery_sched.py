@@ -8,9 +8,9 @@
 
 import os
 
+from globaleaks import models
 from globaleaks.handlers.admin.receiver import admin_serialize_receiver
 from globaleaks.jobs.base import LoopingJob
-from globaleaks.models import InternalFile, ReceiverFile
 from globaleaks.orm import transact_sync
 from globaleaks.security import GLBPGP, GLSecureFile, generateRandomKey
 from globaleaks.settings import GLSettings
@@ -31,7 +31,7 @@ def receiverfile_planning(store):
     """
     receiverfiles_maps = {}
 
-    for ifile in store.find(InternalFile, InternalFile.new == True):
+    for ifile in store.find(models.InternalFile, models.InternalFile.new == True):
         if ifile.processing_attempts >= INTERNALFILES_HANDLE_RETRY_MAX:
             ifile.new = False
             log.err("Failed to handle receiverfiles creation for ifile %s (%d retries)",
@@ -49,8 +49,10 @@ def receiverfile_planning(store):
 
         ifile.processing_attempts += 1
 
-        for rtip in ifile.internaltip.receivertips:
-            receiverfile = ReceiverFile()
+        for rtip, receiver in store.find((models.ReceiverTip, models.Receiver),
+                                         models.ReceiverTip.internaltip_id == ifile.internaltip_id,
+                                         models.Receiver.id == models.ReceiverTip.receiver_id):
+            receiverfile = models.ReceiverFile()
             receiverfile.internalfile_id = ifile.id
             receiverfile.receivertip_id = rtip.id
             receiverfile.file_path = ifile.file_path
@@ -78,7 +80,7 @@ def receiverfile_planning(store):
                 'status': u'processing',
                 'path': ifile.file_path,
                 'size': ifile.size,
-                'receiver': admin_serialize_receiver(store, rtip.receiver, GLSettings.memory_copy.default_language)
+                'receiver': admin_serialize_receiver(store, receiver, GLSettings.memory_copy.default_language)
             })
 
     return receiverfiles_maps
@@ -195,7 +197,7 @@ def process_files(receiverfiles_maps):
 @transact_sync
 def update_internalfile_and_store_receiverfiles(store, receiverfiles_maps):
     for ifile_id, receiverfiles_map in receiverfiles_maps.items():
-        ifile = store.find(InternalFile, InternalFile.id == ifile_id).one()
+        ifile = store.find(models.InternalFile, models.InternalFile.id == ifile_id).one()
         if ifile is None:
             continue
 
@@ -205,7 +207,7 @@ def update_internalfile_and_store_receiverfiles(store, receiverfiles_maps):
         ifile.file_path = receiverfiles_map['ifile_path']
 
         for rf in receiverfiles_map['rfiles']:
-            rfile = store.find(ReceiverFile, ReceiverFile.id == rf['id']).one()
+            rfile = store.find(models.ReceiverFile, models.ReceiverFile.id == rf['id']).one()
             if rfile is None:
                 continue
 

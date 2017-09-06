@@ -37,7 +37,7 @@ class TestStatistics(helpers.TestGL):
 
         # every stuff need to be ANOMALIES_AMOUNT * 2, because
         # pollute function put two event each
-        for event, count in anomdet[0].items():
+        for _, count in anomdet[0].items():
             self.assertEqual(count, ANOMALIES_COUNT * 2)
 
         # scheduler happen to save these anomalies, along with stats

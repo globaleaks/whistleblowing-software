@@ -69,7 +69,7 @@ class PGPCheckSchedule(LoopingJob):
         expired_or_expiring = []
 
         for user in db_get_expired_or_expiring_pgp_users(store):
-            expired_or_expiring.append(user_serialize_user(user, GLSettings.memory_copy.default_language))
+            expired_or_expiring.append(user_serialize_user(store, user, GLSettings.memory_copy.default_language))
 
             if user.pgp_key_expiration < datetime_now():
                 user.pgp_key_public = ''

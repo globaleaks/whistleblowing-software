@@ -188,13 +188,15 @@ def serialize_questionnaire(store, questionnaire, language):
     :param language: the language in which to localize data.
     :return: a dictionary representing the serialization of the questionnaire.
     """
+    steps = store.find(models.Step, models.Step.questionnaire_id == questionnaire.id)
+
     ret_dict = {
         'id': questionnaire.id,
         'editable': questionnaire.editable,
         'name': questionnaire.name,
         'show_steps_navigation_bar': questionnaire.show_steps_navigation_bar,
         'steps_navigation_requires_completion': questionnaire.steps_navigation_requires_completion,
-        'steps': [serialize_step(store, s, language) for s in questionnaire.steps]
+        'steps': [serialize_step(store, s, language) for s in steps]
     }
 
     return get_localized_values(ret_dict, questionnaire, questionnaire.localized_keys, language)
@@ -253,8 +255,8 @@ def serialize_field(store, field, language, data=None):
     if data is None:
         data = db_prepare_fields_serialization(store, [field])
 
-    if field.template:
-        f_to_serialize = field.template
+    if field.template_id is not None:
+        f_to_serialize = store.find(models.Field, models.Field.id == field.template_id).one()
     else:
         f_to_serialize = field
 
@@ -262,10 +264,13 @@ def serialize_field(store, field, language, data=None):
     for attr in data['attrs'].get(f_to_serialize.id, {}):
         attrs[attr.name] = serialize_field_attr(attr, language)
 
-    triggered_by_options = [{
-        'field': trigger.field_id,
-        'option': trigger.id
-    } for trigger in field.triggered_by_options]
+    triggered_by_options = []
+    _triggered_by_options = store.find(models.FieldOption, models.FieldOption.trigger_field == field.id)
+    for trigger in _triggered_by_options:
+        triggered_by_options.append({
+            'field': trigger.field_id,
+            'option': trigger.id
+        })
 
     ret_dict = {
         'id': field.id,
@@ -284,7 +289,7 @@ def serialize_field(store, field, language, data=None):
         'y': field.y,
         'width': field.width,
         'triggered_by_score': field.triggered_by_score,
-        'triggered_by_options': triggered_by_options,
+        'triggered_by_options':  triggered_by_options,
         'options': [serialize_field_option(o, language) for o in data['options'].get(f_to_serialize.id, [])],
         'children': [serialize_field(store, f, language) for f in data['fields'].get(f_to_serialize.id, [])]
     }
@@ -300,12 +305,17 @@ def serialize_step(store, step, language):
     :param language: the language in which to localize data
     :return: a serialization of the object
     """
-    triggered_by_options = [{
-        'field': trigger.field_id,
-        'option': trigger.id
-    } for trigger in step.triggered_by_options]
+    triggered_by_options = []
+    _triggered_by_options = store.find(models.FieldOption, models.FieldOption.trigger_step == step.id)
+    for trigger in _triggered_by_options:
+        triggered_by_options.append({
+            'step': trigger.step_id,
+            'option': trigger.id
+        })
 
-    data = db_prepare_fields_serialization(store, step.children)
+    children = store.find(models.Field, models.Field.step_id == step.id)
+
+    data = db_prepare_fields_serialization(store, children)
 
     ret_dict = {
         'id': step.id,
@@ -313,7 +323,7 @@ def serialize_step(store, step, language):
         'presentation_order': step.presentation_order,
         'triggered_by_score': step.triggered_by_score,
         'triggered_by_options': triggered_by_options,
-        'children': [serialize_field(store, f, language, data) for f in step.children]
+        'children': [serialize_field(store, f, language, data) for f in children]
     }
 
     return get_localized_values(ret_dict, step, step.localized_keys, language)
@@ -335,7 +345,7 @@ def serialize_receiver(store, receiver, language, data=None):
     ret_dict = {
         'id': receiver.id,
         'name': user.public_name,
-        'username': receiver.user.username if GLSettings.memory_copy.simplified_login else '',
+        'username': user.username if GLSettings.memory_copy.simplified_login else '',
         'state': user.state,
         'configuration': receiver.configuration,
         'presentation_order': receiver.presentation_order,
@@ -347,7 +357,7 @@ def serialize_receiver(store, receiver, language, data=None):
     }
 
     # description and eventually other localized strings should be taken from user model
-    get_localized_values(ret_dict, receiver.user, ['description'], language)
+    get_localized_values(ret_dict, user, ['description'], language)
 
     return get_localized_values(ret_dict, receiver, receiver.localized_keys, language)
 

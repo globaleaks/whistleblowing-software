@@ -215,7 +215,7 @@ class GLSecureTemporaryFile(_TemporaryFileWrapper):
                     self.encryptor_finalized = True
                     self.file.write(self.encryptor.finalize())
 
-            except:
+            except Exception:
                 pass
 
             finally:

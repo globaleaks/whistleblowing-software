@@ -5,6 +5,7 @@
 # Implementation of the code executed on handler /admin/contexts
 #
 from globaleaks import models
+from globaleaks.handlers.admin.modelimgs import db_get_model_img
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.orm import transact
 from globaleaks.rest import errors, requests
@@ -21,7 +22,8 @@ def admin_serialize_context(store, context, language):
     :param language: the language in which to localize data.
     :return: a dictionary representing the serialization of the context.
     """
-    receivers = [rc.receiver_id for rc in store.find(models.ReceiverContext, models.ReceiverContext.context_id == context.id)]
+    receivers = [id for id in store.find(models.ReceiverContext.receiver_id, models.ReceiverContext.context_id == context.id)]
+    picture = db_get_model_img(store, models.Context, context.id)
 
     ret_dict = {
         'id': context.id,
@@ -42,7 +44,7 @@ def admin_serialize_context(store, context, language):
         'show_receivers_in_alphabetical_order': context.show_receivers_in_alphabetical_order,
         'questionnaire_id': context.questionnaire_id,
         'receivers': receivers,
-        'picture': context.picture.data if context.picture is not None else ''
+        'picture': picture
     }
 
     return get_localized_values(ret_dict, context, context.localized_keys, language)
@@ -62,13 +64,11 @@ def get_context_list(store, language):
 
 
 def db_associate_context_receivers(store, context, receivers_ids):
-    context.receivers.clear()
+    store.find(models.ReceiverContext, models.ReceiverContext.context_id == context.id).remove()
 
     for receiver_id in receivers_ids:
-        receiver = models.Receiver.get(store, receiver_id)
-        if not receiver:
-            raise errors.ReceiverIdNotFound
-        context.receivers.add(receiver)
+        store.add(models.ReceiverContext({'context_id': context.id,
+                                          'receiver_id': receiver_id}))
 
 
 @transact
@@ -78,7 +78,6 @@ def get_context(store, context_id, language):
         (dict) the context with the specified id.
     """
     context = store.find(models.Context, models.Context.id == context_id).one()
-
     if not context:
         raise errors.ContextIdNotFound
 

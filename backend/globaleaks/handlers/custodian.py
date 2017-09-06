@@ -3,52 +3,53 @@
 # ********
 #
 # Implement the classes handling the requests performed to /custodian/* URI PATH
+from globaleaks import models
 from globaleaks.handlers.base import BaseHandler
-from globaleaks.models import IdentityAccessRequest
 from globaleaks.orm import transact
 from globaleaks.rest import requests
-from globaleaks.utils.structures import Rosetta
 from globaleaks.utils.utility import datetime_to_ISO8601, datetime_now
 
 
-def serialize_identityaccessrequest(identityaccessrequest, language):
-    iar = {
+def serialize_identityaccessrequest(store, identityaccessrequest):
+    itip, user = store.find((models.InternalTip, models.User),
+                            models.InternalTip.id == models.ReceiverTip.internaltip_id,
+                            models.User.id == models.ReceiverTip.receiver_id,
+                            models.ReceiverTip.id == identityaccessrequest.receivertip_id).one()
+
+    reply_user = store.find(models.User,
+                            models.User.id == identityaccessrequest.reply_user_id).one()
+
+    return {
         'id': identityaccessrequest.id,
         'receivertip_id': identityaccessrequest.receivertip_id,
         'request_date': datetime_to_ISO8601(identityaccessrequest.request_date),
-        'request_user_name': identityaccessrequest.receivertip.receiver.user.name,
+        'request_user_name': user.name,
         'request_motivation': identityaccessrequest.request_motivation,
         'reply_date': datetime_to_ISO8601(identityaccessrequest.reply_date),
-        'reply_user_name': identityaccessrequest.reply_user.name \
-                if identityaccessrequest.reply_user is not None else '',
+        'reply_user_name': reply_user.id if reply_user is not None else '',
         'reply': identityaccessrequest.reply,
         'reply_motivation': identityaccessrequest.reply_motivation,
-        'submission_date': datetime_to_ISO8601(identityaccessrequest.receivertip.internaltip.creation_date)
+        'submission_date': datetime_to_ISO8601(itip.creation_date)
     }
 
-    mo = Rosetta(identityaccessrequest.receivertip.internaltip.context.localized_keys)
-    mo.acquire_storm_object(identityaccessrequest.receivertip.internaltip.context)
-    iar["submission_context"] = mo.dump_localized_key('name', language)
 
-    return iar
+@transact
+def get_identityaccessrequest_list(store):
+    return [serialize_identityaccessrequest(store, iar)
+        for iar in store.find(models.IdentityAccessRequest, models.IdentityAccessRequest.reply == u'pending')]
 
 
 @transact
-def get_identityaccessrequest_list(store, language):
-    return [serialize_identityaccessrequest(iar, language)
-        for iar in store.find(IdentityAccessRequest, IdentityAccessRequest.reply == u'pending')]
+def get_identityaccessrequest(store, identityaccessrequest_id):
+    iar = store.find(models.IdentityAccessRequest,
+                     models.IdentityAccessRequest.id == identityaccessrequest_id).one()
+    return serialize_identityaccessrequest(store, iar)
 
 
 @transact
-def get_identityaccessrequest(store, identityaccessrequest_id, language):
-    iar = store.find(IdentityAccessRequest,
-                     IdentityAccessRequest.id == identityaccessrequest_id).one()
-    return serialize_identityaccessrequest(iar, language)
-
-
-@transact
-def update_identityaccessrequest(store, user_id, identityaccessrequest_id, request, language):
-    iar = store.find(IdentityAccessRequest, IdentityAccessRequest.id == identityaccessrequest_id).one()
+def update_identityaccessrequest(store, user_id, identityaccessrequest_id, request):
+    iar = store.find(models.IdentityAccessRequest,
+                     models.IdentityAccessRequest.id == identityaccessrequest_id).one()
 
     if iar.reply == 'pending':
         iar.reply_date = datetime_now()
@@ -58,7 +59,7 @@ def update_identityaccessrequest(store, user_id, identityaccessrequest_id, reque
             iar.receivertip.can_access_whistleblower_identity = True
         iar.reply_motivation = request['reply_motivation']
 
-    return serialize_identityaccessrequest(iar, language)
+    return serialize_identityaccessrequest(store, iar)
 
 
 class IdentityAccessRequestInstance(BaseHandler):
@@ -73,8 +74,7 @@ class IdentityAccessRequestInstance(BaseHandler):
         Response: IdentityAccessRequestDesc
         Errors: IdentityAccessRequestIdNotFound, InvalidInputFormat, InvalidAuthentication
         """
-        return get_identityaccessrequest(identityaccessrequest_id,
-                                         self.request.language)
+        return get_identityaccessrequest(identityaccessrequest_id)
 
     def put(self, identityaccessrequest_id):
         """
@@ -87,8 +87,7 @@ class IdentityAccessRequestInstance(BaseHandler):
 
         return update_identityaccessrequest(self.current_user.user_id,
                                             identityaccessrequest_id,
-                                            request,
-                                            self.request.language)
+                                            request)
 
 
 class IdentityAccessRequestsCollection(BaseHandler):
@@ -103,4 +102,4 @@ class IdentityAccessRequestsCollection(BaseHandler):
         Response: identityaccessrequestsList
         Errors: InvalidAuthentication
         """
-        return get_identityaccessrequest_list(self.request.language)
+        return get_identityaccessrequest_list()

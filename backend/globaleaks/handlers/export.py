@@ -26,7 +26,10 @@ from globaleaks.utils.zipstream import ZipStream
 def get_tip_export(store, user_id, rtip_id, language):
     rtip = db_access_rtip(store, user_id, rtip_id)
 
-    receiver = rtip.receiver
+    receiver, context = store.find((models.Receiver, models.Context),
+                                   models.Receiver.id == rtip.receiver_id,
+                                   models.Context.id == models.InternalTip.context_id,
+                                   models.InternalTip.id == rtip.internaltip_id).one()
 
     rtip_dict = serialize_rtip(store, rtip, language)
 
@@ -35,7 +38,7 @@ def get_tip_export(store, user_id, rtip_id, language):
         'node': db_admin_serialize_node(store, language),
         'notification': db_get_notification(store, language),
         'tip': serialize_rtip(store, rtip, language),
-        'context': admin_serialize_context(store, rtip.internaltip.context, language),
+        'context': admin_serialize_context(store, context, language),
         'receiver': admin_serialize_receiver(store, receiver, language),
         'comments': rtip_dict['comments'],
         'messages': rtip_dict['messages'],
@@ -48,16 +51,15 @@ def get_tip_export(store, user_id, rtip_id, language):
 
     export_dict['files'].append({'buf': export_template, 'name': "data.txt"})
 
-    for rf in store.find(models.ReceiverFile, models.ReceiverFile.receivertip_id == rtip_id):
-        rf.downloads += 1
-        file_dict = models.serializers.serialize_rfile(rf)
+    for rfile in store.find(models.ReceiverFile, models.ReceiverFile.receivertip_id == rtip_id):
+        rfile.downloads += 1
+        file_dict = models.serializers.serialize_rfile(store, rfile)
         file_dict['name'] = 'files/' + file_dict['name']
         export_dict['files'].append(file_dict)
 
-    rtips_ids = [rt.id for rt in rtip.internaltip.receivertips]
-    wfs = store.find(models.WhistleblowerFile, In(models.WhistleblowerFile.receivertip_id, rtips_ids))
-
-    for wf in wfs:
+    for wf in store.find(models.WhistleblowerFile,
+                         models.WhistleblowerFile.receivertip_id == models.ReceiverTip.id,
+                         models.ReceiverTip.internaltip_id == rtip.internaltip_id):
         file_dict = models.serializers.serialize_wbfile(wf)
         file_dict['name'] = 'files_from_recipients/' + file_dict['name']
         export_dict['files'].append(file_dict)
