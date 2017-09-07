@@ -6,7 +6,7 @@ Please consider asking your technical support to create more disk space on the s
 
 Unless the issue is resolved this email will be resent in a few hours.
 
-The is a MEDIUM level alarm. Don’t panic, but deal with it as soon as possible.
+This is a MEDIUM level alarm. Don’t panic, but deal with it as soon as possible.
 
 Kind regards,
 {NodeName}
