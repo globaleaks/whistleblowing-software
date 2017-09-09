@@ -22,7 +22,7 @@ GLClient.controller('TipCtrl',
         var step = tip.questionnaire[i];
         var j = step.children.length;
         while (j--) {
-          if (step.children[j]['key'] === 'whistleblower_identity') {
+          if (step.children[j]['id'] === 'whistleblower_identity') {
             $scope.whistleblower_identity_field = step.children[j];
             step.children.splice(j, 1);
             $scope.fields = $scope.whistleblower_identity_field.children;

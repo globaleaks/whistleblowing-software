@@ -35,9 +35,8 @@ def db_assign_submission_progressive(store):
     else:
         now = datetime_now()
         update = counter.update_date
-        if ((now > counter.update_date) and (not((now.year == update.year) and
-                                                     (now.month == update.month) and
-                                                     (now.day == update.day)))):
+        if ((now > counter.update_date) and
+            (not((now.year == update.year) and (now.month == update.month) and (now.day == update.day)))):
             counter.counter = 1
         else:
             counter.counter += 1
@@ -125,7 +124,7 @@ def db_serialize_questionnaire_answers(store, usertip):
     answers_ids = []
     for s in questionnaire:
         for f in s['children']:
-            if 'key' in f and f['key'] == 'whistleblower_identity':
+            if f['id'] == 'whistleblower_identity':
                 if isinstance(usertip, models.WhistleblowerTip) or \
                    f['attrs']['visibility_subject_to_authorization']['value'] == False or \
                    (isinstance(usertip, models.ReceiverTip) and usertip.can_access_whistleblower_identity):
@@ -278,7 +277,7 @@ def db_create_receivertip(store, receiver, internaltip):
     """
     Create models.ReceiverTip for the required tier of models.Receiver.
     """
-    log.debug('Creating receivertip for receiver: %s', receiver.id)
+    log.debug("Creating receivertip for receiver: %s", receiver.id)
 
     receivertip = models.ReceiverTip()
     receivertip.internaltip_id = internaltip.id
@@ -293,6 +292,8 @@ def db_create_whistleblowertip(store, internaltip):
     The plaintext receipt is returned only now, and then is
     stored hashed in the WBtip table
     """
+    log.debug("Creating whistleblowertip")
+
     receipt = unicode(generateRandomReceipt())
 
     wbtip = models.WhistleblowerTip()

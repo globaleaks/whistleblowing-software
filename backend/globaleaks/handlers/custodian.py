@@ -48,16 +48,18 @@ def get_identityaccessrequest(store, identityaccessrequest_id):
 
 @transact
 def update_identityaccessrequest(store, user_id, identityaccessrequest_id, request):
-    iar = store.find(models.IdentityAccessRequest,
-                     models.IdentityAccessRequest.id == identityaccessrequest_id).one()
+    iar, rtip = store.find((models.IdentityAccessRequest, models.ReceiverTip),
+                           models.IdentityAccessRequest.id == identityaccessrequest_id,
+                           models.ReceiverTip.id == models.IdentityAccessRequest.receivertip_id).one()
 
     if iar.reply == 'pending':
         iar.reply_date = datetime_now()
         iar.reply_user_id = user_id
         iar.reply = request['reply']
-        if iar.reply == 'authorized':
-            iar.receivertip.can_access_whistleblower_identity = True
         iar.reply_motivation = request['reply_motivation']
+
+        if iar.reply == 'authorized':
+            rtip.can_access_whistleblower_identity = True
 
     return serialize_identityaccessrequest(store, iar)
 
