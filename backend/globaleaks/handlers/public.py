@@ -77,7 +77,7 @@ def db_prepare_fields_serialization(store, fields):
     for f in fields:
         fields_ids.append(f.id)
         if f.template_id is not None:
-            fields_ids.append(f.id)
+            fields_ids.append(f.template_id)
 
     tmp = copy.deepcopy(fields_ids)
     while len(tmp):
