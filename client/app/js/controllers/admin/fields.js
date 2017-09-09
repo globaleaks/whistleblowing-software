@@ -69,7 +69,7 @@ controller('AdminFieldEditorCtrl', ['$scope', '$filter', '$uibModal', 'AdminFiel
         return true;
       }
 
-      if (field.instance === 'template' && (['whistleblower_identity'].indexOf(field.key) > -1)) {
+      if (field.instance === 'template' && (['whistleblower_identity'].indexOf(field.id) > -1)) {
         return true;
       }
 

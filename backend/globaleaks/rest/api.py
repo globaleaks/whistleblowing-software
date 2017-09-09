@@ -42,6 +42,7 @@ from twisted.web.resource import Resource
 from twisted.web.server import NOT_DONE_YET
 
 uuid_regexp = r'([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})'
+key_regexp = r'([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}|[a-z_]{0,100})'
 
 api_spec = [
     (r'/exception', exception.ExceptionHandler),
@@ -102,18 +103,17 @@ api_spec = [
     (r'/admin/contexts/' + uuid_regexp, admin_context.ContextInstance),
     (r'/admin/(users|contexts)/' + uuid_regexp  + r'/img', admin_modelimgs.ModelImgInstance),
     (r'/admin/questionnaires', admin_questionnaire.QuestionnairesCollection),
-    (r'/admin/questionnaires/' + uuid_regexp, admin_questionnaire.QuestionnaireInstance),
-    (r'/admin/questionnaires/([a-z0-9_]{1,90})', admin_questionnaire.QuestionnaireInstance),
+    (r'/admin/questionnaires/' + key_regexp, admin_questionnaire.QuestionnaireInstance),
     (r'/admin/receivers', admin_receiver.ReceiversCollection),
     (r'/admin/receivers/' + uuid_regexp, admin_receiver.ReceiverInstance),
     (r'/admin/notification', admin_notification.NotificationInstance),
     (r'/admin/notification/mail', admin_notification.NotificationTestInstance),
     (r'/admin/fields', admin_field.FieldsCollection),
-    (r'/admin/fields/' + uuid_regexp, admin_field.FieldInstance),
+    (r'/admin/fields/' + key_regexp, admin_field.FieldInstance),
     (r'/admin/steps', admin_step.StepCollection),
     (r'/admin/steps/' + uuid_regexp, admin_step.StepInstance),
     (r'/admin/fieldtemplates', admin_field.FieldTemplatesCollection),
-    (r'/admin/fieldtemplates/' + uuid_regexp, admin_field.FieldTemplateInstance),
+    (r'/admin/fieldtemplates/' + key_regexp, admin_field.FieldTemplateInstance),
     (r'/admin/shorturls', admin_shorturl.ShortURLCollection),
     (r'/admin/shorturls/' + uuid_regexp, admin_shorturl.ShortURLInstance),
     (r'/admin/stats/(\d+)', admin_statistics.StatsCollection),

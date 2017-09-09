@@ -23,10 +23,8 @@ def get_multilang_request_format(request_format, localized_strings):
     return ret
 
 
-questionnaire_id_regexp           = r'^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$|^[a-z_]{0,100}$'
-field_id_regexp                   = questionnaire_id_regexp
-questionnaire_id_regexp_or_empty  = r'^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$|^[a-z_]{0,100}$|^$'
-field_id_regexp_or_empty          = questionnaire_id_regexp_or_empty
+key_regexp                        = r'^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$|^[a-z_]{0,100}$'
+key_regexp_or_empty               = r'^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$|^[a-z_]{0,100}$|^$'
 uuid_regexp                       = r'^([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})$'
 uuid_regexp_or_empty              = r'^([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})$|^$'
 user_roles_regexp                 = r'^(admin|custodian|receiver)$'
@@ -291,12 +289,12 @@ AdminFieldAttrDesc = {
 AdminFieldAttrDescRaw = get_multilang_request_format(AdminFieldAttrDesc, models.FieldAttr.localized_keys)
 
 AdminFieldDesc = {
-    'id': field_id_regexp_or_empty,
+    'id': key_regexp_or_empty,
     'instance': field_instance_regexp,
     'editable': bool,
-    'template_id': field_id_regexp_or_empty,
+    'template_id': key_regexp_or_empty,
     'step_id': uuid_regexp_or_empty,
-    'fieldgroup_id': field_id_regexp_or_empty,
+    'fieldgroup_id': key_regexp_or_empty,
     'label': unicode,
     'description': unicode,
     'hint': unicode,
@@ -325,7 +323,7 @@ AdminStepDesc = {
     'label': unicode,
     'description': unicode,
     'children': [AdminFieldDesc],
-    'questionnaire_id': questionnaire_id_regexp_or_empty,
+    'questionnaire_id': key_regexp_or_empty,
     'presentation_order': int,
     'triggered_by_score': int
 }
@@ -334,7 +332,7 @@ AdminStepDescRaw = get_multilang_request_format(AdminStepDesc, models.Step.local
 AdminStepDescRaw['children'] = [AdminFieldDescRaw]
 
 AdminQuestionnaireDesc = {
-    'id': questionnaire_id_regexp_or_empty,
+    'id': key_regexp_or_empty,
     'name': unicode,
     'show_steps_navigation_bar': bool,
     'steps_navigation_requires_completion': bool,
@@ -366,7 +364,7 @@ AdminContextDesc = {
     'recipients_clarification': unicode,
     'status_page_message': unicode,
     'show_receivers_in_alphabetical_order': bool,
-    'questionnaire_id': questionnaire_id_regexp_or_empty
+    'questionnaire_id': key_regexp_or_empty
 }
 
 AdminContextDescRaw = get_multilang_request_format(AdminContextDesc, models.Context.localized_keys)
