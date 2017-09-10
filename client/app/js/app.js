@@ -553,7 +553,7 @@ var GLClient = angular.module('GLClient', [
     $rootScope.init = function () {
       return PublicResource.get(function(result, getResponseHeaders) {
         if (result.node.homepage) {
-          $templateCache.put('custom_homepage.html', atob(result.node.homepage));
+          $templateCache.put('custom_homepage.html', Utils.b64DecodeUnicode(result.node.homepage));
         }
 
         $rootScope.answer = {value: null};
