@@ -1,3 +1,7 @@
+Changes in version 2.72.2 - 2017-09-09
+    o Apply bugfixing to whistleblower identity feature UI
+    o Remove usage of Storm Reference and ReferenceSet API
+
 Changes in version 2.72.1 - 2017-09-05
     o Apply bugfixing of postinst script
 
