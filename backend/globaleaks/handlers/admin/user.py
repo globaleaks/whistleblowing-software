@@ -24,8 +24,7 @@ def admin_serialize_receiver(store, receiver, language):
     """
     contexts = [id for id in store.find(models.ReceiverContext.context_id, models.ReceiverContext.receiver_id == receiver.id)]
 
-    user = store.find(models.User,
-                      models.User.id == receiver.id).one()
+    user = store.find(models.User, models.User.id == receiver.id).one()
 
     ret_dict = user_serialize_user(store, user, language)
 
@@ -96,16 +95,14 @@ def db_create_receiver_user(store, request, language):
     Returns:
         (dict) the receiver descriptor
     """
-    user = db_create_user(store, request, language)
-
     fill_localized_keys(request, models.Receiver.localized_keys, language)
 
-    receiver = models.Receiver(request)
+    user = db_create_user(store, request, language)
+
+    receiver = models.db_forge_obj(store, models.Receiver, request)
 
     # set receiver.id user.id
     receiver.id = user.id
-
-    store.add(receiver)
 
     contexts = request.get('contexts', [])
 
@@ -172,9 +169,9 @@ def db_admin_update_user(store, user_id, request, language):
     Updates the specified user.
     raises: globaleaks.errors.UserIdNotFound` if the user does not exist.
     """
-    user = models.db_get(store, models.User, id=user_id)
-
     fill_localized_keys(request, models.User.localized_keys, language)
+
+    user = models.db_get(store, models.User, id=user_id)
 
     user.update(request)
 
@@ -256,6 +253,7 @@ class UsersCollection(BaseHandler):
                                         requests.AdminUserDesc)
 
         return create(request, self.request.language)
+
 
 class UserInstance(BaseHandler):
     check_roles = 'admin'

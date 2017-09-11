@@ -43,9 +43,9 @@ def update_receiver(store, receiver_id, request, language):
     """
     Updates the specified receiver with the details.
     """
-    receiver = models.db_get(store, models.Receiver, id=receiver_id)
-
     fill_localized_keys(request, models.Receiver.localized_keys, language)
+
+    receiver = models.db_get(store, models.Receiver, id=receiver_id)
 
     receiver.update(request)
 

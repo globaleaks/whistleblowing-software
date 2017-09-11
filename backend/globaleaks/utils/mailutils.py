@@ -200,6 +200,7 @@ def extract_exception_traceback_and_send_email(e):
         exc_type, exc_value, exc_tb = e.type, e.value, e.getTracebackObject()
     else:
         exc_type, exc_value, exc_tb = sys.exc_info()
+
     mail_exception_handler(exc_type, exc_value, exc_tb)
 
 

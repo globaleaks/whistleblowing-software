@@ -9,8 +9,9 @@ import os
 from twisted.internet import threads
 from twisted.internet.defer import inlineCallbacks
 
+from globaleaks import models
 from globaleaks.handlers.base import BaseHandler, write_upload_encrypted_to_disk
-from globaleaks.models import serializers, InternalTip, InternalFile, WhistleblowerTip
+from globaleaks.models import serializers
 from globaleaks.orm import transact
 from globaleaks.rest import errors
 from globaleaks.security import directory_traversal_check
@@ -21,23 +22,17 @@ from globaleaks.utils.utility import log, datetime_now
 
 @transact
 def register_ifile_on_db(store, uploaded_file, internaltip_id):
-    internaltip = store.find(InternalTip,
-                             InternalTip.id == internaltip_id).one()
-
-    if not internaltip:
-        log.err("Cannot associate a file to a not existent internaltip!")
-        raise errors.TipIdNotFound
+    internaltip = models.db_get(store, models.InternalTip, id=internaltip_id)
 
     internaltip.update_date = datetime_now()
 
-    new_file = InternalFile()
+    new_file = models.InternalFile()
     new_file.name = uploaded_file['name']
     new_file.content_type = uploaded_file['type']
     new_file.size = uploaded_file['size']
     new_file.internaltip_id = internaltip_id
     new_file.submission = uploaded_file['submission']
     new_file.file_path = uploaded_file['path']
-
     store.add(new_file)
 
     return serializers.serialize_ifile(store, new_file)
@@ -45,8 +40,7 @@ def register_ifile_on_db(store, uploaded_file, internaltip_id):
 
 @transact
 def get_itip_id_by_wbtip_id(store, wbtip_id):
-    wbtip = store.find(WhistleblowerTip,
-                       WhistleblowerTip.id == wbtip_id).one()
+    wbtip = store.find(models.WhistleblowerTip, id=wbtip_id).one()
 
     if not wbtip:
         raise errors.InvalidAuthentication
@@ -67,7 +61,7 @@ class FileAdd(BaseHandler):
         """
         Request: Unknown
         Response: Unknown
-        Errors: TipIdNotFound
+        Errors: ModelNotFound
         """
         itip_id = yield get_itip_id_by_wbtip_id(self.current_user.user_id)
 
@@ -88,6 +82,7 @@ class FileAdd(BaseHandler):
             uploaded_file = yield threads.deferToThread(write_upload_encrypted_to_disk, uploaded_file, dst)
         except Exception as excep:
             log.err("Unable to save a file in filesystem: %s" % excep)
+            print excep
             raise errors.InternalServerError("Unable to accept new files")
 
         uploaded_file['date'] = datetime_now()
@@ -98,6 +93,7 @@ class FileAdd(BaseHandler):
             yield register_ifile_on_db(uploaded_file, itip_id)
         except Exception as excep:
             log.err("Unable to register (append) file in DB: %s" % excep)
+            print excep
             raise errors.InternalServerError("Unable to accept new files")
 
 

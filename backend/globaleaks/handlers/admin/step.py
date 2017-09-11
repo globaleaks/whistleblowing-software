@@ -23,15 +23,13 @@ def db_create_step(store, step_dict, language):
     """
     fill_localized_keys(step_dict, models.Step.localized_keys, language)
 
-    s = models.Step(step_dict)
-
-    store.add(s)
+    step = models.db_forge_obj(store, models.Step, step_dict)
 
     for c in step_dict['children']:
-        c['step_id'] = s.id
+        c['step_id'] = step.id
         db_create_field(store, c, language)
 
-    return s
+    return step
 
 
 @transact

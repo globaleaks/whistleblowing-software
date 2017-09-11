@@ -22,11 +22,11 @@ class Node_v_32(ModelWithID):
     default_language = Unicode(validator=shorttext_v, default=u'en')
     default_timezone = Int(default=0)
     default_password = Unicode(validator=longtext_v, default=u'globaleaks')
-    description = JSON(validator=longlocal_v, default=empty_localization)
-    presentation = JSON(validator=longlocal_v, default=empty_localization)
-    footer = JSON(validator=longlocal_v, default=empty_localization)
-    security_awareness_title = JSON(validator=longlocal_v, default=empty_localization)
-    security_awareness_text = JSON(validator=longlocal_v, default=empty_localization)
+    description = JSON(validator=longlocal_v, default_factory=dict)
+    presentation = JSON(validator=longlocal_v, default_factory=dict)
+    footer = JSON(validator=longlocal_v, default_factory=dict)
+    security_awareness_title = JSON(validator=longlocal_v, default_factory=dict)
+    security_awareness_text = JSON(validator=longlocal_v, default_factory=dict)
     maximum_namesize = Int(default=128)
     maximum_textsize = Int(default=4096)
     maximum_filesize = Int(default=30)
@@ -59,28 +59,28 @@ class Node_v_32(ModelWithID):
 
     enable_experimental_features = Bool(default=False)
 
-    whistleblowing_question = JSON(validator=longlocal_v, default=empty_localization)
-    whistleblowing_button = JSON(validator=longlocal_v, default=empty_localization)
-    whistleblowing_receipt_prompt = JSON(validator=longlocal_v, default=empty_localization)
+    whistleblowing_question = JSON(validator=longlocal_v, default_factory=dict)
+    whistleblowing_button = JSON(validator=longlocal_v, default_factory=dict)
+    whistleblowing_receipt_prompt = JSON(validator=longlocal_v, default_factory=dict)
 
     simplified_login = Bool(default=True)
 
     enable_custom_privacy_badge = Bool(default=False)
-    custom_privacy_badge_tor = JSON(validator=longlocal_v, default=empty_localization)
-    custom_privacy_badge_none = JSON(validator=longlocal_v, default=empty_localization)
+    custom_privacy_badge_tor = JSON(validator=longlocal_v, default_factory=dict)
+    custom_privacy_badge_none = JSON(validator=longlocal_v, default_factory=dict)
 
-    header_title_homepage = JSON(validator=longlocal_v, default=empty_localization)
-    header_title_submissionpage = JSON(validator=longlocal_v, default=empty_localization)
-    header_title_receiptpage = JSON(validator=longlocal_v, default=empty_localization)
-    header_title_tippage = JSON(validator=longlocal_v, default=empty_localization)
+    header_title_homepage = JSON(validator=longlocal_v, default_factory=dict)
+    header_title_submissionpage = JSON(validator=longlocal_v, default_factory=dict)
+    header_title_receiptpage = JSON(validator=longlocal_v, default_factory=dict)
+    header_title_tippage = JSON(validator=longlocal_v, default_factory=dict)
 
-    widget_comments_title = JSON(validator=shortlocal_v, default=empty_localization)
-    widget_messages_title = JSON(validator=shortlocal_v, default=empty_localization)
-    widget_files_title = JSON(validator=shortlocal_v, default=empty_localization)
+    widget_comments_title = JSON(validator=shortlocal_v, default_factory=dict)
+    widget_messages_title = JSON(validator=shortlocal_v, default_factory=dict)
+    widget_files_title = JSON(validator=shortlocal_v, default_factory=dict)
 
     landing_page = Unicode(default=u'homepage')
 
-    contexts_clarification = JSON(validator=longlocal_v, default=empty_localization)
+    contexts_clarification = JSON(validator=longlocal_v, default_factory=dict)
     show_small_context_cards = Bool(default=False)
     show_contexts_in_alphabetical_order = Bool(default=False)
 

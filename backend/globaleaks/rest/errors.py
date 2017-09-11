@@ -90,28 +90,22 @@ class ResourceNotFound(GLException):
     status_code = 404  # Not Found
 
 
-# UNUSED ERROR CODE 11 12 HERE!
-
-
-class TipIdNotFound(ResourceNotFound):
+class ModelNotFound(ResourceNotFound):
     """
-    The Tip Id requested does not exist in the database.
+    Error class for a generic model
     """
-    reason = "Not found a Tip with the specified id"
-    error_code = 13
-    status_code = 404  # Not Found
+    error_code = 7
+    status_code = 404
+
+    def __init__(self, model=None):
+        ResourceNotFound.__init__(self)
+        if model is None:
+            self.reason = "Model not found"
+        else:
+            self.reason = "Model of type {} has not been found".format(model)
 
 
-class TipReceiptNotFound(ResourceNotFound):
-    """
-    The WhistleBlower receipt is not related to any of the whistleblower tips
-    """
-    reason = "Not found a Whistleblower Tip with the specified id"
-    error_code = 14
-    status_code = 404  # Not Found
-
-
-# UNUSED ERROR CODE 15 HERE!
+# UNUSED ERROR CODE 8-15 HERE!
 
 
 class InvalidModelInput(GLException):
@@ -270,20 +264,17 @@ class ExternalResourceError(GLException):
         self.reason = reason
 
 
-# UNUSED ERROR CODE 33 HERE!
-
-
 class InvalidOldPassword(GLException):
     """
     Receiver or Node required the old password equal to the current password,
     before change with a new secret.
     """
     reason = "The specified old password is not valid"
-    error_code = 34
+    error_code = 33
     status_code = 406
 
 
-# UNUSED ERROR CODE 35 36 HERE!
+# UNUSED ERROR CODE 34 - 36 HERE!
 
 
 class TorNetworkRequired(GLException):
@@ -360,21 +351,3 @@ class SubmissionDisabled(GLException):
     reason = "Submissions are not possible right now"
     error_code = 52
     status_code = 503  # Service not available
-
-
-# UNUSED ERROR CODE 53, 54, 55, 56, 57, 58 HERE!
-
-
-class ModelNotFound(ResourceNotFound):
-    """
-    Error class for a generic model
-    """
-    error_code = 59
-    status_code = 404
-
-    def __init__(self, model=None):
-        ResourceNotFound.__init__(self)
-        if model is None:
-            self.reason = "Model not found"
-        else:
-            self.reason = "Model of type {} has not been found".format(model)
