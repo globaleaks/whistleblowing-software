@@ -173,17 +173,29 @@ controller('AdminFieldEditorCtrl', ['$scope', '$filter', '$uibModal', 'AdminFiel
     $scope.fieldIsMarkableSubjectToStats = $scope.isMarkableSubjectToStats($scope.field);
     $scope.fieldIsMarkableSubjectToPreview = $scope.isMarkableSubjectToPreview($scope.field);
 
-    $scope.triggerFieldDialog = function(option) {
+    function findParents(field_id, field_lst) {
+       for (var i = 0; i < field_lst.length; i++) {
+         var field = field_lst[i];
+         var pot = [field.id].concat(findParents(field_id, field.children));
+         if (pot.indexOf(field_id) > -1) {
+            return pot;
+         }
+       }
+       return [];
+    };
 
-      $scope.all_fields = []
+    $scope.triggerFieldDialog = function(option) {
+      var t = [];
       if (angular.isDefined($scope.questionnaire.steps)) {
         $scope.questionnaire.steps.forEach(function(step) {
           step.children.forEach(function(f) {
-            $scope.all_fields.push(f);
-            $scope.all_fields = $scope.all_fields.concat(enumerateChildren(f));
+            t.push(f);
+            t = t.concat(enumerateChildren(f));
           });
         });
       }
+      var direct_parents = findParents($scope.field.id, $scope.step.children);
+      $scope.all_fields = t.filter(function(f) { return direct_parents.indexOf(f.id) < 0; })
 
       function enumerateChildren(field) {
         var c = [];

@@ -1160,7 +1160,6 @@ factory('AdminUtils', ['AdminContextResource', 'AdminQuestionnaireResource', 'Ad
         for (var i=0; i < field.triggered_by_options.length; i++) {
           var trigger_obj = field.triggered_by_options[i];
           var answers_field = findField(answers, trigger_obj.field);
-          console.log('isFieldTriggered', answers_field, trigger_obj);
           if (answers_field === undefined) {
             continue;
           }
