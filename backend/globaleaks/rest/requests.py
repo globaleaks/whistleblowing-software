@@ -367,8 +367,6 @@ AdminContextDesc = {
     'questionnaire_id': key_regexp_or_empty
 }
 
-AdminContextDescRaw = get_multilang_request_format(AdminContextDesc, models.Context.localized_keys)
-
 AdminReceiverDesc = {
     'id': uuid_regexp_or_empty,
     'contexts': [uuid_regexp],

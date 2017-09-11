@@ -77,9 +77,7 @@ def get_context(store, context_id, language):
     Returns:
         (dict) the context with the specified id.
     """
-    context = store.find(models.Context, models.Context.id == context_id).one()
-    if not context:
-        raise errors.ContextIdNotFound
+    context = models.db_get(store, models.Context, id=context_id)
 
     return admin_serialize_context(store, context, language)
 
@@ -134,9 +132,6 @@ def create_context(store, request, language):
     """
     Creates a new context from the request of a client.
 
-    We associate to the context the list of receivers and if the receiver is
-    not valid we raise a ReceiverIdNotFound exception.
-
     Args:
         (dict) the request containing the keys to set on the model.
 
@@ -153,8 +148,6 @@ def update_context(store, context_id, request, language):
     """
     Updates the specified context. If the key receivers is specified we remove
     the current receivers of the Context and reset set it to the new specified
-    ones.
-    If no such context exists raises :class:`globaleaks.errors.ContextIdNotFound`.
 
     Args:
         context_id:
@@ -165,9 +158,7 @@ def update_context(store, context_id, request, language):
     Returns:
             (dict) the serialized object updated
     """
-    context = store.find(models.Context, models.Context.id == context_id).one()
-    if not context:
-        raise errors.ContextIdNotFound
+    context = models.db_get(store, models.Context, id=context_id)
 
     if not request['allow_recipients_selection']:
         request['select_all_receivers'] = True
@@ -175,22 +166,6 @@ def update_context(store, context_id, request, language):
     context = db_update_context(store, context, request, language)
 
     return admin_serialize_context(store, context, language)
-
-
-@transact
-def delete_context(store, context_id):
-    """
-    Deletes the specified context. If no such context exists raises
-    :class:`globaleaks.errors.ContextIdNotFound`.
-
-    Args:
-        context_id: the context id of the context to remove.
-    """
-    context = store.find(models.Context, models.Context.id == context_id).one()
-    if not context:
-        raise errors.ContextIdNotFound
-
-    store.remove(context)
 
 
 class ContextsCollection(BaseHandler):
@@ -204,7 +179,6 @@ class ContextsCollection(BaseHandler):
 
         Parameters: None
         Response: adminContextList
-        Errors: None
         """
         return get_context_list(self.request.language)
 
@@ -214,13 +188,9 @@ class ContextsCollection(BaseHandler):
 
         Request: AdminContextDesc
         Response: AdminContextDesc
-        Errors: InvalidInputFormat, ReceiverIdNotFound
         """
-        validator = requests.AdminContextDesc
-        if self.request.language is None:
-            validator = requests.AdminContextDescRaw
-
-        request = self.validate_message(self.request.content.read(), validator)
+        request = self.validate_message(self.request.content.read(),
+                                        requests.AdminContextDesc)
 
         return create_context(request, self.request.language)
 
@@ -236,16 +206,9 @@ class ContextInstance(BaseHandler):
         Parameters: context_id
         Request: AdminContextDesc
         Response: AdminContextDesc
-        Errors: InvalidInputFormat, ContextIdNotFound, ReceiverIdNotFound
-
-        Updates the specified context.
         """
-        validator = requests.AdminContextDesc
-        if self.request.language is None:
-            validator = requests.AdminContextDescRaw
-
         request = self.validate_message(self.request.content.read(),
-                                        validator)
+                                        requests.AdminContextDesc)
 
         return update_context(context_id, request, self.request.language)
 
@@ -255,6 +218,5 @@ class ContextInstance(BaseHandler):
 
         Request: AdminContextDesc
         Response: None
-        Errors: InvalidInputFormat, ContextIdNotFound
         """
-        return delete_context(context_id)
+        return models.delete(models.Context, id=context_id)

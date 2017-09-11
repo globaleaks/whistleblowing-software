@@ -45,8 +45,6 @@ def create_step(store, step, language):
 def db_update_step(store, step_id, request, language):
     """
     Update the specified step with the details.
-    raises :class:`globaleaks.errors.StepIdNotFound` if the step does
-    not exist.
 
     :param store: the store on which perform queries.
     :param step_id: the step_id of the step to update
@@ -54,9 +52,7 @@ def db_update_step(store, step_id, request, language):
     :param language: the language of the step definition dict
     :return: a serialization of the object
     """
-    step = models.Step.get(store, step_id)
-    if not step:
-        raise errors.StepIdNotFound
+    step = models.db_get(store, models.Step, id=step_id)
 
     fill_localized_keys(request, models.Step.localized_keys, language)
 
@@ -71,24 +67,6 @@ def db_update_step(store, step_id, request, language):
 @transact
 def update_step(store, step_id, request, language):
     return serialize_step(store, db_update_step(store, step_id, request, language), language)
-
-
-@transact
-def delete_step(store, step_id):
-    """
-    Delete the step object corresponding to step_id
-
-    If the step has children, remove them as well.
-
-    :param store: the store on which perform queries.
-    :param step_id: the id corresponding to the step.
-    :raises StepIdNotFound: if no such step is found.
-    """
-    step = store.find(models.Step, models.Step.id == step_id).one()
-    if not step:
-        raise errors.StepIdNotFound
-
-    store.remove(step)
 
 
 class StepCollection(BaseHandler):
@@ -131,7 +109,6 @@ class StepInstance(BaseHandler):
         :param step_id:
         :return: the serialized step
         :rtype: StepDesc
-        :raises StepIdNotFound: if there is no step with such id.
         :raises InvalidInputFormat: if validation fails.
         """
         request = self.validate_message(self.request.content.read(),
@@ -144,7 +121,6 @@ class StepInstance(BaseHandler):
         Delete the specified step.
 
         :param step_id:
-        :raises StepIdNotFound: if there is no step with such id.
         :raises InvalidInputFormat: if validation fails.
         """
-        return delete_step(step_id)
+        return models.delete(models.Step, id=step_id)

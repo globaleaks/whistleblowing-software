@@ -10,6 +10,7 @@ from storm.locals import Bool, Int, Unicode, Storm, JSON
 from globaleaks.models.validators import shorttext_v, longtext_v, \
     shortlocal_v, longlocal_v, shorturl_v, longurl_v, range_v
 from globaleaks.orm import transact
+from globaleaks.rest import errors
 from globaleaks.settings import GLSettings
 from globaleaks.utils.utility import datetime_now, datetime_null, datetime_to_ISO8601, uuid4
 
@@ -29,6 +30,29 @@ def db_forge_obj(store, mock_class, mock_fields):
 @transact
 def forge_obj(store, mock_class, mock_fields):
     return db_forge_obj(store, mock_class, mock_fields)
+
+
+def db_get(store, model, *args, **kwargs):
+    ret = store.find(model, *args, **kwargs).one()
+    if ret is None:
+        raise errors.ModelNotFound(cls)
+
+    return ret
+
+
+@transact
+def get(store, model, *args, **kwargs):
+    return db_get(store, model, *args, **kwargs)
+
+
+def db_delete(store, model, **kwargs):
+    return store.find(model, **kwargs).remove()
+
+
+@transact
+def delete(store, model, *args, **kwargs):
+    return db_delete(store, model, *args, **kwargs)
+
 
 
 class Model(Storm):
@@ -153,10 +177,6 @@ class ModelWithID(Model):
     """
     __storm_table__ = None
     id = Unicode(primary=True, default_factory=uuid4)
-
-    @classmethod
-    def get(cls, store, obj_id):
-        return store.find(cls, cls.id == unicode(obj_id)).one()
 
 
 class User(ModelWithID):

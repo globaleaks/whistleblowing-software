@@ -132,9 +132,7 @@ def create_field(store, field_dict, language):
 
 
 def db_update_field(store, field_id, field_dict, language):
-    field = models.Field.get(store, field_id)
-    if not field:
-        raise errors.FieldIdNotFound
+    field = models.db_get(store, models.Field, id=field_id)
 
     # make not possible to change field type
     field_dict['type'] = field.type
@@ -163,8 +161,6 @@ def db_update_field(store, field_id, field_dict, language):
 def update_field(store, field_id, field, language):
     """
     Update the specified field with the details.
-    raises :class:`globaleaks.errors.FieldIdNotFound` if the field does
-    not exist.
 
     :param store: the store on which perform queries.
     :param field_id: the field_id of the field to update
@@ -187,11 +183,8 @@ def delete_field(store, field_id):
 
     :param store: the store on which perform queries.
     :param field_id: the id corresponding to the field.
-    :raises FieldIdNotFound: if no such field is found.
     """
-    field = store.find(models.Field, models.Field.id == field_id).one()
-    if not field:
-        raise errors.FieldIdNotFound
+    field = models.db_get(store, models.Field, id=field_id)
 
     if not field.editable:
         raise errors.FieldNotEditable
@@ -274,7 +267,6 @@ class FieldTemplateInstance(BaseHandler):
 
         :param field_id:
         :rtype: FieldTemplateDesc
-        :raises FieldIdNotFound: if there is no field with such id.
         :raises InvalidInputFormat: if validation fails.
         """
         request = self.validate_message(self.request.content.read(),
@@ -289,7 +281,6 @@ class FieldTemplateInstance(BaseHandler):
         Delete a single field template.
 
         :param field_id:
-        :raises FieldIdNotFound: if there is no field with such id.
         """
         return delete_field(field_id)
 
@@ -335,7 +326,6 @@ class FieldInstance(BaseHandler):
         :param field_id:
         :return: the serialized field
         :rtype: AdminFieldDesc
-        :raises FieldIdNotFound: if there is no field with such id.
         :raises InvalidInputFormat: if validation fails.
         """
         request = self.validate_message(self.request.content.read(),
@@ -350,7 +340,6 @@ class FieldInstance(BaseHandler):
         Delete a single field.
 
         :param field_id:
-        :raises FieldIdNotFound: if there is no field with such id.
         :raises InvalidInputFormat: if validation fails.
         """
         return delete_field(field_id)
