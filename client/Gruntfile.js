@@ -326,6 +326,7 @@ module.exports = function(grunt) {
     grunt.file.mkdir('build/');
 
     grunt.file.copy('tmp/index.html', 'build/index.html');
+    grunt.file.copy('tmp/license.txt', 'build/license.txt');
     grunt.file.copy('tmp/js/scripts.js', 'build/js/scripts.js');
     grunt.file.copy('tmp/js/plugin.js', 'build/js/plugin.js');
 
@@ -829,6 +830,7 @@ module.exports = function(grunt) {
       manifest = JSON.stringify(manifest, null, 2);
 
       fs.writeFileSync('tmp/data/manifest.json', manifest);
+      fs.writeFileSync('tmp/license.txt', license_content);
   });
 
 
