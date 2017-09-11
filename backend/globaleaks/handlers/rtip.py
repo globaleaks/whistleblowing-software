@@ -367,7 +367,7 @@ def create_comment(store, user_id, rtip_id, request):
     comment.content = request['content']
     comment.internaltip_id = rtip.internaltip_id
     comment.type = u'receiver'
-    comment.author = rtip.receiver_id
+    comment.author_id = rtip.receiver_id
 
     store.add(comment)
 
