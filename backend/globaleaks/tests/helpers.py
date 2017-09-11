@@ -842,7 +842,8 @@ class TestCollectionHandler(TestHandler):
 
         handler = self.request(role='admin')
 
-        yield handler.get()
+        if hasattr(handler, 'get'):
+            yield handler.get()
 
 
     @inlineCallbacks
@@ -858,13 +859,28 @@ class TestCollectionHandler(TestHandler):
 
         handler = self.request(data, role='admin')
 
-        data = yield handler.post()
+        if hasattr(handler, 'post'):
+            data = yield handler.post()
 
-        for k, v in self._test_desc['data'].items():
-            self.assertTrue(data[k], v)
+            for k, v in self._test_desc['data'].items():
+                self.assertTrue(data[k], v)
 
 
 class TestInstanceHandler(TestHandler):
+    @inlineCallbacks
+    def test_get(self):
+        if not self._test_desc:
+            return
+
+        data = self.get_dummy_request()
+
+        data = yield self._test_desc['create'](data, u'en')
+
+        handler = self.request(data, role='admin')
+
+        if hasattr(handler, 'get'):
+            yield handler.get(data['id'])
+
     @inlineCallbacks
     def test_put(self):
         if not self._test_desc:
@@ -878,10 +894,12 @@ class TestInstanceHandler(TestHandler):
             data[k] = v
 
         handler = self.request(data, role='admin')
-        data = yield handler.put(data['id'])
 
-        for k, v in self._test_desc['data'].items():
-            self.assertTrue(data[k], v)
+        if hasattr(handler, 'put'):
+            data = yield handler.put(data['id'])
+
+            for k, v in self._test_desc['data'].items():
+                self.assertTrue(data[k], v)
 
     @inlineCallbacks
     def test_delete(self):
@@ -894,7 +912,8 @@ class TestInstanceHandler(TestHandler):
 
         handler = self.request(data, role='admin')
 
-        yield handler.delete(data['id'])
+        if hasattr(handler, 'delete'):
+            yield handler.delete(data['id'])
 
 
 class TestHandlerWithPopulatedDB(TestHandler):
