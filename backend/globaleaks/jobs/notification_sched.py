@@ -118,7 +118,9 @@ class MailGenerator(object):
                                                              models.Context.id == models.InternalTip.context_id,
                                                              models.InternalTip.id == comment.internaltip_id,
                                                              models.ReceiverTip.internaltip_id == comment.internaltip_id):
-            if comment.type == u'receiver' and comment.author_id == rtip.receiver_id:
+
+            # avoid to send emails to the receiver that written the comment
+            if comment.author_id == rtip.receiver_id:
                 continue
 
             dataX = copy.deepcopy(data)

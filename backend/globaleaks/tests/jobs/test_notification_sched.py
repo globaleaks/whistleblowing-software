@@ -45,7 +45,7 @@ class TestNotificationSchedule(helpers.TestGLWithPopulatedDB):
             yield notification_schedule.run()
 
             count = yield get_scheduled_email_count()
-            self.assertEqual(count, 28)
+            self.assertEqual(count, 24)
 
         yield notification_schedule.run()
 
