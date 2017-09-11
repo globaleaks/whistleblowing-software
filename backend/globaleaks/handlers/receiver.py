@@ -40,23 +40,16 @@ def receiver_serialize_receiver(store, receiver, language):
 
 @transact
 def get_receiver_settings(store, receiver_id, language):
-    receiver = store.find(models.Receiver, models.Receiver.id == receiver_id).one()
-
-    if not receiver:
-        raise errors.ReceiverIdNotFound
+    receiver = models.db_get(store, models.Receiver, id=receiver_id)
 
     return receiver_serialize_receiver(store, receiver, language)
 
 
 @transact
 def update_receiver_settings(store, receiver_id, request, language):
-    user = db_user_update_user(store, receiver_id, request)
-    if not user:
-        raise errors.UserIdNotFound
+    db_user_update_user(store, receiver_id, request)
 
-    receiver = store.find(models.Receiver, models.Receiver.id == receiver_id).one()
-    if not receiver:
-        raise errors.ReceiverIdNotFound
+    receiver = models.db_get(store, models.Receiver, id=receiver_id)
 
     receiver.tip_notification = request['tip_notification']
 
@@ -168,7 +161,6 @@ class ReceiverInstance(BaseHandler):
         """
         Parameters: None
         Response: ReceiverReceiverDesc
-        Errors: ReceiverIdNotFound, InvalidInputFormat, InvalidAuthentication
         """
         return get_receiver_settings(self.current_user.user_id,
                                      self.request.language)
@@ -178,7 +170,6 @@ class ReceiverInstance(BaseHandler):
         Parameters: None
         Request: ReceiverReceiverDesc
         Response: ReceiverReceiverDesc
-        Errors: ReceiverIdNotFound, InvalidInputFormat, InvalidAuthentication
         """
         request = self.validate_message(self.request.content.read(), requests.ReceiverReceiverDesc)
 

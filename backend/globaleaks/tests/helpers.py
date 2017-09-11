@@ -896,10 +896,6 @@ class TestInstanceHandler(TestHandler):
 
         yield handler.delete(data['id'])
 
-        yield self.assertFailure(handler.delete(data['id']),
-                                 errors.ResourceNotFound)
-
-
 
 class TestHandlerWithPopulatedDB(TestHandler):
     @inlineCallbacks

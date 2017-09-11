@@ -172,9 +172,7 @@ def db_admin_update_user(store, user_id, request, language):
     Updates the specified user.
     raises: globaleaks.errors.UserIdNotFound` if the user does not exist.
     """
-    user = models.User.get(store, user_id)
-    if not user:
-        raise errors.UserIdNotFound
+    user = models.db_get(store, models.User, id=user_id)
 
     fill_localized_keys(request, models.User.localized_keys, language)
 
@@ -199,24 +197,10 @@ def admin_update_user(store, user_id, request, language):
     return user_serialize_user(store, db_admin_update_user(store, user_id, request, language), language)
 
 
-def db_get_user(store, user_id):
-    """
-    raises :class:`globaleaks.errors.UserIdNotFound` if the user does
-    not exist.
-    Returns:
-        (dict) the user
-    """
-    user = models.User.get(store, user_id)
-
-    if not user:
-        raise errors.UserIdNotFound
-
-    return user
-
-
 @transact
 def get_user(store, user_id, language):
-    user = db_get_user(store, user_id)
+    user = models.db_get(store, models.User, id=user_id)
+
     return user_serialize_user(store, user, language)
 
 
@@ -227,7 +211,7 @@ def db_get_admin_users(store):
 
 @transact
 def delete_user(store, user_id):
-    user = db_get_user(store, unicode(user_id))
+    user = models.db_get(store, models.User, id=user_id)
 
     if not user.deletable:
         raise errors.UserNotDeletable

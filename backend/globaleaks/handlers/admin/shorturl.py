@@ -31,16 +31,6 @@ def create_shorturl(store, request):
     return serialize_shorturl(shorturl)
 
 
-@transact
-def delete_shorturl(store, shorturl_id):
-    shorturl = store.find(models.ShortURL, models.ShortURL.id == shorturl_id).one()
-    if not shorturl:
-        raise errors.ShortURLIdNotFound
-
-    store.remove(shorturl)
-
-
-
 class ShortURLCollection(BaseHandler):
     check_roles = 'admin'
     cache_resource = True
@@ -68,4 +58,4 @@ class ShortURLInstance(BaseHandler):
         """
         Delete the specified shorturl.
         """
-        return delete_shorturl(shorturl_id)
+        return models.delete(models.ShortURL, id=shorturl_id)

@@ -90,22 +90,7 @@ class ResourceNotFound(GLException):
     status_code = 404  # Not Found
 
 
-class ContextIdNotFound(ResourceNotFound):
-    """
-    The context_id used does not exist in the database.
-    """
-    reason = "Not found a Context with the specified id"
-    error_code = 11
-    status_code = 404  # Not Found
-
-
-class QuestionnaireIdNotFound(ResourceNotFound):
-    """
-    The questionnaire_id used does not exist in the database.
-    """
-    reason = "Not found a Questionnaire with the specified id"
-    error_code = 12
-    status_code = 404  # Not Found
+# UNUSED ERROR CODE 11 12 HERE!
 
 
 class TipIdNotFound(ResourceNotFound):
@@ -126,13 +111,8 @@ class TipReceiptNotFound(ResourceNotFound):
     status_code = 404  # Not Found
 
 
-class StepIdNotFound(ResourceNotFound):
-    """
-    The Step Id requested does not exist in the database.
-    """
-    reason = "Not found a Step with the specified id"
-    error_code = 15
-    status_code = 404  # Not Found
+# UNUSED ERROR CODE 15 HERE!
+
 
 class InvalidModelInput(GLException):
     """
@@ -382,13 +362,7 @@ class SubmissionDisabled(GLException):
     status_code = 503  # Service not available
 
 
-# UNUSED ERROR CODE 53, 54, 55, 56, 57 HERE!
-
-
-class FieldIdNotFound(ResourceNotFound):
-    error_code = 58
-    status_code = 404
-    reason = "Not found a field with the specified id"
+# UNUSED ERROR CODE 53, 54, 55, 56, 57, 58 HERE!
 
 
 class ModelNotFound(ResourceNotFound):

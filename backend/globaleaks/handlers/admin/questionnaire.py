@@ -40,11 +40,7 @@ def db_get_questionnaire(store, questionnaire_id, language):
     Returns:
         (dict) the questionnaire with the specified id.
     """
-    questionnaire = store.find(models.Questionnaire, models.Questionnaire.id == questionnaire_id).one()
-
-    if not questionnaire:
-        log.err("Requested invalid questionnaire")
-        raise errors.QuestionnaireIdNotFound
+    questionnaire = models.db_get(store, models.Questionnaire, id=questionnaire_id)
 
     return serialize_questionnaire(store, questionnaire, language)
 
@@ -85,9 +81,6 @@ def create_questionnaire(store, request, language):
     """
     Creates a new questionnaire from the request of a client.
 
-    We associate to the questionnaire the list of receivers and if the receiver is
-    not valid we raise a ReceiverIdNotFound exception.
-
     Args:
         (dict) the request containing the keys to set on the model.
 
@@ -105,7 +98,6 @@ def update_questionnaire(store, questionnaire_id, request, language):
     Updates the specified questionnaire. If the key receivers is specified we remove
     the current receivers of the Questionnaire and reset set it to the new specified
     ones.
-    If no such questionnaire exists raises :class:`globaleaks.errors.QuestionnaireIdNotFound`.
 
     Args:
         questionnaire_id:
@@ -116,30 +108,11 @@ def update_questionnaire(store, questionnaire_id, request, language):
     Returns:
             (dict) the serialized object updated
     """
-    questionnaire = store.find(models.Questionnaire, models.Questionnaire.id == unicode(questionnaire_id)).one()
-    if not questionnaire:
-        raise errors.QuestionnaireIdNotFound
+    questionnaire = models.db_get(store, models.Questionnaire, id=questionnaire_id)
 
     questionnaire = db_update_questionnaire(store, questionnaire, request, language)
 
     return serialize_questionnaire(store, questionnaire, language)
-
-
-@transact
-def delete_questionnaire(store, questionnaire_id):
-    """
-    Deletes the specified questionnaire. If no such questionnaire exists raises
-    :class:`globaleaks.errors.QuestionnaireIdNotFound`.
-
-    Args:
-        questionnaire_id: the questionnaire id of the questionnaire to remove.
-    """
-    questionnaire = store.find(models.Questionnaire, models.Questionnaire.id == unicode(questionnaire_id)).one()
-    if not questionnaire:
-        log.err("Invalid questionnaire requested in removal")
-        raise errors.QuestionnaireIdNotFound
-
-    store.remove(questionnaire)
 
 
 class QuestionnairesCollection(BaseHandler):
@@ -163,7 +136,6 @@ class QuestionnairesCollection(BaseHandler):
 
         Request: AdminQuestionnaireDesc
         Response: AdminQuestionnaireDesc
-        Errors: InvalidInputFormat, ReceiverIdNotFound
         """
         validator = requests.AdminQuestionnaireDesc
         if self.request.language is None:
@@ -185,9 +157,6 @@ class QuestionnaireInstance(BaseHandler):
         Parameters: questionnaire_id
         Request: AdminQuestionnaireDesc
         Response: AdminQuestionnaireDesc
-        Errors: InvalidInputFormat, QuestionnaireIdNotFound, ReceiverIdNotFound
-
-        Updates the specified questionnaire.
         """
         request = self.validate_message(self.request.content.read(),
                                         requests.AdminQuestionnaireDesc)
@@ -200,9 +169,8 @@ class QuestionnaireInstance(BaseHandler):
 
         Request: AdminQuestionnaireDesc
         Response: None
-        Errors: InvalidInputFormat, QuestionnaireIdNotFound
         """
-        return delete_questionnaire(questionnaire_id)
+        return models.delete(models.Questionnaire, id=questionnaire_id)
 
     @inlineCallbacks
     def get(self, questionnaire_id):

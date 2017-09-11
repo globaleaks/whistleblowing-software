@@ -26,17 +26,11 @@ def get_receiver_list(store, language):
 
 def db_get_receiver(store, receiver_id):
     """
-    raises :class:`globaleaks.errors.ReceiverIdNotFound` if the receiver does
-    not exist.
     Returns:
         (dict) the receiver
 
     """
-    receiver = models.Receiver.get(store, receiver_id)
-    if not receiver:
-        raise errors.ReceiverIdNotFound
-
-    return receiver
+    return models.db_get(store, models.Receiver, id=receiver_id)
 
 
 @transact
@@ -48,12 +42,8 @@ def get_receiver(store, receiver_id, language):
 def update_receiver(store, receiver_id, request, language):
     """
     Updates the specified receiver with the details.
-    raises :class:`globaleaks.errors.ReceiverIdNotFound` if the receiver does
-    not exist.
     """
-    receiver = models.Receiver.get(store, receiver_id)
-    if not receiver:
-        raise errors.ReceiverIdNotFound
+    receiver = models.db_get(store, models.Receiver, id=receiver_id)
 
     fill_localized_keys(request, models.Receiver.localized_keys, language)
 
@@ -90,7 +80,6 @@ class ReceiverInstance(BaseHandler):
         Parameters: receiver_id
         Request: AdminReceiverDesc
         Response: AdminReceiverDesc
-        Errors: InvalidInputFormat, ReceiverIdNotFound, ContextIdNotFound
         """
         request = self.validate_message(self.request.content.read(), requests.AdminReceiverDesc)
 
