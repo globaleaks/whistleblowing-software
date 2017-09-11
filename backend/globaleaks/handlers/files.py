@@ -72,29 +72,19 @@ class FileAdd(BaseHandler):
         uploaded_file['body'].avoid_delete()
         uploaded_file['body'].close()
 
-        try:
-            # First: dump the file in the filesystem
-            dst = os.path.join(GLSettings.submission_path,
-                               os.path.basename(uploaded_file['path']))
+        # First: dump the file in the filesystem
+        dst = os.path.join(GLSettings.submission_path,
+                           os.path.basename(uploaded_file['path']))
 
-            directory_traversal_check(GLSettings.submission_path, dst)
+        directory_traversal_check(GLSettings.submission_path, dst)
 
-            uploaded_file = yield threads.deferToThread(write_upload_encrypted_to_disk, uploaded_file, dst)
-        except Exception as excep:
-            log.err("Unable to save a file in filesystem: %s" % excep)
-            print excep
-            raise errors.InternalServerError("Unable to accept new files")
+        uploaded_file = yield threads.deferToThread(write_upload_encrypted_to_disk, uploaded_file, dst)
 
         uploaded_file['date'] = datetime_now()
         uploaded_file['submission'] = False
 
-        try:
-            # Second: register the file in the database
-            yield register_ifile_on_db(uploaded_file, itip_id)
-        except Exception as excep:
-            log.err("Unable to register (append) file in DB: %s" % excep)
-            print excep
-            raise errors.InternalServerError("Unable to accept new files")
+        # Second: register the file in the database
+        yield register_ifile_on_db(uploaded_file, itip_id)
 
 
 class FileInstance(BaseHandler):
@@ -123,18 +113,13 @@ class FileInstance(BaseHandler):
         uploaded_file['body'].avoid_delete()
         uploaded_file['body'].close()
 
-        try:
-            dst = os.path.join(GLSettings.submission_path,
-                               os.path.basename(uploaded_file['path']))
+        dst = os.path.join(GLSettings.submission_path,
+                           os.path.basename(uploaded_file['path']))
 
-            directory_traversal_check(GLSettings.submission_path, dst)
+        directory_traversal_check(GLSettings.submission_path, dst)
 
-            uploaded_file = yield threads.deferToThread(write_upload_encrypted_to_disk, uploaded_file, dst)
-            uploaded_file['date'] = datetime_now()
-            uploaded_file['submission'] = True
+        uploaded_file = yield threads.deferToThread(write_upload_encrypted_to_disk, uploaded_file, dst)
+        uploaded_file['date'] = datetime_now()
+        uploaded_file['submission'] = True
 
-            token.associate_file(uploaded_file)
-
-        except Exception as excep:
-            log.err("Unable to save file in filesystem: %s" % excep)
-            raise errors.InternalServerError("Unable to accept files")
+        token.associate_file(uploaded_file)
