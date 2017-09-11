@@ -56,9 +56,6 @@ def db_get_wbtip(store, wbtip_id, language):
     wbtip = models.db_get(store, models.WhistleblowerTip, id=wbtip_id)
     internaltip = db_get_internaltip_from_usertip(store, wbtip)
 
-    if wbtip is None:
-        raise errors.ModelNotFound(models.WhistleblowerTip)
-
     internaltip.wb_access_counter += 1
     internaltip.wb_last_access = datetime_now()
 
@@ -98,7 +95,6 @@ def create_comment(store, wbtip_id, request):
     comment.content = request['content']
     comment.internaltip_id = wbtip_id
     comment.type = u'whistleblower'
-
     store.add(comment)
 
     return serialize_comment(store, comment)
@@ -144,20 +140,20 @@ def create_message(store, wbtip_id, receiver_id, request):
 def update_identity_information(store, tip_id, identity_field_id, identity_field_answers, language):
     internaltip = models.db_get(store, models.InternalTip, id=tip_id)
 
-    identity_provided = internaltip.identity_provided
+    if internaltip.identity_provided:
+        return
 
-    if not identity_provided:
-        questionnaire = db_serialize_archived_questionnaire_schema(store, internaltip.questionnaire_hash, language)
-        for step in questionnaire:
-            for field in step['children']:
-                if field['id'] == identity_field_id and field['id'] == 'whistleblower_identity':
-                    db_save_questionnaire_answers(store, internaltip.id,
-                                                  {identity_field_id: [identity_field_answers]})
-                    now = datetime_now()
-                    internaltip.update_date = now
-                    internaltip.identity_provided = True
-                    internaltip.identity_provided_date = now
-                    return
+    questionnaire = db_serialize_archived_questionnaire_schema(store, internaltip.questionnaire_hash, language)
+    for step in questionnaire:
+        for field in step['children']:
+            if field['id'] == identity_field_id and field['id'] == 'whistleblower_identity':
+                db_save_questionnaire_answers(store, internaltip.id,
+                                              {identity_field_id: [identity_field_answers]})
+                now = datetime_now()
+                internaltip.update_date = now
+                internaltip.identity_provided = True
+                internaltip.identity_provided_date = now
+                return
 
 
 class WBTipInstance(BaseHandler):
