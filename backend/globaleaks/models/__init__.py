@@ -35,7 +35,7 @@ def forge_obj(store, mock_class, mock_fields):
 def db_get(store, model, *args, **kwargs):
     ret = store.find(model, *args, **kwargs).one()
     if ret is None:
-        raise errors.ModelNotFound(cls)
+        raise errors.ModelNotFound(model)
 
     return ret
 
