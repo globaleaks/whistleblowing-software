@@ -1131,6 +1131,23 @@ factory('AdminUtils', ['AdminContextResource', 'AdminQuestionnaireResource', 'Ad
         return false;
       };
 
+      var findField = function(answers_obj, field_id) {
+        var r;
+        for (var key in answers_obj) {
+          if (!key.match(CONSTANTS.uuid_regexp)) {
+            continue;
+          }
+
+          if (key == field_id) {
+            return answers_obj[key][0];
+          }
+          if (r === undefined) {
+            r = findField(answers_obj[key][0], field_id);
+          }
+        }
+        return r;
+      };
+
       var isFieldTriggered = function(field, answers, score) {
         if (field.triggered_by_score > score) {
           return false;
@@ -1140,12 +1157,16 @@ factory('AdminUtils', ['AdminContextResource', 'AdminQuestionnaireResource', 'Ad
           return true;
         }
 
-        for (var i=0; i<field.triggered_by_options.length; i++) {
-          if (answers[field.triggered_by_options[i].field] === undefined) {
+        for (var i=0; i < field.triggered_by_options.length; i++) {
+          var trigger_obj = field.triggered_by_options[i];
+          var answers_field = findField(answers, trigger_obj.field);
+          console.log('isFieldTriggered', answers_field, trigger_obj);
+          if (answers_field === undefined) {
             continue;
           }
 
-          if (field.triggered_by_options[i].option === answers[field.triggered_by_options[i].field][0]['value']) {
+          // Check if triggering field is in answers object
+          if (trigger_obj.option === answers_field.value) {
             return true;
           }
         }
@@ -1173,7 +1194,8 @@ factory('AdminUtils', ['AdminContextResource', 'AdminQuestionnaireResource', 'Ad
      "onionservice_regexp": /^[0-9a-z]{16}\.onion$/,
      "https_regexp": /^https:\/\/([a-z0-9-]+)\.(.*)$|^$/,
      "shortener_shorturl_regexp": /\/s\/[a-z0-9]{1,30}$/,
-     "shortener_longurl_regexp": /\/[a-z0-9#=_&?/-]{1,255}$/
+     "shortener_longurl_regexp": /\/[a-z0-9#=_&?/-]{1,255}$/,
+     "uuid_regexp": /^([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})$/,
 }).
   factory('GLTranslate', ['$translate', '$location','tmhDynamicLocale',
   function($translate, $location, tmhDynamicLocale) {
