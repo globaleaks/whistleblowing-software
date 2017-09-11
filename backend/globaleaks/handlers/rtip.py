@@ -62,8 +62,7 @@ def receiver_serialize_rfile(store, rfile):
 
 
 def receiver_serialize_wbfile(store, wbfile):
-    rtip = store.find(models.ReceiverTip,
-                      models.ReceiverTip.id == wbfile.receivertip_id).one()
+    rtip = models.db_get(store, models.ReceiverTip,id=wbfile.receivertip_id)
 
     return {
         'id': wbfile.id,
@@ -134,14 +133,7 @@ def serialize_rtip(store, rtip, language):
 
 
 def db_access_rtip(store, user_id, rtip_id):
-    rtip = store.find(models.ReceiverTip,
-                      models.ReceiverTip.id == unicode(rtip_id),
-                      models.ReceiverTip.receiver_id == user_id).one()
-
-    if not rtip:
-        raise errors.TipIdNotFound
-
-    return rtip
+    return models.db_get(store, models.ReceiverTip, id=unicode(rtip_id), receiver_id= user_id)
 
 
 def db_access_wbfile(store, user_id, wbfile_id):
@@ -265,8 +257,7 @@ def db_delete_itips(store, itips):
 
 
 def db_delete_rtip(store, rtip):
-    internaltip = db_get_internaltip_from_usertip(store, rtip)
-    return db_delete_itip(store, internaltip)
+    return db_delete_itip(store, db_get_internaltip_from_usertip(store, rtip))
 
 
 def db_postpone_expiration_date(store, rtip):
@@ -288,8 +279,7 @@ def delete_rtip(store, user_id, rtip_id):
     """
     rtip = db_access_rtip(store, user_id, rtip_id)
 
-    receiver = store.find(models.Receiver,
-                          models.Receiver.id == rtip.receiver_id).one()
+    receiver = models.db_get(store, models.Receiver, id=rtip.receiver_id)
 
     if not (GLSettings.memory_copy.can_delete_submission or
             receiver.can_delete_submission):
@@ -302,8 +292,7 @@ def delete_rtip(store, user_id, rtip_id):
 def postpone_expiration_date(store, user_id, rtip_id):
     rtip = db_access_rtip(store, user_id, rtip_id)
 
-    receiver = store.find(models.Receiver,
-                          models.Receiver.id == rtip.receiver_id).one()
+    receiver = models.db_get(store, models.Receiver, id=rtip.receiver_id)
 
     if not (GLSettings.memory_copy.can_postpone_expiration or
             receiver.can_postpone_expiration):
@@ -316,8 +305,7 @@ def postpone_expiration_date(store, user_id, rtip_id):
 def set_internaltip_variable(store, user_id, rtip_id, key, value):
     rtip = db_access_rtip(store, user_id, rtip_id)
 
-    receiver = store.find(models.Receiver,
-                          models.Receiver.id == rtip.receiver_id).one()
+    receiver = models.db_get(store, models.Receiver, id=rtip.receiver_id)
 
     if not (GLSettings.memory_copy.can_grant_permissions or
             receiver.can_grant_permissions):
@@ -340,7 +328,7 @@ def get_rtip(store, user_id, rtip_id, language):
 
 
 def db_get_itip_comment_list(store, itip):
-    return [serialize_comment(store, comment) for comment in store.find(models.Comment, models.Comment.internaltip_id == itip.id)]
+    return [serialize_comment(store, comment) for comment in store.find(models.Comment, internaltip_id=itip.id)]
 
 
 @transact
@@ -368,7 +356,6 @@ def create_comment(store, user_id, rtip_id, request):
     comment.internaltip_id = rtip.internaltip_id
     comment.type = u'receiver'
     comment.author_id = rtip.receiver_id
-
     store.add(comment)
 
     return serialize_comment(store, comment)
@@ -390,7 +377,6 @@ def create_message(store, user_id, rtip_id, request):
     msg.content = request['content']
     msg.receivertip_id = rtip.id
     msg.type = u'receiver'
-
     store.add(msg)
 
     return serialize_message(store, msg)
@@ -404,9 +390,7 @@ def delete_wbfile(store, user_id, file_id):
 
 
 def db_get_identityaccessrequest_list(store, rtip_id, language):
-    iars = store.find(models.IdentityAccessRequest, models.IdentityAccessRequest.receivertip_id == rtip_id)
-
-    return [serialize_identityaccessrequest(store, iar) for iar in iars]
+    return [serialize_identityaccessrequest(store, iar) for iar in store.find(models.IdentityAccessRequest, receivertip_id=rtip_id)]
 
 
 class RTipInstance(BaseHandler):
@@ -454,7 +438,7 @@ class RTipInstance(BaseHandler):
     def delete(self, tip_id):
         """
         Response: None
-        Errors: ForbiddenOperation, TipIdNotFound
+        Errors: ForbiddenOperation
 
         delete: remove the Internaltip and all the associated data
         """
@@ -471,7 +455,7 @@ class RTipCommentCollection(BaseHandler):
         """
         Request: CommentDesc
         Response: CommentDesc
-        Errors: InvalidAuthentication, InvalidInputFormat, TipIdNotFound, TipReceiptNotFound
+        Errors: InvalidAuthentication, InvalidInputFormat, ModelNotFound
         """
         request = self.validate_message(self.request.content.read(), requests.CommentDesc)
 
@@ -488,7 +472,7 @@ class ReceiverMsgCollection(BaseHandler):
         """
         Request: CommentDesc
         Response: CommentDesc
-        Errors: InvalidAuthentication, InvalidInputFormat, TipIdNotFound, TipReceiptNotFound
+        Errors: InvalidAuthentication, InvalidInputFormat, ModelNotFound
         """
         request = self.validate_message(self.request.content.read(), requests.CommentDesc)
 
@@ -515,7 +499,7 @@ class WhistleblowerFileHandler(BaseHandler):
     @inlineCallbacks
     def post(self, tip_id):
         """
-        Errors: TipIdNotFound, ForbiddenOperation
+        Errors: ModelNotFound, ForbiddenOperation
         """
         uploaded_file = self.get_file_upload()
         if uploaded_file is None:

@@ -118,9 +118,7 @@ def db_create_context(store, request, language):
     if not request['allow_recipients_selection']:
         request['select_all_receivers'] = True
 
-    context = models.Context(request)
-
-    store.add(context)
+    context = models.db_forge_obj(store, models.Context, request)
 
     db_associate_context_receivers(store, context, request['receivers'])
 
@@ -158,11 +156,10 @@ def update_context(store, context_id, request, language):
     Returns:
             (dict) the serialized object updated
     """
-    context = models.db_get(store, models.Context, id=context_id)
-
     if not request['allow_recipients_selection']:
         request['select_all_receivers'] = True
 
+    context = models.db_get(store, models.Context, id=context_id)
     context = db_update_context(store, context, request, language)
 
     return admin_serialize_context(store, context, language)

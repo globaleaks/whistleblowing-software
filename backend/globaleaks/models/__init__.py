@@ -16,13 +16,9 @@ from globaleaks.utils.utility import datetime_now, datetime_null, datetime_to_IS
 
 from .properties import MetaModel, DateTime
 
-empty_localization = {}
-
 
 def db_forge_obj(store, mock_class, mock_fields):
-    obj = mock_class()
-    for key, val in mock_fields.items():
-        setattr(obj, key, val)
+    obj = mock_class(mock_fields)
     store.add(obj)
     return obj
 
@@ -52,7 +48,6 @@ def db_delete(store, model, **kwargs):
 @transact
 def delete(store, model, *args, **kwargs):
     return db_delete(store, model, *args, **kwargs)
-
 
 
 class Model(Storm):

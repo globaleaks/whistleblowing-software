@@ -66,9 +66,7 @@ def db_update_questionnaire(store, questionnaire, request, language):
 def db_create_questionnaire(store, questionnaire_dict, language):
     questionnaire_dict = fill_questionnaire_request(questionnaire_dict, language)
 
-    q = models.Questionnaire(questionnaire_dict)
-
-    store.add(q)
+    q = models.db_forge_obj(store, models.Questionnaire, questionnaire_dict)
 
     for step in questionnaire_dict.get('steps', []):
         db_create_step(store, step, language)

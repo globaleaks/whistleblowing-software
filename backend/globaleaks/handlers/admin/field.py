@@ -14,18 +14,17 @@ from globaleaks.rest import errors, requests
 from globaleaks.utils.structures import fill_localized_keys
 
 
-def db_update_fieldoption(store, fieldoption_id, option, language):
-    fill_localized_keys(option, models.FieldOption.localized_keys, language)
+def db_update_fieldoption(store, fieldoption_id, option_dict, language):
+    fill_localized_keys(option_dict, models.FieldOption.localized_keys, language)
 
     o = None
     if fieldoption_id is not None:
-        o = store.find(models.FieldOption, models.FieldOption.id == fieldoption_id).one()
+        o = store.find(models.FieldOption, id = fieldoption_id).one()
 
     if o is None:
-        o = models.FieldOption()
-        store.add(o)
-
-    o.update(option)
+        o = models.db_forge_obj(store, models.FieldOption, option_dict)
+    else:
+        o.update(option_dict)
 
     return o.id
 
@@ -48,11 +47,6 @@ def db_update_fieldoptions(store, field_id, options, language):
 
 
 def db_update_fieldattr(store, field_id, attr_name, attr_dict, language):
-    attr = store.find(models.FieldAttr, And(models.FieldAttr.field_id == field_id, models.FieldAttr.name == attr_name)).one()
-    if not attr:
-        attr = models.FieldAttr()
-        store.add(attr)
-
     attr_dict['name'] = attr_name
     attr_dict['field_id'] = field_id
 
@@ -61,9 +55,13 @@ def db_update_fieldattr(store, field_id, attr_name, attr_dict, language):
     elif attr_dict['type'] == u'localized':
         fill_localized_keys(attr_dict, ['value'], language)
 
-    attr.update(attr_dict)
+    a = store.find(models.FieldAttr, And(models.FieldAttr.field_id == field_id, models.FieldAttr.name == attr_name)).one()
+    if not a:
+        a = models.db_forge_obj(store, models.FieldAttr, attr_dict)
+    else:
+        a.update(attr_dict)
 
-    return attr.id
+    return a.id
 
 
 def db_update_fieldattrs(store, field_id, field_attrs, language):
@@ -83,15 +81,13 @@ def db_create_field(store, field_dict, language):
     """
     fill_localized_keys(field_dict, models.Field.localized_keys, language)
 
-    field = models.Field(field_dict)
-
     if field_dict.get('fieldgroup_id', '') != '':
         ancestors = set(fieldtree_ancestors(store, field_dict['fieldgroup_id']))
 
-        if field.id == field_dict['fieldgroup_id'] or field.id in ancestors:
+        if field_dict['id'] == field_dict['fieldgroup_id'] or field_dict['id'] in ancestors:
             raise errors.InvalidInputFormat("Provided field association would cause recursion loop")
 
-    store.add(field)
+    field = models.db_forge_obj(store, models.Field, field_dict)
 
     if field.template_id is not None:
         # special handling of the whistleblower_identity field

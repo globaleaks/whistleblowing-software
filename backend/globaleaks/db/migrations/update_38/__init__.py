@@ -37,7 +37,7 @@ class Field_v_37(ModelWithID):
 class Questionnaire_v_37(ModelWithID):
     __storm_table__ = 'questionnaire'
     key = Unicode(default=u'')
-    name = Unicode()
+    name = Unicode(default=u'')
     show_steps_navigation_bar = Bool(default=False)
     steps_navigation_requires_completion = Bool(default=False)
     enable_whistleblower_identity = Bool(default=False)

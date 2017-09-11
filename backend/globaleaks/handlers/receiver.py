@@ -187,7 +187,6 @@ class TipsCollection(BaseHandler):
     def get(self):
         """
         Response: receiverTipList
-        Errors: InvalidAuthentication
         """
         return get_receivertip_list(self.current_user.user_id,
                                     self.request.language)
@@ -202,9 +201,7 @@ class TipsOperations(BaseHandler):
 
     def put(self):
         """
-        Parameters: ReceiverOperationDesc
-        Res
-        Errors: InvalidAuthentication, TipIdNotFound, ForbiddenOperation
+        Request: ReceiverOperationDesc
         """
         request = self.validate_message(self.request.content.read(), requests.ReceiverOperationDesc)
 

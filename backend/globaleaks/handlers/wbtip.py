@@ -40,31 +40,24 @@ def wb_serialize_wbfile(store, wbfile):
     }
 
 
-def db_access_wbtip(store, wbtip_id):
-    wbtip = store.find(models.WhistleblowerTip,
-                       models.WhistleblowerTip.id == wbtip_id).one()
-
-    if not wbtip:
-        raise errors.TipReceiptNotFound
-
-    return wbtip
-
-
 def db_get_rfile_list(store, itip_id):
-    return [wb_serialize_ifile(store, ifile) for ifile in store.find(models.InternalFile, models.InternalFile.internaltip_id == itip_id)]
+    return [wb_serialize_ifile(store, ifile) for ifile in store.find(models.InternalFile, internaltip_id=itip_id)]
 
-def db_get_wbfile_list(store, itip_id):
+
+def db_get_wbfile_list(store, wbtip_id):
     wbfiles = store.find(models.WhistleblowerFile,
                          models.WhistleblowerFile.receivertip_id == models.ReceiverTip.id,
-                         models.ReceiverTip.internaltip_id == itip_id)
+                         models.ReceiverTip.internaltip_id == wbtip_id)
 
     return [wb_serialize_wbfile(store, wbfile) for wbfile in wbfiles]
 
 
 def db_get_wbtip(store, wbtip_id, language):
-    wbtip = db_access_wbtip(store, wbtip_id)
-
+    wbtip = models.db_get(store, models.WhistleblowerTip, id=wbtip_id)
     internaltip = db_get_internaltip_from_usertip(store, wbtip)
+
+    if wbtip is None:
+        raise errors.ModelNotFound(models.WhistleblowerTip)
 
     internaltip.wb_access_counter += 1
     internaltip.wb_last_access = datetime_now()
@@ -97,15 +90,13 @@ def serialize_wbtip(store, wbtip, language):
 
 @transact
 def create_comment(store, wbtip_id, request):
-    wbtip = db_access_wbtip(store, wbtip_id)
-
-    internaltip = db_get_internaltip_from_usertip(store, wbtip)
+    internaltip = models.db_get(store, models.InternalTip, id=wbtip_id)
 
     internaltip.update_date = datetime_now()
 
     comment = models.Comment()
     comment.content = request['content']
-    comment.internaltip_id = wbtip.id
+    comment.internaltip_id = wbtip_id
     comment.type = u'whistleblower'
 
     store.add(comment)
@@ -119,36 +110,31 @@ def get_itip_message_list(store, wbtip_id, receiver_id):
     Get the messages content and mark all the unread
     messages as "read"
     """
-    wbtip = db_access_wbtip(store, wbtip_id)
-
     rtip = store.find(models.ReceiverTip,
-                      models.ReceiverTip.internaltip_id == wbtip.id,
+                      models.ReceiverTip.internaltip_id == wbtip_id,
+                      models.InternalTip.id == wbtip_id,
                       models.ReceiverTip.receiver_id == receiver_id).one()
-
-    if not rtip:
-        raise errors.TipIdNotFound
 
     return [serialize_message(store, message) for message in store.find(models.Message, models.Message.receivertip_id == rtip.id)]
 
 @transact
 def create_message(store, wbtip_id, receiver_id, request):
-    wbtip = db_access_wbtip(store, wbtip_id)
+    rtip_id, internaltip = store.find((models.ReceiverTip.id, models.InternalTip),
+                                      models.ReceiverTip.internaltip_id == wbtip_id,
+                                      models.InternalTip.id == wbtip_id,
+                                      models.ReceiverTip.receiver_id == receiver_id).one()
 
-    rtip, internaltip = store.find((models.ReceiverTip, models.InternalTip),
-                                   models.ReceiverTip.internaltip_id == wbtip.id,
-                                   models.InternalTip.id == wbtip.id,
-                                   models.ReceiverTip.receiver_id == receiver_id).one()
 
-    if not rtip:
-        raise errors.TipIdNotFound
+    if rtip_id is None:
+        raise errors.ModelNotFound(models.ReceiverTip)
+
 
     internaltip.update_date = datetime_now()
 
     msg = models.Message()
     msg.content = request['content']
-    msg.receivertip_id = rtip.id
+    msg.receivertip_id = rtip_id
     msg.type = u'whistleblower'
-
     store.add(msg)
 
     return serialize_message(store, msg)
@@ -156,9 +142,7 @@ def create_message(store, wbtip_id, receiver_id, request):
 
 @transact
 def update_identity_information(store, tip_id, identity_field_id, identity_field_answers, language):
-    wbtip = db_access_wbtip(store, tip_id)
-
-    internaltip = db_get_internaltip_from_usertip(store, wbtip)
+    internaltip = models.db_get(store, models.InternalTip, id=tip_id)
 
     identity_provided = internaltip.identity_provided
 
@@ -210,7 +194,7 @@ class WBTipCommentCollection(BaseHandler):
         """
         Request: CommentDesc
         Response: CommentDesc
-        Errors: InvalidInputFormat, TipIdNotFound, TipReceiptNotFound
+        Errors: InvalidInputFormat, ModelNotFound
         """
         request = self.validate_message(self.request.content.read(), requests.CommentDesc)
         return create_comment(self.current_user.user_id, request)
