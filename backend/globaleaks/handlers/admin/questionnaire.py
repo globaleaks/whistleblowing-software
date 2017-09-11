@@ -50,13 +50,8 @@ def get_questionnaire(store, questionnaire_id, language):
     return db_get_questionnaire(store, questionnaire_id, language)
 
 
-def fill_questionnaire_request(request, language):
-    fill_localized_keys(request, models.Questionnaire.localized_keys, language)
-    return request
-
-
 def db_update_questionnaire(store, questionnaire, request, language):
-    request = fill_questionnaire_request(request, language)
+    fill_localized_keys(request, models.Questionnaire.localized_keys, language)
 
     questionnaire.update(request)
 
@@ -64,7 +59,7 @@ def db_update_questionnaire(store, questionnaire, request, language):
 
 
 def db_create_questionnaire(store, questionnaire_dict, language):
-    questionnaire_dict = fill_questionnaire_request(questionnaire_dict, language)
+    fill_localized_keys(questionnaire_dict, models.Questionnaire.localized_keys, language)
 
     q = models.db_forge_obj(store, models.Questionnaire, questionnaire_dict)
 
