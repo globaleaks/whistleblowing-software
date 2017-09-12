@@ -34,9 +34,13 @@ describe('globaLeaks setup wizard', function() {
 
     element.all(by.id('ButtonNext')).get(5).click();
 
-    expect(element(by.css('.congratulations')).isPresent()).toBe(true);
+    element.all(by.css('.tos-agreement')).click();
 
     element.all(by.id('ButtonNext')).get(6).click();
+
+    expect(element(by.css('.congratulations')).isPresent()).toBe(true);
+
+    element.all(by.id('ButtonNext')).get(7).click();
 
     browser.gl.utils.waitForUrl('/admin/home');
   });
