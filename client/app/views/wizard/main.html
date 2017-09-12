@@ -227,12 +227,13 @@
   </div>
   <div id="WizardStep7" data-ng-show="step == 7" data-ng-form="wizardFormStep7">
     <div class="row wizard-block">
-      <div class="col-md-12 title3" data-translate>Read the software license</div>
+      <div class="col-md-12 title1" data-translate>License Agreement</div>
+      <div class="col-md-12" data-translate>Please review the license terms before proceeding.</div>
       <div class="col-md-12">
         <pre id='wizardLicense' class="license" data-ng-include="'license.txt'"></pre>
         <label>
           <input name="tosAccept" class="inputelem" type="checkbox" data-ng-required="true" data-ng-model="tosAccept"/>
-          <span class="tos-agreement" data-translate>I agree to the Terms of Service.</span>
+          <span class="tos-agreement" data-translate>I accept the terms in the License Agreement.</span>
         </label>
       </div>
     </div>
