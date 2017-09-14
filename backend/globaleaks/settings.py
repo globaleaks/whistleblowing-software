@@ -17,6 +17,9 @@ from distutils.version import LooseVersion
 # pylint: enable=no-name-in-module,import-error
 from optparse import OptionParser
 
+from twisted.internet.defer import inlineCallbacks
+from twisted.python.threadpool import ThreadPool
+
 from globaleaks import __version__, DATABASE_VERSION
 from globaleaks.utils.agent import get_tor_agent, get_web_agent
 from globaleaks.utils.objectdict import ObjectDict
@@ -531,12 +534,19 @@ class GLSettingsClass(object):
         from globaleaks.jobs.base import LoopingJobsMonitor
 
         for job in jobs_list:
-            j = job()
-            self.jobs.append(j)
-            j.schedule()
+            self.jobs.append(job().schedule())
 
         self.jobs_monitor = LoopingJobsMonitor(self.jobs)
         self.jobs_monitor.schedule()
+
+    @inlineCallbacks
+    def stop_jobs(self):
+        for job in self.jobs:
+            yield job.stop()
+
+        if self.jobs_monitor is not None:
+            yield self.jobs_monitor.stop()
+            self.jobs_monitor = None
 
     def start_services(self):
         from globaleaks.jobs import services_list

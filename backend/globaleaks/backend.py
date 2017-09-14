@@ -85,6 +85,12 @@ class GLService(service.Service):
         reactor.callLater(0, self.deferred_start)
 
     @defer.inlineCallbacks
+    def shutdown(self):
+        yield GLSettings.stop_jobs()
+
+        GLSettings.orm_tp.stop()
+
+    @defer.inlineCallbacks
     def deferred_start(self):
         try:
             yield self._deferred_start()
@@ -105,7 +111,7 @@ class GLService(service.Service):
 
         GLSettings.orm_tp.start()
 
-        reactor.addSystemEventTrigger('after', 'shutdown', GLSettings.orm_tp.stop)
+        reactor.addSystemEventTrigger('before', 'shutdown', self.shutdown)
 
         arw = APIResourceWrapper()
 

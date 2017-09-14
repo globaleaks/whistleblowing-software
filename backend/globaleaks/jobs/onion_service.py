@@ -4,13 +4,16 @@
 import os
 from txtorcon import build_local_tor_connection
 
-from globaleaks.jobs.base import ServiceJob
+from twisted.internet import reactor
+from twisted.internet.defer import inlineCallbacks, Deferred
+from twisted.internet.error import ConnectionLost
+
+from globaleaks.jobs.base import BaseJob
 from globaleaks.models.config import NodeFactory, PrivateFactory
 from globaleaks.orm import transact
 from globaleaks.rest.apicache import GLApiCache
 from globaleaks.utils.utility import deferred_sleep, log
-from twisted.internet import reactor
-from twisted.internet.defer import inlineCallbacks, Deferred
+
 
 try:
    from txtorcon.torconfig import EphemeralHiddenService
@@ -43,10 +46,11 @@ def set_onion_service_info(store, hostname, key):
     GLApiCache.invalidate()
 
 
-class OnionService(ServiceJob):
+class OnionService(BaseJob):
     name = "OnionService"
     threaded = False
     print_startup_error = True
+    exceptions_filter = [ConnectionLost]
 
     @inlineCallbacks
     def service(self, restart_deferred):

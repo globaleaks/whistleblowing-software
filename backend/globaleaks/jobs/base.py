@@ -17,9 +17,10 @@ class BaseJob(task.LoopingCall):
     high_time = -1
     mean_time = -1
     start_time = -1
-    active = False
+    active = None
     last_executions = []
     threaded = True
+    exceptions_filter = []
 
     def __init__(self):
         self.job = task.LoopingCall.__init__(self, self.run)
@@ -28,10 +29,19 @@ class BaseJob(task.LoopingCall):
     def start(self, interval):
         task.LoopingCall.start(self, interval)
 
+    @defer.inlineCallbacks
+    def stop(self):
+        if self.running:
+            task.LoopingCall.stop(self)
+
+        if self.active is not None:
+            yield self.active
+
     def schedule(self):
         delay = self.get_start_time()
         delay = delay if delay > 1 else 1
         self.clock.callLater(delay, self.start, self.interval)
+        return self
 
     @defer.inlineCallbacks
     def run(self):
@@ -48,7 +58,7 @@ class BaseJob(task.LoopingCall):
         self.end()
 
     def begin(self):
-        self.active = True
+        self.active = defer.Deferred()
         self.start_time = int(time.time() * 1000)
         self.last_executions=self.last_executions[:TRACK_LAST_N_EXECUTIONS - 1]
         self.last_executions.append((self.start_time, -1))
@@ -72,16 +82,23 @@ class BaseJob(task.LoopingCall):
         if self.high_time == -1 or current_run_time > self.high_time:
             self.high_time = current_run_time
 
-        self.active = False
+        self.active.callback(None)
+        self.active = None
 
     def operation(self):
         return
 
-    def on_error(self, err):
-        return
-
     def get_start_time(self):
         return 0
+
+    def on_error(self, excep):
+        for exception_filter in self.exceptions_filter:
+            if isinstance(excep, exception_filter):
+                return
+
+        log.err("Exception while running %s" % self.name)
+        log.exception(excep)
+        extract_exception_traceback_and_send_email(excep)
 
 
 class LoopingJob(BaseJob):
@@ -95,6 +112,10 @@ class LoopingJob(BaseJob):
     last_monitor_check_failed = 0 # Epoch start
 
     def on_error(self, excep):
+        for exception_filter in self.exceptions_filter:
+            if isinstance(excep, exception_filter):
+                return
+
         error = "Job %s died with runtime %.4f [low: %.4f, high: %.4f]" %\
                 (self.name, self.mean_time, self.low_time, self.high_time)
         log.err(error)
@@ -140,12 +161,3 @@ class LoopingJobsMonitor(LoopingJob):
 
         if error_msg != "":
             schedule_exception_email(error_msg)
-
-
-class ServiceJob(BaseJob):
-    interval = 1
-
-    def on_error(self, excep):
-        log.err("Exception while running %s" % self.name)
-        log.exception(excep)
-        extract_exception_traceback_and_send_email(excep)
