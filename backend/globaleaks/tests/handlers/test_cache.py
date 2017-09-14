@@ -35,7 +35,7 @@ class TestCacheWithHandlers(helpers.TestHandler):
     def test_handler_cache_hit(self):
         GLApiCache.invalidate()
 
-        handler = self.request(path='/public')
+        handler = self.request(uri='https://www.globaleaks.org/public')
         resp = yield handler.get()
 
         self.assertEqual(len(GLApiCache.memory_cache_dict), 1)
@@ -47,7 +47,7 @@ class TestCacheWithHandlers(helpers.TestHandler):
         self.assertEqual(resp, second_resp)
 
         # Check that a different language doesn't blow away a different resource
-        handler_fr = self.request(path='/public', headers={'gl-language': 'fr'})
+        handler_fr = self.request(uri='https://www.globaleaks.org/public', headers={'gl-language': 'fr'})
         resp_fr = yield handler_fr.get()
         cached_resp_fr = GLApiCache.get("/public", "fr")
 
@@ -64,11 +64,12 @@ class TestCacheWithHandlers(helpers.TestHandler):
         # the caching implementation does not fall over and die.
         GLApiCache.invalidate()
 
-        p = '/fake/sync/res'
-        handler = self.request(handler_cls=FakeSyncHandler, path=p)
+        fake_path = '/xxx'
+        fake_uri = 'https://www.globaleaks.org' + fake_path
+        handler = self.request(handler_cls=FakeSyncHandler, uri=fake_uri)
         resp = handler.get()
 
-        cached_resp = GLApiCache.get(p, "en")
+        cached_resp = GLApiCache.get(fake_path, "en")
 
         second_resp = handler.get()
         self.assertEqual(resp, cached_resp)

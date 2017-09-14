@@ -1,6 +1,4 @@
 # -*- coding: utf-8 -*-
-import json
-
 from globaleaks.handlers import l10n
 from globaleaks.handlers.admin import l10n as admin_l10n
 from globaleaks.tests import helpers
@@ -21,7 +19,7 @@ class TestL10NHandler(helpers.TestHandler):
         self.assertNotIn('12345', response)
 
         self._handler = admin_l10n.AdminL10NHandler
-        handler = self.request({}, role='admin', body=json.dumps(custom_texts))
+        handler = self.request(custom_texts, role='admin')
         yield handler.put(lang=u'en')
 
         self._handler = l10n.L10NHandler

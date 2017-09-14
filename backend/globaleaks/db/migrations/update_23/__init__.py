@@ -323,9 +323,9 @@ class MigrationScript(MigrationBase):
             new_obj = self.model_to['Field']()
 
             if old_obj.type == 'inputbox' or old_obj.type == 'textarea':
-                db_update_fieldattr(self.store_new, old_obj.id, u'min_len', {'name': u'min_len', 'type': u'int', 'value':'0'}, 'en')
-                db_update_fieldattr(self.store_new, old_obj.id, u'max_len', {'name': u'max_len', 'type': u'int', 'value':'-1'}, 'en')
-                db_update_fieldattr(self.store_new, old_obj.id, u'regex', {'name': u'regexp', 'type': u'unicode', 'value':''}, 'en')
+                db_update_fieldattr(self.store_new, old_obj, u'min_len', {'name': u'min_len', 'type': u'int', 'value':'0'}, 'en')
+                db_update_fieldattr(self.store_new, old_obj, u'max_len', {'name': u'max_len', 'type': u'int', 'value':'-1'}, 'en')
+                db_update_fieldattr(self.store_new, old_obj, u'regex', {'name': u'regexp', 'type': u'unicode', 'value':''}, 'en')
 
             for _, v in new_obj._storm_columns.items():
                 if v.name == 'template_id':
@@ -357,17 +357,18 @@ class MigrationScript(MigrationBase):
                     continue
 
                 try:
+                    field = self.store_old.find(self.model_from['Field'], id=old_obj.field_id).one()
                     if v.name == 'label':
                         if 'name' in old_obj.attrs:
                             new_obj.label = old_obj.attrs['name']
                             continue
                         if 'clause' in old_obj.attrs:
                             value = old_obj.attrs['clause'].get(old_node.default_language, '')
-                            db_update_fieldattr(self.store_new, old_obj.field_id, u'clause', {'name': u'clause', 'type': u'localized', 'value': value}, old_node.default_language)
+                            db_update_fieldattr(self.store_new, field, u'clause', {'name': u'clause', 'type': u'localized', 'value': value}, old_node.default_language)
                             skip_add = True
                         if 'agreement_statement' in old_obj.attrs:
                             value = old_obj.attrs['agreement_statement'].get(old_node.default_language, '')
-                            db_update_fieldattr(self.store_new, old_obj.field_id, u'agreement_statement', {'name': u'agreement_statement', 'type': u'localized', 'value': value}, old_node.default_language)
+                            db_update_fieldattr(self.store_new, field, u'agreement_statement', {'name': u'agreement_statement', 'type': u'localized', 'value': value}, old_node.default_language)
                             skip_add = True
                         continue
                 except Exception:
