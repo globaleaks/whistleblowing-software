@@ -15,27 +15,18 @@ from globaleaks.orm import transact
 
 
 @transact
-def get_custom_texts(store, lang):
-    texts = store.find(models.CustomTexts, models.CustomTexts.lang == unicode(lang)).one()
+def get(store, lang):
+    texts = store.find(models.CustomTexts, lang=lang).one()
     return texts.texts if texts is not None else {}
 
 
 @transact
-def update_custom_texts(store, lang, texts):
-    custom_texts = store.find(models.CustomTexts, models.CustomTexts.lang == unicode(lang)).one()
-    if custom_texts is None:
-        custom_texts = models.CustomTexts()
-        custom_texts.lang = lang
-        store.add(custom_texts)
-
-    custom_texts.texts = texts
-
-
-@transact
-def delete_custom_texts(store, lang):
-    custom_texts = store.find(models.CustomTexts, models.CustomTexts.lang == unicode(lang)).one()
-    if custom_texts is not None:
-        store.remove(custom_texts)
+def update(store, lang, request):
+    texts = store.find(models.CustomTexts, lang=lang).one()
+    if texts is None:
+        store.add(models.CustomTexts({'lang': lang, 'texts': request}))
+    else:
+        texts.texts = request
 
 
 class AdminL10NHandler(BaseHandler):
@@ -43,12 +34,10 @@ class AdminL10NHandler(BaseHandler):
     invalidate_cache = True
 
     def get(self, lang):
-        return get_custom_texts(lang)
+        return get(lang)
 
     def put(self, lang):
-        request = json.loads(self.request.content.read())
-
-        return update_custom_texts(lang, request)
+        return update(lang, json.loads(self.request.content.read()))
 
     def delete(self, lang):
-        return delete_custom_texts(lang)
+        return models.delete(models.CustomTexts, lang=lang)

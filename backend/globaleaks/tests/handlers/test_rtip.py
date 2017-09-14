@@ -1,6 +1,4 @@
 # -*- coding: utf-8 -*-
-import json
-
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import models
@@ -227,7 +225,7 @@ class TestRTipCommentCollection(helpers.TestHandlerWithPopulatedDB):
 
         rtip_descs = yield self.get_rtips()
         for rtip_desc in rtip_descs:
-            handler = self.request(role='receiver', user_id = rtip_desc['receiver_id'], body=json.dumps(body))
+            handler = self.request(body, role='receiver', user_id = rtip_desc['receiver_id'])
             yield handler.post(rtip_desc['id'])
 
 
@@ -247,7 +245,7 @@ class TestReceiverMsgCollection(helpers.TestHandlerWithPopulatedDB):
 
         rtip_descs = yield self.get_rtips()
         for rtip_desc in rtip_descs:
-            handler = self.request(role='receiver', user_id = rtip_desc['receiver_id'], body=json.dumps(body))
+            handler = self.request(body, role='receiver', user_id = rtip_desc['receiver_id'])
             yield handler.post(rtip_desc['id'])
 
 
@@ -284,5 +282,5 @@ class TestIdentityAccessRequestsCollection(helpers.TestHandlerWithPopulatedDB):
 
         rtip_descs = yield self.get_rtips()
         for rtip_desc in rtip_descs:
-            handler = self.request(role='receiver', user_id = rtip_desc['receiver_id'], body=json.dumps(body))
+            handler = self.request(body, role='receiver', user_id = rtip_desc['receiver_id'])
             yield handler.post(rtip_desc['id'])

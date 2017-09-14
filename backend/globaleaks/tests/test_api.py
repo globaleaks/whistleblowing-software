@@ -1,57 +1,9 @@
 # -*- encoding: utf-8 -*-
-import urlparse
-
 from twisted.internet.address import IPv4Address
-from twisted.internet.defer import inlineCallbacks, Deferred
-from twisted.web.test.requesthelper import DummyRequest
+from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.settings import GLSettings
-from globaleaks.tests.helpers import TestGL
-
-
-def forge_request(uri='https://www.globaleaks.org/', headers=None, method=b'GET', client_addr=None):
-    """
-    Creates a twisted.web.Request compliant request that is from an external
-    IP address.
-    """
-    if headers is None:
-        headers = {}
-
-    _, host, path, query, frag = urlparse.urlsplit(uri)
-
-    x = host.split (':')
-    if len(x) > 1:
-        port = int(x[1])
-    else:
-        port = 80
-
-    ret = DummyRequest([''])
-    ret.method = method
-    ret.uri = uri
-    ret.path = path
-    ret._serverName = bytes(host)
-
-    if client_addr is None:
-        ret.client = IPv4Address('TCP', '1.2.3.4', 12345)
-    else:
-        ret.client = client_addr
-
-    def getHost():
-        return IPv4Address('TCP', '127.0.0.1', port)
-
-    ret.getHost = getHost
-
-    def notifyFinish():
-        return Deferred()
-
-    ret.notifyFinish = notifyFinish
-
-    for k, v in headers.items():
-        ret.requestHeaders.setRawHeaders(bytes(k), [bytes(v)])
-
-    ret.headers = ret.getAllHeaders()
-
-    return ret
+from globaleaks.tests.helpers import TestGL, forge_request
 
 
 class TestAPI(TestGL):

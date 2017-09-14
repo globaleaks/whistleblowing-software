@@ -63,7 +63,7 @@ def db_update_fieldattr(store, field, attr_name, attr_dict, language):
 
 
 def db_update_fieldattrs(store, field, field_attrs, language):
-    attrs_ids = [db_update_fieldattr(store, fieldid, attr_name, attr, language) for attr_name, attr in field_attrs.items()]
+    attrs_ids = [db_update_fieldattr(store, field, attr_name, attr, language) for attr_name, attr in field_attrs.items()]
 
     store.find(models.FieldAttr, And(models.FieldAttr.field_id == field.id, Not(In(models.FieldAttr.id, attrs_ids)))).remove()
 

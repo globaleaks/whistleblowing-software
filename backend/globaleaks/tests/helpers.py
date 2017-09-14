@@ -42,6 +42,7 @@ import json
 import os
 import shutil
 import signal
+import urlparse
 
 from datetime import timedelta
 
@@ -225,6 +226,80 @@ def get_file_upload(self):
     return get_dummy_file()
 
 BaseHandler.get_file_upload = get_file_upload
+
+
+def forge_request(uri='https://www.globaleaks.org/',
+                  headers=None, body='', client_addr=None, method='GET',
+                  handler_cls=None, attached_file={}):
+    """
+    Creates a twisted.web.Request compliant request that is from an external
+    IP address.
+    """
+    if headers is None:
+        headers = {}
+
+    _, host, path, query, frag = urlparse.urlsplit(uri)
+
+    x = host.split (':')
+    if len(x) > 1:
+        port = int(x[1])
+    else:
+        port = 80
+
+    request = DummyRequest([''])
+    request.method = method
+    request.uri = uri
+    request.path = path
+    request._serverName = bytes(host)
+
+    request.code = 200
+    request.client_ip = '127.0.0.1'
+    request.client_proto = 'https'
+    request.client_using_tor = False
+
+    def getResponseBody():
+        return ''.join(request.written)
+
+    request.getResponseBody = getResponseBody
+
+    if client_addr is None:
+        request.client = IPv4Address('TCP', '1.2.3.4', 12345)
+    else:
+        request.client = client_addr
+
+    def getHost():
+        return IPv4Address('TCP', '127.0.0.1', port)
+
+    request.getHost = getHost
+
+    def notifyFinish():
+        return Deferred()
+
+    request.notifyFinish = notifyFinish
+
+    for k, v in headers.items():
+        request.requestHeaders.setRawHeaders(bytes(k), [bytes(v)])
+
+    request.headers = request.getAllHeaders()
+
+    request.args = {}
+    if attached_file is not None:
+        request.args = {'file': [attached_file]}
+
+    class fakeBody(object):
+        def read(self):
+            if isinstance(body, dict):
+                return json.dumps(body)
+            else:
+                return body
+
+        def close(self):
+            pass
+
+    request.content = fakeBody()
+
+    return request
+
 
 
 class TestGL(unittest.TestCase):
@@ -441,7 +516,6 @@ class TestGL(unittest.TestCase):
         """
         for _ in range(n):
             dummyFile = self.get_dummy_file()
-
 
             dst = os.path.join(GLSettings.submission_path,
                                os.path.basename(dummyFile['path']))
@@ -701,110 +775,38 @@ class TestHandler(TestGLWithPopulatedDB):
         # we need to reset GLApiCache to keep each test independent
         GLApiCache.invalidate()
 
-    def request(self, jbody=None, user_id=None, role=None, multilang=False, headers=None, body='', path=None,
-                remote_ip='0.0.0.0', method='MOCK', handler_cls=None, attached_file={}, kwargs={}):
+    def request(self, body='', uri='https://www.globaleaks.org/',
+                user_id=None,  role=None, multilang=False, headers=None,
+                client_addr=None, method='GET', handler_cls=None,
+                attached_file={}, kwargs={}):
         """
         Constructs a handler for preforming mock requests using the bag of params described below.
-
-        Args:
-
-            jbody:
-                The body of the request as a dict (it will be automatically
-                converted to string)
-
-            body:
-                The body of the request as a string
-
-            user_id:
-                when simulating authentication the session should be bound
-                to a certain user_id.
-
-            role:
-                when simulating authentication the session should be bound
-                to a certain role.
-
-            multilang:
-                A boolan to mark the request as multilang request
-
-            method:
-                HTTP method, e.g. "GET" or "POST"
-
-            headers:
-                Dict of headers to pass on the request
-
-            remote_ip:
-                If a particular remote_ip should be set.
-
-            handler_cls:
-                The type of handler that will respond to the request. If this is not set self._handler is used.
-
-            attached_file:
-                A dict to place in the request.args.files obj
         """
         from globaleaks.rest import api
-
-        if jbody and not body:
-            body = json.dumps(jbody)
-        elif body and jbody:
-            raise ValueError('jbody and body in conflict')
 
         if handler_cls is None:
             handler_cls = self._handler
 
-        request = DummyRequest([''])
-
-        def getResponseBody():
-            return ''.join(request.written)
-
-        request.path = ''
-        request.code = 200
-
-        request.client_ip = '127.0.0.1'
-        request.client_proto = 'https'
-        request.client_using_tor = False
-
-        request.getResponseBody = getResponseBody
-
-        request.client = IPv4Address('TCP', '1.2.3.4', 12345)
-
-        request.args = {}
-        if attached_file is not None:
-            request.args = {'file': [attached_file]}
-
-        if headers is not None:
-            for k, v in headers.items():
-                request.requestHeaders.setRawHeaders(bytes(k), [bytes(v)])
-
-        request.headers = request.getAllHeaders()
+        request = forge_request(uri=uri,
+                                headers=headers,
+                                body=body,
+                                client_addr=client_addr,
+                                method='GET',
+                                attached_file=attached_file)
 
         x = api.APIResourceWrapper()
         x.preprocess(request)
 
-        if multilang:
-            request.language = None
-
-        if path is not None:
-            if not path.startswith('/'):
-                raise ValueError('Must pass a valid url path')
-            request.path = path
-
-        class fakeBody(object):
-            def read(self):
-                return body
-
-            def close(self):
-                pass
-
-        request.content = fakeBody()
-
-        from globaleaks.rest.api import decorate_method
         if not getattr(handler_cls, 'decorated', False):
             for method in ['get', 'post', 'put', 'delete']:
                 if getattr(handler_cls, method, None) is not None:
-                    decorate_method(handler_cls, method)
+                    api.decorate_method(handler_cls, method)
                     handler_cls.decorated = True
 
         handler = handler_cls(request, **kwargs)
+
+        if multilang:
+            request.language = None
 
         if user_id is None and role is not None:
             if role == 'admin':

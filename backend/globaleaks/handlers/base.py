@@ -413,7 +413,7 @@ class BaseHandler(object):
 
     def write_file(self, filepath):
         if not os.path.exists(filepath) or not os.path.isfile(filepath):
-          raise errors.ResourceNotFound()
+            raise errors.ResourceNotFound()
 
         mime_type, encoding = mimetypes.guess_type(filepath)
         if mime_type:
@@ -423,7 +423,7 @@ class BaseHandler(object):
 
     def force_file_download(self, filename, filepath):
         if not os.path.exists(filepath) or not os.path.isfile(filepath):
-          raise errors.ResourceNotFound()
+            raise errors.ResourceNotFound()
 
         self.request.setHeader('X-Download-Options', 'noopen')
         self.request.setHeader('Content-Type', 'application/octet-stream')
@@ -435,6 +435,7 @@ class BaseHandler(object):
     def current_user(self):
         if not hasattr(self, '_current_user'):
             self._current_user = self.get_current_user()
+
         return self._current_user
 
     def get_current_user(self):
