@@ -20,7 +20,6 @@ class BaseJob(task.LoopingCall):
     active = None
     last_executions = []
     threaded = True
-    exceptions_filter = []
 
     def __init__(self):
         self.job = task.LoopingCall.__init__(self, self.run)
@@ -92,10 +91,6 @@ class BaseJob(task.LoopingCall):
         return 0
 
     def on_error(self, excep):
-        for exception_filter in self.exceptions_filter:
-            if isinstance(excep, exception_filter):
-                return
-
         log.err("Exception while running %s" % self.name)
         log.exception(excep)
         extract_exception_traceback_and_send_email(excep)
@@ -112,11 +107,7 @@ class LoopingJob(BaseJob):
     last_monitor_check_failed = 0 # Epoch start
 
     def on_error(self, excep):
-        for exception_filter in self.exceptions_filter:
-            if isinstance(excep, exception_filter):
-                return
-
-        error = "Job %s died with runtime %.4f [low: %.4f, high: %.4f]" %\
+        error = "Job %s died with runtime %.4f [low: %.4f, high: %.4f]" % \
                 (self.name, self.mean_time, self.low_time, self.high_time)
         log.err(error)
         log.exception(excep)
@@ -125,7 +116,7 @@ class LoopingJob(BaseJob):
 
 class LoopingJobsMonitor(LoopingJob):
     name = "jobs monitor"
-    interval = 2
+    interval = 1
 
     def __init__(self, jobs_list):
         LoopingJob.__init__(self)
@@ -136,7 +127,7 @@ class LoopingJobsMonitor(LoopingJob):
 
         error_msg = ""
         for job in self.jobs_list:
-            if not job.active:
+            if job.active is None:
                 continue
 
             execution_time = current_time - job.start_time

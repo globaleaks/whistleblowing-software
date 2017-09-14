@@ -127,7 +127,6 @@ class GLService(service.Service):
         GLSettings.appstate.process_supervisor.maybe_launch_https_workers()
 
         GLSettings.start_jobs()
-        GLSettings.start_services()
 
         GLSettings.print_listening_interfaces()
 

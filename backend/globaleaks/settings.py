@@ -530,31 +530,26 @@ class GLSettingsClass(object):
         return 'sqlite:' + db_file_path + '?foreign_keys=ON'
 
     def start_jobs(self):
-        from globaleaks.jobs import jobs_list
+        from globaleaks.jobs import jobs_list, services_list
         from globaleaks.jobs.base import LoopingJobsMonitor
 
         for job in jobs_list:
             self.jobs.append(job().schedule())
+
+        for service in services_list:
+            self.services.append(service().schedule())
 
         self.jobs_monitor = LoopingJobsMonitor(self.jobs)
         self.jobs_monitor.schedule()
 
     @inlineCallbacks
     def stop_jobs(self):
-        for job in self.jobs:
+        for job in self.jobs + self.services:
             yield job.stop()
 
         if self.jobs_monitor is not None:
             yield self.jobs_monitor.stop()
             self.jobs_monitor = None
-
-    def start_services(self):
-        from globaleaks.jobs import services_list
-
-        for service in services_list:
-            s = service()
-            self.services.append(s)
-            s.schedule()
 
     def get_agent(self):
         if self.memory_copy.anonymize_outgoing_connections:
