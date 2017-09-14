@@ -99,8 +99,7 @@ module.exports = function(grunt) {
 
     useminPrepare: {
       html: [
-        'tmp/index.html',
-        'tmp/app.html'
+        'tmp/index.html'
       ],
       options: {
         staging: 'tmp',
@@ -118,7 +117,6 @@ module.exports = function(grunt) {
     usemin: {
       html: [
         'tmp/index.html',
-        'tmp/app.html',
         'tmp/views/**/*.html'
       ],
       options: {
@@ -138,7 +136,7 @@ module.exports = function(grunt) {
           base: 'app/',
           quotes: 'single'
         },
-        src: ['app.html', 'views/**/*.html'],
+        src: ['views/**/*.html'],
         dest: 'tmp/js/templates.js'
       }
     },
@@ -605,8 +603,7 @@ module.exports = function(grunt) {
       });
     }
 
-    ['app/app.html',
-     'app/translations.html',
+    ['app/translations.html',
      'app/data_src/appdata.json',
      'app/data_src/field_attrs.json'].forEach(function(file) {
       extractStringsFromFile(file);

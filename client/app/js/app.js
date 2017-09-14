@@ -464,42 +464,6 @@ var GLClient = angular.module('GLClient', [
       list.splice(index, 1);
     };
 
-    var route_check = function () {
-      if (!$rootScope.node.wizard_done) {
-        $location.path('/wizard');
-      }
-
-      if ($location.path() === '/' && $rootScope.node.landing_page === 'submissionpage') {
-        $location.path('/submission');
-      }
-
-      if ($location.path() === '/submission' &&
-          !$rootScope.connection.tor &&
-          !$rootScope.node.tor2web_whistleblower) {
-        $location.path("/");
-      }
-    };
-
-    var set_title = function () {
-      var path = $location.path();
-      var statuspage = '/status';
-      if (path === '/') {
-        $rootScope.ht = $rootScope.node.header_title_homepage;
-      } else if (path === '/submission') {
-        $rootScope.ht = $rootScope.node.header_title_submissionpage;
-      } else if (path === '/receipt') {
-        if (Authentication.keycode) {
-          $rootScope.ht = $rootScope.node.header_title_receiptpage;
-        } else {
-          $rootScope.ht = $filter('translate')("Login");
-        }
-      } else if (path.substr(0, statuspage.length) === statuspage) {
-        $rootScope.ht = $rootScope.node.header_title_tippage;
-      } else {
-        $rootScope.ht = $filter('translate')($rootScope.header_title);
-      }
-    };
-
     $rootScope.open_confidentiality_modal = function () {
       $uibModal.open({
         controller: 'ModalCtrl',
@@ -600,7 +564,7 @@ var GLClient = angular.module('GLClient', [
 
         GLTranslate.addNodeFacts($rootScope.node.default_language, $rootScope.node.languages_enabled);
 
-        route_check();
+        Utils.route_check();
 
         $rootScope.languages_supported = {};
         $rootScope.languages_enabled = {};
@@ -621,7 +585,7 @@ var GLClient = angular.module('GLClient', [
 
         $rootScope.show_language_selector = ($rootScope.languages_enabled_length > 1);
 
-        set_title();
+        Utils.set_title();
 
         if ($rootScope.node.enable_experimental_features) {
           $rootScope.isStepTriggered = fieldUtilities.isStepTriggered;
@@ -648,7 +612,7 @@ var GLClient = angular.module('GLClient', [
 
     $rootScope.$on("$routeChangeStart", function() {
       if ($rootScope.node) {
-        route_check();
+        Utils.route_check();
       }
 
       var path = $location.path();
@@ -674,7 +638,7 @@ var GLClient = angular.module('GLClient', [
         $rootScope.header_subtitle = current.$$route.header_subtitle;
 
         if ($rootScope.node) {
-          set_title();
+          Utils.set_title();
         }
       }
     });
