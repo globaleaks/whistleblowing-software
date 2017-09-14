@@ -778,6 +778,42 @@ factory('AdminUtils', ['AdminContextResource', 'AdminQuestionnaireResource', 'Ad
   factory('Utils', ['$rootScope', '$q', '$location', '$filter', '$sce', '$uibModal', '$window', 'Authentication',
   function($rootScope, $q, $location, $filter, $sce, $uibModal, $window, Authentication) {
     return {
+      set_title: function() {
+        var path = $location.path();
+        var statuspage = '/status';
+        if (path === '/') {
+          $rootScope.ht = $rootScope.node.header_title_homepage;
+        } else if (path === '/submission') {
+          $rootScope.ht = $rootScope.node.header_title_submissionpage;
+        } else if (path === '/receipt') {
+          if (Authentication.keycode) {
+            $rootScope.ht = $rootScope.node.header_title_receiptpage;
+          } else {
+            $rootScope.ht = $filter('translate')("Login");
+          }
+        } else if (path.substr(0, statuspage.length) === statuspage) {
+          $rootScope.ht = $rootScope.node.header_title_tippage;
+        } else {
+          $rootScope.ht = $filter('translate')($rootScope.header_title);
+        }
+      },
+
+      route_check: function() {
+        if (!$rootScope.node.wizard_done) {
+          $location.path('/wizard');
+        }
+
+        if ($location.path() === '/' && $rootScope.node.landing_page === 'submissionpage') {
+          $location.path('/submission');
+        }
+
+        if ($location.path() === '/submission' &&
+            !$rootScope.connection.tor &&
+            !$rootScope.node.tor2web_whistleblower) {
+          $location.path("/");
+        }
+      },
+
       getXOrderProperty: function() {
         return 'x';
       },

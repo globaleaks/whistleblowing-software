@@ -1,12 +1,12 @@
 GLClient.
 controller('ModalCtrl', ['$scope', '$uibModalInstance', function($scope, $uibModalInstance){
-    $scope.close = function() {
-      $uibModalInstance.close(false);
-    };
+  $scope.close = function() {
+    $uibModalInstance.close(false);
+  };
 
-    $scope.ok = function() {
-      $uibModalInstance.close(true);
-    };
+  $scope.ok = function() {
+    $uibModalInstance.close(true);
+  };
 }]).
 controller('ConfirmableDialogCtrl', ['$scope', '$uibModalInstance', 'arg', function($scope, $uibModalInstance, arg) {
   $scope.arg = arg;
