@@ -4,7 +4,7 @@
 import os
 from txtorcon import build_local_tor_connection
 
-from twisted.internet import reactor
+from twisted.internet import reactor, task
 from twisted.internet.defer import inlineCallbacks, Deferred
 from twisted.internet.error import ConnectionLost
 
@@ -50,7 +50,7 @@ class OnionService(BaseJob):
     name = "OnionService"
     threaded = False
     print_startup_error = True
-    exceptions_filter = [ConnectionLost]
+    tor_conn = None
 
     @inlineCallbacks
     def service(self, restart_deferred):
@@ -60,7 +60,8 @@ class OnionService(BaseJob):
 
         def startup_callback(tor_conn):
             self.print_startup_error = True
-            tor_conn.protocol.on_disconnect = restart_deferred
+            self.tor_conn = tor_conn
+            self.tor_conn.protocol.on_disconnect = restart_deferred
 
             log.debug('Successfully connected to Tor control port')
 
@@ -78,7 +79,7 @@ class OnionService(BaseJob):
                 if hostname == '' and key == '':
                     yield set_onion_service_info(ephs.hostname, ephs.private_key)
 
-            d = ephs.add_to_tor(tor_conn.protocol)
+            d = ephs.add_to_tor(self.tor_conn.protocol)
             d.addCallback(initialization_callback) # pylint: disable=no-member
 
         def startup_errback(err):
@@ -90,14 +91,12 @@ class OnionService(BaseJob):
             restart_deferred.callback(None)
 
         if not os.path.exists(control_socket):
-            log.err('Tor control port not open on /var/run/tor/control; waiting for Tor to become available')
-            while not os.path.exists(control_socket):
-                yield deferred_sleep(1)
+            startup_errback(Exception('Tor control port not open on /var/run/tor/control; waiting for Tor to become available'))
+            return
 
         if not os.access(control_socket, os.R_OK):
-            log.err('Unable to access /var/run/tor/control; manual permission recheck needed')
-            while not os.access(control_socket, os.R_OK):
-                yield deferred_sleep(1)
+            startup_errback(Exception('Unable to access /var/run/tor/control; manual permission recheck needed'))
+            return
 
         d = build_local_tor_connection(reactor)
         d.addCallback(startup_callback)
@@ -109,3 +108,11 @@ class OnionService(BaseJob):
         self.service(deferred)
 
         return deferred
+
+    @inlineCallbacks
+    def stop(self):
+        if self.tor_conn is not None:
+            yield self.tor_conn.protocol.quit()
+            self.tor_conn = None
+
+        yield super(OnionService, self).stop()
