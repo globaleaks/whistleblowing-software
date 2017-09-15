@@ -13,11 +13,13 @@ from globaleaks.utils.letsencrypt import ChallTok
 from twisted.internet import reactor
 from twisted.internet.defer import inlineCallbacks, returnValue
 
+XTIDX = 1
+
 
 @transact
 def set_init_params(store, dh_params, hostname='localhost:9999'):
-    PrivateFactory(store).set_val(u'https_dh_params', dh_params)
-    NodeFactory(store).set_val(u'hostname', hostname)
+    PrivateFactory(store, XTIDX).set_val(u'https_dh_params', dh_params)
+    NodeFactory(store, XTIDX).set_val(u'hostname', hostname)
     State.tenant_cache[1].hostname = 'localhost:9999'
 
 
@@ -43,7 +45,7 @@ class TestFileHandler(helpers.TestHandler):
 
     @transact
     def set_enabled(self, store):
-        PrivateFactory(store).set_val(u'https_enabled', True)
+        PrivateFactory(store, XTIDX).set_val(u'https_enabled', True)
         State.tenant_cache[1].private.https_enabled = True
 
     @inlineCallbacks

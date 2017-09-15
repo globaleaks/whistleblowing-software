@@ -3,11 +3,15 @@
 #   tenant
 #   *****
 # Implementation of the Tenant handlers
-#
+import os
+
 from globaleaks import models
+from globaleaks.db.appdata import db_update_defaults, load_appdata
+from globaleaks.handlers.admin import files
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.orm import transact
 from globaleaks.rest import requests
+from globaleaks.settings import Settings
 
 
 def serialize_tenant(store, tenant):
@@ -19,12 +23,29 @@ def serialize_tenant(store, tenant):
 
 
 def db_create(store, desc):
-    tenant = models.db_forge_obj(store, models.Tenant, desc)
+    appdata = load_appdata()
+
+    t = models.db_forge_obj(store, models.Tenant, desc)
 
     # required to generate/retrive the id
     store.flush()
 
-    return tenant
+    db_update_defaults(store, tid=t.id)
+
+    models.config.system_cfg_init(store, tid=t.id)
+
+    models.l10n.EnabledLanguage.add_all_supported_langs(store, t.id, appdata)
+
+    file_descs = [
+      (u'logo', 'data/logo.png'),
+      (u'favicon', 'data/favicon.ico')
+    ]
+
+    for file_desc in file_descs:
+        with open(os.path.join(Settings.client_path, file_desc[1]), 'r') as f:
+            files.db_add_file(store, t.id, f.read(), file_desc[0])
+
+    return t
 
 
 @transact

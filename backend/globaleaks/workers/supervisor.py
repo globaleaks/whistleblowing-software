@@ -12,6 +12,8 @@ from globaleaks.utils.utility import log, datetime_now, datetime_to_ISO8601
 from globaleaks.workers.process import HTTPSProcProtocol
 from twisted.internet import defer, reactor
 
+XTIDX = 1
+
 
 class ProcessSupervisor(object):
     """
@@ -48,7 +50,7 @@ class ProcessSupervisor(object):
         self.tls_cfg['tls_socket_fds'] = [ns.fileno() for ns in net_sockets]
 
     def db_maybe_launch_https_workers(self, store):
-        privFact = PrivateFactory(store)
+        privFact = PrivateFactory(store, XTIDX)
 
         on = privFact.get_val(u'https_enabled')
         if not on:

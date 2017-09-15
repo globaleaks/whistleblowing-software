@@ -42,10 +42,9 @@ def add_model_img(store, obj_key, obj_id, data):
 
 
 @transact
-def del_model_img(store, model, obj_id):
-    obj = store.find(model, model.id == obj_id).one()
-    if obj.img_id:
-        store.find(models.File, models.File.id == obj.img_id).remove()
+def del_model_img(store, obj_key, obj_id):
+    model = model_map[obj_key]
+    store.find(model, model.id == obj_id).remove()
 
 
 class ModelImgInstance(BaseHandler):

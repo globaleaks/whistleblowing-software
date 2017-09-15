@@ -26,6 +26,7 @@ def db_create_step(store, step_dict, language):
     step = models.db_forge_obj(store, models.Step, step_dict)
 
     for c in step_dict['children']:
+        c['tid'] = step.tid
         c['step_id'] = step.id
         db_create_field(store, c, language)
 

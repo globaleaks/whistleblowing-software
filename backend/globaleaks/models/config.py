@@ -19,7 +19,7 @@ class Config(ModelWithTID):
     customized = Bool(default=False)
 
 
-    def __init__(self, group=None, name=None, value=None, cfg_desc=None, migrate=False):
+    def __init__(self, tid=1, group=None, name=None, value=None, cfg_desc=None, migrate=False):
         """
         :param value:    This input is passed directly into set_v
         :param migrate:  Added to comply with models.Model constructor which is
@@ -34,9 +34,9 @@ class Config(ModelWithTID):
         if migrate:
             return
 
+        self.tid = tid
         self.var_group = unicode(group)
         self.var_name = unicode(name)
-
         self.set_v(value)
 
     @staticmethod
@@ -77,6 +77,7 @@ class ConfigFactory(object):
 
     def __init__(self, store, tid, group, *args, **kwargs):
         self.store = store
+        self.tid = tid
         self.group = unicode(group)
         self.res = None
 
@@ -91,7 +92,7 @@ class ConfigFactory(object):
             self.res[key].set_v(request[key])
 
     def get_cfg(self, var_name):
-        return self.store.find(Config, var_group=self.group, var_name=var_name).one()
+        return self.store.find(Config, tid=self.tid, var_group=self.group, var_name=var_name).one()
 
     def get_val(self, var_name):
         return self.get_cfg(var_name).get_v()
@@ -117,7 +118,7 @@ class ConfigFactory(object):
     def clean_and_add(self):
         self._query_group()
 
-        res = {c.var_name : c for c in self.store.find(Config, var_group=self.group)}
+        res = {c.var_name : c for c in self.store.find(Config, tid=self.tid, var_group=self.group)}
 
         actual = set(self.res.keys())
         allowed = set(self.group_desc)
@@ -125,7 +126,7 @@ class ConfigFactory(object):
         missing = allowed - actual
 
         for key in missing:
-            self.store.add(Config(self.group, key, self.group_desc[key].default))
+            self.store.add(Config(self.tid, self.group, key, self.group_desc[key].default))
 
         extra = actual - allowed
 
@@ -157,8 +158,8 @@ class NodeFactory(ConfigFactory):
     update_set = admin_node
     group_desc = GLConfig['node']
 
-    def __init__(self, store, *args, **kwargs):
-        ConfigFactory.__init__(self, store, XTIDX, 'node', *args, **kwargs)
+    def __init__(self, store, tid, *args, **kwargs):
+        ConfigFactory.__init__(self, store, tid, 'node', *args, **kwargs)
 
     def public_export(self):
         return self._export_group_dict(self.public_node)
@@ -173,8 +174,8 @@ class NotificationFactory(ConfigFactory):
     update_set = admin_notification
     group_desc = GLConfig['notification']
 
-    def __init__(self, store, *args, **kwargs):
-        ConfigFactory.__init__(self, store, XTIDX, 'notification', *args, **kwargs)
+    def __init__(self, store, tid, *args, **kwargs):
+        ConfigFactory.__init__(self, store, tid, 'notification', *args, **kwargs)
 
     def admin_export(self):
         return self._export_group_dict(self.admin_notification)
@@ -194,8 +195,8 @@ class PrivateFactory(ConfigFactory):
 
     group_desc = GLConfig['private']
 
-    def __init__(self, store, *args, **kwargs):
-        ConfigFactory.__init__(self, store, XTIDX, 'private', *args, **kwargs)
+    def __init__(self, store, tid, *args, **kwargs):
+        ConfigFactory.__init__(self, store, tid, 'private', *args, **kwargs)
 
     def mem_copy_export(self):
         return self._export_group_dict(self.mem_export_set)
@@ -204,45 +205,45 @@ class PrivateFactory(ConfigFactory):
 factories = [NodeFactory, NotificationFactory, PrivateFactory]
 
 
-def system_cfg_init(store):
-    for gname, group in GLConfig.items():
+def system_cfg_init(store, tid):
+    for group_name, group in GLConfig.items():
         for var_name, desc in group.items():
-            store.add(Config(gname, var_name, desc.default))
+            store.add(Config(tid, group_name, var_name, desc.default))
 
 
 def del_cfg_not_in_groups(store):
     store.find(Config, Not(In(Config.var_group, [u'node', u'notification', u'private']))).remove()
 
 
-def is_cfg_valid(store):
+def is_cfg_valid(store, tid):
     for fact_model in factories:
-        if not fact_model(store).db_corresponds():
+        if not fact_model(store, tid).db_corresponds():
             return False
 
-    s = {r.var_group for r in store.find(Config).group_by(Config.var_group)}
+    s = {r.var_group for r in store.find(Config, tid=tid).group_by(Config.var_group)}
 
     return s == set(GLConfig.keys())
 
 
-def update_defaults(store):
-    if not is_cfg_valid(store):
+def update_defaults(store, tid):
+    if not is_cfg_valid(store, tid):
         log.info("This update will change system configuration")
 
         for fact_model in factories:
-            fact_model(store).clean_and_add()
+            fact_model(store, tid).clean_and_add()
 
         del_cfg_not_in_groups(store)
 
     # Set the system version to the current aligned cfg
-    PrivateFactory(store).set_val(u'version', __version__)
+    PrivateFactory(store, tid).set_val(u'version', __version__)
 
 
 def load_tls_dict(store):
     """
     A quick and dirty function to grab all of the tls config for use in subprocesses
     """
-    priv = PrivateFactory(store)
-    node = NodeFactory(store)
+    priv = PrivateFactory(store, XTIDX)
+    node = NodeFactory(store, XTIDX)
 
     return {
         'ssl_key': priv.get_val(u'https_priv_key'),

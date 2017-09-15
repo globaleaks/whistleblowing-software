@@ -82,7 +82,7 @@ def db_create_field(store, field_dict, language):
     fill_localized_keys(field_dict, models.Field.localized_keys, language)
 
     if field_dict.get('fieldgroup_id', ''):
-        ancestors = set(fieldtree_ancestors(store, field_dict['fieldgroup_id']))
+        ancestors = set(fieldtree_ancestors(store, field_dict['tid'], field_dict['fieldgroup_id']))
 
         if field_dict['id'] == field_dict['fieldgroup_id'] or field_dict['id'] in ancestors:
             raise errors.InvalidInputFormat("Provided field association would cause recursion loop")
@@ -106,11 +106,21 @@ def db_create_field(store, field_dict, language):
                 raise errors.InvalidInputFormat("Cannot associate whistleblower identity field to a fieldgroup")
 
     else:
-        db_update_fieldattrs(store, field, field_dict.get('attrs', []), language)
-        db_update_fieldoptions(store, field, field_dict.get('options', []), language)
+        attrs = field_dict.get('attrs', [])
+        options = field_dict.get('options', [])
+
+        for key, value in attrs.items():
+            value['tid'] = field.tid
+
+        for obj in options:
+            obj['tid'] = field.tid
+
+        db_update_fieldattrs(store, field, attrs, language)
+        db_update_fieldoptions(store, field, options, language)
 
     if field.instance != 'reference':
         for c in field_dict.get('children', []):
+            c['tid'] = field.tid
             c['fieldgroup_id'] = field.id
             db_create_field(store, c, language)
 
@@ -198,7 +208,7 @@ def delete_field(store, field_id):
     store.remove(field)
 
 
-def fieldtree_ancestors(store, field_id):
+def fieldtree_ancestors(store, tid, id):
     """
     Given a field_id, recursively extract its parents.
 
@@ -206,10 +216,10 @@ def fieldtree_ancestors(store, field_id):
     :param field_id: the parent id.
     :return: a generator of Field.id
     """
-    field = store.find(models.Field, models.Field.id == field_id).one()
+    field = store.find(models.Field, tid=tid, id=id).one()
     if field.fieldgroup_id is not None:
         yield field.fieldgroup_id
-        yield fieldtree_ancestors(store, field.fieldgroup_id)
+        yield fieldtree_ancestors(store, field.tid, field.fieldgroup_id)
 
 
 @transact

@@ -15,28 +15,31 @@ def load_appdata():
     return read_json_file(Settings.appdata_file)
 
 
-def load_default_questionnaires(store):
+def load_default_questionnaires(store, tid):
     qfiles = [os.path.join(Settings.questionnaires_path, path) for path in os.listdir(Settings.questionnaires_path)]
     for qfile in qfiles:
         questionnaire = read_json_file(qfile)
+        questionnaire['tid'] = tid
 
         steps = questionnaire.pop('steps')
 
-        q = store.find(models.Questionnaire, id=questionnaire['id']).one()
+        q = store.find(models.Questionnaire, tid=tid, id=questionnaire['id']).one()
         if q is None:
             q = models.db_forge_obj(store, models.Questionnaire, questionnaire)
         else:
-            store.find(models.Step, questionnaire_id=q.id).remove()
+            store.find(models.Step, tid=tid, questionnaire_id=q.id).remove()
 
         for step in steps:
+            step['tid'] = tid
             step['questionnaire_id'] = q.id
             db_create_step(store, step, None)
 
-def load_default_fields(store):
+def load_default_fields(store, tid):
     ffiles = [os.path.join(Settings.questions_path, path) for path in os.listdir(Settings.questions_path)]
     for ffile in ffiles:
         question = read_json_file(ffile)
-        store.find(models.Field, id=question['id']).remove()
+        question['tid'] = tid
+        store.find(models.Field, tid=tid, id=question['id']).remove()
         db_create_field(store, question, None)
 
 
@@ -86,7 +89,7 @@ def db_fix_fields_attrs(store):
                 models.db_forge_obj(store, models.FieldAttr, attr_dict)
 
 
-def db_update_defaults(store):
-    load_default_questionnaires(store)
-    load_default_fields(store)
+def db_update_defaults(store, tid):
+    load_default_questionnaires(store, tid)
+    load_default_fields(store, tid)
     db_fix_fields_attrs(store)

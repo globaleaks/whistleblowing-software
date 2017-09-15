@@ -55,6 +55,8 @@ from twisted.trial import unittest
 from twisted.internet.protocol import ProcessProtocol
 from storm.twisted.testing import FakeThreadPool
 
+XTIDX = 1
+
 
 ## constants
 VALID_PASSWORD1 = u'ACollectionOfDiplomaticHistorySince_1966_ToThe_Pr esentDay#'
@@ -119,7 +121,7 @@ def init_glsettings_for_unit_tests():
 
 @transact
 def update_node_setting(store, var_name, value):
-    models.config.NodeFactory(store).set_val(var_name, value)
+    models.config.NodeFactory(store, XTIDX).set_val(var_name, value)
 
 
 def get_dummy_step():

@@ -10,7 +10,7 @@ from globaleaks.tests import helpers
 class TestSystemConfigModels(helpers.TestGL):
     @transact
     def _test_config_import(self, store):
-        c = store.find(config.Config).count()
+        c = store.find(config.Config, tid=1).count()
 
         stated_conf = reduce(lambda x,y: x+y, [len(v) for k, v in GLConfig.items()], 0)
         self.assertEqual(c, stated_conf)
@@ -20,22 +20,22 @@ class TestSystemConfigModels(helpers.TestGL):
 
     @transact
     def _test_valid_cfg(self, store):
-        self.assertEqual(True, config.is_cfg_valid(store))
+        self.assertEqual(True, config.is_cfg_valid(store, 1))
 
     def test_valid_config(self):
         return self._test_valid_cfg()
 
     @transact
     def _test_missing_config(self, store):
-        self.assertEqual(True, config.is_cfg_valid(store))
+        self.assertEqual(True, config.is_cfg_valid(store, 1))
 
-        p = config.Config('private', 'smtp_password', 'XXXX')
+        p = config.Config(1, 'private', 'smtp_password', 'XXXX')
         p.var_group = u'outside'
         store.add(p)
 
-        self.assertEqual(False, config.is_cfg_valid(store))
+        self.assertEqual(False, config.is_cfg_valid(store, 1))
 
-        node = config.NodeFactory(store)
+        node = config.NodeFactory(store, 1)
         c = node.get_cfg(u'hostname')
         store.remove(c)
         store.commit()
@@ -43,23 +43,23 @@ class TestSystemConfigModels(helpers.TestGL):
         self.assertEqual(False, node.db_corresponds())
 
         # Delete all of the vars in Private Factory
-        prv = config.PrivateFactory(store)
+        prv = config.PrivateFactory(store, 1)
 
         store.execute('DELETE FROM config WHERE var_group = "private"')
 
         self.assertEqual(False, prv.db_corresponds())
 
-        ntfn = config.NotificationFactory(store)
+        ntfn = config.NotificationFactory(store, 1)
 
-        c = config.Config('notification', 'server', 'guarda.giochi.con.occhi')
+        c = config.Config(1, 'notification', 'server', 'guarda.giochi.con.occhi')
         c.var_name = u'anextravar'
         store.add(c)
 
         self.assertEqual(False, ntfn.db_corresponds())
 
-        config.update_defaults(store)
+        config.update_defaults(store, 1)
 
-        self.assertEqual(True, config.is_cfg_valid(store))
+        self.assertEqual(True, config.is_cfg_valid(store, 1))
 
     def test_missing_config(self):
         return self._test_missing_config()

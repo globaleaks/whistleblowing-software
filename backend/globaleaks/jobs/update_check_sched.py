@@ -17,13 +17,14 @@ from globaleaks.utils.agent import get_page
 from globaleaks.utils.utility import log
 from globaleaks.utils.templating import format_and_send
 
+XTIDX = 1
 
 DEB_PACKAGE_URL = 'https://deb.globaleaks.org/xenial/Packages'
 
 
 @transact
 def evaluate_update_notification(store, latest_version):
-    priv_fact = PrivateFactory(store)
+    priv_fact = PrivateFactory(store, XTIDX)
     stored_latest = priv_fact.get_val(u'latest_version')
 
     if V(stored_latest) < V(latest_version):
