@@ -7,14 +7,15 @@ import traceback
 from storm import exceptions
 
 from globaleaks import models, security, DATABASE_VERSION, FIRST_DATABASE_VERSION_SUPPORTED
-from globaleaks.db.appdata import db_update_defaults, load_appdata
-from globaleaks.handlers.admin import files
 from globaleaks.handlers.base import Session
+from globaleaks.models.config import Config
 from globaleaks.orm import transact, transact_sync
 from globaleaks.settings import Settings
 from globaleaks.state import State
 from globaleaks.utils.objectdict import ObjectDict
 from globaleaks.utils.utility import log
+
+XTIDX = 1
 
 
 def get_db_file(db_path):
@@ -41,30 +42,13 @@ def db_create_tables(store):
 
 @transact_sync
 def init_db(store):
-    log.debug("Performing database initialization...")
+    from globaleaks.handlers.admin import tenant
 
-    appdata = load_appdata()
+    log.debug("Performing database initialization...")
 
     db_create_tables(store)
 
-    store.add(models.Tenant())
-
-    db_update_defaults(store)
-
-    models.config.system_cfg_init(store)
-
-    models.l10n.EnabledLanguage.add_all_supported_langs(store, appdata)
-
-    store.add(models.Tenant())
-
-    file_descs = [
-      (u'logo', 'data/logo.png'),
-      (u'favicon', 'data/favicon.ico')
-    ]
-
-    for file_desc in file_descs:
-        with open(os.path.join(Settings.client_path, file_desc[1]), 'r') as f:
-            files.db_add_file(store, f.read(), file_desc[0])
+    tenant.db_create(store, {})
 
 
 def update_db():
@@ -126,12 +110,12 @@ def sync_clean_untracked_files(store):
                 log.err("Failed to remove untracked file", file_to_remove)
 
 
-def db_get_exception_delivery_list(store):
+def db_get_exception_delivery_list(store, tid):
     """
     Constructs a list of (email_addr, public_key) pairs that will receive errors from the platform.
     If the email_addr is empty, drop the tuple from the list.
     """
-    notif_fact = models.config.NotificationFactory(store)
+    notif_fact = models.config.NotificationFactory(store, tid)
 
     lst = []
 
@@ -152,7 +136,7 @@ def db_refresh_memory_variables(store):
     This routine loads in memory few variables of node and notification tables
     that are subject to high usage.
     """
-    tenant_cache = ObjectDict(models.config.NodeFactory(store).admin_export())
+    tenant_cache = ObjectDict(models.config.NodeFactory(store, XTIDX).admin_export())
 
     tenant_cache.accept_tor2web_access = {
         'admin': tenant_cache.tor2web_admin,
@@ -161,17 +145,17 @@ def db_refresh_memory_variables(store):
         'receiver': tenant_cache.tor2web_receiver
     }
 
-    tenant_cache.languages_enabled = models.l10n.EnabledLanguage.list(store)
+    tenant_cache.languages_enabled = models.l10n.EnabledLanguage.list(store, XTIDX)
 
-    tenant_cache.notif = ObjectDict(models.config.NotificationFactory(store).admin_export())
-    tenant_cache.notif.exception_delivery_list = db_get_exception_delivery_list(store)
+    tenant_cache.notif = ObjectDict(models.config.NotificationFactory(store, XTIDX).admin_export())
+    tenant_cache.notif.exception_delivery_list = db_get_exception_delivery_list(store, XTIDX)
     if Settings.developer_name:
         tenant_cache.notif.source_name = Settings.developer_name
 
-    tenant_cache.private = ObjectDict(models.config.PrivateFactory(store).mem_copy_export())
+    tenant_cache.private = ObjectDict(models.config.PrivateFactory(store, XTIDX).mem_copy_export())
 
     if tenant_cache.private.admin_api_token_digest:
-        api_id = store.find(models.User.id, models.User.role==u'admin').order_by(models.User.creation_date).first()
+        api_id = store.find(models.User.id, models.User.tid==1, models.User.role==u'admin').order_by(models.User.creation_date).first()
         if api_id is not None:
             State.api_token_session = Session(api_id, 'admin', 'enabled')
 

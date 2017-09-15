@@ -14,6 +14,8 @@ from globaleaks.rest.apicache import ApiCache
 from globaleaks.utils.utility import log
 from globaleaks.state import State
 
+XTIDX = 1
+
 
 try:
     from txtorcon.torconfig import EphemeralHiddenService
@@ -25,22 +27,22 @@ __all__ = ['OnionService']
 
 
 @transact
-def get_onion_service_info(store):
-    node_fact = NodeFactory(store)
+def get_onion_service_info(store, tid):
+    node_fact = NodeFactory(store, tid)
     hostname = node_fact.get_val(u'onionservice')
 
-    priv_fact = PrivateFactory(store)
+    priv_fact = PrivateFactory(store, tid)
     key = priv_fact.get_val(u'tor_onion_key')
 
     return hostname, key
 
 
 @transact
-def set_onion_service_info(store, hostname, key):
-    node_fact = NodeFactory(store)
+def set_onion_service_info(store, tid, hostname, key):
+    node_fact = NodeFactory(store, tid)
     node_fact.set_val(u'onionservice', hostname)
 
-    priv_fact = PrivateFactory(store)
+    priv_fact = PrivateFactory(store, tid)
     priv_fact.set_val(u'tor_onion_key', key)
 
     State.tenant_cache[1].onionservice = hostname
@@ -56,7 +58,7 @@ class OnionService(BaseJob):
 
     @defer.inlineCallbacks
     def service(self, restart_deferred):
-        hostname, key = yield get_onion_service_info()
+        hostname, key = yield get_onion_service_info(XTIDX)
 
         control_socket = '/var/run/tor/control'
 
@@ -79,7 +81,7 @@ class OnionService(BaseJob):
             def initialization_callback(ret):
                 log.info('Initialization of hidden-service %s completed.', ephs.hostname)
                 if not hostname and not key:
-                    yield set_onion_service_info(ephs.hostname, ephs.private_key)
+                    yield set_onion_service_info(XTIDX, ephs.hostname, ephs.private_key)
                     yield refresh_memory_variables()
 
             d = ephs.add_to_tor(self.tor_conn.protocol)

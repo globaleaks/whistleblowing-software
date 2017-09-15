@@ -22,6 +22,8 @@ from globaleaks.utils import letsencrypt, tls
 from globaleaks.utils.tempdict import TempDict
 from globaleaks.utils.utility import datetime_to_ISO8601, format_cert_expr_date, log
 
+XTIDX = 1
+
 
 # Access auth tokens expire after a 5 minutes
 tmp_chall_dict = TempDict(300)
@@ -68,12 +70,12 @@ class FileResource(object):
     @staticmethod
     @transact
     def should_gen_dh_params(store):
-        return PrivateFactory(store).get_val(u'https_dh_params') == u''
+        return PrivateFactory(store, XTIDX).get_val(u'https_dh_params') == u''
 
     @staticmethod
     @transact
     def save_dh_params(store, dh_params):
-        PrivateFactory(store).set_val(u'https_dh_params', dh_params)
+        PrivateFactory(store, XTIDX).set_val(u'https_dh_params', dh_params)
 
     @classmethod
     @inlineCallbacks
@@ -96,7 +98,7 @@ class PrivKeyFileRes(FileResource):
         db_cfg = load_tls_dict(store)
         db_cfg['ssl_key'] = raw_key
 
-        prv_fact = PrivateFactory(store)
+        prv_fact = PrivateFactory(store, XTIDX)
         pkv = cls.validator()
         ok, _ = pkv.validate(db_cfg)
         if ok:
@@ -108,7 +110,7 @@ class PrivKeyFileRes(FileResource):
     @staticmethod
     @transact
     def save_tls_key(store, prv_key):
-        prv_fact = PrivateFactory(store)
+        prv_fact = PrivateFactory(store, XTIDX)
         prv_fact.set_val(u'https_priv_key', prv_key)
         prv_fact.set_val(u'https_priv_gen', True)
 
@@ -124,13 +126,13 @@ class PrivKeyFileRes(FileResource):
     @staticmethod
     @transact
     def delete_file(store):
-        prv_fact = PrivateFactory(store)
+        prv_fact = PrivateFactory(store, XTIDX)
         prv_fact.set_val(u'https_priv_key', u'')
         prv_fact.set_val(u'https_priv_gen', False)
 
     @staticmethod
     def db_serialize(store):
-        prv_fact = PrivateFactory(store)
+        prv_fact = PrivateFactory(store, XTIDX)
 
         return {
             'set': prv_fact.get_val(u'https_priv_key') != u'',
@@ -144,7 +146,7 @@ class CertFileRes(FileResource):
     @classmethod
     @transact
     def create_file(store, cls, raw_cert):
-        prv_fact = PrivateFactory(store)
+        prv_fact = PrivateFactory(store, XTIDX)
 
         db_cfg = load_tls_dict(store)
         db_cfg['ssl_cert'] = raw_cert
@@ -160,17 +162,17 @@ class CertFileRes(FileResource):
     @staticmethod
     @transact
     def delete_file(store):
-        PrivateFactory(store).set_val(u'https_cert', u'')
+        PrivateFactory(store, XTIDX).set_val(u'https_cert', u'')
         State.tenant_cache[1].https_cert = ''
 
     @staticmethod
     @transact
     def get_file(store):
-        return PrivateFactory(store).get_val(u'https_cert')
+        return PrivateFactory(store, XTIDX).get_val(u'https_cert')
 
     @staticmethod
     def db_serialize(store):
-        c = PrivateFactory(store).get_val(u'https_cert')
+        c = PrivateFactory(store, XTIDX).get_val(u'https_cert')
         if len(c) == 0:
             return {'name': 'cert', 'set': False}
 
@@ -191,7 +193,7 @@ class ChainFileRes(FileResource):
     @classmethod
     @transact
     def create_file(store, cls, raw_chain):
-        prv_fact = PrivateFactory(store)
+        prv_fact = PrivateFactory(store, XTIDX)
 
         db_cfg = load_tls_dict(store)
         db_cfg['ssl_intermediate'] = raw_chain
@@ -206,16 +208,16 @@ class ChainFileRes(FileResource):
     @staticmethod
     @transact
     def delete_file(store):
-        PrivateFactory(store).set_val(u'https_chain', u'')
+        PrivateFactory(store, XTIDX).set_val(u'https_chain', u'')
 
     @staticmethod
     @transact
     def get_file(store):
-        return PrivateFactory(store).get_val(u'https_chain')
+        return PrivateFactory(store, XTIDX).get_val(u'https_chain')
 
     @staticmethod
     def db_serialize(store):
-        c = PrivateFactory(store).get_val(u'https_chain')
+        c = PrivateFactory(store, XTIDX).get_val(u'https_chain')
         if len(c) == 0:
             return {'name': 'chain', 'set': False}
 
@@ -234,23 +236,23 @@ class CsrFileRes(FileResource):
     @classmethod
     @transact
     def create_file(store, cls, raw_csr):
-        PrivateFactory(store).set_val(u'https_csr', raw_csr)
+        PrivateFactory(store, XTIDX).set_val(u'https_csr', raw_csr)
 
         return True
 
     @staticmethod
     @transact
     def delete_file(store):
-        PrivateFactory(store).set_val(u'https_csr', u'')
+        PrivateFactory(store, XTIDX).set_val(u'https_csr', u'')
 
     @staticmethod
     @transact
     def get_file(store):
-        return PrivateFactory(store).get_val(u'https_csr')
+        return PrivateFactory(store, XTIDX).get_val(u'https_csr')
 
     @staticmethod
     def db_serialize(store):
-        csr = PrivateFactory(store).get_val(u'https_csr')
+        csr = PrivateFactory(store, XTIDX).get_val(u'https_csr')
         return {'name': 'csr', 'set': len(csr) != 0}
 
 
@@ -304,7 +306,7 @@ class FileHandler(BaseHandler):
 
 @transact
 def serialize_https_config_summary(store):
-    prv_fact = PrivateFactory(store)
+    prv_fact = PrivateFactory(store, XTIDX)
 
     file_summaries = {}
     for key, file_res_cls in FileHandler.mapped_file_resources.items():
@@ -321,7 +323,7 @@ def serialize_https_config_summary(store):
 
 @transact
 def try_to_enable_https(store):
-    prv_fact = PrivateFactory(store)
+    prv_fact = PrivateFactory(store, XTIDX)
 
     cv = tls.ChainValidator()
     db_cfg = load_tls_dict(store)
@@ -336,7 +338,7 @@ def try_to_enable_https(store):
 
 @transact
 def disable_https(store):
-    PrivateFactory(store).set_val(u'https_enabled', False)
+    PrivateFactory(store, XTIDX).set_val(u'https_enabled', False)
     State.tenant_cache[1].private.https_enabled = False
 
 
@@ -435,7 +437,7 @@ class AcmeAccntKeyRes:
     def create_file(store, cls):
         log.info("Generating an ACME account key with %d bits" % Settings.key_bits)
 
-        priv_fact = PrivateFactory(store)
+        priv_fact = PrivateFactory(store, XTIDX)
 
         # NOTE key size is hard coded to align with minimum CA requirements
         # TODO change format to OpenSSL key to normalize types of keys used
@@ -459,12 +461,12 @@ class AcmeAccntKeyRes:
     @classmethod
     @transact
     def save_accnt_uri(store, cls, uri):
-        PrivateFactory(store).set_val(u'acme_accnt_uri', uri)
+        PrivateFactory(store, XTIDX).set_val(u'acme_accnt_uri', uri)
 
 
 @transact
 def can_perform_acme_run(store):
-    prv_fact = PrivateFactory(store)
+    prv_fact = PrivateFactory(store, XTIDX)
     acme = prv_fact.get_val(u'acme')
     no_cert_set = prv_fact.get_val(u'https_cert') == u''
     return acme and no_cert_set
@@ -472,7 +474,7 @@ def can_perform_acme_run(store):
 
 @transact
 def is_acme_configured(store):
-    prv_fact = PrivateFactory(store)
+    prv_fact = PrivateFactory(store, XTIDX)
     acme = prv_fact.get_val(u'acme')
     cert_set = prv_fact.get_val(u'https_cert') != u''
     return acme and cert_set
@@ -480,7 +482,7 @@ def is_acme_configured(store):
 
 @transact
 def can_perform_acme_renewal(store):
-    priv_fact = PrivateFactory(store)
+    priv_fact = PrivateFactory(store, XTIDX)
     a = is_acme_configured(store)
     b = priv_fact.get_val(u'https_enabled')
     c = priv_fact.get_val(u'https_cert')
@@ -488,7 +490,7 @@ def can_perform_acme_renewal(store):
 
 
 def db_acme_cert_issuance(store):
-    priv_fact = PrivateFactory(store)
+    priv_fact = PrivateFactory(store, XTIDX)
     hostname = State.tenant_cache[1].hostname
 
     raw_accnt_key = priv_fact.get_val(u'acme_accnt_key')

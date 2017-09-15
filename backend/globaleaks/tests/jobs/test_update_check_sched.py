@@ -31,12 +31,12 @@ packages="Package: globaleaks\n" \
 
 @transact
 def set_latest_version(store, version):
-    return PrivateFactory(store).set_val(u'latest_version', version)
+    return PrivateFactory(store, 1).set_val(u'latest_version', version)
 
 
 @transact
 def get_latest_version(store):
-    return PrivateFactory(store).get_val(u'latest_version')
+    return PrivateFactory(store, 1).get_val(u'latest_version')
 
 
 class TestUpdateCheckJob(helpers.TestGLWithPopulatedDB):

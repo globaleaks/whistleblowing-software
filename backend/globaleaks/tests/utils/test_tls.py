@@ -37,14 +37,14 @@ def get_valid_setup():
 def commit_valid_config(store):
     cfg = get_valid_setup()
 
-    priv_fact = PrivateFactory(store)
+    priv_fact = PrivateFactory(store, 1)
     priv_fact.set_val(u'https_dh_params', cfg['dh_params'])
     priv_fact.set_val(u'https_priv_key', cfg['key'])
     priv_fact.set_val(u'https_cert', cfg['cert'])
     priv_fact.set_val(u'https_chain', cfg['chain'])
     priv_fact.set_val(u'https_enabled', True)
 
-    NodeFactory(store).set_val(u'hostname', 'localhost:9999')
+    NodeFactory(store).set_val(1, u'hostname', 'localhost:9999')
 
 
 class TestObjectValidators(TestCase):

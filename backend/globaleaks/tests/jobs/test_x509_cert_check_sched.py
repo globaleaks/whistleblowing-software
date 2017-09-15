@@ -21,7 +21,7 @@ class TestX509CertCheckSched(helpers.TestGLWithPopulatedDB):
     def _setUp(self, store):
         valid_setup = test_tls.get_valid_setup()
 
-        prv_fact = PrivateFactory(store)
+        prv_fact = PrivateFactory(store, 1)
         prv_fact.set_val(u'https_cert', valid_setup['cert'])
         prv_fact.set_val(u'https_enabled', True)
 

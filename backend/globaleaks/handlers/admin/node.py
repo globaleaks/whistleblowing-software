@@ -18,13 +18,15 @@ from globaleaks.rest import errors, requests
 from globaleaks.settings import Settings
 from globaleaks.utils.utility import log
 
+XTIDX = 1
+
 
 def db_admin_serialize_node(store, language):
-    node_dict = NodeFactory(store).admin_export()
-    priv_dict = PrivateFactory(store)
+    node_dict = NodeFactory(store, XTIDX).admin_export()
+    priv_dict = PrivateFactory(store, XTIDX)
 
     # Contexts and Receivers relationship
-    configured  = store.find(models.ReceiverContext).count() > 0
+    configured  = store.find(models.ReceiverContext, tid=XTIDX).count() > 0
 
     misc_dict = {
         'version': priv_dict.get_val(u'version'),
@@ -62,7 +64,7 @@ def enable_disable_languages(store, request):
             if appdata is None:
                 appdata = load_appdata()
             log.debug("Adding a new lang %s" % lang_code)
-            EnabledLanguage.add_new_lang(store, lang_code, appdata)
+            EnabledLanguage.add_new_lang(store, XTIDX, lang_code, appdata)
 
     to_remove = list(set(cur_enabled_langs) - set(new_enabled_langs))
 
@@ -80,7 +82,7 @@ def db_update_node(store, request, language):
     :param language: the language in which to localize data
     :return: a dictionary representing the serialization of the node
     """
-    node = NodeFactory(store)
+    node = NodeFactory(store, XTIDX)
     node.update(request)
 
     if request['basic_auth'] and request['basic_auth_username'] and request['basic_auth_password']:

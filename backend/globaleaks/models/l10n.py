@@ -11,31 +11,28 @@ class EnabledLanguage(models.ModelWithTID):
 
     name = Unicode()
 
-    def __init__(self, name=None, migrate=False):
+    def __init__(self, tid=XTIDX, name=None, migrate=False):
         if migrate:
             return
 
+        self.tid = tid
         self.name = unicode(name)
 
     @classmethod
-    def list(cls, store):
-        return [name for name in store.find(EnabledLanguage.name)]
-
-    @classmethod
-    def add_new_lang(cls, store, lang_code, appdata_dict):
-        store.add(cls(lang_code))
-
-        NotificationL10NFactory(store).initialize(lang_code, appdata_dict)
-        NodeL10NFactory(store).initialize(lang_code, appdata_dict)
-
-    @classmethod
     def list(cls, store, tid=XTIDX):
-        return [e.name for e in store.find(cls, tid)]
+        return [name for name in store.find(EnabledLanguage.name, EnabledLanguage.tid==tid)]
 
     @classmethod
-    def add_all_supported_langs(cls, store, appdata_dict):
+    def add_new_lang(cls, store, tid, lang_code, appdata_dict):
+        store.add(cls(tid, lang_code))
+
+        NotificationL10NFactory(store, tid).initialize(lang_code, appdata_dict)
+        NodeL10NFactory(store, tid).initialize(lang_code, appdata_dict)
+
+    @classmethod
+    def add_all_supported_langs(cls, store, tid, appdata_dict):
         for lang_code in LANGUAGES_SUPPORTED_CODES:
-            cls.add_new_lang(store, lang_code, appdata_dict)
+            cls.add_new_lang(store, tid, lang_code, appdata_dict)
 
 
 class ConfigL10N(models.ModelWithTID):
@@ -48,10 +45,11 @@ class ConfigL10N(models.ModelWithTID):
     value = Unicode()
     customized = Bool(default=False)
 
-    def __init__(self, lang_code=None, group=None, var_name=None, value='', migrate=False):
+    def __init__(self, tid=XTIDX, lang_code=None, group=None, var_name=None, value='', migrate=False):
         if migrate:
             return
 
+        self.tid = tid
         self.lang = unicode(lang_code)
         self.var_group = unicode(group)
         self.var_name = unicode(var_name)
@@ -68,8 +66,9 @@ class ConfigL10NFactory(object):
     localized_keys = frozenset()
     unmodifiable_keys = frozenset()
 
-    def __init__(self, store, group):
+    def __init__(self, store, tid, group):
         self.store = store
+        self.tid = tid
         self.group = unicode(group)
 
     def initialize(self, lang_code, l10n_data_src, keys=None):
@@ -78,10 +77,10 @@ class ConfigL10NFactory(object):
 
         for key in keys:
             value = l10n_data_src[key][lang_code] if key in l10n_data_src else ''
-            self.store.add(ConfigL10N(lang_code, self.group, key, value))
+            self.store.add(ConfigL10N(self.tid, lang_code, self.group, key, value))
 
     def retrieve_rows(self, lang_code):
-        return [r for r in self.store.find(ConfigL10N, lang=lang_code, var_group=self.group)]
+        return [r for r in self.store.find(ConfigL10N, tid=self.tid, lang=lang_code, var_group=self.group)]
 
     def localized_dict(self, lang_code):
         rows = self.retrieve_rows(lang_code)
@@ -140,8 +139,8 @@ class NodeL10NFactory(ConfigL10NFactory):
         'widget_files_title',
     })
 
-    def __init__(self, store, *args, **kwargs):
-        ConfigL10NFactory.__init__(self, store, u'node', *args, **kwargs)
+    def __init__(self, store, tid=XTIDX, *args, **kwargs):
+        ConfigL10NFactory.__init__(self, store, tid, u'node', *args, **kwargs)
 
     def initialize(self, lang_code, appdata_dict, keys=None):
         ConfigL10NFactory.initialize(self, lang_code, appdata_dict['node'], keys)
@@ -216,18 +215,18 @@ class NotificationL10NFactory(ConfigL10NFactory):
     # These strings are modifiable via the admin/notification handler
     modifiable_keys = localized_keys - unmodifiable_keys
 
-    def __init__(self, store, *args, **kwargs):
-        ConfigL10NFactory.__init__(self, store, u'notification', *args, **kwargs)
+    def __init__(self, store, tid=XTIDX, *args, **kwargs):
+        ConfigL10NFactory.__init__(self, store, tid, u'notification', *args, **kwargs)
 
     def initialize(self, lang_code, appdata_dict, keys=None):
         ConfigL10NFactory.initialize(self, lang_code, appdata_dict['templates'], keys)
 
     def reset_templates(self, l10n_data_src):
-        langs = EnabledLanguage.list(self.store)
+        langs = EnabledLanguage.list(self.store, XTIDX)
         self.update_defaults(langs, l10n_data_src, reset=True)
 
 
 def update_defaults(store, appdata):
-    langs = EnabledLanguage.list(store)
+    langs = EnabledLanguage.list(store, XTIDX)
     NodeL10NFactory(store).update_defaults(langs, appdata['node'])
     NotificationL10NFactory(store).update_defaults(langs, appdata['templates'])

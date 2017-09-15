@@ -55,8 +55,8 @@ class TestProfileLoad(helpers.TestHandler):
 
     @inlineCallbacks
     def test_invalid_load(self):
-        yield self.assertFailure(transact(load_profile)('invalid'), ValueError)
-        yield self.assertFailure(transact(load_profile)('default'), ValueError)
+        yield self.assertFailure(transact(load_profile)(1, 'invalid'), ValueError)
+        yield self.assertFailure(transact(load_profile)(1, 'default'), ValueError)
 
     @inlineCallbacks
     def tearDown(self):

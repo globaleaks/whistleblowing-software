@@ -18,6 +18,8 @@ from globaleaks.state import State
 from globaleaks.utils.sets import merge_dicts
 from globaleaks.utils.structures import get_localized_values
 
+XTIDX = 1
+
 
 def db_prepare_contexts_serialization(store, contexts):
     data = {'imgs': {}, 'receivers': {}}
@@ -108,21 +110,21 @@ def db_serialize_node(store, language):
     # Contexts and Receivers relationship
     configured = store.find(models.ReceiverContext).count() > 0
 
-    ro_node = NodeFactory(store).public_export()
+    ro_node = NodeFactory(store, XTIDX).public_export()
 
     misc_dict = {
-        'languages_enabled': l10n.EnabledLanguage.list(store),
+        'languages_enabled': l10n.EnabledLanguage.list(store, XTIDX),
         'languages_supported': LANGUAGES_SUPPORTED,
         'configured': configured,
         'accept_submissions': State.accept_submissions,
-        'logo': db_get_file(store, u'logo'),
-        'favicon': db_get_file(store, u'favicon'),
-        'css': db_get_file(store, u'css'),
-        'homepage': db_get_file(store, u'homepage'),
-        'script': db_get_file(store, u'script')
+        'logo': db_get_file(store, XTIDX, u'logo'),
+        'favicon': db_get_file(store, XTIDX, u'favicon'),
+        'css': db_get_file(store, XTIDX, u'css'),
+        'homepage': db_get_file(store, XTIDX, u'homepage'),
+        'script': db_get_file(store, XTIDX, u'script')
     }
 
-    l10n_dict = NodeL10NFactory(store).localized_dict(language)
+    l10n_dict = NodeL10NFactory(store, XTIDX).localized_dict(language)
 
     return merge_dicts(ro_node, l10n_dict, misc_dict)
 

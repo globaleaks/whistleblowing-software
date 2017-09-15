@@ -108,8 +108,8 @@ class TestMigrationRoutines(unittest.TestCase):
     def postconditions_36(self):
         new_uri = Settings.make_db_uri(os.path.join(Settings.db_path, Settings.db_file_name))
         store = Store(create_database(new_uri))
-        hs = config.NodeFactory(store).get_val(u'onionservice')
-        pk = config.PrivateFactory(store).get_val(u'tor_onion_key')
+        hs = config.NodeFactory(store, 1).get_val(u'onionservice')
+        pk = config.PrivateFactory(store, 1).get_val(u'tor_onion_key')
 
         self.assertEqual('lftx7dbyvlc5txtl.onion', hs)
         with open(os.path.join(helpers.DATA_DIR, 'tor/ephemeral_service_key')) as f:
@@ -163,7 +163,7 @@ class TestConfigUpdates(unittest.TestCase):
 
     def test_migration_error_with_removed_language(self):
         store = Store(create_database(Settings.db_uri))
-        zyx = EnabledLanguage('zyx')
+        zyx = EnabledLanguage(1, 'zyx')
         store.add(zyx)
         store.commit()
         store.close()
@@ -220,7 +220,7 @@ class TestConfigUpdates(unittest.TestCase):
     def test_trim_value_to_range(self):
         store = Store(create_database(Settings.db_uri))
 
-        nf = config.NodeFactory(store)
+        nf = config.NodeFactory(store, 1)
         fake_cfg = nf.get_cfg(u'wbtip_timetolive')
 
         self.assertRaises(errors.InvalidModelInput, fake_cfg.set_v, 3650)

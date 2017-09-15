@@ -9,7 +9,7 @@ from globaleaks.models.config import Config, NodeFactory, add_raw_config
 
 class MigrationScript(MigrationBase):
     def epilogue(self):
-        nf = NodeFactory(self.store_new)
+        nf = NodeFactory(self.store_new, 1)
         url = nf.get_val(u'public_site')
         o = urlparse(url)
         domain = o.hostname if not o.hostname is None else ''

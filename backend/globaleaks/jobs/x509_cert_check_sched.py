@@ -18,6 +18,9 @@ from globaleaks.utils.utility import datetime_to_ISO8601, log
 from globaleaks.utils.templating import format_and_send
 
 
+XTIDX=1
+
+
 class X509CertCheckSchedule(LoopingJob):
     name = "X509 Cert Check"
     interval = 3 * 24 * 3600
@@ -45,7 +48,7 @@ class X509CertCheckSchedule(LoopingJob):
 
     @transact
     def cert_expiration_checks(self, store):
-        priv_fact = models.config.PrivateFactory(store)
+        priv_fact = models.config.PrivateFactory(store, XTIDX)
 
         if not priv_fact.get_val(u'https_enabled'):
             return

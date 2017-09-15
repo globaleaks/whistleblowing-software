@@ -34,7 +34,7 @@ CREATE TABLE config_l10n (
     customized BOOL NOT NULL,
     FOREIGN KEY (tid) REFERENCES tenant(id) ON DELETE CASCADE,
     FOREIGN KEY (tid, lang) REFERENCES enabledlanguage(tid, name) ON DELETE CASCADE,
-    PRIMARY KEY (lang, var_group, var_name)
+    PRIMARY KEY (tid, lang, var_group, var_name)
 );
 
 CREATE TABLE user (
@@ -365,7 +365,6 @@ CREATE TABLE field (
                                                'reference',
                                                'template')),
     editable INT NOT NULL,
-    UNIQUE(id),
     FOREIGN KEY (tid, fieldgroup_id) REFERENCES field(tid, id) ON DELETE CASCADE,
     FOREIGN KEY (tid, step_id) REFERENCES step(tid, id) ON DELETE CASCADE,
     FOREIGN KEY (tid, template_id) REFERENCES field(tid, id) ON DELETE CASCADE,
@@ -423,7 +422,6 @@ CREATE TABLE questionnaire (
     steps_navigation_requires_completion INTEGER NOT NULL,
     enable_whistleblower_identity INTEGER NOT NULL,
     editable INTEGER NOT NULL,
-    UNIQUE(id),
     FOREIGN KEY (tid) REFERENCES tenant(id) ON DELETE CASCADE,
     PRIMARY KEY (tid, id)
 );
@@ -437,8 +435,8 @@ CREATE TABLE step (
     presentation_order INTEGER NOT NULL,
     triggered_by_score INTEGER DEFAULT 0 NOT NULL,
     UNIQUE(id),
-    FOREIGN KEY (tid, questionnaire_id) REFERENCES questionnaire(tid, id) ON DELETE CASCADE,
     FOREIGN KEY (tid) REFERENCES tenant(id) ON DELETE CASCADE,
+    FOREIGN KEY (tid, questionnaire_id) REFERENCES questionnaire(tid, id) ON DELETE CASCADE,
     PRIMARY KEY (tid, id)
 );
 
@@ -511,7 +509,6 @@ CREATE TABLE file (
     tid INTEGER NOT NULL DEFAULT 1,
     id TEXT NOT NULL,
     data TEXT NOT NULL,
-    UNIQUE(id),
     FOREIGN KEY (tid) REFERENCES tenant(id) ON DELETE CASCADE,
     PRIMARY KEY (tid, id)
 );

@@ -16,10 +16,12 @@ from globaleaks.utils.mailutils import sendmail
 from globaleaks.utils.sets import merge_dicts
 from globaleaks.utils.templating import Templating
 
+XTIDX = 1
+
 
 def admin_serialize_notification(store, language):
-    config_dict = NotificationFactory(store).admin_export()
-    conf_l10n_dict = NotificationL10NFactory(store).localized_dict(language)
+    config_dict = NotificationFactory(store, XTIDX).admin_export()
+    conf_l10n_dict = NotificationL10NFactory(store, XTIDX).localized_dict(language)
 
     cmd_flags = {
         'reset_templates': False,
@@ -41,14 +43,14 @@ def get_notification(store, language):
 
 @transact
 def update_notification(store, request, language):
-    notif = NotificationFactory(store)
+    notif = NotificationFactory(store, XTIDX)
     notif.update(request)
 
     smtp_pw = request.pop('smtp_password', u'')
     if smtp_pw != u'':
-        PrivateFactory(store).set_val(u'smtp_password', smtp_pw)
+        PrivateFactory(store, XTIDX).set_val(u'smtp_password', smtp_pw)
 
-    notif_l10n = NotificationL10NFactory(store)
+    notif_l10n = NotificationL10NFactory(store, XTIDX)
     notif_l10n.update(request, language)
 
     if request.pop('reset_templates'):

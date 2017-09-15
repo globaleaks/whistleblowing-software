@@ -85,6 +85,9 @@ class Model(Storm):
         if 'id' in values and values['id']:
             setattr(self, 'id', values['id'])
 
+        if 'tid' in values and values['tid'] != '':
+            setattr(self, 'tid', values['tid'])
+
         for k in getattr(self, 'unicode_keys'):
             if k in values and values[k] is not None:
                 setattr(self, k, unicode(values[k]))
