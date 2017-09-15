@@ -254,9 +254,9 @@ controller('AdminHTTPSConfigCtrl', ['$q', '$location', '$http', '$scope', '$uibM
 .controller('disableInputModalCtrl', ['$scope', function($scope) {
   $scope.$resolve.modal_open.resolve();
 }])
-.controller('safeRedirectModalCtrl', ['$scope', '$timeout', function($scope, $timeout) {
+.controller('safeRedirectModalCtrl', ['$scope', '$timeout', '$route', function($scope, $timeout, $route) {
   $scope.$resolve.modal_open.resolve();
   $timeout(function() {
-    location.reload();
+    $route.reload();
   }, 15000);
 }]);
