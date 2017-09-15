@@ -20,14 +20,12 @@ def serialize_shorturl(shorturl):
 
 @transact
 def get_shorturl_list(store):
-    shorturls = store.find(models.ShortURL)
-    return [serialize_shorturl(shorturl) for shorturl in shorturls]
+    return [serialize_shorturl(shorturl) for shorturl in store.find(models.ShortURL)]
 
 
 @transact
 def create_shorturl(store, request):
-    shorturl = models.ShortURL(request)
-    store.add(shorturl)
+    shorturl = models.db_forge_obj(store, models.ShortURL, request)
     return serialize_shorturl(shorturl)
 
 

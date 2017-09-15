@@ -11,10 +11,10 @@ from globaleaks.handlers.base import BaseHandler
 from globaleaks.orm import transact
 
 
-def db_add_file(store, data, key = None):
+def db_add_file(store, data, key=None):
     file_obj = None
     if key is not None:
-        file_obj = store.find(models.File, models.File.id == key).one()
+        file_obj = store.find(models.File, id=key).one()
 
     if file_obj is None:
         file_obj = models.File()
@@ -26,29 +26,19 @@ def db_add_file(store, data, key = None):
 
 
 @transact
-def add_file(store, data, key = None):
+def add_file(store, data, key=None):
     return db_add_file(store, data, key)
 
 
 def db_get_file(store, key):
-    file_obj = store.find(models.File, models.File.id == key).one()
+    file_obj = store.find(models.File, id=key).one()
 
-    if file_obj is None:
-        return ''
-
-    return file_obj.data
+    return file_obj.data if file_obj is not None else ''
 
 
 @transact
 def get_file(store, key):
     return db_get_file(store, key)
-
-
-@transact
-def del_file(store, key):
-    file_obj = store.find(models.File, models.File.id == key).one()
-    if file_obj is not None:
-        store.remove(file_obj)
 
 
 class FileInstance(BaseHandler):
@@ -67,4 +57,4 @@ class FileInstance(BaseHandler):
         return d
 
     def delete(self, key):
-        return del_file(key)
+        return models.delete(models.File, id=key)
