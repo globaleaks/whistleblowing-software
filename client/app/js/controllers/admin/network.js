@@ -13,6 +13,11 @@ GLClient.controller('AdminNetworkCtrl', ['$scope', function($scope) {
       template: "views/admin/network/access_control.html"
     }
   ];
+
+  // These configuration variables are used by AdminHTTPSConfigController
+  $scope.https_redirect_modal = 'views/admin/network/redirect_to_https.html';
+  $scope.https_redirect_path = '/#/admin/network';
+  $scope.https_manual_enabled = true;
 }]).
 controller('AdminHTTPSConfigCtrl', ['$q', '$location', '$http', '$scope', '$uibModal', 'FileSaver', 'AdminTLSConfigResource', 'AdminTLSCfgFileResource', 'AdminAcmeResource',
   function($q, $location, $http, $scope, $uibModal, FileSaver, tlsConfigResource, cfgFileResource, adminAcmeResource) {
@@ -206,12 +211,12 @@ controller('AdminHTTPSConfigCtrl', ['$q', '$location', '$http', '$scope', '$uibM
         modal_open.resolve();
       }
     } else {
-      var go_url = 'https://' + $scope.admin.node.hostname + '/#/admin/network';
+      var go_url = 'https://' + $scope.admin.node.hostname + $scope.https_redirect_path;
 
       $uibModal.open({
         backdrop: 'static',
         keyboard: false,
-        templateUrl: 'views/admin/network/redirect_to_https.html',
+        templateUrl: $scope.https_redirect_controller,
         controller: 'safeRedirectModalCtrl',
         resolve: {
           https_url: function() { return go_url; },

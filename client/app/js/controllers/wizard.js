@@ -1,21 +1,29 @@
-GLClient.controller('WizardCtrl', ['$scope', '$location', '$route', '$http', 'Authentication', 'AdminUtils', 'CONSTANTS',
-                    function($scope, $location, $route, $http, Authentication, AdminUtils, CONSTANTS) {
+GLClient.controller('WizardCtrl', ['$scope', '$location', '$route', '$http', 'Authentication', 'AdminUtils', 'AdminNodeResource', 'CONSTANTS',
+                    function($scope, $location, $route, $http, Authentication, AdminUtils, AdminNodeResource, CONSTANTS) {
     $scope.email_regexp = CONSTANTS.email_regexp;
 
     $scope.step = 1;
 
-    var completed = false;
 
-    $scope.complete = function() {
-      if (completed) {
-          return;
+    var submitReq = false;
+
+    $scope.submitWizard = function() {
+      if (!submitReq) {
+        submitReq = true;
+        $http.post('wizard', $scope.wizard).then(function() {
+          Authentication.login('admin', $scope.wizard.admin.password, function() {
+            $scope.admin = {
+              node: AdminNodeResource.get(),
+            };
+            $scope.admin.node.$promise.then(function() {
+              $scope.https_redirect_modal = 'views/wizard/https_success_modal.html';
+              $scope.https_redirect_path = '/#/';
+              $scope.https_manual_enabled = false;
+              $scope.step = $scope.step + 1;
+            });
+          });
+        });
       }
-
-      $scope.completed = true;
-
-      $http.post('wizard', $scope.wizard).then(function() {
-        $scope.step += 1;
-      });
     };
 
     $scope.goToAdminInterface = function() {
@@ -23,6 +31,14 @@ GLClient.controller('WizardCtrl', ['$scope', '$location', '$route', '$http', 'Au
         $scope.reload("/admin/home");
       });
     };
+
+    $scope.finish = function() {
+      $scope.reload("/admin/home");
+    }
+
+    $scope.nextStep = function() {
+      $scope.step = $scope.step + 1;
+    }
 
     if ($scope.node.wizard_done) {
       /* if the wizard has been already performed redirect to the homepage */

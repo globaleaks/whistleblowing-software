@@ -225,6 +225,7 @@
       </button>
     </div>
   </div>
+
   <div id="WizardStep7" data-ng-show="step == 7" data-ng-form="wizardFormStep7">
     <div class="row wizard-block">
       <div class="col-md-12 title1" data-translate>License Agreement</div>
@@ -242,13 +243,32 @@
         <i class="glyphicon glyphicon-circle-arrow-left"></i>
         <span data-translate>previous step</span>
       </button>
+<<<<<<< f9e77c0cf9aba290e27d6f5b7a24c507a470a21b
       <button id="ButtonNext" class="btn btn-success btn-large" data-ng-click="complete()" data-ng-disabled="wizardFormStep7.$invalid">
+=======
+
+      <button id="ButtonNext" class="btn btn-success btn-large" data-ng-click="submitWizard()" data-ng-disabled="wizardFormStep7.$invalid">
+>>>>>>> Add LetsEncrypt HTTPS enrollment UI into wizard panels
         <span data-translate>next step</span>
         <i class="glyphicon glyphicon-circle-arrow-right"></i>
       </button>
     </div>
   </div>
-  <div id="WizardStep8" class="row" data-ng-show="step == 8">
+
+  <div id="WizardStep8" class="row" data-ng-if="step == 8">
+    <div class="col-md-12">
+      <h3 data-translate>Optional HTTPS Configuration</h3>
+      <div data-ng-include="'views/admin/network/https.html'"></div>
+    </div>
+    <div class="pager pull-right">
+      <button id="ButtonNext" class="btn btn-success btn-large" data-ng-click="nextStep()">
+        <span data-translate>skip step</span>
+        <i class="glyphicon glyphicon-circle-arrow-right"></i>
+      </button>
+    </div>
+  </div>
+
+  <div id="WizardStep9" class="row" data-ng-show="step == 9">
     <div class="col-md-10">
       <div class="congratulations">
         <div class="title1" data-translate>Congratulations!</div>
@@ -256,7 +276,15 @@
       </div>
     </div>
     <div class="pager pull-right">
+<<<<<<< f9e77c0cf9aba290e27d6f5b7a24c507a470a21b
       <button id="ButtonNext" class="btn btn-success btn-large" data-ng-click="goToAdminInterface()" type="submit" data-translate>Go to admin interface</button>
+=======
+      <button id="ButtonPrevious" class="btn btn-success btn-large" data-ng-click="step=step-1">
+        <i class="glyphicon glyphicon-circle-arrow-left"></i>
+        <span data-translate>previous step</span>
+      </button>
+      <button id="ButtonNext" class="btn btn-success btn-large" data-ng-click="finish()" type="submit" data-translate>Go to admin interface</button>
+>>>>>>> Add LetsEncrypt HTTPS enrollment UI into wizard panels
     </div>
   </div>
 </form>
