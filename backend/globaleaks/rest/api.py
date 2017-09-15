@@ -278,7 +278,7 @@ class APIResourceWrapper(Resource):
 
         request.setHeader(b'x-check-tor', bytes(request.client_using_tor))
 
-        self.detect_language(request)
+        request.language = unicode(self.detect_language(request))
 
         self.set_headers(request)
 
@@ -411,15 +411,15 @@ class APIResourceWrapper(Resource):
         return GLSettings.memory_copy.default_language
 
     def detect_language(self, request):
-        request.language = request.headers.get('gl-language')
+        language = request.headers.get('gl-language')
 
-        if request.language is None:
+        if language is None:
             for l in self.parse_accept_language_header(request):
                 if l in GLSettings.memory_copy.languages_enabled:
-                    request.language = l
+                    language = l
                     break
 
-        if request.language is None or request.language not in GLSettings.memory_copy.languages_enabled:
-            request.language = GLSettings.memory_copy.default_language
+        if language is None or language not in GLSettings.memory_copy.languages_enabled:
+            language = GLSettings.memory_copy.default_language
 
-        return request.language
+        return language

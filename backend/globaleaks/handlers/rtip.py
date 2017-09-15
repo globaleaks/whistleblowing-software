@@ -133,7 +133,7 @@ def serialize_rtip(store, rtip, language):
 
 
 def db_access_rtip(store, user_id, rtip_id):
-    return models.db_get(store, models.ReceiverTip, id=unicode(rtip_id), receiver_id= user_id)
+    return models.db_get(store, models.ReceiverTip, id=rtip_id, receiver_id= user_id)
 
 
 def db_access_wbfile(store, user_id, wbfile_id):
@@ -144,7 +144,7 @@ def db_access_wbfile(store, user_id, wbfile_id):
     itips_ids = [itip.id for itip in itips]
 
     wbfile = store.find(models.WhistleblowerFile,
-                        models.WhistleblowerFile.id == unicode(wbfile_id),
+                        models.WhistleblowerFile.id == wbfile_id,
                         models.WhistleblowerFile.receivertip_id == models.ReceiverTip.id,
                         In(models.ReceiverTip.internaltip_id, itips_ids)).one()
 
@@ -362,7 +362,7 @@ def create_comment(store, user_id, rtip_id, request):
 
 
 def db_get_itip_message_list(store, rtip):
-    return [serialize_message(store, message) for message in store.find(models.Message, models.Message.receivertip_id == rtip.id)]
+    return [serialize_message(store, message) for message in store.find(models.Message, receivertip_id=rtip.id)]
 
 
 @transact
@@ -509,18 +509,14 @@ class WhistleblowerFileHandler(BaseHandler):
 
         rtip = yield get_rtip(self.current_user.user_id, tip_id, self.request.language)
 
-        try:
-            # First: dump the file in the filesystem
-            filename = string.split(os.path.basename(uploaded_file['path']), '.aes')[0] + '.plain'
+        # First: dump the file in the filesystem
+        filename = string.split(os.path.basename(uploaded_file['path']), '.aes')[0] + '.plain'
 
-            dst = os.path.join(GLSettings.submission_path, filename)
+        dst = os.path.join(GLSettings.submission_path, filename)
 
-            directory_traversal_check(GLSettings.submission_path, dst)
+        directory_traversal_check(GLSettings.submission_path, dst)
 
-            uploaded_file = yield threads.deferToThread(write_upload_plaintext_to_disk, uploaded_file, dst)
-        except Exception as excep:
-            log.err("Unable to save a file in filesystem: %s" % excep)
-            raise errors.InternalServerError("Unable to accept new files")
+        uploaded_file = yield threads.deferToThread(write_upload_plaintext_to_disk, uploaded_file, dst)
 
         uploaded_file['creation_date'] = datetime_now()
         uploaded_file['submission'] = False

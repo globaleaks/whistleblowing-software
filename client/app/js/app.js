@@ -522,17 +522,27 @@ var GLClient = angular.module('GLClient', [
 
         $rootScope.answer = {value: null};
 
+        var array_to_map = function(array) {
+          var ret = {};
+          angular.forEach(array, function(element) {
+            ret[element.id] = element;
+          });
+          return ret;
+        }
+
         $rootScope.node = result.node;
+
         $rootScope.contexts = result.contexts;
+        $rootScope.contexts_by_id = array_to_map(result.contexts);
+
         $rootScope.receivers = result.receivers;
+        $rootScope.receivers_by_id = array_to_map(result.receivers);
 
-        var questionnaires = {};
-        angular.forEach(result.questionnaires, function(element) {
-          questionnaires[element.id] = element;
-        });
+        $rootScope.questionnaires = result.questionnaires;
+        $rootScope.questionnaires_by_id = array_to_map(result.questionnaires);
 
-        angular.forEach(result.contexts, function(element, key) {
-          $rootScope.contexts[key].questionnaire = questionnaires[$rootScope.contexts[key].questionnaire_id];
+        angular.forEach($rootScope.contexts_by_id, function(element, key) {
+          $rootScope.contexts_by_id[key].questionnaire = $rootScope.questionnaires_by_id[$rootScope.contexts_by_id[key].questionnaire_id];
         });
 
         if (result.node.favicon) {

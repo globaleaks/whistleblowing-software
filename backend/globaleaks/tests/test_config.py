@@ -85,10 +85,6 @@ class TestConfigL10N(helpers.TestGL):
 
         self.assertTrue(len(ret) == num_trans)
 
-    @inlineCallbacks
-    def test_enabled_langs(self):
-        yield self.enable_langs()
-
     @transact
     def enable_langs(self, store):
         res = EnabledLanguage.list(store)
@@ -100,18 +96,5 @@ class TestConfigL10N(helpers.TestGL):
         self.assertTrue(1500 < c < 2300)
 
     @inlineCallbacks
-    def test_disable_langs(self):
-        yield self.disable_langs()
-
-    @transact
-    def disable_langs(self, store):
-        c = len(EnabledLanguage.list(store))
-        i = store.find(ConfigL10N).count()
-        n = i/c
-
-        EnabledLanguage.remove_old_langs(store, [u'en'])
-
-        c_f = len(EnabledLanguage.list(store))
-        i_f = store.find(ConfigL10N).count()
-
-        self.assertTrue(i-i_f == n and c_f == c-1)
+    def test_enabled_langs(self):
+        yield self.enable_langs()

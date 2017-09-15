@@ -24,7 +24,7 @@ def get_l10n(store, lang):
 
     texts = read_json_file(path)
 
-    custom_texts = store.find(models.CustomTexts, models.CustomTexts.lang == unicode(lang)).one()
+    custom_texts = store.find(models.CustomTexts, models.CustomTexts.lang == lang).one()
     custom_texts = custom_texts.texts if custom_texts is not None else {}
 
     texts.update(custom_texts)

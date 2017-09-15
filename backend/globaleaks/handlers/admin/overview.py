@@ -6,7 +6,6 @@
 from globaleaks import models
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.orm import transact
-from globaleaks.utils.structures import Rosetta
 from globaleaks.utils.utility import datetime_to_ISO8601
 
 
@@ -14,18 +13,12 @@ from globaleaks.utils.utility import datetime_to_ISO8601
 def collect_tip_overview(store, language):
     tip_description_list = []
 
-    for itip, context in store.find((models.InternalTip, models.Context),
-                                    models.InternalTip.context_id == models.Context.id):
-
-        mo = Rosetta(context.localized_keys)
-        mo.acquire_storm_object(context)
-
+    for itip in store.find(models.InternalTip):
         tip_description_list.append({
             'id': itip.id,
             'creation_date': datetime_to_ISO8601(itip.creation_date),
             'expiration_date': datetime_to_ISO8601(itip.expiration_date),
-            'context_id': itip.context_id,
-            'context_name': mo.dump_localized_key('name', language)
+            'context_id': itip.context_id
         })
 
     return tip_description_list

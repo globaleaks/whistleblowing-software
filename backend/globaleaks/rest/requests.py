@@ -447,10 +447,9 @@ NodeDesc = {
 }
 
 TipOverviewDesc = {
+    'id': uuid_regexp,
     'context_id': uuid_regexp,
     'creation_date': DateType,
-    'context_name': unicode,
-    'id': uuid_regexp,
     'expiration_date': DateType
 }
 

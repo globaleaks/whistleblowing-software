@@ -10,7 +10,7 @@
   <tbody id="tipListBody">
     <tr data-ng-repeat="tip in admin.tip_overview | orderBy:orderProp:reverse">
       <td class="col-md-3">{{tip.id}}</td>
-      <td class="col-md-3">{{tip.context_name}}</td>
+      <td class="col-md-3">{{contexts_by_id[tip.context_id].name}}</td>
       <td class="col-md-3">{{tip.creation_date | date:'dd-MM-yyyy HH:mm'}}</td>
       <td class="col-md-3">{{tip.expiration_date | date:'dd-MM-yyyy HH:mm'}}</td>
     </tr>

@@ -11,8 +11,6 @@ from globaleaks import models, security, DATABASE_VERSION, FIRST_DATABASE_VERSIO
 from globaleaks.db.appdata import db_update_defaults, load_appdata
 from globaleaks.handlers.admin import files
 from globaleaks.handlers.base import GLSession
-from globaleaks.models.config import NodeFactory, NotificationFactory, PrivateFactory
-from globaleaks.models.l10n import EnabledLanguage
 from globaleaks.orm import transact, transact_sync
 from globaleaks.settings import GLSettings
 from globaleaks.utils.objectdict import ObjectDict
@@ -54,9 +52,9 @@ def init_db(store, use_single_lang=False):
     models.config.system_cfg_init(store)
 
     if not use_single_lang:
-        EnabledLanguage.add_all_supported_langs(store, appdata)
+        models.l10n.EnabledLanguage.add_all_supported_langs(store, appdata)
     else:
-        EnabledLanguage.add_new_lang(store, u'en', appdata)
+        models.l10n.EnabledLanguage.add_new_lang(store, u'en', appdata)
 
     file_descs = [
       (u'logo', 'data/logo.png'),
@@ -132,7 +130,7 @@ def db_refresh_exception_delivery_list(store):
     Constructs a list of (email_addr, public_key) pairs that will receive errors from the platform.
     If the email_addr is empty, drop the tuple from the list.
     """
-    notif_fact = NotificationFactory(store)
+    notif_fact = models.config.NotificationFactory(store)
     error_addr = notif_fact.get_val('exception_email_address')
     error_pk = notif_fact.get_val('exception_email_pgp_key_public')
 
@@ -151,7 +149,7 @@ def db_refresh_memory_variables(store):
     This routine loads in memory few variables of node and notification tables
     that are subject to high usage.
     """
-    node_ro = ObjectDict(NodeFactory(store).admin_export())
+    node_ro = ObjectDict(models.config.NodeFactory(store).admin_export())
 
     GLSettings.memory_copy = node_ro
 
@@ -165,7 +163,7 @@ def db_refresh_memory_variables(store):
     enabled_langs = models.l10n.EnabledLanguage.list(store)
     GLSettings.memory_copy.languages_enabled = enabled_langs
 
-    notif_fact = NotificationFactory(store)
+    notif_fact = models.config.NotificationFactory(store)
     notif_ro = ObjectDict(notif_fact.admin_export())
 
     GLSettings.memory_copy.notif = notif_ro
@@ -175,7 +173,7 @@ def db_refresh_memory_variables(store):
 
     db_refresh_exception_delivery_list(store)
 
-    GLSettings.memory_copy.private = ObjectDict(PrivateFactory(store).mem_copy_export())
+    GLSettings.memory_copy.private = ObjectDict(models.config.PrivateFactory(store).mem_copy_export())
 
     if GLSettings.memory_copy.private.admin_api_token_digest != '':
         api_id = store.find(models.User.id, models.User.role==u'admin').order_by(models.User.creation_date).first()
