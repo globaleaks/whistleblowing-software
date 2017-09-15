@@ -35,12 +35,11 @@ def db_assign_submission_progressive(store):
     else:
         now = datetime_now()
         update = counter.update_date
-        if ((now > counter.update_date) and
+        if ((now > update) and
             (not((now.year == update.year) and (now.month == update.month) and (now.day == update.day)))):
-            counter.counter = 1
-        else:
-            counter.counter += 1
+            counter.counter = 0
 
+        counter.counter += 1
         counter.update_date = now
 
     return counter.counter
@@ -318,7 +317,7 @@ def db_create_submission(store, request, uploaded_files, client_using_tor):
     if not context:
         raise errors.ModelNotFound
 
-    steps = db_get_questionnaire(store, context.questionnaire_id, None)['steps']
+    steps = db_get_questionnaire(store, questionnaire.id, None)['steps']
     questionnaire_hash = unicode(sha256(json.dumps(steps)))
 
     submission = models.InternalTip()

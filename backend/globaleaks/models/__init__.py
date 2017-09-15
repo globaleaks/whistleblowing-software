@@ -41,8 +41,8 @@ def get(store, model, *args, **kwargs):
     return db_get(store, model, *args, **kwargs)
 
 
-def db_delete(store, model, **kwargs):
-    return store.find(model, **kwargs).remove()
+def db_delete(store, model, *args, **kwargs):
+    return store.find(model, *args, **kwargs).remove()
 
 
 @transact

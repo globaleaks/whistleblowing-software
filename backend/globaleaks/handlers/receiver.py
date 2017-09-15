@@ -16,12 +16,12 @@ from globaleaks.handlers.user import user_serialize_user
 from globaleaks.orm import transact
 from globaleaks.rest import requests, errors
 from globaleaks.settings import GLSettings
-from globaleaks.utils.structures import Rosetta, get_localized_values
+from globaleaks.utils.structures import get_localized_values
 from globaleaks.utils.utility import log, datetime_to_ISO8601
 
 
 def receiver_serialize_receiver(store, receiver, language):
-    user = store.find(models.User, models.User.id == receiver.id).one()
+    user = store.find(models.User, id= receiver.id).one()
 
     contexts = [id for id in store.find(models.ReceiverContext.context_id, models.ReceiverContext.receiver_id == receiver.id)]
 

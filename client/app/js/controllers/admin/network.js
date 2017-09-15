@@ -143,9 +143,9 @@ controller('AdminHTTPSConfigCtrl', ['$q', '$location', '$http', '$scope', '$uibM
 
   $scope.statusClass = function(fileSum) {
     if (angular.isDefined(fileSum) && fileSum.set) {
-        return {'text-success': true};
+      return {'text-success': true};
     } else {
-        return {};
+      return {};
     }
   };
 
@@ -198,8 +198,8 @@ controller('AdminHTTPSConfigCtrl', ['$q', '$location', '$http', '$scope', '$uibM
             modal_open: function() { return modal_open; },
           },
         });
-        modal_open.promise.then($scope.tls_config.$disable);
 
+        modal_open.promise.then($scope.tls_config.$disable);
       } else {
         // Just disable https and refresh the interface
         modal_open.promise.then($scope.tls_config.$disable).then(refreshConfig);
@@ -219,8 +219,6 @@ controller('AdminHTTPSConfigCtrl', ['$q', '$location', '$http', '$scope', '$uibM
         },
       });
 
-      // TODO tls_config is polluted with angular state.
-      // It should be cleaned for the POST.
       modal_open.promise.then($scope.tls_config.$enable);
     }
   };

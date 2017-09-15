@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
-
-from storm.expr import And, In
+from storm.expr import And
 from storm.locals import Unicode, Storm, Bool
 
 from globaleaks import LANGUAGES_SUPPORTED_CODES
@@ -22,29 +21,20 @@ class EnabledLanguage(Storm):
         return "<EnabledLang: %s>" % self.name
 
     @classmethod
-    def add_new_lang(cls, store, lang_code, appdata):
+    def list(cls, store):
+        return [name for name in store.find(EnabledLanguage.name)]
+
+    @classmethod
+    def add_new_lang(cls, store, lang_code, appdata_dict):
         store.add(cls(lang_code))
 
-        NotificationL10NFactory(store).initialize(lang_code, appdata)
-        NodeL10NFactory(store).initialize(lang_code, appdata)
-
-    @classmethod
-    def remove_old_langs(cls, store, lang_codes):
-        store.find(cls, In(cls.name, lang_codes)).remove()
-
-    @classmethod
-    def list(cls, store):
-        return [e.name for e in store.find(cls)]
+        NotificationL10NFactory(store).initialize(lang_code, appdata_dict)
+        NodeL10NFactory(store).initialize(lang_code, appdata_dict)
 
     @classmethod
     def add_all_supported_langs(cls, store, appdata_dict):
-        node_l10n = NodeL10NFactory(store)
-        notif_l10n = NotificationL10NFactory(store)
-
         for lang_code in LANGUAGES_SUPPORTED_CODES:
-            store.add(cls(lang_code))
-            node_l10n.initialize(lang_code, appdata_dict)
-            notif_l10n.initialize(lang_code, appdata_dict)
+            cls.add_new_lang(store, lang_code, appdata_dict)
 
 
 class ConfigL10N(Storm):

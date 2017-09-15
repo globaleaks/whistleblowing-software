@@ -198,7 +198,7 @@ class TestRTipInstance(helpers.TestHandlerWithPopulatedDB):
 
         for rtip_desc in rtip_descs:
             handler = self.request(role='receiver', user_id = rtip_desc['receiver_id'])
-            yield self.assertFailure(handler.delete("unexistent_tip"), errors.ModelNotFound)
+            yield self.assertFailure(handler.delete(u"unexistent_tip"), errors.ModelNotFound)
 
     @inlineCallbacks
     def test_delete_existent_tip_by_existent_and_logged_but_wrong_receiver(self):
@@ -206,7 +206,7 @@ class TestRTipInstance(helpers.TestHandlerWithPopulatedDB):
 
         for rtip_desc in rtip_descs:
             handler = self.request(role='receiver', user_id = rtip_desc['receiver_id'])
-            yield self.assertFailure(handler.delete("unexistent_tip"), errors.ModelNotFound)
+            yield self.assertFailure(handler.delete(u"unexistent_tip"), errors.ModelNotFound)
 
 
 class TestRTipCommentCollection(helpers.TestHandlerWithPopulatedDB):

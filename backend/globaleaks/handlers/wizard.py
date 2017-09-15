@@ -1,28 +1,25 @@
 # -*- coding: UTF-8
 #
 # wizard
+from globaleaks import models
 from globaleaks.db import db_refresh_memory_variables
 from globaleaks.handlers.admin.context import db_create_context
 from globaleaks.handlers.admin.user import db_create_admin_user, db_create_receiver_user
 from globaleaks.handlers.base import BaseHandler
-from globaleaks.handlers.public import serialize_node
-from globaleaks.models import profiles
-from globaleaks.models.config import NodeFactory
-from globaleaks.models.l10n import EnabledLanguage, NodeL10NFactory
+from globaleaks.models import config, l10n, profiles
 from globaleaks.orm import transact
 from globaleaks.rest import requests, errors
-from globaleaks.rest.apicache import GLApiCache
 from globaleaks.settings import GLSettings
 from globaleaks.utils.utility import log, datetime_null
-from twisted.internet.defer import inlineCallbacks
 
 
 @transact
 def wizard(store, request, language):
-    node = NodeFactory(store)
+    models.db_delete(store, l10n.EnabledLanguage, l10n.EnabledLanguage.name != language)
+
+    node = config.NodeFactory(store)
 
     if node.get_val('wizard_done'):
-        # TODO report as anomaly
         log.err("DANGER: Wizard already initialized!")
         raise errors.ForbiddenOperation
 
@@ -35,7 +32,7 @@ def wizard(store, request, language):
     if GLSettings.memory_copy.onionservice is not None:
         node.set_val('onionservice', GLSettings.memory_copy.onionservice)
 
-    node_l10n = NodeL10NFactory(store)
+    node_l10n = l10n.NodeL10NFactory(store)
 
     node_l10n.set_val('description', language, request['node']['description'])
     node_l10n.set_val('header_title_homepage', language, request['node']['name'])
@@ -43,11 +40,6 @@ def wizard(store, request, language):
     profiles.load_profile(store, request['profile'])
 
     context = db_create_context(store, request['context'], language)
-
-    langs_to_drop = EnabledLanguage.list(store)
-    langs_to_drop.remove(language)
-    if len(langs_to_drop):
-        EnabledLanguage.remove_old_langs(store, langs_to_drop)
 
     request['receiver']['contexts'] = [context.id]
     request['receiver']['language'] = language
@@ -81,17 +73,10 @@ class Wizard(BaseHandler):
     Setup Wizard handler
     """
     check_roles = 'unauthenticated'
+    invalidate_cache = True
 
-    @inlineCallbacks
     def post(self):
         request = self.validate_message(self.request.content.read(),
                                         requests.WizardDesc)
 
-        # Wizard will raise exceptions if there are any errors with the request
-        yield wizard(request, self.request.language)
-
-        yield serialize_node(self.request.language)
-
-        # Invalidation is performed at this stage only after the asserts within
-        # wizard have ensured that the wizard can be executed.
-        GLApiCache.invalidate()
+        return wizard(request, self.request.language)

@@ -68,11 +68,9 @@ def enable_disable_languages(store, request):
     to_remove = list(set(cur_enabled_langs) - set(new_enabled_langs))
 
     if len(to_remove):
-        users = store.find(models.User, In(models.User.language, to_remove))
-        for user in users:
-            user.language = request['default_language']
+        store.find(models.User, In(models.User.language, to_remove)).set(language=request['default_language'])
 
-        EnabledLanguage.remove_old_langs(store, to_remove)
+        models.db_delete(store, models.l10n.EnabledLanguage, In(models.l10n.EnabledLanguage.name, to_remove))
 
 
 # TODO This cmd issues at least 3 SQL queries on node config.

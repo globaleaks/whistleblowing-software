@@ -188,7 +188,7 @@ def serialize_questionnaire(store, questionnaire, language):
     :param language: the language in which to localize data.
     :return: a dictionary representing the serialization of the questionnaire.
     """
-    steps = store.find(models.Step, models.Step.questionnaire_id == questionnaire.id)
+    steps = store.find(models.Step, questionnaire_id=questionnaire.id)
 
     ret_dict = {
         'id': questionnaire.id,
@@ -256,7 +256,7 @@ def serialize_field(store, field, language, data=None):
         data = db_prepare_fields_serialization(store, [field])
 
     if field.template_id is not None:
-        f_to_serialize = store.find(models.Field, models.Field.id == field.template_id).one()
+        f_to_serialize = store.find(models.Field, id=field.template_id).one()
     else:
         f_to_serialize = field
 
