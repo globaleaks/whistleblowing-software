@@ -182,7 +182,8 @@ controller('AdminHTTPSConfigCtrl', ['$q', '$location', '$http', '$scope', '$uibM
   };
 
   $scope.toggleCfg = function() {
-    var open_promise = $q.defer();
+    // A promise which resolves only after a modal has been displayed
+    var modal_open = $q.defer();
 
     if ($scope.tls_config.enabled) {
       if ($location.protocol() === 'https') {
@@ -194,15 +195,15 @@ controller('AdminHTTPSConfigCtrl', ['$q', '$location', '$http', '$scope', '$uibM
           templateUrl: 'views/partials/disable_input.html',
           controller: 'disableInputModalCtrl',
           resolve: {
-            open_promise: function() { return open_promise; },
+            modal_open: function() { return modal_open; },
           },
         });
-        open_promise.promise.then($scope.tls_config.$disable);
+        modal_open.promise.then($scope.tls_config.$disable);
 
       } else {
         // Just disable https and refresh the interface
-        open_promise.promise.then($scope.tls_config.$disable).then(refreshConfig);
-        open_promise.resolve();
+        modal_open.promise.then($scope.tls_config.$disable).then(refreshConfig);
+        modal_open.resolve();
       }
     } else {
       var go_url = 'https://' + $scope.admin.node.hostname + '/#/admin/network';
@@ -214,13 +215,13 @@ controller('AdminHTTPSConfigCtrl', ['$q', '$location', '$http', '$scope', '$uibM
         controller: 'safeRedirectModalCtrl',
         resolve: {
           https_url: function() { return go_url; },
-          open_promise: function() { return open_promise; },
+          modal_open: function() { return modal_open; },
         },
       });
 
       // TODO tls_config is polluted with angular state.
       // It should be cleaned for the POST.
-      open_promise.promise.then($scope.tls_config.$enable);
+      modal_open.promise.then($scope.tls_config.$enable);
     }
   };
 
@@ -251,10 +252,10 @@ controller('AdminHTTPSConfigCtrl', ['$q', '$location', '$http', '$scope', '$uibM
   }
 }])
 .controller('disableInputModalCtrl', ['$scope', function($scope) {
-  $scope.$resolve.open_promise.resolve();
+  $scope.$resolve.modal_open.resolve();
 }])
 .controller('safeRedirectModalCtrl', ['$scope', '$timeout', function($scope, $timeout) {
-  $scope.$resolve.open_promise.resolve();
+  $scope.$resolve.modal_open.resolve();
   $timeout(function() {
     location.reload();
   }, 15000);
