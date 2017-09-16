@@ -1,7 +1,7 @@
 GLClient.controller('ReceiverTipsCtrl', ['$scope',  '$http', '$route', '$location', '$uibModal', 'RTipExport', 'ReceiverTips',
   function($scope, $http, $route, $location, $uibModal, RTipExport, ReceiverTips) {
   $scope.tips = ReceiverTips.query(function(tips) {
-    angular.forEach($scope.tips, function (tip) {
+    angular.forEach(tips, function (tip) {
       tip.context = $scope.contexts_by_id[tip.context_id];
       tip.context_name = tip.context.name;
     });
