@@ -53,13 +53,15 @@ def db_get_wbfile_list(store, wbtip_id):
 
 
 def db_get_wbtip(store, wbtip_id, language):
-    wbtip = models.db_get(store, models.WhistleblowerTip, id=wbtip_id)
-    internaltip = db_get_internaltip_from_usertip(store, wbtip)
+    wbtip, itip = models.db_get(store,
+                                (models.WhistleblowerTip, models.InternalTip),
+                                models.WhistleblowerTip.id == wbtip_id,
+                                models.InternalTip.id == wbtip_id)
 
-    internaltip.wb_access_counter += 1
-    internaltip.wb_last_access = datetime_now()
+    itip.wb_access_counter += 1
+    itip.wb_last_access = datetime_now()
 
-    return serialize_wbtip(store, wbtip, language)
+    return serialize_wbtip(store, wbtip, itip, language)
 
 
 @transact
@@ -67,10 +69,8 @@ def get_wbtip(store, wbtip_id, language):
     return db_get_wbtip(store, wbtip_id, language)
 
 
-def serialize_wbtip(store, wbtip, language):
-    ret = serialize_usertip(store, wbtip, language)
-
-    internaltip = db_get_internaltip_from_usertip(store, wbtip)
+def serialize_wbtip(store, wbtip, itip, language):
+    ret = serialize_usertip(store, wbtip, itip, language)
 
     # filter submission progressive
     # to prevent a fake whistleblower to assess every day how many
@@ -78,7 +78,7 @@ def serialize_wbtip(store, wbtip, language):
     del ret['progressive']
 
     ret['id'] = wbtip.id
-    ret['comments'] = db_get_itip_comment_list(store, internaltip)
+    ret['comments'] = db_get_itip_comment_list(store, itip)
     ret['rfiles'] = db_get_rfile_list(store, wbtip.id)
     ret['wbfiles'] = db_get_wbfile_list(store, wbtip.id)
 

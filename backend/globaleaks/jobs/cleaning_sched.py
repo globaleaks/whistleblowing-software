@@ -79,13 +79,13 @@ class CleaningSchedule(LoopingJob):
             earliest_expiration_date = datetime_never()
 
             for rtip in rtips:
-                internaltip = store.find(models.InternalTip,
-                                         models.InternalTip.id == rtip.internaltip_id).one()
+                itip = store.find(models.InternalTip,
+                                  models.InternalTip.id == rtip.internaltip_id).one()
 
-                if internaltip.expiration_date < earliest_expiration_date:
-                    earliest_expiration_date = internaltip.expiration_date
+                if itip.expiration_date < earliest_expiration_date:
+                    earliest_expiration_date = itip.expiration_date
 
-                tips_desc.append(serialize_rtip(store, rtip, user.language))
+                tips_desc.append(serialize_rtip(store, rtip, itip, user.language))
 
             data = {
                'type': u'tip_expiration_summary',

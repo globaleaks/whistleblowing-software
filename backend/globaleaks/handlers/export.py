@@ -22,20 +22,20 @@ from globaleaks.utils.zipstream import ZipStream
 
 @transact
 def get_tip_export(store, user_id, rtip_id, language):
-    rtip = db_access_rtip(store, user_id, rtip_id)
+    rtip, itip = db_access_rtip(store, user_id, rtip_id)
 
     receiver, context = store.find((models.Receiver, models.Context),
                                    models.Receiver.id == rtip.receiver_id,
                                    models.Context.id == models.InternalTip.context_id,
                                    models.InternalTip.id == rtip.internaltip_id).one()
 
-    rtip_dict = serialize_rtip(store, rtip, language)
+    rtip_dict = serialize_rtip(store, rtip, itip, language)
 
     export_dict = {
         'type': u'export_template',
         'node': db_admin_serialize_node(store, language),
         'notification': db_get_notification(store, language),
-        'tip': serialize_rtip(store, rtip, language),
+        'tip': serialize_rtip(store, rtip, itip, language),
         'context': admin_serialize_context(store, context, language),
         'receiver': admin_serialize_receiver(store, receiver, language),
         'comments': rtip_dict['comments'],

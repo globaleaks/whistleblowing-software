@@ -543,10 +543,9 @@ class TestGL(unittest.TestCase):
     @transact
     def get_rtips(self, store):
         ret = []
-        for tip in store.find(models.ReceiverTip):
-            x = rtip.serialize_rtip(store, tip, 'en')
-            x['receiver_id'] = tip.receiver_id
-            ret.append(x)
+        for r, i in store.find((models.ReceiverTip, models.InternalTip),
+                               models.ReceiverTip.internaltip_id == models.InternalTip.id):
+            ret.append(rtip.serialize_rtip(store, r, i, 'en'))
 
         return ret
 
@@ -557,10 +556,11 @@ class TestGL(unittest.TestCase):
     @transact
     def get_wbtips(self, store):
         ret = []
-        for tip in store.find(models.WhistleblowerTip):
-            x = wbtip.serialize_wbtip(store, tip, 'en')
+        for w, i in store.find((models.WhistleblowerTip, models.InternalTip),
+                               models.WhistleblowerTip.id == models.InternalTip.id):
+            x = wbtip.serialize_wbtip(store, w, i, 'en')
             r_ids = store.find(models.ReceiverTip.receiver_id,
-                               models.ReceiverTip.internaltip_id == tip.id)
+                               models.ReceiverTip.internaltip_id == w.id)
 
             x['receivers_ids'] = [r_id for r_id in r_ids]
             ret.append(x)
