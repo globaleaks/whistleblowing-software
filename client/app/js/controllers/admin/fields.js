@@ -24,12 +24,6 @@ controller('AdminFieldEditorCtrl', ['$scope', '$filter', '$uibModal', 'AdminFiel
     $scope.new_field = {};
     $scope.fields = $scope.field.children;
 
-    if ($scope.$parent.fields) {
-      $scope.siblings = $scope.$parent.fields;
-    } else {
-      $scope.siblings = $scope.step.children;
-    }
-
     $scope.siblings = $filter('filter')($scope.siblings, {'id': '!' + $scope.field.id});
 
     $scope.toggleEditing = function () {
@@ -179,7 +173,40 @@ controller('AdminFieldEditorCtrl', ['$scope', '$filter', '$uibModal', 'AdminFiel
     $scope.fieldIsMarkableSubjectToStats = $scope.isMarkableSubjectToStats($scope.field);
     $scope.fieldIsMarkableSubjectToPreview = $scope.isMarkableSubjectToPreview($scope.field);
 
+    function findParents(field_id, field_lst) {
+       for (var i = 0; i < field_lst.length; i++) {
+         var field = field_lst[i];
+         var pot = [field.id].concat(findParents(field_id, field.children));
+         if (pot.indexOf(field_id) > -1) {
+            return pot;
+         }
+       }
+       return [];
+    };
+
     $scope.triggerFieldDialog = function(option) {
+      var t = [];
+      $scope.questionnaire.steps.forEach(function(step) {
+        step.children.forEach(function(f) {
+          t.push(f);
+          t = t.concat(enumerateChildren(f));
+        });
+      });
+
+      var direct_parents = findParents($scope.field.id, $scope.step.children);
+      $scope.all_fields = t.filter(function(f) { return direct_parents.indexOf(f.id) < 0; })
+
+      function enumerateChildren(field) {
+        var c = [];
+        if (angular.isDefined(field.children)) {
+          field.children.forEach(function(field) {
+            c.push(field);
+            c = c.concat(enumerateChildren(field));
+          });
+        }
+        return c;
+      }
+
       return $scope.Utils.openConfirmableModalDialog('views/partials/trigger_field.html', option, $scope);
     };
 

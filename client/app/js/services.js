@@ -1171,6 +1171,20 @@ factory('AdminUtils', ['AdminContextResource', 'AdminQuestionnaireResource', 'Ad
         return false;
       };
 
+      var findField = function(answers_obj, field_id) {
+        var r;
+        for (var key in answers_obj) {
+          if (key === field_id) {
+            return answers_obj[key][0];
+          }
+
+          if (r === undefined) {
+            r = findField(answers_obj[key][0], field_id);
+          }
+        }
+        return r;
+      };
+
       var isFieldTriggered = function(field, answers, score) {
         if (field.triggered_by_score > score) {
           return false;
@@ -1180,12 +1194,15 @@ factory('AdminUtils', ['AdminContextResource', 'AdminQuestionnaireResource', 'Ad
           return true;
         }
 
-        for (var i=0; i<field.triggered_by_options.length; i++) {
-          if (answers[field.triggered_by_options[i].field] === undefined) {
+        for (var i=0; i < field.triggered_by_options.length; i++) {
+          var trigger_obj = field.triggered_by_options[i];
+          var answers_field = findField(answers, trigger_obj.field);
+          if (answers_field === undefined) {
             continue;
           }
 
-          if (field.triggered_by_options[i].option === answers[field.triggered_by_options[i].field][0]['value']) {
+          // Check if triggering field is in answers object
+          if (trigger_obj.option === answers_field.value) {
             return true;
           }
         }
