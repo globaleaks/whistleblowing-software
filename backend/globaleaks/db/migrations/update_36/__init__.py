@@ -3,7 +3,6 @@
 from urlparse import urlparse
 
 from globaleaks.db.migrations.update import MigrationBase
-from globaleaks.models import *
 from globaleaks.models.config import NodeFactory, add_raw_config, del_config
 
 

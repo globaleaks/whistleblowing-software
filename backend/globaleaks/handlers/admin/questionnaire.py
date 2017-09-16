@@ -8,11 +8,10 @@ from twisted.internet.defer import inlineCallbacks, returnValue
 
 from globaleaks import models, QUESTIONNAIRE_EXPORT_VERSION
 from globaleaks.handlers.base import BaseHandler
-from globaleaks.handlers.admin.field import db_create_field
 from globaleaks.handlers.admin.step import db_create_step
 from globaleaks.handlers.public import serialize_questionnaire
 from globaleaks.orm import transact
-from globaleaks.rest import errors, requests
+from globaleaks.rest import requests
 from globaleaks.utils.structures import fill_localized_keys
 from globaleaks.utils.utility import log, datetime_to_ISO8601, datetime_now
 

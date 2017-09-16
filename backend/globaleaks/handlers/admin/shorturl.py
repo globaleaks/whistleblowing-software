@@ -7,7 +7,7 @@
 from globaleaks import models
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.orm import transact
-from globaleaks.rest import requests, errors
+from globaleaks.rest import requests
 
 
 def serialize_shorturl(shorturl):

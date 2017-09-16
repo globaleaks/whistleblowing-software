@@ -8,7 +8,7 @@ from globaleaks import models
 from globaleaks.handlers.admin.modelimgs import db_get_model_img
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.orm import transact
-from globaleaks.rest import requests, errors
+from globaleaks.rest import requests
 from globaleaks.security import change_password, parse_pgp_key
 from globaleaks.settings import GLSettings
 from globaleaks.utils.structures import get_localized_values

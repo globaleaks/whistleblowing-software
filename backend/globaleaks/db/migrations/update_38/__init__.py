@@ -1,8 +1,9 @@
 # -*- coding: UTF-8
 from storm.locals import Int, Bool, Unicode, JSON
 
+from globaleaks import models
 from globaleaks.db.migrations.update import MigrationBase
-from globaleaks.models import *
+from globaleaks.models.validators import shortlocal_v, longlocal_v
 
 
 old_keys = ["%NodeName%", "%HiddenService%", "%PublicSite%", "%ContextName%", "%RecipientName%", "%TipID%", "%TipNum%", "%TipLabel%", "%EventTime%", "%SubmissionDate%", "%ExpirationDate%", "%ExpirationWatch%", "%QuestionnaireAnswers%", "%Comments%", "%Messages%", "%TorURL%", "%T2WURL%", "%FileName%", "%FileSize%", "%Content%", "%ExpiringSubmissionCount%", "%EarliestExpirationDate%", "%PGPKeyInfoList%", "%PGPKeyInfo%", "%AnomalyDetailDisk%", "%AnomalyDetailActivities%", "%ActivityAlarmLevel%", "%ActivityDump%", "%NodeName%", "%FreeMemory%", "%TotalMemory%", "%ExpirationDate%", "%TipTorURL", "TipT2WURL"]
@@ -11,7 +12,7 @@ old_keys = ["%NodeName%", "%HiddenService%", "%PublicSite%", "%ContextName%", "%
 new_keys = ["{NodeName}", "{HiddenService}", "{PublicSite}", "{ContextName}", "{RecipientName}", "{TipID}", "{TipNum}", "{TipLabel}", "{EventTime}", "{SubmissionDate}", "{ExpirationDate}", "{ExpirationWatch}", "{QuestionnaireAnswers}", "{Comments}", "{Messages}", "{TorUrl}", "{HTTPSUrl}", "{FileName}", "{FileSize}", "{Content}", "{ExpiringSubmissionCount}", "{EarliestExpirationDate}", "{PGPKeyInfoList}", "{PGPKeyInfo}", "{AnomalyDetailDisk}", "{AnomalyDetailActivities}", "{ActivityAlarmLevel}", "{ActivityDump}", "{NodeName}", "{FreeMemory}", "{TotalMemory}", "{ExpirationDate}", "{TorUrl}", "{HTTPSUrl}"]
 
 
-class Field_v_37(ModelWithID):
+class Field_v_37(models.ModelWithID):
     __storm_table__ = 'field'
     x = Int(default=0)
     y = Int(default=0)
@@ -34,7 +35,7 @@ class Field_v_37(ModelWithID):
     editable = Bool(default=True)
 
 
-class Questionnaire_v_37(ModelWithID):
+class Questionnaire_v_37(models.ModelWithID):
     __storm_table__ = 'questionnaire'
     key = Unicode(default=u'')
     name = Unicode(default=u'')

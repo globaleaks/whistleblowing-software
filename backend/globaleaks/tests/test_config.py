@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from globaleaks import models, LANGUAGES_SUPPORTED
+from globaleaks import LANGUAGES_SUPPORTED
 from globaleaks.models import config
 from globaleaks.models.config_desc import GLConfig
 from globaleaks.models.l10n import NodeL10NFactory, EnabledLanguage, ConfigL10N

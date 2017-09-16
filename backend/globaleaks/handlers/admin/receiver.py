@@ -7,10 +7,8 @@
 from globaleaks import models
 from globaleaks.handlers.admin.user import db_associate_context_receivers, admin_serialize_receiver
 from globaleaks.handlers.base import BaseHandler
-from globaleaks.handlers.user import user_serialize_user
 from globaleaks.orm import transact
-from globaleaks.rest import errors, requests
-from globaleaks.settings import GLSettings
+from globaleaks.rest import requests
 from globaleaks.utils.structures import fill_localized_keys
 
 

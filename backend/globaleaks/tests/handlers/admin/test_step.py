@@ -4,7 +4,6 @@ import copy
 from globaleaks.handlers import admin
 from globaleaks.handlers.admin.context import create_context
 from globaleaks.handlers.admin.step import create_step
-from globaleaks.rest import errors
 from globaleaks.tests import helpers
 from twisted.internet.defer import inlineCallbacks
 

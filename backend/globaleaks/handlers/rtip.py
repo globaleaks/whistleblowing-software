@@ -23,7 +23,7 @@ from globaleaks.orm import transact
 from globaleaks.rest import errors, requests
 from globaleaks.settings import GLSettings
 from globaleaks.utils.utility import log, get_expiration, datetime_now, datetime_never, \
-    datetime_to_ISO8601, datetime_to_pretty_str
+    datetime_to_ISO8601
 
 
 def receiver_serialize_rfile(store, rfile):
