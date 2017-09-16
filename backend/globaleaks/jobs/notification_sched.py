@@ -61,7 +61,8 @@ class MailGenerator(object):
 
         if cache_key not in self.cache:
             if key == 'tip':
-                cache_obj = serialize_rtip(store, obj, language)
+                itip = store.find(models.InternalTip, id=obj.internaltip_id).one()
+                cache_obj = serialize_rtip(store, obj, itip, language)
             elif key == 'context':
                 cache_obj = admin_serialize_context(store, obj, language)
             elif key == 'receiver':

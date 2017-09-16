@@ -249,15 +249,12 @@ def db_get_internaltip_from_usertip(store, usertip):
                           models.InternalTip.id == usertip.internaltip_id).one()
 
 
-def serialize_usertip(store, usertip, language):
-    internaltip = db_get_internaltip_from_usertip(store, usertip)
-
-    ret = serialize_itip(store, internaltip, language)
+def serialize_usertip(store, usertip, itip, language):
+    ret = serialize_itip(store, itip, language)
     ret['id'] = usertip.id
-    ret['internaltip_id'] = internaltip.id
+    ret['internaltip_id'] = itip.id
     ret['answers'] = db_serialize_questionnaire_answers(store, usertip)
-    ret['total_score'] = internaltip.total_score
-
+    ret['total_score'] = itip.total_score
     return ret
 
 
