@@ -186,14 +186,13 @@ controller('AdminFieldEditorCtrl', ['$scope', '$filter', '$uibModal', 'AdminFiel
 
     $scope.triggerFieldDialog = function(option) {
       var t = [];
-      if (angular.isDefined($scope.questionnaire.steps)) {
-        $scope.questionnaire.steps.forEach(function(step) {
-          step.children.forEach(function(f) {
-            t.push(f);
-            t = t.concat(enumerateChildren(f));
-          });
+      $scope.questionnaire.steps.forEach(function(step) {
+        step.children.forEach(function(f) {
+          t.push(f);
+          t = t.concat(enumerateChildren(f));
         });
-      }
+      });
+
       var direct_parents = findParents($scope.field.id, $scope.step.children);
       $scope.all_fields = t.filter(function(f) { return direct_parents.indexOf(f.id) < 0; })
 

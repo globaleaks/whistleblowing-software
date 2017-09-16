@@ -1134,13 +1134,10 @@ factory('AdminUtils', ['AdminContextResource', 'AdminQuestionnaireResource', 'Ad
       var findField = function(answers_obj, field_id) {
         var r;
         for (var key in answers_obj) {
-          if (!key.match(CONSTANTS.uuid_regexp)) {
-            continue;
-          }
-
-          if (key == field_id) {
+          if (key === field_id) {
             return answers_obj[key][0];
           }
+
           if (r === undefined) {
             r = findField(answers_obj[key][0], field_id);
           }
@@ -1193,8 +1190,7 @@ factory('AdminUtils', ['AdminContextResource', 'AdminQuestionnaireResource', 'Ad
      "onionservice_regexp": /^[0-9a-z]{16}\.onion$/,
      "https_regexp": /^https:\/\/([a-z0-9-]+)\.(.*)$|^$/,
      "shortener_shorturl_regexp": /\/s\/[a-z0-9]{1,30}$/,
-     "shortener_longurl_regexp": /\/[a-z0-9#=_&?/-]{1,255}$/,
-     "uuid_regexp": /^([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})$/,
+     "shortener_longurl_regexp": /\/[a-z0-9#=_&?/-]{1,255}$/
 }).
   factory('GLTranslate', ['$translate', '$location','tmhDynamicLocale',
   function($translate, $location, tmhDynamicLocale) {
