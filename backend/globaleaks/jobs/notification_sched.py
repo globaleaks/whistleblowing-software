@@ -66,7 +66,8 @@ class MailGenerator(object):
             elif key == 'context':
                 cache_obj = admin_serialize_context(store, obj, language)
             elif key == 'receiver':
-                cache_obj = admin_serialize_receiver(store, obj, language)
+                user = store.find(models.User, id=obj.id).one()
+                cache_obj = admin_serialize_receiver(store, obj, user, language)
             elif key == 'message':
                 cache_obj = serialize_message(store, obj)
             elif key == 'comment':

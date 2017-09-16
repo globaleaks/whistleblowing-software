@@ -73,7 +73,7 @@ class CleaningSchedule(LoopingJob):
             node_desc = db_admin_serialize_node(store, language)
             notification_desc = db_get_notification(store, language)
 
-            receiver_desc = admin_serialize_receiver(store, receiver, language)
+            receiver_desc = admin_serialize_receiver(store, receiver, user, language)
 
             tips_desc = []
             earliest_expiration_date = datetime_never()

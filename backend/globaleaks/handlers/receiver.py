@@ -20,7 +20,7 @@ from globaleaks.utils.structures import get_localized_values
 from globaleaks.utils.utility import log, datetime_to_ISO8601
 
 
-def receiver_serialize_receiver(store, receiver, language):
+def receiver_serialize_receiver(store, receiver, user, language):
     user = store.find(models.User, id= receiver.id).one()
 
     contexts = [id for id in store.find(models.ReceiverContext.context_id, models.ReceiverContext.receiver_id == receiver.id)]
@@ -40,20 +40,26 @@ def receiver_serialize_receiver(store, receiver, language):
 
 @transact
 def get_receiver_settings(store, receiver_id, language):
-    receiver = models.db_get(store, models.Receiver, id=receiver_id)
+    receiver, user = models.db_get(store,
+                                   (models.Receiver, models.User),
+                                   models.Receiver.id == receiver_id,
+                                   models.User.id == receiver_id)
 
-    return receiver_serialize_receiver(store, receiver, language)
+    return receiver_serialize_receiver(store, receiver, user, language)
 
 
 @transact
 def update_receiver_settings(store, receiver_id, request, language):
     db_user_update_user(store, receiver_id, request)
 
-    receiver = models.db_get(store, models.Receiver, id=receiver_id)
+    receiver, user = models.db_get(store,
+                                   (models.Receiver, models.User),
+                                   models.Receiver.id == receiver_id,
+                                   models.User.id == receiver_id)
 
     receiver.tip_notification = request['tip_notification']
 
-    return receiver_serialize_receiver(store, receiver, language)
+    return receiver_serialize_receiver(store, receiver, user, language)
 
 
 @transact

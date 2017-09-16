@@ -15,7 +15,7 @@ from globaleaks.utils.structures import fill_localized_keys, get_localized_value
 from globaleaks.utils.utility import log, datetime_now
 
 
-def admin_serialize_receiver(store, receiver, language):
+def admin_serialize_receiver(store, receiver, user, language):
     """
     Serialize the specified receiver
 
@@ -23,8 +23,6 @@ def admin_serialize_receiver(store, receiver, language):
     :return: a dictionary representing the serialization of the receiver
     """
     contexts = [id for id in store.find(models.ReceiverContext.context_id, models.ReceiverContext.receiver_id == receiver.id)]
-
-    user = store.find(models.User, models.User.id == receiver.id).one()
 
     ret_dict = user_serialize_user(store, user, language)
 
@@ -110,13 +108,13 @@ def db_create_receiver_user(store, request, language):
 
     log.debug("Created new receiver")
 
-    return receiver
+    return receiver, user
 
 
 @transact
 def create_receiver_user(store, request, language):
-    receiver = db_create_receiver_user(store, request, language)
-    return admin_serialize_receiver(store, receiver, language)
+    receiver, user = db_create_receiver_user(store, request, language)
+    return admin_serialize_receiver(store, receiver, user, language)
 
 
 def create(request, language):
