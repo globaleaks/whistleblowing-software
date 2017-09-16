@@ -60,23 +60,20 @@ def update_receiver_settings(store, receiver_id, request, language):
 def get_receivertip_list(store, receiver_id, language):
     rtip_summary_list = []
 
-    rtips = store.find(models.ReceiverTip, models.ReceiverTip.receiver_id == receiver_id)
+    rtips = store.find(models.ReceiverTip, receiver_id=receiver_id)
     itips_ids = [rtip.internaltip_id for rtip in rtips]
 
     itips_by_id = {}
-    contexts_by_id = {}
     aqs_by_itip = {}
     comments_by_itip = {}
     internalfiles_by_itip = {}
     messages_by_rtip = {}
 
-    for itip, context, archivedschema in store.find((models.InternalTip, models.Context, models.ArchivedSchema),
-                                                     In(models.InternalTip.id, itips_ids),
-                                                     models.Context.id == models.InternalTip.context_id,
-                                                     models.ArchivedSchema.hash == models.InternalTip.questionnaire_hash,
-                                                     models.ArchivedSchema.type == u'preview'):
+    for itip, archivedschema in store.find((models.InternalTip, models.ArchivedSchema),
+                                           In(models.InternalTip.id, itips_ids),
+                                           models.ArchivedSchema.hash == models.InternalTip.questionnaire_hash,
+                                           models.ArchivedSchema.type == u'preview'):
         itips_by_id[itip.id] = itip
-        contexts_by_id[context.id] = context
         aqs_by_itip[itip.id] = archivedschema
 
     result = store.find((models.ReceiverTip.id, Count()), models.ReceiverTip.receiver_id == receiver_id, models.ReceiverTip.id == models.Message.receivertip_id).group_by(models.ReceiverTip)
@@ -93,10 +90,7 @@ def get_receivertip_list(store, receiver_id, language):
 
     for rtip in rtips:
         internaltip = itips_by_id[rtip.internaltip_id]
-        context = contexts_by_id[internaltip.context_id]
         archivedschema = aqs_by_itip[rtip.internaltip_id]
-        mo = Rosetta(context.localized_keys)
-        mo.acquire_storm_object(context)
 
         rtip_summary_list.append({
             'id': rtip.id,
@@ -106,7 +100,7 @@ def get_receivertip_list(store, receiver_id, language):
             'expiration_date': datetime_to_ISO8601(internaltip.expiration_date),
             'progressive': internaltip.progressive,
             'new': rtip.access_counter == 0 or rtip.last_access < internaltip.update_date,
-            'context_name': mo.dump_localized_key('name', language),
+            'context_id': internaltip.context_id,
             'access_counter': rtip.access_counter,
             'file_counter': internalfiles_by_itip.get(internaltip.id, 0),
             'comment_counter': comments_by_itip.get(internaltip.id, 0),
