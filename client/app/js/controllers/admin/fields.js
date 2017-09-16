@@ -182,7 +182,7 @@ controller('AdminFieldEditorCtrl', ['$scope', '$filter', '$uibModal', 'AdminFiel
          }
        }
        return [];
-    };
+    }
 
     $scope.triggerFieldDialog = function(option) {
       var t = [];
