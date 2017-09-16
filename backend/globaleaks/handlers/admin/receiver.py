@@ -18,8 +18,8 @@ def get_receiver_list(store, language):
     Returns:
         (list) the list of receivers
     """
-    return [admin_serialize_receiver(store, receiver, language)
-        for receiver in store.find(models.Receiver)]
+    return [admin_serialize_receiver(store, receiver, user, language)
+        for receiver, user in store.find((models.Receiver, models.User), models.Receiver.id == models.User.id)]
 
 
 def db_get_receiver(store, receiver_id):
@@ -28,12 +28,16 @@ def db_get_receiver(store, receiver_id):
         (dict) the receiver
 
     """
-    return models.db_get(store, models.Receiver, id=receiver_id)
+    return models.db_get(store,
+                         (models.Receiver, models.User),
+                         models.Receiver.id == receiver_id,
+                         models.User.id == receiver_id)
 
 
 @transact
 def get_receiver(store, receiver_id, language):
-    return admin_serialize_receiver(store, db_get_receiver(store, receiver_id), language)
+    receiver, user = db_get_receiver(store, receiver_id)
+    return admin_serialize_receiver(store, receiver, user, language)
 
 
 @transact
@@ -43,13 +47,13 @@ def update_receiver(store, receiver_id, request, language):
     """
     fill_localized_keys(request, models.Receiver.localized_keys, language)
 
-    receiver = models.db_get(store, models.Receiver, id=receiver_id)
+    receiver, user = db_get_receiver(store, receiver_id)
 
     receiver.update(request)
 
     db_associate_context_receivers(store, receiver, request['contexts'])
 
-    return admin_serialize_receiver(store, receiver, language)
+    return admin_serialize_receiver(store, receiver, user, language)
 
 
 class ReceiversCollection(BaseHandler):

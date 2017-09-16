@@ -49,9 +49,10 @@ def receiverfile_planning(store):
 
         ifile.processing_attempts += 1
 
-        for rtip, receiver in store.find((models.ReceiverTip, models.Receiver),
-                                         models.ReceiverTip.internaltip_id == ifile.internaltip_id,
-                                         models.Receiver.id == models.ReceiverTip.receiver_id):
+        for rtip, receiver, user in store.find((models.ReceiverTip, models.Receiver, models.User),
+                                               models.ReceiverTip.internaltip_id == ifile.internaltip_id,
+                                               models.Receiver.id == models.ReceiverTip.receiver_id,
+                                               models.User.id == models.Receiver.id):
             receiverfile = models.ReceiverFile()
             receiverfile.internalfile_id = ifile.id
             receiverfile.receivertip_id = rtip.id
@@ -80,7 +81,7 @@ def receiverfile_planning(store):
                 'status': u'processing',
                 'path': ifile.file_path,
                 'size': ifile.size,
-                'receiver': admin_serialize_receiver(store, receiver, GLSettings.memory_copy.default_language)
+                'receiver': admin_serialize_receiver(store, receiver, user, GLSettings.memory_copy.default_language)
             })
 
     return receiverfiles_maps
