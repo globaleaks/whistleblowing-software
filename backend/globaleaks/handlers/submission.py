@@ -17,7 +17,7 @@ from globaleaks.orm import transact
 from globaleaks.rest import errors, requests
 from globaleaks.security import hash_password, sha256, generateRandomReceipt
 from globaleaks.settings import GLSettings
-from globaleaks.utils.structures import Rosetta, get_localized_values
+from globaleaks.utils.structures import get_localized_values
 from globaleaks.utils.token import TokenList
 from globaleaks.utils.utility import log, get_expiration, \
     datetime_now, datetime_never, datetime_to_ISO8601
@@ -215,11 +215,6 @@ def db_get_itip_receiver_list(store, itip):
 
 
 def serialize_itip(store, internaltip, language):
-    context = store.find(models.Context, models.Context.id == internaltip.context_id).one()
-
-    mo = Rosetta(context.localized_keys)
-    mo.acquire_storm_object(context)
-
     wb_access_revoked = store.find(models.WhistleblowerTip,
                                    models.WhistleblowerTip.id == internaltip.id).count() == 0
 
@@ -231,21 +226,15 @@ def serialize_itip(store, internaltip, language):
         'progressive': internaltip.progressive,
         'sequence_number': get_submission_sequence_number(internaltip),
         'context_id': internaltip.context_id,
-        'context_name': mo.dump_localized_key('name', language),
         'questionnaire': db_serialize_archived_questionnaire_schema(store, internaltip.questionnaire_hash, language),
         'receivers': db_get_itip_receiver_list(store, internaltip),
         'tor2web': internaltip.tor2web,
-        'timetolive': context.tip_timetolive,
-        'enable_comments': context.enable_comments,
-        'enable_messages': context.enable_messages,
         'enable_two_way_comments': internaltip.enable_two_way_comments,
         'enable_two_way_messages': internaltip.enable_two_way_messages,
         'enable_attachments': internaltip.enable_attachments,
         'enable_whistleblower_identity': internaltip.enable_whistleblower_identity,
         'identity_provided': internaltip.identity_provided,
         'identity_provided_date': datetime_to_ISO8601(internaltip.identity_provided_date),
-        'show_recipients_details': context.show_recipients_details,
-        'status_page_message': mo.dump_localized_key('status_page_message', language),
         'wb_last_access': datetime_to_ISO8601(internaltip.wb_last_access),
         'wb_access_revoked': wb_access_revoked
     }

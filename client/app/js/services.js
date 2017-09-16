@@ -397,12 +397,14 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
       });
     };
 }]).
-  factory('RTip', ['$http', '$filter', 'RTipResource', 'RTipMessageResource', 'RTipCommentResource',
-          function($http, $filter, RTipResource, RTipMessageResource, RTipCommentResource) {
+  factory('RTip', ['$rootScope', '$http', '$filter', 'RTipResource', 'RTipMessageResource', 'RTipCommentResource',
+          function($rootScope, $http, $filter, RTipResource, RTipMessageResource, RTipCommentResource) {
     return function(tipID, fn) {
       var self = this;
 
       self.tip = RTipResource.get(tipID, function (tip) {
+        tip.context = $rootScope.contexts_by_id[tip.context_id];
+
         tip.iars = $filter('orderBy')(tip.iars, 'request_date');
         tip.last_iar = tip.iars.length > 0 ? tip.iars[tip.iars.length - 1] : null;
 
@@ -472,6 +474,8 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
       var self = this;
 
       self.tip = WBTipResource.get(function (tip) {
+        tip.context = $rootScope.contexts_by_id[tip.context_id];
+
         tip.messages = [];
 
         tip.msg_receiver_selected = null;

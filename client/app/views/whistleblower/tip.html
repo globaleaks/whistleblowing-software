@@ -1,6 +1,6 @@
-<div class="row" data-ng-if="tip.status_page_message !== ''">
+<div class="row" data-ng-if="tip.context.status_page_message !== ''">
   <div class="col-md-12">
-    <span id="StatusPageMessage">{{tip.status_page_message}}</span>
+    <span id="StatusPageMessage">{{tip.context.status_page_message}}</span>
   </div>
 </div>
 
@@ -41,10 +41,10 @@
 </div>
 
 <div class="row">
-  <div class="col-md-6" data-ng-if="tip.enable_comments">
+  <div class="col-md-6" data-ng-if="tip.context.enable_comments">
     <div data-ng-include="'views/partials/tip_comments.html'"></div>
   </div>
-  <div class="col-md-6" data-ng-if="tip.enable_messages">
+  <div class="col-md-6" data-ng-if="tip.context.enable_messages">
     <div data-ng-include="'views/partials/tip_messages.html'"></div>
   </div>
 </div>

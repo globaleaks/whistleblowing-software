@@ -109,10 +109,10 @@
   <div class="col-md-12">
     <div data-ng-include="'views/partials/tip_files_receiver.html'"></div>
   </div>
-  <div class="col-md-6" data-ng-if="tip.enable_comments">
+  <div class="col-md-6" data-ng-if="tip.context.enable_comments">
     <div data-ng-include="'views/partials/tip_comments.html'"></div>
   </div>
-  <div class="col-md-6" data-ng-if="tip.enable_messages">
+  <div class="col-md-6" data-ng-if="tip.context.enable_messages">
     <div data-ng-include="'views/partials/tip_messages.html'"></div>
   </div>
 </div>
