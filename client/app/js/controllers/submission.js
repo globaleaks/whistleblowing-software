@@ -48,7 +48,6 @@ GLClient.controller('SubmissionCtrl',
 
   $scope.selectContext = function(context) {
     $scope.selected_context = context;
-    $scope.field_id_map = fieldUtilities.build_field_id_map(context);
   };
 
   $scope.singleStepForm = function() {
@@ -292,6 +291,7 @@ GLClient.controller('SubmissionCtrl',
   $scope.prepareSubmission = function(context, receivers_ids) {
     $scope.answers = {};
     $scope.uploads = {};
+    $scope.field_id_map = fieldUtilities.build_field_id_map(context);
 
     // iterations over steps require the steps array to be ordered
     context.questionnaire.steps = $filter('orderBy')(context.questionnaire.steps, 'presentation_order');
