@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 from globaleaks.handlers.admin import context
 from globaleaks.models import Context
-from globaleaks.rest import errors
 from globaleaks.tests import helpers
 
 class TestContextsCollection(helpers.TestCollectionHandler):

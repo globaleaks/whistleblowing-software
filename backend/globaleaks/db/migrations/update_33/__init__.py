@@ -2,12 +2,13 @@
 
 from storm.locals import Int, Bool, Unicode, DateTime, JSON
 
-from globaleaks import __version__, DATABASE_VERSION, LANGUAGES_SUPPORTED_CODES
+from globaleaks import __version__, DATABASE_VERSION, LANGUAGES_SUPPORTED_CODES, models
 from globaleaks.db.migrations.update import MigrationBase
-from globaleaks.models import *
+from globaleaks.models.validators import shorttext_v, longtext_v, shortlocal_v, longlocal_v
+from globaleaks.utils.utility import datetime_now, datetime_null
 
 
-class Node_v_32(ModelWithID):
+class Node_v_32(models.ModelWithID):
     __storm_table__ = 'node'
     version = Unicode(default=unicode(__version__))
     version_db = Unicode(default=unicode(DATABASE_VERSION))
@@ -95,7 +96,7 @@ class Node_v_32(ModelWithID):
     context_selector_type = Unicode(validator=shorttext_v, default=u'list')
 
 
-class InternalTip_v_32(ModelWithID):
+class InternalTip_v_32(models.ModelWithID):
     __storm_table__ = 'internaltip'
     creation_date = DateTime(default_factory=datetime_now)
     update_date = DateTime(default_factory=datetime_now)
@@ -120,7 +121,7 @@ class InternalTip_v_32(ModelWithID):
     new = Int(default=True)
 
 
-class WhistleblowerTip_v_32(ModelWithID):
+class WhistleblowerTip_v_32(models.ModelWithID):
     __storm_table__ = 'whistleblowertip'
     internaltip_id = Unicode()
     receipt_hash = Unicode()
@@ -129,7 +130,7 @@ class WhistleblowerTip_v_32(ModelWithID):
     access_counter = Int(default=0)
 
 
-class User_v_32(ModelWithID):
+class User_v_32(models.ModelWithID):
     __storm_table__ = 'user'
     creation_date = DateTime(default_factory=datetime_now)
     username = Unicode(validator=shorttext_v)

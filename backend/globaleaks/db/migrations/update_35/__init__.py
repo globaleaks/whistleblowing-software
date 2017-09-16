@@ -1,13 +1,16 @@
 # -*- coding: UTF-8
 from storm.locals import Int, Bool, Unicode, DateTime, JSON
 
+from globaleaks import models
 from globaleaks.db.migrations.update import MigrationBase
-from globaleaks.models import *
 from globaleaks.models.config import NodeFactory
 from globaleaks.models.l10n import EnabledLanguage
+from globaleaks.models.validators import shortlocal_v, longlocal_v
+from globaleaks.settings import GLSettings
+from globaleaks.utils.utility import datetime_now, datetime_null
 
 
-class Context_v_34(ModelWithID):
+class Context_v_34(models.ModelWithID):
     __storm_table__ = 'context'
     show_small_receiver_cards = Bool(default=False)
     show_context = Bool(default=True)
@@ -31,14 +34,14 @@ class Context_v_34(ModelWithID):
     img_id = Unicode()
 
 
-class WhistleblowerTip_v_34(ModelWithID):
+class WhistleblowerTip_v_34(models.ModelWithID):
     __storm_table__ = 'whistleblowertip'
     internaltip_id = Unicode()
     receipt_hash = Unicode()
     access_counter = Int(default=0)
 
 
-class InternalTip_v_34(ModelWithID):
+class InternalTip_v_34(models.ModelWithID):
     __storm_table__ = 'internaltip'
     creation_date = DateTime(default_factory=datetime_now)
     update_date = DateTime(default_factory=datetime_now)

@@ -26,7 +26,6 @@ from globaleaks.utils.objectdict import ObjectDict
 from globaleaks.utils.singleton import Singleton
 from globaleaks.utils.tor_exit_set import TorExitSet
 from globaleaks.utils.utility import datetime_now, log
-from twisted.python.threadpool import ThreadPool
 
 this_directory = os.path.dirname(__file__)
 
