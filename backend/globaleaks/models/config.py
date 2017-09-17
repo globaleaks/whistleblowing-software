@@ -1,4 +1,4 @@
-from storm.expr import And, Not
+from storm.expr import Not, In
 from storm.locals import Storm, Bool, Unicode, JSON
 
 from globaleaks import __version__
@@ -83,8 +83,7 @@ class ConfigFactory(object):
         self.res = None
 
     def _query_group(self):
-        cur = self.store.find(Config, And(Config.var_group == self.group))
-        self.res = {c.var_name: c for c in cur}
+        self.res = {c.var_name: c for c in self.store.find(Config, var_group=self.group)}
 
     def update(self, request):
         self._query_group()
@@ -94,8 +93,7 @@ class ConfigFactory(object):
             self.res[key].set_v(request[key])
 
     def get_cfg(self, var_name):
-        where = And(Config.var_group == self.group, Config.var_name == unicode(var_name))
-        return self.store.find(Config, where).one()
+        return self.store.find(Config, var_group=self.group, var_name=var_name).one()
 
     def get_val(self, var_name):
         return self.get_cfg(var_name).get_v()
@@ -121,8 +119,7 @@ class ConfigFactory(object):
     def clean_and_add(self):
         self._query_group()
 
-        cur = self.store.find(Config, Config.var_group == self.group)
-        res = {c.var_name : c for c in cur}
+        res = {c.var_name : c for c in self.store.find(Config, var_group=self.group)}
 
         actual = set(self.res.keys())
         allowed = set(self.group_desc)
@@ -218,10 +215,7 @@ def system_cfg_init(store):
 
 
 def del_cfg_not_in_groups(store):
-    where = And(Not(Config.var_group == u'node'), Not(Config.var_group == u'notification'),
-                Not(Config.var_group == u'private'))
-
-    store.find(Config, where).remove()
+    store.find(Config, Not(In(Config.var_group, [u'node', u'notification', u'private']))).remove()
 
 
 def is_cfg_valid(store):
@@ -274,7 +268,3 @@ def add_raw_config(store, group, name, customized, value):
     c.customixed = customized
     c.value = {'v': value}
     store.add(c)
-
-
-def del_config(store, group, name):
-    store.find(Config, Config.var_group == group, Config.var_name == name).remove()

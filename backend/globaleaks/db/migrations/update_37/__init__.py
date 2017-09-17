@@ -3,8 +3,9 @@
 import os
 import re
 
+from globaleaks import models
 from globaleaks.db.migrations.update import MigrationBase
-from globaleaks.models.config import add_raw_config, del_config
+from globaleaks.models.config import Config, add_raw_config
 from globaleaks.utils.utility import log
 
 TOR_DIR = '/var/globaleaks/torhs'
@@ -39,7 +40,7 @@ class MigrationScript(MigrationBase):
         else:
            log.err('The structure of %s is incorrect. Cannot load onion service keys' % TOR_DIR)
 
-        del_config(self.store_new, u'node', u'onionservice')
+        models.db_delete(self.store_new, Config, var_group=u'node', var_name=u'onionservice')
         add_raw_config(self.store_new, u'node', u'onionservice', True, hostname)
         add_raw_config(self.store_new, u'private', u'tor_onion_key', True, key)
 

@@ -5,14 +5,9 @@ from globaleaks.models.config_desc import GLConfig
 from globaleaks.models.l10n import NodeL10NFactory, EnabledLanguage, ConfigL10N
 from globaleaks.orm import transact
 from globaleaks.tests import helpers
-from twisted.internet.defer import inlineCallbacks
 
 
 class TestSystemConfigModels(helpers.TestGL):
-    @inlineCallbacks
-    def test_config_import(self):
-        yield self._test_config_import()
-
     @transact
     def _test_config_import(self, store):
         c = store.find(config.Config).count()
@@ -20,17 +15,15 @@ class TestSystemConfigModels(helpers.TestGL):
         stated_conf = reduce(lambda x,y: x+y, [len(v) for k, v in GLConfig.items()], 0)
         self.assertEqual(c, stated_conf)
 
-    @inlineCallbacks
-    def test_valid_config(self):
-        yield self._test_valid_cfg()
+    def test_config_import(self):
+        return self._test_config_import()
 
     @transact
     def _test_valid_cfg(self, store):
         self.assertEqual(True, config.is_cfg_valid(store))
 
-    @inlineCallbacks
-    def test_missing_config(self):
-        yield self._test_missing_config()
+    def test_valid_config(self):
+        return self._test_valid_cfg()
 
     @transact
     def _test_missing_config(self, store):
@@ -68,12 +61,11 @@ class TestSystemConfigModels(helpers.TestGL):
 
         self.assertEqual(True, config.is_cfg_valid(store))
 
+    def test_missing_config(self):
+        return self._test_missing_config()
+
 
 class TestConfigL10N(helpers.TestGL):
-    @inlineCallbacks
-    def test_config_l10n_init(self):
-        yield self.run_node_mgr()
-
     @transact
     def run_node_mgr(self, store):
         # Initialize the Node manager
@@ -85,6 +77,9 @@ class TestConfigL10N(helpers.TestGL):
 
         self.assertTrue(len(ret) == num_trans)
 
+    def test_config_l10n_init(self):
+        return self.run_node_mgr()
+
     @transact
     def enable_langs(self, store):
         res = EnabledLanguage.list(store)
@@ -95,6 +90,5 @@ class TestConfigL10N(helpers.TestGL):
         c = store.find(ConfigL10N).count()
         self.assertTrue(1500 < c < 2300)
 
-    @inlineCallbacks
     def test_enabled_langs(self):
-        yield self.enable_langs()
+        return self.enable_langs()

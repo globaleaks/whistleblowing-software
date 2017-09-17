@@ -88,8 +88,7 @@ class ConfigL10NFactory(object):
             self.store.add(ConfigL10N(lang_code, self.group, key, value))
 
     def retrieve_rows(self, lang_code):
-        selector = And(ConfigL10N.var_group == self.group, ConfigL10N.lang == unicode(lang_code))
-        return [r for r in self.store.find(ConfigL10N, selector)]
+        return [r for r in self.store.find(ConfigL10N, lang=lang_code, var_group=self.group)]
 
     def localized_dict(self, lang_code):
         rows = self.retrieve_rows(lang_code)
@@ -116,23 +115,17 @@ class ConfigL10NFactory(object):
             ConfigL10NFactory.initialize(self, lang_code, l10n_data_src,  list(set(self.localized_keys) - set(old_keys)))
 
     def get_all(self, lang_code):
-        return self.store.find(ConfigL10N, And(ConfigL10N.var_group == self.group,
-                                               ConfigL10N.lang == unicode(lang_code)))
-
-    def _where_is(self, lang_code, var_name):
-        return And(ConfigL10N.lang == unicode(lang_code),
-                   ConfigL10N.var_group == self.group,
-                   ConfigL10N.var_name == unicode(var_name))
+        return self.store.find(ConfigL10N, lang=lang_code, var_group=self.group)
 
     def get_val(self, var_name, lang_code):
-        cfg = self.store.find(ConfigL10N, self._where_is(lang_code, var_name)).one()
+        cfg = self.store.find(ConfigL10N, lang=lang_code, var_group=self.group, var_name=var_name).one()
         if cfg is None:
             raise errors.ModelNotFound('ConfigL10N:%s.%s' % (self.group, var_name))
 
         return cfg.value
 
     def set_val(self, var_name, lang_code, value):
-        cfg = self.store.find(ConfigL10N, self._where_is(lang_code, var_name)).one()
+        cfg = self.store.find(ConfigL10N, lang=lang_code, var_group=self.group, var_name=var_name).one()
         cfg.set_v(value)
 
 
@@ -159,7 +152,7 @@ class NodeL10NFactory(ConfigL10NFactory):
     })
 
     def __init__(self, store, *args, **kwargs):
-        ConfigL10NFactory.__init__(self, store, 'node', *args, **kwargs)
+        ConfigL10NFactory.__init__(self, store, u'node', *args, **kwargs)
 
     def initialize(self, lang_code, appdata_dict):
         ConfigL10NFactory.initialize(self, lang_code, appdata_dict['node'])
@@ -235,7 +228,7 @@ class NotificationL10NFactory(ConfigL10NFactory):
     modifiable_keys = localized_keys - unmodifiable_keys
 
     def __init__(self, store, *args, **kwargs):
-        ConfigL10NFactory.__init__(self, store, 'notification', *args, **kwargs)
+        ConfigL10NFactory.__init__(self, store, u'notification', *args, **kwargs)
 
     def initialize(self, lang_code, appdata_dict):
         ConfigL10NFactory.initialize(self, lang_code, appdata_dict['templates'])

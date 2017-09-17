@@ -24,7 +24,7 @@ class Unicode(Item):
 
     def __init__(self, *args, **kwargs):
         if 'default' not in kwargs:
-            kwargs['default'] = ''
+            kwargs['default'] = u''
 
         Item.__init__(self,  *args, **kwargs)
 
