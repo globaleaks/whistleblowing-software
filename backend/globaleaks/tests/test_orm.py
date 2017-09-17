@@ -54,10 +54,9 @@ class TestORM(helpers.TestGL):
 
         self.assertEqual(count1, count2)
 
-    @inlineCallbacks
     def test_transact_decorate_function(self):
         @transact
         def transaction(store):
             self.assertTrue(getattr(store, 'find'))
 
-        yield transaction()
+        return transaction()

@@ -26,11 +26,11 @@ def get_valid_setup():
         'dh_params': 'dh_params.pem'
     }
 
-    d = {
-        k : open(os.path.join(test_data_dir, 'valid', fname), 'r').read() \
-            for k, fname in valid_setup_files.items()
-    }
-    d['hostname'] = 'localhost:9999'
+    d = {'hostname': 'localhost:9999'}
+    for k, fname in valid_setup_files.items():
+        with open(os.path.join(test_data_dir, 'valid', fname), 'r') as fd:
+            d[k] = unicode(fd.read())
+
     return d
 
 @transact
