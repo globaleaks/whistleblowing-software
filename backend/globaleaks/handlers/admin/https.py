@@ -68,12 +68,12 @@ class FileResource(object):
     @staticmethod
     @transact
     def should_gen_dh_params(store):
-        return PrivateFactory(store).get_val('https_dh_params') == u''
+        return PrivateFactory(store).get_val(u'https_dh_params') == u''
 
     @staticmethod
     @transact
     def save_dh_params(store, dh_params):
-        PrivateFactory(store).set_val('https_dh_params', dh_params)
+        PrivateFactory(store).set_val(u'https_dh_params', dh_params)
 
     @classmethod
     @inlineCallbacks
@@ -100,8 +100,8 @@ class PrivKeyFileRes(FileResource):
         pkv = cls.validator()
         ok, _ = pkv.validate(db_cfg)
         if ok:
-            prv_fact.set_val('https_priv_key', raw_key)
-            prv_fact.set_val('https_priv_gen', False)
+            prv_fact.set_val(u'https_priv_key', raw_key)
+            prv_fact.set_val(u'https_priv_gen', False)
         else:
             log.debug('Key validation failed')
 
@@ -111,8 +111,8 @@ class PrivKeyFileRes(FileResource):
     @transact
     def save_tls_key(store, prv_key):
         prv_fact = PrivateFactory(store)
-        prv_fact.set_val('https_priv_key', prv_key)
-        prv_fact.set_val('https_priv_gen', True)
+        prv_fact.set_val(u'https_priv_key', prv_key)
+        prv_fact.set_val(u'https_priv_gen', True)
 
     @classmethod
     @inlineCallbacks
@@ -127,16 +127,16 @@ class PrivKeyFileRes(FileResource):
     @transact
     def delete_file(store):
         prv_fact = PrivateFactory(store)
-        prv_fact.set_val('https_priv_key', u'')
-        prv_fact.set_val('https_priv_gen', False)
+        prv_fact.set_val(u'https_priv_key', u'')
+        prv_fact.set_val(u'https_priv_gen', False)
 
     @staticmethod
     def db_serialize(store):
         prv_fact = PrivateFactory(store)
 
         return {
-            'set': prv_fact.get_val('https_priv_key') != u'',
-            'gen': prv_fact.get_val('https_priv_gen')
+            'set': prv_fact.get_val(u'https_priv_key') != u'',
+            'gen': prv_fact.get_val(u'https_priv_gen')
         }
 
 
@@ -154,7 +154,7 @@ class CertFileRes(FileResource):
         cv = cls.validator()
         ok, _ = cv.validate(db_cfg)
         if ok:
-            prv_fact.set_val('https_cert', raw_cert)
+            prv_fact.set_val(u'https_cert', raw_cert)
             GLSettings.memory_copy.https_cert = raw_cert
         else:
             log.err("Cert validation failed")
@@ -164,18 +164,18 @@ class CertFileRes(FileResource):
     @transact
     def delete_file(store):
         prv_fact = PrivateFactory(store)
-        prv_fact.set_val('https_cert', u'')
+        prv_fact.set_val(u'https_cert', u'')
         GLSettings.memory_copy.https_cert = ''
 
     @staticmethod
     @transact
     def get_file(store):
         prv_fact = PrivateFactory(store)
-        return prv_fact.get_val('https_cert')
+        return prv_fact.get_val(u'https_cert')
 
     @staticmethod
     def db_serialize(store):
-        c = PrivateFactory(store).get_val('https_cert')
+        c = PrivateFactory(store).get_val(u'https_cert')
         if len(c) == 0:
             return {'name': 'cert', 'set': False}
 
@@ -204,7 +204,7 @@ class ChainFileRes(FileResource):
         cv = cls.validator()
         ok, _ = cv.validate(db_cfg)
         if ok:
-            prv_fact.set_val('https_chain', raw_chain)
+            prv_fact.set_val(u'https_chain', raw_chain)
         else:
             log.debug('Chain validation failed')
         return ok
@@ -213,17 +213,17 @@ class ChainFileRes(FileResource):
     @transact
     def delete_file(store):
         prv_fact = PrivateFactory(store)
-        prv_fact.set_val('https_chain', u'')
+        prv_fact.set_val(u'https_chain', u'')
 
     @staticmethod
     @transact
     def get_file(store):
         prv_fact = PrivateFactory(store)
-        return prv_fact.get_val('https_chain')
+        return prv_fact.get_val(u'https_chain')
 
     @staticmethod
     def db_serialize(store):
-        c = PrivateFactory(store).get_val('https_chain')
+        c = PrivateFactory(store).get_val(u'https_chain')
         if len(c) == 0:
             return {'name': 'chain', 'set': False}
 
@@ -244,7 +244,7 @@ class CsrFileRes(FileResource):
     def create_file(store, cls, raw_csr):
         prv_fact = PrivateFactory(store)
 
-        prv_fact.set_val('https_csr', raw_csr)
+        prv_fact.set_val(u'https_csr', raw_csr)
 
         return True
 
@@ -252,17 +252,17 @@ class CsrFileRes(FileResource):
     @transact
     def delete_file(store):
         prv_fact = PrivateFactory(store)
-        prv_fact.set_val('https_csr', u'')
+        prv_fact.set_val(u'https_csr', u'')
 
     @staticmethod
     @transact
     def get_file(store):
         prv_fact = PrivateFactory(store)
-        return prv_fact.get_val('https_csr')
+        return prv_fact.get_val(u'https_csr')
 
     @staticmethod
     def db_serialize(store):
-        c = PrivateFactory(store).get_val('https_csr')
+        c = PrivateFactory(store).get_val(u'https_csr')
         if len(c) == 0:
             return {'name': 'csr', 'set': False}
 
@@ -337,11 +337,11 @@ def serialize_https_config_summary(store):
         file_summaries[key] = file_res_cls.db_serialize(store)
 
     ret = {
-      'enabled': prv_fact.get_val('https_enabled'),
+      'enabled': prv_fact.get_val(u'https_enabled'),
       'running': GLSettings.appstate.process_supervisor.is_running(),
       'status': GLSettings.appstate.process_supervisor.get_status(),
       'files': file_summaries,
-      'acme': prv_fact.get_val('acme')
+      'acme': prv_fact.get_val(u'acme')
     }
 
     return ret
@@ -357,7 +357,7 @@ def try_to_enable_https(store):
 
     ok, err = cv.validate(db_cfg)
     if ok:
-        prv_fact.set_val('https_enabled', True)
+        prv_fact.set_val(u'https_enabled', True)
         GLSettings.memory_copy.private.https_enabled = True
     else:
         raise err
@@ -366,7 +366,7 @@ def try_to_enable_https(store):
 def disable_https(store):
     prv_fact = PrivateFactory(store)
     log.debug('Disabling https on the node.')
-    prv_fact.set_val('https_enabled', False)
+    prv_fact.set_val(u'https_enabled', False)
 
 
 class ConfigHandler(BaseHandler):
@@ -406,15 +406,15 @@ class ConfigHandler(BaseHandler):
 @transact
 def _delete_all_cfg(store):
     prv_fact = PrivateFactory(store)
-    prv_fact.set_val('https_enabled', False)
-    prv_fact.set_val('https_priv_gen', False)
-    prv_fact.set_val('https_priv_key', '')
-    prv_fact.set_val('https_cert', '')
-    prv_fact.set_val('https_chain', '')
-    prv_fact.set_val('https_csr', '')
-    prv_fact.set_val('acme', False)
-    prv_fact.set_val('acme_accnt_key', '')
-    prv_fact.set_val('acme_accnt_uri', '')
+    prv_fact.set_val(u'https_enabled', False)
+    prv_fact.set_val(u'https_priv_gen', False)
+    prv_fact.set_val(u'https_priv_key', '')
+    prv_fact.set_val(u'https_cert', '')
+    prv_fact.set_val(u'https_chain', '')
+    prv_fact.set_val(u'https_csr', '')
+    prv_fact.set_val(u'acme', False)
+    prv_fact.set_val(u'acme_accnt_key', '')
+    prv_fact.set_val(u'acme_accnt_uri', '')
 
 
 class CSRFileHandler(FileHandler):
@@ -486,38 +486,38 @@ class AcmeAccntKeyRes:
                 encryption_algorithm=serialization.NoEncryption(),
         )
 
-        PrivateFactory(store).set_val('acme', True)
-        PrivateFactory(store).set_val('acme_accnt_key', b)
+        PrivateFactory(store).set_val(u'acme', True)
+        PrivateFactory(store).set_val(u'acme_accnt_key', b)
 
         return priv_key
 
     @classmethod
     @transact
     def save_accnt_uri(store, cls, uri):
-        PrivateFactory(store).set_val('acme_accnt_uri', uri)
+        PrivateFactory(store).set_val(u'acme_accnt_uri', uri)
 
 
 @transact
 def can_perform_acme_run(store):
     prv_fact = PrivateFactory(store)
-    acme = prv_fact.get_val('acme')
-    no_cert_set = prv_fact.get_val('https_cert') == u''
+    acme = prv_fact.get_val(u'acme')
+    no_cert_set = prv_fact.get_val(u'https_cert') == u''
     return acme and no_cert_set
 
 
 @transact
 def is_acme_configured(store):
     prv_fact = PrivateFactory(store)
-    acme = prv_fact.get_val('acme')
-    cert_set = prv_fact.get_val('https_cert') != u''
+    acme = prv_fact.get_val(u'acme')
+    cert_set = prv_fact.get_val(u'https_cert') != u''
     return acme and cert_set
 
 
 @transact
 def can_perform_acme_renewal(store):
     a = is_acme_configured(store)
-    b = PrivateFactory(store).get_val('https_enabled')
-    c = PrivateFactory(store).get_val('https_cert')
+    b = PrivateFactory(store).get_val(u'https_enabled')
+    c = PrivateFactory(store).get_val(u'https_cert')
     return a and b and c
 
 
@@ -554,14 +554,14 @@ def acme_cert_issuance(store):
 def db_acme_cert_issuance(store):
     hostname = GLSettings.memory_copy.hostname
 
-    raw_accnt_key = PrivateFactory(store).get_val('acme_accnt_key')
+    raw_accnt_key = PrivateFactory(store).get_val(u'acme_accnt_key')
     accnt_key = serialization.load_pem_private_key(str(raw_accnt_key),
                                                    password=None,
                                                    backend=default_backend())
 
 
-    priv_key = PrivateFactory(store).get_val('https_priv_key')
-    regr_uri = PrivateFactory(store).get_val('acme_accnt_uri')
+    priv_key = PrivateFactory(store).get_val(u'https_priv_key')
+    regr_uri = PrivateFactory(store).get_val(u'acme_accnt_uri')
 
     csr_fields = {'CN': hostname}
     # NOTE sha256 is always employed as hash fnc here.
@@ -576,8 +576,8 @@ def db_acme_cert_issuance(store):
                                                              tmp_chall_dict,
                                                              GLSettings.acme_directory_url)
 
-    PrivateFactory(store).set_val('https_cert', cert_str)
-    PrivateFactory(store).set_val('https_chain', chain_str)
+    PrivateFactory(store).set_val(u'https_cert', cert_str)
+    PrivateFactory(store).set_val(u'https_chain', chain_str)
 
 
 class AcmeChallResolver(BaseHandler):

@@ -27,7 +27,7 @@ def db_admin_serialize_node(store, language):
     custom_homepage = os.path.isfile(os.path.join(GLSettings.static_path, "custom_homepage.html"))
 
     misc_dict = {
-        'version': PrivateFactory(store).get_val('version'),
+        'version': PrivateFactory(store).get_val(u'version'),
         'latest_version': str(GLSettings.appstate.latest_version),
         'languages_supported': LANGUAGES_SUPPORTED,
         'languages_enabled': EnabledLanguage.list(store),
@@ -92,11 +92,11 @@ def db_update_node(store, request, language):
     node.update(request)
 
     if request['basic_auth'] and request['basic_auth_username'] != '' and request['basic_auth_password']  != '':
-        node.set_val('basic_auth', True)
-        node.set_val('basic_auth_username', request['basic_auth_username'])
-        node.set_val('basic_auth_password', request['basic_auth_password'])
+        node.set_val(u'basic_auth', True)
+        node.set_val(u'basic_auth_username', request['basic_auth_username'])
+        node.set_val(u'basic_auth_password', request['basic_auth_password'])
     else:
-        node.set_val('basic_auth', False)
+        node.set_val(u'basic_auth', False)
 
     db_refresh_memory_variables(store)
 

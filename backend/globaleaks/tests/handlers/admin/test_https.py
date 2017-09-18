@@ -15,8 +15,8 @@ from twisted.internet.defer import inlineCallbacks, returnValue
 
 @transact
 def set_init_params(store, dh_params, hostname='localhost:9999'):
-    PrivateFactory(store).set_val('https_dh_params', dh_params)
-    NodeFactory(store).set_val('hostname', hostname)
+    PrivateFactory(store).set_val(u'https_dh_params', dh_params)
+    NodeFactory(store).set_val(u'hostname', hostname)
     GLSettings.memory_copy.hostname = 'localhost:9999'
 
 
@@ -42,7 +42,7 @@ class TestFileHandler(helpers.TestHandler):
 
     @transact
     def set_enabled(self, store):
-        PrivateFactory(store).set_val('https_enabled', True)
+        PrivateFactory(store).set_val(u'https_enabled', True)
         GLSettings.memory_copy.private.https_enabled = True
 
     @inlineCallbacks

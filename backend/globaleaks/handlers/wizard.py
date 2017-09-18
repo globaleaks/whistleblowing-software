@@ -19,23 +19,23 @@ def wizard(store, request, language):
 
     node = config.NodeFactory(store)
 
-    if node.get_val('wizard_done'):
+    if node.get_val(u'wizard_done'):
         log.err("DANGER: Wizard already initialized!")
         raise errors.ForbiddenOperation
 
     node._query_group()
 
-    node.set_val('name', request['node']['name'])
-    node.set_val('default_language', language)
-    node.set_val('wizard_done', True)
+    node.set_val(u'name', request['node']['name'])
+    node.set_val(u'default_language', language)
+    node.set_val(u'wizard_done', True)
 
     if GLSettings.memory_copy.onionservice is not None:
-        node.set_val('onionservice', GLSettings.memory_copy.onionservice)
+        node.set_val(u'onionservice', GLSettings.memory_copy.onionservice)
 
     node_l10n = l10n.NodeL10NFactory(store)
 
-    node_l10n.set_val('description', language, request['node']['description'])
-    node_l10n.set_val('header_title_homepage', language, request['node']['name'])
+    node_l10n.set_val(u'description', language, request['node']['description'])
+    node_l10n.set_val(u'header_title_homepage', language, request['node']['name'])
 
     profiles.load_profile(store, request['profile'])
 

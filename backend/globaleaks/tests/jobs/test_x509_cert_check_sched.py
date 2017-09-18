@@ -23,8 +23,8 @@ class TestX509CertCheckSched(helpers.TestGLWithPopulatedDB):
         valid_setup = test_tls.get_valid_setup()
 
         prv_fact = PrivateFactory(store)
-        prv_fact.set_val('https_cert', valid_setup['cert'])
-        prv_fact.set_val('https_enabled', True)
+        prv_fact.set_val(u'https_cert', valid_setup['cert'])
+        prv_fact.set_val(u'https_enabled', True)
 
         db_refresh_memory_variables(store)
 

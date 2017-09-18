@@ -238,7 +238,7 @@ def update_defaults(store):
         del_cfg_not_in_groups(store)
 
     # Set the system version to the current aligned cfg
-    PrivateFactory(store).set_val('version', __version__)
+    PrivateFactory(store).set_val(u'version', __version__)
 
 
 def load_tls_dict(store):
@@ -248,12 +248,12 @@ def load_tls_dict(store):
     privFact = PrivateFactory(store)
 
     return {
-        'ssl_key': privFact.get_val('https_priv_key'),
-        'ssl_cert': privFact.get_val('https_cert'),
-        'ssl_intermediate': privFact.get_val('https_chain'),
-        'ssl_dh': privFact.get_val('https_dh_params'),
-        'https_enabled': privFact.get_val('https_enabled'),
-        'hostname': NodeFactory(store).get_val('hostname'),
+        'ssl_key': privFact.get_val(u'https_priv_key'),
+        'ssl_cert': privFact.get_val(u'https_cert'),
+        'ssl_intermediate': privFact.get_val(u'https_chain'),
+        'ssl_dh': privFact.get_val(u'https_dh_params'),
+        'https_enabled': privFact.get_val(u'https_enabled'),
+        'hostname': NodeFactory(store).get_val(u'hostname'),
     }
 
 

@@ -27,10 +27,10 @@ __all__ = ['OnionService']
 @transact
 def get_onion_service_info(store):
     node_fact = NodeFactory(store)
-    hostname = node_fact.get_val('onionservice')
+    hostname = node_fact.get_val(u'onionservice')
 
     priv_fact = PrivateFactory(store)
-    key = priv_fact.get_val('tor_onion_key')
+    key = priv_fact.get_val(u'tor_onion_key')
 
     return hostname, key
 
@@ -38,10 +38,10 @@ def get_onion_service_info(store):
 @transact
 def set_onion_service_info(store, hostname, key):
     node_fact = NodeFactory(store)
-    node_fact.set_val('onionservice', hostname)
+    node_fact.set_val(u'onionservice', hostname)
 
     priv_fact = PrivateFactory(store)
-    priv_fact.set_val('tor_onion_key', key)
+    priv_fact.set_val(u'tor_onion_key', key)
 
     GLApiCache.invalidate()
 

@@ -90,7 +90,7 @@ class MigrationScript(MigrationBase):
             self.store_new.add(new_obj)
 
     def migrate_User(self):
-        default_language = NodeFactory(self.store_old).get_val('default_language')
+        default_language = NodeFactory(self.store_old).get_val(u'default_language')
         enabled_languages = EnabledLanguage.list(self.store_old)
 
         old_objs = self.store_old.find(self.model_from['User'])
@@ -131,5 +131,5 @@ class MigrationScript(MigrationBase):
 
     def epilogue(self):
         nf = NodeFactory(self.store_new)
-        self.trim_value_to_range(nf, 'wbtip_timetolive')
+        self.trim_value_to_range(nf, u'wbtip_timetolive')
         self.store_new.commit()
