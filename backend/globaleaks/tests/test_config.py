@@ -36,7 +36,7 @@ class TestSystemConfigModels(helpers.TestGL):
         self.assertEqual(False, config.is_cfg_valid(store))
 
         node = config.NodeFactory(store)
-        c = node.get_cfg('hostname')
+        c = node.get_cfg(u'hostname')
         store.remove(c)
         store.commit()
 
@@ -73,7 +73,7 @@ class TestConfigL10N(helpers.TestGL):
         num_trans = len(NodeL10NFactory.localized_keys)
 
         # Make a query with the Node manager
-        ret = node_l10n.retrieve_rows('en')
+        ret = node_l10n.retrieve_rows(u'en')
 
         self.assertTrue(len(ret) == num_trans)
 

@@ -131,8 +131,8 @@ def db_refresh_exception_delivery_list(store):
     If the email_addr is empty, drop the tuple from the list.
     """
     notif_fact = models.config.NotificationFactory(store)
-    error_addr = notif_fact.get_val('exception_email_address')
-    error_pk = notif_fact.get_val('exception_email_pgp_key_public')
+    error_addr = notif_fact.get_val(u'exception_email_address')
+    error_pk = notif_fact.get_val(u'exception_email_pgp_key_public')
 
     lst = [(error_addr, error_pk)]
 

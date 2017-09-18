@@ -82,8 +82,8 @@ class TestMigrationRoutines(unittest.TestCase):
     def preconditions_34(self):
         store = Store(create_database(self.start_db_uri))
         notification_l10n = NotificationL10NFactory(store)
-        notification_l10n.set_val('export_template', 'it', 'unmodifiable')
-        x = notification_l10n.get_val('export_template', 'it')
+        notification_l10n.set_val(u'export_template', 'it', 'unmodifiable')
+        x = notification_l10n.get_val(u'export_template', 'it')
         self.assertTrue(x, 'unmodifiable')
         store.commit()
         store.close()
@@ -91,7 +91,7 @@ class TestMigrationRoutines(unittest.TestCase):
     def postconditions_34(self):
         store = Store(create_database(GLSettings.db_uri))
         notification_l10n = NotificationL10NFactory(store)
-        x = notification_l10n.get_val('export_template', 'it')
+        x = notification_l10n.get_val(u'export_template', 'it')
         self.assertNotEqual(x, 'unmodifiable')
         store.commit()
         store.close()
@@ -108,8 +108,8 @@ class TestMigrationRoutines(unittest.TestCase):
     def postconditions_36(self):
         new_uri = GLSettings.make_db_uri(os.path.join(GLSettings.db_path, GLSettings.db_file_name))
         store = Store(create_database(new_uri))
-        hs = config.NodeFactory(store).get_val('onionservice')
-        pk = config.PrivateFactory(store).get_val('tor_onion_key')
+        hs = config.NodeFactory(store).get_val(u'onionservice')
+        pk = config.PrivateFactory(store).get_val(u'tor_onion_key')
 
         self.assertEqual('lftx7dbyvlc5txtl.onion', hs)
         with open(os.path.join(helpers.DATA_DIR, 'tor/ephemeral_service_key')) as f:
@@ -146,8 +146,8 @@ class TestConfigUpdates(unittest.TestCase):
         store = Store(create_database(GLSettings.db_uri))
         prv = config.PrivateFactory(store)
         self.dummy_ver = '2.XX.XX'
-        prv.set_val('version', self.dummy_ver)
-        self.assertEqual(prv.get_val('version'), self.dummy_ver)
+        prv.set_val(u'version', self.dummy_ver)
+        self.assertEqual(prv.get_val(u'version'), self.dummy_ver)
         store.commit()
         store.close()
 
@@ -180,8 +180,8 @@ class TestConfigUpdates(unittest.TestCase):
 
         store = Store(create_database(GLSettings.db_uri))
         prv = config.PrivateFactory(store)
-        self.assertEqual(prv.get_val('version'), __version__)
-        self.assertEqual(prv.get_val('xx_smtp_password'), self.dp)
+        self.assertEqual(prv.get_val(u'version'), __version__)
+        self.assertEqual(prv.get_val(u'xx_smtp_password'), self.dp)
         ret = config.is_cfg_valid(store)
         self.assertTrue(ret)
         store.close()
@@ -191,7 +191,7 @@ class TestConfigUpdates(unittest.TestCase):
 
         store = Store(create_database(GLSettings.db_uri))
         prv = config.PrivateFactory(store)
-        self.assertEqual(prv.get_val('version'), __version__)
+        self.assertEqual(prv.get_val(u'version'), __version__)
         store.close()
 
     def test_version_change_not_ok(self):
@@ -203,7 +203,7 @@ class TestConfigUpdates(unittest.TestCase):
         # Ensure the rollback has succeeded
         store = Store(create_database(GLSettings.db_uri))
         prv = config.PrivateFactory(store)
-        self.assertEqual(prv.get_val('version'), self.dummy_ver)
+        self.assertEqual(prv.get_val(u'version'), self.dummy_ver)
         store.close()
 
     def test_ver_change_exception(self):
@@ -214,22 +214,22 @@ class TestConfigUpdates(unittest.TestCase):
 
         store = Store(create_database(GLSettings.db_uri))
         prv = config.PrivateFactory(store)
-        self.assertEqual(prv.get_val('version'), self.dummy_ver)
+        self.assertEqual(prv.get_val(u'version'), self.dummy_ver)
         store.close()
 
     def test_trim_value_to_range(self):
         store = Store(create_database(GLSettings.db_uri))
 
         nf = config.NodeFactory(store)
-        fake_cfg = nf.get_cfg('wbtip_timetolive')
+        fake_cfg = nf.get_cfg(u'wbtip_timetolive')
 
         self.assertRaises(errors.InvalidModelInput, fake_cfg.set_v, 3650)
 
         fake_cfg.value = {'v': 3650}
         store.commit()
 
-        MigrationBase.trim_value_to_range(nf, 'wbtip_timetolive')
-        self.assertEqual(nf.get_val('wbtip_timetolive'), 365*2)
+        MigrationBase.trim_value_to_range(nf, u'wbtip_timetolive')
+        self.assertEqual(nf.get_val(u'wbtip_timetolive'), 365*2)
 
 
 def apply_gen(f):

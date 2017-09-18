@@ -77,11 +77,11 @@ migration_mapping = OrderedDict([
 def db_perform_data_update(store):
     prv = PrivateFactory(store)
 
-    stored_ver = prv.get_val('version')
+    stored_ver = prv.get_val(u'version')
     t = (stored_ver, __version__)
 
     if stored_ver != __version__:
-        prv.set_val('version', __version__)
+        prv.set_val(u'version', __version__)
 
         # The below commands can change the current store based on the what is
         # currently stored in the DB.

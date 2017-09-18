@@ -35,13 +35,13 @@ def parse_pgp_options(notif, request):
         k = parse_pgp_key(pgp_key_public)
 
     if k is not None:
-        notif.set_val('exception_email_pgp_key_public', k['public'])
-        notif.set_val('exception_email_pgp_key_fingerprint', k['fingerprint'])
-        notif.set_val('exception_email_pgp_key_expiration', iso_strf_time(k['expiration']))
+        notif.set_val(u'exception_email_pgp_key_public', k['public'])
+        notif.set_val(u'exception_email_pgp_key_fingerprint', k['fingerprint'])
+        notif.set_val(u'exception_email_pgp_key_expiration', iso_strf_time(k['expiration']))
     else:
-        notif.set_val('exception_email_pgp_key_public', '')
-        notif.set_val('exception_email_pgp_key_fingerprint', '')
-        notif.set_val('exception_email_pgp_key_expiration', '')
+        notif.set_val(u'exception_email_pgp_key_public', '')
+        notif.set_val(u'exception_email_pgp_key_fingerprint', '')
+        notif.set_val(u'exception_email_pgp_key_expiration', '')
 
 
 def admin_serialize_notification(store, language):
@@ -78,7 +78,7 @@ def update_notification(store, request, language):
 
     smtp_pw = request.pop('smtp_password', u'')
     if smtp_pw != u'':
-        PrivateFactory(store).set_val('smtp_password', smtp_pw)
+        PrivateFactory(store).set_val(u'smtp_password', smtp_pw)
 
     notif = NotificationFactory(store)
     notif.update(request)

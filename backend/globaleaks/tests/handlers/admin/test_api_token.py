@@ -11,7 +11,7 @@ from twisted.internet.defer import inlineCallbacks
 
 @transact
 def set_api_digest(store, s):
-    PrivateFactory(store).set_val('admin_api_token_digest', s)
+    PrivateFactory(store).set_val(u'admin_api_token_digest', s)
 
 
 class TestAPITokenEnabled(helpers.TestHandlerWithPopulatedDB):

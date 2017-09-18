@@ -50,7 +50,7 @@ class ProcessSupervisor(object):
     def db_maybe_launch_https_workers(self, store):
         privFact = PrivateFactory(store)
 
-        on = privFact.get_val('https_enabled')
+        on = privFact.get_val(u'https_enabled')
         if not on:
             log.info("Not launching workers")
             return defer.succeed(None)
