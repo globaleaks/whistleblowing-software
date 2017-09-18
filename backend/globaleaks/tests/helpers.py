@@ -326,7 +326,7 @@ class TestGL(unittest.TestCase):
                 os.path.join(GLSettings.working_path, 'db', GLSettings.db_file_name)
             )
         else:
-            yield db.init_db(use_single_lang=True)
+            yield db.init_db()
 
         allow_unencrypted = self.encryption_scenario in ['PLAINTEXT', 'MIXED']
 
