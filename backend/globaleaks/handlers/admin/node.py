@@ -73,7 +73,6 @@ def enable_disable_languages(store, request):
         models.db_delete(store, models.l10n.EnabledLanguage, In(models.l10n.EnabledLanguage.name, to_remove))
 
 
-# TODO This cmd issues at least 3 SQL queries on node config.
 def db_update_node(store, request, language):
     """
     Update and serialize the node infos

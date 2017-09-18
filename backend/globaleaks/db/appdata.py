@@ -22,11 +22,11 @@ def load_default_questionnaires(store):
 
         steps = questionnaire.pop('steps')
 
-        q = store.find(models.Questionnaire, models.Questionnaire.id == questionnaire['id']).one()
+        q = store.find(models.Questionnaire, id=questionnaire['id']).one()
         if q is None:
             q = models.db_forge_obj(store, models.Questionnaire, questionnaire)
         else:
-            store.find(models.Step, models.Step.questionnaire_id == q.id).remove()
+            store.find(models.Step, questionnaire_id=q.id).remove()
 
         for step in steps:
             step['questionnaire_id'] = q.id
@@ -36,7 +36,7 @@ def load_default_fields(store):
     ffiles = [os.path.join(GLSettings.questions_path, path) for path in os.listdir(GLSettings.questions_path)]
     for ffile in ffiles:
         question = read_json_file(ffile)
-        store.find(models.Field, models.Field.id == question['id']).remove()
+        store.find(models.Field, id=question['id']).remove()
         db_create_field(store, question, None)
 
 
