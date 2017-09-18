@@ -450,7 +450,7 @@ class GLSettingsClass(object):
         try:
             if path != self.working_path:
                 os.chown(path, self.uid, self.gid)
-                os.chmod(path, 0700)
+                os.chmod(path, 0o700)
         except Exception as excep:
             self.print_msg("Unable to update permissions on %s: %s" % (path, excep))
             sys.exit(1)
@@ -461,7 +461,7 @@ class GLSettingsClass(object):
             else:
                 try:
                     os.chown(item, self.uid, self.gid)
-                    os.chmod(item, 0700)
+                    os.chmod(item, 0o700)
                 except Exception as excep:
                     self.print_msg("Unable to update permissions on %s: %s" % (item, excep))
                     sys.exit(1)
