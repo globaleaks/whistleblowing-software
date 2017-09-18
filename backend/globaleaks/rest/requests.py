@@ -413,7 +413,6 @@ NodeDesc = {
     'footer': unicode,
     'security_awareness_title': unicode,
     'security_awareness_text': unicode,
-    'onionservice': onionservice_regexp_or_empty,
     'hostname': hostname_regexp_or_empty,
     'tb_download_link': https_url_regexp,
     'languages_enabled': [unicode],

@@ -8,6 +8,7 @@ from twisted.internet import reactor
 from twisted.internet.defer import inlineCallbacks, Deferred
 from twisted.internet.error import ConnectionLost
 
+from globaleaks.db import refresh_memory_variables
 from globaleaks.jobs.base import BaseJob
 from globaleaks.models.config import NodeFactory, PrivateFactory
 from globaleaks.orm import transact
@@ -78,6 +79,7 @@ class OnionService(BaseJob):
                 log.info('Initialization of hidden-service %s completed.', ephs.hostname)
                 if hostname == '' and key == '':
                     yield set_onion_service_info(ephs.hostname, ephs.private_key)
+                    yield refresh_memory_variables()
 
             d = ephs.add_to_tor(self.tor_conn.protocol)
             d.addCallback(initialization_callback) # pylint: disable=no-member
