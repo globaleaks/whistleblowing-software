@@ -40,7 +40,7 @@ def db_create_tables(store):
 
 
 @transact_sync
-def init_db(store, use_single_lang=False):
+def init_db(store):
     appdata = load_appdata()
 
     db_create_tables(store)
@@ -51,10 +51,7 @@ def init_db(store, use_single_lang=False):
 
     models.config.system_cfg_init(store)
 
-    if not use_single_lang:
-        models.l10n.EnabledLanguage.add_all_supported_langs(store, appdata)
-    else:
-        models.l10n.EnabledLanguage.add_new_lang(store, u'en', appdata)
+    models.l10n.EnabledLanguage.add_all_supported_langs(store, appdata)
 
     file_descs = [
       (u'logo', 'data/logo.png'),
