@@ -82,8 +82,8 @@ class TestMigrationRoutines(unittest.TestCase):
     def preconditions_34(self):
         store = Store(create_database(self.start_db_uri))
         notification_l10n = NotificationL10NFactory(store)
-        notification_l10n.set_val(u'export_template', 'it', 'unmodifiable')
-        x = notification_l10n.get_val(u'export_template', 'it')
+        notification_l10n.set_val(u'export_template', u'it', 'unmodifiable')
+        x = notification_l10n.get_val(u'export_template', u'it')
         self.assertTrue(x, 'unmodifiable')
         store.commit()
         store.close()
@@ -91,7 +91,7 @@ class TestMigrationRoutines(unittest.TestCase):
     def postconditions_34(self):
         store = Store(create_database(GLSettings.db_uri))
         notification_l10n = NotificationL10NFactory(store)
-        x = notification_l10n.get_val(u'export_template', 'it')
+        x = notification_l10n.get_val(u'export_template', u'it')
         self.assertNotEqual(x, 'unmodifiable')
         store.commit()
         store.close()
