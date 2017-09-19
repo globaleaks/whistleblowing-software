@@ -17,7 +17,7 @@ from globaleaks import models
 from globaleaks.handlers.base import BaseHandler, \
     directory_traversal_check, write_upload_plaintext_to_disk
 from globaleaks.handlers.custodian import serialize_identityaccessrequest
-from globaleaks.handlers.submission import serialize_usertip, db_get_internaltip_from_usertip
+from globaleaks.handlers.submission import serialize_usertip
 from globaleaks.models import serializers
 from globaleaks.orm import transact
 from globaleaks.rest import errors, requests
@@ -258,19 +258,13 @@ def db_delete_itips(store, itips):
         db_delete_itip(store, itip)
 
 
-def db_delete_rtip(store, rtip):
-    return db_delete_itip(store, db_get_internaltip_from_usertip(store, rtip))
-
-
-def db_postpone_expiration_date(store, rtip):
-    internaltip, context = store.find((models.InternalTip, models.Context),
-                                      models.InternalTip.id == rtip.internaltip_id,
-                                      models.Context.id == models.InternalTip.context_id).one()
+def db_postpone_expiration_date(store, itip):
+    context = store.find((models.Context), id=itip.context_id).one()
 
     if context.tip_timetolive > -1:
-        internaltip.expiration_date = get_expiration(context.tip_timetolive)
+        itip.expiration_date = get_expiration(context.tip_timetolive)
     else:
-        internaltip.expiration_date = datetime_never()
+        itip.expiration_date = datetime_never()
 
 
 @transact
@@ -279,7 +273,7 @@ def delete_rtip(store, user_id, rtip_id):
     Delete internalTip is possible only to Receiver with
     the dedicated property.
     """
-    rtip, _ = db_access_rtip(store, user_id, rtip_id)
+    rtip, itip = db_access_rtip(store, user_id, rtip_id)
 
     receiver = models.db_get(store, models.Receiver, id=rtip.receiver_id)
 
@@ -287,12 +281,12 @@ def delete_rtip(store, user_id, rtip_id):
             receiver.can_delete_submission):
         raise errors.ForbiddenOperation
 
-    db_delete_rtip(store, rtip)
+    db_delete_itip(store, itip)
 
 
 @transact
 def postpone_expiration_date(store, user_id, rtip_id):
-    rtip, _ = db_access_rtip(store, user_id, rtip_id)
+    rtip, itip = db_access_rtip(store, user_id, rtip_id)
 
     receiver = models.db_get(store, models.Receiver, id=rtip.receiver_id)
 
@@ -300,7 +294,7 @@ def postpone_expiration_date(store, user_id, rtip_id):
             receiver.can_postpone_expiration):
         raise errors.ExtendTipLifeNotEnabled
 
-    db_postpone_expiration_date(store, rtip)
+    db_postpone_expiration_date(store, itip)
 
 
 @transact

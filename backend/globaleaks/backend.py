@@ -1,7 +1,8 @@
 # -*- coding: UTF-8
 #   backend
 #   *******
-import os, sys
+import os
+import sys
 import traceback
 
 from datetime import datetime
@@ -22,7 +23,7 @@ from globaleaks.utils.utility import log, timedelta_to_milliseconds, GLLogObserv
 from globaleaks.workers.supervisor import ProcessSupervisor
 
 # this import seems unused but it is required in order to load the mocks
-import globaleaks.mocks.twisted_mocks
+import globaleaks.mocks.twisted_mocks # pylint: disable=W0611
 
 
 def fail_startup(excep):

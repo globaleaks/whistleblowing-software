@@ -14,7 +14,7 @@ do
   if which $REQ >/dev/null; then
     echo " + $REQ requirement meet"
   else
-    ERR=$(($ERR+1))
+    ERR=$((ERR+1))
     echo " - $REQ requirement not meet"
   fi
 done

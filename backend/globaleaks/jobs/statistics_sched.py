@@ -87,8 +87,8 @@ class StatisticsSchedule(LoopingJob):
     monitor_interval = 5 * 60
 
     def get_start_time(self):
-         current_time = datetime_now()
-         return 3600 - (current_time.minute * 60) - current_time.second
+        current_time = datetime_now()
+        return 3600 - (current_time.minute * 60) - current_time.second
 
     def __init__(self):
         self.stats_collection_start_time = datetime_now()

@@ -11,8 +11,8 @@ def get_tor_agent(socks_host='127.0.0.1', socks_port=9050):
     """
     An HTTP agent that uses SOCKS5 to proxy all requests through the socks_port
 
-    It is implicitly understood that the socks_port points to the locally configured 
-    tor daemon
+    It is implicitly understood that the socks_port points to the locally
+    configured tor daemon
     """
     torServerEndpoint = TCP4ClientEndpoint(reactor, socks_host, socks_port)
     agent = SOCKS5Agent(reactor, proxyEndpoint=torServerEndpoint)

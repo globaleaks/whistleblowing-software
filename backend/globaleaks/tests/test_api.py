@@ -20,7 +20,7 @@ class TestAPI(TestGL):
             check_roles = getattr(spec[1], 'check_roles')
             self.assertIsNotNone(check_roles)
 
-            if type(check_roles) == str:
+            if isinstance(check_roles, str):
                 check_roles = {check_roles}
 
             self.assertTrue(len(check_roles) >= 1)

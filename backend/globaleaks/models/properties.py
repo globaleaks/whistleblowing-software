@@ -12,20 +12,20 @@ class MetaModel(PropertyPublisherMeta):
     """
     Metaclass that initialize properties necessary to storm and models
     """
-    def __init__(cls, name, bases, attrs):
-        if not hasattr(cls, '__storm_table__'):
-            cls.__storm_table__ = cls.__name__.lower()
-        elif cls.__storm_table__ is None:
-            del cls.__storm_table__
+    def __init__(self, name, bases, attrs):
+        if not hasattr(self, '__storm_table__'):
+            self.__storm_table__ = self.__name__.lower()
+        elif self.__storm_table__ is None:
+            del self.__storm_table__
 
         properties = set([key for key, val in attrs.items() if isinstance(val, Property)])
 
         for base in bases:
             properties |= getattr(base, 'properties', set())
 
-        cls.properties = properties
+        self.properties = properties
 
-        super(MetaModel, cls).__init__(name, bases, attrs)
+        super(MetaModel, self).__init__(name, bases, attrs)
 
 
 def iso_strp_time(s):

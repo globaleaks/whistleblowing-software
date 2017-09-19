@@ -31,7 +31,7 @@ def receiverfile_planning(store):
     """
     receiverfiles_maps = {}
 
-    for ifile in store.find(models.InternalFile, models.InternalFile.new == True):
+    for ifile in store.find(models.InternalFile, new=True):
         if ifile.processing_attempts >= INTERNALFILES_HANDLE_RETRY_MAX:
             ifile.new = False
             log.err("Failed to handle receiverfiles creation for ifile %s (%d retries)",
@@ -186,13 +186,13 @@ def process_files(receiverfiles_maps):
         try:
             os.remove(ifile_path)
         except OSError as ose:
-            log.err("Unable to remove %s: %s", ifile_path, ose.message)
+            log.err("Unable to remove %s: %s", ifile_path, ose.strerror)
 
         # Remove the AES file key
         try:
             os.remove(os.path.join(GLSettings.ramdisk_path, ("%s%s" % (GLSettings.AES_keyfile_prefix, ifile_name))))
         except OSError as ose:
-            log.err("Unable to remove keyfile associated with %s: %s", ifile_path, ose.message)
+            log.err("Unable to remove keyfile associated with %s: %s", ifile_path, ose.strerror)
 
 
 @transact_sync

@@ -74,7 +74,7 @@ class TestRecentEventsCollection(helpers.TestHandler):
         response = yield handler.get('summary')
         self.assertTrue(isinstance(response, dict))
 
-        for k in anomaly.ANOMALY_MAP.keys():
+        for k in anomaly.ANOMALY_MAP:
             self.assertTrue(k in response)
 
 

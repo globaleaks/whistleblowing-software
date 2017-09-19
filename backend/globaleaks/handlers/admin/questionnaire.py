@@ -13,7 +13,7 @@ from globaleaks.handlers.public import serialize_questionnaire
 from globaleaks.orm import transact
 from globaleaks.rest import requests
 from globaleaks.utils.structures import fill_localized_keys
-from globaleaks.utils.utility import log, datetime_to_ISO8601, datetime_now
+from globaleaks.utils.utility import datetime_to_ISO8601, datetime_now
 
 
 def db_get_questionnaire_list(store, language):

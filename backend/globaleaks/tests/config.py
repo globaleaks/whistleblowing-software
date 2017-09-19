@@ -18,7 +18,7 @@ tests_to_ignore = {
 
 
 class SkipMigrations(argparse.Action):
-    def __call__(self, *args):
+    def __call__(self, parser, namespace, values, option_string=None):
         tests_to_ignore['migration'] = True
         sys.argv.remove('--skip-migs')
 

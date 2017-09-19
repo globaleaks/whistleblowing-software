@@ -189,8 +189,8 @@ class RecentEventsCollection(BaseHandler):
 
         if kind == 'details':
             return templist
-        else:  # kind == 'summary':
-            return self.get_summary(templist)
+
+        return self.get_summary(templist)
 
 
 class JobsTiming(BaseHandler):

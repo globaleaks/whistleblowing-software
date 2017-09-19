@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-from storm.expr import And
 from storm.locals import Unicode, Storm, Bool
 
 from globaleaks import LANGUAGES_SUPPORTED_CODES
@@ -57,8 +56,8 @@ class ConfigL10N(Storm):
         self.value = unicode(value)
 
     def __repr__(self):
-      return "<ConfigL10N %s::%s.%s::'%s'>" % (self.lang, self.var_group,
-                                               self.var_name, self.value[:5])
+        return "<ConfigL10N %s::%s.%s::'%s'>" % (self.lang, self.var_group,
+                                                 self.var_name, self.value[:5])
 
     def set_v(self, value):
         value = unicode(value)
@@ -112,7 +111,7 @@ class ConfigL10NFactory(object):
                 else:
                     self.store.remove(cfg)
 
-            ConfigL10NFactory.initialize(self, lang_code, l10n_data_src,  list(set(self.localized_keys) - set(old_keys)))
+            ConfigL10NFactory.initialize(self, lang_code, l10n_data_src, list(set(self.localized_keys) - set(old_keys)))
 
     def get_all(self, lang_code):
         return self.store.find(ConfigL10N, lang=lang_code, var_group=self.group)
@@ -154,8 +153,8 @@ class NodeL10NFactory(ConfigL10NFactory):
     def __init__(self, store, *args, **kwargs):
         ConfigL10NFactory.__init__(self, store, u'node', *args, **kwargs)
 
-    def initialize(self, lang_code, appdata_dict):
-        ConfigL10NFactory.initialize(self, lang_code, appdata_dict['node'])
+    def initialize(self, lang_code, appdata_dict, keys=None):
+        ConfigL10NFactory.initialize(self, lang_code, appdata_dict['node'], keys)
 
 
 class NotificationL10NFactory(ConfigL10NFactory):
@@ -230,8 +229,8 @@ class NotificationL10NFactory(ConfigL10NFactory):
     def __init__(self, store, *args, **kwargs):
         ConfigL10NFactory.__init__(self, store, u'notification', *args, **kwargs)
 
-    def initialize(self, lang_code, appdata_dict):
-        ConfigL10NFactory.initialize(self, lang_code, appdata_dict['templates'])
+    def initialize(self, lang_code, appdata_dict, keys=None):
+        ConfigL10NFactory.initialize(self, lang_code, appdata_dict['templates'], keys)
 
     def reset_templates(self, l10n_data_src):
         langs = EnabledLanguage.list(self.store)

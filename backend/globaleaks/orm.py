@@ -94,7 +94,7 @@ class transact(object):
         Wrap provided function calling it inside a thread and
         passing the store to it.
         """
-        with transact_lock:
+        with transact_lock: # pylint: disable=not-context-manager
             start_time = datetime.now()
             store = Store(create_database(GLSettings.db_uri))
 

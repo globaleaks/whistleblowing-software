@@ -112,16 +112,16 @@ def overwrite_and_remove(absolutefpath, iterations_number=1):
             _overwrite(absolutefpath, all_ones)
             _overwrite(absolutefpath, random_pattern)
 
-    except Exception as e:
+    except Exception as excep:
         log.err("Unable to perform secure overwrite for file %s: %s",
-                absolutefpath, e)
+                absolutefpath, excep)
 
     finally:
         try:
             os.remove(absolutefpath)
-        except OSError as remove_ose:
+        except OSError as excep:
             log.err("Unable to perform unlink operation on file %s: %s",
-                    absolutefpath, remove_ose)
+                    absolutefpath, excep)
 
     log.debug("Performed deletion of file: %s", absolutefpath)
 
@@ -224,7 +224,7 @@ class GLSecureTemporaryFile(_TemporaryFileWrapper):
 
         try:
             _TemporaryFileWrapper.close(self)
-        except:
+        except Exception:
             pass
 
     def read(self, c=None):
@@ -248,8 +248,8 @@ class GLSecureTemporaryFile(_TemporaryFileWrapper):
 
         if len(data):
             return self.decryptor.update(data)
-        else:
-            return self.decryptor.finalize()
+
+        return self.decryptor.finalize()
 
 
 class GLSecureFile(GLSecureTemporaryFile):
@@ -263,7 +263,7 @@ class GLSecureFile(GLSecureTemporaryFile):
         self.file = open(self.filepath, 'r+b')
 
         # last argument is 'False' because the file has not to be deleted on .close()
-        _TemporaryFileWrapper.__init__(self, self.file, self.filepath, False)
+        _TemporaryFileWrapper.__init__(self, self.file, self.filepath, False) # pylint: disable=W0233
 
         self.load_key()
 
@@ -281,9 +281,9 @@ class GLSecureFile(GLSecureTemporaryFile):
             self.key_counter_nonce = base64.b64decode(key_json['key_counter_nonce'])
             self.initialize_cipher()
 
-        except Exception as e:
+        except Exception as excep:
             # I'm sorry, that file is a dead file!
-            log.err("The file %s has been encrypted with a lost/invalid key (%s)", self.keypath, e.message)
+            log.err("The file %s has been encrypted with a lost/invalid key (%s)", self.keypath, excep.message)
             raise
 
 
@@ -353,8 +353,8 @@ class GLBPGP(object):
             os.makedirs(temp_pgproot, mode=0700)
             self.gnupg = GPG(gnupghome=temp_pgproot, options=['--trust-model', 'always'])
             self.gnupg.encoding = "UTF-8"
-        except OSError as ose:
-            log.err("Critical, OS error in operating with GnuPG home: %s", ose)
+        except OSError as excep:
+            log.err("Critical, OS error in operating with GnuPG home: %s", excep)
             raise
         except Exception as excep:
             log.err("Unable to instance PGP object: %s" % excep)
@@ -384,10 +384,10 @@ class GLBPGP(object):
             raise errors.PGPKeyInvalid
 
         expiration = datetime.utcfromtimestamp(0)
-        for key in all_keys:
-            if key['fingerprint'] == fingerprint:
-                if key['expires']:
-                    expiration = datetime.utcfromtimestamp(int(key['expires']))
+        for k in all_keys:
+            if k['fingerprint'] == fingerprint:
+                if k['expires']:
+                    expiration = datetime.utcfromtimestamp(int(k['expires']))
                 break
 
         return {
@@ -430,7 +430,7 @@ def encrypt_message(pgp_key_public, msg):
     try:
         fingerprint = gpob.load_key(pgp_key_public)['fingerprint']
         body = gpob.encrypt_message(fingerprint, msg)
-    except:
+    except Exception:
         raise
     finally:
         gpob.destroy_environment()
@@ -457,7 +457,7 @@ def parse_pgp_key(key):
             'fingerprint': k['fingerprint'],
             'expiration': k['expiration']
         }
-    except:
+    except Exception:
         raise
     finally:
         # the finally statement is always called also if

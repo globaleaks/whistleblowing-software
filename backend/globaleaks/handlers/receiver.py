@@ -9,7 +9,7 @@ from storm.expr import And, In, Count
 
 from globaleaks import models
 from globaleaks.handlers.base import BaseHandler
-from globaleaks.handlers.rtip import db_postpone_expiration_date, db_delete_rtip
+from globaleaks.handlers.rtip import db_postpone_expiration_date, db_delete_itip
 from globaleaks.handlers.submission import db_serialize_archived_preview_schema
 from globaleaks.handlers.user import db_user_update_user
 from globaleaks.handlers.user import user_serialize_user
@@ -125,24 +125,24 @@ def get_receivertip_list(store, receiver_id, language):
 def perform_tips_operation(store, receiver_id, operation, rtips_ids):
     receiver = store.find(models.Receiver, models.Receiver.id == receiver_id).one()
 
-    rtips = store.find(models.ReceiverTip, And(models.ReceiverTip.receiver_id == receiver_id,
-                                           In(models.ReceiverTip.id, rtips_ids)))
+    for itip in store.find(models.InternalTip,
+                           models.ReceiverTip.receiver_id == receiver_id,
+                           In(models.ReceiverTip.id, rtips_ids),
+                           models.InternalTip.id == models.ReceiverTip.internaltip_id):
 
-    if operation == 'postpone':
-        can_postpone_expiration = GLSettings.memory_copy.can_postpone_expiration or receiver.can_postpone_expiration
-        if not can_postpone_expiration:
-            raise errors.ForbiddenOperation
+        if operation == 'postpone':
+            can_postpone_expiration = GLSettings.memory_copy.can_postpone_expiration or receiver.can_postpone_expiration
+            if not can_postpone_expiration:
+                raise errors.ForbiddenOperation
 
-        for rtip in rtips:
-            db_postpone_expiration_date(store, rtip)
+            db_postpone_expiration_date(store, itip)
 
-    elif operation == 'delete':
-        can_delete_submission =  GLSettings.memory_copy.can_delete_submission or receiver.can_delete_submission
-        if not can_delete_submission:
-            raise errors.ForbiddenOperation
+        elif operation == 'delete':
+            can_delete_submission =  GLSettings.memory_copy.can_delete_submission or receiver.can_delete_submission
+            if not can_delete_submission:
+                raise errors.ForbiddenOperation
 
-        for rtip in rtips:
-            db_delete_rtip(store, rtip)
+            db_delete_itip(store, itip)
 
     log.debug("Multiple %s of %d Tips completed" % (operation, len(rtips_ids)))
 
