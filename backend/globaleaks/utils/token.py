@@ -72,7 +72,7 @@ class Token(object):
         dump_attr = ['human_captcha', 'proof_of_work']
 
         for a in dump_attr:
-          test_desc = "%s %s=%s" % (test_desc, a, getattr(self, a))
+            test_desc = "%s %s=%s" % (test_desc, a, getattr(self, a))
 
         token_string = "<Token %s for %s [%s]>" % (self.id, self.kind, test_desc)
 

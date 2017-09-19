@@ -61,7 +61,7 @@ def enable_disable_languages(store, request):
             raise errors.InvalidInputFormat("Invalid lang code: %s" % lang_code)
         if lang_code not in cur_enabled_langs:
             if appdata is None:
-              appdata = load_appdata()
+                appdata = load_appdata()
             log.debug("Adding a new lang %s" % lang_code)
             EnabledLanguage.add_new_lang(store, lang_code, appdata)
 

@@ -17,7 +17,7 @@ from globaleaks.utils.utility import log
 
 
 try:
-   from txtorcon.torconfig import EphemeralHiddenService
+    from txtorcon.torconfig import EphemeralHiddenService
 except ImportError:
    from globaleaks.mocks.txtorcon_mocks import EphemeralHiddenService
 

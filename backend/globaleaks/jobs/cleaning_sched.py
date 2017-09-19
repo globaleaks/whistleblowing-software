@@ -35,8 +35,8 @@ class CleaningSchedule(LoopingJob):
     monitor_interval = 5 * 60
 
     def get_start_time(self):
-         current_time = datetime_now()
-         return (3600 * 24) - (current_time.hour * 3600) - (current_time.minute * 60) - current_time.second
+        current_time = datetime_now()
+        return (3600 * 24) - (current_time.hour * 3600) - (current_time.minute * 60) - current_time.second
 
     @transact_sync
     def clean_expired_wbtips(self, store):
@@ -67,7 +67,7 @@ class CleaningSchedule(LoopingJob):
 
             count = rtips.count()
             if count == 0:
-              continue
+                continue
 
             language = user.language
             node_desc = db_admin_serialize_node(store, language)

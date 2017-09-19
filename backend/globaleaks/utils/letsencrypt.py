@@ -58,12 +58,12 @@ def run_acme_reg_to_finish(domain, regr_uri, accnt_key, site_key, csr, tmp_chall
     log.debug('Testing local url path: %s', test_path)
 
     try:
-       resp = urlopen(test_path)
-       t = resp.read().decode('utf-8').strip()
-       assert t == chall_tok
+        resp = urlopen(test_path)
+        t = resp.read().decode('utf-8').strip()
+        assert t == chall_tok
     except (IOError, AssertionError):
-       log.info('Resolving challenge locally failed. ACME request will fail. %s', test_path)
-       raise
+        log.info('Resolving challenge locally failed. ACME request will fail. %s', test_path)
+        raise
 
     cr = acme.answer_challenge(challb, challb.chall.response(accnt_key))
     log.debug('Acme CA responded to challenge request with: %s', cr)

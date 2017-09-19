@@ -33,10 +33,10 @@ class SkipModules(argparse.Action):
 
 
 def skipIf(case):
-  if tests_to_ignore.get(case, False):
-    raise unittest.SkipTest('TestCase ignored by flag: %s' % case)
-  else:
-      pass
+    if tests_to_ignore.get(case, False):
+        raise unittest.SkipTest('TestCase ignored by flag: %s' % case)
+    else:
+        pass
 
 
 def skipCase(testcase):
