@@ -4,12 +4,10 @@ GLClient.controller('WizardCtrl', ['$scope', '$location', '$route', '$http', 'Au
 
     $scope.step = 1;
 
-
     var submitReq = false;
 
     $scope.submitWizard = function() {
       if (!submitReq) {
-        submitReq = true;
         $http.post('wizard', $scope.wizard).then(function() {
           Authentication.login('admin', $scope.wizard.admin.password, function() {
             $scope.admin = {
@@ -27,9 +25,7 @@ GLClient.controller('WizardCtrl', ['$scope', '$location', '$route', '$http', 'Au
     };
 
     $scope.skipHTTPS = function() {
-      (new AdminTLSConfigResource()).$delete().then(function() {
-        $scope.reload("/admin/home");
-      });
+      (new AdminTLSConfigResource()).$delete().then($scope.finish);
     }
 
     $scope.finish = function() {

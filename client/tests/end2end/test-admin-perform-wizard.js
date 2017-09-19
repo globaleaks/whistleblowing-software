@@ -1,4 +1,4 @@
-describe('globaLeaks setup wizard', function() {
+fdescribe('globaLeaks setup wizard', function() {
   it('should allow the user to setup the wizard', function() {
     browser.get('/#/wizard');
 
