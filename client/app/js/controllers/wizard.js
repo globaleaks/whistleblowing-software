@@ -1,5 +1,5 @@
-GLClient.controller('WizardCtrl', ['$scope', '$location', '$route', '$http', 'Authentication', 'AdminUtils', 'AdminNodeResource', 'CONSTANTS',
-                    function($scope, $location, $route, $http, Authentication, AdminUtils, AdminNodeResource, CONSTANTS) {
+GLClient.controller('WizardCtrl', ['$scope', '$location', '$route', '$http', 'Authentication', 'AdminUtils', 'AdminNodeResource', 'AdminTLSConfigResource', 'CONSTANTS',
+                    function($scope, $location, $route, $http, Authentication, AdminUtils, AdminNodeResource, AdminTLSConfigResource, CONSTANTS) {
     $scope.email_regexp = CONSTANTS.email_regexp;
 
     $scope.step = 1;
@@ -17,7 +17,7 @@ GLClient.controller('WizardCtrl', ['$scope', '$location', '$route', '$http', 'Au
             };
             $scope.admin.node.$promise.then(function() {
               $scope.https_redirect_modal = 'views/wizard/https_success_modal.html';
-              $scope.https_redirect_path = '/#/';
+              $scope.https_redirect_path = '/#/admin';
               $scope.https_manual_enabled = false;
               $scope.step = $scope.step + 1;
             });
@@ -26,18 +26,14 @@ GLClient.controller('WizardCtrl', ['$scope', '$location', '$route', '$http', 'Au
       }
     };
 
-    $scope.goToAdminInterface = function() {
-      Authentication.login('admin', $scope.wizard.admin.password, function() {
-        $scope.reload("/admin/home");
+    $scope.skipHTTPS = function() {
+      (new AdminTLSConfigResource()).$delete().then(function() {
+        $scope.step = $scope.step + 1;
       });
-    };
+    }
 
     $scope.finish = function() {
       $scope.reload("/admin/home");
-    }
-
-    $scope.nextStep = function() {
-      $scope.step = $scope.step + 1;
     }
 
     if ($scope.node.wizard_done) {

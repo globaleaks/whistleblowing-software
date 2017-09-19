@@ -10,10 +10,16 @@
     </div>
     <hr/>
 
+    <p class="alert alert-danger" data-ng-if="acmeFailed">
+      <i class="glyphicon glyphicon-warning-sign"></i>
+      <span data-translate>Warning!</span>
+      <span data-translate>The platform does not seem to be reachable with the hostname configured.</span>
+    </p>
+
     <button id="LetsCry" class="btn btn-med btn-success"
       data-ng-disabled="!accepted_le_terms"
       data-ng-click="completeAcme()"
       data-translate>Proceed</button>
-    <button class="btn btn-default" data-ng-click="resetCfg()" data-translate>Cancel</button>
+    <button data-ng-if="https_manual_enabled" class="btn btn-default" data-ng-click="resetCfg()" data-translate>Cancel</button>
   </div>
 </div>

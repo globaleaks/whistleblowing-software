@@ -142,7 +142,13 @@ controller('AdminHTTPSConfigCtrl', ['$q', '$location', '$http', '$scope', '$uibM
   $scope.completeAcme = function() {
     var aRes = new adminAcmeResource({});
     aRes.$update().then(function() {
-      $scope.setMenu('acmeFin');
+      if ($scope.https_manual_enabled) {
+        $scope.setMenu('acmeFin');
+      } else {
+        $scope.toggleCfg()
+      }
+    }, function() {
+        $scope.acmeFailed = true;
     });
   };
 
@@ -216,7 +222,7 @@ controller('AdminHTTPSConfigCtrl', ['$q', '$location', '$http', '$scope', '$uibM
       $uibModal.open({
         backdrop: 'static',
         keyboard: false,
-        templateUrl: $scope.https_redirect_controller,
+        templateUrl: $scope.https_redirect_modal,
         controller: 'safeRedirectModalCtrl',
         resolve: {
           https_url: function() { return go_url; },

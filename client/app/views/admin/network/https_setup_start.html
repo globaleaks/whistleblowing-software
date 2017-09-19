@@ -33,6 +33,10 @@
       <span data-translate>Warning!</span>
       <span data-translate>The platform does not seem to be reachable with the hostname configured.</span>
     </p>
+    <p class="alert alert-success" data-ng-if="verifyFailed !== undefined && !verifyFailed">
+      <i class="glyphicon glyphicon-ok-sign"></i>
+      <span data-translate>Verified</span>
+    </p>
     <hr />
   </form>
   <button class="btn btn-success btn-md"
