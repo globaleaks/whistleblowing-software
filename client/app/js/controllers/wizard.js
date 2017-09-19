@@ -4,16 +4,24 @@ GLClient.controller('WizardCtrl', ['$scope', '$location', '$route', '$http', 'Au
 
     $scope.step = 1;
 
-    var finished = false;
+    var completed = false;
 
-    $scope.finish = function() {
-      if (!finished) {
-        $http.post('wizard', $scope.wizard).then(function() {
-          Authentication.login('admin', $scope.wizard.admin.password, function() {
-            $scope.reload("/admin/home");
-          });
-        });
+    $scope.complete = function() {
+      if (completed) {
+          return;
       }
+
+      $scope.completed = true;
+
+      $http.post('wizard', $scope.wizard).then(function() {
+        $scope.step += 1;
+      });
+    };
+
+    $scope.goToAdminInterface = function() {
+      Authentication.login('admin', $scope.wizard.admin.password, function() {
+        $scope.reload("/admin/home");
+      });
     };
 
     if ($scope.node.wizard_done) {
