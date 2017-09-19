@@ -132,8 +132,8 @@ def db_refresh_exception_delivery_list(store):
 
     lst = [(error_addr, error_pk)]
 
-    results = store.find(models.User, role=unicode('admin')) \
-                   .values(models.User.mail_address, models.User.pgp_key_public)
+    results = store.find(models.User, models.User.role==u'admin') \
+                  .values(models.User.mail_address, models.User.pgp_key_public)
 
     lst.extend([(mail, pub_key) for (mail, pub_key) in results])
 
@@ -173,7 +173,7 @@ def db_refresh_memory_variables(store):
     GLSettings.memory_copy.private = ObjectDict(models.config.PrivateFactory(store).mem_copy_export())
 
     if GLSettings.memory_copy.private.admin_api_token_digest != '':
-        api_id = store.find(models.User.id, role=u'admin').order_by(models.User.creation_date).first()
+        api_id = store.find(models.User.id, models.User.role==u'admin').order_by(models.User.creation_date).first()
         if api_id is not None:
             GLSettings.appstate.api_token_session = GLSession(api_id, 'admin', 'enabled')
 
