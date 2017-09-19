@@ -242,7 +242,7 @@
         <i class="glyphicon glyphicon-circle-arrow-left"></i>
         <span data-translate>previous step</span>
       </button>
-      <button id="ButtonNext" class="btn btn-success btn-large" data-ng-click="step=step+1" data-ng-disabled="wizardFormStep7.$invalid">
+      <button id="ButtonNext" class="btn btn-success btn-large" data-ng-click="complete()" data-ng-disabled="wizardFormStep7.$invalid">
         <span data-translate>next step</span>
         <i class="glyphicon glyphicon-circle-arrow-right"></i>
       </button>
@@ -256,7 +256,7 @@
       </div>
     </div>
     <div class="pager pull-right">
-      <button id="ButtonNext" class="btn btn-success btn-large" data-ng-click="finish()" type="submit" data-translate>Go to admin interface</button>
+      <button id="ButtonNext" class="btn btn-success btn-large" data-ng-click="goToAdminInterface()" type="submit" data-translate>Go to admin interface</button>
     </div>
   </div>
 </form>
