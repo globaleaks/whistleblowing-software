@@ -73,7 +73,9 @@ identityaccessreply_regexp        = (r'^('
                                      'authorized|'
                                      'denied)$')
 
-class SkipSpecificValidation: pass
+class SkipSpecificValidation:
+    pass
+
 
 DateType = r'(.*)'
 

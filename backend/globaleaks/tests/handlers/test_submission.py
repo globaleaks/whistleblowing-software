@@ -74,7 +74,7 @@ class TestSubmissionEncryptedScenario(helpers.TestHandlerWithPopulatedDB):
             else:
                 counters[self.rfi[i]['status']] += 1
 
-        for key in self.counters_check.keys():
+        for key in self.counters_check:
             self.assertEqual(counters[key], self.counters_check[key])
 
     @inlineCallbacks

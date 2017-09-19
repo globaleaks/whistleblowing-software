@@ -204,7 +204,7 @@ class MailGenerator(object):
         for trigger in ['ReceiverTip', 'Comment', 'Message', 'ReceiverFile']:
             model = trigger_model_map[trigger]
 
-            elements = store.find(model, model.new == True)
+            elements = store.find(model, new=True)
             for element in elements:
                 element.new = False
 

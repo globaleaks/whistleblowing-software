@@ -9,7 +9,6 @@ from globaleaks.handlers.base import BaseHandler
 from globaleaks.models import config, l10n, profiles
 from globaleaks.orm import transact
 from globaleaks.rest import requests, errors
-from globaleaks.settings import GLSettings
 from globaleaks.utils.utility import log, datetime_null
 
 

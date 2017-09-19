@@ -49,7 +49,7 @@ def db_update_fieldattr(store, field, attr_name, attr_dict, language):
     attr_dict['field_id'] = field.id
 
     if attr_dict['type'] == 'bool':
-        attr_dict['value'] = 'True' if attr_dict['value'] == True else 'False'
+        attr_dict['value'] = 'True' if attr_dict['value'] else 'False'
     elif attr_dict['type'] == u'localized':
         fill_localized_keys(attr_dict, ['value'], language)
 
@@ -220,8 +220,7 @@ def get_fieldtemplate_list(store, language):
     :return: the current field list serialized.
     :rtype: list of dict
     """
-    templates = store.find(models.Field, And(models.Field.instance == u'template',
-                                             models.Field.fieldgroup_id == None))
+    templates = store.find(models.Field, instance=u'template', fieldgroup_id=None)
 
     return [serialize_field(store, f, language) for f in templates]
 

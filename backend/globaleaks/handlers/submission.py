@@ -8,7 +8,7 @@
 
 import copy
 import json
-from storm.expr import And, In
+from storm.expr import In
 
 from globaleaks import models
 from globaleaks.handlers.admin.questionnaire import db_get_questionnaire
@@ -47,8 +47,11 @@ def db_assign_submission_progressive(store):
 
 def _db_serialize_archived_field_recursively(field, language):
     for key, _ in field.get('attrs', {}).items():
-        if key not in field['attrs']: continue
-        if 'type' not in field['attrs'][key]: continue
+        if key not in field['attrs']:
+            continue
+
+        if 'type' not in field['attrs'][key]:
+            continue
 
         if field['attrs'][key]['type'] == u'localized':
             if language in field['attrs'][key].get('value', []):
@@ -83,9 +86,7 @@ def _db_serialize_archived_questionnaire_schema(store, aqs, language):
 
 
 def db_serialize_archived_questionnaire_schema(store, hash, language):
-    aqs = store.find(models.ArchivedSchema,
-                     models.ArchivedSchema.hash == hash,
-                     models.ArchivedSchema.type == u'questionnaire').one()
+    aqs = store.find(models.ArchivedSchema, hash=hash, type=u'questionnaire').one()
 
     return _db_serialize_archived_questionnaire_schema(store, aqs, language)
 
@@ -106,8 +107,7 @@ def db_serialize_questionnaire_answers_recursively(store, answers):
 
             groups = []
             for group in _groups:
-                answers = store.find(models.FieldAnswer,
-                                     models.FieldAnswer.fieldanswergroup_id == group.id)
+                answers = store.find(models.FieldAnswer, fieldanswergroup_id=group.id)
                 groups.append(db_serialize_questionnaire_answers_recursively(store, answers))
 
             ret[answer.key] = groups
@@ -115,9 +115,7 @@ def db_serialize_questionnaire_answers_recursively(store, answers):
     return ret
 
 
-def db_serialize_questionnaire_answers(store, usertip):
-    internaltip = db_get_internaltip_from_usertip(store, usertip)
-
+def db_serialize_questionnaire_answers(store, usertip, internaltip):
     questionnaire = db_serialize_archived_questionnaire_schema(store, internaltip.questionnaire_hash, GLSettings.memory_copy.default_language)
 
     answers_ids = []
@@ -125,14 +123,14 @@ def db_serialize_questionnaire_answers(store, usertip):
         for f in s['children']:
             if f['id'] == 'whistleblower_identity':
                 if isinstance(usertip, models.WhistleblowerTip) or \
-                   f['attrs']['visibility_subject_to_authorization']['value'] == False or \
+                   f['attrs']['visibility_subject_to_authorization']['value'] is False or \
                    (isinstance(usertip, models.ReceiverTip) and usertip.can_access_whistleblower_identity):
                     answers_ids.append(f['id'])
             else:
                 answers_ids.append(f['id'])
 
-    answers = store.find(models.FieldAnswer, And(models.FieldAnswer.internaltip_id == internaltip.id,
-                                                 In(models.FieldAnswer.key, answers_ids)))
+    answers = store.find(models.FieldAnswer, models.FieldAnswer.internaltip_id == internaltip.id,
+                                             In(models.FieldAnswer.key, answers_ids))
 
     return db_serialize_questionnaire_answers_recursively(store, answers)
 
@@ -150,13 +148,13 @@ def db_save_questionnaire_answers(store, internaltip_id, entries):
             field_answer.is_leaf = False
             field_answer.value = ""
             n = 0
-            for entries in value:
+            for elem in value:
                 group = models.FieldAnswerGroup({
                   'fieldanswer_id': field_answer.id,
                   'number': n
                 })
                 store.add(group)
-                group_elems = db_save_questionnaire_answers(store, internaltip_id, entries)
+                group_elems = db_save_questionnaire_answers(store, internaltip_id, elem)
                 for group_elem in group_elems:
                     group_elem.fieldanswergroup_id = group.id
 
@@ -240,20 +238,11 @@ def serialize_itip(store, internaltip, language):
     }
 
 
-def db_get_internaltip_from_usertip(store, usertip):
-    if isinstance(usertip, models.WhistleblowerTip):
-        return store.find(models.InternalTip,
-                          models.InternalTip.id == usertip.id).one()
-    else:
-        return store.find(models.InternalTip,
-                          models.InternalTip.id == usertip.internaltip_id).one()
-
-
 def serialize_usertip(store, usertip, itip, language):
     ret = serialize_itip(store, itip, language)
     ret['id'] = usertip.id
     ret['internaltip_id'] = itip.id
-    ret['answers'] = db_serialize_questionnaire_answers(store, usertip)
+    ret['answers'] = db_serialize_questionnaire_answers(store, usertip, itip)
     ret['total_score'] = itip.total_score
     return ret
 

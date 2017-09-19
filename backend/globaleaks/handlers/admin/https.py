@@ -33,7 +33,7 @@ class FileResource(object):
     """
     @classmethod
     @transact
-    def create_file(store, content):
+    def create_file(store, cls, content):
         raise errors.MethodNotImplemented()
 
     @staticmethod

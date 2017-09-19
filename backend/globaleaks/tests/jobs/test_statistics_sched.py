@@ -30,8 +30,8 @@ class TestAnomaliesSchedule(helpers.TestGL):
         def mock_get_disk_anomaly_conditions(*args, **kwargs):
             conditions = original_get_disk_anomaly_conditions(*args, **kwargs)
             # activate one condition at once
-            for i in range(len(conditions)):
-                conditions[i]['condition'] = (i == self.n)
+            for condition in enumerate(conditions):
+                conditions[condition[0]]['condition'] = (condition[0] == self.n)
 
             return conditions
 

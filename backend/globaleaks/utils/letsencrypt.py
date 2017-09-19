@@ -6,7 +6,9 @@ from OpenSSL.crypto import FILETYPE_PEM, dump_certificate
 
 from globaleaks.utils.utility import log
 
-from globaleaks.mocks import acme_mocks
+# this import seems unused but it is required in order to load the mocks
+from globaleaks.mocks import acme_mocks # pylint: disable=W0611
+
 from acme import challenges, client, jose, messages
 
 
@@ -41,10 +43,7 @@ def run_acme_reg_to_finish(domain, regr_uri, accnt_key, site_key, csr, tmp_chall
     log.debug('Created auth client %s', authzr)
 
     def get_http_challenge(x, y):
-        if type(y.chall) is challenges.HTTP01:
-            return y
-        else:
-            return x
+        return y if isinstance(y.chall, challenges.HTTP01) else x
 
     challb = reduce(get_http_challenge, authzr.body.challenges, None)
     chall_tok = challb.chall.validation(accnt_key)

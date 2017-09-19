@@ -35,7 +35,7 @@ class X509CertCheckSchedule(LoopingJob):
 
     def operation(self):
         if should_try_acme_renewal(self.acme_failures) and self.acme_failures > 30:
-             self.acme_cert_renewal_checks()
+            self.acme_cert_renewal_checks()
 
         self.cert_expiration_checks()
 
@@ -53,16 +53,16 @@ class X509CertCheckSchedule(LoopingJob):
 
         try:
             db_acme_cert_issuance(store)
-        except Exception as e:
+        except Exception as excep:
             self.acme_failures =+ 1
-            log.err('ACME certificate renewal failed with: %s', e)
+            log.err('ACME certificate renewal failed with: %s', excep)
             raise
         try:
             yield GLSettings.appstate.process_supervisor.shutdown()
             yield GLSettings.appstate.process_supervisor.maybe_launch_https_workers()
-        except Exception as e:
+        except Exception as excep:
             self.acme_failures =+ 1
-            log.err('Restart of HTTPS workers failed with: %s', e)
+            log.err('Restart of HTTPS workers failed with: %s', excep)
             raise
 
     @transact_sync

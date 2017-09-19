@@ -32,4 +32,3 @@ class MigrationScript(MigrationBase):
                 setattr(new_obj, v.name, getattr(old_obj, v.name))
 
             self.store_new.add(new_obj)
-

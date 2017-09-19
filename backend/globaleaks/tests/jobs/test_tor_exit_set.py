@@ -17,7 +17,7 @@ class TestExitNodesRefresh(helpers.TestGL):
 
         GLSettings.memory_copy.anonymize_outgoing_connections = False
 
-        # TODO mocking the check-status endpoint will help us detect changes 
+        # TODO mocking the check-status endpoint will help us detect changes
         # to the exit set structure
         yield ExitNodesRefreshSchedule().operation()
 

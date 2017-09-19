@@ -172,7 +172,7 @@ class BaseHandler(object):
         self.request.start_time = datetime.now()
 
     def write(self, chunk):
-        if isinstance(chunk, types.DictType) or isinstance(chunk, types.ListType):
+        if isinstance(chunk, (types.DictType, types.ListType)):
             chunk = json.dumps(chunk)
             self.request.setHeader(b'content-type', b'application/json')
 
@@ -197,11 +197,11 @@ class BaseHandler(object):
                 return f(self, *args, **kwargs)
 
             if not self.current_user:
-               raise errors.NotAuthenticated
+                raise errors.NotAuthenticated
 
             if self.current_user.user_role in roles:
-               log.debug("Authentication OK (%s)", self.current_user.user_role)
-               return f(self, *args, **kwargs)
+                log.debug("Authentication OK (%s)", self.current_user.user_role)
+                return f(self, *args, **kwargs)
 
             raise errors.InvalidAuthentication
 

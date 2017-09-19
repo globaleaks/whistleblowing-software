@@ -151,7 +151,7 @@ api_spec = [
 def decorate_method(h, method):
     decorator_authentication = getattr(h, 'authentication')
     value = getattr(h, 'check_roles')
-    if type(value) is str:
+    if isinstance(value, str):
         value = {value}
 
     f = getattr(h, method)

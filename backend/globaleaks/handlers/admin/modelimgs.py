@@ -20,8 +20,8 @@ def db_get_model_img(store, model, obj_id):
     obj = store.find(model, model.id == obj_id).one()
     if obj.img_id is None:
         return ''
-    else:
-        return store.find(models.File, models.File.id == obj.img_id).one().data
+
+    return store.find(models.File, models.File.id == obj.img_id).one().data
 
 
 @transact

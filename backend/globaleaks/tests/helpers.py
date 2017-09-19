@@ -10,7 +10,7 @@ sys.setdefaultencoding('utf8')
 
 from globaleaks import db, models, security, event, jobs, __version__
 from globaleaks.anomaly import Alarm
-from globaleaks.db.appdata import load_appdata, read_json_file
+from globaleaks.db.appdata import load_appdata
 from globaleaks.orm import transact
 from globaleaks.handlers import rtip, wbtip
 from globaleaks.handlers.authentication import db_get_wbtip_by_receipt

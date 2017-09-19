@@ -2,7 +2,6 @@
 from globaleaks.models import Counter
 from globaleaks.orm import get_store, transact
 from globaleaks.tests import helpers
-from globaleaks.utils.utility import datetime_null
 from twisted.internet.defer import inlineCallbacks
 
 

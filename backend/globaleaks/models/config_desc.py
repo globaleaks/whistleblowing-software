@@ -48,7 +48,7 @@ GLConfig = {
         'acme': Bool(default=False),
         'acme_accnt_key': Unicode(),
         'acme_accnt_uri': Unicode(),
-        
+
         'tor_onion_key': Unicode(validator=longtext_v), # Limits from txtorcon
 
         'https_priv_key': Unicode(),

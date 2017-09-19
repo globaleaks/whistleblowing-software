@@ -8,7 +8,7 @@
 from globaleaks import models
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.rtip import serialize_comment, serialize_message, db_get_itip_comment_list, WhistleblowerFileInstanceHandler
-from globaleaks.handlers.submission import serialize_usertip, db_get_internaltip_from_usertip, \
+from globaleaks.handlers.submission import serialize_usertip, \
     db_save_questionnaire_answers, db_serialize_archived_questionnaire_schema
 from globaleaks.orm import transact
 from globaleaks.rest import errors, requests

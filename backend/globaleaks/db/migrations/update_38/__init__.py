@@ -46,8 +46,8 @@ class Questionnaire_v_37(models.ModelWithID):
 
 
 def replace_templates_variables(value):
-    for i in range(len(old_keys)):
-        value = value.replace(old_keys[i], new_keys[i])
+    for elem in enumerate(old_keys):
+        value = value.replace(elem[1], new_keys[elem[0]])
 
     return value
 
