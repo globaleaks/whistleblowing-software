@@ -1,7 +1,4 @@
-<span data-ng-show="choseManCfg">
-  <p data-translate>This interface can generate a Private Key and a Certificate Signing Request. The Certificate Signing Request can be provided to a Certificate Authority to retrieve a Certificate. After having validated your request and your ownership of the hostname, the Certificate Authority will issue you a Certificate and provide a file containing Intermediate Certificates. Load the Certificate and the file containing the Intermediate Certificates to complete the HTTPS setup. Please note that the file format expected for all files uploaded is PEM. Sometimes Certificate Authorities will provide certificates in DER format which must be converted to PEM.
-  </p>
-</span>
+<div data-ng-show="choseManCfg" data-translate>This interface can generate a Private Key and a Certificate Signing Request. The Certificate Signing Request can be provided to a Certificate Authority to retrieve a Certificate. After having validated your request and your ownership of the hostname, the Certificate Authority will issue you a Certificate and provide a file containing Intermediate Certificates. Load the Certificate and the file containing the Intermediate Certificates to complete the HTTPS setup.</div>
 <div class="https-file-res">
   <div class="panel panel-default priv-key">
     <div class="panel-body" data-ng-class="{'disabled-interface': tls_config.enabled || tls_config.acme}">
