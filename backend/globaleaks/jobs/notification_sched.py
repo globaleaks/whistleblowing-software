@@ -158,8 +158,8 @@ class MailGenerator(object):
 
         # Do not spool emails if the receiver has opted out of ntfns for this tip.
         if not data['tip']['enable_notifications']:
-          log.debug("Discarding emails for %s due to receiver's preference.", receiver_id)
-          return
+            log.debug("Discarding emails for %s due to receiver's preference.", receiver_id)
+            return
 
         # https://github.com/globaleaks/GlobaLeaks/issues/798
         # TODO: the current solution is global and configurable only by the admin

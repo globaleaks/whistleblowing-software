@@ -9,48 +9,48 @@ from twisted.internet.defer import inlineCallbacks
 
 
 class TestStepCollection(helpers.TestHandler):
-        _handler = admin.step.StepCollection
+    _handler = admin.step.StepCollection
 
-        @inlineCallbacks
-        def test_post(self):
-            """
-            Attempt to create a new step via a post request.
-            """
-            step = helpers.get_dummy_step()
-            step['questionnaire_id'] = 'default'
-            handler = self.request(step, role='admin')
-            response = yield handler.post()
-            self.assertIn('id', response)
-            self.assertNotEqual(response.get('questionnaire_id'), None)
+    @inlineCallbacks
+    def test_post(self):
+        """
+        Attempt to create a new step via a post request.
+        """
+        step = helpers.get_dummy_step()
+        step['questionnaire_id'] = 'default'
+        handler = self.request(step, role='admin')
+        response = yield handler.post()
+        self.assertIn('id', response)
+        self.assertNotEqual(response.get('questionnaire_id'), None)
 
 
 class TestStepInstance(helpers.TestHandler):
-        _handler = admin.step.StepInstance
+    _handler = admin.step.StepInstance
 
-        @inlineCallbacks
-        def test_put(self):
-            """
-            Attempt to update a step, changing it presentation order
-            """
-            step = helpers.get_dummy_step()
-            step['questionnaire_id'] = 'default'
-            step = yield create_step(step, 'en')
+    @inlineCallbacks
+    def test_put(self):
+        """
+        Attempt to update a step, changing it presentation order
+        """
+        step = helpers.get_dummy_step()
+        step['questionnaire_id'] = 'default'
+        step = yield create_step(step, 'en')
 
-            step['presentation_order'] = 666
+        step['presentation_order'] = 666
 
-            handler = self.request(step, role='admin')
-            response = yield handler.put(step['id'])
-            self.assertEqual(step['id'], response['id'])
-            self.assertEqual(response['presentation_order'], 666)
+        handler = self.request(step, role='admin')
+        response = yield handler.put(step['id'])
+        self.assertEqual(step['id'], response['id'])
+        self.assertEqual(response['presentation_order'], 666)
 
-        @inlineCallbacks
-        def test_delete(self):
-            """
-            Create a new step, then attempt to delete it.
-            """
-            step = helpers.get_dummy_step()
-            step['questionnaire_id'] = 'default'
-            step = yield create_step(step, 'en')
+    @inlineCallbacks
+    def test_delete(self):
+        """
+        Create a new step, then attempt to delete it.
+        """
+        step = helpers.get_dummy_step()
+        step['questionnaire_id'] = 'default'
+        step = yield create_step(step, 'en')
 
-            handler = self.request(role='admin')
-            yield handler.delete(step['id'])
+        handler = self.request(role='admin')
+        yield handler.delete(step['id'])

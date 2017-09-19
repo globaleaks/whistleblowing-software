@@ -222,7 +222,7 @@ class MigrationScript(MigrationBase):
                         break
 
                 if map_on_default:
-                   break
+                    break
 
             if not map_on_default:
                 new_questionnaire = self.model_to['Questionnaire']()

@@ -90,28 +90,28 @@ def db_prepare_fields_serialization(store, fields):
                 tmp.append(f.template_id)
 
             if f.fieldgroup_id not in ret['fields']:
-               ret['fields'][f.fieldgroup_id] = []
+                ret['fields'][f.fieldgroup_id] = []
             ret['fields'][f.fieldgroup_id].append(f)
 
         fields_ids.extend(tmp)
 
     objs = store.find(models.FieldAttr, In(models.FieldAttr.field_id, fields_ids))
     for obj in objs:
-       if obj.field_id not in ret['attrs']:
-           ret['attrs'][obj.field_id] = []
-       ret['attrs'][obj.field_id].append(obj)
+        if obj.field_id not in ret['attrs']:
+            ret['attrs'][obj.field_id] = []
+        ret['attrs'][obj.field_id].append(obj)
 
     objs = store.find(models.FieldOption, In(models.FieldOption.field_id, fields_ids))
     for obj in objs:
-       if obj.field_id not in ret['options']:
-           ret['options'][obj.field_id] = []
-       ret['options'][obj.field_id].append(obj)
+        if obj.field_id not in ret['options']:
+            ret['options'][obj.field_id] = []
+        ret['options'][obj.field_id].append(obj)
 
     objs = store.find(models.FieldOption, In(models.FieldOption.trigger_field, fields_ids))
     for obj in objs:
-       if obj.field_id not in ret['triggers']:
-           ret['triggers'][obj.field_id] = []
-       ret['triggers'][obj.field_id].append(obj)
+        if obj.field_id not in ret['triggers']:
+            ret['triggers'][obj.field_id] = []
+        ret['triggers'][obj.field_id].append(obj)
 
     return ret
 

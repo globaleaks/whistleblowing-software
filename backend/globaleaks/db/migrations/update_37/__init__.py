@@ -38,7 +38,7 @@ class MigrationScript(MigrationBase):
                 key = 'RSA1024:' + ''.join(r.strip().split('\n')[1:-1])
 
         else:
-           log.err('The structure of %s is incorrect. Cannot load onion service keys' % TOR_DIR)
+            log.err('The structure of %s is incorrect. Cannot load onion service keys' % TOR_DIR)
 
         models.db_delete(self.store_new, Config, var_group=u'node', var_name=u'onionservice')
         add_raw_config(self.store_new, u'node', u'onionservice', True, hostname)
