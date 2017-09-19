@@ -27,7 +27,6 @@
       </span>
     </div>
   </div>
-
   <div data-ng-if="tls_config.files.priv_key.gen && !tls_config.acme" class="panel panel-default csr">
     <div class="panel-body" data-ng-class="{'disabled-interface': state < 0 || tls_config.acme}">
       <span data-ng-class="statusClass(tls_config.files.csr)">
@@ -62,7 +61,6 @@
       </span>
     </div>
   </div>
-
   <div class="panel panel-default cert">
     <div class="panel-body" data-ng-class="{'disabled-interface': state <= 0 || tls_config.acme}">
       <span data-ng-class="statusClass(tls_config.files.cert)">
@@ -91,7 +89,6 @@
       </span>
     </div>
   </div>
-
   <div class="panel panel-default chain">
     <div class="panel-body" data-ng-class="{'disabled-interface': state <= 1 || tls_config.acme}">
       <span data-ng-class="statusClass(tls_config.files.chain)">
@@ -120,7 +117,6 @@
       </div>
     </div>
   </div>
-
   <div class="launch-btns" data-ng-if="state > 1">
     <button class="btn btn-success" data-ng-click="toggleCfg()" data-translate>Enable</button>
     <button class="btn btn-danger" data-ng-click="resetCfg()" data-translate>Reset</button>

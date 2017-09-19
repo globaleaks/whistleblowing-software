@@ -17,7 +17,7 @@ GLClient.controller('WizardCtrl', ['$scope', '$location', '$route', '$http', 'Au
             };
             $scope.admin.node.$promise.then(function() {
               $scope.https_redirect_modal = 'views/wizard/https_success_modal.html';
-              $scope.https_redirect_path = '/#/admin';
+              $scope.https_redirect_path = '/#/admin/home';
               $scope.https_manual_enabled = false;
               $scope.step = $scope.step + 1;
             });
@@ -28,7 +28,7 @@ GLClient.controller('WizardCtrl', ['$scope', '$location', '$route', '$http', 'Au
 
     $scope.skipHTTPS = function() {
       (new AdminTLSConfigResource()).$delete().then(function() {
-        $scope.step = $scope.step + 1;
+        $scope.reload("/admin/home");
       });
     }
 

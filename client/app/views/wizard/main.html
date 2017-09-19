@@ -250,20 +250,7 @@
     </div>
   </div>
 
-  <div id="WizardStep8" class="row" data-ng-if="step == 8">
-    <div class="col-md-12">
-      <h3 data-translate>Optional HTTPS activation</h3>
-      <div data-ng-include="'views/admin/network/https.html'"></div>
-    </div>
-    <div class="pager pull-right">
-      <button id="ButtonNext" class="btn btn-success btn-large" data-ng-click="skipHTTPS()">
-        <span data-translate>skip step</span>
-        <i class="glyphicon glyphicon-circle-arrow-right"></i>
-      </button>
-    </div>
-  </div>
-
-  <div id="WizardStep9" class="row" data-ng-show="step == 9">
+  <div id="WizardStep8" class="row" data-ng-show="step == 8">
     <div class="col-md-10">
       <div class="congratulations">
         <div class="title1" data-translate>Congratulations!</div>
@@ -271,11 +258,23 @@
       </div>
     </div>
     <div class="pager pull-right">
-      <button id="ButtonPrevious" class="btn btn-success btn-large" data-ng-click="step=step-1">
-        <i class="glyphicon glyphicon-circle-arrow-left"></i>
-        <span data-translate>previous step</span>
+      <button id="ButtonNext" class="btn btn-default btn-large" data-ng-click="step=step+1" type="submit">
+        <span data-translate>More configuration options</span>
       </button>
       <button id="ButtonNext" class="btn btn-success btn-large" data-ng-click="finish()" type="submit" data-translate>Go to admin interface</button>
+    </div>
+  </div>
+
+  <div id="WizardStep9" class="row" data-ng-if="step == 9">
+    <div class="col-md-12">
+      <div class="title1" data-translate>Setup HTTPS encryption</div>
+      <div data-ng-include="'views/admin/network/https.html'"></div>
+    </div>
+    <div class="pager pull-right">
+      <button id="ButtonNext" class="btn btn-success btn-large" data-ng-click="skipHTTPS()">
+        <span data-translate>Go to admin interface</span>
+        <i class="glyphicon glyphicon-circle-arrow-right"></i>
+      </button>
     </div>
   </div>
 </form>
