@@ -290,7 +290,7 @@ def db_create_submission(store, request, uploaded_files, client_using_tor):
                                         models.Context.id == request['context_id'],
                                         models.Questionnaire.id == models.Context.questionnaire_id).one()
     if not context:
-        raise errors.ModelNotFound
+        raise errors.ModelNotFound(models.Context)
 
     steps = db_get_questionnaire(store, questionnaire.id, None)['steps']
     questionnaire_hash = unicode(sha256(json.dumps(steps)))
