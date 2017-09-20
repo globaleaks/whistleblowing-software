@@ -116,20 +116,6 @@ def init_glsettings_for_unit_tests():
     GLSessions.clear()
 
 
-def export_fixture(*models):
-    """
-    Return a valid json object holding all informations handled by the fields.
-
-    :param field: the field we want to export.
-    :rtype: str
-    :return: a valid JSON string exporting the field.
-    """
-    return json.dumps([{
-        'fields': model.dict(),
-        'class': model.__class__.__name__,
-    } for model in models], default=str, indent=2)
-
-
 @transact
 def update_node_setting(store, var_name, value):
     models.config.NodeFactory(store).set_val(var_name, value)
@@ -398,15 +384,6 @@ class TestGL(unittest.TestCase):
         self.assertEqual(os.listdir(GLSettings.submission_path), [])
         self.assertEqual(os.listdir(GLSettings.tmp_upload_path), [])
 
-    def localization_set(self, dict_l, dict_c, language):
-        ret = dict(dict_l)
-
-        for attr in getattr(dict_c, 'localized_keys'):
-            ret[attr] = {}
-            ret[attr][language] = unicode(dict_l[attr])
-
-        return ret
-
     def get_dummy_user(self, role, username):
         new_u = dict(MockDict().dummyUser)
         new_u['role'] = role
@@ -425,20 +402,6 @@ class TestGL(unittest.TestCase):
         new_r = dict(MockDict().dummyReceiver)
 
         return sum_dicts(new_r, new_u)
-
-    @transact
-    def create_dummy_field(self, store, **custom_attrs):
-        field = get_dummy_field()
-
-        fill_localized_keys(field, models.Field.localized_keys, 'en')
-
-        field.update(custom_attrs)
-
-        f = models.Field(field)
-
-        store.add(f)
-
-        return f.id
 
     def fill_random_field_recursively(self, answers, field):
         field_type = field['type']
