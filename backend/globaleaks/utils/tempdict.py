@@ -10,7 +10,6 @@ test_reactor = None
 
 
 class TempDict(OrderedDict):
-    reactor = None
     expireCallback = None
 
     def __init__(self, timeout=None, size_limit=None):
