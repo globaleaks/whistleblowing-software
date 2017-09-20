@@ -58,10 +58,6 @@ class ConfigL10N(models.Model):
             self.value = value
             self.customized = True
 
-    def reset(self, new_value):
-        self.set_v(new_value)
-        self.customized = False
-
 
 class ConfigL10NFactory(object):
     localized_keys = frozenset()
