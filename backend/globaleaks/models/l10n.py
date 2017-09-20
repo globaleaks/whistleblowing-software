@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
-from storm.locals import Unicode, Storm, Bool
+from storm.locals import Unicode, Bool
 
-from globaleaks import LANGUAGES_SUPPORTED_CODES
+from globaleaks import LANGUAGES_SUPPORTED_CODES, models
 from globaleaks.rest import errors
 
 
-class EnabledLanguage(Storm):
+class EnabledLanguage(models.Model):
     __storm_table__ = 'enabledlanguage'
 
     name = Unicode(primary=True)
@@ -15,9 +15,6 @@ class EnabledLanguage(Storm):
             return
 
         self.name = unicode(name)
-
-    def __repr__(self):
-        return "<EnabledLang: %s>" % self.name
 
     @classmethod
     def list(cls, store):
@@ -36,7 +33,7 @@ class EnabledLanguage(Storm):
             cls.add_new_lang(store, lang_code, appdata_dict)
 
 
-class ConfigL10N(Storm):
+class ConfigL10N(models.Model):
     __storm_table__ = 'config_l10n'
     __storm_primary__ = ('lang', 'var_group', 'var_name')
 
@@ -54,10 +51,6 @@ class ConfigL10N(Storm):
         self.var_group = unicode(group)
         self.var_name = unicode(var_name)
         self.value = unicode(value)
-
-    def __repr__(self):
-        return "<ConfigL10N %s::%s.%s::'%s'>" % (self.lang, self.var_group,
-                                                 self.var_name, self.value[:5])
 
     def set_v(self, value):
         value = unicode(value)
@@ -117,11 +110,7 @@ class ConfigL10NFactory(object):
         return self.store.find(ConfigL10N, lang=lang_code, var_group=self.group)
 
     def get_val(self, var_name, lang_code):
-        cfg = self.store.find(ConfigL10N, lang=lang_code, var_group=self.group, var_name=var_name).one()
-        if cfg is None:
-            raise errors.ModelNotFound('ConfigL10N:%s.%s' % (self.group, var_name))
-
-        return cfg.value
+        return models.db_get(self.store, ConfigL10N, lang=lang_code, var_group=self.group, var_name=var_name).value
 
     def set_val(self, var_name, lang_code, value):
         cfg = self.store.find(ConfigL10N, lang=lang_code, var_group=self.group, var_name=var_name).one()

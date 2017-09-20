@@ -1,13 +1,13 @@
 from storm.expr import Not, In
-from storm.locals import Storm, Bool, Unicode, JSON
+from storm.locals import Bool, Unicode, JSON
 
 from globaleaks import __version__
-from globaleaks.models import config_desc
+from globaleaks.models import config_desc, Model
 from globaleaks.models.config_desc import GLConfig
 from globaleaks.utils.utility import log
 
 
-class Config(Storm):
+class Config(Model):
     __storm_table__ = 'config'
     __storm_primary__ = ('var_group', 'var_name')
 
@@ -65,9 +65,6 @@ class Config(Storm):
 
     def get_v(self):
         return self.value['v']
-
-    def __repr__(self):
-        return "<Config: %s.%s>" % (self.var_group, self.var_name)
 
 
 class ConfigFactory(object):
