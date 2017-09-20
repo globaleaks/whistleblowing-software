@@ -201,7 +201,7 @@ class APIResourceWrapper(Resource):
 
     def should_redirect_tor(self, request):
         if request.client_using_tor and \
-           GLSettings.memory_copy.onionservice != '' and \
+           GLSettings.memory_copy.onionservice and \
            request.getRequestHostname() != GLSettings.memory_copy.onionservice:
             return True
 

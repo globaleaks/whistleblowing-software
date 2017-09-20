@@ -104,7 +104,7 @@ def perform_data_update(dbfile):
 
     removed_languages = list(set(enabled_languages) - set(LANGUAGES_SUPPORTED_CODES))
 
-    if len(removed_languages):
+    if removed_languages:
         removed_languages.sort()
         removed_languages = ', '.join(removed_languages)
         raise Exception("FATAL: cannot complete the upgrade because the support for some of the enabled languages is currently incomplete (%s)\n"

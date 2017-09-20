@@ -76,7 +76,7 @@ class PGPCheckSchedule(LoopingJob):
                 user.pgp_key_fingerprint = ''
                 user.pgp_key_expiration = datetime_null()
 
-        if len(expired_or_expiring):
+        if expired_or_expiring:
             if not GLSettings.memory_copy.notif.disable_admin_notification_emails:
                 self.prepare_admin_pgp_alerts(store, expired_or_expiring)
 

@@ -165,21 +165,21 @@ class MigrationScript(MigrationBase):
         return ret
 
     def fix_field_answer_id(self, f):
-        if f['id'] == '':
-            for x in self.store_old.find(self.model_from['Field']):
-                try:
-                    if isinstance(x.label, dict):
-                        for _, v in x.label.items():
-                            if unicode(v).find(unicode(f['label'])) != -1:
-                                f['id'] = x.id
-                                break
-                    elif unicode(x.label).find(unicode(f['label'])) != -1:
-                        f['id'] = x.id
-                        break
-                except Exception:
-                    pass
+        if f['id']:
+            return
 
-        return f['id']
+        for x in self.store_old.find(self.model_from['Field']):
+            try:
+                if isinstance(x.label, dict):
+                    for _, v in x.label.items():
+                        if unicode(v).find(unicode(f['label'])) != -1:
+                            f['id'] = x.id
+                            break
+                elif unicode(x.label).find(unicode(f['label'])) != -1:
+                    f['id'] = x.id
+                    break
+            except Exception:
+                pass
 
     def extract_answers_from_wb_field(self, f):
         answers = {}
@@ -187,7 +187,7 @@ class MigrationScript(MigrationBase):
         if f['type'] == 'fieldgroup':
             for c in f['children']:
                 self.fix_field_answer_id(c)
-                if c['id'] != '':
+                if c['id']:
                     answers[c['id']] = self.extract_answers_from_wb_field(c)
         elif f['type'] == 'checkbox':
             if 'value' in f:
@@ -200,10 +200,7 @@ class MigrationScript(MigrationBase):
                 except Exception:
                     pass
         else:
-            if 'value' in f:
-                answers['value'] = f['value']
-            else:
-                answers['value'] = ''
+            answers['value'] = f['value'] if 'value' in f else ''
 
         if 'value' in f:
             del f['value']
@@ -216,7 +213,7 @@ class MigrationScript(MigrationBase):
         for s in wb_steps:
             for f in s['children']:
                 self.fix_field_answer_id(f)
-                if f['id'] != '':
+                if f['id']:
                     answers[f['id']] = self.extract_answers_from_wb_field(f)
 
         return wb_steps, answers

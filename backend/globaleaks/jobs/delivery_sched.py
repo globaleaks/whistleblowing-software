@@ -133,7 +133,7 @@ def process_files(receiverfiles_maps):
 
         receiverfiles_map['plaintext_file_needed'] = False
         for rcounter, rfileinfo in enumerate(receiverfiles_map['rfiles']):
-            if len(rfileinfo['receiver']['pgp_key_public']):
+            if rfileinfo['receiver']['pgp_key_public']:
                 try:
                     new_path, new_size = fsops_pgp_encrypt(rfileinfo['path'], rfileinfo['receiver'])
 
@@ -165,7 +165,7 @@ def process_files(receiverfiles_maps):
                     written_size = 0
                     while True:
                         chunk = encrypted_file.read(chunk_size)
-                        if len(chunk) == 0:
+                        if not chunk:
                             if written_size != receiverfiles_map['ifile_size']:
                                 log.err("Integrity error on rfile write for ifile %s; ifile_size(%d), rfile_size(%d)",
                                         ifile_id, receiverfiles_map['ifile_size'], written_size)
@@ -227,7 +227,6 @@ class DeliverySchedule(LoopingJob):
         This function creates receiver files
         """
         receiverfiles_maps = receiverfile_planning()
-
-        if len(receiverfiles_maps):
+        if receiverfiles_maps:
             process_files(receiverfiles_maps)
             update_internalfile_and_store_receiverfiles(receiverfiles_maps)

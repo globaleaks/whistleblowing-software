@@ -300,7 +300,7 @@ class AlarmClass(object):
         # logged as part of the Anomalies via this function
         old_stress_level = self.stress_levels['disk_space']
         if old_stress_level != disk_space:
-            if disk_message != '':
+            if disk_message:
                 log.err(disk_message)
             else:
                 log.err("Available disk space returned to normal levels")

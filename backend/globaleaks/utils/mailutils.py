@@ -51,7 +51,7 @@ def sendmail(to_address, subject, body):
     @param event: the event description, needed to keep track of failure/success
     """
     try:
-        if to_address == "":
+        if not to_address:
             return
 
         result_deferred = defer.Deferred()
@@ -216,7 +216,7 @@ def schedule_exception_email(exception_text, *args):
         if GLSettings.exceptions_email_count >= GLSettings.exceptions_email_hourly_limit:
             return
 
-        exception_text = (exception_text % args) if len(args) else exception_text
+        exception_text = (exception_text % args) if args else exception_text
 
         sha256_hash = sha256(bytes(exception_text))
 
@@ -248,7 +248,7 @@ def schedule_exception_email(exception_text, *args):
 
             # Opportunisticly encrypt the mail body. NOTE that mails will go out
             # unencrypted if one address in the list does not have a public key set.
-            if len(pub_key):
+            if pub_key:
                 mail_body = encrypt_message(pub_key, mail_body)
 
             # avoid waiting for the notification to send and instead rely on threads to handle it

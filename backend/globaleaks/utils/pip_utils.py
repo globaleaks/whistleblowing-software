@@ -59,12 +59,14 @@ def pip_version_check(path):
         print("Some GlobaLeaks requirements are unmet\n")
         print("Unmet requirements:")
         for unmet_requirement_desc in unmet_requirements:
-            if unmet_requirement_desc[1] != "":
+            if unmet_requirement_desc[1]:
                 print("\t", unmet_requirement_desc[0] + " [ Installed", unmet_requirement_desc[1], "]")
             else:
                 print("\t", unmet_requirement_desc[0])
+
         print("\n")
         print("The problem can be solved by:")
         print("1) Following the guidelines at https://github.com/globaleaks/GlobaLeaks/wiki")
         print("2) Installing missing requirements using rm -rf /tmp/pip-build-root/ && pip install -r /usr/share/globaleaks/requirements.txt")
+
         sys.exit(54)

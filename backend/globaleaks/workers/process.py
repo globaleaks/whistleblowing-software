@@ -79,7 +79,7 @@ class CfgFDProcProtocol(ProcessProtocol):
 
     def childDataReceived(self, childFD, data):
         for line in data.split('\n'):
-            if line != '':
+            if line:
                 log.debug(line)
 
     def processEnded(self, reason):

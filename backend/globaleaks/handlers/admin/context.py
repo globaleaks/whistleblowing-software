@@ -99,7 +99,7 @@ def fill_context_request(request, language):
 def db_update_context(store, context, request, language):
     request = fill_context_request(request, language)
 
-    if request['questionnaire_id'] == '':
+    if not request['questionnaire_id']:
         request['questionnaire_id'] = GLSettings.memory_copy.default_questionnaire
 
     context.update(request)
@@ -112,7 +112,7 @@ def db_update_context(store, context, request, language):
 def db_create_context(store, request, language):
     request = fill_context_request(request, language)
 
-    if request['questionnaire_id'] == '':
+    if not request['questionnaire_id']:
         request['questionnaire_id'] = u'default'
 
     if not request['allow_recipients_selection']:

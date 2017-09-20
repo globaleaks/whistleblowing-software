@@ -138,18 +138,16 @@ def db_create_user(store, request, language):
         'deletable': request['deletable'],
         'name': request['name'],
         'description': request['description'],
-        'public_name': request['public_name'] if request['public_name'] != '' else request['name'],
+        'public_name': request['public_name'] if request['public_name'] else request['name'],
         'language': language,
         'password_change_needed': request['password_change_needed'],
         'mail_address': request['mail_address']
     })
 
-    if request['username'] == '':
+    if not request['username']:
         user.username = user.id
 
-    password = request['password']
-    if len(password) == 0:
-        password = GLSettings.memory_copy.default_password
+    password = request['password'] if request['password'] else GLSettings.memory_copy.default_password
 
     user.salt = security.generateRandomSalt()
     user.password = security.hash_password(password, user.salt)
@@ -174,7 +172,7 @@ def db_admin_update_user(store, user_id, request, language):
     user.update(request)
 
     password = request['password']
-    if len(password) > 0:
+    if password:
         user.password = security.hash_password(password, user.salt)
         user.password_change_date = datetime_now()
 

@@ -596,7 +596,7 @@ class HostnameTestHandler(BaseHandler):
     @BaseHandler.https_disabled
     @inlineCallbacks
     def post(self):
-        if GLSettings.memory_copy.hostname == '':
+        if not GLSettings.memory_copy.hostname:
             raise errors.ValidationError('hostname is not set')
 
         net_agent = GLSettings.get_agent()

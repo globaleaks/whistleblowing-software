@@ -27,7 +27,7 @@ def parse_pgp_options(user, request):
     remove_key = request['pgp_key_remove']
 
     k = None
-    if not remove_key and pgp_key_public != '':
+    if not remove_key and pgp_key_public:
         k = parse_pgp_key(pgp_key_public)
 
     if k is not None:
@@ -101,7 +101,7 @@ def db_user_update_user(store, user_id, request):
     new_password = request['password']
     old_password = request['old_password']
 
-    if len(new_password) and len(old_password):
+    if new_password and old_password:
         user.password = change_password(user.password,
                                         old_password,
                                         new_password,

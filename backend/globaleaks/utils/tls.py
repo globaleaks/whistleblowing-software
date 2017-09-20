@@ -85,7 +85,7 @@ def gen_x509_csr(key_pair, csr_fields, csr_sign_bits):
 
     req.set_pubkey(prv_key)
     req.sign(prv_key, 'sha'+str(csr_sign_bits))
-    # TODO clean prv_key and str_prv_key from memory
+
     return req
 
 
@@ -163,7 +163,7 @@ class TLSServerContextFactory(ssl.ContextFactory):
         x509 = load_certificate(FILETYPE_PEM, certificate)
         self.ctx.use_certificate(x509)
 
-        if intermediate != '':
+        if intermediate:
             x509 = load_certificate(FILETYPE_PEM, intermediate)
             self.ctx.add_extra_chain_cert(x509)
 
@@ -219,7 +219,7 @@ class PrivKeyValidator(CtxValidator):
 
     def _validate(self, cfg, ctx, check_expiration):
         raw_str = cfg['ssl_key']
-        if raw_str == '':
+        if not raw_str:
             raise ValidationException('No private key is set')
 
         # Note that the empty string here prevents valid PKCS8 encrypted
@@ -235,7 +235,7 @@ class CertValidator(CtxValidator):
 
     def _validate(self, cfg, ctx, check_expiration):
         certificate = cfg['ssl_cert']
-        if certificate == '':
+        if not certificate:
             raise ValidationException('There is no certificate')
 
         possible_chain = split_pem_chain(certificate)
@@ -269,7 +269,7 @@ class ChainValidator(CtxValidator):
         raw_chain = cfg['ssl_intermediate']
         chain = split_pem_chain(raw_chain)
 
-        if len(chain) == 0 and raw_chain != '':
+        if not chain and raw_chain:
             raise ValidationException('The certificate chain is invalid')
 
         for cert in chain:
@@ -280,6 +280,5 @@ class ChainValidator(CtxValidator):
 
             store.add_cert(x509)
 
-        # TODO checks here must be moved into an environment validator after ChainValidator
-        if cfg['hostname'] == '':
+        if not cfg['hostname']:
             raise ValidationException('No hostname set')

@@ -97,7 +97,7 @@ class StatisticsSchedule(LoopingJob):
     def operation(self):
         # ------- BEGIN Anomalies section -------
         anomalies_to_save = get_anomalies()
-        if len(anomalies_to_save):
+        if anomalies_to_save:
             save_anomalies(anomalies_to_save)
             log.debug("Stored %d anomalies collected during the last hour", len(anomalies_to_save))
 

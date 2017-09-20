@@ -98,7 +98,7 @@ class X509CertCheckSchedule(LoopingJob):
             subject, body = Templating().get_mail_subject_and_body(template_vars)
 
             # encrypt the notification if the admin has configured the issue.
-            if len(user_desc['pgp_key_public']) > 0:
+            if user_desc['pgp_key_public']:
                 body = encrypt_message(user_desc['pgp_key_public'], body)
 
             store.add(models.Mail({

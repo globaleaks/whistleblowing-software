@@ -61,7 +61,7 @@ def varsToParametersSQL(variables, primary_keys, db_type):
     for var in variables[:-1]:
         params += "%s %s, " % (var[0], var[1])
 
-    if len(primary_keys) > 0:
+    if primary_keys:
         params += "%s %s, " % variables[-1]
         params += "PRIMARY KEY ("
         for key in primary_keys[:-1]:

@@ -150,5 +150,5 @@ class LoopingJobsMonitor(LoopingJob):
                 error_msg += error + '\n'
                 log.err(error)
 
-        if error_msg != "":
+        if error_msg:
             schedule_exception_email(error_msg)

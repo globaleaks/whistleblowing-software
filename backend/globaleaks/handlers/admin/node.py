@@ -67,7 +67,7 @@ def enable_disable_languages(store, request):
 
     to_remove = list(set(cur_enabled_langs) - set(new_enabled_langs))
 
-    if len(to_remove):
+    if to_remove:
         store.find(models.User, In(models.User.language, to_remove)).set(language=request['default_language'])
 
         models.db_delete(store, models.l10n.EnabledLanguage, In(models.l10n.EnabledLanguage.name, to_remove))
@@ -90,7 +90,7 @@ def db_update_node(store, request, language):
     node = NodeFactory(store)
     node.update(request)
 
-    if request['basic_auth'] and request['basic_auth_username'] != '' and request['basic_auth_password']  != '':
+    if request['basic_auth'] and request['basic_auth_username'] and request['basic_auth_password']:
         node.set_val(u'basic_auth', True)
         node.set_val(u'basic_auth_username', request['basic_auth_username'])
         node.set_val(u'basic_auth_password', request['basic_auth_password'])

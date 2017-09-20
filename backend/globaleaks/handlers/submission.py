@@ -356,11 +356,9 @@ def db_create_submission(store, request, uploaded_files, client_using_tor):
                                       models.ReceiverContext.receiver_id == models.Receiver.id,
                                       models.ReceiverContext.context_id == context.id,
                                       models.User.id == models.Receiver.id):
-        if not GLSettings.memory_copy.allow_unencrypted and len(user.pgp_key_public) == 0:
-            continue
-
-        db_create_receivertip(store, receiver, submission)
-        rtips_count += 1
+        if user.pgp_key_public or GLSettings.memory_copy.allow_unencrypted:
+            db_create_receivertip(store, receiver, submission)
+            rtips_count += 1
 
     if rtips_count == 0:
         raise errors.SubmissionValidationFailure("need at least one recipient")

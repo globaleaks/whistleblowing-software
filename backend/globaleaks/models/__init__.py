@@ -82,7 +82,7 @@ class Model(Storm):
         if values is None:
             return
 
-        if 'id' in values and values['id'] != '':
+        if 'id' in values and values['id']:
             setattr(self, 'id', values['id'])
 
         for k in getattr(self, 'unicode_keys'):
@@ -123,7 +123,7 @@ class Model(Storm):
                 setattr(self, k, values[k])
 
         for k in getattr(self, 'optional_references'):
-            if k in values and values[k] != '':
+            if k in values and values[k]:
                 setattr(self, k, values[k])
 
     def __str__(self):

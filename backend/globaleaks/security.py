@@ -246,7 +246,7 @@ class GLSecureTemporaryFile(_TemporaryFileWrapper):
         else:
             data = self.file.read(c)
 
-        if len(data):
+        if data:
             return self.decryptor.update(data)
 
         return self.decryptor.finalize()
@@ -371,7 +371,7 @@ class GLBPGP(object):
             log.err("Error in PGP import_keys: %s", excep)
             raise errors.PGPKeyInvalid
 
-        if len(import_result.fingerprints) == 0:
+        if not import_result.fingerprints:
             raise errors.PGPKeyInvalid
 
         fingerprint = import_result.fingerprints[0]
