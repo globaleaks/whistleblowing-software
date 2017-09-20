@@ -221,7 +221,7 @@ class MigrationScript(MigrationBase):
 
         file_path = os.path.join(GLSettings.static_path, 'custom_homepage.html')
         if os.path.exists(file_path):
-            if files.db_get_file(self.store_new, u'homepage') == '':
+            if not files.db_get_file(self.store_new, u'homepage'):
                 with open(file_path, 'r') as homepage_file:
                     data = homepage_file.read()
                     files.db_add_file(self.store_new, data, u'homepage')

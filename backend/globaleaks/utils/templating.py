@@ -125,13 +125,13 @@ class NodeKeyword(Keyword):
         return 'https://' + self.data['node']['hostname'] + '/'
 
     def TorUrl(self):
-        if self.data['node']['onionservice'] == '':
+        if not self.data['node']['onionservice']:
             return '[NOT CONFIGURED]'
 
         return self._TorUrl()
 
     def HTTPSUrl(self):
-        if self.data['node']['hostname'] == '':
+        if not self.data['node']['hostname']:
             return '[NOT CONFIGURED]'
 
         return self._HTTPSUrl()
@@ -476,7 +476,7 @@ class Templating(object):
 
         if data['type'] in [u'tip', u'comment', u'file', u'message']:
             prefix = '{TipNum} '
-            if data['tip']['label'] != '':
+            if data['tip']['label']:
                 prefix += '[{TipLabel}] '
 
             subject_template = prefix + subject_template

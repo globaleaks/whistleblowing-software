@@ -172,7 +172,7 @@ def db_refresh_memory_variables(store):
 
     GLSettings.memory_copy.private = ObjectDict(models.config.PrivateFactory(store).mem_copy_export())
 
-    if GLSettings.memory_copy.private.admin_api_token_digest != '':
+    if GLSettings.memory_copy.private.admin_api_token_digest:
         api_id = store.find(models.User.id, models.User.role==u'admin').order_by(models.User.creation_date).first()
         if api_id is not None:
             GLSettings.appstate.api_token_session = GLSession(api_id, 'admin', 'enabled')

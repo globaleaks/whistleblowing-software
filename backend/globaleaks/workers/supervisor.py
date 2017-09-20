@@ -42,7 +42,7 @@ class ProcessSupervisor(object):
           'site_cfgs': [],
         }
 
-        if len(net_sockets) == 0:
+        if not net_sockets:
             log.err("No ports to bind to! Spawning processes will not work!")
 
         self.tls_cfg['tls_socket_fds'] = [ns.fileno() for ns in net_sockets]
@@ -67,12 +67,12 @@ class ProcessSupervisor(object):
 
         self.tls_cfg['site_cfgs'] = valid_cfgs
 
-        if len(valid_cfgs) > 0:
-            log.info("Decided to launch https workers")
-            return self.launch_https_workers()
-        else:
+        if not valid_cfgs:
             log.info("Not launching https workers due to %s", err)
             return defer.fail(err)
+
+        log.info("Decided to launch https workers")
+        return self.launch_https_workers()
 
     @transact
     def maybe_launch_https_workers(self, store):

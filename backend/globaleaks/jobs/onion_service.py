@@ -67,7 +67,7 @@ class OnionService(BaseJob):
             log.debug('Successfully connected to Tor control port')
 
             hs_loc = ('80 localhost:8083')
-            if hostname == '' and key == '':
+            if not hostname and not key:
                 log.info('Creating new onion service')
                 ephs = EphemeralHiddenService(hs_loc)
             else:
@@ -77,7 +77,7 @@ class OnionService(BaseJob):
             @inlineCallbacks
             def initialization_callback(ret):
                 log.info('Initialization of hidden-service %s completed.', ephs.hostname)
-                if hostname == '' and key == '':
+                if not hostname and not key:
                     yield set_onion_service_info(ephs.hostname, ephs.private_key)
                     yield refresh_memory_variables()
 

@@ -111,7 +111,7 @@ class ZipStreamProducer(object):
         chunk_size = 0
 
         for data in self.zipstreamObject:
-            if len(data):
+            if data:
                 chunk_size += len(data)
                 chunk.append(data)
                 if chunk_size >= GLSettings.file_chunk_size:

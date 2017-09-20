@@ -80,7 +80,7 @@ def db_prepare_fields_serialization(store, fields):
             fields_ids.append(f.template_id)
 
     tmp = copy.deepcopy(fields_ids)
-    while len(tmp):
+    while tmp:
         fs = store.find(models.Field, In(models.Field.fieldgroup_id, tmp))
 
         tmp = []

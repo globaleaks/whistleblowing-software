@@ -63,7 +63,7 @@ def write_upload_plaintext_to_disk(uploaded_file, destination):
         with open(destination, 'w+') as fd:
             uploaded_file['body'].seek(0, 0)
             data = uploaded_file['body'].read(4000)
-            while data != '':
+            while data:
                 os.write(fd.fileno(), data)
                 data = uploaded_file['body'].read(4000)
     finally:
@@ -118,7 +118,7 @@ class StaticFileProducer(object):
 
         try:
             data = self.fileObject.read(self.bufferSize)
-            if len(data) > 0:
+            if data:
                 self.bytesWritten += len(data)
                 self.request.write(data)
 
@@ -290,40 +290,41 @@ class BaseHandler(object):
 
     @staticmethod
     def validate_type(value, type):
+        retval = False
+
         if value is None:
             log.err("-- Invalid python_type, in [%s] expected %s", value, type)
-            return False
 
         # if it's callable, than assumes is a primitive class
-        if callable(type):
+        elif callable(type):
             retval = BaseHandler.validate_python_type(value, type)
             if not retval:
                 log.err("-- Invalid python_type, in [%s] expected %s", value, type)
-            return retval
+
         # value as "{foo:bar}"
         elif isinstance(type, collections.Mapping):
             retval = BaseHandler.validate_jmessage(value, type)
             if not retval:
                 log.err("-- Invalid JSON/dict [%s] expected %s", value, type)
-            return retval
+
         # regexp
         elif isinstance(type, str):
             retval = BaseHandler.validate_regexp(value, type)
             if not retval:
                 log.err("-- Failed Match in regexp [%s] against %s", value, type)
-            return retval
+
         # value as "[ type ]"
         elif isinstance(type, collections.Iterable):
             # empty list is ok
-            if len(value) == 0:
-                return True
+            if not value:
+                retval = True
+
             else:
                 retval = all(BaseHandler.validate_type(x, type[0]) for x in value)
                 if not retval:
                     log.err("-- List validation failed [%s] of %s", value, type)
-                return retval
-        else:
-            raise AssertionError
+
+        return retval
 
     @staticmethod
     def validate_jmessage(jmessage, message_template):
@@ -444,7 +445,7 @@ class BaseHandler(object):
         # Check for the API token
         if not GLSettings.appstate.api_token_session_suspended and \
            GLSettings.appstate.api_token_session is not None and \
-           GLSettings.memory_copy.private.admin_api_token_digest != '':
+           GLSettings.memory_copy.private.admin_api_token_digest:
             token = bytes(self.request.headers.get('x-api-token', ''))
             if len(token) != GLSettings.api_token_len:
                 return None
@@ -530,7 +531,7 @@ class StaticFileHandler(BaseHandler):
         self.root = "%s%s" % (os.path.abspath(path), "/")
 
     def get(self, path):
-        if path == '':
+        if not path:
             path = 'index.html'
 
         abspath = os.path.abspath(os.path.join(self.root, path))

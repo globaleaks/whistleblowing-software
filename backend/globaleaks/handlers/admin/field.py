@@ -79,7 +79,7 @@ def db_create_field(store, field_dict, language):
     """
     fill_localized_keys(field_dict, models.Field.localized_keys, language)
 
-    if field_dict.get('fieldgroup_id', '') != '':
+    if field_dict.get('fieldgroup_id', ''):
         ancestors = set(fieldtree_ancestors(store, field_dict['fieldgroup_id']))
 
         if field_dict['id'] == field_dict['fieldgroup_id'] or field_dict['id'] in ancestors:

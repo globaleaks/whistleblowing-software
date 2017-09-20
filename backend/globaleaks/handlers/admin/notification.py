@@ -31,7 +31,7 @@ def parse_pgp_options(notif, request):
     remove_key = request['exception_email_pgp_key_remove']
 
     k = None
-    if not remove_key and pgp_key_public != '':
+    if not remove_key and pgp_key_public:
         k = parse_pgp_key(pgp_key_public)
 
     if k is not None:

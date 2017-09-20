@@ -189,7 +189,7 @@ class MailGenerator(object):
         subject, body = Templating().get_mail_subject_and_body(data)
 
         # If the receiver has encryption enabled encrypt the mail body
-        if len(data['receiver']['pgp_key_public']):
+        if data['receiver']['pgp_key_public']:
             body = encrypt_message(data['receiver']['pgp_key_public'], body)
 
         store.add(models.Mail({
