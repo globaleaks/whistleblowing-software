@@ -97,12 +97,9 @@ class ModelNotFound(ResourceNotFound):
     error_code = 7
     status_code = 404
 
-    def __init__(self, model=None):
+    def __init__(self, model):
         ResourceNotFound.__init__(self)
-        if model is None:
-            self.reason = "Model not found"
-        else:
-            self.reason = "Model of type {} has not been found".format(model)
+        self.reason = "Model of type {} has not been found".format(model)
 
 
 # UNUSED ERROR CODE 8-15 HERE!
