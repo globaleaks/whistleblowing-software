@@ -858,6 +858,7 @@ echo "Adding GlobaLeaks PGP key to trusted APT keys"
 TMPFILE=$TMPDIR/globaleaks_key
 echo "$GLOBALEAKS_PGP_KEY" > $TMPFILE
 DO "apt-key add $TMPFILE"
+DO "rm $TMPFILE"
 
 
 if echo "$DISTRO_CODENAME" | grep -qE "^(wheezy)$"; then
@@ -884,6 +885,7 @@ if echo "$DISTRO_CODENAME" | grep -vqE "^artful$" ; then
    TMPFILE=$TMPDIR/torproject_key
    echo "$TOR_PGP_KEY" > $TMPFILE
    DO "apt-key add $TMPFILE"
+   DO "rm $TMPFILE"
 
   if ! grep -q "^deb .*torproject" /etc/apt/sources.list /etc/apt/sources.list.d/*; then
     echo "Adding Tor repository"
