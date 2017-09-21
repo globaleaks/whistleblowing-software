@@ -146,6 +146,7 @@ def update_context(store, context_id, request, language):
     """
     Updates the specified context. If the key receivers is specified we remove
     the current receivers of the Context and reset set it to the new specified
+    ones.
 
     Args:
         context_id:
