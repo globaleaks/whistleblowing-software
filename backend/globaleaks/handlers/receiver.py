@@ -138,7 +138,7 @@ def perform_tips_operation(store, receiver_id, operation, rtips_ids):
             db_postpone_expiration_date(store, itip)
 
         elif operation == 'delete':
-            can_delete_submission =  GLSettings.memory_copy.can_delete_submission or receiver.can_delete_submission
+            can_delete_submission = GLSettings.memory_copy.can_delete_submission or receiver.can_delete_submission
             if not can_delete_submission:
                 raise errors.ForbiddenOperation
 
