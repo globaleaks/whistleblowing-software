@@ -3,18 +3,20 @@
 # ******
 import sys
 import threading
+
 from datetime import datetime
+
 from storm import tracer
 from storm.database import create_database
-import storm.databases.sqlite
 from storm.databases import sqlite
 from storm.store import Store
+
+from twisted.internet import reactor
+from twisted.internet.threads import deferToThreadPool
 
 from globaleaks.settings import GLSettings
 from globaleaks.utils.mailutils import schedule_exception_email
 from globaleaks.utils.utility import log, timedelta_to_milliseconds
-from twisted.internet import reactor
-from twisted.internet.threads import deferToThreadPool
 
 
 def get_store():
@@ -43,8 +45,10 @@ class SQLite(sqlite.Database):
         return raw_connection
 
 
-storm.databases.sqlite.SQLite = SQLite
-storm.databases.sqlite.create_from_uri = SQLite
+sqlite.SQLite = SQLite
+sqlite.create_from_uri = SQLite
+
+
 transact_lock = threading.Lock()
 
 
