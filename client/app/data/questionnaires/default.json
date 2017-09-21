@@ -10,6 +10,7 @@
       "label": {
         "en": "Fill out your submission",
         "ar": "املأ بلاغك",
+        "az": "Fill out your submission",
         "bg": "Изпишете Вашето сведение",
         "bs": "Popunite vašu prijavu",
         "ca": "Emplena les dades del teu enviament",
@@ -48,6 +49,7 @@
       "description": {
         "en": "",
         "ar": "",
+        "az": "",
         "bg": "",
         "bs": "",
         "ca": "",
@@ -89,6 +91,7 @@
           "label": {
             "en": "Short title",
             "ar": "عنوان قصير",
+            "az": "Qısa ad",
             "bg": "Кратко заглавие",
             "bs": "Kratak naslov",
             "ca": "Títol curt",
@@ -129,6 +132,7 @@
           "hint": {
             "en": "Describe your submission in a few words",
             "ar": "الرجاء كتابة نبذة عن البلاغ",
+            "az": "Describe your submission in a few words",
             "bg": "Опишете подадения сигнал с няколко думи",
             "bs": "Describe your submission in a few words",
             "ca": "Descriu el teu enviament en poques paraules",
@@ -167,6 +171,7 @@
           "description": {
             "en": "",
             "ar": "",
+            "az": "",
             "bg": "",
             "bs": "",
             "ca": "",
@@ -206,6 +211,7 @@
           "multi_entry_hint": {
             "en": "",
             "ar": "",
+            "az": "",
             "bg": "",
             "bs": "",
             "ca": "",
@@ -270,6 +276,7 @@
           "label": {
             "en": "Full description",
             "ar": "وصف كامل",
+            "az": "Tam açıqlama",
             "bg": "Пълно описание",
             "bs": "Puni opis",
             "ca": "Descripció completa",
@@ -310,6 +317,7 @@
           "hint": {
             "en": "Describe your submission in detail",
             "ar": "الرجاء وصف البلاغ بالتفصيل",
+            "az": "Describe your submission in detail",
             "bg": "Опишете подадения сигнал в детайли",
             "bs": "Describe your submission in detail",
             "ca": "Descriu els detalls del teu enviament",
@@ -348,6 +356,7 @@
           "description": {
             "en": "",
             "ar": "",
+            "az": "",
             "bg": "",
             "bs": "",
             "ca": "",
@@ -387,6 +396,7 @@
           "multi_entry_hint": {
             "en": "",
             "ar": "",
+            "az": "",
             "bg": "",
             "bs": "",
             "ca": "",
@@ -443,6 +453,7 @@
           "label": {
             "en": "Attachments",
             "ar": "مرفقات",
+            "az": "Qoşmalar",
             "bg": "Прикачени файлове",
             "bs": "Prilozi",
             "ca": "Adjunts",
@@ -483,6 +494,7 @@
           "hint": {
             "en": "Attach files relevant to the submission",
             "ar": "إرفاق الملفات ذات الصلة إلى البلاغ.",
+            "az": "Attach files relevant to the submission",
             "bg": "Прикачете файлове към сигнала",
             "bs": "Dodajte podatke relevantne za prijavu",
             "ca": "Adjunta arxius rellevants per a l'enviament",
@@ -521,6 +533,7 @@
           "description": {
             "en": "",
             "ar": "",
+            "az": "",
             "bg": "",
             "bs": "",
             "ca": "",
@@ -560,6 +573,7 @@
           "multi_entry_hint": {
             "en": "",
             "ar": "",
+            "az": "",
             "bg": "",
             "bs": "",
             "ca": "",
