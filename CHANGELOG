@@ -1,3 +1,14 @@
+Changes in version 2.72.4 - 2017-09-21
+    o Apply PEP8 compliant style changes discovered by Codacy
+    o Extend field triggers to handle hierarchical fields #1727
+    o Fix caching of hidden service name
+    o Fix shutdown handling in OnionService job
+    o Optimize ReceiverTip database queries
+    o Redorder some wizard logic and add license display to the wizard #1927
+    o Refactor handlers and models to improve error handling and uniformity
+    o Update client libraries
+    o Update translations
+
 Changes in version 2.72.3 - 2017-09-11
     o Apply bugfixing to comment.author initialization
 
