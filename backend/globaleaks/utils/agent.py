@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-
 from txsocksx.http import SOCKS5Agent
 
 from twisted.internet import reactor
@@ -15,8 +14,8 @@ def get_tor_agent(socks_host='127.0.0.1', socks_port=9050):
     configured tor daemon
     """
     torServerEndpoint = TCP4ClientEndpoint(reactor, socks_host, socks_port)
-    agent = SOCKS5Agent(reactor, proxyEndpoint=torServerEndpoint)
-    return agent
+
+    return SOCKS5Agent(reactor, proxyEndpoint=torServerEndpoint)
 
 
 def get_web_agent():
@@ -27,9 +26,6 @@ def get_web_agent():
 def get_page(agent, url):
     request = agent.request('GET', url)
 
-    def cbResponse(response):
-        return readBody(response)
-
-    request.addCallback(cbResponse)
+    request.addCallback(readBody)
 
     return request
