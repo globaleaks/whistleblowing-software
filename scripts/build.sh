@@ -74,7 +74,7 @@ if [ $ERR -ne 0 ]; then
   exit 1
 fi
 
-ROOTDIR=`pwd`
+ROOTDIR=$(pwd)
 
 BUILDSRC="GLRelease"
 [ -d $BUILDSRC ] && rm -rf $BUILDSRC

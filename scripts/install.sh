@@ -755,11 +755,11 @@ fi
 # LinuxMint is based on Ubuntu, if we encounter Mint just allign the Ubuntu version is based upon
 if [ "$DISTRO" == "LinuxMint" ]; then
   DISTRO="Ubuntu"
-  DISTRO_CODENAME=`grep UBUNTU_CODENAME /etc/os-release | sed -e 's/UBUNTU_CODENAME=//'`
+  DISTRO_CODENAME=$(grep UBUNTU_CODENAME /etc/os-release | sed -e 's/UBUNTU_CODENAME=//')
 fi
 
 # Report last executed command and its status
-TMPDIR=`mktemp -d`
+TMPDIR=$(mktemp -d)
 echo '' > $TMPDIR/last_command
 echo '' > $TMPDIR/last_status
 
@@ -919,11 +919,11 @@ LAST_STATUS="0"
 i=0
 while [ $i -lt 30 ]
 do
-  X=`netstat -tln | grep "127.0.0.1:8082"`
+  X=$(netstat -tln | grep "127.0.0.1:8082")
   if [ $? -eq 0 ]; then
     #SUCCESS
     echo "Install script completed."
-    IPS=`/sbin/ip -4 -o addr show | awk '{split($4,a,"/");print a[1]}'`
+    IPS=$(/sbin/ip -4 -o addr show | awk '{split($4,a,"/");print a[1]}')
     echo "GlobaLeaks should be reachable at:"
     for IP in $IPS;
     do

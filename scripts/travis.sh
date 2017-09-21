@@ -6,7 +6,7 @@ if [ -z "$GLREQUIREMENTS" ]; then
   GLREQUIREMENTS="trusty"
 fi
 
-TRAVIS_USR="travis-`git rev-parse --short HEAD`"
+TRAVIS_USR="travis-$(git rev-parse --short HEAD)"
 
 setupClientDependencies() {
   cd $TRAVIS_BUILD_DIR/client  # to install frontend dependencies

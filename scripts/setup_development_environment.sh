@@ -12,7 +12,7 @@
 # this force to exit at first error returned
 set -e
 
-DISTRIBUTION=`lsb_release -c`
+DISTRIBUTION=$(lsb_release -c)
 TAG="master"
 
 # Redirect stdout ( > ) into a named pipe ( >() ) running "tee"
