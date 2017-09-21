@@ -3,6 +3,7 @@
   "label": {
     "en": "Do you want to provide your identification information?",
     "ar": "هل ترغب في تقديم معلومات عن هويتك؟",
+    "az": "Do you want to provide your identification information?",
     "bg": "Желаете ли да изпратите информация за самоличността си?",
     "bs": "Da li želite da pružite svoje podatke za identifikaciju?",
     "ca": "Vols introduir la teva informació d'identificació?",
@@ -41,6 +42,7 @@
   "description": {
     "en": "",
     "ar": "",
+    "az": "",
     "bg": "",
     "bs": "",
     "ca": "",
@@ -103,6 +105,7 @@
   "hint": {
     "en": "",
     "ar": "",
+    "az": "",
     "bg": "",
     "bs": "",
     "ca": "",
@@ -151,6 +154,7 @@
   "multi_entry_hint": {
     "en": "",
     "ar": "",
+    "az": "",
     "bg": "",
     "bs": "",
     "ca": "",
@@ -196,6 +200,7 @@
       "label": {
         "en": "First name",
         "ar": "الاسم",
+        "az": "Ad",
         "bg": "Първо име",
         "bs": "Ime",
         "ca": "Nom",
@@ -234,6 +239,7 @@
       "description": {
         "en": "",
         "ar": "",
+        "az": "",
         "bg": "",
         "bs": "",
         "ca": "",
@@ -292,6 +298,7 @@
       "hint": {
         "en": "",
         "ar": "",
+        "az": "",
         "bg": "",
         "bs": "",
         "ca": "",
@@ -340,6 +347,7 @@
       "multi_entry_hint": {
         "en": "",
         "ar": "",
+        "az": "",
         "bg": "",
         "bs": "",
         "ca": "",
@@ -386,6 +394,7 @@
       "label": {
         "en": "Last name",
         "ar": "الكنية",
+        "az": "Soyad",
         "bg": "Фамилия",
         "bs": "Prezime",
         "ca": "Cognom(s)",
@@ -424,6 +433,7 @@
       "description": {
         "en": "",
         "ar": "",
+        "az": "",
         "bg": "",
         "bs": "",
         "ca": "",
@@ -482,6 +492,7 @@
       "hint": {
         "en": "",
         "ar": "",
+        "az": "",
         "bg": "",
         "bs": "",
         "ca": "",
@@ -530,6 +541,7 @@
       "multi_entry_hint": {
         "en": "",
         "ar": "",
+        "az": "",
         "bg": "",
         "bs": "",
         "ca": "",
@@ -576,6 +588,7 @@
       "label": {
         "en": "Gender",
         "ar": "الجنس",
+        "az": "Gender",
         "bg": "Пол",
         "bs": "pol",
         "ca": "Gènere",
@@ -614,6 +627,7 @@
       "description": {
         "en": "",
         "ar": "",
+        "az": "",
         "bg": "",
         "bs": "",
         "ca": "",
@@ -660,6 +674,7 @@
       "hint": {
         "en": "",
         "ar": "",
+        "az": "",
         "bg": "",
         "bs": "",
         "ca": "",
@@ -708,6 +723,7 @@
       "multi_entry_hint": {
         "en": "",
         "ar": "",
+        "az": "",
         "bg": "",
         "bs": "",
         "ca": "",
@@ -755,6 +771,7 @@
           "label": {
             "en": "Male",
             "ar": "ذكر",
+            "az": "Kişi",
             "bg": "Мъж",
             "bs": "muški",
             "ca": "Masculí",
@@ -800,6 +817,7 @@
           "label": {
             "en": "Female",
             "ar": "أنثى",
+            "az": "Qadın",
             "bg": "Жена",
             "bs": "ženski",
             "ca": "Femení",
@@ -845,6 +863,7 @@
       "label": {
         "en": "Date of birth",
         "ar": "تاريخ الولادة",
+        "az": "Doğum yeri",
         "bg": "Дата на раждане",
         "bs": "Datum rođenja",
         "ca": "Data de naixement",
@@ -883,6 +902,7 @@
       "description": {
         "en": "",
         "ar": "",
+        "az": "",
         "bg": "",
         "bs": "",
         "ca": "",
@@ -933,6 +953,7 @@
       "hint": {
         "en": "",
         "ar": "",
+        "az": "",
         "bg": "",
         "bs": "",
         "ca": "",
@@ -981,6 +1002,7 @@
       "multi_entry_hint": {
         "en": "",
         "ar": "",
+        "az": "",
         "bg": "",
         "bs": "",
         "ca": "",
@@ -1027,6 +1049,7 @@
       "label": {
         "en": "Place of birth",
         "ar": "مكان الولادة",
+        "az": "Doğum yeri",
         "bg": "Място на раждане",
         "bs": "Mjesto rođenja",
         "ca": "Lloc de naixement",
@@ -1065,6 +1088,7 @@
       "description": {
         "en": "",
         "ar": "",
+        "az": "",
         "bg": "",
         "bs": "",
         "ca": "",
@@ -1123,6 +1147,7 @@
       "hint": {
         "en": "",
         "ar": "",
+        "az": "",
         "bg": "",
         "bs": "",
         "ca": "",
@@ -1171,6 +1196,7 @@
       "multi_entry_hint": {
         "en": "",
         "ar": "",
+        "az": "",
         "bg": "",
         "bs": "",
         "ca": "",
@@ -1217,6 +1243,7 @@
       "label": {
         "en": "Social security number",
         "ar": "رقم الضمان الاجتماعي",
+        "az": "Sosial sığorta nömrəsi",
         "bg": "ЕГН",
         "bs": "Broj socijalnog osiguranja",
         "ca": "Número de SS",
@@ -1255,6 +1282,7 @@
       "description": {
         "en": "",
         "ar": "",
+        "az": "",
         "bg": "",
         "bs": "",
         "ca": "",
@@ -1294,6 +1322,7 @@
       "hint": {
         "en": "",
         "ar": "",
+        "az": "",
         "bg": "",
         "bs": "",
         "ca": "",
@@ -1361,6 +1390,7 @@
       "multi_entry_hint": {
         "en": "",
         "ar": "",
+        "az": "",
         "bg": "",
         "bs": "",
         "ca": "",
@@ -1407,6 +1437,7 @@
       "label": {
         "en": "Residence",
         "ar": "الاقامة",
+        "az": "Ev",
         "bg": "Местожителство",
         "bs": "prebivalište",
         "ca": "Residència",
@@ -1445,6 +1476,7 @@
       "description": {
         "en": "",
         "ar": "",
+        "az": "",
         "bg": "",
         "bs": "",
         "ca": "",
@@ -1486,6 +1518,7 @@
       "hint": {
         "en": "",
         "ar": "",
+        "az": "",
         "bg": "",
         "bs": "",
         "ca": "",
@@ -1534,6 +1567,7 @@
       "multi_entry_hint": {
         "en": "",
         "ar": "",
+        "az": "",
         "bg": "",
         "bs": "",
         "ca": "",
@@ -1579,6 +1613,7 @@
           "label": {
             "en": "Address",
             "ar": "العنوان",
+            "az": "Ünvan",
             "bg": "Адрес",
             "bs": "adresa",
             "ca": "Adreça",
@@ -1617,6 +1652,7 @@
           "description": {
             "en": "",
             "ar": "",
+            "az": "",
             "bg": "",
             "bs": "",
             "ca": "",
@@ -1656,6 +1692,7 @@
           "hint": {
             "en": "",
             "ar": "",
+            "az": "",
             "bg": "",
             "bs": "",
             "ca": "",
@@ -1723,6 +1760,7 @@
           "multi_entry_hint": {
             "en": "",
             "ar": "",
+            "az": "",
             "bg": "",
             "bs": "",
             "ca": "",
@@ -1769,6 +1807,7 @@
           "label": {
             "en": "Zip code / Postal code",
             "ar": "الرمز البريدي",
+            "az": "Poçt indeksi",
             "bg": "Пощенски код",
             "bs": "Poštanski broj / Poštanski broj",
             "ca": "Codi postal",
@@ -1807,6 +1846,7 @@
           "description": {
             "en": "",
             "ar": "",
+            "az": "",
             "bg": "",
             "bs": "",
             "ca": "",
@@ -1846,6 +1886,7 @@
           "hint": {
             "en": "",
             "ar": "",
+            "az": "",
             "bg": "",
             "bs": "",
             "ca": "",
@@ -1913,6 +1954,7 @@
           "multi_entry_hint": {
             "en": "",
             "ar": "",
+            "az": "",
             "bg": "",
             "bs": "",
             "ca": "",
@@ -1959,6 +2001,7 @@
           "label": {
             "en": "City",
             "ar": "المدينة",
+            "az": "Şəhər",
             "bg": "Град",
             "bs": "grad",
             "ca": "Població",
@@ -1997,6 +2040,7 @@
           "description": {
             "en": "",
             "ar": "",
+            "az": "",
             "bg": "",
             "bs": "",
             "ca": "",
@@ -2036,6 +2080,7 @@
           "hint": {
             "en": "",
             "ar": "",
+            "az": "",
             "bg": "",
             "bs": "",
             "ca": "",
@@ -2103,6 +2148,7 @@
           "multi_entry_hint": {
             "en": "",
             "ar": "",
+            "az": "",
             "bg": "",
             "bs": "",
             "ca": "",
@@ -2149,6 +2195,7 @@
           "label": {
             "en": "Province",
             "ar": "المحافظة أو الولاية",
+            "az": "Bölgə",
             "bg": "Провинция",
             "bs": "pokrajina",
             "ca": "Província",
@@ -2187,6 +2234,7 @@
           "description": {
             "en": "",
             "ar": "",
+            "az": "",
             "bg": "",
             "bs": "",
             "ca": "",
@@ -2226,6 +2274,7 @@
           "hint": {
             "en": "",
             "ar": "",
+            "az": "",
             "bg": "",
             "bs": "",
             "ca": "",
@@ -2293,6 +2342,7 @@
           "multi_entry_hint": {
             "en": "",
             "ar": "",
+            "az": "",
             "bg": "",
             "bs": "",
             "ca": "",
@@ -2339,6 +2389,7 @@
           "label": {
             "en": "State",
             "ar": "الدولة ",
+            "az": "Rayon",
             "bg": "Област",
             "bs": "stanje",
             "ca": "Comunitat autònoma",
@@ -2377,6 +2428,7 @@
           "description": {
             "en": "",
             "ar": "",
+            "az": "",
             "bg": "",
             "bs": "",
             "ca": "",
@@ -2416,6 +2468,7 @@
           "hint": {
             "en": "",
             "ar": "",
+            "az": "",
             "bg": "",
             "bs": "",
             "ca": "",
@@ -2483,6 +2536,7 @@
           "multi_entry_hint": {
             "en": "",
             "ar": "",
+            "az": "",
             "bg": "",
             "bs": "",
             "ca": "",
@@ -2531,6 +2585,7 @@
       "label": {
         "en": "Current job title",
         "ar": "المنصب الحالي المشغول",
+        "az": "Hazırkı işi",
         "bg": "Текуща длъжност",
         "bs": "Trenutni naslov posao",
         "ca": "Professió actual",
@@ -2569,6 +2624,7 @@
       "description": {
         "en": "",
         "ar": "",
+        "az": "",
         "bg": "",
         "bs": "",
         "ca": "",
@@ -2608,6 +2664,7 @@
       "hint": {
         "en": "",
         "ar": "",
+        "az": "",
         "bg": "",
         "bs": "",
         "ca": "",
@@ -2675,6 +2732,7 @@
       "multi_entry_hint": {
         "en": "",
         "ar": "",
+        "az": "",
         "bg": "",
         "bs": "",
         "ca": "",
@@ -2721,6 +2779,7 @@
       "label": {
         "en": "Current job responsibility (role)",
         "ar": "(المسؤولية في العمل) الدور",
+        "az": "İş yerində vəzifələri (rolu)",
         "bg": "Текущи изисквания (роля)",
         "bs": "Trenutni odgovornost posao (uloga)",
         "ca": "Professió actual (càrrec)",
@@ -2759,6 +2818,7 @@
       "description": {
         "en": "",
         "ar": "",
+        "az": "",
         "bg": "",
         "bs": "",
         "ca": "",
@@ -2798,6 +2858,7 @@
       "hint": {
         "en": "",
         "ar": "",
+        "az": "",
         "bg": "",
         "bs": "",
         "ca": "",
@@ -2865,6 +2926,7 @@
       "multi_entry_hint": {
         "en": "",
         "ar": "",
+        "az": "",
         "bg": "",
         "bs": "",
         "ca": "",
@@ -2911,6 +2973,7 @@
       "label": {
         "en": "Current organization unit and job location",
         "ar": "وحدة المنظمة الحالية و مكان العمل",
+        "az": "İş yeri və ünvanı",
         "bg": "Текуща отдел и местоположение на работата",
         "bs": "Trenutno organizacione jedinice i lokacija posla",
         "ca": "Departament i feina actual",
@@ -2949,6 +3012,7 @@
       "description": {
         "en": "",
         "ar": "",
+        "az": "",
         "bg": "",
         "bs": "",
         "ca": "",
@@ -2988,6 +3052,7 @@
       "hint": {
         "en": "",
         "ar": "",
+        "az": "",
         "bg": "",
         "bs": "",
         "ca": "",
@@ -3055,6 +3120,7 @@
       "multi_entry_hint": {
         "en": "",
         "ar": "",
+        "az": "",
         "bg": "",
         "bs": "",
         "ca": "",
@@ -3101,6 +3167,7 @@
       "label": {
         "en": "Job title at the time of the reported fact",
         "ar": "اسم المنصب وقت الابلاغ عن الواقعة",
+        "az": "Fakt haqda məlumat verən zaman vəzifənin adı",
         "bg": "Наименование на длъжността за периода на подадения сигнал",
         "bs": "naslov posao u vrijeme prijavljenih činjenice",
         "ca": "Càrrec laboral en el moment dels fets esmentats",
@@ -3139,6 +3206,7 @@
       "description": {
         "en": "",
         "ar": "",
+        "az": "",
         "bg": "",
         "bs": "",
         "ca": "",
@@ -3178,6 +3246,7 @@
       "hint": {
         "en": "",
         "ar": "",
+        "az": "",
         "bg": "",
         "bs": "",
         "ca": "",
@@ -3245,6 +3314,7 @@
       "multi_entry_hint": {
         "en": "",
         "ar": "",
+        "az": "",
         "bg": "",
         "bs": "",
         "ca": "",
@@ -3291,6 +3361,7 @@
       "label": {
         "en": "Job responsibility (role) at the time of the reported fact",
         "ar": "المسؤولية في العمل (الدور) وقت الابلاغ عن الواقعة",
+        "az": "Fakt haqda məlumat verən zaman vəzifənin məsuliyyəti (rolu)",
         "bg": "Изисквания (роля) за периода на подадения сигнал",
         "bs": "odgovornost Posao (uloga) u vremenu od prijavljenih činjenice",
         "ca": "Càrrec laboral en el moment dels fets esmentats",
@@ -3329,6 +3400,7 @@
       "description": {
         "en": "",
         "ar": "",
+        "az": "",
         "bg": "",
         "bs": "",
         "ca": "",
@@ -3368,6 +3440,7 @@
       "hint": {
         "en": "",
         "ar": "",
+        "az": "",
         "bg": "",
         "bs": "",
         "ca": "",
@@ -3435,6 +3508,7 @@
       "multi_entry_hint": {
         "en": "",
         "ar": "",
+        "az": "",
         "bg": "",
         "bs": "",
         "ca": "",
@@ -3481,6 +3555,7 @@
       "label": {
         "en": "Organization unit and job location at the time of the reported fact",
         "ar": "وحدة المنظمة و مكان العمل وقت الابلاغ عن الواقعة",
+        "az": "Fakt haqda məlumat verən zaman təşkilatın forması və iş yeri",
         "bg": "Отдел и местоположение на работата за периода на подадения сигнал",
         "bs": "Organizacione jedinice i lokacija posla na vrijeme prijavio činjenice",
         "ca": "Unitat d'organització i localització de feina en el moment dels fets esmentats",
@@ -3519,6 +3594,7 @@
       "description": {
         "en": "",
         "ar": "",
+        "az": "",
         "bg": "",
         "bs": "",
         "ca": "",
@@ -3558,6 +3634,7 @@
       "hint": {
         "en": "",
         "ar": "",
+        "az": "",
         "bg": "",
         "bs": "",
         "ca": "",
@@ -3625,6 +3702,7 @@
       "multi_entry_hint": {
         "en": "",
         "ar": "",
+        "az": "",
         "bg": "",
         "bs": "",
         "ca": "",
@@ -3671,6 +3749,7 @@
       "label": {
         "en": "Phone number",
         "ar": "رقم الهاتف",
+        "az": "Telefon nömrə",
         "bg": "Телефонен номер",
         "bs": "Telefonski broj",
         "ca": "Número de telèfon",
@@ -3709,6 +3788,7 @@
       "description": {
         "en": "",
         "ar": "",
+        "az": "",
         "bg": "",
         "bs": "",
         "ca": "",
@@ -3748,6 +3828,7 @@
       "hint": {
         "en": "",
         "ar": "",
+        "az": "",
         "bg": "",
         "bs": "",
         "ca": "",
@@ -3815,6 +3896,7 @@
       "multi_entry_hint": {
         "en": "",
         "ar": "",
+        "az": "",
         "bg": "",
         "bs": "",
         "ca": "",
@@ -3861,6 +3943,7 @@
       "label": {
         "en": "Email address",
         "ar": "بريد إلكتروني",
+        "az": "E-mail ünvanı",
         "bg": "Имейл адрес",
         "bs": "E-mail adresa",
         "ca": "Adreça electrònica",
@@ -3899,6 +3982,7 @@
       "description": {
         "en": "",
         "ar": "",
+        "az": "",
         "bg": "",
         "bs": "",
         "ca": "",
@@ -3938,6 +4022,7 @@
       "hint": {
         "en": "",
         "ar": "",
+        "az": "",
         "bg": "",
         "bs": "",
         "ca": "",
@@ -4005,6 +4090,7 @@
       "multi_entry_hint": {
         "en": "",
         "ar": "",
+        "az": "",
         "bg": "",
         "bs": "",
         "ca": "",

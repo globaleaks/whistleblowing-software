@@ -23,6 +23,7 @@ FIRST_DATABASE_VERSION_SUPPORTED = 20
 # NOTE that the cmd requires Babel is installed via pip and `code` is defined.
 LANGUAGES_SUPPORTED = [
   {'code': 'ar', 'name': 'Arabic', 'native': u'\u0627\u0644\u0639\u0631\u0628\u064a\u0629'},
+  {'code': 'az', 'name': 'Azerbaijani', 'native': u'az\u0259rbaycanca'},
   {'code': 'bg', 'name': 'Bulgarian', 'native': u'\u0431\u044a\u043b\u0433\u0430\u0440\u0441\u043a\u0438'},
   {'code': 'bs', 'name': 'Bosnian', 'native': u'Bosanski'},
   {'code': 'ca', 'name': 'Catalan', 'native': u'Catal\xe0'},

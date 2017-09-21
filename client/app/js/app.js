@@ -399,7 +399,11 @@ var GLClient = angular.module('GLClient', [
       tmhDynamicLocaleProvider.addLocalePatternValue('base64Locales',
         {
          "ar": 'js/locale/angular-locale_ar.js',
+         "az": 'js/locale/angular-locale_az.js',
+         "bg": 'js/locale/angular-locale_ca.js',
          "bs": 'js/locale/angular-locale_bs.js',
+         "ca": 'js/locale/angular-locale_ca.js',
+         "cs": 'js/locale/angular-locale_cs.js',
          "de": 'js/locale/angular-locale_de.js',
          "el": 'js/locale/angular-locale_el.js',
          "en": 'js/locale/angular-locale_en.js',
@@ -425,6 +429,7 @@ var GLClient = angular.module('GLClient', [
          "th": 'js/locale/angular-locale_th.js',
          "tr": 'js/locale/angular-locale_tr.js',
          "uk": 'js/locale/angular-locale_uk.js',
+         "ur": 'js/locale/angular-locale_ur.js',
          "vi": 'js/locale/angular-locale_vi.js',
          "zn-cn": 'js/locale/angular-locale_zh-cn.js',
          "zh-tw": 'js/locale/angular-locale_zh-tw.js'
