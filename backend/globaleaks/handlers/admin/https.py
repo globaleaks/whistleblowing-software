@@ -578,6 +578,8 @@ def db_acme_cert_issuance(store):
 
     PrivateFactory(store).set_val(u'https_cert', cert_str)
     PrivateFactory(store).set_val(u'https_chain', chain_str)
+    GLSettings.memory_copy.private.https_cert = cert_str
+    GLSettings.memory_copy.private.https_chain = chain_str
 
 
 class AcmeChallResolver(BaseHandler):
