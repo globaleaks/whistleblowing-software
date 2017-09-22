@@ -87,6 +87,8 @@ class GLService(service.Service):
 
     @defer.inlineCallbacks
     def shutdown(self):
+        yield GLSettings.appstate.process_supervisor.shutdown()
+
         yield GLSettings.stop_jobs()
 
         GLSettings.orm_tp.stop()
