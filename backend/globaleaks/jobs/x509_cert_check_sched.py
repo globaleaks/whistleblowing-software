@@ -15,9 +15,12 @@ from globaleaks.utils.templating import Templating
 from globaleaks.utils.utility import log
 
 
-def should_try_acme_renewal(num_failures):
-    acme = GLSettings.memory_copy.private.acme
-    https_enabled = GLSettings.memory_copy.private.https_enabled
+@transact_sync
+def should_try_acme_renewal(store, num_failures):
+    priv_fact = PrivateFactory(store)
+
+    acme = priv_fact.get_val('acme')
+    https_enabled = priv_fact.get_val('https_enabled')
 
     if https_enabled and acme and num_failures < 30:
         return True
@@ -42,14 +45,16 @@ class X509CertCheckSchedule(LoopingJob):
 
     @transact_sync
     def acme_cert_renewal_checks(self, store):
-        cert = load_certificate(FILETYPE_PEM, GLSettings.memory_copy.private.https_cert)
+        priv_fact = models.config.PrivateFactory(store)
+
+        cert = load_certificate(FILETYPE_PEM, priv_fact.get_val('https_cert'))
         expiration_date = letsencrypt.convert_asn1_date(cert.get_notAfter())
 
         t = timedelta(days=self.acme_try_renewal)
         renewal_window = datetime.now() + t
 
         if not expiration_date < renewal_window:
-            # We will not apply for the renewal of the certificate
+            # Do not apply for the renewal of the certificate
             return
 
         try:
@@ -68,10 +73,11 @@ class X509CertCheckSchedule(LoopingJob):
 
     @transact_sync
     def cert_expiration_checks(self, store):
-        if not GLSettings.memory_copy.private.https_enabled:
+        priv_fact = models.config.PrivateFactory(store)
+        if not priv_fact.get_val('https_enabled')
             return
 
-        cert = load_certificate(FILETYPE_PEM, GLSettings.memory_copy.private.https_cert)
+        cert = load_certificate(FILETYPE_PEM, priv_fact.get_val('https_cert'))
         expiration_date = letsencrypt.convert_asn1_date(cert.get_notAfter())
 
         t = timedelta(days=self.notify_expr_within)
