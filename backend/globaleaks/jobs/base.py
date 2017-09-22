@@ -1,9 +1,13 @@
 # -*- coding: UTF-8
 import time
 
+from twisted.internet import task, defer, reactor, threads
+from twisted.internet.error import ConnectionRefusedError, DNSLookupError
+from txsocksx.errors import TTLExpired
+
+from globaleaks.settings import GLSettings
 from globaleaks.utils.mailutils import schedule_exception_email, extract_exception_traceback_and_send_email
 from globaleaks.utils.utility import log
-from twisted.internet import task, defer, reactor, threads
 
 test_reactor = None
 
@@ -112,6 +116,29 @@ class LoopingJob(BaseJob):
         log.err(error)
         log.exception(excep)
         extract_exception_traceback_and_send_email(excep)
+
+
+FAILURES_OUTGOING = (ConnectionRefusedError, DNSLookupError)
+FAILURES_TOR_OUTGOING = FAILURES_OUTGOING + (TTLExpired,)
+
+
+class ExternNetLoopingJob(LoopingJob):
+    def on_error(self, excep):
+        """
+        Handles known errors that the twisted.web.client.Agent or txsocksx.http.SOCKS5Agent
+        while connecting through their respective networks.
+        """
+        if GLSettings.memory_copy.anonymize_outgoing_connections and \
+           isinstance(excep, FAILURES_TOR_OUTGOING):
+            log.err('{} job failed Tor network fetch with: {}'.format(self.name, excep))
+            return
+
+        if not GLSettings.memory_copy.anonymize_outgoing_connections and \
+           isinstance(excep, FAILURES_OUTGOING):
+            log.err('{} job failed outgoing network fetch with: {}'.format(self.name, excep))
+            return
+
+        super(ExternNetLoopingJob, self).on_error(excep)
 
 
 class LoopingJobsMonitor(LoopingJob):
