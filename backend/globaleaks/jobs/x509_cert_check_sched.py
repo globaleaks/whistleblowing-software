@@ -17,10 +17,10 @@ from globaleaks.utils.utility import log
 
 @transact_sync
 def should_try_acme_renewal(store, num_failures):
-    priv_fact = PrivateFactory(store)
+    priv_fact = models.config.PrivateFactory(store)
 
-    acme = priv_fact.get_val('acme')
-    https_enabled = priv_fact.get_val('https_enabled')
+    acme = priv_fact.get_val(u'acme')
+    https_enabled = priv_fact.get_val(u'https_enabled')
 
     if https_enabled and acme and num_failures < 30:
         return True
@@ -47,7 +47,7 @@ class X509CertCheckSchedule(LoopingJob):
     def acme_cert_renewal_checks(self, store):
         priv_fact = models.config.PrivateFactory(store)
 
-        cert = load_certificate(FILETYPE_PEM, priv_fact.get_val('https_cert'))
+        cert = load_certificate(FILETYPE_PEM, priv_fact.get_val(u'https_cert'))
         expiration_date = letsencrypt.convert_asn1_date(cert.get_notAfter())
 
         t = timedelta(days=self.acme_try_renewal)
@@ -74,10 +74,11 @@ class X509CertCheckSchedule(LoopingJob):
     @transact_sync
     def cert_expiration_checks(self, store):
         priv_fact = models.config.PrivateFactory(store)
-        if not priv_fact.get_val('https_enabled')
+
+        if not priv_fact.get_val(u'https_enabled'):
             return
 
-        cert = load_certificate(FILETYPE_PEM, priv_fact.get_val('https_cert'))
+        cert = load_certificate(FILETYPE_PEM, priv_fact.get_val(u'https_cert'))
         expiration_date = letsencrypt.convert_asn1_date(cert.get_notAfter())
 
         t = timedelta(days=self.notify_expr_within)
