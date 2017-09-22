@@ -15,10 +15,11 @@ from globaleaks.utils.templating import Templating
 from globaleaks.utils.utility import log
 
 
-def should_try_acme_renewal(failures):
+def should_try_acme_renewal(num_failures):
     acme = GLSettings.memory_copy.private.acme
     https_enabled = GLSettings.memory_copy.private.https_enabled
-    if https_enabled and acme:
+
+    if https_enabled and acme and num_failures < 30:
         return True
 
     return False
@@ -34,7 +35,7 @@ class X509CertCheckSchedule(LoopingJob):
     acme_failures = 0
 
     def operation(self):
-        if should_try_acme_renewal(self.acme_failures) and self.acme_failures > 30:
+        if should_try_acme_renewal(self.acme_failures):
             self.acme_cert_renewal_checks()
 
         self.cert_expiration_checks()
