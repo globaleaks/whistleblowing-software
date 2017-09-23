@@ -312,7 +312,7 @@ GLClient.controller('SubmissionCtrl',
 
       $scope.problemToBeSolved = $scope.submission._token.human_captcha;
 
-      if ($scope.node.enable_proof_of_work) {
+      if ($scope.submission._token.proof_of_work) {
         glbcProofOfWork.proofOfWork($scope.submission._token.proof_of_work).then(function(result) {
           $scope.submission._token.proof_of_work_answer = result;
           $scope.submission._token.$update(function(token) {

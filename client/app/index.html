@@ -278,11 +278,15 @@
           return false;
         }
 
-        // Check related to WebCrypto compatibility currently disabled as end2end encryption is still not finalized
-        if (!(window.crypto && (window.crypto.subtle || window.crypto.webkitSubtle) && window.crypto.getRandomValues) &&
-            !(typeof window.msCrypto === 'object' && typeof window.msCrypto.getRandomValues === 'function')) {
-          console.log("GlobaLeaks startup failure: missing end-2-end encryption requirements");
-          return false;
+        if (location.protocol === 'https:' || location.host.match(/^[a-z0-9]{16}\.onion$/)) {
+          /* Due to https://github.com/globaleaks/GlobaLeaks/issues/2088 the proof of work if currently
+             implemented only over Tor and HTTPS that are the production conditions. */
+
+          if (!(window.crypto && (window.crypto.subtle || window.crypto.webkitSubtle) && window.crypto.getRandomValues) &&
+              !(typeof window.msCrypto === 'object' && typeof window.msCrypto.getRandomValues === 'function')) {
+            console.log("GlobaLeaks startup failure: missing end-2-end encryption requirements");
+            return false;
+          }
         }
 
         return true;
@@ -296,7 +300,7 @@
          document.getElementsByTagName("head")[0].appendChild(fileref);
        }
       }
- 
+
       function start_globaleaks() {
         if (isBrowserCompatible()) {
           loadjsfile("js/scripts.js");
