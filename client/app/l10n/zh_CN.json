@@ -768,7 +768,7 @@
   "Using Let's Encrypt requires agreement to their Terms of Service.": "Using Let's Encrypt requires agreement to their Terms of Service.",
   "Valid until": "有效期至",
   "Valid until:": "Valid until:",
-  "Verify": "Verify",
+  "Verify": "验证",
   "vertical": "垂直",
   "via HTTPS at: {HTTPSUrl}": "通过HTTPS 上的：{HTTPSUrl}",
   "via Tor at: {TorUrl}": "通过 Tor 上的：{TorUrl}",

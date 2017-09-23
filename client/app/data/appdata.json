@@ -3,7 +3,7 @@
   "templates": {
     "admin_anomaly_activities": {
       "ar": "،عزيزي المشرف\n\nعدد الأنشطة التي تم الكشف عنها مؤخرا يبدو أعلى من امعتاد.\n\nهذا يمكن أن يكون علامة على وجود هجوم (على سبيل المثال، شخص ما يرسل بكثافة معلومات وهمية الى المشغل الخاص بك) أو مجرد ارتفاع الاستخدام نظرا لزيادة رؤية مشروعك.\n\nأنت تتلقى هذا البريد الإلكتروني لاقتراح أن تنظر في هذه القضية، وتحديد ما إذا كان الأصل شرعي أو ضار.\n\nالأنشطة ذات الاحصائيات غير عادية هي:\n\n{ActivityDump}\n\nأطيب التحيّات،\n{NodeName}\n",
-      "az": "Dear Administrator,\n\nThe number of activities recently detected appears to be higher than usual.\n\nThis could be a sign of an attack (for example, someone flooding your server with bogus information) or just a usage spike due to an increased visibility of your project.\n\nYou are receiving this email to suggest you to look into this issue and determine if the origin is legit or malicious.\n\nThe activities with unusual stats are:\n\n{ActivityDump}\n\nXoş arzularla,\n{NodeName}\n",
+      "az": "Əziz inzibatçı,\n\nSon zamanlarda aşkarlanan fəaliyyətlərin sayı normaldan daha yüksəkdir.\n\nThis could be a sign of an attack (for example, someone flooding your server with bogus information) or just a usage spike due to an increased visibility of your project.\n\nYou are receiving this email to suggest you to look into this issue and determine if the origin is legit or malicious.\n\nQeyri-adi statistikası olan fəaliyyətlər:\n\n{ActivityDump}\n\nXoş arzularla,\n{NodeName}\n",
       "bg": "Скъпи Администраторе,\n\nБроя на дейностите отчетени наскоро изглежда по-голям от обикновено.\n\nТова може да е знак за атака (например, някой който залива сървъра с фалшива информация) или просто проектът е получил повече публичност.\n\nПолучавате този имейл, за да поглените това и остановите ако източникът е легитимен или зловреден.\n\nДейности с необикновена статистика са:\n\n{ActivityDump}\n\nПоздрави, \n{NodeName}\n",
       "bs": "Dragi Administrator,\n\nIzgleda da je veća nego što je uobičajeno broj aktivnosti nedavno otkrivene.\n\nTo bi mogao biti znak za napad (na primjer, neko preplavljuju svoj server sa lažnim informacijama) ili samo upotrebe šiljak zbog povećane vidljivosti vašeg projekta.\n\nDobili ste ovaj e-mail da vam predlažemo da pogledate u ovo pitanje i utvrditi da li je poreklo je legalno ili maliciozni.\n\nAktivnosti sa neobičnim statistike su:\n\n{ActivityDump}\n\nLijep pozdrav,\n{NodeName}\n",
       "ca": "Benvolgut administrador,\n\nSembla que el nombre d'activitats que s'ha detectat fa poc és més elevat de l'habitual.\n\nAixò podria ser un senyal d'un atac (per exemple, algú que intenta inundar el servidor amb informació falsa) o només un repunt d'ús a causa d'una major visibilitat del projecte.\n\nT'enviem aquest missatge per suggerir-te que tinguis en compte aquest fet per determinar si l'origen és legítim o malintencionat.\n\nLes activitats amb estadístiques inusuals són les següents:\n\n{ActivityDump}\n\nRep una salutació cordial,\n{NodeName}\n",
@@ -42,7 +42,7 @@
     },
     "admin_anomaly_disk_high": {
       "ar": "،عزيزي المشرف\n\n{FreeMemory} of {TotalMemory} available diskspace used.\n\nلا يمكن للخادم ضمان أن البلاغ الجديد يمكن تخزينه، لذلك تم تعطيل التقديمات.\n\nThis is a HIGH level alarm. Tip submission has been disabled for any potential whistleblower. To re-enable it, create disk space.\n\nأطيب التحيّات،\n{NodeName}\n",
-      "az": "Dear Administrator,\n\n{FreeMemory} of {TotalMemory} available diskspace used.\n\nThe server cannot guarantee that a new submission can be stored, so submissions have been disabled.\n\nThis is a HIGH level alarm. Tip submission has been disabled for any potential whistleblower. To re-enable it, create disk space.\n\nXoş arzularla,\n{NodeName}\n",
+      "az": "Əziz inzibatçı,\n\n{FreeMemory} of {TotalMemory} available diskspace used.\n\nBu server yeni təqdimatı saxlamağa təminat vermir, ona görə də təqdimatlar sıradan çıxarılıb. \n\nBu yüksək səviyyəli həyəcan siqnalıdır. Təqdimat istənilən potensial informasiya ötürən üçün sıradan çıxarılıb. Bunu yenidən aktivləşdirin və disk sahəsi yaradın. \n\nXoş arzularla,\n{NodeName}\n",
       "bg": "Скъпи Администраторе,\n\n{FreeMemory} of {TotalMemory} available diskspace used.\n\nСървърът не може да гарантира, че нови сигнали ще могат да бъдат запазени, за това подаването на сигнали е изключено.\n\nТова е аларма от ВИСОКО ниво. Подаването на сигнал от потенциални източници е деактивирано. За да го активирате, добавете дисково пространство.\n\nПоздрави, \n{NodeName}\n",
       "bs": "Dragi Administrator,\n\n{FreeMemory} of {TotalMemory} available diskspace used.\n\nServer ne može garantirati da je novi podnesak mogu biti pohranjeni, tako podneske su onemogućena.\n\nThis is a HIGH level alarm. Tip submission has been disabled for any potential whistleblower. To re-enable it, create disk space.\n\nLijep pozdrav,\n{NodeName}\n",
       "ca": "Benvolgut administrador,\n\n{FreeMemory} of {TotalMemory} available diskspace used.\n\nEl servidor no pot garantir que es pugui desar una nova entrega, ja que s'han desactivat les entregues.\n\nThis is a HIGH level alarm. Tip submission has been disabled for any potential whistleblower. To re-enable it, create disk space.\n\nRep una salutació cordial,\n{NodeName}\n",
@@ -81,7 +81,7 @@
     },
     "admin_anomaly_disk_low": {
       "ar": "،عزيزي المشرف\n\n{FreeMemory} of {TotalMemory} available diskspace used.\n\nPlease consider asking your technical support to create more disk space on the server.\n\nUnless the issue is resolved this email will be resent in a few hours.\n\nThis is a LOW level alarm. Don’t panic, your system is okay.\n\nأطيب التحيّات،\n{NodeName}\n",
-      "az": "Dear Administrator,\n\n{FreeMemory} of {TotalMemory} available diskspace used.\n\nPlease consider asking your technical support to create more disk space on the server.\n\nUnless the issue is resolved this email will be resent in a few hours.\n\nThis is a LOW level alarm. Don’t panic, your system is okay.\n\nXoş arzularla,\n{NodeName}\n",
+      "az": "Əziz inzibatçı,\n\n{FreeMemory} of {TotalMemory} available diskspace used.\n\nPlease consider asking your technical support to create more disk space on the server.\n\nUnless the issue is resolved this email will be resent in a few hours.\n\nBu aşağı səviyyəli həyəcan siqnalıdır. Həyəcanlanmayın, sisteminiz yaxşıdır.\n\nXoş arzularla,\n{NodeName}\n",
       "bg": "Скъпи Администраторе,\n\n{FreeMemory} of {TotalMemory} available diskspace used.\n\nМоля, вижте дали техническият отдел може да добави допълнително дисково пространстрво на сървъра.\n\nДокато проблемът не бъде разрешен този имейл ще бъде изпратен отново след няколко часа.\n\nТова е аларма от НИСКО ниво. Не се паникьосвайте, системата работи добре.\n\nПоздрави, \n{NodeName}\n",
       "bs": "Dragi Administrator,\n\n{FreeMemory} of {TotalMemory} available diskspace used.\n\nPlease consider asking your technical support to create more disk space on the server.\n\nUnless the issue is resolved this email will be resent in a few hours.\n\nThis is a LOW level alarm. Don’t panic, your system is okay.\n\nLijep pozdrav,\n{NodeName}\n",
       "ca": "Benvolgut administrador,\n\n{FreeMemory} of {TotalMemory} available diskspace used.\n\nPlease consider asking your technical support to create more disk space on the server.\n\nUnless the issue is resolved this email will be resent in a few hours.\n\nThis is a LOW level alarm. Don’t panic, your system is okay.\n\nRep una salutació cordial,\n{NodeName}\n",
@@ -120,7 +120,7 @@
     },
     "admin_anomaly_disk_medium": {
       "ar": "،عزيزي المشرف\n\n{FreeMemory} of {TotalMemory} available diskspace used.\n\nPlease consider asking your technical support to create more disk space on the server.\n\nUnless the issue is resolved this email will be resent in a few hours.\n\nThis is a MEDIUM level alarm. Don’t panic, but deal with it as soon as possible.\n\nأطيب التحيّات،\n{NodeName}\n",
-      "az": "Dear Administrator,\n\n{FreeMemory} of {TotalMemory} available diskspace used.\n\nPlease consider asking your technical support to create more disk space on the server.\n\nUnless the issue is resolved this email will be resent in a few hours.\n\nThis is a MEDIUM level alarm. Don’t panic, but deal with it as soon as possible.\n\nXoş arzularla,\n{NodeName}\n",
+      "az": "Əziz inzibatçı,\n\n{FreeMemory} of {TotalMemory} available diskspace used.\n\nPlease consider asking your technical support to create more disk space on the server.\n\nUnless the issue is resolved this email will be resent in a few hours.\n\nBu orta səviyyəli bir həyəcan siqnalıdır. Həyəcanlanmayın, lakin ən qısa zamanda bununla məşğul olun. \n\nXoş arzularla,\n{NodeName}\n",
       "bg": "Скъпи Администраторе,\n\n{FreeMemory} of {TotalMemory} available diskspace used.\n\nМоля, вижте дали техническият отдел може да добави допълнително дисково пространстрво на сървъра.\n\nДокато проблемът не бъде разрешен този имейл ще бъде изпратен отново след няколко часа.\n\nТова е аларма от СРЕДНО ниво. Не се паникьосвайте, но разрешете проблема възможно най-скоро.\n\nПоздрави, \n{NodeName}\n",
       "bs": "Dragi Administrator,\n\n{FreeMemory} of {TotalMemory} available diskspace used.\n\nPlease consider asking your technical support to create more disk space on the server.\n\nUnless the issue is resolved this email will be resent in a few hours.\n\nThis is a MEDIUM level alarm. Don’t panic, but deal with it as soon as possible.\n\nLijep pozdrav,\n{NodeName}\n",
       "ca": "Benvolgut administrador,\n\n{FreeMemory} of {TotalMemory} available diskspace used.\n\nPlease consider asking your technical support to create more disk space on the server.\n\nUnless the issue is resolved this email will be resent in a few hours.\n\nThis is a MEDIUM level alarm. Don’t panic, but deal with it as soon as possible.\n\nRep una salutació cordial,\n{NodeName}\n",
@@ -159,7 +159,7 @@
     },
     "admin_anomaly_mail_template": {
       "ar": "،عزيزي المشرف\n\nوتشمل تكنولوجيا GlobaLeaks عنصر فحص لحالة السيرفر الذي سوف ينبهك في حالة حدوث أمر يتطلب انتباهكم.\n\n{AnomalyDetailDisk}\n{AnomalyDetailActivities}\n\nلمزيد من المعلومات، قم بتسجيل الدخول على واجهة الإدارة وإلقاء نظرة على قسمي \"إحصائيات النظام\" و \"العيوب\".\n\nأطيب التحيّات،\n{NodeName}\n",
-      "az": "Dear Administrator,\n\nGlobaLeaks technology includes a server status checking component which will alert you in case something requires your attention.\n\n{AnomalyDetailDisk}\n{AnomalyDetailActivities}\n\nFor more information, log in to the Administration interface and look at the \"System Stats\" and \"Anomalies\" sections.\n\nXoş arzularla,\n{NodeName}\n",
+      "az": "Əziz inzibatçı,\n\nGlobaLeaks technology includes a server status checking component which will alert you in case something requires your attention.\n\n{AnomalyDetailDisk}\n{AnomalyDetailActivities}\n\nDaha ətraflı məlumat üçün İdarəetmə ekranına daxil olun və \"Sistem Statistikaları\" və ya \"Anomaliyalar\" bölmələrinə baxın. \n\nXoş arzularla,\n{NodeName}\n",
       "bg": "Скъпи Администраторе,\n\nТехнологията на GlobaLeaks включва компонент, който проверява състоянието на сървъра, и който ще ви уведоми ако нещо изисква вниманието Ви.\n\n{AnomalyDetailDisk}\n{AnomalyDetailActivities}\n\nЗа повече информация се впишете в администраторския профил и разгледайте секциите \"Системна статистика\" и \"Аномалии\".\n\nПоздрави, \n{NodeName}\n",
       "bs": "Dragi Administrator,\n\nGlobaLeaks tehnologija uključuje server status provjere komponenta koja će vas upozoriti u slučaju da nešto zahtijeva vašu pažnju.\n\n{AnomalyDetailDisk}\n{AnomalyDetailActivities}\n\nZa više informacija, prijavite se na sučelje uprave i pogled na \"System statistiku\" i \"anomalije\" sekcije.\n\nLijep pozdrav,\n{NodeName}\n",
       "ca": "Benvolgut administrador,\n\nLa tecnologia de GlobaLeaks inclou un component de comprovació de l'estat del servidor que t'avisarà en cas que hi hagi res que demani la teva atenció.\n\n{AnomalyDetailDisk}\n{AnomalyDetailActivities}\n\nPer a més informació, entra a la interfície d'administració i comprova els apartats de \"Estadístiques del sistema\" i \"Anomalies\".\n\nRep una salutació cordial,\n{NodeName}\n",
@@ -198,7 +198,7 @@
     },
     "admin_anomaly_mail_title": {
       "ar": "تم الكشف على خلل في {NodeName}\n",
-      "az": "Anomaly detected in {NodeName}\n",
+      "az": "{NodeName} -da aşkarlanan paradoksallıq\n",
       "bg": "Открити аномалии в {NodeName}\n",
       "bs": "Anomalija otkrivenih u {NodeName}\n",
       "ca": "S'ha detectat una anomalia a {NodeName}\n",
@@ -237,7 +237,7 @@
     },
     "admin_pgp_alert_mail_template": {
       "ar": "،عزيزي المشرف\n\nهذا بريد إلكتروني لنبلغكم أنّ مفتاح PGP الخاصّ بالمستخدمين التوالي سوف تنتهي أو انتهت بالفعل:\n\n{PGPKeyInfoList}\n\nبدون مفتاح PGP صالح، لن يكون النظام قادرا على إرسال اشعارات مشفرة.\n\nأطيب التحيّات،\n{NodeName}\n",
-      "az": "Dear Administrator,\n\nThis is an email to inform you that the PGP key of the following users is going to expire or has already expired:\n\n{PGPKeyInfoList}\n\nWithout a valid PGP key, the system will not be able to send them encrypted notifications.\n\nXoş arzularla,\n{NodeName}\n",
+      "az": "Əziz inzibatçı,\n\nBu e-mail, aşağıdaki istifadəçilər üçün PGP açarının müddətinin sona çatacağı və ya artıq başa çatdığını bildirmək üçün göndərilib.\n\n{PGPKeyInfoList}\n\nMümkün PGP açarı olmadan sistem şifrəli bildirişlər göndərə bilməyəcək. \n\nXoş arzularla,\n{NodeName}\n",
       "bg": "Скъпи Администраторе,\n\nТози имейл Ви информира, че PGP ключовете на следните потребители ще изтекат или са вече изтегкли:\n\n{PGPKeyInfoList}\n\nБез PGP ключ, системата няма да може да изпраща криптирани известия.\n\nПоздрави, \n{NodeName}\n",
       "bs": "Dragi Administrator,\n\nOvo je e-mail da vas obavijestiti da je ključni PGP sledećih korisnici će isteći ili je već istekao:\n\n{PGPKeyInfoList}\n\nBez valjanog PGP ključa, sistem neće moći da ih šalju šifrirane obavijesti.\n\nLijep pozdrav,\n{NodeName}\n",
       "ca": "Benvolgut administrador,\n\nAixò és un correu electrònic per notificar-te que la clau PGP dels usuaris següents està a punt d'expirar o ja ha expirat:\n\n{PGPKeyInfoList}\n\nSense una clau PGP vàlida, el sistema no serà capaç d'enviar notificacions xifrades.\n\nRep una salutació cordial,\n{NodeName}\n",
@@ -276,7 +276,7 @@
     },
     "admin_pgp_alert_mail_title": {
       "ar": "تنبيه انتهاء صلاحية مفتاح PGP\n",
-      "az": "PGP key expiration alert\n",
+      "az": "PGP əsas həyəcan siqnalı\n",
       "bg": "Аларма за изтичащи PGP ключове\n",
       "bs": "PGP ključ isteka popustu\n",
       "ca": "Alerta d'expiració de la clau PGP\n",
@@ -315,7 +315,7 @@
     },
     "admin_test_static_mail_template": {
       "ar": "،عزيزي المشرف\n\nهذا بريد الإلكتروني على سبيل الاختبار يرسل من الواجهة الإدارية للمنصة.\n\nاستقبال هذه الرسالة يشير إلى أن الخادم كان قادرا على المصادقة والتفاعل مع خادم البريد SMTP.\n\nأطيب التحيّات،\n{NodeName}\n",
-      "az": "Dear Administrator,\n\nThis is a test email sent out from the platform's administrative interface.\n\nReception of this email indicates that the server was able to authenticate to and interact with the SMTP mail server.\n\nXoş arzularla,\n{NodeName}\n",
+      "az": "Əziz inzibatçı,\n\nBu, platformanın idarəetmə ekranından  göndərilən  yoxlama e-poçtudur. \n\nReception of this email indicates that the server was able to authenticate to and interact with the SMTP mail server.\n\nXoş arzularla,\n{NodeName}\n",
       "bg": "Скъпи Администраторе,\n\nТова е тестови имейл изпратен от административният интерфейс на платформата.\n\nПолучаването на този имейл показва, че сървърът успява да се идентифицира и работи с SMTP емейл сървъра.\n\nПоздрави, \n{NodeName}\n",
       "bs": "Dragi Administrator,\n\nThis is a test email sent out from the platform's administrative interface.\n\nReception of this email indicates that the server was able to authenticate to and interact with the SMTP mail server.\n\nLijep pozdrav,\n{NodeName}\n",
       "ca": "Benvolgut administrador,\n\nAquest missatge de correu electrònic és una prova que s'ha enviat des de la interfície d'administració de la plataforma.\n\nSi reps aquest missatge, significa que el servidor ha estat capaç d'autenticar el servidor de correu electrònic SMTP i d'interactuar-hi.\n\nRep una salutació cordial,\n{NodeName}\n",
@@ -354,7 +354,7 @@
     },
     "admin_test_static_mail_title": {
       "ar": "بريد الكتروني تجريبي\n",
-      "az": "Test email\n",
+      "az": "Yoxlanış e-maili\n",
       "bg": "Тестови имейл\n",
       "bs": "Test email\n",
       "ca": "Correu electrònic de prova\n",
@@ -393,7 +393,7 @@
     },
     "comment_mail_template": {
       "ar": "عزيزي {RecipientName},\n\nهذا هو بريد الكتروني لإعلامك عن تعليق جديد على بلاغ موجود.\n\nيكمن النفاذ إلى البلاغ:\nعبر تور في: {TorUrl}\nعبر HTTPS في: {HTTPSUrl}\n\nأطيب التحيّات،\n{NodeName}\n",
-      "az": "Dear {RecipientName},\n\nThis is an email to notify you of a new comment on an existing submission.\n\nTəqdimat əldə edilə bilər:\nvia Tor at: {TorUrl}\nvia HTTPS at: {HTTPSUrl}\n\nXoş arzularla,\n{NodeName}\n",
+      "az": "Əziz {alıcı adı}, \n\nBu e-mail, mövcud təqdimata dair yeni şərh almağınız barədə məlumat vermək üçün göndərilib. \n\nTəqdimat əldə edilə bilər:\nTor vasitəsilə: {TorUrl}\nHTTPS vasitəsilə :{HTTPSUrl}\n\nXoş arzularla,\n{NodeName}\n",
       "bg": "Скъпи {RecipientName},\n\nТози имейл Ви известява за нов коментар по съществуващ сигнал.\n\nСигналът може да бъде достъпен:\nпрез Tor на: {TorUrl}\nпрез HTTPS на: {HTTPSUrl}\n\nПоздрави, \n{NodeName}\n",
       "bs": "Dragi {RecipientName},\n\nOvo je e-mail da vas obavijestiti o novom komentar na postojeću predaju.\n\nPredaja se može pristupiti:\npreko Tor na: {TorUrl}\nputem HTTPS na: {HTTPSUrl}\n\nLijep pozdrav,\n{NodeName}\n",
       "ca": "Benvolgut/uda {RecipientName},\n\nAquest és un correu electrònic per avisar-te d'un nou comentari d'un enviament anterior.\n\nEs pot accedir al lliurament a:\nper Tor a l'adreça: {TorUrl}\nper HTTPS a: {HTTPSUrl}\n\nRep una salutació cordial,\n{NodeName}\n",
@@ -432,7 +432,7 @@
     },
     "comment_mail_title": {
       "ar": "تعليق جديد\n",
-      "az": "New comment\n",
+      "az": "Yeni şərh\n",
       "bg": "Нов коментар\n",
       "bs": "novi komentar\n",
       "ca": "Nou commentari\n",
@@ -471,7 +471,7 @@
     },
     "export_message_recipient": {
       "ar": "من: {RecipientName}\nالتاريخ: {EventTime}\n\n{Content}\n",
-      "az": "From: {RecipientName}\nDate: {EventTime}\n\n{Content}\n",
+      "az": "Dan: {Alıcı adı}\nTarix: {Hadisənin vaxtı}\n\n{Content}\n",
       "bg": "От: {RecipientName}\nДата: {EventTime}\n\n{Content}\n",
       "bs": "Od: {RecipientName}\nDatum: {EventTime}\n\n{Content}\n",
       "ca": "De: {RecipientName}\nData: {EventTime}\n\n{Content}\n",
@@ -510,7 +510,7 @@
     },
     "export_message_whistleblower": {
       "ar": "من: المبلغ\nالتاريخ: {EventTime}\n\n{Content}\n",
-      "az": "From: Whistleblower\nDate: {EventTime}\n\n{Content}\n",
+      "az": "dan: İnformasiya ötürən\nTarix: {Hadisənin vaxtı}\n\n{Content}\n",
       "bg": "От: Източник\nДата: {EventTime}\n\n{Content}\n",
       "bs": "Od: zviždača\nDatum: {EventTime}\n\n{Content}\n",
       "ca": "De: Informador\nData: {EventTime}\n\n{Content}\n",
@@ -549,7 +549,7 @@
     },
     "export_template": {
       "ar": "ID: {TipNum}\nالتاريخ: {SubmissionDate}\nالتسمية: {TipLabel}\nالسياق: {ContextName}\n\n{QuestionnaireAnswers}\n{Comments}\n{Messages}\n",
-      "az": "ID: {TipNum}\nDate: {SubmissionDate}\nLabel: {TipLabel}\nContext: {ContextName}\n\n{QuestionnaireAnswers}\n{Comments}\n{Messages}\n",
+      "az": "ID: {TipNum}\nTarix: {Təqdimat tarixi}\nYarlıq: {Üst Yarlıq }\nMəzmun: {Məzmunun adı}\n\n{QuestionnaireAnswers}\n{Comments}\n{Messages}\n",
       "bg": "ID: {TipNum}\nДата: {SubmissionDate}\nОтносно: {TipLabel}\nКонтекст: {ContextName}\n\n{QuestionnaireAnswers}\n{Comments}\n{Messages}\n",
       "bs": "ID: {TipNum}\nDatum: {SubmissionDate}\nLabel: {TipLabel}\nKontekst: {ContextName}\n\n{QuestionnaireAnswers}\n{Comments}\n{Messages}\n",
       "ca": "ID: {TipNum}\nData: {SubmissionDate}\nEtiqueta: {TipLabel}\nContext: {ContextName}\n\n{QuestionnaireAnswers}\n{Comments}\n{Messages}\n",
@@ -588,7 +588,7 @@
     },
     "file_mail_template": {
       "ar": "عزيزي {RecipientName},\n\nهذا هو البريد الالكتروني لإعلامك بأن المبلغ {TipNum} قد قام بارفاق مواد جديدة.\n\nيمكن الوصول إلى المعلومات المحدثة:\nعبر تور في: {TorUrl}\nعبر HTTPS في: {HTTPSUrl}\n\nأطيب التحيّات،\n{NodeName}\n",
-      "az": "Dear {RecipientName},\n\nThis is an email to notify you that the whistleblower of submission {TipNum} has attached new material.\n\nThe updated information can be accessed:\nvia Tor at: {TorUrl}\nvia HTTPS at: {HTTPSUrl}\n\nXoş arzularla,\n{NodeName}\n",
+      "az": "Əziz {alıcı adı}, \n\nBu, informasiya ötürənin yeni material {TipNum}  əlavə etməsiylə bağlı göndərilən e-maildir. \n\nYenilənmiş məlumat əldə edilə bilər:\nTor vasitəsilə: {TorUrl}\nHTTPS vasitəsilə :{HTTPSUrl}\n\nXoş arzularla,\n{NodeName}\n",
       "bg": "Скъпи {RecipientName},\n\nТози имейл Ви уведомява, че източникът за сигнал {TipNum} е прикрепил нов материал.\n\nОбновената информация може да бъде достъпена на:\nпрез Tor на: {TorUrl}\nпрез HTTPS на: {HTTPSUrl}\n\nПоздрави, \n{NodeName}\n",
       "bs": "Dragi {RecipientName},\n\nOvo je e-mail da vas obavijestiti da je zviždač podnošenja {TipNum} je dodao novi materijal.\n\nAžurirane informacije se može pristupiti:\npreko Tor na: {TorUrl}\nputem HTTPS na: {HTTPSUrl}\n\nLijep pozdrav,\n{NodeName}\n",
       "ca": "Benvolgut/uda {RecipientName},\n\nAmb aquest missatge de correu electrònic et volem notificar que l'informador de l'entrega {TipNum} ha adjuntat material nou.\n\nPots accedir a la informació actualitzada a:\nper Tor a l'adreça: {TorUrl}\nper HTTPS a: {HTTPSUrl}\n\nRep una salutació cordial,\n{NodeName}\n",
@@ -627,7 +627,7 @@
     },
     "file_mail_title": {
       "ar": "مرفق جديد\n",
-      "az": "New attachment\n",
+      "az": "Yeni əlavə\n",
       "bg": "Прикачване на нов файл\n",
       "bs": "novi prilog\n",
       "ca": "Adjunta un nou fitxer\n",
@@ -666,7 +666,7 @@
     },
     "https_certificate_expiration_mail_template": {
       "ar": "،عزيزي المشرف\n\nشهادة HTTPS التي تم تحميلها على النظام الأساسي ستنتهي صلاحيتها أو انتهت صلاحيتها بالفعل.\n\nبدون شهادة صالحة، يمكن الوصول إلى المنصة بطريقة آمنة فقط عبر متصفح تور.\n\nسجل الدخول لحل المشكلة.\n\nعبر تور في: {TorUrl}\nعبر HTTPS في: {HTTPSUrl}\n\n\nأطيب التحيات،\n{NodeName}\n",
-      "az": "Dear Administrator,\n\nThe HTTPS certificate loaded on the platform is expiring or has already expired.\n\nWithout a valid certificate, the platform will be accessible in a secure way only via Tor.\n\nLog in to solve the issue.\n\nvia Tor at: {TorUrl}\nvia HTTPS at: {HTTPSUrl}\n\n\nKind Regards,\n{NodeName}\n",
+      "az": "Əziz inzibatçı,\n\nPlatformaya yüklənmiş HTTPS seritifikat müddəti sona çatır və ya artıq başa çatıb.\n\nMümkün sertifikat olmadığı halda , platforma ancaq Tor vasitəsi ilə təhlükəsiz şəkildə əldə edilə bilər. \n\nMəsələni həll etmək üçün daxil olun.\n\nTor vasitəsilə: {TorUrl}\nHTTPS vasitəsilə :{HTTPSUrl}\n\n\nHörmətlə,\n{NodeName}\n",
       "bg": "Скъпи Администраторе,\n\nЗададеният HTTPS сертификат е изтича ли е вече изтекъл.\n\nБез валиден сертификат, платформата ще бъде достъпна по сигурен начин само през Тор.\n\nВпишете се, за да разрешите проблема.\n\nпрез Tor на: {TorUrl}\nпрез HTTPS на: {HTTPSUrl}\n\n\nПоздрави,\n{NodeName}\n",
       "bs": "Dragi Administrator,\n\nThe HTTPS certificate loaded on the platform is expiring or has already expired.\n\nWithout a valid certificate, the platform will be accessible in a secure way only via Tor.\n\nLog in to solve the issue.\n\npreko Tor na: {TorUrl}\nputem HTTPS na: {HTTPSUrl}\n\n\nKind Regards,\n{NodeName}\n",
       "ca": "Benvolgut administrador,\n\nThe HTTPS certificate loaded on the platform is expiring or has already expired.\n\nWithout a valid certificate, the platform will be accessible in a secure way only via Tor.\n\nLog in to solve the issue.\n\nper Tor a l'adreça: {TorUrl}\nper HTTPS a: {HTTPSUrl}\n\n\nKind Regards,\n{NodeName}\n",
@@ -705,7 +705,7 @@
     },
     "https_certificate_expiration_mail_title": {
       "ar": "تنبيه انتهاء صلاحية شهادة HTTPS\n",
-      "az": "HTTPS certificate expiration alert\n",
+      "az": "HTTPS sertifikatının sona çatması xəbərdarlığı\n",
       "bg": "Предупреждение за изтичащ HTTPS сертификат\n",
       "bs": "HTTPS certificate expiration alert\n",
       "ca": "HTTPS certificate expiration alert\n",
@@ -744,7 +744,7 @@
     },
     "identity_access_authorized_mail_template": {
       "ar": "عزيزي {RecipientName},\n\nهذا هو البريد الالكتروني لإعلامك أن أمين الحفظ قد أذن لك بالوصول إلى هوية مبلغ هذا البلاغ {TipNum}.\n\nيمكن الوصول إلى المعلومات المحدثة:\nعبر تور في: {TorUrl}\nعبر HTTPS في: {HTTPSUrl}\n\nأطيب التحيّات،\n{NodeName}\n\n",
-      "az": "Dear {RecipientName},\n\nThis is an email to notify you that a custodian has authorized you to access to the whistleblowing identity for the submission {TipNum}.\n\nThe updated information can be accessed:\nvia Tor at: {TorUrl}\nvia HTTPS at: {HTTPSUrl}\n\nXoş arzularla,\n{NodeName}\n\n",
+      "az": "Əziz {alıcı adı}, \n\nThis is an email to notify you that a custodian has authorized you to access to the whistleblowing identity for the submission {TipNum}.\n\nYenilənmiş məlumat əldə edilə bilər:\nTor vasitəsilə: {TorUrl}\nHTTPS vasitəsilə :{HTTPSUrl}\n\nXoş arzularla,\n{NodeName}\n\n",
       "bg": "Скъпи {RecipientName},\n\nТози имейл Ви уведомява, че попечителят Ви е разрешил достъпа до самоличността на изпращача на сингал {TipNum}.\n\nОбновената информация може да бъде достъпена на:\nпрез Tor на: {TorUrl}\nпрез HTTPS на: {HTTPSUrl}\n\nПоздрави, \n{NodeName}\n\n",
       "bs": "Dragi {RecipientName},\n\nThis is an email to notify you that a custodian has authorized you to access to the whistleblowing identity for the submission {TipNum}.\n\nAžurirane informacije se može pristupiti:\npreko Tor na: {TorUrl}\nputem HTTPS na: {HTTPSUrl}\n\nLijep pozdrav,\n{NodeName}\n\n",
       "ca": "Benvolgut/uda {RecipientName},\n\nThis is an email to notify you that a custodian has authorized you to access to the whistleblowing identity for the submission {TipNum}.\n\nPots accedir a la informació actualitzada a:\nper Tor a l'adreça: {TorUrl}\nper HTTPS a: {HTTPSUrl}\n\nRep una salutació cordial,\n{NodeName}\n\n",
@@ -822,7 +822,7 @@
     },
     "identity_access_denied_mail_template": {
       "ar": "عزيزي {RecipientName},\n\nهذا هو البريد الالكتروني لإعلامك أن أمين الحفظ قد رفض الاذن لك بالحصول على هوية مبلغ هذا البلاغ {TipNum}.\n\nيمكن الوصول إلى المعلومات المحدثة:\nعبر تور في: {TorUrl}\nعبر HTTPS في: {HTTPSUrl}\n\nأطيب التحيّات،\n{NodeName}\n",
-      "az": "Dear {RecipientName},\n\nThis is an email to notify you that a custodian has denied you access to the wistleblowing identity for the submission {TipNum}.\n\nThe updated information can be accessed:\nvia Tor at: {TorUrl}\nvia HTTPS at: {HTTPSUrl}\n\nXoş arzularla,\n{NodeName}\n",
+      "az": "Əziz {alıcı adı}, \n\nThis is an email to notify you that a custodian has denied you access to the wistleblowing identity for the submission {TipNum}.\n\nYenilənmiş məlumat əldə edilə bilər:\nTor vasitəsilə: {TorUrl}\nHTTPS vasitəsilə :{HTTPSUrl}\n\nXoş arzularla,\n{NodeName}\n",
       "bg": "Скъпи {RecipientName},\n\nТози имейл ви уведомява, че попечителят Ви е отказал достъп до самоличността на изпращача на сигнал {TipNum}.\n\nОбновената информация може да бъде достъпена на:\nпрез Tor на: {TorUrl}\nпрез HTTPS на: {HTTPSUrl}\n\nПоздрави, \n{NodeName}\n",
       "bs": "Dragi {RecipientName},\n\nOvo je e-mail da vas obavijestiti da je kustos je negirao pristup identitet wistleblowing za podnošenje {TipNum}.\n\nAžurirane informacije se može pristupiti:\npreko Tor na: {TorUrl}\nputem HTTPS na: {HTTPSUrl}\n\nLijep pozdrav,\n{NodeName}\n",
       "ca": "Benvolgut/uda {RecipientName},\n\nAmb aquest missatge de correu electrònic et volem notificar que el guardià t'ha denegat l'accés a la identitat de l'informador de l'entrega {TipNum}.\n\nPots accedir a la informació actualitzada a:\nper Tor a l'adreça: {TorUrl}\nper HTTPS a: {HTTPSUrl}\n\nRep una salutació cordial,\n{NodeName}\n",
@@ -900,7 +900,7 @@
     },
     "identity_access_request_mail_template": {
       "ar": "عزيزي {RecipientName},\n\nهذا هو بريد الكتروني لإعلامك أن أحد المتلقين قد طلب الاذن للوصول إلى هوية مبلغ هذا البلاغ {TipNum}.\n\nيكمن النفاذ إلى الطلب:\nعبر تور في: {TorUrl}\nعبر HTTPS في: {HTTPSUrl}\n\nأطيب التحيّات،\n{NodeName}\n",
-      "az": "Dear {RecipientName},\n\nThis is an email to notify you that a recipient has requested access to the whistleblower's identity for the submission {TipNum}\n\nThe request can be accessed:\nvia Tor at: {TorUrl}\nvia HTTPS at: {HTTPSUrl}\n\nXoş arzularla,\n{NodeName}\n",
+      "az": "Əziz {alıcı adı}, \n\nThis is an email to notify you that a recipient has requested access to the whistleblower's identity for the submission {TipNum}\n\nİstəyə giriş mümkündür: \nTor vasitəsilə: {TorUrl}\nHTTPS vasitəsilə :{HTTPSUrl}\n\nXoş arzularla,\n{NodeName}\n",
       "bg": "Скъпи {RecipientName},\n\nТози имейл Ви уведомява, че един от получателите изисква достъп до самоличността на източника за сигнал{TipNum}\n\nЗаявката може да бъде достъпена на:\nпрез Tor на: {TorUrl}\nпрез HTTPS на: {HTTPSUrl}\n\nПоздрави, \n{NodeName}\n",
       "bs": "Dragi {RecipientName},\n\nOvo je e-mail da vas obavijestiti da je primalac zatražila pristup identitet zviždača za podnošenje {TipNum}\n\nZahtjev se može pristupiti:\npreko Tor na: {TorUrl}\nputem HTTPS na: {HTTPSUrl}\n\nLijep pozdrav,\n{NodeName}\n",
       "ca": "Benvolgut/uda {RecipientName},\n\nAmb aquest missatge de correu electrònic et volem notificar que el destinatari ha demanat accedir a la identitat de l'informador de l'entrega {TipNum}.\n\nPots accedir a la petició a:\nper Tor a l'adreça: {TorUrl}\nper HTTPS a: {HTTPSUrl}\n\nRep una salutació cordial,\n{NodeName}\n",
@@ -939,7 +939,7 @@
     },
     "identity_access_request_mail_title": {
       "ar": "طلب جديد للوصول إلى هوية المبلغ\n",
-      "az": "New request of access to a whistleblower's identity\n",
+      "az": "İnformasiya ötürənin kimliyinə yeni giriş tələbi\n",
       "bg": "Нова заявка за достъп до самоличността на източник\n",
       "bs": "Novi zahtjev pristupa identiteta zviždač je\n",
       "ca": "Nova petició d'accés a la identitat de l'informador\n",
@@ -978,7 +978,7 @@
     },
     "identity_provided_mail_template": {
       "ar": "عزيزي {RecipientName},\n\nهذا هو بريد الكتروني لإعلامك بأن مبلغ البلاغ {TipNum} قد وفر هويته.\n\nيكمن النفاذ إلى البلاغ:\nعبر تور في: {TorUrl}\nعبر HTTPS في: {HTTPSUrl}\n\nأطيب التحيّات،\n{NodeName}\n",
-      "az": "Dear {RecipientName},\n\nThis is an email to notify you that the whistleblower for the submission {TipNum} has provided their identity.\n\nTəqdimat əldə edilə bilər:\nvia Tor at: {TorUrl}\nvia HTTPS at: {HTTPSUrl}\n\nXoş arzularla,\n{NodeName}\n",
+      "az": "Əziz {alıcı adı}, \n\nBu e-mail, informasiya ötürənin təqdimat {TipNum} üçün öz kimliyi ilə məlumatları təmin etməsi ilə bağlı göndərilib.\n\nTəqdimat əldə edilə bilər:\nTor vasitəsilə: {TorUrl}\nHTTPS vasitəsilə :{HTTPSUrl}\n\nXoş arzularla,\n{NodeName}\n",
       "bg": "Скъпи {RecipientName},\n\nТози имейл Ви уведомява, че източникът на сигнал {TipNum} е изпратил самоличността си.\n\nСигналът може да бъде достъпен:\nпрез Tor на: {TorUrl}\nпрез HTTPS на: {HTTPSUrl}\n\nПоздрави, \n{NodeName}\n",
       "bs": "Dragi {RecipientName},\n\nOvo je e-mail da vas obavijestiti da je zviždač za podnošenje {TipNum} pružio svoj identitet.\n\nPredaja se može pristupiti:\npreko Tor na: {TorUrl}\nputem HTTPS na: {HTTPSUrl}\n\nLijep pozdrav,\n{NodeName}\n",
       "ca": "Benvolgut/uda {RecipientName},\n\nAmb aquest missatge de correu electrònic et volem notificar que l'informador de l'entrega {TipNum} ha introduït la seva identitat.\n\nEs pot accedir al lliurament a:\nper Tor a l'adreça: {TorUrl}\nper HTTPS a: {HTTPSUrl}\n\nRep una salutació cordial,\n{NodeName}\n",
@@ -1017,7 +1017,7 @@
     },
     "identity_provided_mail_title": {
       "ar": "قدم المبلغ هويته\n",
-      "az": "The whistleblower has provided their identity\n",
+      "az": "İnformasiya ötürən öz kimliyini göstərib. \n",
       "bg": "Източникът е изпратил самоличността си.\n",
       "bs": "Uzbunjivač je dao svoj identitet\n",
       "ca": "L'informador ha introduït la seva identitat\n",
@@ -1056,7 +1056,7 @@
     },
     "message_mail_template": {
       "ar": "عزيزي {RecipientName},\n\nهذا بريد إلكتروني لإشعارك برسالة جديدة على بلاغ موجود.\n\nيكمن النفاذ إلى البلاغ:\nعبر تور في: {TorUrl}\nعبر HTTPS في: {HTTPSUrl}\n\nأطيب التحيّات،\n{NodeName}\n",
-      "az": "Dear {RecipientName},\n\nThis is an email to notify you of a new message on an existing submission.\n\nTəqdimat əldə edilə bilər:\nvia Tor at: {TorUrl}\nvia HTTPS at: {HTTPSUrl}\n\nXoş arzularla,\n{NodeName}\n",
+      "az": "Əziz {alıcı adı}, \n\nBu e-mail, sizi mövcud təqdimatla bağlı gələn yeni mesaj barədə xəbərdar edir. \n\nTəqdimat əldə edilə bilər:\nTor vasitəsilə: {TorUrl}\nHTTPS vasitəsilə :{HTTPSUrl}\n\nXoş arzularla,\n{NodeName}\n",
       "bg": "Скъпи {RecipientName},\n\nТози имейл ви уведомява, че имате ново съобщение за съществуващ сигнал.\n\nСигналът може да бъде достъпен:\nпрез Tor на: {TorUrl}\nпрез HTTPS на: {HTTPSUrl}\n\nПоздрави, \n{NodeName}\n",
       "bs": "Dragi {RecipientName},\n\nOvo je e-mail da vas obavijestiti o novom poruke na postojeću predaju.\n\nPredaja se može pristupiti:\npreko Tor na: {TorUrl}\nputem HTTPS na: {HTTPSUrl}\n\nLijep pozdrav,\n{NodeName}\n",
       "ca": "Benvolgut/uda {RecipientName},\n\nAmb aquest missatge de correu electrònic et volem notificar que hi ha un nou missatge en una entrega existent.\n\nEs pot accedir al lliurament a:\nper Tor a l'adreça: {TorUrl}\nper HTTPS a: {HTTPSUrl}\n\nRep una salutació cordial,\n{NodeName}\n",
@@ -1095,7 +1095,7 @@
     },
     "message_mail_title": {
       "ar": "رسالة جديدة\n",
-      "az": "New message\n",
+      "az": "Yeni mesaj\n",
       "bg": "Ново съобщение\n",
       "bs": "nova poruka\n",
       "ca": "Nous missatge\n",
@@ -1134,7 +1134,7 @@
     },
     "pgp_alert_mail_template": {
       "ar": "عزيزي {RecipientName},\n\nهذا بريد إلكتروني لنحيطكم علما بأن صلوحية مفتاح PGP الخاص بك ستنتهي أو انتهت بالفعل.\n\nأنت مدعو لتمديد مدة صلاحية او تحديث المفتاح الموجود حاليا على المنصة او تحميل مفتاح جديد\n\n{PGPKeyInfo}\n\nبدون مفتاح PGP صالح، فإن النظام لن يكون قادرا على تشفير البيانات المقدمة إليك.\n\nأطيب التحيّات،\n{NodeName}\n",
-      "az": "Dear {RecipientName},\n\nThis is an email to inform you that your PGP key is expiring or has already expired.\n\nYou should extend its validity and update the key present on the platform, or upload a new key.\n\n{PGPKeyInfo}\n\nWithout a valid PGP key, the system won't be able to encrypt data provided to you.\n\nXoş arzularla,\n{NodeName}\n",
+      "az": "Əziz {alıcı adı}, \n\nBu e-mail, PGP açarın sona çatacağını və ya artıq başa çatdığını bildirmək üçün göndərilib. \n\nSiz, platformada mövcud açarın etibarlılığını uzatmalı və yeniləməli, və ya yenisini yükləməlisiniz. \n\n{PGPKeyInfo}\n\nEtibarlı PGP açarı olmadan sistem sizə verilən məlumatları şifrələməyəcək. \n\nXoş arzularla,\n{NodeName}\n",
       "bg": "Скъпи {RecipientName},\n\nТози имейл Ви уведомява, че PGP ключът Ви ще изтече или вече е изтекъл.\n\nБи трябвало да увеличите валидността му и да го обновите на платформата или да качите нов ключ.\n\n{PGPKeyInfo}\n\nБез валиден PGP ключ системата няма да може да криптира информацията, която давате.\n\nПоздрави, \n{NodeName}\n",
       "bs": "Dragi {RecipientName},\n\nOvo je e-mail ti je to ključ PGP ističe ili je već istekao obavijestiti.\n\nTrebalo bi proširiti svoju valjanost i ažurirati ključ prisutan na platformi, ili uploadati novi ključ.\n\n{PGPKeyInfo}\n\nBez valjanog PGP ključa, sistem neće biti u mogućnosti da enkripciju podataka koje ste dobili.\n\nLijep pozdrav,\n{NodeName}\n",
       "ca": "Benvolgut/uda {RecipientName},\n\nAixò és un correu electrònic per informar-te que la teva clau PGP està a punt de caducar o ja ha caducat.\n\nHauries d'ampliar-ne la validesa i actualitzar la clau que hi ha a la plataforma, o bé introduir una nova clau.\n\n{PGPKeyInfo}\n\nSense una clau PGP vàlida, el sistema no podrà encriptar les dades que se t'han proporcionat.\n\nRep una salutació cordial,\n{NodeName}\n",
@@ -1173,7 +1173,7 @@
     },
     "pgp_alert_mail_title": {
       "ar": "تنبيه انتهاء صلاحية مفتاح PGP\n",
-      "az": "PGP key expiration alert\n",
+      "az": "PGP əsas həyəcan siqnalı\n",
       "bg": "Аларма за изтичащи PGP ключове\n",
       "bs": "PGP ključ isteka popustu\n",
       "ca": "Alerta d'expiració de la clau PGP\n",
@@ -1212,7 +1212,7 @@
     },
     "receiver_notification_limit_reached_mail_template": {
       "ar": "عزيزي {RecipientName},\n\nيبدو أن {NodeName} يتلقي عددا كبيرا من الطلبات.\n\nلمنع أن يرسل لك الكثير من رسائل البريد الإلكتروني، تم تعطيل نظام الاشعارات بالبريد الالكتروني حتى يعود الحمل إلى وضعه الطبيعي. في غضون ذلك، يمكنك تسجيل الدخول بشكل طبيعي على المنصة والتحقق يدويا من البلاغات الجديدة.\n\nإذا كنت لا تمانع و تفضل تلقي هذا العدد الكبير من الاشعارات بالبريد الالكتروني على أية حال، الرجاء الاتصال بالدعم الفني لتطلب تعديل هذا الإعداد وفقا لذلك.\n\nأطيب التحيّات،\n{NodeName}\n",
-      "az": "Dear {RecipientName},\n\nIt appears that {NodeName} is receiving a large number of requests.\n\nTo prevent sending you too many emails, the system has disabled email notifications until the load returns to normal. In the meantime, you can normally log onto the platform and manually check for new submissions.\n\nIf you don’t mind and would rather receive such a large number of email notifications anyhow, please contact your technical support to have them modify this setting accordingly.\n\nXoş arzularla,\n{NodeName}\n",
+      "az": "Əziz {alıcı adı}, \n\nGöründüyü kimi {NodeName} çox sayda sorğu alır.\n\nTo prevent sending you too many emails, the system has disabled email notifications until the load returns to normal. In the meantime, you can normally log onto the platform and manually check for new submissions.\n\nƏgər, çox sayda e-mail bildirişləri alırsınızsa və sizi bu narahat edirsə,  tənzimləməni dəyişdirmək üçün texniki yardımla əlaqə saxlayın. \n\nXoş arzularla,\n{NodeName}\n",
       "bg": "Скъпи {RecipientName},\n\nИзглежда, че {NodeName} получава голям брой заявки.\n\nЗа да предутврати изпращането на твърде много имейли, системата ще изключи изпращането на известия, докато нивото се нормализира. До тогава, може да се вписвате по нормалния начин в платформата и ръзно да проверявате за нови известия.\n\nАко това не ви пречи и предпочитате да получавате голям брой имейл известия, се свържете с отгорните за техническа подръжка и ги помолете да настроят системата по съответния начин.\n\nПоздрави, \n{NodeName}\n",
       "bs": "Dragi {RecipientName},\n\nČini se da {NodeName} prima veliki broj zahtjeva.\n\nDa biste spriječili slanje ste previše e-mailova, sistem je onemogućio obavijesti e-pošte dok se teret vrati u normalu. U međuvremenu, možete normalno da se prijavite na platformu i ručno provjeriti za nove argumente.\n\nAko vam ne smeta i da bi radije dobiti tako veliki broj prijava e-mail u svakom slučaju, obratite se tehničkoj podršci da ih modificirati ove postavke u skladu s tim.\n\nLijep pozdrav,\n{NodeName}\n",
       "ca": "Benvolgut/uda {RecipientName},\n\nSembla que {NodeName} està rebent un gran nombre de peticions.\n\nPer impedir que t'enviïn massa correus electrònics, el sistema ha desactivat les notificacions del correu electrònic fins que la quantitat torni a ser normal. Mentrestant, pots entrar normalment a la plataforma i comprovar manualment les noves entregues.\n\nSi no t'importa i prefereixes rebre totes aquestes notificacions de correus electrònics, si us plau, posa't en contacte amb el suport tècnic perquè modifiquin la configuració amb aquesta finalitat.\n\nRep una salutació cordial,\n{NodeName}\n",
@@ -1251,7 +1251,7 @@
     },
     "receiver_notification_limit_reached_mail_title": {
       "ar": "الاشعارات من {NodeName} علقت مؤقتا\n",
-      "az": "Notifications from {NodeName} have been temporarily suspended\n",
+      "az": "{NodeName} dan gələn bildirişlər müvəqqəti dayandırılıb\n",
       "bg": "Известията от {NodeName} са временно спрени\n",
       "bs": "Obavijesti iz {NodeName} su privremeno obustavljen\n",
       "ca": "Les notificacions de {NodeName} s'han suspès temporalment\n",
@@ -1290,7 +1290,7 @@
     },
     "tip_expiration_summary_mail_template": {
       "ar": "عزيزي {RecipientName},\n\n{ExpiringSubmissionCount} submissions are expiring and will be soon deleted.\n\nأقرب تاريخ لانتهاء الصلاحية {EarliestExpirationDate}.\n\nالرجاء تذكر الاطلاع عليها قبل أن يتم حذفها.\n\nعبر تور في: {TorUrl}\nعبر HTTPS في: {HTTPSUrl}\n\nأطيب التحيّات،\n{NodeName}\n",
-      "az": "Dear {RecipientName},\n\n{ExpiringSubmissionCount} submissions are expiring and will be soon deleted.\n\nThe earliest expiration date is {EarliestExpirationDate}.\n\nPlease remember to check them before they are deleted.\n\nvia Tor at: {TorUrl}\nvia HTTPS at: {HTTPSUrl}\n\nXoş arzularla,\n{NodeName}\n",
+      "az": "Əziz {alıcı adı}, \n\n{ExpiringSubmissionCount} submissions are expiring and will be soon deleted.\n\nƏn son istifadə tarixi {Ən son istifadə tarixi}\n\nSilinmədən öncə onları yoxlamağı unutmayın\n\nTor vasitəsilə: {TorUrl}\nHTTPS vasitəsilə :{HTTPSUrl}\n\nXoş arzularla,\n{NodeName}\n",
       "bg": "Скъпи {RecipientName},\n\n{ExpiringSubmissionCount} submissions are expiring and will be soon deleted.\n\nНай-ранната дата на изтичане е {EarliestExpirationDate}.\n\nМоля, запомнете да ги проверявате преди изтриване.\n\nпрез Tor на: {TorUrl}\nпрез HTTPS на: {HTTPSUrl}\n\nПоздрави, \n{NodeName}\n",
       "bs": "Dragi {RecipientName},\n\n{ExpiringSubmissionCount} submissions are expiring and will be soon deleted.\n\nThe earliest expiration date is {EarliestExpirationDate}.\n\nPlease remember to check them before they are deleted.\n\npreko Tor na: {TorUrl}\nputem HTTPS na: {HTTPSUrl}\n\nLijep pozdrav,\n{NodeName}\n",
       "ca": "Benvolgut/uda {RecipientName},\n\n{ExpiringSubmissionCount} submissions are expiring and will be soon deleted.\n\nThe earliest expiration date is {EarliestExpirationDate}.\n\nPlease remember to check them before they are deleted.\n\nper Tor a l'adreça: {TorUrl}\nper HTTPS a: {HTTPSUrl}\n\nRep una salutació cordial,\n{NodeName}\n",
@@ -1329,7 +1329,7 @@
     },
     "tip_expiration_summary_mail_title": {
       "ar": "ستنتهي صلاحية بعض البلاغات قريبا\n",
-      "az": "Some submissions will expire soon\n",
+      "az": "Bəzi təqdimatlar tezliklə başa çatacaq\n",
       "bg": "Някои сигнали ще изтекат скоро\n",
       "bs": "Some submissions will expire soon\n",
       "ca": "Some submissions will expire soon\n",
@@ -1368,7 +1368,7 @@
     },
     "tip_mail_template": {
       "ar": "عزيزي {RecipientName},\n\nهذه رسالة إلكترونية لإعلامكم بأن أحد المبلغين اختاركم لإستلام بلاغه.\n\nيرجى أن تولوا اهتماما خاصا بالمعلومات والمواد الواردة. و يرجى أن تضعوا في عين الاعتبار أن المبلغين غالبا ما يعرضون أنفسهم لمخاطر شخصية عالية من أجل المصلحة العامة. ولذلك ينبغي اعتبار المواد المقدمة في هذا البلاغ ذات أهمية عالية.\n\nيكمن النفاذ إلى البلاغ:\nعبر تور في: {TorUrl}\nعبر HTTPS في: {HTTPSUrl}\n\nأطيب التحيّات،\n{NodeName}\n",
-      "az": "Dear {RecipientName},\n\nThis is an email to notify you that a whistleblower has selected you as a valuable recipient of their submission.\n\nYou are asked to pay special attention to the information and material contained therein. Please keep in mind that whistleblowers often expose themselves to high personal risks in the interest of the public. Therefore the material provided within this submission should be considered to be of high importance.\n\nTəqdimat əldə edilə bilər:\nvia Tor at: {TorUrl}\nvia HTTPS at: {HTTPSUrl}\n\nXoş arzularla,\n{NodeName}\n",
+      "az": "Əziz {alıcı adı}, \n\nBu e-mail, informasiya ötürənin sizi təqdimatı üçün qiymətli qəbul edici olaraq seçdiyini bildirmək üçün göndərilib.\n\nYou are asked to pay special attention to the information and material contained therein. Please keep in mind that whistleblowers often expose themselves to high personal risks in the interest of the public. Therefore the material provided within this submission should be considered to be of high importance.\n\nTəqdimat əldə edilə bilər:\nTor vasitəsilə: {TorUrl}\nHTTPS vasitəsilə :{HTTPSUrl}\n\nXoş arzularla,\n{NodeName}\n",
       "bg": "Скъпи {RecipientName},\n\nТози имейл Ви известява, че източник Ви е избрал като ценен получател на техния сигнал.\n\nПомолени сте да отделите специално внимание на информацията и материалът подаден тук. Моля, не забравяйте, че източниците често излагат себе си на голям риск за обществения интерес. Следователно материалът, който подават с този сигнал трябва да бъде считан изключително важен.\n\nСигналът може да бъде достъпен:\nпрез Tor на: {TorUrl}\nпрез HTTPS на: {HTTPSUrl}\n\nПоздрави, \n{NodeName}\n",
       "bs": "Dragi {RecipientName},\n\nThis is an email to notify you that a whistleblower has selected you as a valuable recipient of their submission.\n\nYou are asked to pay special attention to the information and material contained therein. Please keep in mind that whistleblowers often expose themselves to high personal risks in the interest of the public. Therefore the material provided within this submission should be considered to be of high importance.\n\nPredaja se može pristupiti:\npreko Tor na: {TorUrl}\nputem HTTPS na: {HTTPSUrl}\n\nLijep pozdrav,\n{NodeName}\n",
       "ca": "Benvolgut/uda {RecipientName},\n\nThis is an email to notify you that a whistleblower has selected you as a valuable recipient of their submission.\n\nYou are asked to pay special attention to the information and material contained therein. Please keep in mind that whistleblowers often expose themselves to high personal risks in the interest of the public. Therefore the material provided within this submission should be considered to be of high importance.\n\nEs pot accedir al lliurament a:\nper Tor a l'adreça: {TorUrl}\nper HTTPS a: {HTTPSUrl}\n\nRep una salutació cordial,\n{NodeName}\n",
@@ -1407,7 +1407,7 @@
     },
     "tip_mail_title": {
       "ar": "بلاغ جديد\n",
-      "az": "New submission\n",
+      "az": "Yeni təqdimat\n",
       "bg": "Нов сигнал\n",
       "bs": "novi podnošenje\n",
       "ca": "Nou enviament\n",
@@ -1565,7 +1565,7 @@
     },
     "whistleblowing_question": {
       "ar": "هل انت مبلغ ؟",
-      "az": "Sən məlumat ötürənsən?",
+      "az": "Siz informasiya ötürənsiniz?",
       "bg": "Вие източник ли сте?",
       "bs": "Da li ste zviždač?",
       "ca": "Ets un informador?",
@@ -1643,7 +1643,7 @@
     },
     "whistleblowing_receipt_prompt": {
       "ar": "هل سبق و عمّرت بلاغا؟ أدخل رمز المفتاح الخاصّ بك.",
-      "az": "Artıq təqdim etmisiniz? Açar açar şifrəni daxil edin",
+      "az": "Artıq təqdim etmisiniz mı? Açar açar şifrəni daxil edin",
       "bg": "Вече сте подали сигнал? Въведе Вашия ключ.",
       "bs": "Da li ste već podnijeli podnesak? Unesite svoj ključ kod.",
       "ca": "Vols veure l'estat del teu enviament? Introdueix el teu codi",
