@@ -146,12 +146,4 @@ class NotificationTestInstance(BaseHandler):
 
         send_to = user['mail_address']
 
-        log.debug("Attempting to send test email to: %s" % send_to)
-        # If sending the email fails the exception mail address will be mailed.
-        # If the failure is due to a bad SMTP config that will fail too, but it
-        # doesn't hurt to try!
-        try:
-            yield sendmail(send_to, subject, body)
-        except Exception as e:
-            log.debug("Sending to admin failed. Trying an exception mail")
-            raise e
+        yield sendmail(send_to, subject, body)
