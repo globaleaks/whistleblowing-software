@@ -10,7 +10,7 @@
       "label": {
         "en": "Fill out your submission",
         "ar": "املأ بلاغك",
-        "az": "Fill out your submission",
+        "az": "Təqdimatınızı doldurun",
         "bg": "Изпишете Вашето сведение",
         "bs": "Popunite vašu prijavu",
         "ca": "Emplena les dades del teu enviament",
@@ -132,7 +132,7 @@
           "hint": {
             "en": "Describe your submission in a few words",
             "ar": "الرجاء كتابة نبذة عن البلاغ",
-            "az": "Describe your submission in a few words",
+            "az": "Təqdimatınızı bir neçə sözlə təsvir edin",
             "bg": "Опишете подадения сигнал с няколко думи",
             "bs": "Describe your submission in a few words",
             "ca": "Descriu el teu enviament en poques paraules",
@@ -317,7 +317,7 @@
           "hint": {
             "en": "Describe your submission in detail",
             "ar": "الرجاء وصف البلاغ بالتفصيل",
-            "az": "Describe your submission in detail",
+            "az": "Təqdimatınızı təfərrüatı ilə təsvir edin",
             "bg": "Опишете подадения сигнал в детайли",
             "bs": "Describe your submission in detail",
             "ca": "Descriu els detalls del teu enviament",
@@ -494,7 +494,7 @@
           "hint": {
             "en": "Attach files relevant to the submission",
             "ar": "إرفاق الملفات ذات الصلة إلى البلاغ.",
-            "az": "Attach files relevant to the submission",
+            "az": "Təqdimat ilə əlaqəli faylları əlavə edin",
             "bg": "Прикачете файлове към сигнала",
             "bs": "Dodajte podatke relevantne za prijavu",
             "ca": "Adjunta arxius rellevants per a l'enviament",

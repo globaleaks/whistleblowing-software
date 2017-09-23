@@ -3,7 +3,7 @@
   "label": {
     "en": "Do you want to provide your identification information?",
     "ar": "هل ترغب في تقديم معلومات عن هويتك؟",
-    "az": "Do you want to provide your identification information?",
+    "az": "Kimlik məlumatınızı vermək istəyirsiniz mi?",
     "bg": "Желаете ли да изпратите информация за самоличността си?",
     "bs": "Da li želite da pružite svoje podatke za identifikaciju?",
     "ca": "Vols introduir la teva informació d'identificació?",
@@ -588,7 +588,7 @@
       "label": {
         "en": "Gender",
         "ar": "الجنس",
-        "az": "Gender",
+        "az": "Cins",
         "bg": "Пол",
         "bs": "pol",
         "ca": "Gènere",
