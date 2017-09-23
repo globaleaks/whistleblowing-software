@@ -37,7 +37,14 @@ class TokenCreate(BaseHandler):
         if request['type'] == 'submission' and not GLSettings.accept_submissions:
             raise errors.SubmissionDisabled
 
-        return Token(request['type']).serialize()
+        token = Token(request['type'])
+
+        if not self.request.client_using_tor and self.request.client_proto == 'http':
+            # Due to https://github.com/globaleaks/GlobaLeaks/issues/2088 the proof of work if currently
+            # implemented only over Tor and HTTPS that are the production conditions.
+            token.proof_of_work['solved'] = True
+
+        return token.serialize()
 
 
 class TokenInstance(BaseHandler):
