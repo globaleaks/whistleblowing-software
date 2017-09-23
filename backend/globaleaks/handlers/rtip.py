@@ -62,7 +62,7 @@ def receiver_serialize_rfile(store, rfile):
 
 
 def receiver_serialize_wbfile(store, wbfile):
-    rtip = models.db_get(store, models.ReceiverTip,id=wbfile.receivertip_id)
+    rtip = models.db_get(store, models.ReceiverTip, id=wbfile.receivertip_id)
 
     return {
         'id': wbfile.id,
@@ -77,13 +77,13 @@ def receiver_serialize_wbfile(store, wbfile):
 
 
 def serialize_comment(store, comment):
+    author = 'Recipient'
+
     if comment.type == 'whistleblower':
         author = 'Whistleblower'
     elif comment.author_id is not None:
         author = store.find(models.User,
                             models.User.id == comment.author_id).one().public_name
-    else:
-        author = 'Recipient'
 
     return {
         'id': comment.id,
