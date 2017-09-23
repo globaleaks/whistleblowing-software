@@ -197,15 +197,15 @@ class AlarmClass(object):
         # is raised at RED (two), and then is decremented at YELLOW (one) in the
         # next evaluation.
 
-        if self.number_of_anomalies >= 2:
-            report_function = log.info
-            self.stress_levels['activity'] = 2
-        elif self.number_of_anomalies == 1:
+        report_function = log.debug
+        self.stress_levels['activity'] = 0
+
+        if self.number_of_anomalies == 1:
             report_function = log.info
             self.stress_levels['activity'] = 1
-        else:
-            report_function = log.debug
-            self.stress_levels['activity'] = 0
+        elif self.number_of_anomalies > 1:
+            report_function = log.info
+            self.stress_levels['activity'] = 2
 
         # slow downgrade, if something has triggered a two, next step to 1
         if previous_activity_sl == 2 and not self.stress_levels['activity']:
