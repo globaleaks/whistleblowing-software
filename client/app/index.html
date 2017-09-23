@@ -117,71 +117,67 @@
       </p>
     </noscript>
 
-    <div>
-      <div id="BrowserNotSupported">
+    <div id="BrowserNotSupported">
+      <div>
+        <h1>[EN] Warning! :(</h1><br /><br />
         <div>
-          <h1>[EN] Warning! :(</h1><br /><br />
-          <div>
-            You are running an unsupported and potentially vulnerable browser.<br /><br />
-            You are strongly advised to download and install the Tor Browser.<br/>
-            The Tor Browser includes various privacy and security enhancements not present in other browsers.<br /><br />
-            <a href="https://www.torproject.org/download/download-easy.html.en" target="_blank" rel="noreferrer noopener" class="text-center">[ Download the Tor Browser ]</a><br /><br />
-            This is the list of the other supported browsers:<br />
-            <ul>
-              <li>Mozilla Firefox &gt;= 34</li>
-              <li>Google Chrome &gt;= 37</li>
-              <li>Safari: &gt;= 7.1</li>
-              <li>Edge: &gt;= 12</li>
-              <li>Internet Explorer &gt;= 11</li>
-            </ul>
-          </div>
+          You are running an unsupported and potentially vulnerable browser.<br /><br />
+          You are strongly advised to download and install the Tor Browser.<br/>
+          The Tor Browser includes various privacy and security enhancements not present in other browsers.<br /><br />
+          <a href="https://www.torproject.org/download/download-easy.html.en" target="_blank" rel="noreferrer noopener" class="text-center">[ Download the Tor Browser ]</a><br /><br />
+          This is the list of the other supported browsers:<br />
+          <ul>
+            <li>Mozilla Firefox &gt;= 34</li>
+            <li>Google Chrome &gt;= 37</li>
+            <li>Safari: &gt;= 7.1</li>
+            <li>Edge: &gt;= 12</li>
+            <li>Internet Explorer &gt;= 11</li>
+          </ul>
         </div>
-        <br /><br />
+      </div>
+      <br /><br />
+      <div>
+        <h1>[IT] Attenzione! :(</h1><br /><br />
         <div>
-          <h1>[IT] Attenzione! :(</h1><br /><br />
-          <div>
-            Il browser in uso non è supportato ed è potenzialmente vulnerabile.<br /><br />
-            Si invita caldamente a scaricare ed installare il Tor Browser.<br />
-            Il Tor Browser include varie migliorie alla privacy a alla sicurezza non presenti in altri browser.<br /><br />
-            <a href="https://www.torproject.org/download/download-easy.html.en" target="_blank" rel="noreferrer noopener" class="text-center">[ Download the Tor Browser ]</a><br /><br />
-            La  seguente è la lista degli altri browser supportati:<br />
-            <ul>
-              <li>Mozilla Firefox &gt;= 34</li>
-              <li>Google Chrome &gt;= 37</li>
-              <li>Safari: &gt;= 7.1</li>
-              <li>Edge: &gt;= 12</li>
-              <li>Internet Explorer &gt;= 11</li>
-            </ul>
+          Il browser in uso non è supportato ed è potenzialmente vulnerabile.<br /><br />
+          Si invita caldamente a scaricare ed installare il Tor Browser.<br />
+          Il Tor Browser include varie migliorie alla privacy a alla sicurezza non presenti in altri browser.<br /><br />
+          <a href="https://www.torproject.org/download/download-easy.html.en" target="_blank" rel="noreferrer noopener" class="text-center">[ Download the Tor Browser ]</a><br /><br />
+          La  seguente è la lista degli altri browser supportati:<br />
+          <ul>
+            <li>Mozilla Firefox &gt;= 34</li>
+            <li>Google Chrome &gt;= 37</li>
+            <li>Safari: &gt;= 7.1</li>
+            <li>Edge: &gt;= 12</li>
+            <li>Internet Explorer &gt;= 11</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div id="BrowserSupported" data-ng-class="{'block-user-input': showLoadingPanel}">
+      <div data-ng-if="started">
+        <div id="BodyDefault" data-ng-if="!Utils.isHomepage() || !node.homepage" data-ng-class="Utils.classExtension()">
+          <div id="PrivacyBadgeBox" data-ng-if="Utils.showPrivacyBadge()" data-ng-include="'views/partials/privacybadge.html'"></div>
+          <div id="HeaderBox" data-ng-if="!embedded" data-ng-include="'views/partials/header.html'"></div>
+          <div id="MessagesConsoleBox" data-ng-include="'views/partials/messageconsole.html'"></div>
+           <div id="ContentBox" class="container-fluid">
+            <a id="top"></a>
+            <div data-ng-view=""></div>
           </div>
+           <div id="FooterBox" data-ng-if="!embedded" data-ng-include="'views/partials/footer.html'"></div>
+        </div>
+
+        <div id="BodyCustom" data-ng-if="Utils.isHomepage() && node.homepage" data-ng-class="Utils.classExtension()" data-ng-controller="HomeCtrl">
+          <div data-ng-include="'custom_homepage.html'"></div>
         </div>
       </div>
 
-      <div id="BrowserSupported" data-ng-class="{'block-user-input': showLoadingPanel}">
-        <div data-ng-if="started">
-          <div id="BodyDefault" data-ng-if="!Utils.isHomepage() || !node.homepage" data-ng-class="Utils.classExtension()">
-            <div id="PrivacyBadgeBox" data-ng-if="Utils.showPrivacyBadge()" data-ng-include="'views/partials/privacybadge.html'"></div>
-            <div id="HeaderBox" data-ng-if="!embedded" data-ng-include="'views/partials/header.html'"></div>
-            <div id="MessagesConsoleBox" data-ng-include="'views/partials/messageconsole.html'"></div>
-
-            <div id="ContentBox" class="container-fluid">
-              <a id="top"></a>
-              <div data-ng-view=""></div>
-            </div>
-
-            <div id="FooterBox" data-ng-if="!embedded" data-ng-include="'views/partials/footer.html'"></div>
-          </div>
-
-          <div id="BodyCustom" data-ng-if="Utils.isHomepage() && node.homepage" data-ng-class="Utils.classExtension()" data-ng-controller="HomeCtrl">
-            <div data-ng-include="'custom_homepage.html'"></div>
-          </div>
-        </div>
-
-        <div id="PageOverlay" data-ng-hide="started && !showLoadingPanel">
-          <div id="LoaderBox">
-            <div id="LoaderBoxContent">
-              <div class="glyphicon glyphicon-cog gly-spin"></div>
-              <div data-translate>Loading</div>
-            </div>
+      <div id="PageOverlay" data-ng-hide="started && !showLoadingPanel">
+        <div id="LoaderBox">
+          <div id="LoaderBoxContent">
+            <div class="glyphicon glyphicon-cog gly-spin"></div>
+            <div data-translate>Loading</div>
           </div>
         </div>
       </div>
