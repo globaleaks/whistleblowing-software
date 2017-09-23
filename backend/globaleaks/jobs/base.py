@@ -130,12 +130,12 @@ class ExternNetLoopingJob(LoopingJob):
         """
         if GLSettings.memory_copy.anonymize_outgoing_connections and \
            isinstance(excep, FAILURES_TOR_OUTGOING):
-            log.err('{} job failed Tor network fetch with: {}'.format(self.name, excep))
+            log.err('%s job failed Tor network fetch with: %s', self.name, excep)
             return
 
         if not GLSettings.memory_copy.anonymize_outgoing_connections and \
            isinstance(excep, FAILURES_OUTGOING):
-            log.err('{} job failed outgoing network fetch with: {}'.format(self.name, excep))
+            log.err('%s job failed outgoing network fetch with: %s', self.name, excep)
             return
 
         super(ExternNetLoopingJob, self).on_error(excep)

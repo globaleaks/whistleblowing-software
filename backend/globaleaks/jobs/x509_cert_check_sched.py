@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from datetime import datetime, timedelta
 
 from OpenSSL.crypto import load_certificate, FILETYPE_PEM

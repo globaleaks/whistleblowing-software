@@ -101,12 +101,7 @@ angular.module('GLBrowserCrypto', [])
         var key = result.keys[0];
 
         // Assert that the key type is not private and the public flag is set.
-        if (key.isPrivate() || !key.isPublic()) {
-          // Woops, the user just pasted a private key. Pray to the almighty
-          // browser that a scrubbing GC descends upon the variables.
-          // TODO scrub private key material with acid
-          key = null;
-          result = null;
+        if (!key.isPublic() || key.isPrivate()) {
           return false;
         }
 
