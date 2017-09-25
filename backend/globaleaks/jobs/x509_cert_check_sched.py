@@ -77,7 +77,7 @@ class X509CertCheckSchedule(LoopingJob):
 
         # Regular certificates expiration checks
         elif datetime.now() > expiration_date - timedelta(days=self.notify_expr_within):
-            log.info('The HTTPS Certificate is expiring on %s"', expiration_date)
+            log.info('The HTTPS Certificate is expiring on %s', expiration_date)
             if not GLSettings.memory_copy.notif.disable_admin_notification_emails:
                 self.certificate_mail_creation(store, expiration_date)
 
