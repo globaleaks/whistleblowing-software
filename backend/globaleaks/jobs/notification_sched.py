@@ -204,12 +204,13 @@ class MailGenerator(object):
         for trigger in ['ReceiverTip', 'Comment', 'Message', 'ReceiverFile']:
             model = trigger_model_map[trigger]
 
+            if GLSettings.memory_copy.notif.disable_receiver_notification_emails:
+                store.find(model, new=True).set(new=False)
+                continue
+
             elements = store.find(model, new=True)
             for element in elements:
                 element.new = False
-
-                if GLSettings.memory_copy.notif.disable_receiver_notification_emails:
-                    continue
 
                 data = {
                     'type': trigger_template_map[trigger]
@@ -225,18 +226,16 @@ class MailGenerator(object):
 
 @transact
 def delete_sent_mail(store, result, mail_id):
-    store.find(models.Mail, models.Mail.id == mail_id).remove()
+    store.find(models.Mail, id=mail_id).remove()
 
 
 @transact_sync
 def get_mails_from_the_pool(store):
     ret = []
 
-    for mail in store.find(models.Mail):
-        if mail.processing_attempts > 9:
-            store.remove(mail)
-            continue
+    store.find(models.Mail, models.Mail.processing_attempts > 9).remove()
 
+    for mail in store.find(models.Mail):
         mail.processing_attempts += 1
 
         ret.append({
@@ -260,8 +259,7 @@ class NotificationSchedule(LoopingJob):
         return d
 
     def spool_emails(self):
-        mails = get_mails_from_the_pool()
-        for mail in mails:
+        for mail in get_mails_from_the_pool():
             threads.blockingCallFromThread(reactor, self.sendmail, mail)
 
     def operation(self):
