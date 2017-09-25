@@ -2,7 +2,7 @@
 import time
 
 from twisted.internet import task, defer, reactor, threads
-from twisted.internet.error import ConnectionRefusedError, DNSLookupError
+from twisted.internet.error import ConnectionLost, ConnectionRefusedError, DNSLookupError
 from twisted.web._newclient import ResponseNeverReceived, ResponseFailed
 from txsocksx.errors import TTLExpired
 
@@ -120,6 +120,7 @@ class LoopingJob(BaseJob):
 
 
 FAILURES_OUTGOING = (
+    ConnectionLost,
     ConnectionRefusedError,
     ResponseNeverReceived,
     ResponseFailed,
