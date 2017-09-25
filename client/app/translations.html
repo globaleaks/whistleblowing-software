@@ -9,19 +9,15 @@ The only aim of the file is:
 <span data-translate>Login page</span>
 <span data-translate>Log in</span>
 <span data-translate>Administration interface</span>
-<span data-translate>Advanced settings</span>
-
 <span data-translate>General settings</span>
 <span data-translate>Main configuration</span>
 <span data-translate>Theme customization</span>
 <span data-translate>Languages</span>
 <span data-translate>Text customization</span>
-
-/views/admin/contexts.html:
+<span data-translate>User management</span>
+<span data-translate>Recipient configuration</span>
 <span data-translate>Context configuration</span>
-
-removed from context since fields refactor:
-<span data-translate>Require at least one file to be uploaded</span>
+<span data-translate>Advanced settings</span>
 
 /views/admin/fields.html:
 <span data-translate>Questionnaire configuration</span>
@@ -31,29 +27,18 @@ removed from context since fields refactor:
 <span data-translate>Questionnaires</span>
 <span data-translate>Add new questionnaire</span>
 
-/views/admin/files_overview.html
-<span data-translate>File overview</span>
-
 <span data-translate>Home</span>
 <span data-translate>Home page</span>
 <span data-translate>Changelog</span>
 <span data-translate>License</span>
 
 /views/admin/mail.html:
-<span data-translate>Main configuration</span>
 <span data-translate>Notification templates</span>
 <span data-translate>Recipient notification templates</span>
 <span data-translate>Admin notification templates</span>
 <span data-translate>Exception notification</span>
 
-/views/admin/recipients.html:
-<span data-translate>User management</span>
-
-/views/admin/recipients.html:
-<span data-translate>Recipient configuration</span>
-
 /views/admin/stats.html:
-<span data-translate>System stats</span>
 <span data-translate>Missing data</span>
 <span data-translate>no stats available for the future.</span>
 <span data-translate>no stats available for this hour.</span>
@@ -61,20 +46,10 @@ removed from context since fields refactor:
 
 <span data-translate>Delete</span>
 
-/views/admin/tips_overview.html:
-<span data-translate>Submission overview</span>
-
-/views/admin/users_overview.html:
-<span data-translate>User overview</span>
-
-/view/admin/activities.html
-<span data-translate>Recent activities</span>
-
 /view/admin/anomalies.html
 <span data-translate>Anomalies</span>
 
-/views/admin/preferences.html:
-/views/receiver/preferences.html:
+/preferences.html:
 <span data-translate>Preferences</span>
 <span data-translate>Recipient interface</span>
 <span data-translate>Password configuration</span>
@@ -104,10 +79,6 @@ removed from context since fields refactor:
 <span data-translate>This recipient cannot be selected.</span>
 <span data-translate>This recipient cannot be deselected.</span>
 <span data-translate>Details</span>
-
-/views/submission/receipt.html:
-<span data-translate>Submission successfully completed!</span>
-<span data-translate>Write down your keycode</span>
 
 /views/whistleblower/tip.html:
 <span data-translate>This recipient has configured the encryption key.</span>
@@ -167,28 +138,10 @@ Credit card svg:
 <span data-translate>Yes</span>
 <span data-translate>No</span>
 
-<span data-translate>Click here to learn more.</span>
-
 <span data-translate>Attachment</div>
 <span data-translate>Attachments</div>
 
-<span data-translate>Privileges</span>
-<span data-translate>System settings for contexts</span>
-<span data-translate>System settings for recipients</span>
-<span data-translate>Allow whistleblowers to add attachments on existing submissions</span>
-<span data-translate>Allow whistleblowers to write comments</span>
-<span data-translate>Allow whistleblowers to send messages</span>
-<span data-translate>Allow the whistleblower to add attachments to the submission</span>
-<span data-translate>Allow the whistleblower to write comments</span>
-<span data-translate>Allow the whistleblower to send messages</span>
-<span data-translate>Deny the whistleblower to add attachments to the submission</span>
-<span data-translate>Deny the whistleblower to write comments</span>
-<span data-translate>Deny the whistleblower to send messages</span>
-<span data-translate>Allow recipients to grant permissions to whistleblowers on specific submissions</span>
-<span data-translate>Allow the recipient to grant permissions to whistleblowers on specific submissions</span>
-
 <span data-translate>Change your password</span>
-<span data-translate>Copy and paste here the PGP public key</span>
 
 <span data-translate>First name</span>
 <span data-translate>Last name</span>
@@ -264,13 +217,9 @@ Credit card svg:
 <span data-translate>Notification of new file attachment</span>
 <span data-translate>Notification of PGP key expiration</span>
 <span data-translate>Notification of anomaly</span>
-<span data-translate>Notification of mailing system suspension after hourly limit excess</span>
 <span data-translate>Template for summary of contents in submission archive</span>
 <span data-translate>Email subject</span>
 <span data-translate>Email body</span>
-
-<span data-translate>Full operation will resume shortly.</span>
-<span data-translate>Too many requests</span>
 
 <span data-translate>in seconds</span>
 <span data-translate>in hours</span>
@@ -300,8 +249,6 @@ Credit card svg:
 <span data-translate>Disable notifications to custodians</span>
 <span data-translate>Disable notifications to recipients</span>
 
-<span data-translate>Only PNG files are currently supported.</span>
-
 <span data-translate>Score</span>
 <span data-translate>Trigger step</span>
 <span data-translate>Trigger question</span>
@@ -311,8 +258,6 @@ Credit card svg:
 <span data-translate>Show steps navigation bar</span>
 <span data-translate>Message shown on top of the status page of the submission</span>
 <span data-translate>Copy and paste the PGP public key here</span>
-<span data-translate>Drop files here or click to upload.</span>
-<span data-translate>Drop the public PGP key here or click to upload.</span>
 <span data-translate>Password strength:</span>
 <span data-translate>Weak</span>
 <span data-translate>Acceptable</span>
@@ -329,7 +274,6 @@ Credit card svg:
 <span data-translate>Enter an email address for the administrator</span>
 <span data-translate>Enter a password for the administrator</span>
 <span data-translate>Test configuration</span>
-<span data-translate>Send a test email to your email address.</span>
 
 <span data-translate>Failed logins</span>
 <span data-translate>Successful logins</span>
@@ -345,12 +289,7 @@ Credit card svg:
 <span data-translate>None</span>
 <span data-translate>Regular expression</span>
 
-<span data-translate>Boolean question</span>
-<span data-translate>Time interval</span>
-<span data-translate>Modal window</span>
-<span data-translate>Dialog window</span>
 <span data-translate>Label the submission</span>
-<span data-translate>Welcome! Choose a strong password to activate your account.</span>
 <span data-translate>Activate</span>
 <span data-translate>Search</span>
 <span data-translate>Delete selected submissions</span>
@@ -370,6 +309,7 @@ Credit card svg:
 <span data-translate>The Tor Browser includes various privacy and security enhancements not present in other browsers.</span>
 <span data-translate>Download the Tor Browser</span>
 <span data-translate>This is the list of the other supported browsers:</span>
+
 <span data-translate>System overview</span>
 <span data-translate>Stats</span>
 <span data-translate>Activities</span>
@@ -380,11 +320,7 @@ Credit card svg:
 
 <span data-translate>From</span>
 
-<span data-translate>Number of accesses</span>
 <span data-translate>Number of downloads</span>
-
-<span data-translate>Log in and check it out before it's too late!</span>
-<span data-translate>The submission can be accessed:</span>
 
 directive errors-upload:
 <span data-translate>Error with file:</span>
@@ -394,59 +330,6 @@ directive errors-upload:
 <span data-translate>Accepted file types are:</span>
 
 <span data-translate>Scheduled jobs</span>
-
-network and https configuration strings:
-<span data-translate>Network settings</span>
-<span data-translate>Access control</span>
-<span data-translate>Hostname</span>
-<span data-translate>Country code</span>
-<span data-translate>State or Province name</span>
-<span data-translate>Locality name</span>
-<span data-translate>Organization</span>
-<span data-translate>Organizational unit</span>
-<span data-translate>Generate</span>
-<span data-translate>HTTPS settings</span>
-<span data-translate>Running</span>
-<span data-translate>Not running</span>
-<span data-translate>Hostname is not set!</span>
-<span data-translate>System message:</span>
-<span data-translate>Private Key</span>
-<span data-translate>Certificate Signing Request</span>
-<span data-translate>Certificate</span>
-<span data-translate>Valid until</span>
-<span data-translate>Issuer</span>
-<span data-translate>Intermediate Certificates</span>
-<span data-translate>Access Control</span>
-<span data-translate>Configuration</span>
-<span data-translate>Are you sure?</span>
-<span data-translate>You are about to delete a file permanently!</span>
-<span data-translate>Invalid input format.</span>
-<span data-translate>Input should be similar to:</span>
-
-<span data-translate>Using Let's Encrypt requires agreement to their Terms of Service.</span>
-<span data-translate>Read the Terms of Service</span>
-<span data-translate>Proceed</span>
-<span data-translate>Cancel</span>
-<span data-translate>Configuration in progress</span>
-<span data-translate>Configuration completed</span>
-<span data-translate>Configuration completed. You can review the settings or enable it now.</span>
-<span data-translate>Review</span>
-<span data-translate>Enable</span>
-<span data-translate>Automatic</span>
-<span data-translate>Manual</span>
-<span data-translate>The automatic configuration will handle the entire process of requesting, enabling and renewing the HTTPS certificate from the Let's Encrypt Certificate Authority.</span>
-<span data-translate>Read more</span>
-<span data-translate>The manual configuration wizard will guide you through the setup of HTTPS from an alternative Certificate Authority.</span>
-<span data-translate>The platform supports the configuration of HTTPS through this interface.</span>
-<span data-translate>After HTTPS is configured the application will be accessible to different user roles specified in the Access Control tab.</span>
-<span data-translate>The platform must be reachable through a public IP address and the hostname selected must have a corresponding DNS record that references that address.</span>
-<span data-translate>The platform does not seem to be reachable with the hostname configured.</span>
-<span data-translate>Certificate</span>
-<span data-translate>Issuer</span>
-<span data-translate>Auto-Renewal</span>
-<span data-translate>Valid until</span>
-<span data-translate>Attention!</span>
-<span data-translate>Your browser will be redirected to the following URL.</span>
 
 <span data-translate>Default profile</span>
 
