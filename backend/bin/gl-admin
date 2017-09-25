@@ -153,7 +153,7 @@ def reset_pass(args):
          ).format(args.username, args.password))
 
 
-def read_var(args):
+def get_var(args):
     check_dir(args.dbpath)
     db_version, db_path = get_db_file(args.dbpath)
 
@@ -288,10 +288,10 @@ pw_p.add_argument("password", nargs="?", help="if not set a random password is g
                   default=security.generateRandomKey(16))
 pw_p.set_defaults(func=reset_pass)
 
-rv_p = subp.add_parser("readvar", help="read database config variable")
+rv_p = subp.add_parser("getvar", help="get database config variable")
 add_db_path_arg(rv_p)
 rv_p.add_argument("varname", help="the name of the config var", default='version')
-rv_p.set_defaults(func=read_var)
+rv_p.set_defaults(func=get_var)
 
 et_p = subp.add_parser("enable-api-token", help="enable the API token")
 add_db_path_arg(et_p)
