@@ -119,14 +119,14 @@ class LoopingJob(BaseJob):
 
 
 FAILURES_OUTGOING = (ConnectionRefusedError, DNSLookupError)
-FAILURES_TOR_OUTGOING = FAILURES_OUTGOING + (TTLExpired,)
+FAILURES_TOR_OUTGOING = (ConnectionRefusedError, TTLExpired, RuntimeError)
 
 
 class ExternNetLoopingJob(LoopingJob):
     def on_error(self, excep):
         """
         Handles known errors that the twisted.web.client.Agent or txsocksx.http.SOCKS5Agent
-        while connecting through their respective networks.
+        can throw while connecting through their respective networks.
         """
         if GLSettings.memory_copy.anonymize_outgoing_connections and \
            isinstance(excep, FAILURES_TOR_OUTGOING):
