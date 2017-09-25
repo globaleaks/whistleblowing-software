@@ -3,6 +3,7 @@ import time
 
 from twisted.internet import task, defer, reactor, threads
 from twisted.internet.error import ConnectionRefusedError, DNSLookupError
+from twisted.web._newclient import ResponseNeverReceived, ResponseFailed
 from txsocksx.errors import TTLExpired
 
 from globaleaks.settings import GLSettings
@@ -118,8 +119,22 @@ class LoopingJob(BaseJob):
         extract_exception_traceback_and_send_email(excep)
 
 
-FAILURES_OUTGOING = (ConnectionRefusedError, DNSLookupError)
-FAILURES_TOR_OUTGOING = (ConnectionRefusedError, TTLExpired, RuntimeError)
+FAILURES_OUTGOING = (
+    ConnectionRefusedError,
+    ResponseNeverReceived,
+    ResponseFailed,
+)
+
+
+FAILURES_INET_OUTGOING = FAILURES_OUTGOING + (
+    DNSLookupError,
+)
+
+
+FAILURES_TOR_OUTGOING = FAILURES_OUTGOING + (
+    TTLExpired,
+    RuntimeError,
+)
 
 
 class ExternNetLoopingJob(LoopingJob):
@@ -134,7 +149,7 @@ class ExternNetLoopingJob(LoopingJob):
             return
 
         if not GLSettings.memory_copy.anonymize_outgoing_connections and \
-           isinstance(excep, FAILURES_OUTGOING):
+           isinstance(excep, FAILURES_INET_OUTGOING):
             log.err('%s job failed outgoing network fetch with: %s', self.name, excep)
             return
 
