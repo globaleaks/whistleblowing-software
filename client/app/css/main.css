@@ -411,12 +411,6 @@ html[dir="rtl"] #UserBox  {
   font-weight: bold;
 }
 
-.warning-msg {
-  font-weight: bold;
-  padding: 15px;
-  margin-bottom: 10px;
-}
-
 textarea.form-control {
   resize: vertical;
 }
