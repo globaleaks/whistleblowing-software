@@ -2,11 +2,13 @@
 # Implementation of the cleaning operations.
 from datetime import timedelta
 
+from storm.expr import In, Min
+
 from globaleaks import models
 from globaleaks.handlers.admin.node import db_admin_serialize_node
 from globaleaks.handlers.admin.notification import db_get_notification
-from globaleaks.handlers.admin.receiver import admin_serialize_receiver
 from globaleaks.handlers.rtip import db_delete_itips, serialize_rtip
+from globaleaks.handlers.user import user_serialize_user
 from globaleaks.jobs.base import LoopingJob
 from globaleaks.orm import transact_sync
 from globaleaks.security import overwrite_and_remove
@@ -58,53 +60,38 @@ class CleaningSchedule(LoopingJob):
     @transact_sync
     def check_for_expiring_submissions(self, store):
         threshold = datetime_now() + timedelta(hours=GLSettings.memory_copy.notif.tip_expiration_threshold)
-        for user, receiver in store.find((models.User, models.Receiver),
-                                         models.User.id == models.Receiver.id):
-            rtips = store.find(models.ReceiverTip, models.ReceiverTip.internaltip_id == models.InternalTip.id,
-                                                   models.InternalTip.expiration_date < threshold,
-                                                   models.ReceiverTip.receiver_id == models.Receiver.id,
-                                                   models.Receiver.id == receiver.id)
 
-            count = rtips.count()
-            if count == 0:
+        for user in store.find(models.User, role=u'receiver'):
+            itip_ids = [id for id in store.find(models.InternalTip.id,
+                                               models.ReceiverTip.internaltip_id == models.InternalTip.id,
+                                               models.InternalTip.expiration_date < threshold,
+                                               models.ReceiverTip.receiver_id == models.Receiver.id,
+                                               models.Receiver.id == user.id)]
+
+            if not len(itip_ids):
                 continue
 
-            language = user.language
-            node_desc = db_admin_serialize_node(store, language)
-            notification_desc = db_get_notification(store, language)
+            earliest_expiration_date = store.find(Min(models.InternalTip.expiration_date),
+                                                  In(models.InternalTip.id, itip_ids)).one()
 
-            receiver_desc = admin_serialize_receiver(store, receiver, user, language)
-
-            tips_desc = []
-            earliest_expiration_date = datetime_never()
-
-            for rtip in rtips:
-                itip = store.find(models.InternalTip,
-                                  models.InternalTip.id == rtip.internaltip_id).one()
-
-                if itip.expiration_date < earliest_expiration_date:
-                    earliest_expiration_date = itip.expiration_date
-
-                tips_desc.append(serialize_rtip(store, rtip, itip, user.language))
+            user_desc = user_serialize_user(store, user, user.language)
 
             data = {
                'type': u'tip_expiration_summary',
-               'node': node_desc,
-               'notification': notification_desc,
-               'receiver': receiver_desc,
-               'expiring_submission_count': rtips.count(),
-               'earliest_expiration_date': datetime_to_ISO8601(earliest_expiration_date)
+               'node': db_admin_serialize_node(store, user.language),
+               'notification': db_get_notification(store, user.language),
+               'user': user_desc,
+               'expiring_submission_count': len(itip_ids),
+               'earliest_expiration_date': earliest_expiration_date
             }
 
             subject, body = Templating().get_mail_subject_and_body(data)
 
-            mail = models.Mail({
-               'address': receiver_desc['mail_address'],
+            store.add(models.Mail({
+               'address': user_desc['mail_address'],
                'subject': subject,
                'body': body
-            })
-
-            store.add(mail)
+            }))
 
     @transact_sync
     def clean_db(self, store):
