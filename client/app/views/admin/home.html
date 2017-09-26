@@ -8,7 +8,6 @@
             <div class="tab-content" data-ng-include="'views/admin/home/main.html'"></div>
           </uib-tab>
 
-
           <uib-tab data-index="1">
             <uib-tab-heading>
               <i data-ng-show="update_service.update_needed" class="glyphicon glyphicon-exclamation-sign text-danger"></i>
@@ -21,7 +20,7 @@
                     <label><span data-translate>Software version:</span> {{admin.node.version}}</label>
                   </div>
                   <div data-ng-show="update_service.update_needed" class="alert bg-danger">
-                    <span><i class="glyphicon glyphicon-info-sign"></i></span> <span data-translate>An update is available:</span> {{ update_service.latest_version }}
+                    <span><i class="glyphicon glyphicon-info-sign"></i></span> <span data-translate>An update is available:</span> <span>{{ update_service.latest_version }}</span>
                   </div>
                 </div>
                 <div class="col-md-12" data-ng-repeat="change in admin.manifest.changelog | limitTo:displayNum">
