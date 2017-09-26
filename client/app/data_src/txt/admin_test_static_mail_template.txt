@@ -1,4 +1,4 @@
-Dear Administrator,
+Dear {RecipientName},
 
 This is a test email sent out from the platform's administrative interface.
 

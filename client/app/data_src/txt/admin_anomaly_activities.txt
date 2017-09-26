@@ -1,4 +1,4 @@
-Dear Administrator,
+Dear {RecipientName},
 
 The number of activities recently detected appears to be higher than usual.
 

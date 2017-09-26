@@ -1,4 +1,4 @@
-Dear Administrator,
+Dear {RecipientName},
 
 The HTTPS certificate loaded on the platform is expiring or has already expired.
 
