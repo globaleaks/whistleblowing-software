@@ -3,6 +3,8 @@
 
 import copy
 
+from twisted.internet import reactor, threads
+
 from globaleaks import models
 from globaleaks.handlers.admin.context import admin_serialize_context
 from globaleaks.handlers.admin.node import db_admin_serialize_node
@@ -16,7 +18,6 @@ from globaleaks.settings import GLSettings
 from globaleaks.utils.mailutils import sendmail
 from globaleaks.utils.templating import Templating
 from globaleaks.utils.utility import log
-from twisted.internet import reactor, threads
 
 
 trigger_template_map = {

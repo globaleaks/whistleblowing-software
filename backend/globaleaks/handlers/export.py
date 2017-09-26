@@ -13,6 +13,7 @@ from globaleaks.handlers.admin.notification import db_get_notification
 from globaleaks.handlers.admin.receiver import admin_serialize_receiver
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.rtip import db_access_rtip, serialize_rtip
+from globaleaks.handlers.user import user_serialize_user
 from globaleaks.orm import transact
 from globaleaks.settings import GLSettings
 from globaleaks.utils.templating import Templating
@@ -24,11 +25,10 @@ from globaleaks.utils.zipstream import ZipStream
 def get_tip_export(store, user_id, rtip_id, language):
     rtip, itip = db_access_rtip(store, user_id, rtip_id)
 
-    receiver, user, context = store.find((models.Receiver, models.User, models.Context),
-                                         models.Receiver.id == rtip.receiver_id,
-                                         models.User.id == rtip.receiver_id,
-                                         models.Context.id == models.InternalTip.context_id,
-                                         models.InternalTip.id == rtip.internaltip_id).one()
+    user, context = store.find((models.User, models.Context),
+                               models.User.id == rtip.receiver_id,
+                               models.Context.id == models.InternalTip.context_id,
+                               models.InternalTip.id == rtip.internaltip_id).one()
 
     rtip_dict = serialize_rtip(store, rtip, itip, language)
 
@@ -37,8 +37,8 @@ def get_tip_export(store, user_id, rtip_id, language):
         'node': db_admin_serialize_node(store, language),
         'notification': db_get_notification(store, language),
         'tip': serialize_rtip(store, rtip, itip, language),
+        'user': user_serialize_user(store, user, language),
         'context': admin_serialize_context(store, context, language),
-        'receiver': admin_serialize_receiver(store, receiver, user, language),
         'comments': rtip_dict['comments'],
         'messages': rtip_dict['messages'],
         'files': []
