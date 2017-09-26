@@ -25,7 +25,7 @@ context_keywords = [
     '{ContextName}'
 ]
 
-receiver_keywords = [
+user_keywords = [
     '{RecipientName}'
 ]
 
@@ -137,6 +137,14 @@ class NodeKeyword(Keyword):
         return self._HTTPSUrl()
 
 
+class UserKeyword(Keyword):
+    keyword_list = user_keywords
+    data_keys = ['user']
+
+    def RecipientName(self):
+        return self.data['user']['name']
+
+
 class ContextKeyword(Keyword):
     keyword_list = context_keywords
     data_keys = ['context']
@@ -145,17 +153,9 @@ class ContextKeyword(Keyword):
         return self.data['context']['name']
 
 
-class ReceiverKeyword(Keyword):
-    keyword_list = receiver_keywords
-    data_keys = ['receiver']
-
-    def RecipientName(self):
-        return self.data['receiver']['name']
-
-
-class TipKeyword(NodeKeyword, ContextKeyword, ReceiverKeyword):
-    keyword_list = NodeKeyword.keyword_list + ContextKeyword.keyword_list + ReceiverKeyword.keyword_list + tip_keywords
-    data_keys =  NodeKeyword.data_keys + ContextKeyword.data_keys + ReceiverKeyword.data_keys + ['tip']
+class TipKeyword(NodeKeyword, UserKeyword, ContextKeyword):
+    keyword_list = NodeKeyword.keyword_list + UserKeyword.keyword_list + ContextKeyword.keyword_list + tip_keywords
+    data_keys =  NodeKeyword.data_keys + UserKeyword.data_keys + ContextKeyword.data_keys + ['tip']
 
     def dump_field_entry(self, output, field, entry, indent_n):
         field_type = field['type']
@@ -311,13 +311,13 @@ class ExportMessageKeyword(Keyword):
         return self.data['message']['content']
 
 
-class ExpirationSummaryKeyword(NodeKeyword, ContextKeyword, ReceiverKeyword):
+class ExpirationSummaryKeyword(NodeKeyword, UserKeyword, ContextKeyword):
     keyword_list = NodeKeyword.keyword_list + \
-                   ReceiverKeyword.keyword_list + \
+                   UserKeyword.keyword_list + \
                    expiration_summary_keywords
 
     data_keys =  NodeKeyword.data_keys + \
-                 ReceiverKeyword.data_keys + \
+                 UserKeyword.data_keys + \
                  ['expiring_submission_count', 'earliest_expiration_date']
 
     def ExpiringSubmissionCount(self):
