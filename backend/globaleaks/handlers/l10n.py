@@ -9,18 +9,18 @@ from globaleaks import models
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.orm import transact
 from globaleaks.security import directory_traversal_check
-from globaleaks.settings import GLSettings
+from globaleaks.settings import Settings
 from globaleaks.utils.utility import read_json_file
 
 
 def langfile_path(lang):
-    return os.path.abspath(os.path.join(GLSettings.client_path, 'l10n', '%s.json' % lang))
+    return os.path.abspath(os.path.join(Settings.client_path, 'l10n', '%s.json' % lang))
 
 
 @transact
 def get_l10n(store, lang):
     path = langfile_path(lang)
-    directory_traversal_check(GLSettings.client_path, path)
+    directory_traversal_check(Settings.client_path, path)
 
     texts = read_json_file(path)
 

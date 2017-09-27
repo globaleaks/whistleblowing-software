@@ -15,7 +15,7 @@ from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.rtip import db_access_rtip, serialize_rtip
 from globaleaks.handlers.user import user_serialize_user
 from globaleaks.orm import transact
-from globaleaks.settings import GLSettings
+from globaleaks.settings import Settings
 from globaleaks.utils.templating import Templating
 from globaleaks.utils.utility import msdos_encode
 from globaleaks.utils.zipstream import ZipStream
@@ -72,7 +72,7 @@ class ZipStreamProducer(object):
     @ivar handler: The L{IRequest} to write the contents of the file to.
     @ivar fileObject: The file the contents of which to write to the request.
     """
-    bufferSize = GLSettings.file_chunk_size
+    bufferSize = Settings.file_chunk_size
 
     def __init__(self, handler, zipstreamObject):
         """
@@ -114,7 +114,7 @@ class ZipStreamProducer(object):
             if data:
                 chunk_size += len(data)
                 chunk.append(data)
-                if chunk_size >= GLSettings.file_chunk_size:
+                if chunk_size >= Settings.file_chunk_size:
                     return ''.join(chunk)
 
         return ''.join(chunk)

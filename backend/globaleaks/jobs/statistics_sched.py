@@ -7,18 +7,18 @@ from globaleaks.anomaly import Alarm
 from globaleaks.jobs.base import LoopingJob
 from globaleaks.models import Stats, Anomalies
 from globaleaks.orm import transact_sync
-from globaleaks.settings import GLSettings
+from globaleaks.settings import Settings
 from globaleaks.utils.utility import log, datetime_now
 
 
 def get_workingdir_space():
-    statvfs = os.statvfs(GLSettings.working_path)
+    statvfs = os.statvfs(Settings.working_path)
     free_bytes = statvfs.f_frsize * statvfs.f_bavail
     total_bytes = statvfs.f_frsize * statvfs.f_blocks
     return free_bytes, total_bytes
 
 def get_ramdisk_space():
-    statvfs = os.statvfs(GLSettings.ramdisk_path)
+    statvfs = os.statvfs(Settings.ramdisk_path)
     free_bytes = statvfs.f_frsize * statvfs.f_bavail
     total_bytes = statvfs.f_frsize * statvfs.f_blocks
     return free_bytes, total_bytes
@@ -36,7 +36,7 @@ def save_anomalies(store, anomaly_list):
 
 def get_anomalies():
     anomalies = []
-    for when, anomaly_blob in dict(GLSettings.RecentAnomaliesQ).items():
+    for when, anomaly_blob in dict(Settings.RecentAnomaliesQ).items():
         anomalies.append([when, anomaly_blob[0], anomaly_blob[1]])
 
     return anomalies
@@ -44,7 +44,7 @@ def get_anomalies():
 def get_statistics():
     statsummary = {}
 
-    for descblob in GLSettings.RecentEventQ:
+    for descblob in Settings.RecentEventQ:
         if 'event' not in descblob:
             continue
 
@@ -107,12 +107,12 @@ class StatisticsSchedule(LoopingJob):
         current_time = datetime_now()
         statistic_summary = get_statistics()
         if statistic_summary:
-            save_statistics(GLSettings.stats_collection_start_time, current_time, statistic_summary)
+            save_statistics(Settings.stats_collection_start_time, current_time, statistic_summary)
             log.debug("Stored statistics %s collected from %s to %s",
                       statistic_summary,
-                      GLSettings.stats_collection_start_time,
+                      Settings.stats_collection_start_time,
                       current_time)
         # ------- END Stats section -------------
 
         # Hourly Resets
-        GLSettings.reset_hourly()
+        Settings.reset_hourly()

@@ -44,113 +44,113 @@ from twisted.scripts._twistd_unix import ServerOptions, UnixApplicationRunner
 
 from globaleaks import DATABASE_VERSION
 from globaleaks.utils.mailutils import mail_exception_handler
-from globaleaks.settings import GLSettings
+from globaleaks.settings import Settings
 
-GLSettings.parser.add_option("-n", "--nodaemon", action='store_true',
+Settings.parser.add_option("-n", "--nodaemon", action='store_true',
     help="don't daemonize",
     dest="nodaemon", default=False)
 
-GLSettings.parser.add_option("-l", "--loglevel", type="choice",
+Settings.parser.add_option("-l", "--loglevel", type="choice",
     choices=['CRITICAL', 'ERROR', 'INFO', 'DEBUG'],
     help="set log level [default: %default]",
     dest="loglevel", default="INFO")
 
-GLSettings.parser.add_option("-i", "--ip", type="string",
+Settings.parser.add_option("-i", "--ip", type="string",
     help="IP address used for listening [default: %default]",
-    dest="ip", default=GLSettings.bind_address)
+    dest="ip", default=Settings.bind_address)
 
-GLSettings.parser.add_option("-s", "--socks-host", type="string",
+Settings.parser.add_option("-s", "--socks-host", type="string",
     help="set Socks host to use for Tor [default: %default]",
-    dest="socks_host", default=GLSettings.socks_host)
+    dest="socks_host", default=Settings.socks_host)
 
-GLSettings.parser.add_option("-r", "--socks-port", type="int",
+Settings.parser.add_option("-r", "--socks-port", type="int",
     help="set Socks port to use for Tor [default: %default]",
-    dest="socks_port", default=GLSettings.socks_port)
+    dest="socks_port", default=Settings.socks_port)
 
-GLSettings.parser.add_option("-b", "--disable-backend-exception-notification", action='store_true',
+Settings.parser.add_option("-b", "--disable-backend-exception-notification", action='store_true',
     help="disable backend_exception_notification [default: False]",
     dest="disable_backend_exception_notification", default=False)
 
-GLSettings.parser.add_option("-e", "--disable-client-exception-notification", action='store_true',
+Settings.parser.add_option("-e", "--disable-client-exception-notification", action='store_true',
     help="disable_client_exception_notification [default: False]",
     dest="disable_client_exception_notification", default=False)
 
-GLSettings.parser.add_option("-u", "--user", type="string",
+Settings.parser.add_option("-u", "--user", type="string",
     help="set the user to run as [default: current_user]",
     dest="user")
 
-GLSettings.parser.add_option("-g", "--group", type="string",
+Settings.parser.add_option("-g", "--group", type="string",
     help="set the group to run as [default: current_user]",
     dest="group")
 
-GLSettings.parser.add_option("-w", "--working-path", type="string",
+Settings.parser.add_option("-w", "--working-path", type="string",
     help="set the backend working directory",
     dest="working_path", default=None)
 
-GLSettings.parser.add_option("-k", "--kill", type="int",
+Settings.parser.add_option("-k", "--kill", type="int",
     help="signal to send to the current globaleaks process (if exists)",
     dest="kill", default=0)
 
-GLSettings.parser.add_option("-A", "--api-prefix", type='string',
+Settings.parser.add_option("-A", "--api-prefix", type='string',
     help="specify an API prefix",
     dest="api_prefix", default='')
 
-GLSettings.parser.add_option("-C", "--client-path", type='string',
+Settings.parser.add_option("-C", "--client-path", type='string',
     help="specify client path",
     dest="client_path", default=None)
 
-GLSettings.parser.add_option("-P", "--disable-swap", action='store_true',
+Settings.parser.add_option("-P", "--disable-swap", action='store_true',
     help="disable process swap [default: False]",
     dest="disable_swap", default=False)
 
-GLSettings.parser.add_option("-R", "--ramdisk", type="string",
+Settings.parser.add_option("-R", "--ramdisk", type="string",
     help="optionally specify a path used as ramdisk storage",
     dest="ramdisk")
 
-GLSettings.parser.add_option("-z", "--devel-mode", type='string',
+Settings.parser.add_option("-z", "--devel-mode", type='string',
     help="hacks some config. Specify your name to receive personalized exceptions [default: %default]. "\
          "Note that all exceptions when this mode is enabled are routed to globaleaks-stackexception-devel@globaleaks.org",
     dest="developer_name")
 
-GLSettings.parser.add_option("-o", "--orm-debug", action='store_true',
+Settings.parser.add_option("-o", "--orm-debug", action='store_true',
     help="enable ORM debugging (AVAILABLE ONLY IN DEVEL MODE)",
     dest="orm_debug", default=False)
 
-GLSettings.parser.add_option("-v", "--version", action='store_true',
+Settings.parser.add_option("-v", "--version", action='store_true',
     help="show the version of the software")
 
 
 # here the options are parsed, because sys.argv array is whack below
-(GLSettings.cmdline_options, args) = GLSettings.parser.parse_args()
+(Settings.cmdline_options, args) = Settings.parser.parse_args()
 
-if GLSettings.cmdline_options.version:
-    print("GlobaLeaks version:", GLSettings.version_string)
+if Settings.cmdline_options.version:
+    print("GlobaLeaks version:", Settings.version_string)
     print("Database version:", DATABASE_VERSION)
     sys.exit(53)
 
-GLSettings.load_cmdline_options()
+Settings.load_cmdline_options()
 
-if GLSettings.cmdline_options.kill:
+if Settings.cmdline_options.kill:
     try:
-        with open(GLSettings.pidfile_path, "r") as fd:
+        with open(Settings.pidfile_path, "r") as fd:
             target_pid = int(fd.read())
-        os.kill(target_pid, GLSettings.cmdline_options.kill)
-        os.remove(GLSettings.pidfile_path)
+        os.kill(target_pid, Settings.cmdline_options.kill)
+        os.remove(Settings.pidfile_path)
     except Exception as excep:
-        print("Unable kill PID found in %s: kill option ignored (%s)" % (GLSettings.pidfile_path, excep))
+        print("Unable kill PID found in %s: kill option ignored (%s)" % (Settings.pidfile_path, excep))
 
 os.umask(077)
 # TODO move function calls out of bin/globaleaks and into backend.py
-GLSettings.create_directories()
-GLSettings.cleaning_dead_files()
+Settings.create_directories()
+Settings.cleaning_dead_files()
 
-backend_script = os.path.join(GLSettings.root_path, 'globaleaks', 'backend.py')
+backend_script = os.path.join(Settings.root_path, 'globaleaks', 'backend.py')
 
 args = ['-y', backend_script]
-if GLSettings.nodaemon:
+if Settings.nodaemon:
     args += ['-n']
 
-args +=['--pidfile', GLSettings.pidfile_path]
+args +=['--pidfile', Settings.pidfile_path]
 
 sys.argv[1:] = args
 

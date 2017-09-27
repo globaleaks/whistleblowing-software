@@ -3,7 +3,7 @@ import json
 
 from globaleaks.handlers.base import BaseHandler, StaticFileHandler
 from globaleaks.rest.errors import InvalidInputFormat, ResourceNotFound
-from globaleaks.settings import GLSettings
+from globaleaks.settings import Settings
 from globaleaks.tests import helpers
 from twisted.internet.defer import inlineCallbacks
 
@@ -77,13 +77,13 @@ class TestStaticFileHandler(helpers.TestHandler):
 
     @inlineCallbacks
     def test_get_existent(self):
-        handler = self.request(kwargs={'path': GLSettings.client_path})
+        handler = self.request(kwargs={'path': Settings.client_path})
         yield handler.get('')
         self.assertTrue(handler.request.getResponseBody().startswith('<!doctype html>'))
 
     @inlineCallbacks
     def test_get_unexistent(self):
-        handler = self.request(kwargs={'path': GLSettings.client_path})
+        handler = self.request(kwargs={'path': Settings.client_path})
 
         try:
             yield handler.get('unexistent')

@@ -3,7 +3,7 @@ from globaleaks.handlers.base import GLSessions
 from globaleaks.handlers.user import UserInstance
 from globaleaks.handlers.wbtip import WBTipInstance
 from globaleaks.rest import errors
-from globaleaks.settings import GLSettings
+from globaleaks.settings import Settings
 from globaleaks.tests import helpers
 from twisted.internet.defer import inlineCallbacks
 
@@ -30,7 +30,7 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
             'username': 'admin',
             'password': helpers.VALID_PASSWORD1
         })
-        GLSettings.memory_copy.accept_tor2web_access['admin'] = True
+        Settings.memory_copy.accept_tor2web_access['admin'] = True
         response = yield handler.post()
         self.assertTrue('session_id' in response)
         self.assertEqual(len(GLSessions), 1)
@@ -41,7 +41,7 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
             'username': 'admin',
             'password': helpers.VALID_PASSWORD1
         })
-        GLSettings.memory_copy.accept_tor2web_access['admin'] = False
+        Settings.memory_copy.accept_tor2web_access['admin'] = False
         yield self.assertFailure(handler.post(), errors.TorNetworkRequired)
 
     @inlineCallbacks
@@ -65,7 +65,7 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
             yield self.assertFailure(handler.post(), errors.InvalidAuthentication)
 
         yield admin.receiver.get_receiver(self.dummyReceiver_1['id'], 'en')
-        self.assertEqual(GLSettings.failed_login_attempts, failed_login)
+        self.assertEqual(Settings.failed_login_attempts, failed_login)
 
     @inlineCallbacks
     def test_single_session_per_user(self):
@@ -139,7 +139,7 @@ class TestReceiptAuth(helpers.TestHandlerWithPopulatedDB):
         handler = self.request({
             'receipt': self.dummySubmission['receipt']
         }, headers={'X-Tor2Web': 'whatever'})
-        GLSettings.memory_copy.accept_tor2web_access['whistleblower'] = True
+        Settings.memory_copy.accept_tor2web_access['whistleblower'] = True
         response = yield handler.post()
         self.assertTrue('session_id' in response)
         self.assertEqual(len(GLSessions), 1)
@@ -150,7 +150,7 @@ class TestReceiptAuth(helpers.TestHandlerWithPopulatedDB):
         handler = self.request({
             'receipt': self.dummySubmission['receipt']
         }, headers={'X-Tor2Web': 'whatever'})
-        GLSettings.memory_copy.accept_tor2web_access['whistleblower'] = False
+        Settings.memory_copy.accept_tor2web_access['whistleblower'] = False
         yield self.assertFailure(handler.post(), errors.TorNetworkRequired)
 
     @inlineCallbacks

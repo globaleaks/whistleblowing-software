@@ -6,7 +6,7 @@ import json
 
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.rest import requests
-from globaleaks.settings import GLSettings
+from globaleaks.settings import Settings
 from globaleaks.utils.mailutils import schedule_exception_email
 from globaleaks.utils.utility import log
 
@@ -22,7 +22,7 @@ class ExceptionHandler(BaseHandler):
         request = self.validate_message(self.request.content.read(),
                                         requests.ExceptionDesc)
 
-        if not GLSettings.disable_client_exception_notification:
+        if not Settings.disable_client_exception_notification:
             exception_email = "URL: %s\n\n" % request['errorUrl']
             exception_email += "User Agent: %s\n\n" % request['agent']
             exception_email += "Error Message: %s\n\n" % request['errorMessage']

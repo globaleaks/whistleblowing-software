@@ -14,7 +14,7 @@ from globaleaks.models.config import NodeFactory, PrivateFactory
 from globaleaks.orm import transact
 from globaleaks.rest.apicache import GLApiCache
 from globaleaks.utils.utility import log
-from globaleaks.settings import GLSettings
+from globaleaks.settings import Settings
 
 
 try:
@@ -45,7 +45,7 @@ def set_onion_service_info(store, hostname, key):
     priv_fact = PrivateFactory(store)
     priv_fact.set_val(u'tor_onion_key', key)
 
-    GLSettings.memory_copy.onionservice = hostname
+    Settings.memory_copy.onionservice = hostname
 
     GLApiCache.invalidate()
 

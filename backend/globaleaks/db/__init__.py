@@ -11,7 +11,7 @@ from globaleaks.db.appdata import db_update_defaults, load_appdata
 from globaleaks.handlers.admin import files
 from globaleaks.handlers.base import GLSession
 from globaleaks.orm import transact, transact_sync
-from globaleaks.settings import GLSettings
+from globaleaks.settings import Settings
 from globaleaks.utils.objectdict import ObjectDict
 from globaleaks.utils.utility import log
 
@@ -27,7 +27,7 @@ def get_db_file(db_path):
 
 
 def db_create_tables(store):
-    with open(GLSettings.db_schema) as f:
+    with open(Settings.db_schema) as f:
         create_queries = ''.join(f.readlines()).split(';')
 
     for create_query in create_queries:
@@ -58,7 +58,7 @@ def init_db(store):
     ]
 
     for file_desc in file_descs:
-        with open(os.path.join(GLSettings.client_path, file_desc[1]), 'r') as f:
+        with open(os.path.join(Settings.client_path, file_desc[1]), 'r') as f:
             files.db_add_file(store, f.read(), file_desc[0])
 
 
@@ -67,7 +67,7 @@ def update_db():
     This function handles update of an existing database
     """
     try:
-        db_version, _ = get_db_file(GLSettings.db_path)
+        db_version, _ = get_db_file(Settings.db_path)
         if db_version == 0:
             return 0
 
@@ -83,7 +83,7 @@ def update_db():
         else:
             log.err('Performing data update')
             # TODO on normal startup this line is run. We need better control flow here.
-            migration.perform_data_update(os.path.abspath(os.path.join(GLSettings.db_path, 'glbackend-%d.db' % DATABASE_VERSION)))
+            migration.perform_data_update(os.path.abspath(os.path.join(Settings.db_path, 'glbackend-%d.db' % DATABASE_VERSION)))
 
     except Exception as exception:
         log.err("Migration failure: %s", exception)
@@ -107,13 +107,13 @@ def db_get_tracked_files(store):
 @transact_sync
 def sync_clean_untracked_files(store):
     """
-    removes files in GLSettings.submission_path that are not
+    removes files in Settings.submission_path that are not
     tracked by InternalFile/ReceiverFile.
     """
     tracked_files = db_get_tracked_files(store)
-    for filesystem_file in os.listdir(GLSettings.submission_path):
+    for filesystem_file in os.listdir(Settings.submission_path):
         if filesystem_file not in tracked_files:
-            file_to_remove = os.path.join(GLSettings.submission_path, filesystem_file)
+            file_to_remove = os.path.join(Settings.submission_path, filesystem_file)
             try:
                 log.debug("Removing untracked file: %s", file_to_remove)
                 security.overwrite_and_remove(file_to_remove)
@@ -138,7 +138,7 @@ def db_refresh_exception_delivery_list(store):
     lst.extend([(mail, pub_key) for (mail, pub_key) in results])
 
     trimmed = filter(lambda x: x[0] != '', lst)
-    GLSettings.memory_copy.notif.exception_delivery_list = trimmed
+    Settings.memory_copy.notif.exception_delivery_list = trimmed
 
 
 def db_refresh_memory_variables(store):
@@ -148,9 +148,9 @@ def db_refresh_memory_variables(store):
     """
     node_ro = ObjectDict(models.config.NodeFactory(store).admin_export())
 
-    GLSettings.memory_copy = node_ro
+    Settings.memory_copy = node_ro
 
-    GLSettings.memory_copy.accept_tor2web_access = {
+    Settings.memory_copy.accept_tor2web_access = {
         'admin': node_ro.tor2web_admin,
         'custodian': node_ro.tor2web_custodian,
         'whistleblower': node_ro.tor2web_whistleblower,
@@ -158,24 +158,24 @@ def db_refresh_memory_variables(store):
     }
 
     enabled_langs = models.l10n.EnabledLanguage.list(store)
-    GLSettings.memory_copy.languages_enabled = enabled_langs
+    Settings.memory_copy.languages_enabled = enabled_langs
 
     notif_fact = models.config.NotificationFactory(store)
     notif_ro = ObjectDict(notif_fact.admin_export())
 
-    GLSettings.memory_copy.notif = notif_ro
+    Settings.memory_copy.notif = notif_ro
 
-    if GLSettings.developer_name:
-        GLSettings.memory_copy.notif.source_name = GLSettings.developer_name
+    if Settings.developer_name:
+        Settings.memory_copy.notif.source_name = Settings.developer_name
 
     db_refresh_exception_delivery_list(store)
 
-    GLSettings.memory_copy.private = ObjectDict(models.config.PrivateFactory(store).mem_copy_export())
+    Settings.memory_copy.private = ObjectDict(models.config.PrivateFactory(store).mem_copy_export())
 
-    if GLSettings.memory_copy.private.admin_api_token_digest:
+    if Settings.memory_copy.private.admin_api_token_digest:
         api_id = store.find(models.User.id, models.User.role==u'admin').order_by(models.User.creation_date).first()
         if api_id is not None:
-            GLSettings.appstate.api_token_session = GLSession(api_id, 'admin', 'enabled')
+            Settings.appstate.api_token_session = GLSession(api_id, 'admin', 'enabled')
 
 
 @transact

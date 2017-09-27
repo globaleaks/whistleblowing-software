@@ -16,7 +16,7 @@ from twisted.web.server import Site
 from globaleaks.db import init_db, update_db, \
     sync_refresh_memory_variables, sync_clean_untracked_files
 from globaleaks.rest.api import APIResourceWrapper
-from globaleaks.settings import GLSettings
+from globaleaks.settings import Settings
 from globaleaks.utils.process import disable_swap
 from globaleaks.utils.sock import listen_tcp_on_sock, reserve_port_for_ip
 from globaleaks.utils.utility import log, timedelta_to_milliseconds, GLLogObserver
@@ -51,47 +51,47 @@ def timedLogFormatter(timestamp, request):
 class GLService(service.Service):
     def startService(self):
         mask = 0
-        if GLSettings.devel_mode:
+        if Settings.devel_mode:
             mask = 8000
 
-        GLSettings.http_socks = []
+        Settings.http_socks = []
 
         # Allocate local ports
-        for port in GLSettings.bind_local_ports:
+        for port in Settings.bind_local_ports:
             http_sock, fail = reserve_port_for_ip('127.0.0.1', port)
             if fail is not None:
                 log.err("Could not reserve socket for %s (error: %s)", fail[0], fail[1])
             else:
-                GLSettings.http_socks += [http_sock]
+                Settings.http_socks += [http_sock]
 
         # Allocate remote ports
-        for port in GLSettings.bind_remote_ports:
-            sock, fail = reserve_port_for_ip(GLSettings.bind_address, port+mask)
+        for port in Settings.bind_remote_ports:
+            sock, fail = reserve_port_for_ip(Settings.bind_address, port+mask)
             if fail is not None:
                 log.err("Could not reserve socket for %s (error: %s)", fail[0], fail[1])
                 continue
 
             if port == 80:
-                GLSettings.http_socks += [sock]
+                Settings.http_socks += [sock]
             elif port == 443:
-                GLSettings.https_socks += [sock]
+                Settings.https_socks += [sock]
 
-        if GLSettings.disable_swap:
+        if Settings.disable_swap:
             disable_swap()
 
-        GLSettings.fix_file_permissions()
-        GLSettings.drop_privileges()
-        GLSettings.check_directories()
+        Settings.fix_file_permissions()
+        Settings.drop_privileges()
+        Settings.check_directories()
 
         reactor.callLater(0, self.deferred_start)
 
     @defer.inlineCallbacks
     def shutdown(self):
-        yield GLSettings.appstate.process_supervisor.shutdown()
+        yield Settings.appstate.process_supervisor.shutdown()
 
-        yield GLSettings.stop_jobs()
+        yield Settings.stop_jobs()
 
-        GLSettings.orm_tp.stop()
+        Settings.orm_tp.stop()
 
     @defer.inlineCallbacks
     def deferred_start(self):
@@ -112,37 +112,37 @@ class GLService(service.Service):
         sync_clean_untracked_files()
         sync_refresh_memory_variables()
 
-        GLSettings.orm_tp.start()
+        Settings.orm_tp.start()
 
         reactor.addSystemEventTrigger('before', 'shutdown', self.shutdown)
 
         arw = APIResourceWrapper()
 
-        GLSettings.api_factory = Site(arw, logFormatter=timedLogFormatter)
+        Settings.api_factory = Site(arw, logFormatter=timedLogFormatter)
 
-        for sock in GLSettings.http_socks:
-            listen_tcp_on_sock(reactor, sock.fileno(), GLSettings.api_factory)
+        for sock in Settings.http_socks:
+            listen_tcp_on_sock(reactor, sock.fileno(), Settings.api_factory)
 
-        GLSettings.appstate.process_supervisor = ProcessSupervisor(GLSettings.https_socks,
+        Settings.appstate.process_supervisor = ProcessSupervisor(Settings.https_socks,
                                                                 '127.0.0.1',
                                                                 8082)
 
-        GLSettings.appstate.process_supervisor.maybe_launch_https_workers()
+        Settings.appstate.process_supervisor.maybe_launch_https_workers()
 
-        GLSettings.start_jobs()
+        Settings.start_jobs()
 
-        GLSettings.print_listening_interfaces()
+        Settings.print_listening_interfaces()
 
 
 application = service.Application('GLBackend')
 
-if not GLSettings.nodaemon and GLSettings.logfile:
-    name = os.path.basename(GLSettings.logfile)
-    directory = os.path.dirname(GLSettings.logfile)
+if not Settings.nodaemon and Settings.logfile:
+    name = os.path.basename(Settings.logfile)
+    directory = os.path.dirname(Settings.logfile)
 
     gl_logfile = txlogfile.LogFile(name, directory,
-                                 rotateLength=GLSettings.log_file_size,
-                                 maxRotatedFiles=GLSettings.num_log_files)
+                                 rotateLength=Settings.log_file_size,
+                                 maxRotatedFiles=Settings.num_log_files)
 
     application.setComponent(txlog.ILogObserver, GLLogObserver(gl_logfile).emit)
 

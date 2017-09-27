@@ -5,7 +5,7 @@ from globaleaks import models
 from globaleaks.handlers import rtip
 from globaleaks.jobs.delivery_sched import DeliverySchedule
 from globaleaks.rest import errors
-from globaleaks.settings import GLSettings
+from globaleaks.settings import Settings
 from globaleaks.tests import helpers
 from globaleaks.utils.utility import datetime_now, ISO8601_to_datetime
 
@@ -123,17 +123,17 @@ class TestRTipInstance(helpers.TestHandlerWithPopulatedDB):
 
     @inlineCallbacks
     def test_put_enable_two_way_comments(self):
-        GLSettings.memory_copy.can_grant_permissions = True
+        Settings.memory_copy.can_grant_permissions = True
         yield self.switch_enabler('enable_two_way_comments')
 
     @inlineCallbacks
     def test_put_enable_two_way_messages(self):
-        GLSettings.memory_copy.can_grant_permissions = True
+        Settings.memory_copy.can_grant_permissions = True
         yield self.switch_enabler('enable_two_way_messages')
 
     @inlineCallbacks
     def test_put_enable_attachments(self):
-        GLSettings.memory_copy.can_grant_permissions = True
+        Settings.memory_copy.can_grant_permissions = True
         yield self.switch_enabler('enable_attachments')
 
 

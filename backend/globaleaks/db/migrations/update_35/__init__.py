@@ -6,7 +6,7 @@ from globaleaks.db.migrations.update import MigrationBase
 from globaleaks.models.config import NodeFactory
 from globaleaks.models.l10n import EnabledLanguage
 from globaleaks.models.validators import shortlocal_v, longlocal_v
-from globaleaks.settings import GLSettings
+from globaleaks.settings import Settings
 from globaleaks.utils.utility import datetime_now, datetime_null
 
 
@@ -70,12 +70,12 @@ class MigrationScript(MigrationBase):
                     # NOTE hardcoded policy. . . .
                     tip_ttl = 5*365
                     if old_obj.tip_timetolive > tip_ttl:
-                        GLSettings.print_msg('[WARNING] Found an expiration date longer than 5 years! Configuring tips to never expire.')
+                        Settings.print_msg('[WARNING] Found an expiration date longer than 5 years! Configuring tips to never expire.')
                         # If data retention was larger than 5 years the intended goal was
                         # probably to keep the submission around forever.
                         new_obj.tip_timetolive = -1
                     elif old_obj.tip_timetolive < -1:
-                        GLSettings.print_msg('[WARNING] Found a negative tip expiration! Configuring tips to never expire.')
+                        Settings.print_msg('[WARNING] Found a negative tip expiration! Configuring tips to never expire.')
                         new_obj.tip_timetolive = -1
                     else:
                         new_obj.tip_timetolive = old_obj.tip_timetolive

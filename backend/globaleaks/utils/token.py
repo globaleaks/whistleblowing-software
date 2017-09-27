@@ -13,7 +13,7 @@ from random import randint
 from globaleaks.anomaly import Alarm
 from globaleaks.rest import errors
 from globaleaks.security import sha256, generateRandomKey
-from globaleaks.settings import GLSettings
+from globaleaks.settings import Settings
 from globaleaks.utils.tempdict import TempDict
 from globaleaks.utils.utility import log, datetime_now, datetime_to_ISO8601
 
@@ -23,8 +23,8 @@ class TokenListClass(TempDict):
         TempDict.__init__(self, *args, **kwds)
 
     def get_timeout(self):
-        return GLSettings.submission_minimum_delay + \
-               GLSettings.submission_maximum_ttl
+        return Settings.submission_minimum_delay + \
+               Settings.submission_maximum_ttl
 
     def expireCallback(self, item):
         for f in item.uploaded_files:
@@ -98,7 +98,7 @@ class Token(object):
         return r
 
     def generate_token_challenges(self):
-        if Alarm.stress_levels['activity'] >= 1 and GLSettings.memory_copy.enable_captcha:
+        if Alarm.stress_levels['activity'] >= 1 and Settings.memory_copy.enable_captcha:
             random_a = randint(0, 99)
             random_b = randint(0, 99)
 
@@ -108,7 +108,7 @@ class Token(object):
                 'solved': False
             }
 
-        if GLSettings.memory_copy.enable_proof_of_work:
+        if Settings.memory_copy.enable_proof_of_work:
             self.proof_of_work = {
                 'question': generateRandomKey(20),
                 'solved': False
@@ -119,12 +119,12 @@ class Token(object):
         timedelta_check verifies that the current time is between the start
         validity time and the end validity time.
         """
-        min_delay = GLSettings.submission_minimum_delay
+        min_delay = Settings.submission_minimum_delay
 
-        if GLSettings.devel_mode:
+        if Settings.devel_mode:
             min_delay = 0
 
-        max_ttl = GLSettings.submission_maximum_ttl
+        max_ttl = Settings.submission_maximum_ttl
 
         now = datetime_now()
         start = (self.creation_date + timedelta(seconds=min_delay))

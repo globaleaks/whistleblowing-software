@@ -16,7 +16,7 @@ from globaleaks.handlers.base import BaseHandler
 from globaleaks.orm import transact
 from globaleaks.rest import errors, requests
 from globaleaks.security import hash_password, sha256, generateRandomReceipt
-from globaleaks.settings import GLSettings
+from globaleaks.settings import Settings
 from globaleaks.utils.structures import get_localized_values
 from globaleaks.utils.token import TokenList
 from globaleaks.utils.utility import log, get_expiration, \
@@ -116,7 +116,7 @@ def db_serialize_questionnaire_answers_recursively(store, answers):
 
 
 def db_serialize_questionnaire_answers(store, usertip, internaltip):
-    questionnaire = db_serialize_archived_questionnaire_schema(store, internaltip.questionnaire_hash, GLSettings.memory_copy.default_language)
+    questionnaire = db_serialize_archived_questionnaire_schema(store, internaltip.questionnaire_hash, Settings.memory_copy.default_language)
 
     answers_ids = []
     for s in questionnaire:
@@ -272,7 +272,7 @@ def db_create_whistleblowertip(store, internaltip):
 
     wbtip = models.WhistleblowerTip()
     wbtip.id = internaltip.id
-    wbtip.receipt_hash = hash_password(receipt, GLSettings.memory_copy.private.receipt_salt)
+    wbtip.receipt_hash = hash_password(receipt, Settings.memory_copy.private.receipt_salt)
     store.add(wbtip)
 
     return receipt
@@ -356,7 +356,7 @@ def db_create_submission(store, request, uploaded_files, client_using_tor):
                                       models.ReceiverContext.receiver_id == models.Receiver.id,
                                       models.ReceiverContext.context_id == context.id,
                                       models.User.id == models.Receiver.id):
-        if user.pgp_key_public or GLSettings.memory_copy.allow_unencrypted:
+        if user.pgp_key_public or Settings.memory_copy.allow_unencrypted:
             db_create_receivertip(store, receiver, submission)
             rtips_count += 1
 

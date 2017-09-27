@@ -2,12 +2,12 @@
 import os
 
 from globaleaks.models.config import NodeFactory
-from globaleaks.settings import GLSettings
+from globaleaks.settings import Settings
 from globaleaks.utils.utility import read_json_file
 
 
 def load_profile(store, name):
-    path = os.path.join(GLSettings.client_path, 'data/profiles', '{}.json'.format(name))
+    path = os.path.join(Settings.client_path, 'data/profiles', '{}.json'.format(name))
     prof = read_json_file(path)
 
     if not set(prof['node'].keys()) <= NodeFactory.admin_node:

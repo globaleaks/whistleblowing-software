@@ -5,7 +5,7 @@ from storm.locals import Int, Bool, Unicode, DateTime, JSON
 
 from globaleaks.db.migrations.update import MigrationBase
 from globaleaks.models import ModelWithID
-from globaleaks.settings import GLSettings
+from globaleaks.settings import Settings
 
 
 class Node_v_26(ModelWithID):
@@ -151,9 +151,9 @@ class Notification_v_26(ModelWithID):
 
 class MigrationScript(MigrationBase):
     def prologue(self):
-        old_logo_path = os.path.abspath(os.path.join(GLSettings.static_path, 'globaleaks_logo.png'))
+        old_logo_path = os.path.abspath(os.path.join(Settings.static_path, 'globaleaks_logo.png'))
         if os.path.exists(old_logo_path):
-            new_logo_path = os.path.abspath(os.path.join(GLSettings.static_path, 'logo.png'))
+            new_logo_path = os.path.abspath(os.path.join(Settings.static_path, 'logo.png'))
             shutil.move(old_logo_path, new_logo_path)
 
     def migrate_Node(self):

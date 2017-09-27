@@ -15,7 +15,7 @@ from globaleaks.models.config import NodeFactory, PrivateFactory
 from globaleaks.models.l10n import EnabledLanguage, NodeL10NFactory
 from globaleaks.orm import transact
 from globaleaks.rest import errors, requests
-from globaleaks.settings import GLSettings
+from globaleaks.settings import Settings
 from globaleaks.utils.utility import log
 
 
@@ -24,11 +24,11 @@ def db_admin_serialize_node(store, language):
 
     # Contexts and Receivers relationship
     configured  = store.find(models.ReceiverContext).count() > 0
-    custom_homepage = os.path.isfile(os.path.join(GLSettings.static_path, "custom_homepage.html"))
+    custom_homepage = os.path.isfile(os.path.join(Settings.static_path, "custom_homepage.html"))
 
     misc_dict = {
         'version': PrivateFactory(store).get_val(u'version'),
-        'latest_version': str(GLSettings.appstate.latest_version),
+        'latest_version': str(Settings.appstate.latest_version),
         'languages_supported': LANGUAGES_SUPPORTED,
         'languages_enabled': EnabledLanguage.list(store),
         'configured': configured,

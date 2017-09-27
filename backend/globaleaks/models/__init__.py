@@ -11,7 +11,7 @@ from globaleaks.models.validators import shorttext_v, longtext_v, \
     shortlocal_v, longlocal_v, shorturl_v, longurl_v, range_v
 from globaleaks.orm import transact
 from globaleaks.rest import errors
-from globaleaks.settings import GLSettings
+from globaleaks.settings import Settings
 from globaleaks.utils.utility import datetime_now, datetime_null, datetime_to_ISO8601, uuid4
 
 from .properties import MetaModel, DateTime
@@ -145,7 +145,7 @@ class Model(Storm):
         """
         Return a dictionary serialization of the current model.
         """
-        language = GLSettings.memory_copy.default_language if language is None else language
+        language = Settings.memory_copy.default_language if language is None else language
 
         ret = {}
 
@@ -312,7 +312,7 @@ class InternalTip(ModelWithID):
     wb_access_counter = Int(default=0)
 
     def wb_revoke_access_date(self):
-        return self.wb_last_access + timedelta(days=GLSettings.memory_copy.wbtip_timetolive)
+        return self.wb_last_access + timedelta(days=Settings.memory_copy.wbtip_timetolive)
 
 
 class ReceiverTip(ModelWithID):

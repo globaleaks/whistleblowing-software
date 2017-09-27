@@ -1,5 +1,5 @@
 # -*- coding: UTF-8
-# settings: Define GLSettings, main class handling GlobaLeeaks runtime settings
+# settings: Define Settings, main class handling GlobaLeeaks runtime settings
 # ******
 from __future__ import print_function
 
@@ -52,7 +52,7 @@ external_counted_events = {
 }
 
 
-class GLSettingsClass(object):
+class SettingsClass(object):
     __metaclass__ = Singleton
 
     def __init__(self):
@@ -214,7 +214,7 @@ class GLSettingsClass(object):
         self.https_socks = []
         self.http_socks = []
 
-        # TODO holds global state until GLSettings is inverted and this
+        # TODO holds global state until Settings is inverted and this
         # state managed as an object by the application
         self.appstate = ObjectDict()
         self.appstate.process_supervisor = None
@@ -372,7 +372,7 @@ class GLSettingsClass(object):
         self.eval_paths()
 
         if self.nodaemon:
-            self.print_msg("Going in background; log available at %s" % GLSettings.logfile)
+            self.print_msg("Going in background; log available at %s" % Settings.logfile)
 
         # special evaluation of client directory:
         indexfile = os.path.join(self.client_path, 'index.html')
@@ -499,8 +499,8 @@ class GLSettingsClass(object):
         temporally_encrypted_dir
         """
         # temporary .aes files must be simply deleted
-        for f in os.listdir(GLSettings.tmp_upload_path):
-            path = os.path.join(GLSettings.tmp_upload_path, f)
+        for f in os.listdir(Settings.tmp_upload_path):
+            path = os.path.join(Settings.tmp_upload_path, f)
             self.print_msg("Removing old temporary file: %s" % path)
 
             try:
@@ -511,12 +511,12 @@ class GLSettingsClass(object):
         # temporary .aes files with lost keys can be deleted
         # while temporary .aes files with valid current key
         # will be automagically handled by delivery sched.
-        keypath = os.path.join(self.ramdisk_path, GLSettings.AES_keyfile_prefix)
+        keypath = os.path.join(self.ramdisk_path, Settings.AES_keyfile_prefix)
 
-        for f in os.listdir(GLSettings.submission_path):
-            path = os.path.join(GLSettings.submission_path, f)
+        for f in os.listdir(Settings.submission_path):
+            path = os.path.join(Settings.submission_path, f)
             try:
-                result = GLSettings.AES_file_regexp_comp.match(f)
+                result = Settings.AES_file_regexp_comp.match(f)
                 if result is not None:
                     if not os.path.isfile("%s%s" % (keypath, result.group(1))):
                         self.print_msg("Removing old encrypted file (lost key): %s" % path)
@@ -572,5 +572,5 @@ class GLSettingsClass(object):
             print("- [REMOTE Tor]:\t--> http://%s%s" % (self.memory_copy.onionservice, self.api_prefix))
 
 
-# GLSettings is a singleton class exported once
-GLSettings = GLSettingsClass()
+# Settings is a singleton class exported once
+Settings = SettingsClass()

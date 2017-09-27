@@ -8,7 +8,7 @@
 
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.rest import errors, requests
-from globaleaks.settings import GLSettings
+from globaleaks.settings import Settings
 from globaleaks.utils.token import Token, TokenList
 
 
@@ -29,12 +29,12 @@ class TokenCreate(BaseHandler):
         submission will require some actions to be performed before the
         submission can be concluded (e.g. hashcash and captchas).
         """
-        if not self.request.client_using_tor and not GLSettings.memory_copy.accept_tor2web_access['whistleblower']:
+        if not self.request.client_using_tor and not Settings.memory_copy.accept_tor2web_access['whistleblower']:
             raise errors.TorNetworkRequired
 
         request = self.validate_message(self.request.content.read(), requests.TokenReqDesc)
 
-        if request['type'] == 'submission' and not GLSettings.accept_submissions:
+        if request['type'] == 'submission' and not Settings.accept_submissions:
             raise errors.SubmissionDisabled
 
         token = Token(request['type'])

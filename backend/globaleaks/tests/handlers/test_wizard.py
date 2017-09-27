@@ -5,7 +5,7 @@ from globaleaks.handlers import wizard
 from globaleaks.models.profiles import load_profile
 from globaleaks.orm import transact
 from globaleaks.rest import errors
-from globaleaks.settings import GLSettings
+from globaleaks.settings import Settings
 from globaleaks.tests import helpers
 from twisted.internet.defer import inlineCallbacks
 
@@ -50,8 +50,8 @@ class TestProfileLoad(helpers.TestHandler):
     @inlineCallbacks
     def setUp(self):
         yield helpers.TestHandler.setUp(self)
-        self.old_path = GLSettings.client_path
-        GLSettings.client_path = os.path.join(helpers.DATA_DIR, '..')
+        self.old_path = Settings.client_path
+        Settings.client_path = os.path.join(helpers.DATA_DIR, '..')
 
     @inlineCallbacks
     def test_invalid_load(self):
@@ -60,5 +60,5 @@ class TestProfileLoad(helpers.TestHandler):
 
     @inlineCallbacks
     def tearDown(self):
-        GLSettings.client_path = self.old_path
+        Settings.client_path = self.old_path
         yield helpers.TestHandler.tearDown(self)
