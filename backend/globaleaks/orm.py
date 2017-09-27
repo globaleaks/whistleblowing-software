@@ -14,13 +14,13 @@ from storm.store import Store
 from twisted.internet import reactor
 from twisted.internet.threads import deferToThreadPool
 
-from globaleaks.settings import GLSettings
+from globaleaks.settings import Settings
 from globaleaks.utils.mailutils import schedule_exception_email
 from globaleaks.utils.utility import log, timedelta_to_milliseconds
 
 
 def get_store():
-    return Store(create_database(GLSettings.db_uri))
+    return Store(create_database(Settings.db_uri))
 
 
 class SQLite(sqlite.Database):
@@ -62,7 +62,7 @@ class transact(object):
     def __init__(self, method):
         self.method = method
         self.instance = None
-        self.debug = GLSettings.orm_debug
+        self.debug = Settings.orm_debug
 
         tracer.debug(self.debug, sys.stdout)
 
@@ -75,7 +75,7 @@ class transact(object):
 
     def run(self, function, *args, **kwargs):
         return deferToThreadPool(reactor,
-                                 GLSettings.orm_tp,
+                                 Settings.orm_tp,
                                  function,
                                  *args,
                                  **kwargs)

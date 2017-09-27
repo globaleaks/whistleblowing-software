@@ -1,4 +1,4 @@
-from globaleaks.settings import GLSettings
+from globaleaks.settings import Settings
 from globaleaks.utils.tempdict import TempDict
 from globaleaks.utils.utility import datetime_now, datetime_to_ISO8601
 
@@ -146,7 +146,7 @@ class EventTrackQueueClass(TempDict):
         On expiration of an event perform the synthesis and
         append them to the RecentEventQueue.
         """
-        GLSettings.RecentEventQ.append(event.serialize())
+        Settings.RecentEventQ.append(event.serialize())
 
     def event_number(self):
         self.event_absolute_counter += 1

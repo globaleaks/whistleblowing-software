@@ -7,16 +7,16 @@ from storm.expr import And, Not, In
 from globaleaks import models
 from globaleaks.handlers.admin.field import db_create_field
 from globaleaks.handlers.admin.step import db_create_step
-from globaleaks.settings import GLSettings
+from globaleaks.settings import Settings
 from globaleaks.utils.utility import log, read_json_file
 
 
 def load_appdata():
-    return read_json_file(GLSettings.appdata_file)
+    return read_json_file(Settings.appdata_file)
 
 
 def load_default_questionnaires(store):
-    qfiles = [os.path.join(GLSettings.questionnaires_path, path) for path in os.listdir(GLSettings.questionnaires_path)]
+    qfiles = [os.path.join(Settings.questionnaires_path, path) for path in os.listdir(Settings.questionnaires_path)]
     for qfile in qfiles:
         questionnaire = read_json_file(qfile)
 
@@ -33,7 +33,7 @@ def load_default_questionnaires(store):
             db_create_step(store, step, None)
 
 def load_default_fields(store):
-    ffiles = [os.path.join(GLSettings.questions_path, path) for path in os.listdir(GLSettings.questions_path)]
+    ffiles = [os.path.join(Settings.questions_path, path) for path in os.listdir(Settings.questions_path)]
     for ffile in ffiles:
         question = read_json_file(ffile)
         store.find(models.Field, id=question['id']).remove()
@@ -51,7 +51,7 @@ def db_fix_fields_attrs(store):
     The content of the field_attrs dict is used to add and remove all of the
     excepted forms of field_attrs for FieldAttrs in the db.
     """
-    field_attrs = read_json_file(GLSettings.field_attrs_file)
+    field_attrs = read_json_file(Settings.field_attrs_file)
 
     special_lst = ['whistleblower_identity']
 

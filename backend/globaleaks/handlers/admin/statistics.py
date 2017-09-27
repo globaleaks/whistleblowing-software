@@ -13,7 +13,7 @@ from globaleaks.event import EventTrackQueue, events_monitored
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.models import Stats, Anomalies
 from globaleaks.orm import transact
-from globaleaks.settings import GLSettings
+from globaleaks.settings import Settings
 from globaleaks.utils.utility import datetime_to_ISO8601, datetime_now, \
     iso_to_gregorian, log
 
@@ -144,7 +144,7 @@ class AnomalyCollection(BaseHandler):
 class StatsCollection(BaseHandler):
     """
     This Handler returns the list of the stats, stats is the aggregated
-    count of activities recorded in the delta defined in GLSettingss
+    count of activities recorded in the delta defined in Settingss
     /admin/stats
     """
     check_roles = 'admin'
@@ -183,7 +183,7 @@ class RecentEventsCollection(BaseHandler):
         # the current 30 seconds
         templist += EventTrackQueue.take_current_snapshot()
         # the already stocked by side, until Stats dump them in 1hour
-        templist += GLSettings.RecentEventQ
+        templist += Settings.RecentEventQ
 
         templist.sort(key=operator.itemgetter('id'))
 
@@ -202,7 +202,7 @@ class JobsTiming(BaseHandler):
     def get(self):
         response = []
 
-        for job in GLSettings.jobs:
+        for job in Settings.jobs:
             response.append({
               'name': job.name,
               'timings': job.last_executions

@@ -22,7 +22,7 @@ from globaleaks import security
 from globaleaks.db import get_db_file
 from globaleaks.models import config, config_desc
 from globaleaks.rest.requests import AdminNotificationDesc, AdminNodeDesc
-from globaleaks.settings import GLSettings
+from globaleaks.settings import Settings
 
 
 def check_file(f):
@@ -49,16 +49,16 @@ def default_backup_path():
 
 
 def default_workdir():
-    return GLSettings.working_path
+    return Settings.working_path
 
 
 def default_db_path():
-    return GLSettings.db_path
+    return Settings.db_path
 
 
 def is_gl_running():
     try:
-        with open(GLSettings.pidfile_path, 'r') as fd:
+        with open(Settings.pidfile_path, 'r') as fd:
             gl_pid = int(fd.read())
             try:
                 os.kill(gl_pid, 0)
@@ -205,7 +205,7 @@ def set_var(args, silent=False):
 
     check_file(db_path)
     try:
-        store = Store(create_database(GLSettings.make_db_uri(db_path)))
+        store = Store(create_database(Settings.make_db_uri(db_path)))
 
         factCls, item, regex = select_cfg_factory(args.varname)
         if factCls is None:
@@ -260,7 +260,7 @@ def add_db_path_arg(parser):
                         default=default_db_path())
 
 
-GLSettings.eval_paths()
+Settings.eval_paths()
 
 parser = argparse.ArgumentParser(prog="gl-admin",
                  description="GlobaLeaks backend administator interface")

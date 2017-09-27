@@ -13,7 +13,7 @@ from globaleaks.handlers.admin.user import db_get_admin_users
 from globaleaks.jobs.base import LoopingJob
 from globaleaks.orm import transact
 from globaleaks.security import encrypt_message
-from globaleaks.settings import GLSettings
+from globaleaks.settings import Settings
 from globaleaks.utils import letsencrypt
 from globaleaks.utils.templating import Templating
 from globaleaks.utils.utility import log
@@ -78,7 +78,7 @@ class X509CertCheckSchedule(LoopingJob):
         # Regular certificates expiration checks
         elif datetime.now() > expiration_date - timedelta(days=self.notify_expr_within):
             log.info('The HTTPS Certificate is expiring on %s', expiration_date)
-            if not GLSettings.memory_copy.notif.disable_admin_notification_emails:
+            if not Settings.memory_copy.notif.disable_admin_notification_emails:
                 self.certificate_mail_creation(store, expiration_date)
 
     @inlineCallbacks
@@ -87,5 +87,5 @@ class X509CertCheckSchedule(LoopingJob):
 
         if self.should_restart_https:
             self.should_restart_https = False
-            yield GLSettings.appstate.process_supervisor.shutdown()
-            yield GLSettings.appstate.process_supervisor.maybe_launch_https_workers()
+            yield Settings.appstate.process_supervisor.shutdown()
+            yield Settings.appstate.process_supervisor.maybe_launch_https_workers()

@@ -14,7 +14,7 @@ from globaleaks.handlers.user import user_serialize_user
 from globaleaks.jobs.base import LoopingJob
 from globaleaks.orm import transact, transact_sync
 from globaleaks.security import encrypt_message
-from globaleaks.settings import GLSettings
+from globaleaks.settings import Settings
 from globaleaks.utils.mailutils import sendmail
 from globaleaks.utils.templating import Templating
 from globaleaks.utils.utility import log
@@ -160,17 +160,17 @@ class MailGenerator(object):
 
         # https://github.com/globaleaks/GlobaLeaks/issues/798
         # TODO: the current solution is global and configurable only by the admin
-        sent_emails = GLSettings.get_mail_counter(user_id)
-        if sent_emails >= GLSettings.memory_copy.notif.notification_threshold_per_hour:
+        sent_emails = Settings.get_mail_counter(user_id)
+        if sent_emails >= Settings.memory_copy.notif.notification_threshold_per_hour:
             log.debug("Discarding emails for receiver %s due to threshold already exceeded for the current hour",
                       user_id)
             return
 
-        GLSettings.increment_mail_counter(user_id)
-        if sent_emails >= GLSettings.memory_copy.notif.notification_threshold_per_hour:
+        Settings.increment_mail_counter(user_id)
+        if sent_emails >= Settings.memory_copy.notif.notification_threshold_per_hour:
             log.info("Reached threshold of %d emails with limit of %d for receiver %s",
                      sent_emails,
-                     GLSettings.memory_copy.notif.notification_threshold_per_hour,
+                     Settings.memory_copy.notif.notification_threshold_per_hour,
                      user_id)
 
             # simply changing the type of the notification causes
@@ -201,7 +201,7 @@ class MailGenerator(object):
         for trigger in ['ReceiverTip', 'Comment', 'Message', 'ReceiverFile']:
             model = trigger_model_map[trigger]
 
-            if GLSettings.memory_copy.notif.disable_receiver_notification_emails:
+            if Settings.memory_copy.notif.disable_receiver_notification_emails:
                 store.find(model, new=True).set(new=False)
                 continue
 

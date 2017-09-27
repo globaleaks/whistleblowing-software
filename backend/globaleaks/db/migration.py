@@ -31,7 +31,7 @@ from globaleaks.db.migrations.update_35 import Context_v_34, InternalTip_v_34, W
 from globaleaks.db.migrations.update_38 import Field_v_37, Questionnaire_v_37
 from globaleaks.models import config, l10n
 from globaleaks.models.config import PrivateFactory
-from globaleaks.settings import GLSettings
+from globaleaks.settings import Settings
 from globaleaks.utils.utility import log
 
 migration_mapping = OrderedDict([
@@ -98,7 +98,7 @@ def db_perform_data_update(store):
 
 
 def perform_data_update(dbfile):
-    store = Store(create_database(GLSettings.make_db_uri(dbfile)))
+    store = Store(create_database(Settings.make_db_uri(dbfile)))
 
     enabled_languages = [lang.name for lang in store.find(l10n.EnabledLanguage)]
 
@@ -133,9 +133,9 @@ def perform_schema_migration(version):
         log.info("Migrations from DB version lower than %d are no longer supported!" % FIRST_DATABASE_VERSION_SUPPORTED)
         quit()
 
-    tmpdir =  os.path.abspath(os.path.join(GLSettings.db_path, 'tmp'))
-    orig_db_file = os.path.abspath(os.path.join(GLSettings.db_path, 'glbackend-%d.db' % version))
-    final_db_file = os.path.abspath(os.path.join(GLSettings.db_path, 'glbackend-%d.db' % DATABASE_VERSION))
+    tmpdir =  os.path.abspath(os.path.join(Settings.db_path, 'tmp'))
+    orig_db_file = os.path.abspath(os.path.join(Settings.db_path, 'glbackend-%d.db' % version))
+    final_db_file = os.path.abspath(os.path.join(Settings.db_path, 'glbackend-%d.db' % DATABASE_VERSION))
 
     shutil.rmtree(tmpdir, True)
     os.mkdir(tmpdir)
@@ -148,8 +148,8 @@ def perform_schema_migration(version):
             old_db_file = os.path.abspath(os.path.join(tmpdir, 'glbackend-%d.db' % version))
             new_db_file = os.path.abspath(os.path.join(tmpdir, 'glbackend-%d.db' % (version + 1)))
 
-            GLSettings.db_file = new_db_file
-            GLSettings.enable_input_length_checks = False
+            Settings.db_file = new_db_file
+            Settings.enable_input_length_checks = False
 
             to_delete_on_fail.append(new_db_file)
             to_delete_on_success.append(old_db_file)
@@ -198,7 +198,7 @@ def perform_schema_migration(version):
             log.info("Migration stats:")
 
             # we open a new db in order to verify integrity of the generated file
-            store_verify = Store(create_database(GLSettings.make_db_uri(new_db_file)))
+            store_verify = Store(create_database(Settings.make_db_uri(new_db_file)))
 
             for model_name, _ in migration_mapping.items():
                 if migration_script.model_from[model_name] is not None and migration_script.model_to[model_name] is not None:

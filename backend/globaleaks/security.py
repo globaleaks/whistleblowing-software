@@ -22,7 +22,7 @@ from cryptography.hazmat.backends import default_backend
 from cryptography.hazmat.primitives import constant_time, hashes
 from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
 from globaleaks.rest import errors
-from globaleaks.settings import GLSettings
+from globaleaks.settings import Settings
 from globaleaks.utils.utility import log
 
 crypto_backend = default_backend()
@@ -66,7 +66,7 @@ def generate_api_token():
 
     :rtype: A `tuple` containing (digest `str`, token `str`)
     """
-    token = generateRandomKey(GLSettings.api_token_len)
+    token = generateRandomKey(Settings.api_token_len)
     token_hash = sha512(token)
     return token, token_hash
 
@@ -162,18 +162,18 @@ class GLSecureTemporaryFile(_TemporaryFileWrapper):
         """
         Create the AES Key to encrypt uploaded file.
         """
-        self.key = os.urandom(GLSettings.AES_key_size)
+        self.key = os.urandom(Settings.AES_key_size)
 
         self.key_id = generateRandomKey(16)
-        self.keypath = os.path.join(GLSettings.ramdisk_path, "%s%s" %
-                                    (GLSettings.AES_keyfile_prefix, self.key_id))
+        self.keypath = os.path.join(Settings.ramdisk_path, "%s%s" %
+                                    (Settings.AES_keyfile_prefix, self.key_id))
 
         while os.path.isfile(self.keypath):
             self.key_id = generateRandomKey(16)
-            self.keypath = os.path.join(GLSettings.ramdisk_path, "%s%s" %
-                                        (GLSettings.AES_keyfile_prefix, self.key_id))
+            self.keypath = os.path.join(Settings.ramdisk_path, "%s%s" %
+                                        (Settings.AES_keyfile_prefix, self.key_id))
 
-        self.key_counter_nonce = os.urandom(GLSettings.AES_counter_nonce)
+        self.key_counter_nonce = os.urandom(Settings.AES_counter_nonce)
         self.initialize_cipher()
 
         key_json = {
@@ -271,7 +271,7 @@ class GLSecureFile(GLSecureTemporaryFile):
         """
         Load the AES Key to decrypt uploaded file.
         """
-        self.keypath = os.path.join(GLSettings.ramdisk_path, ("%s%s" % (GLSettings.AES_keyfile_prefix, self.key_id)))
+        self.keypath = os.path.join(Settings.ramdisk_path, ("%s%s" % (Settings.AES_keyfile_prefix, self.key_id)))
 
         try:
             with open(self.keypath, 'r') as kf:
@@ -349,7 +349,7 @@ class GLBPGP(object):
         every time is needed, a new keyring is created here.
         """
         try:
-            temp_pgproot = os.path.join(GLSettings.pgproot, "%s" % generateRandomKey(8))
+            temp_pgproot = os.path.join(Settings.pgproot, "%s" % generateRandomKey(8))
             os.makedirs(temp_pgproot, mode=0700)
             self.gnupg = GPG(gnupghome=temp_pgproot, options=['--trust-model', 'always'])
             self.gnupg.encoding = "UTF-8"

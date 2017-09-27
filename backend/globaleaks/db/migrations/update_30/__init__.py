@@ -5,7 +5,7 @@ from storm.locals import Int, Bool, Unicode, JSON, ReferenceSet
 from globaleaks.db.migrations.update import MigrationBase
 from globaleaks.handlers.admin.field import db_create_field
 from globaleaks.models import ModelWithID, Model, db_forge_obj
-from globaleaks.settings import GLSettings
+from globaleaks.settings import Settings
 from globaleaks.utils.utility import read_json_file
 
 
@@ -141,7 +141,7 @@ FieldAnswerGroup_v_29.fieldanswers = ReferenceSet(
 
 class MigrationScript(MigrationBase):
     def prologue(self):
-        default_questionnaire = read_json_file(os.path.join(GLSettings.questionnaires_path, 'default.json'))
+        default_questionnaire = read_json_file(os.path.join(Settings.questionnaires_path, 'default.json'))
 
         steps = default_questionnaire.pop('steps')
 

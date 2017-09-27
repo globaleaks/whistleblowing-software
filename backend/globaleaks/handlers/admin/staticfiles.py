@@ -11,7 +11,7 @@ from twisted.internet import threads
 from globaleaks.handlers.base import BaseHandler, write_upload_plaintext_to_disk
 from globaleaks.rest import errors
 from globaleaks.security import directory_traversal_check
-from globaleaks.settings import GLSettings
+from globaleaks.settings import Settings
 
 
 def get_description_by_stat(statstruct, name):
@@ -23,8 +23,8 @@ def get_description_by_stat(statstruct, name):
 
 def get_stored_files():
     stored_list = []
-    for fname in os.listdir(GLSettings.static_path):
-        filepath = os.path.join(GLSettings.static_path, fname)
+    for fname in os.listdir(Settings.static_path):
+        filepath = os.path.join(Settings.static_path, fname)
         if os.path.isfile(filepath):
             statinfo = os.stat(filepath)
             stored_list.append(get_description_by_stat(statinfo, fname))
@@ -51,8 +51,8 @@ class StaticFileInstance(BaseHandler):
         if filename == 'upload':
             filename = uploaded_file['name']
 
-        path = os.path.join(GLSettings.static_path, filename)
-        directory_traversal_check(GLSettings.static_path, path)
+        path = os.path.join(Settings.static_path, filename)
+        directory_traversal_check(Settings.static_path, path)
 
         d = threads.deferToThread(write_upload_plaintext_to_disk, uploaded_file, path)
         d.addBoth(lambda ignore: uploaded_file['body'].close)
@@ -63,8 +63,8 @@ class StaticFileInstance(BaseHandler):
         Parameter: filename
         Errors: StaticFileNotFound
         """
-        path = os.path.join(GLSettings.static_path, filename)
-        directory_traversal_check(GLSettings.static_path, path)
+        path = os.path.join(Settings.static_path, filename)
+        directory_traversal_check(Settings.static_path, path)
         if not os.path.exists(path):
             raise errors.StaticFileNotFound
 

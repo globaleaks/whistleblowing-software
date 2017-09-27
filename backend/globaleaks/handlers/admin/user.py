@@ -10,7 +10,7 @@ from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.user import parse_pgp_options, user_serialize_user
 from globaleaks.orm import transact
 from globaleaks.rest import requests, errors
-from globaleaks.settings import GLSettings
+from globaleaks.settings import Settings
 from globaleaks.utils.structures import fill_localized_keys, get_localized_values
 from globaleaks.utils.utility import log, datetime_now
 
@@ -147,7 +147,7 @@ def db_create_user(store, request, language):
     if not request['username']:
         user.username = user.id
 
-    password = request['password'] if request['password'] else GLSettings.memory_copy.default_password
+    password = request['password'] if request['password'] else Settings.memory_copy.default_password
 
     user.salt = security.generateRandomSalt()
     user.password = security.hash_password(password, user.salt)
@@ -198,7 +198,7 @@ def get_user(store, user_id, language):
 
 
 def db_get_admin_users(store):
-    return [user_serialize_user(store, user, GLSettings.memory_copy.default_language)
+    return [user_serialize_user(store, user, Settings.memory_copy.default_language)
             for user in store.find(models.User,models.User.role == u'admin')]
 
 

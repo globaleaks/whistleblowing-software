@@ -15,7 +15,7 @@ from globaleaks.models import User
 from globaleaks.models import WhistleblowerTip
 from globaleaks.orm import transact
 from globaleaks.rest import errors, requests
-from globaleaks.settings import GLSettings
+from globaleaks.settings import Settings
 from globaleaks.utils.utility import datetime_now, deferred_sleep, log, randint
 
 
@@ -35,7 +35,7 @@ def random_login_delay():
            | x > 42          | 42             |
             ----------------------------------
     """
-    failed_attempts = GLSettings.failed_login_attempts
+    failed_attempts = Settings.failed_login_attempts
 
     if failed_attempts >= 5:
         n = failed_attempts * failed_attempts
@@ -49,7 +49,7 @@ def random_login_delay():
 
 
 def db_get_wbtip_by_receipt(store, receipt):
-    hashed_receipt = security.hash_password(receipt, GLSettings.memory_copy.private.receipt_salt)
+    hashed_receipt = security.hash_password(receipt, Settings.memory_copy.private.receipt_salt)
     return store.find(WhistleblowerTip,
                      WhistleblowerTip.receipt_hash == unicode(hashed_receipt)).one()
 
@@ -62,10 +62,10 @@ def login_whistleblower(store, receipt, client_using_tor):
     wbtip = db_get_wbtip_by_receipt(store, receipt)
     if not wbtip:
         log.debug("Whistleblower login: Invalid receipt")
-        GLSettings.failed_login_attempts += 1
+        Settings.failed_login_attempts += 1
         raise errors.InvalidAuthentication
 
-    if not client_using_tor and not GLSettings.memory_copy.accept_tor2web_access['whistleblower']:
+    if not client_using_tor and not Settings.memory_copy.accept_tor2web_access['whistleblower']:
         log.err("Denied login request over clear Web for role 'whistleblower'")
         raise errors.TorNetworkRequired
 
@@ -84,10 +84,10 @@ def login(store, username, password, client_using_tor):
 
     if not user or not security.check_password(password, user.salt, user.password):
         log.debug("Login: Invalid credentials")
-        GLSettings.failed_login_attempts += 1
+        Settings.failed_login_attempts += 1
         raise errors.InvalidAuthentication
 
-    if not client_using_tor and not GLSettings.memory_copy.accept_tor2web_access[user.role]:
+    if not client_using_tor and not Settings.memory_copy.accept_tor2web_access[user.role]:
         log.err("Denied login request over Web for role '%s'" % user.role)
         raise errors.TorNetworkRequired
 

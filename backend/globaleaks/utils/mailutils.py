@@ -20,7 +20,7 @@ from txsocksx.client import SOCKS5ClientEndpoint
 
 from globaleaks import __version__
 from globaleaks.security import encrypt_message, sha256
-from globaleaks.settings import GLSettings
+from globaleaks.settings import Settings
 from globaleaks.utils.tls import TLSClientContextFactory
 from globaleaks.utils.utility import log
 from twisted.internet import reactor, defer
@@ -66,15 +66,15 @@ def sendmail(to_address, subject, body):
 
             return result_deferred.errback(reason)
 
-        authentication_username=GLSettings.memory_copy.notif.username
-        authentication_password=GLSettings.memory_copy.private.smtp_password
-        from_address=GLSettings.memory_copy.notif.source_email
-        smtp_host=GLSettings.memory_copy.notif.server
-        smtp_port=GLSettings.memory_copy.notif.port
-        security=GLSettings.memory_copy.notif.security
+        authentication_username=Settings.memory_copy.notif.username
+        authentication_password=Settings.memory_copy.private.smtp_password
+        from_address=Settings.memory_copy.notif.source_email
+        smtp_host=Settings.memory_copy.notif.server
+        smtp_port=Settings.memory_copy.notif.port
+        security=Settings.memory_copy.notif.security
 
-        message = MIME_mail_build(GLSettings.memory_copy.notif.source_name,
-                                  GLSettings.memory_copy.notif.source_email,
+        message = MIME_mail_build(Settings.memory_copy.notif.source_name,
+                                  Settings.memory_copy.notif.source_email,
                                   to_address,
                                   to_address,
                                   subject,
@@ -102,20 +102,20 @@ def sendmail(to_address, subject, body):
             requireAuthentication=True,
             requireTransportSecurity=(security != 'SSL'),
             retries=0,
-            timeout=GLSettings.mail_timeout)
+            timeout=Settings.mail_timeout)
 
         if security == "SSL":
             factory = tls.TLSMemoryBIOFactory(context_factory, True, factory)
 
-        if GLSettings.testing:
+        if Settings.testing:
             #  Hooking the test down to here is a trick to be able to test all the above code :)
             return defer.succeed(None)
 
-        if GLSettings.memory_copy.anonymize_outgoing_connections:
-            socksProxy = TCP4ClientEndpoint(reactor, GLSettings.socks_host, GLSettings.socks_port, timeout=GLSettings.mail_timeout)
+        if Settings.memory_copy.anonymize_outgoing_connections:
+            socksProxy = TCP4ClientEndpoint(reactor, Settings.socks_host, Settings.socks_port, timeout=Settings.mail_timeout)
             endpoint = SOCKS5ClientEndpoint(smtp_host.encode('utf-8'), smtp_port, socksProxy)
         else:
-            endpoint = TCP4ClientEndpoint(reactor, smtp_host.encode('utf-8'), smtp_port, timeout=GLSettings.mail_timeout)
+            endpoint = TCP4ClientEndpoint(reactor, smtp_host.encode('utf-8'), smtp_port, timeout=Settings.mail_timeout)
 
         d = endpoint.connect(factory)
         d.addErrback(errback)
@@ -165,7 +165,7 @@ def mail_exception_handler(etype, value, tback):
     This would be enabled only in the testing phase and testing release,
     not in production release.
     """
-    if GLSettings.disable_backend_exception_notification:
+    if Settings.disable_backend_exception_notification:
         return
 
     if isinstance(value, GeneratorExit) or \
@@ -209,37 +209,37 @@ def schedule_exception_email(exception_text, *args):
 
         from globaleaks.transactions import schedule_email
 
-        if not hasattr(GLSettings.memory_copy, 'notif'):
+        if not hasattr(Settings.memory_copy, 'notif'):
             log.err("Error: Cannot send mail exception before complete initialization.")
             return
 
-        if GLSettings.exceptions_email_count >= GLSettings.exceptions_email_hourly_limit:
+        if Settings.exceptions_email_count >= Settings.exceptions_email_hourly_limit:
             return
 
         exception_text = (exception_text % args) if args else exception_text
 
         sha256_hash = sha256(bytes(exception_text))
 
-        if sha256_hash not in GLSettings.exceptions:
-            GLSettings.exceptions[sha256_hash] = 1
+        if sha256_hash not in Settings.exceptions:
+            Settings.exceptions[sha256_hash] = 1
         else:
-            GLSettings.exceptions[sha256_hash] += 1
-            if GLSettings.exceptions[sha256_hash] > 5:
+            Settings.exceptions[sha256_hash] += 1
+            if Settings.exceptions[sha256_hash] > 5:
                 log.err("Exception mail suppressed for (%s) [reason: threshold exceeded]",  sha256_hash)
                 return
 
-        GLSettings.exceptions_email_count += 1
+        Settings.exceptions_email_count += 1
 
         mail_subject = "GlobaLeaks Exception"
-        delivery_list = GLSettings.memory_copy.notif.exception_delivery_list
+        delivery_list = Settings.memory_copy.notif.exception_delivery_list
 
-        if GLSettings.devel_mode:
-            mail_subject +=  " [%s]" % GLSettings.developer_name
+        if Settings.devel_mode:
+            mail_subject +=  " [%s]" % Settings.developer_name
             delivery_list = [("globaleaks-stackexception-devel@globaleaks.org", '')]
 
         exception_text = bytes("Platform: %s (%s)\nVersion: %s\n\n%s" \
-                               % (GLSettings.memory_copy.hostname,
-                                  GLSettings.memory_copy.onionservice,
+                               % (Settings.memory_copy.hostname,
+                                  Settings.memory_copy.onionservice,
                                   __version__,
                                   exception_text))
 

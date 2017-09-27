@@ -16,7 +16,7 @@ from globaleaks.handlers.base import BaseHandler, HANDLER_EXEC_TIME_THRESHOLD
 from globaleaks.models.config import PrivateFactory, load_tls_dict
 from globaleaks.orm import transact, transact_sync
 from globaleaks.rest import errors, requests
-from globaleaks.settings import GLSettings
+from globaleaks.settings import Settings
 from globaleaks.utils import letsencrypt
 from globaleaks.utils import tls
 from globaleaks.utils.tempdict import TempDict
@@ -80,8 +80,8 @@ class FileResource(object):
     def generate_dh_params_if_missing(cls):
         gen_dh = yield FileResource.should_gen_dh_params()
         if gen_dh:
-            log.info("Generating the HTTPS DH params with %d bits" % GLSettings.key_bits)
-            dh_params = yield deferToThread(tls.gen_dh_params, GLSettings.key_bits)
+            log.info("Generating the HTTPS DH params with %d bits" % Settings.key_bits)
+            dh_params = yield deferToThread(tls.gen_dh_params, Settings.key_bits)
 
             log.info("Storing the HTTPS DH params")
             yield cls.save_dh_params(dh_params)
@@ -117,8 +117,8 @@ class PrivKeyFileRes(FileResource):
     @classmethod
     @inlineCallbacks
     def perform_file_action(cls):
-        log.info("Generating the HTTPS key with %d bits" % GLSettings.key_bits)
-        key = yield deferToThread(tls.gen_rsa_key, GLSettings.key_bits)
+        log.info("Generating the HTTPS key with %d bits" % Settings.key_bits)
+        key = yield deferToThread(tls.gen_rsa_key, Settings.key_bits)
 
         log.debug("Saving the HTTPS key")
         yield cls.save_tls_key(key)
@@ -155,7 +155,7 @@ class CertFileRes(FileResource):
         ok, _ = cv.validate(db_cfg)
         if ok:
             prv_fact.set_val(u'https_cert', raw_cert)
-            GLSettings.memory_copy.https_cert = raw_cert
+            Settings.memory_copy.https_cert = raw_cert
         else:
             log.err("Cert validation failed")
         return ok
@@ -165,7 +165,7 @@ class CertFileRes(FileResource):
     def delete_file(store):
         prv_fact = PrivateFactory(store)
         prv_fact.set_val(u'https_cert', u'')
-        GLSettings.memory_copy.https_cert = ''
+        Settings.memory_copy.https_cert = ''
 
     @staticmethod
     @transact
@@ -338,8 +338,8 @@ def serialize_https_config_summary(store):
 
     ret = {
       'enabled': prv_fact.get_val(u'https_enabled'),
-      'running': GLSettings.appstate.process_supervisor.is_running(),
-      'status': GLSettings.appstate.process_supervisor.get_status(),
+      'running': Settings.appstate.process_supervisor.is_running(),
+      'status': Settings.appstate.process_supervisor.get_status(),
       'files': file_summaries,
       'acme': prv_fact.get_val(u'acme')
     }
@@ -358,7 +358,7 @@ def try_to_enable_https(store):
     ok, err = cv.validate(db_cfg)
     if ok:
         prv_fact.set_val(u'https_enabled', True)
-        GLSettings.memory_copy.private.https_enabled = True
+        Settings.memory_copy.private.https_enabled = True
     else:
         raise err
 
@@ -380,7 +380,7 @@ class ConfigHandler(BaseHandler):
     def post(self):
         try:
             yield try_to_enable_https()
-            yield GLSettings.appstate.process_supervisor.maybe_launch_https_workers()
+            yield Settings.appstate.process_supervisor.maybe_launch_https_workers()
         except Exception as e:
             log.err(e)
             raise errors.InternalServerError(str(e))
@@ -392,14 +392,14 @@ class ConfigHandler(BaseHandler):
         Disables HTTPS config and shutdown subprocesses.
         """
         yield disable_https()
-        GLSettings.memory_copy.private.https_enabled = False
-        GLSettings.appstate.process_supervisor.shutdown()
+        Settings.memory_copy.private.https_enabled = False
+        Settings.appstate.process_supervisor.shutdown()
 
     @inlineCallbacks
     def delete(self):
         yield disable_https()
-        GLSettings.memory_copy.private.https_enabled = False
-        GLSettings.appstate.process_supervisor.shutdown()
+        Settings.memory_copy.private.https_enabled = False
+        Settings.appstate.process_supervisor.shutdown()
         yield _delete_all_cfg()
 
 
@@ -434,7 +434,7 @@ class CSRFileHandler(FileHandler):
                 'L':  desc['city'],
                 'O':  desc['company'],
                 'OU': desc['department'],
-                'CN': GLSettings.memory_copy.hostname,
+                'CN': Settings.memory_copy.hostname,
                 'emailAddress': desc['email'], # TODO use current admin user mail
         }
 
@@ -458,7 +458,7 @@ class CSRFileHandler(FileHandler):
 
         key_pair = db_cfg['ssl_key']
         try:
-            csr_txt = tls.gen_x509_csr_pem(key_pair, csr_fields, GLSettings.csr_sign_bits)
+            csr_txt = tls.gen_x509_csr_pem(key_pair, csr_fields, Settings.csr_sign_bits)
             log.debug("Generated a new CSR")
             return csr_txt
         except Exception as e:
@@ -470,7 +470,7 @@ class AcmeAccntKeyRes:
     @classmethod
     @transact
     def create_file(store, cls):
-        log.info("Generating an ACME account key with %d bits" % GLSettings.key_bits)
+        log.info("Generating an ACME account key with %d bits" % Settings.key_bits)
 
         # NOTE key size is hard coded to align with minimum CA requirements
         # TODO change format to OpenSSL key to normalize types of keys used
@@ -530,7 +530,7 @@ class AcmeHandler(BaseHandler):
         accnt_key = yield AcmeAccntKeyRes.create_file()
 
         # TODO should throw if key is already registered
-        regr_uri, tos_url = letsencrypt.register_account_key(GLSettings.acme_directory_url, accnt_key)
+        regr_uri, tos_url = letsencrypt.register_account_key(Settings.acme_directory_url, accnt_key)
 
         yield AcmeAccntKeyRes.save_accnt_uri(regr_uri)
 
@@ -552,7 +552,7 @@ def acme_cert_issuance(store):
 
 
 def db_acme_cert_issuance(store):
-    hostname = GLSettings.memory_copy.hostname
+    hostname = Settings.memory_copy.hostname
 
     raw_accnt_key = PrivateFactory(store).get_val(u'acme_accnt_key')
     accnt_key = serialization.load_pem_private_key(str(raw_accnt_key),
@@ -574,12 +574,12 @@ def db_acme_cert_issuance(store):
                                                              priv_key,
                                                              csr,
                                                              tmp_chall_dict,
-                                                             GLSettings.acme_directory_url)
+                                                             Settings.acme_directory_url)
 
     PrivateFactory(store).set_val(u'https_cert', cert_str)
     PrivateFactory(store).set_val(u'https_chain', chain_str)
-    GLSettings.memory_copy.private.https_cert = cert_str
-    GLSettings.memory_copy.private.https_chain = chain_str
+    Settings.memory_copy.private.https_cert = cert_str
+    Settings.memory_copy.private.https_chain = chain_str
 
 
 class AcmeChallResolver(BaseHandler):
@@ -598,12 +598,12 @@ class HostnameTestHandler(BaseHandler):
     @BaseHandler.https_disabled
     @inlineCallbacks
     def post(self):
-        if not GLSettings.memory_copy.hostname:
+        if not Settings.memory_copy.hostname:
             raise errors.ValidationError('hostname is not set')
 
-        net_agent = GLSettings.get_agent()
+        net_agent = Settings.get_agent()
 
-        t = ('http', GLSettings.memory_copy.hostname, 'robots.txt', None, None)
+        t = ('http', Settings.memory_copy.hostname, 'robots.txt', None, None)
         url = bytes(urlparse.urlunsplit(t))
         try:
             resp = yield net_agent.request('GET', url)

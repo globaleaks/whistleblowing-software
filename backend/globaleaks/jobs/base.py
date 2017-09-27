@@ -6,7 +6,7 @@ from twisted.internet.error import ConnectionLost, ConnectionRefusedError, DNSLo
 from twisted.web._newclient import ResponseNeverReceived, ResponseFailed
 from txsocksx.errors import TTLExpired, ConnectionRefused
 
-from globaleaks.settings import GLSettings
+from globaleaks.settings import Settings
 from globaleaks.utils.mailutils import schedule_exception_email, extract_exception_traceback_and_send_email
 from globaleaks.utils.utility import log
 
@@ -145,12 +145,12 @@ class ExternNetLoopingJob(LoopingJob):
         Handles known errors that the twisted.web.client.Agent or txsocksx.http.SOCKS5Agent
         can throw while connecting through their respective networks.
         """
-        if GLSettings.memory_copy.anonymize_outgoing_connections and \
+        if Settings.memory_copy.anonymize_outgoing_connections and \
            isinstance(excep, FAILURES_TOR_OUTGOING):
             log.err('%s job failed Tor network fetch with: %s', self.name, excep)
             return
 
-        if not GLSettings.memory_copy.anonymize_outgoing_connections and \
+        if not Settings.memory_copy.anonymize_outgoing_connections and \
            isinstance(excep, FAILURES_INET_OUTGOING):
             log.err('%s job failed outgoing network fetch with: %s', self.name, excep)
             return

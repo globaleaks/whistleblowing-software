@@ -9,7 +9,7 @@ from storm.variables import UnicodeVariable, JSONVariable
 from globaleaks import DATABASE_VERSION, FIRST_DATABASE_VERSION_SUPPORTED
 from globaleaks.db import db_create_tables
 from globaleaks.db.appdata import load_appdata
-from globaleaks.settings import GLSettings
+from globaleaks.settings import Settings
 from globaleaks.utils.utility import every_language_dict
 
 
@@ -86,13 +86,13 @@ def generateCreateQuery(model):
         a = getattr(model, attr)
         if isinstance(a, PropertyColumn):
             var = a.variable_factory()
-            data_mapping = variableToSQL(var, GLSettings.db_type)
+            data_mapping = variableToSQL(var, Settings.db_type)
             name = a.name
             variables.append((name, data_mapping))
             if a.primary:
                 primary_keys.append(name)
 
-    query += varsToParametersSQL(variables, primary_keys, GLSettings.db_type)
+    query += varsToParametersSQL(variables, primary_keys, Settings.db_type)
 
     return query
 
@@ -145,7 +145,7 @@ class MigrationBase(object):
         try:
             self.store_new.execute(query + ';')
         except OperationalError as excep:
-            GLSettings.print_msg('OperationalError %s while executing query: %s' % (excep, query))
+            Settings.print_msg('OperationalError %s while executing query: %s' % (excep, query))
             raise excep
 
     def commit(self):
@@ -239,8 +239,8 @@ class MigrationBase(object):
 
         specific_migration_function = getattr(self, 'migrate_%s' % model_name, None)
         if specific_migration_function is not None:
-            GLSettings.print_msg(' ł %s [#%d]' % (model_name, objs_count))
+            Settings.print_msg(' ł %s [#%d]' % (model_name, objs_count))
             specific_migration_function()
         else:
-            GLSettings.print_msg(' * %s [#%d]' % (model_name, objs_count))
+            Settings.print_msg(' * %s [#%d]' % (model_name, objs_count))
             self.generic_migration_function(model_name)

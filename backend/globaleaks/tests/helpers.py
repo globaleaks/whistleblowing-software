@@ -24,7 +24,7 @@ from globaleaks.handlers.admin.user import create_admin_user, create_custodian_u
 from globaleaks.handlers.submission import create_submission
 from globaleaks.rest.apicache import GLApiCache
 from globaleaks.rest import errors
-from globaleaks.settings import GLSettings
+from globaleaks.settings import Settings
 from globaleaks.security import GLSecureTemporaryFile
 from globaleaks.utils import tempdict, token, utility
 from globaleaks.utils.structures import fill_localized_keys
@@ -96,22 +96,22 @@ log.info = UTlog.mlog('I')
 
 
 def init_glsettings_for_unit_tests():
-    GLSettings.testing = True
-    GLSettings.set_devel_mode()
-    GLSettings.logging = None
-    GLSettings.failed_login_attempts = 0
-    GLSettings.working_path = './working_path'
+    Settings.testing = True
+    Settings.set_devel_mode()
+    Settings.logging = None
+    Settings.failed_login_attempts = 0
+    Settings.working_path = './working_path'
 
-    GLSettings.eval_paths()
+    Settings.eval_paths()
 
-    GLSettings.set_ramdisk_path()
+    Settings.set_ramdisk_path()
 
-    GLSettings.remove_directories()
-    GLSettings.create_directories()
+    Settings.remove_directories()
+    Settings.create_directories()
 
-    GLSettings.orm_tp = FakeThreadPool()
+    Settings.orm_tp = FakeThreadPool()
 
-    GLSettings.memory_copy.hostname = 'localhost'
+    Settings.memory_copy.hostname = 'localhost'
 
     GLSessions.clear()
 
@@ -193,7 +193,7 @@ def get_dummy_file(filename=None, content_type=None, content=None):
 
     content = base64.b64decode(VALID_BASE64_IMG)
 
-    temporary_file = GLSecureTemporaryFile(GLSettings.tmp_upload_path)
+    temporary_file = GLSecureTemporaryFile(Settings.tmp_upload_path)
 
     temporary_file.write(content)
     temporary_file.avoid_delete()
@@ -308,8 +308,8 @@ class TestGL(unittest.TestCase):
 
         if self.initialize_test_database_using_archived_db:
             shutil.copy(
-                os.path.join(TEST_DIR, 'db', 'empty', GLSettings.db_file_name),
-                os.path.join(GLSettings.working_path, 'db', GLSettings.db_file_name)
+                os.path.join(TEST_DIR, 'db', 'empty', Settings.db_file_name),
+                os.path.join(Settings.working_path, 'db', Settings.db_file_name)
             )
         else:
             yield db.init_db()
@@ -321,13 +321,13 @@ class TestGL(unittest.TestCase):
         yield db.refresh_memory_variables()
 
         sup = ProcessSupervisor([], '127.0.0.1', 8082)
-        GLSettings.appstate.process_supervisor = sup
+        Settings.appstate.process_supervisor = sup
 
         Alarm.reset()
         event.EventTrackQueue.clear()
-        GLSettings.reset_hourly()
+        Settings.reset_hourly()
 
-        GLSettings.submission_minimum_delay = 0
+        Settings.submission_minimum_delay = 0
 
         self.internationalized_text = load_appdata()['node']['whistleblowing_button']
 
@@ -381,8 +381,8 @@ class TestGL(unittest.TestCase):
 
         self.dummyNode = dummyStuff.dummyNode
 
-        self.assertEqual(os.listdir(GLSettings.submission_path), [])
-        self.assertEqual(os.listdir(GLSettings.tmp_upload_path), [])
+        self.assertEqual(os.listdir(Settings.submission_path), [])
+        self.assertEqual(os.listdir(Settings.tmp_upload_path), [])
 
     def get_dummy_user(self, role, username):
         new_u = dict(MockDict().dummyUser)
@@ -480,7 +480,7 @@ class TestGL(unittest.TestCase):
         for _ in range(n):
             dummyFile = self.get_dummy_file()
 
-            dst = os.path.join(GLSettings.submission_path,
+            dst = os.path.join(Settings.submission_path,
                                os.path.basename(dummyFile['path']))
 
             dummyFile = yield threads.deferToThread(write_upload_encrypted_to_disk, dummyFile, dst)
@@ -495,14 +495,14 @@ class TestGL(unittest.TestCase):
             for event_obj in event.events_monitored:
                 for x in range(2):
                     e = event.EventTrack(event_obj, timedelta(seconds=1.0 * x))
-                    GLSettings.RecentEventQ.append(e.serialize())
+                    Settings.RecentEventQ.append(e.serialize())
 
     def pollute_events_and_perform_synthesis(self, number_of_times=10):
         for _ in range(number_of_times):
             for event_obj in event.events_monitored:
                 for x in range(2):
                     e = event.EventTrack(event_obj, timedelta(seconds=1.0 * x))
-                    GLSettings.RecentEventQ.append(e.serialize())
+                    Settings.RecentEventQ.append(e.serialize())
     @transact
     def get_rtips(self, store):
         ret = []
@@ -698,7 +698,7 @@ class TestGLWithPopulatedDB(TestGL):
 
     @transact
     def set_itips_near_to_expire(self, store):
-        date = datetime_now() + timedelta(hours=GLSettings.memory_copy.notif.tip_expiration_threshold - 1)
+        date = datetime_now() + timedelta(hours=Settings.memory_copy.notif.tip_expiration_threshold - 1)
         store.find(models.InternalTip).set(expiration_date = date)
 
 

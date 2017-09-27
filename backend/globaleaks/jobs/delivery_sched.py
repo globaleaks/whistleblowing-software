@@ -13,7 +13,7 @@ from globaleaks.handlers.admin.receiver import admin_serialize_receiver
 from globaleaks.jobs.base import LoopingJob
 from globaleaks.orm import transact_sync
 from globaleaks.security import GLBPGP, GLSecureFile, generateRandomKey
-from globaleaks.settings import GLSettings
+from globaleaks.settings import Settings
 from globaleaks.utils.utility import log
 
 __all__ = ['DeliverySchedule']
@@ -81,7 +81,7 @@ def receiverfile_planning(store):
                 'status': u'processing',
                 'path': ifile.file_path,
                 'size': ifile.size,
-                'receiver': admin_serialize_receiver(store, receiver, user, GLSettings.memory_copy.default_language)
+                'receiver': admin_serialize_receiver(store, receiver, user, Settings.memory_copy.default_language)
             })
 
     return receiverfiles_maps
@@ -104,10 +104,10 @@ def fsops_pgp_encrypt(fpath, recipient_pgp):
     try:
         gpoj.load_key(recipient_pgp['pgp_key_public'])
 
-        filepath = os.path.join(GLSettings.submission_path, fpath)
+        filepath = os.path.join(Settings.submission_path, fpath)
 
         with GLSecureFile(filepath) as f:
-            encrypted_file_path = os.path.join(os.path.abspath(GLSettings.submission_path), "pgp_encrypted-%s" % generateRandomKey(16))
+            encrypted_file_path = os.path.join(os.path.abspath(Settings.submission_path), "pgp_encrypted-%s" % generateRandomKey(16))
             _, encrypted_file_size = gpoj.encrypt_file(recipient_pgp['pgp_key_fingerprint'], f, encrypted_file_path)
 
     except:
@@ -129,7 +129,7 @@ def process_files(receiverfiles_maps):
     for ifile_id, receiverfiles_map in receiverfiles_maps.items():
         ifile_path = receiverfiles_map['ifile_path']
         ifile_name = os.path.basename(ifile_path).split('.')[0]
-        plain_path = os.path.join(GLSettings.submission_path, "%s.plain" % ifile_name)
+        plain_path = os.path.join(Settings.submission_path, "%s.plain" % ifile_name)
 
         receiverfiles_map['plaintext_file_needed'] = False
         for rcounter, rfileinfo in enumerate(receiverfiles_map['rfiles']):
@@ -148,7 +148,7 @@ def process_files(receiverfiles_maps):
                     log.err("%d# Unable to complete PGP encrypt for %s on %s: %s. marking the file as unavailable.",
                             rcounter, rfileinfo['receiver']['name'], rfileinfo['path'], excep)
                     rfileinfo['status'] = u'unavailable'
-            elif GLSettings.memory_copy.allow_unencrypted:
+            elif Settings.memory_copy.allow_unencrypted:
                 receiverfiles_map['plaintext_file_needed'] = True
                 rfileinfo['status'] = u'reference'
                 rfileinfo['path'] = plain_path
@@ -190,7 +190,7 @@ def process_files(receiverfiles_maps):
 
         # Remove the AES file key
         try:
-            os.remove(os.path.join(GLSettings.ramdisk_path, ("%s%s" % (GLSettings.AES_keyfile_prefix, ifile_name))))
+            os.remove(os.path.join(Settings.ramdisk_path, ("%s%s" % (Settings.AES_keyfile_prefix, ifile_name))))
         except OSError as ose:
             log.err("Unable to remove keyfile associated with %s: %s", ifile_path, ose.strerror)
 

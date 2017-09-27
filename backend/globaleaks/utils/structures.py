@@ -7,7 +7,7 @@
 # supports extensions (without changing DB format)
 
 from globaleaks.models import Model
-from globaleaks.settings import GLSettings
+from globaleaks.settings import Settings
 
 
 # Localized strings utility management
@@ -41,7 +41,7 @@ class Rosetta(object):
         return ret
 
     def dump_localized_key(self, key, language):
-        default_language = GLSettings.memory_copy.default_language
+        default_language = Settings.memory_copy.default_language
 
         if key not in self._localized_strings:
             return ""

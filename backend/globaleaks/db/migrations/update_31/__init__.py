@@ -5,7 +5,7 @@ from storm.locals import Int, Bool, Unicode, DateTime, JSON
 
 from globaleaks.db.migrations.update import MigrationBase
 from globaleaks.models import ModelWithID
-from globaleaks.settings import GLSettings
+from globaleaks.settings import Settings
 
 
 class Node_v_30(ModelWithID):
@@ -208,7 +208,7 @@ class MigrationScript(MigrationBase):
                 continue
 
             if v.name == 'logo_id':
-                logo_path = os.path.join(GLSettings.static_path, 'logo.png')
+                logo_path = os.path.join(Settings.static_path, 'logo.png')
                 if not os.path.exists(logo_path):
                     continue
 
@@ -224,7 +224,7 @@ class MigrationScript(MigrationBase):
                 continue
 
             if v.name == 'css_id':
-                css_path = os.path.join(GLSettings.static_path, 'custom_stylesheet.css')
+                css_path = os.path.join(Settings.static_path, 'custom_stylesheet.css')
                 if not os.path.exists(css_path):
                     continue
 
@@ -267,11 +267,11 @@ class MigrationScript(MigrationBase):
 
         self.store_new.add(new_node)
 
-        p = os.path.join(GLSettings.static_path, 'default-profile-picture.png')
+        p = os.path.join(Settings.static_path, 'default-profile-picture.png')
         if os.path.exists(p):
             os.remove(p)
 
-        p = os.path.join(GLSettings.static_path, 'robots.txt')
+        p = os.path.join(Settings.static_path, 'robots.txt')
         if os.path.exists(p):
             os.remove(p)
 
@@ -282,7 +282,7 @@ class MigrationScript(MigrationBase):
             new_obj = self.model_to['User']()
             for _, v in new_obj._storm_columns.items():
                 if v.name == 'img_id':
-                    img_path = os.path.join(GLSettings.static_path, old_obj.id + ".png")
+                    img_path = os.path.join(Settings.static_path, old_obj.id + ".png")
                     if not os.path.exists(img_path):
                         continue
 

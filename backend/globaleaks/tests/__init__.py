@@ -1,6 +1,6 @@
 import os.path
 
-from globaleaks.settings import GLSettings
+from globaleaks.settings import Settings
 
-GLSettings.loglevel = None
+Settings.loglevel = None
 TEST_DIR = os.path.dirname(__file__)

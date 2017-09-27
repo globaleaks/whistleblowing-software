@@ -2,7 +2,7 @@
 # Implement reset of variables related to sessions
 
 from globaleaks.jobs.base import LoopingJob
-from globaleaks.settings import GLSettings
+from globaleaks.settings import Settings
 
 __all__ = ['SessionManagementSchedule']
 
@@ -18,5 +18,5 @@ class SessionManagementSchedule(LoopingJob):
             - Reset of failed login attempts counters
             - Refresh of the api_token's suspension
         """
-        GLSettings.failed_login_attempts = 0
-        GLSettings.appstate.api_token_session_suspended = False
+        Settings.failed_login_attempts = 0
+        Settings.appstate.api_token_session_suspended = False

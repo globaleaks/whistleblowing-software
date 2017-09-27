@@ -15,7 +15,7 @@ from globaleaks.handlers.user import db_user_update_user
 from globaleaks.handlers.user import user_serialize_user
 from globaleaks.orm import transact
 from globaleaks.rest import requests, errors
-from globaleaks.settings import GLSettings
+from globaleaks.settings import Settings
 from globaleaks.utils.structures import get_localized_values
 from globaleaks.utils.utility import log, datetime_to_ISO8601
 
@@ -28,9 +28,9 @@ def receiver_serialize_receiver(store, receiver, user, language):
     ret_dict = user_serialize_user(store, user, language)
 
     ret_dict.update({
-        'can_postpone_expiration': GLSettings.memory_copy.can_postpone_expiration or receiver.can_postpone_expiration,
-        'can_delete_submission': GLSettings.memory_copy.can_delete_submission or receiver.can_delete_submission,
-        'can_grant_permissions': GLSettings.memory_copy.can_grant_permissions or receiver.can_grant_permissions,
+        'can_postpone_expiration': Settings.memory_copy.can_postpone_expiration or receiver.can_postpone_expiration,
+        'can_delete_submission': Settings.memory_copy.can_delete_submission or receiver.can_delete_submission,
+        'can_grant_permissions': Settings.memory_copy.can_grant_permissions or receiver.can_grant_permissions,
         'tip_notification': receiver.tip_notification,
         'contexts': contexts
     })
@@ -131,14 +131,14 @@ def perform_tips_operation(store, receiver_id, operation, rtips_ids):
                            models.InternalTip.id == models.ReceiverTip.internaltip_id):
 
         if operation == 'postpone':
-            can_postpone_expiration = GLSettings.memory_copy.can_postpone_expiration or receiver.can_postpone_expiration
+            can_postpone_expiration = Settings.memory_copy.can_postpone_expiration or receiver.can_postpone_expiration
             if not can_postpone_expiration:
                 raise errors.ForbiddenOperation
 
             db_postpone_expiration_date(store, itip)
 
         elif operation == 'delete':
-            can_delete_submission = GLSettings.memory_copy.can_delete_submission or receiver.can_delete_submission
+            can_delete_submission = Settings.memory_copy.can_delete_submission or receiver.can_delete_submission
             if not can_delete_submission:
                 raise errors.ForbiddenOperation
 

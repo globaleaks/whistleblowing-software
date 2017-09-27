@@ -12,7 +12,7 @@ from globaleaks.models.config import Config
 from globaleaks.models.l10n import ConfigL10N
 from globaleaks.models.validators import shorttext_v, longtext_v, shortlocal_v, longlocal_v, \
     natnum_v, range_v
-from globaleaks.settings import GLSettings
+from globaleaks.settings import Settings
 from globaleaks.utils.utility import datetime_null
 
 class Node_v_33(models.ModelWithID):
@@ -214,12 +214,12 @@ class MigrationScript(MigrationBase):
         old_node = self.store_old.find(self.model_from['Node']).one()
         old_notif = self.store_old.find(self.model_from['Notification']).one()
 
-        with open(os.path.join(GLSettings.client_path, 'data', 'favicon.ico'), 'r') as favicon_file:
+        with open(os.path.join(Settings.client_path, 'data', 'favicon.ico'), 'r') as favicon_file:
             data = favicon_file.read()
             files.db_add_file(self.store_new, data, u'favicon')
             self.entries_count['File'] += 1
 
-        file_path = os.path.join(GLSettings.static_path, 'custom_homepage.html')
+        file_path = os.path.join(Settings.static_path, 'custom_homepage.html')
         if os.path.exists(file_path):
             if not files.db_get_file(self.store_new, u'homepage'):
                 with open(file_path, 'r') as homepage_file:

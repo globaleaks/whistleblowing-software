@@ -2,7 +2,7 @@
 from twisted.internet.address import IPv4Address
 from twisted.internet.defer import inlineCallbacks
 
-from globaleaks.settings import GLSettings
+from globaleaks.settings import Settings
 from globaleaks.tests.helpers import TestGL, forge_request
 
 
@@ -99,8 +99,8 @@ class TestAPI(TestGL):
     def test_tor_detection(self):
         url = 'http://1234567890123456.onion/'
 
-        GLSettings.memory_copy.onionservice = '1234567890123456.onion'
-        GLSettings.appstate.tor_exit_set.add('1.2.3.4')
+        Settings.memory_copy.onionservice = '1234567890123456.onion'
+        Settings.appstate.tor_exit_set.add('1.2.3.4')
 
         request = forge_request(url)
         self.api.render(request)
@@ -112,11 +112,11 @@ class TestAPI(TestGL):
         self.assertFalse(request.client_using_tor)
         self.assertEqual(request.responseCode, 200)
 
-        GLSettings.appstate.tor_exit_set.clear()
+        Settings.appstate.tor_exit_set.clear()
 
     def test_tor_redirection(self):
-        GLSettings.appstate.tor_exit_set.add('1.2.3.4')
-        GLSettings.memory_copy.onionservice = '1234567890123456.onion'
+        Settings.appstate.tor_exit_set.add('1.2.3.4')
+        Settings.memory_copy.onionservice = '1234567890123456.onion'
 
         request = forge_request(uri="https://www.globaleaks.org/")
 
@@ -126,11 +126,11 @@ class TestAPI(TestGL):
         location = request.responseHeaders.getRawHeaders(b'location')[0]
         self.assertEqual('http://1234567890123456.onion/', location)
 
-        GLSettings.appstate.tor_exit_set.clear()
+        Settings.appstate.tor_exit_set.clear()
 
     def test_https_redirect(self):
-        GLSettings.memory_copy.private.https_enabled = True
-        GLSettings.memory_copy.hostname = 'www.globaleaks.org'
+        Settings.memory_copy.private.https_enabled = True
+        Settings.memory_copy.hostname = 'www.globaleaks.org'
 
         request = forge_request(uri="https://www.globaleaks.org/", headers={'X-Tor2Web': '1'})
         self.api.render(request)
@@ -139,8 +139,8 @@ class TestAPI(TestGL):
         location = request.responseHeaders.getRawHeaders(b'location')[0]
         self.assertEqual('https://www.globaleaks.org/', location)
 
-        GLSettings.memory_copy.private.https_enabled = True
-        GLSettings.memory_copy.hostname = 'www.globaleaks.org'
+        Settings.memory_copy.private.https_enabled = True
+        Settings.memory_copy.hostname = 'www.globaleaks.org'
         request = forge_request(uri="http://www.globaleaks.org/public", headers={'X-Tor2Web': '1'})
         self.api.render(request)
         self.assertFalse(request.client_using_tor)

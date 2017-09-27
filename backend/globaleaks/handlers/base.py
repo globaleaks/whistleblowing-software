@@ -17,7 +17,7 @@ from twisted.internet.defer import inlineCallbacks
 from globaleaks.event import track_handler
 from globaleaks.rest import errors, requests
 from globaleaks.security import GLSecureTemporaryFile, directory_traversal_check, generateRandomKey, sha512
-from globaleaks.settings import GLSettings
+from globaleaks.settings import Settings
 from globaleaks.transactions import schedule_email_for_all_admins
 from globaleaks.utils.mailutils import schedule_exception_email
 from globaleaks.utils.tempdict import TempDict
@@ -38,7 +38,7 @@ class GLSessionsFactory(TempDict):
                 GLSessions.delete(other_session.id)
 
 
-GLSessions = GLSessionsFactory(timeout=GLSettings.authentication_lifetime)
+GLSessions = GLSessionsFactory(timeout=Settings.authentication_lifetime)
 
 # https://github.com/globaleaks/GlobaLeaks/issues/1601
 mimetypes.add_type('image/svg+xml', '.svg')
@@ -99,7 +99,7 @@ class StaticFileProducer(object):
     @ivar request: The L{IRequest} to write the contents of the file to.
     @ivar fileObject: The file the contents of which to write to the request.
     """
-    bufferSize = GLSettings.file_chunk_size
+    bufferSize = Settings.file_chunk_size
 
     def __init__(self, request, filePath):
         self.finish = defer.Deferred()
@@ -184,7 +184,7 @@ class BaseHandler(object):
         Decorator for authenticated sessions.
         """
         def wrapper(self, *args, **kwargs):
-            if GLSettings.memory_copy.basic_auth:
+            if Settings.memory_copy.basic_auth:
                 self.basic_auth()
 
             if '*' in roles:
@@ -213,7 +213,7 @@ class BaseHandler(object):
         Decorator that enforces https_enabled is set to True
         """
         def https_enabled_wrapper(*args, **kwargs):
-            if not GLSettings.memory_copy.private.https_enabled:
+            if not Settings.memory_copy.private.https_enabled:
                 raise errors.FailedSanityCheck()
 
             return f(*args, **kwargs)
@@ -226,7 +226,7 @@ class BaseHandler(object):
         Decorator that enforces https_enabled is set to False
         """
         def https_disabled_wrapper(*args, **kwargs):
-            if GLSettings.memory_copy.private.https_enabled:
+            if Settings.memory_copy.private.https_enabled:
                 raise errors.FailedSanityCheck()
 
             return f(*args, **kwargs)
@@ -240,8 +240,8 @@ class BaseHandler(object):
                 auth_type, data = self.request.headers["authorization"].split()
                 usr, pwd = base64.b64decode(data).split(":", 1)
                 if auth_type != "Basic" or \
-                    usr != GLSettings.memory_copy.basic_auth_username or \
-                    pwd != GLSettings.memory_copy.basic_auth_password:
+                    usr != Settings.memory_copy.basic_auth_username or \
+                    pwd != Settings.memory_copy.basic_auth_password:
                     msg = "Authentication failed"
             except AssertionError:
                 msg = "Authentication failed"
@@ -443,22 +443,22 @@ class BaseHandler(object):
 
     def get_current_user(self):
         # Check for the API token
-        if not GLSettings.appstate.api_token_session_suspended and \
-           GLSettings.appstate.api_token_session is not None and \
-           GLSettings.memory_copy.private.admin_api_token_digest:
+        if not Settings.appstate.api_token_session_suspended and \
+           Settings.appstate.api_token_session is not None and \
+           Settings.memory_copy.private.admin_api_token_digest:
             token = bytes(self.request.headers.get('x-api-token', ''))
-            if len(token) != GLSettings.api_token_len:
+            if len(token) != Settings.api_token_len:
                 return None
 
-            token_hash = bytes(GLSettings.memory_copy.private.admin_api_token_digest)
+            token_hash = bytes(Settings.memory_copy.private.admin_api_token_digest)
 
             if constant_time.bytes_eq(sha512(token), token_hash):
-                return GLSettings.appstate.api_token_session
+                return Settings.appstate.api_token_session
             else:
-                GLSettings.appstate.api_token_session_suspended = True
+                Settings.appstate.api_token_session_suspended = True
                 msg = "Warning: API Token temporary suspended due to possible attack"
                 log.err(msg)
-                schedule_email_for_all_admins("%s notification" % GLSettings.memory_copy.name,
+                schedule_email_for_all_admins("%s notification" % Settings.memory_copy.name,
                                              "API Token temporary suspended due to possible attack")
 
         # Check for user session
@@ -476,13 +476,13 @@ class BaseHandler(object):
         flow_identifier = self.request.args['flowIdentifier'][0]
 
         chunk_size = len(self.request.args['file'][0])
-        if ((chunk_size / (1024 * 1024)) > GLSettings.memory_copy.maximum_filesize or
-            (total_file_size / (1024 * 1024)) > GLSettings.memory_copy.maximum_filesize):
+        if ((chunk_size / (1024 * 1024)) > Settings.memory_copy.maximum_filesize or
+            (total_file_size / (1024 * 1024)) > Settings.memory_copy.maximum_filesize):
             log.err("File upload request rejected: file too big")
-            raise errors.FileTooBig(GLSettings.memory_copy.maximum_filesize)
+            raise errors.FileTooBig(Settings.memory_copy.maximum_filesize)
 
         if flow_identifier not in GLUploads:
-            GLUploads[flow_identifier] = GLSecureTemporaryFile(GLSettings.tmp_upload_path)
+            GLUploads[flow_identifier] = GLSecureTemporaryFile(Settings.tmp_upload_path)
 
         f = GLUploads[flow_identifier]
         f.write(self.request.args['file'][0])
@@ -516,7 +516,7 @@ class BaseHandler(object):
         track_handler(self)
 
         if self.uniform_answer_time:
-            needed_delay = (GLSettings.side_channels_guard - (self.request.execution_time.microseconds / 1000)) / 1000
+            needed_delay = (Settings.side_channels_guard - (self.request.execution_time.microseconds / 1000)) / 1000
             if needed_delay > 0:
                 yield deferred_sleep(needed_delay)
 

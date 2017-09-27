@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from globaleaks.handlers.base import GLSessions, new_session
 from globaleaks.jobs import session_management_sched
-from globaleaks.settings import GLSettings
+from globaleaks.settings import Settings
 from globaleaks.tests import helpers
 from twisted.internet.defer import inlineCallbacks
 
@@ -15,7 +15,7 @@ class TestSessionManagementSched(helpers.TestGL):
 
         self.assertEqual(len(GLSessions), 3)
 
-        self.test_reactor.pump([1] * (GLSettings.authentication_lifetime - 1))
+        self.test_reactor.pump([1] * (Settings.authentication_lifetime - 1))
 
         self.assertEqual(len(GLSessions), 3)
 
