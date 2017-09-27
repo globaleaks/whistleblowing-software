@@ -94,6 +94,30 @@ module.exports = function(grunt) {
             ],
             expand: true
           }]
+      },
+      unittest: {
+        files: [{
+          expand: true,
+          cwd: 'node_modules',
+          src: ['mocha/mocha.css', 'mocha/mocha.js', 'chai/chai.js','angular-mocks/angular-mocks.js'],
+          flatten: true,
+          dest: 'tests/unit/lib',
+        },
+        {
+          src: 'build/js/scripts.js',
+          dest: 'tests/unit/lib/scripts.js',
+        }],
+      }
+    },
+
+    browserify: {
+      unittest: {
+        files: {
+          'tests/unit/lib/unittest-bundle.js': ['tests/unit/unittest.js']
+        },
+        options: {
+          external: ['openpgp',]
+        }
       }
     },
 
@@ -281,6 +305,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-string-replace');
   grunt.loadNpmTasks('grunt-usemin');
   grunt.loadNpmTasks('grunt-mocha-test');
+  grunt.loadNpmTasks('grunt-browserify');
   grunt.loadNpmTasks("gruntify-eslint");
 
   var readDynamicStrings = function() {
@@ -890,5 +915,11 @@ module.exports = function(grunt) {
   grunt.registerTask('end2end-coverage-report', [
     'makeReport',
     'generateCoverallsJson'
+  ]);
+
+  grunt.registerTask('unittest', [
+    'build',
+    'copy:unittest',
+    'browserify:unittest',
   ]);
 };
