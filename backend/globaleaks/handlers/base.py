@@ -25,7 +25,7 @@ from globaleaks.utils.utility import log, deferred_sleep
 
 HANDLER_EXEC_TIME_THRESHOLD = 120
 
-GLUploads = {}
+Uploads = TempDict(timeout=HANDLER_EXEC_TIME_THRESHOLD)
 
 
 class SessionsFactory(TempDict):
@@ -160,7 +160,6 @@ def new_session(user_id, user_role, user_status):
 
 
 class BaseHandler(object):
-    serialize_lists = True
     handler_exec_time_threshold = HANDLER_EXEC_TIME_THRESHOLD
     uniform_answer_time = False
     cache_resource = False
@@ -481,10 +480,10 @@ class BaseHandler(object):
             log.err("File upload request rejected: file too big")
             raise errors.FileTooBig(Settings.memory_copy.maximum_filesize)
 
-        if flow_identifier not in GLUploads:
-            GLUploads[flow_identifier] = SecureTemporaryFile(Settings.tmp_upload_path)
+        if flow_identifier not in Uploads:
+            Uploads.set(flow_identifier, SecureTemporaryFile(Settings.tmp_upload_path))
 
-        f = GLUploads[flow_identifier]
+        f = Uploads.get(flow_identifier)
         f.write(self.request.args['file'][0])
 
         if self.request.args['flowChunkNumber'][0] != self.request.args['flowTotalChunks'][0]:
