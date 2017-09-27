@@ -54,7 +54,6 @@ class FileAdd(BaseHandler):
     WhistleBlower interface to upload a new file for an already completed submission
     """
     check_roles = 'whistleblower'
-    handler_exec_time_threshold = 3600
 
     @inlineCallbacks
     def post(self):
@@ -91,7 +90,6 @@ class FileInstance(BaseHandler):
     """
     WhistleBlower interface to upload a new file for an yet to be completed submission
     """
-    handler_exec_time_threshold = 3600
     check_roles = 'unauthenticated'
 
     @inlineCallbacks
