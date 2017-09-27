@@ -5,7 +5,7 @@ from datetime import datetime
 
 from globaleaks.rest import errors
 from globaleaks.security import generateRandomSalt, hash_password, check_password, change_password, \
-    directory_traversal_check, GLSecureTemporaryFile, GLSecureFile, \
+    directory_traversal_check, SecureTemporaryFile, SecureFile, \
     GLBPGP
 from globaleaks.settings import Settings
 from globaleaks.tests import helpers
@@ -77,9 +77,9 @@ class TestFilesystemAccess(helpers.TestGL):
         directory_traversal_check(Settings.static_path, valid_access)
 
 
-class TestGLSecureFiles(helpers.TestGL):
+class TestSecureFiles(helpers.TestGL):
     def test_temporary_file(self):
-        a = GLSecureTemporaryFile(Settings.tmp_upload_path)
+        a = SecureTemporaryFile(Settings.tmp_upload_path)
         antani = "0123456789" * 10000
         a.write(antani)
         self.assertTrue(antani == a.read())
@@ -87,7 +87,7 @@ class TestGLSecureFiles(helpers.TestGL):
         self.assertFalse(os.path.exists(a.filepath))
 
     def test_temporary_file_write_after_read(self):
-        a = GLSecureTemporaryFile(Settings.tmp_upload_path)
+        a = SecureTemporaryFile(Settings.tmp_upload_path)
         antani = "0123456789" * 10000
         a.write(antani)
         self.assertTrue(antani == a.read())
@@ -95,25 +95,25 @@ class TestGLSecureFiles(helpers.TestGL):
         a.close()
 
     def test_temporary_file_avoid_delete(self):
-        a = GLSecureTemporaryFile(Settings.tmp_upload_path)
+        a = SecureTemporaryFile(Settings.tmp_upload_path)
         a.avoid_delete()
         antani = "0123456789" * 10000
         a.write(antani)
         a.close()
         self.assertTrue(os.path.exists(a.filepath))
-        b = GLSecureFile(a.filepath)
+        b = SecureFile(a.filepath)
         self.assertTrue(antani == b.read())
         b.close()
 
     def test_temporary_file_lost_key_due_to_eventual_bug_or_reboot(self):
-        a = GLSecureTemporaryFile(Settings.tmp_upload_path)
+        a = SecureTemporaryFile(Settings.tmp_upload_path)
         a.avoid_delete()
         antani = "0123456789" * 10000
         a.write(antani)
         a.close()
         self.assertTrue(os.path.exists(a.filepath))
         os.remove(a.keypath)
-        self.assertRaises(IOError, GLSecureFile, a.filepath)
+        self.assertRaises(IOError, SecureFile, a.filepath)
         a.close()
 
 

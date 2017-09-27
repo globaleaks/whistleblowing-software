@@ -19,7 +19,7 @@ from globaleaks.handlers.admin.node import db_admin_serialize_node
 from globaleaks.handlers.admin.notification import db_get_notification
 from globaleaks.handlers.admin.user import db_get_admin_users
 from globaleaks.orm import transact
-from globaleaks.rest.apicache import GLApiCache
+from globaleaks.rest.apicache import ApiCache
 from globaleaks.settings import Settings
 from globaleaks.transactions import db_schedule_email
 from globaleaks.utils.singleton import Singleton
@@ -318,7 +318,7 @@ class AlarmClass(object):
                      old_accept_submissions, accept_submissions)
 
             # Must invalidate the cache here becuase accept_subs served in /public has changed
-            GLApiCache.invalidate()
+            ApiCache.invalidate()
 
 # Alarm is a singleton class exported once
 Alarm = AlarmClass()

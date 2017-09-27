@@ -14,7 +14,7 @@ from globaleaks.db.appdata import load_appdata
 from globaleaks.orm import transact
 from globaleaks.handlers import rtip, wbtip
 from globaleaks.handlers.authentication import db_get_wbtip_by_receipt
-from globaleaks.handlers.base import BaseHandler, GLSessions, new_session, \
+from globaleaks.handlers.base import BaseHandler, Sessions, new_session, \
     write_upload_encrypted_to_disk
 from globaleaks.handlers.admin.context import create_context, get_context
 from globaleaks.handlers.admin.field import db_create_field
@@ -22,10 +22,10 @@ from globaleaks.handlers.admin.step import create_step
 from globaleaks.handlers.admin.questionnaire import get_questionnaire, db_get_questionnaire
 from globaleaks.handlers.admin.user import create_admin_user, create_custodian_user, create_receiver_user
 from globaleaks.handlers.submission import create_submission
-from globaleaks.rest.apicache import GLApiCache
+from globaleaks.rest.apicache import ApiCache
 from globaleaks.rest import errors
 from globaleaks.settings import Settings
-from globaleaks.security import GLSecureTemporaryFile
+from globaleaks.security import SecureTemporaryFile
 from globaleaks.utils import tempdict, token, utility
 from globaleaks.utils.structures import fill_localized_keys
 from globaleaks.utils.utility import datetime_null, datetime_now, datetime_to_ISO8601, \
@@ -113,7 +113,7 @@ def init_glsettings_for_unit_tests():
 
     Settings.memory_copy.hostname = 'localhost'
 
-    GLSessions.clear()
+    Sessions.clear()
 
 
 @transact
@@ -193,7 +193,7 @@ def get_dummy_file(filename=None, content_type=None, content=None):
 
     content = base64.b64decode(VALID_BASE64_IMG)
 
-    temporary_file = GLSecureTemporaryFile(Settings.tmp_upload_path)
+    temporary_file = SecureTemporaryFile(Settings.tmp_upload_path)
 
     temporary_file.write(content)
     temporary_file.avoid_delete()
@@ -300,7 +300,7 @@ class TestGL(unittest.TestCase):
         jobs.base.test_reactor = self.test_reactor
         tempdict.test_reactor = self.test_reactor
         token.TokenList.reactor = self.test_reactor
-        GLSessions.reactor = self.test_reactor
+        Sessions.reactor = self.test_reactor
 
         init_glsettings_for_unit_tests()
 
@@ -733,10 +733,10 @@ class TestHandler(TestGLWithPopulatedDB):
 
     def initialization(self):
         # we need to reset settings.session to keep each test independent
-        GLSessions.clear()
+        Sessions.clear()
 
-        # we need to reset GLApiCache to keep each test independent
-        GLApiCache.invalidate()
+        # we need to reset ApiCache to keep each test independent
+        ApiCache.invalidate()
 
     def request(self, body='', uri='https://www.globaleaks.org/',
                 user_id=None,  role=None, multilang=False, headers=None,

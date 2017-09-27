@@ -12,7 +12,7 @@ from globaleaks import models
 from globaleaks.handlers.admin.receiver import admin_serialize_receiver
 from globaleaks.jobs.base import LoopingJob
 from globaleaks.orm import transact_sync
-from globaleaks.security import GLBPGP, GLSecureFile, generateRandomKey
+from globaleaks.security import GLBPGP, SecureFile, generateRandomKey
 from globaleaks.settings import Settings
 from globaleaks.utils.utility import log
 
@@ -106,7 +106,7 @@ def fsops_pgp_encrypt(fpath, recipient_pgp):
 
         filepath = os.path.join(Settings.submission_path, fpath)
 
-        with GLSecureFile(filepath) as f:
+        with SecureFile(filepath) as f:
             encrypted_file_path = os.path.join(os.path.abspath(Settings.submission_path), "pgp_encrypted-%s" % generateRandomKey(16))
             _, encrypted_file_size = gpoj.encrypt_file(recipient_pgp['pgp_key_fingerprint'], f, encrypted_file_path)
 
@@ -160,7 +160,7 @@ def process_files(receiverfiles_maps):
                       ifile_path, plain_path)
 
             try:
-                with open(plain_path, "wb") as plaintext_f, GLSecureFile(ifile_path) as encrypted_file:
+                with open(plain_path, "wb") as plaintext_f, SecureFile(ifile_path) as encrypted_file:
                     chunk_size = 4096
                     written_size = 0
                     while True:

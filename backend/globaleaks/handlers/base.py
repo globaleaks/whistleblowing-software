@@ -16,7 +16,7 @@ from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.event import track_handler
 from globaleaks.rest import errors, requests
-from globaleaks.security import GLSecureTemporaryFile, directory_traversal_check, generateRandomKey, sha512
+from globaleaks.security import SecureTemporaryFile, directory_traversal_check, generateRandomKey, sha512
 from globaleaks.settings import Settings
 from globaleaks.transactions import schedule_email_for_all_admins
 from globaleaks.utils.mailutils import schedule_exception_email
@@ -28,17 +28,17 @@ HANDLER_EXEC_TIME_THRESHOLD = 120
 GLUploads = {}
 
 
-class GLSessionsFactory(TempDict):
+class SessionsFactory(TempDict):
     """Extends TempDict to provide session management functions ontop of temp session keys"""
 
     def revoke_all_sessions(self, user_id):
-        for other_session in GLSessions.values():
+        for other_session in Sessions.values():
             if other_session.user_id == user_id:
                 log.debug("Revoking old session for %s", user_id)
-                GLSessions.delete(other_session.id)
+                Sessions.delete(other_session.id)
 
 
-GLSessions = GLSessionsFactory(timeout=Settings.authentication_lifetime)
+Sessions = SessionsFactory(timeout=Settings.authentication_lifetime)
 
 # https://github.com/globaleaks/GlobaLeaks/issues/1601
 mimetypes.add_type('image/svg+xml', '.svg')
@@ -137,7 +137,7 @@ class StaticFileProducer(object):
             self.finish.callback(None)
 
 
-class GLSession(object):
+class Session(object):
     expireCall = None # attached to object by tempDict
 
     def __init__(self, user_id, user_role, user_status):
@@ -154,8 +154,8 @@ class GLSession(object):
 
 
 def new_session(user_id, user_role, user_status):
-    session = GLSession(user_id, user_role, user_status)
-    GLSessions.set(session.id, session)
+    session = Session(user_id, user_role, user_status)
+    Sessions.set(session.id, session)
     return session
 
 
@@ -466,7 +466,7 @@ class BaseHandler(object):
         if session_id is None:
             return None
 
-        return GLSessions.get(session_id)
+        return Sessions.get(session_id)
 
     def get_file_upload(self):
         if 'flowFilename' not in self.request.args:
@@ -482,7 +482,7 @@ class BaseHandler(object):
             raise errors.FileTooBig(Settings.memory_copy.maximum_filesize)
 
         if flow_identifier not in GLUploads:
-            GLUploads[flow_identifier] = GLSecureTemporaryFile(Settings.tmp_upload_path)
+            GLUploads[flow_identifier] = SecureTemporaryFile(Settings.tmp_upload_path)
 
         f = GLUploads[flow_identifier]
         f.write(self.request.args['file'][0])
