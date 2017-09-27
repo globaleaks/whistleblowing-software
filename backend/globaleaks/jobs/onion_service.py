@@ -12,7 +12,7 @@ from globaleaks.db import refresh_memory_variables
 from globaleaks.jobs.base import BaseJob
 from globaleaks.models.config import NodeFactory, PrivateFactory
 from globaleaks.orm import transact
-from globaleaks.rest.apicache import GLApiCache
+from globaleaks.rest.apicache import ApiCache
 from globaleaks.utils.utility import log
 from globaleaks.settings import Settings
 
@@ -47,7 +47,7 @@ def set_onion_service_info(store, hostname, key):
 
     Settings.memory_copy.onionservice = hostname
 
-    GLApiCache.invalidate()
+    ApiCache.invalidate()
 
 
 class OnionService(BaseJob):

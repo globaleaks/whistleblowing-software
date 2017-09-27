@@ -1,5 +1,5 @@
 from globaleaks.handlers import authentication, admin
-from globaleaks.handlers.base import GLSessions
+from globaleaks.handlers.base import Sessions
 from globaleaks.handlers.user import UserInstance
 from globaleaks.handlers.wbtip import WBTipInstance
 from globaleaks.rest import errors
@@ -22,7 +22,7 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
         })
         response = yield handler.post()
         self.assertTrue('session_id' in response)
-        self.assertEqual(len(GLSessions), 1)
+        self.assertEqual(len(Sessions), 1)
 
     @inlineCallbacks
     def test_accept_login_in_tor2web(self):
@@ -33,7 +33,7 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
         Settings.memory_copy.accept_tor2web_access['admin'] = True
         response = yield handler.post()
         self.assertTrue('session_id' in response)
-        self.assertEqual(len(GLSessions), 1)
+        self.assertEqual(len(Sessions), 1)
 
     @inlineCallbacks
     def test_deny_login_in_tor2web(self):
@@ -77,8 +77,8 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
         r1 = yield handler.post()
         r2 = yield handler.post()
 
-        self.assertTrue(GLSessions.get(r1['session_id']) is None)
-        self.assertTrue(GLSessions.get(r2['session_id']) is not None)
+        self.assertTrue(Sessions.get(r1['session_id']) is None)
+        self.assertTrue(Sessions.get(r2['session_id']) is not None)
 
     @inlineCallbacks
     def test_session_is_revoked(self):
@@ -131,7 +131,7 @@ class TestReceiptAuth(helpers.TestHandlerWithPopulatedDB):
         handler.request.client_using_tor = True
         response = yield handler.post()
         self.assertTrue('session_id' in response)
-        self.assertEqual(len(GLSessions), 1)
+        self.assertEqual(len(Sessions), 1)
 
     @inlineCallbacks
     def test_accept_whistleblower_login_in_tor2web(self):
@@ -142,7 +142,7 @@ class TestReceiptAuth(helpers.TestHandlerWithPopulatedDB):
         Settings.memory_copy.accept_tor2web_access['whistleblower'] = True
         response = yield handler.post()
         self.assertTrue('session_id' in response)
-        self.assertEqual(len(GLSessions), 1)
+        self.assertEqual(len(Sessions), 1)
 
     @inlineCallbacks
     def test_deny_whistleblower_login_in_tor2web(self):
@@ -156,7 +156,7 @@ class TestReceiptAuth(helpers.TestHandlerWithPopulatedDB):
     @inlineCallbacks
     def test_single_session_per_whistleblower(self):
         """
-        Asserts that the first_id is dropped from GLSessions and requests
+        Asserts that the first_id is dropped from Sessions and requests
         using that session id are rejected
         """
         yield self.perform_full_submission_actions()
@@ -178,9 +178,9 @@ class TestReceiptAuth(helpers.TestHandlerWithPopulatedDB):
                                      handler_cls=WBTipInstance)
         yield self.assertRaises(errors.NotAuthenticated, wbtip_handler.get)
 
-        self.assertTrue(GLSessions.get(first_id) is None)
+        self.assertTrue(Sessions.get(first_id) is None)
 
-        valid_session = GLSessions.get(second_id)
+        valid_session = Sessions.get(second_id)
         self.assertTrue(valid_session is not None)
 
         self.assertEqual(valid_session.user_role, 'whistleblower')
@@ -203,7 +203,7 @@ class TestSessionHandler(helpers.TestHandlerWithPopulatedDB):
         response = yield handler.post()
         self.assertTrue(handler.current_user is None)
         self.assertTrue('session_id' in response)
-        self.assertEqual(len(GLSessions), 1)
+        self.assertEqual(len(Sessions), 1)
 
         self._handler = authentication.SessionHandler
 
@@ -212,7 +212,7 @@ class TestSessionHandler(helpers.TestHandlerWithPopulatedDB):
         handler = self.request({}, headers={'x-session': session_id})
         yield handler.delete()
         self.assertTrue(handler.get_current_user() is None)
-        self.assertEqual(len(GLSessions), 0)
+        self.assertEqual(len(Sessions), 0)
 
     @inlineCallbacks
     def test_successful_whistleblower_logout(self):
@@ -229,7 +229,7 @@ class TestSessionHandler(helpers.TestHandlerWithPopulatedDB):
         response = yield handler.post()
         self.assertTrue(handler.current_user is None)
         self.assertTrue('session_id' in response)
-        self.assertEqual(len(GLSessions), 1)
+        self.assertEqual(len(Sessions), 1)
 
         self._handler = authentication.SessionHandler
 
@@ -237,4 +237,4 @@ class TestSessionHandler(helpers.TestHandlerWithPopulatedDB):
         handler = self.request({}, headers={'x-session': response['session_id']})
         yield handler.delete()
         self.assertTrue(handler.get_current_user() is None)
-        self.assertEqual(len(GLSessions), 0)
+        self.assertEqual(len(Sessions), 0)

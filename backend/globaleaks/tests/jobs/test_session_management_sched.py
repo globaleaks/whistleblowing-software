@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from globaleaks.handlers.base import GLSessions, new_session
+from globaleaks.handlers.base import Sessions, new_session
 from globaleaks.jobs import session_management_sched
 from globaleaks.settings import Settings
 from globaleaks.tests import helpers
@@ -13,14 +13,14 @@ class TestSessionManagementSched(helpers.TestGL):
         new_session('admin', 'admin', 'enabled')  # 2!
         new_session('admin', 'admin', 'enabled')  # 3!
 
-        self.assertEqual(len(GLSessions), 3)
+        self.assertEqual(len(Sessions), 3)
 
         self.test_reactor.pump([1] * (Settings.authentication_lifetime - 1))
 
-        self.assertEqual(len(GLSessions), 3)
+        self.assertEqual(len(Sessions), 3)
 
         self.test_reactor.advance(1)
 
-        self.assertEqual(len(GLSessions), 0)
+        self.assertEqual(len(Sessions), 0)
 
         yield session_management_sched.SessionManagementSchedule().run()

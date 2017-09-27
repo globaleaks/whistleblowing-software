@@ -48,7 +48,7 @@ def timedLogFormatter(timestamp, request):
               length=request.sentLength))
 
 
-class GLService(service.Service):
+class Service(service.Service):
     def startService(self):
         mask = 0
         if Settings.devel_mode:
@@ -147,7 +147,7 @@ if not Settings.nodaemon and Settings.logfile:
     application.setComponent(txlog.ILogObserver, GLLogObserver(gl_logfile).emit)
 
 try:
-    GLService().setServiceParent(application)
+    Service().setServiceParent(application)
 except Exception as excep:
     fail_startup(excep)
     # Exit with non-zero exit code to signal systemd/systemV

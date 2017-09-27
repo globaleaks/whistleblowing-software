@@ -9,7 +9,7 @@ from storm import exceptions
 from globaleaks import models, security, DATABASE_VERSION, FIRST_DATABASE_VERSION_SUPPORTED
 from globaleaks.db.appdata import db_update_defaults, load_appdata
 from globaleaks.handlers.admin import files
-from globaleaks.handlers.base import GLSession
+from globaleaks.handlers.base import Session
 from globaleaks.orm import transact, transact_sync
 from globaleaks.settings import Settings
 from globaleaks.utils.objectdict import ObjectDict
@@ -175,7 +175,7 @@ def db_refresh_memory_variables(store):
     if Settings.memory_copy.private.admin_api_token_digest:
         api_id = store.find(models.User.id, models.User.role==u'admin').order_by(models.User.creation_date).first()
         if api_id is not None:
-            Settings.appstate.api_token_session = GLSession(api_id, 'admin', 'enabled')
+            Settings.appstate.api_token_session = Session(api_id, 'admin', 'enabled')
 
 
 @transact

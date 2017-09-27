@@ -28,7 +28,6 @@ class TokenListClass(TempDict):
 
     def expireCallback(self, item):
         for f in item.uploaded_files:
-            # TODO delete from GLUploadFile
             try:
                 os.remove(f['path'])
             except Exception:

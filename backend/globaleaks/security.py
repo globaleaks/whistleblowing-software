@@ -126,7 +126,7 @@ def overwrite_and_remove(absolutefpath, iterations_number=1):
     log.debug("Performed deletion of file: %s", absolutefpath)
 
 
-class GLSecureTemporaryFile(_TemporaryFileWrapper):
+class SecureTemporaryFile(_TemporaryFileWrapper):
     """
     WARNING!
     You can't use this File object like a normal file object,
@@ -252,7 +252,7 @@ class GLSecureTemporaryFile(_TemporaryFileWrapper):
         return self.decryptor.finalize()
 
 
-class GLSecureFile(GLSecureTemporaryFile):
+class SecureFile(SecureTemporaryFile):
     def __init__(self, filepath):
         self.filepath = filepath
 
