@@ -239,6 +239,8 @@
     <!-- endbuild -->
 
     <script type="text/javascript">
+      if(!window.console) { window.console={}; window.console.log = function(){}; }
+
       var isBrowserCompatible = function() {
         var crawlers = [
           "Googlebot",
