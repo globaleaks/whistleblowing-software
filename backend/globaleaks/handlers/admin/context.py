@@ -9,7 +9,7 @@ from globaleaks.handlers.admin.modelimgs import db_get_model_img
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.orm import transact
 from globaleaks.rest import requests
-from globaleaks.settings import Settings
+from globaleaks.state import State
 from globaleaks.utils.structures import fill_localized_keys, get_localized_values
 from globaleaks.utils.utility import log
 
@@ -100,7 +100,7 @@ def db_update_context(store, context, request, language):
     request = fill_context_request(request, language)
 
     if not request['questionnaire_id']:
-        request['questionnaire_id'] = Settings.memory_copy.default_questionnaire
+        request['questionnaire_id'] = State.tenant_cache[1].default_questionnaire
 
     context.update(request)
 

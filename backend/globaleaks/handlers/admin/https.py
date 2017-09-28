@@ -17,8 +17,8 @@ from globaleaks.models.config import PrivateFactory, load_tls_dict
 from globaleaks.orm import transact, transact_sync
 from globaleaks.rest import errors, requests
 from globaleaks.settings import Settings
-from globaleaks.utils import letsencrypt
-from globaleaks.utils import tls
+from globaleaks.state import State
+from globaleaks.utils import letsencrypt, tls
 from globaleaks.utils.tempdict import TempDict
 from globaleaks.utils.utility import datetime_to_ISO8601, format_cert_expr_date, log
 
@@ -155,7 +155,7 @@ class CertFileRes(FileResource):
         ok, _ = cv.validate(db_cfg)
         if ok:
             prv_fact.set_val(u'https_cert', raw_cert)
-            Settings.memory_copy.https_cert = raw_cert
+            State.tenant_cache[1].https_cert = raw_cert
         else:
             log.err("Cert validation failed")
         return ok
@@ -165,7 +165,7 @@ class CertFileRes(FileResource):
     def delete_file(store):
         prv_fact = PrivateFactory(store)
         prv_fact.set_val(u'https_cert', u'')
-        Settings.memory_copy.https_cert = ''
+        State.tenant_cache[1].https_cert = ''
 
     @staticmethod
     @transact
@@ -292,12 +292,10 @@ class FileHandler(BaseHandler):
 
         return self.mapped_file_resources[name]
 
-    @BaseHandler.https_disabled
     def delete(self, name):
         file_res_cls = self.get_file_res_or_raise(name)
         return file_res_cls.delete_file()
 
-    @BaseHandler.https_disabled
     @inlineCallbacks
     def post(self, name):
         req = self.validate_message(self.request.content.read(),
@@ -311,7 +309,6 @@ class FileHandler(BaseHandler):
         if not ok:
             raise errors.ValidationError()
 
-    @BaseHandler.https_disabled
     @inlineCallbacks
     def put(self, name):
         file_res_cls = self.get_file_res_or_raise(name)
@@ -320,7 +317,6 @@ class FileHandler(BaseHandler):
 
         yield file_res_cls.perform_file_action()
 
-    @BaseHandler.https_disabled
     def get(self, name):
         file_res_cls = self.get_file_res_or_raise(name)
 
@@ -338,8 +334,8 @@ def serialize_https_config_summary(store):
 
     ret = {
       'enabled': prv_fact.get_val(u'https_enabled'),
-      'running': Settings.appstate.process_supervisor.is_running(),
-      'status': Settings.appstate.process_supervisor.get_status(),
+      'running': State.process_supervisor.is_running(),
+      'status': State.process_supervisor.get_status(),
       'files': file_summaries,
       'acme': prv_fact.get_val(u'acme')
     }
@@ -358,7 +354,7 @@ def try_to_enable_https(store):
     ok, err = cv.validate(db_cfg)
     if ok:
         prv_fact.set_val(u'https_enabled', True)
-        Settings.memory_copy.private.https_enabled = True
+        State.tenant_cache[1].private.https_enabled = True
     else:
         raise err
 
@@ -375,31 +371,29 @@ class ConfigHandler(BaseHandler):
     def get(self):
         return serialize_https_config_summary()
 
-    @BaseHandler.https_disabled
     @inlineCallbacks
     def post(self):
         try:
             yield try_to_enable_https()
-            yield Settings.appstate.process_supervisor.maybe_launch_https_workers()
+            yield State.process_supervisor.maybe_launch_https_workers()
         except Exception as e:
             log.err(e)
             raise errors.InternalServerError(str(e))
 
-    @BaseHandler.https_enabled
     @inlineCallbacks
     def put(self):
         """
         Disables HTTPS config and shutdown subprocesses.
         """
         yield disable_https()
-        Settings.memory_copy.private.https_enabled = False
-        Settings.appstate.process_supervisor.shutdown()
+        State.tenant_cache[1].private.https_enabled = False
+        State.process_supervisor.shutdown()
 
     @inlineCallbacks
     def delete(self):
         yield disable_https()
-        Settings.memory_copy.private.https_enabled = False
-        Settings.appstate.process_supervisor.shutdown()
+        State.tenant_cache[1].private.https_enabled = False
+        State.process_supervisor.shutdown()
         yield _delete_all_cfg()
 
 
@@ -420,7 +414,6 @@ def _delete_all_cfg(store):
 class CSRFileHandler(FileHandler):
     check_roles = 'admin'
 
-    @BaseHandler.https_disabled
     @inlineCallbacks
     def post(self, name):
         request = self.validate_message(self.request.content.read(),
@@ -434,7 +427,7 @@ class CSRFileHandler(FileHandler):
                 'L':  desc['city'],
                 'O':  desc['company'],
                 'OU': desc['department'],
-                'CN': Settings.memory_copy.hostname,
+                'CN': State.tenant_cache[1].hostname,
                 'emailAddress': desc['email'], # TODO use current admin user mail
         }
 
@@ -524,7 +517,6 @@ def can_perform_acme_renewal(store):
 class AcmeHandler(BaseHandler):
     check_roles='admin'
 
-    @BaseHandler.https_disabled
     @inlineCallbacks
     def post(self):
         accnt_key = yield AcmeAccntKeyRes.create_file()
@@ -536,7 +528,6 @@ class AcmeHandler(BaseHandler):
 
         returnValue({'terms_of_service': tos_url})
 
-    @BaseHandler.https_disabled
     @inlineCallbacks
     def put(self):
         is_ready = yield can_perform_acme_run()
@@ -552,7 +543,7 @@ def acme_cert_issuance(store):
 
 
 def db_acme_cert_issuance(store):
-    hostname = Settings.memory_copy.hostname
+    hostname = State.tenant_cache[1].hostname
 
     raw_accnt_key = PrivateFactory(store).get_val(u'acme_accnt_key')
     accnt_key = serialization.load_pem_private_key(str(raw_accnt_key),
@@ -578,8 +569,8 @@ def db_acme_cert_issuance(store):
 
     PrivateFactory(store).set_val(u'https_cert', cert_str)
     PrivateFactory(store).set_val(u'https_chain', chain_str)
-    Settings.memory_copy.private.https_cert = cert_str
-    Settings.memory_copy.private.https_chain = chain_str
+    State.tenant_cache[1].private.https_cert = cert_str
+    State.tenant_cache[1].private.https_chain = chain_str
 
 
 class AcmeChallResolver(BaseHandler):
@@ -595,15 +586,14 @@ class AcmeChallResolver(BaseHandler):
 class HostnameTestHandler(BaseHandler):
     check_roles = 'admin'
 
-    @BaseHandler.https_disabled
     @inlineCallbacks
     def post(self):
-        if not Settings.memory_copy.hostname:
+        if not State.tenant_cache[1].hostname:
             raise errors.ValidationError('hostname is not set')
 
         net_agent = Settings.get_agent()
 
-        t = ('http', Settings.memory_copy.hostname, 'robots.txt', None, None)
+        t = ('http', State.tenant_cache[1].hostname, 'robots.txt', None, None)
         url = bytes(urlparse.urlunsplit(t))
         try:
             resp = yield net_agent.request('GET', url)

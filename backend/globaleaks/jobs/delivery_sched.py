@@ -14,6 +14,7 @@ from globaleaks.jobs.base import LoopingJob
 from globaleaks.orm import transact_sync
 from globaleaks.security import GLBPGP, SecureFile, generateRandomKey
 from globaleaks.settings import Settings
+from globaleaks.state import State
 from globaleaks.utils.utility import log
 
 __all__ = ['DeliverySchedule']
@@ -81,7 +82,7 @@ def receiverfile_planning(store):
                 'status': u'processing',
                 'path': ifile.file_path,
                 'size': ifile.size,
-                'receiver': admin_serialize_receiver(store, receiver, user, Settings.memory_copy.default_language)
+                'receiver': admin_serialize_receiver(store, receiver, user, State.tenant_cache[1].default_language)
             })
 
     return receiverfiles_maps
@@ -148,7 +149,7 @@ def process_files(receiverfiles_maps):
                     log.err("%d# Unable to complete PGP encrypt for %s on %s: %s. marking the file as unavailable.",
                             rcounter, rfileinfo['receiver']['name'], rfileinfo['path'], excep)
                     rfileinfo['status'] = u'unavailable'
-            elif Settings.memory_copy.allow_unencrypted:
+            elif State.tenant_cache[1].allow_unencrypted:
                 receiverfiles_map['plaintext_file_needed'] = True
                 rfileinfo['status'] = u'reference'
                 rfileinfo['path'] = plain_path

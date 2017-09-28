@@ -11,20 +11,16 @@ import os
 import pwd
 import re
 import sys
-# pylint: disable=no-name-in-module,import-error
 from distutils import dir_util
-from distutils.version import LooseVersion
-# pylint: enable=no-name-in-module,import-error
 from optparse import OptionParser
 
 from twisted.internet.defer import inlineCallbacks
-from twisted.python.threadpool import ThreadPool
 
 from globaleaks import __version__, DATABASE_VERSION
+from globaleaks.state import State
 from globaleaks.utils.agent import get_tor_agent, get_web_agent
 from globaleaks.utils.objectdict import ObjectDict
 from globaleaks.utils.singleton import Singleton
-from globaleaks.utils.tor_exit_set import TorExitSet
 from globaleaks.utils.utility import datetime_now, log
 
 this_directory = os.path.dirname(__file__)
@@ -70,9 +66,6 @@ class SettingsClass(object):
         # daemonize the process
         self.nodaemon = False
 
-        # thread pool size of 1
-        self.orm_tp = ThreadPool(1, 1)
-
         self.bind_address = '0.0.0.0'
         self.bind_remote_ports = [80, 443]
         self.bind_local_ports = [8082, 8083]
@@ -102,15 +95,6 @@ class SettingsClass(object):
 
         self.authentication_lifetime = 3600
 
-        self.jobs = []
-        self.jobs_monitor = None
-
-        self.services = []
-
-        self.RecentEventQ = []
-        self.RecentAnomaliesQ = {}
-        self.stats_collection_start_time = datetime_now()
-
         self.accept_submissions = True
 
         # statistical, referred to latest period
@@ -126,29 +110,6 @@ class SettingsClass(object):
         self.onionservice = None
 
         self.receipt_regexp = u'[0-9]{16}'
-
-        # A lot of operations performed massively by globaleaks
-        # should avoid to fetch continuously variables from the DB so that
-        # it is important to keep this variables in memory
-        #
-        # Initialization is handled by db_refresh_memory_variables
-        self.memory_copy = ObjectDict({
-            'maximum_namesize': 128,
-            'maximum_textsize': 4096,
-            'maximum_filesize': 30,
-            'allow_iframes_inclusion': False,
-            'accept_tor2web_access': {
-                'admin': True,
-                'whistleblower': False,
-                'custodian': False,
-                'receiver': False
-            },
-            'private': {
-                'https_enabled': False,
-            },
-            'anonymize_outgoing_connections': True,
-        })
-
 
         # Default request time uniform value
         self.side_channels_guard = 150
@@ -195,8 +156,6 @@ class SettingsClass(object):
         self.AES_file_regexp_comp = re.compile(self.AES_file_regexp)
         self.AES_keyfile_prefix = "aeskey-"
 
-        self.exceptions = {}
-        self.exceptions_email_count = 0
         self.exceptions_email_hourly_limit = 20
 
         self.disable_backend_exception_notification = False
@@ -207,37 +166,10 @@ class SettingsClass(object):
         self.submission_minimum_delay = 3 # seconds
         self.submission_maximum_ttl = 3600 # 1 hour
 
-        self.mail_counters = {}
         self.mail_timeout = 15 # seconds
         self.mail_attempts_limit = 3 # per mail limit
 
-        self.https_socks = []
-        self.http_socks = []
-
-        # TODO holds global state until Settings is inverted and this
-        # state managed as an object by the application
-        self.appstate = ObjectDict()
-        self.appstate.process_supervisor = None
-        self.appstate.tor_exit_set = TorExitSet()
-        self.appstate.latest_version = LooseVersion(__version__)
-        self.appstate.api_token_session = None
-        self.appstate.api_token_session_suspended = False
-
         self.acme_directory_url = 'https://acme-v01.api.letsencrypt.org/directory'
-
-    def reset_hourly(self):
-        self.RecentEventQ[:] = []
-        self.RecentAnomaliesQ.clear()
-        self.exceptions.clear()
-        self.exceptions_email_count = 0
-        self.mail_counters.clear()
-        self.stats_collection_start_time = datetime_now()
-
-    def get_mail_counter(self, receiver_id):
-        return self.mail_counters.get(receiver_id, 0)
-
-    def increment_mail_counter(self, receiver_id):
-        self.mail_counters[receiver_id] = self.mail_counters.get(receiver_id, 0) + 1
 
     def eval_paths(self):
         self.config_file_path = '/etc/globaleaks'
@@ -528,48 +460,28 @@ class SettingsClass(object):
     def make_db_uri(db_file_path):
         return 'sqlite:' + db_file_path + '?foreign_keys=ON'
 
-    def start_jobs(self):
-        from globaleaks.jobs import jobs_list, services_list
-        from globaleaks.jobs.base import LoopingJobsMonitor
-
-        for job in jobs_list:
-            self.jobs.append(job().schedule())
-
-        for service in services_list:
-            self.services.append(service().schedule())
-
-        self.jobs_monitor = LoopingJobsMonitor(self.jobs)
-        self.jobs_monitor.schedule()
-
-    @inlineCallbacks
-    def stop_jobs(self):
-        for job in self.jobs + self.services:
-            yield job.stop()
-
-        if self.jobs_monitor is not None:
-            yield self.jobs_monitor.stop()
-            self.jobs_monitor = None
-
     def get_agent(self):
-        if self.memory_copy.anonymize_outgoing_connections:
+        if State.tenant_cache[1].anonymize_outgoing_connections:
             return get_tor_agent(self.socks_host, self.socks_port)
-        else:
-            return get_web_agent()
+
+        return get_web_agent()
 
     def print_listening_interfaces(self):
         print("GlobaLeaks is now running and accessible at the following urls:")
 
+        tenant_cache = State.tenant_cache[1]
+
         for port in self.bind_local_ports:
             print("- [LOCAL HTTP]\t--> http://127.0.0.1:%d%s" % (port, self.api_prefix))
 
-        if self.memory_copy.reachable_via_web:
-            hostname = self.memory_copy.hostname if self.memory_copy.hostname else '0.0.0.0'
+        if State.tenant_cache[1].reachable_via_web:
+            hostname = tenant_cache.hostname if tenant_cache.hostname else '0.0.0.0'
             print("- [REMOTE HTTP]\t--> http://%s%s" % (hostname, self.api_prefix))
-            if self.memory_copy.private.https_enabled:
+            if tenant_cache.private.https_enabled:
                 print("- [REMOTE HTTPS]\t--> https://%s%s" % (hostname, self.api_prefix))
 
-        if self.memory_copy.onionservice:
-            print("- [REMOTE Tor]:\t--> http://%s%s" % (self.memory_copy.onionservice, self.api_prefix))
+        if tenant_cache.onionservice:
+            print("- [REMOTE Tor]:\t--> http://%s%s" % (tenant_cache.onionservice, self.api_prefix))
 
 
 # Settings is a singleton class exported once

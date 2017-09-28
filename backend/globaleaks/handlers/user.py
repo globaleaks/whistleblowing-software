@@ -10,7 +10,7 @@ from globaleaks.handlers.base import BaseHandler
 from globaleaks.orm import transact
 from globaleaks.rest import requests
 from globaleaks.security import change_password, parse_pgp_key
-from globaleaks.settings import Settings
+from globaleaks.state import State
 from globaleaks.utils.structures import get_localized_values
 from globaleaks.utils.utility import datetime_to_ISO8601, datetime_now, datetime_null
 
@@ -96,7 +96,7 @@ def db_user_update_user(store, user_id, request):
     """
     user = models.db_get(store, models.User, id=user_id)
 
-    user.language = request.get('language', Settings.memory_copy.default_language)
+    user.language = request.get('language', State.tenant_cache[1].default_language)
 
     new_password = request['password']
     old_password = request['old_password']

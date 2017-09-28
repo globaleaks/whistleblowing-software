@@ -12,6 +12,7 @@ from globaleaks.handlers.admin import files
 from globaleaks.handlers.base import Session
 from globaleaks.orm import transact, transact_sync
 from globaleaks.settings import Settings
+from globaleaks.state import State
 from globaleaks.utils.objectdict import ObjectDict
 from globaleaks.utils.utility import log
 
@@ -121,7 +122,7 @@ def sync_clean_untracked_files(store):
                 log.err("Failed to remove untracked file", file_to_remove)
 
 
-def db_refresh_exception_delivery_list(store):
+def db_refresh_exception_delivery_list(store, memory_copy):
     """
     Constructs a list of (email_addr, public_key) pairs that will receive errors from the platform.
     If the email_addr is empty, drop the tuple from the list.
@@ -138,7 +139,7 @@ def db_refresh_exception_delivery_list(store):
     lst.extend([(mail, pub_key) for (mail, pub_key) in results])
 
     trimmed = filter(lambda x: x[0] != '', lst)
-    Settings.memory_copy.notif.exception_delivery_list = trimmed
+    memory_copy.notif.exception_delivery_list = trimmed
 
 
 def db_refresh_memory_variables(store):
@@ -146,42 +147,41 @@ def db_refresh_memory_variables(store):
     This routine loads in memory few variables of node and notification tables
     that are subject to high usage.
     """
-    node_ro = ObjectDict(models.config.NodeFactory(store).admin_export())
+    memory_copy = ObjectDict(models.config.NodeFactory(store).admin_export())
 
-    Settings.memory_copy = node_ro
-
-    Settings.memory_copy.accept_tor2web_access = {
-        'admin': node_ro.tor2web_admin,
-        'custodian': node_ro.tor2web_custodian,
-        'whistleblower': node_ro.tor2web_whistleblower,
-        'receiver': node_ro.tor2web_receiver
+    memory_copy.accept_tor2web_access = {
+        'admin': memory_copy.tor2web_admin,
+        'custodian': memory_copy.tor2web_custodian,
+        'whistleblower': memory_copy.tor2web_whistleblower,
+        'receiver': memory_copy.tor2web_receiver
     }
 
-    enabled_langs = models.l10n.EnabledLanguage.list(store)
-    Settings.memory_copy.languages_enabled = enabled_langs
+    memory_copy.languages_enabled = models.l10n.EnabledLanguage.list(store)
 
     notif_fact = models.config.NotificationFactory(store)
-    notif_ro = ObjectDict(notif_fact.admin_export())
 
-    Settings.memory_copy.notif = notif_ro
+    memory_copy.notif = ObjectDict(notif_fact.admin_export())
 
     if Settings.developer_name:
-        Settings.memory_copy.notif.source_name = Settings.developer_name
+        memory_copy.notif.source_name = Settings.developer_name
 
-    db_refresh_exception_delivery_list(store)
+    db_refresh_exception_delivery_list(store, memory_copy)
 
-    Settings.memory_copy.private = ObjectDict(models.config.PrivateFactory(store).mem_copy_export())
+    memory_copy.private = ObjectDict(models.config.PrivateFactory(store).mem_copy_export())
 
-    if Settings.memory_copy.private.admin_api_token_digest:
+    if memory_copy.private.admin_api_token_digest:
         api_id = store.find(models.User.id, models.User.role==u'admin').order_by(models.User.creation_date).first()
         if api_id is not None:
-            Settings.appstate.api_token_session = Session(api_id, 'admin', 'enabled')
+            State.api_token_session = Session(api_id, 'admin', 'enabled')
+
+    State.tenant_cache[1] = memory_copy
 
 
 @transact
-def refresh_memory_variables(*args):
-    return db_refresh_memory_variables(*args)
+def refresh_memory_variables(store):
+    return db_refresh_memory_variables(store)
+
 
 @transact_sync
-def sync_refresh_memory_variables(*args):
-    return db_refresh_memory_variables(*args)
+def sync_refresh_memory_variables(store):
+    return db_refresh_memory_variables(store)

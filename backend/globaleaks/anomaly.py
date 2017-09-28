@@ -21,6 +21,7 @@ from globaleaks.handlers.admin.user import db_get_admin_users
 from globaleaks.orm import transact
 from globaleaks.rest.apicache import ApiCache
 from globaleaks.settings import Settings
+from globaleaks.state import State
 from globaleaks.transactions import db_schedule_email
 from globaleaks.utils.singleton import Singleton
 from globaleaks.utils.templating import Templating
@@ -39,7 +40,7 @@ ANOMALY_MAP = {
 
 
 def update_AnomalyQ(event_matrix, alarm_level):
-    Settings.RecentAnomaliesQ.update({
+    State.RecentAnomaliesQ.update({
         datetime_now(): [event_matrix, alarm_level]
     })
 
@@ -52,27 +53,27 @@ def get_disk_anomaly_conditions(free_workdir_bytes, total_workdir_bytes, free_ra
 
     def info_msg_0():
         return "free_disk_megabytes <= %d or free_disk_percentage <= %d" % \
-            (Settings.memory_copy.threshold_free_disk_megabytes_high,
-             Settings.memory_copy.threshold_free_disk_percentage_high)
+            (State.tenant_cache[1].threshold_free_disk_megabytes_high,
+             State.tenant_cache[1].threshold_free_disk_percentage_high)
 
     def info_msg_1():
         return "free_ramdisk_megabytes <= %d" % threshold_free_ramdisk_megabytes
 
     def info_msg_2():
         return "free_disk_megabytes <= %d or free_disk_percentage <= %d" % \
-            (Settings.memory_copy.threshold_free_disk_megabytes_medium,
-             Settings.memory_copy.threshold_free_disk_percentage_medium)
+            (State.tenant_cache[1].threshold_free_disk_megabytes_medium,
+             State.tenant_cache[1].threshold_free_disk_percentage_medium)
 
     def info_msg_3():
         return "free_disk_megabytes <= %d or free_disk_percentage <= %d" % \
-            (Settings.memory_copy.threshold_free_disk_megabytes_low,
-             Settings.memory_copy.threshold_free_disk_percentage_low)
+            (State.tenant_cache[1].threshold_free_disk_megabytes_low,
+             State.tenant_cache[1].threshold_free_disk_percentage_low)
 
     # list of bad conditions ordered starting from the worst case scenario
     conditions = [
         {
-            'condition': free_disk_megabytes <= Settings.memory_copy.threshold_free_disk_megabytes_high or \
-                         free_disk_percentage <= Settings.memory_copy.threshold_free_disk_percentage_high,
+            'condition': free_disk_megabytes <= State.tenant_cache[1].threshold_free_disk_megabytes_high or \
+                         free_disk_percentage <= State.tenant_cache[1].threshold_free_disk_percentage_high,
             'info_msg': info_msg_0,
             'stress_level': 3,
             'accept_submissions': False
@@ -84,15 +85,15 @@ def get_disk_anomaly_conditions(free_workdir_bytes, total_workdir_bytes, free_ra
             'accept_submissions': False
         },
         {
-            'condition': free_disk_megabytes <= Settings.memory_copy.threshold_free_disk_megabytes_medium or \
-                         free_disk_percentage <= Settings.memory_copy.threshold_free_disk_percentage_medium,
+            'condition': free_disk_megabytes <= State.tenant_cache[1].threshold_free_disk_megabytes_medium or \
+                         free_disk_percentage <= State.tenant_cache[1].threshold_free_disk_percentage_medium,
             'info_msg': info_msg_2,
             'stress_level': 2,
             'accept_submissions': True
         },
         {
-            'condition': free_disk_megabytes <= Settings.memory_copy.threshold_free_disk_megabytes_low or \
-                         free_disk_percentage <= Settings.memory_copy.threshold_free_disk_percentage_low,
+            'condition': free_disk_megabytes <= State.tenant_cache[1].threshold_free_disk_megabytes_low or \
+                         free_disk_percentage <= State.tenant_cache[1].threshold_free_disk_percentage_low,
             'info_msg': info_msg_3,
             'stress_level': 1,
             'accept_submissions': True
@@ -239,7 +240,7 @@ class AlarmClass(object):
             # we are lucky! no stress activities detected, no mail needed
             return
 
-        if Settings.memory_copy.notif.disable_admin_notification_emails:
+        if State.tenant_cache[1].notif.disable_admin_notification_emails:
             return
 
         if not is_expired(self.last_alarm_email, minutes=do_not_stress_admin_with_more_than_an_email_every_minutes):
@@ -275,7 +276,7 @@ class AlarmClass(object):
         disk_space = 0
         disk_message = ""
         accept_submissions = True
-        old_accept_submissions = Settings.accept_submissions
+        old_accept_submissions = State.accept_submissions
 
         for c in get_disk_anomaly_conditions(free_workdir_bytes,
                                              total_workdir_bytes,
@@ -311,9 +312,9 @@ class AlarmClass(object):
         self.stress_levels['disk_message'] = disk_message
 
         # if not on testing change accept_submission to the new value
-        Settings.accept_submissions = accept_submissions if not Settings.testing else True
+        State.accept_submissions = accept_submissions if not Settings.testing else True
 
-        if old_accept_submissions != Settings.accept_submissions:
+        if old_accept_submissions != State.accept_submissions:
             log.info("Switching disk space availability from: %s to %s",
                      old_accept_submissions, accept_submissions)
 

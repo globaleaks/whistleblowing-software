@@ -9,6 +9,7 @@ import re
 from globaleaks import LANGUAGES_SUPPORTED_CODES
 from globaleaks.rest import errors
 from globaleaks.settings import Settings
+from globaleaks.state import State
 
 
 def natnum_v(self, attr, value):
@@ -42,9 +43,9 @@ def shorttext_v(self, attr, value):
     if not isinstance(value, unicode):
         raise errors.InvalidModelInput("shorttext_v: expected unicode (%s:%s)" % (attr, value))
 
-    if Settings.enable_input_length_checks and len(value) > Settings.memory_copy.maximum_namesize:
+    if Settings.enable_input_length_checks and len(value) > State.tenant_cache[1].maximum_namesize:
         raise errors.InvalidModelInput("shorttext_v: length need to be < of %d"
-                                        % Settings.memory_copy.maximum_namesize)
+                                        % State.tenant_cache[1].maximum_namesize)
 
     return value
 
@@ -60,10 +61,10 @@ def longtext_v(self, attr, value):
         raise errors.InvalidModelInput("longtext_v: expected unicode (%s:%s)" %
                                        (attr, value))
 
-    if Settings.enable_input_length_checks and len(value) > Settings.memory_copy.maximum_textsize:
+    if Settings.enable_input_length_checks and len(value) > State.tenant_cache[1].maximum_textsize:
         raise errors.InvalidModelInput("longtext_v: unicode text in %s " \
                                         "overcomes length " \
-                                        "limit %d" % (attr, Settings.memory_copy.maximum_textsize))
+                                        "limit %d" % (attr, State.tenant_cache[1].maximum_textsize))
 
     return value
 
@@ -80,10 +81,10 @@ def dict_v(self, attr, value):
             subvalue = unicode(subvalue)
 
         if isinstance(subvalue, unicode):
-            if Settings.enable_input_length_checks and len(subvalue) > Settings.memory_copy.maximum_textsize:
+            if Settings.enable_input_length_checks and len(subvalue) > State.tenant_cache[1].maximum_textsize:
                 raise errors.InvalidModelInput("dict_v: text for key %s in %s " \
                                                 "overcomes length limit of %d" % (key, attr,
-                                                                                  Settings.memory_copy.maximum_textsize))
+                                                                                  State.tenant_cache[1].maximum_textsize))
 
         if isinstance(subvalue, dict):
             dict_v(self, attr, subvalue)

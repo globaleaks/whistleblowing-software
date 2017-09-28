@@ -1,7 +1,7 @@
 # -*- coding: UTF-8
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.rest import errors
-from globaleaks.settings import Settings
+from globaleaks.state import State
 
 
 class RobotstxtHandler(BaseHandler):
@@ -15,8 +15,8 @@ class RobotstxtHandler(BaseHandler):
 
         data = "User-agent: *\n"
 
-        if Settings.memory_copy.allow_indexing:
-            site = 'https://' + Settings.memory_copy.hostname
+        if State.tenant_cache[1].allow_indexing:
+            site = 'https://' + State.tenant_cache[1].hostname
             data += "Allow: /\n"
             data += "Sitemap: %s/sitemap.xml" % site
         else:
@@ -32,10 +32,10 @@ class SitemapHandler(BaseHandler):
         """
         Get the sitemap.xml
         """
-        if not Settings.memory_copy.allow_indexing:
+        if not State.tenant_cache[1].allow_indexing:
             raise errors.ResourceNotFound()
 
-        site = 'https://' + Settings.memory_copy.hostname
+        site = 'https://' + State.tenant_cache[1].hostname
 
         self.request.setHeader('Content-Type', 'text/xml')
 
@@ -48,8 +48,8 @@ class SitemapHandler(BaseHandler):
                     "    <changefreq>weekly</changefreq>\n" + \
                     "    <priority>1.00</priority>\n"
 
-            for lang in sorted(Settings.memory_copy.languages_enabled):
-                if lang != Settings.memory_copy.default_language:
+            for lang in sorted(State.tenant_cache[1].languages_enabled):
+                if lang != State.tenant_cache[1].default_language:
                     l = lang.lower()
                     l = l.replace('_', '-')
                     data += "<xhtml:link rel='alternate' hreflang='" + l + "' href='" + site + "/#/?lang=" + lang + "' />\n"

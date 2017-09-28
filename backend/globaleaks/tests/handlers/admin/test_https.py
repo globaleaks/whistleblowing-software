@@ -6,6 +6,7 @@ from globaleaks.models.config import PrivateFactory, NodeFactory
 from globaleaks.orm import transact
 from globaleaks.rest import errors
 from globaleaks.settings import Settings
+from globaleaks.state import State
 from globaleaks.tests import helpers
 from globaleaks.tests.utils import test_tls
 from globaleaks.utils.letsencrypt import ChallTok
@@ -17,7 +18,7 @@ from twisted.internet.defer import inlineCallbacks, returnValue
 def set_init_params(store, dh_params, hostname='localhost:9999'):
     PrivateFactory(store).set_val(u'https_dh_params', dh_params)
     NodeFactory(store).set_val(u'hostname', hostname)
-    Settings.memory_copy.hostname = 'localhost:9999'
+    State.tenant_cache[1].hostname = 'localhost:9999'
 
 
 class TestFileHandler(helpers.TestHandler):
@@ -43,7 +44,7 @@ class TestFileHandler(helpers.TestHandler):
     @transact
     def set_enabled(self, store):
         PrivateFactory(store).set_val(u'https_enabled', True)
-        Settings.memory_copy.private.https_enabled = True
+        State.tenant_cache[1].private.https_enabled = True
 
     @inlineCallbacks
     def test_priv_key_file(self):
@@ -117,7 +118,7 @@ class TestFileHandler(helpers.TestHandler):
         yield self.get_and_check(n, False)
         yield https.PrivKeyFileRes.create_file(self.valid_setup['key'])
         yield https.CertFileRes.create_file(self.valid_setup['cert'])
-        Settings.memory_copy.hostname = 'localhost'
+        State.tenant_cache[1].hostname = 'localhost'
 
         body = {'name': 'chain', 'content': self.valid_setup[n]}
         handler = self.request(body, role='admin')
@@ -131,18 +132,6 @@ class TestFileHandler(helpers.TestHandler):
 
         yield handler.delete(n)
         yield self.get_and_check(n, False)
-
-    @inlineCallbacks
-    def test_file_res_disabled(self):
-        yield self.set_enabled()
-
-        handler = self.request(role='admin')
-        for n in ['priv_key', 'cert', 'chain', 'csr']:
-            self.assertRaises(errors.FailedSanityCheck, handler.delete, n)
-            self.assertRaises(errors.FailedSanityCheck, handler.put, n)
-            handler = self.request({'name': n, 'content':''}, role='admin')
-            self.assertRaises(errors.FailedSanityCheck, handler.post, n)
-            self.assertRaises(errors.FailedSanityCheck, handler.get, n)
 
 
 class TestConfigHandler(helpers.TestHandler):
@@ -186,7 +175,7 @@ class TestCSRHandler(helpers.TestHandler):
         valid_setup = test_tls.get_valid_setup()
         yield set_init_params(valid_setup['dh_params'])
         yield https.PrivKeyFileRes.create_file(valid_setup['key'])
-        Settings.memory_copy.hostname = 'notreal.ns.com'
+        State.tenant_cache[1].hostname = 'notreal.ns.com'
 
         d = {
            'country': 'it',
@@ -217,7 +206,7 @@ class TestAcmeHandler(helpers.TestHandler):
     @inlineCallbacks
     def test_post(self):
         hostname = 'gl.dl.localhost.com'
-        Settings.memory_copy.hostname = hostname
+        State.tenant_cache[1].hostname = hostname
         valid_setup = test_tls.get_valid_setup()
         yield https.PrivKeyFileRes.create_file(valid_setup['key'])
 
@@ -234,7 +223,7 @@ class TestAcmeHandler(helpers.TestHandler):
         yield https.AcmeAccntKeyRes.save_accnt_uri('http://localhost:9999')
         yield https.PrivKeyFileRes.create_file(valid_setup['key'])
         hostname = 'gl.dl.localhost.com'
-        Settings.memory_copy.hostname = hostname
+        State.tenant_cache[1].hostname = hostname
 
         body = {
            'name': 'xxx',
@@ -278,9 +267,9 @@ class TestHostnameTestHandler(helpers.TestHandler):
     @inlineCallbacks
     def setUp(self):
         yield super(TestHostnameTestHandler, self).setUp()
-        self.tmp_hn = Settings.memory_copy.hostname
-        self.tmp_hn = Settings.memory_copy.anonymize_outgoing_connections = False
-        Settings.memory_copy.hostname = 'localhost:43434'
+        self.tmp_hn = State.tenant_cache[1].hostname
+        self.tmp_hn = State.tenant_cache[1].anonymize_outgoing_connections = False
+        State.tenant_cache[1].hostname = 'localhost:43434'
 
     @inlineCallbacks
     def test_post(self):
@@ -313,9 +302,9 @@ class TestHostnameTestHandler(helpers.TestHandler):
 
     @inlineCallbacks
     def tearDown(self):
-        self.tmp_hn = Settings.memory_copy.hostname
-        self.tmp_hn = Settings.memory_copy.anonymize_outgoing_connections = True
-        Settings.memory_copy.hostname = 'localhost'
+        self.tmp_hn = State.tenant_cache[1].hostname
+        self.tmp_hn = State.tenant_cache[1].anonymize_outgoing_connections = True
+        State.tenant_cache[1].hostname = 'localhost'
 
         if hasattr(self, 'pp'):
             self.pp.transport.loseConnection()

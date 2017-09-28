@@ -36,6 +36,7 @@ from globaleaks.handlers.admin import step as admin_step
 from globaleaks.handlers.admin import user as admin_user
 from globaleaks.rest import apicache, requests, errors
 from globaleaks.settings import Settings
+from globaleaks.state import State
 from globaleaks.utils.mailutils import extract_exception_traceback_and_send_email
 from twisted.internet import defer
 from twisted.web.resource import Resource
@@ -201,14 +202,14 @@ class APIResourceWrapper(Resource):
 
     def should_redirect_tor(self, request):
         if request.client_using_tor and \
-           Settings.memory_copy.onionservice and \
-           request.getRequestHostname() != Settings.memory_copy.onionservice:
+           State.tenant_cache[1].onionservice and \
+           request.getRequestHostname() != State.tenant_cache[1].onionservice:
             return True
 
         return False
 
     def should_redirect_https(self, request):
-        if Settings.memory_copy.private.https_enabled and \
+        if State.tenant_cache[1].private.https_enabled and \
            request.client_proto == 'http' and \
            request.client_ip not in Settings.local_hosts:
             return True
@@ -221,12 +222,12 @@ class APIResourceWrapper(Resource):
 
     def redirect_https(self, request):
         _, _, path, query, frag = urlparse.urlsplit(request.uri)
-        redirect_url = urlparse.urlunsplit(('https', Settings.memory_copy.hostname, path, query, frag))
+        redirect_url = urlparse.urlunsplit(('https', State.tenant_cache[1].hostname, path, query, frag))
         self.redirect(request, redirect_url)
 
     def redirect_tor(self, request):
         _, _, path, query, frag = urlparse.urlsplit(request.uri)
-        redirect_url = urlparse.urlunsplit(('http', Settings.memory_copy.onionservice, path, query, frag))
+        redirect_url = urlparse.urlunsplit(('http', State.tenant_cache[1].onionservice, path, query, frag))
         self.redirect(request, redirect_url)
 
     def handle_exception(self, e, request):
@@ -271,7 +272,7 @@ class APIResourceWrapper(Resource):
             request.client_proto = 'http'
 
         request.client_using_tor = request.getHost().port == 8083 or \
-                                   request.client_ip in Settings.appstate.tor_exit_set
+                                   request.client_ip in State.tor_exit_set
 
         if 'x-tor2web' in request.headers:
             request.client_using_tor = False
@@ -328,7 +329,7 @@ class APIResourceWrapper(Resource):
         f = getattr(handler, method)
 
         groups = [unicode(g) for g in match.groups()]
-        h = handler(request, **args)
+        h = handler(State, request, **args)
 
         d = defer.maybeDeferred(f, h, *groups)
 
@@ -381,12 +382,12 @@ class APIResourceWrapper(Resource):
         request.setHeader("Referrer-Policy", "no-referrer")
 
         # to avoid Robots spidering, indexing, caching
-        if not Settings.memory_copy.allow_indexing:
+        if not State.tenant_cache[1].allow_indexing:
             request.setHeader("X-Robots-Tag", "noindex")
 
         # to mitigate clickjaking attacks on iframes allowing only same origin
         # same origin is needed in order to include svg and other html <object>
-        if not Settings.memory_copy.allow_iframes_inclusion:
+        if not State.tenant_cache[1].allow_iframes_inclusion:
             request.setHeader("X-Frame-Options", "sameorigin")
 
     def parse_accept_language_header(self, request):
@@ -408,18 +409,18 @@ class APIResourceWrapper(Resource):
                 locales.sort(key=lambda pair: pair[1], reverse=True)
                 return [l[0] for l in locales]
 
-        return Settings.memory_copy.default_language
+        return State.tenant_cache[1].default_language
 
     def detect_language(self, request):
         language = request.headers.get('gl-language')
 
         if language is None:
             for l in self.parse_accept_language_header(request):
-                if l in Settings.memory_copy.languages_enabled:
+                if l in State.tenant_cache[1].languages_enabled:
                     language = l
                     break
 
-        if language is None or language not in Settings.memory_copy.languages_enabled:
-            language = Settings.memory_copy.default_language
+        if language is None or language not in State.tenant_cache[1].languages_enabled:
+            language = State.tenant_cache[1].default_language
 
         return language

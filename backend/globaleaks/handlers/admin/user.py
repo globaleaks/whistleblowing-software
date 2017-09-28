@@ -10,7 +10,7 @@ from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.user import parse_pgp_options, user_serialize_user
 from globaleaks.orm import transact
 from globaleaks.rest import requests, errors
-from globaleaks.settings import Settings
+from globaleaks.state import State
 from globaleaks.utils.structures import fill_localized_keys, get_localized_values
 from globaleaks.utils.utility import log, datetime_now
 
@@ -50,7 +50,7 @@ def db_create_admin_user(store, request, language):
 
     log.debug("Created new admin")
 
-    db_refresh_exception_delivery_list(store)
+    db_refresh_exception_delivery_list(store, State.tenant_cache[1])
 
     return user
 
@@ -147,7 +147,7 @@ def db_create_user(store, request, language):
     if not request['username']:
         user.username = user.id
 
-    password = request['password'] if request['password'] else Settings.memory_copy.default_password
+    password = request['password'] if request['password'] else State.tenant_cache[1].default_password
 
     user.salt = security.generateRandomSalt()
     user.password = security.hash_password(password, user.salt)
@@ -180,7 +180,7 @@ def db_admin_update_user(store, user_id, request, language):
     parse_pgp_options(user, request)
 
     if user.role == 'admin':
-        db_refresh_exception_delivery_list(store)
+        db_refresh_exception_delivery_list(store, State.tenant_cache[1])
 
     return user
 
@@ -198,8 +198,8 @@ def get_user(store, user_id, language):
 
 
 def db_get_admin_users(store):
-    return [user_serialize_user(store, user, Settings.memory_copy.default_language)
-            for user in store.find(models.User,models.User.role == u'admin')]
+    return [user_serialize_user(store, user, State.tenant_cache[1].default_language)
+            for user in store.find(models.User, role=u'admin')]
 
 
 @transact

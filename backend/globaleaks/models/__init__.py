@@ -145,7 +145,7 @@ class Model(Storm):
         """
         Return a dictionary serialization of the current model.
         """
-        language = Settings.memory_copy.default_language if language is None else language
+        language = u'en' if language is None else language
 
         ret = {}
 
@@ -310,9 +310,6 @@ class InternalTip(ModelWithID):
 
     wb_last_access = DateTime(default_factory=datetime_now)
     wb_access_counter = Int(default=0)
-
-    def wb_revoke_access_date(self):
-        return self.wb_last_access + timedelta(days=Settings.memory_copy.wbtip_timetolive)
 
 
 class ReceiverTip(ModelWithID):
