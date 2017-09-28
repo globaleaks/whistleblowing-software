@@ -111,26 +111,12 @@ module.exports = function(grunt) {
     },
 
     browserify: {
-      mocha: {
-        files: {
-          'tests/unit/lib/mocha-bundle.js': [
-            'node_modules/mocha/mocha.js',
-            'node_modules/chai/chai.js',
-            'node_modules/angular-mocks/angular-mocks.js'
-          ]
-        }
-      },
       unittest: {
         files: {
           'tests/unit/lib/unittest-bundle.js': [
-            'node_modules/chai/lib/chai.js',
-            'node_modules/angular-mocks/angular-mocks.js',
             'tests/unit/unittest.js'
           ]
         },
-        options: {
-          external: ['mocha']
-        }
       }
     },
 
