@@ -122,7 +122,7 @@ def sync_clean_untracked_files(store):
                 log.err("Failed to remove untracked file", file_to_remove)
 
 
-def db_refresh_exception_delivery_list(store, memory_copy):
+def db_get_exception_delivery_list(store):
     """
     Constructs a list of (email_addr, public_key) pairs that will receive errors from the platform.
     If the email_addr is empty, drop the tuple from the list.
@@ -138,8 +138,7 @@ def db_refresh_exception_delivery_list(store, memory_copy):
 
     lst.extend([(mail, pub_key) for (mail, pub_key) in results])
 
-    trimmed = filter(lambda x: x[0] != '', lst)
-    memory_copy.notif.exception_delivery_list = trimmed
+    return filter(lambda x: x[0] != '', lst)
 
 
 def db_refresh_memory_variables(store):
@@ -147,34 +146,32 @@ def db_refresh_memory_variables(store):
     This routine loads in memory few variables of node and notification tables
     that are subject to high usage.
     """
-    memory_copy = ObjectDict(models.config.NodeFactory(store).admin_export())
+    tenant_cache = ObjectDict(models.config.NodeFactory(store).admin_export())
 
-    memory_copy.accept_tor2web_access = {
-        'admin': memory_copy.tor2web_admin,
-        'custodian': memory_copy.tor2web_custodian,
-        'whistleblower': memory_copy.tor2web_whistleblower,
-        'receiver': memory_copy.tor2web_receiver
+    tenant_cache.accept_tor2web_access = {
+        'admin': tenant_cache.tor2web_admin,
+        'custodian': tenant_cache.tor2web_custodian,
+        'whistleblower': tenant_cache.tor2web_whistleblower,
+        'receiver': tenant_cache.tor2web_receiver
     }
 
-    memory_copy.languages_enabled = models.l10n.EnabledLanguage.list(store)
+    tenant_cache.languages_enabled = models.l10n.EnabledLanguage.list(store)
 
-    notif_fact = models.config.NotificationFactory(store)
+    tenant_cache.notif = ObjectDict(models.config.NotificationFactory(store).admin_export())
+    tenant_cache.notif.exception_delivery_list = db_get_exception_delivery_list(store)
 
-    memory_copy.notif = ObjectDict(notif_fact.admin_export())
+    tenant_cache.private = ObjectDict(models.config.PrivateFactory(store).mem_copy_export())
 
-    if Settings.developer_name:
-        memory_copy.notif.source_name = Settings.developer_name
-
-    db_refresh_exception_delivery_list(store, memory_copy)
-
-    memory_copy.private = ObjectDict(models.config.PrivateFactory(store).mem_copy_export())
-
-    if memory_copy.private.admin_api_token_digest:
+    if tenant_cache.private.admin_api_token_digest:
         api_id = store.find(models.User.id, models.User.role==u'admin').order_by(models.User.creation_date).first()
         if api_id is not None:
             State.api_token_session = Session(api_id, 'admin', 'enabled')
 
-    State.tenant_cache[1] = memory_copy
+    if Settings.developer_name:
+        tenant_cache.notif.source_name = Settings.developer_name
+
+    # The hot swap shoul be done with the minimal race condition possible
+    State.tenant_cache[1] = tenant_cache
 
 
 @transact

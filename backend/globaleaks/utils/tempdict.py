@@ -30,7 +30,7 @@ class TempDict(OrderedDict):
     def set(self, key, item):
         self._check_size_limit()
         timeout = self.get_timeout()
-        reactor.callLater(timeout, self._expire, key)
+        item.expireCall = reactor.callLater(timeout, self._expire, key)
         self[key] = item
 
     def get(self, key):

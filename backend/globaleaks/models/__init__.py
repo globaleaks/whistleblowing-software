@@ -141,12 +141,10 @@ class Model(Storm):
 
         return super(Model, self).__setattr__(name, value)
 
-    def dict(self, language=None):
+    def dict(self, language):
         """
         Return a dictionary serialization of the current model.
         """
-        language = u'en' if language is None else language
-
         ret = {}
 
         for k in self.properties:

@@ -793,7 +793,7 @@ class TestHandler(TestGLWithPopulatedDB):
         return {k : v for k, v in request_desc.items() if k in safe_set}
 
     def get_dummy_request(self):
-        return self._test_desc['model']().dict()
+        return self._test_desc['model']().dict(u'en')
 
 
 class TestCollectionHandler(TestHandler):
