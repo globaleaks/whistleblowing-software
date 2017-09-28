@@ -25,7 +25,7 @@ from globaleaks.utils.utility import log, deferred_sleep
 
 HANDLER_EXEC_TIME_THRESHOLD = 120
 
-Uploads = TempDict(timeout=HANDLER_EXEC_TIME_THRESHOLD)
+Uploads = TempDict(timeout=60*HANDLER_EXEC_TIME_THRESHOLD)
 
 
 class SessionsFactory(TempDict):
