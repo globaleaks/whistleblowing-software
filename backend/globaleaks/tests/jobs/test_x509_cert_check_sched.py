@@ -4,7 +4,7 @@ from globaleaks.db import db_refresh_memory_variables
 from globaleaks.jobs.x509_cert_check_sched import X509CertCheckSchedule
 from globaleaks.models.config import PrivateFactory
 from globaleaks.orm import transact
-from globaleaks.settings import Settings
+from globaleaks.state import State
 from globaleaks.tests import helpers
 from globaleaks.tests.jobs.test_base import get_scheduled_email_count
 from globaleaks.tests.utils import test_tls
@@ -42,7 +42,7 @@ class TestX509CertCheckSched(helpers.TestGLWithPopulatedDB):
         count = yield get_scheduled_email_count()
         self.assertEqual(count, 1)
 
-        Settings.memory_copy.notif.disable_admin_notification_emails = True
+        State.tenant_cache[1].notif.disable_admin_notification_emails = True
 
         yield X509CertCheckSchedule().run()
         count = yield get_scheduled_email_count()

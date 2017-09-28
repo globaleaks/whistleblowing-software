@@ -165,8 +165,9 @@ class BaseHandler(object):
     cache_resource = False
     invalidate_cache = False
 
-    def __init__(self, request):
+    def __init__(self, state, request):
         self.name = type(self).__name__
+        self.state = state
         self.request = request
         self.request.start_time = datetime.now()
 
@@ -183,7 +184,7 @@ class BaseHandler(object):
         Decorator for authenticated sessions.
         """
         def wrapper(self, *args, **kwargs):
-            if Settings.memory_copy.basic_auth:
+            if self.state.tenant_cache[1].basic_auth:
                 self.basic_auth()
 
             if '*' in roles:
@@ -206,32 +207,6 @@ class BaseHandler(object):
 
         return wrapper
 
-    @staticmethod
-    def https_enabled(f):
-        """
-        Decorator that enforces https_enabled is set to True
-        """
-        def https_enabled_wrapper(*args, **kwargs):
-            if not Settings.memory_copy.private.https_enabled:
-                raise errors.FailedSanityCheck()
-
-            return f(*args, **kwargs)
-
-        return https_enabled_wrapper
-
-    @staticmethod
-    def https_disabled(f):
-        """
-        Decorator that enforces https_enabled is set to False
-        """
-        def https_disabled_wrapper(*args, **kwargs):
-            if Settings.memory_copy.private.https_enabled:
-                raise errors.FailedSanityCheck()
-
-            return f(*args, **kwargs)
-
-        return https_disabled_wrapper
-
     def basic_auth(self):
         msg = None
         if "authorization" in self.request.headers:
@@ -239,8 +214,8 @@ class BaseHandler(object):
                 auth_type, data = self.request.headers["authorization"].split()
                 usr, pwd = base64.b64decode(data).split(":", 1)
                 if auth_type != "Basic" or \
-                    usr != Settings.memory_copy.basic_auth_username or \
-                    pwd != Settings.memory_copy.basic_auth_password:
+                    usr != self.state.tenant_cache[1].basic_auth_username or \
+                    pwd != self.state.tenant_cache[1].basic_auth_password:
                     msg = "Authentication failed"
             except AssertionError:
                 msg = "Authentication failed"
@@ -442,22 +417,22 @@ class BaseHandler(object):
 
     def get_current_user(self):
         # Check for the API token
-        if not Settings.appstate.api_token_session_suspended and \
-           Settings.appstate.api_token_session is not None and \
-           Settings.memory_copy.private.admin_api_token_digest:
+        if not self.state.api_token_session_suspended and \
+           self.state.api_token_session is not None and \
+           self.state.tenant_cache[1].private.admin_api_token_digest:
             token = bytes(self.request.headers.get('x-api-token', ''))
             if len(token) != Settings.api_token_len:
                 return None
 
-            token_hash = bytes(Settings.memory_copy.private.admin_api_token_digest)
+            token_hash = bytes(self.state.tenant_cache[1.].private.admin_api_token_digest)
 
             if constant_time.bytes_eq(sha512(token), token_hash):
-                return Settings.appstate.api_token_session
+                return self.state.api_token_session
             else:
-                Settings.appstate.api_token_session_suspended = True
+                self.state.api_token_session_suspended = True
                 msg = "Warning: API Token temporary suspended due to possible attack"
                 log.err(msg)
-                schedule_email_for_all_admins("%s notification" % Settings.memory_copy.name,
+                schedule_email_for_all_admins("%s notification" % self.state.tenant_cache[1].name,
                                              "API Token temporary suspended due to possible attack")
 
         # Check for user session
@@ -475,10 +450,10 @@ class BaseHandler(object):
         flow_identifier = self.request.args['flowIdentifier'][0]
 
         chunk_size = len(self.request.args['file'][0])
-        if ((chunk_size / (1024 * 1024)) > Settings.memory_copy.maximum_filesize or
-            (total_file_size / (1024 * 1024)) > Settings.memory_copy.maximum_filesize):
+        if ((chunk_size / (1024 * 1024)) > self.state.tenant_cache[1].maximum_filesize or
+            (total_file_size / (1024 * 1024)) > self.state.tenant_cache[1].maximum_filesize):
             log.err("File upload request rejected: file too big")
-            raise errors.FileTooBig(Settings.memory_copy.maximum_filesize)
+            raise errors.FileTooBig(self.state.tenant_cache[1].maximum_filesize)
 
         if flow_identifier not in Uploads:
             Uploads.set(flow_identifier, SecureTemporaryFile(Settings.tmp_upload_path))
@@ -524,8 +499,8 @@ class StaticFileHandler(BaseHandler):
     check_roles = '*'
     handler_exec_time_threshold = 30
 
-    def __init__(self, request, path):
-        BaseHandler.__init__(self, request)
+    def __init__(self, state, request, path):
+        BaseHandler.__init__(self, state, request)
 
         self.root = "%s%s" % (os.path.abspath(path), "/")
 

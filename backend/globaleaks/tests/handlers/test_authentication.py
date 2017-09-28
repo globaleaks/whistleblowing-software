@@ -1,9 +1,11 @@
+# -*- coding: utf-8 -*-
 from globaleaks.handlers import authentication, admin
 from globaleaks.handlers.base import Sessions
 from globaleaks.handlers.user import UserInstance
 from globaleaks.handlers.wbtip import WBTipInstance
 from globaleaks.rest import errors
 from globaleaks.settings import Settings
+from globaleaks.state import State
 from globaleaks.tests import helpers
 from twisted.internet.defer import inlineCallbacks
 
@@ -30,7 +32,7 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
             'username': 'admin',
             'password': helpers.VALID_PASSWORD1
         })
-        Settings.memory_copy.accept_tor2web_access['admin'] = True
+        State.tenant_cache[1].accept_tor2web_access['admin'] = True
         response = yield handler.post()
         self.assertTrue('session_id' in response)
         self.assertEqual(len(Sessions), 1)
@@ -41,7 +43,7 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
             'username': 'admin',
             'password': helpers.VALID_PASSWORD1
         })
-        Settings.memory_copy.accept_tor2web_access['admin'] = False
+        State.tenant_cache[1].accept_tor2web_access['admin'] = False
         yield self.assertFailure(handler.post(), errors.TorNetworkRequired)
 
     @inlineCallbacks
@@ -139,7 +141,7 @@ class TestReceiptAuth(helpers.TestHandlerWithPopulatedDB):
         handler = self.request({
             'receipt': self.dummySubmission['receipt']
         }, headers={'X-Tor2Web': 'whatever'})
-        Settings.memory_copy.accept_tor2web_access['whistleblower'] = True
+        State.tenant_cache[1].accept_tor2web_access['whistleblower'] = True
         response = yield handler.post()
         self.assertTrue('session_id' in response)
         self.assertEqual(len(Sessions), 1)
@@ -150,7 +152,7 @@ class TestReceiptAuth(helpers.TestHandlerWithPopulatedDB):
         handler = self.request({
             'receipt': self.dummySubmission['receipt']
         }, headers={'X-Tor2Web': 'whatever'})
-        Settings.memory_copy.accept_tor2web_access['whistleblower'] = False
+        State.tenant_cache[1].accept_tor2web_access['whistleblower'] = False
         yield self.assertFailure(handler.post(), errors.TorNetworkRequired)
 
     @inlineCallbacks

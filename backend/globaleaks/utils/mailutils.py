@@ -18,16 +18,18 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from txsocksx.client import SOCKS5ClientEndpoint
 
-from globaleaks import __version__
-from globaleaks.security import encrypt_message, sha256
-from globaleaks.settings import Settings
-from globaleaks.utils.tls import TLSClientContextFactory
-from globaleaks.utils.utility import log
 from twisted.internet import reactor, defer
 from twisted.internet.endpoints import TCP4ClientEndpoint
 from twisted.mail.smtp import ESMTPSenderFactory, SMTPError
 from twisted.protocols import tls
 from twisted.python.failure import Failure
+
+from globaleaks import __version__
+from globaleaks.state import State
+from globaleaks.security import encrypt_message, sha256
+from globaleaks.settings import Settings
+from globaleaks.utils.tls import TLSClientContextFactory
+from globaleaks.utils.utility import log
 
 
 def rfc822_date():
@@ -66,15 +68,15 @@ def sendmail(to_address, subject, body):
 
             return result_deferred.errback(reason)
 
-        authentication_username=Settings.memory_copy.notif.username
-        authentication_password=Settings.memory_copy.private.smtp_password
-        from_address=Settings.memory_copy.notif.source_email
-        smtp_host=Settings.memory_copy.notif.server
-        smtp_port=Settings.memory_copy.notif.port
-        security=Settings.memory_copy.notif.security
+        authentication_username=State.tenant_cache[1].notif.username
+        authentication_password=State.tenant_cache[1].private.smtp_password
+        from_address=State.tenant_cache[1].notif.source_email
+        smtp_host=State.tenant_cache[1].notif.server
+        smtp_port=State.tenant_cache[1].notif.port
+        security=State.tenant_cache[1].notif.security
 
-        message = MIME_mail_build(Settings.memory_copy.notif.source_name,
-                                  Settings.memory_copy.notif.source_email,
+        message = MIME_mail_build(State.tenant_cache[1].notif.source_name,
+                                  State.tenant_cache[1].notif.source_email,
                                   to_address,
                                   to_address,
                                   subject,
@@ -111,7 +113,7 @@ def sendmail(to_address, subject, body):
             #  Hooking the test down to here is a trick to be able to test all the above code :)
             return defer.succeed(None)
 
-        if Settings.memory_copy.anonymize_outgoing_connections:
+        if State.tenant_cache[1].anonymize_outgoing_connections:
             socksProxy = TCP4ClientEndpoint(reactor, Settings.socks_host, Settings.socks_port, timeout=Settings.mail_timeout)
             endpoint = SOCKS5ClientEndpoint(smtp_host.encode('utf-8'), smtp_port, socksProxy)
         else:
@@ -209,37 +211,37 @@ def schedule_exception_email(exception_text, *args):
 
         from globaleaks.transactions import schedule_email
 
-        if not hasattr(Settings.memory_copy, 'notif'):
+        if not hasattr(State.tenant_cache[1], 'notif'):
             log.err("Error: Cannot send mail exception before complete initialization.")
             return
 
-        if Settings.exceptions_email_count >= Settings.exceptions_email_hourly_limit:
+        if State.exceptions_email_count >= Settings.exceptions_email_hourly_limit:
             return
 
         exception_text = (exception_text % args) if args else exception_text
 
         sha256_hash = sha256(bytes(exception_text))
 
-        if sha256_hash not in Settings.exceptions:
-            Settings.exceptions[sha256_hash] = 1
-        else:
-            Settings.exceptions[sha256_hash] += 1
-            if Settings.exceptions[sha256_hash] > 5:
-                log.err("Exception mail suppressed for (%s) [reason: threshold exceeded]",  sha256_hash)
-                return
+        if sha256_hash not in State.exceptions:
+            State.exceptions[sha256_hash] = 0
 
-        Settings.exceptions_email_count += 1
+        State.exceptions[sha256_hash] += 1
+        if State.exceptions[sha256_hash] > 5:
+            log.err("Exception mail suppressed for (%s) [reason: threshold exceeded]",  sha256_hash)
+            return
+
+        State.exceptions_email_count += 1
 
         mail_subject = "GlobaLeaks Exception"
-        delivery_list = Settings.memory_copy.notif.exception_delivery_list
+        delivery_list = State.tenant_cache[1].notif.exception_delivery_list
 
         if Settings.devel_mode:
             mail_subject +=  " [%s]" % Settings.developer_name
             delivery_list = [("globaleaks-stackexception-devel@globaleaks.org", '')]
 
         exception_text = bytes("Platform: %s (%s)\nVersion: %s\n\n%s" \
-                               % (Settings.memory_copy.hostname,
-                                  Settings.memory_copy.onionservice,
+                               % (State.tenant_cache[1].hostname,
+                                  State.tenant_cache[1].onionservice,
                                   __version__,
                                   exception_text))
 

@@ -3,6 +3,7 @@
 
 from globaleaks.jobs.base import ExternNetLoopingJob
 from globaleaks.settings import Settings
+from globaleaks.state import State
 from globaleaks.utils.utility import log
 from twisted.internet.defer import inlineCallbacks
 
@@ -19,5 +20,5 @@ class ExitNodesRefreshSchedule(ExternNetLoopingJob):
     def operation(self):
         net_agent = Settings.get_agent()
         log.debug('Fetching list of Tor exit nodes')
-        yield Settings.appstate.tor_exit_set.update(net_agent)
-        log.debug('Retrieved a list of %d exit nodes', len(Settings.appstate.tor_exit_set))
+        yield State.tor_exit_set.update(net_agent)
+        log.debug('Retrieved a list of %d exit nodes', len(State.tor_exit_set))

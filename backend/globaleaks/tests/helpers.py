@@ -26,6 +26,7 @@ from globaleaks.rest.apicache import ApiCache
 from globaleaks.rest import errors
 from globaleaks.settings import Settings
 from globaleaks.security import SecureTemporaryFile
+from globaleaks.state import State
 from globaleaks.utils import tempdict, token, utility
 from globaleaks.utils.structures import fill_localized_keys
 from globaleaks.utils.utility import datetime_null, datetime_now, datetime_to_ISO8601, \
@@ -109,9 +110,9 @@ def init_glsettings_for_unit_tests():
     Settings.remove_directories()
     Settings.create_directories()
 
-    Settings.orm_tp = FakeThreadPool()
+    State.orm_tp = FakeThreadPool()
 
-    Settings.memory_copy.hostname = 'localhost'
+    State.tenant_cache[1].hostname = 'localhost'
 
     Sessions.clear()
 
@@ -297,8 +298,8 @@ class TestGL(unittest.TestCase):
         test_config.skipCase(self)
         self.test_reactor = task.Clock()
 
-        jobs.base.test_reactor = self.test_reactor
-        tempdict.test_reactor = self.test_reactor
+        jobs.base.reactor = self.test_reactor
+        tempdict.reactor = self.test_reactor
         token.TokenList.reactor = self.test_reactor
         Sessions.reactor = self.test_reactor
 
@@ -321,11 +322,11 @@ class TestGL(unittest.TestCase):
         yield db.refresh_memory_variables()
 
         sup = ProcessSupervisor([], '127.0.0.1', 8082)
-        Settings.appstate.process_supervisor = sup
+        State.process_supervisor = sup
 
         Alarm.reset()
         event.EventTrackQueue.clear()
-        Settings.reset_hourly()
+        State.reset_hourly()
 
         Settings.submission_minimum_delay = 0
 
@@ -495,14 +496,14 @@ class TestGL(unittest.TestCase):
             for event_obj in event.events_monitored:
                 for x in range(2):
                     e = event.EventTrack(event_obj, timedelta(seconds=1.0 * x))
-                    Settings.RecentEventQ.append(e.serialize())
+                    State.RecentEventQ.append(e.serialize())
 
     def pollute_events_and_perform_synthesis(self, number_of_times=10):
         for _ in range(number_of_times):
             for event_obj in event.events_monitored:
                 for x in range(2):
                     e = event.EventTrack(event_obj, timedelta(seconds=1.0 * x))
-                    Settings.RecentEventQ.append(e.serialize())
+                    State.RecentEventQ.append(e.serialize())
     @transact
     def get_rtips(self, store):
         ret = []
@@ -698,7 +699,7 @@ class TestGLWithPopulatedDB(TestGL):
 
     @transact
     def set_itips_near_to_expire(self, store):
-        date = datetime_now() + timedelta(hours=Settings.memory_copy.notif.tip_expiration_threshold - 1)
+        date = datetime_now() + timedelta(hours=State.tenant_cache[1].notif.tip_expiration_threshold - 1)
         store.find(models.InternalTip).set(expiration_date = date)
 
 
@@ -766,7 +767,7 @@ class TestHandler(TestGLWithPopulatedDB):
                     api.decorate_method(handler_cls, method)
                     handler_cls.decorated = True
 
-        handler = handler_cls(request, **kwargs)
+        handler = handler_cls(State, request, **kwargs)
 
         if multilang:
             request.language = None

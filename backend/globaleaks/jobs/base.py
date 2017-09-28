@@ -2,20 +2,23 @@
 import time
 
 from twisted.internet import task, defer, reactor, threads
+from twisted.internet import reactor as _reactor
 from twisted.internet.error import ConnectionLost, ConnectionRefusedError, DNSLookupError
 from twisted.web._newclient import ResponseNeverReceived, ResponseFailed
 from txsocksx.errors import TTLExpired, ConnectionRefused
 
 from globaleaks.settings import Settings
+from globaleaks.state import State
 from globaleaks.utils.mailutils import schedule_exception_email, extract_exception_traceback_and_send_email
 from globaleaks.utils.utility import log
 
-test_reactor = None
+reactor = _reactor
 
 TRACK_LAST_N_EXECUTIONS = 10
 
 
 class BaseJob(task.LoopingCall):
+    state = State
     name = "unnamed"
     interval = 1
     low_time = -1
@@ -28,7 +31,6 @@ class BaseJob(task.LoopingCall):
 
     def __init__(self):
         self.job = task.LoopingCall.__init__(self, self.run)
-        self.clock = reactor if test_reactor is None else test_reactor
 
     def start(self, interval):
         task.LoopingCall.start(self, interval)
@@ -44,7 +46,7 @@ class BaseJob(task.LoopingCall):
     def schedule(self):
         delay = self.get_start_time()
         delay = delay if delay > 1 else 1
-        self.clock.callLater(delay, self.start, self.interval)
+        reactor.callLater(delay, self.start, self.interval)
         return self
 
     @defer.inlineCallbacks
@@ -145,12 +147,12 @@ class ExternNetLoopingJob(LoopingJob):
         Handles known errors that the twisted.web.client.Agent or txsocksx.http.SOCKS5Agent
         can throw while connecting through their respective networks.
         """
-        if Settings.memory_copy.anonymize_outgoing_connections and \
+        if State.tenant_cache[1].anonymize_outgoing_connections and \
            isinstance(excep, FAILURES_TOR_OUTGOING):
             log.err('%s job failed Tor network fetch with: %s', self.name, excep)
             return
 
-        if not Settings.memory_copy.anonymize_outgoing_connections and \
+        if not State.tenant_cache[1].anonymize_outgoing_connections and \
            isinstance(excep, FAILURES_INET_OUTGOING):
             log.err('%s job failed outgoing network fetch with: %s', self.name, excep)
             return

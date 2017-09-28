@@ -6,6 +6,7 @@ import copy
 from twisted.internet import reactor, threads
 
 from globaleaks import models
+from globaleaks.state import State
 from globaleaks.handlers.admin.context import admin_serialize_context
 from globaleaks.handlers.admin.node import db_admin_serialize_node
 from globaleaks.handlers.admin.notification import db_get_notification
@@ -160,17 +161,17 @@ class MailGenerator(object):
 
         # https://github.com/globaleaks/GlobaLeaks/issues/798
         # TODO: the current solution is global and configurable only by the admin
-        sent_emails = Settings.get_mail_counter(user_id)
-        if sent_emails >= Settings.memory_copy.notif.notification_threshold_per_hour:
+        sent_emails = State.get_mail_counter(user_id)
+        if sent_emails >= State.tenant_cache[1].notif.notification_threshold_per_hour:
             log.debug("Discarding emails for receiver %s due to threshold already exceeded for the current hour",
                       user_id)
             return
 
-        Settings.increment_mail_counter(user_id)
-        if sent_emails >= Settings.memory_copy.notif.notification_threshold_per_hour:
+        State.increment_mail_counter(user_id)
+        if sent_emails >= State.tenant_cache[1].notif.notification_threshold_per_hour:
             log.info("Reached threshold of %d emails with limit of %d for receiver %s",
                      sent_emails,
-                     Settings.memory_copy.notif.notification_threshold_per_hour,
+                     State.tenant_cache[1].notif.notification_threshold_per_hour,
                      user_id)
 
             # simply changing the type of the notification causes
@@ -201,7 +202,7 @@ class MailGenerator(object):
         for trigger in ['ReceiverTip', 'Comment', 'Message', 'ReceiverFile']:
             model = trigger_model_map[trigger]
 
-            if Settings.memory_copy.notif.disable_receiver_notification_emails:
+            if State.tenant_cache[1].notif.disable_receiver_notification_emails:
                 store.find(model, new=True).set(new=False)
                 continue
 

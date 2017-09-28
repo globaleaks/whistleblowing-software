@@ -12,7 +12,7 @@ from globaleaks.models.properties import iso_strf_time
 from globaleaks.orm import transact
 from globaleaks.rest import requests
 from globaleaks.security import parse_pgp_key
-from globaleaks.settings import Settings
+from globaleaks.state import State
 from globaleaks.utils.mailutils import sendmail
 from globaleaks.utils.sets import merge_dicts
 from globaleaks.utils.templating import Templating
@@ -131,7 +131,7 @@ class NotificationTestInstance(BaseHandler):
     @inlineCallbacks
     def post(self):
         user = yield get_user_settings(self.current_user.user_id,
-                                     Settings.memory_copy.default_language)
+                                     State.tenant_cache[1].default_language)
 
         language = user['language']
 

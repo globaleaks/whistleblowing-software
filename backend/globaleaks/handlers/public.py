@@ -15,6 +15,7 @@ from globaleaks.models.config import NodeFactory
 from globaleaks.models.l10n import NodeL10NFactory
 from globaleaks.orm import transact
 from globaleaks.settings import Settings
+from globaleaks.state import State
 from globaleaks.utils.sets import merge_dicts
 from globaleaks.utils.structures import get_localized_values
 
@@ -129,7 +130,7 @@ def db_serialize_node(store, language):
         'languages_enabled': l10n.EnabledLanguage.list(store),
         'languages_supported': LANGUAGES_SUPPORTED,
         'configured': configured,
-        'accept_submissions': Settings.accept_submissions,
+        'accept_submissions': State.accept_submissions,
         'logo': db_get_file(store, u'logo'),
         'favicon': db_get_file(store, u'favicon'),
         'css': db_get_file(store, u'css'),
@@ -345,7 +346,7 @@ def serialize_receiver(store, receiver, language, data=None):
     ret_dict = {
         'id': receiver.id,
         'name': user.public_name,
-        'username': user.username if Settings.memory_copy.simplified_login else '',
+        'username': user.username if State.tenant_cache[1].simplified_login else '',
         'state': user.state,
         'configuration': receiver.configuration,
         'presentation_order': receiver.presentation_order,

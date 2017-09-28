@@ -22,6 +22,7 @@ from globaleaks.models import serializers
 from globaleaks.orm import transact
 from globaleaks.rest import errors, requests
 from globaleaks.settings import Settings
+from globaleaks.state import State
 from globaleaks.utils.utility import log, get_expiration, datetime_now, datetime_never, \
     datetime_to_ISO8601
 
@@ -277,7 +278,7 @@ def delete_rtip(store, user_id, rtip_id):
 
     receiver = models.db_get(store, models.Receiver, id=rtip.receiver_id)
 
-    if not (Settings.memory_copy.can_delete_submission or
+    if not (State.tenant_cache[1].can_delete_submission or
             receiver.can_delete_submission):
         raise errors.ForbiddenOperation
 
@@ -290,7 +291,7 @@ def postpone_expiration_date(store, user_id, rtip_id):
 
     receiver = models.db_get(store, models.Receiver, id=rtip.receiver_id)
 
-    if not (Settings.memory_copy.can_postpone_expiration or
+    if not (State.tenant_cache[1].can_postpone_expiration or
             receiver.can_postpone_expiration):
         raise errors.ExtendTipLifeNotEnabled
 
@@ -303,7 +304,7 @@ def set_internaltip_variable(store, user_id, rtip_id, key, value):
 
     receiver = models.db_get(store, models.Receiver, id=rtip.receiver_id)
 
-    if not (Settings.memory_copy.can_grant_permissions or
+    if not (State.tenant_cache[1].can_grant_permissions or
             receiver.can_grant_permissions):
         raise errors.ForbiddenOperation
 

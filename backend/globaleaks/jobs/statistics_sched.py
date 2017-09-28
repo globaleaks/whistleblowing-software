@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 # Implement collection of statistics
-
 import os
 
 from globaleaks.anomaly import Alarm
+from globaleaks.state import State
 from globaleaks.jobs.base import LoopingJob
 from globaleaks.models import Stats, Anomalies
 from globaleaks.orm import transact_sync
@@ -36,7 +36,7 @@ def save_anomalies(store, anomaly_list):
 
 def get_anomalies():
     anomalies = []
-    for when, anomaly_blob in dict(Settings.RecentAnomaliesQ).items():
+    for when, anomaly_blob in dict(State.RecentAnomaliesQ).items():
         anomalies.append([when, anomaly_blob[0], anomaly_blob[1]])
 
     return anomalies
@@ -44,7 +44,7 @@ def get_anomalies():
 def get_statistics():
     statsummary = {}
 
-    for descblob in Settings.RecentEventQ:
+    for descblob in State.RecentEventQ:
         if 'event' not in descblob:
             continue
 
@@ -107,12 +107,12 @@ class StatisticsSchedule(LoopingJob):
         current_time = datetime_now()
         statistic_summary = get_statistics()
         if statistic_summary:
-            save_statistics(Settings.stats_collection_start_time, current_time, statistic_summary)
+            save_statistics(State.stats_collection_start_time, current_time, statistic_summary)
             log.debug("Stored statistics %s collected from %s to %s",
                       statistic_summary,
-                      Settings.stats_collection_start_time,
+                      State.stats_collection_start_time,
                       current_time)
         # ------- END Stats section -------------
 
         # Hourly Resets
-        Settings.reset_hourly()
+        State.reset_hourly()

@@ -2,11 +2,11 @@
 
 from collections import OrderedDict
 
-from twisted.internet import reactor
+from twisted.internet import reactor as _reactor
 
 
 # needed in order to allow UT override
-test_reactor = None
+reactor = _reactor
 
 
 class TempDict(OrderedDict):
@@ -30,11 +30,7 @@ class TempDict(OrderedDict):
     def set(self, key, item):
         self._check_size_limit()
         timeout = self.get_timeout()
-        if test_reactor is None:
-            item.expireCall = reactor.callLater(timeout, self._expire, key)
-        else:
-            item.expireCall = test_reactor.callLater(timeout, self._expire, key)
-
+        reactor.callLater(timeout, self._expire, key)
         self[key] = item
 
     def get(self, key):

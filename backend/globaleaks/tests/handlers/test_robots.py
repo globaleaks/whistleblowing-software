@@ -2,7 +2,7 @@
 
 from globaleaks.handlers import robots
 from globaleaks.rest import errors
-from globaleaks.settings import Settings
+from globaleaks.state import State
 from globaleaks.tests import helpers
 from twisted.internet.defer import inlineCallbacks
 
@@ -14,7 +14,7 @@ class TestRobotstxtHandlerHandler(helpers.TestHandler):
     def test_get_with_indexing_disabled(self):
         handler = self.request()
 
-        Settings.memory_copy.allow_indexing = False
+        State.tenant_cache[1].allow_indexing = False
 
         response = yield handler.get()
 
@@ -25,8 +25,8 @@ class TestRobotstxtHandlerHandler(helpers.TestHandler):
     def test_get_with_indexing_enabled(self):
         handler = self.request()
 
-        Settings.memory_copy.allow_indexing = True
-        Settings.memory_copy.hostname = "www.globaleaks.org"
+        State.tenant_cache[1].allow_indexing = True
+        State.tenant_cache[1].hostname = "www.globaleaks.org"
 
         response = yield handler.get()
 
@@ -42,7 +42,7 @@ class TestSitemapHandlerHandler(helpers.TestHandler):
     def test_get_with_indexing_disabled(self):
         handler = self.request()
 
-        Settings.memory_copy.allow_indexing = False
+        State.tenant_cache[1].allow_indexing = False
 
         yield self.assertRaises(errors.ResourceNotFound, handler.get)
 
@@ -50,7 +50,7 @@ class TestSitemapHandlerHandler(helpers.TestHandler):
     def test_get_with_indexing_enabled(self):
         handler = self.request()
 
-        Settings.memory_copy.allow_indexing = True
+        State.tenant_cache[1].allow_indexing = True
 
         yield handler.get()
 

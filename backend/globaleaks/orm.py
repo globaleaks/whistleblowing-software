@@ -14,6 +14,7 @@ from storm.store import Store
 from twisted.internet import reactor
 from twisted.internet.threads import deferToThreadPool
 
+from globaleaks.state import State
 from globaleaks.settings import Settings
 from globaleaks.utils.mailutils import schedule_exception_email
 from globaleaks.utils.utility import log, timedelta_to_milliseconds
@@ -75,7 +76,7 @@ class transact(object):
 
     def run(self, function, *args, **kwargs):
         return deferToThreadPool(reactor,
-                                 Settings.orm_tp,
+                                 State.orm_tp,
                                  function,
                                  *args,
                                  **kwargs)

@@ -10,7 +10,7 @@ from globaleaks.handlers.admin.user import db_get_admin_users
 from globaleaks.handlers.user import user_serialize_user
 from globaleaks.jobs.base import LoopingJob
 from globaleaks.orm import transact_sync
-from globaleaks.settings import Settings
+from globaleaks.state import State
 from globaleaks.transactions import db_schedule_email
 from globaleaks.utils.templating import Templating
 from globaleaks.utils.utility import datetime_now, datetime_null
@@ -69,7 +69,7 @@ class PGPCheckSchedule(LoopingJob):
         expired_or_expiring = []
 
         for user in db_get_expired_or_expiring_pgp_users(store):
-            expired_or_expiring.append(user_serialize_user(store, user, Settings.memory_copy.default_language))
+            expired_or_expiring.append(user_serialize_user(store, user, State.tenant_cache[1].default_language))
 
             if user.pgp_key_expiration < datetime_now():
                 user.pgp_key_public = ''
@@ -77,7 +77,7 @@ class PGPCheckSchedule(LoopingJob):
                 user.pgp_key_expiration = datetime_null()
 
         if expired_or_expiring:
-            if not Settings.memory_copy.notif.disable_admin_notification_emails:
+            if not State.tenant_cache[1].notif.disable_admin_notification_emails:
                 self.prepare_admin_pgp_alerts(store, expired_or_expiring)
 
             for user_desc in expired_or_expiring:

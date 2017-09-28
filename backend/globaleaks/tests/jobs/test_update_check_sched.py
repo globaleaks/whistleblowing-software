@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from globaleaks.jobs.update_check_sched import UpdateCheckJob
-from globaleaks.settings import Settings
+from globaleaks.state import State
 from globaleaks.tests import helpers
 from twisted.internet.defer import inlineCallbacks, succeed
 
@@ -27,8 +27,8 @@ packages="Package: globaleaks\n" \
 class TestUpdateCheckJob(helpers.TestGL):
     @inlineCallbacks
     def test_refresh_works(self):
-        Settings.memory_copy.anonymize_outgoing_connections = False
-        Settings.appstate.latest_version = '0.0.1'
+        State.tenant_cache[1].anonymize_outgoing_connections = False
+        State.latest_version = '0.0.1'
 
         def fetch_packages_file_mock(self):
             return succeed(packages)
@@ -37,4 +37,4 @@ class TestUpdateCheckJob(helpers.TestGL):
 
         yield UpdateCheckJob().operation()
 
-        self.assertEqual(Settings.appstate.latest_version, '2.0.1337')
+        self.assertEqual(State.latest_version, '2.0.1337')

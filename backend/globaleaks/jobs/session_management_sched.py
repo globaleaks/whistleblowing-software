@@ -19,4 +19,4 @@ class SessionManagementSchedule(LoopingJob):
             - Refresh of the api_token's suspension
         """
         Settings.failed_login_attempts = 0
-        Settings.appstate.api_token_session_suspended = False
+        self.state.api_token_session_suspended = False

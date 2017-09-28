@@ -1,11 +1,12 @@
 # -*- coding: utf-8 -*-
+from twisted.internet.defer import inlineCallbacks
+
 from globaleaks import anomaly
 from globaleaks.handlers.admin import statistics
 from globaleaks.jobs.statistics_sched import AnomaliesSchedule, StatisticsSchedule
 from globaleaks.models import Stats
 from globaleaks.orm import transact
 from globaleaks.tests import helpers
-from twisted.internet.defer import inlineCallbacks
 
 
 class TestStatsCollection(helpers.TestHandler):

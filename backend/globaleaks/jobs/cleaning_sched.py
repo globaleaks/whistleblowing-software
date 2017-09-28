@@ -12,7 +12,7 @@ from globaleaks.handlers.user import user_serialize_user
 from globaleaks.jobs.base import LoopingJob
 from globaleaks.orm import transact_sync
 from globaleaks.security import overwrite_and_remove
-from globaleaks.settings import Settings
+from globaleaks.state import State
 from globaleaks.utils.templating import Templating
 from globaleaks.utils.utility import datetime_now, datetime_never, \
     datetime_to_ISO8601
@@ -22,7 +22,7 @@ __all__ = ['CleaningSchedule']
 
 
 def db_clean_expired_wbtips(store):
-    threshold = datetime_now() - timedelta(days=Settings.memory_copy.wbtip_timetolive)
+    threshold = datetime_now() - timedelta(days=State.tenant_cache[1].wbtip_timetolive)
 
     wbtips = store.find(models.WhistleblowerTip, models.InternalTip.id == models.WhistleblowerTip.id,
                                                  models.InternalTip.wb_last_access < threshold)
@@ -59,7 +59,7 @@ class CleaningSchedule(LoopingJob):
 
     @transact_sync
     def check_for_expiring_submissions(self, store):
-        threshold = datetime_now() + timedelta(hours=Settings.memory_copy.notif.tip_expiration_threshold)
+        threshold = datetime_now() + timedelta(hours=State.tenant_cache[1].notif.tip_expiration_threshold)
 
         for user in store.find(models.User, role=u'receiver'):
             itip_ids = [id for id in store.find(models.InternalTip.id,

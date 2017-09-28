@@ -2,6 +2,7 @@
 from globaleaks.anomaly import Alarm
 from globaleaks.handlers.admin.statistics import get_anomaly_history
 from globaleaks.jobs.statistics_sched import StatisticsSchedule
+from globaleaks.state import State
 from globaleaks.settings import Settings
 from globaleaks.tests import helpers
 from globaleaks.utils.utility import datetime_to_ISO8601
@@ -25,9 +26,9 @@ class TestStatistics(helpers.TestGL):
 
         Alarm.compute_activity_level()
 
-        anomdet = Settings.RecentAnomaliesQ.values()[0]
-        self.assertEqual(len(Settings.RecentAnomaliesQ.keys()), 1)
-        original_date = datetime_to_ISO8601(Settings.RecentAnomaliesQ.keys()[0])
+        anomdet = State.RecentAnomaliesQ.values()[0]
+        self.assertEqual(len(State.RecentAnomaliesQ.keys()), 1)
+        original_date = datetime_to_ISO8601(State.RecentAnomaliesQ.keys()[0])
 
         self.assertTrue(isinstance(anomdet, list))
         self.assertTrue(len(anomdet), 2)

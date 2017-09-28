@@ -13,6 +13,7 @@ from twisted.python import log as txlog, logfile as txlogfile
 from twisted.web.http import _escape
 from twisted.web.server import Site
 
+from globaleaks.state import State
 from globaleaks.db import init_db, update_db, \
     sync_refresh_memory_variables, sync_clean_untracked_files
 from globaleaks.rest.api import APIResourceWrapper
@@ -49,12 +50,13 @@ def timedLogFormatter(timestamp, request):
 
 
 class Service(service.Service):
+    def __init__(self):
+        self.state = State
+
     def startService(self):
         mask = 0
         if Settings.devel_mode:
             mask = 8000
-
-        Settings.http_socks = []
 
         # Allocate local ports
         for port in Settings.bind_local_ports:
@@ -62,7 +64,7 @@ class Service(service.Service):
             if fail is not None:
                 log.err("Could not reserve socket for %s (error: %s)", fail[0], fail[1])
             else:
-                Settings.http_socks += [http_sock]
+                self.state.http_socks += [http_sock]
 
         # Allocate remote ports
         for port in Settings.bind_remote_ports:
@@ -72,9 +74,9 @@ class Service(service.Service):
                 continue
 
             if port == 80:
-                Settings.http_socks += [sock]
+                self.state.http_socks += [sock]
             elif port == 443:
-                Settings.https_socks += [sock]
+                self.state.https_socks += [sock]
 
         if Settings.disable_swap:
             disable_swap()
@@ -87,11 +89,33 @@ class Service(service.Service):
 
     @defer.inlineCallbacks
     def shutdown(self):
-        yield Settings.appstate.process_supervisor.shutdown()
+        yield self.state.process_supervisor.shutdown()
 
-        yield Settings.stop_jobs()
+        yield self.stop_jobs()
 
-        Settings.orm_tp.stop()
+        self.state.orm_tp.stop()
+
+    def start_jobs(self):
+        from globaleaks.jobs import jobs_list, services_list
+        from globaleaks.jobs.base import LoopingJobsMonitor
+
+        for job in jobs_list:
+            self.state.jobs.append(job().schedule())
+
+        for service in services_list:
+            self.state.services.append(service().schedule())
+
+        self.state.jobs_monitor = LoopingJobsMonitor(self.state.jobs)
+        self.state.jobs_monitor.schedule()
+
+    @defer.inlineCallbacks
+    def stop_jobs(self):
+        for job in self.state.jobs + self.state.services:
+            yield job.stop()
+
+        if self.state.jobs_monitor is not None:
+            yield self.state.jobs_monitor.stop()
+            self.state.jobs_monitor = None
 
     @defer.inlineCallbacks
     def deferred_start(self):
@@ -112,24 +136,24 @@ class Service(service.Service):
         sync_clean_untracked_files()
         sync_refresh_memory_variables()
 
-        Settings.orm_tp.start()
+        self.state.orm_tp.start()
 
         reactor.addSystemEventTrigger('before', 'shutdown', self.shutdown)
 
         arw = APIResourceWrapper()
 
-        Settings.api_factory = Site(arw, logFormatter=timedLogFormatter)
+        self.api_factory = Site(arw, logFormatter=timedLogFormatter)
 
-        for sock in Settings.http_socks:
-            listen_tcp_on_sock(reactor, sock.fileno(), Settings.api_factory)
+        for sock in self.state.http_socks:
+            listen_tcp_on_sock(reactor, sock.fileno(), self.api_factory)
 
-        Settings.appstate.process_supervisor = ProcessSupervisor(Settings.https_socks,
-                                                                '127.0.0.1',
-                                                                8082)
+        self.state.process_supervisor = ProcessSupervisor(self.state.https_socks,
+                                                          '127.0.0.1',
+                                                          8082)
 
-        Settings.appstate.process_supervisor.maybe_launch_https_workers()
+        self.state.process_supervisor.maybe_launch_https_workers()
 
-        Settings.start_jobs()
+        self.start_jobs()
 
         Settings.print_listening_interfaces()
 

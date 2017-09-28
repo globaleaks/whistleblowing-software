@@ -9,11 +9,11 @@ import operator
 from datetime import timedelta
 from storm.expr import Desc, And
 
+from globaleaks.state import State
 from globaleaks.event import EventTrackQueue, events_monitored
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.models import Stats, Anomalies
 from globaleaks.orm import transact
-from globaleaks.settings import Settings
 from globaleaks.utils.utility import datetime_to_ISO8601, datetime_now, \
     iso_to_gregorian, log
 
@@ -29,6 +29,7 @@ def weekmap_to_heatmap(week_map):
 
     return retlist
 
+
 @transact
 def get_stats(store, week_delta):
     """
@@ -37,7 +38,7 @@ def get_stats(store, week_delta):
     At the moment do not support negative number and change of the year.
     """
     now = datetime_now()
-    week_delta = abs(week_delta)
+    week_delta = abs(int(week_delta))
 
     target_week = datetime_now()
     if week_delta > 0:
@@ -143,20 +144,11 @@ class AnomalyCollection(BaseHandler):
 
 class StatsCollection(BaseHandler):
     """
-    This Handler returns the list of the stats, stats is the aggregated
-    count of activities recorded in the delta defined in Settingss
-    /admin/stats
+    This Handler returns the list of the stats for the requested range
     """
     check_roles = 'admin'
 
     def get(self, week_delta):
-        week_delta = int(week_delta)
-
-        if week_delta:
-            log.debug("Asking statistics for %d weeks ago" % week_delta)
-        else:
-            log.debug("Asking statistics for current week")
-
         return get_stats(week_delta)
 
 
@@ -183,7 +175,7 @@ class RecentEventsCollection(BaseHandler):
         # the current 30 seconds
         templist += EventTrackQueue.take_current_snapshot()
         # the already stocked by side, until Stats dump them in 1hour
-        templist += Settings.RecentEventQ
+        templist += State.RecentEventQ
 
         templist.sort(key=operator.itemgetter('id'))
 
@@ -202,7 +194,7 @@ class JobsTiming(BaseHandler):
     def get(self):
         response = []
 
-        for job in Settings.jobs:
+        for job in State.jobs:
             response.append({
               'name': job.name,
               'timings': job.last_executions
