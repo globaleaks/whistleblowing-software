@@ -5,7 +5,7 @@
 # Implementation of the User model functionalities
 #
 from globaleaks import models, security
-from globaleaks.db import db_refresh_exception_delivery_list
+from globaleaks.db import db_refresh_memory_variables
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.user import parse_pgp_options, user_serialize_user
 from globaleaks.orm import transact
@@ -50,7 +50,7 @@ def db_create_admin_user(store, request, language):
 
     log.debug("Created new admin")
 
-    db_refresh_exception_delivery_list(store, State.tenant_cache[1])
+    db_refresh_memory_variables(store)
 
     return user
 
@@ -180,7 +180,7 @@ def db_admin_update_user(store, user_id, request, language):
     parse_pgp_options(user, request)
 
     if user.role == 'admin':
-        db_refresh_exception_delivery_list(store, State.tenant_cache[1])
+        db_refresh_memory_variables(store)
 
     return user
 
