@@ -2,6 +2,10 @@ var assert = require('assert');
 var chai = require('chai');
 var expect = chai.expect;
 
+require('./node-angular-shim');
+
+require('./../../app/js/crypto/main');
+
 describe('Array', function() {
   describe('#indexOf()', function() {
     it('should return -1 when the value is not present', function() {

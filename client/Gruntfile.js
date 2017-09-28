@@ -111,15 +111,35 @@ module.exports = function(grunt) {
     },
 
     browserify: {
+      mocha: {
+        files: {
+          'tests/unit/lib/mocha-bundle.js': [
+            'node_modules/mocha/mocha.js',
+            'node_modules/chai/chai.js',
+            'node_modules/angular-mocks/angular-mocks.js'
+          ]
+        }
+      },
       unittest: {
         files: {
-          'tests/unit/lib/unittest-bundle.js': ['tests/unit/unittest.js']
+          'tests/unit/lib/unittest-bundle.js': [
+            'node_modules/chai/lib/chai.js',
+            'node_modules/angular-mocks/angular-mocks.js',
+            'tests/unit/unittest.js'
+          ]
         },
         options: {
-          external: ['openpgp',]
+          external: ['mocha']
         }
       }
     },
+
+    mocha_istanbul: {
+      coverage: {
+        src: 'tests/unit/unittest.js',
+      },
+    },
+
 
     useminPrepare: {
       html: [
@@ -301,6 +321,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-connect');
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-istanbul');
+  grunt.loadNpmTasks('grunt-mocha-istanbul');
   grunt.loadNpmTasks('grunt-protractor-coverage');
   grunt.loadNpmTasks('grunt-string-replace');
   grunt.loadNpmTasks('grunt-usemin');
@@ -922,4 +943,8 @@ module.exports = function(grunt) {
     'copy:unittest',
     'browserify:unittest',
   ]);
+
+  grunt.registerTask('mocha-coverage-report', [
+    'mocha_istanbul'
+  ])
 };
