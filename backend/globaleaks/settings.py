@@ -11,7 +11,9 @@ import os
 import pwd
 import re
 import sys
+# pylint: disable=no-name-in-module
 from distutils import dir_util
+# pylint: enable=no-name-in-module
 from optparse import OptionParser
 
 from twisted.internet.defer import inlineCallbacks
