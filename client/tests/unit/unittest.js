@@ -2,29 +2,69 @@ var assert = require('assert');
 var chai = require('chai');
 var expect = chai.expect;
 
-describe('Array', function() {
-  describe('#indexOf()', function() {
-    it('should return -1 when the value is not present', function() {
-      assert.equal(-1, [1,2,3].indexOf(4));
-    });
-  });
+var intervalRef;
+
+beforeEach(window.module('GLUnitTest', function(_$exceptionHandlerProvider_) {
+  _$exceptionHandlerProvider_.mode('log');
+}));
+
+beforeEach(angular.mock.inject(function ($rootScope, $timeout) {
+  intervalRef = setInterval(function(){
+    $rootScope.$apply();
+    try {
+      $timeout.verifyNoPendingTasks();
+    } catch (_) {
+      $timeout.flush();
+    }
+  }, 25);
+}));
+
+afterEach(function () {
+  clearInterval(intervalRef);
 });
 
-describe('FooBar', function() {
-  describe('#bazBuz', function() {
-    it('2*12 should equal 24', function() {
-      chai.expect(24).to.equal(2*12);
+describe('GLUnitTest', function() {
+  var TestEnv;
 
-      expect(24).to.equal(2*12);
-    });
-  });
-});
-
-describe('glbcCrytpo', function() {
   beforeEach(function() {
-    window.module('GLBrowserCrypto');
+    window.inject(function(_TestEnv_) {
+      TestEnv = _TestEnv_;
+    })
   });
 
+  describe('Test Environment', function() {
+    it('asyncPromiseTimeout', function(done) {
+       TestEnv.asyncPromiseTimeout().then(function(r) {
+         done();
+       });
+    });
+
+    it('asyncPromiseTimeoutErr', function(done) {
+       TestEnv.asyncPromiseTimeoutErr().then(function(r) {
+          assert.fail('promise must reject')
+       }, function(r) {
+         done()
+       });
+    });
+
+    it('syncPromise', function(done) {
+       TestEnv.syncPromise().then(function(r) {
+         done();
+       });
+    });
+
+    it('syncPromiseErr', function(done) {
+      TestEnv.syncPromiseErr().then(function(r) {
+        assert.fail('promise must reject')
+      }, function(r) {
+        done()
+      });
+    });
+  });
+});
+
+describe('GLBrowserCrypto', function() {
+  var SCRYPT_MAX = 30000; // maximum timeout for evaluating scrypt
 
   var goodKey =
     ['-----BEGIN PGP PUBLIC KEY BLOCK-----',
@@ -72,22 +112,6 @@ describe('glbcCrytpo', function() {
     });
   });
 
-  describe('glbcKeyLib', function() {
-    var glbcKeyLib;
-    beforeEach(function() {
-      window.inject(function(_glbcKeyLib_) { glbcKeyLib = _glbcKeyLib_; })
-    });
-
-    it('validPublicKey provides good validation', function() {
-      var a = glbcKeyLib.validPublicKey(badKey);
-
-      expect(a).to.equal(false);
-
-      var b = glbcKeyLib.validPublicKey(goodKey);
-      expect(b).to.equal(true);
-    });
-  })
-
   describe('glbcCipherLib', function() {
     var glbcCipherLib;
     beforeEach(function() {
@@ -106,6 +130,125 @@ describe('glbcCrytpo', function() {
         console.log('cipher', cipher);
         // TODO key not in keyring
         done();
+      });
+    });
+  });
+
+  describe('glbcKeyLib', function(done) {
+    var glbcKeyLib;
+
+    beforeEach(function() {
+      window.inject(function(_glbcKeyLib_) {
+        glbcKeyLib = _glbcKeyLib_;
+      })
+    });
+
+    it('deriveUserPassword', function() {
+      var pass = 'Super secret password',
+          salt = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx';
+      glbcKeyLib.deriveUserPassword(pass, salt).then(function(res) {
+        console.log(res);
+        done();
+      });
+    });
+
+    it('scrypt', function(done) {
+      var data = 'Super secret password',
+          salt = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
+          logN = 14,
+          dLen = 64;
+
+       glbcKeyLib.scrypt(data, salt, logN, dLen).then(function(res) {
+         console.log('scrypted', res);
+         done();
+       });
+    }).timeout(SCRYPT_MAX);
+
+    it('generateCCryptoKey', function(done) {
+      var pass = 'Super secret password';
+
+      glbcKeyLib.generateCCryptoKey(pass).then(function(res) {
+        console.log('genKeyFinished', res);
+        done();
+      });
+    }).timeout(SCRYPT_MAX);
+
+    it('generateKeycode', function() {
+       var keycode = glbcKeyLib.generateKeycode();
+       console.log(keycode);
+       // run 10 times. . .
+    });
+
+
+    it('validPrivateKey', function() {
+        var bad_key = '';
+        var good_key = '';
+    });
+
+    it('validPublicKey', function() {
+      var a = glbcKeyLib.validPublicKey(badKey);
+
+      expect(a).to.equal(false);
+
+      var b = glbcKeyLib.validPublicKey(goodKey);
+      expect(b).to.equal(true);
+    });
+
+  });
+
+  describe('glbcKeyRing', function() {
+    var glbcKeyRing;
+    beforeEach(function() {
+      window.inject(function(_glbcKeyRing_) {
+        glbcKeyRing = _glbcKeyRing_;
+      });
+    });
+
+    it('test life cycle', function() {
+      // initialize
+      //
+      // isInitialiazed
+      //
+      // add some pub keys
+      //
+      // getSessionKey
+      //
+      // try to enc
+      //
+      // unlockKeyRing
+      //
+      // enc
+      //
+      // lockKeyRing
+      //
+      // try to enc
+      //
+      // clear
+      //
+      // check if empty
+    });
+  });
+});
+
+describe('GLClient', function() {
+
+  describe('Utils', function(done) {
+    var Utils;
+
+    beforeEach(function() {
+      window.inject(function(_Utils_) {
+        Utils = _Utils_;
+      })
+    });
+
+    it.only('base64DecodeUnicode should handle utf-8 encoded strings', function() {
+      var cases = [
+        {inp: 'Um9tw6JuaWFJbmNvZ25pdG8=', out: 'RomâniaIncognito'},
+        {inp: 'Q3VtIGZ1bmPIm2lvbmVhesSD', out: 'Cum funcționează'},
+        {inp: 'w45udHJlYsSDcmkgZnJlY3ZlbnRl', out: 'Întrebări frecvente'},
+      ]
+      cases.forEach(function(tc) {
+        expect(Utils.b64DecodeUnicode(tc.inp)).to.equal(tc.out);
       });
     });
   });

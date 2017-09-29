@@ -113,9 +113,7 @@ module.exports = function(grunt) {
     browserify: {
       unittest: {
         files: {
-          'tests/unit/lib/unittest-bundle.js': [
-            'tests/unit/unittest.js'
-          ]
+          'tests/unit/lib/unittest-bundle.js': 'tests/unit/unittest.js'
         },
       }
     },
