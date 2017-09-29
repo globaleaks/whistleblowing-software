@@ -265,7 +265,9 @@ class APIResourceWrapper(Resource):
     def preprocess(self, request):
         request.headers = request.getAllHeaders()
 
-        request.client_ip = request.headers.get('gl-forwarded-for', None)
+        request.hostname = request.headers.get('host', '').split(':')[0]
+
+        request.client_ip = request.headers.get('gl-forwarded-for')
         request.client_proto = 'https'
         if request.client_ip is None:
             request.client_ip = request.getClientIP()
@@ -413,7 +415,6 @@ class APIResourceWrapper(Resource):
 
     def detect_language(self, request):
         language = request.headers.get('gl-language')
-
         if language is None:
             for l in self.parse_accept_language_header(request):
                 if l in State.tenant_cache[1].languages_enabled:

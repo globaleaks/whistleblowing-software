@@ -39,7 +39,8 @@ class TokenCreate(BaseHandler):
 
         token = Token(request['type'])
 
-        if not self.request.client_using_tor and self.request.client_proto == 'http':
+        if not self.request.client_using_tor and (self.request.client_proto == 'http' and \
+                                                  self.request.hostname not in ['127.0.0.1', 'localhost']):
             # Due to https://github.com/globaleaks/GlobaLeaks/issues/2088 the proof of work if currently
             # implemented only over Tor and HTTPS that are the production conditions.
             token.proof_of_work['solved'] = True
