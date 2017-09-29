@@ -1,4 +1,4 @@
-# -*- coding: UTF-8
+# -*- coding: utf-8
 import time
 
 from twisted.internet import task, defer, reactor, threads

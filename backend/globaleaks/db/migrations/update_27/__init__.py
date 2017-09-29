@@ -1,4 +1,4 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 import os
 import shutil
 from storm.locals import Int, Bool, Unicode, DateTime, JSON

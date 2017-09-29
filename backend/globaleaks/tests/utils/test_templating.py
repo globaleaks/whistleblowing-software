@@ -1,4 +1,4 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 from twisted.internet.defer import inlineCallbacks
 from globaleaks.handlers import admin, rtip
 from globaleaks.jobs.delivery_sched import DeliverySchedule

@@ -1,4 +1,4 @@
-# -*- coding: UTF-8
+# -*- coding: utf-8
 from datetime import datetime
 from urllib2 import urlopen
 

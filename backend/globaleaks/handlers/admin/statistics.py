@@ -1,4 +1,4 @@
-#/a -*- coding: UTF-8
+#/a -*- coding: utf-8
 #
 #   statistics
 #   **********

@@ -1,4 +1,4 @@
-# -*- coding: UTF-8
+# -*- coding: utf-8
 # settings: Define Settings, main class handling GlobaLeeaks runtime settings
 # ******
 from __future__ import print_function

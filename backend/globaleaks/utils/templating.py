@@ -1,4 +1,4 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 #
 # this file contain the class converting the %KeyWords% with data.
 # perhaps exists something python-stable-portable-well know, this

@@ -1,4 +1,4 @@
-# -*- coding: UTF-8
+# -*- coding: utf-8
 # Implement refresh of the list of exit nodes IPs.
 
 from globaleaks.jobs.base import ExternNetLoopingJob

@@ -1,4 +1,4 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 #
 # In here you will find all the handlers that are tasked with handling the
 # requests specified in the API.

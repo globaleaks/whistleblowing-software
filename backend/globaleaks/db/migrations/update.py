@@ -1,4 +1,4 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 
 from storm.exceptions import OperationalError
 from storm.properties import PropertyColumn

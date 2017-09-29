@@ -1,4 +1,4 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 
 from globaleaks import __version__, DATABASE_VERSION
 from globaleaks.models.config_desc import Unicode, Int, Bool

@@ -1,4 +1,4 @@
-# -*- coding: UTF-8
+# -*- coding: utf-8
 
 # This mock is required in order to make python-acme 0.4.1 compatible with:
 # - https://community.letsencrypt.org/t/adding-random-entries-to-the-directory/33417

@@ -1,4 +1,4 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 # Implements periodic checks in order to verify pgp key status and other consistencies:
 
 from datetime import timedelta
