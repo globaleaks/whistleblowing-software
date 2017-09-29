@@ -97,16 +97,24 @@ module.exports = function(grunt) {
       },
       unittest: {
         files: [{
-          expand: true,
-          cwd: 'node_modules',
-          src: ['mocha/mocha.css', 'mocha/mocha.js', 'chai/chai.js','angular-mocks/angular-mocks.js'],
-          flatten: true,
-          dest: 'tests/unit/lib',
-        },
-        {
-          src: 'build/js/scripts.js',
-          dest: 'tests/unit/lib/scripts.js',
-        }],
+            expand: true,
+            cwd: 'node_modules',
+            src: ['mocha/mocha.css', 'mocha/mocha.js', 'chai/chai.js','angular-mocks/angular-mocks.js'],
+            flatten: true,
+            dest: 'tests/unit/lib',
+          },
+          // Imports to preserve absolute paths used within glbcProofOfWork
+          {
+            cwd: '.',
+            src: 'app/js/crypto/scrypt-async.worker.js',
+            dest: 'js/crypto/',
+          },
+          {
+            cwd: '.',
+            src: 'app/js/crypto/lib/scrypt-async.min.js',
+            dest: 'js/crypto/lib/',
+          }
+        ],
       }
     },
 
