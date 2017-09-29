@@ -14,6 +14,26 @@ from globaleaks.utils.utility import log
 TRACK_LAST_N_EXECUTIONS = 10
 
 
+FAILURES_OUTGOING = (
+    ConnectionLost,
+    ConnectionRefusedError,
+    ResponseNeverReceived,
+    ResponseFailed,
+)
+
+
+FAILURES_INET_OUTGOING = FAILURES_OUTGOING + (
+    DNSLookupError,
+)
+
+
+FAILURES_TOR_OUTGOING = FAILURES_OUTGOING + (
+    TTLExpired,
+    RuntimeError,
+    ConnectionRefused,
+)
+
+
 class BaseJob(task.LoopingCall):
     state = State
     name = "unnamed"
@@ -117,26 +137,6 @@ class LoopingJob(BaseJob):
         log.err(error)
         log.exception(excep)
         extract_exception_traceback_and_send_email(excep)
-
-
-FAILURES_OUTGOING = (
-    ConnectionLost,
-    ConnectionRefusedError,
-    ResponseNeverReceived,
-    ResponseFailed,
-)
-
-
-FAILURES_INET_OUTGOING = FAILURES_OUTGOING + (
-    DNSLookupError,
-)
-
-
-FAILURES_TOR_OUTGOING = FAILURES_OUTGOING + (
-    TTLExpired,
-    RuntimeError,
-    ConnectionRefused,
-)
 
 
 class ExternNetLoopingJob(LoopingJob):
