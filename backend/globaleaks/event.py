@@ -1,4 +1,4 @@
-# -*- coding: UTF-8
+# -*- coding: utf-8
 
 from globaleaks.state import State
 from globaleaks.utils.tempdict import TempDict

@@ -1,4 +1,4 @@
-# -*- coding: UTF-8
+# -*- coding: utf-8
 from storm.locals import Int, Bool, Unicode, JSON
 
 from globaleaks import models

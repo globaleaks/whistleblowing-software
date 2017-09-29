@@ -1,4 +1,4 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 from distutils.version import LooseVersion as V  # pylint: disable=no-name-in-module,import-error
 
 from debian import deb822

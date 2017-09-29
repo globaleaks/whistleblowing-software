@@ -1,4 +1,4 @@
-# -*- coding: UTF-8
+# -*- coding: utf-8
 # orm: contains main hooks to storm ORM
 # ******
 import sys

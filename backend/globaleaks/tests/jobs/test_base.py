@@ -1,4 +1,4 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 
 from globaleaks import models
 from globaleaks.jobs.base import LoopingJob

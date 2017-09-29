@@ -1,4 +1,4 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 from globaleaks.anomaly import Alarm
 from globaleaks.handlers import token
 from globaleaks.rest import errors

@@ -1,4 +1,4 @@
-# -*- coding: UTF-8
+# -*- coding: utf-8
 
 from globaleaks import models
 from globaleaks.utils.utility import datetime_to_ISO8601

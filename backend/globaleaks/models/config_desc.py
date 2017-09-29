@@ -1,4 +1,4 @@
-# -*- coding: UTF-8
+# -*- coding: utf-8
 
 from globaleaks import __version__, DATABASE_VERSION
 from globaleaks.models.properties import iso_strf_time

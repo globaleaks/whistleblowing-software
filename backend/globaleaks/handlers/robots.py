@@ -1,4 +1,4 @@
-# -*- coding: UTF-8
+# -*- coding: utf-8
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.rest import errors
 from globaleaks.state import State

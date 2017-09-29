@@ -1,4 +1,4 @@
-# -*- coding: UTF-8
+# -*- coding: utf-8
 # Implementation of the cleaning operations.
 from datetime import timedelta
 

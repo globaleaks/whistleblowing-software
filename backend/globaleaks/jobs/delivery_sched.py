@@ -1,4 +1,4 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 # Implements the delivery operations performed when a new submission
 # is created, or a new file is append to an existing Tip. delivery
 # works on the file and on the fields, not in the comments.
