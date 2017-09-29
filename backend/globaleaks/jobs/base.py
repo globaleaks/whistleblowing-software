@@ -2,7 +2,7 @@
 import time
 
 from twisted.internet import task, defer, reactor, threads
-from twisted.internet import reactor as _reactor
+from twisted.internet import reactor
 from twisted.internet.error import ConnectionLost, ConnectionRefusedError, DNSLookupError
 from twisted.web._newclient import ResponseNeverReceived, ResponseFailed
 from txsocksx.errors import TTLExpired, ConnectionRefused
@@ -11,8 +11,6 @@ from globaleaks.settings import Settings
 from globaleaks.state import State
 from globaleaks.utils.mailutils import schedule_exception_email, extract_exception_traceback_and_send_email
 from globaleaks.utils.utility import log
-
-reactor = _reactor
 
 TRACK_LAST_N_EXECUTIONS = 10
 
@@ -31,6 +29,7 @@ class BaseJob(task.LoopingCall):
 
     def __init__(self):
         self.job = task.LoopingCall.__init__(self, self.run)
+        self.clock = reactor
 
     def start(self, interval):
         task.LoopingCall.start(self, interval)
@@ -46,7 +45,7 @@ class BaseJob(task.LoopingCall):
     def schedule(self):
         delay = self.get_start_time()
         delay = delay if delay > 1 else 1
-        reactor.callLater(delay, self.start, self.interval)
+        self.clock.callLater(delay, self.start, self.interval)
         return self
 
     @defer.inlineCallbacks
