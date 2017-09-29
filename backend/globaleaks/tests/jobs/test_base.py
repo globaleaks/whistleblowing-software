@@ -1,10 +1,9 @@
 # -*- coding: utf-8 -*-
-
 from globaleaks import models
 from globaleaks.jobs.base import LoopingJob
-from globaleaks.orm import transact
 
 from globaleaks.tests import helpers
+
 
 class LoopingJobX(LoopingJob):
     interval = 2
@@ -12,6 +11,7 @@ class LoopingJobX(LoopingJob):
 
     def run(self):
         self.operation_called += 1
+
 
 class TestLoopingJob(helpers.TestGL):
     def test_base_scheduler(self):
@@ -38,9 +38,3 @@ class TestLoopingJob(helpers.TestGL):
             self.assertEqual(job.operation_called, i)
 
         job.stop()
-
-
-@transact
-def get_scheduled_email_count(store):
-    """Returns the number of mails scheduled in db"""
-    return store.find(models.Mail).count()
