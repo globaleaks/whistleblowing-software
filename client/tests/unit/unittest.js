@@ -241,7 +241,7 @@ describe('GLClient', function() {
       })
     });
 
-    it.only('base64DecodeUnicode should handle utf-8 encoded strings', function() {
+    it('base64DecodeUnicode should handle utf-8 encoded strings', function() {
       var cases = [
         {inp: 'Um9tw6JuaWFJbmNvZ25pdG8=', out: 'RomâniaIncognito'},
         {inp: 'Q3VtIGZ1bmPIm2lvbmVhesSD', out: 'Cum funcționează'},

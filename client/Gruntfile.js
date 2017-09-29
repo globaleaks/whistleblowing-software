@@ -98,19 +98,21 @@ module.exports = function(grunt) {
       unittest: {
         files: [{
             expand: true,
+            flatten: true,
             cwd: 'node_modules',
             src: ['mocha/mocha.css', 'mocha/mocha.js', 'chai/chai.js','angular-mocks/angular-mocks.js'],
-            flatten: true,
             dest: 'tests/unit/lib',
           },
           // Imports to preserve absolute paths used within glbcProofOfWork
           {
-            cwd: '.',
+            expand: true,
+            flatten: true,
             src: 'app/js/crypto/scrypt-async.worker.js',
             dest: 'js/crypto/',
           },
           {
-            cwd: '.',
+            expand: true,
+            flatten: true,
             src: 'app/js/crypto/lib/scrypt-async.min.js',
             dest: 'js/crypto/lib/',
           }
@@ -931,7 +933,6 @@ module.exports = function(grunt) {
   ]);
 
   grunt.registerTask('unittest', [
-    'build',
     'copy:unittest',
     'browserify:unittest',
   ]);
