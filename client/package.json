@@ -34,7 +34,7 @@
     "zxcvbn": "4.4.2"
   },
   "devDependencies": {
-    "coveralls": "2.13.1",
+    "coveralls": "3.0.0",
     "eslint": "4.7.2",
     "grunt": "1.0.1",
     "grunt-angular-templates": "1.1.0",
@@ -55,7 +55,7 @@
     "protractor-console-plugin": "0.1.1",
     "q": "1.5.0",
     "selenium-webdriver": "3.5.0",
-    "superagent": "3.6.0",
+    "superagent": "3.6.1",
     "supertest": "3.0.0"
   }
 }
