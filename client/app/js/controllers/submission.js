@@ -55,19 +55,10 @@ GLClient.controller('SubmissionCtrl',
   };
 
   if ($scope.receivers_ids) {
-    try {
-      $scope.receivers_ids = angular.fromJson($scope.receivers_ids);
-    }
-    catch(err) {
-      $scope.receivers_ids = [];
-    }
+    $scope.receivers_ids = angular.fromJson($scope.receivers_ids);
   }
 
-  if ($scope.node.show_contexts_in_alphabetical_order) {
-    $scope.contextsOrderPredicate = 'name';
-  } else {
-    $scope.contextsOrderPredicate = 'presentation_order';
-  }
+  $scope.contextsOrderPredicate = $scope.node.show_contexts_in_alphabetical_order ? 'name' : 'presentation_order';
 
   $scope.selectable_contexts = $filter('filter')($scope.contexts, {'show_context': true});
   $scope.selectable_contexts = $filter('orderBy')($scope.selectable_contexts, $scope.contextsOrderPredicate);
@@ -328,11 +319,7 @@ GLClient.controller('SubmissionCtrl',
         $scope.openProblemDialog($scope.submission);
       }
 
-     if ($scope.submission.context.show_receivers_in_alphabetical_order) {
-       $scope.receiversOrderPredicate = 'name';
-     } else {
-       $scope.receiversOrderPredicate = 'presentation_order';
-     }
+     $scope.receiversOrderPredicate = $scope.submission.context.show_receivers_in_alphabetical_order ? 'name' : 'presentation_order';
 
      // --------------------------------------------------------------------------
      // fix steps numbering adding receiver selection step if neeeded

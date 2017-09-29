@@ -279,14 +279,13 @@ class APIResourceWrapper(Resource):
         if 'x-tor2web' in request.headers:
             request.client_using_tor = False
 
-        request.setHeader(b'x-check-tor', bytes(request.client_using_tor))
-
         request.language = unicode(self.detect_language(request))
-
-        self.set_headers(request)
-
         if 'multilang' in request.args:
             request.language = None
+
+        request.setHeader(b'x-check-tor', bytes(request.client_using_tor))
+
+        self.set_headers(request)
 
     def render(self, request):
         """
