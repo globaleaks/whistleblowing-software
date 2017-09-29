@@ -53,6 +53,9 @@ class Service(service.Service):
     def __init__(self):
         self.state = State
 
+        self.arw = APIResourceWrapper()
+        self.api_factory = Site(self.arw, logFormatter=timedLogFormatter)
+
     def startService(self):
         mask = 0
         if Settings.devel_mode:
@@ -85,7 +88,7 @@ class Service(service.Service):
         Settings.drop_privileges()
         Settings.check_directories()
 
-        reactor.callLater(0, self.deferred_start)
+        print reactor.callLater(0, self.deferred_start)
 
     @defer.inlineCallbacks
     def shutdown(self):
@@ -117,13 +120,6 @@ class Service(service.Service):
             yield self.state.jobs_monitor.stop()
             self.state.jobs_monitor = None
 
-    @defer.inlineCallbacks
-    def deferred_start(self):
-        try:
-            yield self._deferred_start()
-        except Exception as excep:
-            fail_startup(excep)
-
     def _deferred_start(self):
         ret = update_db()
 
@@ -140,10 +136,6 @@ class Service(service.Service):
 
         reactor.addSystemEventTrigger('before', 'shutdown', self.shutdown)
 
-        arw = APIResourceWrapper()
-
-        self.api_factory = Site(arw, logFormatter=timedLogFormatter)
-
         for sock in self.state.http_socks:
             listen_tcp_on_sock(reactor, sock.fileno(), self.api_factory)
 
@@ -157,20 +149,27 @@ class Service(service.Service):
 
         Settings.print_listening_interfaces()
 
-
-application = service.Application('GLBackend')
-
-if not Settings.nodaemon and Settings.logfile:
-    name = os.path.basename(Settings.logfile)
-    directory = os.path.dirname(Settings.logfile)
-
-    gl_logfile = txlogfile.LogFile(name, directory,
-                                 rotateLength=Settings.log_file_size,
-                                 maxRotatedFiles=Settings.num_log_files)
-
-    application.setComponent(txlog.ILogObserver, GLLogObserver(gl_logfile).emit)
+    @defer.inlineCallbacks
+    def deferred_start(self):
+        try:
+            yield self._deferred_start()
+        except Exception as excep:
+            fail_startup(excep)
 
 try:
+    application = service.Application('GLBackend')
+
+    if not Settings.nodaemon and Settings.logfile:
+        name = os.path.basename(Settings.logfile)
+        directory = os.path.dirname(Settings.logfile)
+
+        gl_logfile = txlogfile.LogFile(name,
+                                       directory,
+                                       rotateLength=Settings.log_file_size,
+                                       maxRotatedFiles=Settings.num_log_files)
+
+        application.setComponent(txlog.ILogObserver, GLLogObserver(gl_logfile).emit)
+
     Service().setServiceParent(application)
 except Exception as excep:
     fail_startup(excep)

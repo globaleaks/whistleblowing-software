@@ -2,7 +2,6 @@
 import time
 
 from twisted.internet import task, defer, reactor, threads
-from twisted.internet import reactor
 from twisted.internet.error import ConnectionLost, ConnectionRefusedError, DNSLookupError
 from twisted.web._newclient import ResponseNeverReceived, ResponseFailed
 from txsocksx.errors import TTLExpired, ConnectionRefused
