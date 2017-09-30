@@ -20,18 +20,21 @@ exports.vars = {
 };
 
 browser.getCapabilities().then(function(capabilities) {
+  var platformName = capabilities.get('platformName') || capabilities.get('platform');
+  platformName = platformName.toLowerCase();
+
+  var browserName = capabilities.get('browserName').toLowerCase();
+
   exports.isMobile = function() {
-    var platformName = capabilities.get('platformName') || capabilities.get('platform');
-    platformName = platformName.toLowerCase();
     return (['android', 'ios'].indexOf(platformName) !== -1);
   };
 
   exports.testFileUpload = function() {
-    var browserName = capabilities.get('browserName').toLowerCase();
     if (exports.isMobile()) {
       return false;
     }
-    return (['chrome', 'firefox', 'internet explorer', 'edge'].indexOf(browserName) !== -1);
+
+    return (['chrome', 'firefox', 'internet explorer', 'microsoftedge'].indexOf(browserName) !== -1);
   };
 
   exports.testFileDownload = function() {
@@ -43,10 +46,7 @@ browser.getCapabilities().then(function(capabilities) {
       return false;
     }
 
-    // The only browser that does not ask for user interaction is chrome
-    var browserName = capabilities.get('browserName').toLowerCase();
-    var platform = capabilities.get('platform').toLowerCase();
-    return ((['chrome'].indexOf(browserName) !== -1) && platform === 'linux');
+    return ((['chrome'].indexOf(browserName) !== -1) && platformName === 'linux');
   };
 
   exports.verifyFileDownload = function() {
