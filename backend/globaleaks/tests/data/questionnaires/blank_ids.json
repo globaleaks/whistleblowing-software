@@ -3,7 +3,6 @@
   "id": "testing_quests_id",
   "layout": "horizontal",
   "name": "blank_id",
-  "show_steps_navigation_bar": true,
   "steps": [
     {
       "children": [

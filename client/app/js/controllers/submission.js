@@ -174,9 +174,7 @@ GLClient.controller('SubmissionCtrl',
       return;
     }
 
-    if ($scope.selection >=0 &&
-        $scope.submission.context.questionnaire.steps_navigation_requires_completion &&
-        !$scope.checkForInvalidFields()) {
+    if ($scope.selection > -1 && !$scope.checkForInvalidFields()) {
       return;
     }
 
@@ -319,22 +317,18 @@ GLClient.controller('SubmissionCtrl',
         $scope.openProblemDialog($scope.submission);
       }
 
-     $scope.receiversOrderPredicate = $scope.submission.context.show_receivers_in_alphabetical_order ? 'name' : 'presentation_order';
+      $scope.receiversOrderPredicate = $scope.submission.context.show_receivers_in_alphabetical_order ? 'name' : 'presentation_order';
 
-     // --------------------------------------------------------------------------
-     // fix steps numbering adding receiver selection step if neeeded
-     $scope.receiver_selection_step = false;
-     $scope.receiver_selection_step_index = -1;
-     $scope.selection = 0;
+      // --------------------------------------------------------------------------
+      // fix steps numbering adding receiver selection step if neeeded
+      $scope.receiver_selection_step = false;
+      $scope.receiver_selection_step_index = -1;
+      $scope.selection = 0;
 
-     if ($scope.submission.context.allow_recipients_selection) {
-       $scope.receiver_selection_step = true;
-       $scope.selection = -1;
-     }
-
-     $scope.show_steps_navigation_bar = ($scope.submission.context.questionnaire.show_steps_navigation_bar &&
-                                         ($scope.receiver_selection_step || $scope.submission.context.questionnaire.steps.length > 1));
-
+      if ($scope.submission.context.allow_recipients_selection) {
+        $scope.receiver_selection_step = true;
+        $scope.selection = -1;
+      }
     });
   };
 

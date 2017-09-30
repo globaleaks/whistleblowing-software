@@ -1,5 +1,5 @@
 <div id="SubmissionStepReceiver" class="receiverCards">
-  <div id="StepTitle" data-ng-if="!show_steps_navigation_bar" data-translate>Recipient selection</div>
+  <div id="StepTitle" data-translate>Recipient selection</div>
   <div class="stepDescription">{{submission.context.recipients_clarification}}</div>
   <div data-ng-if="submission.context.maximum_selectable_receivers !== 0 && !submission.context.select_all_receivers" id="MaxSelectableReceiverBox" class="clearfix">
     <div><span data-translate>Maximum number of selectable recipients:</span> {{::submission.context.maximum_selectable_receivers}}</div>

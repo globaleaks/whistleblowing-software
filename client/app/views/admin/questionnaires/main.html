@@ -74,27 +74,6 @@
                   </div>
                 </div>
               </div>
-              <div class="col-md-12">
-                <a class="actionButton actionButtonAdvanced btn btn-info" data-ng-click="show_advanced_settings = !show_advanced_settings" data-ng-init="show_advanced_settings=false">
-                  <i data-ng-if="!show_advanced_settings" class="glyphicon glyphicon-plus"></i>
-                  <i data-ng-if="show_advanced_settings" class="glyphicon glyphicon-minus"></i>
-                  <span data-translate>Advanced settings</span>
-                </a>
-                <div id="QuestionnaireAdvancedSettingsBox">
-                  <div class="row" data-ng-show="show_advanced_settings">
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <input data-ng-model="questionnaire.show_steps_navigation_bar" type="checkbox" />
-                        <label data-translate>Show steps navigation bar</label>
-                      </div>
-                      <div class="form-group">
-                        <input data-ng-model="questionnaire.steps_navigation_requires_completion" type="checkbox" />
-                        <label data-translate>Allow to advance through submission steps only when current step is completed</label>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
               <div class="col-md-12" data-ng-include="'views/admin/questionnaires/steps.html'"></div>
             </div>
           </div>
