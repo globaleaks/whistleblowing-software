@@ -336,8 +336,6 @@ AdminStepDescRaw['children'] = [AdminFieldDescRaw]
 AdminQuestionnaireDesc = {
     'id': key_regexp_or_empty,
     'name': unicode,
-    'show_steps_navigation_bar': bool,
-    'steps_navigation_requires_completion': bool,
     'steps': [AdminStepDesc]
 }
 

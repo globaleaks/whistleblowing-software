@@ -4,7 +4,6 @@
   "export_version": "0.0.1",
   "id": "b170589b-30d6-4ec1-ae52-18659b2a606b",
   "name": "normal",
-  "show_steps_navigation_bar": true,
   "steps": [
     {
       "children": [

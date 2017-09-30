@@ -195,8 +195,6 @@ def serialize_questionnaire(store, questionnaire, language):
         'id': questionnaire.id,
         'editable': questionnaire.editable,
         'name': questionnaire.name,
-        'show_steps_navigation_bar': questionnaire.show_steps_navigation_bar,
-        'steps_navigation_requires_completion': questionnaire.steps_navigation_requires_completion,
         'steps': [serialize_step(store, s, language) for s in steps]
     }
 
