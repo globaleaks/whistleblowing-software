@@ -162,21 +162,19 @@
               <div class="row">
                 <div class="col-md-12">
                   <div class="form-group" data-ng-show="user.pgp_key_fingerprint !== ''">
-                    <div class="alert alert-success">
-                      <div data-translate>Encryption is enabled!</div>
-                      <div data-translate>Email notifications will be encrypted.</div>
-                    </div>
-                    <div pgp-pubkey-display key-str="user.pgp_key_public"></div>
+                    <label>
+                     <span data-translate>Encryption:</span> <span class="label label-success" data-translate>Enabled</span>
+                    </label>
+                    <div class="form-group" pgp-pubkey-display key-str="user.pgp_key_public"></div>
                     <div class="form-group">
                       <input data-ng-model="user.pgp_key_remove" type="checkbox" />
                       <label data-translate>Remove the PGP key</label>
                     </div>
                   </div>
                   <div class="form-group" data-ng-show="user.pgp_key_fingerprint === ''" data-ng-class="{'has-error': !editUser.pgp_key.$valid}">
-                    <div class="alert alert-danger">
-                      <div data-translate>Encryption is not enabled!</div>
-                      <div data-translate>Email notifications won't be encrypted.</div>
-                    </div>
+                    <label>
+                      <span data-translate>Encryption:</span> <span class="label label-danger" data-translate>Disabled</span>
+                    </label>
                     <div class="position-relative">
                       <label data-translate>Set up encryption by providing a PGP public key</label>
                       <textarea class="form-control" name="pgp_key" data-ng-attr-placeholder="{{'Copy and paste the PGP public key here' | translate}}" data-ng-model="user.pgp_key_public" data-pgp-pubkey-validator="canBeEmpty"></textarea>
