@@ -1,1 +1,1 @@
-HTTPS certificate expiration alert
+Expiration alert for HTTPS certificate
