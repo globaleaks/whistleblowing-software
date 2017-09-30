@@ -641,8 +641,6 @@ factory('AdminUtils', ['AdminContextResource', 'AdminQuestionnaireResource', 'Ad
       questionnaire.id = '';
       questionnaire.key = '';
       questionnaire.name = '';
-      questionnaire.show_steps_navigation_bar = true;
-      questionnaire.steps_navigation_requires_completion = true;
       questionnaire.steps = [];
       questionnaire.editable = true;
       return questionnaire;

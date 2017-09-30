@@ -260,8 +260,7 @@ class Context(ModelWithID):
     int_keys = [
       'tip_timetolive',
       'maximum_selectable_receivers',
-      'presentation_order',
-      'steps_navigation_requires_completion'
+      'presentation_order'
     ]
 
     bool_keys = [
@@ -613,17 +612,17 @@ class Step(ModelWithID):
 
 class Questionnaire(ModelWithID):
     name = Unicode(default=u'')
-    show_steps_navigation_bar = Bool(default=False)
-    steps_navigation_requires_completion = Bool(default=False)
     enable_whistleblower_identity = Bool(default=False)
     editable = Bool(default=True)
+
+    # TODO: this variables are unused and should be removed at next migration
+    show_steps_navigation_bar = Bool(default=False)
+    steps_navigation_requires_completion = Bool(default=False)
 
     unicode_keys = ['name']
 
     bool_keys = [
-      'editable',
-      'show_steps_navigation_bar',
-      'steps_navigation_requires_completion'
+      'editable'
     ]
 
     list_keys = ['steps']

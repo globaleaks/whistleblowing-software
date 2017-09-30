@@ -3,8 +3,6 @@
   "name": "Default",
   "editable": false,
   "layout": "horizontal",
-  "show_steps_navigation_bar": true,
-  "steps_navigation_requires_completion": true,
   "steps": [
     {
       "label": {
