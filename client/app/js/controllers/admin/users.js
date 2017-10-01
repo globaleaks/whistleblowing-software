@@ -1,5 +1,5 @@
-GLClient.controller('AdminUsersCtrl', ['$scope', '$uibModal', 'AdminUserResource',
-  function($scope, $uibModal, AdminUserResource) {
+GLClient.controller('AdminUsersCtrl', ['$scope', '$rootScope', '$uibModal', 'AdminUserResource',
+  function($scope, $rootScope, $uibModal, AdminUserResource) {
 
   $scope.save_user = function(user) {
     if (user.pgp_key_remove) {
@@ -11,9 +11,9 @@ GLClient.controller('AdminUsersCtrl', ['$scope', '$uibModal', 'AdminUserResource
       user.pgp_key_remove = false;
     }
 
-    var updated_user = new AdminUserResource(user);
-
-    return $scope.Utils.update(updated_user);
+    user.$update(function(){
+      $rootScope.successes.push({message: 'Success!'});
+    });
   };
 
   $scope.perform_delete = function(user) {
