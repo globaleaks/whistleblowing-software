@@ -6,7 +6,7 @@ var pgp_key_path = path.resolve('../backend/globaleaks/tests/data/gpg/VALID_PGP_
 
 describe('receiver first login', function() {
   it('should redirect to /firstlogin upon successful authentication', function() {
-    browser.gl.utils.login_receiver('Recipient1', browser.gl.utils.vars['default_password'], '/#/login', true);
+    browser.gl.utils.login_receiver('recipient', browser.gl.utils.vars['default_password'], '/#/login', true);
   });
 
   it('should be able to change password from the default one', function() {

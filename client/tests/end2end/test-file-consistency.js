@@ -116,7 +116,7 @@ describe('Test file upload/download consistency', function() {
 
       browser.gl.utils.logout();
 
-      browser.gl.utils.login_receiver('Recipient1', browser.gl.utils.vars['user_password']);
+      browser.gl.utils.login_receiver('recipient', browser.gl.utils.vars['user_password']);
       rec.viewMostRecentSubmission();
 
       var files_sel = by.cssContainingText("button", "download");
@@ -157,7 +157,7 @@ describe('Test file upload/download consistency', function() {
     wb.performSubmission('Test WBFile process').then(function(r) {
       receipt = r;
 
-      browser.gl.utils.login_receiver('Recipient1', browser.gl.utils.vars['user_password']);
+      browser.gl.utils.login_receiver('recipient', browser.gl.utils.vars['user_password']);
 
       element(by.id('tip-0')).click();
 

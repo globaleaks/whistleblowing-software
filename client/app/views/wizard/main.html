@@ -1,12 +1,11 @@
 <form name="wizardForm" novalidate>
   <div id="WizardStep1" data-ng-show="step == 1">
-    <div class="row">
+    <div class="row wizard-block">
       <div class="col-md-12">
         <div class="title1" data-translate>Welcome to GlobaLeaks!</div>
         <div data-translate>The following step by step wizard will guide you through configuring your whistleblowing site.</div>
       </div>
-    </div>
-    <div class="row wizard-block">
+      <hr />
       <div class="col-md-12">
         <div class="title3" data-translate>Please choose the primary language of the site:</div>
         <div id="LanguagePickerBox" class="languagePick alert alert-warning">
@@ -63,7 +62,7 @@
   </div>
   <div id="WizardStep3" data-ng-show="step == 3">
     <div class="row wizard-block">
-      <div class="col-md-12 title3" data-translate>Please choose a configuration profile:</div>
+      <div class="title" data-translate>Please choose a configuration profile:</div>
       <div class="col-md-6">
         <div data-ng-include="'views/wizard/profiles.html'"></div>
       </div>
@@ -128,7 +127,10 @@
         </div>
       </div>
       <div class="col-md-6">
-        <div class="wizard-help-hint" data-translate>The username for accessing the server as the administrator will be 'admin'.</div>
+        <span class="wizard-help-hint">
+          <span data-translate>Default username is:</span>
+          <span class="label label-warning">admin</span>
+        </span>
       </div>
     </div>
     <div class="pager pull-right">
@@ -197,20 +199,16 @@
             </div>
           </div>
         </div>
-        <div class="form-group col-md-12">
-          <label class="col-md-4">
-            <span data-translate>Password</span>
-            <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right" popover-trigger="'mouseenter'">*</span>
-          </label>
-          <div class="col-md-8">
-            <div>
-              <span data-translate>Default user password is:</span>
-              <span class="label label-primary">globaleaks</span>
-            </div>
-          </div>
-        </div>
       </div>
       <div class="col-md-6">
+        <div class="wizard-help-hint">
+          <span data-translate>Default username is:</span>
+          <span class="label label-warning">recipient</span>
+        </div>
+        <div class="wizard-help-hint">
+          <span data-translate>Default user password is:</span>
+          <span class="label label-warning">globaleaks</span>
+        </div>
         <div class="wizard-help-hint" data-translate>Recipients are very important for a whistleblowing project. They are the people responsible for receiving the whistleblowers' submissions, verifying their authenticity and for taking action too. Choose them wisely.</div>
       </div>
     </div>
@@ -248,11 +246,13 @@
       </button>
     </div>
   </div>
-  <div id="WizardStep8" class="row" data-ng-show="step == 8">
-    <div class="col-md-10">
-      <div class="congratulations">
-        <div class="title1" data-translate>Congratulations!</div>
-        <div data-translate>You have completed the platform wizard.</div>
+  <div id="WizardStep8" data-ng-show="step == 8">
+    <div class="row wizard-block">
+      <div class="col-md-10">
+        <div class="congratulations">
+          <div class="title1" data-translate>Congratulations!</div>
+          <div data-translate>You have completed the platform wizard.</div>
+        </div>
       </div>
     </div>
     <div class="pager pull-right">

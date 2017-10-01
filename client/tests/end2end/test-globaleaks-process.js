@@ -10,7 +10,7 @@ describe('globaLeaks process', function() {
   var comment_reply = 'comment reply';
   var message = 'message';
   var message_reply = 'message reply';
-  var receiver_username = "Recipient1";
+  var receiver_username = "recipient";
   var receiver_password = browser.gl.utils.vars['user_password'];
 
   var perform_submission = function() {

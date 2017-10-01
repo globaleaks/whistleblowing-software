@@ -120,12 +120,12 @@ exports.login_whistleblower = function(receipt) {
 }
 
 exports.login_receiver = function(username, password, url, firstlogin) {
-  username = username === undefined ? 'Recipient1' : username;
+  username = username === undefined ? 'recipient' : username;
   password = password === undefined ? exports.vars['user_password'] : password;
   url = url === undefined ? '/#/login' : url;
 
   browser.get(url);
-  element(by.model('loginUsername')).element(by.xpath(".//*[text()='" + username + "']")).click();
+  element(by.model('loginUsername')).sendKeys(username);
   element(by.model('loginPassword')).sendKeys(password);
   element(by.id('login-button')).click();
 
