@@ -133,7 +133,7 @@ GLConfig = {
 
         'enable_experimental_features': Bool(default=False),
 
-        'simplified_login': Bool(default=True),
+        'simplified_login': Bool(default=False),
 
         'enable_custom_privacy_badge': Bool(default=False),
 

@@ -34,11 +34,7 @@ describe('admin add, configure, and delete users', function() {
     var make_account = function(user) {
       element(by.model('new_user.name')).sendKeys(user.name);
       element(by.model('new_user.email')).sendKeys(user.address);
-
-      if (user.role !== 'Recipient') {
-        element(by.model('new_user.username')).sendKeys(user.name);
-      }
-
+      element(by.model('new_user.username')).sendKeys(user.name);
       element(by.model('new_user.role')).element(by.xpath(".//*[text()='" + user.role + "']")).click();
       element(by.id('add-button')).click();
       browser.gl.utils.waitUntilPresent(by.xpath(".//*[text()='" + user.name + "']"));

@@ -245,8 +245,8 @@ html[dir="rtl"] #UserBox  {
 
 .wizard-block .title {
   position: relative;
-  font-size: 1.125em;
-  color: #aaa;
+  font-size: 1.3em;
+  color: #000;
   margin: 1em;
 }
 
