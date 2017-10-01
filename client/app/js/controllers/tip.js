@@ -173,30 +173,6 @@ GLClient.controller('TipCtrl',
       $scope.showEditLabelInput = false;
     };
 
-    $scope.allowWhistleblowerToComment = function() {
-      return $scope.tip.setVar('enable_two_way_comments', true);
-    };
-
-    $scope.denyWhistleblowerToComment = function() {
-      return $scope.tip.setVar('enable_two_way_comments', false);
-    };
-
-    $scope.allowWhistleblowerToMessage = function() {
-      return $scope.tip.setVar('enable_two_way_messages', true);
-    };
-
-    $scope.denyWhistleblowerToMessage = function() {
-      return $scope.tip.setVar('enable_two_way_messages', false);
-    };
-
-    $scope.allowWhistleblowerToAttachFiles = function() {
-      return $scope.tip.setVar('enable_attachments', true);
-    };
-
-    $scope.denyWhistleblowerToAttachFiles = function() {
-      return $scope.tip.setVar('enable_attachments', false);
-    };
-
     $scope.newComment = function() {
       $scope.tip.newComment($scope.tip.newCommentContent);
       $scope.tip.newCommentContent = '';
