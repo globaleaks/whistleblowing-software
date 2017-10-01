@@ -18,7 +18,7 @@
     </label>
 
     <div class="position-relative">
-      <label data-translate>Set a PGP public key for encryption of email notifications</label>
+      <label data-translate>Set up encryption by providing a PGP public key</label>
       <textarea data-pgp-pubkey-validator="canBeEmpty" class="form-control" data-ng-attr-placeholder="{{'Copy and paste the PGP public key here' | translate}}" data-ng-model="preferences.pgp_key_public"></textarea>
       <label file-picker-input="loadPublicKeyFile(file)" data-label-text="Select" class="btn btn-default textarea-btn"></label>
     </div>
