@@ -22,24 +22,13 @@
             <span data-translate>Send</span>
           </button>
         </span>
-        <span data-ng-if="session.role === 'receiver' && preferences.can_grant_permissions" data-ng-switch="tip.enable_two_way_comments" class="pull-right">
-          <span data-ng-switch-when="false">
-            <button id="button-enable-whistleblower-comments" class="btn btn-primary" data-ng-click="allowWhistleblowerToComment()">
-              <i class="glyphicon glyphicon-ok-circle"></i>
-              <span data-translate>Allow the whistleblower to write comments</span>
-            </button>
-          </span>
-          <span data-ng-switch-when="true">
-            <button id="button-enable-whistleblower-comments" class="btn btn-danger" data-ng-click="denyWhistleblowerToComment()">
-              <i class="glyphicon glyphicon-ban-circle"></i>
-              <span data-translate>Prevent the whistleblower to write comments</span>
-            </button>
-          </span>
+        <span data-ng-if="session.role === 'receiver' && preferences.can_grant_permissions" class="pull-right form-group">
+          <label class="inline-checkbox">
+            <input data-ng-model="tip.enable_two_way_comments" data-ng-change="tip.setVar('enable_two_way_comments', tip.enable_two_way_comments)" type="checkbox" />
+            <span data-translate>Allow the whistleblower to write comments</span>
+          </label>
         </span>
       </div>
-    </div>
-    <div data-ng-if="session.role === 'whistleblower' && !tip.enable_two_way_comments">
-      <span data-translate>You are not allowed to write comments.</span>
     </div>
     <div id="SubmissionComments" data-ng-if="tip.comments.length > 0" data-ng-repeat="comment in tip.comments | orderBy:'creation_date':true">
       <div id="comment-{{$index}}" data-ng-switch="" on="comment.type">

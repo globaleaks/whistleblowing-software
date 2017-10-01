@@ -70,19 +70,11 @@
     <div data-ng-hide="tip.rfiles.length">
       <span data-translate>No files have been uploaded!</span>
     </div>
-      <div data-ng-if="session.role === 'receiver' && preferences.can_grant_permissions" data-ng-switch="tip.enable_attachments" class="pull-right">
-        <span data-ng-switch-when="false">
-          <a id="button-enable-whistleblower-files" class="btn btn-primary" data-ng-click="allowWhistleblowerToAttachFiles()">
-            <i class="glyphicon glyphicon-ok-circle"></i>
-            <span data-translate>Allow the whistleblower to add attachments to the submission</span>
-          </a>
-        </span>
-        <span data-ng-switch-when="true">
-          <a id="button-enable-whistleblower-files" class="btn btn-danger" data-ng-click="denyWhistleblowerToAttachFiles()">
-            <i class="glyphicon glyphicon-ban-circle"></i>
-            <span data-translate>Prevent the whistleblower to add attachments to the submission</span>
-          </a>
-        </span>
-      </div>
+    <div data-ng-if="session.role === 'receiver' && preferences.can_grant_permissions" class="pull-right form-group">
+      <label class="inline-checkbox">
+        <input data-ng-model="tip.enable_attachments" data-ng-change="tip.setVar('enable_attachments', tip.enable_attachments)" type="checkbox" />
+        <span data-translate>Allow the whistleblower to add attachments to the submission</span>
+      </label>
+    </div>
   </div>
 </div>
