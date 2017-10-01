@@ -74,8 +74,9 @@
                   <div>UUID: {{receiver.id}}</div>
                 </div>
               </div>
+              <hr />
               <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-12">
                   <div class="form-group">
                     <input data-ng-model="receiver.can_postpone_expiration" type="checkbox" data-ng-disabled="node.can_postpone_expiration" />
                     <label data-translate>Allow the recipient to postpone the submission expiration date</label>
@@ -92,7 +93,7 @@
                       <span data-translate>The setting is enabled at a global level.</span>
                     </div>
                   </div>
-                  <div class="form-group" data-ng-if="admin.node.enable_experimental_features">
+                  <div class="form-group">
                     <input data-ng-model="receiver.can_grant_permissions" type="checkbox" data-ng-disabled="can_grant_permissions" />
                     <label data-translate>Allow the recipient to grant permissions to whistleblowers on specific submissions</label>
                     <div data-ng-show="node.can_grant_permissions">
