@@ -2,7 +2,7 @@ Dear {RecipientName},
 
 This is an email to notify you that a custodian has denied you access to the wistleblowing identity for the submission {TipNum}.
 
-The updated information can be accessed:
+The submission can be accessed:
 via Tor at: {TorUrl}
 via HTTPS at: {HTTPSUrl}
 

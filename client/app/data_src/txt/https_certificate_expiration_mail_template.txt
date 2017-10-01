@@ -1,6 +1,6 @@
 Dear {RecipientName},
 
-The HTTPS certificate loaded on the platform is expiring or has already expired.
+The HTTPS certificate loaded on the platform is about to, or has already expired.
 
 Without a valid certificate, the platform will be accessible in a secure way only via Tor.
 
@@ -10,5 +10,5 @@ via Tor at: {TorUrl}
 via HTTPS at: {HTTPSUrl}
 
 
-Kind Regards,
+Kind regards,
 {NodeName}

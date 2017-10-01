@@ -35,7 +35,7 @@
         <span id="tip-action-delete-selected"
           data-ng-if="selected_tips.length && preferences.can_delete_submission"
           data-ng-click="tip_delete_all()"
-          uib-popover="{{'Delete selected submissions' | translate}}"
+          uib-popover="{{'Delete' | translate}}"
           popover-placement="top"
           popover-trigger="'mouseenter'"
           class="btn btn-default">
@@ -209,12 +209,10 @@
           <td>
             <span data-ng-if="tip.tor2web"
               class="label label-warning"
-              uib-popover="{{'The connection used to send this submission has been secured with HTTPS ensuring confidentiality.' | translate}}" popover-placement="right" popover-trigger="'mouseenter'"
-              data-translate>HTTPS</span>
+              uib-popover="{{'The connection used to send this submission has been secured with HTTPS ensuring confidentiality.' | translate}}" popover-placement="right" popover-trigger="'mouseenter'">HTTPS</span>
             <span data-ng-if="!tip.tor2web"
               class="label label-success"
-              uib-popover="{{'The connection used to send this submission has been secured with Tor ensuring confidentiality and anonymity.' | translate}}" popover-placement="right" popover-trigger="'mouseenter'"
-              data-translate>Tor</span>
+              uib-popover="{{'The connection used to send this submission has been secured with Tor ensuring confidentiality and anonymity.' | translate}}" popover-placement="right" popover-trigger="'mouseenter'">Tor</span>
           </td>
           <td>
             <div data-ng-repeat="field in tip.preview_schema" data-ng-init="fieldAnswers = tip.preview; preview=true" data-ng-include="'views/partials/tip_field.html'"></div>

@@ -20,7 +20,7 @@
     <div data-ng-repeat="wbfile in tip.wbfiles | orderBy: 'creation_date'">
       <div id="wbfile-{{$index}}" data-wbfile data-ctx="'rtip'"></div>
     </div>
-    <h5 data-translate>Upload a new file:</h5>
+    <h5 data-translate>Upload a file:</h5>
     <span class="form" data-ng-controller="WBFileUploadCtrl"
         flow-init="{target: 'rtip/' + tip_id + '/wbfile'}"
         flow-files-submitted="beginUpload($files, $event, $flow)"
