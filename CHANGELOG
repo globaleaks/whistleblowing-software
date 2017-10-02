@@ -1,3 +1,17 @@
+Changes in version 2.72.6 - 2017-10-02
+    o Improve exception handling in scheduled jobs
+    o Apply PEP style corrections
+    o Apply texts revisions
+    o Improve packaging of application state
+    o Make it possible to disable admin notifications of exceptions
+    o Make it possible to disable developers notifications of exceptions
+    o Update client libraries
+    o Update translations
+
+    Other closed tickets:
+    - https://github.com/globaleaks/GlobaLeaks/issues/1875
+    - https://github.com/globaleaks/GlobaLeaks/issues/2099
+
 Changes in version 2.72.5 - 2017-09-23
     o Fix Let'sEncrypt certificate renewal scheduler
     o Update translations
