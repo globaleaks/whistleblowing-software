@@ -267,12 +267,6 @@ controller('AdminMailCtrl', ['$scope', '$http', 'Utils', 'AdminNotificationResou
     AdminNotificationResource.update($scope.admin.notification)
     .$promise.then(function() { sendTestMail(); }, function() { });
   };
-
-  $scope.loadPublicKeyFile = function(file) {
-    Utils.readFileAsText(file).then(function(txt) {
-      $scope.admin.notification.exception_email_pgp_key_public = txt;
-    }, Utils.displayErrorMsg);
-  };
 }]).
 controller('AdminReviewModalCtrl', ['$scope', '$uibModalInstance', 'targetFunc',
   function($scope, $uibModalInstance, targetFunc) {

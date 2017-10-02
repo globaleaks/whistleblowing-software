@@ -56,21 +56,6 @@ class TestNotificationInstance(helpers.TestHandlerWithPopulatedDB):
             if k in requests.AdminNotificationDesc:
                 self.assertEqual(response[k], appdata_dict['templates'][k]['en'])
 
-    @inlineCallbacks
-    def test_parse_pgp_options(self):
-        handler = self.request(role='admin')
-        admin_notif = yield handler.get()
-
-        pk = helpers.PGPKEYS['VALID_PGP_KEY1_PUB']
-        admin_notif['exception_email_pgp_key_public'] = pk
-
-        handler = self.request(admin_notif, role='admin')
-        response = yield handler.put()
-
-        test_key1_fp = "BFB3C82D1B5F6A94BDAC55C6E70460ABF9A4C8C1"
-        self.assertEqual(response['exception_email_pgp_key_public'], pk)
-        self.assertEqual(response['exception_email_pgp_key_fingerprint'], test_key1_fp)
-
 
 class TestNotificationTestInstance(helpers.TestHandlerWithPopulatedDB):
     _handler = admin.notification.NotificationTestInstance

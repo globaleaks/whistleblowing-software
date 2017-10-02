@@ -11,37 +11,11 @@ from globaleaks.models.l10n import NotificationL10NFactory
 from globaleaks.models.properties import iso_strf_time
 from globaleaks.orm import transact
 from globaleaks.rest import requests
-from globaleaks.security import parse_pgp_key
 from globaleaks.state import State
 from globaleaks.utils.mailutils import sendmail
 from globaleaks.utils.sets import merge_dicts
 from globaleaks.utils.templating import Templating
 from globaleaks.utils.utility import log
-
-
-def parse_pgp_options(notif, request):
-    """
-    Used for parsing PGP key infos and fill related notification configurations.
-
-    @param notif: the notif orm object
-    @param request: the dictionary containing the pgp infos to be parsed
-    @return: None
-    """
-    pgp_key_public = request['exception_email_pgp_key_public']
-    remove_key = request['exception_email_pgp_key_remove']
-
-    k = None
-    if not remove_key and pgp_key_public:
-        k = parse_pgp_key(pgp_key_public)
-
-    if k is not None:
-        notif.set_val(u'exception_email_pgp_key_public', k['public'])
-        notif.set_val(u'exception_email_pgp_key_fingerprint', k['fingerprint'])
-        notif.set_val(u'exception_email_pgp_key_expiration', iso_strf_time(k['expiration']))
-    else:
-        notif.set_val(u'exception_email_pgp_key_public', '')
-        notif.set_val(u'exception_email_pgp_key_fingerprint', '')
-        notif.set_val(u'exception_email_pgp_key_expiration', '')
 
 
 def admin_serialize_notification(store, language):
@@ -82,8 +56,6 @@ def update_notification(store, request, language):
 
     notif = NotificationFactory(store)
     notif.update(request)
-
-    parse_pgp_options(notif, request)
 
     # Since the Notification object has been changed refresh the global copy.
     db_refresh_memory_variables(store)
