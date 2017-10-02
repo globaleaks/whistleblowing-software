@@ -1,38 +1,12 @@
 <div class="row">
   <div class="col-md-8">
     <div class="form-group">
-      <label data-translate>Exception reporting email address</label>
-      <input class="form-control" data-ng-model="admin.notification.exception_email_address" name="email" type="text" data-ng-pattern="email_regexp" />
-      <p class="text-danger" data-ng-if="notificationForm.email.$error.pattern">
-        <span data-translate>Invalid email address</span>
-      </p>
+      <input data-ng-model="admin.notification.enable_admin_exception_notification" type="checkbox">
+      <label data-translate>Notify administrators of software exceptions</label>
     </div>
-
-    <div data-ng-show="admin.notification.exception_email_pgp_key_public !== ''">
-      <label class="form-group">
-        <span data-translate>Encryption:</span> <span class="label label-success" data-translate>Enabled</span>
-      </label>
-
-      <div class="form-group" pgp-pubkey-display key-str="admin.notification.exception_email_pgp_key_public"></div>
-
-      <div class="form-group" data-ng-show="admin.notification.exception_email_pgp_key_fingerprint">
-        <input data-ng-model="admin.notification.exception_email_pgp_key_remove" type="checkbox">
-        <label data-translate>Remove the PGP key</label>
-      </div>
-    </div>
-
-    <div data-ng-hide="admin.notification.exception_email_pgp_key_public !== ''">
-      <label class="form-group">
-        <span data-translate>Encryption:</span> <span class="label label-danger" data-translate>Disabled</span>
-      </label>
-
-      <div class="form-group position-relative">
-        <label data-translate>Set up encryption by providing a PGP public key</label>
-        <textarea data-pgp-pubkey-validator="canBeEmpty" class="form-control"
-                  data-ng-attr-placeholder="{{'Copy and paste the PGP public key here' | translate}}"
-                  data-ng-model="admin.notification.exception_email_pgp_key_public"></textarea>
-        <label file-picker-input="loadPublicKeyFile(file)" data-label-text="Select" class="btn btn-default textarea-btn"></label>
-      </div>
+    <div class="form-group">
+      <input data-ng-model="admin.notification.enable_developers_exception_notification" type="checkbox">
+      <label data-translate>Notify developers of software exceptions</label>
     </div>
   </div>
 </div>

@@ -260,12 +260,9 @@ AdminNotificationDesc = merge_dicts({
     'disable_receiver_notification_emails': bool,
     'tip_expiration_threshold': int,
     'notification_threshold_per_hour': int,
-    'reset_templates': bool,
-    'exception_email_address': email_regexp,
-    'exception_email_pgp_key_fingerprint': unicode,
-    'exception_email_pgp_key_expiration': unicode,
-    'exception_email_pgp_key_public': unicode,
-    'exception_email_pgp_key_remove': bool
+    'enable_admin_exception_notification': bool,
+    'enable_developers_exception_notification': bool,
+    'reset_templates': bool
   },
   {k: unicode for k in NotificationL10NFactory.modifiable_keys}
 )

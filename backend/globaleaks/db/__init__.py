@@ -128,15 +128,17 @@ def db_get_exception_delivery_list(store):
     If the email_addr is empty, drop the tuple from the list.
     """
     notif_fact = models.config.NotificationFactory(store)
-    error_addr = notif_fact.get_val(u'exception_email_address')
-    error_pk = notif_fact.get_val(u'exception_email_pgp_key_public')
 
-    lst = [(error_addr, error_pk)]
+    lst = []
 
-    results = store.find(models.User, models.User.role==u'admin') \
-                  .values(models.User.mail_address, models.User.pgp_key_public)
+    if notif_fact.get_val(u'enable_developers_exception_notification'):
+        lst.append((u'globaleaks-stackexception@lists.globaleaks.org', ''))
 
-    lst.extend([(mail, pub_key) for (mail, pub_key) in results])
+    if notif_fact.get_val(u'enable_admin_exception_notification'):
+        results = store.find(models.User, models.User.role==u'admin') \
+                      .values(models.User.mail_address, models.User.pgp_key_public)
+
+        lst.extend([(mail, pub_key) for (mail, pub_key) in results])
 
     return filter(lambda x: x[0] != '', lst)
 
@@ -159,6 +161,8 @@ def db_refresh_memory_variables(store):
 
     tenant_cache.notif = ObjectDict(models.config.NotificationFactory(store).admin_export())
     tenant_cache.notif.exception_delivery_list = db_get_exception_delivery_list(store)
+    if Settings.developer_name:
+        tenant_cache.notif.source_name = Settings.developer_name
 
     tenant_cache.private = ObjectDict(models.config.PrivateFactory(store).mem_copy_export())
 
@@ -166,9 +170,6 @@ def db_refresh_memory_variables(store):
         api_id = store.find(models.User.id, models.User.role==u'admin').order_by(models.User.creation_date).first()
         if api_id is not None:
             State.api_token_session = Session(api_id, 'admin', 'enabled')
-
-    if Settings.developer_name:
-        tenant_cache.notif.source_name = Settings.developer_name
 
     # The hot swap shoul be done with the minimal race condition possible
     State.tenant_cache[1] = tenant_cache

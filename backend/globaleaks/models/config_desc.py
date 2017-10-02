@@ -79,10 +79,8 @@ GLConfig = {
         'tip_expiration_threshold': Int(validator=natnum_v, default=72), # Hours
         'notification_threshold_per_hour': Int(validator=natnum_v, default=20),
 
-        'exception_email_address': Unicode(validator=shorttext_v, default=u'globaleaks-stackexception@lists.globaleaks.org'),
-        'exception_email_pgp_key_fingerprint': Unicode(default=u''),
-        'exception_email_pgp_key_public': Unicode(default=u''),
-        'exception_email_pgp_key_expiration': Unicode(default=iso_strf_time(datetime_null())),
+        'enable_admin_exception_notification': Bool(default=True),
+        'enable_developers_exception_notification': Bool(default=True)
     },
     'node': {
         'name': Unicode(validator=shorttext_v, default=u''),
