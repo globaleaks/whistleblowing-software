@@ -1115,9 +1115,9 @@
       }
     },
     "eslint": {
-      "version": "4.7.2",
-      "from": "eslint@4.7.2",
-      "resolved": "https://registry.npmjs.org/eslint/-/eslint-4.7.2.tgz",
+      "version": "4.8.0",
+      "from": "eslint@4.8.0",
+      "resolved": "https://registry.npmjs.org/eslint/-/eslint-4.8.0.tgz",
       "dev": true
     },
     "eslint-scope": {
@@ -1571,9 +1571,9 @@
       }
     },
     "grunt-mocha-test": {
-      "version": "0.13.2",
-      "from": "grunt-mocha-test@0.13.2",
-      "resolved": "https://registry.npmjs.org/grunt-mocha-test/-/grunt-mocha-test-0.13.2.tgz",
+      "version": "0.13.3",
+      "from": "grunt-mocha-test@0.13.3",
+      "resolved": "https://registry.npmjs.org/grunt-mocha-test/-/grunt-mocha-test-0.13.3.tgz",
       "dev": true
     },
     "grunt-protractor-coverage": {
@@ -3255,9 +3255,9 @@
       "dev": true
     },
     "send": {
-      "version": "0.16.0",
-      "from": "send@0.16.0",
-      "resolved": "https://registry.npmjs.org/send/-/send-0.16.0.tgz",
+      "version": "0.16.1",
+      "from": "send@0.16.1",
+      "resolved": "https://registry.npmjs.org/send/-/send-0.16.1.tgz",
       "dev": true,
       "dependencies": {
         "debug": {
@@ -3289,9 +3289,9 @@
       }
     },
     "serve-static": {
-      "version": "1.13.0",
+      "version": "1.13.1",
       "from": "serve-static@>=1.10.0 <2.0.0",
-      "resolved": "https://registry.npmjs.org/serve-static/-/serve-static-1.13.0.tgz",
+      "resolved": "https://registry.npmjs.org/serve-static/-/serve-static-1.13.1.tgz",
       "dev": true
     },
     "setprototypeof": {
@@ -3465,9 +3465,9 @@
       "dev": true
     },
     "superagent": {
-      "version": "3.6.1",
-      "from": "superagent@3.6.1",
-      "resolved": "https://registry.npmjs.org/superagent/-/superagent-3.6.1.tgz",
+      "version": "3.6.2",
+      "from": "superagent@3.6.2",
+      "resolved": "https://registry.npmjs.org/superagent/-/superagent-3.6.2.tgz",
       "dev": true,
       "dependencies": {
         "mime": {
