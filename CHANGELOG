@@ -1,4 +1,7 @@
 Changes in version 2.72.6 - 2017-10-02
+    o Fix minor issue in init script
+
+Changes in version 2.72.6 - 2017-10-02
     o Improve exception handling in scheduled jobs
     o Apply PEP style corrections
     o Apply texts revisions
