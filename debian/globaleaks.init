@@ -34,7 +34,7 @@ fi
 if [[ ! -d /var/globaleaks/db ]]; then
     # FIRST SETUP
     NETWORK_SANDBOXING=0
-elif [[ "$(gl-admin readvar reachable_via_web)" != "True" ]]; then
+elif [[ "$(gl-admin getvar reachable_via_web)" != "True" ]]; then
     NETWORK_SANDBOXING=1
 else
     NETWORK_SANDBOXING=0
