@@ -88,7 +88,7 @@ class Service(service.Service):
         Settings.drop_privileges()
         Settings.check_directories()
 
-        print reactor.callLater(0, self.deferred_start)
+        reactor.callLater(0, self.deferred_start)
 
     @defer.inlineCallbacks
     def shutdown(self):
