@@ -5,11 +5,11 @@
         <div class="col-md-12">
           <div class="form-group">
             <input data-ng-model="admin.node.reachable_via_web" type="checkbox">
-            <label data-translate>Enable access to the platform with normal browsers over the public Internet</label>
+            <label data-translate>Enable the platform to be used without Tor</label>
           </div>
           <div data-ng-show="admin.node.reachable_via_web">
             <div class="form-group">
-              <label data-translate>Role-based access control</label>
+              <label data-translate>Roles enabled to use the platform without Tor:</label>
             </div>
             <table class="table table-bordered">
               <tbody>
