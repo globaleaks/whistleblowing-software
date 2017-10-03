@@ -1,107 +1,12 @@
 <div class="row">
   <div class="col-md-8">
-    <div data-translate>This interface allows configuration of the email templates used for notifying recipients.</div>
-
-    <br /><br />
-
     <div class="form-group">
-      <label data-translate>Template</label>
-      <select name="type" class="form-control" data-ng-model="template">
-        <option value="new_submission" data-translate>Notification of new submission</option>
-        <option value="new_comment" data-translate>Notification of new comment</option>
-        <option value="new_message" data-translate>Notification of new message</option>
-        <option value="new_attachment" data-translate>Notification of new file attachment</option>
-        <option value="pgp_expiration" data-translate>Notification of PGP key expiration</option>
-      </select>
+      <input data-ng-model="admin.notification.enable_admin_exception_notification" type="checkbox">
+      <label data-translate>Notify administrators of software problems</label>
     </div>
-
-    <br /><br />
-
-    <div class="row">
-      <div class="col-md-offset-1 col-md-11" data-ng-switch="template">
-        <div data-ng-switch-when="new_submission">
-          <div class="form-group">
-            <label data-translate>Email subject</label>
-            <input data-ng-model="admin.notification.tip_mail_title" maxlength="{{node.maximum_namesize}}" class="form-control" type="text" />
-          </div>
-          <div class="form-group">
-            <label data-translate>Email body</label>
-            <div>
-              <textarea data-ng-model="admin.notification.tip_mail_template" maxlength="{{node.maximum_textsize}}" class="form-control" rows="10"></textarea>
-            </div>
-          </div>
-        </div>
-
-        <div data-ng-switch-when="new_attachment">
-          <div class="form-group">
-            <label data-translate>Email subject</label>
-            <input data-ng-model="admin.notification.file_mail_title" maxlength="{{node.maximum_namesize}}" class="form-control" type="text" />
-          </div>
-          <div class="form-group">
-            <label data-translate>Email body</label>
-            <div>
-              <textarea data-ng-model="admin.notification.file_mail_template" maxlength="{{node.maximum_textsize}}" class="form-control" rows="10"></textarea>
-            </div>
-          </div>
-        </div>
-
-        <div data-ng-switch-when="new_comment">
-          <div class="form-group">
-            <label data-translate>Email subject</label>
-            <input data-ng-model="admin.notification.comment_mail_title" maxlength="{{node.maximum_namesize}}" class="form-control" type="text" />
-          </div>
-          <div class="form-group">
-            <label data-translate>Email body</label>
-            <div>
-              <textarea data-ng-model="admin.notification.comment_mail_template" maxlength="{{node.maximum_textsize}}" class="form-control" rows="10"></textarea>
-            </div>
-          </div>
-        </div>
-
-        <div data-ng-switch-when="new_message">
-          <div class="form-group">
-            <label data-translate>Email subject</label>
-            <input data-ng-model="admin.notification.message_mail_title" maxlength="{{node.maximum_namesize}}" class="form-control" type="text" />
-          </div>
-          <div class="form-group">
-            <label data-translate>Email body</label>
-            <div>
-              <textarea data-ng-model="admin.notification.message_mail_template" maxlength="{{node.maximum_textsize}}" class="form-control" rows="10"></textarea>
-            </div>
-          </div>
-        </div>
-
-        <div data-ng-switch-when="mail_suspension">
-          <div class="form-group">
-            <label data-translate>Email subject</label>
-            <div>
-              <input data-ng-model="admin.notification.receiver_notification_limit_reached_mail_title" maxlength="{{node.maximum_namesize}}" class="form-control" type="text" />
-            </div>
-          </div>
-          <div class="form-group">
-            <label data-translate>Email body</label>
-            <div>
-              <textarea data-ng-model="admin.notification.receiver_notification_limit_reached_mail_template" maxlength="{{node.maximum_textsize}}" class="form-control" rows="10"></textarea>
-            </div>
-          </div>
-        </div>
-
-        <div data-ng-switch-when="pgp_expiration">
-          <div class="form-group">
-            <label data-translate>Email subject</label>
-            <div>
-              <input data-ng-model="admin.notification.pgp_alert_mail_title" maxlength="{{node.maximum_namesize}}" class="form-control" type="text" />
-            </div>
-          </div>
-          <div class="form-group">
-            <label data-translate>Email body</label>
-            <div>
-              <textarea data-ng-model="admin.notification.pgp_alert_mail_template" maxlength="{{node.maximum_textsize}}" class="form-control" rows="10"></textarea>
-            </div>
-          </div>
-        </div>
-      </div>
+    <div class="form-group">
+      <input data-ng-model="admin.notification.enable_developers_exception_notification" type="checkbox">
+      <label data-translate>Notify developers of software problems</label>
     </div>
-
   </div>
 </div>

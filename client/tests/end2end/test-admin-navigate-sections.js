@@ -20,8 +20,7 @@ describe('verify navigation of admin sections', function() {
 
     element(by.cssContainingText("a", "Notification settings")).click();
     element(by.cssContainingText("a", "Main configuration")).click();
-    element(by.cssContainingText("a", "Admin notification templates")).click();
-    element(by.cssContainingText("a", "Recipient notification templates")).click();
+    element(by.cssContainingText("a", "Notification templates")).click();
     element(by.cssContainingText("a", "Exception notification")).click();
 
     element(by.cssContainingText("a", "URL shortener")).click();
