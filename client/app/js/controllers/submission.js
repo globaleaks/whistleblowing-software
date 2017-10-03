@@ -319,6 +319,8 @@ GLClient.controller('SubmissionCtrl',
 
       $scope.receiversOrderPredicate = $scope.submission.context.show_receivers_in_alphabetical_order ? 'name' : 'presentation_order';
 
+      $scope.show_steps_navigation_bar = $scope.receiver_selection_step || $scope.submission.context.questionnaire.steps.length > 1;
+
       // --------------------------------------------------------------------------
       // fix steps numbering adding receiver selection step if neeeded
       $scope.receiver_selection_step = false;

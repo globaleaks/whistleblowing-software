@@ -3,7 +3,7 @@
 <div data-ng-if="submission.context">
   <form id="submissionForm" name="vars.submissionForm" autocomplete="off" novalidate>
     <div class="tabbable tabs-below">
-      <ul id="SubmissionTabsNavigationBox" class="nav nav-tabs">
+-      <ul id="SubmissionTabsNavigationBox" class="nav nav-tabs" data-ng-if="show_steps_navigation_bar">
         <li data-ng-if="receiver_selection_step" data-ng-class="{active: selection === receiver_selection_step_index}">
           <a id="receiver-selection-link" class="StepTitle" href="javascript:void(0)" data-ng-click="goToStep(receiver_selection_step_index)">
             1 - <span data-translate>Recipient selection</span>
@@ -23,7 +23,7 @@
         </div>
         <div data-ng-show="selection !== receiver_selection_step_index" data-ng-repeat="step in submission.context.questionnaire.steps | orderBy:'presentation_order'" data-ng-controller="SubmissionStepCtrl" data-ng-if="fieldUtilities.isStepTriggered(step, answers, total_score)">
           <div id="{{::stepId}}" data-ng-form="{{::stepId}}" class="SubmissionStep" data-ng-show="selection === $index">
-            <div id="StepTitle">{{::step.label}}</div>
+            <div id="StepTitle" data-ng-if="!show_steps_navigation_bar">{{::step.label}}</div>
             <div class="stepDescription" data-ng-if="step.description">{{step.description}}</div>
             <div data-ng-include="'views/submission/form.html'"></div>
           </div>
