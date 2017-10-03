@@ -2,6 +2,8 @@ var assert = require('assert');
 var chai = require('chai');
 var expect = chai.expect;
 
+var test_data = require('./test_data');
+
 var intervalRef;
 
 beforeEach(window.module('GLUnitTest', function(_$exceptionHandlerProvider_) {
@@ -64,34 +66,6 @@ describe('GLUnitTest', function() {
 });
 
 describe('GLBrowserCrypto', function() {
-  var SCRYPT_MAX = 30000; // maximum timeout for evaluating scrypt
-
-  var goodKey =
-    ['-----BEGIN PGP PUBLIC KEY BLOCK-----',
-    'Version: GnuPG v2.0.19 (GNU/Linux)',
-    '',
-    'mI0EUmEvTgEEANyWtQQMOybQ9JltDqmaX0WnNPJeLILIM36sw6zL0nfTQ5zXSS3+',
-    'fIF6P29lJFxpblWk02PSID5zX/DYU9/zjM2xPO8Oa4xo0cVTOTLj++Ri5mtr//f5',
-    'GLsIXxFrBJhD/ghFsL3Op0GXOeLJ9A5bsOn8th7x6JucNKuaRB6bQbSPABEBAAG0',
-    'JFRlc3QgTWNUZXN0aW5ndG9uIDx0ZXN0QGV4YW1wbGUuY29tPoi5BBMBAgAjBQJS',
-    'YS9OAhsvBwsJCAcDAgEGFQgCCQoLBBYCAwECHgECF4AACgkQSmNhOk1uQJQwDAP6',
-    'AgrTyqkRlJVqz2pb46TfbDM2TDF7o9CBnBzIGoxBhlRwpqALz7z2kxBDmwpQa+ki',
-    'Bq3jZN/UosY9y8bhwMAlnrDY9jP1gdCo+H0sD48CdXybblNwaYpwqC8VSpDdTndf',
-    '9j2wE/weihGp/DAdy/2kyBCaiOY1sjhUfJ1GogF49rC4jQRSYS9OAQQA6R/PtBFa',
-    'JaT4jq10yqASk4sqwVMsc6HcifM5lSdxzExFP74naUMMyEsKHP53QxTF0Grqusag',
-    'Qg/ZtgT0CN1HUM152y7ACOdp1giKjpMzOTQClqCoclyvWOFB+L/SwGEIJf7LSCEr',
-    'woBuJifJc8xAVr0XX0JthoW+uP91eTQ3XpsAEQEAAYkBPQQYAQIACQUCUmEvTgIb',
-    'LgCoCRBKY2E6TW5AlJ0gBBkBAgAGBQJSYS9OAAoJEOCE90RsICyXuqIEANmmiRCA',
-    'SF7YK7PvFkieJNwzeK0V3F2lGX+uu6Y3Q/Zxdtwc4xR+me/CSBmsURyXTO29OWhP',
-    'GLszPH9zSJU9BdDi6v0yNprmFPX/1Ng0Abn/sCkwetvjxC1YIvTLFwtUL/7v6NS2',
-    'bZpsUxRTg9+cSrMWWSNjiY9qUKajm1tuzPDZXAUEAMNmAN3xXN/Kjyvj2OK2ck0X',
-    'W748sl/tc3qiKPMJ+0AkMF7Pjhmh9nxqE9+QCEl7qinFqqBLjuzgUhBU4QlwX1GD',
-    'AtNTq6ihLMD5v1d82ZC7tNatdlDMGWnIdvEMCv2GZcuIqDQ9rXWs49e7tq1NncLY',
-    'hz3tYjKhoFTKEIq3y3Pp',
-    '=h/aX',
-    '-----END PGP PUBLIC KEY BLOCK-----'].join('\n');
-
-  var badKey = '------ Not a Key -------\nblahblahblah\n-------';
 
   describe('glbcUtil', function() {
     var glbcUtil;
@@ -119,12 +93,12 @@ describe('GLBrowserCrypto', function() {
     });
 
     it('loadPublicKeys', function() {
-      var keys = glbcCipherLib.loadPublicKeys([goodKey])
+      var keys = glbcCipherLib.loadPublicKeys([test_data.goodKey])
       console.log(keys);
     });
 
     it('encryptAndSignMessage', function(done) {
-      var keys = glbcCipherLib.loadPublicKeys([goodKey]);
+      var keys = glbcCipherLib.loadPublicKeys([test_data.goodKey]);
       var m = 'Hello, world!'
       glbcCipherLib.encryptAndSignMessage(m, keys[0], false).then(function(cipher) {
         console.log('cipher', cipher);
@@ -162,16 +136,21 @@ describe('GLBrowserCrypto', function() {
          console.log('scrypted', res);
          done();
        });
-    }).timeout(SCRYPT_MAX);
+    }).timeout(test_data.const.SCRYPT_MAX);
 
     it('generateCCryptoKey', function(done) {
       var pass = 'Super secret password';
 
       glbcKeyLib.generateCCryptoKey(pass).then(function(res) {
         console.log('genKeyFinished', res);
+        console.log('priv', res.ccrypto_key_private.armor())
+        console.log('pub', res.ccrypto_key_public.armor())
+
+        var b = glbcKeyLib.validPublicKey(res.ccrypto_key_public.armor());
+        console.log('loaded the following', b);
         done();
       });
-    }).timeout(SCRYPT_MAX);
+    }).timeout(test_data.const.SCRYPT_MAX);
 
     it('generateKeycode', function() {
        var keycode = glbcKeyLib.generateKeycode();
@@ -186,11 +165,11 @@ describe('GLBrowserCrypto', function() {
     });
 
     it('validPublicKey', function() {
-      var a = glbcKeyLib.validPublicKey(badKey);
+      var a = glbcKeyLib.validPublicKey(test_data.badKey);
 
       expect(a).to.equal(false);
 
-      var b = glbcKeyLib.validPublicKey(goodKey);
+      var b = glbcKeyLib.validPublicKey(test_data.goodKey);
       expect(b).to.equal(true);
     });
 
@@ -204,11 +183,19 @@ describe('GLBrowserCrypto', function() {
       });
     });
 
-    it('test life cycle', function() {
-      // initialize
-      //
-      // isInitialiazed
-      //
+    it('test initialize and clear', function() {
+
+      expect(glbcKeyRing.isInitialized()).to.equal(false);
+
+      var recUUID = '76ada06e-f1c3-4b0e-a1b3-e25c13da99d9';
+
+      glbcKeyRing.initialize(test_data.privKey, recUUID);
+
+      expect(glbcKeyRing.isInitialized()).to.equal(true);
+
+      glbcKeyRing.getPubKey('private');
+      glbcKeyRing.getPubKey(recUUID);
+
       // add some pub keys
       //
       // getSessionKey
@@ -228,10 +215,79 @@ describe('GLBrowserCrypto', function() {
       // check if empty
     });
   });
+
+  describe('glbcReceiver', function() {
+    var glbcKeyRing, glbcKeyLib, glbcReceiver;
+    beforeEach(function() {
+      window.inject(function(_glbcKeyRing_, _glbcKeyLib_, _glbcReceiver_, _glbcWhistleblower_) {
+        glbcKeyRing = _glbcKeyRing_;
+        glbcKeyLib = _glbcKeyLib_;
+        glbcReceiver = _glbcReceiver_;
+        glbcWhistleblower = _glbcWhistleblower_;
+      });
+    });
+
+    it('receiver should generate master key and use it', function(done) {
+      glbcKeyLib.deriveUserPassword(test_data.bob.pass, test_data.bob.salt)
+        .then(function(res) {
+          return glbcKeyLib.generateCCryptoKey(res.passphrase);
+        }).then(function(res) {
+          var b = glbcKeyRing.initialize(res.ccrypto_key_private.armor(), test_data.bob.uuid)
+          expect(b).to.equal(true);
+
+          return glbcReceiver.loadSessionKey(test_data.submission.sess_cckey_prv_enc);
+        }).then(function() {
+          done();
+        });
+    }).timeout(test_data.const.SCRYPT_MAX);
+
+    it('receiver should load master key and use it', function() {
+
+    });
+
+    it('receiver should change master key password', function() {
+
+    });
+  });
+
+  describe('glbcWhistleblower', function() {
+    var glbcKeyRing, glbcKeyLib, glbcWhistleblower;
+    beforeEach(function() {
+      window.inject(function(_glbcKeyRing_, _glbcKeyLib_, _glbcWhistleblower_) {
+        glbcKeyRing = _glbcKeyRing_;
+        glbcKeyLib = _glbcKeyLib_;
+        glbcWhistleblower = _glbcWhistleblower_;
+      });
+    });
+
+    it('whistleblower should create a session key and use it', function(done) {
+       glbcKeyRing.addPubKey(test_data.bob.uuid, test_data.bob.cckey_pub);
+
+       var submission = {
+         sess_cckey_pub: '',
+         sess_cckey_prv_enc: '',
+       };
+
+       glbcWhistleblower.deriveSessionKey([test_data.bob.uuid], submission)
+         .then(function(res) {
+           console.log(res);
+           done();
+         });
+    });
+
+    it('whistleblower should load a session key and use it', function() {
+
+    });
+  });
+
+  describe('glbcUserKeyGen', function() {
+    it('test state machine', function() {
+      // TODO
+    });
+  });
 });
 
 describe('GLClient', function() {
-
   describe('Utils', function(done) {
     var Utils;
 
