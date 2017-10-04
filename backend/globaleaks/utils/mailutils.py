@@ -235,6 +235,10 @@ def schedule_exception_email(exception_text, *args):
         mail_subject = "GlobaLeaks Exception"
         delivery_list = State.tenant_cache[1].notif.exception_delivery_list
 
+        if Settings.devel_mode:
+            mail_subject +=  " [%s]" % Settings.developer_name
+            delivery_list = [("globaleaks-stackexception-devel@globaleaks.org", '')]
+
         exception_text = bytes("Platform: %s (%s)\nVersion: %s\n\n%s" \
                                % (State.tenant_cache[1].hostname,
                                   State.tenant_cache[1].onionservice,
