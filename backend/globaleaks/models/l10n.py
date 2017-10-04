@@ -180,7 +180,9 @@ class NotificationL10NFactory(ConfigL10NFactory):
         'export_message_whistleblower',
         'export_message_recipient',
         'https_certificate_expiration_mail_template',
-        'https_certificate_expiration_mail_title'
+        'https_certificate_expiration_mail_title',
+        'software_update_available_mail_template',
+        'software_update_available_mail_title',
     })
 
     # These strings are not exposed in admin the interface for customization

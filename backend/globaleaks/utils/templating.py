@@ -11,6 +11,9 @@
 import collections
 import copy
 
+from globaleaks import __version__
+from globaleaks import models
+from globaleaks.security import encrypt_message
 from globaleaks.rest import errors
 from globaleaks.utils.utility import ISO8601_to_pretty_str, ISO8601_to_day_str, \
     datetime_now, bytes_to_pretty_str
@@ -79,6 +82,11 @@ admin_anomaly_keywords = [
 https_expr_keywords = [
     '{ExpirationDate}',
     '{TorUrl}',
+]
+
+software_update_keywords = [
+    '{InstalledVersion}',
+    '{LatestVersion}',
 ]
 
 
@@ -417,6 +425,15 @@ class CertificateExprKeyword(NodeKeyword):
     def _HTTPSUrl(self):
         return 'https://' + self.data['node']['hostname'] + '/#/admin/network'
 
+class SoftwareUpdateKeyword(NodeKeyword, UserKeyword):
+    keyword_list = NodeKeyword.keyword_list + UserKeyword.keyword_list + software_update_keywords
+    data_keys = NodeKeyword.data_keys + UserKeyword.data_keys + ['latest_version']
+
+    def LatestVersion(self):
+        return '%s' % self.data['latest_version']
+
+    def InstalledVersion(self):
+        return '%s' % __version__
 
 supported_template_types = {
     u'tip': TipKeyword,
@@ -432,6 +449,7 @@ supported_template_types = {
     u'admin_anomaly': AnomalyKeyword,
     u'admin_test_static': NodeKeyword,
     u'https_certificate_expiration': CertificateExprKeyword,
+    u'software_update_available': SoftwareUpdateKeyword,
 }
 
 
@@ -485,3 +503,15 @@ class Templating(object):
         body = self.format_template(body_template, data)
 
         return subject, body
+
+def format_and_send(store, user_desc, template_vars):
+    subject, body = Templating().get_mail_subject_and_body(template_vars)
+
+    if user_desc['pgp_key_public']:
+        body = encrypt_message(user_desc['pgp_key_public'], body)
+
+    store.add(models.Mail({
+        'address': user_desc['mail_address'],
+        'subject': subject,
+        'body': body
+    }))

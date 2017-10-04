@@ -18,7 +18,6 @@ class StateClass(ObjectDict):
         self.orm_tp = ThreadPool(1, 1)
         self.process_supervisor = None
         self.tor_exit_set = TorExitSet()
-        self.latest_version = LooseVersion(__version__)
 
         self.https_socks = []
         self.http_socks = []

@@ -29,7 +29,7 @@ def db_admin_serialize_node(store, language):
 
     misc_dict = {
         'version': PrivateFactory(store).get_val(u'version'),
-        'latest_version': str(State.latest_version),
+        'latest_version': PrivateFactory(store).get_val(u'latest_version'),
         'languages_supported': LANGUAGES_SUPPORTED,
         'languages_enabled': EnabledLanguage.list(store),
         'configured': configured,
