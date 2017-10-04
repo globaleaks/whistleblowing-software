@@ -22,26 +22,23 @@ DEB_PACKAGE_URL = 'https://deb.globaleaks.org/xenial/Packages'
 
 
 @transact
-def get_stored_latest(store):
-    return V(PrivateFactory(store).get_val(u'latest_version'))
+def evaluate_update_notification(store, latest_version):
+    stored_latest = PrivateFactory(store).get_val(u'latest_version')
 
+    if V(stored_latest) < V(latest_version):
+        PrivateFactory(store).set_val(u'latest_version', str(latest_version))
 
-def set_stored_latest(store, new_ver):
-    return PrivateFactory(store).set_val(u'latest_version', str(new_ver))
+        for user_desc in db_get_admin_users(store):
+            lang = user_desc['language']
+            template_vars = {
+                'type': 'software_update_available',
+                'latest_version': unicode(latest_version),
+                'node': db_admin_serialize_node(store, lang),
+                'notification': db_get_notification(store, lang),
+                'user': user_desc,
+            }
 
-
-def send_new_version_mail(store, new_latest):
-    for user_desc in db_get_admin_users(store):
-        lang = user_desc['language']
-        template_vars = {
-            'type': 'software_update_available',
-            'latest_version': unicode(new_latest),
-            'node': db_admin_serialize_node(store, lang),
-            'notification': db_get_notification(store, lang),
-            'user': user_desc,
-        }
-
-        format_and_send(store, user_desc, template_vars)
+            format_and_send(store, user_desc, template_vars)
 
 
 class UpdateCheckJob(ExternNetLoopingJob):
@@ -58,16 +55,9 @@ class UpdateCheckJob(ExternNetLoopingJob):
         packages_file = yield self.fetch_packages_file()
         versions = [p['Version'] for p in deb822.Deb822.iter_paragraphs(packages_file) if p['Package'] == 'globaleaks']
         versions.sort(key=V)
-        new_latest = V(versions[-1])
-        old_latest = yield get_stored_latest()
 
-        if new_latest > old_latest:
-            yield self.try_mailing_updates(new_latest)
-        log.debug('The newest version in the repository is: %s', new_latest)
+        State.latest_version = versions[-1]
 
-    @transact
-    def try_mailing_updates(self, store, new_latest):
-        log.info('There is a new version of globaleaks available: %s', new_latest)
-        if store.find(models.User, role=u'admin').count() > 0:
-            send_new_version_mail(store, new_latest)
-            set_stored_latest(store, new_latest)
+        yield evaluate_update_notification(State.latest_version)
+
+        log.debug('The newest version in the repository is: %s', State.latest_version)
