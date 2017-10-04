@@ -112,7 +112,8 @@ def generate_admin_alert_mail(store, alert):
             'type': u'admin_anomaly',
             'node': db_admin_serialize_node(store, user_language),
             'notification': db_get_notification(store, user_language),
-            'alert': alert
+            'alert': alert,
+            'user': user_desc,
         }
 
         subject, body = Templating().get_mail_subject_and_body(data)

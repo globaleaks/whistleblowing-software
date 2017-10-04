@@ -1,10 +1,5 @@
-Dear {RecipientName},
-
 {FreeMemory} of {TotalMemory} available diskspace used.
 
 The server cannot guarantee that a new submission can be stored, so submissions have been disabled.
 
 This is a HIGH level alarm. Tip submission has been disabled for any potential whistleblower. To re-enable it, create disk space.
-
-Kind regards,
-{NodeName}

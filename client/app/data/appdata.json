@@ -1288,7 +1288,7 @@
       "zh_CN": "来自 {NodeName} 的通知已暂停\n",
       "zh_TW": "來自 {NodeName}的通知將暫時中斷\n"
     },
-    "software_update_available_template": {
+    "software_update_available_mail_template": {
       "ar": "عزيزي {RecipientName},\n\nالتحديث متوفّر:\n\nالإصدار المثبت: {InstalledVersion}\nأحدث إصدار: {LatestVersion}\n\nانّها ممارسة أمنية جيدة الحفاظ على المنصة محيّنة.\n\nأطيب التحيّات،\n{NodeName}\n",
       "az": "Əziz {alıcı adı}, \n\nProqram yenilənməsi mövcuddur\n\nQuraşdırılmış versiya:  {QuraşdırılmışVersiya}\nƏn son versiya: {ƏnsonVersiya}\n\nIt is a good security practice to keep the platform up to date.\n\nXoş arzularla,\n{NodeName}\n",
       "bg": "Скъпи {RecipientName},\n\nИма ново обновление на софтуера.\n\nИнсталирана версия: {InstalledVersion}\nНай-нова версия: {InstalledVersion}\n\nДобра практика по сигурността е платформата да бъде своевременно обновявана.\n\nПоздрави, \n{NodeName}\n",
@@ -1327,7 +1327,7 @@
       "zh_CN": "亲爱的 {RecipientName}，\n\nA software update is available.\n\nInstalled version: {InstalledVersion}\nLatest version: {LatestVersion}\n\nIt is a good security practice to keep the platform up to date.\n\n亲切的问候，\n{NodeName}\n",
       "zh_TW": "敬愛的 {RecipientName},\n\nA software update is available.\n\nInstalled version: {InstalledVersion}\nLatest version: {LatestVersion}\n\nIt is a good security practice to keep the platform up to date.\n\nKind regards,\n{NodeName}\n"
     },
-    "software_update_available_title": {
+    "software_update_available_mail_title": {
       "ar": "التحديث متوفّر:\n",
       "az": "Proqram yenilənməsi mövcuddur\n",
       "bg": "Има ново обновление на софтуера.\n",
