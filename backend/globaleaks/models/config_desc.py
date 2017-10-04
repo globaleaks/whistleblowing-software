@@ -44,6 +44,7 @@ GLConfig = {
 
         'version': Unicode(default=unicode(__version__)),
         'version_db': Int(default=DATABASE_VERSION),
+        'latest_version': Unicode(default=unicode(__version__)),
 
         'acme': Bool(default=False),
         'acme_accnt_key': Unicode(),

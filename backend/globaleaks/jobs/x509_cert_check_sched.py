@@ -12,12 +12,11 @@ from globaleaks.handlers.admin.notification import db_get_notification
 from globaleaks.handlers.admin.user import db_get_admin_users
 from globaleaks.jobs.base import LoopingJob
 from globaleaks.orm import transact
-from globaleaks.security import encrypt_message
 from globaleaks.settings import Settings
 from globaleaks.state import State
 from globaleaks.utils import letsencrypt
-from globaleaks.utils.templating import Templating
 from globaleaks.utils.utility import log
+from globaleaks.utils.templating import format_and_send
 
 
 class X509CertCheckSchedule(LoopingJob):
@@ -42,17 +41,7 @@ class X509CertCheckSchedule(LoopingJob):
                 'notification': db_get_notification(store, lang)
             }
 
-            subject, body = Templating().get_mail_subject_and_body(template_vars)
-
-            # encrypt the notification if the admin has configured the issue.
-            if user_desc['pgp_key_public']:
-                body = encrypt_message(user_desc['pgp_key_public'], body)
-
-            store.add(models.Mail({
-                'address': user_desc['mail_address'],
-                'subject': subject,
-                'body': body
-            }))
+            format_and_send(store, user_desc, template_vars)
 
     @transact
     def cert_expiration_checks(self, store):
