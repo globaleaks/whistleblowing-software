@@ -368,9 +368,9 @@ class PGPAlertKeyword(NodeKeyword):
         return '\t0x%s (%s)' % (key, ISO8601_to_day_str(self.data['user']['pgp_key_expiration']))
 
 
-class AnomalyKeyword(NodeKeyword):
-    keyword_list = NodeKeyword.keyword_list + admin_anomaly_keywords
-    data_keys =  NodeKeyword.data_keys + ['alert']
+class AnomalyKeyword(NodeKeyword, UserKeyword):
+    keyword_list = NodeKeyword.keyword_list + UserKeyword.keyword_list + admin_anomaly_keywords
+    data_keys =  NodeKeyword.data_keys + UserKeyword.data_keys + ['alert']
 
     def AnomalyDetailDisk(self):
         # This happens all the time anomalies are present but disk is ok

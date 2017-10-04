@@ -1,5 +1,3 @@
-Dear {RecipientName},
-
 The number of activities recently detected appears to be higher than usual.
 
 This could be a sign of an attack (for example, someone flooding your server with bogus information) or just a usage spike due to an increased visibility of your project.
@@ -9,6 +7,3 @@ You are receiving this email to suggest you to look into this issue and determin
 The activities with unusual stats are:
 
 {ActivityDump}
-
-Kind regards,
-{NodeName}
