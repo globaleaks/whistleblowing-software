@@ -379,8 +379,6 @@ class AnomalyKeyword(NodeKeyword, UserKeyword):
 
         if self.data['alert']['stress_levels']['disk_space'] == 1:
             return self.data['notification']['admin_anomaly_disk_low']
-        elif self.data['alert']['stress_levels']['disk_space'] == 2:
-            return self.data['notification']['admin_anomaly_disk_medium']
         else:
             return self.data['notification']['admin_anomaly_disk_high']
 
