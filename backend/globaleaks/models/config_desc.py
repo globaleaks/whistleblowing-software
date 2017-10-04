@@ -144,11 +144,9 @@ GLConfig = {
         'wbtip_timetolive': Int(validator=range_v(5, 365*2), default=90), # Days
 
         'threshold_free_disk_megabytes_high': Int(validator=natnum_v, default=200),
-        'threshold_free_disk_megabytes_medium': Int(validator=natnum_v, default=500),
         'threshold_free_disk_megabytes_low': Int(validator=natnum_v, default=1000),
 
         'threshold_free_disk_percentage_high': Int(default=3),
-        'threshold_free_disk_percentage_medium': Int(default=5),
         'threshold_free_disk_percentage_low': Int(default=10),
 
         'context_selector_type': Unicode(validator=shorttext_v, default=u'list'),

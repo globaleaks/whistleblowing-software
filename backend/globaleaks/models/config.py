@@ -144,10 +144,8 @@ class NodeFactory(ConfigFactory):
         'default_timezone',
 
         'threshold_free_disk_megabytes_high',
-        'threshold_free_disk_megabytes_medium',
         'threshold_free_disk_megabytes_low',
         'threshold_free_disk_percentage_high',
-        'threshold_free_disk_percentage_medium',
         'threshold_free_disk_percentage_low',
     })
 

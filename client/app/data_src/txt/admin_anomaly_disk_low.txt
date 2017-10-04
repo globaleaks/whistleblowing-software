@@ -3,5 +3,3 @@
 Please consider asking your technical support to create more disk space on the server.
 
 Unless the issue is resolved this email will be resent in a few hours.
-
-This is a LOW level alarm. Don’t panic, your system is okay.

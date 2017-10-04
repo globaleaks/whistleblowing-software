@@ -61,11 +61,6 @@ def get_disk_anomaly_conditions(free_workdir_bytes, total_workdir_bytes, free_ra
 
     def info_msg_2():
         return "free_disk_megabytes <= %d or free_disk_percentage <= %d" % \
-            (State.tenant_cache[1].threshold_free_disk_megabytes_medium,
-             State.tenant_cache[1].threshold_free_disk_percentage_medium)
-
-    def info_msg_3():
-        return "free_disk_megabytes <= %d or free_disk_percentage <= %d" % \
             (State.tenant_cache[1].threshold_free_disk_megabytes_low,
              State.tenant_cache[1].threshold_free_disk_percentage_low)
 
@@ -75,26 +70,19 @@ def get_disk_anomaly_conditions(free_workdir_bytes, total_workdir_bytes, free_ra
             'condition': free_disk_megabytes <= State.tenant_cache[1].threshold_free_disk_megabytes_high or \
                          free_disk_percentage <= State.tenant_cache[1].threshold_free_disk_percentage_high,
             'info_msg': info_msg_0,
-            'stress_level': 3,
+            'stress_level': 2,
             'accept_submissions': False
         },
         {
             'condition': free_ramdisk_megabytes <= threshold_free_ramdisk_megabytes,
             'info_msg': info_msg_1,
-            'stress_level': 3,
-            'accept_submissions': False
-        },
-        {
-            'condition': free_disk_megabytes <= State.tenant_cache[1].threshold_free_disk_megabytes_medium or \
-                         free_disk_percentage <= State.tenant_cache[1].threshold_free_disk_percentage_medium,
-            'info_msg': info_msg_2,
             'stress_level': 2,
-            'accept_submissions': True
+            'accept_submissions': False
         },
         {
             'condition': free_disk_megabytes <= State.tenant_cache[1].threshold_free_disk_megabytes_low or \
                          free_disk_percentage <= State.tenant_cache[1].threshold_free_disk_percentage_low,
-            'info_msg': info_msg_3,
+            'info_msg': info_msg_2,
             'stress_level': 1,
             'accept_submissions': True
         }
@@ -288,10 +276,8 @@ class AlarmClass(object):
 
                 info_msg = c['info_msg']()
 
-                if disk_space == 3:
+                if disk_space == 2:
                     disk_message = "[FATAL] Disk anomaly, submissions disabled: %s" % info_msg
-                elif disk_space == 2:
-                    disk_message = "[CRITICAL] Disk anomaly, submissions near to be disabled: %s" % info_msg
                 else:  # == 1
                     disk_message = "[WARNING]: Disk anomaly: %s" % info_msg
 
