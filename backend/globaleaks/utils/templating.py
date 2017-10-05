@@ -155,6 +155,11 @@ class UserKeyword(Keyword):
         return self.data['user']['name']
 
 
+class UserNodeKeyword(NodeKeyword, UserKeyword):
+    keyword_list = NodeKeyword.keyword_list + UserKeyword.keyword_list
+    data_keys = NodeKeyword.data_keys + UserKeyword.data_keys
+
+
 class ContextKeyword(Keyword):
     keyword_list = context_keywords
     data_keys = ['context']
@@ -163,9 +168,9 @@ class ContextKeyword(Keyword):
         return self.data['context']['name']
 
 
-class TipKeyword(NodeKeyword, UserKeyword, ContextKeyword):
-    keyword_list = NodeKeyword.keyword_list + UserKeyword.keyword_list + ContextKeyword.keyword_list + tip_keywords
-    data_keys =  NodeKeyword.data_keys + UserKeyword.data_keys + ContextKeyword.data_keys + ['tip']
+class TipKeyword(UserNodeKeyword, ContextKeyword):
+    keyword_list = UserNodeKeyword.keyword_list + ContextKeyword.keyword_list + tip_keywords
+    data_keys =  UserNodeKeyword.data_keys + ContextKeyword.data_keys + ['tip']
 
     def dump_field_entry(self, output, field, entry, indent_n):
         field_type = field['type']
@@ -321,14 +326,9 @@ class ExportMessageKeyword(Keyword):
         return self.data['message']['content']
 
 
-class ExpirationSummaryKeyword(NodeKeyword, UserKeyword, ContextKeyword):
-    keyword_list = NodeKeyword.keyword_list + \
-                   UserKeyword.keyword_list + \
-                   expiration_summary_keywords
-
-    data_keys =  NodeKeyword.data_keys + \
-                 UserKeyword.data_keys + \
-                 ['expiring_submission_count', 'earliest_expiration_date']
+class ExpirationSummaryKeyword(UserNodeKeyword):
+    keyword_list = UserNodeKeyword.keyword_list + expiration_summary_keywords
+    data_keys =  UserNodeKeyword.data_keys + ['expiring_submission_count', 'earliest_expiration_date']
 
     def ExpiringSubmissionCount(self):
         return str(self.data['expiring_submission_count'])
@@ -370,9 +370,9 @@ class PGPAlertKeyword(NodeKeyword):
         return '\t0x%s (%s)' % (key, ISO8601_to_day_str(self.data['user']['pgp_key_expiration']))
 
 
-class AnomalyKeyword(NodeKeyword, UserKeyword):
-    keyword_list = NodeKeyword.keyword_list + UserKeyword.keyword_list + admin_anomaly_keywords
-    data_keys =  NodeKeyword.data_keys + UserKeyword.data_keys + ['alert']
+class AnomalyKeyword(UserNodeKeyword):
+    keyword_list = UserNodeKeyword.keyword_list + admin_anomaly_keywords
+    data_keys =  UserNodeKeyword.data_keys + ['alert']
 
     def AnomalyDetailDisk(self):
         # This happens all the time anomalies are present but disk is ok
@@ -425,9 +425,10 @@ class CertificateExprKeyword(NodeKeyword):
     def _HTTPSUrl(self):
         return 'https://' + self.data['node']['hostname'] + '/#/admin/network'
 
-class SoftwareUpdateKeyword(NodeKeyword, UserKeyword):
-    keyword_list = NodeKeyword.keyword_list + UserKeyword.keyword_list + software_update_keywords
-    data_keys = NodeKeyword.data_keys + UserKeyword.data_keys + ['latest_version']
+
+class SoftwareUpdateKeyword(UserNodeKeyword):
+    keyword_list = UserNodeKeyword.keyword_list + software_update_keywords
+    data_keys = UserNodeKeyword.data_keys + ['latest_version']
 
     def LatestVersion(self):
         return '%s' % self.data['latest_version']
@@ -453,7 +454,7 @@ supported_template_types = {
     u'export_template': TipKeyword,
     u'export_message': ExportMessageKeyword,
     u'admin_anomaly': AnomalyKeyword,
-    u'admin_test_static': NodeKeyword,
+    u'admin_test_static': UserNodeKeyword,
     u'https_certificate_expiration': CertificateExprKeyword,
     u'software_update_available': SoftwareUpdateKeyword,
 }
