@@ -232,9 +232,13 @@ describe('GLBrowserCrypto', function() {
         .then(function(res) {
           return glbcKeyLib.generateCCryptoKey(res.passphrase);
         }).then(function(res) {
+          console.log('bob keys!!')
+          console.log(res.ccrypto_key_private.armor());
+          console.log(res.ccrypto_key_public.armor());
+          console.log('bob keys!!')
           var b = glbcKeyRing.initialize(res.ccrypto_key_private.armor(), test_data.bob.uuid)
           expect(b).to.equal(true);
-
+          done();
           return glbcReceiver.loadSessionKey(test_data.submission.sess_cckey_prv_enc);
         }).then(function() {
           done();
@@ -261,19 +265,23 @@ describe('GLBrowserCrypto', function() {
     });
 
     it('whistleblower should create a session key and use it', function(done) {
-       glbcKeyRing.addPubKey(test_data.bob.uuid, test_data.bob.cckey_pub);
+      var submission = {
+        wb_cckey_prv_penc: '',
+        wb_cckey_pub: '',
+        sess_cckey_pub: '',
+        sess_cckey_prv_enc: '',
+      };
 
-       var submission = {
-         sess_cckey_pub: '',
-         sess_cckey_prv_enc: '',
-       };
+      var keycode = glbcKeyLib.generateKeycode();
+      glbcWhistleblower.deriveKey(keycode, test_data.node.receipt_salt, submission).then(function() {
+        glbcKeyRing.addPubKey(test_data.bob.uuid, test_data.bob.cckey_pub);
 
-       glbcWhistleblower.deriveSessionKey([test_data.bob.uuid], submission)
-         .then(function(res) {
-           console.log(res);
-           done();
-         });
-    });
+        return glbcWhistleblower.deriveSessionKey([test_data.bob.uuid, 'whistleblower'], submission)
+      }).then(function(res) {
+        console.log(res);
+        done();
+      });
+    }).timeout(test_data.const.SCRYPT_MAX);
 
     it('whistleblower should load a session key and use it', function() {
 
@@ -283,6 +291,7 @@ describe('GLBrowserCrypto', function() {
   describe('glbcUserKeyGen', function() {
     it('test state machine', function() {
       // TODO
+
     });
   });
 });

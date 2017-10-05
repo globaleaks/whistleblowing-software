@@ -52,25 +52,27 @@ angular.module('GLBrowserCrypto')
      **/
     deriveKey: function(keycode, salt, submission) {
       var self = this;
-      var p = glbcKeyLib.deriveUserPassword(keycode, salt, 14).then(function(result) {
-        submission.auth_token_hash = result.authentication;
-        return glbcKeyLib.generateCCryptoKey(result.passphrase).then(function(keys) {
-          var armored_priv_key = keys.ccrypto_key_private.armor();
-          var success = glbcKeyRing.initialize(armored_priv_key, 'whistleblower');
-          if (!success) {
-            throw new Error('Key Derivation failed!');
-          }
+      var auth_res;
 
-          self.storePassphrase(result.passphrase);
-          self.unlock();
+      return glbcKeyLib.deriveUserPassword(keycode, salt, 14).then(function(result) {
+        auth_res = result;
+        submission.auth_token_hash = auth_res.authentication;
+        return glbcKeyLib.generateCCryptoKey(result.passphrase);
+      }).then(function(keys) {
+        var armored_priv_key = keys.ccrypto_key_private.armor();
+        var success = glbcKeyRing.initialize(armored_priv_key, 'whistleblower');
+        if (!success) {
+          throw new Error('Key Derivation failed!');
+        }
 
-          submission.wb_cckey_prv_penc = armored_priv_key;
-          submission.wb_cckey_pub = keys.ccrypto_key_public.armor();
+        self.storePassphrase(auth_res.passphrase);
+        self.unlock();
 
-          variables.keyDerived = true;
-        });
+        submission.wb_cckey_prv_penc = armored_priv_key;
+        submission.wb_cckey_pub = keys.ccrypto_key_public.armor();
+
+        variables.keyDerived = true;
       });
-      return p;
     },
 
     /**
