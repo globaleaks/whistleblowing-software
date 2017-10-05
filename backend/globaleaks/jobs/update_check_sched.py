@@ -23,16 +23,17 @@ DEB_PACKAGE_URL = 'https://deb.globaleaks.org/xenial/Packages'
 
 @transact
 def evaluate_update_notification(store, latest_version):
-    stored_latest = PrivateFactory(store).get_val(u'latest_version')
+    priv_fact = PrivateFactory(store)
+    stored_latest = priv_fact.get_val(u'latest_version')
 
     if V(stored_latest) < V(latest_version):
-        PrivateFactory(store).set_val(u'latest_version', str(latest_version))
+        priv_fact.set_val(u'latest_version', latest_version)
 
         for user_desc in db_get_admin_users(store):
             lang = user_desc['language']
             template_vars = {
                 'type': 'software_update_available',
-                'latest_version': unicode(latest_version),
+                'latest_version': latest_version,
                 'node': db_admin_serialize_node(store, lang),
                 'notification': db_get_notification(store, lang),
                 'user': user_desc,
@@ -56,8 +57,8 @@ class UpdateCheckJob(ExternNetLoopingJob):
         versions = [p['Version'] for p in deb822.Deb822.iter_paragraphs(packages_file) if p['Package'] == 'globaleaks']
         versions.sort(key=V)
 
-        State.latest_version = versions[-1]
+        latest_version = unicode(versions[-1])
 
-        yield evaluate_update_notification(State.latest_version)
+        yield evaluate_update_notification(latest_version)
 
-        log.debug('The newest version in the repository is: %s', State.latest_version)
+        log.debug('The newest version in the repository is: %s', latest_version)
