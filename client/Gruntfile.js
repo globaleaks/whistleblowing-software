@@ -471,7 +471,7 @@ module.exports = function(grunt) {
         total_languages,
         supported_languages = {};
 
-    listLanguages(function(result){
+    listLanguages(function(result) {
       result.available_languages = result.available_languages.sort(function(a, b) {
         if (a.code > b.code) {
           return 1;
@@ -515,7 +515,7 @@ module.exports = function(grunt) {
         });
       };
 
-      fetchLanguage(result.available_languages[fetched_languages]);
+      fetchLanguage(result.available_languages[0]);
     });
   }
 
@@ -682,7 +682,10 @@ module.exports = function(grunt) {
     var translate_object = function(object, keys) {
       for (var k in keys) {
         supported_languages.forEach(function(lang_code) {
-          object[keys[k]][lang_code] = str_unescape(gt.dgettext(lang_code, str_escape(object[keys[k]]['en'])));
+          var translation = gt.dgettext(lang_code, str_escape(object[keys[k]]['en']));
+          if (translation !== undefined) {
+            object[keys[k]][lang_code] = str_unescape(translation).trim();
+          }
         });
       }
     };
@@ -739,14 +742,19 @@ module.exports = function(grunt) {
 
         var lines = templates_sources[template_name].split("\n");
 
-        for (var i=0; i<lines.length; i++){
+        for (var i=0; i<lines.length; i++) {
+          var translation = gt.dgettext(lang_code, str_escape(lines[i]));
+          if (translation === undefined) {
+            continue;
+          }
+
           // we skip adding empty strings and variable only strings
           if (lines[i] !== '' && !lines[i].match(/^{[a-zA-Z0-9]+}/g)) {
-            tmp = tmp.replace(lines[i], str_unescape(gt.dgettext(lang_code, str_escape(lines[i]))));
+            tmp = tmp.replace(lines[i], str_unescape(translation));
           }
         }
 
-        templates[template_name][lang_code] = tmp;
+        templates[template_name][lang_code] = tmp.trim();
       }
     });
 
