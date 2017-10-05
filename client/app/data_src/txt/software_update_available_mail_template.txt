@@ -7,7 +7,7 @@ Installed version: {InstalledVersion}
 Latest version: {LatestVersion}
 
 To learn about new features and bug fixes in the new version consult the change log at: {ChangeLogURL}
-For update instruction please refer to the documentation at: {UpdateGuideURL}
+For update instructions please refer to the documentation at: {UpdateGuideURL}
 
 Kind regards,
 {NodeName}
