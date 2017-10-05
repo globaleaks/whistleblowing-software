@@ -359,9 +359,8 @@ class AdminPGPAlertKeyword(NodeKeyword):
         return ret
 
 
-class PGPAlertKeyword(NodeKeyword):
-    keyword_list = NodeKeyword.keyword_list + user_pgp_alert_keywords
-    data_keys =  NodeKeyword.data_keys + ['user']
+class PGPAlertKeyword(UserNodeKeyword):
+    keyword_list = UserNodeKeyword.keyword_list + user_pgp_alert_keywords
 
     def PGPKeyInfo(self):
         fingerprint = self.data['user']['pgp_key_fingerprint']
