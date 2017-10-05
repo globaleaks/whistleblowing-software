@@ -731,11 +731,6 @@ module.exports = function(grunt) {
       gt.addTextdomain(lang_code, fs.readFileSync("pot/" + lang_code + ".po"));
 
       for (var template_name in templates_sources) {
-        /* Skip to add these templates cause we still miss the database of storing them */
-        if (['admin_test_email_title', 'admin_test_email_template'].indexOf(template_name) !== -1) {
-          continue;
-        }
-
         if (!(template_name in templates)) {
           templates[template_name] = {};
         }
