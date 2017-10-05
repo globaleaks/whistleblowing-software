@@ -103,16 +103,18 @@ class NotificationTestInstance(BaseHandler):
     @inlineCallbacks
     def post(self):
         user = yield get_user_settings(self.current_user.user_id,
-                                     State.tenant_cache[1].default_language)
+                                       State.tenant_cache[1].default_language)
 
         language = user['language']
 
         yield get_notification(language)
 
-        data = {}
-        data['type'] = 'admin_test_static'
-        data['node'] = yield admin_serialize_node(language)
-        data['notification'] = yield get_notification(language)
+        data = {
+            'type': 'admin_test_static',
+            'node': (yield admin_serialize_node(language)),
+            'notification': (yield get_notification(language)),
+            'user': user,
+        }
 
         subject, body = Templating().get_mail_subject_and_body(data)
 
