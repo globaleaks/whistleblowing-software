@@ -436,10 +436,10 @@ class SoftwareUpdateKeyword(UserNodeKeyword):
         return '%s' % __version__
 
     def ChangeLogURL(self):
-        return 'https://raw.githubusercontent.com/globaleaks/GlobaLeaks/master/CHANGELOG'
+        return 'https://www.globaleaks.org/r/changelog'
 
     def UpdateGuideURL(self):
-        return 'https://globaleaks.readthedocs.io/en/latest/UpgradeGuide.html'
+        return 'https://www.globaleaks.org/r/upgrade-guide'
 
 supported_template_types = {
     u'tip': TipKeyword,
