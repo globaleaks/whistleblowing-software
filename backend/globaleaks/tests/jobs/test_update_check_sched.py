@@ -1,8 +1,13 @@
 # -*- coding: utf-8 -*-
+
+from twisted.internet.defer import inlineCallbacks, succeed
+
+from globaleaks import models
 from globaleaks.jobs.update_check_sched import UpdateCheckJob
+from globaleaks.models.config import PrivateFactory, Config
+from globaleaks.orm import transact
 from globaleaks.state import State
 from globaleaks.tests import helpers
-from twisted.internet.defer import inlineCallbacks, succeed
 
 packages="Package: globaleaks\n" \
          "Version: 0.0.1\n" \
@@ -24,11 +29,23 @@ packages="Package: globaleaks\n" \
          "Filename: xenial/tor2web_31337_all.deb\n\n"
 
 
-class TestUpdateCheckJob(helpers.TestGL):
+@transact
+def set_latest_version(store, version):
+    return PrivateFactory(store).set_val(u'latest_version', version)
+
+
+@transact
+def get_latest_version(store):
+    return PrivateFactory(store).get_val(u'latest_version')
+
+
+class TestUpdateCheckJob(helpers.TestGLWithPopulatedDB):
     @inlineCallbacks
     def test_refresh_works(self):
         State.tenant_cache[1].anonymize_outgoing_connections = False
-        State.latest_version = '0.0.1'
+
+        yield set_latest_version('0.0.1')
+        yield self.test_model_count(models.Mail, 0)
 
         def fetch_packages_file_mock(self):
             return succeed(packages)
@@ -37,4 +54,6 @@ class TestUpdateCheckJob(helpers.TestGL):
 
         yield UpdateCheckJob().operation()
 
-        self.assertEqual(State.latest_version, '2.0.1337')
+        latest_version = yield get_latest_version()
+        self.assertEqual(latest_version, '2.0.1337')
+        yield self.test_model_count(models.Mail, 1)
