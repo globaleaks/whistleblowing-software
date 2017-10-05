@@ -87,6 +87,8 @@ https_expr_keywords = [
 software_update_keywords = [
     '{InstalledVersion}',
     '{LatestVersion}',
+    '{ChangeLogURL}',
+    '{UpdateGuideURL}',
 ]
 
 
@@ -432,6 +434,12 @@ class SoftwareUpdateKeyword(NodeKeyword, UserKeyword):
 
     def InstalledVersion(self):
         return '%s' % __version__
+
+    def ChangeLogURL(self):
+        return 'https://raw.githubusercontent.com/globaleaks/GlobaLeaks/master/CHANGELOG'
+
+    def UpdateGuideURL(self):
+        return 'https://globaleaks.readthedocs.io/en/latest/UpgradeGuide.html'
 
 supported_template_types = {
     u'tip': TipKeyword,
