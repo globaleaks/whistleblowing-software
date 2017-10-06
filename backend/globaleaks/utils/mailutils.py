@@ -9,10 +9,8 @@ import StringIO
 import re
 import sys
 import traceback
-from calendar import timegm
 from datetime import datetime
-from email import Charset  # pylint: disable=no-name-in-module
-from email import utils as mailutils
+from email import utils, Charset  # pylint: disable=no-name-in-module
 from email.header import Header
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
@@ -30,17 +28,6 @@ from globaleaks.security import encrypt_message, sha256
 from globaleaks.settings import Settings
 from globaleaks.utils.tls import TLSClientContextFactory
 from globaleaks.utils.utility import log
-
-
-def rfc822_date():
-    """
-    holy stackoverflow:
-    http://stackoverflow.com/questions/3453177/convert-python-datetime-to-rfc-2822
-    """
-    nowdt = datetime.utcnow()
-    nowtuple = nowdt.utctimetuple()
-    nowtimestamp = timegm(nowtuple)
-    return mailutils.formatdate(nowtimestamp)
 
 
 def sendmail(to_address, subject, body):
@@ -145,18 +132,12 @@ def MIME_mail_build(src_name, src_mail, dest_name, dest_mail, title, mail_body):
     # You may want to avoid this if your headers are already ASCII, just so people
     # can read the raw message without getting a headache.
     multipart['Subject'] = Header(title.encode('utf-8'), 'UTF-8').encode()
-    multipart['Date'] = rfc822_date()
-
-    multipart['To'] = Header(dest_name.encode('utf-8'), 'UTF-8').encode() + \
-                        " <" + dest_mail + ">"
-
-    multipart['From'] = Header(src_name.encode('utf-8'), 'UTF-8').encode() + \
-                        " <" + src_mail + ">"
-
+    multipart['Date'] = utils.formatdate()
+    multipart['To'] = Header(dest_name.encode('utf-8'), 'UTF-8').encode() + " <" + dest_mail + ">"
+    multipart['From'] = Header(src_name.encode('utf-8'), 'UTF-8').encode() + " <" + src_mail + ">"
     multipart['X-Mailer'] = "fnord"
 
-    textpart = MIMEText(mail_body.encode('utf-8'), 'plain', 'UTF-8')
-    multipart.attach(textpart)
+    multipart.attach(MIMEText(mail_body.encode('utf-8'), 'plain', 'UTF-8'))
 
     return StringIO.StringIO(multipart.as_string())
 
