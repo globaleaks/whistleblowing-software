@@ -534,13 +534,15 @@ angular.module('GLBrowserCrypto', [])
 
 
     /**
-     * @param {pgp.Message} message
+     * @param {string} message
      * @param {boolean} verify
      * @return {Promise<pgp.Message>}
      */
     decryptAndVerifyAnswers: function(message, verify) {
+      // Convert the encrypted answers into an openpgpjs message.
+      var c = pgp.message.readArmored(message);
       var options = {
-        message: message,
+        message: c,
         format: 'utf8',
         // TODO split receiver and WB actions
         privateKey: glbcKeyRing.getKey(),
