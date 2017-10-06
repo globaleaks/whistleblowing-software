@@ -6,7 +6,6 @@ import copy
 from twisted.internet import reactor, threads
 
 from globaleaks import models
-from globaleaks.state import State
 from globaleaks.handlers.admin.context import admin_serialize_context
 from globaleaks.handlers.admin.node import db_admin_serialize_node
 from globaleaks.handlers.admin.notification import db_get_notification

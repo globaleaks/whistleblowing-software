@@ -5,7 +5,7 @@
 # Implement the classes handling the requests performed to /receiver/* URI PATH
 # Used by receivers to update personal preferences and access to personal data
 
-from storm.expr import And, In, Count
+from storm.expr import In, Count
 
 from globaleaks import models
 from globaleaks.handlers.base import BaseHandler

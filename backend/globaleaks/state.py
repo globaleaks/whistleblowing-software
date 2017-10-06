@@ -1,8 +1,4 @@
 # -*- coding: utf-8
-# pylint: disable=no-name-in-module,import-error
-from distutils.version import LooseVersion
-# pylint: enable=no-name-in-module,import-error
-
 from twisted.python.threadpool import ThreadPool
 
 from globaleaks import __version__

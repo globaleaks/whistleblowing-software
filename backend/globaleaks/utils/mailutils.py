@@ -9,7 +9,6 @@ import StringIO
 import re
 import sys
 import traceback
-from datetime import datetime
 from email import utils, Charset  # pylint: disable=no-name-in-module
 from email.header import Header
 from email.mime.multipart import MIMEMultipart

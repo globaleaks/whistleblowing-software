@@ -8,7 +8,6 @@ from globaleaks.handlers.admin.node import db_admin_serialize_node
 from globaleaks.handlers.admin.notification import db_get_notification
 from globaleaks.handlers.admin.user import db_get_admin_users
 from globaleaks.jobs.base import ExternNetLoopingJob
-from globaleaks import models
 from globaleaks.models.config import PrivateFactory
 from globaleaks.orm import transact
 from globaleaks.settings import Settings

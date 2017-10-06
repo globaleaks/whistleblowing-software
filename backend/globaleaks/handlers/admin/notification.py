@@ -15,7 +15,6 @@ from globaleaks.state import State
 from globaleaks.utils.mailutils import sendmail
 from globaleaks.utils.sets import merge_dicts
 from globaleaks.utils.templating import Templating
-from globaleaks.utils.utility import log
 
 
 def admin_serialize_notification(store, language):

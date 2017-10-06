@@ -3,7 +3,6 @@ from globaleaks.anomaly import Alarm
 from globaleaks.handlers.admin.statistics import get_anomaly_history
 from globaleaks.jobs.statistics_sched import StatisticsSchedule
 from globaleaks.state import State
-from globaleaks.settings import Settings
 from globaleaks.tests import helpers
 from globaleaks.utils.utility import datetime_to_ISO8601
 from twisted.internet.defer import inlineCallbacks

@@ -7,15 +7,14 @@ from storm.expr import In, Min
 from globaleaks import models
 from globaleaks.handlers.admin.node import db_admin_serialize_node
 from globaleaks.handlers.admin.notification import db_get_notification
-from globaleaks.handlers.rtip import db_delete_itips, serialize_rtip
+from globaleaks.handlers.rtip import db_delete_itips
 from globaleaks.handlers.user import user_serialize_user
 from globaleaks.jobs.base import LoopingJob
 from globaleaks.orm import transact_sync
 from globaleaks.security import overwrite_and_remove
 from globaleaks.state import State
 from globaleaks.utils.templating import Templating
-from globaleaks.utils.utility import datetime_now, datetime_never, \
-    datetime_to_ISO8601
+from globaleaks.utils.utility import datetime_now, datetime_to_ISO8601
 
 
 __all__ = ['CleaningSchedule']

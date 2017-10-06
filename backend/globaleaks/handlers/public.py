@@ -14,7 +14,6 @@ from globaleaks.models import l10n
 from globaleaks.models.config import NodeFactory
 from globaleaks.models.l10n import NodeL10NFactory
 from globaleaks.orm import transact
-from globaleaks.settings import Settings
 from globaleaks.state import State
 from globaleaks.utils.sets import merge_dicts
 from globaleaks.utils.structures import get_localized_values

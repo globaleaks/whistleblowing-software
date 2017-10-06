@@ -12,7 +12,6 @@ from globaleaks.handlers.admin.notification import db_get_notification
 from globaleaks.handlers.admin.user import db_get_admin_users
 from globaleaks.jobs.base import LoopingJob
 from globaleaks.orm import transact
-from globaleaks.settings import Settings
 from globaleaks.state import State
 from globaleaks.utils import letsencrypt
 from globaleaks.utils.utility import log

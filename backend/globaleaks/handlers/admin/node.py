@@ -16,7 +16,6 @@ from globaleaks.models.l10n import EnabledLanguage, NodeL10NFactory
 from globaleaks.orm import transact
 from globaleaks.rest import errors, requests
 from globaleaks.settings import Settings
-from globaleaks.state import State
 from globaleaks.utils.utility import log
 
 

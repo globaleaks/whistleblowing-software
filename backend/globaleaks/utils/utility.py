@@ -7,10 +7,8 @@ from __future__ import print_function
 
 import cgi
 import codecs
-import inspect
 import json
 import logging
-import os
 import re
 import sys
 import traceback
