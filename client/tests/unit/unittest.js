@@ -255,16 +255,17 @@ describe('GLBrowserCrypto', function() {
   });
 
   describe('glbcWhistleblower', function() {
-    var glbcKeyRing, glbcKeyLib, glbcWhistleblower;
+    var glbcKeyRing, glbcKeyLib, glbcWhistleblower, glbcCipherLib;
     beforeEach(function() {
-      window.inject(function(_glbcKeyRing_, _glbcKeyLib_, _glbcWhistleblower_) {
+      window.inject(function(_glbcKeyRing_, _glbcKeyLib_, _glbcWhistleblower_, _glbcCipherLib_) {
         glbcKeyRing = _glbcKeyRing_;
         glbcKeyLib = _glbcKeyLib_;
         glbcWhistleblower = _glbcWhistleblower_;
+        glbcCipherLib = _glbcCipherLib_;
       });
     });
 
-    it('whistleblower should create a session key and use it', function(done) {
+    it('whistleblower should create an encryption key and a session key', function(done) {
       var submission = {
         wb_cckey_prv_penc: '',
         wb_cckey_pub: '',
@@ -274,18 +275,38 @@ describe('GLBrowserCrypto', function() {
 
       var keycode = glbcKeyLib.generateKeycode();
       glbcWhistleblower.deriveKey(keycode, test_data.node.receipt_salt, submission).then(function() {
-        glbcKeyRing.addPubKey(test_data.bob.uuid, test_data.bob.cckey_pub);
 
+        glbcKeyRing.addPubKey(test_data.bob.uuid, test_data.bob.cckey_pub);
         return glbcWhistleblower.deriveSessionKey([test_data.bob.uuid, 'whistleblower'], submission)
+      }).then(function() {
+
+        return glbcWhistleblower.encryptAndSignAnswers(test_data.submission.jsonAnswers, true);
       }).then(function(res) {
-        console.log(res);
+
+        return glbcCipherLib.decryptAndVerifyAnswers(res, true);
+      }).then(function(res) {
+
+        expect(res.data).to.equal(test_data.submission.jsonAnswers);
         done();
       });
     }).timeout(test_data.const.SCRYPT_MAX);
 
-    it('whistleblower should load a session key and use it', function() {
+    it('whistleblower should reuse an encrypted private key', function(done) {
+      glbcKeyLib.deriveUserPassword(test_data.wb.keycode, test_data.node.receipt_salt).then(function(res) {
 
-    });
+        glbcWhistleblower.storePassphrase(res.passphrase);
+        glbcWhistleblower.initialize(test_data.wb.wb_cckey_prv_penc, []);
+
+        return glbcWhistleblower.unlock();
+      }).then(function() {
+
+        return glbcCipherLib.decryptAndVerifyAnswers(test_data.submission.jsonAnswersEnc, true);
+      }).then(function(res) {
+
+        expect(res.data).to.equal(test_data.submission.jsonAnswers);
+        done();
+      });
+    }).timeout(test_data.const.SCRYPT_MAX);
   });
 
   describe('glbcUserKeyGen', function() {
