@@ -2,7 +2,6 @@
 from storm.locals import Unicode, Bool
 
 from globaleaks import LANGUAGES_SUPPORTED_CODES, models
-from globaleaks.rest import errors
 
 
 class EnabledLanguage(models.Model):

@@ -4,7 +4,7 @@ from twisted.internet.defer import inlineCallbacks, succeed
 
 from globaleaks import models
 from globaleaks.jobs.update_check_sched import UpdateCheckJob
-from globaleaks.models.config import PrivateFactory, Config
+from globaleaks.models.config import PrivateFactory
 from globaleaks.orm import transact
 from globaleaks.state import State
 from globaleaks.tests import helpers

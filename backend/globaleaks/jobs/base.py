@@ -6,7 +6,6 @@ from twisted.internet.error import ConnectionLost, ConnectionRefusedError, DNSLo
 from twisted.web._newclient import ResponseNeverReceived, ResponseFailed
 from txsocksx.errors import TTLExpired, ConnectionRefused
 
-from globaleaks.settings import Settings
 from globaleaks.state import State
 from globaleaks.utils.mailutils import schedule_exception_email, extract_exception_traceback_and_schedule_email
 from globaleaks.utils.utility import log

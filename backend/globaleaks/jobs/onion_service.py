@@ -6,7 +6,6 @@ from txtorcon import build_local_tor_connection
 
 from twisted.internet import reactor
 from twisted.internet.defer import inlineCallbacks, Deferred
-from twisted.internet.error import ConnectionLost
 
 from globaleaks.db import refresh_memory_variables
 from globaleaks.jobs.base import BaseJob

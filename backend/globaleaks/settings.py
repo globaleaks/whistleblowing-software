@@ -16,12 +16,9 @@ from distutils import dir_util
 # pylint: enable=no-name-in-module
 from optparse import OptionParser
 
-from twisted.internet.defer import inlineCallbacks
-
 from globaleaks import __version__, DATABASE_VERSION
 from globaleaks.state import State
 from globaleaks.utils.agent import get_tor_agent, get_web_agent
-from globaleaks.utils.objectdict import ObjectDict
 from globaleaks.utils.singleton import Singleton
 from globaleaks.utils.utility import datetime_now, log
 
