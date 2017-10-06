@@ -4,7 +4,7 @@
 # **************
 #
 # Files collection handlers and utils
-
+from random import SystemRandom
 from storm.expr import And
 
 from twisted.internet.defer import inlineCallbacks, returnValue
@@ -17,7 +17,8 @@ from globaleaks.orm import transact
 from globaleaks.rest import errors, requests
 from globaleaks.settings import Settings
 from globaleaks.state import State
-from globaleaks.utils.utility import datetime_now, deferred_sleep, log, randint
+from globaleaks.utils.utility import datetime_now, deferred_sleep, log
+
 
 
 def random_login_delay():
@@ -44,7 +45,7 @@ def random_login_delay():
         min_sleep = failed_attempts if failed_attempts < 42 else 42
         max_sleep = n if n < 42 else 42
 
-        return randint(min_sleep, max_sleep)
+        return SystemRandom().randint(min_sleep, max_sleep)
 
     return 0
 

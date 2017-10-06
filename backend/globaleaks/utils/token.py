@@ -8,7 +8,7 @@
 
 import os
 from datetime import datetime, timedelta
-from random import randint
+from random import SystemRandom
 
 from globaleaks.anomaly import Alarm
 from globaleaks.rest import errors
@@ -92,6 +92,7 @@ class Token(object):
 
         if not self.human_captcha['solved']:
             r['human_captcha'] = self.human_captcha['question']
+
         if not self.proof_of_work['solved']:
             r['proof_of_work'] = self.proof_of_work['question']
 
@@ -99,8 +100,8 @@ class Token(object):
 
     def generate_token_challenges(self):
         if Alarm.stress_levels['activity'] >= 1 and State.tenant_cache[1].enable_captcha:
-            random_a = randint(0, 99)
-            random_b = randint(0, 99)
+            random_a = SystemRandom().randrange(100)
+            random_b = SystemRandom().randrange(100)
 
             self.human_captcha = {
                 'question': u"%d + %d" % (random_a, random_b),

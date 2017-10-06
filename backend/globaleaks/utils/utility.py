@@ -56,36 +56,10 @@ def every_language_dict(default_text=''):
     return {code : default_text for code in LANGUAGES_SUPPORTED_CODES}
 
 
-def randint(start, end=None):
-    if end is None:
-        end = start
-        start = 0
-    w = end - start + 1
-    return start + int(''.join("%x" % ord(x) for x in os.urandom(w)), 16) % w
-
-
-def randbits(bits):
-    return os.urandom(int(bits/8))
-
-
-def choice(population):
-    return population[randint(len(population) - 1)]
-
-
-def shuffle(x):
-    for i in reversed(range(1, len(x))):
-        j = randint(0, i)
-        x[i], x[j] = x[j], x[i]
-    return x
-
-
 def deferred_sleep(timeout):
     d = Deferred()
 
-    def callbackDeferred():
-        d.callback(True)
-
-    reactor.callLater(timeout, callbackDeferred)
+    reactor.callLater(timeout, d.callback, True)
 
     return d
 
@@ -95,9 +69,7 @@ def msdos_encode(s):
     This functions returns a new string with all occurences of newlines
     preprended with a carriage return.
     """
-    gex = r'(\r\n)|(\n)'
-    repl = '\r\n'
-    return re.sub(gex, repl, s)
+    return re.sub(r'(\r\n)|(\n)', '\r\n', s)
 
 
 def log_encode_html(s):
@@ -260,8 +232,6 @@ def datetime_to_ISO8601(date):
     """
     conver a datetime into ISO8601 date
     """
-    # TODO: this check may hide a bug a should be removed.
-    #       (see commit message for details)
     if date is None:
         date = datetime_null()
 
