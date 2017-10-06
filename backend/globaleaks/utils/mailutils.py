@@ -30,6 +30,31 @@ from globaleaks.utils.tls import TLSClientContextFactory
 from globaleaks.utils.utility import log
 
 
+def MIME_mail_build(src_name, src_mail, dest_name, dest_mail, title, mail_body):
+    # Override python's weird assumption that utf-8 text should be encoded with
+    # base64, and instead use quoted-printable (for both subject and body).  I
+    # can't figure out a way to specify QP (quoted-printable) instead of base64 in
+    # a way that doesn't modify global state. :-(
+    Charset.add_charset('utf-8', Charset.QP, Charset.QP, 'utf-8')
+
+    # This example is of an email with text and html alternatives.
+    multipart = MIMEMultipart('alternative')
+
+    # We need to use Header objects here instead of just assigning the strings in
+    # order to get our headers properly encoded (with QP).
+    # You may want to avoid this if your headers are already ASCII, just so people
+    # can read the raw message without getting a headache.
+    multipart['Subject'] = Header(title.encode('utf-8'), 'UTF-8').encode()
+    multipart['Date'] = utils.formatdate()
+    multipart['To'] = Header(dest_name.encode('utf-8'), 'UTF-8').encode() + " <" + dest_mail + ">"
+    multipart['From'] = Header(src_name.encode('utf-8'), 'UTF-8').encode() + " <" + src_mail + ">"
+    multipart['X-Mailer'] = "fnord"
+
+    multipart.attach(MIMEText(mail_body.encode('utf-8'), 'plain', 'UTF-8'))
+
+    return StringIO.StringIO(multipart.as_string())
+
+
 def sendmail(to_address, subject, body):
     """
     Sends an email using SMTPS/SMTP+TLS and torify the connection
@@ -117,79 +142,8 @@ def sendmail(to_address, subject, body):
         return defer.fail()
 
 
-def MIME_mail_build(src_name, src_mail, dest_name, dest_mail, title, mail_body):
-    # Override python's weird assumption that utf-8 text should be encoded with
-    # base64, and instead use quoted-printable (for both subject and body).  I
-    # can't figure out a way to specify QP (quoted-printable) instead of base64 in
-    # a way that doesn't modify global state. :-(
-    Charset.add_charset('utf-8', Charset.QP, Charset.QP, 'utf-8')
-
-    # This example is of an email with text and html alternatives.
-    multipart = MIMEMultipart('alternative')
-
-    # We need to use Header objects here instead of just assigning the strings in
-    # order to get our headers properly encoded (with QP).
-    # You may want to avoid this if your headers are already ASCII, just so people
-    # can read the raw message without getting a headache.
-    multipart['Subject'] = Header(title.encode('utf-8'), 'UTF-8').encode()
-    multipart['Date'] = utils.formatdate()
-    multipart['To'] = Header(dest_name.encode('utf-8'), 'UTF-8').encode() + " <" + dest_mail + ">"
-    multipart['From'] = Header(src_name.encode('utf-8'), 'UTF-8').encode() + " <" + src_mail + ">"
-    multipart['X-Mailer'] = "fnord"
-
-    multipart.attach(MIMEText(mail_body.encode('utf-8'), 'plain', 'UTF-8'))
-
-    return StringIO.StringIO(multipart.as_string())
-
-
-def mail_exception_handler(etype, value, tback):
-    """
-    Formats traceback and exception data and emails the error,
-    This would be enabled only in the testing phase and testing release,
-    not in production release.
-    """
-    if Settings.disable_backend_exception_notification:
-        return
-
-    if isinstance(value, GeneratorExit) or \
-       isinstance(value, defer.AlreadyCalledError) or \
-       isinstance(value, SMTPError) or \
-        etype == AssertionError and value.message == "Request closed":
-        # we need to bypass email notification for some exception that:
-        # 1) raise frequently or lie in a twisted bug;
-        # 2) lack of useful stacktraces;
-        # 3) can be cause of email storm amplification
-        #
-        # this kind of exception can be simply logged error logs.
-        log.err("exception mail suppressed for exception (%s) [reason: special exception]", str(etype))
-        return
-
-    # collection of the stacktrace info
-    exc_type = re.sub("(<(type|class ')|'exceptions.|'>|__main__.)",
-                      "", str(etype))
-    error_message = "%s %s" % (exc_type.strip(), etype.__doc__)
-    traceinfo = '\n'.join(traceback.format_exception(etype, value, tback))
-
-    mail_body = error_message + "\n\n" + traceinfo
-
-    log.err("Unhandled exception raised:")
-    log.err(mail_body)
-
-    schedule_exception_email(mail_body)
-
-
-def extract_exception_traceback_and_send_email(e):
-    if isinstance(e, Failure):
-        exc_type, exc_value, exc_tb = e.type, e.value, e.getTracebackObject()
-    else:
-        exc_type, exc_value, exc_tb = sys.exc_info()
-
-    mail_exception_handler(exc_type, exc_value, exc_tb)
-
-
 def schedule_exception_email(exception_text, *args):
     try:
-
         from globaleaks.transactions import schedule_email
 
         if not hasattr(State.tenant_cache[1], 'notif'):
@@ -231,7 +185,7 @@ def schedule_exception_email(exception_text, *args):
 
             # Opportunisticly encrypt the mail body. NOTE that mails will go out
             # unencrypted if one address in the list does not have a public key set.
-            if pub_key:
+            if pub_key is not None:
                 mail_body = encrypt_message(pub_key, mail_body)
 
             # avoid waiting for the notification to send and instead rely on threads to handle it
@@ -240,3 +194,46 @@ def schedule_exception_email(exception_text, *args):
     except Exception as excep:
         # Avoid raising exception inside email logic to avoid chaining errors
         log.err("Unexpected exception in send_exception_mail: %s", excep)
+
+
+def mail_exception_handler(etype, value, tback):
+    """
+    Formats traceback and exception data and emails the error,
+    This would be enabled only in the testing phase and testing release,
+    not in production release.
+    """
+    if Settings.disable_backend_exception_notification:
+        return
+
+    if isinstance(value, (GeneratorExit,
+                          defer.AlreadyCalledError,
+                          SMTPError)) or \
+        (etype == AssertionError and value.message == "Request closed"):
+        # we need to bypass email notification for some exception that:
+        # 1) raise frequently or lie in a twisted bug;
+        # 2) lack of useful stacktraces;
+        # 3) can be cause of email storm amplification
+        #
+        # this kind of exception can be simply logged error logs.
+        log.err("exception mail suppressed for exception (%s) [reason: special exception]", str(etype))
+        return
+
+    # collection of the stacktrace info
+    exc_type = re.sub("(<(type|class ')|'exceptions.|'>|__main__.)",
+                      "", str(etype))
+    error_message = "%s %s" % (exc_type.strip(), etype.__doc__)
+    traceinfo = '\n'.join(traceback.format_exception(etype, value, tback))
+
+    mail_body = error_message + "\n\n" + traceinfo
+
+    log.err("Unhandled exception raised:")
+    log.err(mail_body)
+
+    schedule_exception_email(mail_body)
+
+
+def extract_exception_traceback_and_schedule_email(e):
+    if isinstance(e, Failure):
+        mail_exception_handler(e.type, e.value, e.getTracebackObject())
+    else:
+        mail_exception_handler(*sys.exc_info())

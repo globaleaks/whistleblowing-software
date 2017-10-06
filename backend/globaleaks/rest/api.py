@@ -37,7 +37,7 @@ from globaleaks.handlers.admin import user as admin_user
 from globaleaks.rest import apicache, requests, errors
 from globaleaks.settings import Settings
 from globaleaks.state import State
-from globaleaks.utils.mailutils import extract_exception_traceback_and_send_email
+from globaleaks.utils.mailutils import extract_exception_traceback_and_schedule_email
 from twisted.internet import defer
 from twisted.web.resource import Resource
 from twisted.web.server import NOT_DONE_YET
@@ -247,8 +247,7 @@ class APIResourceWrapper(Resource):
         elif isinstance(e.value, errors.GLException):
             e = e.value
         else:
-            # TODO(evilaliv3) defer extract_and_email
-            extract_exception_traceback_and_send_email(e)
+            extract_exception_traceback_and_schedule_email(e)
             e = errors.InternalServerError('Unexpected')
 
         request.setResponseCode(e.status_code)
