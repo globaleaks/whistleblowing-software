@@ -28,5 +28,13 @@ factory('TestEnv', ['$q', '$timeout', function($q, $timeout) {
         defer.reject(false);
         return defer.promise;
       },
+
+      catchAsyncPromiseThrow: function() {
+        var defer = $q.defer()
+        $timeout(function() {
+          throw Error('Exception that must be caught in unitest');
+        }, 500);
+        return defer.promise;
+      },
     };
 }]);

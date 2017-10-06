@@ -7,11 +7,11 @@ var test_data = require('./test_data');
 var intervalRef;
 
 beforeEach(window.module('GLUnitTest', function(_$exceptionHandlerProvider_) {
-  _$exceptionHandlerProvider_.mode('log');
+  _$exceptionHandlerProvider_.mode('rethrow');
 }));
 
 beforeEach(angular.mock.inject(function ($rootScope, $timeout) {
-  intervalRef = setInterval(function(){
+  intervalRef = setInterval(function() {
     $rootScope.$apply();
     try {
       $timeout.verifyNoPendingTasks();
@@ -35,20 +35,6 @@ describe('GLUnitTest', function() {
   });
 
   describe('Test Environment', function() {
-    it('asyncPromiseTimeout', function(done) {
-       TestEnv.asyncPromiseTimeout().then(function(r) {
-         done();
-       });
-    });
-
-    it('asyncPromiseTimeoutErr', function(done) {
-       TestEnv.asyncPromiseTimeoutErr().then(function(r) {
-          assert.fail('promise must reject')
-       }, function(r) {
-         done()
-       });
-    });
-
     it('syncPromise', function(done) {
        TestEnv.syncPromise().then(function(r) {
          done();
@@ -60,6 +46,30 @@ describe('GLUnitTest', function() {
         assert.fail('promise must reject')
       }, function(r) {
         done()
+      });
+    });
+
+    it('asyncPromiseTimeout', function(done) {
+       TestEnv.asyncPromiseTimeout().then(function(r) {
+         done();
+       });
+    });
+
+    it('asyncPromiseTimeoutErr', function(done) {
+       TestEnv.asyncPromiseTimeoutErr().then(function(r) {
+         assert.fail('promise must reject')
+       }, function(r) {
+         done()
+       });
+    });
+
+
+    it('catchAsyncPromiseThrow', function(done) {
+      // NOTE this skipped test case demonstrates how the unit tests behave with
+      // the injected _$exceptionHandlerProvider_.mode('rethrow')
+      this.skip(done);
+      TestEnv.catchAsyncPromiseThrow().then(function() {
+        assert.fail('should never resolve');
       });
     });
   });
@@ -232,10 +242,8 @@ describe('GLBrowserCrypto', function() {
         .then(function(res) {
           return glbcKeyLib.generateCCryptoKey(res.passphrase);
         }).then(function(res) {
-          console.log('bob keys!!')
           console.log(res.ccrypto_key_private.armor());
           console.log(res.ccrypto_key_public.armor());
-          console.log('bob keys!!')
           var b = glbcKeyRing.initialize(res.ccrypto_key_private.armor(), test_data.bob.uuid)
           expect(b).to.equal(true);
           done();
