@@ -55,31 +55,6 @@ class TestUtility(unittest.TestCase):
         self.assertIsNotNone(re.match(r'([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})',
                                       utility.uuid4()))
 
-    def test_randint(self):
-        self.assertEqual(utility.randint(0), 0)
-        self.assertEqual(utility.randint(0, 0), 0)
-        self.assertEqual(utility.randint(9, 9), 9)
-
-        number = self.assertTrue(utility.randint(1, 2))
-        self.assertTrue(0 < number < 3)
-
-    def test_randbits(self):
-        self.assertEqual(len(utility.randbits(4)), 0)
-        self.assertEqual(len(utility.randbits(8)), 1)
-        self.assertEqual(len(utility.randbits(9)), 1)
-        self.assertEqual(len(utility.randbits(16)), 2)
-
-    def test_choice(self):
-        population = [0, 1, 2, 3, 4, 5]
-        self.assertTrue(utility.choice(population) in population)
-
-    def test_shuffle(self):
-        ordered = [0, 1, 2, 3, 4, 5]
-        shuffle = utility.shuffle(ordered)
-        self.assertEqual(len(ordered), len(shuffle))
-        for i in ordered:
-            self.assertTrue(i in shuffle)
-
     def test_datetime_null(self):
         self.assertEqual(utility.datetime_null(), datetime.utcfromtimestamp(0))
 
