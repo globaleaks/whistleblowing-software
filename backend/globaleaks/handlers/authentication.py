@@ -114,6 +114,10 @@ class AuthenticationHandler(BaseHandler):
         username = request['username']
         password = request['password']
 
+        delay = random_login_delay()
+        if delay:
+            yield deferred_sleep(delay)
+
         user_id, status, role, pcn = yield login(username, password, self.request.client_using_tor)
 
         # Revoke all other sessions for the newly authenticated user
