@@ -72,7 +72,7 @@ matrix:
       addons:
         sauce_connect: true
 
-    - env: GLTEST='end2end-11' BROWSER='iphone 10.3'
+    - env: GLTEST='end2end-11' BROWSER='iphone 11.0'
       python: "2.7"
       addons:
         sauce_connect: true
@@ -89,7 +89,7 @@ matrix:
     - env: GLTEST='end2end-8' BROWSER='android 4.4'
     - env: GLTEST='end2end-9' BROWSER='android 6.0'
     - env: GLTEST='end2end-10' BROWSER='iphone 8.0'
-    - env: GLTEST='end2end-11' BROWSER='iphone 10.3'
+    - env: GLTEST='end2end-11' BROWSER='iphone 11.0'
 
 before_install:
   - nvm install 6.11
