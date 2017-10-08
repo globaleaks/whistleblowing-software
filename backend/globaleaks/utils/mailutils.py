@@ -79,6 +79,8 @@ def sendmail(to_address, subject, body):
 
             return result_deferred.errback(reason)
 
+        result_deferred.addErrback(errback)
+
         authentication_username=State.tenant_cache[1].notif.username
         authentication_password=State.tenant_cache[1].private.smtp_password
         from_address=State.tenant_cache[1].notif.source_email
@@ -101,16 +103,13 @@ def sendmail(to_address, subject, body):
 
         context_factory = TLSClientContextFactory()
 
-        esmtp_deferred = defer.Deferred()
-        esmtp_deferred.addCallbacks(result_deferred.callback, errback)
-
         factory = ESMTPSenderFactory(
             authentication_username.encode('utf-8'),
             authentication_password.encode('utf-8'),
             from_address,
             to_address,
             message,
-            esmtp_deferred,
+            result_deferred,
             contextFactory=context_factory,
             requireAuthentication=True,
             requireTransportSecurity=(security != 'SSL'),
@@ -120,15 +119,15 @@ def sendmail(to_address, subject, body):
         if security == "SSL":
             factory = tls.TLSMemoryBIOFactory(context_factory, True, factory)
 
-        if Settings.testing:
-            #  Hooking the test down to here is a trick to be able to test all the above code :)
-            return defer.succeed(None)
-
         if State.tenant_cache[1].anonymize_outgoing_connections:
             socksProxy = TCP4ClientEndpoint(reactor, Settings.socks_host, Settings.socks_port, timeout=Settings.mail_timeout)
             endpoint = SOCKS5ClientEndpoint(smtp_host.encode('utf-8'), smtp_port, socksProxy)
         else:
             endpoint = TCP4ClientEndpoint(reactor, smtp_host.encode('utf-8'), smtp_port, timeout=Settings.mail_timeout)
+
+        if Settings.testing:
+            #  Hooking the test down to here is a trick to be able to test all the above code :)
+            return defer.succeed(None)
 
         d = endpoint.connect(factory)
         d.addErrback(errback)
