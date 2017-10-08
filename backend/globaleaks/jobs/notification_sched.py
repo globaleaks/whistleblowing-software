@@ -14,7 +14,7 @@ from globaleaks.handlers.user import user_serialize_user
 from globaleaks.jobs.base import LoopingJob
 from globaleaks.orm import transact, transact_sync
 from globaleaks.security import encrypt_message
-from globaleaks.settings import Settings
+from globaleaks.state import State
 from globaleaks.utils.mailutils import sendmail
 from globaleaks.utils.templating import Templating
 from globaleaks.utils.utility import log
