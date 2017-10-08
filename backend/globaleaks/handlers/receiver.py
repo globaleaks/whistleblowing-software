@@ -102,6 +102,7 @@ def get_receivertip_list(store, receiver_id, language):
             'id': rtip.id,
             'creation_date': datetime_to_ISO8601(internaltip.creation_date),
             'last_access': datetime_to_ISO8601(rtip.last_access),
+            'wb_last_access': datetime_to_ISO8601(internaltip.wb_last_access),
             'update_date': datetime_to_ISO8601(internaltip.update_date),
             'expiration_date': datetime_to_ISO8601(internaltip.expiration_date),
             'progressive': internaltip.progressive,

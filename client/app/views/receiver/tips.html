@@ -123,7 +123,6 @@
           <th>
             <span data-ng-click="sortKey = 'file_counter'; sortReverse = !sortReverse">
               <i class="glyphicon glyphicon-file"></i>
-              <span data-translate>Attachments</span>
               <span class="btn btn-xs" data-ng-show="sortKey == 'file_counter'">
                 <span data-ng-show="!sortReverse" class="glyphicon glyphicon-triangle-bottom"></span>
                 <span data-ng-show="sortReverse" class="glyphicon glyphicon-triangle-top"></span>
@@ -133,7 +132,6 @@
           <th>
             <span data-ng-click="sortKey = 'comment_counter'; sortReverse = !sortReverse">
               <i class="glyphicon glyphicon-comment"></i>
-              <span data-translate>Comments</span>
               <span class="btn btn-xs" data-ng-show="sortKey == 'comment_counter'">
                 <span data-ng-show="!sortReverse" class="glyphicon glyphicon-triangle-bottom"></span>
                 <span data-ng-show="sortReverse" class="glyphicon glyphicon-triangle-top"></span>
@@ -143,7 +141,6 @@
           <th>
             <span data-ng-click="sortKey = 'message_counter'; sortReverse = !sortReverse">
               <i class="glyphicon glyphicon-envelope"></i>
-              <span data-translate>Messages</span>
               <span class="btn btn-xs" data-ng-show="sortKey == 'message_counter'">
                 <span data-ng-show="!sortReverse" class="glyphicon glyphicon-triangle-bottom"></span>
                 <span data-ng-show="sortReverse" class="glyphicon glyphicon-triangle-top"></span>
@@ -155,6 +152,9 @@
               <i class="glyphicon glyphicon-send"></i>
               <span data-translate>Connection</span>
             </span>
+          </th>
+          <th>
+            <i class="glyphicon glyphicon-eye-open"></i>
           </th>
           <th>
             <span>
@@ -213,6 +213,9 @@
             <span data-ng-if="!tip.tor2web"
               class="label label-success"
               uib-popover="{{'The connection used to send this submission has been secured with Tor ensuring confidentiality and anonymity.' | translate}}" popover-placement="right" popover-trigger="'mouseenter'">Tor</span>
+          </td>
+          <td>
+            <i data-ng-if="tip.wb_last_access >= tip.update_date" class="glyphicon glyphicon-ok"></i>
           </td>
           <td>
             <div data-ng-repeat="field in tip.preview_schema" data-ng-init="fieldAnswers = tip.preview; preview=true" data-ng-include="'views/partials/tip_field.html'"></div>
