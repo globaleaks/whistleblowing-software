@@ -184,7 +184,7 @@ def schedule_exception_email(exception_text, *args):
 
             # Opportunisticly encrypt the mail body. NOTE that mails will go out
             # unencrypted if one address in the list does not have a public key set.
-            if pub_key is not None:
+            if pub_key:
                 mail_body = encrypt_message(pub_key, mail_body)
 
             # avoid waiting for the notification to send and instead rely on threads to handle it
