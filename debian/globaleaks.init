@@ -17,6 +17,7 @@ PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 NAME=$(basename $(readlink -nf $0))
 
 SCRIPTNAME=$0
+WAITFORDAEMON=60
 
 ##################################################################
 # GLobaLeaks configuration is read with the following order:
@@ -90,6 +91,28 @@ read_pid()
     else
         GLBACKEND_PID=0
     fi
+}
+
+wait_for_deaddaemon () {
+    pid=$1
+
+    sleep 1
+
+    if test -n "$pid"; then
+        if kill -0 $pid 2>/dev/null; then
+            cnt=0
+            while kill -0 $pid 2>/dev/null; do
+                cnt=`expr $cnt + 1`
+                if [ $cnt -gt $WAITFORDAEMON ]; then
+                    log_action_end_msg 1 "still running"
+                    exit 1
+                fi
+                sleep 1
+                [ "`expr $cnt % 3`" != 2 ] || log_action_cont_msg ""
+            done
+        fi
+    fi
+    log_action_end_msg 0
 }
 
 check_iptables()
@@ -243,6 +266,7 @@ do_stop()
         log_end_msg 0 "not running."
     else
         kill -15 ${GLBACKEND_PID} >/dev/null 2<&-
+        wait_for_deaddaemon ${GLBACKEND_PID}
         log_end_msg 0 "stopped."
     fi
 
