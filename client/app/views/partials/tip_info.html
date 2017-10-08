@@ -54,6 +54,9 @@
             <i class="glyphicon glyphicon-hourglass"></i>
             <span data-translate>Access expiration</span>
           </th>
+          <th data-ng-if="::session.role === 'receiver'">
+            <i class="glyphicon glyphicon-eye-open"></i>
+          </th>
           <th>
             <i class="glyphicon glyphicon-send"></i>
             <span data-translate>Connection</span>
@@ -84,6 +87,10 @@
               class="label label-warning"
               uib-popover="{{'The whistleblower can no longer access the submission' | translate}}"
               popover-placement="left" popover-trigger="'mouseenter'" data-translate>Revoked</span>
+          </td>
+          <td data-ng-if="::session.role == 'receiver'">
+            <i data-ng-if="tip.wb_last_access >= tip.update_date" class="glyphicon glyphicon-ok"></i>
+          </td>
           <td>
             <span data-ng-if="tip.tor2web"
                 class="label label-warning"
