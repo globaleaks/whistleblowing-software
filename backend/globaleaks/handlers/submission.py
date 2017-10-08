@@ -95,22 +95,15 @@ def db_serialize_archived_preview_schema(store, aqs, language):
     return _db_serialize_archived_questionnaire_schema(store, aqs, language)
 
 
-def db_serialize_questionnaire_answers_recursively(store, answers):
+def db_serialize_questionnaire_answers_recursively(store, answers, answers_by_group, groups_by_answer):
     ret = {}
 
     for answer in answers:
         if answer.is_leaf:
             ret[answer.key] = answer.value
         else:
-            _groups = store.find(models.FieldAnswerGroup,
-                                 models.FieldAnswerGroup.fieldanswer_id == answer.id).order_by(models.FieldAnswerGroup.number)
-
-            groups = []
-            for group in _groups:
-                answers = store.find(models.FieldAnswer, fieldanswergroup_id=group.id)
-                groups.append(db_serialize_questionnaire_answers_recursively(store, answers))
-
-            ret[answer.key] = groups
+            ret[answer.key] = [db_serialize_questionnaire_answers_recursively(store, answers_by_group.get(group.id, []), answers_by_group, groups_by_answer)
+                                  for group in groups_by_answer.get(answer.id, [])]
 
     return ret
 
@@ -118,21 +111,41 @@ def db_serialize_questionnaire_answers_recursively(store, answers):
 def db_serialize_questionnaire_answers(store, usertip, internaltip):
     questionnaire = db_serialize_archived_questionnaire_schema(store, internaltip.questionnaire_hash, State.tenant_cache[1].default_language)
 
-    answers_ids = []
+    answers = []
+    answers_by_group = {}
+    groups_by_answer = {}
+    all_answers_ids = []
+    root_answers_ids = []
+
     for s in questionnaire:
         for f in s['children']:
             if f['id'] == 'whistleblower_identity':
                 if isinstance(usertip, models.WhistleblowerTip) or \
                    f['attrs']['visibility_subject_to_authorization']['value'] is False or \
                    (isinstance(usertip, models.ReceiverTip) and usertip.can_access_whistleblower_identity):
-                    answers_ids.append(f['id'])
+                    root_answers_ids.append(f['id'])
             else:
-                answers_ids.append(f['id'])
+                root_answers_ids.append(f['id'])
 
-    answers = store.find(models.FieldAnswer, models.FieldAnswer.internaltip_id == internaltip.id,
-                                             In(models.FieldAnswer.key, answers_ids))
+    for answer in store.find(models.FieldAnswer, internaltip_id=internaltip.id):
+        all_answers_ids.append(answer.id)
 
-    return db_serialize_questionnaire_answers_recursively(store, answers)
+        if answer.key in root_answers_ids:
+            answers.append(answer)
+
+        if answer.fieldanswergroup_id not in answers_by_group:
+            answers_by_group[answer.fieldanswergroup_id] = []
+
+        answers_by_group[answer.fieldanswergroup_id].append(answer)
+
+    for group in store.find(models.FieldAnswerGroup,
+                            In(models.FieldAnswerGroup.fieldanswer_id, all_answers_ids)).order_by(models.FieldAnswerGroup.number):
+        if group.fieldanswer_id not in groups_by_answer:
+            groups_by_answer[group.fieldanswer_id] = []
+
+        groups_by_answer[group.fieldanswer_id].append(group)
+
+    return db_serialize_questionnaire_answers_recursively(store, answers, answers_by_group, groups_by_answer)
 
 
 def db_save_questionnaire_answers(store, internaltip_id, entries):
