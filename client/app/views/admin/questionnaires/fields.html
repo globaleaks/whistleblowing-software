@@ -200,6 +200,14 @@
                     </select>
                   </div>
                 </div>
+                <div data-ng-if="field.type === 'checkbox' || field.type === 'multichoice' || field.type === 'selectbox'">
+                  <div class="row" data-ng-disabled="!editable">
+                      <div class="form-group">
+                        <input data-ng-model="field.attrs.display_alphabetically.value" type="checkbox">
+                        <label data-translate>Display options alphabetically</label>
+                      </div>
+                  </div>
+                </div>
                 <div data-ng-if="field.type === 'date'" data-ng-init="open_min_date = false;">
                   <div class="row" data-ng-disabled="!editable">
                     <div uib-datepicker-popup
