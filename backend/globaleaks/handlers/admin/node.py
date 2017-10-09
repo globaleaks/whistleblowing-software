@@ -10,7 +10,6 @@ from storm.expr import In
 from globaleaks import models, utils, LANGUAGES_SUPPORTED_CODES, LANGUAGES_SUPPORTED
 from globaleaks.db import db_refresh_memory_variables
 from globaleaks.db.appdata import load_appdata
-from globaleaks.handlers.admin.files import db_get_file
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.models.config import NodeFactory, PrivateFactory
 from globaleaks.models.l10n import EnabledLanguage, NodeL10NFactory
@@ -81,12 +80,6 @@ def db_update_node(store, request, language):
     :param language: the language in which to localize data
     :return: a dictionary representing the serialization of the node
     """
-    enable_disable_languages(store, request)
-
-    if language in request['languages_enabled']:
-        node_l10n = NodeL10NFactory(store)
-        node_l10n.update(request, language)
-
     node = NodeFactory(store)
     node.update(request)
 
@@ -96,6 +89,12 @@ def db_update_node(store, request, language):
         node.set_val(u'basic_auth_password', request['basic_auth_password'])
     else:
         node.set_val(u'basic_auth', False)
+
+    enable_disable_languages(store, request)
+
+    if language in request['languages_enabled']:
+        node_l10n = NodeL10NFactory(store)
+        node_l10n.update(request, language)
 
     db_refresh_memory_variables(store)
 
