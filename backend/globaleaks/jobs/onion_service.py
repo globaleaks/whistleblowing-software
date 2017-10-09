@@ -102,6 +102,8 @@ class OnionService(BaseJob):
             startup_errback(Exception('Unable to access /var/run/tor/control; manual permission recheck needed'))
             return
 
+        from globaleaks.utils.utility import deferred_sleep
+        yield deferred_sleep(3)
         d = build_local_tor_connection(reactor)
         d.addCallback(startup_callback)
         d.addErrback(startup_errback)
@@ -118,5 +120,8 @@ class OnionService(BaseJob):
         if self.tor_conn is not None:
             yield self.tor_conn.protocol.quit()
             self.tor_conn = None
+
+        else:
+            self.active.callback(None)
 
         yield super(OnionService, self).stop()

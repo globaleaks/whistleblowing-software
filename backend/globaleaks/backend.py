@@ -20,7 +20,7 @@ from globaleaks.rest.api import APIResourceWrapper
 from globaleaks.settings import Settings
 from globaleaks.utils.process import disable_swap
 from globaleaks.utils.sock import listen_tcp_on_sock, reserve_port_for_ip
-from globaleaks.utils.utility import log, timedelta_to_milliseconds, GLLogObserver
+from globaleaks.utils.utility import log, timedelta_to_milliseconds, GLLogObserver, deferred_sleep
 from globaleaks.workers.supervisor import ProcessSupervisor
 
 # this import seems unused but it is required in order to load the mocks
@@ -90,13 +90,20 @@ class Service(service.Service):
 
         reactor.callLater(0, self.deferred_start)
 
-    @defer.inlineCallbacks
     def shutdown(self):
-        yield self.state.process_supervisor.shutdown()
+        def _shutdown(_):
+            self.state.orm_tp.stop()
 
-        yield self.stop_jobs()
+        d = defer.Deferred()
+        d.addBoth(_shutdown)
 
-        self.state.orm_tp.stop()
+        d1 = self.state.process_supervisor.shutdown()
+        d2 = self.stop_jobs()
+        defer.DeferredList([d1, d2]).addCallback(d.callback)
+
+        reactor.callLater(30, d.callback, None)
+
+        return d
 
     def start_jobs(self):
         from globaleaks.jobs import jobs_list, services_list
@@ -111,14 +118,17 @@ class Service(service.Service):
         self.state.jobs_monitor = LoopingJobsMonitor(self.state.jobs)
         self.state.jobs_monitor.schedule()
 
-    @defer.inlineCallbacks
     def stop_jobs(self):
+        deferred_list = []
+
         for job in self.state.jobs + self.state.services:
-            yield job.stop()
+            deferred_list.append(job.stop())
 
         if self.state.jobs_monitor is not None:
-            yield self.state.jobs_monitor.stop()
+            deferred_list.append(self.state.jobs_monitor.stop())
             self.state.jobs_monitor = None
+
+        return defer.DeferredList(deferred_list)
 
     def _deferred_start(self):
         ret = update_db()
