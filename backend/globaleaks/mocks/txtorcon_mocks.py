@@ -35,6 +35,10 @@ class EphemeralHiddenService(object):
         self._ports = map(lambda x: x.replace(' ', ','), ports)
         self._key_blob = key_blob_or_type
         self.auth = auth  # FIXME ununsed
+        if ' ' in self._key_blob:
+            raise ValueError('_key_blob cannot have whitespace')
+        if not isinstance(ports, types.ListType):
+            raise ValueError('ports must be a list')
         if not key_blob_or_type.startswith('NEW:') \
            and (len(key_blob_or_type) > 825 or len(key_blob_or_type) < 820):
             raise RuntimeError('Wrong size key-blob')
