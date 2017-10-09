@@ -10,6 +10,7 @@ from storm.expr import In
 from globaleaks import models, utils, LANGUAGES_SUPPORTED_CODES, LANGUAGES_SUPPORTED
 from globaleaks.db import db_refresh_memory_variables
 from globaleaks.db.appdata import load_appdata
+from globaleaks.handlers.admin.files import db_get_file
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.models.config import NodeFactory, PrivateFactory
 from globaleaks.models.l10n import EnabledLanguage, NodeL10NFactory
@@ -21,18 +22,17 @@ from globaleaks.utils.utility import log
 
 def db_admin_serialize_node(store, language):
     node_dict = NodeFactory(store).admin_export()
+    priv_dict = PrivateFactory(store)
 
     # Contexts and Receivers relationship
     configured  = store.find(models.ReceiverContext).count() > 0
-    custom_homepage = os.path.isfile(os.path.join(Settings.static_path, "custom_homepage.html"))
 
     misc_dict = {
-        'version': PrivateFactory(store).get_val(u'version'),
-        'latest_version': PrivateFactory(store).get_val(u'latest_version'),
+        'version': priv_dict.get_val(u'version'),
+        'latest_version': priv_dict.get_val(u'latest_version'),
         'languages_supported': LANGUAGES_SUPPORTED,
         'languages_enabled': EnabledLanguage.list(store),
-        'configured': configured,
-        'custom_homepage': custom_homepage,
+        'configured': configured
     }
 
     l10n_dict = NodeL10NFactory(store).localized_dict(language)
