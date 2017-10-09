@@ -10,10 +10,15 @@
     "max_len": {"type": "int", "value": "-1"}
  },
   "multichoice": {
-    "layout_orientation": {"type": "unicode", "value": "vertical"}
+    "layout_orientation": {"type": "unicode", "value": "vertical"},
+    "display_alphabetically": {"type": "bool", "value": true }
  },
   "checkbox": {
-    "layout_orientation": {"type": "unicode", "value": "vertical"}
+    "layout_orientation": {"type": "unicode", "value": "vertical"},
+    "display_alphabetically": {"type": "bool", "value": true }
+ },
+  "selectbox": {
+    "display_alphabetically": {"type": "bool", "value": true }
  },
   "tos": {
     "clause": {"type": "localized", "value": ""},
