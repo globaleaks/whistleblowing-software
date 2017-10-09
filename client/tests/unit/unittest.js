@@ -171,16 +171,18 @@ describe('GLBrowserCrypto', function() {
 
     it('validPrivateKey', function() {
         var bad_key = '';
-        var good_key = '';
+
+        var a = glbcKeyLib.validPrivateKey(test_data.key_ring.priv_key);
+        expect(a).to.be.true;
     });
 
     it('validPublicKey', function() {
       var a = glbcKeyLib.validPublicKey(test_data.badKey);
 
-      expect(a).to.equal(false);
+      expect(a).to.be.false;
 
       var b = glbcKeyLib.validPublicKey(test_data.goodKey);
-      expect(b).to.equal(true);
+      expect(b).to.be.true;
     });
 
   });
@@ -194,32 +196,59 @@ describe('GLBrowserCrypto', function() {
     });
 
     it('test initialize and clear', function() {
+      expect(glbcKeyRing.isInitialized()).to.be.false;
 
-      expect(glbcKeyRing.isInitialized()).to.equal(false);
+      console.log(test_data.key_ring.priv_key);
+      glbcKeyRing.initialize(test_data.key_ring.priv_key, test_data.key_ring.uuid);
 
-      var recUUID = '76ada06e-f1c3-4b0e-a1b3-e25c13da99d9';
+      expect(glbcKeyRing.isInitialized()).to.be.true;
 
-      glbcKeyRing.initialize(test_data.privKey, recUUID);
+      var a = glbcKeyRing.getPubKey('private');
+      var b = glbcKeyRing.getPubKey(test_data.key_ring.uuid);
+      var stored = openpgp.key.readArmored(test_data.key_ring.pub_key).keys[0];
 
-      expect(glbcKeyRing.isInitialized()).to.equal(true);
+      expect(a.primaryKey.fingerprint).to.equal(stored.primaryKey.fingerprint);
+      expect(b.primaryKey.fingerprint).to.equal(stored.primaryKey.fingerprint);
 
-      glbcKeyRing.getPubKey('private');
-      glbcKeyRing.getPubKey(recUUID);
+      // Add receiver keys to the KeyRing.
+      expect(glbcKeyRing.addPubKey.bind(test_data.key_ring.bad_key, 'bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb'))
+        .to.throw('Could not add pubkey to key ring!');
 
-      // add some pub keys
-      //
-      // getSessionKey
-      //
-      // try to enc
-      //
-      // unlockKeyRing
-      //
-      // enc
-      //
-      // lockKeyRing
-      //
-      // try to enc
-      //
+      glbcKeyRing.addPubKey(test_data.bob.uuid, test_data.bob.cckey_pub);
+
+      var c = glbcKeyRing.getPubKey(test_data.bob.uuid);
+
+      var bob_pkey = openpgp.key.readArmored(test_data.bob.cckey_pub).keys[0];
+      expect(c.primaryKey.fingerprint).to.equal(bob_pkey.primaryKey.fingerprint);
+      
+      // Test priv_key export protection
+      var d = glbcKeyRing.lockKeyRing(test_data.key_ring.passphrase);
+
+      var e = openpgp.key.readArmored(glbcKeyRing.exportPrivKey()).keys[0];
+      expect(e.primaryKey.isDecrypted).to.be.false;
+      expect(e.primaryKey.fingerprint).to.equal(glbcKeyRing.getKey().primaryKey.fingerprint);
+
+      var f = glbcKeyRing.unlockKeyRing(test_data.key_ring.passphrase);
+      expect(f).to.be.true;
+      expect(glbcKeyRing.exportPrivKey.bind()).to.throw('Attempted to export decrypted privateKey');
+
+      // Change key passphrase
+      glbcKeyRing.changeKeyPassphrase(test_data.key_ring.passphrase, 'fake-passphrase');
+
+      glbcKeyRing.unlockKeyRing(test_data.key_ring.passphrase);
+
+      // TODO Investigate why this is not throwing
+      expect(glbcKeyRing.exportPrivKey.bind()).to.throw('Attempted to export decrypted privateKey');
+
+      expect(glbcKeyRing.unlockKeyRing('fake-passphrase')).to.be.true;
+
+      // Use getters and setters on a session key
+      expect(glbcKeyRing.getSessionKey()).to.equal(null);
+
+      glbcKeyRing.setSessionKey(test_data.submission.sess_cckey_prv_enc);
+
+      expect(glbcKeyRing.getSessionKey().length).to.be.above(100);
+
       // clear
       //
       // check if empty
@@ -245,7 +274,7 @@ describe('GLBrowserCrypto', function() {
           console.log(res.ccrypto_key_private.armor());
           console.log(res.ccrypto_key_public.armor());
           var b = glbcKeyRing.initialize(res.ccrypto_key_private.armor(), test_data.bob.uuid)
-          expect(b).to.equal(true);
+          expect(b).to.be.true;
           done();
           return glbcReceiver.loadSessionKey(test_data.submission.sess_cckey_prv_enc);
         }).then(function() {

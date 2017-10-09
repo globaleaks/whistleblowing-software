@@ -581,16 +581,20 @@ angular.module('GLBrowserCrypto', [])
   // keyRing is kept private.
   var keyRing = newRing();
   
-  return {
+  var b = {
     getKey: function() { return keyRing.privateKey; },
 
     exportPrivKey: function() {
-      if (keyRing.privateKey.isDecrypted) {
+      if (keyRing.privateKey.primaryKey.isDecrypted) {
         throw new Error("Attempted to export decrypted privateKey");
       }
-      return this.getKey().armor();
+      return b.getKey().armor();
     },
 
+    /**
+     * @param {String} uuid
+     * @return {pgp.Key}
+     */
     getPubKey: function(s) {
       if (s === 'private') {
         return keyRing._pubKey;
@@ -684,12 +688,13 @@ angular.module('GLBrowserCrypto', [])
     },
 
     changeKeyPassphrase: function(old_pw, new_pw) {
-      this.unlockKeyRing(old_pw);
-      this.lockKeyRing(new_pw);
+      b.unlockKeyRing(old_pw);
+      b.lockKeyRing(new_pw);
     },
 
     clear: function() {
       keyRing = newRing();
     }
   };
+  return b
 }]);
