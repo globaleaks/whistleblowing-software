@@ -13,5 +13,4 @@ def load_profile(store, name):
     if not set(prof['node'].keys()) <= NodeFactory.admin_node:
         raise ValueError('profile configuration key not in admin_node')
 
-    nf = NodeFactory(store)
-    nf.update(prof['node'])
+    NodeFactory(store).update(prof['node'])
