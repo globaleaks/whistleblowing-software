@@ -121,7 +121,7 @@ class OnionService(BaseJob):
             yield self.tor_conn.protocol.quit()
             self.tor_conn = None
 
-        else:
+        if self.active is not None:
             self.active.callback(None)
 
         yield super(OnionService, self).stop()
