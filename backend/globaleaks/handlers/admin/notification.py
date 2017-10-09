@@ -19,14 +19,13 @@ from globaleaks.utils.templating import Templating
 
 def admin_serialize_notification(store, language):
     config_dict = NotificationFactory(store).admin_export()
+    conf_l10n_dict = NotificationL10NFactory(store).localized_dict(language)
 
     cmd_flags = {
         'reset_templates': False,
         'exception_email_pgp_key_remove': False,
         'smtp_password': '',
     }
-
-    conf_l10n_dict = NotificationL10NFactory(store).localized_dict(language)
 
     return merge_dicts(config_dict, cmd_flags, conf_l10n_dict)
 
@@ -42,19 +41,18 @@ def get_notification(store, language):
 
 @transact
 def update_notification(store, request, language):
-    notif_l10n = NotificationL10NFactory(store)
-    notif_l10n.update(request, language)
-
-    if request.pop('reset_templates'):
-        appdata = load_appdata()
-        notif_l10n.reset_templates(appdata)
+    notif = NotificationFactory(store)
+    notif.update(request)
 
     smtp_pw = request.pop('smtp_password', u'')
     if smtp_pw != u'':
         PrivateFactory(store).set_val(u'smtp_password', smtp_pw)
 
-    notif = NotificationFactory(store)
-    notif.update(request)
+    notif_l10n = NotificationL10NFactory(store)
+    notif_l10n.update(request, language)
+
+    if request.pop('reset_templates'):
+        notif_l10n.reset_templates(load_appdata())
 
     # Since the Notification object has been changed refresh the global copy.
     db_refresh_memory_variables(store)
@@ -106,8 +104,6 @@ class NotificationTestInstance(BaseHandler):
 
         language = user['language']
 
-        yield get_notification(language)
-
         data = {
             'type': 'admin_test_static',
             'node': (yield admin_serialize_node(language)),
@@ -117,6 +113,4 @@ class NotificationTestInstance(BaseHandler):
 
         subject, body = Templating().get_mail_subject_and_body(data)
 
-        send_to = user['mail_address']
-
-        yield sendmail(send_to, subject, body)
+        yield sendmail(user['mail_address'], subject, body)
