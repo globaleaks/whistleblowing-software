@@ -163,15 +163,13 @@ class CertFileRes(FileResource):
     @staticmethod
     @transact
     def delete_file(store):
-        prv_fact = PrivateFactory(store)
-        prv_fact.set_val(u'https_cert', u'')
+        PrivateFactory(store).set_val(u'https_cert', u'')
         State.tenant_cache[1].https_cert = ''
 
     @staticmethod
     @transact
     def get_file(store):
-        prv_fact = PrivateFactory(store)
-        return prv_fact.get_val(u'https_cert')
+        return PrivateFactory(store).get_val(u'https_cert')
 
     @staticmethod
     def db_serialize(store):
@@ -207,19 +205,18 @@ class ChainFileRes(FileResource):
             prv_fact.set_val(u'https_chain', raw_chain)
         else:
             log.debug('Chain validation failed')
+
         return ok
 
     @staticmethod
     @transact
     def delete_file(store):
-        prv_fact = PrivateFactory(store)
-        prv_fact.set_val(u'https_chain', u'')
+        PrivateFactory(store).set_val(u'https_chain', u'')
 
     @staticmethod
     @transact
     def get_file(store):
-        prv_fact = PrivateFactory(store)
-        return prv_fact.get_val(u'https_chain')
+        return PrivateFactory(store).get_val(u'https_chain')
 
     @staticmethod
     def db_serialize(store):
@@ -242,23 +239,19 @@ class CsrFileRes(FileResource):
     @classmethod
     @transact
     def create_file(store, cls, raw_csr):
-        prv_fact = PrivateFactory(store)
-
-        prv_fact.set_val(u'https_csr', raw_csr)
+        PrivateFactory(store).set_val(u'https_csr', raw_csr)
 
         return True
 
     @staticmethod
     @transact
     def delete_file(store):
-        prv_fact = PrivateFactory(store)
-        prv_fact.set_val(u'https_csr', u'')
+        PrivateFactory(store).set_val(u'https_csr', u'')
 
     @staticmethod
     @transact
     def get_file(store):
-        prv_fact = PrivateFactory(store)
-        return prv_fact.get_val(u'https_csr')
+        return PrivateFactory(store).get_val(u'https_csr')
 
     @staticmethod
     def db_serialize(store):
@@ -328,19 +321,16 @@ def serialize_https_config_summary(store):
     prv_fact = PrivateFactory(store)
 
     file_summaries = {}
-
     for key, file_res_cls in FileHandler.mapped_file_resources.items():
         file_summaries[key] = file_res_cls.db_serialize(store)
 
-    ret = {
+    return {
       'enabled': prv_fact.get_val(u'https_enabled'),
       'running': State.process_supervisor.is_running(),
       'status': State.process_supervisor.get_status(),
       'files': file_summaries,
       'acme': prv_fact.get_val(u'acme')
     }
-
-    return ret
 
 
 @transact
@@ -360,9 +350,7 @@ def try_to_enable_https(store):
 
 @transact
 def disable_https(store):
-    prv_fact = PrivateFactory(store)
-    log.debug('Disabling https on the node.')
-    prv_fact.set_val(u'https_enabled', False)
+    PrivateFactory(store).set_val(u'https_enabled', False)
 
 
 class ConfigHandler(BaseHandler):
@@ -508,9 +496,10 @@ def is_acme_configured(store):
 
 @transact
 def can_perform_acme_renewal(store):
+    priv_fact = PrivateFactory(store)
     a = is_acme_configured(store)
-    b = PrivateFactory(store).get_val(u'https_enabled')
-    c = PrivateFactory(store).get_val(u'https_cert')
+    b = priv_fact.get_val(u'https_enabled')
+    c = priv_fact.get_val(u'https_cert')
     return a and b and c
 
 
@@ -521,7 +510,6 @@ class AcmeHandler(BaseHandler):
     def post(self):
         accnt_key = yield AcmeAccntKeyRes.create_file()
 
-        # TODO should throw if key is already registered
         regr_uri, tos_url = letsencrypt.register_account_key(Settings.acme_directory_url, accnt_key)
 
         yield AcmeAccntKeyRes.save_accnt_uri(regr_uri)
@@ -543,16 +531,17 @@ def acme_cert_issuance(store):
 
 
 def db_acme_cert_issuance(store):
+    priv_fact = PrivateFactory(store)
     hostname = State.tenant_cache[1].hostname
 
-    raw_accnt_key = PrivateFactory(store).get_val(u'acme_accnt_key')
+    raw_accnt_key = priv_fact.get_val(u'acme_accnt_key')
     accnt_key = serialization.load_pem_private_key(str(raw_accnt_key),
                                                    password=None,
                                                    backend=default_backend())
 
 
-    priv_key = PrivateFactory(store).get_val(u'https_priv_key')
-    regr_uri = PrivateFactory(store).get_val(u'acme_accnt_uri')
+    priv_key = priv_fact.get_val(u'https_priv_key')
+    regr_uri = priv_fact.get_val(u'acme_accnt_uri')
 
     csr_fields = {'CN': hostname}
     # NOTE sha256 is always employed as hash fnc here.
@@ -567,8 +556,8 @@ def db_acme_cert_issuance(store):
                                                              tmp_chall_dict,
                                                              Settings.acme_directory_url)
 
-    PrivateFactory(store).set_val(u'https_cert', cert_str)
-    PrivateFactory(store).set_val(u'https_chain', chain_str)
+    priv_fact.set_val(u'https_cert', cert_str)
+    priv_fact.set_val(u'https_chain', chain_str)
     State.tenant_cache[1].private.https_cert = cert_str
     State.tenant_cache[1].private.https_chain = chain_str
 
@@ -580,6 +569,7 @@ class AcmeChallResolver(BaseHandler):
         if token in tmp_chall_dict:
             log.info('Responding to valid .well-known request')
             return tmp_chall_dict[token].tok
+
         raise errors.ResourceNotFound
 
 
