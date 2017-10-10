@@ -10,7 +10,7 @@ beforeEach(window.module('GLUnitTest', function(_$exceptionHandlerProvider_) {
   _$exceptionHandlerProvider_.mode('rethrow');
 }));
 
-beforeEach(angular.mock.inject(function ($rootScope, $timeout) {
+beforeEach(window.inject(function ($rootScope, $timeout) {
   intervalRef = setInterval(function() {
     $rootScope.$apply();
     try {
@@ -64,14 +64,13 @@ describe('GLUnitTest', function() {
     });
 
 
+    /* NOTE this skipped test case demonstrates how the unit tests behave with
     it('catchAsyncPromiseThrow', function(done) {
-      // NOTE this skipped test case demonstrates how the unit tests behave with
-      // the injected _$exceptionHandlerProvider_.mode('rethrow')
-      this.skip(done);
       TestEnv.catchAsyncPromiseThrow().then(function() {
         assert.fail('should never resolve');
       });
     });
+    */
   });
 });
 
@@ -235,12 +234,11 @@ describe('GLBrowserCrypto', function() {
       // Change key passphrase
       glbcKeyRing.changeKeyPassphrase(test_data.key_ring.passphrase, 'fake-passphrase');
 
-      glbcKeyRing.unlockKeyRing(test_data.key_ring.passphrase);
-
-      // TODO Investigate why this is not throwing
-      expect(glbcKeyRing.exportPrivKey.bind()).to.throw('Attempted to export decrypted privateKey');
+      expect(glbcKeyRing.unlockKeyRing(test_data.key_ring.passphrase)).to.be.false;
 
       expect(glbcKeyRing.unlockKeyRing('fake-passphrase')).to.be.true;
+
+      expect(glbcKeyRing.exportPrivKey.bind()).to.throw('Attempted to export decrypted privateKey');
 
       // Use getters and setters on a session key
       expect(glbcKeyRing.getSessionKey()).to.equal(null);
@@ -249,9 +247,14 @@ describe('GLBrowserCrypto', function() {
 
       expect(glbcKeyRing.getSessionKey().length).to.be.above(100);
 
-      // clear
-      //
-      // check if empty
+      // Test clearing the keyRing
+      expect(glbcKeyRing.getPubKey('private')).to.not.be.null;
+
+      glbcKeyRing.clear();
+
+      expect(glbcKeyRing.isInitialized()).to.be.false;
+      expect(glbcKeyRing.getPubKey('private')).to.be.null;
+      expect(glbcKeyRing.getSessionKey()).to.be.null;
     });
   });
 
