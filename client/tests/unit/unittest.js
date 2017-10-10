@@ -89,28 +89,40 @@ describe('GLBrowserCrypto', function() {
 
       a.every(function(val, i) {
         expect(val).to.equal(b[i]);
+        console.log(i);
+        return true;
       });
       expect(a.byteLength).to.equal(b.byteLength);
     });
   });
 
   describe('glbcCipherLib', function() {
-    var glbcCipherLib;
+    var glbcCipherLib, glbcKeyRing;
     beforeEach(function() {
-      window.inject(function(_glbcCipherLib_) { glbcCipherLib = _glbcCipherLib_; })
+      window.inject(function(_glbcCipherLib_, _glbcKeyRing_) {
+        glbcCipherLib = _glbcCipherLib_;
+        glbcKeyRing = _glbcKeyRing_;
+      })
     });
 
     it('loadPublicKeys', function() {
-      var keys = glbcCipherLib.loadPublicKeys([test_data.goodKey])
-      console.log(keys);
+      var keys = glbcCipherLib.loadPublicKeys([test_data.key_ring.pub_key, test_data.bob.cckey_pub])
+
+      for (var i = 0; i < keys.length; i++) {
+        expect(keys[i].isPrivate()).to.be.false;
+      }
     });
 
     it('encryptAndSignMessage', function(done) {
-      var keys = glbcCipherLib.loadPublicKeys([test_data.key_ring.pub_key]);
+      glbcKeyRing.initialize(test_data.key_ring.priv_key, test_data.key_ring.uuid);
+      glbcKeyRing.unlockKeyRing(test_data.key_ring.passphrase);
+      var uuid = 'faceface-face-face-facefaceface';
+      glbcKeyRing.addPubKey(uuid, test_data.key_ring.pub_key);
+
       var m = 'Hello, world!'
-      glbcCipherLib.encryptAndSignMessage(m, keys[0], false).then(function(cipher) {
-        console.log('cipher', cipher);
-        // TODO key not in keyring
+      glbcCipherLib.encryptAndSignMessage(m, uuid, false).then(function(cipher) {
+        var m = openpgp.message.readArmored(cipher);
+        expect(m).to.not.be.null;
         done();
       });
     });
@@ -333,7 +345,7 @@ describe('GLBrowserCrypto', function() {
         expect(res.data).to.equal(test_data.submission.jsonAnswers);
         done();
       });
-    }).timeout(test_data.const.SCRYPT_MAX);
+    }).timeout(test_data.const.SCRYPT_MAX*2);
 
     it('whistleblower should reuse an encrypted private key', function(done) {
       glbcKeyLib.deriveUserPassword(test_data.wb.keycode, test_data.node.receipt_salt).then(function(res) {
