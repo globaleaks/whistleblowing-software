@@ -85,6 +85,9 @@ module.exports.bob = {
   pass: 'brugola',
   uuid: 'bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb',
   salt: '5OqesEhE2vJrMcvZlVdwNw==',
+  // TODO TODO TODO
+  // TODO this key is not attached to the public used in test_data.submission
+  // TODO TODO TODO
   cckey_priv_enc: [
     '----BEGIN PGP PRIVATE KEY BLOCK-----',
     'Version: OpenPGP.js v2.5.11',

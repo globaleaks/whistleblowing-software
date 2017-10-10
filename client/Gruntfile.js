@@ -130,7 +130,7 @@ module.exports = function(grunt) {
 
     mocha_istanbul: {
       coverage: {
-        src: 'tests/unit/unittest.js',
+        src: 'tests/unit/node-angular-shim.js',
       },
     },
 

@@ -37,4 +37,8 @@ factory('TestEnv', ['$q', '$timeout', function($q, $timeout) {
         return defer.promise;
       },
     };
-}]);
+}]).factory('Authentication', function() {
+  return {
+    user_salt: '',
+  };
+});

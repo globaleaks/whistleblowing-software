@@ -63,17 +63,18 @@ describe('GLUnitTest', function() {
        });
     });
 
+    /*
     // NOTE this skipped test case demonstrates how the unit tests behave with
     it('catchAsyncPromiseThrow', function(done) {
       TestEnv.catchAsyncPromiseThrow().then(function() {
         assert.fail('should never resolve');
       });
     });
+    */
   });
 });
 
 describe('GLBrowserCrypto', function() {
-
   describe('glbcUtil', function() {
     var glbcUtil;
     beforeEach(function() {
