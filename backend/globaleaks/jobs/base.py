@@ -44,27 +44,29 @@ class BaseJob(task.LoopingCall):
     active = None
     last_executions = []
     threaded = True
+    shutdown = False
 
     def __init__(self):
         self.job = task.LoopingCall.__init__(self, self.run)
         self.clock = reactor
 
-    def start(self, interval):
-        task.LoopingCall.start(self, interval)
-
-    @defer.inlineCallbacks
-    def stop(self):
-        if self.running:
-            task.LoopingCall.stop(self)
-
-        if self.active is not None:
-            yield self.active
-
-    def schedule(self):
         delay = self.get_start_time()
         delay = delay if delay > 1 else 1
         self.clock.callLater(delay, self.start, self.interval)
-        return self
+
+    def start(self, interval):
+        task.LoopingCall.start(self, interval)
+
+    def stop(self):
+        if self.shutdown:
+            return defer.succeed(None)
+
+        self.shutdown = True
+
+        if self.running:
+            task.LoopingCall.stop(self)
+
+        return self.active if self.active is not None else defer.succeed(None)
 
     @defer.inlineCallbacks
     def run(self):
@@ -76,7 +78,8 @@ class BaseJob(task.LoopingCall):
             else:
                 yield self.operation()
         except Exception as e:
-            self.on_error(e)
+            if not self.shutdown:
+                self.on_error(e)
 
         self.end()
 

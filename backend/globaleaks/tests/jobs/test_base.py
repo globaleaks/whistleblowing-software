@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from twisted.internet import defer
 from globaleaks import models
 from globaleaks.jobs.base import LoopingJob
 
@@ -21,8 +22,6 @@ class TestLoopingJob(helpers.TestGL):
         """
         job = LoopingJobX()
 
-        job.schedule()
-
         self.assertEqual(job.operation_called, 0)
 
         self.test_reactor.advance(1)
@@ -37,4 +36,4 @@ class TestLoopingJob(helpers.TestGL):
             self.test_reactor.advance(2)
             self.assertEqual(job.operation_called, i)
 
-        job.stop()
+        return job.stop()

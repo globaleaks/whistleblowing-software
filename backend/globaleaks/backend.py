@@ -110,13 +110,12 @@ class Service(service.Service):
         from globaleaks.jobs.base import LoopingJobsMonitor
 
         for job in jobs_list:
-            self.state.jobs.append(job().schedule())
+            self.state.jobs.append(job())
 
         for service in services_list:
-            self.state.services.append(service().schedule())
+            self.state.services.append(service())
 
         self.state.jobs_monitor = LoopingJobsMonitor(self.state.jobs)
-        self.state.jobs_monitor.schedule()
 
     def stop_jobs(self):
         deferred_list = []
