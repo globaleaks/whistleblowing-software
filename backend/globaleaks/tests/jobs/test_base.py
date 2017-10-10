@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-from twisted.internet import defer
 from globaleaks import models
 from globaleaks.jobs.base import LoopingJob
 
