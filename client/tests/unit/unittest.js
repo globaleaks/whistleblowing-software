@@ -63,14 +63,12 @@ describe('GLUnitTest', function() {
        });
     });
 
-
-    /* NOTE this skipped test case demonstrates how the unit tests behave with
+    // NOTE this skipped test case demonstrates how the unit tests behave with
     it('catchAsyncPromiseThrow', function(done) {
       TestEnv.catchAsyncPromiseThrow().then(function() {
         assert.fail('should never resolve');
       });
     });
-    */
   });
 });
 
@@ -118,31 +116,36 @@ describe('GLBrowserCrypto', function() {
   });
 
   describe('glbcKeyLib', function(done) {
-    var glbcKeyLib;
+    var glbcKeyLib, glbcUtil;
 
     beforeEach(function() {
-      window.inject(function(_glbcKeyLib_) {
+      window.inject(function(_glbcKeyLib_, _glbcUtil_) {
         glbcKeyLib = _glbcKeyLib_;
+        glbcUtil = _glbcUtil_;
       })
     });
 
-    it('deriveUserPassword', function() {
-      var pass = 'Super secret password',
-          salt = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx';
-      glbcKeyLib.deriveUserPassword(pass, salt).then(function(res) {
-        console.log(res);
+    it('deriveUserPassword', function(done) {
+      glbcKeyLib.deriveUserPassword(test_data.cc_lib.scrypt.passphrase,
+                                    test_data.cc_lib.scrypt.salt
+                                   ).then(function(res) {
+        expect(res.passphrase).to.equal(test_data.cc_lib.scrypt.digest);
+        expect(res.authentication).to.equal(test_data.cc_lib.scrypt.hash_digest)
         done();
       });
-    });
+    }).timeout(test_data.const.SCRYPT_MAX);
 
     it('scrypt', function(done) {
-      var data = 'Super secret password',
-          salt = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
-          logN = 14,
-          dLen = 64;
+      var dLen = 64;
 
-       glbcKeyLib.scrypt(data, salt, logN, dLen).then(function(res) {
-         console.log('scrypted', res);
+       glbcKeyLib.scrypt(test_data.cc_lib.scrypt.passphrase,
+                         test_data.cc_lib.scrypt.salt,
+                         test_data.cc_lib.scrypt.logN,
+                         dLen
+                        ).then(function(res) {
+
+         var hex = glbcUtil.bin2hex(res.stretched);
+         expect(hex).to.equal(test_data.cc_lib.scrypt.digest);
          done();
        });
     }).timeout(test_data.const.SCRYPT_MAX);
@@ -151,36 +154,39 @@ describe('GLBrowserCrypto', function() {
       var pass = 'Super secret password';
 
       glbcKeyLib.generateCCryptoKey(pass).then(function(res) {
-        console.log('genKeyFinished', res);
-        console.log('priv', res.ccrypto_key_private.armor())
-        console.log('pub', res.ccrypto_key_public.armor())
-
         var b = glbcKeyLib.validPublicKey(res.ccrypto_key_public.armor());
-        console.log('loaded the following', b);
+        expect(b.isPrivate()).to.be.false;
         done();
       });
     }).timeout(test_data.const.SCRYPT_MAX);
 
     it('generateKeycode', function() {
-       var keycode = glbcKeyLib.generateKeycode();
-       console.log(keycode);
-       // run 10 times. . .
+      for (var i = 0; i < 25; i++) {
+        var keycode = glbcKeyLib.generateKeycode();
+        expect(/^[0-9]{16}$/.test(keycode)).to.be.true;
+      }
     });
 
     it('validPrivateKey', function() {
-        var bad_key = '';
+        var a = glbcKeyLib.validPrivateKey(test_data.key_ring.bad_key);
+        expect(a).to.be.false;
 
-        var a = glbcKeyLib.validPrivateKey(test_data.key_ring.priv_key);
-        expect(a).to.be.true;
+        var b = glbcKeyLib.validPrivateKey(test_data.key_ring.pub_key);
+        expect(a).to.be.false;
+
+        var c = glbcKeyLib.validPrivateKey(test_data.key_ring.priv_key);
+        expect(c).to.be.true;
     });
 
     it('validPublicKey', function() {
-      var a = glbcKeyLib.validPublicKey(test_data.badKey);
-
+      var a = glbcKeyLib.validPublicKey(test_data.key_ring.bad_key);
       expect(a).to.be.false;
 
-      var b = glbcKeyLib.validPublicKey(test_data.goodKey);
-      expect(b).to.be.true;
+      var b = glbcKeyLib.validPublicKey(test_data.key_ring.priv_key);
+      expect(b).to.be.false;
+
+      var c = glbcKeyLib.validPublicKey(test_data.key_ring.pub_key);
+      expect(c).to.be.true;
     });
 
   });
@@ -196,7 +202,6 @@ describe('GLBrowserCrypto', function() {
     it('test initialize and clear', function() {
       expect(glbcKeyRing.isInitialized()).to.be.false;
 
-      console.log(test_data.key_ring.priv_key);
       glbcKeyRing.initialize(test_data.key_ring.priv_key, test_data.key_ring.uuid);
 
       expect(glbcKeyRing.isInitialized()).to.be.true;
@@ -370,7 +375,6 @@ describe('GLBrowserCrypto', function() {
        glbcUserKeyGen.vars.keyGen = true;
 
        glbcUserKeyGen.setup();
-       console.log(glbcUserKeyGen.vars);
 
        // Use wizard to avoid the http post to the backend
        glbcUserKeyGen.wizardStartKeyGen();
