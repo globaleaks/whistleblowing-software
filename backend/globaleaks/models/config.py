@@ -240,15 +240,16 @@ def load_tls_dict(store):
     """
     A quick and dirty function to grab all of the tls config for use in subprocesses
     """
-    privFact = PrivateFactory(store)
+    priv = PrivateFactory(store)
+    node = NodeFactory(store)
 
     return {
-        'ssl_key': privFact.get_val(u'https_priv_key'),
-        'ssl_cert': privFact.get_val(u'https_cert'),
-        'ssl_intermediate': privFact.get_val(u'https_chain'),
-        'ssl_dh': privFact.get_val(u'https_dh_params'),
-        'https_enabled': privFact.get_val(u'https_enabled'),
-        'hostname': NodeFactory(store).get_val(u'hostname'),
+        'ssl_key': priv.get_val(u'https_priv_key'),
+        'ssl_cert': priv.get_val(u'https_cert'),
+        'ssl_intermediate': priv.get_val(u'https_chain'),
+        'ssl_dh': priv.get_val(u'https_dh_params'),
+        'https_enabled': priv.get_val(u'https_enabled'),
+        'hostname': node.get_val(u'hostname'),
     }
 
 
