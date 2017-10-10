@@ -4,8 +4,7 @@
 import os
 from txtorcon import build_local_tor_connection
 
-from twisted.internet import reactor
-from twisted.internet.defer import inlineCallbacks, Deferred
+from twisted.internet import reactor, defer
 
 from globaleaks.db import refresh_memory_variables
 from globaleaks.jobs.base import BaseJob
@@ -55,7 +54,7 @@ class OnionService(BaseJob):
     print_startup_error = True
     tor_conn = None
 
-    @inlineCallbacks
+    @defer.inlineCallbacks
     def service(self, restart_deferred):
         hostname, key = yield get_onion_service_info()
 
@@ -76,7 +75,7 @@ class OnionService(BaseJob):
                 log.info('Setting up existing onion service %s', hostname)
                 ephs = EphemeralHiddenService(hs_loc, key)
 
-            @inlineCallbacks
+            @defer.inlineCallbacks
             def initialization_callback(ret):
                 log.info('Initialization of hidden-service %s completed.', ephs.hostname)
                 if not hostname and not key:
@@ -102,26 +101,23 @@ class OnionService(BaseJob):
             startup_errback(Exception('Unable to access /var/run/tor/control; manual permission recheck needed'))
             return
 
-        from globaleaks.utils.utility import deferred_sleep
-        yield deferred_sleep(3)
         d = build_local_tor_connection(reactor)
         d.addCallback(startup_callback)
         d.addErrback(startup_errback)
 
     def operation(self):
-        deferred = Deferred()
+        deferred = defer.Deferred()
 
         self.service(deferred)
 
         return deferred
 
-    @inlineCallbacks
     def stop(self):
+        super(OnionService, self).stop()
+
         if self.tor_conn is not None:
-            yield self.tor_conn.protocol.quit()
+            tor_conn = self.tor_conn
             self.tor_conn = None
-
-        if self.active is not None:
-            self.active.callback(None)
-
-        yield super(OnionService, self).stop()
+            return tor_conn.protocol.quit()
+        else:
+            return defer.succeed(None)
