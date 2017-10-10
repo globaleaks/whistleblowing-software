@@ -105,7 +105,7 @@ describe('GLBrowserCrypto', function() {
     });
 
     it('encryptAndSignMessage', function(done) {
-      var keys = glbcCipherLib.loadPublicKeys([test_data.goodKey]);
+      var keys = glbcCipherLib.loadPublicKeys([test_data.key_ring.pub_key]);
       var m = 'Hello, world!'
       glbcCipherLib.encryptAndSignMessage(m, keys[0], false).then(function(cipher) {
         console.log('cipher', cipher);
@@ -151,11 +151,10 @@ describe('GLBrowserCrypto', function() {
     }).timeout(test_data.const.SCRYPT_MAX);
 
     it('generateCCryptoKey', function(done) {
-      var pass = 'Super secret password';
-
-      glbcKeyLib.generateCCryptoKey(pass).then(function(res) {
-        var b = glbcKeyLib.validPublicKey(res.ccrypto_key_public.armor());
-        expect(b.isPrivate()).to.be.false;
+      glbcKeyLib.generateCCryptoKey(test_data.cc_lib.scrypt.passphrase).then(function(res) {
+        expect(res.ccrypto_key_public.isPrivate()).to.be.false;
+        expect(res.ccrypto_key_private.isPrivate()).to.be.true;
+        expect(res.ccrypto_key_private.primaryKey.isDecrypted).to.be.false;
         done();
       });
     }).timeout(test_data.const.SCRYPT_MAX);
