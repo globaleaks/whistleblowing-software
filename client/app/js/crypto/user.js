@@ -82,8 +82,8 @@ angular.module('GLBrowserCrypto')
           showMsg('Updating the encryption key on the platform');
         }
 
-        // TODO NOTE keyRing is only locked for the export
-        glbcKeyRing.unlockKeyRing(results[1].new_res.passphrase);
+        // NOTE keyRing is only locked for the export
+        glbcKeyRing.unlockKeyRing(authDeriv.new_res.passphrase);
 
         if (vars.isWizard) {
           return $q.resolve();

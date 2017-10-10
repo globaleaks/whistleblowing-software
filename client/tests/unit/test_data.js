@@ -1,7 +1,7 @@
 module.exports = {};
 
 module.exports.const = {
-  SCRYPT_MAX: 30000, // maximum timeout for evaluating scrypt
+  SCRYPT_MAX: 5000, // maximum timeout for evaluating scrypt
 };
 
 module.exports.goodKey = [
@@ -442,4 +442,11 @@ module.exports.wb = {
 
 module.exports.node = {
   receipt_salt: 'CHJrJzJHBupih7B2hTTobw==',
+};
+
+module.exports.key_gen = {
+  passphrase: 'no libra sun no halloween no giving things',
+  user_salt: '5OqesEhE2vJrMcvZlVdwNw==',
+  authentication: 'f368ac67e97e41b46949d24d1709039f916874c397b5a7e95492b3e66b754bc7da6cadabefcf8808a6b6b974bec851df64cdc3bad115ae6cd1f3393eabb77fc9',
+  scrypt_passphrase: 'a6ee22902feb6c7d394fcf247e2a37cc0201177c0b263e5a016616754266e65e00a5bc0a23faedd81e02ec03bba9f16f7c1805badf537f7d13ffd481d77b50e0',
 };

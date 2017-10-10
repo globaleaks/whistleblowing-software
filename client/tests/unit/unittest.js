@@ -167,7 +167,6 @@ describe('GLBrowserCrypto', function() {
        // run 10 times. . .
     });
 
-
     it('validPrivateKey', function() {
         var bad_key = '';
 
@@ -219,7 +218,7 @@ describe('GLBrowserCrypto', function() {
 
       var bob_pkey = openpgp.key.readArmored(test_data.bob.cckey_pub).keys[0];
       expect(c.primaryKey.fingerprint).to.equal(bob_pkey.primaryKey.fingerprint);
-      
+
       // Test priv_key export protection
       var d = glbcKeyRing.lockKeyRing(test_data.key_ring.passphrase);
 
@@ -285,11 +284,11 @@ describe('GLBrowserCrypto', function() {
         });
     }).timeout(test_data.const.SCRYPT_MAX);
 
-    it('receiver should load master key and use it', function() {
+    it('receiver should encrypt and decrypt messages', function() {
 
     });
 
-    it('receiver should change master key password', function() {
+    it('receiver should encrypt and decrypt comments', function() {
 
     });
   });
@@ -347,13 +346,56 @@ describe('GLBrowserCrypto', function() {
         done();
       });
     }).timeout(test_data.const.SCRYPT_MAX);
+
+    it('whistleblower should encrypt and decrypt messages', function() {
+
+    });
+
+    it('whistleblower should encrypt and decrypt comments', function() {
+
+    });
   });
 
   describe('glbcUserKeyGen', function() {
-    it('test state machine', function() {
-      // TODO
-
+    var glbcUserKeyGen, Authentication;
+    beforeEach(function() {
+      window.inject(function(_glbcUserKeyGen_, _Authentication_) {
+        glbcUserKeyGen = _glbcUserKeyGen_;
+        Authentication = _Authentication_;
+      });
     });
+
+    it('WizardKeyGen', function(done) {
+       Authentication.user_salt = test_data.key_gen.user_salt;
+       glbcUserKeyGen.vars.keyGen = true;
+
+       glbcUserKeyGen.setup();
+       console.log(glbcUserKeyGen.vars);
+
+       // Use wizard to avoid the http post to the backend
+       glbcUserKeyGen.wizardStartKeyGen();
+
+       glbcUserKeyGen.addPassphrase('unused', test_data.key_gen.passphrase);
+
+       glbcUserKeyGen.vars.promises.ready.then(function(resp) {
+         expect(resp.old_auth_token_hash.length).to.equal(128);
+         expect(resp.new_auth_token_hash.length).to.equal(128);
+         expect(resp.new_auth_token_hash).to.equal(test_data.key_gen.authentication);
+
+         var pub_key = openpgp.key.readArmored(resp.cckey_pub).keys[0];
+         expect(pub_key.isPrivate()).to.be.false;
+
+         var priv_key = openpgp.key.readArmored(resp.cckey_prv_penc).keys[0];
+         expect(priv_key.isPrivate()).to.be.true;
+
+         // Assert the exported private key is encrypted with the expected scrypt_passphrase
+         expect(priv_key.primaryKey.isDecrypted).to.be.false;
+         expect(priv_key.decrypt(test_data.key_gen.scrypt_passphrase)).to.be.true;
+         expect(priv_key.primaryKey.isDecrypted).to.be.true;
+
+         done();
+       });
+    }).timeout(test_data.const.SCRYPT_MAX*2);
   });
 });
 
