@@ -2746,9 +2746,9 @@
       "dev": true
     },
     "openpgp": {
-      "version": "2.5.11",
-      "from": "openpgp@2.5.11",
-      "resolved": "https://registry.npmjs.org/openpgp/-/openpgp-2.5.11.tgz"
+      "version": "2.5.12",
+      "from": "openpgp@2.5.12",
+      "resolved": "https://registry.npmjs.org/openpgp/-/openpgp-2.5.12.tgz"
     },
     "opn": {
       "version": "4.0.2",
