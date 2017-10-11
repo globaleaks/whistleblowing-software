@@ -102,8 +102,6 @@ class PrivKeyFileRes(FileResource):
         if ok:
             prv_fact.set_val(u'https_priv_key', raw_key)
             prv_fact.set_val(u'https_priv_gen', False)
-        else:
-            log.debug('Key validation failed')
 
         return ok
 
@@ -156,8 +154,7 @@ class CertFileRes(FileResource):
         if ok:
             prv_fact.set_val(u'https_cert', raw_cert)
             State.tenant_cache[1].https_cert = raw_cert
-        else:
-            log.err("Cert validation failed")
+
         return ok
 
     @staticmethod
@@ -203,8 +200,6 @@ class ChainFileRes(FileResource):
         ok, _ = cv.validate(db_cfg)
         if ok:
             prv_fact.set_val(u'https_chain', raw_chain)
-        else:
-            log.debug('Chain validation failed')
 
         return ok
 
@@ -255,14 +250,8 @@ class CsrFileRes(FileResource):
 
     @staticmethod
     def db_serialize(store):
-        c = PrivateFactory(store).get_val(u'https_csr')
-        if len(c) == 0:
-            return {'name': 'csr', 'set': False}
-
-        return {
-            'name': 'csr',
-            'set': True,
-        }
+        csr = PrivateFactory(store).get_val(u'https_csr')
+        return {'name': 'csr', 'set': len(csr) != 0}
 
 
 class FileHandler(BaseHandler):
@@ -351,42 +340,11 @@ def try_to_enable_https(store):
 @transact
 def disable_https(store):
     PrivateFactory(store).set_val(u'https_enabled', False)
-
-
-class ConfigHandler(BaseHandler):
-    check_roles = 'admin'
-
-    def get(self):
-        return serialize_https_config_summary()
-
-    @inlineCallbacks
-    def post(self):
-        try:
-            yield try_to_enable_https()
-            yield State.process_supervisor.maybe_launch_https_workers()
-        except Exception as e:
-            log.err(e)
-            raise errors.InternalServerError(str(e))
-
-    @inlineCallbacks
-    def put(self):
-        """
-        Disables HTTPS config and shutdown subprocesses.
-        """
-        yield disable_https()
-        State.tenant_cache[1].private.https_enabled = False
-        State.process_supervisor.shutdown()
-
-    @inlineCallbacks
-    def delete(self):
-        yield disable_https()
-        State.tenant_cache[1].private.https_enabled = False
-        State.process_supervisor.shutdown()
-        yield _delete_all_cfg()
+    State.tenant_cache[1].private.https_enabled = False
 
 
 @transact
-def _delete_all_cfg(store):
+def reset_https_config(store):
     prv_fact = PrivateFactory(store)
     prv_fact.set_val(u'https_enabled', False)
     prv_fact.set_val(u'https_priv_gen', False)
@@ -397,6 +355,33 @@ def _delete_all_cfg(store):
     prv_fact.set_val(u'acme', False)
     prv_fact.set_val(u'acme_accnt_key', '')
     prv_fact.set_val(u'acme_accnt_uri', '')
+
+    State.tenant_cache[1].private.https_enabled = False
+
+
+class ConfigHandler(BaseHandler):
+    check_roles = 'admin'
+
+    def get(self):
+        return serialize_https_config_summary()
+
+    @inlineCallbacks
+    def post(self):
+        yield try_to_enable_https()
+        yield State.process_supervisor.maybe_launch_https_workers()
+
+    @inlineCallbacks
+    def put(self):
+        """
+        Disables HTTPS config and shutdown subprocesses.
+        """
+        yield disable_https()
+        State.process_supervisor.shutdown()
+
+    @inlineCallbacks
+    def delete(self):
+        yield reset_https_config()
+        State.process_supervisor.shutdown()
 
 
 class CSRFileHandler(FileHandler):
@@ -595,5 +580,4 @@ class HostnameTestHandler(BaseHandler):
             if not body.startswith('User-agent: *') or server_h != 'globaleaks':
                 raise EnvironmentError('Response unexpected')
         except (EnvironmentError, ConnectError) as e:
-            log.err(e)
             raise errors.ExternalResourceError()
