@@ -79,7 +79,7 @@ def _overwrite(absolutefpath, pattern):
         f.seek(0)
         while count < length:
             f.write(pattern)
-            count += len
+            count += len(pattern)
 
 
 def overwrite_and_remove(absolutefpath, iterations_number=1):
