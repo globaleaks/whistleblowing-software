@@ -36,8 +36,8 @@ class FileResource(object):
     def create_file(store, cls, content):
         raise errors.MethodNotImplemented()
 
-    @staticmethod
-    def perform_file_action():
+    @classmethod
+    def perform_file_action(cls):
         raise errors.MethodNotImplemented()
 
     @staticmethod
