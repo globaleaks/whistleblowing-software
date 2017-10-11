@@ -48,18 +48,16 @@ def get_itip_id_by_wbtip_id(store, wbtip_id):
     return wbtip.id
 
 
-# This is different from FileInstance, just because there are a different authentication requirements
+# Different from FileInstance because there are different authentication requirements
 class FileAdd(BaseHandler):
     """
-    WhistleBlower interface to upload a new file for an already completed submission
+    WhistleBlower interface to upload a new file for an existing submission
     """
     check_roles = 'whistleblower'
 
     @inlineCallbacks
     def post(self):
         """
-        Request: Unknown
-        Response: Unknown
         Errors: ModelNotFound
         """
         itip_id = yield get_itip_id_by_wbtip_id(self.current_user.user_id)
@@ -88,16 +86,13 @@ class FileAdd(BaseHandler):
 
 class FileInstance(BaseHandler):
     """
-    WhistleBlower interface to upload a new file for an yet to be completed submission
+    WhistleBlower interface to upload a new file for a non-finalized submission
     """
     check_roles = 'unauthenticated'
 
     @inlineCallbacks
     def post(self, token_id):
         """
-        Parameter: internaltip_id
-        Request: Unknown
-        Response: Unknown
         Errors: TokenFailure
         """
         token = TokenList.get(token_id)
