@@ -453,6 +453,8 @@ class AcmeAccntKeyRes:
     def create_file(store, cls):
         log.info("Generating an ACME account key with %d bits" % Settings.key_bits)
 
+        priv_fact = PrivateFactory(store)
+
         # NOTE key size is hard coded to align with minimum CA requirements
         # TODO change format to OpenSSL key to normalize types of keys used
         priv_key = rsa.generate_private_key(
@@ -467,8 +469,8 @@ class AcmeAccntKeyRes:
                 encryption_algorithm=serialization.NoEncryption(),
         )
 
-        PrivateFactory(store).set_val(u'acme', True)
-        PrivateFactory(store).set_val(u'acme_accnt_key', b)
+        priv_fact.set_val(u'acme', True)
+        priv_fact.set_val(u'acme_accnt_key', b)
 
         return priv_key
 
