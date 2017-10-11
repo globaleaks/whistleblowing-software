@@ -490,33 +490,6 @@ def can_perform_acme_renewal(store):
     return a and b and c
 
 
-class AcmeHandler(BaseHandler):
-    check_roles='admin'
-
-    @inlineCallbacks
-    def post(self):
-        accnt_key = yield AcmeAccntKeyRes.create_file()
-
-        regr_uri, tos_url = letsencrypt.register_account_key(Settings.acme_directory_url, accnt_key)
-
-        yield AcmeAccntKeyRes.save_accnt_uri(regr_uri)
-
-        returnValue({'terms_of_service': tos_url})
-
-    @inlineCallbacks
-    def put(self):
-        is_ready = yield can_perform_acme_run()
-        if not is_ready:
-            raise errors.ForbiddenOperation()
-
-        yield deferToThread(acme_cert_issuance)
-
-
-@transact_sync
-def acme_cert_issuance(store):
-    return db_acme_cert_issuance(store)
-
-
 def db_acme_cert_issuance(store):
     priv_fact = PrivateFactory(store)
     hostname = State.tenant_cache[1].hostname
@@ -547,6 +520,33 @@ def db_acme_cert_issuance(store):
     priv_fact.set_val(u'https_chain', chain_str)
     State.tenant_cache[1].private.https_cert = cert_str
     State.tenant_cache[1].private.https_chain = chain_str
+
+
+@transact_sync
+def acme_cert_issuance(store):
+    return db_acme_cert_issuance(store)
+
+
+class AcmeHandler(BaseHandler):
+    check_roles='admin'
+
+    @inlineCallbacks
+    def post(self):
+        accnt_key = yield AcmeAccntKeyRes.create_file()
+
+        regr_uri, tos_url = letsencrypt.register_account_key(Settings.acme_directory_url, accnt_key)
+
+        yield AcmeAccntKeyRes.save_accnt_uri(regr_uri)
+
+        returnValue({'terms_of_service': tos_url})
+
+    @inlineCallbacks
+    def put(self):
+        is_ready = yield can_perform_acme_run()
+        if not is_ready:
+            raise errors.ForbiddenOperation()
+
+        yield deferToThread(acme_cert_issuance)
 
 
 class AcmeChallResolver(BaseHandler):
