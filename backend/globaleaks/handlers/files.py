@@ -24,7 +24,7 @@ from globaleaks.utils.utility import log, datetime_now
 def register_ifile_on_db(store, uploaded_file, internaltip_id):
     internaltip = models.db_get(store, models.InternalTip, id=internaltip_id)
 
-    internaltip.update_date = datetime_now()
+    internaltip.update_date = internaltip.wb_last_access = datetime_now()
 
     new_file = models.InternalFile()
     new_file.name = uploaded_file['name']

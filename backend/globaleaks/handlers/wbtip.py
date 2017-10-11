@@ -89,7 +89,7 @@ def serialize_wbtip(store, wbtip, itip, language):
 def create_comment(store, wbtip_id, request):
     internaltip = models.db_get(store, models.InternalTip, id=wbtip_id)
 
-    internaltip.update_date = datetime_now()
+    internaltip.update_date = internaltip.wb_last_access = datetime_now()
 
     comment = models.Comment()
     comment.content = request['content']
@@ -124,8 +124,7 @@ def create_message(store, wbtip_id, receiver_id, request):
     if rtip_id is None:
         raise errors.ModelNotFound(models.ReceiverTip)
 
-
-    internaltip.update_date = datetime_now()
+    internaltip.update_date = internaltip.wb_last_access = datetime_now()
 
     msg = models.Message()
     msg.content = request['content']
@@ -151,6 +150,7 @@ def update_identity_information(store, tip_id, identity_field_id, identity_field
                                               {identity_field_id: [identity_field_answers]})
                 now = datetime_now()
                 internaltip.update_date = now
+                internaltip.wb_last_access = now
                 internaltip.identity_provided = True
                 internaltip.identity_provided_date = now
                 return
