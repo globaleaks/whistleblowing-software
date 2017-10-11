@@ -1,3 +1,14 @@
+Changes in version 2.72.8 - 2017-10-11
+    o Clean interface for mail templates configuration
+    o Implement notification about seen / not seen messages
+    o Improve shutdown resiliency implementing an hard deadline (30 seconds)
+    o Make it possible to visualize selectbox and checkbox of a specific field
+      sorted alphabetically (#2100)
+
+    Other closed tickets:
+    - https://github.com/globaleaks/GlobaLeaks/issues/2106
+    - https://github.com/globaleaks/GlobaLeaks/issues/2109
+
 Changes in version 2.72.7 - 2017-10-02
     o Fix minor issue in init script
 
