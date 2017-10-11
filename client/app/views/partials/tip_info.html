@@ -56,6 +56,7 @@
           </th>
           <th data-ng-if="::session.role === 'receiver'">
             <i class="glyphicon glyphicon-eye-open"></i>
+            <span data-translate>Read</span>
           </th>
           <th>
             <i class="glyphicon glyphicon-send"></i>
@@ -89,7 +90,10 @@
               popover-placement="left" popover-trigger="'mouseenter'" data-translate>Revoked</span>
           </td>
           <td data-ng-if="::session.role == 'receiver'">
-            <i data-ng-if="tip.wb_last_access >= tip.update_date" class="glyphicon glyphicon-ok"></i>
+            <i data-ng-if="tip.wb_last_access >= tip.update_date" class="glyphicon glyphicon-ok"
+               uib-popover="{{'The whistleblower has already read the latest update' | translate }}"></i>
+            <i data-ng-if="tip.wb_last_access < tip.update_date" class="glyphicon glyphicon-remove"
+               uib-popover="{{'The whistleblower has not read the latest update yet' | translate }}"></i>
           </td>
           <td>
             <span data-ng-if="tip.tor2web"

@@ -154,9 +154,6 @@
             </span>
           </th>
           <th>
-            <i class="glyphicon glyphicon-eye-open"></i>
-          </th>
-          <th>
             <span>
               <i class="glyphicon glyphicon-list-alt"></i>
               <span data-translate>Preview</span>
@@ -213,9 +210,6 @@
             <span data-ng-if="!tip.tor2web"
               class="label label-success"
               uib-popover="{{'The connection used to send this submission has been secured with Tor ensuring confidentiality and anonymity.' | translate}}" popover-placement="right" popover-trigger="'mouseenter'">Tor</span>
-          </td>
-          <td>
-            <i data-ng-if="tip.wb_last_access >= tip.update_date" class="glyphicon glyphicon-ok"></i>
           </td>
           <td>
             <div data-ng-repeat="field in tip.preview_schema" data-ng-init="fieldAnswers = tip.preview; preview=true" data-ng-include="'views/partials/tip_field.html'"></div>
