@@ -413,6 +413,7 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
           c.content = content;
           c.$save(function(newComment) {
             tip.comments.unshift(newComment);
+            tip.localChange();
           });
         };
 
@@ -421,6 +422,7 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
           m.content = content;
           m.$save(function(newMessage) {
             tip.messages.unshift(newMessage);
+            tip.localChange();
           });
         };
 
@@ -441,6 +443,10 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
         tip.updateLabel = function(label) {
           return tip.setVar('label', label);
         };
+
+        tip.localChange = function() {
+          tip.update_date = (new Date()).toISOString();
+        }
 
         if (fn) {
           fn(tip);
@@ -497,6 +503,7 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
           c.content = content;
           c.$save(function(newComment) {
             tip.comments.unshift(newComment);
+            tip.localChange();
           });
         };
 
@@ -505,6 +512,7 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
           m.content = content;
           m.$save(function(newMessage) {
             tip.messages.unshift(newMessage);
+            tip.localChange();
           });
         };
 
@@ -515,6 +523,10 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
             });
           }
         };
+
+        tip.localChange = function() {
+          tip.update_date = (new Date()).toISOString();
+        }
 
         if (fn) {
           fn(tip);
