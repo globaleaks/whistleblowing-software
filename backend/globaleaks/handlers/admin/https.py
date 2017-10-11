@@ -275,8 +275,7 @@ class FileHandler(BaseHandler):
         return self.mapped_file_resources[name]
 
     def delete(self, name):
-        file_res_cls = self.get_file_res_or_raise(name)
-        return file_res_cls.delete_file()
+        return self.get_file_res_or_raise(name).delete_file()
 
     @inlineCallbacks
     def post(self, name):
@@ -300,9 +299,7 @@ class FileHandler(BaseHandler):
         yield file_res_cls.perform_file_action()
 
     def get(self, name):
-        file_res_cls = self.get_file_res_or_raise(name)
-
-        return file_res_cls.get_file()
+        return self.get_file_res_or_raise(name).get_file()
 
 
 @transact
