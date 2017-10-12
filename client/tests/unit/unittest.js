@@ -36,29 +36,29 @@ describe('GLUnitTest', function() {
 
   describe('Test Environment', function() {
     it('syncPromise', function(done) {
-       TestEnv.syncPromise().then(function(r) {
+       TestEnv.syncPromise().then(function() {
          done();
        });
     });
 
     it('syncPromiseErr', function(done) {
-      TestEnv.syncPromiseErr().then(function(r) {
+      TestEnv.syncPromiseErr().then(function() {
         assert.fail('promise must reject')
-      }, function(r) {
+      }, function() {
         done()
       });
     });
 
     it('asyncPromiseTimeout', function(done) {
-       TestEnv.asyncPromiseTimeout().then(function(r) {
+       TestEnv.asyncPromiseTimeout().then(function() {
          done();
        });
     });
 
     it('asyncPromiseTimeoutErr', function(done) {
-       TestEnv.asyncPromiseTimeoutErr().then(function(r) {
+       TestEnv.asyncPromiseTimeoutErr().then(function() {
          assert.fail('promise must reject')
-       }, function(r) {
+       }, function() {
          done()
        });
     });
@@ -89,7 +89,6 @@ describe('GLBrowserCrypto', function() {
 
       a.every(function(val, i) {
         expect(val).to.equal(b[i]);
-        console.log(i);
         return true;
       });
       expect(a.byteLength).to.equal(b.byteLength);
@@ -128,7 +127,7 @@ describe('GLBrowserCrypto', function() {
     });
   });
 
-  describe('glbcKeyLib', function(done) {
+  describe('glbcKeyLib', function() {
     var glbcKeyLib, glbcUtil;
 
     beforeEach(function() {
@@ -184,7 +183,7 @@ describe('GLBrowserCrypto', function() {
         expect(a).to.be.false;
 
         var b = glbcKeyLib.validPrivateKey(test_data.key_ring.pub_key);
-        expect(a).to.be.false;
+        expect(b).to.be.false;
 
         var c = glbcKeyLib.validPrivateKey(test_data.key_ring.priv_key);
         expect(c).to.be.true;
@@ -237,11 +236,11 @@ describe('GLBrowserCrypto', function() {
       expect(c.primaryKey.fingerprint).to.equal(bob_pkey.primaryKey.fingerprint);
 
       // Test priv_key export protection
-      var d = glbcKeyRing.lockKeyRing(test_data.key_ring.passphrase);
+      glbcKeyRing.lockKeyRing(test_data.key_ring.passphrase);
 
-      var e = openpgp.key.readArmored(glbcKeyRing.exportPrivKey()).keys[0];
-      expect(e.primaryKey.isDecrypted).to.be.false;
-      expect(e.primaryKey.fingerprint).to.equal(glbcKeyRing.getKey().primaryKey.fingerprint);
+      var d = openpgp.key.readArmored(glbcKeyRing.exportPrivKey()).keys[0];
+      expect(d.primaryKey.isDecrypted).to.be.false;
+      expect(d.primaryKey.fingerprint).to.equal(glbcKeyRing.getKey().primaryKey.fingerprint);
 
       var f = glbcKeyRing.unlockKeyRing(test_data.key_ring.passphrase);
       expect(f).to.be.true;
@@ -277,11 +276,10 @@ describe('GLBrowserCrypto', function() {
   describe('glbcReceiver', function() {
     var glbcKeyRing, glbcKeyLib, glbcReceiver;
     beforeEach(function() {
-      window.inject(function(_glbcKeyRing_, _glbcKeyLib_, _glbcReceiver_, _glbcWhistleblower_) {
+      window.inject(function(_glbcKeyRing_, _glbcKeyLib_, _glbcReceiver_) {
         glbcKeyRing = _glbcKeyRing_;
         glbcKeyLib = _glbcKeyLib_;
         glbcReceiver = _glbcReceiver_;
-        glbcWhistleblower = _glbcWhistleblower_;
       });
     });
 
@@ -290,22 +288,19 @@ describe('GLBrowserCrypto', function() {
         .then(function(res) {
           return glbcKeyLib.generateCCryptoKey(res.passphrase);
         }).then(function(res) {
-          console.log(res.ccrypto_key_private.armor());
-          console.log(res.ccrypto_key_public.armor());
           var b = glbcKeyRing.initialize(res.ccrypto_key_private.armor(), test_data.bob.uuid)
           expect(b).to.be.true;
-          done();
           return glbcReceiver.loadSessionKey(test_data.submission.sess_cckey_prv_enc);
         }).then(function() {
           done();
         });
     }).timeout(test_data.const.SCRYPT_MAX);
 
-    it('receiver should encrypt and decrypt messages', function() {
+    it.skip('receiver should encrypt and decrypt messages', function() {
 
     });
 
-    it('receiver should encrypt and decrypt comments', function() {
+    it.skip('receiver should encrypt and decrypt comments', function() {
 
     });
   });
@@ -364,11 +359,11 @@ describe('GLBrowserCrypto', function() {
       });
     }).timeout(test_data.const.SCRYPT_MAX);
 
-    it('whistleblower should encrypt and decrypt messages', function() {
+    it.skip('whistleblower should encrypt and decrypt messages', function() {
 
     });
 
-    it('whistleblower should encrypt and decrypt comments', function() {
+    it.skip('whistleblower should encrypt and decrypt comments', function() {
 
     });
   });
@@ -416,7 +411,7 @@ describe('GLBrowserCrypto', function() {
 });
 
 describe('GLClient', function() {
-  describe('Utils', function(done) {
+  describe('Utils', function() {
     var Utils;
 
     beforeEach(function() {

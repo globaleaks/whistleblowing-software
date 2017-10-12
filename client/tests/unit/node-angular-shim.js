@@ -21,17 +21,12 @@ require('angular/angular');
 require('angular-mocks');
 
 
-c = require('crypto');
-console.log('detected crypto', c);
-
 global.angular = window.angular;
 global.inject = global.angular.mock.inject;
 global.ngModule = global.angular.mock.module;
 
 global.openpgp = window.openpgp = openpgp;
 
-//require('./../../app/js/app');
-//require('./../../app/js/lib/angular-filter.min');
 require('./../../app/js/crypto/main');
 require('./../../app/js/crypto/user');
 require('./../../app/js/crypto/receiver');

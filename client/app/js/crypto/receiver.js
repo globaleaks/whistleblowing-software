@@ -43,11 +43,10 @@ angular.module('GLBrowserCrypto')
           }
         }
 
-        tip_session_key = new pgp.key.Key(packetlist);
+        var tip_session_key = new pgp.key.Key(packetlist);
         glbcKeyRing.setSessionKey(tip_session_key);
       }).catch(function(e) {
         // TODO(handle-me) exceptions thrown in the then are dropped here.
-        console.log(e);
         throw e;
       });
 
