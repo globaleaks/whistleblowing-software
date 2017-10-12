@@ -8,6 +8,8 @@ env:
 globals:
   angular: true
   console: true
+  Uint8Array: true
+  Int32Array: true
   fustyFlowFactory: true
   d3: true
   GLClient: true
@@ -15,6 +17,7 @@ globals:
   onmessage: true
   saveAs: true
   StackTrace: true
+  openpgp: true
 rules:
   "comma-dangle": 0
 extends: [

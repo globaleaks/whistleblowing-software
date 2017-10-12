@@ -36,7 +36,9 @@ module.exports = function(grunt) {
         '!app/js/lib/*.js',
         '!app/js/locale/*.js',
         '!app/js/crypto/lib/*.js',
-        'tests/**/*.js'
+        'tests/end2end/*.js',
+        'tests/api/*.js',
+        'tests/unit/*.js'
       ]
     },
 
