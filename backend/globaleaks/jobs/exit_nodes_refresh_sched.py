@@ -1,7 +1,7 @@
 # -*- coding: utf-8
 # Implement refresh of the list of exit nodes IPs.
 
-from globaleaks.jobs.base import ExternNetLoopingJob
+from globaleaks.jobs.base import NetLoopingJob
 from globaleaks.settings import Settings
 from globaleaks.state import State
 from globaleaks.utils.utility import log
@@ -11,7 +11,7 @@ from twisted.internet.defer import inlineCallbacks
 __all__ = ['ExitNodesRefreshSchedule']
 
 
-class ExitNodesRefreshSchedule(ExternNetLoopingJob):
+class ExitNodesRefreshSchedule(NetLoopingJob):
     name = "Exit Nodes Refresh"
     interval = 3600
     threaded = False
