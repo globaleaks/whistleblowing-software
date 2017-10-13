@@ -13,20 +13,16 @@ from globaleaks.utils.utility import log
 TRACK_LAST_N_EXECUTIONS = 10
 
 
-FAILURES_OUTGOING = (
+FAILURES_NET_OUTGOING = (
     ConnectionLost,
     ConnectionRefusedError,
     ResponseNeverReceived,
     ResponseFailed,
-)
-
-
-FAILURES_INET_OUTGOING = FAILURES_OUTGOING + (
     DNSLookupError,
 )
 
 
-FAILURES_TOR_OUTGOING = FAILURES_OUTGOING + (
+FAILURES_TOR_OUTGOING = (
     TTLExpired,
     RuntimeError,
     ConnectionRefused,
@@ -142,23 +138,23 @@ class LoopingJob(BaseJob):
         extract_exception_traceback_and_schedule_email(excep)
 
 
-class ExternNetLoopingJob(LoopingJob):
+class NetLoopingJob(LoopingJob):
     def on_error(self, excep):
         """
         Handles known errors that the twisted.web.client.Agent or txsocksx.http.SOCKS5Agent
         can throw while connecting through their respective networks.
         """
+        if not State.tenant_cache[1].anonymize_outgoing_connections and \
+           isinstance(excep, FAILURES_NET_OUTGOING):
+            log.err('%s job failed on outgoing Net connection with: %s', self.name, excep)
+            return
+
         if State.tenant_cache[1].anonymize_outgoing_connections and \
            isinstance(excep, FAILURES_TOR_OUTGOING):
-            log.err('%s job failed Tor network fetch with: %s', self.name, excep)
+            log.err('%s job failed on outgoing Tor connection with: %s', self.name, excep)
             return
 
-        if not State.tenant_cache[1].anonymize_outgoing_connections and \
-           isinstance(excep, FAILURES_INET_OUTGOING):
-            log.err('%s job failed outgoing network fetch with: %s', self.name, excep)
-            return
-
-        super(ExternNetLoopingJob, self).on_error(excep)
+        super(NetLoopingJob, self).on_error(excep)
 
 
 class LoopingJobsMonitor(LoopingJob):

@@ -7,7 +7,7 @@ from twisted.internet.defer import inlineCallbacks
 from globaleaks.handlers.admin.node import db_admin_serialize_node
 from globaleaks.handlers.admin.notification import db_get_notification
 from globaleaks.handlers.admin.user import db_get_admin_users
-from globaleaks.jobs.base import ExternNetLoopingJob
+from globaleaks.jobs.base import NetLoopingJob
 from globaleaks.models.config import PrivateFactory
 from globaleaks.orm import transact
 from globaleaks.settings import Settings
@@ -41,7 +41,7 @@ def evaluate_update_notification(store, latest_version):
             format_and_send(store, user_desc, template_vars)
 
 
-class UpdateCheckJob(ExternNetLoopingJob):
+class UpdateCheckJob(NetLoopingJob):
     name = "Update Check"
     interval = 60*60*24
     threaded = False
