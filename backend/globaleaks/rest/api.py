@@ -18,6 +18,7 @@ from globaleaks.handlers import exception, \
     export, l10n, wizard, \
     base, user, shorturl, \
     robots
+from globaleaks.handlers.admin import operations as admin_operations
 from globaleaks.handlers.admin import context as admin_context
 from globaleaks.handlers.admin import field as admin_field
 from globaleaks.handlers.admin import files as admin_files
@@ -97,6 +98,7 @@ api_spec = [
     (r'/custodian/identityaccessrequest/' + uuid_regexp, custodian.IdentityAccessRequestInstance),
 
     ## Admin Handlers ##
+    (r'/admin/operations', admin_operations.OpsHandler),
     (r'/admin/node', admin_node.NodeInstance),
     (r'/admin/users', admin_user.UsersCollection),
     (r'/admin/users/' + uuid_regexp, admin_user.UserInstance),

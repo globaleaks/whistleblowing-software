@@ -495,6 +495,24 @@ class BaseHandler(object):
                 yield deferred_sleep(needed_delay)
 
 
+class OperationsHandler(BaseHandler):
+    def put(self, *args, **kwargs):
+        request = self.validate_message(self.request.content.read(), requests.OpsDesc)
+
+        router = self.operation_descriptors()
+        op = request.get('operation', None)
+
+        if op in router:
+            method, args_desc = router[op]
+            self.validate_jmessage(request['args'], args_desc)
+            return method(request['args'], *args, **kwargs)
+        else:
+            raise errors.InvalidInputFormat('No such operation')
+
+    def operation_descriptors(self):
+        raise NotImplementedError
+
+
 class StaticFileHandler(BaseHandler):
     check_roles = '*'
     handler_exec_time_threshold = 30
