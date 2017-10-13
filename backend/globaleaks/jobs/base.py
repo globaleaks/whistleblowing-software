@@ -4,7 +4,7 @@ import time
 from twisted.internet import task, defer, reactor, threads
 from twisted.internet.error import ConnectionLost, ConnectionRefusedError, DNSLookupError
 from twisted.web._newclient import ResponseNeverReceived, ResponseFailed
-from txsocksx.errors import TTLExpired, ConnectionRefused
+from txsocksx.errors import TTLExpired, ConnectionRefused, ServerFailure
 
 from globaleaks.state import State
 from globaleaks.utils.mailutils import schedule_exception_email, extract_exception_traceback_and_schedule_email
@@ -30,6 +30,7 @@ FAILURES_TOR_OUTGOING = FAILURES_OUTGOING + (
     TTLExpired,
     RuntimeError,
     ConnectionRefused,
+    ServerFailure,
 )
 
 
