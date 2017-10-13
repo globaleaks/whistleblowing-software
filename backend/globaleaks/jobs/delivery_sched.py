@@ -9,7 +9,6 @@
 import os
 
 from globaleaks import models
-from globaleaks.handlers.admin.receiver import admin_serialize_receiver
 from globaleaks.jobs.base import LoopingJob
 from globaleaks.orm import transact_sync
 from globaleaks.security import GLBPGP, SecureFile, generateRandomKey
@@ -82,7 +81,11 @@ def receiverfile_planning(store):
                 'status': u'processing',
                 'path': ifile.file_path,
                 'size': ifile.size,
-                'receiver': admin_serialize_receiver(store, receiver, user, State.tenant_cache[1].default_language)
+                'receiver': {
+                    'name': user.name,
+                    'pgp_key_public': user.pgp_key_public,
+                    'pgp_key_fingerprint': user.pgp_key_fingerprint,
+                },
             })
 
     return receiverfiles_maps
