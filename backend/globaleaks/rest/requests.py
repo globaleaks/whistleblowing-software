@@ -167,6 +167,11 @@ CommentDesc = {
     'content': unicode
 }
 
+OpsDesc = {
+  'operation': unicode,
+  'args': dict,
+}
+
 TipOpsDesc = {
     'operation': tip_operation_regexp,
     'args': dict

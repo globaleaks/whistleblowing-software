@@ -14,7 +14,7 @@ from twisted.internet import threads
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import models
-from globaleaks.handlers.base import BaseHandler, \
+from globaleaks.handlers.base import BaseHandler, OperationsHandler, \
     directory_traversal_check, write_upload_plaintext_to_disk
 from globaleaks.handlers.custodian import serialize_identityaccessrequest
 from globaleaks.handlers.submission import serialize_usertip
@@ -384,7 +384,7 @@ def db_get_identityaccessrequest_list(store, rtip_id, language):
     return [serialize_identityaccessrequest(store, iar) for iar in store.find(models.IdentityAccessRequest, receivertip_id=rtip_id)]
 
 
-class RTipInstance(BaseHandler):
+class RTipInstance(OperationsHandler):
     """
     This interface exposes the Receiver's Tip
     """
@@ -405,26 +405,30 @@ class RTipInstance(BaseHandler):
         """
         return get_rtip(self.current_user.user_id, tip_id, self.request.language)
 
-    def put(self, tip_id):
-        """
-        Some special operations that manipulate a Tip are handled here
-        """
-        request = self.validate_message(self.request.content.read(), requests.TipOpsDesc)
 
-        if request['operation'] == 'postpone':
-            return postpone_expiration_date(self.current_user.user_id, tip_id)
-        elif request['operation'] == 'set':
-            key = request['args']['key']
-            value = request['args']['value']
-            internal_var_lst = ['enable_two_way_comments',
-                                'enable_two_way_messages',
-                                'enable_attachments']
-            if ((key == 'label'                and isinstance(value, unicode)) or
-                (key == 'enable_notifications' and isinstance(value, bool))):
-                return set_receivertip_variable(self.current_user.user_id, tip_id, key, value)
-            elif key in internal_var_lst and isinstance(value, bool):
-                # Elements of internal_var_lst are not stored in the receiver's tip table
-                return set_internaltip_variable(self.current_user.user_id, tip_id, key, value)
+    def operation_descriptors(self):
+        return {
+            'postpone_expiration': (self.postpone_expiration, None),
+            'set':      (self.set_tip_val, {
+                'key': '^(enable_two_way_comments|enable_two_way_messages|enable_attachments|enable_notifications)$',
+                'value': bool}),
+            'set_label':    (self.set_label, {'value': unicode}), # NOTE removed from set
+        }
+
+    def set_tip_val(self, req_args, tip_id, *args, **kwargs):
+        value = req_args['value']
+        key = req_args['key']
+
+        if key == 'enable_notifications':
+            return set_receivertip_variable(self.current_user.user_id, tip_id, key, value)
+
+        return set_internaltip_variable(self.current_user.user_id, tip_id, key, value)
+
+    def postpone_expiration(self, _, tip_id, *args, **kwargs):
+        return postpone_expiration_date(self.current_user.user_id, tip_id)
+
+    def set_label(self, req_args, tip_id, *args, **kwargs):
+        return set_receivertip_variable(self.current_user.user_id, tip_id, 'label', req_args['value'])
 
     def delete(self, tip_id):
         """
