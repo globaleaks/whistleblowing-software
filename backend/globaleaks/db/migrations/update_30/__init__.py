@@ -4,9 +4,8 @@ from storm.locals import Int, Bool, Unicode, JSON, ReferenceSet
 
 from globaleaks.db.migrations.update import MigrationBase
 from globaleaks.handlers.admin.field import db_create_field
-from globaleaks.models import ModelWithID, Model, db_forge_obj
+from globaleaks.models import ModelWithID, Model
 from globaleaks.settings import Settings
-from globaleaks.utils.utility import read_json_file
 
 
 class Node_v_29(ModelWithID):
@@ -140,24 +139,6 @@ FieldAnswerGroup_v_29.fieldanswers = ReferenceSet(
 
 
 class MigrationScript(MigrationBase):
-    def prologue(self):
-        default_questionnaire = read_json_file(os.path.join(Settings.questionnaires_path, 'default.json'))
-
-        steps = default_questionnaire.pop('steps')
-
-        questionnaire = db_forge_obj(self.store_new, self.model_to['Questionnaire'], default_questionnaire)
-        questionnaire.key = u'default'
-
-        for step in steps:
-            f_children = step.pop('children')
-            s = db_forge_obj(self.store_new, self.model_to['Step'], step)
-            for child in f_children:
-                child['step_id'] = s.id
-                db_create_field(self.store_new, child, None)
-            s.questionnaire_id = questionnaire.id
-
-        self.store_new.commit()
-
     def migrate_Node(self):
         old_node = self.store_old.find(self.model_from['Node']).one()
         new_node = self.model_to['Node']()
