@@ -54,7 +54,7 @@
                     data-ng-click="contextDeleteDialog(context); $event.stopPropagation();">
                     <span data-translate>Delete</span>
                   </button>
-                  <span data-ng-if="admin.contexts.length > 1">
+                  <span data-ng-if="!admin.node.show_contexts_in_alphabetical_order && admin.contexts.length > 1">
                     <button class="actionButton btn btn-xs btn-primary" data-ng-click="moveUpAndSave(context); $event.stopPropagation();" uib-popover="{{'Move up' | translate}}" popover-placement="left" popover-trigger="'mouseenter'">
                       <i class="glyphicon glyphicon-menu-up"></i>
                     </button>
