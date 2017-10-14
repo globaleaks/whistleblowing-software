@@ -49,10 +49,9 @@ def receiverfile_planning(store):
 
         ifile.processing_attempts += 1
 
-        for rtip, receiver, user in store.find((models.ReceiverTip, models.Receiver, models.User),
-                                               models.ReceiverTip.internaltip_id == ifile.internaltip_id,
-                                               models.Receiver.id == models.ReceiverTip.receiver_id,
-                                               models.User.id == models.Receiver.id):
+        for rtip, user in store.find((models.ReceiverTip, models.User),
+                                     models.ReceiverTip.internaltip_id == ifile.internaltip_id,
+                                     models.User.id == models.ReceiverTip.receiver_id):
             receiverfile = models.ReceiverFile()
             receiverfile.internalfile_id = ifile.id
             receiverfile.receivertip_id = rtip.id
