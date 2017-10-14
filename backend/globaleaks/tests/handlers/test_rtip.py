@@ -36,7 +36,7 @@ class TestRTipInstance(helpers.TestHandlerWithPopulatedDB):
         for rtip_desc in rtip_descs:
             self.assertTrue(rtip_desc['expiration_date'] == '1970-01-01T00:00:00Z')
             operation = {
-              'operation': 'postpone',
+              'operation': 'postpone_expiration',
               'args': {}
             }
 
@@ -59,7 +59,7 @@ class TestRTipInstance(helpers.TestHandlerWithPopulatedDB):
         for rtip_desc in rtip_descs:
             self.assertTrue(rtip_desc['expiration_date'] == '1970-01-01T00:00:00Z')
             operation = {
-              'operation': 'postpone',
+              'operation': 'postpone_expiration',
               'args': {}
             }
 
@@ -142,7 +142,7 @@ class TestRTipInstance(helpers.TestHandlerWithPopulatedDB):
         rtip_descs = yield self.get_rtips()
         for rtip_desc in rtip_descs:
             operation = {
-              'operation': 'set',
+              'operation': 'set_label',
               'args': {
                 'key': 'label',
                 'value': 'PASSANTEDIPROFESSIONE'

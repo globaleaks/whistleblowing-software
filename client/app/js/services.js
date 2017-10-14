@@ -426,9 +426,10 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
           });
         };
 
-        tip.setVar = function(var_name, var_value) {
+        tip.setVar = function(var_name, var_value, operation) {
+          operation = angular.isDefined(operation) ? operation : 'set';
           var req = {
-            'operation': 'set',
+            'operation': operation,
             'args': {
               'key': var_name,
               'value': var_value
@@ -441,7 +442,7 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
         };
 
         tip.updateLabel = function(label) {
-          return tip.setVar('label', label);
+          return tip.setVar('label', label, 'set_label');
         };
 
         tip.localChange = function() {
