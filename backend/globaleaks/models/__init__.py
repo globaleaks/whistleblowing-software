@@ -245,7 +245,7 @@ class Context(ModelWithID):
 
     status_page_message = JSON(validator=longlocal_v, default={})
 
-    show_receivers_in_alphabetical_order = Bool(default=False)
+    show_receivers_in_alphabetical_order = Bool(default=True)
 
     presentation_order = Int(default=0)
 
