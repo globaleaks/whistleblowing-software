@@ -77,7 +77,7 @@ class MigrationScript(MigrationBase):
                 setattr(new_obj, v.name, getattr(old_obj, v.name))
 
             if old_obj.questionnaire_id == questionnaire_default_id:
-                setattr(new_obj, 'questionnaire_id', questionnaire_default_id)
+                setattr(new_obj, 'questionnaire_id', u'default')
 
             self.store_new.add(new_obj)
 
