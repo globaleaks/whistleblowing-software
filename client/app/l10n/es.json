@@ -190,7 +190,7 @@
   "Enable CAPTCHA mechanism": "Habilitar mecanismo CAPTCHA",
   "Enable comments": "Habilitar comentarios",
   "Enable custom privacy panel": "Habilitar panel de privacidad personalizado",
-  "Enable email notifications for:": "Habilitar notificaciones de correo electrónico para:",
+  "Enable email notifications for:": "Habilitar notificaciones por correo para:",
   "Enable experimental features": "Habilitar características experimentales",
   "Enable HTTP Basic Authentication to limit platform access": "Habilitar autentificación HTTP básica para limitar el acceso a la plataforma",
   "Enable insecure configuration without PGP encryption": "Habilitar configuración insegura sin cifrado PGP",
