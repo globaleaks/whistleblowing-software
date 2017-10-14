@@ -40,11 +40,6 @@ def load_default_fields(store):
         db_create_field(store, question, None)
 
 
-def db_update_defaults(store):
-    load_default_questionnaires(store)
-    load_default_fields(store)
-
-
 def db_fix_fields_attrs(store):
     """
     Ensures that the current store and the field_attrs.json file correspond.
@@ -89,3 +84,9 @@ def db_fix_fields_attrs(store):
                 attr_dict['name'] = attr_name
                 attr_dict['field_id'] = field.id
                 models.db_forge_obj(store, models.FieldAttr, attr_dict)
+
+
+def db_update_defaults(store):
+    load_default_questionnaires(store)
+    load_default_fields(store)
+    db_fix_fields_attrs(store)
