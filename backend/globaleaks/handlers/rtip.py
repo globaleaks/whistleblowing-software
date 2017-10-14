@@ -14,7 +14,7 @@ from twisted.internet import threads
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import models
-from globaleaks.handlers.base import BaseHandler, OperationsHandler, \
+from globaleaks.handlers.base import BaseHandler, OperationHandler, \
     directory_traversal_check, write_upload_plaintext_to_disk
 from globaleaks.handlers.custodian import serialize_identityaccessrequest
 from globaleaks.handlers.submission import serialize_usertip
@@ -384,7 +384,7 @@ def db_get_identityaccessrequest_list(store, rtip_id, language):
     return [serialize_identityaccessrequest(store, iar) for iar in store.find(models.IdentityAccessRequest, receivertip_id=rtip_id)]
 
 
-class RTipInstance(OperationsHandler):
+class RTipInstance(OperationHandler):
     """
     This interface exposes the Receiver's Tip
     """
@@ -405,15 +405,15 @@ class RTipInstance(OperationsHandler):
         """
         return get_rtip(self.current_user.user_id, tip_id, self.request.language)
 
-
     def operation_descriptors(self):
         return {
-            'postpone_expiration': (self.postpone_expiration, None),
-            'set':      (self.set_tip_val, {
-                'key': '^(enable_two_way_comments|enable_two_way_messages|enable_attachments|enable_notifications)$',
-                'value': bool}),
-            'set_label':    (self.set_label, {'value': unicode}), # NOTE removed from set
+          'postpone_expiration': (RTipInstance.postpone_expiration, None),
+          'set': (RTipInstance.set_tip_val,
+                  {'key': '^(enable_two_way_comments|enable_two_way_messages|enable_attachments|enable_notifications)$',
+                   'value': bool}),
+          'set_label': (RTipInstance.set_label, {'value': unicode})
         }
+
 
     def set_tip_val(self, req_args, tip_id, *args, **kwargs):
         value = req_args['value']
