@@ -167,9 +167,9 @@
       "resolved": "https://registry.npmjs.org/angular-translate-loader-url/-/angular-translate-loader-url-2.15.2.tgz"
     },
     "angular-ui-bootstrap": {
-      "version": "2.5.0",
-      "from": "angular-ui-bootstrap@2.5.0",
-      "resolved": "https://registry.npmjs.org/angular-ui-bootstrap/-/angular-ui-bootstrap-2.5.0.tgz"
+      "version": "2.5.6",
+      "from": "angular-ui-bootstrap@2.5.6",
+      "resolved": "https://registry.npmjs.org/angular-ui-bootstrap/-/angular-ui-bootstrap-2.5.6.tgz"
     },
     "angular-zxcvbn": {
       "version": "3.2.2",
@@ -1115,9 +1115,9 @@
       }
     },
     "eslint": {
-      "version": "4.8.0",
-      "from": "eslint@4.8.0",
-      "resolved": "https://registry.npmjs.org/eslint/-/eslint-4.8.0.tgz",
+      "version": "4.9.0",
+      "from": "eslint@4.9.0",
+      "resolved": "https://registry.npmjs.org/eslint/-/eslint-4.9.0.tgz",
       "dev": true
     },
     "eslint-scope": {
