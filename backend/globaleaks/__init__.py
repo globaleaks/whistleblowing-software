@@ -11,7 +11,7 @@ __version__ = u'2.72.9'
 __license__ = u'AGPL-3.0'
 
 DATABASE_VERSION = 38
-FIRST_DATABASE_VERSION_SUPPORTED = 20
+FIRST_DATABASE_VERSION_SUPPORTED = 24
 
 # Add new languages as they are supported here! To do this retrieve the name of
 # the language and its code from transifex. Then use the following command to
