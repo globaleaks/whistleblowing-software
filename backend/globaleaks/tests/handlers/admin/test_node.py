@@ -38,6 +38,7 @@ class TestNodeInstance(helpers.TestHandlerWithPopulatedDB):
             # some keys are added by GLB, and can't be compared
             if response_key in ['password', 'languages_supported',
                                 'version', 'version_db',
+                                'latest_version',
                                 'configured', 'wizard_done',
                                 'receipt_salt', 'languages_enabled']:
                 continue
