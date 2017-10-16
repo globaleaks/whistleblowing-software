@@ -936,7 +936,7 @@ class MockDict:
             'recipients_clarification': u'',
             'presentation_order': 0,
             'receivers': [],
-            'questionnaire_id': '',
+            'questionnaire_id': u'default',
             'select_all_receivers': True,
             'tip_timetolive': 20,
             'maximum_selectable_receivers': 0,

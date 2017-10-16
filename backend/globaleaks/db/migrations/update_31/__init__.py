@@ -119,7 +119,7 @@ class Context_v_30(ModelWithID):
     status_page_message = JSON()
     show_receivers_in_alphabetical_order = Bool()
     presentation_order = Int()
-    questionnaire_id = Unicode()
+    questionnaire_id = Unicode(default=u'default')
 
 
 class ReceiverTip_v_30(ModelWithID):
@@ -205,9 +205,8 @@ class MigrationScript(MigrationBase):
 
             if v.name == 'allow_indexing':
                 new_node.allow_indexing = False
-                continue
 
-            if v.name == 'logo_id':
+            elif v.name == 'logo_id':
                 logo_path = os.path.join(Settings.static_path, 'logo.png')
                 if not os.path.exists(logo_path):
                     continue
@@ -221,9 +220,7 @@ class MigrationScript(MigrationBase):
 
                 os.remove(logo_path)
 
-                continue
-
-            if v.name == 'css_id':
+            elif v.name == 'css_id':
                 css_path = os.path.join(Settings.static_path, 'custom_stylesheet.css')
                 if not os.path.exists(css_path):
                     continue
@@ -237,33 +234,26 @@ class MigrationScript(MigrationBase):
 
                 os.remove(css_path)
 
-                continue
-
-            if v.name == 'basic_auth':
+            elif v.name == 'basic_auth':
                 new_node.basic_auth = False
-                continue
 
-            if v.name == 'basic_auth_username':
+            elif v.name == 'basic_auth_username':
                 new_node.basic_auth_username = u''
-                continue
 
-            if v.name == 'basic_auth_password':
+            elif v.name == 'basic_auth_password':
                 new_node.basic_auth_password = u''
-                continue
 
-            if v.name == 'contexts_clarification':
+            elif v.name == 'contexts_clarification':
                 new_node.contexts_clarification = old_node.context_selector_label
-                continue
 
-            if v.name == 'context_selector_type':
+            elif v.name == 'context_selector_type':
                 new_node.context_selector_type = u'list'
-                continue
 
-            if v.name == 'show_small_context_cards':
+            elif v.name == 'show_small_context_cards':
                 new_node.show_small_context_cards = False
-                continue
 
-            setattr(new_node, v.name, getattr(old_node, v.name))
+            else:
+                setattr(new_node, v.name, getattr(old_node, v.name))
 
         self.store_new.add(new_node)
 

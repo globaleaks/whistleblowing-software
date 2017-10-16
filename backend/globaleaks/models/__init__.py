@@ -249,7 +249,7 @@ class Context(ModelWithID):
 
     presentation_order = Int(default=0)
 
-    questionnaire_id = Unicode(default=u'')
+    questionnaire_id = Unicode(default=u'default')
 
     img_id = Unicode()
 
