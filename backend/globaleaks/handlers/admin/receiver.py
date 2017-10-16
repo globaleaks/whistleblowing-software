@@ -5,7 +5,7 @@
 # Implementation of the code executed on handler /admin/receivers
 #
 from globaleaks import models
-from globaleaks.handlers.admin.user import db_associate_context_receivers, admin_serialize_receiver
+from globaleaks.handlers.admin.user import admin_serialize_receiver
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.orm import transact
 from globaleaks.rest import requests
@@ -50,8 +50,6 @@ def update_receiver(store, receiver_id, request, language):
     receiver, user = db_get_receiver(store, receiver_id)
 
     receiver.update(request)
-
-    db_associate_context_receivers(store, receiver, request['contexts'])
 
     return admin_serialize_receiver(store, receiver, user, language)
 

@@ -21,10 +21,10 @@ class TestReceiverInstance(helpers.TestHandlerWithPopulatedDB):
     _handler = receiver.ReceiverInstance
 
     @inlineCallbacks
-    def test_put_invalid_context_id(self):
-        self.dummyReceiver_1['contexts'] = [unicode(uuid4())]
-
+    def test_put(self):
+        self.dummyReceiver_1['can_delete_submission'] = False
         handler = self.request(self.dummyReceiver_1, role='admin')
 
-        yield self.assertFailure(handler.put(self.dummyReceiver_1['id']),
-                                 sqlite3.IntegrityError)
+        response = yield handler.put(self.dummyReceiver_1['id'])
+
+        self.assertFalse(response['can_delete_submission'])

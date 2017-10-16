@@ -52,24 +52,6 @@
                     </select>
                   </div>
                   <div class="form-group">
-                    <label data-translate>Contexts</label>
-                    <div class="selectionList">
-                      <div data-ng-repeat="context in admin.contexts">
-                        <div class="row" data-ng-click="toggle(context)">
-                          <span class="col-md-1">
-                            <span data-ng-show="isSelected(context)">
-                              <i class="glyphicon glyphicon-check"></i>
-                            </span>
-                            <span data-ng-show="!isSelected(context)">
-                              <i class="glyphicon glyphicon-unchecked"></i>
-                            </span>
-                          </span>
-                          <span class="col-md-10">{{context.name}}</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="form-group">
                     <input data-ng-model="receiver.can_postpone_expiration" type="checkbox" data-ng-disabled="node.can_postpone_expiration" />
                     <label data-translate>Allow the recipient to postpone the submission expiration date</label>
                     <div data-ng-show="node.can_postpone_expiration">

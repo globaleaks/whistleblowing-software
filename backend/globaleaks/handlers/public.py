@@ -42,7 +42,7 @@ def db_prepare_contexts_serialization(store, contexts):
 
 
 def db_prepare_receivers_serialization(store, receivers):
-    data = {'users': {}, 'imgs': {}, 'contexts': {}}
+    data = {'users': {}, 'imgs': {}}
 
     receivers_ids = []
     img_ids = []
@@ -56,11 +56,6 @@ def db_prepare_receivers_serialization(store, receivers):
 
     for o in store.find(models.File, In(models.File.id, img_ids)):
         data['imgs'][o.id] = o.data
-
-    for o in store.find(models.ReceiverContext, In(models.ReceiverContext.receiver_id, receivers_ids)):
-        if o.receiver_id not in data['contexts']:
-            data['contexts'][o.receiver_id] = []
-        data['contexts'][o.receiver_id].append(o.context_id)
 
     return data
 
@@ -350,7 +345,6 @@ def serialize_receiver(store, receiver, language, data=None):
         'can_delete_submission': receiver.can_delete_submission,
         'can_postpone_expiration': receiver.can_postpone_expiration,
         'can_grant_permissions': receiver.can_grant_permissions,
-        'contexts': data['contexts'].get(receiver.id, []),
         'picture': data['imgs'].get(user.img_id, '')
     }
 

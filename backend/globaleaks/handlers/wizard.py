@@ -35,12 +35,13 @@ def wizard(store, request, language):
 
     profiles.load_profile(store, request['profile'])
 
-    context = db_create_context(store, request['context'], language)
-
     request['receiver']['username'] = u'recipient'
-    request['receiver']['contexts'] = [context.id]
     request['receiver']['language'] = language
-    db_create_receiver_user(store, request['receiver'], language)
+
+    _, receiver = db_create_receiver_user(store, request['receiver'], language)
+
+    request['context']['receivers'] = [receiver.id]
+    context = db_create_context(store, request['context'], language)
 
     admin_dict = {
         'username': u'admin',

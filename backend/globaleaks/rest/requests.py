@@ -369,7 +369,6 @@ AdminContextDesc = {
 
 AdminReceiverDesc = {
     'id': uuid_regexp_or_empty,
-    'contexts': [uuid_regexp],
     'can_delete_submission': bool,
     'can_postpone_expiration': bool,
     'can_grant_permissions': bool,
@@ -490,7 +489,6 @@ AnomalyCollectionDesc = [AnomalyDesc]
 
 ReceiverDesc = {
     'name': unicode,
-    'contexts': [uuid_regexp],
     'description': unicode,
     'presentation_order': int,
     'id': uuid_regexp,
