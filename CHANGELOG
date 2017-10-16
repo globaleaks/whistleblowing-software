@@ -1,5 +1,17 @@
+Changes in version 2.72.11 - 2017-10-16
+    o Fix UI regression on tip postpone introduced in 2.72.9
+    o Fix possible issue on Context.questionnaire_id migration
+
 Changes in version 2.72.10 - 2017-10-15
     o Apply minor UI bugfixing
+
+Changes in version 2.72.9 - 2017-10-14
+    o Improve efficiency of delivery sched
+    o Silence misleading errors in init script
+    o Update translations
+
+    Other closed tickets:
+    - https://github.com/globaleaks/GlobaLeaks/issues/2078
 
 Changes in version 2.72.8 - 2017-10-11
     o Clean interface for mail templates configuration
