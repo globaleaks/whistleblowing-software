@@ -52,6 +52,7 @@ GLClient.controller('WizardCtrl', ['$scope', '$location', '$route', '$http', 'Au
       };
 
       var context = AdminUtils.new_context();
+      context.questionnaire_id = $scope.node.default_questionnaire;
 
       $scope.wizard = {
         'node': {},

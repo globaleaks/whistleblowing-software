@@ -230,12 +230,12 @@ class MigrationScript(MigrationBase):
             for _, v in new_context._storm_columns.items():
                 if v.name == 'status_page_message':
                     new_context.status_page_message = ''
-                    continue
 
-                if v.name == 'questionnaire_id':
-                    new_context.questionnaire_id = u'default' if new_questionnaire_id is None else new_questionnaire_id
-                    continue
+                elif v.name == 'questionnaire_id':
+                    if new_questionnaire_id is not None:
+                        new_context.questionnaire_id = new_questionnaire_id
 
-                setattr(new_context, v.name, getattr(old_context, v.name))
+                else:
+                    setattr(new_context, v.name, getattr(old_context, v.name))
 
             self.store_new.add(new_context)

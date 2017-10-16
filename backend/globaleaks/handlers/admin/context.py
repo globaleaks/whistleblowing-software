@@ -99,9 +99,6 @@ def fill_context_request(request, language):
 def db_update_context(store, context, request, language):
     request = fill_context_request(request, language)
 
-    if not request['questionnaire_id']:
-        request['questionnaire_id'] = State.tenant_cache[1].default_questionnaire
-
     context.update(request)
 
     db_associate_context_receivers(store, context, request['receivers'])
@@ -111,9 +108,6 @@ def db_update_context(store, context, request, language):
 
 def db_create_context(store, request, language):
     request = fill_context_request(request, language)
-
-    if not request['questionnaire_id']:
-        request['questionnaire_id'] = u'default'
 
     if not request['allow_recipients_selection']:
         request['select_all_receivers'] = True
