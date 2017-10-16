@@ -211,7 +211,7 @@ GLClient.controller('TipCtrl',
             return $scope.tip;
           },
           operation: function () {
-            return 'postpone';
+            return 'postpone_expiration';
           }
         }
       });
@@ -242,9 +242,9 @@ controller('TipOperationsCtrl',
   $scope.ok = function () {
     $uibModalInstance.close();
 
-    if ($scope.operation === 'postpone') {
+    if ($scope.operation === 'postpone_expiration') {
       var req = {
-        'operation': 'postpone',
+        'operation': 'postpone_expiration',
         'args': {}
       };
 
