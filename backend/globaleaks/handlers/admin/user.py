@@ -22,8 +22,6 @@ def admin_serialize_receiver(store, receiver, user, language):
     :param language: the language in which to localize data
     :return: a dictionary representing the serialization of the receiver
     """
-    contexts = [id for id in store.find(models.ReceiverContext.context_id, models.ReceiverContext.receiver_id == receiver.id)]
-
     ret_dict = user_serialize_user(store, user, language)
 
     ret_dict.update({
@@ -32,7 +30,6 @@ def admin_serialize_receiver(store, receiver, user, language):
         'can_grant_permissions': receiver.can_grant_permissions,
         'mail_address': user.mail_address,
         'configuration': receiver.configuration,
-        'contexts': contexts,
         'tip_notification': receiver.tip_notification,
         'presentation_order': receiver.presentation_order
     })
@@ -78,15 +75,6 @@ def create_custodian_user(store, request, language):
     return user_serialize_user(store, db_create_custodian_user(store, request, language), language)
 
 
-def db_associate_context_receivers(store, receiver, contexts_ids):
-    store.find(models.ReceiverContext, models.ReceiverContext.receiver_id == receiver.id).remove()
-
-    for context_id in contexts_ids:
-        store.add(models.ReceiverContext({'context_id': context_id,
-                                          'receiver_id': receiver.id}))
-
-
-
 def db_create_receiver_user(store, request, language):
     """
     Creates a new receiver
@@ -101,10 +89,6 @@ def db_create_receiver_user(store, request, language):
 
     # set receiver.id user.id
     receiver.id = user.id
-
-    contexts = request.get('contexts', [])
-
-    db_associate_context_receivers(store, receiver, contexts)
 
     log.debug("Created new receiver")
 
