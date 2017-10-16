@@ -12,10 +12,10 @@ echo "Checking preliminary packaging GlobaLeaks requirements"
 for REQ in apt-key apt-get
 do
   if which $REQ >/dev/null; then
-    echo " + $REQ requirement meet"
+    echo " + $REQ requirement met"
   else
     ERR=$((ERR+1))
-    echo " - $REQ requirement not meet"
+    echo " - $REQ requirement not met"
   fi
 done
 
@@ -24,7 +24,15 @@ if [ $ERR -ne 0 ]; then
   exit 1
 fi
 
-DO () {
+function last_command () {
+  echo $1 > $TMPDIR/last_command
+}
+
+function last_status () {
+  echo $1 > $TMPDIR/last_status
+}
+
+function DO () {
   if [ -z "$2" ]; then
     EXPECTED_RET=0
   else
@@ -40,8 +48,8 @@ DO () {
 
   STATUS=$?
 
-  echo $CMD > $TMPDIR/last_command
-  echo $STATUS > $TMPDIR/last_status
+  last_command $CMD
+  last_status $STATUS
 
   if [ "$STATUS" -eq "$EXPECTED_RET" ]; then
     echo "SUCCESS"
@@ -825,19 +833,32 @@ DO "apt-get update -y"
 
 # fix curl requirement
 if which curl >/dev/null; then
-    echo " + curl requirement meet"
+    echo " + curl requirement met"
   else
-    echo " - curl requirement not meet. Installing curl"
+    echo " - curl requirement not met. Installing curl"
     DO "apt-get install curl -y"
 fi
 
 # fix netstat requirement
 if which netstat >/dev/null; then
-    echo " + netstat requirement meet"
+    echo " + netstat requirement met"
   else
-    echo " - netstat requirement not meet. Installing net-tools"
+    echo " - netstat requirement not met. Installing net-tools"
     DO "apt-get install net-tools -y"
 fi
+
+function is_tcp_sock_free_check {
+    ! netstat -tlpn 2>/dev/null | grep -F $1 -q
+}
+
+# check the required sockets to see if they are already used
+for SOCK in "0.0.0.0:443" "127.0.0.1:8082" "127.0.0.1:8083" "0.0.0.0:80" "127.0.0.1:8082"
+do
+    DO "is_tcp_sock_free_check $SOCK"
+done
+
+echo " + required TCP sockets open"
+
 
 # The supported platforms are experimentally more than only Ubuntu as
 # publicly communicated to users.
@@ -915,8 +936,9 @@ else
   DO "apt-get install globaleaks -y"
 fi
 
-LAST_COMMAND="startup"
-LAST_STATUS="0"
+# Set the script to its success condition
+last_command "startup"
+last_status "0"
 
 i=0
 while [ $i -lt 30 ]
@@ -929,7 +951,7 @@ do
     echo "GlobaLeaks should be reachable at:"
     for IP in $IPS;
     do
-      echo "- http://$IP"
+      echo "+ http://$IP"
     done
     exit 0
   fi
@@ -939,5 +961,5 @@ done
 
 #ERROR
 echo "Ouch! The installation is complete but GlobaLeaks failed to start."
-LAST_STATUS="1"
+last_status "1"
 exit 1
