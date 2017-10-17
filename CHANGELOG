@@ -1,3 +1,6 @@
+Changes in version 2.72.12 - 2017-10-17
+    o Enable to reach the ACME challenge bypassing HTTP Basic AUTH
+
 Changes in version 2.72.11 - 2017-10-16
     o Fix UI regression on tip postpone introduced in 2.72.9
     o Fix possible issue on Context.questionnaire_id migration
