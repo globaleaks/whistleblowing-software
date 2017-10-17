@@ -242,8 +242,8 @@ class TestAcmeHandler(helpers.TestHandler):
         yield self.assertFailure(handler.put(), ConnectionError)
 
 
-class TestAcmeChallResolver(helpers.TestHandler):
-    _handler = https.AcmeChallResolver
+class TestAcmeChallangeHandler(helpers.TestHandler):
+    _handler = https.AcmeChallangeHandler
 
     @inlineCallbacks
     def test_get(self):
