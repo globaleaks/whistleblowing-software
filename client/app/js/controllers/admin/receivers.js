@@ -36,19 +36,4 @@ controller('AdminReceiverEditorCtrl', ['$scope',
     $scope.save = function() {
       $scope.save_receiver($scope.receiver, false);
     };
-
-    $scope.isSelected = function (context) {
-      return $scope.receiver.contexts.indexOf(context.id) !== -1;
-    };
-
-    $scope.toggle = function (context) {
-      var idx = $scope.receiver.contexts.indexOf(context.id);
-      if (idx === -1) {
-        $scope.receiver.contexts.push(context.id);
-      } else {
-        $scope.receiver.contexts.splice(idx, 1);
-      }
-      $scope.editReceiver.$dirty = true;
-      $scope.editReceiver.$pristine = false;
-    };
 }]);
