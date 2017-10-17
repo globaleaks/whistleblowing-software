@@ -51,10 +51,9 @@
     "gruntify-eslint": "4.0.0",
     "mocha": "4.0.1",
     "node-gettext": "0.2.14",
-    "protractor": "5.1.2",
+    "protractor": "5.2.0",
     "protractor-console-plugin": "0.1.1",
     "q": "1.5.0",
-    "selenium-webdriver": "3.6.0",
     "superagent": "3.6.3",
     "supertest": "3.0.0"
   }
