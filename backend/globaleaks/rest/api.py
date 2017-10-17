@@ -134,7 +134,7 @@ api_spec = [
     (r'/wizard', wizard.Wizard),
 
     (r'/admin/config/acme/run', https.AcmeHandler),
-    (r'/.well-known/acme-challenge/([a-zA-Z0-9_\-]{42,44})', https.AcmeChallResolver),
+    (r'/.well-known/acme-challenge/([a-zA-Z0-9_\-]{42,44})', https.AcmeChallengeHandler),
 
     (r'/(data/[a-zA-Z0-9_\-\/\.]*)', base.AdminStaticFileHandler, {'path': Settings.client_path}),
 

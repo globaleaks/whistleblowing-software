@@ -164,6 +164,7 @@ class BaseHandler(object):
     uniform_answer_time = False
     cache_resource = False
     invalidate_cache = False
+    bypass_basic_auth = False
 
     def __init__(self, state, request):
         self.name = type(self).__name__
@@ -184,7 +185,7 @@ class BaseHandler(object):
         Decorator for authenticated sessions.
         """
         def wrapper(self, *args, **kwargs):
-            if self.state.tenant_cache[1].basic_auth:
+            if self.state.tenant_cache[1].basic_auth and not self.bypass_basic_auth:
                 self.basic_auth()
 
             if '*' in roles:

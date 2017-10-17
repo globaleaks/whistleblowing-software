@@ -546,8 +546,9 @@ class AcmeHandler(BaseHandler):
         yield deferToThread(acme_cert_issuance)
 
 
-class AcmeChallResolver(BaseHandler):
+class AcmeChallengeHandler(BaseHandler):
     check_roles = 'unauthenticated'
+    bypass_basic_auth = True
 
     def get(self, token):
         if token in tmp_chall_dict:
