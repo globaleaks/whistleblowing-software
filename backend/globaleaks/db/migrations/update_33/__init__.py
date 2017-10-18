@@ -174,9 +174,8 @@ class MigrationScript(MigrationBase):
                         new_obj.wb_last_access = old_wbtip.last_access
                     else:
                         new_obj.last_access = old_obj.creation_date
-                    continue
-
-                setattr(new_obj, v.name, getattr(old_obj, v.name))
+                else:
+                    setattr(new_obj, v.name, getattr(old_obj, v.name))
 
             self.store_new.add(new_obj)
 
@@ -185,12 +184,7 @@ class MigrationScript(MigrationBase):
         new_node = self.model_to['Node']()
 
         for _, v in new_node._storm_columns.items():
-            if v.name == 'tb_download_link':
-                continue
-
-            if v.name == 'wbtip_timetolive':
-                continue
-
-            setattr(new_node, v.name, getattr(old_node, v.name))
+            if v.name not in ['tb_download_link', 'wbtip_timetolive']:
+                setattr(new_node, v.name, getattr(old_node, v.name))
 
         self.store_new.add(new_node)

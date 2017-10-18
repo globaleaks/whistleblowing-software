@@ -27,8 +27,7 @@ class MigrationScript(MigrationBase):
             for _, v in new_obj._storm_columns.items():
                 if v.name == 'submission':
                     new_obj.submission = True
-                    continue
-
-                setattr(new_obj, v.name, getattr(old_obj, v.name))
+                else:
+                    setattr(new_obj, v.name, getattr(old_obj, v.name))
 
             self.store_new.add(new_obj)

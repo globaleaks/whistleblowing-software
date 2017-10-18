@@ -83,9 +83,9 @@ class MigrationScript(MigrationBase):
 
                 elif v.name == 'enable_rc_to_wb_files':
                     new_obj.enable_rc_to_wb_files = False
-                    continue
 
-                setattr(new_obj, v.name, getattr(old_obj, v.name))
+                else:
+                    setattr(new_obj, v.name, getattr(old_obj, v.name))
 
             self.store_new.add(new_obj)
 
@@ -97,22 +97,18 @@ class MigrationScript(MigrationBase):
         for old_obj in old_objs:
             new_obj = self.model_to['User']()
             for _, v in new_obj._storm_columns.items():
-                if v.name in ['pgp_key_public', 'pgp_key_fingerprint']:
-                    if getattr(old_obj, v.name) is None:
-                        setattr(new_obj, v.name, '')
-                        continue
+                if v.name in ['pgp_key_public', 'pgp_key_fingerprint'] and getattr(old_obj, v.name) is None:
+                    setattr(new_obj, v.name, '')
 
-                elif v.name in ['pgp_key_expiration']:
-                    if getattr(old_obj, v.name) is None:
-                        setattr(new_obj, v.name, datetime_null())
-                        continue
+                elif v.name in ['pgp_key_expiration'] and getattr(old_obj, v.name) is None:
+                    setattr(new_obj, v.name, datetime_null())
 
                 elif v.name == 'language' and getattr(old_obj, v.name) not in enabled_languages:
                     # fix users that have configured a language that has never been there
                     setattr(new_obj, v.name, default_language)
-                    continue
 
-                setattr(new_obj, v.name, getattr(old_obj, v.name))
+                else:
+                    setattr(new_obj, v.name, getattr(old_obj, v.name))
 
             self.store_new.add(new_obj)
 

@@ -233,25 +233,18 @@ class MigrationScript(MigrationBase):
                 new_node.css_id = new_file.id
 
                 os.remove(css_path)
-
             elif v.name == 'basic_auth':
                 new_node.basic_auth = False
-
             elif v.name == 'basic_auth_username':
                 new_node.basic_auth_username = u''
-
             elif v.name == 'basic_auth_password':
                 new_node.basic_auth_password = u''
-
             elif v.name == 'contexts_clarification':
                 new_node.contexts_clarification = old_node.context_selector_label
-
             elif v.name == 'context_selector_type':
                 new_node.context_selector_type = u'list'
-
             elif v.name == 'show_small_context_cards':
                 new_node.show_small_context_cards = False
-
             else:
                 setattr(new_node, v.name, getattr(old_node, v.name))
 
@@ -282,9 +275,7 @@ class MigrationScript(MigrationBase):
 
                     self.store_new.add(picture)
                     new_obj.picture_id = picture.id
-
                     os.remove(img_path)
-
                     continue
 
                 setattr(new_obj, v.name, getattr(old_obj, v.name))
@@ -298,12 +289,10 @@ class MigrationScript(MigrationBase):
             for _, v in new_obj._storm_columns.items():
                 if v.name == 'img_id':
                     continue
-
-                if v.name == 'show_small_receiver_cards':
+                elif v.name == 'show_small_receiver_cards':
                     new_obj.show_small_receiver_cards = old_obj.show_small_cards
-                    continue
-
-                setattr(new_obj, v.name, getattr(old_obj, v.name))
+                else:
+                    setattr(new_obj, v.name, getattr(old_obj, v.name))
 
             self.store_new.add(new_obj)
 
@@ -315,9 +304,8 @@ class MigrationScript(MigrationBase):
             for _, v in new_obj._storm_columns.items():
                 if v.name == 'enable_notifications':
                     new_obj.enable_notifications = True
-                    continue
-
-                setattr(new_obj, v.name, getattr(old_obj, v.name))
+                else:
+                    setattr(new_obj, v.name, getattr(old_obj, v.name))
 
             self.store_new.add(new_obj)
 

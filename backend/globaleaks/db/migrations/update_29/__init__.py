@@ -102,9 +102,8 @@ class MigrationScript(MigrationBase):
         for _, v in new_node._storm_columns.items():
             if v.name == 'disable_submissions':
                 new_node.disable_submissions = False
-                continue
-
-            setattr(new_node, v.name, getattr(old_node, v.name))
+            else:
+                setattr(new_node, v.name, getattr(old_node, v.name))
 
         self.store_new.add(new_node)
 
@@ -116,12 +115,9 @@ class MigrationScript(MigrationBase):
             for _, v in new_obj._storm_columns.items():
                 if v.name == 'show_steps_navigation_bar':
                     new_obj.show_steps_navigation_bar = True
-                    continue
-
-                if v.name == 'steps_navigation_requires_completion':
+                elif v.name == 'steps_navigation_requires_completion':
                     new_obj.steps_navigation_requires_completion = False
-                    continue
-
-                setattr(new_obj, v.name, getattr(old_obj, v.name))
+                else:
+                    setattr(new_obj, v.name, getattr(old_obj, v.name))
 
             self.store_new.add(new_obj)
