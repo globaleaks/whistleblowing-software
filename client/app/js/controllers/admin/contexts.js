@@ -27,8 +27,13 @@ controller('AdminContextEditorCtrl', ['$scope', 'Utils', 'AdminStepResource', 'A
     $scope.editing = !$scope.editing;
   };
 
-  $scope.isSelected = function (receiver) {
-    return $scope.context.receivers.indexOf(receiver.id) !== -1;
+  $scope.potential_receivers = $scope.admin.receivers.filter(function(rec) {
+    return $scope.context.receivers.indexOf(rec.id) < 0;
+  });
+
+  $scope.showSelect = false;
+  $scope.toggleSelect = function() {
+    $scope.showSelect = true;
   };
 
   $scope.toggle = function(receiver) {
@@ -60,6 +65,28 @@ controller('AdminContextEditorCtrl', ['$scope', 'Utils', 'AdminStepResource', 'A
     Utils.deleteDialog($scope.context).then(function() {
       return Utils.deleteResource(AdminContextResource, $scope.admin.contexts, $scope.context);
     });
+  };
+}]).
+controller('AdminContextReceiverSelectorCtrl', ['$scope', function($scope) {
+  var i = $scope.admin.receivers.map(function(r) {
+    return r.id;
+  }).indexOf($scope.rec_id);
+  $scope.receiver = $scope.admin.receivers[i];
+
+  $scope.swap = function(index, n) {
+    var target = index + n;
+    if (target !== $scope.context.receivers.length && target !== -1) {
+      $scope.context.receivers[index] = $scope.context.receivers[target];
+      $scope.context.receivers[target] = $scope.rec_id;
+    }
+  };
+
+  $scope.removeElem = function(i) {
+    $scope.context.receivers.splice(i, 1);
+    var j = $scope.admin.receivers.map(function(r) {
+      return r.id;
+    }).indexOf($scope.rec_id);
+    $scope.potential_receivers.push($scope.admin.receivers[j]);
   };
 }]).
 controller('AdminContextAddCtrl', ['$scope', function($scope) {
