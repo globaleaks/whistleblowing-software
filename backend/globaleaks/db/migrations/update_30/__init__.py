@@ -220,9 +220,8 @@ class MigrationScript(MigrationBase):
                     for _, v in new_step._storm_columns.items():
                         if v.name == 'questionnaire_id':
                             new_step.questionnaire_id = new_questionnaire.id
-                            continue
-
-                        setattr(new_step, v.name, getattr(old_step, v.name))
+                        else:
+                            setattr(new_step, v.name, getattr(old_step, v.name))
 
                     self.store_new.add(new_step)
 
@@ -230,11 +229,9 @@ class MigrationScript(MigrationBase):
             for _, v in new_context._storm_columns.items():
                 if v.name == 'status_page_message':
                     new_context.status_page_message = ''
-
                 elif v.name == 'questionnaire_id':
                     if new_questionnaire_id is not None:
                         new_context.questionnaire_id = new_questionnaire_id
-
                 else:
                     setattr(new_context, v.name, getattr(old_context, v.name))
 

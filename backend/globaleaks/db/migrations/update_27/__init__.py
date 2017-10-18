@@ -163,9 +163,8 @@ class MigrationScript(MigrationBase):
         for _, v in new_node._storm_columns.items():
             if v.name == 'enable_experimental_features':
                 new_node.enable_experimental_features = False
-                continue
-
-            setattr(new_node, v.name, getattr(old_node, v.name))
+            else:
+                setattr(new_node, v.name, getattr(old_node, v.name))
 
         self.store_new.add(new_node)
 
@@ -176,12 +175,9 @@ class MigrationScript(MigrationBase):
             for _, v in new_obj._storm_columns.items():
                 if v.name == 'show_recipients_details':
                     new_obj.show_recipients_details = old_obj.show_receivers
-                    continue
-
-                if v.name == 'allow_recipients_selection':
+                elif v.name == 'allow_recipients_selection':
                     new_obj.allow_recipients_selection = old_obj.show_receivers
-                    continue
-
-                setattr(new_obj, v.name, getattr(old_obj, v.name))
+                else:
+                    setattr(new_obj, v.name, getattr(old_obj, v.name))
 
             self.store_new.add(new_obj)
