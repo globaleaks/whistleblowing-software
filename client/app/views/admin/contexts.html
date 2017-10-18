@@ -86,22 +86,44 @@
                     <select class="form-control" data-ng-model="context.questionnaire_id" data-ng-options="item.id as item.name for item in admin.questionnaires"></select>
                   </div>
                   <div class="form-group">
-                    <label data-translate>Recipients</label>
-                    <div class="selectionList">
-                      <div data-ng-repeat="receiver in admin.receivers">
-                        <div class="row" data-ng-click="toggle(receiver)">
-                          <span class="col-md-1">
-                            <span data-ng-show="isSelected(receiver)">
-                              <i class="glyphicon glyphicon-check"></i>
-                            </span>
-                            <span data-ng-show="!isSelected(receiver)">
-                              <i class="glyphicon glyphicon-unchecked"></i>
-                            </span>
-                          </span>
-                          <span class="col-md-10">{{receiver.name}}</span>
-                        </div>
+                    <label>
+                      <span data-translate>Recipients</span>
+                      <button class="btn btn-xs btn-primary" data-ng-click="toggleSelect()">
+                        <i class="glyphicon glyphicon-plus"></i>
+                        <span data-translate>Add</span>
+                      </button>
+                    </label>
+                    <div id="ReceiverContextAdder" class="row">
+                      <div class="col-md-12" data-ng-if="showSelect">
+                        <ui-select data-ng-model="selected.value" data-theme="bootstrap" data-on-select='moveReceiver($item.id)'>
+                          <ui-select-match data-ng-attr-placeholder="{{'Type to search…' | translate}}">
+                            <span data-ng-bind="$select.selected.name"></span>
+                          </ui-select-match>
+                          <ui-select-choices data-repeat="receiver in potential_receivers | filter: {name: $select.search} track by receiver.id">
+                            <span data-ng-bind-html="receiver.name | highlight: $select.search"></span>
+                          </ui-select-choices>
+                        </ui-select>
+                        <br/>
                       </div>
                     </div>
+                    <ol class="selectionList">
+                      <li data-ng-repeat="rec_id in context.receivers">
+                        <span data-ng-controller="AdminContextReceiverSelectorCtrl">
+                          <span class="action-btns">
+                            <span data-ng-disabled="$first" data-ng-click="swap($index, -1)" uib-popover="{{'Move up' | translate}}" popover-trigger="'mouseenter'">
+                              <i class="glyphicon glyphicon-menu-up" data-ng-class="{'glyph-hide': $first}"></i>
+                            </span>
+                            <span data-ng-disabled="$last" data-ng-click="swap($index, 1)" uib-popover="{{'Move down' | translate}}" popover-trigger="'mouseenter'">
+                              <i class="glyphicon glyphicon-menu-down" data-ng-class="{'glyph-hide': $last}"></i>
+                            </span>
+                            <span data-ng-click="removeElem($index)" uib-popover="{{'Remove' | translate}}" popover-trigger="'mouseenter'">
+                              <i class="glyphicon glyphicon-remove"></i>
+                            </span>
+                          </span>
+                          <span>{{receiver.name}}</span>
+                        </span>
+                      </li>
+                    </ol>
                   </div>
                 </div>
               </div>

@@ -60,12 +60,9 @@
 
 .selectionList {
   background-color: #fff;
-  padding: 1em;
+  padding-top: 1em;
+  padding-bottom: 1em;
   border: 1px solid #cccccc;
-}
-
-.selectionList .row {
-  margin-left: 0;
 }
 
 .selectionContextItem .checkbox {
