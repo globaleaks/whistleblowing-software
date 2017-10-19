@@ -39,7 +39,7 @@
     </span>
   </div>
   <div class="row">
-    <div data-ng-repeat="step in questionnaire.steps | orderBy:'presentation_order'">
+    <div data-ng-repeat="step in questionnaire.steps">
       <div class="col-md-12"
            data-ng-controller="AdminStepEditorCtrl">
         <div class="configItem">
@@ -50,6 +50,12 @@
             </span>
             <span class="col-md-5">
               <span class="pull-right">
+                <button data-ng-show="!$first" class="actionButton btn btn-xs btn-primary" data-ng-click="moveUp($event, $index)" uib-popover="{{'Move up' | translate}}" popover-placement="left">
+                  <i class="glyphicon glyphicon-menu-up"></i>
+                </button>
+                <button data-ng-show="!$last" class="actionButton btn btn-xs btn-primary" data-ng-click="moveDown($event, $index)" uib-popover="{{'Move down' | translate}}" popover-placement="left">
+                  <i class="glyphicon glyphicon-menu-down"></i>
+                </button>
                 <button
                   class="btn btn-xs btn-default"
                   data-ng-show="!editing"
@@ -75,14 +81,6 @@
                   popover-placement="right">
                   <span data-translate>Delete</span>
                 </button>
-                <span data-ng-if="questionnaire.steps.length > 1">
-                  <button class="btn btn-xs btn-primary" data-ng-click="moveUpAndSave(step); $event.stopPropagation();" uib-popover="{{'Move up' | translate}}" popover-placement="left">
-                    <i class="glyphicon glyphicon-menu-up"></i>
-                  </button>
-                  <button class="btn btn-xs btn-primary" data-ng-click="moveDownAndSave(step); $event.stopPropagation();" uib-popover="{{'Move down' | translate}}" popover-placement="left">
-                    <i class="glyphicon glyphicon-menu-down"></i>
-                  </button>
-                </span>
               </span>
             </span>
           </div>

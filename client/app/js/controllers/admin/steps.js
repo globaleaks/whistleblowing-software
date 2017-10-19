@@ -64,14 +64,32 @@ controller('AdminStepEditorCtrl', ['$scope', 'Utils', 'AdminStepResource', 'Admi
       });
     };
 
-    $scope.moveUpAndSave = function(elem) {
-      Utils.moveUp(elem);
-      $scope.save_step(elem);
-    };
+    $scope.moveUp = function(e, idx) { swap(e, idx, -1); };
+    $scope.moveDown = function(e, idx) { swap(e, idx, 1); };
 
-    $scope.moveDownAndSave = function(elem) {
-      Utils.moveDown(elem);
-      $scope.save_step(elem);
-    };
+    function swap($event, index, n) {
+      $event.stopPropagation();
+
+      var target = index + n;
+      if (target < 0 || target >= $scope.questionnaire.steps.length) {
+        return;
+      }
+
+      var a = $scope.questionnaire.steps[target];
+      var b = $scope.questionnaire.steps[index];
+      $scope.questionnaire.steps[target] = b;
+      $scope.questionnaire.steps[index] = a;
+
+      $http({
+        method: 'PUT',
+        url: '/admin/step/' + $scope.step.id,
+        data: {
+          'operation': 'order_elements',
+          'args': {'ids': $scope.questionnaire.steps.map(function(s) { return s.id; })},
+        },
+      }).then(function() {
+        $rootScope.successes.push({});
+      });
+    }
   }
 ]);
