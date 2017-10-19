@@ -33,8 +33,8 @@ controller('AdminContextEditorCtrl', ['$scope', '$http', 'Utils', 'AdminContextR
     $event.stopPropagation();
 
     var target = index + n;
-    if (target < -1 && target > $scope.admin.contexts.length) {
-      return
+    if (target < 0 || target >= $scope.admin.contexts.length) {
+      return;
     }
 
     $scope.admin.contexts[index] = $scope.admin.contexts[target];
