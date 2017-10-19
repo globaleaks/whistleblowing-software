@@ -23,6 +23,8 @@ FAILURES_NET_OUTGOING = (
 
 
 FAILURES_TOR_OUTGOING = (
+    ResponseNeverReceived,
+    ResponseFailed,
     TTLExpired,
     RuntimeError,
     ConnectionRefused,
