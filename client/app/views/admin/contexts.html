@@ -110,13 +110,13 @@
                       <li data-ng-repeat="receiver in selected_receivers">
                         <span data-ng-controller="AdminContextReceiverSelectorCtrl">
                           <span class="action-btns">
-                            <span data-ng-disabled="$first" data-ng-click="moveUp($index)" uib-popover="{{'Move up' | translate}}" popover-trigger="'mouseenter'">
+                            <span data-ng-disabled="$first" data-ng-click="moveUp($index)" uib-popover="{{'Move up' | translate}}">
                               <i class="glyphicon glyphicon-menu-up" data-ng-class="{'glyph-hide': $first}"></i>
                             </span>
-                            <span data-ng-disabled="$last" data-ng-click="moveDown($index)" uib-popover="{{'Move down' | translate}}" popover-trigger="'mouseenter'">
+                            <span data-ng-disabled="$last" data-ng-click="moveDown($index)" uib-popover="{{'Move down' | translate}}">
                               <i class="glyphicon glyphicon-menu-down" data-ng-class="{'glyph-hide': $last}"></i>
                             </span>
-                            <span data-ng-click="removeElem(receiver, $index)" uib-popover="{{'Remove' | translate}}" popover-trigger="'mouseenter'">
+                            <span data-ng-click="removeElem(receiver, $index)" uib-popover="{{'Remove' | translate}}">
                               <i class="glyphicon glyphicon-remove"></i>
                             </span>
                           </span>
