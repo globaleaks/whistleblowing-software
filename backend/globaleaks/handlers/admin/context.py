@@ -6,9 +6,9 @@
 #
 from globaleaks import models
 from globaleaks.handlers.admin.modelimgs import db_get_model_img
-from globaleaks.handlers.base import BaseHandler
+from globaleaks.handlers.base import BaseHandler, OperationHandler
 from globaleaks.orm import transact
-from globaleaks.rest import requests
+from globaleaks.rest import requests, errors
 from globaleaks.state import State
 from globaleaks.utils.structures import fill_localized_keys, get_localized_values
 from globaleaks.utils.utility import log
@@ -59,8 +59,9 @@ def get_context_list(store, language):
     :param language: the language in which to localize data.
     :return: a dictionary representing the serialization of the contexts.
     """
-    return [admin_serialize_context(store, context, language)
-        for context in store.find(models.Context)]
+    return sorted([admin_serialize_context(store, context, language)
+                      for context in store.find(models.Context)],
+                  key=lambda x: x['presentation_order'])
 
 
 def db_associate_context_receivers(store, context, receivers_ids):
@@ -160,7 +161,7 @@ def update_context(store, context_id, request, language):
     return admin_serialize_context(store, context, language)
 
 
-class ContextsCollection(BaseHandler):
+class ContextsCollection(OperationHandler):
     check_roles = 'admin'
     cache_resource = True
     invalidate_cache = True
@@ -185,6 +186,24 @@ class ContextsCollection(BaseHandler):
                                         requests.AdminContextDesc)
 
         return create_context(request, self.request.language)
+
+    def operation_descriptors(self):
+        return {
+            'order_elements': (ContextsCollection.order_elements, {'ids': [unicode]}),
+        }
+
+    @transact
+    def order_elements(store, self, req_args, *args, **kwargs):
+        ctxs = store.find(models.Context)
+
+        id_dict = { ctx.id: ctx for ctx in ctxs }
+        ids = req_args['ids']
+
+        if len(ids) != len(id_dict) or set(ids) != set(id_dict):
+            raise errors.InvalidInputFormat('list does not contain all context ids')
+
+        for i, ctx_id in enumerate(ids):
+            id_dict[ctx_id].presentation_order = i
 
 
 class ContextInstance(BaseHandler):
