@@ -93,7 +93,7 @@ CREATE TABLE comment (
     tid INTEGER NOT NULL DEFAULT 1,
     id TEXT NOT NULL,
     creation_date TEXT NOT NULL,
-    author_id TEXT NOT NULL,
+    author_id TEXT,
     internaltip_id TEXT NOT NULL,
     type TEXT NOT NULL CHECK (type IN ('receiver', 'whistleblower')),
     content TEXT NOT NULL,
@@ -101,6 +101,7 @@ CREATE TABLE comment (
     UNIQUE(id),
     FOREIGN KEY (tid) REFERENCES tenant(id) ON DELETE CASCADE,
     FOREIGN KEY (tid, internaltip_id) REFERENCES internaltip(tid, id) ON DELETE CASCADE,
+    FOREIGN KEY (author_id) REFERENCES user(id) ON DELETE SET NULL,
     PRIMARY KEY (tid, id)
 );
 
@@ -263,7 +264,6 @@ CREATE TABLE receiver (
     can_postpone_expiration INTEGER NOT NULL,
     can_grant_permissions INTEGER NOT NULL,
     tip_notification INTEGER NOT NULL,
-    presentation_order INTEGER,
     UNIQUE(id),
     FOREIGN KEY (tid) REFERENCES tenant(id) ON DELETE CASCADE,
     FOREIGN KEY (tid, id) REFERENCES user(tid, id) ON DELETE CASCADE,
@@ -274,6 +274,8 @@ CREATE TABLE receiver_context (
     tid INTEGER NOT NULL DEFAULT 1,
     context_id TEXT NOT NULL,
     receiver_id TEXT NOT NULL,
+    presentation_order INTEGER NOT NULL,
+    UNIQUE (tid, context_id, presentation_order),
     FOREIGN KEY (tid) REFERENCES tenant(id) ON DELETE CASCADE,
     FOREIGN KEY (tid, context_id) REFERENCES context(tid, id) ON DELETE CASCADE,
     FOREIGN KEY (tid, receiver_id) REFERENCES receiver(tid, id) ON DELETE CASCADE,
@@ -478,11 +480,9 @@ CREATE TABLE archivedschema (
 );
 
 CREATE TABLE securefiledelete (
-    tid INTEGER NOT NULL DEFAULT 1,
     id TEXT NOT NULL,
     filepath TEXT NOT NULL,
-    UNIQUE(id),
-    PRIMARY KEY (tid, id)
+    PRIMARY KEY (id)
 );
 
 CREATE TABLE counter (

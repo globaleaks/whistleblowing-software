@@ -457,7 +457,7 @@ class Comment(ModelWithTIDandID):
 
     internaltip_id = Unicode()
 
-    author_id = Unicode(default=u'')
+    author_id = Unicode()
     content = Unicode(validator=longtext_v)
 
     type = Unicode()
@@ -511,11 +511,7 @@ class Receiver(ModelWithTIDandID):
 
     tip_notification = Bool(default=True)
 
-    presentation_order = Int(default=0)
-
     unicode_keys = ['configuration']
-
-    int_keys = ['presentation_order']
 
     bool_keys = [
         'can_delete_submission',
@@ -675,13 +671,13 @@ class Stats(ModelWithTIDandID):
     free_disk_space = Int()
 
 
-class Anomalies(ModelWithTIDandID):
+class Anomalies(ModelWithID):
     date = DateTime()
     alarm = Int()
     events = JSON()
 
 
-class SecureFileDelete(ModelWithTIDandID):
+class SecureFileDelete(ModelWithID):
     filepath = Unicode()
 
 
@@ -694,9 +690,11 @@ class ReceiverContext(ModelWithTID):
     __storm_primary__ = 'tid', 'context_id', 'receiver_id'
 
     unicode_keys = ['context_id', 'receiver_id']
+    int_keys = ['presentation_order']
 
     context_id = Unicode()
     receiver_id = Unicode()
+    presentation_order = Int(default=0)
 
 
 class Counter(ModelWithTID):

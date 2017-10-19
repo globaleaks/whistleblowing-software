@@ -139,16 +139,14 @@ class MigrationScript(MigrationBase):
 
             for _, v in new_obj._storm_columns.items():
                 if v.name == 'id':
-                    if getattr(old_obj, v.name) == old_node.logo_id:
+                    if old_obj.id == old_node.logo_id:
                         new_obj.id = 'logo'
-                    elif getattr(old_obj, v.name) == old_node.css_id:
+                    elif old_obj.id == old_node.css_id:
                         new_obj.id = 'css'
                     else:
                         new_obj.id = old_obj.id
-
-                    continue
-
-                setattr(new_obj, v.name, getattr(old_obj, v.name))
+                else:
+                    setattr(new_obj, v.name, getattr(old_obj, v.name))
 
             self.store_new.add(new_obj)
 
@@ -171,9 +169,8 @@ class MigrationScript(MigrationBase):
                         if old_user is not None:
                             new_obj.author_id = old_user.id
 
-                    continue
-
-                setattr(new_obj, v.name, getattr(old_obj, v.name))
+                else:
+                    setattr(new_obj, v.name, getattr(old_obj, v.name))
 
             self.store_new.add(new_obj)
 
@@ -184,8 +181,7 @@ class MigrationScript(MigrationBase):
             for _, v in new_obj._storm_columns.items():
                 if v.name == 'public_name':
                     new_obj.public_name = old_obj.name
-                    continue
-
-                setattr(new_obj, v.name, getattr(old_obj, v.name))
+                else:
+                    setattr(new_obj, v.name, getattr(old_obj, v.name))
 
             self.store_new.add(new_obj)

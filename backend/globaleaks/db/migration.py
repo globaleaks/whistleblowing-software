@@ -22,52 +22,65 @@ from globaleaks.db.migrations.update_33 import Node_v_32, WhistleblowerTip_v_32,
 from globaleaks.db.migrations.update_34 import Node_v_33, Notification_v_33
 from globaleaks.db.migrations.update_35 import Context_v_34, InternalTip_v_34, WhistleblowerTip_v_34
 from globaleaks.db.migrations.update_38 import Field_v_37, Questionnaire_v_37
+from globaleaks.db.migrations.update_39 import \
+    ArchivedSchema_v_38, Comment_v_38, Config_v_38, ConfigL10N_v_38, \
+    Context_v_38, Counter_v_38, CustomTexts_v_38, EnabledLanguage_v_38, \
+    Field_v_38, FieldAnswer_v_38, FieldAnswerGroup_v_38, FieldAttr_v_38, \
+    FieldOption_v_38, File_v_38, IdentityAccessRequest_v_38, \
+    InternalFile_v_38, InternalTip_v_38, Mail_v_38, Message_v_38, \
+    Questionnaire_v_38, Receiver_v_38, ReceiverContext_v_38, \
+    ReceiverFile_v_38, ReceiverTip_v_38, ShortURL_v_38, Stats_v_38, \
+    Step_v_38, User_v_38, WhistleblowerFile_v_38, WhistleblowerTip_v_38
 from globaleaks.models import config, l10n
 from globaleaks.models.config import PrivateFactory
 from globaleaks.settings import Settings
 from globaleaks.utils.utility import log
 
+
 XTIDX = 1
 
 
 migration_mapping = OrderedDict([
-    ('Anomalies', [-1, -1, -1, -1, -1, -1, models.Anomalies, 0, 0, 0, 0, 0, 0, 0, 0]),
-    ('ArchivedSchema', [models.ArchivedSchema, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
-    ('Comment', [Comment_v_31, 0, 0, 0, 0, 0, 0, 0, models.Comment, 0, 0, 0, 0, 0, 0]),
-    ('Config', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, config.Config, 0, 0, 0, 0]),
-    ('ConfigL10N', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, l10n.ConfigL10N, 0, 0, 0, 0]),
-    ('Context', [Context_v_26, 0, 0, Context_v_28, 0, Context_v_29, Context_v_30, Context_v_34, 0, 0, 0, models.Context, 0, 0, 0]),
-    ('Counter', [models.Counter, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
-    ('CustomTexts', [-1, -1, -1, -1, -1, -1, -1, -1, models.CustomTexts, 0, 0, 0, 0, 0, 0]),
-    ('EnabledLanguage', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, l10n.EnabledLanguage, 0, 0, 0, 0]),
-    ('Field', [Field_v_27, 0, 0, 0, Field_v_37, 0, 0, 0, 0, 0, 0, 0, 0, 0, models.Field]),
-    ('FieldAnswer', [FieldAnswer_v_29, 0, 0, 0, 0, 0, models.FieldAnswer, 0, 0, 0, 0, 0, 0, 0, 0]),
-    ('FieldAnswerGroup', [FieldAnswerGroup_v_29, 0, 0, 0, 0, 0, models.FieldAnswerGroup, 0, 0, 0, 0, 0, 0, 0, 0]),
-    ('FieldAnswerGroupFieldAnswer', [FieldAnswerGroupFieldAnswer_v_29, 0, 0, 0, 0, 0, -1, -1, -1, -1, -1, -1, -1, -1, -1]),
-    ('FieldAttr', [models.FieldAttr, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
-    ('FieldField', [FieldField_v_27, 0, 0, 0, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1]),
-    ('FieldOption', [FieldOption_v_27, 0, 0, 0, models.FieldOption, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
-    ('File', [-1, -1, -1, -1, -1, -1, -1, models.File, 0, 0, 0, 0, 0, 0, 0]),
-    ('IdentityAccessRequest', [models.IdentityAccessRequest, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
-    ('InternalFile', [InternalFile_v_25, 0, models.InternalFile, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
-    ('InternalTip', [InternalTip_v_32, 0, 0, 0, 0, 0, 0, 0, 0, InternalTip_v_34, 0, models.InternalTip, 0, 0, 0]),
-    ('Mail', [-1, -1, models.Mail, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
-    ('Message', [Message_v_31, 0, 0, 0, 0, 0, 0, 0, models.Message, 0, 0, 0, 0, 0, 0]),
-    ('Node', [Node_v_26, 0, 0, Node_v_28, 0, Node_v_29, Node_v_30, Node_v_31, Node_v_32, Node_v_33, -1, -1, -1, -1, -1]),
-    ('Notification', [Notification_v_26, 0, 0, Notification_v_30, 0, 0, 0, Notification_v_33, 0, 0, -1, -1, -1, -1, -1]),
-    ('Questionnaire', [-1, -1, -1, -1, -1, -1, Questionnaire_v_37, 0, 0, 0, 0, 0, 0, 0, models.Questionnaire]),
-    ('Receiver', [models.Receiver, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
-    ('ReceiverContext', [models.ReceiverContext, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
-    ('ReceiverFile', [models.ReceiverFile, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
-    ('ReceiverTip', [ReceiverTip_v_30, 0, 0, 0, 0, 0, 0, models.ReceiverTip, 0, 0, 0, 0, 0, 0, 0]),
-    ('SecureFileDelete', [models.SecureFileDelete, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
-    ('ShortURL', [-1, -1, models.ShortURL, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
-    ('Step', [Step_v_27, 0, 0, 0, Step_v_29, 0, models.Step, 0, 0, 0, 0, 0, 0, 0, 0]),
-    ('StepField', [StepField_v_27, 0, 0, 0, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1]),
-    ('Stats', [models.Stats, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
-    ('User', [User_v_24, User_v_30, 0, 0, 0, 0, 0, User_v_31, User_v_32, models.User, 0, 0, 0, 0, 0]),
-    ('WhistleblowerFile', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, models.WhistleblowerFile, 0, 0, 0]),
-    ('WhistleblowerTip', [WhistleblowerTip_v_32, 0, 0, 0, 0, 0, 0, 0, 0, WhistleblowerTip_v_34, 0, models.WhistleblowerTip, 0, 0, 0])
+    ('Anomalies', [-1, -1, -1, -1, -1, -1, models.Anomalies, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
+    ('ArchivedSchema', [ArchivedSchema_v_38, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, models.ArchivedSchema]),
+    ('Comment', [Comment_v_31, 0, 0, 0, 0, 0, 0, 0, Comment_v_38, 0, 0, 0, 0, 0, 0, models.Comment]),
+    ('Config', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, Config_v_38, 0, 0, 0, 0, config.Config]),
+    ('ConfigL10N', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, ConfigL10N_v_38, 0, 0, 0, 0, l10n.ConfigL10N]),
+    ('Context', [Context_v_26, 0, 0, Context_v_28, 0, Context_v_29, Context_v_30, Context_v_34, 0, 0, 0, Context_v_38, 0, 0, 0, models.Context]),
+    ('ContextImg', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, models.ContextImg]),
+    ('Counter', [Counter_v_38, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, models.Counter]),
+    ('CustomTexts', [-1, -1, -1, -1, -1, -1, -1, -1, CustomTexts_v_38, 0, 0, 0, 0, 0, 0, models.CustomTexts]),
+    ('EnabledLanguage', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, EnabledLanguage_v_38, 0, 0, 0, 0, l10n.EnabledLanguage]),
+    ('Field', [Field_v_27, 0, 0, 0, Field_v_37, 0, 0, 0, 0, 0, 0, 0, 0, 0, Field_v_38, models.Field]),
+    ('FieldAnswer', [FieldAnswer_v_29, 0, 0, 0, 0, 0, FieldAnswer_v_38, 0, 0, 0, 0, 0, 0, 0, 0, models.FieldAnswer]),
+    ('FieldAnswerGroup', [FieldAnswerGroup_v_29, 0, 0, 0, 0, 0, FieldAnswerGroup_v_38, 0, 0, 0, 0, 0, 0, 0, 0, models.FieldAnswerGroup]),
+    ('FieldAnswerGroupFieldAnswer', [FieldAnswerGroupFieldAnswer_v_29, 0, 0, 0, 0, 0, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1]),
+    ('FieldAttr', [FieldAttr_v_38, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, models.FieldAttr]),
+    ('FieldField', [FieldField_v_27, 0, 0, 0, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1]),
+    ('FieldOption', [FieldOption_v_27, 0, 0, 0, FieldOption_v_38, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, models.FieldOption]),
+    ('File', [-1, -1, -1, -1, -1, -1, -1, File_v_38, 0, 0, 0, 0, 0, 0, 0, models.File]),
+    ('IdentityAccessRequest', [IdentityAccessRequest_v_38, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, models.IdentityAccessRequest]),
+    ('InternalFile', [InternalFile_v_25, 0, InternalFile_v_38, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, models.InternalFile]),
+    ('InternalTip', [InternalTip_v_32, 0, 0, 0, 0, 0, 0, 0, 0, InternalTip_v_34, 0, InternalTip_v_38, 0, 0, 0, models.InternalTip]),
+    ('Mail', [-1, -1, Mail_v_38, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, models.Mail]),
+    ('Message', [Message_v_31, 0, 0, 0, 0, 0, 0, 0, Message_v_38, 0, 0, 0, 0, 0, 0, models.Message]),
+    ('Node', [Node_v_26, 0, 0, Node_v_28, 0, Node_v_29, Node_v_30, Node_v_31, Node_v_32, Node_v_33, -1, -1, -1, -1, -1, -1]),
+    ('Notification', [Notification_v_26, 0, 0, Notification_v_30, 0, 0, 0, Notification_v_33, 0, 0, -1, -1, -1, -1, -1, -1]),
+    ('Questionnaire', [-1, -1, -1, -1, -1, -1, Questionnaire_v_37, 0, 0, 0, 0, 0, 0, 0, Questionnaire_v_38, models.Questionnaire]),
+    ('Receiver', [Receiver_v_38, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, models.Receiver]),
+    ('ReceiverContext', [ReceiverContext_v_38, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, models.ReceiverContext]),
+    ('ReceiverFile', [ReceiverFile_v_38, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, models.ReceiverFile]),
+    ('ReceiverTip', [ReceiverTip_v_30, 0, 0, 0, 0, 0, 0, ReceiverTip_v_38, 0, 0, 0, 0, 0, 0, 0, models.ReceiverTip]),
+    ('SecureFileDelete', [models.SecureFileDelete, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
+    ('ShortURL', [-1, -1, ShortURL_v_38, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, models.ShortURL]),
+    ('Stats', [Stats_v_38, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, models.Stats]),
+    ('Step', [Step_v_27, 0, 0, 0, Step_v_29, 0, Step_v_38, 0, 0, 0, 0, 0, 0, 0, 0, models.Step]),
+    ('StepField', [StepField_v_27, 0, 0, 0, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1]),
+    ('Tenant', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, models.Tenant]),
+    ('User', [User_v_24, User_v_30, 0, 0, 0, 0, 0, User_v_31, User_v_32, User_v_38, 0, 0, 0, 0, 0, models.User]),
+    ('UserImg', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, models.UserImg]),
+    ('WhistleblowerFile', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, WhistleblowerFile_v_38, 0, 0, 0, models.WhistleblowerFile]),
+    ('WhistleblowerTip', [WhistleblowerTip_v_32, 0, 0, 0, 0, 0, 0, 0, 0, WhistleblowerTip_v_34, 0, WhistleblowerTip_v_38, 0, 0, 0, models.WhistleblowerTip])
 ])
 
 
@@ -83,6 +96,7 @@ def db_perform_data_update(store):
 
             # The below commands can change the current store based on the what is
             # currently stored in the DB.
+
             appdata = load_appdata()
             db_update_defaults(store, tid)
             l10n.update_defaults(store, tid, appdata)
@@ -217,7 +231,7 @@ def perform_schema_migration(version):
 
         perform_data_update(new_db_file)
 
-    except Exception:
+    except:
         raise
 
     else:

@@ -226,7 +226,7 @@ class NotificationL10NFactory(ConfigL10NFactory):
         self.update_defaults(langs, l10n_data_src, reset=True)
 
 
-def update_defaults(store, appdata):
-    langs = EnabledLanguage.list(store, XTIDX)
-    NodeL10NFactory(store).update_defaults(langs, appdata['node'])
-    NotificationL10NFactory(store).update_defaults(langs, appdata['templates'])
+def update_defaults(store, tid, appdata):
+    langs = EnabledLanguage.list(store, tid)
+    NodeL10NFactory(store, tid).update_defaults(langs, appdata['node'])
+    NotificationL10NFactory(store, tid).update_defaults(langs, appdata['templates'])

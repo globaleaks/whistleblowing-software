@@ -11,7 +11,7 @@ import re
 import shutil
 from storm.locals import create_database, Store
 
-from globaleaks import __version__, DATABASE_VERSION, FIRST_DATABASE_VERSION_SUPPORTED
+from globaleaks import __version__, DATABASE_VERSION, FIRST_DATABASE_VERSION_SUPPORTED, models
 from globaleaks.db import migration, update_db
 from globaleaks.db.migrations import update_37
 from globaleaks.db.migrations.update import MigrationBase
@@ -59,6 +59,44 @@ class TestMigrationRoutines(unittest.TestCase):
         shutil.rmtree(Settings.db_path)
         self.assertNotEqual(ret, -1)
 
+    def preconditions_30(self):
+        logo_path = os.path.join(Settings.static_path, 'logo.png')
+        css_path = os.path.join(Settings.static_path, 'custom_stylesheet.css')
+
+        shutil.copy(os.path.join(helpers.DATA_DIR, 'tor/private_key'), logo_path)
+        shutil.copy(os.path.join(helpers.DATA_DIR, 'tor/hostname'), css_path)
+
+    def postconditions_30(self):
+        new_uri = Settings.make_db_uri(os.path.join(Settings.db_path, Settings.db_file_name))
+        store = Store(create_database(new_uri))
+
+        store = Store(create_database(new_uri))
+        self.assertTrue(store.find(models.File, id=u'logo').count() == 1)
+        self.assertTrue(store.find(models.File, id=u'css').count() == 1)
+        store.close()
+
+    def preconditions_36(self):
+        update_37.TOR_DIR = Settings.db_path
+
+        pk_path = os.path.join(update_37.TOR_DIR, 'private_key')
+        hn_path = os.path.join(update_37.TOR_DIR, 'hostname')
+
+        shutil.copy(os.path.join(helpers.DATA_DIR, 'tor/private_key'), pk_path)
+        shutil.copy(os.path.join(helpers.DATA_DIR, 'tor/hostname'), hn_path)
+
+    def postconditions_36(self):
+        new_uri = Settings.make_db_uri(os.path.join(Settings.db_path, Settings.db_file_name))
+        store = Store(create_database(new_uri))
+        hs = store.find(config.Config, var_name=u'onionservice').one().value['v']
+        pk = store.find(config.Config, var_name=u'tor_onion_key').one().value['v']
+
+        self.assertEqual('lftx7dbyvlc5txtl.onion', hs)
+        with open(os.path.join(helpers.DATA_DIR, 'tor/ephemeral_service_key')) as f:
+            saved_key = f.read().strip()
+
+        self.assertEqual(saved_key, pk)
+        store.close()
+
     def test_assert_complete(self):
         """
         This test asserts that every table defined in the schema is migrated
@@ -78,44 +116,6 @@ class TestMigrationRoutines(unittest.TestCase):
 
         diff = db_table_names - mig_class_names
         self.assertTrue(len(diff) == 0)
-
-    def preconditions_34(self):
-        store = Store(create_database(self.start_db_uri))
-        notification_l10n = NotificationL10NFactory(store)
-        notification_l10n.set_val(u'export_template', u'it', 'unmodifiable')
-        x = notification_l10n.get_val(u'export_template', u'it')
-        self.assertTrue(x, 'unmodifiable')
-        store.commit()
-        store.close()
-
-    def postconditions_34(self):
-        store = Store(create_database(Settings.db_uri))
-        notification_l10n = NotificationL10NFactory(store)
-        x = notification_l10n.get_val(u'export_template', u'it')
-        self.assertNotEqual(x, 'unmodifiable')
-        store.commit()
-        store.close()
-
-    def preconditions_36(self):
-        update_37.TOR_DIR = Settings.db_path
-
-        pk_path = os.path.join(update_37.TOR_DIR, 'private_key')
-        hn_path = os.path.join(update_37.TOR_DIR, 'hostname')
-
-        shutil.copy(os.path.join(helpers.DATA_DIR, 'tor/private_key'), pk_path)
-        shutil.copy(os.path.join(helpers.DATA_DIR, 'tor/hostname'), hn_path)
-
-    def postconditions_36(self):
-        new_uri = Settings.make_db_uri(os.path.join(Settings.db_path, Settings.db_file_name))
-        store = Store(create_database(new_uri))
-        hs = config.NodeFactory(store, 1).get_val(u'onionservice')
-        pk = config.PrivateFactory(store, 1).get_val(u'tor_onion_key')
-
-        self.assertEqual('lftx7dbyvlc5txtl.onion', hs)
-        with open(os.path.join(helpers.DATA_DIR, 'tor/ephemeral_service_key')) as f:
-            saved_key = f.read().strip()
-        self.assertEqual(saved_key, pk)
-        store.close()
 
 
 def test(path, version):
@@ -144,7 +144,7 @@ class TestConfigUpdates(unittest.TestCase):
 
         # place a dummy version in the current db
         store = Store(create_database(Settings.db_uri))
-        prv = config.PrivateFactory(store)
+        prv = config.PrivateFactory(store, 1)
         self.dummy_ver = '2.XX.XX'
         prv.set_val(u'version', self.dummy_ver)
         self.assertEqual(prv.get_val(u'version'), self.dummy_ver)
@@ -172,17 +172,17 @@ class TestConfigUpdates(unittest.TestCase):
 
     def test_detect_and_fix_cfg_change(self):
         store = Store(create_database(Settings.db_uri))
-        ret = config.is_cfg_valid(store)
+        ret = config.is_cfg_valid(store, 1)
         self.assertFalse(ret)
         store.close()
 
         migration.perform_data_update(self.db_file)
 
         store = Store(create_database(Settings.db_uri))
-        prv = config.PrivateFactory(store)
+        prv = config.PrivateFactory(store, 1)
         self.assertEqual(prv.get_val(u'version'), __version__)
         self.assertEqual(prv.get_val(u'xx_smtp_password'), self.dp)
-        ret = config.is_cfg_valid(store)
+        ret = config.is_cfg_valid(store, 1)
         self.assertTrue(ret)
         store.close()
 
@@ -190,7 +190,7 @@ class TestConfigUpdates(unittest.TestCase):
         migration.perform_data_update(self.db_file)
 
         store = Store(create_database(Settings.db_uri))
-        prv = config.PrivateFactory(store)
+        prv = config.PrivateFactory(store, 1)
         self.assertEqual(prv.get_val(u'version'), __version__)
         store.close()
 
@@ -202,7 +202,7 @@ class TestConfigUpdates(unittest.TestCase):
 
         # Ensure the rollback has succeeded
         store = Store(create_database(Settings.db_uri))
-        prv = config.PrivateFactory(store)
+        prv = config.PrivateFactory(store, 1)
         self.assertEqual(prv.get_val(u'version'), self.dummy_ver)
         store.close()
 
@@ -213,23 +213,9 @@ class TestConfigUpdates(unittest.TestCase):
         self.assertRaises(IOError, migration.perform_data_update, self.db_file)
 
         store = Store(create_database(Settings.db_uri))
-        prv = config.PrivateFactory(store)
+        prv = config.PrivateFactory(store, 1)
         self.assertEqual(prv.get_val(u'version'), self.dummy_ver)
         store.close()
-
-    def test_trim_value_to_range(self):
-        store = Store(create_database(Settings.db_uri))
-
-        nf = config.NodeFactory(store, 1)
-        fake_cfg = nf.get_cfg(u'wbtip_timetolive')
-
-        self.assertRaises(errors.InvalidModelInput, fake_cfg.set_v, 3650)
-
-        fake_cfg.value = {'v': 3650}
-        store.commit()
-
-        MigrationBase.trim_value_to_range(nf, u'wbtip_timetolive')
-        self.assertEqual(nf.get_val(u'wbtip_timetolive'), 365*2)
 
 
 def apply_gen(f):

@@ -927,7 +927,6 @@ class MockDict:
             'can_postpone_expiration': True,
             'contexts': [],
             'tip_notification': True,
-            'presentation_order': 0,
             'configuration': 'default'
         })
 

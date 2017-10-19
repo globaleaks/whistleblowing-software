@@ -67,9 +67,12 @@ def get_context_list(store, language):
 def db_associate_context_receivers(store, context, receivers_ids):
     store.find(models.ReceiverContext, models.ReceiverContext.context_id == context.id).remove()
 
+    i = 0
     for receiver_id in receivers_ids:
         store.add(models.ReceiverContext({'context_id': context.id,
-                                          'receiver_id': receiver_id}))
+                                          'receiver_id': receiver_id,
+                                          'presentation_order': i}))
+        i += 1
 
 
 @transact

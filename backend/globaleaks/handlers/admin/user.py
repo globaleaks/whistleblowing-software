@@ -30,8 +30,7 @@ def admin_serialize_receiver(store, receiver, user, language):
         'can_grant_permissions': receiver.can_grant_permissions,
         'mail_address': user.mail_address,
         'configuration': receiver.configuration,
-        'tip_notification': receiver.tip_notification,
-        'presentation_order': receiver.presentation_order
+        'tip_notification': receiver.tip_notification
     })
 
     return get_localized_values(ret_dict, receiver, receiver.localized_keys, language)

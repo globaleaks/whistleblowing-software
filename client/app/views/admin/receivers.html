@@ -3,7 +3,7 @@
   <div class="col-md-9">
     <div class="adminConfigSection" data-ng-controller="AdminReceiversCtrl" data-ng-show="admin.receivers.length > 0">
       <div class="editorTitle" data-translate>Configured recipients:</div>
-      <div class="receiverList" data-ng-repeat="receiver in admin.receivers | orderBy:'presentation_order'">
+      <div class="receiverList" data-ng-repeat="receiver in admin.receivers">
         <form id="receiver-{{$index}}" name="editReceiver" data-ng-controller="AdminReceiverEditorCtrl" novalidate>
           <div class="configItem">
             <div class="editorHeader row" data-ng-click="toggleEditing(); $event.stopPropagation();">

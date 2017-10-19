@@ -378,7 +378,6 @@ AdminReceiverDesc = {
     'can_postpone_expiration': bool,
     'can_grant_permissions': bool,
     'tip_notification': bool,
-    'presentation_order': int,
     'configuration': unicode
 }
 
@@ -495,7 +494,6 @@ AnomalyCollectionDesc = [AnomalyDesc]
 ReceiverDesc = {
     'name': unicode,
     'description': unicode,
-    'presentation_order': int,
     'id': uuid_regexp,
     'state': user_states_regexp,
     'can_delete_submission': bool,
