@@ -20,14 +20,16 @@ GLClient.controller('AdminContextsCtrl',
 }]).
 controller('AdminContextEditorCtrl', ['$scope', '$http', 'Utils', 'AdminContextResource',
   function($scope, $http, Utils, AdminContextResource) {
-
   $scope.editing = false;
 
   $scope.toggleEditing = function () {
     $scope.editing = !$scope.editing;
   };
 
-  $scope.swap = function($event, index, n) {
+  $scope.moveUp = function(e, idx) { swap(e, idx, -1); };
+  $scope.moveDown = function(e, idx) { swap(e, idx, 1); };
+
+  function swap($event, index, n) {
     $event.stopPropagation();
 
     var target = index + n;
@@ -45,11 +47,18 @@ controller('AdminContextEditorCtrl', ['$scope', '$http', 'Utils', 'AdminContextR
         'operation': 'order_elements',
         'args': {'ids': $scope.admin.contexts.map(function(c) { return c.id; })},
       },
+    }).then(function() {
+      $rootScope.successes.push({});
     });
   };
 
+  function recAttachedToCtx(rec) {
+    return $scope.context.receivers.indexOf(rec.id) > -1;
+  }
+
+  $scope.selected_receivers = $scope.admin.receivers.filter(recAttachedToCtx);
   $scope.potential_receivers = $scope.admin.receivers.filter(function(rec) {
-    return $scope.context.receivers.indexOf(rec.id) < 0;
+    return !recAttachedToCtx(rec);
   });
 
   $scope.showSelect = false;
@@ -89,25 +98,27 @@ controller('AdminContextEditorCtrl', ['$scope', '$http', 'Utils', 'AdminContextR
   };
 }]).
 controller('AdminContextReceiverSelectorCtrl', ['$scope', function($scope) {
-  var i = $scope.admin.receivers.map(function(r) {
-    return r.id;
-  }).indexOf($scope.rec_id);
-  $scope.receiver = $scope.admin.receivers[i];
+  console.log('ctrl start: rec_id', $scope.receiver.id);
 
-  $scope.swap = function(index, n) {
+  $scope.moveUp = function(idx) { swap(idx, -1); };
+  $scope.moveDown = function(idx) { swap(idx, 1); };
+
+  swap = function(index, n) {
     var target = index + n;
-    if (target > -1 && target < $scope.context.receivers.length) {
-      $scope.context.receivers[index] = $scope.context.receivers[target];
-      $scope.context.receivers[target] = $scope.rec_id;
+    if (target > -1 && target < $scope.selected_receivers.length) {
+      var tmp = $scope.selected_receivers[target];
+      var tmpIdx = $scope.selected_receivers[index];
+      $scope.selected_receivers[target] = tmpIdx;
+      $scope.selected_receivers[index] = tmp;
+
+      $scope.context.receivers = $scope.selected_receivers.map(function(r) { return r.id; });
     }
   };
 
-  $scope.removeElem = function(i) {
-    $scope.context.receivers.splice(i, 1);
-    var j = $scope.admin.receivers.map(function(r) {
-      return r.id;
-    }).indexOf($scope.rec_id);
-    $scope.potential_receivers.push($scope.admin.receivers[j]);
+  $scope.removeElem = function(rec, i) {
+    $scope.selected_receivers.splice(i, 1);
+    $scope.potential_receivers.push(rec);
+    $scope.context.receivers = $scope.selected_receivers.map(function(r) { return r.id; });
   };
 }]).
 controller('AdminContextAddCtrl', ['$scope', function($scope) {
