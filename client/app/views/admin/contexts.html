@@ -30,11 +30,11 @@
               <span class="col-md-7 editorHeaderTitle">{{context.name}}</span>
               <span class="col-md-5">
                 <span class="pull-right">
-                  <span data-ng-if="!admin.node.show_contexts_in_alphabetical_order && admin.contexts.length > 1">
-                    <button data-ng-if="!$first" class="btn btn-xs btn-primary" data-ng-click="swap($event, $index, -1)" uib-popover="{{'Move up' | translate}}" popover-placement="left">
+                  <span data-ng-if="!admin.node.show_contexts_in_alphabetical_order">
+                    <button data-ng-if="!$first" class="btn btn-xs btn-primary" data-ng-click="moveUp($event, $index)" uib-popover="{{'Move up' | translate}}" popover-placement="left">
                       <i class="glyphicon glyphicon-menu-up"></i>
                     </button>
-                    <button data-ng-if="!$last" class="btn btn-xs btn-primary" data-ng-click="swap($event, $index, 1)" uib-popover="{{'Move down' | translate}}" popover-placement="left">
+                    <button data-ng-if="!$last" class="btn btn-xs btn-primary" data-ng-click="moveDown($event, $index)" uib-popover="{{'Move down' | translate}}" popover-placement="left">
                       <i class="glyphicon glyphicon-menu-down"></i>
                     </button>
                   </span>
@@ -95,11 +95,11 @@
                     </label>
                     <div id="ReceiverContextAdder" class="row">
                       <div class="col-md-12" data-ng-if="showSelect">
-                        <ui-select data-ng-model="selected.value" data-theme="bootstrap" data-on-select='moveReceiver($item.id)'>
+                        <ui-select data-ng-model="selected.value" data-theme="bootstrap" data-on-select='moveReceiver($item)'>
                           <ui-select-match data-ng-attr-placeholder="{{'Type to search…' | translate}}">
                             <span data-ng-bind="$select.selected.name"></span>
                           </ui-select-match>
-                          <ui-select-choices data-repeat="receiver in potential_receivers | filter: {name: $select.search} track by receiver.id">
+                          <ui-select-choices data-repeat="receiver in potential_receivers | filter: {name: $select.search}">
                             <span data-ng-bind-html="receiver.name | highlight: $select.search"></span>
                           </ui-select-choices>
                         </ui-select>
@@ -107,16 +107,16 @@
                       </div>
                     </div>
                     <ol class="selectionList">
-                      <li data-ng-repeat="rec_id in context.receivers">
+                      <li data-ng-repeat="receiver in selected_receivers">
                         <span data-ng-controller="AdminContextReceiverSelectorCtrl">
                           <span class="action-btns">
-                            <span data-ng-disabled="$first" data-ng-click="swap($index, -1)" uib-popover="{{'Move up' | translate}}" popover-trigger="'mouseenter'">
+                            <span data-ng-disabled="$first" data-ng-click="moveUp($index)" uib-popover="{{'Move up' | translate}}" popover-trigger="'mouseenter'">
                               <i class="glyphicon glyphicon-menu-up" data-ng-class="{'glyph-hide': $first}"></i>
                             </span>
-                            <span data-ng-disabled="$last" data-ng-click="swap($index, 1)" uib-popover="{{'Move down' | translate}}" popover-trigger="'mouseenter'">
+                            <span data-ng-disabled="$last" data-ng-click="moveDown($index)" uib-popover="{{'Move down' | translate}}" popover-trigger="'mouseenter'">
                               <i class="glyphicon glyphicon-menu-down" data-ng-class="{'glyph-hide': $last}"></i>
                             </span>
-                            <span data-ng-click="removeElem($index)" uib-popover="{{'Remove' | translate}}" popover-trigger="'mouseenter'">
+                            <span data-ng-click="removeElem(receiver, $index)" uib-popover="{{'Remove' | translate}}" popover-trigger="'mouseenter'">
                               <i class="glyphicon glyphicon-remove"></i>
                             </span>
                           </span>
