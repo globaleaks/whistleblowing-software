@@ -29,7 +29,7 @@ def db_prepare_contexts_serialization(store, contexts):
     for o in store.find(models.Context, In(models.ContextImg.id, contexts_ids)):
         data['imgs'][o.id] = o.data
 
-    for o in store.find(models.ReceiverContext, In(models.ReceiverContext.context_id, contexts_ids)):
+    for o in store.find(models.ReceiverContext, In(models.ReceiverContext.context_id, contexts_ids)).order_by(models.ReceiverContext.presentation_order):
         if o.context_id not in data['receivers']:
             data['receivers'][o.context_id] = []
         data['receivers'][o.context_id].append(o.receiver_id)
@@ -326,11 +326,9 @@ def serialize_receiver(store, receiver, language, data=None):
         'username': user.username if State.tenant_cache[1].simplified_login else '',
         'state': user.state,
         'configuration': receiver.configuration,
-        'presentation_order': receiver.presentation_order,
         'can_delete_submission': receiver.can_delete_submission,
         'can_postpone_expiration': receiver.can_postpone_expiration,
         'can_grant_permissions': receiver.can_grant_permissions,
-        'contexts': data['contexts'].get(receiver.id, []),
         'picture': data['imgs'].get(user.id, '')
     }
 

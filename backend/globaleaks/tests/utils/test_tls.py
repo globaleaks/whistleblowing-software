@@ -44,7 +44,7 @@ def commit_valid_config(store):
     priv_fact.set_val(u'https_chain', cfg['chain'])
     priv_fact.set_val(u'https_enabled', True)
 
-    NodeFactory(store).set_val(1, u'hostname', 'localhost:9999')
+    NodeFactory(store, 1).set_val(u'hostname', 'localhost:9999')
 
 
 class TestObjectValidators(TestCase):

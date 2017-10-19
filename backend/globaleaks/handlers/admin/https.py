@@ -344,7 +344,7 @@ def disable_https(store):
 
 @transact
 def reset_https_config(store):
-    prv_fact = PrivateFactory(store)
+    prv_fact = PrivateFactory(store, XTIDX)
     prv_fact.set_val(u'https_enabled', False)
     prv_fact.set_val(u'https_priv_gen', False)
     prv_fact.set_val(u'https_priv_key', '')

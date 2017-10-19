@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
-
+import base64
 import os
+
 from storm.locals import Int, Bool, Unicode, DateTime, JSON
 
 from globaleaks import models
@@ -216,22 +217,27 @@ class MigrationScript(MigrationBase):
 
         with open(os.path.join(Settings.client_path, 'data', 'favicon.ico'), 'r') as favicon_file:
             data = favicon_file.read()
-            files.db_add_file(self.store_new, data, u'favicon')
+            new_file = self.model_to['File']()
+            new_file.id = u'favicon'
+            new_file.data = base64.b64encode(data)
+            self.store_new.add(new_file)
             self.entries_count['File'] += 1
 
         file_path = os.path.join(Settings.static_path, 'custom_homepage.html')
         if os.path.exists(file_path):
-            if not files.db_get_file(self.store_new, u'homepage'):
-                with open(file_path, 'r') as homepage_file:
-                    data = homepage_file.read()
-                    files.db_add_file(self.store_new, data, u'homepage')
-                    self.entries_count['File'] += 1
+            with open(file_path, 'r') as homepage_file:
+                data = homepage_file.read()
+                new_file = self.model_to['File']()
+                new_file.id = u'homepage'
+                new_file.data = base64.b64encode(data)
+                self.store_new.add(new_file)
+                self.entries_count['File'] += 1
 
             os.remove(file_path)
 
         #### Create ConfigL10N table and rows ####
         for lang in old_node.languages_enabled:
-            self.store_new.add(l10n.EnabledLanguage(lang))
+            self.store_new.add(self.model_to['EnabledLanguage'](lang))
 
         self._migrate_l10n_static_config(old_node, 'node')
         self._migrate_l10n_static_config(old_notif, 'templates')
@@ -243,7 +249,7 @@ class MigrationScript(MigrationBase):
         # Migrate Config saved in Node
         for var_name, _ in GLConfig_v_35['node'].items():
             old_val = getattr(old_node, var_name)
-            self.store_new.add(Config('node', var_name, old_val, cfg_desc=GLConfig_v_35))
+            self.store_new.add(self.model_to['Config']('node', var_name, old_val, cfg_desc=GLConfig_v_35))
 
         # Migrate Config saved in Notification
         for var_name, _ in GLConfig_v_35['notification'].items():
@@ -252,18 +258,18 @@ class MigrationScript(MigrationBase):
             if var_name == 'exception_email_pgp_key_expiration' and old_val is not None:
                 old_val = properties.iso_strf_time(old_val)
 
-            self.store_new.add(Config('notification', var_name, old_val, cfg_desc=GLConfig_v_35))
+            self.store_new.add(self.model_to['Config']('notification', var_name, old_val, cfg_desc=GLConfig_v_35))
 
         # Migrate private fields
-        self.store_new.add(Config('private', 'receipt_salt', old_node.receipt_salt))
-        self.store_new.add(Config('private', 'smtp_password', old_notif.password))
+        self.store_new.add(self.model_to['Config']('private', 'receipt_salt', old_node.receipt_salt))
+        self.store_new.add(self.model_to['Config']('private', 'smtp_password', old_notif.password))
 
         # Set old verions that will be then handled by the version update
-        self.store_new.add(Config('private', 'version', 'X.Y.Z'))
-        self.store_new.add(Config('private', 'version_db', 0))
+        self.store_new.add(self.model_to['Config']('private', 'version', 'X.Y.Z'))
+        self.store_new.add(self.model_to['Config']('private', 'version_db', 0))
 
     def _migrate_l10n_static_config(self, old_obj, appd_key):
-        langs_enabled = l10n.EnabledLanguage.list(self.store_new)
+        langs_enabled = self.model_to['EnabledLanguage'].list(self.store_new)
 
         new_obj_appdata = self.appdata[appd_key]
 
@@ -284,7 +290,7 @@ class MigrationScript(MigrationBase):
                 else: # val is None and val_def == ""
                     val_f = ""
 
-                s = ConfigL10N(lang, old_obj.__storm_table__, name, val_f)
+                s = self.model_to['ConfigL10N'](lang, old_obj.__storm_table__, name, val_f)
                 # Set the cfg item to customized if the final assigned val does
                 # not equal the current default template value
                 s.customized = val_f != val_def

@@ -43,7 +43,7 @@ def load_default_fields(store, tid):
         db_create_field(store, question, None)
 
 
-def db_fix_fields_attrs(store):
+def db_fix_fields_attrs(store, tid):
     """
     Ensures that the current store and the field_attrs.json file correspond.
     The content of the field_attrs dict is used to add and remove all of the
@@ -84,6 +84,7 @@ def db_fix_fields_attrs(store):
                               And(models.FieldAttr.field_id == field.id,
                                   models.FieldAttr.name == attr_name)).one():
                 log.debug("Adding new field attr %s.%s", typ, attr_name)
+                attr_dict['tid'] = tid
                 attr_dict['name'] = attr_name
                 attr_dict['field_id'] = field.id
                 models.db_forge_obj(store, models.FieldAttr, attr_dict)
@@ -92,4 +93,4 @@ def db_fix_fields_attrs(store):
 def db_update_defaults(store, tid):
     load_default_questionnaires(store, tid)
     load_default_fields(store, tid)
-    db_fix_fields_attrs(store)
+    db_fix_fields_attrs(store, tid)

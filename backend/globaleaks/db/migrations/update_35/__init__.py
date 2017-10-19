@@ -3,8 +3,6 @@ from storm.locals import Int, Bool, Unicode, DateTime, JSON
 
 from globaleaks import models
 from globaleaks.db.migrations.update import MigrationBase
-from globaleaks.models.config import NodeFactory
-from globaleaks.models.l10n import EnabledLanguage
 from globaleaks.models.validators import shortlocal_v, longlocal_v
 from globaleaks.settings import Settings
 from globaleaks.utils.utility import datetime_now, datetime_null
@@ -90,8 +88,8 @@ class MigrationScript(MigrationBase):
             self.store_new.add(new_obj)
 
     def migrate_User(self):
-        default_language = NodeFactory(self.store_old).get_val(u'default_language')
-        enabled_languages = EnabledLanguage.list(self.store_old)
+        default_language = self.store_new.find(self.model_to['Config'], var_name=u'default_language').one().value['v']
+        enabled_languages = [lang_name for lang_name in self.store_old.find(self.model_to['EnabledLanguage'].name)]
 
         old_objs = self.store_old.find(self.model_from['User'])
         for old_obj in old_objs:
@@ -126,6 +124,10 @@ class MigrationScript(MigrationBase):
             self.store_new.add(new_obj)
 
     def epilogue(self):
-        nf = NodeFactory(self.store_new)
-        self.trim_value_to_range(nf, u'wbtip_timetolive')
+        c = self.store_new.find(self.model_to['Config'], var_name=u'wbtip_timetolive').one()
+        if int(c.value['v']) < 5:
+            c.value['v'] = 90
+        elif int(c.value['v']) > 365 * 2:
+            c.value['v'] = 365 * 2
+
         self.store_new.commit()

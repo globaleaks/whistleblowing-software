@@ -206,33 +206,27 @@ class MigrationScript(MigrationBase):
             if v.name == 'allow_indexing':
                 new_node.allow_indexing = False
 
-            elif v.name == 'logo_id':
-                logo_path = os.path.join(Settings.static_path, 'logo.png')
-                if not os.path.exists(logo_path):
+            elif v.name in ['logo_id', 'css_id']:
+                if v.name == 'logo_id':
+                    path = os.path.join(Settings.static_path, 'logo.png')
+                else:
+                    path = os.path.join(Settings.static_path, 'custom_stylesheet.css')
+
+                if not os.path.exists(path):
                     continue
 
                 new_file = self.model_to['File']()
-                with open(logo_path, 'r') as logo_file:
-                    new_file.data = base64.b64encode(logo_file.read())
+                with open(path, 'r') as f:
+                    new_file.data = base64.b64encode(f.read())
 
                 self.store_new.add(new_file)
-                new_node.logo_id = new_file.id
 
-                os.remove(logo_path)
+                if v.name == 'logo_id':
+                    new_node.logo_id = new_file.id
+                else:
+                    new_node.css_id = new_file.id
 
-            elif v.name == 'css_id':
-                css_path = os.path.join(Settings.static_path, 'custom_stylesheet.css')
-                if not os.path.exists(css_path):
-                    continue
-
-                new_file =  self.model_to['File']()
-                with open(css_path, 'r') as css_file:
-                    new_file.data = base64.b64encode(css_file.read())
-
-                self.store_new.add(new_file)
-                new_node.css_id = new_file.id
-
-                os.remove(css_path)
+                os.remove(path)
             elif v.name == 'basic_auth':
                 new_node.basic_auth = False
             elif v.name == 'basic_auth_username':
@@ -250,14 +244,10 @@ class MigrationScript(MigrationBase):
 
         self.store_new.add(new_node)
 
-        p = os.path.join(Settings.static_path, 'default-profile-picture.png')
-        if os.path.exists(p):
-            os.remove(p)
-
-        p = os.path.join(Settings.static_path, 'robots.txt')
-        if os.path.exists(p):
-            os.remove(p)
-
+        for fname in ['default-profile-picture.png', 'robots.txt']:
+            p = os.path.join(Settings.static_path, fname)
+            if os.path.exists(p):
+                os.remove(p)
 
     def migrate_User(self):
         old_objs = self.store_old.find(self.model_from['User'])
@@ -276,9 +266,8 @@ class MigrationScript(MigrationBase):
                     self.store_new.add(picture)
                     new_obj.picture_id = picture.id
                     os.remove(img_path)
-                    continue
-
-                setattr(new_obj, v.name, getattr(old_obj, v.name))
+                else:
+                    setattr(new_obj, v.name, getattr(old_obj, v.name))
 
             self.store_new.add(new_obj)
 
