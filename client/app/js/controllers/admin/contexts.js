@@ -18,13 +18,34 @@ GLClient.controller('AdminContextsCtrl',
     $scope.save_context(elem);
   };
 }]).
-controller('AdminContextEditorCtrl', ['$scope', 'Utils', 'AdminStepResource', 'AdminContextResource',
-  function($scope, Utils, AdminStepResource, AdminContextResource) {
+controller('AdminContextEditorCtrl', ['$scope', '$http', 'Utils', 'AdminContextResource',
+  function($scope, $http, Utils, AdminContextResource) {
 
   $scope.editing = false;
 
   $scope.toggleEditing = function () {
     $scope.editing = !$scope.editing;
+  };
+
+  $scope.swap = function($event, index, n) {
+    $event.stopPropagation();
+
+    var target = index + n;
+    if (target < -1 && target > $scope.admin.contexts.length) {
+      return
+    }
+
+    $scope.admin.contexts[index] = $scope.admin.contexts[target];
+    $scope.admin.contexts[target] = $scope.context;
+
+    $http({
+      method: 'PUT',
+      url: '/admin/contexts',
+      data: {
+        'operation': 'order_elements',
+        'args': {'ids': $scope.admin.contexts.map(function(c) { return c.id; })},
+      },
+    });
   };
 
   $scope.potential_receivers = $scope.admin.receivers.filter(function(rec) {
@@ -75,7 +96,7 @@ controller('AdminContextReceiverSelectorCtrl', ['$scope', function($scope) {
 
   $scope.swap = function(index, n) {
     var target = index + n;
-    if (target !== $scope.context.receivers.length && target !== -1) {
+    if (target > -1 && target < $scope.context.receivers.length) {
       $scope.context.receivers[index] = $scope.context.receivers[target];
       $scope.context.receivers[target] = $scope.rec_id;
     }
