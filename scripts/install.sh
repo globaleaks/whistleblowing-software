@@ -24,14 +24,6 @@ if [ $ERR -ne 0 ]; then
   exit 1
 fi
 
-function last_command () {
-  echo $1 > $TMPDIR/last_command
-}
-
-function last_status () {
-  echo $1 > $TMPDIR/last_status
-}
-
 function DO () {
   if [ -z "$2" ]; then
     EXPECTED_RET=0
@@ -771,6 +763,14 @@ TMPDIR=$(mktemp -d)
 echo '' > $TMPDIR/last_command
 echo '' > $TMPDIR/last_status
 
+function last_command () {
+  echo $1 > $TMPDIR/last_command
+}
+
+function last_status () {
+  echo $1 > $TMPDIR/last_status
+}
+
 function atexit {
   echo "For Professional Support requests please visit: https://www.globaleaks.org/contact/"
   echo "Please report encountered issues to the Community Forum at https://forum.globaleaks.org"
@@ -815,7 +815,9 @@ echo "Detected OS: $DISTRO - $DISTRO_CODENAME"
 
 if echo "$DISTRO_CODENAME" | grep -vqE "^xenial$" ; then
   echo "WARNING: GlobaLeaks is supported and tested only on Ubuntu Xenial (16.04)"
-  
+
+  last_command "check_distro"
+
   if [ $ASSUMEYES -eq 0 ]; then
     while true; do
       read -p "Do you wish to continue anyway? [y|n]?" yn
@@ -852,7 +854,7 @@ function is_tcp_sock_free_check {
 }
 
 # check the required sockets to see if they are already used
-for SOCK in "0.0.0.0:443" "127.0.0.1:8082" "127.0.0.1:8083" "0.0.0.0:80" "127.0.0.1:8082"
+for SOCK in "0.0.0.0:80" "0.0.0.0:443" "127.0.0.1:8082" "127.0.0.1:8083"
 do
     DO "is_tcp_sock_free_check $SOCK"
 done
