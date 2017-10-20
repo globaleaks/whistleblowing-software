@@ -82,10 +82,13 @@ controller('AdminStepEditorCtrl', ['$scope', 'Utils', 'AdminStepResource', 'Admi
 
       $http({
         method: 'PUT',
-        url: '/admin/step/' + $scope.step.id,
+        url: '/admin/steps',
         data: {
           'operation': 'order_elements',
-          'args': {'ids': $scope.questionnaire.steps.map(function(s) { return s.id; })},
+          'args': {
+            'ids': $scope.questionnaire.steps.map(function(s) { return s.id; }),
+            'questionnaire_id': $scope.questionnaire.id,
+           },
         },
       }).then(function() {
         $rootScope.successes.push({});

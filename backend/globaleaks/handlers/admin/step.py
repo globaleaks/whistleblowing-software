@@ -7,10 +7,10 @@
 
 from globaleaks import models
 from globaleaks.handlers.admin.field import db_create_field, db_update_field
-from globaleaks.handlers.base import BaseHandler
+from globaleaks.handlers.base import BaseHandler, OperationHandler
 from globaleaks.handlers.public import serialize_step
 from globaleaks.orm import transact
-from globaleaks.rest import requests
+from globaleaks.rest import requests, errors
 from globaleaks.utils.structures import fill_localized_keys
 
 
@@ -67,7 +67,7 @@ def update_step(store, step_id, request, language):
     return serialize_step(store, db_update_step(store, step_id, request, language), language)
 
 
-class StepCollection(BaseHandler):
+class StepCollection(OperationHandler):
     """
     Operation to create a step
 
@@ -89,6 +89,27 @@ class StepCollection(BaseHandler):
                                         requests.AdminStepDesc)
 
         return create_step(request, self.request.language)
+
+    def operation_descriptors(self):
+        return {
+                'order_elements': (StepCollection.order_elements, {
+                    'questionnaire_id': requests.uuid_regexp,
+                    'ids': [unicode],
+                 }),
+        }
+
+    @transact
+    def order_elements(store, self, req_args, *args, **kwargs):
+        steps = store.find(models.Step, questionnaire_id=req_args['questionnaire_id'])
+
+        id_dict = { step.id: step for step in steps }
+        ids = req_args['ids']
+
+        if len(ids) != len(id_dict) and set(ids) != set(id_dict):
+            raise errors.InvalidInputFormat('list does not contain all context ids')
+
+        for i, step_id in enumerate(ids):
+            id_dict[step_id].presentation_order = i
 
 
 class StepInstance(BaseHandler):
