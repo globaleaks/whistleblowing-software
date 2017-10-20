@@ -189,7 +189,8 @@ def serialize_questionnaire(store, questionnaire, language):
         'id': questionnaire.id,
         'editable': questionnaire.editable,
         'name': questionnaire.name,
-        'steps': [serialize_step(store, s, language) for s in steps]
+        'steps': sorted([serialize_step(store, s, language) for s in steps],
+                        key=lambda x: x['presentation_order'])
     }
 
     return get_localized_values(ret_dict, questionnaire, questionnaire.localized_keys, language)
