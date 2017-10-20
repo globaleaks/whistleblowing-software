@@ -381,7 +381,7 @@ var GLClient = angular.module('GLClient', [
         redirectTo: '/'
       });
 
-      $uibTooltipProvider.options({appendToBody: true});
+      $uibTooltipProvider.options({appendToBody: true, trigger: 'mouseenter'});
 
       // Raise the default digest loop limit to 30 because of the template recursion used by fields:
       // https://github.com/angular/angular.js/issues/6440

@@ -3,7 +3,7 @@
     <div data-ng-controller="SubmissionFieldCtrl" data-ng-class="getClass(field, row.length)">
       <div id="{{fieldId}}" class="panel panel-default" data-ng-if="fieldUtilities.isFieldTriggered(field, answers, total_score)">
         <div class="panel-heading">
-          <label data-content="::field.hint" uib-popover="{{::field.hint}}" popover-placement="right" popover-trigger="'mouseenter'">
+          <label data-content="::field.hint" uib-popover="{{::field.hint}}" popover-placement="right">
             <span class="fieldLabel">{{::field.label}}</span>
             <span data-ng-if="::field.hint">
               <i class="glyphicon glyphicon-question-sign"></i>
@@ -14,7 +14,7 @@
                 data-ng-if="::field.required"
                 uib-popover="{{'This field is mandatory' | translate}}"
                 popover-placement="right"
-                popover-trigger="'mouseenter'"></span>
+                ></span>
         </div>
         <div class="panel-body">
           <div class="fieldDescription">{{::field.description}}</div>

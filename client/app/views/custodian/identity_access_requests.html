@@ -6,7 +6,6 @@
               data-ng-click="reload()"
               uib-popover="{{'Refresh page' | translate}}"
               popover-placement="top"
-              popover-trigger="'mouseenter'"
               class="btn btn-default">
           <span class="glyphicon glyphicon-refresh"></span>
         </span>
@@ -27,7 +26,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr id="iar-{{$index}}" data-ng-repeat="iar in iars | filter:search" >
+          <tr id="iar-{{$index}}" data-ng-repeat="iar in iars | filter:search">
             <td>{{iar.request_date | date:'dd-MM-yyyy HH:mm'}}</td>
             <td>{{iar.submission_date | date:'dd-MM-yyyy HH:mm'}}</td>
             <td>{{iar.request_user_name | date:'dd-MM-yyyy HH:mm'}}</td>

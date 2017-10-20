@@ -4,7 +4,7 @@
     <div class="form-group">
       <label>
         <span data-translate>Name</span>
-        <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right" popover-trigger="'mouseenter'">*</span>
+        <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right" >*</span>
       </label>
     <div data-ng-class="{'has-error': newQuestionnaire.name.$error.required}">
         <input name="name" class="form-control" data-ng-model="new_questionnaire.name" maxlength="{{node.maximum_namesize}}" type="text" required />

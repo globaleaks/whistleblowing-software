@@ -12,11 +12,11 @@
           <div class="col-md-10">
             <label>
               <span data-ng-if="!node.disable_encryption_warnings && receiver.configuration !== 'unselectable'">
-                <i data-ng-if="recipient.pgp_key_public !== ''" class="glyphicon glyphicon-certificate" uib-popover="{{'This recipient has configured the encryption key.' | translate}}" popover-placement="right" popover-trigger="'mouseenter'"></i>
-                <i data-ng-if="recipient.pgp_key_public === ''" class="glyphicon glyphicon-warning-sign" uib-popover="{{'This recipient has not configured the encryption key.' | translate}}" popover-placement="right" popover-trigger="'mouseenter'"></i>
+                <i data-ng-if="recipient.pgp_key_public !== ''" class="glyphicon glyphicon-certificate" uib-popover="{{'This recipient has configured the encryption key.' | translate}}" popover-placement="right" ></i>
+                <i data-ng-if="recipient.pgp_key_public === ''" class="glyphicon glyphicon-warning-sign" uib-popover="{{'This recipient has not configured the encryption key.' | translate}}" popover-placement="right" ></i>
               </span>
               <span data-ng-if="receiver.configuration === 'unselectable'">
-                <i class="glyphicon glyphicon-ban-circle" uib-popover="{{'This recipient cannot be selected.' | translate}}" popover-placement="right" popover-trigger="'mouseenter'"></i>
+                <i class="glyphicon glyphicon-ban-circle" uib-popover="{{'This recipient cannot be selected.' | translate}}" popover-placement="right" ></i>
               </span>
               <span>&nbsp;{{::receiver.name}}</span>
             </label>
@@ -24,18 +24,18 @@
           <div class="col-md-1" data-ng-if="receiver.pgp_key_public !== '' || node.allow_unencrypted">
             <div data-ng-if="submission.selected_receivers[receiver.id]">
               <div data-ng-if="receiver.configuration === 'default'">
-                <i class="glyphicon glyphicon-check" uib-popover="{{'Unselect this recipient.' | translate}}" popover-placement="right" popover-trigger="'mouseenter'"></i>
+                <i class="glyphicon glyphicon-check" uib-popover="{{'Unselect this recipient.' | translate}}" popover-placement="right" ></i>
               </div>
               <div data-ng-if="receiver.configuration === 'forcefully_selected'">
-                <i class="glyphicon glyphicon-check" uib-popover="{{'This recipient cannot be deselected.' | translate}}" popover-placement="right" popover-trigger="'mouseenter'"></i>
+                <i class="glyphicon glyphicon-check" uib-popover="{{'This recipient cannot be deselected.' | translate}}" popover-placement="right" ></i>
               </div>
             </div>
             <div data-ng-if="!submission.selected_receivers[receiver.id]">
               <div data-ng-if="receiver.configuration === 'default'">
-                <i class="glyphicon glyphicon-unchecked" uib-popover="{{'Select this recipient.' | translate}}" popover-placement="right" popover-trigger="'mouseenter'"></i>
+                <i class="glyphicon glyphicon-unchecked" uib-popover="{{'Select this recipient.' | translate}}" popover-placement="right" ></i>
               </div>
               <div data-ng-if="receiver.configuration === 'unselectable'">
-                <i class="glyphicon glyphicon-unchecked" uib-popover="{{'This recipient cannot be selected.' | translate}}" popover-placement="right" popover-trigger="'mouseenter'"></i>
+                <i class="glyphicon glyphicon-unchecked" uib-popover="{{'This recipient cannot be selected.' | translate}}" popover-placement="right" ></i>
               </div>
             </div>
           </div>

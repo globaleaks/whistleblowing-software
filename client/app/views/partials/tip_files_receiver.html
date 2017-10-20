@@ -3,8 +3,8 @@
     <div>
       <span>{{node.widget_files_title}}</span>
       <span class="pull-right">
-        <i data-ng-if="!collapsed" class="glyphicon glyphicon-collapse-down" uib-popover="{{'Collapse' | translate}}" popover-placement="left" popover-trigger="'mouseenter'"></i>
-        <i data-ng-if="collapsed" class="glyphicon glyphicon-fullscreen" uib-popover="{{'Expand' | translate}}" popover-placement="left" popover-trigger="'mouseenter'"></i>
+        <i data-ng-if="!collapsed" class="glyphicon glyphicon-collapse-down" uib-popover="{{'Collapse' | translate}}" popover-placement="left" ></i>
+        <i data-ng-if="collapsed" class="glyphicon glyphicon-fullscreen" uib-popover="{{'Expand' | translate}}" popover-placement="left" ></i>
       </span>
     </div>
   </div>
@@ -40,7 +40,6 @@
                 <button class="tip-action-download-file"
                         uib-popover="{{'Download' | translate}}"
                         popover-placement="top"
-                        popover-trigger="'mouseenter'"
                         class="btn btn-default"
                         data-ng-click="downloadRFile(file)">
                   <i class="glyphicon glyphicon-download"></i>
@@ -48,10 +47,10 @@
                 </button>
               </td>
               <td data-ng-show="file.status == 'unavailable'">
-                <div class="label label-warning" uib-popover="{{'The file is unavailable due to an internal error.' | translate}}" popover-placement="bottom" popover-trigger="'mouseenter'" data-translate>file unavailable</div>
+                <div class="label label-warning" uib-popover="{{'The file is unavailable due to an internal error.' | translate}}" popover-placement="bottom" data-translate>file unavailable</div>
               </td>
               <td data-ng-show="file.status == 'nokey'">
-                <div class="label label-warning" uib-popover="{{'The file is unavailable due to missing pgp key.' | translate}}" popover-placement="bottom" popover-trigger="'mouseenter'" data-translate>file unavailable</div>
+                <div class="label label-warning" uib-popover="{{'The file is unavailable due to missing pgp key.' | translate}}" popover-placement="bottom" data-translate>file unavailable</div>
               </td>
               <td>
                 <span>{{::file.creation_date | date:'dd-MM-yyyy'}}</span>

@@ -4,7 +4,6 @@
        href="#/receiver/tips"
        uib-popover="{{'List of submissions' | translate}}"
        popover-placement="top"
-       popover-trigger="'mouseenter'"
        class="btn btn-default">
       <span class="glyphicon glyphicon-th-list"></span>
     </a>
@@ -13,7 +12,6 @@
       <button id="tip-action-export"
               uib-popover="{{'Export' | translate}}"
               popover-placement="top"
-              popover-trigger="'mouseenter'"
               class="btn btn-default">
         <i class="glyphicon glyphicon-save"></i>
       </button>
@@ -24,7 +22,6 @@
           data-ng-click="tip_postpone()"
           uib-popover="{{'Postpone the expiration date' | translate}}"
           popover-placement="top"
-          popover-trigger="'mouseenter'"
           class="btn btn-default">
       <i class="glyphicon glyphicon-time"></i>
     </span>
@@ -34,7 +31,6 @@
           data-ng-click="tip_delete()"
           uib-popover="{{'Delete' | translate}}"
           popover-placement="top"
-          popover-trigger="'mouseenter'"
           class="btn btn-default">
       <span class="glyphicon glyphicon-trash"></span>
     </span>
@@ -43,7 +39,6 @@
           data-ng-click="tip_notify(false)"
           uib-popover="{{'Silence email notifications' | translate}}"
           popover-placement="top"
-          popover-trigger="'mouseenter'"
           class="btn btn-default">
       <span class="glyphicon glyphicon-volume-up"></span>
     </span>
@@ -52,7 +47,6 @@
           data-ng-click="tip_notify(true)"
           uib-popover="{{'Turn on email notifications' | translate}}"
           popover-placement="top"
-          popover-trigger="'mouseenter'"
           class="btn btn-default active">
       <span class="glyphicon glyphicon glyphicon-volume-off"></span>
     </span>
@@ -61,7 +55,6 @@
           data-ng-click="reload()"
           uib-popover="{{'Refresh page' | translate}}"
           popover-placement="top"
-          popover-trigger="'mouseenter'"
           class="btn btn-default">
       <span class="glyphicon glyphicon-refresh"></span>
     </span>
