@@ -201,10 +201,10 @@
           <td>
             <span data-ng-if="tip.tor2web"
               class="label label-warning"
-              uib-popover="{{'The connection used to send this submission has been secured with HTTPS ensuring confidentiality.' | translate}}" popover-placement="right" >HTTPS</span>
+              uib-popover="{{'The connection used to send this submission has been secured with HTTPS ensuring confidentiality.' | translate}}" popover-placement="right">HTTPS</span>
             <span data-ng-if="!tip.tor2web"
               class="label label-success"
-              uib-popover="{{'The connection used to send this submission has been secured with Tor ensuring confidentiality and anonymity.' | translate}}" popover-placement="right" >Tor</span>
+              uib-popover="{{'The connection used to send this submission has been secured with Tor ensuring confidentiality and anonymity.' | translate}}" popover-placement="right">Tor</span>
           </td>
           <td>
             <div data-ng-repeat="field in tip.preview_schema" data-ng-init="fieldAnswers = tip.preview; preview=true" data-ng-include="'views/partials/tip_field.html'"></div>
