@@ -6,7 +6,7 @@
         <div class="editorTitle" data-translate>Add new user</div>
         <div class="form-group">
           <label data-translate>Role</label>
-          <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right" >*</span>
+          <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
           <div data-ng-class="{'has-error': newUser.role.$error.required}">
             <select name="role" class="form-control" data-ng-model="new_user.role" required>
               <option value="admin" data-translate>Admin</option>
@@ -17,21 +17,21 @@
         </div>
         <div class="form-group" data-ng-if="new_user.role !== 'receiver' || !node.simplified_login">
           <label data-translate>Username</label>
-          <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right" >*</span>
+          <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
           <div data-ng-class="{'has-error': newUser.username.$error.required}">
             <input class="form-control" name="username" maxlength="{{node.maximum_namesize}}" data-ng-model="new_user.username" type="text" required />
           </div>
         </div>
         <div class="form-group">
           <label data-translate>Name</label>
-          <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right" >*</span>
+          <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
           <div data-ng-class="{'has-error': newUser.name.$error.required}">
             <input class="form-control" name="name" maxlength="{{node.maximum_namesize}}" data-ng-model="new_user.name" type="text" required />
           </div>
         </div>
         <div class="form-group">
           <label data-translate>Email address</label>
-          <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right" >*</span>
+          <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
           <div data-ng-class="{'has-error': newUser.email.$error}">
             <input class="form-control" name="email" data-ng-model="new_user.email" maxlength="{{node.maximum_namesize}}" data-ng-pattern="email_regexp" type="text" required />
           </div>
