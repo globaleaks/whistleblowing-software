@@ -10,8 +10,7 @@
         <span class="fieldLabel">{{field.attrs.title_of_confirmation_question_upon_negative_answer.value}}</span>
         <span class="text-danger"
               uib-popover="{{'This field is mandatory' | translate}}"
-              popover-placement="right"
-              popover-trigger="'mouseenter'">*</span>
+              popover-placement="right">*</span>
       </div>
       <div>{{field.attrs.text_of_confirmation_question_upon_negative_answer.value}}</div>
       <div data-ng-class="{'has-error': f['whistleblower_identity_radio_2'].$error.required}">

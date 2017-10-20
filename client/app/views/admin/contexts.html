@@ -7,7 +7,7 @@
         <div class="form-group">
           <label>
             <span data-translate>Name</span>
-            <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right" popover-trigger="'mouseenter'">*</span>
+            <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right" >*</span>
           </label>
           <div data-ng-class="{'has-error': newContext.name.$error.required}">
             <input name="name" class="form-control" data-ng-model="new_context.name" maxlength="{{node.maximum_namesize}}" type="text" required />
@@ -55,10 +55,10 @@
                     <span data-translate>Delete</span>
                   </button>
                   <span data-ng-if="!admin.node.show_contexts_in_alphabetical_order && admin.contexts.length > 1">
-                    <button class="actionButton btn btn-xs btn-primary" data-ng-click="moveUpAndSave(context); $event.stopPropagation();" uib-popover="{{'Move up' | translate}}" popover-placement="left" popover-trigger="'mouseenter'">
+                    <button class="actionButton btn btn-xs btn-primary" data-ng-click="moveUpAndSave(context); $event.stopPropagation();" uib-popover="{{'Move up' | translate}}" popover-placement="left">
                       <i class="glyphicon glyphicon-menu-up"></i>
                     </button>
-                    <button class="actionButton btn btn-xs btn-primary" data-ng-click="moveDownAndSave(context); $event.stopPropagation();" uib-popover="{{'Move down' | translate}}" popover-placement="left" popover-trigger="'mouseenter'">
+                    <button class="actionButton btn btn-xs btn-primary" data-ng-click="moveDownAndSave(context); $event.stopPropagation();" uib-popover="{{'Move down' | translate}}" popover-placement="left">
                       <i class="glyphicon glyphicon-menu-down"></i>
                     </button>
                   </span>

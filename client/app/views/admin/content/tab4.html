@@ -37,7 +37,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr data-ng-repeat="(key, value) in custom_texts" data-ng-class="{danger: !default_texts[key]}" uib-popover="{{!default_texts[key] ? 'This custom text is no longer displayed on the platform. The original text has either changed or been removed.' : '' | translate }}" popover-placement="top" popover-trigger="'mouseenter'">
+          <tr data-ng-repeat="(key, value) in custom_texts" data-ng-class="{danger: !default_texts[key]}" uib-popover="{{!default_texts[key] ? 'This custom text is no longer displayed on the platform. The original text has either changed or been removed.' : '' | translate }}" popover-placement="top">
             <td class="preformatted">{{key}}</td>
             <td class="preformatted">{{default_texts[key]}}</td>
             <td>

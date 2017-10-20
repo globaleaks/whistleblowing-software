@@ -3,8 +3,8 @@
     <div>
       <span data-translate>Recipient list</span>
       <span class="pull-right">
-        <i data-ng-if="!collapsed" class="glyphicon glyphicon-collapse-down" uib-popover="{{'Collapse' | translate}}" popover-placement="left" popover-trigger="'mouseenter'"></i>
-        <i data-ng-if="collapsed" class="glyphicon glyphicon-fullscreen" uib-popover="{{'Expand' | translate}}" popover-placement="left" popover-trigger="'mouseenter'"></i>
+        <i data-ng-if="!collapsed" class="glyphicon glyphicon-collapse-down" uib-popover="{{'Collapse' | translate}}" popover-placement="left" ></i>
+        <i data-ng-if="collapsed" class="glyphicon glyphicon-fullscreen" uib-popover="{{'Expand' | translate}}" popover-placement="left" ></i>
       </span>
     </div>
   </div>
@@ -12,11 +12,11 @@
     <div>
       <span data-ng-repeat="receiver in tip.receivers | orderBy:'name'">
         <span id="receiver-{{$index}}">
-          <span class="label label-primary" data-ng-show="receiver.last_access > tip.update_date" uib-popover="{{'The recipient has already read the latest update' | translate}}" popover-placement="top" popover-trigger="'mouseenter'">
+          <span class="label label-primary" data-ng-show="receiver.last_access > tip.update_date" uib-popover="{{'The recipient has already read the latest update' | translate}}" popover-placement="top">
             <i class="glyphicon glyphicon-ok"></i>
             <span>{{::receiver.name}}</span>
           </span>
-          <span class="label label-warning" data-ng-show="receiver.last_access <= tip.update_date" uib-popover="{{'The recipient has not read the latest update yet' | translate}}" popover-placement="top" popover-trigger="'mouseenter'">
+          <span class="label label-warning" data-ng-show="receiver.last_access <= tip.update_date" uib-popover="{{'The recipient has not read the latest update yet' | translate}}" popover-placement="top">
             <span>{{::receiver.name}}</span>
           </span>
         </span>
