@@ -2,7 +2,7 @@
 import time
 
 from twisted.internet import task, defer, reactor, threads
-from twisted.internet.error import ConnectionLost, ConnectionRefusedError, DNSLookupError
+from twisted.internet.error import ConnectionLost, ConnectionRefusedError, DNSLookupError, TimeoutError
 from twisted.web._newclient import ResponseNeverReceived, ResponseFailed
 from txsocksx.errors import TTLExpired, ConnectionRefused, ServerFailure
 
@@ -19,6 +19,7 @@ FAILURES_NET_OUTGOING = (
     ResponseNeverReceived,
     ResponseFailed,
     DNSLookupError,
+    TimeoutError,
 )
 
 
@@ -29,6 +30,7 @@ FAILURES_TOR_OUTGOING = (
     RuntimeError,
     ConnectionRefused,
     ServerFailure,
+    TimeoutError,
 )
 
 
