@@ -802,6 +802,14 @@ factory('AdminUtils', ['AdminContextResource', 'AdminQuestionnaireResource', 'Ad
   factory('Utils', ['$rootScope', '$q', '$location', '$filter', '$sce', '$uibModal', '$window', 'Authentication',
   function($rootScope, $q, $location, $filter, $sce, $uibModal, $window, Authentication) {
     return {
+      array_to_map: function(array) {
+        var ret = {};
+        angular.forEach(array, function(element) {
+          ret[element.id] = element;
+        });
+        return ret;
+      },
+
       set_title: function() {
         var nodename = $rootScope.node.name ? $rootScope.node.name : 'Globaleaks';
         var path = $location.path();

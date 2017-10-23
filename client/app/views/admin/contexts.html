@@ -99,7 +99,7 @@
                           <ui-select-match data-ng-attr-placeholder="{{'Type to search…' | translate}}">
                             <span data-ng-bind="$select.selected.name"></span>
                           </ui-select-match>
-                          <ui-select-choices data-repeat="receiver in potential_receivers | filter: {name: $select.search}">
+                          <ui-select-choices data-repeat="receiver in admin.receivers | filter:receiverNotSelectedFilter | filter:{name: $select.search}">
                             <span data-ng-bind-html="receiver.name | highlight: $select.search"></span>
                           </ui-select-choices>
                         </ui-select>
@@ -107,20 +107,21 @@
                       </div>
                     </div>
                     <ol class="selectionList">
-                      <li data-ng-repeat="receiver in selected_receivers">
+                      <li data-ng-repeat="receiver in context.receivers">
                         <span data-ng-controller="AdminContextReceiverSelectorCtrl">
                           <span class="action-btns">
-                            <span data-ng-disabled="$first" data-ng-click="moveUp($index)" uib-popover="{{'Move up' | translate}}">
-                              <i class="glyphicon glyphicon-menu-up" data-ng-class="{'glyph-hide': $first}"></i>
+                            <span data-ng-if="!$first" data-ng-click="moveUp($index)" uib-popover="{{'Move up' | translate}}" popover-trigger="'mouseenter'">
+                              <i class="glyphicon glyphicon-menu-up"></i>
                             </span>
-                            <span data-ng-disabled="$last" data-ng-click="moveDown($index)" uib-popover="{{'Move down' | translate}}">
-                              <i class="glyphicon glyphicon-menu-down" data-ng-class="{'glyph-hide': $last}"></i>
+                            <i data-ng-if="$first || $last" class="glyphicon glyphicon-menu-up glyph-hide"></i>
+                            <span data-ng-if="!$last" data-ng-click="moveDown($index)" uib-popover="{{'Move down' | translate}}" popover-trigger="'mouseenter'">
+                              <i class="glyphicon glyphicon-menu-down"></i>
                             </span>
-                            <span data-ng-click="removeElem(receiver, $index)" uib-popover="{{'Remove' | translate}}">
+                            <span data-ng-click="context.receivers.splice($index, 1)" uib-popover="{{'Remove' | translate}}" popover-trigger="'mouseenter'">
                               <i class="glyphicon glyphicon-remove"></i>
                             </span>
                           </span>
-                          <span>{{receiver.name}}</span>
+                          <span>{{admin_receivers_by_id[receiver].name}}</span>
                         </span>
                       </li>
                     </ol>

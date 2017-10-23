@@ -298,10 +298,10 @@
                         <i class="glyphicon glyphicon-remove"></i>
                       </button>
                       <span data-ng-if="!field.attrs.display_alphabetically.value">
-                        <button data-ng-if="!$first" class="btn btn-xs btn-primary" data-ng-click="moveOptionUp($index);" uib-popover="{{'Move up' | translate}}" popover-placement="left">
+                        <button data-ng-disabled="$first" class="btn btn-xs btn-primary" data-ng-click="moveOptionUp($index);" uib-popover="{{'Move up' | translate}}" popover-placement="left">
                           <i class="glyphicon glyphicon-menu-up"></i>
                         </button>
-                        <button data-ng-if="!$last" class="btn btn-xs btn-primary" data-ng-click="moveOptionDown($index);" uib-popover="{{'Move down' | translate}}" popover-placement="left">
+                        <button data-ng-disabled="$last" class="btn btn-xs btn-primary" data-ng-click="moveOptionDown($index);" uib-popover="{{'Move down' | translate}}" popover-placement="left">
                           <i class="glyphicon glyphicon-menu-down"></i>
                         </button>
                       </span>

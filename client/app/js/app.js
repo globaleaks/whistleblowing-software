@@ -537,24 +537,16 @@ var GLClient = angular.module('GLClient', [
 
         $rootScope.answer = {value: null};
 
-        var array_to_map = function(array) {
-          var ret = {};
-          angular.forEach(array, function(element) {
-            ret[element.id] = element;
-          });
-          return ret;
-        }
-
         $rootScope.node = result.node;
 
         $rootScope.contexts = result.contexts;
-        $rootScope.contexts_by_id = array_to_map(result.contexts);
+        $rootScope.contexts_by_id = $rootScope.Utils.array_to_map(result.contexts);
 
         $rootScope.receivers = result.receivers;
-        $rootScope.receivers_by_id = array_to_map(result.receivers);
+        $rootScope.receivers_by_id = $rootScope.Utils.array_to_map(result.receivers);
 
         $rootScope.questionnaires = result.questionnaires;
-        $rootScope.questionnaires_by_id = array_to_map(result.questionnaires);
+        $rootScope.questionnaires_by_id = $rootScope.Utils.array_to_map(result.questionnaires);
 
         angular.forEach($rootScope.contexts_by_id, function(element, key) {
           $rootScope.contexts_by_id[key].questionnaire = $rootScope.questionnaires_by_id[$rootScope.contexts_by_id[key].questionnaire_id];
