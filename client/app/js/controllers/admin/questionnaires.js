@@ -27,12 +27,7 @@ GLClient.controller('AdminQuestionnaireCtrl',
   };
 
   $scope.delete_questionnaire = function(questionnaire) {
-    AdminQuestionnaireResource.delete({
-      id: questionnaire.id
-    }, function(){
-      var idx = $scope.admin.questionnaires.indexOf(questionnaire);
-      $scope.admin.questionnaires.splice(idx, 1);
-    });
+    return $scope.Utils.deleteResource(AdminQuestionnaireResource, $scope.admin.questionnaires, questionnaire);
   };
 }]).
 controller('AdminQuestionnaireEditorCtrl', ['$scope', '$http', 'FileSaver', 'AdminStepResource',
@@ -45,11 +40,7 @@ controller('AdminQuestionnaireEditorCtrl', ['$scope', '$http', 'FileSaver', 'Adm
   };
 
   $scope.delStep = function(step) {
-    AdminStepResource.delete({
-      id: step.id
-    }, function() {
-      $scope.questionnaire.steps.splice($scope.questionnaire.steps.indexOf(step), 1);
-    });
+    return $scope.Utils.deleteResource(AdminStepResource, $scope.questionnaire.steps, step);
   };
 
   $scope.exportQuestionnaire = function(obj) {

@@ -1058,6 +1058,14 @@ factory('AdminUtils', ['AdminContextResource', 'AdminQuestionnaireResource', 'Ad
         return modal;
       },
 
+      deleteResource: function(factory, list, res) {
+        factory.delete({
+          id: res.id
+        }, function() {
+          list.splice(list.indexOf(res), 1);
+        });
+      },
+
       isNever: function(time) {
         var date = new Date(time);
         return date.getTime() === 32503680000000;
