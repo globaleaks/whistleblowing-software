@@ -14,7 +14,7 @@ from globaleaks.rest import errors, requests
 from globaleaks.utils.structures import fill_localized_keys
 
 
-def db_update_fieldoption(store, field, fieldoption_id, option_dict, language):
+def db_update_fieldoption(store, field, fieldoption_id, option_dict, language, idx):
     option_dict['field_id'] = field.id
 
     fill_localized_keys(option_dict, models.FieldOption.localized_keys, language)
@@ -28,6 +28,8 @@ def db_update_fieldoption(store, field, fieldoption_id, option_dict, language):
     else:
         o.update(option_dict)
 
+    o.presentation_order = idx
+
     return o.id
 
 
@@ -39,7 +41,7 @@ def db_update_fieldoptions(store, field, options, language):
     :param field_id: the field_id on wich bind the provided options
     :param language: the language of the option definition dict
     """
-    options_ids = [db_update_fieldoption(store, field, option['id'], option, language) for option in options]
+    options_ids = [db_update_fieldoption(store, field, option['id'], option, language, idx) for idx, option in enumerate(options)]
 
     store.find(models.FieldOption, And(models.FieldOption.field_id == field.id, Not(In(models.FieldOption.id, options_ids)))).remove()
 
