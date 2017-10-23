@@ -288,7 +288,7 @@
             <div class="form-group" data-ng-if="showOptions(field)">
               <label data-translate>Options</label>
               <div class="col-md-12">
-                <div class="fieldOption" data-ng-repeat="option in field.options | orderBy:'presentation_order'">
+                <div class="fieldOption" data-ng-repeat="option in field.options">
                   <div class="row">
                     <div class="col-md-6">
                       <input class="form-control" data-ng-model="option.label" data-ng-attr-placeholder="{{'Name' | translate }}" type="text" data-ng-disabled="!field.editable" required />
@@ -297,11 +297,11 @@
                       <button class="btn btn-xs btn-danger" data-ng-click="delOption(option)">
                         <i class="glyphicon glyphicon-remove"></i>
                       </button>
-                      <span data-ng-if="!field.attrs.display_alphabetically.value && field.options.length > 1">
-                        <button class="btn btn-xs btn-primary" data-ng-click="Utils.moveUp(option);" uib-popover="{{'Move up' | translate}}" popover-placement="left">
+                      <span data-ng-if="!field.attrs.display_alphabetically.value">
+                        <button data-ng-if="!$first" class="btn btn-xs btn-primary" data-ng-click="moveOptionUp($index);" uib-popover="{{'Move up' | translate}}" popover-placement="left">
                           <i class="glyphicon glyphicon-menu-up"></i>
                         </button>
-                        <button class="btn btn-xs btn-primary" data-ng-click="Utils.moveDown(option);" uib-popover="{{'Move down' | translate}}" popover-placement="left">
+                        <button data-ng-if="!$last" class="btn btn-xs btn-primary" data-ng-click="moveOptionDown($index);" uib-popover="{{'Move down' | translate}}" popover-placement="left">
                           <i class="glyphicon glyphicon-menu-down"></i>
                         </button>
                       </span>

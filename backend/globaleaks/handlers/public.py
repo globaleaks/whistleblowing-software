@@ -96,7 +96,8 @@ def db_prepare_fields_serialization(store, fields):
             ret['attrs'][obj.field_id] = []
         ret['attrs'][obj.field_id].append(obj)
 
-    objs = store.find(models.FieldOption, In(models.FieldOption.field_id, fields_ids))
+    objs = store.find(models.FieldOption, In(models.FieldOption.field_id, fields_ids))\
+                .order_by(models.FieldOption.presentation_order)
     for obj in objs:
         if obj.field_id not in ret['options']:
             ret['options'][obj.field_id] = []
