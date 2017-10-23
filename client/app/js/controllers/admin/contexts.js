@@ -9,12 +9,7 @@ GLClient.controller('AdminContextsCtrl',
   };
 
   $scope.perform_delete = function(context) {
-    AdminContextResource.delete({
-      id: context.id
-    }, function(){
-      var idx = $scope.admin.contexts.indexOf(context);
-      $scope.admin.contexts.splice(idx, 1);
-    });
+    return $scope.Utils.deleteResource(AdminContextResource, $scope.admin.contexts, context);
   };
 
   $scope.moveUpAndSave = function(elem) {
@@ -52,11 +47,7 @@ controller('AdminContextEditorCtrl', ['$scope', 'AdminStepResource',
   };
 
   $scope.delStep = function(step) {
-    AdminStepResource.delete({
-      id: step.id
-    }, function() {
-      $scope.context.steps.splice($scope.context.steps.indexOf(step), 1);
-    });
+    return $scope.Utils.deleteResource(AdminStepResource, $scope.context.steps, step);
   };
 
   $scope.updateContextImgUrl = function() {

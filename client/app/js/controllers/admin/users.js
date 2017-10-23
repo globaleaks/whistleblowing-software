@@ -17,13 +17,8 @@ GLClient.controller('AdminUsersCtrl', ['$scope', '$rootScope', 'AdminUserResourc
   };
 
   $scope.perform_delete = function(user) {
-    AdminUserResource.delete({
-      id: user.id
-    }, function(){
-      var idx = $scope.admin.users.indexOf(user);
-      $scope.admin.users.splice(idx, 1);
-    });
-  };
+    return $scope.Utils.deleteResource(AdminUserResource, $scope.admin.users, user);
+  }
 }]).
 controller('AdminUserEditorCtrl', ['$scope',
   function($scope) {

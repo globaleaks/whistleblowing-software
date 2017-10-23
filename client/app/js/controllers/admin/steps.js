@@ -33,12 +33,8 @@ controller('AdminStepEditorCtrl', ['$scope', '$uibModal', 'AdminStepResource', '
       $scope.step.children.push(field);
     };
 
-    $scope.delField = function(field) {
-      AdminFieldResource.delete({
-        id: field.id
-      }, function() {
-        $scope.Utils.deleteFromList($scope.fields, field);
-      });
+    $scope.delField = function(fields, field) {
+      return $scope.Utils.deleteResource(AdminFieldResource, $scope.fields, field);
     };
 
     $scope.add_field = function() {

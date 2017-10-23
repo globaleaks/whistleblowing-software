@@ -1,5 +1,5 @@
-GLClient.controller('AdminFieldTemplatesCtrl', ['$scope', 'AdminFieldResource', 'AdminFieldTemplateResource',
-  function($scope, AdminFieldResource, AdminFieldTemplateResource) {
+GLClient.controller('AdminFieldTemplatesCtrl', ['$scope', 'AdminFieldTemplateResource',
+  function($scope, AdminFieldTemplateResource) {
     $scope.admin.fieldtemplates.$promise.then(function(fields) {
       $scope.fields = fields;
     });
@@ -8,12 +8,8 @@ GLClient.controller('AdminFieldTemplatesCtrl', ['$scope', 'AdminFieldResource', 
       $scope.fields.push(new_field);
     };
 
-    $scope.delField = function(fields, field) {
-      AdminFieldTemplateResource.delete({
-        id: field.id
-      }, function() {
-        $scope.Utils.deleteFromList(fields, field);
-      });
+    $scope.delField = function(field) {
+      return $scope.Utils.deleteResource( AdminFieldTemplateResource, $scope.fields, field);
     };
   }
 ]).
