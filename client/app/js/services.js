@@ -1032,10 +1032,10 @@ factory('AdminUtils', ['AdminContextResource', 'AdminQuestionnaireResource', 'Ad
         throw new Error('Context not found');
       },
 
-      openConfirmableModalDialog: function(template, arg, scope) {
-        scope = scope === undefined ? $rootScope : scope;
+      openConfirmableModalDialog: function(template, arg, callback, scope) {
+        scope = !scope ? $rootScope : scope;
 
-        return $uibModal.open({
+        var modal = $uibModal.open({
           templateUrl: template,
           controller: 'ConfirmableDialogCtrl',
           backdrop: 'static',
@@ -1047,6 +1047,15 @@ factory('AdminUtils', ['AdminContextResource', 'AdminQuestionnaireResource', 'Ad
             }
           }
         });
+
+        if (callback) {
+          modal.result.then(
+            function(result) { callback(result); },
+            function() { }
+          );
+        }
+
+        return modal;
       },
 
       isNever: function(time) {
