@@ -4,6 +4,7 @@
   "test-admin-login.js",
   "test-admin-navigate-sections.js",
   "test-admin-configure-advanced.js",
+  "test-admin-tenants.js",
   "test-admin-configure-languages.js",
   "test-admin-configure-node.js",
   "test-admin-configure-css.js",

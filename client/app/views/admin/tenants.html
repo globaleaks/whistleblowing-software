@@ -30,7 +30,7 @@
             <div class="editorHeader row">
               <div class="col-md-6">
                 <div class="editorHeaderTitle">
-                  <span data-translate>Label</span>: {{tenant.label}}
+                  <span data-translate>Label</span>: <span>{{tenant.label}}</span>
                   <span>ID: {{tenant.id}}</span>
                   <span data-ng-hide="tenant.active" class="label label-danger"
                     data-ng-click="toggleActivation()"
@@ -43,7 +43,7 @@
               <div class="col-md-6">
                   <span class="pull-right">
                     <button class="actionButton actionButtonDelete btn btn-xs btn-danger"
-                      data-ng-hide="isRemovableTenant(tenant)" data-ng-click="delete_tenant(tenant); $event.stopPropagation();"
+                      data-ng-hide="isRemovableTenant(tenant)" data-ng-click="deleteDialog(tenant, perform_delete); $event.stopPropagation();"
                       data-translate>Delete</button>
                     <span class="label label-success" data-ng-show="isCurrentTenant(tenant)" data-translate>Current</span>
                   </span>
