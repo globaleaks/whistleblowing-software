@@ -50,7 +50,7 @@ controller('AdminContextEditorCtrl', ['$scope', '$http', 'Utils', 'AdminContextR
     }).then(function() {
       $rootScope.successes.push({});
     });
-  };
+  }
 
   function recAttachedToCtx(rec) {
     return $scope.context.receivers.indexOf(rec.id) > -1;
@@ -98,12 +98,10 @@ controller('AdminContextEditorCtrl', ['$scope', '$http', 'Utils', 'AdminContextR
   };
 }]).
 controller('AdminContextReceiverSelectorCtrl', ['$scope', function($scope) {
-  console.log('ctrl start: rec_id', $scope.receiver.id);
-
   $scope.moveUp = function(idx) { swap(idx, -1); };
   $scope.moveDown = function(idx) { swap(idx, 1); };
 
-  swap = function(index, n) {
+  function swap(index, n) {
     var target = index + n;
     if (target > -1 && target < $scope.selected_receivers.length) {
       var tmp = $scope.selected_receivers[target];
@@ -113,7 +111,7 @@ controller('AdminContextReceiverSelectorCtrl', ['$scope', function($scope) {
 
       $scope.context.receivers = $scope.selected_receivers.map(function(r) { return r.id; });
     }
-  };
+  }
 
   $scope.removeElem = function(rec, i) {
     $scope.selected_receivers.splice(i, 1);
