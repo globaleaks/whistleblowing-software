@@ -290,7 +290,7 @@
                       <input class="form-control" data-ng-model="option.label" data-ng-attr-placeholder="{{'Name' | translate }}" type="text" data-ng-disabled="!editable" required />
                     </div>
                     <div class="col-md-6">
-                      <button class="actionButton btn btn-xs btn-danger" data-ng-click="delOption(field, option)">
+                      <button class="actionButton btn btn-xs btn-danger" data-ng-click="delOption(option)">
                         <i class="glyphicon glyphicon-remove"></i>
                       </button>
                       <span data-ng-if="!field.attrs.display_alphabetically.value && field.options.length > 1">
@@ -319,7 +319,7 @@
                   </div>
                 </div>
                 <div>
-                  <a data-ng-click="addOption(field)">
+                  <a data-ng-click="addOption()">
                     <i class="glyphicon glyphicon-plus-sign"></i>
                     <span data-translate>Add option</span>
                   </a>

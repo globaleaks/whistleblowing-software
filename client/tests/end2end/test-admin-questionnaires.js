@@ -14,11 +14,11 @@ describe('admin add, configure and delete questionnaires', function() {
       element.all(by.xpath(".//*[text()='" + question_type + "']")).get(1).click();
 
       for (var i=0; i<3; i++) {
-        element(by.css('[data-ng-click="addOption(field)"]')).click();
+        element(by.css('[data-ng-click="addOption()"]')).click();
         element.all(by.model('option.label')).get(i).sendKeys('option');
       }
 
-      element.all(by.css('[data-ng-click="delOption(field, option)"]')).get(2).click();
+      element.all(by.css('[data-ng-click="delOption(option)"]')).get(2).click();
 
       browser.gl.utils.clickFirstDisplayed(by.css('[data-ng-click="save_field(field)"]'));
     }
