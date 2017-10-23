@@ -207,15 +207,15 @@ controller('AdminFieldEditorCtrl', ['$scope', '$filter', '$uibModal', 'AdminFiel
         return c;
       }
 
-      return $scope.Utils.openConfirmableModalDialog('views/partials/trigger_field.html', option, $scope);
+      return $scope.Utils.openConfirmableModalDialog('views/partials/trigger_field.html', option, null, $scope);
     };
 
     $scope.triggerStepDialog = function(option) {
-      return $scope.Utils.openConfirmableModalDialog('views/partials/trigger_step.html', option, $scope);
+      return $scope.Utils.openConfirmableModalDialog('views/partials/trigger_step.html', option, null, $scope);
     };
 
     $scope.assignScorePointsDialog = function(option) {
-      return $scope.Utils.openConfirmableModalDialog('views/partials/assign_score_points.html', option, $scope);
+      return $scope.Utils.openConfirmableModalDialog('views/partials/assign_score_points.html', option, null, $scope);
     };
   }
 ]).

@@ -1,6 +1,6 @@
 GLClient.controller('AdminContextsCtrl',
-  ['$scope', '$uibModal', 'AdminContextResource',
-  function($scope, $uibModal, AdminContextResource) {
+  ['$scope', 'AdminContextResource',
+  function($scope, AdminContextResource) {
 
   $scope.save_context = function (context, cb) {
     var updated_context = new AdminContextResource(context);
@@ -15,15 +15,6 @@ GLClient.controller('AdminContextsCtrl',
       var idx = $scope.admin.contexts.indexOf(context);
       $scope.admin.contexts.splice(idx, 1);
     });
-  };
-
-  $scope.contextDeleteDialog = function(context){
-    var modalInstance = $scope.Utils.openConfirmableModalDialog('views/partials/context_delete.html', context);
-
-    modalInstance.result.then(
-       function(result) { $scope.perform_delete(result); },
-       function() { }
-    );
   };
 
   $scope.moveUpAndSave = function(elem) {

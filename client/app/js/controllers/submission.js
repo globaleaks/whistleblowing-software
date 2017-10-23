@@ -1,6 +1,6 @@
 GLClient.controller('SubmissionCtrl',
-    ['$scope', 'Utils', '$filter', '$location', '$interval', '$uibModal', '$anchorScroll', 'tmhDynamicLocale', 'Submission', 'glbcProofOfWork', 'fieldUtilities',
-      function ($scope, Utils, $filter, $location, $interval, $uibModal, $anchorScroll, tmhDynamicLocale, Submission, glbcProofOfWork, fieldUtilities) {
+    ['$scope', 'Utils', '$filter', '$location', '$interval', '$anchorScroll', 'tmhDynamicLocale', 'Submission', 'glbcProofOfWork', 'fieldUtilities',
+      function ($scope, Utils, $filter, $location, $interval, $anchorScroll, tmhDynamicLocale, Submission, glbcProofOfWork, fieldUtilities) {
   $scope.vars = {};
 
   $scope.fieldUtilities = fieldUtilities;
@@ -36,12 +36,7 @@ GLClient.controller('SubmissionCtrl',
       problemSolved: $scope.problemSolved
     };
 
-    $scope.problemModal = $scope.Utils.openConfirmableModalDialog('views/partials/captchas.html', args);
-
-    $scope.problemModal.result.then(
-      function() { $scope.problemSolved($scope.submission); },
-      function() { }
-    );
+    $scope.problemModal = $scope.Utils.openConfirmableModalDialog('views/partials/captchas.html', args, $scope.problemSolved);
   };
 
   $scope.selected_context = undefined;
