@@ -328,8 +328,8 @@ var GLClient = angular.module('GLClient', [
       when('/admin/tenants', {
         templateUrl: 'views/admin/tenants.html',
         controller: 'AdminCtrl',
-        header_title: 'Administration interfact',
-        header_subtitle: 'Tenant management',
+        header_title: 'Administration interface',
+        header_subtitle: 'Sites management',
         resolve: {
           resources: fetchResources('admin', ['node', 'tenants']),
         }

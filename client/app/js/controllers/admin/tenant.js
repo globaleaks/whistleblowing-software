@@ -14,13 +14,8 @@ angular.module('GLClient')
 }])
 .controller('TenantEditorCtrl', ['$scope', 'AdminTenantResource', function($scope, AdminTenantResource) {
   var tenant = $scope.tenant;
-  $scope.delete_tenant = function() {
-    AdminTenantResource.delete({
-      id: tenant.id
-    }, function(){
-      var idx = $scope.admin.tenants.indexOf(tenant);
-      $scope.admin.tenants.splice(idx, 1);
-    });
+  $scope.perform_delete = function(tenant) {
+    return $scope.Utils.deleteResource(AdminTenantResource, $scope.admin.tenants, tenant);
   };
 
   $scope.toggleActivation = function() {
