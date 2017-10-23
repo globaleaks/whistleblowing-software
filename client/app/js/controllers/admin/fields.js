@@ -78,7 +78,7 @@ controller('AdminFieldEditorCtrl', ['$scope', '$filter', '$uibModal', 'AdminFiel
       $scope.field.children.push(field);
     };
 
-    $scope.addOption = function (field) {
+    $scope.addOption = function () {
       var new_option = {
         'id': '',
         'label': '',
@@ -89,12 +89,11 @@ controller('AdminFieldEditorCtrl', ['$scope', '$filter', '$uibModal', 'AdminFiel
 
       new_option.presentation_order = $scope.newItemOrder(field.options, 'presentation_order');
 
-      field.options.push(new_option);
+      $scope.field.options.push(new_option);
     };
 
-    $scope.delOption = function(field, option) {
-      var index = field.options.indexOf(option);
-      field.options.splice(index, 1);
+    $scope.delOption = function(option) {
+      $scope.field.options.splice($scope.field.options.indexOf(option), 1);
     };
 
     $scope.save_field = function(field) {
