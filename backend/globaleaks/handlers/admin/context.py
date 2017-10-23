@@ -22,7 +22,7 @@ def admin_serialize_context(store, context, language):
     :param language: the language in which to localize data.
     :return: a dictionary representing the serialization of the context.
     """
-    receivers = [id for id in store.find(models.ReceiverContext.receiver_id, models.ReceiverContext.context_id == context.id)]
+    receivers = [id for id in store.find(models.ReceiverContext.receiver_id, models.ReceiverContext.context_id == context.id).order_by(models.ReceiverContext.presentation_order)]
     picture = db_get_model_img(store, 'contexts', context.id)
 
     ret_dict = {

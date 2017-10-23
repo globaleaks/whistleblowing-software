@@ -2,6 +2,8 @@ GLClient.controller('AdminContextsCtrl',
   ['$scope', 'Utils', 'AdminContextResource',
   function($scope, Utils, AdminContextResource) {
 
+  $scope.admin_receivers_by_id = $scope.Utils.array_to_map($scope.admin.receivers);
+
   $scope.save_context = function (context, cb) {
     var updated_context = new AdminContextResource(context);
 
@@ -52,15 +54,6 @@ controller('AdminContextEditorCtrl', ['$scope', '$http', 'Utils', 'AdminContextR
     });
   }
 
-  function recAttachedToCtx(rec) {
-    return $scope.context.receivers.indexOf(rec.id) > -1;
-  }
-
-  $scope.selected_receivers = $scope.admin.receivers.filter(recAttachedToCtx);
-  $scope.potential_receivers = $scope.admin.receivers.filter(function(rec) {
-    return !recAttachedToCtx(rec);
-  });
-
   $scope.showSelect = false;
   $scope.toggleSelect = function() {
     $scope.showSelect = true;
@@ -76,6 +69,15 @@ controller('AdminContextEditorCtrl', ['$scope', '$http', 'Utils', 'AdminContextR
 
     $scope.editContext.$dirty = true;
     $scope.editContext.$pristine = false;
+  };
+
+  $scope.moveReceiver = function(rec) {
+    $scope.context.receivers.push(rec.id);
+    $scope.showSelect = false;
+  };
+
+  $scope.receiverNotSelectedFilter = function(item) {
+    return $scope.context.receivers.indexOf(item.id) == -1;
   };
 
   $scope.updateContextImgUrl = function() {
@@ -103,21 +105,13 @@ controller('AdminContextReceiverSelectorCtrl', ['$scope', function($scope) {
 
   function swap(index, n) {
     var target = index + n;
-    if (target > -1 && target < $scope.selected_receivers.length) {
-      var tmp = $scope.selected_receivers[target];
-      var tmpIdx = $scope.selected_receivers[index];
-      $scope.selected_receivers[target] = tmpIdx;
-      $scope.selected_receivers[index] = tmp;
-
-      $scope.context.receivers = $scope.selected_receivers.map(function(r) { return r.id; });
+    if (target > -1 && target < $scope.context.receivers.length) {
+      var tmp = $scope.context.receivers[target];
+      var tmpIdx = $scope.context.receivers[index];
+      $scope.context.receivers[target] = tmpIdx;
+      $scope.context.receivers[index] = tmp;
     }
   }
-
-  $scope.removeElem = function(rec, i) {
-    $scope.selected_receivers.splice(i, 1);
-    $scope.potential_receivers.push(rec);
-    $scope.context.receivers = $scope.selected_receivers.map(function(r) { return r.id; });
-  };
 }]).
 controller('AdminContextAddCtrl', ['$scope', function($scope) {
   $scope.new_context = {};
