@@ -22,8 +22,7 @@ GLClient.controller('AdminContextsCtrl',
     $scope.save_context(elem);
   };
 }]).
-controller('AdminContextEditorCtrl', ['$scope', 'AdminStepResource',
-  function($scope, AdminStepResource) {
+controller('AdminContextEditorCtrl', ['$scope', function($scope) {
 
   $scope.editing = false;
 
@@ -44,10 +43,6 @@ controller('AdminContextEditorCtrl', ['$scope', 'AdminStepResource',
     }
     $scope.editContext.$dirty = true;
     $scope.editContext.$pristine = false;
-  };
-
-  $scope.delStep = function(step) {
-    return $scope.Utils.deleteResource(AdminStepResource, $scope.context.steps, step);
   };
 
   $scope.updateContextImgUrl = function() {

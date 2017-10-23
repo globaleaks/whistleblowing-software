@@ -87,7 +87,7 @@ controller('AdminFieldEditorCtrl', ['$scope', '$filter', '$uibModal', 'AdminFiel
         'trigger_step': ''
       };
 
-      new_option.presentation_order = $scope.newItemOrder(field.options, 'presentation_order');
+      new_option.presentation_order = $scope.newItemOrder($scope.field.options, 'presentation_order');
 
       $scope.field.options.push(new_option);
     };
