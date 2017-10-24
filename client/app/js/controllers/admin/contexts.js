@@ -1,15 +1,11 @@
 GLClient.controller('AdminContextsCtrl',
-  ['$scope', 'AdminContextResource',
-  function($scope, AdminContextResource) {
+  ['$scope', 'Utils', 'AdminContextResource',
+  function($scope, Utils, AdminContextResource) {
 
   $scope.save_context = function (context, cb) {
     var updated_context = new AdminContextResource(context);
 
-    return $scope.Utils.update(updated_context, cb);
-  };
-
-  $scope.perform_delete = function(context) {
-    return $scope.Utils.deleteResource(AdminContextResource, $scope.admin.contexts, context);
+    return Utils.update(updated_context, cb);
   };
 
   $scope.moveUpAndSave = function(elem) {
@@ -22,7 +18,8 @@ GLClient.controller('AdminContextsCtrl',
     $scope.save_context(elem);
   };
 }]).
-controller('AdminContextEditorCtrl', ['$scope', function($scope) {
+controller('AdminContextEditorCtrl', ['$rootScope', '$scope', 'AdminStepResource', 'AdminContextResource',
+  function($rootScope, $scope, AdminStepResource, AdminContextResource) {
 
   $scope.editing = false;
 
@@ -57,6 +54,15 @@ controller('AdminContextEditorCtrl', ['$scope', function($scope) {
       $scope.tip_ttl_off = new_val === -1;
     }
   });
+
+  $scope.deleteContext = function() {
+    $scope.deleteDialog($scope.context).then(function() {
+      return AdminContextResource.delete({id: $scope.context.id}).$promise;
+    }).then(function() {
+      var idx = $scope.admin.contexts.indexOf($scope.context);
+      $scope.admin.contexts.splice(idx, 1);
+    });
+  };
 }]).
 controller('AdminContextAddCtrl', ['$scope', function($scope) {
   $scope.new_context = {};

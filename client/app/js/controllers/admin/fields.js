@@ -1,5 +1,5 @@
-GLClient.controller('AdminFieldTemplatesCtrl', ['$scope', 'AdminFieldTemplateResource',
-  function($scope, AdminFieldTemplateResource) {
+GLClient.controller('AdminFieldTemplatesCtrl', ['$scope', 'Utils', 'AdminFieldTemplateResource',
+  function($scope, Utils, AdminFieldTemplateResource) {
     $scope.admin.fieldtemplates.$promise.then(function(fields) {
       $scope.fields = fields;
     });
@@ -9,12 +9,12 @@ GLClient.controller('AdminFieldTemplatesCtrl', ['$scope', 'AdminFieldTemplateRes
     };
 
     $scope.delField = function(field) {
-      return $scope.Utils.deleteResource( AdminFieldTemplateResource, $scope.fields, field);
+      return Utils.deleteResource(AdminFieldTemplateResource, $scope.fields, field);
     };
   }
 ]).
-controller('AdminFieldEditorCtrl', ['$scope', '$filter', '$uibModal', 'AdminFieldResource', 'AdminFieldTemplateResource',
-  function($scope, $filter, $uibModal, AdminFieldResource, AdminFieldTemplateResource) {
+controller('AdminFieldEditorCtrl', ['$scope', '$filter', '$uibModal', 'Utils', 'AdminFieldResource', 'AdminFieldTemplateResource',
+  function($scope, $filter, $uibModal, Utils, AdminFieldResource, AdminFieldTemplateResource) {
     $scope.editable = $scope.field.editable && $scope.field.instance !== 'reference';
     $scope.editing = false;
     $scope.new_field = {};
@@ -99,7 +99,7 @@ controller('AdminFieldEditorCtrl', ['$scope', '$filter', '$uibModal', 'AdminFiel
     $scope.save_field = function(field) {
       var updated_field;
 
-      $scope.Utils.assignUniqueOrderIndex(field.options);
+      Utils.assignUniqueOrderIndex(field.options);
 
       if (field.instance === 'template') {
         updated_field = new AdminFieldTemplateResource(field);
@@ -107,7 +107,7 @@ controller('AdminFieldEditorCtrl', ['$scope', '$filter', '$uibModal', 'AdminFiel
         updated_field = new AdminFieldResource(field);
       }
 
-      $scope.Utils.update(updated_field);
+      Utils.update(updated_field);
     };
 
     $scope.moveUpAndSave = function(elem) {
@@ -202,15 +202,15 @@ controller('AdminFieldEditorCtrl', ['$scope', '$filter', '$uibModal', 'AdminFiel
         return c;
       }
 
-      return $scope.Utils.openConfirmableModalDialog('views/partials/trigger_field.html', option, null, $scope);
+      return Utils.openConfirmableModalDialog('views/partials/trigger_field.html', option, $scope);
     };
 
     $scope.triggerStepDialog = function(option) {
-      return $scope.Utils.openConfirmableModalDialog('views/partials/trigger_step.html', option, null, $scope);
+      return Utils.openConfirmableModalDialog('views/partials/trigger_step.html', option, $scope);
     };
 
     $scope.assignScorePointsDialog = function(option) {
-      return $scope.Utils.openConfirmableModalDialog('views/partials/assign_score_points.html', option, null, $scope);
+      return Utils.openConfirmableModalDialog('views/partials/assign_score_points.html', option, $scope);
     };
   }
 ]).

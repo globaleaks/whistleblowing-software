@@ -1,7 +1,7 @@
 GLClient.
 controller('AdminCtrl',
-    ['$scope', '$route', '$location', '$filter', 'resources', 'AdminUtils', 'AdminNodeResource', 'UpdateService', 'CONSTANTS',
-    function($scope, $route, $location, $filter, resources, AdminUtils, AdminNodeResource, UpdateService, CONSTANTS) {
+    ['$scope', '$route', '$location', '$filter', 'resources', 'Utils', 'AdminUtils', 'AdminNodeResource', 'UpdateService', 'CONSTANTS',
+    function($scope, $route, $location, $filter, resources, Utils, AdminUtils, AdminNodeResource, UpdateService, CONSTANTS) {
   $scope.email_regexp = CONSTANTS.email_regexp;
   $scope.hostname_regexp = CONSTANTS.hostname_regexp;
   $scope.onionservice_regexp = CONSTANTS.onionservice_regexp;
@@ -19,9 +19,9 @@ controller('AdminCtrl',
 
   $scope.admin = resources;
 
-  $scope.deleteDialog = function(obj, callback) {
-    return $scope.Utils.openConfirmableModalDialog('views/partials/delete_dialog.html', obj, callback);
-  }
+  $scope.deleteDialog = function(obj) {
+    return Utils.openConfirmableModalDialog('views/partials/delete_dialog.html', obj);
+  };
 
   if (angular.isDefined($scope.admin.node)) {
     $scope.languages_enabled_edit = {};
@@ -88,7 +88,7 @@ controller('AdminCtrl',
   }
 
   $scope.updateNode = function(node) {
-    $scope.Utils.update(node, function() { $scope.$emit("REFRESH"); });
+    Utils.update(node, function() { $scope.$emit("REFRESH"); });
   };
 
   $scope.newItemOrder = function(objects, key) {

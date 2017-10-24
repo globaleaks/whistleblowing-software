@@ -2,11 +2,11 @@ GLClient.controller('AdminUsersCtrl', [
   function() {
   // Parked for future use
 }]).
-controller('AdminUserEditorCtrl', ['$scope', 'Utils',
-  function($scope, Utils) {
+controller('AdminUserEditorCtrl', ['$scope', '$rootScope', 'Utils', 'AdminUserResource',
+  function($scope, $rootScope, Utils, AdminUserResource) {
 
     $scope.deleteUser = function() {
-      Utils.deleteDialog($scope.user).then(function() {
+      $scope.deleteDialog($scope.user).then(function() {
         return Utils.deleteResource(AdminUserResource, $scope.admin.users, $scope.user);
       });
     };
