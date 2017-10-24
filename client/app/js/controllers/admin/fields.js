@@ -111,22 +111,22 @@ controller('AdminFieldEditorCtrl', ['$scope', '$filter', '$uibModal', 'Utils', '
     };
 
     $scope.moveUpAndSave = function(elem) {
-      $scope.Utils.moveUp(elem);
+      Utils.moveUp(elem);
       $scope.save_field(elem);
     };
 
     $scope.moveDownAndSave = function(elem) {
-      $scope.Utils.moveDown(elem);
+      Utils.moveDown(elem);
       $scope.save_field(elem);
     };
 
     $scope.moveLeftAndSave = function(elem) {
-      $scope.Utils.moveLeft(elem);
+      Utils.moveLeft(elem);
       $scope.save_field(elem);
     };
 
     $scope.moveRightAndSave = function(elem) {
-      $scope.Utils.moveRight(elem);
+      Utils.moveRight(elem);
       $scope.save_field(elem);
     };
 

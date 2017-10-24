@@ -9,17 +9,17 @@ GLClient.controller('AdminContextsCtrl',
   };
 
   $scope.moveUpAndSave = function(elem) {
-    $scope.Utils.moveUp(elem);
+    Utils.moveUp(elem);
     $scope.save_context(elem);
   };
 
   $scope.moveDownAndSave = function(elem) {
-    $scope.Utils.moveDown(elem);
+    Utils.moveDown(elem);
     $scope.save_context(elem);
   };
 }]).
-controller('AdminContextEditorCtrl', ['$rootScope', '$scope', 'AdminStepResource', 'AdminContextResource',
-  function($rootScope, $scope, AdminStepResource, AdminContextResource) {
+controller('AdminContextEditorCtrl', ['$scope', 'Utils', 'AdminStepResource', 'AdminContextResource',
+  function($scope, Utils, AdminStepResource, AdminContextResource) {
 
   $scope.editing = false;
 
@@ -38,12 +38,13 @@ controller('AdminContextEditorCtrl', ['$rootScope', '$scope', 'AdminStepResource
     } else {
       $scope.context.receivers.splice(idx, 1);
     }
+
     $scope.editContext.$dirty = true;
     $scope.editContext.$pristine = false;
   };
 
   $scope.updateContextImgUrl = function() {
-    $scope.contextImgUrl = '/admin/contexts/' + $scope.context.id + '/img#' + $scope.Utils.randomFluff();
+    $scope.contextImgUrl = '/admin/contexts/' + $scope.context.id + '/img#' + Utils.randomFluff();
   };
 
   $scope.updateContextImgUrl();
@@ -56,11 +57,8 @@ controller('AdminContextEditorCtrl', ['$rootScope', '$scope', 'AdminStepResource
   });
 
   $scope.deleteContext = function() {
-    $scope.deleteDialog($scope.context).then(function() {
-      return AdminContextResource.delete({id: $scope.context.id}).$promise;
-    }).then(function() {
-      var idx = $scope.admin.contexts.indexOf($scope.context);
-      $scope.admin.contexts.splice(idx, 1);
+    Utils.deleteDialog($scope.context).then(function() {
+      return Utils.deleteResource(AdminContextResource, $scope.admin.contexts, $scope.context);
     });
   };
 }]).

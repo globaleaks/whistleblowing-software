@@ -19,10 +19,6 @@ controller('AdminCtrl',
 
   $scope.admin = resources;
 
-  $scope.deleteDialog = function(obj) {
-    return Utils.openConfirmableModalDialog('views/partials/delete_dialog.html', obj);
-  };
-
   if (angular.isDefined($scope.admin.node)) {
     $scope.languages_enabled_edit = {};
     $scope.languages_enabled_selector = [];
