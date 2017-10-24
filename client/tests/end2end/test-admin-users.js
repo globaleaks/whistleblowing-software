@@ -49,7 +49,8 @@ describe('admin add, configure, and delete users', function() {
 
     // Find Recipient2, click edit, flip some toggles, and save.
     var editUsrForm = element(by.xpath(path));
-    editUsrForm.element(by.css('.actionButtonEdit')).click();
+
+    editUsrForm.element(by.cssContainingText("button", "Edit")).click();
 
     // Add a description
     var descriptBox = editUsrForm.element(by.model('user.description'));
@@ -58,8 +59,8 @@ describe('admin add, configure, and delete users', function() {
     descriptBox.sendKeys(words);
 
     // Click Save and check the fields
-    editUsrForm.element(by.css('.actionButtonSave')).click();
-    editUsrForm.element(by.css('.actionButtonEdit')).click();
+    editUsrForm.element(by.cssContainingText("button", "Save")).click();
+    editUsrForm.element(by.cssContainingText("button", "Edit")).click();
 
     descriptBox.getAttribute('value').then(function(savedDescript) {
       expect(savedDescript).toEqual(words);
@@ -71,7 +72,7 @@ describe('admin add, configure, and delete users', function() {
     var delete_account = function(user) {
       var path = '//form[contains(.,"' + user.name + '")]';
       element.all(by.xpath(path)).each(function(div) {
-        div.element(by.css('.actionButtonDelete')).click();
+        div.element(by.cssContainingText("button", "Delete")).click();
         element(by.id('modal-action-ok')).click();
       });
     };

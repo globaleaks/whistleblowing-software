@@ -5,12 +5,12 @@
      flow-files-submitted="$flow.upload()"
      extend-flow-valid-types="['png']">
   <div class="imageUpload">
-    <button class="changePicture actionButton btn btn-xs btn-primary" flow-btn data-translate>Change picture</button>
+    <button class="changePicturebtn btn-xs btn-primary" flow-btn data-translate>Change picture</button>
     <div class="imageUploadThumbnail">
       <img alt="preview picture" data-ng-if="imageUploadObj.flow.files.length == 0" data-ng-src="{{Utils.imgDataUri(imageUploadModel[imageUploadModelAttr])}}" class="imageUploadThumbnailContent" />
       <img alt="preview picture" data-ng-if="imageUploadObj.flow.files.length > 0" flow-img="imageUploadObj.flow.files[imageUploadObj.flow.files.length - 1]" class="imageUploadThumbnailContent" />
     </div>
-    <button class="deletePicture actionButton btn btn-xs btn-danger"
+    <button class="deletePicturebtn btn-xs btn-danger"
             data-ng-show="imageUploadModel[imageUploadModelAttr] || imageUploadObj.flow.files.length > 0"
             data-ng-click="deletePicture(); $event.stopPropagation();">
       <span class="glyphicon glyphicon-remove"></span>

@@ -65,7 +65,7 @@ describe('admin add, configure and delete questionnaires', function() {
   });
 
   it('should del existing questionnaires', function() {
-    element.all(by.css('.actionButtonDelete')).last().click();
+    element.all(by.cssContainingText("button", "Delete")).last().click();
   });
 
   it('should add new question templates', function() {
