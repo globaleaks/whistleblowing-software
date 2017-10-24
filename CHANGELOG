@@ -1,3 +1,10 @@
+Changes in version 2.72.13 - 2017-10-24
+    o Improve efficiency of delivery sched
+    o Fix deletion of questionnaire questions
+    o Fix captcha reload on challenge failures
+    o Apply minor rewrites targeting at more code reuse
+    o Update translations
+
 Changes in version 2.72.12 - 2017-10-17
     o Enable to reach the ACME challenge bypassing HTTP Basic AUTH
 
