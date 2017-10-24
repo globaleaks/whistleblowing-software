@@ -2,24 +2,23 @@
   <div class="modal-title" data-translate>Are you human?</div>
 </div>
 <div class="modal-body">
-  <div id="HumanCaptcha" data-ng-if="arg.submission._token.human_captcha">
+  <div id="HumanCaptcha">
     <div class="alert alert-warning">
       <div data-translate>We do not discriminate based on race and gender, but we do against computers :)</div>
       <br />
       <div>
         <span data-translate>Just to prove you are human, please answer the following math challenge:</span>
-        <span>{{arg.submission._token.human_captcha}}</span>
+        <span>{{arg.token.human_captcha}}</span>
       </div>
       <br />
       <div class="form-group" class="col-md-12 text-center">
         <div class="col-xs-4">
-          <input id="human_captcha_answer" class="form-control" data-ng-model="arg.submission._token.human_captcha_answer" type="number" autocomplete="off" />
+          <input id="human_captcha_answer" class="form-control" data-ng-model="arg.token.human_captcha_answer" type="number" autocomplete="off" />
         </div>
       </div>
       <br />
     </div>
   </div>
-</div>
 </div>
 <div class="modal-footer">
   <a id="modal-action-ok" class="btn btn-success" data-ng-click="ok()">

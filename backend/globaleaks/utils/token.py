@@ -59,8 +59,9 @@ class Token(object):
 
         # The token challenges in their default state
         self.human_captcha = {'solved': True}
+        self.generate_human_captcha()
         self.proof_of_work = {'solved': True}
-        self.generate_token_challenges()
+        self.generate_proof_of_work()
 
         TokenList.set(self.id, self)
 
@@ -98,7 +99,7 @@ class Token(object):
 
         return r
 
-    def generate_token_challenges(self):
+    def generate_human_captcha(self):
         if Alarm.stress_levels['activity'] >= 1 and State.tenant_cache[1].enable_captcha:
             random_a = SystemRandom().randrange(100)
             random_b = SystemRandom().randrange(100)
@@ -109,6 +110,7 @@ class Token(object):
                 'solved': False
             }
 
+    def generate_proof_of_work(self):
         if State.tenant_cache[1].enable_proof_of_work:
             self.proof_of_work = {
                 'question': generateRandomKey(20),
@@ -172,14 +174,15 @@ class Token(object):
 
         if not self.human_captcha['solved']:
             self.captcha_valid(request['human_captcha_answer'])
+            if not self.human_captcha['solved']:
+                self.generate_human_captcha()
 
         if not self.proof_of_work['solved']:
             self.proof_of_work_valid(request['proof_of_work_answer'])
+            if not self.proof_of_work['solved']:
+                self.generate_proof_of_work()
 
-        passed = self.human_captcha['solved'] and self.proof_of_work['solved']
-        if not passed:
-            self.generate_token_challenges()
-        return passed
+        return self.human_captcha['solved'] and self.proof_of_work['solved']
 
     def use(self):
         try:

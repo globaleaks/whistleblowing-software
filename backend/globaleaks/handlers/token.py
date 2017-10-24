@@ -50,7 +50,7 @@ class TokenCreate(BaseHandler):
 
 class TokenInstance(BaseHandler):
     """
-    This class impleement the handler for updating a token (e.g.: solving a captcha)
+    This class implements the handler for updating a token (e.g.: solving a captcha)
     """
     check_roles = 'unauthenticated'
 
@@ -63,8 +63,6 @@ class TokenInstance(BaseHandler):
         request = self.validate_message(self.request.content.read(), requests.TokenAnswerDesc)
 
         token = TokenList.get(token_id)
-
-        if not token.update(request):
-            raise errors.TokenFailure('failed challenge')
+        token.update(request)
 
         return token.serialize()
