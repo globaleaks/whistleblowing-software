@@ -13,9 +13,9 @@
       "resolved": "https://registry.npmjs.org/@flowjs/ng-flow/-/ng-flow-2.7.7.tgz"
     },
     "@types/node": {
-      "version": "6.0.89",
+      "version": "6.0.90",
       "from": "@types/node@>=6.0.46 <7.0.0",
-      "resolved": "https://registry.npmjs.org/@types/node/-/node-6.0.89.tgz",
+      "resolved": "https://registry.npmjs.org/@types/node/-/node-6.0.90.tgz",
       "dev": true
     },
     "@types/q": {
@@ -83,9 +83,9 @@
       }
     },
     "ajv": {
-      "version": "5.2.3",
+      "version": "5.2.4",
       "from": "ajv@>=5.1.0 <6.0.0",
-      "resolved": "https://registry.npmjs.org/ajv/-/ajv-5.2.3.tgz",
+      "resolved": "https://registry.npmjs.org/ajv/-/ajv-5.2.4.tgz",
       "dev": true
     },
     "ajv-keywords": {
@@ -444,9 +444,9 @@
       "dev": true
     },
     "chalk": {
-      "version": "2.1.0",
+      "version": "2.3.0",
       "from": "chalk@>=2.1.0 <3.0.0",
-      "resolved": "https://registry.npmjs.org/chalk/-/chalk-2.1.0.tgz",
+      "resolved": "https://registry.npmjs.org/chalk/-/chalk-2.3.0.tgz",
       "dev": true,
       "dependencies": {
         "ansi-styles": {
@@ -456,9 +456,9 @@
           "dev": true
         },
         "supports-color": {
-          "version": "4.4.0",
+          "version": "4.5.0",
           "from": "supports-color@>=4.0.0 <5.0.0",
-          "resolved": "https://registry.npmjs.org/supports-color/-/supports-color-4.4.0.tgz",
+          "resolved": "https://registry.npmjs.org/supports-color/-/supports-color-4.5.0.tgz",
           "dev": true
         }
       }
@@ -2157,9 +2157,9 @@
       "resolved": "https://registry.npmjs.org/iconv-lite/-/iconv-lite-0.4.19.tgz"
     },
     "ignore": {
-      "version": "3.3.5",
+      "version": "3.3.6",
       "from": "ignore@>=3.3.3 <4.0.0",
-      "resolved": "https://registry.npmjs.org/ignore/-/ignore-3.3.5.tgz",
+      "resolved": "https://registry.npmjs.org/ignore/-/ignore-3.3.6.tgz",
       "dev": true
     },
     "immediate": {
@@ -2971,9 +2971,9 @@
       "dev": true
     },
     "q": {
-      "version": "1.5.0",
-      "from": "q@1.5.0",
-      "resolved": "https://registry.npmjs.org/q/-/q-1.5.0.tgz",
+      "version": "1.5.1",
+      "from": "q@1.5.1",
+      "resolved": "https://registry.npmjs.org/q/-/q-1.5.1.tgz",
       "dev": true
     },
     "qs": {
@@ -3375,9 +3375,9 @@
       "dev": true
     },
     "superagent": {
-      "version": "3.6.3",
-      "from": "superagent@3.6.3",
-      "resolved": "https://registry.npmjs.org/superagent/-/superagent-3.6.3.tgz",
+      "version": "3.7.0",
+      "from": "superagent@3.7.0",
+      "resolved": "https://registry.npmjs.org/superagent/-/superagent-3.7.0.tgz",
       "dev": true
     },
     "supertest": {
