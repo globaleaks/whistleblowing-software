@@ -14,8 +14,8 @@ GLClient.controller('AdminStepAddCtrl', ['$scope',
     };
   }
 ]).
-controller('AdminStepEditorCtrl', ['$scope', '$uibModal', 'AdminStepResource', 'AdminFieldResource',
-  function($scope, $uibModal, AdminStepResource, AdminFieldResource) {
+controller('AdminStepEditorCtrl', ['$scope', 'Utils', 'AdminStepResource', 'AdminFieldResource',
+  function($scope, AdminStepResource, AdminFieldResource) {
     $scope.editing = false;
     $scope.new_field = {};
     $scope.fields = $scope.step.children;
@@ -26,7 +26,7 @@ controller('AdminStepEditorCtrl', ['$scope', '$uibModal', 'AdminStepResource', '
 
     $scope.save_step = function(step) {
       var updated_step = new AdminStepResource(step);
-      return $scope.Utils.update(updated_step);
+      return Utils.update(updated_step);
     };
 
     $scope.addField = function(field) {
@@ -34,7 +34,7 @@ controller('AdminStepEditorCtrl', ['$scope', '$uibModal', 'AdminStepResource', '
     };
 
     $scope.delField = function(fields, field) {
-      return $scope.Utils.deleteResource(AdminFieldResource, $scope.fields, field);
+      return Utils.deleteResource(AdminFieldResource, $scope.fields, field);
     };
 
     $scope.add_field = function() {
@@ -64,12 +64,12 @@ controller('AdminStepEditorCtrl', ['$scope', '$uibModal', 'AdminStepResource', '
     };
 
     $scope.moveUpAndSave = function(elem) {
-      $scope.Utils.moveUp(elem);
+      Utils.moveUp(elem);
       $scope.save_step(elem);
     };
 
     $scope.moveDownAndSave = function(elem) {
-      $scope.Utils.moveDown(elem);
+      Utils.moveDown(elem);
       $scope.save_step(elem);
     };
   }

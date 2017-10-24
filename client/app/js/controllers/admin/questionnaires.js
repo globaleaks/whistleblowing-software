@@ -1,6 +1,6 @@
 GLClient.controller('AdminQuestionnaireCtrl',
-  ['$scope', 'AdminQuestionnaireResource',
-  function($scope, AdminQuestionnaireResource){
+  ['$scope', 'Utils', 'AdminQuestionnaireResource',
+  function($scope, Utils, AdminQuestionnaireResource){
   $scope.tabs = [
     {
       title:"Questionnaire configuration",
@@ -23,15 +23,15 @@ GLClient.controller('AdminQuestionnaireCtrl',
   $scope.save_questionnaire = function(questionnaire, cb) {
     var updated_questionnaire = new AdminQuestionnaireResource(questionnaire);
 
-    return $scope.Utils.update(updated_questionnaire, cb);
+    return Utils.update(updated_questionnaire, cb);
   };
 
   $scope.delete_questionnaire = function(questionnaire) {
-    return $scope.Utils.deleteResource(AdminQuestionnaireResource, $scope.admin.questionnaires, questionnaire);
+    return Utils.deleteResource(AdminQuestionnaireResource, $scope.admin.questionnaires, questionnaire);
   };
 }]).
-controller('AdminQuestionnaireEditorCtrl', ['$scope', '$http', 'FileSaver', 'AdminStepResource',
-  function($scope, $http, FileSaver, AdminStepResource) {
+controller('AdminQuestionnaireEditorCtrl', ['$scope', '$http', 'Utils', 'FileSaver', 'AdminStepResource',
+  function($scope, $http, Utils, FileSaver, AdminStepResource) {
 
   $scope.editing = false;
 
@@ -40,7 +40,7 @@ controller('AdminQuestionnaireEditorCtrl', ['$scope', '$http', 'FileSaver', 'Adm
   };
 
   $scope.delStep = function(step) {
-    return $scope.Utils.deleteResource(AdminStepResource, $scope.questionnaire.steps, step);
+    return Utils.deleteResource(AdminStepResource, $scope.questionnaire.steps, step);
   };
 
   $scope.exportQuestionnaire = function(obj) {
@@ -53,7 +53,8 @@ controller('AdminQuestionnaireEditorCtrl', ['$scope', '$http', 'FileSaver', 'Adm
     });
   };
 }]).
-controller('AdminQuestionnaireAddCtrl', ['$scope', '$http', 'AdminQuestionnaireResource', function($scope, $http, AdminQuestionnaireResource) {
+controller('AdminQuestionnaireAddCtrl', ['$scope', '$http', 'Utils', 'AdminQuestionnaireResource',
+  function($scope, $http, Utils, AdminQuestionnaireResource) {
   $scope.new_questionnaire = {};
 
   $scope.add_questionnaire = function() {
@@ -68,7 +69,7 @@ controller('AdminQuestionnaireAddCtrl', ['$scope', '$http', 'AdminQuestionnaireR
   };
 
   $scope.importQuestionnaire = function(file) {
-    $scope.Utils.readFileAsText(file).then(function(txt) {
+    Utils.readFileAsText(file).then(function(txt) {
       return $http({
         method: 'POST',
         url: 'admin/questionnaires?multilang=1',
@@ -77,7 +78,7 @@ controller('AdminQuestionnaireAddCtrl', ['$scope', '$http', 'AdminQuestionnaireR
     }).then(function(resp) {
       var new_q = new AdminQuestionnaireResource(resp.data);
       $scope.admin.questionnaires.push(new_q);
-    }, $scope.Utils.displayErrorMsg);
+    }, Utils.displayErrorMsg);
   };
 
 }]);

@@ -1,12 +1,10 @@
 GLClient.controller('AdminUsersCtrl', [
   function() {
   // Parked for future use
-}]).
-controller('AdminUserEditorCtrl', ['$scope', '$rootScope', 'Utils', 'AdminUserResource',
+}]).controller('AdminUserEditorCtrl', ['$scope', '$rootScope', 'Utils', 'AdminUserResource',
   function($scope, $rootScope, Utils, AdminUserResource) {
-
     $scope.deleteUser = function() {
-      $scope.deleteDialog($scope.user).then(function() {
+      Utils.deleteDialog($scope.user).then(function() {
         return Utils.deleteResource(AdminUserResource, $scope.admin.users, $scope.user);
       });
     };
@@ -33,15 +31,15 @@ controller('AdminUserEditorCtrl', ['$scope', '$rootScope', 'Utils', 'AdminUserRe
     };
 
     $scope.updateUserImgUrl = function() {
-      $scope.userImgUrl = '/admin/users/' + $scope.user.id + '/img#' + $scope.Utils.randomFluff();
+      $scope.userImgUrl = '/admin/users/' + $scope.user.id + '/img#' + Utils.randomFluff();
     };
 
     $scope.updateUserImgUrl();
 
     $scope.loadPublicKeyFile = function(file) {
-      $scope.Utils.readFileAsText(file).then(function(txt) {
+      Utils.readFileAsText(file).then(function(txt) {
         $scope.user.pgp_key_public = txt;
-      }, $scope.Utils.displayErrorMsg);
+      }, Utils.displayErrorMsg);
     }
 }]).
 controller('AdminUserAddCtrl', ['$scope',

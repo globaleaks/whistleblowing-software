@@ -14,8 +14,8 @@ GLClient.controller('AdminNetworkCtrl', ['$scope', function($scope) {
     }
   ];
 }]).
-controller('AdminHTTPSConfigCtrl', ['$q', '$location', '$http', '$scope', '$uibModal', 'FileSaver', 'AdminTLSConfigResource', 'AdminTLSCfgFileResource', 'AdminAcmeResource',
-  function($q, $location, $http, $scope, $uibModal, FileSaver, tlsConfigResource, cfgFileResource, adminAcmeResource) {
+controller('AdminHTTPSConfigCtrl', ['$q', '$location', '$http', '$scope', '$uibModal', 'Utils', 'FileSaver', 'AdminTLSConfigResource', 'AdminTLSCfgFileResource', 'AdminAcmeResource',
+  function($q, $location, $http, $scope, $uibModal, Utils, FileSaver, tlsConfigResource, cfgFileResource, adminAcmeResource) {
   $scope.state = 0;
   $scope.menuState = 'setup';
   $scope.showHostnameSetter = false;
@@ -29,7 +29,7 @@ controller('AdminHTTPSConfigCtrl', ['$q', '$location', '$http', '$scope', '$uibM
   };
 
   $scope.saveNodeAndProceed = function() {
-    $scope.Utils.update($scope.admin.node, function(){ $scope.setMenu('choice'); });
+    Utils.update($scope.admin.node, function(){ $scope.setMenu('choice'); });
   };
 
   $scope.parseTLSConfig = function(tlsConfig) {
@@ -106,7 +106,7 @@ controller('AdminHTTPSConfigCtrl', ['$q', '$location', '$http', '$scope', '$uibM
   };
 
   $scope.postFile = function(file, resource) {
-    $scope.Utils.readFileAsText(file).then(function(str) {
+    Utils.readFileAsText(file).then(function(str) {
       resource.content = str;
       return resource.$save();
     }).then(refreshConfig);
@@ -153,6 +153,7 @@ controller('AdminHTTPSConfigCtrl', ['$q', '$location', '$http', '$scope', '$uibM
     var targetFunc = function() {
       return resource.$delete().then(refreshConfig);
     };
+
     $uibModal.open({
       templateUrl: 'views/partials/admin_review_action.html',
       controller: 'AdminReviewModalCtrl',
@@ -240,6 +241,7 @@ controller('AdminHTTPSConfigCtrl', ['$q', '$location', '$http', '$scope', '$uibM
     var targetFunc = function() {
       return $scope.tls_config.$delete().then(refreshConfig);
     };
+
     $uibModal.open({
       templateUrl: 'views/partials/admin_review_action.html',
       controller: 'AdminReviewModalCtrl',
