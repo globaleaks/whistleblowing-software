@@ -59,11 +59,20 @@ class Test_TokenInstance(helpers.TestHandlerWithPopulatedDB):
 
         token = Token('submission')
 
-        token.human_captcha = {'question': 'XXX','answer': 1, 'solved': False}
+        orig_question = u'77+33'
+        token.human_captcha = {'question': orig_question,'answer': 1, 'solved': False}
 
         request_payload = token.serialize()
 
         request_payload['human_captcha_answer'] = 883
 
         handler = self.request(request_payload)
-        self.assertRaises(errors.TokenFailure, handler.put, token.id)
+        new_token = yield handler.put(token.id)
+
+        self.assertFalse(token.human_captcha['solved'])
+
+        self.assertEqual(new_token['human_captcha'], token.human_captcha['question'])
+        self.assertNotEqual(new_token['human_captcha'], orig_question)
+
+        self.assertIsNot(new_token['human_captcha'], False)
+        self.assertNotIn('human_captcha_anwser', new_token)

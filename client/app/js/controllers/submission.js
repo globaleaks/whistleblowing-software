@@ -10,34 +10,24 @@ GLClient.controller('SubmissionCtrl',
   $scope.navigation = -1;
 
   $scope.submitPressed = false;
-  $scope.problemToBeSolved = false;
-  $scope.problemModal = undefined;
 
   $scope.total_score = 0;
 
-  $scope.problemSolved = function() {
-    $scope.problemModal = undefined;
-    $scope.submission._token.$update(function(token) {
-      $scope.submission._token = token;
-      $scope.problemToBeSolved = $scope.submission._token.human_captcha;
-      if ($scope.problemToBeSolved) {
-        $scope.openProblemDialog($scope.submission);
-      }
-    });
-  };
+  function openProblemDialog() {
+    var args = { token: $scope.submission._token };
 
-  $scope.openProblemDialog = function(submission){
-    if ($scope.problemModal) {
-      $scope.problemModal.dismiss();
-    }
-
-    var args = {
-      submission: submission,
-      problemSolved: $scope.problemSolved
-    };
-
-    $scope.problemModal = $scope.Utils.openConfirmableModalDialog('views/partials/captchas.html', args, $scope.problemSolved);
-  };
+    Utils.openConfirmableModalDialog('views/partials/captchas.html', args)
+      .then(function() { return args.token.$update(); })
+      .then(function(token) {
+        // Always refresh the token after a submission
+        $scope.submission._token = token;
+        if (token.human_captcha) {
+          // Reopen the captcha modal if the human_captcha is truthy which means
+          // it is unresolved.
+          openProblemDialog();
+        }
+      });
+  }
 
   $scope.selected_context = undefined;
 
@@ -294,8 +284,6 @@ GLClient.controller('SubmissionCtrl',
     $scope.submission.create(context.id, receivers_ids, function () {
       startCountdown();
 
-      $scope.problemToBeSolved = $scope.submission._token.human_captcha;
-
       if ($scope.submission._token.proof_of_work) {
         glbcProofOfWork.proofOfWork($scope.submission._token.proof_of_work).then(function(result) {
           $scope.submission._token.proof_of_work_answer = result;
@@ -308,8 +296,8 @@ GLClient.controller('SubmissionCtrl',
         $scope.submission.pow = true;
       }
 
-      if ($scope.problemToBeSolved) {
-        $scope.openProblemDialog($scope.submission);
+      if ($scope.submission._token.human_captcha) {
+        openProblemDialog();
       }
 
       $scope.receiversOrderPredicate = $scope.submission.context.show_receivers_in_alphabetical_order ? 'name' : 'presentation_order';
