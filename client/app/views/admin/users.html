@@ -80,7 +80,7 @@
                   <button class="btn btn-xs btn-success"
                     data-ng-show="editing"
                     data-ng-disabled="editUser.$invalid"
-                    data-ng-click="save_user(user)">
+                    data-ng-click="saveUser()">
                     <span data-translate>Save</span>
                   </button>
                   <button
@@ -91,7 +91,7 @@
                   </button>
                   <button class="btn btn-xs btn-danger"
                     data-ng-show="user.deletable"
-                    data-ng-click="deleteDialog(user, perform_delete); $event.stopPropagation();">
+                    data-ng-click="deleteUser()">
                     <span data-translate>Delete</span>
                   </button>
                 </span>

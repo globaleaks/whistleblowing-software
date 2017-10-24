@@ -1,27 +1,15 @@
-GLClient.controller('AdminUsersCtrl', ['$scope', '$rootScope', 'AdminUserResource',
-  function($scope, $rootScope, AdminUserResource) {
-
-  $scope.save_user = function(user) {
-    if (user.pgp_key_remove) {
-      user.pgp_key_public = '';
-    }
-
-    if (user.pgp_key_public !== undefined &&
-        user.pgp_key_public !== '') {
-      user.pgp_key_remove = false;
-    }
-
-    user.$update(function(){
-      $rootScope.successes.push({message: 'Success!'});
-    });
-  };
-
-  $scope.perform_delete = function(user) {
-    return $scope.Utils.deleteResource(AdminUserResource, $scope.admin.users, user);
-  }
+GLClient.controller('AdminUsersCtrl', [
+  function() {
+  // Parked for future use
 }]).
-controller('AdminUserEditorCtrl', ['$scope',
-  function($scope) {
+controller('AdminUserEditorCtrl', ['$scope', 'Utils',
+  function($scope, Utils) {
+
+    $scope.deleteUser = function() {
+      Utils.deleteDialog($scope.user).then(function() {
+        return Utils.deleteResource(AdminUserResource, $scope.admin.users, $scope.user);
+      });
+    };
 
     $scope.editing = false;
 
@@ -29,8 +17,19 @@ controller('AdminUserEditorCtrl', ['$scope',
       $scope.editing = $scope.editing ^ 1;
     };
 
-    $scope.save = function() {
-      $scope.save_user($scope.user);
+    $scope.saveUser = function() {
+      var user = $scope.user;
+      if (user.pgp_key_remove) {
+        user.pgp_key_public = '';
+      }
+
+      if (user.pgp_key_public !== undefined && user.pgp_key_public !== '') {
+        user.pgp_key_remove = false;
+      }
+
+      user.$update(function(){
+        $rootScope.successes.push({message: 'Success!'});
+      });
     };
 
     $scope.updateUserImgUrl = function() {
