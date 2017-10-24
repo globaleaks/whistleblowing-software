@@ -53,8 +53,8 @@
     "node-gettext": "0.2.14",
     "protractor": "5.2.0",
     "protractor-console-plugin": "0.1.1",
-    "q": "1.5.0",
-    "superagent": "3.6.3",
+    "q": "1.5.1",
+    "superagent": "3.7.0",
     "supertest": "3.0.0"
   }
 }
