@@ -149,12 +149,6 @@ controller('AdminGeneralSettingsCtrl', ['$scope', '$filter', '$http', 'StaticFil
 
   $scope.update_static_files();
 }]).
-controller('AdminEnabledLangCtrl', ['$scope', function($scope) {
-  var idx = $scope.admin.node.languages_supported.map(function(lang) {
-    return lang.code;
-  }).indexOf($scope.lang_code);
-  $scope.lang_obj = $scope.admin.node.languages_supported[idx];
-}]).
 controller('AdminHomeCtrl', ['$scope', function($scope) {
   $scope.displayNum = 10;
   $scope.showMore = function() {

@@ -13,8 +13,8 @@
               <ui-select-match data-ng-attr-placeholder="{{'Type to search…' | translate}}">
                 <span data-ng-bind="$select.selected.name"></span>
               </ui-select-match>
-              <ui-select-choices data-repeat="language in admin.node.languages_supported | filter:langNotEnabled | filter: {name: $select.search}">
-                <span data-ng-bind-html="language.name | highlight: $select.search"></span>
+              <ui-select-choices data-repeat="language in admin.node.languages_supported | filter:langNotEnabledFilter | filter: {name: $select.search}">
+                <span data-ng-bind-html="languages_supported[language.code] | highlight: $select.search"></span>
                 <span>[{{language.code}}]</span>
               </ui-select-choices>
             </ui-select>
@@ -22,22 +22,23 @@
           </div>
         </div>
         <ol class="selectionList">
-            <li data-ng-repeat="lang_code in admin.node.languages_enabled">
-            <span data-ng-controller="AdminEnabledLangCtrl">
-              <span class="action-btns">
-                <span data-ng-click="admin.node.languages_enabled.splice($index, 1)" uib-popover="{{'Remove' | translate}}" popover-trigger="'mouseenter'">
-                  <i class="glyphicon glyphicon-remove"></i>
-                </span>
+          <li data-ng-repeat="lang_code in admin.node.languages_enabled">
+            <span class="action-btns">
+              <span data-ng-if="lang_code !== admin.node.default_language" data-ng-click="admin.node.languages_enabled.splice($index, 1)" uib-popover="{{'Remove' | translate}}" popover-trigger="'mouseenter'">
+                <i class="glyphicon glyphicon-remove"></i>
               </span>
-              <label>{{lang_obj.name}} [{{lang_obj.code}}]</label>
+              <span data-ng-if="lang_code === admin.node.default_language" uib-popover="{{'Default' | translate}}" popover-trigger="'mouseenter'">
+                <i class="glyphicon glyphicon-record"></i>
+              </span>
             </span>
+            <label>{{languages_supported[lang_code]}} [{{lang_code}}]</label>
           </li>
         </ol>
     </div>
 
     <div class="form-group">
       <label data-translate>Default language</label>
-      <select class="form-control" data-ng-model="admin.node.default_language" data-ng-options="item.code as item.name for item in languages_enabled_selector"></select>
+      <select class="form-control" data-ng-model="admin.node.default_language" data-ng-options="lang_code as languages_supported[lang_code] for lang_code in admin.node.languages_enabled"></select>
     </div>
   </div>
 </div>
