@@ -2,22 +2,33 @@ describe('admin configure, add, and delete contexts', function() {
   it('should configure an existing context', function() {
     browser.setLocation('admin/contexts');
 
-    element(by.id('context-0')).element(by.cssContainingText("button", "Edit")).click();
+    var ctx = element(by.id('context-0'));
+    ctx.element(by.cssContainingText("button", "Edit")).click();
 
     // Add users and flip switches
-    element(by.cssContainingText("span", "Recipient2")).click();
-    element(by.cssContainingText("span", "Recipient3")).click();
-    element(by.id('context-0')).element(by.cssContainingText("button", "Advanced settings")).click();
-    element(by.id('context-0')).element(by.model('context.allow_recipients_selection')).click();
+    ctx.element(by.className('add-receiver-btn')).click();
+
+    var input = element(by.id('ReceiverContextAdder')).all(by.css('input')).last();
+    input.sendKeys('Recipient2' + protractor.Key.ENTER);
+
+    ctx.element(by.className('add-receiver-btn')).click();
+    input = element(by.id('ReceiverContextAdder')).all(by.css('input')).last();
+    input.sendKeys('Recipient3' + protractor.Key.ENTER);
+
+    ctx.element(by.cssContainingText("button", "Advanced settings")).click();
+
+    ctx.element(by.model('context.allow_recipients_selection')).click();
 
     browser.gl.utils.waitUntilPresent(by.model('context.select_all_receivers'));
 
-    element(by.id('context-0')).element(by.model('context.select_all_receivers')).click();
+    ctx.element(by.model('context.select_all_receivers')).click();
 
-    element(by.id('context-0')).element(by.model('context.enable_messages')).click();
-    element(by.id('context-0')).element(by.model('context.enable_rc_to_wb_files')).click();
+    ctx.element(by.model('context.enable_messages')).click();
+    ctx.element(by.model('context.enable_rc_to_wb_files')).click();
+
     // Save the results
-    element(by.id('context-0')).element(by.cssContainingText("button", "Save")).click();
+    ctx.element(by.cssContainingText("button", "Save")).click();
+
     // TODO check if the result was saved
   });
 
