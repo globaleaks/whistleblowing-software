@@ -124,7 +124,14 @@ controller('AdminGeneralSettingsCtrl', ['$scope', '$filter', '$http', 'StaticFil
 
   $scope.enableLanguage = function(lang_obj) {
     $scope.admin.node.languages_enabled.push(lang_obj.code)
-  }
+  };
+
+  $scope.removeLang = function(idx, lang_code) {
+    if (lang_code === $scope.admin.default_language) {
+      return;
+    }
+    $scope.admin.node.languages_enabled.splice(idx, 1);
+  };
 
   $scope.update_static_files = function () {
     var updated_staticfiles = StaticFiles.query(function () {
