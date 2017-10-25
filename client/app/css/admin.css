@@ -89,3 +89,15 @@ text.axis-worktime {
   max-height: 400px;
   overflow-y: scroll;
 }
+
+span.non-default-language {
+  padding: 0;
+}
+
+span.default-language {
+  border: 1px solid transparent;
+}
+
+.selectionList i.disabled {
+  color: #AAA;
+}

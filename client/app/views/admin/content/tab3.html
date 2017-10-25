@@ -3,7 +3,7 @@
     <div class="form-group">
       <label data-translate>Language configuration</label>
       <button class="btn btn-xs btn-primary add-language-btn" data-ng-click="toggleLangSelect()">
-        <i class="glyphicon glyphicon-plus"></i>
+        <i class="glyphicon glyphicon-plus-sign"></i>
         <span data-translate>Add</span>
       </button>
       <div>
@@ -18,27 +18,28 @@
                 <span>[{{language.code}}]</span>
               </ui-select-choices>
             </ui-select>
-            <br/>
           </div>
         </div>
-        <ol class="selectionList">
-          <li data-ng-repeat="lang_code in admin.node.languages_enabled">
+        <br/>
+        <ul class="selectionList">
+          <li data-ng-repeat="lang_code in admin.node.languages_enabled | orderBy">
             <span class="action-btns">
-              <span data-ng-if="lang_code !== admin.node.default_language" data-ng-click="admin.node.languages_enabled.splice($index, 1)" uib-popover="{{'Remove' | translate}}" popover-trigger="'mouseenter'">
-                <i class="glyphicon glyphicon-remove"></i>
+              <span data-ng-show="lang_code === admin.node.default_language" class="label label-success default-language">
+                  <i class="glyphicon glyphicon-ok-sign"></i>
+                  <span data-translate>Default</span>
               </span>
-              <span data-ng-if="lang_code === admin.node.default_language" uib-popover="{{'Default' | translate}}" popover-trigger="'mouseenter'">
-                <i class="glyphicon glyphicon-record"></i>
+              <span data-ng-show="lang_code !== admin.node.default_language" class="btn label btn-default non-default-language"
+                  data-ng-click="admin.node.default_language = lang_code">
+                <i class="glyphicon glyphicon-ok-sign"></i>
+                <span data-translate>Default</span>
+              </span>&nbsp;
+              <span data-ng-click="removeLang($index, lang_code)" uib-popover="{{'Remove' | translate}}" popover-trigger="'mouseenter'">
+                  <i data-ng-class="{disabled: lang_code === admin.node.default_language}" class="glyphicon glyphicon-remove"></i>
               </span>
             </span>
-            <label>{{languages_supported[lang_code]}} [{{lang_code}}]</label>
+            <label> [{{lang_code}}] {{languages_supported[lang_code]}}</label>
           </li>
-        </ol>
-    </div>
-
-    <div class="form-group">
-      <label data-translate>Default language</label>
-      <select class="form-control" data-ng-model="admin.node.default_language" data-ng-options="lang_code as languages_supported[lang_code] for lang_code in admin.node.languages_enabled"></select>
+        </ul>
     </div>
   </div>
 </div>
