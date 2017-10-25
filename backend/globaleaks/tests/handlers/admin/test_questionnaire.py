@@ -30,7 +30,6 @@ class TestQuestionnairesCollection(helpers.TestCollectionHandler):
             ('duplicate_ids.json', sqlite3.IntegrityError),
             ('malformed_ids.json', sqlite3.IntegrityError),
             ('malformed_attrs.json', sqlite3.IntegrityError),
-            ('malformed_opts.json', OverflowError),
             ('blank_ids.json', sqlite3.IntegrityError),
         ]
 
