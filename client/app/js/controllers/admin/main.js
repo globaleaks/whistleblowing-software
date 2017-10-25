@@ -19,70 +19,6 @@ controller('AdminCtrl',
 
   $scope.admin = resources;
 
-  if (angular.isDefined($scope.admin.node)) {
-    $scope.languages_enabled_edit = {};
-    $scope.languages_enabled_selector = [];
-
-    $scope.languages_supported = {};
-    $scope.languages_enabled = [];
-    $scope.languages_enabled_selector = [];
-    angular.forEach($scope.admin.node.languages_supported, function(lang) {
-      var code = lang.code;
-      var name = lang.name;
-      $scope.languages_supported[code] = name;
-      if ($scope.admin.node.languages_enabled.indexOf(code) !== -1) {
-        $scope.languages_enabled[code] = name;
-        $scope.languages_enabled_selector.push({"name": name,"code": code});
-      }
-    });
-
-    $scope.languages_enabled_selector = $filter('orderBy')($scope.languages_enabled_selector, 'code');
-
-    $scope.$watch('languages_enabled', function() {
-      if ($scope.languages_enabled) {
-        $scope.languages_enabled_edit = {};
-        angular.forEach($scope.languages_supported, function(lang, code){
-          $scope.languages_enabled_edit[code] = code in $scope.languages_enabled;
-        });
-      }
-    }, true);
-
-    $scope.$watch('languages_enabled_edit', function() {
-      if ($scope.languages_enabled) {
-        var languages_enabled_selector = [];
-        var change_default = false;
-        var language_selected = $scope.admin.node.default_language;
-        if (!$scope.languages_enabled_edit[$scope.admin.node.default_language]) {
-          change_default = true;
-        }
-
-        angular.forEach($scope.languages_supported, function(lang, code) {
-          if ($scope.languages_enabled_edit[code]) {
-            languages_enabled_selector.push({'name': lang, 'code': code});
-
-            if (change_default === true) {
-              language_selected = code;
-              change_default = false;
-            }
-          }
-        });
-
-        var languages_enabled = [];
-        angular.forEach($scope.languages_enabled_edit, function(enabled, code) {
-          if (enabled) {
-            languages_enabled.push(code);
-          }
-        });
-
-        $scope.admin.node.default_language = language_selected;
-        $scope.admin.node.languages_enabled = languages_enabled;
-
-        $scope.languages_enabled_selector = languages_enabled_selector;
-
-      }
-    }, true);
-  }
-
   $scope.updateNode = function(node) {
     Utils.update(node, function() { $scope.$emit("REFRESH"); });
   };
@@ -178,6 +114,18 @@ controller('AdminGeneralSettingsCtrl', ['$scope', '$filter', '$http', 'StaticFil
 
   $scope.staticfiles = [];
 
+  $scope.toggleLangSelect = function() {
+    $scope.showLangSelect = !$scope.showLangSelect;
+  };
+
+  $scope.langNotEnabledFilter = function(lang_obj) {
+    return $scope.admin.node.languages_enabled.indexOf(lang_obj.code) == -1;
+  };
+
+  $scope.enableLanguage = function(lang_obj) {
+    $scope.admin.node.languages_enabled.push(lang_obj.code)
+  }
+
   $scope.update_static_files = function () {
     var updated_staticfiles = StaticFiles.query(function () {
       $scope.staticfiles = updated_staticfiles;
@@ -200,6 +148,12 @@ controller('AdminGeneralSettingsCtrl', ['$scope', '$filter', '$http', 'StaticFil
   };
 
   $scope.update_static_files();
+}]).
+controller('AdminEnabledLangCtrl', ['$scope', function($scope) {
+  var idx = $scope.admin.node.languages_supported.map(function(lang) {
+    return lang.code;
+  }).indexOf($scope.lang_code);
+  $scope.lang_obj = $scope.admin.node.languages_supported[idx];
 }]).
 controller('AdminHomeCtrl', ['$scope', function($scope) {
   $scope.displayNum = 10;

@@ -2,12 +2,37 @@
   <div class="col-md-6">
     <div class="form-group">
       <label data-translate>Language configuration</label>
-      <div data-ng-repeat="language in admin.node.languages_supported | orderBy:'name'">
-        <div>
-          <input id="language-enabler-{{language.code}}" data-ng-model="languages_enabled_edit[language.code]" type="checkbox">
-          <label>{{language.name}} [{{language.code}}]</label>
+      <button class="btn btn-xs btn-primary add-language-btn" data-ng-click="toggleLangSelect()">
+        <i class="glyphicon glyphicon-plus"></i>
+        <span data-translate>Add</span>
+      </button>
+      <div>
+        <div id="languageAdder" class="row">
+          <div class="col-md-12" data-ng-if="showLangSelect">
+            <ui-select data-ng-model="selected.value" data-theme="bootstrap" data-on-select='enableLanguage($item);'>
+              <ui-select-match data-ng-attr-placeholder="{{'Type to search…' | translate}}">
+                <span data-ng-bind="$select.selected.name"></span>
+              </ui-select-match>
+              <ui-select-choices data-repeat="language in admin.node.languages_supported | filter:langNotEnabled | filter: {name: $select.search}">
+                <span data-ng-bind-html="language.name | highlight: $select.search"></span>
+                <span>[{{language.code}}]</span>
+              </ui-select-choices>
+            </ui-select>
+            <br/>
+          </div>
         </div>
-      </div>
+        <ol class="selectionList">
+            <li data-ng-repeat="lang_code in admin.node.languages_enabled">
+            <span data-ng-controller="AdminEnabledLangCtrl">
+              <span class="action-btns">
+                <span data-ng-click="admin.node.languages_enabled.splice($index, 1)" uib-popover="{{'Remove' | translate}}" popover-trigger="'mouseenter'">
+                  <i class="glyphicon glyphicon-remove"></i>
+                </span>
+              </span>
+              <label>{{lang_obj.name}} [{{lang_obj.code}}]</label>
+            </span>
+          </li>
+        </ol>
     </div>
 
     <div class="form-group">
