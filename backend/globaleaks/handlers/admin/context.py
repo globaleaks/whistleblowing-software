@@ -164,6 +164,20 @@ def update_context(store, context_id, request, language):
     return admin_serialize_context(store, context, language)
 
 
+@transact
+def order_elements(store, req_args, *args, **kwargs):
+    ctxs = store.find(models.Context)
+
+    id_dict = { ctx.id: ctx for ctx in ctxs }
+    ids = req_args['ids']
+
+    if len(ids) != len(id_dict) or set(ids) != set(id_dict):
+        raise errors.InvalidInputFormat('list does not contain all context ids')
+
+    for i, ctx_id in enumerate(ids):
+        id_dict[ctx_id].presentation_order = i
+
+
 class ContextsCollection(OperationHandler):
     check_roles = 'admin'
     cache_resource = True
@@ -192,21 +206,8 @@ class ContextsCollection(OperationHandler):
 
     def operation_descriptors(self):
         return {
-            'order_elements': (ContextsCollection.order_elements, {'ids': [unicode]}),
+            'order_elements': (order_elements, {'ids': [unicode]}),
         }
-
-    @transact
-    def order_elements(store, self, req_args, *args, **kwargs):
-        ctxs = store.find(models.Context)
-
-        id_dict = { ctx.id: ctx for ctx in ctxs }
-        ids = req_args['ids']
-
-        if len(ids) != len(id_dict) or set(ids) != set(id_dict):
-            raise errors.InvalidInputFormat('list does not contain all context ids')
-
-        for i, ctx_id in enumerate(ids):
-            id_dict[ctx_id].presentation_order = i
 
 
 class ContextInstance(BaseHandler):
