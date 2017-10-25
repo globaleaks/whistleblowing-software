@@ -20,8 +20,8 @@ GLClient.controller('AdminContextsCtrl',
     $scope.save_context(elem);
   };
 }]).
-controller('AdminContextEditorCtrl', ['$scope', '$http', 'Utils', 'AdminContextResource',
-  function($scope, $http, Utils, AdminContextResource) {
+controller('AdminContextEditorCtrl', ['$scope', '$rootScope', '$http', 'Utils', 'AdminContextResource',
+  function($scope, $rootScope, $http, Utils, AdminContextResource) {
   $scope.editing = false;
 
   $scope.toggleEditing = function () {

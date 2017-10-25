@@ -127,9 +127,7 @@ controller('AdminGeneralSettingsCtrl', ['$scope', '$filter', '$http', 'StaticFil
   };
 
   $scope.removeLang = function(idx, lang_code) {
-    if (lang_code === $scope.admin.default_language) {
-      return;
-    }
+    if (lang_code === $scope.admin.node.default_language) { return; }
     $scope.admin.node.languages_enabled.splice(idx, 1);
   };
 
