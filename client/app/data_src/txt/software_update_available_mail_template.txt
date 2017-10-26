@@ -6,8 +6,8 @@ It is good security practice to keep the platform up to date.
 Installed version: {InstalledVersion}
 Latest version: {LatestVersion}
 
-To learn about new features and bug fixes in the new version consult the change log at: {ChangeLogURL}
-For instructions on software updates, please refer to the documentation at: {UpdateGuideURL}
+To learn about new features and bug fixes in the new version consult the change log at: {ChangeLogUrl}
+For instructions on software updates, please refer to the documentation at: {UpdateGuideUrl}
 
 Kind regards,
 {NodeName}
