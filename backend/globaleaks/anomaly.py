@@ -27,6 +27,8 @@ from globaleaks.utils.singleton import Singleton
 from globaleaks.utils.templating import Templating
 from globaleaks.utils.utility import log, datetime_now, datetime_null, is_expired
 
+XTIDX = 1
+
 ANOMALY_MAP = {
     'started_submissions': 50,
     'completed_submissions': 5,
@@ -98,7 +100,7 @@ def generate_admin_alert_mail(store, alert):
 
         data = {
             'type': u'admin_anomaly',
-            'node': db_admin_serialize_node(store, user_language),
+            'node': db_admin_serialize_node(store, XTIDX, user_language),
             'notification': db_get_notification(store, user_language),
             'alert': alert,
             'user': user_desc,

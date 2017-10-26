@@ -20,6 +20,9 @@ from globaleaks.utils.utility import msdos_encode
 from globaleaks.utils.zipstream import ZipStream
 
 
+XTIDX = 1
+
+
 @transact
 def get_tip_export(store, user_id, rtip_id, language):
     rtip, itip = db_access_rtip(store, user_id, rtip_id)
@@ -33,7 +36,7 @@ def get_tip_export(store, user_id, rtip_id, language):
 
     export_dict = {
         'type': u'export_template',
-        'node': db_admin_serialize_node(store, language),
+        'node': db_admin_serialize_node(store, XTIDX, language),
         'notification': db_get_notification(store, language),
         'tip': serialize_rtip(store, rtip, itip, language),
         'user': user_serialize_user(store, user, language),

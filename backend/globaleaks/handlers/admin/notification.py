@@ -108,8 +108,8 @@ class NotificationTestInstance(BaseHandler):
 
         data = {
             'type': 'admin_test',
-            'node': (yield admin_serialize_node(language)),
-            'notification': (yield get_notification(language)),
+            'node': (yield admin_serialize_node(XTIDX, language)),
+            'notification': (yield get_notification(XTIDX, language)),
             'user': user,
         }
 

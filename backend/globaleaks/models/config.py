@@ -82,7 +82,7 @@ class ConfigFactory(object):
         self.res = None
 
     def _query_group(self):
-        self.res = {c.var_name: c for c in self.store.find(Config, var_group=self.group)}
+        self.res = {c.var_name: c for c in self.store.find(Config, tid=self.tid, var_group=self.group)}
 
     def update(self, request):
         self._query_group()

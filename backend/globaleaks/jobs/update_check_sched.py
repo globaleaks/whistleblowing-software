@@ -38,7 +38,7 @@ def evaluate_update_notification(store, latest_version):
             template_vars = {
                 'type': 'software_update_available',
                 'latest_version': latest_version,
-                'node': db_admin_serialize_node(store, lang),
+                'node': db_admin_serialize_node(store, XTIDX, lang),
                 'notification': db_get_notification(store, lang),
                 'user': user_desc,
             }

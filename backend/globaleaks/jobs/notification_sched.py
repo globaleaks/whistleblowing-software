@@ -21,6 +21,9 @@ from globaleaks.utils.templating import Templating
 from globaleaks.utils.utility import log
 
 
+XTIDX = 1
+
+
 trigger_template_map = {
     'ReceiverTip': u'tip',
     'Message': u'message',
@@ -47,7 +50,7 @@ class MailGenerator(object):
 
         if cache_key not in self.cache:
             if key == 'node':
-                cache_obj = db_admin_serialize_node(store, language)
+                cache_obj = db_admin_serialize_node(store, XTIDX, language)
             elif key == 'notification':
                 cache_obj = db_get_notification(store, language)
 

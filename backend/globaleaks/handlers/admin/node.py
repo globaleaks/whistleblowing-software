@@ -18,15 +18,12 @@ from globaleaks.rest import errors, requests
 from globaleaks.settings import Settings
 from globaleaks.utils.utility import log
 
-XTIDX = 1
-
-
-def db_admin_serialize_node(store, language):
-    node_dict = NodeFactory(store, XTIDX).admin_export()
-    priv_dict = PrivateFactory(store, XTIDX)
+def db_admin_serialize_node(store, tid, language):
+    node_dict = NodeFactory(store, tid).admin_export()
+    priv_dict = PrivateFactory(store, tid)
 
     # Contexts and Receivers relationship
-    configured  = store.find(models.ReceiverContext, tid=XTIDX).count() > 0
+    configured  = store.find(models.ReceiverContext, tid=tid).count() > 0
 
     misc_dict = {
         'version': priv_dict.get_val(u'version'),
@@ -42,11 +39,11 @@ def db_admin_serialize_node(store, language):
 
 
 @transact
-def admin_serialize_node(store, language):
-    return db_admin_serialize_node(store, language)
+def admin_serialize_node(store, tid, language):
+    return db_admin_serialize_node(store, tid, language)
 
 
-def enable_disable_languages(store, request):
+def enable_disable_languages(store, tid, request):
     cur_enabled_langs = EnabledLanguage.list(store)
     new_enabled_langs = [unicode(y) for y in request['languages_enabled']]
 
@@ -64,7 +61,7 @@ def enable_disable_languages(store, request):
             if appdata is None:
                 appdata = load_appdata()
             log.debug("Adding a new lang %s" % lang_code)
-            EnabledLanguage.add_new_lang(store, XTIDX, lang_code, appdata)
+            EnabledLanguage.add_new_lang(store, tid, lang_code, appdata)
 
     to_remove = list(set(cur_enabled_langs) - set(new_enabled_langs))
 
@@ -74,7 +71,7 @@ def enable_disable_languages(store, request):
         models.db_delete(store, models.l10n.EnabledLanguage, In(models.l10n.EnabledLanguage.name, to_remove))
 
 
-def db_update_node(store, request, language):
+def db_update_node(store, tid, request, language):
     """
     Update and serialize the node infos
 
@@ -82,7 +79,7 @@ def db_update_node(store, request, language):
     :param language: the language in which to localize data
     :return: a dictionary representing the serialization of the node
     """
-    node = NodeFactory(store, XTIDX)
+    node = NodeFactory(store, tid)
     node.update(request)
 
     if request['basic_auth'] and request['basic_auth_username'] and request['basic_auth_password']:
@@ -92,7 +89,7 @@ def db_update_node(store, request, language):
     else:
         node.set_val(u'basic_auth', False)
 
-    enable_disable_languages(store, request)
+    enable_disable_languages(store, tid, request)
 
     if language in request['languages_enabled']:
         node_l10n = NodeL10NFactory(store)
@@ -101,7 +98,7 @@ def db_update_node(store, request, language):
     db_refresh_memory_variables(store)
 
     # TODO pass instance of db_update_node into admin_serialize
-    return db_admin_serialize_node(store, language)
+    return db_admin_serialize_node(store, tid, language)
 
 
 @transact
@@ -121,7 +118,7 @@ class NodeInstance(BaseHandler):
         Parameters: None
         Response: AdminNodeDesc
         """
-        return admin_serialize_node(self.request.language)
+        return admin_serialize_node(self.request.tid, self.request.language)
 
     def put(self):
         """
@@ -134,4 +131,4 @@ class NodeInstance(BaseHandler):
         request = self.validate_message(self.request.content.read(),
                                         requests.AdminNodeDesc)
 
-        return update_node(request, self.request.language)
+        return update_node(self.request.tid, request, self.request.language)

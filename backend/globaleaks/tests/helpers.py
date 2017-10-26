@@ -236,6 +236,7 @@ def forge_request(uri='https://www.globaleaks.org/',
         port = 80
 
     request = DummyRequest([''])
+    request.tid = 1
     request.method = method
     request.uri = uri
     request.path = path
