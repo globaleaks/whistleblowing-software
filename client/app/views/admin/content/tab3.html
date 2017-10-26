@@ -1,20 +1,20 @@
 <div class="row">
   <div class="col-md-6">
     <div class="form-group">
-      <label data-translate>Language configuration</label>
+      <label data-translate>Languages</label>
       <button class="btn btn-xs btn-primary add-language-btn" data-ng-click="toggleLangSelect()">
         <i class="glyphicon glyphicon-plus-sign"></i>
         <span data-translate>Add</span>
       </button>
       <div>
-        <div id="languageAdder" class="row">
+        <div id="LanguageAdder" class="row">
           <div class="col-md-12" data-ng-if="showLangSelect">
             <ui-select data-ng-model="selected.value" data-theme="bootstrap" data-on-select='enableLanguage($item);'>
               <ui-select-match data-ng-attr-placeholder="{{'Type to search…' | translate}}">
-                <span data-ng-bind="$select.selected.name"></span>
+                <span data-ng-bind="$select.selected.native"></span>
               </ui-select-match>
-              <ui-select-choices data-repeat="language in admin.node.languages_supported | filter:langNotEnabledFilter | filter: {name: $select.search}">
-                <span data-ng-bind-html="languages_supported[language.code] | highlight: $select.search"></span>
+              <ui-select-choices data-repeat="language in admin.node.languages_supported | filter:langNotEnabledFilter | filter: {native: $select.search}">
+                <span data-ng-bind-html="language.native | highlight: $select.search"></span>
                 <span>[{{language.code}}]</span>
               </ui-select-choices>
             </ui-select>
@@ -22,22 +22,23 @@
         </div>
         <br/>
         <ul class="selectionList">
+          <input data-ng-model="admin.node.default_language" class="hidden" />
           <li data-ng-repeat="lang_code in admin.node.languages_enabled | orderBy">
             <span class="action-btns">
-              <span data-ng-show="lang_code === admin.node.default_language" class="label label-success default-language">
-                  <i class="glyphicon glyphicon-ok-sign"></i>
-                  <span data-translate>Default</span>
+             <span data-ng-show="lang_code === admin.node.default_language" class="default-language">
+                 <i class="glyphicon glyphicon-ok-sign"></i>
               </span>
-              <span data-ng-show="lang_code !== admin.node.default_language" class="btn label btn-default non-default-language"
-                  data-ng-click="admin.node.default_language = lang_code">
+              <span data-ng-show="lang_code !== admin.node.default_language" class="non-default-language"
+                uib-popover="{{'Set default' | translate}}"
+                data-ng-click="admin.node.default_language = lang_code">
                 <i class="glyphicon glyphicon-ok-sign"></i>
-                <span data-translate>Default</span>
-              </span>&nbsp;
-              <span data-ng-click="removeLang($index, lang_code)" uib-popover="{{'Remove' | translate}}" popover-trigger="'mouseenter'">
-                  <i data-ng-class="{disabled: lang_code === admin.node.default_language}" class="glyphicon glyphicon-remove"></i>
               </span>
+              <span data-ng-if="lang_code !== admin.node.default_language" data-ng-click="removeLang($index, lang_code)" uib-popover="{{'Remove' | translate}}" class="remove-lang-btn">
+                <i class="glyphicon glyphicon-remove"></i>
+              </span>
+              <i data-ng-if="lang_code === admin.node.default_language" class="glyphicon glyphicon-remove disabled-icon"></i>
             </span>
-            <label> [{{lang_code}}] {{languages_supported[lang_code]}}</label>
+            <label>[{{lang_code}}] {{languages_supported[lang_code]['native']}}</label>
           </li>
         </ul>
     </div>
