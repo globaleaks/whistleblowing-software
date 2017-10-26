@@ -270,6 +270,9 @@ class APIResourceWrapper(Resource):
 
         request.hostname = request.headers.get('host', '').split(':')[0]
 
+        # TODO: hostname:tenant mapping in AppState
+        request.tid = 1
+
         request.client_ip = request.headers.get('gl-forwarded-for')
         request.client_proto = 'https'
         if request.client_ip is None:
