@@ -449,7 +449,7 @@ supported_template_types = {
     u'tip_expiration_summary': ExpirationSummaryKeyword,
     u'pgp_alert': PGPAlertKeyword,
     u'admin_pgp_alert': AdminPGPAlertKeyword,
-    u'receiver_notification_limit_reached': Keyword,
+    u'receiver_notification_limit_reached': UserNodeKeyword,
     u'export_template': TipKeyword,
     u'export_message': ExportMessageKeyword,
     u'admin_anomaly': AnomalyKeyword,
