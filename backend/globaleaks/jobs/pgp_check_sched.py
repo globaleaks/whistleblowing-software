@@ -43,7 +43,8 @@ class PGPCheckSchedule(LoopingJob):
                 'type': u'admin_pgp_alert',
                 'node': db_admin_serialize_node(store, user_language),
                 'notification': db_get_notification(store, user_language),
-                'users': expired_or_expiring
+                'users': expired_or_expiring,
+                'user': user_desc,
             }
 
             subject, body = Templating().get_mail_subject_and_body(data)

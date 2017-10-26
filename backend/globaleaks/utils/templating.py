@@ -343,9 +343,9 @@ class ExpirationSummaryKeyword(UserNodeKeyword):
         return 'https://' + self.data['node']['hostname'] + '/#/receiver/tips'
 
 
-class AdminPGPAlertKeyword(NodeKeyword):
-    keyword_list = NodeKeyword.keyword_list + admin_pgp_alert_keywords
-    data_keys =  NodeKeyword.data_keys + ['users']
+class AdminPGPAlertKeyword(UserNodeKeyword):
+    keyword_list = UserNodeKeyword.keyword_list + admin_pgp_alert_keywords
+    data_keys =  UserNodeKeyword.data_keys + ['users']
 
     def PGPKeyInfoList(self):
         ret = ''
