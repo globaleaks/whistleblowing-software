@@ -454,7 +454,7 @@ supported_template_types = {
     u'export_template': TipKeyword,
     u'export_message': ExportMessageKeyword,
     u'admin_anomaly': AnomalyKeyword,
-    u'admin_test_static': UserNodeKeyword,
+    u'admin_test': UserNodeKeyword,
     u'https_certificate_expiration': CertificateExprKeyword,
     u'software_update_available': SoftwareUpdateKeyword,
 }

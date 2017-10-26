@@ -1,0 +1,51 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+# Useful commands that get reused during the normal course of development
+
+from __future__ import print_function
+
+import argparse
+import json
+
+from globaleaks.settings import Settings
+from globaleaks.utils import templating
+
+
+def get_native_lang_string(args):
+    import babel
+    name = babel.Locale.parse(args.lang_code).get_display_name(args.lang_code)
+    print('native: %s' % repr(name))
+
+def create_template_var_json(args):
+    # Helper script that outputs JSON describing the variables each template can use
+    out_dict = dict()
+    for template_type, kw_class in templating.supported_template_types.items():
+        postfix = ['_mail_template', '_mail_title']
+        if template_type == 'export_message':
+            postfix = ['_whistleblower', '_recipient']
+        elif template_type == 'export_template':
+            postfix = ['']
+        for p in postfix:
+            out_dict[template_type + p] = kw_class.keyword_list
+
+    print(json.dumps(out_dict, indent=2))
+
+
+Settings.eval_paths()
+
+parser = argparse.ArgumentParser(prog="gl-admin",
+                 description="GlobaLeaks backend administator interface")
+
+subp = parser.add_subparsers(title="commands")
+
+lc_p = subp.add_parser("lang_string", help="Generate utf-8 string for a new language code")
+lc_p.add_argument("lang_code", nargs="?", help="the two letter language code e.g: [fr] requires babel", type=str)
+lc_p.set_defaults(func=get_native_lang_string)
+
+
+kw_p = subp.add_parser("template_vars", help="create keywords used by appdata")
+kw_p.set_defaults(func=create_template_var_json)
+
+if __name__ == '__main__':
+    args = parser.parse_args()
+    args.func(args)

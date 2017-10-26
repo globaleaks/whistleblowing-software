@@ -4,7 +4,8 @@ module.exports = function(grunt) {
   var fs = require('fs'),
       path = require('path'),
       superagent = require('superagent'),
-      Gettext = require("node-gettext");
+      Gettext = require('node-gettext'),
+      exec = require('child_process').execSync;
 
   var fileToDataURI = function(filepath) {
     try {
@@ -794,6 +795,78 @@ module.exports = function(grunt) {
     done();
   });
 
+  grunt.registerTask('verifyAppData', function() {
+    var app_data = JSON.parse(fs.readFileSync('app/data/appdata.json'));
+    var var_map = JSON.parse(fs.readFileSync('app/data/template_vars.json'));
+
+    var failures = [];
+
+    function recordFailure(template_name, lang, text, msg) {
+      var line = template_name + " : "+ lang + " : " + msg;
+      failures.push(line);
+    }
+
+    function checkIfRightTagsUsed(variables, lang, text, template_name, expected_tags) {
+      expected_tags.forEach(function(tag) {
+        if (text.indexOf(tag) == -1) {
+          recordFailure(template_name, lang, text, 'missing expected tag: ' + tag);
+        }
+      });
+    }
+
+    function checkForBrokenTags(variables, lang, text, template_name) {
+      var open_b = (text.match(/{/g) || []).length;
+      var close_b = (text.match(/{/g) || []).length;
+
+      var tags = text.match(/{[A-Z][a-zA-Z]+}/g) || [];
+
+      if (open_b !== close_b) {
+        recordFailure(template_name, lang, text, 'brackets misaligned');
+      }
+      if (open_b !== tags.length) {
+        recordFailure(template_name, lang, text, 'malformed tags');
+      }
+
+      // Check to see there are no other commonly used tags inside like: () [] %%, {{}}
+      if (text.match(/\([A-Z][a-zA-Z]+\)/g) !== null ||
+          text.match(/\[[A-Z][a-zA-Z]+\]/g) !== null ||
+          text.match(/%[A-Z][a-zA-Z]+%/g) !== null ||
+          text.match(/{{[A-Z][a-zA-Z]+}}/g) !== null) {
+        recordFailure(template_name, lang, text, 'mistaken variable tags');
+      }
+      // TODO add check for VarName of template tags without valid brackets
+
+      tags.forEach(function(tag) {
+        if (variables.indexOf(tag) < 0) {
+          recordFailure(template_name, lang, text, 'invalid tag ' + tag);
+        }
+      });
+    }
+
+    // Check_for_missing_templates
+    for (var template_name in var_map) {
+      var lang_map = app_data['templates'][template_name]
+      var variables = var_map[template_name];
+      var expected_tags = (lang_map['en'].match(/{[A-Z][a-zA-Z]+}/g) || []);
+
+      for (var lang in lang_map) {
+        var text = lang_map[lang];
+        checkIfRightTagsUsed(variables, lang, text, template_name, expected_tags);
+        checkForBrokenTags(variables, lang, text, template_name);
+        // TODO Search for ://
+        // TODO Check for html elements and other evil strings
+      }
+    }
+
+    if (failures.length !== 0) {
+      failures.forEach(function(failure) {
+        console.log(failure);
+      });
+    } else {
+      console.log('Successfully verified');
+    }
+  });
+
   // Processes misc files included in the GlobaLeaks repository that need to be
   // included as data like the license and changelog
   grunt.registerTask('includeExternalFiles', function() {
@@ -832,7 +905,6 @@ module.exports = function(grunt) {
       fs.writeFileSync('tmp/data/manifest.json', manifest);
       fs.writeFileSync('tmp/license.txt', license_content);
   });
-
 
   // Run this task to push translations on transifex
   grunt.registerTask('pushTranslationsSource', ['confirm', '☠☠☠pushTranslationsSource☠☠☠']);
