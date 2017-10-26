@@ -18,9 +18,6 @@ from globaleaks.utils.utility import datetime_to_ISO8601, log
 from globaleaks.utils.templating import format_and_send
 
 
-XTIDX=1
-
-
 class X509CertCheckSchedule(LoopingJob):
     name = "X509 Cert Check"
     interval = 3 * 24 * 3600
@@ -38,9 +35,8 @@ class X509CertCheckSchedule(LoopingJob):
 
             template_vars = {
                 'type': 'https_certificate_expiration',
-                'expiration_date': expiration_date,
-                'node': db_admin_serialize_node(store, lang),
-                'notification': db_get_notification(store, lang),
+                'node': db_admin_serialize_node(store, 1, lang),
+                'notification': db_get_notification(store, 1, lang)
                 'user': user_desc,
             }
 

@@ -19,6 +19,8 @@ from globaleaks.utils.utility import datetime_now, datetime_to_ISO8601
 
 __all__ = ['CleaningSchedule']
 
+XTIDX = 1
+
 
 def db_clean_expired_wbtips(store):
     threshold = datetime_now() - timedelta(days=State.tenant_cache[1].wbtip_timetolive)
@@ -77,7 +79,7 @@ class CleaningSchedule(LoopingJob):
 
             data = {
                'type': u'tip_expiration_summary',
-               'node': db_admin_serialize_node(store, user.language),
+               'node': db_admin_serialize_node(store, XTIDX, user.language),
                'notification': db_get_notification(store, user.language),
                'user': user_desc,
                'expiring_submission_count': len(itip_ids),

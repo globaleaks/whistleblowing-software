@@ -5,6 +5,8 @@ from globaleaks.jobs.delivery_sched import DeliverySchedule
 from globaleaks.tests import helpers
 from globaleaks.utils.templating import Templating, supported_template_types
 
+XTIDX = 1
+
 
 class notifTemplateTest(helpers.TestGLWithPopulatedDB):
     @inlineCallbacks
@@ -17,7 +19,7 @@ class notifTemplateTest(helpers.TestGLWithPopulatedDB):
         data['user'] = yield admin.user.get_user(self.dummyReceiver_1['id'], u'en')
         data['context'] = yield admin.context.get_context(self.dummyContext['id'], u'en')
         data['notification'] = yield admin.notification.get_notification(u'en')
-        data['node'] = yield admin.node.admin_serialize_node(u'en')
+        data['node'] = yield admin.node.admin_serialize_node(XTIDX, u'en')
 
         if self.dummyRTips[0]['receiver_id'] == self.dummyReceiver_1['id']:
             tip_id = self.dummyRTips[0]['id']
