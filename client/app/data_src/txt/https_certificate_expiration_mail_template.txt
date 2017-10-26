@@ -2,13 +2,14 @@ Dear {RecipientName},
 
 The HTTPS certificate loaded on the platform is about to, or has already expired.
 
+Expiration date: {ExpirationDate}
+
 Without a valid certificate, the platform will be accessible in a secure way only via Tor.
 
 Log in to solve the issue.
 
 via Tor at: {TorUrl}
 via HTTPS at: {HTTPSUrl}
-
 
 Kind regards,
 {NodeName}
