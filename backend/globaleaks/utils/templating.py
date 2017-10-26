@@ -88,8 +88,8 @@ https_expr_keywords = [
 software_update_keywords = [
     '{InstalledVersion}',
     '{LatestVersion}',
-    '{ChangeLogURL}',
-    '{UpdateGuideURL}',
+    '{ChangeLogUrl}',
+    '{UpdateGuideUrl}',
 ]
 
 
@@ -436,10 +436,10 @@ class SoftwareUpdateKeyword(UserNodeKeyword):
     def InstalledVersion(self):
         return '%s' % __version__
 
-    def ChangeLogURL(self):
+    def ChangeLogUrl(self):
         return 'https://www.globaleaks.org/r/changelog'
 
-    def UpdateGuideURL(self):
+    def UpdateGuideUrl(self):
         return 'https://www.globaleaks.org/r/upgrade-guide'
 
 supported_template_types = {
