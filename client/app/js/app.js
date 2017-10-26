@@ -583,16 +583,14 @@ var GLClient = angular.module('GLClient', [
 
         Utils.route_check();
 
-        $rootScope.languages_supported = {};
         $rootScope.languages_enabled = {};
         $rootScope.languages_enabled_selector = [];
+        $rootScope.languages_supported = {};
         angular.forEach($rootScope.node.languages_supported, function (lang) {
-          var code = lang.code;
-          var name = lang.native;
-          $rootScope.languages_supported[code] = name;
-          if ($rootScope.node.languages_enabled.indexOf(code) !== -1) {
-            $rootScope.languages_enabled[code] = name;
-            $rootScope.languages_enabled_selector.push({"name": name, "code": code});
+          $rootScope.languages_supported[lang.code] = lang;
+          if ($rootScope.node.languages_enabled.indexOf(lang.code) !== -1) {
+            $rootScope.languages_enabled[lang.code] = lang;
+            $rootScope.languages_enabled_selector.push(lang);
           }
         });
 

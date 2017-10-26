@@ -3,8 +3,15 @@ describe('admin configure languages', function() {
     // Enable german and italian and then test the language selector
     browser.setLocation('admin/content');
     element(by.cssContainingText("a", "Languages")).click();
-    element(by.id('language-enabler-de')).click();
-    element(by.id('language-enabler-it')).click();
+
+    element(by.className('add-language-btn')).click();
+    var input = element(by.id('LanguageAdder')).all(by.css('input')).last();
+    input.sendKeys('Italiano' + protractor.Key.ENTER);
+
+    element(by.className('add-language-btn')).click();
+    var input = element(by.id('LanguageAdder')).all(by.css('input')).last();
+    input.sendKeys('Deutsch' + protractor.Key.ENTER);
+
     element(by.cssContainingText("button", "Save")).click();
 
     element(by.model('GLTranslate.indirect.appLanguage')).element(by.xpath(".//*[text()='Deutsch']")).click();
@@ -24,24 +31,27 @@ describe('admin configure languages', function() {
   });
 
   it('should configure default language', function() {
-    // Disable italian and set the default as german
+    // Set the default as german
     browser.setLocation('admin/content');
     element(by.cssContainingText("a", "Languages")).click();
-    element(by.model('admin.node.default_language')).element(by.xpath(".//*[text()='German']")).click();
+    element.all(by.css('.non-default-language')).get(0).click();
     element(by.cssContainingText("button", "Save")).click();
 
-
-    // Verify that the default is set to german and then disable it.
+    // Verify that the default is set to german
     browser.setLocation('admin/content');
     element(by.cssContainingText("a", "Languages")).click();
-    expect(element(by.model('admin.node.default_language')).getAttribute('value')).toEqual('string:de');
-    element(by.id('language-enabler-de')).click();
+    expect(element(by.model('admin.node.default_language')).getAttribute('value')).toEqual('de');
+
+    // Switch the default to english and disable german
+    element.all(by.css('.non-default-language')).get(1).click();
+    element.all(by.css('.remove-lang-btn')).get(0).click();
+
     element(by.cssContainingText("button", "Save")).click();
 
     // Verify that the new default is set again to english that is the first language among en/it
     browser.setLocation('admin/content');
     element(by.cssContainingText("a", "Languages")).click();
-    expect(element(by.model('admin.node.default_language')).getAttribute('value')).toEqual('string:en');
+    expect(element(by.model('admin.node.default_language')).getAttribute('value')).toEqual('en');
     element(by.cssContainingText("button", "Save")).click();
   });
 });

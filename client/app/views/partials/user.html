@@ -1,7 +1,7 @@
 <div>
   <div id="LanguagePickerBox" class="languagePick row" data-ng-show="show_language_selector">
     <div class="pull-right">
-      <select class="form-control" data-ng-model="GLTranslate.indirect.appLanguage" data-ng-options="item.code as item.name for item in languages_enabled_selector"></select>
+      <select class="form-control" data-ng-model="GLTranslate.indirect.appLanguage" data-ng-options="item.code as item.native for item in languages_enabled_selector"></select>
     </div>
   </div>
   <div id="LoginStatusBox" class="row" data-ng-if="Utils.showUserStatusBox()">

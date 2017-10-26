@@ -90,14 +90,18 @@ text.axis-worktime {
   overflow-y: scroll;
 }
 
-span.non-default-language {
-  padding: 0;
+.default-language, .non-default-language {
+  color: #337ab7;
 }
 
-span.default-language {
-  border: 1px solid transparent;
+.non-default-language, .disabled-icon {
+  opacity: 0.2;
 }
 
-.selectionList i.disabled {
-  color: #AAA;
+.non-default-language:hover {
+  opacity: 1;
+}
+
+.selectionList {
+  list-style-type: none;
 }

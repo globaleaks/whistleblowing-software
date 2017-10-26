@@ -467,5 +467,13 @@ html[dir] .btn-circle {
   font-size: 12px;
   line-height: 1.428571429;
   border-radius: 15px;
+}
 
+.glyphicon-none:before {
+  content: "\2122";
+  color: transparent !important;
+}
+
+.hidden {
+  display: none;
 }

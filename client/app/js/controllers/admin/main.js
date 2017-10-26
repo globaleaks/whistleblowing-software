@@ -115,7 +115,7 @@ controller('AdminGeneralSettingsCtrl', ['$scope', '$filter', '$http', 'StaticFil
   $scope.staticfiles = [];
 
   $scope.toggleLangSelect = function() {
-    $scope.showLangSelect = !$scope.showLangSelect;
+    $scope.showLangSelect = true;
   };
 
   $scope.langNotEnabledFilter = function(lang_obj) {
