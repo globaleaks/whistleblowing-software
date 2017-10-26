@@ -37,7 +37,8 @@ class X509CertCheckSchedule(LoopingJob):
                 'type': 'https_certificate_expiration',
                 'expiration_date': expiration_date,
                 'node': db_admin_serialize_node(store, lang),
-                'notification': db_get_notification(store, lang)
+                'notification': db_get_notification(store, lang),
+                'user': user_desc,
             }
 
             format_and_send(store, user_desc, template_vars)

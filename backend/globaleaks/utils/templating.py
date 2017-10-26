@@ -82,6 +82,7 @@ admin_anomaly_keywords = [
 https_expr_keywords = [
     '{ExpirationDate}',
     '{TorUrl}',
+    '{HTTPSUrl}',
 ]
 
 software_update_keywords = [
@@ -410,9 +411,9 @@ class AnomalyKeyword(UserNodeKeyword):
         return '%s' % bytes_to_pretty_str(self.data['alert']['latest_measured_totalspace'])
 
 
-class CertificateExprKeyword(NodeKeyword):
-    keyword_list = NodeKeyword.keyword_list + https_expr_keywords
-    data_keys = NodeKeyword.data_keys + ['expiration_date']
+class CertificateExprKeyword(UserNodeKeyword):
+    keyword_list = UserNodeKeyword.keyword_list + https_expr_keywords
+    data_keys = UserNodeKeyword.data_keys + ['expiration_date']
 
     def ExpirationDate(self):
         # is not time zone dependent, is UTC for everyone
