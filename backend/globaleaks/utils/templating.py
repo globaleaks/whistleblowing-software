@@ -318,9 +318,9 @@ class FileKeyword(TipKeyword):
         return str(self.data['file']['size'])
 
 
-class ExportMessageKeyword(Keyword):
-    keyword_list = export_message_keywords
-    data_keys =  ['message']
+class ExportMessageKeyword(TipKeyword):
+    keyword_list = TipKeyword.keyword_list + export_message_keywords
+    data_keys =  TipKeyword.data_keys + ['message']
 
     def Content(self):
         return self.data['message']['content']
