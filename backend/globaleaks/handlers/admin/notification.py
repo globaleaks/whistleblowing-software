@@ -105,7 +105,7 @@ class NotificationTestInstance(BaseHandler):
         language = user['language']
 
         data = {
-            'type': 'admin_test_static',
+            'type': 'admin_test',
             'node': (yield admin_serialize_node(language)),
             'notification': (yield get_notification(language)),
             'user': user,

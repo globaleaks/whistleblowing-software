@@ -253,12 +253,10 @@ def disable_api_token(args):
     set_var(args, silent=True)
     print('The API token was deleted')
 
-
 def add_db_path_arg(parser):
     parser.add_argument("--dbpath",
                         help="the path to the globaleaks db directory",
                         default=default_db_path())
-
 
 Settings.eval_paths()
 
@@ -306,7 +304,6 @@ add_db_path_arg(sv_p)
 sv_p.add_argument("varname", help="the name of the config var", type=unicode)
 sv_p.add_argument("value", help="value which must be of the correct type Bool(0|1), Int(0-9^9), String(everything else)")
 sv_p.set_defaults(func=set_var)
-
 
 if __name__ == '__main__':
     args = parser.parse_args()
