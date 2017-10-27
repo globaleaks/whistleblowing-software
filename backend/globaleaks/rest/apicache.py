@@ -6,17 +6,21 @@ class ApiCache(object):
     memory_cache_dict = {}
 
     @classmethod
-    def get(cls, resource, language):
-        if resource in cls.memory_cache_dict \
-                and language in cls.memory_cache_dict[resource]:
-            return cls.memory_cache_dict[resource][language]
+    def get(cls, tid, resource, language):
+        if tid in cls.memory_cache_dict \
+           and resource in cls.memory_cache_dict[tid] \
+           and language in cls.memory_cache_dict[tid][resource]:
+            return cls.memory_cache_dict[tid][resource][language]
 
     @classmethod
-    def set(cls, resource, language, value):
-        if resource not in ApiCache.memory_cache_dict:
-            cls.memory_cache_dict[resource] = {}
+    def set(cls, tid, resource, language, value):
+        if tid not in ApiCache.memory_cache_dict:
+            cls.memory_cache_dict[tid] = {}
 
-        cls.memory_cache_dict[resource][language] = value
+        if resource not in ApiCache.memory_cache_dict[tid]:
+            cls.memory_cache_dict[tid][resource] = {}
+
+        cls.memory_cache_dict[tid][resource][language] = value
 
     @classmethod
     def invalidate(cls):
@@ -25,18 +29,18 @@ class ApiCache(object):
 
 def decorator_cache_get(f):
     def decorator_cache_get_wrapper(self, *args, **kwargs):
-        c = ApiCache.get(self.request.path, self.request.language)
+        c = ApiCache.get(self.request.tid, self.request.path, self.request.language)
         if c is None:
             c = f(self, *args, **kwargs)
             if isinstance(c, defer.Deferred):
                 def callback(data):
-                    ApiCache.set(self.request.path, self.request.language, data)
+                    ApiCache.set(self.request.tid, self.request.path, self.request.language, data)
 
                     return data
 
                 c.addCallback(callback)
             else:
-                ApiCache.set(self.request.path, self.request.language, c)
+                ApiCache.set(self.request.tid, self.request.path, self.request.language, c)
 
         return c
 
