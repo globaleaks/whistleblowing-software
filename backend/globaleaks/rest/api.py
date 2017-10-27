@@ -44,6 +44,8 @@ from twisted.internet import defer
 from twisted.web.resource import Resource
 from twisted.web.server import NOT_DONE_YET
 
+XTIDX = 1
+
 uuid_regexp = r'([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})'
 key_regexp = r'([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}|[a-z_]{0,100})'
 
@@ -270,14 +272,14 @@ class APIResourceWrapper(Resource):
 
         request.hostname = request.headers.get('host', '').split(':')[0]
 
-        # TODO: hostname:tenant mapping in AppState
-        request.tid = 1
+        request.tid = State.tenant_hostname_id_map.get(request.hostname, XTIDX)
 
         request.client_ip = request.headers.get('gl-forwarded-for')
         request.client_proto = 'https'
         if request.client_ip is None:
             request.client_ip = request.getClientIP()
             request.client_proto = 'http'
+
 
         request.client_using_tor = request.getHost().port == 8083 or \
                                    request.client_ip in State.tor_exit_set
