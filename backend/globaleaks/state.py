@@ -51,7 +51,6 @@ class StateClass(ObjectDict):
             'anonymize_outgoing_connections': True,
         })
 
-
     def get_mail_counter(self, receiver_id):
         return self.mail_counters.get(receiver_id, 0)
 

@@ -131,12 +131,12 @@ def db_get_exception_delivery_list(store, tid):
     return filter(lambda x: x[0] != '', lst)
 
 
-def db_refresh_memory_variables(store):
+def db_refresh_tenant_cache(store, tid):
     """
     This routine loads in memory few variables of node and notification tables
     that are subject to high usage.
     """
-    tenant_cache = ObjectDict(models.config.NodeFactory(store, XTIDX).admin_export())
+    tenant_cache = ObjectDict(models.config.NodeFactory(store, tid).admin_export())
 
     tenant_cache.accept_tor2web_access = {
         'admin': tenant_cache.tor2web_admin,
@@ -145,28 +145,36 @@ def db_refresh_memory_variables(store):
         'receiver': tenant_cache.tor2web_receiver
     }
 
-    tenant_cache.languages_enabled = models.l10n.EnabledLanguage.list(store, XTIDX)
+    tenant_cache.languages_enabled = models.l10n.EnabledLanguage.list(store, tid)
 
-    tenant_cache.notif = ObjectDict(models.config.NotificationFactory(store, XTIDX).admin_export())
-    tenant_cache.notif.exception_delivery_list = db_get_exception_delivery_list(store, XTIDX)
+    tenant_cache.notif = ObjectDict(models.config.NotificationFactory(store, tid).admin_export())
+    tenant_cache.notif.exception_delivery_list = db_get_exception_delivery_list(store, tid)
     if Settings.developer_name:
         tenant_cache.notif.source_name = Settings.developer_name
 
-    tenant_cache.private = ObjectDict(models.config.PrivateFactory(store, XTIDX).mem_copy_export())
+    tenant_cache.private = ObjectDict(models.config.PrivateFactory(store, tid).mem_copy_export())
 
-    if tenant_cache.private.admin_api_token_digest:
-        api_id = store.find(models.User.id, models.User.tid==1, models.User.role==u'admin').order_by(models.User.creation_date).first()
+    if tid == XTIDX and tenant_cache.private.admin_api_token_digest:
+        api_id = store.find(models.User.id, models.User.tid==XTIDX, models.User.role==u'admin').order_by(models.User.creation_date).first()
         if api_id is not None:
             State.api_token_session = Session(api_id, 'admin', 'enabled')
 
-    # The hot swap shoul be done with the minimal race condition possible
-    State.tenant_cache[1] = tenant_cache
+    return tenant_cache
+
+
+def db_refresh_memory_variables(store):
+    for tenant in store.find(models.Tenant):
+        cache_entry = db_refresh_tenant_cache(store, tenant.id)
+        State.tenant_cache[tenant.id] = cache_entry
+
+    # Update state object with changes coming from tenant
+    # TODO tenant.node.hostname must be enforced as unique. Otherwise an error occurs here.
+    State.tenant_hostname_id_map = { tenant.hostname: k for k, tenant in State.tenant_cache.items() }
 
 
 @transact
 def refresh_memory_variables(store):
     return db_refresh_memory_variables(store)
-
 
 
 @transact_sync
