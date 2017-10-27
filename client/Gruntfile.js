@@ -4,8 +4,7 @@ module.exports = function(grunt) {
   var fs = require('fs'),
       path = require('path'),
       superagent = require('superagent'),
-      Gettext = require('node-gettext'),
-      exec = require('child_process').execSync;
+      Gettext = require('node-gettext');
 
   var fileToDataURI = function(filepath) {
     try {
