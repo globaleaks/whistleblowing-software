@@ -27,7 +27,6 @@ class TestNotificationInstance(helpers.TestHandlerWithPopulatedDB):
 
         self._handler.validate_message(json.dumps(response), resp_desc)
 
-
     @inlineCallbacks
     def test_put(self):
         handler = self.request(role='admin')
