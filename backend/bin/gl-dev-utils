@@ -16,7 +16,7 @@ def get_native_lang_string(args):
     name = babel.Locale.parse(args.lang_code).get_display_name(args.lang_code)
     print('native: %s' % repr(name))
 
-def create_template_var_json(args):
+def generate_templates_descriptor(args):
     # Helper script that outputs JSON describing the variables each template can use
     out_dict = dict()
     for template_type, kw_class in templating.supported_template_types.items():
@@ -38,13 +38,13 @@ parser = argparse.ArgumentParser(prog="gl-admin",
 
 subp = parser.add_subparsers(title="commands")
 
-lc_p = subp.add_parser("lang_string", help="Generate utf-8 string for a new language code")
+lc_p = subp.add_parser("print_language_native_name", help="Print languages native name")
 lc_p.add_argument("lang_code", nargs="?", help="the two letter language code e.g: [fr] requires babel", type=str)
 lc_p.set_defaults(func=get_native_lang_string)
 
 
-kw_p = subp.add_parser("template_vars", help="create keywords used by appdata")
-kw_p.set_defaults(func=create_template_var_json)
+kw_p = subp.add_parser("generate_templates_descriptor", help="Gcnerate mail templates descriptors")
+kw_p.set_defaults(func=generate_templates_descriptor)
 
 if __name__ == '__main__':
     args = parser.parse_args()
