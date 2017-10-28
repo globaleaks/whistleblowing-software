@@ -150,8 +150,8 @@ class NotificationL10NFactory(ConfigL10NFactory):
         'admin_anomaly_activities',
         'admin_pgp_alert_mail_template',
         'admin_pgp_alert_mail_title',
-        'admin_test_static_mail_template',
-        'admin_test_static_mail_title',
+        'admin_test_mail_template',
+        'admin_test_mail_title',
         'pgp_alert_mail_template',
         'pgp_alert_mail_title',
         'tip_mail_template',
@@ -201,8 +201,8 @@ class NotificationL10NFactory(ConfigL10NFactory):
         'admin_anomaly_activities',
         'admin_anomaly_disk_high',
         'admin_anomaly_disk_low',
-        'admin_test_static_mail_template',
-        'admin_test_static_mail_title',
+        'admin_test_mail_template',
+        'admin_test_mail_title',
         'https_certificate_expiration_mail_template',
         'https_certificate_expiration_mail_title'
     })
