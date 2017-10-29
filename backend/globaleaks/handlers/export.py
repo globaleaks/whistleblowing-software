@@ -58,7 +58,7 @@ def get_tip_export(store, user_id, rtip_id, language):
     for wf in store.find(models.WhistleblowerFile,
                          models.WhistleblowerFile.receivertip_id == models.ReceiverTip.id,
                          models.ReceiverTip.internaltip_id == rtip.internaltip_id):
-        file_dict = models.serializers.serialize_wbfile(wf)
+        file_dict = models.serializers.serialize_wbfile(store, wf)
         file_dict['name'] = 'files_from_recipients/' + file_dict['name']
         export_dict['files'].append(file_dict)
 
