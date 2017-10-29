@@ -8,7 +8,6 @@ import re
 import shutil
 from datetime import datetime
 
-import types
 from cryptography.hazmat.primitives import constant_time
 
 from twisted.internet import defer
@@ -171,13 +170,6 @@ class BaseHandler(object):
         self.state = state
         self.request = request
         self.request.start_time = datetime.now()
-
-    def write(self, chunk):
-        if isinstance(chunk, (types.DictType, types.ListType)):
-            chunk = json.dumps(chunk)
-            self.request.setHeader(b'content-type', b'application/json')
-
-        self.request.write(bytes(chunk))
 
     @staticmethod
     def authentication(f, roles):

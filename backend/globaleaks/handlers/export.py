@@ -92,7 +92,7 @@ class ZipStreamProducer(object):
 
             data = self.zip_chunk()
             if data:
-                self.handler.write(data)
+                self.handler.request.write(data)
             else:
                 self.stopProducing()
         except:
