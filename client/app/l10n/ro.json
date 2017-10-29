@@ -143,7 +143,7 @@
   "Date": "Data",
   "Date of birth": "Data de nastere",
   "Date of the request": "Data solicitării",
-  "Date: {EventTime}": "Data: {EventTime]",
+  "Date: {EventTime}": "Data: {EventTime}",
   "Date: {SubmissionDate}": "Data: {SubmissionDate}",
   "Dear {RecipientName},": "Buna {RecipientName},",
   "Default": "Mod implicit",
