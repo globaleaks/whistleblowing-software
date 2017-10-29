@@ -250,7 +250,7 @@
   "Forcefully selected": "იძულებით შერჩეული",
   "Free disk space": "თავისუფალი ადგილი მყარ დისკზე",
   "From": "From",
-  "From: {RecipientName}": "ავტორი: [RecipientName}",
+  "From: {RecipientName}": "ავტორი: {RecipientName}",
   "From: Whistleblower": "ავტორი: Whistleblower",
   "Full description": "სრული აღწერა",
   "Gender": "სქესი",

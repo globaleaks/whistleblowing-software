@@ -221,7 +221,7 @@
   "Exception notification": "הודעה חריגה",
   "Expiration alert for HTTPS certificate": "Expiration alert for HTTPS certificate",
   "Expiration date": "תאריך תפוגה",
-  "Expiration date: {ExpirationDate}": "תאריך תפוגה: ",
+  "Expiration date: {ExpirationDate}": "Expiration date: {ExpirationDate}",
   "Export": "יְצוּא",
   "Failed logins": "התחברויות שנכשלו",
   "Failed submissions": "Failed submissions",

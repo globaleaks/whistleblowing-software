@@ -796,7 +796,7 @@ module.exports = function(grunt) {
 
   grunt.registerTask('verifyAppData', function() {
     var app_data = JSON.parse(fs.readFileSync('app/data/appdata.json'));
-    var var_map = JSON.parse(fs.readFileSync('app/data/template_vars.json'));
+    var var_map = JSON.parse(fs.readFileSync('app/data/templates_descriptor.json'));
 
     var failures = [];
 

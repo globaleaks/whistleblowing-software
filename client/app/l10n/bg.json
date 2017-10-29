@@ -327,7 +327,7 @@
   "Last name": "Фамилия",
   "Last update": "Последно обновяване",
   "Latest selectable date": "Най-късната избираема дата",
-  "Latest version: {LatestVersion}": "Най-нова версия: {InstalledVersion}",
+  "Latest version: {LatestVersion}": "Най-нова версия: {LatestVersion}",
   "Layout orientation": "Ориентация на визуализацията",
   "Let recipients upload files to whistleblowers": "Разрешаване на получателите да качват файлове за източниците",
   "Let the platform be reachable without Tor": "Разрешаване на достъпа до платформата без Tor",
