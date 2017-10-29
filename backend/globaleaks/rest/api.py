@@ -6,6 +6,7 @@
 
 import json
 import re
+import types
 import urlparse
 
 from globaleaks import LANGUAGES_SUPPORTED_CODES
@@ -352,8 +353,12 @@ class APIResourceWrapper(Resource):
             yield h.execution_check()
 
             if not request_finished[0]:
-                if not ret is None:
-                    h.write(ret)
+                if ret is not None:
+                    if isinstance(ret, (types.DictType, types.ListType)):
+                        ret = json.dumps(ret, separators=(',', ':'))
+                        request.setHeader(b'content-type', b'application/json')
+
+                    request.write(bytes(ret))
 
                 request.finish()
 
