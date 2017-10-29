@@ -35,7 +35,7 @@
   },
   "devDependencies": {
     "coveralls": "3.0.0",
-    "eslint": "4.9.0",
+    "eslint": "4.10.0",
     "grunt": "1.0.1",
     "grunt-angular-templates": "1.1.0",
     "grunt-confirm": "1.0.7",
@@ -54,7 +54,7 @@
     "protractor": "5.2.0",
     "protractor-console-plugin": "0.1.1",
     "q": "1.5.1",
-    "superagent": "3.7.0",
+    "superagent": "3.8.0",
     "supertest": "3.0.0"
   }
 }
