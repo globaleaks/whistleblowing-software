@@ -25,10 +25,11 @@ def generate_templates_descriptor(args):
             postfix = ['_whistleblower', '_recipient']
         elif template_type == 'export_template':
             postfix = ['']
+
         for p in postfix:
             out_dict[template_type + p] = kw_class.keyword_list
 
-    print(json.dumps(out_dict, indent=2))
+    print(json.dumps(out_dict, indent=2, separators=(',', ':'), sort_keys=True))
 
 
 Settings.eval_paths()

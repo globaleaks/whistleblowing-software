@@ -833,7 +833,6 @@ module.exports = function(grunt) {
           text.match(/{{[A-Z][a-zA-Z]+}}/g) !== null) {
         recordFailure(template_name, lang, text, 'mistaken variable tags');
       }
-      // TODO add check for VarName of template tags without valid brackets
 
       tags.forEach(function(tag) {
         if (variables.indexOf(tag) < 0) {
@@ -861,6 +860,8 @@ module.exports = function(grunt) {
       failures.forEach(function(failure) {
         console.log(failure);
       });
+
+      grunt.fail.warn("verifyAppData task failure");
     } else {
       console.log('Successfully verified');
     }
@@ -909,7 +910,7 @@ module.exports = function(grunt) {
   grunt.registerTask('pushTranslationsSource', ['confirm', '☠☠☠pushTranslationsSource☠☠☠']);
 
   // Run this task to fetch translations from transifex and create application files
-  grunt.registerTask('updateTranslations', ['fetchTranslations', 'makeAppData']);
+  grunt.registerTask('updateTranslations', ['fetchTranslations', 'makeAppData', 'verifyAppData']);
   // Run this to build your app. You should have run updateTranslations before you do so, if you have changed something in your translations.
   grunt.registerTask('build',
     ['clean', 'copy:sources', 'copy:build', 'includeExternalFiles', 'ngtemplates', 'useminPrepare', 'concat', 'usemin', 'string-replace', 'cleanupWorkingDirectory']);
