@@ -1,3 +1,9 @@
+Changes in version 2.72.14 - 2017-10-29
+    o Implement verification script for application data (1670)
+    o Fix mail translation in relation to few templates
+    o Update translations
+    o Bump npm dependencies to latest stables versions
+
 Changes in version 2.72.13 - 2017-10-24
     o Improve efficiency of delivery sched
     o Fix deletion of questionnaire questions
