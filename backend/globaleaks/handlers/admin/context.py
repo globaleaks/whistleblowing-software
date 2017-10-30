@@ -64,15 +64,14 @@ def get_context_list(store, language):
                   key=lambda x: x['presentation_order'])
 
 
-def db_associate_context_receivers(store, context, receivers_ids):
-    store.find(models.ReceiverContext, models.ReceiverContext.context_id == context.id).remove()
+def db_associate_context_receivers(store, context, receiver_ids):
+    store.find(models.ReceiverContext, context_id=context.id, tid=context.tid).remove()
 
-    i = 0
-    for receiver_id in receivers_ids:
+    for i, receiver_id in enumerate(receiver_ids):
         store.add(models.ReceiverContext({'context_id': context.id,
                                           'receiver_id': receiver_id,
+                                          'tid': context.tid,
                                           'presentation_order': i}))
-        i += 1
 
 
 @transact
@@ -86,7 +85,8 @@ def get_context(store, context_id, language):
     return admin_serialize_context(store, context, language)
 
 
-def fill_context_request(request, language):
+def fill_context_request(request, tid, language):
+    request['tid'] = tid
     fill_localized_keys(request, models.Context.localized_keys, language)
 
     request['tip_timetolive'] = -1 if request['tip_timetolive'] < 0 else request['tip_timetolive']
@@ -101,7 +101,7 @@ def fill_context_request(request, language):
 
 
 def db_update_context(store, context, request, language):
-    request = fill_context_request(request, language)
+    request = fill_context_request(request, context.tid, language)
 
     context.update(request)
 
@@ -110,8 +110,8 @@ def db_update_context(store, context, request, language):
     return context
 
 
-def db_create_context(store, request, language):
-    request = fill_context_request(request, language)
+def db_create_context(store, request, tid, language):
+    request = fill_context_request(request, tid, language)
 
     if not request['allow_recipients_selection']:
         request['select_all_receivers'] = True
@@ -124,7 +124,7 @@ def db_create_context(store, request, language):
 
 
 @transact
-def create_context(store, request, language):
+def create_context(store, request, tid, language):
     """
     Creates a new context from the request of a client.
 
@@ -134,7 +134,7 @@ def create_context(store, request, language):
     Returns:
         (dict) representing the configured context
     """
-    context = db_create_context(store, request, language)
+    context = db_create_context(store, request, tid, language)
 
     return admin_serialize_context(store, context, language)
 

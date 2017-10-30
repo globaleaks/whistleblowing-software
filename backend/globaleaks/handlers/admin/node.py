@@ -18,6 +18,7 @@ from globaleaks.rest import errors, requests
 from globaleaks.settings import Settings
 from globaleaks.utils.utility import log
 
+
 def db_admin_serialize_node(store, tid, language):
     node_dict = NodeFactory(store, tid).admin_export()
     priv_dict = PrivateFactory(store, tid)
@@ -29,11 +30,11 @@ def db_admin_serialize_node(store, tid, language):
         'version': priv_dict.get_val(u'version'),
         'latest_version': priv_dict.get_val(u'latest_version'),
         'languages_supported': LANGUAGES_SUPPORTED,
-        'languages_enabled': EnabledLanguage.list(store),
+        'languages_enabled': EnabledLanguage.list(store, tid),
         'configured': configured
     }
 
-    l10n_dict = NodeL10NFactory(store).localized_dict(language)
+    l10n_dict = NodeL10NFactory(store, tid).localized_dict(language)
 
     return utils.sets.merge_dicts(node_dict, misc_dict, l10n_dict)
 
@@ -44,7 +45,7 @@ def admin_serialize_node(store, tid, language):
 
 
 def enable_disable_languages(store, tid, request):
-    cur_enabled_langs = EnabledLanguage.list(store)
+    cur_enabled_langs = EnabledLanguage.list(store, tid)
     new_enabled_langs = [unicode(y) for y in request['languages_enabled']]
 
     if len(new_enabled_langs) < 1:
@@ -66,9 +67,9 @@ def enable_disable_languages(store, tid, request):
     to_remove = list(set(cur_enabled_langs) - set(new_enabled_langs))
 
     if to_remove:
-        store.find(models.User, In(models.User.language, to_remove)).set(language=request['default_language'])
+        store.find(models.User, In(models.User.language, to_remove), tid=tid).set(language=request['default_language'])
 
-        models.db_delete(store, models.l10n.EnabledLanguage, In(models.l10n.EnabledLanguage.name, to_remove))
+        models.db_delete(store, models.l10n.EnabledLanguage, In(models.l10n.EnabledLanguage.name, to_remove), tid=tid)
 
 
 def db_update_node(store, tid, request, language):
@@ -80,6 +81,8 @@ def db_update_node(store, tid, request, language):
     :return: a dictionary representing the serialization of the node
     """
     node = NodeFactory(store, tid)
+
+    # TODO assert hostname is unique
     node.update(request)
 
     if request['basic_auth'] and request['basic_auth_username'] and request['basic_auth_password']:
@@ -92,7 +95,7 @@ def db_update_node(store, tid, request, language):
     enable_disable_languages(store, tid, request)
 
     if language in request['languages_enabled']:
-        node_l10n = NodeL10NFactory(store)
+        node_l10n = NodeL10NFactory(store, tid)
         node_l10n.update(request, language)
 
     db_refresh_memory_variables(store)

@@ -22,6 +22,7 @@ from globaleaks.utils import letsencrypt, tls
 from globaleaks.utils.tempdict import TempDict
 from globaleaks.utils.utility import datetime_to_ISO8601, format_cert_expr_date, log
 
+
 XTIDX = 1
 
 
@@ -35,16 +36,16 @@ class FileResource(object):
     """
     @classmethod
     @transact
-    def create_file(store, cls, content):
+    def create_file(store, cls, tid, content):
         raise errors.MethodNotImplemented()
 
     @classmethod
-    def perform_file_action(cls):
+    def perform_file_action(cls, tid):
         raise errors.MethodNotImplemented()
 
     @staticmethod
     @transact
-    def get_file(store):
+    def get_file(store, tid):
         """
         :rtype: A `unicode` string
         """
@@ -52,16 +53,16 @@ class FileResource(object):
 
     @staticmethod
     @transact
-    def delete_file(store):
+    def delete_file(store, tid):
         raise errors.MethodNotImplemented()
 
     @classmethod
     @transact
-    def serialize(cls, store):
+    def serialize(cls, store, tid):
         return cls.db_serialize(store)
 
     @staticmethod
-    def db_serialize(store):
+    def db_serialize(store, tid):
         """
         :rtype: A `dict` to be converted into JSON for delivery to a client
         """
@@ -69,24 +70,24 @@ class FileResource(object):
 
     @staticmethod
     @transact
-    def should_gen_dh_params(store):
-        return PrivateFactory(store, XTIDX).get_val(u'https_dh_params') == u''
+    def should_gen_dh_params(store, tid):
+        return PrivateFactory(store, tid).get_val(u'https_dh_params') == u''
 
     @staticmethod
     @transact
-    def save_dh_params(store, dh_params):
-        PrivateFactory(store, XTIDX).set_val(u'https_dh_params', dh_params)
+    def save_dh_params(store, tid, dh_params):
+        PrivateFactory(store, tid).set_val(u'https_dh_params', dh_params)
 
     @classmethod
     @inlineCallbacks
-    def generate_dh_params_if_missing(cls):
+    def generate_dh_params_if_missing(cls, tid):
         gen_dh = yield FileResource.should_gen_dh_params()
         if gen_dh:
             log.info("Generating the HTTPS DH params with %d bits" % Settings.key_bits)
             dh_params = yield deferToThread(tls.gen_dh_params, Settings.key_bits)
 
             log.info("Storing the HTTPS DH params")
-            yield cls.save_dh_params(dh_params)
+            yield cls.save_dh_params(tid, dh_params)
 
 
 class PrivKeyFileRes(FileResource):
@@ -94,11 +95,11 @@ class PrivKeyFileRes(FileResource):
 
     @classmethod
     @transact
-    def create_file(store, cls, raw_key):
-        db_cfg = load_tls_dict(store)
+    def create_file(store, cls, tid, raw_key):
+        db_cfg = load_tls_dict(store, tid)
         db_cfg['ssl_key'] = raw_key
 
-        prv_fact = PrivateFactory(store, XTIDX)
+        prv_fact = PrivateFactory(store, tid)
         pkv = cls.validator()
         ok, _ = pkv.validate(db_cfg)
         if ok:
@@ -109,30 +110,30 @@ class PrivKeyFileRes(FileResource):
 
     @staticmethod
     @transact
-    def save_tls_key(store, prv_key):
-        prv_fact = PrivateFactory(store, XTIDX)
+    def save_tls_key(store, tid, prv_key):
+        prv_fact = PrivateFactory(store, tid)
         prv_fact.set_val(u'https_priv_key', prv_key)
         prv_fact.set_val(u'https_priv_gen', True)
 
     @classmethod
     @inlineCallbacks
-    def perform_file_action(cls):
+    def perform_file_action(cls, tid):
         log.info("Generating the HTTPS key with %d bits" % Settings.key_bits)
         key = yield deferToThread(tls.gen_rsa_key, Settings.key_bits)
 
         log.debug("Saving the HTTPS key")
-        yield cls.save_tls_key(key)
+        yield cls.save_tls_key(tid, key)
 
     @staticmethod
     @transact
-    def delete_file(store):
-        prv_fact = PrivateFactory(store, XTIDX)
+    def delete_file(store, tid):
+        prv_fact = PrivateFactory(store, tid)
         prv_fact.set_val(u'https_priv_key', u'')
         prv_fact.set_val(u'https_priv_gen', False)
 
     @staticmethod
-    def db_serialize(store):
-        prv_fact = PrivateFactory(store, XTIDX)
+    def db_serialize(store, tid):
+        prv_fact = PrivateFactory(store, tid)
 
         return {
             'set': prv_fact.get_val(u'https_priv_key') != u'',
@@ -145,10 +146,10 @@ class CertFileRes(FileResource):
 
     @classmethod
     @transact
-    def create_file(store, cls, raw_cert):
-        prv_fact = PrivateFactory(store, XTIDX)
+    def create_file(store, cls, tid, raw_cert):
+        prv_fact = PrivateFactory(store, tid)
 
-        db_cfg = load_tls_dict(store)
+        db_cfg = load_tls_dict(store, tid)
         db_cfg['ssl_cert'] = raw_cert
 
         cv = cls.validator()
@@ -161,18 +162,18 @@ class CertFileRes(FileResource):
 
     @staticmethod
     @transact
-    def delete_file(store):
-        PrivateFactory(store, XTIDX).set_val(u'https_cert', u'')
-        State.tenant_cache[1].https_cert = ''
+    def delete_file(store, tid):
+        PrivateFactory(store, tid).set_val(u'https_cert', u'')
+        State.tenant_cache[tid].https_cert = ''
 
     @staticmethod
     @transact
-    def get_file(store):
-        return PrivateFactory(store, XTIDX).get_val(u'https_cert')
+    def get_file(store, tid):
+        return PrivateFactory(store, tid).get_val(u'https_cert')
 
     @staticmethod
-    def db_serialize(store):
-        c = PrivateFactory(store, XTIDX).get_val(u'https_cert')
+    def db_serialize(store, tid):
+        c = PrivateFactory(store, tid).get_val(u'https_cert')
         if len(c) == 0:
             return {'name': 'cert', 'set': False}
 
@@ -192,10 +193,10 @@ class ChainFileRes(FileResource):
 
     @classmethod
     @transact
-    def create_file(store, cls, raw_chain):
-        prv_fact = PrivateFactory(store, XTIDX)
+    def create_file(store, cls, tid, raw_chain):
+        prv_fact = PrivateFactory(store, tid)
 
-        db_cfg = load_tls_dict(store)
+        db_cfg = load_tls_dict(store, tid)
         db_cfg['ssl_intermediate'] = raw_chain
 
         cv = cls.validator()
@@ -207,17 +208,17 @@ class ChainFileRes(FileResource):
 
     @staticmethod
     @transact
-    def delete_file(store):
-        PrivateFactory(store, XTIDX).set_val(u'https_chain', u'')
+    def delete_file(store, tid):
+        PrivateFactory(store, tid).set_val(u'https_chain', u'')
 
     @staticmethod
     @transact
-    def get_file(store):
-        return PrivateFactory(store, XTIDX).get_val(u'https_chain')
+    def get_file(store, tid):
+        return PrivateFactory(store, tid).get_val(u'https_chain')
 
     @staticmethod
-    def db_serialize(store):
-        c = PrivateFactory(store, XTIDX).get_val(u'https_chain')
+    def db_serialize(store, tid):
+        c = PrivateFactory(store, tid).get_val(u'https_chain')
         if len(c) == 0:
             return {'name': 'chain', 'set': False}
 
@@ -235,24 +236,24 @@ class ChainFileRes(FileResource):
 class CsrFileRes(FileResource):
     @classmethod
     @transact
-    def create_file(store, cls, raw_csr):
-        PrivateFactory(store, XTIDX).set_val(u'https_csr', raw_csr)
+    def create_file(store, cls, tid, raw_csr):
+        PrivateFactory(store, tid).set_val(u'https_csr', raw_csr)
 
         return True
 
     @staticmethod
     @transact
-    def delete_file(store):
-        PrivateFactory(store, XTIDX).set_val(u'https_csr', u'')
+    def delete_file(store, tid):
+        PrivateFactory(store, tid).set_val(u'https_csr', u'')
 
     @staticmethod
     @transact
-    def get_file(store):
-        return PrivateFactory(store, XTIDX).get_val(u'https_csr')
+    def get_file(store, tid):
+        return PrivateFactory(store, tid).get_val(u'https_csr')
 
     @staticmethod
-    def db_serialize(store):
-        csr = PrivateFactory(store, XTIDX).get_val(u'https_csr')
+    def db_serialize(store, tid):
+        csr = PrivateFactory(store, tid).get_val(u'https_csr')
         return {'name': 'csr', 'set': len(csr) != 0}
 
 
@@ -277,18 +278,18 @@ class FileHandler(BaseHandler):
         return self.mapped_file_resources[name]
 
     def delete(self, name):
-        return self.get_file_res_or_raise(name).delete_file()
+        return self.get_file_res_or_raise(name).delete_file(self.request.tid)
 
     @inlineCallbacks
     def post(self, name):
         req = self.validate_message(self.request.content.read(),
                                     requests.AdminTLSCfgFileResourceDesc)
 
-        file_res_cls = self.get_file_res_or_raise(name)
+        file_res_cls = self.get_file_res_or_raise(self.request.tid, name)
 
-        yield file_res_cls.generate_dh_params_if_missing()
+        yield file_res_cls.generate_dh_params_if_missing(self.request.tid)
 
-        ok = yield file_res_cls.create_file(req['content'])
+        ok = yield file_res_cls.create_file(self.request.tid, req['content'])
         if not ok:
             raise errors.ValidationError()
 
@@ -296,21 +297,21 @@ class FileHandler(BaseHandler):
     def put(self, name):
         file_res_cls = self.get_file_res_or_raise(name)
 
-        yield file_res_cls.generate_dh_params_if_missing()
+        yield file_res_cls.generate_dh_params_if_missing(self.request.tid)
 
-        yield file_res_cls.perform_file_action()
+        yield file_res_cls.perform_file_action(self.request.tid)
 
     def get(self, name):
         return self.get_file_res_or_raise(name).get_file()
 
 
 @transact
-def serialize_https_config_summary(store):
-    prv_fact = PrivateFactory(store, XTIDX)
+def serialize_https_config_summary(store, tid):
+    prv_fact = PrivateFactory(store, tid)
 
     file_summaries = {}
     for key, file_res_cls in FileHandler.mapped_file_resources.items():
-        file_summaries[key] = file_res_cls.db_serialize(store)
+        file_summaries[key] = file_res_cls.db_serialize(store, tid)
 
     return {
       'enabled': prv_fact.get_val(u'https_enabled'),
@@ -322,29 +323,30 @@ def serialize_https_config_summary(store):
 
 
 @transact
-def try_to_enable_https(store):
-    prv_fact = PrivateFactory(store, XTIDX)
+def try_to_enable_https(store, tid):
+    prv_fact = PrivateFactory(store, tid)
 
     cv = tls.ChainValidator()
-    db_cfg = load_tls_dict(store)
+    db_cfg = load_tls_dict(store, tid)
     db_cfg['https_enabled'] = False
 
     ok, err = cv.validate(db_cfg)
     if ok:
         prv_fact.set_val(u'https_enabled', True)
-        State.tenant_cache[1].private.https_enabled = True
+        State.tenant_cache[tid].private.https_enabled = True
     else:
         raise err
 
+
 @transact
-def disable_https(store):
-    PrivateFactory(store, XTIDX).set_val(u'https_enabled', False)
-    State.tenant_cache[1].private.https_enabled = False
+def disable_https(store, tid):
+    PrivateFactory(store, tid).set_val(u'https_enabled', False)
+    State.tenant_cache[tid].private.https_enabled = False
 
 
 @transact
-def reset_https_config(store):
-    prv_fact = PrivateFactory(store, XTIDX)
+def reset_https_config(store, tid):
+    prv_fact = PrivateFactory(store, tid)
     prv_fact.set_val(u'https_enabled', False)
     prv_fact.set_val(u'https_priv_gen', False)
     prv_fact.set_val(u'https_priv_key', '')
@@ -355,18 +357,18 @@ def reset_https_config(store):
     prv_fact.set_val(u'acme_accnt_key', '')
     prv_fact.set_val(u'acme_accnt_uri', '')
 
-    State.tenant_cache[1].private.https_enabled = False
+    State.tenant_cache[tid].private.https_enabled = False
 
 
 class ConfigHandler(BaseHandler):
     check_roles = 'admin'
 
     def get(self):
-        return serialize_https_config_summary()
+        return serialize_https_config_summary(self.request.tid)
 
     @inlineCallbacks
     def post(self):
-        yield try_to_enable_https()
+        yield try_to_enable_https(self.request.tid)
         yield State.process_supervisor.maybe_launch_https_workers()
 
     @inlineCallbacks
@@ -374,12 +376,14 @@ class ConfigHandler(BaseHandler):
         """
         Disables HTTPS config and shutdown subprocesses.
         """
-        yield disable_https()
+        yield disable_https(self.request.tid)
+        # TODO check other tenants to decide if we should actually shutdown.
         State.process_supervisor.shutdown()
 
     @inlineCallbacks
     def delete(self):
-        yield reset_https_config()
+        yield reset_https_config(self.request.tid)
+        # TODO see above
         State.process_supervisor.shutdown()
 
 
@@ -399,22 +403,22 @@ class CSRFileHandler(FileHandler):
                 'L':  desc['city'],
                 'O':  desc['company'],
                 'OU': desc['department'],
-                'CN': State.tenant_cache[1].hostname,
+                'CN': State.tenant_cache[self.request.tid].hostname,
                 'emailAddress': desc['email'], # TODO use current admin user mail
         }
 
-        csr_txt = yield self.perform_action(csr_fields)
+        csr_txt = yield self.perform_action(self.request.tid, csr_fields)
 
         file_res_cls = self.get_file_res_or_raise(name)
 
-        ok = yield file_res_cls.create_file(csr_txt)
+        ok = yield file_res_cls.create_file(tid, csr_txt)
         if not ok:
             raise errors.ValidationError()
 
     @staticmethod
     @transact
-    def perform_action(store, csr_fields):
-        db_cfg = load_tls_dict(store)
+    def perform_action(store, tid, csr_fields):
+        db_cfg = load_tls_dict(store, tid)
 
         pkv = tls.PrivKeyValidator()
         ok, err = pkv.validate(db_cfg)
@@ -565,12 +569,12 @@ class HostnameTestHandler(BaseHandler):
 
     @inlineCallbacks
     def post(self):
-        if not State.tenant_cache[1].hostname:
+        if not State.tenant_cache[self.request.tid].hostname:
             raise errors.ValidationError('hostname is not set')
 
         net_agent = Settings.get_agent()
 
-        t = ('http', State.tenant_cache[1].hostname, 'robots.txt', None, None)
+        t = ('http', State.tenant_cache[self.request.tid].hostname, 'robots.txt', None, None)
         url = bytes(urlparse.urlunsplit(t))
         try:
             resp = yield net_agent.request('GET', url)

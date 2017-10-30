@@ -20,7 +20,6 @@ from globaleaks.state import State
 from globaleaks.utils.utility import datetime_now, deferred_sleep, log
 
 
-
 def random_login_delay():
     """
     in case of failed_login_attempts introduces
@@ -77,19 +76,20 @@ def login_whistleblower(store, receipt, client_using_tor):
 
 
 @transact
-def login(store, username, password, client_using_tor):
+def login(store, tid, username, password, client_using_tor):
     """
     login returns a tuple (user_id, state, pcn)
     """
     user = store.find(User, And(User.username == username,
-                                User.state != u'disabled')).one()
+                                User.state != u'disabled'),
+                            tid=tid).one()
 
     if not user or not security.check_password(password, user.salt, user.password):
         log.debug("Login: Invalid credentials")
         Settings.failed_login_attempts += 1
         raise errors.InvalidAuthentication
 
-    if not client_using_tor and not State.tenant_cache[1].accept_tor2web_access[user.role]:
+    if not client_using_tor and not State.tenant_cache[tid].accept_tor2web_access[user.role]:
         log.err("Denied login request over Web for role '%s'" % user.role)
         raise errors.TorNetworkRequired
 
@@ -119,7 +119,7 @@ class AuthenticationHandler(BaseHandler):
         if delay:
             yield deferred_sleep(delay)
 
-        user_id, status, role, pcn = yield login(username, password, self.request.client_using_tor)
+        user_id, status, role, pcn = yield login(self.request.tid, username, password, self.request.client_using_tor)
 
         # Revoke all other sessions for the newly authenticated user
         Sessions.revoke_all_sessions(user_id)

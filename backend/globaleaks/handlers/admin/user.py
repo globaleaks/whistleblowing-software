@@ -36,13 +36,13 @@ def admin_serialize_receiver(store, receiver, user, language):
     return get_localized_values(ret_dict, receiver, receiver.localized_keys, language)
 
 
-def db_create_admin_user(store, request, language):
+def db_create_admin_user(store, request, tid, language):
     """
     Creates a new admin
     Returns:
         (dict) the admin descriptor
     """
-    user = db_create_user(store, request, language)
+    user = db_create_user(store, request, tid, language)
 
     log.debug("Created new admin")
 
@@ -52,8 +52,8 @@ def db_create_admin_user(store, request, language):
 
 
 @transact
-def create_admin_user(store, request, language):
-    return user_serialize_user(store, db_create_admin_user(store, request, language), language)
+def create_admin_user(store, request, tid, language):
+    return user_serialize_user(store, db_create_admin_user(store, request, tid, language), language)
 
 
 def db_create_custodian_user(store, request, language):
@@ -74,7 +74,7 @@ def create_custodian_user(store, request, language):
     return user_serialize_user(store, db_create_custodian_user(store, request, language), language)
 
 
-def db_create_receiver_user(store, request, language):
+def db_create_receiver_user(store, request, tid, language):
     """
     Creates a new receiver
     Returns:
@@ -82,7 +82,8 @@ def db_create_receiver_user(store, request, language):
     """
     fill_localized_keys(request, models.Receiver.localized_keys, language)
 
-    user = db_create_user(store, request, language)
+    user = db_create_user(store, request, tid, language)
+    request['tid'] = tid
 
     receiver = models.db_forge_obj(store, models.Receiver, request)
 
@@ -111,10 +112,11 @@ def create(request, language):
         raise errors.InvalidInputFormat
 
 
-def db_create_user(store, request, language):
+def db_create_user(store, request, tid, language):
     fill_localized_keys(request, models.User.localized_keys, language)
 
     user = models.User({
+        'tid': tid,
         'username': request['username'],
         'role': request['role'],
         'state': u'enabled',
