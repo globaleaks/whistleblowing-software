@@ -4,6 +4,7 @@ from distutils.version import LooseVersion as V  # pylint: disable=no-name-in-mo
 from debian import deb822
 from twisted.internet.defer import inlineCallbacks
 
+from globaleaks import __version__
 from globaleaks.handlers.admin.node import db_admin_serialize_node
 from globaleaks.handlers.admin.notification import db_get_notification
 from globaleaks.handlers.admin.user import db_get_admin_users
@@ -27,6 +28,9 @@ def evaluate_update_notification(store, latest_version):
 
     if V(stored_latest) < V(latest_version):
         priv_fact.set_val(u'latest_version', latest_version)
+
+        if V(__version__) == V(latest_version):
+            return
 
         for user_desc in db_get_admin_users(store):
             lang = user_desc['language']
