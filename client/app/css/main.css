@@ -87,6 +87,22 @@ table {
   border-bottom: 1px solid #357ebd;
 }
 
+#HeaderBoxContentLeft {
+  float: left;
+}
+
+#HeaderBoxContentRight {
+  float: left;
+}
+
+html[dir="rtl"] #HeaderBoxContentLeft {
+  float: right;
+}
+
+html[dir="rtl"] #HeaderBoxContentRight {
+  float: left;
+}
+
 #HeaderBox:after, #HeaderBox:after {
   clear: both;
   content: "";
@@ -105,18 +121,24 @@ table {
 #LogoBox, #TitleBox, #UserBox {
   z-index: 10;
   width: auto;
-  padding: 1em 1em 1em 0;
+  padding: 1em;
+}
+
+#LogoBox, #TitleBox {
+  float: left;
 }
 
 html[dir="rtl"] #LogoBox,
-html[dir="rtl"] #TitleBox,
-html[dir="rtl"] #UserBox  {
-  padding-left: 1em;
-  padding-right: 0;
+html[dir="rtl"] #TitleBox {
+  float: right;
 }
 
-#LogoBox {
-  height: 14em;
+#UserBox {
+  float: right;
+}
+
+html[dir="rtl"] #UserBox {
+  float: left;
 }
 
 #PageTitle {
