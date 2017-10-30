@@ -794,8 +794,10 @@ factory('AdminUtils', ['AdminContextResource', 'AdminQuestionnaireResource', 'Ad
   function($rootScope, $q, $location, $filter, $sce, $uibModal, $window, Authentication) {
     return {
       set_title: function() {
+        var nodename = $rootScope.node.name ? $rootScope.node.name : 'Globaleaks';
         var path = $location.path();
         var statuspage = '/status';
+
         if (path === '/') {
           $rootScope.ht = $rootScope.node.header_title_homepage;
         } else if (path === '/submission') {
@@ -811,6 +813,8 @@ factory('AdminUtils', ['AdminContextResource', 'AdminQuestionnaireResource', 'Ad
         } else {
           $rootScope.ht = $filter('translate')($rootScope.header_title);
         }
+
+        $rootScope.pt = $rootScope.ht !== '' ? nodename + ' - ' + $rootScope.ht : nodename;
       },
 
       route_check: function() {
