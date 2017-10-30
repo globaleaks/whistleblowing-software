@@ -15,7 +15,9 @@ from globaleaks.utils.utility import log, datetime_null
 
 @transact
 def wizard(store, tid, request, language):
-    models.db_delete(store, l10n.EnabledLanguage, l10n.EnabledLanguage.name != language)
+    models.db_delete(store, l10n.EnabledLanguage,
+                     l10n.EnabledLanguage.name != language,
+                     l10n.EnabledLanguage.tid == tid)
 
     tenant = models.db_get(store, models.Tenant, id=tid)
     tenant.label = request['node']['name']
@@ -47,13 +49,13 @@ def wizard(store, tid, request, language):
     receiver_desc['deletable'] = True
     receiver_desc['pgp_key_remove'] = False
 
-    _, receiver = db_create_receiver_user(store, receiver_desc, language)
+    _, receiver = db_create_receiver_user(store, request['receiver'], tid, language)
 
     context_desc = models.Context().dict(language)
     context_desc['name'] = u'Default'
     context_desc['receivers'] = [receiver.id]
 
-    context = db_create_context(store, context_desc, language)
+    context = db_create_context(store, request['context'], tid, language)
 
     admin_desc = models.User().dict(language)
     admin_desc['username'] = u'admin'
@@ -66,7 +68,7 @@ def wizard(store, tid, request, language):
     admin_desc['pgp_key_remove'] = False
     admin_desc['password_change_needed'] = False
 
-    db_create_admin_user(store, admin_desc, language)
+    db_create_admin_user(store, admin_dict, tid, language)
 
     db_refresh_memory_variables(store)
 

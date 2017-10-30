@@ -238,12 +238,12 @@ def update_defaults(store, tid):
     PrivateFactory(store, tid).set_val(u'version', __version__)
 
 
-def load_tls_dict(store):
+def load_tls_dict(store, tid):
     """
     A quick and dirty function to grab all of the tls config for use in subprocesses
     """
-    priv = PrivateFactory(store, XTIDX)
-    node = NodeFactory(store, XTIDX)
+    priv = PrivateFactory(store, tid)
+    node = NodeFactory(store, tid)
 
     return {
         'ssl_key': priv.get_val(u'https_priv_key'),
@@ -256,7 +256,13 @@ def load_tls_dict(store):
 
 
 def load_tls_dict_list(store):
-    return [load_tls_dict(store)]
+    tids = [tid for tid in store.find(models.Tenant)]
+
+    tls_dicts = []
+    for tid in tids:
+        tls_dicts.append(load_tls_dict(store, tid))
+
+    return tls_dicts
 
 
 def add_raw_config(store, group, name, customized, value):
