@@ -1,3 +1,13 @@
+Changes in version 2.72.15 - 2017-10-30
+    o Fix detection of network sanboxing support currently reported
+      as always missing
+    o Reduce size of logo included inside the application
+    o Fix alignment and margins in relation to RTL UI
+    o Fix creation of title meta in relation to pages with empty title
+    o Fix UI for enabled/disabled submission based on user connection
+      (with/without tor)
+    o Update translations
+
 Changes in version 2.72.14 - 2017-10-29
     o Implement verification script for application data (1670)
     o Fix mail translation in relation to few templates
