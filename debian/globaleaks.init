@@ -119,28 +119,28 @@ check_iptables()
 {
     if ! which iptables >/dev/null 2>&1 ; then
         echo "GlobaLeaks Network Sandboxing Failure: requires iptables"
-        return 0
+        return 1
     fi
 
     iptables -nvL -t nat >/dev/null 2>&1
     if [ "$?" -ne "0" ]; then
         echo "GlobaLeaks Network Sandboxing Failure: missing iptables nat support"
-        return 0
+        return 1
     fi
 
     iptables -nvL -t filter >/dev/null 2>&1
     if [ "$?" -ne "0" ]; then
         echo "GlobaLeaks Network Sandboxing Failure: missing iptables filter support"
-        return 0
+        return 1
     fi
 
     iptables -m owner -h >/dev/null 2>&1
     if [ "$?" -ne "0" ]; then
         echo "GlobaLeaks Network Sandboxing Failure: missing iptables owner support"
-        return 0
+        return 1
     fi
 
-    return 1
+    return 0
 }
 
 network_sandboxing_start()
@@ -288,7 +288,7 @@ if [[ "$APPARMOR_SANDBOXING" -eq "1" && "$(cat /sys/module/apparmor/parameters/e
     APPARMOR_SANDBOXING=0
 fi
 
-if [[ "$NETWORK_SANDBOXING" -eq "1" && check_iptables ]]; then
+if [[ "$NETWORK_SANDBOXING" -eq "1" && $(check_iptables) -eq "1" ]]; then
     echo "WARNING: Missing Network Sandboxing support"
     NETWORK_SANDBOXING=0
 fi
