@@ -25,16 +25,14 @@ if [ $ERR -ne 0 ]; then
 fi
 
 function DO () {
+  CMD="$1"
+
   if [ -z "$2" ]; then
     EXPECTED_RET=0
   else
     EXPECTED_RET=$2
   fi
-  if [ -z "$3" ]; then
-    CMD=$1
-  else
-    CMD=$3
-  fi
+
   echo -n "Running: \"$CMD\"... "
   eval $CMD &>${LOGFILE}
 
