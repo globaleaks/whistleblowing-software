@@ -90,7 +90,7 @@
           </td>
           <td data-ng-if="::session.role == 'receiver'">
             <i data-ng-if="tip.wb_last_access >= tip.update_date" class="glyphicon glyphicon-ok"
-                uib-popover="{{'The whistleblower has already read the latest update' | translate }}"></i>
+                uib-popover="{{'The whistleblower has already read the latest update' | translate }} ({{tip.wb_last_access | date:'dd-MM-yyyy HH:mm'}})"></i>
             <i data-ng-if="tip.wb_last_access < tip.update_date" class="glyphicon glyphicon-remove"
                uib-popover="{{'The whistleblower has not read the latest update yet' | translate }}"></i>
           </td>
