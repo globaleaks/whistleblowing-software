@@ -168,8 +168,14 @@ def db_refresh_memory_variables(store):
         State.tenant_cache[tenant.id] = cache_entry
 
     # Update state object with changes coming from tenant
-    # TODO tenant.node.hostname must be enforced as unique. Otherwise an error occurs here.
-    State.tenant_hostname_id_map = { tenant.hostname: k for k, tenant in State.tenant_cache.items() }
+    # TODO all tenant hostnames must be unique
+    root_hostname = State.tenant_cache[XTIDX].hostname
+    State.tenant_hostname_id_map = dict()
+    for tid, tenant in State.tenant_cache.items():
+        if tenant.hostname != "":
+            State.tenant_hostname_id_map[tenant.hostname] = tid
+        safe_hostname = 'p{}.{}'.format(tid, root_hostname)
+        State.tenant_hostname_id_map[safe_hostname] = tid
 
 
 @transact
