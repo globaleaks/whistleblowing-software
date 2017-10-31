@@ -116,6 +116,9 @@
             </span>
           </th>
           <th>
+            <i class="glyphicon glyphicon-eye-open"></i>
+          </th>
+          <th>
             <span data-ng-click="sortKey = 'file_counter'; sortReverse = !sortReverse">
               <i class="glyphicon glyphicon-file"></i>
               <span class="btn btn-xs" data-ng-show="sortKey == 'file_counter'">
@@ -194,6 +197,12 @@
           <td>
             <span data-ng-if="!Utils.isNever(tip.expiration_date)">{{::tip.expiration_date | date:'dd-MM-yyyy HH:mm'}}</span>
             <span data-ng-if="Utils.isNever(tip.expiration_date)" data-translate>Never</span>
+          </td>
+          <td>
+            <i data-ng-if="tip.wb_last_access >= tip.update_date" class="glyphicon glyphicon-ok"
+                uib-popover="{{'The whistleblower has already read the latest update' | translate }} ({{tip.wb_last_access | date:'dd-MM-yyyy HH:mm'}})"></i>
+            <i data-ng-if="tip.wb_last_access < tip.update_date" class="glyphicon glyphicon-remove"
+               uib-popover="{{'The whistleblower has not read the latest update yet' | translate }}"></i>
           </td>
           <td>{{::tip.file_counter}}</td>
           <td>{{::tip.comment_counter}}</td>
