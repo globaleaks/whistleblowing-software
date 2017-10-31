@@ -81,7 +81,7 @@ class FileResource(object):
     @classmethod
     @inlineCallbacks
     def generate_dh_params_if_missing(cls, tid):
-        gen_dh = yield FileResource.should_gen_dh_params()
+        gen_dh = yield FileResource.should_gen_dh_params(tid)
         if gen_dh:
             log.info("Generating the HTTPS DH params with %d bits" % Settings.key_bits)
             dh_params = yield deferToThread(tls.gen_dh_params, Settings.key_bits)
@@ -285,7 +285,7 @@ class FileHandler(BaseHandler):
         req = self.validate_message(self.request.content.read(),
                                     requests.AdminTLSCfgFileResourceDesc)
 
-        file_res_cls = self.get_file_res_or_raise(self.request.tid, name)
+        file_res_cls = self.get_file_res_or_raise(name)
 
         yield file_res_cls.generate_dh_params_if_missing(self.request.tid)
 
@@ -368,6 +368,7 @@ class ConfigHandler(BaseHandler):
 
     @inlineCallbacks
     def post(self):
+        yield State.process_supervisor.shutdown()
         yield try_to_enable_https(self.request.tid)
         yield State.process_supervisor.maybe_launch_https_workers()
 
@@ -377,14 +378,14 @@ class ConfigHandler(BaseHandler):
         Disables HTTPS config and shutdown subprocesses.
         """
         yield disable_https(self.request.tid)
-        # TODO check other tenants to decide if we should actually shutdown.
-        State.process_supervisor.shutdown()
+        yield State.process_supervisor.shutdown()
+        yield State.process_supervisor.maybe_launch_https_workers()
 
     @inlineCallbacks
     def delete(self):
         yield reset_https_config(self.request.tid)
-        # TODO see above
-        State.process_supervisor.shutdown()
+        yield State.process_supervisor.shutdown()
+        yield State.process_supervisor.maybe_launch_https_workers()
 
 
 class CSRFileHandler(FileHandler):

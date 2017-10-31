@@ -58,7 +58,8 @@ class HTTPSProcess(Process):
                                       factory=self.http_proxy_factory)
 
             self.ports.append(port)
-            self.log("HTTPS proxy listening on %s for hostnames: %s" % (port, sni_dict.keys()))
+            self.log("HTTPS proxy listening on {} for hostnames: {}".format(
+                     port._realPortNumber, ', '.join(sni_dict.keys())))
 
     def sigusr1(self):
         self.shutdown()

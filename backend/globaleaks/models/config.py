@@ -2,7 +2,7 @@ from storm.expr import Not, In
 from storm.locals import Bool, Unicode, JSON
 
 from globaleaks import __version__
-from globaleaks.models import config_desc, ModelWithTID
+from globaleaks.models import config_desc, ModelWithTID, Tenant
 from globaleaks.models.config_desc import GLConfig
 from globaleaks.utils.utility import log
 
@@ -256,7 +256,7 @@ def load_tls_dict(store, tid):
 
 
 def load_tls_dict_list(store):
-    tids = [tid for tid in store.find(models.Tenant)]
+    tids = [tenant.id for tenant in store.find(Tenant)]
 
     tls_dicts = []
     for tid in tids:
