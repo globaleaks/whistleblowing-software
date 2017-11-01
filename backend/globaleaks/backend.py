@@ -134,6 +134,7 @@ class Service(service.Service):
 
         if ret == -1:
             reactor.stop()
+            return
 
         if ret == 0:
             init_db()
