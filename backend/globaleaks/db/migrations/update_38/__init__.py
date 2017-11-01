@@ -74,10 +74,13 @@ class MigrationScript(MigrationBase):
         for old_obj in old_objs:
             new_obj = self.model_to['Context']()
             for _, v in new_obj._storm_columns.items():
-                setattr(new_obj, v.name, getattr(old_obj, v.name))
-
-            if old_obj.questionnaire_id == questionnaire_default_id:
-                setattr(new_obj, 'questionnaire_id', u'default')
+                if v.name == 'questionnaire_id':
+                    if old_obj.questionnaire_id is None or old_obj.questionnaire_id == questionnaire_default_id:
+                        setattr(new_obj, 'questionnaire_id', u'default')
+                    else:
+                        setattr(new_obj, v.name, getattr(old_obj, v.name))
+                else:
+                    setattr(new_obj, v.name, getattr(old_obj, v.name))
 
             self.store_new.add(new_obj)
 
