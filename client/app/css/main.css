@@ -119,8 +119,12 @@ html[dir="rtl"] #HeaderBoxContentRight {
 
 #LogoBox, #TitleBox, #UserBox {
   z-index: 10;
-  width: auto;
   padding: 1em;
+}
+
+#LogoBox {
+  height: 15em;
+  width: auto;
 }
 
 #LogoBox, #TitleBox {
@@ -204,21 +208,19 @@ html[dir="rtl"] #UserBox {
   text-align: center;
 }
 
-.imageUpload .changePicture {
+html[dir] .imageUpload .changePictureButton, html[dir] .imageUpload .deletePictureButton {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  padding: 0.8em;
+  bottom: 10px;
   text-align: center;
-  z-index: 2;
+  z-index: 10;
 }
 
-.imageUpload .deletePicture {
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  z-index: 2;
+html[dir='ltr'] .imageUpload .changePictureButton, html[dir='rtl'] .imageUpload .deletePictureButton {
+  left: 10px;
+}
+
+html[dir='rtl'] .imageUpload .changePictureButton, html[dir='ltr'] .imageUpload .deletePictureButton {
+  right: 10px;
 }
 
 .imageUploadThumbnail {
@@ -455,4 +457,14 @@ html[dir="rtl"] .textarea-btn {
 
 .file-upload input[type="file"] {
   display: none;
+}
+
+html[dir] .btn-circle {
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  padding: 6px 0;
+  font-size: 12px;
+  line-height: 1.428571429;
+  border-radius: 15px;
 }
