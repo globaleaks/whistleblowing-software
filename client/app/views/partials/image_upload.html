@@ -5,16 +5,18 @@
      flow-files-submitted="$flow.upload()"
      extend-flow-valid-types="['png']">
   <div class="imageUpload">
-    <button class="changePicturebtn btn-xs btn-primary" flow-btn data-translate>Change picture</button>
-    <div class="imageUploadThumbnail">
-      <img alt="preview picture" data-ng-if="imageUploadObj.flow.files.length == 0" data-ng-src="{{Utils.imgDataUri(imageUploadModel[imageUploadModelAttr])}}" class="imageUploadThumbnailContent" />
-      <img alt="preview picture" data-ng-if="imageUploadObj.flow.files.length > 0" flow-img="imageUploadObj.flow.files[imageUploadObj.flow.files.length - 1]" class="imageUploadThumbnailContent" />
-    </div>
-    <button class="deletePicturebtn btn-xs btn-danger"
+    <button class="changePictureButton btn btn-circle btn-primary" flow-btn uib-popover="{{'Edit' | translate}}">
+      <span class="glyphicon glyphicon-edit"></span>
+    </button>
+    <button class="deletePictureButton btn btn-circle btn-danger" uib-popover="{{'Delete' | translate}}"
             data-ng-show="imageUploadModel[imageUploadModelAttr] || imageUploadObj.flow.files.length > 0"
             data-ng-click="deletePicture(); $event.stopPropagation();">
       <span class="glyphicon glyphicon-remove"></span>
     </button>
+    <div class="imageUploadThumbnail">
+      <img alt="preview picture" data-ng-if="imageUploadObj.flow.files.length == 0" data-ng-src="{{Utils.imgDataUri(imageUploadModel[imageUploadModelAttr])}}" class="imageUploadThumbnailContent" />
+      <img alt="preview picture" data-ng-if="imageUploadObj.flow.files.length > 0" flow-img="imageUploadObj.flow.files[imageUploadObj.flow.files.length - 1]" class="imageUploadThumbnailContent" />
+    </div>
   </div>
   <div errors-upload></div>
 </div>
