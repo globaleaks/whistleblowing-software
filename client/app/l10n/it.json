@@ -596,7 +596,7 @@
   "The following step by step wizard will guide you through configuring your whistleblowing site.": "La seguente procedura passo passo ti guiderà a configurare il tuo sito di whisleblowing.",
   "The following steps have errors:": "I seguenti step presentano alcuni errori:",
   "The HTTPS certificate loaded on the platform is about to, or has already expired.": "Il certificato HTTPS caricato sulla piattaforma sta per scadere o è già scaduto.",
-  "The key code is either invalid or the submission has expired.": "Il key code inserito è non è valido o la segnalazione è scaduta.",
+  "The key code is either invalid or the submission has expired.": "Il key code inserito non è valido o la segnalazione è scaduta.",
   "The manual configuration wizard will guide you through the setup of HTTPS from an alternative Certificate Authority.": "La procedura di configurazione manuale ti guiderà alla abilitazione di HTTPS tramite una Certification Authority alternativa.",
   "The name of the file and its content can be intentionally misleading.": "Il nome del file ed il suo contenuto potrebbero essere volutamente ingannevoli.",
   "The new password must be different from the current one.": "La nuova password deve essere differente dalla password corrente.",
