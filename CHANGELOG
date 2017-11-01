@@ -1,3 +1,8 @@
+Changes in version 2.72.15 - 2017-11-01
+    o Fix UI for uploading images
+    o Fix UI for visualizing recipients on tip interface
+    o Update translations
+
 Changes in version 2.72.15 - 2017-10-30
     o Fix detection of network sanboxing support currently reported
       as always missing
