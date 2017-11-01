@@ -19,8 +19,11 @@
   <div class="col-md-12">
     <div data-ng-include="'views/partials/tip_info.html'"></div>
   </div>
+  <div class="col-md-12">
+    <div data-ng-include="'views/partials/tip_info.html'"></div>
+    <div data-ng-if="tip.context.show_recipients_details" data-ng-include="'views/partials/tip_receiver_list.html'"></div>
+  </div>
 </div>
-
 <div class="row">
   <div class="col-md-6">
     <div data-ng-include="'views/partials/tip_questionnaire_answers.html'"></div>
@@ -30,9 +33,6 @@
   </div>
   <div class="col-md-6" data-ng-if="showWBFileWidget()">
     <div data-ng-include="'views/partials/widget_wbfiles.html'"></div>
-  </div>
-  <div class="col-md-6" data-ng-if="tip.context.show_recipients_details">
-    <div data-ng-include="'views/partials/tip_receiver_list.html'"></div>
   </div>
 </div>
 
