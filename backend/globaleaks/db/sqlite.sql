@@ -5,6 +5,7 @@ CREATE TABLE tenant (
     id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
     label TEXT NOT NULL,
     active BOOL NOT NULL,
+    subdomain TEXT NOT NULL,
     creation_date TEXT NOT NULL
 );
 

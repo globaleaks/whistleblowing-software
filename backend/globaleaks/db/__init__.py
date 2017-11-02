@@ -166,18 +166,29 @@ def db_refresh_memory_variables(store):
     tenant_cache = dict()
     tenant_hostname_id_map = dict()
 
-    for tenant in store.find(models.Tenant):
+    tenant_map = {tenant.id: tenant for tenant in store.find(models.Tenant)}
+    for tenant in tenant_map.values():
         tenant_cache[tenant.id] = db_refresh_tenant_cache(store, tenant.id)
 
     # Update state object with changes coming from tenant
-    # TODO all tenant hostnames must be unique
     root_hostname = tenant_cache[1].hostname
-    for tid, tenant in tenant_cache.items():
-        if root_hostname != '':
-            tenant_hostname_id_map['p{}.{}'.format(tid, root_hostname)] = tid
+    for tid, tenant_cache_item in tenant_cache.items():
+        tenant = tenant_map[tid]
+        hostnames = []
 
-        if tenant.hostname != "":
-            tenant_hostname_id_map[tenant.hostname] = tid
+        if not tenant.active and tenant.tid != 1:
+            continue
+
+        if root_hostname != "" and tenant.subdomain != "":
+            hostnames.append('{}.{}'.format(tenant.subdomain, root_hostname))
+
+        if root_hostname != "":
+            hostnames.append('p{}.{}'.format(tid, root_hostname))
+
+        if tenant_cache_item.hostname != "":
+            hostnames.append(tenant_cache_item.hostname)
+
+        tenant_hostname_id_map.update({h : tid for h in hostnames})
 
     State.tenant_cache = tenant_cache
     State.tenant_hostname_id_map = tenant_hostname_id_map

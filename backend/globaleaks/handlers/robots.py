@@ -18,10 +18,11 @@ class RobotstxtHandler(BaseHandler):
         if State.tenant_cache[1].allow_indexing:
             site = 'https://' + State.tenant_cache[1].hostname
             data += "Allow: /\n"
-            data += "Sitemap: %s/sitemap.xml" % site
+            data += "Sitemap: %s/sitemap.xml\n" % site
         else:
-            data += "Disallow: /"
+            data += "Disallow: /\n"
 
+        data += "TenantID: %d\n" % self.request.tid
         return data
 
 

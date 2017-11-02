@@ -6,7 +6,8 @@ from globaleaks.tests import helpers
 def get_dummy_tenant_desc():
     return {
         'label': 'tenant-xxx',
-        'active': True
+        'active': True,
+        'subdomain': 'www.news',
     }
 
 class TestTenantCollection(helpers.TestHandlerWithPopulatedDB):

@@ -6,6 +6,7 @@
 import os
 
 from globaleaks import models
+from globaleaks.db import db_refresh_memory_variables
 from globaleaks.db.appdata import db_update_defaults, load_appdata
 from globaleaks.handlers.admin import files
 from globaleaks.handlers.base import BaseHandler
@@ -18,7 +19,8 @@ def serialize_tenant(store, tenant):
     return {
         'id': tenant.id,
         'label': tenant.label,
-        'active': tenant.active
+        'active': tenant.active,
+        'subdomain': tenant.subdomain,
     }
 
 
@@ -44,6 +46,8 @@ def db_create(store, desc):
     for file_desc in file_descs:
         with open(os.path.join(Settings.client_path, file_desc[1]), 'r') as f:
             files.db_add_file(store, t.id, f.read(), file_desc[0])
+
+    db_refresh_memory_variables(store)
 
     return t
 
@@ -71,7 +75,13 @@ def get(store, id):
 def update(store, id, request):
     tenant = models.db_get(store, models.Tenant, id=id)
     tenant.update(request)
+    db_refresh_memory_variables(store)
 
+
+@transact
+def delete(store, id):
+    models.db_delete(store, models.Tenant, models.Tenant.id != 1, id=id)
+    db_refresh_memory_variables(store)
 
 class TenantCollection(BaseHandler):
     check_roles = 'admin'
@@ -101,7 +111,7 @@ class TenantInstance(BaseHandler):
         """
         Delete the specified tenant.
         """
-        return models.delete(models.Tenant, id=int(tenant_id))
+        return delete(int(tenant_id))
 
 
     def put(self, tenant_id):
