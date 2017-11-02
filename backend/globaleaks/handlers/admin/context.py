@@ -23,7 +23,7 @@ def admin_serialize_context(store, context, language):
     :return: a dictionary representing the serialization of the context.
     """
     receivers = [id for id in store.find(models.ReceiverContext.receiver_id, models.ReceiverContext.context_id == context.id).order_by(models.ReceiverContext.presentation_order)]
-    picture = db_get_model_img(store, 'contexts', context.id)
+    picture = db_get_model_img(store, context.tid, 'contexts', context.id)
 
     ret_dict = {
         'id': context.id,
@@ -165,8 +165,8 @@ def update_context(store, tid, context_id, request, language):
 
 
 @transact
-def order_elements(store, req_args, *args, **kwargs):
-    ctxs = store.find(models.Context)
+def order_elements(store, handler, req_args, *args, **kwargs):
+    ctxs = store.find(models.Context, tid=handler.request.tid)
 
     id_dict = { ctx.id: ctx for ctx in ctxs }
     ids = req_args['ids']

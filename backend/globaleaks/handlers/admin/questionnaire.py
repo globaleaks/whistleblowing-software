@@ -57,19 +57,20 @@ def db_update_questionnaire(store, questionnaire, request, language):
     return questionnaire
 
 
-def db_create_questionnaire(store, questionnaire_dict, language):
+def db_create_questionnaire(store, tid, questionnaire_dict, language):
     fill_localized_keys(questionnaire_dict, models.Questionnaire.localized_keys, language)
 
+    questionnaire_dict['tid'] = tid
     q = models.db_forge_obj(store, models.Questionnaire, questionnaire_dict)
 
     for step in questionnaire_dict.get('steps', []):
-        db_create_step(store, step, language)
+        db_create_step(store, tid, step, language)
 
     return q
 
 
 @transact
-def create_questionnaire(store, request, language):
+def create_questionnaire(store, tid, request, language):
     """
     Creates a new questionnaire from the request of a client.
 
@@ -79,7 +80,7 @@ def create_questionnaire(store, request, language):
     Returns:
         (dict) representing the configured questionnaire
     """
-    questionnaire = db_create_questionnaire(store, request, language)
+    questionnaire = db_create_questionnaire(store, tid, request, language)
 
     return serialize_questionnaire(store, questionnaire, language)
 
@@ -135,7 +136,7 @@ class QuestionnairesCollection(BaseHandler):
 
         request = self.validate_message(self.request.content.read(), validator)
 
-        return create_questionnaire(request, self.request.language)
+        return create_questionnaire(self.request.tid, request, self.request.language)
 
 
 class QuestionnaireInstance(BaseHandler):
@@ -153,7 +154,7 @@ class QuestionnaireInstance(BaseHandler):
         request = self.validate_message(self.request.content.read(),
                                         requests.AdminQuestionnaireDesc)
 
-        return update_questionnaire(questionnaire_id, request, self.request.language)
+        return update_questionnaire(self.request.tid, questionnaire_id, request, self.request.language)
 
     def delete(self, questionnaire_id):
         """

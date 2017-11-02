@@ -10,10 +10,10 @@ from globaleaks.utils.utility import datetime_to_ISO8601
 
 
 @transact
-def collect_tip_overview(store, language):
+def collect_tip_overview(store, tid, language):
     tip_description_list = []
 
-    for itip in store.find(models.InternalTip):
+    for itip in store.find(models.InternalTip, tid=tid):
         tip_description_list.append({
             'id': itip.id,
             'creation_date': datetime_to_ISO8601(itip.creation_date),
@@ -25,10 +25,10 @@ def collect_tip_overview(store, language):
 
 
 @transact
-def collect_files_overview(store):
+def collect_files_overview(store, tid):
     file_description_list = []
 
-    for ifile in store.find(models.InternalFile):
+    for ifile in store.find(models.InternalFile, tid=tid):
         file_description_list.append({
             'id': ifile.id,
             'itip': ifile.internaltip_id,
@@ -37,7 +37,8 @@ def collect_files_overview(store):
         })
 
     for rfile, itip in store.find((models.ReceiverFile, models.InternalFile),
-                                  models.ReceiverFile.internalfile_id == models.InternalFile.id):
+                                  models.ReceiverFile.internalfile_id == models.InternalFile.id,
+                                  models.InternalFile.tid == tid):
         file_description_list.append({
             'id': rfile.internalfile_id,
             'itip': itip.id,
@@ -62,7 +63,7 @@ class Tips(BaseHandler):
         Response: TipsOverviewDescList
         Errors: None
         """
-        return collect_tip_overview(self.request.language)
+        return collect_tip_overview(self.request.tid, self.request.language)
 
 
 class Files(BaseHandler):
@@ -80,4 +81,4 @@ class Files(BaseHandler):
         Response: FilesOverviewDescList
         Errors: None
         """
-        return collect_files_overview()
+        return collect_files_overview(self.request.tid)

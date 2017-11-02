@@ -15,16 +15,16 @@ from globaleaks.orm import transact
 
 
 @transact
-def get(store, lang):
-    texts = store.find(models.CustomTexts, lang=lang).one()
+def get(store, tid, lang):
+    texts = store.find(models.CustomTexts, tid=tid, lang=lang).one()
     return texts.texts if texts is not None else {}
 
 
 @transact
-def update(store, lang, request):
-    texts = store.find(models.CustomTexts, lang=lang).one()
+def update(store, tid, lang, request):
+    texts = store.find(models.CustomTexts, tid=tid, lang=lang).one()
     if texts is None:
-        store.add(models.CustomTexts({'lang': lang, 'texts': request}))
+        store.add(models.CustomTexts({'tid':tid, 'lang': lang, 'texts': request}))
     else:
         texts.texts = request
 
@@ -34,10 +34,10 @@ class AdminL10NHandler(BaseHandler):
     invalidate_cache = True
 
     def get(self, lang):
-        return get(lang)
+        return get(self.request.tid, lang)
 
     def put(self, lang):
-        return update(lang, json.loads(self.request.content.read()))
+        return update(self.request.tid, lang, json.loads(self.request.content.read()))
 
     def delete(self, lang):
-        return models.delete(models.CustomTexts, lang=lang)
+        return models.delete(models.CustomTexts, tid=self.request.tid, lang=lang)

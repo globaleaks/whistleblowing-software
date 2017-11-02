@@ -22,7 +22,7 @@ def db_update_fieldoption(store, tid, field, fieldoption_id, option_dict, langua
 
     o = None
     if fieldoption_id is not None:
-        o = store.find(models.FieldOption, id=fieldoption_id).one()
+        o = store.find(models.FieldOption, id=fieldoption_id, tid=tid).one()
 
     if o is None:
         o = models.db_forge_obj(store, models.FieldOption, option_dict)
@@ -44,7 +44,7 @@ def db_update_fieldoptions(store, tid, field, options, language):
     """
     options_ids = [db_update_fieldoption(store, tid, field, option['id'], option, language, idx) for idx, option in enumerate(options)]
 
-    store.find(models.FieldOption, And(models.FieldOption.field_id == field.id, Not(In(models.FieldOption.id, options_ids)))).remove()
+    store.find(models.FieldOption, And(models.FieldOption.field_id == field.id, Not(In(models.FieldOption.id, options_ids))), tid=tid).remove()
 
 
 def db_update_fieldattr(store, tid, field, attr_name, attr_dict, language):
@@ -57,7 +57,7 @@ def db_update_fieldattr(store, tid, field, attr_name, attr_dict, language):
     elif attr_dict['type'] == u'localized':
         fill_localized_keys(attr_dict, ['value'], language)
 
-    a = store.find(models.FieldAttr, And(models.FieldAttr.field_id == field.id, models.FieldAttr.name == attr_name)).one()
+    a = store.find(models.FieldAttr, And(models.FieldAttr.field_id == field.id, models.FieldAttr.name == attr_name), tid=tid).one()
     if not a:
         a = models.db_forge_obj(store, models.FieldAttr, attr_dict)
     else:
@@ -69,7 +69,7 @@ def db_update_fieldattr(store, tid, field, attr_name, attr_dict, language):
 def db_update_fieldattrs(store, tid, field, field_attrs, language):
     attrs_ids = [db_update_fieldattr(store, tid, field, attr_name, attr, language) for attr_name, attr in field_attrs.items()]
 
-    store.find(models.FieldAttr, And(models.FieldAttr.field_id == field.id, Not(In(models.FieldAttr.id, attrs_ids)))).remove()
+    store.find(models.FieldAttr, And(models.FieldAttr.field_id == field.id, Not(In(models.FieldAttr.id, attrs_ids))), tid=tid).remove()
 
 
 def db_create_field(store, tid, field_dict, language):
@@ -86,7 +86,7 @@ def db_create_field(store, tid, field_dict, language):
     fill_localized_keys(field_dict, models.Field.localized_keys, language)
 
     if field_dict.get('fieldgroup_id', ''):
-        ancestors = set(fieldtree_ancestors(store, field_dict['tid'], field_dict['fieldgroup_id']))
+        ancestors = set(fieldtree_ancestors(store, tid, field_dict['fieldgroup_id']))
 
         if field_dict['id'] == field_dict['fieldgroup_id'] or field_dict['id'] in ancestors:
             raise errors.InvalidInputFormat("Provided field association would cause recursion loop")
@@ -100,7 +100,8 @@ def db_create_field(store, tid, field_dict, language):
                 questionnaire = store.find(models.Questionnaire,
                                            models.Field.id == field.id,
                                            models.Field.step_id == models.Step.id,
-                                           models.Step.questionnaire_id == models.Questionnaire.id).one()
+                                           models.Step.questionnaire_id == models.Questionnaire.id,
+                                           models.Questionnaire.tid == tid).one()
 
                 if questionnaire.enable_whistleblower_identity is False:
                     questionnaire.enable_whistleblower_identity = True
@@ -200,14 +201,15 @@ def delete_field(store, tid, field_id):
         raise errors.FieldNotEditable
 
     if field.instance == 'template':
-        if store.find(models.Field, models.Field.template_id == field.id).count():
+        if store.find(models.Field, models.Field.template_id == field.id, tid=tid).count():
             raise errors.InvalidInputFormat("Cannot remove the field template as it is used by one or more questionnaires")
 
 
     if field.template_id == 'whistleblower_identity' and field.step_id is not None:
         store.find(models.Questionnaire,
                    models.Step.id == field.step_id,
-                   models.Questionnaire.id == models.Step.questionnaire_id).set(enable_whistleblower_identity = False)
+                   models.Questionnaire.id == models.Step.questionnaire_id,
+                   models.Questionnaire.tid == tid).set(enable_whistleblower_identity = False)
 
     store.remove(field)
 

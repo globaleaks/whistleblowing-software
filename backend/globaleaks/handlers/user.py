@@ -15,6 +15,9 @@ from globaleaks.utils.structures import get_localized_values
 from globaleaks.utils.utility import datetime_to_ISO8601, datetime_now, datetime_null
 
 
+XTIDX = 1
+
+
 def parse_pgp_options(user, request):
     """
     Used for parsing PGP key infos and fill related user configurations.
@@ -48,7 +51,7 @@ def user_serialize_user(store, user, language):
     :param username: the username of the user to be serialized
     :return: a serialization of the object
     """
-    picture = db_get_model_img(store, 'users', user.id)
+    picture = db_get_model_img(store, XTIDX, 'users', user.id)
 
     ret_dict = {
         'id': user.id,
