@@ -163,19 +163,24 @@ def db_refresh_tenant_cache(store, tid):
 
 
 def db_refresh_memory_variables(store):
+    tenant_cache = dict()
+    tenant_hostname_id_map = dict()
+
     for tenant in store.find(models.Tenant):
-        cache_entry = db_refresh_tenant_cache(store, tenant.id)
-        State.tenant_cache[tenant.id] = cache_entry
+        tenant_cache[tenant.id] = db_refresh_tenant_cache(store, tenant.id)
 
     # Update state object with changes coming from tenant
     # TODO all tenant hostnames must be unique
-    root_hostname = State.tenant_cache[XTIDX].hostname
-    State.tenant_hostname_id_map = dict()
-    for tid, tenant in State.tenant_cache.items():
+    root_hostname = tenant_cache[1].hostname
+    for tid, tenant in tenant_cache.items():
+        if root_hostname != '':
+            tenant_hostname_id_map['p{}.{}'.format(tid, root_hostname)] = tid
+
         if tenant.hostname != "":
-            State.tenant_hostname_id_map[tenant.hostname] = tid
-        safe_hostname = 'p{}.{}'.format(tid, root_hostname)
-        State.tenant_hostname_id_map[safe_hostname] = tid
+            tenant_hostname_id_map[tenant.hostname] = tid
+
+    State.tenant_cache = tenant_cache
+    State.tenant_hostname_id_map = tenant_hostname_id_map
 
 
 @transact
