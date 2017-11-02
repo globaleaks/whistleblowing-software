@@ -69,7 +69,7 @@ class TestConfigL10N(helpers.TestGL):
     @transact
     def run_node_mgr(self, store):
         # Initialize the Node manager
-        node_l10n = NodeL10NFactory(store)
+        node_l10n = NodeL10NFactory(store, 1)
         num_trans = len(NodeL10NFactory.localized_keys)
 
         # Make a query with the Node manager
@@ -82,7 +82,7 @@ class TestConfigL10N(helpers.TestGL):
 
     @transact
     def enable_langs(self, store):
-        res = EnabledLanguage.list(store)
+        res = EnabledLanguage.list(store, 1)
 
         self.assertTrue(u'en' in res)
         self.assertTrue(len(res) == len(LANGUAGES_SUPPORTED))

@@ -608,13 +608,13 @@ class TestGLWithPopulatedDB(TestGL):
 
     @transact
     def add_whistleblower_identity_field_to_step(self, store, step_id):
-        wbf = store.find(models.Field, models.Field.id == u'whistleblower_identity').one()
+        wbf = store.find(models.Field, models.Field.id == u'whistleblower_identity', tid=1).one()
 
         reference_field = get_dummy_field()
         reference_field['instance'] = 'reference'
         reference_field['template_id'] = wbf.id
         reference_field['step_id'] = step_id
-        db_create_field(store, reference_field, 'en')
+        db_create_field(store, 1, reference_field, 'en')
 
     def perform_submission_start(self):
         self.dummyToken = token.Token('submission')

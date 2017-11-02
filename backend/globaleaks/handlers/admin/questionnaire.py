@@ -170,7 +170,7 @@ class QuestionnaireInstance(BaseHandler):
         """
         Export questionnaire JSON
         """
-        q = yield get_questionnaire(questionnaire_id, None)
+        q = yield get_questionnaire(self.request.tid, questionnaire_id, None)
         q['export_date'] = datetime_to_ISO8601(datetime_now())
         q['export_version'] = QUESTIONNAIRE_EXPORT_VERSION
         returnValue(q)

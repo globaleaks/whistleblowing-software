@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from globaleaks import models
-from globaleaks.handlers import receiver, admin
+from globaleaks.handlers.admin import receiver as admin_receiver
+from globaleaks.handlers import receiver
 from globaleaks.orm import transact
 from globaleaks.tests import helpers
 from globaleaks.utils.utility import datetime_never
@@ -18,8 +19,7 @@ class TestUserInstance(helpers.TestHandlerWithPopulatedDB):
     @inlineCallbacks
     def setUp(self):
         yield helpers.TestHandlerWithPopulatedDB.setUp(self)
-
-        self.rcvr_id = (yield admin.receiver.get_receiver_list('en'))[0]['id']
+        self.rcvr_id = (yield admin_receiver.get_receiver_list(1, 'en'))[0]['id']
 
     @inlineCallbacks
     def test_disable_tip_notification(self):
