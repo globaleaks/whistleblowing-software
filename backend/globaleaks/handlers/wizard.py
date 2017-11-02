@@ -5,7 +5,7 @@ from globaleaks import models
 from globaleaks.db import db_refresh_memory_variables
 from globaleaks.handlers.admin import tenant
 from globaleaks.handlers.admin.context import db_create_context
-from globaleaks.handlers.admin.user import db_create_admin_user, db_create_receiver_user
+from globaleaks.handlers.admin.user import db_create_user, db_create_receiver_user
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.models import config, l10n, profiles
 from globaleaks.orm import transact
@@ -49,13 +49,13 @@ def wizard(store, tid, request, language):
     receiver_desc['deletable'] = True
     receiver_desc['pgp_key_remove'] = False
 
-    _, receiver = db_create_receiver_user(store, request['receiver'], tid, language)
+    _, receiver = db_create_receiver_user(store, tid, request['receiver'], language)
 
     context_desc = models.Context().dict(language)
     context_desc['name'] = u'Default'
     context_desc['receivers'] = [receiver.id]
 
-    context = db_create_context(store, request['context'], tid, language)
+    context = db_create_context(store, tid, request['context'], language)
 
     admin_desc = models.User().dict(language)
     admin_desc['username'] = u'admin'
@@ -68,7 +68,7 @@ def wizard(store, tid, request, language):
     admin_desc['pgp_key_remove'] = False
     admin_desc['password_change_needed'] = False
 
-    db_create_admin_user(store, admin_dict, tid, language)
+    db_create_user(store, tid, admin_dict, language)
 
     db_refresh_memory_variables(store)
 

@@ -302,7 +302,7 @@ class FileHandler(BaseHandler):
         yield file_res_cls.perform_file_action(self.request.tid)
 
     def get(self, name):
-        return self.get_file_res_or_raise(name).get_file()
+        return self.get_file_res_or_raise(name).get_file(self.request.tid)
 
 
 @transact
@@ -412,7 +412,7 @@ class CSRFileHandler(FileHandler):
 
         file_res_cls = self.get_file_res_or_raise(name)
 
-        ok = yield file_res_cls.create_file(tid, csr_txt)
+        ok = yield file_res_cls.create_file(self.request.tid, csr_txt)
         if not ok:
             raise errors.ValidationError()
 

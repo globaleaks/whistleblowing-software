@@ -91,7 +91,7 @@ class TestFileHandler(helpers.TestHandler):
         n = 'cert'
 
         yield self.get_and_check(n, False)
-        yield https.PrivKeyFileRes.create_file(self.valid_setup['key'])
+        yield https.PrivKeyFileRes.create_file(1, self.valid_setup['key'])
 
         # Test bad cert
         body = {'name': 'cert', 'content': 'bonk bonk bonk'}
@@ -118,8 +118,8 @@ class TestFileHandler(helpers.TestHandler):
         n = 'chain'
 
         yield self.get_and_check(n, False)
-        yield https.PrivKeyFileRes.create_file(self.valid_setup['key'])
-        yield https.CertFileRes.create_file(self.valid_setup['cert'])
+        yield https.PrivKeyFileRes.create_file(1, self.valid_setup['key'])
+        yield https.CertFileRes.create_file(1, self.valid_setup['cert'])
         State.tenant_cache[1].hostname = 'localhost'
 
         body = {'name': 'chain', 'content': self.valid_setup[n]}
@@ -144,9 +144,9 @@ class TestConfigHandler(helpers.TestHandler):
         valid_setup = test_tls.get_valid_setup()
 
         yield set_init_params(valid_setup['dh_params'])
-        yield https.PrivKeyFileRes.create_file(valid_setup['key'])
-        yield https.CertFileRes.create_file(valid_setup['cert'])
-        yield https.ChainFileRes.create_file(valid_setup['chain'])
+        yield https.PrivKeyFileRes.create_file(1, valid_setup['key'])
+        yield https.CertFileRes.create_file(1, valid_setup['cert'])
+        yield https.ChainFileRes.create_file(1, valid_setup['chain'])
 
         handler = self.request(role='admin')
 
@@ -176,7 +176,7 @@ class TestCSRHandler(helpers.TestHandler):
 
         valid_setup = test_tls.get_valid_setup()
         yield set_init_params(valid_setup['dh_params'])
-        yield https.PrivKeyFileRes.create_file(valid_setup['key'])
+        yield https.PrivKeyFileRes.create_file(1, valid_setup['key'])
         State.tenant_cache[1].hostname = 'notreal.ns.com'
 
         d = {
@@ -210,7 +210,7 @@ class TestAcmeHandler(helpers.TestHandler):
         hostname = 'gl.dl.localhost.com'
         State.tenant_cache[1].hostname = hostname
         valid_setup = test_tls.get_valid_setup()
-        yield https.PrivKeyFileRes.create_file(valid_setup['key'])
+        yield https.PrivKeyFileRes.create_file(1, valid_setup['key'])
 
         handler = self.request(role='admin')
         resp = yield handler.post()
@@ -223,7 +223,7 @@ class TestAcmeHandler(helpers.TestHandler):
         valid_setup = test_tls.get_valid_setup()
         yield https.AcmeAccntKeyRes.create_file()
         yield https.AcmeAccntKeyRes.save_accnt_uri('http://localhost:9999')
-        yield https.PrivKeyFileRes.create_file(valid_setup['key'])
+        yield https.PrivKeyFileRes.create_file(1, valid_setup['key'])
         hostname = 'gl.dl.localhost.com'
         State.tenant_cache[1].hostname = hostname
 

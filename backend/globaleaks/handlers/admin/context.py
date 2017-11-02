@@ -51,7 +51,7 @@ def admin_serialize_context(store, context, language):
 
 
 @transact
-def get_context_list(store, language):
+def get_context_list(store, tid, language):
     """
     Returns the context list.
 
@@ -60,12 +60,12 @@ def get_context_list(store, language):
     :return: a dictionary representing the serialization of the contexts.
     """
     return sorted([admin_serialize_context(store, context, language)
-                      for context in store.find(models.Context)],
+                      for context in store.find(models.Context, tid=tid)],
                   key=lambda x: x['presentation_order'])
 
 
 def db_associate_context_receivers(store, context, receiver_ids):
-    store.find(models.ReceiverContext, context_id=context.id, tid=context.tid).remove()
+    store.find(models.ReceiverContext, tid=context.tid, context_id=context.id).remove()
 
     for i, receiver_id in enumerate(receiver_ids):
         store.add(models.ReceiverContext({'context_id': context.id,
@@ -75,17 +75,17 @@ def db_associate_context_receivers(store, context, receiver_ids):
 
 
 @transact
-def get_context(store, context_id, language):
+def get_context(store, tid, context_id, language):
     """
     Returns:
         (dict) the context with the specified id.
     """
-    context = models.db_get(store, models.Context, id=context_id)
+    context = models.db_get(store, models.Context, tid=tid, id=context_id)
 
     return admin_serialize_context(store, context, language)
 
 
-def fill_context_request(request, tid, language):
+def fill_context_request(tid, request, language):
     request['tid'] = tid
     fill_localized_keys(request, models.Context.localized_keys, language)
 
@@ -100,8 +100,8 @@ def fill_context_request(request, tid, language):
     return request
 
 
-def db_update_context(store, context, request, language):
-    request = fill_context_request(request, context.tid, language)
+def db_update_context(store, tid, context, request, language):
+    request = fill_context_request(tid, request, language)
 
     context.update(request)
 
@@ -110,8 +110,8 @@ def db_update_context(store, context, request, language):
     return context
 
 
-def db_create_context(store, request, tid, language):
-    request = fill_context_request(request, tid, language)
+def db_create_context(store, tid, request, language):
+    request = fill_context_request(tid, request, language)
 
     if not request['allow_recipients_selection']:
         request['select_all_receivers'] = True
@@ -124,7 +124,7 @@ def db_create_context(store, request, tid, language):
 
 
 @transact
-def create_context(store, request, tid, language):
+def create_context(store, tid, request, language):
     """
     Creates a new context from the request of a client.
 
@@ -134,13 +134,13 @@ def create_context(store, request, tid, language):
     Returns:
         (dict) representing the configured context
     """
-    context = db_create_context(store, request, tid, language)
+    context = db_create_context(store, tid, request, language)
 
     return admin_serialize_context(store, context, language)
 
 
 @transact
-def update_context(store, context_id, request, language):
+def update_context(store, tid, context_id, request, language):
     """
     Updates the specified context. If the key receivers is specified we remove
     the current receivers of the Context and reset set it to the new specified
@@ -158,8 +158,8 @@ def update_context(store, context_id, request, language):
     if not request['allow_recipients_selection']:
         request['select_all_receivers'] = True
 
-    context = models.db_get(store, models.Context, id=context_id)
-    context = db_update_context(store, context, request, language)
+    context = models.db_get(store, models.Context, tid=tid, id=context_id)
+    context = db_update_context(store, tid, context, request, language)
 
     return admin_serialize_context(store, context, language)
 
@@ -190,7 +190,7 @@ class ContextsCollection(OperationHandler):
         Parameters: None
         Response: adminContextList
         """
-        return get_context_list(self.request.language)
+        return get_context_list(self.request.tid, self.request.language)
 
     def post(self):
         """
@@ -202,7 +202,7 @@ class ContextsCollection(OperationHandler):
         request = self.validate_message(self.request.content.read(),
                                         requests.AdminContextDesc)
 
-        return create_context(request, self.request.language)
+        return create_context(self.request.tid, request, self.request.language)
 
     def operation_descriptors(self):
         return {
@@ -225,7 +225,7 @@ class ContextInstance(BaseHandler):
         request = self.validate_message(self.request.content.read(),
                                         requests.AdminContextDesc)
 
-        return update_context(context_id, request, self.request.language)
+        return update_context(self.request.tid, context_id, request, self.request.language)
 
     def delete(self, context_id):
         """
@@ -234,4 +234,4 @@ class ContextInstance(BaseHandler):
         Request: AdminContextDesc
         Response: None
         """
-        return models.delete(models.Context, id=context_id)
+        return models.delete(models.Context, tid=self.request.tid, id=context_id)

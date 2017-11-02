@@ -13,16 +13,18 @@ from globaleaks.utils.structures import fill_localized_keys
 
 
 @transact
-def get_receiver_list(store, language):
+def get_receiver_list(store, tid, language):
     """
     Returns:
         (list) the list of receivers
     """
     return [admin_serialize_receiver(store, receiver, user, language)
-        for receiver, user in store.find((models.Receiver, models.User), models.Receiver.id == models.User.id)]
+        for receiver, user in store.find((models.Receiver, models.User),
+                                          models.User.tid == tid,
+                                          models.Receiver.id == models.User.id)]
 
 
-def db_get_receiver(store, receiver_id):
+def db_get_receiver(store, tid, receiver_id):
     """
     Returns:
         (dict) the receiver
@@ -35,19 +37,19 @@ def db_get_receiver(store, receiver_id):
 
 
 @transact
-def get_receiver(store, receiver_id, language):
-    receiver, user = db_get_receiver(store, receiver_id)
+def get_receiver(store, tid, receiver_id, language):
+    receiver, user = db_get_receiver(store, tid, receiver_id)
     return admin_serialize_receiver(store, receiver, user, language)
 
 
 @transact
-def update_receiver(store, receiver_id, request, language):
+def update_receiver(store, tid, receiver_id, request, language):
     """
     Updates the specified receiver with the details.
     """
     fill_localized_keys(request, models.Receiver.localized_keys, language)
 
-    receiver, user = db_get_receiver(store, receiver_id)
+    receiver, user = db_get_receiver(store, tid, receiver_id)
 
     receiver.update(request)
 
@@ -66,7 +68,7 @@ class ReceiversCollection(BaseHandler):
         Response: adminReceiverList
         Errors: None
         """
-        return get_receiver_list(self.request.language)
+        return get_receiver_list(self.request.tid, self.request.language)
 
 
 class ReceiverInstance(BaseHandler):
@@ -83,4 +85,4 @@ class ReceiverInstance(BaseHandler):
         """
         request = self.validate_message(self.request.content.read(), requests.AdminReceiverDesc)
 
-        return update_receiver(receiver_id, request, self.request.language)
+        return update_receiver(self.request.tid, receiver_id, request, self.request.language)

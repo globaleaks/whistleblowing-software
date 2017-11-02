@@ -32,7 +32,7 @@ def load_default_questionnaires(store, tid):
         for step in steps:
             step['tid'] = tid
             step['questionnaire_id'] = q.id
-            db_create_step(store, step, None)
+            db_create_step(store, tid, step, None)
 
 def load_default_fields(store, tid):
     ffiles = [os.path.join(Settings.questions_path, path) for path in os.listdir(Settings.questions_path)]
@@ -40,7 +40,7 @@ def load_default_fields(store, tid):
         question = read_json_file(ffile)
         question['tid'] = tid
         store.find(models.Field, tid=tid, id=question['id']).remove()
-        db_create_field(store, question, None)
+        db_create_field(store, tid, question, None)
 
 
 def db_fix_fields_attrs(store, tid):

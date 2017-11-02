@@ -20,7 +20,7 @@ from globaleaks.handlers.admin.context import create_context, get_context
 from globaleaks.handlers.admin.field import db_create_field
 from globaleaks.handlers.admin.step import create_step
 from globaleaks.handlers.admin.questionnaire import get_questionnaire, db_get_questionnaire
-from globaleaks.handlers.admin.user import create_admin_user, create_custodian_user, create_receiver_user
+from globaleaks.handlers.admin.user import create_user, create_receiver_user
 from globaleaks.handlers.submission import create_submission
 from globaleaks.rest.apicache import ApiCache
 from globaleaks.rest import errors
@@ -436,7 +436,7 @@ class TestGL(unittest.TestCase):
         """
         answers = {}
 
-        questionnaire = db_get_questionnaire(store, questionnaire_id, 'en')
+        questionnaire = db_get_questionnaire(store, 1, questionnaire_id, 'en')
 
         for step in questionnaire['steps']:
             for field in step['children']:
@@ -453,7 +453,7 @@ class TestGL(unittest.TestCase):
 
         need to be enhanced generating appropriate data based on the fields.type
         """
-        context = yield get_context(context_id, 'en')
+        context = yield get_context(XTIDX, context_id, 'en')
         answers = yield self.fill_random_answers(context['questionnaire_id'])
 
         defer.returnValue({
@@ -579,29 +579,29 @@ class TestGLWithPopulatedDB(TestGL):
     @inlineCallbacks
     def fill_data(self):
         # fill_data/create_admin
-        self.dummyAdminUser = yield create_admin_user(copy.deepcopy(self.dummyAdminUser), 'en')
+        self.dummyAdminUser = yield create_user(1, copy.deepcopy(self.dummyAdminUser), 'en')
 
         # fill_data/create_custodian
-        self.dummyCustodianUser = yield create_custodian_user(copy.deepcopy(self.dummyCustodianUser), 'en')
+        self.dummyCustodianUser = yield create_user(1, copy.deepcopy(self.dummyCustodianUser), 'en')
 
         # fill_data/create_receiver
-        self.dummyReceiver_1 = yield create_receiver_user(copy.deepcopy(self.dummyReceiver_1), 'en')
+        self.dummyReceiver_1 = yield create_receiver_user(1, copy.deepcopy(self.dummyReceiver_1), 'en')
         self.dummyReceiverUser_1['id'] = self.dummyReceiver_1['id']
-        self.dummyReceiver_2 = yield create_receiver_user(copy.deepcopy(self.dummyReceiver_2), 'en')
+        self.dummyReceiver_2 = yield create_receiver_user(1, copy.deepcopy(self.dummyReceiver_2), 'en')
         self.dummyReceiverUser_2['id'] = self.dummyReceiver_2['id']
         receivers_ids = [self.dummyReceiver_1['id'], self.dummyReceiver_2['id']]
 
         # fill_data/create_context
         self.dummyContext['receivers'] = receivers_ids
-        self.dummyContext = yield create_context(copy.deepcopy(self.dummyContext), 'en')
+        self.dummyContext = yield create_context(1, copy.deepcopy(self.dummyContext), 'en')
 
-        self.dummyQuestionnaire = yield get_questionnaire(self.dummyContext['questionnaire_id'], 'en')
+        self.dummyQuestionnaire = yield get_questionnaire(1, self.dummyContext['questionnaire_id'], 'en')
 
         self.dummyQuestionnaire['steps'].append(get_dummy_step())
         self.dummyQuestionnaire['steps'][1]['questionnaire_id'] = self.dummyContext['questionnaire_id']
         self.dummyQuestionnaire['steps'][1]['label'] = 'Whistleblower identity'
         self.dummyQuestionnaire['steps'][1]['presentation_order'] = 1
-        self.dummyQuestionnaire['steps'][1] = yield create_step(self.dummyQuestionnaire['steps'][1], 'en')
+        self.dummyQuestionnaire['steps'][1] = yield create_step(1, self.dummyQuestionnaire['steps'][1], 'en')
 
         if self.complex_field_population:
             yield self.add_whistleblower_identity_field_to_step(self.dummyQuestionnaire['steps'][1]['id'])
@@ -807,7 +807,7 @@ class TestCollectionHandler(TestHandler):
 
         data = self.get_dummy_request()
 
-        yield self._test_desc['create'](data, u'en')
+        yield self._test_desc['create'](1, data, u'en')
 
         handler = self.request(role='admin')
 
@@ -843,7 +843,7 @@ class TestInstanceHandler(TestHandler):
 
         data = self.get_dummy_request()
 
-        data = yield self._test_desc['create'](data, u'en')
+        data = yield self._test_desc['create'](1, data, u'en')
 
         handler = self.request(data, role='admin')
 
@@ -857,7 +857,7 @@ class TestInstanceHandler(TestHandler):
 
         data = self.get_dummy_request()
 
-        data = yield self._test_desc['create'](data, u'en')
+        data = yield self._test_desc['create'](1, data, u'en')
 
         for k, v in self._test_desc['data'].items():
             data[k] = v
@@ -877,7 +877,7 @@ class TestInstanceHandler(TestHandler):
 
         data = self.get_dummy_request()
 
-        data = yield self._test_desc['create'](data, u'en')
+        data = yield self._test_desc['create'](1, data, u'en')
 
         handler = self.request(data, role='admin')
 
