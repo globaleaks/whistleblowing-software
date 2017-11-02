@@ -32,8 +32,9 @@ def db_get_receiver(store, tid, receiver_id):
     """
     return models.db_get(store,
                          (models.Receiver, models.User),
-                         models.Receiver.id == receiver_id,
-                         models.User.id == receiver_id)
+                          models.Receiver.id == receiver_id,
+                          models.User.id == receiver_id,
+                          models.User.tid == tid)
 
 
 @transact

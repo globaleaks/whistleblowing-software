@@ -496,13 +496,15 @@ class OperationHandler(BaseHandler):
         request = self.validate_message(self.request.content.read(), requests.OpsDesc)
 
         op_desc = self.operation_descriptors().get(request['operation'], None)
-        if op_desc is not None:
-            if op_desc[1] is not None:
-                self.validate_jmessage(request['args'], op_desc[1])
+        if op_desc is None:
+            raise errors.InvalidInputFormat('Invalid command')
 
-            return op_desc[0](self, request['args'], *args, **kwargs)
+        func, obj_validator = op_desc
+        if obj_validator is not None:
+            self.validate_jmessage(request['args'], obj_validator)
 
-        raise errors.InvalidInputFormat('Invalid command')
+        return func(self, request['args'], *args, **kwargs)
+
 
 
 class StaticFileHandler(BaseHandler):

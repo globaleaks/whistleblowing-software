@@ -59,19 +59,19 @@ def db_update_step(store, tid, step_id, request, language):
     step.update(request)
 
     for child in request['children']:
-        db_update_field(store, child['id'], child, language)
+        db_update_field(store, tid, child['id'], child, language)
 
     return step
 
 
 @transact
-def update_step(store, step_id, request, language):
-    return serialize_step(store, db_update_step(store, step_id, request, language), language)
+def update_step(store, tid, step_id, request, language):
+    return serialize_step(store, db_update_step(store, tid, step_id, request, language), language)
 
 
 @transact
-def order_elements(store, req_args, *args, **kwargs):
-    steps = store.find(models.Step, questionnaire_id=req_args['questionnaire_id'])
+def order_elements(store, handler, req_args, *args, **kwargs):
+    steps = store.find(models.Step, questionnaire_id=req_args['questionnaire_id'], tid=handler.request.tid)
 
     id_dict = {step.id: step for step in steps}
     ids = req_args['ids']
