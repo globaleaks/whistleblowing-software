@@ -202,8 +202,9 @@ class Tenant(ModelWithID):
     label = Unicode(validator=shorttext_v, default=u'')
     active = Bool(default=True)
     creation_date = DateTime(default_factory=datetime_now)
+    subdomain = Unicode(validator=shorttext_v, default=u'')
 
-    unicode_keys = ['label']
+    unicode_keys = ['label', 'subdomain']
     bool_keys = ['active']
 
 
