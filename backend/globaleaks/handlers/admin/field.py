@@ -14,7 +14,8 @@ from globaleaks.rest import errors, requests
 from globaleaks.utils.structures import fill_localized_keys
 
 
-def db_update_fieldoption(store, field, fieldoption_id, option_dict, language, idx):
+def db_update_fieldoption(store, tid, field, fieldoption_id, option_dict, language, idx):
+    option_dict['tid'] = tid
     option_dict['field_id'] = field.id
 
     fill_localized_keys(option_dict, models.FieldOption.localized_keys, language)
@@ -33,7 +34,7 @@ def db_update_fieldoption(store, field, fieldoption_id, option_dict, language, i
     return o.id
 
 
-def db_update_fieldoptions(store, field, options, language):
+def db_update_fieldoptions(store, tid, field, options, language):
     """
     Update options
 
@@ -41,14 +42,15 @@ def db_update_fieldoptions(store, field, options, language):
     :param field_id: the field_id on wich bind the provided options
     :param language: the language of the option definition dict
     """
-    options_ids = [db_update_fieldoption(store, field, option['id'], option, language, idx) for idx, option in enumerate(options)]
+    options_ids = [db_update_fieldoption(store, tid, field, option['id'], option, language, idx) for idx, option in enumerate(options)]
 
     store.find(models.FieldOption, And(models.FieldOption.field_id == field.id, Not(In(models.FieldOption.id, options_ids)))).remove()
 
 
-def db_update_fieldattr(store, field, attr_name, attr_dict, language):
+def db_update_fieldattr(store, tid, field, attr_name, attr_dict, language):
     attr_dict['name'] = attr_name
     attr_dict['field_id'] = field.id
+    attr_dict['tid'] = tid
 
     if attr_dict['type'] == 'bool':
         attr_dict['value'] = 'True' if attr_dict['value'] else 'False'
@@ -64,13 +66,13 @@ def db_update_fieldattr(store, field, attr_name, attr_dict, language):
     return a.id
 
 
-def db_update_fieldattrs(store, field, field_attrs, language):
-    attrs_ids = [db_update_fieldattr(store, field, attr_name, attr, language) for attr_name, attr in field_attrs.items()]
+def db_update_fieldattrs(store, tid, field, field_attrs, language):
+    attrs_ids = [db_update_fieldattr(store, tid, field, attr_name, attr, language) for attr_name, attr in field_attrs.items()]
 
     store.find(models.FieldAttr, And(models.FieldAttr.field_id == field.id, Not(In(models.FieldAttr.id, attrs_ids)))).remove()
 
 
-def db_create_field(store, field_dict, language):
+def db_create_field(store, tid, field_dict, language):
     """
     Create and add a new field to the store, then return the new serialized object.
 
@@ -79,6 +81,8 @@ def db_create_field(store, field_dict, language):
     :param language: the language of the field definition dict
     :return: a serialization of the object
     """
+    field_dict['tid'] = tid
+
     fill_localized_keys(field_dict, models.Field.localized_keys, language)
 
     if field_dict.get('fieldgroup_id', ''):
@@ -115,38 +119,38 @@ def db_create_field(store, field_dict, language):
         for obj in options:
             obj['tid'] = field.tid
 
-        db_update_fieldattrs(store, field, attrs, language)
-        db_update_fieldoptions(store, field, options, language)
+        db_update_fieldattrs(store, tid, field, attrs, language)
+        db_update_fieldoptions(store, tid, field, options, language)
 
     if field.instance != 'reference':
         for c in field_dict.get('children', []):
             c['tid'] = field.tid
             c['fieldgroup_id'] = field.id
-            db_create_field(store, c, language)
+            db_create_field(store, tid, c, language)
 
     return field
 
 
 @transact
-def create_field(store, field_dict, language):
+def create_field(store, tid, field_dict, language):
     """
     Transaction that perform db_create_field
     """
-    field = db_create_field(store, field_dict, language)
+    field = db_create_field(store, tid, field_dict, language)
 
     return serialize_field(store, field, language)
 
 
-def db_update_field(store, field_id, field_dict, language):
-    field = models.db_get(store, models.Field, id=field_id)
+def db_update_field(store, tid, field_id, field_dict, language):
+    field = models.db_get(store, models.Field, tid=tid, id=field_id)
 
     # make not possible to change field type
     field_dict['type'] = field.type
     if field_dict['instance'] != 'reference':
         fill_localized_keys(field_dict, models.Field.localized_keys, language)
 
-        db_update_fieldattrs(store, field, field_dict['attrs'], language)
-        db_update_fieldoptions(store, field, field_dict['options'], language)
+        db_update_fieldattrs(store, tid, field, field_dict['attrs'], language)
+        db_update_fieldoptions(store, tid, field, field_dict['options'], language)
 
         # full update
         field.update(field_dict)
@@ -164,7 +168,7 @@ def db_update_field(store, field_id, field_dict, language):
 
 
 @transact
-def update_field(store, field_id, field, language):
+def update_field(store, tid, field_id, field, language):
     """
     Update the specified field with the details.
 
@@ -174,13 +178,13 @@ def update_field(store, field_id, field, language):
     :param language: the language of the field definition dict
     :return: a serialization of the object
     """
-    field = db_update_field(store, field_id, field, language)
+    field = db_update_field(store, tid, field_id, field, language)
 
     return serialize_field(store, field, language)
 
 
 @transact
-def delete_field(store, field_id):
+def delete_field(store, tid, field_id):
     """
     Delete the field object corresponding to field_id
 
@@ -190,7 +194,7 @@ def delete_field(store, field_id):
     :param store: the store on which perform queries.
     :param field_id: the id corresponding to the field.
     """
-    field = models.db_get(store, models.Field, id=field_id)
+    field = models.db_get(store, models.Field, tid=tid, id=field_id)
 
     if not field.editable:
         raise errors.FieldNotEditable
@@ -223,7 +227,7 @@ def fieldtree_ancestors(store, tid, id):
 
 
 @transact
-def get_fieldtemplate_list(store, language):
+def get_fieldtemplate_list(store, tid, language):
     """
     Serialize all the field templates localizing their content depending on the language.
 
@@ -232,7 +236,7 @@ def get_fieldtemplate_list(store, language):
     :return: the current field list serialized.
     :rtype: list of dict
     """
-    templates = store.find(models.Field, instance=u'template', fieldgroup_id=None)
+    templates = store.find(models.Field, tid=tid, instance=u'template', fieldgroup_id=None)
 
     return [serialize_field(store, f, language) for f in templates]
 
@@ -249,7 +253,7 @@ class FieldTemplatesCollection(BaseHandler):
         :return: the list of field templates registered on the node.
         :rtype: list
         """
-        return get_fieldtemplate_list(self.request.language)
+        return get_fieldtemplate_list(self.request.tid, self.request.language)
 
     def post(self):
         """
@@ -259,7 +263,7 @@ class FieldTemplatesCollection(BaseHandler):
 
         request = self.validate_message(self.request.content.read(), validator)
 
-        return create_field(request, self.request.language)
+        return create_field(self.request.tid, request, self.request.language)
 
 
 class FieldTemplateInstance(BaseHandler):
@@ -277,7 +281,8 @@ class FieldTemplateInstance(BaseHandler):
         request = self.validate_message(self.request.content.read(),
                                         requests.AdminFieldDesc)
 
-        return update_field(field_id,
+        return update_field(self.request.tid,
+                            field_id,
                             request,
                             self.request.language)
 
@@ -287,7 +292,7 @@ class FieldTemplateInstance(BaseHandler):
 
         :param field_id:
         """
-        return delete_field(field_id)
+        return delete_field(self.request.tid, field_id)
 
 
 class FieldsCollection(BaseHandler):
@@ -311,7 +316,8 @@ class FieldsCollection(BaseHandler):
         request = self.validate_message(self.request.content.read(),
                                         requests.AdminFieldDesc)
 
-        return create_field(request,
+        return create_field(self.request.tid,
+                            request,
                             self.request.language)
 
 
@@ -336,7 +342,8 @@ class FieldInstance(BaseHandler):
         request = self.validate_message(self.request.content.read(),
                                         requests.AdminFieldDesc)
 
-        return update_field(field_id,
+        return update_field(self.request.tid,
+                            field_id,
                             request,
                             self.request.language)
 
@@ -347,4 +354,4 @@ class FieldInstance(BaseHandler):
         :param field_id:
         :raises InvalidInputFormat: if validation fails.
         """
-        return delete_field(field_id)
+        return delete_field(self.request.tid, field_id)

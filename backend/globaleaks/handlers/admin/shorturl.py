@@ -19,12 +19,12 @@ def serialize_shorturl(shorturl):
 
 
 @transact
-def get_shorturl_list(store):
-    return [serialize_shorturl(shorturl) for shorturl in store.find(models.ShortURL)]
-
+def get_shorturl_list(store, tid):
+    return [serialize_shorturl(shorturl) for shorturl in store.find(models.ShortURL, tid=tid)]
 
 @transact
-def create_shorturl(store, request):
+def create_shorturl(store, tid, request):
+    request['tid'] = tid
     shorturl = models.db_forge_obj(store, models.ShortURL, request)
     return serialize_shorturl(shorturl)
 
@@ -38,7 +38,7 @@ class ShortURLCollection(BaseHandler):
         """
         Return the list of registered short urls
         """
-        return get_shorturl_list()
+        return get_shorturl_list(self.request.tid)
 
     def post(self):
         """
@@ -46,7 +46,7 @@ class ShortURLCollection(BaseHandler):
         """
         request = self.validate_message(self.request.content.read(), requests.AdminShortURLDesc)
 
-        return create_shorturl(request)
+        return create_shorturl(self.request.tid, request)
 
 
 class ShortURLInstance(BaseHandler):
@@ -56,4 +56,4 @@ class ShortURLInstance(BaseHandler):
         """
         Delete the specified shorturl.
         """
-        return models.delete(models.ShortURL, id=shorturl_id)
+        return models.delete(models.ShortURL, tid=self.request.tid, id=shorturl_id)

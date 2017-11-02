@@ -36,45 +36,12 @@ def admin_serialize_receiver(store, receiver, user, language):
     return get_localized_values(ret_dict, receiver, receiver.localized_keys, language)
 
 
-def db_create_admin_user(store, request, tid, language):
-    """
-    Creates a new admin
-    Returns:
-        (dict) the admin descriptor
-    """
-    user = db_create_user(store, request, tid, language)
-
-    log.debug("Created new admin")
-
-    db_refresh_memory_variables(store)
-
-    return user
-
-
 @transact
-def create_admin_user(store, request, tid, language):
-    return user_serialize_user(store, db_create_admin_user(store, request, tid, language), language)
+def create_user(store, tid, request, language):
+    return user_serialize_user(store, db_create_user(store, tid, request, language), language)
 
 
-def db_create_custodian_user(store, request, language):
-    """
-    Creates a new custodian
-    Returns:
-        (dict) the custodian descriptor
-    """
-    user = db_create_user(store, request, language)
-
-    log.debug("Created new custodian")
-
-    return user
-
-
-@transact
-def create_custodian_user(store, request, language):
-    return user_serialize_user(store, db_create_custodian_user(store, request, language), language)
-
-
-def db_create_receiver_user(store, request, tid, language):
+def db_create_receiver_user(store, tid, request, language):
     """
     Creates a new receiver
     Returns:
@@ -82,37 +49,43 @@ def db_create_receiver_user(store, request, tid, language):
     """
     fill_localized_keys(request, models.Receiver.localized_keys, language)
 
-    user = db_create_user(store, request, tid, language)
-    request['tid'] = tid
+    user = db_create_user(store, tid, request, language)
 
     receiver = models.db_forge_obj(store, models.Receiver, request)
 
     # set receiver.id user.id
     receiver.id = user.id
 
-    log.debug("Created new receiver")
-
     return receiver, user
 
 
 @transact
-def create_receiver_user(store, request, language):
-    receiver, user = db_create_receiver_user(store, request, language)
+def create_receiver_user(store, tid, request, language):
+    receiver, user = db_create_receiver_user(store, tid, request, language)
     return admin_serialize_receiver(store, receiver, user, language)
 
 
-def create(request, language):
-    if request['role'] == 'receiver':
-        return create_receiver_user(request, language)
-    elif request['role'] == 'custodian':
-        return create_custodian_user(request, language)
-    elif request['role'] == 'admin':
-        return create_admin_user(request, language)
-    else:
+def create(tid, request, language):
+    if request['role'] not in ['admin', 'receiver', 'custodian']:
         raise errors.InvalidInputFormat
 
+    if request['role'] == 'receiver':
+        d = create_receiver_user(tid, request, language)
+    else:
+        d = create_user(tid, request, language)
 
-def db_create_user(store, request, tid, language):
+    def success(ret):
+        log.debug("Created user with role %s", request['role'])
+        return ret
+
+    d.addCallback(success)
+
+    return d
+
+
+def db_create_user(store, tid, request, language):
+    request['tid'] = tid
+
     fill_localized_keys(request, models.User.localized_keys, language)
 
     user = models.User({
@@ -145,14 +118,14 @@ def db_create_user(store, request, tid, language):
     return user
 
 
-def db_admin_update_user(store, user_id, request, language):
+def db_admin_update_user(store, tid, user_id, request, language):
     """
     Updates the specified user.
     raises: globaleaks.errors.UserIdNotFound` if the user does not exist.
     """
     fill_localized_keys(request, models.User.localized_keys, language)
 
-    user = models.db_get(store, models.User, id=user_id)
+    user = models.db_get(store, models.User, tid=tid, id=user_id)
 
     user.update(request)
 
@@ -171,25 +144,25 @@ def db_admin_update_user(store, user_id, request, language):
 
 
 @transact
-def admin_update_user(store, user_id, request, language):
-    return user_serialize_user(store, db_admin_update_user(store, user_id, request, language), language)
+def admin_update_user(store, tid, user_id, request, language):
+    return user_serialize_user(store, db_admin_update_user(store, tid, user_id, request, language), language)
 
 
 @transact
-def get_user(store, user_id, language):
-    user = models.db_get(store, models.User, id=user_id)
+def get_user(store, tid, user_id, language):
+    user = models.db_get(store, models.User, tid=tid, id=user_id)
 
     return user_serialize_user(store, user, language)
 
 
-def db_get_admin_users(store):
+def db_get_admin_users(store, tid=1):
     return [user_serialize_user(store, user, State.tenant_cache[1].default_language)
-            for user in store.find(models.User, role=u'admin')]
+            for user in store.find(models.User, tid=tid, role=u'admin')]
 
 
 @transact
-def delete_user(store, user_id):
-    user = models.db_get(store, models.User, id=user_id)
+def delete_user(store, tid, user_id):
+    user = models.db_get(store, models.User, tid=tid, id=user_id)
 
     if not user.deletable:
         raise errors.UserNotDeletable
@@ -198,12 +171,12 @@ def delete_user(store, user_id):
 
 
 @transact
-def get_user_list(store, language):
+def get_user_list(store, tid, language):
     """
     Returns:
         (list) the list of users
     """
-    users = store.find(models.User)
+    users = store.find(models.User, tid=tid)
     return [user_serialize_user(store, user, language) for user in users]
 
 
@@ -220,7 +193,7 @@ class UsersCollection(BaseHandler):
         Response: adminUsersList
         Errors: None
         """
-        return get_user_list(self.request.language)
+        return get_user_list(self.request.tid, self.request.language)
 
     def post(self):
         """
@@ -233,7 +206,7 @@ class UsersCollection(BaseHandler):
         request = self.validate_message(self.request.content.read(),
                                         requests.AdminUserDesc)
 
-        return create(request, self.request.language)
+        return create(self.request.tid, request, self.request.language)
 
 
 class UserInstance(BaseHandler):
@@ -251,7 +224,7 @@ class UserInstance(BaseHandler):
         """
         request = self.validate_message(self.request.content.read(), requests.AdminUserDesc)
 
-        return admin_update_user(user_id, request, self.request.language)
+        return admin_update_user(self.request.tid, user_id, request, self.request.language)
 
     def delete(self, user_id):
         """
@@ -262,4 +235,4 @@ class UserInstance(BaseHandler):
         Response: None
         Errors: InvalidInputFormat, UserIdNotFound
         """
-        return delete_user(user_id)
+        return delete_user(self.request.tid, user_id)

@@ -14,13 +14,14 @@ from globaleaks.rest import requests, errors
 from globaleaks.utils.structures import fill_localized_keys
 
 
-def db_create_step(store, step_dict, language):
+def db_create_step(store, tid, step_dict, language):
     """
     Create the specified step
 
     :param store: the store on which perform queries.
     :param language: the language of the specified steps.
     """
+    step_dict['tid'] = tid
     fill_localized_keys(step_dict, models.Step.localized_keys, language)
 
     step = models.db_forge_obj(store, models.Step, step_dict)
@@ -28,20 +29,20 @@ def db_create_step(store, step_dict, language):
     for c in step_dict['children']:
         c['tid'] = step.tid
         c['step_id'] = step.id
-        db_create_field(store, c, language)
+        db_create_field(store, tid, c, language)
 
     return step
 
 
 @transact
-def create_step(store, step, language):
+def create_step(store, tid, step, language):
     """
     Transaction that perform db_create_step
     """
-    return serialize_step(store, db_create_step(store, step, language), language)
+    return serialize_step(store, db_create_step(store, tid, step, language), language)
 
 
-def db_update_step(store, step_id, request, language):
+def db_update_step(store, tid, step_id, request, language):
     """
     Update the specified step with the details.
 
@@ -51,7 +52,7 @@ def db_update_step(store, step_id, request, language):
     :param language: the language of the step definition dict
     :return: a serialization of the object
     """
-    step = models.db_get(store, models.Step, id=step_id)
+    step = models.db_get(store, models.Step, tid=tid, id=step_id)
 
     fill_localized_keys(request, models.Step.localized_keys, language)
 
@@ -103,14 +104,17 @@ class StepCollection(OperationHandler):
         request = self.validate_message(self.request.content.read(),
                                         requests.AdminStepDesc)
 
-        return create_step(request, self.request.language)
+        return create_step(self.request.tid, request, self.request.language)
 
     def operation_descriptors(self):
         return {
-                'order_elements': (order_elements, {
-                    'questionnaire_id': requests.uuid_regexp,
-                    'ids': [unicode],
-                 }),
+            'order_elements': (
+                order_elements,
+                {
+                  'questionnaire_id': requests.uuid_regexp,
+                  'ids': [unicode],
+                }
+            )
         }
 
 
@@ -135,7 +139,7 @@ class StepInstance(BaseHandler):
         request = self.validate_message(self.request.content.read(),
                                         requests.AdminStepDesc)
 
-        return update_step(step_id, request, self.request.language)
+        return update_step(self.request.tid, step_id, request, self.request.language)
 
     def delete(self, step_id):
         """
@@ -144,4 +148,4 @@ class StepInstance(BaseHandler):
         :param step_id:
         :raises InvalidInputFormat: if validation fails.
         """
-        return models.delete(models.Step, id=step_id)
+        return models.delete(models.Step, tid=self.request.tid, id=step_id)
