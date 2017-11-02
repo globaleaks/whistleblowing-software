@@ -22,6 +22,7 @@ def serialize_shorturl(shorturl):
 def get_shorturl_list(store, tid):
     return [serialize_shorturl(shorturl) for shorturl in store.find(models.ShortURL, tid=tid)]
 
+
 @transact
 def create_shorturl(store, tid, request):
     request['tid'] = tid

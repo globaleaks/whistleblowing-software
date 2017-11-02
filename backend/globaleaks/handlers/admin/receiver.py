@@ -21,7 +21,7 @@ def get_receiver_list(store, tid, language):
     return [admin_serialize_receiver(store, receiver, user, language)
         for receiver, user in store.find((models.Receiver, models.User),
                                           models.User.tid == tid,
-                                          models.Receiver.id == models.User.id)]
+                                          models.Receiver.id == models.User.id).order_by(models.User.id)]
 
 
 def db_get_receiver(store, tid, receiver_id):

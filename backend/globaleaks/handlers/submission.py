@@ -22,6 +22,8 @@ from globaleaks.utils.token import TokenList
 from globaleaks.utils.utility import log, get_expiration, \
     datetime_now, datetime_never, datetime_to_ISO8601
 
+XTIDX = 1
+
 
 def get_submission_sequence_number(itip):
     return "%s-%d" % (itip.creation_date.strftime("%Y%m%d"), itip.progressive)
@@ -305,7 +307,7 @@ def db_create_submission(store, request, uploaded_files, client_using_tor):
     if not context:
         raise errors.ModelNotFound(models.Context)
 
-    steps = db_get_questionnaire(store, questionnaire.id, None)['steps']
+    steps = db_get_questionnaire(store, XTIDX, questionnaire.id, None)['steps']
     questionnaire_hash = unicode(sha256(json.dumps(steps)))
 
     submission = models.InternalTip()

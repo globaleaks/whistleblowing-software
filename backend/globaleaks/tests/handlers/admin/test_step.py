@@ -31,7 +31,7 @@ class TestStepInstance(helpers.TestHandler):
         """
         step = helpers.get_dummy_step()
         step['questionnaire_id'] = 'default'
-        step = yield create_step(step, 'en')
+        step = yield create_step(helpers.XTIDX, step, 'en')
 
         step['presentation_order'] = 666
 
@@ -47,7 +47,7 @@ class TestStepInstance(helpers.TestHandler):
         """
         step = helpers.get_dummy_step()
         step['questionnaire_id'] = 'default'
-        step = yield create_step(step, 'en')
+        step = yield create_step(helpers.XTIDX, step, 'en')
 
         handler = self.request(role='admin')
         yield handler.delete(step['id'])

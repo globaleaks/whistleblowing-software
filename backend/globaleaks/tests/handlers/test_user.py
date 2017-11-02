@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from globaleaks.handlers import admin, user
+from globaleaks.handlers.admin import receiver
 from globaleaks.rest import errors
 from globaleaks.tests import helpers
 from twisted.internet.defer import inlineCallbacks
@@ -12,7 +13,7 @@ class TestUserInstance(helpers.TestHandlerWithPopulatedDB):
     def setUp(self):
         yield helpers.TestHandlerWithPopulatedDB.setUp(self)
 
-        self.rcvr_id = (yield admin.receiver.get_receiver_list('en'))[0]['id']
+        self.rcvr_id = (yield receiver.get_receiver_list(1, 'en'))[0]['id']
 
     @inlineCallbacks
     def test_get(self):
@@ -49,6 +50,7 @@ class TestUserInstance(helpers.TestHandlerWithPopulatedDB):
         response = yield handler.get()
 
         # check that the key is initialized at start
+
         self.assertNotEqual(response['pgp_key_public'], u'')
 
         self.assertEqual(response['pgp_key_fingerprint'],
