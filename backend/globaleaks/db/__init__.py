@@ -176,7 +176,7 @@ def db_refresh_memory_variables(store):
         tenant = tenant_map[tid]
         hostnames = []
 
-        if not tenant.active and tenant.tid != 1:
+        if not tenant.active and tid != 1:
             continue
 
         if root_hostname != "" and tenant.subdomain != "":
