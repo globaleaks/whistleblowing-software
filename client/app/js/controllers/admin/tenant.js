@@ -1,15 +1,11 @@
 angular.module('GLClient')
 .controller('TenantCtrl', ['$scope', function($scope) {
-  $scope.new_tenant = {};
+  $scope.newTenant = new $scope.admin_utils.new_tenant();
 
-  $scope.add_tenant = function() {
-    var new_tenant = new $scope.admin_utils.new_tenant();
-    new_tenant.label = $scope.new_tenant.label;
-    new_tenant.subdomain = '';
-
-    new_tenant.$save(function(new_tenant){
-      $scope.admin.tenants.push(new_tenant);
-      $scope.new_tenant = {};
+  $scope.addTenant = function() {
+    $scope.newTenant.$save(function(tenant){
+      $scope.admin.tenants.push(tenant);
+      $scope.newTenant = new $scope.admin_utils.new_tenant();
     });
   }
 }])
@@ -36,6 +32,7 @@ angular.module('GLClient')
   };
 
   $scope.saveTenant = function() {
+    tenant.subdomain = angular.isDefined(tenant.subdomain) ? tenant.subdomain : '';
     tenant.$update().then(function() {
       $rootScope.successes.push({});
     });
