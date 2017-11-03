@@ -208,14 +208,14 @@ class APIResourceWrapper(Resource):
 
     def should_redirect_tor(self, request):
         if request.client_using_tor and \
-           State.tenant_cache[1].onionservice and \
-           request.getRequestHostname() != State.tenant_cache[1].onionservice:
+           State.tenant_cache[request.tid].onionservice and \
+           request.getRequestHostname() != State.tenant_cache[request.tid].onionservice:
             return True
 
         return False
 
     def should_redirect_https(self, request):
-        if State.tenant_cache[1].private.https_enabled and \
+        if State.tenant_cache[request.tid].private.https_enabled and \
            request.client_proto == 'http' and \
            request.client_ip not in Settings.local_hosts:
             return True
@@ -228,12 +228,12 @@ class APIResourceWrapper(Resource):
 
     def redirect_https(self, request):
         _, _, path, query, frag = urlparse.urlsplit(request.uri)
-        redirect_url = urlparse.urlunsplit(('https', State.tenant_cache[1].hostname, path, query, frag))
+        redirect_url = urlparse.urlunsplit(('https', State.tenant_cache[request.tid].hostname, path, query, frag))
         self.redirect(request, redirect_url)
 
     def redirect_tor(self, request):
         _, _, path, query, frag = urlparse.urlsplit(request.uri)
-        redirect_url = urlparse.urlunsplit(('http', State.tenant_cache[1].onionservice, path, query, frag))
+        redirect_url = urlparse.urlunsplit(('http', State.tenant_cache[request.tid].onionservice, path, query, frag))
         self.redirect(request, redirect_url)
 
     def handle_exception(self, e, request):
