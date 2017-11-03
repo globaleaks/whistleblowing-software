@@ -188,6 +188,9 @@ def db_refresh_memory_variables(store):
         if tenant_cache_item.hostname != "":
             hostnames.append(tenant_cache_item.hostname)
 
+	if tenant_cache_item.onionservice != "":
+	    hostnames.append(tenant_cache_item.onionservice)
+
         tenant_hostname_id_map.update({h : tid for h in hostnames})
 
     State.tenant_cache = tenant_cache

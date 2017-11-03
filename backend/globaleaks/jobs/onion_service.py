@@ -6,6 +6,7 @@ from txtorcon import build_local_tor_connection
 
 from twisted.internet import reactor, defer
 
+from globaleaks import models
 from globaleaks.db import refresh_memory_variables
 from globaleaks.jobs.base import BaseJob
 from globaleaks.models.config import NodeFactory, PrivateFactory
@@ -27,14 +28,26 @@ __all__ = ['OnionService']
 
 
 @transact
+def list_onion_service_info(store):
+    services = []
+    for tid in store.find(models.Tenant.id, models.Tenant.active == True):
+        services.append(db_get_onion_service_info(store, tid))
+    return services
+
+
+@transact
 def get_onion_service_info(store, tid):
+    return db_get_onion_service_info(store, tid)
+
+
+def db_get_onion_service_info(store, tid):
     node_fact = NodeFactory(store, tid)
     hostname = node_fact.get_val(u'onionservice')
 
     priv_fact = PrivateFactory(store, tid)
     key = priv_fact.get_val(u'tor_onion_key')
 
-    return hostname, key
+    return hostname, key, tid
 
 
 @transact
@@ -45,7 +58,7 @@ def set_onion_service_info(store, tid, hostname, key):
     priv_fact = PrivateFactory(store, tid)
     priv_fact.set_val(u'tor_onion_key', key)
 
-    State.tenant_cache[1].onionservice = hostname
+    State.tenant_cache[tid].onionservice = hostname
 
     ApiCache.invalidate()
 
@@ -58,7 +71,7 @@ class OnionService(BaseJob):
 
     @defer.inlineCallbacks
     def service(self, restart_deferred):
-        hostname, key = yield get_onion_service_info(XTIDX)
+        hostname_key_list = yield list_onion_service_info()
 
         control_socket = '/var/run/tor/control'
 
@@ -70,22 +83,23 @@ class OnionService(BaseJob):
             log.debug('Successfully connected to Tor control port')
 
             hs_loc = ('80 localhost:8083')
-            if not hostname and not key:
-                log.info('Creating new onion service')
-                ephs = EphemeralHiddenService(hs_loc)
-            else:
-                log.info('Setting up existing onion service %s', hostname)
-                ephs = EphemeralHiddenService(hs_loc, key)
-
-            @defer.inlineCallbacks
-            def initialization_callback(ret):
-                log.info('Initialization of hidden-service %s completed.', ephs.hostname)
+            for hostname, key, tid in hostname_key_list:
                 if not hostname and not key:
-                    yield set_onion_service_info(XTIDX, ephs.hostname, ephs.private_key)
-                    yield refresh_memory_variables()
+                    log.info('Creating new onion service')
+                    ephs = EphemeralHiddenService(hs_loc)
+                else:
+                    log.info('Setting up existing onion service %s', hostname)
+                    ephs = EphemeralHiddenService(hs_loc, key)
 
-            d = ephs.add_to_tor(self.tor_conn.protocol)
-            d.addCallback(initialization_callback) # pylint: disable=no-member
+                @defer.inlineCallbacks
+                def initialization_callback(ret):
+                    log.info('Initialization of hidden-service %s completed.', ephs.hostname)
+                    if not hostname and not key:
+                        yield set_onion_service_info(tid, ephs.hostname, ephs.private_key)
+                        yield refresh_memory_variables()
+
+                d = ephs.add_to_tor(self.tor_conn.protocol)
+                d.addCallback(initialization_callback) # pylint: disable=no-member
 
         def startup_errback(err):
             if self.print_startup_error:
