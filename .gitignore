@@ -35,3 +35,5 @@ client/dest
 client/coverage
 client/node_modules/
 client/pot/
+
+docker

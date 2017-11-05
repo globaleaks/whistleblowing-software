@@ -1,0 +1,13 @@
+version: "3"
+services:
+  globaleaks:
+    image: globaleaks
+    build: .
+    cap_add:
+      - NET_ADMIN
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - ./data/var/:/var/globaleaks
+    entrypoint: bash
