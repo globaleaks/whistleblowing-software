@@ -65,6 +65,7 @@ class SettingsClass(object):
         # daemonize the process
         self.nodaemon = False
 
+        self.allow_run_as_root = False
         self.bind_address = '0.0.0.0'
         self.bind_remote_ports = [80, 443]
         self.bind_local_ports = [8082, 8083]
@@ -246,6 +247,7 @@ class SettingsClass(object):
 
     def load_cmdline_options(self):
         self.nodaemon = self.cmdline_options.nodaemon
+        self.allow_run_as_root = self.cmdline_options.allow_run_as_root
 
         if self.cmdline_options.disable_swap:
             self.disable_swap = True
@@ -282,7 +284,7 @@ class SettingsClass(object):
             self.gid = grp.getgrnam(self.cmdline_options.group).gr_gid
             self.uid = os.getuid()
 
-        if self.uid == 0 or self.gid == 0:
+        if (self.uid == 0 or self.gid == 0) and not self.allow_run_as_root:
             self.print_msg("Invalid user: cannot run as root")
             sys.exit(1)
 

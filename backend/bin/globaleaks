@@ -119,6 +119,9 @@ Settings.parser.add_option("-o", "--orm-debug", action='store_true',
 Settings.parser.add_option("-v", "--version", action='store_true',
     help="show the version of the software")
 
+Settings.parser.add_option("--allow-run-as-root", action='store_true',
+    help="Allow GlobaLeaks to be run as root, useful for running GlobaLeaks inside of a Docker container.",
+    dest="allow_run_as_root", default=False)
 
 # here the options are parsed, because sys.argv array is whack below
 (Settings.cmdline_options, args) = Settings.parser.parse_args()
