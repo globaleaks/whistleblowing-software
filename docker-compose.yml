@@ -10,4 +10,4 @@ services:
       - 443:443
     volumes:
       - ./data/var/:/var/globaleaks
-    entrypoint: bash
+    entrypoint: bash # uncomment this line and run docker-compose run globaleaks to get inside the docker container easily.
