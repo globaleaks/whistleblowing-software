@@ -1,4 +1,4 @@
-FROM node:latest
+FROM node:8
 
 
 # install build dependencies (and vim ;-) )
@@ -54,7 +54,6 @@ EXPOSE 8083
 # todo: a better docker entrypoint.  Tor needs to run alongside globaleaks.  We could move tor into it's own container, but that makes this image harder to use.
 COPY ./docker-entrypoint.sh /opt/docker-entrypoint.sh
 RUN chmod +x /opt/docker-entrypoint.sh
-ENTRYPOINT /opt/docker-entrypoint.sh
+ENTRYPOINT ["/opt/docker-entrypoint.sh"]
 VOLUME /var/globaleaks/
 VOLUME /etc/default/
-# todo: this image doesn't shut down gracefully, probably because of the docker-entrypoint above.
