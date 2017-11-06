@@ -13,16 +13,13 @@ class RobotstxtHandler(BaseHandler):
         """
         self.request.setHeader('Content-Type', 'text/plain')
 
+        if not State.tenant_cache[1].allow_indexing:
+            return "User-agent: *\nDisallow: /"
+
         data = "User-agent: *\n"
+        data += "Allow: /\n"
+        data += "Sitemap: https://%s/sitemap.xml" % State.tenant_cache[1].hostname
 
-        if State.tenant_cache[1].allow_indexing:
-            site = 'https://' + State.tenant_cache[1].hostname
-            data += "Allow: /\n"
-            data += "Sitemap: %s/sitemap.xml\n" % site
-        else:
-            data += "Disallow: /\n"
-
-        data += "TenantID: %d\n" % self.request.tid
         return data
 
 

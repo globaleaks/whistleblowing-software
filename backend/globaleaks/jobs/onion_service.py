@@ -29,10 +29,8 @@ __all__ = ['OnionService']
 
 @transact
 def list_onion_service_info(store):
-    services = []
-    for tid in store.find(models.Tenant.id, models.Tenant.active == True):
-        services.append(db_get_onion_service_info(store, tid))
-    return services
+    return [db_get_onion_service_info(store, tid)
+        for tid in store.find(models.Tenant.id, models.Tenant.active == True)]
 
 
 @transact
@@ -44,19 +42,15 @@ def db_get_onion_service_info(store, tid):
     node_fact = NodeFactory(store, tid)
     hostname = node_fact.get_val(u'onionservice')
 
-    priv_fact = PrivateFactory(store, tid)
-    key = priv_fact.get_val(u'tor_onion_key')
+    key = PrivateFactory(store, tid).get_val(u'tor_onion_key')
 
     return hostname, key, tid
 
 
 @transact
 def set_onion_service_info(store, tid, hostname, key):
-    node_fact = NodeFactory(store, tid)
-    node_fact.set_val(u'onionservice', hostname)
-
-    priv_fact = PrivateFactory(store, tid)
-    priv_fact.set_val(u'tor_onion_key', key)
+    NodeFactory(store, tid).set_val(u'onionservice', hostname)
+    PrivateFactory(store, tid).set_val(u'tor_onion_key', key)
 
     State.tenant_cache[tid].onionservice = hostname
 
