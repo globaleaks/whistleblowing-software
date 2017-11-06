@@ -417,7 +417,7 @@ class BaseHandler(object):
             if len(token) != Settings.api_token_len:
                 return None
 
-            token_hash = bytes(self.state.tenant_cache[1.].private.admin_api_token_digest)
+            token_hash = bytes(self.state.tenant_cache[1].private.admin_api_token_digest)
 
             if constant_time.bytes_eq(sha512(token), token_hash):
                 return self.state.api_token_session
