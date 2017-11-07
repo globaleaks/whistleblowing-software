@@ -15,9 +15,6 @@ from globaleaks.utils.structures import get_localized_values
 from globaleaks.utils.utility import datetime_to_ISO8601, datetime_now, datetime_null
 
 
-XTIDX = 1
-
-
 def parse_pgp_options(user, request):
     """
     Used for parsing PGP key infos and fill related user configurations.
@@ -51,7 +48,7 @@ def user_serialize_user(store, user, language):
     :param username: the username of the user to be serialized
     :return: a serialization of the object
     """
-    picture = db_get_model_img(store, XTIDX, 'users', user.id)
+    picture = db_get_model_img(store, user.tid, 'users', user.id)
 
     ret_dict = {
         'id': user.id,
@@ -81,13 +78,13 @@ def user_serialize_user(store, user, language):
 
 
 @transact
-def get_user_settings(store, user_id, language):
-    user = models.db_get(store, models.User, models.User.id == user_id)
+def get_user_settings(store, tid, user_id, language):
+    user = models.db_get(store, models.User, models.User.id == user_id, tid=tid)
 
     return user_serialize_user(store, user, language)
 
 
-def db_user_update_user(store, user_id, request):
+def db_user_update_user(store, tid, user_id, request):
     """
     Updates the specified user.
     This version of the function is specific for users that with comparison with
@@ -97,9 +94,9 @@ def db_user_update_user(store, user_id, request):
       - pgp key
     raises: globaleaks.errors.ReceiverIdNotFound` if the receiver does not exist.
     """
-    user = models.db_get(store, models.User, id=user_id)
+    user = models.db_get(store, models.User, id=user_id, tid=tid)
 
-    user.language = request.get('language', State.tenant_cache[1].default_language)
+    user.language = request.get('language', State.tenant_cache[tid].default_language)
 
     new_password = request['password']
     old_password = request['old_password']
@@ -122,8 +119,8 @@ def db_user_update_user(store, user_id, request):
 
 
 @transact
-def update_user_settings(store, user_id, request, language):
-    user = db_user_update_user(store, user_id, request)
+def update_user_settings(store, tid, user_id, request, language):
+    user = db_user_update_user(store, tid, user_id, request)
 
     return user_serialize_user(store, user, language)
 
@@ -145,7 +142,8 @@ class UserInstance(BaseHandler):
         Response: ReceiverReceiverDesc
         Errors: UserIdNotFound, InvalidInputFormat, InvalidAuthentication
         """
-        return get_user_settings(self.current_user.user_id,
+        return get_user_settings(self.request.tid,
+                                 self.current_user.user_id,
                                  self.request.language)
 
     def put(self):
@@ -157,5 +155,7 @@ class UserInstance(BaseHandler):
         """
         request = self.validate_message(self.request.content.read(), requests.UserUserDesc)
 
-        return update_user_settings(self.current_user.user_id,
-                                    request, self.request.language)
+        return update_user_settings(self.request.tid,
+                                    self.current_user.user_id,
+                                    request,
+                                    self.request.language)

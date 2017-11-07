@@ -27,7 +27,8 @@ def wb_serialize_ifile(store, ifile):
 
 def wb_serialize_wbfile(store, wbfile):
     receiver_id = store.find(models.ReceiverTip.receiver_id,
-                             models.ReceiverTip.id == wbfile.receivertip_id).one()
+                             models.ReceiverTip.id == wbfile.receivertip_id,
+                             models.ReceiverTip.tid == wbfile.tid).one()
 
     return {
         'id': wbfile.id,
@@ -40,37 +41,39 @@ def wb_serialize_wbfile(store, wbfile):
     }
 
 
-def db_get_rfile_list(store, itip_id):
-    return [wb_serialize_ifile(store, ifile) for ifile in store.find(models.InternalFile, internaltip_id=itip_id)]
+def db_get_rfile_list(store, tid, itip_id):
+    return [wb_serialize_ifile(store, ifile) for ifile in store.find(models.InternalFile, internaltip_id=itip_id, tid=tid)]
 
 
-def db_get_wbfile_list(store, wbtip_id):
+def db_get_wbfile_list(store, tid, wbtip_id):
     wbfiles = store.find(models.WhistleblowerFile,
                          models.WhistleblowerFile.receivertip_id == models.ReceiverTip.id,
-                         models.ReceiverTip.internaltip_id == wbtip_id)
+                         models.ReceiverTip.internaltip_id == wbtip_id,
+                         tid=tid)
 
     return [wb_serialize_wbfile(store, wbfile) for wbfile in wbfiles]
 
 
-def db_get_wbtip(store, wbtip_id, language):
+def db_get_wbtip(store, tid, wbtip_id, language):
     wbtip, itip = models.db_get(store,
                                 (models.WhistleblowerTip, models.InternalTip),
                                 models.WhistleblowerTip.id == wbtip_id,
-                                models.InternalTip.id == wbtip_id)
+                                models.InternalTip.id == wbtip_id,
+                                models.InternalTip.tid == tid)
 
     itip.wb_access_counter += 1
     itip.wb_last_access = datetime_now()
 
-    return serialize_wbtip(store, wbtip, itip, language)
+    return serialize_wbtip(store, tid, wbtip, itip, language)
 
 
 @transact
-def get_wbtip(store, wbtip_id, language):
-    return db_get_wbtip(store, wbtip_id, language)
+def get_wbtip(store, tid, wbtip_id, language):
+    return db_get_wbtip(store, tid, wbtip_id, language)
 
 
-def serialize_wbtip(store, wbtip, itip, language):
-    ret = serialize_usertip(store, wbtip, itip, language)
+def serialize_wbtip(store, tid, wbtip, itip, language):
+    ret = serialize_usertip(store, tid, wbtip, itip, language)
 
     # filter submission progressive
     # to prevent a fake whistleblower to assess every day how many
@@ -78,20 +81,21 @@ def serialize_wbtip(store, wbtip, itip, language):
     del ret['progressive']
 
     ret['id'] = wbtip.id
-    ret['comments'] = db_get_itip_comment_list(store, itip)
-    ret['rfiles'] = db_get_rfile_list(store, wbtip.id)
-    ret['wbfiles'] = db_get_wbfile_list(store, wbtip.id)
+    ret['comments'] = db_get_itip_comment_list(store, tid, itip)
+    ret['rfiles'] = db_get_rfile_list(store, tid, wbtip.id)
+    ret['wbfiles'] = db_get_wbfile_list(store, tid, wbtip.id)
 
     return ret
 
 
 @transact
-def create_comment(store, wbtip_id, request):
-    internaltip = models.db_get(store, models.InternalTip, id=wbtip_id)
+def create_comment(store, tid, wbtip_id, request):
+    internaltip = models.db_get(store, models.InternalTip, id=wbtip_id, tid=tid)
 
     internaltip.update_date = internaltip.wb_last_access = datetime_now()
 
     comment = models.Comment()
+    comment.tid = tid
     comment.content = request['content']
     comment.internaltip_id = wbtip_id
     comment.type = u'whistleblower'
@@ -101,7 +105,7 @@ def create_comment(store, wbtip_id, request):
 
 
 @transact
-def get_itip_message_list(store, wbtip_id, receiver_id):
+def get_itip_message_list(store, tid, wbtip_id, receiver_id):
     """
     Get the messages content and mark all the unread
     messages as "read"
@@ -109,16 +113,18 @@ def get_itip_message_list(store, wbtip_id, receiver_id):
     rtip = store.find(models.ReceiverTip,
                       models.ReceiverTip.internaltip_id == wbtip_id,
                       models.InternalTip.id == wbtip_id,
-                      models.ReceiverTip.receiver_id == receiver_id).one()
+                      models.ReceiverTip.receiver_id == receiver_id,
+                      tid=tid).one()
 
-    return [serialize_message(store, message) for message in store.find(models.Message, models.Message.receivertip_id == rtip.id)]
+    return [serialize_message(store, message) for message in store.find(models.Message, models.Message.receivertip_id == rtip.id, tid=tid)]
 
 @transact
-def create_message(store, wbtip_id, receiver_id, request):
+def create_message(store, tid, wbtip_id, receiver_id, request):
     rtip_id, internaltip = store.find((models.ReceiverTip.id, models.InternalTip),
                                       models.ReceiverTip.internaltip_id == wbtip_id,
                                       models.InternalTip.id == wbtip_id,
-                                      models.ReceiverTip.receiver_id == receiver_id).one()
+                                      models.ReceiverTip.receiver_id == receiver_id,
+                                      models.ReceiverTip.tid == tid).one()
 
 
     if rtip_id is None:
@@ -127,6 +133,7 @@ def create_message(store, wbtip_id, receiver_id, request):
     internaltip.update_date = internaltip.wb_last_access = datetime_now()
 
     msg = models.Message()
+    msg.tid = tid
     msg.content = request['content']
     msg.receivertip_id = rtip_id
     msg.type = u'whistleblower'
@@ -136,17 +143,17 @@ def create_message(store, wbtip_id, receiver_id, request):
 
 
 @transact
-def update_identity_information(store, tip_id, identity_field_id, identity_field_answers, language):
-    internaltip = models.db_get(store, models.InternalTip, id=tip_id)
+def update_identity_information(store, tid, tip_id, identity_field_id, identity_field_answers, language):
+    internaltip = models.db_get(store, models.InternalTip, id=tip_id, tid=tid)
 
     if internaltip.identity_provided:
         return
 
-    questionnaire = db_serialize_archived_questionnaire_schema(store, internaltip.questionnaire_hash, language)
+    questionnaire = db_serialize_archived_questionnaire_schema(store, tid, internaltip.questionnaire_hash, language)
     for step in questionnaire:
         for field in step['children']:
             if field['id'] == identity_field_id and field['id'] == 'whistleblower_identity':
-                db_save_questionnaire_answers(store, internaltip.id,
+                db_save_questionnaire_answers(store, tid, internaltip.id,
                                               {identity_field_id: [identity_field_answers]})
                 now = datetime_now()
                 internaltip.update_date = now
@@ -174,7 +181,7 @@ class WBTipInstance(BaseHandler):
         Check the user id (in the whistleblower case, is authenticated and
         contain the internaltip)
         """
-        return get_wbtip(self.current_user.user_id, self.request.language)
+        return get_wbtip(self.request.tid, self.current_user.user_id, self.request.language)
 
 
 class WBTipCommentCollection(BaseHandler):
@@ -193,7 +200,7 @@ class WBTipCommentCollection(BaseHandler):
         Errors: InvalidInputFormat, ModelNotFound
         """
         request = self.validate_message(self.request.content.read(), requests.CommentDesc)
-        return create_comment(self.current_user.user_id, request)
+        return create_comment(self.request.tid, self.current_user.user_id, request)
 
 
 class WBTipMessageCollection(BaseHandler):
@@ -206,22 +213,23 @@ class WBTipMessageCollection(BaseHandler):
     check_roles = 'whistleblower'
 
     def get(self, receiver_id):
-        return get_itip_message_list(self.current_user.user_id, receiver_id)
+        return get_itip_message_list(self.request.tid, self.current_user.user_id, receiver_id)
 
     def post(self, receiver_id):
         request = self.validate_message(self.request.content.read(), requests.CommentDesc)
 
-        return create_message(self.current_user.user_id, receiver_id, request)
+        return create_message(self.request.tid, self.current_user.user_id, receiver_id, request)
 
 
 class WBTipWBFileInstanceHandler(WhistleblowerFileInstanceHandler):
     check_roles = 'whistleblower'
 
-    def user_can_access(self, store, wbfile):
+    def user_can_access(self, store, tid, wbfile):
         wbtip_id = store.find(models.WhistleblowerTip.id,
                               models.WhistleblowerTip.id == models.InternalTip.id,
                               models.InternalTip.id == models.ReceiverTip.internaltip_id,
-                              models.ReceiverTip.id == wbfile.receivertip_id).one()
+                              models.ReceiverTip.id == wbfile.receivertip_id,
+                              models.ReceiverTip.tid == tid).one()
 
         return wbtip_id is not None and self.current_user.user_id == wbtip_id
 
@@ -240,7 +248,8 @@ class WBTipIdentityHandler(BaseHandler):
     def post(self, tip_id):
         request = self.validate_message(self.request.content.read(), requests.WhisleblowerIdentityAnswers)
 
-        return update_identity_information(tip_id,
+        return update_identity_information(self.request.tid,
+                                           tip_id,
                                            request['identity_field_id'],
                                            request['identity_field_answers'],
                                            self.request.language)

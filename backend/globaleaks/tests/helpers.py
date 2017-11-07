@@ -511,23 +511,26 @@ class TestGL(unittest.TestCase):
     def get_rtips(self, store):
         ret = []
         for r, i in store.find((models.ReceiverTip, models.InternalTip),
-                               models.ReceiverTip.internaltip_id == models.InternalTip.id):
-            ret.append(rtip.serialize_rtip(store, r, i, 'en'))
+                               models.ReceiverTip.internaltip_id == models.InternalTip.id,
+                               models.ReceiverTip.tid == XTIDX):
+            ret.append(rtip.serialize_rtip(store, XTIDX, r, i, 'en'))
 
         return ret
 
     @transact
     def get_rfiles(self, store, rtip_id):
-        return [{'id': rfile.id} for rfile in store.find(models.ReceiverFile, models.ReceiverFile.receivertip_id == rtip_id)]
+        return [{'id': rfile.id} for rfile in store.find(models.ReceiverFile, models.ReceiverFile.receivertip_id == rtip_id, tid=XTIDX)]
 
     @transact
     def get_wbtips(self, store):
         ret = []
         for w, i in store.find((models.WhistleblowerTip, models.InternalTip),
-                               models.WhistleblowerTip.id == models.InternalTip.id):
-            x = wbtip.serialize_wbtip(store, w, i, 'en')
+                               models.WhistleblowerTip.id == models.InternalTip.id,
+                               models.InternalTip.tid == XTIDX):
+            x = wbtip.serialize_wbtip(store, XTIDX, w, i, 'en')
             r_ids = store.find(models.ReceiverTip.receiver_id,
-                               models.ReceiverTip.internaltip_id == w.id)
+                               models.ReceiverTip.internaltip_id == w.id,
+                               models.ReceiverTip.tid == XTIDX)
 
             x['receivers_ids'] = [r_id for r_id in r_ids]
             ret.append(x)
@@ -539,23 +542,25 @@ class TestGL(unittest.TestCase):
         return [{'id': wbfile.id} for wbfile in store.find(models.WhistleblowerFile,
                                                            models.WhistleblowerFile.receivertip_id == models.ReceiverTip.id,
                                                            models.WhistleblowerTip.id == wbtip_id,
-                                                           models.ReceiverTip.internaltip_id == models.WhistleblowerTip.id)]
+                                                           models.ReceiverTip.internaltip_id == models.WhistleblowerTip.id,
+                                                           tid=XTIDX)]
 
     @transact
     def get_internalfiles_by_receipt(self, store, receipt):
-        wbtip = db_get_wbtip_by_receipt(store, receipt)
-        ifiles = store.find(models.InternalFile, models.InternalFile.internaltip_id == unicode(wbtip.id))
+        wbtip = db_get_wbtip_by_receipt(store, XTIDX, receipt)
+        ifiles = store.find(models.InternalFile, models.InternalFile.internaltip_id == unicode(wbtip.id), tid=XTIDX)
 
         return [models.serializers.serialize_ifile(store, ifile) for ifile in ifiles]
 
 
     @transact
     def get_receiverfiles_by_receipt(self, store, receipt):
-        wbtip = db_get_wbtip_by_receipt(store, receipt)
+        wbtip = db_get_wbtip_by_receipt(store, XTIDX, receipt)
         rfiles = store.find(models.ReceiverFile, models.ReceiverFile.receivertip_id == models.ReceiverTip.id,
-                                                 models.ReceiverTip.internaltip_id == unicode(wbtip.id))
+                                                 models.ReceiverTip.internaltip_id == unicode(wbtip.id),
+                                                 tid=XTIDX)
 
-        return [models.serializers.serialize_rfile(store, rfile) for rfile in rfiles]
+        return [models.serializers.serialize_rfile(store, XTIDX, rfile) for rfile in rfiles]
 
     def db_test_model_count(self, store, model, n):
         self.assertEqual(store.find(model).count(), n)
@@ -608,7 +613,7 @@ class TestGLWithPopulatedDB(TestGL):
 
     @transact
     def add_whistleblower_identity_field_to_step(self, store, step_id):
-        wbf = store.find(models.Field, models.Field.id == u'whistleblower_identity', tid=1).one()
+        wbf = store.find(models.Field, models.Field.id == u'whistleblower_identity', tid=XTIDX).one()
 
         reference_field = get_dummy_field()
         reference_field['instance'] = 'reference'
@@ -632,7 +637,8 @@ class TestGLWithPopulatedDB(TestGL):
         self.dummySubmission['answers'] = yield self.fill_random_answers(self.dummyContext['questionnaire_id'])
         self.dummySubmission['total_score'] = 0
 
-        self.dummySubmission = yield create_submission(self.dummySubmission,
+        self.dummySubmission = yield create_submission(XTIDX,
+                                                       self.dummySubmission,
                                                        self.dummyToken.uploaded_files,
                                                        True)
 
@@ -653,26 +659,30 @@ class TestGLWithPopulatedDB(TestGL):
         self.dummyRTips = yield self.get_rtips()
 
         for rtip_desc in self.dummyRTips:
-            yield rtip.create_comment(rtip_desc['receiver_id'],
+            yield rtip.create_comment(XTIDX,
+                                      rtip_desc['receiver_id'],
                                       rtip_desc['id'],
                                       commentCreation)
 
-            yield rtip.create_message(rtip_desc['receiver_id'],
+            yield rtip.create_message(XTIDX,
+                                      rtip_desc['receiver_id'],
                                       rtip_desc['id'],
                                       messageCreation)
 
-            yield rtip.create_identityaccessrequest(rtip_desc['receiver_id'],
+            yield rtip.create_identityaccessrequest(XTIDX,
+                                                    rtip_desc['receiver_id'],
                                                     rtip_desc['id'],
                                                     identityaccessrequestCreation)
 
         self.dummyWBTips = yield self.get_wbtips()
 
         for wbtip_desc in self.dummyWBTips:
-            yield wbtip.create_comment(wbtip_desc['id'],
+            yield wbtip.create_comment(XTIDX,
+                                       wbtip_desc['id'],
                                        commentCreation)
 
             for receiver_id in wbtip_desc['receivers_ids']:
-                yield wbtip.create_message(wbtip_desc['id'], receiver_id, messageCreation)
+                yield wbtip.create_message(XTIDX, wbtip_desc['id'], receiver_id, messageCreation)
 
     @inlineCallbacks
     def perform_full_submission_actions(self):

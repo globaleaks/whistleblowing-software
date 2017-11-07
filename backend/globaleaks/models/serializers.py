@@ -16,10 +16,11 @@ def serialize_ifile(store, ifile):
 
 
 # ReceiverFile
-def serialize_rfile(store, rfile):
+def serialize_rfile(store, tid, rfile):
     ifile = store.find(models.InternalFile,
                        models.InternalFile.id == models.ReceiverFile.internalfile_id,
-                       models.ReceiverFile.id == rfile.id).one()
+                       models.ReceiverFile.id == rfile.id,
+                       tid=tid).one()
 
     return {
         'id': rfile.id,
@@ -33,9 +34,10 @@ def serialize_rfile(store, rfile):
     }
 
 # WhistleblowerFile
-def serialize_wbfile(store, wbfile):
+def serialize_wbfile(store, tid, wbfile):
     receiver_id = store.find(models.ReceiverTip.receiver_id,
-                             models.ReceiverTip.id == wbfile.receivertip_id).one()
+                             models.ReceiverTip.id == wbfile.receivertip_id,
+                             models.ReceiverTip.tid == tid).one()
 
     return {
         'id': wbfile.id,

@@ -49,24 +49,25 @@ def random_login_delay():
     return 0
 
 
-def db_get_wbtip_by_receipt(store, receipt):
-    hashed_receipt = security.hash_password(receipt, State.tenant_cache[1].private.receipt_salt)
+def db_get_wbtip_by_receipt(store, tid, receipt):
+    hashed_receipt = security.hash_password(receipt, State.tenant_cache[tid].private.receipt_salt)
     return store.find(WhistleblowerTip,
-                     WhistleblowerTip.receipt_hash == unicode(hashed_receipt)).one()
+                      WhistleblowerTip.receipt_hash == unicode(hashed_receipt),
+                      tid=tid).one()
 
 
 @transact
-def login_whistleblower(store, receipt, client_using_tor):
+def login_whistleblower(store, tid, receipt, client_using_tor):
     """
     login_whistleblower returns the WhistleblowerTip.id
     """
-    wbtip = db_get_wbtip_by_receipt(store, receipt)
+    wbtip = db_get_wbtip_by_receipt(store, tid, receipt)
     if not wbtip:
         log.debug("Whistleblower login: Invalid receipt")
         Settings.failed_login_attempts += 1
         raise errors.InvalidAuthentication
 
-    if not client_using_tor and not State.tenant_cache[1].accept_tor2web_access['whistleblower']:
+    if not client_using_tor and not State.tenant_cache[tid].accept_tor2web_access['whistleblower']:
         log.err("Denied login request over clear Web for role 'whistleblower'")
         raise errors.TorNetworkRequired
 
@@ -153,7 +154,7 @@ class ReceiptAuthHandler(BaseHandler):
         if delay:
             yield deferred_sleep(delay)
 
-        user_id = yield login_whistleblower(receipt, self.request.client_using_tor)
+        user_id = yield login_whistleblower(self.request.tid, receipt, self.request.client_using_tor)
 
         Sessions.revoke_all_sessions(user_id)
 

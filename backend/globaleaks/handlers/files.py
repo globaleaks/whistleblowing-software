@@ -21,12 +21,13 @@ from globaleaks.utils.utility import log, datetime_now
 
 
 @transact
-def register_ifile_on_db(store, uploaded_file, internaltip_id):
-    internaltip = models.db_get(store, models.InternalTip, id=internaltip_id)
+def register_ifile_on_db(store, tid, uploaded_file, internaltip_id):
+    internaltip = models.db_get(store, models.InternalTip, id=internaltip_id, tid=tid)
 
     internaltip.update_date = internaltip.wb_last_access = datetime_now()
 
     new_file = models.InternalFile()
+    new_file.tid = tid
     new_file.name = uploaded_file['name']
     new_file.content_type = uploaded_file['type']
     new_file.size = uploaded_file['size']
@@ -39,8 +40,8 @@ def register_ifile_on_db(store, uploaded_file, internaltip_id):
 
 
 @transact
-def get_itip_id_by_wbtip_id(store, wbtip_id):
-    wbtip = store.find(models.WhistleblowerTip, id=wbtip_id).one()
+def get_itip_id_by_wbtip_id(store, tid, wbtip_id):
+    wbtip = store.find(models.WhistleblowerTip, id=wbtip_id, tid=tid).one()
 
     if not wbtip:
         raise errors.InvalidAuthentication
@@ -60,7 +61,7 @@ class FileAdd(BaseHandler):
         """
         Errors: ModelNotFound
         """
-        itip_id = yield get_itip_id_by_wbtip_id(self.current_user.user_id)
+        itip_id = yield get_itip_id_by_wbtip_id(self.request.tid, self.current_user.user_id)
 
         uploaded_file = self.get_file_upload()
         if uploaded_file is None:
@@ -81,7 +82,7 @@ class FileAdd(BaseHandler):
         uploaded_file['submission'] = False
 
         # Second: register the file in the database
-        yield register_ifile_on_db(uploaded_file, itip_id)
+        yield register_ifile_on_db(self.request.tid, uploaded_file, itip_id)
 
 
 class FileInstance(BaseHandler):

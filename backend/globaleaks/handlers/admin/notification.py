@@ -16,12 +16,10 @@ from globaleaks.utils.mailutils import sendmail
 from globaleaks.utils.sets import merge_dicts
 from globaleaks.utils.templating import Templating
 
-XTIDX = 1
 
-
-def admin_serialize_notification(store, language):
-    config_dict = NotificationFactory(store, XTIDX).admin_export()
-    conf_l10n_dict = NotificationL10NFactory(store, XTIDX).localized_dict(language)
+def admin_serialize_notification(store, tid, language):
+    config_dict = NotificationFactory(store, tid).admin_export()
+    conf_l10n_dict = NotificationL10NFactory(store, tid).localized_dict(language)
 
     cmd_flags = {
         'reset_templates': False,
@@ -32,25 +30,25 @@ def admin_serialize_notification(store, language):
     return merge_dicts(config_dict, cmd_flags, conf_l10n_dict)
 
 
-def db_get_notification(store, language):
-    return admin_serialize_notification(store, language)
+def db_get_notification(store, tid, language):
+    return admin_serialize_notification(store, tid, language)
 
 
 @transact
-def get_notification(store, language):
-    return db_get_notification(store, language)
+def get_notification(store, tid, language):
+    return db_get_notification(store, tid, language)
 
 
 @transact
-def update_notification(store, request, language):
-    notif = NotificationFactory(store, XTIDX)
+def update_notification(store, tid, request, language):
+    notif = NotificationFactory(store, tid)
     notif.update(request)
 
     smtp_pw = request.pop('smtp_password', u'')
     if smtp_pw != u'':
-        PrivateFactory(store, XTIDX).set_val(u'smtp_password', smtp_pw)
+        PrivateFactory(store, tid).set_val(u'smtp_password', smtp_pw)
 
-    notif_l10n = NotificationL10NFactory(store, XTIDX)
+    notif_l10n = NotificationL10NFactory(store, tid)
     notif_l10n.update(request, language)
 
     if request.pop('reset_templates'):
@@ -59,7 +57,7 @@ def update_notification(store, request, language):
     # Since the Notification object has been changed refresh the global copy.
     db_refresh_memory_variables(store)
 
-    return admin_serialize_notification(store, language)
+    return admin_serialize_notification(store, tid, language)
 
 
 class NotificationInstance(BaseHandler):
@@ -74,7 +72,7 @@ class NotificationInstance(BaseHandler):
         Response: AdminNotificationDesc
         Errors: None (return empty configuration, at worst)
         """
-        return get_notification(self.request.language)
+        return get_notification(self.request.tid, self.request.language)
 
     def put(self):
         """
@@ -87,7 +85,7 @@ class NotificationInstance(BaseHandler):
         request = self.validate_message(self.request.content.read(),
                                         requests.AdminNotificationDesc)
 
-        return update_notification(request, self.request.language)
+        return update_notification(self.request.tid, request, self.request.language)
 
 
 class NotificationTestInstance(BaseHandler):
@@ -101,15 +99,17 @@ class NotificationTestInstance(BaseHandler):
 
     @inlineCallbacks
     def post(self):
-        user = yield get_user_settings(self.current_user.user_id,
-                                       State.tenant_cache[1].default_language)
+        tid = self.request.tid
+        user = yield get_user_settings(tid,
+                                       self.current_user.user_id,
+                                       State.tenant_cache[tid].default_language)
 
         language = user['language']
 
         data = {
             'type': 'admin_test',
-            'node': (yield admin_serialize_node(XTIDX, language)),
-            'notification': (yield get_notification(XTIDX, language)),
+            'node': (yield admin_serialize_node(tid, language)),
+            'notification': (yield get_notification(tid, language)),
             'user': user,
         }
 
