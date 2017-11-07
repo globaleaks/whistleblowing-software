@@ -25,22 +25,18 @@ describe('globaLeaks setup wizard', function() {
 
     element.all(by.id('ButtonNext')).get(3).click();
 
-    element(by.model('wizard.context.name')).sendKeys('Context 1');
-
-    element.all(by.id('ButtonNext')).get(4).click();
-
     element(by.model('wizard.receiver.name')).sendKeys('Recipient1');
     element(by.model('wizard.receiver.mail_address')).sendKeys('globaleaks-receiver1@mailinator.com');
 
-    element.all(by.id('ButtonNext')).get(5).click();
+    element.all(by.id('ButtonNext')).get(4).click();
 
     element.all(by.css('.tos-agreement')).click();
 
-    element.all(by.id('ButtonNext')).get(6).click();
+    element.all(by.id('ButtonNext')).get(5).click();
 
     expect(element(by.css('.congratulations')).isPresent()).toBe(true);
 
-    element.all(by.id('ButtonNext')).get(7).click();
+    element.all(by.id('ButtonNext')).get(6).click();
 
     browser.gl.utils.waitForUrl('/admin/home');
   });

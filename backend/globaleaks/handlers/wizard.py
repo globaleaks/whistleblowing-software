@@ -40,6 +40,7 @@ def wizard(store, request, language):
 
     _, receiver = db_create_receiver_user(store, request['receiver'], language)
 
+    request['context']['name'] = u'Default'
     request['context']['receivers'] = [receiver.id]
     context = db_create_context(store, request['context'], language)
 
