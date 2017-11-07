@@ -144,37 +144,7 @@
       </button>
     </div>
   </div>
-  <div id="WizardStep5" data-ng-show="step == 5" data-ng-form="wizardFormStep5">
-    <div class="row wizard-block">
-      <div class="title" data-translate>Context</div>
-      <div class="col-md-6">
-        <div class="form-group col-md-12">
-          <label class="col-md-4">
-            <span data-translate>Name</span>
-            <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
-          </label>
-          <div class="col-md-8" data-ng-class="{'has-error': wizardFormStep5.context_name.$error.required}">
-            <input name="context_name" class="form-control" data-ng-model="wizard.context.name" type="text" data-ng-attr-placeholder="{{'What is the topic of your whistleblowing project?' | translate}}"  maxlength="{{node.maximum_namesize}}" required>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-6">
-        <div class="wizard-help-hint" data-translate>Contexts are the categories to be selected by whistleblowers, when they perform their submission. Make sure to make them pertinent to your project.</div>
-      </div>
-      <br />
-    </div>
-    <div class="pager pull-right">
-      <button id="ButtonPrevious" class="btn btn-success btn-large" data-ng-click="step=step-1">
-        <i class="glyphicon glyphicon-circle-arrow-left"></i>
-        <span data-translate>previous step</span>
-      </button>
-      <button id="ButtonNext" class="btn btn-success btn-large" data-ng-click="step=step+1" data-ng-disabled="wizardFormStep5.$invalid">
-        <span data-translate>next step</span>
-        <i class="glyphicon glyphicon-circle-arrow-right"></i>
-      </button>
-    </div>
-  </div>
-  <div id="WizardStep6" data-ng-show="step == 6" data-ng-form="wizardFormStep6">
+  <div id="WizardStep6" data-ng-show="step == 5" data-ng-form="wizardFormStep5">
     <div class="row wizard-block">
       <div class="title" data-translate>Recipient</div>
       <div class="col-md-6">
@@ -183,7 +153,7 @@
             <span data-translate>Name</span>
             <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
           </label>
-          <div class="col-md-8" data-ng-class="{'has-error': wizardFormStep6.receiver_name.$error.required}">
+          <div class="col-md-8" data-ng-class="{'has-error': wizardFormStep5.receiver_name.$error.required}">
             <input name="receiver_name" class="form-control" data-ng-model="wizard.receiver.name" maxlength="{{node.maximum_namesize}}" type="text" data-ng-attr-placeholder="{{'Enter the name of the recipient' | translate}}" required>
           </div>
         </div>
@@ -192,9 +162,9 @@
             <span data-translate>Email address</span>
             <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
           </label>
-          <div class="col-md-8" data-ng-class="{'has-error': wizardFormStep6.receiver_email.$error.required || wizardFormStep6.receiver_email.$error.pattern}">
+          <div class="col-md-8" data-ng-class="{'has-error': wizardFormStep5.receiver_email.$error.required || wizardFormStep5.receiver_email.$error.pattern}">
             <input name="receiver_email" class="form-control" data-ng-model="wizard.receiver.mail_address"  maxlength="{{node.maximum_namesize}}" data-ng-pattern="email_regexp" type="text" data-ng-attr-placeholder="{{'Enter the email address used to notify the recipient' | translate}}" required>
-            <div class="text-danger" data-ng-show="wizardFormStep6.receiver_email.$error.pattern">
+            <div class="text-danger" data-ng-show="wizardFormStep5.receiver_email.$error.pattern">
               <span data-translate>Invalid email address</span>
             </div>
           </div>
@@ -217,13 +187,13 @@
         <i class="glyphicon glyphicon-circle-arrow-left"></i>
         <span data-translate>previous step</span>
       </button>
-      <button id="ButtonNext" class="btn btn-success btn-large" data-ng-click="step=step+1" data-ng-disabled="wizardFormStep6.$invalid">
+      <button id="ButtonNext" class="btn btn-success btn-large" data-ng-click="step=step+1" data-ng-disabled="wizardFormStep5.$invalid">
         <span data-translate>next step</span>
         <i class="glyphicon glyphicon-circle-arrow-right"></i>
       </button>
     </div>
   </div>
-  <div id="WizardStep7" data-ng-show="step == 7" data-ng-form="wizardFormStep7">
+  <div id="WizardStep6" data-ng-show="step == 6" data-ng-form="wizardFormStep6">
     <div class="row wizard-block">
       <div class="col-md-12 title1" data-translate>License Agreement</div>
       <div class="col-md-12" data-translate>Please review the license terms before proceeding.</div>
@@ -240,13 +210,13 @@
         <i class="glyphicon glyphicon-circle-arrow-left"></i>
         <span data-translate>previous step</span>
       </button>
-      <button id="ButtonNext" class="btn btn-success btn-large" data-ng-click="complete()" data-ng-disabled="wizardFormStep7.$invalid">
+      <button id="ButtonNext" class="btn btn-success btn-large" data-ng-click="complete()" data-ng-disabled="wizardFormStep6.$invalid">
         <span data-translate>next step</span>
         <i class="glyphicon glyphicon-circle-arrow-right"></i>
       </button>
     </div>
   </div>
-  <div id="WizardStep8" data-ng-show="step == 8">
+  <div id="WizardStep7" data-ng-show="step == 7">
     <div class="row wizard-block">
       <div class="col-md-10">
         <div class="congratulations">
