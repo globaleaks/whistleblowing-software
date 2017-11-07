@@ -61,7 +61,11 @@ class HTTPSProcess(Process):
             self.log("HTTPS proxy listening on %s" % port)
 
     def sigusr1(self):
-        def _sigusr1():
+        self.shutdown()
+        reactor.stop()
+
+    def sigusr2(self):
+        def _sigusr2():
             self.shutdown()
 
             check = datetime_now() + timedelta(seconds=120)
@@ -73,7 +77,7 @@ class HTTPSProcess(Process):
 
             LoopingCall(timeout).start(0.1)
 
-        reactor.callFromThread(_sigusr1)
+        reactor.callFromThread(_sigusr2)
 
     def shutdown(self):
         for port in self.ports:
@@ -86,7 +90,7 @@ class HTTPSProcess(Process):
 
         del self.cfg['tls_socket_fds'][:]
 
-        #self.http_proxy_factory.stopFactory()
+        self.http_proxy_factory.stopFactory()
 
         Process.shutdown(self)
 
