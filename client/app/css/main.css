@@ -477,3 +477,7 @@ html[dir] .btn-circle {
 .hidden {
   display: none;
 }
+
+html[dir] .badge-info {
+  background-color: #337ab7;
+}
