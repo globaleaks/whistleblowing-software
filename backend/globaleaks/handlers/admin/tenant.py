@@ -8,7 +8,7 @@ import os
 from twisted.internet.defer import inlineCallbacks, returnValue
 
 from globaleaks import models
-from globaleaks.db import refresh_memory_variables, db_refresh_memory_variables
+from globaleaks.db import db_refresh_memory_variables
 from globaleaks.db.appdata import db_update_defaults, load_appdata
 from globaleaks.handlers.admin import files
 from globaleaks.handlers.base import BaseHandler
@@ -51,6 +51,8 @@ def db_create(store, desc):
         with open(os.path.join(Settings.client_path, file_desc[1]), 'r') as f:
             files.db_add_file(store, t.id, f.read(), file_desc[0])
 
+    db_refresh_memory_variables(store)
+
     return t
 
 
@@ -84,17 +86,20 @@ def update(store, id, request):
 def delete(store, id):
     models.db_delete(store, models.Tenant, models.Tenant.id != 1, id=id)
 
+    db_refresh_memory_variables(store)
+
+
+
 
 @inlineCallbacks
 def refresh_tenant_states():
-    # update HS
-    service_job = State.services[0]
-    log.info("Type %s" % service_job.tor_conn.protocol)
+    # Remove selected onion services and add missing services
+    yield State.onion_service_job.remove_unwanted_hidden_services()
+    yield State.onion_service_job.add_all_hidden_services()
 
-    yield service_job.remove_unwanted_hidden_services()
-    yield service_job.add_all_hidden_services()
-
-    # update HTTPS
+    # Power cycle HTTPS processes
+    yield State.process_supervisor.shutdown()
+    yield State.process_supervisor.maybe_launch_https_workers()
 
 
 class TenantCollection(BaseHandler):
@@ -116,7 +121,6 @@ class TenantCollection(BaseHandler):
         request = self.validate_message(self.request.content.read(), requests.AdminTenantDesc)
 
         t = yield create(request)
-        yield refresh_memory_variables()
         yield refresh_tenant_states()
 
         returnValue(t)
@@ -132,7 +136,6 @@ class TenantInstance(BaseHandler):
         Delete the specified tenant.
         """
         yield delete(int(tenant_id))
-        yield refresh_memory_variables()
         yield refresh_tenant_states()
 
 
@@ -143,7 +146,10 @@ class TenantInstance(BaseHandler):
         request = self.validate_message(self.request.content.read(),
                                         requests.AdminTenantDesc)
 
-        return update(int(tenant_id), request)
+        t = update(int(tenant_id), request)
+        yield refresh_tenant_states()
+        returnValue(t)
+
 
     def get(self, tenant_id):
         return get(id=int(tenant_id))

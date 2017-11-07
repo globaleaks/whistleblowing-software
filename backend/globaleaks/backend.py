@@ -106,14 +106,15 @@ class Service(service.Service):
         return d
 
     def start_jobs(self):
-        from globaleaks.jobs import jobs_list, services_list
+        from globaleaks.jobs import jobs_list, onion_service
         from globaleaks.jobs.base import LoopingJobsMonitor
 
         for job in jobs_list:
             self.state.jobs.append(job())
 
-        for service in services_list:
-            self.state.services.append(service())
+        self.state.onion_service_job = onion_service.OnionService()
+        # The only service job currently is the OnionService
+        self.state.services.append(self.state.onion_service_job)
 
         self.state.jobs_monitor = LoopingJobsMonitor(self.state.jobs)
 
