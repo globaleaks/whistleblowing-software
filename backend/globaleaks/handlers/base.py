@@ -164,6 +164,7 @@ class BaseHandler(object):
     cache_resource = False
     invalidate_cache = False
     bypass_basic_auth = False
+    root_tenant_only = False
 
     def __init__(self, state, request):
         self.name = type(self).__name__

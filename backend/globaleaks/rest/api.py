@@ -19,6 +19,7 @@ from globaleaks.handlers import exception, \
     export, l10n, wizard, \
     base, user, shorturl, \
     robots
+
 from globaleaks.handlers.admin import context as admin_context
 from globaleaks.handlers.admin import field as admin_field
 from globaleaks.handlers.admin import files as admin_files
@@ -44,7 +45,6 @@ from twisted.internet import defer
 from twisted.web.resource import Resource
 from twisted.web.server import NOT_DONE_YET
 
-XTIDX = 1
 
 uuid_regexp = r'([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})'
 key_regexp = r'([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}|[a-z_]{0,100})'
@@ -331,13 +331,16 @@ class APIResourceWrapper(Resource):
         if not method in self.method_map or not hasattr(handler, method):
             self.handle_exception(errors.MethodNotImplemented(), request)
             return b''
-        else:
-            request.setResponseCode(self.method_map[method])
+
+        request.setResponseCode(self.method_map[method])
 
         f = getattr(handler, method)
-
         groups = [unicode(g) for g in match.groups()]
         h = handler(State, request, **args)
+
+        if h.root_tenant_only and request.tid != 1:
+            self.handle_exception(errors.ForbiddenOperation(), request)
+            return b''
 
         d = defer.maybeDeferred(f, h, *groups)
 
