@@ -101,6 +101,7 @@ class TenantCollection(BaseHandler):
     check_roles = 'admin'
     cache_resource = True
     invalidate_cache = True
+    root_tenant_only = True
 
     def get(self):
         """
@@ -121,6 +122,7 @@ class TenantCollection(BaseHandler):
 class TenantInstance(BaseHandler):
     check_roles = 'admin'
     invalidate_cache = True
+    root_tenant_only = True
 
     def delete(self, tenant_id):
         """
@@ -129,7 +131,6 @@ class TenantInstance(BaseHandler):
         d = delete(int(tenant_id))
         d.addCallback(refresh_tenant_states)
         return d
-
 
     def put(self, tenant_id):
         """
@@ -141,7 +142,6 @@ class TenantInstance(BaseHandler):
         d = update(int(tenant_id), request)
         d.addCallback(refresh_tenant_states)
         return d
-
 
     def get(self, tenant_id):
         return get(id=int(tenant_id))

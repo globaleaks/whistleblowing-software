@@ -27,6 +27,7 @@ def db_admin_serialize_node(store, tid, language):
     configured  = store.find(models.ReceiverContext, tid=tid).count() > 0
 
     misc_dict = {
+        'tid': tid,
         'version': priv_dict.get_val(u'version'),
         'latest_version': priv_dict.get_val(u'latest_version'),
         'languages_supported': LANGUAGES_SUPPORTED,
