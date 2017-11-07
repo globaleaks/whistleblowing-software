@@ -303,7 +303,8 @@ def db_create_submission(store, request, uploaded_files, client_using_tor):
 
     context, questionnaire = store.find((models.Context, models.Questionnaire),
                                         models.Context.id == request['context_id'],
-                                        models.Questionnaire.id == models.Context.questionnaire_id).one()
+                                        models.Questionnaire.id == models.Context.questionnaire_id,
+                                        models.Questionnaire.tid == models.Context.tid).one()
     if not context:
         raise errors.ModelNotFound(models.Context)
 
