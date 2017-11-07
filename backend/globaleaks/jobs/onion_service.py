@@ -10,7 +10,6 @@ from globaleaks import models
 from globaleaks.jobs.base import BaseJob
 from globaleaks.models.config import NodeFactory, PrivateFactory
 from globaleaks.orm import transact
-from globaleaks.rest.apicache import ApiCache
 from globaleaks.utils.utility import log
 from globaleaks.state import State
 
@@ -52,7 +51,6 @@ def set_onion_service_info(store, tid, hostname, key):
     # Update external application state
     State.tenant_cache[tid].onionservice = hostname
     State.tenant_hostname_id_map[hostname] = tid
-    ApiCache.invalidate()
 
 
 class OnionService(BaseJob):
@@ -139,7 +137,6 @@ class OnionService(BaseJob):
             if not hostname and not key:
                 yield set_onion_service_info(tid, ephs.hostname, ephs.private_key)
                 self.hs_map[ephs.hostname] = ephs
-                yield refresh_memory_variables()
 
         d = ephs.add_to_tor(self.tor_conn.protocol)
         return d.addCallback(initialization_callback) # pylint: disable=no-member
