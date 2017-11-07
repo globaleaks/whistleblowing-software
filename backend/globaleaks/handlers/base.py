@@ -506,7 +506,6 @@ class OperationHandler(BaseHandler):
         return func(self, request['args'], *args, **kwargs)
 
 
-
 class StaticFileHandler(BaseHandler):
     check_roles = '*'
     handler_exec_time_threshold = 30

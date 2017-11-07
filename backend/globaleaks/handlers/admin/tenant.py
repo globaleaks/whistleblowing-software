@@ -5,14 +5,18 @@
 # Implementation of the Tenant handlers
 import os
 
+from twisted.internet.defer import inlineCallbacks, returnValue
+
 from globaleaks import models
-from globaleaks.db import db_refresh_memory_variables
+from globaleaks.db import refresh_memory_variables, db_refresh_memory_variables
 from globaleaks.db.appdata import db_update_defaults, load_appdata
 from globaleaks.handlers.admin import files
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.orm import transact
 from globaleaks.rest import requests
+from globaleaks.utils.utility import log
 from globaleaks.settings import Settings
+from globaleaks.state import State
 
 
 def serialize_tenant(store, tenant):
@@ -47,8 +51,6 @@ def db_create(store, desc):
         with open(os.path.join(Settings.client_path, file_desc[1]), 'r') as f:
             files.db_add_file(store, t.id, f.read(), file_desc[0])
 
-    db_refresh_memory_variables(store)
-
     return t
 
 
@@ -81,7 +83,19 @@ def update(store, id, request):
 @transact
 def delete(store, id):
     models.db_delete(store, models.Tenant, models.Tenant.id != 1, id=id)
-    db_refresh_memory_variables(store)
+
+
+@inlineCallbacks
+def refresh_tenant_states():
+    # update HS
+    service_job = State.services[0]
+    log.info("Type %s" % service_job.tor_conn.protocol)
+
+    yield service_job.remove_unwanted_hidden_services()
+    yield service_job.add_all_hidden_services()
+
+    # update HTTPS
+
 
 class TenantCollection(BaseHandler):
     check_roles = 'admin'
@@ -94,24 +108,32 @@ class TenantCollection(BaseHandler):
         """
         return get_tenant_list()
 
+    @inlineCallbacks
     def post(self):
         """
         Create a new tenant
         """
         request = self.validate_message(self.request.content.read(), requests.AdminTenantDesc)
 
-        return create(request)
+        t = yield create(request)
+        yield refresh_memory_variables()
+        yield refresh_tenant_states()
+
+        returnValue(t)
 
 
 class TenantInstance(BaseHandler):
     check_roles = 'admin'
     invalidate_cache = True
 
+    @inlineCallbacks
     def delete(self, tenant_id):
         """
         Delete the specified tenant.
         """
-        return delete(int(tenant_id))
+        yield delete(int(tenant_id))
+        yield refresh_memory_variables()
+        yield refresh_tenant_states()
 
 
     def put(self, tenant_id):
