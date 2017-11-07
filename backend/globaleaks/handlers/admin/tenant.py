@@ -5,8 +5,6 @@
 # Implementation of the Tenant handlers
 import os
 
-from twisted.internet.defer import inlineCallbacks, returnValue
-
 from globaleaks import models
 from globaleaks.db import db_refresh_memory_variables
 from globaleaks.db.appdata import db_update_defaults, load_appdata
@@ -89,17 +87,14 @@ def delete(store, id):
     db_refresh_memory_variables(store)
 
 
-
-
-@inlineCallbacks
 def refresh_tenant_states():
     # Remove selected onion services and add missing services
-    yield State.onion_service_job.remove_unwanted_hidden_services()
-    yield State.onion_service_job.add_all_hidden_services()
+    d = State.onion_service_job.remove_unwanted_hidden_services()
+    d.addCallback(State.onion_service_job.add_all_hidden_services)
 
     # Power cycle HTTPS processes
-    yield State.process_supervisor.shutdown()
-    yield State.process_supervisor.maybe_launch_https_workers()
+    d.addCallback(State.process_supervisor.shutdown)
+    d.addCallback(State.process_supervisor.maybe_launch_https_workers)
 
 
 class TenantCollection(BaseHandler):
@@ -113,30 +108,27 @@ class TenantCollection(BaseHandler):
         """
         return get_tenant_list()
 
-    @inlineCallbacks
     def post(self):
         """
         Create a new tenant
         """
         request = self.validate_message(self.request.content.read(), requests.AdminTenantDesc)
 
-        t = yield create(request)
-        yield refresh_tenant_states()
-
-        returnValue(t)
+        d = create(request)
+        d.addCallback(refresh_tenant_states)
 
 
 class TenantInstance(BaseHandler):
     check_roles = 'admin'
     invalidate_cache = True
 
-    @inlineCallbacks
     def delete(self, tenant_id):
         """
         Delete the specified tenant.
         """
-        yield delete(int(tenant_id))
-        yield refresh_tenant_states()
+        d = delete(int(tenant_id))
+        d.addCallback(refresh_tenant_states)
+        return d
 
 
     def put(self, tenant_id):
@@ -146,9 +138,9 @@ class TenantInstance(BaseHandler):
         request = self.validate_message(self.request.content.read(),
                                         requests.AdminTenantDesc)
 
-        t = update(int(tenant_id), request)
-        yield refresh_tenant_states()
-        returnValue(t)
+        d = update(int(tenant_id), request)
+        d.addCallback(refresh_tenant_states)
+        return d
 
 
     def get(self, tenant_id):
