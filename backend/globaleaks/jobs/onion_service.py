@@ -7,7 +7,6 @@ from txtorcon import build_local_tor_connection
 from twisted.internet import reactor, defer
 
 from globaleaks import models
-from globaleaks.db import refresh_memory_variables
 from globaleaks.jobs.base import BaseJob
 from globaleaks.models.config import NodeFactory, PrivateFactory
 from globaleaks.orm import transact
@@ -50,8 +49,9 @@ def set_onion_service_info(store, tid, hostname, key):
     NodeFactory(store, tid).set_val(u'onionservice', hostname)
     PrivateFactory(store, tid).set_val(u'tor_onion_key', key)
 
+    # Update external application state
     State.tenant_cache[tid].onionservice = hostname
-
+    State.tenant_hostname_id_map[hostname] = tid
     ApiCache.invalidate()
 
 
@@ -142,8 +142,7 @@ class OnionService(BaseJob):
                 yield refresh_memory_variables()
 
         d = ephs.add_to_tor(self.tor_conn.protocol)
-        d.addCallback(initialization_callback) # pylint: disable=no-member
-        return d
+        return d.addCallback(initialization_callback) # pylint: disable=no-member
 
     @defer.inlineCallbacks
     def remove_unwanted_hidden_services(self):
@@ -157,7 +156,7 @@ class OnionService(BaseJob):
             if onion_addr not in tenant_services and onion_addr in self.hs_map:
                 ephs = self.hs_map.pop(onion_addr)
             elif onion_addr not in self.hs_map:
-                log.err('Hit unexpected condition: %s not in', onion_addr)
+                log.err('Hit unexpected condition: %s not in tenant_services', onion_addr)
                 ephs = object.__new__(EphemeralHiddenService)
                 ephs.hostname = onion_addr
             else:
