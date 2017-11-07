@@ -24,7 +24,7 @@ def db_admin_serialize_node(store, tid, language):
     priv_dict = PrivateFactory(store, tid)
 
     # Contexts and Receivers relationship
-    configured  = store.find(models.ReceiverContext, tid=tid).count() > 0
+    configured = store.find(models.ReceiverContext, tid=tid).count() > 0
 
     misc_dict = {
         'tid': tid,

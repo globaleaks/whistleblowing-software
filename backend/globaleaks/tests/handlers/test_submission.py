@@ -8,6 +8,7 @@ from globaleaks.utils.token import Token
 from twisted.internet.defer import inlineCallbacks, returnValue
 
 # eccolo quel grand genio del mio amico
+XTIDX = 1
 
 
 class TestSubmissionEncryptedScenario(helpers.TestHandlerWithPopulatedDB):
@@ -84,9 +85,9 @@ class TestSubmissionEncryptedScenario(helpers.TestHandlerWithPopulatedDB):
         self.submission_desc['answers'] = yield self.fill_random_answers(self.dummyContext['questionnaire_id'])
         receipt = yield self.create_submission(self.submission_desc)
 
-        wbtip_id = yield authentication.login_whistleblower(receipt, True)
+        wbtip_id = yield authentication.login_whistleblower(XTIDX, receipt, True)
 
-        wbtip_desc = yield wbtip.get_wbtip(wbtip_id, 'en')
+        wbtip_desc = yield wbtip.get_wbtip(XTIDX, wbtip_id, 'en')
 
         self.assertTrue('answers' in wbtip_desc)
 

@@ -20,25 +20,23 @@ from globaleaks.utils.utility import msdos_encode
 from globaleaks.utils.zipstream import ZipStream
 
 
-XTIDX = 1
-
-
 @transact
-def get_tip_export(store, user_id, rtip_id, language):
-    rtip, itip = db_access_rtip(store, user_id, rtip_id)
+def get_tip_export(store, tid, user_id, rtip_id, language):
+    rtip, itip = db_access_rtip(store, tid, user_id, rtip_id)
 
     user, context = store.find((models.User, models.Context),
                                models.User.id == rtip.receiver_id,
                                models.Context.id == models.InternalTip.context_id,
-                               models.InternalTip.id == rtip.internaltip_id).one()
+                               models.InternalTip.id == rtip.internaltip_id,
+                               models.User.tid == tid).one()
 
-    rtip_dict = serialize_rtip(store, rtip, itip, language)
+    rtip_dict = serialize_rtip(store, tid, rtip, itip, language)
 
     export_dict = {
         'type': u'export_template',
-        'node': db_admin_serialize_node(store, XTIDX, language),
-        'notification': db_get_notification(store, language),
-        'tip': serialize_rtip(store, rtip, itip, language),
+        'node': db_admin_serialize_node(store, tid, language),
+        'notification': db_get_notification(store, tid, language),
+        'tip': serialize_rtip(store, tid, rtip, itip, language),
         'user': user_serialize_user(store, user, language),
         'context': admin_serialize_context(store, context, language),
         'comments': rtip_dict['comments'],
@@ -52,16 +50,17 @@ def get_tip_export(store, user_id, rtip_id, language):
 
     export_dict['files'].append({'buf': export_template, 'name': "data.txt"})
 
-    for rfile in store.find(models.ReceiverFile, models.ReceiverFile.receivertip_id == rtip_id):
+    for rfile in store.find(models.ReceiverFile, models.ReceiverFile.receivertip_id == rtip_id, tid=tid):
         rfile.downloads += 1
-        file_dict = models.serializers.serialize_rfile(store, rfile)
+        file_dict = models.serializers.serialize_rfile(store, tid, rfile)
         file_dict['name'] = 'files/' + file_dict['name']
         export_dict['files'].append(file_dict)
 
     for wf in store.find(models.WhistleblowerFile,
                          models.WhistleblowerFile.receivertip_id == models.ReceiverTip.id,
-                         models.ReceiverTip.internaltip_id == rtip.internaltip_id):
-        file_dict = models.serializers.serialize_wbfile(store, wf)
+                         models.ReceiverTip.internaltip_id == rtip.internaltip_id,
+                         tid=tid):
+        file_dict = models.serializers.serialize_wbfile(tid, wf)
         file_dict['name'] = 'files_from_recipients/' + file_dict['name']
         export_dict['files'].append(file_dict)
 
@@ -128,7 +127,10 @@ class ExportHandler(BaseHandler):
 
     @inlineCallbacks
     def get(self, rtip_id):
-        tip_export = yield get_tip_export(self.current_user.user_id, rtip_id, self.request.language)
+        tip_export = yield get_tip_export(self.request.tid,
+                                          self.current_user.user_id,
+                                          rtip_id,
+                                          self.request.language)
 
         self.request.setHeader('X-Download-Options', 'noopen')
         self.request.setHeader('Content-Type', 'application/octet-stream')

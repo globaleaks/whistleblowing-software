@@ -18,13 +18,13 @@ def langfile_path(lang):
 
 
 @transact
-def get_l10n(store, lang):
+def get_l10n(store, tid, lang):
     path = langfile_path(lang)
     directory_traversal_check(Settings.client_path, path)
 
     texts = read_json_file(path)
 
-    custom_texts = store.find(models.CustomTexts, models.CustomTexts.lang == lang).one()
+    custom_texts = store.find(models.CustomTexts, lang=lang, tid=tid).one()
     custom_texts = custom_texts.texts if custom_texts is not None else {}
 
     texts.update(custom_texts)
@@ -41,4 +41,4 @@ class L10NHandler(BaseHandler):
     cache_resource = True
 
     def get(self, lang):
-        return get_l10n(lang)
+        return get_l10n(self.request.tid, lang)

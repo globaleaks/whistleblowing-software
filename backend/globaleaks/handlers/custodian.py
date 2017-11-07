@@ -10,14 +10,16 @@ from globaleaks.rest import requests
 from globaleaks.utils.utility import datetime_to_ISO8601, datetime_now
 
 
-def serialize_identityaccessrequest(store, identityaccessrequest):
+def serialize_identityaccessrequest(store, tid, identityaccessrequest):
     itip, user = store.find((models.InternalTip, models.User),
                             models.InternalTip.id == models.ReceiverTip.internaltip_id,
                             models.User.id == models.ReceiverTip.receiver_id,
-                            models.ReceiverTip.id == identityaccessrequest.receivertip_id).one()
+                            models.ReceiverTip.id == identityaccessrequest.receivertip_id,
+                            models.User.tid == tid).one()
 
     reply_user = store.find(models.User,
-                            models.User.id == identityaccessrequest.reply_user_id).one()
+                            models.User.id == identityaccessrequest.reply_user_id,
+                            tid=tid).one()
 
     return {
         'id': identityaccessrequest.id,
@@ -33,24 +35,30 @@ def serialize_identityaccessrequest(store, identityaccessrequest):
     }
 
 
-@transact
-def get_identityaccessrequest_list(store):
-    return [serialize_identityaccessrequest(store, iar)
-        for iar in store.find(models.IdentityAccessRequest, models.IdentityAccessRequest.reply == u'pending')]
+
+def db_get_identityaccessrequest_list(store, tid, rtip_id, language):
+    return [serialize_identityaccessrequest(store, tid, iar) for iar in store.find(models.IdentityAccessRequest, receivertip_id=rtip_id, tid=tid)]
 
 
 @transact
-def get_identityaccessrequest(store, identityaccessrequest_id):
+def get_identityaccessrequest_list(store, tid):
+    return [serialize_identityaccessrequest(store, tid, iar)
+        for iar in store.find(models.IdentityAccessRequest, models.IdentityAccessRequest.reply == u'pending', tid=tid)]
+
+
+@transact
+def get_identityaccessrequest(store, tid, identityaccessrequest_id):
     iar = store.find(models.IdentityAccessRequest,
-                     models.IdentityAccessRequest.id == identityaccessrequest_id).one()
-    return serialize_identityaccessrequest(store, iar)
+                     models.IdentityAccessRequest.id == identityaccessrequest_id, tid=tid).one()
+    return serialize_identityaccessrequest(store, tid, iar)
 
 
 @transact
-def update_identityaccessrequest(store, user_id, identityaccessrequest_id, request):
+def update_identityaccessrequest(store, tid, user_id, identityaccessrequest_id, request):
     iar, rtip = store.find((models.IdentityAccessRequest, models.ReceiverTip),
                            models.IdentityAccessRequest.id == identityaccessrequest_id,
-                           models.ReceiverTip.id == models.IdentityAccessRequest.receivertip_id).one()
+                           models.ReceiverTip.id == models.IdentityAccessRequest.receivertip_id,
+                           models.ReceiverTip.tid == tid).one()
 
     if iar.reply == 'pending':
         iar.reply_date = datetime_now()
@@ -61,7 +69,7 @@ def update_identityaccessrequest(store, user_id, identityaccessrequest_id, reque
         if iar.reply == 'authorized':
             rtip.can_access_whistleblower_identity = True
 
-    return serialize_identityaccessrequest(store, iar)
+    return serialize_identityaccessrequest(store, tid, iar)
 
 
 class IdentityAccessRequestInstance(BaseHandler):
@@ -76,7 +84,7 @@ class IdentityAccessRequestInstance(BaseHandler):
         Response: IdentityAccessRequestDesc
         Errors: IdentityAccessRequestIdNotFound, InvalidInputFormat, InvalidAuthentication
         """
-        return get_identityaccessrequest(identityaccessrequest_id)
+        return get_identityaccessrequest(self.request.tid, identityaccessrequest_id)
 
     def put(self, identityaccessrequest_id):
         """
@@ -87,7 +95,8 @@ class IdentityAccessRequestInstance(BaseHandler):
         """
         request = self.validate_message(self.request.content.read(), requests.CustodianIdentityAccessRequestDesc)
 
-        return update_identityaccessrequest(self.current_user.user_id,
+        return update_identityaccessrequest(self.request.tid,
+                                            self.current_user.user_id,
                                             identityaccessrequest_id,
                                             request)
 
@@ -104,4 +113,4 @@ class IdentityAccessRequestsCollection(BaseHandler):
         Response: identityaccessrequestsList
         Errors: InvalidAuthentication
         """
-        return get_identityaccessrequest_list()
+        return get_identityaccessrequest_list(self.request.tid)
