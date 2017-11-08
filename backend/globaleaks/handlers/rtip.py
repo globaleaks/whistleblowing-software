@@ -116,19 +116,19 @@ def serialize_message(store, message):
     }
 
 
-def serialize_rtip(store, tid, rtip, itip, language):
+def serialize_rtip(store, rtip, itip, language):
     user_id = rtip.receiver_id
 
-    ret = serialize_usertip(store, tid, rtip, itip, language)
+    ret = serialize_usertip(store, rtip, itip, language)
 
     ret['id'] = rtip.id
     ret['receiver_id'] = user_id
     ret['label'] = rtip.label
-    ret['comments'] = db_get_itip_comment_list(store, tid, itip)
-    ret['messages'] = db_get_itip_message_list(store, tid, rtip)
-    ret['rfiles'] = db_receiver_get_rfile_list(store, tid, rtip.id)
-    ret['wbfiles'] = db_receiver_get_wbfile_list(store, tid, itip.id)
-    ret['iars'] = db_get_identityaccessrequest_list(store, tid, rtip.id, language)
+    ret['comments'] = db_get_itip_comment_list(store, itip.tid, itip)
+    ret['messages'] = db_get_itip_message_list(store, itip.tid, rtip)
+    ret['rfiles'] = db_receiver_get_rfile_list(store, itip.tid, rtip.id)
+    ret['wbfiles'] = db_receiver_get_wbfile_list(store, itip.tid, itip.id)
+    ret['iars'] = db_get_identityaccessrequest_list(store, itip.tid, rtip.id, language)
     ret['enable_notifications'] = bool(rtip.enable_notifications)
 
     return ret
@@ -214,7 +214,7 @@ def db_get_rtip(store, tid, user_id, rtip_id, language):
     rtip.access_counter += 1
     rtip.last_access = datetime_now()
 
-    return serialize_rtip(store, tid, rtip, itip, language)
+    return serialize_rtip(store, rtip, itip, language)
 
 
 def db_mark_file_for_secure_deletion(store, relpath):

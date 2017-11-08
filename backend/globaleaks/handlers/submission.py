@@ -227,10 +227,10 @@ def db_get_itip_receiver_list(store, itip):
     return ret
 
 
-def serialize_itip(store, tid, internaltip, language):
+def serialize_itip(store, internaltip, language):
     wb_access_revoked = store.find(models.WhistleblowerTip,
                                    models.WhistleblowerTip.id == internaltip.id,
-                                   tid=tid).count() == 0
+                                   tid=internaltip.tid).count() == 0
 
     return {
         'id': internaltip.id,
@@ -240,7 +240,7 @@ def serialize_itip(store, tid, internaltip, language):
         'progressive': internaltip.progressive,
         'sequence_number': get_submission_sequence_number(internaltip),
         'context_id': internaltip.context_id,
-        'questionnaire': db_serialize_archived_questionnaire_schema(store, tid, internaltip.questionnaire_hash, language),
+        'questionnaire': db_serialize_archived_questionnaire_schema(store, internaltip.tid, internaltip.questionnaire_hash, language),
         'receivers': db_get_itip_receiver_list(store, internaltip),
         'tor2web': internaltip.tor2web,
         'enable_two_way_comments': internaltip.enable_two_way_comments,
@@ -254,11 +254,11 @@ def serialize_itip(store, tid, internaltip, language):
     }
 
 
-def serialize_usertip(store, tid, usertip, itip, language):
-    ret = serialize_itip(store, tid, itip, language)
+def serialize_usertip(store, usertip, itip, language):
+    ret = serialize_itip(store, itip, language)
     ret['id'] = usertip.id
     ret['internaltip_id'] = itip.id
-    ret['answers'] = db_serialize_questionnaire_answers(store, tid, usertip, itip)
+    ret['answers'] = db_serialize_questionnaire_answers(store, itip.tid, usertip, itip)
     ret['total_score'] = itip.total_score
     return ret
 

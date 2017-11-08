@@ -513,7 +513,7 @@ class TestGL(unittest.TestCase):
         for r, i in store.find((models.ReceiverTip, models.InternalTip),
                                models.ReceiverTip.internaltip_id == models.InternalTip.id,
                                models.ReceiverTip.tid == XTIDX):
-            ret.append(rtip.serialize_rtip(store, XTIDX, r, i, 'en'))
+            ret.append(rtip.serialize_rtip(store, r, i, 'en'))
 
         return ret
 
@@ -527,7 +527,7 @@ class TestGL(unittest.TestCase):
         for w, i in store.find((models.WhistleblowerTip, models.InternalTip),
                                models.WhistleblowerTip.id == models.InternalTip.id,
                                models.InternalTip.tid == XTIDX):
-            x = wbtip.serialize_wbtip(store, XTIDX, w, i, 'en')
+            x = wbtip.serialize_wbtip(store, w, i, 'en')
             r_ids = store.find(models.ReceiverTip.receiver_id,
                                models.ReceiverTip.internaltip_id == w.id,
                                models.ReceiverTip.tid == XTIDX)

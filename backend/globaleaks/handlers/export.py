@@ -30,13 +30,13 @@ def get_tip_export(store, tid, user_id, rtip_id, language):
                                models.InternalTip.id == rtip.internaltip_id,
                                models.User.tid == tid).one()
 
-    rtip_dict = serialize_rtip(store, tid, rtip, itip, language)
+    rtip_dict = serialize_rtip(store, rtip, itip, language)
 
     export_dict = {
         'type': u'export_template',
         'node': db_admin_serialize_node(store, tid, language),
         'notification': db_get_notification(store, tid, language),
-        'tip': serialize_rtip(store, tid, rtip, itip, language),
+        'tip': rtip_dict,
         'user': user_serialize_user(store, user, language),
         'context': admin_serialize_context(store, context, language),
         'comments': rtip_dict['comments'],
