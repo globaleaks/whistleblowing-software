@@ -21,9 +21,6 @@ from globaleaks.utils.templating import Templating
 from globaleaks.utils.utility import log
 
 
-XTIDX = 1
-
-
 trigger_template_map = {
     'ReceiverTip': u'tip',
     'Message': u'message',
@@ -40,28 +37,32 @@ trigger_model_map = {
 }
 
 
+def gen_cache_key(*args):
+    r = '-'.join(['{}'.format(arg) for arg in args])
+    return r
+
 class MailGenerator(object):
     def __init__(self):
         self.cache = {}
 
-    def serialize_config(self, store, key, language):
-        cache_key = key + '-' + language
+    def serialize_config(self, store, key, tid, language):
+        cache_key = gen_cache_key(key, tid, language)
         cache_obj = None
 
         if cache_key not in self.cache:
             if key == 'node':
-                cache_obj = db_admin_serialize_node(store, XTIDX, language)
+                cache_obj = db_admin_serialize_node(store, tid, language)
             elif key == 'notification':
-                cache_obj = db_get_notification(store, language)
+                cache_obj = db_get_notification(store, tid, language)
 
             self.cache[cache_key] = cache_obj
 
         return self.cache[cache_key]
 
-    def serialize_obj(self, store, key, obj, language):
+    def serialize_obj(self, store, key, obj, tid, language):
         obj_id = obj.id
 
-        cache_key = key + '-' + obj_id + '-' + language
+        cache_key = gen_cache_key(key, tid, obj_id, language)
         cache_obj = None
 
         if cache_key not in self.cache:
@@ -84,57 +85,64 @@ class MailGenerator(object):
         return self.cache[cache_key]
 
     def process_ReceiverTip(self, store, rtip, data):
+        tid = rtip.tid
         user, context = store.find((models.User, models.Context),
                                    models.User.id == rtip.receiver_id,
                                    models.InternalTip.id == rtip.internaltip_id,
-                                   models.Context.id == models.InternalTip.context_id).one()
+                                   models.Context.id == models.InternalTip.context_id,
+                                   models.User.tid == tid).one()
 
-        data['user'] = self.serialize_obj(store, 'user', user, user.language)
-        data['tip'] = self.serialize_obj(store, 'tip', rtip, user.language)
-        data['context'] = self.serialize_obj(store, 'context', context, user.language)
+        data['user'] = self.serialize_obj(store, 'user', user, tid, user.language)
+        data['tip'] = self.serialize_obj(store, 'tip', rtip, tid, user.language)
+        data['context'] = self.serialize_obj(store, 'context', context, tid, user.language)
 
-        self.process_mail_creation(store, data)
+        self.process_mail_creation(store, tid, data)
 
     def process_Message(self, store, message, data):
-        # if the message is destinated to the whistleblower no mail should be sent
+        # if the message was created by a receiver do not generate mails
         if message.type == u"receiver":
             return
 
+        tid = message.tid
         user, context, rtip = store.find((models.User, models.Context, models.ReceiverTip),
                                          models.User.id == models.ReceiverTip.receiver_id,
                                          models.ReceiverTip.id == models.Message.receivertip_id,
                                          models.Context.id == models.InternalTip.context_id,
                                          models.InternalTip.id == models.ReceiverTip.internaltip_id,
-                                         models.Message.id == message.id).one()
+                                         models.Message.id == message.id,
+                                         models.Message.tid == tid).one()
 
-        data['user'] = self.serialize_obj(store, 'user', user, user.language)
-        data['tip'] = self.serialize_obj(store, 'tip', rtip, user.language)
-        data['context'] = self.serialize_obj(store, 'context', context, user.language)
-        data['message'] = self.serialize_obj(store, 'message', message, user.language)
+        data['user'] = self.serialize_obj(store, 'user', user, tid, user.language)
+        data['tip'] = self.serialize_obj(store, 'tip', rtip, tid, user.language)
+        data['context'] = self.serialize_obj(store, 'context', context, tid, user.language)
+        data['message'] = self.serialize_obj(store, 'message', message, tid, user.language)
 
-        self.process_mail_creation(store, data)
+        self.process_mail_creation(store, tid, data)
 
     def process_Comment(self, store, comment, data):
+        tid = comment.tid
         for user, context, rtip in store.find((models.User, models.Context, models.ReceiverTip),
                                               models.User.id == models.ReceiverTip.receiver_id,
                                               models.ReceiverTip.internaltip_id == comment.internaltip_id,
                                               models.Context.id == models.InternalTip.context_id,
                                               models.InternalTip.id == comment.internaltip_id,
-                                              models.ReceiverTip.internaltip_id == comment.internaltip_id):
+                                              models.ReceiverTip.internaltip_id == comment.internaltip_id,
+                                              models.User.tid == tid):
 
             # avoid to send emails to the receiver that written the comment
             if comment.author_id == rtip.receiver_id:
                 continue
 
-            dataX = copy.deepcopy(data)
-            dataX['user'] = self.serialize_obj(store, 'user', user, user.language)
-            dataX['tip'] = self.serialize_obj(store, 'tip', rtip, user.language)
-            dataX['context'] = self.serialize_obj(store, 'context', context, user.language)
-            dataX['comment'] = self.serialize_obj(store, 'comment', comment, user.language)
+            umsg = copy.deepcopy(data)
+            umsg['user'] = self.serialize_obj(store, 'user', user, tid, user.language)
+            umsg['tip'] = self.serialize_obj(store, 'tip', rtip, tid, user.language)
+            umsg['context'] = self.serialize_obj(store, 'context', context, tid, user.language)
+            umsg['comment'] = self.serialize_obj(store, 'comment', comment, tid, user.language)
 
-            self.process_mail_creation(store, dataX)
+            self.process_mail_creation(store, tid, umsg)
 
     def process_ReceiverFile(self, store, rfile, data):
+        tid = rfile.tid
         user, context, rtip, ifile = store.find((models.User, models.Context, models.ReceiverTip, models.InternalFile),
                                                 models.User.id == models.ReceiverTip.receiver_id,
                                                 models.InternalFile.id == rfile.internalfile_id,
@@ -146,15 +154,15 @@ class MailGenerator(object):
         if ifile.submission:
             return
 
-        data['user'] = self.serialize_obj(store, 'user', user, user.language)
-        data['tip'] = self.serialize_obj(store, 'tip', rtip, user.language)
-        data['user'] = self.serialize_obj(store, 'user', user, user.language)
-        data['context'] = self.serialize_obj(store, 'context', context, user.language)
-        data['file'] = self.serialize_obj(store, 'file', ifile, user.language)
+        data['user'] = self.serialize_obj(store, 'user', user, tid, user.language)
+        data['tip'] = self.serialize_obj(store, 'tip', rtip, tid, user.language)
+        data['user'] = self.serialize_obj(store, 'user', user, tid, user.language)
+        data['context'] = self.serialize_obj(store, 'context', context, tid, user.language)
+        data['file'] = self.serialize_obj(store, 'file', ifile, tid, user.language)
 
-        self.process_mail_creation(store, data)
+        self.process_mail_creation(store, tid, data)
 
-    def process_mail_creation(self, store, data):
+    def process_mail_creation(self, store, tid, data):
         user_id = data['user']['id']
 
         # Do not spool emails if the receiver has opted out of ntfns for this tip.
@@ -165,24 +173,24 @@ class MailGenerator(object):
         # https://github.com/globaleaks/GlobaLeaks/issues/798
         # TODO: the current solution is global and configurable only by the admin
         sent_emails = State.get_mail_counter(user_id)
-        if sent_emails >= State.tenant_cache[1].notif.notification_threshold_per_hour:
+        if sent_emails >= State.tenant_cache[tid].notif.notification_threshold_per_hour:
             log.debug("Discarding emails for receiver %s due to threshold already exceeded for the current hour",
                       user_id)
             return
 
         State.increment_mail_counter(user_id)
-        if sent_emails >= State.tenant_cache[1].notif.notification_threshold_per_hour:
+        if sent_emails >= State.tenant_cache[tid].notif.notification_threshold_per_hour:
             log.info("Reached threshold of %d emails with limit of %d for receiver %s",
                      sent_emails,
-                     State.tenant_cache[1].notif.notification_threshold_per_hour,
+                     State.tenant_cache[tid].notif.notification_threshold_per_hour,
                      user_id)
 
             # simply changing the type of the notification causes
             # to send the notification_limit_reached
             data['type'] = u'receiver_notification_limit_reached'
 
-        data['notification'] = self.serialize_config(store, 'notification', data['user']['language'])
-        data['node'] = self.serialize_config(store, 'node', data['user']['language'])
+        data['notification'] = self.serialize_config(store, 'notification', tid, data['user']['language'])
+        data['node'] = self.serialize_config(store, 'node', tid, data['user']['language'])
 
         if not data['node']['allow_unencrypted'] and len(data['user']['pgp_key_public']) == 0:
             return
@@ -196,7 +204,8 @@ class MailGenerator(object):
         store.add(models.Mail({
             'address': data['user']['mail_address'],
             'subject': subject,
-            'body': body
+            'body': body,
+            'tid': tid,
         }))
 
 
