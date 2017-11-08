@@ -25,9 +25,9 @@
       "dev": true
     },
     "@types/selenium-webdriver": {
-      "version": "2.53.42",
+      "version": "2.53.43",
       "from": "@types/selenium-webdriver@>=2.53.39 <2.54.0",
-      "resolved": "https://registry.npmjs.org/@types/selenium-webdriver/-/selenium-webdriver-2.53.42.tgz",
+      "resolved": "https://registry.npmjs.org/@types/selenium-webdriver/-/selenium-webdriver-2.53.43.tgz",
       "dev": true
     },
     "abbrev": {
@@ -43,9 +43,9 @@
       "dev": true
     },
     "acorn": {
-      "version": "5.1.2",
+      "version": "5.2.1",
       "from": "acorn@>=5.1.1 <6.0.0",
-      "resolved": "https://registry.npmjs.org/acorn/-/acorn-5.1.2.tgz",
+      "resolved": "https://registry.npmjs.org/acorn/-/acorn-5.2.1.tgz",
       "dev": true
     },
     "acorn-jsx": {
@@ -83,15 +83,15 @@
       }
     },
     "ajv": {
-      "version": "5.2.4",
+      "version": "5.3.0",
       "from": "ajv@>=5.1.0 <6.0.0",
-      "resolved": "https://registry.npmjs.org/ajv/-/ajv-5.2.4.tgz",
+      "resolved": "https://registry.npmjs.org/ajv/-/ajv-5.3.0.tgz",
       "dev": true
     },
     "ajv-keywords": {
-      "version": "2.1.0",
+      "version": "2.1.1",
       "from": "ajv-keywords@>=2.1.0 <3.0.0",
-      "resolved": "https://registry.npmjs.org/ajv-keywords/-/ajv-keywords-2.1.0.tgz",
+      "resolved": "https://registry.npmjs.org/ajv-keywords/-/ajv-keywords-2.1.1.tgz",
       "dev": true
     },
     "align-text": {
@@ -152,19 +152,19 @@
       "resolved": "https://registry.npmjs.org/angular-sanitize/-/angular-sanitize-1.6.6.tgz"
     },
     "angular-translate": {
-      "version": "2.15.2",
-      "from": "angular-translate@2.15.2",
-      "resolved": "https://registry.npmjs.org/angular-translate/-/angular-translate-2.15.2.tgz"
+      "version": "2.16.0",
+      "from": "angular-translate@2.16.0",
+      "resolved": "https://registry.npmjs.org/angular-translate/-/angular-translate-2.16.0.tgz"
     },
     "angular-translate-loader-static-files": {
-      "version": "2.15.2",
-      "from": "angular-translate-loader-static-files@2.15.2",
-      "resolved": "https://registry.npmjs.org/angular-translate-loader-static-files/-/angular-translate-loader-static-files-2.15.2.tgz"
+      "version": "2.16.0",
+      "from": "angular-translate-loader-static-files@2.16.0",
+      "resolved": "https://registry.npmjs.org/angular-translate-loader-static-files/-/angular-translate-loader-static-files-2.16.0.tgz"
     },
     "angular-translate-loader-url": {
-      "version": "2.15.2",
-      "from": "angular-translate-loader-url@2.15.2",
-      "resolved": "https://registry.npmjs.org/angular-translate-loader-url/-/angular-translate-loader-url-2.15.2.tgz"
+      "version": "2.16.0",
+      "from": "angular-translate-loader-url@2.16.0",
+      "resolved": "https://registry.npmjs.org/angular-translate-loader-url/-/angular-translate-loader-url-2.16.0.tgz"
     },
     "angular-ui-bootstrap": {
       "version": "2.5.6",
@@ -1115,9 +1115,9 @@
       }
     },
     "eslint": {
-      "version": "4.9.0",
-      "from": "eslint@4.9.0",
-      "resolved": "https://registry.npmjs.org/eslint/-/eslint-4.9.0.tgz",
+      "version": "4.10.0",
+      "from": "eslint@4.10.0",
+      "resolved": "https://registry.npmjs.org/eslint/-/eslint-4.10.0.tgz",
       "dev": true
     },
     "eslint-scope": {
@@ -1202,6 +1202,12 @@
       "version": "1.0.0",
       "from": "fast-deep-equal@>=1.0.0 <2.0.0",
       "resolved": "https://registry.npmjs.org/fast-deep-equal/-/fast-deep-equal-1.0.0.tgz",
+      "dev": true
+    },
+    "fast-json-stable-stringify": {
+      "version": "2.0.0",
+      "from": "fast-json-stable-stringify@>=2.0.0 <3.0.0",
+      "resolved": "https://registry.npmjs.org/fast-json-stable-stringify/-/fast-json-stable-stringify-2.0.0.tgz",
       "dev": true
     },
     "fast-levenshtein": {
@@ -1962,9 +1968,9 @@
       "dev": true,
       "dependencies": {
         "async": {
-          "version": "2.5.0",
+          "version": "2.6.0",
           "from": "async@>=2.0.0 <3.0.0",
-          "resolved": "https://registry.npmjs.org/async/-/async-2.5.0.tgz",
+          "resolved": "https://registry.npmjs.org/async/-/async-2.6.0.tgz",
           "dev": true
         },
         "chalk": {
@@ -2157,9 +2163,9 @@
       "resolved": "https://registry.npmjs.org/iconv-lite/-/iconv-lite-0.4.19.tgz"
     },
     "ignore": {
-      "version": "3.3.6",
+      "version": "3.3.7",
       "from": "ignore@>=3.3.3 <4.0.0",
-      "resolved": "https://registry.npmjs.org/ignore/-/ignore-3.3.6.tgz",
+      "resolved": "https://registry.npmjs.org/ignore/-/ignore-3.3.7.tgz",
       "dev": true
     },
     "immediate": {
@@ -2210,9 +2216,9 @@
       "dev": true
     },
     "is-buffer": {
-      "version": "1.1.5",
+      "version": "1.1.6",
       "from": "is-buffer@>=1.1.5 <2.0.0",
-      "resolved": "https://registry.npmjs.org/is-buffer/-/is-buffer-1.1.5.tgz",
+      "resolved": "https://registry.npmjs.org/is-buffer/-/is-buffer-1.1.6.tgz",
       "dev": true
     },
     "is-builtin-module": {
@@ -2386,9 +2392,9 @@
       "optional": true
     },
     "jschardet": {
-      "version": "1.5.1",
+      "version": "1.6.0",
       "from": "jschardet@>=1.4.2 <2.0.0",
-      "resolved": "https://registry.npmjs.org/jschardet/-/jschardet-1.5.1.tgz",
+      "resolved": "https://registry.npmjs.org/jschardet/-/jschardet-1.6.0.tgz",
       "dev": true
     },
     "json-schema": {
@@ -2746,9 +2752,9 @@
       "dev": true
     },
     "openpgp": {
-      "version": "2.5.12",
-      "from": "openpgp@2.5.12",
-      "resolved": "https://registry.npmjs.org/openpgp/-/openpgp-2.5.12.tgz"
+      "version": "2.5.13",
+      "from": "openpgp@2.5.13",
+      "resolved": "https://registry.npmjs.org/openpgp/-/openpgp-2.5.13.tgz"
     },
     "opn": {
       "version": "4.0.2",
@@ -3252,9 +3258,9 @@
       "dev": true
     },
     "sntp": {
-      "version": "2.0.2",
+      "version": "2.1.0",
       "from": "sntp@>=2.0.0 <3.0.0",
-      "resolved": "https://registry.npmjs.org/sntp/-/sntp-2.0.2.tgz",
+      "resolved": "https://registry.npmjs.org/sntp/-/sntp-2.1.0.tgz",
       "dev": true
     },
     "source-map": {
@@ -3375,9 +3381,9 @@
       "dev": true
     },
     "superagent": {
-      "version": "3.7.0",
-      "from": "superagent@3.7.0",
-      "resolved": "https://registry.npmjs.org/superagent/-/superagent-3.7.0.tgz",
+      "version": "3.8.0",
+      "from": "superagent@3.8.0",
+      "resolved": "https://registry.npmjs.org/superagent/-/superagent-3.8.0.tgz",
       "dev": true
     },
     "supertest": {
