@@ -229,6 +229,7 @@ AdminNodeDesc = {
     'enable_captcha': bool,
     'enable_proof_of_work': bool,
     'enable_experimental_features': bool,
+    'enable_multisite': bool,
     'enable_custom_privacy_badge': bool,
     'custom_privacy_badge_tor': unicode,
     'custom_privacy_badge_none': unicode,

@@ -1021,6 +1021,7 @@ class MockDict:
             'enable_captcha': False,
             'enable_proof_of_work': False,
             'enable_experimental_features': False,
+            'enable_multisite': False,
             'enable_custom_privacy_badge': False,
             'custom_privacy_badge_tor': u'',
             'custom_privacy_badge_none': u'',

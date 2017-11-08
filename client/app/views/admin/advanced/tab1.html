@@ -227,5 +227,12 @@
         <span data-translate>The experimental features may be less stable or even not work at all; enable this option at your own risk. Support for these features may vary and they may be removed in the future.</span>
       </div>
     </div>
+
+    <div class="form-group" data-ng-if="admin.node.enable_experimental_features">
+      <label>
+        <input data-ng-model="admin.node.enable_multisite" type="checkbox" />
+        <span data-translate>Enable multisite capability</span>
+      </label>
+    </div>
   </div>
 </div>

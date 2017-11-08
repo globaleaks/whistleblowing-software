@@ -64,7 +64,7 @@
     </a>
   </li>
 
-  <li data-ng-class="active.tenants" data-ng-if="admin.node.tid === 1">
+  <li data-ng-class="active.tenants" data-ng-if="admin.node.root_tenant && admin.node.enable_multisite">
     <a href="#/admin/tenants">
       <i class="glyphicon glyphicon-chevron-right"></i>
       <span data-translate>Sites management</span>

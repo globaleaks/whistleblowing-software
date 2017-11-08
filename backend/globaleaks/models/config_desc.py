@@ -131,6 +131,8 @@ GLConfig = {
         'enable_captcha': Bool(default=True),
         'enable_proof_of_work': Bool(default=True),
 
+        'enable_multisite': Bool(default=False),
+
         'enable_experimental_features': Bool(default=False),
 
         'simplified_login': Bool(default=False),
