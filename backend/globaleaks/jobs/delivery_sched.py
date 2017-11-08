@@ -53,6 +53,7 @@ def receiverfile_planning(store):
                                      models.ReceiverTip.internaltip_id == ifile.internaltip_id,
                                      models.User.id == models.ReceiverTip.receiver_id):
             receiverfile = models.ReceiverFile()
+            receiverfile.tid = rtip.tid
             receiverfile.internalfile_id = ifile.id
             receiverfile.receivertip_id = rtip.id
             receiverfile.file_path = ifile.file_path
@@ -72,7 +73,8 @@ def receiverfile_planning(store):
                   'ifile_id': ifile.id,
                   'ifile_path': ifile.file_path,
                   'ifile_size': ifile.size,
-                  'rfiles': []
+                  'rfiles': [],
+                  'tid': rtip.tid,
                 }
 
             receiverfiles_maps[ifile.id]['rfiles'].append({
@@ -151,7 +153,7 @@ def process_files(receiverfiles_maps):
                     log.err("%d# Unable to complete PGP encrypt for %s on %s: %s. marking the file as unavailable.",
                             rcounter, rfileinfo['receiver']['name'], rfileinfo['path'], excep)
                     rfileinfo['status'] = u'unavailable'
-            elif State.tenant_cache[1].allow_unencrypted:
+            elif State.tenant_cache[receiverfiles_map['tid']].allow_unencrypted:
                 receiverfiles_map['plaintext_file_needed'] = True
                 rfileinfo['status'] = u'reference'
                 rfileinfo['path'] = plain_path
