@@ -338,7 +338,7 @@ class APIResourceWrapper(Resource):
         groups = [unicode(g) for g in match.groups()]
         h = handler(State, request, **args)
 
-        if h.root_tenant_only and request.tid != 1:
+        if Settings.multitenancy and h.root_tenant_only and request.tid != 1:
             self.handle_exception(errors.ForbiddenOperation(), request)
             return b''
 

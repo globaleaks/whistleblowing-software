@@ -115,9 +115,10 @@ class OnionService(BaseJob):
 
         hs_add = []
 
-        for hostname, key, tid in hostname_key_list:
-            if hostname not in self.hs_map:
-                hs_add.append(self.add_hidden_service(hostname, key, tid))
+        if self.tor_conn is not None:
+            for hostname, key, tid in hostname_key_list:
+                if hostname not in self.hs_map:
+                    hs_add.append(self.add_hidden_service(hostname, key, tid))
 
         yield defer.DeferredList(hs_add)
 
@@ -165,6 +166,9 @@ class OnionService(BaseJob):
 
     @defer.inlineCallbacks
     def get_all_hidden_services(self):
+        if self.tor_conn is None:
+            defer.returnValue([])
+
         ret = yield self.tor_conn.protocol.get_info('onions/current')
 
         running_services = ret.get('onions/current', '').strip().split('\n')

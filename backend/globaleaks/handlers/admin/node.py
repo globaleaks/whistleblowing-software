@@ -32,7 +32,8 @@ def db_admin_serialize_node(store, tid, language):
         'latest_version': priv_dict.get_val(u'latest_version'),
         'languages_supported': LANGUAGES_SUPPORTED,
         'languages_enabled': EnabledLanguage.list(store, tid),
-        'configured': configured
+        'configured': configured,
+        'multitenancy': Settings.multitenancy and tid == 1,
     }
 
     l10n_dict = NodeL10NFactory(store, tid).localized_dict(language)
