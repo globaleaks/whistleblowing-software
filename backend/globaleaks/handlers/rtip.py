@@ -538,7 +538,7 @@ class WhistleblowerFileInstanceHandler(BaseHandler):
     """
     check_roles = 'receiver'
 
-    def user_can_access(self, store, wbfile):
+    def user_can_access(self, store, tid, wbfile):
         raise NotImplementedError("This class defines the user_can_access interface.")
 
     def access_wbfile(self, store, wbfile):

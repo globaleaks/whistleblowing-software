@@ -9,7 +9,7 @@ describe('admin configure languages', function() {
     input.sendKeys('Italiano' + protractor.Key.ENTER);
 
     element(by.className('add-language-btn')).click();
-    var input = element(by.id('LanguageAdder')).all(by.css('input')).last();
+    input = element(by.id('LanguageAdder')).all(by.css('input')).last();
     input.sendKeys('Deutsch' + protractor.Key.ENTER);
 
     element(by.cssContainingText("button", "Save")).click();
