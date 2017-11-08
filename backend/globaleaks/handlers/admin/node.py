@@ -27,13 +27,12 @@ def db_admin_serialize_node(store, tid, language):
     configured = store.find(models.ReceiverContext, tid=tid).count() > 0
 
     misc_dict = {
-        'tid': tid,
         'version': priv_dict.get_val(u'version'),
         'latest_version': priv_dict.get_val(u'latest_version'),
         'languages_supported': LANGUAGES_SUPPORTED,
         'languages_enabled': EnabledLanguage.list(store, tid),
         'configured': configured,
-        'multitenancy': Settings.multitenancy and tid == 1,
+        'root_tenant': tid == 1
     }
 
     l10n_dict = NodeL10NFactory(store, tid).localized_dict(language)
