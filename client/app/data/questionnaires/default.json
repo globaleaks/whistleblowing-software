@@ -7,7 +7,7 @@
     {
       "label": {
         "en": "Fill out your submission",
-        "ar": "املأ بلاغك",
+        "ar": "قم بتعبئة بلاغك",
         "az": "Təqdimatınızı doldurun",
         "bg": "Изпишете Вашето сведение",
         "bs": "Popunite vašu prijavu",
@@ -491,7 +491,7 @@
           "preview": false,
           "hint": {
             "en": "Attach files relevant to the submission",
-            "ar": "إرفاق الملفات ذات الصلة إلى البلاغ.",
+            "ar": "إرفاق ملفات ذات صلة بالبلاغ.",
             "az": "Təqdimat ilə əlaqəli faylları əlavə edin",
             "bg": "Прикачете файлове към сигнала",
             "bs": "Dodajte podatke relevantne za prijavu",
