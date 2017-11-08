@@ -14,7 +14,7 @@ from globaleaks.jobs.base import LoopingJob
 from globaleaks.orm import transact
 from globaleaks.state import State
 from globaleaks.utils import letsencrypt
-from globaleaks.utils.utility import log
+from globaleaks.utils.utility import datetime_to_ISO8601, log
 from globaleaks.utils.templating import format_and_send
 
 
@@ -67,6 +67,7 @@ class X509CertCheckSchedule(LoopingJob):
 
         # Regular certificates expiration checks
         elif datetime.now() > expiration_date - timedelta(days=self.notify_expr_within):
+            expiration_date = datetime_to_ISO8601(expiration_date)
             log.info('The HTTPS Certificate is expiring on %s', expiration_date)
             if not State.tenant_cache[1].notif.disable_admin_notification_emails:
                 self.certificate_mail_creation(store, expiration_date)
