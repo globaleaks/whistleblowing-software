@@ -76,6 +76,7 @@ class SettingsClass(object):
 
         # debug defaults
         self.orm_debug = False
+        self.multitenancy = False
 
         # files and paths
         self.root_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
@@ -294,6 +295,7 @@ class SettingsClass(object):
             self.developer_name = unicode(self.cmdline_options.developer_name)
             self.set_devel_mode()
             self.orm_debug = self.cmdline_options.orm_debug
+            self.multitenancy = self.cmdline_options.multitenancy
 
         self.api_prefix = self.cmdline_options.api_prefix
 

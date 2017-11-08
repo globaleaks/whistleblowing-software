@@ -116,6 +116,10 @@ Settings.parser.add_option("-o", "--orm-debug", action='store_true',
     help="enable ORM debugging (AVAILABLE ONLY IN DEVEL MODE)",
     dest="orm_debug", default=False)
 
+Settings.parser.add_option("-S", "--multisite", action='store_true',
+    help="Enable multi site configuration (AVAILABLE ONLY IN DEVEL MODE)",
+    dest="multitenancy", default=False)
+
 Settings.parser.add_option("-v", "--version", action='store_true',
     help="show the version of the software")
 

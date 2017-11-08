@@ -29,3 +29,8 @@ WORKING_DIR=/var/globaleaks/
 # RAM_DISK
 #   must be configured with a RAM disk path to be used for globaleaks
 RAM_DISK=/dev/shm/globaleaks/
+
+# MULTISITE = [0/1]
+#   enables the expiremental sites management. This allows the creation
+#   of multiple virtualized instances of the service.
+MULTISITE=0
