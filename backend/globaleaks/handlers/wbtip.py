@@ -64,7 +64,7 @@ def db_get_wbtip(store, tid, wbtip_id, language):
     itip.wb_access_counter += 1
     itip.wb_last_access = datetime_now()
 
-    return serialize_wbtip(store, tid, wbtip, itip, language)
+    return serialize_wbtip(store, wbtip, itip, language)
 
 
 @transact
@@ -72,8 +72,8 @@ def get_wbtip(store, tid, wbtip_id, language):
     return db_get_wbtip(store, tid, wbtip_id, language)
 
 
-def serialize_wbtip(store, tid, wbtip, itip, language):
-    ret = serialize_usertip(store, tid, wbtip, itip, language)
+def serialize_wbtip(store, wbtip, itip, language):
+    ret = serialize_usertip(store, wbtip, itip, language)
 
     # filter submission progressive
     # to prevent a fake whistleblower to assess every day how many
@@ -81,9 +81,9 @@ def serialize_wbtip(store, tid, wbtip, itip, language):
     del ret['progressive']
 
     ret['id'] = wbtip.id
-    ret['comments'] = db_get_itip_comment_list(store, tid, itip)
-    ret['rfiles'] = db_get_rfile_list(store, tid, wbtip.id)
-    ret['wbfiles'] = db_get_wbfile_list(store, tid, wbtip.id)
+    ret['comments'] = db_get_itip_comment_list(store, itip.tid, itip)
+    ret['rfiles'] = db_get_rfile_list(store, itip.tid, wbtip.id)
+    ret['wbfiles'] = db_get_wbfile_list(store, itip.tid, wbtip.id)
 
     return ret
 
