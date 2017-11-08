@@ -1,7 +1,11 @@
 # -*- coding: utf-8 -*-"""
+
+from globaleaks.tests import helpers
+
 from twisted.internet.defer import inlineCallbacks
 from globaleaks.handlers.admin import tenant
-from globaleaks.tests import helpers
+from globaleaks.jobs import onion_service
+from globaleaks.state import State
 
 def get_dummy_tenant_desc():
     return {
@@ -10,7 +14,21 @@ def get_dummy_tenant_desc():
         'subdomain': 'www.news',
     }
 
-class TestTenantCollection(helpers.TestHandlerWithPopulatedDB):
+
+class TenantTestEnv(helpers.TestHandlerWithPopulatedDB):
+    @inlineCallbacks
+    def setUp(self):
+        yield helpers.TestHandlerWithPopulatedDB.setUp(self)
+        State.onion_service_job = onion_service.OnionService()
+        self.test_reactor.pump([1])
+
+    @inlineCallbacks
+    def tearDown(self):
+        yield State.onion_service_job.stop()
+        yield helpers.TestHandlerWithPopulatedDB.tearDown(self)
+
+
+class TestTenantCollection(TenantTestEnv):
     _handler = tenant.TenantCollection
 
     @inlineCallbacks
@@ -29,7 +47,7 @@ class TestTenantCollection(helpers.TestHandlerWithPopulatedDB):
         yield handler.post()
 
 
-class TestTenantInstance(helpers.TestHandlerWithPopulatedDB):
+class TestTenantInstance(TenantTestEnv):
     _handler = tenant.TenantInstance
 
     @inlineCallbacks
