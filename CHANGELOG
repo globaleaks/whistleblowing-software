@@ -1,4 +1,12 @@
 Changes in version 2.72.15 - 2017-11-01
+    o Apply minor bugfixing to process shutdown
+    o Fix API token functionality
+    o Fix UI for visualizing recipients on tip interface
+    o Fix migration script in relation to issue #2078
+    o Update translations
+    o Bump npm dependencies to latest stables versions
+
+Changes in version 2.72.15 - 2017-11-01
     o Fix UI for uploading images
     o Fix UI for visualizing recipients on tip interface
     o Update translations
