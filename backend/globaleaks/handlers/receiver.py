@@ -158,7 +158,7 @@ def perform_tips_operation(store, tid, receiver_id, operation, rtips_ids):
             if not can_delete_submission:
                 raise errors.ForbiddenOperation
 
-            db_delete_itip(store, tid, itip)
+            db_delete_itip(store, itip)
 
     log.debug("Multiple %s of %d Tips completed" % (operation, len(rtips_ids)))
 
