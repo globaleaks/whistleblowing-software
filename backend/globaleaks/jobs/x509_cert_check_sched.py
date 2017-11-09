@@ -45,7 +45,7 @@ class X509CertCheckSchedule(LoopingJob):
 
     @transact
     def cert_expiration_checks(self, store):
-        priv_fact = models.config.PrivateFactory(store, XTIDX)
+        priv_fact = models.config.PrivateFactory(store, 1)
 
         if not priv_fact.get_val(u'https_enabled'):
             return

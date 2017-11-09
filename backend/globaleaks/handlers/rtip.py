@@ -219,24 +219,25 @@ def db_get_rtip(store, tid, user_id, rtip_id, language):
 
 def db_mark_file_for_secure_deletion(store, relpath):
     abspath = os.path.join(Settings.submission_path, relpath)
-    if os.path.isfile(abspath):
-        secure_file_delete = models.SecureFileDelete()
-        secure_file_delete.filepath = abspath
-        store.add(secure_file_delete)
-    else:
+
+    if not os.path.isfile(abspath):
         log.err("Tried to permanently delete a non existent file: %s" % abspath)
+        return
+
+    secure_file_delete = models.SecureFileDelete()
+    secure_file_delete.filepath = abspath
+    store.add(secure_file_delete)
 
 
-def db_delete_itip_files(store, tid, itip):
-    log.debug("Removing files associated to InternalTip %s" % itip.id)
-    for ifile in store.find(models.InternalFile,
-                            models.InternalFile.internaltip_id == itip.id,
-                            tid=tid):
+def db_delete_itip_files(store, itip_id):
+    log.debug("Removing files associated to InternalTip %s" % itip_id)
+
+    for ifile in store.find(models.InternalFile, internaltip_id=itip_id):
         log.debug("Marking internalfile %s for secure deletion" % ifile.file_path)
 
         db_mark_file_for_secure_deletion(store, ifile.file_path)
 
-        for rfile in store.find(models.ReceiverFile, models.ReceiverFile.internalfile_id == ifile.id, tid=tid):
+        for rfile in store.find(models.ReceiverFile, models.ReceiverFile.internalfile_id == ifile.id):
             # The following code must be bypassed if rfile.file_path == ifile.filepath,
             # this mean that is referenced the plaintext file instead having E2E.
             if rfile.file_path == ifile.file_path:
@@ -248,26 +249,20 @@ def db_delete_itip_files(store, tid, itip):
 
     for wbfile in store.find(models.WhistleblowerFile,
                              models.WhistleblowerFile.receivertip_id == models.ReceiverTip.id,
-                             models.ReceiverTip.internaltip_id == itip.id,
-                             tid=tid):
+                             models.ReceiverTip.internaltip_id == itip_id):
         log.debug("Marking whistleblowerfile %s for secure deletion" % wbfile.file_path)
         db_mark_file_for_secure_deletion(store, wbfile.file_path)
 
 
-def db_delete_itip(store, tid, itip):
+def db_delete_itip(store, itip):
     log.debug("Removing InternalTip %s" % itip.id)
 
-    db_delete_itip_files(store, tid, itip)
+    db_delete_itip_files(store, itip.id)
 
     store.remove(itip)
 
-    if store.find(models.InternalTip, models.InternalTip.questionnaire_hash == itip.questionnaire_hash, tid=tid).count() == 0:
-        store.find(models.ArchivedSchema, models.ArchivedSchema.hash == itip.questionnaire_hash, tid=tid).remove()
-
-
-def db_delete_itips(store, tid, itips):
-    for itip in itips:
-        db_delete_itip(store, tid, itip)
+    if store.find(models.InternalTip, models.InternalTip.questionnaire_hash == itip.questionnaire_hash).count() == 0:
+        store.find(models.ArchivedSchema, models.ArchivedSchema.hash == itip.questionnaire_hash).remove()
 
 
 def db_postpone_expiration_date(store, tid, itip):
@@ -293,7 +288,7 @@ def delete_rtip(store, tid, user_id, rtip_id):
             receiver.can_delete_submission):
         raise errors.ForbiddenOperation
 
-    db_delete_itip(store, tid, itip)
+    db_delete_itip(store, itip)
 
 
 @transact

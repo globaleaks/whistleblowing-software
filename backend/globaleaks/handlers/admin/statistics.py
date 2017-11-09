@@ -31,7 +31,7 @@ def weekmap_to_heatmap(week_map):
 
 
 @transact
-def get_stats(store, week_delta):
+def get_stats(store, tid, week_delta):
     """
     :param week_delta: commonly is 0, mean that you're taking this
         week. -1 is the previous week.
@@ -55,7 +55,7 @@ def get_stats(store, week_delta):
     lower_bound = iso_to_gregorian(looked_year, looked_week, 1)
     upper_bound = iso_to_gregorian(looked_year, looked_week + 1, 1)
 
-    hourlyentries = store.find(Stats, And(Stats.start >= lower_bound, Stats.start <= upper_bound))
+    hourlyentries = store.find(Stats, Stats.tid == tid, And(Stats.start >= lower_bound, Stats.start <= upper_bound))
 
     week_entries = 0
     week_map = [[dict() for i in range(24)] for j in range(7)]
@@ -149,7 +149,7 @@ class StatsCollection(BaseHandler):
     check_roles = 'admin'
 
     def get(self, week_delta):
-        return get_stats(week_delta)
+        return get_stats(self.request.tid, week_delta)
 
 
 class RecentEventsCollection(BaseHandler):

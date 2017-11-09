@@ -44,7 +44,7 @@ class PGPCheckSchedule(LoopingJob):
             data = {
                 'type': u'admin_pgp_alert',
                 'node': db_admin_serialize_node(store, XTIDX, user_language),
-                'notification': db_get_notification(store, user_language),
+                'notification': db_get_notification(store, XTIDX, user_language),
                 'users': expired_or_expiring,
                 'user': user_desc,
             }
@@ -59,7 +59,7 @@ class PGPCheckSchedule(LoopingJob):
         data = {
             'type': u'pgp_alert',
             'node': db_admin_serialize_node(store, XTIDX, user_language),
-            'notification': db_get_notification(store, user_language),
+            'notification': db_get_notification(store, XTIDX, user_language),
             'user': user_desc
         }
 
