@@ -125,7 +125,7 @@ class AuthenticationHandler(BaseHandler):
         # Revoke all other sessions for the newly authenticated user
         Sessions.revoke_all_sessions(user_id)
 
-        session = new_session(user_id, role, status)
+        session = new_session(self.request.tid, user_id, role, status)
 
         returnValue({
             'session_id': session.id,
@@ -158,7 +158,7 @@ class ReceiptAuthHandler(BaseHandler):
 
         Sessions.revoke_all_sessions(user_id)
 
-        session = new_session(user_id, 'whistleblower', 'Enabled')
+        session = new_session(self.request.tid, user_id, 'whistleblower', 'Enabled')
 
         returnValue({
             'session_id': session.id,
