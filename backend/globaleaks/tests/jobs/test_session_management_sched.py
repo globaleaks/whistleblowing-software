@@ -9,9 +9,9 @@ from twisted.internet.defer import inlineCallbacks
 class TestSessionManagementSched(helpers.TestGL):
     @inlineCallbacks
     def test_session_management_sched(self):
-        new_session('admin', 'admin', 'enabled')  # 1!
-        new_session('admin', 'admin', 'enabled')  # 2!
-        new_session('admin', 'admin', 'enabled')  # 3!
+        new_session(1, 'admin', 'admin', 'enabled')  # 1!
+        new_session(1, 'admin', 'admin', 'enabled')  # 2!
+        new_session(1, 'admin', 'admin', 'enabled')  # 3!
 
         self.assertEqual(len(Sessions), 3)
 

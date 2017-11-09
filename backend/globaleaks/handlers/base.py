@@ -437,7 +437,7 @@ class BaseHandler(object):
 
         # Check that that provided session exists and is legit
         session = Sessions.get(session_id)
-        if session.tid != self.request.tid:
+        if session is None or session.tid != self.request.tid:
             return None
 
         return session
