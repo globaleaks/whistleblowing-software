@@ -157,7 +157,7 @@ def db_refresh_tenant_cache(store, tid):
     if tid == XTIDX and tenant_cache.private.admin_api_token_digest:
         api_id = store.find(models.User.id, models.User.tid==XTIDX, models.User.role==u'admin').order_by(models.User.creation_date).first()
         if api_id is not None:
-            State.api_token_session = Session(api_id, 'admin', 'enabled')
+            State.api_token_session = Session(1, api_id, 'admin', 'enabled')
 
     return tenant_cache
 

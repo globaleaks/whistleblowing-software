@@ -139,8 +139,9 @@ class StaticFileProducer(object):
 class Session(object):
     expireCall = None # attached to object by tempDict
 
-    def __init__(self, user_id, user_role, user_status):
+    def __init__(self, tid, user_id, user_role, user_status):
         self.id = generateRandomKey(42)
+        self.tid = tid
         self.user_id = user_id
         self.user_role = user_role
         self.user_status = user_status
@@ -152,8 +153,8 @@ class Session(object):
         return "%s %s expire in %s" % (self.user_role, self.user_id, self.expireCall)
 
 
-def new_session(user_id, user_role, user_status):
-    session = Session(user_id, user_role, user_status)
+def new_session(tid, user_id, user_role, user_status):
+    session = Session(tid, user_id, user_role, user_status)
     Sessions.set(session.id, session)
     return session
 
@@ -429,12 +430,17 @@ class BaseHandler(object):
                 schedule_email_for_all_admins("%s notification" % self.state.tenant_cache[1].name,
                                              "API Token temporary suspended due to possible attack")
 
-        # Check for user session
+        # Check for the session header
         session_id = self.request.headers.get('x-session')
         if session_id is None:
             return None
 
-        return Sessions.get(session_id)
+        # Check that that provided session exists and is legit
+        session = Sessions.get(session_id)
+        if session.tid != self.request.tid:
+            return None
+
+        return session
 
     def get_file_upload(self):
         if 'flowFilename' not in self.request.args:

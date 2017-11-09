@@ -794,7 +794,7 @@ class TestHandler(TestGLWithPopulatedDB):
                 user_id = self.dummyCustodianUser['id']
 
         if role is not None:
-            session = new_session(user_id, role, 'enabled')
+            session = new_session(1, user_id, role, 'enabled')
             handler.request.headers['x-session'] = session.id
 
         return handler
