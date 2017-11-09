@@ -57,5 +57,5 @@ class TestAnomaliesSchedule(helpers.TestGL):
 class TestStaticsSchedule(helpers.TestGL):
     @inlineCallbacks
     def test_statistics_schedule(self):
-        self.pollute_events_and_perform_synthesis(3)
+        self.pollute_events(3)
         yield statistics_sched.StatisticsSchedule().run()
