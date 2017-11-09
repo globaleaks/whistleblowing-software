@@ -1,9 +1,8 @@
 # -*- coding: utf-8 -*-
 # Implement the notification of new submissions
-
 import copy
 
-from twisted.internet import reactor, threads
+from twisted.internet import defer, reactor, threads
 
 from globaleaks import models
 from globaleaks.handlers.admin.context import admin_serialize_context
@@ -222,7 +221,7 @@ class MailGenerator(object):
 
 
 @transact
-def delete_sent_mail(store, result, mail_id):
+def delete_sent_mail(store, mail_id):
     store.find(models.Mail, id=mail_id).remove()
 
 
@@ -250,10 +249,11 @@ class NotificationSchedule(NetLoopingJob):
     interval = 5
     monitor_interval = 3 * 60
 
+    @defer.inlineCallbacks
     def sendmail(self, mail):
-        d = sendmail(mail['address'], mail['subject'], mail['body'])
-        d.addCallback(delete_sent_mail, mail['id'])
-        return d
+        success = yield sendmail(mail['address'], mail['subject'], mail['body'])
+        if success:
+            delete_sent_mail(mail['id'])
 
     def spool_emails(self):
         for mail in get_mails_from_the_pool():
@@ -262,4 +262,4 @@ class NotificationSchedule(NetLoopingJob):
     def operation(self):
         MailGenerator().generate()
 
-        self.spool_emails()
+        return self.spool_emails()
