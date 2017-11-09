@@ -24,7 +24,7 @@ class TestStatsCollection(helpers.TestHandler):
         self.assertEqual(len(response), 3)
         self.assertEqual(len(response['heatmap']), 7 * 24)
 
-        self.pollute_events_and_perform_synthesis(10)
+        self.pollute_events(10)
 
         yield AnomaliesSchedule().run()
         yield StatisticsSchedule().run()
@@ -41,7 +41,7 @@ class TestAnomalyCollection(helpers.TestHandler):
 
     @inlineCallbacks
     def test_get(self):
-        self.pollute_events_and_perform_synthesis(10)
+        self.pollute_events(10)
 
         yield AnomaliesSchedule().run()
         yield StatisticsSchedule().run()
@@ -59,7 +59,7 @@ class TestRecentEventsCollection(helpers.TestHandler):
 
     @inlineCallbacks
     def test_get(self):
-        self.pollute_events_and_perform_synthesis(3)
+        self.pollute_events(3)
 
         yield StatisticsSchedule().run()
 

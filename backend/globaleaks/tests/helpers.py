@@ -501,12 +501,6 @@ class TestGL(unittest.TestCase):
                     e = event.EventTrack(event_obj, timedelta(seconds=1.0 * x))
                     State.RecentEventQ.append(e.serialize())
 
-    def pollute_events_and_perform_synthesis(self, number_of_times=10):
-        for _ in range(number_of_times):
-            for event_obj in event.events_monitored:
-                for x in range(2):
-                    e = event.EventTrack(event_obj, timedelta(seconds=1.0 * x))
-                    State.RecentEventQ.append(e.serialize())
     @transact
     def get_rtips(self, store):
         ret = []
