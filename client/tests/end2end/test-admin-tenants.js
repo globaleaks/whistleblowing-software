@@ -3,7 +3,7 @@ describe('admin configure, add, and delete tenants', function() {
     browser.setLocation('admin/tenants');
 
     var add_tenant = function(tenant_label) {
-      element(by.model('new_tenant.label')).sendKeys(tenant_label);
+      element(by.model('newTenant.label')).sendKeys(tenant_label);
       element(by.id('add-button')).click();
       browser.gl.utils.waitUntilPresent(by.xpath(".//*[text()='" + tenant_label + "']"));
     };
@@ -13,7 +13,7 @@ describe('admin configure, add, and delete tenants', function() {
   });
 
   it('should del existing tenants', function() {
-    element.all((by.css('.actionButtonDelete'))).last().click();
+    element.all((by.cssContainingText("button", "Delete"))).last().click();
     element(by.id('modal-action-ok')).click();
 
     // TODO check that the tenant is actually gone

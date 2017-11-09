@@ -17,7 +17,6 @@ describe('verify navigation of admin sections', function() {
     element(by.cssContainingText("a", "Recipient configuration")).click();
     element(by.cssContainingText("a", "Context configuration")).click();
     element(by.cssContainingText("a", "Questionnaire configuration")).click();
-    element(by.cssContainingText("a", "Sites management")).click();
 
     element(by.cssContainingText("a", "Notification settings")).click();
     element(by.cssContainingText("a", "Main configuration")).click();

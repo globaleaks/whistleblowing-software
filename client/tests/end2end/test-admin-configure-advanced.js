@@ -7,8 +7,11 @@ describe('admin configure advanced settings', function() {
 
     element(by.model('admin.node.maximum_textsize')).clear().sendKeys('1337');
 
-    // enable experimental featuress that by default are disabled
+    // enable experimental features that by default are disabled
     element(by.model('admin.node.enable_experimental_features')).click();
+
+    // enable multitenancy feauture
+    element(by.model('admin.node.enable_multisite')).click();
 
     // save settings
     element(by.css('[data-ng-click="updateNode(admin.node)"]')).click().then(function() {
