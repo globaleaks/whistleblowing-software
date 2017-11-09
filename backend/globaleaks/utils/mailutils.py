@@ -56,30 +56,18 @@ def MIME_mail_build(src_name, src_mail, dest_name, dest_mail, title, mail_body):
 
 def sendmail(to_address, subject, body):
     """
-    Sends an email using SMTPS/SMTP+TLS and torify the connection
+    Send an email using SMTPS/SMTP+TLS and maybe torify the connection.
 
-    @param to_address: the to address field of the email
+    @param to_address: the 'To:' field of the email
     @param subject: the mail subject
     @param body: the mail body
-    @param event: the event description, needed to keep track of failure/success
+
+    @return: a {Deferred} that returns a success {bool} if the message was passed
+             to the server.
     """
     try:
         if not to_address:
             return
-
-        result_deferred = defer.Deferred()
-
-        def errback(reason, *args, **kwargs):
-            # TODO: here it should be written a complete debugging of the possible
-            #       errors by writing clear log lines in relation to all the stack:
-            #       e.g. it should debugged all errors related to: TCP/SOCKS/TLS/SSL/SMTP/SFIGA
-            if isinstance(reason, Failure):
-                log.err("SMTP connection failed (Exception: %s)", reason.value)
-                log.debug(reason)
-
-            return result_deferred.errback(reason)
-
-        result_deferred.addErrback(errback)
 
         authentication_username=State.tenant_cache[1].notif.username
         authentication_password=State.tenant_cache[1].private.smtp_password
@@ -103,13 +91,15 @@ def sendmail(to_address, subject, body):
 
         context_factory = TLSClientContextFactory()
 
+        smtp_deferred = defer.Deferred()
+
         factory = ESMTPSenderFactory(
             authentication_username.encode('utf-8'),
             authentication_password.encode('utf-8'),
             from_address,
             to_address,
             message,
-            result_deferred,
+            smtp_deferred,
             contextFactory=context_factory,
             requireAuthentication=True,
             requireTransportSecurity=(security != 'SSL'),
@@ -126,18 +116,36 @@ def sendmail(to_address, subject, body):
             endpoint = TCP4ClientEndpoint(reactor, smtp_host.encode('utf-8'), smtp_port, timeout=Settings.mail_timeout)
 
         if Settings.testing:
-            #  Hooking the test down to here is a trick to be able to test all the above code :)
-            return defer.succeed(None)
+            # during unit testing do not try to send the mail
+            return defer.succeed(True)
 
-        d = endpoint.connect(factory)
-        d.addErrback(errback)
+        conn_deferred = endpoint.connect(factory)
 
-        return result_deferred
+        final = defer.DeferredList([conn_deferred, smtp_deferred], fireOnOneErrback=True, consumeErrors=True)
+
+        def failure_cb(failure):
+            """
+            @param failure {Failure {twisted.internet.FirstError {Failure}}}
+            """
+            log.err("SMTP connection failed (Exception: %s)", failure.value.subFailure.value)
+            log.debug(failure)
+            return False
+
+        def success_cb(results):
+            """
+            @param results {list of (success, return_val) tuples}
+            """
+            return True
+
+        final.addCallback(success_cb)
+        final.addErrback(failure_cb)
+
+        return final
 
     except Exception as excep:
-        # we strongly need to avoid raising exception inside email logic to avoid chained errors
+        # avoids raising an exception inside email logic to avoid chained errors
         log.err("Unexpected exception in sendmail: %s", str(excep))
-        return defer.fail()
+        return defer.succeed(False)
 
 
 def schedule_exception_email(exception_text, *args):
