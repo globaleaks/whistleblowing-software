@@ -40,7 +40,8 @@ class TestNodeInstance(helpers.TestHandlerWithPopulatedDB):
                                 'version', 'version_db',
                                 'latest_version',
                                 'configured', 'wizard_done',
-                                'receipt_salt', 'languages_enabled']:
+                                'receipt_salt', 'languages_enabled',
+                                'root_tenant']:
                 continue
 
             self.assertEqual(response[response_key],

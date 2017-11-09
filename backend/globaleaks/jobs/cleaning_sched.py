@@ -7,7 +7,7 @@ from storm.expr import In, Min
 from globaleaks import models
 from globaleaks.handlers.admin.node import db_admin_serialize_node
 from globaleaks.handlers.admin.notification import db_get_notification
-from globaleaks.handlers.rtip import db_delete_itips
+from globaleaks.handlers.rtip import db_delete_itip
 from globaleaks.handlers.user import user_serialize_user
 from globaleaks.jobs.base import LoopingJob
 from globaleaks.orm import transact_sync
@@ -18,8 +18,6 @@ from globaleaks.utils.utility import datetime_now, datetime_to_ISO8601
 
 
 __all__ = ['CleaningSchedule']
-
-XTIDX = 1
 
 
 def db_clean_expired_wbtips(store):
@@ -56,7 +54,8 @@ class CleaningSchedule(LoopingJob):
         if expired InternalTips are found, it removes that along with
         all the related DB entries comment and tip related.
         """
-        db_delete_itips(store, store.find(models.InternalTip, models.InternalTip.expiration_date < datetime_now()))
+        for itip in store.find(models.InternalTip, models.InternalTip.expiration_date < datetime_now()):
+            db_delete_itip(store, itip)
 
     @transact_sync
     def check_for_expiring_submissions(self, store):
@@ -79,8 +78,8 @@ class CleaningSchedule(LoopingJob):
 
             data = {
                'type': u'tip_expiration_summary',
-               'node': db_admin_serialize_node(store, XTIDX, user.language),
-               'notification': db_get_notification(store, user.language),
+               'node': db_admin_serialize_node(store, 1, user.language),
+               'notification': db_get_notification(store, 1, user.language),
                'user': user_desc,
                'expiring_submission_count': len(itip_ids),
                'earliest_expiration_date': earliest_expiration_date

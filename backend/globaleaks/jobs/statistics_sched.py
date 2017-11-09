@@ -17,6 +17,7 @@ def get_workingdir_space():
     total_bytes = statvfs.f_frsize * statvfs.f_blocks
     return free_bytes, total_bytes
 
+
 def get_ramdisk_space():
     statvfs = os.statvfs(Settings.ramdisk_path)
     free_bytes = statvfs.f_frsize * statvfs.f_bavail
