@@ -15,8 +15,6 @@ from globaleaks.state import State, TenantState
 from globaleaks.utils.objectdict import ObjectDict
 from globaleaks.utils.utility import log
 
-XTIDX = 1
-
 
 def get_db_file(db_path):
     for i in reversed(range(0, DATABASE_VERSION + 1)):
@@ -154,8 +152,8 @@ def db_refresh_tenant_cache(store, tid):
 
     tenant_cache.private = ObjectDict(models.config.PrivateFactory(store, tid).mem_copy_export())
 
-    if tid == XTIDX and tenant_cache.private.admin_api_token_digest:
-        api_id = store.find(models.User.id, models.User.tid==XTIDX, models.User.role==u'admin').order_by(models.User.creation_date).first()
+    if tid == 1 and tenant_cache.private.admin_api_token_digest:
+        api_id = store.find(models.User.id, models.User.tid==1, models.User.role==u'admin').order_by(models.User.creation_date).first()
         if api_id is not None:
             State.api_token_session = Session(1, api_id, 'admin', 'enabled')
 
