@@ -68,7 +68,6 @@ class PGPCheck(LoopingJob):
 
     @transact_sync
     def perform_pgp_validation_checks(self, store):
-
         tenant_expiry_map = {1: []}
 
         for user in db_get_expired_or_expiring_pgp_users(store):

@@ -10,7 +10,6 @@ from globaleaks import models
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.orm import transact
 
-XTIDX = 1
 
 def db_add_file(store, tid, data, key=None):
     file_obj = None
@@ -56,9 +55,9 @@ class FileInstance(BaseHandler):
         if uploaded_file is None:
             return
 
-        d = add_file(XTIDX, uploaded_file['body'].read(), key)
+        d = add_file(self.request.tid, uploaded_file['body'].read(), key)
         d.addBoth(lambda ignore: uploaded_file['body'].close)
         return d
 
     def delete(self, key):
-        return models.delete(models.File, tid=XTIDX, id=key)
+        return models.delete(models.File, tid=self.request.tid, id=key)
