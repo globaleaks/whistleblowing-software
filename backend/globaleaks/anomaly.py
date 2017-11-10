@@ -86,7 +86,7 @@ def get_disk_anomaly_conditions(free_workdir_bytes, total_workdir_bytes, free_ra
 
 @transact
 def generate_admin_alert_mail(store, alert):
-    for user_desc in db_get_admin_users(store):
+    for user_desc in db_get_admin_users(store, 1):
         user_language = user_desc['language']
 
         data = {
@@ -99,7 +99,7 @@ def generate_admin_alert_mail(store, alert):
 
         subject, body = Templating().get_mail_subject_and_body(data)
 
-        db_schedule_email(store, user_desc['mail_address'], subject, body)
+        db_schedule_email(store, 1, user_desc['mail_address'], subject, body)
 
 
 class AlarmClass(object):
