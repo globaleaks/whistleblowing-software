@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from globaleaks.jobs.exit_nodes_refresh_sched import ExitNodesRefreshSchedule
+from globaleaks.jobs.exit_nodes_refresh import ExitNodesRefresh
 from globaleaks.state import State
 from globaleaks.tests import helpers
 from twisted.internet.defer import inlineCallbacks
@@ -20,6 +20,6 @@ class TestExitNodesRefresh(helpers.TestGL):
 
         # TODO mocking the check-status endpoint will help us detect changes
         # to the exit set structure
-        yield ExitNodesRefreshSchedule().operation()
+        yield ExitNodesRefresh().operation()
 
         self.assertTrue(len(State.tor_exit_set) > 700)

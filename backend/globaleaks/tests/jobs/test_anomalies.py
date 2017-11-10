@@ -1,21 +1,13 @@
 # -*- coding: utf-8 -*-
 from globaleaks import anomaly
-from globaleaks.jobs import statistics_sched
+from globaleaks.jobs import anomalies
 from globaleaks.tests import helpers
 from twisted.internet.defer import inlineCallbacks
 
-# E non è la distanza ad abitare l'assenza.
-# https://www.youtube.com/watch?v=UBdlNlDZDZA
 
-# FIXME
-# currently the following unit tests does not really perform complete
-# unit tests and check but simply trigger the schedulers in order to
-# raise the code coverage
-
-
-class TestAnomaliesSchedule(helpers.TestGL):
+class TestAnomalies(helpers.TestGL):
     @inlineCallbacks
-    def test_anomalies_schedule(self):
+    def test_anomalies(self):
         self.n = 0
 
         full_ammo = 1000000
@@ -39,23 +31,16 @@ class TestAnomaliesSchedule(helpers.TestGL):
 
         # testing the scheduler with all the conditions unmet
         self.n = -1
-        yield statistics_sched.AnomaliesSchedule().run()
+        yield anomalies.Anomalies().run()
 
         # testing the scheduler enabling all conditions one at once
         for j in range(conditions_count):
             self.n = j
-            yield statistics_sched.AnomaliesSchedule().run()
+            yield anomalies.Anomalies().run()
 
-        yield statistics_sched.AnomaliesSchedule().run()
+        yield anomalies.Anomalies().run()
 
         # testing the scheduler with all the conditions unmet
         # a second time in order test the accept_submissions value
         self.n = -1
-        yield statistics_sched.AnomaliesSchedule().run()
-
-
-class TestStaticsSchedule(helpers.TestGL):
-    @inlineCallbacks
-    def test_statistics_schedule(self):
-        self.pollute_events(3)
-        yield statistics_sched.StatisticsSchedule().run()
+        yield anomalies.Anomalies().run()

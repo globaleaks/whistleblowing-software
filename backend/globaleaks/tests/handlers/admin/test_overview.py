@@ -2,7 +2,7 @@
 import json
 
 from globaleaks.handlers.admin import overview
-from globaleaks.jobs.delivery_sched import DeliverySchedule
+from globaleaks.jobs.delivery import Delivery
 from globaleaks.rest import requests
 from globaleaks.tests import helpers
 from twisted.internet.defer import inlineCallbacks
@@ -15,7 +15,7 @@ class TestTipsOverviewDesc(helpers.TestHandlerWithPopulatedDB):
     def setUp(self):
         yield helpers.TestHandlerWithPopulatedDB.setUp(self)
         yield self.perform_full_submission_actions()
-        yield DeliverySchedule().run()
+        yield Delivery().run()
 
     @inlineCallbacks
     def test_get(self):
@@ -33,7 +33,7 @@ class TestFilesOverviewDesc(helpers.TestHandlerWithPopulatedDB):
     def setUp(self):
         yield helpers.TestHandlerWithPopulatedDB.setUp(self)
         yield self.perform_full_submission_actions()
-        yield DeliverySchedule().run()
+        yield Delivery().run()
 
     @inlineCallbacks
     def test_get(self):

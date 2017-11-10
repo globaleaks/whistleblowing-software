@@ -45,8 +45,7 @@ def evaluate_update_notification(store, latest_version):
             format_and_send(store, 1, user_desc, template_vars)
 
 
-class UpdateCheckJob(NetLoopingJob):
-    name = "Update Check"
+class UpdateCheck(NetLoopingJob):
     interval = 60*60*24
     threaded = False
 

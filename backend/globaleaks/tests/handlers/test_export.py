@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from globaleaks.handlers import export
-from globaleaks.jobs.delivery_sched import DeliverySchedule
+from globaleaks.jobs.delivery import Delivery
 from globaleaks.tests import helpers
 from twisted.internet.defer import inlineCallbacks
 
@@ -20,7 +20,7 @@ class TestExportHandler(helpers.TestHandlerWithPopulatedDB):
         self.pollute_events(10)
 
         # creates the receiver files
-        yield DeliverySchedule().run()
+        yield Delivery().run()
 
     @inlineCallbacks
     def test_export(self):

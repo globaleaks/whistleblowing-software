@@ -10,7 +10,7 @@ from datetime import timedelta
 from storm.expr import Desc, And
 
 from globaleaks.state import State
-from globaleaks.event import EventTrackQueue, events_monitored
+from globaleaks.event import events_monitored
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.models import Stats, Anomalies
 from globaleaks.orm import transact
@@ -70,7 +70,6 @@ def get_stats(store, tid, week_delta):
             'hour': stats_hour,
             'day': stats_day,
             'summary': hourdata.summary,
-            'free_disk_space': hourdata.free_disk_space,
             'valid': 0  # 0 means valid data
         }
 
@@ -115,8 +114,8 @@ def get_stats(store, tid, week_delta):
 
 
 @transact
-def get_anomaly_history(store, limit):
-    anomalies = store.find(Anomalies).order_by(Desc(Anomalies.date))[:limit]
+def get_anomaly_history(store, tid, limit):
+    anomalies = store.find(Anomalies, tid=tid).order_by(Desc(Anomalies.date))[:limit]
 
     anomaly_history = []
     for _, anomaly in enumerate(anomalies):
@@ -139,7 +138,7 @@ class AnomalyCollection(BaseHandler):
     check_roles = 'admin'
 
     def get(self):
-        return get_anomaly_history(limit=20)
+        return get_anomaly_history(self.request.tid, limit=20)
 
 
 class StatsCollection(BaseHandler):
@@ -172,10 +171,7 @@ class RecentEventsCollection(BaseHandler):
     def get(self, kind):
         templist = []
 
-        # the current 30 seconds
-        templist += EventTrackQueue.take_current_snapshot()
-        # the already stocked by side, until Stats dump them in 1hour
-        templist += State.RecentEventQ
+        templist += [e.serialize() for e in State.tenant_state[self.request.tid].EventQ]
 
         templist.sort(key=operator.itemgetter('id'))
 

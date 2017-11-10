@@ -328,7 +328,6 @@ class TestGL(unittest.TestCase):
         State.process_supervisor = sup
 
         Alarm.reset()
-        event.EventTrackQueue.clear()
         State.reset_hourly()
 
         Settings.submission_minimum_delay = 0
@@ -498,8 +497,9 @@ class TestGL(unittest.TestCase):
         for _ in range(number_of_times):
             for event_obj in event.events_monitored:
                 for x in range(2):
-                    e = event.EventTrack(event_obj, timedelta(seconds=1.0 * x))
-                    State.RecentEventQ.append(e.serialize())
+                    e = event.Event(event_obj, timedelta(seconds=1.0 * x))
+                    State.tenant_state[1].RecentEventQ.append(e)
+                    State.tenant_state[1].EventQ.append(e)
 
     @transact
     def get_rtips(self, store):

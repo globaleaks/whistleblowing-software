@@ -147,7 +147,7 @@ class TestPGP(helpers.TestGL):
             'username': u'fake@username.net',
         }
 
-        # these are the same lines used in delivery_sched.py
+        # these are the same lines used in delivery.py
         pgpobj = GLBPGP()
         pgpobj.load_key(helpers.PGPKEYS['VALID_PGP_KEY1_PRV'])
 

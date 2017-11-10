@@ -7,6 +7,14 @@ from globaleaks.utils.singleton import Singleton
 from globaleaks.utils.tor_exit_set import TorExitSet
 from globaleaks.utils.utility import datetime_now
 
+
+class TenantState(object):
+    def __init__(self):
+        self.RecentEventQ = []
+        self.EventQ = []
+        self.AnomaliesQ = []
+
+
 class StateClass(ObjectDict):
     __metaclass__ = Singleton
 
@@ -24,8 +32,6 @@ class StateClass(ObjectDict):
         self.api_token_session = None
         self.api_token_session_suspended = False
 
-        self.RecentEventQ = []
-        self.RecentAnomaliesQ = {}
         self.exceptions = {}
         self.exceptions_email_count = 0
         self.mail_counters = {}
@@ -33,7 +39,9 @@ class StateClass(ObjectDict):
 
         self.accept_submissions = True
 
+        self.tenant_state = {}
         self.tenant_cache = {}
+
         self.tenant_cache[1] = ObjectDict({
             'maximum_namesize': 128,
             'maximum_textsize': 4096,
@@ -58,11 +66,13 @@ class StateClass(ObjectDict):
         self.mail_counters[receiver_id] = self.mail_counters.get(receiver_id, 0) + 1
 
     def reset_hourly(self):
-        self.RecentEventQ[:] = []
-        self.RecentAnomaliesQ.clear()
+        for tid in self.tenant_state:
+            self.tenant_state[tid] = TenantState()
+
         self.exceptions.clear()
         self.exceptions_email_count = 0
         self.mail_counters.clear()
+
         self.stats_collection_start_time = datetime_now()
 
 

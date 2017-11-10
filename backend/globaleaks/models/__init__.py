@@ -669,10 +669,9 @@ class ArchivedSchema(ModelWithTID):
 class Stats(ModelWithTIDandID):
     start = DateTime()
     summary = JSON()
-    free_disk_space = Int()
 
 
-class Anomalies(ModelWithID):
+class Anomalies(ModelWithTIDandID):
     date = DateTime()
     alarm = Int()
     events = JSON()

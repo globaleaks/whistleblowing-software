@@ -54,7 +54,6 @@ def set_onion_service_info(store, tid, hostname, key):
 
 
 class OnionService(BaseJob):
-    name = "OnionService"
     threaded = False
     print_startup_error = True
     tor_conn = None

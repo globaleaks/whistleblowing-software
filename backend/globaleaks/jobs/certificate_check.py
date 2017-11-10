@@ -20,9 +20,7 @@ from globaleaks.utils.templating import format_and_send
 
 XTIDX=1
 
-
-class X509CertCheckSchedule(LoopingJob):
-    name = "X509 Cert Check"
+class CertificateCheck(LoopingJob):
     interval = 3 * 24 * 3600
 
     threaded = False

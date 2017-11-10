@@ -17,7 +17,7 @@ from globaleaks.utils.utility import datetime_now, datetime_null
 from globaleaks.utils.utility import log
 
 
-__all__ = ['PGPCheckSchedule']
+__all__ = ['PGPCheck']
 
 
 def db_get_expired_or_expiring_pgp_users(store):
@@ -28,8 +28,7 @@ def db_get_expired_or_expiring_pgp_users(store):
                                    models.User.pgp_key_expiration < threshold)
 
 
-class PGPCheckSchedule(LoopingJob):
-    name = "PGP Check"
+class PGPCheck(LoopingJob):
     interval = 24 * 3600
     monitor_interval = 5 * 60
 
