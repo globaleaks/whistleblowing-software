@@ -6,6 +6,7 @@ from globaleaks.utils.objectdict import ObjectDict
 from globaleaks.utils.singleton import Singleton
 from globaleaks.utils.tor_exit_set import TorExitSet
 from globaleaks.utils.utility import datetime_now
+from globaleaks.utils.tempdict import TempDict
 
 
 class TenantState(object):
@@ -13,6 +14,8 @@ class TenantState(object):
         self.RecentEventQ = []
         self.EventQ = []
         self.AnomaliesQ = []
+        # An ACME challenge will have 5 minutes to resolve
+        acme_tmp_chall_dict = TempDict(300)
 
 
 class StateClass(ObjectDict):

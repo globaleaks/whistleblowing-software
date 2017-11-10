@@ -23,13 +23,6 @@ from globaleaks.utils.tempdict import TempDict
 from globaleaks.utils.utility import datetime_to_ISO8601, format_cert_expr_date, log
 
 
-XTIDX = 1
-
-
-# Access auth tokens expire after a 5 minutes
-tmp_chall_dict = TempDict(300)
-
-
 class FileResource(object):
     """
     An interface for interacting with files stored on disk or in the db
@@ -439,10 +432,10 @@ class CSRFileHandler(FileHandler):
 class AcmeAccntKeyRes:
     @classmethod
     @transact
-    def create_file(store, cls):
+    def create_file(store, cls, tid):
         log.info("Generating an ACME account key with %d bits" % Settings.key_bits)
 
-        priv_fact = PrivateFactory(store, XTIDX)
+        priv_fact = PrivateFactory(store, tid)
 
         # NOTE key size is hard coded to align with minimum CA requirements
         # TODO change format to OpenSSL key to normalize types of keys used
@@ -465,38 +458,38 @@ class AcmeAccntKeyRes:
 
     @classmethod
     @transact
-    def save_accnt_uri(store, cls, uri):
-        PrivateFactory(store, XTIDX).set_val(u'acme_accnt_uri', uri)
+    def save_accnt_uri(store, cls, tid, uri):
+        PrivateFactory(store, tid).set_val(u'acme_accnt_uri', uri)
 
 
 @transact
-def can_perform_acme_run(store):
-    prv_fact = PrivateFactory(store, XTIDX)
+def can_perform_acme_run(store, tid):
+    prv_fact = PrivateFactory(store, tid)
     acme = prv_fact.get_val(u'acme')
     no_cert_set = prv_fact.get_val(u'https_cert') == u''
     return acme and no_cert_set
 
 
 @transact
-def is_acme_configured(store):
-    prv_fact = PrivateFactory(store, XTIDX)
+def is_acme_configured(store, tid):
+    prv_fact = PrivateFactory(store, tid)
     acme = prv_fact.get_val(u'acme')
     cert_set = prv_fact.get_val(u'https_cert') != u''
     return acme and cert_set
 
 
 @transact
-def can_perform_acme_renewal(store):
-    priv_fact = PrivateFactory(store, XTIDX)
-    a = is_acme_configured(store)
+def can_perform_acme_renewal(store, tid):
+    priv_fact = PrivateFactory(store, tid)
+    a = is_acme_configured(store, tid)
     b = priv_fact.get_val(u'https_enabled')
     c = priv_fact.get_val(u'https_cert')
     return a and b and c
 
 
-def db_acme_cert_issuance(store):
-    priv_fact = PrivateFactory(store, XTIDX)
-    hostname = State.tenant_cache[1].hostname
+def db_acme_cert_issuance(store, tid):
+    priv_fact = PrivateFactory(store, tid)
+    hostname = State.tenant_cache[tid].hostname
 
     raw_accnt_key = priv_fact.get_val(u'acme_accnt_key')
     accnt_key = serialization.load_pem_private_key(str(raw_accnt_key),
@@ -511,6 +504,8 @@ def db_acme_cert_issuance(store):
     # NOTE sha256 is always employed as hash fnc here.
     csr = tls.gen_x509_csr(priv_key, csr_fields, 256)
 
+    tmp_chall_dict = State.tenant_state[tid].acme_tmp_chall_dict
+
     # Run ACME registration all the way to resolution
     cert_str, chain_str = letsencrypt.run_acme_reg_to_finish(hostname,
                                                              regr_uri,
@@ -522,13 +517,13 @@ def db_acme_cert_issuance(store):
 
     priv_fact.set_val(u'https_cert', cert_str)
     priv_fact.set_val(u'https_chain', chain_str)
-    State.tenant_cache[1].private.https_cert = cert_str
-    State.tenant_cache[1].private.https_chain = chain_str
+    State.tenant_cache[tid].private.https_cert = cert_str
+    State.tenant_cache[tid].private.https_chain = chain_str
 
 
 @transact_sync
-def acme_cert_issuance(store):
-    return db_acme_cert_issuance(store)
+def acme_cert_issuance(store, tid):
+    return db_acme_cert_issuance(store, tid)
 
 
 class AcmeHandler(BaseHandler):
@@ -536,21 +531,21 @@ class AcmeHandler(BaseHandler):
 
     @inlineCallbacks
     def post(self):
-        accnt_key = yield AcmeAccntKeyRes.create_file()
+        accnt_key = yield AcmeAccntKeyRes.create_file(self.request.tid)
 
         regr_uri, tos_url = letsencrypt.register_account_key(Settings.acme_directory_url, accnt_key)
 
-        yield AcmeAccntKeyRes.save_accnt_uri(regr_uri)
+        yield AcmeAccntKeyRes.save_accnt_uri(self.request.tid, regr_uri)
 
         returnValue({'terms_of_service': tos_url})
 
     @inlineCallbacks
     def put(self):
-        is_ready = yield can_perform_acme_run()
+        is_ready = yield can_perform_acme_run(self.request.tid)
         if not is_ready:
             raise errors.ForbiddenOperation()
 
-        yield deferToThread(acme_cert_issuance)
+        yield deferToThread(acme_cert_issuance, self.request.tid)
 
 
 class AcmeChallengeHandler(BaseHandler):
@@ -558,8 +553,9 @@ class AcmeChallengeHandler(BaseHandler):
     bypass_basic_auth = True
 
     def get(self, token):
+        tmp_chall_dict = State.tenant_state[self.request.tid].acme_tmp_chall_dict
         if token in tmp_chall_dict:
-            log.info('Responding to valid .well-known request')
+            log.info('Responding to valid .well-known request [%d]', self.request.tid)
             return tmp_chall_dict[token].tok
 
         raise errors.ResourceNotFound
