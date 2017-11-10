@@ -1,14 +1,14 @@
 # -*- coding: utf-8 -*-
 from globaleaks.handlers.base import Sessions, new_session
-from globaleaks.jobs import session_management_sched
+from globaleaks.jobs import session_management
 from globaleaks.settings import Settings
 from globaleaks.tests import helpers
 from twisted.internet.defer import inlineCallbacks
 
 
-class TestSessionManagementSched(helpers.TestGL):
+class TestSessionManagement(helpers.TestGL):
     @inlineCallbacks
-    def test_session_management_sched(self):
+    def test_session_management(self):
         new_session(1, 'admin', 'admin', 'enabled')  # 1!
         new_session(1, 'admin', 'admin', 'enabled')  # 2!
         new_session(1, 'admin', 'admin', 'enabled')  # 3!
@@ -23,4 +23,4 @@ class TestSessionManagementSched(helpers.TestGL):
 
         self.assertEqual(len(Sessions), 0)
 
-        yield session_management_sched.SessionManagementSchedule().run()
+        yield session_management.SessionManagement().run()

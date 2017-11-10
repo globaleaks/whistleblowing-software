@@ -1,6 +1,6 @@
 from globaleaks import db
 from globaleaks.handlers.admin import shorturl
-from globaleaks.jobs.session_management_sched import SessionManagementSchedule
+from globaleaks.jobs.session_management import SessionManagement
 from globaleaks.models.config import PrivateFactory
 from globaleaks.orm import transact
 from globaleaks.rest import errors
@@ -53,7 +53,7 @@ class TestAPITokenEnabled(helpers.TestHandlerWithPopulatedDB):
         yield self.assertRaises(errors.NotAuthenticated, handler.post)
 
         # After the session management job is run the token should be restored
-        yield SessionManagementSchedule().operation()
+        yield SessionManagement().operation()
 
         handler = self.request(self.get_dummy_shorturl('b'), headers={'x-api-token': self.api_tok})
         yield handler.post()

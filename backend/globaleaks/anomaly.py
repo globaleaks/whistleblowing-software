@@ -14,7 +14,6 @@ import copy
 
 from twisted.internet import defer
 
-from globaleaks.event import EventTrackQueue
 from globaleaks.handlers.admin.node import db_admin_serialize_node
 from globaleaks.handlers.admin.notification import db_get_notification
 from globaleaks.handlers.admin.user import db_get_admin_users
@@ -37,12 +36,6 @@ ANOMALY_MAP = {
     'comments': 30,
     'messages': 30
 }
-
-
-def update_AnomalyQ(event_matrix, alarm_level):
-    State.RecentAnomaliesQ.update({
-        datetime_now(): [event_matrix, alarm_level]
-    })
 
 
 def get_disk_anomaly_conditions(free_workdir_bytes, total_workdir_bytes, free_ramdisk_bytes, total_ramdisk_bytes):
@@ -160,16 +153,10 @@ class AlarmClass(object):
 
         requests_timing = []
 
-        for _, event_obj in EventTrackQueue.items():
-            current_event_matrix.setdefault(event_obj.event_type, 0)
-            current_event_matrix[event_obj.event_type] += 1
-            requests_timing.append(event_obj.request_time)
-
-        if len(requests_timing) > 2:
-            log.info("In latest %d seconds: worst RTT %f, best %f",
-                     10,
-                     round(max(requests_timing), 2),
-                     round(min(requests_timing), 2))
+        for tid in State.tenant_state:
+            for event in State.tenant_state[tid].RecentEventQ:
+                current_event_matrix.setdefault(event.event_type, 0)
+                current_event_matrix[event.event_type] += 1
 
         for event_name, threshold in ANOMALY_MAP.items():
             if event_name in current_event_matrix:
@@ -203,7 +190,7 @@ class AlarmClass(object):
 
         # if there are some anomaly or we're nearby, record it.
         if self.number_of_anomalies >= 1 or self.stress_levels['activity'] >= 1:
-            update_AnomalyQ(current_event_matrix, self.stress_levels['activity'])
+            State.tenant_state[tid].AnomaliesQ.append([datetime_now(), current_event_matrix, self.stress_levels['activity']])
 
         if previous_activity_sl or self.stress_levels['activity']:
             report_function("in Activity stress level switch from %d => %d" %
@@ -307,6 +294,7 @@ class AlarmClass(object):
 
             # Must invalidate the cache here becuase accept_subs served in /public has changed
             ApiCache.invalidate()
+
 
 # Alarm is a singleton class exported once
 Alarm = AlarmClass()

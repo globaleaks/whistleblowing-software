@@ -326,7 +326,6 @@ CREATE TABLE stats (
     tid INTEGER NOT NULL DEFAULT 1,
     id TEXT NOT NULL,
     start TEXT NOT NULL,
-    free_disk_space INTEGER NOT NULL,
     summary BLOB NOT NULL,
     UNIQUE(id),
     FOREIGN KEY (tid) REFERENCES tenant(id) ON DELETE CASCADE,

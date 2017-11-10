@@ -260,8 +260,7 @@ def get_mails_from_the_pool(store):
     return ret
 
 
-class NotificationSchedule(NetLoopingJob):
-    name = "Notification"
+class Notification(NetLoopingJob):
     interval = 5
     monitor_interval = 3 * 60
     mails_to_delete = []

@@ -101,16 +101,7 @@ events_monitored = [
 ]
 
 
-def track_handler(handler):
-    for event in events_monitored:
-        if event['handler_check'](handler.request.uri) and \
-           event['method'] == handler.request.method and \
-           event['status_check'](handler.request.code):
-            EventTrack(event, handler.request.execution_time)
-            break
-
-
-class EventTrack(object):
+class Event(object):
     """
     Every event that is kept in memory, is a temporary object.
     Once a while, they disappear. The statistics just take
@@ -120,42 +111,26 @@ class EventTrack(object):
     - Real-time analysis is based on these, too.
     """
     def __init__(self, event_obj, request_time):
-        self.event_id = EventTrackQueue.event_number()
         self.event_type = event_obj['name']
         self.creation_date = datetime_now()
         self.request_time = round(request_time.total_seconds(), 1)
 
-        EventTrackQueue.set(self.event_id, self)
-
     def serialize(self):
         return {
-            'id': self.event_id,
-            'creation_date': datetime_to_ISO8601(self.creation_date)[:-8],
             'event': self.event_type,
+            'creation_date': datetime_to_ISO8601(self.creation_date)[:-8],
             'duration': self.request_time
         }
 
 
-class EventTrackQueueClass(TempDict):
-    """
-    This class has only a class variable, used to stock the queue of the
-    event happened on the latest minutes.
-    """
-    event_absolute_counter = 0
+def track_handler(handler):
+    tid = handler.request.tid
 
-    def expireCallback(self, event):
-        """
-        On expiration of an event perform the synthesis and
-        append them to the RecentEventQueue.
-        """
-        State.RecentEventQ.append(event.serialize())
-
-    def event_number(self):
-        self.event_absolute_counter += 1
-        return self.event_absolute_counter
-
-    def take_current_snapshot(self):
-        return [event_obj.serialize() for _, event_obj in EventTrackQueue.items()]
-
-
-EventTrackQueue = EventTrackQueueClass(timeout=60)
+    for event in events_monitored:
+        if event['handler_check'](handler.request.uri) and \
+           event['method'] == handler.request.method and \
+           event['status_check'](handler.request.code):
+            e = Event(event, handler.request.execution_time)
+            State.tenant_state[tid].RecentEventQ.append(e)
+            State.tenant_state[tid].EventQ.append(e)
+            break

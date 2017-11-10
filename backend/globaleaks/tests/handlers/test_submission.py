@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from globaleaks.handlers import authentication, wbtip
 from globaleaks.handlers.submission import SubmissionInstance
-from globaleaks.jobs import delivery_sched
+from globaleaks.jobs import delivery
 from globaleaks.rest import errors
 from globaleaks.tests import helpers
 from globaleaks.utils.token import Token
@@ -54,7 +54,7 @@ class TestSubmissionEncryptedScenario(helpers.TestHandlerWithPopulatedDB):
         self.submission_desc = yield self.get_dummy_submission(self.dummyContext['id'])
         receipt = yield self.create_submission_with_files(self.submission_desc)
 
-        yield delivery_sched.DeliverySchedule().run()
+        yield delivery.Delivery().run()
 
         self.fil = yield self.get_internalfiles_by_receipt(receipt)
         self.assertTrue(isinstance(self.fil, list))

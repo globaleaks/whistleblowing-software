@@ -3,7 +3,8 @@ from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import anomaly
 from globaleaks.handlers.admin import statistics
-from globaleaks.jobs.statistics_sched import AnomaliesSchedule, StatisticsSchedule
+from globaleaks.jobs.anomalies import Anomalies
+from globaleaks.jobs.statistics import Statistics
 from globaleaks.models import Stats
 from globaleaks.orm import transact
 from globaleaks.tests import helpers
@@ -26,8 +27,8 @@ class TestStatsCollection(helpers.TestHandler):
 
         self.pollute_events(10)
 
-        yield AnomaliesSchedule().run()
-        yield StatisticsSchedule().run()
+        yield Anomalies().run()
+        yield Statistics().run()
 
         for i in range(2):
             handler = self.request({}, role='admin')
@@ -43,8 +44,8 @@ class TestAnomalyCollection(helpers.TestHandler):
     def test_get(self):
         self.pollute_events(10)
 
-        yield AnomaliesSchedule().run()
-        yield StatisticsSchedule().run()
+        yield Anomalies().run()
+        yield Statistics().run()
 
         handler = self.request({}, role='admin')
         response = yield handler.get()
@@ -61,7 +62,7 @@ class TestRecentEventsCollection(helpers.TestHandler):
     def test_get(self):
         self.pollute_events(3)
 
-        yield StatisticsSchedule().run()
+        yield Statistics().run()
 
         handler = self.request({}, role='admin')
 

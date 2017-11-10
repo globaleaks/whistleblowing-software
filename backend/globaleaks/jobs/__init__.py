@@ -1,25 +1,26 @@
-from globaleaks.jobs import cleaning_sched, \
-                            delivery_sched, \
-                            exit_nodes_refresh_sched, \
-                            update_check_sched, \
-                            notification_sched, \
+from globaleaks.jobs import anomalies, \
+                            cleaning, \
+                            delivery, \
+                            exit_nodes_refresh, \
+                            notification, \
                             onion_service, \
-                            pgp_check_sched, \
-                            session_management_sched, \
-                            statistics_sched, \
-                            x509_cert_check_sched
+                            pgp_check, \
+                            session_management, \
+                            statistics, \
+                            update_check, \
+                            certificate_check
 
 jobs_list = [
-    delivery_sched.DeliverySchedule,
-    exit_nodes_refresh_sched.ExitNodesRefreshSchedule,
-    statistics_sched.AnomaliesSchedule,
-    update_check_sched.UpdateCheckJob,
-    notification_sched.NotificationSchedule,
-    session_management_sched.SessionManagementSchedule,
-    cleaning_sched.CleaningSchedule,
-    pgp_check_sched.PGPCheckSchedule,
-    statistics_sched.StatisticsSchedule,
-    x509_cert_check_sched.X509CertCheckSchedule,
+    anomalies.Anomalies,
+    cleaning.Cleaning,
+    delivery.Delivery,
+    exit_nodes_refresh.ExitNodesRefresh,
+    notification.Notification,
+    pgp_check.PGPCheck,
+    session_management.SessionManagement,
+    statistics.Statistics,
+    update_check.UpdateCheck,
+    certificate_check.CertificateCheck,
 ]
 
 services_list = [
@@ -28,13 +29,14 @@ services_list = [
 
 __all__ = [
     'base',
-    'exit_nodes_refresh_sched',
-    'delivery_sched',
-    'update_check_sched',
-    'notification_sched',
-    'statistics_sched',
-    'cleaning_sched',
-    'session_management_sched',
-    'pgp_check_sched',
-    'x509_cert_check_sched',
+    'anomalies_check',
+    'cleaning',
+    'delivery',
+    'exit_nodes_refresh',
+    'notification',
+    'pgp_check',
+    'session_management',
+    'statistics',
+    'update_check',
+    'certificate_check',
 ]

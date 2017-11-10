@@ -3,11 +3,10 @@
 from globaleaks.jobs.base import LoopingJob
 from globaleaks.settings import Settings
 
-__all__ = ['SessionManagementSchedule']
+__all__ = ['SessionManagement']
 
 
-class SessionManagementSchedule(LoopingJob):
-    name = "Session Management"
+class SessionManagement(LoopingJob):
     interval = 60
     monitor_interval = 10
 

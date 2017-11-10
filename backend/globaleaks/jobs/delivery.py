@@ -16,7 +16,7 @@ from globaleaks.settings import Settings
 from globaleaks.state import State
 from globaleaks.utils.utility import log
 
-__all__ = ['DeliverySchedule']
+__all__ = ['Delivery']
 
 
 INTERNALFILES_HANDLE_RETRY_MAX = 3
@@ -222,8 +222,7 @@ def update_internalfile_and_store_receiverfiles(store, receiverfiles_maps):
             rfile.size = rf['size']
 
 
-class DeliverySchedule(LoopingJob):
-    name = "Delivery"
+class Delivery(LoopingJob):
     interval = 5
     monitor_interval = 180
 

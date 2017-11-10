@@ -3,7 +3,7 @@
 from twisted.internet.defer import inlineCallbacks, succeed
 
 from globaleaks import models
-from globaleaks.jobs.update_check_sched import UpdateCheckJob
+from globaleaks.jobs.update_check import UpdateCheck
 from globaleaks.models.config import PrivateFactory
 from globaleaks.orm import transact
 from globaleaks.state import State
@@ -39,7 +39,7 @@ def get_latest_version(store):
     return PrivateFactory(store, 1).get_val(u'latest_version')
 
 
-class TestUpdateCheckJob(helpers.TestGLWithPopulatedDB):
+class TestUpdateCheck(helpers.TestGLWithPopulatedDB):
     @inlineCallbacks
     def test_refresh_works(self):
         State.tenant_cache[1].anonymize_outgoing_connections = False
@@ -50,9 +50,9 @@ class TestUpdateCheckJob(helpers.TestGLWithPopulatedDB):
         def fetch_packages_file_mock(self):
             return succeed(packages)
 
-        UpdateCheckJob.fetch_packages_file = fetch_packages_file_mock
+        UpdateCheck.fetch_packages_file = fetch_packages_file_mock
 
-        yield UpdateCheckJob().operation()
+        yield UpdateCheck().operation()
 
         latest_version = yield get_latest_version()
         self.assertEqual(latest_version, '2.0.1337')

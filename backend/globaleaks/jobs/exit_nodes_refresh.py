@@ -8,11 +8,10 @@ from globaleaks.utils.utility import log
 from twisted.internet.defer import inlineCallbacks
 
 
-__all__ = ['ExitNodesRefreshSchedule']
+__all__ = ['ExitNodesRefresh']
 
 
-class ExitNodesRefreshSchedule(NetLoopingJob):
-    name = "Exit Nodes Refresh"
+class ExitNodesRefresh(NetLoopingJob):
     interval = 3600
     threaded = False
 

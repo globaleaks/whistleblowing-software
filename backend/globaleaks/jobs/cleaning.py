@@ -17,7 +17,7 @@ from globaleaks.utils.templating import Templating
 from globaleaks.utils.utility import datetime_now, datetime_to_ISO8601
 
 
-__all__ = ['CleaningSchedule']
+__all__ = ['Cleaning']
 
 
 def db_clean_expired_wbtips(store):
@@ -30,8 +30,7 @@ def db_clean_expired_wbtips(store):
         store.remove(wbtip)
 
 
-class CleaningSchedule(LoopingJob):
-    name = "Cleaning"
+class Cleaning(LoopingJob):
     interval = 24 * 3600
     monitor_interval = 5 * 60
 

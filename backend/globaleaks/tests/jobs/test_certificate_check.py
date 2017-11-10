@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from globaleaks import models
 from globaleaks.db import db_refresh_memory_variables
-from globaleaks.jobs.x509_cert_check_sched import X509CertCheckSchedule
+from globaleaks.jobs.certificate_check import CertificateCheck
 from globaleaks.models.config import PrivateFactory
 from globaleaks.orm import transact
 from globaleaks.state import State
@@ -10,7 +10,7 @@ from globaleaks.tests.utils import test_tls
 from twisted.internet.defer import inlineCallbacks
 
 
-class TestX509CertCheckSched(helpers.TestGLWithPopulatedDB):
+class TestCertificateCheck(helpers.TestGLWithPopulatedDB):
 
     @inlineCallbacks
     def setUp(self):
@@ -31,17 +31,17 @@ class TestX509CertCheckSched(helpers.TestGLWithPopulatedDB):
     def test_cert_check_sched(self):
         yield self.test_model_count(models.Mail, 0)
 
-        yield X509CertCheckSchedule().run()
+        yield CertificateCheck().run()
 
         yield self.test_model_count(models.Mail, 0)
 
-        X509CertCheckSchedule.notify_expr_within = 15*365
-        yield X509CertCheckSchedule().run()
+        CertificateCheck.notify_expr_within = 15*365
+        yield CertificateCheck().run()
 
         yield self.test_model_count(models.Mail, 1)
 
         State.tenant_cache[1].notif.disable_admin_notification_emails = True
 
-        yield X509CertCheckSchedule().run()
+        yield CertificateCheck().run()
 
         yield self.test_model_count(models.Mail, 1)

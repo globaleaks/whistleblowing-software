@@ -107,7 +107,7 @@ class Service(service.Service):
 
     def start_jobs(self):
         from globaleaks.jobs import jobs_list, onion_service
-        from globaleaks.jobs.base import LoopingJobsMonitor
+        from globaleaks.jobs.base import JobsMonitor
 
         for job in jobs_list:
             self.state.jobs.append(job())
@@ -116,7 +116,7 @@ class Service(service.Service):
         # The only service job currently is the OnionService
         self.state.services.append(self.state.onion_service_job)
 
-        self.state.jobs_monitor = LoopingJobsMonitor(self.state.jobs)
+        self.state.jobs_monitor = JobsMonitor(self.state.jobs)
 
     def stop_jobs(self):
         deferred_list = []

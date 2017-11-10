@@ -9,6 +9,7 @@ import cgi
 import codecs
 import json
 import logging
+import os
 import re
 import sys
 import traceback
@@ -20,6 +21,13 @@ from twisted.internet import reactor
 from twisted.internet.defer import Deferred
 from twisted.python import log as twlog
 from twisted.python import util, failure
+
+
+def get_disk_space(path):
+    statvfs = os.statvfs(path)
+    free_bytes = statvfs.f_frsize * statvfs.f_bavail
+    total_bytes = statvfs.f_frsize * statvfs.f_blocks
+    return free_bytes, total_bytes
 
 
 def read_file(p):

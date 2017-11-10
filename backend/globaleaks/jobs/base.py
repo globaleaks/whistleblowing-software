@@ -37,7 +37,6 @@ FAILURES_TOR_OUTGOING = (
 
 class BaseJob(task.LoopingCall):
     state = State
-    name = "unnamed"
     interval = 1
     low_time = -1
     high_time = -1
@@ -49,7 +48,10 @@ class BaseJob(task.LoopingCall):
     shutdown = False
 
     def __init__(self):
+        self.name = self.__class__.__name__
+
         self.job = task.LoopingCall.__init__(self, self.run)
+
         self.clock = reactor
 
         delay = self.get_start_time()
@@ -162,8 +164,7 @@ class NetLoopingJob(LoopingJob):
         super(NetLoopingJob, self).on_error(excep)
 
 
-class LoopingJobsMonitor(LoopingJob):
-    name = "jobs monitor"
+class JobsMonitor(LoopingJob):
     interval = 1
 
     def __init__(self, jobs_list):

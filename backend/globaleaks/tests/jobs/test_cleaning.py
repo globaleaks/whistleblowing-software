@@ -2,14 +2,14 @@
 import os
 
 from globaleaks import models
-from globaleaks.jobs import cleaning_sched
+from globaleaks.jobs import cleaning
 from globaleaks.orm import transact
 from globaleaks.settings import Settings
 from globaleaks.tests import helpers
 from twisted.internet.defer import inlineCallbacks
 
 
-class TestCleaningSched(helpers.TestGLWithPopulatedDB):
+class TestCleaning(helpers.TestGLWithPopulatedDB):
     @transact
     def check0(self, store):
         self.assertTrue(os.listdir(Settings.submission_path) == [])
@@ -93,28 +93,28 @@ class TestCleaningSched(helpers.TestGLWithPopulatedDB):
         # verify tip creation
         yield self.check1()
 
-        yield cleaning_sched.CleaningSchedule().run()
+        yield cleaning.Cleaning().run()
 
         # verify tips survive the scheduler if they are not expired
         yield self.check1()
 
         yield self.force_wbtip_expiration()
 
-        yield cleaning_sched.CleaningSchedule().run()
+        yield cleaning.Cleaning().run()
 
         # verify rtips survive the scheduler if the wbtip expires
         yield self.check2()
 
         yield self.set_itips_near_to_expire()
 
-        yield cleaning_sched.CleaningSchedule().run()
+        yield cleaning.Cleaning().run()
 
         # verify mail creation and that rtips survive the scheduler
         yield self.check3()
 
         yield self.force_itip_expiration()
 
-        yield cleaning_sched.CleaningSchedule().run()
+        yield cleaning.Cleaning().run()
 
         # verify cascade deletion when tips expire
         yield self.check4()

@@ -11,7 +11,7 @@ from globaleaks.handlers.base import Session
 from globaleaks.models.config import Config
 from globaleaks.orm import transact, transact_sync
 from globaleaks.settings import Settings
-from globaleaks.state import State
+from globaleaks.state import State, TenantState
 from globaleaks.utils.objectdict import ObjectDict
 from globaleaks.utils.utility import log
 
@@ -163,16 +163,25 @@ def db_refresh_tenant_cache(store, tid):
 
 
 def db_refresh_memory_variables(store):
+    tenant_map = {}
     tenant_cache = dict()
     tenant_hostname_id_map = dict()
 
     tenant_map = {tenant.id: tenant for tenant in store.find(models.Tenant)}
-    for tenant in tenant_map.values():
-        tenant_cache[tenant.id] = db_refresh_tenant_cache(store, tenant.id)
+
+    for tid in set(State.tenant_state.keys()) - set(tenant_map.keys()):
+        del State.tenant_state[tid]
+
+    for tid in set(tenant_map.keys()) - set(State.tenant_state.keys()):
+        State.tenant_state[tid] = TenantState()
+
+    for tid in State.tenant_state:
+        tenant_cache[tid] = db_refresh_tenant_cache(store, tid)
 
     # Update state object with changes coming from tenant
     root_hostname = tenant_cache[1].hostname
-    for tid, tenant_cache_item in tenant_cache.items():
+
+    for tid in State.tenant_state:
         tenant = tenant_map[tid]
         hostnames = []
 
@@ -185,11 +194,11 @@ def db_refresh_memory_variables(store):
         if root_hostname != "":
             hostnames.append('p{}.{}'.format(tid, root_hostname))
 
-        if tenant_cache_item.hostname != "":
-            hostnames.append(tenant_cache_item.hostname)
+        if tenant_cache[tid].hostname != "":
+            hostnames.append(tenant_cache[tid].hostname)
 
-	if tenant_cache_item.onionservice != "":
-	    hostnames.append(tenant_cache_item.onionservice)
+	if tenant_cache[tid].onionservice != "":
+	    hostnames.append(tenant_cache[tid].onionservice)
 
         tenant_hostname_id_map.update({h : tid for h in hostnames})
 
