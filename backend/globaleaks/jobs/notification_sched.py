@@ -214,9 +214,10 @@ class MailGenerator(object):
         for trigger in ['ReceiverTip', 'Comment', 'Message', 'ReceiverFile']:
             model = trigger_model_map[trigger]
 
-            if State.tenant_cache[1].notif.disable_receiver_notification_emails:
-                store.find(model, new=True).set(new=False)
-                continue
+            for tid, cache_item in State.tenant_cache.items():
+                if cache_item.notif.disable_receiver_notification_emails:
+                    store.find(model, tid=tid, new=True).set(new=False)
+                    continue
 
             elements = store.find(model, new=True)
             for element in elements:
@@ -252,7 +253,8 @@ def get_mails_from_the_pool(store):
             'id': mail.id,
             'address': mail.address,
             'subject': mail.subject,
-            'body': mail.body
+            'body': mail.body,
+            'tid': mail.tid,
         })
 
     return ret
@@ -266,7 +268,7 @@ class NotificationSchedule(NetLoopingJob):
 
     @defer.inlineCallbacks
     def sendmail(self, mail):
-        success = yield sendmail(mail['address'], mail['subject'], mail['body'])
+        success = yield sendmail(mail['tid'], mail['address'], mail['subject'], mail['body'])
         if success:
             self.mails_to_delete.append(mail['id'])
 

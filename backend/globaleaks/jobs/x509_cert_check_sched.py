@@ -18,6 +18,9 @@ from globaleaks.utils.utility import datetime_to_ISO8601, log
 from globaleaks.utils.templating import format_and_send
 
 
+XTIDX=1
+
+
 class X509CertCheckSchedule(LoopingJob):
     name = "X509 Cert Check"
     interval = 3 * 24 * 3600
@@ -30,22 +33,22 @@ class X509CertCheckSchedule(LoopingJob):
     should_restart_https = False
 
     def certificate_mail_creation(self, store, expiration_date):
-        for user_desc in db_get_admin_users(store):
+        for user_desc in db_get_admin_users(store, XTIDX):
             lang = user_desc['language']
 
             template_vars = {
                 'type': 'https_certificate_expiration',
-                'node': db_admin_serialize_node(store, 1, lang),
-                'notification': db_get_notification(store, 1, lang),
+                'node': db_admin_serialize_node(store, XTIDX, lang),
+                'notification': db_get_notification(store, XTIDX, lang),
                 'expiration_date': expiration_date,
                 'user': user_desc,
             }
 
-            format_and_send(store, user_desc, template_vars)
+            format_and_send(store, XTIDX, user_desc, template_vars)
 
     @transact
     def cert_expiration_checks(self, store):
-        priv_fact = models.config.PrivateFactory(store, 1)
+        priv_fact = models.config.PrivateFactory(store, XTIDX)
 
         if not priv_fact.get_val(u'https_enabled'):
             return
@@ -69,7 +72,7 @@ class X509CertCheckSchedule(LoopingJob):
         elif datetime.now() > expiration_date - timedelta(days=self.notify_expr_within):
             expiration_date = datetime_to_ISO8601(expiration_date)
             log.info('The HTTPS Certificate is expiring on %s', expiration_date)
-            if not State.tenant_cache[1].notif.disable_admin_notification_emails:
+            if not State.tenant_cache[XTIDX].notif.disable_admin_notification_emails:
                 self.certificate_mail_creation(store, expiration_date)
 
     @inlineCallbacks

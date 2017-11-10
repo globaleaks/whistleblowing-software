@@ -32,7 +32,7 @@ def evaluate_update_notification(store, latest_version):
         if V(__version__) == V(latest_version):
             return
 
-        for user_desc in db_get_admin_users(store):
+        for user_desc in db_get_admin_users(store, 1):
             lang = user_desc['language']
             template_vars = {
                 'type': 'software_update_available',
@@ -42,7 +42,7 @@ def evaluate_update_notification(store, latest_version):
                 'user': user_desc,
             }
 
-            format_and_send(store, user_desc, template_vars)
+            format_and_send(store, 1, user_desc, template_vars)
 
 
 class UpdateCheckJob(NetLoopingJob):

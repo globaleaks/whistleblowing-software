@@ -6,7 +6,6 @@ from globaleaks.models import config_desc, ModelWithTID, Tenant
 from globaleaks.models.config_desc import GLConfig
 from globaleaks.utils.utility import log
 
-XTIDX = 1
 
 class Config(ModelWithTID):
     __storm_table__ = 'config'
