@@ -283,4 +283,4 @@ class NotificationSchedule(NetLoopingJob):
 
         MailGenerator().generate()
 
-        return self.spool_emails()
+        self.spool_emails()
