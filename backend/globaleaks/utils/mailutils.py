@@ -54,7 +54,7 @@ def MIME_mail_build(src_name, src_mail, dest_name, dest_mail, title, mail_body):
     return StringIO.StringIO(multipart.as_string())
 
 
-def sendmail(to_address, subject, body):
+def sendmail(tid, to_address, subject, body):
     """
     Send an email using SMTPS/SMTP+TLS and maybe torify the connection.
 
@@ -69,15 +69,15 @@ def sendmail(to_address, subject, body):
         if not to_address:
             return
 
-        authentication_username=State.tenant_cache[1].notif.username
-        authentication_password=State.tenant_cache[1].private.smtp_password
-        from_address=State.tenant_cache[1].notif.source_email
-        smtp_host=State.tenant_cache[1].notif.server
-        smtp_port=State.tenant_cache[1].notif.port
-        security=State.tenant_cache[1].notif.security
+        authentication_username=State.tenant_cache[tid].notif.username
+        authentication_password=State.tenant_cache[tid].private.smtp_password
+        from_address=State.tenant_cache[tid].notif.source_email
+        smtp_host=State.tenant_cache[tid].notif.server
+        smtp_port=State.tenant_cache[tid].notif.port
+        security=State.tenant_cache[tid].notif.security
 
-        message = MIME_mail_build(State.tenant_cache[1].notif.source_name,
-                                  State.tenant_cache[1].notif.source_email,
+        message = MIME_mail_build(State.tenant_cache[tid].notif.source_name,
+                                  State.tenant_cache[tid].notif.source_email,
                                   to_address,
                                   to_address,
                                   subject,
@@ -109,7 +109,7 @@ def sendmail(to_address, subject, body):
         if security == "SSL":
             factory = tls.TLSMemoryBIOFactory(context_factory, True, factory)
 
-        if State.tenant_cache[1].anonymize_outgoing_connections:
+        if State.tenant_cache[tid].anonymize_outgoing_connections:
             socksProxy = TCP4ClientEndpoint(reactor, Settings.socks_host, Settings.socks_port, timeout=Settings.mail_timeout)
             endpoint = SOCKS5ClientEndpoint(smtp_host.encode('utf-8'), smtp_port, socksProxy)
         else:
@@ -195,7 +195,7 @@ def schedule_exception_email(exception_text, *args):
                 mail_body = encrypt_message(pub_key, mail_body)
 
             # avoid waiting for the notification to send and instead rely on threads to handle it
-            schedule_email(mail_address, mail_subject, mail_body)
+            schedule_email(1, mail_address, mail_subject, mail_body)
 
     except Exception as excep:
         # Avoid raising exception inside email logic to avoid chaining errors

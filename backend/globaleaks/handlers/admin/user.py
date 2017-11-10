@@ -155,8 +155,8 @@ def get_user(store, tid, user_id, language):
     return user_serialize_user(store, user, language)
 
 
-def db_get_admin_users(store, tid=1):
-    return [user_serialize_user(store, user, State.tenant_cache[1].default_language)
+def db_get_admin_users(store, tid):
+    return [user_serialize_user(store, user, State.tenant_cache[tid].default_language)
             for user in store.find(models.User, tid=tid, role=u'admin')]
 
 
