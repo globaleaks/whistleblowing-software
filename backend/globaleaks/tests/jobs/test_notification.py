@@ -14,7 +14,7 @@ class TestNotification(helpers.TestGLWithPopulatedDB):
         yield self.perform_full_submission_actions()
 
     @inlineCallbacks
-    def test_notificationule_success(self):
+    def test_notification_success(self):
         yield self.test_model_count(models.Mail, 0)
 
         yield Delivery().run()
@@ -26,7 +26,7 @@ class TestNotification(helpers.TestGLWithPopulatedDB):
         yield self.test_model_count(models.Mail, 0)
 
     @inlineCallbacks
-    def test_notificationule_failure(self):
+    def test_notification_failure(self):
         yield self.test_model_count(models.Mail, 0)
 
         yield Delivery().run()
