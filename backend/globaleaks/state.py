@@ -8,14 +8,21 @@ from globaleaks.utils.tor_exit_set import TorExitSet
 from globaleaks.utils.utility import datetime_now
 from globaleaks.utils.tempdict import TempDict
 
+def getAlarm():
+    from globaleaks.anomaly import Alarm
+    return Alarm()
+
 
 class TenantState(object):
     def __init__(self):
         self.RecentEventQ = []
         self.EventQ = []
         self.AnomaliesQ = []
+
         # An ACME challenge will have 5 minutes to resolve
-        acme_tmp_chall_dict = TempDict(300)
+        self.acme_tmp_chall_dict = TempDict(300)
+
+        self.Alarm = getAlarm()
 
 
 class StateClass(ObjectDict):

@@ -37,7 +37,7 @@ class TokenCreate(BaseHandler):
         if request['type'] == 'submission' and not State.accept_submissions:
             raise errors.SubmissionDisabled
 
-        token = Token(request['type'])
+        token = Token(self.request.tid, request['type'])
 
         if not self.request.client_using_tor and (self.request.client_proto == 'http' and \
                                                   self.request.hostname not in ['127.0.0.1', 'localhost']):
@@ -63,6 +63,9 @@ class TokenInstance(BaseHandler):
         request = self.validate_message(self.request.content.read(), requests.TokenAnswerDesc)
 
         token = TokenList.get(token_id)
+        if token is None or self.request.tid != token.tid:
+            raise errors.InvalidAuthentication
+
         token.update(request)
 
         return token.serialize()

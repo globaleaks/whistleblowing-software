@@ -92,8 +92,9 @@ def delete(store, id):
 @inlineCallbacks
 def refresh_tenant_states():
     # Remove selected onion services and add missing services
-    yield State.onion_service_job.remove_unwanted_hidden_services()
-    yield State.onion_service_job.add_all_hidden_services()
+    if State.onion_service_job:
+        yield State.onion_service_job.remove_unwanted_hidden_services()
+        yield State.onion_service_job.add_all_hidden_services()
 
     # Power cycle HTTPS processes
     yield State.process_supervisor.shutdown()

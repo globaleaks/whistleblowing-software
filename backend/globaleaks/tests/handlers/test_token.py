@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from globaleaks.anomaly import Alarm
+from globaleaks.jobs import anomalies
 from globaleaks.handlers import token
 from globaleaks.rest import errors
 from globaleaks.tests import helpers
@@ -17,7 +18,7 @@ class Test_TokenCreate(helpers.TestHandlerWithPopulatedDB):
 
     @inlineCallbacks
     def test_post(self):
-        yield Alarm.compute_activity_level()
+        yield anomalies.Anomalies().run()
 
         handler = self.request({'type': 'submission'})
 
@@ -34,9 +35,9 @@ class Test_TokenInstance(helpers.TestHandlerWithPopulatedDB):
     @inlineCallbacks
     def test_put_right_answer(self):
         self.pollute_events()
-        yield Alarm.compute_activity_level()
+        yield anomalies.Anomalies().run()
 
-        token = Token('submission')
+        token = Token(1, 'submission')
         token.human_captcha = {'question': 'XXX','answer': 1, 'solved': False}
         token.proof_of_work['solved'] = True
 
@@ -55,9 +56,9 @@ class Test_TokenInstance(helpers.TestHandlerWithPopulatedDB):
     @inlineCallbacks
     def test_put_wrong_answer(self):
         self.pollute_events()
-        yield Alarm.compute_activity_level()
+        yield anomalies.Anomalies().run()
 
-        token = Token('submission')
+        token = Token(1, 'submission')
 
         orig_question = u'77+33'
         token.human_captcha = {'question': orig_question,'answer': 1, 'solved': False}

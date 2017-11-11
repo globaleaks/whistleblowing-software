@@ -27,7 +27,7 @@ class TestSubmissionEncryptedScenario(helpers.TestHandlerWithPopulatedDB):
 
     @inlineCallbacks
     def create_submission(self, request):
-        token = Token('submission')
+        token = Token(1, 'submission')
         token.solve()
         self.submission_desc = yield self.get_dummy_submission(self.dummyContext['id'])
         handler = self.request(self.submission_desc)
@@ -36,7 +36,7 @@ class TestSubmissionEncryptedScenario(helpers.TestHandlerWithPopulatedDB):
 
     @inlineCallbacks
     def create_submission_with_files(self, request):
-        token = Token('submission')
+        token = Token(1, 'submission')
         token.solve()
         yield self.emulate_file_upload(token, 3)
         self.submission_desc = yield self.get_dummy_submission(self.dummyContext['id'])
@@ -96,7 +96,7 @@ class TestSubmissionTokenInteract(helpers.TestHandlerWithPopulatedDB):
 
     @inlineCallbacks
     def test_token_must_be_solved(self):
-        token = Token()
+        token = Token(1)
         self.submission_desc = yield self.get_dummy_submission(self.dummyContext['id'])
         handler = self.request(self.submission_desc)
         yield self.assertRaises(errors.TokenFailure, handler.put, token.id)
@@ -108,7 +108,7 @@ class TestSubmissionTokenInteract(helpers.TestHandlerWithPopulatedDB):
 
         handler = self.request(self.submission_desc)
 
-        token = Token()
+        token = Token(1)
         token.solve()
         yield handler.put(token.id)
 

@@ -221,8 +221,8 @@ class TestAcmeHandler(helpers.TestHandler):
     @inlineCallbacks
     def test_put(self):
         valid_setup = test_tls.get_valid_setup()
-        yield https.AcmeAccntKeyRes.create_file()
-        yield https.AcmeAccntKeyRes.save_accnt_uri('http://localhost:9999')
+        yield https.AcmeAccntKeyRes.create_file(1)
+        yield https.AcmeAccntKeyRes.save_accnt_uri(1, 'http://localhost:9999')
         yield https.PrivKeyFileRes.create_file(1, valid_setup['key'])
         hostname = 'gl.dl.localhost.com'
         State.tenant_cache[1].hostname = hostname
@@ -250,12 +250,11 @@ class TestAcmeChallengeHandler(helpers.TestHandler):
     @inlineCallbacks
     def test_get(self):
         # tmp_chall_dict pollutes scope
-        from globaleaks.handlers.admin.https import tmp_chall_dict
         tok = 'yT-RDI9dU7dJPxaTYOgY_YnYYByT4CVAVCC7W3zUDIw'
         v = '{}.5vh2ZRCJGmNUKEEBn-SN6esbMnSl1w8ZT0LDUwexTAM'.format(tok)
         ct = ChallTok(v)
 
-        tmp_chall_dict.set(tok, ct)
+        State.tenant_state[1].acme_tmp_chall_dict.set(tok, ct)
 
         handler = self.request()
         resp = yield handler.get(tok)

@@ -48,7 +48,8 @@ TokenList = TokenListClass()
 class Token(object):
     MAX_USES = 30
 
-    def __init__(self, token_kind="submission", uses=MAX_USES):
+    def __init__(self, tid, token_kind="submission", uses=MAX_USES):
+        self.tid = tid
         self.id = generateRandomKey(42)
         self.kind = token_kind
         self.remaining_uses = uses
@@ -100,7 +101,7 @@ class Token(object):
         return r
 
     def generate_human_captcha(self):
-        if Alarm.stress_levels['activity'] >= 1 and State.tenant_cache[1].enable_captcha:
+        if State.tenant_state[self.tid].Alarm.alarm_levels['activity'] >= 1 and State.tenant_cache[self.tid].enable_captcha:
             random_a = SystemRandom().randrange(100)
             random_b = SystemRandom().randrange(100)
 
@@ -111,7 +112,7 @@ class Token(object):
             }
 
     def generate_proof_of_work(self):
-        if State.tenant_cache[1].enable_proof_of_work:
+        if State.tenant_cache[self.tid].enable_proof_of_work:
             self.proof_of_work = {
                 'question': generateRandomKey(20),
                 'solved': False
