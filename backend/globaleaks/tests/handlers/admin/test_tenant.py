@@ -19,13 +19,7 @@ class TenantTestEnv(helpers.TestHandlerWithPopulatedDB):
     @inlineCallbacks
     def setUp(self):
         yield helpers.TestHandlerWithPopulatedDB.setUp(self)
-        State.onion_service_job = onion_service.OnionService()
-        self.test_reactor.pump([1])
-
-    @inlineCallbacks
-    def tearDown(self):
-        yield State.onion_service_job.stop()
-        yield helpers.TestHandlerWithPopulatedDB.tearDown(self)
+        State.onion_service_job = False
 
 
 class TestTenantCollection(TenantTestEnv):

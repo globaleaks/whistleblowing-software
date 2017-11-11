@@ -169,9 +169,7 @@ class RecentEventsCollection(BaseHandler):
         return eventmap
 
     def get(self, kind):
-        templist = []
-
-        templist += [e.serialize() for e in State.tenant_state[self.request.tid].EventQ]
+        templist = [e.serialize() for e in State.tenant_state[self.request.tid].EventQ]
 
         templist.sort(key=operator.itemgetter('id'))
 

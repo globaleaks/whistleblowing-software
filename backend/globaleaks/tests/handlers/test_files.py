@@ -13,7 +13,7 @@ class TestFileInstance(helpers.TestHandlerWithPopulatedDB):
 
     @inlineCallbacks
     def test_post_file_on_not_finalized_submission(self):
-        self.dummyToken = token.Token(token_kind='submission')
+        self.dummyToken = token.Token(1, 'submission')
         self.dummyToken.proof_of_work = False
 
         handler = self.request()
@@ -21,7 +21,7 @@ class TestFileInstance(helpers.TestHandlerWithPopulatedDB):
 
     @inlineCallbacks
     def test_post_file_and_verify_deletion_after_token_expiration(self):
-        self.dummyToken = token.Token(token_kind='submission')
+        self.dummyToken = token.Token(1, 'submission')
         self.dummyToken.proof_of_work = False
 
         for _ in range(3):

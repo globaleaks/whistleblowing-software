@@ -3,6 +3,7 @@
 import os
 
 from globaleaks.anomaly import Alarm
+from globaleaks.jobs import anomalies
 from globaleaks.rest import errors
 from globaleaks.tests import helpers
 from globaleaks.utils.token import Token, TokenList
@@ -23,10 +24,11 @@ class TestToken(helpers.TestGL):
         TokenList.clear()
 
         self.pollute_events()
-        yield Alarm.compute_activity_level()
+
+        yield anomalies.Anomalies().run()
 
     def test_token(self):
-        st = Token('submission')
+        st = Token(1, 'submission')
 
         st_dict = st.serialize()
 
@@ -42,7 +44,7 @@ class TestToken(helpers.TestGL):
 
         token_collection = []
         for _ in range(20):
-            st = Token('submission')
+            st = Token(1, 'submission')
             token_collection.append(st)
 
         for t in token_collection:
@@ -63,7 +65,7 @@ class TestToken(helpers.TestGL):
                 self.assertFalse(os.path.exists(f))
 
     def test_token_update_right_answer(self):
-        token = Token('submission')
+        token = Token(1, 'submission')
         token.solve()
 
         token.human_captcha = {'question': '1 + 0', 'answer': 1, 'solved': False}
@@ -75,7 +77,7 @@ class TestToken(helpers.TestGL):
         self.assertTrue(token.human_captcha['solved'])
 
     def test_token_update_wrong_answer(self):
-        token = Token('submission')
+        token = Token(1, 'submission')
         token.solve()
 
         token.human_captcha = {'question': 'XXX', 'answer': 1, 'solved': False}
@@ -86,7 +88,7 @@ class TestToken(helpers.TestGL):
         self.assertNotEqual(token.human_captcha['question'], 'XXX')
 
     def test_token_usage_limit(self):
-        token = Token('submission')
+        token = Token(1, 'submission')
         token.solve()
 
         token.human_captcha = {'question': 'XXX', 'answer': 1, 'solved': False}
@@ -102,7 +104,7 @@ class TestToken(helpers.TestGL):
         self.assertRaises(errors.TokenFailure, token.use)
 
     def test_proof_of_work_wrong_answer(self):
-        token = Token('submission')
+        token = Token(1, 'submission')
         token.solve()
 
         # Note, this solution works with two '00' at the end, if the
@@ -114,7 +116,7 @@ class TestToken(helpers.TestGL):
         self.assertRaises(errors.TokenFailure, token.use)
 
     def test_proof_of_work_right_answer(self):
-        token = Token('submission')
+        token = Token(1, 'submission')
         token.solve()
 
         # Note, this solution works with two '00' at the end, if the
@@ -129,7 +131,7 @@ class TestToken(helpers.TestGL):
         self.assertTrue(len(TokenList) == 0)
 
         for _ in range(100):
-            Token('submission')
+            Token(1, 'submission')
 
         self.assertTrue(len(TokenList) == 100)
 

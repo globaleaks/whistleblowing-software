@@ -376,23 +376,23 @@ class AnomalyKeyword(UserNodeKeyword):
 
     def AnomalyDetailDisk(self):
         # This happens all the time anomalies are present but disk is ok
-        if self.data['alert']['stress_levels']['disk_space'] == 0:
+        if self.data['alert']['alarm_levels']['disk_space'] == 0:
             return u''
 
-        if self.data['alert']['stress_levels']['disk_space'] == 1:
+        if self.data['alert']['alarm_levels']['disk_space'] == 1:
             return self.data['notification']['admin_anomaly_disk_low']
         else:
             return self.data['notification']['admin_anomaly_disk_high']
 
     def AnomalyDetailActivities(self):
         # This happens all the time there is not anomalous traffic
-        if self.data['alert']['stress_levels']['activity'] == 0:
+        if self.data['alert']['alarm_levels']['activity'] == 0:
             return u''
 
         return self.data['notification']['admin_anomaly_activities']
 
     def ActivityAlarmLevel(self):
-        return '%s' % self.data['alert']['stress_levels']['activity']
+        return '%s' % self.data['alert']['alarm_levels']['activity']
 
     def ActivityDump(self):
         retstr = ''
@@ -405,10 +405,10 @@ class AnomalyKeyword(UserNodeKeyword):
         return retstr
 
     def FreeMemory(self):
-        return '%s' % bytes_to_pretty_str(self.data['alert']['latest_measured_freespace'])
+        return '%s' % bytes_to_pretty_str(self.data['alert']['measured_freespace'])
 
     def TotalMemory(self):
-        return '%s' % bytes_to_pretty_str(self.data['alert']['latest_measured_totalspace'])
+        return '%s' % bytes_to_pretty_str(self.data['alert']['measured_totalspace'])
 
 
 class CertificateExprKeyword(UserNodeKeyword):

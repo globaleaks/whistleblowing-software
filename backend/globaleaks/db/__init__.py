@@ -161,7 +161,6 @@ def db_refresh_tenant_cache(store, tid):
 
 
 def db_refresh_memory_variables(store):
-    tenant_map = {}
     tenant_cache = dict()
     tenant_hostname_id_map = dict()
 

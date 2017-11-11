@@ -327,7 +327,6 @@ class TestGL(unittest.TestCase):
         sup = ProcessSupervisor([], '127.0.0.1', 8082)
         State.process_supervisor = sup
 
-        Alarm.reset()
         State.reset_hourly()
 
         Settings.submission_minimum_delay = 0
@@ -616,7 +615,7 @@ class TestGLWithPopulatedDB(TestGL):
         db_create_field(store, 1, reference_field, 'en')
 
     def perform_submission_start(self):
-        self.dummyToken = token.Token('submission')
+        self.dummyToken = token.Token(1, 'submission')
         self.dummyToken.solve()
 
     @inlineCallbacks
