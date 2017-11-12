@@ -29,7 +29,7 @@ services_list = [
 
 __all__ = [
     'base',
-    'anomalies_check',
+    'anomalies',
     'cleaning',
     'delivery',
     'exit_nodes_refresh',
