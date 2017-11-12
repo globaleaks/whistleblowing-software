@@ -16,6 +16,13 @@ from globaleaks.db.migrations.update_37.config_desc import GLConfig
 ROOT_TENANT = 1
 
 
+class Anomalies_v_38(ModelWithID):
+    __storm_table__= 'anomalies'
+    date = DateTime()
+    alarm = Int()
+    events = JSON()
+
+
 class ArchivedSchema_v_38(Model):
     __storm_table__ = 'archivedschema'
     __storm_primary__ = 'hash', 'type'

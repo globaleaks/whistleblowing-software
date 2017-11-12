@@ -10,7 +10,7 @@ class EnabledLanguage(models.ModelWithTID):
 
     name = Unicode()
 
-    def __init__(self, tid, name=None, migrate=False):
+    def __init__(self, tid=1, name=None, migrate=False):
         if migrate:
             return
 
@@ -44,7 +44,7 @@ class ConfigL10N(models.ModelWithTID):
     value = Unicode()
     customized = Bool(default=False)
 
-    def __init__(self, tid, lang_code=None, group=None, var_name=None, value='', migrate=False):
+    def __init__(self, tid=1, lang_code=None, group=None, var_name=None, value='', migrate=False):
         if migrate:
             return
 
