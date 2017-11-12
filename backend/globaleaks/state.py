@@ -10,7 +10,8 @@ from globaleaks.utils.tempdict import TempDict
 
 def getAlarm():
     from globaleaks.anomaly import Alarm
-    return Alarm()
+    from globaleaks.settings import Settings
+    return Alarm(Settings)
 
 
 class TenantState(object):

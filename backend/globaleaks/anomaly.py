@@ -12,7 +12,7 @@ from globaleaks.orm import transact_sync
 from globaleaks.rest.apicache import ApiCache
 from globaleaks.transactions import db_schedule_email
 from globaleaks.utils.templating import Templating
-from globaleaks.utils.utility import log, datetime_now, datetime_null, is_expired
+from globaleaks.utils.utility import datetime_now, datetime_null, get_disk_space, is_expired, log
 
 
 ANOMALY_MAP = {
@@ -104,7 +104,9 @@ def save_anomalies(store):
 
 
 class Alarm(object):
-    def __init__(self):
+    def __init__(self, settings):
+        self.settings = settings
+
         self.last_alarm_email = datetime_null()
 
         self.event_matrix = {}
@@ -195,8 +197,8 @@ class Alarm(object):
         https://github.com/globaleaks/GlobaLeaks/issues/297
         https://github.com/globaleaks/GlobaLeaks/issues/872
         """
-        self.measured_freespace, self.measured_totalspace = get_disk_space(Settings.working_path)
-        self.measured_freeram, self.measured_totalram = get_disk_space(Settings.ramdisk_path)
+        self.measured_freespace, self.measured_totalspace = get_disk_space(self.settings.working_path)
+        self.measured_freeram, self.measured_totalram = get_disk_space(self.settings.ramdisk_path)
 
         disk_space = 0
         disk_message = ""
@@ -235,7 +237,7 @@ class Alarm(object):
         self.alarm_levels['disk_message'] = disk_message
 
         # if not on testing change accept_submission to the new value
-        State.accept_submissions = accept_submissions if not Settings.testing else True
+        State.accept_submissions = accept_submissions if not self.settings.testing else True
 
         if old_accept_submissions != State.accept_submissions:
             log.info("Switching disk space availability from: %s to %s",
