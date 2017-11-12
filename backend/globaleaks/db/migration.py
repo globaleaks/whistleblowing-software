@@ -23,7 +23,7 @@ from globaleaks.db.migrations.update_34 import Node_v_33, Notification_v_33
 from globaleaks.db.migrations.update_35 import Context_v_34, InternalTip_v_34, WhistleblowerTip_v_34
 from globaleaks.db.migrations.update_38 import Field_v_37, Questionnaire_v_37
 from globaleaks.db.migrations.update_39 import \
-    ArchivedSchema_v_38, Comment_v_38, Config_v_38, ConfigL10N_v_38, \
+    Anomalies_v_38, ArchivedSchema_v_38, Comment_v_38, Config_v_38, ConfigL10N_v_38, \
     Context_v_38, Counter_v_38, CustomTexts_v_38, EnabledLanguage_v_38, \
     Field_v_38, FieldAnswer_v_38, FieldAnswerGroup_v_38, FieldAttr_v_38, \
     FieldOption_v_38, File_v_38, IdentityAccessRequest_v_38, \
@@ -41,7 +41,7 @@ XTIDX = 1
 
 
 migration_mapping = OrderedDict([
-    ('Anomalies', [-1, -1, -1, -1, -1, -1, models.Anomalies, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
+    ('Anomalies', [-1, -1, -1, -1, -1, -1, Anomalies_v_38, 0, 0, 0, 0, 0, 0, 0, 0, models.Anomalies]),
     ('ArchivedSchema', [ArchivedSchema_v_38, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, models.ArchivedSchema]),
     ('Comment', [Comment_v_31, 0, 0, 0, 0, 0, 0, 0, Comment_v_38, 0, 0, 0, 0, 0, 0, models.Comment]),
     ('Config', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, Config_v_38, 0, 0, 0, 0, config.Config]),
