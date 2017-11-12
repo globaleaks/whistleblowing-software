@@ -283,27 +283,11 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-mocha-test');
   grunt.loadNpmTasks("gruntify-eslint");
 
-  var readDynamicStrings = function() {
-    var filecontent = grunt.file.read('app/data_src/dynamic_strings.json');
-
-    var ret = {
-      mapping: JSON.parse(filecontent),
-      inverse_mapping: {}
-    }
-
-    for (var key in ret['mapping']) {
-      ret['inverse_mapping'][(ret['mapping'][key])] = key;
-    }
-
-    return ret;
-  };
-
   var readNoTranslateStrings = function() {
     return JSON.parse(grunt.file.read('app/data_src/notranslate_strings.json'));
   };
 
-  var dynamic_strings = readDynamicStrings(),
-      notranslate_strings = readNoTranslateStrings();
+  var notranslate_strings = readNoTranslateStrings();
 
   grunt.registerTask('cleanupWorkingDirectory', function() {
     var x;
@@ -533,12 +517,7 @@ module.exports = function(grunt) {
         return;
       }
 
-      if (str in dynamic_strings['mapping']) {
-        str = dynamic_strings['mapping'][str];
-        gt.setTranslation("en", "", str, str);
-      } else {
-        gt.setTranslation("en", "", str, str);
-      }
+      gt.setTranslation("en", "", str, str);
 
       translationStringCount += 1;
     }
@@ -633,14 +612,6 @@ module.exports = function(grunt) {
       fileContents = fs.readFileSync("pot/en.po"),
       lang_code;
 
-    function addTranslation(translations, key, value) {
-      if (key in dynamic_strings['inverse_mapping']) {
-        key = dynamic_strings['inverse_mapping'][key];
-      }
-
-      translations[key] = value;
-    }
-
     fetchTxTranslations(function(supported_languages) {
       gt.addTextdomain("en", fileContents);
       var strings = gt.listKeys("en", "");
@@ -649,9 +620,8 @@ module.exports = function(grunt) {
         var translations = {}, output;
 
         for (var i = 0; i < strings.length; i++) {
-          var string = strings[i];
           gt.addTextdomain(lang_code, fs.readFileSync("pot/" + lang_code + ".po"));
-          addTranslation(translations, string, str_unescape(gt.dgettext(lang_code, str_escape(string))));
+          translations[strings[i]] = str_unescape(gt.dgettext(lang_code, str_escape(strings[i])));
         }
 
         output = JSON.stringify(translations, null, 2);

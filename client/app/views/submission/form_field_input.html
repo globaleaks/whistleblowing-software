@@ -14,16 +14,13 @@
                   maxlength="{{::maxlength}}"
                   rows="3"
                   aria-label="{{::field.label}}"
-                  data-ng-required="field.required"
+                  data-ng-required="{{field.required || field.attrs.min_len.value > 0}}"
                   data-ng-attr-placeholder="{{field.placeholder}}"></textarea>
         <div>
-          <div data-ng-if="maxlength >= 0 && (maxlength - entry['value'].length) <= 50"
-               data-translate-values="{available_characters_count: maxlength - entry['value'].length}"
-               data-translate>FIELD_INPUT_AVAILABLE_CHARS</div>
-          <div class="text-danger"
+          <div data-ng-if="entry['value'].length && maxlength >= 0 && (maxlength - entry['value'].length) <= 50" class="float-right">{{entry['value'].length}}/{{maxlength}}</div>
+          <div class="text-danger float-left"
                data-ng-if="field.attrs.min_len.value > 0 && (f['input-' + entryIndex].$error.minlength || (field.required && entry['value'].length == undefined))"
-               data-translate-values="{min_characters_limit: field.attrs.min_len.value}"
-               data-translate>FIELD_INPUT_MIN_CHARS</div>
+               data-translate>The answer is too short.</div>
         </div>
       </div>
       <div data-ng-switch-when="multichoice" data-ng-class="{'has-error': f['input-' + entryIndex].$error.required}">
@@ -52,7 +49,7 @@
                    data-ng-change="field.required_check = !validateRequiredCheckbox(field, entry)"
                    data-ng-attr-placeholder="{{field.placeholder || 'false'}}"
                    type="checkbox" />
-            {{::option.label}}
+            <span>{{::option.label}}</span>
           </label>
         </div>
       </div>
@@ -110,7 +107,7 @@
                data-ng-minlength="field.attrs.min_len.value"
                data-ng-pattern="validator"
                maxlength="{{maxlength}}"
-               data-ng-required="field.required"
+               data-ng-required="{{field.required || field.attrs.min_len.value > 0}}"
                data-ng-attr-placeholder="{{field.placeholder}}"
                aria-label="{{::field.label}}"
                type="text" />
@@ -129,13 +126,11 @@
               </span>
             </span>
           </div>
-          <div data-ng-if="maxlength >= 0 && (maxlength- entry['value'].length) <= 50"
-               data-translate-values="{available_characters_count: maxlength - entry['value'].length}"
-               data-translate>FIELD_INPUT_AVAILABLE_CHARS</div>
-          <div class="text-danger"
+          <div data-ng-if="entry['value'].length && maxlength >= 0 && (maxlength - entry['value'].length) <= 50" class="float-right">{{entry['value'].length}}/{{maxlength}}</div>
+          <div class="text-danger float-left"
                data-ng-if="field.attrs.min_len.value > 0 && (f['input-' + entryIndex].$error.minlength || (field.required && entry['value'].length == undefined))"
                data-translate-values="{min_characters_limit: field.attrs.min_len.value}"
-               data-translate>FIELD_INPUT_MIN_CHARS</div>
+               data-translate>The answer is too short.</div>
         </div>
       </div>
     </div>

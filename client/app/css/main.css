@@ -481,3 +481,19 @@ html[dir] .btn-circle {
 html[dir] .badge-info {
   background-color: #337ab7;
 }
+
+.float-left {
+  float: left;
+}
+
+.float-right {
+  float: right;
+}
+
+html[rtl] .float-left {
+  float: right;
+}
+
+html[rtl] .float-right {
+  float: left;
+}

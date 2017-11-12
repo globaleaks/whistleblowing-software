@@ -19,8 +19,7 @@
         </div>
         <br />
         <textarea id="TipCommunicationMessagesInput" data-ng-model="tip.newMessageContent" maxlength="{{::node.maximum_textsize}}" class="form-control" autocomplete="off"></textarea>
-        <div data-translate-values="{available_characters_count: node.maximum_textsize - tip.newMessageContent.length}"
-             data-translate>FIELD_INPUT_AVAILABLE_CHARS</div>
+        <span class="float-right">{{tip.newMessagesContent.length ? tip.newMessagesContent.length : '0'}}/{{node.maximum_textsize}}</span>
       </div>
       <div class="col-md-12">
         <span class="pull-left">
