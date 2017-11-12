@@ -1,4 +1,4 @@
-/* eslint no-unused-vars: ["error", { "varsIgnorePattern": "GLClient" }] */
+/* eslint no-unused-vars: ["error", { "varsIgnorePattern": "^GLClient|\$locale$" }] */
 
 var _flowFactoryProvider;
 
@@ -403,6 +403,7 @@ var GLClient = angular.module('GLClient', [
         suffix: ''
       });
 
+      $translateProvider.useInterpolation('noopInterpolation');
       $translateProvider.useSanitizeValueStrategy('escape');
 
       tmhDynamicLocaleProvider.localeLocationPattern('{{base64Locales[locale]}}');
@@ -769,5 +770,27 @@ var GLClient = angular.module('GLClient', [
        return $q.reject(response);
      }
    };
+}]).
+factory('noopInterpolation', ['$interpolate', '$translateSanitization', function ($interpolate, $translateSanitization) {
+  // simple noop interpolation service
+
+  var $locale,
+      $identifier = 'noop';
+
+  return {
+    setLocale: function(locale) {
+      $locale = locale;
+    },
+    getInterpolationIdentifier : function () {
+      return $identifier;
+    },
+    useSanitizeValueStrategy: function (value) {
+      $translateSanitization.useStrategy(value);
+      return this;
+    },
+    interpolate: function (value/*, interpolationParams, context, sanitizeStrategy, translationId*/) {
+      return value;
+    }
+  };
 }]).
   config(exceptionConfig);
