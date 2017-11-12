@@ -1,4 +1,7 @@
-Changes in version 2.72.15 - 2017-11-01
+Changes in version 2.72.19 - 2017-11-12
+    o Fix regression on questions deletion (#2126)
+
+Changes in version 2.72.18 - 2017-11-09
     o Fix issue #2123
 
 Changes in version 2.72.17 - 2017-11-08
