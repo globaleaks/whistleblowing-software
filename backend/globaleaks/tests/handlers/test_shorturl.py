@@ -11,7 +11,7 @@ class TestShortUrlInstance(helpers.TestHandlerWithPopulatedDB):
     @inlineCallbacks
     def test_get_existent_shorturl(self):
         shorturl_desc = self.get_dummy_shorturl()
-        shorturl_desc = yield admin_shorturl.create_shorturl(helpers.XTIDX, shorturl_desc)
+        shorturl_desc = yield admin_shorturl.create_shorturl(1, shorturl_desc)
 
         handler = self.request(role='admin')
         yield handler.get(shorturl_desc['shorturl'])
