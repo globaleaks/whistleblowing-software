@@ -1,4 +1,0 @@
-{
- "FIELD_INPUT_AVAILABLE_CHARS": "{{available_characters_count}} available character(s)",
- "FIELD_INPUT_MIN_CHARS": "Please insert an answer at least {{min_characters_limit}} characters long."
-}
