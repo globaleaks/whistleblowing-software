@@ -13,7 +13,9 @@ class TestUserInstance(helpers.TestHandlerWithPopulatedDB):
     def setUp(self):
         yield helpers.TestHandlerWithPopulatedDB.setUp(self)
 
-        self.rcvr_id = (yield receiver.get_receiver_list(1, 'en'))[0]['id']
+        for r in (yield receiver.get_receiver_list(1, 'en')):
+            if r['pgp_key_fingerprint'] == u'BFB3C82D1B5F6A94BDAC55C6E70460ABF9A4C8C1':
+                self.rcvr_id = r['id']
 
     @inlineCallbacks
     def test_get(self):
