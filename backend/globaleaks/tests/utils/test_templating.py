@@ -19,10 +19,10 @@ class notifTemplateTest(helpers.TestGLWithPopulatedDB):
         data['notification'] = yield admin.notification.get_notification(1, u'en')
         data['node'] = yield admin.node.admin_serialize_node(1, u'en')
 
-        if self.dummyRTips[0]['receiver_id'] == self.dummyReceiver_1['id']:
-            tip_id = self.dummyRTips[0]['id']
-        else:
-            tip_id = self.dummyRTips[1]['id']
+        for tip in self.dummyRTips:
+            if tip['receiver_id'] == self.dummyReceiver_1['id']:
+                tip_id = tip['id']
+                break
 
         data['tip'] = yield rtip.get_rtip(1, self.dummyReceiver_1['id'], tip_id, u'en')
 
