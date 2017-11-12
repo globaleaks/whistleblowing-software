@@ -33,7 +33,7 @@ controller('AdminStepEditorCtrl', ['$scope', 'Utils', 'AdminStepResource', 'Admi
       $scope.step.children.push(field);
     };
 
-    $scope.delField = function(fields, field) {
+    $scope.delField = function(field) {
       return Utils.deleteResource(AdminFieldResource, $scope.fields, field);
     };
 
