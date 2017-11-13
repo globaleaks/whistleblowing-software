@@ -147,17 +147,13 @@ class OnionService(BaseJob):
         # that are not present in the tenant cache ensuring that the OnionService.hs_map
         # is kept up to date.
         running_services = yield self.get_all_hidden_services()
-        tenant_services = {tc.onionservice for tc in State.tenant_cache.values()}
+
+        tenant_services = {State.tenant_cache[tid].onionservice for tid in State.tenant_cache}
 
         for onion_addr in running_services:
+            ephs = None
             if onion_addr not in tenant_services and onion_addr in self.hs_map:
                 ephs = self.hs_map.pop(onion_addr)
-            elif onion_addr not in self.hs_map:
-                log.err('Hit unexpected condition: %s not in tenant_services', onion_addr)
-                ephs = object.__new__(EphemeralHiddenService)
-                ephs.hostname = onion_addr
-            else:
-                ephs = None
 
             if ephs is not None:
                 log.info('Removing onion address: %s' % ephs.hostname)

@@ -121,7 +121,9 @@ class TenantCollection(BaseHandler):
         request = self.validate_message(self.request.content.read(), requests.AdminTenantDesc)
 
         t = yield create(request)
-        yield refresh_tenant_states()
+
+        refresh_tenant_states()
+
         returnValue(t)
 
 
@@ -136,7 +138,9 @@ class TenantInstance(BaseHandler):
         Delete the specified tenant.
         """
         t = yield delete(int(tenant_id))
-        yield refresh_tenant_states()
+
+        refresh_tenant_states()
+
         returnValue(t)
 
     @inlineCallbacks
@@ -148,7 +152,9 @@ class TenantInstance(BaseHandler):
                                         requests.AdminTenantDesc)
 
         t = yield update(int(tenant_id), request)
-        yield refresh_tenant_states()
+
+        refresh_tenant_states()
+
         returnValue(t)
 
     def get(self, tenant_id):
