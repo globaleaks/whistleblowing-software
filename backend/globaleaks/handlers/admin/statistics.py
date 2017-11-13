@@ -171,7 +171,7 @@ class RecentEventsCollection(BaseHandler):
     def get(self, kind):
         templist = [e.serialize() for e in State.tenant_state[self.request.tid].EventQ]
 
-        templist.sort(key=operator.itemgetter('id'))
+        templist.sort(key=operator.itemgetter('creation_date'))
 
         if kind == 'details':
             return templist
