@@ -160,7 +160,7 @@ class Alarm(object):
             State.tenant_state[tid].AnomaliesQ.append([datetime_now(), self.event_matrix, self.alarm_levels['activity']])
 
         if previous_activity_sl != self.alarm_levels['activity']:
-            log_function("not alarm level changed from %d => %d" %
+            log_function("Alarm level changed from %d => %d" %
                          (previous_activity_sl,
                          self.alarm_levels['activity']))
 
