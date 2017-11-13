@@ -78,7 +78,9 @@ class SettingsClass(object):
         self.orm_debug = False
 
         # files and paths
-        self.root_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+        self.src_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+        self.backend_script = os.path.abspath(os.path.join(self.src_path, 'globaleaks/backend.py'))
+
         self.pid_path = '/var/run/globaleaks'
         self.working_path = '/var/globaleaks'
 
@@ -180,7 +182,7 @@ class SettingsClass(object):
         self.submission_path = os.path.abspath(os.path.join(self.files_path, 'submission'))
         self.tmp_upload_path = os.path.abspath(os.path.join(self.files_path, 'tmp'))
         self.static_path = os.path.abspath(os.path.join(self.files_path, 'static'))
-        self.static_db_source = os.path.abspath(os.path.join(self.root_path, 'globaleaks', 'db'))
+        self.static_db_source = os.path.abspath(os.path.join(self.src_path, 'globaleaks', 'db'))
 
         self.db_schema = os.path.join(self.static_db_source, 'sqlite.sql')
         self.db_file_name = 'glbackend-%d.db' % DATABASE_VERSION
@@ -223,13 +225,13 @@ class SettingsClass(object):
 
         self.acme_directory_url = 'https://acme-staging.api.letsencrypt.org/directory'
 
-        self.pid_path = os.path.join(self.root_path, 'workingdir')
-        self.working_path = os.path.join(self.root_path, 'workingdir')
+        self.pid_path = os.path.join(self.src_path, 'workingdir')
+        self.working_path = os.path.join(self.src_path, 'workingdir')
 
         self.set_ramdisk_path()
 
     def set_client_path(self, glcp):
-        self.client_path = os.path.abspath(os.path.join(self.root_path, glcp))
+        self.client_path = os.path.abspath(os.path.join(self.src_path, glcp))
 
     def enable_debug_mode(self):
         import signal
@@ -351,7 +353,7 @@ class SettingsClass(object):
             self.create_directory(dirpath)
 
     def check_directories(self):
-        for path in (self.working_path, self.root_path, self.client_path, self.ramdisk_path,
+        for path in (self.working_path, self.src_path, self.client_path, self.ramdisk_path,
                      self.files_path, self.static_path, self.submission_path, self.log_path):
             if not os.path.exists(path):
                 raise Exception("%s does not exist!" % path)
@@ -363,7 +365,7 @@ class SettingsClass(object):
                 raise Exception("write capability missing in: %s" % rdwr)
 
         # Directory in Read access
-        for rdonly in (self.root_path, self.client_path):
+        for rdonly in (self.src_path, self.client_path):
             if not os.access(rdonly, os.R_OK | os.X_OK):
                 raise Exception("read capability missing in: %s" % rdonly)
 

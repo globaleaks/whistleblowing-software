@@ -144,9 +144,7 @@ os.umask(077)
 Settings.create_directories()
 Settings.cleaning_dead_files()
 
-backend_script = os.path.join(Settings.root_path, 'globaleaks', 'backend.py')
-
-args = ['-y', backend_script]
+args = ['-y', Settings.backend_script]
 if Settings.nodaemon:
     args += ['-n']
 
