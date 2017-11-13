@@ -352,23 +352,6 @@ class SettingsClass(object):
                         self.static_path]:
             self.create_directory(dirpath)
 
-    def check_directories(self):
-        for path in (self.working_path, self.src_path, self.client_path, self.ramdisk_path,
-                     self.files_path, self.static_path, self.submission_path, self.log_path):
-            if not os.path.exists(path):
-                raise Exception("%s does not exist!" % path)
-
-        # Directory with Write + Read access
-        for rdwr in (self.working_path, self.ramdisk_path, self.files_path, self.static_path,
-                     self.submission_path, self.log_path):
-            if not os.access(rdwr, os.W_OK | os.X_OK):
-                raise Exception("write capability missing in: %s" % rdwr)
-
-        # Directory in Read access
-        for rdonly in (self.src_path, self.client_path):
-            if not os.access(rdonly, os.R_OK | os.X_OK):
-                raise Exception("read capability missing in: %s" % rdonly)
-
     def fix_file_permissions(self, path=None):
         """
         Recursively updates file permissions on a given path.

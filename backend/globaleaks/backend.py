@@ -86,7 +86,6 @@ class Service(service.Service):
 
         Settings.fix_file_permissions()
         Settings.drop_privileges()
-        Settings.check_directories()
 
         reactor.callLater(0, self.deferred_start)
 
