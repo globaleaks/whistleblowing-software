@@ -12,12 +12,12 @@ usage() {
   echo " -h"
   echo -e " -t tagname (build specific release/branch)"
   echo -e " -l (Use local repository & enviroment)"
-  echo -e " -d distribution (available: precise, trusty, xenial, wheezy, jessie)"
+  echo -e " -d distribution (available: trusty, xenial, wheezy, jessie)"
   echo -e " -n (do not sign)"
   echo -e " -p (push on repository)"
 }
 
-TARGETS="precise trusty xenial wheezy jessie"
+TARGETS="trusty xenial wheezy jessie"
 DISTRIBUTION="trusty"
 TAG="master"
 LOCAL_ENV=0
