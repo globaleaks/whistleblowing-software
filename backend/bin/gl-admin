@@ -211,7 +211,7 @@ def set_var(args, silent=False):
         if factCls is None:
             raise ValueError('Invalid varname passed')
 
-        fact = factCls(store)
+        fact = factCls(store, 1)
 
         new_val = args.value
         if item._type == bool:
@@ -247,7 +247,7 @@ def enable_api_token(args):
     print('You now have the only copy, keep it somewhere safe.')
 
 def disable_api_token(args):
-    args.varname = u'admin_api_token'
+    args.varname = u'admin_api_token_digest'
     args.value = ''
 
     set_var(args, silent=True)
