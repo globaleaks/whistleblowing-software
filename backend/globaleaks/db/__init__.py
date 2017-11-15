@@ -176,7 +176,6 @@ def db_refresh_memory_variables(store):
                       .order_by(models.User.creation_date).first()
         if api_id is not None:
             State.api_token_session = Session(1, api_id, 'admin', 'enabled')
-            State.api_token_session_suspended = False
 
     # Update state object with changes coming from tenant
     root_hostname = tenant_cache[1].hostname

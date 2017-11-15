@@ -41,7 +41,6 @@ class StateClass(ObjectDict):
         self.services = []
 
         self.api_token_session = None
-        self.api_token_session_suspended = False
 
         self.exceptions = {}
         self.exceptions_email_count = 0
