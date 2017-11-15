@@ -7,6 +7,7 @@ from __future__ import print_function
 
 import cgi
 import codecs
+import glob
 import json
 import logging
 import os
@@ -37,6 +38,30 @@ def read_file(p):
 
 def read_json_file(p):
     return json.loads(read_file(p))
+
+
+def drop_privileges(uid, gid):
+    if os.getgid() != gid:
+        os.setgid(gid)
+
+    if os.getuid() != uid:
+        os.setuid(uid)
+
+
+def fix_file_permissions(path, uid, gid, dchmod, fchmod):
+    """
+    Recursively fix file permissions on a given path
+    """
+    def fix(path):
+        os.chown(path, uid, gid)
+        if os.path.isfile(path):
+            os.chmod(path, 0o600)
+        else:
+            os.chmod(path, 0o700)
+
+    fix(path)
+    for item in glob.glob(path + '/*'):
+        fix_file_permissions(item, uid, gid, dchmod, fchmod)
 
 
 def uuid4():
