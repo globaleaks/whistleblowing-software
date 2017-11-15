@@ -25,6 +25,7 @@ def serialize_tenant(store, tenant):
         'label': tenant.label,
         'active': tenant.active,
         'subdomain': tenant.subdomain,
+        'wizard_url': 'http://p{}.{}'.format(tenant.id, State.tenant_cache[1].hostname),
     }
 
 
