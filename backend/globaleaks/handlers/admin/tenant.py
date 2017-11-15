@@ -152,11 +152,11 @@ class TenantInstance(BaseHandler):
         request = self.validate_message(self.request.content.read(),
                                         requests.AdminTenantDesc)
 
-        t = yield update(int(tenant_id), request)
+        yield update(int(tenant_id), request)
 
         refresh_tenant_states()
 
-        returnValue(t)
+        returnValue(None)
 
     def get(self, tenant_id):
         return get(id=int(tenant_id))

@@ -134,7 +134,7 @@ api_spec = [
     (r'/admin/staticfiles$', admin_staticfiles.StaticFileList),
     (r'/admin/staticfiles/(.+)', admin_staticfiles.StaticFileInstance),
     (r'/admin/tenants', admin_tenant.TenantCollection),
-    (r'/admin/tenants/' + '([0-9]{0,20})', admin_tenant.TenantInstance),
+    (r'/admin/tenants/' + '([0-9]{1,20})', admin_tenant.TenantInstance),
     (r'/admin/overview/tips', admin_overview.Tips),
     (r'/admin/overview/files', admin_overview.Files),
     (r'/wizard', wizard.Wizard),
