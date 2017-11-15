@@ -4,15 +4,12 @@
 from __future__ import print_function
 
 import getpass
-import glob
 import grp
 import logging
 import os
 import pwd
 import re
 import sys
-# pylint: disable=no-name-in-module
-from distutils import dir_util
 # pylint: enable=no-name-in-module
 from optparse import OptionParser
 
@@ -351,55 +348,6 @@ class SettingsClass(object):
                         self.ramdisk_path,
                         self.static_path]:
             self.create_directory(dirpath)
-
-    def fix_file_permissions(self, path=None):
-        """
-        Recursively updates file permissions on a given path.
-        UID and GID default to -1, and mode is required
-        """
-        if not path:
-            path = self.working_path
-
-        try:
-            if path != self.working_path:
-                os.chown(path, self.uid, self.gid)
-                os.chmod(path, 0o700)
-        except Exception as excep:
-            self.print_msg("Unable to update permissions on %s: %s" % (path, excep))
-            sys.exit(1)
-
-        for item in glob.glob(path + '/*'):
-            if os.path.isdir(item):
-                self.fix_file_permissions(item)
-            else:
-                try:
-                    os.chown(item, self.uid, self.gid)
-                    os.chmod(item, 0o700)
-                except Exception as excep:
-                    self.print_msg("Unable to update permissions on %s: %s" % (item, excep))
-                    sys.exit(1)
-
-    def remove_directories(self):
-        if os.path.exists(self.working_path):
-            dir_util.remove_tree(self.working_path, 0)
-
-    def drop_privileges(self):
-        if os.getgid() != self.gid:
-            try:
-                self.print_msg("switching group privileges since %d to %d" % (os.getgid(), self.gid))
-                os.setgid(self.gid)
-                os.initgroups(self.user, self.gid)
-            except OSError as droperr:
-                self.print_msg("unable to drop group privileges: %s" % droperr.strerror)
-                sys.exit(1)
-
-        if os.getuid() != self.uid:
-            try:
-                self.print_msg("switching user privileges since %d to %d" % (os.getuid(), self.uid))
-                os.setuid(self.uid)
-            except OSError as droperr:
-                self.print_msg("unable to drop user privileges: %s" % droperr.strerror)
-                sys.exit(1)
 
     def print_msg(self, *args):
         if not self.testing:

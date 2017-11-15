@@ -20,7 +20,7 @@ from globaleaks.rest.api import APIResourceWrapper
 from globaleaks.settings import Settings
 from globaleaks.utils.process import disable_swap
 from globaleaks.utils.sock import listen_tcp_on_sock, reserve_port_for_ip
-from globaleaks.utils.utility import log, timedelta_to_milliseconds, GLLogObserver, deferred_sleep
+from globaleaks.utils.utility import fix_file_permissions, drop_privileges, log, timedelta_to_milliseconds, GLLogObserver, deferred_sleep
 from globaleaks.workers.supervisor import ProcessSupervisor
 
 # this import seems unused but it is required in order to load the mocks
@@ -84,8 +84,13 @@ class Service(service.Service):
         if Settings.disable_swap:
             disable_swap()
 
-        Settings.fix_file_permissions()
-        Settings.drop_privileges()
+        fix_file_permissions(Settings.working_path,
+                             Settings.uid,
+                             Settings.gid,
+                             0o700,
+                             0o600)
+
+        drop_privileges(Settings.uid, Settings.gid)
 
         reactor.callLater(0, self.deferred_start)
 

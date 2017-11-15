@@ -8,6 +8,9 @@ import sys
 reload(sys)
 sys.setdefaultencoding('utf8')
 
+# pylint: disable=no-name-in-module
+from distutils import dir_util
+
 from globaleaks import db, models, security, event, jobs, __version__
 from globaleaks.anomaly import Alarm
 from globaleaks.db.appdata import load_appdata
@@ -106,7 +109,9 @@ def init_glsettings_for_unit_tests():
 
     Settings.set_ramdisk_path()
 
-    Settings.remove_directories()
+    if os.path.exists(Settings.working_path):
+        dir_util.remove_tree(Settings.working_path, 0)
+
     Settings.create_directories()
 
     State.orm_tp = FakeThreadPool()
