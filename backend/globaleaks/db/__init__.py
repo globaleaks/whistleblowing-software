@@ -152,11 +152,6 @@ def db_refresh_tenant_cache(store, tid):
 
     tenant_cache.private = ObjectDict(models.config.PrivateFactory(store, tid).mem_copy_export())
 
-    if tid == 1 and tenant_cache.private.admin_api_token_digest:
-        api_id = store.find(models.User.id, models.User.tid==1, models.User.role==u'admin').order_by(models.User.creation_date).first()
-        if api_id is not None:
-            State.api_token_session = Session(1, api_id, 'admin', 'enabled')
-
     return tenant_cache
 
 
@@ -174,6 +169,14 @@ def db_refresh_memory_variables(store):
 
     for tid in State.tenant_state:
         tenant_cache[tid] = db_refresh_tenant_cache(store, tid)
+
+    # Ensure the api_token_session state is reset
+    if tenant_cache[1].private.admin_api_token_digest:
+        api_id = store.find(models.User.id, models.User.tid==1, models.User.role==u'admin')\
+                      .order_by(models.User.creation_date).first()
+        if api_id is not None:
+            State.api_token_session = Session(1, api_id, 'admin', 'enabled')
+            State.api_token_session_suspended = False
 
     # Update state object with changes coming from tenant
     root_hostname = tenant_cache[1].hostname

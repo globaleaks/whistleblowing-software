@@ -411,24 +411,9 @@ class BaseHandler(object):
         return self._current_user
 
     def get_current_user(self):
-        # Check for the API token
-        if not self.state.api_token_session_suspended and \
-           self.state.api_token_session is not None and \
-           self.state.tenant_cache[1].private.admin_api_token_digest:
-            token = bytes(self.request.headers.get('x-api-token', ''))
-            if len(token) != Settings.api_token_len:
-                return None
-
-            token_hash = bytes(self.state.tenant_cache[1].private.admin_api_token_digest)
-
-            if constant_time.bytes_eq(sha512(token), token_hash):
-                return self.state.api_token_session
-            else:
-                self.state.api_token_session_suspended = True
-                msg = "Warning: API Token temporary suspended due to possible attack"
-                log.err(msg)
-                schedule_email_for_all_admins("%s notification" % self.state.tenant_cache[1].name,
-                                             "API Token temporary suspended due to possible attack")
+        api_session = self.get_api_session()
+        if api_session is not None:
+            return api_session
 
         # Check for the session header
         session_id = self.request.headers.get('x-session')
@@ -441,6 +426,28 @@ class BaseHandler(object):
             return None
 
         return session
+
+    def get_api_session(self):
+        token = bytes(self.request.headers.get('x-api-token', ''))
+
+        # Assert the input is okay and the api_token state is acceptable
+        if self.request.tid != 1 or \
+           len(token) != Settings.api_token_len or \
+           self.state.api_token_session_suspended or \
+           self.state.api_token_session is None or \
+           not self.state.tenant_cache[1].private.admin_api_token_digest:
+            return None
+
+        stored_token_hash = bytes(self.state.tenant_cache[1].private.admin_api_token_digest)
+
+        if constant_time.bytes_eq(sha512(token), stored_token_hash):
+            return self.state.api_token_session
+        else:
+            self.state.api_token_session_suspended = True
+            log.err("Warning: API Token temporary suspended due to possible attack")
+            schedule_email_for_all_admins("%s notification" % self.state.tenant_cache[1].name,
+                                          "API Token temporary suspended due to possible attack")
+            return None
 
     def get_file_upload(self):
         if 'flowFilename' not in self.request.args:
