@@ -80,8 +80,8 @@ def generate_admin_alert_mail(store, tid, alert):
 
         data = {
             'type': u'admin_anomaly',
-            'node': db_admin_serialize_node(store, 1, user_language),
-            'notification': db_get_notification(store, 1, user_language),
+            'node': db_admin_serialize_node(store, tid, user_language),
+            'notification': db_get_notification(store, tid, user_language),
             'alert': alert,
             'user': user_desc,
         }
