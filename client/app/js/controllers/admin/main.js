@@ -167,11 +167,15 @@ controller('AdminAdvancedCtrl', ['$scope', '$uibModal',
       title:"Main configuration",
       template:"views/admin/advanced/tab1.html"
     },
-    {
+  ];
+
+  if ($scope.admin.node.root_tenant) {
+    $scope.tabs.push({
       title:"Anomaly detection thresholds",
       template:"views/admin/advanced/tab2.html"
-    }
-  ];
+    });
+  }
+
 
   $scope.open_modal_allow_unencrypted = function() {
     if (!$scope.admin.node.allow_unencrypted) {
