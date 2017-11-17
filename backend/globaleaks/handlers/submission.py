@@ -192,11 +192,13 @@ def extract_answers_preview(questionnaire, answers):
     return preview
 
 
-def db_archive_questionnaire_schema(store, questionnaire, questionnaire_hash):
+def db_archive_questionnaire_schema(store, tid, questionnaire, questionnaire_hash):
     if store.find(models.ArchivedSchema,
-                  models.ArchivedSchema.hash == questionnaire_hash).count() <= 0:
+                  models.ArchivedSchema.hash == questionnaire_hash,
+                  tid=tid).count() <= 0:
 
         aqs = models.ArchivedSchema()
+        aqs.tid = tid
         aqs.hash = questionnaire_hash
         aqs.type = u'questionnaire'
         aqs.schema = questionnaire
@@ -204,6 +206,7 @@ def db_archive_questionnaire_schema(store, questionnaire, questionnaire_hash):
 
         aqsp = models.ArchivedSchema()
         aqsp.hash = questionnaire_hash
+        aqsp.tid = tid
         aqsp.type = u'preview'
         aqsp.schema = [f for s in aqs.schema for f in s['children'] if f['preview']]
         store.add(aqsp)
@@ -348,7 +351,7 @@ def db_create_submission(store, tid, request, uploaded_files, client_using_tor):
 
     store.add(submission)
 
-    db_archive_questionnaire_schema(store, steps, questionnaire_hash)
+    db_archive_questionnaire_schema(store, tid, steps, questionnaire_hash)
     db_save_questionnaire_answers(store, tid, submission.id, answers)
 
     for filedesc in uploaded_files:
