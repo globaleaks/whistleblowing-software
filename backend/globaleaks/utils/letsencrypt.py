@@ -1,6 +1,6 @@
 # -*- coding: utf-8
 from datetime import datetime
-from urllib2 import urlopen
+from urllib2 import urlopen, Request
 
 from OpenSSL.crypto import FILETYPE_PEM, dump_certificate
 
@@ -52,12 +52,12 @@ def run_acme_reg_to_finish(domain, regr_uri, accnt_key, site_key, csr, tmp_chall
     log.info('Exposing challenge on %s', v)
     tmp_chall_dict.set(v, ChallTok(chall_tok))
 
-    domain = 'localhost:8082'
-    test_path = 'http://{0}{1}'.format(domain, challb.path)
+    test_path = 'http://localhost:8082{1}'.format(challb.path)
+    local_req = Request(test_path, headers={'Host': domain})
     log.debug('Testing local url path: %s', test_path)
 
     try:
-        resp = urlopen(test_path)
+        resp = urlopen(local_req)
         t = resp.read().decode('utf-8').strip()
         if t != chall_tok:
             raise ValueError
