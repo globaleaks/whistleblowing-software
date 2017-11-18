@@ -302,7 +302,7 @@ def serialize_step(store, step, language):
     _triggered_by_options = store.find(models.FieldOption, models.FieldOption.trigger_step == step.id)
     for trigger in _triggered_by_options:
         triggered_by_options.append({
-            'step': trigger.step_id,
+            'step': trigger.trigger_step,
             'option': trigger.id
         })
 
