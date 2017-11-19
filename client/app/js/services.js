@@ -1196,28 +1196,6 @@ factory('AdminUtils', ['AdminContextResource', 'AdminQuestionnaireResource', 'Ad
         return 'fieldForm_' + underscore(id);
       };
 
-      var isStepTriggered = function(step, answers, score) {
-        if (step.triggered_by_score > score) {
-          return false;
-        }
-
-        if (step.triggered_by_options.length === 0) {
-          return true;
-        }
-
-        for (var i=0; i<step.triggered_by_options.length; i++) {
-          if (answers[step.triggered_by_options[i].field] === undefined) {
-            continue;
-          }
-
-          if (step.triggered_by_options[i].option === answers[step.triggered_by_options[i].field][0]['value']) {
-            return true;
-          }
-        }
-
-        return false;
-      };
-
       var findField = function(answers_obj, field_id) {
         var r;
 
@@ -1270,7 +1248,6 @@ factory('AdminUtils', ['AdminContextResource', 'AdminQuestionnaireResource', 'Ad
         build_field_id_map: build_field_id_map,
         fieldFormName: fieldFormName,
         stepFormName: stepFormName,
-        isStepTriggered: isStepTriggered,
         isFieldTriggered: isFieldTriggered
       };
 }]).

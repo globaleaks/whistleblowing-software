@@ -190,7 +190,6 @@
         {
           "presentation_order": 0,
           "trigger_field": "",
-          "trigger_step": "",
           "score_points": 0,
           "label": {
             "en": "Male"
@@ -200,7 +199,6 @@
         {
           "presentation_order": 1,
           "trigger_field": "",
-          "trigger_step": "",
           "score_points": 0,
           "label": {
             "en": "Female"

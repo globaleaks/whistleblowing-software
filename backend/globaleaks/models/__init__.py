@@ -599,12 +599,11 @@ class FieldOption(ModelWithTIDandID):
     label = JSON()
     score_points = Int(default=0)
     trigger_field = Unicode()
-    trigger_step = Unicode()
 
     unicode_keys = ['field_id']
     int_keys = ['presentation_order', 'score_points']
     localized_keys = ['label']
-    optional_references = ['trigger_field', 'trigger_step']
+    optional_references = ['trigger_field']
 
 
 class FieldAnswer(ModelWithTIDandID):
@@ -631,10 +630,9 @@ class Step(ModelWithTIDandID):
     label = JSON()
     description = JSON()
     presentation_order = Int(default=0)
-    triggered_by_score = Int(default=0)
 
     unicode_keys = ['questionnaire_id']
-    int_keys = ['presentation_order', 'triggered_by_score']
+    int_keys = ['presentation_order']
     localized_keys = ['label', 'description']
 
 
