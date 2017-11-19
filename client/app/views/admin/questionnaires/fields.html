@@ -2,7 +2,7 @@
   data-ng-init="editing=false" data-ng-controller="AdminFieldEditorCtrl">
   <div data-ng-form="editField">
     <div class="configItem">
-      <div class="editorHeader" data-ng-click="field.instance !== 'reference' && toggleEditing(); $event.stopPropagation();">
+      <div class="editorHeader" data-ng-click="toggleEditing(); $event.stopPropagation();">
         <div class="row">
           <span class="col-md-6">
             <span class="fieldIndex label label-default label-as-badge" data-ng-if="field.step_id !== '' || field.fieldgroup_id !== ''">
@@ -40,7 +40,7 @@
           <span class="col-md-6">
             <span class="pull-right">
               <button class="btn btn-xs btn-default"
-                data-ng-if="field.instance !== 'reference' && !editing"
+                data-ng-if="!editing"
                 data-ng-click="toggleEditing(); $event.stopPropagation();">
                 <span data-translate>Edit</span>
               </button>
@@ -56,7 +56,7 @@
                 <span data-translate>Cancel</span>
               </button>
               <button class="btn btn-xs btn-danger"
-                data-ng-if="field.editable"
+                data-ng-if="editable"
                 data-ng-click="delField(field); $event.stopPropagation();"
                 popover-placement="right">
                 <span data-translate>Delete</span>
@@ -85,7 +85,7 @@
       <div class="fieldEditor" data-ng-if="editing">
         <hr />
         <div class="row">
-          <div class="col-md-12" data-ng-if="field.editable">
+          <div class="col-md-12" data-ng-if="editable">
             <div class="form-group">
               <label data-translate>Name</label>
               <input name="label" class="form-control" maxlength="{{node.maximum_namesize}}" data-ng-model="field.label" type="text" required />
@@ -114,7 +114,7 @@
             </div>
             <div class="form-group" data-ng-if="field.multi_entry && field.type !== 'fileupload'">
               <label data-translate>Hint shown on the button for adding an additional answer</label>
-              <input name="multi_entry_hint" class="form-control" maxlength="{{node.maximum_namesize}}" data-ng-model="field.multi_entry_hint" type="text" data-ng-disabled="!field.editable">
+              <input name="multi_entry_hint" class="form-control" maxlength="{{node.maximum_namesize}}" data-ng-model="field.multi_entry_hint" type="text" data-ng-disabled="!editable">
             </div>
             <div class="form-group" data-ng-if="::fieldIsMarkableSubjectToPreview">
               <input data-ng-model="field.preview" type="checkbox">
@@ -143,7 +143,7 @@
                     <div class="form-group">
                       <label data-translate>Minimum number of input characters</label>
                       <div>
-                        <input data-ng-model="field.attrs.min_len.value" type="text" class="form-control" data-ng-disabled="!field.editable" />
+                        <input data-ng-model="field.attrs.min_len.value" type="text" class="form-control" data-ng-disabled="!editable" />
                       </div>
                     </div>
                     <div class="form-group">
@@ -152,7 +152,7 @@
                         <span>(<span data-translate>-1 = unlimited</span>)</span>
                       </label>
                       <div>
-                        <input data-ng-model="field.attrs.max_len.value" type="text" class="form-control" data-ng-disabled="!field.editable" />
+                        <input data-ng-model="field.attrs.max_len.value" type="text" class="form-control" data-ng-disabled="!editable" />
                       </div>
                     </div>
                     <div class="form-group">
@@ -168,7 +168,7 @@
                     <div class="form-group" data-ng-if="field.attrs.input_validation.value === 'custom'">
                       <label data-translate>Regular expression</label>
                       <div>
-                        <input data-ng-model="field.attrs.regexp.value" type="text" class="form-control" data-ng-disabled="!field.editable" />
+                        <input data-ng-model="field.attrs.regexp.value" type="text" class="form-control" data-ng-disabled="!editable" />
                       </div>
                     </div>
                   </div>
@@ -177,18 +177,18 @@
                   <div class="row">
                     <div class="form-group">
                       <label data-translate>Clause</label>
-                      <textarea data-ng-model="field.attrs.clause.value" maxlength="{{node.maximum_textsize}}" class="form-control" data-ng-disabled="!field.editable"></textarea>
+                      <textarea data-ng-model="field.attrs.clause.value" maxlength="{{node.maximum_textsize}}" class="form-control" data-ng-disabled="!editable"></textarea>
                     </div>
                     <div class="form-group">
                       <label data-translate>Agreement Text</label>
                       <div>
-                        <input data-ng-model="field.attrs.agreement_statement.value" type="text" class="form-control" data-ng-disabled="!field.editable" />
+                        <input data-ng-model="field.attrs.agreement_statement.value" type="text" class="form-control" data-ng-disabled="!editable" />
                       </div>
                     </div>
                   </div>
                 </div>
                 <div data-ng-if="field.type === 'checkbox' || field.type === 'multichoice'">
-                  <div class="row" data-ng-disabled="!field.editable">
+                  <div class="row" data-ng-disabled="!editable">
                     <label data-translate>Layout orientation</label>
                     <select name="type" class="form-control" data-ng-model="field.attrs.layout_orientation.value" required>
                       <option value="vertical" data-translate>vertical</option>
@@ -197,7 +197,7 @@
                   </div>
                 </div>
                 <div data-ng-if="field.type === 'checkbox' || field.type === 'multichoice' || field.type === 'selectbox'">
-                  <div class="row" data-ng-disabled="!field.editable">
+                  <div class="row" data-ng-disabled="!editable">
                       <div class="form-group">
                         <input data-ng-model="field.attrs.display_alphabetically.value" type="checkbox">
                         <label data-translate>Display options alphabetically</label>
@@ -205,7 +205,7 @@
                   </div>
                 </div>
                 <div data-ng-if="field.type === 'date'" data-ng-init="open_min_date = false;">
-                  <div class="row" data-ng-disabled="!field.editable">
+                  <div class="row" data-ng-disabled="!editable">
                     <div uib-datepicker-popup
                          ng-model="field.attrs.min_date.value"
                          is-open="open_min_date"
@@ -222,7 +222,7 @@
                       <button data-ng-show="field.attrs.min_date.value === ''" type="button" class="btn btn-xs btn-default"><i class="glyphicon glyphicon-calendar"></i></button>
                     </div>
                   </div>
-                  <div class="row" data-ng-disabled="!field.editable" data-ng-init="open_max_date = false">
+                  <div class="row" data-ng-disabled="!editable" data-ng-init="open_max_date = false">
                     <div uib-datepicker-popup
                          data-ng-model="field.attrs.max_date.value"
                          is-open="open_max_date"
@@ -291,7 +291,7 @@
                 <div class="fieldOption" data-ng-repeat="option in field.options">
                   <div class="row">
                     <div class="col-md-6">
-                      <input class="form-control" data-ng-model="option.label" data-ng-attr-placeholder="{{'Name' | translate }}" type="text" data-ng-disabled="!field.editable" required />
+                      <input class="form-control" data-ng-model="option.label" data-ng-attr-placeholder="{{'Name' | translate }}" type="text" data-ng-disabled="!editable" required />
                     </div>
                     <div class="col-md-6">
                       <button class="btn btn-xs btn-danger" data-ng-click="delOption(option)">
@@ -308,6 +308,9 @@
                       <span>
                         <button class="btn btn-xs" data-ng-class="option.trigger_field != '' ? 'btn-primary' : 'btn-default'" data-ng-click="triggerFieldDialog(option)" uib-popover="{{'Trigger question' | translate}}" popover-placement="left">
                           <i class="glyphicon glyphicon-asterisk"></i>
+                        </button>
+                        <button class="btn btn-xs" data-ng-if="field.fieldgroup_id === ''" data-ng-class="option.trigger_step != '' ? 'btn-primary' : 'btn-default'" data-ng-click="triggerStepDialog(option)" uib-popover="{{'Trigger step' | translate}}" popover-placement="left">
+                          <i class="glyphicon glyphicon-th"></i>
                         </button>
                       </span>
                       <span data-ng-if="node.enable_experimental_features">
@@ -329,8 +332,8 @@
             </div>
           </div>
         </div>
-        <div data-ng-if="field.editable && field.instance !== 'reference' && field.type === 'fieldgroup'">
-          <div class="row" data-ng-if="field.editable && field.type === 'fieldgroup'">
+        <div data-ng-if="editable && field.instance !== 'reference' && field.type === 'fieldgroup'">
+          <div class="row" data-ng-if="editable && field.type === 'fieldgroup'">
             <div class="col-md-12">
               <label data-translate>Add new question</label>
               <div data-ng-include="'views/admin/questionnaires/add_field.html'"></div>
@@ -342,10 +345,10 @@
           </div>
           <div class="row">
             <div class="col-md-12">
-              <div class="form-group">
+              <div class="form-group" data-ng-if="fields.length > 0">
                 <div class="editorTitle" data-translate>Configured questions:</div>
                   <div class="configuredFields">
-                    <div data-ng-repeat="field in children | orderBy:['y', 'x']">
+                    <div data-ng-repeat="field in fields | orderBy:['y', 'x']">
                       <div data-ng-include="'views/admin/questionnaires/fields.html'"></div>
                     </div>
                   </div>
