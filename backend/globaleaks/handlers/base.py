@@ -178,7 +178,7 @@ class BaseHandler(object):
         Decorator for authenticated sessions.
         """
         def wrapper(self, *args, **kwargs):
-            if self.state.tenant_cache[1].basic_auth and not self.bypass_basic_auth:
+            if self.state.tenant_cache[self.request.tid].basic_auth and not self.bypass_basic_auth:
                 self.basic_auth()
 
             if '*' in roles:
