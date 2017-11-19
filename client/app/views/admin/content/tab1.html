@@ -1,6 +1,11 @@
 <div class="row">
   <div class="col-md-6">
     <div class="form-group">
+      <label data-translate>Logo</label>
+      <div image-upload image-upload-model="node" image-upload-model-attr="logo" image-upload-url="{{'admin/files/logo'}}"></div>
+    </div>
+
+    <div class="form-group">
       <label data-translate>Project name</label>
       <input class="form-control" data-ng-model="admin.node.name" type="text" />
     </div>
@@ -27,21 +32,6 @@
     </div>
 
     <div class="form-group">
-      <label data-translate>Footer</label>
-      <div>
-        <textarea class="form-control" data-ng-model="admin.node.footer"></textarea>
-      </div>
-    </div>
-
-    <div class="form-group">
-      <label data-translate>Landing page</label>
-      <select name="type" class="form-control" data-ng-model="admin.node.landing_page" required>
-        <option value="homepage" data-translate>Home Page</option>
-        <option value="submissionpage" data-translate>Submission Page</option>
-      </select>
-    </div>
-
-    <div class="form-group">
       <label data-translate>Question to solicit possible whistleblowers</label>
       <div>
         <textarea class="form-control" data-ng-model="admin.node.whistleblowing_question"></textarea>
@@ -54,82 +44,10 @@
     </div>
 
     <div class="form-group">
-      <label data-translate>Text of prompt for whistleblowers to log in</label>
+      <label data-translate>Footer</label>
       <div>
-        <textarea class="form-control" data-ng-model="admin.node.whistleblowing_receipt_prompt"></textarea>
+        <textarea class="form-control" data-ng-model="admin.node.footer"></textarea>
       </div>
-    </div>
-
-    <div class="form-group">
-      <label data-translate>Title of the submission page</label>
-      <div>
-        <textarea class="form-control" data-ng-model="admin.node.header_title_submissionpage"></textarea>
-      </div>
-    </div>
-
-    <div class="form-group">
-      <label data-translate>Title of the receipt page</label>
-      <div>
-        <textarea class="form-control" data-ng-model="admin.node.header_title_receiptpage"></textarea>
-      </div>
-    </div>
-
-    <div class="form-group">
-      <label data-translate>Title of the submission status page</label>
-      <div>
-        <textarea class="form-control" data-ng-model="admin.node.header_title_tippage"></textarea>
-      </div>
-    </div>
-
-    <div class="form-group">
-      <label data-translate>Title of the comments widget</label>
-      <div>
-        <textarea class="form-control" data-ng-model="admin.node.widget_comments_title"></textarea>
-      </div>
-    </div>
-
-    <div class="form-group">
-      <label data-translate>Title of the messages widget</label>
-      <div>
-        <textarea class="form-control" data-ng-model="admin.node.widget_messages_title"></textarea>
-      </div>
-    </div>
-
-    <div class="form-group">
-      <label data-translate>Title of the attachments widget</label>
-      <div>
-        <textarea class="form-control" data-ng-model="admin.node.widget_files_title"></textarea>
-      </div>
-    </div>
-
-    <div class="form-group">
-      <label data-translate>Text shown on top of the interface for selecting contexts</label>
-      <div>
-        <textarea class="form-control" data-ng-model="admin.node.contexts_clarification"></textarea>
-      </div>
-    </div>
-
-    <div class="form-group">
-      <label>
-        <input data-ng-model="admin.node.show_contexts_in_alphabetical_order" type="checkbox" />
-        <span data-translate>Show contexts in alphabetical order</span>
-      </label>
-    </div>
-
-    <div class="form-group">
-      <label data-translate>Type of context selector:</label>
-      <select name="type" class="form-control" data-ng-model="admin.node.context_selector_type" required>
-        <option value="list">list</option>
-        <option value="cards">cards</option>
-        <option value="search">search</option>
-      </select>
-    </div>
-
-    <div class="form-group" data-ng-if="admin.node.context_selector_type === 'cards'">
-      <label>
-        <input data-ng-model="admin.node.show_small_context_cards" type="checkbox" />
-        <span data-translate>Show small context cards on submission interface</span>
-      </label>
     </div>
   </div>
 </div>
