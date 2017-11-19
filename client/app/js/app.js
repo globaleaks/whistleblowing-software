@@ -289,15 +289,6 @@ var GLClient = angular.module('GLClient', [
           resources: fetchResources('admin', ['node', 'notification']),
         }
       }).
-      when('/admin/url_shortener', {
-        templateUrl: 'views/admin/url_shortener.html',
-        controller: 'AdminCtrl',
-        header_title: 'Administration interface',
-        header_subtitle: 'URL shortener',
-        resolve: {
-          resources: fetchResources('admin', ['node', 'shorturls']),
-        }
-      }).
       when('/admin/network', {
         templateUrl: 'views/admin/network.html',
         controller: 'AdminCtrl',
@@ -313,7 +304,7 @@ var GLClient = angular.module('GLClient', [
         header_title: 'Administration interface',
         header_subtitle: 'Advanced settings',
         resolve: {
-          resources: fetchResources('admin', ['node']),
+          resources: fetchResources('admin', ['node', 'shorturls']),
         }
       }).
       when('/admin/overview', {

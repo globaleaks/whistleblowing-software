@@ -23,8 +23,6 @@ describe('verify navigation of admin sections', function() {
     element(by.cssContainingText("a", "Notification templates")).click();
     element(by.cssContainingText("a", "Exception notification")).click();
 
-    element(by.cssContainingText("a", "URL shortener")).click();
-
     element(by.cssContainingText("a", "Network settings")).click();
     element(by.cssContainingText("a", "Main configuration")).click();
     element(by.cssContainingText("a", "HTTPS settings")).click();
@@ -32,6 +30,7 @@ describe('verify navigation of admin sections', function() {
 
     element(by.cssContainingText("a", "Advanced settings")).click();
     element(by.cssContainingText("a", "Main configuration")).click();
+    element(by.cssContainingText("a", "URL shortener")).click();
     element(by.cssContainingText("a", "Anomaly detection thresholds")).click();
   });
 });

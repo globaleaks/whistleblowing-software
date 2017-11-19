@@ -14,13 +14,23 @@ describe('admin configure advanced settings', function() {
     element(by.model('admin.node.enable_multisite')).click();
 
     // save settings
-    element(by.css('[data-ng-click="updateNode(admin.node)"]')).click().then(function() {
+    element.all(by.css('[data-ng-click="updateNode(admin.node)"]')).first().click().then(function() {
       expect(element(by.model('admin.node.maximum_textsize')).getAttribute('value')).toEqual('1337');
     });
   });
-});
 
-describe('admin configure advanced settings - Anomaly detection thresholds', function() {
+  it('should configure short urls', function() {
+    browser.setLocation('admin/advanced_settings');
+    element(by.cssContainingText("a", "URL shortener")).click();
+
+    for (var i = 0; i < 3; i++) {
+      element(by.model('new_shorturl.shorturl')).sendKeys('shorturl');
+      element(by.model('new_shorturl.longurl')).sendKeys('longurl');
+      element(by.cssContainingText("button", "Add")).click();
+      element(by.cssContainingText("button", "Delete")).click();
+    }
+  });
+
   it('should configure advanced settings', function() {
     browser.setLocation('admin/advanced_settings');
     element(by.cssContainingText("a", "Anomaly detection thresholds")).click();
@@ -30,7 +40,7 @@ describe('admin configure advanced settings - Anomaly detection thresholds', fun
     element(by.model('admin.node.threshold_free_disk_percentage_high')).clear().sendKeys('4');
 
     // save settings
-    element(by.css('[data-ng-click="updateNode(admin.node)"]')).click().then(function() {
+    element.all(by.css('[data-ng-click="updateNode(admin.node)"]')).last().click().then(function() {
       expect(element(by.model('admin.node.threshold_free_disk_percentage_high')).getAttribute('value')).toEqual('4');
     });
   });
@@ -39,11 +49,12 @@ describe('admin configure advanced settings - Anomaly detection thresholds', fun
 describe('admin disable submissions', function() {
   it('should disable submission', function() {
     browser.setLocation('admin/advanced_settings');
+    element(by.cssContainingText("a", "Main configuration")).click();
 
     element(by.model('admin.node.disable_submissions')).click();
 
     // save settings
-    element(by.css('[data-ng-click="updateNode(admin.node)"]')).click().then(function() {
+    element.all(by.css('[data-ng-click="updateNode(admin.node)"]')).first().click().then(function() {
       expect(element(by.model('admin.node.disable_submissions')).isSelected()).toBeTruthy();
     });
 
@@ -58,7 +69,7 @@ describe('admin disable submissions', function() {
     element(by.model('admin.node.disable_submissions')).click();
 
     // save settings
-    element(by.css('[data-ng-click="updateNode(admin.node)"]')).click().then(function() {
+    element.all(by.css('[data-ng-click="updateNode(admin.node)"]')).first().click().then(function() {
       expect(element(by.model('admin.node.disable_submissions')).isSelected()).toBeFalsy();
     });
 
