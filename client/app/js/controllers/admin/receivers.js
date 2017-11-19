@@ -14,16 +14,6 @@ GLClient.controller('AdminReceiversCtrl', ['$scope', 'Utils', 'AdminReceiverReso
 
     return Utils.update(updated_receiver, cb);
   };
-
-  $scope.moveUpAndSave = function(elem) {
-    Utils.moveUp(elem);
-    $scope.save_receiver(elem);
-  };
-
-  $scope.moveDownAndSave = function(elem) {
-    Utils.moveDown(elem);
-    $scope.save_receiver(elem);
-  };
 }]).
 controller('AdminReceiverEditorCtrl', ['$scope',
   function($scope) {

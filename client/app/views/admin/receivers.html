@@ -28,14 +28,6 @@
                     data-ng-click="toggleEditing(); $event.stopPropagation();">
                     <span data-translate>Cancel</span>
                   </button>
-                  <span data-ng-if="!show_contexts_in_alphabetical_order && admin.receivers.length > 1">
-                    <button class="btn btn-xs btn-primary" data-ng-click="moveUpAndSave(receiver); $event.stopPropagation();" uib-popover="{{'Move up' | translate}}" popover-placement="left">
-                      <i class="glyphicon glyphicon-menu-up"></i>
-                    </button>
-                    <button class="btn btn-xs btn-primary" data-ng-click="moveDownAndSave(receiver); $event.stopPropagation();" uib-popover="{{'Move down' | translate}}" popover-placement="left">
-                      <i class="glyphicon glyphicon-menu-down"></i>
-                    </button>
-                  </span>
                 </span>
               </span>
             </div>
