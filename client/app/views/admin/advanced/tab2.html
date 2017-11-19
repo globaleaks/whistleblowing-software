@@ -1,33 +1,46 @@
 <div class="row">
-  <div class="col-md-8">
+  <div class="col-md-12">
+    <div data-ng-form="shorturlAddForm" class="form-inline" isolate-form novalidate>
+      <div class="form-group display-block">
+        <label data-translate>Short URL</label>
+        <input type="text" class="form-control" name="short_url" data-ng-model="new_shorturl.shorturl" data-ng-pattern="shortener_shorturl_regexp" input-prefix prefix="/s/">
+      </div>
+      <div class="form-group display-block">
+        <label data-translate>Long URL</label>
+        <input type="text" class="form-control" name="long_url" data-ng-model="new_shorturl.longurl" data-ng-pattern="shortener_longurl_regexp" input-prefix prefix="/">
+      </div>
+      <button type="submit"
+              class="btn btn-primary"
+              data-ng-disabled="shorturlAddForm.$invalid"
+              data-ng-click="add_shorturl()">
+        <i class="glyphicon glyphicon-plus-sign"></i>
+        <span data-translate>Add</span>
+      </button>
+    </div>
+  </div>
+</div>
+<br />
+<div class="row">
+  <div class="col-md-12">
     <table class="table">
       <thead>
         <tr>
-          <th></th>
-          <th class="col-md-2" data-translate>Low risk</th>
-          <th class="col-md-2" data-translate>High risk</th>
+          <th class="col-md-3" data-translate>Short URL</th>
+          <th class="col-md-9" data-translate>Long URL</th>
+          <th class="col-md-1"></th>
         </tr>
       </thead>
       <tbody>
-        <tr>
+        <tr data-ng-repeat="shorturl in admin.shorturls | orderBy:'shorturl'" data-ng-controller="AdminShorturlEditCtrl">
+          <td>{{shorturl.shorturl}}</td>
+          <td>{{shorturl.longurl}}</td>
           <td>
-            <label>
-              <span data-translate>Available disk space</span>
-              <span>(</span><span data-translate>in megabytes</span><span>)</span>
-            </label>
+            <button class="btn btn-xs btn-danger"
+                    data-ng-click="delete_shorturl(shorturl)">
+              <i class="glyphicon glyphicon-trash"></i>
+              <span data-translate>Delete</span>
+            </button>
           </td>
-          <td><input class="form-control" data-ng-model="admin.node.threshold_free_disk_megabytes_low" type="number" min="0" /></td>
-          <td><input class="form-control" data-ng-model="admin.node.threshold_free_disk_megabytes_high" type="number" min="0" /></td>
-        </tr>
-        <tr>
-          <td>
-            <label>
-              <span data-translate>Available disk space</span>
-              <span>(</span><span data-translate>in percentage</span><span>)</span>
-            </label>
-          </td>
-          <td><input class="form-control" data-ng-model="admin.node.threshold_free_disk_percentage_low" type="number"  min="0" max="100" /></td>
-          <td><input class="form-control" data-ng-model="admin.node.threshold_free_disk_percentage_high" type="number"  min="0" max="100" /></td>
         </tr>
       </tbody>
     </table>

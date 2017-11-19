@@ -497,3 +497,7 @@ html[rtl] .float-left {
 html[rtl] .float-right {
   float: left;
 }
+
+.display-block {
+  display: block;
+}

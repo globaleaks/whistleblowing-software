@@ -160,19 +160,23 @@ controller('AdminHomeCtrl', ['$scope', function($scope) {
     $scope.displayNum = undefined;
   }
 }]).
-controller('AdminAdvancedCtrl', ['$scope', '$uibModal',
-  function($scope, $uibModal){
+controller('AdminAdvancedCtrl', ['$scope', '$uibModal', 'CONSTANTS',
+  function($scope, $uibModal, CONSTANTS){
   $scope.tabs = [
     {
       title:"Main configuration",
       template:"views/admin/advanced/tab1.html"
+    },
+    {
+      title:"URL shortener",
+      template:"views/admin/advanced/tab2.html"
     },
   ];
 
   if ($scope.admin.node.root_tenant) {
     $scope.tabs.push({
       title:"Anomaly detection thresholds",
-      template:"views/admin/advanced/tab2.html"
+      template:"views/admin/advanced/tab3.html"
     });
   }
 
@@ -191,6 +195,39 @@ controller('AdminAdvancedCtrl', ['$scope', '$uibModal',
       $scope.admin.node.allow_unencrypted = result;
     });
   };
+
+  $scope.shortener_shorturl_regexp = CONSTANTS.shortener_shorturl_regexp;
+  $scope.shortener_longurl_regexp = CONSTANTS.shortener_longurl_regexp;
+
+  $scope.dummy_new_shorturl = {
+    'shorturl': '/s/',
+    'longurl': '/'
+  };
+
+  $scope.new_shorturl = angular.copy($scope.dummy_new_shorturl);
+
+  $scope.add_shorturl = function() {
+    var shorturl = new $scope.admin_utils.new_shorturl();
+
+    shorturl.shorturl = $scope.new_shorturl.shorturl;
+    shorturl.longurl = $scope.new_shorturl.longurl;
+
+    shorturl.$save(function(new_shorturl){
+      $scope.admin.shorturls.push(new_shorturl);
+      $scope.new_shorturl = angular.copy($scope.dummy_new_shorturl);
+    });
+  };
+}]).
+controller('AdminShorturlEditCtrl', ['$scope', 'AdminShorturlResource',
+  function($scope, AdminShorturlResource) {
+    $scope.delete_shorturl = function(shorturl) {
+      AdminShorturlResource.delete({
+        id: shorturl.id
+      }, function(){
+        var idx = $scope.admin.shorturls.indexOf(shorturl);
+        $scope.admin.shorturls.splice(idx, 1);
+      });
+    };
 }]).
 controller('AdminMailCtrl', ['$scope', '$http', 'Utils', 'AdminNotificationResource',
   function($scope, $http, Utils, AdminNotificationResource){
