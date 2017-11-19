@@ -604,10 +604,8 @@ var GLClient = angular.module('GLClient', [
         Utils.set_title();
 
         if ($rootScope.node.enable_experimental_features) {
-          $rootScope.isStepTriggered = fieldUtilities.isStepTriggered;
           $rootScope.isFieldTriggered = fieldUtilities.isFieldTriggered;
         } else {
-          $rootScope.isStepTriggered = $rootScope.dumb_function;
           $rootScope.isFieldTriggered = $rootScope.dumb_function;
         }
 

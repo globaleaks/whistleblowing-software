@@ -198,8 +198,7 @@ def serialize_field_option(option, language):
         'id': option.id,
         'presentation_order': option.presentation_order,
         'score_points': option.score_points,
-        'trigger_field': option.trigger_field if option.trigger_field else '',
-        'trigger_step': ''
+        'trigger_field': option.trigger_field if option.trigger_field else ''
     }
 
     return get_localized_values(ret_dict, option, option.localized_keys, language)
@@ -297,8 +296,6 @@ def serialize_step(store, step, language):
         'id': step.id,
         'questionnaire_id': step.questionnaire_id,
         'presentation_order': step.presentation_order,
-        'triggered_by_score': 0,
-        'triggered_by_options': [],
         'children': [serialize_field(store, f, language, data) for f in children]
     }
 

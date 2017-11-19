@@ -9,7 +9,7 @@
             1 - <span data-translate>Recipient selection</span>
           </a>
         </li>
-        <li data-ng-repeat="step in submission.context.questionnaire.steps | orderBy:'presentation_order'" data-ng-class="{active: selection === $index}" data-ng-if="fieldUtilities.isStepTriggered(step, answers, total_score)">
+        <li data-ng-repeat="step in submission.context.questionnaire.steps | orderBy:'presentation_order'" data-ng-class="{active: selection === $index}">
           <a id="step-{{$index}}-link" class="StepTitle" href="javascript:void(0)" data-ng-click="goToStep($index)">
             <span>{{$index + (receiver_selection_step ? 2 : 1)}} - {{::step.label}}</span>
           </a>
@@ -21,7 +21,7 @@
         <div id="step-receiver-selection" data-ng-if="receiver_selection_step">
           <div data-ng-show="selection === receiver_selection_step_index" data-ng-include="'views/submission/receiver_selection.html'"></div>
         </div>
-        <div data-ng-show="selection !== receiver_selection_step_index" data-ng-repeat="step in submission.context.questionnaire.steps | orderBy:'presentation_order'" data-ng-controller="SubmissionStepCtrl" data-ng-if="fieldUtilities.isStepTriggered(step, answers, total_score)">
+        <div data-ng-show="selection !== receiver_selection_step_index" data-ng-repeat="step in submission.context.questionnaire.steps | orderBy:'presentation_order'" data-ng-controller="SubmissionStepCtrl">
           <div id="{{::stepId}}" data-ng-form="{{::stepId}}" class="SubmissionStep" data-ng-show="selection === $index">
             <div id="StepTitle" data-ng-if="!show_steps_navigation_bar">{{::step.label}}</div>
             <div class="stepDescription" data-ng-if="step.description">{{step.description}}</div>

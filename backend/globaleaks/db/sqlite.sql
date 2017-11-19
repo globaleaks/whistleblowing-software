@@ -407,11 +407,9 @@ CREATE TABLE fieldoption (
     presentation_order INTEGER NOT NULL,
     score_points INTEGER NOT NULL CHECK (score_points >= 0 AND score_points <= 1000),
     trigger_field TEXT,
-    trigger_step TEXT,
     UNIQUE(id),
     FOREIGN KEY (tid, field_id) REFERENCES field(tid, id) ON DELETE CASCADE,
     FOREIGN KEY (tid, trigger_field) REFERENCES field(tid, id) ON DELETE CASCADE,
-    FOREIGN KEY (tid, trigger_step) REFERENCES step(tid, id) ON DELETE CASCADE,
     FOREIGN KEY (tid) REFERENCES tenant(id) ON DELETE CASCADE,
     PRIMARY KEY (tid, id)
 );
@@ -435,7 +433,6 @@ CREATE TABLE step (
     label TEXT NOT NULL,
     description TEXT NOT NULL,
     presentation_order INTEGER NOT NULL,
-    triggered_by_score INTEGER DEFAULT 0 NOT NULL,
     UNIQUE(id),
     FOREIGN KEY (tid) REFERENCES tenant(id) ON DELETE CASCADE,
     FOREIGN KEY (tid, questionnaire_id) REFERENCES questionnaire(tid, id) ON DELETE CASCADE,

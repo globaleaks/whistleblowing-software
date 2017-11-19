@@ -52,18 +52,13 @@ GLClient.controller('TipCtrl',
             }
           };
 
-          if (!$scope.isStepTriggered(step, $scope.tip.answers, $scope.tip.total_score)) {
-            tip.questionnaire.splice(i, 1);
-          } else {
-            for (var k4=0; k4<step.children.length; k4++) {
-              var field = step.children[k4];
-              for (var k5=0; k5<$scope.tip.answers[field.id].length; k5++) {
-                filterNotTriggeredField(field, $scope.tip.answers[field.id][k5]);
-              }
+          for (var k4=0; k4<step.children.length; k4++) {
+            var field = step.children[k4];
+            for (var k5=0; k5<$scope.tip.answers[field.id].length; k5++) {
+              filterNotTriggeredField(field, $scope.tip.answers[field.id][k5]);
             }
           }
         }
-
       }
     };
 
