@@ -40,14 +40,19 @@ if [ $PIP_NEEDED -eq 1 ]; then
   pip install -r /usr/share/globaleaks/requirements.txt
 fi
 
-# simple check to ensure to run the below commands once at the first install.
-if ! id -u globaleaks >/dev/null 2>&1; then
-  useradd globaleaks -b /var/globaleaks/ -s /bin/false -G debian-tor
-else
-  usermod -a globaleaks -G debian-tor
-fi
+# Create globaleaks user and add the user to required groups
+adduser --quiet \
+        --system \
+        --disabled-login \
+        --disabled-password \
+        --home /var/globaleaks \
+        --shell /bin/false \
+        --group \
+        globaleaks
 
-# Create globaleaks service directories with proper permissions.
+usermod -a -G debian-tor globaleaks
+
+# Create globaleaks service directories with proper permissios
 gl-fix-permissions
 
 # Remove old configuration of Tor used before txtorcon adoption
