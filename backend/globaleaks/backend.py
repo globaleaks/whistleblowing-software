@@ -90,7 +90,7 @@ class Service(service.Service):
                              0o700,
                              0o600)
 
-        drop_privileges(Settings.uid, Settings.gid)
+        drop_privileges(Settings.user, Settings.uid, Settings.gid)
 
         reactor.callLater(0, self.deferred_start)
 
