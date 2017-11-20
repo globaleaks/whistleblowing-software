@@ -17,5 +17,3 @@ chmod 700 /var/run/globaleaks
 [ -d /dev/shm/globaleaks ] || mkdir -p /dev/shm/globaleaks
 chown -R globaleaks:globaleaks /dev/shm/globaleaks
 chmod 700 /dev/shm/globaleaks
-
-usermod -a globaleaks -G debian-tor
