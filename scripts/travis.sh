@@ -34,7 +34,6 @@ sudo iptables -t nat -A OUTPUT -o lo -p tcp --dport 9000 -j REDIRECT --to-port 8
 npm install -g grunt grunt-cli
 
 if [ "$GLTEST" = "test" ]; then
-
   pip install coveralls==1.0b1
   sudo apt-get install -y python-coverage
 
@@ -69,7 +68,6 @@ if [ "$GLTEST" = "test" ]; then
   coveralls --merge=../client/coverage/coveralls.json
 
 elif [ "$GLTEST" = "lint" ]; then
-
   pip install pylint==1.6.5
 
   setupDependencies
@@ -83,6 +81,13 @@ elif [ "$GLTEST" = "lint" ]; then
   grunt eslint
 
 elif [ "$GLTEST" = "build_and_install" ]; then
+  function atexit {
+    if [[ ! $? -eq 0 && -f /var/globaleaks/log/globaleaks.log ]]; then
+      cat /var/globaleaks/log/globaleaks.log
+    fi
+  }
+
+  trap atexit EXIT
 
   echo "Running Build & Install and BrowserTesting tests"
   # we build all packages to test build for each distributions and then we test against trusty
