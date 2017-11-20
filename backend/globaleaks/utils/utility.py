@@ -40,9 +40,10 @@ def read_json_file(p):
     return json.loads(read_file(p))
 
 
-def drop_privileges(uid, gid):
+def drop_privileges(user, uid, gid):
     if os.getgid() != gid:
         os.setgid(gid)
+        os.initgroups(user, gid)
 
     if os.getuid() != uid:
         os.setuid(uid)
