@@ -1,19 +1,18 @@
 # -*- coding: utf-8 -*-
 # Implement collection of statistics
 
-from globaleaks.state import State
 from globaleaks.jobs.base import LoopingJob
 from globaleaks.models import Stats
 from globaleaks.orm import transact_sync
 from globaleaks.utils.utility import datetime_now, log
 
 
-def get_statistics():
+def get_statistics(state):
     stats = {}
 
-    for tid in State.tenant_state:
+    for tid in state.tenant_state:
         stats[tid] = {}
-        for e in State.tenant_state[tid].EventQ:
+        for e in state.tenant_state[tid].EventQ:
             stats[tid].setdefault(e.event_type, 0)
             stats[tid][e.event_type] += 1
 
@@ -47,13 +46,13 @@ class Statistics(LoopingJob):
 
     def operation(self):
         current_time = datetime_now()
-        statistic_summary = get_statistics()
+        statistic_summary = get_statistics(self.state)
         if statistic_summary:
-            save_statistics(State.stats_collection_start_time, current_time, statistic_summary)
+            save_statistics(self.state.stats_collection_start_time, current_time, statistic_summary)
             log.debug("Stored statistics %s collected from %s to %s",
                       statistic_summary,
-                      State.stats_collection_start_time,
+                      self.state.stats_collection_start_time,
                       current_time)
 
         # Hourly Resets
-        State.reset_hourly()
+        self.state.reset_hourly()

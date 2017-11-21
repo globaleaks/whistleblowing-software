@@ -5,7 +5,7 @@ from globaleaks import models
 from globaleaks.handlers import rtip
 from globaleaks.jobs.delivery import Delivery
 from globaleaks.rest import errors
-from globaleaks.settings import State
+from globaleaks.state import State
 from globaleaks.tests import helpers
 from globaleaks.utils.utility import datetime_now, ISO8601_to_datetime
 

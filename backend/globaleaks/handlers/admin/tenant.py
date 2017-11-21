@@ -95,11 +95,13 @@ def refresh_tenant_states():
     if State.onion_service_job:
         def f(*args):
             return State.onion_service_job.add_all_hidden_services()
+
         State.onion_service_job.remove_unwanted_hidden_services().addBoth(f)
 
     # Power cycle HTTPS processes
     def g(*args):
         return State.process_supervisor.maybe_launch_https_workers()
+
     State.process_supervisor.shutdown().addBoth(g)
 
 

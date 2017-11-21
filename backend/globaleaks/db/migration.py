@@ -31,6 +31,7 @@ from globaleaks.db.migrations.update_39 import \
     Questionnaire_v_38, Receiver_v_38, ReceiverContext_v_38, \
     ReceiverFile_v_38, ReceiverTip_v_38, ShortURL_v_38, Stats_v_38, \
     Step_v_38, User_v_38, WhistleblowerFile_v_38, WhistleblowerTip_v_38
+from globaleaks.orm import make_db_uri
 from globaleaks.models import config, l10n
 from globaleaks.models.config import PrivateFactory
 from globaleaks.settings import Settings
@@ -104,12 +105,11 @@ def db_perform_data_update(store):
 
         ok = config.is_cfg_valid(store, tid)
         if not ok:
-            m = 'Error: the system is not stable, update failed from %s to %s' % t
-            raise Exception(m)
+            raise Exception('Error: the system is not stable, update failed from %s to %s' % t)
 
 
-def perform_data_update(dbfile):
-    store = Store(create_database(Settings.make_db_uri(dbfile)))
+def perform_data_update(db_file):
+    store = Store(create_database(make_db_uri(db_file)))
 
     enabled_languages = [lang.name for lang in store.find(l10n.EnabledLanguage)]
 
@@ -209,7 +209,7 @@ def perform_schema_migration(version):
             log.info("Migration stats:")
 
             # we open a new db in order to verify integrity of the generated file
-            store_verify = Store(create_database(Settings.make_db_uri(new_db_file)))
+            store_verify = Store(create_database(make_db_uri(new_db_file)))
 
             for model_name, _ in migration_mapping.items():
                 if migration_script.model_from[model_name] is not None and migration_script.model_to[model_name] is not None:

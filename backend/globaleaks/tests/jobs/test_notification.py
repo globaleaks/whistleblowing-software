@@ -19,9 +19,9 @@ class TestNotification(helpers.TestGLWithPopulatedDB):
 
         yield Delivery().run()
 
-        notificationule = Notification()
-        notificationule.skip_sleep = True
-        yield notificationule.run()
+        notification = Notification()
+        notification.skip_sleep = True
+        yield notification.run()
 
         yield self.test_model_count(models.Mail, 0)
 
@@ -31,20 +31,20 @@ class TestNotification(helpers.TestGLWithPopulatedDB):
 
         yield Delivery().run()
 
-        notificationule = Notification()
-        notificationule.skip_sleep = True
+        notification = Notification()
+        notification.skip_sleep = True
 
         def sendmail_failure(_):
             # simulate the failure just returning with no action
             return succeed(None)
 
-        notificationule.sendmail = sendmail_failure
+        notification.sendmail = sendmail_failure
 
         for _ in range(10):
-            yield notificationule.run()
+            yield notification.run()
             yield self.test_model_count(models.Mail, 24)
 
 
-        yield notificationule.run()
+        yield notification.run()
 
         yield self.test_model_count(models.Mail, 0)

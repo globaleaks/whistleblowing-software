@@ -1,21 +1,28 @@
 # -*- coding: utf-8
+import sys
+
+from storm import tracer
+
+from twisted.internet import defer
 from twisted.python.threadpool import ThreadPool
 
-from globaleaks import __version__
+from globaleaks import __version__, orm
+from globaleaks.utils.agent import get_tor_agent, get_web_agent
+from globaleaks.utils.mailutils import sendmail
 from globaleaks.utils.objectdict import ObjectDict
+from globaleaks.security import encrypt_message, sha256
 from globaleaks.utils.singleton import Singleton
 from globaleaks.utils.tor_exit_set import TorExitSet
-from globaleaks.utils.utility import datetime_now
+from globaleaks.utils.utility import datetime_now, log
 from globaleaks.utils.tempdict import TempDict
 
-def getAlarm():
+def getAlarm(settings):
     from globaleaks.anomaly import Alarm
-    from globaleaks.settings import Settings
-    return Alarm(Settings)
+    return Alarm(settings)
 
 
 class TenantState(object):
-    def __init__(self):
+    def __init__(self, settings):
         self.RecentEventQ = []
         self.EventQ = []
         self.AnomaliesQ = []
@@ -23,14 +30,19 @@ class TenantState(object):
         # An ACME challenge will have 5 minutes to resolve
         self.acme_tmp_chall_dict = TempDict(300)
 
-        self.Alarm = getAlarm()
+        self.Alarm = getAlarm(settings)
 
 
 class StateClass(ObjectDict):
     __metaclass__ = Singleton
 
+    orm_tp = ThreadPool(1, 1)
+
     def __init__(self):
-        self.orm_tp = ThreadPool(1, 1)
+        from globaleaks.settings import Settings
+
+        self.settings = Settings
+
         self.process_supervisor = None
         self.tor_exit_set = TorExitSet()
 
@@ -69,6 +81,19 @@ class StateClass(ObjectDict):
             'anonymize_outgoing_connections': True,
         })
 
+        tracer.debug(self.settings.orm_debug, sys.stdout)
+        self.set_orm_tp(self.orm_tp)
+
+    def set_orm_tp(self, orm_tp):
+        self.orm_tp = orm_tp
+        orm.set_thread_pool(orm_tp)
+
+    def get_agent(self, tid=1):
+        if self.tenant_cache[tid].anonymize_outgoing_connections:
+            return get_tor_agent(self.settings.socks_host, self.settings.socks_port)
+
+        return get_web_agent()
+
     def get_mail_counter(self, receiver_id):
         return self.mail_counters.get(receiver_id, 0)
 
@@ -77,13 +102,81 @@ class StateClass(ObjectDict):
 
     def reset_hourly(self):
         for tid in self.tenant_state:
-            self.tenant_state[tid] = TenantState()
+            self.tenant_state[tid] = TenantState(self.settings)
 
         self.exceptions.clear()
         self.exceptions_email_count = 0
         self.mail_counters.clear()
 
         self.stats_collection_start_time = datetime_now()
+
+    def sendmail(self, tid, to_address, subject, body):
+       if self.settings.testing:
+           # during unit testing do not try to send the mail
+           return defer.succeed(True)
+
+       return sendmail(self.tenant_cache[tid].notif.username,
+                       self.tenant_cache[tid].private.smtp_password,
+                       self.tenant_cache[tid].notif.server,
+                       self.tenant_cache[tid].notif.port,
+                       self.tenant_cache[tid].notif.security,
+                       self.tenant_cache[tid].notif.source_name,
+                       self.tenant_cache[tid].notif.source_email,
+                       to_address,
+                       subject,
+                       body,
+                       self.tenant_cache[tid].anonymize_outgoing_connections,
+                       self.settings.socks_host,
+                       self.settings.socks_port)
+
+
+    def schedule_exception_email(self, exception_text, *args):
+        from globaleaks.transactions import schedule_email
+
+        if not hasattr(self.tenant_cache[1], 'notif'):
+            log.err("Error: Cannot send mail exception before complete initialization.")
+            return
+
+        if self.exceptions_email_count >= self.settings.exceptions_email_hourly_limit:
+            return
+
+        exception_text = (exception_text % args) if args else exception_text
+
+        sha256_hash = sha256(bytes(exception_text))
+
+        if sha256_hash not in self.exceptions:
+            self.exceptions[sha256_hash] = 0
+
+        self.exceptions[sha256_hash] += 1
+        if self.exceptions[sha256_hash] > 5:
+            log.err("Exception mail suppressed for (%s) [reason: threshold exceeded]",  sha256_hash)
+            return
+
+        self.exceptions_email_count += 1
+
+        mail_subject = "GlobaLeaks Exception"
+        delivery_list = self.tenant_cache[1].notif.exception_delivery_list
+
+        if self.settings.devel_mode:
+            mail_subject +=  " [%s]" % self.settings.developer_name
+            delivery_list = [("globaleaks-stackexception-devel@globaleaks.org", '')]
+
+        exception_text = bytes("Platform: %s (%s)\nVersion: %s\n\n%s" \
+                               % (self.tenant_cache[1].hostname,
+                                  self.tenant_cache[1].onionservice,
+                                  __version__,
+                                  exception_text))
+
+        for mail_address, pub_key in delivery_list:
+            mail_body = exception_text
+
+            # Opportunisticly encrypt the mail body. NOTE that mails will go out
+            # unencrypted if one address in the list does not have a public key set.
+            if pub_key:
+                mail_body = encrypt_message(pub_key, mail_body)
+
+            # avoid waiting for the notification to send and instead rely on threads to handle it
+            schedule_email(1, mail_address, mail_subject, mail_body)
 
 
 # State is a singleton class exported once

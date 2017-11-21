@@ -11,7 +11,7 @@ import re
 import shutil
 from storm.locals import create_database, Store
 
-from globaleaks import __version__, DATABASE_VERSION, FIRST_DATABASE_VERSION_SUPPORTED, models
+from globaleaks import __version__, DATABASE_VERSION, FIRST_DATABASE_VERSION_SUPPORTED, models, orm
 from globaleaks.db import migration, update_db
 from globaleaks.db.migrations import update_37
 from globaleaks.db.migrations.update import MigrationBase
@@ -35,8 +35,9 @@ class TestMigrationRoutines(unittest.TestCase):
         Settings.db_path = os.path.join(Settings.ramdisk_path, 'db_test')
         self.start_db_file = os.path.abspath(os.path.join(Settings.db_path, 'glbackend-%d.db' % version))
         self.final_db_file = os.path.abspath(os.path.join(Settings.db_path, 'glbackend-%d.db' % DATABASE_VERSION))
-        self.start_db_uri = Settings.make_db_uri(self.start_db_file)
-        Settings.db_uri = Settings.make_db_uri(self.final_db_file)
+        self.start_db_uri = orm.make_db_uri(self.start_db_file)
+
+        orm.set_db_uri('sqlite:' + self.final_db_file)
 
         shutil.rmtree(Settings.db_path, True)
         os.mkdir(Settings.db_path)
@@ -67,8 +68,7 @@ class TestMigrationRoutines(unittest.TestCase):
         shutil.copy(os.path.join(helpers.DATA_DIR, 'tor/hostname'), css_path)
 
     def postconditions_30(self):
-        new_uri = Settings.make_db_uri(os.path.join(Settings.db_path, Settings.db_file_name))
-        store = Store(create_database(new_uri))
+        new_uri = 'sqlite:' + os.path.join(Settings.db_path, Settings.db_file_name)
 
         store = Store(create_database(new_uri))
         self.assertTrue(store.find(models.File, id=u'logo').count() == 1)
@@ -85,7 +85,7 @@ class TestMigrationRoutines(unittest.TestCase):
         shutil.copy(os.path.join(helpers.DATA_DIR, 'tor/hostname'), hn_path)
 
     def postconditions_36(self):
-        new_uri = Settings.make_db_uri(os.path.join(Settings.db_path, Settings.db_file_name))
+        new_uri = orm.make_db_uri(os.path.join(Settings.db_path, Settings.db_file_name))
         store = Store(create_database(new_uri))
         hs = store.find(config.Config, var_name=u'onionservice').one().value['v']
         pk = store.find(config.Config, var_name=u'tor_onion_key').one().value['v']
@@ -140,7 +140,7 @@ class TestConfigUpdates(unittest.TestCase):
         shutil.copyfile(db_path, os.path.join(Settings.db_path, db_name))
 
         self.db_file = os.path.join(Settings.db_path, db_name)
-        Settings.db_uri = Settings.make_db_uri(self.db_file)
+        Settings.db_uri = orm.make_db_uri(self.db_file)
 
         # place a dummy version in the current db
         store = Store(create_database(Settings.db_uri))

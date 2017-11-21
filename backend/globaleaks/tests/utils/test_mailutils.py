@@ -9,6 +9,8 @@ from globaleaks.utils import mailutils
 
 
 class TestMailUtils(helpers.TestGL):
+    #from globaleaks.backend import mail_exception_handler, extract_exception_traceback_and_schedule_email
+
     @inlineCallbacks
     def test_mail_exception_handler(self):
         yield self.test_model_count(models.Mail, 0)

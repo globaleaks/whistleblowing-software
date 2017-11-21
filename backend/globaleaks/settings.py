@@ -14,8 +14,7 @@ import sys
 from optparse import OptionParser
 
 from globaleaks import __version__, DATABASE_VERSION
-from globaleaks.state import State
-from globaleaks.utils.agent import get_tor_agent, get_web_agent
+from globaleaks.orm import make_db_uri, set_db_uri
 from globaleaks.utils.singleton import Singleton
 from globaleaks.utils.utility import datetime_now, log
 
@@ -184,7 +183,6 @@ class SettingsClass(object):
         self.db_schema = os.path.join(self.static_db_source, 'sqlite.sql')
         self.db_file_name = 'glbackend-%d.db' % DATABASE_VERSION
         self.db_file_path = os.path.join(os.path.abspath(os.path.join(self.db_path, self.db_file_name)))
-        self.db_uri = self.make_db_uri(self.db_file_path)
 
         self.logfile = os.path.abspath(os.path.join(self.log_path, 'globaleaks.log'))
         self.httplogfile = os.path.abspath(os.path.join(self.log_path, "http.log"))
@@ -201,6 +199,8 @@ class SettingsClass(object):
         self.questionnaires_path = os.path.join(self.client_path, 'data/questionnaires')
         self.questions_path = os.path.join(self.client_path, 'data/questions')
         self.field_attrs_file = os.path.join(self.client_path, 'data/field_attrs.json')
+
+        set_db_uri(make_db_uri(self.db_file_path))
 
     def set_ramdisk_path(self):
         self.ramdisk_path = '/dev/shm/globaleaks'
@@ -384,33 +384,6 @@ class SettingsClass(object):
                         os.remove(path)
             except Exception as excep:
                 self.print_msg("Error while evaluating removal for %s: %s" % (path, excep))
-
-    @staticmethod
-    def make_db_uri(db_file_path):
-        return 'sqlite:' + db_file_path + '?foreign_keys=ON'
-
-    def get_agent(self):
-        if State.tenant_cache[1].anonymize_outgoing_connections:
-            return get_tor_agent(self.socks_host, self.socks_port)
-
-        return get_web_agent()
-
-    def print_listening_interfaces(self):
-        print("GlobaLeaks is now running and accessible at the following urls:")
-
-        tenant_cache = State.tenant_cache[1]
-
-        for port in self.bind_local_ports:
-            print("- [LOCAL HTTP]\t--> http://127.0.0.1:%d%s" % (port, self.api_prefix))
-
-        if State.tenant_cache[1].reachable_via_web:
-            hostname = tenant_cache.hostname if tenant_cache.hostname else '0.0.0.0'
-            print("- [REMOTE HTTP]\t--> http://%s%s" % (hostname, self.api_prefix))
-            if tenant_cache.private.https_enabled:
-                print("- [REMOTE HTTPS]\t--> https://%s%s" % (hostname, self.api_prefix))
-
-        if tenant_cache.onionservice:
-            print("- [REMOTE Tor]:\t--> http://%s%s" % (tenant_cache.onionservice, self.api_prefix))
 
 
 # Settings is a singleton class exported once

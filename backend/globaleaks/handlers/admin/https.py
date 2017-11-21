@@ -569,7 +569,7 @@ class HostnameTestHandler(BaseHandler):
         if not State.tenant_cache[self.request.tid].hostname:
             raise errors.ValidationError('hostname is not set')
 
-        net_agent = Settings.get_agent()
+        net_agent = self.state.get_agent()
 
         t = ('http', State.tenant_cache[self.request.tid].hostname, 'robots.txt', None, None)
         url = bytes(urlparse.urlunsplit(t))

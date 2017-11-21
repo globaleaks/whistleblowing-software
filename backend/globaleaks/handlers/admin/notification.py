@@ -115,4 +115,4 @@ class NotificationTestInstance(BaseHandler):
 
         subject, body = Templating().get_mail_subject_and_body(data)
 
-        yield sendmail(tid, user['mail_address'], subject, body)
+        yield self.state.sendmail(tid, user['mail_address'], subject, body)

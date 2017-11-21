@@ -11,7 +11,7 @@ sys.setdefaultencoding('utf8')
 # pylint: disable=no-name-in-module
 from distutils import dir_util
 
-from globaleaks import db, models, security, event, jobs, __version__
+from globaleaks import db, models, orm, security, event, jobs, __version__
 from globaleaks.anomaly import Alarm
 from globaleaks.db.appdata import load_appdata
 from globaleaks.orm import transact
@@ -114,7 +114,7 @@ def init_glsettings_for_unit_tests():
 
     Settings.create_directories()
 
-    State.orm_tp = FakeThreadPool()
+    orm.set_thread_pool(FakeThreadPool())
 
     State.tenant_cache[1].hostname = 'localhost'
 

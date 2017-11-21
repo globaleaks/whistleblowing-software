@@ -22,9 +22,6 @@ from twisted.protocols import tls
 from twisted.python.failure import Failure
 
 from globaleaks import __version__
-from globaleaks.state import State
-from globaleaks.security import encrypt_message, sha256
-from globaleaks.settings import Settings
 from globaleaks.utils.tls import TLSClientContextFactory
 from globaleaks.utils.utility import log
 
@@ -54,7 +51,7 @@ def MIME_mail_build(src_name, src_mail, dest_name, dest_mail, title, mail_body):
     return StringIO.StringIO(multipart.as_string())
 
 
-def sendmail(tid, to_address, subject, body):
+def sendmail(username, password, smtp_host, smtp_port, security, from_name, from_address, to_address, subject, body, anonymize=True, socks_host='127.0.0.1', socks_port=9050):
     """
     Send an email using SMTPS/SMTP+TLS and maybe torify the connection.
 
@@ -66,18 +63,10 @@ def sendmail(tid, to_address, subject, body):
              to the server.
     """
     try:
-        if not to_address:
-            return
+        timeout = 30
 
-        authentication_username=State.tenant_cache[tid].notif.username
-        authentication_password=State.tenant_cache[tid].private.smtp_password
-        from_address=State.tenant_cache[tid].notif.source_email
-        smtp_host=State.tenant_cache[tid].notif.server
-        smtp_port=State.tenant_cache[tid].notif.port
-        security=State.tenant_cache[tid].notif.security
-
-        message = MIME_mail_build(State.tenant_cache[tid].notif.source_name,
-                                  State.tenant_cache[tid].notif.source_email,
+        message = MIME_mail_build(from_name,
+                                  from_address,
                                   to_address,
                                   to_address,
                                   subject,
@@ -94,8 +83,8 @@ def sendmail(tid, to_address, subject, body):
         smtp_deferred = defer.Deferred()
 
         factory = ESMTPSenderFactory(
-            authentication_username.encode('utf-8'),
-            authentication_password.encode('utf-8'),
+            username.encode('utf-8'),
+            password.encode('utf-8'),
             from_address,
             to_address,
             message,
@@ -104,20 +93,16 @@ def sendmail(tid, to_address, subject, body):
             requireAuthentication=True,
             requireTransportSecurity=(security != 'SSL'),
             retries=0,
-            timeout=Settings.mail_timeout)
+            timeout=timeout)
 
         if security == "SSL":
             factory = tls.TLSMemoryBIOFactory(context_factory, True, factory)
 
-        if State.tenant_cache[tid].anonymize_outgoing_connections:
-            socksProxy = TCP4ClientEndpoint(reactor, Settings.socks_host, Settings.socks_port, timeout=Settings.mail_timeout)
+        if anonymize:
+            socksProxy = TCP4ClientEndpoint(reactor, socks_host, socks_port, timeout=timeout)
             endpoint = SOCKS5ClientEndpoint(smtp_host.encode('utf-8'), smtp_port, socksProxy)
         else:
-            endpoint = TCP4ClientEndpoint(reactor, smtp_host.encode('utf-8'), smtp_port, timeout=Settings.mail_timeout)
-
-        if Settings.testing:
-            # during unit testing do not try to send the mail
-            return defer.succeed(True)
+            endpoint = TCP4ClientEndpoint(reactor, smtp_host.encode('utf-8'), smtp_port, timeout=timeout)
 
         conn_deferred = endpoint.connect(factory)
 
@@ -148,69 +133,12 @@ def sendmail(tid, to_address, subject, body):
         return defer.succeed(False)
 
 
-def schedule_exception_email(exception_text, *args):
-    try:
-        from globaleaks.transactions import schedule_email
-
-        if not hasattr(State.tenant_cache[1], 'notif'):
-            log.err("Error: Cannot send mail exception before complete initialization.")
-            return
-
-        if State.exceptions_email_count >= Settings.exceptions_email_hourly_limit:
-            return
-
-        exception_text = (exception_text % args) if args else exception_text
-
-        sha256_hash = sha256(bytes(exception_text))
-
-        if sha256_hash not in State.exceptions:
-            State.exceptions[sha256_hash] = 0
-
-        State.exceptions[sha256_hash] += 1
-        if State.exceptions[sha256_hash] > 5:
-            log.err("Exception mail suppressed for (%s) [reason: threshold exceeded]",  sha256_hash)
-            return
-
-        State.exceptions_email_count += 1
-
-        mail_subject = "GlobaLeaks Exception"
-        delivery_list = State.tenant_cache[1].notif.exception_delivery_list
-
-        if Settings.devel_mode:
-            mail_subject +=  " [%s]" % Settings.developer_name
-            delivery_list = [("globaleaks-stackexception-devel@globaleaks.org", '')]
-
-        exception_text = bytes("Platform: %s (%s)\nVersion: %s\n\n%s" \
-                               % (State.tenant_cache[1].hostname,
-                                  State.tenant_cache[1].onionservice,
-                                  __version__,
-                                  exception_text))
-
-        for mail_address, pub_key in delivery_list:
-            mail_body = exception_text
-
-            # Opportunisticly encrypt the mail body. NOTE that mails will go out
-            # unencrypted if one address in the list does not have a public key set.
-            if pub_key:
-                mail_body = encrypt_message(pub_key, mail_body)
-
-            # avoid waiting for the notification to send and instead rely on threads to handle it
-            schedule_email(1, mail_address, mail_subject, mail_body)
-
-    except Exception as excep:
-        # Avoid raising exception inside email logic to avoid chaining errors
-        log.err("Unexpected exception in send_exception_mail: %s", excep)
-
-
 def mail_exception_handler(etype, value, tback):
     """
     Formats traceback and exception data and emails the error,
     This would be enabled only in the testing phase and testing release,
     not in production release.
     """
-    if Settings.disable_backend_exception_notification:
-        return
-
     if isinstance(value, (GeneratorExit,
                           defer.AlreadyCalledError,
                           SMTPError)) or \
@@ -235,7 +163,8 @@ def mail_exception_handler(etype, value, tback):
     log.err("Unhandled exception raised:")
     log.err(mail_body)
 
-    schedule_exception_email(mail_body)
+    from globaleaks.state import State
+    State.schedule_exception_email(mail_body)
 
 
 def extract_exception_traceback_and_schedule_email(e):
