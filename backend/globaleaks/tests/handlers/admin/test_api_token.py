@@ -39,26 +39,6 @@ class TestAPITokenEnabled(helpers.TestHandlerWithPopulatedDB):
         yield self.assertRaises(errors.NotAuthenticated, handler.post)
 
     @inlineCallbacks
-    def test_anti_bruteforce_mechanism(self):
-        # If an invalid token is submitted the application should revoke the api token
-        shorturl_desc = self.get_dummy_shorturl('a')
-
-        handler = self.request(shorturl_desc, headers={'x-api-token': self.api_tok})
-        yield handler.post()
-
-        handler = self.request(shorturl_desc, headers={'x-api-token': 'a'*32})
-        yield self.assertRaises(errors.NotAuthenticated, handler.post)
-
-        handler = self.request(shorturl_desc, headers={'x-api-token': self.api_tok})
-        yield self.assertRaises(errors.NotAuthenticated, handler.post)
-
-        # After the session management job is run the token should be restored
-        yield SessionManagement().operation()
-
-        handler = self.request(self.get_dummy_shorturl('b'), headers={'x-api-token': self.api_tok})
-        yield handler.post()
-
-    @inlineCallbacks
     def tearDown(self):
         yield set_api_digest('')
         yield helpers.TestHandlerWithPopulatedDB.tearDown(self)
