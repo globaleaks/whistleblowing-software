@@ -58,6 +58,7 @@ class OnionService(BaseJob):
     print_startup_error = True
     tor_conn = None
     hs_map = {}
+    startup_semaphore = set() # prevents duplicate HS initialization for a given tid
 
     def service(self, restart_deferred):
         control_socket = '/var/run/tor/control'
@@ -80,11 +81,11 @@ class OnionService(BaseJob):
             restart_deferred.callback(None)
 
         if not os.path.exists(control_socket):
-            startup_errback(Exception('Tor control port not open on /var/run/tor/control; waiting for Tor to become available'))
+            startup_errback(Exception('Tor control port not open on %s; waiting for Tor to become available' % control_socket))
             return
 
         if not os.access(control_socket, os.R_OK):
-            startup_errback(Exception('Unable to access /var/run/tor/control; manual permission recheck needed'))
+            startup_errback(Exception('Unable to access %s; manual permission recheck needed' % control_socket))
             return
 
         d = build_local_tor_connection(reactor)
@@ -124,22 +125,36 @@ class OnionService(BaseJob):
     def add_hidden_service(self, hostname, key, tid):
         hs_loc = ('80 localhost:8083')
         if not hostname and not key:
-            log.info('Creating new onion service')
-            ephs = EphemeralHiddenService(hs_loc)
+            if tid not in self.startup_semaphore:
+                log.info('Creating new onion service [%d]', tid)
+                ephs = EphemeralHiddenService(hs_loc)
+                self.startup_semaphore.add(tid)
+            else:
+                log.debug('Still waiting for hidden service [%d] to start', tid)
+                return defer.succeed(None)
         else:
             log.info('Setting up existing onion service %s', hostname)
             ephs = EphemeralHiddenService(hs_loc, key)
             self.hs_map[hostname] = ephs
 
         @defer.inlineCallbacks
-        def initialization_callback(ret):
-            log.info('Initialization of hidden-service %s completed.', ephs.hostname)
+        def init_callback(ret):
+            log.info('Initialization of hidden-service [%d] %s completed.', tid, ephs.hostname)
             if not hostname and not key:
-                yield set_onion_service_info(tid, ephs.hostname, ephs.private_key)
-                self.hs_map[ephs.hostname] = ephs
+                self.startup_semaphore.remove(tid)
+                if tid in State.tenant_cache:
+                    self.hs_map[ephs.hostname] = ephs
+                    yield set_onion_service_info(tid, ephs.hostname, ephs.private_key)
+                else:
+                    yield ephs.remove_from_tor(self.tor_conn.protocol)
+
+        def init_errback(failure):
+            if tid in self.startup_semaphore:
+                self.startup_semaphore.remove(tid)
+            raise failure.value
 
         d = ephs.add_to_tor(self.tor_conn.protocol)
-        return d.addCallback(initialization_callback) # pylint: disable=no-member
+        return d.addBoth(init_callback, init_errback) # pylint: disable=no-member
 
     @defer.inlineCallbacks
     def remove_unwanted_hidden_services(self):
@@ -156,7 +171,7 @@ class OnionService(BaseJob):
                 ephs = self.hs_map.pop(onion_addr)
 
             if ephs is not None:
-                log.info('Removing onion address: %s' % ephs.hostname)
+                log.info('Removing onion address %s', ephs.hostname)
                 yield ephs.remove_from_tor(self.tor_conn.protocol)
 
     @defer.inlineCallbacks
