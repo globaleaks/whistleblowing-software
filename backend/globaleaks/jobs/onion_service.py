@@ -154,13 +154,16 @@ class OnionService(BaseJob):
             raise failure.value
 
         d = ephs.add_to_tor(self.tor_conn.protocol)
-        return d.addBoth(init_callback, init_errback) # pylint: disable=no-member
+        # pylint: disable=no-member
+        d.addErrback(init_errback)
+        return d.addBoth(init_callback)
+        # pylint: enable=no-member
 
     @defer.inlineCallbacks
     def remove_unwanted_hidden_services(self):
         # Collect the list of all hidden services listed by tor then remove all of them
-        # that are not present in the tenant cache ensuring that the OnionService.hs_map
-        # is kept up to date.
+        # that are not present in the tenant cache ensuring that OnionService.hs_map is
+        # kept up to date.
         running_services = yield self.get_all_hidden_services()
 
         tenant_services = {State.tenant_cache[tid].onionservice for tid in State.tenant_cache}

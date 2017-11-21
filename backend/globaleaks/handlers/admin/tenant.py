@@ -90,16 +90,15 @@ def delete(store, id):
     db_refresh_memory_variables(store)
 
 
-@inlineCallbacks
 def refresh_tenant_states():
     # Remove selected onion services and add missing services
     if State.onion_service_job:
-        yield State.onion_service_job.remove_unwanted_hidden_services()
-        yield State.onion_service_job.add_all_hidden_services()
+        State.onion_service_job.remove_unwanted_hidden_services()\
+            .addBoth(State.onion_service_job.add_all_hidden_services)
 
     # Power cycle HTTPS processes
-    yield State.process_supervisor.shutdown()
-    yield State.process_supervisor.maybe_launch_https_workers()
+    State.process_supervisor.shutdown()\
+        .addBoth(State.process_supervisor.maybe_launch_https_workers)
 
 
 class TenantCollection(BaseHandler):
