@@ -125,13 +125,13 @@ class OnionService(BaseJob):
     def add_hidden_service(self, hostname, key, tid):
         hs_loc = ('80 localhost:8083')
         if not hostname and not key:
-            if tid not in self.startup_semaphore:
-                log.info('Creating new onion service [%d]', tid)
-                ephs = EphemeralHiddenService(hs_loc)
-                self.startup_semaphore.add(tid)
-            else:
+            if tid in self.startup_semaphore:
                 log.debug('Still waiting for hidden service [%d] to start', tid)
                 return defer.succeed(None)
+
+            log.info('Creating new onion service [%d]', tid)
+            ephs = EphemeralHiddenService(hs_loc)
+            self.startup_semaphore.add(tid)
         else:
             log.info('Setting up existing onion service %s', hostname)
             ephs = EphemeralHiddenService(hs_loc, key)
