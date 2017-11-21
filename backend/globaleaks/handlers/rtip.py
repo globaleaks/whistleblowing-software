@@ -573,11 +573,11 @@ class RTipWBFileInstanceHandler(WhistleblowerFileInstanceHandler):
     def user_can_access(self, store, tid, wbfile):
         internaltip_id = store.find(models.ReceiverTip.internaltip_id,
                                     models.ReceiverTip.id == wbfile.receivertip_id,
-                                    tid=tid).one()
+                                    models.ReceiverTip.tid == tid).one()
 
         return self.current_user.user_id in store.find(models.ReceiverTip.receiver_id,
                                                        models.ReceiverTip.internaltip_id == internaltip_id,
-                                                       tid=tid)
+                                                       models.ReceiverTip.tid == tid)
 
     def delete(self, file_id):
         """
