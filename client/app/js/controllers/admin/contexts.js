@@ -10,6 +10,11 @@ GLClient.controller('AdminContextsCtrl',
     return Utils.update(updated_context, cb);
   };
 
+  $scope.showAddContext = false;
+  $scope.toggleAddContext = function() {
+    $scope.showAddContext = !$scope.showAddContext;
+  };
+
   $scope.moveUpAndSave = function(elem) {
     Utils.moveUp(elem);
     $scope.save_context(elem);
@@ -53,6 +58,7 @@ controller('AdminContextEditorCtrl', ['$scope', '$rootScope', '$http', 'Utils', 
       $rootScope.successes.push({});
     });
   }
+
 
   $scope.showSelect = false;
   $scope.toggleSelect = function() {

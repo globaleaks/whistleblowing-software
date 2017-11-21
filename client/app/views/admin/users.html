@@ -1,60 +1,65 @@
 <div class="row">
   <div id="ConfigSidebarBox" class="col-md-3" data-ng-include="'views/admin/sidebar.html'"></div>
   <div class="col-md-9">
-    <div class="adminConfigSection row" data-ng-controller="AdminUserAddCtrl">
-      <form name="newUser" class="addUser col-md-6" novalidate>
-        <div class="editorTitle" data-translate>Add new user</div>
+    <div class="adminConfigSection" data-ng-controller="AdminUsersCtrl">
+      <div class="editorTitle">
+        <span data-translate>Users</span>
+        <button class="btn btn-xs btn-primary show-add-user-btn" data-ng-click="toggleAddUser()">
+          <i class="glyphicon glyphicon-plus"></i>
+          <span data-translate>Add</span>
+        </button>
+      </div>
+    <div class="adminConfigSection row" data-ng-controller="AdminUserAddCtrl" data-ng-if="showAddUser">
+      <div data-ng-form="newUser" class="addUser col-md-6" novalidate>
         <div class="form-group">
           <label data-translate>Role</label>
           <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
-          <div data-ng-class="{'has-error': newUser.role.$error.required}">
-            <select name="role" class="form-control" data-ng-model="new_user.role" required>
-              <option value="admin" data-translate>Admin</option>
-              <option value="receiver" data-translate>Recipient</option>
-              <option value="custodian" data-ng-if="admin.node.enable_experimental_features" data-translate>Custodian</option>
-            </select>
+            <div data-ng-class="{'has-error': newUser.role.$error.required}">
+              <select name="role" class="form-control" data-ng-model="new_user.role" required>
+                <option value="admin" data-translate>Admin</option>
+                <option value="receiver" data-translate>Recipient</option>
+                <option value="custodian" data-ng-if="admin.node.enable_experimental_features" data-translate>Custodian</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group" data-ng-if="new_user.role !== 'receiver' || !node.simplified_login">
+            <label data-translate>Username</label>
+            <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
+            <div data-ng-class="{'has-error': newUser.username.$error.required}">
+              <input class="form-control" name="username" maxlength="{{node.maximum_namesize}}" data-ng-model="new_user.username" type="text" required />
+            </div>
+          </div>
+          <div class="form-group">
+            <label data-translate>Name</label>
+            <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
+            <div data-ng-class="{'has-error': newUser.name.$error.required}">
+              <input class="form-control" name="name" maxlength="{{node.maximum_namesize}}" data-ng-model="new_user.name" type="text" required />
+            </div>
+          </div>
+          <div class="form-group">
+            <label data-translate>Email address</label>
+            <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
+            <div data-ng-class="{'has-error': newUser.email.$error}">
+              <input class="form-control" name="email" data-ng-model="new_user.email" maxlength="{{node.maximum_namesize}}" data-ng-pattern="email_regexp" type="text" required />
+            </div>
+            <div class="text-danger" data-ng-show="newUser.email.$error.pattern" data-translate>Invalid email address</div>
+          </div>
+          <div class="form-group">
+            <label data-translate>Password</label>
+            <div>
+              <span data-translate>The default password is:</span>
+              <span class="label label-primary">{{admin.node.default_password}}</span>
+            </div>
+            <div data-translate>The system forces users to change the password at first login.</div>
+          </div>
+          <div class="form-group">
+            <button id="add-btn" class="btn btn-primary" data-ng-disabled="newUser.$invalid" data-ng-click="add_user(); toggleAddUser()" type="submit">
+              <i class="glyphicon glyphicon-plus-sign"></i>
+              <span data-translate>Add</span>
+            </button>
           </div>
         </div>
-        <div class="form-group" data-ng-if="new_user.role !== 'receiver' || !node.simplified_login">
-          <label data-translate>Username</label>
-          <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
-          <div data-ng-class="{'has-error': newUser.username.$error.required}">
-            <input class="form-control" name="username" maxlength="{{node.maximum_namesize}}" data-ng-model="new_user.username" type="text" required />
-          </div>
-        </div>
-        <div class="form-group">
-          <label data-translate>Name</label>
-          <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
-          <div data-ng-class="{'has-error': newUser.name.$error.required}">
-            <input class="form-control" name="name" maxlength="{{node.maximum_namesize}}" data-ng-model="new_user.name" type="text" required />
-          </div>
-        </div>
-        <div class="form-group">
-          <label data-translate>Email address</label>
-          <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
-          <div data-ng-class="{'has-error': newUser.email.$error}">
-            <input class="form-control" name="email" data-ng-model="new_user.email" maxlength="{{node.maximum_namesize}}" data-ng-pattern="email_regexp" type="text" required />
-          </div>
-          <div class="text-danger" data-ng-show="newUser.email.$error.pattern" data-translate>Invalid email address</div>
-        </div>
-        <div class="form-group">
-          <label data-translate>Password</label>
-          <div>
-            <span data-translate>The default password is:</span>
-            <span class="label label-primary">{{admin.node.default_password}}</span>
-          </div>
-          <div data-translate>The system forces users to change the password at first login.</div>
-        </div>
-        <div class="form-group">
-          <button id="add-button" class="pull-left btn btn-primary" data-ng-disabled="newUser.$invalid" data-ng-click="add_user()" type="submit">
-            <i class="glyphicon glyphicon-plus-sign"></i>
-            <span data-translate>Add</span>
-          </button>
-        </div>
-      </form>
-    </div>
-    <div class="adminConfigSection" data-ng-controller="AdminUsersCtrl" data-ng-show="admin.users.length > 0">
-      <div class="editorTitle" data-translate>Configured users:</div>
+      </div>
       <div class="userList" data-ng-repeat="user in admin.users | orderBy:'name'">
         <form id="user-{{$index}}" name="editUser" data-ng-controller="AdminUserEditorCtrl" novalidate>
           <div class="configItem">

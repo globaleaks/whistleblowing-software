@@ -1,6 +1,9 @@
-GLClient.controller('AdminUsersCtrl', [
-  function() {
-  // Parked for future use
+GLClient.controller('AdminUsersCtrl', ['$scope',
+  function($scope) {
+    $scope.showAddUser = false;
+    $scope.toggleAddUser = function() {
+      $scope.showAddUser = !$scope.showAddUser;
+    };
 }]).controller('AdminUserEditorCtrl', ['$scope', '$rootScope', 'Utils', 'AdminUserResource',
   function($scope, $rootScope, Utils, AdminUserResource) {
     $scope.deleteUser = function() {

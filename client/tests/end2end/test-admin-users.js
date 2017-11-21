@@ -32,11 +32,12 @@ describe('admin add, configure, and delete users', function() {
     browser.setLocation('admin/users');
 
     var make_account = function(user) {
+      element(by.css('.show-add-user-btn')).click();
       element(by.model('new_user.name')).sendKeys(user.name);
       element(by.model('new_user.email')).sendKeys(user.address);
       element(by.model('new_user.username')).sendKeys(user.name);
       element(by.model('new_user.role')).element(by.xpath(".//*[text()='" + user.role + "']")).click();
-      element(by.id('add-button')).click();
+      element(by.id('add-btn')).click();
       browser.gl.utils.waitUntilPresent(by.xpath(".//*[text()='" + user.name + "']"));
     };
 

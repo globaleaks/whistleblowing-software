@@ -1,14 +1,16 @@
 describe('admin add, configure and delete questionnaires', function() {
   var add_questionnaires = function(questionnaire_name) {
+    element(by.css('.show-add-questionnaire-btn')).click();
     element(by.model('new_questionnaire.name')).sendKeys(questionnaire_name);
-    element(by.id('add-questionnaire-button')).click();
+    element(by.id('add-questionnaire-btn')).click();
     browser.gl.utils.waitUntilPresent(by.xpath(".//*[text()='" + questionnaire_name + "']"));
   };
 
   var add_question = function(question_type) {
+    element.all(by.css('.show-add-question-btn')).first().click();
     element.all(by.model('new_field.label')).first().sendKeys(question_type);
     element.all(by.model('new_field.type')).first().element(by.xpath(".//*[text()='" + question_type + "']")).click();
-    element.all(by.id('add-field-button')).first().click();
+    element.all(by.id('add-field-btn')).first().click();
 
     if(['Checkbox', 'Multiple choice input', 'Selection box'].indexOf(question_type) === 0) {
       element.all(by.xpath(".//*[text()='" + question_type + "']")).get(1).click();
@@ -25,8 +27,9 @@ describe('admin add, configure and delete questionnaires', function() {
   };
 
   var add_step = function(step_label) {
+    element(by.css('.show-add-step-btn')).click();
     element(by.model('new_step.label')).sendKeys(step_label);
-    element(by.id('add-step-button')).click();
+    element(by.id('add-step-btn')).click();
     browser.gl.utils.waitUntilPresent(by.xpath(".//*[text()='" + step_label + "']"));
   };
 
