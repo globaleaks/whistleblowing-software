@@ -93,12 +93,14 @@ def delete(store, id):
 def refresh_tenant_states():
     # Remove selected onion services and add missing services
     if State.onion_service_job:
-        State.onion_service_job.remove_unwanted_hidden_services()\
-            .addBoth(State.onion_service_job.add_all_hidden_services)
+        def f(*args):
+            return State.onion_service_job.add_all_hidden_services()
+        State.onion_service_job.remove_unwanted_hidden_services().addBoth(f)
 
     # Power cycle HTTPS processes
-    State.process_supervisor.shutdown()\
-        .addBoth(State.process_supervisor.maybe_launch_https_workers)
+    def g(*args):
+        return State.process_supervisor.maybe_launch_https_workers()
+    State.process_supervisor.shutdown().addBoth(g)
 
 
 class TenantCollection(BaseHandler):
