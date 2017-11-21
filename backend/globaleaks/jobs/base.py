@@ -7,7 +7,7 @@ from twisted.web._newclient import ResponseNeverReceived, ResponseFailed
 from txsocksx.errors import TTLExpired, ConnectionRefused, ServerFailure
 
 from globaleaks.state import State
-from globaleaks.utils.mailutils import schedule_exception_email, extract_exception_traceback_and_schedule_email
+from globaleaks.utils import mailutils
 from globaleaks.utils.utility import log
 
 TRACK_LAST_N_EXECUTIONS = 10
@@ -124,7 +124,7 @@ class BaseJob(task.LoopingCall):
     def on_error(self, excep):
         log.err("Exception while running %s" % self.name)
         log.exception(excep)
-        extract_exception_traceback_and_schedule_email(excep)
+        mailutils.extract_exception_traceback_and_schedule_email(excep)
 
 
 class LoopingJob(BaseJob):
@@ -142,7 +142,7 @@ class LoopingJob(BaseJob):
                 (self.name, self.mean_time, self.low_time, self.high_time)
         log.err(error)
         log.exception(excep)
-        extract_exception_traceback_and_schedule_email(excep)
+        mailutils.extract_exception_traceback_and_schedule_email(excep)
 
 
 class NetLoopingJob(LoopingJob):
@@ -200,4 +200,4 @@ class JobsMonitor(LoopingJob):
                 log.err(error)
 
         if error_msg:
-            schedule_exception_email(error_msg)
+            self.state.schedule_exception_email(error_msg)

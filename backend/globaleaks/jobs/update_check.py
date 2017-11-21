@@ -11,8 +11,6 @@ from globaleaks.handlers.admin.user import db_get_admin_users
 from globaleaks.jobs.base import NetLoopingJob
 from globaleaks.models.config import PrivateFactory
 from globaleaks.orm import transact
-from globaleaks.settings import Settings
-from globaleaks.state import State
 from globaleaks.utils.agent import get_page
 from globaleaks.utils.utility import log
 from globaleaks.utils.templating import format_and_send
@@ -50,7 +48,7 @@ class UpdateCheck(NetLoopingJob):
     threaded = False
 
     def fetch_packages_file(self):
-        return get_page(Settings.get_agent(), DEB_PACKAGE_URL)
+        return get_page(self.state.get_agent(), DEB_PACKAGE_URL)
 
     @inlineCallbacks
     def operation(self):

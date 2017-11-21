@@ -17,7 +17,6 @@ from globaleaks.event import track_handler
 from globaleaks.rest import errors, requests
 from globaleaks.security import SecureTemporaryFile, directory_traversal_check, generateRandomKey, sha512
 from globaleaks.settings import Settings
-from globaleaks.utils.mailutils import schedule_exception_email
 from globaleaks.utils.tempdict import TempDict
 from globaleaks.utils.utility import log, deferred_sleep
 
@@ -485,7 +484,7 @@ class BaseHandler(object):
             err_tup = ("Handler [%s] exceeded execution threshold (of %d secs) with an execution time of %.2f seconds",
                        self.name, self.handler_exec_time_threshold, self.request.execution_time.seconds)
             log.err(*err_tup)
-            schedule_exception_email(*err_tup)
+            self.state.schedule_exception_email(*err_tup)
 
         track_handler(self)
 

@@ -20,7 +20,7 @@ def get_tor_agent(socks_host='127.0.0.1', socks_port=9050):
 
 def get_web_agent():
     """An HTTP agent that connects to the web without using Tor"""
-    return Agent(reactor, connectTimeout=4)
+    return Agent(reactor, connectTimeout=5)
 
 
 def get_page(agent, url):

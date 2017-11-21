@@ -140,7 +140,7 @@ if Settings.cmdline_options.kill:
         print("Unable kill PID found in %s: kill option ignored (%s)" % (Settings.pidfile_path, excep))
 
 os.umask(077)
-# TODO move function calls out of bin/globaleaks and into backend.py
+
 Settings.create_directories()
 Settings.cleaning_dead_files()
 

@@ -1,12 +1,10 @@
 # -*- coding: utf-8
 # orm: contains main hooks to storm ORM
 # ******
-import sys
 import threading
 
 from datetime import datetime
 
-from storm import tracer
 from storm.database import create_database
 from storm.databases import sqlite
 from storm.store import Store
@@ -14,14 +12,41 @@ from storm.store import Store
 from twisted.internet import reactor
 from twisted.internet.threads import deferToThreadPool
 
-from globaleaks.state import State
-from globaleaks.settings import Settings
-from globaleaks.utils.mailutils import schedule_exception_email
 from globaleaks.utils.utility import log, timedelta_to_milliseconds
 
+__DB_URI = 'sqlite:'
+__THREAD_POOL = None
 
-def get_store():
-    return Store(create_database(Settings.db_uri))
+
+def make_db_uri(db_file):
+    return 'sqlite:' + db_file + '?foreign_keys=ON'
+
+
+def set_db_uri(db_uri):
+    global __DB_URI
+    __DB_URI = db_uri
+
+
+def get_db_uri():
+    global __DB_URI
+    return __DB_URI
+
+
+def get_store(db_uri=None):
+    if db_uri is None:
+        db_uri = get_db_uri()
+
+    return Store(create_database(db_uri))
+
+
+def set_thread_pool(thread_pool):
+    global __THREAD_POOL
+    __THREAD_POOL = thread_pool
+
+
+def get_thread_pool():
+    global __THREAD_POOL
+    return __THREAD_POOL
 
 
 class SQLite(sqlite.Database):
@@ -63,9 +88,6 @@ class transact(object):
     def __init__(self, method):
         self.method = method
         self.instance = None
-        self.debug = Settings.orm_debug
-
-        tracer.debug(self.debug, sys.stdout)
 
     def __get__(self, instance, owner):
         self.instance = instance
@@ -76,7 +98,7 @@ class transact(object):
 
     def run(self, function, *args, **kwargs):
         return deferToThreadPool(reactor,
-                                 State.orm_tp,
+                                 get_thread_pool(),
                                  function,
                                  *args,
                                  **kwargs)
@@ -110,9 +132,6 @@ class transact(object):
                 err_tup = "Query [%s] executed in %.1fms", self.method.__name__, duration
                 if duration > self.timelimit:
                     log.err(*err_tup)
-                    schedule_exception_email(*err_tup)
-                else:
-                    log.debug(*err_tup)
 
 
 class transact_sync(transact):

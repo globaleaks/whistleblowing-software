@@ -165,7 +165,7 @@ def db_refresh_memory_variables(store):
         del State.tenant_state[tid]
 
     for tid in set(tenant_map.keys()) - set(State.tenant_state.keys()):
-        State.tenant_state[tid] = TenantState()
+        State.tenant_state[tid] = TenantState(State.settings)
 
     for tid in State.tenant_state:
         tenant_cache[tid] = db_refresh_tenant_cache(store, tid)

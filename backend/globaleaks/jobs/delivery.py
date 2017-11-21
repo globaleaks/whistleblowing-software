@@ -13,7 +13,6 @@ from globaleaks.jobs.base import LoopingJob
 from globaleaks.orm import transact_sync
 from globaleaks.security import GLBPGP, SecureFile, generateRandomKey
 from globaleaks.settings import Settings
-from globaleaks.state import State
 from globaleaks.utils.utility import log
 
 __all__ = ['Delivery']
@@ -92,7 +91,7 @@ def receiverfile_planning(store):
     return receiverfiles_maps
 
 
-def fsops_pgp_encrypt(fpath, recipient_pgp):
+def fsops_pgp_encrypt(attachmens_path, fpath, recipient_pgp):
     """
     return
         path of encrypted file,
@@ -126,7 +125,7 @@ def fsops_pgp_encrypt(fpath, recipient_pgp):
     return encrypted_file_path, encrypted_file_size
 
 
-def process_files(receiverfiles_maps):
+def process_files(state, receiverfiles_maps):
     """
     @param receiverfiles_maps: the mapping of ifile/rfiles to be created on filesystem
     @return: return None
@@ -140,7 +139,7 @@ def process_files(receiverfiles_maps):
         for rcounter, rfileinfo in enumerate(receiverfiles_map['rfiles']):
             if rfileinfo['receiver']['pgp_key_public']:
                 try:
-                    new_path, new_size = fsops_pgp_encrypt(rfileinfo['path'], rfileinfo['receiver'])
+                    new_path, new_size = fsops_pgp_encrypt(state.settings.attachments_path, rfileinfo['path'], rfileinfo['receiver'])
 
                     log.debug("%d# Switch on Receiver File for %s path %s => %s size %d => %d",
                               rcounter,  rfileinfo['receiver']['name'], rfileinfo['path'],
@@ -153,7 +152,7 @@ def process_files(receiverfiles_maps):
                     log.err("%d# Unable to complete PGP encrypt for %s on %s: %s. marking the file as unavailable.",
                             rcounter, rfileinfo['receiver']['name'], rfileinfo['path'], excep)
                     rfileinfo['status'] = u'unavailable'
-            elif State.tenant_cache[receiverfiles_map['tid']].allow_unencrypted:
+            elif state.tenant_cache[receiverfiles_map['tid']].allow_unencrypted:
                 receiverfiles_map['plaintext_file_needed'] = True
                 rfileinfo['status'] = u'reference'
                 rfileinfo['path'] = plain_path
@@ -195,7 +194,7 @@ def process_files(receiverfiles_maps):
 
         # Remove the AES file key
         try:
-            os.remove(os.path.join(Settings.ramdisk_path, ("%s%s" % (Settings.AES_keyfile_prefix, ifile_name))))
+            os.remove(os.path.join(state.settings.ramdisk_path, ("%s%s" % (state.settings.AES_keyfile_prefix, ifile_name))))
         except OSError as ose:
             log.err("Unable to remove keyfile associated with %s: %s", ifile_path, ose.strerror)
 
@@ -232,5 +231,5 @@ class Delivery(LoopingJob):
         """
         receiverfiles_maps = receiverfile_planning()
         if receiverfiles_maps:
-            process_files(receiverfiles_maps)
+            process_files(self.state, receiverfiles_maps)
             update_internalfile_and_store_receiverfiles(receiverfiles_maps)

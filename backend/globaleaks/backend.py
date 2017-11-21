@@ -9,22 +9,23 @@ from datetime import datetime
 
 from twisted.application import service
 from twisted.internet import reactor, defer
-from twisted.python import log as txlog, logfile as txlogfile
+from twisted.python import failure, log as txlog, logfile as txlogfile
 from twisted.web.http import _escape
 from twisted.web.server import Site
+
+# this import seems unused but it is required in order to load the mocks
+import globaleaks.mocks.twisted_mocks # pylint: disable=W0611
 
 from globaleaks.state import State
 from globaleaks.db import init_db, update_db, \
     sync_refresh_memory_variables, sync_clean_untracked_files
 from globaleaks.rest.api import APIResourceWrapper
 from globaleaks.settings import Settings
+from globaleaks.state import State
 from globaleaks.utils.process import disable_swap
 from globaleaks.utils.sock import listen_tcp_on_sock, reserve_port_for_ip
 from globaleaks.utils.utility import fix_file_permissions, drop_privileges, log, timedelta_to_milliseconds, GLLogObserver, deferred_sleep
 from globaleaks.workers.supervisor import ProcessSupervisor
-
-# this import seems unused but it is required in order to load the mocks
-import globaleaks.mocks.twisted_mocks # pylint: disable=W0611
 
 
 def fail_startup(excep):
@@ -52,7 +53,6 @@ def timedLogFormatter(timestamp, request):
 class Service(service.Service):
     def __init__(self):
         self.state = State
-
         self.arw = APIResourceWrapper()
         self.api_factory = Site(self.arw, logFormatter=timedLogFormatter)
 
@@ -162,7 +162,7 @@ class Service(service.Service):
 
         self.start_jobs()
 
-        Settings.print_listening_interfaces()
+        self.print_listening_interfaces()
 
     @defer.inlineCallbacks
     def deferred_start(self):
@@ -170,6 +170,23 @@ class Service(service.Service):
             yield self._deferred_start()
         except Exception as excep:
             fail_startup(excep)
+
+    def print_listening_interfaces(self):
+        print("GlobaLeaks is now running and accessible at the following urls:")
+
+        tenant_cache = self.state.tenant_cache[1]
+
+        for port in Settings.bind_local_ports:
+            print("- [LOCAL HTTP]\t--> http://127.0.0.1:%d%s" % (port, Settings.api_prefix))
+
+        if self.state.tenant_cache[1].reachable_via_web:
+            hostname = tenant_cache.hostname if tenant_cache.hostname else '0.0.0.0'
+            print("- [REMOTE HTTP]\t--> http://%s%s" % (hostname, Settings.api_prefix))
+            if tenant_cache.private.https_enabled:
+                print("- [REMOTE HTTPS]\t--> https://%s%s" % (hostname, Settings.api_prefix))
+
+        if tenant_cache.onionservice:
+            print("- [REMOTE Tor]:\t--> http://%s%s" % (tenant_cache.onionservice, Settings.api_prefix))
 
 try:
     application = service.Application('GLBackend')

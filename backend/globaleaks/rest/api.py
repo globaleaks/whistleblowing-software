@@ -9,6 +9,10 @@ import re
 import types
 import urlparse
 
+from twisted.internet import defer
+from twisted.web.resource import Resource
+from twisted.web.server import NOT_DONE_YET
+
 from globaleaks import LANGUAGES_SUPPORTED_CODES
 from globaleaks.handlers import exception, \
     receiver, custodian, \
@@ -41,9 +45,6 @@ from globaleaks.rest import apicache, requests, errors
 from globaleaks.settings import Settings
 from globaleaks.state import State
 from globaleaks.utils.mailutils import extract_exception_traceback_and_schedule_email
-from twisted.internet import defer
-from twisted.web.resource import Resource
-from twisted.web.server import NOT_DONE_YET
 
 
 uuid_regexp = r'([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})'

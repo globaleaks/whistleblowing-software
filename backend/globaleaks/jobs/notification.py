@@ -15,8 +15,6 @@ from globaleaks.handlers.user import user_serialize_user
 from globaleaks.jobs.base import NetLoopingJob
 from globaleaks.orm import transact, transact_sync
 from globaleaks.security import encrypt_message
-from globaleaks.state import State
-from globaleaks.utils.mailutils import sendmail
 from globaleaks.utils.templating import Templating
 from globaleaks.utils.utility import log
 
@@ -42,7 +40,8 @@ def gen_cache_key(*args):
     return r
 
 class MailGenerator(object):
-    def __init__(self):
+    def __init__(self, state):
+        self.state = state
         self.cache = {}
 
     def serialize_config(self, store, key, tid, language):
@@ -172,17 +171,17 @@ class MailGenerator(object):
 
         # https://github.com/globaleaks/GlobaLeaks/issues/798
         # TODO: the current solution is global and configurable only by the admin
-        sent_emails = State.get_mail_counter(user_id)
-        if sent_emails >= State.tenant_cache[tid].notif.notification_threshold_per_hour:
+        sent_emails = self.state.get_mail_counter(user_id)
+        if sent_emails >= self.state.tenant_cache[tid].notif.notification_threshold_per_hour:
             log.debug("Discarding emails for receiver %s due to threshold already exceeded for the current hour",
                       user_id)
             return
 
-        State.increment_mail_counter(user_id)
-        if sent_emails >= State.tenant_cache[tid].notif.notification_threshold_per_hour:
+        self.state.increment_mail_counter(user_id)
+        if sent_emails >= self.state.tenant_cache[tid].notif.notification_threshold_per_hour:
             log.info("Reached threshold of %d emails with limit of %d for receiver %s",
                      sent_emails,
-                     State.tenant_cache[tid].notif.notification_threshold_per_hour,
+                     self.state.tenant_cache[tid].notif.notification_threshold_per_hour,
                      user_id)
 
             # simply changing the type of the notification causes
@@ -214,7 +213,7 @@ class MailGenerator(object):
         for trigger in ['ReceiverTip', 'Comment', 'Message', 'ReceiverFile']:
             model = trigger_model_map[trigger]
 
-            for tid, cache_item in State.tenant_cache.items():
+            for tid, cache_item in self.state.tenant_cache.items():
                 if cache_item.notif.disable_receiver_notification_emails:
                     store.find(model, tid=tid, new=True).set(new=False)
                     continue
@@ -267,7 +266,7 @@ class Notification(NetLoopingJob):
 
     @defer.inlineCallbacks
     def sendmail(self, mail):
-        success = yield sendmail(mail['tid'], mail['address'], mail['subject'], mail['body'])
+        success = yield self.state.sendmail(mail['tid'], mail['address'], mail['subject'], mail['body'])
         if success:
             self.mails_to_delete.append(mail['id'])
 
@@ -280,6 +279,6 @@ class Notification(NetLoopingJob):
     def operation(self):
         del self.mails_to_delete[:]
 
-        MailGenerator().generate()
+        MailGenerator(self.state).generate()
 
         self.spool_emails()
