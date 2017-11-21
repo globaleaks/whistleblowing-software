@@ -3,8 +3,9 @@ describe('admin configure, add, and delete tenants', function() {
     browser.setLocation('admin/tenants');
 
     var add_tenant = function(tenant_label) {
+      element(by.css('.show-add-tenant-btn')).click();
       element(by.model('newTenant.label')).sendKeys(tenant_label);
-      element(by.id('add-button')).click();
+      element(by.id('add-btn')).click();
       browser.gl.utils.waitUntilPresent(by.xpath(".//*[text()='" + tenant_label + "']"));
     };
 

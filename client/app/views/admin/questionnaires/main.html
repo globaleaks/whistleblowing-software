@@ -1,26 +1,32 @@
-<div class="adminConfigSection row" data-ng-controller="AdminQuestionnaireAddCtrl">
-  <form name="newQuestionnaire" class="addQuestionnaire col-md-12" novalidate>
-    <div class="form-group">
-      <label>
-        <span data-translate>Name</span>
-        <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
-      </label>
-    <div data-ng-class="{'has-error': newQuestionnaire.name.$error.required}">
-        <input name="name" class="form-control" data-ng-model="new_questionnaire.name" maxlength="{{node.maximum_namesize}}" type="text" required />
-      </div>
-    </div>
-    <div class="form-group">
-      <button id="add-questionnaire-button" class="btn btn-primary" data-ng-disabled="newQuestionnaire.$invalid" data-ng-click="add_questionnaire()" type="submit">
-        <i class="glyphicon glyphicon-plus-sign"></i>
+<div class="adminConfigSection row">
+  <div class="col-md-12">
+    <div class="editorTitle">
+      <span data-translate>Questionnaires</span>
+      <button class="btn btn-xs btn-primary show-add-questionnaire-btn" data-ng-click="toggleAddQuestionnaire()">
+        <i class="glyphicon glyphicon-plus"></i>
         <span data-translate>Add</span>
       </button>
-      <label file-picker-input="importQuestionnaire(file)" data-label-text="Import" class="btn btn-default"></label>
+      <label file-picker-input="importQuestionnaire(file)" data-label-text="Import" class="btn btn-xs btn-default"></label>
     </div>
-  </form>
-</div>
-<div class="adminConfigSection row" data-ng-show="admin.questionnaires.length > 0">
-  <div class="col-md-12">
-    <div class="editorTitle" data-translate>Configured questionnaires:</div>
+    <div class="adminConfigSection row" data-ng-controller="AdminQuestionnaireAddCtrl" data-ng-if="showAddQuestionnaire">
+      <form id="newQuestionnaire" class="addQuestionnaire col-md-6" novalidate>
+        <div class="form-group">
+          <label>
+            <span data-translate>Name</span>
+            <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
+          </label>
+        <div data-ng-class="{'has-error': newQuestionnaire.name.$error.required}">
+            <input name="name" class="form-control" data-ng-model="new_questionnaire.name" maxlength="{{node.maximum_namesize}}" type="text" required />
+          </div>
+        </div>
+        <div class="form-group">
+          <button id="add-questionnaire-btn" class="btn btn-primary" data-ng-disabled="newQuestionnaire.$invalid" data-ng-click="add_questionnaire(); toggleAddQuestionnaire()" type="submit">
+            <i class="glyphicon glyphicon-plus-sign"></i>
+            <span data-translate>Add</span>
+          </button>
+        </div>
+      </form>
+    </div>
     <div data-ng-repeat="questionnaire in admin.questionnaires | orderBy:'presentation_order'">
       <form id="questionnaire-{{$index}}" class="configItem" name="editQuestionnaire" data-ng-controller="AdminQuestionnaireEditorCtrl" novalidate>
         <div>

@@ -108,6 +108,12 @@
                 </div>
               </div>
             </div>
+            <div class="row" data-ng-if="admin.node.enable_experimental_features">
+              <div class="form-group col-md-6">
+                <label data-translate>Triggered by a score higher than:</label>
+                <input class="form-control" data-ng-model="step.triggered_by_score" type="number" min="0" max="1000">
+              </div>
+            </div>
             <div class="row adminConfigSection">
               <div class="col-md-6">
                 <label data-translate>Add new question</label>

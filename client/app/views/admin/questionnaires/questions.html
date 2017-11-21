@@ -1,17 +1,17 @@
 <div data-ng-controller="AdminFieldTemplatesCtrl">
-  <div class="adminConfigSection row">
-    <div class="addField col-md-6">
-      <form name="newField" class="addField" novalidate>
-        <div data-ng-controller="AdminFieldTemplatesAddCtrl" data-ng-include="'views/admin/questionnaires/add_field.html'"></div>
-      </form>
-    </div>
-  </div>
   <div class="adminConfigSection row" data-ng-init="fields = admin.fieldtemplates" data-ng-show="fields.length > 0">
     <div class="col-md-12">
-      <div class="editorTitle row">
-        <span class="col-md-12">
-          <span data-translate>Configured question templates:</span>
-        </span>
+      <div class="editorTitle">
+        <span data-translate>Question templates</span>
+        <button class="btn btn-xs btn-primary show-add-question-btn" data-ng-click="toggleAddQuestion()">
+          <i class="glyphicon glyphicon-plus"></i>
+          <span data-translate>Add</span>
+        </button>
+      </div>
+    </div>
+    <div class="adminConfigSection col-md-6" data-ng-if="showAddQuestion">
+      <div data-ng-form="newField" class="addField" novalidate>
+        <div data-ng-controller="AdminFieldTemplatesAddCtrl" data-ng-include="'views/admin/questionnaires/add_field.html'"></div>
       </div>
     </div>
     <div class="col-md-12" data-ng-repeat="field in fields | orderBy:'label'">

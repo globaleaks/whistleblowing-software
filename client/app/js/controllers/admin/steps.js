@@ -30,6 +30,16 @@ controller('AdminStepEditorCtrl', ['$scope', '$rootScope', '$http', 'Utils', 'Ad
       return Utils.update(updated_step);
     };
 
+    $scope.showAddQuestion = false;
+    $scope.toggleAddQuestion= function() {
+      $scope.showAddQuestion = !$scope.showAddQuestion;
+    };
+
+    $scope.showAddQuestionFromTemplate = false;
+    $scope.toggleAddQuestionFromTemplate = function() {
+      $scope.showAddQuestionFromTemplate = !$scope.showAddQuestionFromTemplate;
+    };
+
     $scope.addField = function(field) {
       $scope.fields.push(field);
     };

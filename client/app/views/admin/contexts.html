@@ -1,27 +1,33 @@
 <div class="row">
   <div id="ConfigSidebarBox" class="col-md-3" data-ng-include="'views/admin/sidebar.html'"></div>
   <div class="col-md-9" data-ng-controller="AdminContextsCtrl">
-    <div class="adminConfigSection row" data-ng-controller="AdminContextAddCtrl">
-      <form name="newContext" class="addContext col-md-6" novalidate>
-        <div class="form-group">
-          <label>
-            <span data-translate>Name</span>
-            <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
-          </label>
-          <div data-ng-class="{'has-error': newContext.name.$error.required}">
-            <input name="name" class="form-control" data-ng-model="new_context.name" maxlength="{{node.maximum_namesize}}" type="text" required />
+    <div class="adminConfigSection">
+      <div class="editorTitle">
+        <span data-translate>Contexts</span>
+        <button class="btn btn-xs btn-primary show-add-context-btn" data-ng-click="toggleAddContext()">
+          <i class="glyphicon glyphicon-plus"></i>
+          <span data-translate>Add</span>
+        </button>
+      </div>
+      <div class="adminConfigSection row" data-ng-controller="AdminContextAddCtrl" data-ng-if="showAddContext">
+        <div data-ng-form="newContext" class="addContext col-md-6" novalidate>
+          <div class="form-group">
+            <label>
+              <span data-translate>Name</span>
+              <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
+            </label>
+            <div data-ng-class="{'has-error': newContext.name.$error.required}">
+              <input name="name" class="form-control" data-ng-model="new_context.name" maxlength="{{node.maximum_namesize}}" type="text" required />
+            </div>
+          </div>
+          <div class="form-group">
+            <button id="add-btn" class="btn btn-primary" data-ng-disabled="newContext.$invalid" data-ng-click="add_context(); toggleAddContext()" type="submit">
+              <i class="glyphicon glyphicon-plus-sign"></i>
+              <span data-translate>Add</span>
+            </button>
           </div>
         </div>
-        <div class="form-group">
-          <button id="add-button" class="pull-left btn btn-primary" data-ng-disabled="newContext.$invalid" data-ng-click="add_context()" type="submit">
-            <i class="glyphicon glyphicon-plus-sign"></i>
-            <span data-translate>Add</span>
-          </button>
-        </div>
-      </form>
-    </div>
-    <div class="adminConfigSection" data-ng-show="admin.contexts.length > 0">
-      <div class="editorTitle" data-translate>Configured contexts:</div>
+      </div>
       <div data-ng-repeat="context in admin.contexts">
         <form id="context-{{$index}}" name="editContext" data-ng-controller="AdminContextEditorCtrl" novalidate>
           <div class="configItem">

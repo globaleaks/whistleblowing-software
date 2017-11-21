@@ -2,6 +2,11 @@ angular.module('GLClient')
 .controller('TenantCtrl', ['$scope', function($scope) {
   $scope.newTenant = new $scope.admin_utils.new_tenant();
 
+  $scope.showAddTenant = false;
+  $scope.toggleAddTenant = function() {
+    $scope.showAddTenant = !$scope.showAddTenant;
+  };
+
   $scope.addTenant = function() {
     $scope.newTenant.$save(function(tenant){
       $scope.admin.tenants.push(tenant);

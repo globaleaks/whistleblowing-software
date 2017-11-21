@@ -2,7 +2,7 @@
   <div id="ConfigSidebarBox" class="col-md-3" data-ng-include="'views/admin/sidebar.html'"></div>
   <div class="col-md-9">
     <div class="adminConfigSection" data-ng-controller="AdminReceiversCtrl">
-      <div class="editorTitle" data-translate>Configured recipients:</div>
+      <div class="editorTitle" data-translate>Recipients</div>
       <div class="receiverList" data-ng-repeat="receiver in admin.receivers">
         <form id="receiver-{{$index}}" name="editReceiver" data-ng-controller="AdminReceiverEditorCtrl" novalidate>
           <div class="configItem">
