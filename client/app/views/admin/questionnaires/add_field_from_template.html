@@ -5,7 +5,7 @@
         <select class="form-control" data-ng-model="template_id" data-ng-options="f.id as f.label for f in admin.fieldtemplates"></select>
         <span class="input-group-btn keybutton">
           <button id="add-field-btn" data-ng-click="add_field_from_template(template_id); toggleAddFieldFromTemplate()" class="btn btn-primary"
-                  data-ng-disabled="template_id === undefined" type="submit">
+                  data-ng-disabled="template_id === undefined" type="button">
             <i class="glyphicon glyphicon-plus-sign"></i>
             <span data-translate>Add</span>
           </button>
