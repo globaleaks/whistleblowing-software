@@ -96,13 +96,13 @@ def refresh_tenant_states():
         def f(*args):
             return State.onion_service_job.add_all_hidden_services()
 
-        State.onion_service_job.remove_unwanted_hidden_services().addBoth(f)
+        State.onion_service_job.remove_unwanted_hidden_services().addBoth(f) # pylint: disable=no-member
 
     # Power cycle HTTPS processes
     def g(*args):
         return State.process_supervisor.maybe_launch_https_workers()
 
-    State.process_supervisor.shutdown().addBoth(g)
+    State.process_supervisor.shutdown().addBoth(g) # pylint: disable=no-member
 
 
 class TenantCollection(BaseHandler):
