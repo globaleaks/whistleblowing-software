@@ -12,7 +12,7 @@ from twisted.internet.defer import inlineCallbacks
 class TestCleaning(helpers.TestGLWithPopulatedDB):
     @transact
     def check0(self, store):
-        self.assertTrue(os.listdir(Settings.submission_path) == [])
+        self.assertTrue(os.listdir(Settings.attachments_path) == [])
         self.assertTrue(os.listdir(Settings.tmp_upload_path) == [])
 
         self.db_test_model_count(store, models.InternalTip, 0)
@@ -27,7 +27,7 @@ class TestCleaning(helpers.TestGLWithPopulatedDB):
 
     @transact
     def check1(self, store):
-        self.assertTrue(os.listdir(Settings.submission_path) != [])
+        self.assertTrue(os.listdir(Settings.attachments_path) != [])
 
         self.db_test_model_count(store, models.InternalTip, self.population_of_submissions)
         self.db_test_model_count(store, models.ReceiverTip, self.population_of_recipients * self.population_of_submissions)
@@ -41,7 +41,7 @@ class TestCleaning(helpers.TestGLWithPopulatedDB):
 
     @transact
     def check2(self, store):
-        self.assertTrue(os.listdir(Settings.submission_path) != [])
+        self.assertTrue(os.listdir(Settings.attachments_path) != [])
 
         self.db_test_model_count(store, models.InternalTip, self.population_of_submissions)
         self.db_test_model_count(store, models.ReceiverTip, self.population_of_recipients * self.population_of_submissions)
@@ -55,7 +55,7 @@ class TestCleaning(helpers.TestGLWithPopulatedDB):
 
     @transact
     def check3(self, store):
-        self.assertTrue(os.listdir(Settings.submission_path) != [])
+        self.assertTrue(os.listdir(Settings.attachments_path) != [])
 
         self.db_test_model_count(store, models.InternalTip, self.population_of_submissions)
         self.db_test_model_count(store, models.ReceiverTip, self.population_of_recipients * self.population_of_submissions)
@@ -69,7 +69,7 @@ class TestCleaning(helpers.TestGLWithPopulatedDB):
 
     @transact
     def check4(self, store):
-        self.assertTrue(os.listdir(Settings.submission_path) == [])
+        self.assertTrue(os.listdir(Settings.attachments_path) == [])
         self.assertTrue(os.listdir(Settings.tmp_upload_path) == [])
 
         self.db_test_model_count(store, models.InternalTip, 0)

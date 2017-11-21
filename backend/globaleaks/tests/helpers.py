@@ -383,7 +383,7 @@ class TestGL(unittest.TestCase):
 
         self.dummyNode = dummyStuff.dummyNode
 
-        self.assertEqual(os.listdir(Settings.submission_path), [])
+        self.assertEqual(os.listdir(Settings.attachments_path), [])
         self.assertEqual(os.listdir(Settings.tmp_upload_path), [])
 
     def get_dummy_user(self, role, username):
@@ -482,7 +482,7 @@ class TestGL(unittest.TestCase):
         for _ in range(n):
             dummyFile = self.get_dummy_file()
 
-            dst = os.path.join(Settings.submission_path,
+            dst = os.path.join(Settings.attachments_path,
                                os.path.basename(dummyFile['path']))
 
             dummyFile = yield threads.deferToThread(write_upload_encrypted_to_disk, dummyFile, dst)

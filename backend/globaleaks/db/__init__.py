@@ -94,13 +94,13 @@ def db_get_tracked_files(store):
 @transact_sync
 def sync_clean_untracked_files(store):
     """
-    removes files in Settings.submission_path that are not
+    removes files in Settings.attachments_path that are not
     tracked by InternalFile/ReceiverFile.
     """
     tracked_files = db_get_tracked_files(store)
-    for filesystem_file in os.listdir(Settings.submission_path):
+    for filesystem_file in os.listdir(Settings.attachments_path):
         if filesystem_file not in tracked_files:
-            file_to_remove = os.path.join(Settings.submission_path, filesystem_file)
+            file_to_remove = os.path.join(Settings.attachments_path, filesystem_file)
             try:
                 log.debug("Removing untracked file: %s", file_to_remove)
                 security.overwrite_and_remove(file_to_remove)

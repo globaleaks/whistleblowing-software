@@ -109,10 +109,10 @@ def fsops_pgp_encrypt(fpath, recipient_pgp):
     try:
         gpoj.load_key(recipient_pgp['pgp_key_public'])
 
-        filepath = os.path.join(Settings.submission_path, fpath)
+        filepath = os.path.join(Settings.attachments_path, fpath)
 
         with SecureFile(filepath) as f:
-            encrypted_file_path = os.path.join(os.path.abspath(Settings.submission_path), "pgp_encrypted-%s" % generateRandomKey(16))
+            encrypted_file_path = os.path.join(os.path.abspath(Settings.attachments_path), "pgp_encrypted-%s" % generateRandomKey(16))
             _, encrypted_file_size = gpoj.encrypt_file(recipient_pgp['pgp_key_fingerprint'], f, encrypted_file_path)
 
     except:
@@ -134,7 +134,7 @@ def process_files(receiverfiles_maps):
     for ifile_id, receiverfiles_map in receiverfiles_maps.items():
         ifile_path = receiverfiles_map['ifile_path']
         ifile_name = os.path.basename(ifile_path).split('.')[0]
-        plain_path = os.path.join(Settings.submission_path, "%s.plain" % ifile_name)
+        plain_path = os.path.join(Settings.attachments_path, "%s.plain" % ifile_name)
 
         receiverfiles_map['plaintext_file_needed'] = False
         for rcounter, rfileinfo in enumerate(receiverfiles_map['rfiles']):
