@@ -218,7 +218,7 @@ def db_get_rtip(store, tid, user_id, rtip_id, language):
 
 
 def db_mark_file_for_secure_deletion(store, relpath):
-    abspath = os.path.join(Settings.submission_path, relpath)
+    abspath = os.path.join(Settings.attachments_path, relpath)
 
     if not os.path.isfile(abspath):
         log.err("Tried to permanently delete a non existent file: %s" % abspath)
@@ -513,9 +513,9 @@ class WhistleblowerFileHandler(BaseHandler):
         # First: dump the file in the filesystem
         filename = string.split(os.path.basename(uploaded_file['path']), '.aes')[0] + '.plain'
 
-        dst = os.path.join(Settings.submission_path, filename)
+        dst = os.path.join(Settings.attachments_path, filename)
 
-        directory_traversal_check(Settings.submission_path, dst)
+        directory_traversal_check(Settings.attachments_path, dst)
 
         uploaded_file = yield threads.deferToThread(write_upload_plaintext_to_disk, uploaded_file, dst)
 
@@ -556,9 +556,9 @@ class WhistleblowerFileInstanceHandler(BaseHandler):
     def get(self, wbfile_id):
         wbfile = yield self.download_wbfile(self.request.tid, self.current_user.user_id, wbfile_id)
 
-        filelocation = os.path.join(Settings.submission_path, wbfile['path'])
+        filelocation = os.path.join(Settings.attachments_path, wbfile['path'])
 
-        directory_traversal_check(Settings.submission_path, filelocation)
+        directory_traversal_check(Settings.attachments_path, filelocation)
 
         yield self.force_file_download(wbfile['name'], filelocation)
 
@@ -614,9 +614,9 @@ class ReceiverFileDownload(BaseHandler):
     def get(self, rfile_id):
         rfile = yield self.download_rfile(self.request.tid, self.current_user.user_id, rfile_id)
 
-        filelocation = os.path.join(Settings.submission_path, rfile['path'])
+        filelocation = os.path.join(Settings.attachments_path, rfile['path'])
 
-        directory_traversal_check(Settings.submission_path, filelocation)
+        directory_traversal_check(Settings.attachments_path, filelocation)
 
         yield self.force_file_download(rfile['name'], filelocation)
 

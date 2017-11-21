@@ -71,10 +71,10 @@ class FileAdd(BaseHandler):
         uploaded_file['body'].close()
 
         # First: dump the file in the filesystem
-        dst = os.path.join(Settings.submission_path,
+        dst = os.path.join(Settings.attachments_path,
                            os.path.basename(uploaded_file['path']))
 
-        directory_traversal_check(Settings.submission_path, dst)
+        directory_traversal_check(Settings.attachments_path, dst)
 
         uploaded_file = yield threads.deferToThread(write_upload_encrypted_to_disk, uploaded_file, dst)
 
@@ -107,10 +107,10 @@ class FileInstance(BaseHandler):
         uploaded_file['body'].avoid_delete()
         uploaded_file['body'].close()
 
-        dst = os.path.join(Settings.submission_path,
+        dst = os.path.join(Settings.attachments_path,
                            os.path.basename(uploaded_file['path']))
 
-        directory_traversal_check(Settings.submission_path, dst)
+        directory_traversal_check(Settings.attachments_path, dst)
 
         uploaded_file = yield threads.deferToThread(write_upload_encrypted_to_disk, uploaded_file, dst)
         uploaded_file['date'] = datetime_now()

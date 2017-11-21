@@ -172,12 +172,12 @@ class SettingsClass(object):
     def eval_paths(self):
         self.config_file_path = '/etc/globaleaks'
         self.pidfile_path = os.path.join(self.pid_path, 'globaleaks.pid')
-        self.files_path = os.path.abspath(os.path.join(self.working_path, 'files'))
+        self.files_path = os.path.abspath(os.path.join(self.working_path, 't'))
 
         self.db_path = os.path.abspath(os.path.join(self.working_path, 'db'))
         self.log_path = os.path.abspath(os.path.join(self.working_path, 'log'))
-        self.submission_path = os.path.abspath(os.path.join(self.files_path, 'submission'))
-        self.tmp_upload_path = os.path.abspath(os.path.join(self.files_path, 'tmp'))
+        self.attachments_path = os.path.abspath(os.path.join(self.working_path, 'attachments'))
+        self.tmp_upload_path = os.path.abspath(os.path.join(self.working_path, 'tmp'))
         self.static_path = os.path.abspath(os.path.join(self.files_path, 'static'))
         self.static_db_source = os.path.abspath(os.path.join(self.src_path, 'globaleaks', 'db'))
 
@@ -342,7 +342,7 @@ class SettingsClass(object):
         for dirpath in [self.working_path,
                         self.db_path,
                         self.files_path,
-                        self.submission_path,
+                        self.attachments_path,
                         self.tmp_upload_path,
                         self.log_path,
                         self.ramdisk_path,
@@ -374,8 +374,8 @@ class SettingsClass(object):
         # will be automagically handled by delivery sched.
         keypath = os.path.join(self.ramdisk_path, Settings.AES_keyfile_prefix)
 
-        for f in os.listdir(Settings.submission_path):
-            path = os.path.join(Settings.submission_path, f)
+        for f in os.listdir(Settings.attachments_path):
+            path = os.path.join(Settings.attachments_path, f)
             try:
                 result = Settings.AES_file_regexp_comp.match(f)
                 if result is not None:
