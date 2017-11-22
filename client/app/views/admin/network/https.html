@@ -1,22 +1,50 @@
+<div class="form-group" data-ng-class="{'has-error': adminNetForm.hostname.$error.pattern}">
+  <form name="adminNetForm" novalidate>
+    <p class="input-group">
+      <span class="input-group-addon" data-translate>Hostname</span>
+      <input name="hostname"
+             class="form-control"
+             type="text"
+             data-ng-model="admin.node.hostname"
+             data-ng-pattern="hostname_regexp"
+             data-ng-class="{'has-error': adminNetForm.hostname.$error.pattern}">
+      </input>
+      <span class="input-group-btn">
+        <button class="btn btn-warning" data-ng-disabled="admin.node.hostname === ''" data-ng-click="verifyHostname()" data-translate>Verify</button>
+        <button class="btn btn-success" data-ng-disabled="admin.node.hostname === ''" data-ng-click="setHostname()" data-translate>Save</button>
+      </span>
+    </p>
+    <p class="text-danger" data-ng-show="adminNetForm.hostname.$error.pattern">
+      <span data-translate>Invalid input format.</span> <span data-translate>Input should be similar to:</span> <span>www.domain.tld</span>
+    </p>
+    <p class="alert alert-danger" data-ng-if="verifyFailed">
+      <i class="glyphicon glyphicon-warning-sign"></i>
+      <span data-translate>Warning!</span>
+      <span data-translate>The platform does not seem to be reachable with the configured hostname.</span>
+    </p>
+  </form>
+</div>
 <div id="HTTPSSettings" data-ng-controller="AdminHTTPSConfigCtrl">
-  <div data-ng-switch="menuState">
-    <div data-ng-switch-when="setup">
-      <div data-ng-include="'views/admin/network/https_setup_start.html'"></div>
-    </div>
-    <div data-ng-switch-when="choice">
-      <div data-ng-include="'views/admin/network/https_setup_choices.html'"></div>
-    </div>
-    <div data-ng-switch-when="files">
-      <div data-ng-include="'views/admin/network/https_files.html'"></div>
-    </div>
-    <div data-ng-switch-when="status">
-      <div data-ng-include="'views/admin/network/https_status.html'"></div>
-    </div>
-    <div data-ng-switch-when="acmeCfg">
-      <div data-ng-include="'views/admin/network/https_acme_cfg.html'"></div>
-    </div>
-    <div data-ng-switch-when="acmeFin">
-      <div data-ng-include="'views/admin/network/https_acme_fin.html'"></div>
+  <div class="panel panel-default">
+    <div class="panel-body" data-ng-switch="menuState">
+      <div data-ng-switch-when="setup">
+        <div data-ng-include="'views/admin/network/https_setup_start.html'"></div>
+      </div>
+      <div data-ng-switch-when="choice">
+        <div data-ng-include="'views/admin/network/https_setup_choices.html'"></div>
+      </div>
+      <div data-ng-switch-when="files">
+        <div data-ng-include="'views/admin/network/https_files.html'"></div>
+      </div>
+      <div data-ng-switch-when="status">
+        <div data-ng-include="'views/admin/network/https_status.html'"></div>
+      </div>
+      <div data-ng-switch-when="acmeCfg">
+        <div data-ng-include="'views/admin/network/https_acme_cfg.html'"></div>
+      </div>
+      <div data-ng-switch-when="acmeFin">
+        <div data-ng-include="'views/admin/network/https_acme_fin.html'"></div>
+      </div>
     </div>
   </div>
 </div>

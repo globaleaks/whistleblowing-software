@@ -24,6 +24,7 @@ from globaleaks.handlers import exception, \
     base, user, shorturl, \
     robots
 
+from globaleaks.handlers.admin import config as admin_config
 from globaleaks.handlers.admin import context as admin_context
 from globaleaks.handlers.admin import field as admin_field
 from globaleaks.handlers.admin import files as admin_files
@@ -128,8 +129,8 @@ api_spec = [
     (r'/admin/jobs', admin_statistics.JobsTiming),
     (r'/admin/l10n/(' + '|'.join(LANGUAGES_SUPPORTED_CODES) + ')', admin_l10n.AdminL10NHandler),
     (r'/admin/files/(logo|favicon|css|homepage|script)', admin_files.FileInstance),
+    (r'/admin/config', admin_config.AdminConfigHandler),
     (r'/admin/config/tls', https.ConfigHandler),
-    (r'/admin/config/tls/hostname', https.HostnameTestHandler),
     (r'/admin/config/tls/files/(csr)', https.CSRFileHandler),
     (r'/admin/config/tls/files/(cert|chain|priv_key)', https.FileHandler),
     (r'/admin/staticfiles$', admin_staticfiles.StaticFileList),

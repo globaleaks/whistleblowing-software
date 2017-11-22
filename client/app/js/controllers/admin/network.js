@@ -1,18 +1,44 @@
-GLClient.controller('AdminNetworkCtrl', ['$scope', function($scope) {
+GLClient.controller('AdminNetworkCtrl', ['$scope', '$http', function($scope, $http) {
   $scope.tabs = [
     {
-      title:"Main configuration",
-      template: "views/admin/network/main.html"
-    },
-    {
-      title:"HTTPS settings",
-      template: "views/admin/network/https.html"
-    },
-    {
-      title:"Access control",
-      template: "views/admin/network/access_control.html"
+      title:"Tor",
+      template: "views/admin/network/tor.html"
     }
   ];
+
+  if ($scope.admin.node.root_tenant) {
+    $scope.tabs.push({
+      title:"HTTPS",
+      template: "views/admin/network/https.html"
+    });
+  }
+
+  $scope.setHostname = function() {
+    var req = {
+      'operation': 'set_hostname',
+      'args': {
+        'value': $scope.admin.node.hostname
+      }
+    };
+
+    return $http({method: 'PUT', url: 'admin/config', data: req});
+  };
+
+  $scope.verifyHostname = function() {
+    var req = {
+      'operation': 'verify_hostname',
+      'args': {
+        'value': $scope.admin.node.hostname
+      }
+    };
+
+    return $http({method: 'PUT', url: 'admin/config', data: req}).then(
+      function() {
+        $scope.verifyFailed = false;
+      }, function() {
+        $scope.verifyFailed = true;
+    });
+  };
 }]).
 controller('AdminHTTPSConfigCtrl', ['$q', '$location', '$http', '$scope', '$uibModal', 'Utils', 'FileSaver', 'AdminTLSConfigResource', 'AdminTLSCfgFileResource', 'AdminAcmeResource',
   function($q, $location, $http, $scope, $uibModal, Utils, FileSaver, tlsConfigResource, cfgFileResource, adminAcmeResource) {
@@ -160,20 +186,6 @@ controller('AdminHTTPSConfigCtrl', ['$q', '$location', '$http', '$scope', '$uibM
       resolve: {
         targetFunc: function() { return targetFunc; },
       },
-    });
-  };
-
-  $scope.updateHostname = function() {
-    return $scope.admin.node.$update().then(function() {
-      $scope.saveClicked = true;
-      return $http({
-        method: 'POST',
-        url: '/admin/config/tls/hostname',
-      })
-    }).then(function() {
-      $scope.verifyFailed = false;
-    }, function() {
-      $scope.verifyFailed = true;
     });
   };
 

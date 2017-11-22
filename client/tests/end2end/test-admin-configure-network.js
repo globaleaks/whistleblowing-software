@@ -1,13 +1,3 @@
-describe('admin configure network settings', function() {
-  it('should enable whistleblowers over https', function() {
-    browser.setLocation('admin/network');
-
-    element.all(by.model('admin.node.hostname')).get(0).clear().sendKeys('localhost');
-
-    element.all(by.cssContainingText("button", "Save")).get(0).click();
-  });
-});
-
 describe('admin configure https', function() {
   var files = {
     priv_key: browser.gl.utils.makeTestFilePath('../../../../backend/globaleaks/tests/data/https/valid/priv_key.pem'),
@@ -23,7 +13,14 @@ describe('admin configure https', function() {
     var modal_action = by.id('modal-action-ok');
 
     browser.setLocation('admin/network');
-    element(by.cssContainingText("a", "HTTPS settings")).click();
+
+    element(by.cssContainingText("a", "HTTPS")).click();
+
+    element(by.model('admin.node.hostname')).clear();
+    element(by.model('admin.node.hostname')).sendKeys('localhost');
+    element(by.model('admin.node.hostname')).click();
+
+    element.all(by.cssContainingText("button", "Save")).get(1).click();
 
     element(by.cssContainingText("button", "Proceed")).click();
 
