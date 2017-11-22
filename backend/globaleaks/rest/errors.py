@@ -174,13 +174,7 @@ class SubmissionValidationFailure(GLException):
         self.arguments = [wrong_field]
 
 
-class FieldNotEditable(GLException):
-    """
-    The selected field is not editable
-    """
-    reason = "The selected field is not editable"
-    error_code = 24
-    status_code = 403  # Forbidden
+# UNUSED ERROR CODE 23-24 HERE!
 
 
 class ForbiddenOperation(GLException):

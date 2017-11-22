@@ -198,7 +198,7 @@ def delete_field(store, tid, field_id):
     field = models.db_get(store, models.Field, tid=tid, id=field_id)
 
     if not field.editable:
-        raise errors.FieldNotEditable
+        raise errors.ForbiddenOperation
 
     if field.instance == 'template':
         if store.find(models.Field, models.Field.template_id == field.id, tid=tid).count():
