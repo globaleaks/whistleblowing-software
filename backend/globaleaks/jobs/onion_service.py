@@ -133,7 +133,7 @@ class OnionService(BaseJob):
             ephs = EphemeralHiddenService(hs_loc)
             self.startup_semaphore.add(tid)
         else:
-            log.info('Setting up existing onion service %s', hostname)
+            log.info('Setting up existing onion service [%d] %s', tid, hostname)
             ephs = EphemeralHiddenService(hs_loc, key)
             self.hs_map[hostname] = ephs
 

@@ -114,7 +114,7 @@ class ProcessSupervisor(object):
             self.shutdown_d = defer.Deferred()
             log.info("Supervisor has turned off all children")
         else:
-            log.err("Not relaunching child process")
+            log.debug("Not relaunching child process")
 
     def should_spawn_child(self, mort_rate):
         # TODO add logging based on condition hit
@@ -177,7 +177,7 @@ class ProcessSupervisor(object):
 
         return s
 
-    def shutdown(self):
+    def shutdown(self, friendly=False):
         log.debug('Starting shutdown of %d children', len(self.tls_process_pool))
 
         # Handle condition where shutdown is called with no active children
@@ -186,9 +186,11 @@ class ProcessSupervisor(object):
 
         self.shutting_down = True
 
+        sig = signal.SIGUSR2 if friendly else signal.SIGUSR1
+
         for pp in self.tls_process_pool:
             try:
-                pp.transport.signalProcess(signal.SIGUSR1)
+                pp.transport.signalProcess(sig)
             except OSError as e:
                 log.debug('Tried to signal: %d got: %s', pp.transport.pid, e)
 

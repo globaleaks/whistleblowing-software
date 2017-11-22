@@ -102,7 +102,7 @@ def refresh_tenant_states():
     def g(*args):
         return State.process_supervisor.maybe_launch_https_workers()
 
-    State.process_supervisor.shutdown().addBoth(g) # pylint: disable=no-member
+    State.process_supervisor.shutdown(friendly=True).addBoth(g)  # pylint: disable=no-member
 
 
 class TenantCollection(BaseHandler):
