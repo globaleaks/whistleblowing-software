@@ -1,19 +1,16 @@
-<div class="panel panel-default">
-  <div class="panel-body">
-    <div data-translate>Using Let's Encrypt requires agreement to their Terms of Service.</div>
-    <br />
-    <a class="btn btn-default btn-small" data-ng-href="{{le_terms_of_service}}" target="_blank" rel="noreferrer noopener"><i class="glyphicon glyphicon-link"></i> <span data-translate>Read the Terms of Service</span></a>
-    <br/><br/>
-    <div class="form-group">
-      <input data-ng-model="accepted_le_terms" type="checkbox"></input>
-      <label data-translate>I agree to the Terms of Service.</label>
-    </div>
-    <hr/>
-
-    <button id="LetsCry" class="btn btn-med btn-success"
-      data-ng-disabled="!accepted_le_terms"
-      data-ng-click="completeAcme()"
-      data-translate>Proceed</button>
-    <button class="btn btn-default" data-ng-click="resetCfg()" data-translate>Cancel</button>
-  </div>
+<label data-translate>Using Let's Encrypt requires agreement to their Terms of Service.</label>
+<br />
+<a class="btn btn-default btn-small" data-ng-href="{{le_terms_of_service}}" target="_blank" rel="noreferrer noopener"><i class="glyphicon glyphicon-link"></i> <span data-translate>Read the Terms of Service</span></a>
+<br/><br/>
+<div class="form-group">
+  <input data-ng-model="accepted_le_terms" type="checkbox"></input>
+  <label data-translate>I agree to the Terms of Service.</label>
 </div>
+<hr/>
+
+<button id="LetsCry" class="btn btn-med btn-success"
+  data-ng-disabled="!accepted_le_terms"
+  data-ng-click="completeAcme()"
+  data-translate>Proceed</button>
+
+<button class="btn btn-default" data-ng-click="resetCfg()" data-translate>Cancel</button>

@@ -1,46 +1,42 @@
-<div class="panel panel-default">
-  <div class="panel-body">
-    <div class="info-section">
-      <div class="title1">
-        <span data-translate>Status</span>
-        <span data-ng-if="tls_config.enabled">
-          <span class="label label-success">
-            <span data-translate>Enabled</span>
-            <i class="glyphicon glyphicon-info-sign" data-ng-click="invertExpertStatus()"></i>
-          </span>
-          <span>&nbsp;</span>
-          <span data-ng-if="tls_config.running" class="label label-success" data-translate>Running</span>
-          <span data-ng-if="!tls_config.running" class="label label-warning" data-translate>Not running</span>
-        </span>
+<div class="info-section">
+  <div class="title1">
+    <span data-translate>Status</span>
+    <span data-ng-if="tls_config.enabled">
+      <span class="label label-success">
+        <span data-translate>Enabled</span>
+        <i class="glyphicon glyphicon-info-sign" data-ng-click="invertExpertStatus()"></i>
+      </span>
+      <span>&nbsp;</span>
+      <span data-ng-if="tls_config.running" class="label label-success" data-translate>Running</span>
+      <span data-ng-if="!tls_config.running" class="label label-warning" data-translate>Not running</span>
+    </span>
 
-        <span data-ng-if="!tls_config.enabled" class="label label-danger">
-          <span data-translate>Disabled</span>
-          <i class="glyphicon glyphicon-info-sign" data-ng-click="invertExpertStatus()"></i>
-        </span>
-      </div>
-
-      <p class="hostname">
-        <div data-ng-if="tls_config.enabled && tls_config.running">
-          <span>URL</span><span>:</span>
-          <a target="_blank" rel="noreferrer noopener" href="https://{{admin.node.hostname}}">https://{{admin.node.hostname}}</a>
-        </div>
-      </p>
-    </div>
-    <div class="title1" data-translate>Certificate</div>
-
-    <div>
-      <p><span data-translate>Issuer:</span> {{tls_config.files.cert.issuer}}</p>
-      <p><span data-translate>Valid until:<span> {{tls_config.files.cert.expiration_date | date:'dd-MM-yyyy HH:mm'}}</p>
-      <p data-ng-if="tls_config.acme">
-        <span data-translate>Auto-renewal</span>: <span data-translate>Enabled</span>
-      </p>
-    </div>
-
-    <div data-ng-show="show_expert_status">
-      <div class="title1" data-translate>System message:</div>
-      <div class="alert alert-info">{{tls_config.status.timestamp | date:'dd-MM-yyyy HH:mm'}} {{tls_config.status.msg}}</div>
-    </div>
-    <hr />
-    <button class="btn btn-danger" data-ng-click="toggleCfg()" data-translate>Disable</button>
+    <span data-ng-if="!tls_config.enabled" class="label label-danger">
+      <span data-translate>Disabled</span>
+      <i class="glyphicon glyphicon-info-sign" data-ng-click="invertExpertStatus()"></i>
+    </span>
   </div>
+
+  <p class="hostname">
+    <div data-ng-if="tls_config.enabled && tls_config.running">
+      <span>URL</span><span>:</span>
+      <a target="_blank" rel="noreferrer noopener" href="https://{{admin.node.hostname}}">https://{{admin.node.hostname}}</a>
+    </div>
+  </p>
 </div>
+
+<div class="title1" data-translate>Certificate</div>
+<div>
+  <p><span data-translate>Issuer:</span> {{tls_config.files.cert.issuer}}</p>
+  <p><span data-translate>Valid until:<span> {{tls_config.files.cert.expiration_date | date:'dd-MM-yyyy HH:mm'}}</p>
+  <p data-ng-if="tls_config.acme">
+    <span data-translate>Auto-renewal</span>: <span data-translate>Enabled</span>
+  </p>
+</div>
+
+<div data-ng-show="show_expert_status">
+  <div class="title1" data-translate>System message:</div>
+  <div class="alert alert-info">{{tls_config.status.timestamp | date:'dd-MM-yyyy HH:mm'}} {{tls_config.status.msg}}</div>
+</div>
+<hr />
+<button class="btn btn-danger" data-ng-click="toggleCfg()" data-translate>Disable</button>

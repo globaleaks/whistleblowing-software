@@ -1,6 +1,4 @@
 # -*- coding: utf-8 -*-
-import urlparse
-
 from OpenSSL import crypto
 from OpenSSL.crypto import load_certificate, FILETYPE_PEM
 from cryptography.hazmat.backends import default_backend
@@ -8,9 +6,7 @@ from cryptography.hazmat.primitives import serialization
 from cryptography.hazmat.primitives.asymmetric import rsa
 
 from twisted.internet.defer import inlineCallbacks, returnValue
-from twisted.internet.error import ConnectError
 from twisted.internet.threads import deferToThread
-from twisted.web.client import readBody
 
 from globaleaks.handlers.base import BaseHandler, HANDLER_EXEC_TIME_THRESHOLD
 from globaleaks.models.config import PrivateFactory, load_tls_dict
@@ -559,26 +555,3 @@ class AcmeChallengeHandler(BaseHandler):
             return tmp_chall_dict[token].tok
 
         raise errors.ResourceNotFound
-
-
-class HostnameTestHandler(BaseHandler):
-    check_roles = 'admin'
-
-    @inlineCallbacks
-    def post(self):
-        if not State.tenant_cache[self.request.tid].hostname:
-            raise errors.ValidationError('hostname is not set')
-
-        net_agent = self.state.get_agent()
-
-        t = ('http', State.tenant_cache[self.request.tid].hostname, 'robots.txt', None, None)
-        url = bytes(urlparse.urlunsplit(t))
-        try:
-            resp = yield net_agent.request('GET', url)
-            body = yield readBody(resp)
-
-            server_h = resp.headers.getRawHeaders('Server', [None])[-1].lower()
-            if not body.startswith('User-agent: *') or server_h != 'globaleaks':
-                raise EnvironmentError('Response unexpected')
-        except (EnvironmentError, ConnectError) as e:
-            raise errors.ExternalResourceError()

@@ -3,10 +3,6 @@
     <form name="adminNetForm">
       <div class="row">
         <div class="col-md-12">
-          <div class="form-group">
-            <input data-ng-model="admin.node.reachable_via_web" type="checkbox">
-            <label data-translate>Let the platform be reachable without Tor</label>
-          </div>
           <div data-ng-show="admin.node.reachable_via_web">
             <div class="form-group">
               <label data-translate>Roles enabled to use the platform without Tor:</label>

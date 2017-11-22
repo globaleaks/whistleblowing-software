@@ -3,13 +3,6 @@
     <form name="adminNetForm">
       <div class="row">
         <div class="col-md-12">
-          <div class="form-group" data-ng-class="{'has-error': adminNetForm.hostname.$error.pattern}">
-            <label data-translate>Hostname</label>
-            <input class="form-control" name="hostname" type="text" data-ng-model="admin.node.hostname" data-ng-pattern="hostname_regexp">
-            <p class="text-danger" data-ng-show="adminNetForm.hostname.$error.pattern">
-              <span data-translate>Invalid input format.</span> <span data-translate>Input should be similar to:</span> <span>www.domain.tld</span>
-            </p>
-          </div>
           <div class="form-group">
               <label><span data-translate>Tor Onion Service</span>:
                   <span ng-hide="admin.node.onionservice === ''"  class="label label-primary">{{admin.node.onionservice}}</span>
@@ -24,6 +17,37 @@
           <div class="form-group">
             <input data-ng-model="admin.node.anonymize_outgoing_connections" type="checkbox">
             <label data-translate>Anonymize outgoing connections</label>
+          </div>
+
+          <div class="form-group">
+            <input data-ng-model="admin.node.reachable_via_web" type="checkbox">
+            <label data-translate>Let the platform be reachable without Tor</label>
+          </div>
+
+          <div data-ng-show="admin.node.reachable_via_web">
+            <div class="form-group">
+              <label data-translate>Roles enabled to use the platform without Tor:</label>
+            </div>
+            <table class="table table-bordered">
+              <tbody>
+                <tr>
+                  <td data-translate>Admin</td>
+                  <td><input data-ng-model="admin.node.tor2web_admin" type="checkbox"></td>
+                </tr>
+                <tr>
+                  <td data-translate>Custodian</td>
+                  <td><input data-ng-model="admin.node.tor2web_custodian" type="checkbox"></td>
+                </tr>
+                <tr>
+                  <td data-translate>Recipient</td>
+                  <td><input data-ng-model="admin.node.tor2web_receiver" type="checkbox"></td>
+                </tr>
+                <tr uib-popover-template="'views/admin/network/tor2web_wb_warn.html'" popover-placement="bottom">
+                  <td data-translate>Whistleblower</td>
+                  <td><input data-ng-model="admin.node.tor2web_whistleblower" type="checkbox"></td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
       </div>

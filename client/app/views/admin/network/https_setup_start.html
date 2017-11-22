@@ -1,42 +1,15 @@
-<div class="panel panel-default">
-  <div class="panel-body">
-  <div data-translate>The platform supports the configuration of HTTPS through this interface.</div>
-  <br />
-  <div data-translate>After HTTPS is configured the application will be accessible to different user roles specified in the Access Control tab.</div>
-  <div data-translate>The platform must be reachable through a public IP address and the selected hostname must have a corresponding DNS record referencing that address.</div>
-  <br />
-  <div data-ng-show="verifyFailures" class="alert alert-warning">
-    <i class="glyphicon glyphicon-alert"></i>
-    <span data-translate>The connection to the configured domain failed.</span>
-  </div>
-  <form name="adminNetForm" novalidate>
-    <p class="input-group">
-      <span class="input-group-addon" data-translate>Hostname</span>
-      <input name="hostname"
-             class="form-control"
-             type="text"
-             data-ng-model="admin.node.hostname"
-             data-ng-pattern="hostname_regexp"
-             data-ng-class="{'has-error': adminNetForm.hostname.$error.pattern}">
-      </input>
-      <span class="input-group-btn">
-        <button class="btn btn-primary" data-ng-disabled="admin.node.hostname === ''" data-ng-click="updateHostname()">
-          <span data-translate>Verify</span>
-        </button>
-      </span>
-    </p>
-    <p class="text-danger" data-ng-show="adminNetForm.hostname.$error.pattern">
-      <span data-translate>Invalid input format.</span> <span data-translate>Input should be similar to:</span> <span>www.domain.tld</span>
-    </p>
-    <p class="alert alert-danger" data-ng-if="verifyFailed">
-      <i class="glyphicon glyphicon-warning-sign"></i>
-      <span data-translate>Warning!</span>
-      <span data-translate>The platform does not seem to be reachable with the configured hostname.</span>
-    </p>
-    <hr />
-  </form>
-  <button class="btn btn-success btn-md"
-          data-ng-click="saveNodeAndProceed()"
-          data-ng-disabled="admin.node.hostname === '' && !saveClicked && !skipVerify"
-          data-translate>Proceed</button>
+<label data-translate>The platform supports the configuration of HTTPS through this interface.</label>
+<br />
+<div data-translate>After HTTPS is configured the application will be accessible to different user roles specified in the Access Control tab.</div>
+<div data-translate>The platform must be reachable through a public IP address and the selected hostname must have a corresponding DNS record referencing that address.</div>
+<br />
+<div data-ng-show="verifyFailures" class="alert alert-warning">
+  <i class="glyphicon glyphicon-alert"></i>
+  <span data-translate>The connection to the configured domain failed.</span>
+</div>
+
+<button class="btn btn-success"
+        data-ng-click="saveNodeAndProceed()"
+        data-ng-disabled="admin.node.hostname === ''"
+        data-translate>Proceed</button>
 </div>

@@ -1,4 +1,5 @@
 <div data-ng-show="choseManCfg" data-translate>This interface can generate a Private Key and a Certificate Signing Request. The Certificate Signing Request can be provided to a Certificate Authority to retrieve a Certificate. After having validated your request and your ownership of the hostname, the Certificate Authority will issue you a Certificate and provide a file containing Intermediate Certificates. Load the Certificate and the file containing the Intermediate Certificates to complete the HTTPS setup.</div>
+<br />
 <div class="https-file-res">
   <div class="panel panel-default priv-key">
     <div class="panel-body" data-ng-class="{'disabled-interface': tls_config.enabled || tls_config.acme}">
@@ -120,6 +121,6 @@
 
   <div class="launch-btns" data-ng-if="state > 1">
     <button class="btn btn-success" data-ng-click="toggleCfg()" data-translate>Enable</button>
-    <button class="btn btn-danger" data-ng-click="resetCfg()" data-translate>Reset</button>
   </div>
+  <button class="btn btn-danger" data-ng-click="resetCfg()" data-translate>Reset</button>
 </div>
