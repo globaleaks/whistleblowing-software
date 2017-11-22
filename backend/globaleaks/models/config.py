@@ -148,6 +148,8 @@ class NodeFactory(ConfigFactory):
         'threshold_free_disk_megabytes_low',
         'threshold_free_disk_percentage_high',
         'threshold_free_disk_percentage_low',
+
+        'anonymize_outgoing_connections',
     })
 
     admin_node = frozenset(GLConfig['node'].keys())
