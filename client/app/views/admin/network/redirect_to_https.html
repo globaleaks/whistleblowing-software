@@ -7,11 +7,13 @@
   <div class="alert alert-info">
     <p>
       <i class="glyphicon glyphicon-cog gly-spin"></i>
-      <span data-tansalte>Configuration in progress. When it is finished you will have to log in again.</span>
+      <span data-translate>Configuration in progress. When it is finished you will have to log in again.</span>
       <span data-translate>Your browser will be redirected to the following URL.</span>
     </p>
   </div>
   <div class="well text-center">
-    <code>{{ $resolve.https_url }}</code>
+    <code>
+      <a href="$resolve.https_url" rel="noferrer noopener">{{ $resolve.https_url }}</a>
+    </code>
   </div>
 </div>
