@@ -358,7 +358,6 @@ class TestGL(unittest.TestCase):
         self.dummyContext = dummyStuff.dummyContext
         self.dummySubmission = dummyStuff.dummySubmission
         self.dummyAdminUser = self.get_dummy_user('admin', 'admin')
-        self.dummyAdminUser['deletable'] = False
         self.dummyCustodianUser = self.get_dummy_user('custodian', 'custodian1')
         self.dummyReceiverUser_1 = self.get_dummy_user('receiver', 'receiver1')
         self.dummyReceiverUser_2 = self.get_dummy_user('receiver', 'receiver2')
@@ -395,7 +394,6 @@ class TestGL(unittest.TestCase):
         new_u['description'] = u''
         new_u['password'] = VALID_PASSWORD1
         new_u['state'] = u'enabled'
-        new_u['deletable'] = True
 
         return new_u
 

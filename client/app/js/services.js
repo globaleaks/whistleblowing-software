@@ -744,7 +744,6 @@ factory('AdminUtils', ['AdminContextResource', 'AdminQuestionnaireResource', 'Ad
       user.username = '';
       user.role = 'receiver';
       user.state = 'enable';
-      user.deletable = 'true';
       user.password = 'globaleaks';
       user.old_password = '';
       user.password_change_needed = true;

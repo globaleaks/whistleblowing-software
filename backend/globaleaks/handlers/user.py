@@ -57,7 +57,6 @@ def user_serialize_user(store, user, language):
         'old_password': u'',
         'salt': '',
         'role': user.role,
-        'deletable': user.deletable,
         'state': user.state,
         'last_login': datetime_to_ISO8601(user.last_login),
         'name': user.name,

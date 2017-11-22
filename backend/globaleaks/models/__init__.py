@@ -219,8 +219,6 @@ class User(ModelWithTIDandID):
     password = Unicode(default=u'')
     salt = Unicode()
 
-    deletable = Bool(default=True)
-
     name = Unicode(validator=shorttext_v, default=u'')
     description = JSON(validator=longlocal_v, default={})
 
@@ -247,7 +245,7 @@ class User(ModelWithTIDandID):
 
     localized_keys = ['description']
 
-    bool_keys = ['deletable', 'password_change_needed']
+    bool_keys = ['password_change_needed']
 
     date_keys = ['creation_date', 'last_login', 'password_change_date', 'pgp_key_expiration']
 
