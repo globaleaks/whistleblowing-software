@@ -93,7 +93,6 @@ def db_create_user(store, tid, request, language):
         'username': request['username'],
         'role': request['role'],
         'state': u'enabled',
-        'deletable': request['deletable'],
         'name': request['name'],
         'description': request['description'],
         'public_name': request['public_name'] if request['public_name'] else request['name'],
@@ -161,16 +160,6 @@ def db_get_admin_users(store, tid):
 
 
 @transact
-def delete_user(store, tid, user_id):
-    user = models.db_get(store, models.User, tid=tid, id=user_id)
-
-    if not user.deletable:
-        raise errors.UserNotDeletable
-
-    store.remove(user)
-
-
-@transact
 def get_user_list(store, tid, language):
     """
     Returns:
@@ -235,4 +224,7 @@ class UserInstance(BaseHandler):
         Response: None
         Errors: InvalidInputFormat, UserIdNotFound
         """
-        return delete_user(self.request.tid, user_id)
+        if user_id == self.current_user.user_id:
+            raise errors.ForbiddenOperation
+
+        return models.delete(models.User, tid=self.request.tid, id=user_id)

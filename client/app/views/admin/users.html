@@ -95,7 +95,7 @@
                     <span data-translate>Cancel</span>
                   </button>
                   <button class="btn btn-xs btn-danger"
-                    data-ng-show="user.deletable"
+                    data-ng-if="Authentication.session.user_id !== user.id"
                     data-ng-click="deleteUser(); $event.stopPropagation();">
                     <span data-translate>Delete</span>
                   </button>

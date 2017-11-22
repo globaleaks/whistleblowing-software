@@ -134,7 +134,6 @@ UserUserDesc = {
     'password': unicode,
     'old_password': unicode,
     'password_change_needed': bool,
-    'deletable': bool,
     'state': user_states_regexp,
     'mail_address': email_regexp,
     'pgp_key_remove': bool,
