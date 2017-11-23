@@ -226,19 +226,6 @@ class SettingsClass(object):
 
         self.set_ramdisk_path()
 
-    def set_client_path(self, glcp):
-        self.client_path = os.path.abspath(os.path.join(self.src_path, glcp))
-
-    def enable_debug_mode(self):
-        import signal
-
-        def start_pdb(signal, trace):
-            import pdb
-
-            pdb.set_trace()
-
-        signal.signal(signal.SIGQUIT, start_pdb)
-
     def load_cmdline_options(self):
         self.nodaemon = self.cmdline_options.nodaemon
 
@@ -293,7 +280,7 @@ class SettingsClass(object):
         self.api_prefix = self.cmdline_options.api_prefix
 
         if self.cmdline_options.client_path:
-            self.set_client_path(self.cmdline_options.client_path)
+            self.client_path = os.path.abspath(os.path.join(self.src_path, self.cmdline_options.client_path))
 
         self.eval_paths()
 
