@@ -7,7 +7,7 @@
 #   the whistleblower, handled and executed within /wbtip/* URI PATH interaction.
 from globaleaks import models
 from globaleaks.handlers.base import BaseHandler
-from globaleaks.handlers.rtip import serialize_comment, serialize_message, db_get_itip_comment_list, WhistleblowerFileInstanceHandler
+from globaleaks.handlers.rtip import serialize_comment, serialize_message, db_get_itip_comment_list, WBFileHandler
 from globaleaks.handlers.submission import serialize_usertip, \
     db_save_questionnaire_answers, db_serialize_archived_questionnaire_schema
 from globaleaks.orm import transact
@@ -221,7 +221,7 @@ class WBTipMessageCollection(BaseHandler):
         return create_message(self.request.tid, self.current_user.user_id, receiver_id, request)
 
 
-class WBTipWBFileInstanceHandler(WhistleblowerFileInstanceHandler):
+class WBTipWBFileHandler(WBFileHandler):
     check_roles = 'whistleblower'
 
     def user_can_access(self, store, tid, wbfile):

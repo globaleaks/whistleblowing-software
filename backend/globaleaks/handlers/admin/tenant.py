@@ -3,6 +3,7 @@
 #   tenant
 #   *****
 # Implementation of the Tenant handlers
+import base64
 import os
 
 from twisted.internet.defer import returnValue, inlineCallbacks
@@ -10,7 +11,7 @@ from twisted.internet.defer import returnValue, inlineCallbacks
 from globaleaks import models
 from globaleaks.db import db_refresh_memory_variables
 from globaleaks.db.appdata import db_update_defaults, load_appdata
-from globaleaks.handlers.admin import files
+from globaleaks.handlers.admin import file
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.orm import transact
 from globaleaks.rest import requests
@@ -50,7 +51,8 @@ def db_create(store, desc):
 
     for file_desc in file_descs:
         with open(os.path.join(Settings.client_path, file_desc[1]), 'r') as f:
-            files.db_add_file(store, t.id, f.read(), file_desc[0])
+            data = base64.b64encode(f.read())
+            file.db_add_file(store, t.id, file_desc[0], u'', data)
 
     db_refresh_memory_variables(store)
 

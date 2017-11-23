@@ -293,6 +293,7 @@ class PGPKeyInvalid(GLException):
 
 # UNUSED ERROR CODE 41-49 HERE!
 
+
 class ExtendTipLifeNotEnabled(GLException):
     """
     Ability to postpone expiration date is not enabled in the node
@@ -302,13 +303,7 @@ class ExtendTipLifeNotEnabled(GLException):
     status_code = 403
 
 
-class StaticFileNotFound(ResourceNotFound):
-    """
-    It has been requested an operation on a non existent static file
-    """
-    reason = "Requested an operation on a non existent static file"
-    error_code = 51
-    status_code = 404
+# UNUSED ERROR CODE 51 HERE!
 
 
 class LangFileNotFound(ResourceNotFound):

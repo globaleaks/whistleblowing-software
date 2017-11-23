@@ -1,15 +1,15 @@
 # -*- coding: utf-8 -*-
 import os
 
-from globaleaks.handlers import files
+from globaleaks.handlers import attachment
 from globaleaks.rest import errors
 from globaleaks.tests import helpers
 from globaleaks.utils import token
 from twisted.internet.defer import inlineCallbacks
 
 
-class TestFileInstance(helpers.TestHandlerWithPopulatedDB):
-    _handler = files.FileInstance
+class TestSubmissionAttachment(helpers.TestHandlerWithPopulatedDB):
+    _handler = attachment.SubmissionAttachment
 
     @inlineCallbacks
     def test_post_file_on_not_finalized_submission(self):
@@ -44,8 +44,8 @@ class TestFileInstance(helpers.TestHandlerWithPopulatedDB):
         yield self.assertFailure(handler.post(u'unexistent_submission'), errors.TokenFailure)
 
 
-class TestFileAdd(helpers.TestHandlerWithPopulatedDB):
-    _handler = files.FileAdd
+class TestPostSubmissionAttachment(helpers.TestHandlerWithPopulatedDB):
+    _handler = attachment.PostSubmissionAttachment
 
     @inlineCallbacks
     def test_post(self):

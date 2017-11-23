@@ -14,9 +14,10 @@ from twisted.internet import threads
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import models
-from globaleaks.handlers.base import BaseHandler, OperationHandler, \
+from globaleaks.handlers.base import BaseHandler, \
     directory_traversal_check, write_upload_plaintext_to_disk
 from globaleaks.handlers.custodian import serialize_identityaccessrequest, db_get_identityaccessrequest_list
+from globaleaks.handlers.operation import OperationHandler
 from globaleaks.handlers.submission import serialize_usertip
 from globaleaks.models import serializers
 from globaleaks.orm import transact
@@ -527,7 +528,7 @@ class WhistleblowerFileHandler(BaseHandler):
         log.debug("Recorded new WhistleblowerFile %s", uploaded_file['name'])
 
 
-class WhistleblowerFileInstanceHandler(BaseHandler):
+class WBFileHandler(BaseHandler):
     """
     This class is used in both RTip and WBTip to define a base for respective handlers
     """
@@ -563,7 +564,7 @@ class WhistleblowerFileInstanceHandler(BaseHandler):
         yield self.force_file_download(wbfile['name'], filelocation)
 
 
-class RTipWBFileInstanceHandler(WhistleblowerFileInstanceHandler):
+class RTipWBFileHandler(WBFileHandler):
     """
     This handler lets the recipient download and delete wbfiles, which are files
     intended for delivery to the whistleblower.

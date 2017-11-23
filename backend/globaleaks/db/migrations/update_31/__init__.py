@@ -208,9 +208,9 @@ class MigrationScript(MigrationBase):
 
             elif v.name in ['logo_id', 'css_id']:
                 if v.name == 'logo_id':
-                    path = os.path.join(Settings.static_path, 'logo.png')
+                    path = os.path.join(Settings.files_path, 'logo.png')
                 else:
-                    path = os.path.join(Settings.static_path, 'custom_stylesheet.css')
+                    path = os.path.join(Settings.files_path, 'custom_stylesheet.css')
 
                 if not os.path.exists(path):
                     continue
@@ -245,7 +245,7 @@ class MigrationScript(MigrationBase):
         self.store_new.add(new_node)
 
         for fname in ['default-profile-picture.png', 'robots.txt']:
-            p = os.path.join(Settings.static_path, fname)
+            p = os.path.join(Settings.files_path, fname)
             if os.path.exists(p):
                 os.remove(p)
 
@@ -255,7 +255,7 @@ class MigrationScript(MigrationBase):
             new_obj = self.model_to['User']()
             for _, v in new_obj._storm_columns.items():
                 if v.name == 'img_id':
-                    img_path = os.path.join(Settings.static_path, old_obj.id + ".png")
+                    img_path = os.path.join(Settings.files_path, old_obj.id + ".png")
                     if not os.path.exists(img_path):
                         continue
 

@@ -149,7 +149,7 @@ CREATE TABLE internalfile (
     id TEXT NOT NULL,
     creation_date TEXT NOT NULL,
     content_type TEXT NOT NULL,
-    file_path TEXT,
+    file_path TEXT NOT NULL,
     name TEXT NOT NULL,
     size INTEGER NOT NULL,
     new INTEGER NOT NULL,
@@ -166,7 +166,7 @@ CREATE TABLE internalfile (
 CREATE TABLE receiverfile (
     tid INTEGER NOT NULL DEFAULT 1,
     id TEXT NOT NULL,
-    file_path TEXT,
+    file_path TEXT NOT NULL,
     size INTEGER NOT NULL,
     downloads INTEGER NOT NULL,
     last_access TEXT,
@@ -188,7 +188,7 @@ CREATE TABLE whistleblowerfile (
     content_type TEXT NOT NULL,
     receivertip_id TEXT NOT NULL,
     name TEXT NOT NULL,
-    file_path TEXT,
+    file_path TEXT NOT NULL,
     size INTEGER NOT NULL,
     downloads INTEGER NOT NULL,
     create_date TEXT,
@@ -504,6 +504,7 @@ CREATE TABLE shorturl (
 CREATE TABLE file (
     tid INTEGER NOT NULL DEFAULT 1,
     id TEXT NOT NULL,
+    name TEXT NOT NULL,
     data TEXT NOT NULL,
     FOREIGN KEY (tid) REFERENCES tenant(id) ON DELETE CASCADE,
     PRIMARY KEY (tid, id)

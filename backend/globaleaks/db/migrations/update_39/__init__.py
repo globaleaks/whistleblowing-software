@@ -496,6 +496,8 @@ class MigrationScript(MigrationBase):
             for _, v in new_obj._storm_columns.iteritems():
                 if v.name == 'tid':
                     new_obj.tid = ROOT_TENANT
+                elif v.name == 'name':
+                    new_obj.name = ''
                 else:
                     setattr(new_obj, v.name, getattr(old_obj, v.name))
 

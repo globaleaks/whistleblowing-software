@@ -49,8 +49,8 @@ def get_itip_id_by_wbtip_id(store, tid, wbtip_id):
     return wbtip.id
 
 
-# Different from FileInstance because there are different authentication requirements
-class FileAdd(BaseHandler):
+# Different from SubmissionAttachment because there are different authentication requirements
+class PostSubmissionAttachment(BaseHandler):
     """
     WhistleBlower interface to upload a new file for an existing submission
     """
@@ -85,7 +85,7 @@ class FileAdd(BaseHandler):
         yield register_ifile_on_db(self.request.tid, uploaded_file, itip_id)
 
 
-class FileInstance(BaseHandler):
+class SubmissionAttachment(BaseHandler):
     """
     WhistleBlower interface to upload a new file for a non-finalized submission
     """

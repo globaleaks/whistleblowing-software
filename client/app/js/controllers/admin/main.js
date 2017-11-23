@@ -38,8 +38,8 @@ controller('AdminCtrl',
     return max + 1;
   };
 }]).
-controller('AdminGeneralSettingsCtrl', ['$scope', '$filter', '$http', 'StaticFiles', 'AdminL10NResource', 'DefaultL10NResource',
-  function($scope, $filter, $http, StaticFiles, AdminL10NResource, DefaultL10NResource){
+controller('AdminGeneralSettingsCtrl', ['$scope', '$filter', '$http', 'Files', 'AdminL10NResource', 'DefaultL10NResource',
+  function($scope, $filter, $http, Files, AdminL10NResource, DefaultL10NResource){
   $scope.tabs = [
     {
       title:"Main configuration",
@@ -112,7 +112,7 @@ controller('AdminGeneralSettingsCtrl', ['$scope', '$filter', '$http', 'StaticFil
 
   $scope.get_l10n($scope.vars.language_to_customize);
 
-  $scope.staticfiles = [];
+  $scope.files = [];
 
   $scope.toggleLangSelect = function() {
     $scope.showLangSelect = true;
@@ -131,28 +131,23 @@ controller('AdminGeneralSettingsCtrl', ['$scope', '$filter', '$http', 'StaticFil
     $scope.admin.node.languages_enabled.splice(idx, 1);
   };
 
-  $scope.update_static_files = function () {
-    var updated_staticfiles = StaticFiles.query(function () {
-      $scope.staticfiles = updated_staticfiles;
+  $scope.update_files = function () {
+    var updated_files = Files.query(function () {
+      $scope.files = updated_files;
     });
   };
 
-  $scope.delete_resource = function (url, refresh) {
-    return $http.delete(url).then(function () {
+  $scope.delete_file = function (url, refresh) {
+    $http.delete(url).then(function () {
+      $scope.update_files();
+
       if (refresh) {
         $scope.$emit("REFRESH");
       }
     });
   };
 
-  $scope.delete_file = function (url) {
-    $http.delete(url).then(function () {
-      $scope.update_static_files();
-      $scope.$emit("REFRESH");
-    });
-  };
-
-  $scope.update_static_files();
+  $scope.update_files();
 }]).
 controller('AdminHomeCtrl', ['$scope', function($scope) {
   $scope.displayNum = 10;

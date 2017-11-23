@@ -388,8 +388,7 @@ class IdentityAccessRequest(ModelWithTIDandID):
 
 class InternalFile(ModelWithTIDandID):
     """
-    This model keeps track of files before they are packaged
-    for specific receivers.
+    This model keeps track of submission files
     """
     creation_date = DateTime(default_factory=datetime_now)
 
@@ -721,9 +720,10 @@ class File(ModelWithTIDandID):
     """
     Class used for storing files
     """
-    data = Unicode()
+    name = Unicode(default=u'')
+    data = Unicode(default=u'')
 
-    unicode_keys = ['data']
+    unicode_keys = ['data', 'name']
 
 
 class UserImg(ModelWithTIDandID):

@@ -7,7 +7,6 @@ from storm.locals import Int, Bool, Unicode, DateTime, JSON
 from globaleaks import models
 from globaleaks.db.migrations.update import MigrationBase
 from globaleaks.db.migrations.update_34.config import GLConfig_v_35
-from globaleaks.handlers.admin import files
 from globaleaks.models import l10n, properties
 from globaleaks.models.config import Config
 from globaleaks.models.l10n import ConfigL10N
@@ -223,7 +222,7 @@ class MigrationScript(MigrationBase):
             self.store_new.add(new_file)
             self.entries_count['File'] += 1
 
-        file_path = os.path.join(Settings.static_path, 'custom_homepage.html')
+        file_path = os.path.join(Settings.files_path, 'custom_homepage.html')
         if os.path.exists(file_path):
             with open(file_path, 'r') as homepage_file:
                 data = homepage_file.read()

@@ -7,7 +7,7 @@ from twisted.web.client import readBody
 
 from txsocksx.errors import HostUnreachable
 
-from globaleaks.handlers.base import OperationHandler
+from globaleaks.handlers.operation import OperationHandler
 from globaleaks.models.config import NodeFactory
 from globaleaks.orm import transact
 from globaleaks.rest import errors
