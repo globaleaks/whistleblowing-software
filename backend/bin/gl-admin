@@ -20,6 +20,7 @@ from storm.store import Store
 
 from globaleaks import security
 from globaleaks.db import get_db_file
+from globaleaks.orm import make_db_uri
 from globaleaks.models import config, config_desc
 from globaleaks.rest.requests import AdminNotificationDesc, AdminNodeDesc
 from globaleaks.settings import Settings
@@ -205,7 +206,7 @@ def set_var(args, silent=False):
 
     check_file(db_path)
     try:
-        store = Store(create_database(Settings.make_db_uri(db_path)))
+        store = Store(create_database(make_db_uri(db_path)))
 
         factCls, item, regex = select_cfg_factory(args.varname)
         if factCls is None:
