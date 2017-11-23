@@ -531,13 +531,6 @@ PublicResourcesDesc = {
     'receivers': [ReceiverDesc]
 }
 
-StaticFileDesc = {
-    'size': int,
-    'filelocation': unicode,
-    'content_type': unicode,
-    'filename': unicode
-}
-
 InternalTipDesc = {
     'id': uuid_regexp,
     'new': bool,
