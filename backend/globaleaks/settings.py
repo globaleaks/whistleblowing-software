@@ -171,13 +171,12 @@ class SettingsClass(object):
     def eval_paths(self):
         self.config_file_path = '/etc/globaleaks'
         self.pidfile_path = os.path.join(self.pid_path, 'globaleaks.pid')
-        self.files_path = os.path.abspath(os.path.join(self.working_path, 't'))
+        self.files_path = os.path.abspath(os.path.join(self.working_path, 'files'))
 
         self.db_path = os.path.abspath(os.path.join(self.working_path, 'db'))
         self.log_path = os.path.abspath(os.path.join(self.working_path, 'log'))
         self.attachments_path = os.path.abspath(os.path.join(self.working_path, 'attachments'))
         self.tmp_upload_path = os.path.abspath(os.path.join(self.working_path, 'tmp'))
-        self.static_path = os.path.abspath(os.path.join(self.files_path, 'static'))
         self.static_db_source = os.path.abspath(os.path.join(self.src_path, 'globaleaks', 'db'))
 
         self.db_schema = os.path.join(self.static_db_source, 'sqlite.sql')
@@ -313,6 +312,7 @@ class SettingsClass(object):
         if inquiry_port <= 0 or inquiry_port > 65535:
             self.print_msg("Invalid port number ( > than 65535 can't work! )")
             return False
+
         return True
 
     def create_directory(self, path):
@@ -345,8 +345,7 @@ class SettingsClass(object):
                         self.attachments_path,
                         self.tmp_upload_path,
                         self.log_path,
-                        self.ramdisk_path,
-                        self.static_path]:
+                        self.ramdisk_path]:
             self.create_directory(dirpath)
 
     def print_msg(self, *args):

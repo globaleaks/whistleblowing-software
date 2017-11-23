@@ -14,20 +14,23 @@ from twisted.web.resource import Resource
 from twisted.web.server import NOT_DONE_YET
 
 from globaleaks import LANGUAGES_SUPPORTED_CODES
-from globaleaks.handlers import exception, \
-    receiver, custodian, \
-    public, \
-    submission, \
-    rtip, wbtip, \
-    files, authentication, token, \
-    export, l10n, wizard, \
-    base, user, shorturl, \
-    robots
+from globaleaks.handlers import custodian, \
+                                exception, \
+                                file, \
+                                receiver, \
+                                public, \
+                                submission, \
+                                rtip, wbtip, \
+                                attachment, authentication, token, \
+                                export, l10n, wizard, \
+                                base, user, shorturl, \
+                                robots, \
+                                staticfile
 
 from globaleaks.handlers.admin import config as admin_config
 from globaleaks.handlers.admin import context as admin_context
 from globaleaks.handlers.admin import field as admin_field
-from globaleaks.handlers.admin import files as admin_files
+from globaleaks.handlers.admin import file as admin_file
 from globaleaks.handlers.admin import https
 from globaleaks.handlers.admin import l10n as admin_l10n
 from globaleaks.handlers.admin import modelimgs as admin_modelimgs
@@ -37,7 +40,6 @@ from globaleaks.handlers.admin import overview as admin_overview
 from globaleaks.handlers.admin import questionnaire as admin_questionnaire
 from globaleaks.handlers.admin import receiver as admin_receiver
 from globaleaks.handlers.admin import shorturl as admin_shorturl
-from globaleaks.handlers.admin import staticfiles as admin_staticfiles
 from globaleaks.handlers.admin import statistics as admin_statistics
 from globaleaks.handlers.admin import step as admin_step
 from globaleaks.handlers.admin import tenant as admin_tenant
@@ -74,7 +76,7 @@ api_spec = [
 
     ## Submission Handlers ##
     (r'/submission/' + requests.token_regexp, submission.SubmissionInstance),
-    (r'/submission/' + requests.token_regexp + r'/file', files.FileInstance),
+    (r'/submission/' + requests.token_regexp + r'/file', attachment.SubmissionAttachment),
 
     ## Receiver Tip Handlers ##
     (r'/rtip/' + uuid_regexp, rtip.RTipInstance),
@@ -84,14 +86,14 @@ api_spec = [
     (r'/rtip/' + uuid_regexp + r'/export', export.ExportHandler),
     (r'/rtip/' + uuid_regexp + r'/wbfile', rtip.WhistleblowerFileHandler),
     (r'/rtip/rfile/' + uuid_regexp, rtip.ReceiverFileDownload),
-    (r'/rtip/wbfile/' + uuid_regexp, rtip.RTipWBFileInstanceHandler),
+    (r'/rtip/wbfile/' + uuid_regexp, rtip.RTipWBFileHandler),
 
     ## Whistleblower Tip Handlers
     (r'/wbtip', wbtip.WBTipInstance),
     (r'/wbtip/comments', wbtip.WBTipCommentCollection),
     (r'/wbtip/messages/' + uuid_regexp, wbtip.WBTipMessageCollection),
-    (r'/wbtip/rfile', files.FileAdd),
-    (r'/wbtip/wbfile/' + uuid_regexp, wbtip.WBTipWBFileInstanceHandler),
+    (r'/wbtip/rfile', attachment.PostSubmissionAttachment),
+    (r'/wbtip/wbfile/' + uuid_regexp, wbtip.WBTipWBFileHandler),
     (r'/wbtip/' + uuid_regexp + r'/provideidentityinformation', wbtip.WBTipIdentityHandler),
 
     ## Receiver Handlers ##
@@ -128,13 +130,13 @@ api_spec = [
     (r'/admin/anomalies', admin_statistics.AnomalyCollection),
     (r'/admin/jobs', admin_statistics.JobsTiming),
     (r'/admin/l10n/(' + '|'.join(LANGUAGES_SUPPORTED_CODES) + ')', admin_l10n.AdminL10NHandler),
-    (r'/admin/files/(logo|favicon|css|homepage|script)', admin_files.FileInstance),
+    (r'/admin/files/(logo|favicon|css|homepage|script)', admin_file.FileInstance),
     (r'/admin/config', admin_config.AdminConfigHandler),
     (r'/admin/config/tls', https.ConfigHandler),
     (r'/admin/config/tls/files/(csr)', https.CSRFileHandler),
     (r'/admin/config/tls/files/(cert|chain|priv_key)', https.FileHandler),
-    (r'/admin/staticfiles$', admin_staticfiles.StaticFileList),
-    (r'/admin/staticfiles/(.+)', admin_staticfiles.StaticFileInstance),
+    (r'/admin/files$', admin_file.FileCollection),
+    (r'/admin/files/(.+)', admin_file.FileInstance),
     (r'/admin/tenants', admin_tenant.TenantCollection),
     (r'/admin/tenants/' + '([0-9]{1,20})', admin_tenant.TenantInstance),
     (r'/admin/overview/tips', admin_overview.Tips),
@@ -144,16 +146,16 @@ api_spec = [
     (r'/admin/config/acme/run', https.AcmeHandler),
     (r'/.well-known/acme-challenge/([a-zA-Z0-9_\-]{42,44})', https.AcmeChallengeHandler),
 
-    (r'/(data/[a-zA-Z0-9_\-\/\.]*)', base.AdminStaticFileHandler, {'path': Settings.client_path}),
+    (r'/(data/[a-zA-Z0-9_\-\/\.]*)', staticfile.AdminStaticFileHandler, {'path': Settings.client_path}),
 
     ## Special Files Handlers##
     (r'/robots.txt', robots.RobotstxtHandler),
     (r'/sitemap.xml', robots.SitemapHandler),
-    (r'/s/(.+)', base.StaticFileHandler, {'path': Settings.static_path}),
+    (r'/s/(.+)', file.FileHandler),
     (r'/l10n/(' + '|'.join(LANGUAGES_SUPPORTED_CODES) + ')', l10n.L10NHandler),
 
     ## This handler attempts to route all non routed get requests
-    (r'/([a-zA-Z0-9_\-\/\.]*)', base.StaticFileHandler, {'path': Settings.client_path})
+    (r'/([a-zA-Z0-9_\-\/\.]*)', staticfile.StaticFileHandler, {'path': Settings.client_path})
 ]
 
 

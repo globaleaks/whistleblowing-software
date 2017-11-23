@@ -61,14 +61,14 @@ class TestMigrationRoutines(unittest.TestCase):
         self.assertNotEqual(ret, -1)
 
     def preconditions_30(self):
-        logo_path = os.path.join(Settings.static_path, 'logo.png')
-        css_path = os.path.join(Settings.static_path, 'custom_stylesheet.css')
+        logo_path = os.path.join(Settings.files_path, 'logo.png')
+        css_path = os.path.join(Settings.files_path, 'custom_stylesheet.css')
 
         shutil.copy(os.path.join(helpers.DATA_DIR, 'tor/private_key'), logo_path)
         shutil.copy(os.path.join(helpers.DATA_DIR, 'tor/hostname'), css_path)
 
     def postconditions_30(self):
-        new_uri = 'sqlite:' + os.path.join(Settings.db_path, Settings.db_file_name)
+        new_uri = orm.make_db_uri(os.path.join(Settings.db_path, Settings.db_file_name))
 
         store = Store(create_database(new_uri))
         self.assertTrue(store.find(models.File, id=u'logo').count() == 1)

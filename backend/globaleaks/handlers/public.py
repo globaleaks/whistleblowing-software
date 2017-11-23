@@ -8,7 +8,7 @@ import copy
 from storm.expr import In, Select
 
 from globaleaks import models, LANGUAGES_SUPPORTED
-from globaleaks.handlers.admin.files import db_get_file
+from globaleaks.handlers.admin.file import db_get_file
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.models import l10n
 from globaleaks.models.config import NodeFactory

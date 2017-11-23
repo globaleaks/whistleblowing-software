@@ -34,7 +34,7 @@
       <br />
       <span data-translate>The file will be available at URL: /s/$filename</span>
       <div class="well well-large uploadfile file-custom">
-        <span flow-init="{target: 'admin/staticfiles/upload'}"
+        <span flow-init="{target: 'admin/files/custom'}"
               flow-files-submitted="$flow.upload()"
               flow-file-success="reload()"
               extend-flow-valid-size="node.maximum_filesize*1024*1024">
@@ -47,20 +47,20 @@
           <div errors-upload></div>
         </span>
       </div>
-      <div data-ng-if="staticfiles.length">
+      <div data-ng-if="files.length">
         <label data-translate>Files</label>
         <br />
         <div class="table-container">
           <table class="table table-striped" id="fileList">
             <tbody id="fileListBody">
-              <tr data-ng-repeat="file in staticfiles | orderBy:'name'">
+              <tr data-ng-repeat="file in files | orderBy:'name'">
                 <td>{{file.name}}</td>
                 <td>
                   <a class="btn btn-primary" data-ng-href="s/{{file.name}}" download="{{file.name}}">
                     <span class="glyphicon glyphicon-download"></span>
                     <span data-translate>Download</span>
                   </a>
-                  <a class="btn btn-danger" data-ng-click="delete_file('admin/staticfiles/' + file.name)" data-single-click>
+                  <a class="btn btn-danger" data-ng-click="delete_file('admin/files/' + file.id, true)" data-single-click>
                     <span class="glyphicon glyphicon-trash"></span>
                     <span data-translate>Delete</span>
                   </a>

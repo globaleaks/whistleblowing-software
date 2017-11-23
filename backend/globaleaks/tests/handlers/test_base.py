@@ -1,11 +1,9 @@
 # -*- coding: utf-8 -*-
 import json
 
-from globaleaks.handlers.base import BaseHandler, StaticFileHandler
+from globaleaks.handlers.base import BaseHandler
 from globaleaks.rest.errors import InvalidInputFormat, ResourceNotFound
-from globaleaks.settings import Settings
 from globaleaks.tests import helpers
-from twisted.internet.defer import inlineCallbacks
 
 FUTURE = 100
 
@@ -70,24 +68,3 @@ class TestBaseHandler(helpers.TestHandlerWithPopulatedDB):
     def test_validate_regexp_valid(self):
         self.assertTrue(BaseHandler.validate_regexp('Foca', '\w+'))
         self.assertFalse(BaseHandler.validate_regexp('Foca', '\d+'))
-
-
-class TestStaticFileHandler(helpers.TestHandler):
-    _handler = StaticFileHandler
-
-    @inlineCallbacks
-    def test_get_existent(self):
-        handler = self.request(kwargs={'path': Settings.client_path})
-        yield handler.get('')
-        self.assertTrue(handler.request.getResponseBody().startswith('<!doctype html>'))
-
-    @inlineCallbacks
-    def test_get_unexistent(self):
-        handler = self.request(kwargs={'path': Settings.client_path})
-
-        try:
-            yield handler.get('unexistent')
-        except ResourceNotFound:
-            return
-
-        self.fail('should throw resource not found error')

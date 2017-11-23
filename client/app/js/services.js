@@ -793,8 +793,8 @@ factory('AdminUtils', ['AdminContextResource', 'AdminQuestionnaireResource', 'Ad
   factory('ActivitiesCollection', ['GLResource', function(GLResource) {
     return new GLResource('admin/activities/details');
 }]).
-  factory('StaticFiles', ['GLResource', function(GLResource) {
-    return new GLResource('admin/staticfiles');
+  factory('Files', ['GLResource', function(GLResource) {
+    return new GLResource('admin/files');
 }]).
   factory('DefaultL10NResource', ['GLResource', function(GLResource) {
     return new GLResource('l10n/:lang.json', {lang: '@lang'});

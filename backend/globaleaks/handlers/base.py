@@ -89,7 +89,7 @@ def write_upload_encrypted_to_disk(uploaded_file, destination):
     return uploaded_file
 
 
-class StaticFileProducer(object):
+class FileProducer(object):
     """
     Streaming producer for files
 
@@ -381,15 +381,15 @@ class BaseHandler(object):
         self.request.setHeader(b"location", url)
         self.request.finish()
 
-    def write_file(self, filepath):
+    def write_file(self, filename, filepath):
         if not os.path.exists(filepath) or not os.path.isfile(filepath):
             raise errors.ResourceNotFound()
 
-        mime_type, encoding = mimetypes.guess_type(filepath)
+        mime_type, encoding = mimetypes.guess_type(filename)
         if mime_type:
             self.request.setHeader("Content-Type", mime_type)
 
-        return StaticFileProducer(self.request, filepath).start()
+        return FileProducer(self.request, filepath).start()
 
     def force_file_download(self, filename, filepath):
         if not os.path.exists(filepath) or not os.path.isfile(filepath):
@@ -399,7 +399,7 @@ class BaseHandler(object):
         self.request.setHeader('Content-Type', 'application/octet-stream')
         self.request.setHeader('Content-Disposition', 'attachment; filename=\"%s\"' % filename)
 
-        return StaticFileProducer(self.request, filepath).start()
+        return FileProducer(self.request, filepath).start()
 
     @property
     def current_user(self):
@@ -492,45 +492,3 @@ class BaseHandler(object):
             needed_delay = (Settings.side_channels_guard - (self.request.execution_time.microseconds / 1000)) / 1000
             if needed_delay > 0:
                 yield deferred_sleep(needed_delay)
-
-
-class OperationHandler(BaseHandler):
-    def operation_descriptors(self):
-        raise NotImplementedError
-
-    def put(self, *args, **kwargs):
-        request = self.validate_message(self.request.content.read(), requests.OpsDesc)
-
-        op_desc = self.operation_descriptors().get(request['operation'], None)
-        if op_desc is None:
-            raise errors.InvalidInputFormat('Invalid command')
-
-        func, obj_validator = op_desc
-        if obj_validator is not None:
-            self.validate_jmessage(request['args'], obj_validator)
-
-        return func(self, request['args'], *args, **kwargs)
-
-
-class StaticFileHandler(BaseHandler):
-    check_roles = '*'
-    handler_exec_time_threshold = 30
-
-    def __init__(self, state, request, path):
-        BaseHandler.__init__(self, state, request)
-
-        self.root = "%s%s" % (os.path.abspath(path), "/")
-
-    def get(self, path):
-        if not path:
-            path = 'index.html'
-
-        abspath = os.path.abspath(os.path.join(self.root, path))
-
-        directory_traversal_check(self.root, abspath)
-
-        return self.write_file(abspath)
-
-
-class AdminStaticFileHandler(StaticFileHandler):
-    check_roles = 'admin'

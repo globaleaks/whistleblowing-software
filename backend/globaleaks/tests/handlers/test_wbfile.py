@@ -4,7 +4,7 @@ from globaleaks.handlers import wbtip, rtip
 from globaleaks.tests import helpers
 from twisted.internet.defer import inlineCallbacks
 
-class TestWhistleblowerFileWorkFlow(helpers.TestHandlerWithPopulatedDB):
+class TestWBFileWorkFlow(helpers.TestHandlerWithPopulatedDB):
     _handler = None
 
     @inlineCallbacks
@@ -18,7 +18,7 @@ class TestWhistleblowerFileWorkFlow(helpers.TestHandlerWithPopulatedDB):
             handler = self.request(role='receiver', user_id = rtip_desc['receiver_id'], attached_file=samplefile)
             yield handler.post(rtip_desc['id'])
 
-        self._handler = wbtip.WBTipWBFileInstanceHandler
+        self._handler = wbtip.WBTipWBFileHandler
         wbtips_desc = yield self.get_wbtips()
         for wbtip_desc in wbtips_desc:
             wbfiles_desc = yield self.get_wbfiles(wbtip_desc['id'])
@@ -26,7 +26,7 @@ class TestWhistleblowerFileWorkFlow(helpers.TestHandlerWithPopulatedDB):
                 handler = self.request(role='whistleblower', user_id = wbtip_desc['id'])
                 yield handler.get(wbfile_desc['id'])
 
-        self._handler = rtip.RTipWBFileInstanceHandler
+        self._handler = rtip.RTipWBFileHandler
         rtips_desc = yield self.get_rtips()
         deleted_wbfiles_ids = []
         for rtip_desc in rtips_desc:

@@ -69,12 +69,12 @@ class TestFilesystemAccess(helpers.TestGL):
         self.assertRaises(Exception, directory_traversal_check, 'invalid/relative/trusted/path', "valid.txt")
 
     def test_directory_traversal_check_blocked(self):
-        self.assertRaises(errors.DirectoryTraversalError, directory_traversal_check, Settings.static_path,
+        self.assertRaises(errors.DirectoryTraversalError, directory_traversal_check, Settings.files_path,
                           "/etc/passwd")
 
     def test_directory_traversal_check_allowed(self):
-        valid_access = os.path.join(Settings.static_path, "valid.txt")
-        directory_traversal_check(Settings.static_path, valid_access)
+        valid_access = os.path.join(Settings.files_path, "valid.txt")
+        directory_traversal_check(Settings.files_path, valid_access)
 
 
 class TestSecureFiles(helpers.TestGL):

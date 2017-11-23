@@ -40,6 +40,7 @@ class TestWBTipCommentCollection(helpers.TestHandlerWithPopulatedDB):
 
             yield handler.post()
 
+
 class TestWBTipMessageCollection(helpers.TestHandlerWithPopulatedDB):
     _handler = wbtip.WBTipMessageCollection
 
