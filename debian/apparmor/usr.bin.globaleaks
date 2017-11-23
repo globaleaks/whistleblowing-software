@@ -38,7 +38,7 @@ profile usr.bin.globaleaks flags=(attach_disconnected) {
     /usr/lib/python2.7/** mr,
     /usr/local/lib/python2.7/** mr,
 
-    /var/globaleaks/ r,
+    /var/globaleaks/ wr,
     /var/globaleaks/** lrwk,
 
     /{,var/}run/globaleaks/globaleaks.pid rw,
