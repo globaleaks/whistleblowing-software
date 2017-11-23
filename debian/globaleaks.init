@@ -228,8 +228,7 @@ do_start()
                     --group=${GROUP}
                     --working-path=${WORKING_DIR}
                     --ramdisk=${RAM_DISK}
-                    --loglevel=${LOGLEVEL}
-                    --multisite=${MULTISITE}"
+                    --loglevel=${LOGLEVEL}"
 
     if [ "${API_PREFIX}" != "" ]; then
         GLBACKEND_ARGS+=" --api-prefix ${API_PREFIX}"
