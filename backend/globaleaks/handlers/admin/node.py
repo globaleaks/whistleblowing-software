@@ -78,6 +78,9 @@ def check_hostname(store, tid, input_hostname):
     Ensure the hostname does not collide across tenants or include an origin
     that it shouldn't.
     """
+    if input_hostname == u'':
+      return
+
     root_hostname = NodeFactory(store, 1).get_val(u'hostname')
 
     forbidden_endings = ['.onion', 'localhost']
@@ -87,10 +90,12 @@ def check_hostname(store, tid, input_hostname):
     if reduce(lambda b, v: b or input_hostname.endswith(v), forbidden_endings, False):
         raise errors.InvalidModelInput('Hostname contains a forbidden origin')
 
-    valid_hostname_set = {h.get_v() for h in
-                          store.find(Config, Config.tid != tid, var_group=u'node', var_name=u'hostname')}
+    existing_hostnames = {h.get_v() for h in store.find(Config,
+                                                        Config.tid != tid,
+                                                        var_group=u'node',
+                                                        var_name=u'hostname')}
 
-    if input_hostname in valid_hostname_set:
+    if input_hostname in existing_hostnames:
         raise errors.InvalidModelInput('Hostname already reserved')
 
 
