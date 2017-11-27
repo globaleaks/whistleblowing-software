@@ -59,7 +59,7 @@ class Cleaning(LoopingJob):
     @transact_sync
     def check_for_expiring_submissions(self, store):
         # TODO: perform cleaning based on configuration for specific submissions
-        threshold = datetime_now() + timedelta(hours=State.tenant_cache[1].notif.tip_expiration_threshold)
+        threshold = datetime_now() + timedelta(hours=State.tenant_cache[1].notification.tip_expiration_threshold)
 
         for user in store.find(models.User, role=u'receiver'):
             itip_ids = [id for id in store.find(models.InternalTip.id,

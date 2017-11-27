@@ -1,4 +1,7 @@
 # -*- coding: utf-8 -*-
+
+from twisted.internet.defer import inlineCallbacks
+
 from globaleaks import models
 from globaleaks.db import db_refresh_memory_variables
 from globaleaks.jobs.certificate_check import CertificateCheck
@@ -7,7 +10,6 @@ from globaleaks.orm import transact
 from globaleaks.state import State
 from globaleaks.tests import helpers
 from globaleaks.tests.utils import test_tls
-from twisted.internet.defer import inlineCallbacks
 
 
 class TestCertificateCheck(helpers.TestGLWithPopulatedDB):
@@ -40,7 +42,7 @@ class TestCertificateCheck(helpers.TestGLWithPopulatedDB):
 
         yield self.test_model_count(models.Mail, 1)
 
-        State.tenant_cache[1].notif.disable_admin_notification_emails = True
+        State.tenant_cache[1].notification.disable_admin_notification_emails = True
 
         yield CertificateCheck().run()
 
