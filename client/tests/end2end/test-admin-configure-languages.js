@@ -12,7 +12,7 @@ describe('admin configure languages', function() {
     input = element(by.id('LanguageAdder')).all(by.css('input')).last();
     input.sendKeys('Deutsch' + protractor.Key.ENTER);
 
-    element.all(by.cssContainingText("button", "Save")).get(2).click();
+    element.all(by.cssContainingText("button", "Save")).get(1).click();
 
     element(by.model('GLTranslate.indirect.appLanguage')).element(by.xpath(".//*[text()='Deutsch']")).click();
 
@@ -35,7 +35,7 @@ describe('admin configure languages', function() {
     browser.setLocation('admin/content');
     element(by.cssContainingText("a", "Languages")).click();
     element.all(by.css('.non-default-language')).get(0).click();
-    element.all(by.cssContainingText("button", "Save")).get(2).click();
+    element.all(by.cssContainingText("button", "Save")).get(1).click();
 
     // Verify that the default is set to german
     browser.setLocation('admin/content');
@@ -46,13 +46,13 @@ describe('admin configure languages', function() {
     element.all(by.css('.non-default-language')).get(1).click();
     element.all(by.css('.remove-lang-btn')).get(0).click();
 
-    element.all(by.cssContainingText("button", "Save")).get(2).click();
+    element.all(by.cssContainingText("button", "Save")).get(1).click();
 
     // Verify that the new default is set again to english that is the first language among en/it
     browser.setLocation('admin/content');
     element(by.cssContainingText("a", "Languages")).click();
     expect(element(by.model('admin.node.default_language')).getAttribute('value')).toEqual('en');
 
-    element.all(by.cssContainingText("button", "Save")).get(2).click();
+    element.all(by.cssContainingText("button", "Save")).get(1).click();
   });
 });

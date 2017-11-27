@@ -17,7 +17,7 @@ describe('admin configure https', function() {
     element(by.cssContainingText("a", "HTTPS")).click();
 
     element(by.model('admin.node.hostname')).clear();
-    element(by.model('admin.node.hostname')).sendKeys('localhost');
+    element(by.model('admin.node.hostname')).sendKeys('antani.gov');
     element(by.model('admin.node.hostname')).click();
 
     element.all(by.cssContainingText("button", "Save")).get(1).click();
