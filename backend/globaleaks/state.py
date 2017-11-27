@@ -115,7 +115,8 @@ class StateClass(ObjectDict):
            # during unit testing do not try to send the mail
            return defer.succeed(True)
 
-       return sendmail(self.tenant_cache[tid].notification.username,
+       return sendmail(tid,
+                       self.tenant_cache[tid].notification.username,
                        self.tenant_cache[tid].private.smtp_password,
                        self.tenant_cache[tid].notification.server,
                        self.tenant_cache[tid].notification.port,

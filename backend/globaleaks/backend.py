@@ -10,7 +10,6 @@ from datetime import datetime
 from twisted.application import service
 from twisted.internet import reactor, defer
 from twisted.python import failure, log as txlog, logfile as txlogfile
-from twisted.web.http import _escape
 from twisted.web.server import Site
 
 # this import seems unused but it is required in order to load the mocks
@@ -24,7 +23,7 @@ from globaleaks.settings import Settings
 from globaleaks.state import State
 from globaleaks.utils.process import disable_swap
 from globaleaks.utils.sock import listen_tcp_on_sock, reserve_port_for_ip
-from globaleaks.utils.utility import fix_file_permissions, drop_privileges, log, timedelta_to_milliseconds, GLLogObserver, deferred_sleep
+from globaleaks.utils.utility import fix_file_permissions, drop_privileges, log, timedLogFormatter, GLLogObserver, deferred_sleep
 from globaleaks.workers.supervisor import ProcessSupervisor
 
 
@@ -34,20 +33,6 @@ def fail_startup(excep):
     log.debug('TRACE: %s', traceback.format_exc(excep))
     if reactor.running:
         reactor.stop()
-
-
-def timedLogFormatter(timestamp, request):
-    duration = -1
-    if hasattr(request, 'start_time'):
-        duration = timedelta_to_milliseconds(datetime.now() - request.start_time)
-
-    return (u'%(code)s %(method)s %(uri)s %(length)dB %(duration)dms' % dict(
-              duration=duration,
-              method=_escape(request.method),
-              uri=_escape(request.uri),
-              proto=_escape(request.clientproto),
-              code=request.code,
-              length=request.sentLength))
 
 
 class Service(service.Service):

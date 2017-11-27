@@ -73,7 +73,7 @@ class PGPCheck(LoopingJob):
             user_desc = user_serialize_user(store, user, self.state.tenant_cache[user.tid].default_language)
             tenant_expiry_map.setdefault(user.tid, []).append(user_desc)
 
-            log.info('Removing expired PGP key of [%d]: %s', user.tid, user.username)
+            log.info('Removing expired PGP key of: %s', user.username, tid=user.tid)
             if user.pgp_key_expiration < datetime_now():
                 user.pgp_key_public = ''
                 user.pgp_key_fingerprint = ''

@@ -182,7 +182,8 @@ class MailGenerator(object):
             log.info("Reached threshold of %d emails with limit of %d for receiver %s",
                      sent_emails,
                      self.state.tenant_cache[tid].notification.notification_threshold_per_hour,
-                     user_id)
+                     user_id,
+                     tid=tid)
 
             # simply changing the type of the notification causes
             # to send the notification_limit_reached

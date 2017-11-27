@@ -25,7 +25,7 @@ def wizard(store, tid, request, language):
     node = config.NodeFactory(store, tid)
 
     if node.get_val(u'wizard_done'):
-        log.err("DANGER: Wizard already initialized!")
+        log.err("DANGER: Wizard already initialized!", tid=tid)
         raise errors.ForbiddenOperation
 
     node._query_group()
