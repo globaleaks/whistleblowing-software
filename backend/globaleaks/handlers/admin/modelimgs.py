@@ -50,18 +50,13 @@ def del_model_img(store, tid, obj_key, obj_id):
 class ModelImgInstance(BaseHandler):
     check_roles = 'admin'
     invalidate_cache = True
+    upload_handler = True
 
     def post(self, obj_key, obj_id):
-        uploaded_file = self.get_file_upload()
-        if uploaded_file is None:
-            return
-
         # The error is suppressed here because add_model_img is wrapped with a
         # transact returns a deferred which we attach events to.
         # pylint: disable=assignment-from-no-return
-        d = add_model_img(self.request.tid, obj_key, obj_id, uploaded_file['body'].read())
-        d.addBoth(lambda ignore: uploaded_file['body'].close)
-        return d
+        return add_model_img(self.request.tid, obj_key, obj_id, self.uploaded_file['body'].read())
 
     def delete(self, obj_key, obj_id):
         return del_model_img(self.request.tid, obj_key, obj_id)

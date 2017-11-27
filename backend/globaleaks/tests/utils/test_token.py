@@ -38,7 +38,6 @@ class TestToken(helpers.TestGL):
             self.assertTrue(st.human_captcha.has_key('answer'))
             self.assertTrue(isinstance(st.human_captcha['answer'], int))
 
-    @inlineCallbacks
     def test_token_create_and_get_upload_expire(self):
         file_list = []
 
@@ -50,7 +49,7 @@ class TestToken(helpers.TestGL):
         for t in token_collection:
             token = TokenList.get(t.id)
 
-            yield self.emulate_file_upload(token, 3)
+            self.emulate_file_upload(token, 3)
 
             for f in token.uploaded_files:
                 self.assertTrue(os.path.exists(f['path']))

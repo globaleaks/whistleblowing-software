@@ -346,6 +346,11 @@ class APIResourceWrapper(Resource):
             self.handle_exception(errors.ForbiddenOperation(), request)
             return b''
 
+        if h.upload_handler and method == 'post':
+            h.process_file_upload()
+            if h.uploaded_file is None:
+                return
+
         d = defer.maybeDeferred(f, h, *groups)
 
         @defer.inlineCallbacks

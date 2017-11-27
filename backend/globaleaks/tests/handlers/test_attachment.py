@@ -38,10 +38,9 @@ class TestSubmissionAttachment(helpers.TestHandlerWithPopulatedDB):
         for f in self.dummyToken.uploaded_files:
             yield self.assertFalse(os.path.exists(f['path']))
 
-    @inlineCallbacks
     def test_post_file_on_unexistent_submission(self):
         handler = self.request()
-        yield self.assertFailure(handler.post(u'unexistent_submission'), errors.TokenFailure)
+        self.assertFailure(handler.post(u'unexistent_submission'), errors.TokenFailure)
 
 
 class TestPostSubmissionAttachment(helpers.TestHandlerWithPopulatedDB):

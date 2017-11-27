@@ -84,6 +84,8 @@ class StateClass(ObjectDict):
         tracer.debug(self.settings.orm_debug, sys.stdout)
         self.set_orm_tp(self.orm_tp)
 
+        self.TempUploadFiles = TempDict(timeout=3600)
+
     def set_orm_tp(self, orm_tp):
         self.orm_tp = orm_tp
         orm.set_thread_pool(orm_tp)

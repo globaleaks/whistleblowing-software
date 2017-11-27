@@ -5,8 +5,7 @@ from datetime import datetime
 
 from globaleaks.rest import errors
 from globaleaks.security import generateRandomSalt, hash_password, check_password, change_password, \
-    directory_traversal_check, SecureTemporaryFile, SecureFile, \
-    GLBPGP
+    directory_traversal_check, SecureTemporaryFile, GLBPGP
 from globaleaks.settings import Settings
 from globaleaks.tests import helpers
 from twisted.trial import unittest
@@ -92,28 +91,6 @@ class TestSecureFiles(helpers.TestGL):
         a.write(antani)
         self.assertTrue(antani == a.read())
         self.assertRaises(Exception, a.write, antani)
-        a.close()
-
-    def test_temporary_file_avoid_delete(self):
-        a = SecureTemporaryFile(Settings.tmp_upload_path)
-        a.avoid_delete()
-        antani = "0123456789" * 10000
-        a.write(antani)
-        a.close()
-        self.assertTrue(os.path.exists(a.filepath))
-        b = SecureFile(a.filepath)
-        self.assertTrue(antani == b.read())
-        b.close()
-
-    def test_temporary_file_lost_key_due_to_eventual_bug_or_reboot(self):
-        a = SecureTemporaryFile(Settings.tmp_upload_path)
-        a.avoid_delete()
-        antani = "0123456789" * 10000
-        a.write(antani)
-        a.close()
-        self.assertTrue(os.path.exists(a.filepath))
-        os.remove(a.keypath)
-        self.assertRaises(IOError, SecureFile, a.filepath)
         a.close()
 
 

@@ -10,7 +10,7 @@ import os
 from twisted.internet import defer, threads
 
 from globaleaks import models
-from globaleaks.handlers.base import BaseHandler, write_upload_plaintext_to_disk
+from globaleaks.handlers.base import BaseHandler
 from globaleaks.orm import transact
 from globaleaks.utils.utility import uuid4
 
@@ -82,28 +82,19 @@ def get_file(store, tid, id):
 class FileInstance(BaseHandler):
     check_roles = 'admin'
     invalidate_cache = True
+    upload_handler = True
 
     def post(self, id):
-        uploaded_file = self.get_file_upload()
-        if uploaded_file is None:
-            return
-
         if id != 'custom':
-            data = uploaded_file['body'].read()
+            data = self.uploaded_file['body'].read()
             data = base64.b64encode(data)
             d = add_file(self.request.tid, id, u'', data)
         else:
             id = uuid4()
             data = ''
             path = os.path.join(self.state.settings.files_path, id)
-            d = threads.deferToThread(write_upload_plaintext_to_disk, uploaded_file, path)
-
-            def callback(ret):
-                add_file(self.request.tid, id, uploaded_file['name'], data)
-
-            d.addCallback(callback)
-
-        d.addBoth(lambda ignore: uploaded_file['body'].close)
+            d = threads.deferToThread(self.write_upload_plaintext_to_disk, path)
+            d.addCallback(lambda x: add_file(self.request.tid, id, self.uploaded_file['name'], data))
 
         return d
 
