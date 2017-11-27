@@ -137,13 +137,11 @@ controller('AdminGeneralSettingsCtrl', ['$scope', '$filter', '$http', 'Files', '
     });
   };
 
-  $scope.delete_file = function (url, refresh) {
+  $scope.delete_file = function (url) {
     $http.delete(url).then(function () {
       $scope.update_files();
 
-      if (refresh) {
-        $scope.$emit("REFRESH");
-      }
+      $scope.$emit("REFRESH");
     });
   };
 
