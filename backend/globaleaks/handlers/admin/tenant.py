@@ -14,7 +14,7 @@ from globaleaks.db.appdata import db_update_defaults, load_appdata
 from globaleaks.handlers.admin import file
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.orm import transact
-from globaleaks.rest import requests
+from globaleaks.rest import requests, errors
 from globaleaks.utils.utility import log
 from globaleaks.settings import Settings
 from globaleaks.state import State
@@ -117,6 +117,9 @@ class TenantCollection(BaseHandler):
         """
         Return the list of registered tenants
         """
+        if not State.tenant_cache[1].enable_multisite:
+            raise errors.ForbiddenOperation
+
         return get_tenant_list()
 
     @inlineCallbacks
@@ -126,9 +129,13 @@ class TenantCollection(BaseHandler):
         """
         request = self.validate_message(self.request.content.read(), requests.AdminTenantDesc)
 
+        if not State.tenant_cache[1].enable_multisite:
+            raise errors.ForbiddenOperation
+
         t = yield create(request)
 
         refresh_tenant_states()
+        log.info('Created new tenant with id: %d', t.id, tid=self.request.tid)
 
         returnValue(t)
 
@@ -143,9 +150,13 @@ class TenantInstance(BaseHandler):
         """
         Delete the specified tenant.
         """
+        if not State.tenant_cache[1].enable_multisite or tenant_id == 1:
+            raise errors.ForbiddenOperation
+
         t = yield delete(int(tenant_id))
 
         refresh_tenant_states()
+        log.info('Removed tenant with id: %d', tenant_id, tid=self.request.tid)
 
         returnValue(t)
 
@@ -157,6 +168,9 @@ class TenantInstance(BaseHandler):
         request = self.validate_message(self.request.content.read(),
                                         requests.AdminTenantDesc)
 
+        if not State.tenant_cache[1].enable_multisite or tenant_id == 1:
+            raise errors.ForbiddenOperation
+
         yield update(int(tenant_id), request)
 
         refresh_tenant_states()
@@ -164,4 +178,7 @@ class TenantInstance(BaseHandler):
         returnValue(None)
 
     def get(self, tenant_id):
+        if not State.tenant_cache[1].enable_multisite:
+            raise errors.ForbiddenOperation
+
         return get(id=int(tenant_id))
