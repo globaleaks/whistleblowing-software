@@ -51,7 +51,7 @@ def MIME_mail_build(src_name, src_mail, dest_name, dest_mail, title, mail_body):
     return StringIO.StringIO(multipart.as_string())
 
 
-def sendmail(username, password, smtp_host, smtp_port, security, from_name, from_address, to_address, subject, body, anonymize=True, socks_host='127.0.0.1', socks_port=9050):
+def sendmail(tid, username, password, smtp_host, smtp_port, security, from_name, from_address, to_address, subject, body, anonymize=True, socks_host='127.0.0.1', socks_port=9050):
     """
     Send an email using SMTPS/SMTP+TLS and maybe torify the connection.
 
@@ -76,7 +76,8 @@ def sendmail(username, password, smtp_host, smtp_port, security, from_name, from
                   to_address,
                   smtp_host,
                   smtp_port,
-                  security)
+                  security,
+                  tid=tid)
 
         context_factory = TLSClientContextFactory()
 
@@ -112,7 +113,7 @@ def sendmail(username, password, smtp_host, smtp_port, security, from_name, from
             """
             @param failure {Failure {twisted.internet.FirstError {Failure}}}
             """
-            log.err("SMTP connection failed (Exception: %s)", failure.value.subFailure.value)
+            log.err("SMTP connection failed (Exception: %s)", failure.value.subFailure.valued, tid=tid)
             log.debug(failure)
             return False
 
@@ -129,7 +130,7 @@ def sendmail(username, password, smtp_host, smtp_port, security, from_name, from
 
     except Exception as excep:
         # avoids raising an exception inside email logic to avoid chained errors
-        log.err("Unexpected exception in sendmail: %s", str(excep))
+        log.err("Unexpected exception in sendmail:", str(excep), tid=tid)
         return defer.succeed(False)
 
 

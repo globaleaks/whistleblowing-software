@@ -17,11 +17,13 @@ import traceback
 import uuid
 from datetime import datetime, timedelta
 
-from globaleaks import LANGUAGES_SUPPORTED_CODES
 from twisted.internet import reactor
 from twisted.internet.defer import Deferred
 from twisted.python import log as twlog
 from twisted.python import util, failure
+from twisted.web.http import _escape
+
+from globaleaks import LANGUAGES_SUPPORTED_CODES
 
 
 def get_disk_space(path):
@@ -134,6 +136,21 @@ def log_remove_escapes(s):
             return codecs.encode(unicodelogmsg, 'unicode_escape')
 
 
+def timedLogFormatter(timestamp, request):
+    duration = -1
+    if hasattr(request, 'start_time'):
+        duration = timedelta_to_milliseconds(datetime.now() - request.start_time)
+
+    return (u'[-] [%(tid)s] %(code)s %(method)s %(uri)s %(length)dB %(duration)dms' % dict(
+              duration=duration,
+              method=_escape(request.method),
+              uri=_escape(request.uri),
+              proto=_escape(request.clientproto),
+              code=request.code,
+              length=request.sentLength,
+              tid=request.tid))
+
+
 class GLLogObserver(twlog.FileLogObserver):
     """
     Tracks and logs exceptions generated within the application
@@ -171,7 +188,7 @@ class Logger(object):
     def setloglevel(self, loglevel):
         self.loglevel = loglevel
 
-    def _print_logline(self, prefix, msg, *args):
+    def _print_logline(self, prefix, msg, *args, **kwargs):
         if not isinstance(msg, str) and not isinstance(msg, unicode):
             msg = str(msg)
 
@@ -182,19 +199,22 @@ class Logger(object):
 
         msg = log_remove_escapes(msg)
 
-        print('[' + prefix + '] ' + msg)
+        tid = kwargs.get('tid', None)
+        p = '[%s]' % prefix if tid is None else '[%s] [%d]' % (prefix, tid)
 
-    def debug(self, msg, *args):
+        print(p, msg)
+
+    def debug(self, msg, *args, **kwargs):
         if self.loglevel and self.loglevel <= logging.DEBUG:
-            self._print_logline('D', msg, *args)
+            self._print_logline('D', msg, *args, **kwargs)
 
-    def info(self, msg, *args):
+    def info(self, msg, *args, **kwargs):
         if self.loglevel and self.loglevel <= logging.INFO:
-            self._print_logline('I', msg, *args)
+            self._print_logline('I', msg, *args, **kwargs)
 
-    def err(self, msg, *args):
+    def err(self, msg, *args, **kwargs):
         if self.loglevel:
-            self._print_logline('E', msg, *args)
+            self._print_logline('E', msg, *args, **kwargs)
 
     def exception(self, error):
         """

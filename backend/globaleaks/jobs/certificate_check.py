@@ -60,7 +60,7 @@ class CertificateCheck(LoopingJob):
                 db_acme_cert_issuance(store, tid)
             except Exception as excep:
                 self.acme_failures =+ 1
-                log.err('ACME certificate renewal [%d] failed with: %s', tid, excep)
+                log.err('ACME certificate renewal failed with: %s', excep, tid=tid)
                 raise
 
             self.should_restart_https = True
@@ -69,7 +69,7 @@ class CertificateCheck(LoopingJob):
         # Regular certificates expiration checks
         elif datetime.now() > expiration_date - timedelta(days=self.notify_expr_within):
             expiration_date = datetime_to_ISO8601(expiration_date)
-            log.info('The HTTPS Certificate [%d] is expiring on %s', tid, expiration_date)
+            log.info('The HTTPS Certificate is expiring on %s', expiration_date, tid=tid)
             if not self.state.tenant_cache[tid].notification.disable_admin_notification_emails:
                 self.certificate_mail_creation(store, tid, expiration_date)
 

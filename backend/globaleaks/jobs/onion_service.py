@@ -126,20 +126,20 @@ class OnionService(BaseJob):
         hs_loc = ('80 localhost:8083')
         if not hostname and not key:
             if tid in self.startup_semaphore:
-                log.debug('Still waiting for hidden service [%d] to start', tid)
+                log.debug('Still waiting for hidden service to start', tid=tid)
                 return defer.succeed(None)
 
-            log.info('Creating new onion service [%d]', tid)
+            log.info('Creating new onion service', tid=tid)
             ephs = EphemeralHiddenService(hs_loc)
             self.startup_semaphore.add(tid)
         else:
-            log.info('Setting up existing onion service [%d] %s', tid, hostname)
+            log.info('Setting up existing onion service %s', hostname, tid=tid)
             ephs = EphemeralHiddenService(hs_loc, key)
             self.hs_map[hostname] = ephs
 
         @defer.inlineCallbacks
         def init_callback(ret):
-            log.info('Initialization of hidden-service [%d] %s completed.', tid, ephs.hostname)
+            log.info('Initialization of hidden-service %s completed.', ephs.hostname, tid=tid)
             if not hostname and not key:
                 self.startup_semaphore.remove(tid)
                 if tid in State.tenant_cache:

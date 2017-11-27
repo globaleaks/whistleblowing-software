@@ -451,7 +451,7 @@ class BaseHandler(object):
         chunk_size = len(self.request.args['file'][0])
         if ((chunk_size / (1024 * 1024)) > self.state.tenant_cache[1].maximum_filesize or
             (total_file_size / (1024 * 1024)) > self.state.tenant_cache[1].maximum_filesize):
-            log.err("File upload request rejected: file too big")
+            log.err("File upload request rejected: file too big", tid=self.request.tid)
             raise errors.FileTooBig(self.state.tenant_cache[1].maximum_filesize)
 
         if flow_identifier not in Uploads:
@@ -483,7 +483,7 @@ class BaseHandler(object):
         if self.request.execution_time.seconds > self.handler_exec_time_threshold:
             err_tup = ("Handler [%s] exceeded execution threshold (of %d secs) with an execution time of %.2f seconds",
                        self.name, self.handler_exec_time_threshold, self.request.execution_time.seconds)
-            log.err(*err_tup)
+            log.err(tid=self.request.tid, *err_tup)
             self.state.schedule_exception_email(*err_tup)
 
         track_handler(self)
