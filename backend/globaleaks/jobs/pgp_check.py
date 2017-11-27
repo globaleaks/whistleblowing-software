@@ -80,7 +80,7 @@ class PGPCheck(LoopingJob):
                 user.pgp_key_expiration = datetime_null()
 
         for tid, expired_or_expiring in tenant_expiry_map.items():
-            if not self.state.tenant_cache[tid].notif.disable_admin_notification_emails:
+            if not self.state.tenant_cache[tid].notification.disable_admin_notification_emails:
                 self.prepare_admin_pgp_alerts(store, tid, expired_or_expiring)
 
             for user_desc in expired_or_expiring:

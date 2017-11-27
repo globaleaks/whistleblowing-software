@@ -164,7 +164,7 @@ class Alarm(object):
                          (previous_activity_sl,
                          self.alarm_levels['activity']))
 
-        if State.tenant_cache[1].notif.disable_admin_notification_emails:
+        if State.tenant_cache[1].notification.disable_admin_notification_emails:
             return
 
         if not (self.alarm_levels['activity'] or self.alarm_levels['disk_space']):

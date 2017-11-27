@@ -703,7 +703,7 @@ class TestGLWithPopulatedDB(TestGL):
 
     @transact
     def set_itips_near_to_expire(self, store):
-        date = datetime_now() + timedelta(hours=State.tenant_cache[1].notif.tip_expiration_threshold - 1)
+        date = datetime_now() + timedelta(hours=State.tenant_cache[1].notification.tip_expiration_threshold - 1)
         store.find(models.InternalTip).set(expiration_date = date)
 
 

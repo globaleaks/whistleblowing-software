@@ -22,6 +22,10 @@ class EnabledLanguage(models.ModelWithTID):
         return [name for name in store.find(EnabledLanguage.name, EnabledLanguage.tid==tid)]
 
     @classmethod
+    def tid_list(cls, store):
+        return [(lang.tid, lang.name) for lang in store.find(EnabledLanguage).order_by('tid', 'name')]
+
+    @classmethod
     def add_new_lang(cls, store, tid, lang_code, appdata_dict):
         store.add(cls(tid, lang_code))
 

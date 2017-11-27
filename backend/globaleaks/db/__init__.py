@@ -4,11 +4,13 @@
 import os
 import sys
 import traceback
+
 from storm import exceptions
+from storm.expr import In, Or
 
 from globaleaks import models, security, DATABASE_VERSION, FIRST_DATABASE_VERSION_SUPPORTED
 from globaleaks.handlers.base import Session
-from globaleaks.models.config import Config
+from globaleaks.models.config import Config, NodeFactory, PrivateFactory, NotificationFactory
 from globaleaks.orm import transact, transact_sync
 from globaleaks.settings import Settings
 from globaleaks.state import State, TenantState
@@ -108,58 +110,74 @@ def sync_clean_untracked_files(store):
                 log.err("Failed to remove untracked file", file_to_remove)
 
 
-def db_get_exception_delivery_list(store, tid):
+def db_set_cache_exception_delivery_list(store, tenant_cache):
     """
-    Constructs a list of (email_addr, public_key) pairs that will receive errors from the platform.
-    If the email_addr is empty, drop the tuple from the list.
+    Constructs and sets a list of (email_addr, public_key) pairs that will receive
+    errors from the platform. If the email_addr is empty, drop the tuple from the list.
     """
-    notif_fact = models.config.NotificationFactory(store, tid)
-
     lst = []
 
-    if notif_fact.get_val(u'enable_developers_exception_notification'):
+    if tenant_cache.notification.enable_developers_exception_notification:
         lst.append((u'globaleaks-stackexception@lists.globaleaks.org', ''))
 
-    if notif_fact.get_val(u'enable_admin_exception_notification'):
+    if tenant_cache.notification.enable_admin_exception_notification:
         results = store.find(models.User, models.User.role==u'admin') \
-                      .values(models.User.mail_address, models.User.pgp_key_public)
+                       .values(models.User.mail_address, models.User.pgp_key_public)
 
         lst.extend([(mail, pub_key) for (mail, pub_key) in results])
 
-    return filter(lambda x: x[0] != '', lst)
+    if Settings.developer_name:
+        tenant_cache.notification.source_name = Settings.developer_name
+
+    tenant_cache.notification.exception_delivery_list = filter(lambda x: x[0] != '', lst)
 
 
-def db_refresh_tenant_cache(store, tid):
+def db_refresh_tenant_cache(store, tid_set):
     """
     This routine loads in memory few variables of node and notification tables
     that are subject to high usage.
     """
-    tenant_cache = ObjectDict(models.config.NodeFactory(store, tid).admin_export())
 
-    tenant_cache.accept_tor2web_access = {
-        'admin': tenant_cache.tor2web_admin,
-        'custodian': tenant_cache.tor2web_custodian,
-        'whistleblower': tenant_cache.tor2web_whistleblower,
-        'receiver': tenant_cache.tor2web_receiver
-    }
+    result_set = store.find(Config, Or(Config.var_group==u'node', Config.var_group==u'notification', Config.var_group==u'private'),
+                                    In(Config.tid, tid_set)).order_by(Config.tid, Config.var_group, Config.var_name)
 
-    tenant_cache.languages_enabled = models.l10n.EnabledLanguage.list(store, tid)
+    tenant_cache_dict = ObjectDict()
 
-    tenant_cache.notif = ObjectDict(models.config.NotificationFactory(store, tid).admin_export())
-    tenant_cache.notif.exception_delivery_list = db_get_exception_delivery_list(store, tid)
-    if Settings.developer_name:
-        tenant_cache.notif.source_name = Settings.developer_name
+    for cfg in result_set:
+        tenant_cache = tenant_cache_dict.setdefault(cfg.tid, ObjectDict())
+        cache_group = tenant_cache.setdefault(cfg.var_group, ObjectDict())
 
-    tenant_cache.private = ObjectDict(models.config.PrivateFactory(store, tid).mem_copy_export())
+        if cfg.var_group == 'node' and cfg.var_name in NodeFactory.admin_node:
+            tenant_cache[cfg.var_name] = cfg.get_v()
+        elif cfg.var_group == 'private' and cfg.var_name in PrivateFactory.mem_export_set:
+            cache_group[cfg.var_name] = cfg.get_v()
+        elif cfg.var_group == 'notification' and cfg.var_name in NotificationFactory.admin_notification:
+            cache_group[cfg.var_name] = cfg.get_v()
 
-    return tenant_cache
+    for tid, tenant_cache in tenant_cache_dict.items():
+        tenant_cache.accept_tor2web_access = {
+            'admin': tenant_cache.tor2web_admin,
+            'custodian': tenant_cache.tor2web_custodian,
+            'whistleblower': tenant_cache.tor2web_whistleblower,
+            'receiver': tenant_cache.tor2web_receiver
+        }
+
+    for tid, lang in models.l10n.EnabledLanguage.tid_list(store):
+        langs_enabled = tenant_cache_dict[tid].setdefault('languages_enabled', [])
+        langs_enabled.append(lang)
+
+    return tenant_cache_dict
+
+
+@transact
+def refresh_tenant_cache(store, tid_set):
+    return db_refresh_tenant_cache(store, tid_set)
 
 
 def db_refresh_memory_variables(store):
-    tenant_cache = dict()
     tenant_hostname_id_map = dict()
 
-    tenant_map = {tenant.id: tenant for tenant in store.find(models.Tenant)}
+    tenant_map = {tenant.id: tenant for tenant in store.find(models.Tenant, active=True)}
 
     for tid in set(State.tenant_state.keys()) - set(tenant_map.keys()):
         del State.tenant_state[tid]
@@ -167,18 +185,20 @@ def db_refresh_memory_variables(store):
     for tid in set(tenant_map.keys()) - set(State.tenant_state.keys()):
         State.tenant_state[tid] = TenantState(State.settings)
 
-    for tid in State.tenant_state:
-        tenant_cache[tid] = db_refresh_tenant_cache(store, tid)
+    tenant_cache_dict = db_refresh_tenant_cache(store, tenant_map.keys())
 
     # Ensure the api_token_session state is reset
-    if tenant_cache[1].private.admin_api_token_digest:
+    if tenant_cache_dict[1].private.admin_api_token_digest:
         api_id = store.find(models.User.id, models.User.tid==1, models.User.role==u'admin')\
                       .order_by(models.User.creation_date).first()
         if api_id is not None:
             State.api_token_session = Session(1, api_id, 'admin', 'enabled')
 
+    # Ensure the root tenant's exception delivery list is created
+    db_set_cache_exception_delivery_list(store, tenant_cache_dict[1])
+
     # Update state object with changes coming from tenant
-    root_hostname = tenant_cache[1].hostname
+    root_hostname = tenant_cache_dict[1].hostname
 
     for tid in State.tenant_state:
         tenant = tenant_map[tid]
@@ -193,15 +213,15 @@ def db_refresh_memory_variables(store):
         if root_hostname != "":
             hostnames.append('p{}.{}'.format(tid, root_hostname))
 
-        if tenant_cache[tid].hostname != "":
-            hostnames.append(tenant_cache[tid].hostname)
+        if tenant_cache_dict[tid].hostname != "":
+            hostnames.append(tenant_cache_dict[tid].hostname)
 
-	if tenant_cache[tid].onionservice != "":
-	    hostnames.append(tenant_cache[tid].onionservice)
+	if tenant_cache_dict[tid].onionservice != "":
+	    hostnames.append(tenant_cache_dict[tid].onionservice)
 
         tenant_hostname_id_map.update({h : tid for h in hostnames})
 
-    State.tenant_cache = tenant_cache
+    State.tenant_cache = tenant_cache_dict
     State.tenant_hostname_id_map = tenant_hostname_id_map
 
 

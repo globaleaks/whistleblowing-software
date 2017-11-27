@@ -76,13 +76,13 @@ def db_fix_fields_attrs(store, tid):
                 store.remove(r)
 
     # Add keys to the db that have been added to field_attrs
-    for field in store.find(models.Field):
+    for field in store.find(models.Field, tid=tid):
         typ = field.type if field.id not in special_lst else field.id
         attrs = field_attrs.get(typ, {})
         for attr_name, attr_dict in attrs.items():
             if not store.find(models.FieldAttr,
                               And(models.FieldAttr.field_id == field.id,
-                                  models.FieldAttr.name == attr_name)).one():
+                                  models.FieldAttr.name == attr_name), tid=tid).one():
                 log.debug("Adding new field attr %s.%s", typ, attr_name)
                 attr_dict['tid'] = tid
                 attr_dict['name'] = attr_name

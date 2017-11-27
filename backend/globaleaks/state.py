@@ -115,13 +115,13 @@ class StateClass(ObjectDict):
            # during unit testing do not try to send the mail
            return defer.succeed(True)
 
-       return sendmail(self.tenant_cache[tid].notif.username,
+       return sendmail(self.tenant_cache[tid].notification.username,
                        self.tenant_cache[tid].private.smtp_password,
-                       self.tenant_cache[tid].notif.server,
-                       self.tenant_cache[tid].notif.port,
-                       self.tenant_cache[tid].notif.security,
-                       self.tenant_cache[tid].notif.source_name,
-                       self.tenant_cache[tid].notif.source_email,
+                       self.tenant_cache[tid].notification.server,
+                       self.tenant_cache[tid].notification.port,
+                       self.tenant_cache[tid].notification.security,
+                       self.tenant_cache[tid].notification.source_name,
+                       self.tenant_cache[tid].notification.source_email,
                        to_address,
                        subject,
                        body,
@@ -155,7 +155,7 @@ class StateClass(ObjectDict):
         self.exceptions_email_count += 1
 
         mail_subject = "GlobaLeaks Exception"
-        delivery_list = self.tenant_cache[1].notif.exception_delivery_list
+        delivery_list = self.tenant_cache[1].notification.exception_delivery_list
 
         if self.settings.devel_mode:
             mail_subject +=  " [%s]" % self.settings.developer_name

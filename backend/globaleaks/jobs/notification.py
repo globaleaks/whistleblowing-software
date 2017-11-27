@@ -172,16 +172,16 @@ class MailGenerator(object):
         # https://github.com/globaleaks/GlobaLeaks/issues/798
         # TODO: the current solution is global and configurable only by the admin
         sent_emails = self.state.get_mail_counter(user_id)
-        if sent_emails >= self.state.tenant_cache[tid].notif.notification_threshold_per_hour:
+        if sent_emails >= self.state.tenant_cache[tid].notification.notification_threshold_per_hour:
             log.debug("Discarding emails for receiver %s due to threshold already exceeded for the current hour",
                       user_id)
             return
 
         self.state.increment_mail_counter(user_id)
-        if sent_emails >= self.state.tenant_cache[tid].notif.notification_threshold_per_hour:
+        if sent_emails >= self.state.tenant_cache[tid].notification.notification_threshold_per_hour:
             log.info("Reached threshold of %d emails with limit of %d for receiver %s",
                      sent_emails,
-                     self.state.tenant_cache[tid].notif.notification_threshold_per_hour,
+                     self.state.tenant_cache[tid].notification.notification_threshold_per_hour,
                      user_id)
 
             # simply changing the type of the notification causes
@@ -214,7 +214,7 @@ class MailGenerator(object):
             model = trigger_model_map[trigger]
 
             for tid, cache_item in self.state.tenant_cache.items():
-                if cache_item.notif.disable_receiver_notification_emails:
+                if cache_item.notification.disable_receiver_notification_emails:
                     store.find(model, tid=tid, new=True).set(new=False)
                     continue
 
