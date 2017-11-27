@@ -179,7 +179,7 @@ class SubmissionValidationFailure(GLException):
 
 class ForbiddenOperation(GLException):
     """
-    Receiver or Whistleblower has tried one operation not permitted by their privileges
+    A user has tried one operation not permitted by their privileges
     """
     reason = "Operation Forbidden"
     error_code = 25
