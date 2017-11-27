@@ -84,7 +84,7 @@ utility.deferred_sleep = deferred_sleep_mock
 class UTlog:
     @staticmethod
     def mlog(flag):
-        def log(msg, *args):
+        def log(msg, *args, **kwargs):
             msg = (msg % args) if len(args) else msg
 
             with open('./test.log', 'a') as f:
@@ -318,6 +318,7 @@ class TestGL(unittest.TestCase):
         allow_unencrypted = self.encryption_scenario in ['PLAINTEXT', 'MIXED']
 
         yield update_node_setting(u'allow_unencrypted', allow_unencrypted)
+        yield update_node_setting(u'enable_multisite', True)
 
         yield db.refresh_memory_variables()
 
@@ -1011,7 +1012,7 @@ class MockDict:
             'enable_captcha': False,
             'enable_proof_of_work': False,
             'enable_experimental_features': False,
-            'enable_multisite': False,
+            'enable_multisite': True,
             'enable_custom_privacy_badge': False,
             'custom_privacy_badge_tor': u'',
             'custom_privacy_badge_none': u'',

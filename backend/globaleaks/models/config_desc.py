@@ -11,6 +11,10 @@ class Item:
 
     def __init__(self, *args, **kwargs):
         self.default = kwargs['default']
+
+        if 'default_factory' in kwargs:
+            self.default = kwargs['default_factory']()
+
         self.validator = kwargs.get('validator', None)
 
     def __repr__(self):
@@ -40,7 +44,7 @@ GLConfig = {
         'label': Unicode(validator=shorttext_v, default=u''),
         'active': Bool(default=True),
         'creation_date': Int(default=0),
-        'receipt_salt': Unicode(validator=shorttext_v, default=salt()), # is always customized
+        'receipt_salt': Unicode(validator=shorttext_v, default_factory=salt), # is always customized
         'smtp_password': Unicode(validator=shorttext_v, default=u'yes_you_really_should_change_me'),
 
         'version': Unicode(default=unicode(__version__)),
