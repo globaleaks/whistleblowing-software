@@ -135,7 +135,7 @@ class TenantCollection(BaseHandler):
         t = yield create(request)
 
         refresh_tenant_states()
-        log.info('Created new tenant with id: %d', t.id, tid=self.request.tid)
+        log.info('Created new tenant with id: %d', t['id'], tid=self.request.tid)
 
         returnValue(t)
 

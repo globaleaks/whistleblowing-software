@@ -136,7 +136,7 @@ class StateClass(ObjectDict):
     def schedule_exception_email(self, exception_text, *args):
         from globaleaks.transactions import schedule_email
 
-        if not hasattr(self.tenant_cache[1], 'notif'):
+        if not hasattr(self.tenant_cache[1], 'notification'):
             log.err("Error: Cannot send mail exception before complete initialization.")
             return
 
