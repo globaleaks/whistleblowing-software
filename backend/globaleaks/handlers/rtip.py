@@ -14,8 +14,7 @@ from twisted.internet import threads
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import models
-from globaleaks.handlers.base import BaseHandler, \
-    directory_traversal_check, write_upload_plaintext_to_disk
+from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.custodian import serialize_identityaccessrequest, db_get_identityaccessrequest_list
 from globaleaks.handlers.operation import OperationHandler
 from globaleaks.handlers.submission import serialize_usertip
@@ -23,6 +22,7 @@ from globaleaks.models import serializers
 from globaleaks.orm import transact
 from globaleaks.rest import errors, requests
 from globaleaks.settings import Settings
+from globaleaks.security import directory_traversal_check
 from globaleaks.state import State
 from globaleaks.utils.utility import log, get_expiration, datetime_now, datetime_never, \
     datetime_to_ISO8601
@@ -485,6 +485,7 @@ class WhistleblowerFileHandler(BaseHandler):
     Receiver interface to upload a file intended for the whistleblower
     """
     check_roles = 'receiver'
+    upload_handler = True
 
     @transact
     def can_perform_action(self, store, tid, tip_id, filename):
@@ -503,29 +504,25 @@ class WhistleblowerFileHandler(BaseHandler):
         """
         Errors: ModelNotFound, ForbiddenOperation
         """
-        uploaded_file = self.get_file_upload()
-        if uploaded_file is None:
-            return
-
-        yield self.can_perform_action(self.request.tid, tip_id, uploaded_file['name'])
+        yield self.can_perform_action(self.request.tid, tip_id, self.uploaded_file['name'])
 
         rtip = yield get_rtip(self.request.tid, self.current_user.user_id, tip_id, self.request.language)
 
         # First: dump the file in the filesystem
-        filename = string.split(os.path.basename(uploaded_file['path']), '.aes')[0] + '.plain'
+        filename = string.split(os.path.basename(self.uploaded_file['path']), '.aes')[0] + '.plain'
 
         dst = os.path.join(Settings.attachments_path, filename)
 
         directory_traversal_check(Settings.attachments_path, dst)
 
-        uploaded_file = yield threads.deferToThread(write_upload_plaintext_to_disk, uploaded_file, dst)
+        yield threads.deferToThread(self.write_upload_plaintext_to_disk, dst)
 
-        uploaded_file['creation_date'] = datetime_now()
-        uploaded_file['submission'] = False
+        self.uploaded_file['creation_date'] = datetime_now()
+        self.uploaded_file['submission'] = False
 
-        yield register_wbfile_on_db(self.request.tid, rtip['id'], uploaded_file)
+        yield register_wbfile_on_db(self.request.tid, rtip['id'], self.uploaded_file)
 
-        log.debug("Recorded new WhistleblowerFile %s", uploaded_file['name'])
+        log.debug("Recorded new WhistleblowerFile %s", self.uploaded_file['name'])
 
 
 class WBFileHandler(BaseHandler):

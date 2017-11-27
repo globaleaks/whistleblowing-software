@@ -91,28 +91,24 @@ def receiverfile_planning(store):
     return receiverfiles_maps
 
 
-def fsops_pgp_encrypt(attachmens_path, fpath, recipient_pgp):
+def fsops_pgp_encrypt(state, fpath, key, fingerprint):
     """
+    Encrypt the file for a speficic key
+
     return
         path of encrypted file,
         length of the encrypted file
-
-    this function is used to encrypt a file for a specific recipient.
-    commonly 'receiver_desc' is expected as second argument;
-    anyhow a simpler dict can be used.
-
-    required keys are checked on top
     """
     gpoj = GLBPGP()
 
     try:
-        gpoj.load_key(recipient_pgp['pgp_key_public'])
+        gpoj.load_key(key)
 
-        filepath = os.path.join(Settings.attachments_path, fpath)
+        filepath = os.path.join(state.settings.attachments_path, fpath)
 
         with SecureFile(filepath) as f:
-            encrypted_file_path = os.path.join(os.path.abspath(Settings.attachments_path), "pgp_encrypted-%s" % generateRandomKey(16))
-            _, encrypted_file_size = gpoj.encrypt_file(recipient_pgp['pgp_key_fingerprint'], f, encrypted_file_path)
+            encrypted_file_path = os.path.join(os.path.abspath(state.settings.attachments_path), "pgp_encrypted-%s" % generateRandomKey(16))
+            _, encrypted_file_size = gpoj.encrypt_file(fingerprint, f, encrypted_file_path)
 
     except:
         raise
@@ -139,7 +135,10 @@ def process_files(state, receiverfiles_maps):
         for rcounter, rfileinfo in enumerate(receiverfiles_map['rfiles']):
             if rfileinfo['receiver']['pgp_key_public']:
                 try:
-                    new_path, new_size = fsops_pgp_encrypt(state.settings.attachments_path, rfileinfo['path'], rfileinfo['receiver'])
+                    new_path, new_size = fsops_pgp_encrypt(state,
+                                                           rfileinfo['path'],
+                                                           rfileinfo['receiver']['pgp_key_public'],
+                                                           rfileinfo['receiver']['pgp_key_fingerprint'])
 
                     log.debug("%d# Switch on Receiver File for %s path %s => %s size %d => %d",
                               rcounter,  rfileinfo['receiver']['name'], rfileinfo['path'],

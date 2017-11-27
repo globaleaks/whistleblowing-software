@@ -223,6 +223,7 @@ class WBTipMessageCollection(BaseHandler):
 
 class WBTipWBFileHandler(WBFileHandler):
     check_roles = 'whistleblower'
+    upload_handler = True
 
     def user_can_access(self, store, tid, wbfile):
         wbtip_id = store.find(models.WhistleblowerTip.id,

@@ -88,8 +88,6 @@ class SettingsClass(object):
                 self.client_path = path
                 break
 
-        self.set_ramdisk_path()
-
         self.authentication_lifetime = 3600
 
         self.accept_submissions = True
@@ -179,15 +177,14 @@ class SettingsClass(object):
         self.tmp_upload_path = os.path.abspath(os.path.join(self.working_path, 'tmp'))
         self.static_db_source = os.path.abspath(os.path.join(self.src_path, 'globaleaks', 'db'))
 
+        self.set_ramdisk_path()
+
         self.db_schema = os.path.join(self.static_db_source, 'sqlite.sql')
         self.db_file_name = 'glbackend-%d.db' % DATABASE_VERSION
         self.db_file_path = os.path.join(os.path.abspath(os.path.join(self.db_path, self.db_file_name)))
 
         self.logfile = os.path.abspath(os.path.join(self.log_path, 'globaleaks.log'))
         self.httplogfile = os.path.abspath(os.path.join(self.log_path, "http.log"))
-
-        # gnupg path is used by PGP as temporary directory with keyring and files encryption.
-        self.pgproot = os.path.abspath(os.path.join(self.ramdisk_path, 'gnupg'))
 
         # If we see that there is a custom build of GLClient, use that one.
         custom_client_path = '/var/globaleaks/client'
@@ -223,8 +220,6 @@ class SettingsClass(object):
 
         self.pid_path = os.path.join(self.src_path, 'workingdir')
         self.working_path = os.path.join(self.src_path, 'workingdir')
-
-        self.set_ramdisk_path()
 
     def load_cmdline_options(self):
         self.nodaemon = self.cmdline_options.nodaemon

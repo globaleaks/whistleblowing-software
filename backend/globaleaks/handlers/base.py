@@ -18,11 +18,9 @@ from globaleaks.rest import errors, requests
 from globaleaks.security import SecureTemporaryFile, directory_traversal_check, generateRandomKey, sha512
 from globaleaks.settings import Settings
 from globaleaks.utils.tempdict import TempDict
-from globaleaks.utils.utility import log, deferred_sleep
+from globaleaks.utils.utility import datetime_now, deferred_sleep, log
 
 HANDLER_EXEC_TIME_THRESHOLD = 120
-
-Uploads = TempDict(timeout=60*HANDLER_EXEC_TIME_THRESHOLD)
 
 
 class SessionsFactory(TempDict):
@@ -43,50 +41,6 @@ mimetypes.add_type('application/vnd.ms-fontobject', '.eot')
 mimetypes.add_type('application/x-font-ttf', '.ttf')
 mimetypes.add_type('application/woff', '.woff')
 mimetypes.add_type('application/woff2', '.woff2')
-
-
-def write_upload_plaintext_to_disk(uploaded_file, destination):
-    """
-    @param uploaded_file: uploaded_file data struct
-    @param the file destination
-    @return: a descriptor dictionary for the saved file
-    """
-    try:
-        if os.path.exists(destination):
-            log.err('Overwriting file %s with %d bytes', destination, uploaded_file['size'])
-        else:
-            log.debug('Creating file %s with %d bytes', destination, uploaded_file['size'])
-
-        with open(destination, 'w+') as fd:
-            uploaded_file['body'].seek(0, 0)
-            data = uploaded_file['body'].read(4000)
-            while data:
-                os.write(fd.fileno(), data)
-                data = uploaded_file['body'].read(4000)
-    finally:
-        uploaded_file['body'].close()
-        uploaded_file['path'] = destination
-
-    return uploaded_file
-
-
-def write_upload_encrypted_to_disk(uploaded_file, destination):
-    """
-    @param uploaded_file: uploaded_file data struct
-    @param the file destination
-    @return: a descriptor dictionary for the saved file
-    """
-    log.debug("Moving encrypted bytes %d from file [%s] %s => %s",
-              uploaded_file['size'],
-              uploaded_file['name'],
-              uploaded_file['path'],
-              destination)
-
-    shutil.move(uploaded_file['path'], destination)
-
-    uploaded_file['path'] = destination
-
-    return uploaded_file
 
 
 class FileProducer(object):
@@ -164,6 +118,8 @@ class BaseHandler(object):
     invalidate_cache = False
     bypass_basic_auth = False
     root_tenant_only = False
+    upload_handler = False
+    uploaded_file = None
 
     def __init__(self, state, request):
         self.name = type(self).__name__
@@ -441,7 +397,7 @@ class BaseHandler(object):
             return self.state.api_token_session
         return None
 
-    def get_file_upload(self):
+    def process_file_upload(self):
         if 'flowFilename' not in self.request.args:
             return None
 
@@ -454,20 +410,23 @@ class BaseHandler(object):
             log.err("File upload request rejected: file too big", tid=self.request.tid)
             raise errors.FileTooBig(self.state.tenant_cache[1].maximum_filesize)
 
-        if flow_identifier not in Uploads:
-            Uploads.set(flow_identifier, SecureTemporaryFile(Settings.tmp_upload_path))
+        if flow_identifier not in self.state.TempUploadFiles:
+            self.state.TempUploadFiles.set(flow_identifier, SecureTemporaryFile(Settings.tmp_upload_path))
 
-        f = Uploads.get(flow_identifier)
+        f = self.state.TempUploadFiles.get(flow_identifier)
         f.write(self.request.args['file'][0])
 
         if self.request.args['flowChunkNumber'][0] != self.request.args['flowTotalChunks'][0]:
             return None
 
+        f.finalize()
+
         mime_type, encoding = mimetypes.guess_type(self.request.args['flowFilename'][0])
         if mime_type is None:
             mime_type = 'application/octet-stream'
 
-        return {
+        self.uploaded_file = {
+            'date': datetime_now(),
             'name': self.request.args['flowFilename'][0],
             'type': mime_type,
             'size': total_file_size,
@@ -475,6 +434,43 @@ class BaseHandler(object):
             'body': f,
             'description': self.request.args.get('description', [''])[0]
         }
+
+    def write_upload_encrypted_to_disk(self, destination):
+        """
+        @param uploaded_file: uploaded_file data struct
+        @param the file destination
+        @return: a descriptor dictionary for the saved file
+        """
+        log.debug("Moving encrypted bytes %d from file [%s] %s => %s",
+                  self.uploaded_file['size'],
+                  self.uploaded_file['name'],
+                  self.uploaded_file['path'],
+                  destination)
+
+        shutil.move(self.uploaded_file['path'], destination)
+
+        self.uploaded_file['path'] = destination
+
+    def write_upload_plaintext_to_disk(self, destination):
+        """
+        @param uploaded_file: uploaded_file data struct
+        @param the file destination
+        @return: a descriptor dictionary for the saved file
+        """
+        try:
+            if os.path.exists(destination):
+                log.err('Overwriting file %s with %d bytes', destination, self.uploaded_file['size'])
+            else:
+                log.debug('Creating file %s with %d bytes', destination, self.uploaded_file['size'])
+
+            with open(destination, 'w+') as fd:
+                self.uploaded_file['body'].seek(0, 0)
+                data = self.uploaded_file['body'].read(4000)
+                while data:
+                    data = self.uploaded_file['body'].read(4000)
+                    os.write(fd.fileno(), data)
+        finally:
+            self.uploaded_file['path'] = destination
 
     @inlineCallbacks
     def execution_check(self):

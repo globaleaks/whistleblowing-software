@@ -13,10 +13,10 @@ import random
 import scrypt
 import shutil
 import string
+import tempfile
 import time
 from datetime import datetime
 from gnupg import GPG
-from tempfile import _TemporaryFileWrapper
 
 from cryptography.hazmat.backends import default_backend
 from cryptography.hazmat.primitives import constant_time, hashes
@@ -125,13 +125,14 @@ def overwrite_and_remove(absolutefpath, iterations_number=1):
     log.debug("Performed deletion of file: %s", absolutefpath)
 
 
-class SecureTemporaryFile(_TemporaryFileWrapper):
+class SecureTemporaryFile(tempfile._TemporaryFileWrapper):
     """
     WARNING!
     You can't use this File object like a normal file object,
     check .read and .write!
     """
     last_action = 'init'
+    finalize_called = False
 
     def __init__(self, filedir):
         """
@@ -150,12 +151,18 @@ class SecureTemporaryFile(_TemporaryFileWrapper):
         self.file = open(self.filepath, 'w+b')
 
         # last argument is 'True' because the file has to be deleted on .close()
-        _TemporaryFileWrapper.__init__(self, self.file, self.filepath, True)
+        tempfile._TemporaryFileWrapper.__init__(self, self.file, self.filepath, True)
 
     def initialize_cipher(self):
         self.cipher = Cipher(algorithms.AES(self.key), modes.CTR(self.key_counter_nonce), backend=crypto_backend)
         self.encryptor = self.cipher.encryptor()
         self.decryptor = self.cipher.decryptor()
+
+    def init_read(self):
+        self.last_action = 'read'
+        self.seek(0, 0)  # this is a trick just to misc write and read
+        self.initialize_cipher()
+        log.debug("First seek on %s", self.filepath)
 
     def create_key(self):
         """
@@ -207,22 +214,30 @@ class SecureTemporaryFile(_TemporaryFileWrapper):
 
         self.file.write(self.encryptor.update(data))
 
-    def close(self):
-        if not self.close_called:
+    def finalize(self):
+        if not self.finalize_called:
+            self.finalize_called = True
+
             try:
                 if any(x in self.file.mode for x in 'wa') and not self.encryptor_finalized:
                     self.encryptor_finalized = True
                     self.file.write(self.encryptor.finalize())
-
-            except Exception:
+            except:
                 pass
 
-            finally:
+
+    def close(self):
+        if not self.close_called:
+            self.finalize()
+
+            try:
                 if self.delete:
                     overwrite_and_remove(self.keypath)
+            except:
+                pass
 
         try:
-            _TemporaryFileWrapper.close(self)
+            tempfile._TemporaryFileWrapper.close(self)
         except Exception:
             pass
 
@@ -231,14 +246,10 @@ class SecureTemporaryFile(_TemporaryFileWrapper):
         The first time 'read' is called after a write, seek(0) is performed
         """
         if self.last_action == 'write':
-            if any(x in self.file.mode for x in 'wa') and not self.encryptor_finalized:
-                self.encryptor_finalized = True
-                self.file.write(self.encryptor.finalize())
+            self.finalize()
 
-            self.seek(0, 0)  # this is a trick just to misc write and read
-            self.initialize_cipher()
-            self.last_action = 'read'
-            log.debug("First seek on %s", self.filepath)
+        if self.last_action != 'read':
+            self.init_read()
 
         if c is None:
             data = self.file.read()
@@ -262,7 +273,7 @@ class SecureFile(SecureTemporaryFile):
         self.file = open(self.filepath, 'r+b')
 
         # last argument is 'False' because the file has not to be deleted on .close()
-        _TemporaryFileWrapper.__init__(self, self.file, self.filepath, False) # pylint: disable=W0233
+        tempfile._TemporaryFileWrapper.__init__(self, self.file, self.filepath, False) # pylint: disable=W0233
 
         self.load_key()
 
@@ -348,9 +359,7 @@ class GLBPGP(object):
         every time is needed, a new keyring is created here.
         """
         try:
-            temp_pgproot = os.path.join(Settings.pgproot, "%s" % generateRandomKey(8))
-            os.makedirs(temp_pgproot, mode=0700)
-            self.gnupg = GPG(gnupghome=temp_pgproot, options=['--trust-model', 'always'])
+            self.gnupg = GPG(gnupghome=tempfile.mkdtemp(), options=['--trust-model', 'always'])
             self.gnupg.encoding = "UTF-8"
         except OSError as excep:
             log.err("Critical, OS error in operating with GnuPG home: %s", excep)

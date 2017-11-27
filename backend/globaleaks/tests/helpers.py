@@ -17,8 +17,7 @@ from globaleaks.db.appdata import load_appdata
 from globaleaks.orm import transact
 from globaleaks.handlers import rtip, wbtip
 from globaleaks.handlers.authentication import db_get_wbtip_by_receipt
-from globaleaks.handlers.base import BaseHandler, Sessions, new_session, \
-    write_upload_encrypted_to_disk
+from globaleaks.handlers.base import BaseHandler, Sessions, new_session
 from globaleaks.handlers.admin.context import create_context, get_context
 from globaleaks.handlers.admin.field import db_create_field
 from globaleaks.handlers.admin.step import create_step
@@ -106,8 +105,6 @@ def init_glsettings_for_unit_tests():
     Settings.working_path = './working_path'
 
     Settings.eval_paths()
-
-    Settings.set_ramdisk_path()
 
     if os.path.exists(Settings.working_path):
         dir_util.remove_tree(Settings.working_path, 0)
@@ -199,9 +196,9 @@ def get_dummy_file(filename=None, content_type=None, content=None):
     temporary_file = SecureTemporaryFile(Settings.tmp_upload_path)
 
     temporary_file.write(content)
-    temporary_file.avoid_delete()
 
     return {
+        'date': datetime_now(),
         'name': filename,
         'description': 'description',
         'body': temporary_file,
@@ -472,7 +469,6 @@ class TestGL(unittest.TestCase):
           'longurl': '/longurl' + str(x)
         }
 
-    @inlineCallbacks
     def emulate_file_upload(self, token, n):
         """
         This emulates the file upload of an incomplete submission
@@ -480,15 +476,16 @@ class TestGL(unittest.TestCase):
         for _ in range(n):
             dummyFile = self.get_dummy_file()
 
+            dummyFile['body'].avoid_delete()
+            dummyFile['body'].close()
+
             dst = os.path.join(Settings.attachments_path,
                                os.path.basename(dummyFile['path']))
 
-            dummyFile = yield threads.deferToThread(write_upload_encrypted_to_disk, dummyFile, dst)
-            dummyFile['date'] = datetime_null()
+            shutil.move(dummyFile['path'], dst)
+            dummyFile['path'] = dst
 
             token.associate_file(dummyFile)
-
-            dummyFile['body'].close()
 
     def pollute_events(self, number_of_times=10):
         for _ in range(number_of_times):
@@ -616,9 +613,8 @@ class TestGLWithPopulatedDB(TestGL):
         self.dummyToken = token.Token(1, 'submission')
         self.dummyToken.solve()
 
-    @inlineCallbacks
     def perform_submission_uploads(self):
-        yield self.emulate_file_upload(self.dummyToken, self.population_of_attachments)
+        self.emulate_file_upload(self.dummyToken, self.population_of_attachments)
 
     @inlineCallbacks
     def perform_submission_actions(self):
@@ -680,7 +676,7 @@ class TestGLWithPopulatedDB(TestGL):
         """Populates the DB with tips, comments, messages and files"""
         for x in range(self.population_of_submissions):
             self.perform_submission_start()
-            yield self.perform_submission_uploads()
+            self.perform_submission_uploads()
             yield self.perform_submission_actions()
 
         yield self.perform_post_submission_actions()
@@ -690,7 +686,7 @@ class TestGLWithPopulatedDB(TestGL):
     @inlineCallbacks
     def perform_minimal_submission(self):
         self.perform_submission_start()
-        yield self.perform_submission_uploads()
+        self.perform_submission_uploads()
         yield self.perform_submission_actions()
 
     @transact
@@ -787,6 +783,9 @@ class TestHandler(TestGLWithPopulatedDB):
         if role is not None:
             session = new_session(1, user_id, role, 'enabled')
             handler.request.headers['x-session'] = session.id
+
+        if handler.upload_handler:
+            handler.uploaded_file = self.get_dummy_file()
 
         return handler
 

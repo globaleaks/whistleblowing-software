@@ -10,7 +10,7 @@ from twisted.internet import threads
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import models
-from globaleaks.handlers.base import BaseHandler, write_upload_encrypted_to_disk
+from globaleaks.handlers.base import BaseHandler
 from globaleaks.models import serializers
 from globaleaks.orm import transact
 from globaleaks.rest import errors
@@ -49,47 +49,24 @@ def get_itip_id_by_wbtip_id(store, tid, wbtip_id):
     return wbtip.id
 
 
-# Different from SubmissionAttachment because there are different authentication requirements
-class PostSubmissionAttachment(BaseHandler):
-    """
-    WhistleBlower interface to upload a new file for an existing submission
-    """
-    check_roles = 'whistleblower'
-
-    @inlineCallbacks
-    def post(self):
-        """
-        Errors: ModelNotFound
-        """
-        itip_id = yield get_itip_id_by_wbtip_id(self.request.tid, self.current_user.user_id)
-
-        uploaded_file = self.get_file_upload()
-        if uploaded_file is None:
-            return
-
-        uploaded_file['body'].avoid_delete()
-        uploaded_file['body'].close()
-
-        # First: dump the file in the filesystem
-        dst = os.path.join(Settings.attachments_path,
-                           os.path.basename(uploaded_file['path']))
-
-        directory_traversal_check(Settings.attachments_path, dst)
-
-        uploaded_file = yield threads.deferToThread(write_upload_encrypted_to_disk, uploaded_file, dst)
-
-        uploaded_file['date'] = datetime_now()
-        uploaded_file['submission'] = False
-
-        # Second: register the file in the database
-        yield register_ifile_on_db(self.request.tid, uploaded_file, itip_id)
-
-
 class SubmissionAttachment(BaseHandler):
     """
     WhistleBlower interface to upload a new file for a non-finalized submission
     """
     check_roles = 'unauthenticated'
+    upload_handler = True
+
+    @inlineCallbacks
+    def handle_attachment(self):
+        self.uploaded_file['body'].avoid_delete()
+        self.uploaded_file['body'].close()
+
+        dst = os.path.join(Settings.attachments_path,
+                           os.path.basename(self.uploaded_file['path']))
+
+        directory_traversal_check(Settings.attachments_path, dst)
+
+        yield self.write_upload_encrypted_to_disk(dst)
 
     @inlineCallbacks
     def post(self, token_id):
@@ -98,22 +75,30 @@ class SubmissionAttachment(BaseHandler):
         """
         token = TokenList.get(token_id)
 
-        log.debug("file upload with token associated: %s" % token)
+        yield self.handle_attachment()
 
-        uploaded_file = self.get_file_upload()
-        if uploaded_file is None:
-            return
+        self.uploaded_file['submission'] = True
 
-        uploaded_file['body'].avoid_delete()
-        uploaded_file['body'].close()
+        token.associate_file(self.uploaded_file)
 
-        dst = os.path.join(Settings.attachments_path,
-                           os.path.basename(uploaded_file['path']))
 
-        directory_traversal_check(Settings.attachments_path, dst)
+class PostSubmissionAttachment(SubmissionAttachment):
+    """
+    WhistleBlower interface to upload a new file for an existing submission
+    """
+    check_roles = 'whistleblower'
+    upload_handler = True
 
-        uploaded_file = yield threads.deferToThread(write_upload_encrypted_to_disk, uploaded_file, dst)
-        uploaded_file['date'] = datetime_now()
-        uploaded_file['submission'] = True
+    @inlineCallbacks
+    def post(self):
+        """
+        Errors: ModelNotFound
+        """
+        itip_id = yield get_itip_id_by_wbtip_id(self.request.tid, self.current_user.user_id)
 
-        token.associate_file(uploaded_file)
+        yield self.handle_attachment()
+
+        self.uploaded_file['submission'] = False
+
+        # Second: register the file in the database
+        yield register_ifile_on_db(self.request.tid, self.uploaded_file, itip_id)
