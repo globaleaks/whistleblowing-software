@@ -1,8 +1,16 @@
 # -*- coding: utf-8 -*-
 from globaleaks.models import Counter
-from globaleaks.orm import get_store, transact
+from globaleaks.orm import get_store, transact, TenantIterator
 from globaleaks.tests import helpers
 from twisted.internet.defer import inlineCallbacks
+
+
+class MockStormResult(object):
+    def __init__(self, tid):
+        self.tid = tid
+
+    def __repr__(self):
+        return '<msr[{}] {}>'.format(self.tid, str(id(self))[-4:])
 
 
 class TestORM(helpers.TestGL):
@@ -30,6 +38,22 @@ class TestORM(helpers.TestGL):
     def _transact_with_exception(self, store):
         self.db_add_config(store)
         raise Exception("antani")
+
+    def test_tenant_iterator(self):
+        f = MockStormResult
+
+        input_lst = [f(1), f(1), f(1), f(2), f(2), f(3), f(5), f(7), f(7), f(2), f(1)]
+        output_lst = [f.tid for f in TenantIterator(input_lst)]
+
+        expected_sets = [{1,2,3,5,7}, {1,2,7}, {1,2}, {1}]
+
+        for s in expected_sets:
+            output_g = set(output_lst[:len(s)])
+            output_lst = output_lst[len(s):]
+
+            self.assertEqual(output_g, s) 
+
+        self.assertFalse(output_lst)
 
     def test_transaction_pragmas(self):
         return self._transaction_pragmas()

@@ -1,6 +1,7 @@
 # -*- coding: utf-8
 # orm: contains main hooks to storm ORM
 # ******
+import sys
 import random
 import threading
 
@@ -141,27 +142,23 @@ class transact_sync(transact):
 
 
 class TenantIterator:
-    def __init__(self, resultset, limit=-1):
+    def __init__(self, resultset, limit=sys.maxint):
         self.tidmap = {}
-        self.elems = []
         self.limit = limit
+        self.elems = []
 
         for r in resultset:
             self.tidmap.setdefault(r.tid, []).append(r)
 
-        keys = self.tidmap.keys()
-        random.shuffle(keys)
-
-        while(1):
-            exit = True
+        while len(self.tidmap.keys()) > 0 and len(self.elems) < limit:
+            keys = self.tidmap.keys()
+            random.shuffle(keys)
+            
             for k in keys:
-                if len(self.tidmap[k]):
-                    exit = False
+                try:
                     self.elems.append(self.tidmap[k].pop())
-                    if limit != -1 and len(self.elems) == limit:
-                        return
-            if exit:
-                return
+                except IndexError:
+                    self.tidmap.pop(k)
 
     def __iter__(self):
         return self
