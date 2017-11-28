@@ -2,6 +2,8 @@
 # Implement the notification of new submissions
 import copy
 
+from storm.expr import In
+
 from twisted.internet import defer, reactor, threads
 
 from globaleaks import models
@@ -220,9 +222,9 @@ class MailGenerator(object):
                           count, trigger)
 
 
-@transact
-def delete_sent_mail(store, mail_id):
-    store.find(models.Mail, id=mail_id).remove()
+@transact_sync
+def delete_sent_mails(store, mail_ids):
+    store.find(models.Mail, In(models.Mail.id, mail_ids)).remove()
 
 
 @transact_sync
@@ -248,18 +250,23 @@ class NotificationSchedule(NetLoopingJob):
     name = "Notification"
     interval = 5
     monitor_interval = 3 * 60
+    mails_to_delete = []
 
     @defer.inlineCallbacks
     def sendmail(self, mail):
         success = yield sendmail(mail['address'], mail['subject'], mail['body'])
         if success:
-            delete_sent_mail(mail['id'])
+            self.mails_to_delete.append(mail['id'])
 
     def spool_emails(self):
         for mail in get_mails_from_the_pool():
             threads.blockingCallFromThread(reactor, self.sendmail, mail)
 
+        delete_sent_mails(self.mails_to_delete)
+
     def operation(self):
+        del self.mails_to_delete[:]
+
         MailGenerator().generate()
 
         return self.spool_emails()
