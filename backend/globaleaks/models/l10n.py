@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from storm.expr import In
 from storm.locals import Unicode, Bool
 
 from globaleaks import LANGUAGES_SUPPORTED_CODES, models
@@ -22,8 +23,8 @@ class EnabledLanguage(models.ModelWithTID):
         return [name for name in store.find(EnabledLanguage.name, EnabledLanguage.tid==tid)]
 
     @classmethod
-    def tid_list(cls, store):
-        return [(lang.tid, lang.name) for lang in store.find(EnabledLanguage).order_by('tid', 'name')]
+    def tid_list(cls, store, tid_list):
+        return [(lang.tid, lang.name) for lang in store.find(EnabledLanguage, In(EnabledLanguage.tid, tid_list)).order_by('tid', 'name')]
 
     @classmethod
     def add_new_lang(cls, store, tid, lang_code, appdata_dict):

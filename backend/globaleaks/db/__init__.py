@@ -132,14 +132,14 @@ def db_set_cache_exception_delivery_list(store, tenant_cache):
     tenant_cache.notification.exception_delivery_list = filter(lambda x: x[0] != '', lst)
 
 
-def db_refresh_tenant_cache(store, tid_set):
+def db_refresh_tenant_cache(store, tid_list):
     """
     This routine loads in memory few variables of node and notification tables
     that are subject to high usage.
     """
 
     result_set = store.find(Config, Or(Config.var_group==u'node', Config.var_group==u'notification', Config.var_group==u'private'),
-                                    In(Config.tid, tid_set)).order_by(Config.tid, Config.var_group, Config.var_name)
+                                    In(Config.tid, tid_list)).order_by(Config.tid, Config.var_group, Config.var_name)
 
     tenant_cache_dict = ObjectDict()
 
@@ -162,7 +162,7 @@ def db_refresh_tenant_cache(store, tid_set):
             'receiver': tenant_cache.tor2web_receiver
         }
 
-    for tid, lang in models.l10n.EnabledLanguage.tid_list(store):
+    for tid, lang in models.l10n.EnabledLanguage.tid_list(store, tid_list):
         langs_enabled = tenant_cache_dict[tid].setdefault('languages_enabled', [])
         langs_enabled.append(lang)
 
@@ -170,8 +170,8 @@ def db_refresh_tenant_cache(store, tid_set):
 
 
 @transact
-def refresh_tenant_cache(store, tid_set):
-    return db_refresh_tenant_cache(store, tid_set)
+def refresh_tenant_cache(store, tid_list):
+    return db_refresh_tenant_cache(store, tid_list)
 
 
 def db_refresh_memory_variables(store):
