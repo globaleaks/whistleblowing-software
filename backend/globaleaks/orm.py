@@ -1,6 +1,7 @@
 # -*- coding: utf-8
 # orm: contains main hooks to storm ORM
 # ******
+import random
 import threading
 
 from datetime import datetime
@@ -137,3 +138,36 @@ class transact(object):
 class transact_sync(transact):
     def run(self, function, *args, **kwargs):
         return function(*args, **kwargs)
+
+
+class TenantIterator:
+    def __init__(self, resultset, limit=-1):
+        self.tidmap = {}
+        self.elems = []
+        self.limit = limit
+
+        for r in resultset:
+            self.tidmap.setdefault(r.tid, []).append(r)
+
+        keys = self.tidmap.keys()
+        random.shuffle(keys)
+
+        while(1):
+            exit = True
+            for k in keys:
+                if len(self.tidmap[k]):
+                    exit = False
+                    self.elems.append(self.tidmap[k].pop())
+                    if limit != -1 and len(self.elems) == limit:
+                        return
+            if exit:
+                return
+
+    def __iter__(self):
+        return self
+
+    def next(self):
+        if len(self.elems):
+            return self.elems.pop(0)
+        else:
+            raise StopIteration
