@@ -13,7 +13,7 @@ from globaleaks.handlers.admin.notification import db_get_notification
 from globaleaks.handlers.rtip import serialize_rtip, serialize_message, serialize_comment
 from globaleaks.handlers.user import user_serialize_user
 from globaleaks.jobs.base import NetLoopingJob
-from globaleaks.orm import transact, transact_sync
+from globaleaks.orm import transact, transact_sync, TenantIterator
 from globaleaks.security import encrypt_message
 from globaleaks.utils.templating import Templating
 from globaleaks.utils.utility import log
@@ -246,7 +246,7 @@ def get_mails_from_the_pool(store):
 
     store.find(models.Mail, models.Mail.processing_attempts > 9).remove()
 
-    for mail in store.find(models.Mail):
+    for mail in TenantIterator(store.find(models.Mail), 30):
         mail.processing_attempts += 1
 
         ret.append({
