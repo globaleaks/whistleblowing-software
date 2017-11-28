@@ -15,23 +15,6 @@ from globaleaks.orm import transact
 from globaleaks.utils.utility import uuid4
 
 @transact
-def save_staticfile(store, file_desc):
-    store.add(models.StaticFile(file_desc))
-
-
-@transact
-def delete_staticfile(store, tid, name):
-    f = store.find(models.StaticFile, tid=tid, name=name).one()
-    if f is not None:
-        try:
-            os.remove(f.path)
-        except:
-            pass
-
-        store.remove(f)
-
-
-@transact
 def get_files(store, tid):
     ret = []
 
