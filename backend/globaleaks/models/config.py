@@ -209,7 +209,11 @@ factories = [NodeFactory, NotificationFactory, PrivateFactory]
 def system_cfg_init(store, tid):
     for group_name, group in GLConfig.items():
         for var_name, desc in group.items():
-            store.add(Config(tid, group_name, var_name, desc.default))
+            if desc.default_factory is not None:
+                default = desc.default_factory()
+            else:
+                default = desc.default
+            store.add(Config(tid, group_name, var_name, default))
 
 
 def del_cfg_not_in_groups(store):
