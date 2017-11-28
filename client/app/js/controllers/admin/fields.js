@@ -1,16 +1,5 @@
-GLClient.controller('AdminFieldTemplatesCtrl', ['$scope', 'Utils', 'AdminFieldTemplateResource',
-  function($scope, Utils, AdminFieldTemplateResource) {
-    $scope.admin.fieldtemplates.$promise.then(function(fields) {
-      $scope.fields = fields;
-    });
-
-    $scope.addField = function(new_field) {
-      $scope.fields.push(new_field);
-    };
-  }
-]).
-controller('AdminFieldEditorCtrl', ['$scope', '$uibModal', 'Utils', 'AdminFieldResource', 'AdminFieldTemplateResource',
-  function($scope, $uibModal, Utils, AdminFieldResource, AdminFieldTemplateResource) {
+GLClient.controller('AdminFieldEditorCtrl', ['$scope', '$uibModal', 'Utils',
+  function($scope, $uibModal, Utils) {
     $scope.editable = $scope.field.editable && $scope.field.instance !== 'reference';
     $scope.editing = false;
     $scope.new_field = {};
@@ -78,7 +67,7 @@ controller('AdminFieldEditorCtrl', ['$scope', '$uibModal', 'Utils', 'AdminFieldR
     };
 
     $scope.delField = function(field) {
-      return Utils.deleteResource(AdminFieldTemplateResource, $scope.fields, field);
+      return Utils.deleteResource($scope.fieldResource, $scope.fields, field);
     };
 
     $scope.addOption = function () {
@@ -104,11 +93,7 @@ controller('AdminFieldEditorCtrl', ['$scope', '$uibModal', 'Utils', 'AdminFieldR
 
       Utils.assignUniqueOrderIndex(field.options);
 
-      if (field.instance === 'template') {
-        updated_field = new AdminFieldTemplateResource(field);
-      } else {
-        updated_field = new AdminFieldResource(field);
-      }
+      updated_field = new $scope.fieldResource(field);
 
       Utils.update(updated_field);
     };
@@ -214,6 +199,19 @@ controller('AdminFieldEditorCtrl', ['$scope', '$uibModal', 'Utils', 'AdminFieldR
 
     $scope.assignScorePointsDialog = function(option) {
       return Utils.openConfirmableModalDialog('views/partials/assign_score_points.html', option, $scope);
+    };
+  }
+]).
+controller('AdminFieldTemplatesCtrl', ['$scope', 'Utils', 'AdminFieldTemplateResource',
+  function($scope, Utils, AdminFieldTemplateResource) {
+    $scope.fieldResource = AdminFieldTemplateResource;
+
+    $scope.admin.fieldtemplates.$promise.then(function(fields) {
+      $scope.fields = fields;
+    });
+
+    $scope.addField = function(new_field) {
+      $scope.fields.push(new_field);
     };
   }
 ]).
