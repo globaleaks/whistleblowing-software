@@ -19,6 +19,7 @@ controller('AdminStepEditorCtrl', ['$scope', 'Utils', 'AdminStepResource', 'Admi
     $scope.editing = false;
     $scope.new_field = {};
     $scope.fields = $scope.step.children;
+    $scope.fieldResource = AdminFieldResource;
 
     $scope.toggleEditing = function () {
       $scope.editing = $scope.editing ^ 1;
@@ -30,11 +31,11 @@ controller('AdminStepEditorCtrl', ['$scope', 'Utils', 'AdminStepResource', 'Admi
     };
 
     $scope.addField = function(field) {
-      $scope.step.children.push(field);
+      $scope.fields.push(field);
     };
 
     $scope.delField = function(field) {
-      return Utils.deleteResource(AdminFieldResource, $scope.fields, field);
+      return Utils.deleteResource($scope.fieldResource, $scope.fields, field);
     };
 
     $scope.add_field = function() {
@@ -42,7 +43,7 @@ controller('AdminStepEditorCtrl', ['$scope', 'Utils', 'AdminStepResource', 'Admi
       field.label = $scope.new_field.label;
       field.type = $scope.new_field.type;
       field.attrs = $scope.admin.get_field_attrs(field.type);
-      field.y = $scope.newItemOrder($scope.step.children, 'y');
+      field.y = $scope.newItemOrder($scope.fields, 'y');
 
       if (field.type === 'fileupload') {
         field.multi_entry = true;
@@ -56,10 +57,10 @@ controller('AdminStepEditorCtrl', ['$scope', 'Utils', 'AdminStepResource', 'Admi
 
     $scope.add_field_from_template = function(template_id) {
       var field = $scope.admin_utils.new_field_from_template(template_id, $scope.step.id, '');
-      field.y = $scope.newItemOrder($scope.step.children, 'y');
+      field.y = $scope.newItemOrder($scope.fields, 'y');
 
       field.$save(function(new_field) {
-        $scope.step.children.push(new_field);
+        $scope.fields.push(new_field);
       });
     };
 
