@@ -7,20 +7,19 @@ GLClient.controller('AdminFieldTemplatesCtrl', ['$scope', 'Utils', 'AdminFieldTe
     $scope.addField = function(new_field) {
       $scope.fields.push(new_field);
     };
-
-    $scope.delField = function(field) {
-      return Utils.deleteResource(AdminFieldTemplateResource, $scope.fields, field);
-    };
   }
 ]).
-controller('AdminFieldEditorCtrl', ['$scope', '$filter', '$uibModal', 'Utils', 'AdminFieldResource', 'AdminFieldTemplateResource',
-  function($scope, $filter, $uibModal, Utils, AdminFieldResource, AdminFieldTemplateResource) {
+controller('AdminFieldEditorCtrl', ['$scope', '$uibModal', 'Utils', 'AdminFieldResource', 'AdminFieldTemplateResource',
+  function($scope, $uibModal, Utils, AdminFieldResource, AdminFieldTemplateResource) {
     $scope.editable = $scope.field.editable && $scope.field.instance !== 'reference';
     $scope.editing = false;
     $scope.new_field = {};
-    $scope.fields = $scope.field.children;
 
-    $scope.siblings = $filter('filter')($scope.siblings, {'id': '!' + $scope.field.id});
+    if ($scope.children) {
+      $scope.fields = $scope.children;
+    }
+
+    $scope.children = $scope.field.children;
 
     $scope.toggleEditing = function () {
       $scope.editing = !$scope.editing;
@@ -74,8 +73,12 @@ controller('AdminFieldEditorCtrl', ['$scope', '$filter', '$uibModal', 'Utils', '
       return false;
     };
 
-    $scope.addField = function(field) {
-      $scope.field.children.push(field);
+    $scope.addField = function(new_field) {
+      $scope.fields.push(new_field);
+    };
+
+    $scope.delField = function(field) {
+      return Utils.deleteResource(AdminFieldTemplateResource, $scope.fields, field);
     };
 
     $scope.addOption = function () {
