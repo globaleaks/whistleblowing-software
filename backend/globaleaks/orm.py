@@ -142,7 +142,7 @@ class transact_sync(transact):
 
 
 class TenantIterator:
-    def __init__(self, resultset, limit=sys.maxint):
+    def __init__(self, resultset, limit=-1):
         self.tidmap = {}
         self.limit = limit
         self.elems = []
@@ -150,7 +150,7 @@ class TenantIterator:
         for r in resultset:
             self.tidmap.setdefault(r.tid, []).append(r)
 
-        while len(self.tidmap.keys()) > 0 and len(self.elems) < limit:
+        while len(self.tidmap.keys()) > 0 and (limit <= 0 or len(self.elems) < limit):
             keys = self.tidmap.keys()
             random.shuffle(keys)
             
