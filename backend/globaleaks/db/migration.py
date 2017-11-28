@@ -86,26 +86,26 @@ migration_mapping = OrderedDict([
 
 
 def db_perform_data_update(store):
-    for tid in store.find(models.Tenant.id):
-        prv = PrivateFactory(store, tid)
 
-        stored_ver = prv.get_val(u'version')
-        t = (stored_ver, __version__)
+    prv = PrivateFactory(store, 1)
 
-        if stored_ver != __version__:
-            prv.set_val(u'version', __version__)
+    stored_ver = prv.get_val(u'version')
+    t = (stored_ver, __version__)
 
-            # The below commands can change the current store based on the what is
-            # currently stored in the DB.
+    if stored_ver != __version__:
+        prv.set_val(u'version', __version__)
 
+        # The below commands can change the current store based on the what is
+        # currently stored in the DB.
+        for tid in store.find(models.Tenant.id):
             appdata = load_appdata()
             db_update_defaults(store, tid)
             l10n.update_defaults(store, tid, appdata)
             config.update_defaults(store, tid)
 
-        ok = config.is_cfg_valid(store, tid)
-        if not ok:
-            raise Exception('Error: the system is not stable, update failed from %s to %s' % t)
+            ok = config.is_cfg_valid(store, tid)
+            if not ok:
+                raise Exception('Error: the system is not stable, update failed from %s to %s' % t)
 
 
 def perform_data_update(db_file):
