@@ -84,6 +84,8 @@ def update(store, id, request):
     tenant.update(request)
     db_refresh_memory_variables(store)
 
+    return serialize_tenant(store, tenant)
+
 
 @transact
 def delete(store, id):
@@ -92,26 +94,12 @@ def delete(store, id):
     db_refresh_memory_variables(store)
 
 
-def refresh_tenant_states():
-    # Remove selected onion services and add missing services
-    if State.onion_service_job:
-        def f(*args):
-            return State.onion_service_job.add_all_hidden_services()
-
-        State.onion_service_job.remove_unwanted_hidden_services().addBoth(f) # pylint: disable=no-member
-
-    # Power cycle HTTPS processes
-    def g(*args):
-        return State.process_supervisor.maybe_launch_https_workers()
-
-    State.process_supervisor.shutdown(friendly=True).addBoth(g)  # pylint: disable=no-member
-
-
 class TenantCollection(BaseHandler):
     check_roles = 'admin'
     cache_resource = True
     invalidate_cache = True
     root_tenant_only = True
+    invalidate_tenant_states = True
 
     def get(self):
         """
@@ -122,7 +110,6 @@ class TenantCollection(BaseHandler):
 
         return get_tenant_list()
 
-    @inlineCallbacks
     def post(self):
         """
         Create a new tenant
@@ -132,20 +119,17 @@ class TenantCollection(BaseHandler):
         if not State.tenant_cache[1].enable_multisite:
             raise errors.ForbiddenOperation
 
-        t = yield create(request)
+        log.info('Creating new tenant', tid=self.request.tid)
 
-        refresh_tenant_states()
-        log.info('Created new tenant with id: %d', t['id'], tid=self.request.tid)
-
-        returnValue(t)
+        return create(request)
 
 
 class TenantInstance(BaseHandler):
     check_roles = 'admin'
     invalidate_cache = True
     root_tenant_only = True
+    invalidate_tenant_states = True
 
-    @inlineCallbacks
     def delete(self, tenant_id):
         """
         Delete the specified tenant.
@@ -153,29 +137,23 @@ class TenantInstance(BaseHandler):
         if not State.tenant_cache[1].enable_multisite or tenant_id == 1:
             raise errors.ForbiddenOperation
 
-        t = yield delete(int(tenant_id))
+        log.info('Removing tenant with id: %d', tenant_id, tid=self.request.tid)
 
-        refresh_tenant_states()
-        log.info('Removed tenant with id: %d', tenant_id, tid=self.request.tid)
+        return delete(int(tenant_id))
 
-        returnValue(t)
-
-    @inlineCallbacks
     def put(self, tenant_id):
         """
         Update the specified tenant.
         """
+        tenant_id = int(tenant_id)
+
         request = self.validate_message(self.request.content.read(),
                                         requests.AdminTenantDesc)
 
         if not State.tenant_cache[1].enable_multisite or tenant_id == 1:
             raise errors.ForbiddenOperation
 
-        yield update(int(tenant_id), request)
-
-        refresh_tenant_states()
-
-        returnValue(None)
+        return update(tenant_id, request)
 
     def get(self, tenant_id):
         if not State.tenant_cache[1].enable_multisite:

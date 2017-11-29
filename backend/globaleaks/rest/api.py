@@ -160,7 +160,6 @@ api_spec = [
 
 
 def decorate_method(h, method):
-    decorator_authentication = getattr(h, 'authentication')
     value = getattr(h, 'check_roles')
     if isinstance(value, str):
         value = {value}
@@ -175,7 +174,10 @@ def decorate_method(h, method):
         if h.invalidate_cache:
             f = apicache.decorator_cache_invalidate(f)
 
-    f = decorator_authentication(f, value)
+        if h.invalidate_tenant_states:
+           f = getattr(h, 'decorator_invalidate_tenant_states')(f)
+
+    f = getattr(h, 'decorator_authentication')(f, value)
 
     setattr(h, method, f)
 

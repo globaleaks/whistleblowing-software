@@ -181,6 +181,20 @@ class StateClass(ObjectDict):
             # avoid waiting for the notification to send and instead rely on threads to handle it
             schedule_email(1, mail_address, mail_subject, mail_body)
 
+    def refresh_tenant_states(self):
+        # Remove selected onion services and add missing services
+        if self.onion_service_job:
+            def f(*args):
+                return self.onion_service_job.add_all_hidden_services()
+
+            self.onion_service_job.remove_unwanted_hidden_services().addBoth(f) # pylint: disable=no-member
+
+        # Power cycle HTTPS processes
+        def g(*args):
+            return self.process_supervisor.maybe_launch_https_workers()
+
+        self.process_supervisor.shutdown(friendly=True).addBoth(g)  # pylint: disable=no-member
+
 
 # State is a singleton class exported once
 State = StateClass()

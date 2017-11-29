@@ -116,6 +116,7 @@ class BaseHandler(object):
     uniform_answer_time = False
     cache_resource = False
     invalidate_cache = False
+    invalidate_tenant_states = False
     bypass_basic_auth = False
     root_tenant_only = False
     upload_handler = False
@@ -128,7 +129,7 @@ class BaseHandler(object):
         self.request.start_time = datetime.now()
 
     @staticmethod
-    def authentication(f, roles):
+    def decorator_authentication(f, roles):
         """
         Decorator for authenticated sessions.
         """
@@ -153,6 +154,23 @@ class BaseHandler(object):
                 return f(self, *args, **kwargs)
 
             raise errors.InvalidAuthentication
+
+        return wrapper
+
+    @staticmethod
+    def decorator_invalidate_tenant_states(f):
+        """
+        Decorator for invalidation of tenant states
+        """
+        def wrapper(self, *args, **kwargs):
+            d = defer.maybeDeferred(f, self, *args, **kwargs)
+            def callback(data):
+                self.state.refresh_tenant_states()
+                return data
+
+            d.addCallback(callback)
+
+            return d
 
         return wrapper
 
