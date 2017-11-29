@@ -3,15 +3,12 @@ GLClient.controller('AdminNetworkCtrl', ['$scope', '$http', function($scope, $ht
     {
       title:"Tor",
       template: "views/admin/network/tor.html"
-    }
-  ];
-
-  if ($scope.admin.node.https_possible) {
-    $scope.tabs.push({
+    },
+    {
       title:"HTTPS",
       template: "views/admin/network/https.html"
-    });
-  }
+    }
+  ];
 
   $scope.setHostname = function() {
     var req = {

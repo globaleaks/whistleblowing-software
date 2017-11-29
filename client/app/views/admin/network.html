@@ -3,7 +3,7 @@
   <div class="col-md-9">
     <div class="row" data-ng-controller="AdminNetworkCtrl">
       <uib-tabset>
-        <uib-tab data-ng-repeat="tab in tabs" heading="{{::tab.title | translate}}" disable="$index == 1 && !admin.node.reachable_via_web">
+        <uib-tab data-ng-repeat="tab in tabs" heading="{{::tab.title | translate}}" disable="$index == 1 && (!admin.node.https_possible || !admin.node.reachable_via_web)">
           <div class="tab-content" data-ng-include="tab.template"></div>
         </uib-tab>
       </uib-tabset>
