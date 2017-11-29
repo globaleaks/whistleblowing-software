@@ -171,7 +171,7 @@ def decorate_method(h, method):
             f = apicache.decorator_cache_get(f)
 
     else:
-        if h.invalidate_cache:
+        if h.invalidate_global_cache or h.invalidate_cache:
             f = apicache.decorator_cache_invalidate(f)
 
         if h.invalidate_tenant_states:

@@ -97,7 +97,7 @@ def update(store, id, request):
 
 @transact
 def delete(store, id):
-    models.db_delete(store, models.Tenant, models.Tenant.id != 1, id=id)
+    models.db_delete(store, models.Tenant, id=id)
 
     db_refresh_memory_variables(store)
 
@@ -105,7 +105,6 @@ def delete(store, id):
 class TenantCollection(BaseHandler):
     check_roles = 'admin'
     cache_resource = True
-    invalidate_cache = True
     root_tenant_only = True
     invalidate_tenant_states = True
 
@@ -142,12 +141,14 @@ class TenantInstance(BaseHandler):
         """
         Delete the specified tenant.
         """
+        tenant_id = int(tenant_id)
+
         if not State.tenant_cache[1].enable_multisite or tenant_id == 1:
             raise errors.ForbiddenOperation
 
         log.info('Removing tenant with id: %d', tenant_id, tid=self.request.tid)
 
-        return delete(int(tenant_id))
+        return delete(tenant_id)
 
     def put(self, tenant_id):
         """

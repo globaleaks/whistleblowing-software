@@ -163,8 +163,7 @@ def db_refresh_tenant_cache(store, tid_list):
         }
 
     for tid, lang in models.l10n.EnabledLanguage.tid_list(store, tid_list):
-        langs_enabled = tenant_cache_dict[tid].setdefault('languages_enabled', [])
-        langs_enabled.append(lang)
+        tenant_cache_dict[tid].setdefault('languages_enabled', []).append(lang)
 
     return tenant_cache_dict
 

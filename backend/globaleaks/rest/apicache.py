@@ -25,8 +25,11 @@ class ApiCache(object):
         return value
 
     @classmethod
-    def invalidate(cls):
-        cls.memory_cache_dict.clear()
+    def invalidate(cls, tid=None):
+        if tid is not None:
+            cls.memory_cache_dict.pop(tid, None)
+        else:
+            cls.memory_cache_dict.clear()
 
 
 def decorator_cache_get(f):
@@ -45,7 +48,11 @@ def decorator_cache_get(f):
 
 def decorator_cache_invalidate(f):
     def decorator_cache_invalidate_wrapper(self, *args, **kwargs):
-        ApiCache.invalidate()
+        if self.invalidate_cache:
+            ApiCache.invalidate(self.request.tid)
+        else:
+            ApiCache.invalidate()
+
         return f(self, *args, **kwargs)
 
     return decorator_cache_invalidate_wrapper

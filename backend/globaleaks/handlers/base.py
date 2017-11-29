@@ -115,6 +115,7 @@ class BaseHandler(object):
     handler_exec_time_threshold = HANDLER_EXEC_TIME_THRESHOLD
     uniform_answer_time = False
     cache_resource = False
+    invalidate_global_cache = False
     invalidate_cache = False
     invalidate_tenant_states = False
     bypass_basic_auth = False
