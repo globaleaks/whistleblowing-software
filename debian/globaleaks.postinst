@@ -41,16 +41,18 @@ if [ $PIP_NEEDED -eq 1 ]; then
 fi
 
 # Create globaleaks user and add the user to required groups
-adduser --quiet \
-        --system \
-        --disabled-login \
-        --disabled-password \
-        --home /var/globaleaks \
-        --shell /bin/false \
-        --group \
-        globaleaks
-
-usermod -a -G debian-tor globaleaks
+if ! id -u globaleaks >/dev/null 2>&1; then
+  adduser --quiet \
+          --system \
+          --disabled-login \
+          --disabled-password \
+          --home /var/globaleaks \
+          --shell /bin/false \
+          --group \
+          globaleaks
+else
+  usermod -a -G debian-tor globaleaks
+fi
 
 # Create globaleaks service directories with proper permissios
 gl-fix-permissions
