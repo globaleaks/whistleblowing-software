@@ -48,7 +48,7 @@ def decorator_cache_get(f):
 
 def decorator_cache_invalidate(f):
     def decorator_cache_invalidate_wrapper(self, *args, **kwargs):
-        if self.invalidate_cache:
+        if self.invalidate_cache and self.request.tid != 1:
             ApiCache.invalidate(self.request.tid)
         else:
             ApiCache.invalidate()
