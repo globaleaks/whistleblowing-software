@@ -264,6 +264,8 @@ def forge_request(uri='https://www.globaleaks.org/',
 
     request.notifyFinish = notifyFinish
 
+    request.requestHeaders.setRawHeaders('host', ['127.0.0.1'])
+
     for k, v in headers.items():
         request.requestHeaders.setRawHeaders(bytes(k), [bytes(v)])
 
