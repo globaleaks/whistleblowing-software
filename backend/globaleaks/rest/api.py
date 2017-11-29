@@ -10,6 +10,7 @@ import types
 import urlparse
 
 from twisted.internet import defer
+from twisted.internet.abstract import isIPAddress, isIPv6Address
 from twisted.web.resource import Resource
 from twisted.web.server import NOT_DONE_YET
 
@@ -278,7 +279,10 @@ class APIResourceWrapper(Resource):
 
         request.hostname = request.headers.get('host', '').split(':')[0]
 
-        request.tid = State.tenant_hostname_id_map.get(request.hostname, 1)
+        if (isIPAddress(request.hostname) or isIPv6Address(request.hostname)):
+            request.tid = 1
+        else:
+            request.tid = State.tenant_hostname_id_map.get(request.hostname)
 
         request.client_ip = request.headers.get('gl-forwarded-for')
         request.client_proto = 'https'
@@ -314,6 +318,10 @@ class APIResourceWrapper(Resource):
         request.notifyFinish().addBoth(_finish)
 
         self.preprocess(request)
+
+        if request.tid is None:
+            self.handle_exception(errors.ResourceNotFound(), request)
+            return b''
 
         if self.should_redirect_tor(request):
             self.redirect_tor(request)
