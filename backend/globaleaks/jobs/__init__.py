@@ -26,17 +26,3 @@ jobs_list = [
 services_list = [
     onion_service.OnionService
 ]
-
-__all__ = [
-    'base',
-    'anomalies',
-    'cleaning',
-    'delivery',
-    'exit_nodes_refresh',
-    'notification',
-    'pgp_check',
-    'session_management',
-    'statistics',
-    'update_check',
-    'certificate_check',
-]
