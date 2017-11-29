@@ -60,7 +60,9 @@ class OnionService(BaseJob):
     hs_map = {}
     startup_semaphore = set() # prevents duplicate HS initialization for a given tid
 
-    def service(self, restart_deferred):
+    def operation(self):
+        restart_deferred = defer.Deferred()
+
         control_socket = '/var/run/tor/control'
 
         def startup_callback(tor_conn):
@@ -92,12 +94,7 @@ class OnionService(BaseJob):
         d.addCallback(startup_callback)
         d.addErrback(startup_errback)
 
-    def operation(self):
-        deferred = defer.Deferred()
-
-        self.service(deferred)
-
-        return deferred
+        return restart_deferred
 
     def stop(self):
         super(OnionService, self).stop()
@@ -106,8 +103,6 @@ class OnionService(BaseJob):
             tor_conn = self.tor_conn
             self.tor_conn = None
             return tor_conn.protocol.quit()
-        else:
-            return defer.succeed(None)
 
     @defer.inlineCallbacks
     def add_all_hidden_services(self):
@@ -183,10 +178,10 @@ class OnionService(BaseJob):
             defer.returnValue([])
 
         ret = yield self.tor_conn.protocol.get_info('onions/current')
-
-        running_services = ret.get('onions/current', '').strip().split('\n')
         if ret == '':
             running_services = []
-        running_services = [r+'.onion' for r in running_services]
+        else:
+            x = ret.get('onions/current', '').strip().split('\n')
+            running_services = [r+'.onion' for r in x]
 
         defer.returnValue(running_services)
