@@ -246,7 +246,7 @@ def get_mails_from_the_pool(store):
 
     store.find(models.Mail, models.Mail.processing_attempts > 9).remove()
 
-    for mail in TenantIterator(store.find(models.Mail), 30):
+    for mail in TenantIterator(store.find(models.Mail).order_by(models.Mail.creation_date)[:1000], 30):
         mail.processing_attempts += 1
 
         ret.append({

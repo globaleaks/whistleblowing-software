@@ -3,6 +3,8 @@
 
 from datetime import timedelta
 
+from storm.expr import In
+
 from globaleaks import models
 from globaleaks.handlers.admin.node import db_admin_serialize_node
 from globaleaks.handlers.admin.notification import db_get_notification
@@ -19,10 +21,11 @@ from globaleaks.utils.utility import log
 __all__ = ['PGPCheck']
 
 
-def db_get_expired_or_expiring_pgp_users(store):
+def db_get_expired_or_expiring_pgp_users(store, tids_list):
     threshold = datetime_now() + timedelta(days=15)
 
-    return store.find(models.User, models.User.pgp_key_public != u'',
+    return store.find(models.User, In(models.User.tid, tids_list),
+                                   models.User.pgp_key_public != u'',
                                    models.User.pgp_key_expiration != datetime_null(),
                                    models.User.pgp_key_expiration < threshold)
 
@@ -69,7 +72,7 @@ class PGPCheck(LoopingJob):
     def perform_pgp_validation_checks(self, store):
         tenant_expiry_map = {1: []}
 
-        for user in db_get_expired_or_expiring_pgp_users(store):
+        for user in db_get_expired_or_expiring_pgp_users(store, self.state.tenant_cache.keys()):
             user_desc = user_serialize_user(store, user, self.state.tenant_cache[user.tid].default_language)
             tenant_expiry_map.setdefault(user.tid, []).append(user_desc)
 
