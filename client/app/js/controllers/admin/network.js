@@ -6,7 +6,7 @@ GLClient.controller('AdminNetworkCtrl', ['$scope', '$http', function($scope, $ht
     }
   ];
 
-  if ($scope.admin.node.root_tenant) {
+  if ($scope.admin.node.https_possible) {
     $scope.tabs.push({
       title:"HTTPS",
       template: "views/admin/network/https.html"

@@ -32,7 +32,8 @@ def db_admin_serialize_node(store, tid, language):
         'languages_supported': LANGUAGES_SUPPORTED,
         'languages_enabled': EnabledLanguage.list(store, tid),
         'configured': configured,
-        'root_tenant': tid == 1
+        'root_tenant': tid == 1,
+        'https_possible': tid == 1 or tenant_cache[1].private.https_enabled,
     }
 
     l10n_dict = NodeL10NFactory(store, tid).localized_dict(language)
