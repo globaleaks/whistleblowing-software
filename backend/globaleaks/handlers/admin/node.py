@@ -15,7 +15,7 @@ from globaleaks.models.config import NodeFactory, PrivateFactory, Config
 from globaleaks.models.l10n import EnabledLanguage, NodeL10NFactory
 from globaleaks.orm import transact
 from globaleaks.rest import errors, requests
-from globaleaks.settings import Settings
+from globaleaks.state import State
 from globaleaks.utils.utility import log
 
 
@@ -33,7 +33,7 @@ def db_admin_serialize_node(store, tid, language):
         'languages_enabled': EnabledLanguage.list(store, tid),
         'configured': configured,
         'root_tenant': tid == 1,
-        'https_possible': tid == 1 or tenant_cache[1].private.https_enabled,
+        'https_possible': tid == 1 or State.tenant_cache[1].reachable_via_web,
     }
 
     l10n_dict = NodeL10NFactory(store, tid).localized_dict(language)

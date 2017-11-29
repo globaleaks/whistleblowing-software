@@ -35,10 +35,13 @@
               <div class="col-md-6">
                 <div class="editorHeaderTitle">
                   <span class="badge badge-info">{{tenant.id}}</span>
-                  <span>{{tenant.label}}</span>
+                  <span>{{tenant.id === 1 ? admin.node.name : tenant.label}}</span>
                   <span data-ng-if="tenant.active && (tenant.onionservice || (tenant.id == 1 && tenant.hostname) || (tenant.id > 1 && (tenant.subdomain || tenant.hostname)))">
                     <span class="label label-primary" data-ng-if="tenant.onionservice">{{tenant.onionservice}}</span>
-                    <span class="label label-primary" data-ng-if="tenant.id > 1 && admin.node.hostname && tenant.subdomain">{{tenant.subdomain}}.{{admin.node.hostname}}</span>
+                    <span data-ng-if="tenant.id > 1 && admin.node.hostname">
+                      <span class="label label-primary">p{{tenant.id}}.{{admin.node.hostname}}</span>
+                      <span class="label label-primary" data-ng-if="tenant.subdomain">{{tenant.subdomain}}.{{admin.node.hostname}}</span>
+                    </span>
                     <span class="label label-primary" data-ng-if="tenant.hostname">{{tenant.hostname}}</span>
                   </span>
                 </div>
