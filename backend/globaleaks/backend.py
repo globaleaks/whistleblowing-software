@@ -111,7 +111,7 @@ class Service(service.Service):
         deferred_list = []
 
         for job in self.state.jobs + self.state.services:
-            deferred_list.append(job.stop())
+            deferred_list.append(defer.maybeDeferred(job.stop))
 
         if self.state.jobs_monitor is not None:
             deferred_list.append(self.state.jobs_monitor.stop())
