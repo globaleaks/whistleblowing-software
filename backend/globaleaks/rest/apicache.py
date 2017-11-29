@@ -22,6 +22,8 @@ class ApiCache(object):
 
         cls.memory_cache_dict[tid][resource][language] = value
 
+        return value
+
     @classmethod
     def invalidate(cls):
         cls.memory_cache_dict.clear()
@@ -31,16 +33,10 @@ def decorator_cache_get(f):
     def decorator_cache_get_wrapper(self, *args, **kwargs):
         c = ApiCache.get(self.request.tid, self.request.path, self.request.language)
         if c is None:
-            c = f(self, *args, **kwargs)
-            if isinstance(c, defer.Deferred):
-                def callback(data):
-                    ApiCache.set(self.request.tid, self.request.path, self.request.language, data)
-
-                    return data
-
-                c.addCallback(callback)
-            else:
-                ApiCache.set(self.request.tid, self.request.path, self.request.language, c)
+            d = defer.maybeDeferred(f, self, *args, **kwargs)
+            w = lambda x: ApiCache.set(self.request.tid, self.request.path, self.request.language, x)
+            d.addCallback(w)
+            return d
 
         return c
 
