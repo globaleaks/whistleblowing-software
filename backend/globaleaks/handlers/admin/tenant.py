@@ -21,13 +21,21 @@ from globaleaks.state import State
 
 
 def serialize_tenant(store, tenant):
-    return {
+    ret = {
         'id': tenant.id,
         'label': tenant.label,
         'active': tenant.active,
         'subdomain': tenant.subdomain,
-        'wizard_url': 'http://p{}.{}'.format(tenant.id, State.tenant_cache[1].hostname),
+        'hostname': '',
+        'onionservice': ''
     }
+
+    if tenant.id in State.tenant_cache:
+        tc = State.tenant_cache[tenant.id]
+        ret['hostname'] = tc.hostname
+        ret['onionservice'] = tc.onionservice
+
+    return ret
 
 
 def db_create(store, desc):
