@@ -8,6 +8,7 @@ from twisted.web.client import readBody
 from txsocksx.errors import HostUnreachable
 
 from globaleaks.handlers.operation import OperationHandler
+from globaleaks.handlers.admin.node import check_hostname
 from globaleaks.models.config import NodeFactory
 from globaleaks.orm import transact
 from globaleaks.rest import errors
@@ -26,6 +27,7 @@ class AdminConfigHandler(OperationHandler):
 
     @inlineCallbacks
     def set_hostname(self, req_args, *args, **kwargs):
+        yield check_hostname(self.request.tid, req_args['value'])
         yield set_config_variable(self.request.tid, u'hostname', req_args['value'])
 
     @inlineCallbacks

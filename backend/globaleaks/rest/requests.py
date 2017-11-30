@@ -197,7 +197,6 @@ AdminNodeDesc = {
     'whistleblowing_question': unicode,
     'whistleblowing_button': unicode,
     'whistleblowing_receipt_prompt': unicode,
-    'hostname': hostname_regexp_or_empty,
     'tb_download_link': https_url_regexp,
     'languages_enabled': [unicode],
     'languages_supported': list,

@@ -74,6 +74,7 @@ def enable_disable_languages(store, tid, request):
         models.db_delete(store, models.l10n.EnabledLanguage, In(models.l10n.EnabledLanguage.name, to_remove), tid=tid)
 
 
+@transact
 def check_hostname(store, tid, input_hostname):
     """
     Ensure the hostname does not collide across tenants or include an origin
@@ -110,9 +111,6 @@ def db_update_node(store, tid, request, language):
     """
     node = NodeFactory(store, tid)
 
-    check_hostname(store, tid, request['hostname'])
-
-    # TODO assert hostname is unique
     node.update(request)
 
     if request['basic_auth'] and request['basic_auth_username'] and request['basic_auth_password']:
