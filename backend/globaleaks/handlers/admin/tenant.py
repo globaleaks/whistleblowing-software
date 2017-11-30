@@ -138,18 +138,13 @@ class TenantInstance(BaseHandler):
     root_tenant_only = True
     invalidate_tenant_states = True
 
-    def delete(self, tenant_id):
-        """
-        Delete the specified tenant.
-        """
+    def get(self, tenant_id):
         tenant_id = int(tenant_id)
 
-        if not State.tenant_cache[1].enable_multisite or tenant_id == 1:
+        if not State.tenant_cache[1].enable_multisite:
             raise errors.ForbiddenOperation
 
-        log.info('Removing tenant with id: %d', tenant_id, tid=self.request.tid)
-
-        return delete(tenant_id)
+        return get(tenant_id)
 
     def put(self, tenant_id):
         """
@@ -165,8 +160,15 @@ class TenantInstance(BaseHandler):
 
         return update(tenant_id, request)
 
-    def get(self, tenant_id):
-        if not State.tenant_cache[1].enable_multisite:
+    def delete(self, tenant_id):
+        """
+        Delete the specified tenant.
+        """
+        tenant_id = int(tenant_id)
+
+        if not State.tenant_cache[1].enable_multisite or tenant_id == 1:
             raise errors.ForbiddenOperation
 
-        return get(id=int(tenant_id))
+        log.info('Removing tenant with id: %d', tenant_id, tid=self.request.tid)
+
+        return delete(tenant_id)

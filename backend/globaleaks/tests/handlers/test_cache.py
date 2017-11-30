@@ -67,6 +67,7 @@ class TestCacheWithHandlers(helpers.TestHandler):
         self.assertEqual(s, 2)
         self.assertNotEqual(resp_fr, cached_resp)
 
+    @inlineCallbacks
     def test_handler_sync_cache_miss(self):
         # Asserts that the cases where the result of f returns immediately,
         # the caching implementation does not fall over and die.
@@ -75,11 +76,12 @@ class TestCacheWithHandlers(helpers.TestHandler):
         fake_path = '/xxx'
         fake_uri = 'https://www.globaleaks.org' + fake_path
         handler = self.request(handler_cls=FakeSyncHandler, uri=fake_uri)
-        resp = handler.get()
+        resp = yield handler.get()
 
         cached_resp = ApiCache.get(1, fake_path, "en")
 
         second_resp = handler.get()
+
         self.assertEqual(resp, cached_resp)
         self.assertEqual(resp, second_resp)
 

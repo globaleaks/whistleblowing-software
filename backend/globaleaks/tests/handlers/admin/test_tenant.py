@@ -33,13 +33,15 @@ class TestTenantCollection(TenantTestEnv):
 
     @inlineCallbacks
     def test_get(self):
-        for i in range(3):
+        n = 3
+
+        for i in range(n):
             yield tenant.create(get_dummy_tenant_desc())
 
         handler = self.request(role='admin')
         response = yield handler.get()
 
-        self.assertEqual(len(response), 4)
+        self.assertEqual(len(response), self.population_of_tenants + n)
 
     @inlineCallbacks
     def test_post(self):
