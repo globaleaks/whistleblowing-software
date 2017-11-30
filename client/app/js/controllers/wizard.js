@@ -1,5 +1,5 @@
-GLClient.controller('WizardCtrl', ['$scope', '$location', '$route', '$http', 'Authentication', 'AdminUtils', 'CONSTANTS',
-                    function($scope, $location, $route, $http, Authentication, AdminUtils, CONSTANTS) {
+GLClient.controller('WizardCtrl', ['$scope', '$location', '$route', '$http', 'Authentication', 'CONSTANTS',
+                    function($scope, $location, $route, $http, Authentication, CONSTANTS) {
     $scope.email_regexp = CONSTANTS.email_regexp;
 
     $scope.step = 1;
@@ -19,7 +19,7 @@ GLClient.controller('WizardCtrl', ['$scope', '$location', '$route', '$http', 'Au
     };
 
     $scope.goToAdminInterface = function() {
-      Authentication.login('admin', $scope.wizard.admin.password, function() {
+      Authentication.login('admin', $scope.wizard.admin_password, function() {
         $scope.reload("/admin/home");
       });
     };
@@ -28,12 +28,6 @@ GLClient.controller('WizardCtrl', ['$scope', '$location', '$route', '$http', 'Au
       /* if the wizard has been already performed redirect to the homepage */
       $location.path('/');
     } else {
-      var receiver = AdminUtils.new_user();
-      receiver.username = 'receiver';
-      receiver.password = ''; // this causes the system to set the default password
-                              // the system will then force the user to change the password
-                              // at first login
-
       $scope.config_profiles = [
         {
           name:  'default',
@@ -51,17 +45,13 @@ GLClient.controller('WizardCtrl', ['$scope', '$location', '$route', '$http', 'Au
         });
       };
 
-      var context = AdminUtils.new_context();
-      context.questionnaire_id = $scope.node.default_questionnaire;
-
       $scope.wizard = {
-        'node': {},
-        'admin': {
-          'mail_address': '',
-          'password': ''
-        },
-        'receiver': receiver,
-        'context': context,
+        'node_name': '',
+        'admin_password': '',
+        'admin_name': '',
+        'admin_mail_address': '',
+        'receiver_name': '',
+        'receiver_mail_address': '',
         'profile': 'default'
       };
     }

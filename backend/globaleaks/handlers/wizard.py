@@ -24,45 +24,43 @@ def wizard(store, request, language):
 
     node._query_group()
 
-    node.set_val(u'name', request['node']['name'])
+    node.set_val(u'name', request['node_name'])
     node.set_val(u'default_language', language)
     node.set_val(u'wizard_done', True)
 
     node_l10n = l10n.NodeL10NFactory(store)
 
-    node_l10n.set_val(u'description', language, request['node']['description'])
-    node_l10n.set_val(u'header_title_homepage', language, request['node']['name'])
+    node_l10n.set_val(u'header_title_homepage', language, request['node_name'])
 
     profiles.load_profile(store, request['profile'])
 
-    request['receiver']['username'] = u'recipient'
-    request['receiver']['language'] = language
+    receiver_desc = models.User().dict(language)
+    receiver_desc['username'] = u'recipient'
+    receiver_desc['mail_address'] = request['receiver_mail_address']
+    receiver_desc['language'] = language
+    receiver_desc['role'] =u'receiver'
+    receiver_desc['deletable'] = True
+    receiver_desc['pgp_key_remove'] = False
 
-    _, receiver = db_create_receiver_user(store, request['receiver'], language)
+    _, receiver = db_create_receiver_user(store, receiver_desc, language)
 
-    request['context']['name'] = u'Default'
-    request['context']['receivers'] = [receiver.id]
-    context = db_create_context(store, request['context'], language)
+    context_desc = models.Context().dict(language)
+    context_desc['name'] = u'Default'
+    context_desc['receivers'] = [receiver.id]
 
-    admin_dict = {
-        'username': u'admin',
-        'password': request['admin']['password'],
-        'role': u'admin',
-        'state': u'enabled',
-        'deletable': False,
-        'name': u'Admin',
-        'public_name': u'Admin',
-        'description': u'',
-        'mail_address': request['admin']['mail_address'],
-        'language': language,
-        'password_change_needed': False,
-        'pgp_key_remove': False,
-        'pgp_key_fingerprint': '',
-        'pgp_key_public': '',
-        'pgp_key_expiration': datetime_null()
-    }
+    context = db_create_context(store, context_desc, language)
 
-    db_create_admin_user(store, admin_dict, language)
+    admin_desc = models.User().dict(language)
+    admin_desc['username'] = u'admin'
+    admin_desc['password'] = request['admin_password']
+    admin_desc['mail_address'] = request['admin_mail_address']
+    admin_desc['language'] = language
+    admin_desc['role'] =u'admin'
+    admin_desc['deletable'] = False
+    admin_desc['pgp_key_remove'] = False
+    admin_desc['password_change_needed'] = False
+
+    db_create_admin_user(store, admin_desc, language)
 
     db_refresh_memory_variables(store)
 
