@@ -20,8 +20,9 @@ from globaleaks.handlers.authentication import db_get_wbtip_by_receipt
 from globaleaks.handlers.base import BaseHandler, Sessions, new_session
 from globaleaks.handlers.admin.context import create_context, get_context
 from globaleaks.handlers.admin.field import db_create_field
-from globaleaks.handlers.admin.step import create_step
 from globaleaks.handlers.admin.questionnaire import get_questionnaire, db_get_questionnaire
+from globaleaks.handlers.admin.step import create_step
+from globaleaks.handlers.admin.tenant import create as create_tenant
 from globaleaks.handlers.admin.user import create_user, create_receiver_user
 from globaleaks.handlers.submission import create_submission
 from globaleaks.rest.apicache import ApiCache
@@ -566,6 +567,7 @@ class TestGLWithPopulatedDB(TestGL):
     population_of_recipients = 2
     population_of_submissions = 2
     population_of_attachments = 2
+    population_of_tenants = 3
 
     @inlineCallbacks
     def setUp(self):
@@ -601,6 +603,9 @@ class TestGLWithPopulatedDB(TestGL):
 
         if self.complex_field_population:
             yield self.add_whistleblower_identity_field_to_step(self.dummyQuestionnaire['steps'][1]['id'])
+
+        for i in range(0, self.population_of_tenants - 1):
+            yield create_tenant({'label': 'xxx', 'active': True, 'subdomain': 'xxx'})
 
     @transact
     def add_whistleblower_identity_field_to_step(self, store, step_id):
