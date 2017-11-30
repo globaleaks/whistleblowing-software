@@ -146,13 +146,17 @@ class OnionService(BaseJob):
         def init_errback(failure):
             if tid in self.startup_semaphore:
                 self.startup_semaphore.remove(tid)
+
             raise failure.value
 
         d = ephs.add_to_tor(self.tor_conn.protocol)
+
         # pylint: disable=no-member
+        d.addCallback(init_callback)
         d.addErrback(init_errback)
-        return d.addBoth(init_callback)
         # pylint: enable=no-member
+
+        return d
 
     @defer.inlineCallbacks
     def remove_unwanted_hidden_services(self):
