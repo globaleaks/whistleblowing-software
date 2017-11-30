@@ -20,7 +20,7 @@ def wizard(store, tid, request, language):
                      l10n.EnabledLanguage.tid == tid)
 
     tenant = models.db_get(store, models.Tenant, id=tid)
-    tenant.label = request['node']['name']
+    tenant.label = request['node_name']
 
     node = config.NodeFactory(store, tid)
 
@@ -49,13 +49,13 @@ def wizard(store, tid, request, language):
     receiver_desc['deletable'] = True
     receiver_desc['pgp_key_remove'] = False
 
-    _, receiver = db_create_receiver_user(store, tid, request['receiver'], language)
+    _, receiver = db_create_receiver_user(store, tid, receiver_desc, language)
 
     context_desc = models.Context().dict(language)
     context_desc['name'] = u'Default'
     context_desc['receivers'] = [receiver.id]
 
-    context = db_create_context(store, tid, request['context'], language)
+    context = db_create_context(store, tid, context_desc, language)
 
     admin_desc = models.User().dict(language)
     admin_desc['username'] = u'admin'
@@ -68,7 +68,7 @@ def wizard(store, tid, request, language):
     admin_desc['pgp_key_remove'] = False
     admin_desc['password_change_needed'] = False
 
-    db_create_user(store, tid, admin_dict, language)
+    db_create_user(store, tid, admin_desc, language)
 
     db_refresh_memory_variables(store)
 
