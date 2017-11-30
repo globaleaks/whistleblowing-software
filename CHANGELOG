@@ -1,3 +1,6 @@
+Changes in version 2.72.23 - 2017-11-30
+    o Fix regression on nested questions
+
 Changes in version 2.72.22 - 2017-11-29
     o Fix regression in postinst in relation to user creation
 
