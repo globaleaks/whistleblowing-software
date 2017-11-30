@@ -549,17 +549,12 @@ InternalTipDesc = {
 }
 
 WizardDesc = {
-    'node': {
-      'name': unicode,
-      'description': unicode
-    },
-    'admin': {
-      'password': unicode,
-      'mail_address': unicode,
-    },
-    'receiver': AdminUserDesc,
-    'context': AdminContextDesc,
-    'profile': r'^(default|public|corporate|transparency|journo)$',
+    'node_name': unicode,
+    'admin_password': unicode,
+    'admin_mail_address': unicode,
+    'receiver_name': unicode,
+    'receiver_mail_address': unicode,
+    'profile': r'^(default)$',
 }
 
 ExceptionDesc = {

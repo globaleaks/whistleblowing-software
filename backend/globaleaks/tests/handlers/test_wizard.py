@@ -18,17 +18,17 @@ class TestWizard(helpers.TestHandler):
         yield helpers.TestHandler.setUp(self)
 
         admin = {
-            'old_password': 'globaleaks',
-            'password': 'P4ssword',  # <- hackingteam password! :)
             'mail_address': 'evilaliv3@globaleaks.org'
         }
 
         self.wizard_blob = {
-            'node': self.dummyNode,
-            'admin': admin,
-            'receiver': self.get_dummy_receiver("christisnice"),
-            'context': self.dummyContext,
-            'profile': 'default',
+            'node_name': 'test',
+            'admin_name': 'Giovanni Pellerano',
+            'admin_password': 'P4ssword',
+            'admin_mail_address': 'evilaliv3@globaleaks.org',
+            'receiver_name': 'Fabio Pietrosanti',
+            'receiver_mail_address': 'naif@globaleaks.org',
+            'profile': 'default'
         }
 
     @inlineCallbacks

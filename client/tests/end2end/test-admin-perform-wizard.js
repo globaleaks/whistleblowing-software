@@ -10,8 +10,7 @@ describe('globaLeaks setup wizard', function() {
 
     element.all(by.id('ButtonNext')).get(0).click();
 
-    element(by.model('wizard.node.name')).sendKeys('E2E Test Instance');
-    element(by.model('wizard.node.description')).sendKeys('This instance is for E2E testing');
+    element(by.model('wizard.node_name')).sendKeys('E2E Test Instance');
 
     element.all(by.id('ButtonNext')).get(1).click();
 
@@ -19,14 +18,15 @@ describe('globaLeaks setup wizard', function() {
 
     element.all(by.id('ButtonNext')).get(2).click();
 
-    element(by.model('wizard.admin.mail_address')).sendKeys('globaleaks-admin@mailinator.com');
-    element(by.model('wizard.admin.password')).sendKeys(browser.gl.utils.vars['user_password']);
+    element(by.model('wizard.admin_name')).sendKeys('Admin');
+    element(by.model('wizard.admin_mail_address')).sendKeys('globaleaks-admin@mailinator.com');
+    element(by.model('wizard.admin_password')).sendKeys(browser.gl.utils.vars['user_password']);
     element(by.model('admin_check_password')).sendKeys(browser.gl.utils.vars['user_password']);
 
     element.all(by.id('ButtonNext')).get(3).click();
 
-    element(by.model('wizard.receiver.name')).sendKeys('Recipient1');
-    element(by.model('wizard.receiver.mail_address')).sendKeys('globaleaks-receiver1@mailinator.com');
+    element(by.model('wizard.receiver_name')).sendKeys('Recipient1');
+    element(by.model('wizard.receiver_mail_address')).sendKeys('globaleaks-receiver1@mailinator.com');
 
     element.all(by.id('ButtonNext')).get(4).click();
 
