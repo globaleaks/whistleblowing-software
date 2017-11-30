@@ -341,10 +341,10 @@
           </div>
           <div class="row">
             <div class="col-md-12">
-              <div class="form-group" data-ng-if="fields.length > 0">
+              <div class="form-group">
                 <div class="editorTitle" data-translate>Configured questions:</div>
                   <div class="configuredFields">
-                    <div data-ng-repeat="field in fields | orderBy:['y', 'x']">
+                    <div data-ng-repeat="field in children | orderBy:['y', 'x']">
                       <div data-ng-include="'views/admin/questionnaires/fields.html'"></div>
                     </div>
                   </div>
