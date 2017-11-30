@@ -24,6 +24,7 @@ from globaleaks.handlers.admin.questionnaire import get_questionnaire, db_get_qu
 from globaleaks.handlers.admin.step import create_step
 from globaleaks.handlers.admin.tenant import create as create_tenant
 from globaleaks.handlers.admin.user import create_user, create_receiver_user
+from globaleaks.handlers.wizard import wizard
 from globaleaks.handlers.submission import create_submission
 from globaleaks.rest.apicache import ApiCache
 from globaleaks.rest import errors
@@ -356,6 +357,16 @@ class TestGL(unittest.TestCase):
     def setUp_dummy(self):
         dummyStuff = MockDict()
 
+        self.dummyWizard = {
+            'node_name': 'test',
+            'admin_name': 'Giovanni Pellerano',
+            'admin_password': 'P4ssword',
+            'admin_mail_address': 'evilaliv3@globaleaks.org',
+            'receiver_name': 'Fabio Pietrosanti',
+            'receiver_mail_address': 'naif@globaleaks.org',
+            'profile': 'default'
+        }
+
         self.dummyContext = dummyStuff.dummyContext
         self.dummySubmission = dummyStuff.dummySubmission
         self.dummyAdminUser = self.get_dummy_user('admin', 'admin')
@@ -605,7 +616,9 @@ class TestGLWithPopulatedDB(TestGL):
             yield self.add_whistleblower_identity_field_to_step(self.dummyQuestionnaire['steps'][1]['id'])
 
         for i in range(0, self.population_of_tenants - 1):
-            yield create_tenant({'label': 'xxx', 'active': True, 'subdomain': 'xxx'})
+            t = yield create_tenant({'label': 'xxx', 'active': True, 'subdomain': 'xxx'})
+            yield wizard(t['id'], self.dummyWizard, u'en')
+
 
     @transact
     def add_whistleblower_identity_field_to_step(self, store, step_id):

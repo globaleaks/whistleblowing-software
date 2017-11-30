@@ -14,34 +14,16 @@ class TestWizard(helpers.TestHandler):
     _handler = wizard.Wizard
 
     @inlineCallbacks
-    def setUp(self):
-        yield helpers.TestHandler.setUp(self)
-
-        admin = {
-            'mail_address': 'evilaliv3@globaleaks.org'
-        }
-
-        self.wizard_blob = {
-            'node_name': 'test',
-            'admin_name': 'Giovanni Pellerano',
-            'admin_password': 'P4ssword',
-            'admin_mail_address': 'evilaliv3@globaleaks.org',
-            'receiver_name': 'Fabio Pietrosanti',
-            'receiver_mail_address': 'naif@globaleaks.org',
-            'profile': 'default'
-        }
-
-    @inlineCallbacks
     def test_post(self):
-        handler = self.request(self.wizard_blob)
+        handler = self.request(self.dummyWizard)
         yield handler.post()
 
     @inlineCallbacks
     def test_fail_after_first_post(self):
-        handler = self.request(self.wizard_blob)
+        handler = self.request(self.dummyWizard)
         yield handler.post()
 
-        handler = self.request(self.wizard_blob)
+        handler = self.request(self.dummyWizard)
         yield self.assertFailure(handler.post(), errors.ForbiddenOperation)
 
 
