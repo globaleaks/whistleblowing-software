@@ -2,37 +2,12 @@
 import time
 
 from twisted.internet import task, defer, reactor, threads
-from twisted.internet.error import ConnectionLost, ConnectionRefusedError, DNSLookupError, TimeoutError
-from twisted.web._newclient import ResponseNeverReceived, ResponseFailed
-from txsocksx.errors import TTLExpired, ConnectionRefused, ServerFailure
 
 from globaleaks.state import State
 from globaleaks.utils import mailutils
-from globaleaks.utils.utility import log
+from globaleaks.utils.utility import log, is_common_net_error
 
 TRACK_LAST_N_EXECUTIONS = 10
-
-
-FAILURES_NET_OUTGOING = (
-    ConnectionLost,
-    ConnectionRefusedError,
-    ResponseNeverReceived,
-    ResponseFailed,
-    DNSLookupError,
-    TimeoutError,
-)
-
-
-FAILURES_TOR_OUTGOING = (
-    ConnectionRefusedError,
-    ResponseNeverReceived,
-    ResponseFailed,
-    TTLExpired,
-    RuntimeError,
-    ConnectionRefused,
-    ServerFailure,
-    TimeoutError,
-)
 
 
 class BaseJob(task.LoopingCall):
@@ -151,16 +126,9 @@ class NetLoopingJob(LoopingJob):
         Handles known errors that the twisted.web.client.Agent or txsocksx.http.SOCKS5Agent
         can throw while connecting through their respective networks.
         """
-        if not State.tenant_cache[1].anonymize_outgoing_connections and \
-           isinstance(excep, FAILURES_NET_OUTGOING):
-            log.err('%s job failed on outgoing Net connection with: %s', self.name, excep)
+        if is_common_net_error(State.tenant_cache[1], excep):
+            log.err('%s job failed on outgoing network connection with: %s', self.name, excep)
             return
-
-        if State.tenant_cache[1].anonymize_outgoing_connections and \
-           isinstance(excep, FAILURES_TOR_OUTGOING):
-            log.err('%s job failed on outgoing Tor connection with: %s', self.name, excep)
-            return
-
         super(NetLoopingJob, self).on_error(excep)
 
 

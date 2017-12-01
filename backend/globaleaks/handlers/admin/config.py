@@ -12,6 +12,8 @@ from globaleaks.handlers.admin.node import check_hostname
 from globaleaks.models.config import NodeFactory
 from globaleaks.orm import transact
 from globaleaks.rest import errors
+from globaleaks.utils.utility import is_common_net_error
+
 
 @transact
 def set_config_variable(store, tid, var, val):
@@ -44,8 +46,11 @@ class AdminConfigHandler(OperationHandler):
             if not body.startswith('User-agent: *') or server_h != 'globaleaks':
                 raise EnvironmentError('Response unexpected')
 
-        except (EnvironmentError, ConnectError, HostUnreachable) as e:
-            raise errors.ExternalResourceError()
+        except Exception as e:
+            # Convert networking failures into a generic response
+            if is_common_net_error(self.state.tenant_cache[self.request.tid], e):
+                raise errors.ExternalResourceError()
+            raise e
 
     def operation_descriptors(self):
         return {
