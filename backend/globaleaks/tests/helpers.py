@@ -181,7 +181,7 @@ def get_dummy_fieldoption_list():
           'trigger_field': ''
         }
     ]
- 
+
 
 files_count = 0
 
@@ -615,10 +615,20 @@ class TestGLWithPopulatedDB(TestGL):
         if self.complex_field_population:
             yield self.add_whistleblower_identity_field_to_step(self.dummyQuestionnaire['steps'][1]['id'])
 
-        for i in range(0, self.population_of_tenants - 1):
+        for i in range(1, self.population_of_tenants):
             t = yield create_tenant({'label': 'xxx', 'active': True, 'subdomain': 'xxx'})
             yield wizard(t['id'], self.dummyWizard, u'en')
+            yield self.set_hostnames(i)
 
+    @transact
+    def set_hostnames(self, store, i):
+        hosts = [('root.system', 'aaaaaaaaaaaaaaaa.onion'),
+                 ('b.domain.com', 'bbbbbbbbbbbbbbbb.onion'),
+                 ('c.otherdomain.com', 'cccccccccccccccc.onion')]
+        hostname, onionservice = hosts[i-1]
+        node_fact = models.config.NodeFactory(store, i)
+        node_fact.set_val(u'hostname', hostname)
+        node_fact.set_val(u'onionservice', onionservice)
 
     @transact
     def add_whistleblower_identity_field_to_step(self, store, step_id):
