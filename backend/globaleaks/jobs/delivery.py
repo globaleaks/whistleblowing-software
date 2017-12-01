@@ -30,7 +30,7 @@ def receiverfile_planning(store):
     """
     receiverfiles_maps = {}
 
-    for ifile in TenantIterator(store.find(models.InternalFile, new=True).order_by(models.InternalFile.creation_date)[:1000], 30):
+    for ifile in TenantIterator(store.find(models.InternalFile, new=True).order_by(models.InternalFile.creation_date).config(limit=30)):
         if ifile.processing_attempts >= INTERNALFILES_HANDLE_RETRY_MAX:
             ifile.new = False
             log.err("Failed to handle receiverfiles creation for ifile %s (%d retries)",
