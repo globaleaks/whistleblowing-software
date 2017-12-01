@@ -17,13 +17,39 @@ import traceback
 import uuid
 from datetime import datetime, timedelta
 
+
+from txsocksx.errors import TTLExpired, ConnectionRefused, ServerFailure
 from twisted.internet import reactor
 from twisted.internet.defer import Deferred
+from twisted.internet.error import ConnectionLost, ConnectionRefusedError, DNSLookupError, TimeoutError
 from twisted.python import log as twlog
 from twisted.python import util, failure
 from twisted.web.http import _escape
+from twisted.web._newclient import ResponseNeverReceived, ResponseFailed
 
 from globaleaks import LANGUAGES_SUPPORTED_CODES
+
+
+FAILURES_NET_OUTGOING = (
+    ConnectionLost,
+    ConnectionRefusedError,
+    ResponseNeverReceived,
+    ResponseFailed,
+    DNSLookupError,
+    TimeoutError,
+)
+
+
+FAILURES_TOR_OUTGOING = (
+    ConnectionRefusedError,
+    ResponseNeverReceived,
+    ResponseFailed,
+    TTLExpired,
+    RuntimeError,
+    ConnectionRefused,
+    ServerFailure,
+    TimeoutError,
+)
 
 
 def get_disk_space(path):
@@ -96,6 +122,22 @@ def deferred_sleep(timeout):
     reactor.callLater(timeout, d.callback, True)
 
     return d
+
+
+def is_common_net_error(tenant_state, excep):
+    """
+    Catches known errors that the twisted.web.client.Agent or txsocksx.http.SOCKS5Agent
+    can throw while connecting through their respective networks.
+    """
+    if not tenant_state.anonymize_outgoing_connections and \
+       isinstance(excep, FAILURES_NET_OUTGOING):
+        return True
+
+    if tenant_state.anonymize_outgoing_connections and \
+       isinstance(excep, FAILURES_TOR_OUTGOING):
+        return True
+
+    return False
 
 
 def msdos_encode(s):
