@@ -198,27 +198,39 @@ def db_refresh_memory_variables(store):
 
     # Update state object with changes coming from tenant
     root_hostname = tenant_cache_dict[1].hostname
+    root_onionservice = tenant_cache_dict[1].onionservice
 
     for tid in State.tenant_state:
         tenant = tenant_map[tid]
         hostnames = []
+        onionnames = []
 
         if not tenant.active and tid != 1:
             continue
 
-        if root_hostname != "" and tenant.subdomain != "":
-            hostnames.append('{}.{}'.format(tenant.subdomain, root_hostname))
-
         if root_hostname != "":
             hostnames.append('p{}.{}'.format(tid, root_hostname))
+
+        if root_onionservice != "":
+            onionnames.append('p{}.{}'.format(tid, root_onionservice))
+
+        if tenant.subdomain != "":
+            if root_hostname != "":
+                onionnames.append('{}.{}'.format(tenant.subdomain, root_hostname))
+
+            if root_onionservice != "":
+                onionnames.append('{}.{}'.format(tenant.subdomain, root_onionservice))
 
         if tenant_cache_dict[tid].hostname != "":
             hostnames.append(tenant_cache_dict[tid].hostname)
 
 	if tenant_cache_dict[tid].onionservice != "":
-	    hostnames.append(tenant_cache_dict[tid].onionservice)
+	    onionnames.append(tenant_cache_dict[tid].onionservice)
 
-        tenant_hostname_id_map.update({h : tid for h in hostnames})
+        tenant_cache_dict[tid].hostnames = hostnames
+        tenant_cache_dict[tid].onionnames = onionnames
+
+        tenant_hostname_id_map.update({h : tid for h in hostnames + onionnames})
 
     State.tenant_cache = tenant_cache_dict
     State.tenant_hostname_id_map = tenant_hostname_id_map
