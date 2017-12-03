@@ -41,7 +41,8 @@ class TestNodeInstance(helpers.TestHandlerWithPopulatedDB):
                                 'latest_version',
                                 'configured', 'wizard_done',
                                 'receipt_salt', 'languages_enabled',
-                                'root_tenant', 'https_possible']:
+                                'root_tenant', 'https_possible',
+                                'hostname', 'onionservice']:
                 continue
 
             self.assertEqual(response[response_key],
@@ -76,33 +77,21 @@ class TestNodeInstance(helpers.TestHandlerWithPopulatedDB):
         handler = self.request(self.dummyNode, role='admin')
         yield handler.put()
 
-
     @inlineCallbacks
-    def test_update_ignore_onionservice(self):
-        self.dummyNode['onionservice'] = 'invalid'
-
-        valid_hs = 'xxxxxxxxxxxxxxxx.onion'
-        self.dummyNode['onionservice'] = valid_hs
+    def test_update_ignored_fields(self):
+        self.dummyNode['onionservice'] = 'xxx'
+        self.dummyNode['hostname'] = 'yyy'
 
         handler = self.request(self.dummyNode, role='admin')
 
         resp = yield handler.put()
 
-        self.assertIn('onionservice', resp)
-        self.assertNotEqual(valid_hs, resp['onionservice'])
+        self.assertNotEqual('xxx', resp['hostname'])
+        self.assertNotEqual('yyy', resp['onionservice'])
 
-    @inlineCallbacks
-    def test_put_update_node_invalid_public(self):
-        self.dummyNode['hostname'] = '!invalid!'
-
-        handler = self.request(self.dummyNode, role='admin')
-
-        yield self.assertRaises(InvalidInputFormat, handler.put)
-
-    @inlineCallbacks
     def test_put_update_node_invalid_wbtip_ttl(self):
         self.dummyNode['wbtip_timetolive'] = -10
 
         handler = self.request(self.dummyNode, role='admin')
 
-        yield self.assertFailure(handler.put(), InvalidModelInput)
+        return self.assertFailure(handler.put(), InvalidModelInput)

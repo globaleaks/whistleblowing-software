@@ -8,11 +8,37 @@ from twisted.web.client import readBody
 from txsocksx.errors import HostUnreachable
 
 from globaleaks.handlers.operation import OperationHandler
-from globaleaks.handlers.admin.node import check_hostname
-from globaleaks.models.config import NodeFactory
+from globaleaks.models.config import NodeFactory, Config
 from globaleaks.orm import transact
 from globaleaks.rest import errors
 from globaleaks.utils.utility import is_common_net_error
+
+
+@transact
+def check_hostname(store, tid, input_hostname):
+    """
+    Ensure the hostname does not collide across tenants or include an origin
+    that it shouldn't.
+    """
+    if input_hostname == u'':
+      return
+
+    root_hostname = NodeFactory(store, 1).get_val(u'hostname')
+
+    forbidden_endings = ['.onion', 'localhost']
+    if tid != 1 and root_hostname != '':
+        forbidden_endings.append(root_hostname)
+
+    if reduce(lambda b, v: b or input_hostname.endswith(v), forbidden_endings, False):
+        raise errors.InvalidModelInput('Hostname contains a forbidden origin')
+
+    existing_hostnames = {h.get_v() for h in store.find(Config,
+                                                        Config.tid != tid,
+                                                        var_group=u'node',
+                                                        var_name=u'hostname')}
+
+    if input_hostname in existing_hostnames:
+        raise errors.InvalidModelInput('Hostname already reserved')
 
 
 @transact

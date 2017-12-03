@@ -215,7 +215,7 @@ class APIResourceWrapper(Resource):
 
     def should_redirect_tor(self, request):
         if request.client_using_tor and \
-           request.getRequestHostname() not in State.tenant_cache[request.tid].onionnames:
+            request.hostname not in ['127.0.0.1'] + State.tenant_cache[request.tid].onionnames:
             return True
 
         return False
@@ -276,7 +276,8 @@ class APIResourceWrapper(Resource):
     def preprocess(self, request):
         request.headers = request.getAllHeaders()
 
-        request.hostname = request.headers.get('host', '').split(':')[0]
+        request.hostname = request.getRequestHostname().split(':')[0]
+        request.port = request.getHost().port
 
         if (isIPAddress(request.hostname) or isIPv6Address(request.hostname)):
             request.tid = 1
@@ -289,8 +290,8 @@ class APIResourceWrapper(Resource):
             request.client_ip = request.getClientIP()
             request.client_proto = 'http'
 
-        request.client_using_tor = request.getHost().port == 8083 or \
-                                   request.client_ip in State.tor_exit_set
+        request.client_using_tor = request.client_ip in State.tor_exit_set or \
+                                   request.port == 8083
 
         if 'x-tor2web' in request.headers:
             request.client_using_tor = False
@@ -358,7 +359,7 @@ class APIResourceWrapper(Resource):
         if h.upload_handler and method == 'post':
             h.process_file_upload()
             if h.uploaded_file is None:
-                return
+               return
 
         d = defer.maybeDeferred(f, h, *groups)
 
