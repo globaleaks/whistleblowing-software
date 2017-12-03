@@ -115,7 +115,7 @@ def init_glsettings_for_unit_tests():
 
     orm.set_thread_pool(FakeThreadPool())
 
-    State.tenant_cache[1].hostname = 'localhost'
+    State.tenant_cache[1].hostname = 'www.globaleaks.org'
 
     Sessions.clear()
 
@@ -324,6 +324,8 @@ class TestGL(unittest.TestCase):
         yield update_node_setting(u'allow_unencrypted', allow_unencrypted)
         yield update_node_setting(u'enable_multisite', True)
 
+        yield self.set_hostnames(1)
+
         yield db.refresh_memory_variables()
 
         sup = ProcessSupervisor([], '127.0.0.1', 8082)
@@ -334,7 +336,6 @@ class TestGL(unittest.TestCase):
         Settings.submission_minimum_delay = 0
 
         self.internationalized_text = load_appdata()['node']['whistleblowing_button']
-
 
     def call_spigot(self):
         """
@@ -353,6 +354,17 @@ class TestGL(unittest.TestCase):
 
     def tearDown(self):
         self.test_reactor.pump(self.call_spigot())
+
+    @transact
+    def set_hostnames(self, store, i):
+        hosts = [('www.globaleaks.org', 'aaaaaaaaaaaaaaaa.onion'),
+                 ('www.domain-a.com', 'bbbbbbbbbbbbbbbb.onion'),
+                 ('www.domain-b.com', 'cccccccccccccccc.onion')]
+
+        hostname, onionservice = hosts[i - 1]
+        node_fact = models.config.NodeFactory(store, i)
+        node_fact.set_val(u'hostname', hostname)
+        node_fact.set_val(u'onionservice', onionservice)
 
     def setUp_dummy(self):
         dummyStuff = MockDict()
@@ -584,6 +596,7 @@ class TestGLWithPopulatedDB(TestGL):
     def setUp(self):
         yield TestGL.setUp(self)
         yield self.fill_data()
+        yield db.refresh_memory_variables()
 
     @inlineCallbacks
     def fill_data(self):
@@ -616,19 +629,10 @@ class TestGLWithPopulatedDB(TestGL):
             yield self.add_whistleblower_identity_field_to_step(self.dummyQuestionnaire['steps'][1]['id'])
 
         for i in range(1, self.population_of_tenants):
-            t = yield create_tenant({'label': 'xxx', 'active': True, 'subdomain': 'xxx'})
+            name = 'tenant-' + str(i+1)
+            t = yield create_tenant({'label': name, 'active': True, 'subdomain': name})
             yield wizard(t['id'], self.dummyWizard, u'en')
-            yield self.set_hostnames(i)
-
-    @transact
-    def set_hostnames(self, store, i):
-        hosts = [('root.system', 'aaaaaaaaaaaaaaaa.onion'),
-                 ('b.domain.com', 'bbbbbbbbbbbbbbbb.onion'),
-                 ('c.otherdomain.com', 'cccccccccccccccc.onion')]
-        hostname, onionservice = hosts[i-1]
-        node_fact = models.config.NodeFactory(store, i)
-        node_fact.set_val(u'hostname', hostname)
-        node_fact.set_val(u'onionservice', onionservice)
+            yield self.set_hostnames(i+1)
 
     @transact
     def add_whistleblower_identity_field_to_step(self, store, step_id):

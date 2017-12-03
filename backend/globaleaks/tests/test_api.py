@@ -80,6 +80,7 @@ class TestAPI(TestGL):
 
     def test_request_state(self):
         url = "https://www.globaleaks.org/"
+
         request = forge_request(url)
         self.api.render(request)
         self.assertFalse(request.client_using_tor)
@@ -95,11 +96,9 @@ class TestAPI(TestGL):
         self.assertTrue(request.client_using_tor)
         self.assertEqual(request.responseCode, 200)
 
-
     def test_tor_detection(self):
-        url = 'http://1234567890123456.onion/'
+        url = 'http://aaaaaaaaaaaaaaaa.onion/'
 
-        State.tenant_cache[1].onionservice = '1234567890123456.onion'
         State.tor_exit_set.add('1.2.3.4')
 
         request = forge_request(url)
@@ -116,7 +115,6 @@ class TestAPI(TestGL):
 
     def test_tor_redirection(self):
         State.tor_exit_set.add('1.2.3.4')
-        State.tenant_cache[1].onionservice = '1234567890123456.onion'
 
         request = forge_request(uri="https://www.globaleaks.org/")
 
@@ -124,7 +122,7 @@ class TestAPI(TestGL):
         self.assertTrue(request.client_using_tor)
         self.assertEqual(request.responseCode, 301)
         location = request.responseHeaders.getRawHeaders(b'location')[0]
-        self.assertEqual('http://1234567890123456.onion/', location)
+        self.assertEqual('http://aaaaaaaaaaaaaaaa.onion/', location)
 
         State.tor_exit_set.clear()
 

@@ -11,7 +11,7 @@ from globaleaks import models, utils, LANGUAGES_SUPPORTED_CODES, LANGUAGES_SUPPO
 from globaleaks.db import db_refresh_memory_variables
 from globaleaks.db.appdata import load_appdata
 from globaleaks.handlers.base import BaseHandler
-from globaleaks.models.config import NodeFactory, PrivateFactory, Config
+from globaleaks.models.config import NodeFactory, PrivateFactory
 from globaleaks.models.l10n import EnabledLanguage, NodeL10NFactory
 from globaleaks.orm import transact
 from globaleaks.rest import errors, requests
@@ -72,33 +72,6 @@ def enable_disable_languages(store, tid, request):
         store.find(models.User, In(models.User.language, to_remove), tid=tid).set(language=request['default_language'])
 
         models.db_delete(store, models.l10n.EnabledLanguage, In(models.l10n.EnabledLanguage.name, to_remove), tid=tid)
-
-
-@transact
-def check_hostname(store, tid, input_hostname):
-    """
-    Ensure the hostname does not collide across tenants or include an origin
-    that it shouldn't.
-    """
-    if input_hostname == u'':
-      return
-
-    root_hostname = NodeFactory(store, 1).get_val(u'hostname')
-
-    forbidden_endings = ['.onion', 'localhost']
-    if tid != 1 and root_hostname != '':
-        forbidden_endings.append(root_hostname)
-
-    if reduce(lambda b, v: b or input_hostname.endswith(v), forbidden_endings, False):
-        raise errors.InvalidModelInput('Hostname contains a forbidden origin')
-
-    existing_hostnames = {h.get_v() for h in store.find(Config,
-                                                        Config.tid != tid,
-                                                        var_group=u'node',
-                                                        var_name=u'hostname')}
-
-    if input_hostname in existing_hostnames:
-        raise errors.InvalidModelInput('Hostname already reserved')
 
 
 def db_update_node(store, tid, request, language):

@@ -14,11 +14,6 @@ class TestHostnameConfig(helpers.TestHandler):
     def test_put(self):
         State.tenant_cache[1].anonymize_outgoing_connections = False
 
-        handler = self.request({'operation': 'verify_hostname', 'args': {'value': 'www.globaleaks.org'}}, role='admin')
-
-        # The first request must fail to the non-existent resource
-        yield self.assertFailure(handler.put(), errors.ExternalResourceError)
-
         # Add a file to the tmp dir
         with open('./robots.txt', 'w') as f:
             f.write("User-agent: *\n" +
