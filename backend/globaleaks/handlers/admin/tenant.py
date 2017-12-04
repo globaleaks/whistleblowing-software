@@ -50,7 +50,7 @@ def db_create(store, desc):
 
     models.config.system_cfg_init(store, tid=t.id)
 
-    models.l10n.EnabledLanguage.add_all_supported_langs(store, t.id, appdata)
+    models.l10n.EnabledLanguage.add_new_lang(store, t.id, u'en', appdata)
 
     file_descs = [
       (u'logo', 'data/logo.png'),
