@@ -113,7 +113,7 @@
             <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
           </label>
           <div class="col-md-8" data-ng-class="{'has-error': wizardFormStep4.checkpassword.$error.required || wizard.admin_password !== admin_check_password}">
-            <input name="checkpassword" class="form-control" data-ng-model="admin_check_password" type="password" data-ng-attr-placeholder="{{'Please confirm it' | translate}}" autocomplete="off" required />
+            <input name="checkpassword" class="form-control" data-ng-model="admin_check_password" type="password" data-ng-attr-placeholder="{{'Password' | translate}}" autocomplete="off" required />
             <div class="text-danger" data-ng-show="!wizardFormStep4.password.$error.passwordStrength && (wizard.admin_password !== admin_check_password)" data-translate>The two passwords do not match</div>
           </div>
         </div>
