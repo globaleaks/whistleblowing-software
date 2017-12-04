@@ -279,7 +279,9 @@ class APIResourceWrapper(Resource):
         request.hostname = request.getRequestHostname().split(':')[0]
         request.port = request.getHost().port
 
-        if (isIPAddress(request.hostname) or isIPv6Address(request.hostname)):
+        if (request.hostname == 'localhost' or
+            isIPAddress(request.hostname) or
+            isIPv6Address(request.hostname)):
             request.tid = 1
         else:
             request.tid = State.tenant_hostname_id_map.get(request.hostname)
