@@ -143,7 +143,7 @@ class OnionService(BaseJob):
 
         def init_errback(failure):
             if tid in self.startup_semaphore:
-                self.startup_semaphore.remove(tid)
+                del self.startup_semaphore[tid]
 
             raise failure.value
 
