@@ -59,7 +59,7 @@ class OnionService(BaseJob):
     print_startup_error = True
     tor_conn = None
     hs_map = {}
-    startup_semaphore = set() # prevents duplicate HS initialization for a given tid
+    startup_semaphore = dict()
 
     def operation(self):
         restart_deferred = defer.Deferred()
@@ -109,25 +109,20 @@ class OnionService(BaseJob):
     def add_all_hidden_services(self):
         hostname_key_list = yield list_onion_service_info()
 
-        hs_add = []
-
         if self.tor_conn is not None:
             for hostname, key, tid in hostname_key_list:
                 if hostname not in self.hs_map:
-                    hs_add.append(self.add_hidden_service(hostname, key, tid))
-
-        yield defer.DeferredList(hs_add)
+                    yield self.add_hidden_service(hostname, key, tid)
 
     def add_hidden_service(self, hostname, key, tid):
         hs_loc = ('80 localhost:8083')
         if not hostname and not key:
             if tid in self.startup_semaphore:
                 log.debug('Still waiting for hidden service to start', tid=tid)
-                return defer.succeed(None)
+                return self.startup_semaphore[tid]
 
             log.info('Creating new onion service', tid=tid)
             ephs = EphemeralHiddenService(hs_loc)
-            self.startup_semaphore.add(tid)
         else:
             log.info('Setting up existing onion service %s', hostname, tid=tid)
             ephs = EphemeralHiddenService(hs_loc, key)
@@ -137,7 +132,7 @@ class OnionService(BaseJob):
         def init_callback(ret):
             log.info('Initialization of hidden-service %s completed.', ephs.hostname, tid=tid)
             if not hostname and not key:
-                self.startup_semaphore.remove(tid)
+                del self.startup_semaphore[tid]
                 if tid in State.tenant_cache:
                     self.hs_map[ephs.hostname] = ephs
                     yield set_onion_service_info(tid, ephs.hostname, ephs.private_key)
@@ -158,6 +153,8 @@ class OnionService(BaseJob):
         d.addCallback(init_callback)
         d.addErrback(init_errback)
         # pylint: enable=no-member
+
+        self.startup_semaphore[tid] = d
 
         return d
 
