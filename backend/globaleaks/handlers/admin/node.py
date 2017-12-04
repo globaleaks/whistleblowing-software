@@ -46,14 +46,14 @@ def admin_serialize_node(store, tid, language):
     return db_admin_serialize_node(store, tid, language)
 
 
-def enable_disable_languages(store, tid, request):
+def update_enabled_languages(store, tid, languages_enabled, default_language):
     cur_enabled_langs = EnabledLanguage.list(store, tid)
-    new_enabled_langs = [unicode(y) for y in request['languages_enabled']]
+    new_enabled_langs = [unicode(y) for y in languages_enabled]
 
     if len(new_enabled_langs) < 1:
         raise errors.InvalidInputFormat("No languages enabled!")
 
-    if request['default_language'] not in new_enabled_langs:
+    if default_language not in new_enabled_langs:
         raise errors.InvalidInputFormat("Invalid lang code for chosen default_language")
 
     appdata = None
@@ -69,7 +69,7 @@ def enable_disable_languages(store, tid, request):
     to_remove = list(set(cur_enabled_langs) - set(new_enabled_langs))
 
     if to_remove:
-        store.find(models.User, In(models.User.language, to_remove), tid=tid).set(language=request['default_language'])
+        store.find(models.User, In(models.User.language, to_remove), tid=tid).set(language=default_language)
 
         models.db_delete(store, models.l10n.EnabledLanguage, In(models.l10n.EnabledLanguage.name, to_remove), tid=tid)
 
@@ -93,7 +93,7 @@ def db_update_node(store, tid, request, language):
     else:
         node.set_val(u'basic_auth', False)
 
-    enable_disable_languages(store, tid, request)
+    update_enabled_languages(store, tid, request['languages_enabled'], request['default_language'])
 
     if language in request['languages_enabled']:
         node_l10n = NodeL10NFactory(store, tid)

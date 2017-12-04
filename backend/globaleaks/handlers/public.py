@@ -7,7 +7,7 @@
 import copy
 from storm.expr import In, Select
 
-from globaleaks import models, LANGUAGES_SUPPORTED
+from globaleaks import models, LANGUAGES_SUPPORTED, LANGUAGES_SUPPORTED_CODES
 from globaleaks.handlers.admin.file import db_get_file
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.models import l10n
@@ -111,7 +111,7 @@ def db_serialize_node(store, tid, language):
     ro_node = NodeFactory(store, tid).public_export()
 
     misc_dict = {
-        'languages_enabled': l10n.EnabledLanguage.list(store, tid),
+        'languages_enabled': l10n.EnabledLanguage.list(store, tid) if ro_node['wizard_done'] else list(LANGUAGES_SUPPORTED_CODES),
         'languages_supported': LANGUAGES_SUPPORTED,
         'configured': configured,
         'accept_submissions': State.accept_submissions,

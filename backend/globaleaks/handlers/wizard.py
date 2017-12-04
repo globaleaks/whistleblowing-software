@@ -5,6 +5,7 @@ from globaleaks import models
 from globaleaks.db import db_refresh_memory_variables
 from globaleaks.handlers.admin import tenant
 from globaleaks.handlers.admin.context import db_create_context
+from globaleaks.handlers.admin.node import update_enabled_languages
 from globaleaks.handlers.admin.user import db_create_user, db_create_receiver_user
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.models import config, l10n, profiles
@@ -15,9 +16,7 @@ from globaleaks.utils.utility import log, datetime_null
 
 @transact
 def wizard(store, tid, request, language):
-    models.db_delete(store, l10n.EnabledLanguage,
-                     l10n.EnabledLanguage.name != language,
-                     l10n.EnabledLanguage.tid == tid)
+    update_enabled_languages(store, tid, [language], language)
 
     tenant = models.db_get(store, models.Tenant, id=tid)
     tenant.label = request['node_name']
