@@ -7,6 +7,7 @@ from txtorcon import build_local_tor_connection
 from twisted.internet import reactor, defer
 
 from globaleaks import models
+from globaleaks.rest.apicache import ApiCache
 from globaleaks.jobs.base import BaseJob
 from globaleaks.models.config import NodeFactory, PrivateFactory
 from globaleaks.orm import transact
@@ -142,6 +143,8 @@ class OnionService(BaseJob):
                     yield set_onion_service_info(tid, ephs.hostname, ephs.private_key)
                 else:
                     yield ephs.remove_from_tor(self.tor_conn.protocol)
+
+                ApiCache().invalidate(1)
 
         def init_errback(failure):
             if tid in self.startup_semaphore:
