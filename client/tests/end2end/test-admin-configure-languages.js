@@ -4,15 +4,11 @@ describe('admin configure languages', function() {
     browser.setLocation('admin/content');
     element(by.cssContainingText("a", "Languages")).click();
 
-    element(by.className('add-language-btn')).click();
-    var input = element(by.id('LanguageAdder')).all(by.css('input')).last();
-    input.sendKeys('Italiano' + protractor.Key.ENTER);
-
-    element(by.className('add-language-btn')).click();
-    input = element(by.id('LanguageAdder')).all(by.css('input')).last();
-    input.sendKeys('Deutsch' + protractor.Key.ENTER);
+    element(by.model("admin.node.languages_enabled")).evaluate("admin.node.languages_enabled = ['en', 'it', 'de'];");
 
     element.all(by.cssContainingText("button", "Save")).get(1).click();
+
+    element(by.cssContainingText("a", "Languages")).click();
 
     element(by.model('GLTranslate.indirect.appLanguage')).element(by.xpath(".//*[text()='Deutsch']")).click();
 
@@ -45,8 +41,6 @@ describe('admin configure languages', function() {
 
     // Switch the default to english and disable german
     element.all(by.css('.non-default-language')).get(1).click();
-
-    browser.gl.utils.waitUntilClickable(by.css('.remove-lang-btn'));
 
     element.all(by.css('.remove-lang-btn')).get(0).click();
 

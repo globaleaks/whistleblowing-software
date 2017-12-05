@@ -1,5 +1,7 @@
 <div class="row">
   <div class="col-md-6">
+    <input data-ng-model="admin.node.languages_enabled" class="hidden" />
+    <input data-ng-model="admin.node.default_language" class="hidden" />
     <div class="form-group">
       <label data-translate>Languages</label>
       <button class="btn btn-xs btn-primary add-language-btn" data-ng-click="toggleLangSelect()">
@@ -22,11 +24,10 @@
         </div>
         <br/>
         <ul class="selectionList">
-          <input data-ng-model="admin.node.default_language" class="hidden" />
           <li data-ng-repeat="lang_code in admin.node.languages_enabled | orderBy">
             <span class="action-btns">
-             <span data-ng-show="lang_code === admin.node.default_language" class="default-language">
-                 <i class="glyphicon glyphicon-ok-sign"></i>
+              <span data-ng-show="lang_code === admin.node.default_language" class="default-language">
+                <i class="glyphicon glyphicon-ok-sign"></i>
               </span>
               <span data-ng-show="lang_code !== admin.node.default_language" class="non-default-language"
                 uib-popover="{{'Use as default' | translate}}"
