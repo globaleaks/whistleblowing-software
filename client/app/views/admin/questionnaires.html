@@ -2,7 +2,7 @@
   <div id="ConfigSidebarBox" class="col-md-3" data-ng-include="'views/admin/sidebar.html'"></div>
   <div class="col-md-9" data-ng-controller="AdminQuestionnaireCtrl">
     <uib-tabset>
-      <uib-tab data-ng-repeat="tab in tabs" heading="{{tab.title | translate}}">
+      <uib-tab data-ng-repeat="tab in tabs" heading="{{tab.title | translate}}" disable="$index == 1 && !admin.node.enable_experimental_features">
         <div class="tab-content" data-ng-include="tab.template"></div>
       </uib-tab>
     </uib-tabset>
