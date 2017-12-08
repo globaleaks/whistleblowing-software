@@ -550,6 +550,7 @@ InternalTipDesc = {
 
 WizardDesc = {
     'node_name': unicode,
+    'admin_name': unicode,
     'admin_password': unicode,
     'admin_mail_address': unicode,
     'receiver_name': unicode,

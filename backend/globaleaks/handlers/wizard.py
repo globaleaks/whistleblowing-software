@@ -36,6 +36,7 @@ def wizard(store, request, language):
 
     receiver_desc = models.User().dict(language)
     receiver_desc['username'] = u'recipient'
+    receiver_desc['name'] = receiver_desc['public_name'] = request['receiver_name']
     receiver_desc['mail_address'] = request['receiver_mail_address']
     receiver_desc['language'] = language
     receiver_desc['role'] =u'receiver'
@@ -53,6 +54,7 @@ def wizard(store, request, language):
     admin_desc = models.User().dict(language)
     admin_desc['username'] = u'admin'
     admin_desc['password'] = request['admin_password']
+    admin_desc['name'] = admin_desc['public_name'] = request['admin_name']
     admin_desc['mail_address'] = request['admin_mail_address']
     admin_desc['language'] = language
     admin_desc['role'] =u'admin'
