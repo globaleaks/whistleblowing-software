@@ -50,9 +50,9 @@ if ! id -u globaleaks >/dev/null 2>&1; then
           --shell /bin/false \
           --group \
           globaleaks
-else
-  usermod -a -G debian-tor globaleaks
 fi
+
+usermod -a -G debian-tor globaleaks
 
 # Create globaleaks service directories with proper permissios
 gl-fix-permissions
