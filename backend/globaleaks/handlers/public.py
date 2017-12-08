@@ -266,7 +266,7 @@ def serialize_field(store, field, language, data=None):
         })
 
     ret_dict = {
-        'id': f_to_serialize.id,
+        'id': field.id,
         'instance': field.instance,
         'editable': field.editable,
         'type': f_to_serialize.type,

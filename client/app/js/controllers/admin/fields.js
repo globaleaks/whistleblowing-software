@@ -1,6 +1,5 @@
 GLClient.controller('AdminFieldEditorCtrl', ['$scope', '$uibModal', 'Utils',
   function($scope, $uibModal, Utils) {
-    $scope.editable = $scope.field.editable && $scope.field.instance !== 'reference';
     $scope.editing = false;
     $scope.new_field = {};
 
