@@ -545,7 +545,7 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
     return new GLResource('custodian/identityaccessrequests');
 }]).
   factory('ManifestResource', ['$resource', function($resource) {
-    return new $resource('data/manifest.json');
+    return new $resource('admin/manifest');
 }]).
   factory('AdminContextResource', ['GLResource', function(GLResource) {
     return new GLResource('admin/contexts/:id', {id: '@id'});

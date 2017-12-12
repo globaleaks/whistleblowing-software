@@ -112,6 +112,7 @@ def new_session(tid, user_id, user_role, user_status):
 
 
 class BaseHandler(object):
+    check_roles = 'admin'
     handler_exec_time_threshold = HANDLER_EXEC_TIME_THRESHOLD
     uniform_answer_time = False
     cache_resource = False
@@ -360,6 +361,10 @@ class BaseHandler(object):
         if not os.path.exists(filepath) or not os.path.isfile(filepath):
             raise errors.ResourceNotFound()
 
+        if filename.endswith('.gz'):
+            self.request.setHeader("Content-encoding", "gzip")
+            filename = filename[:-3]
+
         mime_type, encoding = mimetypes.guess_type(filename)
         if mime_type:
             self.request.setHeader("Content-Type", mime_type)
@@ -486,9 +491,10 @@ class BaseHandler(object):
                 self.uploaded_file['body'].seek(0, 0)
                 data = self.uploaded_file['body'].read(4000)
                 while data:
-                    data = self.uploaded_file['body'].read(4000)
                     os.write(fd.fileno(), data)
+                    data = self.uploaded_file['body'].read(4000)
         finally:
+            self.uploaded_file['body'].close()
             self.uploaded_file['path'] = destination
 
     @inlineCallbacks

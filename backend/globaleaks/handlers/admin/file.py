@@ -12,6 +12,7 @@ from twisted.internet import defer, threads
 from globaleaks import models
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.orm import transact
+from globaleaks.security import directory_traversal_check
 from globaleaks.utils.utility import uuid4
 
 @transact
@@ -74,15 +75,19 @@ class FileInstance(BaseHandler):
             d = add_file(self.request.tid, id, u'', data)
         else:
             id = uuid4()
-            data = ''
             path = os.path.join(self.state.settings.files_path, id)
             d = threads.deferToThread(self.write_upload_plaintext_to_disk, path)
-            d.addCallback(lambda x: add_file(self.request.tid, id, self.uploaded_file['name'], data))
+            d.addCallback(lambda x: add_file(self.request.tid, id, self.uploaded_file['name'], u''))
 
         return d
 
     def delete(self, id):
-        return models.delete(models.File, tid=self.request.tid, id=id)
+        d = models.delete(models.File, tid=self.request.tid, id=id)
+
+        path = os.path.join(self.state.settings.files_path, id)
+        directory_traversal_check(self.state.settings.files_path, path)
+        if os.path.exists(path):
+            os.remove(path)
 
 
 class FileCollection(BaseHandler):

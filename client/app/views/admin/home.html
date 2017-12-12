@@ -23,19 +23,12 @@
                     <span><i class="glyphicon glyphicon-info-sign"></i></span> <span data-translate>An update is available:</span> <span>{{ update_service.latest_version }}</span>
                   </div>
                 </div>
-                <div class="col-md-12" data-ng-repeat="change in admin.manifest.changelog | limitTo:displayNum">
-                  <hr/>
-                  <span data-release-msg></span>
+              </div>
+              <div>
+                <div class="col-md-12" class="form-group">
+                  <textarea class="form-control changelog" data-ng-model="admin.manifest.changelog" rows="20" disabled></textarea>
                 </div>
               </div>
-              <hr/>
-              <button data-ng-if="displayNum"
-                      type="submit"
-                      class="btn btn-default"
-                      data-ng-click="showMore()">
-                <span data-translate>Show more</span>
-                <i class="glyphicon glyphicon glyphicon-link"></i>
-              </button>
             </div>
           </uib-tab>
 

@@ -40,6 +40,7 @@
     "grunt-angular-templates": "1.1.0",
     "grunt-confirm": "1.0.7",
     "grunt-contrib-clean": "1.1.0",
+    "grunt-contrib-compress": "1.4.3",
     "grunt-contrib-concat": "1.0.1",
     "grunt-contrib-connect": "1.0.2",
     "grunt-contrib-copy": "1.0.0",

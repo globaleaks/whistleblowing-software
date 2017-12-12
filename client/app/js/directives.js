@@ -3,8 +3,6 @@ angular.module('GLDirectives', []).
     return {
       restrict: 'E',
       link: function postLink(scope, element, attrs) {
-        // hidding the scroll of textarea
-        element.css('overflow', 'hidden');
         element.css('min-height', '2em');
 
         var update = function(){

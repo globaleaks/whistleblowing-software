@@ -1,8 +1,11 @@
 # -*- coding: utf-8 -*-
+import mimetypes
 import os
 
 from globaleaks.handlers.base import BaseHandler
+from globaleaks.rest import errors
 from globaleaks.security import directory_traversal_check
+from globaleaks.utils.utility import read_file
 
 
 class StaticFileHandler(BaseHandler):
@@ -22,8 +25,10 @@ class StaticFileHandler(BaseHandler):
 
         directory_traversal_check(self.root, abspath)
 
-        return self.write_file(filename, abspath)
+        if os.path.exists(abspath + '.gz') and os.path.isfile(abspath + '.gz'):
+            return self.write_file(filename + '.gz', abspath + '.gz')
+        if os.path.exists(abspath) and os.path.isfile(abspath):
+            return self.write_file(filename, abspath)
+        else:
+            raise errors.ResourceNotFound()
 
-
-class AdminStaticFileHandler(StaticFileHandler):
-    check_roles = 'admin'
