@@ -93,6 +93,11 @@ cd ../../
 
 echo "Step 8/8: prepare backend virtualenv"
 cd GlobaLeaks/backend
+
+rm requirements.txt
+
+cp requirements/requirements-$DISTRO_CODENAME.txt requirements.txt
+
 virtualenv -p python2.7 glenv
 source glenv/bin/activate
 python setup.py develop --always-unzip 
