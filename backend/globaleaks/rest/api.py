@@ -34,6 +34,7 @@ from globaleaks.handlers.admin import field as admin_field
 from globaleaks.handlers.admin import file as admin_file
 from globaleaks.handlers.admin import https
 from globaleaks.handlers.admin import l10n as admin_l10n
+from globaleaks.handlers.admin import manifest as admin_manifest
 from globaleaks.handlers.admin import modelimgs as admin_modelimgs
 from globaleaks.handlers.admin import node as admin_node
 from globaleaks.handlers.admin import notification as admin_notification
@@ -142,12 +143,11 @@ api_spec = [
     (r'/admin/tenants/' + '([0-9]{1,20})', admin_tenant.TenantInstance),
     (r'/admin/overview/tips', admin_overview.Tips),
     (r'/admin/overview/files', admin_overview.Files),
+    (r'/admin/manifest', admin_manifest.ManifestHandler),
     (r'/wizard', wizard.Wizard),
 
     (r'/admin/config/acme/run', https.AcmeHandler),
     (r'/.well-known/acme-challenge/([a-zA-Z0-9_\-]{42,44})', https.AcmeChallengeHandler),
-
-    (r'/(data/[a-zA-Z0-9_\-\/\.]*)', staticfile.AdminStaticFileHandler, {'path': Settings.client_path}),
 
     ## Special Files Handlers##
     (r'/robots.txt', robots.RobotstxtHandler),
@@ -191,6 +191,7 @@ class APIResourceWrapper(Resource):
     def __init__(self):
         Resource.__init__(self)
         self._registry = []
+        self.handler = None
 
         for tup in api_spec:
             args = {}
@@ -295,16 +296,13 @@ class APIResourceWrapper(Resource):
         request.client_using_tor = request.client_ip in State.tor_exit_set or \
                                    request.port == 8083
 
+
         if 'x-tor2web' in request.headers:
             request.client_using_tor = False
 
         request.language = unicode(self.detect_language(request))
         if 'multilang' in request.args:
             request.language = None
-
-        request.setHeader(b'x-check-tor', bytes(request.client_using_tor))
-
-        self.set_headers(request)
 
     def render(self, request):
         """
@@ -348,26 +346,28 @@ class APIResourceWrapper(Resource):
             self.handle_exception(errors.MethodNotImplemented(), request)
             return b''
 
-        request.setResponseCode(self.method_map[method])
-
         f = getattr(handler, method)
         groups = [unicode(g) for g in match.groups()]
-        h = handler(State, request, **args)
 
-        if h.root_tenant_only and request.tid != 1:
+        self.handler = handler(State, request, **args)
+
+        self.set_headers(request)
+        request.setResponseCode(self.method_map[method])
+
+        if self.handler.root_tenant_only and request.tid != 1:
             self.handle_exception(errors.ForbiddenOperation(), request)
             return b''
 
-        if h.upload_handler and method == 'post':
-            h.process_file_upload()
-            if h.uploaded_file is None:
+        if self.handler.upload_handler and method == 'post':
+            self.handler.process_file_upload()
+            if self.handler.uploaded_file is None:
                return
 
-        d = defer.maybeDeferred(f, h, *groups)
+        d = defer.maybeDeferred(f, self.handler, *groups)
 
         @defer.inlineCallbacks
         def concludeHandlerFailure(err):
-            yield h.execution_check()
+            yield self.handler.execution_check()
 
             self.handle_exception(err, request)
 
@@ -381,15 +381,15 @@ class APIResourceWrapper(Resource):
 
             @param ret: A `dict`, `list`, `str`, `None` or something unexpected
             """
-            yield h.execution_check()
+            yield self.handler.execution_check()
 
             if not request_finished[0]:
                 if ret is not None:
-                    if isinstance(ret, (types.DictType, types.ListType)):
-                        ret = json.dumps(ret, separators=(',', ':'))
-                        request.setHeader(b'content-type', b'application/json')
+                   if isinstance(ret, (types.DictType, types.ListType)):
+                       ret = json.dumps(ret, separators=(',', ':'))
+                       request.setHeader(b'content-type', b'application/json')
 
-                    request.write(bytes(ret))
+                   request.write(bytes(ret))
 
                 request.finish()
 
@@ -398,9 +398,9 @@ class APIResourceWrapper(Resource):
 
         return NOT_DONE_YET
 
-    @staticmethod
-    def set_headers(request):
+    def set_headers(self, request):
         # to avoid version attacks
+
         request.setHeader("Server", "Globaleaks")
 
         request.setHeader('Content-Language', request.language)
@@ -425,6 +425,9 @@ class APIResourceWrapper(Resource):
         # same origin is needed in order to include svg and other html <object>
         if not State.tenant_cache[1].allow_iframes_inclusion:
             request.setHeader("X-Frame-Options", "sameorigin")
+
+        request.setHeader(b'x-check-tor', bytes(request.client_using_tor))
+
 
     def parse_accept_language_header(self, request):
         if "accept-language" in request.headers:

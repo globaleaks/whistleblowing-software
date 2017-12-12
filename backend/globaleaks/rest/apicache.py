@@ -1,5 +1,19 @@
 # -*- coding: utf-8 -*-
+import json
+import cStringIO
+import gzip
+import types
+
 from twisted.internet import defer
+
+
+def gzipdata(data):
+    fgz = cStringIO.StringIO()
+    gzip_obj = gzip.GzipFile(mode='wb', fileobj=fgz)
+    gzip_obj.write(data)
+    gzip_obj.close()
+
+    return fgz.getvalue()
 
 
 class ApiCache(object):
@@ -13,16 +27,23 @@ class ApiCache(object):
             return cls.memory_cache_dict[tid][resource][language]
 
     @classmethod
-    def set(cls, tid, resource, language, value):
+    def set(cls, tid, resource, language, content_type, data):
+        if isinstance(data, (types.DictType, types.ListType)):
+            data = json.dumps(data)
+
+        data = gzipdata(bytes(data))
+
         if tid not in ApiCache.memory_cache_dict:
             cls.memory_cache_dict[tid] = {}
 
         if resource not in ApiCache.memory_cache_dict[tid]:
             cls.memory_cache_dict[tid][resource] = {}
 
-        cls.memory_cache_dict[tid][resource][language] = value
+        entry = (content_type, data)
 
-        return value
+        cls.memory_cache_dict[tid][resource][language] = entry
+
+        return entry
 
     @classmethod
     def invalidate(cls, tid=None):
@@ -37,11 +58,22 @@ def decorator_cache_get(f):
         c = ApiCache.get(self.request.tid, self.request.path, self.request.language)
         if c is None:
             d = defer.maybeDeferred(f, self, *args, **kwargs)
-            w = lambda x: ApiCache.set(self.request.tid, self.request.path, self.request.language, x)
-            d.addCallback(w)
+
+            def callback(d):
+                self.request.setHeader("Content-encoding", "gzip")
+
+                c = self.request.responseHeaders.getRawHeaders("Content-type", ["text/html"])[0]
+                return ApiCache.set(self.request.tid, self.request.path, self.request.language, c, d)[1]
+
+            d.addCallback(callback)
+
             return d
 
-        return c
+        else:
+            self.request.setHeader("Content-encoding", "gzip")
+            self.request.setHeader("Content-type", c[0])
+
+        return c[1]
 
     return decorator_cache_get_wrapper
 

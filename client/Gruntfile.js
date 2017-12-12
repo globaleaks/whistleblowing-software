@@ -225,6 +225,21 @@ module.exports = function(grunt) {
       }
     },
 
+    compress: {
+      main: {
+        options: {
+          mode: 'gzip'
+        },
+        expand: true,
+        cwd: 'build/',
+        src: ['index.html', 'license.txt', 'js/*'],
+        dest: 'build/',
+        rename: function(dest, src) {
+          return dest + '/' + src + '.gz';
+        }
+      }
+    },
+
     confirm: {
       'pushTranslationsSource': {
         options: {
@@ -273,6 +288,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-angular-templates');
   grunt.loadNpmTasks('grunt-confirm');
   grunt.loadNpmTasks('grunt-contrib-clean');
+  grunt.loadNpmTasks('grunt-contrib-compress');
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-connect');
   grunt.loadNpmTasks('grunt-contrib-copy');
@@ -837,43 +853,8 @@ module.exports = function(grunt) {
     }
   });
 
-  // Processes misc files included in the GlobaLeaks repository that need to be
-  // included as data like the license and changelog
   grunt.registerTask('includeExternalFiles', function() {
-      var manifest = {};
-
-      var obj = {txt: ''};
-      var changelog_content = grunt.file.read('../CHANGELOG');
-      var changelog_lines = changelog_content.split("\n");
-      var license_content = grunt.file.read('../LICENSE');
-
-      manifest.version = JSON.parse(grunt.file.read("package.json")).version;
-      manifest.license = license_content;
-
-      manifest.changelog = [];
-      for (var i = 0; i < changelog_lines.length; i++) {
-        var l = changelog_lines[i];
-        // Format of the first line of every new release is:
-        // Changes in version 2.76.4 - 2017-04-12
-        if (/^(Changes in version)/.test(l)) {
-          obj.txt = obj.txt.trim()
-          obj = {};
-          // Matches version and date
-          var res = l.match(/(\d+.\d+(.\d+)?) - (\d{4}-\d{2}-\d{2})/);
-          obj.title = l;
-          obj.version = res[1];
-          obj.date = res[3];
-          obj.txt = '';
-          manifest.changelog.push(obj);
-        } else {
-          obj.txt += l + '\n';
-        }
-      }
-
-      manifest = JSON.stringify(manifest, null, 2);
-
-      fs.writeFileSync('tmp/data/manifest.json', manifest);
-      fs.writeFileSync('tmp/license.txt', license_content);
+      fs.writeFileSync('tmp/LICENSE', grunt.file.read('../LICENSE'));
   });
 
   // Run this task to push translations on transifex
@@ -883,7 +864,7 @@ module.exports = function(grunt) {
   grunt.registerTask('updateTranslations', ['fetchTranslations', 'makeAppData', 'verifyAppData']);
   // Run this to build your app. You should have run updateTranslations before you do so, if you have changed something in your translations.
   grunt.registerTask('build',
-    ['clean', 'copy:sources', 'copy:build', 'includeExternalFiles', 'ngtemplates', 'useminPrepare', 'concat', 'usemin', 'string-replace', 'cleanupWorkingDirectory']);
+    ['clean', 'copy:sources', 'copy:build', 'includeExternalFiles', 'ngtemplates', 'useminPrepare', 'concat', 'usemin', 'string-replace', 'cleanupWorkingDirectory', 'compress']);
 
   grunt.registerTask('generateCoverallsJson', function() {
     var done = this.async();

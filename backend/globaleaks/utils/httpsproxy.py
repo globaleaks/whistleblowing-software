@@ -25,22 +25,6 @@ class BodyStreamer(protocol.Protocol):
         self._finished = None
 
 
-class BodyGzipStreamer(BodyStreamer):
-    def __init__(self, streamfunction, finished):
-        BodyStreamer.__init__(self, streamfunction, finished)
-        self.encoderGzip = zlib.compressobj(6, zlib.DEFLATED, 16 + zlib.MAX_WBITS)
-
-    def dataReceived(self, data):
-        data = self.encoderGzip.compress(data)
-        BodyStreamer.dataReceived(self, data)
-
-    def connectionLost(self, reason=connectionDone):
-        data = self.encoderGzip.flush()
-        # This attempt to write will fail b/c the connection has been lost.
-        BodyStreamer.dataReceived(self, data)
-        BodyStreamer.connectionLost(self, reason)
-
-
 class BodyProducer(object):
     implements(IBodyProducer)
 
@@ -88,8 +72,6 @@ class BodyProducer(object):
 
 
 class HTTPStreamProxyRequest(http.Request):
-    gzip = False
-
     def __init__(self, *args, **kwargs):
         http.Request.__init__(self, *args, **kwargs)
 
@@ -110,10 +92,6 @@ class HTTPStreamProxyRequest(http.Request):
 
         hdrs = self.requestHeaders
         hdrs.setRawHeaders('GL-Forwarded-For', [self.getClientIP()])
-
-        accept_encoding = self.getHeader('Accept-Encoding')
-        if accept_encoding is not None and 'gzip' in accept_encoding:
-            self.gzip = True
 
         prod = None
         content_length = self.getHeader('Content-Length')
@@ -136,8 +114,6 @@ class HTTPStreamProxyRequest(http.Request):
 
     def proxySuccess(self, response):
         self.responseHeaders = response.headers
-        if self.gzip:
-            self.responseHeaders.setRawHeaders(b'content-encoding', [b'gzip'])
 
         self.responseHeaders.setRawHeaders('Strict-Transport-Security', ['max-age=31536000'])
 
@@ -145,10 +121,7 @@ class HTTPStreamProxyRequest(http.Request):
 
         d_forward = defer.Deferred()
 
-        if self.gzip:
-            response.deliverBody(BodyGzipStreamer(self.write, d_forward))
-        else:
-            response.deliverBody(BodyStreamer(self.write, d_forward))
+        response.deliverBody(BodyStreamer(self.write, d_forward))
 
         d_forward.addBoth(self.forwardClose)
 

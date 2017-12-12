@@ -61,7 +61,7 @@ def get_disk_space(path):
 
 def read_file(p):
     with file(p, 'r') as f:
-        return f.read()
+        return f.read().rstrip("\n")
 
 
 def read_json_file(p):

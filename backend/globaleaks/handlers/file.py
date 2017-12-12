@@ -12,13 +12,15 @@ from globaleaks.rest import errors
 def get_file_id(store, tid, name):
     return models.db_get(store, models.File, tid=tid, name=unicode(name)).id
 
+
 class FileHandler(BaseHandler):
     check_roles = '*'
+    cache_resource = True
 
     @defer.inlineCallbacks
     def get(self, name):
         id = yield get_file_id(self.request.tid, name)
 
         path = os.path.abspath(os.path.join(self.state.settings.files_path, id))
-        
+
         yield self.write_file(name, path)
