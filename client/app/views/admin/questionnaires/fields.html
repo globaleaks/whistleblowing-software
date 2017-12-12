@@ -305,9 +305,6 @@
                         <button class="btn btn-xs" data-ng-class="option.trigger_field != '' ? 'btn-primary' : 'btn-default'" data-ng-click="triggerFieldDialog(option)" uib-popover="{{'Trigger question' | translate}}" popover-placement="left">
                           <i class="glyphicon glyphicon-asterisk"></i>
                         </button>
-                        <button class="btn btn-xs" data-ng-if="field.fieldgroup_id === ''" data-ng-class="option.trigger_step != '' ? 'btn-primary' : 'btn-default'" data-ng-click="triggerStepDialog(option)" uib-popover="{{'Trigger step' | translate}}" popover-placement="left">
-                          <i class="glyphicon glyphicon-th"></i>
-                        </button>
                       </span>
                       <span data-ng-if="node.enable_experimental_features">
                         <button class="btn btn-xs" data-ng-class="option.score_points != '0' ? 'btn-warning' : 'btn-default'" data-ng-click="assignScorePointsDialog(option)" uib-popover="{{'Assign score points' | translate}}" popover-placement="left">
