@@ -28,9 +28,6 @@ class ApiCache(object):
 
     @classmethod
     def set(cls, tid, resource, language, content_type, data):
-        if isinstance(data, (types.DictType, types.ListType)):
-            data = json.dumps(data)
-
         data = gzipdata(bytes(data))
 
         if tid not in ApiCache.memory_cache_dict:
@@ -59,11 +56,15 @@ def decorator_cache_get(f):
         if c is None:
             d = defer.maybeDeferred(f, self, *args, **kwargs)
 
-            def callback(d):
+            def callback(data):
+                if isinstance(data, (types.DictType, types.ListType)):
+                    self.request.setHeader(b'content-type', b'application/json')
+                    data = json.dumps(data)
+
                 self.request.setHeader("Content-encoding", "gzip")
 
-                c = self.request.responseHeaders.getRawHeaders("Content-type", ["text/html"])[0]
-                return ApiCache.set(self.request.tid, self.request.path, self.request.language, c, d)[1]
+                c = self.request.responseHeaders.getRawHeaders("Content-type", ["application/json"])[0]
+                return ApiCache.set(self.request.tid, self.request.path, self.request.language, c, data)[1]
 
             d.addCallback(callback)
 

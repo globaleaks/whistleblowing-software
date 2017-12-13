@@ -167,16 +167,17 @@ def decorate_method(h, method):
 
     f = getattr(h, method)
 
-    if method == 'get':
-        if h.cache_resource:
-            f = apicache.decorator_cache_get(f)
+    if State.settings.enable_api_cache:
+        if method == 'get':
+            if h.cache_resource:
+                f = apicache.decorator_cache_get(f)
 
-    else:
-        if h.invalidate_global_cache or h.invalidate_cache:
-            f = apicache.decorator_cache_invalidate(f)
+        else:
+            if h.invalidate_global_cache or h.invalidate_cache:
+                f = apicache.decorator_cache_invalidate(f)
 
-        if h.invalidate_tenant_states:
-           f = getattr(h, 'decorator_invalidate_tenant_states')(f)
+            if h.invalidate_tenant_states:
+               f = getattr(h, 'decorator_invalidate_tenant_states')(f)
 
     f = getattr(h, 'decorator_authentication')(f, value)
 
@@ -319,6 +320,8 @@ class APIResourceWrapper(Resource):
 
         self.preprocess(request)
 
+        self.set_headers(request)
+
         if request.tid is None:
             self.handle_exception(errors.ResourceNotFound(), request)
             return b''
@@ -351,7 +354,6 @@ class APIResourceWrapper(Resource):
 
         self.handler = handler(State, request, **args)
 
-        self.set_headers(request)
         request.setResponseCode(self.method_map[method])
 
         if self.handler.root_tenant_only and request.tid != 1:

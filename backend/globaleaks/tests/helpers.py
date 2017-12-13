@@ -115,6 +115,7 @@ def init_glsettings_for_unit_tests():
 
     orm.set_thread_pool(FakeThreadPool())
 
+    State.settings.enable_api_cache = False
     State.tenant_cache[1].hostname = 'www.globaleaks.org'
 
     Sessions.clear()
