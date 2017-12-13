@@ -109,7 +109,6 @@ class TestSubprocessRun(helpers.TestGL):
 
         # Check that requests are routed successfully
         yield threads.deferToThread(self.fetch_resource)
-        yield threads.deferToThread(self.fetch_resource_with_gzip)
 
     def fetch_resource_with_fail(self):
         try:
@@ -123,25 +122,11 @@ class TestSubprocessRun(helpers.TestGL):
             return
 
     def fetch_resource(self):
-        response = urllib2.urlopen('https://127.0.0.1:9443/')
+        response = urllib2.urlopen('https://127.0.0.1:9443/hello.txt')
         hdrs = response.info()
         self.assertEqual(hdrs.get('Strict-Transport-Security'), 'max-age=31536000')
 
-    def fetch_resource_with_gzip(self):
-        request = urllib2.Request('https://127.0.0.1:9443/hello.txt')
-        request.add_header('Accept-encoding', 'gzip')
-        response = urllib2.urlopen(request)
-        hdrs = response.info()
-
-        # Ensure the connection uses gzip
-        self.assertEqual(hdrs.get('Content-Encoding'), 'gzip')
-
-        s = response.read()
-        buf = StringIO(s)
-        f = gzip.GzipFile(fileobj=buf)
-        data = f.read()
-
-        self.assertEqual(data, 'Hello, world!\n')
+        self.assertEqual(response.read(), 'Hello, world!\n')
 
     def tearDown(self):
         if hasattr(self, 'http_process'):

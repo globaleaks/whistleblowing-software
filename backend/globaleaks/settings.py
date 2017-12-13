@@ -166,6 +166,8 @@ class SettingsClass(object):
 
         self.acme_directory_url = 'https://acme-v01.api.letsencrypt.org/directory'
 
+        self.enable_api_cache = True
+
     def eval_paths(self):
         self.config_file_path = '/etc/globaleaks'
         self.pidfile_path = os.path.join(self.pid_path, 'globaleaks.pid')
