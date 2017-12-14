@@ -92,8 +92,7 @@ class OnionService(BaseJob):
             return
 
         d = build_local_tor_connection(reactor)
-        d.addCallback(startup_callback)
-        d.addErrback(startup_errback)
+        d.addCallbacks(startup_callback, startup_errback)
 
         return restart_deferred
 
@@ -150,8 +149,7 @@ class OnionService(BaseJob):
         d = ephs.add_to_tor(self.tor_conn.protocol)
 
         # pylint: disable=no-member
-        d.addCallback(init_callback)
-        d.addErrback(init_errback)
+        d.addCallbacks(init_callback, init_errback)
         # pylint: enable=no-member
 
         self.startup_semaphore[tid] = d
