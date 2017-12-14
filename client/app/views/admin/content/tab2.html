@@ -9,19 +9,29 @@
     <div class="form-group">
       <label data-translate>Favicon</label>
       <div class="well well-large uploadfile file-favicon">
-        <span flow-init="{target: 'admin/files/favicon'}"
+        <div flow-init="{target: 'admin/files/favicon'}"
               flow-files-submitted="$flow.upload()"
               flow-file-success="reload()"
               extend-flow-valid-size="node.maximum_filesize*1024*1024"
               extend-flow-valid-types="['ico']">
-          <div class="btn btn-success fileinput-button">
+          <span class="btn btn-success fileinput-button">
             <span class="uploadfile" flow-btn>
               <span class="glyphicon glyphicon-plus"></span>
               <span data-translate>Upload</span>
             </span>
-          </div>
+          </span>
+          <span data-ng-if="node['favicon']">
+            <a class="btn btn-primary" href="data:application/octet-stream;base64,{{node['favicon']}}" download={{favicon}}>
+              <span class="glyphicon glyphicon-download"></span>
+              <span data-translate>Download</span>
+            </a>
+            <a class="btn btn-danger" data-ng-click="delete_file('admin/files/favicon')">
+              <span class="glyphicon glyphicon-trash"></span>
+              <span data-translate>Delete</span>
+            </a>
+          </span>
           <div errors-upload></div>
-        </span>
+        </div>
       </div>
     </div>
     <div class="form-group">

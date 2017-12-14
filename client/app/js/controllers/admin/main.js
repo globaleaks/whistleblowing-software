@@ -195,6 +195,7 @@ controller('AdminGeneralSettingsCtrl', ['$scope', '$filter', '$http', 'StaticFil
   $scope.delete_file = function (url) {
     $http.delete(url).then(function () {
       $scope.update_static_files();
+      $scope.$emit("REFRESH");
     });
   };
 
