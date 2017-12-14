@@ -261,13 +261,7 @@ def load_tls_dict(store, tid):
 
 
 def load_tls_dict_list(store):
-    tids = [tenant.id for tenant in store.find(Tenant)]
-
-    tls_dicts = []
-    for tid in tids:
-        tls_dicts.append(load_tls_dict(store, tid))
-
-    return tls_dicts
+    return [load_tls_dict(store, tid) for tid in store.find(Tenant.id)]
 
 
 def add_raw_config(store, group, name, customized, value):
