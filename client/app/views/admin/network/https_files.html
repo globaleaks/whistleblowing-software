@@ -119,8 +119,6 @@
     </div>
   </div>
 
-  <div class="launch-btns" data-ng-if="state > 1">
-    <button class="btn btn-success" data-ng-click="toggleCfg()" data-translate>Enable</button>
-  </div>
+  <button class="btn btn-success" data-ng-if="state > 1" data-ng-click="toggleCfg()" data-translate>Enable</button>
   <button class="btn btn-danger" data-ng-click="resetCfg()" data-translate>Reset</button>
 </div>
