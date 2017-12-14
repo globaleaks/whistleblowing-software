@@ -7,6 +7,7 @@ from txtorcon import build_local_tor_connection
 from twisted.internet import reactor, defer
 
 from globaleaks import models
+from globaleaks.db import refresh_memory_variables
 from globaleaks.rest.apicache import ApiCache
 from globaleaks.jobs.base import BaseJob
 from globaleaks.models.config import NodeFactory, PrivateFactory
@@ -132,13 +133,17 @@ class OnionService(BaseJob):
             log.info('Initialization of hidden-service %s completed.', ephs.hostname, tid=tid)
             if not hostname and not key:
                 del self.startup_semaphore[tid]
+
                 if tid in State.tenant_cache:
                     self.hs_map[ephs.hostname] = ephs
                     yield set_onion_service_info(tid, ephs.hostname, ephs.private_key)
                 else:
                     yield ephs.remove_from_tor(self.tor_conn.protocol)
 
+                ApiCache().invalidate(tid)
                 ApiCache().invalidate(1)
+
+                yield refresh_memory_variables()
 
         def init_errback(failure):
             if tid in self.startup_semaphore:
