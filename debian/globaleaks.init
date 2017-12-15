@@ -44,6 +44,19 @@ fi
 if test -e "/etc/default/globaleaks" ; then
     . "/etc/default/globaleaks"
 fi
+
+if [[ "$APPARMOR_SANDBOXING" -eq "1" ]]; then
+    if [[ "$(cat /sys/module/apparmor/parameters/enabled 2>/dev/null)" != 'Y' ]]; then
+        echo "WARNING: Missing Apparmor Sandboxing support"
+        APPARMOR_SANDBOXING=0
+    elif [[ "`apparmor_status | grep -c 'globaleaks'`" -eq "0" ]]; then
+        service apparmor restart
+        if [[ "`apparmor_status | grep -c 'globaleaks'`" -eq "0" ]]; then
+            echo "WARNING: Missing Apparmor Sandboxing support"
+            APPARMOR_SANDBOXING=0
+        fi
+    fi
+fi
 ##################################################################
 . /lib/init/vars.sh
 
@@ -281,18 +294,6 @@ do_restart()
 
     do_start
 }
-
-
-if [[ "$APPARMOR_SANDBOXING" -eq "1" && "$(cat /sys/module/apparmor/parameters/enabled 2>/dev/null)" != 'Y' ]]; then
-    echo "WARNING: Missing Apparmor Sandboxing support"
-    APPARMOR_SANDBOXING=0
-fi
-
-if [[ "$NETWORK_SANDBOXING" -eq "1" && $(check_iptables) -eq "1" ]]; then
-    echo "WARNING: Missing Network Sandboxing support"
-    NETWORK_SANDBOXING=0
-fi
-
 
 #
 # Function that queries the status of the daemon/service
