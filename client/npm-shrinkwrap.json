@@ -13,9 +13,9 @@
       "resolved": "https://registry.npmjs.org/@flowjs/ng-flow/-/ng-flow-2.7.7.tgz"
     },
     "@types/node": {
-      "version": "6.0.92",
+      "version": "6.0.94",
       "from": "@types/node@>=6.0.46 <7.0.0",
-      "resolved": "https://registry.npmjs.org/@types/node/-/node-6.0.92.tgz",
+      "resolved": "https://registry.npmjs.org/@types/node/-/node-6.0.94.tgz",
       "dev": true
     },
     "@types/q": {
@@ -83,9 +83,9 @@
       }
     },
     "ajv": {
-      "version": "5.5.0",
+      "version": "5.5.1",
       "from": "ajv@>=5.1.0 <6.0.0",
-      "resolved": "https://registry.npmjs.org/ajv/-/ajv-5.5.0.tgz",
+      "resolved": "https://registry.npmjs.org/ajv/-/ajv-5.5.1.tgz",
       "dev": true
     },
     "ajv-keywords": {
@@ -311,9 +311,9 @@
       "resolved": "https://registry.npmjs.org/blob-tmp/-/blob-tmp-1.0.0.tgz"
     },
     "blocking-proxy": {
-      "version": "0.0.5",
-      "from": "blocking-proxy@0.0.5",
-      "resolved": "https://registry.npmjs.org/blocking-proxy/-/blocking-proxy-0.0.5.tgz",
+      "version": "1.0.1",
+      "from": "blocking-proxy@>=1.0.0 <2.0.0",
+      "resolved": "https://registry.npmjs.org/blocking-proxy/-/blocking-proxy-1.0.1.tgz",
       "dev": true
     },
     "body-parser": {
@@ -1121,9 +1121,9 @@
       }
     },
     "eslint": {
-      "version": "4.12.0",
-      "from": "eslint@4.12.0",
-      "resolved": "https://registry.npmjs.org/eslint/-/eslint-4.12.0.tgz",
+      "version": "4.13.1",
+      "from": "eslint@4.13.1",
+      "resolved": "https://registry.npmjs.org/eslint/-/eslint-4.13.1.tgz",
       "dev": true
     },
     "eslint-scope": {
@@ -1366,9 +1366,9 @@
       "dev": true
     },
     "globals": {
-      "version": "11.0.1",
+      "version": "11.1.0",
       "from": "globals@>=11.0.1 <12.0.0",
-      "resolved": "https://registry.npmjs.org/globals/-/globals-11.0.1.tgz",
+      "resolved": "https://registry.npmjs.org/globals/-/globals-11.1.0.tgz",
       "dev": true
     },
     "globby": {
@@ -2264,9 +2264,9 @@
       "dev": true
     },
     "is-path-inside": {
-      "version": "1.0.0",
+      "version": "1.0.1",
       "from": "is-path-inside@>=1.0.0 <2.0.0",
-      "resolved": "https://registry.npmjs.org/is-path-inside/-/is-path-inside-1.0.0.tgz",
+      "resolved": "https://registry.npmjs.org/is-path-inside/-/is-path-inside-1.0.1.tgz",
       "dev": true
     },
     "is-promise": {
@@ -2276,9 +2276,9 @@
       "dev": true
     },
     "is-resolvable": {
-      "version": "1.0.0",
+      "version": "1.0.1",
       "from": "is-resolvable@>=1.0.0 <2.0.0",
-      "resolved": "https://registry.npmjs.org/is-resolvable/-/is-resolvable-1.0.0.tgz",
+      "resolved": "https://registry.npmjs.org/is-resolvable/-/is-resolvable-1.0.1.tgz",
       "dev": true
     },
     "is-stream": {
@@ -2752,9 +2752,9 @@
       "dev": true
     },
     "openpgp": {
-      "version": "2.5.13",
-      "from": "openpgp@2.5.13",
-      "resolved": "https://registry.npmjs.org/openpgp/-/openpgp-2.5.13.tgz"
+      "version": "2.6.0",
+      "from": "openpgp@2.6.0",
+      "resolved": "https://registry.npmjs.org/openpgp/-/openpgp-2.6.0.tgz"
     },
     "opn": {
       "version": "4.0.2",
@@ -2921,9 +2921,9 @@
       "dev": true
     },
     "protractor": {
-      "version": "5.2.0",
-      "from": "protractor@5.2.0",
-      "resolved": "https://registry.npmjs.org/protractor/-/protractor-5.2.0.tgz",
+      "version": "5.2.2",
+      "from": "protractor@5.2.2",
+      "resolved": "https://registry.npmjs.org/protractor/-/protractor-5.2.2.tgz",
       "dev": true,
       "dependencies": {
         "adm-zip": {
@@ -3381,9 +3381,9 @@
       "dev": true
     },
     "superagent": {
-      "version": "3.8.1",
-      "from": "superagent@3.8.1",
-      "resolved": "https://registry.npmjs.org/superagent/-/superagent-3.8.1.tgz",
+      "version": "3.8.2",
+      "from": "superagent@3.8.2",
+      "resolved": "https://registry.npmjs.org/superagent/-/superagent-3.8.2.tgz",
       "dev": true
     },
     "supertest": {
@@ -3450,12 +3450,6 @@
       "version": "1.0.0",
       "from": "trim-newlines@>=1.0.0 <2.0.0",
       "resolved": "https://registry.npmjs.org/trim-newlines/-/trim-newlines-1.0.0.tgz",
-      "dev": true
-    },
-    "tryit": {
-      "version": "1.0.3",
-      "from": "tryit@>=1.0.1 <2.0.0",
-      "resolved": "https://registry.npmjs.org/tryit/-/tryit-1.0.3.tgz",
       "dev": true
     },
     "tunnel-agent": {
