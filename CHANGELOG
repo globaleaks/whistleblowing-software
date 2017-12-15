@@ -1,3 +1,8 @@
+Changes in version 2.72.25 - 2017-12-15
+    o Improve resiliency of apparmor detection and startup
+    o Apply minor UI bugfixing
+    o Bump npm dependencies to latest stables versions
+
 Changes in version 2.72.24 - 2017-12-08
     o Apply minor bugfixing
 
