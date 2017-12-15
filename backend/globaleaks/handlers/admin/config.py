@@ -34,7 +34,6 @@ def check_hostname(store, tid, input_hostname):
 
     existing_hostnames = {h.get_v() for h in store.find(Config,
                                                         Config.tid != tid,
-                                                        var_group=u'node',
                                                         var_name=u'hostname')}
 
     if input_hostname in existing_hostnames:

@@ -2,6 +2,8 @@
 from twisted.internet.address import IPv4Address
 from twisted.internet.defer import inlineCallbacks
 
+from globaleaks.db import refresh_memory_variables
+from globaleaks.handlers.admin.node import update_enabled_languages
 from globaleaks.state import State
 from globaleaks.tests.helpers import TestGL, forge_request
 
@@ -13,6 +15,9 @@ class TestAPI(TestGL):
 
         from globaleaks.rest import api
         self.api = api.APIResourceWrapper()
+
+        yield update_enabled_languages(1, ['en', 'ar', 'it'], 'en')
+        yield refresh_memory_variables()
 
     def test_api_spec(self):
         from globaleaks.rest import api

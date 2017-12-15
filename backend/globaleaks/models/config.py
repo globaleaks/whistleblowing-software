@@ -3,22 +3,21 @@ from storm.locals import Bool, Unicode, JSON
 
 from globaleaks import __version__
 from globaleaks.models import config_desc, ModelWithTID, Tenant
-from globaleaks.models.config_desc import GLConfig
+from globaleaks.models.config_desc import ConfigDescriptor, ConfigFilters
 from globaleaks.utils.utility import log
 
 
 class Config(ModelWithTID):
     __storm_table__ = 'config'
-    __storm_primary__ = ('tid', 'var_group', 'var_name')
+    __storm_primary__ = ('tid', 'var_name')
 
-    cfg_desc = GLConfig
-    var_group = Unicode()
+    cfg_desc = ConfigDescriptor
     var_name = Unicode()
     value = JSON()
     customized = Bool(default=False)
 
 
-    def __init__(self, tid=1, group=None, name=None, value=None, cfg_desc=None, migrate=False):
+    def __init__(self, tid=1, name=None, value=None, cfg_desc=None, migrate=False):
         """
         :param value:    This input is passed directly into set_v
         :param migrate:  Added to comply with models.Model constructor which is
@@ -34,16 +33,11 @@ class Config(ModelWithTID):
             return
 
         self.tid = tid
-        self.var_group = unicode(group)
         self.var_name = unicode(name)
         self.set_v(value)
 
-    @staticmethod
-    def find_descriptor(config_desc_root, var_group, var_name):
-        return config_desc_root.get(var_group, {}).get(var_name, None)
-
     def set_v(self, val):
-        desc = self.find_descriptor(self.cfg_desc, self.var_group, self.var_name)
+        desc = ConfigDescriptor[self.var_name]
         if val is None:
             val = desc._type()
 
@@ -72,7 +66,7 @@ class ConfigFactory(object):
     This factory depends on the following attributes set by the sub class:
     """
     update_set = frozenset() # keys updated when fact.update(d) is called
-    group_desc = dict() # the corresponding dict in GLConfig
+    group_desc = dict() # the corresponding dict in ConfigDescriptor
 
     def __init__(self, store, tid, group, *args, **kwargs):
         self.store = store
@@ -81,7 +75,7 @@ class ConfigFactory(object):
         self.res = None
 
     def _query_group(self):
-        self.res = {c.var_name: c for c in self.store.find(Config, tid=self.tid, var_group=self.group)}
+        self.res = {c.var_name: c for c in self.store.find(Config, Config.tid==self.tid, In(Config.var_name, ConfigFilters[self.group]))}
 
     def update(self, request):
         self._query_group()
@@ -91,7 +85,7 @@ class ConfigFactory(object):
             self.res[key].set_v(request[key])
 
     def get_cfg(self, var_name):
-        return self.store.find(Config, tid=self.tid, var_group=self.group, var_name=var_name).one()
+        return self.store.find(Config, tid=self.tid, var_name=var_name).one()
 
     def get_val(self, var_name):
         return self.get_cfg(var_name).get_v()
@@ -104,34 +98,31 @@ class ConfigFactory(object):
 
     def _export_group_dict(self, safe_set):
         self._query_group()
-        return {k : self.res[k].get_v() for k in safe_set}
+        return {k: self.res[k].get_v() for k in safe_set}
 
     def db_corresponds(self):
         self._query_group()
 
         k = set(self.res.keys())
-        g = set(self.group_desc)
+        g = ConfigFilters[self.group]
 
         return k == g
 
     def clean_and_add(self):
         self._query_group()
 
-        res = {c.var_name : c for c in self.store.find(Config, tid=self.tid, var_group=self.group)}
+        actual = [name for name in self.store.find(Config.var_name, Config.tid==self.tid)]
 
-        actual = set(self.res.keys())
-        allowed = set(self.group_desc)
+        allowed = ConfigDescriptor.keys()
 
-        missing = allowed - actual
+        missing = list(set(allowed) - set(actual))
 
         for key in missing:
-            self.store.add(Config(self.tid, self.group, key, self.group_desc[key].default))
+            self.store.add(Config(self.tid, key, ConfigDescriptor[key].default))
 
-        extra = actual - allowed
+        extra = list(set(actual) - set(allowed))
 
-        for key in extra:
-            log.info("Removing unused config key: %s", key)
-            self.store.remove(res[key])
+        self.store.find(Config, In(Config.var_name, extra)).remove()
 
         return len(missing), len(extra)
 
@@ -152,12 +143,12 @@ class NodeFactory(ConfigFactory):
         'anonymize_outgoing_connections',
     })
 
-    admin_node = frozenset(GLConfig['node'].keys())
+    admin_node = frozenset(ConfigFilters['node'])
 
     public_node = admin_node - node_private_fields
 
     update_set = admin_node
-    group_desc = GLConfig['node']
+    group_desc = ConfigDescriptor
 
     def __init__(self, store, tid, *args, **kwargs):
         ConfigFactory.__init__(self, store, tid, 'node', *args, **kwargs)
@@ -170,10 +161,10 @@ class NodeFactory(ConfigFactory):
 
 
 class NotificationFactory(ConfigFactory):
-    admin_notification = frozenset(GLConfig['notification'].keys())
+    admin_notification = frozenset(ConfigFilters['notification'])
 
     update_set = admin_notification
-    group_desc = GLConfig['notification']
+    group_desc = ConfigDescriptor
 
     def __init__(self, store, tid, *args, **kwargs):
         ConfigFactory.__init__(self, store, tid, 'notification', *args, **kwargs)
@@ -192,9 +183,9 @@ class PrivateFactory(ConfigFactory):
         'https_dh_params',
     }
 
-    mem_export_set = frozenset(set(GLConfig['private'].keys()) - non_mem_vars)
+    mem_export_set = frozenset(set(ConfigFilters['private']) - non_mem_vars)
 
-    group_desc = GLConfig['private']
+    group_desc = ConfigDescriptor
 
     def __init__(self, store, tid, *args, **kwargs):
         ConfigFactory.__init__(self, store, tid, 'private', *args, **kwargs)
@@ -207,37 +198,20 @@ factories = [NodeFactory, NotificationFactory, PrivateFactory]
 
 
 def system_cfg_init(store, tid):
-    for group_name, group in GLConfig.items():
-        for var_name, desc in group.items():
-            if desc.default_factory is not None:
-                default = desc.default_factory()
-            else:
-                default = desc.default
-            store.add(Config(tid, group_name, var_name, default))
+    for var_name, desc in ConfigDescriptor.items():
+        if desc.default_factory is not None:
+            default = desc.default_factory()
+        else:
+            default = desc.default
 
-
-def del_cfg_not_in_groups(store):
-    store.find(Config, Not(In(Config.var_group, [u'node', u'notification', u'private']))).remove()
-
-
-def is_cfg_valid(store, tid):
-    for fact_model in factories:
-        if not fact_model(store, tid).db_corresponds():
-            return False
-
-    s = {r.var_group for r in store.find(Config, tid=tid).group_by(Config.var_group)}
-
-    return s == set(GLConfig.keys())
+        store.add(Config(tid, var_name, default))
 
 
 def update_defaults(store, tid):
-    if not is_cfg_valid(store, tid):
-        log.info("This update will change system configuration")
+    store.find(Config, Not(In(Config.var_name, ConfigDescriptor.keys()))).remove()
 
-        for fact_model in factories:
-            fact_model(store, tid).clean_and_add()
-
-        del_cfg_not_in_groups(store)
+    for fact_model in factories:
+         fact_model(store, tid).clean_and_add()
 
     # Set the system version to the current aligned cfg
     PrivateFactory(store, tid).set_val(u'version', __version__)
@@ -262,12 +236,3 @@ def load_tls_dict(store, tid):
 
 def load_tls_dict_list(store):
     return [load_tls_dict(store, tid) for tid in store.find(Tenant.id)]
-
-
-def add_raw_config(store, group, name, customized, value):
-    c = Config(migrate=True)
-    c.var_group = group
-    c.var_name =  name
-    c.customixed = customized
-    c.value = {'v': value}
-    store.add(c)
