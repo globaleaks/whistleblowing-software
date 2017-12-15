@@ -86,7 +86,6 @@ migration_mapping = OrderedDict([
 
 
 def db_perform_data_update(store):
-
     prv = PrivateFactory(store, 1)
 
     stored_ver = prv.get_val(u'version')
@@ -102,10 +101,6 @@ def db_perform_data_update(store):
             db_update_defaults(store, tid)
             l10n.update_defaults(store, tid, appdata)
             config.update_defaults(store, tid)
-
-            ok = config.is_cfg_valid(store, tid)
-            if not ok:
-                raise Exception('Error: the system is not stable, update failed from %s to %s' % t)
 
 
 def perform_data_update(db_file):

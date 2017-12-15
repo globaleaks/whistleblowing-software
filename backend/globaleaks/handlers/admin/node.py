@@ -46,7 +46,7 @@ def admin_serialize_node(store, tid, language):
     return db_admin_serialize_node(store, tid, language)
 
 
-def update_enabled_languages(store, tid, languages_enabled, default_language):
+def db_update_enabled_languages(store, tid, languages_enabled, default_language):
     cur_enabled_langs = EnabledLanguage.list(store, tid)
     new_enabled_langs = [unicode(y) for y in languages_enabled]
 
@@ -73,6 +73,10 @@ def update_enabled_languages(store, tid, languages_enabled, default_language):
 
         models.db_delete(store, models.l10n.EnabledLanguage, In(models.l10n.EnabledLanguage.name, to_remove), tid=tid)
 
+@transact
+def update_enabled_languages(store, tid, languages_enabled, default_language):
+    return db_update_enabled_languages(store, tid, languages_enabled, default_language)
+
 
 def db_update_node(store, tid, request, language):
     """
@@ -93,7 +97,7 @@ def db_update_node(store, tid, request, language):
     else:
         node.set_val(u'basic_auth', False)
 
-    update_enabled_languages(store, tid, request['languages_enabled'], request['default_language'])
+    db_update_enabled_languages(store, tid, request['languages_enabled'], request['default_language'])
 
     if language in request['languages_enabled']:
         node_l10n = NodeL10NFactory(store, tid)

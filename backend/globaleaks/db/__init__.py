@@ -11,6 +11,7 @@ from storm.expr import In, Or
 from globaleaks import models, security, DATABASE_VERSION, FIRST_DATABASE_VERSION_SUPPORTED
 from globaleaks.handlers.base import Session
 from globaleaks.models.config import Config, NodeFactory, PrivateFactory, NotificationFactory
+from globaleaks.models.config_desc import ConfigFilters
 from globaleaks.orm import transact, transact_sync
 from globaleaks.settings import Settings
 from globaleaks.state import State, TenantState
@@ -138,21 +139,21 @@ def db_refresh_tenant_cache(store, tid_list):
     that are subject to high usage.
     """
 
-    result_set = store.find(Config, Or(Config.var_group==u'node', Config.var_group==u'notification', Config.var_group==u'private'),
-                                    In(Config.tid, tid_list)).order_by(Config.tid, Config.var_group, Config.var_name)
+    result_set = store.find(Config, In(Config.tid, tid_list)).order_by(Config.tid, Config.var_name)
 
     tenant_cache_dict = ObjectDict()
 
     for cfg in result_set:
         tenant_cache = tenant_cache_dict.setdefault(cfg.tid, ObjectDict())
-        cache_group = tenant_cache.setdefault(cfg.var_group, ObjectDict())
 
-        if cfg.var_group == 'node' and cfg.var_name in NodeFactory.admin_node:
+        if cfg.var_name in ConfigFilters['node']:
             tenant_cache[cfg.var_name] = cfg.get_v()
-        elif cfg.var_group == 'private' and cfg.var_name in PrivateFactory.mem_export_set:
-            cache_group[cfg.var_name] = cfg.get_v()
-        elif cfg.var_group == 'notification' and cfg.var_name in NotificationFactory.admin_notification:
-            cache_group[cfg.var_name] = cfg.get_v()
+        elif cfg.var_name in ConfigFilters['notification']:
+            tenant_cache.setdefault('notification', ObjectDict())
+            tenant_cache['notification'][cfg.var_name] = cfg.get_v()
+        elif cfg.var_name in ConfigFilters['private']:
+            tenant_cache.setdefault('private', ObjectDict())
+            tenant_cache['private'][cfg.var_name] = cfg.get_v()
 
     for tid, tenant_cache in tenant_cache_dict.items():
         tenant_cache.accept_tor2web_access = {

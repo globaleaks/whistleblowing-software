@@ -18,24 +18,22 @@ CREATE TABLE enabledlanguage (
 
 CREATE TABLE config (
     tid INTEGER NOT NULL DEFAULT 1,
-    var_group TEXT NOT NULL,
     var_name TEXT NOT NULL,
     customized BOOL NOT NULL,
     value BLOB NOT NULL,
     FOREIGN KEY (tid) REFERENCES tenant(id) ON DELETE CASCADE,
-    PRIMARY KEY (tid, var_group, var_name)
+    PRIMARY KEY (tid, var_name)
 );
 
 CREATE TABLE config_l10n (
     tid INTEGER NOT NULL DEFAULT 1,
     lang TEXT NOT NULL,
-    var_group TEXT NOT NULL,
     var_name TEXT NOT NULL,
     value TEXT NOT NULL,
     customized BOOL NOT NULL,
     FOREIGN KEY (tid) REFERENCES tenant(id) ON DELETE CASCADE,
     FOREIGN KEY (tid, lang) REFERENCES enabledlanguage(tid, name) ON DELETE CASCADE,
-    PRIMARY KEY (tid, lang, var_group, var_name)
+    PRIMARY KEY (tid, lang, var_name)
 );
 
 CREATE TABLE user (
