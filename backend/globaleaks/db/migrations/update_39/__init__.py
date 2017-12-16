@@ -1,4 +1,6 @@
 #i -*- coding: UTF-8
+import os
+import shutil
 
 from storm.expr import And
 from storm.locals import Bool, Int, Reference, ReferenceSet, Unicode, Storm, JSON
@@ -8,7 +10,8 @@ from globaleaks.handlers.admin import tenant
 from globaleaks.models.validators import shorttext_v, longtext_v, \
     shortlocal_v, longlocal_v, shorturl_v, longurl_v, natnum_v, range_v
 from globaleaks.models import *
-from globaleaks.utils.utility import datetime_now
+from globaleaks.settings import Settings
+from globaleaks.utils.utility import datetime_now, uuid4
 
 from globaleaks.models import config_desc
 from globaleaks.db.migrations.update_37.config_desc import GLConfig
@@ -503,5 +506,60 @@ class MigrationScript(MigrationBase):
 
             self.store_new.add(new_obj)
 
+    def migrate_File_XXX(self, XXX):
+        old_objs = self.store_old.find(self.model_from[XXX])
+        for old_obj in old_objs:
+            new_obj = self.model_to[XXX]()
+
+            for _, v in new_obj._storm_columns.iteritems():
+                if v.name == 'tid':
+                    new_obj.tid = ROOT_TENANT
+                elif v.name == 'file_path':
+                    new_obj.file_path = old_obj.file_path.replace('files/submission', 'attachments')
+                    try:
+                        shutil.move(old_obj.file_path, new_obj.file_path)
+                    except:
+                        pass
+                else:
+                    setattr(new_obj, v.name, getattr(old_obj, v.name))
+
+            self.store_new.add(new_obj)
+
+    def migrate_InternalFile(self):
+        return self.migrate_File_XXX('InternalFile')
+
+    def migrate_ReceiverFile(self):
+        return self.migrate_File_XXX('ReceiverFile')
+
+    def migrate_WhistleblowerFile(self):
+        return self.migrate_File_XXX('WhistleblowerFile')
+
     def epilogue(self):
         self.store_new.add(self.model_to['Tenant']({'label': ''}))
+
+        static_path = os.path.abspath(os.path.join(Settings.working_path, 'files/static'))
+        if os.path.exists(static_path):
+            for filename in os.listdir(static_path):
+                filepath = os.path.abspath(os.path.join(static_path, filename))
+                if not os.path.isfile(filepath):
+                    continue
+
+                new_file = File()
+                new_file.id = uuid4()
+                new_file.name = filename
+                new_file.data = u''
+                self.store_new.add(new_file)
+                shutil.move(filepath,
+                            os.path.abspath(os.path.join(Settings.files_path, new_file.id)))
+
+                self.entries_count['File'] += 1
+
+        shutil.rmtree(os.path.abspath(os.path.join(Settings.working_path, 'files/static')), True)
+        shutil.rmtree(os.path.abspath(os.path.join(Settings.working_path, 'files/submission')), True)
+        shutil.rmtree(os.path.abspath(os.path.join(Settings.working_path, 'files/tmp')), True)
+
+        try:
+            # Depending of when the system was installed this directory may not exist
+            shutil.rmtree(os.path.abspath(os.path.join(Settings.working_path, 'files/encrypted_upload')))
+        except:
+            pass
