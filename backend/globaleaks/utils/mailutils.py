@@ -113,7 +113,7 @@ def sendmail(tid, username, password, smtp_host, smtp_port, security, from_name,
             """
             @param failure {Failure {twisted.internet.FirstError {Failure}}}
             """
-            log.err("SMTP connection failed (Exception: %s)", failure.value.subFailure.valued, tid=tid)
+            log.err("SMTP connection failed (Exception: %s)", failure.value.subFailure.value, tid=tid)
             log.debug(failure)
             return False
 
