@@ -1,4 +1,26 @@
 [
   "test-init.js",
-  "test-admin-perform-wizard.js"
+  "test-admin-perform-wizard.js",
+  "test-admin-login.js",
+  "test-admin-navigate-sections.js",
+  "test-admin-configure-advanced.js",
+  "test-admin-configure-languages.js",
+  "test-admin-configure-node.js",
+  "test-admin-configure-css.js",
+  "test-admin-custom-file.js",
+  "test-internationalization.js",
+  "test-admin-configure-custom-texts.js",
+  "test-admin-configure-mail.js",
+  "test-admin-configure-shorturls.js",
+  "test-admin-configure-network.js",
+  "test-admin-users.js",
+  "test-admin-contexts.js",
+  "test-admin-questionnaires.js",
+  "test-receiver-first-login.js",
+  "test-custodian-first-login.js",
+  "test-submission-ui.js",
+  "test-globaleaks-process.js",
+  "test-authentication-redirects.js",
+  "test-file-consistency.js",
+  "test-admin-visualize-overview.js"
 ]
