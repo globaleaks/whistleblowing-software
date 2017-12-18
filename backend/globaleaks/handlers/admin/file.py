@@ -82,12 +82,12 @@ class FileInstance(BaseHandler):
         return d
 
     def delete(self, id):
-        d = models.delete(models.File, tid=self.request.tid, id=id)
-
         path = os.path.join(self.state.settings.files_path, id)
         directory_traversal_check(self.state.settings.files_path, path)
         if os.path.exists(path):
             os.remove(path)
+
+        return models.delete(models.File, tid=self.request.tid, id=id)
 
 
 class FileCollection(BaseHandler):
