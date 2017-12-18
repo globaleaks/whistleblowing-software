@@ -17,8 +17,6 @@ class ProcessSupervisor(object):
     """
     A supervisor for all subprocesses that the main globaleaks process can launch
     """
-    MAX_MORTALITY_RATE = 0.2
-
     def __init__(self, net_sockets, proxy_ip, proxy_port):
         log.info("Starting process monitor")
 
@@ -27,11 +25,7 @@ class ProcessSupervisor(object):
 
         self.start_time = datetime_now()
         self.tls_process_pool = []
-        self.tls_process_state = {
-            'deaths': 0,
-            'last_death': datetime_now(),
-            'target_proc_num': multiprocessing.cpu_count(),
-        }
+        self.cpu_count = multiprocessing.cpu_count()
 
         self.worker_path = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'worker_https.py')
 
@@ -73,6 +67,7 @@ class ProcessSupervisor(object):
             return defer.fail(err)
 
         log.info("Decided to launch https workers")
+
         return self.launch_https_workers()
 
     @transact
@@ -80,18 +75,15 @@ class ProcessSupervisor(object):
         self.db_maybe_launch_https_workers(store)
 
     def launch_https_workers(self):
-        self.tls_process_state['deaths'] = 0
-        self.tls_process_state['last_death'] = datetime_now()
-
-        d_lst = [self.launch_worker() for _ in range(self.tls_process_state['target_proc_num'])]
-
-        return defer.DeferredList(d_lst)
+        return defer.DeferredList([self.launch_worker() for _ in range(self.cpu_count)])
 
     def launch_worker(self):
         pp = HTTPSProcProtocol(self, self.tls_cfg)
         reactor.spawnProcess(pp, executable, [executable, self.worker_path], childFDs=pp.fd_map, env=os.environ)
         self.tls_process_pool.append(pp)
+
         log.info('Launched: %s', pp)
+
         return pp.startup_promise
 
     def handle_worker_death(self, pp, reason):
@@ -101,11 +93,12 @@ class ProcessSupervisor(object):
         restarted the child an unreasonable number of times.
         """
         log.debug("Subprocess: %s exited with: %s", pp, reason)
-        mortatility_rate = self.account_death()
+
         self.tls_process_pool.pop(self.tls_process_pool.index(pp))
+
         del pp
 
-        if self.should_spawn_child(mortatility_rate):
+        if self.should_spawn_child():
             log.debug('Decided to respawn a child')
             self.launch_worker()
         elif self.last_one_out():
@@ -116,22 +109,11 @@ class ProcessSupervisor(object):
         else:
             log.debug("Not relaunching child process")
 
-    def should_spawn_child(self, mort_rate):
-        # TODO add logging based on condition hit
-
+    def should_spawn_child(self):
         if self.shutting_down:
             return False
 
-        nrml_deaths = 3 * self.tls_process_state['target_proc_num']
-
-        # TODO hitting this condition means something is really wrong. Log it.
-        max_deaths = nrml_deaths * 150
-
-        num_deaths = self.tls_process_state['deaths']
-
-        return len(self.tls_process_pool) < self.tls_process_state['target_proc_num'] and \
-               num_deaths < max_deaths and \
-               (mort_rate < self.MAX_MORTALITY_RATE or num_deaths < nrml_deaths)
+        return len(self.tls_process_pool) < self.cpu_count
 
     def last_one_out(self):
         """
@@ -139,17 +121,6 @@ class ProcessSupervisor(object):
         the process supervisor has closed all children.
         """
         return self.shutting_down and len(self.tls_process_pool) == 0
-
-    def calc_mort_rate(self):
-        d = self.tls_process_state['deaths']
-        window = (datetime_now() - self.start_time).total_seconds()
-        return d / (window / 60.0) # deaths per minute
-
-    def account_death(self):
-        self.tls_process_state['deaths'] += 1
-        r = self.calc_mort_rate()
-        log.debug('process death accountant: r=%3f, d=%2f', r, self.tls_process_state['deaths'])
-        return r
 
     def is_running(self):
         return len(self.tls_process_pool) > 0
@@ -161,14 +132,9 @@ class ProcessSupervisor(object):
             'type': 'info'
         }
 
-        r = self.calc_mort_rate()
-
         if self.is_running():
-            if r == 0:
-                m = "Everything is running normally."
-            else:
-                m = "The supervisor has a mortality rate of r=%1.2f deaths/minute" % r
-        elif not self.should_spawn_child(r):
+            m = "Everything is running normally."
+        elif not self.should_spawn_child():
             m = "The supervisor will not create new workers"
         else:
             m = "Nothing is being served"
