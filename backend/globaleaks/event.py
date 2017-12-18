@@ -1,7 +1,6 @@
 # -*- coding: utf-8
 
 from globaleaks.state import State
-from globaleaks.utils.tempdict import TempDict
 from globaleaks.utils.utility import datetime_now, datetime_to_ISO8601
 
 

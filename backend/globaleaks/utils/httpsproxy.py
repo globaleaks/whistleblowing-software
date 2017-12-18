@@ -1,6 +1,6 @@
+# -*- coding: utf-8 -*-
 import io
 import urlparse
-import zlib
 
 from twisted.internet import reactor, protocol, defer
 from twisted.internet.protocol import connectionDone

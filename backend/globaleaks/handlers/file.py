@@ -6,7 +6,6 @@ from twisted.internet import defer
 from globaleaks import models
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.orm import transact
-from globaleaks.rest import errors
 
 @transact
 def get_file_id(store, tid, name):

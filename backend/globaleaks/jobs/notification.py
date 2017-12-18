@@ -13,7 +13,7 @@ from globaleaks.handlers.admin.notification import db_get_notification
 from globaleaks.handlers.rtip import serialize_rtip, serialize_message, serialize_comment
 from globaleaks.handlers.user import user_serialize_user
 from globaleaks.jobs.base import NetLoopingJob
-from globaleaks.orm import transact, transact_sync, TenantIterator
+from globaleaks.orm import transact_sync, TenantIterator
 from globaleaks.security import encrypt_message
 from globaleaks.utils.templating import Templating
 from globaleaks.utils.utility import log

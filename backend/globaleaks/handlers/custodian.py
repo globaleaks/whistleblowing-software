@@ -36,7 +36,7 @@ def serialize_identityaccessrequest(store, tid, identityaccessrequest):
 
 
 
-def db_get_identityaccessrequest_list(store, tid, rtip_id, language):
+def db_get_identityaccessrequest_list(store, tid, rtip_id):
     return [serialize_identityaccessrequest(store, tid, iar) for iar in store.find(models.IdentityAccessRequest, receivertip_id=rtip_id, tid=tid)]
 
 

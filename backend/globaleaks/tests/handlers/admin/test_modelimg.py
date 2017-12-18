@@ -1,6 +1,4 @@
 # -*- coding: utf-8 -*-
-
-from globaleaks import models
 from globaleaks.handlers.admin import modelimgs
 from globaleaks.tests import helpers
 from twisted.internet.defer import inlineCallbacks

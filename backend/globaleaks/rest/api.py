@@ -24,7 +24,7 @@ from globaleaks.handlers import custodian, \
                                 rtip, wbtip, \
                                 attachment, authentication, token, \
                                 export, l10n, wizard, \
-                                base, user, shorturl, \
+                                user, shorturl, \
                                 robots, \
                                 staticfile
 

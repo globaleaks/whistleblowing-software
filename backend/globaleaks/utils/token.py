@@ -5,12 +5,10 @@
 #
 #   Implements a GlobaLeaks security token, to prevent resources exhaustion
 #   operation by anonymous user.
-
 import os
 from datetime import datetime, timedelta
 from random import SystemRandom
 
-from globaleaks.anomaly import Alarm
 from globaleaks.rest import errors
 from globaleaks.security import sha256, generateRandomKey
 from globaleaks.settings import Settings

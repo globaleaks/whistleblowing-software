@@ -15,7 +15,6 @@ from globaleaks.rest import errors, requests
 from globaleaks.settings import Settings
 from globaleaks.state import State
 from globaleaks.utils import letsencrypt, tls
-from globaleaks.utils.tempdict import TempDict
 from globaleaks.utils.utility import datetime_to_ISO8601, format_cert_expr_date, log
 
 

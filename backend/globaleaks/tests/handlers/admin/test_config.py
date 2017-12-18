@@ -1,6 +1,5 @@
 # -*- coding: utf-8
 from globaleaks.handlers.admin import config
-from globaleaks.rest import errors
 from globaleaks.state import State
 from globaleaks.tests import helpers
 

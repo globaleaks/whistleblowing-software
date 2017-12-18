@@ -1,7 +1,6 @@
 # -*- coding: utf-8
 # orm: contains main hooks to storm ORM
 # ******
-import sys
 import random
 import threading
 

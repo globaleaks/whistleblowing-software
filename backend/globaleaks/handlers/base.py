@@ -365,7 +365,7 @@ class BaseHandler(object):
             self.request.setHeader("Content-encoding", "gzip")
             filename = filename[:-3]
 
-        mime_type, encoding = mimetypes.guess_type(filename)
+        mime_type, _ = mimetypes.guess_type(filename)
         if mime_type:
             self.request.setHeader("Content-Type", mime_type)
 
@@ -445,7 +445,7 @@ class BaseHandler(object):
 
         f.finalize()
 
-        mime_type, encoding = mimetypes.guess_type(self.request.args['flowFilename'][0])
+        mime_type, _ = mimetypes.guess_type(self.request.args['flowFilename'][0])
         if mime_type is None:
             mime_type = 'application/octet-stream'
 

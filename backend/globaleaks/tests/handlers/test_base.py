@@ -2,7 +2,7 @@
 import json
 
 from globaleaks.handlers.base import BaseHandler
-from globaleaks.rest.errors import InvalidInputFormat, ResourceNotFound
+from globaleaks.rest.errors import InvalidInputFormat
 from globaleaks.tests import helpers
 
 FUTURE = 100

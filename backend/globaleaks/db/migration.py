@@ -38,9 +38,6 @@ from globaleaks.settings import Settings
 from globaleaks.utils.utility import log
 
 
-XTIDX = 1
-
-
 migration_mapping = OrderedDict([
     ('Anomalies', [-1, -1, -1, -1, -1, -1, Anomalies_v_38, 0, 0, 0, 0, 0, 0, 0, 0, models.Anomalies]),
     ('ArchivedSchema', [ArchivedSchema_v_38, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, models.ArchivedSchema]),

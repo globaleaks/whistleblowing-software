@@ -14,7 +14,7 @@ from globaleaks.orm import transact_sync
 from globaleaks.security import overwrite_and_remove
 from globaleaks.state import State
 from globaleaks.utils.templating import Templating
-from globaleaks.utils.utility import datetime_now, datetime_to_ISO8601
+from globaleaks.utils.utility import datetime_now
 
 
 __all__ = ['Cleaning']

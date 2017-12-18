@@ -8,9 +8,6 @@ from globaleaks.utils.utility import datetime_never
 from twisted.internet.defer import inlineCallbacks
 
 
-XTIDX = 1
-
-
 @transact
 def set_expiration_of_all_rtips_to_unlimited(store):
     store.find(models.InternalTip).set(expiration_date = datetime_never())
@@ -65,7 +62,7 @@ class TestTipsOperations(helpers.TestHandlerWithPopulatedDB):
 
         yield set_expiration_of_all_rtips_to_unlimited()
 
-        rtips = yield receiver.get_receivertip_list(XTIDX, self.dummyReceiver_1['id'], 'en')
+        rtips = yield receiver.get_receivertip_list(1, self.dummyReceiver_1['id'], 'en')
         rtips_ids = [rtip['id'] for rtip in rtips]
 
         postpone_map = {}
@@ -80,7 +77,7 @@ class TestTipsOperations(helpers.TestHandlerWithPopulatedDB):
         handler = self.request(data_request, user_id = self.dummyReceiver_1['id'], role='receiver')
         yield handler.put()
 
-        rtips = yield receiver.get_receivertip_list(XTIDX, self.dummyReceiver_1['id'], 'en')
+        rtips = yield receiver.get_receivertip_list(1, self.dummyReceiver_1['id'], 'en')
 
         for rtip in rtips:
             self.assertNotEqual(postpone_map[rtip['id']], rtip['expiration_date'])
@@ -90,7 +87,7 @@ class TestTipsOperations(helpers.TestHandlerWithPopulatedDB):
         for _ in range(3):
             yield self.perform_full_submission_actions()
 
-        rtips = yield receiver.get_receivertip_list(XTIDX, self.dummyReceiver_1['id'], 'en')
+        rtips = yield receiver.get_receivertip_list(1, self.dummyReceiver_1['id'], 'en')
         rtips_ids = [rtip['id'] for rtip in rtips]
 
         data_request = {
@@ -101,6 +98,6 @@ class TestTipsOperations(helpers.TestHandlerWithPopulatedDB):
         handler = self.request(data_request, user_id = self.dummyReceiver_1['id'], role='receiver')
         yield handler.put()
 
-        rtips = yield receiver.get_receivertip_list(XTIDX, self.dummyReceiver_1['id'], 'en')
+        rtips = yield receiver.get_receivertip_list(1, self.dummyReceiver_1['id'], 'en')
 
         self.assertEqual(len(rtips), 0)

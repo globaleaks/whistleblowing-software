@@ -2,10 +2,7 @@
 import urlparse
 
 from twisted.internet.defer import inlineCallbacks
-from twisted.internet.error import ConnectError
 from twisted.web.client import readBody
-
-from txsocksx.errors import HostUnreachable
 
 from globaleaks.handlers.operation import OperationHandler
 from globaleaks.models.config import NodeFactory, Config

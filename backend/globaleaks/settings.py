@@ -16,7 +16,7 @@ from optparse import OptionParser
 from globaleaks import __version__, DATABASE_VERSION
 from globaleaks.orm import make_db_uri, set_db_uri
 from globaleaks.utils.singleton import Singleton
-from globaleaks.utils.utility import datetime_now, log
+from globaleaks.utils.utility import log
 
 this_directory = os.path.dirname(__file__)
 

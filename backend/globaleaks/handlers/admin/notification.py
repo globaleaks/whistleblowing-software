@@ -8,11 +8,9 @@ from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.user import get_user_settings
 from globaleaks.models.config import NotificationFactory, PrivateFactory
 from globaleaks.models.l10n import NotificationL10NFactory
-from globaleaks.models.properties import iso_strf_time
 from globaleaks.orm import transact
 from globaleaks.rest import requests
 from globaleaks.state import State
-from globaleaks.utils.mailutils import sendmail
 from globaleaks.utils.sets import merge_dicts
 from globaleaks.utils.templating import Templating
 

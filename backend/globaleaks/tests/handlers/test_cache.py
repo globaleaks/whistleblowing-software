@@ -1,12 +1,8 @@
 # -*- coding: utf-8 -*-
-from random import randint
-
-from globaleaks import handlers
-from globaleaks.handlers import public
-from globaleaks.rest.apicache import ApiCache, decorator_cache_get, gzipdata
-from globaleaks.state import State
-from globaleaks.tests import helpers
 from twisted.internet.defer import inlineCallbacks
+
+from globaleaks.rest.apicache import ApiCache, gzipdata
+from globaleaks.tests import helpers
 
 
 class TestApiCache(helpers.TestGL):

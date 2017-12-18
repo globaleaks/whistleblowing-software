@@ -3,7 +3,6 @@ from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.models import config
 from globaleaks.handlers.admin import tenant
-from globaleaks.jobs import onion_service
 from globaleaks.state import State
 from globaleaks.orm import transact
 
