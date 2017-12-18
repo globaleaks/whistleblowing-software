@@ -1,6 +1,6 @@
+# -*- coding: utf-8 -*-
 from globaleaks import db
 from globaleaks.handlers.admin import shorturl
-from globaleaks.jobs.session_management import SessionManagement
 from globaleaks.models.config import PrivateFactory
 from globaleaks.orm import transact
 from globaleaks.rest import errors
@@ -8,12 +8,10 @@ from globaleaks.security import generate_api_token
 from globaleaks.tests import helpers
 from twisted.internet.defer import inlineCallbacks
 
-XTIDX = 1
-
 
 @transact
 def set_api_digest(store, s):
-    PrivateFactory(store, XTIDX).set_val(u'admin_api_token_digest', s)
+    PrivateFactory(store, 1).set_val(u'admin_api_token_digest', s)
 
 
 class TestAPITokenEnabled(helpers.TestHandlerWithPopulatedDB):

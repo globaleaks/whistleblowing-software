@@ -114,7 +114,7 @@ def db_create_field(store, tid, field_dict, language):
         attrs = field_dict.get('attrs', [])
         options = field_dict.get('options', [])
 
-        for key, value in attrs.items():
+        for _, value in attrs.items():
             value['tid'] = field.tid
 
         for obj in options:

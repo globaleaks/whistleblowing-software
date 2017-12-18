@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
-from globaleaks.anomaly import Alarm
 from globaleaks.jobs import anomalies
 from globaleaks.handlers import token
-from globaleaks.rest import errors
 from globaleaks.tests import helpers
 from globaleaks.utils.token import Token
 from twisted.internet.defer import inlineCallbacks

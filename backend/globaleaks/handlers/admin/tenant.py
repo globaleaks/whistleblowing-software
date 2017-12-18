@@ -6,7 +6,7 @@
 import base64
 import os
 
-from twisted.internet.defer import returnValue, inlineCallbacks
+from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import models
 from globaleaks.db import db_refresh_memory_variables

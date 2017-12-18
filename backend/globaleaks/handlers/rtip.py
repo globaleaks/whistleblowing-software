@@ -129,7 +129,7 @@ def serialize_rtip(store, rtip, itip, language):
     ret['messages'] = db_get_itip_message_list(store, itip.tid, rtip)
     ret['rfiles'] = db_receiver_get_rfile_list(store, itip.tid, rtip.id)
     ret['wbfiles'] = db_receiver_get_wbfile_list(store, itip.tid, itip.id)
-    ret['iars'] = db_get_identityaccessrequest_list(store, itip.tid, rtip.id, language)
+    ret['iars'] = db_get_identityaccessrequest_list(store, itip.tid, rtip.id)
     ret['enable_notifications'] = bool(rtip.enable_notifications)
 
     return ret

@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
-
 import os
 
-from globaleaks.anomaly import Alarm
 from globaleaks.jobs import anomalies
 from globaleaks.rest import errors
 from globaleaks.tests import helpers

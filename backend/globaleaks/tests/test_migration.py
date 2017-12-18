@@ -14,9 +14,8 @@ from storm.locals import create_database, Store
 from globaleaks import __version__, DATABASE_VERSION, FIRST_DATABASE_VERSION_SUPPORTED, models, orm
 from globaleaks.db import migration, update_db
 from globaleaks.db.migrations import update_37
-from globaleaks.db.migrations.update import MigrationBase
 from globaleaks.models import config
-from globaleaks.models.l10n import EnabledLanguage, NotificationL10NFactory
+from globaleaks.models.l10n import EnabledLanguage
 from globaleaks.rest import errors
 from globaleaks.settings import Settings
 from globaleaks.tests import helpers, config as test_config

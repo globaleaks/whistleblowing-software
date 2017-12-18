@@ -4,9 +4,6 @@ from globaleaks.tests import helpers
 from twisted.internet.defer import inlineCallbacks
 
 
-XTIDX = 1
-
-
 class TestIdentityAccessRequestInstance(helpers.TestHandlerWithPopulatedDB):
     _handler = custodian.IdentityAccessRequestInstance
 
@@ -17,7 +14,7 @@ class TestIdentityAccessRequestInstance(helpers.TestHandlerWithPopulatedDB):
 
     @inlineCallbacks
     def test_get_new_identityaccessrequest(self):
-        iars = yield custodian.get_identityaccessrequest_list(XTIDX)
+        iars = yield custodian.get_identityaccessrequest_list(1)
 
         handler = self.request(user_id = self.dummyCustodianUser['id'], role='custodian')
 
@@ -25,7 +22,7 @@ class TestIdentityAccessRequestInstance(helpers.TestHandlerWithPopulatedDB):
 
     @inlineCallbacks
     def test_put_identityaccessrequest_response(self):
-        iars = yield custodian.get_identityaccessrequest_list(XTIDX)
+        iars = yield custodian.get_identityaccessrequest_list(1)
 
         handler = self.request(user_id = self.dummyCustodianUser['id'], role='custodian')
 

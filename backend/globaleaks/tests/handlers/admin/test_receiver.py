@@ -1,9 +1,6 @@
 # -*- coding: utf-8 -*-
-import sqlite3
-
 from globaleaks.handlers.admin import receiver
 from globaleaks.tests import helpers
-from globaleaks.utils.utility import uuid4
 from twisted.internet.defer import inlineCallbacks
 
 

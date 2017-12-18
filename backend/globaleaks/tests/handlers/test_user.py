@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from globaleaks.handlers import admin, user
+from globaleaks.handlers import user
 from globaleaks.handlers.admin import receiver
 from globaleaks.rest import errors
 from globaleaks.tests import helpers

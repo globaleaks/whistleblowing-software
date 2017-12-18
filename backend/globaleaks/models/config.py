@@ -1,10 +1,10 @@
+# -*- coding: utf-8 -*-
 from storm.expr import Not, In
 from storm.locals import Bool, Unicode, JSON
 
 from globaleaks import __version__
 from globaleaks.models import config_desc, ModelWithTID, Tenant
 from globaleaks.models.config_desc import ConfigDescriptor, ConfigFilters
-from globaleaks.utils.utility import log
 
 
 class Config(ModelWithTID):

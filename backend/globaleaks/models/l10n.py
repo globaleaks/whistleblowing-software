@@ -3,7 +3,6 @@ from storm.expr import In, Not
 from storm.locals import Unicode, Bool
 
 from globaleaks import LANGUAGES_SUPPORTED_CODES, models
-from globaleaks.models.config_desc import ConfigFilters
 
 
 class EnabledLanguage(models.ModelWithTID):

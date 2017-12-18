@@ -6,7 +6,6 @@
 # API handling submissions file uploads and subsequent submissions attachments
 import os
 
-from twisted.internet import threads
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import models
@@ -17,7 +16,7 @@ from globaleaks.rest import errors
 from globaleaks.security import directory_traversal_check
 from globaleaks.settings import Settings
 from globaleaks.utils.token import TokenList
-from globaleaks.utils.utility import log, datetime_now
+from globaleaks.utils.utility import datetime_now
 
 
 @transact

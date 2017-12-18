@@ -132,8 +132,6 @@ class Alarm(object):
 
         self.event_matrix.clear()
 
-        requests_timing = []
-
         for event in State.tenant_state[tid].RecentEventQ:
             self.event_matrix.setdefault(event.event_type, 0)
             self.event_matrix[event.event_type] += 1

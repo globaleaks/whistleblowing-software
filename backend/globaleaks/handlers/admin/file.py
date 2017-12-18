@@ -7,7 +7,7 @@
 import base64
 import os
 
-from twisted.internet import defer, threads
+from twisted.internet import threads
 
 from globaleaks import models
 from globaleaks.handlers.base import BaseHandler

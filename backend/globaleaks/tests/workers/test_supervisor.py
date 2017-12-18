@@ -1,9 +1,8 @@
-import gzip
+# -*- coding: utf-8 -*-
 import json
 import ssl
 import tempfile
 import urllib2
-from StringIO import StringIO
 
 from globaleaks.models.config import PrivateFactory, load_tls_dict_list
 from globaleaks.orm import transact

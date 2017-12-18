@@ -1,6 +1,4 @@
 # -*- coding: utf-8 -*-
-import json
-
 from globaleaks.handlers.staticfile import StaticFileHandler
 from globaleaks.rest import errors
 from globaleaks.settings import Settings

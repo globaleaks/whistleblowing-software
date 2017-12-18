@@ -5,8 +5,6 @@ import os
 import sys
 import traceback
 
-from datetime import datetime
-
 from twisted.application import service
 from twisted.internet import reactor, defer
 from twisted.python import failure, log as txlog, logfile as txlogfile
@@ -15,7 +13,6 @@ from twisted.web.server import Site
 # this import seems unused but it is required in order to load the mocks
 import globaleaks.mocks.twisted_mocks # pylint: disable=W0611
 
-from globaleaks.state import State
 from globaleaks.db import init_db, update_db, \
     sync_refresh_memory_variables, sync_clean_untracked_files
 from globaleaks.rest.api import APIResourceWrapper
@@ -23,7 +20,7 @@ from globaleaks.settings import Settings
 from globaleaks.state import State
 from globaleaks.utils.process import disable_swap
 from globaleaks.utils.sock import listen_tcp_on_sock, reserve_port_for_ip
-from globaleaks.utils.utility import fix_file_permissions, drop_privileges, log, timedLogFormatter, GLLogObserver, deferred_sleep
+from globaleaks.utils.utility import fix_file_permissions, drop_privileges, log, timedLogFormatter, GLLogObserver
 from globaleaks.workers.supervisor import ProcessSupervisor
 
 

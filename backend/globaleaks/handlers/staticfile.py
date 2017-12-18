@@ -1,11 +1,9 @@
 # -*- coding: utf-8 -*-
-import mimetypes
 import os
 
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.rest import errors
 from globaleaks.security import directory_traversal_check
-from globaleaks.utils.utility import read_file
 
 
 class StaticFileHandler(BaseHandler):
