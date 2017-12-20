@@ -25,7 +25,7 @@ class TestNodeInstance(helpers.TestHandlerWithPopulatedDB):
     def test_put_update_node(self):
         self.dummyNode['hostname'] = 'blogleaks.blogspot.com'
 
-        for attrname in NodeL10NFactory.localized_keys:
+        for attrname in NodeL10NFactory.keys:
             self.dummyNode[attrname] = stuff
 
         handler = self.request(self.dummyNode, role='admin')

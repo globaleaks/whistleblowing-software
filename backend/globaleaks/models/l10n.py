@@ -30,8 +30,8 @@ class EnabledLanguage(models.ModelWithTID):
     def add_new_lang(cls, store, tid, lang_code, appdata_dict):
         store.add(cls(tid, lang_code))
 
-        NotificationL10NFactory(store, tid).initialize(lang_code, appdata_dict)
-        NodeL10NFactory(store, tid).initialize(lang_code, appdata_dict)
+        NodeL10NFactory(store, tid).initialize(lang_code, appdata_dict['node'])
+        NotificationL10NFactory(store, tid).initialize(lang_code, appdata_dict['templates'])
 
     @classmethod
     def add_all_supported_langs(cls, store, tid, appdata_dict):
@@ -73,12 +73,12 @@ class ConfigL10NFactory(object):
         self.store = store
         self.tid = tid
 
-    def initialize(self, lang_code, l10n_data_src, keys=None):
+    def initialize(self, lang_code, initialization_dict, keys=None):
         if keys is None:
             keys = self.keys
 
         for key in keys:
-            value = l10n_data_src[key][lang_code] if key in l10n_data_src else ''
+            value = initialization_dict[key][lang_code] if key in initialization_dict else ''
             self.store.add(ConfigL10N(self.tid, lang_code, key, value))
 
     def get_all(self, lang_code):
@@ -135,13 +135,7 @@ class NodeL10NFactory(ConfigL10NFactory):
         u'widget_files_title',
     ]
 
-    modifiable_keys = []
-
-    def __init__(self, store, tid, *args, **kwargs):
-        ConfigL10NFactory.__init__(self, store, tid, *args, **kwargs)
-
-    def initialize(self, lang_code, appdata_dict, keys=None):
-        ConfigL10NFactory.initialize(self, lang_code, appdata_dict['node'], keys)
+    modifiable_keys = keys
 
 
 class NotificationL10NFactory(ConfigL10NFactory):
@@ -214,9 +208,6 @@ class NotificationL10NFactory(ConfigL10NFactory):
 
     def __init__(self, store, tid, *args, **kwargs):
         ConfigL10NFactory.__init__(self, store, tid, *args, **kwargs)
-
-    def initialize(self, lang_code, appdata_dict, keys=None):
-        ConfigL10NFactory.initialize(self, lang_code, appdata_dict['templates'], keys)
 
     def reset_templates(self, l10n_data_src):
         langs = EnabledLanguage.list(self.store, self.tid)
