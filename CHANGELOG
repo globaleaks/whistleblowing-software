@@ -1,3 +1,6 @@
+Changes in version 2.72.26 - 2017-12-21
+    o Fix whistleblower identity field visualization
+
 Changes in version 2.72.25 - 2017-12-15
     o Improve resiliency of apparmor detection and startup
     o Apply minor UI bugfixing
