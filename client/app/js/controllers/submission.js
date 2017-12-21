@@ -410,7 +410,7 @@ controller('SubmissionFieldErrKeyCtrl', ['$scope',
 
     $scope.goToQuestion = function() {
       var form = document.getElementById('step-' + $scope.selection);
-      var s = 'div[data-ng-form="' + $scope.err.$name + '"] .inputelem.ng-invalid';
+      var s = 'div[data-ng-form="' + $scope.err.$name + '"] .ng-invalid';
       var formFieldSel = form.querySelector(s);
       formFieldSel.focus();
     };

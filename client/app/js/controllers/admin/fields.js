@@ -13,10 +13,6 @@ GLClient.controller('AdminFieldEditorCtrl', ['$scope', '$uibModal', 'Utils',
       $scope.editing = !$scope.editing;
     };
 
-    $scope.isMarkableRequired = function(field) {
-      return (['fieldgroup', 'fileupload'].indexOf(field.type) === -1);
-    };
-
     $scope.isMarkableMultiEntry = function(field) {
       return (['checkbox', 'selectbox', 'tos'].indexOf(field.type) === -1);
     };
@@ -150,7 +146,6 @@ GLClient.controller('AdminFieldEditorCtrl', ['$scope', '$uibModal', 'Utils',
       });
     };
 
-    $scope.fieldIsMarkableRequired = $scope.isMarkableRequired($scope.field);
     $scope.fieldIsMarkableMultiEntry = $scope.isMarkableMultiEntry($scope.field);
     $scope.fieldIsMarkableSubjectToStats = $scope.isMarkableSubjectToStats($scope.field);
     $scope.fieldIsMarkableSubjectToPreview = $scope.isMarkableSubjectToPreview($scope.field);
