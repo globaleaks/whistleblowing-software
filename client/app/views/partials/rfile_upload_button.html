@@ -1,22 +1,21 @@
 <div data-ng-init="fileinput = field ? field.id : 'status_page'; uploads[fileinput] = {}">
-    <div data-ng-controller="RFileUploadCtrl"
-         flow-init="{target: fileupload_url}"
-         flow-files-submitted="$flow.upload()"
-         flow-name="uploads[fileinput]"
-         extend-flow-valid-size="node.maximum_filesize*1024*1024">
-    <div data-ng-if="field === undefined || field.multi_entry">
-      <button id="fileupload" class="btn btn-success fileinput-button" data-ng-disabled="disabled" flow-btn>
-        <i class="glyphicon glyphicon-paperclip"></i>
-        <span data-translate>Add file</span>
-      </button>
-    </div>
-    <div data-ng-if="field !== undefined && !field.multi_entry">
-      <button id="fileupload" class="btn btn-success fileinput-button" data-ng-disabled="disabled" flow-btn flow-single-file>
-        <i class="glyphicon glyphicon-paperclip"></i>
-        <span data-translate>Add file</span>
-      </button>
-    </div>
-    <div errors-upload></div>
+  <div data-ng-controller="RFileUploadCtrl"
+       flow-init="{target: fileupload_url}"
+       flow-files-submitted="$flow.upload()"
+       flow-name="uploads[fileinput]"
+       extend-flow-valid-size="node.maximum_filesize*1024*1024">
+  <div data-ng-if="field === undefined || field.multi_entry">
+    <button id="fileupload" class="btn btn-success fileinput-button" data-ng-disabled="disabled" flow-btn>
+      <i class="glyphicon glyphicon-paperclip"></i>
+      <span data-translate>Add file</span>
+    </button>
   </div>
-  <div data-ng-include="'views/partials/rfile_upload_status.html'"></div>
+  <div data-ng-if="field !== undefined && !field.multi_entry">
+    <button id="fileupload" class="btn btn-success fileinput-button" data-ng-disabled="disabled" flow-btn flow-single-file>
+      <i class="glyphicon glyphicon-paperclip"></i>
+      <span data-translate>Add file</span>
+    </button>
+  </div>
+  <div errors-upload></div>
 </div>
+<div data-ng-include="'views/partials/rfile_upload_status.html'"></div>
