@@ -4,6 +4,7 @@ import urlparse
 from twisted.internet.defer import inlineCallbacks
 from twisted.web.client import readBody
 
+from globaleaks.db import db_refresh_memory_variables
 from globaleaks.handlers.operation import OperationHandler
 from globaleaks.models.config import NodeFactory, Config
 from globaleaks.orm import transact
@@ -40,6 +41,8 @@ def check_hostname(store, tid, input_hostname):
 @transact
 def set_config_variable(store, tid, var, val):
     NodeFactory(store, tid).set_val(var, val)
+
+    db_refresh_memory_variables(store)
 
 
 class AdminConfigHandler(OperationHandler):
