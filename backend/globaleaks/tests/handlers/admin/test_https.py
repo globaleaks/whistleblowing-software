@@ -40,11 +40,6 @@ class TestFileHandler(helpers.TestHandler):
 
         returnValue(response)
 
-    @transact
-    def set_enabled(self, store):
-        PrivateFactory(store, 1).set_val(u'https_enabled', True)
-        State.tenant_cache[1].private.https_enabled = True
-
     @inlineCallbacks
     def test_priv_key_file(self):
         n = 'priv_key'
@@ -157,8 +152,6 @@ class TestConfigHandler(helpers.TestHandler):
 
         self.test_reactor.pump([50])
 
-        # TODO improve resilience of shutdown. The child processes will complain
-        # loudly as they die.
         yield handler.put()
         response = yield handler.get()
         self.assertFalse(response['enabled'])
