@@ -13,9 +13,9 @@
       "resolved": "https://registry.npmjs.org/@flowjs/ng-flow/-/ng-flow-2.7.7.tgz"
     },
     "@types/node": {
-      "version": "6.0.94",
+      "version": "6.0.95",
       "from": "@types/node@>=6.0.46 <7.0.0",
-      "resolved": "https://registry.npmjs.org/@types/node/-/node-6.0.94.tgz",
+      "resolved": "https://registry.npmjs.org/@types/node/-/node-6.0.95.tgz",
       "dev": true
     },
     "@types/q": {
@@ -83,9 +83,9 @@
       }
     },
     "ajv": {
-      "version": "5.5.1",
+      "version": "5.5.2",
       "from": "ajv@>=5.1.0 <6.0.0",
-      "resolved": "https://registry.npmjs.org/ajv/-/ajv-5.5.1.tgz",
+      "resolved": "https://registry.npmjs.org/ajv/-/ajv-5.5.2.tgz",
       "dev": true
     },
     "ajv-keywords": {
@@ -107,14 +107,14 @@
       "dev": true
     },
     "angular": {
-      "version": "1.6.7",
-      "from": "angular@1.6.7",
-      "resolved": "https://registry.npmjs.org/angular/-/angular-1.6.7.tgz"
+      "version": "1.6.8",
+      "from": "angular@1.6.8",
+      "resolved": "https://registry.npmjs.org/angular/-/angular-1.6.8.tgz"
     },
     "angular-aria": {
-      "version": "1.6.7",
-      "from": "angular-aria@1.6.7",
-      "resolved": "https://registry.npmjs.org/angular-aria/-/angular-aria-1.6.7.tgz"
+      "version": "1.6.8",
+      "from": "angular-aria@1.6.8",
+      "resolved": "https://registry.npmjs.org/angular-aria/-/angular-aria-1.6.8.tgz"
     },
     "angular-dynamic-locale": {
       "version": "0.1.32",
@@ -132,39 +132,39 @@
       "resolved": "https://registry.npmjs.org/angular-filter/-/angular-filter-0.5.17.tgz"
     },
     "angular-i18n": {
-      "version": "1.6.7",
-      "from": "angular-i18n@1.6.7",
-      "resolved": "https://registry.npmjs.org/angular-i18n/-/angular-i18n-1.6.7.tgz"
+      "version": "1.6.8",
+      "from": "angular-i18n@1.6.8",
+      "resolved": "https://registry.npmjs.org/angular-i18n/-/angular-i18n-1.6.8.tgz"
     },
     "angular-resource": {
-      "version": "1.6.7",
-      "from": "angular-resource@1.6.7",
-      "resolved": "https://registry.npmjs.org/angular-resource/-/angular-resource-1.6.7.tgz"
+      "version": "1.6.8",
+      "from": "angular-resource@1.6.8",
+      "resolved": "https://registry.npmjs.org/angular-resource/-/angular-resource-1.6.8.tgz"
     },
     "angular-route": {
-      "version": "1.6.7",
-      "from": "angular-route@1.6.7",
-      "resolved": "https://registry.npmjs.org/angular-route/-/angular-route-1.6.7.tgz"
+      "version": "1.6.8",
+      "from": "angular-route@1.6.8",
+      "resolved": "https://registry.npmjs.org/angular-route/-/angular-route-1.6.8.tgz"
     },
     "angular-sanitize": {
-      "version": "1.6.7",
-      "from": "angular-sanitize@1.6.7",
-      "resolved": "https://registry.npmjs.org/angular-sanitize/-/angular-sanitize-1.6.7.tgz"
+      "version": "1.6.8",
+      "from": "angular-sanitize@1.6.8",
+      "resolved": "https://registry.npmjs.org/angular-sanitize/-/angular-sanitize-1.6.8.tgz"
     },
     "angular-translate": {
-      "version": "2.16.0",
-      "from": "angular-translate@2.16.0",
-      "resolved": "https://registry.npmjs.org/angular-translate/-/angular-translate-2.16.0.tgz"
+      "version": "2.17.0",
+      "from": "angular-translate@2.17.0",
+      "resolved": "https://registry.npmjs.org/angular-translate/-/angular-translate-2.17.0.tgz"
     },
     "angular-translate-loader-static-files": {
-      "version": "2.16.0",
-      "from": "angular-translate-loader-static-files@2.16.0",
-      "resolved": "https://registry.npmjs.org/angular-translate-loader-static-files/-/angular-translate-loader-static-files-2.16.0.tgz"
+      "version": "2.17.0",
+      "from": "angular-translate-loader-static-files@2.17.0",
+      "resolved": "https://registry.npmjs.org/angular-translate-loader-static-files/-/angular-translate-loader-static-files-2.17.0.tgz"
     },
     "angular-translate-loader-url": {
-      "version": "2.16.0",
-      "from": "angular-translate-loader-url@2.16.0",
-      "resolved": "https://registry.npmjs.org/angular-translate-loader-url/-/angular-translate-loader-url-2.16.0.tgz"
+      "version": "2.17.0",
+      "from": "angular-translate-loader-url@2.17.0",
+      "resolved": "https://registry.npmjs.org/angular-translate-loader-url/-/angular-translate-loader-url-2.17.0.tgz"
     },
     "angular-ui-bootstrap": {
       "version": "2.5.6",
@@ -2752,9 +2752,9 @@
       "dev": true
     },
     "openpgp": {
-      "version": "2.6.0",
-      "from": "openpgp@2.6.0",
-      "resolved": "https://registry.npmjs.org/openpgp/-/openpgp-2.6.0.tgz"
+      "version": "2.6.1",
+      "from": "openpgp@2.6.1",
+      "resolved": "https://registry.npmjs.org/openpgp/-/openpgp-2.6.1.tgz"
     },
     "opn": {
       "version": "4.0.2",
