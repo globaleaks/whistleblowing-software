@@ -4,8 +4,6 @@
 import random
 import threading
 
-from datetime import datetime
-
 from storm.database import create_database
 from storm.databases import sqlite
 from storm.store import Store
@@ -13,7 +11,6 @@ from storm.store import Store
 from twisted.internet import reactor
 from twisted.internet.threads import deferToThreadPool
 
-from globaleaks.utils.utility import log, timedelta_to_milliseconds
 
 __DB_URI = 'sqlite:'
 __THREAD_POOL = None
@@ -82,10 +79,7 @@ transact_lock = threading.Lock()
 class transact(object):
     """
     Class decorator for managing transactions.
-    Because Storm sucks.
     """
-    timelimit = 30000
-
     def __init__(self, method):
         self.method = method
         self.instance = None
@@ -110,7 +104,6 @@ class transact(object):
         passing the store to it.
         """
         with transact_lock: # pylint: disable=not-context-manager
-            start_time = datetime.now()
             store = get_store()
 
             try:
@@ -128,11 +121,6 @@ class transact(object):
             finally:
                 store.reset()
                 store.close()
-
-                duration = timedelta_to_milliseconds(datetime.now() - start_time)
-                err_tup = "Query [%s] executed in %.1fms", self.method.__name__, duration
-                if duration > self.timelimit:
-                    log.err(*err_tup)
 
 
 class transact_sync(transact):
