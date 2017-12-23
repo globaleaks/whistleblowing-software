@@ -95,11 +95,11 @@
             </div>
             <div class="form-group">
               <label data-translate>Hint</label>
-              <input name="hint" class="form-control" maxlength="{{node.maximum_namesize}}" data-ng-model="field.hint" type="text">
+              <input name="hint" class="form-control" data-ng-model="field.hint" type="text">
             </div>
             <div class="form-group">
               <label data-translate>Description</label>
-              <textarea name="description" class="form-control" maxlength="{{node.maximum_textsize}}" data-ng-model="field.description"></textarea>
+              <textarea name="description" class="form-control" data-ng-model="field.description"></textarea>
             </div>
             <div class="form-group" data-ng-if="field.type !== 'fieldgroup'">
               <input data-ng-model="field.required" type="checkbox">
@@ -114,7 +114,7 @@
             </div>
             <div class="form-group" data-ng-if="field.multi_entry && field.type !== 'fileupload'">
               <label data-translate>Hint shown on the button for adding an additional answer</label>
-              <input name="multi_entry_hint" class="form-control" maxlength="{{node.maximum_namesize}}" data-ng-model="field.multi_entry_hint" type="text" data-ng-disabled="!field.editable">
+              <input name="multi_entry_hint" class="form-control" data-ng-model="field.multi_entry_hint" type="text" data-ng-disabled="!field.editable">
             </div>
             <div class="form-group" data-ng-if="::fieldIsMarkableSubjectToPreview">
               <input data-ng-model="field.preview" type="checkbox">
@@ -165,7 +165,7 @@
             <div data-ng-if="field.type === 'tos'">
               <div class="form-group">
                 <label data-translate>Clause</label>
-                <textarea data-ng-model="field.attrs.clause.value" maxlength="{{node.maximum_textsize}}" class="form-control" data-ng-disabled="!field.editable"></textarea>
+                <textarea data-ng-model="field.attrs.clause.value" class="form-control" data-ng-disabled="!field.editable"></textarea>
               </div>
               <div class="form-group">
                 <label data-translate>Agreement Text</label>

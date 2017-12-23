@@ -6,7 +6,7 @@
     <div data-ng-switch-default data-ng-switch="field.type">
       <div data-ng-switch-when="textarea" data-ng-class="{'has-error': !f['input-' + entryIndex].$valid}">
         <textarea id="{{::fieldEntry}}"
-                  data-ng-init="maxlength = field.attrs.max_len.value > 0 ? field.attrs.max_len.value : node.maximum_textsize"
+                  data-ng-init="maxlength = field.attrs.max_len.value > 0 ? field.attrs.max_len.value : 4096"
                   name="input-{{::entryIndex}}"
                   class="form-control inputelem"
                   data-ng-model="entry['value']"
@@ -59,7 +59,7 @@
                  name="input-{{entryIndex}}"
                  class="form-control inputelem"
                  type="text"
-                 maxlength="{{node.maximum_namesize}}"
+                 maxlength="4096"
                  readonly="readonly"
                  aria-label="{{::field.label}}"
                  data-ng-model="entry['value']"
@@ -101,7 +101,7 @@
         <input id="{{::fieldEntry}}"
                name="input-{{entryIndex}}"
                class="form-control inputelem"
-               data-ng-init="maxlength = field.attrs.max_len.value > 0 ? field.attrs.max_len.value : node.maximum_namesize"
+               data-ng-init="maxlength = field.attrs.max_len.value > 0 ? field.attrs.max_len.value : 4096"
                data-ng-model="entry['value']"
                data-ng-model-options="{'debounce': 350}"
                data-ng-minlength="field.attrs.min_len.value"

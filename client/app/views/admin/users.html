@@ -26,21 +26,21 @@
             <label data-translate>Username</label>
             <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
             <div data-ng-class="{'has-error': newUser.username.$error.required}">
-              <input class="form-control" name="username" maxlength="{{node.maximum_namesize}}" data-ng-model="new_user.username" type="text" required />
+              <input class="form-control" name="username" data-ng-model="new_user.username" type="text" required />
             </div>
           </div>
           <div class="form-group">
             <label data-translate>Name</label>
             <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
             <div data-ng-class="{'has-error': newUser.name.$error.required}">
-              <input class="form-control" name="name" maxlength="{{node.maximum_namesize}}" data-ng-model="new_user.name" type="text" required />
+              <input class="form-control" name="name" data-ng-model="new_user.name" type="text" required />
             </div>
           </div>
           <div class="form-group">
             <label data-translate>Email address</label>
             <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
             <div data-ng-class="{'has-error': newUser.email.$error}">
-              <input class="form-control" name="email" data-ng-model="new_user.email" maxlength="{{node.maximum_namesize}}" data-ng-pattern="email_regexp" type="text" required />
+              <input class="form-control" name="email" data-ng-model="new_user.email" data-ng-pattern="email_regexp" type="text" required />
             </div>
             <div class="text-danger" data-ng-show="newUser.email.$error.pattern" data-translate>Invalid email address</div>
           </div>
@@ -111,29 +111,29 @@
                   </div>
                   <div class="form-group" data-ng-if="user.role !== 'receiver' || !node.simplified_login">
                     <label data-translate>Username</label>
-                    <input class="form-control" name="username" maxlength="{{node.maximum_namesize}}" data-ng-model="user.username" type="text" required />
+                    <input class="form-control" name="username" data-ng-model="user.username" type="text" required />
                     <div class="text-danger" data-ng-show="editUser.name.$error.required" data-translate>This field is mandatory</div>
                   </div>
                   <div class="form-group">
                     <label data-translate>Name</label>
-                    <input class="form-control" name="name" maxlength="{{node.maximum_namesize}}" data-ng-model="user.name" type="text" required />
+                    <input class="form-control" name="name" data-ng-model="user.name" type="text" required />
                     <div class="text-danger" data-ng-show="editUser.name.$error.required" data-translate>This field is mandatory</div>
                   </div>
                   <div class="form-group">
                     <label data-translate>Public pseudonym</label>
-                    <input class="form-control" name="pseudonym" maxlength="{{node.maximum_namesize}}" data-ng-model="user.public_name" type="text" required />
+                    <input class="form-control" name="pseudonym" data-ng-model="user.public_name" type="text" required />
                     <div class="text-danger" data-ng-show="editUser.pseudonym.$error.required" data-translate>This field is mandatory</div>
                   </div>
                   <div class="form-group">
                     <label data-translate>Email address</label>
-                    <input class="form-control" name="email" data-ng-model="user.mail_address" type="text" maxlength="{{node.maximum_namesize}}" data-ng-pattern="email_regexp" required />
+                    <input class="form-control" name="email" data-ng-model="user.mail_address" type="text" data-ng-pattern="email_regexp" required />
                     <div class="text-danger" data-ng-show="editUser.email.$error.required" data-translate>This field is mandatory</div>
                     <div class="text-danger" data-ng-show="editUser.email.$error.pattern" data-translate>Invalid email address</div>
                   </div>
                   <div data-ng-init="user.newpassword = false" data-ng-if="!user.newpassword" class="btn btn-warning" data-ng-click="user.newpassword=!user.newpassword" data-ng-translate>New Password</div>
                   <div data-ng-if="user.newpassword" class="form-group" data-ng-form="userPasswordForm" data-ng-class="{'has-error': passwordStrength.score > 0 && !userPassword.password.$valid}">
                     <label data-translate>Password</label>
-                    <input name="password" class="form-control" data-ng-model="user.password" maxlength="{{node.maximum_namesize}}" type="password" autocomplete="off" zxcvbn="passwordStrength" zx-min-score="3" />
+                    <input name="password" class="form-control" data-ng-model="user.password" type="password" autocomplete="off" zxcvbn="passwordStrength" zx-min-score="3" />
                     <zx-password-meter value="passwordStrength"></zx-password-meter>
                     <div class="text-danger" data-ng-show="user.password != '' && editUser.password.$error.passwordStrength">
                       <p data-translate>The chosen password is too weak. Make it more secure by adding special characters, numbers, and unusual symbols.</p>
@@ -149,7 +149,7 @@
                   </div>
                   <div class="form-group">
                     <label data-translate>Description</label>
-                    <textarea name="description" class="form-control" data-ng-model="user.description" maxlength="{{node.maximum_textsize}}"></textarea>
+                    <textarea name="description" class="form-control" data-ng-model="user.description"></textarea>
                   </div>
                   <div class="form-group">
                     <label data-translate>Status</label>

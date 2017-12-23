@@ -18,8 +18,8 @@
           </span>
         </div>
         <br />
-        <textarea id="TipCommunicationMessagesInput" data-ng-model="tip.newMessageContent" maxlength="{{::node.maximum_textsize}}" class="form-control" autocomplete="off"></textarea>
-        <span class="float-right">{{tip.newMessagesContent.length ? tip.newMessagesContent.length : '0'}}/{{node.maximum_textsize}}</span>
+        <textarea id="TipCommunicationMessagesInput" data-ng-model="tip.newMessageContent" maxlength="4096" class="form-control" autocomplete="off"></textarea>
+        <span class="float-right">{{tip.newMessagesContent.length ? tip.newMessagesContent.length : '0'}}/4096</span>
       </div>
       <div class="col-md-12">
         <span class="pull-left">
