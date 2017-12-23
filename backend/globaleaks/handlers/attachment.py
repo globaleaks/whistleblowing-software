@@ -10,7 +10,7 @@ from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import models
 from globaleaks.handlers.base import BaseHandler
-from globaleaks.models import serializers
+from globaleaks.models import serializers, get
 from globaleaks.orm import transact
 from globaleaks.rest import errors
 from globaleaks.security import directory_traversal_check
@@ -21,9 +21,10 @@ from globaleaks.utils.utility import datetime_now
 
 @transact
 def register_ifile_on_db(store, tid, uploaded_file, internaltip_id):
-    internaltip = models.db_get(store, models.InternalTip, id=internaltip_id, tid=tid)
+    now = datetime_now()
 
-    internaltip.update_date = internaltip.wb_last_access = datetime_now()
+    store.find(models.InternalTip, id=internaltip_id, tid=tid).set(update_date=now,
+                                                                   wb_last_access=now)
 
     new_file = models.InternalFile()
     new_file.tid = tid
@@ -36,16 +37,6 @@ def register_ifile_on_db(store, tid, uploaded_file, internaltip_id):
     store.add(new_file)
 
     return serializers.serialize_ifile(store, new_file)
-
-
-@transact
-def get_itip_id_by_wbtip_id(store, tid, wbtip_id):
-    wbtip = store.find(models.WhistleblowerTip, id=wbtip_id, tid=tid).one()
-
-    if not wbtip:
-        raise errors.InvalidAuthentication
-
-    return wbtip.id
 
 
 class SubmissionAttachment(BaseHandler):
@@ -93,7 +84,8 @@ class PostSubmissionAttachment(SubmissionAttachment):
         """
         Errors: ModelNotFound
         """
-        itip_id = yield get_itip_id_by_wbtip_id(self.request.tid, self.current_user.user_id)
+        itip_id = yield models.get(models.WhistleblowerTip.id, models.WhistleblowerTip.id==self.current_user.user_id,
+                                                                      models.WhistleblowerTip.tid==self.request.tid)
 
         yield self.handle_attachment()
 
