@@ -183,8 +183,8 @@ class BaseHandler(object):
                 auth_type, data = self.request.headers["authorization"].split()
                 usr, pwd = base64.b64decode(data).split(":", 1)
                 if auth_type != "Basic" or \
-                    usr != self.state.tenant_cache[1].basic_auth_username or \
-                    pwd != self.state.tenant_cache[1].basic_auth_password:
+                    usr != self.state.tenant_cache[self.request.tid].basic_auth_username or \
+                    pwd != self.state.tenant_cache[self.request.tid].basic_auth_password:
                     msg = "Authentication failed"
             except AssertionError:
                 msg = "Authentication failed"
@@ -412,10 +412,10 @@ class BaseHandler(object):
         if self.request.tid != 1 or \
            len(token) != Settings.api_token_len or \
            self.state.api_token_session is None or \
-           not self.state.tenant_cache[1].private.admin_api_token_digest:
+           not self.state.tenant_cache[self.request.tid].private.admin_api_token_digest:
             return None
 
-        stored_token_hash = bytes(self.state.tenant_cache[1].private.admin_api_token_digest)
+        stored_token_hash = bytes(self.state.tenant_cache[self.request.tid].private.admin_api_token_digest)
 
         if constant_time.bytes_eq(sha512(token), stored_token_hash):
             return self.state.api_token_session
@@ -429,10 +429,10 @@ class BaseHandler(object):
         flow_identifier = self.request.args['flowIdentifier'][0]
 
         chunk_size = len(self.request.args['file'][0])
-        if ((chunk_size / (1024 * 1024)) > self.state.tenant_cache[1].maximum_filesize or
-            (total_file_size / (1024 * 1024)) > self.state.tenant_cache[1].maximum_filesize):
+        if ((chunk_size / (1024 * 1024)) > self.state.tenant_cache[self.request.tid].maximum_filesize or
+            (total_file_size / (1024 * 1024)) > self.state.tenant_cache[self.request.tid].maximum_filesize):
             log.err("File upload request rejected: file too big", tid=self.request.tid)
-            raise errors.FileTooBig(self.state.tenant_cache[1].maximum_filesize)
+            raise errors.FileTooBig(self.state.tenant_cache[self.request.tid].maximum_filesize)
 
         if flow_identifier not in self.state.TempUploadFiles:
             self.state.TempUploadFiles.set(flow_identifier, SecureTemporaryFile(Settings.tmp_upload_path))

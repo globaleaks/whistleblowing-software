@@ -13,12 +13,12 @@ class RobotstxtHandler(BaseHandler):
         """
         self.request.setHeader('Content-Type', 'text/plain')
 
-        if not State.tenant_cache[1].allow_indexing:
+        if not State.tenant_cache[self.request.tid].allow_indexing:
             return "User-agent: *\nDisallow: /"
 
         data = "User-agent: *\n"
         data += "Allow: /\n"
-        data += "Sitemap: https://%s/sitemap.xml" % State.tenant_cache[1].hostname
+        data += "Sitemap: https://%s/sitemap.xml" % State.tenant_cache[self.request.tid].hostname
 
         return data
 
@@ -30,10 +30,10 @@ class SitemapHandler(BaseHandler):
         """
         Get the sitemap.xml
         """
-        if not State.tenant_cache[1].allow_indexing:
+        if not State.tenant_cache[self.request.tid].allow_indexing:
             raise errors.ResourceNotFound()
 
-        site = 'https://' + State.tenant_cache[1].hostname
+        site = 'https://' + State.tenant_cache[self.request.tid].hostname
 
         self.request.setHeader('Content-Type', 'text/xml')
 
@@ -46,8 +46,8 @@ class SitemapHandler(BaseHandler):
                     "    <changefreq>weekly</changefreq>\n" + \
                     "    <priority>1.00</priority>\n"
 
-            for lang in sorted(State.tenant_cache[1].languages_enabled):
-                if lang != State.tenant_cache[1].default_language:
+            for lang in sorted(State.tenant_cache[self.request.tid].languages_enabled):
+                if lang != State.tenant_cache[self.request.tid].default_language:
                     l = lang.lower()
                     l = l.replace('_', '-')
                     data += "<xhtml:link rel='alternate' hreflang='" + l + "' href='" + site + "/#/?lang=" + lang + "' />\n"

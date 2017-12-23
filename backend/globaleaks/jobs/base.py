@@ -129,6 +129,7 @@ class NetLoopingJob(LoopingJob):
         if is_common_net_error(State.tenant_cache[1], excep):
             log.err('%s job failed on outgoing network connection with: %s', self.name, excep)
             return
+
         super(NetLoopingJob, self).on_error(excep)
 
 
