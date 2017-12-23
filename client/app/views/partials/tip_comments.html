@@ -11,8 +11,8 @@
   <div class="TipPageSectionContent panel-body" data-ng-show="!collapsed">
     <div data-ng-if="session.role !== 'whistleblower' || tip.enable_two_way_comments" class="row">
       <div class="col-md-12">
-        <textarea id="TipCommunicationCommentsInput" data-ng-model="tip.newCommentContent" maxlength="{{::node.maximum_textsize}}" class="form-control" autocomplete="off"></textarea>
-        <span class="float-right">{{tip.newCommentContent.length ? tip.newCommentContent.length : '0'}}/{{node.maximum_textsize}}</span>
+        <textarea id="TipCommunicationCommentsInput" data-ng-model="tip.newCommentContent" maxlength="4096" class="form-control" autocomplete="off"></textarea>
+        <span class="float-right">{{tip.newCommentContent.length ? tip.newCommentContent.length : '0'}}/4096</span>
       </div>
       <div class="col-md-12">
         <span class="pull-left">

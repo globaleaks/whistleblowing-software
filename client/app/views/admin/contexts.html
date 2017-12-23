@@ -17,7 +17,7 @@
               <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
             </label>
             <div data-ng-class="{'has-error': newContext.name.$error.required}">
-              <input name="name" class="form-control" data-ng-model="new_context.name" maxlength="{{node.maximum_namesize}}" type="text" required />
+              <input name="name" class="form-control" data-ng-model="new_context.name" type="text" required />
             </div>
           </div>
           <div class="form-group">
@@ -79,12 +79,12 @@
                   </div>
                   <div class="form-group">
                     <label data-translate>Name</label>
-                    <input name="name" class="form-control" maxlength="{{node.maximum_namesize}}" data-ng-model="context.name" type="text" required>
+                    <input name="name" class="form-control" data-ng-model="context.name" type="text" required>
                     <div class="text-danger" data-ng-show="editContext.name.$error.required" data-translate>This field is mandatory</div>
                   </div>
                   <div class="form-group">
                     <label data-translate>Description</label>
-                    <textarea name="description" class="form-control" data-ng-model="context.description" maxlength="{{node.maximum_textsize}}"></textarea>
+                    <textarea name="description" class="form-control" data-ng-model="context.description"></textarea>
                   </div>
                   <div class="form-group">
                     <label data-translate>Questionnaire</label>
@@ -225,12 +225,12 @@
                         </div>
                         <div class="form-group">
                           <label data-translate>Text shown on top of the interface for selecting recipients</label>
-                          <textarea name="description" class="form-control" data-ng-model="context.recipients_clarification" maxlength="{{node.maximum_textsize}}"></textarea>
+                          <textarea name="description" class="form-control" data-ng-model="context.recipients_clarification"></textarea>
                         </div>
                         <div class="form-group">
                           <label data-translate>Message shown on top of the status page of the submission</label>
                           <div>
-                            <textarea name="description" class="form-control" data-ng-model="context.status_page_message" maxlength="{{node.maximum_textsize}}"></textarea>
+                            <textarea name="description" class="form-control" data-ng-model="context.status_page_message"></textarea>
                           </div>
                         </div>
                       </div>

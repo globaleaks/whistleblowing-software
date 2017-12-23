@@ -19,12 +19,12 @@
       <div class="col-md-12">
         <div class="form-group">
           <label data-translate>Email subject</label>
-          <input data-ng-model="admin.notification[template + '_title']" maxlength="{{node.maximum_namesize}}" class="form-control" type="text" />
+          <input data-ng-model="admin.notification[template + '_title']" class="form-control" type="text" />
         </div>
         <div class="form-group">
           <label data-translate>Email body</label>
           <div>
-            <textarea data-ng-model="admin.notification[template + '_template']" maxlength="{{node.maximum_textsize}}" class="form-control" rows="10"></textarea>
+            <textarea data-ng-model="admin.notification[template + '_template']" class="form-control" rows="10"></textarea>
           </div>
         </div>
       </div>

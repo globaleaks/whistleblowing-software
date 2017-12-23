@@ -2,7 +2,7 @@
   <div data-ng-form="newField">
     <div class="form-group">
       <label data-translate>Label</label>
-      <input name="label" class="form-control" data-ng-model="new_field.label" maxlength="{{node.maximum_namesize}}" type="text" required>
+      <input name="label" class="form-control" data-ng-model="new_field.label" type="text" required>
       <div class="text-danger" data-ng-show="newField.label.$error.required">
         <span data-translate>This field is mandatory</span>
       </div>

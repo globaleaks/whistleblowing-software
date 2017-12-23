@@ -271,25 +271,12 @@
       </div>
     </div>
 
-    <div data-ng-show-if="admin.node.root_tenant">
-      <div class="form-group">
-        <label data-translate>Limit for single-line inputs, in characters</label>
-        <input class="form-control" data-ng-model="admin.node.maximum_namesize" type="number" min="0" />
-      </div>
-
-      <div class="form-group">
-        <label data-translate>Limit for multi-line inputs, in characters</label>
-        <input class="form-control" data-ng-model="admin.node.maximum_textsize" type="number" min="0" />
-      </div>
-
-      <div class="form-group">
-        <label>
-          <span data-translate>Size limit for file attachments</span>
-          <span data-translate>in megabytes</span>
-        </label>
-        <input class="form-control" data-ng-model="admin.node.maximum_filesize" type="number" min="0" />
-      </div>
-    </div>
+    <div class="form-group">
+      <label>
+        <span data-translate>Size limit for file attachments</span>
+        <span data-translate>in megabytes</span>
+      </label>
+      <input class="form-control" data-ng-model="admin.node.maximum_filesize" type="number" min="0" />
 
     <div class="form-group">
       <label>
