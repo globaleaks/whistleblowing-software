@@ -72,7 +72,9 @@ def login_whistleblower(store, tid, receipt, client_using_tor):
         raise errors.TorNetworkRequired
 
     log.debug("Whistleblower login: Valid receipt")
+
     wbtip.last_access = datetime_now()
+
     return wbtip.id
 
 
@@ -95,7 +97,9 @@ def login(store, tid, username, password, client_using_tor):
         raise errors.TorNetworkRequired
 
     log.debug("Login: Success (%s)" % user.role)
+
     user.last_login = datetime_now()
+
     return user.id, user.state, user.role, user.password_change_needed
 
 

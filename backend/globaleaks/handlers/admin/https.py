@@ -144,7 +144,7 @@ class CertFileRes(FileResource):
         ok, _ = cv.validate(db_cfg)
         if ok:
             prv_fact.set_val(u'https_cert', raw_cert)
-            State.tenant_cache[1].https_cert = raw_cert
+            State.tenant_cache[tid].https_cert = raw_cert
 
         return ok
 

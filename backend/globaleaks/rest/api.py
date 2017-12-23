@@ -420,16 +420,15 @@ class APIResourceWrapper(Resource):
         request.setHeader("Referrer-Policy", "no-referrer")
 
         # to avoid Robots spidering, indexing, caching
-        if not State.tenant_cache[1].allow_indexing:
+        if not State.tenant_cache[request.tid].allow_indexing:
             request.setHeader("X-Robots-Tag", "noindex")
 
         # to mitigate clickjaking attacks on iframes allowing only same origin
         # same origin is needed in order to include svg and other html <object>
-        if not State.tenant_cache[1].allow_iframes_inclusion:
+        if not State.tenant_cache[request.tid].allow_iframes_inclusion:
             request.setHeader("X-Frame-Options", "sameorigin")
 
         request.setHeader(b'x-check-tor', bytes(request.client_using_tor))
-
 
     def parse_accept_language_header(self, request):
         if "accept-language" in request.headers:
@@ -450,17 +449,17 @@ class APIResourceWrapper(Resource):
                 locales.sort(key=lambda pair: pair[1], reverse=True)
                 return [l[0] for l in locales]
 
-        return State.tenant_cache[1].default_language
+        return State.tenant_cache[request.tid].default_language
 
     def detect_language(self, request):
         language = request.headers.get('gl-language')
         if language is None:
             for l in self.parse_accept_language_header(request):
-                if l in State.tenant_cache[1].languages_enabled:
+                if l in State.tenant_cache[request.tid].languages_enabled:
                     language = l
                     break
 
-        if language is None or language not in State.tenant_cache[1].languages_enabled:
-            language = State.tenant_cache[1].default_language
+        if language is None or language not in State.tenant_cache[request.tid].languages_enabled:
+            language = State.tenant_cache[request.tid].default_language
 
         return language

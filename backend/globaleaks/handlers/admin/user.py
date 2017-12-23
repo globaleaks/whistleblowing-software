@@ -104,7 +104,7 @@ def db_create_user(store, tid, request, language):
     if not request['username']:
         user.username = user.id
 
-    password = request['password'] if request['password'] else State.tenant_cache[1].default_password
+    password = request['password'] if request['password'] else State.tenant_cache[tid].default_password
 
     user.salt = security.generateRandomSalt()
     user.password = security.hash_password(password, user.salt)
