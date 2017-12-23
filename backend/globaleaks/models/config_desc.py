@@ -99,9 +99,8 @@ ConfigDescriptor = {
     u'default_password': Unicode(validator=longtext_v, default=u'globaleaks'),
     u'default_questionnaire': Unicode(validator=shorttext_v, default=u'default'),
 
-    u'maximum_namesize': Int(validator=natnum_v, default=128),
-    u'maximum_textsize': Int(validator=natnum_v, default=4096),
     u'maximum_filesize': Int(validator=natnum_v, default=30),
+
     u'tor2web_admin': Bool(default=True),
     u'tor2web_custodian': Bool(default=True),
     u'tor2web_whistleblower': Bool(default=True),
@@ -167,8 +166,6 @@ ConfigFilters = {
         u'default_language',
         u'default_password',
         u'default_questionnaire',
-        u'maximum_namesize',
-        u'maximum_textsize',
         u'maximum_filesize',
         u'tor2web_admin',
         u'tor2web_custodian',

@@ -166,6 +166,10 @@ class SettingsClass(object):
 
         self.acme_directory_url = 'https://acme-v01.api.letsencrypt.org/directory'
 
+        self.maximum_namesize = 128
+        self.maximum_textsize = 4096
+
+
         self.enable_api_cache = True
 
     def eval_paths(self):

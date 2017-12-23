@@ -65,8 +65,6 @@ class StateClass(ObjectDict):
         self.tenant_cache = {}
 
         self.tenant_cache[1] = ObjectDict({
-            'maximum_namesize': 128,
-            'maximum_textsize': 4096,
             'maximum_filesize': 30,
             'allow_iframes_inclusion': False,
             'accept_tor2web_access': {
