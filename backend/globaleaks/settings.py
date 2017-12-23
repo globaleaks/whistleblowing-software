@@ -153,9 +153,6 @@ class SettingsClass(object):
 
         self.exceptions_email_hourly_limit = 20
 
-        self.disable_backend_exception_notification = False
-        self.disable_client_exception_notification = False
-
         self.enable_input_length_checks = True
 
         self.submission_minimum_delay = 3 # seconds
@@ -236,9 +233,6 @@ class SettingsClass(object):
         log.setloglevel(verbosity_dict[self.cmdline_options.loglevel])
 
         self.bind_address = self.cmdline_options.ip
-
-        self.disable_backend_exception_notification = self.cmdline_options.disable_backend_exception_notification
-        self.disable_client_exception_notification = self.cmdline_options.disable_client_exception_notification
 
         self.socks_host = self.cmdline_options.socks_host
 

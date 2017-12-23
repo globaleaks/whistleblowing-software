@@ -67,14 +67,6 @@ Settings.parser.add_option("-r", "--socks-port", type="int",
     help="set Socks port to use for Tor [default: %default]",
     dest="socks_port", default=Settings.socks_port)
 
-Settings.parser.add_option("-b", "--disable-backend-exception-notification", action='store_true',
-    help="disable backend_exception_notification [default: False]",
-    dest="disable_backend_exception_notification", default=False)
-
-Settings.parser.add_option("-e", "--disable-client-exception-notification", action='store_true',
-    help="disable_client_exception_notification [default: False]",
-    dest="disable_client_exception_notification", default=False)
-
 Settings.parser.add_option("-u", "--user", type="string",
     help="set the user to run as [default: current_user]",
     dest="user")
