@@ -1018,8 +1018,6 @@ class MockDict:
             'latest_version': __version__,
             'receipt_salt': '<<the Lannisters send their regards>>',
             'maximum_filesize': 30,
-            'maximum_namesize': 120,
-            'maximum_textsize': 4096,
             'tor2web_admin': True,
             'tor2web_custodian': True,
             'tor2web_whistleblower': True,
