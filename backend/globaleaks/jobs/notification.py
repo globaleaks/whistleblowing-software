@@ -13,7 +13,7 @@ from globaleaks.handlers.admin.notification import db_get_notification
 from globaleaks.handlers.rtip import serialize_rtip, serialize_message, serialize_comment
 from globaleaks.handlers.user import user_serialize_user
 from globaleaks.jobs.base import NetLoopingJob
-from globaleaks.orm import transact_sync, TenantIterator
+from globaleaks.orm import transact_sync
 from globaleaks.security import encrypt_message
 from globaleaks.utils.templating import Templating
 from globaleaks.utils.utility import log
@@ -36,8 +36,7 @@ trigger_model_map = {
 
 
 def gen_cache_key(*args):
-    r = '-'.join(['{}'.format(arg) for arg in args])
-    return r
+    return '-'.join(['{}'.format(arg) for arg in args])
 
 class MailGenerator(object):
     def __init__(self, state):
@@ -208,7 +207,6 @@ class MailGenerator(object):
             'tid': tid,
         }))
 
-
     @transact_sync
     def generate(self, store):
         for trigger in ['ReceiverTip', 'Comment', 'Message', 'ReceiverFile']:
@@ -242,19 +240,18 @@ def delete_sent_mails(store, mail_ids):
 
 @transact_sync
 def get_mails_from_the_pool(store):
+    store.find(models.Mail, models.Mail.processing_attempts > 9).remove()
+    store.find(models.Mail).set(models.Mail.processing_attempts == models.Mail.processing_attempts + 1)
+
     ret = []
 
-    store.find(models.Mail, models.Mail.processing_attempts > 9).remove()
-
-    for mail in TenantIterator(store.find(models.Mail).order_by(models.Mail.creation_date).config(limit=30)):
-        mail.processing_attempts += 1
-
+    for mail in store.find(models.Mail).order_by(models.Mail.creation_date):
         ret.append({
             'id': mail.id,
             'address': mail.address,
             'subject': mail.subject,
             'body': mail.body,
-            'tid': mail.tid,
+            'tid': mail.tid
         })
 
     return ret

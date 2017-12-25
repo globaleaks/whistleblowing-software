@@ -10,7 +10,7 @@ import os
 
 from globaleaks import models
 from globaleaks.jobs.base import LoopingJob
-from globaleaks.orm import transact_sync, TenantIterator
+from globaleaks.orm import transact_sync
 from globaleaks.security import GLBPGP, SecureFile, generateRandomKey
 from globaleaks.settings import Settings
 from globaleaks.utils.utility import log
@@ -30,7 +30,7 @@ def receiverfile_planning(store):
     """
     receiverfiles_maps = {}
 
-    for ifile in TenantIterator(store.find(models.InternalFile, new=True).order_by(models.InternalFile.creation_date).config(limit=30)):
+    for ifile in store.find(models.InternalFile, new=True).order_by(models.InternalFile.creation_date):
         if ifile.processing_attempts >= INTERNALFILES_HANDLE_RETRY_MAX:
             ifile.new = False
             log.err("Failed to handle receiverfiles creation for ifile %s (%d retries)",

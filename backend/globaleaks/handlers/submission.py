@@ -5,7 +5,6 @@
 #
 # Implements a GlobaLeaks submission, then the operations performed
 #   by an HTTP client in /submission URI
-
 import copy
 import json
 from storm.expr import In
@@ -157,7 +156,9 @@ def db_save_questionnaire_answers(store, tid, internaltip_id, entries):
             'key': key,
             'tid': tid,
         })
+
         store.add(field_answer)
+
         if isinstance(value, list):
             field_answer.is_leaf = False
             field_answer.value = ""
@@ -168,7 +169,9 @@ def db_save_questionnaire_answers(store, tid, internaltip_id, entries):
                   'number': n,
                   'tid': tid,
                 })
+
                 store.add(group)
+
                 group_elems = db_save_questionnaire_answers(store, tid, internaltip_id, elem)
                 for group_elem in group_elems:
                     group_elem.fieldanswergroup_id = group.id

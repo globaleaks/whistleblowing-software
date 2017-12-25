@@ -7,7 +7,7 @@ from storm.expr import In, Min
 from globaleaks import models
 from globaleaks.handlers.admin.node import db_admin_serialize_node
 from globaleaks.handlers.admin.notification import db_get_notification
-from globaleaks.handlers.rtip import db_delete_itip
+from globaleaks.handlers.rtip import db_delete_itips
 from globaleaks.handlers.user import user_serialize_user
 from globaleaks.jobs.base import LoopingJob
 from globaleaks.orm import transact_sync
@@ -18,16 +18,6 @@ from globaleaks.utils.utility import datetime_now
 
 
 __all__ = ['Cleaning']
-
-
-def db_clean_expired_wbtips(store):
-    threshold = datetime_now() - timedelta(days=State.tenant_cache[1].wbtip_timetolive)
-
-    wbtips = store.find(models.WhistleblowerTip, models.InternalTip.id == models.WhistleblowerTip.id,
-                                                 models.InternalTip.wb_last_access < threshold)
-
-    for wbtip in wbtips:
-        store.remove(wbtip)
 
 
 class Cleaning(LoopingJob):
@@ -44,7 +34,14 @@ class Cleaning(LoopingJob):
         This function checks all the InternalTips and deletes WhistleblowerTips
         that have not been accessed after `threshold`.
         """
-        db_clean_expired_wbtips(store)
+        for tid in self.state.tenant_state:
+            threshold = datetime_now() - timedelta(days=State.tenant_cache[tid].wbtip_timetolive)
+
+            wbtips_ids = store.find(models.WhistleblowerTip.id, models.InternalTip.tid == tid,
+                                                                models.InternalTip.id == models.WhistleblowerTip.id,
+                                                                models.InternalTip.wb_last_access < threshold)
+
+            store.find(models.WhistleblowerTip, In(models.WhistleblowerTip.id, [id for id in wbtips_ids])).remove()
 
     @transact_sync
     def clean_expired_itips(self, store):
@@ -53,45 +50,46 @@ class Cleaning(LoopingJob):
         if expired InternalTips are found, it removes that along with
         all the related DB entries comment and tip related.
         """
-        for itip in store.find(models.InternalTip, models.InternalTip.expiration_date < datetime_now()):
-            db_delete_itip(store, itip)
+        itips_ids = [id for id in store.find(models.InternalTip.id, models.InternalTip.expiration_date < datetime_now())]
+        db_delete_itips(store, itips_ids)
 
     @transact_sync
     def check_for_expiring_submissions(self, store):
-        # TODO: perform cleaning based on configuration for specific submissions
-        threshold = datetime_now() + timedelta(hours=State.tenant_cache[1].notification.tip_expiration_threshold)
+        for tid in self.state.tenant_state:
+            threshold = datetime_now() + timedelta(hours=State.tenant_cache[tid].notification.tip_expiration_threshold)
 
-        for user in store.find(models.User, role=u'receiver'):
-            itip_ids = [id for id in store.find(models.InternalTip.id,
-                                               models.ReceiverTip.internaltip_id == models.InternalTip.id,
-                                               models.InternalTip.expiration_date < threshold,
-                                               models.ReceiverTip.receiver_id == models.Receiver.id,
-                                               models.Receiver.id == user.id)]
+            for user in store.find(models.User, tid=tid, role=u'receiver'):
+                itip_ids = [id for id in store.find(models.InternalTip.id,
+                                                    models.InternalTip.tid == tid,
+                                                    models.ReceiverTip.internaltip_id == models.InternalTip.id,
+                                                    models.InternalTip.expiration_date < threshold,
+                                                    models.ReceiverTip.receiver_id == models.Receiver.id,
+                                                    models.Receiver.id == user.id)]
 
-            if not len(itip_ids):
-                continue
+                if not len(itip_ids):
+                    continue
 
-            earliest_expiration_date = store.find(Min(models.InternalTip.expiration_date),
-                                                  In(models.InternalTip.id, itip_ids)).one()
+                earliest_expiration_date = store.find(Min(models.InternalTip.expiration_date),
+                                                      In(models.InternalTip.id, itip_ids)).one()
 
-            user_desc = user_serialize_user(store, user, user.language)
+                user_desc = user_serialize_user(store, user, user.language)
 
-            data = {
-               'type': u'tip_expiration_summary',
-               'node': db_admin_serialize_node(store, 1, user.language),
-               'notification': db_get_notification(store, 1, user.language),
-               'user': user_desc,
-               'expiring_submission_count': len(itip_ids),
-               'earliest_expiration_date': earliest_expiration_date
-            }
+                data = {
+                   'type': u'tip_expiration_summary',
+                   'node': db_admin_serialize_node(store, tid, user.language),
+                   'notification': db_get_notification(store, tid, user.language),
+                   'user': user_desc,
+                   'expiring_submission_count': len(itip_ids),
+                   'earliest_expiration_date': earliest_expiration_date
+                }
 
-            subject, body = Templating().get_mail_subject_and_body(data)
+                subject, body = Templating().get_mail_subject_and_body(data)
 
-            store.add(models.Mail({
-               'address': user_desc['mail_address'],
-               'subject': subject,
-               'body': body
-            }))
+                store.add(models.Mail({
+                    'address': user_desc['mail_address'],
+                    'subject': subject,
+                    'body': body
+                 }))
 
     @transact_sync
     def clean_db(self, store):
@@ -103,18 +101,19 @@ class Cleaning(LoopingJob):
 
     @transact_sync
     def get_files_to_secure_delete(self, store):
-        return [file_to_delete.filepath for file_to_delete in store.find(models.SecureFileDelete)]
+        return [filepath for filepath in store.find(models.SecureFileDelete.filepath)]
 
     @transact_sync
-    def commit_file_deletion(self, store, filepath):
-        store.find(models.SecureFileDelete, models.SecureFileDelete.filepath == filepath).remove()
+    def commit_files_deletion(self, store, filepaths):
+        store.find(models.SecureFileDelete, In(models.SecureFileDelete.filepath, filepaths)).remove()
 
     def perform_secure_deletion_of_files(self):
         files_to_delete = self.get_files_to_secure_delete()
 
         for file_to_delete in files_to_delete:
             overwrite_and_remove(file_to_delete)
-            self.commit_file_deletion(file_to_delete)
+
+        self.commit_files_deletion(files_to_delete)
 
     def operation(self):
         self.clean_expired_wbtips()

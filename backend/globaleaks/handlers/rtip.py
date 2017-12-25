@@ -34,22 +34,8 @@ def receiver_serialize_rfile(store, tid, rfile):
                        models.ReceiverFile.id == rfile.id,
                        tid=tid).one()
 
-    if rfile.status != 'unavailable':
-        ret_dict = {
-            'id': rfile.id,
-            'internalfile_id': ifile.id,
-            'status': rfile.status,
-            'href': "/rtip/" + rfile.receivertip_id + "/download/" + rfile.id,
-            # if the ReceiverFile has encrypted status, we append ".pgp" to the filename, to avoid mistake on Receiver side.
-            'name': ("%s.pgp" % ifile.name) if rfile.status == u'encrypted' else ifile.name,
-            'content_type': ifile.content_type,
-            'creation_date': datetime_to_ISO8601(ifile.creation_date),
-            'size': rfile.size,
-            'downloads': rfile.downloads
-        }
-
-    else:  # == 'unavailable' in this case internal file metadata is returned.
-        ret_dict = {
+    if rfile.status == 'unavailable':
+        return {
             'id': rfile.id,
             'internalfile_id': ifile.id,
             'status': 'unavailable',
@@ -61,7 +47,18 @@ def receiver_serialize_rfile(store, tid, rfile):
             'downloads': rfile.downloads
         }
 
-    return ret_dict
+    return {
+        'id': rfile.id,
+        'internalfile_id': ifile.id,
+        'status': rfile.status,
+        'href': "/rtip/" + rfile.receivertip_id + "/download/" + rfile.id,
+        # if the ReceiverFile has encrypted status, we append ".pgp" to the filename, to avoid mistake on Receiver side.
+        'name': ("%s.pgp" % ifile.name) if rfile.status == u'encrypted' else ifile.name,
+        'content_type': ifile.content_type,
+        'creation_date': datetime_to_ISO8601(ifile.creation_date),
+        'size': rfile.size,
+        'downloads': rfile.downloads
+    }
 
 
 def receiver_serialize_wbfile(store, wbfile):
@@ -230,41 +227,42 @@ def db_mark_file_for_secure_deletion(store, relpath):
     store.add(secure_file_delete)
 
 
-def db_delete_itip_files(store, itip_id):
-    log.debug("Removing files associated to InternalTip %s" % itip_id)
+def db_delete_itips_files(store, itips_ids):
+    files_paths = set()
+    ifiles_ids = set()
 
-    for ifile in store.find(models.InternalFile, internaltip_id=itip_id):
-        log.debug("Marking internalfile %s for secure deletion" % ifile.file_path)
+    for ifile in store.find(models.InternalFile, In(models.InternalFile.internaltip_id, itips_ids)):
+        files_paths.add(ifile.file_path)
+        ifiles_ids.add(ifile.id)
 
-        db_mark_file_for_secure_deletion(store, ifile.file_path)
-
-        for rfile in store.find(models.ReceiverFile, models.ReceiverFile.internalfile_id == ifile.id):
-            # The following code must be bypassed if rfile.file_path == ifile.filepath,
-            # this mean that is referenced the plaintext file instead having E2E.
-            if rfile.file_path == ifile.file_path:
-                continue
-
-            log.debug("Marking receiverfile %s for secure deletion" % rfile.file_path)
-
-            db_mark_file_for_secure_deletion(store, rfile.file_path)
+    for rfile in store.find(models.ReceiverFile, In(models.ReceiverFile.internalfile_id, list(ifiles_ids))):
+        files_paths.add(rfile.file_path)
 
     for wbfile in store.find(models.WhistleblowerFile,
                              models.WhistleblowerFile.receivertip_id == models.ReceiverTip.id,
-                             models.ReceiverTip.internaltip_id == itip_id):
-        log.debug("Marking whistleblowerfile %s for secure deletion" % wbfile.file_path)
-        db_mark_file_for_secure_deletion(store, wbfile.file_path)
+                             In(models.ReceiverTip.internaltip_id, list(ifiles_ids))):
+        files_paths.add(wbfile.file_path)
 
+    for file_path in files_paths:
+        print file_path
+        db_mark_file_for_secure_deletion(store, file_path)
+
+
+def db_delete_itips(store, itips_ids):
+    db_delete_itips_files(store, itips_ids)
+
+    itips = store.find(models.InternalTip, In(models.InternalTip.id, itips_ids))
+
+    hashes = [itip.questionnaire_hash for itip in itips]
+
+    for hash in hashes:
+        if store.find(models.InternalTip, models.InternalTip.questionnaire_hash == hash).count() == 1:
+            store.find(models.ArchivedSchema, models.ArchivedSchema.hash == itip.questionnaire_hash).remove()
+
+    itips.remove()
 
 def db_delete_itip(store, itip):
-    log.debug("Removing InternalTip %s" % itip.id)
-
-    db_delete_itip_files(store, itip.id)
-
-    store.remove(itip)
-
-    if store.find(models.InternalTip, models.InternalTip.questionnaire_hash == itip.questionnaire_hash).count() == 0:
-        store.find(models.ArchivedSchema, models.ArchivedSchema.hash == itip.questionnaire_hash).remove()
-
+    db_delete_itips(store, [itip.id])
 
 def db_postpone_expiration_date(store, tid, itip):
     context = store.find((models.Context), id=itip.context_id, tid=tid).one()
