@@ -2,7 +2,7 @@
 import os
 
 from globaleaks import models
-from globaleaks.jobs import cleaning
+from globaleaks.jobs import cleaning, delivery
 from globaleaks.orm import transact
 from globaleaks.settings import Settings
 from globaleaks.tests import helpers
@@ -33,7 +33,7 @@ class TestCleaning(helpers.TestGLWithPopulatedDB):
         self.db_test_model_count(store, models.ReceiverTip, self.population_of_recipients * self.population_of_submissions)
         self.db_test_model_count(store, models.WhistleblowerTip, self.population_of_submissions)
         self.db_test_model_count(store, models.InternalFile, self.population_of_attachments * self.population_of_submissions)
-        self.db_test_model_count(store, models.ReceiverFile, 0)
+        self.db_test_model_count(store, models.ReceiverFile, self.population_of_attachments * self.population_of_submissions * self.population_of_recipients)
         self.db_test_model_count(store, models.Comment, self.population_of_submissions * (self.population_of_recipients + 1))
         self.db_test_model_count(store, models.Message, self.population_of_submissions * (self.population_of_recipients + 2))
         self.db_test_model_count(store, models.Mail, 0)
@@ -47,7 +47,7 @@ class TestCleaning(helpers.TestGLWithPopulatedDB):
         self.db_test_model_count(store, models.ReceiverTip, self.population_of_recipients * self.population_of_submissions)
         self.db_test_model_count(store, models.WhistleblowerTip, 0) # Note the diff
         self.db_test_model_count(store, models.InternalFile, self.population_of_attachments * self.population_of_submissions)
-        self.db_test_model_count(store, models.ReceiverFile, 0)
+        self.db_test_model_count(store, models.ReceiverFile, self.population_of_attachments * self.population_of_submissions * self.population_of_recipients)
         self.db_test_model_count(store, models.Comment, self.population_of_submissions * (self.population_of_recipients + 1))
         self.db_test_model_count(store, models.Message, self.population_of_submissions * (self.population_of_recipients + 2))
         self.db_test_model_count(store, models.Mail, 0)
@@ -61,7 +61,7 @@ class TestCleaning(helpers.TestGLWithPopulatedDB):
         self.db_test_model_count(store, models.ReceiverTip, self.population_of_recipients * self.population_of_submissions)
         self.db_test_model_count(store, models.WhistleblowerTip, 0) # Note the diff
         self.db_test_model_count(store, models.InternalFile, self.population_of_attachments * self.population_of_submissions)
-        self.db_test_model_count(store, models.ReceiverFile, 0)
+        self.db_test_model_count(store, models.ReceiverFile, self.population_of_attachments * self.population_of_submissions * self.population_of_recipients)
         self.db_test_model_count(store, models.Comment, self.population_of_submissions * (self.population_of_recipients + 1))
         self.db_test_model_count(store, models.Message, self.population_of_submissions * (self.population_of_recipients + 2))
         self.db_test_model_count(store, models.Mail, self.population_of_recipients)
@@ -89,6 +89,8 @@ class TestCleaning(helpers.TestGLWithPopulatedDB):
         yield self.check0()
 
         yield self.perform_full_submission_actions()
+
+        yield delivery.Delivery().run()
 
         # verify tip creation
         yield self.check1()

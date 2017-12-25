@@ -126,32 +126,3 @@ class transact(object):
 class transact_sync(transact):
     def run(self, function, *args, **kwargs):
         return function(*args, **kwargs)
-
-
-class TenantIterator:
-    def __init__(self, resultset, limit=-1):
-        self.tidmap = {}
-        self.limit = limit
-        self.elems = []
-
-        for r in resultset:
-            self.tidmap.setdefault(r.tid, []).append(r)
-
-        while len(self.tidmap.keys()) > 0 and (limit <= 0 or len(self.elems) < limit):
-            keys = self.tidmap.keys()
-            random.shuffle(keys)
-            
-            for k in keys:
-                try:
-                    self.elems.append(self.tidmap[k].pop())
-                except IndexError:
-                    self.tidmap.pop(k)
-
-    def __iter__(self):
-        return self
-
-    def next(self):
-        if len(self.elems):
-            return self.elems.pop(0)
-        else:
-            raise StopIteration

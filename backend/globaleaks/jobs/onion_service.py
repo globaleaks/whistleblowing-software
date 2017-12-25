@@ -28,7 +28,7 @@ __all__ = ['OnionService']
 @transact
 def list_onion_service_info(store):
     return [db_get_onion_service_info(store, tid)
-        for tid in store.find(models.Tenant.id, models.Tenant.active == True)]
+        for tid in store.find(models.Tenant.id, active=True)]
 
 
 @transact
