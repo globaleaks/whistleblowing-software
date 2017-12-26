@@ -18,9 +18,6 @@ class Item:
 
         self.validator = kwargs.get('validator', None)
 
-    def __repr__(self):
-        return '<Item({})>'.format(self._type.__name__)
-
 
 class Unicode(Item):
     _type = unicode

@@ -89,6 +89,9 @@ def fill_context_request(tid, request, language):
     request['tid'] = tid
     fill_localized_keys(request, models.Context.localized_keys, language)
 
+    if not request['allow_recipients_selection']:
+        request['select_all_receivers'] = True
+
     request['tip_timetolive'] = -1 if request['tip_timetolive'] < 0 else request['tip_timetolive']
 
     if request['select_all_receivers']:
@@ -112,9 +115,6 @@ def db_update_context(store, tid, context, request, language):
 
 def db_create_context(store, tid, request, language):
     request = fill_context_request(tid, request, language)
-
-    if not request['allow_recipients_selection']:
-        request['select_all_receivers'] = True
 
     context = models.db_forge_obj(store, models.Context, request)
 
@@ -155,9 +155,6 @@ def update_context(store, tid, context_id, request, language):
     Returns:
             (dict) the serialized object updated
     """
-    if not request['allow_recipients_selection']:
-        request['select_all_receivers'] = True
-
     context = models.db_get(store, models.Context, tid=tid, id=context_id)
     context = db_update_context(store, tid, context, request, language)
 

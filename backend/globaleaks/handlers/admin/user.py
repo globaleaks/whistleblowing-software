@@ -74,12 +74,6 @@ def create(tid, request, language):
     else:
         d = create_user(tid, request, language)
 
-    def success(ret):
-        log.debug("Created user with role %s", request['role'])
-        return ret
-
-    d.addCallback(success)
-
     return d
 
 
@@ -224,7 +218,4 @@ class UserInstance(BaseHandler):
         Response: None
         Errors: InvalidInputFormat, UserIdNotFound
         """
-        if user_id == self.current_user.user_id:
-            raise errors.ForbiddenOperation
-
         return models.delete(models.User, tid=self.request.tid, id=user_id)

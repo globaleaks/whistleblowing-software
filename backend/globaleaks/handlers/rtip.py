@@ -8,7 +8,7 @@
 
 import os
 import string
-from storm.expr import In
+from storm.expr import In, Not, Select
 
 from twisted.internet import threads
 from twisted.internet.defer import inlineCallbacks
@@ -244,22 +244,16 @@ def db_delete_itips_files(store, itips_ids):
         files_paths.add(wbfile.file_path)
 
     for file_path in files_paths:
-        print file_path
         db_mark_file_for_secure_deletion(store, file_path)
 
 
 def db_delete_itips(store, itips_ids):
     db_delete_itips_files(store, itips_ids)
 
-    itips = store.find(models.InternalTip, In(models.InternalTip.id, itips_ids))
+    store.find(models.InternalTip, In(models.InternalTip.id, itips_ids)).remove()
 
-    hashes = [itip.questionnaire_hash for itip in itips]
-
-    for hash in hashes:
-        if store.find(models.InternalTip, models.InternalTip.questionnaire_hash == hash).count() == 1:
-            store.find(models.ArchivedSchema, models.ArchivedSchema.hash == itip.questionnaire_hash).remove()
-
-    itips.remove()
+    subselect = Select(models.InternalTip.questionnaire_hash, distinct=True)
+    store.find(models.ArchivedSchema, Not(models.ArchivedSchema.hash.is_in(subselect))).remove()
 
 def db_delete_itip(store, itip):
     db_delete_itips(store, [itip.id])

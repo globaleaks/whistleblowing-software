@@ -123,6 +123,7 @@ class BaseHandler(object):
     root_tenant_only = False
     upload_handler = False
     uploaded_file = None
+    require_multisite = False
 
     def __init__(self, state, request):
         self.name = type(self).__name__
