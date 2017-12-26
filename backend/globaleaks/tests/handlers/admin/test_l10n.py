@@ -5,9 +5,16 @@ from twisted.internet.defer import inlineCallbacks
 
 empty_texts = {}
 
-custom_texts = {
+
+custom_texts1 = {
    '12345': '54321'
 }
+
+
+custom_texts2 = {
+   '12345': '54321'
+}
+
 
 class TestAdminL10NHandler(helpers.TestHandler):
     _handler = admin_l10n.AdminL10NHandler
@@ -25,19 +32,22 @@ class TestAdminL10NHandler(helpers.TestHandler):
         check = yield admin_l10n.get(1, u'en')
         self.assertEqual(empty_texts, check)
 
-        handler = self.request(custom_texts, role='admin')
-
+        handler = self.request(custom_texts1, role='admin')
         yield handler.put(lang=u'en')
-
         check = yield admin_l10n.get(1, u'en')
-        self.assertEqual(custom_texts, check)
+        self.assertEqual(custom_texts1, check)
+
+        handler = self.request(custom_texts1, role='admin')
+        yield handler.put(lang=u'en')
+        check = yield admin_l10n.get(1, u'en')
+        self.assertEqual(custom_texts2, check)
 
     @inlineCallbacks
     def test_delete(self):
         yield self.test_put()
 
         check = yield admin_l10n.get(1, u'en')
-        self.assertEqual(custom_texts, check)
+        self.assertEqual(custom_texts1, check)
 
         handler = self.request({}, role='admin')
         handler.delete(lang=u'en')

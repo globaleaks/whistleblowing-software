@@ -13,10 +13,6 @@ from globaleaks.tests import helpers
 class TestStatsCollection(helpers.TestHandler):
     _handler = statistics.StatsCollection
 
-    @transact
-    def get_stats_count(self, store):
-        return store.find(Stats).count()
-
     @inlineCallbacks
     def test_get(self):
         handler = self.request({}, role='admin')

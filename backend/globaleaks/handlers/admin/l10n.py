@@ -17,7 +17,10 @@ from globaleaks.orm import transact
 @transact
 def get(store, tid, lang):
     texts = store.find(models.CustomTexts, tid=tid, lang=lang).one()
-    return texts.texts if texts is not None else {}
+    if texts is None:
+        return {}
+    else:
+        return texts.texts
 
 
 @transact

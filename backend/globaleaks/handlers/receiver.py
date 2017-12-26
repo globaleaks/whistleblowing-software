@@ -140,28 +140,23 @@ def get_receivertip_list(store, tid, receiver_id, language):
 def perform_tips_operation(store, tid, receiver_id, operation, rtips_ids):
     receiver = store.find(models.Receiver, models.Receiver.id == receiver_id).one()
 
+    can_postpone_expiration = State.tenant_cache[tid].can_postpone_expiration or receiver.can_postpone_expiration
+    can_delete_submission = State.tenant_cache[tid].can_delete_submission or receiver.can_delete_submission
+
     for itip in store.find(models.InternalTip,
                            models.ReceiverTip.receiver_id == receiver_id,
                            In(models.ReceiverTip.id, rtips_ids),
                            models.InternalTip.id == models.ReceiverTip.internaltip_id,
                            tid=tid):
 
-        if operation == 'postpone':
-            can_postpone_expiration = State.tenant_cache[tid].can_postpone_expiration or receiver.can_postpone_expiration
-            if not can_postpone_expiration:
-                raise errors.ForbiddenOperation
-
+        if operation == 'postpone' and can_postpone_expiration:
             db_postpone_expiration_date(store, tid, itip)
 
-        elif operation == 'delete':
-            can_delete_submission = State.tenant_cache[tid].can_delete_submission or receiver.can_delete_submission
-            if not can_delete_submission:
-                raise errors.ForbiddenOperation
-
+        elif operation == 'delete' and can_delete_submission:
             db_delete_itip(store, itip)
 
-    log.debug("Multiple %s of %d Tips completed" % (operation, len(rtips_ids)))
-
+        else:
+            raise errors.ForbiddenOperation
 
 class ReceiverInstance(BaseHandler):
     """
