@@ -62,7 +62,7 @@ def db_create(store, desc):
             data = base64.b64encode(f.read())
             file.db_add_file(store, t.id, file_desc[0], u'', data)
 
-    db_refresh_memory_variables(store)
+    db_refresh_memory_variables(store, [t.id])
 
     return t
 
@@ -90,7 +90,7 @@ def get(store, id):
 def update(store, id, request):
     tenant = models.db_get(store, models.Tenant, id=id)
     tenant.update(request)
-    db_refresh_memory_variables(store)
+    db_refresh_memory_variables(store, [id])
 
     return serialize_tenant(store, tenant)
 
@@ -99,7 +99,7 @@ def update(store, id, request):
 def delete(store, id):
     models.db_delete(store, models.Tenant, id=id)
 
-    db_refresh_memory_variables(store)
+    db_refresh_memory_variables(store, [id])
 
 
 class TenantCollection(BaseHandler):

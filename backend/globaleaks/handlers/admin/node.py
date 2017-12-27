@@ -101,7 +101,7 @@ def db_update_node(store, tid, request, language):
         node_l10n = NodeL10NFactory(store, tid)
         node_l10n.update(request, language)
 
-    db_refresh_memory_variables(store)
+    db_refresh_memory_variables(store, [tid])
 
     # TODO pass instance of db_update_node into admin_serialize
     return db_admin_serialize_node(store, tid, language)

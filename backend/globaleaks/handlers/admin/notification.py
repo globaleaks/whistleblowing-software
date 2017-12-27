@@ -52,8 +52,7 @@ def update_notification(store, tid, request, language):
     if request.pop('reset_templates'):
         notif_l10n.reset_templates(load_appdata())
 
-    # Since the Notification object has been changed refresh the global copy.
-    db_refresh_memory_variables(store)
+    db_refresh_memory_variables(store, [tid])
 
     return admin_serialize_notification(store, tid, language)
 

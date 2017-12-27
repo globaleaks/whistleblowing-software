@@ -42,7 +42,7 @@ def check_hostname(store, tid, input_hostname):
 def set_config_variable(store, tid, var, val):
     NodeFactory(store, tid).set_val(var, val)
 
-    db_refresh_memory_variables(store)
+    db_refresh_memory_variables(store, [tid])
 
 
 class AdminConfigHandler(OperationHandler):

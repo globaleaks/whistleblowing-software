@@ -70,7 +70,7 @@ def wizard(store, tid, request, language):
 
     db_create_user(store, tid, admin_desc, language)
 
-    db_refresh_memory_variables(store)
+    db_refresh_memory_variables(store, [tid])
 
 
 class Wizard(BaseHandler):
