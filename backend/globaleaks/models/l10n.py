@@ -217,8 +217,10 @@ class NotificationL10NFactory(ConfigL10NFactory):
 def update_defaults(store, tid, appdata):
     langs = EnabledLanguage.list(store, tid)
 
-    store.find(ConfigL10N, Not(In(ConfigL10N.var_name, NodeL10NFactory.keys + \
-                                                       NotificationL10NFactory.keys))).remove()
+    store.find(ConfigL10N,
+               tid==tid,
+               Not(In(ConfigL10N.var_name, NodeL10NFactory.keys + \
+               NotificationL10NFactory.keys))).remove()
 
     NodeL10NFactory(store, tid).update_defaults(langs, appdata['node'])
     NotificationL10NFactory(store, tid).update_defaults(langs, appdata['templates'])

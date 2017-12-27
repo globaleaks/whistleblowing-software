@@ -22,7 +22,7 @@ def db_update_fieldoption(store, tid, field, fieldoption_id, option_dict, langua
 
     o = None
     if fieldoption_id is not None:
-        o = store.find(models.FieldOption, id=fieldoption_id, tid=tid).one()
+        o = store.find(models.FieldOption, tid=tid, id=fieldoption_id).one()
 
     if o is None:
         o = models.db_forge_obj(store, models.FieldOption, option_dict)
@@ -200,16 +200,15 @@ def delete_field(store, tid, field_id):
     if not field.editable:
         raise errors.ForbiddenOperation
 
-    if field.instance == 'template':
-        if store.find(models.Field, models.Field.template_id == field.id, tid=tid).count():
-            raise errors.InvalidInputFormat("Cannot remove the field template as it is used by one or more questionnaires")
+    if field.instance == 'template' and store.find(models.Field, tid=tid, template_id=field.id).count():
+        raise errors.InvalidInputFormat("Cannot remove the field template as it is used by one or more questionnaires")
 
 
     if field.template_id == 'whistleblower_identity' and field.step_id is not None:
         store.find(models.Questionnaire,
+                   models.Questionnaire.tid == tid,
                    models.Step.id == field.step_id,
-                   models.Questionnaire.id == models.Step.questionnaire_id,
-                   models.Questionnaire.tid == tid).set(enable_whistleblower_identity = False)
+                   models.Questionnaire.id == models.Step.questionnaire_id).set(enable_whistleblower_identity = False)
 
     store.remove(field)
 

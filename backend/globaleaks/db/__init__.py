@@ -3,6 +3,7 @@
 # ******************
 import os
 import sys
+import time
 import traceback
 
 from storm import exceptions
@@ -44,8 +45,6 @@ def db_create_tables(store):
 @transact_sync
 def init_db(store):
     from globaleaks.handlers.admin import tenant
-
-    log.debug("Performing database initialization...")
 
     db_create_tables(store)
 
@@ -132,13 +131,11 @@ def db_set_cache_exception_delivery_list(store, tenant_cache):
 
     tenant_cache.notification.exception_delivery_list = filter(lambda x: x[0] != '', lst)
 
-
 def db_refresh_tenant_cache(store, tid_list):
     """
     This routine loads in memory few variables of node and notification tables
     that are subject to high usage.
     """
-
     result_set = store.find(Config, In(Config.tid, tid_list)).order_by(Config.tid, Config.var_name)
 
     tenant_cache_dict = ObjectDict()
@@ -189,8 +186,9 @@ def db_refresh_memory_variables(store):
 
     # Ensure the api_token_session state is reset
     if tenant_cache_dict[1].private.admin_api_token_digest:
-        api_id = store.find(models.User.id, models.User.tid==1, models.User.role==u'admin')\
-                      .order_by(models.User.creation_date).first()
+        api_id = store.find(models.User.id,
+                            models.User.tid==1,
+                            models.User.role==u'admin').order_by(models.User.creation_date).first()
         if api_id is not None:
             State.api_token_session = Session(1, api_id, 'admin', 'enabled')
 
