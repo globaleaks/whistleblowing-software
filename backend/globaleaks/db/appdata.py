@@ -7,6 +7,7 @@ from storm.expr import And, Not, In
 from globaleaks import models
 from globaleaks.handlers.admin.field import db_create_field
 from globaleaks.handlers.admin.step import db_create_step
+from globaleaks.orm import transact
 from globaleaks.settings import Settings
 from globaleaks.utils.utility import log, read_json_file
 
@@ -43,7 +44,7 @@ def load_default_fields(store, tid):
         db_create_field(store, tid, question, None)
 
 
-def db_fix_fields_attrs(store, tid):
+def db_fix_fields_attrs(store):
     """
     Ensures that the current store and the field_attrs.json file correspond.
     The content of the field_attrs dict is used to add and remove all of the
@@ -76,15 +77,15 @@ def db_fix_fields_attrs(store, tid):
                 store.remove(r)
 
     # Add keys to the db that have been added to field_attrs
-    for field in store.find(models.Field, tid=tid):
+    for field in store.find(models.Field):
         typ = field.type if field.id not in special_lst else field.id
         attrs = field_attrs.get(typ, {})
         for attr_name, attr_dict in attrs.items():
             if not store.find(models.FieldAttr,
                               And(models.FieldAttr.field_id == field.id,
-                                  models.FieldAttr.name == attr_name), tid=tid).one():
+                                  models.FieldAttr.name == attr_name)).one():
                 log.debug("Adding new field attr %s.%s", typ, attr_name)
-                attr_dict['tid'] = tid
+                attr_dict['tid'] = field.tid
                 attr_dict['name'] = attr_name
                 attr_dict['field_id'] = field.id
                 models.db_forge_obj(store, models.FieldAttr, attr_dict)
@@ -93,4 +94,3 @@ def db_fix_fields_attrs(store, tid):
 def db_update_defaults(store, tid):
     load_default_questionnaires(store, tid)
     load_default_fields(store, tid)
-    db_fix_fields_attrs(store, tid)

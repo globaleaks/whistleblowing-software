@@ -8,7 +8,7 @@ from storm.store import Store
 
 from globaleaks import __version__, models, DATABASE_VERSION, FIRST_DATABASE_VERSION_SUPPORTED, \
     LANGUAGES_SUPPORTED_CODES, security
-from globaleaks.db.appdata import db_update_defaults, load_appdata
+from globaleaks.db.appdata import db_update_defaults, load_appdata, db_fix_fields_attrs
 from globaleaks.db.migrations.update_25 import User_v_24
 from globaleaks.db.migrations.update_26 import InternalFile_v_25
 from globaleaks.db.migrations.update_27 import Node_v_26, Context_v_26, Notification_v_26
@@ -98,6 +98,8 @@ def db_perform_data_update(store):
             db_update_defaults(store, tid)
             l10n.update_defaults(store, tid, appdata)
             config.update_defaults(store, tid)
+
+        db_fix_fields_attrs(store)
 
 
 def perform_data_update(db_file):
