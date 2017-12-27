@@ -122,7 +122,7 @@ class ConfigFactory(object):
 
         extra = list(set(actual) - set(allowed))
 
-        self.store.find(Config, In(Config.var_name, extra)).remove()
+        self.store.find(Config, Config.tid==self.tid, In(Config.var_name, extra)).remove()
 
         return len(missing), len(extra)
 
@@ -208,7 +208,7 @@ def system_cfg_init(store, tid):
 
 
 def update_defaults(store, tid):
-    store.find(Config, Not(In(Config.var_name, ConfigDescriptor.keys()))).remove()
+    store.find(Config, Config.tid == tid, Not(In(Config.var_name, ConfigDescriptor.keys()))).remove()
 
     for fact_model in factories:
          fact_model(store, tid).clean_and_add()

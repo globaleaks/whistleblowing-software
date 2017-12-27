@@ -64,10 +64,7 @@ class FileProducer(object):
         return self.finish
 
     def resumeProducing(self):
-        if self.request is None:
-            return
-
-        try:
+        if self.request is not None:
             data = self.fileObject.read(self.bufferSize)
             if data:
                 self.bytesWritten += len(data)
@@ -75,9 +72,6 @@ class FileProducer(object):
 
             if self.bytesWritten == self.fileSize:
                 self.stopProducing()
-        except:
-            self.stopProducing()
-            raise
 
     def stopProducing(self):
         if self.request is not None:
@@ -382,13 +376,6 @@ class BaseHandler(object):
 
         return FileProducer(self.request, filepath).start()
 
-    @property
-    def current_user(self):
-        if not hasattr(self, '_current_user'):
-            self._current_user = self.get_current_user()
-
-        return self._current_user
-
     def get_current_user(self):
         api_session = self.get_api_session()
         if api_session is not None:
@@ -405,6 +392,13 @@ class BaseHandler(object):
             return None
 
         return session
+
+    @property
+    def current_user(self):
+        if not hasattr(self, '_current_user'):
+            self._current_user = self.get_current_user()
+
+        return self._current_user
 
     def get_api_session(self):
         token = bytes(self.request.headers.get('x-api-token', ''))

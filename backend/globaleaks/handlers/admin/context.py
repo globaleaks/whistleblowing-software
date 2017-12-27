@@ -95,9 +95,6 @@ def fill_context_request(tid, request, language):
     request['tip_timetolive'] = -1 if request['tip_timetolive'] < 0 else request['tip_timetolive']
 
     if request['select_all_receivers']:
-        if request['maximum_selectable_receivers']:
-            log.debug("Resetting maximum_selectable_receivers (%d) because 'select_all_receivers' is True",
-                      request['maximum_selectable_receivers'])
         request['maximum_selectable_receivers'] = 0
 
     return request
