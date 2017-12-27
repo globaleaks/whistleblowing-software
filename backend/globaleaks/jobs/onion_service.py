@@ -28,7 +28,7 @@ __all__ = ['OnionService']
 @transact
 def list_onion_service_info(store):
     return [db_get_onion_service_info(store, tid)
-        for tid in store.find(models.Tenant.id, active=True)]
+        for tid in store.find(models.Tenant.id, models.Tenant.active==True)]
 
 
 @transact
@@ -140,10 +140,13 @@ class OnionService(BaseJob):
                 else:
                     yield ephs.remove_from_tor(self.tor_conn.protocol)
 
-                ApiCache().invalidate(tid)
-                ApiCache().invalidate(1)
+                tid_list = list(set([1, tid]))
 
-                yield refresh_memory_variables()
+                for x in tid_list:
+                    ApiCache().invalidate(x)
+                    ApiCache().invalidate(x)
+
+                yield refresh_memory_variables(tid_list)
 
         def init_errback(failure):
             if tid in self.startup_semaphore:

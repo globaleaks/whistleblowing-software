@@ -131,7 +131,7 @@ def db_admin_update_user(store, tid, user_id, request, language):
     parse_pgp_options(user, request)
 
     if user.role == 'admin':
-        db_refresh_memory_variables(store)
+        db_refresh_memory_variables(store, [tid])
 
     return user
 

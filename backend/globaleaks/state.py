@@ -79,6 +79,9 @@ class StateClass(ObjectDict):
             'anonymize_outgoing_connections': True,
         })
 
+
+        self.tenant_hostname_id_map = dict()
+
         tracer.debug(self.settings.orm_debug, sys.stdout)
         self.set_orm_tp(self.orm_tp)
 
