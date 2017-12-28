@@ -64,22 +64,28 @@ class FileProducer(object):
         return self.finish
 
     def resumeProducing(self):
-        if self.request is not None:
-            data = self.fileObject.read(self.bufferSize)
-            if data:
-                self.bytesWritten += len(data)
-                self.request.write(data)
+        try:
+            if self.request is not None:
+                data = self.fileObject.read(self.bufferSize)
+                if data:
+                    self.bytesWritten += len(data)
+                    self.request.write(data)
 
-            if self.bytesWritten == self.fileSize:
-                self.stopProducing()
+                if self.bytesWritten == self.fileSize:
+                    self.stopProducing()
+        except:
+            pass
 
     def stopProducing(self):
-        if self.request is not None:
-            self.fileObject.close()
-            self.request.unregisterProducer()
-            self.request.finish()
-            self.request = None
-            self.finish.callback(None)
+        try:
+            if self.request is not None:
+                self.fileObject.close()
+                self.request.unregisterProducer()
+                self.request.finish()
+                self.request = None
+                self.finish.callback(None)
+        except:
+            pass
 
 
 class Session(object):
