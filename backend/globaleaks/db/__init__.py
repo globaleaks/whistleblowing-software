@@ -49,25 +49,29 @@ def update_db():
     """
     This function handles update of an existing database
     """
+    db_version, _ = get_db_file(Settings.db_path)
+    if db_version == 0:
+        return 0
+
+    log.err('Found an already initialized database version: %d', db_version)
+    if db_version == DATABASE_VERSION:
+        return DATABASE_VERSION
+
+    log.err('Performing schema migration from version %d to version %d', db_version, DATABASE_VERSION)
+
     try:
-        db_version, _ = get_db_file(Settings.db_path)
-        if db_version == 0:
-            return 0
         from globaleaks.db import migration
-        log.err('Found an already initialized database version: %d', db_version)
-        if FIRST_DATABASE_VERSION_SUPPORTED <= db_version < DATABASE_VERSION:
-            log.err('Performing schema migration from version %d to version %d', db_version, DATABASE_VERSION)
-            migration.perform_schema_migration(db_version)
-            log.err('Migration completed with success!')
-        else:
-            log.err('Performing data update')
-            migration.perform_data_update(os.path.abspath(os.path.join(Settings.db_path, 'glbackend-%d.db' % DATABASE_VERSION)))
+        migration.perform_migration(db_version)
     except Exception as exception:
         log.err('Migration failure: %s', exception)
         log.err('Verbose exception traceback:')
         etype, value, tback = sys.exc_info()
         log.info('\n'.join(traceback.format_exception(etype, value, tback)))
         return -1
+
+    log.err('Migration completed with success!')
+
+    return DATABASE_VERSION
 
 
 def db_get_tracked_files(store):

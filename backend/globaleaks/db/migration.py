@@ -82,26 +82,6 @@ migration_mapping = OrderedDict([
 ])
 
 
-def db_perform_data_update(store):
-    prv = PrivateFactory(store, 1)
-
-    stored_ver = prv.get_val(u'version')
-    t = (stored_ver, __version__)
-
-    if stored_ver != __version__:
-        prv.set_val(u'version', __version__)
-
-        # The below commands can change the current store based on the what is
-        # currently stored in the DB.
-        for tid in store.find(models.Tenant.id):
-            appdata = load_appdata()
-            db_update_defaults(store, tid)
-            l10n.update_defaults(store, tid, appdata)
-            config.update_defaults(store, tid)
-
-        db_fix_fields_attrs(store)
-
-
 def perform_data_update(db_file):
     store = Store(create_database(make_db_uri(db_file)))
 
@@ -117,7 +97,23 @@ def perform_data_update(db_file):
 
 
     try:
-        db_perform_data_update(store)
+        prv = PrivateFactory(store, 1)
+
+        stored_ver = prv.get_val(u'version')
+
+        if stored_ver != __version__:
+            prv.set_val(u'version', __version__)
+
+            # The below commands can change the current store based on the what is
+            # currently stored in the DB.
+            for tid in store.find(models.Tenant.id):
+                appdata = load_appdata()
+                db_update_defaults(store, tid)
+                l10n.update_defaults(store, tid, appdata)
+                config.update_defaults(store, tid)
+
+            db_fix_fields_attrs(store)
+
         store.commit()
     except:
         store.rollback()
@@ -126,7 +122,7 @@ def perform_data_update(db_file):
         store.close()
 
 
-def perform_schema_migration(version):
+def perform_migration(version):
     """
     @param version:
     @return:
