@@ -84,8 +84,8 @@ def _db_serialize_archived_questionnaire_schema(store, aqs, language):
     return questionnaire
 
 
-def db_serialize_archived_questionnaire_schema(store, tid, hash, language):
-    aqs = store.find(models.ArchivedSchema, hash=hash, type=u'questionnaire', tid=tid).one()
+def db_serialize_archived_questionnaire_schema(store, hash, language):
+    aqs = store.find(models.ArchivedSchema, hash=hash, type=u'questionnaire').one()
 
     return _db_serialize_archived_questionnaire_schema(store, aqs, language)
 
@@ -108,7 +108,7 @@ def db_serialize_questionnaire_answers_recursively(store, answers, answers_by_gr
 
 
 def db_serialize_questionnaire_answers(store, tid, usertip, internaltip):
-    questionnaire = db_serialize_archived_questionnaire_schema(store, tid, internaltip.questionnaire_hash, State.tenant_cache[tid].default_language)
+    questionnaire = db_serialize_archived_questionnaire_schema(store, internaltip.questionnaire_hash, State.tenant_cache[tid].default_language)
 
     answers = []
     answers_by_group = {}
@@ -196,23 +196,21 @@ def extract_answers_preview(questionnaire, answers):
 
 
 def db_archive_questionnaire_schema(store, tid, questionnaire, questionnaire_hash):
-    if store.find(models.ArchivedSchema,
-                  models.ArchivedSchema.hash == questionnaire_hash,
-                  tid=tid).count() <= 0:
+    if store.find(models.ArchivedSchema, hash=questionnaire_hash).count():
+        return
 
+    for type in [u'questionnaire', u'preview']:
         aqs = models.ArchivedSchema()
-        aqs.tid = tid
         aqs.hash = questionnaire_hash
-        aqs.type = u'questionnaire'
-        aqs.schema = questionnaire
-        store.add(aqs)
 
-        aqsp = models.ArchivedSchema()
-        aqsp.hash = questionnaire_hash
-        aqsp.tid = tid
-        aqsp.type = u'preview'
-        aqsp.schema = [f for s in aqs.schema for f in s['children'] if f['preview']]
-        store.add(aqsp)
+        if type == u'questionnaire':
+            aqs.type = u'questionnaire'
+            aqs.schema = questionnaire
+        else:
+            aqs.type = u'preview'
+            aqs.schema = [f for s in questionnaire for f in s['children'] if f['preview']]
+
+        store.add(aqs)
 
 
 def db_get_itip_receiver_list(store, itip):
@@ -246,7 +244,7 @@ def serialize_itip(store, internaltip, language):
         'progressive': internaltip.progressive,
         'sequence_number': get_submission_sequence_number(internaltip),
         'context_id': internaltip.context_id,
-        'questionnaire': db_serialize_archived_questionnaire_schema(store, internaltip.tid, internaltip.questionnaire_hash, language),
+        'questionnaire': db_serialize_archived_questionnaire_schema(store, internaltip.questionnaire_hash, language),
         'receivers': db_get_itip_receiver_list(store, internaltip),
         'tor2web': internaltip.tor2web,
         'enable_two_way_comments': internaltip.enable_two_way_comments,

@@ -651,8 +651,8 @@ class Questionnaire(ModelWithTIDandID):
     list_keys = ['steps']
 
 
-class ArchivedSchema(ModelWithTID):
-    __storm_primary__ = 'tid', 'hash', 'type'
+class ArchivedSchema(Model):
+    __storm_primary__ = 'hash', 'type'
 
     hash = Unicode()
     type = Unicode()

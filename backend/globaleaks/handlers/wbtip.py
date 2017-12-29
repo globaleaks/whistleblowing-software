@@ -149,7 +149,7 @@ def update_identity_information(store, tid, tip_id, identity_field_id, identity_
     if internaltip.identity_provided:
         return
 
-    questionnaire = db_serialize_archived_questionnaire_schema(store, tid, internaltip.questionnaire_hash, language)
+    questionnaire = db_serialize_archived_questionnaire_schema(store, internaltip.questionnaire_hash, language)
     for step in questionnaire:
         for field in step['children']:
             if field['id'] == identity_field_id and field['id'] == 'whistleblower_identity':
