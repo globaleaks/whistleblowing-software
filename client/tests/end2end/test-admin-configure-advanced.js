@@ -18,7 +18,7 @@ describe('admin configure advanced settings', function() {
     element(by.cssContainingText("a", "URL shortener")).click();
 
     for (var i = 0; i < 3; i++) {
-      element(by.model('new_shorturl.shorturl')).sendKeys('shorturl');
+      element(by.model('new_shorturl.shorturl')).sendKeys('shorturl-' + i.toString());
       element(by.model('new_shorturl.longurl')).sendKeys('longurl');
       element(by.cssContainingText("button", "Add")).click();
       element(by.cssContainingText("button", "Delete")).click();
