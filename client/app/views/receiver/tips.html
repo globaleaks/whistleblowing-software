@@ -226,10 +226,10 @@
     <div class="text-center" data-ng-show="filteredTips.length > itemsPerPage">
       <ul uib-pagination
           total-items="filteredTips.length"
-          first-text="{{'First' | translate}}"
-          last-text="{{'Last' | translate}}"
-          previous-text="{{'Previous' | translate}}"
-          next-text="{{'Next' | translate}}"
+          first-text="<< {{'First' | translate}}"
+          last-text="{{'Last' | translate}} >>"
+          previous-text="< {{'Previous' | translate}}"
+          next-text="{{'Next' | translate}} >"
           items-per-page="itemsPerPage"
           ng-model="currentPage"
           max-size="10"
