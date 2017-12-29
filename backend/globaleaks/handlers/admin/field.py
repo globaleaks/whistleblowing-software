@@ -14,9 +14,9 @@ from globaleaks.rest import errors, requests
 from globaleaks.utils.structures import fill_localized_keys
 
 
-def db_update_fieldoption(store, tid, field, fieldoption_id, option_dict, language, idx):
+def db_update_fieldoption(store, tid, field_id, fieldoption_id, option_dict, language, idx):
     option_dict['tid'] = tid
-    option_dict['field_id'] = field.id
+    option_dict['field_id'] = field_id
 
     fill_localized_keys(option_dict, models.FieldOption.localized_keys, language)
 
@@ -34,7 +34,7 @@ def db_update_fieldoption(store, tid, field, fieldoption_id, option_dict, langua
     return o.id
 
 
-def db_update_fieldoptions(store, tid, field, options, language):
+def db_update_fieldoptions(store, tid, field_id, options, language):
     """
     Update options
 
@@ -42,14 +42,14 @@ def db_update_fieldoptions(store, tid, field, options, language):
     :param field_id: the field_id on wich bind the provided options
     :param language: the language of the option definition dict
     """
-    options_ids = [db_update_fieldoption(store, tid, field, option['id'], option, language, idx) for idx, option in enumerate(options)]
+    options_ids = [db_update_fieldoption(store, tid, field_id, option['id'], option, language, idx) for idx, option in enumerate(options)]
 
-    store.find(models.FieldOption, And(models.FieldOption.field_id == field.id, Not(In(models.FieldOption.id, options_ids))), tid=tid).remove()
+    store.find(models.FieldOption, And(models.FieldOption.field_id == field_id, Not(In(models.FieldOption.id, options_ids))), tid=tid).remove()
 
 
-def db_update_fieldattr(store, tid, field, attr_name, attr_dict, language):
+def db_update_fieldattr(store, tid, field_id, attr_name, attr_dict, language):
     attr_dict['name'] = attr_name
-    attr_dict['field_id'] = field.id
+    attr_dict['field_id'] = field_id
     attr_dict['tid'] = tid
 
     if attr_dict['type'] == 'bool':
@@ -57,7 +57,7 @@ def db_update_fieldattr(store, tid, field, attr_name, attr_dict, language):
     elif attr_dict['type'] == u'localized':
         fill_localized_keys(attr_dict, ['value'], language)
 
-    a = store.find(models.FieldAttr, And(models.FieldAttr.field_id == field.id, models.FieldAttr.name == attr_name), tid=tid).one()
+    a = store.find(models.FieldAttr, And(models.FieldAttr.field_id == field_id, models.FieldAttr.name == attr_name), tid=tid).one()
     if not a:
         a = models.db_forge_obj(store, models.FieldAttr, attr_dict)
     else:
@@ -66,10 +66,10 @@ def db_update_fieldattr(store, tid, field, attr_name, attr_dict, language):
     return a.id
 
 
-def db_update_fieldattrs(store, tid, field, field_attrs, language):
-    attrs_ids = [db_update_fieldattr(store, tid, field, attr_name, attr, language) for attr_name, attr in field_attrs.items()]
+def db_update_fieldattrs(store, tid, field_id, field_attrs, language):
+    attrs_ids = [db_update_fieldattr(store, tid, field_id, attr_name, attr, language) for attr_name, attr in field_attrs.items()]
 
-    store.find(models.FieldAttr, And(models.FieldAttr.field_id == field.id, Not(In(models.FieldAttr.id, attrs_ids))), tid=tid).remove()
+    store.find(models.FieldAttr, And(models.FieldAttr.field_id == field_id, Not(In(models.FieldAttr.id, attrs_ids))), tid=tid).remove()
 
 
 def db_create_field(store, tid, field_dict, language):
@@ -114,14 +114,8 @@ def db_create_field(store, tid, field_dict, language):
         attrs = field_dict.get('attrs', [])
         options = field_dict.get('options', [])
 
-        for _, value in attrs.items():
-            value['tid'] = field.tid
-
-        for obj in options:
-            obj['tid'] = field.tid
-
-        db_update_fieldattrs(store, tid, field, attrs, language)
-        db_update_fieldoptions(store, tid, field, options, language)
+        db_update_fieldattrs(store, tid, field.id, attrs, language)
+        db_update_fieldoptions(store, tid, field.id, options, language)
 
     if field.instance != 'reference':
         for c in field_dict.get('children', []):
@@ -150,8 +144,8 @@ def db_update_field(store, tid, field_id, field_dict, language):
     if field_dict['instance'] != 'reference':
         fill_localized_keys(field_dict, models.Field.localized_keys, language)
 
-        db_update_fieldattrs(store, tid, field, field_dict['attrs'], language)
-        db_update_fieldoptions(store, tid, field, field_dict['options'], language)
+        db_update_fieldattrs(store, tid, field.id, field_dict['attrs'], language)
+        db_update_fieldoptions(store, tid, field.id, field_dict['options'], language)
 
         # full update
         field.update(field_dict)
@@ -202,7 +196,6 @@ def delete_field(store, tid, field_id):
 
     if field.instance == 'template' and store.find(models.Field, tid=tid, template_id=field.id).count():
         raise errors.InvalidInputFormat("Cannot remove the field template as it is used by one or more questionnaires")
-
 
     if field.template_id == 'whistleblower_identity' and field.step_id is not None:
         store.find(models.Questionnaire,

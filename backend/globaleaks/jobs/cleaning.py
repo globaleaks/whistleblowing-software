@@ -2,7 +2,7 @@
 # Implementation of the cleaning operations.
 from datetime import timedelta
 
-from storm.expr import In, Min
+from storm.expr import In, Min, Not, Select
 
 from globaleaks import models
 from globaleaks.handlers.admin.node import db_admin_serialize_node
@@ -98,6 +98,10 @@ class Cleaning(LoopingJob):
 
         # delete anomalies older than 1 months
         store.find(models.Anomalies, models.Anomalies.date < datetime_now() - timedelta(365/12)).remove()
+
+        # delete archived schemas not used by any existing submission
+        subselect = Select(models.InternalTip.questionnaire_hash, distinct=True)
+        store.find(models.ArchivedSchema, Not(models.ArchivedSchema.hash.is_in(subselect))).remove()
 
     @transact_sync
     def get_files_to_secure_delete(self, store):

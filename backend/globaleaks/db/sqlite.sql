@@ -464,13 +464,11 @@ CREATE TABLE fieldanswergroup (
 );
 
 CREATE TABLE archivedschema (
-    tid INTEGER NOT NULL DEFAULT 1,
     hash TEXT NOT NULL,
     type TEXT NOT NULL CHECK (type IN ('questionnaire',
                                        'preview')),
     schema BLOB NOT NULL,
-    FOREIGN KEY (tid) REFERENCES tenant(id) ON DELETE CASCADE,
-    PRIMARY KEY (tid, hash, type)
+    PRIMARY KEY (hash, type)
 );
 
 CREATE TABLE securefiledelete (
