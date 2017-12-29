@@ -1258,7 +1258,7 @@ factory('AdminUtils', ['AdminContextResource', 'AdminQuestionnaireResource', 'Ad
      "hostname_regexp": /^[a-z0-9-.]+$|^$/,
      "onionservice_regexp": /^[0-9a-z]{16}\.onion$/,
      "https_regexp": /^https:\/\/([a-z0-9-]+)\.(.*)$|^$/,
-     "shortener_shorturl_regexp": /\/s\/[a-z0-9]{1,30}$/,
+     "shortener_shorturl_regexp": /\/s\/[a-z0-9_-]{1,30}$/,
      "shortener_longurl_regexp": /\/[a-z0-9#=_&?/-]{1,255}$/,
      "uuid_regexp": /^([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})$/
 }).

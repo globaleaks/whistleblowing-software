@@ -474,9 +474,8 @@ CREATE TABLE archivedschema (
 );
 
 CREATE TABLE securefiledelete (
-    id TEXT NOT NULL,
     filepath TEXT NOT NULL,
-    PRIMARY KEY (id)
+    PRIMARY KEY (filepath)
 );
 
 CREATE TABLE counter (

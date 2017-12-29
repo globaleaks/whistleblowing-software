@@ -14,15 +14,6 @@ from globaleaks.models.l10n import NotificationL10NFactory
 from globaleaks.utils.sets import merge_dicts
 
 
-def get_multilang_request_format(request_format, localized_strings):
-    ret = copy.deepcopy(request_format)
-
-    for ls in localized_strings:
-        ret[ls] = dict
-
-    return ret
-
-
 key_regexp                        = r'^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$|^[a-z_]{0,100}$'
 key_regexp_or_empty               = r'^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$|^[a-z_]{0,100}$|^$'
 uuid_regexp                       = r'^([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})$'
@@ -39,7 +30,7 @@ https_url_regexp_or_empty         = r'^https://([0-9a-z\-]+)\.(.*)$|^$'
 landing_page_regexp               = r'^(homepage|submissionpage)$'
 context_selector_type_regexp      = r'^(list|cards|search)$'
 tip_operation_regexp              = r'^(postpone|set)$'
-shorturl_regexp                   = r'^(/s/[a-z0-9]{1,30})$'
+shorturl_regexp                   = r'^(/s/[a-z0-9_-]{1,30})$'
 longurl_regexp                    = r'^(/[a-z0-9#=_&?/-]{1,255})$'
 short_text_regexp                 = r'^.{1,255}$'
 
@@ -75,6 +66,15 @@ identityaccessreply_regexp        = (r'^('
 
 class SkipSpecificValidation:
     pass
+
+
+def get_multilang_request_format(request_format, localized_strings):
+    ret = copy.deepcopy(request_format)
+
+    for ls in localized_strings:
+        ret[ls] = dict
+
+    return ret
 
 
 DateType = r'(.*)'

@@ -672,8 +672,8 @@ class Anomalies(ModelWithTIDandID):
     events = JSON()
 
 
-class SecureFileDelete(ModelWithID):
-    filepath = Unicode()
+class SecureFileDelete(Model):
+    filepath = Unicode(primary=True)
 
 
 # Follow classes used for Many to Many references
