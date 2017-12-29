@@ -170,7 +170,7 @@
         </tr>
       </thead>
       <tbody id="tipListTableBody">
-        <tr id="tip-{{$index}}" data-ng-repeat="tip in tips | orderBy:sortKey:sortReverse | filter:search" data-ng-class="{'newTip': tip.new, 'selectedTip': isSelected(tip.id)}" class="tip-action-open" data-ng-click="Utils.go('/status/' + tip.id)">
+        <tr id="tip-{{$index}}" data-ng-repeat="tip in filteredTips | orderBy:sortKey:sortReverse | limitTo:itemsPerPage:((currentPage - 1) * itemsPerPage)" data-ng-class="{'newTip': tip.new, 'selectedTip': isSelected(tip.id)}" class="tip-action-open" data-ng-click="Utils.go('/status/' + tip.id)">
           <td>
             <span data-ng-if="preferences.can_postpone_expiration || preferences.can_delete_submission">
               <span class="btn btn-xs btn-default" data-ng-if="isSelected(tip.id)" data-ng-click="tip_switch(tip.id); $event.stopPropagation();">
@@ -222,5 +222,20 @@
         </tr>
       </tbody>
     </table>
+
+    <div class="text-center" data-ng-show="filteredTips.length > itemsPerPage">
+      <ul uib-pagination
+          total-items="filteredTips.length"
+          first-text="{{'First' | translate}}"
+          last-text="{{'Last' | translate}}"
+          previous-text="{{'Previous' | translate}}"
+          next-text="{{'Next' | translate}}"
+          items-per-page="itemsPerPage"
+          ng-model="currentPage"
+          max-size="10"
+          class="pagination-sm"
+          boundary-links="true"
+          force-ellipses="true"></ul>
+    </div>
   </div>
 </div>

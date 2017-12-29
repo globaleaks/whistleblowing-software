@@ -1,10 +1,23 @@
-GLClient.controller('ReceiverTipsCtrl', ['$scope',  '$http', '$route', '$location', '$uibModal', 'RTipExport', 'ReceiverTips',
-  function($scope, $http, $route, $location, $uibModal, RTipExport, ReceiverTips) {
+GLClient.controller('ReceiverTipsCtrl', ['$scope',  '$filter', '$http', '$route', '$location', '$uibModal', 'RTipExport', 'ReceiverTips',
+  function($scope, $filter, $http, $route, $location, $uibModal, RTipExport, ReceiverTips) {
+  $scope.search = undefined;
+  $scope.currentPage = 1;
+  $scope.itemsPerPage = 20;
+
   $scope.tips = ReceiverTips.query(function(tips) {
     angular.forEach(tips, function (tip) {
       tip.context = $scope.contexts_by_id[tip.context_id];
       tip.context_name = tip.context.name;
     });
+  });
+
+  $scope.filteredTips = $scope.tips;
+
+  $scope.$watch('search', function (value) {
+    if (value != undefined) {
+      $scope.currentPage = 1;
+      $scope.filteredTips = $filter('filter')($scope.tips, value);
+    }
   });
 
   $scope.exportTip = RTipExport;

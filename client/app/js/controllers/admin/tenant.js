@@ -13,6 +13,9 @@ angular.module('GLClient')
       $scope.newTenant = new $scope.admin_utils.new_tenant();
     });
   }
+
+  $scope.currentPage = 1;
+  $scope.itemsPerPage = 20;
 }])
 .controller('TenantEditorCtrl', ['$scope', '$rootScope', 'Utils', 'AdminTenantResource', function($scope, $rootScope, Utils, AdminTenantResource) {
   var tenant = $scope.tenant;
