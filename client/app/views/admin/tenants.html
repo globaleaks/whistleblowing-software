@@ -28,7 +28,8 @@
           </div>
         </form>
       </div>
-      <div data-ng-repeat="tenant in admin.tenants | orderBy:'id'">
+
+      <div data-ng-repeat="tenant in admin.tenants.slice(((currentPage-1)*itemsPerPage), ((currentPage)*itemsPerPage)) | orderBy:'id'">
         <form id="tenant-{{$index}}" name="editTenant" data-ng-controller="TenantEditorCtrl" novalidate>
           <div class="configItem">
             <div class="editorHeader row" data-ng-click="tenant.id > 1 && toggleEditing($event)">
@@ -86,6 +87,21 @@
             </div>
           </div>
         </form>
+      </div>
+
+      <div class="text-center" data-ng-show="admin.tenants.length > 10">
+        <ul uib-pagination
+            total-items="admin.tenants.length"
+            first-text="{{'First' | translate}}"
+            last-text="{{'Last' | translate}}"
+            previous-text="{{'Previous' | translate}}"
+            next-text="{{'Next' | translate}}"
+            items-per-page="itemsPerPage"
+            ng-model="currentPage"
+            max-size="10"
+            class="pagination-sm"
+            boundary-links="true"
+            force-ellipses="true"></ul>
       </div>
     </div>
   </div>
