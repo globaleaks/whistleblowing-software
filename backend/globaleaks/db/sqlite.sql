@@ -10,14 +10,14 @@ CREATE TABLE tenant (
 );
 
 CREATE TABLE enabledlanguage (
-    tid INTEGER NOT NULL DEFAULT 1,
+    tid INTEGER NOT NULL,
     name TEXT NOT NULL,
     FOREIGN KEY (tid) REFERENCES tenant(id) ON DELETE CASCADE,
     PRIMARY KEY (tid, name)
 );
 
 CREATE TABLE config (
-    tid INTEGER NOT NULL DEFAULT 1,
+    tid INTEGER NOT NULL,
     var_name TEXT NOT NULL,
     customized BOOL NOT NULL,
     value BLOB NOT NULL,
@@ -26,7 +26,7 @@ CREATE TABLE config (
 );
 
 CREATE TABLE config_l10n (
-    tid INTEGER NOT NULL DEFAULT 1,
+    tid INTEGER NOT NULL,
     lang TEXT NOT NULL,
     var_name TEXT NOT NULL,
     value TEXT NOT NULL,
@@ -37,7 +37,7 @@ CREATE TABLE config_l10n (
 );
 
 CREATE TABLE user (
-    tid INTEGER NOT NULL DEFAULT 1,
+    tid INTEGER NOT NULL,
     id TEXT NOT NULL,
     creation_date TEXT NOT NULL,
     username TEXT NOT NULL,
@@ -64,7 +64,7 @@ CREATE TABLE user (
 );
 
 CREATE TABLE userimg (
-    tid INTEGER NOT NULL DEFAULT 1,
+    tid INTEGER NOT NULL,
     id TEXT NOT NULL,
     data TEXT NOT NULL,
     UNIQUE(id),
@@ -74,7 +74,7 @@ CREATE TABLE userimg (
 );
 
 CREATE TABLE message (
-    tid INTEGER NOT NULL DEFAULT 1,
+    tid INTEGER NOT NULL,
     id TEXT NOT NULL,
     creation_date TEXT NOT NULL,
     receivertip_id TEXT NOT NULL,
@@ -88,7 +88,7 @@ CREATE TABLE message (
 );
 
 CREATE TABLE comment (
-    tid INTEGER NOT NULL DEFAULT 1,
+    tid INTEGER NOT NULL,
     id TEXT NOT NULL,
     creation_date TEXT NOT NULL,
     author_id TEXT,
@@ -104,7 +104,7 @@ CREATE TABLE comment (
 );
 
 CREATE TABLE context (
-    tid INTEGER NOT NULL DEFAULT 1,
+    tid INTEGER NOT NULL,
     id TEXT NOT NULL,
     name BLOB NOT NULL,
     description BLOB NOT NULL,
@@ -133,7 +133,7 @@ CREATE TABLE context (
 );
 
 CREATE TABLE contextimg (
-    tid INTEGER NOT NULL DEFAULT 1,
+    tid INTEGER NOT NULL,
     id TEXT NOT NULL,
     data TEXT NOT NULL,
     UNIQUE(id),
@@ -143,7 +143,7 @@ CREATE TABLE contextimg (
 );
 
 CREATE TABLE internalfile (
-    tid INTEGER NOT NULL DEFAULT 1,
+    tid INTEGER NOT NULL,
     id TEXT NOT NULL,
     creation_date TEXT NOT NULL,
     content_type TEXT NOT NULL,
@@ -162,7 +162,7 @@ CREATE TABLE internalfile (
 );
 
 CREATE TABLE receiverfile (
-    tid INTEGER NOT NULL DEFAULT 1,
+    tid INTEGER NOT NULL,
     id TEXT NOT NULL,
     file_path TEXT NOT NULL,
     size INTEGER NOT NULL,
@@ -180,7 +180,7 @@ CREATE TABLE receiverfile (
 );
 
 CREATE TABLE whistleblowerfile (
-    tid INTEGER NOT NULL DEFAULT 1,
+    tid INTEGER NOT NULL,
     id TEXT NOT NULL,
     creation_date TEXT NOT NULL,
     content_type TEXT NOT NULL,
@@ -200,7 +200,7 @@ CREATE TABLE whistleblowerfile (
 );
 
 CREATE TABLE internaltip (
-    tid INTEGER NOT NULL DEFAULT 1,
+    tid INTEGER NOT NULL,
     id TEXT NOT NULL,
     creation_date TEXT NOT NULL,
     update_date TEXT NOT NULL,
@@ -226,7 +226,7 @@ CREATE TABLE internaltip (
 );
 
 CREATE TABLE identityaccessrequest (
-    tid INTEGER NOT NULL DEFAULT 1,
+    tid INTEGER NOT NULL,
     id TEXT NOT NULL,
     receivertip_id TEXT NOT NULL,
     request_date TEXT NOT NULL,
@@ -242,7 +242,7 @@ CREATE TABLE identityaccessrequest (
 );
 
 CREATE TABLE mail (
-    tid INTEGER NOT NULL DEFAULT 1,
+    tid INTEGER NOT NULL,
     id TEXT NOT NULL,
     creation_date TEXT NOT NULL,
     address TEXT NOT NULL,
@@ -255,7 +255,7 @@ CREATE TABLE mail (
 );
 
 CREATE TABLE receiver (
-    tid INTEGER NOT NULL DEFAULT 1,
+    tid INTEGER NOT NULL,
     id TEXT NOT NULL,
     configuration TEXT NOT NULL CHECK (configuration IN ('default', 'forcefully_selected', 'unselectable')),
     can_delete_submission INTEGER NOT NULL,
@@ -269,7 +269,7 @@ CREATE TABLE receiver (
 );
 
 CREATE TABLE receiver_context (
-    tid INTEGER NOT NULL DEFAULT 1,
+    tid INTEGER NOT NULL,
     context_id TEXT NOT NULL,
     receiver_id TEXT NOT NULL,
     presentation_order INTEGER NOT NULL,
@@ -281,7 +281,7 @@ CREATE TABLE receiver_context (
 );
 
 CREATE TABLE receivertip (
-    tid INTEGER NOT NULL DEFAULT 1,
+    tid INTEGER NOT NULL,
     id TEXT NOT NULL,
     internaltip_id TEXT NOT NULL,
     last_access TEXT,
@@ -299,7 +299,7 @@ CREATE TABLE receivertip (
 );
 
 CREATE TABLE whistleblowertip (
-    tid INTEGER NOT NULL DEFAULT 1,
+    tid INTEGER NOT NULL,
     id TEXT NOT NULL,
     receipt_hash TEXT NOT NULL,
     UNIQUE(id),
@@ -309,7 +309,7 @@ CREATE TABLE whistleblowertip (
 );
 
 CREATE TABLE anomalies (
-    tid INTEGER NOT NULL DEFAULT 1,
+    tid INTEGER NOT NULL,
     id TEXT NOT NULL,
     date TEXT NOT NULL,
     alarm INTEGER NOT NULL,
@@ -320,7 +320,7 @@ CREATE TABLE anomalies (
 );
 
 CREATE TABLE stats (
-    tid INTEGER NOT NULL DEFAULT 1,
+    tid INTEGER NOT NULL,
     id TEXT NOT NULL,
     start TEXT NOT NULL,
     summary BLOB NOT NULL,
@@ -330,7 +330,7 @@ CREATE TABLE stats (
 );
 
 CREATE TABLE field (
-    tid INTEGER NOT NULL DEFAULT 1,
+    tid INTEGER NOT NULL,
     id TEXT NOT NULL,
     fieldgroup_id TEXT,
     step_id TEXT,
@@ -380,8 +380,7 @@ CREATE TABLE field (
 );
 
 CREATE TABLE fieldattr (
-    tid INTEGER NOT NULL DEFAULT 1,
-
+    tid INTEGER NOT NULL,
     id TEXT NOT NULL,
     field_id TEXT NOT NULL,
     name TEXT NOT NULL,
@@ -397,7 +396,7 @@ CREATE TABLE fieldattr (
 );
 
 CREATE TABLE fieldoption (
-    tid INTEGER NOT NULL DEFAULT 1,
+    tid INTEGER NOT NULL,
     id TEXT NOT NULL,
     field_id TEXT NOT NULL,
     label TEXT NOT NULL,
@@ -412,7 +411,7 @@ CREATE TABLE fieldoption (
 );
 
 CREATE TABLE questionnaire (
-    tid INTEGER NOT NULL DEFAULT 1,
+    tid INTEGER NOT NULL,
     id TEXT NOT NULL,
     name TEXT NOT NULL,
     show_steps_navigation_bar INTEGER NOT NULL,
@@ -424,7 +423,7 @@ CREATE TABLE questionnaire (
 );
 
 CREATE TABLE step (
-    tid INTEGER NOT NULL DEFAULT 1,
+    tid INTEGER NOT NULL,
     id TEXT NOT NULL,
     questionnaire_id TEXT NOT NULL,
     label TEXT NOT NULL,
@@ -437,7 +436,7 @@ CREATE TABLE step (
 );
 
 CREATE TABLE fieldanswer (
-    tid INTEGER NOT NULL DEFAULT 1,
+    tid INTEGER NOT NULL,
     id TEXT NOT NULL,
     internaltip_id TEXT NOT NULL,
     fieldanswergroup_id TEXT,
@@ -452,7 +451,7 @@ CREATE TABLE fieldanswer (
 );
 
 CREATE TABLE fieldanswergroup (
-    tid INTEGER NOT NULL DEFAULT 1,
+    tid INTEGER NOT NULL,
     id TEXT NOT NULL,
     fieldanswer_id TEXT NOT NULL,
     number INTEGER NOT NULL,
@@ -477,7 +476,7 @@ CREATE TABLE securefiledelete (
 );
 
 CREATE TABLE counter (
-    tid INTEGER NOT NULL DEFAULT 1,
+    tid INTEGER NOT NULL,
     key TEXT NOT NULL,
     counter INTEGER NOT NULL,
     update_date TEXT NOT NULL,
@@ -486,7 +485,7 @@ CREATE TABLE counter (
 );
 
 CREATE TABLE shorturl (
-    tid INTEGER NOT NULL DEFAULT 1,
+    tid INTEGER NOT NULL,
     id TEXT NOT NULL,
     shorturl TEXT NOT NULL,
     longurl TEXT NOT NULL,
@@ -497,7 +496,7 @@ CREATE TABLE shorturl (
 );
 
 CREATE TABLE file (
-    tid INTEGER NOT NULL DEFAULT 1,
+    tid INTEGER NOT NULL,
     id TEXT NOT NULL,
     name TEXT NOT NULL,
     data TEXT NOT NULL,
@@ -506,7 +505,7 @@ CREATE TABLE file (
 );
 
 CREATE TABLE customtexts (
-    tid INTEGER NOT NULL DEFAULT 1,
+    tid INTEGER NOT NULL,
     lang TEXT NOT NULL,
     texts BLOB NOT NULL,
     FOREIGN KEY (tid) REFERENCES tenant(id) ON DELETE CASCADE,
