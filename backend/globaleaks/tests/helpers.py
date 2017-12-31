@@ -32,6 +32,7 @@ from globaleaks.settings import Settings
 from globaleaks.security import SecureTemporaryFile
 from globaleaks.state import State
 from globaleaks.utils import tempdict, token, utility
+from globaleaks.utils.objectdict import ObjectDict
 from globaleaks.utils.structures import fill_localized_keys
 from globaleaks.utils.utility import datetime_null, datetime_now, datetime_to_ISO8601, \
     log, sum_dicts
@@ -116,6 +117,7 @@ def init_glsettings_for_unit_tests():
     orm.set_thread_pool(FakeThreadPool())
 
     State.settings.enable_api_cache = False
+    State.tenant_cache[1] = ObjectDict()
     State.tenant_cache[1].hostname = 'www.globaleaks.org'
 
     Sessions.clear()

@@ -63,24 +63,7 @@ class StateClass(ObjectDict):
 
         self.tenant_state = {}
         self.tenant_cache = {}
-
-        self.tenant_cache[1] = ObjectDict({
-            'maximum_filesize': 30,
-            'allow_iframes_inclusion': False,
-            'accept_tor2web_access': {
-                'admin': True,
-                'whistleblower': False,
-                'custodian': False,
-                'receiver': False
-            },
-            'private': {
-                'https_enabled': False,
-            },
-            'anonymize_outgoing_connections': True,
-        })
-
-
-        self.tenant_hostname_id_map = dict()
+        self.tenant_hostname_id_map = {}
 
         tracer.debug(self.settings.orm_debug, sys.stdout)
         self.set_orm_tp(self.orm_tp)

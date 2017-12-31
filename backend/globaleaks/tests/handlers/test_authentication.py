@@ -32,7 +32,7 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
             'username': 'admin',
             'password': helpers.VALID_PASSWORD1
         })
-        State.tenant_cache[1].accept_tor2web_access['admin'] = True
+        State.tenant_cache[1]['tor2web_admin'] = True
         response = yield handler.post()
         self.assertTrue('session_id' in response)
         self.assertEqual(len(Sessions), 1)
@@ -43,7 +43,7 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
             'username': 'admin',
             'password': helpers.VALID_PASSWORD1
         })
-        State.tenant_cache[1].accept_tor2web_access['admin'] = False
+        State.tenant_cache[1]['tor2web_admin'] = False
         yield self.assertFailure(handler.post(), errors.TorNetworkRequired)
 
     @inlineCallbacks
@@ -141,7 +141,7 @@ class TestReceiptAuth(helpers.TestHandlerWithPopulatedDB):
         handler = self.request({
             'receipt': self.dummySubmission['receipt']
         }, headers={'X-Tor2Web': 'whatever'})
-        State.tenant_cache[1].accept_tor2web_access['whistleblower'] = True
+        State.tenant_cache[1]['tor2web_whistleblower'] = True
         response = yield handler.post()
         self.assertTrue('session_id' in response)
         self.assertEqual(len(Sessions), 1)
@@ -152,7 +152,7 @@ class TestReceiptAuth(helpers.TestHandlerWithPopulatedDB):
         handler = self.request({
             'receipt': self.dummySubmission['receipt']
         }, headers={'X-Tor2Web': 'whatever'})
-        State.tenant_cache[1].accept_tor2web_access['whistleblower'] = False
+        State.tenant_cache[1]['tor2web_whistleblower'] = False
         yield self.assertFailure(handler.post(), errors.TorNetworkRequired)
 
     @inlineCallbacks
