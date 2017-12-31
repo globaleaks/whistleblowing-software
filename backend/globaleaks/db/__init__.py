@@ -140,47 +140,46 @@ def db_refresh_tenant_cache(store, tid_list):
             tenant_cache.setdefault('private', ObjectDict())
             tenant_cache['private'][cfg.var_name] = cfg.get_v()
 
-    for tid in tid_list:
-        tc = State.tenant_cache[tid]
-        tc.accept_tor2web_access = {
-           'admin': tc.tor2web_admin,
-           'custodian': tc.tor2web_custodian,
-           'whistleblower': tc.tor2web_whistleblower,
-           'receiver': tc.tor2web_receiver
-           }
-
     for tid, lang in models.l10n.EnabledLanguage.tid_list(store, tid_list):
         State.tenant_cache[tid].setdefault('languages_enabled', []).append(lang)
 
 
-def db_refresh_memory_variables(store, tid_list=None):
+def db_refresh_memory_variables(store, to_refresh=None):
     tenant_map = {tenant.id:tenant for tenant in store.find(models.Tenant, active=True)}
 
-    for tid in set(State.tenant_state.keys()) - set(tenant_map.keys()):
+    existing_tids = set(tenant_map.keys())
+    cached_tids = set(State.tenant_state.keys())
+
+    to_remove = cached_tids - existing_tids
+    to_add = existing_tids - cached_tids
+
+    for tid in to_remove:
         del State.tenant_state[tid]
         del State.tenant_cache[tid]
 
-    for tid in set(tenant_map.keys()) - set(State.tenant_state.keys()):
+    for tid in to_add:
         State.tenant_state[tid] = TenantState(State.settings)
         State.tenant_cache[tid] = ObjectDict()
 
-    if tid_list:
-        tid_list = [tid for tid in tid_list if tid in State.tenant_state]
-    else:
-        tid_list = State.tenant_cache.keys()
+    to_refresh = State.tenant_cache.keys() if to_refresh is None else to_refresh
 
-    db_refresh_tenant_cache(store, tid_list)
-    db_set_cache_exception_delivery_list(store, State.tenant_cache[1])
+    db_refresh_tenant_cache(store, to_refresh)
+    if 1 in to_refresh:
+        to_refresh = State.tenant_cache.keys()
+        db_set_cache_exception_delivery_list(store, State.tenant_cache[1])
 
-    if State.tenant_cache[1].private.admin_api_token_digest:
-        api_id = store.find(models.User.id, models.User.tid == 1, models.User.role == u'admin').order_by(models.User.creation_date).first()
-        if api_id is not None:
-            State.api_token_session = Session(1, api_id, 'admin', 'enabled')
+        if State.tenant_cache[1].private.admin_api_token_digest:
+            api_id = store.find(models.User.id, models.User.tid == 1, models.User.role == u'admin').order_by(models.User.creation_date).first()
+            if api_id is not None:
+                State.api_token_session = Session(1, api_id, 'admin', 'enabled')
 
     root_hostname = State.tenant_cache[1].hostname
     root_onionservice = State.tenant_cache[1].onionservice
 
-    for tid in State.tenant_state:
+    for tid in to_refresh:
+        if tid not in tenant_map:
+            continue
+
         tenant = tenant_map[tid]
         hostnames = []
         onionnames = []
@@ -212,10 +211,10 @@ def db_refresh_memory_variables(store, tid_list=None):
 
 
 @transact
-def refresh_memory_variables(store, tid_list=None):
-    return db_refresh_memory_variables(store, tid_list)
+def refresh_memory_variables(store, to_refresh=None):
+    return db_refresh_memory_variables(store, to_refresh)
 
 
 @transact_sync
-def sync_refresh_memory_variables(store, tid_list=None):
-    return db_refresh_memory_variables(store, tid_list)
+def sync_refresh_memory_variables(store, to_refresh=None):
+    return db_refresh_memory_variables(store, to_refresh)

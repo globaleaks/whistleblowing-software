@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-"""
 from twisted.internet.defer import inlineCallbacks
 
+from globaleaks.db import refresh_memory_variables
 from globaleaks.models import config
 from globaleaks.handlers.admin import tenant
 from globaleaks.state import State
@@ -65,22 +66,17 @@ class TestTenantInstance(TenantTestEnv):
     _handler = tenant.TenantInstance
 
     @inlineCallbacks
+    def setUp(self):
+        yield TenantTestEnv.setUp(self)
+        t = yield tenant.create(get_dummy_tenant_desc())
+        self.handler = self.request(t, role='admin')
+        yield refresh_memory_variables([4])
+
     def test_get(self):
-        t = yield tenant.create(get_dummy_tenant_desc())
+        return self.handler.get(4)
 
-        handler = self.request(role='admin')
-        yield handler.get(t['id'])
-
-    @inlineCallbacks
     def test_put(self):
-        t = yield tenant.create(get_dummy_tenant_desc())
+        return self.handler.put(4)
 
-        handler = self.request(t, role='admin')
-        yield handler.put(t['id'])
-
-    @inlineCallbacks
     def test_delete(self):
-        t = yield tenant.create(get_dummy_tenant_desc())
-
-        handler = self.request(role='admin')
-        yield handler.delete(t['id'])
+        return self.handler.delete(4)
