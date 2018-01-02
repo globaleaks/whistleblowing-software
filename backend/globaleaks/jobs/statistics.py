@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
 # Implement collection of statistics
+from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.jobs.base import LoopingJob
 from globaleaks.models import Stats
-from globaleaks.orm import transact_sync
+from globaleaks.orm import transact
 from globaleaks.utils.utility import datetime_now, log
 
 
@@ -19,7 +20,7 @@ def get_statistics(state):
     return stats
 
 
-@transact_sync
+@transact
 def save_statistics(store, start, end, stats):
     for tid in stats:
         newstat = Stats()
@@ -44,11 +45,12 @@ class Statistics(LoopingJob):
         self.stats_collection_start_time = datetime_now()
         LoopingJob.__init__(self)
 
+    @inlineCallbacks
     def operation(self):
         current_time = datetime_now()
         statistic_summary = get_statistics(self.state)
         if statistic_summary:
-            save_statistics(self.state.stats_collection_start_time, current_time, statistic_summary)
+            yield save_statistics(self.state.stats_collection_start_time, current_time, statistic_summary)
             log.debug("Stored statistics %s collected from %s to %s",
                       statistic_summary,
                       self.state.stats_collection_start_time,

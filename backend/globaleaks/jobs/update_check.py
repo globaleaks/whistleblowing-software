@@ -45,7 +45,6 @@ def evaluate_update_notification(store, latest_version):
 
 class UpdateCheck(NetLoopingJob):
     interval = 60*60*24
-    threaded = False
 
     def fetch_packages_file(self):
         return get_page(self.state.get_agent(), DEB_PACKAGE_URL)

@@ -5,13 +5,15 @@ from datetime import timedelta
 
 from storm.expr import In
 
+from twisted.internet.defer import inlineCallbacks
+
 from globaleaks import models
 from globaleaks.handlers.admin.node import db_admin_serialize_node
 from globaleaks.handlers.admin.notification import db_get_notification
 from globaleaks.handlers.admin.user import db_get_admin_users
 from globaleaks.handlers.user import user_serialize_user
 from globaleaks.jobs.base import LoopingJob
-from globaleaks.orm import transact_sync
+from globaleaks.orm import transact
 from globaleaks.transactions import db_schedule_email
 from globaleaks.utils.templating import Templating
 from globaleaks.utils.utility import datetime_now, datetime_null
@@ -68,7 +70,7 @@ class PGPCheck(LoopingJob):
 
         db_schedule_email(store, tid, user_desc['mail_address'], subject, body)
 
-    @transact_sync
+    @transact
     def perform_pgp_validation_checks(self, store):
         tenant_expiry_map = {1: []}
 
@@ -89,5 +91,6 @@ class PGPCheck(LoopingJob):
             for user_desc in expired_or_expiring:
                 self.prepare_user_pgp_alerts(store, tid, user_desc)
 
+    @inlineCallbacks
     def operation(self):
-        self.perform_pgp_validation_checks()
+        yield self.perform_pgp_validation_checks()

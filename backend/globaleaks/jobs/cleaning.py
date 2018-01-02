@@ -4,13 +4,15 @@ from datetime import timedelta
 
 from storm.expr import In, Min, Not, Select
 
+from twisted.internet.defer import inlineCallbacks
+
 from globaleaks import models
 from globaleaks.handlers.admin.node import db_admin_serialize_node
 from globaleaks.handlers.admin.notification import db_get_notification
 from globaleaks.handlers.rtip import db_delete_itips
 from globaleaks.handlers.user import user_serialize_user
 from globaleaks.jobs.base import LoopingJob
-from globaleaks.orm import transact_sync
+from globaleaks.orm import transact
 from globaleaks.security import overwrite_and_remove
 from globaleaks.state import State
 from globaleaks.utils.templating import Templating
@@ -28,7 +30,7 @@ class Cleaning(LoopingJob):
         current_time = datetime_now()
         return (3600 * 24) - (current_time.hour * 3600) - (current_time.minute * 60) - current_time.second
 
-    @transact_sync
+    @transact
     def clean_expired_wbtips(self, store):
         """
         This function checks all the InternalTips and deletes WhistleblowerTips
@@ -43,7 +45,7 @@ class Cleaning(LoopingJob):
 
             store.find(models.WhistleblowerTip, In(models.WhistleblowerTip.id, [id for id in wbtips_ids])).remove()
 
-    @transact_sync
+    @transact
     def clean_expired_itips(self, store):
         """
         This function, checks all the InternalTips and their expiration date.
@@ -53,7 +55,7 @@ class Cleaning(LoopingJob):
         itips_ids = [id for id in store.find(models.InternalTip.id, models.InternalTip.expiration_date < datetime_now())]
         db_delete_itips(store, itips_ids)
 
-    @transact_sync
+    @transact
     def check_for_expiring_submissions(self, store):
         for tid in self.state.tenant_state:
             threshold = datetime_now() + timedelta(hours=State.tenant_cache[tid].notification.tip_expiration_threshold)
@@ -91,7 +93,7 @@ class Cleaning(LoopingJob):
                     'body': body
                  }))
 
-    @transact_sync
+    @transact
     def clean_db(self, store):
         # delete stats older than 3 months
         store.find(models.Stats, models.Stats.start < datetime_now() - timedelta(3*(365/12))).remove()
@@ -103,29 +105,31 @@ class Cleaning(LoopingJob):
         subselect = Select(models.InternalTip.questionnaire_hash, distinct=True)
         store.find(models.ArchivedSchema, Not(models.ArchivedSchema.hash.is_in(subselect))).remove()
 
-    @transact_sync
+    @transact
     def get_files_to_secure_delete(self, store):
         return [filepath for filepath in store.find(models.SecureFileDelete.filepath)]
 
-    @transact_sync
+    @transact
     def commit_files_deletion(self, store, filepaths):
         store.find(models.SecureFileDelete, In(models.SecureFileDelete.filepath, filepaths)).remove()
 
+    @inlineCallbacks
     def perform_secure_deletion_of_files(self):
-        files_to_delete = self.get_files_to_secure_delete()
+        files_to_delete = yield self.get_files_to_secure_delete()
 
         for file_to_delete in files_to_delete:
             overwrite_and_remove(file_to_delete)
 
-        self.commit_files_deletion(files_to_delete)
+        yield self.commit_files_deletion(files_to_delete)
 
+    @inlineCallbacks
     def operation(self):
-        self.clean_expired_wbtips()
+        yield self.clean_expired_wbtips()
 
-        self.clean_expired_itips()
+        yield self.clean_expired_itips()
 
-        self.check_for_expiring_submissions()
+        yield self.check_for_expiring_submissions()
 
-        self.clean_db()
+        yield self.clean_db()
 
-        self.perform_secure_deletion_of_files()
+        yield self.perform_secure_deletion_of_files()

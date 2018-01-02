@@ -1,14 +1,14 @@
 # -*- coding: utf-8 -*-
 #
 # Implement anomalies check
-from twisted.internet import defer
+from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import models
 from globaleaks.state import State
 from globaleaks.handlers.admin.node import db_admin_serialize_node
 from globaleaks.handlers.admin.notification import db_get_notification
 from globaleaks.handlers.admin.user import db_get_admin_users
-from globaleaks.orm import transact_sync
+from globaleaks.orm import transact
 from globaleaks.rest.apicache import ApiCache
 from globaleaks.transactions import db_schedule_email
 from globaleaks.utils.templating import Templating
@@ -73,7 +73,7 @@ def get_disk_anomaly_conditions(free_workdir_bytes, total_workdir_bytes, free_ra
     return conditions
 
 
-@transact_sync
+@transact
 def generate_admin_alert_mail(store, tid, alert):
     for user_desc in db_get_admin_users(store, tid):
         user_language = user_desc['language']
@@ -91,7 +91,7 @@ def generate_admin_alert_mail(store, tid, alert):
         db_schedule_email(store, tid, user_desc['mail_address'], subject, body)
 
 
-@transact_sync
+@transact
 def save_anomalies(store):
     for tid in State.tenant_state:
         for anomaly in State.tenant_state[tid].AnomaliesQ:
@@ -122,7 +122,7 @@ class Alarm(object):
             'activity': 0
         }
 
-    @defer.inlineCallbacks
+    @inlineCallbacks
     def check_tenant_anomalies(self, tid):
         """
         This function update the Alarm level.
@@ -245,8 +245,9 @@ class Alarm(object):
             ApiCache.invalidate()
 
 
+@inlineCallbacks
 def check_anomalies():
     for tid in State.tenant_state:
-        State.tenant_state[tid].Alarm.check_tenant_anomalies(tid)
+        yield State.tenant_state[tid].Alarm.check_tenant_anomalies(tid)
 
-    save_anomalies()
+    yield save_anomalies()

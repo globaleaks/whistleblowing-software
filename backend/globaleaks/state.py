@@ -36,7 +36,7 @@ class TenantState(object):
 class StateClass(ObjectDict):
     __metaclass__ = Singleton
 
-    orm_tp = ThreadPool(1, 1)
+    orm_tp = ThreadPool(10, 10)
 
     def __init__(self):
         from globaleaks.settings import Settings

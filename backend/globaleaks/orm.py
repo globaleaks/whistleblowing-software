@@ -2,9 +2,11 @@
 # orm: contains main hooks to storm ORM
 # ******
 import random
-import threading
+import time
 
-from storm.database import create_database
+from sqlite3.dbapi2 import OperationalError
+
+from storm.database import create_database, Connection
 from storm.databases import sqlite
 from storm.store import Store
 
@@ -47,12 +49,29 @@ def get_thread_pool():
     return __THREAD_POOL
 
 
-class SQLite(sqlite.Database):
-    connection_factory = sqlite.SQLiteConnection
+class SQLiteConnectionMock(sqlite.SQLiteConnection):
+    def raw_execute(self, statement, params=None, _end=False):
+        if _end:
+            self._in_transaction = False
+        elif not self._in_transaction:
+            # See story at the end to understand why we do BEGIN manually.
+            self._in_transaction = True
+            self._raw_connection.execute("BEGIN")
+
+        try:
+            return Connection.raw_execute(self, statement, params)
+        except OperationalError as e:
+            if str(e) == "database is locked" and _end:
+                self._in_transaction = True
+            raise
+
+
+class SQLiteMock(sqlite.Database):
+    connection_factory = SQLiteConnectionMock
 
     def __init__(self, uri):
         self._filename = uri.database or ":memory:"
-        self._timeout = float(uri.options.get("timeout", 30))
+        self._timeout = float(uri.options.get("timeout", 5))
         self._foreign_keys = uri.options.get("foreign_keys")
 
     def raw_connect(self):
@@ -69,11 +88,8 @@ class SQLite(sqlite.Database):
         return raw_connection
 
 
-sqlite.SQLite = SQLite
-sqlite.create_from_uri = SQLite
-
-
-transact_lock = threading.Lock()
+sqlite.SQLite = SQLiteMock
+sqlite.create_from_uri = SQLiteMock
 
 
 class transact(object):
@@ -103,24 +119,30 @@ class transact(object):
         Wrap provided function calling it inside a thread and
         passing the store to it.
         """
-        with transact_lock: # pylint: disable=not-context-manager
-            store = get_store()
+        store = get_store()
 
-            try:
-                if self.instance:
-                    result = function(self.instance, store, *args, **kwargs)
+        try:
+            while True:
+                try:
+                    if self.instance:
+                        result = function(self.instance, store, *args, **kwargs)
+                    else:
+                        result = function(store, *args, **kwargs)
+
+                    store.commit()
+                except OperationalError as e:
+                    store.rollback()
+                    if str(e) != "database is locked":
+                        raise
+                    time.sleep(0.1)
+                except Exception as e:
+                    store.rollback()
+                    raise
                 else:
-                    result = function(store, *args, **kwargs)
-
-                store.commit()
-            except:
-                store.rollback()
-                raise
-            else:
-                return result
-            finally:
-                store.reset()
-                store.close()
+                    return result
+        finally:
+            store.reset()
+            store.close()
 
 
 class transact_sync(transact):

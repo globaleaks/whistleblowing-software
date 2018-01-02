@@ -10,7 +10,7 @@ from twisted.internet.threads import deferToThread
 
 from globaleaks.handlers.base import BaseHandler, HANDLER_EXEC_TIME_THRESHOLD
 from globaleaks.models.config import PrivateFactory, load_tls_dict
-from globaleaks.orm import transact, transact_sync
+from globaleaks.orm import transact
 from globaleaks.rest import errors, requests
 from globaleaks.settings import Settings
 from globaleaks.state import State
@@ -516,7 +516,7 @@ def db_acme_cert_issuance(store, tid):
     State.tenant_cache[tid].private.https_chain = chain_str
 
 
-@transact_sync
+@transact
 def acme_cert_issuance(store, tid):
     return db_acme_cert_issuance(store, tid)
 
@@ -540,7 +540,7 @@ class AcmeHandler(BaseHandler):
         if not is_ready:
             raise errors.ForbiddenOperation()
 
-        yield deferToThread(acme_cert_issuance, self.request.tid)
+        yield acme_cert_issuance(self.request.tid)
 
 
 class AcmeChallengeHandler(BaseHandler):

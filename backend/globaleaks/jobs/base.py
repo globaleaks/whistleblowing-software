@@ -1,7 +1,7 @@
 # -*- coding: utf-8
 import time
 
-from twisted.internet import task, defer, reactor, threads
+from twisted.internet import task, defer, reactor
 
 from globaleaks.state import State
 from globaleaks.utils import mailutils
@@ -19,7 +19,6 @@ class BaseJob(task.LoopingCall):
     start_time = -1
     active = None
     last_executions = []
-    threaded = True
     shutdown = False
 
     def __init__(self):
@@ -52,10 +51,7 @@ class BaseJob(task.LoopingCall):
         self.begin()
 
         try:
-            if self.threaded:
-                yield threads.deferToThread(self.operation)
-            else:
-                yield self.operation()
+            yield self.operation()
         except Exception as e:
             if not self.shutdown:
                 self.on_error(e)
