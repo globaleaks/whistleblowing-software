@@ -47,9 +47,6 @@ class Config(ModelWithTID):
         if not isinstance(val, desc._type):
             raise ValueError("Cannot assign %s with %s" % (self, type(val)))
 
-        if desc.validator is not None:
-            desc.validator(self, self.var_name, val)
-
         if self.value is None:
             self.value = {'v': val}
 

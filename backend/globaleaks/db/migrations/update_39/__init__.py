@@ -7,8 +7,6 @@ from storm.locals import Bool, Int, Reference, ReferenceSet, Unicode, Storm, JSO
 
 from globaleaks.db.migrations.update import MigrationBase
 from globaleaks.handlers.admin import tenant
-from globaleaks.models.validators import shorttext_v, longtext_v, \
-    shortlocal_v, longlocal_v, shorturl_v, longurl_v, natnum_v, range_v
 from globaleaks.models import *
 from globaleaks.settings import Settings
 from globaleaks.utils.utility import datetime_now, uuid4
@@ -40,7 +38,7 @@ class Comment_v_38(ModelWithID):
     creation_date = DateTime(default_factory=datetime_now)
     internaltip_id = Unicode()
     author_id = Unicode()
-    content = Unicode(validator=longtext_v)
+    content = Unicode()
     type = Unicode()
     new = Int(default=True)
 
@@ -83,8 +81,6 @@ class Config_v_38(Storm):
             val = unicode(val)
         if not isinstance(val, desc._type):
             raise ValueError("Cannot assign %s with %s" % (self, type(val)))
-        if desc.validator is not None:
-            desc.validator(self, self.var_name, val)
 
         if self.value is None:
             self.value = {'v': val}
@@ -142,11 +138,11 @@ class Context_v_38(ModelWithID):
     enable_two_way_messages = Bool(default=True)
     enable_attachments = Bool(default=True)
     enable_rc_to_wb_files = Bool(default=False)
-    tip_timetolive = Int(validator=range_v(-1, 5*365), default=15)
-    name = JSON(validator=shortlocal_v)
-    description = JSON(validator=longlocal_v)
-    recipients_clarification = JSON(validator=longlocal_v)
-    status_page_message = JSON(validator=longlocal_v)
+    tip_timetolive = Int(default=15)
+    name = JSON()
+    description = JSON()
+    recipients_clarification = JSON()
+    status_page_message = JSON()
     show_receivers_in_alphabetical_order = Bool(default=False)
     presentation_order = Int(default=0)
     questionnaire_id = Unicode()
@@ -155,14 +151,14 @@ class Context_v_38(ModelWithID):
 class CustomTexts_v_38(Model):
     __storm_table__ = 'customtexts'
 
-    lang = Unicode(primary=True, validator=shorttext_v)
+    lang = Unicode(primary=True)
     texts = JSON()
 
 
 class Counter_v_38(Model):
     __storm_table__ = 'counter'
 
-    key = Unicode(primary=True, validator=shorttext_v)
+    key = Unicode(primary=True)
     counter = Int(default=1)
     update_date = DateTime(default_factory=datetime_now)
 
@@ -189,13 +185,13 @@ class Field_v_38(ModelWithID):
     x = Int(default=0)
     y = Int(default=0)
     width = Int(default=0)
-    label = JSON(validator=longlocal_v)
-    description = JSON(validator=longlocal_v)
-    hint = JSON(validator=longlocal_v)
+    label = JSON()
+    description = JSON()
+    hint = JSON()
     required = Bool(default=False)
     preview = Bool(default=False)
     multi_entry = Bool(default=False)
-    multi_entry_hint = JSON(validator=shortlocal_v)
+    multi_entry_hint = JSON()
     stats_enabled = Bool(default=False)
     triggered_by_score = Int(default=0)
     fieldgroup_id = Unicode()
@@ -272,7 +268,7 @@ class InternalFile_v_38(ModelWithID):
 
     creation_date = DateTime(default_factory=datetime_now)
     internaltip_id = Unicode()
-    name = Unicode(validator=longtext_v)
+    name = Unicode()
     file_path = Unicode()
     content_type = Unicode()
     size = Int()
@@ -361,8 +357,8 @@ class ReceiverFile_v_38(ModelWithID):
 class ShortURL_v_38(ModelWithID):
     __storm_table__ = 'shorturl'
 
-    shorturl = Unicode(validator=shorturl_v)
-    longurl = Unicode(validator=longurl_v)
+    shorturl = Unicode()
+    longurl = Unicode()
 
 
 class Stats_v_38(ModelWithID):
@@ -398,7 +394,7 @@ class Message_v_38(ModelWithID):
     __storm_table__ = 'message'
     creation_date = DateTime(default_factory=datetime_now)
     receivertip_id = Unicode()
-    content = Unicode(validator=longtext_v)
+    content = Unicode()
     type = Unicode()
     new = Int(default=True)
 
@@ -417,13 +413,13 @@ class User_v_38(ModelWithID):
     __storm_table__ = 'user'
 
     creation_date = DateTime(default_factory=datetime_now)
-    username = Unicode(validator=shorttext_v, default=u'')
+    username = Unicode(default=u'')
     password = Unicode(default=u'')
     salt = Unicode()
     deletable = Bool(default=True)
-    name = Unicode(validator=shorttext_v, default=u'')
-    description = JSON(validator=longlocal_v, default={})
-    public_name = Unicode(validator=shorttext_v, default=u'')
+    name = Unicode(default=u'')
+    description = JSON(default={})
+    public_name = Unicode(default=u'')
     role = Unicode(default=u'receiver')
     state = Unicode(default=u'enabled')
     last_login = DateTime(default_factory=datetime_null)
@@ -447,14 +443,14 @@ class WhistleblowerFile_v_38(ModelWithID):
     __storm_table__ = 'whistleblowerfile'
 
     receivertip_id = Unicode()
-    name = Unicode(validator=shorttext_v)
+    name = Unicode()
     file_path = Unicode()
     size = Int()
     content_type = Unicode()
     downloads = Int(default=0)
     creation_date = DateTime(default_factory=datetime_now)
     last_access = DateTime(default_factory=datetime_null)
-    description = Unicode(validator=longtext_v)
+    description = Unicode()
 
 
 class MigrationScript(MigrationBase):

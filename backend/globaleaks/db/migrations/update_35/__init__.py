@@ -3,7 +3,6 @@ from storm.locals import Int, Bool, Unicode, DateTime, JSON
 
 from globaleaks import models
 from globaleaks.db.migrations.update import MigrationBase
-from globaleaks.models.validators import shortlocal_v, longlocal_v
 from globaleaks.settings import Settings
 from globaleaks.utils.utility import datetime_now, datetime_null
 
@@ -22,8 +21,8 @@ class Context_v_34(models.ModelWithID):
     enable_two_way_messages = Bool(default=True)
     enable_attachments = Bool(default=True)
     tip_timetolive = Int(default=15)
-    name = JSON(validator=shortlocal_v)
-    description = JSON(validator=longlocal_v)
+    name = JSON()
+    description = JSON()
     recipients_clarification = JSON()
     status_page_message = JSON()
     show_receivers_in_alphabetical_order = Bool(default=False)

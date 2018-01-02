@@ -7,8 +7,6 @@ from __future__ import absolute_import
 from datetime import timedelta
 from storm.locals import Bool, Int, Unicode, Storm, JSON
 
-from globaleaks.models.validators import shorttext_v, longtext_v, \
-    shortlocal_v, longlocal_v, shorturl_v, longurl_v, range_v
 from globaleaks.orm import transact
 from globaleaks.rest import errors
 from globaleaks.settings import Settings
@@ -199,10 +197,10 @@ class Tenant(ModelWithID):
     Class used to implement tenants
     """
     id = Int(primary=True)
-    label = Unicode(validator=shorttext_v, default=u'')
+    label = Unicode(default=u'')
     active = Bool(default=True)
     creation_date = DateTime(default_factory=datetime_now)
-    subdomain = Unicode(validator=shorttext_v, default=u'')
+    subdomain = Unicode(default=u'')
 
     unicode_keys = ['label', 'subdomain']
     bool_keys = ['active']
@@ -214,15 +212,15 @@ class User(ModelWithTIDandID):
     """
     creation_date = DateTime(default_factory=datetime_now)
 
-    username = Unicode(validator=shorttext_v, default=u'')
+    username = Unicode(default=u'')
 
     password = Unicode(default=u'')
     salt = Unicode()
 
-    name = Unicode(validator=shorttext_v, default=u'')
-    description = JSON(validator=longlocal_v, default={})
+    name = Unicode(default=u'')
+    description = JSON(default={})
 
-    public_name = Unicode(validator=shorttext_v, default=u'')
+    public_name = Unicode(default=u'')
 
     # roles: 'admin', 'receiver', 'custodian'
     role = Unicode(default=u'receiver')
@@ -268,14 +266,14 @@ class Context(ModelWithTIDandID):
     enable_attachments = Bool(default=True) # Lets WB attach files to submission
     enable_rc_to_wb_files = Bool(default=False) # The name says it all folks
 
-    tip_timetolive = Int(validator=range_v(-1, 5*365), default=15) # in days, -1 indicates no expiration
+    tip_timetolive = Int(default=15) # in days, -1 indicates no expiration
 
     # localized strings
-    name = JSON(validator=shortlocal_v, default={})
-    description = JSON(validator=longlocal_v, default={})
-    recipients_clarification = JSON(validator=longlocal_v, default={})
+    name = JSON(default={})
+    description = JSON(default={})
+    recipients_clarification = JSON(default={})
 
-    status_page_message = JSON(validator=longlocal_v, default={})
+    status_page_message = JSON(default={})
 
     show_receivers_in_alphabetical_order = Bool(default=True)
 
@@ -394,7 +392,7 @@ class InternalFile(ModelWithTIDandID):
 
     internaltip_id = Unicode()
 
-    name = Unicode(validator=longtext_v)
+    name = Unicode()
     file_path = Unicode()
 
     content_type = Unicode()
@@ -437,14 +435,14 @@ class WhistleblowerFile(ModelWithTIDandID):
     """
     receivertip_id = Unicode()
 
-    name = Unicode(validator=shorttext_v)
+    name = Unicode()
     file_path = Unicode()
     size = Int()
     content_type = Unicode()
     downloads = Int(default=0)
     creation_date = DateTime(default_factory=datetime_now)
     last_access = DateTime(default_factory=datetime_null)
-    description = Unicode(validator=longtext_v)
+    description = Unicode()
 
 
 class Comment(ModelWithTIDandID):
@@ -456,7 +454,7 @@ class Comment(ModelWithTIDandID):
     internaltip_id = Unicode()
 
     author_id = Unicode()
-    content = Unicode(validator=longtext_v)
+    content = Unicode()
 
     type = Unicode()
     # types: 'receiver', 'whistleblower'
@@ -472,7 +470,7 @@ class Message(ModelWithTIDandID):
     creation_date = DateTime(default_factory=datetime_now)
 
     receivertip_id = Unicode()
-    content = Unicode(validator=longtext_v)
+    content = Unicode()
 
     type = Unicode()
     # types: 'receiver', whistleblower'
@@ -526,15 +524,15 @@ class Field(ModelWithTIDandID):
     y = Int(default=0)
     width = Int(default=0)
 
-    label = JSON(validator=longlocal_v)
-    description = JSON(validator=longlocal_v)
-    hint = JSON(validator=longlocal_v)
+    label = JSON()
+    description = JSON()
+    hint = JSON()
 
     required = Bool(default=False)
     preview = Bool(default=False)
 
     multi_entry = Bool(default=False)
-    multi_entry_hint = JSON(validator=shortlocal_v)
+    multi_entry_hint = JSON()
 
     # This is set if the field should be duplicated for collecting statistics
     # when encryption is enabled.
@@ -698,7 +696,7 @@ class Counter(ModelWithTID):
     """
     __storm_primary__ = 'tid', 'key'
 
-    key = Unicode(primary=True, validator=shorttext_v)
+    key = Unicode(primary=True)
     counter = Int(default=1)
     update_date = DateTime(default_factory=datetime_now)
 
@@ -710,8 +708,8 @@ class ShortURL(ModelWithTIDandID):
     """
     Class used to implement url shorteners
     """
-    shorturl = Unicode(validator=shorturl_v)
-    longurl = Unicode(validator=longurl_v)
+    shorturl = Unicode()
+    longurl = Unicode()
 
     unicode_keys = ['shorturl', 'longurl']
 
@@ -750,7 +748,7 @@ class CustomTexts(ModelWithTID):
     """
     __storm_primary__ = 'tid', 'lang'
 
-    lang = Unicode(validator=shorttext_v)
+    lang = Unicode()
     texts = JSON()
 
     unicode_keys = ['lang']
