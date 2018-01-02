@@ -37,9 +37,7 @@ def get_onion_service_info(store, tid):
 
 
 def db_get_onion_service_info(store, tid):
-    node_fact = NodeFactory(store, tid)
-    hostname = node_fact.get_val(u'onionservice')
-
+    hostname = NodeFactory(store, tid).get_val(u'onionservice')
     key = PrivateFactory(store, tid).get_val(u'tor_onion_key')
 
     return hostname, key, tid
