@@ -218,7 +218,7 @@ class User(ModelWithTIDandID):
     salt = Unicode()
 
     name = Unicode(default=u'')
-    description = JSON(default={})
+    description = JSON(default_factory=dict)
 
     public_name = Unicode(default=u'')
 
@@ -269,11 +269,11 @@ class Context(ModelWithTIDandID):
     tip_timetolive = Int(default=15) # in days, -1 indicates no expiration
 
     # localized strings
-    name = JSON(default={})
-    description = JSON(default={})
-    recipients_clarification = JSON(default={})
+    name = JSON(default_factory=dict)
+    description = JSON(default_factory=dict)
+    recipients_clarification = JSON(default_factory=dict)
 
-    status_page_message = JSON(default={})
+    status_page_message = JSON(default_factory=dict)
 
     show_receivers_in_alphabetical_order = Bool(default=True)
 

@@ -418,7 +418,7 @@ class User_v_38(ModelWithID):
     salt = Unicode()
     deletable = Bool(default=True)
     name = Unicode(default=u'')
-    description = JSON(default={})
+    description = JSON(default_factory=dict)
     public_name = Unicode(default=u'')
     role = Unicode(default=u'receiver')
     state = Unicode(default=u'enabled')
