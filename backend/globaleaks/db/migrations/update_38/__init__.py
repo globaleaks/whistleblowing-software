@@ -3,7 +3,6 @@ from storm.locals import Int, Bool, Unicode, JSON
 
 from globaleaks import models
 from globaleaks.db.migrations.update import MigrationBase
-from globaleaks.models.validators import shortlocal_v, longlocal_v
 
 
 old_keys = ["%NodeName%", "%HiddenService%", "%PublicSite%", "%ContextName%", "%RecipientName%", "%TipID%", "%TipNum%", "%TipLabel%", "%EventTime%", "%SubmissionDate%", "%ExpirationDate%", "%ExpirationWatch%", "%QuestionnaireAnswers%", "%Comments%", "%Messages%", "%TorURL%", "%T2WURL%", "%FileName%", "%FileSize%", "%Content%", "%ExpiringSubmissionCount%", "%EarliestExpirationDate%", "%PGPKeyInfoList%", "%PGPKeyInfo%", "%AnomalyDetailDisk%", "%AnomalyDetailActivities%", "%ActivityAlarmLevel%", "%ActivityDump%", "%NodeName%", "%FreeMemory%", "%TotalMemory%", "%ExpirationDate%", "%TipTorURL", "TipT2WURL"]
@@ -18,13 +17,13 @@ class Field_v_37(models.ModelWithID):
     y = Int(default=0)
     width = Int(default=0)
     key = Unicode(default=u'')
-    label = JSON(validator=longlocal_v)
-    description = JSON(validator=longlocal_v)
-    hint = JSON(validator=longlocal_v)
+    label = JSON()
+    description = JSON()
+    hint = JSON()
     required = Bool(default=False)
     preview = Bool(default=False)
     multi_entry = Bool(default=False)
-    multi_entry_hint = JSON(validator=shortlocal_v)
+    multi_entry_hint = JSON()
     stats_enabled = Bool(default=False)
     triggered_by_score = Int(default=0)
     fieldgroup_id = Unicode()

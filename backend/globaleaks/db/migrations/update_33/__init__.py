@@ -4,7 +4,6 @@ from storm.locals import Int, Bool, Unicode, DateTime, JSON
 
 from globaleaks import __version__, DATABASE_VERSION, LANGUAGES_SUPPORTED_CODES, models
 from globaleaks.db.migrations.update import MigrationBase
-from globaleaks.models.validators import shorttext_v, longtext_v, shortlocal_v, longlocal_v
 from globaleaks.utils.utility import datetime_now, datetime_null
 
 
@@ -12,22 +11,22 @@ class Node_v_32(models.ModelWithID):
     __storm_table__ = 'node'
     version = Unicode(default=unicode(__version__))
     version_db = Unicode(default=unicode(DATABASE_VERSION))
-    name = Unicode(validator=shorttext_v, default=u'')
+    name = Unicode(default=u'')
     basic_auth = Bool(default=False)
     basic_auth_username = Unicode(default=u'')
     basic_auth_password = Unicode(default=u'')
-    public_site = Unicode(validator=shorttext_v, default=u'')
-    hidden_service = Unicode(validator=shorttext_v, default=u'')
-    receipt_salt = Unicode(validator=shorttext_v)
+    public_site = Unicode(default=u'')
+    hidden_service = Unicode(default=u'')
+    receipt_salt = Unicode()
     languages_enabled = JSON(default=LANGUAGES_SUPPORTED_CODES)
-    default_language = Unicode(validator=shorttext_v, default=u'en')
+    default_language = Unicode(default=u'en')
     default_timezone = Int(default=0)
-    default_password = Unicode(validator=longtext_v, default=u'globaleaks')
-    description = JSON(validator=longlocal_v, default_factory=dict)
-    presentation = JSON(validator=longlocal_v, default_factory=dict)
-    footer = JSON(validator=longlocal_v, default_factory=dict)
-    security_awareness_title = JSON(validator=longlocal_v, default_factory=dict)
-    security_awareness_text = JSON(validator=longlocal_v, default_factory=dict)
+    default_password = Unicode(default=u'globaleaks')
+    description = JSON(default_factory=dict)
+    presentation = JSON(default_factory=dict)
+    footer = JSON(default_factory=dict)
+    security_awareness_title = JSON(default_factory=dict)
+    security_awareness_text = JSON(default_factory=dict)
     maximum_namesize = Int(default=128)
     maximum_textsize = Int(default=4096)
     maximum_filesize = Int(default=30)
@@ -60,28 +59,28 @@ class Node_v_32(models.ModelWithID):
 
     enable_experimental_features = Bool(default=False)
 
-    whistleblowing_question = JSON(validator=longlocal_v, default_factory=dict)
-    whistleblowing_button = JSON(validator=longlocal_v, default_factory=dict)
-    whistleblowing_receipt_prompt = JSON(validator=longlocal_v, default_factory=dict)
+    whistleblowing_question = JSON(default_factory=dict)
+    whistleblowing_button = JSON(default_factory=dict)
+    whistleblowing_receipt_prompt = JSON(default_factory=dict)
 
     simplified_login = Bool(default=True)
 
     enable_custom_privacy_badge = Bool(default=False)
-    custom_privacy_badge_tor = JSON(validator=longlocal_v, default_factory=dict)
-    custom_privacy_badge_none = JSON(validator=longlocal_v, default_factory=dict)
+    custom_privacy_badge_tor = JSON(default_factory=dict)
+    custom_privacy_badge_none = JSON(default_factory=dict)
 
-    header_title_homepage = JSON(validator=longlocal_v, default_factory=dict)
-    header_title_submissionpage = JSON(validator=longlocal_v, default_factory=dict)
-    header_title_receiptpage = JSON(validator=longlocal_v, default_factory=dict)
-    header_title_tippage = JSON(validator=longlocal_v, default_factory=dict)
+    header_title_homepage = JSON(default_factory=dict)
+    header_title_submissionpage = JSON(default_factory=dict)
+    header_title_receiptpage = JSON(default_factory=dict)
+    header_title_tippage = JSON(default_factory=dict)
 
-    widget_comments_title = JSON(validator=shortlocal_v, default_factory=dict)
-    widget_messages_title = JSON(validator=shortlocal_v, default_factory=dict)
-    widget_files_title = JSON(validator=shortlocal_v, default_factory=dict)
+    widget_comments_title = JSON(default_factory=dict)
+    widget_messages_title = JSON(default_factory=dict)
+    widget_files_title = JSON(default_factory=dict)
 
     landing_page = Unicode(default=u'homepage')
 
-    contexts_clarification = JSON(validator=longlocal_v, default_factory=dict)
+    contexts_clarification = JSON(default_factory=dict)
     show_small_context_cards = Bool(default=False)
     show_contexts_in_alphabetical_order = Bool(default=False)
 
@@ -93,7 +92,7 @@ class Node_v_32(models.ModelWithID):
     threshold_free_disk_percentage_medium = Int(default=5)
     threshold_free_disk_percentage_low = Int(default=10)
 
-    context_selector_type = Unicode(validator=shorttext_v, default=u'list')
+    context_selector_type = Unicode(default=u'list')
 
 
 class InternalTip_v_32(models.ModelWithID):
@@ -133,13 +132,13 @@ class WhistleblowerTip_v_32(models.ModelWithID):
 class User_v_32(models.ModelWithID):
     __storm_table__ = 'user'
     creation_date = DateTime(default_factory=datetime_now)
-    username = Unicode(validator=shorttext_v)
+    username = Unicode()
     password = Unicode()
     salt = Unicode()
     deletable = Bool(default=True)
-    name = Unicode(validator=shorttext_v)
-    description = JSON(validator=longlocal_v)
-    public_name = Unicode(validator=shorttext_v)
+    name = Unicode()
+    description = JSON()
+    public_name = Unicode()
     role = Unicode()
     state = Unicode()
     last_login = DateTime(default_factory=datetime_null)

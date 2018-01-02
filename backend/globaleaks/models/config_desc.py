@@ -1,8 +1,6 @@
 # -*- coding: utf-8
 
 from globaleaks import __version__, DATABASE_VERSION
-from globaleaks.models.validators import shorttext_v, longtext_v, \
-    natnum_v, range_v
 from globaleaks.security import generateRandomSalt as salt
 
 
@@ -15,8 +13,6 @@ class Item:
 
         if 'default_factory' in kwargs:
             self.default_factory = kwargs['default_factory']
-
-        self.validator = kwargs.get('validator', None)
 
 
 class Unicode(Item):
@@ -39,8 +35,8 @@ class Bool(Item):
 
 ConfigDescriptor = {
     u'creation_date': Int(default=0),
-    u'receipt_salt': Unicode(validator=shorttext_v, default_factory=salt),
-    u'smtp_password': Unicode(validator=shorttext_v, default=u'yes_you_really_should_change_me'),
+    u'receipt_salt': Unicode(default_factory=salt),
+    u'smtp_password': Unicode(default=u'yes_you_really_should_change_me'),
 
     u'version': Unicode(default=unicode(__version__)),
     u'version_db': Int(default=DATABASE_VERSION),
@@ -50,7 +46,7 @@ ConfigDescriptor = {
     u'acme_accnt_key': Unicode(),
     u'acme_accnt_uri': Unicode(),
 
-    u'tor_onion_key': Unicode(validator=longtext_v), # Limits from txtorcon
+    u'tor_onion_key': Unicode(), # Limits from txtorcon
 
     u'https_priv_key': Unicode(),
     u'https_priv_gen': Bool(default=False),
@@ -62,41 +58,41 @@ ConfigDescriptor = {
 
     u'admin_api_token_digest': Unicode(),
 
-    u'server': Unicode(validator=shorttext_v, default=u'demo.globaleaks.org'),
-    u'port': Int(validator=natnum_v, default=9267),
+    u'server': Unicode(default=u'demo.globaleaks.org'),
+    u'port': Int(default=9267),
 
-    u'username': Unicode(validator=shorttext_v, default=u'hey_you_should_change_me'),
+    u'username': Unicode(default=u'hey_you_should_change_me'),
 
-    u'source_name': Unicode(validator=shorttext_v, default=u'GlobaLeaks - CHANGE EMAIL ACCOUNT USED FOR NOTIFICATION'),
-    u'source_email': Unicode(validator=shorttext_v, default=u'notification@demo.globaleaks.org'),
+    u'source_name': Unicode(default=u'GlobaLeaks - CHANGE EMAIL ACCOUNT USED FOR NOTIFICATION'),
+    u'source_email': Unicode(default=u'notification@demo.globaleaks.org'),
 
-    u'security': Unicode(validator=shorttext_v, default=u'TLS'),
+    u'security': Unicode(default=u'TLS'),
     u'disable_admin_notification_emails': Bool(default=False),
     u'disable_custodian_notification_emails': Bool(default=False),
     u'disable_receiver_notification_emails': Bool(default=False),
 
-    u'tip_expiration_threshold': Int(validator=natnum_v, default=72), # Hours
-    u'notification_threshold_per_hour': Int(validator=natnum_v, default=20),
+    u'tip_expiration_threshold': Int(default=72), # Hours
+    u'notification_threshold_per_hour': Int(default=20),
 
     u'enable_admin_exception_notification': Bool(default=True),
     u'enable_developers_exception_notification': Bool(default=True),
 
-    u'name': Unicode(validator=shorttext_v, default=u''),
+    u'name': Unicode(default=u''),
 
     u'basic_auth': Bool(default=False),
     u'basic_auth_username': Unicode(default=u''),
     u'basic_auth_password': Unicode(default=u''),
 
-    u'hostname': Unicode(validator=shorttext_v, default=u''),
-    u'onionservice': Unicode(validator=shorttext_v, default=u''),
+    u'hostname': Unicode(default=u''),
+    u'onionservice': Unicode(default=u''),
 
-    u'tb_download_link': Unicode(validator=shorttext_v, default=u'https://www.torproject.org/download/download-easy.html.en'),
+    u'tb_download_link': Unicode(default=u'https://www.torproject.org/download/download-easy.html.en'),
 
-    u'default_language': Unicode(validator=shorttext_v, default=u'en'),
-    u'default_password': Unicode(validator=longtext_v, default=u'globaleaks'),
-    u'default_questionnaire': Unicode(validator=shorttext_v, default=u'default'),
+    u'default_language': Unicode(default=u'en'),
+    u'default_password': Unicode(default=u'globaleaks'),
+    u'default_questionnaire': Unicode(default=u'default'),
 
-    u'maximum_filesize': Int(validator=natnum_v, default=30),
+    u'maximum_filesize': Int(default=30),
 
     u'tor2web_admin': Bool(default=True),
     u'tor2web_custodian': Bool(default=True),
@@ -137,15 +133,15 @@ ConfigDescriptor = {
     u'show_small_context_cards': Bool(default=False),
     u'show_contexts_in_alphabetical_order': Bool(default=True),
 
-    u'wbtip_timetolive': Int(validator=range_v(5, 365*2), default=90), # Days
+    u'wbtip_timetolive': Int(default=90), # Days
 
-    u'threshold_free_disk_megabytes_high': Int(validator=natnum_v, default=200),
-    u'threshold_free_disk_megabytes_low': Int(validator=natnum_v, default=1000),
+    u'threshold_free_disk_megabytes_high': Int(default=200),
+    u'threshold_free_disk_megabytes_low': Int(default=1000),
 
     u'threshold_free_disk_percentage_high': Int(default=3),
     u'threshold_free_disk_percentage_low': Int(default=10),
 
-    u'context_selector_type': Unicode(validator=shorttext_v, default=u'list'),
+    u'context_selector_type': Unicode(default=u'list'),
 
     u'reachable_via_web': Bool(default=True),
     u'anonymize_outgoing_connections': Bool(default=True),

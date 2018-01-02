@@ -88,10 +88,3 @@ class TestNodeInstance(helpers.TestHandlerWithPopulatedDB):
 
         self.assertNotEqual('xxx', resp['hostname'])
         self.assertNotEqual('yyy', resp['onionservice'])
-
-    def test_put_update_node_invalid_wbtip_ttl(self):
-        self.dummyNode['wbtip_timetolive'] = -10
-
-        handler = self.request(self.dummyNode, role='admin')
-
-        return self.assertFailure(handler.put(), InvalidModelInput)
