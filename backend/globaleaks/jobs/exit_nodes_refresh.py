@@ -12,7 +12,6 @@ __all__ = ['ExitNodesRefresh']
 
 class ExitNodesRefresh(NetLoopingJob):
     interval = 3600
-    threaded = False
 
     @inlineCallbacks
     def operation(self):

@@ -1,10 +1,10 @@
-# -*- coding: utf-8 -*-
+#######i -*- coding: utf-8 -*-
 # Implement the notification of new submissions
 import copy
 
 from storm.expr import In
 
-from twisted.internet import defer, reactor, threads
+from twisted.internet import defer, reactor
 
 from globaleaks import models
 from globaleaks.handlers.admin.context import admin_serialize_context
@@ -13,7 +13,7 @@ from globaleaks.handlers.admin.notification import db_get_notification
 from globaleaks.handlers.rtip import serialize_rtip, serialize_message, serialize_comment
 from globaleaks.handlers.user import user_serialize_user
 from globaleaks.jobs.base import NetLoopingJob
-from globaleaks.orm import transact_sync
+from globaleaks.orm import transact
 from globaleaks.security import encrypt_message
 from globaleaks.utils.templating import Templating
 from globaleaks.utils.utility import log
@@ -37,6 +37,7 @@ trigger_model_map = {
 
 def gen_cache_key(*args):
     return '-'.join(['{}'.format(arg) for arg in args])
+
 
 class MailGenerator(object):
     def __init__(self, state):
@@ -207,7 +208,7 @@ class MailGenerator(object):
             'tid': tid,
         }))
 
-    @transact_sync
+    @transact
     def generate(self, store):
         for trigger in ['ReceiverTip', 'Comment', 'Message', 'ReceiverFile']:
             model = trigger_model_map[trigger]
@@ -233,12 +234,12 @@ class MailGenerator(object):
                           count, trigger)
 
 
-@transact_sync
+@transact
 def delete_sent_mails(store, mail_ids):
     store.find(models.Mail, In(models.Mail.id, mail_ids)).remove()
 
 
-@transact_sync
+@transact
 def get_mails_from_the_pool(store):
     store.find(models.Mail, models.Mail.processing_attempts > 9).remove()
     store.find(models.Mail).set(models.Mail.processing_attempts == models.Mail.processing_attempts + 1)
@@ -268,15 +269,18 @@ class Notification(NetLoopingJob):
         if success:
             self.mails_to_delete.append(mail['id'])
 
+    @defer.inlineCallbacks
     def spool_emails(self):
-        for mail in get_mails_from_the_pool():
-            threads.blockingCallFromThread(reactor, self.sendmail, mail)
+        mails = yield get_mails_from_the_pool()
+        for mail in mails:
+            yield self.sendmail(mail)
 
-        delete_sent_mails(self.mails_to_delete)
+        yield delete_sent_mails(self.mails_to_delete)
 
+    @defer.inlineCallbacks
     def operation(self):
         del self.mails_to_delete[:]
 
-        MailGenerator(self.state).generate()
+        yield MailGenerator(self.state).generate()
 
-        self.spool_emails()
+        yield self.spool_emails()

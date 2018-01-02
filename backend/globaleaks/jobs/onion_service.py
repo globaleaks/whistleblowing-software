@@ -54,46 +54,10 @@ def set_onion_service_info(store, tid, hostname, key):
 
 
 class OnionService(BaseJob):
-    threaded = False
     print_startup_error = True
     tor_conn = None
     hs_map = {}
     startup_semaphore = dict()
-
-    def operation(self):
-        restart_deferred = defer.Deferred()
-
-        control_socket = '/var/run/tor/control'
-
-        def startup_callback(tor_conn):
-            self.print_startup_error = True
-            self.tor_conn = tor_conn
-            self.tor_conn.protocol.on_disconnect = restart_deferred
-
-            log.debug('Successfully connected to Tor control port')
-
-            return self.add_all_hidden_services()
-
-        def startup_errback(err):
-            if self.print_startup_error:
-                # Print error only on first run or failure or on a failure subsequent to a success condition
-                self.print_startup_error = False
-                log.err('Failed to initialize Tor connection; error: %s', err)
-
-            restart_deferred.callback(None)
-
-        if not os.path.exists(control_socket):
-            startup_errback(Exception('Tor control port not open on %s; waiting for Tor to become available' % control_socket))
-            return
-
-        if not os.access(control_socket, os.R_OK):
-            startup_errback(Exception('Unable to access %s; manual permission recheck needed' % control_socket))
-            return
-
-        d = build_local_tor_connection(reactor)
-        d.addCallbacks(startup_callback, startup_errback)
-
-        return restart_deferred
 
     def stop(self):
         super(OnionService, self).stop()
@@ -193,3 +157,38 @@ class OnionService(BaseJob):
             running_services = [r+'.onion' for r in x]
 
         defer.returnValue(running_services)
+
+    def operation(self):
+        restart_deferred = defer.Deferred()
+
+        control_socket = '/var/run/tor/control'
+
+        def startup_callback(tor_conn):
+            self.print_startup_error = True
+            self.tor_conn = tor_conn
+            self.tor_conn.protocol.on_disconnect = restart_deferred
+
+            log.debug('Successfully connected to Tor control port')
+
+            return self.add_all_hidden_services()
+
+        def startup_errback(err):
+            if self.print_startup_error:
+                # Print error only on first run or failure or on a failure subsequent to a success condition
+                self.print_startup_error = False
+                log.err('Failed to initialize Tor connection; error: %s', err)
+
+            restart_deferred.callback(None)
+
+        if not os.path.exists(control_socket):
+            startup_errback(Exception('Tor control port not open on %s; waiting for Tor to become available' % control_socket))
+            return
+
+        if not os.access(control_socket, os.R_OK):
+            startup_errback(Exception('Unable to access %s; manual permission recheck needed' % control_socket))
+            return
+
+        d = build_local_tor_connection(reactor)
+        d.addCallbacks(startup_callback, startup_errback)
+
+        return restart_deferred

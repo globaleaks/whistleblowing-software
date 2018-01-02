@@ -5,12 +5,13 @@
 #
 # Call also the FileProcess working point, in order to verify which
 # kind of file has been submitted.
-
 import os
+
+from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import models
 from globaleaks.jobs.base import LoopingJob
-from globaleaks.orm import transact_sync
+from globaleaks.orm import transact
 from globaleaks.security import GLBPGP, SecureFile, generateRandomKey
 from globaleaks.settings import Settings
 from globaleaks.utils.utility import log
@@ -21,7 +22,7 @@ __all__ = ['Delivery']
 INTERNALFILES_HANDLE_RETRY_MAX = 3
 
 
-@transact_sync
+@transact
 def receiverfile_planning(store):
     """
     This function roll over the InternalFile uploaded, extract a path, id and
@@ -198,7 +199,7 @@ def process_files(state, receiverfiles_maps):
             log.err("Unable to remove keyfile associated with %s: %s", ifile_path, ose.strerror)
 
 
-@transact_sync
+@transact
 def update_internalfile_and_store_receiverfiles(store, receiverfiles_maps):
     for ifile_id, receiverfiles_map in receiverfiles_maps.items():
         ifile = store.find(models.InternalFile, models.InternalFile.id == ifile_id).one()
@@ -224,11 +225,12 @@ class Delivery(LoopingJob):
     interval = 5
     monitor_interval = 180
 
+    @inlineCallbacks
     def operation(self):
         """
         This function creates receiver files
         """
-        receiverfiles_maps = receiverfile_planning()
+        receiverfiles_maps = yield receiverfile_planning()
         if receiverfiles_maps:
             process_files(self.state, receiverfiles_maps)
-            update_internalfile_and_store_receiverfiles(receiverfiles_maps)
+            yield update_internalfile_and_store_receiverfiles(receiverfiles_maps)

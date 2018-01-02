@@ -19,8 +19,6 @@ from globaleaks.utils.templating import format_and_send
 class CertificateCheck(LoopingJob):
     interval = 3 * 24 * 3600
 
-    threaded = False
-
     notify_expr_within = 15
     acme_try_renewal = 30
     acme_failures = 0
