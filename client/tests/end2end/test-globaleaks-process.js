@@ -32,13 +32,13 @@ describe('globaLeaks process', function() {
     perform_submission();
   });
 
-  it('Whistleblower should be able to access the first submission', function() {
-    browser.gl.utils.login_whistleblower(receipts[0]);
+  it('Whistleblower should be able to access the last submission', function() {
+    browser.gl.utils.login_whistleblower(receipts[2]);
     expect(element(by.xpath("//*[contains(text(),'" + tip_text + "')]")).getText()).toEqual(tip_text);
     browser.gl.utils.logout();
   });
 
-  it('Recipient should be able to access and label the first submission', function() {
+  it('Recipient should be able to access and label the last submission', function() {
     var label_1 = 'seems interesting.';
     var label_2 = 'it\'s a trap!';
 
@@ -110,7 +110,7 @@ describe('globaLeaks process', function() {
     });
   });
 
-  it('Whistleblower should be able to attach a new file to the first submission', function() {
+  it('Whistleblower should be able to attach a new file to the last submission', function() {
     if (!browser.gl.utils.testFileUpload()) {
       return;
     }
@@ -221,7 +221,7 @@ describe('globaLeaks process', function() {
     });
   });
 
-  it('Recipient should be able to postpone first submission from its tip page', function() {
+  it('Recipient should be able to postpone last submission from its tip page', function() {
     browser.gl.utils.login_receiver();
 
     element(by.id('tip-0')).click();
@@ -242,17 +242,8 @@ describe('globaLeaks process', function() {
     browser.gl.utils.login_receiver();
 
     // Find the uuid of the first tip.
-    element(by.id('tip-2')).click();
-    element(by.id('tipID')).evaluate('tip.id').then(function(tip_uuid) {
-      element(by.id('tip-action-delete')).click();
-      element(by.id('modal-action-ok')).click();
-
-      // Ensure that the tip has disappeared from the recipient's view.
-      element.all(by.css('#tipListTableBody tr')).evaluate('tip.id').then(function(uuids) {
-        var i = uuids.indexOf(tip_uuid);
-        expect(i).toEqual(-1);
-        browser.gl.utils.logout('/login');
-      });
-    });
+    element(by.id('tip-0')).click();
+    element(by.id('tip-action-delete')).click();
+    element(by.id('modal-action-ok')).click();
   });
 });
