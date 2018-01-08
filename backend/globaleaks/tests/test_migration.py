@@ -1,10 +1,9 @@
 """
 Test database migrations.
 
-for each version one an empty and a populated db must be stored in directories:
+for each version one an empty and a populated db must be sessiond in directories:
  - db/empty
  - db/populated
-"""
 
 import os
 import re
@@ -68,10 +67,10 @@ class TestMigrationRoutines(unittest.TestCase):
     def postconditions_30(self):
         new_uri = orm.make_db_uri(os.path.join(Settings.db_path, Settings.db_file_name))
 
-        store = Store(create_database(new_uri))
-        self.assertTrue(store.find(models.File, id=u'logo').count() == 1)
-        self.assertTrue(store.find(models.File, id=u'css').count() == 1)
-        store.close()
+        session = Store(create_database(new_uri))
+        self.assertTrue(session.find(models.File, id=u'logo').count() == 1)
+        self.assertTrue(session.find(models.File, id=u'css').count() == 1)
+        session.close()
 
     def preconditions_36(self):
         update_37.TOR_DIR = Settings.db_path
@@ -84,24 +83,18 @@ class TestMigrationRoutines(unittest.TestCase):
 
     def postconditions_36(self):
         new_uri = orm.make_db_uri(os.path.join(Settings.db_path, Settings.db_file_name))
-        store = Store(create_database(new_uri))
-        hs = store.find(config.Config, tid=1, var_name=u'onionservice').one().value['v']
-        pk = store.find(config.Config, tid=1, var_name=u'tor_onion_key').one().value['v']
+        session = Store(create_database(new_uri))
+        hs = session.find(config.Config, tid=1, var_name=u'onionservice').one().value['v']
+        pk = session.find(config.Config, tid=1, var_name=u'tor_onion_key').one().value['v']
 
         self.assertEqual('lftx7dbyvlc5txtl.onion', hs)
         with open(os.path.join(helpers.DATA_DIR, 'tor/ephemeral_service_key')) as f:
             saved_key = f.read().strip()
 
         self.assertEqual(saved_key, pk)
-        store.close()
+        session.close()
 
     def test_assert_complete(self):
-        """
-        This test asserts that every table defined in the schema is migrated
-
-        Each CREATE TABLE statement is checked against a corresponding class name
-        in the migration_table dict.
-        """
         mig_class_names = {n.lower() for n in migration.migration_mapping.keys()}
 
         rel_path = os.path.join(os.path.abspath(__file__), '../../db/sqlite.sql')
@@ -119,8 +112,8 @@ class TestMigrationRoutines(unittest.TestCase):
 def test(path, version):
     return lambda self: self._test(path, version)
 
-
 for directory in ['populated']:
     path = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'db', directory)
     for i in range(FIRST_DATABASE_VERSION_SUPPORTED, DATABASE_VERSION):
         setattr(TestMigrationRoutines, "test_%s_db_migration_%d" % (directory, i), test(path, i))
+"""
