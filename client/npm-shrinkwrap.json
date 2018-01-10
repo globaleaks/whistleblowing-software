@@ -1,6 +1,6 @@
 {
   "name": "GlobaLeaks",
-  "version": "2.72.27",
+  "version": "2.72.28",
   "dependencies": {
     "@flowjs/flow.js": {
       "version": "2.13.0",

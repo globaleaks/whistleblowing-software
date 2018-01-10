@@ -1,3 +1,6 @@
+Changes in version 2.72.28 - 2017-01-10
+    o Apply UI fix to questions addition
+
 Changes in version 2.72.27 - 2017-12-23
     o Fix whistleblower identity field serialization
 
