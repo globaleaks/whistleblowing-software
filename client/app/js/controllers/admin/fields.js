@@ -58,7 +58,7 @@ GLClient.controller('AdminFieldEditorCtrl', ['$scope', '$uibModal', 'Utils',
     };
 
     $scope.addField = function(new_field) {
-      $scope.fields.push(new_field);
+      $scope.field.children.push(new_field);
     };
 
     $scope.delField = function(field) {
