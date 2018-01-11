@@ -1,3 +1,6 @@
+Changes in version 2.72.29 - 2017-01-12
+    o Fix API for deletion of models images
+
 Changes in version 2.72.28 - 2017-01-10
     o Apply UI fix to questions addition
 
