@@ -542,12 +542,11 @@ class TestGL(unittest.TestCase):
     @transact
     def get_wbtips(self, store):
         ret = []
-        for w, i in store.find((models.WhistleblowerTip, models.InternalTip),
-                               models.WhistleblowerTip.id == models.InternalTip.id,
+        for i in store.find(models.InternalTip,
                                models.InternalTip.tid == 1):
-            x = wbtip.serialize_wbtip(store, w, i, 'en')
+            x = wbtip.serialize_wbtip(store, i, 'en')
             r_ids = store.find(models.ReceiverTip.receiver_id,
-                               models.ReceiverTip.internaltip_id == w.id,
+                               models.ReceiverTip.internaltip_id == i.id,
                                models.ReceiverTip.tid == 1)
 
             x['receivers_ids'] = [r_id for r_id in r_ids]
@@ -559,8 +558,7 @@ class TestGL(unittest.TestCase):
     def get_wbfiles(self, store, wbtip_id):
         return [{'id': wbfile.id} for wbfile in store.find(models.WhistleblowerFile,
                                                            models.WhistleblowerFile.receivertip_id == models.ReceiverTip.id,
-                                                           models.WhistleblowerTip.id == wbtip_id,
-                                                           models.ReceiverTip.internaltip_id == models.WhistleblowerTip.id,
+                                                           models.ReceiverTip.internaltip_id == wbtip_id,
                                                            tid=1)]
 
     @transact

@@ -33,17 +33,13 @@ class Cleaning(LoopingJob):
     @transact
     def clean_expired_wbtips(self, store):
         """
-        This function checks all the InternalTips and deletes WhistleblowerTips
-        that have not been accessed after `threshold`.
+        This function checks all the InternalTips and deletes the receipt if the delete threshold is exceeded
         """
         for tid in self.state.tenant_state:
             threshold = datetime_now() - timedelta(days=State.tenant_cache[tid].wbtip_timetolive)
 
-            wbtips_ids = store.find(models.WhistleblowerTip.id, models.InternalTip.tid == tid,
-                                                                models.InternalTip.id == models.WhistleblowerTip.id,
-                                                                models.InternalTip.wb_last_access < threshold)
-
-            store.find(models.WhistleblowerTip, In(models.WhistleblowerTip.id, [id for id in wbtips_ids])).remove()
+            store.find(models.InternalTip, models.InternalTip.tid == tid,
+                                           models.InternalTip.wb_last_access < threshold).set(receipt_hash = u'')
 
     @transact
     def clean_expired_itips(self, store):

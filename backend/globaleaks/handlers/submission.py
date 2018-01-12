@@ -119,7 +119,7 @@ def db_serialize_questionnaire_answers(store, tid, usertip, internaltip):
     for s in questionnaire:
         for f in s['children']:
             if f['template_id'] == 'whistleblower_identity':
-                if isinstance(usertip, models.WhistleblowerTip) or \
+                if isinstance(usertip, models.InternalTip) or \
                    f['attrs']['visibility_subject_to_authorization']['value'] is False or \
                    (isinstance(usertip, models.ReceiverTip) and usertip.can_access_whistleblower_identity):
                     root_answers_ids.append(f['id'])
@@ -232,16 +232,13 @@ def db_get_itip_receiver_list(store, itip):
 
 
 def serialize_itip(store, internaltip, language):
-    wb_access_revoked = store.find(models.WhistleblowerTip,
-                                   models.WhistleblowerTip.id == internaltip.id,
-                                   tid=internaltip.tid).count() == 0
+    wb_access_revoked = internaltip.receipt_hash == None
 
     return {
         'id': internaltip.id,
         'creation_date': datetime_to_ISO8601(internaltip.creation_date),
         'update_date': datetime_to_ISO8601(internaltip.update_date),
         'expiration_date': datetime_to_ISO8601(internaltip.expiration_date),
-        'progressive': internaltip.progressive,
         'sequence_number': get_submission_sequence_number(internaltip),
         'context_id': internaltip.context_id,
         'questionnaire': db_serialize_archived_questionnaire_schema(store, internaltip.questionnaire_hash, language),
@@ -254,7 +251,8 @@ def serialize_itip(store, internaltip, language):
         'identity_provided': internaltip.identity_provided,
         'identity_provided_date': datetime_to_ISO8601(internaltip.identity_provided_date),
         'wb_last_access': datetime_to_ISO8601(internaltip.wb_last_access),
-        'wb_access_revoked': wb_access_revoked
+        'wb_access_revoked': wb_access_revoked,
+        'total_score': internaltip.total_score
     }
 
 
@@ -262,8 +260,8 @@ def serialize_usertip(store, usertip, itip, language):
     ret = serialize_itip(store, itip, language)
     ret['id'] = usertip.id
     ret['internaltip_id'] = itip.id
+    ret['progressive'] = itip.progressive
     ret['answers'] = db_serialize_questionnaire_answers(store, itip.tid, usertip, itip)
-    ret['total_score'] = itip.total_score
     return ret
 
 
@@ -281,28 +279,6 @@ def db_create_receivertip(store, receiver, internaltip):
     store.add(receivertip)
 
     return receivertip.id
-
-def db_create_whistleblowertip(store, internaltip):
-    """
-    The plaintext receipt is returned only now, and then is
-    stored hashed in the WBtip table
-    """
-    log.debug("Creating whistleblowertip")
-
-    receipt = unicode(generateRandomReceipt())
-
-    wbtip = models.WhistleblowerTip()
-    wbtip.id = internaltip.id
-    wbtip.tid = internaltip.tid
-    wbtip.receipt_hash = hash_password(receipt, State.tenant_cache[internaltip.tid].private.receipt_salt)
-    store.add(wbtip)
-
-    return receipt
-
-
-@transact
-def create_whistleblowertip(*args):
-    return db_create_whistleblowertip(*args)[0] # here is exported only the receipt
 
 
 def db_create_submission(store, tid, request, uploaded_files, client_using_tor):
@@ -350,6 +326,10 @@ def db_create_submission(store, tid, request, uploaded_files, client_using_tor):
     submission.questionnaire_hash = questionnaire_hash
     submission.preview = extract_answers_preview(steps, answers)
 
+    receipt = unicode(generateRandomReceipt())
+
+    submission.receipt_hash = hash_password(receipt, State.tenant_cache[tid].private.receipt_salt)
+
     store.add(submission)
 
     db_archive_questionnaire_schema(store, tid, steps, questionnaire_hash)
@@ -368,8 +348,6 @@ def db_create_submission(store, tid, request, uploaded_files, client_using_tor):
         store.add(new_file)
         log.debug("=> file associated %s|%s (%d bytes)",
                   new_file.name, new_file.content_type, new_file.size)
-
-    receipt = db_create_whistleblowertip(store, submission)
 
     if context.maximum_selectable_receivers > 0 and \
                     len(request['receivers']) > context.maximum_selectable_receivers:
