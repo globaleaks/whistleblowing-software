@@ -333,6 +333,8 @@ class InternalTip(ModelWithTIDandID):
     enable_attachments = Bool(default=True)
     enable_whistleblower_identity = Bool(default=False)
 
+    receipt_hash = Unicode(default=u'')
+
     wb_last_access = DateTime(default_factory=datetime_now)
     wb_access_counter = Int(default=0)
 
@@ -360,14 +362,6 @@ class ReceiverTip(ModelWithTIDandID):
     unicode_keys = ['label']
 
     bool_keys = ['enable_notifications']
-
-
-class WhistleblowerTip(ModelWithTIDandID):
-    """
-    WhisteleblowerTip implement the expiring authentication token for
-    the whistleblower and acts as interface to the InternalTip.
-    """
-    receipt_hash = Unicode()
 
 
 class IdentityAccessRequest(ModelWithTIDandID):

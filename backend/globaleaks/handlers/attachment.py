@@ -84,8 +84,9 @@ class PostSubmissionAttachment(SubmissionAttachment):
         """
         Errors: ModelNotFound
         """
-        itip_id = yield models.get(models.WhistleblowerTip.id, models.WhistleblowerTip.id==self.current_user.user_id,
-                                                                      models.WhistleblowerTip.tid==self.request.tid)
+        itip_id = yield models.get(models.InternalTip.id,
+                                   models.InternalTip.id==self.current_user.user_id,
+                                   models.InternalTip.tid==self.request.tid)
 
         yield self.handle_attachment()
 

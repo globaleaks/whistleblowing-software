@@ -45,45 +45,37 @@ def db_get_rfile_list(store, tid, itip_id):
     return [wb_serialize_ifile(store, ifile) for ifile in store.find(models.InternalFile, internaltip_id=itip_id, tid=tid)]
 
 
-def db_get_wbfile_list(store, tid, wbtip_id):
+def db_get_wbfile_list(store, tid, itip_id):
     wbfiles = store.find(models.WhistleblowerFile,
                          models.WhistleblowerFile.receivertip_id == models.ReceiverTip.id,
-                         models.ReceiverTip.internaltip_id == wbtip_id,
+                         models.ReceiverTip.internaltip_id == itip_id,
                          tid=tid)
 
     return [wb_serialize_wbfile(store, wbfile) for wbfile in wbfiles]
 
 
-def db_get_wbtip(store, tid, wbtip_id, language):
-    wbtip, itip = models.db_get(store,
-                                (models.WhistleblowerTip, models.InternalTip),
-                                models.WhistleblowerTip.id == wbtip_id,
-                                models.InternalTip.id == wbtip_id,
+def db_get_wbtip(store, tid, itip_id, language):
+    itip = models.db_get(store, models.InternalTip,
+                                models.InternalTip.id == itip_id,
                                 models.InternalTip.tid == tid)
 
     itip.wb_access_counter += 1
     itip.wb_last_access = datetime_now()
 
-    return serialize_wbtip(store, wbtip, itip, language)
+    return serialize_wbtip(store, itip, language)
 
 
 @transact
-def get_wbtip(store, tid, wbtip_id, language):
-    return db_get_wbtip(store, tid, wbtip_id, language)
+def get_wbtip(store, tid, itip_id, language):
+    return db_get_wbtip(store, tid, itip_id, language)
 
 
-def serialize_wbtip(store, wbtip, itip, language):
-    ret = serialize_usertip(store, wbtip, itip, language)
+def serialize_wbtip(store, itip, language):
+    ret = serialize_usertip(store, itip, itip, language)
 
-    # filter submission progressive
-    # to prevent a fake whistleblower to assess every day how many
-    # submissions are received by the platform.
-    del ret['progressive']
-
-    ret['id'] = wbtip.id
     ret['comments'] = db_get_itip_comment_list(store, itip.tid, itip)
-    ret['rfiles'] = db_get_rfile_list(store, itip.tid, wbtip.id)
-    ret['wbfiles'] = db_get_wbfile_list(store, itip.tid, wbtip.id)
+    ret['rfiles'] = db_get_rfile_list(store, itip.tid, itip.id)
+    ret['wbfiles'] = db_get_wbfile_list(store, itip.tid, itip.id)
 
     return ret
 
@@ -226,8 +218,7 @@ class WBTipWBFileHandler(WBFileHandler):
     upload_handler = True
 
     def user_can_access(self, store, tid, wbfile):
-        wbtip_id = store.find(models.WhistleblowerTip.id,
-                              models.WhistleblowerTip.id == models.InternalTip.id,
+        wbtip_id = store.find(models.InternalTip.id,
                               models.InternalTip.id == models.ReceiverTip.internaltip_id,
                               models.ReceiverTip.id == wbfile.receivertip_id,
                               models.ReceiverTip.tid == tid).one()

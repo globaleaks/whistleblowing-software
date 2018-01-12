@@ -17,7 +17,6 @@ class TestCleaning(helpers.TestGLWithPopulatedDB):
 
         self.db_test_model_count(store, models.InternalTip, 0)
         self.db_test_model_count(store, models.ReceiverTip, 0)
-        self.db_test_model_count(store, models.WhistleblowerTip, 0)
         self.db_test_model_count(store, models.InternalFile, 0)
         self.db_test_model_count(store, models.ReceiverFile, 0)
         self.db_test_model_count(store, models.Comment, 0)
@@ -31,7 +30,6 @@ class TestCleaning(helpers.TestGLWithPopulatedDB):
 
         self.db_test_model_count(store, models.InternalTip, self.population_of_submissions)
         self.db_test_model_count(store, models.ReceiverTip, self.population_of_recipients * self.population_of_submissions)
-        self.db_test_model_count(store, models.WhistleblowerTip, self.population_of_submissions)
         self.db_test_model_count(store, models.InternalFile, self.population_of_attachments * self.population_of_submissions)
         self.db_test_model_count(store, models.ReceiverFile, self.population_of_attachments * self.population_of_submissions * self.population_of_recipients)
         self.db_test_model_count(store, models.Comment, self.population_of_submissions * (self.population_of_recipients + 1))
@@ -45,7 +43,6 @@ class TestCleaning(helpers.TestGLWithPopulatedDB):
 
         self.db_test_model_count(store, models.InternalTip, self.population_of_submissions)
         self.db_test_model_count(store, models.ReceiverTip, self.population_of_recipients * self.population_of_submissions)
-        self.db_test_model_count(store, models.WhistleblowerTip, 0) # Note the diff
         self.db_test_model_count(store, models.InternalFile, self.population_of_attachments * self.population_of_submissions)
         self.db_test_model_count(store, models.ReceiverFile, self.population_of_attachments * self.population_of_submissions * self.population_of_recipients)
         self.db_test_model_count(store, models.Comment, self.population_of_submissions * (self.population_of_recipients + 1))
@@ -59,7 +56,6 @@ class TestCleaning(helpers.TestGLWithPopulatedDB):
 
         self.db_test_model_count(store, models.InternalTip, self.population_of_submissions)
         self.db_test_model_count(store, models.ReceiverTip, self.population_of_recipients * self.population_of_submissions)
-        self.db_test_model_count(store, models.WhistleblowerTip, 0) # Note the diff
         self.db_test_model_count(store, models.InternalFile, self.population_of_attachments * self.population_of_submissions)
         self.db_test_model_count(store, models.ReceiverFile, self.population_of_attachments * self.population_of_submissions * self.population_of_recipients)
         self.db_test_model_count(store, models.Comment, self.population_of_submissions * (self.population_of_recipients + 1))
@@ -74,7 +70,6 @@ class TestCleaning(helpers.TestGLWithPopulatedDB):
 
         self.db_test_model_count(store, models.InternalTip, 0)
         self.db_test_model_count(store, models.ReceiverTip, 0)
-        self.db_test_model_count(store, models.WhistleblowerTip, 0)
         self.db_test_model_count(store, models.InternalFile, 0)
         self.db_test_model_count(store, models.ReceiverFile, 0)
         self.db_test_model_count(store, models.Comment, 0)

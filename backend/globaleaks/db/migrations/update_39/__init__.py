@@ -454,6 +454,22 @@ class WhistleblowerFile_v_38(ModelWithID):
 
 
 class MigrationScript(MigrationBase):
+    def migrate_InternalTip(self):
+        used_presentation_order = []
+        old_objs = self.store_old.find(self.model_from['InternalTip'])
+        for old_obj in old_objs:
+            new_obj = self.model_to['InternalTip']()
+            for _, v in new_obj._storm_columns.iteritems():
+                if v.name == 'tid':
+                    new_obj.tid = 1
+                elif v.name == 'receipt_hash':
+                    wbtip = self.store_old.find(self.model_from['WhistleblowerTip'], id=old_obj.id).one()
+                    new_obj.receipt_hash = wbtip.receipt_hash if wbtip is not None else u''
+                else:
+                    setattr(new_obj, v.name, getattr(old_obj, v.name))
+
+            self.store_new.add(new_obj)
+
     def migrate_ReceiverContext(self):
         used_presentation_order = []
         old_objs = self.store_old.find(self.model_from['ReceiverContext'])
