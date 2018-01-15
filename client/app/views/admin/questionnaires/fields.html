@@ -33,9 +33,6 @@
                 <span data-ng-switch-default uib-popover="{{'Accept multiple answers for the field' | translate}}" popover-placement="top"><i class="glyphicon glyphicon-option-horizontal"></i></span>
               </span>
             </span>
-            <span data-ng-if="field.stats_enabled" class="badge alert-success">
-              <span uib-popover="{{'Required' | translate}}" popover-placement="top"><i class="glyphicon glyphicon-stats"></i></span>
-            </span>
             <span data-ng-if="field.required" class="badge alert-danger">
               <span uib-popover="{{'Required' | translate}}" popover-placement="top"><i class="glyphicon glyphicon-asterisk"></i></span>
             </span>
@@ -247,29 +244,36 @@
                   <div data-ng-switch-when="whistleblower_identity">
                     <div class="row">
                       <div class="form-group">
+                        <input data-ng-model="field.required" type="checkbox">
+                        <label data-translate>Required</label>
+                      </div>
+                      <div class="form-group">
                         <input data-ng-model="field.attrs.visibility_subject_to_authorization.value" type="checkbox">
                         <label data-translate>Subject answer visibility to custodian authorization</label>
                       </div>
-                      <div class="form-group">
-                        <input data-ng-model="field.attrs.prompt_confirmation_upon_negative_answer.value" type="checkbox">
-                        <label data-translate>Prompt confirmation upon negative answer</label>
-                      </div>
-                      <div class="form-group" data-ng-show="field.attrs.prompt_confirmation_upon_negative_answer.value">
-                        <label data-translate>Title of the confirmation question upon negative answer</label>
-                        <div>
-                          <textarea class="form-control" maxlength="{{node.maximum_textsize}}" data-ng-model="field.attrs.title_of_confirmation_question_upon_negative_answer.value"></textarea>
+                      <div data-ng-if="!field.required">
+                        <div class="form-group">
+                          <input data-ng-model="field.attrs.prompt_confirmation_upon_negative_answer.value" type="checkbox">
+                          <label data-translate>Prompt confirmation upon negative answer</label>
                         </div>
-                      </div>
-                      <div class="form-group" data-ng-show="field.attrs.prompt_confirmation_upon_negative_answer.value">
-                        <label data-translate>Body of the confirmation question upon negative answer</label>
-                        <div>
-                          <textarea class="form-control" maxlength="{{node.maximum_textsize}}" data-ng-model="field.attrs.text_of_confirmation_question_upon_negative_answer.value"></textarea>
-                        </div>
-                      </div>
-                      <div class="form-group" data-ng-show="field.attrs.prompt_confirmation_upon_negative_answer.value">
-                        <label>Text of the final statement upon negative answer</label>
-                        <div>
-                          <textarea class="form-control" maxlength="{{node.maximum_textsize}}" data-ng-model="field.attrs.text_of_final_statement_upon_negative_answer.value"></textarea>
+                        <div data-ng-show="field.attrs.prompt_confirmation_upon_negative_answer.value">
+                          <div class="form-group">
+                            <label data-translate>Title of the confirmation question upon negative answer</label>
+                            <div>
+                              <textarea class="form-control" maxlength="{{node.maximum_textsize}}" data-ng-model="field.attrs.title_of_confirmation_question_upon_negative_answer.value"></textarea>
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <label data-translate>Body of the confirmation question upon negative answer</label>
+                            <div>
+                              <textarea class="form-control" maxlength="{{node.maximum_textsize}}" data-ng-model="field.attrs.text_of_confirmation_question_upon_negative_answer.value"></textarea>
+                          </div>
+                          <div class="form-group">
+                            <label>Text of the final statement upon negative answer</label>
+                            <div>
+                              <textarea class="form-control" maxlength="{{node.maximum_textsize}}" data-ng-model="field.attrs.text_of_final_statement_upon_negative_answer.value"></textarea>
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </div>

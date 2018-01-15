@@ -274,7 +274,7 @@ def serialize_field(store, field, language, data=None):
         'step_id': field.step_id if field.step_id else '',
         'fieldgroup_id': field.fieldgroup_id if field.fieldgroup_id else '',
         'multi_entry': field.multi_entry,
-        'required': field.required,
+        'required': f_to_serialize.required,
         'preview': field.preview,
         'stats_enabled': field.stats_enabled,
         'attrs': attrs,
