@@ -1,3 +1,6 @@
+Changes in version 2.72.30 - 2017-01-15
+    o Enable to configure the whistleblower identity as mandatory field
+
 Changes in version 2.72.29 - 2017-01-12
     o Fix API for deletion of models images
 
