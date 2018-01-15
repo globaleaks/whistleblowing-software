@@ -1,5 +1,5 @@
 <div data-ng-init="submission._submission.identity_provided = true; vars={}">
-  <div data-ng-class="{'has-error': f['whistleblower_identity_radio_1'].$error.required}">
+  <div data-ng-class="{'has-error': f['whistleblower_identity_radio_1'].$error.required}" data-ng-if="!field.required">
     <label class="radio-inline"><input class="inputelem" type="radio" name="whistleblower_identity_radio_1" data-ng-model="submission._submission.identity_provided" data-ng-value="true" data-ng-change="vars.confirmation_upon_negative_answer=unspecified" /><span data-translate>Yes</span></label>
     <label class="radio-inline"><input class="inputelem" type="radio" name="whistleblober_identity_radio_1" data-ng-model="submission._submission.identity_provided" data-ng-value="false" data-ng-change="vars.confirmation_upon_negative_answer=unspecified" /><span data-translate>No</span></label>
   </div>
