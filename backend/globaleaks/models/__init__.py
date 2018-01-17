@@ -488,7 +488,7 @@ class Comment(Model, Base):
     new = Column(Integer, default=True, nullable=False)
 
     __table_args__ = (ForeignKeyConstraint(['tid', 'internaltip_id'], ['internaltip.tid', 'internaltip.id'], ondelete='CASCADE'),
-                      ForeignKeyConstraint(['tid', 'author_id'], ['user.tid', 'user.id'], ondelete='CASCADE'))
+                      ForeignKeyConstraint(['tid', 'author_id'], ['user.tid', 'user.id'], ondelete='SET NULL'))
 
 
 class Message(Model, Base):
