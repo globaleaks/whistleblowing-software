@@ -277,6 +277,9 @@ log = Logger()
 
 ## time facilities ##
 
+def iso_strf_time(d):
+    return d.strftime("%Y-%m-%d %H:%M:%S.%f")
+
 
 def datetime_null():
     """

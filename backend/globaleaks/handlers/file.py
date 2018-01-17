@@ -8,8 +8,8 @@ from globaleaks.handlers.base import BaseHandler
 from globaleaks.orm import transact
 
 @transact
-def get_file_id(store, tid, name):
-    return models.db_get(store, models.File, tid=tid, name=unicode(name)).id
+def get_file_id(session, tid, name):
+    return models.db_get(session, models.File, tid=tid, name=unicode(name)).id
 
 
 class FileHandler(BaseHandler):

@@ -19,8 +19,8 @@ DEB_PACKAGE_URL = 'https://deb.globaleaks.org/xenial/Packages'
 
 
 @transact
-def evaluate_update_notification(store, latest_version):
-    priv_fact = PrivateFactory(store, 1)
+def evaluate_update_notification(session, latest_version):
+    priv_fact = PrivateFactory(session, 1)
 
     stored_latest = priv_fact.get_val(u'latest_version')
 
@@ -30,17 +30,17 @@ def evaluate_update_notification(store, latest_version):
         if V(__version__) == V(latest_version):
             return
 
-        for user_desc in db_get_admin_users(store, 1):
+        for user_desc in db_get_admin_users(session, 1):
             lang = user_desc['language']
             template_vars = {
                 'type': 'software_update_available',
                 'latest_version': latest_version,
-                'node': db_admin_serialize_node(store, 1, lang),
-                'notification': db_get_notification(store, 1, lang),
+                'node': db_admin_serialize_node(session, 1, lang),
+                'notification': db_get_notification(session, 1, lang),
                 'user': user_desc,
             }
 
-            format_and_send(store, 1, user_desc, template_vars)
+            format_and_send(session, 1, user_desc, template_vars)
 
 
 class UpdateCheck(NetLoopingJob):

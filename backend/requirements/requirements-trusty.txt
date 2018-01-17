@@ -16,8 +16,7 @@ requests==2.2.1
 scrypt==0.6.1
 service_identity==16.0.0
 six==1.10.0
-storm==0.19
-transaction==1.1.1
+sqlalchemy==1.0.11
 txsocksx==1.15.0.2
 txtorcon==0.15.1
 zope.component==4.0.2

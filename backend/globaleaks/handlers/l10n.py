@@ -18,13 +18,13 @@ def langfile_path(lang):
 
 
 @transact
-def get_l10n(store, tid, lang):
+def get_l10n(session, tid, lang):
     path = langfile_path(lang)
     directory_traversal_check(Settings.client_path, path)
 
     texts = read_json_file(path)
 
-    custom_texts = store.find(models.CustomTexts, lang=lang, tid=tid).one()
+    custom_texts = session.query(models.CustomTexts).filter(models.CustomTexts.lang == lang, models.CustomTexts.tid == tid).one_or_none()
     custom_texts = custom_texts.texts if custom_texts is not None else {}
 
     texts.update(custom_texts)

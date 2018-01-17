@@ -7,7 +7,6 @@
 #   by an HTTP client in /submission URI
 import copy
 import json
-from storm.expr import In
 
 from globaleaks import models
 from globaleaks.handlers.admin.questionnaire import db_get_questionnaire
@@ -26,11 +25,11 @@ def get_submission_sequence_number(itip):
     return "%s-%d" % (itip.creation_date.strftime("%Y%m%d"), itip.progressive)
 
 
-def db_assign_submission_progressive(store, tid):
-    counter = store.find(models.Counter, key=u'submission_sequence', tid=tid).one()
+def db_assign_submission_progressive(session, tid):
+    counter = session.query(models.Counter).filter(models.Counter.key == u'submission_sequence', models.Counter.tid == tid).one_or_none()
     if counter is None:
         counter = models.Counter({'key': u'submission_sequence', 'tid': tid})
-        store.add(counter)
+        session.add(counter)
     else:
         now = datetime_now()
         update = counter.update_date
@@ -67,48 +66,45 @@ def _db_serialize_archived_field_recursively(field, language):
     return get_localized_values(field, field, models.Field.localized_keys, language)
 
 
-def _db_serialize_archived_questionnaire_schema(store, aqs, language):
-    questionnaire = copy.deepcopy(aqs.schema)
+def db_serialize_archived_questionnaire_schema(session, questionnaire_schema, language):
+    questionnaire = copy.deepcopy(questionnaire_schema)
 
-    if aqs.type == 'questionnaire':
-        for step in questionnaire:
-            for field in step['children']:
-                _db_serialize_archived_field_recursively(field, language)
-
-            get_localized_values(step, step, models.Step.localized_keys, language)
-
-    elif aqs.type == 'preview':
-        for field in questionnaire:
+    for step in questionnaire:
+        for field in step['children']:
             _db_serialize_archived_field_recursively(field, language)
+
+        get_localized_values(step, step, models.Step.localized_keys, language)
+
 
     return questionnaire
 
 
-def db_serialize_archived_questionnaire_schema(store, hash, language):
-    aqs = store.find(models.ArchivedSchema, hash=hash, type=u'questionnaire').one()
+def db_serialize_archived_preview_schema(session, preview_schema, language):
+    preview = copy.deepcopy(preview_schema)
 
-    return _db_serialize_archived_questionnaire_schema(store, aqs, language)
+    for field in preview:
+        _db_serialize_archived_field_recursively(field, language)
+
+    return preview
 
 
-def db_serialize_archived_preview_schema(store, aqs, language):
-    return _db_serialize_archived_questionnaire_schema(store, aqs, language)
-
-
-def db_serialize_questionnaire_answers_recursively(store, answers, answers_by_group, groups_by_answer):
+def db_serialize_questionnaire_answers_recursively(session, answers, answers_by_group, groups_by_answer):
     ret = {}
 
     for answer in answers:
         if answer.is_leaf:
             ret[answer.key] = answer.value
         else:
-            ret[answer.key] = [db_serialize_questionnaire_answers_recursively(store, answers_by_group.get(group.id, []), answers_by_group, groups_by_answer)
+            ret[answer.key] = [db_serialize_questionnaire_answers_recursively(session, answers_by_group.get(group.id, []), answers_by_group, groups_by_answer)
                                   for group in groups_by_answer.get(answer.id, [])]
 
     return ret
 
 
-def db_serialize_questionnaire_answers(store, tid, usertip, internaltip):
-    questionnaire = db_serialize_archived_questionnaire_schema(store, internaltip.questionnaire_hash, State.tenant_cache[tid].default_language)
+def db_serialize_questionnaire_answers(session, tid, usertip, internaltip):
+    aqs = session.query(models.ArchivedSchema).filter(models.ArchivedSchema.hash == internaltip.questionnaire_hash).one()
+
+    questionnaire = db_serialize_archived_questionnaire_schema(session, aqs.schema, State.tenant_cache[tid].default_language)
 
     answers = []
     answers_by_group = {}
@@ -126,7 +122,8 @@ def db_serialize_questionnaire_answers(store, tid, usertip, internaltip):
             else:
                 root_answers_ids.append(f['id'])
 
-    for answer in store.find(models.FieldAnswer, internaltip_id=internaltip.id, tid=tid):
+    for answer in session.query(models.FieldAnswer) \
+                       .filter(models.FieldAnswer.internaltip_id == internaltip.id, models.FieldAnswer.tid == tid):
         all_answers_ids.append(answer.id)
 
         if answer.key in root_answers_ids:
@@ -137,17 +134,20 @@ def db_serialize_questionnaire_answers(store, tid, usertip, internaltip):
 
         answers_by_group[answer.fieldanswergroup_id].append(answer)
 
-    for group in store.find(models.FieldAnswerGroup,
-                            In(models.FieldAnswerGroup.fieldanswer_id, all_answers_ids), tid=tid).order_by(models.FieldAnswerGroup.number):
+    for group in session.query(models.FieldAnswerGroup) \
+                      .filter(models.FieldAnswerGroup.fieldanswer_id.in_(all_answers_ids),
+                              models.FieldAnswerGroup.tid == tid) \
+                      .order_by(models.FieldAnswerGroup.number):
+
         if group.fieldanswer_id not in groups_by_answer:
             groups_by_answer[group.fieldanswer_id] = []
 
         groups_by_answer[group.fieldanswer_id].append(group)
 
-    return db_serialize_questionnaire_answers_recursively(store, answers, answers_by_group, groups_by_answer)
+    return db_serialize_questionnaire_answers_recursively(session, answers, answers_by_group, groups_by_answer)
 
 
-def db_save_questionnaire_answers(store, tid, internaltip_id, entries):
+def db_save_questionnaire_answers(session, tid, internaltip_id, entries):
     ret = []
 
     for key, value in entries.items():
@@ -157,7 +157,8 @@ def db_save_questionnaire_answers(store, tid, internaltip_id, entries):
             'tid': tid,
         })
 
-        store.add(field_answer)
+        session.add(field_answer)
+        session.flush()
 
         if isinstance(value, list):
             field_answer.is_leaf = False
@@ -170,9 +171,10 @@ def db_save_questionnaire_answers(store, tid, internaltip_id, entries):
                   'tid': tid,
                 })
 
-                store.add(group)
+                session.add(group)
+                session.flush()
 
-                group_elems = db_save_questionnaire_answers(store, tid, internaltip_id, elem)
+                group_elems = db_save_questionnaire_answers(session, tid, internaltip_id, elem)
                 for group_elem in group_elems:
                     group_elem.fieldanswergroup_id = group.id
 
@@ -195,31 +197,24 @@ def extract_answers_preview(questionnaire, answers):
     return preview
 
 
-def db_archive_questionnaire_schema(store, tid, questionnaire, questionnaire_hash):
-    if store.find(models.ArchivedSchema, hash=questionnaire_hash).count():
+def db_archive_questionnaire_schema(session, questionnaire, questionnaire_hash):
+    if session.query(models.ArchivedSchema).filter(models.ArchivedSchema.hash == questionnaire_hash).count():
         return
 
-    for type in [u'questionnaire', u'preview']:
-        aqs = models.ArchivedSchema()
-        aqs.hash = questionnaire_hash
+    aqs = models.ArchivedSchema()
+    aqs.hash = questionnaire_hash
 
-        if type == u'questionnaire':
-            aqs.type = u'questionnaire'
-            aqs.schema = questionnaire
-        else:
-            aqs.type = u'preview'
-            aqs.schema = [f for s in questionnaire for f in s['children'] if f['preview']]
+    aqs.schema = questionnaire
+    aqs.preview = [f for s in questionnaire for f in s['children'] if f['preview']]
 
-        store.add(aqs)
+    session.add(aqs)
+    session.flush()
 
 
-def db_get_itip_receiver_list(store, itip):
+def db_get_itip_receiver_list(session, itip):
     ret = []
 
-    for rtip, user in store.find((models.ReceiverTip, models.User),
-                                 models.ReceiverTip.internaltip_id == itip.id,
-                                 models.User.id == models.ReceiverTip.receiver_id):
-
+    for rtip, user in session.query(models.ReceiverTip, models.User).filter(models.ReceiverTip.internaltip_id == itip.id, models.User.id == models.ReceiverTip.receiver_id):
         ret.append({
             "id": rtip.receiver_id,
             "name": user.public_name,
@@ -231,8 +226,8 @@ def db_get_itip_receiver_list(store, itip):
     return ret
 
 
-def serialize_itip(store, internaltip, language):
-    wb_access_revoked = internaltip.receipt_hash == None
+def serialize_itip(session, internaltip, language):
+    aq = session.query(models.ArchivedSchema).filter(models.ArchivedSchema.hash == internaltip.questionnaire_hash).one()
 
     return {
         'id': internaltip.id,
@@ -241,8 +236,8 @@ def serialize_itip(store, internaltip, language):
         'expiration_date': datetime_to_ISO8601(internaltip.expiration_date),
         'sequence_number': get_submission_sequence_number(internaltip),
         'context_id': internaltip.context_id,
-        'questionnaire': db_serialize_archived_questionnaire_schema(store, internaltip.questionnaire_hash, language),
-        'receivers': db_get_itip_receiver_list(store, internaltip),
+        'questionnaire': db_serialize_archived_questionnaire_schema(session, aq.schema, language),
+        'receivers': db_get_itip_receiver_list(session, internaltip),
         'tor2web': internaltip.tor2web,
         'enable_two_way_comments': internaltip.enable_two_way_comments,
         'enable_two_way_messages': internaltip.enable_two_way_messages,
@@ -251,21 +246,21 @@ def serialize_itip(store, internaltip, language):
         'identity_provided': internaltip.identity_provided,
         'identity_provided_date': datetime_to_ISO8601(internaltip.identity_provided_date),
         'wb_last_access': datetime_to_ISO8601(internaltip.wb_last_access),
-        'wb_access_revoked': wb_access_revoked,
+        'wb_access_revoked': internaltip.receipt_hash == None,
         'total_score': internaltip.total_score
     }
 
 
-def serialize_usertip(store, usertip, itip, language):
-    ret = serialize_itip(store, itip, language)
+def serialize_usertip(session, usertip, itip, language):
+    ret = serialize_itip(session, itip, language)
     ret['id'] = usertip.id
     ret['internaltip_id'] = itip.id
     ret['progressive'] = itip.progressive
-    ret['answers'] = db_serialize_questionnaire_answers(store, itip.tid, usertip, itip)
+    ret['answers'] = db_serialize_questionnaire_answers(session, itip.tid, usertip, itip)
     return ret
 
 
-def db_create_receivertip(store, receiver, internaltip):
+def db_create_receivertip(session, receiver, internaltip):
     """
     Create models.ReceiverTip for the required tier of models.Receiver.
     """
@@ -276,28 +271,29 @@ def db_create_receivertip(store, receiver, internaltip):
     receivertip.internaltip_id = internaltip.id
     receivertip.receiver_id = receiver.id
 
-    store.add(receivertip)
+    session.add(receivertip)
 
     return receivertip.id
 
 
-def db_create_submission(store, tid, request, uploaded_files, client_using_tor):
+def db_create_submission(session, tid, request, uploaded_files, client_using_tor):
     answers = request['answers']
 
-    context, questionnaire = store.find((models.Context, models.Questionnaire),
-                                        models.Context.id == request['context_id'],
-                                        models.Questionnaire.id == models.Context.questionnaire_id,
-                                        models.Questionnaire.tid == tid).one()
+    context, questionnaire = session.query(models.Context, models.Questionnaire) \
+                                  .filter(models.Context.id == request['context_id'],
+                                          models.Questionnaire.id == models.Context.questionnaire_id,
+                                          models.Questionnaire.tid == tid).one_or_none()
     if not context:
         raise errors.ModelNotFound(models.Context)
 
-    steps = db_get_questionnaire(store, tid, questionnaire.id, None)['steps']
+    steps = db_get_questionnaire(session, tid, questionnaire.id, None)['steps']
     questionnaire_hash = unicode(sha256(json.dumps(steps)))
+    db_archive_questionnaire_schema(session, steps, questionnaire_hash)
 
     submission = models.InternalTip()
     submission.tid = tid
 
-    submission.progressive = db_assign_submission_progressive(store, tid)
+    submission.progressive = db_assign_submission_progressive(session, tid)
 
     if context.tip_timetolive > -1:
         submission.expiration_date = get_expiration(context.tip_timetolive)
@@ -330,10 +326,10 @@ def db_create_submission(store, tid, request, uploaded_files, client_using_tor):
 
     submission.receipt_hash = hash_password(receipt, State.tenant_cache[tid].private.receipt_salt)
 
-    store.add(submission)
+    session.add(submission)
+    session.flush()
 
-    db_archive_questionnaire_schema(store, tid, steps, questionnaire_hash)
-    db_save_questionnaire_answers(store, tid, submission.id, answers)
+    db_save_questionnaire_answers(session, tid, submission.id, answers)
 
     for filedesc in uploaded_files:
         new_file = models.InternalFile()
@@ -345,7 +341,7 @@ def db_create_submission(store, tid, request, uploaded_files, client_using_tor):
         new_file.internaltip_id = submission.id
         new_file.submission = filedesc['submission']
         new_file.file_path = filedesc['path']
-        store.add(new_file)
+        session.add(new_file)
         log.debug("=> file associated %s|%s (%d bytes)",
                   new_file.name, new_file.content_type, new_file.size)
 
@@ -354,14 +350,14 @@ def db_create_submission(store, tid, request, uploaded_files, client_using_tor):
         raise errors.SubmissionValidationFailure("selected an invalid number of recipients")
 
     rtips_count = 0
-    for receiver, user, in store.find((models.Receiver, models.User),
-                                      In(models.Receiver.id, request['receivers']),
-                                      models.ReceiverContext.receiver_id == models.Receiver.id,
-                                      models.ReceiverContext.context_id == context.id,
-                                      models.User.id == models.Receiver.id,
-                                      models.User.tid == tid):
+    for receiver, user in session.query(models.Receiver, models.User). \
+                                filter(models.Receiver.id.in_(request['receivers']),
+                                       models.ReceiverContext.receiver_id == models.Receiver.id,
+                                       models.ReceiverContext.context_id == context.id,
+                                       models.User.id == models.Receiver.id,
+                                       models.User.tid == tid):
         if user.pgp_key_public or State.tenant_cache[tid].allow_unencrypted:
-            db_create_receivertip(store, receiver, submission)
+            db_create_receivertip(session, receiver, submission)
             rtips_count += 1
 
     if rtips_count == 0:
@@ -373,8 +369,8 @@ def db_create_submission(store, tid, request, uploaded_files, client_using_tor):
 
 
 @transact
-def create_submission(store, tid, request, uploaded_files, client_using_tor):
-    return db_create_submission(store, tid, request, uploaded_files, client_using_tor)
+def create_submission(session, tid, request, uploaded_files, client_using_tor):
+    return db_create_submission(session, tid, request, uploaded_files, client_using_tor)
 
 
 class SubmissionInstance(BaseHandler):

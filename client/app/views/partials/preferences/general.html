@@ -15,7 +15,7 @@
   <div data-ng-if="preferences.contexts.length > 0">
     <label><span data-translate>Contexts</span></label>
     <ul data-ng-repeat="context_id in preferences.contexts">
-      <li data-ng-init="ctx = Utils.getContext(context_id)"><span data-ng-if="ctx.name">{{::ctx.name}}</span> :: {{::ctx.id}}</li>
+      <li data-ng-init="ctx = Utils.getContext(context_id)"><span data-ng-if="ctx.name">{{::ctx.name}}</span>: {{::ctx.id}}</li>
     </ul>
   </div>
 </div>

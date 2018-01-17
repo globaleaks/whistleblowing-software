@@ -5,7 +5,6 @@
 #
 # Files collection handlers and utils
 from random import SystemRandom
-from storm.expr import And
 
 from twisted.internet.defer import inlineCallbacks, returnValue
 
@@ -48,20 +47,20 @@ def random_login_delay():
     return 0
 
 
-def db_get_wbtip_by_receipt(store, tid, receipt):
+def db_get_wbtip_by_receipt(session, tid, receipt):
     hashed_receipt = security.hash_password(receipt, State.tenant_cache[tid].private.receipt_salt)
-    return store.find(InternalTip,
-                      InternalTip.receipt_hash == unicode(hashed_receipt),
-                      tid=tid).one()
+    return session.query(InternalTip) \
+                  .filter(InternalTip.receipt_hash == unicode(hashed_receipt),
+                          InternalTip.tid == tid).one_or_none()
 
 
 @transact
-def login_whistleblower(store, tid, receipt, client_using_tor):
+def login_whistleblower(session, tid, receipt, client_using_tor):
     """
     login_whistleblower returns the InternalTip.id
     """
-    wbtip = db_get_wbtip_by_receipt(store, tid, receipt)
-    if not wbtip:
+    wbtip = db_get_wbtip_by_receipt(session, tid, receipt)
+    if wbtip is None:
         log.debug("Whistleblower login: Invalid receipt")
         Settings.failed_login_attempts += 1
         raise errors.InvalidAuthentication
@@ -78,15 +77,15 @@ def login_whistleblower(store, tid, receipt, client_using_tor):
 
 
 @transact
-def login(store, tid, username, password, client_using_tor):
+def login(session, tid, username, password, client_using_tor):
     """
     login returns a tuple (user_id, state, pcn)
     """
-    user = store.find(User, And(User.username == username,
-                                User.state != u'disabled'),
-                            tid=tid).one()
+    user = session.query(User).filter(User.username == username, \
+                                    User.state != u'disabled', \
+                                    User.tid == tid).one_or_none()
 
-    if not user or not security.check_password(password, user.salt, user.password):
+    if user is None or not security.check_password(password, user.salt, user.password):
         log.debug("Login: Invalid credentials")
         Settings.failed_login_attempts += 1
         raise errors.InvalidAuthentication

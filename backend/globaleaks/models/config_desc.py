@@ -6,13 +6,9 @@ from globaleaks.security import generateRandomSalt as salt
 
 class Item:
     _type = None
-    default_factory = None
 
     def __init__(self, *args, **kwargs):
         self.default = kwargs['default']
-
-        if 'default_factory' in kwargs:
-            self.default_factory = kwargs['default_factory']
 
 
 class Unicode(Item):
@@ -35,7 +31,7 @@ class Bool(Item):
 
 ConfigDescriptor = {
     u'creation_date': Int(default=0),
-    u'receipt_salt': Unicode(default_factory=salt),
+    u'receipt_salt': Unicode(default=salt),
     u'smtp_password': Unicode(default=u'yes_you_really_should_change_me'),
 
     u'version': Unicode(default=unicode(__version__)),

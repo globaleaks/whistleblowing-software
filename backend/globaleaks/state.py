@@ -1,8 +1,6 @@
 # -*- coding: utf-8
 import sys
 
-from storm import tracer
-
 from twisted.internet import defer
 from twisted.python.threadpool import ThreadPool
 
@@ -36,7 +34,7 @@ class TenantState(object):
 class StateClass(ObjectDict):
     __metaclass__ = Singleton
 
-    orm_tp = ThreadPool(10, 10)
+    orm_tp = ThreadPool(4, 16)
 
     def __init__(self):
         from globaleaks.settings import Settings
@@ -65,7 +63,6 @@ class StateClass(ObjectDict):
         self.tenant_cache = {}
         self.tenant_hostname_id_map = {}
 
-        tracer.debug(self.settings.orm_debug, sys.stdout)
         self.set_orm_tp(self.orm_tp)
 
         self.TempUploadFiles = TempDict(timeout=3600)

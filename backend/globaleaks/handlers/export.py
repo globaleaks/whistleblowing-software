@@ -21,24 +21,24 @@ from globaleaks.utils.zipstream import ZipStream
 
 
 @transact
-def get_tip_export(store, tid, user_id, rtip_id, language):
-    rtip, itip = db_access_rtip(store, tid, user_id, rtip_id)
+def get_tip_export(session, tid, user_id, rtip_id, language):
+    rtip, itip = db_access_rtip(session, tid, user_id, rtip_id)
 
-    user, context = store.find((models.User, models.Context),
-                               models.User.id == rtip.receiver_id,
-                               models.Context.id == models.InternalTip.context_id,
-                               models.InternalTip.id == rtip.internaltip_id,
-                               models.User.tid == tid).one()
+    user, context = session.query(models.User, models.Context) \
+                         .filter(models.User.id == rtip.receiver_id,
+                                 models.Context.id == models.InternalTip.context_id,
+                                 models.InternalTip.id == rtip.internaltip_id,
+                                 models.User.tid == tid).one()
 
-    rtip_dict = serialize_rtip(store, rtip, itip, language)
+    rtip_dict = serialize_rtip(session, rtip, itip, language)
 
     export_dict = {
         'type': u'export_template',
-        'node': db_admin_serialize_node(store, tid, language),
-        'notification': db_get_notification(store, tid, language),
+        'node': db_admin_serialize_node(session, tid, language),
+        'notification': db_get_notification(session, tid, language),
         'tip': rtip_dict,
-        'user': user_serialize_user(store, user, language),
-        'context': admin_serialize_context(store, context, language),
+        'user': user_serialize_user(session, user, language),
+        'context': admin_serialize_context(session, context, language),
         'comments': rtip_dict['comments'],
         'messages': rtip_dict['messages'],
         'files': []
@@ -50,16 +50,13 @@ def get_tip_export(store, tid, user_id, rtip_id, language):
 
     export_dict['files'].append({'buf': export_template, 'name': "data.txt"})
 
-    for rfile in store.find(models.ReceiverFile, models.ReceiverFile.receivertip_id == rtip_id, tid=tid):
+    for rfile in session.query(models.ReceiverFile).filter(models.ReceiverFile.receivertip_id == rtip_id, models.ReceiverFile.tid == tid):
         rfile.downloads += 1
-        file_dict = models.serializers.serialize_rfile(store, tid, rfile)
+        file_dict = models.serializers.serialize_rfile(session, tid, rfile)
         file_dict['name'] = 'files/' + file_dict['name']
         export_dict['files'].append(file_dict)
 
-    for wf in store.find(models.WhistleblowerFile,
-                         models.WhistleblowerFile.receivertip_id == models.ReceiverTip.id,
-                         models.ReceiverTip.internaltip_id == rtip.internaltip_id,
-                         tid=tid):
+    for wf in session.query(models.WhistleblowerFile).filter(models.WhistleblowerFile.receivertip_id == models.ReceiverTip.id, models.ReceiverTip.internaltip_id == rtip.internaltip_id, models.ReceiverTip.tid == tid):
         file_dict = models.serializers.serialize_wbfile(tid, wf)
         file_dict['name'] = 'files_from_recipients/' + file_dict['name']
         export_dict['files'].append(file_dict)

@@ -3,13 +3,15 @@ import importlib
 import os
 import shutil
 from collections import OrderedDict
-from storm.database import create_database
-from storm.store import Store
+
+from sqlalchemy import create_engine
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import sessionmaker
 
 from globaleaks import __version__, models, DATABASE_VERSION, FIRST_DATABASE_VERSION_SUPPORTED, \
     LANGUAGES_SUPPORTED_CODES, security
 from globaleaks.db.appdata import db_update_defaults, load_appdata, db_fix_fields_attrs
-from globaleaks.db.migrations.update_25 import User_v_24
+from globaleaks.db.migrations.update_25 import User_v_24, SecureFileDelete_v_24
 from globaleaks.db.migrations.update_26 import InternalFile_v_25
 from globaleaks.db.migrations.update_27 import Node_v_26, Context_v_26, Notification_v_26
 from globaleaks.db.migrations.update_28 import Field_v_27, Step_v_27, FieldField_v_27, StepField_v_27, FieldOption_v_27
@@ -31,8 +33,8 @@ from globaleaks.db.migrations.update_39 import \
     Questionnaire_v_38, Receiver_v_38, ReceiverContext_v_38, \
     ReceiverFile_v_38, ReceiverTip_v_38, ShortURL_v_38, Stats_v_38, \
     Step_v_38, User_v_38, WhistleblowerFile_v_38, WhistleblowerTip_v_38
-from globaleaks.orm import make_db_uri
-from globaleaks.models import config, l10n
+from globaleaks.orm import get_engine, make_db_uri
+from globaleaks.models import config, l10n, Base
 from globaleaks.models.config import PrivateFactory
 from globaleaks.settings import Settings
 from globaleaks.utils.utility import log
@@ -48,7 +50,7 @@ migration_mapping = OrderedDict([
     ('ContextImg', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, models.ContextImg]),
     ('Counter', [Counter_v_38, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, models.Counter]),
     ('CustomTexts', [-1, -1, -1, -1, -1, -1, -1, -1, CustomTexts_v_38, 0, 0, 0, 0, 0, 0, models.CustomTexts]),
-    ('EnabledLanguage', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, EnabledLanguage_v_38, 0, 0, 0, 0, l10n.EnabledLanguage]),
+    ('EnabledLanguage', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, EnabledLanguage_v_38, 0, 0, 0, 0, models.EnabledLanguage]),
     ('Field', [Field_v_27, 0, 0, 0, Field_v_37, 0, 0, 0, 0, 0, 0, 0, 0, 0, Field_v_38, models.Field]),
     ('FieldAnswer', [FieldAnswer_v_29, 0, 0, 0, 0, 0, FieldAnswer_v_38, 0, 0, 0, 0, 0, 0, 0, 0, models.FieldAnswer]),
     ('FieldAnswerGroup', [FieldAnswerGroup_v_29, 0, 0, 0, 0, 0, FieldAnswerGroup_v_38, 0, 0, 0, 0, 0, 0, 0, 0, models.FieldAnswerGroup]),
@@ -69,7 +71,7 @@ migration_mapping = OrderedDict([
     ('ReceiverContext', [ReceiverContext_v_38, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, models.ReceiverContext]),
     ('ReceiverFile', [ReceiverFile_v_38, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, models.ReceiverFile]),
     ('ReceiverTip', [ReceiverTip_v_30, 0, 0, 0, 0, 0, 0, ReceiverTip_v_38, 0, 0, 0, 0, 0, 0, 0, models.ReceiverTip]),
-    ('SecureFileDelete', [models.SecureFileDelete, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
+    ('SecureFileDelete', [SecureFileDelete_v_24, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, models.SecureFileDelete]),
     ('ShortURL', [-1, -1, ShortURL_v_38, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, models.ShortURL]),
     ('Stats', [Stats_v_38, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, models.Stats]),
     ('Step', [Step_v_27, 0, 0, 0, Step_v_29, 0, Step_v_38, 0, 0, 0, 0, 0, 0, 0, 0, models.Step]),
@@ -82,10 +84,25 @@ migration_mapping = OrderedDict([
 ])
 
 
-def perform_data_update(db_file):
-    store = Store(create_database(make_db_uri(db_file)))
+def get_right_model(migration_mapping, model_name, version):
+    table_index = (version - FIRST_DATABASE_VERSION_SUPPORTED)
 
-    enabled_languages = [lang.name for lang in store.find(l10n.EnabledLanguage)]
+    if migration_mapping[model_name][table_index] == -1:
+        return None
+
+    while table_index >= 0:
+        if migration_mapping[model_name][table_index] != 0:
+            return migration_mapping[model_name][table_index]
+        table_index -= 1
+
+    return None
+
+
+def perform_data_update(db_file):
+    engine = get_engine('sqlite+pysqlite:////' + db_file, foreign_keys=False)
+    session = sessionmaker(bind=engine)()
+
+    enabled_languages = [lang.name for lang in session.query(models.EnabledLanguage)]
 
     removed_languages = list(set(enabled_languages) - set(LANGUAGES_SUPPORTED_CODES))
 
@@ -97,7 +114,7 @@ def perform_data_update(db_file):
 
 
     try:
-        prv = PrivateFactory(store, 1)
+        prv = PrivateFactory(session, 1)
 
         stored_ver = prv.get_val(u'version')
 
@@ -106,20 +123,21 @@ def perform_data_update(db_file):
 
             # The below commands can change the current store based on the what is
             # currently stored in the DB.
-            for tid in store.find(models.Tenant.id):
+            tids = [t[0] for t in session.query(models.Tenant.id)]
+            for tid in tids:
                 appdata = load_appdata()
-                db_update_defaults(store, tid)
-                l10n.update_defaults(store, tid, appdata)
-                config.update_defaults(store, tid)
+                db_update_defaults(session, tid)
+                config.update_defaults(session, tid)
+                l10n.update_defaults(session, tid, appdata)
 
-            db_fix_fields_attrs(store)
+            db_fix_fields_attrs(session)
 
-        store.commit()
+        session.commit()
     except:
-        store.rollback()
+        session.rollback()
         raise
     finally:
-        store.close()
+        session.close()
 
 
 def perform_migration(version):
@@ -157,8 +175,16 @@ def perform_migration(version):
 
             log.info("Updating DB from version %d to version %d" % (version, version + 1))
 
-            store_old = Store(create_database('sqlite:' + old_db_file))
-            store_new = Store(create_database('sqlite:' + new_db_file))
+            j = version - FIRST_DATABASE_VERSION_SUPPORTED
+            engine = get_engine('sqlite+pysqlite:////' + old_db_file, foreign_keys=False)
+            store_old = sessionmaker(bind=engine)()
+
+            engine = get_engine('sqlite+pysqlite:////' + new_db_file, foreign_keys=False)
+            if FIRST_DATABASE_VERSION_SUPPORTED + j + 1 == DATABASE_VERSION:
+                Base.metadata.create_all(engine)
+            else:
+                Bases[j+1].metadata.create_all(engine)
+            store_new = sessionmaker(bind=engine)()
 
             # Here is instanced the migration script
             MigrationModule = importlib.import_module("globaleaks.db.migrations.update_%d" % (version + 1))
@@ -199,11 +225,12 @@ def perform_migration(version):
             log.info("Migration stats:")
 
             # we open a new db in order to verify integrity of the generated file
-            store_verify = Store(create_database(make_db_uri(new_db_file)))
+            engine = get_engine('sqlite+pysqlite:////' + new_db_file)
+            store_verify = sessionmaker(bind=engine)()
 
             for model_name, _ in migration_mapping.items():
                 if migration_script.model_from[model_name] is not None and migration_script.model_to[model_name] is not None:
-                     count = store_verify.find(migration_script.model_to[model_name]).count()
+                     count = store_verify.query(migration_script.model_to[model_name]).count()
                      if migration_script.entries_count[model_name] != count:
                          if migration_script.fail_on_count_mismatch[model_name]:
                              raise AssertionError("Integrity check failed on count equality for table %s: %d != %d" % \
@@ -235,3 +262,24 @@ def perform_migration(version):
             security.overwrite_and_remove(os.path.join(tmpdir, f))
 
         shutil.rmtree(tmpdir)
+
+
+mp = {}
+Bases = {}
+for i in range(DATABASE_VERSION - FIRST_DATABASE_VERSION_SUPPORTED + 1):
+    Bases[i] = declarative_base()
+    for k in migration_mapping:
+        if k not in mp:
+            mp[k] = []
+
+        x = get_right_model(migration_mapping, k, FIRST_DATABASE_VERSION_SUPPORTED + i)
+        if x is not None:
+            class y(x, Bases[i]):
+                pass
+
+            mp[k].append(y)
+        else:
+            mp[k].append(None)
+
+
+migration_mapping = mp

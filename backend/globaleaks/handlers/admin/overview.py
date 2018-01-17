@@ -10,10 +10,10 @@ from globaleaks.utils.utility import datetime_to_ISO8601
 
 
 @transact
-def collect_tip_overview(store, tid, language):
+def collect_tip_overview(session, tid, language):
     tip_description_list = []
 
-    for itip in store.find(models.InternalTip, tid=tid):
+    for itip in session.query(models.InternalTip).filter(models.InternalTip.tid == tid):
         tip_description_list.append({
             'id': itip.id,
             'creation_date': datetime_to_ISO8601(itip.creation_date),
@@ -25,10 +25,10 @@ def collect_tip_overview(store, tid, language):
 
 
 @transact
-def collect_files_overview(store, tid):
+def collect_files_overview(session, tid):
     file_description_list = []
 
-    for ifile in store.find(models.InternalFile, tid=tid):
+    for ifile in session.query(models.InternalFile).filter(models.InternalFile.tid == tid):
         file_description_list.append({
             'id': ifile.id,
             'itip': ifile.internaltip_id,
@@ -36,9 +36,9 @@ def collect_files_overview(store, tid):
             'size': ifile.size
         })
 
-    for rfile, itip in store.find((models.ReceiverFile, models.InternalFile),
-                                  models.ReceiverFile.internalfile_id == models.InternalFile.id,
-                                  models.InternalFile.tid == tid):
+    for rfile, itip in session.query(models.ReceiverFile, models.InternalFile) \
+                            .filter(models.ReceiverFile.internalfile_id == models.InternalFile.id,
+                                    models.InternalFile.tid == tid):
         file_description_list.append({
             'id': rfile.internalfile_id,
             'itip': itip.id,

@@ -511,13 +511,13 @@ class Templating(object):
 
         return subject, body
 
-def format_and_send(store, tid, user_desc, template_vars):
+def format_and_send(session, tid, user_desc, template_vars):
     subject, body = Templating().get_mail_subject_and_body(template_vars)
 
     if user_desc['pgp_key_public']:
         body = encrypt_message(user_desc['pgp_key_public'], body)
 
-    store.add(models.Mail({
+    session.add(models.Mail({
         'address': user_desc['mail_address'],
         'subject': subject,
         'body': body,

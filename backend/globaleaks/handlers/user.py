@@ -40,15 +40,15 @@ def parse_pgp_options(user, request):
         user.pgp_key_expiration = datetime_null()
 
 
-def user_serialize_user(store, user, language):
+def user_serialize_user(session, user, language):
     """
     Serialize user description
 
-    :param store: the store on which perform queries.
+    :param session: the session on which perform queries.
     :param username: the username of the user to be serialized
     :return: a serialization of the object
     """
-    picture = db_get_model_img(store, user.tid, 'users', user.id)
+    picture = db_get_model_img(session, user.tid, 'users', user.id)
 
     ret_dict = {
         'id': user.id,
@@ -77,13 +77,13 @@ def user_serialize_user(store, user, language):
 
 
 @transact
-def get_user_settings(store, tid, user_id, language):
-    user = models.db_get(store, models.User, models.User.id == user_id, tid=tid)
+def get_user_settings(session, tid, user_id, language):
+    user = models.db_get(session, models.User, models.User.id == user_id)# models.User.tid == tid)
 
-    return user_serialize_user(store, user, language)
+    return user_serialize_user(session, user, language)
 
 
-def db_user_update_user(store, tid, user_id, request):
+def db_user_update_user(session, tid, user_id, request):
     """
     Updates the specified user.
     This version of the function is specific for users that with comparison with
@@ -93,7 +93,7 @@ def db_user_update_user(store, tid, user_id, request):
       - pgp key
     raises: globaleaks.errors.ReceiverIdNotFound` if the receiver does not exist.
     """
-    user = models.db_get(store, models.User, id=user_id, tid=tid)
+    user = models.db_get(session, models.User, models.User.id == user_id)#, models.User.tid == tid)
 
     user.language = request.get('language', State.tenant_cache[tid].default_language)
 
@@ -118,10 +118,10 @@ def db_user_update_user(store, tid, user_id, request):
 
 
 @transact
-def update_user_settings(store, tid, user_id, request, language):
-    user = db_user_update_user(store, tid, user_id, request)
+def update_user_settings(session, tid, user_id, request, language):
+    user = db_user_update_user(session, tid, user_id, request)
 
-    return user_serialize_user(store, user, language)
+    return user_serialize_user(session, user, language)
 
 
 class UserInstance(BaseHandler):

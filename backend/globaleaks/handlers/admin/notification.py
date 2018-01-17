@@ -15,9 +15,9 @@ from globaleaks.utils.sets import merge_dicts
 from globaleaks.utils.templating import Templating
 
 
-def admin_serialize_notification(store, tid, language):
-    config_dict = NotificationFactory(store, tid).admin_export()
-    conf_l10n_dict = NotificationL10NFactory(store, tid).localized_dict(language)
+def admin_serialize_notification(session, tid, language):
+    config_dict = NotificationFactory(session, tid).admin_export()
+    conf_l10n_dict = NotificationL10NFactory(session, tid).localized_dict(language)
 
     cmd_flags = {
         'reset_templates': False,
@@ -28,33 +28,33 @@ def admin_serialize_notification(store, tid, language):
     return merge_dicts(config_dict, cmd_flags, conf_l10n_dict)
 
 
-def db_get_notification(store, tid, language):
-    return admin_serialize_notification(store, tid, language)
+def db_get_notification(session, tid, language):
+    return admin_serialize_notification(session, tid, language)
 
 
 @transact
-def get_notification(store, tid, language):
-    return db_get_notification(store, tid, language)
+def get_notification(session, tid, language):
+    return db_get_notification(session, tid, language)
 
 
 @transact
-def update_notification(store, tid, request, language):
-    notif = NotificationFactory(store, tid)
+def update_notification(session, tid, request, language):
+    notif = NotificationFactory(session, tid)
     notif.update(request)
 
     smtp_pw = request.pop('smtp_password', u'')
     if smtp_pw != u'':
-        PrivateFactory(store, tid).set_val(u'smtp_password', smtp_pw)
+        PrivateFactory(session, tid).set_val(u'smtp_password', smtp_pw)
 
-    notif_l10n = NotificationL10NFactory(store, tid)
+    notif_l10n = NotificationL10NFactory(session, tid)
     notif_l10n.update(request, language)
 
     if request.pop('reset_templates'):
         notif_l10n.reset_templates(load_appdata())
 
-    db_refresh_memory_variables(store, [tid])
+    db_refresh_memory_variables(session, [tid])
 
-    return admin_serialize_notification(store, tid, language)
+    return admin_serialize_notification(session, tid, language)
 
 
 class NotificationInstance(BaseHandler):

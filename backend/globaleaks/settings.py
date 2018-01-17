@@ -65,9 +65,6 @@ class SettingsClass(object):
         self.bind_remote_ports = [80, 443]
         self.bind_local_ports = [8082, 8083]
 
-        # store name
-        self.store_name = 'main_store'
-
         self.db_type = 'sqlite'
 
         # debug defaults

@@ -14,13 +14,13 @@ from globaleaks.utils.utility import log
 
 
 @transact
-def wizard(store, tid, request, language):
-    db_update_enabled_languages(store, tid, [language], language)
+def wizard(session, tid, request, language):
+    db_update_enabled_languages(session, tid, [language], language)
 
-    tenant = models.db_get(store, models.Tenant, id=tid)
+    tenant = models.db_get(session, models.Tenant, models.Tenant.id == tid)
     tenant.label = request['node_name']
 
-    node = config.NodeFactory(store, tid)
+    node = config.NodeFactory(session, tid)
 
     if node.get_val(u'wizard_done'):
         log.err("DANGER: Wizard already initialized!", tid=tid)
@@ -32,11 +32,11 @@ def wizard(store, tid, request, language):
     node.set_val(u'default_language', language)
     node.set_val(u'wizard_done', True)
 
-    node_l10n = l10n.NodeL10NFactory(store, tid)
+    node_l10n = l10n.NodeL10NFactory(session, tid)
 
     node_l10n.set_val(u'header_title_homepage', language, request['node_name'])
 
-    profiles.load_profile(store, tid, request['profile'])
+    profiles.load_profile(session, tid, request['profile'])
 
     receiver_desc = models.User().dict(language)
     receiver_desc['name'] = request['receiver_name']
@@ -48,13 +48,13 @@ def wizard(store, tid, request, language):
     receiver_desc['deletable'] = True
     receiver_desc['pgp_key_remove'] = False
 
-    _, receiver = db_create_receiver_user(store, tid, receiver_desc, language)
+    _, receiver = db_create_receiver_user(session, tid, receiver_desc, language)
 
     context_desc = models.Context().dict(language)
     context_desc['name'] = u'Default'
     context_desc['receivers'] = [receiver.id]
 
-    db_create_context(store, tid, context_desc, language)
+    db_create_context(session, tid, context_desc, language)
 
     admin_desc = models.User().dict(language)
     admin_desc['name'] = request['admin_name']
@@ -68,9 +68,9 @@ def wizard(store, tid, request, language):
     admin_desc['pgp_key_remove'] = False
     admin_desc['password_change_needed'] = False
 
-    db_create_user(store, tid, admin_desc, language)
+    db_create_user(session, tid, admin_desc, language)
 
-    db_refresh_memory_variables(store, [tid])
+    db_refresh_memory_variables(session, [tid])
 
 
 class Wizard(BaseHandler):

@@ -20,7 +20,7 @@ from globaleaks.settings import Settings
 from globaleaks.state import State
 
 
-def serialize_tenant(store, tenant):
+def serialize_tenant(session, tenant):
     ret = {
         'id': tenant.id,
         'label': tenant.label,
@@ -38,19 +38,19 @@ def serialize_tenant(store, tenant):
     return ret
 
 
-def db_create(store, desc):
+def db_create(session, desc):
     appdata = load_appdata()
 
-    t = models.db_forge_obj(store, models.Tenant, desc)
+    t = models.db_forge_obj(session, models.Tenant, desc)
 
     # required to generate/retrive the id
-    store.flush()
+    session.flush()
 
-    db_update_defaults(store, tid=t.id)
+    db_update_defaults(session, tid=t.id)
 
-    models.config.system_cfg_init(store, tid=t.id)
+    models.config.system_cfg_init(session, tid=t.id)
 
-    models.l10n.EnabledLanguage.add_new_lang(store, t.id, u'en', appdata)
+    models.l10n.add_new_lang(session, t.id, u'en', appdata)
 
     file_descs = [
       (u'logo', 'data/logo.png'),
@@ -60,46 +60,46 @@ def db_create(store, desc):
     for file_desc in file_descs:
         with open(os.path.join(Settings.client_path, file_desc[1]), 'r') as f:
             data = base64.b64encode(f.read())
-            file.db_add_file(store, t.id, file_desc[0], u'', data)
+            file.db_add_file(session, t.id, file_desc[0], u'', data)
 
-    db_refresh_memory_variables(store, [t.id])
+    db_refresh_memory_variables(session, [t.id])
 
     return t
 
 
 @transact
-def create(store, desc, *args, **kwargs):
-    return serialize_tenant(store, db_create(store, desc, *args, **kwargs))
+def create(session, desc, *args, **kwargs):
+    return serialize_tenant(session, db_create(session, desc, *args, **kwargs))
 
 
-def db_get_tenant_list(store):
-    return [serialize_tenant(store, tenant) for tenant in store.find(models.Tenant)]
-
-
-@transact
-def get_tenant_list(store):
-    return db_get_tenant_list(store)
+def db_get_tenant_list(session):
+    return [serialize_tenant(session, tenant) for tenant in session.query(models.Tenant)]
 
 
 @transact
-def get(store, id):
-    return serialize_tenant(store, models.db_get(store, models.Tenant, id=id))
+def get_tenant_list(session):
+    return db_get_tenant_list(session)
 
 
 @transact
-def update(store, id, request):
-    tenant = models.db_get(store, models.Tenant, id=id)
+def get(session, id):
+    return serialize_tenant(session, models.db_get(session, models.Tenant, models.Tenant.id == id))
+
+
+@transact
+def update(session, id, request):
+    tenant = models.db_get(session, models.Tenant, models.Tenant.id == id)
     tenant.update(request)
-    db_refresh_memory_variables(store, [id])
+    db_refresh_memory_variables(session, [id])
 
-    return serialize_tenant(store, tenant)
+    return serialize_tenant(session, tenant)
 
 
 @transact
-def delete(store, id):
-    models.db_delete(store, models.Tenant, id=id)
+def delete(session, id):
+    models.db_delete(session, models.Tenant, models.Tenant.id == id)
 
-    db_refresh_memory_variables(store, [id])
+    db_refresh_memory_variables(session, [id])
 
 
 class TenantCollection(BaseHandler):
@@ -113,9 +113,6 @@ class TenantCollection(BaseHandler):
         """
         Return the list of registered tenants
         """
-        if not State.tenant_cache[1].enable_multisite:
-            raise errors.ForbiddenOperation
-
         return get_tenant_list()
 
     def post(self):
@@ -123,9 +120,6 @@ class TenantCollection(BaseHandler):
         Create a new tenant
         """
         request = self.validate_message(self.request.content.read(), requests.AdminTenantDesc)
-
-        if not State.tenant_cache[1].enable_multisite:
-            raise errors.ForbiddenOperation
 
         log.info('Creating new tenant', tid=self.request.tid)
 
@@ -141,9 +135,6 @@ class TenantInstance(BaseHandler):
     def get(self, tenant_id):
         tenant_id = int(tenant_id)
 
-        if not State.tenant_cache[1].enable_multisite:
-            raise errors.ForbiddenOperation
-
         return get(tenant_id)
 
     def put(self, tenant_id):
@@ -155,9 +146,6 @@ class TenantInstance(BaseHandler):
         request = self.validate_message(self.request.content.read(),
                                         requests.AdminTenantDesc)
 
-        if not State.tenant_cache[1].enable_multisite or tenant_id == 1:
-            raise errors.ForbiddenOperation
-
         return update(tenant_id, request)
 
     def delete(self, tenant_id):
@@ -165,9 +153,6 @@ class TenantInstance(BaseHandler):
         Delete the specified tenant.
         """
         tenant_id = int(tenant_id)
-
-        if not State.tenant_cache[1].enable_multisite or tenant_id == 1:
-            raise errors.ForbiddenOperation
 
         log.info('Removing tenant with id: %d', tenant_id, tid=self.request.tid)
 

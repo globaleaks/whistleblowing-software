@@ -2,7 +2,8 @@
 # Implementation of the cleaning operations.
 from datetime import timedelta
 
-from storm.expr import In, Min, Not, Select
+from sqlalchemy import and_, not_
+from sqlalchemy.sql.expression import func
 
 from twisted.internet.defer import inlineCallbacks
 
@@ -16,7 +17,7 @@ from globaleaks.orm import transact
 from globaleaks.security import overwrite_and_remove
 from globaleaks.state import State
 from globaleaks.utils.templating import Templating
-from globaleaks.utils.utility import datetime_now
+from globaleaks.utils.utility import datetime_now, datetime_to_ISO8601
 
 
 __all__ = ['Cleaning']
@@ -31,83 +32,87 @@ class Cleaning(LoopingJob):
         return (3600 * 24) - (current_time.hour * 3600) - (current_time.minute * 60) - current_time.second
 
     @transact
-    def clean_expired_wbtips(self, store):
+    def clean_expired_wbtips(self, session):
         """
         This function checks all the InternalTips and deletes the receipt if the delete threshold is exceeded
         """
         for tid in self.state.tenant_state:
             threshold = datetime_now() - timedelta(days=State.tenant_cache[tid].wbtip_timetolive)
 
-            store.find(models.InternalTip, models.InternalTip.tid == tid,
-                                           models.InternalTip.wb_last_access < threshold).set(receipt_hash = u'')
+            session.query(models.InternalTip) \
+                   .filter(models.InternalTip.tid == tid,
+                           models.InternalTip.wb_last_access < threshold).update({'receipt_hash': u''})
 
     @transact
-    def clean_expired_itips(self, store):
+    def clean_expired_itips(self, session):
         """
         This function, checks all the InternalTips and their expiration date.
         if expired InternalTips are found, it removes that along with
         all the related DB entries comment and tip related.
         """
-        itips_ids = [id for id in store.find(models.InternalTip.id, models.InternalTip.expiration_date < datetime_now())]
-        db_delete_itips(store, itips_ids)
+        itips_ids = [id[0] for id in session.query(models.InternalTip.id).filter(models.InternalTip.expiration_date < datetime_now())]
+        if itips_ids:
+            db_delete_itips(session, itips_ids)
 
     @transact
-    def check_for_expiring_submissions(self, store):
+    def check_for_expiring_submissions(self, session):
         for tid in self.state.tenant_state:
             threshold = datetime_now() + timedelta(hours=State.tenant_cache[tid].notification.tip_expiration_threshold)
 
-            for user in store.find(models.User, tid=tid, role=u'receiver'):
-                itip_ids = [id for id in store.find(models.InternalTip.id,
-                                                    models.InternalTip.tid == tid,
-                                                    models.ReceiverTip.internaltip_id == models.InternalTip.id,
-                                                    models.InternalTip.expiration_date < threshold,
-                                                    models.ReceiverTip.receiver_id == models.Receiver.id,
-                                                    models.Receiver.id == user.id)]
+            for user in session.query(models.User).filter(models.User.tid == tid, models.User.role == u'receiver'):
+                itip_ids = [id[0] for id in session.query(models.InternalTip.id) \
+                                                 .filter(models.InternalTip.tid == tid,
+                                                         models.ReceiverTip.internaltip_id == models.InternalTip.id,
+                                                         models.InternalTip.expiration_date < threshold,
+                                                         models.ReceiverTip.receiver_id == models.Receiver.id,
+                                                         models.Receiver.id == user.id)]
 
                 if not len(itip_ids):
                     continue
 
-                earliest_expiration_date = store.find(Min(models.InternalTip.expiration_date),
-                                                      In(models.InternalTip.id, itip_ids)).one()
+                earliest_expiration_date = session.query(func.min(models.InternalTip.expiration_date)) \
+                                                .filter(models.InternalTip.id.in_(itip_ids)).one()[0]
 
-                user_desc = user_serialize_user(store, user, user.language)
+                user_desc = user_serialize_user(session, user, user.language)
 
                 data = {
                    'type': u'tip_expiration_summary',
-                   'node': db_admin_serialize_node(store, tid, user.language),
-                   'notification': db_get_notification(store, tid, user.language),
+                   'node': db_admin_serialize_node(session, tid, user.language),
+                   'notification': db_get_notification(session, tid, user.language),
                    'user': user_desc,
                    'expiring_submission_count': len(itip_ids),
-                   'earliest_expiration_date': earliest_expiration_date
+                   'earliest_expiration_date': datetime_to_ISO8601(earliest_expiration_date)
                 }
 
                 subject, body = Templating().get_mail_subject_and_body(data)
 
-                store.add(models.Mail({
+                session.add(models.Mail({
+                    'tid': tid,
                     'address': user_desc['mail_address'],
                     'subject': subject,
                     'body': body
                  }))
 
     @transact
-    def clean_db(self, store):
+    def clean_db(self, session):
         # delete stats older than 3 months
-        store.find(models.Stats, models.Stats.start < datetime_now() - timedelta(3*(365/12))).remove()
+        session.query(models.Stats).filter(models.Stats.start < datetime_now() - timedelta(3*(365/12))).delete(synchronize_session='fetch')
 
         # delete anomalies older than 1 months
-        store.find(models.Anomalies, models.Anomalies.date < datetime_now() - timedelta(365/12)).remove()
+        session.query(models.Anomalies).filter(models.Anomalies.date < datetime_now() - timedelta(365/12)).delete(synchronize_session='fetch')
 
         # delete archived schemas not used by any existing submission
-        subselect = Select(models.InternalTip.questionnaire_hash, distinct=True)
-        store.find(models.ArchivedSchema, Not(models.ArchivedSchema.hash.is_in(subselect))).remove()
+        hashes = [x[0] for x in session.query(models.InternalTip.questionnaire_hash)]
+        if hashes:
+            session.query(models.ArchivedSchema).filter(not_(models.ArchivedSchema.hash.in_(hashes))).delete(synchronize_session='fetch')
 
     @transact
-    def get_files_to_secure_delete(self, store):
-        return [filepath for filepath in store.find(models.SecureFileDelete.filepath)]
+    def get_files_to_secure_delete(self, session):
+        return [x[0] for x in session.query(models.SecureFileDelete.filepath)]
 
     @transact
-    def commit_files_deletion(self, store, filepaths):
-        store.find(models.SecureFileDelete, In(models.SecureFileDelete.filepath, filepaths)).remove()
+    def commit_files_deletion(self, session, filepaths):
+        session.query(models.SecureFileDelete).filter(models.SecureFileDelete.filepath.in_(filepaths)).delete(synchronize_session='fetch')
 
     @inlineCallbacks
     def perform_secure_deletion_of_files(self):
@@ -116,7 +121,8 @@ class Cleaning(LoopingJob):
         for file_to_delete in files_to_delete:
             overwrite_and_remove(file_to_delete)
 
-        yield self.commit_files_deletion(files_to_delete)
+        if files_to_delete:
+            yield self.commit_files_deletion(files_to_delete)
 
     @inlineCallbacks
     def operation(self):

@@ -16,10 +16,10 @@ from globaleaks.security import directory_traversal_check
 from globaleaks.utils.utility import uuid4
 
 @transact
-def get_files(store, tid):
+def get_files(session, tid):
     ret = []
 
-    for sf in store.find(models.File, models.File.name != u"", tid=tid):
+    for sf in session.query(models.File).filter(models.File.name != u"", models.File.tid == tid):
         ret.append({
             'id': sf.id,
             'name': sf.name,
@@ -29,10 +29,9 @@ def get_files(store, tid):
     return ret
 
 
-def db_add_file(store, tid, id, name, data):
-    file_obj = None
+def db_add_file(session, tid, id, name, data):
     if id is not None:
-        file_obj = store.find(models.File, tid=tid, id=id).one()
+        file_obj = session.query(models.File).filter(models.File.tid == tid, models.File.id == id).one_or_none()
 
     if file_obj is None:
         file_obj = models.File()
@@ -41,26 +40,26 @@ def db_add_file(store, tid, id, name, data):
         if id is not None:
             file_obj.id = id
 
-        store.add(file_obj)
+        session.add(file_obj)
 
     file_obj.name = name
     file_obj.data = data
 
 
 @transact
-def add_file(store, tid, id, name, data):
-    return db_add_file(store, tid, id, name, data)
+def add_file(session, tid, id, name, data):
+    return db_add_file(session, tid, id, name, data)
 
 
-def db_get_file(store, tid, id):
-    file_obj = store.find(models.File, tid=tid, id=id).one()
+def db_get_file(session, tid, id):
+    file_obj = session.query(models.File).filter(models.File.tid == tid, models.File.id == id).one_or_none()
 
     return file_obj.data if file_obj is not None else ''
 
 
 @transact
-def get_file(store, tid, id):
-    return db_get_file(store, tid, id)
+def get_file(session, tid, id):
+    return db_get_file(session, tid, id)
 
 
 class FileInstance(BaseHandler):
@@ -87,7 +86,7 @@ class FileInstance(BaseHandler):
         if os.path.exists(path):
             os.remove(path)
 
-        return models.delete(models.File, tid=self.request.tid, id=id)
+        return models.delete(models.File, models.File.tid == self.request.tid, models.File.id == id)
 
 
 class FileCollection(BaseHandler):

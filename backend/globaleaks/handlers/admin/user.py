@@ -15,14 +15,14 @@ from globaleaks.utils.structures import fill_localized_keys, get_localized_value
 from globaleaks.utils.utility import log, datetime_now
 
 
-def admin_serialize_receiver(store, receiver, user, language):
+def admin_serialize_receiver(session, receiver, user, language):
     """
     Serialize the specified receiver
 
     :param language: the language in which to localize data
     :return: a dictionary representing the serialization of the receiver
     """
-    ret_dict = user_serialize_user(store, user, language)
+    ret_dict = user_serialize_user(session, user, language)
 
     ret_dict.update({
         'can_delete_submission': receiver.can_delete_submission,
@@ -35,13 +35,12 @@ def admin_serialize_receiver(store, receiver, user, language):
 
     return get_localized_values(ret_dict, receiver, receiver.localized_keys, language)
 
-
 @transact
-def create_user(store, tid, request, language):
-    return user_serialize_user(store, db_create_user(store, tid, request, language), language)
+def create_user(session, tid, request, language):
+    return user_serialize_user(session, db_create_user(session, tid, request, language), language)
 
 
-def db_create_receiver_user(store, tid, request, language):
+def db_create_receiver_user(session, tid, request, language):
     """
     Creates a new receiver
     Returns:
@@ -49,20 +48,19 @@ def db_create_receiver_user(store, tid, request, language):
     """
     fill_localized_keys(request, models.Receiver.localized_keys, language)
 
-    user = db_create_user(store, tid, request, language)
+    user = db_create_user(session, tid, request, language)
 
-    receiver = models.db_forge_obj(store, models.Receiver, request)
+    request['id'] = user.id
 
-    # set receiver.id user.id
-    receiver.id = user.id
+    receiver = models.db_forge_obj(session, models.Receiver, request)
 
     return receiver, user
 
 
 @transact
-def create_receiver_user(store, tid, request, language):
-    receiver, user = db_create_receiver_user(store, tid, request, language)
-    return admin_serialize_receiver(store, receiver, user, language)
+def create_receiver_user(session, tid, request, language):
+    receiver, user = db_create_receiver_user(session, tid, request, language)
+    return admin_serialize_receiver(session, receiver, user, language)
 
 
 def create(tid, request, language):
@@ -77,7 +75,7 @@ def create(tid, request, language):
     return d
 
 
-def db_create_user(store, tid, request, language):
+def db_create_user(session, tid, request, language):
     request['tid'] = tid
 
     fill_localized_keys(request, models.User.localized_keys, language)
@@ -106,19 +104,21 @@ def db_create_user(store, tid, request, language):
     # The various options related in manage PGP keys are used here.
     parse_pgp_options(user, request)
 
-    store.add(user)
+    session.add(user)
+
+    session.flush()
 
     return user
 
 
-def db_admin_update_user(store, tid, user_id, request, language):
+def db_admin_update_user(session, tid, user_id, request, language):
     """
     Updates the specified user.
     raises: globaleaks.errors.UserIdNotFound` if the user does not exist.
     """
     fill_localized_keys(request, models.User.localized_keys, language)
 
-    user = models.db_get(store, models.User, tid=tid, id=user_id)
+    user = models.db_get(session, models.User, models.User.tid == tid, models.User.id == user_id)
 
     user.update(request)
 
@@ -131,36 +131,36 @@ def db_admin_update_user(store, tid, user_id, request, language):
     parse_pgp_options(user, request)
 
     if user.role == 'admin':
-        db_refresh_memory_variables(store, [tid])
+        db_refresh_memory_variables(session, [tid])
 
     return user
 
 
 @transact
-def admin_update_user(store, tid, user_id, request, language):
-    return user_serialize_user(store, db_admin_update_user(store, tid, user_id, request, language), language)
+def admin_update_user(session, tid, user_id, request, language):
+    return user_serialize_user(session, db_admin_update_user(session, tid, user_id, request, language), language)
 
 
 @transact
-def get_user(store, tid, user_id, language):
-    user = models.db_get(store, models.User, tid=tid, id=user_id)
+def get_user(session, tid, user_id, language):
+    user = models.db_get(session, models.User, models.User.tid == tid, models.User.id == user_id)
 
-    return user_serialize_user(store, user, language)
+    return user_serialize_user(session, user, language)
 
 
-def db_get_admin_users(store, tid):
-    return [user_serialize_user(store, user, State.tenant_cache[tid].default_language)
-            for user in store.find(models.User, tid=tid, role=u'admin')]
+def db_get_admin_users(session, tid):
+    return [user_serialize_user(session, user, State.tenant_cache[tid].default_language)
+            for user in session.query(models.User).filter(models.User.tid == tid, models.User.role ==u'admin')]
 
 
 @transact
-def get_user_list(store, tid, language):
+def get_user_list(session, tid, language):
     """
     Returns:
         (list) the list of users
     """
-    users = store.find(models.User, tid=tid)
-    return [user_serialize_user(store, user, language) for user in users]
+    users = session.query(models.User).filter(models.User.tid == tid)
+    return [user_serialize_user(session, user, language) for user in users]
 
 
 class UsersCollection(BaseHandler):
@@ -218,4 +218,4 @@ class UserInstance(BaseHandler):
         Response: None
         Errors: InvalidInputFormat, UserIdNotFound
         """
-        return models.delete(models.User, tid=self.request.tid, id=user_id)
+        return models.delete(models.User, models.User.tid == self.request.tid, models.User.id == user_id)

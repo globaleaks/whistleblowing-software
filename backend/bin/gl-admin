@@ -15,12 +15,10 @@ import sqlite3
 import subprocess as sp
 import sys
 from datetime import datetime
-from storm.database import create_database
-from storm.store import Store
 
 from globaleaks import security
 from globaleaks.db import get_db_file
-from globaleaks.orm import make_db_uri
+from globaleaks.orm import make_db_uri, get_engine
 from globaleaks.models import config, config_desc
 from globaleaks.rest.requests import AdminNotificationDesc, AdminNodeDesc
 from globaleaks.settings import Settings
@@ -132,11 +130,11 @@ def reset_pass(args):
 
     hashed_password = security.hash_password(args.password, salt)
 
-    QUERY = "UPDATE user SET salt=?, password=? WHERE username=?;"
+    QUERY = "UPDATE user SET salt=?, password=? WHERE username=? AND tid=?;"
 
     conn = sqlite3.connect(db_path)
     c = conn.cursor()
-    c.execute(QUERY, (salt, hashed_password, args.username))
+    c.execute(QUERY, (salt, hashed_password, args.username, args.tid))
 
     if c.rowcount != 1:
         print("Failed! The user '{}' does not exist.".format(args.username))
@@ -163,11 +161,11 @@ def get_var(args):
 
     check_file(db_path)
     try:
-        QUERY = "SELECT value FROM config WHERE var_name=?"
+        QUERY = "SELECT value FROM config WHERE var_name=? AND tid=?;"
 
         conn = sqlite3.connect(db_path)
         c = conn.cursor()
-        c.execute(QUERY, (args.varname, ))
+        c.execute(QUERY, (args.varname, args.tid))
         ret = c.fetchone()
         if ret is None:
             print("Failed to read value of var '{}'.".format(args.varname))
@@ -184,17 +182,7 @@ def get_var(args):
 
 
 def select_cfg_factory(varname):
-    fact_map = {
-        'notification': (config.NotificationFactory, AdminNotificationDesc),
-        'node': (config.NodeFactory, AdminNodeDesc),
-        'private': (config.PrivateFactory, {}),
-    }
-    for fact_key, fact_dict in config_desc.GLConfig.items():
-        factCls, req_validator = fact_map[fact_key]
-        for var_key, item in fact_dict.items():
-            if var_key == varname:
-                return factCls, item, req_validator.get(var_key, None)
-    return None, None, None
+    return factCls, item, config_desc.ConfigDescriptor[varname]
 
 
 def set_var(args, silent=False):
@@ -206,37 +194,25 @@ def set_var(args, silent=False):
 
     check_file(db_path)
     try:
-        store = Store(create_database(make_db_uri(db_path)))
+        value = json.dumps({'v': args.value})
 
-        factCls, item, regex = select_cfg_factory(args.varname)
-        if factCls is None:
-            raise ValueError('Invalid varname passed')
+        QUERY = "UPDATE config SET value=? WHERE var_name=? AND tid=?;"
 
-        fact = factCls(store, 1)
+        conn = sqlite3.connect(db_path)
+        c = conn.cursor()
+        c.execute(QUERY, (value, args.varname, args.tid))
+        conn.commit()
+        conn.close()
 
-        new_val = args.value
-        if item._type == bool:
-            if ('0' == new_val or '1' == new_val):
-                new_val = bool(int(new_val))
-            else:
-                raise ValueError('Invalid boolean passed')
-        elif item._type == int:
-            new_val = int(new_val)
-        elif item._type == unicode:
-            if regex is not None and not re.match(regex, new_val):
-                raise ValueError('Invalid value passed for config option')
-
-        if item.validator is not None:
-            item.validator(None, args.varname, new_val)
-
-        fact.set_val(args.varname, new_val)
-        store.commit()
-        out_val = fact.get_val(args.varname)
         if not silent:
-            print("Success! {}:{} set to '{}'".format(args.varname, item, out_val))
+            print("Success! {} set to '{}'".format(args.varname, args.value))
+
     except Exception as e:
-        print("Save failed! {}".format(e), file=sys.stderr)
-        sys.exit(1)
+        # This string is dumped into stdout to ensure an exact string match
+        # will fail
+        print("ERROR")
+        raise e
+
 
 def enable_api_token(args):
     args.varname = u'admin_api_token_digest'
@@ -282,6 +258,7 @@ res_p.set_defaults(func=restore)
 
 pw_p = subp.add_parser("resetpass", help="reset a user's password")
 add_db_path_arg(pw_p)
+pw_p.add_argument("--tid", help="the tenant id", default='1', type=int)
 pw_p.add_argument("username", help="the username used to login into GL")
 pw_p.add_argument("password", nargs="?", help="if not set a random password is generated",
                   default=security.generateRandomKey(16))
@@ -289,8 +266,16 @@ pw_p.set_defaults(func=reset_pass)
 
 rv_p = subp.add_parser("getvar", help="get database config variable")
 add_db_path_arg(rv_p)
+rv_p.add_argument("--tid", help="the tenant id", default='1', type=int)
 rv_p.add_argument("varname", help="the name of the config var", default='version', type=unicode)
 rv_p.set_defaults(func=get_var)
+
+sv_p = subp.add_parser("setvar", help="set database config variable")
+add_db_path_arg(sv_p)
+sv_p.add_argument("--tid", help="the tenant id", default='1', type=int)
+sv_p.add_argument("varname", help="the name of the config var", type=unicode)
+sv_p.add_argument("value", help="value which must be of the correct type Bool(0|1), Int(0-9^9), String(everything else)")
+sv_p.set_defaults(func=set_var)
 
 et_p = subp.add_parser("enable-api-token", help="enable the API token")
 add_db_path_arg(et_p)
@@ -299,12 +284,6 @@ et_p.set_defaults(func=enable_api_token)
 dt_p = subp.add_parser("disable-api-token", help="disable the API token")
 add_db_path_arg(dt_p)
 dt_p.set_defaults(func=disable_api_token)
-
-sv_p = subp.add_parser("setvar", help="set database config variable")
-add_db_path_arg(sv_p)
-sv_p.add_argument("varname", help="the name of the config var", type=unicode)
-sv_p.add_argument("value", help="value which must be of the correct type Bool(0|1), Int(0-9^9), String(everything else)")
-sv_p.set_defaults(func=set_var)
 
 if __name__ == '__main__':
     args = parser.parse_args()

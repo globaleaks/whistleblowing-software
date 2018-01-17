@@ -26,27 +26,27 @@ __all__ = ['OnionService']
 
 
 @transact
-def list_onion_service_info(store):
-    return [db_get_onion_service_info(store, tid)
-        for tid in store.find(models.Tenant.id, models.Tenant.active==True)]
+def list_onion_service_info(session):
+    return [db_get_onion_service_info(session, x[0])
+        for x in session.query(models.Tenant.id).filter(models.Tenant.active == True)]
 
 
 @transact
-def get_onion_service_info(store, tid):
-    return db_get_onion_service_info(store, tid)
+def get_onion_service_info(session, tid):
+    return db_get_onion_service_info(session, tid)
 
 
-def db_get_onion_service_info(store, tid):
-    hostname = NodeFactory(store, tid).get_val(u'onionservice')
-    key = PrivateFactory(store, tid).get_val(u'tor_onion_key')
+def db_get_onion_service_info(session, tid):
+    hostname = NodeFactory(session, tid).get_val(u'onionservice')
+    key = PrivateFactory(session, tid).get_val(u'tor_onion_key')
 
     return hostname, key, tid
 
 
 @transact
-def set_onion_service_info(store, tid, hostname, key):
-    NodeFactory(store, tid).set_val(u'onionservice', hostname)
-    PrivateFactory(store, tid).set_val(u'tor_onion_key', key)
+def set_onion_service_info(session, tid, hostname, key):
+    NodeFactory(session, tid).set_val(u'onionservice', hostname)
+    PrivateFactory(session, tid).set_val(u'tor_onion_key', key)
 
     # Update external application state
     State.tenant_cache[tid].onionservice = hostname

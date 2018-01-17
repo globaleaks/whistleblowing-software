@@ -41,8 +41,8 @@ class ProcessSupervisor(object):
 
         self.tls_cfg['tls_socket_fds'] = [ns.fileno() for ns in net_sockets]
 
-    def db_maybe_launch_https_workers(self, store):
-        privFact = PrivateFactory(store, 1)
+    def db_maybe_launch_https_workers(self, session):
+        privFact = PrivateFactory(session, 1)
 
         # If root_tenant is disabled do not start https
         on = privFact.get_val(u'https_enabled')
@@ -50,7 +50,7 @@ class ProcessSupervisor(object):
             log.info("Not launching workers")
             return defer.succeed(None)
 
-        site_cfgs = load_tls_dict_list(store)
+        site_cfgs = load_tls_dict_list(session)
 
         valid_cfgs, err = [], None
         # Determine which site_cfgs are valid and only pass those to the child.
@@ -71,8 +71,8 @@ class ProcessSupervisor(object):
         return self.launch_https_workers()
 
     @transact
-    def maybe_launch_https_workers(self, store):
-        self.db_maybe_launch_https_workers(store)
+    def maybe_launch_https_workers(self, session):
+        self.db_maybe_launch_https_workers(session)
 
     def launch_https_workers(self):
         return defer.DeferredList([self.launch_worker() for _ in range(self.cpu_count)])

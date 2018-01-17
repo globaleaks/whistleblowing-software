@@ -14,16 +14,19 @@ from globaleaks.utils.structures import fill_localized_keys, get_localized_value
 from globaleaks.utils.utility import log
 
 
-def admin_serialize_context(store, context, language):
+def admin_serialize_context(session, context, language):
     """
     Serialize the specified context
 
-    :param store: the store on which perform queries.
+    :param session: the session on which perform queries.
     :param language: the language in which to localize data.
     :return: a dictionary representing the serialization of the context.
     """
-    receivers = [id for id in store.find(models.ReceiverContext.receiver_id, models.ReceiverContext.context_id == context.id).order_by(models.ReceiverContext.presentation_order)]
-    picture = db_get_model_img(store, context.tid, 'contexts', context.id)
+    receivers = [r[0] for r in session.query(models.ReceiverContext.receiver_id) \
+                                    .filter(models.ReceiverContext.context_id == context.id) \
+                                    .order_by(models.ReceiverContext.presentation_order)]
+
+    picture = db_get_model_img(session, context.tid, 'contexts', context.id)
 
     ret_dict = {
         'id': context.id,
@@ -51,38 +54,39 @@ def admin_serialize_context(store, context, language):
 
 
 @transact
-def get_context_list(store, tid, language):
+def get_context_list(session, tid, language):
     """
     Returns the context list.
 
-    :param store: the store on which perform queries.
+    :param session: the session on which perform queries.
     :param language: the language in which to localize data.
     :return: a dictionary representing the serialization of the contexts.
     """
-    return sorted([admin_serialize_context(store, context, language)
-                      for context in store.find(models.Context, tid=tid)],
+    return sorted([admin_serialize_context(session, context, language)
+                      for context in session.query(models.Context).filter(models.Context.tid == tid)],
                   key=lambda x: x['presentation_order'])
 
 
-def db_associate_context_receivers(store, context, receiver_ids):
-    store.find(models.ReceiverContext, tid=context.tid, context_id=context.id).remove()
+def db_associate_context_receivers(session, context, receiver_ids):
+    session.query(models.ReceiverContext).filter(models.ReceiverContext.tid == context.tid, models.ReceiverContext.context_id == context.id).delete(synchronize_session='fetch')
 
     for i, receiver_id in enumerate(receiver_ids):
-        store.add(models.ReceiverContext({'context_id': context.id,
-                                          'receiver_id': receiver_id,
-                                          'tid': context.tid,
-                                          'presentation_order': i}))
+        session.add(models.ReceiverContext({'context_id': context.id,
+                                            'receiver_id': receiver_id,
+                                            'tid': context.tid,
+                                            'presentation_order': i}))
+    session.flush()
 
 
 @transact
-def get_context(store, tid, context_id, language):
+def get_context(session, tid, context_id, language):
     """
     Returns:
         (dict) the context with the specified id.
     """
-    context = models.db_get(store, models.Context, tid=tid, id=context_id)
+    context = session.query(models.Context).filter(models.Context.tid == tid, models.Context.id == context_id).one()
 
-    return admin_serialize_context(store, context, language)
+    return admin_serialize_context(session, context, language)
 
 
 def fill_context_request(tid, request, language):
@@ -100,28 +104,28 @@ def fill_context_request(tid, request, language):
     return request
 
 
-def db_update_context(store, tid, context, request, language):
+def db_update_context(session, tid, context, request, language):
     request = fill_context_request(tid, request, language)
 
     context.update(request)
 
-    db_associate_context_receivers(store, context, request['receivers'])
+    db_associate_context_receivers(session, context, request['receivers'])
 
     return context
 
 
-def db_create_context(store, tid, request, language):
+def db_create_context(session, tid, request, language):
     request = fill_context_request(tid, request, language)
 
-    context = models.db_forge_obj(store, models.Context, request)
+    context = models.db_forge_obj(session, models.Context, request)
 
-    db_associate_context_receivers(store, context, request['receivers'])
+    db_associate_context_receivers(session, context, request['receivers'])
 
     return context
 
 
 @transact
-def create_context(store, tid, request, language):
+def create_context(session, tid, request, language):
     """
     Creates a new context from the request of a client.
 
@@ -131,13 +135,13 @@ def create_context(store, tid, request, language):
     Returns:
         (dict) representing the configured context
     """
-    context = db_create_context(store, tid, request, language)
+    context = db_create_context(session, tid, request, language)
 
-    return admin_serialize_context(store, context, language)
+    return admin_serialize_context(session, context, language)
 
 
 @transact
-def update_context(store, tid, context_id, request, language):
+def update_context(session, tid, context_id, request, language):
     """
     Updates the specified context. If the key receivers is specified we remove
     the current receivers of the Context and reset set it to the new specified
@@ -152,15 +156,15 @@ def update_context(store, tid, context_id, request, language):
     Returns:
             (dict) the serialized object updated
     """
-    context = models.db_get(store, models.Context, tid=tid, id=context_id)
-    context = db_update_context(store, tid, context, request, language)
+    context = models.db_get(session, models.Context, models.Context.tid == tid, models.Context.id == context_id)
+    context = db_update_context(session, tid, context, request, language)
 
-    return admin_serialize_context(store, context, language)
+    return admin_serialize_context(session, context, language)
 
 
 @transact
-def order_elements(store, handler, req_args, *args, **kwargs):
-    ctxs = store.find(models.Context, tid=handler.request.tid)
+def order_elements(session, handler, req_args, *args, **kwargs):
+    ctxs = session.query(models.Context).filter(models.Context.tid == handler.request.tid)
 
     id_dict = { ctx.id: ctx for ctx in ctxs }
     ids = req_args['ids']
@@ -228,4 +232,4 @@ class ContextInstance(BaseHandler):
         Request: AdminContextDesc
         Response: None
         """
-        return models.delete(models.Context, tid=self.request.tid, id=context_id)
+        return models.delete(models.Context, models.Context.tid == self.request.tid, models.Context.id == context_id)

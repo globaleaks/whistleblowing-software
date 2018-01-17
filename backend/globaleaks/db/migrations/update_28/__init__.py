@@ -1,113 +1,112 @@
 # -*- coding: utf-8 -*-
-
-from storm.locals import Int, Bool, Unicode, JSON
-
 from globaleaks.db.migrations.update import MigrationBase
-from globaleaks.models import ModelWithID, Model
+from globaleaks.models import Model, Model
+from globaleaks.models.properties import *
 
 
-class Field_v_27(ModelWithID):
-    __storm_table__ = 'field'
-    x = Int()
-    y = Int()
-    width = Int()
-    key = Unicode()
-    label = JSON()
-    description = JSON()
-    hint = JSON()
-    required = Bool()
-    preview = Bool()
-    multi_entry = Bool()
-    multi_entry_hint = JSON()
-    stats_enabled = Bool()
-    activated_by_score = Int()
-    template_id = Unicode()
-    type = Unicode()
-    instance = Unicode()
-    editable = Bool()
+class Field_v_27(Model):
+    __tablename__ = 'field'
+    id = Column(String(36), primary_key=True, default=uuid4, nullable=False)
+    x = Column(Integer)
+    y = Column(Integer)
+    width = Column(Integer)
+    key = Column(UnicodeText)
+    label = Column(JSON)
+    description = Column(JSON)
+    hint = Column(JSON)
+    required = Column(Boolean)
+    preview = Column(Boolean)
+    multi_entry = Column(Boolean)
+    multi_entry_hint = Column(JSON)
+    stats_enabled = Column(Boolean)
+    activated_by_score = Column(Integer)
+    template_id = Column(String(36))
+    type = Column(UnicodeText)
+    instance = Column(UnicodeText)
+    editable = Column(Boolean)
 
 
-class Step_v_27(ModelWithID):
-    __storm_table__ = 'step'
-    context_id = Unicode()
-    label = JSON()
-    description = JSON()
-    presentation_order = Int()
+class Step_v_27(Model):
+    __tablename__ = 'step'
+    id = Column(String(36), primary_key=True, default=uuid4, nullable=False)
+    context_id = Column(String(36))
+    label = Column(JSON)
+    description = Column(JSON)
+    presentation_order = Column(Integer)
 
 
-class FieldOption_v_27(ModelWithID):
-    __storm_table__ = 'fieldoption'
-    field_id = Unicode()
-    presentation_order = Int()
-    label = JSON()
-    score_points = Int()
+class FieldOption_v_27(Model):
+    __tablename__ = 'fieldoption'
+    id = Column(String(36), primary_key=True, default=uuid4, nullable=False)
+    field_id = Column(String(36))
+    presentation_order = Column(Integer)
+    label = Column(JSON)
+    score_points = Column(Integer)
 
 
 class FieldField_v_27(Model):
-    __storm_table__ = 'field_field'
-    __storm_primary__ = 'parent_id', 'child_id'
+    __tablename__ = 'field_field'
 
-    parent_id = Unicode()
-    child_id = Unicode()
+    parent_id = Column(String(36), primary_key=True)
+    child_id = Column(String(36), primary_key=True)
 
 
 class StepField_v_27(Model):
-    __storm_table__ = 'step_field'
-    __storm_primary__ = 'step_id', 'field_id'
+    __tablename__ = 'step_field'
 
-    step_id = Unicode()
-    field_id = Unicode()
+    step_id = Column(String(36), primary_key=True)
+    field_id = Column(String(36), primary_key=True)
 
 
 class MigrationScript(MigrationBase):
     def migrate_Step(self):
-        old_objs = self.store_old.find(self.model_from['Step'])
+        old_objs = self.store_old.query(self.model_from['Step'])
         for old_obj in old_objs:
             new_obj = self.model_to['Step']()
-            for _, v in new_obj._storm_columns.items():
-                if v.name == 'triggered_by_score':
+            for key in [c.key for c in new_obj.__table__.columns]:
+                if key == 'triggered_by_score':
                     new_obj.triggered_by_score = 0
                     continue
 
-                setattr(new_obj, v.name, getattr(old_obj, v.name))
+                setattr(new_obj, key, getattr(old_obj, key))
 
             self.store_new.add(new_obj)
 
     def migrate_Field(self):
-        old_objs = self.store_old.find(self.model_from['Field'])
+        old_objs = self.store_old.query(self.model_from['Field'])
         for old_obj in old_objs:
             new_obj = self.model_to['Field']()
-            for _, v in new_obj._storm_columns.items():
-                if v.name == 'preview':
+            for key in [c.key for c in new_obj.__table__.columns]:
+                if key == 'preview':
                     if old_obj.preview is None:
                         new_obj.preview = False
                     else:
                         new_obj.preview = old_obj.preview
 
-                elif v.name == 'step_id':
-                    sf = self.store_old.find(self.model_from['StepField'], self.model_from['StepField'].field_id == old_obj.id).one()
+                elif key == 'step_id':
+                    sf = self.store_old.query(self.model_from['StepField']).filter(self.model_from['StepField'].field_id == old_obj.id).one_or_none()
                     if sf is not None:
                         new_obj.step_id = sf.step_id
 
-                elif v.name == 'fieldgroup_id':
-                    ff = self.store_old.find(self.model_from['FieldField'], self.model_from['FieldField'].child_id == old_obj.id).one()
+                elif key == 'fieldgroup_id':
+                    ff = self.store_old.query(self.model_from['FieldField']).filter(self.model_from['FieldField'].child_id == old_obj.id).one_or_none()
                     if ff is not None:
                         new_obj.fieldgroup_id = ff.parent_id
 
-                elif v.name == 'triggered_by_score':
+                elif key == 'triggered_by_score':
                     new_obj.triggered_by_score = 0
 
                 else:
-                    setattr(new_obj, v.name, getattr(old_obj, v.name))
+                    setattr(new_obj, key, getattr(old_obj, key))
 
             self.store_new.add(new_obj)
 
     def migrate_FieldOption(self):
-        old_objs = self.store_old.find(self.model_from['FieldOption'])
+        old_objs = self.store_old.query(self.model_from['FieldOption'])
         for old_obj in old_objs:
             new_obj = self.model_to['FieldOption']()
-            for _, v in new_obj._storm_columns.items():
-                if v.name not in ['trigger_field', 'trigger_step']:
-                    setattr(new_obj, v.name, getattr(old_obj, v.name))
+            for key in [c.key for c in new_obj.__table__.columns]:
+                if key != 'trigger_field':
+                    setattr(new_obj, key, getattr(old_obj, key))
 
             self.store_new.add(new_obj)
