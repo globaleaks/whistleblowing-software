@@ -21,7 +21,7 @@ describe('admin configure advanced settings', function() {
       element(by.model('new_shorturl.shorturl')).sendKeys('shorturl-' + i.toString());
       element(by.model('new_shorturl.longurl')).sendKeys('longurl');
       element(by.cssContainingText("button", "Add")).click();
-      element(by.cssContainingText("button", "Delete")).click();
+      element.all(by.cssContainingText("button", "Delete")).first().click();
     }
   });
 

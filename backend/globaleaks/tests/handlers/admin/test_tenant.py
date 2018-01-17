@@ -25,8 +25,8 @@ class TenantTestEnv(helpers.TestHandlerWithPopulatedDB):
 
 
 @transact
-def get_salt(store, tid):
-    return config.PrivateFactory(store, tid).get_val(u'receipt_salt')
+def get_salt(session, tid):
+    return config.PrivateFactory(session, tid).get_val(u'receipt_salt')
 
 class TestTenantCollection(TenantTestEnv):
     _handler = tenant.TenantCollection

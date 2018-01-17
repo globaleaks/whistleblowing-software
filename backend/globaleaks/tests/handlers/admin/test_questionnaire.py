@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
 import os
 
-import sqlite3
+from sqlalchemy.exc import IntegrityError
+
+from twisted.python import failure
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.handlers.admin import questionnaire
@@ -27,10 +29,7 @@ class TestQuestionnairesCollection(helpers.TestCollectionHandler):
 
         invalid_test_cases = [
             ('cyclic_groupid.json', errors.InvalidInputFormat),
-            ('duplicate_ids.json', sqlite3.IntegrityError),
-            ('malformed_ids.json', sqlite3.IntegrityError),
-            ('malformed_attrs.json', sqlite3.IntegrityError),
-            ('blank_ids.json', sqlite3.IntegrityError),
+            ('duplicate_ids.json', IntegrityError)
         ]
 
         for fname, err in invalid_test_cases:

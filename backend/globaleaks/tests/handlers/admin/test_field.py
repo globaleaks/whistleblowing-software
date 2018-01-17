@@ -12,8 +12,8 @@ from twisted.internet.defer import inlineCallbacks
 
 
 @transact
-def get_id_of_first_step_of_questionnaire(store, questionnaire_id):
-    return store.find(models.Step, models.Step.questionnaire_id == questionnaire_id)[0].id
+def get_id_of_first_step_of_questionnaire(session, questionnaire_id):
+    return session.query(models.Step).filter(models.Step.questionnaire_id == questionnaire_id)[0].id
 
 
 class TestFieldCreate(helpers.TestHandler):
