@@ -21,13 +21,13 @@ def get_statistics(state):
 
 
 @transact
-def save_statistics(store, start, end, stats):
+def save_statistics(session, start, end, stats):
     for tid in stats:
         newstat = Stats()
         newstat.tid = tid
         newstat.start = start
         newstat.summary = stats[tid]
-        store.add(newstat)
+        session.add(newstat)
 
 
 class Statistics(LoopingJob):

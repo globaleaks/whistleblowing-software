@@ -15,7 +15,7 @@ from globaleaks.rest import errors, requests
 from globaleaks.utils.utility import log, datetime_now, datetime_to_ISO8601
 
 
-def wb_serialize_ifile(store, ifile):
+def wb_serialize_ifile(session, ifile):
     return {
         'id': ifile.id,
         'creation_date': datetime_to_ISO8601(ifile.creation_date),
@@ -25,10 +25,10 @@ def wb_serialize_ifile(store, ifile):
     }
 
 
-def wb_serialize_wbfile(store, wbfile):
-    receiver_id = store.find(models.ReceiverTip.receiver_id,
-                             models.ReceiverTip.id == wbfile.receivertip_id,
-                             models.ReceiverTip.tid == wbfile.tid).one()
+def wb_serialize_wbfile(session, wbfile):
+    receiver_id = session.query(models.ReceiverTip.receiver_id) \
+                       .filter(models.ReceiverTip.id == wbfile.receivertip_id,
+                               models.ReceiverTip.tid == wbfile.tid).one()
 
     return {
         'id': wbfile.id,
@@ -41,48 +41,51 @@ def wb_serialize_wbfile(store, wbfile):
     }
 
 
-def db_get_rfile_list(store, tid, itip_id):
-    return [wb_serialize_ifile(store, ifile) for ifile in store.find(models.InternalFile, internaltip_id=itip_id, tid=tid)]
+def db_get_rfile_list(session, tid, itip_id):
+    return [wb_serialize_ifile(session, ifile) for ifile in session.query(models.InternalFile) \
+                                                               .filter(models.InternalFile.internaltip_id == itip_id,
+                                                                       models.InternalFile.tid == tid)]
 
 
-def db_get_wbfile_list(store, tid, itip_id):
-    wbfiles = store.find(models.WhistleblowerFile,
-                         models.WhistleblowerFile.receivertip_id == models.ReceiverTip.id,
-                         models.ReceiverTip.internaltip_id == itip_id,
-                         tid=tid)
+def db_get_wbfile_list(session, tid, itip_id):
+    wbfiles = session.query(models.WhistleblowerFile) \
+                     .filter(models.WhistleblowerFile.receivertip_id == models.ReceiverTip.id,
+                             models.ReceiverTip.internaltip_id == itip_id,
+                             models.WhistleblowerFile.tid == tid)
 
-    return [wb_serialize_wbfile(store, wbfile) for wbfile in wbfiles]
+    return [wb_serialize_wbfile(session, wbfile) for wbfile in wbfiles]
 
 
-def db_get_wbtip(store, tid, itip_id, language):
-    itip = models.db_get(store, models.InternalTip,
-                                models.InternalTip.id == itip_id,
-                                models.InternalTip.tid == tid)
+def db_get_wbtip(session, tid, itip_id, language):
+    itip = models.db_get(session,
+                         models.InternalTip,
+                         models.InternalTip.id == itip_id,
+                         models.InternalTip.tid == tid)
 
     itip.wb_access_counter += 1
     itip.wb_last_access = datetime_now()
 
-    return serialize_wbtip(store, itip, language)
+    return serialize_wbtip(session, itip, language)
 
 
 @transact
-def get_wbtip(store, tid, itip_id, language):
-    return db_get_wbtip(store, tid, itip_id, language)
+def get_wbtip(session, tid, itip_id, language):
+    return db_get_wbtip(session, tid, itip_id, language)
 
 
-def serialize_wbtip(store, itip, language):
-    ret = serialize_usertip(store, itip, itip, language)
+def serialize_wbtip(session, itip, language):
+    ret = serialize_usertip(session, itip, itip, language)
 
-    ret['comments'] = db_get_itip_comment_list(store, itip.tid, itip)
-    ret['rfiles'] = db_get_rfile_list(store, itip.tid, itip.id)
-    ret['wbfiles'] = db_get_wbfile_list(store, itip.tid, itip.id)
+    ret['comments'] = db_get_itip_comment_list(session, itip.tid, itip)
+    ret['rfiles'] = db_get_rfile_list(session, itip.tid, itip.id)
+    ret['wbfiles'] = db_get_wbfile_list(session, itip.tid, itip.id)
 
     return ret
 
 
 @transact
-def create_comment(store, tid, wbtip_id, request):
-    internaltip = models.db_get(store, models.InternalTip, id=wbtip_id, tid=tid)
+def create_comment(session, tid, wbtip_id, request):
+    internaltip = session.query(models.InternalTip).filter(models.InternalTip.id == wbtip_id, models.InternalTip.tid == tid)
 
     internaltip.update_date = internaltip.wb_last_access = datetime_now()
 
@@ -91,32 +94,33 @@ def create_comment(store, tid, wbtip_id, request):
     comment.content = request['content']
     comment.internaltip_id = wbtip_id
     comment.type = u'whistleblower'
-    store.add(comment)
+    session.add(comment)
+    session.flush()
 
-    return serialize_comment(store, comment)
+    return serialize_comment(session, comment)
 
 
 @transact
-def get_itip_message_list(store, tid, wbtip_id, receiver_id):
+def get_itip_message_list(session, tid, wbtip_id, receiver_id):
     """
     Get the messages content and mark all the unread
     messages as "read"
     """
-    rtip = store.find(models.ReceiverTip,
-                      models.ReceiverTip.internaltip_id == wbtip_id,
-                      models.InternalTip.id == wbtip_id,
-                      models.ReceiverTip.receiver_id == receiver_id,
-                      tid=tid).one()
+    rtip = session.query(models.ReceiverTip) \
+                .filter(models.ReceiverTip.internaltip_id == wbtip_id,
+                        models.InternalTip.id == wbtip_id,
+                        models.ReceiverTip.receiver_id == receiver_id,
+                        models.ReceiverTip.tid == tid).one()
 
-    return [serialize_message(store, message) for message in store.find(models.Message, models.Message.receivertip_id == rtip.id, tid=tid)]
+    return [serialize_message(session, message) for message in session.query(models.Message).filter(models.Message.receivertip_id == rtip.id, models.Message.tid == tid)]
 
 @transact
-def create_message(store, tid, wbtip_id, receiver_id, request):
-    rtip_id, internaltip = store.find((models.ReceiverTip.id, models.InternalTip),
-                                      models.ReceiverTip.internaltip_id == wbtip_id,
-                                      models.InternalTip.id == wbtip_id,
-                                      models.ReceiverTip.receiver_id == receiver_id,
-                                      models.ReceiverTip.tid == tid).one()
+def create_message(session, tid, wbtip_id, receiver_id, request):
+    rtip_id, internaltip = session.query(models.ReceiverTip.id, models.InternalTip) \
+                                .filter(models.ReceiverTip.internaltip_id == wbtip_id,
+                                        models.InternalTip.id == wbtip_id,
+                                        models.ReceiverTip.receiver_id == receiver_id,
+                                        models.ReceiverTip.tid == tid).one()
 
 
     if rtip_id is None:
@@ -129,23 +133,26 @@ def create_message(store, tid, wbtip_id, receiver_id, request):
     msg.content = request['content']
     msg.receivertip_id = rtip_id
     msg.type = u'whistleblower'
-    store.add(msg)
+    session.add(msg)
+    session.flush()
 
-    return serialize_message(store, msg)
+    return serialize_message(session, msg)
 
 
 @transact
-def update_identity_information(store, tid, tip_id, identity_field_id, identity_field_answers, language):
-    internaltip = models.db_get(store, models.InternalTip, id=tip_id, tid=tid)
+def update_identity_information(session, tid, tip_id, identity_field_id, identity_field_answers, language):
+    internaltip = models.db_get(session, models.InternalTip, models.InternalTip.id == tip_id, models.InternalTip.tid == tid)
 
     if internaltip.identity_provided:
         return
 
-    questionnaire = db_serialize_archived_questionnaire_schema(store, internaltip.questionnaire_hash, language)
+    aqs = session.query(models.ArchivedSchema).filter(models.ArchivedSchema.hash == internaltip.questionnaire_hash).one()
+
+    questionnaire = db_serialize_archived_questionnaire_schema(session, aqs.schema, language)
     for step in questionnaire:
         for field in step['children']:
             if field['id'] == identity_field_id and field['id'] == 'whistleblower_identity':
-                db_save_questionnaire_answers(store, tid, internaltip.id,
+                db_save_questionnaire_answers(session, tid, internaltip.id,
                                               {identity_field_id: [identity_field_answers]})
                 now = datetime_now()
                 internaltip.update_date = now
@@ -217,15 +224,15 @@ class WBTipWBFileHandler(WBFileHandler):
     check_roles = 'whistleblower'
     upload_handler = True
 
-    def user_can_access(self, store, tid, wbfile):
-        wbtip_id = store.find(models.InternalTip.id,
-                              models.InternalTip.id == models.ReceiverTip.internaltip_id,
-                              models.ReceiverTip.id == wbfile.receivertip_id,
-                              models.ReceiverTip.tid == tid).one()
+    def user_can_access(self, session, tid, wbfile):
+        wbtip_id = session.query(models.InternalTip.id) \
+                          .filter(models.InternalTip.id == models.ReceiverTip.internaltip_id,
+                                  models.ReceiverTip.id == wbfile.receivertip_id,
+                                  models.ReceiverTip.tid == tid).one_or_none()
 
-        return wbtip_id is not None and self.current_user.user_id == wbtip_id
+        return wbtip_id is not None and self.current_user.user_id == wbtip_id[0]
 
-    def access_wbfile(self, store, wbfile):
+    def access_wbfile(self, session, wbfile):
         wbfile.downloads += 1
         log.debug("Download of file %s by whistleblower %s",
                   wbfile.id, self.current_user.user_id)

@@ -23,7 +23,7 @@ class Rosetta(object):
         self._localized_strings = {}
         self._localized_keys = keys
 
-    def acquire_storm_object(self, obj):
+    def acquire_orm_object(self, obj):
         self._localized_strings = {key: getattr(obj, key) for key in self._localized_keys}
 
     def acquire_multilang_dict(self, obj):
@@ -77,7 +77,7 @@ def get_localized_values(dictionary, obj, keys, language):
     if isinstance(obj, dict):
         mo.acquire_multilang_dict(obj)
     elif isinstance(obj, Model):
-        mo.acquire_storm_object(obj)
+        mo.acquire_orm_object(obj)
 
     if language is not None:
         dictionary.update({key: mo.dump_localized_key(key, language) for key in keys})

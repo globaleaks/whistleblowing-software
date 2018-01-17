@@ -5,7 +5,7 @@ from globaleaks.utils.utility import datetime_to_ISO8601
 
 
 # InternaltFile
-def serialize_ifile(store, ifile):
+def serialize_ifile(session, ifile):
     return {
         'id': ifile.id,
         'creation_date': datetime_to_ISO8601(ifile.creation_date),
@@ -16,11 +16,11 @@ def serialize_ifile(store, ifile):
 
 
 # ReceiverFile
-def serialize_rfile(store, tid, rfile):
-    ifile = store.find(models.InternalFile,
-                       models.InternalFile.id == models.ReceiverFile.internalfile_id,
-                       models.ReceiverFile.id == rfile.id,
-                       tid=tid).one()
+def serialize_rfile(session, tid, rfile):
+    ifile = session.query(models.InternalFile) \
+                 .filter(models.InternalFile.id == models.ReceiverFile.internalfile_id,
+                         models.ReceiverFile.id == rfile.id,
+                         models.InternalFile.tid == tid).one()
 
     return {
         'id': rfile.id,
@@ -34,10 +34,10 @@ def serialize_rfile(store, tid, rfile):
     }
 
 # WhistleblowerFile
-def serialize_wbfile(store, tid, wbfile):
-    receiver_id = store.find(models.ReceiverTip.receiver_id,
-                             models.ReceiverTip.id == wbfile.receivertip_id,
-                             models.ReceiverTip.tid == tid).one()
+def serialize_wbfile(session, tid, wbfile):
+    receiver_id = session.query(models.ReceiverTip.receiver_id) \
+                       .filter(models.ReceiverTip.id == wbfile.receivertip_id,
+                               models.ReceiverTip.tid == tid).one()
 
     return {
         'id': wbfile.id,

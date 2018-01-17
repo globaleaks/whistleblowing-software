@@ -16,40 +16,40 @@ from globaleaks.utils.structures import fill_localized_keys
 from globaleaks.utils.utility import datetime_to_ISO8601, datetime_now
 
 
-def db_get_questionnaire_list(store, tid, language):
-    questionnaires = store.find(models.Questionnaire, tid=tid)
+def db_get_questionnaire_list(session, tid, language):
+    questionnaires = session.query(models.Questionnaire).filter(models.Questionnaire.tid == tid)
 
-    return [serialize_questionnaire(store, questionnaire, language) for questionnaire in questionnaires]
+    return [serialize_questionnaire(session, questionnaire, language) for questionnaire in questionnaires]
 
 
 @transact
-def get_questionnaire_list(store, tid, language):
+def get_questionnaire_list(session, tid, language):
     """
     Returns the questionnaire list.
 
-    :param store: the store on which perform queries.
+    :param session: the session on which perform queries.
     :param language: the language in which to localize data.
     :return: a dictionary representing the serialization of the questionnaires.
     """
-    return db_get_questionnaire_list(store, tid, language)
+    return db_get_questionnaire_list(session, tid, language)
 
 
-def db_get_questionnaire(store, tid, questionnaire_id, language):
+def db_get_questionnaire(session, tid, questionnaire_id, language):
     """
     Returns:
         (dict) the questionnaire with the specified id.
     """
-    questionnaire = models.db_get(store, models.Questionnaire, tid=tid, id=questionnaire_id)
+    questionnaire = models.db_get(session, models.Questionnaire, models.Questionnaire.tid == tid, models.Questionnaire.id == questionnaire_id)
 
-    return serialize_questionnaire(store, questionnaire, language)
+    return serialize_questionnaire(session, questionnaire, language)
 
 
 @transact
-def get_questionnaire(store, tid, questionnaire_id, language):
-    return db_get_questionnaire(store, tid, questionnaire_id, language)
+def get_questionnaire(session, tid, questionnaire_id, language):
+    return db_get_questionnaire(session, tid, questionnaire_id, language)
 
 
-def db_update_questionnaire(store, questionnaire, request, language):
+def db_update_questionnaire(session, questionnaire, request, language):
     fill_localized_keys(request, models.Questionnaire.localized_keys, language)
 
     questionnaire.update(request)
@@ -57,20 +57,20 @@ def db_update_questionnaire(store, questionnaire, request, language):
     return questionnaire
 
 
-def db_create_questionnaire(store, tid, questionnaire_dict, language):
+def db_create_questionnaire(session, tid, questionnaire_dict, language):
     fill_localized_keys(questionnaire_dict, models.Questionnaire.localized_keys, language)
 
     questionnaire_dict['tid'] = tid
-    q = models.db_forge_obj(store, models.Questionnaire, questionnaire_dict)
+    q = models.db_forge_obj(session, models.Questionnaire, questionnaire_dict)
 
     for step in questionnaire_dict.get('steps', []):
-        db_create_step(store, tid, step, language)
+        db_create_step(session, tid, step, language)
 
     return q
 
 
 @transact
-def create_questionnaire(store, tid, request, language):
+def create_questionnaire(session, tid, request, language):
     """
     Creates a new questionnaire from the request of a client.
 
@@ -80,13 +80,13 @@ def create_questionnaire(store, tid, request, language):
     Returns:
         (dict) representing the configured questionnaire
     """
-    questionnaire = db_create_questionnaire(store, tid, request, language)
+    questionnaire = db_create_questionnaire(session, tid, request, language)
 
-    return serialize_questionnaire(store, questionnaire, language)
+    return serialize_questionnaire(session, questionnaire, language)
 
 
 @transact
-def update_questionnaire(store, tid, questionnaire_id, request, language):
+def update_questionnaire(session, tid, questionnaire_id, request, language):
     """
     Updates the specified questionnaire. If the key receivers is specified we remove
     the current receivers of the Questionnaire and reset set it to the new specified
@@ -101,11 +101,11 @@ def update_questionnaire(store, tid, questionnaire_id, request, language):
     Returns:
             (dict) the serialized object updated
     """
-    questionnaire = models.db_get(store, models.Questionnaire, tid=tid, id=questionnaire_id)
+    questionnaire = models.db_get(session, models.Questionnaire, models.Questionnaire.tid == tid, models.Questionnaire.id == questionnaire_id)
 
-    questionnaire = db_update_questionnaire(store, questionnaire, request, language)
+    questionnaire = db_update_questionnaire(session, questionnaire, request, language)
 
-    return serialize_questionnaire(store, questionnaire, language)
+    return serialize_questionnaire(session, questionnaire, language)
 
 
 class QuestionnairesCollection(BaseHandler):
@@ -163,7 +163,7 @@ class QuestionnaireInstance(BaseHandler):
         Request: AdminQuestionnaireDesc
         Response: None
         """
-        return models.delete(models.Questionnaire, tid=self.request.tid, id=questionnaire_id)
+        return models.delete(models.Questionnaire, models.Questionnaire.tid == self.request.tid, models.Questionnaire.id == questionnaire_id)
 
     @inlineCallbacks
     def get(self, questionnaire_id):

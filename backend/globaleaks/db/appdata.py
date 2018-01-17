@@ -2,7 +2,7 @@
 # datainit.py: database initialization
 #   ******************
 import os
-from storm.expr import And, Not, In
+from sqlalchemy import not_
 
 from globaleaks import models
 from globaleaks.handlers.admin.field import db_create_field
@@ -16,7 +16,7 @@ def load_appdata():
     return read_json_file(Settings.appdata_file)
 
 
-def load_default_questionnaires(store, tid):
+def load_default_questionnaires(session, tid):
     qfiles = [os.path.join(Settings.questionnaires_path, path) for path in os.listdir(Settings.questionnaires_path)]
     for qfile in qfiles:
         questionnaire = read_json_file(qfile)
@@ -24,27 +24,27 @@ def load_default_questionnaires(store, tid):
 
         steps = questionnaire.pop('steps')
 
-        q = store.find(models.Questionnaire, tid=tid, id=questionnaire['id']).one()
+        q = session.query(models.Questionnaire).filter(models.Questionnaire.tid == tid, models.Questionnaire.id == questionnaire['id']).one_or_none()
         if q is None:
-            q = models.db_forge_obj(store, models.Questionnaire, questionnaire)
+            q = models.db_forge_obj(session, models.Questionnaire, questionnaire)
         else:
-            store.find(models.Step, tid=tid, questionnaire_id=q.id).remove()
+            session.query(models.Step).filter(models.Step.tid == tid, models.Step.questionnaire_id == q.id).delete(synchronize_session='fetch')
 
         for step in steps:
             step['tid'] = tid
             step['questionnaire_id'] = q.id
-            db_create_step(store, tid, step, None)
+            db_create_step(session, tid, step, None)
 
-def load_default_fields(store, tid):
+def load_default_fields(session, tid):
     ffiles = [os.path.join(Settings.questions_path, path) for path in os.listdir(Settings.questions_path)]
     for ffile in ffiles:
         question = read_json_file(ffile)
         question['tid'] = tid
-        store.find(models.Field, tid=tid, id=question['id']).remove()
-        db_create_field(store, tid, question, None)
+        session.query(models.Field).filter(models.Field.tid == tid, models.Field.id == question['id']).delete(synchronize_session='fetch')
+        db_create_field(session, tid, question, None)
 
 
-def db_fix_fields_attrs(store):
+def db_fix_fields_attrs(session):
     """
     Ensures that the current store and the field_attrs.json file correspond.
     The content of the field_attrs dict is used to add and remove all of the
@@ -60,37 +60,37 @@ def db_fix_fields_attrs(store):
         attrs_to_keep_for_type = attrs_dict.keys()
         if field_type in std_lst:
             # Ensure that the standard field attrs do not have extra attr rows
-            res = store.find(models.FieldAttr, Not(In(models.FieldAttr.name, attrs_to_keep_for_type)),
-                                               models.FieldAttr.field_id == models.Field.id,
-                                               models.Field.type == field_type,
-                                               Not(In(models.Field.id, special_lst)))
+            res = session.query(models.FieldAttr).filter(not_(models.FieldAttr.name.in_(attrs_to_keep_for_type)),
+                                                       models.FieldAttr.field_id == models.Field.id,
+                                                       models.Field.type == field_type,
+                                                       not_(models.Field.id.in_(special_lst)))
         else:
             # Look for dropped attrs in non-standard field_groups like whistleblower_identity
-            res = store.find(models.FieldAttr, Not(In(models.FieldAttr.name, attrs_to_keep_for_type)),
-                                               models.FieldAttr.field_id == models.Field.id,
-                                               models.Field.id == field_type)
+            res = session.query(models.FieldAttr).filter(not_(models.FieldAttr.name.in_(attrs_to_keep_for_type)),
+                                                       models.FieldAttr.field_id == models.Field.id,
+                                                       models.Field.id == field_type)
 
-        count = res.count()
-        if count:
-            log.debug("Removing %d attributes from fields of type %s", count, field_type)
-            for r in res:
-                store.remove(r)
+        for r in res:
+            session.delete(r)
 
     # Add keys to the db that have been added to field_attrs
-    for field in store.find(models.Field):
+    for field in session.query(models.Field):
         typ = field.type if field.id not in special_lst else field.id
         attrs = field_attrs.get(typ, {})
         for attr_name, attr_dict in attrs.items():
-            if not store.find(models.FieldAttr,
-                              And(models.FieldAttr.field_id == field.id,
-                                  models.FieldAttr.name == attr_name)).one():
+            x = session.query(models.FieldAttr) \
+                     .filter(models.FieldAttr.field_id == field.id,
+                             models.FieldAttr.name == attr_name).one_or_none()
+            if x is None:
+
                 log.debug("Adding new field attr %s.%s", typ, attr_name)
                 attr_dict['tid'] = field.tid
                 attr_dict['name'] = attr_name
                 attr_dict['field_id'] = field.id
-                models.db_forge_obj(store, models.FieldAttr, attr_dict)
+                models.db_forge_obj(session, models.FieldAttr, attr_dict)
 
 
-def db_update_defaults(store, tid):
-    load_default_questionnaires(store, tid)
-    load_default_fields(store, tid)
+def db_update_defaults(session, tid):
+    load_default_questionnaires(session, tid)
+    load_default_fields(session, tid)
+    db_fix_fields_attrs(session)

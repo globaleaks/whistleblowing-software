@@ -15,8 +15,8 @@ from globaleaks.orm import transact
 
 
 @transact
-def get(store, tid, lang):
-    texts = store.find(models.CustomTexts, tid=tid, lang=lang).one()
+def get(session, tid, lang):
+    texts = session.query(models.CustomTexts).filter(models.CustomTexts.tid == tid, models.CustomTexts.lang == lang).one_or_none()
     if texts is None:
         return {}
     else:
@@ -24,10 +24,10 @@ def get(store, tid, lang):
 
 
 @transact
-def update(store, tid, lang, request):
-    texts = store.find(models.CustomTexts, tid=tid, lang=lang).one()
+def update(session, tid, lang, request):
+    texts = session.query(models.CustomTexts).filter(models.CustomTexts.tid == tid, models.CustomTexts.lang == lang).one_or_none()
     if texts is None:
-        store.add(models.CustomTexts({'tid':tid, 'lang': lang, 'texts': request}))
+        session.add(models.CustomTexts({'tid':tid, 'lang': lang, 'texts': request}))
     else:
         texts.texts = request
 
@@ -43,4 +43,4 @@ class AdminL10NHandler(BaseHandler):
         return update(self.request.tid, lang, json.loads(self.request.content.read()))
 
     def delete(self, lang):
-        return models.delete(models.CustomTexts, tid=self.request.tid, lang=lang)
+        return models.delete(models.CustomTexts, models.CustomTexts.tid == self.request.tid, models.CustomTexts.lang == lang)

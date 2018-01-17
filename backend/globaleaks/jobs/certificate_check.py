@@ -24,27 +24,27 @@ class CertificateCheck(LoopingJob):
     acme_failures = 0
     should_restart_https = False
 
-    def certificate_mail_creation(self, store, tid, expiration_date):
-        for user_desc in db_get_admin_users(store, tid):
+    def certificate_mail_creation(self, session, tid, expiration_date):
+        for user_desc in db_get_admin_users(session, tid):
             lang = user_desc['language']
 
             template_vars = {
                 'type': 'https_certificate_expiration',
-                'node': db_admin_serialize_node(store, tid, lang),
-                'notification': db_get_notification(store, tid, lang),
+                'node': db_admin_serialize_node(session, tid, lang),
+                'notification': db_get_notification(session, tid, lang),
                 'expiration_date': expiration_date,
                 'user': user_desc,
             }
 
-            format_and_send(store, tid, user_desc, template_vars)
+            format_and_send(session, tid, user_desc, template_vars)
 
     @transact
-    def check_tenants_for_cert_expiration(self, store):
-        for tid in store.find(models.Tenant.id, models.Tenant.active == True):
-            self.cert_expiration_checks(store, tid)
+    def check_tenants_for_cert_expiration(self, session):
+        for tenant in session.query(models.Tenant.id).filter(models.Tenant.active == True):
+            self.cert_expiration_checks(session, tenant[0])
 
-    def cert_expiration_checks(self, store, tid):
-        priv_fact = models.config.PrivateFactory(store, tid)
+    def cert_expiration_checks(self, session, tid):
+        priv_fact = models.config.PrivateFactory(session, tid)
 
         if not priv_fact.get_val(u'https_enabled'):
             return
@@ -55,7 +55,7 @@ class CertificateCheck(LoopingJob):
         # Acme renewal checks
         if priv_fact.get_val(u'acme') and datetime.now() > expiration_date - timedelta(days=self.acme_try_renewal):
             try:
-                db_acme_cert_issuance(store, tid)
+                db_acme_cert_issuance(session, tid)
             except Exception as excep:
                 self.acme_failures =+ 1
                 log.err('ACME certificate renewal failed with: %s', excep, tid=tid)
@@ -69,7 +69,7 @@ class CertificateCheck(LoopingJob):
             expiration_date = datetime_to_ISO8601(expiration_date)
             log.info('The HTTPS Certificate is expiring on %s', expiration_date, tid=tid)
             if not self.state.tenant_cache[tid].notification.disable_admin_notification_emails:
-                self.certificate_mail_creation(store, tid, expiration_date)
+                self.certificate_mail_creation(session, tid, expiration_date)
 
     @inlineCallbacks
     def operation(self):

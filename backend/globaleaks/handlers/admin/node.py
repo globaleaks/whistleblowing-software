@@ -3,49 +3,48 @@
 #   /admin/node
 #   *****
 # Implementation of the code executed on handler /admin/node
-from storm.expr import In
 
 from globaleaks import models, utils, LANGUAGES_SUPPORTED_CODES, LANGUAGES_SUPPORTED
 from globaleaks.db import db_refresh_memory_variables
 from globaleaks.db.appdata import load_appdata
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.models.config import NodeFactory, PrivateFactory
-from globaleaks.models.l10n import EnabledLanguage, NodeL10NFactory
+from globaleaks.models.l10n import NodeL10NFactory
 from globaleaks.orm import transact
 from globaleaks.rest import errors, requests
 from globaleaks.state import State
 from globaleaks.utils.utility import log
 
 
-def db_admin_serialize_node(store, tid, language):
-    node_dict = NodeFactory(store, tid).admin_export()
-    priv_dict = PrivateFactory(store, tid)
+def db_admin_serialize_node(session, tid, language):
+    node_dict = NodeFactory(session, tid).admin_export()
+    priv_dict = PrivateFactory(session, tid)
 
     # Contexts and Receivers relationship
-    configured = store.find(models.ReceiverContext, tid=tid).count() > 0
+    configured = session.query(models.ReceiverContext).filter(models.ReceiverContext.tid == tid).count() > 0
 
     misc_dict = {
         'version': priv_dict.get_val(u'version'),
         'latest_version': priv_dict.get_val(u'latest_version'),
         'languages_supported': LANGUAGES_SUPPORTED,
-        'languages_enabled': EnabledLanguage.list(store, tid),
+        'languages_enabled': models.EnabledLanguage.list(session, tid),
         'configured': configured,
         'root_tenant': tid == 1,
         'https_possible': tid == 1 or State.tenant_cache[1].reachable_via_web,
     }
 
-    l10n_dict = NodeL10NFactory(store, tid).localized_dict(language)
+    l10n_dict = NodeL10NFactory(session, tid).localized_dict(language)
 
     return utils.sets.merge_dicts(node_dict, misc_dict, l10n_dict)
 
 
 @transact
-def admin_serialize_node(store, tid, language):
-    return db_admin_serialize_node(store, tid, language)
+def admin_serialize_node(session, tid, language):
+    return db_admin_serialize_node(session, tid, language)
 
 
-def db_update_enabled_languages(store, tid, languages_enabled, default_language):
-    cur_enabled_langs = EnabledLanguage.list(store, tid)
+def db_update_enabled_languages(session, tid, languages_enabled, default_language):
+    cur_enabled_langs = models.EnabledLanguage.list(session, tid)
     new_enabled_langs = [unicode(y) for y in languages_enabled]
 
     if len(new_enabled_langs) < 1:
@@ -62,29 +61,28 @@ def db_update_enabled_languages(store, tid, languages_enabled, default_language)
             if appdata is None:
                 appdata = load_appdata()
             log.debug("Adding a new lang %s" % lang_code)
-            EnabledLanguage.add_new_lang(store, tid, lang_code, appdata)
+            models.l10n.add_new_lang(session, tid, lang_code, appdata)
 
     to_remove = list(set(cur_enabled_langs) - set(new_enabled_langs))
-
     if to_remove:
-        store.find(models.User, In(models.User.language, to_remove), tid=tid).set(language=default_language)
+        session.query(models.User).filter(models.User.language.in_(to_remove), models.User.tid == tid).update({'language': default_language}, synchronize_session='fetch')
 
-        models.db_delete(store, models.l10n.EnabledLanguage, In(models.l10n.EnabledLanguage.name, to_remove), tid=tid)
+        models.db_delete(session, models.EnabledLanguage, models.EnabledLanguage.name.in_(to_remove), models.EnabledLanguage.tid == tid)
 
 @transact
-def update_enabled_languages(store, tid, languages_enabled, default_language):
-    return db_update_enabled_languages(store, tid, languages_enabled, default_language)
+def update_enabled_languages(session, tid, languages_enabled, default_language):
+    return db_update_enabled_languages(session, tid, languages_enabled, default_language)
 
 
-def db_update_node(store, tid, request, language):
+def db_update_node(session, tid, request, language):
     """
     Update and serialize the node infos
 
-    :param store: the store on which perform queries.
+    :param session: the session on which perform queries.
     :param language: the language in which to localize data
     :return: a dictionary representing the serialization of the node
     """
-    node = NodeFactory(store, tid)
+    node = NodeFactory(session, tid)
 
     node.update(request)
 
@@ -95,16 +93,16 @@ def db_update_node(store, tid, request, language):
     else:
         node.set_val(u'basic_auth', False)
 
-    db_update_enabled_languages(store, tid, request['languages_enabled'], request['default_language'])
+    db_update_enabled_languages(session, tid, request['languages_enabled'], request['default_language'])
 
     if language in request['languages_enabled']:
-        node_l10n = NodeL10NFactory(store, tid)
+        node_l10n = NodeL10NFactory(session, tid)
         node_l10n.update(request, language)
 
-    db_refresh_memory_variables(store, [tid])
+    db_refresh_memory_variables(session, [tid])
 
     # TODO pass instance of db_update_node into admin_serialize
-    return db_admin_serialize_node(store, tid, language)
+    return db_admin_serialize_node(session, tid, language)
 
 
 @transact

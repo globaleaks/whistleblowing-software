@@ -13,7 +13,7 @@ from twisted.web.server import Site
 # this import seems unused but it is required in order to load the mocks
 import globaleaks.mocks.twisted_mocks # pylint: disable=W0611
 
-from globaleaks.db import init_db, update_db, \
+from globaleaks.db import create_db, init_db, update_db, \
     sync_refresh_memory_variables, sync_clean_untracked_files
 from globaleaks.rest.api import APIResourceWrapper
 from globaleaks.settings import Settings
@@ -124,6 +124,7 @@ class Service(service.Service):
             return
 
         if ret == 0:
+            create_db()
             init_db()
 
         sync_clean_untracked_files()

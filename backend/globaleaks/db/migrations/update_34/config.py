@@ -2,9 +2,8 @@
 
 from globaleaks import __version__, DATABASE_VERSION
 from globaleaks.models.config_desc import Unicode, Int, Bool
-from globaleaks.models.properties import iso_strf_time
 from globaleaks.security import generateRandomSalt as salt
-from globaleaks.utils.utility import datetime_null
+from globaleaks.utils.utility import datetime_null, iso_strf_time
 
 GLConfig_v_35 = {
     'private': {

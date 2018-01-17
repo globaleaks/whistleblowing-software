@@ -6,9 +6,9 @@ from twisted.internet.defer import inlineCallbacks
 
 
 @transact
-def translate_shorturl(store, tid, shorturl):
-    shorturl = store.find(models.ShortURL, shorturl=shorturl, tid=tid).one()
-    if not shorturl:
+def translate_shorturl(session, tid, shorturl):
+    shorturl = session.query(models.ShortURL).filter(models.ShortURL.shorturl == shorturl, models.ShortURL.tid == tid).one_or_none()
+    if shorturl is None:
         return '/'
 
     return shorturl.longurl

@@ -23,7 +23,7 @@ INTERNALFILES_HANDLE_RETRY_MAX = 3
 
 
 @transact
-def receiverfile_planning(store):
+def receiverfile_planning(session):
     """
     This function roll over the InternalFile uploaded, extract a path, id and
     receivers associated, one entry for each combination. representing the
@@ -31,7 +31,7 @@ def receiverfile_planning(store):
     """
     receiverfiles_maps = {}
 
-    for ifile in store.find(models.InternalFile, new=True).order_by(models.InternalFile.creation_date):
+    for ifile in session.query(models.InternalFile).filter(models.InternalFile.new == True).order_by(models.InternalFile.creation_date):
         if ifile.processing_attempts >= INTERNALFILES_HANDLE_RETRY_MAX:
             ifile.new = False
             log.err("Failed to handle receiverfiles creation for ifile %s (%d retries)",
@@ -49,9 +49,9 @@ def receiverfile_planning(store):
 
         ifile.processing_attempts += 1
 
-        for rtip, user in store.find((models.ReceiverTip, models.User),
-                                     models.ReceiverTip.internaltip_id == ifile.internaltip_id,
-                                     models.User.id == models.ReceiverTip.receiver_id):
+        for rtip, user in session.query(models.ReceiverTip, models.User) \
+                               .filter(models.ReceiverTip.internaltip_id == ifile.internaltip_id,
+                                       models.User.id == models.ReceiverTip.receiver_id):
             receiverfile = models.ReceiverFile()
             receiverfile.tid = rtip.tid
             receiverfile.internalfile_id = ifile.id
@@ -65,7 +65,9 @@ def receiverfile_planning(store):
             # this way we avoid to send unuseful messages
             receiverfile.new = False if ifile.submission else True
 
-            store.add(receiverfile)
+            session.add(receiverfile)
+
+            session.flush()
 
             if ifile.id not in receiverfiles_maps:
                 receiverfiles_maps[ifile.id] = {
@@ -200,9 +202,9 @@ def process_files(state, receiverfiles_maps):
 
 
 @transact
-def update_internalfile_and_store_receiverfiles(store, receiverfiles_maps):
+def update_internalfile_and_store_receiverfiles(session, receiverfiles_maps):
     for ifile_id, receiverfiles_map in receiverfiles_maps.items():
-        ifile = store.find(models.InternalFile, models.InternalFile.id == ifile_id).one()
+        ifile = session.query(models.InternalFile).filter(models.InternalFile.id == ifile_id).one_or_none()
         if ifile is None:
             continue
 
@@ -212,7 +214,7 @@ def update_internalfile_and_store_receiverfiles(store, receiverfiles_maps):
         ifile.file_path = receiverfiles_map['ifile_path']
 
         for rf in receiverfiles_map['rfiles']:
-            rfile = store.find(models.ReceiverFile, models.ReceiverFile.id == rf['id']).one()
+            rfile = session.query(models.ReceiverFile).filter(models.ReceiverFile.id == rf['id']).one_or_none()
             if rfile is None:
                 continue
 

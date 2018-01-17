@@ -1,123 +1,123 @@
 # -*- coding: utf-8 -*-
-
-from storm.locals import Int, Bool, Unicode, JSON
-
 from globaleaks.db.migrations.update import MigrationBase
-from globaleaks.models import ModelWithID
+from globaleaks.models import Model
+from globaleaks.models.properties import *
 
 
-class Node_v_28(ModelWithID):
-    __storm_table__ = 'node'
-    version = Unicode()
-    version_db = Unicode()
-    name = Unicode()
-    public_site = Unicode()
-    hidden_service = Unicode()
-    receipt_salt = Unicode()
-    languages_enabled = JSON()
-    default_language = Unicode()
-    default_timezone = Int()
-    description = JSON()
-    presentation = JSON()
-    footer = JSON()
-    security_awareness_title = JSON()
-    security_awareness_text = JSON()
-    context_selector_label = JSON()
-    maximum_namesize = Int()
-    maximum_textsize = Int()
-    maximum_filesize = Int()
-    tor2web_admin = Bool()
-    tor2web_custodian = Bool()
-    tor2web_whistleblower = Bool()
-    tor2web_receiver = Bool()
-    tor2web_unauth = Bool()
-    allow_unencrypted = Bool()
-    allow_iframes_inclusion = Bool()
-    submission_minimum_delay = Int()
-    submission_maximum_ttl = Int()
-    can_postpone_expiration = Bool()
-    can_delete_submission = Bool()
-    can_grant_permissions = Bool()
-    ahmia = Bool()
-    wizard_done = Bool()
-    disable_privacy_badge = Bool()
-    disable_security_awareness_badge = Bool()
-    disable_security_awareness_questions = Bool()
-    disable_key_code_hint = Bool()
-    disable_donation_panel = Bool()
-    enable_captcha = Bool()
-    enable_proof_of_work = Bool()
-    enable_experimental_features = Bool()
-    whistleblowing_question = JSON()
-    whistleblowing_button = JSON()
-    simplified_login = Bool()
-    enable_custom_privacy_badge = Bool()
-    custom_privacy_badge_tor = JSON()
-    custom_privacy_badge_none = JSON()
-    header_title_homepage = JSON()
-    header_title_submissionpage = JSON()
-    header_title_receiptpage = JSON()
-    header_title_tippage = JSON()
-    widget_comments_title = JSON()
-    widget_messages_title = JSON()
-    widget_files_title = JSON()
-    landing_page = Unicode()
-    show_contexts_in_alphabetical_order = Bool()
-    threshold_free_disk_megabytes_high = Int()
-    threshold_free_disk_megabytes_medium = Int()
-    threshold_free_disk_megabytes_low = Int()
-    threshold_free_disk_percentage_high = Int()
-    threshold_free_disk_percentage_medium = Int()
-    threshold_free_disk_percentage_low = Int()
+class Node_v_28(Model):
+    __tablename__ = 'node'
+    id = Column(String(36), primary_key=True, default=uuid4, nullable=False)
+    version = Column(UnicodeText)
+    version_db = Column(UnicodeText)
+    name = Column(UnicodeText)
+    public_site = Column(UnicodeText)
+    hidden_service = Column(UnicodeText)
+    receipt_salt = Column(UnicodeText)
+    languages_enabled = Column(JSON)
+    default_language = Column(UnicodeText)
+    default_timezone = Column(Integer)
+    description = Column(JSON)
+    presentation = Column(JSON)
+    footer = Column(JSON)
+    security_awareness_title = Column(JSON)
+    security_awareness_text = Column(JSON)
+    context_selector_label = Column(JSON)
+    maximum_namesize = Column(Integer)
+    maximum_textsize = Column(Integer)
+    maximum_filesize = Column(Integer)
+    tor2web_admin = Column(Boolean)
+    tor2web_custodian = Column(Boolean)
+    tor2web_whistleblower = Column(Boolean)
+    tor2web_receiver = Column(Boolean)
+    tor2web_unauth = Column(Boolean)
+    allow_unencrypted = Column(Boolean)
+    allow_iframes_inclusion = Column(Boolean)
+    submission_minimum_delay = Column(Integer)
+    submission_maximum_ttl = Column(Integer)
+    can_postpone_expiration = Column(Boolean)
+    can_delete_submission = Column(Boolean)
+    can_grant_permissions = Column(Boolean)
+    ahmia = Column(Boolean)
+    wizard_done = Column(Boolean)
+    disable_privacy_badge = Column(Boolean)
+    disable_security_awareness_badge = Column(Boolean)
+    disable_security_awareness_questions = Column(Boolean)
+    disable_key_code_hint = Column(Boolean)
+    disable_donation_panel = Column(Boolean)
+    enable_captcha = Column(Boolean)
+    enable_proof_of_work = Column(Boolean)
+    enable_experimental_features = Column(Boolean)
+    whistleblowing_question = Column(JSON)
+    whistleblowing_button = Column(JSON)
+    simplified_login = Column(Boolean)
+    enable_custom_privacy_badge = Column(Boolean)
+    custom_privacy_badge_tor = Column(JSON)
+    custom_privacy_badge_none = Column(JSON)
+    header_title_homepage = Column(JSON)
+    header_title_submissionpage = Column(JSON)
+    header_title_receiptpage = Column(JSON)
+    header_title_tippage = Column(JSON)
+    widget_comments_title = Column(JSON)
+    widget_messages_title = Column(JSON)
+    widget_files_title = Column(JSON)
+    landing_page = Column(UnicodeText)
+    show_contexts_in_alphabetical_order = Column(Boolean)
+    threshold_free_disk_megabytes_high = Column(Integer)
+    threshold_free_disk_megabytes_medium = Column(Integer)
+    threshold_free_disk_megabytes_low = Column(Integer)
+    threshold_free_disk_percentage_high = Column(Integer)
+    threshold_free_disk_percentage_medium = Column(Integer)
+    threshold_free_disk_percentage_low = Column(Integer)
 
 
-class Context_v_28(ModelWithID):
-    __storm_table__ = 'context'
-    show_small_cards = Bool()
-    show_context = Bool()
-    show_recipients_details = Bool()
-    allow_recipients_selection = Bool()
-    maximum_selectable_receivers = Int()
-    select_all_receivers = Bool()
-    enable_comments = Bool()
-    enable_messages = Bool()
-    enable_two_way_comments = Bool()
-    enable_two_way_messages = Bool()
-    enable_attachments = Bool()
-    enable_whistleblower_identity = Bool()
-    tip_timetolive = Int()
-    name = JSON()
-    description = JSON()
-    recipients_clarification = JSON()
-    questionnaire_layout = Unicode()
-    show_receivers_in_alphabetical_order = Bool()
-    presentation_order = Int()
+class Context_v_28(Model):
+    __tablename__ = 'context'
+    id = Column(String(36), primary_key=True, default=uuid4, nullable=False)
+    show_small_cards = Column(Boolean)
+    show_context = Column(Boolean)
+    show_recipients_details = Column(Boolean)
+    allow_recipients_selection = Column(Boolean)
+    maximum_selectable_receivers = Column(Integer)
+    select_all_receivers = Column(Boolean)
+    enable_comments = Column(Boolean)
+    enable_messages = Column(Boolean)
+    enable_two_way_comments = Column(Boolean)
+    enable_two_way_messages = Column(Boolean)
+    enable_attachments = Column(Boolean)
+    enable_whistleblower_identity = Column(Boolean)
+    tip_timetolive = Column(Integer)
+    name = Column(JSON)
+    description = Column(JSON)
+    recipients_clarification = Column(JSON)
+    questionnaire_layout = Column(UnicodeText)
+    show_receivers_in_alphabetical_order = Column(Boolean)
+    presentation_order = Column(Integer)
 
 
 class MigrationScript(MigrationBase):
     def migrate_Node(self):
-        old_node = self.store_old.find(self.model_from['Node']).one()
+        old_node = self.store_old.query(self.model_from['Node']).one()
         new_node = self.model_to['Node']()
 
-        for _, v in new_node._storm_columns.items():
-            if v.name == 'disable_submissions':
+        for key in [c.key for c in new_node.__table__.columns]:
+            if key == 'disable_submissions':
                 new_node.disable_submissions = False
             else:
-                setattr(new_node, v.name, getattr(old_node, v.name))
+                setattr(new_node, key, getattr(old_node, key))
 
         self.store_new.add(new_node)
 
 
     def migrate_Context(self):
-        old_objs = self.store_old.find(self.model_from['Context'])
+        old_objs = self.store_old.query(self.model_from['Context'])
         for old_obj in old_objs:
             new_obj = self.model_to['Context']()
-            for _, v in new_obj._storm_columns.items():
-                if v.name == 'show_steps_navigation_bar':
+            for key in [c.key for c in new_obj.__table__.columns]:
+                if key == 'show_steps_navigation_bar':
                     new_obj.show_steps_navigation_bar = True
-                elif v.name == 'steps_navigation_requires_completion':
+                elif key == 'steps_navigation_requires_completion':
                     new_obj.steps_navigation_requires_completion = False
                 else:
-                    setattr(new_obj, v.name, getattr(old_obj, v.name))
+                    setattr(new_obj, key, getattr(old_obj, key))
 
             self.store_new.add(new_obj)

@@ -74,25 +74,25 @@ def get_disk_anomaly_conditions(free_workdir_bytes, total_workdir_bytes, free_ra
 
 
 @transact
-def generate_admin_alert_mail(store, tid, alert):
-    for user_desc in db_get_admin_users(store, tid):
+def generate_admin_alert_mail(session, tid, alert):
+    for user_desc in db_get_admin_users(session, tid):
         user_language = user_desc['language']
 
         data = {
             'type': u'admin_anomaly',
-            'node': db_admin_serialize_node(store, tid, user_language),
-            'notification': db_get_notification(store, tid, user_language),
+            'node': db_admin_serialize_node(session, tid, user_language),
+            'notification': db_get_notification(session, tid, user_language),
             'alert': alert,
             'user': user_desc,
         }
 
         subject, body = Templating().get_mail_subject_and_body(data)
 
-        db_schedule_email(store, tid, user_desc['mail_address'], subject, body)
+        db_schedule_email(session, tid, user_desc['mail_address'], subject, body)
 
 
 @transact
-def save_anomalies(store):
+def save_anomalies(session):
     for tid in State.tenant_state:
         for anomaly in State.tenant_state[tid].AnomaliesQ:
             a = models.Anomalies()
@@ -100,7 +100,7 @@ def save_anomalies(store):
             a.alarm = anomaly[2]
             a.date = anomaly[0]
             a.events = anomaly[1]
-            store.add(a)
+            session.add(a)
 
 
 class Alarm(object):
@@ -247,6 +247,8 @@ class Alarm(object):
 
 @inlineCallbacks
 def check_anomalies():
+    State.tenant_state[1].Alarm.check_disk_anomalies()
+
     for tid in State.tenant_state:
         yield State.tenant_state[tid].Alarm.check_tenant_anomalies(tid)
 

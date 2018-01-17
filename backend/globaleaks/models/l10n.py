@@ -1,52 +1,21 @@
 # -*- coding: utf-8 -*-
-from storm.expr import In, Not
-from storm.locals import Unicode, Bool
+from sqlalchemy import not_, Column, ForeignKeyConstraint
 
 from globaleaks import LANGUAGES_SUPPORTED_CODES, models
+from globaleaks.models import Base, EnabledLanguage
+from globaleaks.models.properties import *
 
 
-class EnabledLanguage(models.ModelWithTID):
-    __storm_table__ = 'enabledlanguage'
-    __storm_primary__ = ('tid', 'name')
+class ConfigL10N(models.Model, Base):
+    __tablename__ = 'config_l10n'
 
-    name = Unicode()
+    tid = Column(Integer, primary_key=True, default=1, nullable=False)
+    lang = Column(String(5), primary_key=True)
+    var_name = Column(String(64), primary_key=True)
+    value = Column(UnicodeText)
+    customized = Column(Boolean, default=False)
 
-    def __init__(self, tid=1, name=None, migrate=False):
-        if migrate:
-            return
-
-        self.tid = tid
-        self.name = unicode(name)
-
-    @classmethod
-    def list(cls, store, tid):
-        return [name for name in store.find(EnabledLanguage.name, EnabledLanguage.tid==tid)]
-
-    @classmethod
-    def tid_list(cls, store, tid_list):
-        return [(lang.tid, lang.name) for lang in store.find(EnabledLanguage, In(EnabledLanguage.tid, tid_list)).order_by('tid', 'name')]
-
-    @classmethod
-    def add_new_lang(cls, store, tid, lang_code, appdata_dict):
-        store.add(cls(tid, lang_code))
-
-        NodeL10NFactory(store, tid).initialize(lang_code, appdata_dict['node'])
-        NotificationL10NFactory(store, tid).initialize(lang_code, appdata_dict['templates'])
-
-    @classmethod
-    def add_all_supported_langs(cls, store, tid, appdata_dict):
-        for lang_code in LANGUAGES_SUPPORTED_CODES:
-            cls.add_new_lang(store, tid, lang_code, appdata_dict)
-
-
-class ConfigL10N(models.ModelWithTID):
-    __storm_table__ = 'config_l10n'
-    __storm_primary__ = ('tid', 'lang', 'var_name')
-
-    lang = Unicode()
-    var_name = Unicode()
-    value = Unicode()
-    customized = Bool(default=False)
+    __table_args__ = (ForeignKeyConstraint(['tid', 'lang'], ['enabledlanguage.tid', 'enabledlanguage.name'], ondelete='CASCADE'),)
 
     def __init__(self, tid=1, lang_code=None, var_name=None, value='', migrate=False):
         if migrate:
@@ -69,8 +38,8 @@ class ConfigL10NFactory(object):
     unmodifiable_keys = []
     modifiable_keys = []
 
-    def __init__(self, store, tid):
-        self.store = store
+    def __init__(self, session, tid):
+        self.session = session
         self.tid = tid
 
     def initialize(self, lang_code, initialization_dict, keys=None):
@@ -79,10 +48,10 @@ class ConfigL10NFactory(object):
 
         for key in keys:
             value = initialization_dict[key][lang_code] if key in initialization_dict else ''
-            self.store.add(ConfigL10N(self.tid, lang_code, key, value))
+            self.session.add(ConfigL10N(self.tid, lang_code, key, value))
 
     def get_all(self, lang_code):
-        return [r for r in self.store.find(ConfigL10N, ConfigL10N.tid==self.tid, ConfigL10N.lang==lang_code, In(ConfigL10N.var_name, list(self.keys)))]
+        return [r for r in self.session.query(ConfigL10N).filter(ConfigL10N.tid == self.tid, ConfigL10N.lang == lang_code, ConfigL10N.var_name.in_(list(self.keys)))]
 
     def localized_dict(self, lang_code):
         rows = self.get_all(lang_code)
@@ -106,10 +75,10 @@ class ConfigL10NFactory(object):
             ConfigL10NFactory.initialize(self, lang_code, l10n_data_src, list(set(self.keys) - set(old_keys)))
 
     def get_val(self, var_name, lang_code):
-        return models.db_get(self.store, ConfigL10N, tid=self.tid, lang=lang_code, var_name=var_name).value
+        return models.db_get(self.session, ConfigL10N, ConfigL10N.tid == self.tid, ConfigL10N.lang == lang_code, ConfigL10N.var_name == var_name).value
 
     def set_val(self, var_name, lang_code, value):
-        cfg = self.store.find(ConfigL10N, tid=self.tid, lang=lang_code, var_name=var_name).one()
+        cfg = self.session.query(ConfigL10N).filter(ConfigL10N.tid == self.tid, ConfigL10N.lang == lang_code, ConfigL10N.var_name == var_name).one()
         cfg.set_v(value)
 
 
@@ -206,21 +175,27 @@ class NotificationL10NFactory(ConfigL10NFactory):
 
     modifiable_keys = [item for item in keys if item not in unmodifiable_keys]
 
-    def __init__(self, store, tid, *args, **kwargs):
-        ConfigL10NFactory.__init__(self, store, tid, *args, **kwargs)
+    def __init__(self, session, tid, *args, **kwargs):
+        ConfigL10NFactory.__init__(self, session, tid, *args, **kwargs)
 
     def reset_templates(self, l10n_data_src):
-        langs = EnabledLanguage.list(self.store, self.tid)
+        langs = EnabledLanguage.list(self.session, self.tid)
         self.update_defaults(langs, l10n_data_src, reset=True)
 
 
-def update_defaults(store, tid, appdata):
-    langs = EnabledLanguage.list(store, tid)
+def update_defaults(session, tid, appdata):
+    langs = EnabledLanguage.list(session, tid)
 
-    store.find(ConfigL10N,
-               tid==tid,
-               Not(In(ConfigL10N.var_name, NodeL10NFactory.keys + \
-               NotificationL10NFactory.keys))).remove()
+    session.query(ConfigL10N).filter(ConfigL10N.tid == tid,
+                                     not_(ConfigL10N.var_name.in_(NodeL10NFactory.keys + NotificationL10NFactory.keys))).delete(synchronize_session='fetch')
 
-    NodeL10NFactory(store, tid).update_defaults(langs, appdata['node'])
-    NotificationL10NFactory(store, tid).update_defaults(langs, appdata['templates'])
+    NodeL10NFactory(session, tid).update_defaults(langs, appdata['node'])
+    NotificationL10NFactory(session, tid).update_defaults(langs, appdata['templates'])
+
+
+def add_new_lang(session, tid, lang_code, appdata_dict):
+    session.add(EnabledLanguage(tid, lang_code))
+    session.flush()
+
+    NodeL10NFactory(session, tid).initialize(lang_code, appdata_dict['node'])
+    NotificationL10NFactory(session, tid).initialize(lang_code, appdata_dict['templates'])

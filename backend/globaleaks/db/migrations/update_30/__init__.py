@@ -1,170 +1,166 @@
 # -*- coding: utf-8 -*-
 import os
-from storm.locals import Int, Bool, Unicode, JSON, ReferenceSet
 
 from globaleaks.db.migrations.update import MigrationBase
 from globaleaks.handlers.admin.field import db_create_field
-from globaleaks.models import ModelWithID, Model
+from globaleaks.models import Model, Model
+from globaleaks.models.properties import *
 from globaleaks.settings import Settings
 
 
-class Node_v_29(ModelWithID):
-    __storm_table__ = 'node'
-    version = Unicode()
-    version_db = Unicode()
-    name = Unicode()
-    public_site = Unicode()
-    hidden_service = Unicode()
-    receipt_salt = Unicode()
-    languages_enabled = JSON()
-    default_language = Unicode()
-    default_timezone = Int()
-    description = JSON()
-    presentation = JSON()
-    footer = JSON()
-    security_awareness_title = JSON()
-    security_awareness_text = JSON()
-    context_selector_label = JSON()
-    maximum_namesize = Int()
-    maximum_textsize = Int()
-    maximum_filesize = Int()
-    tor2web_admin = Bool()
-    tor2web_custodian = Bool()
-    tor2web_whistleblower = Bool()
-    tor2web_receiver = Bool()
-    tor2web_unauth = Bool()
-    allow_unencrypted = Bool()
-    allow_iframes_inclusion = Bool()
-    submission_minimum_delay = Int()
-    submission_maximum_ttl = Int()
-    can_postpone_expiration = Bool()
-    can_delete_submission = Bool()
-    can_grant_permissions = Bool()
-    ahmia = Bool()
-    wizard_done = Bool()
-    disable_submissions = Bool()
-    disable_privacy_badge = Bool()
-    disable_security_awareness_badge = Bool()
-    disable_security_awareness_questions = Bool()
-    disable_key_code_hint = Bool()
-    disable_donation_panel = Bool()
-    enable_captcha = Bool()
-    enable_proof_of_work = Bool()
-    enable_experimental_features = Bool()
-    whistleblowing_question = JSON()
-    whistleblowing_button = JSON()
-    simplified_login = Bool()
-    enable_custom_privacy_badge = Bool()
-    custom_privacy_badge_tor = JSON()
-    custom_privacy_badge_none = JSON()
-    header_title_homepage = JSON()
-    header_title_submissionpage = JSON()
-    header_title_receiptpage = JSON()
-    header_title_tippage = JSON()
-    widget_comments_title = JSON()
-    widget_messages_title = JSON()
-    widget_files_title = JSON()
-    landing_page = Unicode()
-    show_contexts_in_alphabetical_order = Bool()
-    threshold_free_disk_megabytes_high = Int()
-    threshold_free_disk_megabytes_medium = Int()
-    threshold_free_disk_megabytes_low = Int()
-    threshold_free_disk_percentage_high = Int()
-    threshold_free_disk_percentage_medium = Int()
-    threshold_free_disk_percentage_low = Int()
+class Node_v_29(Model):
+    __tablename__ = 'node'
+    id = Column(String(36), primary_key=True, default=uuid4, nullable=False)
+    version = Column(UnicodeText)
+    version_db = Column(UnicodeText)
+    name = Column(UnicodeText)
+    public_site = Column(UnicodeText)
+    hidden_service = Column(UnicodeText)
+    receipt_salt = Column(UnicodeText)
+    languages_enabled = Column(JSON)
+    default_language = Column(UnicodeText)
+    default_timezone = Column(Integer)
+    description = Column(JSON)
+    presentation = Column(JSON)
+    footer = Column(JSON)
+    security_awareness_title = Column(JSON)
+    security_awareness_text = Column(JSON)
+    context_selector_label = Column(JSON)
+    maximum_namesize = Column(Integer)
+    maximum_textsize = Column(Integer)
+    maximum_filesize = Column(Integer)
+    tor2web_admin = Column(Boolean)
+    tor2web_custodian = Column(Boolean)
+    tor2web_whistleblower = Column(Boolean)
+    tor2web_receiver = Column(Boolean)
+    tor2web_unauth = Column(Boolean)
+    allow_unencrypted = Column(Boolean)
+    allow_iframes_inclusion = Column(Boolean)
+    submission_minimum_delay = Column(Integer)
+    submission_maximum_ttl = Column(Integer)
+    can_postpone_expiration = Column(Boolean)
+    can_delete_submission = Column(Boolean)
+    can_grant_permissions = Column(Boolean)
+    ahmia = Column(Boolean)
+    wizard_done = Column(Boolean)
+    disable_submissions = Column(Boolean)
+    disable_privacy_badge = Column(Boolean)
+    disable_security_awareness_badge = Column(Boolean)
+    disable_security_awareness_questions = Column(Boolean)
+    disable_key_code_hint = Column(Boolean)
+    disable_donation_panel = Column(Boolean)
+    enable_captcha = Column(Boolean)
+    enable_proof_of_work = Column(Boolean)
+    enable_experimental_features = Column(Boolean)
+    whistleblowing_question = Column(JSON)
+    whistleblowing_button = Column(JSON)
+    simplified_login = Column(Boolean)
+    enable_custom_privacy_badge = Column(Boolean)
+    custom_privacy_badge_tor = Column(JSON)
+    custom_privacy_badge_none = Column(JSON)
+    header_title_homepage = Column(JSON)
+    header_title_submissionpage = Column(JSON)
+    header_title_receiptpage = Column(JSON)
+    header_title_tippage = Column(JSON)
+    widget_comments_title = Column(JSON)
+    widget_messages_title = Column(JSON)
+    widget_files_title = Column(JSON)
+    landing_page = Column(UnicodeText)
+    show_contexts_in_alphabetical_order = Column(Boolean)
+    threshold_free_disk_megabytes_high = Column(Integer)
+    threshold_free_disk_megabytes_medium = Column(Integer)
+    threshold_free_disk_megabytes_low = Column(Integer)
+    threshold_free_disk_percentage_high = Column(Integer)
+    threshold_free_disk_percentage_medium = Column(Integer)
+    threshold_free_disk_percentage_low = Column(Integer)
 
 
-class Context_v_29(ModelWithID):
-    __storm_table__ = 'context'
-    show_small_cards = Bool()
-    show_context = Bool()
-    show_steps_navigation_bar = Bool()
-    steps_navigation_requires_completion = Bool()
-    show_recipients_details = Bool()
-    allow_recipients_selection = Bool()
-    maximum_selectable_receivers = Int()
-    select_all_receivers = Bool()
-    enable_comments = Bool()
-    enable_messages = Bool()
-    enable_two_way_comments = Bool()
-    enable_two_way_messages = Bool()
-    enable_attachments = Bool()
-    enable_whistleblower_identity = Bool()
-    tip_timetolive = Int()
-    name = JSON()
-    description = JSON()
-    recipients_clarification = JSON()
-    questionnaire_layout = Unicode()
-    show_receivers_in_alphabetical_order = Bool()
-    presentation_order = Int()
+class Context_v_29(Model):
+    __tablename__ = 'context'
+    id = Column(String(36), primary_key=True, default=uuid4, nullable=False)
+    show_small_cards = Column(Boolean)
+    show_context = Column(Boolean)
+    show_steps_navigation_bar = Column(Boolean)
+    steps_navigation_requires_completion = Column(Boolean)
+    show_recipients_details = Column(Boolean)
+    allow_recipients_selection = Column(Boolean)
+    maximum_selectable_receivers = Column(Integer)
+    select_all_receivers = Column(Boolean)
+    enable_comments = Column(Boolean)
+    enable_messages = Column(Boolean)
+    enable_two_way_comments = Column(Boolean)
+    enable_two_way_messages = Column(Boolean)
+    enable_attachments = Column(Boolean)
+    enable_whistleblower_identity = Column(Boolean)
+    tip_timetolive = Column(Integer)
+    name = Column(JSON)
+    description = Column(JSON)
+    recipients_clarification = Column(JSON)
+    questionnaire_layout = Column(UnicodeText)
+    show_receivers_in_alphabetical_order = Column(Boolean)
+    presentation_order = Column(Integer)
 
 
-class Step_v_29(ModelWithID):
-    __storm_table__ = 'step'
-    context_id = Unicode()
-    label = JSON()
-    description = JSON()
-    presentation_order = Int()
-    triggered_by_score = Int()
+class Step_v_29(Model):
+    __tablename__ = 'step'
+    id = Column(String(36), primary_key=True, default=uuid4, nullable=False)
+    context_id = Column(String(36))
+    label = Column(JSON)
+    description = Column(JSON)
+    presentation_order = Column(Integer)
+    triggered_by_score = Column(Integer)
 
 
-class FieldAnswer_v_29(ModelWithID):
-    __storm_table__ = 'fieldanswer'
-    internaltip_id = Unicode()
-    key = Unicode(default=u'')
-    is_leaf = Bool(default=True)
-    value = Unicode(default=u'')
+class FieldAnswer_v_29(Model):
+    __tablename__ = 'fieldanswer'
+    id = Column(String(36), primary_key=True, default=uuid4, nullable=False)
+    internaltip_id = Column(String(36))
+    key = Column(UnicodeText, default=u'')
+    is_leaf = Column(Boolean, default=True)
+    value = Column(UnicodeText, default=u'')
 
 
-class FieldAnswerGroup_v_29(ModelWithID):
-    __storm_table__ = 'fieldanswergroup'
-    number = Int(default=0)
-    fieldanswer_id = Unicode()
+class FieldAnswerGroup_v_29(Model):
+    __tablename__ = 'fieldanswergroup'
+    id = Column(String(36), primary_key=True, default=uuid4, nullable=False)
+    number = Column(Integer, default=0)
+    fieldanswer_id = Column(String(36))
 
 
 class FieldAnswerGroupFieldAnswer_v_29(Model):
-    __storm_table__ = 'fieldanswergroup_fieldanswer'
-    __storm_primary__ = 'fieldanswergroup_id', 'fieldanswer_id'
+    __tablename__ = 'fieldanswergroup_fieldanswer'
 
-    fieldanswergroup_id = Unicode()
-    fieldanswer_id = Unicode()
-
-
-FieldAnswerGroup_v_29.fieldanswers = ReferenceSet(
-    FieldAnswerGroup_v_29.id,
-    FieldAnswerGroupFieldAnswer_v_29.fieldanswergroup_id,
-    FieldAnswerGroupFieldAnswer_v_29.fieldanswer_id,
-    FieldAnswer_v_29.id
-)
+    fieldanswergroup_id = Column(String(36), primary_key=True)
+    fieldanswer_id = Column(String(36), primary_key=True)
 
 
 class MigrationScript(MigrationBase):
     def migrate_Node(self):
-        old_node = self.store_old.find(self.model_from['Node']).one()
+        old_node = self.store_old.query(self.model_from['Node']).one()
         new_node = self.model_to['Node']()
 
-        for _, v in new_node._storm_columns.items():
-            if v.name == 'disable_encryption_warnings':
+        for key in [c.key for c in new_node.__table__.columns]:
+            if key == 'disable_encryption_warnings':
                 new_node.disable_encryption_warnings = False
                 continue
 
-            setattr(new_node, v.name, getattr(old_node, v.name))
+            setattr(new_node, key, getattr(old_node, key))
 
         self.store_new.add(new_node)
 
     def migrate_FieldAnswer(self):
-        old_objs = self.store_old.find(self.model_from['FieldAnswer'])
+        old_objs = self.store_old.query(self.model_from['FieldAnswer'])
         for old_obj in old_objs:
             new_obj = self.model_to['FieldAnswer']()
-            for _, v in new_obj._storm_columns.items():
-                if v.name == 'fieldanswergroup_id':
-                    old_ref = self.store_old.find(FieldAnswerGroupFieldAnswer_v_29,
-                                                  FieldAnswerGroupFieldAnswer_v_29.fieldanswer_id == old_obj.id).one()
+            for key in [c.key for c in new_obj.__table__.columns]:
+                if key == 'fieldanswergroup_id':
+                    old_ref = self.store_old.query(self.model_from['FieldAnswerGroupFieldAnswer']) \
+                                            .filter(self.model_from['FieldAnswerGroupFieldAnswer'].fieldanswer_id == old_obj.id).one_or_none()
                     if old_ref is not None:
                         new_obj.fieldanswergroup_id = old_ref.fieldanswergroup_id
                     continue
 
-                setattr(new_obj, v.name, getattr(old_obj, v.name))
+                setattr(new_obj, key, getattr(old_obj, key))
 
             self.store_new.add(new_obj)
 
@@ -182,22 +178,18 @@ class MigrationScript(MigrationBase):
         self.fail_on_count_mismatch['FieldOption'] = False
         self.fail_on_count_mismatch['FieldAttr'] = False
 
-        # Add the required references
-        Context_v_29.steps = ReferenceSet(Context_v_29.id, Step_v_29.context_id)
-        Step_v_29.children = ReferenceSet(Step_v_29.id, self.model_from['Field'].step_id)
+        default_language = self.store_old.query(self.model_from['Node']).one().default_language
 
-        default_language = self.store_old.find(self.model_from['Node']).one().default_language
-
-        old_contexts = self.store_old.find(self.model_from['Context'])
+        old_contexts = self.store_old.query(self.model_from['Context'])
         for old_context in old_contexts:
             map_on_default = False
             new_questionnaire_id = None
 
-            for old_step in old_context.steps:
-                if old_step.children.count() != 4:
+            for old_step in self.store_old.query(self.model_from['Step']).filter(self.model_from['Step'].context_id == old_context.id):
+                if self.store_old.query(self.model_from['Field']).filter(self.model_from['Field'].step_id == old_step.id).count() != 4:
                     break
 
-                for field in old_step.children:
+                for field in self.store_old.query(self.model_from['Field']).filter(self.model_from['Field'].step_id == old_step.id):
                     if 'en' in field.label and field.label['en'] == 'Short title':
                         map_on_default = True
                         break
@@ -215,24 +207,24 @@ class MigrationScript(MigrationBase):
                 self.store_new.add(new_questionnaire)
                 new_questionnaire_id = new_questionnaire.id
 
-                for old_step in old_context.steps:
+                for old_step in self.store_old.query(self.model_from['Step']).filter(self.model_from['Step'].context_id == old_context.id):
                     new_step = self.model_to['Step']()
-                    for _, v in new_step._storm_columns.items():
-                        if v.name == 'questionnaire_id':
+                    for key in [c.key for c in new_step.__table__.columns]:
+                        if key == 'questionnaire_id':
                             new_step.questionnaire_id = new_questionnaire.id
                         else:
-                            setattr(new_step, v.name, getattr(old_step, v.name))
+                            setattr(new_step, key, getattr(old_step, key))
 
                     self.store_new.add(new_step)
 
             new_context = self.model_to['Context']()
-            for _, v in new_context._storm_columns.items():
-                if v.name == 'status_page_message':
+            for key in [c.key for c in new_context.__table__.columns]:
+                if key == 'status_page_message':
                     new_context.status_page_message = ''
-                elif v.name == 'questionnaire_id':
+                elif key == 'questionnaire_id':
                     if new_questionnaire_id is not None:
                         new_context.questionnaire_id = new_questionnaire_id
                 else:
-                    setattr(new_context, v.name, getattr(old_context, v.name))
+                    setattr(new_context, key, getattr(old_context, key))
 
             self.store_new.add(new_context)

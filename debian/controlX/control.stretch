@@ -28,7 +28,7 @@ Depends:
  , python-openssl
  , python-gnupg
  , python-scrypt
- , python-storm
+ , python-sqlalchemy
  , python-twisted-core
  , python-txsocksx
  , python-txtorcon

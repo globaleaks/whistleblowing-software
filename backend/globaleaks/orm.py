@@ -1,14 +1,15 @@
 # -*- coding: utf-8
-# orm: contains main hooks to storm ORM
-# ******
 import random
 import time
 
-from sqlite3.dbapi2 import OperationalError
 
-from storm.database import create_database, Connection
-from storm.databases import sqlite
-from storm.store import Store
+from sqlalchemy.pool import QueuePool
+from sqlalchemy import create_engine, event
+from sqlalchemy.exc import OperationalError
+
+from sqlite3 import dbapi2 as sqlite
+from sqlalchemy.orm import sessionmaker
+
 
 from twisted.internet import reactor
 from twisted.internet.threads import deferToThreadPool
@@ -19,7 +20,7 @@ __THREAD_POOL = None
 
 
 def make_db_uri(db_file):
-    return 'sqlite:' + db_file + '?foreign_keys=ON'
+    return 'sqlite+pysqlite:////' + db_file
 
 
 def set_db_uri(db_uri):
@@ -32,11 +33,26 @@ def get_db_uri():
     return __DB_URI
 
 
-def get_store(db_uri=None):
+def get_engine(db_uri=None, foreign_keys=True):
     if db_uri is None:
         db_uri = get_db_uri()
 
-    return Store(create_database(db_uri))
+    engine = create_engine(db_uri, module=sqlite, connect_args={'timeout': 30}, poolclass=QueuePool, pool_size=16)
+
+    if foreign_keys:
+        def on_connect(conn, record):
+            conn.execute('pragma foreign_keys=ON')
+
+        event.listen(engine, 'connect', on_connect)
+
+    return engine
+
+
+
+def get_session(db_uri=None):
+    engine  = get_engine(db_uri)
+    session = sessionmaker(bind=engine, autocommit=False, autoflush=False)
+    return session()
 
 
 def set_thread_pool(thread_pool):
@@ -47,49 +63,6 @@ def set_thread_pool(thread_pool):
 def get_thread_pool():
     global __THREAD_POOL
     return __THREAD_POOL
-
-
-class SQLiteConnectionMock(sqlite.SQLiteConnection):
-    def raw_execute(self, statement, params=None, _end=False):
-        if _end:
-            self._in_transaction = False
-        elif not self._in_transaction:
-            # See story at the end to understand why we do BEGIN manually.
-            self._in_transaction = True
-            self._raw_connection.execute("BEGIN")
-
-        try:
-            return Connection.raw_execute(self, statement, params)
-        except OperationalError as e:
-            if str(e) == "database is locked" and _end:
-                self._in_transaction = True
-            raise
-
-
-class SQLiteMock(sqlite.Database):
-    connection_factory = SQLiteConnectionMock
-
-    def __init__(self, uri):
-        self._filename = uri.database or ":memory:"
-        self._timeout = float(uri.options.get("timeout", 5))
-        self._foreign_keys = uri.options.get("foreign_keys")
-
-    def raw_connect(self):
-        raw_connection = sqlite.sqlite.connect(self._filename,
-                                               timeout=self._timeout,
-                                               isolation_level=None)
-
-        if self._foreign_keys is not None:
-            raw_connection.execute("PRAGMA foreign_keys = %s" %
-                                   (self._foreign_keys,))
-
-        raw_connection.execute("PRAGMA secure_delete = ON")
-
-        return raw_connection
-
-
-sqlite.SQLite = SQLiteMock
-sqlite.create_from_uri = SQLiteMock
 
 
 class transact(object):
@@ -119,30 +92,31 @@ class transact(object):
         Wrap provided function calling it inside a thread and
         passing the store to it.
         """
-        store = get_store()
+        session = get_session()
 
         try:
             while True:
                 try:
                     if self.instance:
-                        result = function(self.instance, store, *args, **kwargs)
+                        result = function(self.instance, session, *args, **kwargs)
                     else:
-                        result = function(store, *args, **kwargs)
+                        result = function(session, *args, **kwargs)
 
-                    store.commit()
+                    session.commit()
                 except OperationalError as e:
-                    store.rollback()
-                    if str(e) != "database is locked":
+                    session.rollback()
+
+                    if "database is locked" not in str(e):
                         raise
+
                     time.sleep(0.1)
-                except Exception as e:
-                    store.rollback()
+                except Exception:
+                    session.rollback()
                     raise
                 else:
                     return result
         finally:
-            store.reset()
-            store.close()
+            session.close()
 
 
 class transact_sync(transact):

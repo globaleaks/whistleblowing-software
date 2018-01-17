@@ -20,11 +20,12 @@ from globaleaks.utils.utility import datetime_now
 
 
 @transact
-def register_ifile_on_db(store, tid, uploaded_file, internaltip_id):
+def register_ifile_on_db(session, tid, uploaded_file, internaltip_id):
     now = datetime_now()
 
-    store.find(models.InternalTip, id=internaltip_id, tid=tid).set(update_date=now,
-                                                                   wb_last_access=now)
+    session.query(models.InternalTip) \
+         .filter(models.InternalTip.id == internaltip_id, models.InternalTip.tid == tid) \
+         .update({'update_date': now, 'wb_last_access': now})
 
     new_file = models.InternalFile()
     new_file.tid = tid
@@ -34,9 +35,9 @@ def register_ifile_on_db(store, tid, uploaded_file, internaltip_id):
     new_file.internaltip_id = internaltip_id
     new_file.submission = uploaded_file['submission']
     new_file.file_path = uploaded_file['path']
-    store.add(new_file)
+    session.add(new_file)
 
-    return serializers.serialize_ifile(store, new_file)
+    return serializers.serialize_ifile(session, new_file)
 
 
 class SubmissionAttachment(BaseHandler):
@@ -84,9 +85,9 @@ class PostSubmissionAttachment(SubmissionAttachment):
         """
         Errors: ModelNotFound
         """
-        itip_id = yield models.get(models.InternalTip.id,
+        itip_id = (yield models.get(models.InternalTip.id,
                                    models.InternalTip.id==self.current_user.user_id,
-                                   models.InternalTip.tid==self.request.tid)
+                                   models.InternalTip.tid==self.request.tid))[0]
 
         yield self.handle_attachment()
 

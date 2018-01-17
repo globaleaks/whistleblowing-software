@@ -1,8 +1,7 @@
 # -*- coding: utf-8
-from storm.locals import Int, Bool, Unicode, JSON
-
 from globaleaks import models
 from globaleaks.db.migrations.update import MigrationBase
+from globaleaks.models.properties import *
 
 
 old_keys = ["%NodeName%", "%HiddenService%", "%PublicSite%", "%ContextName%", "%RecipientName%", "%TipID%", "%TipNum%", "%TipLabel%", "%EventTime%", "%SubmissionDate%", "%ExpirationDate%", "%ExpirationWatch%", "%QuestionnaireAnswers%", "%Comments%", "%Messages%", "%TorURL%", "%T2WURL%", "%FileName%", "%FileSize%", "%Content%", "%ExpiringSubmissionCount%", "%EarliestExpirationDate%", "%PGPKeyInfoList%", "%PGPKeyInfo%", "%AnomalyDetailDisk%", "%AnomalyDetailActivities%", "%ActivityAlarmLevel%", "%ActivityDump%", "%NodeName%", "%FreeMemory%", "%TotalMemory%", "%ExpirationDate%", "%TipTorURL", "TipT2WURL"]
@@ -11,37 +10,39 @@ old_keys = ["%NodeName%", "%HiddenService%", "%PublicSite%", "%ContextName%", "%
 new_keys = ["{NodeName}", "{HiddenService}", "{PublicSite}", "{ContextName}", "{RecipientName}", "{TipID}", "{TipNum}", "{TipLabel}", "{EventTime}", "{SubmissionDate}", "{ExpirationDate}", "{ExpirationWatch}", "{QuestionnaireAnswers}", "{Comments}", "{Messages}", "{TorUrl}", "{HTTPSUrl}", "{FileName}", "{FileSize}", "{Content}", "{ExpiringSubmissionCount}", "{EarliestExpirationDate}", "{PGPKeyInfoList}", "{PGPKeyInfo}", "{AnomalyDetailDisk}", "{AnomalyDetailActivities}", "{ActivityAlarmLevel}", "{ActivityDump}", "{NodeName}", "{FreeMemory}", "{TotalMemory}", "{ExpirationDate}", "{TorUrl}", "{HTTPSUrl}"]
 
 
-class Field_v_37(models.ModelWithID):
-    __storm_table__ = 'field'
-    x = Int(default=0)
-    y = Int(default=0)
-    width = Int(default=0)
-    key = Unicode(default=u'')
-    label = JSON()
-    description = JSON()
-    hint = JSON()
-    required = Bool(default=False)
-    preview = Bool(default=False)
-    multi_entry = Bool(default=False)
-    multi_entry_hint = JSON()
-    stats_enabled = Bool(default=False)
-    triggered_by_score = Int(default=0)
-    fieldgroup_id = Unicode()
-    step_id = Unicode()
-    template_id = Unicode()
-    type = Unicode(default=u'inputbox')
-    instance = Unicode(default=u'instance')
-    editable = Bool(default=True)
+class Field_v_37(models.Model):
+    __tablename__ = 'field'
+    id = Column(String(36), primary_key=True, default=uuid4, nullable=False)
+    x = Column(Integer, default=0)
+    y = Column(Integer, default=0)
+    width = Column(Integer, default=0)
+    key = Column(UnicodeText, default=u'')
+    label = Column(JSON)
+    description = Column(JSON)
+    hint = Column(JSON)
+    required = Column(Boolean, default=False)
+    preview = Column(Boolean, default=False)
+    multi_entry = Column(Boolean, default=False)
+    multi_entry_hint = Column(JSON)
+    stats_enabled = Column(Boolean, default=False)
+    triggered_by_score = Column(Integer, default=0)
+    fieldgroup_id = Column(String(36))
+    step_id = Column(String(36))
+    template_id = Column(String(36))
+    type = Column(UnicodeText, default=u'inputbox')
+    instance = Column(UnicodeText, default=u'instance')
+    editable = Column(Boolean, default=True)
 
 
-class Questionnaire_v_37(models.ModelWithID):
-    __storm_table__ = 'questionnaire'
-    key = Unicode(default=u'')
-    name = Unicode(default=u'')
-    show_steps_navigation_bar = Bool(default=False)
-    steps_navigation_requires_completion = Bool(default=False)
-    enable_whistleblower_identity = Bool(default=False)
-    editable = Bool(default=True)
+class Questionnaire_v_37(models.Model):
+    __tablename__ = 'questionnaire'
+    id = Column(String(36), primary_key=True, default=uuid4, nullable=False)
+    key = Column(UnicodeText, default=u'')
+    name = Column(UnicodeText, default=u'')
+    show_steps_navigation_bar = Column(Boolean, default=False)
+    steps_navigation_requires_completion = Column(Boolean, default=False)
+    enable_whistleblower_identity = Column(Boolean, default=False)
+    editable = Column(Boolean, default=True)
 
 
 def replace_templates_variables(value):
@@ -53,45 +54,45 @@ def replace_templates_variables(value):
 
 class MigrationScript(MigrationBase):
     def migrate_ConfigL10N(self):
-        old_objs = self.store_old.find(self.model_from['ConfigL10N'])
+        old_objs = self.store_old.query(self.model_from['ConfigL10N'])
         for old_obj in old_objs:
             new_obj = self.model_to['ConfigL10N']()
-            for _, v in new_obj._storm_columns.items():
-                value = getattr(old_obj, v.name)
-                if v.name == 'value':
+            for key in [c.key for c in new_obj.__table__.columns]:
+                value = getattr(old_obj, key)
+                if key == 'value':
                     value = replace_templates_variables(value)
 
-                setattr(new_obj, v.name, value)
+                setattr(new_obj, key, value)
 
             self.store_new.add(new_obj)
 
     def migrate_Context(self):
-        questionnaire_default = self.store_old.find(self.model_from['Questionnaire'], self.model_from['Questionnaire'].key == u'default').one()
+        questionnaire_default = self.store_old.query(self.model_from['Questionnaire']).filter(self.model_from['Questionnaire'].key == u'default').one_or_none()
         questionnaire_default_id = questionnaire_default.id if questionnaire_default is not None else 'hack'
 
-        old_objs = self.store_old.find(self.model_from['Context'])
+        old_objs = self.store_old.query(self.model_from['Context'])
         for old_obj in old_objs:
             new_obj = self.model_to['Context']()
-            for _, v in new_obj._storm_columns.items():
-                if v.name == 'questionnaire_id':
+            for key in [c.key for c in new_obj.__table__.columns]:
+                if key == 'questionnaire_id':
                     if old_obj.questionnaire_id is None or old_obj.questionnaire_id == questionnaire_default_id:
                         setattr(new_obj, 'questionnaire_id', u'default')
                     else:
-                        setattr(new_obj, v.name, getattr(old_obj, v.name))
+                        setattr(new_obj, key, getattr(old_obj, key))
                 else:
-                    setattr(new_obj, v.name, getattr(old_obj, v.name))
+                    setattr(new_obj, key, getattr(old_obj, key))
 
             self.store_new.add(new_obj)
 
     def migrate_Field(self):
-        field_wbi = self.store_old.find(self.model_from['Field'], self.model_from['Field'].key == u'whistleblower_identity').one()
+        field_wbi = self.store_old.query(self.model_from['Field']).filter(self.model_from['Field'].key == u'whistleblower_identity').one()
         field_wbi_id = field_wbi.id if field_wbi is not None else 'hack'
 
-        old_objs = self.store_old.find(self.model_from['Field'])
+        old_objs = self.store_old.query(self.model_from['Field'])
         for old_obj in old_objs:
             new_obj = self.model_to['Field']()
-            for _, v in new_obj._storm_columns.items():
-                setattr(new_obj, v.name, getattr(old_obj, v.name))
+            for key in [c.key for c in new_obj.__table__.columns]:
+                setattr(new_obj, key, getattr(old_obj, key))
 
             if old_obj.key == 'whistleblower_identity':
                 setattr(new_obj, 'id', 'whistleblower_identity')
@@ -105,11 +106,11 @@ class MigrationScript(MigrationBase):
             self.store_new.add(new_obj)
 
     def migrate_Questionnaire(self):
-        old_objs = self.store_old.find(self.model_from['Questionnaire'])
+        old_objs = self.store_old.query(self.model_from['Questionnaire'])
         for old_obj in old_objs:
             new_obj = self.model_to['Questionnaire']()
-            for _, v in new_obj._storm_columns.items():
-                setattr(new_obj, v.name, getattr(old_obj, v.name))
+            for key in [c.key for c in new_obj.__table__.columns]:
+                setattr(new_obj, key, getattr(old_obj, key))
 
             if old_obj.key == 'default':
                 setattr(new_obj, 'id', 'default')

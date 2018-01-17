@@ -16,8 +16,8 @@ from twisted.internet.defer import inlineCallbacks
 
 
 @transact
-def toggle_https(store, enabled):
-    PrivateFactory(store, 1).set_val(u'https_enabled', enabled)
+def toggle_https(session, enabled):
+    PrivateFactory(session, 1).set_val(u'https_enabled', enabled)
 
 class TestProcessSupervisor(helpers.TestGL):
     @inlineCallbacks
@@ -64,8 +64,8 @@ class TestProcessSupervisor(helpers.TestGL):
 
 
 @transact
-def wrap_db_tx(store, f, *args, **kwargs):
-    return f(store, *args, **kwargs)
+def wrap_db_tx(session, f, *args, **kwargs):
+    return f(session, *args, **kwargs)
 
 class TestSubprocessRun(helpers.TestGL):
 

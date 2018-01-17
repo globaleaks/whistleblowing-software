@@ -7,7 +7,6 @@
 # exposed API.
 import operator
 from datetime import timedelta
-from storm.expr import Desc, And
 
 from globaleaks.state import State
 from globaleaks.event import events_monitored
@@ -31,7 +30,7 @@ def weekmap_to_heatmap(week_map):
 
 
 @transact
-def get_stats(store, tid, week_delta):
+def get_stats(session, tid, week_delta):
     """
     :param week_delta: commonly is 0, mean that you're taking this
         week. -1 is the previous week.
@@ -55,7 +54,9 @@ def get_stats(store, tid, week_delta):
     lower_bound = iso_to_gregorian(looked_year, looked_week, 1)
     upper_bound = iso_to_gregorian(looked_year, looked_week + 1, 1)
 
-    hourlyentries = store.find(Stats, Stats.tid == tid, And(Stats.start >= lower_bound, Stats.start <= upper_bound))
+    hourlyentries = session.query(Stats).filter(Stats.tid == tid,
+                                              Stats.start >= lower_bound,
+                                              Stats.start <= upper_bound)
 
     week_entries = 0
     week_map = [[dict() for i in range(24)] for j in range(7)]
@@ -114,8 +115,8 @@ def get_stats(store, tid, week_delta):
 
 
 @transact
-def get_anomaly_history(store, tid, limit):
-    anomalies = store.find(Anomalies, tid=tid).order_by(Desc(Anomalies.date))[:limit]
+def get_anomaly_history(session, tid, limit):
+    anomalies = session.query(Anomalies).filter(Anomalies.tid == tid).order_by(Anomalies.date.desc())[:limit]
 
     anomaly_history = []
     for _, anomaly in enumerate(anomalies):

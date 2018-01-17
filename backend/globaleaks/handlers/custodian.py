@@ -10,17 +10,16 @@ from globaleaks.rest import requests
 from globaleaks.utils.utility import datetime_to_ISO8601, datetime_now
 
 
-def serialize_identityaccessrequest(store, tid, identityaccessrequest):
-    itip, user = store.find((models.InternalTip, models.User),
-                            models.InternalTip.id == models.ReceiverTip.internaltip_id,
-                            models.User.id == models.ReceiverTip.receiver_id,
-                            models.ReceiverTip.id == identityaccessrequest.receivertip_id,
-                            models.User.tid == tid).one()
+def serialize_identityaccessrequest(session, tid, identityaccessrequest):
+    itip, user = session.query(models.InternalTip, models.User) \
+                      .filter(models.InternalTip.id == models.ReceiverTip.internaltip_id,
+                              models.ReceiverTip.id == identityaccessrequest.receivertip_id,
+                              models.ReceiverTip.receiver_id == models.User.id,
+                              models.User.tid == tid).one()
 
-    reply_user = store.find(models.User,
-                            models.User.id == identityaccessrequest.reply_user_id,
-                            tid=tid).one()
-
+    reply_user = session.query(models.User) \
+                      .filter(models.User.id == identityaccessrequest.reply_user_id,
+                              models.User.tid == tid).one_or_none()
     return {
         'id': identityaccessrequest.id,
         'receivertip_id': identityaccessrequest.receivertip_id,
@@ -36,29 +35,31 @@ def serialize_identityaccessrequest(store, tid, identityaccessrequest):
 
 
 
-def db_get_identityaccessrequest_list(store, tid, rtip_id):
-    return [serialize_identityaccessrequest(store, tid, iar) for iar in store.find(models.IdentityAccessRequest, receivertip_id=rtip_id, tid=tid)]
+def db_get_identityaccessrequest_list(session, tid, rtip_id):
+    return [serialize_identityaccessrequest(session, tid, iar) for iar in session.query(models.IdentityAccessRequest).filter(models.IdentityAccessRequest.receivertip_id == rtip_id, models.IdentityAccessRequest.tid == tid)]
 
 
 @transact
-def get_identityaccessrequest_list(store, tid):
-    return [serialize_identityaccessrequest(store, tid, iar)
-        for iar in store.find(models.IdentityAccessRequest, models.IdentityAccessRequest.reply == u'pending', tid=tid)]
+def get_identityaccessrequest_list(session, tid):
+    return [serialize_identityaccessrequest(session, tid, iar)
+        for iar in session.query(models.IdentityAccessRequest).filter(models.IdentityAccessRequest.reply == u'pending', models.IdentityAccessRequest.tid == tid)]
 
 
 @transact
-def get_identityaccessrequest(store, tid, identityaccessrequest_id):
-    iar = store.find(models.IdentityAccessRequest,
-                     models.IdentityAccessRequest.id == identityaccessrequest_id, tid=tid).one()
-    return serialize_identityaccessrequest(store, tid, iar)
+def get_identityaccessrequest(session, tid, identityaccessrequest_id):
+    iar = session.query(models.IdentityAccessRequest) \
+               .filter(models.IdentityAccessRequest.id == identityaccessrequest_id,
+                       models.IdentityAccessRequest.tid == tid).one()
+
+    return serialize_identityaccessrequest(session, tid, iar)
 
 
 @transact
-def update_identityaccessrequest(store, tid, user_id, identityaccessrequest_id, request):
-    iar, rtip = store.find((models.IdentityAccessRequest, models.ReceiverTip),
-                           models.IdentityAccessRequest.id == identityaccessrequest_id,
-                           models.ReceiverTip.id == models.IdentityAccessRequest.receivertip_id,
-                           models.ReceiverTip.tid == tid).one()
+def update_identityaccessrequest(session, tid, user_id, identityaccessrequest_id, request):
+    iar, rtip = session.query(models.IdentityAccessRequest, models.ReceiverTip) \
+                     .filter(models.IdentityAccessRequest.id == identityaccessrequest_id,
+                             models.ReceiverTip.id == models.IdentityAccessRequest.receivertip_id,
+                             models.ReceiverTip.tid == tid).one()
 
     if iar.reply == 'pending':
         iar.reply_date = datetime_now()
@@ -69,7 +70,7 @@ def update_identityaccessrequest(store, tid, user_id, identityaccessrequest_id, 
         if iar.reply == 'authorized':
             rtip.can_access_whistleblower_identity = True
 
-    return serialize_identityaccessrequest(store, tid, iar)
+    return serialize_identityaccessrequest(session, tid, iar)
 
 
 class IdentityAccessRequestInstance(BaseHandler):
