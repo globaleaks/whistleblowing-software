@@ -20,14 +20,14 @@ class TestCertificateCheck(helpers.TestGLWithPopulatedDB):
         yield self._setUp()
 
     @transact
-    def _setUp(self, store):
+    def _setUp(self, session):
         valid_setup = test_tls.get_valid_setup()
 
-        prv_fact = PrivateFactory(store, 1)
+        prv_fact = PrivateFactory(session, 1)
         prv_fact.set_val(u'https_cert', valid_setup['cert'])
         prv_fact.set_val(u'https_enabled', True)
 
-        db_refresh_memory_variables(store)
+        db_refresh_memory_variables(session)
 
     @inlineCallbacks
     def test_cert_check_sched(self):

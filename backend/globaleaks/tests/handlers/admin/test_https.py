@@ -14,9 +14,9 @@ from twisted.internet.defer import inlineCallbacks, returnValue
 
 
 @transact
-def set_init_params(store, dh_params, hostname='localhost:9999'):
-    PrivateFactory(store, 1).set_val(u'https_dh_params', dh_params)
-    NodeFactory(store, 1).set_val(u'hostname', hostname)
+def set_init_params(session, dh_params, hostname='localhost:9999'):
+    PrivateFactory(session, 1).set_val(u'https_dh_params', dh_params)
+    NodeFactory(session, 1).set_val(u'hostname', hostname)
     State.tenant_cache[1].hostname = 'localhost:9999'
 
 

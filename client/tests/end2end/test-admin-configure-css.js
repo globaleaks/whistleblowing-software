@@ -44,7 +44,7 @@ describe('Admin configure custom CSS', function() {
     browser.gl.utils.login_admin();
     browser.setLocation('admin/content');
     element(by.cssContainingText("a", "Theme customization")).click();
-    element(by.cssContainingText("a", "Delete")).click();
+    element.all(by.cssContainingText("a", "Delete")).first().click();
 
     // wait until redirect to the first tab of the admin/content section
     browser.gl.utils.waitUntilPresent(by.cssContainingText("label", "Project name"));

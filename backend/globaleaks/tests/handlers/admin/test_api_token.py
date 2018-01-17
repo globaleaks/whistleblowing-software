@@ -10,8 +10,8 @@ from twisted.internet.defer import inlineCallbacks
 
 
 @transact
-def set_api_digest(store, s):
-    PrivateFactory(store, 1).set_val(u'admin_api_token_digest', s)
+def set_api_digest(session, s):
+    PrivateFactory(session, 1).set_val(u'admin_api_token_digest', s)
 
 
 class TestAPITokenEnabled(helpers.TestHandlerWithPopulatedDB):

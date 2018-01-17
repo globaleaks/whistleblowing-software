@@ -31,7 +31,7 @@ describe('admin configure languages', function() {
     browser.setLocation('admin/content');
     element(by.cssContainingText("a", "Languages")).click();
 
-    element.all(by.css('.non-default-language')).get(1).click();
+    element.all(by.css('.non-default-language')).get(0).click();
     element.all(by.cssContainingText("button", "Save")).get(1).click();
 
     // Verify that the default is set to german

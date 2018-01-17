@@ -52,13 +52,15 @@ import urlparse
 
 from datetime import timedelta
 
+
+from twisted.python.failure import Failure
+
 from twisted.web.test.requesthelper import DummyRequest
 from twisted.internet import threads, defer, task
 from twisted.internet.address import IPv4Address
 from twisted.internet.defer import inlineCallbacks, Deferred, returnValue
 from twisted.trial import unittest
 from twisted.internet.protocol import ProcessProtocol
-from storm.twisted.testing import FakeThreadPool
 
 ## constants
 VALID_PASSWORD1 = u'ACollectionOfDiplomaticHistorySince_1966_ToThe_Pr esentDay#'
@@ -100,6 +102,23 @@ log.debug = UTlog.mlog('D')
 log.info = UTlog.mlog('I')
 
 
+class FakeThreadPool(object):
+    """
+    A fake L{twisted.python.threadpool.ThreadPool}, running functions inside
+    the main thread instead for easing tests.
+    """
+
+    def callInThreadWithCallback(self, onResult, func, *args, **kw):
+        success = True
+        try:
+            result = func(*args, **kw)
+        except:
+            result = Failure()
+            success = False
+
+        onResult(success, result)
+
+
 def init_glsettings_for_unit_tests():
     Settings.testing = True
     Settings.set_devel_mode()
@@ -124,8 +143,8 @@ def init_glsettings_for_unit_tests():
 
 
 @transact
-def update_node_setting(store, var_name, value):
-    models.config.NodeFactory(store, 1).set_val(var_name, value)
+def update_node_setting(session, var_name, value):
+    models.config.NodeFactory(session, 1).set_val(var_name, value)
 
 
 def get_dummy_step():
@@ -320,6 +339,7 @@ class TestGL(unittest.TestCase):
                 os.path.join(Settings.working_path, 'db', Settings.db_file_name)
             )
         else:
+            yield db.create_db()
             yield db.init_db()
 
         allow_unencrypted = self.encryption_scenario in ['PLAINTEXT', 'MIXED']
@@ -359,13 +379,13 @@ class TestGL(unittest.TestCase):
         self.test_reactor.pump(self.call_spigot())
 
     @transact
-    def set_hostnames(self, store, i):
+    def set_hostnames(self, session, i):
         hosts = [('www.globaleaks.org', 'aaaaaaaaaaaaaaaa.onion'),
                  ('www.domain-a.com', 'bbbbbbbbbbbbbbbb.onion'),
                  ('www.domain-b.com', 'cccccccccccccccc.onion')]
 
         hostname, onionservice = hosts[i - 1]
-        node_fact = models.config.NodeFactory(store, i)
+        node_fact = models.config.NodeFactory(session, i)
         node_fact.set_val(u'hostname', hostname)
         node_fact.set_val(u'onionservice', onionservice)
 
@@ -453,13 +473,13 @@ class TestGL(unittest.TestCase):
         answers[field['id']] = [value]
 
     @transact
-    def fill_random_answers(self, store, questionnaire_id, value=None):
+    def fill_random_answers(self, session, questionnaire_id, value=None):
         """
         return randomly populated questionnaire
         """
         answers = {}
 
-        questionnaire = db_get_questionnaire(store, 1, questionnaire_id, 'en')
+        questionnaire = db_get_questionnaire(session, 1, questionnaire_id, 'en')
 
         for step in questionnaire['steps']:
             for field in step['children']:
@@ -526,64 +546,64 @@ class TestGL(unittest.TestCase):
                     State.tenant_state[1].EventQ.append(e)
 
     @transact
-    def get_rtips(self, store):
+    def get_rtips(self, session):
         ret = []
-        for r, i in store.find((models.ReceiverTip, models.InternalTip),
-                               models.ReceiverTip.internaltip_id == models.InternalTip.id,
-                               models.ReceiverTip.tid == 1):
-            ret.append(rtip.serialize_rtip(store, r, i, 'en'))
+        for r, i in session.query(models.ReceiverTip, models.InternalTip) \
+                         .filter(models.ReceiverTip.internaltip_id == models.InternalTip.id,
+                                 models.ReceiverTip.tid == 1):
+            ret.append(rtip.serialize_rtip(session, r, i, 'en'))
 
         return ret
 
     @transact
-    def get_rfiles(self, store, rtip_id):
-        return [{'id': rfile.id} for rfile in store.find(models.ReceiverFile, models.ReceiverFile.receivertip_id == rtip_id, tid=1)]
+    def get_rfiles(self, session, rtip_id):
+        return [{'id': rfile.id} for rfile in session.query(models.ReceiverFile).filter(models.ReceiverFile.receivertip_id == rtip_id, models.ReceiverFile.tid == 1)]
 
     @transact
-    def get_wbtips(self, store):
+    def get_wbtips(self, session):
         ret = []
-        for i in store.find(models.InternalTip,
-                               models.InternalTip.tid == 1):
-            x = wbtip.serialize_wbtip(store, i, 'en')
-            r_ids = store.find(models.ReceiverTip.receiver_id,
-                               models.ReceiverTip.internaltip_id == i.id,
-                               models.ReceiverTip.tid == 1)
-
-            x['receivers_ids'] = [r_id for r_id in r_ids]
+        for i in session.query(models.InternalTip) \
+                         .filter(models.InternalTip.tid == 1):
+            x = wbtip.serialize_wbtip(session, i, 'en')
+            x['receivers_ids'] = zip(*session.query(models.ReceiverTip.receiver_id) \
+                                           .filter(models.ReceiverTip.internaltip_id == i.id,
+                                                   models.ReceiverTip.tid == 1))[0]
             ret.append(x)
 
         return ret
 
     @transact
-    def get_wbfiles(self, store, wbtip_id):
-        return [{'id': wbfile.id} for wbfile in store.find(models.WhistleblowerFile,
-                                                           models.WhistleblowerFile.receivertip_id == models.ReceiverTip.id,
-                                                           models.ReceiverTip.internaltip_id == wbtip_id,
-                                                           tid=1)]
+    def get_wbfiles(self, session, wbtip_id):
+        return [{'id': wbfile.id} for wbfile in session.query(models.WhistleblowerFile) \
+                                                     .filter(models.WhistleblowerFile.receivertip_id == models.ReceiverTip.id,
+                                                             models.ReceiverTip.internaltip_id == wbtip_id,
+                                                             models.WhistleblowerFile.tid == 1)]
 
     @transact
-    def get_internalfiles_by_receipt(self, store, receipt):
-        wbtip = db_get_wbtip_by_receipt(store, 1, receipt)
-        ifiles = store.find(models.InternalFile, models.InternalFile.internaltip_id == unicode(wbtip.id), tid=1)
+    def get_internalfiles_by_receipt(self, session, receipt):
+        wbtip = db_get_wbtip_by_receipt(session, 1, receipt)
+        ifiles = session.query(models.InternalFile) \
+                      .filter(models.InternalFile.internaltip_id == unicode(wbtip.id), models.InternalFile.tid == 1)
 
-        return [models.serializers.serialize_ifile(store, ifile) for ifile in ifiles]
+        return [models.serializers.serialize_ifile(session, ifile) for ifile in ifiles]
 
-
-    @transact
-    def get_receiverfiles_by_receipt(self, store, receipt):
-        wbtip = db_get_wbtip_by_receipt(store, 1, receipt)
-        rfiles = store.find(models.ReceiverFile, models.ReceiverFile.receivertip_id == models.ReceiverTip.id,
-                                                 models.ReceiverTip.internaltip_id == unicode(wbtip.id),
-                                                 tid=1)
-
-        return [models.serializers.serialize_rfile(store, 1, rfile) for rfile in rfiles]
-
-    def db_test_model_count(self, store, model, n):
-        self.assertEqual(store.find(model).count(), n)
 
     @transact
-    def test_model_count(self, store, model, n):
-        self.db_test_model_count(store, model, n)
+    def get_receiverfiles_by_receipt(self, session, receipt):
+        wbtip = db_get_wbtip_by_receipt(session, 1, receipt)
+        rfiles = session.query(models.ReceiverFile) \
+                      .filter(models.ReceiverFile.receivertip_id == models.ReceiverTip.id,
+                              models.ReceiverTip.internaltip_id == unicode(wbtip.id),
+                              models.ReceiverFile.tid == 1)
+
+        return [models.serializers.serialize_rfile(session, 1, rfile) for rfile in rfiles]
+
+    def db_test_model_count(self, session, model, n):
+        self.assertEqual(session.query(model).count(), n)
+
+    @transact
+    def test_model_count(self, session, model, n):
+        self.db_test_model_count(session, model, n)
 
 
 class TestGLWithPopulatedDB(TestGL):
@@ -636,14 +656,14 @@ class TestGLWithPopulatedDB(TestGL):
             yield self.set_hostnames(i+1)
 
     @transact
-    def add_whistleblower_identity_field_to_step(self, store, step_id):
-        wbf = store.find(models.Field, models.Field.id == u'whistleblower_identity', tid=1).one()
+    def add_whistleblower_identity_field_to_step(self, session, step_id):
+        wbf = session.query(models.Field).filter(models.Field.id == u'whistleblower_identity', models.Field.tid == 1).one()
 
         reference_field = get_dummy_field()
         reference_field['instance'] = 'reference'
         reference_field['template_id'] = wbf.id
         reference_field['step_id'] = step_id
-        db_create_field(store, 1, reference_field, 'en')
+        db_create_field(session, 1, reference_field, 'en')
 
     def perform_submission_start(self):
         self.dummyToken = token.Token(1, 'submission')
@@ -726,22 +746,22 @@ class TestGLWithPopulatedDB(TestGL):
         yield self.perform_submission_actions()
 
     @transact
-    def force_wbtip_expiration(self, store):
-        store.find(models.InternalTip).set(wb_last_access = datetime_null())
+    def force_wbtip_expiration(self, session):
+        session.query(models.InternalTip).update({'wb_last_access': datetime_null()})
 
     @transact
-    def force_itip_expiration(self, store):
-        store.find(models.InternalTip).set(expiration_date = datetime_null())
+    def force_itip_expiration(self, session):
+        session.query(models.InternalTip).update({'expiration_date': datetime_null()})
 
     @transact
-    def set_itips_near_to_expire(self, store):
+    def set_itips_near_to_expire(self, session):
         date = datetime_now() + timedelta(hours=State.tenant_cache[1].notification.tip_expiration_threshold - 1)
-        store.find(models.InternalTip).set(expiration_date = date)
+        session.query(models.InternalTip).update({'expiration_date': date})
 
 
     @transact
-    def set_contexts_timetolive(self, store, ttl):
-        store.find(models.Context).set(tip_timetolive = ttl)
+    def set_contexts_timetolive(self, session, ttl):
+        session.query(models.Context).update({'tip_timetolive': ttl})
 
 
 class TestHandler(TestGLWithPopulatedDB):
@@ -760,9 +780,6 @@ class TestHandler(TestGLWithPopulatedDB):
 
     @inlineCallbacks
     def setUp(self):
-        """
-        override default handlers get_store with a mock store used for testing
-        """
         # we bypass TestGLWith Populated DB to test against clean DB.
         yield TestGL.setUp(self)
 
@@ -924,9 +941,6 @@ class TestInstanceHandler(TestHandler):
 class TestHandlerWithPopulatedDB(TestHandler):
     @inlineCallbacks
     def setUp(self):
-        """
-        override default handlers' get_store with a mock store used for testing/
-        """
         yield TestGLWithPopulatedDB.setUp(self)
         self.initialization()
 

@@ -4,17 +4,18 @@ Test database migrations.
 for each version one an empty and a populated db must be sessiond in directories:
  - db/empty
  - db/populated
-
+"""
 import os
 import re
 import shutil
-from storm.locals import create_database, Store
+
+from sqlalchemy.orm import sessionmaker
 
 from globaleaks import __version__, DATABASE_VERSION, FIRST_DATABASE_VERSION_SUPPORTED, models, orm
 from globaleaks.db import migration, update_db
 from globaleaks.db.migrations import update_37
 from globaleaks.models import config
-from globaleaks.models.l10n import EnabledLanguage
+from globaleaks.orm import get_engine
 from globaleaks.rest import errors
 from globaleaks.settings import Settings
 from globaleaks.tests import helpers, config as test_config
@@ -67,9 +68,11 @@ class TestMigrationRoutines(unittest.TestCase):
     def postconditions_30(self):
         new_uri = orm.make_db_uri(os.path.join(Settings.db_path, Settings.db_file_name))
 
-        session = Store(create_database(new_uri))
-        self.assertTrue(session.find(models.File, id=u'logo').count() == 1)
-        self.assertTrue(session.find(models.File, id=u'css').count() == 1)
+        engine = get_engine(new_uri)
+        session = sessionmaker(bind=engine)()
+
+        self.assertTrue(session.query(models.File).filter(models.File.id == u'logo').count() == 1)
+        self.assertTrue(session.query(models.File).filter(models.File.id == u'css').count() == 1)
         session.close()
 
     def preconditions_36(self):
@@ -83,9 +86,12 @@ class TestMigrationRoutines(unittest.TestCase):
 
     def postconditions_36(self):
         new_uri = orm.make_db_uri(os.path.join(Settings.db_path, Settings.db_file_name))
-        session = Store(create_database(new_uri))
-        hs = session.find(config.Config, tid=1, var_name=u'onionservice').one().value['v']
-        pk = session.find(config.Config, tid=1, var_name=u'tor_onion_key').one().value['v']
+
+        engine = get_engine(new_uri)
+        session = sessionmaker(bind=engine)()
+
+        hs = session.query(config.Config).filter(config.Config.tid == 1, config.Config.var_name == u'onionservice').one().value['v']
+        pk = session.query(config.Config).filter(config.Config.tid == 1, config.Config.var_name == u'tor_onion_key').one().value['v']
 
         self.assertEqual('lftx7dbyvlc5txtl.onion', hs)
         with open(os.path.join(helpers.DATA_DIR, 'tor/ephemeral_service_key')) as f:
@@ -93,20 +99,6 @@ class TestMigrationRoutines(unittest.TestCase):
 
         self.assertEqual(saved_key, pk)
         session.close()
-
-    def test_assert_complete(self):
-        mig_class_names = {n.lower() for n in migration.migration_mapping.keys()}
-
-        rel_path = os.path.join(os.path.abspath(__file__), '../../db/sqlite.sql')
-        with open(os.path.abspath(rel_path), 'r') as f:
-            s = f.read()
-            raw_lst = re.findall(r'CREATE TABLE (\w+)', s)
-            db_table_names = set()
-            for name in raw_lst:
-                db_table_names.add(name.replace('_', ''))
-
-        diff = db_table_names - mig_class_names
-        self.assertTrue(len(diff) == 0)
 
 
 def test(path, version):
@@ -116,4 +108,3 @@ for directory in ['populated']:
     path = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'db', directory)
     for i in range(FIRST_DATABASE_VERSION_SUPPORTED, DATABASE_VERSION):
         setattr(TestMigrationRoutines, "test_%s_db_migration_%d" % (directory, i), test(path, i))
-"""
