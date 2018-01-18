@@ -286,7 +286,7 @@ class APIResourceWrapper(Resource):
             isIPv6Address(request.hostname)):
             request.tid = 1
         else:
-            request.tid = State.tenant_hostname_id_map.get(request.hostname)
+            request.tid = State.tenant_hostname_id_map.get(request.hostname, 1)
 
         request.client_ip = request.headers.get('gl-forwarded-for')
         request.client_proto = 'https'
