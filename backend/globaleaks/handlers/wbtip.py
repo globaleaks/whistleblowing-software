@@ -27,8 +27,7 @@ def wb_serialize_ifile(session, ifile):
 
 def wb_serialize_wbfile(session, wbfile):
     receiver_id = session.query(models.ReceiverTip.receiver_id) \
-                       .filter(models.ReceiverTip.id == wbfile.receivertip_id,
-                               models.ReceiverTip.tid == wbfile.tid).one()
+                         .filter(models.ReceiverTip.id == wbfile.receivertip_id).one()
 
     return {
         'id': wbfile.id,
@@ -44,14 +43,14 @@ def wb_serialize_wbfile(session, wbfile):
 def db_get_rfile_list(session, tid, itip_id):
     return [wb_serialize_ifile(session, ifile) for ifile in session.query(models.InternalFile) \
                                                                .filter(models.InternalFile.internaltip_id == itip_id,
-                                                                       models.InternalFile.tid == tid)]
+                                                                       models.InternalTip.id == itip_id,
+                                                                       models.InternalTip.tid == tid)]
 
 
 def db_get_wbfile_list(session, tid, itip_id):
     wbfiles = session.query(models.WhistleblowerFile) \
                      .filter(models.WhistleblowerFile.receivertip_id == models.ReceiverTip.id,
-                             models.ReceiverTip.internaltip_id == itip_id,
-                             models.WhistleblowerFile.tid == tid)
+                             models.ReceiverTip.internaltip_id == itip_id)
 
     return [wb_serialize_wbfile(session, wbfile) for wbfile in wbfiles]
 
@@ -90,7 +89,6 @@ def create_comment(session, tid, wbtip_id, request):
     internaltip.update_date = internaltip.wb_last_access = datetime_now()
 
     comment = models.Comment()
-    comment.tid = tid
     comment.content = request['content']
     comment.internaltip_id = wbtip_id
     comment.type = u'whistleblower'
@@ -102,25 +100,22 @@ def create_comment(session, tid, wbtip_id, request):
 
 @transact
 def get_itip_message_list(session, tid, wbtip_id, receiver_id):
-    """
-    Get the messages content and mark all the unread
-    messages as "read"
-    """
-    rtip = session.query(models.ReceiverTip) \
-                .filter(models.ReceiverTip.internaltip_id == wbtip_id,
-                        models.InternalTip.id == wbtip_id,
-                        models.ReceiverTip.receiver_id == receiver_id,
-                        models.ReceiverTip.tid == tid).one()
+    messages = session.query(models.Message) \
+                      .filter(models.Message.receivertip_id == models.ReceiverTip.id,
+                              models.ReceiverTip.internaltip_id == wbtip_id,
+                              models.ReceiverTip.receiver_id == receiver_id,
+                              models.InternalTip.id == wbtip_id,
+                              models.InternalTip.tid == tid)
 
-    return [serialize_message(session, message) for message in session.query(models.Message).filter(models.Message.receivertip_id == rtip.id, models.Message.tid == tid)]
+    return [serialize_message(session, message) for message in messages]
 
 @transact
 def create_message(session, tid, wbtip_id, receiver_id, request):
     rtip_id, internaltip = session.query(models.ReceiverTip.id, models.InternalTip) \
-                                .filter(models.ReceiverTip.internaltip_id == wbtip_id,
-                                        models.InternalTip.id == wbtip_id,
-                                        models.ReceiverTip.receiver_id == receiver_id,
-                                        models.ReceiverTip.tid == tid).one()
+                                  .filter(models.ReceiverTip.internaltip_id == wbtip_id,
+                                          models.InternalTip.id == wbtip_id,
+                                          models.ReceiverTip.receiver_id == receiver_id,
+                                          models.InternalTip.tid == tid).one()
 
 
     if rtip_id is None:
@@ -129,7 +124,6 @@ def create_message(session, tid, wbtip_id, receiver_id, request):
     internaltip.update_date = internaltip.wb_last_access = datetime_now()
 
     msg = models.Message()
-    msg.tid = tid
     msg.content = request['content']
     msg.receivertip_id = rtip_id
     msg.type = u'whistleblower'
@@ -226,9 +220,9 @@ class WBTipWBFileHandler(WBFileHandler):
 
     def user_can_access(self, session, tid, wbfile):
         wbtip_id = session.query(models.InternalTip.id) \
-                          .filter(models.InternalTip.id == models.ReceiverTip.internaltip_id,
-                                  models.ReceiverTip.id == wbfile.receivertip_id,
-                                  models.ReceiverTip.tid == tid).one_or_none()
+                          .filter(models.ReceiverTip.id == wbfile.receivertip_id,
+                                  models.InternalTip.id == models.ReceiverTip.internaltip_id,
+                                  models.InternalTip.tid == tid).one_or_none()
 
         return wbtip_id is not None and self.current_user.user_id == wbtip_id[0]
 

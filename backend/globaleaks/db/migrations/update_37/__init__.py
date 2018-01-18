@@ -18,6 +18,16 @@ class MigrationScript(MigrationBase):
         NOTE the function does not delete the torhs dir, but instead leaves it
         on disk to ensure that the operator does not lose their HS key.
         """
+        config = self.model_to['Config']
+
+        def add_raw_config(session, group, name, customized, value):
+            c = config(migrate=True)
+            c.var_group = group
+            c.var_name =  name
+            c.customixed = customized
+            c.value = {'v': value}
+            session.add(c)
+
         hostname, key = '', ''
         pk_path = os.path.join(TOR_DIR, 'private_key')
         hn_path = os.path.join(TOR_DIR, 'hostname')
@@ -40,15 +50,7 @@ class MigrationScript(MigrationBase):
         else:
             log.err('The structure of %s is incorrect. Cannot load onion service keys' % TOR_DIR)
 
-        models.db_delete(self.store_new, self.model_to['Config'], self.model_to['Config'].var_group == u'node', self.model_to['Config'].var_name == u'onionservice')
-
-        def add_raw_config(session, group, name, customized, value):
-            c = self.model_to['Config'](migrate=True)
-            c.var_group = group
-            c.var_name =  name
-            c.customixed = customized
-            c.value = {'v': value}
-            session.add(c)
+        self.store_new.query(config).filter(config.var_group == u'node', config.var_name == u'onionservice').delete(synchronize_session='fetch')
 
         add_raw_config(self.store_new, u'node', u'onionservice', True, hostname)
         add_raw_config(self.store_new, u'private', u'tor_onion_key', True, key)

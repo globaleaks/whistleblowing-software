@@ -22,13 +22,12 @@ def db_create_step(session, tid, step_dict, language):
     :param session: the session on which perform queries.
     :param language: the language of the specified steps.
     """
-    step_dict['tid'] = tid
     fill_localized_keys(step_dict, models.Step.localized_keys, language)
 
     step = models.db_forge_obj(session, models.Step, step_dict)
 
     for c in step_dict['children']:
-        c['tid'] = step.tid
+        c['tid'] = tid
         c['step_id'] = step.id
         db_create_field(session, tid, c, language)
 
@@ -40,7 +39,7 @@ def create_step(session, tid, step, language):
     """
     Transaction that perform db_create_step
     """
-    return serialize_step(session, db_create_step(session, tid, step, language), language)
+    return serialize_step(session, tid, db_create_step(session, tid, step, language), language)
 
 
 def db_update_step(session, tid, step_id, request, language):
@@ -53,7 +52,9 @@ def db_update_step(session, tid, step_id, request, language):
     :param language: the language of the step definition dict
     :return: a serialization of the object
     """
-    step = models.db_get(session, models.Step, models.Step.tid == tid, models.Step.id == step_id)
+    step = models.db_get(session, models.Step, models.Step.id == step_id,
+                                               models.Questionnaire.id == models.Step.questionnaire_id,
+                                               models.Questionnaire.tid == tid)
 
     fill_localized_keys(request, models.Step.localized_keys, language)
 
@@ -67,14 +68,15 @@ def db_update_step(session, tid, step_id, request, language):
 
 @transact
 def update_step(session, tid, step_id, request, language):
-    return serialize_step(session, db_update_step(session, tid, step_id, request, language), language)
+    return serialize_step(session, tid, db_update_step(session, tid, step_id, request, language), language)
 
 
 @transact
 def order_elements(session, handler, req_args, *args, **kwargs):
     steps = session.query(models.Step) \
                  .filter(models.Step.questionnaire_id == req_args['questionnaire_id'],
-                         models.Step.tid == handler.request.tid)
+                         models.Questionnaire.id == req_args['questionnaire_id'],
+                         models.Questionnaire.tid == handler.request.tid)
 
     id_dict = {step.id: step for step in steps}
     ids = req_args['ids']
@@ -151,4 +153,6 @@ class StepInstance(BaseHandler):
         :param step_id:
         :raises InvalidInputFormat: if validation fails.
         """
-        return models.delete(models.Step, models.Step.tid == self.request.tid, models.Step.id == step_id)
+        return models.delete(models.Step, models.Step.id == step_id,
+                                          models.Questionnaire.id == models.Step.questionnaire_id,
+                                          models.Questionnaire.tid == self.request.tid)

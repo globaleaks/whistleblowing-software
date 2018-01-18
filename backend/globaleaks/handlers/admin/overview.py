@@ -28,7 +28,8 @@ def collect_tip_overview(session, tid, language):
 def collect_files_overview(session, tid):
     file_description_list = []
 
-    for ifile in session.query(models.InternalFile).filter(models.InternalFile.tid == tid):
+    for ifile in session.query(models.InternalFile).filter(models.InternalFile.internaltip_id == models.InternalTip.id,
+                                                           models.InternalTip.id == tid):
         file_description_list.append({
             'id': ifile.id,
             'itip': ifile.internaltip_id,
@@ -38,7 +39,8 @@ def collect_files_overview(session, tid):
 
     for rfile, itip in session.query(models.ReceiverFile, models.InternalFile) \
                             .filter(models.ReceiverFile.internalfile_id == models.InternalFile.id,
-                                    models.InternalFile.tid == tid):
+                                    models.InternalFile.internaltip_id == models.InternalTip.id,
+                                    models.InternalTip.id == tid):
         file_description_list.append({
             'id': rfile.internalfile_id,
             'itip': itip.id,

@@ -4,7 +4,7 @@
 #   *****
 # Implementation of the code executed on handler /admin/fields
 #
-from sqlalchemy import not_
+from sqlalchemy.sql.expression import not_
 
 from globaleaks import models
 from globaleaks.handlers.base import BaseHandler
@@ -22,7 +22,9 @@ def db_update_fieldoption(session, tid, field_id, fieldoption_id, option_dict, l
 
     o = None
     if fieldoption_id is not None:
-        o = session.query(models.FieldOption).filter(models.FieldOption.tid == tid, models.FieldOption.id == fieldoption_id).one_or_none()
+        o = session.query(models.FieldOption).filter(models.FieldOption.id == fieldoption_id,
+                                                     models.FieldOption.field_id == models.Field.id,
+                                                     models.Field.tid == tid).one_or_none()
 
     if o is None:
         o = models.db_forge_obj(session, models.FieldOption, option_dict)
@@ -45,7 +47,12 @@ def db_update_fieldoptions(session, tid, field_id, options, language):
     options_ids = [db_update_fieldoption(session, tid, field_id, option['id'], option, language, idx) for idx, option in enumerate(options)]
 
     if options_ids:
-        session.query(models.FieldOption).filter(models.FieldOption.field_id == field_id, not_(models.FieldOption.id.in_(options_ids)), models.FieldOption.tid == tid).delete(synchronize_session='fetch')
+        ids = [x[0] for x in session.query(models.FieldOption.id).filter(models.FieldOption.field_id == field_id,
+                                                                         not_(models.FieldOption.id.in_(options_ids)),
+                                                                         models.FieldOption.field_id == models.Field.id,
+                                                                         models.Field.tid == tid)]
+        if ids:
+            session.query(models.FieldOption).filter(models.FieldOption.id.in_(ids)).delete(synchronize_session='fetch')
 
 
 def db_update_fieldattr(session, tid, field_id, attr_name, attr_dict, language):
@@ -58,7 +65,7 @@ def db_update_fieldattr(session, tid, field_id, attr_name, attr_dict, language):
     elif attr_dict['type'] == u'localized':
         fill_localized_keys(attr_dict, ['value'], language)
 
-    a = session.query(models.FieldAttr).filter(models.FieldAttr.field_id == field_id, models.FieldAttr.name == attr_name, models.FieldAttr.tid == tid).one_or_none()
+    a = session.query(models.FieldAttr).filter(models.FieldAttr.field_id == field_id, models.FieldAttr.name == attr_name, models.FieldAttr.field_id == models.Field.id, models.Field.tid == tid).one_or_none()
     if not a:
         a = models.db_forge_obj(session, models.FieldAttr, attr_dict)
     else:
@@ -71,7 +78,33 @@ def db_update_fieldattrs(session, tid, field_id, field_attrs, language):
     attrs_ids = [db_update_fieldattr(session, tid, field_id, attr_name, attr, language) for attr_name, attr in field_attrs.items()]
 
     if attrs_ids:
-        session.query(models.FieldAttr).filter(models.FieldAttr.field_id == field_id, not_(models.FieldAttr.id.in_(attrs_ids)), models.FieldAttr.tid == tid).delete(synchronize_session='fetch')
+        ids = [x[0] for x in session.query(models.FieldAttr.id).filter(models.FieldAttr.field_id == field_id,
+                                                                       not_(models.FieldAttr.id.in_(attrs_ids)),
+                                                                       models.FieldAttr.field_id == models.Field.id,
+                                                                       models.Field.tid == tid)]
+
+        if ids:
+            session.query(models.FieldAttr).filter(models.FieldAttr.id.in_(ids)).delete(synchronize_session='fetch')
+
+
+def check_field_association(session, tid, field_dict):
+    if field_dict.get('fieldgroup_id', '') and session.query(models.Field).filter(models.Field.id == field_dict['fieldgroup_id'],
+                                                                                  models.Field.tid != tid).count():
+        raise errors.InvalidInputFormat()
+
+    if field_dict.get('template_id', '') and session.query(models.Field).filter(models.Field.id == field_dict['template_id'],
+                                                                                not_(models.Field.tid.in_(set([1, tid])))).count():
+        raise errors.InvalidInputFormat()
+
+    if field_dict.get('step_id', '') and session.query(models.Field).filter(models.Step.id == field_dict['step_id'],
+                                                                            models.Questionnaire.id == models.Step.questionnaire_id,
+                                                                            not_(models.Questionnaire.tid.in_(set([1, tid])))).count():
+        raise errors.InvalidInputFormat()
+
+    if field_dict.get('fieldgroup_id', ''):
+        ancestors = set(fieldtree_ancestors(session, field_dict['fieldgroup_id']))
+        if field_dict['id'] == field_dict['fieldgroup_id'] or field_dict['id'] in ancestors:
+            raise errors.InvalidInputFormat("Provided field association would cause recursion loop")
 
 
 def db_create_field(session, tid, field_dict, language):
@@ -87,10 +120,7 @@ def db_create_field(session, tid, field_dict, language):
 
     fill_localized_keys(field_dict, models.Field.localized_keys, language)
 
-    if field_dict.get('fieldgroup_id', ''):
-        ancestors = set(fieldtree_ancestors(session, tid, field_dict['fieldgroup_id']))
-        if field_dict['id'] == field_dict['fieldgroup_id'] or field_dict['id'] in ancestors:
-            raise errors.InvalidInputFormat("Provided field association would cause recursion loop")
+    check_field_association(session, tid, field_dict)
 
     field = models.db_forge_obj(session, models.Field, field_dict)
 
@@ -99,10 +129,10 @@ def db_create_field(session, tid, field_dict, language):
         if field.template_id == 'whistleblower_identity':
             if field.step_id is not None:
                 questionnaire = session.query(models.Questionnaire) \
-                                     .filter(models.Field.id == field.id,
-                                             models.Field.step_id == models.Step.id,
-                                             models.Step.questionnaire_id == models.Questionnaire.id,
-                                             models.Questionnaire.tid == tid).one()
+                                       .filter(models.Field.id == field.id,
+                                               models.Field.step_id == models.Step.id,
+                                               models.Step.questionnaire_id == models.Questionnaire.id,
+                                               models.Questionnaire.tid == tid).one()
 
                 if questionnaire.enable_whistleblower_identity is False:
                     questionnaire.enable_whistleblower_identity = True
@@ -134,11 +164,13 @@ def create_field(session, tid, field_dict, language):
     """
     field = db_create_field(session, tid, field_dict, language)
 
-    return serialize_field(session, field, language)
+    return serialize_field(session, tid, field, language)
 
 
 def db_update_field(session, tid, field_id, field_dict, language):
     field = models.db_get(session, models.Field, models.Field.tid == tid, models.Field.id == field_id)
+
+    check_field_association(session, tid, field_dict)
 
     # make not possible to change field type
     field_dict['type'] = field.type
@@ -176,7 +208,7 @@ def update_field(session, tid, field_id, field, language):
     """
     field = db_update_field(session, tid, field_id, field, language)
 
-    return serialize_field(session, field, language)
+    return serialize_field(session, tid, field, language)
 
 
 @transact
@@ -207,7 +239,7 @@ def delete_field(session, tid, field_id):
     session.delete(field)
 
 
-def fieldtree_ancestors(session, tid, id):
+def fieldtree_ancestors(session, id):
     """
     Given a field_id, recursively extract its parents.
 
@@ -215,10 +247,10 @@ def fieldtree_ancestors(session, tid, id):
     :param field_id: the parent id.
     :return: a generator of Field.id
     """
-    field = session.query(models.Field).filter(models.Field.tid == tid, models.Field.id == id).one_or_none()
+    field = session.query(models.Field).filter(models.Field.id == id).one_or_none()
     if field.fieldgroup_id is not None:
         yield field.fieldgroup_id
-        yield fieldtree_ancestors(session, field.tid, field.fieldgroup_id)
+        yield fieldtree_ancestors(session, field.fieldgroup_id)
 
 
 @transact
@@ -231,9 +263,11 @@ def get_fieldtemplate_list(session, tid, language):
     :return: the current field list serialized.
     :rtype: list of dict
     """
-    templates = session.query(models.Field).filter(models.Field.tid == tid, models.Field.instance == u'template', models.Field.fieldgroup_id == None)
+    templates = session.query(models.Field).filter(models.Field.tid.in_(set([1, tid])),
+                                                   models.Field.instance == u'template',
+                                                   models.Field.fieldgroup_id == None)
 
-    return [serialize_field(session, f, language) for f in templates]
+    return [serialize_field(session, tid, f, language) for f in templates]
 
 
 class FieldTemplatesCollection(BaseHandler):

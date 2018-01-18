@@ -123,13 +123,12 @@ def perform_data_update(db_file):
 
             # The below commands can change the current store based on the what is
             # currently stored in the DB.
-            tids = [t[0] for t in session.query(models.Tenant.id)]
-            for tid in tids:
+            for tid in [t[0] for t in session.query(models.Tenant.id)]:
                 appdata = load_appdata()
-                db_update_defaults(session, tid)
                 config.update_defaults(session, tid)
                 l10n.update_defaults(session, tid, appdata)
 
+            db_update_defaults(session)
             db_fix_fields_attrs(session)
 
         session.commit()
@@ -264,7 +263,7 @@ def perform_migration(version):
         shutil.rmtree(tmpdir)
 
 
-mp = {}
+mp = OrderedDict()
 Bases = {}
 for i in range(DATABASE_VERSION - FIRST_DATABASE_VERSION_SUPPORTED + 1):
     Bases[i] = declarative_base()

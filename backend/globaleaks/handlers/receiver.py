@@ -24,7 +24,8 @@ def receiver_serialize_receiver(session, tid, receiver, user, language):
 
     contexts = [x[0] for x in session.query(models.ReceiverContext.context_id) \
                                      .filter(models.ReceiverContext.receiver_id == receiver.id, \
-                                             models.ReceiverContext.tid == tid)]
+                                             models.User.id == receiver.id,
+                                             models.User.tid == tid)]
 
     ret_dict = user_serialize_user(session, user, language)
 
@@ -42,9 +43,9 @@ def receiver_serialize_receiver(session, tid, receiver, user, language):
 @transact
 def get_receiver_settings(session, tid, receiver_id, language):
     receiver, user = session.query(models.Receiver, models.User) \
-                          .filter(models.Receiver.id == receiver_id,
-                                  models.User.id == receiver_id,
-                                  models.User.tid == tid).one()
+                            .filter(models.Receiver.id == receiver_id,
+                                    models.User.id == receiver_id,
+                                    models.User.tid == tid).one()
 
     return receiver_serialize_receiver(session, tid, receiver, user, language)
 
@@ -67,7 +68,9 @@ def update_receiver_settings(session, tid, receiver_id, request, language):
 def get_receivertip_list(session, tid, receiver_id, language):
     rtip_summary_list = []
 
-    rtips = session.query(models.ReceiverTip).filter(models.ReceiverTip.receiver_id == receiver_id, models.ReceiverTip.tid == tid)
+    rtips = session.query(models.ReceiverTip).filter(models.ReceiverTip.receiver_id == receiver_id,
+                                                     models.ReceiverTip.internaltip_id == models.InternalTip.id,
+                                                     models.InternalTip.tid == tid)
 
     itips_ids = [rtip.internaltip_id for rtip in rtips]
 
@@ -90,7 +93,8 @@ def get_receivertip_list(session, tid, receiver_id, language):
     result = session.query(models.ReceiverTip.id, func.count(distinct(models.ReceiverTip.id))) \
                   .filter(models.ReceiverTip.receiver_id == receiver_id,
                           models.ReceiverTip.id == models.Message.receivertip_id,
-                          models.ReceiverTip.tid == tid).group_by(models.ReceiverTip)
+                          models.InternalTip.id == models.ReceiverTip.internaltip_id,
+                          models.InternalTip.tid == tid).group_by(models.ReceiverTip)
     for rtip_id, count in result:
         messages_by_rtip[rtip_id] = count
 

@@ -50,13 +50,19 @@ def get_tip_export(session, tid, user_id, rtip_id, language):
 
     export_dict['files'].append({'buf': export_template, 'name': "data.txt"})
 
-    for rfile in session.query(models.ReceiverFile).filter(models.ReceiverFile.receivertip_id == rtip_id, models.ReceiverFile.tid == tid):
+    for rfile in session.query(models.ReceiverFile).filter(models.ReceiverFile.receivertip_id == rtip_id,
+                                                           models.ReceiverTip.id == rtip_id,
+                                                           models.ReceiverTip.internaltip_id == models.InternalTip.id,
+                                                           models.InternalTip.tid == tid):
         rfile.downloads += 1
         file_dict = models.serializers.serialize_rfile(session, tid, rfile)
         file_dict['name'] = 'files/' + file_dict['name']
         export_dict['files'].append(file_dict)
 
-    for wf in session.query(models.WhistleblowerFile).filter(models.WhistleblowerFile.receivertip_id == models.ReceiverTip.id, models.ReceiverTip.internaltip_id == rtip.internaltip_id, models.ReceiverTip.tid == tid):
+    for wf in session.query(models.WhistleblowerFile).filter(models.WhistleblowerFile.receivertip_id == models.ReceiverTip.id,
+                                                             models.ReceiverTip.internaltip_id == rtip.internaltip_id,
+                                                             models.InternalTip.id == rtip.internaltip_id,
+                                                             models.InternalTip.tid == tid):
         file_dict = models.serializers.serialize_wbfile(tid, wf)
         file_dict['name'] = 'files_from_recipients/' + file_dict['name']
         export_dict['files'].append(file_dict)

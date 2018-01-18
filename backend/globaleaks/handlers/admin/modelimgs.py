@@ -18,7 +18,7 @@ model_map = {
 
 def db_get_model_img(session, tid, obj_key, obj_id):
     model = model_map[obj_key]
-    img =  session.query(model).filter(model.id == obj_id, model.tid == tid).one_or_none()
+    img =  session.query(model).filter(model.id == obj_id).one_or_none()
     if img is None:
         return ''
     else:
@@ -34,9 +34,9 @@ def get_model_img(session, tid, obj_key, obj_id):
 def add_model_img(session, tid, obj_key, obj_id, data):
     model = model_map[obj_key]
     data = base64.b64encode(data)
-    img = session.query(model).filter(model.id == obj_id, model.tid == tid).one_or_none()
+    img = session.query(model).filter(model.id == obj_id).one_or_none()
     if img is None:
-        session.add(model({'tid': tid, 'id': obj_id, 'data': data}))
+        session.add(model({'id': obj_id, 'data': data}))
     else:
         img.data = data
 
@@ -44,7 +44,7 @@ def add_model_img(session, tid, obj_key, obj_id, data):
 @transact
 def del_model_img(session, tid, obj_key, obj_id):
     model = model_map[obj_key]
-    session.query(model).filter(model.id == obj_id, model.tid == tid).delete(synchronize_session='fetch')
+    session.query(model).filter(model.id == obj_id).delete(synchronize_session='fetch')
 
 
 class ModelImgInstance(BaseHandler):

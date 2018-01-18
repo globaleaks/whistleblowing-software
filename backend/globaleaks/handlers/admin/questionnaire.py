@@ -17,9 +17,9 @@ from globaleaks.utils.utility import datetime_to_ISO8601, datetime_now
 
 
 def db_get_questionnaire_list(session, tid, language):
-    questionnaires = session.query(models.Questionnaire).filter(models.Questionnaire.tid == tid)
+    questionnaires = session.query(models.Questionnaire).filter(models.Questionnaire.tid.in_(set([1, tid])))
 
-    return [serialize_questionnaire(session, questionnaire, language) for questionnaire in questionnaires]
+    return [serialize_questionnaire(session, tid, questionnaire, language) for questionnaire in questionnaires]
 
 
 @transact
@@ -39,9 +39,9 @@ def db_get_questionnaire(session, tid, questionnaire_id, language):
     Returns:
         (dict) the questionnaire with the specified id.
     """
-    questionnaire = models.db_get(session, models.Questionnaire, models.Questionnaire.tid == tid, models.Questionnaire.id == questionnaire_id)
+    questionnaire = models.db_get(session, models.Questionnaire, models.Questionnaire.tid.in_(set([1, tid])), models.Questionnaire.id == questionnaire_id)
 
-    return serialize_questionnaire(session, questionnaire, language)
+    return serialize_questionnaire(session, tid, questionnaire, language)
 
 
 @transact
@@ -82,7 +82,7 @@ def create_questionnaire(session, tid, request, language):
     """
     questionnaire = db_create_questionnaire(session, tid, request, language)
 
-    return serialize_questionnaire(session, questionnaire, language)
+    return serialize_questionnaire(session, tid, questionnaire, language)
 
 
 @transact
@@ -105,7 +105,7 @@ def update_questionnaire(session, tid, questionnaire_id, request, language):
 
     questionnaire = db_update_questionnaire(session, questionnaire, request, language)
 
-    return serialize_questionnaire(session, questionnaire, language)
+    return serialize_questionnaire(session, tid, questionnaire, language)
 
 
 class QuestionnairesCollection(BaseHandler):
