@@ -1,10 +1,6 @@
-# -*- coding: utf-8
+# -*- coding: utf-8 -*-
 #
-#   wbtip
-#   *****
-#
-#   Contains all the logic for handling tip related operations, managed by
-#   the whistleblower, handled and executed within /wbtip/* URI PATH interaction.
+# Handlers dealing with tip interface for whistleblowers (wbtip)
 from globaleaks import models
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.rtip import serialize_comment, serialize_message, db_get_itip_comment_list, WBFileHandler
@@ -167,13 +163,6 @@ class WBTipInstance(BaseHandler):
     check_roles = 'whistleblower'
 
     def get(self):
-        """
-        Parameters: None
-        Response: actorsTipDesc
-
-        Check the user id (in the whistleblower case, is authenticated and
-        contain the internaltip)
-        """
         return get_wbtip(self.request.tid, self.current_user.user_id, self.request.language)
 
 
@@ -187,11 +176,6 @@ class WBTipCommentCollection(BaseHandler):
     check_roles = 'whistleblower'
 
     def post(self):
-        """
-        Request: CommentDesc
-        Response: CommentDesc
-        Errors: InvalidInputFormat, ModelNotFound
-        """
         request = self.validate_message(self.request.content.read(), requests.CommentDesc)
         return create_comment(self.request.tid, self.current_user.user_id, request)
 

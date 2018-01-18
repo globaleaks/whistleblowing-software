@@ -171,20 +171,12 @@ class UsersCollection(BaseHandler):
     def get(self):
         """
         Return all the users.
-
-        Parameters: None
-        Response: adminUsersList
-        Errors: None
         """
         return get_user_list(self.request.tid, self.request.language)
 
     def post(self):
         """
         Create a new user
-
-        Request: AdminUserDesc
-        Response: AdminUserDesc
-        Errors: InvalidInputFormat, UserIdNotFound
         """
         request = self.validate_message(self.request.content.read(),
                                         requests.AdminUserDesc)
@@ -199,11 +191,6 @@ class UserInstance(BaseHandler):
     def put(self, user_id):
         """
         Update the specified user.
-
-        Parameters: user_id
-        Request: AdminUserDesc
-        Response: AdminUserDesc
-        Errors: InvalidInputFormat, UserIdNotFound
         """
         request = self.validate_message(self.request.content.read(), requests.AdminUserDesc)
 
@@ -212,10 +199,5 @@ class UserInstance(BaseHandler):
     def delete(self, user_id):
         """
         Delete the specified user.
-
-        Parameters: user_id
-        Request: None
-        Response: None
-        Errors: InvalidInputFormat, UserIdNotFound
         """
         return models.delete(models.User, models.User.tid == self.request.tid, models.User.id == user_id)

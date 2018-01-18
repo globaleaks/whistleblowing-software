@@ -64,10 +64,6 @@ class ReceiversCollection(BaseHandler):
     def get(self):
         """
         Return all the receivers.
-
-        Parameters: None
-        Response: adminReceiverList
-        Errors: None
         """
         return get_receiver_list(self.request.tid, self.request.language)
 
@@ -79,10 +75,6 @@ class ReceiverInstance(BaseHandler):
     def put(self, receiver_id):
         """
         Update the specified receiver.
-
-        Parameters: receiver_id
-        Request: AdminReceiverDesc
-        Response: AdminReceiverDesc
         """
         request = self.validate_message(self.request.content.read(), requests.AdminReceiverDesc)
 

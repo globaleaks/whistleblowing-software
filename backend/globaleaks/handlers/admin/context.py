@@ -200,18 +200,12 @@ class ContextsCollection(OperationHandler):
     def get(self):
         """
         Return all the contexts.
-
-        Parameters: None
-        Response: adminContextList
         """
         return get_context_list(self.request.tid, self.request.language)
 
     def post(self):
         """
         Create a new context.
-
-        Request: AdminContextDesc
-        Response: AdminContextDesc
         """
         request = self.validate_message(self.request.content.read(),
                                         requests.AdminContextDesc)
@@ -231,10 +225,6 @@ class ContextInstance(BaseHandler):
     def put(self, context_id):
         """
         Update the specified context.
-
-        Parameters: context_id
-        Request: AdminContextDesc
-        Response: AdminContextDesc
         """
         request = self.validate_message(self.request.content.read(),
                                         requests.AdminContextDesc)
@@ -244,8 +234,5 @@ class ContextInstance(BaseHandler):
     def delete(self, context_id):
         """
         Delete the specified context.
-
-        Request: AdminContextDesc
-        Response: None
         """
         return models.delete(models.Context, models.Context.tid == self.request.tid, models.Context.id == context_id)

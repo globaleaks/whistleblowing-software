@@ -118,19 +118,12 @@ class NodeInstance(BaseHandler):
     def get(self):
         """
         Get the node infos.
-
-        Parameters: None
-        Response: AdminNodeDesc
         """
         return admin_serialize_node(self.request.tid, self.request.language)
 
     def put(self):
         """
         Update the node infos.
-
-        Request: AdminNodeDesc
-        Response: AdminNodeDesc
-        Errors: InvalidInputFormat
         """
         request = self.validate_message(self.request.content.read(),
                                         requests.AdminNodeDesc)

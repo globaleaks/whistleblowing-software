@@ -1,9 +1,6 @@
-# -*- coding: utf-8
-# receiver
-# ********
+# -*- coding: utf-8 -*-
 #
-# Implement the classes handling the requests performed to /receiver/* URI PATH
-# Used by receivers to update personal preferences and access to personal data
+# API handling recipient user functionalities
 from sqlalchemy.sql.expression import func, distinct
 
 from globaleaks import models
@@ -173,20 +170,11 @@ class ReceiverInstance(BaseHandler):
     check_roles = 'receiver'
 
     def get(self):
-        """
-        Parameters: None
-        Response: ReceiverReceiverDesc
-        """
         return get_receiver_settings(self.request.tid,
                                      self.current_user.user_id,
                                      self.request.language)
 
     def put(self):
-        """
-        Parameters: None
-        Request: ReceiverReceiverDesc
-        Response: ReceiverReceiverDesc
-        """
         request = self.validate_message(self.request.content.read(), requests.ReceiverReceiverDesc)
 
         return update_receiver_settings(self.request.tid,
@@ -202,9 +190,6 @@ class TipsCollection(BaseHandler):
     check_roles = 'receiver'
 
     def get(self):
-        """
-        Response: receiverTipList
-        """
         return get_receivertip_list(self.request.tid,
                                     self.current_user.user_id,
                                     self.request.language)
@@ -218,9 +203,6 @@ class TipsOperations(BaseHandler):
     check_roles = 'receiver'
 
     def put(self):
-        """
-        Request: ReceiverOperationDesc
-        """
         request = self.validate_message(self.request.content.read(), requests.ReceiverOperationDesc)
 
         if request['operation'] not in ['postpone', 'delete']:

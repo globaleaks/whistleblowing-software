@@ -116,19 +116,12 @@ class QuestionnairesCollection(BaseHandler):
     def get(self):
         """
         Return all the questionnaires.
-
-        Parameters: None
-        Response: adminQuestionnaireList
-        Errors: None
         """
         return get_questionnaire_list(self.request.tid, self.request.language)
 
     def post(self):
         """
         Create a new questionnaire.
-
-        Request: AdminQuestionnaireDesc
-        Response: AdminQuestionnaireDesc
         """
         validator = requests.AdminQuestionnaireDesc
         if self.request.language is None:
@@ -146,10 +139,6 @@ class QuestionnaireInstance(BaseHandler):
     def put(self, questionnaire_id):
         """
         Update the specified questionnaire.
-
-        Parameters: questionnaire_id
-        Request: AdminQuestionnaireDesc
-        Response: AdminQuestionnaireDesc
         """
         request = self.validate_message(self.request.content.read(),
                                         requests.AdminQuestionnaireDesc)
@@ -159,9 +148,6 @@ class QuestionnaireInstance(BaseHandler):
     def delete(self, questionnaire_id):
         """
         Delete the specified questionnaire.
-
-        Request: AdminQuestionnaireDesc
-        Response: None
         """
         return models.delete(models.Questionnaire, models.Questionnaire.tid == self.request.tid, models.Questionnaire.id == questionnaire_id)
 

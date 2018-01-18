@@ -1,4 +1,6 @@
-# -*- coding: utf-8
+# -*- coding: utf-8 -*-
+#
+# Handlers implementing the url shortener redirect
 from globaleaks import models
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.orm import transact

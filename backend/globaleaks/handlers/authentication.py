@@ -1,9 +1,6 @@
-# -*- coding: utf-8
+# -*- coding: utf-8 -*-
 #
-# authentication
-# **************
-#
-# Files collection handlers and utils
+# Handlers dealing with platform authentication
 from random import SystemRandom
 
 from twisted.internet.defer import inlineCallbacks, returnValue
@@ -110,9 +107,6 @@ class AuthenticationHandler(BaseHandler):
 
     @inlineCallbacks
     def post(self):
-        """
-        Login
-        """
         request = self.validate_message(self.request.content.read(), requests.AuthDesc)
 
         username = request['username']
@@ -140,14 +134,14 @@ class AuthenticationHandler(BaseHandler):
 
 
 class ReceiptAuthHandler(BaseHandler):
+    """
+    Receipt handler used by whistleblowers
+    """
     check_roles = 'unauthenticated'
     uniform_answer_time = True
 
     @inlineCallbacks
     def post(self):
-        """
-        Receipt login handler used by whistleblowers
-        """
         request = self.validate_message(self.request.content.read(), requests.ReceiptAuthDesc)
 
         receipt = request['receipt']
@@ -180,7 +174,6 @@ class SessionHandler(BaseHandler):
         """
         Refresh and retrive session
         """
-
         return {
             'session_id': self.current_user.id,
             'role': self.current_user.user_role,

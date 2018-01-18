@@ -1,7 +1,6 @@
-# -*- coding: utf-8
+# -*- coding: utf-8 -*-
 #
-# exception
-
+# Handlers dealing with client software exceptions
 import json
 
 from globaleaks.handlers.base import BaseHandler

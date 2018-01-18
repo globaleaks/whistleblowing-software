@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+#
+# Base class for all the handlers
 import base64
 import collections
 import json
@@ -25,7 +27,6 @@ HANDLER_EXEC_TIME_THRESHOLD = 120
 
 class SessionsFactory(TempDict):
     """Extends TempDict to provide session management functions ontop of temp session keys"""
-
     def revoke_all_sessions(self, user_id):
         for other_session in Sessions.values():
             if other_session.user_id == user_id:
@@ -100,9 +101,6 @@ class Session(object):
 
     def getTime(self):
         return self.expireCall.getTime()
-
-    def __repr__(self):
-        return "%s %s expire in %s" % (self.user_role, self.user_id, self.expireCall)
 
 
 def new_session(tid, user_id, user_role, user_status):

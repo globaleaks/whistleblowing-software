@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+#
+# Handler exposing application files
 import os
 
 from globaleaks.handlers.base import BaseHandler

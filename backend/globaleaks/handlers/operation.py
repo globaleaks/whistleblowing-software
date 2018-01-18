@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+#
+# Base class for implementing handlers for executing commands/operations
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.rest import errors, requests
 

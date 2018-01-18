@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+#
+# Handlers exposing customization files
 import os
 
 from twisted.internet import defer
@@ -6,6 +8,7 @@ from twisted.internet import defer
 from globaleaks import models
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.orm import transact
+
 
 @transact
 def get_file_id(session, tid, name):

@@ -1,9 +1,6 @@
-# -*- coding: utf-8
-# public
-#   ****
+# -*- coding: utf-8 -*-
 #
-# Implementation of classes handling the HTTP request to /node, public
-# exposed API.
+# Handlers dealing with public API exporting main platform configuration/resources
 import copy
 
 from globaleaks import models, LANGUAGES_SUPPORTED, LANGUAGES_SUPPORTED_CODES

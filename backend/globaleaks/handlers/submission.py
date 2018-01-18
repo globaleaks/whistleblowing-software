@@ -1,10 +1,6 @@
-# -*- coding: utf-8
+# -*- coding: utf-8 -*-
 #
-# submission
-# **********
-#
-# Implements a GlobaLeaks submission, then the operations performed
-#   by an HTTP client in /submission URI
+# Handlerse dealing with submission interface
 import copy
 import json
 
@@ -379,11 +375,7 @@ class SubmissionInstance(BaseHandler):
 
     def put(self, token_id):
         """
-        Parameter: token_id
-        Request: SubmissionDesc
-        Response: SubmissionDesc
-
-        PUT finalize the submission
+        Finalize the submission
         """
         request = self.validate_message(self.request.content.read(), requests.SubmissionDesc)
 
