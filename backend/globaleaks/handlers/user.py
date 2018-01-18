@@ -1,9 +1,6 @@
 # -*- coding: utf-8
-# user
-# ********
 #
-# Implement the classes handling the requests performed to /user/* URI PATH
-
+# Handlers dealing with user preferences
 from globaleaks import models
 from globaleaks.handlers.admin.modelimgs import db_get_model_img
 from globaleaks.handlers.base import BaseHandler
@@ -18,10 +15,6 @@ from globaleaks.utils.utility import datetime_to_ISO8601, datetime_now, datetime
 def parse_pgp_options(user, request):
     """
     Used for parsing PGP key infos and fill related user configurations.
-
-    @param user: the user orm object
-    @param request: the dictionary containing the pgp infos to be parsed
-    @return: None
     """
     pgp_key_public = request['pgp_key_public']
     remove_key = request['pgp_key_remove']
@@ -136,22 +129,11 @@ class UserInstance(BaseHandler):
     invalidate_cache = True
 
     def get(self):
-        """
-        Parameters: None
-        Response: ReceiverReceiverDesc
-        Errors: UserIdNotFound, InvalidInputFormat, InvalidAuthentication
-        """
         return get_user_settings(self.request.tid,
                                  self.current_user.user_id,
                                  self.request.language)
 
     def put(self):
-        """
-        Parameters: None
-        Request: UserUserDesc
-        Response: UserUserDesc
-        Errors: UserIdNotFound, InvalidInputFormat, InvalidAuthentication
-        """
         request = self.validate_message(self.request.content.read(), requests.UserUserDesc)
 
         return update_user_settings(self.request.tid,

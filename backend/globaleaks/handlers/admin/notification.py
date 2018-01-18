@@ -64,19 +64,10 @@ class NotificationInstance(BaseHandler):
     check_roles = 'admin'
 
     def get(self):
-        """
-        Parameters: None
-        Response: AdminNotificationDesc
-        Errors: None (return empty configuration, at worst)
-        """
         return get_notification(self.request.tid, self.request.language)
 
     def put(self):
         """
-        Request: AdminNotificationDesc
-        Response: AdminNotificationDesc
-        Errors: InvalidInputFormat
-
         Changes the node notification settings.
         """
         request = self.validate_message(self.request.content.read(),

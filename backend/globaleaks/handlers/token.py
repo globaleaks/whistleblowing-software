@@ -1,11 +1,6 @@
 # -*- coding: utf-8
 #
-# token
-# **********
-#
-# Implements an API for gettin/updating tokens to be used for performing user operations
-# subject in general to rate limit.
-
+# Handler implementing pre/post submission tokens for implementing rate limiting on whistleblower operations
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.rest import errors, requests
 from globaleaks.utils.token import Token, TokenList
@@ -19,10 +14,6 @@ class TokenCreate(BaseHandler):
 
     def post(self):
         """
-        Request: None
-        Response: TokenDesc (Token)
-        Errors: InvalidInputFormat
-
         This API create a Token, a temporary memory only object able to keep
         track of the submission. If the system is under stress, complete the
         submission will require some actions to be performed before the
@@ -54,11 +45,6 @@ class TokenInstance(BaseHandler):
     check_roles = 'unauthenticated'
 
     def put(self, token_id):
-        """
-        Parameter: token_id
-        Request: TokenAnswerDesc
-        Response: TokenDesc
-        """
         request = self.validate_message(self.request.content.read(), requests.TokenAnswerDesc)
 
         token = TokenList.get(token_id)

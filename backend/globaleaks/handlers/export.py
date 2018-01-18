@@ -1,9 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# export
-# *****
-#
-# Tip export utils
+# API handling export of submissions
 from twisted.internet.defer import Deferred, inlineCallbacks
 
 from globaleaks import models
@@ -71,17 +68,10 @@ def get_tip_export(session, tid, user_id, rtip_id, language):
 
 
 class ZipStreamProducer(object):
-    """ Streaming producter for ZipStream
-
-    @ivar handler: The L{IRequest} to write the contents of the file to.
-    @ivar fileObject: The file the contents of which to write to the request.
-    """
+    """Streaming producter for ZipStream"""
     bufferSize = Settings.file_chunk_size
 
     def __init__(self, handler, zipstreamObject):
-        """
-        Initialize the instance.
-        """
         self.finish = Deferred()
         self.handler = handler
         self.zipstreamObject = zipstreamObject

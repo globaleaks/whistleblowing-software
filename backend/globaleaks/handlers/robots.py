@@ -1,4 +1,6 @@
-# -*- coding: utf-8
+# -*- coding: utf-8 -*-
+#
+# Handlerse dealing with robots/sitemap resources
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.rest import errors
 from globaleaks.state import State

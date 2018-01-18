@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# langfiles
-#  **************
-#
+# Handlers dealing with download of texts translations and customiations
 import os
 
 from globaleaks import models
@@ -33,10 +31,6 @@ def get_l10n(session, tid, lang):
 
 
 class L10NHandler(BaseHandler):
-    """
-    This class is used to return the custom translation files;
-    if the file are not present, default translations are returned
-    """
     check_roles = '*'
     cache_resource = True
 

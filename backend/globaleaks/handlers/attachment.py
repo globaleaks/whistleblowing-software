@@ -1,9 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# files
-#  *****
-#
-# API handling submissions file uploads and subsequent submissions attachments
+# Handler dealing with submissions file uploads and subsequent submissions attachments
 import os
 
 from twisted.internet.defer import inlineCallbacks
@@ -61,9 +58,6 @@ class SubmissionAttachment(BaseHandler):
 
     @inlineCallbacks
     def post(self, token_id):
-        """
-        Errors: TokenFailure
-        """
         token = TokenList.get(token_id)
 
         yield self.handle_attachment()
@@ -82,9 +76,6 @@ class PostSubmissionAttachment(SubmissionAttachment):
 
     @inlineCallbacks
     def post(self):
-        """
-        Errors: ModelNotFound
-        """
         itip_id = (yield models.get(models.InternalTip.id,
                                    models.InternalTip.id==self.current_user.user_id,
                                    models.InternalTip.tid==self.request.tid))[0]
@@ -93,5 +84,4 @@ class PostSubmissionAttachment(SubmissionAttachment):
 
         self.uploaded_file['submission'] = False
 
-        # Second: register the file in the database
         yield register_ifile_on_db(self.request.tid, self.uploaded_file, itip_id)

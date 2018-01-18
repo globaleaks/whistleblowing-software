@@ -1,11 +1,6 @@
-# -*- coding: utf-8
+# -*- coding: utf-8 -*-
 #
-# rtip
-# ****
-#
-# Contains all the logic for handling tip related operations, for the
-# receiver side. These classes are executed in the /rtip/* URI PATH
-
+# Handlers dealing with tip interface for receivers (rtip)
 import os
 import string
 
@@ -396,18 +391,6 @@ class RTipInstance(OperationHandler):
     check_roles = 'receiver'
 
     def get(self, tip_id):
-        """
-        Parameters: None
-        Response: actorsTipDesc
-        Errors: InvalidAuthentication
-
-        tip_id can be a valid tip_id (Receiver case) or a random one (because is
-        ignored, only authenticated user with whistleblower token can access to
-        the wbtip, this is why tip_is is not checked if self.is_whistleblower)
-
-        This method is decorated as @BaseHandler.unauthenticated because in the handler
-        the various cases are managed differently.
-        """
         return get_rtip(self.request.tid, self.current_user.user_id, tip_id, self.request.language)
 
     def operation_descriptors(self):
@@ -437,10 +420,7 @@ class RTipInstance(OperationHandler):
 
     def delete(self, tip_id):
         """
-        Response: None
-        Errors: ForbiddenOperation
-
-        delete: remove the Internaltip and all the associated data
+        Remove the Internaltip and all the associated data
         """
         return delete_rtip(self.request.tid, self.current_user.user_id, tip_id)
 
@@ -452,11 +432,6 @@ class RTipCommentCollection(BaseHandler):
     check_roles = 'receiver'
 
     def post(self, tip_id):
-        """
-        Request: CommentDesc
-        Response: CommentDesc
-        Errors: InvalidAuthentication, InvalidInputFormat, ModelNotFound
-        """
         request = self.validate_message(self.request.content.read(), requests.CommentDesc)
 
         return create_comment(self.request.tid, self.current_user.user_id, tip_id, request)
@@ -469,11 +444,6 @@ class ReceiverMsgCollection(BaseHandler):
     check_roles = 'receiver'
 
     def post(self, tip_id):
-        """
-        Request: CommentDesc
-        Response: CommentDesc
-        Errors: InvalidAuthentication, InvalidInputFormat, ModelNotFound
-        """
         request = self.validate_message(self.request.content.read(), requests.CommentDesc)
 
         return create_message(self.request.tid, self.current_user.user_id, tip_id, request)
@@ -500,9 +470,6 @@ class WhistleblowerFileHandler(BaseHandler):
 
     @inlineCallbacks
     def post(self, tip_id):
-        """
-        Errors: ModelNotFound, ForbiddenOperation
-        """
         yield self.can_perform_action(self.request.tid, tip_id, self.uploaded_file['name'])
 
         rtip = yield get_rtip(self.request.tid, self.current_user.user_id, tip_id, self.request.language)
@@ -629,11 +596,6 @@ class IdentityAccessRequestsCollection(BaseHandler):
     check_roles = 'receiver'
 
     def post(self, tip_id):
-        """
-        Request: IdentityAccessRequestDesc
-        Response: IdentityAccessRequestDesc
-        Errors: IdentityAccessRequestIdNotFound, InvalidInputFormat, InvalidAuthentication
-        """
         request = self.validate_message(self.request.content.read(), requests.ReceiverIdentityAccessRequestDesc)
 
         return create_identityaccessrequest(self.request.tid,

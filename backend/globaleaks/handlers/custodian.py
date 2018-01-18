@@ -1,8 +1,6 @@
-# -*- coding: utf-8
-# custodian
-# ********
+# -*- coding: utf-8 -*-
 #
-# Implement the classes handling the requests performed to /custodian/* URI PATH
+# Handlers dealing with custodian user functionalities
 from globaleaks import models
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.orm import transact
@@ -87,20 +85,9 @@ class IdentityAccessRequestInstance(BaseHandler):
     check_roles = 'custodian'
 
     def get(self, identityaccessrequest_id):
-        """
-        Parameters: the id of the identity access request
-        Response: IdentityAccessRequestDesc
-        Errors: IdentityAccessRequestIdNotFound, InvalidInputFormat, InvalidAuthentication
-        """
         return get_identityaccessrequest(self.request.tid, identityaccessrequest_id)
 
     def put(self, identityaccessrequest_id):
-        """
-        Parameters: the id of the identity access request
-        Request: IdentityAccessRequestDesc
-        Response: IdentityAccessRequestDesc
-        Errors: IdentityAccessRequestIdNotFound, InvalidInputFormat, InvalidAuthentication
-        """
         request = self.validate_message(self.request.content.read(), requests.CustodianIdentityAccessRequestDesc)
 
         return update_identityaccessrequest(self.request.tid,
@@ -117,8 +104,4 @@ class IdentityAccessRequestsCollection(BaseHandler):
     check_roles = 'custodian'
 
     def get(self):
-        """
-        Response: identityaccessrequestsList
-        Errors: InvalidAuthentication
-        """
         return get_identityaccessrequest_list(self.request.tid)

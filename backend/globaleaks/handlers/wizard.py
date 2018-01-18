@@ -1,6 +1,6 @@
 # -*- coding: utf-8
 #
-# wizard
+# Handlers implementing platform wizard
 from globaleaks import models
 from globaleaks.db import db_refresh_memory_variables
 from globaleaks.handlers.admin.context import db_create_context

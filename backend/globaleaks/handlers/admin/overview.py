@@ -60,11 +60,6 @@ class Tips(BaseHandler):
     check_roles = 'admin'
 
     def get(self):
-        """
-        Parameters: None
-        Response: TipsOverviewDescList
-        Errors: None
-        """
         return collect_tip_overview(self.request.tid, self.request.language)
 
 
@@ -78,9 +73,4 @@ class Files(BaseHandler):
     check_roles = 'admin'
 
     def get(self):
-        """
-        Parameters: None
-        Response: FilesOverviewDescList
-        Errors: None
-        """
         return collect_files_overview(self.request.tid)
