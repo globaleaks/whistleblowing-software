@@ -123,7 +123,7 @@ def db_serialize_questionnaire_answers(session, tid, usertip, internaltip):
                 root_answers_ids.append(f['id'])
 
     for answer in session.query(models.FieldAnswer) \
-                       .filter(models.FieldAnswer.internaltip_id == internaltip.id, models.FieldAnswer.tid == tid):
+                       .filter(models.FieldAnswer.internaltip_id == internaltip.id):
         all_answers_ids.append(answer.id)
 
         if answer.key in root_answers_ids:
@@ -135,8 +135,7 @@ def db_serialize_questionnaire_answers(session, tid, usertip, internaltip):
         answers_by_group[answer.fieldanswergroup_id].append(answer)
 
     for group in session.query(models.FieldAnswerGroup) \
-                      .filter(models.FieldAnswerGroup.fieldanswer_id.in_(all_answers_ids),
-                              models.FieldAnswerGroup.tid == tid) \
+                      .filter(models.FieldAnswerGroup.fieldanswer_id.in_(all_answers_ids)) \
                       .order_by(models.FieldAnswerGroup.number):
 
         if group.fieldanswer_id not in groups_by_answer:
@@ -267,7 +266,6 @@ def db_create_receivertip(session, receiver, internaltip):
     log.debug("Creating receivertip for receiver: %s", receiver.id)
 
     receivertip = models.ReceiverTip()
-    receivertip.tid = receiver.tid
     receivertip.internaltip_id = internaltip.id
     receivertip.receiver_id = receiver.id
 
@@ -282,7 +280,7 @@ def db_create_submission(session, tid, request, uploaded_files, client_using_tor
     context, questionnaire = session.query(models.Context, models.Questionnaire) \
                                   .filter(models.Context.id == request['context_id'],
                                           models.Questionnaire.id == models.Context.questionnaire_id,
-                                          models.Questionnaire.tid == tid).one_or_none()
+                                          models.Questionnaire.tid.in_(set([1, tid]))).one_or_none()
     if not context:
         raise errors.ModelNotFound(models.Context)
 

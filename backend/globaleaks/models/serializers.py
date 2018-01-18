@@ -19,8 +19,7 @@ def serialize_ifile(session, ifile):
 def serialize_rfile(session, tid, rfile):
     ifile = session.query(models.InternalFile) \
                  .filter(models.InternalFile.id == models.ReceiverFile.internalfile_id,
-                         models.ReceiverFile.id == rfile.id,
-                         models.InternalFile.tid == tid).one()
+                         models.ReceiverFile.id == rfile.id).one()
 
     return {
         'id': rfile.id,
@@ -36,8 +35,7 @@ def serialize_rfile(session, tid, rfile):
 # WhistleblowerFile
 def serialize_wbfile(session, tid, wbfile):
     receiver_id = session.query(models.ReceiverTip.receiver_id) \
-                       .filter(models.ReceiverTip.id == wbfile.receivertip_id,
-                               models.ReceiverTip.tid == tid).one()
+                         .filter(models.ReceiverTip.id == wbfile.receivertip_id).one()
 
     return {
         'id': wbfile.id,

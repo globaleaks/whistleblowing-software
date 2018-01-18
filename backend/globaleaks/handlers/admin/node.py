@@ -21,7 +21,8 @@ def db_admin_serialize_node(session, tid, language):
     priv_dict = PrivateFactory(session, tid)
 
     # Contexts and Receivers relationship
-    configured = session.query(models.ReceiverContext).filter(models.ReceiverContext.tid == tid).count() > 0
+    configured = session.query(models.ReceiverContext).filter(models.ReceiverContext.context_id == models.Context.id,
+                                                              models.Context.tid).count() > 0
 
     misc_dict = {
         'version': priv_dict.get_val(u'version'),
@@ -65,9 +66,8 @@ def db_update_enabled_languages(session, tid, languages_enabled, default_languag
 
     to_remove = list(set(cur_enabled_langs) - set(new_enabled_langs))
     if to_remove:
-        session.query(models.User).filter(models.User.language.in_(to_remove), models.User.tid == tid).update({'language': default_language}, synchronize_session='fetch')
-
-        models.db_delete(session, models.EnabledLanguage, models.EnabledLanguage.name.in_(to_remove), models.EnabledLanguage.tid == tid)
+        session.query(models.User).filter(models.User.tid == tid, models.User.language.in_(to_remove)).update({'language': default_language}, synchronize_session='fetch')
+        session.query(models.EnabledLanguage).filter(models.EnabledLanguage.tid, models.EnabledLanguage.name.in_(to_remove)).delete(synchronize_session='fetch')
 
 @transact
 def update_enabled_languages(session, tid, languages_enabled, default_language):

@@ -82,12 +82,12 @@ class MailGenerator(object):
         return self.cache[cache_key]
 
     def process_ReceiverTip(self, session, rtip, data):
-        tid = rtip.tid
         user, context = session.query(models.User, models.Context) \
                              .filter(models.User.id == rtip.receiver_id,
                                      models.InternalTip.id == rtip.internaltip_id,
-                                     models.Context.id == models.InternalTip.context_id,
-                                     models.User.tid == tid).one()
+                                     models.Context.id == models.InternalTip.context_id).one()
+
+        tid = context.tid
 
         data['user'] = self.serialize_obj(session, 'user', user, tid, user.language)
         data['tip'] = self.serialize_obj(session, 'tip', rtip, tid, user.language)
@@ -100,14 +100,14 @@ class MailGenerator(object):
         if message.type == u"receiver":
             return
 
-        tid = message.tid
         user, context, rtip = session.query(models.User, models.Context, models.ReceiverTip) \
                                    .filter(models.User.id == models.ReceiverTip.receiver_id,
                                            models.ReceiverTip.id == models.Message.receivertip_id,
                                            models.Context.id == models.InternalTip.context_id,
                                            models.InternalTip.id == models.ReceiverTip.internaltip_id,
-                                           models.Message.id == message.id,
-                                           models.Message.tid == tid).one()
+                                           models.Message.id == message.id).one()
+
+        tid = context.tid
 
         data['user'] = self.serialize_obj(session, 'user', user, tid, user.language)
         data['tip'] = self.serialize_obj(session, 'tip', rtip, tid, user.language)
@@ -117,14 +117,13 @@ class MailGenerator(object):
         self.process_mail_creation(session, tid, data)
 
     def process_Comment(self, session, comment, data):
-        tid = comment.tid
         for user, context, rtip in session.query(models.User, models.Context, models.ReceiverTip) \
                                         .filter(models.User.id == models.ReceiverTip.receiver_id,
                                                 models.ReceiverTip.internaltip_id == comment.internaltip_id,
                                                 models.Context.id == models.InternalTip.context_id,
                                                 models.InternalTip.id == comment.internaltip_id,
-                                                models.ReceiverTip.internaltip_id == comment.internaltip_id,
-                                                models.User.tid == tid):
+                                                models.ReceiverTip.internaltip_id == comment.internaltip_id):
+            tid = context.tid
 
             # avoid to send emails to the receiver that written the comment
             if comment.author_id == rtip.receiver_id:
@@ -139,13 +138,14 @@ class MailGenerator(object):
             self.process_mail_creation(session, tid, umsg)
 
     def process_ReceiverFile(self, session, rfile, data):
-        tid = rfile.tid
         user, context, rtip, ifile = session.query(models.User, models.Context, models.ReceiverTip, models.InternalFile) \
                                           .filter(models.User.id == models.ReceiverTip.receiver_id,
                                                   models.InternalFile.id == rfile.internalfile_id,
                                                   models.InternalTip.id == models.InternalFile.internaltip_id,
                                                   models.ReceiverTip.id == rfile.receivertip_id,
                                                   models.Context.id == models.InternalTip.context_id).one()
+
+        tid = context.tid
 
         # avoid sending an email for the files that have been loaded during the initial submission
         if ifile.submission:
@@ -213,7 +213,19 @@ class MailGenerator(object):
 
             for tid, cache_item in self.state.tenant_cache.items():
                 if cache_item.notification.disable_receiver_notification_emails:
-                    session.query(model).filter(model.tid == tid, model.new == True).update({'new': False})
+                    session.query(models.ReceiverTip).filter(models.ReceiverTip.internaltip_id == models.InternalTip.id,
+                                                             models.InternalTip.tid == tid).update({'new': False})
+
+                    session.query(models.Comment).filter(models.Comment.internaltip_id == models.InternalTip.id,
+                                                         models.InternalTip.tid == tid).update({'new': False})
+
+                    session.query(models.Message).filter(models.Message.receivertip_id == models.ReceiverTip.id,
+                                                         models.ReceiverTip.internaltip_id == models.InternalTip.id,
+                                                         models.InternalTip.tid == tid).update({'new': False})
+
+                    session.query(models.ReceiverFile).filter(models.ReceiverFile.receivertip_id == models.ReceiverTip.id,
+                                                              models.ReceiverTip.internaltip_id == models.InternalTip.id,
+                                                              models.InternalTip.tid == tid).update({'new': False})
                     continue
 
             for element in session.query(model).filter(model.new == True):

@@ -46,7 +46,7 @@ def db_create(session, desc):
     # required to generate/retrive the id
     session.flush()
 
-    db_update_defaults(session, tid=t.id)
+    db_update_defaults(session)
 
     models.config.system_cfg_init(session, tid=t.id)
 

@@ -4,6 +4,8 @@
 #   *****
 # Implementation of the code executed on handler /admin/contexts
 #
+from sqlalchemy.sql.expression import not_
+
 from globaleaks import models
 from globaleaks.handlers.admin.modelimgs import db_get_model_img
 from globaleaks.handlers.base import BaseHandler
@@ -23,9 +25,8 @@ def admin_serialize_context(session, context, language):
     :return: a dictionary representing the serialization of the context.
     """
     receivers = [r[0] for r in session.query(models.ReceiverContext.receiver_id) \
-                                    .filter(models.ReceiverContext.context_id == context.id) \
-                                    .order_by(models.ReceiverContext.presentation_order)]
-
+                                      .filter(models.ReceiverContext.context_id == context.id) \
+                                      .order_by(models.ReceiverContext.presentation_order)]
     picture = db_get_model_img(session, context.tid, 'contexts', context.id)
 
     ret_dict = {
@@ -67,13 +68,18 @@ def get_context_list(session, tid, language):
                   key=lambda x: x['presentation_order'])
 
 
-def db_associate_context_receivers(session, context, receiver_ids):
-    session.query(models.ReceiverContext).filter(models.ReceiverContext.tid == context.tid, models.ReceiverContext.context_id == context.id).delete(synchronize_session='fetch')
+def db_associate_context_receivers(session, tid, context, receiver_ids):
+    if session.query(models.Context).filter(models.Context.id == context.id,
+                                            models.Context.tid != tid).count() or \
+       session.query(models.User).filter(models.User.id.in_(receiver_ids),
+                                         models.User.tid != tid).count():
+        raise errors.InvalidInputFormat()
+
+    session.query(models.ReceiverContext).filter(models.ReceiverContext.context_id == context.id).delete(synchronize_session='fetch')
 
     for i, receiver_id in enumerate(receiver_ids):
         session.add(models.ReceiverContext({'context_id': context.id,
                                             'receiver_id': receiver_id,
-                                            'tid': context.tid,
                                             'presentation_order': i}))
     session.flush()
 
@@ -104,12 +110,20 @@ def fill_context_request(tid, request, language):
     return request
 
 
+def check_context_questionnaire_association(session, tid, questionnaire_id):
+    if session.query(models.Questionnaire).filter(models.Questionnaire.id == questionnaire_id,
+                                                  not_(models.Questionnaire.tid.in_(set([1, tid])))).count():
+        raise errors.InvalidInputFormat()
+
+
 def db_update_context(session, tid, context, request, language):
     request = fill_context_request(tid, request, language)
 
+    check_context_questionnaire_association(session, tid, request['questionnaire_id'])
+
     context.update(request)
 
-    db_associate_context_receivers(session, context, request['receivers'])
+    db_associate_context_receivers(session, tid, context, request['receivers'])
 
     return context
 
@@ -117,9 +131,11 @@ def db_update_context(session, tid, context, request, language):
 def db_create_context(session, tid, request, language):
     request = fill_context_request(tid, request, language)
 
+    check_context_questionnaire_association(session, tid, request['questionnaire_id'])
+
     context = models.db_forge_obj(session, models.Context, request)
 
-    db_associate_context_receivers(session, context, request['receivers'])
+    db_associate_context_receivers(session, tid, context, request['receivers'])
 
     return context
 

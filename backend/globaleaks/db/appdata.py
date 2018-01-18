@@ -16,32 +16,30 @@ def load_appdata():
     return read_json_file(Settings.appdata_file)
 
 
-def load_default_questionnaires(session, tid):
+def load_default_questionnaires(session):
     qfiles = [os.path.join(Settings.questionnaires_path, path) for path in os.listdir(Settings.questionnaires_path)]
     for qfile in qfiles:
         questionnaire = read_json_file(qfile)
-        questionnaire['tid'] = tid
 
         steps = questionnaire.pop('steps')
 
-        q = session.query(models.Questionnaire).filter(models.Questionnaire.tid == tid, models.Questionnaire.id == questionnaire['id']).one_or_none()
+        q = session.query(models.Questionnaire).filter(models.Questionnaire.id == questionnaire['id']).one_or_none()
         if q is None:
             q = models.db_forge_obj(session, models.Questionnaire, questionnaire)
         else:
-            session.query(models.Step).filter(models.Step.tid == tid, models.Step.questionnaire_id == q.id).delete(synchronize_session='fetch')
+            session.query(models.Step).filter(models.Step.questionnaire_id == q.id).delete(synchronize_session='fetch')
 
         for step in steps:
-            step['tid'] = tid
             step['questionnaire_id'] = q.id
-            db_create_step(session, tid, step, None)
+            db_create_step(session, 1, step, None)
 
-def load_default_fields(session, tid):
+def load_default_fields(session):
     ffiles = [os.path.join(Settings.questions_path, path) for path in os.listdir(Settings.questions_path)]
     for ffile in ffiles:
         question = read_json_file(ffile)
-        question['tid'] = tid
-        session.query(models.Field).filter(models.Field.tid == tid, models.Field.id == question['id']).delete(synchronize_session='fetch')
-        db_create_field(session, tid, question, None)
+        question['tid'] = 1
+        session.query(models.Field).filter(models.Field.id == question['id']).delete(synchronize_session='fetch')
+        db_create_field(session, 1, question, None)
 
 
 def db_fix_fields_attrs(session):
@@ -84,13 +82,12 @@ def db_fix_fields_attrs(session):
             if x is None:
 
                 log.debug("Adding new field attr %s.%s", typ, attr_name)
-                attr_dict['tid'] = field.tid
                 attr_dict['name'] = attr_name
                 attr_dict['field_id'] = field.id
                 models.db_forge_obj(session, models.FieldAttr, attr_dict)
 
 
-def db_update_defaults(session, tid):
-    load_default_questionnaires(session, tid)
-    load_default_fields(session, tid)
+def db_update_defaults(session):
+    load_default_questionnaires(session)
+    load_default_fields(session)
     db_fix_fields_attrs(session)

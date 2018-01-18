@@ -29,11 +29,10 @@ from globaleaks.utils.utility import log, get_expiration, datetime_now, datetime
     datetime_to_ISO8601
 
 
-def receiver_serialize_rfile(session, tid, rfile):
+def receiver_serialize_rfile(session, rfile):
     ifile = session.query(models.InternalFile) \
-                 .filter(models.InternalFile.id == models.ReceiverFile.internalfile_id,
-                         models.ReceiverFile.id == rfile.id,
-                         models.InternalFile.tid == tid).one()
+                   .filter(models.InternalFile.id == models.ReceiverFile.internalfile_id,
+                           models.ReceiverFile.id == rfile.id).one()
 
     if rfile.status == 'unavailable':
         return {
@@ -63,7 +62,7 @@ def receiver_serialize_rfile(session, tid, rfile):
 
 
 def receiver_serialize_wbfile(session, wbfile):
-    rtip = models.db_get(session, models.ReceiverTip, models.ReceiverTip.id == wbfile.receivertip_id, models.ReceiverTip.tid == wbfile.tid)
+    rtip = models.db_get(session, models.ReceiverTip, models.ReceiverTip.id == wbfile.receivertip_id)
 
     return {
         'id': wbfile.id,
@@ -84,8 +83,7 @@ def serialize_comment(session, comment):
         author = 'Whistleblower'
     elif comment.author_id is not None:
         author = session.query(models.User) \
-                      .filter(models.User.id == comment.author_id,
-                              models.User.tid == comment.tid).one().public_name
+                        .filter(models.User.id == comment.author_id).one().public_name
 
     return {
         'id': comment.id,
@@ -103,8 +101,7 @@ def serialize_message(session, message):
         author = session.query(models.User) \
                       .filter(models.User.id == models.ReceiverTip.receiver_id,
                               models.ReceiverTip.id == models.Message.receivertip_id,
-                              models.Message.id == message.id,
-                              models.Message.tid == message.tid).one().public_name
+                              models.Message.id == message.id).one().public_name
 
     return {
         'id': message.id,
@@ -139,7 +136,7 @@ def db_access_rtip(session, tid, user_id, rtip_id):
                          models.ReceiverTip.id == rtip_id,
                          models.ReceiverTip.receiver_id == user_id,
                          models.ReceiverTip.internaltip_id == models.InternalTip.id,
-                         models.ReceiverTip.tid == tid)
+                         models.InternalTip.tid == tid)
 
 
 def db_access_wbfile(session, tid, user_id, wbfile_id):
@@ -154,7 +151,7 @@ def db_access_wbfile(session, tid, user_id, wbfile_id):
                   .filter(models.WhistleblowerFile.id == wbfile_id,
                           models.WhistleblowerFile.receivertip_id == models.ReceiverTip.id,
                           models.ReceiverTip.internaltip_id.in_(itips_ids),
-                          models.ReceiverTip.tid == tid).one()
+                          models.InternalTip.tid == tid).one()
 
     if not wbfile:
         raise errors.WBFileIdNotFound
@@ -166,21 +163,22 @@ def db_receiver_get_rfile_list(session, tid, rtip_id):
     rfiles = session.query(models.ReceiverFile) \
                   .filter(models.ReceiverFile.receivertip_id == models.ReceiverTip.id,
                           models.ReceiverTip.id == rtip_id,
-                          models.ReceiverFile.tid == tid)
+                          models.ReceiverTip.internaltip_id == models.InternalTip.id,
+                          models.InternalTip.tid == tid)
 
-    return [receiver_serialize_rfile(session, tid, rfile) for rfile in rfiles]
+    return [receiver_serialize_rfile(session, rfile) for rfile in rfiles]
 
 
 def db_receiver_get_wbfile_list(session, tid, itip_id):
     rtips = session.query(models.ReceiverTip) \
-                 .filter(models.ReceiverTip.internaltip_id == itip_id, models.ReceiverTip.tid == tid)
+                   .filter(models.ReceiverTip.internaltip_id == itip_id)
 
     rtips_ids = [rt.id for rt in rtips]
 
     wbfiles = []
     if rtips_ids:
         wbfiles = session.query(models.WhistleblowerFile) \
-                       .filter(models.WhistleblowerFile.receivertip_id.in_(rtips_ids), models.WhistleblowerFile.tid == tid)
+                       .filter(models.WhistleblowerFile.receivertip_id.in_(rtips_ids))
 
     return [receiver_serialize_wbfile(session, wbfile) for wbfile in wbfiles]
 
@@ -188,14 +186,13 @@ def db_receiver_get_wbfile_list(session, tid, itip_id):
 @transact
 def register_wbfile_on_db(session, tid, rtip_id, uploaded_file):
     rtip, itip = session.query(models.ReceiverTip, models.InternalTip) \
-                      .filter(models.ReceiverTip.id == rtip_id,
-                              models.InternalTip.id == models.ReceiverTip.internaltip_id,
-                              models.ReceiverTip.tid == tid).one()
+                        .filter(models.ReceiverTip.id == rtip_id,
+                                models.ReceiverTip.internaltip_id == models.InternalTip.id,
+                                models.InternalTip.tid == tid).one()
 
     itip.update_date = rtip.last_access = datetime_now()
 
     new_file = models.WhistleblowerFile()
-    new_file.tid = tid
     new_file.name = uploaded_file['name']
     new_file.description = uploaded_file['description']
     new_file.content_type = uploaded_file['type']
@@ -285,7 +282,7 @@ def delete_rtip(session, tid, user_id, rtip_id):
     """
     rtip, itip = db_access_rtip(session, tid, user_id, rtip_id)
 
-    receiver = models.db_get(session, models.Receiver, models.Receiver.id == rtip.receiver_id, models.Receiver.tid == tid)
+    receiver = models.db_get(session, models.Receiver, models.Receiver.id == rtip.receiver_id)
 
     if not (State.tenant_cache[tid].can_delete_submission or
             receiver.can_delete_submission):
@@ -298,7 +295,7 @@ def delete_rtip(session, tid, user_id, rtip_id):
 def postpone_expiration_date(session, tid, user_id, rtip_id):
     rtip, itip = db_access_rtip(session, tid, user_id, rtip_id)
 
-    receiver = models.db_get(session, models.Receiver, models.Receiver.id == rtip.receiver_id, models.Receiver.tid == tid)
+    receiver = models.db_get(session, models.Receiver, models.Receiver.id == rtip.receiver_id)
 
     if not (State.tenant_cache[tid].can_postpone_expiration or
             receiver.can_postpone_expiration):
@@ -311,7 +308,7 @@ def postpone_expiration_date(session, tid, user_id, rtip_id):
 def set_internaltip_variable(session, tid, user_id, rtip_id, key, value):
     rtip, itip = db_access_rtip(session, tid, user_id, rtip_id)
 
-    receiver = models.db_get(session, models.Receiver, models.Receiver.id == rtip.receiver_id, models.Receiver.tid == tid)
+    receiver = models.db_get(session, models.Receiver, models.Receiver.id == rtip.receiver_id)
 
     if not (State.tenant_cache[tid].can_grant_permissions or
             receiver.can_grant_permissions):
@@ -332,7 +329,7 @@ def get_rtip(session, tid, user_id, rtip_id, language):
 
 
 def db_get_itip_comment_list(session, tid, itip):
-    return [serialize_comment(session, comment) for comment in session.query(models.Comment).filter(models.Comment.internaltip_id == itip.id, models.Comment.tid == tid)]
+    return [serialize_comment(session, comment) for comment in session.query(models.Comment).filter(models.Comment.internaltip_id == itip.id)]
 
 
 @transact
@@ -340,7 +337,6 @@ def create_identityaccessrequest(session, tid, user_id, rtip_id, request):
     rtip, _ = db_access_rtip(session, tid, user_id, rtip_id)
 
     iar = models.IdentityAccessRequest()
-    iar.tid = tid
     iar.request_motivation = request['request_motivation']
     iar.receivertip_id = rtip.id
     session.add(iar)
@@ -356,7 +352,6 @@ def create_comment(session, tid, user_id, rtip_id, request):
     itip.update_date = rtip.last_access = datetime_now()
 
     comment = models.Comment()
-    comment.tid = tid
     comment.content = request['content']
     comment.internaltip_id = itip.id
     comment.type = u'receiver'
@@ -368,7 +363,7 @@ def create_comment(session, tid, user_id, rtip_id, request):
 
 
 def db_get_itip_message_list(session, tid, rtip):
-    return [serialize_message(session, message) for message in session.query(models.Message).filter(models.Message.receivertip_id == rtip.id, models.Message.tid == tid)]
+    return [serialize_message(session, message) for message in session.query(models.Message).filter(models.Message.receivertip_id == rtip.id)]
 
 
 @transact
@@ -378,7 +373,6 @@ def create_message(session, tid, user_id, rtip_id, request):
     itip.update_date = rtip.last_access = datetime_now()
 
     msg = models.Message()
-    msg.tid = tid
     msg.content = request['content']
     msg.receivertip_id = rtip.id
     msg.type = u'receiver'
@@ -545,8 +539,7 @@ class WBFileHandler(BaseHandler):
     @transact
     def download_wbfile(self, session, tid, user_id, file_id):
         wbfile = session.query(models.WhistleblowerFile) \
-                      .filter(models.WhistleblowerFile.id == file_id,
-                              models.WhistleblowerFile.tid == tid).one_or_none()
+                      .filter(models.WhistleblowerFile.id == file_id).one_or_none()
 
         if wbfile is None or not self.user_can_access(session, tid, wbfile):
             raise errors.FileIdNotFound
@@ -576,11 +569,13 @@ class RTipWBFileHandler(WBFileHandler):
     def user_can_access(self, session, tid, wbfile):
         internaltip_id = session.query(models.ReceiverTip.internaltip_id) \
                               .filter(models.ReceiverTip.id == wbfile.receivertip_id,
-                                      models.ReceiverTip.tid == tid).one()[0]
+                                      models.ReceiverTip.internaltip_id == models.InternalTip.id,
+                                      models.InternalTip.tid == tid).one()[0]
 
         users_ids = [x[0] for x in session.query(models.ReceiverTip.receiver_id) \
                                                  .filter(models.ReceiverTip.internaltip_id == internaltip_id,
-                                                         models.ReceiverTip.tid == tid)]
+                                                         models.ReceiverTip.internaltip_id == models.InternalTip.id,
+                                                         models.InternalTip.tid == tid)]
 
         return self.current_user.user_id in users_ids
 
@@ -603,7 +598,8 @@ class ReceiverFileDownload(BaseHandler):
                                   .filter(models.ReceiverFile.id == file_id,
                                           models.ReceiverFile.receivertip_id == models.ReceiverTip.id,
                                           models.ReceiverTip.receiver_id == user_id,
-                                          models.ReceiverTip.tid == tid).one()
+                                          models.ReceiverTip.internaltip_id == models.InternalTip.id,
+                                          models.InternalTip.tid == tid).one()
 
         if not rfile:
             raise errors.FileIdNotFound

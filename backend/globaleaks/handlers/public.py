@@ -17,16 +17,16 @@ from globaleaks.utils.sets import merge_dicts
 from globaleaks.utils.structures import get_localized_values
 
 
-def db_prepare_contexts_serialization(session, tid, contexts):
+def db_prepare_contexts_serialization(session, contexts):
     data = {'imgs': {}, 'receivers': {}}
 
     contexts_ids = [c.id for c in contexts]
 
     if contexts_ids:
-        for o in session.query(models.Context).filter(models.ContextImg.id.in_(contexts_ids), models.ContextImg.tid == tid):
+        for o in session.query(models.Context).filter(models.ContextImg.id.in_(contexts_ids)):
             data['imgs'][o.id] = o.data
 
-        for o in session.query(models.ReceiverContext).filter(models.ReceiverContext.context_id.in_(contexts_ids), models.ReceiverContext.tid == tid).order_by(models.ReceiverContext.presentation_order):
+        for o in session.query(models.ReceiverContext).filter(models.ReceiverContext.context_id.in_(contexts_ids)).order_by(models.ReceiverContext.presentation_order):
             if o.context_id not in data['receivers']:
                 data['receivers'][o.context_id] = []
             data['receivers'][o.context_id].append(o.receiver_id)
@@ -34,22 +34,22 @@ def db_prepare_contexts_serialization(session, tid, contexts):
     return data
 
 
-def db_prepare_receivers_serialization(session, tid, receivers):
+def db_prepare_receivers_serialization(session, receivers):
     data = {'users': {}, 'imgs': {}}
 
     receivers_ids = [r.id for r in receivers]
 
     if receivers_ids:
-        for o in session.query(models.User).filter(models.User.id.in_(receivers_ids), models.User.tid == tid):
+        for o in session.query(models.User).filter(models.User.id.in_(receivers_ids)):
             data['users'][o.id] = o
 
-        for o in session.query(models.UserImg).filter(models.UserImg.id.in_(receivers_ids), models.UserImg.tid == tid):
+        for o in session.query(models.UserImg).filter(models.UserImg.id.in_(receivers_ids)):
             data['imgs'][o.id] = o.data
 
     return data
 
 
-def db_prepare_fields_serialization(session, tid, fields):
+def db_prepare_fields_serialization(session, fields):
     ret = {
         'fields': {},
         'attrs': {},
@@ -65,7 +65,7 @@ def db_prepare_fields_serialization(session, tid, fields):
 
     tmp = copy.deepcopy(fields_ids)
     while tmp:
-        fs = session.query(models.Field).filter(models.Field.fieldgroup_id.in_(tmp), models.Field.tid == tid)
+        fs = session.query(models.Field).filter(models.Field.fieldgroup_id.in_(tmp))
 
         tmp = []
         for f in fs:
@@ -80,21 +80,21 @@ def db_prepare_fields_serialization(session, tid, fields):
         fields_ids.extend(tmp)
 
     if fields_ids:
-        objs = session.query(models.FieldAttr).filter(models.FieldAttr.field_id.in_(fields_ids), models.FieldAttr.tid == tid)
+        objs = session.query(models.FieldAttr).filter(models.FieldAttr.field_id.in_(fields_ids))
         for obj in objs:
             if obj.field_id not in ret['attrs']:
                 ret['attrs'][obj.field_id] = []
             ret['attrs'][obj.field_id].append(obj)
 
         objs = session.query(models.FieldOption)\
-                    .filter(models.FieldOption.field_id.in_(fields_ids), models.FieldOption.tid == tid)\
+                    .filter(models.FieldOption.field_id.in_(fields_ids)) \
                     .order_by(models.FieldOption.presentation_order)
         for obj in objs:
             if obj.field_id not in ret['options']:
                 ret['options'][obj.field_id] = []
             ret['options'][obj.field_id].append(obj)
 
-        objs = session.query(models.FieldOption).filter(models.FieldOption.trigger_field.in_(fields_ids), models.FieldOption.tid == tid)
+        objs = session.query(models.FieldOption).filter(models.FieldOption.trigger_field.in_(fields_ids))
         for obj in objs:
             if obj.field_id not in ret['triggers']:
                 ret['triggers'][obj.field_id] = []
@@ -108,7 +108,8 @@ def db_serialize_node(session, tid, language):
     Serialize node info.
     """
     # Contexts and Receivers relationship
-    configured = session.query(models.ReceiverContext).filter(models.ReceiverContext.tid == tid).count() > 0
+    configured = session.query(models.ReceiverContext).filter(models.ReceiverContext.context_id == models.Context.id,
+                                                              models.Context.tid == tid).count() > 0
 
     ro_node = NodeFactory(session, tid).public_export()
 
@@ -162,7 +163,7 @@ def serialize_context(session, context, language, data=None):
     return get_localized_values(ret_dict, context, context.localized_keys, language)
 
 
-def serialize_questionnaire(session, questionnaire, language):
+def serialize_questionnaire(session, tid, questionnaire, language):
     """
     Serialize the specified questionnaire
 
@@ -170,13 +171,14 @@ def serialize_questionnaire(session, questionnaire, language):
     :param language: the language in which to localize data.
     :return: a dictionary representing the serialization of the questionnaire.
     """
-    steps = session.query(models.Step).filter(models.Step.questionnaire_id == questionnaire.id, models.Step.tid == questionnaire.tid)
+    steps = session.query(models.Step).filter(models.Step.questionnaire_id == questionnaire.id,
+                                              models.Questionnaire.id == questionnaire.id)
 
     ret_dict = {
         'id': questionnaire.id,
-        'editable': questionnaire.editable,
+        'editable': questionnaire.editable and questionnaire.tid == tid,
         'name': questionnaire.name,
-        'steps': sorted([serialize_step(session, s, language) for s in steps],
+        'steps': sorted([serialize_step(session, tid, s, language) for s in steps],
                         key=lambda x: x['presentation_order'])
     }
 
@@ -224,7 +226,7 @@ def serialize_field_attr(attr, language):
     return ret_dict
 
 
-def serialize_field(session, field, language, data=None):
+def serialize_field(session, tid, field, language, data=None):
     """
     Serialize a field, localizing its content depending on the language.
 
@@ -233,7 +235,7 @@ def serialize_field(session, field, language, data=None):
     :return: a serialization of the object
     """
     if data is None:
-        data = db_prepare_fields_serialization(session, field.tid, [field])
+        data = db_prepare_fields_serialization(session, [field])
 
     if field.template_id is not None:
         f_to_serialize = session.query(models.Field).filter(models.Field.id == field.template_id, models.Field.tid == field.tid).one_or_none()
@@ -245,7 +247,7 @@ def serialize_field(session, field, language, data=None):
         attrs[attr.name] = serialize_field_attr(attr, language)
 
     triggered_by_options = []
-    _triggered_by_options = session.query(models.FieldOption).filter(models.FieldOption.trigger_field == field.id, models.FieldOption.tid == field.tid)
+    _triggered_by_options = session.query(models.FieldOption).filter(models.FieldOption.trigger_field == field.id, models.Field.tid == field.tid)
     for trigger in _triggered_by_options:
         triggered_by_options.append({
             'field': trigger.field_id,
@@ -255,7 +257,7 @@ def serialize_field(session, field, language, data=None):
     ret_dict = {
         'id': field.id,
         'instance': field.instance,
-        'editable': field.editable,
+        'editable': field.editable and field.tid == tid,
         'type': f_to_serialize.type,
         'template_id': field.template_id if field.template_id else '',
         'step_id': field.step_id if field.step_id else '',
@@ -271,13 +273,13 @@ def serialize_field(session, field, language, data=None):
         'triggered_by_score': field.triggered_by_score,
         'triggered_by_options':  triggered_by_options,
         'options': [serialize_field_option(o, language) for o in data['options'].get(f_to_serialize.id, [])],
-        'children': [serialize_field(session, f, language) for f in data['fields'].get(f_to_serialize.id, [])]
+        'children': [serialize_field(session, tid, f, language) for f in data['fields'].get(f_to_serialize.id, [])]
     }
 
     return get_localized_values(ret_dict, f_to_serialize, field.localized_keys, language)
 
 
-def serialize_step(session, step, language):
+def serialize_step(session, tid, step, language):
     """
     Serialize a step, localizing its content depending on the language.
 
@@ -285,15 +287,15 @@ def serialize_step(session, step, language):
     :param language: the language in which to localize data
     :return: a serialization of the object
     """
-    children = session.query(models.Field).filter(models.Field.step_id == step.id, models.Field.tid == step.tid)
+    children = session.query(models.Field).filter(models.Field.step_id == step.id)
 
-    data = db_prepare_fields_serialization(session, step.tid, children)
+    data = db_prepare_fields_serialization(session, children)
 
     ret_dict = {
         'id': step.id,
         'questionnaire_id': step.questionnaire_id,
         'presentation_order': step.presentation_order,
-        'children': [serialize_field(session, f, language, data) for f in children]
+        'children': [serialize_field(session, tid, f, language, data) for f in children]
     }
 
     return get_localized_values(ret_dict, step, step.localized_keys, language)
@@ -308,14 +310,14 @@ def serialize_receiver(session, receiver, language, data=None):
     :return: a serializtion of the object
     """
     if data is None:
-        data = db_prepare_receivers_serialization(session, receiver.tid, [receiver])
+        data = db_prepare_receivers_serialization(session, [receiver])
 
     user = data['users'][receiver.id]
 
     ret_dict = {
         'id': receiver.id,
         'name': user.public_name,
-        'username': user.username if State.tenant_cache[receiver.tid].simplified_login else '',
+        'username': user.username,
         'state': user.state,
         'configuration': receiver.configuration,
         'can_delete_submission': receiver.can_delete_submission,
@@ -332,27 +334,34 @@ def serialize_receiver(session, receiver, language, data=None):
 
 def db_get_public_context_list(session, tid, language):
     contexts = session.query(models.Context).filter(models.Context.id == models.ReceiverContext.context_id,
-                                                    models.ReceiverContext.tid == tid)
+                                                    models.Context.tid == tid)
 
-    data = db_prepare_contexts_serialization(session, tid, contexts)
+    data = db_prepare_contexts_serialization(session, contexts)
 
     return [serialize_context(session, context, language, data) for context in contexts]
 
 
 def db_get_questionnaire_list(session, tid, language):
-    questionnaires = session.query(models.Questionnaire).filter(models.Questionnaire.tid == tid)
+    questionnaires = session.query(models.Questionnaire).filter(models.Questionnaire.tid.in_(set([1, tid])))
 
-    return [serialize_questionnaire(session, questionnaire, language) for questionnaire in questionnaires]
+    return [serialize_questionnaire(session, tid, questionnaire, language) for questionnaire in questionnaires]
 
 
 def db_get_public_receiver_list(session, tid, language):
     receivers = session.query(models.Receiver).filter(models.Receiver.id == models.User.id,
-                                                    models.User.state != u'disabled',
-                                                    models.User.tid == tid)
+                                                      models.User.state != u'disabled',
+                                                      models.User.tid == tid)
 
-    data = db_prepare_receivers_serialization(session, tid, receivers)
+    data = db_prepare_receivers_serialization(session, receivers)
 
-    return [serialize_receiver(session, receiver, language, data) for receiver in receivers]
+    ret = []
+    for receiver in receivers:
+        x = serialize_receiver(session, receiver, language, data)
+        if not State.tenant_cache[tid].simplified_login:
+            x['username'] = ''
+        ret.append(x)
+
+    return ret
 
 
 @transact

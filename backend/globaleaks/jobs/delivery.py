@@ -53,7 +53,6 @@ def receiverfile_planning(session):
                                .filter(models.ReceiverTip.internaltip_id == ifile.internaltip_id,
                                        models.User.id == models.ReceiverTip.receiver_id):
             receiverfile = models.ReceiverFile()
-            receiverfile.tid = rtip.tid
             receiverfile.internalfile_id = ifile.id
             receiverfile.receivertip_id = rtip.id
             receiverfile.file_path = ifile.file_path
@@ -76,7 +75,7 @@ def receiverfile_planning(session):
                   'ifile_path': ifile.file_path,
                   'ifile_size': ifile.size,
                   'rfiles': [],
-                  'tid': rtip.tid,
+                  'tid': user.tid,
                 }
 
             receiverfiles_maps[ifile.id]['rfiles'].append({

@@ -154,7 +154,7 @@ def get_dummy_step():
         'description': u'Step Description',
         'presentation_order': 0,
         'triggered_by_score': 0,
-        'questionnaire_id': '',
+        'questionnaire_id': u'',
         'children': []
     }
 
@@ -550,14 +550,17 @@ class TestGL(unittest.TestCase):
         ret = []
         for r, i in session.query(models.ReceiverTip, models.InternalTip) \
                          .filter(models.ReceiverTip.internaltip_id == models.InternalTip.id,
-                                 models.ReceiverTip.tid == 1):
+                                 models.InternalTip.tid == 1):
             ret.append(rtip.serialize_rtip(session, r, i, 'en'))
 
         return ret
 
     @transact
     def get_rfiles(self, session, rtip_id):
-        return [{'id': rfile.id} for rfile in session.query(models.ReceiverFile).filter(models.ReceiverFile.receivertip_id == rtip_id, models.ReceiverFile.tid == 1)]
+        return [{'id': rfile.id} for rfile in session.query(models.ReceiverFile).filter(models.ReceiverFile.receivertip_id == rtip_id,
+                                                                                        models.ReceiverTip.id == rtip_id,
+                                                                                        models.InternalTip.id == models.ReceiverTip.internaltip_id,
+                                                                                        models.InternalTip.tid == 1)]
 
     @transact
     def get_wbtips(self, session):
@@ -567,7 +570,8 @@ class TestGL(unittest.TestCase):
             x = wbtip.serialize_wbtip(session, i, 'en')
             x['receivers_ids'] = zip(*session.query(models.ReceiverTip.receiver_id) \
                                            .filter(models.ReceiverTip.internaltip_id == i.id,
-                                                   models.ReceiverTip.tid == 1))[0]
+                                                   models.InternalTip.id == i.id,
+                                                   models.InternalTip.tid == 1))[0]
             ret.append(x)
 
         return ret
@@ -577,13 +581,16 @@ class TestGL(unittest.TestCase):
         return [{'id': wbfile.id} for wbfile in session.query(models.WhistleblowerFile) \
                                                      .filter(models.WhistleblowerFile.receivertip_id == models.ReceiverTip.id,
                                                              models.ReceiverTip.internaltip_id == wbtip_id,
-                                                             models.WhistleblowerFile.tid == 1)]
+                                                             models.InternalTip.id == wbtip_id,
+                                                             models.InternalTip.tid == 1)]
 
     @transact
     def get_internalfiles_by_receipt(self, session, receipt):
         wbtip = db_get_wbtip_by_receipt(session, 1, receipt)
         ifiles = session.query(models.InternalFile) \
-                      .filter(models.InternalFile.internaltip_id == unicode(wbtip.id), models.InternalFile.tid == 1)
+                      .filter(models.InternalFile.internaltip_id == wbtip.id,
+                              models.InternalTip.id == wbtip.id,
+                              models.InternalTip.tid == 1)
 
         return [models.serializers.serialize_ifile(session, ifile) for ifile in ifiles]
 
@@ -593,8 +600,9 @@ class TestGL(unittest.TestCase):
         wbtip = db_get_wbtip_by_receipt(session, 1, receipt)
         rfiles = session.query(models.ReceiverFile) \
                       .filter(models.ReceiverFile.receivertip_id == models.ReceiverTip.id,
-                              models.ReceiverTip.internaltip_id == unicode(wbtip.id),
-                              models.ReceiverFile.tid == 1)
+                              models.ReceiverTip.internaltip_id == wbtip.id,
+                              models.InternalTip.id == wbtip.id,
+                              models.InternalTip.tid == 1)
 
         return [models.serializers.serialize_rfile(session, 1, rfile) for rfile in rfiles]
 

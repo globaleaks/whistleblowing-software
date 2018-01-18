@@ -36,20 +36,26 @@ def serialize_identityaccessrequest(session, tid, identityaccessrequest):
 
 
 def db_get_identityaccessrequest_list(session, tid, rtip_id):
-    return [serialize_identityaccessrequest(session, tid, iar) for iar in session.query(models.IdentityAccessRequest).filter(models.IdentityAccessRequest.receivertip_id == rtip_id, models.IdentityAccessRequest.tid == tid)]
+    return [serialize_identityaccessrequest(session, tid, iar) for iar in session.query(models.IdentityAccessRequest).filter(models.IdentityAccessRequest.receivertip_id == rtip_id)]
 
 
 @transact
 def get_identityaccessrequest_list(session, tid):
     return [serialize_identityaccessrequest(session, tid, iar)
-        for iar in session.query(models.IdentityAccessRequest).filter(models.IdentityAccessRequest.reply == u'pending', models.IdentityAccessRequest.tid == tid)]
+        for iar in session.query(models.IdentityAccessRequest).filter(models.IdentityAccessRequest.reply == u'pending',
+                                                                      models.IdentityAccessRequest.receivertip_id == models.ReceiverTip.id,
+                                                                      models.ReceiverTip.internaltip_id == models.InternalTip.id,
+                                                                      models.InternalTip.tid == tid)]
 
 
 @transact
 def get_identityaccessrequest(session, tid, identityaccessrequest_id):
     iar = session.query(models.IdentityAccessRequest) \
                .filter(models.IdentityAccessRequest.id == identityaccessrequest_id,
-                       models.IdentityAccessRequest.tid == tid).one()
+                       models.IdentityAccessRequest.receivertip_id == models.ReceiverTip.id,
+                       models.ReceiverTip.internaltip_id == models.InternalTip.id,
+                       models.InternalTip.tid == tid).one()
+
 
     return serialize_identityaccessrequest(session, tid, iar)
 
@@ -57,9 +63,10 @@ def get_identityaccessrequest(session, tid, identityaccessrequest_id):
 @transact
 def update_identityaccessrequest(session, tid, user_id, identityaccessrequest_id, request):
     iar, rtip = session.query(models.IdentityAccessRequest, models.ReceiverTip) \
-                     .filter(models.IdentityAccessRequest.id == identityaccessrequest_id,
-                             models.ReceiverTip.id == models.IdentityAccessRequest.receivertip_id,
-                             models.ReceiverTip.tid == tid).one()
+                       .filter(models.IdentityAccessRequest.id == identityaccessrequest_id,
+                               models.ReceiverTip.id == models.IdentityAccessRequest.receivertip_id,
+                               models.ReceiverTip.internaltip_id == models.InternalTip.id,
+                               models.InternalTip.tid == tid).one()
 
     if iar.reply == 'pending':
         iar.reply_date = datetime_now()
