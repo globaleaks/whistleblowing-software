@@ -58,8 +58,6 @@ def db_update_step(session, tid, step_id, request, language):
 
     fill_localized_keys(request, models.Step.localized_keys, language)
 
-    print request
-
     step.update(request)
 
     for child in request['children']:
