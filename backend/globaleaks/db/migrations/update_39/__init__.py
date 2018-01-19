@@ -14,7 +14,7 @@ from globaleaks.utils.utility import datetime_now
 
 class Anomalies_v_38(Model):
     __tablename__ = 'anomalies'
-    id = Column(String(36), primary_key=True, default=uuid4, nullable=False)
+    id = Column(Unicode(36), primary_key=True, default=uuid4, nullable=False)
     date = Column(DateTime)
     alarm = Column(Integer)
     events = Column(JSON)
@@ -29,10 +29,10 @@ class ArchivedSchema_v_38(Model):
 
 class Comment_v_38(Model):
     __tablename__ = 'comment'
-    id = Column(String(36), primary_key=True, default=uuid4, nullable=False)
+    id = Column(Unicode(36), primary_key=True, default=uuid4, nullable=False)
     creation_date = Column(DateTime, default=datetime_now)
-    internaltip_id = Column(String(36))
-    author_id = Column(String(36))
+    internaltip_id = Column(Unicode(36))
+    author_id = Column(Unicode(36))
     content = Column(UnicodeText)
     type = Column(UnicodeText)
     new = Column(Integer, default=True)
@@ -116,7 +116,7 @@ class ConfigL10N_v_38(Model):
 
 class Context_v_38(Model):
     __tablename__ = 'context'
-    id = Column(String(36), primary_key=True, default=uuid4, nullable=False)
+    id = Column(Unicode(36), primary_key=True, default=uuid4, nullable=False)
     show_small_receiver_cards = Column(Boolean, default=False)
     show_context = Column(Boolean, default=True)
     show_recipients_details = Column(Boolean, default=False)
@@ -136,8 +136,8 @@ class Context_v_38(Model):
     status_page_message = Column(JSON)
     show_receivers_in_alphabetical_order = Column(Boolean, default=False)
     presentation_order = Column(Integer, default=0)
-    questionnaire_id = Column(String(36))
-    img_id = Column(String(36))
+    questionnaire_id = Column(Unicode(36))
+    img_id = Column(Unicode(36))
 
 class CustomTexts_v_38(Model):
     __tablename__ = 'customtexts'
@@ -169,7 +169,7 @@ class EnabledLanguage_v_38(Model):
 
 class Field_v_38(Model):
     __tablename__ = 'field'
-    id = Column(String(36), primary_key=True, default=uuid4, nullable=False)
+    id = Column(Unicode(36), primary_key=True, default=uuid4, nullable=False)
     x = Column(Integer, default=0)
     y = Column(Integer, default=0)
     width = Column(Integer, default=0)
@@ -182,9 +182,9 @@ class Field_v_38(Model):
     multi_entry_hint = Column(JSON)
     stats_enabled = Column(Boolean, default=False)
     triggered_by_score = Column(Integer, default=0)
-    fieldgroup_id = Column(String(36))
-    step_id = Column(String(36))
-    template_id = Column(String(36))
+    fieldgroup_id = Column(Unicode(36))
+    step_id = Column(Unicode(36))
+    template_id = Column(Unicode(36))
     type = Column(UnicodeText, default=u'inputbox')
     instance = Column(UnicodeText, default=u'instance')
     editable = Column(Boolean, default=True)
@@ -192,8 +192,8 @@ class Field_v_38(Model):
 
 class FieldAttr_v_38(Model):
     __tablename__ = 'fieldattr'
-    id = Column(String(36), primary_key=True, default=uuid4, nullable=False)
-    field_id = Column(String(36))
+    id = Column(Unicode(36), primary_key=True, default=uuid4, nullable=False)
+    field_id = Column(Unicode(36))
     name = Column(UnicodeText)
     type = Column(UnicodeText)
     value = Column(JSON)
@@ -221,8 +221,8 @@ class FieldAttr_v_38(Model):
 
 class FieldOption_v_38(Model):
     __tablename__ = 'fieldoption'
-    id = Column(String(36), primary_key=True, default=uuid4, nullable=False)
-    field_id = Column(String(36))
+    id = Column(Unicode(36), primary_key=True, default=uuid4, nullable=False)
+    field_id = Column(Unicode(36))
     presentation_order = Column(Integer, default=0)
     label = Column(JSON)
     score_points = Column(Integer, default=0)
@@ -231,9 +231,9 @@ class FieldOption_v_38(Model):
 
 class FieldAnswer_v_38(Model):
     __tablename__ = 'fieldanswer'
-    id = Column(String(36), primary_key=True, default=uuid4, nullable=False)
-    internaltip_id = Column(String(36))
-    fieldanswergroup_id = Column(String(36))
+    id = Column(Unicode(36), primary_key=True, default=uuid4, nullable=False)
+    internaltip_id = Column(Unicode(36))
+    fieldanswergroup_id = Column(Unicode(36))
     key = Column(UnicodeText, default=u'')
     is_leaf = Column(Boolean, default=True)
     value = Column(UnicodeText, default=u'')
@@ -241,22 +241,22 @@ class FieldAnswer_v_38(Model):
 
 class FieldAnswerGroup_v_38(Model):
     __tablename__ = 'fieldanswergroup'
-    id = Column(String(36), primary_key=True, default=uuid4, nullable=False)
+    id = Column(Unicode(36), primary_key=True, default=uuid4, nullable=False)
     number = Column(Integer, default=0)
-    fieldanswer_id = Column(String(36))
+    fieldanswer_id = Column(Unicode(36))
 
 
 class File_v_38(Model):
     __tablename__ = 'file'
-    id = Column(String(36), primary_key=True, default=uuid4, nullable=False)
+    id = Column(Unicode(36), primary_key=True, default=uuid4, nullable=False)
     data = Column(UnicodeText)
 
 
 class InternalFile_v_38(Model):
     __tablename__ = 'internalfile'
-    id = Column(String(36), primary_key=True, default=uuid4, nullable=False)
+    id = Column(Unicode(36), primary_key=True, default=uuid4, nullable=False)
     creation_date = Column(DateTime, default=datetime_now)
-    internaltip_id = Column(String(36))
+    internaltip_id = Column(Unicode(36))
     name = Column(UnicodeText)
     file_path = Column(UnicodeText)
     content_type = Column(UnicodeText)
@@ -268,10 +268,10 @@ class InternalFile_v_38(Model):
 
 class InternalTip_v_38(Model):
     __tablename__ = 'internaltip'
-    id = Column(String(36), primary_key=True, default=uuid4, nullable=False)
+    id = Column(Unicode(36), primary_key=True, default=uuid4, nullable=False)
     creation_date = Column(DateTime, default=datetime_now)
     update_date = Column(DateTime, default=datetime_now)
-    context_id = Column(String(36))
+    context_id = Column(Unicode(36))
     questionnaire_hash = Column(UnicodeText)
     preview = Column(JSON)
     progressive = Column(Integer, default=0)
@@ -290,7 +290,7 @@ class InternalTip_v_38(Model):
 
 class Mail_v_38(Model):
     __tablename__ = 'mail'
-    id = Column(String(36), primary_key=True, default=uuid4, nullable=False)
+    id = Column(Unicode(36), primary_key=True, default=uuid4, nullable=False)
     creation_date = Column(DateTime, default=datetime_now)
     address = Column(UnicodeText)
     subject = Column(UnicodeText)
@@ -300,9 +300,9 @@ class Mail_v_38(Model):
 
 class ReceiverTip_v_38(Model):
     __tablename__ = 'receivertip'
-    id = Column(String(36), primary_key=True, default=uuid4, nullable=False)
-    internaltip_id = Column(String(36))
-    receiver_id = Column(String(36))
+    id = Column(Unicode(36), primary_key=True, default=uuid4, nullable=False)
+    internaltip_id = Column(Unicode(36))
+    receiver_id = Column(Unicode(36))
     last_access = Column(DateTime, default=datetime_null)
     access_counter = Column(Integer, default=0)
     label = Column(UnicodeText, default=u'')
@@ -313,7 +313,7 @@ class ReceiverTip_v_38(Model):
 
 class Receiver_v_38(Model):
     __tablename__ = 'receiver'
-    id = Column(String(36), primary_key=True, default=uuid4, nullable=False)
+    id = Column(Unicode(36), primary_key=True, default=uuid4, nullable=False)
     configuration = Column(UnicodeText, default=u'default')
     can_delete_submission = Column(Boolean, default=False)
     can_postpone_expiration = Column(Boolean, default=False)
@@ -324,15 +324,15 @@ class Receiver_v_38(Model):
 
 class ReceiverContext_v_38(Model):
     __tablename__ = 'receiver_context'
-    context_id = Column(String(36), primary_key=True)
-    receiver_id = Column(String(36), primary_key=True)
+    context_id = Column(Unicode(36), primary_key=True)
+    receiver_id = Column(Unicode(36), primary_key=True)
 
 
 class ReceiverFile_v_38(Model):
     __tablename__ = 'receiverfile'
-    id = Column(String(36), primary_key=True, default=uuid4, nullable=False)
-    internalfile_id = Column(String(36))
-    receivertip_id = Column(String(36))
+    id = Column(Unicode(36), primary_key=True, default=uuid4, nullable=False)
+    internalfile_id = Column(Unicode(36))
+    receivertip_id = Column(Unicode(36))
     file_path = Column(UnicodeText)
     size = Column(Integer)
     downloads = Column(Integer, default=0)
@@ -343,14 +343,14 @@ class ReceiverFile_v_38(Model):
 
 class ShortURL_v_38(Model):
     __tablename__ = 'shorturl'
-    id = Column(String(36), primary_key=True, default=uuid4, nullable=False)
+    id = Column(Unicode(36), primary_key=True, default=uuid4, nullable=False)
     shorturl = Column(UnicodeText)
     longurl = Column(UnicodeText)
 
 
 class Stats_v_38(Model):
     __tablename__ = 'stats'
-    id = Column(String(36), primary_key=True, default=uuid4, nullable=False)
+    id = Column(Unicode(36), primary_key=True, default=uuid4, nullable=False)
     start = Column(DateTime)
     summary = Column(JSON)
     free_disk_space = Column(Integer)
@@ -358,8 +358,8 @@ class Stats_v_38(Model):
 
 class Step_v_38(Model):
     __tablename__ = 'step'
-    id = Column(String(36), primary_key=True, default=uuid4, nullable=False)
-    questionnaire_id = Column(String(36))
+    id = Column(Unicode(36), primary_key=True, default=uuid4, nullable=False)
+    questionnaire_id = Column(Unicode(36))
     label = Column(JSON)
     description = Column(JSON)
     presentation_order = Column(Integer, default=0)
@@ -368,21 +368,21 @@ class Step_v_38(Model):
 
 class IdentityAccessRequest_v_38(Model):
     __tablename__ = 'identityaccessrequest'
-    id = Column(String(36), primary_key=True, default=uuid4, nullable=False)
-    receivertip_id = Column(String(36))
+    id = Column(Unicode(36), primary_key=True, default=uuid4, nullable=False)
+    receivertip_id = Column(Unicode(36))
     request_date = Column(DateTime, default=datetime_now)
     request_motivation = Column(UnicodeText, default=u'')
     reply_date = Column(DateTime, default=datetime_null)
-    reply_user_id = Column(String(36))
+    reply_user_id = Column(Unicode(36))
     reply_motivation = Column(UnicodeText, default=u'')
     reply = Column(UnicodeText, default=u'pending')
 
 
 class Message_v_38(Model):
     __tablename__ = 'message'
-    id = Column(String(36), primary_key=True, default=uuid4, nullable=False)
+    id = Column(Unicode(36), primary_key=True, default=uuid4, nullable=False)
     creation_date = Column(DateTime, default=datetime_now)
-    receivertip_id = Column(String(36))
+    receivertip_id = Column(Unicode(36))
     content = Column(UnicodeText)
     type = Column(UnicodeText)
     new = Column(Integer, default=True)
@@ -390,7 +390,7 @@ class Message_v_38(Model):
 
 class Questionnaire_v_38(Model):
     __tablename__ = 'questionnaire'
-    id = Column(String(36), primary_key=True, default=uuid4, nullable=False)
+    id = Column(Unicode(36), primary_key=True, default=uuid4, nullable=False)
     name = Column(UnicodeText)
     show_steps_navigation_bar = Column(Boolean, default=False)
     steps_navigation_requires_completion = Column(Boolean, default=False)
@@ -400,7 +400,7 @@ class Questionnaire_v_38(Model):
 
 class User_v_38(Model):
     __tablename__ = 'user'
-    id = Column(String(36), primary_key=True, default=uuid4, nullable=False)
+    id = Column(Unicode(36), primary_key=True, default=uuid4, nullable=False)
     creation_date = Column(DateTime, default=datetime_now)
     username = Column(UnicodeText, default=u'')
     password = Column(UnicodeText, default=u'')
@@ -419,19 +419,19 @@ class User_v_38(Model):
     pgp_key_fingerprint = Column(UnicodeText, default=u'')
     pgp_key_public = Column(UnicodeText, default=u'')
     pgp_key_expiration = Column(DateTime, default=datetime_null)
-    img_id = Column(String(36))
+    img_id = Column(Unicode(36))
 
 
 class WhistleblowerTip_v_38(Model):
     __tablename__ = 'whistleblowertip'
-    id = Column(String(36), primary_key=True, default=uuid4, nullable=False)
+    id = Column(Unicode(36), primary_key=True, default=uuid4, nullable=False)
     receipt_hash = Column(UnicodeText)
 
 
 class WhistleblowerFile_v_38(Model):
     __tablename__ = 'whistleblowerfile'
-    id = Column(String(36), primary_key=True, default=uuid4, nullable=False)
-    receivertip_id = Column(String(36))
+    id = Column(Unicode(36), primary_key=True, default=uuid4, nullable=False)
+    receivertip_id = Column(Unicode(36))
     name = Column(UnicodeText)
     file_path = Column(UnicodeText)
     size = Column(Integer)

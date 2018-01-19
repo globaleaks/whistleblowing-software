@@ -4,6 +4,7 @@ ORM Models definitions.
 from __future__ import absolute_import
 
 import collections
+import copy
 
 from datetime import timedelta
 
@@ -121,13 +122,13 @@ class Model(object):
         for k in getattr(self, 'localized_keys'):
             if k in values and values[k] is not None:
                 value = values[k]
-                previous = getattr(self, k)
+                previous = copy.deepcopy(getattr(self, k))
 
                 if previous and isinstance(previous, dict):
                     previous.update(value)
-                    setattr(self, k, previous)
-                else:
-                    setattr(self, k, value)
+                    value = previous
+
+                setattr(self, k, value)
 
         for k in getattr(self, 'json_keys'):
             if k in values and values[k] is not None:
@@ -200,7 +201,7 @@ class EnabledLanguage(Model, Base):
     __tablename__ = 'enabledlanguage'
 
     tid = Column(Integer, ForeignKey('tenant.id', ondelete='CASCADE'), primary_key=True, default=1, nullable=False)
-    name = Column(String(5), primary_key=True, nullable=False)
+    name = Column(Unicode(5), primary_key=True, nullable=False)
 
     def __init__(self, tid=1, name=None, migrate=False):
         if migrate:
@@ -224,14 +225,14 @@ class User(Model, Base):
     """
     __tablename__ = 'user'
 
-    id = Column(String(36), primary_key=True, default=uuid4, nullable=False)
+    id = Column(Unicode(36), primary_key=True, default=uuid4, nullable=False)
 
     tid = Column(Integer, ForeignKey('tenant.id', ondelete='CASCADE'), default=1, nullable=False)
 
     creation_date = Column(DateTime, default=datetime_now, nullable=False)
     username = Column(UnicodeText, default=u'', nullable=False)
     password = Column(UnicodeText, default=u'', nullable=False)
-    salt = Column(String(24), nullable=False)
+    salt = Column(Unicode(24), nullable=False)
     name = Column(UnicodeText, default=u'', nullable=False)
     description = Column(JSON, default=dict, nullable=False)
     public_name = Column(UnicodeText, default=u'', nullable=False)
@@ -271,7 +272,7 @@ class Context(Model, Base):
     """
     __tablename__ = 'context'
 
-    id = Column(String(36), primary_key=True, default=uuid4, nullable=False)
+    id = Column(Unicode(36), primary_key=True, default=uuid4, nullable=False)
 
     tid = Column(Integer, ForeignKey('tenant.id', ondelete='CASCADE'), default=1, nullable=False)
 
@@ -295,7 +296,7 @@ class Context(Model, Base):
     show_receivers_in_alphabetical_order = Column(Boolean, default=True, nullable=False)
     presentation_order = Column(Integer, default=0, nullable=False)
 
-    questionnaire_id = Column(String(36), ForeignKey('questionnaire.id'), default=u'default', nullable=False)
+    questionnaire_id = Column(Unicode(36), ForeignKey('questionnaire.id'), default=u'default', nullable=False)
 
     unicode_keys = ['questionnaire_id']
 
@@ -331,14 +332,14 @@ class InternalTip(Model, Base):
     """
     __tablename__ = 'internaltip'
 
-    id = Column(String(36), primary_key=True, default=uuid4, nullable=False)
+    id = Column(Unicode(36), primary_key=True, default=uuid4, nullable=False)
 
     tid = Column(Integer, ForeignKey('tenant.id', ondelete='CASCADE'), default=1, nullable=False)
 
     creation_date = Column(DateTime, default=datetime_now, nullable=False)
     update_date = Column(DateTime, default=datetime_now, nullable=False)
-    context_id = Column(String(36), ForeignKey('context.id', ondelete='CASCADE'), nullable=False)
-    questionnaire_hash = Column(String(64), ForeignKey('archivedschema.hash', ondelete='CASCADE'), nullable=False)
+    context_id = Column(Unicode(36), ForeignKey('context.id', ondelete='CASCADE'), nullable=False)
+    questionnaire_hash = Column(Unicode(64), ForeignKey('archivedschema.hash', ondelete='CASCADE'), nullable=False)
     preview = Column(JSON, nullable=False)
     progressive = Column(Integer, default=0, nullable=False)
     tor2web = Column(Boolean, default=False, nullable=False)
@@ -350,7 +351,7 @@ class InternalTip(Model, Base):
     enable_two_way_messages = Column(Boolean, default=True, nullable=False)
     enable_attachments = Column(Boolean, default=True, nullable=False)
     enable_whistleblower_identity = Column(Boolean, default=False, nullable=False)
-    receipt_hash = Column(String(128), nullable=False)
+    receipt_hash = Column(Unicode(128), nullable=False)
     wb_last_access = Column(DateTime, default=datetime_now, nullable=False)
     wb_access_counter = Column(Integer, default=0, nullable=False)
 
@@ -363,10 +364,10 @@ class ReceiverTip(Model, Base):
     """
     __tablename__ = 'receivertip'
 
-    id = Column(String(36), primary_key=True, default=uuid4, nullable=False)
+    id = Column(Unicode(36), primary_key=True, default=uuid4, nullable=False)
 
-    internaltip_id = Column(String(36), ForeignKey('internaltip.id', ondelete='CASCADE'), nullable=False)
-    receiver_id = Column(String(36), ForeignKey('receiver.id', ondelete='CASCADE'), nullable=False)
+    internaltip_id = Column(Unicode(36), ForeignKey('internaltip.id', ondelete='CASCADE'), nullable=False)
+    receiver_id = Column(Unicode(36), ForeignKey('receiver.id', ondelete='CASCADE'), nullable=False)
     last_access = Column(DateTime, default=datetime_null, nullable=False)
     access_counter = Column(Integer, default=0, nullable=False)
     label = Column(UnicodeText, default=u'', nullable=False)
@@ -386,13 +387,13 @@ class IdentityAccessRequest(Model, Base):
     """
     __tablename__ = 'identityaccessrequest'
 
-    id = Column(String(36), primary_key=True, default=uuid4, nullable=False)
+    id = Column(Unicode(36), primary_key=True, default=uuid4, nullable=False)
 
-    receivertip_id = Column(String(36), ForeignKey('receivertip.id', ondelete='CASCADE'), nullable=False)
+    receivertip_id = Column(Unicode(36), ForeignKey('receivertip.id', ondelete='CASCADE'), nullable=False)
     request_date = Column(DateTime, default=datetime_now, nullable=False)
     request_motivation = Column(UnicodeText, default=u'')
     reply_date = Column(DateTime, default=datetime_null, nullable=False)
-    reply_user_id = Column(String(36), default=u'', nullable=False)
+    reply_user_id = Column(Unicode(36), default=u'', nullable=False)
     reply_motivation = Column(UnicodeText, default=u'', nullable=False)
     reply = Column(UnicodeText, default=u'pending', nullable=False)
 
@@ -403,10 +404,10 @@ class InternalFile(Model, Base):
     """
     __tablename__ = 'internalfile'
 
-    id = Column(String(36), primary_key=True, default=uuid4, nullable=False)
+    id = Column(Unicode(36), primary_key=True, default=uuid4, nullable=False)
 
     creation_date = Column(DateTime, default=datetime_now, nullable=False)
-    internaltip_id = Column(String(36), ForeignKey('internaltip.id', ondelete='CASCADE'), nullable=False)
+    internaltip_id = Column(Unicode(36), ForeignKey('internaltip.id', ondelete='CASCADE'), nullable=False)
     name = Column(UnicodeText, nullable=False)
     file_path = Column(UnicodeText, nullable=False)
     content_type = Column(UnicodeText, nullable=False)
@@ -422,10 +423,10 @@ class ReceiverFile(Model, Base):
     """
     __tablename__ = 'receiverfile'
 
-    id = Column(String(36), primary_key=True, default=uuid4, nullable=False)
+    id = Column(Unicode(36), primary_key=True, default=uuid4, nullable=False)
 
-    internalfile_id = Column(String(36), ForeignKey('internalfile.id', ondelete='CASCADE'), nullable=False)
-    receivertip_id = Column(String(36), ForeignKey('receivertip.id', ondelete='CASCADE'), nullable=False)
+    internalfile_id = Column(Unicode(36), ForeignKey('internalfile.id', ondelete='CASCADE'), nullable=False)
+    receivertip_id = Column(Unicode(36), ForeignKey('receivertip.id', ondelete='CASCADE'), nullable=False)
     file_path = Column(UnicodeText, nullable=False)
     size = Column(Integer, nullable=False)
     downloads = Column(Integer, default=0, nullable=False)
@@ -444,9 +445,9 @@ class WhistleblowerFile(Model, Base):
     """
     __tablename__ = 'whistleblowerfile'
 
-    id = Column(String(36), primary_key=True, default=uuid4, nullable=False)
+    id = Column(Unicode(36), primary_key=True, default=uuid4, nullable=False)
 
-    receivertip_id = Column(String(36), ForeignKey('receivertip.id', ondelete='CASCADE'), nullable=False)
+    receivertip_id = Column(Unicode(36), ForeignKey('receivertip.id', ondelete='CASCADE'), nullable=False)
     name = Column(UnicodeText, nullable=False)
     file_path = Column(UnicodeText, nullable=False)
     size = Column(Integer, nullable=False)
@@ -463,11 +464,11 @@ class Comment(Model, Base):
     """
     __tablename__ = 'comment'
 
-    id = Column(String(36), primary_key=True, default=uuid4, nullable=False)
+    id = Column(Unicode(36), primary_key=True, default=uuid4, nullable=False)
 
     creation_date = Column(DateTime, default=datetime_now, nullable=False)
-    internaltip_id = Column(String(36), ForeignKey('internaltip.id', ondelete='CASCADE'), nullable=False)
-    author_id = Column(String(36), ForeignKey('user.id', ondelete='SET NULL'))
+    internaltip_id = Column(Unicode(36), ForeignKey('internaltip.id', ondelete='CASCADE'), nullable=False)
+    author_id = Column(Unicode(36), ForeignKey('user.id', ondelete='SET NULL'))
     content = Column(UnicodeText, nullable=False)
     type = Column(UnicodeText, nullable=False)
     new = Column(Integer, default=True, nullable=False)
@@ -480,10 +481,10 @@ class Message(Model, Base):
     """
     __tablename__ = 'message'
 
-    id = Column(String(36), primary_key=True, default=uuid4, nullable=False)
+    id = Column(Unicode(36), primary_key=True, default=uuid4, nullable=False)
 
     creation_date = Column(DateTime, default=datetime_now, nullable=False)
-    receivertip_id = Column(String(36), ForeignKey('receivertip.id', ondelete='CASCADE'), nullable=False)
+    receivertip_id = Column(Unicode(36), ForeignKey('receivertip.id', ondelete='CASCADE'), nullable=False)
     content = Column(UnicodeText, nullable=False)
     type = Column(UnicodeText, nullable=False)
     new = Column(Integer, default=True, nullable=False)
@@ -497,7 +498,7 @@ class Mail(Model, Base):
     """
     __tablename__ = 'mail'
 
-    id = Column(String(36), primary_key=True, default=uuid4, nullable=False)
+    id = Column(Unicode(36), primary_key=True, default=uuid4, nullable=False)
 
     tid = Column(Integer, ForeignKey('tenant.id', ondelete='CASCADE'), default=1, nullable=False)
 
@@ -516,7 +517,7 @@ class Receiver(Model, Base):
     """
     __tablename__ = 'receiver'
 
-    id = Column(String(36), ForeignKey('user.id', ondelete='CASCADE'), primary_key=True, default=uuid4, nullable=False)
+    id = Column(Unicode(36), ForeignKey('user.id', ondelete='CASCADE'), primary_key=True, default=uuid4, nullable=False)
 
     configuration = Column(UnicodeText, default=u'default', nullable=False)
     can_delete_submission = Column(Boolean, default=False, nullable=False)
@@ -541,7 +542,7 @@ class Receiver(Model, Base):
 class Field(Model, Base):
     __tablename__ = 'field'
 
-    id = Column(String(36), primary_key=True, default=uuid4, nullable=False)
+    id = Column(Unicode(36), primary_key=True, default=uuid4, nullable=False)
 
     tid = Column(Integer, ForeignKey('tenant.id', ondelete='CASCADE'), default=1, nullable=False)
 
@@ -559,9 +560,9 @@ class Field(Model, Base):
     stats_enabled = Column(Boolean, default=False, nullable=False)
     triggered_by_score = Column(Integer, default=0, nullable=False)
 
-    template_id = Column(String(36), ForeignKey('field.id', ondelete='CASCADE'))
-    fieldgroup_id = Column(String(36), ForeignKey('field.id', ondelete='CASCADE'))
-    step_id = Column(String(36), ForeignKey('step.id', ondelete='CASCADE'))
+    template_id = Column(Unicode(36), ForeignKey('field.id', ondelete='CASCADE'))
+    fieldgroup_id = Column(Unicode(36), ForeignKey('field.id', ondelete='CASCADE'))
+    step_id = Column(Unicode(36), ForeignKey('step.id', ondelete='CASCADE'))
 
     type = Column(UnicodeText, default=u'inputbox', nullable=False)
     instance = Column(UnicodeText, default=u'instance', nullable=False)
@@ -594,9 +595,9 @@ class Field(Model, Base):
 class FieldAttr(Model, Base):
     __tablename__ = 'fieldattr'
 
-    id = Column(String(36), primary_key=True, default=uuid4, nullable=False)
+    id = Column(Unicode(36), primary_key=True, default=uuid4, nullable=False)
 
-    field_id = Column(String(36), ForeignKey('field.id', ondelete='CASCADE'), nullable=False)
+    field_id = Column(Unicode(36), ForeignKey('field.id', ondelete='CASCADE'), nullable=False)
     name = Column(UnicodeText, nullable=False)
     type = Column(UnicodeText, nullable=False)
     value = Column(JSON, nullable=False)
@@ -632,13 +633,13 @@ class FieldAttr(Model, Base):
 class FieldOption(Model, Base):
     __tablename__ = 'fieldoption'
 
-    id = Column(String(36), primary_key=True, default=uuid4, nullable=False)
+    id = Column(Unicode(36), primary_key=True, default=uuid4, nullable=False)
 
-    field_id = Column(String(36), ForeignKey('field.id', ondelete='CASCADE'), nullable=False)
+    field_id = Column(Unicode(36), ForeignKey('field.id', ondelete='CASCADE'), nullable=False)
     presentation_order = Column(Integer, default=0, nullable=False)
     label = Column(JSON, nullable=False)
     score_points = Column(Integer, default=0, nullable=False)
-    trigger_field = Column(String(36), ForeignKey('field.id', ondelete='SET NULL'))
+    trigger_field = Column(Unicode(36), ForeignKey('field.id', ondelete='SET NULL'))
 
     unicode_keys = ['field_id']
     int_keys = ['presentation_order', 'score_points']
@@ -649,10 +650,10 @@ class FieldOption(Model, Base):
 class FieldAnswer(Model, Base):
     __tablename__ = 'fieldanswer'
 
-    id = Column(String(36), primary_key=True, default=uuid4, nullable=False)
+    id = Column(Unicode(36), primary_key=True, default=uuid4, nullable=False)
 
-    internaltip_id = Column(String(36), ForeignKey('internaltip.id', ondelete='CASCADE'), nullable=True)
-    fieldanswergroup_id = Column(String(36), ForeignKey('fieldanswergroup.id', ondelete='CASCADE'), nullable=True)
+    internaltip_id = Column(Unicode(36), ForeignKey('internaltip.id', ondelete='CASCADE'), nullable=True)
+    fieldanswergroup_id = Column(Unicode(36), ForeignKey('fieldanswergroup.id', ondelete='CASCADE'), nullable=True)
     key = Column(UnicodeText, default=u'', nullable=False)
     is_leaf = Column(Boolean, default=True, nullable=False)
     value = Column(UnicodeText, default=u'', nullable=False)
@@ -664,9 +665,9 @@ class FieldAnswer(Model, Base):
 class FieldAnswerGroup(Model, Base):
     __tablename__ = 'fieldanswergroup'
 
-    id = Column(String(36), primary_key=True, default=uuid4, nullable=False)
+    id = Column(Unicode(36), primary_key=True, default=uuid4, nullable=False)
     number = Column(Integer, default=0, nullable=False)
-    fieldanswer_id = Column(String(36), ForeignKey('fieldanswer.id', ondelete='CASCADE'), nullable=False)
+    fieldanswer_id = Column(Unicode(36), ForeignKey('fieldanswer.id', ondelete='CASCADE'), nullable=False)
 
     unicode_keys = ['fieldanswer_id']
     int_keys = ['number']
@@ -675,9 +676,9 @@ class FieldAnswerGroup(Model, Base):
 class Step(Model, Base):
     __tablename__ = 'step'
 
-    id = Column(String(36), primary_key=True, default=uuid4, nullable=False)
+    id = Column(Unicode(36), primary_key=True, default=uuid4, nullable=False)
 
-    questionnaire_id = Column(String(36), ForeignKey('questionnaire.id', ondelete='CASCADE'), nullable=True)
+    questionnaire_id = Column(Unicode(36), ForeignKey('questionnaire.id', ondelete='CASCADE'), nullable=True)
     label = Column(JSON, nullable=False)
     description = Column(JSON, nullable=False)
     presentation_order = Column(Integer, default=0, nullable=False)
@@ -690,7 +691,7 @@ class Step(Model, Base):
 class Questionnaire(Model, Base):
     __tablename__ = 'questionnaire'
 
-    id = Column(String(36), primary_key=True, default=uuid4, nullable=False)
+    id = Column(Unicode(36), primary_key=True, default=uuid4, nullable=False)
 
     tid = Column(Integer, ForeignKey('tenant.id', ondelete='CASCADE'), default=1, nullable=False)
 
@@ -706,7 +707,7 @@ class Questionnaire(Model, Base):
 class ArchivedSchema(Model, Base):
     __tablename__ = 'archivedschema'
 
-    hash = Column(String(64), primary_key=True, nullable=False)
+    hash = Column(Unicode(64), primary_key=True, nullable=False)
 
     schema = Column(JSON, nullable=False)
     preview = Column(JSON, nullable=False)
@@ -717,7 +718,7 @@ class ArchivedSchema(Model, Base):
 class Stats(Model, Base):
     __tablename__ = 'stats'
 
-    id = Column(String(36), primary_key=True, default=uuid4, nullable=False)
+    id = Column(Unicode(36), primary_key=True, default=uuid4, nullable=False)
 
     tid = Column(Integer, ForeignKey('tenant.id', ondelete='CASCADE'), default=1, nullable=False)
 
@@ -728,7 +729,7 @@ class Stats(Model, Base):
 class Anomalies(Model, Base):
     __tablename__ = 'anomalies'
 
-    id = Column(String(36), primary_key=True, default=uuid4, nullable=False)
+    id = Column(Unicode(36), primary_key=True, default=uuid4, nullable=False)
 
     tid = Column(Integer, ForeignKey('tenant.id', ondelete='CASCADE'), default=1, nullable=False)
 
@@ -740,7 +741,7 @@ class Anomalies(Model, Base):
 class SecureFileDelete(Model, Base):
     __tablename__ = 'securefiledelete'
 
-    id = Column(String(36), primary_key=True, default=uuid4, nullable=False)
+    id = Column(Unicode(36), primary_key=True, default=uuid4, nullable=False)
 
     filepath = Column(UnicodeText, nullable=False)
 
@@ -751,8 +752,8 @@ class ReceiverContext(Model, Base):
     """
     __tablename__ = 'receiver_context'
 
-    context_id = Column(String(36), ForeignKey('context.id', ondelete='CASCADE'), primary_key=True, nullable=False)
-    receiver_id = Column(String(36), ForeignKey('receiver.id', ondelete='CASCADE'), primary_key=True, nullable=False)
+    context_id = Column(Unicode(36), ForeignKey('context.id', ondelete='CASCADE'), primary_key=True, nullable=False)
+    receiver_id = Column(Unicode(36), ForeignKey('receiver.id', ondelete='CASCADE'), primary_key=True, nullable=False)
 
     presentation_order = Column(Integer, default=0, nullable=False)
 
@@ -767,7 +768,7 @@ class Counter(Model, Base):
     __tablename__ = 'counter'
 
     tid = Column(Integer, ForeignKey('tenant.id', ondelete='CASCADE'), primary_key=True, default=1, nullable=False)
-    key = Column(String(32), primary_key=True, nullable=False)
+    key = Column(Unicode(32), primary_key=True, nullable=False)
 
     counter = Column(Integer, default=1, nullable=False)
     update_date = Column(DateTime, default=datetime_now, nullable=False)
@@ -782,7 +783,7 @@ class ShortURL(Model, Base):
     """
     __tablename__ = 'shorturl'
 
-    id = Column(String(36), primary_key=True, default=uuid4, nullable=False)
+    id = Column(Unicode(36), primary_key=True, default=uuid4, nullable=False)
 
     tid = Column(Integer, ForeignKey('tenant.id', ondelete='CASCADE'), default=1, nullable=False)
 
@@ -799,7 +800,7 @@ class File(Model, Base):
     __tablename__ = 'file'
 
     tid = Column(Integer, ForeignKey('tenant.id', ondelete='CASCADE'), primary_key=True, default=1, nullable=False)
-    id = Column(String(36), primary_key=True, default=uuid4, nullable=False)
+    id = Column(Unicode(36), primary_key=True, default=uuid4, nullable=False)
 
     name = Column(UnicodeText, default=u'', nullable=False)
     data = Column(UnicodeText, nullable=False)
@@ -813,7 +814,7 @@ class UserImg(Model, Base):
     """
     __tablename__ = 'userimg'
 
-    id = Column(String(36), ForeignKey('user.id', ondelete='CASCADE'), primary_key=True, default=uuid4, nullable=False)
+    id = Column(Unicode(36), ForeignKey('user.id', ondelete='CASCADE'), primary_key=True, default=uuid4, nullable=False)
 
     data = Column(UnicodeText, nullable=False)
 
@@ -826,7 +827,7 @@ class ContextImg(Model, Base):
     """
     __tablename__ = 'contextimg'
 
-    id = Column(String(36), ForeignKey('context.id', ondelete='CASCADE'), primary_key=True, default=uuid4, nullable=False)
+    id = Column(Unicode(36), ForeignKey('context.id', ondelete='CASCADE'), primary_key=True, default=uuid4, nullable=False)
 
     data = Column(UnicodeText, nullable=False)
 
@@ -839,11 +840,11 @@ class CustomTexts(Model, Base):
     """
     __tablename__ = 'customtexts'
 
-    id = Column(String(36), primary_key=True, default=uuid4, nullable=False)
+    id = Column(Unicode(36), primary_key=True, default=uuid4, nullable=False)
 
     tid = Column(Integer, ForeignKey('tenant.id', ondelete='CASCADE'), default=1, nullable=False)
 
-    lang = Column(String(5), primary_key=True, nullable=False)
+    lang = Column(Unicode(5), primary_key=True, nullable=False)
     texts = Column(JSON, nullable=False)
 
     unicode_keys = ['lang']

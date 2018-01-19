@@ -6,7 +6,7 @@ from globaleaks.models.properties import *
 
 class Node_v_28(Model):
     __tablename__ = 'node'
-    id = Column(String(36), primary_key=True, default=uuid4, nullable=False)
+    id = Column(Unicode(36), primary_key=True, default=uuid4, nullable=False)
     version = Column(UnicodeText)
     version_db = Column(UnicodeText)
     name = Column(UnicodeText)
@@ -72,7 +72,7 @@ class Node_v_28(Model):
 
 class Context_v_28(Model):
     __tablename__ = 'context'
-    id = Column(String(36), primary_key=True, default=uuid4, nullable=False)
+    id = Column(Unicode(36), primary_key=True, default=uuid4, nullable=False)
     show_small_cards = Column(Boolean)
     show_context = Column(Boolean)
     show_recipients_details = Column(Boolean)

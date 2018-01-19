@@ -10,7 +10,7 @@ from globaleaks.settings import Settings
 
 class Node_v_26(Model):
     __tablename__ = 'node'
-    id = Column(String(36), primary_key=True, default=uuid4, nullable=False)
+    id = Column(Unicode(36), primary_key=True, default=uuid4, nullable=False)
     version = Column(UnicodeText)
     version_db = Column(UnicodeText)
     name = Column(UnicodeText)
@@ -75,7 +75,7 @@ class Node_v_26(Model):
 
 class Context_v_26(Model):
     __tablename__ = 'context'
-    id = Column(String(36), primary_key=True, default=uuid4, nullable=False)
+    id = Column(Unicode(36), primary_key=True, default=uuid4, nullable=False)
     show_small_cards = Column(Boolean)
     show_context = Column(Boolean)
     show_receivers = Column(Boolean)
@@ -98,7 +98,7 @@ class Context_v_26(Model):
 
 class Notification_v_26(Model):
     __tablename__ = 'notification'
-    id = Column(String(36), primary_key=True, default=uuid4, nullable=False)
+    id = Column(Unicode(36), primary_key=True, default=uuid4, nullable=False)
     server = Column(UnicodeText)
     port = Column(Integer)
     username = Column(UnicodeText)

@@ -12,7 +12,7 @@ new_keys = ["{NodeName}", "{HiddenService}", "{PublicSite}", "{ContextName}", "{
 
 class Field_v_37(models.Model):
     __tablename__ = 'field'
-    id = Column(String(36), primary_key=True, default=uuid4, nullable=False)
+    id = Column(Unicode(36), primary_key=True, default=uuid4, nullable=False)
     x = Column(Integer, default=0)
     y = Column(Integer, default=0)
     width = Column(Integer, default=0)
@@ -26,9 +26,9 @@ class Field_v_37(models.Model):
     multi_entry_hint = Column(JSON)
     stats_enabled = Column(Boolean, default=False)
     triggered_by_score = Column(Integer, default=0)
-    fieldgroup_id = Column(String(36))
-    step_id = Column(String(36))
-    template_id = Column(String(36))
+    fieldgroup_id = Column(Unicode(36))
+    step_id = Column(Unicode(36))
+    template_id = Column(Unicode(36))
     type = Column(UnicodeText, default=u'inputbox')
     instance = Column(UnicodeText, default=u'instance')
     editable = Column(Boolean, default=True)
@@ -36,7 +36,7 @@ class Field_v_37(models.Model):
 
 class Questionnaire_v_37(models.Model):
     __tablename__ = 'questionnaire'
-    id = Column(String(36), primary_key=True, default=uuid4, nullable=False)
+    id = Column(Unicode(36), primary_key=True, default=uuid4, nullable=False)
     key = Column(UnicodeText, default=u'')
     name = Column(UnicodeText, default=u'')
     show_steps_navigation_bar = Column(Boolean, default=False)
