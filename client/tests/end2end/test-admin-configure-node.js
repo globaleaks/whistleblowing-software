@@ -22,10 +22,6 @@ describe('admin configure node', function() {
   it('should configure node advanced settings', function() {
     browser.setLocation('admin/advanced_settings');
 
-    // enable all receivers to postpone and delete tips
-    element(by.model('admin.node.can_postpone_expiration')).click();
-    element(by.model('admin.node.can_delete_submission')).click();
-
-    element.all(by.cssContainingText("button", "Save")).get(0).click();
+    element(by.model('admin.node.enable_experimental_features')).click();
   });
 });
