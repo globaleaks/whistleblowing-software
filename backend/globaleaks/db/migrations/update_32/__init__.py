@@ -8,7 +8,7 @@ from globaleaks.utils.utility import datetime_now, datetime_null
 
 class Node_v_31(models.Model):
     __tablename__ = 'node'
-    id = Column(String(36), primary_key=True, default=uuid4, nullable=False)
+    id = Column(Unicode(36), primary_key=True, default=uuid4, nullable=False)
     version = Column(UnicodeText, default=unicode(__version__))
     version_db = Column(UnicodeText, default=unicode(DATABASE_VERSION))
     name = Column(UnicodeText, default=u'')
@@ -79,13 +79,13 @@ class Node_v_31(models.Model):
     threshold_free_disk_percentage_medium = Column(Integer, default=5)
     threshold_free_disk_percentage_low = Column(Integer, default=10)
     context_selector_type = Column(UnicodeText, default=u'list')
-    logo_id = Column(String(36))
-    css_id = Column(String(36))
+    logo_id = Column(Unicode(36))
+    css_id = Column(Unicode(36))
 
 
 class User_v_31(models.Model):
     __tablename__ = 'user'
-    id = Column(String(36), primary_key=True, default=uuid4, nullable=False)
+    id = Column(Unicode(36), primary_key=True, default=uuid4, nullable=False)
     creation_date = Column(DateTime, default=datetime_now)
     username = Column(UnicodeText)
     password = Column(UnicodeText)
@@ -106,14 +106,14 @@ class User_v_31(models.Model):
     pgp_key_public = Column(UnicodeText, default=u'')
     pgp_key_expiration = Column(DateTime, default=datetime_null)
     pgp_key_status = Column(UnicodeText, default=u'disabled') # 'disabled', 'enabled'
-    img_id = Column(String(36))
+    img_id = Column(Unicode(36))
 
 
 class Comment_v_31(models.Model):
     __tablename__ = 'comment'
-    id = Column(String(36), primary_key=True, default=uuid4, nullable=False)
+    id = Column(Unicode(36), primary_key=True, default=uuid4, nullable=False)
     creation_date = Column(DateTime, default=datetime_now)
-    internaltip_id = Column(String(36))
+    internaltip_id = Column(Unicode(36))
     author = Column(UnicodeText)
     content = Column(UnicodeText)
     type = Column(UnicodeText)
@@ -122,9 +122,9 @@ class Comment_v_31(models.Model):
 
 class Message_v_31(models.Model):
     __tablename__ = 'message'
-    id = Column(String(36), primary_key=True, default=uuid4, nullable=False)
+    id = Column(Unicode(36), primary_key=True, default=uuid4, nullable=False)
     creation_date = Column(DateTime, default=datetime_now)
-    receivertip_id = Column(String(36))
+    receivertip_id = Column(Unicode(36))
     author = Column(UnicodeText)
     content = Column(UnicodeText)
     type = Column(UnicodeText)

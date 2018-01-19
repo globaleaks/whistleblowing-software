@@ -8,7 +8,7 @@ from globaleaks.security import sha512
 
 class User_v_24(Model):
     __tablename__ = 'user'
-    id = Column(String(36), primary_key=True, default=uuid4, nullable=False)
+    id = Column(Unicode(36), primary_key=True, default=uuid4, nullable=False)
     creation_date = Column(DateTime)
     username = Column(UnicodeText)
     password = Column(UnicodeText)

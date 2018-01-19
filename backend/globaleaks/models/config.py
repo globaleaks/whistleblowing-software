@@ -10,7 +10,7 @@ from globaleaks.models.config_desc import ConfigDescriptor, ConfigFilters
 class Config(Model, Base):
     __tablename__ = 'config'
     tid = Column(Integer, ForeignKey('tenant.id', ondelete='CASCADE'), primary_key=True, default=1, nullable=False)
-    var_name = Column(String(64), primary_key=True, nullable=False)
+    var_name = Column(Unicode(64), primary_key=True, nullable=False)
 
     value = Column(JSON, nullable=False)
     customized = Column(Boolean, default=False, nullable=False)

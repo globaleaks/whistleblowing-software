@@ -10,8 +10,8 @@ class ConfigL10N(models.Model, Base):
     __tablename__ = 'config_l10n'
 
     tid = Column(Integer, primary_key=True, default=1, nullable=False)
-    lang = Column(String(5), primary_key=True)
-    var_name = Column(String(64), primary_key=True)
+    lang = Column(Unicode(5), primary_key=True)
+    var_name = Column(Unicode(64), primary_key=True)
     value = Column(UnicodeText)
     customized = Column(Boolean, default=False)
 

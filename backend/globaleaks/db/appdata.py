@@ -50,9 +50,9 @@ def db_fix_fields_attrs(session):
     """
     field_attrs = read_json_file(Settings.field_attrs_file)
 
-    special_lst = ['whistleblower_identity']
+    special_lst = [u'whistleblower_identity']
 
-    std_lst = ['inputbox', 'textarea', 'multichoice', 'checkbox', 'tos', 'date']
+    std_lst = [u'inputbox', u'textarea', u'multichoice', u'checkbox', u'tos', u'date']
 
     for field_type, attrs_dict in field_attrs.items():
         attrs_to_keep_for_type = attrs_dict.keys()
