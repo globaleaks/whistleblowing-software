@@ -98,8 +98,8 @@ ConfigDescriptor = {
     u'disable_encryption_warnings': Bool(default=False),
     u'allow_iframes_inclusion': Bool(default=False),
 
-    u'can_postpone_expiration': Bool(default=False),
-    u'can_delete_submission': Bool(default=False),
+    u'can_postpone_expiration': Bool(default=True),
+    u'can_delete_submission': Bool(default=True),
     u'can_grant_permissions': Bool(default=False),
 
     u'allow_indexing': Bool(default=True),
