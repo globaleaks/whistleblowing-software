@@ -11,7 +11,7 @@
  },
   "multichoice": {
     "layout_orientation": {"type": "unicode", "value": "vertical"},
-    "display_alphabetically": {"type": "bool", "value": true }
+    "display_alphabetically": {"type": "bool", "value": false }
  },
   "checkbox": {
     "layout_orientation": {"type": "unicode", "value": "vertical"},
