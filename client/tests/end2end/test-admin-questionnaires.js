@@ -74,8 +74,6 @@ describe('admin add, configure and delete questionnaires', function() {
   it('should add new question templates', function() {
     element(by.cssContainingText("a", "Question templates")).click();
 
-    element(by.cssContainingText("span", "Do you want to provide your identification information?")).click();
-
     for(var i=0; i<browser.gl.utils.vars.field_types.length; i++){
       add_question(browser.gl.utils.vars.field_types[i]);
     }
