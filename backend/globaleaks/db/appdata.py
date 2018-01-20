@@ -5,7 +5,7 @@ import os
 from sqlalchemy import not_
 
 from globaleaks import models
-from globaleaks.handlers.admin.field import db_create_field
+from globaleaks.handlers.admin.field import db_create_field, db_add_field_attrs
 from globaleaks.handlers.admin.step import db_create_step
 from globaleaks.orm import transact
 from globaleaks.settings import Settings
@@ -73,18 +73,10 @@ def db_fix_fields_attrs(session):
 
     # Add keys to the db that have been added to field_attrs
     for field in session.query(models.Field):
-        typ = field.type if field.id not in special_lst else field.id
-        attrs = field_attrs.get(typ, {})
-        for attr_name, attr_dict in attrs.items():
-            x = session.query(models.FieldAttr) \
-                     .filter(models.FieldAttr.field_id == field.id,
-                             models.FieldAttr.name == attr_name).one_or_none()
-            if x is None:
+        type = field.type if field.template_id not in special_lst else field.template_id
+        attrs = field_attrs.get(type, {})
+        db_add_field_attrs(session, field.id, attrs)
 
-                log.debug("Adding new field attr %s.%s", typ, attr_name)
-                attr_dict['name'] = attr_name
-                attr_dict['field_id'] = field.id
-                models.db_forge_obj(session, models.FieldAttr, attr_dict)
 
 
 def db_update_defaults(session):

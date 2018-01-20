@@ -11,7 +11,20 @@ from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.public import serialize_field
 from globaleaks.orm import transact
 from globaleaks.rest import errors, requests
+from globaleaks.settings import Settings
 from globaleaks.utils.structures import fill_localized_keys
+from globaleaks.utils.utility import read_json_file
+
+
+def db_add_field_attrs(session, field_id, field_attrs):
+    for attr_name, attr_dict in field_attrs.items():
+        x = session.query(models.FieldAttr) \
+                   .filter(models.FieldAttr.field_id == field_id,
+                           models.FieldAttr.name == attr_name).one_or_none()
+        if x is None:
+            attr_dict['name'] = attr_name
+            attr_dict['field_id'] = field_id
+            models.db_forge_obj(session, models.FieldAttr, attr_dict)
 
 
 def db_update_fieldoption(session, tid, field_id, fieldoption_id, option_dict, language, idx):
@@ -127,6 +140,10 @@ def db_create_field(session, tid, field_dict, language):
     if field.template_id is not None:
         # special handling of the whistleblower_identity field
         if field.template_id == 'whistleblower_identity':
+            field_attrs = read_json_file(Settings.field_attrs_file)
+            attrs = field_attrs.get(field.template_id, {})
+            db_add_field_attrs(session, field.id, attrs)
+
             if field.step_id is not None:
                 questionnaire = session.query(models.Questionnaire) \
                                        .filter(models.Field.id == field.id,
@@ -172,12 +189,13 @@ def db_update_field(session, tid, field_id, field_dict, language):
 
     check_field_association(session, tid, field_dict)
 
+    db_update_fieldattrs(session, tid, field.id, field_dict['attrs'], language)
+
     # make not possible to change field type
     field_dict['type'] = field.type
     if field_dict['instance'] != 'reference':
         fill_localized_keys(field_dict, models.Field.localized_keys, language)
 
-        db_update_fieldattrs(session, tid, field.id, field_dict['attrs'], language)
         db_update_fieldoptions(session, tid, field.id, field_dict['options'], language)
 
         # full update

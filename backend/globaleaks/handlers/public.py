@@ -13,6 +13,8 @@ from globaleaks.state import State
 from globaleaks.utils.sets import merge_dicts
 from globaleaks.utils.structures import get_localized_values
 
+special_fields = ['whistleblower_identity']
+
 
 def db_prepare_contexts_serialization(session, contexts):
     data = {'imgs': {}, 'receivers': {}}
@@ -240,7 +242,7 @@ def serialize_field(session, tid, field, language, data=None):
         f_to_serialize = field
 
     attrs = {}
-    for attr in data['attrs'].get(f_to_serialize.id, {}):
+    for attr in data['attrs'].get(field.id, {}):
         attrs[attr.name] = serialize_field_attr(attr, language)
 
     triggered_by_options = []
