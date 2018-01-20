@@ -375,7 +375,7 @@ def get_public_resources(session, tid, language):
 
 class PublicResource(BaseHandler):
     check_roles = '*'
-    #cache_resource = True
+    cache_resource = True
 
     def get(self):
         """
