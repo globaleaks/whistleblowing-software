@@ -84,7 +84,7 @@ def db_user_update_user(session, tid, user_id, request):
       - preferred language
       - the password (with old password check)
       - pgp key
-    raises: globaleaks.errors.ReceiverIdNotFound` if the receiver does not exist.
+    raises: globaleaks.errors.ResourceNotFound` if the receiver does not exist.
     """
     user = models.db_get(session, models.User, models.User.id == user_id)#, models.User.tid == tid)
 

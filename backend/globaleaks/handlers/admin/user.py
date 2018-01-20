@@ -65,7 +65,7 @@ def create_receiver_user(session, tid, request, language):
 
 def create(tid, request, language):
     if request['role'] not in ['admin', 'receiver', 'custodian']:
-        raise errors.InvalidInputFormat
+        raise errors.InvalidInput
 
     if request['role'] == 'receiver':
         d = create_receiver_user(tid, request, language)
@@ -114,7 +114,6 @@ def db_create_user(session, tid, request, language):
 def db_admin_update_user(session, tid, user_id, request, language):
     """
     Updates the specified user.
-    raises: globaleaks.errors.UserIdNotFound` if the user does not exist.
     """
     fill_localized_keys(request, models.User.localized_keys, language)
 

@@ -28,14 +28,14 @@ def check_hostname(session, tid, input_hostname):
         forbidden_endings.append(root_hostname)
 
     if reduce(lambda b, v: b or input_hostname.endswith(v), forbidden_endings, False):
-        raise errors.InvalidModelInput('Hostname contains a forbidden origin')
+        raise errors.InvalidInput('Hostname contains a forbidden origin')
 
     existing_hostnames = {h.get_v() for h in session.query(Config) \
                                                   .filter(Config.tid != tid,
                                                           Config.var_name == u'hostname')}
 
     if input_hostname in existing_hostnames:
-        raise errors.InvalidModelInput('Hostname already reserved')
+        raise errors.InvalidInput('Hostname already reserved')
 
 
 @transact

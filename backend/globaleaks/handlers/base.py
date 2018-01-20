@@ -301,7 +301,7 @@ class BaseHandler(object):
 
                 if not BaseHandler.validate_type(value, message_template[key]):
                     log.err("Received key %s: type validation fail", key)
-                    raise errors.InvalidInputFormat("Key (%s) type validation failure" % key)
+                    raise errors.InvalidInput("Key (%s) type validation failure" % key)
                 success_check += 1
 
             for key in keys_to_strip:
@@ -312,11 +312,11 @@ class BaseHandler(object):
                     log.debug("Key %s expected but missing!",  key)
                     log.debug("Received schema %s - Expected %s",
                               jmessage.keys(), message_template.keys())
-                    raise errors.InvalidInputFormat("Missing key %s" % key)
+                    raise errors.InvalidInput("Missing key %s" % key)
 
                 if not BaseHandler.validate_type(jmessage[key], value):
                     log.err("Expected key: %s type validation failure", key)
-                    raise errors.InvalidInputFormat("Key (%s) double validation failure" % key)
+                    raise errors.InvalidInput("Key (%s) double validation failure" % key)
 
                 if isinstance(message_template[key], dict) or isinstance(message_template[key], list):
                     if message_template[key]:
@@ -326,30 +326,30 @@ class BaseHandler(object):
 
             if success_check != len(message_template) * 2:
                 log.err("Success counter double check failure: %d", success_check)
-                raise errors.InvalidInputFormat("Success counter double check failure")
+                raise errors.InvalidInput("Success counter double check failure")
 
             return True
 
         elif isinstance(message_template, list):
             if not all(BaseHandler.validate_type(x, message_template[0]) for x in jmessage):
-                raise errors.InvalidInputFormat("Not every element in %s is %s" %
+                raise errors.InvalidInput("Not every element in %s is %s" %
                                                 (jmessage, message_template[0]))
             return True
 
         else:
-            raise errors.InvalidInputFormat("invalid json massage: expected dict or list")
+            raise errors.InvalidInput("invalid json massage: expected dict or list")
 
     @staticmethod
     def validate_message(message, message_template):
         try:
             jmessage = json.loads(message)
         except ValueError:
-            raise errors.InvalidInputFormat("Invalid JSON format")
+            raise errors.InvalidInput("Invalid JSON format")
 
         if BaseHandler.validate_jmessage(jmessage, message_template):
             return jmessage
 
-        raise errors.InvalidInputFormat("Unexpected condition!?")
+        raise errors.InvalidInput("Unexpected condition!?")
 
     def redirect(self, url):
         self.request.setResponseCode(301)

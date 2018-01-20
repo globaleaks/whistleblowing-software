@@ -103,21 +103,21 @@ def db_update_fieldattrs(session, tid, field_id, field_attrs, language):
 def check_field_association(session, tid, field_dict):
     if field_dict.get('fieldgroup_id', '') and session.query(models.Field).filter(models.Field.id == field_dict['fieldgroup_id'],
                                                                                   models.Field.tid != tid).count():
-        raise errors.InvalidInputFormat()
+        raise errors.InvalidInput()
 
     if field_dict.get('template_id', '') and session.query(models.Field).filter(models.Field.id == field_dict['template_id'],
                                                                                 not_(models.Field.tid.in_(set([1, tid])))).count():
-        raise errors.InvalidInputFormat()
+        raise errors.InvalidInput()
 
     if field_dict.get('step_id', '') and session.query(models.Field).filter(models.Step.id == field_dict['step_id'],
                                                                             models.Questionnaire.id == models.Step.questionnaire_id,
                                                                             not_(models.Questionnaire.tid.in_(set([1, tid])))).count():
-        raise errors.InvalidInputFormat()
+        raise errors.InvalidInput()
 
     if field_dict.get('fieldgroup_id', ''):
         ancestors = set(fieldtree_ancestors(session, field_dict['fieldgroup_id']))
         if field_dict['id'] == field_dict['fieldgroup_id'] or field_dict['id'] in ancestors:
-            raise errors.InvalidInputFormat("Provided field association would cause recursion loop")
+            raise errors.InvalidInput("Provided field association would cause recursion loop")
 
 
 def db_create_field(session, tid, field_dict, language):
@@ -154,9 +154,9 @@ def db_create_field(session, tid, field_dict, language):
                 if questionnaire.enable_whistleblower_identity is False:
                     questionnaire.enable_whistleblower_identity = True
                 else:
-                    raise errors.InvalidInputFormat("Whistleblower identity field already present")
+                    raise errors.InvalidInput("Whistleblower identity field already present")
             else:
-                raise errors.InvalidInputFormat("Cannot associate whistleblower identity field to a fieldgroup")
+                raise errors.InvalidInput("Cannot associate whistleblower identity field to a fieldgroup")
 
     else:
         attrs = field_dict.get('attrs', [])
@@ -246,7 +246,7 @@ def delete_field(session, tid, field_id):
         raise errors.ForbiddenOperation
 
     if field.instance == 'template' and session.query(models.Field).filter(models.Field.tid == tid, models.Field.template_id == field.id).count():
-        raise errors.InvalidInputFormat("Cannot remove the field template as it is used by one or more questionnaires")
+        raise errors.InvalidInput("Cannot remove the field template as it is used by one or more questionnaires")
 
     if field.template_id == 'whistleblower_identity' and field.step_id is not None:
         session.query(models.Questionnaire) \
@@ -323,7 +323,7 @@ class FieldTemplateInstance(BaseHandler):
 
         :param field_id:
         :rtype: FieldTemplateDesc
-        :raises InvalidInputFormat: if validation fails.
+        :raises InvalidInput: if validation fails.
         """
         request = self.validate_message(self.request.content.read(),
                                         requests.AdminFieldDesc)
@@ -358,7 +358,7 @@ class FieldsCollection(BaseHandler):
 
         :return: the serialized field
         :rtype: AdminFieldDesc
-        :raises InvalidInputFormat: if validation fails.
+        :raises InvalidInput: if validation fails.
         """
         request = self.validate_message(self.request.content.read(),
                                         requests.AdminFieldDesc)
@@ -384,7 +384,7 @@ class FieldInstance(BaseHandler):
         :param field_id:
         :return: the serialized field
         :rtype: AdminFieldDesc
-        :raises InvalidInputFormat: if validation fails.
+        :raises InvalidInput: if validation fails.
         """
         request = self.validate_message(self.request.content.read(),
                                         requests.AdminFieldDesc)
@@ -399,6 +399,6 @@ class FieldInstance(BaseHandler):
         Delete a single field.
 
         :param field_id:
-        :raises InvalidInputFormat: if validation fails.
+        :raises InvalidInput: if validation fails.
         """
         return delete_field(self.request.tid, field_id)

@@ -3,7 +3,7 @@
 from globaleaks import __version__
 from globaleaks.handlers.admin import node
 from globaleaks.models.l10n import NodeL10NFactory
-from globaleaks.rest.errors import InvalidInputFormat, InvalidModelInput
+from globaleaks.rest.errors import InvalidInput, InvalidInput
 from globaleaks.tests import helpers
 from twisted.internet.defer import inlineCallbacks
 
@@ -53,7 +53,7 @@ class TestNodeInstance(helpers.TestHandlerWithPopulatedDB):
         self.dummyNode['languages_enabled'] = ["en", "shit"]
         handler = self.request(self.dummyNode, role='admin')
 
-        yield self.assertFailure(handler.put(), InvalidInputFormat)
+        yield self.assertFailure(handler.put(), InvalidInput)
 
     @inlineCallbacks
     def test_put_update_node_languages_with_default_not_compatible_with_enabled(self):
@@ -61,7 +61,7 @@ class TestNodeInstance(helpers.TestHandlerWithPopulatedDB):
         self.dummyNode['default_language'] = "en"
         handler = self.request(self.dummyNode, role='admin')
 
-        yield self.assertFailure(handler.put(), InvalidInputFormat)
+        yield self.assertFailure(handler.put(), InvalidInput)
 
     @inlineCallbacks
     def test_put_update_node_languages_removing_en_adding_fr(self):

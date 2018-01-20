@@ -82,7 +82,7 @@ def order_elements(session, handler, req_args, *args, **kwargs):
     ids = req_args['ids']
 
     if len(ids) != len(id_dict) and set(ids) != set(id_dict):
-        raise errors.InvalidInputFormat('list does not contain all context ids')
+        raise errors.InvalidInput('list does not contain all context ids')
 
     for i, step_id in enumerate(ids):
         id_dict[step_id].presentation_order = i
@@ -104,7 +104,7 @@ class StepCollection(OperationHandler):
 
         :return: the serialized step
         :rtype: StepDesc
-        :raises InvalidInputFormat: if validation fails.
+        :raises InvalidInput: if validation fails.
         """
         request = self.validate_message(self.request.content.read(),
                                         requests.AdminStepDesc)
@@ -139,7 +139,7 @@ class StepInstance(BaseHandler):
         :param step_id:
         :return: the serialized step
         :rtype: StepDesc
-        :raises InvalidInputFormat: if validation fails.
+        :raises InvalidInput: if validation fails.
         """
         request = self.validate_message(self.request.content.read(),
                                         requests.AdminStepDesc)
@@ -151,7 +151,7 @@ class StepInstance(BaseHandler):
         Delete the specified step.
 
         :param step_id:
-        :raises InvalidInputFormat: if validation fails.
+        :raises InvalidInput: if validation fails.
         """
         return models.delete(models.Step, models.Step.id == step_id,
                                           models.Questionnaire.id == models.Step.questionnaire_id,
