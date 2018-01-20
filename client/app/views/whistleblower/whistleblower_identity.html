@@ -23,7 +23,7 @@
       <div data-ng-switch-when="false">
         <div data-ng-form="f" class="submissionFieldInput">
           <div data-ng-include="'views/submission/fields/whistleblower_identity.html'"></div>
-          <div id="SubmitBox" data-ng-if="submission.identity_provided">
+          <div id="SubmitBox" data-ng-if="submission._submission.identity_provided">
             <button id="SubmitButton" class="btn btn-success pull-right" data-ng-click="provideIdentityInformation(whistleblower_identity_field.id, answers);" data-ng-disabled="f.$invalid" type="submit">
               <i id="SubmitIconOK" class="glyphicon glyphicon-ok"></i>
               <span data-translate>Submit</span>

@@ -1,6 +1,8 @@
 GLClient.controller('TipCtrl',
   ['$scope', '$location', '$route', '$routeParams', '$uibModal', '$http', 'Utils', 'Authentication', 'RTip', 'WBTip', 'ReceiverPreferences', 'RTipExport', 'RTipDownloadRFile', 'fieldUtilities',
   function($scope, $location, $route, $routeParams, $uibModal, $http, Utils, Authentication, RTip, WBTip, ReceiverPreferences, RTipExport, RTipDownloadRFile, fieldUtilities) {
+    $scope.fieldUtilities = fieldUtilities;
+
     $scope.tip_id = $routeParams.tip_id;
     $scope.target_file = '#';
 
@@ -82,6 +84,7 @@ GLClient.controller('TipCtrl',
 
       new WBTip(function(tip) {
         $scope.tip = tip;
+        $scope.total_score = $scope.tip.total_score;
         $scope.ctx = 'wbtip';
         $scope.extractSpecialTipFields(tip);
 
@@ -111,7 +114,8 @@ GLClient.controller('TipCtrl',
         };
 
         // FIXME: remove this variable that is now needed only to map wb_identity_field
-        $scope.submission = tip;
+        $scope.submission = {};
+        $scope.submission._submission = tip;
 
         $scope.provideIdentityInformation = function(identity_field_id, identity_field_answers) {
           return $http.post('wbtip/' + $scope.tip.id + '/provideidentityinformation',
@@ -141,6 +145,7 @@ GLClient.controller('TipCtrl',
 
       new RTip({id: $scope.tip_id}, function(tip) {
         $scope.tip = tip;
+        $scope.total_score = $scope.tip.total_score;
         $scope.ctx = 'rtip';
         $scope.extractSpecialTipFields(tip);
 
