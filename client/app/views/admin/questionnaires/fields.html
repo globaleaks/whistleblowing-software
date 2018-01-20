@@ -2,7 +2,7 @@
   data-ng-init="editing=false" data-ng-controller="AdminFieldEditorCtrl">
   <div data-ng-form="editField">
     <div class="configItem">
-      <div class="editorHeader" data-ng-click="toggleEditing(); $event.stopPropagation();">
+      <div class="editorHeader" data-ng-click="field.editable && toggleEditing(); $event.stopPropagation();">
         <div class="row">
           <span class="col-md-6">
             <span class="fieldIndex label label-default label-as-badge" data-ng-if="field.step_id !== '' || field.fieldgroup_id !== ''">
@@ -22,6 +22,7 @@
                 <span data-ng-switch-when="tos" data-translate>Terms of service</span>
                 <span data-ng-switch-when="date" data-translate>Date</span>
                 <span data-ng-switch-when="fieldgroup" data-translate>Question group</span>
+                <span data-ng-switch-default="default" data-translate>{{field.type}}</span>
               </span>
             </span>
             <span data-ng-if="field.preview" class="badge alert-info">
@@ -37,7 +38,7 @@
               <span uib-popover="{{'Required' | translate}}" popover-placement="top"><i class="glyphicon glyphicon-asterisk"></i></span>
             </span>
           </span>
-          <span class="col-md-6">
+          <span class="col-md-6" data-ng-if="field.editable">
             <span class="pull-right">
               <button class="btn btn-xs btn-default"
                 data-ng-if="!editing"
@@ -224,41 +225,42 @@
                   </div>
                 </div>
               </div>
-              <div data-ng-if="field.instance === 'template'" data-ng-switch="field.id" class="col-md-offset-1 col-md-11">
-                <div data-ng-switch-when="whistleblower_identity">
-                  <div class="row">
-                    <div class="form-group">
-                      <input data-ng-model="field.required" type="checkbox">
-                      <label data-translate>Required</label>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12" data-ng-if="field.instance === 'reference'" data-ng-switch="field.template_id">
+            <div data-ng-switch-when="whistleblower_identity">
+              <div class="form-group">
+                <input data-ng-model="field.required" type="checkbox">
+                <label data-translate>Required</label>
+              </div>
+              <div class="form-group">
+                <input data-ng-model="field.attrs.visibility_subject_to_authorization.value" type="checkbox">
+                <label data-translate>Subject answer visibility to custodian authorization</label>
+              </div>
+              <div data-ng-if="!field.required">
+                <div class="form-group">
+                  <input data-ng-model="field.attrs.prompt_confirmation_upon_negative_answer.value" type="checkbox">
+                  <label data-translate>Prompt confirmation upon negative answer</label>
+                </div>
+                <div data-ng-show="field.attrs.prompt_confirmation_upon_negative_answer.value">
+                  <div class="form-group">
+                    <label data-translate>Title of the confirmation question upon negative answer</label>
+                    <div>
+                      <textarea class="form-control" data-ng-model="field.attrs.title_of_confirmation_question_upon_negative_answer.value"></textarea>
                     </div>
-                    <div class="form-group">
-                      <input data-ng-model="field.attrs.visibility_subject_to_authorization.value" type="checkbox">
-                      <label data-translate>Subject answer visibility to custodian authorization</label>
+                  </div>
+                  <div class="form-group">
+                    <label data-translate>Body of the confirmation question upon negative answer</label>
+                    <div>
+                      <textarea class="form-control" data-ng-model="field.attrs.text_of_confirmation_question_upon_negative_answer.value"></textarea>
                     </div>
-                    <div data-ng-if="!field.required">
-                      <div class="form-group">
-                        <input data-ng-model="field.attrs.prompt_confirmation_upon_negative_answer.value" type="checkbox">
-                        <label data-translate>Prompt confirmation upon negative answer</label>
-                      </div>
-                      <div data-ng-show="field.attrs.prompt_confirmation_upon_negative_answer.value">
-                        <div class="form-group">
-                          <label data-translate>Title of the confirmation question upon negative answer</label>
-                          <div>
-                            <textarea class="form-control" data-ng-model="field.attrs.title_of_confirmation_question_upon_negative_answer.value"></textarea>
-                          </div>
-                        </div>
-                        <div class="form-group">
-                          <label data-translate>Body of the confirmation question upon negative answer</label>
-                          <div>
-                            <textarea class="form-control" data-ng-model="field.attrs.text_of_confirmation_question_upon_negative_answer.value"></textarea>
-                        </div>
-                        <div class="form-group">
-                          <label>Text of the final statement upon negative answer</label>
-                          <div>
-                            <textarea class="form-control" data-ng-model="field.attrs.text_of_final_statement_upon_negative_answer.value"></textarea>
-                          </div>
-                        </div>
-                      </div>
+                  </div>
+                  <div class="form-group">
+                    <label>Text of the final statement upon negative answer</label>
+                    <div>
+                      <textarea class="form-control" data-ng-model="field.attrs.text_of_final_statement_upon_negative_answer.value"></textarea>
                     </div>
                   </div>
                 </div>
