@@ -341,7 +341,7 @@ def db_create_submission(session, tid, request, uploaded_files, client_using_tor
 
     if context.maximum_selectable_receivers > 0 and \
                     len(request['receivers']) > context.maximum_selectable_receivers:
-        raise errors.SubmissionValidationFailure("selected an invalid number of recipients")
+        raise errors.InvalidInput("selected an invalid number of recipients")
 
     rtips_count = 0
     for receiver, user in session.query(models.Receiver, models.User). \
@@ -355,7 +355,7 @@ def db_create_submission(session, tid, request, uploaded_files, client_using_tor
             rtips_count += 1
 
     if rtips_count == 0:
-        raise errors.SubmissionValidationFailure("need at least one recipient")
+        raise errors.InvalidInput("need at least one recipient")
 
     log.debug("The finalized submission had created %d models.ReceiverTip(s)", rtips_count)
 

@@ -73,7 +73,7 @@ def db_associate_context_receivers(session, tid, context, receiver_ids):
                                             models.Context.tid != tid).count() or \
        session.query(models.User).filter(models.User.id.in_(receiver_ids),
                                          models.User.tid != tid).count():
-        raise errors.InvalidInputFormat()
+        raise errors.InvalidInput()
 
     session.query(models.ReceiverContext).filter(models.ReceiverContext.context_id == context.id).delete(synchronize_session='fetch')
 
@@ -113,7 +113,7 @@ def fill_context_request(tid, request, language):
 def check_context_questionnaire_association(session, tid, questionnaire_id):
     if session.query(models.Questionnaire).filter(models.Questionnaire.id == questionnaire_id,
                                                   not_(models.Questionnaire.tid.in_(set([1, tid])))).count():
-        raise errors.InvalidInputFormat()
+        raise errors.InvalidInput()
 
 
 def db_update_context(session, tid, context, request, language):
@@ -186,7 +186,7 @@ def order_elements(session, handler, req_args, *args, **kwargs):
     ids = req_args['ids']
 
     if len(ids) != len(id_dict) or set(ids) != set(id_dict):
-        raise errors.InvalidInputFormat('list does not contain all context ids')
+        raise errors.InvalidInput('list does not contain all context ids')
 
     for i, ctx_id in enumerate(ids):
         id_dict[ctx_id].presentation_order = i

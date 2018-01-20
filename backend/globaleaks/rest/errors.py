@@ -29,7 +29,7 @@ class InternalServerError(GLException):
     The context_id used does not exist in the database.
     """
     error_code = 1
-    status_code = 500  # Internal Server Error
+    status_code = 500 # Internal Server Error
 
     def __init__(self, error_str):
         self.reason = "InternalServerError [%s]" % error_str
@@ -42,22 +42,21 @@ class MethodNotImplemented(GLException):
     respected by the data body in the HTTP request.
     """
     error_code = 2
-    status_code = 405  # Not Acceptable
+    status_code = 405 # Not Acceptable
 
     def __init__(self):
         self.reason = "Method not implemented"
 
 
-class InvalidInputFormat(GLException):
+class InvalidInput(GLException):
     """
-    The expected format described in the REST specification is not
-    respected by the data body in the HTTP request.
+    Error on input validation
     """
     error_code = 3
-    status_code = 406  # Not Acceptable
+    status_code = 406 # Not Acceptable
 
     def __init__(self, wrong_source):
-        self.reason = "Invalid Input Format [%s]" % wrong_source
+        self.reason = "Invalid Input [%s]" % wrong_source
         self.arguments = [wrong_source]
 
 
@@ -66,7 +65,7 @@ class TokenFailure(GLException):
     Some kind of reason to reject a submission Token
     """
     error_code = 4
-    status_code = 401  # Unauthorized
+    status_code = 401 # Unauthorized
 
     def __init__(self, reason):
         self.reason = ("Unacceptable condition for usage of Token: %s" % reason)
@@ -78,7 +77,7 @@ class HTTPAuthenticationRequired(GLException):
     """
     reason = "Basic Authentication Required"
     error_code = 5
-    status_code = 401  # Not Found
+    status_code = 401 # Not Found
 
 
 class ResourceNotFound(GLException):
@@ -87,7 +86,7 @@ class ResourceNotFound(GLException):
     """
     reason = "Resource not found"
     error_code = 6
-    status_code = 404  # Not Found
+    status_code = 404 # Not Found
 
 
 class ModelNotFound(ResourceNotFound):
@@ -102,112 +101,13 @@ class ModelNotFound(ResourceNotFound):
         self.reason = "Model of type {} has not been found".format(model)
 
 
-# UNUSED ERROR CODE 8-15 HERE!
-
-
-class InvalidModelInput(GLException):
-    """
-    This error is used when a Model validation fails
-    """
-    error_code = 16
-    status_code = 406  # Not Acceptable
-
-    def __init__(self, wrong_source):
-        self.reason = "Invalid Model Input [%s]" % wrong_source
-        self.arguments = [wrong_source]
-
-class WBFileIdNotFound(ResourceNotFound):
-    """
-    The wbfile_id used do not exist in the database.
-    """
-    reason = "Not found a WBFile the specified id"
-    error_code = 17
-    status_code = 404 # Not Found
-
-class UserIdNotFound(ResourceNotFound):
-    """
-    Unable to find a user with the specified id.
-    """
-    reason = "Unable to find a user with the specified id."
-    error_code = 18
-    status_code = 404  # Not Found
-
-
-class AdminIdNotFound(ResourceNotFound):
-    """
-    Unable to find an admin with the specified id.
-    """
-    reason = "Unable to find an admin with the specified id."
-    error_code = 19
-    status_code = 404  # Not Found
-
-
-class CustodianIdNotFound(ResourceNotFound):
-    """
-    Unable to find a custodian with the specified id.
-    """
-    reason = "Unable to find a custodian with the specified id."
-    error_code = 20
-    status_code = 404  # Not Found
-
-
-class ReceiverIdNotFound(ResourceNotFound):
-    """
-    Unable to find a receiver with the specified id.
-    """
-    reason = "Unable to find a receiver with the specified id."
-    error_code = 21
-    status_code = 404  # Not Found
-
-
-class SubmissionValidationFailure(GLException):
-    """
-    If the fields required values and format type do not fit the requirement, this
-    error is raised. The Client has to enforce as possible the Input Format, when this
-    Client output validation fail, this error may happen.
-    """
-    error_code = 22
-    status_code = 412  # Precondition Failed
-
-    def __init__(self, wrong_field):
-        self.reason = "Submission do not validate the input fields [%s]" % wrong_field
-        self.arguments = [wrong_field]
-
-
-# UNUSED ERROR CODE 23-24 HERE!
-
-
 class ForbiddenOperation(GLException):
     """
     A user has tried one operation not permitted by their privileges
     """
     reason = "Operation Forbidden"
-    error_code = 25
-    status_code = 403  # Forbidden
-
-
-class FileIdNotFound(ResourceNotFound):
-    """
-    The requested file Id do not exist in the database
-    """
-    reason = "Not found a file with the specified id"
-    error_code = 26
-    status_code = 404  # Not Found
-
-
-class ShortURLIdNotFound(ResourceNotFound):
-    """
-    The requested shorturl id do not exist in the database
-    """
-    reason = "Not found a shorturl with the specified id"
-    error_code = 27
-    status_code = 404  # Not Found
-
-
-class FailedSanityCheck(GLException):
-    reason = "Exceeded usage expectations of normal humans"
-    error_code = 28
-    status_code = 403  # Forbidden
+    error_code = 8
+    status_code = 403 # Forbidden
 
 
 class InvalidAuthentication(GLException):
@@ -215,8 +115,8 @@ class InvalidAuthentication(GLException):
     An invalid request was presented
     """
     reason = "Authentication Failed"
-    error_code = 29
-    status_code = 401  # Unauthorized
+    error_code = 9
+    status_code = 401 # Unauthorized
 
 
 class NotAuthenticated(GLException):
@@ -225,21 +125,21 @@ class NotAuthenticated(GLException):
     may contain reasons about the Authentication failure, but they are specify
     only if users has show knowledge of good credentials.
     """
-    error_code = 30
-    status_code = 412  # Precondition Failed
+    error_code = 10
+    status_code = 412 # Precondition Failed
     reason = "Not Authenticated"
 
 
 class ValidationError(GLException):
-    error_code = 31
-    status_code = 403  # Forbidden
+    error_code = 11
+    status_code = 403 # Forbidden
 
     def __init__(self, reason='Extended validation failed'):
         self.reason = reason
 
 
 class ExternalResourceError(GLException):
-    error_code = 32
+    error_code = 12
     status_code = 400
 
     def __init__(self, reason='External resource did not respond correctly'):
@@ -252,11 +152,8 @@ class InvalidOldPassword(GLException):
     before change with a new secret.
     """
     reason = "The specified old password is not valid"
-    error_code = 33
+    error_code = 13
     status_code = 406
-
-
-# UNUSED ERROR CODE 34 - 36 HERE!
 
 
 class TorNetworkRequired(GLException):
@@ -265,16 +162,16 @@ class TorNetworkRequired(GLException):
     be enforced with anonymity
     """
     reason = "Resource can be accessed only within Tor network"
-    error_code = 37
-    status_code = 403  # Forbidden
+    error_code = 14
+    status_code = 403 # Forbidden
 
 
 class FileTooBig(GLException):
     """
     Raised by GLHTTPConnection, when the uploaded file is bigger than acceptable
     """
-    error_code = 39
-    status_code = 400  # Bad Request
+    error_code = 15
+    status_code = 400 # Bad Request
 
     def __init__(self, size_limit):
         self.reason = ("Provided file upload overcomes size limits (%d Mb)" %
@@ -287,44 +184,22 @@ class PGPKeyInvalid(GLException):
     The provided PGP key has an invalid format and can't be imported
     """
     reason = "The proposed PGP key can't be imported"
-    error_code = 40
+    error_code = 16
     status_code = 406
 
 
-# UNUSED ERROR CODE 41-49 HERE!
-
-
-class ExtendTipLifeNotEnabled(GLException):
-    """
-    Ability to postpone expiration date is not enabled in the node
-    """
-    reason = "This node does not permit expiration date extensions"
-    error_code = 50
-    status_code = 403
-
-
-# UNUSED ERROR CODE 51 HERE!
-
-
-class LangFileNotFound(ResourceNotFound):
-    """
-    It has been requested an operation on a non existent language file
-    """
-    reason = "Requested an operation on a non existent language file"
-    error_code = 52
-    status_code = 404
-
+# UNUSED ERROR CODE 41-52 HERE!
 
 class DirectoryTraversalError(GLException):
     """
     Blocked file operation out of the expected path
     """
     reason = "Blocked file operation out of the expected path"
-    error_code = 53
+    error_code = 17
     status_code = 403
 
 
 class SubmissionDisabled(GLException):
-    reason = "Submissions are not possible right now"
-    error_code = 52
-    status_code = 503  # Service not available
+    reason = "Submissions are disabled"
+    error_code = 18
+    status_code = 503 # Service not available

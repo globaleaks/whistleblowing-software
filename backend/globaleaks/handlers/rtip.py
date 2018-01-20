@@ -149,7 +149,7 @@ def db_access_wbfile(session, tid, user_id, wbfile_id):
                           models.InternalTip.tid == tid).one()
 
     if not wbfile:
-        raise errors.WBFileIdNotFound
+        raise errors.ModelNotFound(models.WhistleblowerFile)
 
     return wbfile
 
@@ -173,7 +173,7 @@ def db_receiver_get_wbfile_list(session, tid, itip_id):
     wbfiles = []
     if rtips_ids:
         wbfiles = session.query(models.WhistleblowerFile) \
-                       .filter(models.WhistleblowerFile.receivertip_id.in_(rtips_ids))
+                        .filter(models.WhistleblowerFile.receivertip_id.in_(rtips_ids))
 
     return [receiver_serialize_wbfile(session, wbfile) for wbfile in wbfiles]
 
@@ -294,7 +294,7 @@ def postpone_expiration_date(session, tid, user_id, rtip_id):
 
     if not (State.tenant_cache[tid].can_postpone_expiration or
             receiver.can_postpone_expiration):
-        raise errors.ExtendTipLifeNotEnabled
+        raise errors.ForbiddenOperation
 
     db_postpone_expiration_date(session, tid, itip)
 
@@ -509,7 +509,7 @@ class WBFileHandler(BaseHandler):
                       .filter(models.WhistleblowerFile.id == file_id).one_or_none()
 
         if wbfile is None or not self.user_can_access(session, tid, wbfile):
-            raise errors.FileIdNotFound
+            raise errors.ModelNotFound(models.WhistleblowerFile)
 
         self.access_wbfile(session, wbfile)
 
@@ -569,7 +569,7 @@ class ReceiverFileDownload(BaseHandler):
                                           models.InternalTip.tid == tid).one()
 
         if not rfile:
-            raise errors.FileIdNotFound
+            raise errors.ModelNotFound(models.ReceiverFile)
 
         log.debug("Download of file %s by receiver %s (%d)" %
                   (rfile.internalfile_id, receiver_id, rfile.downloads))
