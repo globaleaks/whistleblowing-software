@@ -341,7 +341,10 @@ def db_get_public_context_list(session, tid, language):
 
 
 def db_get_questionnaire_list(session, tid, language):
-    questionnaires = session.query(models.Questionnaire).filter(models.Questionnaire.tid.in_(set([1, tid])))
+    questionnaires = session.query(models.Questionnaire).filter(models.Questionnaire.tid.in_(set([1, tid])),
+                                                                models.Context.questionnaire_id == models.Questionnaire.id,
+                                                                models.Context.id == models.ReceiverContext.context_id,
+                                                                models.Context.tid == tid)
 
     return [serialize_questionnaire(session, tid, questionnaire, language) for questionnaire in questionnaires]
 
