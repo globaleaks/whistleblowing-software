@@ -123,8 +123,7 @@ html[dir="rtl"] #HeaderBoxContentRight {
 }
 
 #LogoBox {
-  height: 15em;
-  width: auto;
+  width: 16em;
 }
 
 #LogoBox, #TitleBox {
@@ -171,7 +170,7 @@ html[dir="rtl"] #UserBox {
 }
 
 #LogoBox img {
-  height: 100%;
+  width: 100%;
   border-radius: 5px;
 }
 
