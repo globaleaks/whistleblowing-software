@@ -38,9 +38,8 @@ def wb_serialize_wbfile(session, wbfile):
 
 def db_get_rfile_list(session, tid, itip_id):
     return [wb_serialize_ifile(session, ifile) for ifile in session.query(models.InternalFile) \
-                                                               .filter(models.InternalFile.internaltip_id == itip_id,
-                                                                       models.InternalTip.id == itip_id,
-                                                                       models.InternalTip.tid == tid)]
+                                                                   .filter(models.InternalFile.internaltip_id == itip_id,
+                                                                           models.InternalTip.id == itip_id)]
 
 
 def db_get_wbfile_list(session, tid, itip_id):
@@ -111,8 +110,7 @@ def create_message(session, tid, wbtip_id, receiver_id, request):
                                   .filter(models.ReceiverTip.internaltip_id == wbtip_id,
                                           models.InternalTip.id == wbtip_id,
                                           models.ReceiverTip.receiver_id == receiver_id,
-                                          models.InternalTip.tid == tid).one()
-
+                                          models.InternalTip.tid == tid).one_or_none()
 
     if rtip_id is None:
         raise errors.ModelNotFound(models.ReceiverTip)

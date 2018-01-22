@@ -99,7 +99,6 @@ def db_serialize_questionnaire_answers_recursively(session, answers, answers_by_
 
 def db_serialize_questionnaire_answers(session, tid, usertip, internaltip):
     aqs = session.query(models.ArchivedSchema).filter(models.ArchivedSchema.hash == internaltip.questionnaire_hash).one()
-
     questionnaire = db_serialize_archived_questionnaire_schema(session, aqs.schema, State.tenant_cache[tid].default_language)
 
     answers = []
@@ -209,7 +208,8 @@ def db_archive_questionnaire_schema(session, questionnaire, questionnaire_hash):
 def db_get_itip_receiver_list(session, itip):
     ret = []
 
-    for rtip, user in session.query(models.ReceiverTip, models.User).filter(models.ReceiverTip.internaltip_id == itip.id, models.User.id == models.ReceiverTip.receiver_id):
+    for rtip, user in session.query(models.ReceiverTip, models.User).filter(models.ReceiverTip.internaltip_id == itip.id,
+                                                                            models.User.id == models.ReceiverTip.receiver_id):
         ret.append({
             "id": rtip.receiver_id,
             "name": user.public_name,
@@ -274,9 +274,9 @@ def db_create_submission(session, tid, request, uploaded_files, client_using_tor
     answers = request['answers']
 
     context, questionnaire = session.query(models.Context, models.Questionnaire) \
-                                  .filter(models.Context.id == request['context_id'],
-                                          models.Questionnaire.id == models.Context.questionnaire_id,
-                                          models.Questionnaire.tid.in_(set([1, tid]))).one_or_none()
+                                    .filter(models.Context.id == request['context_id'],
+                                            models.Questionnaire.id == models.Context.questionnaire_id,
+                                            models.Questionnaire.tid.in_(set([1, tid]))).one_or_none()
     if not context:
         raise errors.ModelNotFound(models.Context)
 
@@ -344,12 +344,12 @@ def db_create_submission(session, tid, request, uploaded_files, client_using_tor
         raise errors.InvalidInput("selected an invalid number of recipients")
 
     rtips_count = 0
-    for receiver, user in session.query(models.Receiver, models.User). \
-                                filter(models.Receiver.id.in_(request['receivers']),
-                                       models.ReceiverContext.receiver_id == models.Receiver.id,
-                                       models.ReceiverContext.context_id == context.id,
-                                       models.User.id == models.Receiver.id,
-                                       models.User.tid == tid):
+    for receiver, user in session.query(models.Receiver, models.User) \
+                                 .filter(models.Receiver.id.in_(request['receivers']),
+                                         models.ReceiverContext.receiver_id == models.Receiver.id,
+                                         models.ReceiverContext.context_id == context.id,
+                                         models.User.id == models.Receiver.id,
+                                         models.User.tid == tid):
         if user.pgp_key_public or State.tenant_cache[tid].allow_unencrypted:
             db_create_receivertip(session, receiver, submission)
             rtips_count += 1

@@ -1,8 +1,6 @@
 # -*- coding: utf-8
 #
-# overview
-#   ********
-# Implementation of the code executed when an HTTP client reach /overview/* URI
+# API implementing an abstract admin overview of the submissions
 from globaleaks import models
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.orm import transact
@@ -10,7 +8,7 @@ from globaleaks.utils.utility import datetime_to_ISO8601
 
 
 @transact
-def collect_tip_overview(session, tid, language):
+def collect_tip_overview(session, tid):
     tip_description_list = []
 
     for itip in session.query(models.InternalTip).filter(models.InternalTip.tid == tid):
@@ -38,15 +36,14 @@ def collect_files_overview(session, tid):
         })
 
     for rfile, itip in session.query(models.ReceiverFile, models.InternalFile) \
-                            .filter(models.ReceiverFile.internalfile_id == models.InternalFile.id,
-                                    models.InternalFile.internaltip_id == models.InternalTip.id,
-                                    models.InternalTip.id == tid):
+                              .filter(models.ReceiverFile.internalfile_id == models.InternalFile.id,
+                                      models.InternalFile.internaltip_id == models.InternalTip.id,
+                                      models.InternalTip.id == tid):
         file_description_list.append({
             'id': rfile.internalfile_id,
             'itip': itip.id,
             'path': rfile.file_path,
             'size': rfile.size
-
         })
 
     return file_description_list
@@ -60,7 +57,7 @@ class Tips(BaseHandler):
     check_roles = 'admin'
 
     def get(self):
-        return collect_tip_overview(self.request.tid, self.request.language)
+        return collect_tip_overview(self.request.tid)
 
 
 class Files(BaseHandler):
