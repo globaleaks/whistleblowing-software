@@ -1,36 +1,19 @@
 <div id="PrivacyBadge" data-ng-init="open = true" data-ng-mouseenter="open = true" data-ng-if="!node.enable_custom_privacy_badge">
-  <div data-ng-switch="" on="connection.tor" id="PrivacyBadgeTextBox" class="pull-left">
-    <div data-ng-switch-when="true">
-      <div>
-        <span class="label label-success">
-          <i class="glyphicon glyphicon-ok-circle"></i>
-          <span data-translate>Congratulations!</span>
-        </span>
-        <div data-ng-show="open">
-          <div data-translate>It appears that you are using Tor. To better protect your identity, be sure that you are using the Tor Browser.</div>
-          <div data-translate>The Tor Browser includes various privacy and security enhancements not present in other browsers.</div>
-          <a href="{{node.tb_download_link}}" target="_blank" rel="noreferrer noopener">
-            [ <span data-translate>Download the Tor Browser</span> ]
-          </a>
-        </div>
-      </div>
-    </div>
-    <div data-ng-switch-when="false">
-      <div>
-        <span class="label label-danger">
-          <i class="glyphicon glyphicon-warning-sign"></i>
-          <span data-translate>Danger</span>
-        </span>
-        <div data-ng-show="open">
+  <div data-ng-if="!connection.tor" id="PrivacyBadgeTextBox" class="pull-left">
+    <div>
+      <span class="label label-warning">
+        <i class="glyphicon glyphicon-warning-sign"></i>
+        <span data-translate>Warning</span>
+      </span>
+      <div data-ng-show="open">
+        <div id="PrivacyBadgeText">
           <div data-translate>It appears that you are browsing this site without any extra privacy and security!</div>
           <div data-translate>You are strongly advised to visit this site using the desktop app called Tor Browser, that protects your identity.</div>
-          <a href="{{node.tb_download_link}}" target="_blank" rel="noreferrer noopener">
-            [ <span data-translate>Download the Tor Browser</span> ]
-          </a>
-          <div data-ng-show="node.onionservice != ''">
-            <span data-translate>Then, copy and paste the following address into the Tor Browser:</span>
-            <span>{{node.onionservice}}</span>
-          </div>
+        </div>
+        <div id="PrivacyBadgeDownloadLink"><a href="{{node.tb_download_link}}" target="_blank" rel="noreferrer noopener">[ <span data-translate>Download the Tor Browser</span> ]</a></div>
+        <div data-ng-show="node.onionservice != ''">
+          <span data-translate>Then, copy and paste the following address into the Tor Browser:</span>
+          <span>{{node.onionservice}}</span>
         </div>
       </div>
     </div>
@@ -43,15 +26,8 @@
   <div class="clearfix"></div>
 </div>
 <div id="PrivacyBadgeCustom" data-ng-if="node.enable_custom_privacy_badge">
-  <div data-ng-switch="" on="connection.tor" id="PrivacyBoxTextBox">
-    <div data-ng-switch-when="true">
-      <span id="PrivacyBadgeCustomIconTor"></span>
-      <span id="PrivacyBadgeCustomTextTor">{{node.custom_privacy_badge_tor}}</span>
-    </div>
-    <div data-ng-switch-when="false">
-      <span id="PrivacyBadgeCustomIconNone"></span>
-      <span id="PrivacyBadgeCustomTextNone">{{node.custom_privacy_badge_none}}</span>
-    </div>
+  <div data-ng-if="!connection.tor" id="PrivacyBoxTextBox">
+    <span id="PrivacyBadgeCustomText">{{node.custom_privacy_badge_text}}</span>
   </div>
   <div id="PrivacyBoxCloseButton" class="pull-right">
     <a data-ng-show="open" type="submit" data-ng-click="open = false">
