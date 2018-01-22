@@ -446,6 +446,23 @@ class MigrationScript(MigrationBase):
     def migrate_ArchivedSchema(self):
         return
 
+    def migrate_ConfigL10N(self):
+        old_objs = self.store_old.query(self.model_from['ConfigL10N'])
+        for old_obj in old_objs:
+            new_obj = self.model_to['ConfigL10N']()
+            for key in [c.key for c in new_obj.__table__.columns]:
+                if key == 'tid':
+                    new_obj.tid = 1
+                elif key == 'value':
+                    if old_obj.var_name == 'custom_privacy_badge_none':
+                        new_obj.var_name = 'custom_privacy_badge'
+                    else:
+                        new_obj.var_name = old_obj.var_name
+                else:
+                    setattr(new_obj, key, getattr(old_obj, key))
+
+            self.store_new.add(new_obj)
+
     def migrate_InternalTip(self):
         used_presentation_order = []
         old_objs = self.store_old.query(self.model_from['InternalTip'])
