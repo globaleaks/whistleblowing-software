@@ -1,16 +1,18 @@
 GLClient.controller('AdminNetworkCtrl', ['$scope', '$http', function($scope, $http) {
   $scope.tabs = [
     {
-      title:"Tor",
-      template: "views/admin/network/tor.html"
-    },
-    {
       title:"HTTPS",
       template: "views/admin/network/https.html"
+    },
+    {
+      title:"Tor",
+      template: "views/admin/network/tor.html"
     }
   ];
 
   $scope.setHostname = function() {
+    $scope.verifyFailed = false;
+
     var req = {
       'operation': 'set_hostname',
       'args': {
@@ -22,6 +24,8 @@ GLClient.controller('AdminNetworkCtrl', ['$scope', '$http', function($scope, $ht
   };
 
   $scope.verifyHostname = function() {
+    $scope.verifyFailed = false;
+
     var req = {
       'operation': 'verify_hostname',
       'args': {
