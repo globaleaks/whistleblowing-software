@@ -187,14 +187,25 @@
   </div>
   <div id="WizardStep6" data-ng-show="step == 6" data-ng-form="wizardFormStep6">
     <div class="row wizard-block">
-      <div class="col-md-12 title1" data-translate>License Agreement</div>
-      <div class="col-md-12" data-translate>Please review the license terms before proceeding.</div>
-      <div class="col-md-12">
-        <pre id='wizardLicense' class="license" data-ng-include="'license.txt'"></pre>
-        <label>
-          <input name="tosAccept" class="inputelem" type="checkbox" data-ng-required="true" data-ng-model="tosAccept"/>
-          <span class="tos-agreement" data-translate>I have read and agree to the terms of the License Agreement.</span>
-        </label>
+      <div class="form-group col-md-12">
+        <div class="title1" data-translate>License Agreement</div>
+        <div class="" data-translate>Please review the license terms before proceeding.</div>
+        <div>
+          <pre id='wizardLicense' class="license" data-ng-include="'license.txt'"></pre>
+          <div>
+            <label>
+              <input name="tosAccept" class="inputelem" type="checkbox" data-ng-required="true" data-ng-model="tosAccept"/>
+              <span class="tos-agreement" data-translate>I have read and agree to the terms of the License Agreement.</span>
+            </label>
+          </div>
+          <div>
+            <label>
+              <input data-ng-model="wizard.enable_developers_exception_notification" type="checkbox">
+              <span data-translate>Notify developers of software problems</span>
+            </label>
+          </div>
+          <div data-translate>Enabling this feature you will contribute the to development and the security of the platform.</div>
+        </div>
       </div>
     </div>
     <div class="pager pull-right">

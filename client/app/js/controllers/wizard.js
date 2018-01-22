@@ -52,7 +52,8 @@ GLClient.controller('WizardCtrl', ['$scope', '$location', '$route', '$http', 'Au
         'admin_mail_address': '',
         'receiver_name': '',
         'receiver_mail_address': '',
-        'profile': 'default'
+        'profile': 'default',
+        'enable_developers_exception_notification': true
       };
     }
   }

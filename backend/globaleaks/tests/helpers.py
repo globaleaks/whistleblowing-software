@@ -399,7 +399,8 @@ class TestGL(unittest.TestCase):
             'admin_mail_address': 'evilaliv3@globaleaks.org',
             'receiver_name': 'Fabio Pietrosanti',
             'receiver_mail_address': 'naif@globaleaks.org',
-            'profile': 'default'
+            'profile': 'default',
+            'enable_developers_exception_notification': True
         }
 
         self.dummyContext = dummyStuff.dummyContext
@@ -1069,8 +1070,7 @@ class MockDict:
             'enable_experimental_features': False,
             'enable_multisite': True,
             'enable_custom_privacy_badge': False,
-            'custom_privacy_badge_tor': u'',
-            'custom_privacy_badge_none': u'',
+            'custom_privacy_badge': u'',
             'header_title_homepage': u'',
             'header_title_submissionpage': u'',
             'header_title_receiptpage': u'',

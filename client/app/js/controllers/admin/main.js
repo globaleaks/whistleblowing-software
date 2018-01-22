@@ -233,10 +233,6 @@ controller('AdminMailCtrl', ['$scope', '$http', 'Utils', 'AdminNotificationResou
     {
       title:"Notification templates",
       template:"views/admin/mail/tab2.html"
-    },
-    {
-      title:"Exception notification",
-      template:"views/admin/mail/tab3.html"
     }
   ];
 
