@@ -159,12 +159,12 @@ class User_v_32(models.Model):
 
 class MigrationScript(MigrationBase):
     def migrate_InternalTip(self):
-        old_objs = self.store_old.query(self.model_from['InternalTip'])
+        old_objs = self.session_old.query(self.model_from['InternalTip'])
         for old_obj in old_objs:
             new_obj = self.model_to['InternalTip']()
 
             old_wbtip_model = self.model_from['WhistleblowerTip']
-            old_wbtip = self.store_old.query(old_wbtip_model).filter(old_wbtip_model.internaltip_id == old_obj.id).one()
+            old_wbtip = self.session_old.query(old_wbtip_model).filter(old_wbtip_model.internaltip_id == old_obj.id).one()
             if old_wbtip is None:
                 self.entries_count['InternalTip'] -= 1
                 continue
@@ -178,14 +178,14 @@ class MigrationScript(MigrationBase):
                 else:
                     setattr(new_obj, key, getattr(old_obj, key))
 
-            self.store_new.add(new_obj)
+            self.session_new.add(new_obj)
 
     def migrate_Node(self):
-        old_node = self.store_old.query(self.model_from['Node']).one()
+        old_node = self.session_old.query(self.model_from['Node']).one()
         new_node = self.model_to['Node']()
 
         for key in [c.key for c in new_node.__table__.columns]:
             if key not in ['tb_download_link', 'wbtip_timetolive']:
                 setattr(new_node, key, getattr(old_node, key))
 
-        self.store_new.add(new_node)
+        self.session_new.add(new_node)

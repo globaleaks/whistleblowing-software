@@ -447,7 +447,7 @@ class MigrationScript(MigrationBase):
         return
 
     def migrate_ConfigL10N(self):
-        old_objs = self.store_old.query(self.model_from['ConfigL10N'])
+        old_objs = self.session_old.query(self.model_from['ConfigL10N'])
         for old_obj in old_objs:
             new_obj = self.model_to['ConfigL10N']()
             for key in [c.key for c in new_obj.__table__.columns]:
@@ -461,36 +461,36 @@ class MigrationScript(MigrationBase):
                 else:
                     setattr(new_obj, key, getattr(old_obj, key))
 
-            self.store_new.add(new_obj)
+            self.session_new.add(new_obj)
 
     def migrate_InternalTip(self):
         used_presentation_order = []
-        old_objs = self.store_old.query(self.model_from['InternalTip'])
+        old_objs = self.session_old.query(self.model_from['InternalTip'])
         for old_obj in old_objs:
             new_obj = self.model_to['InternalTip']()
             for key in [c.key for c in new_obj.__table__.columns]:
                 if key == 'tid':
                     new_obj.tid = 1
                 elif key == 'receipt_hash':
-                    wbtip = self.store_old.query(self.model_from['WhistleblowerTip']) \
+                    wbtip = self.session_old.query(self.model_from['WhistleblowerTip']) \
                                           .filter(self.model_from['WhistleblowerTip'].id == old_obj.id).one_or_none()
                     new_obj.receipt_hash = wbtip.receipt_hash if wbtip is not None else u''
                 else:
                     setattr(new_obj, key, getattr(old_obj, key))
 
-            self.store_new.add(new_obj)
+            self.session_new.add(new_obj)
 
     def migrate_ReceiverContext(self):
         model_from = self.model_from['Receiver']
         used_presentation_order = []
-        old_objs = self.store_old.query(self.model_from['ReceiverContext'])
+        old_objs = self.session_old.query(self.model_from['ReceiverContext'])
         for old_obj in old_objs:
             new_obj = self.model_to['ReceiverContext']()
             for key in [c.key for c in new_obj.__table__.columns]:
                 if key == 'tid':
                     new_obj.tid = 1
                 elif key == 'presentation_order':
-                    presentation_order = self.store_old.query(model_from).filter(model_from.id == old_obj.receiver_id).one().presentation_order
+                    presentation_order = self.session_old.query(model_from).filter(model_from.id == old_obj.receiver_id).one().presentation_order
                     while presentation_order in used_presentation_order:
                         presentation_order += 1
 
@@ -499,13 +499,13 @@ class MigrationScript(MigrationBase):
                 else:
                     setattr(new_obj, key, getattr(old_obj, key))
 
-            self.store_new.add(new_obj)
+            self.session_new.add(new_obj)
 
     def migrate_File(self):
-        old_objs = self.store_old.query(self.model_from['File'])
+        old_objs = self.session_old.query(self.model_from['File'])
         for old_obj in old_objs:
-            u = self.store_old.query(self.model_from['User']).filter(self.model_from['User'].img_id == old_obj.id).one_or_none()
-            c = self.store_old.query(self.model_from['Context']).filter(self.model_from['User'].img_id == old_obj.id).one_or_none()
+            u = self.session_old.query(self.model_from['User']).filter(self.model_from['User'].img_id == old_obj.id).one_or_none()
+            c = self.session_old.query(self.model_from['Context']).filter(self.model_from['User'].img_id == old_obj.id).one_or_none()
             if u is not None:
                 new_obj = self.model_to['UserImg']()
                 new_obj.id = u.id
@@ -527,10 +527,10 @@ class MigrationScript(MigrationBase):
                 else:
                     setattr(new_obj, key, getattr(old_obj, key))
 
-            self.store_new.add(new_obj)
+            self.session_new.add(new_obj)
 
     def migrate_File_XXX(self, XXX):
-        old_objs = self.store_old.query(self.model_from[XXX])
+        old_objs = self.session_old.query(self.model_from[XXX])
         for old_obj in old_objs:
             new_obj = self.model_to[XXX]()
 
@@ -546,7 +546,7 @@ class MigrationScript(MigrationBase):
                 else:
                     setattr(new_obj, key, getattr(old_obj, key))
 
-            self.store_new.add(new_obj)
+            self.session_new.add(new_obj)
 
     def migrate_InternalFile(self):
         return self.migrate_File_XXX('InternalFile')
@@ -558,11 +558,11 @@ class MigrationScript(MigrationBase):
         return self.migrate_File_XXX('WhistleblowerFile')
 
     def epilogue(self):
-        self.store_new.add(self.model_to['Tenant']({'label': ''}))
+        self.session_new.add(self.model_to['Tenant']({'label': ''}))
 
-        questionnaires = self.store_old.query(self.model_from['ArchivedSchema']).filter(self.model_from['ArchivedSchema'].type == u'questionnaire')
-        for q in self.store_old.query(self.model_from['ArchivedSchema']).filter(self.model_from['ArchivedSchema'].type == u'questionnaire'):
-            p = self.store_old.query(self.model_from['ArchivedSchema']).filter(self.model_from['ArchivedSchema'].hash == q.hash,
+        questionnaires = self.session_old.query(self.model_from['ArchivedSchema']).filter(self.model_from['ArchivedSchema'].type == u'questionnaire')
+        for q in self.session_old.query(self.model_from['ArchivedSchema']).filter(self.model_from['ArchivedSchema'].type == u'questionnaire'):
+            p = self.session_old.query(self.model_from['ArchivedSchema']).filter(self.model_from['ArchivedSchema'].hash == q.hash,
                                                                            self.model_from['ArchivedSchema'].type == u'preview').one()
 
             new_obj = self.model_to['ArchivedSchema']()
@@ -574,7 +574,7 @@ class MigrationScript(MigrationBase):
                 else:
                     setattr(new_obj, key, getattr(q, key))
 
-            self.store_new.add(new_obj)
+            self.session_new.add(new_obj)
 
             self.entries_count['ArchivedSchema'] -= 1
 
@@ -589,7 +589,7 @@ class MigrationScript(MigrationBase):
                 new_file.id = uuid4()
                 new_file.name = filename
                 new_file.data = u''
-                self.store_new.add(new_file)
+                self.session_new.add(new_file)
                 shutil.move(filepath,
                             os.path.abspath(os.path.join(Settings.files_path, new_file.id)))
 

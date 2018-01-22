@@ -54,7 +54,7 @@ def replace_templates_variables(value):
 
 class MigrationScript(MigrationBase):
     def migrate_ConfigL10N(self):
-        old_objs = self.store_old.query(self.model_from['ConfigL10N'])
+        old_objs = self.session_old.query(self.model_from['ConfigL10N'])
         for old_obj in old_objs:
             new_obj = self.model_to['ConfigL10N']()
             for key in [c.key for c in new_obj.__table__.columns]:
@@ -64,13 +64,13 @@ class MigrationScript(MigrationBase):
 
                 setattr(new_obj, key, value)
 
-            self.store_new.add(new_obj)
+            self.session_new.add(new_obj)
 
     def migrate_Context(self):
-        questionnaire_default = self.store_old.query(self.model_from['Questionnaire']).filter(self.model_from['Questionnaire'].key == u'default').one_or_none()
+        questionnaire_default = self.session_old.query(self.model_from['Questionnaire']).filter(self.model_from['Questionnaire'].key == u'default').one_or_none()
         questionnaire_default_id = questionnaire_default.id if questionnaire_default is not None else 'hack'
 
-        old_objs = self.store_old.query(self.model_from['Context'])
+        old_objs = self.session_old.query(self.model_from['Context'])
         for old_obj in old_objs:
             new_obj = self.model_to['Context']()
             for key in [c.key for c in new_obj.__table__.columns]:
@@ -82,13 +82,13 @@ class MigrationScript(MigrationBase):
                 else:
                     setattr(new_obj, key, getattr(old_obj, key))
 
-            self.store_new.add(new_obj)
+            self.session_new.add(new_obj)
 
     def migrate_Field(self):
-        field_wbi = self.store_old.query(self.model_from['Field']).filter(self.model_from['Field'].key == u'whistleblower_identity').one()
+        field_wbi = self.session_old.query(self.model_from['Field']).filter(self.model_from['Field'].key == u'whistleblower_identity').one()
         field_wbi_id = field_wbi.id if field_wbi is not None else 'hack'
 
-        old_objs = self.store_old.query(self.model_from['Field'])
+        old_objs = self.session_old.query(self.model_from['Field'])
         for old_obj in old_objs:
             new_obj = self.model_to['Field']()
             for key in [c.key for c in new_obj.__table__.columns]:
@@ -103,10 +103,10 @@ class MigrationScript(MigrationBase):
             if old_obj.template_id == field_wbi_id:
                 setattr(new_obj, 'template_id', 'whistleblower_identity')
 
-            self.store_new.add(new_obj)
+            self.session_new.add(new_obj)
 
     def migrate_Questionnaire(self):
-        old_objs = self.store_old.query(self.model_from['Questionnaire'])
+        old_objs = self.session_old.query(self.model_from['Questionnaire'])
         for old_obj in old_objs:
             new_obj = self.model_to['Questionnaire']()
             for key in [c.key for c in new_obj.__table__.columns]:
@@ -115,4 +115,4 @@ class MigrationScript(MigrationBase):
             if old_obj.key == 'default':
                 setattr(new_obj, 'id', 'default')
 
-            self.store_new.add(new_obj)
+            self.session_new.add(new_obj)
