@@ -85,17 +85,9 @@
 
     <div class="form-group" data-ng-if="!admin.node.disable_privacy_badge && admin.node.enable_custom_privacy_badge">
       <label data-translate>Custom privacy panel</label>
-      <label>(<span data-translate>Text shown when the whistleblower is using Tor</span>)</label>
-      <div>
-        <input class="form-control" data-ng-model="admin.node.custom_privacy_badge_tor" type="text" />
-      </div>
-    </div>
-
-    <div class="form-group" data-ng-if="!admin.node.disable_privacy_badge && admin.node.enable_custom_privacy_badge">
-      <label data-translate>Custom privacy panel</label>
       <label>(<span data-translate>Text shown when the whistleblower is not using Tor</span>)</label>
       <div>
-        <input class="form-control" data-ng-model="admin.node.custom_privacy_badge_none" type="text" />
+        <input class="form-control" data-ng-model="admin.node.custom_privacy_badge_text" type="text" />
       </div>
     </div>
 
