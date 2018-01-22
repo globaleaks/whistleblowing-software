@@ -21,7 +21,6 @@ describe('verify navigation of admin sections', function() {
     element(by.cssContainingText("a", "Notification settings")).click();
     element(by.cssContainingText("ul li a", "Main configuration")).click();
     element(by.cssContainingText("ul li a", "Notification templates")).click();
-    element(by.cssContainingText("ul li a", "Exception notification")).click();
 
     element(by.cssContainingText("a", "Network settings")).click();
     element(by.cssContainingText("ul li a", "Tor")).click();
