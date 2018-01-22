@@ -28,6 +28,7 @@ def db_prepare_contexts_serialization(session, contexts):
         for o in session.query(models.ReceiverContext).filter(models.ReceiverContext.context_id.in_(contexts_ids)).order_by(models.ReceiverContext.presentation_order):
             if o.context_id not in data['receivers']:
                 data['receivers'][o.context_id] = []
+
             data['receivers'][o.context_id].append(o.receiver_id)
 
     return data
