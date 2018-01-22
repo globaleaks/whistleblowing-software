@@ -249,7 +249,9 @@ AdminNodeDesc = {
     'basic_auth_username': unicode,
     'basic_auth_password': unicode,
     'reachable_via_web': bool,
-    'anonymize_outgoing_connections': bool
+    'anonymize_outgoing_connections': bool,
+    'enable_admin_exception_notification': bool,
+    'enable_developers_exception_notification': bool
 }
 
 AdminNotificationDesc = merge_dicts({
@@ -265,8 +267,6 @@ AdminNotificationDesc = merge_dicts({
     'disable_receiver_notification_emails': bool,
     'tip_expiration_threshold': int,
     'notification_threshold_per_hour': int,
-    'enable_admin_exception_notification': bool,
-    'enable_developers_exception_notification': bool,
     'reset_templates': bool
   },
   {k: unicode for k in NotificationL10NFactory.modifiable_keys}
@@ -545,6 +545,7 @@ WizardDesc = {
     'receiver_name': unicode,
     'receiver_mail_address': unicode,
     'profile': r'^(default)$',
+    'enable_developers_exception_notification': bool
 }
 
 ExceptionDesc = {

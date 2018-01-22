@@ -26,14 +26,12 @@ def wizard(session, tid, request, language):
         log.err("DANGER: Wizard already initialized!", tid=tid)
         raise errors.ForbiddenOperation
 
-    node._query_group()
-
     node.set_val(u'name', request['node_name'])
     node.set_val(u'default_language', language)
     node.set_val(u'wizard_done', True)
+    node.set_val(u'enable_developers_exception_notification', request['enable_developers_exception_notification'])
 
     node_l10n = l10n.NodeL10NFactory(session, tid)
-
     node_l10n.set_val(u'header_title_homepage', language, request['node_name'])
 
     profiles.load_profile(session, tid, request['profile'])

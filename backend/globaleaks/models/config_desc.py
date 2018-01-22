@@ -176,6 +176,8 @@ ConfigFilters = {
         u'disable_donation_panel',
         u'enable_captcha',
         u'enable_proof_of_work',
+        u'enable_admin_exception_notification',
+        u'enable_developers_exception_notification',
         u'enable_multisite',
         u'enable_experimental_features',
         u'simplified_login',
@@ -203,9 +205,7 @@ ConfigFilters = {
         u'disable_custodian_notification_emails',
         u'disable_receiver_notification_emails',
         u'tip_expiration_threshold',
-        u'notification_threshold_per_hour',
-        u'enable_admin_exception_notification',
-        u'enable_developers_exception_notification'
+        u'notification_threshold_per_hour'
     ],
     'private': [
         u'creation_date',
