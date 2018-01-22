@@ -61,7 +61,7 @@ class InternalTip_v_34(models.Model):
 
 class MigrationScript(MigrationBase):
     def migrate_Context(self):
-        old_objs = self.store_old.query(self.model_from['Context'])
+        old_objs = self.session_old.query(self.model_from['Context'])
         for old_obj in old_objs:
             new_obj = self.model_to['Context']()
             for key in [c.key for c in new_obj.__table__.columns]:
@@ -85,13 +85,13 @@ class MigrationScript(MigrationBase):
                 else:
                     setattr(new_obj, key, getattr(old_obj, key))
 
-            self.store_new.add(new_obj)
+            self.session_new.add(new_obj)
 
     def migrate_User(self):
-        default_language = self.store_new.query(self.model_to['Config']).filter(self.model_to['Config'].var_name == u'default_language').one().value['v']
-        enabled_languages = [r[0] for r in self.store_old.query(self.model_to['EnabledLanguage'].name)]
+        default_language = self.session_new.query(self.model_to['Config']).filter(self.model_to['Config'].var_name == u'default_language').one().value['v']
+        enabled_languages = [r[0] for r in self.session_old.query(self.model_to['EnabledLanguage'].name)]
 
-        old_objs = self.store_old.query(self.model_from['User'])
+        old_objs = self.session_old.query(self.model_from['User'])
         for old_obj in old_objs:
             new_obj = self.model_to['User']()
             for key in [c.key for c in new_obj.__table__.columns]:
@@ -108,10 +108,10 @@ class MigrationScript(MigrationBase):
                 else:
                     setattr(new_obj, key, getattr(old_obj, key))
 
-            self.store_new.add(new_obj)
+            self.session_new.add(new_obj)
 
     def migrate_WhistleblowerTip(self):
-        old_objs = self.store_old.query(self.model_from['WhistleblowerTip'])
+        old_objs = self.session_old.query(self.model_from['WhistleblowerTip'])
         for old_obj in old_objs:
             new_obj = self.model_to['WhistleblowerTip']()
             for key in [c.key for c in new_obj.__table__.columns]:
@@ -121,13 +121,13 @@ class MigrationScript(MigrationBase):
 
                 setattr(new_obj, key, getattr(old_obj, key))
 
-            self.store_new.add(new_obj)
+            self.session_new.add(new_obj)
 
     def epilogue(self):
-        c = self.store_new.query(self.model_to['Config']).filter(self.model_to['Config'].var_name == u'wbtip_timetolive').one()
+        c = self.session_new.query(self.model_to['Config']).filter(self.model_to['Config'].var_name == u'wbtip_timetolive').one()
         if int(c.value['v']) < 5:
             c.value['v'] = 90
         elif int(c.value['v']) > 365 * 2:
             c.value['v'] = 365 * 2
 
-        self.store_new.commit()
+        self.session_new.commit()

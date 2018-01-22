@@ -38,7 +38,7 @@ class SecureFileDelete_v_24(Model):
 
 class MigrationScript(MigrationBase):
     def migrate_Node(self):
-        old_node = self.store_old.query(self.model_from['Node']).one()
+        old_node = self.session_old.query(self.model_from['Node']).one()
         new_node = self.model_to['Node']()
 
         for key in [c.key for c in new_node.__table__.columns]:
@@ -48,10 +48,10 @@ class MigrationScript(MigrationBase):
 
             setattr(new_node, key, getattr(old_node, key))
 
-        self.store_new.add(new_node)
+        self.session_new.add(new_node)
 
     def migrate_User(self):
-        old_objs = self.store_old.query(self.model_from['User'])
+        old_objs = self.session_old.query(self.model_from['User'])
         for old_obj in old_objs:
             new_obj = self.model_to['User']()
 
@@ -62,4 +62,4 @@ class MigrationScript(MigrationBase):
 
                 setattr(new_obj, key, getattr(old_obj, key))
 
-            self.store_new.add(new_obj)
+            self.session_new.add(new_obj)

@@ -197,7 +197,7 @@ class Notification_v_30(Model):
 
 class MigrationScript(MigrationBase):
     def migrate_Node(self):
-        old_node = self.store_old.query(self.model_from['Node']).one()
+        old_node = self.session_old.query(self.model_from['Node']).one()
         new_node = self.model_to['Node']()
 
         new_templates = [
@@ -224,8 +224,8 @@ class MigrationScript(MigrationBase):
                 with open(path, 'r') as f:
                     new_file.data = base64.b64encode(f.read())
 
-                self.store_new.add(new_file)
-                self.store_new.flush()
+                self.session_new.add(new_file)
+                self.session_new.flush()
 
                 if key == 'logo_id':
                     new_node.logo_id = new_file.id
@@ -248,7 +248,7 @@ class MigrationScript(MigrationBase):
             else:
                 setattr(new_node, key, getattr(old_node, key))
 
-        self.store_new.add(new_node)
+        self.session_new.add(new_node)
 
         for fname in ['default-profile-picture.png', 'robots.txt']:
             p = os.path.join(Settings.files_path, fname)
@@ -256,7 +256,7 @@ class MigrationScript(MigrationBase):
                 os.remove(p)
 
     def migrate_User(self):
-        old_objs = self.store_old.query(self.model_from['User'])
+        old_objs = self.session_old.query(self.model_from['User'])
         for old_obj in old_objs:
             new_obj = self.model_to['User']()
             for key in [c.key for c in new_obj.__table__.columns]:
@@ -269,16 +269,16 @@ class MigrationScript(MigrationBase):
                     with open(img_path, 'r') as img_file:
                         picture.data = base64.b64encode(img_file.read())
 
-                    self.store_new.add(picture)
+                    self.session_new.add(picture)
                     new_obj.picture_id = picture.id
                     os.remove(img_path)
                 else:
                     setattr(new_obj, key, getattr(old_obj, key))
 
-            self.store_new.add(new_obj)
+            self.session_new.add(new_obj)
 
     def migrate_Context(self):
-        old_objs = self.store_old.query(self.model_from['Context'])
+        old_objs = self.session_old.query(self.model_from['Context'])
         for old_obj in old_objs:
             new_obj = self.model_to['Context']()
             for key in [c.key for c in new_obj.__table__.columns]:
@@ -289,11 +289,11 @@ class MigrationScript(MigrationBase):
                 else:
                     setattr(new_obj, key, getattr(old_obj, key))
 
-            self.store_new.add(new_obj)
+            self.session_new.add(new_obj)
 
 
     def migrate_ReceiverTip(self):
-        old_objs = self.store_old.query(self.model_from['ReceiverTip'])
+        old_objs = self.session_old.query(self.model_from['ReceiverTip'])
         for old_obj in old_objs:
             new_obj = self.model_to['ReceiverTip']()
             for key in [c.key for c in new_obj.__table__.columns]:
@@ -302,4 +302,4 @@ class MigrationScript(MigrationBase):
                 else:
                     setattr(new_obj, key, getattr(old_obj, key))
 
-            self.store_new.add(new_obj)
+            self.session_new.add(new_obj)

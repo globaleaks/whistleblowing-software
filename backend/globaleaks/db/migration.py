@@ -176,18 +176,18 @@ def perform_migration(version):
 
             j = version - FIRST_DATABASE_VERSION_SUPPORTED
             engine = get_engine('sqlite+pysqlite:////' + old_db_file, foreign_keys=False)
-            store_old = sessionmaker(bind=engine)()
+            session_old = sessionmaker(bind=engine)()
 
             engine = get_engine('sqlite+pysqlite:////' + new_db_file, foreign_keys=False)
             if FIRST_DATABASE_VERSION_SUPPORTED + j + 1 == DATABASE_VERSION:
                 Base.metadata.create_all(engine)
             else:
                 Bases[j+1].metadata.create_all(engine)
-            store_new = sessionmaker(bind=engine)()
+            session_new = sessionmaker(bind=engine)()
 
             # Here is instanced the migration script
             MigrationModule = importlib.import_module("globaleaks.db.migrations.update_%d" % (version + 1))
-            migration_script = MigrationModule.MigrationScript(migration_mapping, version, store_old, store_new)
+            migration_script = MigrationModule.MigrationScript(migration_mapping, version, session_old, session_new)
 
             log.info("Migrating table:")
 
@@ -225,11 +225,11 @@ def perform_migration(version):
 
             # we open a new db in order to verify integrity of the generated file
             engine = get_engine('sqlite+pysqlite:////' + new_db_file)
-            store_verify = sessionmaker(bind=engine)()
+            session_verify = sessionmaker(bind=engine)()
 
             for model_name, _ in migration_mapping.items():
                 if migration_script.model_from[model_name] is not None and migration_script.model_to[model_name] is not None:
-                     count = store_verify.query(migration_script.model_to[model_name]).count()
+                     count = session_verify.query(migration_script.model_to[model_name]).count()
                      if migration_script.entries_count[model_name] != count:
                          if migration_script.fail_on_count_mismatch[model_name]:
                              raise AssertionError("Integrity check failed on count equality for table %s: %d != %d" % \
@@ -243,7 +243,7 @@ def perform_migration(version):
 
             version += 1
 
-            store_verify.close()
+            session_verify.close()
 
         perform_data_update(new_db_file)
 

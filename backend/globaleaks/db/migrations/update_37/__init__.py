@@ -50,9 +50,9 @@ class MigrationScript(MigrationBase):
         else:
             log.err('The structure of %s is incorrect. Cannot load onion service keys' % TOR_DIR)
 
-        self.store_new.query(config).filter(config.var_group == u'node', config.var_name == u'onionservice').delete(synchronize_session='fetch')
+        self.session_new.query(config).filter(config.var_group == u'node', config.var_name == u'onionservice').delete(synchronize_session='fetch')
 
-        add_raw_config(self.store_new, u'node', u'onionservice', True, hostname)
-        add_raw_config(self.store_new, u'private', u'tor_onion_key', True, key)
+        add_raw_config(self.session_new, u'node', u'onionservice', True, hostname)
+        add_raw_config(self.session_new, u'private', u'tor_onion_key', True, key)
 
         self.entries_count['Config'] += 1

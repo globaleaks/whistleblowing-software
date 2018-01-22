@@ -208,15 +208,15 @@ class Notification_v_33(models.Model):
 
 class MigrationScript(MigrationBase):
     def epilogue(self):
-        old_node = self.store_old.query(self.model_from['Node']).one()
-        old_notif = self.store_old.query(self.model_from['Notification']).one()
+        old_node = self.session_old.query(self.model_from['Node']).one()
+        old_notif = self.session_old.query(self.model_from['Notification']).one()
 
         with open(os.path.join(Settings.client_path, 'data', 'favicon.ico'), 'r') as favicon_file:
             data = favicon_file.read()
             new_file = self.model_to['File']()
             new_file.id = u'favicon'
             new_file.data = base64.b64encode(data)
-            self.store_new.add(new_file)
+            self.session_new.add(new_file)
             self.entries_count['File'] += 1
 
         file_path = os.path.join(Settings.files_path, 'custom_homepage.html')
@@ -226,14 +226,14 @@ class MigrationScript(MigrationBase):
                 new_file = self.model_to['File']()
                 new_file.id = u'homepage'
                 new_file.data = base64.b64encode(data)
-                self.store_new.add(new_file)
+                self.session_new.add(new_file)
                 self.entries_count['File'] += 1
 
             os.remove(file_path)
 
         #### Create ConfigL10N table and rows ####
         for lang in old_node.languages_enabled:
-            self.store_new.add(self.model_to['EnabledLanguage'](lang))
+            self.session_new.add(self.model_to['EnabledLanguage'](lang))
 
         self._migrate_l10n_static_config(old_node, 'node')
         self._migrate_l10n_static_config(old_notif, 'templates')
@@ -245,7 +245,7 @@ class MigrationScript(MigrationBase):
         # Migrate Config saved in Node
         for var_name, _ in GLConfig_v_35['node'].items():
             old_val = getattr(old_node, var_name)
-            self.store_new.add(self.model_to['Config']('node', var_name, old_val, cfg_desc=GLConfig_v_35))
+            self.session_new.add(self.model_to['Config']('node', var_name, old_val, cfg_desc=GLConfig_v_35))
 
         # Migrate Config saved in Notification
         for var_name, _ in GLConfig_v_35['notification'].items():
@@ -254,18 +254,18 @@ class MigrationScript(MigrationBase):
             if var_name == 'exception_email_pgp_key_expiration' and old_val is not None:
                 old_val = iso_strf_time(old_val)
 
-            self.store_new.add(self.model_to['Config']('notification', var_name, old_val, cfg_desc=GLConfig_v_35))
+            self.session_new.add(self.model_to['Config']('notification', var_name, old_val, cfg_desc=GLConfig_v_35))
 
         # Migrate private fields
-        self.store_new.add(self.model_to['Config']('private', 'receipt_salt', old_node.receipt_salt))
-        self.store_new.add(self.model_to['Config']('private', 'smtp_password', old_notif.password))
+        self.session_new.add(self.model_to['Config']('private', 'receipt_salt', old_node.receipt_salt))
+        self.session_new.add(self.model_to['Config']('private', 'smtp_password', old_notif.password))
 
         # Set old verions that will be then handled by the version update
-        self.store_new.add(self.model_to['Config']('private', 'version', 'X.Y.Z'))
-        self.store_new.add(self.model_to['Config']('private', 'version_db', 0))
+        self.session_new.add(self.model_to['Config']('private', 'version', 'X.Y.Z'))
+        self.session_new.add(self.model_to['Config']('private', 'version_db', 0))
 
     def _migrate_l10n_static_config(self, old_obj, appd_key):
-        langs_enabled = self.model_to['EnabledLanguage'].list(self.store_new)
+        langs_enabled = self.model_to['EnabledLanguage'].list(self.session_new)
 
         new_obj_appdata = self.appdata[appd_key]
 
@@ -291,10 +291,10 @@ class MigrationScript(MigrationBase):
                 # not equal the current default template value
                 s.customized = val_f != val_def
 
-                self.store_new.add(s)
+                self.session_new.add(s)
 
     def migrate_Field(self):
-        old_objs = self.store_old.query(self.model_from['Field'])
+        old_objs = self.session_old.query(self.model_from['Field'])
         for old_obj in old_objs:
             new_obj = self.model_to['Field']()
             for key in [c.key for c in new_obj.__table__.columns]:
@@ -313,4 +313,4 @@ class MigrationScript(MigrationBase):
 
             # Produce something of value
 
-            self.store_new.add(new_obj)
+            self.session_new.add(new_obj)

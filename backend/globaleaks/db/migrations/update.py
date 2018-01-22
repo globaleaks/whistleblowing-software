@@ -11,14 +11,14 @@ class MigrationBase(object):
     """
     This is the base class used by every Updater
     """
-    def __init__(self, migration_mapping, start_version, store_old, store_new):
+    def __init__(self, migration_mapping, start_version, session_old, session_new):
         self.appdata = load_appdata()
 
         self.migration_mapping = migration_mapping
         self.start_version = start_version
 
-        self.store_old = store_old
-        self.store_new = store_new
+        self.session_old = session_old
+        self.session_new = session_new
 
         self.model_from = {}
         self.model_to = {}
@@ -38,16 +38,16 @@ class MigrationBase(object):
 
             self.entries_count[model_name] = 0
             if self.model_from[model_name] is not None and self.model_to[model_name] is not None:
-                self.entries_count[model_name] = self.store_old.query(self.model_from[model_name]).count()
+                self.entries_count[model_name] = self.session_old.query(self.model_from[model_name]).count()
 
-        self.store_new.commit()
+        self.session_new.commit()
 
     def commit(self):
-        self.store_new.commit()
+        self.session_new.commit()
 
     def close(self):
-        self.store_old.close()
-        self.store_new.close()
+        self.session_old.close()
+        self.session_new.close()
 
     def prologue(self):
         pass
@@ -80,7 +80,7 @@ class MigrationBase(object):
         return False
 
     def generic_migration_function(self, model_name):
-        old_objects = self.store_old.query(self.model_from[model_name])
+        old_objects = self.session_old.query(self.model_from[model_name])
 
         for old_obj in old_objects:
             new_obj = self.model_to[model_name](migrate=True)
@@ -88,10 +88,10 @@ class MigrationBase(object):
             for k in [c.key for c in new_obj.__table__.columns]:
                 self.migrate_model_key(old_obj, new_obj, k)
 
-            self.store_new.add(new_obj)
+            self.session_new.add(new_obj)
 
     def migrate_model(self, model_name):
-        objs_count = self.store_old.query(self.model_from[model_name]).count()
+        objs_count = self.session_old.query(self.model_from[model_name]).count()
 
         specific_migration_function = getattr(self, 'migrate_%s' % model_name, None)
         if specific_migration_function is not None:

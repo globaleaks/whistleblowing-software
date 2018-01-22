@@ -60,7 +60,7 @@ class StepField_v_27(Model):
 
 class MigrationScript(MigrationBase):
     def migrate_Step(self):
-        old_objs = self.store_old.query(self.model_from['Step'])
+        old_objs = self.session_old.query(self.model_from['Step'])
         for old_obj in old_objs:
             new_obj = self.model_to['Step']()
             for key in [c.key for c in new_obj.__table__.columns]:
@@ -70,10 +70,10 @@ class MigrationScript(MigrationBase):
 
                 setattr(new_obj, key, getattr(old_obj, key))
 
-            self.store_new.add(new_obj)
+            self.session_new.add(new_obj)
 
     def migrate_Field(self):
-        old_objs = self.store_old.query(self.model_from['Field'])
+        old_objs = self.session_old.query(self.model_from['Field'])
         for old_obj in old_objs:
             new_obj = self.model_to['Field']()
             for key in [c.key for c in new_obj.__table__.columns]:
@@ -84,12 +84,12 @@ class MigrationScript(MigrationBase):
                         new_obj.preview = old_obj.preview
 
                 elif key == 'step_id':
-                    sf = self.store_old.query(self.model_from['StepField']).filter(self.model_from['StepField'].field_id == old_obj.id).one_or_none()
+                    sf = self.session_old.query(self.model_from['StepField']).filter(self.model_from['StepField'].field_id == old_obj.id).one_or_none()
                     if sf is not None:
                         new_obj.step_id = sf.step_id
 
                 elif key == 'fieldgroup_id':
-                    ff = self.store_old.query(self.model_from['FieldField']).filter(self.model_from['FieldField'].child_id == old_obj.id).one_or_none()
+                    ff = self.session_old.query(self.model_from['FieldField']).filter(self.model_from['FieldField'].child_id == old_obj.id).one_or_none()
                     if ff is not None:
                         new_obj.fieldgroup_id = ff.parent_id
 
@@ -99,14 +99,14 @@ class MigrationScript(MigrationBase):
                 else:
                     setattr(new_obj, key, getattr(old_obj, key))
 
-            self.store_new.add(new_obj)
+            self.session_new.add(new_obj)
 
     def migrate_FieldOption(self):
-        old_objs = self.store_old.query(self.model_from['FieldOption'])
+        old_objs = self.session_old.query(self.model_from['FieldOption'])
         for old_obj in old_objs:
             new_obj = self.model_to['FieldOption']()
             for key in [c.key for c in new_obj.__table__.columns]:
                 if key != 'trigger_field':
                     setattr(new_obj, key, getattr(old_obj, key))
 
-            self.store_new.add(new_obj)
+            self.session_new.add(new_obj)

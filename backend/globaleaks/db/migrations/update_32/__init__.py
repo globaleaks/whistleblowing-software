@@ -133,9 +133,9 @@ class Message_v_31(models.Model):
 
 class MigrationScript(MigrationBase):
     def migrate_File(self):
-        old_node = self.store_old.query(self.model_from['Node']).one()
+        old_node = self.session_old.query(self.model_from['Node']).one()
 
-        old_objs = self.store_old.query(self.model_from['File'])
+        old_objs = self.session_old.query(self.model_from['File'])
         for old_obj in old_objs:
             new_obj = self.model_to['File']()
 
@@ -150,10 +150,10 @@ class MigrationScript(MigrationBase):
                 else:
                     setattr(new_obj, key, getattr(old_obj, key))
 
-            self.store_new.add(new_obj)
+            self.session_new.add(new_obj)
 
     def migrate_Comment(self):
-        old_objs = self.store_old.query(self.model_from['Comment'])
+        old_objs = self.session_old.query(self.model_from['Comment'])
         for old_obj in old_objs:
             new_obj = self.model_to['Comment']()
             for key in [c.key for c in new_obj.__table__.columns]:
@@ -162,22 +162,22 @@ class MigrationScript(MigrationBase):
                         continue
 
                     old_rtip_model = self.model_from['ReceiverTip']
-                    old_rtips = self.store_old.query(old_rtip_model).filter(old_rtip_model.internaltip_id == old_obj.internaltip_id)
+                    old_rtips = self.session_old.query(old_rtip_model).filter(old_rtip_model.internaltip_id == old_obj.internaltip_id)
                     if old_rtips.count() == 1:
                         new_obj.author_id = old_rtips.one().receiver.id
                     else:
                         old_user_model = self.model_from['User']
-                        old_user = self.store_old.query(old_user_model).filter(old_user_model.name == old_obj.author).one()
+                        old_user = self.session_old.query(old_user_model).filter(old_user_model.name == old_obj.author).one()
                         if old_user is not None:
                             new_obj.author_id = old_user.id
 
                 else:
                     setattr(new_obj, key, getattr(old_obj, key))
 
-            self.store_new.add(new_obj)
+            self.session_new.add(new_obj)
 
     def migrate_User(self):
-        old_objs = self.store_old.query(self.model_from['User'])
+        old_objs = self.session_old.query(self.model_from['User'])
         for old_obj in old_objs:
             new_obj = self.model_to['User']()
             for key in [c.key for c in new_obj.__table__.columns]:
@@ -186,4 +186,4 @@ class MigrationScript(MigrationBase):
                 else:
                     setattr(new_obj, key, getattr(old_obj, key))
 
-            self.store_new.add(new_obj)
+            self.session_new.add(new_obj)

@@ -136,7 +136,7 @@ class FieldAnswerGroupFieldAnswer_v_29(Model):
 
 class MigrationScript(MigrationBase):
     def migrate_Node(self):
-        old_node = self.store_old.query(self.model_from['Node']).one()
+        old_node = self.session_old.query(self.model_from['Node']).one()
         new_node = self.model_to['Node']()
 
         for key in [c.key for c in new_node.__table__.columns]:
@@ -146,15 +146,15 @@ class MigrationScript(MigrationBase):
 
             setattr(new_node, key, getattr(old_node, key))
 
-        self.store_new.add(new_node)
+        self.session_new.add(new_node)
 
     def migrate_FieldAnswer(self):
-        old_objs = self.store_old.query(self.model_from['FieldAnswer'])
+        old_objs = self.session_old.query(self.model_from['FieldAnswer'])
         for old_obj in old_objs:
             new_obj = self.model_to['FieldAnswer']()
             for key in [c.key for c in new_obj.__table__.columns]:
                 if key == 'fieldanswergroup_id':
-                    old_ref = self.store_old.query(self.model_from['FieldAnswerGroupFieldAnswer']) \
+                    old_ref = self.session_old.query(self.model_from['FieldAnswerGroupFieldAnswer']) \
                                             .filter(self.model_from['FieldAnswerGroupFieldAnswer'].fieldanswer_id == old_obj.id).one_or_none()
                     if old_ref is not None:
                         new_obj.fieldanswergroup_id = old_ref.fieldanswergroup_id
@@ -162,7 +162,7 @@ class MigrationScript(MigrationBase):
 
                 setattr(new_obj, key, getattr(old_obj, key))
 
-            self.store_new.add(new_obj)
+            self.session_new.add(new_obj)
 
     def migrate_Context(self):
         # Migrated in the epilogue
@@ -178,18 +178,18 @@ class MigrationScript(MigrationBase):
         self.fail_on_count_mismatch['FieldOption'] = False
         self.fail_on_count_mismatch['FieldAttr'] = False
 
-        default_language = self.store_old.query(self.model_from['Node']).one().default_language
+        default_language = self.session_old.query(self.model_from['Node']).one().default_language
 
-        old_contexts = self.store_old.query(self.model_from['Context'])
+        old_contexts = self.session_old.query(self.model_from['Context'])
         for old_context in old_contexts:
             map_on_default = False
             new_questionnaire_id = None
 
-            for old_step in self.store_old.query(self.model_from['Step']).filter(self.model_from['Step'].context_id == old_context.id):
-                if self.store_old.query(self.model_from['Field']).filter(self.model_from['Field'].step_id == old_step.id).count() != 4:
+            for old_step in self.session_old.query(self.model_from['Step']).filter(self.model_from['Step'].context_id == old_context.id):
+                if self.session_old.query(self.model_from['Field']).filter(self.model_from['Field'].step_id == old_step.id).count() != 4:
                     break
 
-                for field in self.store_old.query(self.model_from['Field']).filter(self.model_from['Field'].step_id == old_step.id):
+                for field in self.session_old.query(self.model_from['Field']).filter(self.model_from['Field'].step_id == old_step.id):
                     if 'en' in field.label and field.label['en'] == 'Short title':
                         map_on_default = True
                         break
@@ -204,10 +204,10 @@ class MigrationScript(MigrationBase):
                 new_questionnaire.show_steps_navigation_bar = old_context.show_steps_navigation_bar
                 new_questionnaire.steps_navigation_requires_completion = old_context.steps_navigation_requires_completion
                 new_questionnaire.enable_whistleblower_identity = old_context.enable_whistleblower_identity
-                self.store_new.add(new_questionnaire)
+                self.session_new.add(new_questionnaire)
                 new_questionnaire_id = new_questionnaire.id
 
-                for old_step in self.store_old.query(self.model_from['Step']).filter(self.model_from['Step'].context_id == old_context.id):
+                for old_step in self.session_old.query(self.model_from['Step']).filter(self.model_from['Step'].context_id == old_context.id):
                     new_step = self.model_to['Step']()
                     for key in [c.key for c in new_step.__table__.columns]:
                         if key == 'questionnaire_id':
@@ -215,7 +215,7 @@ class MigrationScript(MigrationBase):
                         else:
                             setattr(new_step, key, getattr(old_step, key))
 
-                    self.store_new.add(new_step)
+                    self.session_new.add(new_step)
 
             new_context = self.model_to['Context']()
             for key in [c.key for c in new_context.__table__.columns]:
@@ -227,4 +227,4 @@ class MigrationScript(MigrationBase):
                 else:
                     setattr(new_context, key, getattr(old_context, key))
 
-            self.store_new.add(new_context)
+            self.session_new.add(new_context)

@@ -19,7 +19,7 @@ class InternalFile_v_25(Model):
 
 class MigrationScript(MigrationBase):
     def migrate_InternalFile(self):
-        old_objs = self.store_old.query(self.model_from['InternalFile'])
+        old_objs = self.session_old.query(self.model_from['InternalFile'])
         for old_obj in old_objs:
             new_obj = self.model_to['InternalFile']()
             for key in [c.key for c in new_obj.__table__.columns]:
@@ -28,4 +28,4 @@ class MigrationScript(MigrationBase):
                 else:
                     setattr(new_obj, key, getattr(old_obj, key))
 
-            self.store_new.add(new_obj)
+            self.session_new.add(new_obj)
