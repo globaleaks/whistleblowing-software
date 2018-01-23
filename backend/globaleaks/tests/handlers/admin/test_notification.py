@@ -20,24 +20,19 @@ class TestNotificationInstance(helpers.TestHandlerWithPopulatedDB):
     def test_get(self):
         handler = self.request(role='admin')
         response = yield handler.get()
-        self.assertEqual(response['server'], 'demo.globaleaks.org')
-
-        resp_desc = self.ss_serial_desc(config.NotificationFactory.admin_notification,
-                                        requests.AdminNotificationDesc)
-
-        self._handler.validate_message(json.dumps(response), resp_desc)
+        self.assertEqual(response['smtp_server'], 'demo.globaleaks.org')
 
     @inlineCallbacks
     def test_put(self):
         handler = self.request(role='admin')
         notif_desc = yield handler.get()
 
-        notif_desc['server'] = stuff
-        notif_desc['password'] = u'widdlyscuds'
+        notif_desc['smtp_server'] = stuff
+        notif_desc['smtp_password'] = u'widdlyscuds'
 
         handler = self.request(notif_desc, role='admin')
         response = yield handler.put()
-        self.assertEqual(response['server'], stuff)
+        self.assertEqual(response['smtp_server'], stuff)
 
     @inlineCallbacks
     def test_put_reset_templates(self):
@@ -45,7 +40,7 @@ class TestNotificationInstance(helpers.TestHandlerWithPopulatedDB):
         notif_desc = yield handler.get()
 
         notif_desc['reset_templates'] = True
-        notif_desc['password'] = u'widdlyscuds'
+        notif_desc['smtp_password'] = u'widdlyscuds'
 
         handler = self.request(notif_desc, role='admin')
         response = yield handler.put()
@@ -63,5 +58,3 @@ class TestNotificationTestInstance(helpers.TestHandlerWithPopulatedDB):
     def test_post(self):
         handler = self.request(role='admin')
         yield handler.post()
-
-        # TODO: test email generation

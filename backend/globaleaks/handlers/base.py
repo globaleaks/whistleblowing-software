@@ -411,10 +411,10 @@ class BaseHandler(object):
         if self.request.tid != 1 or \
            len(token) != Settings.api_token_len or \
            self.state.api_token_session is None or \
-           not self.state.tenant_cache[self.request.tid].private.admin_api_token_digest:
+           not self.state.tenant_cache[self.request.tid].admin_api_token_digest:
             return None
 
-        stored_token_hash = bytes(self.state.tenant_cache[self.request.tid].private.admin_api_token_digest)
+        stored_token_hash = bytes(self.state.tenant_cache[self.request.tid].admin_api_token_digest)
 
         if constant_time.bytes_eq(sha512(token), stored_token_hash):
             return self.state.api_token_session

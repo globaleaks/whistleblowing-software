@@ -132,7 +132,7 @@ class TestAPI(TestGL):
         State.tor_exit_set.clear()
 
     def test_https_redirect(self):
-        State.tenant_cache[1].private.https_enabled = True
+        State.tenant_cache[1].https_enabled = True
         State.tenant_cache[1].hostname = 'www.globaleaks.org'
 
         request = forge_request(uri="https://www.globaleaks.org/", headers={'X-Tor2Web': '1'})
@@ -142,7 +142,7 @@ class TestAPI(TestGL):
         location = request.responseHeaders.getRawHeaders(b'location')[0]
         self.assertEqual('https://www.globaleaks.org/', location)
 
-        State.tenant_cache[1].private.https_enabled = True
+        State.tenant_cache[1].https_enabled = True
         State.tenant_cache[1].hostname = 'www.globaleaks.org'
         request = forge_request(uri="http://www.globaleaks.org/public", headers={'X-Tor2Web': '1'})
         self.api.render(request)

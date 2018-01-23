@@ -32,7 +32,6 @@ class Bool(Item):
 ConfigDescriptor = {
     u'creation_date': Int(default=0),
     u'receipt_salt': Unicode(default=salt),
-    u'smtp_password': Unicode(default=u'yes_you_really_should_change_me'),
 
     u'version': Unicode(default=unicode(__version__)),
     u'version_db': Int(default=DATABASE_VERSION),
@@ -54,15 +53,14 @@ ConfigDescriptor = {
 
     u'admin_api_token_digest': Unicode(),
 
-    u'server': Unicode(default=u'demo.globaleaks.org'),
-    u'port': Int(default=9267),
+    u'smtp_server': Unicode(default=u'demo.globaleaks.org'),
+    u'smtp_port': Int(default=9267),
+    u'smtp_username': Unicode(default=u'hey_you_should_change_me'),
+    u'smtp_password': Unicode(default=u'yes_you_really_should_change_me'),
+    u'smtp_source_name': Unicode(default=u'GlobaLeaks - CHANGE EMAIL ACCOUNT USED FOR NOTIFICATION'),
+    u'smtp_source_email': Unicode(default=u'notification@demo.globaleaks.org'),
+    u'smtp_security': Unicode(default=u'TLS'),
 
-    u'username': Unicode(default=u'hey_you_should_change_me'),
-
-    u'source_name': Unicode(default=u'GlobaLeaks - CHANGE EMAIL ACCOUNT USED FOR NOTIFICATION'),
-    u'source_email': Unicode(default=u'notification@demo.globaleaks.org'),
-
-    u'security': Unicode(default=u'TLS'),
     u'disable_admin_notification_emails': Bool(default=False),
     u'disable_custodian_notification_emails': Bool(default=False),
     u'disable_receiver_notification_emails': Bool(default=False),
@@ -140,12 +138,13 @@ ConfigDescriptor = {
     u'context_selector_type': Unicode(default=u'list'),
 
     u'reachable_via_web': Bool(default=True),
-    u'anonymize_outgoing_connections': Bool(default=True),
+    u'anonymize_outgoing_connections': Bool(default=True)
 }
 
 ConfigFilters = {
-    'node': [
+    'node': set([
         u'name',
+        u'admin_api_token_digest',
         u'basic_auth',
         u'basic_auth_username',
         u'basic_auth_password',
@@ -174,11 +173,11 @@ ConfigFilters = {
         u'disable_security_awareness_questions',
         u'disable_key_code_hint',
         u'disable_donation_panel',
+        u'enable_multisite',
         u'enable_captcha',
         u'enable_proof_of_work',
         u'enable_admin_exception_notification',
         u'enable_developers_exception_notification',
-        u'enable_multisite',
         u'enable_experimental_features',
         u'simplified_login',
         u'enable_custom_privacy_badge',
@@ -192,25 +191,9 @@ ConfigFilters = {
         u'threshold_free_disk_percentage_low',
         u'context_selector_type',
         u'reachable_via_web',
-        u'anonymize_outgoing_connections'
-    ],
-    'notification': [
-        u'server',
-        u'port',
-        u'username',
-        u'source_name',
-        u'source_email',
-        u'security',
-        u'disable_admin_notification_emails',
-        u'disable_custodian_notification_emails',
-        u'disable_receiver_notification_emails',
-        u'tip_expiration_threshold',
-        u'notification_threshold_per_hour'
-    ],
-    'private': [
+        u'anonymize_outgoing_connections',
         u'creation_date',
         u'receipt_salt',
-        u'smtp_password',
         u'version',
         u'version_db',
         u'latest_version',
@@ -226,5 +209,55 @@ ConfigFilters = {
         u'https_dh_params',
         u'https_enabled',
         u'admin_api_token_digest'
-    ]
+    ]),
+    'notification': set([
+        u'smtp_server',
+        u'smtp_port',
+        u'smtp_username',
+        u'smtp_password',
+        u'smtp_source_name',
+        u'smtp_source_email',
+        u'smtp_security',
+        u'disable_admin_notification_emails',
+        u'disable_custodian_notification_emails',
+        u'disable_receiver_notification_emails',
+        u'tip_expiration_threshold',
+        u'notification_threshold_per_hour'
+    ])
 }
+
+
+ConfigFilters['admin_node'] = ConfigFilters['node'] - set([
+    u'receipt_salt',
+    u'acme_accnt_key',
+    u'acme_accnt_uri',
+    u'tor_onion_key',
+    u'https_priv_key',
+    u'https_priv_gen',
+    u'https_csr',
+    u'https_cert',
+    u'https_chain',
+    u'https_dh_params',
+    u'admin_api_token_digest'
+])
+
+
+ConfigFilters['admin_notification'] = ConfigFilters['notification'] - set([
+    u'smtp_password'
+])
+
+
+ConfigFilters['public_node'] = ConfigFilters['admin_node'] - set([
+    'version',
+    'version_db',
+    'basic_auth',
+    'basic_auth_username',
+    'basic_auth_password',
+    'default_password',
+    'default_timezone',
+    'threshold_free_disk_megabytes_high',
+    'threshold_free_disk_megabytes_low',
+    'threshold_free_disk_percentage_high',
+    'threshold_free_disk_percentage_low',
+    'anonymize_outgoing_connections'
+])

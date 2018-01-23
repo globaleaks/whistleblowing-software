@@ -4,7 +4,7 @@ from twisted.internet.defer import inlineCallbacks, succeed
 
 from globaleaks import models
 from globaleaks.jobs.update_check import UpdateCheck
-from globaleaks.models.config import PrivateFactory
+from globaleaks.models.config import ConfigFactory
 from globaleaks.orm import transact
 from globaleaks.state import State
 from globaleaks.tests import helpers
@@ -31,12 +31,12 @@ packages="Package: globaleaks\n" \
 
 @transact
 def set_latest_version(session, version):
-    return PrivateFactory(session, 1).set_val(u'latest_version', version)
+    return ConfigFactory(session, 1, 'node').set_val(u'latest_version', version)
 
 
 @transact
 def get_latest_version(session):
-    return PrivateFactory(session, 1).get_val(u'latest_version')
+    return ConfigFactory(session, 1, 'node').get_val(u'latest_version')
 
 
 class TestUpdateCheck(helpers.TestGLWithPopulatedDB):

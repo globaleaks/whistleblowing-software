@@ -4,7 +4,7 @@ from urlparse import urlparse
 from globaleaks import models
 from globaleaks.db.migrations.update import MigrationBase
 from globaleaks.models.properties import *
-from globaleaks.models.config import NodeFactory
+from globaleaks.models.config import ConfigFactory
 
 
 class MigrationScript(MigrationBase):

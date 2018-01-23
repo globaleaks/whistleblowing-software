@@ -130,7 +130,7 @@ def sendmail(tid, username, password, smtp_host, smtp_port, security, from_name,
 
     except Exception as excep:
         # avoids raising an exception inside email logic to avoid chained errors
-        log.err("Unexpected exception in sendmail:", str(excep), tid=tid)
+        log.err("Unexpected exception in sendmail: %s", str(excep), tid=tid)
         return defer.succeed(False)
 
 

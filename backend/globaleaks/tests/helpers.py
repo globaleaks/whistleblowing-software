@@ -144,7 +144,7 @@ def init_glsettings_for_unit_tests():
 
 @transact
 def update_node_setting(session, var_name, value):
-    models.config.NodeFactory(session, 1).set_val(var_name, value)
+    models.config.ConfigFactory(session, 1, 'node').set_val(var_name, value)
 
 
 def get_dummy_step():
@@ -385,7 +385,7 @@ class TestGL(unittest.TestCase):
                  ('www.domain-b.com', 'cccccccccccccccc.onion')]
 
         hostname, onionservice = hosts[i - 1]
-        node_fact = models.config.NodeFactory(session, i)
+        node_fact = models.config.ConfigFactory(session, i, 'node')
         node_fact.set_val(u'hostname', hostname)
         node_fact.set_val(u'onionservice', onionservice)
 

@@ -35,7 +35,7 @@ from globaleaks.db.migrations.update_39 import \
     Step_v_38, User_v_38, WhistleblowerFile_v_38, WhistleblowerTip_v_38
 from globaleaks.orm import get_engine, make_db_uri
 from globaleaks.models import config, l10n, Base
-from globaleaks.models.config import PrivateFactory
+from globaleaks.models.config import ConfigFactory
 from globaleaks.settings import Settings
 from globaleaks.utils.utility import log
 
@@ -114,7 +114,7 @@ def perform_data_update(db_file):
 
 
     try:
-        prv = PrivateFactory(session, 1)
+        prv = ConfigFactory(session, 1, 'node')
 
         stored_ver = prv.get_val(u'version')
 

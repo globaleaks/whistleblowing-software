@@ -318,7 +318,7 @@ def db_create_submission(session, tid, request, uploaded_files, client_using_tor
 
     receipt = unicode(generateRandomReceipt())
 
-    submission.receipt_hash = hash_password(receipt, State.tenant_cache[tid].private.receipt_salt)
+    submission.receipt_hash = hash_password(receipt, State.tenant_cache[tid].receipt_salt)
 
     session.add(submission)
     session.flush()

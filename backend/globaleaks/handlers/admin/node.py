@@ -8,7 +8,7 @@ from globaleaks import models, utils, LANGUAGES_SUPPORTED_CODES, LANGUAGES_SUPPO
 from globaleaks.db import db_refresh_memory_variables
 from globaleaks.db.appdata import load_appdata
 from globaleaks.handlers.base import BaseHandler
-from globaleaks.models.config import NodeFactory, PrivateFactory
+from globaleaks.models.config import ConfigFactory
 from globaleaks.models.l10n import NodeL10NFactory
 from globaleaks.orm import transact
 from globaleaks.rest import errors, requests
@@ -17,16 +17,13 @@ from globaleaks.utils.utility import log
 
 
 def db_admin_serialize_node(session, tid, language):
-    node_dict = NodeFactory(session, tid).admin_export()
-    priv_dict = PrivateFactory(session, tid)
+    config = ConfigFactory(session, tid, 'admin_node').serialize()
 
     # Contexts and Receivers relationship
     configured = session.query(models.ReceiverContext).filter(models.ReceiverContext.context_id == models.Context.id,
                                                               models.Context.tid).count() > 0
 
     misc_dict = {
-        'version': priv_dict.get_val(u'version'),
-        'latest_version': priv_dict.get_val(u'latest_version'),
         'languages_supported': LANGUAGES_SUPPORTED,
         'languages_enabled': models.EnabledLanguage.list(session, tid),
         'configured': configured,
@@ -36,7 +33,7 @@ def db_admin_serialize_node(session, tid, language):
 
     l10n_dict = NodeL10NFactory(session, tid).localized_dict(language)
 
-    return utils.sets.merge_dicts(node_dict, misc_dict, l10n_dict)
+    return utils.sets.merge_dicts(config, misc_dict, l10n_dict)
 
 
 @transact
@@ -82,7 +79,7 @@ def db_update_node(session, tid, request, language):
     :param language: the language in which to localize data
     :return: a dictionary representing the serialization of the node
     """
-    node = NodeFactory(session, tid)
+    node = ConfigFactory(session, tid, 'node')
 
     node.update(request)
 

@@ -9,7 +9,7 @@ from globaleaks.handlers.admin.node import db_admin_serialize_node
 from globaleaks.handlers.admin.notification import db_get_notification
 from globaleaks.handlers.admin.user import db_get_admin_users
 from globaleaks.jobs.base import NetLoopingJob
-from globaleaks.models.config import PrivateFactory
+from globaleaks.models.config import ConfigFactory
 from globaleaks.orm import transact
 from globaleaks.utils.agent import get_page
 from globaleaks.utils.utility import log
@@ -20,7 +20,7 @@ DEB_PACKAGE_URL = 'https://deb.globaleaks.org/xenial/Packages'
 
 @transact
 def evaluate_update_notification(session, latest_version):
-    priv_fact = PrivateFactory(session, 1)
+    priv_fact = ConfigFactory(session, 1, 'node')
 
     stored_latest = priv_fact.get_val(u'latest_version')
 

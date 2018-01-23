@@ -6,7 +6,7 @@ import copy
 from globaleaks import models, LANGUAGES_SUPPORTED, LANGUAGES_SUPPORTED_CODES
 from globaleaks.handlers.admin.file import db_get_file
 from globaleaks.handlers.base import BaseHandler
-from globaleaks.models.config import NodeFactory
+from globaleaks.models.config import ConfigFactory
 from globaleaks.models.l10n import NodeL10NFactory
 from globaleaks.orm import transact
 from globaleaks.state import State
@@ -111,7 +111,7 @@ def db_serialize_node(session, tid, language):
     configured = session.query(models.ReceiverContext).filter(models.ReceiverContext.context_id == models.Context.id,
                                                               models.Context.tid == tid).count() > 0
 
-    ro_node = NodeFactory(session, tid).public_export()
+    ro_node = ConfigFactory(session, tid, 'public_node').serialize()
 
     misc_dict = {
         'languages_enabled': models.EnabledLanguage.list(session, tid) if ro_node['wizard_done'] else list(LANGUAGES_SUPPORTED_CODES),

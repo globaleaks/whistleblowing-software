@@ -20,7 +20,7 @@ def wizard(session, tid, request, language):
     tenant = models.db_get(session, models.Tenant, models.Tenant.id == tid)
     tenant.label = request['node_name']
 
-    node = config.NodeFactory(session, tid)
+    node = config.ConfigFactory(session, tid, 'node')
 
     if node.get_val(u'wizard_done'):
         log.err("DANGER: Wizard already initialized!", tid=tid)

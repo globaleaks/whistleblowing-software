@@ -446,6 +446,33 @@ class MigrationScript(MigrationBase):
     def migrate_ArchivedSchema(self):
         return
 
+    def migrate_Config(self):
+        old_objs = self.session_old.query(self.model_from['Config'])
+        for old_obj in old_objs:
+            new_obj = self.model_to['Config'](migrate=True)
+            for key in [c.key for c in new_obj.__table__.columns]:
+                if key == 'tid':
+                    new_obj.tid = 1
+                elif key == 'var_name':
+                    if old_obj.var_name == 'server':
+                        new_obj.var_name = 'smtp_server'
+                    elif old_obj.var_name == 'port':
+                        new_obj.var_name = 'smtp_port'
+                    elif old_obj.var_name == 'security':
+                        new_obj.var_name = 'smtp_security'
+                    elif old_obj.var_name == 'username':
+                        new_obj.var_name = 'smtp_username'
+                    elif old_obj.var_name == 'source_name':
+                        new_obj.var_name = 'smtp_source_name'
+                    elif old_obj.var_name == 'source_email':
+                        new_obj.var_name = 'smtp_source_email'
+                    else:
+                        new_obj.var_name = old_obj.var_name
+                else:
+                    setattr(new_obj, key, getattr(old_obj, key))
+
+            self.session_new.add(new_obj)
+
     def migrate_ConfigL10N(self):
         old_objs = self.session_old.query(self.model_from['ConfigL10N'])
         for old_obj in old_objs:

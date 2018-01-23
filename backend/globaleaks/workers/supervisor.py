@@ -5,7 +5,8 @@ import os
 import signal
 from sys import executable
 
-from globaleaks.models.config import PrivateFactory, load_tls_dict_list
+from globaleaks.handlers.admin.https import load_tls_dict_list
+from globaleaks.models.config import ConfigFactory
 from globaleaks.orm import transact
 from globaleaks.utils import tls
 from globaleaks.utils.utility import log, datetime_now, datetime_to_ISO8601
@@ -42,10 +43,10 @@ class ProcessSupervisor(object):
         self.tls_cfg['tls_socket_fds'] = [ns.fileno() for ns in net_sockets]
 
     def db_maybe_launch_https_workers(self, session):
-        privFact = PrivateFactory(session, 1)
+        config = ConfigFactory(session, 1, 'node')
 
         # If root_tenant is disabled do not start https
-        on = privFact.get_val(u'https_enabled')
+        on = config.get_val(u'https_enabled')
         if not on:
             log.info("Not launching workers")
             return defer.succeed(None)

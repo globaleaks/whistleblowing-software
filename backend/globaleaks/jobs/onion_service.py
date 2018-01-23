@@ -10,7 +10,7 @@ from globaleaks import models
 from globaleaks.db import refresh_memory_variables
 from globaleaks.rest.apicache import ApiCache
 from globaleaks.jobs.base import BaseJob
-from globaleaks.models.config import NodeFactory, PrivateFactory
+from globaleaks.models.config import ConfigFactory
 from globaleaks.orm import transact
 from globaleaks.utils.utility import log
 from globaleaks.state import State
@@ -37,16 +37,16 @@ def get_onion_service_info(session, tid):
 
 
 def db_get_onion_service_info(session, tid):
-    hostname = NodeFactory(session, tid).get_val(u'onionservice')
-    key = PrivateFactory(session, tid).get_val(u'tor_onion_key')
+    hostname = ConfigFactory(session, tid, 'node').get_val(u'onionservice')
+    key = ConfigFactory(session, tid, 'node').get_val(u'tor_onion_key')
 
     return hostname, key, tid
 
 
 @transact
 def set_onion_service_info(session, tid, hostname, key):
-    NodeFactory(session, tid).set_val(u'onionservice', hostname)
-    PrivateFactory(session, tid).set_val(u'tor_onion_key', key)
+    ConfigFactory(session, tid, 'node').set_val(u'onionservice', hostname)
+    ConfigFactory(session, tid, 'node').set_val(u'tor_onion_key', key)
 
     # Update external application state
     State.tenant_cache[tid].onionservice = hostname

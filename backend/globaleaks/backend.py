@@ -165,7 +165,7 @@ class Service(service.Service):
         if self.state.tenant_cache[1].reachable_via_web:
             hostname = tenant_cache.hostname if tenant_cache.hostname else '0.0.0.0'
             print("- [REMOTE HTTP]\t--> http://%s%s" % (hostname, Settings.api_prefix))
-            if tenant_cache.private.https_enabled:
+            if tenant_cache.https_enabled:
                 print("- [REMOTE HTTPS]\t--> https://%s%s" % (hostname, Settings.api_prefix))
 
         if tenant_cache.onionservice:
