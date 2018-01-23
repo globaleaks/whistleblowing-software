@@ -572,6 +572,7 @@ class ReceiverFileDownload(BaseHandler):
         log.debug("Download of file %s by receiver %s (%d)" %
                   (rfile.internalfile_id, receiver_id, rfile.downloads))
 
+        rfile.last_access = datetime_now()
         rfile.downloads += 1
 
         return serializers.serialize_rfile(session, tid, rfile)
