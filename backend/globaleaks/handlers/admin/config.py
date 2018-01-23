@@ -6,7 +6,7 @@ from twisted.web.client import readBody
 
 from globaleaks.db import db_refresh_memory_variables
 from globaleaks.handlers.operation import OperationHandler
-from globaleaks.models.config import NodeFactory, Config
+from globaleaks.models.config import ConfigFactory, Config
 from globaleaks.orm import transact
 from globaleaks.rest import errors
 from globaleaks.utils.utility import is_common_net_error
@@ -21,7 +21,7 @@ def check_hostname(session, tid, input_hostname):
     if input_hostname == u'':
       return
 
-    root_hostname = NodeFactory(session, 1).get_val(u'hostname')
+    root_hostname = ConfigFactory(session, 1, 'node').get_val(u'hostname')
 
     forbidden_endings = ['.onion', 'localhost']
     if tid != 1 and root_hostname != '':
@@ -40,7 +40,7 @@ def check_hostname(session, tid, input_hostname):
 
 @transact
 def set_config_variable(session, tid, var, val):
-    NodeFactory(session, tid).set_val(var, val)
+    ConfigFactory(session, tid, 'node').set_val(var, val)
 
     db_refresh_memory_variables(session, [tid])
 

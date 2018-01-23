@@ -3,7 +3,7 @@ from requests.exceptions import ConnectionError
 
 from OpenSSL import crypto, SSL
 from globaleaks.handlers.admin import https
-from globaleaks.models.config import PrivateFactory, NodeFactory
+from globaleaks.models.config import ConfigFactory
 from globaleaks.orm import transact
 from globaleaks.rest import errors
 from globaleaks.state import State
@@ -15,8 +15,8 @@ from twisted.internet.defer import inlineCallbacks, returnValue
 
 @transact
 def set_init_params(session, dh_params, hostname='localhost:9999'):
-    PrivateFactory(session, 1).set_val(u'https_dh_params', dh_params)
-    NodeFactory(session, 1).set_val(u'hostname', hostname)
+    ConfigFactory(session, 1, 'node').set_val(u'https_dh_params', dh_params)
+    ConfigFactory(session, 1, 'node').set_val(u'hostname', hostname)
     State.tenant_cache[1].hostname = 'localhost:9999'
 
 

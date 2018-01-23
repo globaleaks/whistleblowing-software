@@ -255,13 +255,13 @@ AdminNodeDesc = {
 }
 
 AdminNotificationDesc = merge_dicts({
-    'server': unicode,
-    'port': int,
-    'security': unicode, # 'TLS' or 'SSL' only
-    'username': unicode,
+    'smtp_server': unicode,
+    'smtp_port': int,
+    'smtp_security': unicode, # 'TLS' or 'SSL' only
+    'smtp_username': unicode,
     'smtp_password': unicode,
-    'source_name': unicode,
-    'source_email': email_regexp,
+    'smtp_source_name': unicode,
+    'smtp_source_email': email_regexp,
     'disable_admin_notification_emails': bool,
     'disable_custodian_notification_emails': bool,
     'disable_receiver_notification_emails': bool,
@@ -434,8 +434,7 @@ NodeDesc = {
     'enable_captcha': bool,
     'enable_proof_of_work':  bool,
     'enable_custom_privacy_badge': bool,
-    'custom_privacy_badge_tor': unicode,
-    'custom_privacy_badge_none': unicode,
+    'custom_privacy_badge_text': unicode,
     'widget_comments_title': unicode,
     'widget_messages_title': unicode,
     'widget_files_title': unicode

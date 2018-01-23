@@ -5,7 +5,7 @@ from OpenSSL import crypto
 from OpenSSL.crypto import FILETYPE_PEM
 from twisted.trial.unittest import TestCase
 
-from globaleaks.models.config import PrivateFactory, NodeFactory
+from globaleaks.models.config import ConfigFactory
 from globaleaks.orm import transact
 from globaleaks.tests import helpers
 from globaleaks.utils import tls
@@ -37,14 +37,14 @@ def get_valid_setup():
 def commit_valid_config(session):
     cfg = get_valid_setup()
 
-    priv_fact = PrivateFactory(session, 1)
+    priv_fact = ConfigFactory(session, 1, 'node')
     priv_fact.set_val(u'https_dh_params', cfg['dh_params'])
     priv_fact.set_val(u'https_priv_key', cfg['key'])
     priv_fact.set_val(u'https_cert', cfg['cert'])
     priv_fact.set_val(u'https_chain', cfg['chain'])
     priv_fact.set_val(u'https_enabled', True)
 
-    NodeFactory(session, 1).set_val(u'hostname', 'localhost:9999')
+    ConfigFactory(session, 1, 'node').set_val(u'hostname', 'localhost:9999')
 
 
 class TestObjectValidators(TestCase):

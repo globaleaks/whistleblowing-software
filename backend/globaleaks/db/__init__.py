@@ -8,7 +8,7 @@ import traceback
 
 from globaleaks import models, security, DATABASE_VERSION, FIRST_DATABASE_VERSION_SUPPORTED
 from globaleaks.handlers.base import Session
-from globaleaks.models.config import Config, NodeFactory, PrivateFactory, NotificationFactory
+from globaleaks.models.config import Config, ConfigFactory
 from globaleaks.models.config_desc import ConfigFilters
 from globaleaks.orm import transact, transact_sync
 from globaleaks.settings import Settings
@@ -133,9 +133,6 @@ def db_refresh_tenant_cache(session, tid_list):
         elif cfg.var_name in ConfigFilters['notification']:
             tenant_cache.setdefault('notification', ObjectDict())
             tenant_cache['notification'][cfg.var_name] = cfg.get_v()
-        elif cfg.var_name in ConfigFilters['private']:
-            tenant_cache.setdefault('private', ObjectDict())
-            tenant_cache['private'][cfg.var_name] = cfg.get_v()
 
     for tid, lang in models.EnabledLanguage.tid_list(session, tid_list):
         State.tenant_cache[tid].setdefault('languages_enabled', []).append(lang)
@@ -175,7 +172,7 @@ def db_refresh_memory_variables(session, to_refresh=None):
         to_refresh = State.tenant_cache.keys()
         db_set_cache_exception_delivery_list(session, State.tenant_cache[1])
 
-        if State.tenant_cache[1].private.admin_api_token_digest:
+        if State.tenant_cache[1].admin_api_token_digest:
             api_id = session.query(models.User.id).filter(models.User.tid == 1, models.User.role == u'admin').order_by(models.User.creation_date).first()
             if api_id is not None:
                 State.api_token_session = Session(1, api_id, 'admin', 'enabled')

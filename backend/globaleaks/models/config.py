@@ -62,23 +62,20 @@ class ConfigFactory(object):
     """
     This factory depends on the following attributes set by the sub class:
     """
-    update_set = frozenset() # keys updated when fact.update(d) is called
-    group_desc = dict() # the corresponding dict in ConfigDescriptor
-
     def __init__(self, session, tid, group, *args, **kwargs):
         self.session = session
         self.tid = tid
         self.group = unicode(group)
         self.res = None
+        self.keys = ConfigFilters[group]
 
     def _query_group(self):
         self.res = {c.var_name: c for c in self.session.query(Config).filter(Config.tid == self.tid, Config.var_name.in_(ConfigFilters[self.group]))}
 
     def update(self, request):
         self._query_group()
-        keys = set(request.keys()) & self.update_set
 
-        for key in keys:
+        for key in (key for key in request.keys() if key in self.res):
             self.res[key].set_v(request[key])
 
     def get_cfg(self, var_name):
@@ -93,92 +90,23 @@ class ConfigFactory(object):
         else:
             self.get_cfg(var_name).set_v(value)
 
-    def _export_group_dict(self, safe_set):
+    def serialize(self):
         self._query_group()
-        return {k: self.res[k].get_v() for k in safe_set}
+        return {k: self.res[k].get_v() for k in self.res}
 
     def clean_and_add(self):
-        actual = [c[0] for c in self.session.query(Config.var_name).filter(Config.tid == self.tid)]
-
-        allowed = ConfigDescriptor.keys()
-
-        extra = list(set(actual) - set(allowed))
+        actual = set([c[0] for c in self.session.query(Config.var_name).filter(Config.tid == self.tid)])
+        allowed = set(ConfigDescriptor.keys())
+        extra = list(actual - allowed)
 
         if extra:
             self.session.query(Config).filter(Config.tid == self.tid, Config.var_name.in_(extra)).delete(synchronize_session='fetch')
 
-        missing = list(set(allowed) - set(actual))
+        missing = list(allowed - actual)
         for key in missing:
             self.session.add(Config(self.tid, key, ConfigDescriptor[key].default))
 
         return len(missing), len(extra)
-
-
-class NodeFactory(ConfigFactory):
-    node_private_fields = frozenset({
-        'basic_auth',
-        'basic_auth_username',
-        'basic_auth_password',
-        'default_password',
-        'default_timezone',
-
-        'threshold_free_disk_megabytes_high',
-        'threshold_free_disk_megabytes_low',
-        'threshold_free_disk_percentage_high',
-        'threshold_free_disk_percentage_low',
-
-        'anonymize_outgoing_connections',
-    })
-
-    admin_node = frozenset(ConfigFilters['node'])
-
-    public_node = admin_node - node_private_fields
-
-    update_set = admin_node
-    group_desc = ConfigDescriptor
-
-    def __init__(self, session, tid, *args, **kwargs):
-        ConfigFactory.__init__(self, session, tid, 'node', *args, **kwargs)
-
-    def public_export(self):
-        return self._export_group_dict(self.public_node)
-
-    def admin_export(self):
-        return self._export_group_dict(self.admin_node)
-
-
-class NotificationFactory(ConfigFactory):
-    admin_notification = frozenset(ConfigFilters['notification'])
-
-    update_set = admin_notification
-    group_desc = ConfigDescriptor
-
-    def __init__(self, session, tid, *args, **kwargs):
-        ConfigFactory.__init__(self, session, tid, 'notification', *args, **kwargs)
-
-    def admin_export(self):
-        return self._export_group_dict(self.admin_notification)
-
-
-class PrivateFactory(ConfigFactory):
-    non_mem_vars = {
-        'acme_accnt_key',
-        'tor_onion_key',
-        'https_priv_key',
-        'https_priv_gen',
-        'https_chain',
-        'https_dh_params',
-    }
-
-    mem_export_set = frozenset(set(ConfigFilters['private']) - non_mem_vars)
-
-    group_desc = ConfigDescriptor
-
-    def __init__(self, session, tid, *args, **kwargs):
-        ConfigFactory.__init__(self, session, tid, 'private', *args, **kwargs)
-
-
-factories = [NodeFactory, NotificationFactory, PrivateFactory]
 
 
 def system_cfg_init(session, tid):
@@ -194,29 +122,8 @@ def system_cfg_init(session, tid):
 def update_defaults(session, tid):
     session.query(Config).filter(Config.tid == tid, not_(Config.var_name.in_(ConfigDescriptor.keys()))).delete(synchronize_session='fetch')
 
-    for fact_model in factories:
-         fact_model(session, tid).clean_and_add()
+    ConfigFactory(session, tid, 'node').clean_and_add()
+    ConfigFactory(session, tid, 'notification').clean_and_add()
 
     # Set the system version to the current aligned cfg
-    PrivateFactory(session, tid).set_val(u'version', __version__)
-
-
-def load_tls_dict(session, tid):
-    """
-    A quick and dirty function to grab all of the tls config for use in subprocesses
-    """
-    priv = PrivateFactory(session, tid)
-    node = NodeFactory(session, tid)
-
-    return {
-        'ssl_key': priv.get_val(u'https_priv_key'),
-        'ssl_cert': priv.get_val(u'https_cert'),
-        'ssl_intermediate': priv.get_val(u'https_chain'),
-        'ssl_dh': priv.get_val(u'https_dh_params'),
-        'https_enabled': priv.get_val(u'https_enabled'),
-        'hostname': node.get_val(u'hostname'),
-    }
-
-
-def load_tls_dict_list(session):
-    return [load_tls_dict(session, tid[0]) for tid in session.query(Tenant.id)]
+    ConfigFactory(session, tid, 'node').set_val(u'version', __version__)

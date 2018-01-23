@@ -6,7 +6,7 @@ from globaleaks.db.appdata import load_appdata
 from globaleaks.handlers.admin.node import admin_serialize_node
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.user import get_user_settings
-from globaleaks.models.config import NotificationFactory, PrivateFactory
+from globaleaks.models.config import ConfigFactory
 from globaleaks.models.l10n import NotificationL10NFactory
 from globaleaks.orm import transact
 from globaleaks.rest import requests
@@ -16,7 +16,8 @@ from globaleaks.utils.templating import Templating
 
 
 def admin_serialize_notification(session, tid, language):
-    config_dict = NotificationFactory(session, tid).admin_export()
+    config_dict = ConfigFactory(session, tid, 'admin_notification').serialize()
+
     conf_l10n_dict = NotificationL10NFactory(session, tid).localized_dict(language)
 
     cmd_flags = {
@@ -39,12 +40,11 @@ def get_notification(session, tid, language):
 
 @transact
 def update_notification(session, tid, request, language):
-    notif = NotificationFactory(session, tid)
-    notif.update(request)
+    notif = ConfigFactory(session, tid, 'notification')
+    if request['smtp_password'] == '':
+        del request['smtp_password']
 
-    smtp_pw = request.pop('smtp_password', u'')
-    if smtp_pw != u'':
-        PrivateFactory(session, tid).set_val(u'smtp_password', smtp_pw)
+    notif.update(request)
 
     notif_l10n = NotificationL10NFactory(session, tid)
     notif_l10n.update(request, language)

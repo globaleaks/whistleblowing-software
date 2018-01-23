@@ -223,7 +223,7 @@ class APIResourceWrapper(Resource):
         return False
 
     def should_redirect_https(self, request):
-        if State.tenant_cache[request.tid].private.https_enabled and \
+        if State.tenant_cache[request.tid].https_enabled and \
            request.client_proto == 'http' and \
            request.client_ip not in Settings.local_hosts:
             return True

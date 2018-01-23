@@ -4,20 +4,22 @@ import ssl
 import tempfile
 import urllib2
 
-from globaleaks.models.config import PrivateFactory, load_tls_dict_list
+from twisted.internet import threads, reactor
+from twisted.internet.defer import inlineCallbacks
+
+from globaleaks.handlers.admin.https import load_tls_dict_list
+from globaleaks.models.config import ConfigFactory
 from globaleaks.orm import transact
 from globaleaks.tests import helpers
 from globaleaks.tests.utils import test_tls
 from globaleaks.utils.sock import reserve_port_for_ip
 from globaleaks.workers import supervisor
 from globaleaks.workers.worker_https import HTTPSProcess
-from twisted.internet import threads, reactor
-from twisted.internet.defer import inlineCallbacks
 
 
 @transact
 def toggle_https(session, enabled):
-    PrivateFactory(session, 1).set_val(u'https_enabled', enabled)
+    ConfigFactory(session, 1, 'node').set_val(u'https_enabled', enabled)
 
 class TestProcessSupervisor(helpers.TestGL):
     @inlineCallbacks
