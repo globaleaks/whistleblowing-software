@@ -6,12 +6,9 @@ from __future__ import absolute_import
 import collections
 import copy
 
-from datetime import timedelta
-
 from globaleaks.models.properties import *
 from globaleaks.orm import transact
 from globaleaks.rest import errors
-from globaleaks.settings import Settings
 from globaleaks.utils.utility import datetime_now, datetime_null, datetime_to_ISO8601
 
 

@@ -4,7 +4,6 @@ import shutil
 
 from globaleaks.db.migrations.update import MigrationBase
 from globaleaks.db.migrations.update_37.config_desc import GLConfig
-from globaleaks.handlers.admin import tenant
 from globaleaks.models import *
 from globaleaks.models import config_desc
 from globaleaks.models.properties import *

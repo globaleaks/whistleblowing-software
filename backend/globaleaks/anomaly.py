@@ -4,11 +4,11 @@
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import models
-from globaleaks.state import State
 from globaleaks.handlers.admin.node import db_admin_serialize_node
 from globaleaks.handlers.admin.notification import db_get_notification
 from globaleaks.handlers.admin.user import db_get_admin_users
 from globaleaks.orm import transact
+from globaleaks.state import State
 from globaleaks.rest.apicache import ApiCache
 from globaleaks.transactions import db_schedule_email
 from globaleaks.utils.templating import Templating

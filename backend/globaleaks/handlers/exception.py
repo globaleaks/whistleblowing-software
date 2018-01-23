@@ -5,7 +5,6 @@ import json
 
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.rest import requests
-from globaleaks.settings import Settings
 from globaleaks.utils.utility import log
 
 

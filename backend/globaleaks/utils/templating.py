@@ -13,10 +13,11 @@ import copy
 
 from globaleaks import __version__
 from globaleaks import models
-from globaleaks.security import encrypt_message
 from globaleaks.rest import errors
+from globaleaks.security import encrypt_message
 from globaleaks.utils.utility import ISO8601_to_pretty_str, ISO8601_to_day_str, \
-    datetime_now, bytes_to_pretty_str
+    bytes_to_pretty_str
+
 
 node_keywords = [
     '{NodeName}',

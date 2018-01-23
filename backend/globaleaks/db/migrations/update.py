@@ -1,6 +1,4 @@
 # -*- coding: utf-8 -*-
-from sqlalchemy.ext.declarative import declarative_base
-
 from globaleaks import DATABASE_VERSION, FIRST_DATABASE_VERSION_SUPPORTED
 from globaleaks.db.appdata import load_appdata
 from globaleaks.settings import Settings

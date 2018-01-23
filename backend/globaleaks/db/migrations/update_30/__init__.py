@@ -1,11 +1,7 @@
 # -*- coding: utf-8 -*-
-import os
-
 from globaleaks.db.migrations.update import MigrationBase
-from globaleaks.handlers.admin.field import db_create_field
-from globaleaks.models import Model, Model
+from globaleaks.models import Model
 from globaleaks.models.properties import *
-from globaleaks.settings import Settings
 
 
 class Node_v_29(Model):

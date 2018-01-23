@@ -2,7 +2,7 @@
 # Implement the notification of new submissions
 import copy
 
-from twisted.internet import defer, reactor
+from twisted.internet import defer
 
 from globaleaks import models
 from globaleaks.handlers.admin.context import admin_serialize_context

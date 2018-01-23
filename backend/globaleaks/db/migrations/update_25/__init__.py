@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from globaleaks.db.migrations.update import MigrationBase
-from globaleaks.models import Model, Model
+from globaleaks.models import Model
 from globaleaks.models.properties import *
 from globaleaks.security import sha512
 

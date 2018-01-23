@@ -7,7 +7,7 @@ from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import models
 from globaleaks.handlers.base import BaseHandler
-from globaleaks.models import serializers, get
+from globaleaks.models import serializers
 from globaleaks.orm import transact
 from globaleaks.rest import errors
 from globaleaks.security import directory_traversal_check

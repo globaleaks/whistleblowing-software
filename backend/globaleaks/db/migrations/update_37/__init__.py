@@ -2,7 +2,6 @@
 import os
 import re
 
-from globaleaks import models
 from globaleaks.db.migrations.update import MigrationBase
 from globaleaks.models.properties import *
 from globaleaks.utils.utility import log

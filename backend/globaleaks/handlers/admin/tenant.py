@@ -6,15 +6,13 @@
 import base64
 import os
 
-from twisted.internet.defer import inlineCallbacks
-
 from globaleaks import models
 from globaleaks.db import db_refresh_memory_variables
 from globaleaks.db.appdata import db_update_defaults, load_appdata
 from globaleaks.handlers.admin import file
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.orm import transact
-from globaleaks.rest import requests, errors
+from globaleaks.rest import requests
 from globaleaks.utils.utility import log
 from globaleaks.settings import Settings
 from globaleaks.state import State
