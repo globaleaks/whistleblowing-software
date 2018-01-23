@@ -9,18 +9,11 @@ class TestORM(helpers.TestGL):
     initialize_test_database_using_archived_db = False
 
     @transact
-    def _transaction_with_exception(self, session):
-        raise Exception
-
-    @transact
-    def _transaction_pragmas(self, session):
+    def _verify_pragmas(self, session):
         # Verify setting enabled in the sqlite db
-        self.assertEqual(session.execute("PRAGMA foreign_keys").get_one()[0], 1)  # ON
-        self.assertEqual(session.execute("PRAGMA secure_delete").get_one()[0], 1) # ON
-        self.assertEqual(session.execute("PRAGMA auto_vacuum").get_one()[0], 1)   # FULL
-
-    def db_add_config(self, session):
-        session.add(Counter({'tid': 1, 'key': 'antani', 'number': 31337}))
+        self.assertEqual(session.execute("PRAGMA foreign_keys").fetchone()[0], 1)  # ON
+        self.assertEqual(session.execute("PRAGMA secure_delete").fetchone()[0], 1) # ON
+        self.assertEqual(session.execute("PRAGMA auto_vacuum").fetchone()[0], 1)   # FULL
 
     @transact
     def _transact_with_success(self, session):
@@ -30,6 +23,13 @@ class TestORM(helpers.TestGL):
     def _transact_with_exception(self, session):
         self.db_add_config(session)
         raise Exception("antani")
+
+    def db_add_config(self, session):
+        session.add(Counter({'tid': 1, 'key': 'antani', 'number': 31337}))
+
+    @inlineCallbacks
+    def test_pragmas(self):
+        yield self._verify_pragmas()
 
     @inlineCallbacks
     def test_transact_with_stuff(self):
