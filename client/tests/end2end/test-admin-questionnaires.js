@@ -36,8 +36,6 @@ describe('admin add, configure and delete questionnaires', function() {
   it('should add new questionnaires', function() {
     browser.setLocation('admin/questionnaires');
 
-    browser.gl.utils.waitUntilPresent(by.xpath(".//*[text()='Default']"));
-
     add_questionnaires('Questionnaire 1');
     add_questionnaires('Questionnaire 2');
   });
