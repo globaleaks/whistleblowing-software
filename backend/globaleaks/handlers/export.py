@@ -13,7 +13,7 @@ from globaleaks.handlers.user import user_serialize_user
 from globaleaks.orm import transact
 from globaleaks.settings import Settings
 from globaleaks.utils.templating import Templating
-from globaleaks.utils.utility import msdos_encode
+from globaleaks.utils.utility import msdos_encode, datetime_now
 from globaleaks.utils.zipstream import ZipStream
 
 
@@ -51,6 +51,7 @@ def get_tip_export(session, tid, user_id, rtip_id, language):
                                                            models.ReceiverTip.id == rtip_id,
                                                            models.ReceiverTip.internaltip_id == models.InternalTip.id,
                                                            models.InternalTip.tid == tid):
+        rfile.last_access = datetime_now()
         rfile.downloads += 1
         file_dict = models.serializers.serialize_rfile(session, tid, rfile)
         file_dict['name'] = 'files/' + file_dict['name']
