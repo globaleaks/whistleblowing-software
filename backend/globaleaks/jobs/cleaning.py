@@ -1,5 +1,8 @@
 # -*- coding: utf-8
 # Implementation of the cleaning operations.
+import datetime
+import fnmatch
+import os
 from datetime import timedelta
 
 from sqlalchemy import and_, not_
@@ -16,6 +19,7 @@ from globaleaks.jobs.base import LoopingJob
 from globaleaks.orm import transact
 from globaleaks.security import overwrite_and_remove
 from globaleaks.state import State
+from globaleaks.utils.utility import is_expired
 from globaleaks.utils.templating import Templating
 from globaleaks.utils.utility import datetime_now, datetime_to_ISO8601
 
@@ -116,13 +120,21 @@ class Cleaning(LoopingJob):
 
     @inlineCallbacks
     def perform_secure_deletion_of_files(self):
+        # Delete files that are marked for secure deletion
         files_to_delete = yield self.get_files_to_secure_delete()
-
         for file_to_delete in files_to_delete:
             overwrite_and_remove(file_to_delete)
 
         if files_to_delete:
             yield self.commit_files_deletion(files_to_delete)
+
+        # Delete the outdated AES keys older than 1 day
+        aes_keys_to_remove = [f for f in os.listdir(self.state.settings.ramdisk_path) if fnmatch.fnmatch(f, 'aeskey-*')]
+        for f in aes_keys_to_remove:
+            path = os.path.join(self.state.settings.ramdisk_path, f)
+            timestamp = datetime.datetime.fromtimestamp(os.path.getmtime(path))
+            if is_expired(timestamp, days=1):
+                overwrite_and_remove(file_to_delete)
 
     @inlineCallbacks
     def operation(self):
