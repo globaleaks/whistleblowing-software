@@ -238,7 +238,7 @@ class SecureTemporaryFile(tempfile._TemporaryFileWrapper):
 
         try:
             tempfile._TemporaryFileWrapper.close(self)
-        except Exception:
+        except:
             pass
 
     def read(self, c=None):
@@ -438,7 +438,7 @@ def encrypt_message(pgp_key_public, msg):
     try:
         fingerprint = gpob.load_key(pgp_key_public)['fingerprint']
         body = gpob.encrypt_message(fingerprint, msg)
-    except Exception:
+    except:
         raise
     finally:
         gpob.destroy_environment()
@@ -465,7 +465,7 @@ def parse_pgp_key(key):
             'fingerprint': k['fingerprint'],
             'expiration': k['expiration']
         }
-    except Exception:
+    except:
         raise
     finally:
         # the finally statement is always called also if

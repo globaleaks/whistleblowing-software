@@ -209,7 +209,7 @@ class BaseHandler(object):
             try:
                 int(value)
                 return True
-            except Exception:
+            except:
                 return False
 
         if python_type == bool:
@@ -225,7 +225,7 @@ class BaseHandler(object):
         """
         try:
             value = unicode(value)
-        except Exception:
+        except:
             return False
 
         return bool(re.match(type, value))

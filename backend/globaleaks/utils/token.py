@@ -29,7 +29,7 @@ class TokenListClass(TempDict):
         for f in item.uploaded_files:
             try:
                 os.remove(f['path'])
-            except Exception:
+            except:
                 pass
 
     def get(self, key):
