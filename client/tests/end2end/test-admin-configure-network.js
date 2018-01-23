@@ -20,7 +20,7 @@ describe('admin configure https', function() {
     element(by.model('admin.node.hostname')).sendKeys('antani.gov');
     element(by.model('admin.node.hostname')).click();
 
-    element.all(by.cssContainingText("button", "Save")).get(1).click();
+    element.all(by.cssContainingText("button", "Save")).get(0).click();
 
     element(by.cssContainingText("button", "Proceed")).click();
 

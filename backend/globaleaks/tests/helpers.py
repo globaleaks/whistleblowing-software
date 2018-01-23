@@ -1070,7 +1070,7 @@ class MockDict:
             'enable_experimental_features': False,
             'enable_multisite': True,
             'enable_custom_privacy_badge': False,
-            'custom_privacy_badge': u'',
+            'custom_privacy_badge_text': u'',
             'header_title_homepage': u'',
             'header_title_submissionpage': u'',
             'header_title_receiptpage': u'',
@@ -1093,6 +1093,9 @@ class MockDict:
             'basic_auth_password': '',
             'reachable_via_web': False,
             'anonymize_outgoing_connections': False,
+            'enable_admin_exception_notification': True,
+            'enable_developers_exception_notification': True
+
         }
 
 
