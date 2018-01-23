@@ -1,15 +1,10 @@
 # -*- coding: utf-8 -*-
 #
-# this file contain the class converting the %KeyWords% with data.
-# perhaps exists something python-stable-portable-well know, this
-# class has just be written down easily and fit our needs.
-#
-# If you know something better, please tell to us. At the moment,
-# supporter KeyWords are here documented:
-# https://github.com/globaleaks/GlobaLeaks/wiki/Customization-guide#customize-notification
-
+# This filte contains routines dealing with texts templates and variables replacement used
+# mainly in mail notifications.
 import collections
 import copy
+import re
 
 from globaleaks import __version__
 from globaleaks import models
@@ -275,7 +270,7 @@ class TipKeyword(UserNodeKeyword, ContextKeyword):
 
     def Comments(self):
         comments = self.data.get('comments', [])
-        if len(comments) == 0:
+        if not len(comments):
             return '{Blank}'
 
         ret = self.data['node']['widget_comments_title'] + ':\n'
@@ -284,7 +279,7 @@ class TipKeyword(UserNodeKeyword, ContextKeyword):
 
     def Messages(self):
         messages = self.data.get('messages', [])
-        if len(messages) == 0:
+        if not len(messages):
             return '{Blank}'
 
         ret = self.data['node']['widget_messages_title'] + ':\n'
@@ -479,7 +474,9 @@ class Templating(object):
             raw_template = raw_template.replace('\n{Blank}\n', '\n')
 
             # remove remaining $Blank% tokens
-            raw_template = raw_template.replace('\n{Blank}\n', '')
+            raw_template = raw_template.replace('\n{Blank}', '')
+
+            raw_template = raw_template.rstrip()
 
             if count == 0:
                 # finally!
