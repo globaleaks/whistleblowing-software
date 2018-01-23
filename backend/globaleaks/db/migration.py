@@ -4,7 +4,6 @@ import os
 import shutil
 from collections import OrderedDict
 
-from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
@@ -33,7 +32,7 @@ from globaleaks.db.migrations.update_39 import \
     Questionnaire_v_38, Receiver_v_38, ReceiverContext_v_38, \
     ReceiverFile_v_38, ReceiverTip_v_38, ShortURL_v_38, Stats_v_38, \
     Step_v_38, User_v_38, WhistleblowerFile_v_38, WhistleblowerTip_v_38
-from globaleaks.orm import get_engine, make_db_uri
+from globaleaks.orm import get_engine
 from globaleaks.models import config, l10n, Base
 from globaleaks.models.config import ConfigFactory
 from globaleaks.settings import Settings

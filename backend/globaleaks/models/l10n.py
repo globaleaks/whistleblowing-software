@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from sqlalchemy import not_, Column, ForeignKeyConstraint
 
-from globaleaks import LANGUAGES_SUPPORTED_CODES, models
+from globaleaks import models
 from globaleaks.models import Base, EnabledLanguage
 from globaleaks.models.properties import *
 

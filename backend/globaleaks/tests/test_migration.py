@@ -6,7 +6,6 @@ for each version one an empty and a populated db must be sessiond in directories
  - db/populated
 """
 import os
-import re
 import shutil
 
 from sqlalchemy.orm import sessionmaker

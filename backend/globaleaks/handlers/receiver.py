@@ -13,7 +13,7 @@ from globaleaks.orm import transact
 from globaleaks.rest import requests, errors
 from globaleaks.state import State
 from globaleaks.utils.structures import get_localized_values
-from globaleaks.utils.utility import log, datetime_to_ISO8601
+from globaleaks.utils.utility import datetime_to_ISO8601
 
 
 def receiver_serialize_receiver(session, tid, receiver, user, language):

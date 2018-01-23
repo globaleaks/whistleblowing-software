@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 # Implements configuration of Tor hidden service
-
 import os
 from txtorcon import build_local_tor_connection
 
@@ -12,8 +11,8 @@ from globaleaks.rest.apicache import ApiCache
 from globaleaks.jobs.base import BaseJob
 from globaleaks.models.config import ConfigFactory
 from globaleaks.orm import transact
-from globaleaks.utils.utility import log
 from globaleaks.state import State
+from globaleaks.utils.utility import log
 
 
 try:

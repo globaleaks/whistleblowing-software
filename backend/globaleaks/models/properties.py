@@ -1,12 +1,15 @@
-# -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*
+# pylint: disable=unused-import
+import json
+
 from sqlalchemy import Column, CheckConstraint, ForeignKeyConstraint, types
 from sqlalchemy.types import Boolean, DateTime, Integer, Unicode, UnicodeText
 from sqlalchemy.ext.declarative import declarative_base, declared_attr
 from sqlalchemy.schema import ForeignKey
 
-from globaleaks.utils.utility import uuid4 # pylint: disable=unused-import
+from globaleaks.utils.utility import uuid4
+# pylint: enable=unused-import
 
-import json
 class JSON(types.TypeDecorator):
     """Stores and retrieves JSON as TEXT."""
     impl = types.UnicodeText

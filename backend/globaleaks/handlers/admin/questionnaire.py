@@ -7,8 +7,8 @@
 from twisted.internet.defer import inlineCallbacks, returnValue
 
 from globaleaks import models, QUESTIONNAIRE_EXPORT_VERSION
-from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.admin.step import db_create_step
+from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.public import serialize_questionnaire
 from globaleaks.orm import transact
 from globaleaks.rest import requests

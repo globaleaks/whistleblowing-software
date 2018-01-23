@@ -4,8 +4,6 @@
 import os
 import string
 
-from sqlalchemy import not_
-
 from twisted.internet import threads
 from twisted.internet.defer import inlineCallbacks
 

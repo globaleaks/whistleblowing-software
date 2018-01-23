@@ -12,7 +12,7 @@ from globaleaks.orm import transact
 from globaleaks.rest import requests, errors
 from globaleaks.state import State
 from globaleaks.utils.structures import fill_localized_keys, get_localized_values
-from globaleaks.utils.utility import log, datetime_now
+from globaleaks.utils.utility import datetime_now
 
 
 def admin_serialize_receiver(session, receiver, user, language):

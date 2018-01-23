@@ -1,6 +1,5 @@
 # -*- coding: utf-8
 # Implement reset of variables related to sessions
-from twisted.internet import defer
 from globaleaks.jobs.base import LoopingJob
 
 __all__ = ['SessionManagement']

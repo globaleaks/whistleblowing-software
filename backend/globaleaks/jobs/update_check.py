@@ -12,8 +12,8 @@ from globaleaks.jobs.base import NetLoopingJob
 from globaleaks.models.config import ConfigFactory
 from globaleaks.orm import transact
 from globaleaks.utils.agent import get_page
-from globaleaks.utils.utility import log
 from globaleaks.utils.templating import format_and_send
+from globaleaks.utils.utility import log
 
 DEB_PACKAGE_URL = 'https://deb.globaleaks.org/xenial/Packages'
 

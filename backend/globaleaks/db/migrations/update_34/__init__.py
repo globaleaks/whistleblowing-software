@@ -5,10 +5,7 @@ import os
 from globaleaks import models
 from globaleaks.db.migrations.update import MigrationBase
 from globaleaks.db.migrations.update_34.config import GLConfig_v_35
-from globaleaks.models import l10n
 from globaleaks.models.properties import *
-from globaleaks.models.config import Config
-from globaleaks.models.l10n import ConfigL10N
 from globaleaks.settings import Settings
 from globaleaks.utils.utility import datetime_null, iso_strf_time
 

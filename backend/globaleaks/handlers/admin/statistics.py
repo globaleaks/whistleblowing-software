@@ -1,18 +1,13 @@
-#/a -*- coding: utf-8
-#
-#   statistics
-#   **********
-#
-# Implementation of classes handling the HTTP request to /node, public
-# exposed API.
+# -*- coding: utf-8
+# Implementation of admin statistics handlers
 import operator
 from datetime import timedelta
 
-from globaleaks.state import State
 from globaleaks.event import events_monitored
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.models import Stats, Anomalies
 from globaleaks.orm import transact
+from globaleaks.state import State
 from globaleaks.utils.utility import datetime_to_ISO8601, datetime_now, \
     iso_to_gregorian
 
