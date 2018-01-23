@@ -27,23 +27,23 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
         self.assertEqual(len(Sessions), 1)
 
     @inlineCallbacks
-    def test_accept_login_in_tor2web(self):
+    def test_accept_login_in_https(self):
         handler = self.request({
             'username': 'admin',
             'password': helpers.VALID_PASSWORD1
         })
-        State.tenant_cache[1]['tor2web_admin'] = True
+        State.tenant_cache[1]['https_admin'] = True
         response = yield handler.post()
         self.assertTrue('session_id' in response)
         self.assertEqual(len(Sessions), 1)
 
     @inlineCallbacks
-    def test_deny_login_in_tor2web(self):
+    def test_deny_login_in_https(self):
         handler = self.request({
             'username': 'admin',
             'password': helpers.VALID_PASSWORD1
         })
-        State.tenant_cache[1]['tor2web_admin'] = False
+        State.tenant_cache[1]['https_admin'] = False
         yield self.assertFailure(handler.post(), errors.TorNetworkRequired)
 
     @inlineCallbacks
@@ -136,23 +136,23 @@ class TestReceiptAuth(helpers.TestHandlerWithPopulatedDB):
         self.assertEqual(len(Sessions), 1)
 
     @inlineCallbacks
-    def test_accept_whistleblower_login_in_tor2web(self):
+    def test_accept_whistleblower_login_in_https(self):
         yield self.perform_full_submission_actions()
         handler = self.request({
             'receipt': self.dummySubmission['receipt']
         }, headers={'X-Tor2Web': 'whatever'})
-        State.tenant_cache[1]['tor2web_whistleblower'] = True
+        State.tenant_cache[1]['https_whistleblower'] = True
         response = yield handler.post()
         self.assertTrue('session_id' in response)
         self.assertEqual(len(Sessions), 1)
 
     @inlineCallbacks
-    def test_deny_whistleblower_login_in_tor2web(self):
+    def test_deny_whistleblower_login_in_https(self):
         yield self.perform_full_submission_actions()
         handler = self.request({
             'receipt': self.dummySubmission['receipt']
         }, headers={'X-Tor2Web': 'whatever'})
-        State.tenant_cache[1]['tor2web_whistleblower'] = False
+        State.tenant_cache[1]['https_whistleblower'] = False
         yield self.assertFailure(handler.post(), errors.TorNetworkRequired)
 
     @inlineCallbacks

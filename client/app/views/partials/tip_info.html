@@ -95,10 +95,10 @@
                uib-popover="{{'The whistleblower has not read the latest update yet' | translate }}"></i>
           </td>
           <td>
-            <span data-ng-if="tip.tor2web"
+            <span data-ng-if="tip.https"
                 class="label label-warning"
                 uib-popover="{{'The connection used to send this submission has been secured with HTTPS ensuring confidentiality.' | translate}}" popover-placement="left">HTTPS</span>
-            <span data-ng-if="!tip.tor2web"
+            <span data-ng-if="!tip.https"
                 class="label label-success"
                 uib-popover="{{'The connection used to send this submission has been secured with Tor ensuring confidentiality and anonymity.' | translate}}" popover-placement="left">Tor</span>
           </td>

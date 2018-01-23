@@ -339,7 +339,7 @@ class InternalTip(Model, Base):
     questionnaire_hash = Column(Unicode(64), ForeignKey('archivedschema.hash', ondelete='CASCADE'), nullable=False)
     preview = Column(JSON, nullable=False)
     progressive = Column(Integer, default=0, nullable=False)
-    tor2web = Column(Boolean, default=False, nullable=False)
+    https = Column(Boolean, default=False, nullable=False)
     total_score = Column(Integer, default=0, nullable=False)
     expiration_date = Column(DateTime, nullable=False)
     identity_provided = Column(Boolean, default=False, nullable=False)
