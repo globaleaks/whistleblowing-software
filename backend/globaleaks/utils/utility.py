@@ -310,7 +310,7 @@ def get_expiration(days):
     return datetime(year=date.year, month=date.month, day=date.day, hour=00, minute=00, second=00) + timedelta(days=days+1)
 
 
-def is_expired(check_date, seconds=0, minutes=0, hours=0, day=0):
+def is_expired(check_date, seconds=0, minutes=0, hours=0, days=0):
     """
     @param check_date: a datetime or a timestap
     @param seconds, minutes, hours, day
@@ -319,7 +319,7 @@ def is_expired(check_date, seconds=0, minutes=0, hours=0, day=0):
         if now > check_date + (seconds+minutes+hours)
         True is returned, else False
     """
-    total_hours = (day * 24) + hours
+    total_hours = (days * 24) + hours
     check = check_date + timedelta(seconds=seconds, minutes=minutes, hours=total_hours)
 
     return datetime_now() > check
