@@ -845,7 +845,7 @@ factory('AdminUtils', ['AdminContextResource', 'AdminQuestionnaireResource', 'Ad
 
         if ($location.path() === '/submission' &&
             !$rootScope.connection.tor &&
-            !$rootScope.node.tor2web_whistleblower) {
+            !$rootScope.node.https_whistleblower) {
           $location.path("/");
         }
       },

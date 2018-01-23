@@ -127,7 +127,7 @@ def get_receivertip_list(session, tid, receiver_id, language):
             'file_counter': internalfiles_by_itip.get(internaltip.id, 0),
             'comment_counter': comments_by_itip.get(internaltip.id, 0),
             'message_counter': messages_by_rtip.get(rtip.id, 0),
-            'tor2web': internaltip.tor2web,
+            'https': internaltip.https,
             'preview_schema': db_serialize_archived_preview_schema(session, archivedschema.preview, language),
             'preview': internaltip.preview,
             'total_score': internaltip.total_score,

@@ -62,7 +62,7 @@ def login_whistleblower(session, tid, receipt, client_using_tor):
         Settings.failed_login_attempts += 1
         raise errors.InvalidAuthentication
 
-    if not client_using_tor and not State.tenant_cache[tid]['tor2web_whistleblower']:
+    if not client_using_tor and not State.tenant_cache[tid]['https_whistleblower']:
         log.err("Denied login request over clear Web for role 'whistleblower'")
         raise errors.TorNetworkRequired
 
@@ -87,7 +87,7 @@ def login(session, tid, username, password, client_using_tor):
         Settings.failed_login_attempts += 1
         raise errors.InvalidAuthentication
 
-    if not client_using_tor and not State.tenant_cache[tid]['tor2web_' + user.role]:
+    if not client_using_tor and not State.tenant_cache[tid]['https_' + user.role]:
         log.err("Denied login request over Web for role '%s'" % user.role)
         raise errors.TorNetworkRequired
 

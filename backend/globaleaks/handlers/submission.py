@@ -233,7 +233,7 @@ def serialize_itip(session, internaltip, language):
         'context_id': internaltip.context_id,
         'questionnaire': db_serialize_archived_questionnaire_schema(session, aq.schema, language),
         'receivers': db_get_itip_receiver_list(session, internaltip),
-        'tor2web': internaltip.tor2web,
+        'https': internaltip.https,
         'enable_two_way_comments': internaltip.enable_two_way_comments,
         'enable_two_way_messages': internaltip.enable_two_way_messages,
         'enable_attachments': internaltip.enable_attachments,
@@ -300,8 +300,8 @@ def db_create_submission(session, tid, request, uploaded_files, client_using_tor
     # be fooled by the malicious user.
     submission.total_score = request['total_score']
 
-    # The status tor2web is used to keep track of the security level adopted by the whistleblower
-    submission.tor2web = not client_using_tor
+    # The status https is used to keep track of the security level adopted by the whistleblower
+    submission.https = not client_using_tor
 
     submission.context_id = context.id
     submission.enable_two_way_comments = context.enable_two_way_comments

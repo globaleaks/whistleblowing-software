@@ -501,6 +501,8 @@ class MigrationScript(MigrationBase):
                     wbtip = self.session_old.query(self.model_from['WhistleblowerTip']) \
                                           .filter(self.model_from['WhistleblowerTip'].id == old_obj.id).one_or_none()
                     new_obj.receipt_hash = wbtip.receipt_hash if wbtip is not None else u''
+                elif key == 'https':
+                    new_obj.https = old_obj.tor2web
                 else:
                     setattr(new_obj, key, getattr(old_obj, key))
 
