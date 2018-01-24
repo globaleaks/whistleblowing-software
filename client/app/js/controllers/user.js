@@ -10,7 +10,6 @@ GLClient
     };
 }])
 .factory('locationForce', ['$location', '$rootScope', function($location,  $rootScope) {
-
   var forcedLocation = null;
   var deregister = function() {};
 

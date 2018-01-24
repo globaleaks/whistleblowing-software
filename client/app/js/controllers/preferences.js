@@ -37,8 +37,6 @@ GLClient.controller('PreferencesCtrl', ['$scope', '$rootScope', 'Utils', 'CONSTA
       ];
     }
 
-    $scope.navType = 'pills';
-
     $scope.email_regexp = CONSTANTS.email_regexp;
 
     $scope.save = function() {

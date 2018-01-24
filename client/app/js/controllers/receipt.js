@@ -1,5 +1,5 @@
-GLClient.controller('ReceiptController', ['$scope', '$location', 'Authentication',
-  function($scope, $location, Authentication) {
+GLClient.controller('ReceiptController', ['$scope', 'Authentication',
+  function($scope, Authentication) {
     var format_keycode = function(keycode) {
       if (!keycode || keycode.length !== 16) {
         return '';
