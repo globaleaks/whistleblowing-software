@@ -1,7 +1,6 @@
 GLClient.controller('AdminContextsCtrl',
   ['$scope', 'Utils', 'AdminContextResource',
   function($scope, Utils, AdminContextResource) {
-
   $scope.admin_receivers_by_id = $scope.Utils.array_to_map($scope.admin.receivers);
 
   $scope.save_context = function (context, cb) {
@@ -58,7 +57,6 @@ controller('AdminContextEditorCtrl', ['$scope', '$rootScope', '$http', 'Utils', 
       $rootScope.successes.push({});
     });
   }
-
 
   $scope.showSelect = false;
   $scope.toggleSelect = function() {

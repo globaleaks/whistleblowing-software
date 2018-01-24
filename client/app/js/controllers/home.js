@@ -1,3 +1,3 @@
-GLClient.controller('HomeCtrl', ['$scope', function ($scope) {
-  $scope.keycode = '';
+GLClient.controller('HomeCtrl', [function () {
+
 }]);

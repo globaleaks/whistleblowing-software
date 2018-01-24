@@ -1,5 +1,5 @@
-GLClient.controller('CustodianIdentityAccessRequestsCtrl', ['$scope',  '$http', '$route', '$location', '$uibModal', 'IdentityAccessRequests',
-  function($scope, $http, $route, $location, $uibModal, IdentityAccessRequests) {
+GLClient.controller('CustodianIdentityAccessRequestsCtrl', ['$scope',  '$http', '$route',  '$uibModal', 'IdentityAccessRequests',
+  function($scope, $http, $route, $uibModal, IdentityAccessRequests) {
   $scope.iars = IdentityAccessRequests.query();
 
   $scope.authorize_identity_access_request = function (iar_id) {
