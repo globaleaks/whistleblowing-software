@@ -15,16 +15,16 @@ from globaleaks.utils.utility import log
 
 @transact
 def wizard(session, tid, request, language):
-    db_update_enabled_languages(session, tid, [language], language)
-
-    tenant = models.db_get(session, models.Tenant, models.Tenant.id == tid)
-    tenant.label = request['node_name']
-
     node = config.ConfigFactory(session, tid, 'node')
 
     if node.get_val(u'wizard_done'):
         log.err("DANGER: Wizard already initialized!", tid=tid)
         raise errors.ForbiddenOperation
+
+    db_update_enabled_languages(session, tid, [language], language)
+
+    tenant = models.db_get(session, models.Tenant, models.Tenant.id == tid)
+    tenant.label = request['node_name']
 
     node.set_val(u'name', request['node_name'])
     node.set_val(u'default_language', language)
