@@ -14,7 +14,7 @@ from globaleaks.utils.utility import log
 
 
 @transact
-def wizard(session, tid, request, language):
+def wizard(session, tid, request, client_using_tor, language):
     node = config.ConfigFactory(session, tid, 'node')
 
     if node.get_val(u'wizard_done'):
@@ -30,6 +30,11 @@ def wizard(session, tid, request, language):
     node.set_val(u'default_language', language)
     node.set_val(u'wizard_done', True)
     node.set_val(u'enable_developers_exception_notification', request['enable_developers_exception_notification'])
+
+    # Guess Tor configuration from thee media used on first configuration and
+    # if the user is using Tor preserve node anonymity and perform outgoing connections via Tor
+    node.set_val(u'reachable_via_web', not client_using_tor)
+    node.set_val(u'anonymize_outgoing_connections', client_using_tor)
 
     node_l10n = l10n.NodeL10NFactory(session, tid)
     node_l10n.set_val(u'header_title_homepage', language, request['node_name'])
@@ -82,4 +87,4 @@ class Wizard(BaseHandler):
         request = self.validate_message(self.request.content.read(),
                                         requests.WizardDesc)
 
-        return wizard(self.request.tid, request, self.request.language)
+        return wizard(self.request.tid, request, self.request.client_using_tor, self.request.language)
