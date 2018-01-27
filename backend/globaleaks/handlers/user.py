@@ -76,7 +76,7 @@ def user_serialize_user(session, user, language):
 
 @transact
 def get_user_settings(session, tid, user_id, language):
-    user = models.db_get(session, models.User, models.User.id == user_id)# models.User.tid == tid)
+    user = models.db_get(session, models.User, models.User.id == user_id, models.User.tid == tid)
 
     return user_serialize_user(session, user, language)
 
@@ -91,7 +91,7 @@ def db_user_update_user(session, state, tid, user_id, request):
       - pgp key
     raises: globaleaks.errors.ResourceNotFound` if the receiver does not exist.
     """
-    user = models.db_get(session, models.User, models.User.id == user_id)#, models.User.tid == tid)
+    user = models.db_get(session, models.User, models.User.id == user_id, models.User.tid == tid)
 
     user.language = request.get('language', State.tenant_cache[tid].default_language)
 
