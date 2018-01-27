@@ -1,7 +1,7 @@
 # -*- coding: utf-8
 
 from globaleaks import __version__, DATABASE_VERSION
-from globaleaks.security import generateRandomSalt as salt
+from globaleaks.utils.security import generateRandomSalt as salt
 
 
 class Item:

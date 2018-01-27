@@ -5,13 +5,14 @@ import os
 import sys
 import traceback
 
-from globaleaks import models, security, DATABASE_VERSION
+from globaleaks import models, DATABASE_VERSION
 from globaleaks.handlers.base import Session
 from globaleaks.models.config import Config
 from globaleaks.models.config_desc import ConfigFilters
 from globaleaks.orm import transact, transact_sync
 from globaleaks.settings import Settings
 from globaleaks.state import State, TenantState
+from globaleaks.utils import security
 from globaleaks.utils.objectdict import ObjectDict
 from globaleaks.utils.utility import log
 

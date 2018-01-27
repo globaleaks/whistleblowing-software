@@ -9,7 +9,7 @@ from globaleaks.handlers.admin.questionnaire import db_get_questionnaire
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.orm import transact
 from globaleaks.rest import errors, requests
-from globaleaks.security import hash_password, sha256, generateRandomReceipt
+from globaleaks.utils.security import hash_password, sha256, generateRandomReceipt
 from globaleaks.state import State
 from globaleaks.utils.structures import get_localized_values
 from globaleaks.utils.token import TokenList

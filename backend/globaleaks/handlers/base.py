@@ -17,7 +17,8 @@ from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.event import track_handler
 from globaleaks.rest import errors, requests
-from globaleaks.security import SecureTemporaryFile, generateRandomKey, sha512
+from globaleaks.utils.securetempfile import SecureTemporaryFile
+from globaleaks.utils.security import generateRandomKey, sha512
 from globaleaks.settings import Settings
 from globaleaks.utils.tempdict import TempDict
 from globaleaks.utils.utility import datetime_now, deferred_sleep, log

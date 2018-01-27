@@ -10,7 +10,7 @@ from globaleaks.handlers.base import BaseHandler
 from globaleaks.models import serializers
 from globaleaks.orm import transact
 from globaleaks.rest import errors
-from globaleaks.security import directory_traversal_check
+from globaleaks.utils.security import directory_traversal_check
 from globaleaks.settings import Settings
 from globaleaks.utils.token import TokenList
 from globaleaks.utils.utility import datetime_now

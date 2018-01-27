@@ -16,7 +16,7 @@ import subprocess as sp
 import sys
 from datetime import datetime
 
-from globaleaks import security
+from globaleaks.utils import security
 from globaleaks.db import get_db_file
 from globaleaks.orm import make_db_uri, get_engine
 from globaleaks.models import config, config_desc

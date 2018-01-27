@@ -3,7 +3,6 @@
 """
 Utilities and basic TestCases.
 """
-
 import sys
 reload(sys)
 sys.setdefaultencoding('utf8')
@@ -11,7 +10,7 @@ sys.setdefaultencoding('utf8')
 # pylint: disable=no-name-in-module
 from distutils import dir_util
 
-from globaleaks import db, models, orm, security, event, jobs, __version__
+from globaleaks import db, models, orm, event, jobs, __version__
 from globaleaks.anomaly import Alarm
 from globaleaks.db.appdata import load_appdata
 from globaleaks.orm import transact
@@ -29,9 +28,9 @@ from globaleaks.handlers.submission import create_submission
 from globaleaks.rest.apicache import ApiCache
 from globaleaks.rest import errors
 from globaleaks.settings import Settings
-from globaleaks.security import SecureTemporaryFile
 from globaleaks.state import State
-from globaleaks.utils import tempdict, token, utility
+from globaleaks.utils import security, tempdict, token, utility
+from globaleaks.utils.securetempfile import SecureTemporaryFile
 from globaleaks.utils.objectdict import ObjectDict
 from globaleaks.utils.structures import fill_localized_keys
 from globaleaks.utils.utility import datetime_null, datetime_now, datetime_to_ISO8601, \

@@ -6,13 +6,14 @@ from twisted.internet import defer
 from twisted.python.threadpool import ThreadPool
 
 from globaleaks import __version__, orm, models
-from globaleaks.security import sha256, GLBPGP
 from globaleaks.utils.agent import get_tor_agent, get_web_agent
 from globaleaks.utils.mailutils import sendmail
 from globaleaks.utils.objectdict import ObjectDict
 from globaleaks.utils.singleton import Singleton
 from globaleaks.utils.templating import Templating
 from globaleaks.utils.tor_exit_set import TorExitSet
+from globaleaks.utils.pgp import PGPContext
+from globaleaks.utils.security import sha256
 from globaleaks.utils.utility import datetime_now, log
 from globaleaks.utils.tempdict import TempDict
 
@@ -220,19 +221,19 @@ class StateClass(ObjectDict):
             mail_subject +=  " [%s]" % self.settings.developer_name
             delivery_list = [("globaleaks-stackexception-devel@globaleaks.org", '')]
 
-        exception_text = bytes("Platform: %s (%s)\nVersion: %s\n\n%s" \
-                               % (self.tenant_cache[1].hostname,
-                                  self.tenant_cache[1].onionservice,
-                                  __version__,
-                                  exception_text))
+        mail_body = bytes("Platform: %s (%s)\nVersion: %s\n\n%s" \
+                          % (self.tenant_cache[1].hostname,
+                             self.tenant_cache[1].onionservice,
+                             __version__,
+                             exception_text))
 
-        for mail_address, pub_key in delivery_list:
-            mail_body = exception_text
-
+        for mail_address, pgp_key_public in delivery_list:
             # Opportunisticly encrypt the mail body. NOTE that mails will go out
             # unencrypted if one address in the list does not have a public key set.
-            if pub_key:
-                mail_body = encrypt_message(pub_key, mail_body)
+            if pgp_key_public:
+               pgpctx = PGPContext(self.settings.ramdisk_path)
+               fingerprint = pgpctx.load_key(pgp_key_public)['fingerprint']
+               mail_body = pgpctx.encrypt_message(fingerprint, mail_body)
 
             # avoid waiting for the notification to send and instead rely on threads to handle it
             schedule_email(1, mail_address, mail_subject, mail_body)
@@ -256,9 +257,9 @@ class StateClass(ObjectDict):
 
         if user_desc['pgp_key_public']:
             self.check_ramdisk()
-            gpob = GLBPGP(self.settings.ramdisk_path)
-            fingerprint = gpob.load_key(pgp_key_public)['fingerprint']
-            body = gpob.encrypt_message(fingerprint, body)
+            pgpctx = PGPContext(self.settings.ramdisk_path)
+            fingerprint = pgpctx.load_key(user_desc['pgp_key_public'])['fingerprint']
+            body = pgpctx.encrypt_message(fingerprint, body)
 
         session.add(models.Mail({
             'address': user_desc['mail_address'],

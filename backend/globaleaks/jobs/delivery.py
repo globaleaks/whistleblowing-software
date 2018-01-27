@@ -12,7 +12,9 @@ from twisted.internet.defer import inlineCallbacks
 from globaleaks import models
 from globaleaks.jobs.base import LoopingJob
 from globaleaks.orm import transact
-from globaleaks.security import GLBPGP, SecureFile, generateRandomKey
+from globaleaks.utils.pgp import PGPContext
+from globaleaks.utils.securetempfile import SecureFile
+from globaleaks.utils.security import generateRandomKey
 from globaleaks.settings import Settings
 from globaleaks.utils.utility import log
 
@@ -103,24 +105,15 @@ def fsops_pgp_encrypt(state, fpath, key, fingerprint):
     """
     state.check_ramdisk()
 
-    gpoj = GLBPGP(state.settings.ramdisk_path)
+    pgpctx = PGPContext(state.settings.ramdisk_path)
 
-    try:
-        gpoj.load_key(key)
+    pgpctx.load_key(key)
 
-        filepath = os.path.join(state.settings.attachments_path, fpath)
+    filepath = os.path.join(state.settings.attachments_path, fpath)
 
-        with SecureFile(filepath) as f:
-            encrypted_file_path = os.path.join(os.path.abspath(state.settings.attachments_path), "pgp_encrypted-%s" % generateRandomKey(16))
-            _, encrypted_file_size = gpoj.encrypt_file(fingerprint, f, encrypted_file_path)
-
-    except:
-        raise
-
-    finally:
-        # the finally statement is always called also if
-        # except contains a return or a raise
-        gpoj.destroy_environment()
+    with SecureFile(filepath) as f:
+        encrypted_file_path = os.path.join(os.path.abspath(state.settings.attachments_path), "pgp_encrypted-%s" % generateRandomKey(16))
+        _, encrypted_file_size = pgpctx.encrypt_file(fingerprint, f, encrypted_file_path)
 
     return encrypted_file_path, encrypted_file_size
 
