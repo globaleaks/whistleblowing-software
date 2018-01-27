@@ -5,7 +5,6 @@ import json
 import os
 import random
 import scrypt
-import shutil
 import string
 import time
 from datetime import datetime
