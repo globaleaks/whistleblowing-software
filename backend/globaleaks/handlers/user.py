@@ -6,13 +6,13 @@ from globaleaks.handlers.admin.modelimgs import db_get_model_img
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.orm import transact
 from globaleaks.rest import requests
-from globaleaks.security import change_password, parse_pgp_key
+from globaleaks.security import change_password, GLBPGP
 from globaleaks.state import State
 from globaleaks.utils.structures import get_localized_values
 from globaleaks.utils.utility import datetime_to_ISO8601, datetime_now, datetime_null
 
 
-def parse_pgp_options(user, request):
+def parse_pgp_options(state, user, request):
     """
     Used for parsing PGP key infos and fill related user configurations.
     """
@@ -21,10 +21,14 @@ def parse_pgp_options(user, request):
 
     k = None
     if not remove_key and pgp_key_public:
-        k = parse_pgp_key(pgp_key_public)
+        state.check_ramdisk()
+
+        gnob = GLBPGP(state.settings.ramdisk_path)
+
+        k = gnob.load_key(pgp_key_public)
 
     if k is not None:
-        user.pgp_key_public = k['public']
+        user.pgp_key_public = pgp_key_public
         user.pgp_key_fingerprint = k['fingerprint']
         user.pgp_key_expiration = k['expiration']
     else:
@@ -76,7 +80,7 @@ def get_user_settings(session, tid, user_id, language):
     return user_serialize_user(session, user, language)
 
 
-def db_user_update_user(session, tid, user_id, request):
+def db_user_update_user(session, state, tid, user_id, request):
     """
     Updates the specified user.
     This version of the function is specific for users that with comparison with
@@ -105,14 +109,14 @@ def db_user_update_user(session, tid, user_id, request):
         user.password_change_date = datetime_now()
 
     # The various options related in manage PGP keys are used here.
-    parse_pgp_options(user, request)
+    parse_pgp_options(state, user, request)
 
     return user
 
 
 @transact
-def update_user_settings(session, tid, user_id, request, language):
-    user = db_user_update_user(session, tid, user_id, request)
+def update_user_settings(session, state, tid, user_id, request, language):
+    user = db_user_update_user(session, state, tid, user_id, request)
 
     return user_serialize_user(session, user, language)
 
@@ -136,7 +140,8 @@ class UserInstance(BaseHandler):
     def put(self):
         request = self.validate_message(self.request.content.read(), requests.UserUserDesc)
 
-        return update_user_settings(self.request.tid,
+        return update_user_settings(self.state,
+                                    self.request.tid,
                                     self.current_user.user_id,
                                     request,
                                     self.request.language)

@@ -434,6 +434,7 @@ class BaseHandler(object):
             raise errors.FileTooBig(self.state.tenant_cache[self.request.tid].maximum_filesize)
 
         if flow_identifier not in self.state.TempUploadFiles:
+            self.state.check_ramdisk()
             self.state.TempUploadFiles.set(flow_identifier, SecureTemporaryFile(Settings.tmp_upload_path))
 
         f = self.state.TempUploadFiles.get(flow_identifier)

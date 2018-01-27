@@ -119,7 +119,7 @@ class FakeThreadPool(object):
         onResult(success, result)
 
 
-def init_glsettings_for_unit_tests():
+def init_state():
     Settings.testing = True
     Settings.set_devel_mode()
     Settings.logging = None
@@ -131,13 +131,13 @@ def init_glsettings_for_unit_tests():
     if os.path.exists(Settings.working_path):
         dir_util.remove_tree(Settings.working_path, 0)
 
-    Settings.create_directories()
-
     orm.set_thread_pool(FakeThreadPool())
 
     State.settings.enable_api_cache = False
     State.tenant_cache[1] = ObjectDict()
     State.tenant_cache[1].hostname = 'www.globaleaks.org'
+
+    State.init_environment()
 
     Sessions.clear()
 
@@ -329,7 +329,9 @@ class TestGL(unittest.TestCase):
         token.TokenList.reactor = self.test_reactor
         Sessions.reactor = self.test_reactor
 
-        init_glsettings_for_unit_tests()
+        self.state = State
+
+        init_state()
 
         self.setUp_dummy()
 
@@ -352,9 +354,9 @@ class TestGL(unittest.TestCase):
         yield db.refresh_memory_variables()
 
         sup = ProcessSupervisor([], '127.0.0.1', 8082)
-        State.process_supervisor = sup
+        self.state.process_supervisor = sup
 
-        State.reset_hourly()
+        self.state.reset_hourly()
 
         Settings.submission_minimum_delay = 0
 
@@ -543,8 +545,8 @@ class TestGL(unittest.TestCase):
             for event_obj in event.events_monitored:
                 for x in range(2):
                     e = event.Event(event_obj, timedelta(seconds=1.0 * x))
-                    State.tenant_state[1].RecentEventQ.append(e)
-                    State.tenant_state[1].EventQ.append(e)
+                    self.state.tenant_state[1].RecentEventQ.append(e)
+                    self.state.tenant_state[1].EventQ.append(e)
 
     @transact
     def get_rtips(self, session):
@@ -631,21 +633,21 @@ class TestGLWithPopulatedDB(TestGL):
     @inlineCallbacks
     def fill_data(self):
         # fill_data/create_admin
-        self.dummyAdminUser = yield create_user(1, copy.deepcopy(self.dummyAdminUser), 'en')
+        self.dummyAdminUser = yield create_user(self.state, 1, copy.deepcopy(self.dummyAdminUser), 'en')
 
         # fill_data/create_custodian
-        self.dummyCustodianUser = yield create_user(1, copy.deepcopy(self.dummyCustodianUser), 'en')
+        self.dummyCustodianUser = yield create_user(self.state, 1, copy.deepcopy(self.dummyCustodianUser), 'en')
 
         # fill_data/create_receiver
-        self.dummyReceiver_1 = yield create_receiver_user(1, copy.deepcopy(self.dummyReceiver_1), 'en')
+        self.dummyReceiver_1 = yield create_receiver_user(self.state, 1, copy.deepcopy(self.dummyReceiver_1), 'en')
         self.dummyReceiverUser_1['id'] = self.dummyReceiver_1['id']
-        self.dummyReceiver_2 = yield create_receiver_user(1, copy.deepcopy(self.dummyReceiver_2), 'en')
+        self.dummyReceiver_2 = yield create_receiver_user(self.state, 1, copy.deepcopy(self.dummyReceiver_2), 'en')
         self.dummyReceiverUser_2['id'] = self.dummyReceiver_2['id']
         receivers_ids = [self.dummyReceiver_1['id'], self.dummyReceiver_2['id']]
 
         # fill_data/create_context
         self.dummyContext['receivers'] = receivers_ids
-        self.dummyContext = yield create_context(1, copy.deepcopy(self.dummyContext), 'en')
+        self.dummyContext = yield create_context(self.state, 1, copy.deepcopy(self.dummyContext), 'en')
 
         self.dummyQuestionnaire = yield get_questionnaire(1, self.dummyContext['questionnaire_id'], 'en')
 
@@ -661,7 +663,7 @@ class TestGLWithPopulatedDB(TestGL):
         for i in range(1, self.population_of_tenants):
             name = 'tenant-' + str(i+1)
             t = yield create_tenant({'label': name, 'active': True, 'subdomain': name})
-            yield wizard(t['id'], self.dummyWizard, u'en')
+            yield wizard(self.state, t['id'], self.dummyWizard, True, u'en')
             yield self.set_hostnames(i+1)
 
     @transact
@@ -764,7 +766,7 @@ class TestGLWithPopulatedDB(TestGL):
 
     @transact
     def set_itips_near_to_expire(self, session):
-        date = datetime_now() + timedelta(hours=State.tenant_cache[1].notification.tip_expiration_threshold - 1)
+        date = datetime_now() + timedelta(hours=self.state.tenant_cache[1].notification.tip_expiration_threshold - 1)
         session.query(models.InternalTip).update({'expiration_date': date})
 
 
@@ -829,7 +831,7 @@ class TestHandler(TestGLWithPopulatedDB):
                     api.decorate_method(handler_cls, method)
                     handler_cls.decorated = True
 
-        handler = handler_cls(State, request, **kwargs)
+        handler = handler_cls(self.state, request, **kwargs)
 
         if multilang:
             request.language = None
@@ -869,7 +871,7 @@ class TestCollectionHandler(TestHandler):
 
         data = self.get_dummy_request()
 
-        yield self._test_desc['create'](1, data, u'en')
+        yield self._test_desc['create'](self.state, 1, data, u'en')
 
         handler = self.request(role='admin')
 
@@ -905,7 +907,7 @@ class TestInstanceHandler(TestHandler):
 
         data = self.get_dummy_request()
 
-        data = yield self._test_desc['create'](1, data, u'en')
+        data = yield self._test_desc['create'](self.state, 1, data, u'en')
 
         handler = self.request(data, role='admin')
 
@@ -919,7 +921,7 @@ class TestInstanceHandler(TestHandler):
 
         data = self.get_dummy_request()
 
-        data = yield self._test_desc['create'](1, data, u'en')
+        data = yield self._test_desc['create'](self.state, 1, data, u'en')
 
         for k, v in self._test_desc['data'].items():
             data[k] = v
@@ -939,7 +941,7 @@ class TestInstanceHandler(TestHandler):
 
         data = self.get_dummy_request()
 
-        data = yield self._test_desc['create'](1, data, u'en')
+        data = yield self._test_desc['create'](self.state, 1, data, u'en')
 
         handler = self.request(data, role='admin')
 

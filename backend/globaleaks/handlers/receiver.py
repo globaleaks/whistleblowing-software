@@ -48,8 +48,8 @@ def get_receiver_settings(session, tid, receiver_id, language):
 
 
 @transact
-def update_receiver_settings(session, tid, receiver_id, request, language):
-    db_user_update_user(session, tid, receiver_id, request)
+def update_receiver_settings(session, state, tid, receiver_id, request, language):
+    db_user_update_user(session, state, tid, receiver_id, request)
 
     receiver, user = session.query(models.Receiver, models.User). \
                            filter(models.Receiver.id == receiver_id,
@@ -177,7 +177,8 @@ class ReceiverInstance(BaseHandler):
     def put(self):
         request = self.validate_message(self.request.content.read(), requests.ReceiverReceiverDesc)
 
-        return update_receiver_settings(self.request.tid,
+        return update_receiver_settings(self.state,
+                                        self.request.tid,
                                         self.current_user.user_id,
                                         request,
                                         self.request.language)

@@ -177,7 +177,11 @@ class SettingsClass(object):
         self.tmp_upload_path = os.path.abspath(os.path.join(self.working_path, 'tmp'))
         self.static_db_source = os.path.abspath(os.path.join(self.src_path, 'globaleaks', 'db'))
 
-        self.set_ramdisk_path()
+        if os.path.isdir('/dev/shm'):
+            self.ramdisk_path = '/dev/shm/globaleaks'
+        else:
+            log.err("Failure: unable to use /dev/shm as volatile secure storage")
+            self.ramdisk_path = os.path.join(self.working_path, 'ramdisk')
 
         self.db_schema = os.path.join(self.static_db_source, 'sqlite.sql')
         self.db_file_name = 'glbackend-%d.db' % DATABASE_VERSION
@@ -197,11 +201,6 @@ class SettingsClass(object):
         self.field_attrs_file = os.path.join(self.client_path, 'data/field_attrs.json')
 
         set_db_uri(make_db_uri(self.db_file_path))
-
-    def set_ramdisk_path(self):
-        self.ramdisk_path = '/dev/shm/globaleaks'
-        if not os.path.isdir('/dev/shm'):
-            self.ramdisk_path = os.path.join(self.working_path, 'ramdisk')
 
     def set_devel_mode(self):
         self.devel_mode = True
@@ -236,9 +235,6 @@ class SettingsClass(object):
         if not self.validate_port(self.cmdline_options.socks_port):
             sys.exit(1)
         self.socks_port = self.cmdline_options.socks_port
-
-        if self.cmdline_options.ramdisk:
-            self.ramdisk_path = self.cmdline_options.ramdisk
 
         if self.cmdline_options.user and self.cmdline_options.group:
             self.user = self.cmdline_options.user
@@ -294,75 +290,9 @@ class SettingsClass(object):
 
         return True
 
-    def create_directory(self, path):
-        """
-        Create the specified directory;
-        Returns True on success, False if the directory was already existing
-        """
-        if not os.path.exists(path):
-            try:
-                os.mkdir(path)
-            except OSError as excep:
-                self.print_msg("Error in creating directory: %s (%s)" % (path, excep.strerror))
-                raise excep
-
-            return True
-
-        return False
-
-    def create_directories(self):
-        """
-        Execute some consistency checks on command provided Globaleaks paths
-
-        if one of working_path or static path is created we copy
-        here the static files (default logs, and in the future pot files for localization)
-        because here stay all the files needed by the application except the python scripts
-        """
-        for dirpath in [self.working_path,
-                        self.db_path,
-                        self.files_path,
-                        self.attachments_path,
-                        self.tmp_upload_path,
-                        self.log_path,
-                        self.ramdisk_path]:
-            self.create_directory(dirpath)
-
     def print_msg(self, *args):
         if not self.testing:
             print(*args)
-
-    def cleaning_dead_files(self):
-        """
-        This function is called at the start of GlobaLeaks, in
-        bin/globaleaks, and checks if the file is present in
-        temporally_encrypted_dir
-        """
-        # temporary .aes files must be simply deleted
-        for f in os.listdir(Settings.tmp_upload_path):
-            path = os.path.join(Settings.tmp_upload_path, f)
-            self.print_msg("Removing old temporary file: %s" % path)
-
-            try:
-                os.remove(path)
-            except OSError as excep:
-                self.print_msg("Error while evaluating removal for %s: %s" % (path, excep.strerror))
-
-        # temporary .aes files with lost keys can be deleted
-        # while temporary .aes files with valid current key
-        # will be automagically handled by delivery sched.
-        keypath = os.path.join(self.ramdisk_path, Settings.AES_keyfile_prefix)
-
-        for f in os.listdir(Settings.attachments_path):
-            path = os.path.join(Settings.attachments_path, f)
-            try:
-                result = Settings.AES_file_regexp_comp.match(f)
-                if result is not None:
-                    if not os.path.isfile("%s%s" % (keypath, result.group(1))):
-                        self.print_msg("Removing old encrypted file (lost key): %s" % path)
-                        os.remove(path)
-            except Exception as excep:
-                self.print_msg("Error while evaluating removal for %s: %s" % (path, excep))
-
 
 # Settings is a singleton class exported once
 Settings = SettingsClass()

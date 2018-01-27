@@ -28,7 +28,7 @@ class TestMigrationRoutines(unittest.TestCase):
     def _test(self, path, version):
         f = 'glbackend-%d.db' % version
 
-        helpers.init_glsettings_for_unit_tests()
+        helpers.init_state()
         Settings.db_path = os.path.join(Settings.ramdisk_path, 'db_test')
         self.start_db_file = os.path.abspath(os.path.join(Settings.db_path, 'glbackend-%d.db' % version))
         self.final_db_file = os.path.abspath(os.path.join(Settings.db_path, 'glbackend-%d.db' % DATABASE_VERSION))

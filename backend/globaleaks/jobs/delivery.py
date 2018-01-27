@@ -101,7 +101,9 @@ def fsops_pgp_encrypt(state, fpath, key, fingerprint):
         path of encrypted file,
         length of the encrypted file
     """
-    gpoj = GLBPGP()
+    state.check_ramdisk()
+
+    gpoj = GLBPGP(state.settings.ramdisk_path)
 
     try:
         gpoj.load_key(key)

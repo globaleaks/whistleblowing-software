@@ -1,26 +1,28 @@
 # -*- coding: utf-8
+import os
 import sys
 
 from twisted.internet import defer
 from twisted.python.threadpool import ThreadPool
 
-from globaleaks import __version__, orm
+from globaleaks import __version__, orm, models
+from globaleaks.security import sha256, GLBPGP
 from globaleaks.utils.agent import get_tor_agent, get_web_agent
 from globaleaks.utils.mailutils import sendmail
 from globaleaks.utils.objectdict import ObjectDict
-from globaleaks.security import encrypt_message, sha256
 from globaleaks.utils.singleton import Singleton
+from globaleaks.utils.templating import Templating
 from globaleaks.utils.tor_exit_set import TorExitSet
 from globaleaks.utils.utility import datetime_now, log
 from globaleaks.utils.tempdict import TempDict
 
-def getAlarm(settings):
+def getAlarm(state):
     from globaleaks.anomaly import Alarm
-    return Alarm(settings)
+    return Alarm(state)
 
 
 class TenantState(object):
-    def __init__(self, settings):
+    def __init__(self, state):
         self.RecentEventQ = []
         self.EventQ = []
         self.AnomaliesQ = []
@@ -28,13 +30,11 @@ class TenantState(object):
         # An ACME challenge will have 5 minutes to resolve
         self.acme_tmp_chall_dict = TempDict(300)
 
-        self.Alarm = getAlarm(settings)
+        self.Alarm = getAlarm(state)
 
 
 class StateClass(ObjectDict):
     __metaclass__ = Singleton
-
-    orm_tp = ThreadPool(4, 16)
 
     def __init__(self):
         from globaleaks.settings import Settings
@@ -63,9 +63,14 @@ class StateClass(ObjectDict):
         self.tenant_cache = {}
         self.tenant_hostname_id_map = {}
 
-        self.set_orm_tp(self.orm_tp)
-
+        self.set_orm_tp(ThreadPool(4, 16))
         self.TempUploadFiles = TempDict(timeout=3600)
+
+    def init_environment(self):
+        os.umask(077)
+        self.settings.eval_paths()
+        self.create_directories()
+        self.cleaning_dead_files()
 
     def set_orm_tp(self, orm_tp):
         self.orm_tp = orm_tp
@@ -77,6 +82,76 @@ class StateClass(ObjectDict):
 
         return get_web_agent()
 
+    def create_directory(self, path):
+        """
+        Create the specified directory;
+        Returns True on success, False if the directory was already existing
+        """
+        if os.path.exists(path):
+            return False
+
+        log.debug("Creating directory: %s", path)
+
+        try:
+            os.mkdir(path)
+        except OSError as excep:
+            log.debug("Error in creating directory: %s (%s)", path, excep.strerror)
+            raise excep
+
+        return True
+
+    def create_directories(self):
+        """
+        Execute some consistency checks on command provided Globaleaks paths
+
+        if one of working_path or static path is created we copy
+        here the static files (default logs, and in the future pot files for localization)
+        because here stay all the files needed by the application except the python scripts
+        """
+        for dirpath in [self.settings.working_path,
+                        self.settings.db_path,
+                        self.settings.files_path,
+                        self.settings.attachments_path,
+                        self.settings.tmp_upload_path,
+                        self.settings.log_path,
+                        self.settings.ramdisk_path]:
+            self.create_directory(dirpath)
+
+    def check_ramdisk(self):
+        self.create_directory(self.settings.ramdisk_path)
+
+    def cleaning_dead_files(self):
+        """
+        This function is called at the start of GlobaLeaks, in
+        bin/globaleaks, and checks if the file is present in
+        temporally_encrypted_dir
+        """
+        # temporary .aes files must be simply deleted
+        for f in os.listdir(self.settings.tmp_upload_path):
+            path = os.path.join(self.settings.tmp_upload_path, f)
+            log.debug("Removing old temporary file: %s", path)
+
+            try:
+                os.remove(path)
+            except OSError as excep:
+                log.debug("Error while evaluating removal for %s: %s", path, excep.strerror)
+
+        # temporary .aes files with lost keys can be deleted
+        # while temporary .aes files with valid current key
+        # will be automagically handled by delivery sched.
+        keypath = os.path.join(self.settings.ramdisk_path, self.settings.AES_keyfile_prefix)
+
+        for f in os.listdir(self.settings.attachments_path):
+            path = os.path.join(self.settings.attachments_path, f)
+            try:
+                result = self.settings.AES_file_regexp_comp.match(f)
+                if result is not None:
+                    if not os.path.isfile("%s%s" % (keypath, result.group(1))):
+                        log.debug("Removing old encrypted file (lost key): %s", path)
+                        os.remove(path)
+            except Exception as excep:
+                log.debug("Error while evaluating removal for %s: %s", path, excep)
+
     def get_mail_counter(self, receiver_id):
         return self.mail_counters.get(receiver_id, 0)
 
@@ -85,7 +160,7 @@ class StateClass(ObjectDict):
 
     def reset_hourly(self):
         for tid in self.tenant_state:
-            self.tenant_state[tid] = TenantState(self.settings)
+            self.tenant_state[tid] = TenantState(self)
 
         self.exceptions.clear()
         self.exceptions_email_count = 0
@@ -176,6 +251,21 @@ class StateClass(ObjectDict):
 
         self.process_supervisor.shutdown(friendly=True).addBoth(g)  # pylint: disable=no-member
 
+    def format_and_send_mail(self, session, tid, user_desc, template_vars):
+        subject, body = Templating().get_mail_subject_and_body(template_vars)
+
+        if user_desc['pgp_key_public']:
+            self.check_ramdisk()
+            gpob = GLBPGP(self.settings.ramdisk_path)
+            fingerprint = gpob.load_key(pgp_key_public)['fingerprint']
+            body = gpob.encrypt_message(fingerprint, body)
+
+        session.add(models.Mail({
+            'address': user_desc['mail_address'],
+            'subject': subject,
+            'body': body,
+            'tid': tid,
+        }))
 
 # State is a singleton class exported once
 State = StateClass()

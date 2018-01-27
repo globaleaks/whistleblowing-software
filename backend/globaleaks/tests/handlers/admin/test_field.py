@@ -26,7 +26,7 @@ class TestFieldCreate(helpers.TestHandler):
         """
         values = helpers.get_dummy_field()
         values['instance'] = 'instance'
-        context = yield create_context(1, self.dummyContext, 'en')
+        context = yield create_context(self.state, 1, self.dummyContext, 'en')
         values['step_id'] = yield get_id_of_first_step_of_questionnaire(context['questionnaire_id'])
         handler = self.request(values, role='admin')
         response = yield handler.post()
@@ -42,7 +42,7 @@ class TestFieldCreate(helpers.TestHandler):
         values['instance'] = 'template'
         field_template = yield create_field(1, values, 'en')
 
-        context = yield create_context(1, copy.deepcopy(self.dummyContext), 'en')
+        context = yield create_context(self.state, 1, copy.deepcopy(self.dummyContext), 'en')
 
         values = helpers.get_dummy_field()
         values['instance'] = 'reference'
@@ -65,13 +65,13 @@ class TestFieldInstance(helpers.TestHandler):
         """
         values = helpers.get_dummy_field()
         values['instance'] = 'instance'
-        context = yield create_context(1, copy.deepcopy(self.dummyContext), 'en')
+        context = yield create_context(self.state, 1, copy.deepcopy(self.dummyContext), 'en')
         values['step_id'] = yield get_id_of_first_step_of_questionnaire(context['questionnaire_id'])
         field = yield create_field(1, values, 'en')
 
         updated_sample_field = helpers.get_dummy_field()
         updated_sample_field['instance'] = 'instance'
-        context = yield create_context(1, copy.deepcopy(self.dummyContext), 'en')
+        context = yield create_context(self.state, 1, copy.deepcopy(self.dummyContext), 'en')
         updated_sample_field['step_id'] = yield get_id_of_first_step_of_questionnaire(context['questionnaire_id'])
         updated_sample_field.update(type=u'inputbox', options=[], x=3, y=3)
 
@@ -99,7 +99,7 @@ class TestFieldInstance(helpers.TestHandler):
         """
         values = helpers.get_dummy_field()
         values['instance'] = 'instance'
-        context = yield create_context(1, copy.deepcopy(self.dummyContext), 'en')
+        context = yield create_context(self.state, 1, copy.deepcopy(self.dummyContext), 'en')
         values['step_id'] = yield get_id_of_first_step_of_questionnaire(context['questionnaire_id'])
         field = yield create_field(1, values, 'en')
 

@@ -67,8 +67,7 @@ def generate_api_token():
     :rtype: A `tuple` containing (digest `str`, token `str`)
     """
     token = generateRandomKey(Settings.api_token_len)
-    token_hash = sha512(token)
-    return token, token_hash
+    return token, sha512(token)
 
 
 def _overwrite(absolutefpath, pattern):
@@ -232,7 +231,7 @@ class SecureTemporaryFile(tempfile._TemporaryFileWrapper):
 
             try:
                 if self.delete:
-                    overwrite_and_remove(self.keypath)
+                    pass#overwrite_and_remove(self.keypath)
             except:
                 pass
 
@@ -354,12 +353,21 @@ class GLBPGP(object):
     I'm not confident creating an object that operates on the filesystem knowing that
     would be run also on the Storm cycle.
     """
-    def __init__(self):
+    def __init__(self, tempdirprefix=None):
         """
         every time is needed, a new keyring is created here.
         """
+        if tempdirprefix is None:
+            tempdir = tempfile.mkdtemp()
+        else:
+            tempdir = tempfile.mkdtemp(prefix=tempdirprefix)
+
         try:
-            self.gnupg = GPG(gnupghome=tempfile.mkdtemp(), options=['--trust-model', 'always'])
+            gpgbinary='gpg'
+            if os.path.exists('/usr/bin/gpg1'):
+                gpgbinary='gpg1'
+
+            self.gnupg = GPG(gpgbinary=gpgbinary, gnupghome=tempdir, options=['--trust-model', 'always'])
             self.gnupg.encoding = "UTF-8"
         except OSError as excep:
             log.err("Critical, OS error in operating with GnuPG home: %s", excep)
@@ -400,7 +408,7 @@ class GLBPGP(object):
 
         return {
             'fingerprint': fingerprint,
-            'expiration': expiration,
+            'expiration': expiration
         }
 
     def encrypt_file(self, key_fingerprint, input_file, output_path):
@@ -430,44 +438,3 @@ class GLBPGP(object):
             shutil.rmtree(self.gnupg.gnupghome)
         except Exception as excep:
             log.err("Unable to clean temporary PGP environment: %s: %s", self.gnupg.gnupghome, excep)
-
-
-def encrypt_message(pgp_key_public, msg):
-    gpob = GLBPGP()
-
-    try:
-        fingerprint = gpob.load_key(pgp_key_public)['fingerprint']
-        body = gpob.encrypt_message(fingerprint, msg)
-    except:
-        raise
-    finally:
-        gpob.destroy_environment()
-
-    return body
-
-
-def parse_pgp_key(key):
-    """
-    Used for parsing a PGP key
-
-    @param key
-    @return: the parsed information
-    """
-    gnob = GLBPGP()
-
-    try:
-        k = gnob.load_key(key)
-
-        log.debug("Parsed the PGP Key: %s", k['fingerprint'])
-
-        return {
-            'public': key,
-            'fingerprint': k['fingerprint'],
-            'expiration': k['expiration']
-        }
-    except:
-        raise
-    finally:
-        # the finally statement is always called also if
-        # except contains a return or a raise
-        gnob.destroy_environment()

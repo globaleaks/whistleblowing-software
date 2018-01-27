@@ -25,7 +25,3 @@ LISTENING_IP=0.0.0.0
 # WORKING_DIR
 #   must be configured with the daemon working directory
 WORKING_DIR=/var/globaleaks/
-
-# RAM_DISK
-#   must be configured with a RAM disk path to be used for globaleaks
-RAM_DISK=/dev/shm/globaleaks/

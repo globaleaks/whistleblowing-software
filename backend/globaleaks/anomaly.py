@@ -104,8 +104,8 @@ def save_anomalies(session):
 
 
 class Alarm(object):
-    def __init__(self, settings):
-        self.settings = settings
+    def __init__(self, state):
+        self.state = state
 
         self.last_alarm_email = datetime_null()
 
@@ -195,8 +195,10 @@ class Alarm(object):
         https://github.com/globaleaks/GlobaLeaks/issues/297
         https://github.com/globaleaks/GlobaLeaks/issues/872
         """
-        self.measured_freespace, self.measured_totalspace = get_disk_space(self.settings.working_path)
-        self.measured_freeram, self.measured_totalram = get_disk_space(self.settings.ramdisk_path)
+        self.state.check_ramdisk()
+
+        self.measured_freespace, self.measured_totalspace = get_disk_space(self.state.settings.working_path)
+        self.measured_freeram, self.measured_totalram = get_disk_space(self.state.settings.ramdisk_path)
 
         disk_space = 0
         disk_message = ""
@@ -235,7 +237,7 @@ class Alarm(object):
         self.alarm_levels['disk_message'] = disk_message
 
         # if not on testing change accept_submission to the new value
-        State.accept_submissions = accept_submissions if not self.settings.testing else True
+        State.accept_submissions = accept_submissions if not self.state.settings.testing else True
 
         if old_accept_submissions != State.accept_submissions:
             log.info("Switching disk space availability from: %s to %s",
