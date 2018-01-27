@@ -12,7 +12,7 @@ from globaleaks.handlers.rtip import serialize_rtip, serialize_message, serializ
 from globaleaks.handlers.user import user_serialize_user
 from globaleaks.jobs.base import NetLoopingJob
 from globaleaks.orm import transact
-from globaleaks.security import encrypt_message
+from globaleaks.security import GLBPGP
 from globaleaks.utils.templating import Templating
 from globaleaks.utils.utility import log
 
@@ -197,7 +197,10 @@ class MailGenerator(object):
 
         # If the receiver has encryption enabled encrypt the mail body
         if data['user']['pgp_key_public']:
-            body = encrypt_message(data['user']['pgp_key_public'], body)
+            self.state.check_ramdisk()
+            gpob = GLBPGP(self.state.settings.ramdisk_path)
+            fingerprint = gpob.load_key(data['user']['pgp_key_public'])['fingerprint']
+            body = gpob.encrypt_message(fingerprint, body)
 
         session.add(models.Mail({
             'address': data['user']['mail_address'],

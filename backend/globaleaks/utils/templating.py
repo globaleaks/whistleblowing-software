@@ -9,7 +9,6 @@ import re
 from globaleaks import __version__
 from globaleaks import models
 from globaleaks.rest import errors
-from globaleaks.security import encrypt_message
 from globaleaks.utils.utility import ISO8601_to_pretty_str, ISO8601_to_day_str, \
     bytes_to_pretty_str
 
@@ -508,16 +507,3 @@ class Templating(object):
         body = self.format_template(body_template, data)
 
         return subject, body
-
-def format_and_send(session, tid, user_desc, template_vars):
-    subject, body = Templating().get_mail_subject_and_body(template_vars)
-
-    if user_desc['pgp_key_public']:
-        body = encrypt_message(user_desc['pgp_key_public'], body)
-
-    session.add(models.Mail({
-        'address': user_desc['mail_address'],
-        'subject': subject,
-        'body': body,
-        'tid': tid,
-    }))

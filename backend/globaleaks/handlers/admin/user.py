@@ -35,12 +35,13 @@ def admin_serialize_receiver(session, receiver, user, language):
 
     return get_localized_values(ret_dict, receiver, receiver.localized_keys, language)
 
+
 @transact
-def create_user(session, tid, request, language):
-    return user_serialize_user(session, db_create_user(session, tid, request, language), language)
+def create_user(session, state, tid, request, language):
+    return user_serialize_user(session, db_create_user(session, state, tid, request, language), language)
 
 
-def db_create_receiver_user(session, tid, request, language):
+def db_create_receiver_user(session, state, tid, request, language):
     """
     Creates a new receiver
     Returns:
@@ -48,7 +49,7 @@ def db_create_receiver_user(session, tid, request, language):
     """
     fill_localized_keys(request, models.Receiver.localized_keys, language)
 
-    user = db_create_user(session, tid, request, language)
+    user = db_create_user(session, state, tid, request, language)
 
     request['id'] = user.id
 
@@ -58,24 +59,24 @@ def db_create_receiver_user(session, tid, request, language):
 
 
 @transact
-def create_receiver_user(session, tid, request, language):
-    receiver, user = db_create_receiver_user(session, tid, request, language)
+def create_receiver_user(session, state, tid, request, language):
+    receiver, user = db_create_receiver_user(session, state, tid, request, language)
     return admin_serialize_receiver(session, receiver, user, language)
 
 
-def create(tid, request, language):
+def create(state, tid, request, language):
     if request['role'] not in ['admin', 'receiver', 'custodian']:
         raise errors.InvalidInput
 
     if request['role'] == 'receiver':
-        d = create_receiver_user(tid, request, language)
+        d = create_receiver_user(state, tid, request, language)
     else:
-        d = create_user(tid, request, language)
+        d = create_user(state, tid, request, language)
 
     return d
 
 
-def db_create_user(session, tid, request, language):
+def db_create_user(session, state, tid, request, language):
     request['tid'] = tid
 
     fill_localized_keys(request, models.User.localized_keys, language)
@@ -102,7 +103,7 @@ def db_create_user(session, tid, request, language):
     user.password = security.hash_password(password, user.salt)
 
     # The various options related in manage PGP keys are used here.
-    parse_pgp_options(user, request)
+    parse_pgp_options(state, user, request)
 
     session.add(user)
 
@@ -111,7 +112,7 @@ def db_create_user(session, tid, request, language):
     return user
 
 
-def db_admin_update_user(session, tid, user_id, request, language):
+def db_admin_update_user(session, state, tid, user_id, request, language):
     """
     Updates the specified user.
     """
@@ -127,7 +128,7 @@ def db_admin_update_user(session, tid, user_id, request, language):
         user.password_change_date = datetime_now()
 
     # The various options related in manage PGP keys are used here.
-    parse_pgp_options(user, request)
+    parse_pgp_options(state, user, request)
 
     if user.role == 'admin':
         db_refresh_memory_variables(session, [tid])
@@ -136,8 +137,8 @@ def db_admin_update_user(session, tid, user_id, request, language):
 
 
 @transact
-def admin_update_user(session, tid, user_id, request, language):
-    return user_serialize_user(session, db_admin_update_user(session, tid, user_id, request, language), language)
+def admin_update_user(session, state, tid, user_id, request, language):
+    return user_serialize_user(session, db_admin_update_user(session, state, tid, user_id, request, language), language)
 
 
 @transact
@@ -180,7 +181,7 @@ class UsersCollection(BaseHandler):
         request = self.validate_message(self.request.content.read(),
                                         requests.AdminUserDesc)
 
-        return create(self.request.tid, request, self.request.language)
+        return create(self.state, self.request.tid, request, self.request.language)
 
 
 class UserInstance(BaseHandler):
@@ -193,7 +194,7 @@ class UserInstance(BaseHandler):
         """
         request = self.validate_message(self.request.content.read(), requests.AdminUserDesc)
 
-        return admin_update_user(self.request.tid, user_id, request, self.request.language)
+        return admin_update_user(self.state, self.request.tid, user_id, request, self.request.language)
 
     def delete(self, user_id):
         """

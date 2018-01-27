@@ -156,7 +156,7 @@ def db_refresh_memory_variables(session, to_refresh=None):
             del State.tenant_cache[tid]
 
     for tid in to_add:
-        State.tenant_state[tid] = TenantState(State.settings)
+        State.tenant_state[tid] = TenantState(State)
         State.tenant_cache[tid] = ObjectDict()
 
     if to_refresh is None:

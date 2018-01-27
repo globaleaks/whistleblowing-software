@@ -57,7 +57,7 @@ def db_update_questionnaire(session, questionnaire, request, language):
     return questionnaire
 
 
-def db_create_questionnaire(session, tid, questionnaire_dict, language):
+def db_create_questionnaire(session, state, tid, questionnaire_dict, language):
     fill_localized_keys(questionnaire_dict, models.Questionnaire.localized_keys, language)
 
     questionnaire_dict['tid'] = tid
@@ -70,7 +70,7 @@ def db_create_questionnaire(session, tid, questionnaire_dict, language):
 
 
 @transact
-def create_questionnaire(session, tid, request, language):
+def create_questionnaire(session, state, tid, request, language):
     """
     Creates a new questionnaire from the request of a client.
 
@@ -80,7 +80,7 @@ def create_questionnaire(session, tid, request, language):
     Returns:
         (dict) representing the configured questionnaire
     """
-    questionnaire = db_create_questionnaire(session, tid, request, language)
+    questionnaire = db_create_questionnaire(session, state, tid, request, language)
 
     return serialize_questionnaire(session, tid, questionnaire, language)
 
@@ -129,7 +129,7 @@ class QuestionnairesCollection(BaseHandler):
 
         request = self.validate_message(self.request.content.read(), validator)
 
-        return create_questionnaire(self.request.tid, request, self.request.language)
+        return create_questionnaire(self.state, self.request.tid, request, self.request.language)
 
 
 class QuestionnaireInstance(BaseHandler):

@@ -14,7 +14,7 @@ from globaleaks.utils.utility import log
 
 
 @transact
-def wizard(session, tid, request, client_using_tor, language):
+def wizard(session, state, tid, request, client_using_tor, language):
     node = config.ConfigFactory(session, tid, 'node')
 
     if node.get_val(u'wizard_done'):
@@ -51,13 +51,13 @@ def wizard(session, tid, request, client_using_tor, language):
     receiver_desc['deletable'] = True
     receiver_desc['pgp_key_remove'] = False
 
-    _, receiver = db_create_receiver_user(session, tid, receiver_desc, language)
+    _, receiver = db_create_receiver_user(session, state, tid, receiver_desc, language)
 
     context_desc = models.Context().dict(language)
     context_desc['name'] = u'Default'
     context_desc['receivers'] = [receiver.id]
 
-    db_create_context(session, tid, context_desc, language)
+    db_create_context(session, state, tid, context_desc, language)
 
     admin_desc = models.User().dict(language)
     admin_desc['name'] = request['admin_name']
@@ -71,7 +71,7 @@ def wizard(session, tid, request, client_using_tor, language):
     admin_desc['pgp_key_remove'] = False
     admin_desc['password_change_needed'] = False
 
-    db_create_user(session, tid, admin_desc, language)
+    db_create_user(session, state, tid, admin_desc, language)
 
     db_refresh_memory_variables(session, [tid])
 
@@ -87,4 +87,4 @@ class Wizard(BaseHandler):
         request = self.validate_message(self.request.content.read(),
                                         requests.WizardDesc)
 
-        return wizard(self.request.tid, request, self.request.client_using_tor, self.request.language)
+        return wizard(self.state, self.request.tid, request, self.request.client_using_tor, self.request.language)

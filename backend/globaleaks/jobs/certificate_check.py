@@ -13,7 +13,6 @@ from globaleaks.handlers.admin.user import db_get_admin_users
 from globaleaks.jobs.base import LoopingJob
 from globaleaks.orm import transact
 from globaleaks.utils import letsencrypt
-from globaleaks.utils.templating import format_and_send
 from globaleaks.utils.utility import datetime_to_ISO8601, log
 
 class CertificateCheck(LoopingJob):
@@ -36,7 +35,7 @@ class CertificateCheck(LoopingJob):
                 'user': user_desc,
             }
 
-            format_and_send(session, tid, user_desc, template_vars)
+            self.state.format_and_send_mail(session, tid, user_desc, template_vars)
 
     @transact
     def check_tenants_for_cert_expiration(self, session):

@@ -12,14 +12,14 @@ from globaleaks.jobs.base import NetLoopingJob
 from globaleaks.models.config import ConfigFactory
 from globaleaks.orm import transact
 from globaleaks.utils.agent import get_page
-from globaleaks.utils.templating import format_and_send
+from globaleaks.utils.templating import Templating
 from globaleaks.utils.utility import log
 
 DEB_PACKAGE_URL = 'https://deb.globaleaks.org/xenial/Packages'
 
 
 @transact
-def evaluate_update_notification(session, latest_version):
+def evaluate_update_notification(session, state, latest_version):
     priv_fact = ConfigFactory(session, 1, 'node')
 
     stored_latest = priv_fact.get_val(u'latest_version')
@@ -40,7 +40,7 @@ def evaluate_update_notification(session, latest_version):
                 'user': user_desc,
             }
 
-            format_and_send(session, 1, user_desc, template_vars)
+            state.format_and_send_mail(session, 1, user_desc, template_vars)
 
 
 class UpdateCheck(NetLoopingJob):
@@ -58,6 +58,6 @@ class UpdateCheck(NetLoopingJob):
 
         latest_version = unicode(versions[-1])
 
-        yield evaluate_update_notification(latest_version)
+        yield evaluate_update_notification(self.state, latest_version)
 
         log.debug('The newest version in the repository is: %s', latest_version)

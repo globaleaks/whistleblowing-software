@@ -136,7 +136,6 @@ class TestRTipInstance(helpers.TestHandlerWithPopulatedDB):
         State.tenant_cache[1].can_grant_permissions = True
         yield self.switch_enabler('enable_attachments')
 
-
     @inlineCallbacks
     def test_put_label(self):
         rtip_descs = yield self.get_rtips()
