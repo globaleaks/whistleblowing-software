@@ -2,7 +2,7 @@
 
 from globaleaks.models.config_desc import Unicode, Int, Bool
 from globaleaks import __version__, DATABASE_VERSION
-from globaleaks.security import generateRandomSalt as salt
+from globaleaks.utils.security import generateRandomSalt as salt
 from globaleaks.utils.utility import datetime_null, iso_strf_time
 
 

@@ -7,8 +7,8 @@ from collections import OrderedDict
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
-from globaleaks import __version__, models, DATABASE_VERSION, FIRST_DATABASE_VERSION_SUPPORTED, \
-    LANGUAGES_SUPPORTED_CODES, security
+from globaleaks import __version__, models, \
+    DATABASE_VERSION, FIRST_DATABASE_VERSION_SUPPORTED, LANGUAGES_SUPPORTED_CODES
 from globaleaks.db.appdata import db_update_defaults, load_appdata, db_fix_fields_attrs
 from globaleaks.db.migrations.update_25 import User_v_24, SecureFileDelete_v_24
 from globaleaks.db.migrations.update_26 import InternalFile_v_25
@@ -36,6 +36,7 @@ from globaleaks.orm import get_engine
 from globaleaks.models import config, l10n, Base
 from globaleaks.models.config import ConfigFactory
 from globaleaks.settings import Settings
+from globaleaks.utils.security import overwrite_and_remove
 from globaleaks.utils.utility import log
 
 
@@ -110,7 +111,6 @@ def perform_data_update(db_file):
         removed_languages = ', '.join(removed_languages)
         raise Exception("FATAL: cannot complete the upgrade because the support for some of the enabled languages is currently incomplete (%s)\n"
                         "Read about how to handle this condition at: https://github.com/globaleaks/GlobaLeaks/wiki/Upgrade-Guide#lang-drop" % removed_languages)
-
 
     try:
         prv = ConfigFactory(session, 1, 'node')
@@ -252,12 +252,12 @@ def perform_migration(version):
     else:
         # in case of success first copy the new migrated db, then as last action delete the original db file
         shutil.copy(new_db_file, final_db_file)
-        security.overwrite_and_remove(orig_db_file)
+        overwrite_and_remove(orig_db_file)
 
     finally:
         # Always cleanup the temporary directory used for the migration
         for f in os.listdir(tmpdir):
-            security.overwrite_and_remove(os.path.join(tmpdir, f))
+            overwrite_and_remove(os.path.join(tmpdir, f))
 
         shutil.rmtree(tmpdir)
 

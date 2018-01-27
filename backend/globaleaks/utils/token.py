@@ -10,7 +10,7 @@ from datetime import datetime, timedelta
 from random import SystemRandom
 
 from globaleaks.rest import errors
-from globaleaks.security import sha256, generateRandomKey
+from globaleaks.utils.security import sha256, generateRandomKey
 from globaleaks.settings import Settings
 from globaleaks.state import State
 from globaleaks.utils.tempdict import TempDict

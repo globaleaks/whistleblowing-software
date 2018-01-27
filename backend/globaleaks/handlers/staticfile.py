@@ -5,7 +5,7 @@ import os
 
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.rest import errors
-from globaleaks.security import directory_traversal_check
+from globaleaks.utils.security import directory_traversal_check
 
 
 class StaticFileHandler(BaseHandler):

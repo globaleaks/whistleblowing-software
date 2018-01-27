@@ -1,11 +1,10 @@
+# -*- coding: utf-8
 import binascii
 import os
 import scrypt
-from datetime import datetime
 
 from globaleaks.rest import errors
-from globaleaks.security import generateRandomSalt, hash_password, check_password, change_password, \
-    directory_traversal_check, SecureTemporaryFile, GLBPGP
+from globaleaks.utils.security import generateRandomSalt, hash_password, check_password, change_password, directory_traversal_check
 from globaleaks.settings import Settings
 from globaleaks.tests import helpers
 from twisted.trial import unittest
@@ -74,78 +73,3 @@ class TestFilesystemAccess(helpers.TestGL):
     def test_directory_traversal_check_allowed(self):
         valid_access = os.path.join(Settings.files_path, "valid.txt")
         directory_traversal_check(Settings.files_path, valid_access)
-
-
-class TestSecureFiles(helpers.TestGL):
-    def test_temporary_file(self):
-        a = SecureTemporaryFile(Settings.tmp_upload_path)
-        antani = "0123456789" * 10000
-        a.write(antani)
-        self.assertTrue(antani == a.read())
-        a.close()
-        self.assertFalse(os.path.exists(a.filepath))
-
-    def test_temporary_file_write_after_read(self):
-        a = SecureTemporaryFile(Settings.tmp_upload_path)
-        antani = "0123456789" * 10000
-        a.write(antani)
-        self.assertTrue(antani == a.read())
-        self.assertRaises(Exception, a.write, antani)
-        a.close()
-
-
-class TestPGP(helpers.TestGL):
-    secret_content = helpers.PGPKEYS['VALID_PGP_KEY1_PRV']
-
-    def test_encrypt_message(self):
-        fake_receiver_desc = {
-            'pgp_key_public': helpers.PGPKEYS['VALID_PGP_KEY1_PUB'],
-            'pgp_key_fingerprint': u'BFB3C82D1B5F6A94BDAC55C6E70460ABF9A4C8C1',
-            'username': u'fake@username.net',
-        }
-
-        pgpobj = GLBPGP()
-        pgpobj.load_key(helpers.PGPKEYS['VALID_PGP_KEY1_PRV'])
-
-        encrypted_body = pgpobj.encrypt_message(fake_receiver_desc['pgp_key_fingerprint'],
-                                                self.secret_content)
-
-        self.assertEqual(str(pgpobj.gnupg.decrypt(encrypted_body)), self.secret_content)
-
-        pgpobj.destroy_environment()
-
-    def test_encrypt_file(self):
-        file_src = os.path.join(os.getcwd(), 'test_plaintext_file.txt')
-        file_dst = os.path.join(os.getcwd(), 'test_encrypted_file.txt')
-
-        fake_receiver_desc = {
-            'pgp_key_public': helpers.PGPKEYS['VALID_PGP_KEY1_PRV'],
-            'pgp_key_fingerprint': u'BFB3C82D1B5F6A94BDAC55C6E70460ABF9A4C8C1',
-            'username': u'fake@username.net',
-        }
-
-        # these are the same lines used in delivery.py
-        pgpobj = GLBPGP()
-        pgpobj.load_key(helpers.PGPKEYS['VALID_PGP_KEY1_PRV'])
-
-        with open(file_src, 'w+') as f:
-            f.write(self.secret_content)
-            f.seek(0)
-
-            pgpobj.encrypt_file(fake_receiver_desc['pgp_key_fingerprint'], f, file_dst)
-
-        with open(file_dst, 'r') as f:
-            self.assertEqual(str(pgpobj.gnupg.decrypt_file(f)), self.secret_content)
-
-        pgpobj.destroy_environment()
-
-    def test_read_expirations(self):
-        pgpobj = GLBPGP()
-
-        self.assertEqual(pgpobj.load_key(helpers.PGPKEYS['VALID_PGP_KEY1_PRV'])['expiration'],
-                         datetime.utcfromtimestamp(0))
-
-        self.assertEqual(pgpobj.load_key(helpers.PGPKEYS['EXPIRED_PGP_KEY_PUB'])['expiration'],
-                         datetime.utcfromtimestamp(1391012793))
-
-        pgpobj.destroy_environment()

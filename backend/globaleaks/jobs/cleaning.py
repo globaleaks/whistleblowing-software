@@ -17,7 +17,7 @@ from globaleaks.handlers.rtip import db_delete_itips
 from globaleaks.handlers.user import user_serialize_user
 from globaleaks.jobs.base import LoopingJob
 from globaleaks.orm import transact
-from globaleaks.security import overwrite_and_remove
+from globaleaks.utils.security import overwrite_and_remove
 from globaleaks.state import State
 from globaleaks.utils.utility import is_expired
 from globaleaks.utils.templating import Templating

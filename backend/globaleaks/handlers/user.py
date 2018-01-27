@@ -6,8 +6,9 @@ from globaleaks.handlers.admin.modelimgs import db_get_model_img
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.orm import transact
 from globaleaks.rest import requests
-from globaleaks.security import change_password, GLBPGP
 from globaleaks.state import State
+from globaleaks.utils.pgp import PGPContext
+from globaleaks.utils.security import change_password
 from globaleaks.utils.structures import get_localized_values
 from globaleaks.utils.utility import datetime_to_ISO8601, datetime_now, datetime_null
 
@@ -23,9 +24,9 @@ def parse_pgp_options(state, user, request):
     if not remove_key and pgp_key_public:
         state.check_ramdisk()
 
-        gnob = GLBPGP(state.settings.ramdisk_path)
+        pgpctx = PGPContext(state.settings.ramdisk_path)
 
-        k = gnob.load_key(pgp_key_public)
+        k = pgpctx.load_key(pgp_key_public)
 
     if k is not None:
         user.pgp_key_public = pgp_key_public

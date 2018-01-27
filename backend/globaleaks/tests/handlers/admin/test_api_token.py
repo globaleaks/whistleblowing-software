@@ -4,7 +4,7 @@ from globaleaks.handlers.admin import shorturl
 from globaleaks.models.config import ConfigFactory
 from globaleaks.orm import transact
 from globaleaks.rest import errors
-from globaleaks.security import generate_api_token
+from globaleaks.utils.security import generate_api_token
 from globaleaks.tests import helpers
 from twisted.internet.defer import inlineCallbacks
 

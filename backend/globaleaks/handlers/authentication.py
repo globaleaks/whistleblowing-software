@@ -5,7 +5,7 @@ from random import SystemRandom
 
 from twisted.internet.defer import inlineCallbacks, returnValue
 
-from globaleaks import security
+from globaleaks.utils import security
 from globaleaks.handlers.base import BaseHandler, Sessions, new_session
 from globaleaks.models import InternalTip, User
 from globaleaks.orm import transact

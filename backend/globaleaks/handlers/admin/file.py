@@ -12,7 +12,7 @@ from twisted.internet import threads
 from globaleaks import models
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.orm import transact
-from globaleaks.security import directory_traversal_check
+from globaleaks.utils.security import directory_traversal_check
 from globaleaks.utils.utility import uuid4
 
 @transact

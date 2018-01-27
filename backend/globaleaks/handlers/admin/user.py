@@ -4,13 +4,14 @@
 #   *****
 # Implementation of the User model functionalities
 #
-from globaleaks import models, security
+from globaleaks import models
 from globaleaks.db import db_refresh_memory_variables
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.user import parse_pgp_options, user_serialize_user
 from globaleaks.orm import transact
 from globaleaks.rest import requests, errors
 from globaleaks.state import State
+from globaleaks.utils import security
 from globaleaks.utils.structures import fill_localized_keys, get_localized_values
 from globaleaks.utils.utility import datetime_now
 

@@ -6,7 +6,7 @@ import os
 from globaleaks import models
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.orm import transact
-from globaleaks.security import directory_traversal_check
+from globaleaks.utils.security import directory_traversal_check
 from globaleaks.settings import Settings
 from globaleaks.utils.utility import read_json_file
 
