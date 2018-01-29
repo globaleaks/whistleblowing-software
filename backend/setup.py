@@ -35,9 +35,6 @@ setup(
     cmdclass={'test': TestCommand},
     package_dir={'globaleaks': 'globaleaks'},
     test_suite='globaleaks.tests',
-    package_data={'globaleaks': [
-        'db/sqlite.sql',
-    ]},
     packages=find_packages(exclude=['*.tests', '*.tests.*']),
     scripts=[
         'bin/globaleaks',
