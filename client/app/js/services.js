@@ -918,14 +918,6 @@ factory('AdminUtils', ['AdminContextResource', 'AdminQuestionnaireResource', 'Ad
         return 'data:image/png;base64,' + data;
       },
 
-      isHomepage: function () {
-        return $location.path() === '/';
-      },
-
-      isWizardPage: function () {
-        return $location.path() === '/wizard';
-      },
-
       renderCustomCSS: function() {
         if (angular.isUndefined($rootScope.node)) {
           return false;
