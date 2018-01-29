@@ -134,7 +134,7 @@ class Cleaning(LoopingJob):
             path = os.path.join(self.state.settings.ramdisk_path, f)
             timestamp = datetime.datetime.fromtimestamp(os.path.getmtime(path))
             if is_expired(timestamp, days=1):
-                overwrite_and_remove(file_to_delete)
+                overwrite_and_remove(path)
 
     @inlineCallbacks
     def operation(self):
