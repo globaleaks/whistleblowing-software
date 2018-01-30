@@ -2,12 +2,6 @@ describe('globaLeaks setup wizard', function() {
   it('should allow the user to setup the wizard', function() {
     browser.get('/#/wizard');
 
-    // Test language selector switching to italian and then re-switching to english
-    element(by.model('GLTranslate.indirect.appLanguage')).element(by.xpath(".//*[text()='Italiano']")).click();
-    browser.gl.utils.waitUntilPresent(by.cssContainingText("form", "Benvenuto su GlobaLeaks!"));
-    element(by.model('GLTranslate.indirect.appLanguage')).element(by.xpath(".//*[text()='English']")).click();
-    browser.gl.utils.waitUntilPresent(by.cssContainingText("form", "Welcome to GlobaLeaks!"));
-
     element.all(by.css('.ButtonNext')).get(0).click();
 
     element(by.model('wizard.node_name')).sendKeys('E2E Test Instance');
