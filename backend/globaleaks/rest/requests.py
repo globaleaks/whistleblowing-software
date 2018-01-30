@@ -30,7 +30,7 @@ https_url_regexp_or_empty         = r'^https://([0-9a-z\-]+)\.(.*)$|^$'
 landing_page_regexp               = r'^(homepage|submissionpage)$'
 context_selector_type_regexp      = r'^(list|cards|search)$'
 tip_operation_regexp              = r'^(postpone|set)$'
-shorturl_regexp                   = r'^(/s/[a-z0-9_-]{1,30})$'
+shorturl_regexp                   = r'^([a-z0-9_-]{1,30})$'
 longurl_regexp                    = r'^(/[a-z0-9#=_&?/-]{1,255})$'
 short_text_regexp                 = r'^.{1,255}$'
 

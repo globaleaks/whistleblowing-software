@@ -22,34 +22,6 @@ angular.module('GLDirectives', []).
       }
     };
 }).
-  directive('inputPrefix', function() {
-    return {
-      require: 'ngModel',
-      link: function(scope, elem, attrs, ngModel) {
-        function inputPrefix(value) {
-          var prefix = attrs.prefix;
-
-          var result = prefix;
-
-          if (value.length >= prefix.length) {
-            if (value.slice(0, prefix.length) !== prefix) {
-              result = prefix + value;
-            } else {
-              result = value;
-            }
-          }
-
-          ngModel.$setViewValue(result);
-          ngModel.$render();
-
-          return result;
-        }
-
-        ngModel.$formatters.push(inputPrefix);
-        ngModel.$parsers.push(inputPrefix);
-      }
-    };
-}).
   directive('keycodevalidator', function() {
     return {
       require: 'ngModel',

@@ -26,6 +26,7 @@ def get_shorturl_list(session, tid):
 @transact
 def create_shorturl(session, tid, request):
     request['tid'] = tid
+    request['shorturl'] = '/s/' + request['shorturl']
     shorturl = models.db_forge_obj(session, models.ShortURL, request)
     return serialize_shorturl(shorturl)
 
