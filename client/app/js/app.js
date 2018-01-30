@@ -588,10 +588,6 @@ var GLClient = angular.module('GLClient', [
 
         $rootScope.languages_enabled_selector = $filter('orderBy')($rootScope.languages_enabled_selector, 'code');
 
-        $rootScope.languages_enabled_length = Object.keys($rootScope.node.languages_enabled).length;
-
-        $rootScope.show_language_selector = ($rootScope.languages_enabled_length > 1);
-
         Utils.set_title();
 
         if ($rootScope.node.enable_experimental_features) {
