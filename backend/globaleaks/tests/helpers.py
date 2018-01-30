@@ -517,7 +517,7 @@ class TestGL(unittest.TestCase):
 
     def get_dummy_shorturl(self, x = ''):
         return {
-          'shorturl': '/s/shorturl' + str(x),
+          'shorturl': 'shorturl' + str(x),
           'longurl': '/longurl' + str(x)
         }
 

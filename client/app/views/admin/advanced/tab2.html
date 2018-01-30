@@ -3,11 +3,16 @@
     <div data-ng-form="shorturlAddForm" class="form-inline" isolate-form novalidate>
       <div class="form-group display-block">
         <label data-translate>Short URL</label>
-        <input type="text" class="form-control" name="short_url" data-ng-model="new_shorturl.shorturl" data-ng-pattern="shortener_shorturl_regexp" input-prefix prefix="/s/">
+	<div class="input-group" data-ng-class="{'has-error': shorturlAddForm.short_url.$invalid}">
+	  <span class="input-group-addon">/s/</span>
+          <input type="text" class="form-control" name="short_url" data-ng-model="new_shorturl.shorturl" data-ng-pattern="shortener_shorturl_regexp">
+        </div>
       </div>
       <div class="form-group display-block">
         <label data-translate>Long URL</label>
-        <input type="text" class="form-control" name="long_url" data-ng-model="new_shorturl.longurl" data-ng-pattern="shortener_longurl_regexp" input-prefix prefix="/">
+	<span data-ng-class="{'has-error': shorturlAddForm.long_url.$invalid}">
+          <input type="text" class="form-control" name="long_url" data-ng-model="new_shorturl.longurl" data-ng-pattern="shortener_longurl_regexp">
+	</span>
       </div>
       <button type="submit"
               class="btn btn-primary"
