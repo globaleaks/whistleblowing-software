@@ -255,7 +255,7 @@ class StateClass(ObjectDict):
     def format_and_send_mail(self, session, tid, user_desc, template_vars):
         subject, body = Templating().get_mail_subject_and_body(template_vars)
 
-        if user_desc['pgp_key_public']:
+        if user_desc.get('pgp_key_public', ''):
             self.check_ramdisk()
             pgpctx = PGPContext(self.settings.ramdisk_path)
             fingerprint = pgpctx.load_key(user_desc['pgp_key_public'])['fingerprint']

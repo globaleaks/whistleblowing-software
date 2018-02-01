@@ -74,15 +74,20 @@ def login_whistleblower(session, tid, receipt, client_using_tor):
 
 
 @transact
-def login(session, tid, username, password, client_using_tor):
+def login(session, tid, username, password, client_using_tor, token=''):
     """
     login returns a tuple (user_id, state, pcn)
     """
-    user = session.query(User).filter(User.username == username, \
-                                    User.state != u'disabled', \
-                                    User.tid == tid).one_or_none()
+    if token:
+        user = session.query(User).filter(User.auth_token == token, \
+                                          User.state != u'disabled', \
+                                          User.tid == tid).one_or_none()
+    else:
+        user = session.query(User).filter(User.username == username, \
+                                          User.state != u'disabled', \
+                                          User.tid == tid).one_or_none()
 
-    if user is None or not security.check_password(password, user.salt, user.password):
+    if user is None or (not token and not security.check_password(password, user.salt, user.password)):
         log.debug("Login: Invalid credentials")
         Settings.failed_login_attempts += 1
         raise errors.InvalidAuthentication
@@ -109,17 +114,15 @@ class AuthenticationHandler(BaseHandler):
     def post(self):
         request = self.validate_message(self.request.content.read(), requests.AuthDesc)
 
-        username = request['username']
-        password = request['password']
-
         delay = random_login_delay()
         if delay:
             yield deferred_sleep(delay)
 
-        user_id, status, role, pcn = yield login(self.request.tid, username, password, self.request.client_using_tor)
-
-        # Revoke all other sessions for the newly authenticated user
-        Sessions.revoke_all_sessions(user_id)
+        user_id, status, role, pcn = yield login(self.request.tid,
+                                                 request['username'],
+                                                 request['password'],
+                                                 self.request.client_using_tor,
+                                                 request['token'])
 
         session = new_session(self.request.tid, user_id, role, status)
 
@@ -131,7 +134,6 @@ class AuthenticationHandler(BaseHandler):
             'status': session.user_status,
             'password_change_needed': pcn
         })
-
 
 class ReceiptAuthHandler(BaseHandler):
     """
@@ -151,8 +153,6 @@ class ReceiptAuthHandler(BaseHandler):
             yield deferred_sleep(delay)
 
         user_id = yield login_whistleblower(self.request.tid, receipt, self.request.client_using_tor)
-
-        Sessions.revoke_all_sessions(user_id)
 
         session = new_session(self.request.tid, user_id, 'whistleblower', 'Enabled')
 

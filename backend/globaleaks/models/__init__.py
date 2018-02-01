@@ -9,7 +9,12 @@ import copy
 from globaleaks.models.properties import *
 from globaleaks.orm import transact
 from globaleaks.rest import errors
+from globaleaks.utils.security import generateRandomKey
 from globaleaks.utils.utility import datetime_now, datetime_null, datetime_to_ISO8601
+
+
+def get_auth_token():
+    return unicode(generateRandomKey(32))
 
 
 def db_forge_obj(session, mock_class, mock_fields):
@@ -194,6 +199,23 @@ class Tenant(Model, Base):
     bool_keys = ['active']
 
 
+class Signup(Model, Base):
+    __tablename__ = 'signup'
+
+    id = Column(Integer, primary_key=True, nullable=False)
+    tid = Column(Integer, ForeignKey('tenant.id', ondelete='SET NULL'), default=1)
+    subdomain = Column(UnicodeText, nullable=False)
+    name = Column(UnicodeText, nullable=False)
+    surname = Column(UnicodeText, nullable=False)
+    email = Column(UnicodeText, nullable=False)
+    use_case = Column(UnicodeText, nullable=False)
+    use_case_other = Column(UnicodeText, nullable=False)
+    activation_token = Column(UnicodeText, nullable=False)
+    registration_date = Column(DateTime, default=datetime_now, nullable=False)
+
+    unicode_keys = ['subdomain', 'name', 'surname', 'email', 'activation_token', 'use_case', 'use_case_other']
+
+
 class EnabledLanguage(Model, Base):
     __tablename__ = 'enabledlanguage'
 
@@ -242,6 +264,8 @@ class User(Model, Base):
     language = Column(UnicodeText, nullable=False)
     password_change_needed = Column(Boolean, default=True, nullable=False)
     password_change_date = Column(DateTime, default=datetime_null, nullable=False)
+
+    auth_token = Column(UnicodeText, default=get_auth_token, nullable=False)
 
     # BEGIN of PGP key fields
     pgp_key_fingerprint = Column(UnicodeText, default=u'', nullable=False)

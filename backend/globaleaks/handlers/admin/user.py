@@ -98,7 +98,13 @@ def db_create_user(session, state, tid, request, language):
     if not request['username']:
         user.username = user.id
 
-    password = request['password'] if request['password'] else State.tenant_cache[tid].default_password
+    if request['password']:
+        password = request['password']
+    elif user.role == 'receiver':
+        # code necessary because the user.role for recipient is receiver
+        password = 'recipient'
+    else:
+        password = user.role
 
     user.salt = security.generateRandomSalt()
     user.password = security.hash_password(password, user.salt)

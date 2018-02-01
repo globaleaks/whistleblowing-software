@@ -81,6 +81,10 @@ def db_update_node(session, tid, request, language):
     """
     node = ConfigFactory(session, tid, 'node')
 
+    if tid != 1:
+        request['enable_multisite'] = False
+        request['enable_demo'] = False
+
     node.update(request)
 
     if request['basic_auth'] and request['basic_auth_username'] and request['basic_auth_password']:

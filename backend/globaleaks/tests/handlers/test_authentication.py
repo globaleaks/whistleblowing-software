@@ -20,7 +20,8 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
     def test_successful_login(self):
         handler = self.request({
             'username': 'admin',
-            'password': helpers.VALID_PASSWORD1
+            'password': helpers.VALID_PASSWORD1,
+            'token': ''
         })
         response = yield handler.post()
         self.assertTrue('session_id' in response)
@@ -30,7 +31,8 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
     def test_accept_login_in_https(self):
         handler = self.request({
             'username': 'admin',
-            'password': helpers.VALID_PASSWORD1
+            'password': helpers.VALID_PASSWORD1,
+            'token': ''
         })
         State.tenant_cache[1]['https_admin'] = True
         response = yield handler.post()
@@ -41,7 +43,8 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
     def test_deny_login_in_https(self):
         handler = self.request({
             'username': 'admin',
-            'password': helpers.VALID_PASSWORD1
+            'password': helpers.VALID_PASSWORD1,
+            'token': ''
         })
         State.tenant_cache[1]['https_admin'] = False
         yield self.assertFailure(handler.post(), errors.TorNetworkRequired)
@@ -50,7 +53,8 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
     def test_invalid_login_wrong_password(self):
         handler = self.request({
             'username': 'admin',
-            'password': 'INVALIDPASSWORD'
+            'password': 'INVALIDPASSWORD',
+            'token': ''
         })
 
         yield self.assertFailure(handler.post(), errors.InvalidAuthentication)
@@ -59,7 +63,8 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
     def test_failed_login_counter(self):
         handler = self.request({
             'username': 'admin',
-            'password': 'INVALIDPASSWORD'
+            'password': 'INVALIDPASSWORD',
+            'token': ''
         })
 
         failed_login = 5
@@ -73,7 +78,8 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
     def test_single_session_per_user(self):
         handler = self.request({
             'username': 'admin',
-            'password': helpers.VALID_PASSWORD1
+            'password': helpers.VALID_PASSWORD1,
+            'token': ''
         })
 
         r1 = yield handler.post()
@@ -86,7 +92,8 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
     def test_session_is_revoked(self):
         auth_handler = self.request({
             'username': 'receiver1',
-            'password': helpers.VALID_PASSWORD1
+            'password': helpers.VALID_PASSWORD1,
+            'token': ''
         })
 
         r1 = yield auth_handler.post()
@@ -200,8 +207,10 @@ class TestSessionHandler(helpers.TestHandlerWithPopulatedDB):
         # Login
         handler = self.request({
             'username': 'admin',
-            'password': helpers.VALID_PASSWORD1
+            'password': helpers.VALID_PASSWORD1,
+            'token': ''
         })
+
         response = yield handler.post()
         self.assertTrue(handler.current_user is None)
         self.assertTrue('session_id' in response)

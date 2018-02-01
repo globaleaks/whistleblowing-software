@@ -15,8 +15,11 @@ from globaleaks.utils.utility import ISO8601_to_pretty_str, ISO8601_to_day_str, 
 
 node_keywords = [
     '{NodeName}',
-    '{HiddenService}',
-    '{PublicSite}'
+    '{DocumentationUrl}',
+    '{TorUrl}',
+    '{TorLoginUrl}',
+    '{HTTPSUrl}',
+    '{HTTPSLoginUrl}',
 ]
 
 context_keywords = [
@@ -87,6 +90,12 @@ software_update_keywords = [
     '{UpdateGuideUrl}',
 ]
 
+platform_signup_keywords = [
+    '{RecipientName}',
+    '{ActivationUrl}',
+    '{ExpirationDate}'
+]
+
 
 def indent(n=1):
     return '  ' * n
@@ -118,12 +127,6 @@ class NodeKeyword(Keyword):
     def NodeName(self):
         return self.data['node']['name']
 
-    def HiddenService(self):
-        return 'http://' + self.data['node']['onionservice']
-
-    def PublicSite(self):
-        return 'https://' + self.data['node']['hostname']
-
     def _TorUrl(self):
         return 'http://' + self.data['node']['onionservice'] + '/'
 
@@ -141,6 +144,21 @@ class NodeKeyword(Keyword):
             return '[NOT CONFIGURED]'
 
         return self._HTTPSUrl()
+
+    def TorLoginUrl(self):
+        if not self.data['node']['onionservice']:
+            return '[NOT CONFIGURED]'
+
+        return 'http://' + self.data['node']['onionservice'] + '/#/login'
+
+    def HTTPSLoginUrl(self):
+        if not self.data['node']['hostname']:
+            return '[NOT CONFIGURED]'
+
+        return 'https://' + self.data['node']['hostname'] + '/#/login'
+
+    def DocumentationUrl(self):
+        return 'https://docs.globaleaks.org'
 
 
 class UserKeyword(Keyword):
@@ -437,6 +455,22 @@ class SoftwareUpdateKeyword(UserNodeKeyword):
     def UpdateGuideUrl(self):
         return 'https://www.globaleaks.org/r/upgrade-guide'
 
+
+class PlatformSignupKeyword(NodeKeyword):
+    keyword_list = NodeKeyword.keyword_list + platform_signup_keywords
+    data_keys = NodeKeyword.data_keys + \
+                ['signup', 'activation_url']
+
+    def RecipientName(self):
+        return self.data['signup']['name'] + ' ' + self.data['signup']['surname']
+
+    def ActivationUrl(self):
+        return self.data['activation_url']
+
+    def ExpirationDate(self):
+        return ISO8601_to_day_str(self.data['expiration_date'])
+
+
 supported_template_types = {
     u'tip': TipKeyword,
     u'comment': CommentKeyword,
@@ -452,6 +486,8 @@ supported_template_types = {
     u'admin_test': UserNodeKeyword,
     u'https_certificate_expiration': CertificateExprKeyword,
     u'software_update_available': SoftwareUpdateKeyword,
+    u'signup': PlatformSignupKeyword,
+    u'activation': PlatformSignupKeyword
 }
 
 

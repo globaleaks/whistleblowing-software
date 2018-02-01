@@ -177,7 +177,7 @@ def db_refresh_memory_variables(session, to_refresh=None):
             if api_id is not None:
                 State.api_token_session = Session(1, api_id, 'admin', 'enabled')
 
-    root_hostname = State.tenant_cache[1].hostname
+    rootdomain = State.tenant_cache[1].rootdomain
     root_onionservice = State.tenant_cache[1].onionservice
 
     for tid in to_refresh:
@@ -190,15 +190,15 @@ def db_refresh_memory_variables(session, to_refresh=None):
         if not tenant.active and tid != 1:
             continue
 
-        if root_hostname != '':
-            hostnames.append('p{}.{}'.format(tid, root_hostname))
+        if rootdomain != '':
+            hostnames.append('p{}.{}'.format(tid, rootdomain))
 
         if root_onionservice != '':
             onionnames.append('p{}.{}'.format(tid, root_onionservice))
 
         if tenant.subdomain != '':
-            if root_hostname != '':
-                onionnames.append('{}.{}'.format(tenant.subdomain, root_hostname))
+            if rootdomain != '':
+                onionnames.append('{}.{}'.format(tenant.subdomain, rootdomain))
             if root_onionservice != '':
                 onionnames.append('{}.{}'.format(tenant.subdomain, root_onionservice))
 

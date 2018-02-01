@@ -1035,6 +1035,7 @@ class MockDict:
             'whistleblowing_receipt_prompt': u'',
             'hostname': u'www.globaleaks.org',
             'onionservice': u'',
+            'rootdomain': u'antani.gov',
             'tb_download_link': u'https://www.torproject.org/download/download',
             'email': u'email@dummy.net',
             'languages_supported': [],  # ignored
@@ -1070,6 +1071,7 @@ class MockDict:
             'enable_proof_of_work': False,
             'enable_experimental_features': False,
             'enable_multisite': True,
+            'enable_demo': True,
             'enable_custom_privacy_badge': False,
             'custom_privacy_badge_text': u'',
             'header_title_homepage': u'',

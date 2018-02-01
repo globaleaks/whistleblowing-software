@@ -111,10 +111,10 @@ def db_serialize_node(session, tid, language):
     configured = session.query(models.ReceiverContext).filter(models.ReceiverContext.context_id == models.Context.id,
                                                               models.Context.tid == tid).count() > 0
 
-    ro_node = ConfigFactory(session, tid, 'public_node').serialize()
+    node = ConfigFactory(session, tid, 'public_node').serialize()
 
     misc_dict = {
-        'languages_enabled': models.EnabledLanguage.list(session, tid) if ro_node['wizard_done'] else list(LANGUAGES_SUPPORTED_CODES),
+        'languages_enabled': models.EnabledLanguage.list(session, tid) if node['wizard_done'] else list(LANGUAGES_SUPPORTED_CODES),
         'languages_supported': LANGUAGES_SUPPORTED,
         'configured': configured,
         'accept_submissions': State.accept_submissions,
@@ -127,7 +127,7 @@ def db_serialize_node(session, tid, language):
 
     l10n_dict = NodeL10NFactory(session, tid).localized_dict(language)
 
-    return merge_dicts(ro_node, l10n_dict, misc_dict)
+    return merge_dicts(node, l10n_dict, misc_dict)
 
 
 def serialize_context(session, context, language, data=None):
