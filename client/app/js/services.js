@@ -23,54 +23,56 @@ angular.module('GLServices', ['ngResource']).
 
         self.loginInProgress = false;
 
-        self.login = function(username, password, cb) {
+        self.set_session = function(response) {
+          response = response.data;
+
+          self.session = {
+            'id': response.session_id,
+            'user_id': response.user_id,
+            'username': response.user_name,
+            'role': response.role,
+            'state': response.state,
+            'password_change_needed': response.password_change_needed,
+            'homepage': '',
+            'auth_landing_page': ''
+          };
+
+          console.log(self.session);
+
+          function initPreferences(prefs) {
+            $rootScope.preferences = prefs;
+            GLTranslate.addUserPreference(prefs.language);
+          }
+
+          if (self.session.role === 'admin') {
+            self.session.homepage = '#/admin/home';
+            self.session.auth_landing_page = '/admin/home';
+            self.session.preferencespage = '#/user/preferences';
+            UserPreferences.get().$promise.then(initPreferences);
+          } else if (self.session.role === 'custodian') {
+            self.session.homepage = '#/custodian/identityaccessrequests';
+            self.session.auth_landing_page = '/custodian/identityaccessrequests';
+            self.session.preferencespage = '#/user/preferences';
+            UserPreferences.get().$promise.then(initPreferences);
+          } else if (self.session.role === 'receiver') {
+            self.session.homepage = '#/receiver/tips';
+            self.session.auth_landing_page = '/receiver/tips';
+            self.session.preferencespage = '#/receiver/preferences';
+            ReceiverPreferences.get().$promise.then(initPreferences);
+          } else if (self.session.role === 'whistleblower') {
+            self.session.auth_landing_page = '/status';
+            self.session.homepage = '#/status';
+          }
+        }
+
+        self.login = function(username, password, token, cb) {
           self.loginInProgress = true;
 
           var success_fn = function(response) {
-            response = response.data;
-
-            self.session = {
-              'id': response.session_id,
-              'user_id': response.user_id,
-              'username': username,
-              'role': response.role,
-              'state': response.state,
-              'password_change_needed': response.password_change_needed,
-              'homepage': '',
-              'auth_landing_page': ''
-            };
-
-            function initPreferences(prefs) {
-              $rootScope.preferences = prefs;
-              GLTranslate.addUserPreference(prefs.language);
-            }
-
-            if (self.session.role === 'admin') {
-              self.session.homepage = '#/admin/home';
-              self.session.auth_landing_page = '/admin/home';
-              self.session.preferencespage = '#/user/preferences';
-              UserPreferences.get().$promise.then(initPreferences);
-            } else if (self.session.role === 'custodian') {
-              self.session.homepage = '#/custodian/identityaccessrequests';
-              self.session.auth_landing_page = '/custodian/identityaccessrequests';
-              self.session.preferencespage = '#/user/preferences';
-              UserPreferences.get().$promise.then(initPreferences);
-            } else if (self.session.role === 'receiver') {
-              self.session.homepage = '#/receiver/tips';
-              self.session.auth_landing_page = '/receiver/tips';
-              self.session.preferencespage = '#/receiver/preferences';
-              ReceiverPreferences.get().$promise.then(initPreferences);
-            } else if (self.session.role === 'whistleblower') {
-              self.session.auth_landing_page = '/status';
-              self.session.homepage = '#/status';
-            }
+            self.set_session(response);
 
             // reset login state before returning
             self.loginInProgress = false;
-
-            if (cb){
-              return cb(response);
-            }
 
             if ($routeParams.src) {
               $location.path($routeParams.src);
@@ -85,6 +87,10 @@ angular.module('GLServices', ['ngResource']).
             }
 
             $location.search('');
+
+            if (cb){
+              return cb();
+            }
           };
 
           if (username === 'whistleblower') {
@@ -93,8 +99,13 @@ angular.module('GLServices', ['ngResource']).
             then(success_fn, function() {
               self.loginInProgress = false;
             });
+          } else if (token) {
+            return $http.post('authentication', {'username': '', 'password': '', 'token': token}).
+            then(success_fn, function() {
+              self.loginInProgress = false;
+            });
           } else {
-            return $http.post('authentication', {'username': username, 'password': password}).
+            return $http.post('authentication', {'username': username, 'password': password, 'token': ''}).
             then(success_fn, function() {
               self.loginInProgress = false;
             });
@@ -744,7 +755,7 @@ factory('AdminUtils', ['AdminContextResource', 'AdminQuestionnaireResource', 'Ad
       user.username = '';
       user.role = 'receiver';
       user.state = 'enable';
-      user.password = 'globaleaks';
+      user.password = '';
       user.old_password = '';
       user.password_change_needed = true;
       user.state = 'enabled';
@@ -839,8 +850,14 @@ factory('AdminUtils', ['AdminContextResource', 'AdminQuestionnaireResource', 'Ad
           $location.path('/wizard');
         }
 
-        if ($location.path() === '/' && $rootScope.node.landing_page === 'submissionpage') {
-          $location.path('/submission');
+        if ($location.path() === '/') {
+          if ($rootScope.node.enable_demo === true) {
+            $location.path('/signup');
+          }
+
+          else if ($rootScope.node.landing_page === 'submissionpage') {
+            $location.path('/submission');
+          }
         }
 
         if ($location.path() === '/submission' &&

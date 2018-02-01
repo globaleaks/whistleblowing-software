@@ -13,8 +13,7 @@ from globaleaks.rest import requests, errors
 from globaleaks.utils.utility import log
 
 
-@transact
-def wizard(session, state, tid, request, client_using_tor, language):
+def db_wizard(session, state, tid, request, client_using_tor, language):
     node = config.ConfigFactory(session, tid, 'node')
 
     if node.get_val(u'wizard_done'):
@@ -74,6 +73,11 @@ def wizard(session, state, tid, request, client_using_tor, language):
     db_create_user(session, state, tid, admin_desc, language)
 
     db_refresh_memory_variables(session, [tid])
+
+
+@transact
+def wizard(session, state, tid, request, client_using_tor, language):
+    db_wizard(session, state, tid, request, client_using_tor, language)
 
 
 class Wizard(BaseHandler):

@@ -146,6 +146,10 @@ class NotificationL10NFactory(ConfigL10NFactory):
         u'https_certificate_expiration_mail_title',
         u'software_update_available_mail_template',
         u'software_update_available_mail_title',
+        u'signup_mail_title',
+        u'signup_mail_template',
+        u'activation_mail_title',
+        u'activation_mail_template',
     ]
 
     # These strings are not exposed in admin the interface for customization

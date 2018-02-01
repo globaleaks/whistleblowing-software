@@ -1,5 +1,5 @@
 <form name="wizardForm" novalidate>
-  <div id="WizardStep1" data-ng-show="step == 1">
+  <div data-ng-show="step == 1">
     <div class="row wizard-block">
       <div class="col-md-12">
         <div class="title1" data-translate>Welcome!</div>
@@ -13,7 +13,7 @@
       </button>
     </div>
   </div>
-  <div id="WizardStep2" data-ng-show="step == 2" data-ng-form="wizardFormStep2">
+  <div data-ng-show="step == 2" data-ng-form="wizardFormStep2">
     <div class="row wizard-block">
       <div class="title" data-translate>General</div>
       <div class="col-md-6">
@@ -39,7 +39,7 @@
       </button>
     </div>
   </div>
-  <div id="WizardStep3" data-ng-show="step == 3">
+  <div data-ng-show="step == 3">
     <div class="row wizard-block">
       <div class="title" data-translate>Please choose a configuration profile:</div>
       <div class="col-md-6">
@@ -62,7 +62,7 @@
       </button>
     </div>
   </div>
-  <div id="WizardStep4" data-ng-show="step == 4" data-ng-form="wizardFormStep4">
+  <div data-ng-show="step == 4" data-ng-form="wizardFormStep4">
     <div class="row wizard-block">
       <div class="title" data-translate>Admin</div>
       <div class="col-md-6">
@@ -129,7 +129,7 @@
       </button>
     </div>
   </div>
-  <div id="WizardStep6" data-ng-show="step == 5" data-ng-form="wizardFormStep5">
+  <div data-ng-show="step == 5" data-ng-form="wizardFormStep5">
     <div class="row wizard-block">
       <div class="title" data-translate>Recipient</div>
       <div class="col-md-6">
@@ -162,7 +162,7 @@
         </div>
         <div class="wizard-help-hint">
           <span data-translate>The default password is:</span>
-          <span class="label label-warning">globaleaks</span>
+          <span class="label label-warning">recipient</span>
         </div>
       </div>
     </div>
@@ -177,7 +177,7 @@
       </button>
     </div>
   </div>
-  <div id="WizardStep6" data-ng-show="step == 6" data-ng-form="wizardFormStep6">
+  <div data-ng-show="step == 6" data-ng-form="wizardFormStep6">
     <div class="row wizard-block">
       <div class="form-group col-md-12">
         <div class="title1" data-translate>License Agreement</div>
@@ -211,7 +211,7 @@
       </button>
     </div>
   </div>
-  <div id="WizardStep7" data-ng-show="step == 7">
+  <div data-ng-show="step == 7">
     <div class="row wizard-block">
       <div class="col-md-10">
         <div class="congratulations">
@@ -221,7 +221,7 @@
       </div>
     </div>
     <div class="pager pull-right">
-      <button class="ButtonNext btn btn-success" data-ng-click="goToAdminInterface()" type="submit" data-translate>Go to the Admin Interface</button>
+      <button class="ButtonNext btn btn-success" data-ng-click="goToAdminInterface()" type="submit"><i class="glyphicon glyphicon-link"></i> <span data-translate>Administation interface</span></button>
     </div>
   </div>
 </form>

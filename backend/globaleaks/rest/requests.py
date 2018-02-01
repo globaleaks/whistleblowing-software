@@ -101,6 +101,7 @@ FileDesc = {
 AuthDesc = {
     'username': unicode,
     'password': unicode,
+    'token': unicode
 }
 
 ReceiptAuthDesc = {
@@ -194,6 +195,7 @@ AdminNodeDesc = {
     'footer': unicode,
     'security_awareness_title': unicode,
     'security_awareness_text': unicode,
+    'rootdomain': hostname_regexp_or_empty,
     'whistleblowing_question': unicode,
     'whistleblowing_button': unicode,
     'whistleblowing_receipt_prompt': unicode,
@@ -201,7 +203,6 @@ AdminNodeDesc = {
     'languages_enabled': [unicode],
     'languages_supported': list,
     'default_language': unicode,
-    'default_password': unicode,
     'default_questionnaire': unicode,
     'maximum_filesize': int,
     'https_admin': bool,
@@ -226,6 +227,7 @@ AdminNodeDesc = {
     'enable_proof_of_work': bool,
     'enable_experimental_features': bool,
     'enable_multisite': bool,
+    'enable_demo': bool,
     'enable_custom_privacy_badge': bool,
     'custom_privacy_badge_text': unicode,
     'header_title_homepage': unicode,
@@ -412,6 +414,7 @@ NodeDesc = {
     'security_awareness_title': unicode,
     'security_awareness_text': unicode,
     'hostname': hostname_regexp_or_empty,
+    'rootdomain': hostname_regexp_or_empty,
     'tb_download_link': https_url_regexp,
     'languages_enabled': [unicode],
     'languages_supported': list,
@@ -545,6 +548,15 @@ WizardDesc = {
     'receiver_mail_address': unicode,
     'profile': r'^(default)$',
     'enable_developers_exception_notification': bool
+}
+
+SignupDesc = {
+    'subdomain': unicode,
+    'name': unicode,
+    'surname': unicode,
+    'email': unicode,
+    'use_case': unicode,
+    'use_case_other': unicode
 }
 
 ExceptionDesc = {

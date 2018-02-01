@@ -79,6 +79,7 @@ ConfigDescriptor = {
 
     u'hostname': Unicode(default=u''),
     u'onionservice': Unicode(default=u''),
+    u'rootdomain': Unicode(default=u''),
 
     u'tb_download_link': Unicode(default=u'https://www.torproject.org/download/download-easy.html.en'),
 
@@ -114,6 +115,7 @@ ConfigDescriptor = {
     u'enable_proof_of_work': Bool(default=True),
 
     u'enable_multisite': Bool(default=False),
+    u'enable_demo': Bool(default=False),
 
     u'enable_experimental_features': Bool(default=False),
 
@@ -149,6 +151,7 @@ ConfigFilters = {
         u'basic_auth_password',
         u'hostname',
         u'onionservice',
+        u'rootdomain',
         u'tb_download_link',
         u'default_language',
         u'default_questionnaire',
@@ -172,6 +175,7 @@ ConfigFilters = {
         u'disable_key_code_hint',
         u'disable_donation_panel',
         u'enable_multisite',
+        u'enable_demo',
         u'enable_captcha',
         u'enable_proof_of_work',
         u'enable_admin_exception_notification',

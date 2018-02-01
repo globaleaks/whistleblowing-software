@@ -23,10 +23,11 @@ from globaleaks.handlers import custodian, \
                                 submission, \
                                 rtip, wbtip, \
                                 attachment, authentication, token, \
-                                export, l10n, wizard, \
+                                export, l10n, wizard,\
                                 user, shorturl, \
                                 robots, \
-                                staticfile
+                                staticfile, \
+                                signup
 
 from globaleaks.handlers.admin import config as admin_config
 from globaleaks.handlers.admin import context as admin_context
@@ -41,6 +42,7 @@ from globaleaks.handlers.admin import notification as admin_notification
 from globaleaks.handlers.admin import overview as admin_overview
 from globaleaks.handlers.admin import questionnaire as admin_questionnaire
 from globaleaks.handlers.admin import receiver as admin_receiver
+from globaleaks.handlers.admin import signup as admin_signup
 from globaleaks.handlers.admin import shorturl as admin_shorturl
 from globaleaks.handlers.admin import statistics as admin_statistics
 from globaleaks.handlers.admin import step as admin_step
@@ -144,7 +146,10 @@ api_spec = [
     (r'/admin/overview/tips', admin_overview.Tips),
     (r'/admin/overview/files', admin_overview.Files),
     (r'/admin/manifest', admin_manifest.ManifestHandler),
+    (r'/admin/signup', admin_signup.SignupHandler),
     (r'/wizard', wizard.Wizard),
+    (r'/signup', signup.Signup),
+    (r'/signup/([a-zA-Z0-9_\-]{32})', signup.SignupActivation),
 
     (r'/admin/config/acme/run', https.AcmeHandler),
     (r'/.well-known/acme-challenge/([a-zA-Z0-9_\-]{42,44})', https.AcmeChallengeHandler),

@@ -6,4 +6,10 @@ GLClient.controller('LoginCtrl', ['$scope', '$location',
   }
 
   $scope.simplifiedLogin = !!($location.path() === '/login' && $scope.node.simplified_login);
+
+  $scope.token = $location.search().token;
+
+  if ($scope.token) {
+    $scope.Authentication.login('', '', $scope.token);
+  }
 }]);

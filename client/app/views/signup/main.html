@@ -1,0 +1,84 @@
+<form name= "signupForm" novalidate>
+  <div data-ng-show="step == 1" data-ng-form="signupFormStep1">
+    <div class="row wizard-block">
+      <div class="title" data-translate>Sign up</div>
+      <div class="col-md-6">
+        <div class="form-group col-md-12">
+          <label>
+            <span data-translate>Domain</span>
+            <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
+          </label>
+          <div class="row" data-ng-class="{'has-error': signupFormStep1.subdomain.$error.required}">
+            <div class="col-md-12">
+              <div class="input-group">
+                <input name="subdomain" class="form-control" data-ng-model="signup.subdomain" type="text" data-ng-attr-placeholder="{{'Domain' | translate}}" required>
+                <span class="input-group-addon">.{{node.subdomain}}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group col-md-12">
+          <label data-translate>Name</label>
+          <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
+          <div class="row" data-ng-class="{'has-error': signupFormStep1.name.$error.required}">
+            <div class="col-md-6">
+              <input name="name" class="form-control" data-ng-model="signup.name" type="text" data-ng-attr-placeholder="{{'Name' | translate}}" required>
+            </div>
+            <div class="col-md-6">
+              <input name="surname" class="form-control" data-ng-model="signup.surname" type="text" data-ng-attr-placeholder="{{'Surname' | translate}}" required>
+            </div>
+          </div>
+        </div>
+        <div class="form-group col-md-12">
+          <label>
+            <span data-translate>Email address</span>
+            <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
+          </label>
+          <div class="row" data-ng-class="{'has-error': signupFormStep1.mail_address.$error.required || signupFormStep1.mail_address.$error.pattern}">
+            <div class="col-md-12">
+              <input name="mail_address" class="form-control" data-ng-model="signup.email" data-ng-attr-placeholder="{{'Email address' | translate}}" data-ng-pattern="email_regexp" type="text" required>
+              <div class="text-danger" data-ng-show="signupFormStep1.mail_address.$error.pattern">
+                <span data-translate>Invalid email address</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group col-md-6">
+          <label>Use Case</label>
+          <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
+          <select class="form-control" data-ng-model="signup.use_case" required>
+            <option value="anticorruption">Anticorruption</option>
+            <option value="corporate_compliance">Corporate compliance</option>
+            <option value="investigative_journalism">Investigative jorunalism</option>
+            <option value="civic_activism">Civic activism</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+        <div class="form-group col-md-6" data-ng-if="signup.use_case == 'other'">
+          <label>Other</label>
+          <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
+          <input name="user_case_other" class="form-control" data-ng-model="signup.usecase_other" type="text" data-ng-attr-placeholder="{{'Other' | translate}}" required>
+        </div>
+      </div>
+    </div>
+    <div class="pager pull-right">
+      <button class="ButtonNext btn btn-primary" data-ng-click="complete()" data-ng-disabled="signupFormStep1.$invalid || (signup.admin_password !== admin_check_password)">
+        <span data-translate>Complete</span>
+        <i class="glyphicon glyphicon-circle-arrow-right"></i>
+      </button>
+    </div>
+  </div>
+  <div data-ng-show="step == 2">
+    <div class="row signup-block">
+      <div class="col-md-10">
+        <div class="congratulations">
+          <div class="title1">
+            <span data-translate>Success!</span>
+            <span data-translate>Your service sign up is almost complete!</span>
+          </div>
+          <div data-translate>Check your email to confirm your account.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
