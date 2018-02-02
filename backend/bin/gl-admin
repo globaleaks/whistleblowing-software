@@ -279,10 +279,12 @@ sv_p.set_defaults(func=set_var)
 
 et_p = subp.add_parser("enable-api-token", help="enable the API token")
 add_db_path_arg(et_p)
+et_p.add_argument("--tid", help="the tenant id", default='1', type=int)
 et_p.set_defaults(func=enable_api_token)
 
 dt_p = subp.add_parser("disable-api-token", help="disable the API token")
 add_db_path_arg(dt_p)
+dt_p.add_argument("--tid", help="the tenant id", default='1', type=int)
 dt_p.set_defaults(func=disable_api_token)
 
 if __name__ == '__main__':
