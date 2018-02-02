@@ -68,6 +68,9 @@ def get_context_list(session, tid, language):
 
 
 def db_associate_context_receivers(session, tid, context, receiver_ids):
+    if not receiver_ids:
+        return
+
     if session.query(models.Context).filter(models.Context.id == context.id,
                                             models.Context.tid != tid).count() or \
        session.query(models.User).filter(models.User.id.in_(receiver_ids),
