@@ -7,10 +7,10 @@ The following is the summary of users' credentials:
 {AdminCredentials}
 {RecipientCredentials}
 
-To log in visit the following url:
+To login visit:
 {HTTPSLoginUrl}
 
-For the user documentation refer to:
+For the user documentation visit:
 {DocumentationUrl}
 
 The platform will be automatically deleted on:
