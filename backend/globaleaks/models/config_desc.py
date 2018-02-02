@@ -83,7 +83,6 @@ ConfigDescriptor = {
     u'tb_download_link': Unicode(default=u'https://www.torproject.org/download/download-easy.html.en'),
 
     u'default_language': Unicode(default=u'en'),
-    u'default_password': Unicode(default=u'globaleaks'),
     u'default_questionnaire': Unicode(default=u'default'),
 
     u'maximum_filesize': Int(default=30),
@@ -152,7 +151,6 @@ ConfigFilters = {
         u'onionservice',
         u'tb_download_link',
         u'default_language',
-        u'default_password',
         u'default_questionnaire',
         u'maximum_filesize',
         u'https_admin',
@@ -253,7 +251,6 @@ ConfigFilters['public_node'] = ConfigFilters['admin_node'] - set([
     'basic_auth',
     'basic_auth_username',
     'basic_auth_password',
-    'default_password',
     'default_timezone',
     'threshold_free_disk_megabytes_high',
     'threshold_free_disk_megabytes_low',
