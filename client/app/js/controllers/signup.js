@@ -29,8 +29,8 @@
     });
   };
 }]).
-controller('SignupActivationCtrl', ['$scope', '$location', '$route', '$http', '$window', 'CONSTANTS',
-                    function($scope, $location, $route, $http, $window, CONSTANTS) {
+controller('SignupActivationCtrl', ['$scope', '$location', '$route', '$http', '$window',
+                    function($scope, $location, $route, $http, $window) {
   var token = $location.search().token;
   $scope.login_url = '';
 
