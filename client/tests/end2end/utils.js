@@ -3,7 +3,6 @@ var path = require('path');
 var crypto = require('crypto');
 
 exports.vars = {
-  'default_password': 'globaleaks',
   'user_password': 'ACollectionOfDiplomaticHistorySince_1966_ToThe_Pr esentDay#',
   'field_types': [
     'Single-line text input',

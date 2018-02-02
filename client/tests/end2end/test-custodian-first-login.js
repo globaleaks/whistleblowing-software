@@ -2,11 +2,11 @@ var temporary_password = "typ0drome@absurd.org";
 
 describe('receiver first login', function() {
   it('should redirect to /firstlogin upon successful authentication', function() {
-    browser.gl.utils.login_custodian('Custodian1', browser.gl.utils.vars['default_password'], '/#/custodian', true);
+    browser.gl.utils.login_custodian('Custodian1', 'custodian', '/#/custodian', true);
   });
 
   it('should be able to change password from the default one', function() {
-    element(by.model('preferences.old_password')).sendKeys(browser.gl.utils.vars['default_password']);
+    element(by.model('preferences.old_password')).sendKeys('custodian');
     element(by.model('preferences.password')).sendKeys(temporary_password);
     element(by.model('preferences.check_password')).sendKeys(temporary_password);
     element(by.css('[data-ng-click="save()"]')).click();
