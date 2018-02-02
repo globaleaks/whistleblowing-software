@@ -46,13 +46,15 @@
         <div class="form-group col-md-6">
           <label data-translate>Use Case</label>
           <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
-          <select class="form-control" data-ng-model="signup.use_case" required>
-            <option value="anticorruption" data-translate>Anticorruption</option>
-            <option value="corporate_compliance" data-translate>Corporate compliance</option>
-            <option value="investigative_journalism" data-translate>Investigative journalism</option>
-            <option value="civic_activism" data-translate>Civic activism</option>
-            <option value="other" data-translate>Other</option>
-          </select>
+	  <div data-ng-class="{'has-error': signupFormStep1.use_case.$error.required}">
+            <select name="use_case" class="form-control" data-ng-model="signup.use_case" required>
+              <option value="anticorruption" data-translate>Anticorruption</option>
+              <option value="corporate_compliance" data-translate>Corporate compliance</option>
+              <option value="investigative_journalism" data-translate>Investigative journalism</option>
+              <option value="civic_activism" data-translate>Civic activism</option>
+              <option value="other" data-translate>Other</option>
+            </select>
+	  </div>
         </div>
         <div class="form-group col-md-6" data-ng-if="signup.use_case == 'other'">
           <label data-translate>Other</label>
