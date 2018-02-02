@@ -406,7 +406,11 @@ class BaseHandler(object):
         return self._current_user
 
     def get_api_session(self):
-        token = bytes(self.request.headers.get('x-api-token', ''))
+        token = ''
+        if 'api-token' in self.request.args:
+            token = bytes(self.request.args['api-token'][0])
+        elif 'x-api-token' in self.request.headers:
+            token = bytes(self.request.headers['x-api-token'])
 
         # Assert the input is okay and the api_token state is acceptable
         if self.request.tid != 1 or \
