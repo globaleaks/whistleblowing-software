@@ -37,8 +37,6 @@ angular.module('GLServices', ['ngResource']).
             'auth_landing_page': ''
           };
 
-          console.log(self.session);
-
           function initPreferences(prefs) {
             $rootScope.preferences = prefs;
             GLTranslate.addUserPreference(prefs.language);
