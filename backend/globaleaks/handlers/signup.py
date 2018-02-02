@@ -69,8 +69,6 @@ def signup_activation(session, state, tid, token, language):
         signup.tid = db_create_tenant(session, {'label': signup.subdomain,
                                                 'subdomain': signup.subdomain}).id
 
-        signup.tid = 2
-
         wizard = {
             'node_name': signup.subdomain,
             'admin_name': '',
