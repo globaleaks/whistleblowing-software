@@ -271,7 +271,7 @@ AdminNotificationDesc = merge_dicts({
     'notification_threshold_per_hour': int,
     'reset_templates': bool
   },
-  {k: unicode for k in NotificationL10NFactory.modifiable_keys}
+  {k: unicode for k in NotificationL10NFactory.keys}
 )
 
 AdminFieldOptionDesc = {
