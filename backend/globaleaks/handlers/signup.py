@@ -64,8 +64,7 @@ def signup_activation(session, state, tid, token, language):
     if signup is None:
         return {}
 
-
-    if tid is None:
+    if signup.tid is None:
         signup.tid = db_create_tenant(session, {'label': signup.subdomain,
                                                 'subdomain': signup.subdomain}).id
 
