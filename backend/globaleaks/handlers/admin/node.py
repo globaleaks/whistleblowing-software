@@ -46,15 +46,15 @@ def db_update_enabled_languages(session, tid, languages_enabled, default_languag
     new_enabled_langs = [unicode(y) for y in languages_enabled]
 
     if len(new_enabled_langs) < 1:
-        raise errors.InvalidInput("No languages enabled!")
+        raise errors.InputValidationError("No languages enabled!")
 
     if default_language not in new_enabled_langs:
-        raise errors.InvalidInput("Invalid lang code for chosen default_language")
+        raise errors.InputValidationError("Invalid lang code for chosen default_language")
 
     appdata = None
     for lang_code in new_enabled_langs:
         if lang_code not in LANGUAGES_SUPPORTED_CODES:
-            raise errors.InvalidInput("Invalid lang code: %s" % lang_code)
+            raise errors.InputValidationError("Invalid lang code: %s" % lang_code)
         if lang_code not in cur_enabled_langs:
             if appdata is None:
                 appdata = load_appdata()

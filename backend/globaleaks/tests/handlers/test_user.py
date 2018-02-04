@@ -93,4 +93,4 @@ class TestUserInstance(helpers.TestHandlerWithPopulatedDB):
         response['pgp_key_public'] = unicode(helpers.PGPKEYS['VALID_PGP_KEY1_PUB']).replace('A', 'B')
         response['pgp_key_remove'] = False
         handler = self.request(response, user_id=self.rcvr_id, role='receiver')
-        yield self.assertFailure(handler.put(), errors.PGPKeyInvalid)
+        yield self.assertFailure(handler.put(), errors.InputValidationError)

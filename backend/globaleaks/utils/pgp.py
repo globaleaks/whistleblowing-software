@@ -49,10 +49,10 @@ class PGPContext(object):
             import_result = self.gnupg.import_keys(key)
         except Exception as excep:
             log.err("Error in PGP import_keys: %s", excep)
-            raise errors.PGPKeyInvalid
+            raise errors.InputValidationError
 
         if not import_result.fingerprints:
-            raise errors.PGPKeyInvalid
+            raise errors.InputValidationError
 
         fingerprint = import_result.fingerprints[0]
 
@@ -61,7 +61,7 @@ class PGPContext(object):
             all_keys = self.gnupg.list_keys()
         except Exception as excep:
             log.err("Error in PGP list_keys: %s", excep)
-            raise errors.PGPKeyInvalid
+            raise errors.InputValidationError
 
         expiration = datetime.utcfromtimestamp(0)
         for k in all_keys:
@@ -82,7 +82,7 @@ class PGPContext(object):
         encrypted_obj = self.gnupg.encrypt_file(input_file, str(key_fingerprint), output=output_path)
 
         if not encrypted_obj.ok:
-            raise errors.PGPKeyInvalid
+            raise errors.InputValidationError
 
         return encrypted_obj,  os.stat(output_path).st_size
 
@@ -93,7 +93,7 @@ class PGPContext(object):
         encrypted_obj = self.gnupg.encrypt(plaintext, str(key_fingerprint))
 
         if not encrypted_obj.ok:
-            raise errors.PGPKeyInvalid
+            raise errors.InputValidationError
 
         return str(encrypted_obj)
 

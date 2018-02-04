@@ -49,7 +49,7 @@ class TestFileHandler(helpers.TestHandler):
         # Try to upload an invalid key
         bad_key = 'donk donk donk donk donk donk'
         handler = self.request({'name': 'priv_key', 'content': bad_key}, role='admin')
-        yield self.assertFailure(handler.post(n), errors.ValidationError)
+        yield self.assertFailure(handler.post(n), errors.InputValidationError)
 
         # Upload a valid key
         good_key = self.valid_setup['key']
@@ -88,7 +88,7 @@ class TestFileHandler(helpers.TestHandler):
         # Test bad cert
         body = {'name': 'cert', 'content': 'bonk bonk bonk'}
         handler = self.request(body, role='admin')
-        yield self.assertFailure(handler.post(n), errors.ValidationError)
+        yield self.assertFailure(handler.post(n), errors.InputValidationError)
 
         # Upload a valid cert
         body = {'name': 'cert', 'content': self.valid_setup[n]}

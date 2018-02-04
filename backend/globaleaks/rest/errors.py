@@ -48,7 +48,7 @@ class MethodNotImplemented(GLException):
         self.reason = "Method not implemented"
 
 
-class InvalidInput(GLException):
+class InputValidationError(GLException):
     """
     Error on input validation
     """
@@ -130,16 +130,8 @@ class NotAuthenticated(GLException):
     reason = "Not Authenticated"
 
 
-class ValidationError(GLException):
-    error_code = 11
-    status_code = 403 # Forbidden
-
-    def __init__(self, reason='Extended validation failed'):
-        self.reason = reason
-
-
 class ExternalResourceError(GLException):
-    error_code = 12
+    error_code = 11
     status_code = 400
 
     def __init__(self, reason='External resource did not respond correctly'):
@@ -152,7 +144,7 @@ class InvalidOldPassword(GLException):
     before change with a new secret.
     """
     reason = "The specified old password is not valid"
-    error_code = 13
+    error_code = 12
     status_code = 406
 
 
@@ -162,7 +154,7 @@ class TorNetworkRequired(GLException):
     be enforced with anonymity
     """
     reason = "Resource can be accessed only within Tor network"
-    error_code = 14
+    error_code = 13
     status_code = 403 # Forbidden
 
 
@@ -170,7 +162,7 @@ class FileTooBig(GLException):
     """
     Raised by GLHTTPConnection, when the uploaded file is bigger than acceptable
     """
-    error_code = 15
+    error_code = 14
     status_code = 400 # Bad Request
 
     def __init__(self, size_limit):
@@ -179,27 +171,16 @@ class FileTooBig(GLException):
         self.arguments = [size_limit]
 
 
-class PGPKeyInvalid(GLException):
-    """
-    The provided PGP key has an invalid format and can't be imported
-    """
-    reason = "The proposed PGP key can't be imported"
-    error_code = 16
-    status_code = 406
-
-
-# UNUSED ERROR CODE 41-52 HERE!
-
 class DirectoryTraversalError(GLException):
     """
     Blocked file operation out of the expected path
     """
     reason = "Blocked file operation out of the expected path"
-    error_code = 17
+    error_code = 15
     status_code = 403
 
 
 class SubmissionDisabled(GLException):
     reason = "Submissions are disabled"
-    error_code = 18
+    error_code = 16
     status_code = 503 # Service not available
