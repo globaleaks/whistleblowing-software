@@ -203,7 +203,7 @@ class Signup(Model, Base):
     __tablename__ = 'signup'
 
     id = Column(Integer, primary_key=True, nullable=False)
-    tid = Column(Integer, ForeignKey('tenant.id', ondelete='SET NULL'), default=1)
+    tid = Column(Integer, ForeignKey('tenant.id', ondelete='SET NULL'))
     subdomain = Column(UnicodeText, nullable=False)
     name = Column(UnicodeText, nullable=False)
     surname = Column(UnicodeText, nullable=False)
