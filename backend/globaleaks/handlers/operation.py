@@ -14,7 +14,7 @@ class OperationHandler(BaseHandler):
 
         op_desc = self.operation_descriptors().get(request['operation'], None)
         if op_desc is None:
-            raise errors.InvalidInput('Invalid command')
+            raise errors.InputValidationError('Invalid command')
 
         func, obj_validator = op_desc
         if obj_validator is not None:

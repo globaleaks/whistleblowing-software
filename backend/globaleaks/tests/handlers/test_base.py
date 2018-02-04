@@ -2,7 +2,7 @@
 import json
 
 from globaleaks.handlers.base import BaseHandler
-from globaleaks.rest.errors import InvalidInput
+from globaleaks.rest.errors import InputValidationError
 from globaleaks.tests import helpers
 
 FUTURE = 100
@@ -27,7 +27,7 @@ class TestBaseHandler(helpers.TestHandlerWithPopulatedDB):
         dummy_message = {}
         dummy_message_template = {'spam': str, 'firstd': dict, 'fields': '\w+', 'nest': [dict]}
 
-        self.assertRaises(InvalidInput,
+        self.assertRaises(InputValidationError,
                           BaseHandler.validate_jmessage, dummy_message, dummy_message_template)
 
     def test_validate_message_valid(self):
@@ -40,7 +40,7 @@ class TestBaseHandler(helpers.TestHandlerWithPopulatedDB):
         dummy_json = json.dumps({'spam': 'ham'})
         dummy_message_template = {'spam': dict}
 
-        self.assertRaises(InvalidInput,
+        self.assertRaises(InputValidationError,
                           BaseHandler.validate_message, dummy_json, dummy_message_template)
 
     def test_validate_type_valid(self):

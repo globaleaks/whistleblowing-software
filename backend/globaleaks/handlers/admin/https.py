@@ -300,7 +300,7 @@ class FileHandler(BaseHandler):
 
         ok = yield file_res_cls.create_file(self.request.tid, req['content'])
         if not ok:
-            raise errors.ValidationError()
+            raise errors.InputValidationError()
 
     @inlineCallbacks
     def put(self, name):
@@ -423,7 +423,7 @@ class CSRFileHandler(FileHandler):
 
         ok = yield file_res_cls.create_file(self.request.tid, csr_txt)
         if not ok:
-            raise errors.ValidationError()
+            raise errors.InputValidationError()
 
     @staticmethod
     @transact
@@ -442,7 +442,7 @@ class CSRFileHandler(FileHandler):
             return csr_txt
         except Exception as e:
             log.err(e)
-            raise errors.ValidationError('CSR gen failed')
+            raise errors.InputValidationError('CSR gen failed')
 
 
 class AcmeAccntKeyRes:

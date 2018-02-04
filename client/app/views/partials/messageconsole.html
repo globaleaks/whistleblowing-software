@@ -1,87 +1,35 @@
-<div data-ng-repeat="error in errors" data-ng-show="error.code != 29">
+<div data-ng-repeat="error in errors" data-ng-show="error.code != 9">
   <div data-uib-alert class="alert-danger" close="closeAlert(errors, $index)" dismiss-on-timeout="3000">
     <!--
-      Currently we skip authentication errors (29) and TipMessagesNotFound Error (60):
-        The first has a special handling, the latter need to not be shown as it happens
-        when a Whistleblower access the Tip page before ReceiverTips are created.
+      We skip authentication errors (9) that are handled by the request interceptor.
     -->
     <div data-translate>Error!</div>
     <div data-ng-switch="" on="error.code">
+      <div data-ng-switch-when="1">
+        <span data-translate>Internal server error</span> <span>({{error.arguments[0]}})</span>
+      </div>
 
-      <div data-ng-switch-when="35">
-        <span data-translate>The specified comment was not found</span>
+      <div data-ng-switch-when="3">
+        <span data-translate>Error on input validation</span> <span>[{{error.arguments[0]}}]</span>
+      </div>
+      <div data-ng-switch-when="6">
+        <span data-translate>Resource not found</span>
+      </div>
+
+      <div data-ng-switch-when="8">
+        <span data-translate>Operation forbidden</span>
       </div>
 
       <div data-ng-switch-when="12">
-        <span data-translate>No context was found for the specified ID</span>
-      </div>
-
-      <div data-ng-switch-when="17">
-        <span data-translate>A query on the database resulted in an integrity error:</span> <span>({{error.arguments[0]}})</span>
-      </div>
-
-      <div data-ng-switch-when="26">
-        <span data-translate>No file was found for the specified ID</span>
-      </div>
-
-      <div data-ng-switch-when="25">
-        <span data-translate>Operation Forbidden</span>
-      </div>
-
-      <div data-ng-switch-when="40">
-        <span data-translate>The proposed PGP key can't be imported</span>
-      </div>
-
-      <div data-ng-switch-when="39">
-        <span data-translate>The upload request exceeds the size limit</span> <span>({{error.arguments[0]}} MB)</span>
-      </div>
-
-      <div data-ng-switch-when="31">
-        <span data-translate>Internal Server Error</span> <span>({{error.arguments[0]}})</span>
-      </div>
-
-      <div data-ng-switch-when="36">
-        <span data-translate>The specified host does not match any configured one</span>
-      </div>
-
-      <div data-ng-switch-when="10">
-        <span data-translate>Invalid Input Format</span> <span>[{{error.arguments[0]}}]</span>
-      </div>
-
-      <div data-ng-switch-when="34">
         <span data-translate>The specified old password is not valid</span>
       </div>
 
-      <div data-ng-switch-when="30">
-        <span data-translate>Not authenticated</span>
-      </div>
-
-      <div data-ng-switch-when="20">
-        <span data-translate>No Recipient was found for the specified ID</span>
-      </div>
-
-      <div data-ng-switch-when="22">
-        <span data-translate>Submission does not pass the field validation</span> <span>[{{error.arguments[0]}}]</span>
-      </div>
-
-      <div data-ng-switch-when="21">
-        <span data-translate>No Submission was found for the specified ID</span>
-      </div>
-
       <div data-ng-switch-when="13">
-        <span data-translate>No submission was found for the specified ID</span>
-      </div>
-
-      <div data-ng-switch-when="14">
-        <span data-translate>No Recipient was found for the specified ID</span>
-      </div>
-
-      <div data-ng-switch-when="37">
         <span data-translate>Resource can only be accessed via the Tor network</span>
       </div>
 
-      <div data-ng-switch-when="401">
-        <span data-translate>Session expired</span>
+      <div data-ng-switch-when="14">
+        <span data-translate>The upload request exceeds the size limit</span>
       </div>
     </div>
   </div>

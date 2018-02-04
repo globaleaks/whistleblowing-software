@@ -67,7 +67,7 @@ def create_receiver_user(session, state, tid, request, language):
 
 def create(state, tid, request, language):
     if request['role'] not in ['admin', 'receiver', 'custodian']:
-        raise errors.InvalidInput
+        raise errors.InputValidationError
 
     if request['role'] == 'receiver':
         d = create_receiver_user(state, tid, request, language)
