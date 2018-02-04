@@ -369,7 +369,7 @@ class APIResourceWrapper(Resource):
         if self.handler.upload_handler and method == 'post':
             self.handler.process_file_upload()
             if self.handler.uploaded_file is None:
-               return
+               return b''
 
         d = defer.maybeDeferred(f, self.handler, *groups)
 
