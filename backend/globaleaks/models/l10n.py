@@ -35,8 +35,6 @@ class ConfigL10N(models.Model, Base):
 
 class ConfigL10NFactory(object):
     keys = []
-    unmodifiable_keys = []
-    modifiable_keys = []
 
     def __init__(self, session, tid):
         self.session = session
@@ -60,7 +58,7 @@ class ConfigL10NFactory(object):
     def update(self, request, lang_code):
         c_map = {c.var_name : c for c in self.get_all(lang_code)}
 
-        for key in self.modifiable_keys:
+        for key in self.keys:
             c_map[key].set_v(request[key])
 
     def update_defaults(self, langs, l10n_data_src, reset=False):
@@ -69,7 +67,7 @@ class ConfigL10NFactory(object):
 
             for cfg in self.get_all(lang_code):
                 old_keys.append(cfg.var_name)
-                if (not cfg.customized or reset or cfg.var_name in self.unmodifiable_keys) and cfg.var_name in l10n_data_src:
+                if (not cfg.customized or reset) and cfg.var_name in l10n_data_src:
                     cfg.value = l10n_data_src[cfg.var_name][lang_code]
 
             ConfigL10NFactory.initialize(self, lang_code, l10n_data_src, list(set(self.keys) - set(old_keys)))
@@ -102,8 +100,6 @@ class NodeL10NFactory(ConfigL10NFactory):
         u'widget_messages_title',
         u'widget_files_title',
     ]
-
-    modifiable_keys = keys
 
 
 class NotificationL10NFactory(ConfigL10NFactory):
@@ -151,32 +147,6 @@ class NotificationL10NFactory(ConfigL10NFactory):
         u'activation_mail_title',
         u'activation_mail_template',
     ]
-
-    # These strings are not exposed in admin the interface for customization
-    unmodifiable_keys = [
-        u'identity_access_authorized_mail_template',
-        u'identity_access_authorized_mail_title',
-        u'identity_access_denied_mail_template',
-        u'identity_access_denied_mail_title',
-        u'identity_access_request_mail_template',
-        u'identity_access_request_mail_title',
-        u'identity_provided_mail_template',
-        u'identity_provided_mail_title',
-        u'export_template',
-        u'export_message_whistleblower',
-        u'export_message_recipient',
-        u'admin_anomaly_mail_template',
-        u'admin_anomaly_mail_title',
-        u'admin_anomaly_activities',
-        u'admin_anomaly_disk_high',
-        u'admin_anomaly_disk_low',
-        u'admin_test_mail_template',
-        u'admin_test_mail_title',
-        u'https_certificate_expiration_mail_template',
-        u'https_certificate_expiration_mail_title'
-    ]
-
-    modifiable_keys = [item for item in keys if item not in unmodifiable_keys]
 
     def __init__(self, session, tid, *args, **kwargs):
         ConfigL10NFactory.__init__(self, session, tid, *args, **kwargs)
