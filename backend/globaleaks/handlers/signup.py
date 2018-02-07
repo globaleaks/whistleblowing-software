@@ -71,11 +71,11 @@ def signup_activation(session, state, tid, token, language):
 
         wizard = {
             'node_name': signup.subdomain,
-            'admin_name': '',
+            'admin_name': signup.name + ' ' + signup.surname,
             'admin_password': '',
-            'admin_mail_address': '',
-            'receiver_name': '',
-            'receiver_mail_address': '',
+            'admin_mail_address': signup.email,
+            'receiver_name': signup.name + ' ' + signup.surname,
+            'receiver_mail_address': signup.email,
             'profile': 'default',
             'enable_developers_exception_notification': True
         }
