@@ -212,7 +212,7 @@ def db_get_itip_receiver_list(session, itip):
                                                                             models.User.id == models.ReceiverTip.receiver_id):
         ret.append({
             "id": rtip.receiver_id,
-            "name": user.public_name,
+            "name": user.name,
             "pgp_key_public": user.pgp_key_public,
             "last_access": datetime_to_ISO8601(rtip.last_access),
             "access_counter": rtip.access_counter,

@@ -19,8 +19,8 @@ controller('AdminCtrl',
 
   $scope.admin = resources;
 
-  $scope.updateNode = function(node) {
-    Utils.update(node, function() { $scope.$emit("REFRESH"); });
+  $scope.updateNode = function() {
+    Utils.update($scope.admin.node, function() { $scope.$emit("REFRESH"); });
   };
 
   $scope.newItemOrder = function(objects, key) {

@@ -120,11 +120,6 @@
                     <div class="text-danger" data-ng-show="editUser.name.$error.required" data-translate>This field is mandatory</div>
                   </div>
                   <div class="form-group">
-                    <label data-translate>Public pseudonym</label>
-                    <input class="form-control" name="pseudonym" data-ng-model="user.public_name" type="text" required />
-                    <div class="text-danger" data-ng-show="editUser.pseudonym.$error.required" data-translate>This field is mandatory</div>
-                  </div>
-                  <div class="form-group">
                     <label data-translate>Email address</label>
                     <input class="form-control" name="email" data-ng-model="user.mail_address" type="text" data-ng-pattern="email_regexp" required />
                     <div class="text-danger" data-ng-show="editUser.email.$error.required" data-translate>This field is mandatory</div>

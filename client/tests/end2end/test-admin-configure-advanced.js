@@ -6,11 +6,8 @@ describe('admin configure advanced settings', function() {
     // enable experimental features that by default are disabled
     element(by.model('admin.node.enable_experimental_features')).click();
 
-    // enable multitenancy feauture
-    element(by.model('admin.node.enable_multisite')).click();
-
     // save settings
-    element.all(by.css('[data-ng-click="updateNode(admin.node)"]'));
+    element.all(by.css('[data-ng-click="updateNode()"]'));
   });
 
   it('should configure short urls', function() {
@@ -34,7 +31,7 @@ describe('admin configure advanced settings', function() {
     element(by.model('admin.node.threshold_free_disk_percentage_high')).clear().sendKeys('4');
 
     // save settings
-    element.all(by.css('[data-ng-click="updateNode(admin.node)"]')).last().click().then(function() {
+    element.all(by.css('[data-ng-click="updateNode()"]')).last().click().then(function() {
       expect(element(by.model('admin.node.threshold_free_disk_percentage_high')).getAttribute('value')).toEqual('4');
     });
   });
@@ -48,7 +45,7 @@ describe('admin disable submissions', function() {
     element(by.model('admin.node.disable_submissions')).click();
 
     // save settings
-    element.all(by.css('[data-ng-click="updateNode(admin.node)"]')).first().click().then(function() {
+    element.all(by.css('[data-ng-click="updateNode()"]')).first().click().then(function() {
       expect(element(by.model('admin.node.disable_submissions')).isSelected()).toBeTruthy();
     });
 
@@ -63,7 +60,7 @@ describe('admin disable submissions', function() {
     element(by.model('admin.node.disable_submissions')).click();
 
     // save settings
-    element.all(by.css('[data-ng-click="updateNode(admin.node)"]')).first().click().then(function() {
+    element.all(by.css('[data-ng-click="updateNode()"]')).first().click().then(function() {
       expect(element(by.model('admin.node.disable_submissions')).isSelected()).toBeFalsy();
     });
 

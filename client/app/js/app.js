@@ -166,7 +166,7 @@ var GLClient = angular.module('GLClient', [
       when('/signup', {
         templateUrl: 'views/signup/main.html',
         controller: 'SignupCtrl',
-        header_title: 'Create your whistleblowing site',
+        header_title: 'Create your whistleblowing platform',
         header_subtitle: '',
         resolve: {
           access: allKinds(),
@@ -175,7 +175,7 @@ var GLClient = angular.module('GLClient', [
       when('/activation', {
         templateUrl: 'views/signup/activation.html',
         controller: 'SignupActivationCtrl',
-        header_title: 'Create your whistleblowing site',
+        header_title: 'Create your whistleblowing platform',
         header_subtitle: '',
         resolve: {
           access: allKinds(),

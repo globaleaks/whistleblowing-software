@@ -301,34 +301,10 @@
       </div>
     </div>
 
-    <div data-ng-if="admin.node.enable_experimental_features">
-      <div class="form-group">
-        <label data-ng-if="admin.node.root_tenant">
-          <input data-ng-model="admin.node.enable_multisite" type="checkbox" />
-          <span data-translate>Enable configuration of multiple sites</span>
-        </label>
-      </div>
-
-      <div data-ng-if="admin.node.enable_multisite">
-        <div class="form-group">
-          <label data-translate>Root domain used for secondary instances</label>
-          <div>
-            <input class="form-control" data-ng-model="admin.node.rootdomain" type="text" />
-          </div>
-        </div>
-        <div class="form-group">
-          <label>
-            <input data-ng-model="admin.node.enable_demo" type="checkbox" />
-            <span data-translate>Enable demo mode<span>
-          <label>
-        </div>
-      </div>
-    </div>
-
     <div class="form-group">
       <button class="btn btn-success"
               data-ng-disabled="advancedForm.$invalid"
-              data-ng-click="updateNode(admin.node)" type="submit">
+              data-ng-click="updateNode()" type="submit">
         <i class="glyphicon glyphicon-ok"></i>
         <span data-translate>Save</span>
       </button>

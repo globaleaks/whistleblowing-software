@@ -89,7 +89,7 @@ def db_create_user(session, state, tid, request, language):
         'state': u'enabled',
         'name': request['name'],
         'description': request['description'],
-        'public_name': request['public_name'] if request['public_name'] else request['name'],
+        'name': request['name'],
         'language': language,
         'password_change_needed': request['password_change_needed'],
         'mail_address': request['mail_address']
