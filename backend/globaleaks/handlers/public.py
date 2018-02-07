@@ -316,8 +316,8 @@ def serialize_receiver(session, receiver, language, data=None):
 
     ret_dict = {
         'id': receiver.id,
-        'name': user.public_name,
         'username': user.username,
+        'name': user.name,
         'state': user.state,
         'configuration': receiver.configuration,
         'can_delete_submission': receiver.can_delete_submission,

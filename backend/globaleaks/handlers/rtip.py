@@ -76,7 +76,7 @@ def serialize_comment(session, comment):
         author = 'Whistleblower'
     elif comment.author_id is not None:
         author = session.query(models.User) \
-                        .filter(models.User.id == comment.author_id).one().public_name
+                        .filter(models.User.id == comment.author_id).one().name
 
     return {
         'id': comment.id,
@@ -94,7 +94,7 @@ def serialize_message(session, message):
         author = session.query(models.User) \
                       .filter(models.User.id == models.ReceiverTip.receiver_id,
                               models.ReceiverTip.id == models.Message.receivertip_id,
-                              models.Message.id == message.id).one().public_name
+                              models.Message.id == message.id).one().name
 
     return {
         'id': message.id,

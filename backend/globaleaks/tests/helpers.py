@@ -346,7 +346,6 @@ class TestGL(unittest.TestCase):
         allow_unencrypted = self.encryption_scenario in ['PLAINTEXT', 'MIXED']
 
         yield update_node_setting(u'allow_unencrypted', allow_unencrypted)
-        yield update_node_setting(u'enable_multisite', True)
 
         yield self.set_hostnames(1)
 
@@ -438,7 +437,7 @@ class TestGL(unittest.TestCase):
         new_u = dict(MockDict().dummyUser)
         new_u['role'] = role
         new_u['username'] = username
-        new_u['name'] = new_u['public_name'] = new_u['mail_address'] = \
+        new_u['name'] = new_u['mail_address'] = \
             unicode("%s@%s.xxx" % (username, username))
         new_u['description'] = u''
         new_u['password'] = VALID_PASSWORD1
@@ -970,7 +969,6 @@ class MockDict:
             'state': u'enabled',
             'name': u'Generic User',
             'description': u'King MockDummy',
-            'public_name': u'Charlie Brown',
             'last_login': u'1970-01-01 00:00:00.000000',
             'language': u'en',
             'password_change_needed': False,
@@ -1070,8 +1068,7 @@ class MockDict:
             'enable_captcha': False,
             'enable_proof_of_work': False,
             'enable_experimental_features': False,
-            'enable_multisite': True,
-            'enable_demo': True,
+            'enable_signup': True,
             'enable_custom_privacy_badge': False,
             'custom_privacy_badge_text': u'',
             'header_title_homepage': u'',

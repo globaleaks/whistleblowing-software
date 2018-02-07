@@ -254,7 +254,6 @@ class User(Model, Base):
     salt = Column(Unicode(24), nullable=False)
     name = Column(UnicodeText, default=u'', nullable=False)
     description = Column(JSON, default=dict, nullable=False)
-    public_name = Column(UnicodeText, default=u'', nullable=False)
 
     # roles: 'admin', 'receiver', 'custodian'
     role = Column(UnicodeText, default=u'receiver', nullable=False)
@@ -278,7 +277,7 @@ class User(Model, Base):
 
     unicode_keys = ['username', 'role', 'state',
                     'language', 'mail_address', 'name',
-                    'public_name', 'language']
+                    'language']
 
     localized_keys = ['description']
 

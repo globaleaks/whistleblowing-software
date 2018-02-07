@@ -39,6 +39,7 @@ angular.module('GLServices', ['ngResource']).
 
           function initPreferences(prefs) {
             $rootScope.preferences = prefs;
+            console.log(prefs);
             GLTranslate.addUserPreference(prefs.language);
           }
 
@@ -759,7 +760,6 @@ factory('AdminUtils', ['AdminContextResource', 'AdminQuestionnaireResource', 'Ad
       user.state = 'enabled';
       user.name = '';
       user.description = '';
-      user.public_name = '';
       user.mail_address = '';
       user.pgp_key_fingerprint = '';
       user.pgp_key_remove = false;
@@ -849,7 +849,7 @@ factory('AdminUtils', ['AdminContextResource', 'AdminQuestionnaireResource', 'Ad
         }
 
         if ($location.path() === '/') {
-          if ($rootScope.node.enable_demo === true) {
+          if ($rootScope.node.enable_signup === true) {
             $location.path('/signup');
           }
 

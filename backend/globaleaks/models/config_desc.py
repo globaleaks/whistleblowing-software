@@ -114,8 +114,7 @@ ConfigDescriptor = {
     u'enable_captcha': Bool(default=True),
     u'enable_proof_of_work': Bool(default=True),
 
-    u'enable_multisite': Bool(default=False),
-    u'enable_demo': Bool(default=False),
+    u'enable_signup': Bool(default=False),
 
     u'enable_experimental_features': Bool(default=False),
 
@@ -174,8 +173,7 @@ ConfigFilters = {
         u'disable_security_awareness_questions',
         u'disable_key_code_hint',
         u'disable_donation_panel',
-        u'enable_multisite',
-        u'enable_demo',
+        u'enable_signup',
         u'enable_captcha',
         u'enable_proof_of_work',
         u'enable_admin_exception_notification',

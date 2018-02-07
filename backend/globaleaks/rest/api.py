@@ -361,8 +361,7 @@ class APIResourceWrapper(Resource):
 
         request.setResponseCode(self.method_map[method])
 
-        if (self.handler.root_tenant_only and request.tid != 1) or \
-           (self.handler.require_multisite and not State.tenant_cache[1].enable_multisite):
+        if (self.handler.root_tenant_only and request.tid != 1):
             self.handle_exception(errors.ForbiddenOperation(), request)
             return b''
 

@@ -32,7 +32,7 @@ def serialize_signup(signup):
 def signup(session, state, tid, request, language):
     node = config.ConfigFactory(session, 1, 'node')
 
-    if not node.get_val(u'enable_demo'):
+    if not node.get_val(u'enable_signup'):
         raise errors.ForbiddenOperation
 
     request['activation_token'] = generateRandomKey(32)
@@ -57,7 +57,7 @@ def signup(session, state, tid, request, language):
 def signup_activation(session, state, tid, token, language):
     node = config.ConfigFactory(session, 1, 'node')
 
-    if not node.get_val(u'enable_demo'):
+    if not node.get_val(u'enable_signup'):
         raise errors.ForbiddenOperation
 
     signup = session.query(models.Signup).filter(models.Signup.activation_token == token).one_or_none()

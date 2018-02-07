@@ -82,8 +82,7 @@ def db_update_node(session, tid, request, language):
     node = ConfigFactory(session, tid, 'node')
 
     if tid != 1:
-        request['enable_multisite'] = False
-        request['enable_demo'] = False
+        request['enable_signup'] = False
 
     node.update(request)
 
