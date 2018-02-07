@@ -210,10 +210,11 @@ class Signup(Model, Base):
     email = Column(UnicodeText, nullable=False)
     use_case = Column(UnicodeText, nullable=False)
     use_case_other = Column(UnicodeText, nullable=False)
+    language = Column(UnicodeText, nullable=False)
     activation_token = Column(UnicodeText, nullable=False)
     registration_date = Column(DateTime, default=datetime_now, nullable=False)
 
-    unicode_keys = ['subdomain', 'name', 'surname', 'email', 'activation_token', 'use_case', 'use_case_other']
+    unicode_keys = ['subdomain', 'name', 'surname', 'email', 'activation_token', 'use_case', 'use_case_other', 'language']
 
 
 class EnabledLanguage(Model, Base):

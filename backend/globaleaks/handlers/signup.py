@@ -36,6 +36,7 @@ def signup(session, state, tid, request, language):
         raise errors.ForbiddenOperation
 
     request['activation_token'] = generateRandomKey(32)
+    request['language'] = language
 
     signup = models.Signup(request)
 
