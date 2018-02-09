@@ -440,16 +440,16 @@ class BaseHandler(object):
             raise errors.FileTooBig(self.state.tenant_cache[self.request.tid].maximum_filesize)
 
         if flow_identifier not in self.state.TempUploadFiles:
-            self.state.check_ramdisk()
-            self.state.TempUploadFiles.set(flow_identifier, SecureTemporaryFile(Settings.tmp_upload_path))
+            self.state.TempUploadFiles.set(flow_identifier, SecureTemporaryFile(Settings.tmp_path))
 
-        f = self.state.TempUploadFiles.get(flow_identifier)
-        f.write(self.request.args['file'][0])
+        f = self.state.TempUploadFiles[flow_identifier]
+        with f.open('w+') as f:
+            f.write(self.request.args['file'][0])
 
-        if self.request.args['flowChunkNumber'][0] != self.request.args['flowTotalChunks'][0]:
-            return None
-
-        f.finalize()
+            if self.request.args['flowChunkNumber'][0] != self.request.args['flowTotalChunks'][0]:
+                return None
+            else:
+                f.finalize_write()
 
         mime_type, _ = mimetypes.guess_type(self.request.args['flowFilename'][0])
         if mime_type is None:
@@ -465,22 +465,6 @@ class BaseHandler(object):
             'description': self.request.args.get('description', [''])[0]
         }
 
-    def write_upload_encrypted_to_disk(self, destination):
-        """
-        @param uploaded_file: uploaded_file data struct
-        @param the file destination
-        @return: a descriptor dictionary for the saved file
-        """
-        log.debug("Moving encrypted bytes %d from file [%s] %s => %s",
-                  self.uploaded_file['size'],
-                  self.uploaded_file['name'],
-                  self.uploaded_file['path'],
-                  destination)
-
-        shutil.move(self.uploaded_file['path'], destination)
-
-        self.uploaded_file['path'] = destination
-
     def write_upload_plaintext_to_disk(self, destination):
         """
         @param uploaded_file: uploaded_file data struct
@@ -488,19 +472,17 @@ class BaseHandler(object):
         @return: a descriptor dictionary for the saved file
         """
         try:
-            if os.path.exists(destination):
-                log.err('Overwriting file %s with %d bytes', destination, self.uploaded_file['size'])
-            else:
-                log.debug('Creating file %s with %d bytes', destination, self.uploaded_file['size'])
+            log.debug('Creating file %s with %d bytes', destination, self.uploaded_file['size'])
 
-            with open(destination, 'w+') as fd:
-                self.uploaded_file['body'].seek(0, 0)
-                data = self.uploaded_file['body'].read(4000)
-                while data:
-                    os.write(fd.fileno(), data)
-                    data = self.uploaded_file['body'].read(4000)
+            with self.uploaded_file['body'].open('r') as encrypted_file, open(destination, 'w') as plaintext_file:
+                while True:
+                    chunk = encrypted_file.read(4096)
+                    if not chunk:
+                        break
+
+                    plaintext_file.write(chunk)
+
         finally:
-            self.uploaded_file['body'].close()
             self.uploaded_file['path'] = destination
 
     @inlineCallbacks

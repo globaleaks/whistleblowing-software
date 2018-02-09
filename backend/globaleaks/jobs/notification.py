@@ -197,8 +197,7 @@ class MailGenerator(object):
 
         # If the receiver has encryption enabled encrypt the mail body
         if data['user']['pgp_key_public']:
-            self.state.check_ramdisk()
-            pgpctx = PGPContext(self.state.settings.ramdisk_path)
+            pgpctx = PGPContext(self.state.settings.tmp_path)
             fingerprint = pgpctx.load_key(data['user']['pgp_key_public'])['fingerprint']
             body = pgpctx.encrypt_message(fingerprint, body)
 

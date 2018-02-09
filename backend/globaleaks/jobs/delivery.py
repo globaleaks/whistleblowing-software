@@ -13,8 +13,7 @@ from globaleaks import models
 from globaleaks.jobs.base import LoopingJob
 from globaleaks.orm import transact
 from globaleaks.utils.pgp import PGPContext
-from globaleaks.utils.securetempfile import SecureFile
-from globaleaks.utils.security import generateRandomKey
+from globaleaks.utils.security import generateRandomKey, overwrite_and_remove
 from globaleaks.settings import Settings
 from globaleaks.utils.utility import log
 
@@ -52,8 +51,8 @@ def receiverfile_planning(session):
         ifile.processing_attempts += 1
 
         for rtip, user in session.query(models.ReceiverTip, models.User) \
-                               .filter(models.ReceiverTip.internaltip_id == ifile.internaltip_id,
-                                       models.User.id == models.ReceiverTip.receiver_id):
+                                 .filter(models.ReceiverTip.internaltip_id == ifile.internaltip_id,
+                                         models.User.id == models.ReceiverTip.receiver_id):
             receiverfile = models.ReceiverFile()
             receiverfile.internalfile_id = ifile.id
             receiverfile.receivertip_id = rtip.id
@@ -95,7 +94,7 @@ def receiverfile_planning(session):
     return receiverfiles_maps
 
 
-def fsops_pgp_encrypt(state, fpath, key, fingerprint):
+def fsops_pgp_encrypt(state, sf, key, fingerprint):
     """
     Encrypt the file for a speficic key
 
@@ -103,15 +102,11 @@ def fsops_pgp_encrypt(state, fpath, key, fingerprint):
         path of encrypted file,
         length of the encrypted file
     """
-    state.check_ramdisk()
-
-    pgpctx = PGPContext(state.settings.ramdisk_path)
+    pgpctx = PGPContext(state.settings.tmp_path)
 
     pgpctx.load_key(key)
 
-    filepath = os.path.join(state.settings.attachments_path, fpath)
-
-    with SecureFile(filepath) as f:
+    with sf.open('r') as f:
         encrypted_file_path = os.path.join(os.path.abspath(state.settings.attachments_path), "pgp_encrypted-%s" % generateRandomKey(16))
         _, encrypted_file_size = pgpctx.encrypt_file(fingerprint, f, encrypted_file_path)
 
@@ -128,12 +123,14 @@ def process_files(state, receiverfiles_maps):
         ifile_name = os.path.basename(ifile_path).split('.')[0]
         plain_path = os.path.join(Settings.attachments_path, "%s.plain" % ifile_name)
 
+        sf = state.get_tmp_file_by_path(ifile_path)
+
         receiverfiles_map['plaintext_file_needed'] = False
         for rcounter, rfileinfo in enumerate(receiverfiles_map['rfiles']):
             if rfileinfo['receiver']['pgp_key_public']:
                 try:
                     new_path, new_size = fsops_pgp_encrypt(state,
-                                                           rfileinfo['path'],
+                                                           sf,
                                                            rfileinfo['receiver']['pgp_key_public'],
                                                            rfileinfo['receiver']['pgp_key_fingerprint'])
 
@@ -160,39 +157,18 @@ def process_files(state, receiverfiles_maps):
                       ifile_path, plain_path)
 
             try:
-                with open(plain_path, "wb") as plaintext_f, SecureFile(ifile_path) as encrypted_file:
-                    chunk_size = 4096
-                    written_size = 0
+                with sf.open('r') as encrypted_file, open(plain_path, "a+") as plaintext_file:
                     while True:
-                        chunk = encrypted_file.read(chunk_size)
+                        chunk = encrypted_file.read(4096)
                         if not chunk:
-                            if written_size != receiverfiles_map['ifile_size']:
-                                log.err("Integrity error on rfile write for ifile %s; ifile_size(%d), rfile_size(%d)",
-                                        ifile_id, receiverfiles_map['ifile_size'], written_size)
                             break
-                        written_size += len(chunk)
-                        plaintext_f.write(chunk)
+                        plaintext_file.write(chunk)
 
                 receiverfiles_map['ifile_path'] = plain_path
             except Exception as excep:
                 log.err("Unable to create plaintext file %s: %s", plain_path, excep)
         else:
             log.debug("All receivers support PGP or the system denies plaintext version of files: marking internalfile as removed")
-
-        # the original AES file should always be deleted
-        log.debug("Deleting the submission AES encrypted file: %s", ifile_path)
-
-        # Remove the AES file
-        try:
-            os.remove(ifile_path)
-        except OSError as ose:
-            log.err("Unable to remove %s: %s", ifile_path, ose.strerror)
-
-        # Remove the AES file key
-        try:
-            os.remove(os.path.join(state.settings.ramdisk_path, ("%s%s" % (state.settings.AES_keyfile_prefix, ifile_name))))
-        except OSError as ose:
-            log.err("Unable to remove keyfile associated with %s: %s", ifile_path, ose.strerror)
 
 
 @transact

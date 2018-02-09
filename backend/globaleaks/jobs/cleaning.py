@@ -17,11 +17,10 @@ from globaleaks.handlers.rtip import db_delete_itips
 from globaleaks.handlers.user import user_serialize_user
 from globaleaks.jobs.base import LoopingJob
 from globaleaks.orm import transact
-from globaleaks.utils.security import overwrite_and_remove
 from globaleaks.state import State
-from globaleaks.utils.utility import is_expired
+from globaleaks.utils.security import overwrite_and_remove
 from globaleaks.utils.templating import Templating
-from globaleaks.utils.utility import datetime_now, datetime_to_ISO8601
+from globaleaks.utils.utility import datetime_now, datetime_to_ISO8601, is_expired
 
 
 __all__ = ['Cleaning']
@@ -128,13 +127,13 @@ class Cleaning(LoopingJob):
         if files_to_delete:
             yield self.commit_files_deletion(files_to_delete)
 
-        # Delete the outdated AES keys older than 1 day
-        aes_keys_to_remove = [f for f in os.listdir(self.state.settings.ramdisk_path) if fnmatch.fnmatch(f, 'aeskey-*')]
-        for f in aes_keys_to_remove:
-            path = os.path.join(self.state.settings.ramdisk_path, f)
+        # Delete the outdated AES files older than 1 day
+        files_to_remove = [f for f in os.listdir(self.state.settings.attachments_path) if fnmatch.fnmatch(f, '*.aes')]
+        for f in files_to_remove:
+            path = os.path.join(self.state.settings.attachments_path, f)
             timestamp = datetime.datetime.fromtimestamp(os.path.getmtime(path))
             if is_expired(timestamp, days=1):
-                overwrite_and_remove(path)
+                os.remove(path)
 
     @inlineCallbacks
     def operation(self):

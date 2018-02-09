@@ -27,11 +27,9 @@ ANOMALY_MAP = {
 }
 
 
-def get_disk_anomaly_conditions(free_workdir_bytes, total_workdir_bytes, free_ramdisk_bytes, total_ramdisk_bytes):
-    threshold_free_ramdisk_megabytes = 1
+def get_disk_anomaly_conditions(free_workdir_bytes, total_workdir_bytes):
     free_disk_megabytes = free_workdir_bytes / (1024 * 1024)
     free_disk_percentage = free_workdir_bytes / (total_workdir_bytes / 100)
-    free_ramdisk_megabytes = free_ramdisk_bytes / (1024 * 1024)
 
     def info_msg_0():
         return "free_disk_megabytes <= %d or free_disk_percentage <= %d" % \
@@ -39,9 +37,6 @@ def get_disk_anomaly_conditions(free_workdir_bytes, total_workdir_bytes, free_ra
              State.tenant_cache[1].threshold_free_disk_percentage_high)
 
     def info_msg_1():
-        return "free_ramdisk_megabytes <= %d" % threshold_free_ramdisk_megabytes
-
-    def info_msg_2():
         return "free_disk_megabytes <= %d or free_disk_percentage <= %d" % \
             (State.tenant_cache[1].threshold_free_disk_megabytes_low,
              State.tenant_cache[1].threshold_free_disk_percentage_low)
@@ -56,15 +51,9 @@ def get_disk_anomaly_conditions(free_workdir_bytes, total_workdir_bytes, free_ra
             'accept_submissions': False
         },
         {
-            'condition': free_ramdisk_megabytes <= threshold_free_ramdisk_megabytes,
-            'info_msg': info_msg_1,
-            'alarm_level': 2,
-            'accept_submissions': False
-        },
-        {
             'condition': free_disk_megabytes <= State.tenant_cache[1].threshold_free_disk_megabytes_low or \
                          free_disk_percentage <= State.tenant_cache[1].threshold_free_disk_percentage_low,
-            'info_msg': info_msg_2,
+            'info_msg': info_msg_1,
             'alarm_level': 1,
             'accept_submissions': True
         }
@@ -113,8 +102,6 @@ class Alarm(object):
 
         self.measured_freespace = 0
         self.measured_totalspace = 0
-        self.measured_freeram = 0
-        self.measured_totalram = 0
 
         self.alarm_levels = {
             'disk_space': 0,
@@ -189,16 +176,12 @@ class Alarm(object):
         the evaluation + alarm shift is performed here.
 
         workingdir: is performed a percentage check (at least 1% and an absolute comparison)
-        ramdisk: a 2kbytes is expected at least to store temporary encryption keys
 
         "unusable node" threshold: happen when the space is really shitty.
         https://github.com/globaleaks/GlobaLeaks/issues/297
         https://github.com/globaleaks/GlobaLeaks/issues/872
         """
-        self.state.check_ramdisk()
-
         self.measured_freespace, self.measured_totalspace = get_disk_space(self.state.settings.working_path)
-        self.measured_freeram, self.measured_totalram = get_disk_space(self.state.settings.ramdisk_path)
 
         disk_space = 0
         disk_message = ""
@@ -206,9 +189,7 @@ class Alarm(object):
         old_accept_submissions = State.accept_submissions
 
         for c in get_disk_anomaly_conditions(self.measured_freespace,
-                                             self.measured_totalspace,
-                                             self.measured_freeram,
-                                             self.measured_totalram):
+                self.measured_totalspace):
             if c['condition']:
                 disk_space = c['alarm_level']
 

@@ -227,7 +227,6 @@ do_start()
                     --user=${USERNAME}
                     --group=${GROUP}
                     --working-path=${WORKING_DIR}
-                    --ramdisk=${RAM_DISK}
                     --loglevel=${LOGLEVEL}"
 
     if [ "${API_PREFIX}" != "" ]; then

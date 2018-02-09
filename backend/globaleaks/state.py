@@ -113,13 +113,10 @@ class StateClass(ObjectDict):
                         self.settings.db_path,
                         self.settings.files_path,
                         self.settings.attachments_path,
-                        self.settings.tmp_upload_path,
+                        self.settings.tmp_path,
                         self.settings.log_path,
-                        self.settings.ramdisk_path]:
+                        self.settings.tmp_path]:
             self.create_directory(dirpath)
-
-    def check_ramdisk(self):
-        self.create_directory(self.settings.ramdisk_path)
 
     def cleaning_dead_files(self):
         """
@@ -128,8 +125,8 @@ class StateClass(ObjectDict):
         temporally_encrypted_dir
         """
         # temporary .aes files must be simply deleted
-        for f in os.listdir(self.settings.tmp_upload_path):
-            path = os.path.join(self.settings.tmp_upload_path, f)
+        for f in os.listdir(self.settings.tmp_path):
+            path = os.path.join(self.settings.tmp_path, f)
             log.debug("Removing old temporary file: %s", path)
 
             try:
@@ -140,7 +137,7 @@ class StateClass(ObjectDict):
         # temporary .aes files with lost keys can be deleted
         # while temporary .aes files with valid current key
         # will be automagically handled by delivery sched.
-        keypath = os.path.join(self.settings.ramdisk_path, self.settings.AES_keyfile_prefix)
+        keypath = os.path.join(self.settings.tmp_path, self.settings.AES_keyfile_prefix)
 
         for f in os.listdir(self.settings.attachments_path):
             path = os.path.join(self.settings.attachments_path, f)
@@ -231,7 +228,7 @@ class StateClass(ObjectDict):
             # Opportunisticly encrypt the mail body. NOTE that mails will go out
             # unencrypted if one address in the list does not have a public key set.
             if pgp_key_public:
-               pgpctx = PGPContext(self.settings.ramdisk_path)
+               pgpctx = PGPContext(self.settings.tmp_path)
                fingerprint = pgpctx.load_key(pgp_key_public)['fingerprint']
                mail_body = pgpctx.encrypt_message(fingerprint, mail_body)
 
@@ -256,8 +253,7 @@ class StateClass(ObjectDict):
         subject, body = Templating().get_mail_subject_and_body(template_vars)
 
         if user_desc.get('pgp_key_public', ''):
-            self.check_ramdisk()
-            pgpctx = PGPContext(self.settings.ramdisk_path)
+            pgpctx = PGPContext(self.settings.tmp_path)
             fingerprint = pgpctx.load_key(user_desc['pgp_key_public'])['fingerprint']
             body = pgpctx.encrypt_message(fingerprint, body)
 
@@ -267,6 +263,11 @@ class StateClass(ObjectDict):
             'body': body,
             'tid': tid,
         }))
+
+    def get_tmp_file_by_path(self, path):
+        for k, v in self.TempUploadFiles.items():
+            if v.filepath == path:
+                return self.TempUploadFiles.pop(k)
 
 # State is a singleton class exported once
 State = StateClass()

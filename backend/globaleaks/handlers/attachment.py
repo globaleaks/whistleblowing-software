@@ -21,8 +21,8 @@ def register_ifile_on_db(session, tid, uploaded_file, internaltip_id):
     now = datetime_now()
 
     session.query(models.InternalTip) \
-         .filter(models.InternalTip.id == internaltip_id, models.InternalTip.tid == tid) \
-         .update({'update_date': now, 'wb_last_access': now})
+           .filter(models.InternalTip.id == internaltip_id, models.InternalTip.tid == tid) \
+           .update({'update_date': now, 'wb_last_access': now})
 
     new_file = models.InternalFile()
     new_file.tid = tid
@@ -44,23 +44,8 @@ class SubmissionAttachment(BaseHandler):
     check_roles = 'unauthenticated'
     upload_handler = True
 
-    @inlineCallbacks
-    def handle_attachment(self):
-        self.uploaded_file['body'].avoid_delete()
-        self.uploaded_file['body'].close()
-
-        dst = os.path.join(Settings.attachments_path,
-                           os.path.basename(self.uploaded_file['path']))
-
-        directory_traversal_check(Settings.attachments_path, dst)
-
-        yield self.write_upload_encrypted_to_disk(dst)
-
-    @inlineCallbacks
     def post(self, token_id):
         token = TokenList.get(token_id)
-
-        yield self.handle_attachment()
 
         self.uploaded_file['submission'] = True
 
@@ -77,10 +62,8 @@ class PostSubmissionAttachment(SubmissionAttachment):
     @inlineCallbacks
     def post(self):
         itip_id = (yield models.get(models.InternalTip.id,
-                                   models.InternalTip.id==self.current_user.user_id,
-                                   models.InternalTip.tid==self.request.tid))[0]
-
-        yield self.handle_attachment()
+                                    models.InternalTip.id==self.current_user.user_id,
+                                    models.InternalTip.tid==self.request.tid))[0]
 
         self.uploaded_file['submission'] = False
 

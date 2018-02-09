@@ -141,9 +141,7 @@ class SettingsClass(object):
         # size used while streaming files
         self.file_chunk_size = 65535 # 64kb
 
-        self.AES_key_size = 32
         self.AES_key_id_regexp = u'[A-Za-z0-9]{16}'
-        self.AES_counter_nonce = 128 / 8
         self.AES_file_regexp = r'(.*)\.aes'
         self.AES_file_regexp_comp = re.compile(self.AES_file_regexp)
         self.AES_keyfile_prefix = "aeskey-"
@@ -174,14 +172,8 @@ class SettingsClass(object):
         self.db_path = os.path.abspath(os.path.join(self.working_path, 'db'))
         self.log_path = os.path.abspath(os.path.join(self.working_path, 'log'))
         self.attachments_path = os.path.abspath(os.path.join(self.working_path, 'attachments'))
-        self.tmp_upload_path = os.path.abspath(os.path.join(self.working_path, 'tmp'))
+        self.tmp_path = os.path.abspath(os.path.join(self.working_path, 'tmp'))
         self.static_db_source = os.path.abspath(os.path.join(self.src_path, 'globaleaks', 'db'))
-
-        if os.path.isdir('/dev/shm'):
-            self.ramdisk_path = '/dev/shm/globaleaks'
-        else:
-            log.err("Failure: unable to use /dev/shm as volatile secure storage")
-            self.ramdisk_path = os.path.join(self.working_path, 'ramdisk')
 
         self.db_schema = os.path.join(self.static_db_source, 'sqlite.sql')
         self.db_file_name = 'glbackend-%d.db' % DATABASE_VERSION

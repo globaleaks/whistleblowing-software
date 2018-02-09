@@ -14,10 +14,7 @@ class TestAnomalies(helpers.TestGL):
 
         original_get_disk_anomaly_conditions = anomaly.get_disk_anomaly_conditions
 
-        conditions_count = len(original_get_disk_anomaly_conditions(full_ammo,
-                                                                    full_ammo,
-                                                                    full_ammo,
-                                                                    full_ammo))
+        conditions_count = len(original_get_disk_anomaly_conditions(full_ammo, full_ammo))
 
         def mock_get_disk_anomaly_conditions(*args, **kwargs):
             conditions = original_get_disk_anomaly_conditions(*args, **kwargs)

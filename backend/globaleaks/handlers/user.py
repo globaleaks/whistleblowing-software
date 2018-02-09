@@ -22,9 +22,7 @@ def parse_pgp_options(state, user, request):
 
     k = None
     if not remove_key and pgp_key_public:
-        state.check_ramdisk()
-
-        pgpctx = PGPContext(state.settings.ramdisk_path)
+        pgpctx = PGPContext(state.settings.tmp_path)
 
         k = pgpctx.load_key(pgp_key_public)
 
