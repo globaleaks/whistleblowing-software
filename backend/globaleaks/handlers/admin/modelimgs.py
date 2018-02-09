@@ -1,8 +1,4 @@
 # -*- coding: utf-8 -*-
-#
-# modelimgs
-#  *****
-#
 # API handling upload/delete of users/contexts picture
 import base64
 
@@ -53,10 +49,11 @@ class ModelImgInstance(BaseHandler):
     upload_handler = True
 
     def post(self, obj_key, obj_id):
-        # The error is suppressed here because add_model_img is wrapped with a
-        # transact returns a deferred which we attach events to.
-        # pylint: disable=assignment-from-no-return
-        return add_model_img(self.request.tid, obj_key, obj_id, self.uploaded_file['body'].read())
+        sf = self.state.get_tmp_file_by_path(self.uploaded_file['path'])
+        with sf.open('r') as encrypted_file:
+            data = encrypted_file.read()
+
+        return add_model_img(self.request.tid, obj_key, obj_id, data)
 
     def delete(self, obj_key, obj_id):
         return del_model_img(self.request.tid, obj_key, obj_id)

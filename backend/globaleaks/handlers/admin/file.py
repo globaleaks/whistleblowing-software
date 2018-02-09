@@ -69,7 +69,10 @@ class FileInstance(BaseHandler):
 
     def post(self, id):
         if id != 'custom':
-            data = self.uploaded_file['body'].read()
+            sf = self.state.get_tmp_file_by_path(self.uploaded_file['path'])
+            with sf.open('r') as encrypted_file:
+                data = encrypted_file.read()
+
             data = base64.b64encode(data)
             d = add_file(self.request.tid, id, u'', data)
         else:

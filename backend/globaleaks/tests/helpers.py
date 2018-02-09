@@ -216,9 +216,12 @@ def get_dummy_file(filename=None, content_type=None, content=None):
 
     content = base64.b64decode(VALID_BASE64_IMG)
 
-    temporary_file = SecureTemporaryFile(Settings.tmp_upload_path)
+    temporary_file = SecureTemporaryFile(Settings.tmp_path)
 
-    temporary_file.write(content)
+    with temporary_file.open('w') as f:
+        f.write(content)
+
+    State.TempUploadFiles[temporary_file.filepath] = temporary_file
 
     return {
         'date': datetime_now(),
@@ -431,7 +434,7 @@ class TestGL(unittest.TestCase):
         self.dummyNode = dummyStuff.dummyNode
 
         self.assertEqual(os.listdir(Settings.attachments_path), [])
-        self.assertEqual(os.listdir(Settings.tmp_upload_path), [])
+        self.assertEqual(os.listdir(Settings.tmp_path), [])
 
     def get_dummy_user(self, role, username):
         new_u = dict(MockDict().dummyUser)
@@ -527,10 +530,7 @@ class TestGL(unittest.TestCase):
         for _ in range(n):
             dummyFile = self.get_dummy_file()
 
-            dummyFile['body'].avoid_delete()
-            dummyFile['body'].close()
-
-            dst = os.path.join(Settings.attachments_path,
+            dst = os.path.join(Settings.tmp_path,
                                os.path.basename(dummyFile['path']))
 
             shutil.move(dummyFile['path'], dst)
