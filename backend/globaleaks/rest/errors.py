@@ -55,9 +55,9 @@ class InputValidationError(GLException):
     error_code = 3
     status_code = 406 # Not Acceptable
 
-    def __init__(self, wrong_source):
-        self.reason = "Invalid Input [%s]" % wrong_source
-        self.arguments = [wrong_source]
+    def __init__(self, error=''):
+        self.reason = "Invalid Input [%s]" % error
+        self.arguments = [error]
 
 
 class TokenFailure(GLException):
