@@ -3,7 +3,7 @@ Dear {RecipientName},
 Your whistleblowing platform is now accessible at:
 {HTTPSUrl}
 
-To login visit:
+To log in, visit:
 {HTTPSLoginUrl}
 
 The following is the summary of users' credentials:
