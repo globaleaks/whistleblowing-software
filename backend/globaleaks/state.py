@@ -115,7 +115,7 @@ class StateClass(ObjectDict):
                         self.settings.attachments_path,
                         self.settings.tmp_path,
                         self.settings.log_path,
-                        self.settings.tmp_path]:
+                        self.settings.backups_path]:
             self.create_directory(dirpath)
 
     def cleaning_dead_files(self):
