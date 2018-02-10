@@ -39,7 +39,6 @@ angular.module('GLServices', ['ngResource']).
 
           function initPreferences(prefs) {
             $rootScope.preferences = prefs;
-            console.log(prefs);
             GLTranslate.addUserPreference(prefs.language);
           }
 
