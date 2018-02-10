@@ -135,6 +135,13 @@ class Cleaning(LoopingJob):
             if is_expired(timestamp, days=1):
                 os.remove(path)
 
+        # Delete the backups older than 15 days
+        for f in os.listdir(self.state.settings.backups_path):
+            path = os.path.join(self.state.settings.backups_path, f)
+            timestamp = datetime.datetime.fromtimestamp(os.path.getmtime(path))
+            if is_expired(timestamp, days=15):
+                os.remove(path)
+
     @inlineCallbacks
     def operation(self):
         yield self.clean_expired_wbtips()

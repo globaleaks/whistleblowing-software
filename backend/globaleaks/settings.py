@@ -173,6 +173,7 @@ class SettingsClass(object):
         self.log_path = os.path.abspath(os.path.join(self.working_path, 'log'))
         self.attachments_path = os.path.abspath(os.path.join(self.working_path, 'attachments'))
         self.tmp_path = os.path.abspath(os.path.join(self.working_path, 'tmp'))
+        self.backups_path = os.path.abspath(os.path.join(self.working_path, 'backups'))
         self.static_db_source = os.path.abspath(os.path.join(self.src_path, 'globaleaks', 'db'))
 
         self.db_schema = os.path.join(self.static_db_source, 'sqlite.sql')
