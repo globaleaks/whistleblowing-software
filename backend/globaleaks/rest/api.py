@@ -18,7 +18,7 @@ from globaleaks.handlers import exception, \
     files, authentication, token, \
     export, l10n, wizard, \
     base, user, shorturl, \
-    robots
+    robots, redirect
 from globaleaks.handlers.admin import context as admin_context
 from globaleaks.handlers.admin import field as admin_field
 from globaleaks.handlers.admin import files as admin_files
@@ -53,6 +53,9 @@ api_spec = [
     (r'/authentication', authentication.AuthenticationHandler),
     (r'/receiptauth', authentication.ReceiptAuthHandler),
     (r'/session', authentication.SessionHandler),
+
+    ## Login Redirect  ##
+    (r'/login', redirect.LoginHandler),
 
     ## Public API ##
     (r'/public', public.PublicResource),
