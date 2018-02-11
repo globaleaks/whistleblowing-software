@@ -443,7 +443,7 @@ class BaseHandler(object):
             self.state.TempUploadFiles.set(flow_identifier, SecureTemporaryFile(Settings.tmp_path))
 
         f = self.state.TempUploadFiles[flow_identifier]
-        with f.open('w+') as f:
+        with f.open('w') as f:
             f.write(self.request.args['file'][0])
 
             if self.request.args['flowChunkNumber'][0] != self.request.args['flowTotalChunks'][0]:
