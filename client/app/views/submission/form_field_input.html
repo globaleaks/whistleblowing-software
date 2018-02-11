@@ -26,10 +26,16 @@
                data-translate>FIELD_INPUT_MIN_CHARS</div>
         </div>
       </div>
-      <div data-ng-switch-when="multichoice" data-ng-class="{'has-error': f['input-' + entryIndex].$error.required}">
+      <div data-ng-switch-when="multichoice" data-ng-class="{'has-error': f['input-' + entryIndex].$error.required || (field.required && entry['value'].length == undefined)}">
         <div data-ng-class="{'radio': (field.attrs.layout_orientation.value != 'horizontal')}">
           <label data-ng-class="{'radio-inline': (field.attrs.layout_orientation.value == 'horizontal')}" data-ng-repeat="option in field.options | orderBy:field.attrs.display_alphabetically.value ? 'label' : 'presentation_order'" name="{{'input-' +  entryIndex}}">
-            <input class="inputelem" type="radio" id="{{::fieldEntry}}-option-{{::$index}}" data-ng-model="entry['value']" value="{{option.id}}" data-ng-required="field.required" />
+            <input class="inputelem"
+                   type="radio"
+                   id="{{::fieldEntry}}-option-{{::$index}}"
+                   data-ng-model="entry['value']"
+                   value="{{option.id}}"
+                   data-ng-required="field.required"
+                   />
             <span>{{::option.label}}</span>
           </label>
         </div>
@@ -69,7 +75,7 @@
                  data-ng-required="field.required"
                  data-ng-attr-placeholder="{{field.placeholder}}"
                  data-ng-click="open()"
-                 uib-datepicker-popup 
+                 uib-datepicker-popup
                  datepicker-options="dateOptions"
                  is-open="status.opened"
                  show-button-bar="false" />
