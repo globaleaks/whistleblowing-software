@@ -88,24 +88,24 @@ def get_receivertip_list(session, tid, receiver_id, language):
         aqs_by_itip[itip.id] = archivedschema
 
     result = session.query(models.ReceiverTip.id, func.count(distinct(models.ReceiverTip.id))) \
-                  .filter(models.ReceiverTip.receiver_id == receiver_id,
-                          models.ReceiverTip.id == models.Message.receivertip_id,
-                          models.InternalTip.id == models.ReceiverTip.internaltip_id,
-                          models.InternalTip.tid == tid).group_by(models.ReceiverTip)
+                    .filter(models.ReceiverTip.receiver_id == receiver_id,
+                            models.ReceiverTip.id == models.Message.receivertip_id,
+                            models.InternalTip.id == models.ReceiverTip.internaltip_id,
+                            models.InternalTip.tid == tid).group_by(models.ReceiverTip)
     for rtip_id, count in result:
         messages_by_rtip[rtip_id] = count
 
     result = session.query(models.InternalTip.id, func.count(distinct(models.InternalTip.id))) \
-                  .filter(models.InternalTip.id.in_(itips_ids),
-                          models.InternalTip.id == models.Comment.internaltip_id,
-                          models.InternalTip.tid == tid).group_by(models.InternalTip)
+                    .filter(models.InternalTip.id.in_(itips_ids),
+                            models.InternalTip.id == models.Comment.internaltip_id,
+                            models.InternalTip.tid == tid).group_by(models.InternalTip)
     for itip_id, count in result:
         comments_by_itip[itip_id] = count
 
     result = session.query(models.InternalTip.id, func.count(distinct(models.InternalTip.id))) \
-                  .filter(models.InternalTip.id.in_(itips_ids),
-                          models.InternalTip.id == models.InternalFile.internaltip_id,
-                          models.InternalTip.tid == tid).group_by(models.InternalTip)
+                    .filter(models.InternalTip.id.in_(itips_ids),
+                            models.InternalTip.id == models.InternalFile.internaltip_id,
+                            models.InternalTip.tid == tid).group_by(models.InternalTip)
     for itip_id, count in result:
         internalfiles_by_itip[itip_id] = count
 
@@ -145,11 +145,10 @@ def perform_tips_operation(session, tid, receiver_id, operation, rtips_ids):
     can_delete_submission = State.tenant_cache[tid].can_delete_submission or receiver.can_delete_submission
 
     for itip in session.query(models.InternalTip) \
-                     .filter(models.ReceiverTip.receiver_id == receiver_id,
-                             models.ReceiverTip.id.in_(rtips_ids),
-                             models.InternalTip.id == models.ReceiverTip.internaltip_id,
-                             models.InternalTip.tid == tid):
-
+                       .filter(models.ReceiverTip.receiver_id == receiver_id,
+                               models.ReceiverTip.id.in_(rtips_ids),
+                               models.InternalTip.id == models.ReceiverTip.internaltip_id,
+                               models.InternalTip.tid == tid):
         if operation == 'postpone' and can_postpone_expiration:
             db_postpone_expiration_date(session, tid, itip)
 

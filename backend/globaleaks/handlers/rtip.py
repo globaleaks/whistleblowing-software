@@ -92,9 +92,9 @@ def serialize_message(session, message):
         author = 'Whistleblower'
     else:
         author = session.query(models.User) \
-                      .filter(models.User.id == models.ReceiverTip.receiver_id,
-                              models.ReceiverTip.id == models.Message.receivertip_id,
-                              models.Message.id == message.id).one().name
+                        .filter(models.User.id == models.ReceiverTip.receiver_id,
+                                models.ReceiverTip.id == models.Message.receivertip_id,
+                                models.Message.id == message.id).one().name
 
     return {
         'id': message.id,
@@ -134,17 +134,17 @@ def db_access_rtip(session, tid, user_id, rtip_id):
 
 def db_access_wbfile(session, tid, user_id, wbfile_id):
     itips = session.query(models.InternalTip) \
-                 .filter(models.InternalTip.id == models.ReceiverTip.internaltip_id,
-                         models.ReceiverTip.receiver_id == user_id,
-                         models.InternalTip.tid == tid)
+                   .filter(models.InternalTip.id == models.ReceiverTip.internaltip_id,
+                           models.ReceiverTip.receiver_id == user_id,
+                           models.InternalTip.tid == tid)
 
     itips_ids = [itip.id for itip in itips]
 
     wbfile = session.query(models.WhistleblowerFile) \
-                  .filter(models.WhistleblowerFile.id == wbfile_id,
-                          models.WhistleblowerFile.receivertip_id == models.ReceiverTip.id,
-                          models.ReceiverTip.internaltip_id.in_(itips_ids),
-                          models.InternalTip.tid == tid).one()
+                    .filter(models.WhistleblowerFile.id == wbfile_id,
+                            models.WhistleblowerFile.receivertip_id == models.ReceiverTip.id,
+                            models.ReceiverTip.internaltip_id.in_(itips_ids),
+                            models.InternalTip.tid == tid).one()
 
     if not wbfile:
         raise errors.ModelNotFound(models.WhistleblowerFile)
@@ -154,10 +154,10 @@ def db_access_wbfile(session, tid, user_id, wbfile_id):
 
 def db_receiver_get_rfile_list(session, tid, rtip_id):
     rfiles = session.query(models.ReceiverFile) \
-                  .filter(models.ReceiverFile.receivertip_id == models.ReceiverTip.id,
-                          models.ReceiverTip.id == rtip_id,
-                          models.ReceiverTip.internaltip_id == models.InternalTip.id,
-                          models.InternalTip.tid == tid)
+                    .filter(models.ReceiverFile.receivertip_id == models.ReceiverTip.id,
+                            models.ReceiverTip.id == rtip_id,
+                            models.ReceiverTip.internaltip_id == models.InternalTip.id,
+                            models.InternalTip.tid == tid)
 
     return [receiver_serialize_rfile(session, rfile) for rfile in rfiles]
 
@@ -230,19 +230,19 @@ def db_delete_itips_files(session, itips_ids):
 
     if itips_ids:
         for ifile in session.query(models.InternalFile) \
-                          .filter(models.InternalFile.internaltip_id.in_(itips_ids)):
+                            .filter(models.InternalFile.internaltip_id.in_(itips_ids)):
             files_paths.add(ifile.file_path)
             ifiles_ids.add(ifile.id)
 
     if ifiles_ids:
         for rfile in session.query(models.ReceiverFile) \
-                          .filter(models.ReceiverFile.internalfile_id.in_(list(ifiles_ids))):
+                            .filter(models.ReceiverFile.internalfile_id.in_(list(ifiles_ids))):
             files_paths.add(rfile.file_path)
 
     if ifiles_ids:
         for wbfile in session.query(models.WhistleblowerFile) \
-                           .filter(models.WhistleblowerFile.receivertip_id == models.ReceiverTip.id,
-                                   models.ReceiverTip.internaltip_id.in_(list(ifiles_ids))):
+                             .filter(models.WhistleblowerFile.receivertip_id == models.ReceiverTip.id,
+                                     models.ReceiverTip.internaltip_id.in_(list(ifiles_ids))):
             files_paths.add(wbfile.file_path)
 
     for file_path in files_paths:
@@ -459,9 +459,9 @@ class WhistleblowerFileHandler(BaseHandler):
         rtip, _ = db_access_rtip(session, tid, self.current_user.user_id, tip_id)
 
         enable_rc_to_wb_files = session.query(models.Context.enable_rc_to_wb_files) \
-                                     .filter(models.Context.id == models.InternalTip.context_id,
-                                             models.InternalTip.id == rtip.internaltip_id,
-                                             models.Context.tid == tid).one()
+                                       .filter(models.Context.id == models.InternalTip.context_id,
+                                               models.InternalTip.id == rtip.internaltip_id,
+                                               models.Context.tid == tid).one()
 
         if not enable_rc_to_wb_files:
             raise errors.ForbiddenOperation()
@@ -504,7 +504,7 @@ class WBFileHandler(BaseHandler):
     @transact
     def download_wbfile(self, session, tid, user_id, file_id):
         wbfile = session.query(models.WhistleblowerFile) \
-                      .filter(models.WhistleblowerFile.id == file_id).one_or_none()
+                        .filter(models.WhistleblowerFile.id == file_id).one_or_none()
 
         if wbfile is None or not self.user_can_access(session, tid, wbfile):
             raise errors.ModelNotFound(models.WhistleblowerFile)
@@ -533,14 +533,14 @@ class RTipWBFileHandler(WBFileHandler):
 
     def user_can_access(self, session, tid, wbfile):
         internaltip_id = session.query(models.ReceiverTip.internaltip_id) \
-                              .filter(models.ReceiverTip.id == wbfile.receivertip_id,
-                                      models.ReceiverTip.internaltip_id == models.InternalTip.id,
-                                      models.InternalTip.tid == tid).one()[0]
+                                .filter(models.ReceiverTip.id == wbfile.receivertip_id,
+                                        models.ReceiverTip.internaltip_id == models.InternalTip.id,
+                                        models.InternalTip.tid == tid).one()[0]
 
         users_ids = [x[0] for x in session.query(models.ReceiverTip.receiver_id) \
-                                                 .filter(models.ReceiverTip.internaltip_id == internaltip_id,
-                                                         models.ReceiverTip.internaltip_id == models.InternalTip.id,
-                                                         models.InternalTip.tid == tid)]
+                                          .filter(models.ReceiverTip.internaltip_id == internaltip_id,
+                                                  models.ReceiverTip.internaltip_id == models.InternalTip.id,
+                                                  models.InternalTip.tid == tid)]
 
         return self.current_user.user_id in users_ids
 
@@ -560,11 +560,11 @@ class ReceiverFileDownload(BaseHandler):
     @transact
     def download_rfile(self, session, tid, user_id, file_id):
         rfile, receiver_id = session.query(models.ReceiverFile, models.ReceiverTip.receiver_id) \
-                                  .filter(models.ReceiverFile.id == file_id,
-                                          models.ReceiverFile.receivertip_id == models.ReceiverTip.id,
-                                          models.ReceiverTip.receiver_id == user_id,
-                                          models.ReceiverTip.internaltip_id == models.InternalTip.id,
-                                          models.InternalTip.tid == tid).one()
+                                    .filter(models.ReceiverFile.id == file_id,
+                                            models.ReceiverFile.receivertip_id == models.ReceiverTip.id,
+                                            models.ReceiverTip.receiver_id == user_id,
+                                            models.ReceiverTip.internaltip_id == models.InternalTip.id,
+                                            models.InternalTip.tid == tid).one()
 
         if not rfile:
             raise errors.ModelNotFound(models.ReceiverFile)
