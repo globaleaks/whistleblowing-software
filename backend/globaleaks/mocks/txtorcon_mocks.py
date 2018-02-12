@@ -1,4 +1,4 @@
-# A shim taken from v0.18.0 release to support EphemeralHiddenServices
+# A shim taken from v0.19.3 release to support EphemeralHiddenServices
 
 from txtorcon.util import find_keywords
 
@@ -8,13 +8,13 @@ from twisted.python import log
 
 
 class EphemeralHiddenService(object):
-    """
+    '''
     This uses the ephemeral hidden-service APIs (in comparison to
     torrc or SETCONF). This means your hidden-service private-key is
     never in a file. It also means that when the process exits, that
     HS goes away. See documentation for ADD_ONION in torspec:
     https://gitweb.torproject.org/torspec.git/tree/control-spec.txt#n1295
-    """
+    '''
 
     # XXX the "ports" stuff is still kind of an awkward API, especialy
     # making the actual list public (since it'll have
@@ -26,40 +26,39 @@ class EphemeralHiddenService(object):
     # XXX "auth" is unused (also, no Tor support I don't think?)
 
     def __init__(self, ports, key_blob_or_type='NEW:BEST', auth=[], ver=2):
-        if not isinstance(ports, types.ListType):
+        if not isinstance(ports, list):
             ports = [ports]
         # for "normal" HSes the port-config bit looks like "80
         # 127.0.0.1:1234" whereas this one wants a comma, so we leave
         # the public API the same and fix up the space. Or of course
         # you can just use the "real" comma-syntax if you wanted.
-        self._ports = map(lambda x: x.replace(' ', ','), ports)
+        self._ports = [x.replace(' ', ',') for x in ports]
         self._key_blob = key_blob_or_type
         self.auth = auth  # FIXME ununsed
-        if ' ' in self._key_blob:
-            raise ValueError('_key_blob cannot have whitespace')
-        if not isinstance(ports, types.ListType):
-            raise ValueError('ports must be a list')
-        if not key_blob_or_type.startswith('NEW:') \
-           and (len(key_blob_or_type) > 825 or len(key_blob_or_type) < 820):
-            raise RuntimeError('Wrong size key-blob')
+        # FIXME nicer than assert, plz
+        assert isinstance(ports, list)
+        if not re.match(r'[^ :]+:[^ :]+$', key_blob_or_type):
+            raise ValueError('key_blob_or_type must be in the formats '
+                             '"NEW:<ALGORITHM>" or "<ALGORITHM>:<KEY>"')
 
     @defer.inlineCallbacks
     def add_to_tor(self, protocol):
-        """
+        '''
         Returns a Deferred which fires with 'self' after at least one
         descriptor has been uploaded. Errback if no descriptor upload
         succeeds.
-        """
+        '''
         ports = ' '.join(map(lambda x: 'Port=' + x.strip(), self._ports))
         cmd = 'ADD_ONION %s %s' % (self._key_blob, ports)
         ans = yield protocol.queue_command(cmd)
         ans = find_keywords(ans.split('\n'))
         self.hostname = ans['ServiceID'] + '.onion'
-        if self._key_blob == 'NEW:BEST':
+        if self._key_blob.startswith('NEW:'):
             self.private_key = ans['PrivateKey']
+        else:
+            self.private_key = self._key_blob
 
-        # NOTE line changed to give indication when using mocks
-        log.msg('Created onion-service at', self.hostname)
+        log.msg('Created hidden-service at', self.hostname)
 
         # Now we want to wait for the descriptor uploads. This doesn't
         # quite work, as the UPLOADED events always say "UNKNOWN" for
@@ -114,9 +113,9 @@ class EphemeralHiddenService(object):
 
     @defer.inlineCallbacks
     def remove_from_tor(self, protocol):
-        """
+        '''
         Returns a Deferred which fires with None
-        """
+        '''
         r = yield protocol.queue_command('DEL_ONION %s' % self.hostname[:-6])
         if r.strip() != 'OK':
             raise RuntimeError('Failed to remove hidden service: "%s".' % r)
