@@ -479,7 +479,7 @@ class MigrationScript(MigrationBase):
             for key in [c.key for c in new_obj.__table__.columns]:
                 if key == 'tid':
                     new_obj.tid = 1
-                elif key == 'value':
+                elif key == 'var_name':
                     if old_obj.var_name == 'custom_privacy_badge_none':
                         new_obj.var_name = 'custom_privacy_badge'
                     else:
