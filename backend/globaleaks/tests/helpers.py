@@ -406,6 +406,15 @@ class TestGL(unittest.TestCase):
             'enable_developers_exception_notification': True
         }
 
+        self.dummySignup = {
+            'name': 'Giovanni',
+            'surname': 'Pellerano',
+            'email': 'giovanni.pellerano@evilaliv3.org',
+            'subdomain': 'ringobongo',
+            'use_case': 'anticorruption',
+            'use_case_other': ''
+        }
+
         self.dummyContext = dummyStuff.dummyContext
         self.dummySubmission = dummyStuff.dummySubmission
         self.dummyAdminUser = self.get_dummy_user('admin', 'admin')
