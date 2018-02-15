@@ -146,7 +146,7 @@ api_spec = [
     (r'/admin/overview/tips', admin_overview.Tips),
     (r'/admin/overview/files', admin_overview.Files),
     (r'/admin/manifest', admin_manifest.ManifestHandler),
-    (r'/admin/signup', admin_signup.SignupHandler),
+    (r'/admin/signup', admin_signup.SignupList),
     (r'/wizard', wizard.Wizard),
     (r'/signup', signup.Signup),
     (r'/signup/([a-zA-Z0-9_\-]{32})', signup.SignupActivation),
