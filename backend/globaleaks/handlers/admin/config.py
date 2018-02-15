@@ -19,11 +19,11 @@ def check_hostname(session, tid, input_hostname):
     that it shouldn't.
     """
     if input_hostname == u'':
-      return
+        raise errors.InputValidationError('Hostname cannot be empty')
 
     root_hostname = ConfigFactory(session, 1, 'node').get_val(u'hostname')
 
-    forbidden_endings = ['.onion', 'localhost']
+    forbidden_endings = ['onion', 'localhost']
     if tid != 1 and root_hostname != '':
         forbidden_endings.append(root_hostname)
 
@@ -31,8 +31,8 @@ def check_hostname(session, tid, input_hostname):
         raise errors.InputValidationError('Hostname contains a forbidden origin')
 
     existing_hostnames = {h.get_v() for h in session.query(Config) \
-                                                  .filter(Config.tid != tid,
-                                                          Config.var_name == u'hostname')}
+                                                    .filter(Config.tid != tid,
+                                                            Config.var_name == u'hostname')}
 
     if input_hostname in existing_hostnames:
         raise errors.InputValidationError('Hostname already reserved')
