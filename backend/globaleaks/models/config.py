@@ -47,15 +47,13 @@ class Config(Model, Base):
         if not isinstance(val, desc._type):
             raise ValueError("Cannot assign %s with %s" % (self, type(val)))
 
-        if self.value is None:
-            self.value = {'v': val}
-
-        elif self.value['v'] != val:
+        if self.value is not None:
             self.customized = True
-            self.value = {'v': val}
+
+        self.value = val
 
     def get_v(self):
-        return self.value['v']
+        return self.value
 
 
 class ConfigFactory(object):
