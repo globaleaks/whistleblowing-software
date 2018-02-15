@@ -35,7 +35,9 @@ npm install -g grunt grunt-cli
 
 if [ "$GLTEST" = "test" ]; then
   pip install coveralls==1.0b1
-  sudo apt-get install -y python-coverage
+  sudo apt-get install -y python-coverage tor
+
+  sudo usermod -aG debian-tor $USER
 
   echo "Running backend unit tests"
   setupDependencies
