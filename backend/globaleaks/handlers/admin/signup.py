@@ -12,7 +12,7 @@ def get_signup_list(session):
     return [serialize_signup(s) for s in session.query(models.Signup)]
 
 
-class SignupHandler(BaseHandler):
+class SignupList(BaseHandler):
     check_roles = 'admin'
     root_tenant_only = True
 
