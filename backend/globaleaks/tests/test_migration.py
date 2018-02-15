@@ -86,8 +86,8 @@ class TestMigrationRoutines(unittest.TestCase):
         engine = get_engine(new_uri)
         session = sessionmaker(bind=engine)()
 
-        hs = session.query(config.Config).filter(config.Config.tid == 1, config.Config.var_name == u'onionservice').one().value['v']
-        pk = session.query(config.Config).filter(config.Config.tid == 1, config.Config.var_name == u'tor_onion_key').one().value['v']
+        hs = session.query(config.Config).filter(config.Config.tid == 1, config.Config.var_name == u'onionservice').one().value
+        pk = session.query(config.Config).filter(config.Config.tid == 1, config.Config.var_name == u'tor_onion_key').one().value
 
         self.assertEqual('lftx7dbyvlc5txtl.onion', hs)
         with open(os.path.join(helpers.DATA_DIR, 'tor/ephemeral_service_key')) as f:
@@ -99,6 +99,7 @@ class TestMigrationRoutines(unittest.TestCase):
 
 def test(path, version):
     return lambda self: self._test(path, version)
+
 
 for directory in ['populated']:
     path = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'db', directory)

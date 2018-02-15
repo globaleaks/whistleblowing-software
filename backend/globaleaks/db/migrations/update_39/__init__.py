@@ -467,6 +467,8 @@ class MigrationScript(MigrationBase):
                         new_obj.var_name = 'smtp_source_email'
                     else:
                         new_obj.var_name = old_obj.var_name
+                elif key == 'value':
+                    new_obj.value = old_obj.value['v']
                 else:
                     setattr(new_obj, key, getattr(old_obj, key))
 
@@ -486,6 +488,18 @@ class MigrationScript(MigrationBase):
                         new_obj.var_name = old_obj.var_name
                 else:
                     setattr(new_obj, key, getattr(old_obj, key))
+
+            self.session_new.add(new_obj)
+
+    def migrate_FieldAttr(self):
+        old_objs = self.session_old.query(self.model_from['FieldAttr'])
+        for old_obj in old_objs:
+            new_obj = self.model_to['FieldAttr']()
+            for key in [c.key for c in new_obj.__table__.columns]:
+                setattr(new_obj, key, getattr(old_obj, key))
+
+            if new_obj.name == 'display_alphabetically':
+                new_obj.value = False
 
             self.session_new.add(new_obj)
 
