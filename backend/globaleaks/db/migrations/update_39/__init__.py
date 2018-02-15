@@ -533,7 +533,7 @@ class MigrationScript(MigrationBase):
         old_objs = self.session_old.query(self.model_from['File'])
         for old_obj in old_objs:
             u = self.session_old.query(self.model_from['User']).filter(self.model_from['User'].img_id == old_obj.id).one_or_none()
-            c = self.session_old.query(self.model_from['Context']).filter(self.model_from['User'].img_id == old_obj.id).one_or_none()
+            c = self.session_old.query(self.model_from['Context']).filter(self.model_from['Context'].img_id == old_obj.id).one_or_none()
             if u is not None:
                 new_obj = self.model_to['UserImg']()
                 new_obj.id = u.id
