@@ -17,14 +17,11 @@ from globaleaks.models import config
 from globaleaks.orm import get_engine
 from globaleaks.rest import errors
 from globaleaks.settings import Settings
-from globaleaks.tests import helpers, config as test_config
+from globaleaks.tests import helpers
 from twisted.trial import unittest
 
 
 class TestMigrationRoutines(unittest.TestCase):
-    def setUp(self):
-        test_config.skipIf('migration')
-
     def _test(self, path, version):
         f = 'glbackend-%d.db' % version
 

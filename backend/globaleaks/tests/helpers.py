@@ -39,7 +39,7 @@ from globaleaks.utils.utility import datetime_null, datetime_now, datetime_to_IS
 from globaleaks.workers import process
 from globaleaks.workers.supervisor import ProcessSupervisor
 
-from . import TEST_DIR, config as test_config
+from . import TEST_DIR
 
 import base64
 import copy
@@ -323,7 +323,6 @@ class TestGL(unittest.TestCase):
 
     @inlineCallbacks
     def setUp(self):
-        test_config.skipCase(self)
         self.test_reactor = task.Clock()
 
         jobs.base.reactor = self.test_reactor
