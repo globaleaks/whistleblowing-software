@@ -12,7 +12,7 @@ from globaleaks.orm import transact
 
 @transact
 def get_file_id(session, tid, name):
-    return models.db_get(session, models.File, tid=tid, name=unicode(name)).id
+    return models.db_get(session, models.File, models.File.tid == tid, models.File.name == unicode(name)).id
 
 
 class FileHandler(BaseHandler):
