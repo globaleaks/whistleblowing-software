@@ -34,7 +34,7 @@ angular.module('GLServices', ['ngResource']).
             'state': response.state,
             'password_change_needed': response.password_change_needed,
             'homepage': '',
-            'auth_landing_page': ''
+            'auth_landing_page': '',
           };
 
           function initPreferences(prefs) {
@@ -45,17 +45,14 @@ angular.module('GLServices', ['ngResource']).
           if (self.session.role === 'admin') {
             self.session.homepage = '#/admin/home';
             self.session.auth_landing_page = '/admin/home';
-            self.session.preferencespage = '#/user/preferences';
             UserPreferences.get().$promise.then(initPreferences);
           } else if (self.session.role === 'custodian') {
             self.session.homepage = '#/custodian/identityaccessrequests';
             self.session.auth_landing_page = '/custodian/identityaccessrequests';
-            self.session.preferencespage = '#/user/preferences';
             UserPreferences.get().$promise.then(initPreferences);
           } else if (self.session.role === 'receiver') {
             self.session.homepage = '#/receiver/tips';
             self.session.auth_landing_page = '/receiver/tips';
-            self.session.preferencespage = '#/receiver/preferences';
             ReceiverPreferences.get().$promise.then(initPreferences);
           } else if (self.session.role === 'whistleblower') {
             self.session.auth_landing_page = '/status';

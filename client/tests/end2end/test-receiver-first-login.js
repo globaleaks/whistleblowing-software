@@ -21,16 +21,6 @@ describe('receiver first login', function() {
     browser.gl.utils.login_receiver();
   });
 
-  it('should be able to navigate through receiver preferences', function() {
-    element(by.id('PreferencesLink')).click();
-    browser.gl.utils.waitForUrl('/receiver/preferences');
-    var preferencesForm = element(by.id("preferencesForm"));
-    preferencesForm.element(by.cssContainingText("a", "Preferences")).click();
-    preferencesForm.element(by.cssContainingText("a", "Password configuration")).click();
-    preferencesForm.element(by.cssContainingText("a", "Notification settings")).click();
-    preferencesForm.element(by.cssContainingText("a", "Encryption settings")).click();
-  });
-
   it('should be able to load his/her public PGP key', function() {
     receiver.addPublicKey(pgp_key_path);
   });

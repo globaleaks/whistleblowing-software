@@ -1,0 +1,64 @@
+<div class="">
+  <div class="row">
+    <div class="col-md-8">
+      <div data-ng-if="preferences.picture !== ''" class="imageThumbnail">
+        <img class="receiverImg" alt="user picture" data-ng-src="{{::Utils.imgDataUri(preferences.picture)}}" /><br />
+      </div>
+      <p><label><span data-translate>Username</span>:</label> {{::session.username }}</p>
+      <p><label><span data-translate>Role</span>:</label> {{::preferences.role }}</p>
+      <p><label><span data-translate>Name</span>:</label> {{::preferences.name }}</p>
+      <p><label><span data-translate>Email address</span>:</label> {{::preferences.mail_address }}</p>
+      <p data-ng-if="preferences.description !== ''"><label data-translate>Description</label> {{::preferences.description }}</p>
+    </div>
+  </div>
+  <div data-ng-if="session.role == 'receiver' && preferences.contexts.length">
+    <label><span data-translate>Contexts</span></label>
+    <ul data-ng-repeat="context_id in preferences.contexts">
+      <li data-ng-init="ctx = Utils.getContext(context_id)"><span data-ng-if="ctx.name">{{::ctx.name}}</span>: {{::ctx.id}}</li>
+    </ul>
+  </div>
+</div>
+
+<div class="form-group">
+  <label data-translate>Language</label>
+  <select class="form-control" data-ng-model="preferences.language" data-ng-options="item.code as item.name for item in languages_enabled_selector"></select>
+</div>
+
+<div class="form-group" data-ng-if="session.role == 'receiver'">
+  <input data-ng-model="preferences.tip_notification" type="checkbox">
+  <label>
+    <span data-translate>Enable submission notification</span>
+  </label>
+</div>
+
+<div data-ng-form="pgpkeyForm">
+  <div data-ng-show="preferences.pgp_key_fingerprint !== ''">
+    <label class="form-group">
+      <span data-translate>Encryption:</span> <span class="label label-success" data-translate>Enabled</span>
+    </label>
+
+    <div class="form-group" pgp-pubkey-display key-str="preferences.pgp_key_public"></div>
+
+    <div class="form-group">
+      <input data-ng-model="preferences.pgp_key_remove" type="checkbox">
+      <label data-translate>Remove the PGP key</label>
+    </div>
+  </div>
+
+  <div class="form-group" data-ng-hide="preferences.pgp_key_fingerprint !== ''" data-ng-class="{'has-error': !pgpkeyForm.$valid}">
+    <label>
+      <span data-translate>Encryption:</span> <span class="label label-danger" data-translate>Disabled</span>
+    </label>
+
+    <div class="position-relative">
+      <label data-translate>Set up encryption by providing a PGP public key</label>
+      <textarea data-pgp-pubkey-validator="canBeEmpty" class="form-control" data-ng-attr-placeholder="{{'Copy and paste the PGP public key here' | translate}}" data-ng-model="preferences.pgp_key_public"></textarea>
+      <label file-picker-input="loadPublicKeyFile(file)" data-label-text="Select" class="btn btn-default textarea-btn"></label>
+    </div>
+  </div>
+</div>
+
+<button type="submit" class="btn btn-success" data-ng-click="save()" data-ng-disabled="pgpkeyForm.$invalid">
+  <i class="glyphicon glyphicon-ok"></i>
+  <span data-translate>Save</span>
+</button>
