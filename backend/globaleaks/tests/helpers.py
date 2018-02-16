@@ -210,7 +210,9 @@ files_count = 0
 def get_dummy_file(filename=None, content_type=None, content=None):
     global files_count
     files_count += 1
-    filename = ''.join(unichr(x) for x in range(0x400, 0x40A)).join('-%d' % files_count)
+
+    if filename is None:
+        filename = ''.join(unichr(x) for x in range(0x400, 0x40A)).join('-%d' % files_count)
 
     content_type = 'application/octet'
 
@@ -522,7 +524,7 @@ class TestGL(unittest.TestCase):
             'answers': answers
         })
 
-    def get_dummy_file(self):
+    def get_dummy_file(self, filename=''):
         return get_dummy_file(filename)
 
     def get_dummy_shorturl(self, x = ''):
@@ -855,7 +857,7 @@ class TestHandler(TestGLWithPopulatedDB):
             handler.request.headers['x-session'] = session.id
 
         if handler.upload_handler:
-            handler.uploaded_file = self.get_dummy_file()
+            handler.uploaded_file = self.get_dummy_file('upload.pdf')
 
         return handler
 
