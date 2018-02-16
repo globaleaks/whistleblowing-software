@@ -2,7 +2,7 @@ Dear {RecipientName},
 
 Your whistleblowing platform is almost ready!
 
-Activate the platform by clicking the following link:
+Click the link to activate the platform:
 {ActivationUrl}
 
 Kind regards,
