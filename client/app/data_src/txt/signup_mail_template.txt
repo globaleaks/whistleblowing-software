@@ -1,8 +1,8 @@
 Dear {RecipientName},
 
-Your service sign up is almost complete!
+Your whistleblowing platform is almost ready!
 
-Activate your account by clicking the following link:
+Activate the platform by clicking the following link:
 {ActivationUrl}
 
 Kind regards,
