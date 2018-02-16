@@ -75,9 +75,6 @@ api_spec = [
     (r'/token', token.TokenCreate),
     (r'/token/' + requests.token_regexp, token.TokenInstance),
 
-    # Shorturl Handler
-    (requests.shorturl_regexp, shorturl.ShortUrlInstance),
-
     ## Submission Handlers ##
     (r'/submission/' + requests.token_regexp, submission.SubmissionInstance),
     (r'/submission/' + requests.token_regexp + r'/file', attachment.SubmissionAttachment),
@@ -158,6 +155,7 @@ api_spec = [
     (r'/robots.txt', robots.RobotstxtHandler),
     (r'/sitemap.xml', robots.SitemapHandler),
     (r'/s/(.+)', file.FileHandler),
+    (r'/u/(.{1,255})', shorturl.ShortUrlInstance),
     (r'/l10n/(' + '|'.join(LANGUAGES_SUPPORTED_CODES) + ')', l10n.L10NHandler),
 
     ## This handler attempts to route all non routed get requests
