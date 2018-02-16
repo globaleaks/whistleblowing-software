@@ -158,7 +158,7 @@ var GLClient = angular.module('GLClient', [
         templateUrl: 'views/wizard/main.html',
         controller: 'WizardCtrl',
         header_title: 'Platform wizard',
-        header_subtitle: 'Step-by-step setup',
+        header_subtitle: '',
         resolve: {
           access: allKinds(),
         }
@@ -248,7 +248,7 @@ var GLClient = angular.module('GLClient', [
         templateUrl: 'views/admin/home.html',
         controller: 'AdminCtrl',
         header_title: 'Administration interface',
-        header_subtitle: 'Home page',
+        header_subtitle: '',
         resolve: {
           resources: fetchResources('admin', ['manifest', 'node']),
         }
@@ -266,7 +266,7 @@ var GLClient = angular.module('GLClient', [
         templateUrl: 'views/admin/contexts.html',
         controller: 'AdminCtrl',
         header_title: 'Administration interface',
-        header_subtitle: 'Context configuration',
+        header_subtitle: 'Contexts',
         resolve: {
           resources: fetchResources('admin', ['contexts', 'node', 'questionnaires', 'receivers']),
         }
@@ -275,7 +275,7 @@ var GLClient = angular.module('GLClient', [
         templateUrl: 'views/admin/questionnaires.html',
         controller: 'AdminCtrl',
         header_title: 'Administration interface',
-        header_subtitle: 'Questionnaire configuration',
+        header_subtitle: 'Questionnaires',
         resolve: {
           resources: fetchResources('admin', ['fieldtemplates', 'field_attrs', 'node', 'questionnaires']),
         }
@@ -284,7 +284,7 @@ var GLClient = angular.module('GLClient', [
         templateUrl: 'views/admin/users.html',
         controller: 'AdminCtrl',
         header_title: 'Administration interface',
-        header_subtitle: 'User management',
+        header_subtitle: 'Users',
         resolve: {
           resources: fetchResources('admin', ['node', 'users']),
         }
@@ -293,7 +293,7 @@ var GLClient = angular.module('GLClient', [
         templateUrl: 'views/admin/receivers.html',
         controller: 'AdminCtrl',
         header_title: 'Administration interface',
-        header_subtitle: 'Recipient configuration',
+        header_subtitle: 'Recipients',
         resolve: {
           resources: fetchResources('admin', ['contexts', 'node', 'receivers']),
         }
