@@ -6,7 +6,7 @@ Your whistleblowing platform is now accessible at:
 To log in, visit:
 {HTTPSLoginUrl}
 
-Users credentials:
+Users' credentials:
 {AdminCredentials}
 {RecipientCredentials}
 
