@@ -13,10 +13,10 @@ describe('verify navigation of admin sections', function() {
     element(by.cssContainingText("ul li a", "Languages")).click();
     element(by.cssContainingText("ul li a", "Text customization")).click();
 
-    element(by.cssContainingText("a", "User management")).click();
-    element(by.cssContainingText("a", "Recipient configuration")).click();
-    element(by.cssContainingText("a", "Context configuration")).click();
-    element(by.cssContainingText("a", "Questionnaire configuration")).click();
+    element(by.cssContainingText("a", "Users")).click();
+    element(by.cssContainingText("a", "Recipients")).click();
+    element(by.cssContainingText("a", "Contexts")).click();
+    element(by.cssContainingText("a", "Questionnaires")).click();
 
     element(by.cssContainingText("a", "Notification settings")).click();
     element(by.cssContainingText("ul li a", "Main configuration")).click();

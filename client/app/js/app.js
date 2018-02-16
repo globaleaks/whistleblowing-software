@@ -226,15 +226,6 @@ var GLClient = angular.module('GLClient', [
           access: requireAuth('*'),
         }
       }).
-      when('/receiver/preferences', {
-        templateUrl: 'views/receiver/preferences.html',
-        controller: 'PreferencesCtrl',
-        header_title: 'Recipient interface',
-        header_subtitle: 'Preferences',
-        resolve: {
-          access: requireAuth('receiver'),
-        }
-      }).
       when('/receiver/tips', {
         templateUrl: 'views/receiver/tips.html',
         controller: 'ReceiverTipsCtrl',
@@ -369,8 +360,8 @@ var GLClient = angular.module('GLClient', [
           access: requireAuth('custodian'),
         }
       }).
-      when('/user/preferences', {
-        templateUrl: 'views/user/preferences.html',
+      when('/preferences', {
+        templateUrl: 'views/preferences.html',
         controller: 'PreferencesCtrl',
         header_title: 'User preferences',
         header_subtitle: '',

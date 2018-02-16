@@ -1,6 +1,6 @@
 <div class="row">
   <div id="ConfigSidebarBox" class="col-md-3" data-ng-include="'views/admin/sidebar.html'"></div>
-  <div class="col-md-9" data-ng-controller="AdminOverviewCtrl">
+  <div id="PageContent" class="col-md-9" data-ng-controller="AdminOverviewCtrl">
     <uib-tabset>
       <uib-tab data-ng-repeat="tab in tabs" heading="{{tab.title | translate}}">
         <div class="tab-content" data-ng-include="tab.template"></div>

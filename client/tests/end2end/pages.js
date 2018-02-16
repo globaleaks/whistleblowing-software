@@ -4,8 +4,7 @@ exports.receiver = function() {
   };
 
   this.addPublicKey = function(pgp_key_path) {
-    browser.setLocation('receiver/preferences');
-    element(by.cssContainingText("a", "Encryption settings")).click();
+    browser.setLocation('preferences');
 
     if (browser.gl.utils.testFileUpload()) {
       browser.executeScript('angular.element(document.querySelector(\'input[type="file"]\')).attr("style", "visibility: visible;");');
@@ -20,7 +19,7 @@ exports.receiver = function() {
       pgpTxtArea.sendKeys(pgp_key);
     }
 
-    return element(by.cssContainingText("span", "Update notification and encryption settings")).click();
+    return element.all(by.cssContainingText("span", "Save")).first().click();
   };
 
   this.wbfile_widget = function() {
