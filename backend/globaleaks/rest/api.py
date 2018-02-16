@@ -155,7 +155,7 @@ api_spec = [
     (r'/robots.txt', robots.RobotstxtHandler),
     (r'/sitemap.xml', robots.SitemapHandler),
     (r'/s/(.+)', file.FileHandler),
-    (r'/u/(.{1,255})', shorturl.ShortUrlInstance),
+    (r'(/u/.{1,255})', shorturl.ShortURL),
     (r'/l10n/(' + '|'.join(LANGUAGES_SUPPORTED_CODES) + ')', l10n.L10NHandler),
 
     ## This handler attempts to route all non routed get requests

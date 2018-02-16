@@ -1,22 +1,24 @@
 # -*- coding: utf-8 -*-
 #
 # Handlers implementing the url shortener redirect
+from twisted.internet.defer import inlineCallbacks
+
 from globaleaks import models
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.orm import transact
-from twisted.internet.defer import inlineCallbacks
+from globaleaks.rest import errors
 
 
 @transact
 def translate_shorturl(session, tid, shorturl):
     shorturl = session.query(models.ShortURL).filter(models.ShortURL.shorturl == shorturl, models.ShortURL.tid == tid).one_or_none()
     if shorturl is None:
-        return '/'
+        raise errors.ResourceNotFound()
 
     return shorturl.longurl
 
 
-class ShortUrlInstance(BaseHandler):
+class ShortURL(BaseHandler):
     """
     This handler implement the platform url shortener
     """
