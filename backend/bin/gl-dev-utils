@@ -11,11 +11,6 @@ from globaleaks.settings import Settings
 from globaleaks.utils import templating
 
 
-def get_native_lang_string(args):
-    import babel
-    name = babel.Locale.parse(args.lang_code).get_display_name(args.lang_code)
-    print('native: %s' % repr(name))
-
 def generate_templates_descriptor(args):
     # Helper script that outputs JSON describing the variables each template can use
     out_dict = dict()
@@ -38,11 +33,6 @@ parser = argparse.ArgumentParser(prog="gl-admin",
                  description="GlobaLeaks backend administator interface")
 
 subp = parser.add_subparsers(title="commands")
-
-lc_p = subp.add_parser("print_language_native_name", help="Print languages native name")
-lc_p.add_argument("lang_code", nargs="?", help="the two letter language code e.g: [fr] requires babel", type=str)
-lc_p.set_defaults(func=get_native_lang_string)
-
 
 kw_p = subp.add_parser("generate_templates_descriptor", help="Gcnerate mail templates descriptors")
 kw_p.set_defaults(func=generate_templates_descriptor)
