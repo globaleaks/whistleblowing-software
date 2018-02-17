@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from globaleaks.handlers import l10n
 from globaleaks.handlers.admin import l10n as admin_l10n
+from globaleaks.rest import errors
 from globaleaks.tests import helpers
 from twisted.internet.defer import inlineCallbacks
 
@@ -14,6 +15,9 @@ class TestL10NHandler(helpers.TestHandler):
 
     @inlineCallbacks
     def test_get(self):
+        handler = self.request()
+        yield self.assertFailure(handler.get(u'unexistent'), errors.ResourceNotFound)
+
         handler = self.request()
         response = yield handler.get(lang=u'en')
         self.assertNotIn('12345', response)
