@@ -414,6 +414,7 @@ var GLClient = angular.module('GLClient', [
          "bg": 'js/locale/angular-locale_ca.js',
          "bs": 'js/locale/angular-locale_bs.js',
          "ca": 'js/locale/angular-locale_ca.js',
+         "ca-va": 'js/locale/angular-locale_ca-es-valencia.js',
          "cs": 'js/locale/angular-locale_cs.js',
          "de": 'js/locale/angular-locale_de.js',
          "el": 'js/locale/angular-locale_el.js',
@@ -430,10 +431,12 @@ var GLClient = angular.module('GLClient', [
          "ko": 'js/locale/angular-locale_ko.js',
          "nb-no": 'js/locale/angular-locale_nb_no.js',
          "nl": 'js/locale/angular-locale_nl.js',
+         "pl": 'js/locale/angular-locale_pl.js',
          "pt-br": 'js/locale/angular-locale_pt-br.js',
          "pt-pt": 'js/locale/angular-locale_pt-pt.js',
          "ro": 'js/locale/angular-locale_ro.js',
          "ru": 'js/locale/angular-locale_ru.js',
+         "sl-si": 'js/locale/angular-locale_sl.js',
          "sq": 'js/locale/angular-locale_sq.js',
          "sv": 'js/locale/angular-locale_sv.js',
          "ta": 'js/locale/angular-locale_ta.js',
@@ -446,6 +449,7 @@ var GLClient = angular.module('GLClient', [
          "zh-tw": 'js/locale/angular-locale_zh-tw.js'
         }
       );
+
 }]).
   config(['flowFactoryProvider', function (flowFactoryProvider) {
     // Trick to move the flowFactoryProvider config inside run block.

@@ -6,6 +6,7 @@ import os
 from globaleaks import models
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.orm import transact
+from globaleaks.rest import errors
 from globaleaks.utils.security import directory_traversal_check
 from globaleaks.settings import Settings
 from globaleaks.utils.utility import read_json_file
@@ -19,6 +20,9 @@ def langfile_path(lang):
 def get_l10n(session, tid, lang):
     path = langfile_path(lang)
     directory_traversal_check(Settings.client_path, path)
+
+    if not os.path.exists(path):
+        raise errors.ResourceNotFound()
 
     texts = read_json_file(path)
 
