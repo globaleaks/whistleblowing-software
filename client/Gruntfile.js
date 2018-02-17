@@ -183,12 +183,6 @@ module.exports = function(grunt) {
               replacement: function (match) {
                 return fileToDataURI('tmp/' + match);
               }
-            },
-            {
-              pattern: /inlinefiles\/([^'")]+)*/g,
-              replacement: function (match) {
-                return fileToDataURI('tmp/' + match);
-              }
             }
           ]
         }
