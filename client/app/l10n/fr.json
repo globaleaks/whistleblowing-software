@@ -664,7 +664,7 @@
   "User": "Utilisateur",
   "Username": "Nom d’utilisateur",
   "Users": "Utilisateurs",
-  "Users' credentials:": "Users' credentials:",
+  "Users' credentials:": "Renseignements sur les utilisateurs :",
   "Using automatic HTTPS configuration will handle the entire process of requesting, enabling and renewing certificates from the Let's Encrypt Certificate Authority.": "L’utilisation de la configuration automatique HTTPS prendra en charge le processus complet de demande, d’activation et de renouvellement des certificats de l’autorité de certification « Let’s Encrypt ».",
   "Using Let's Encrypt requires agreement to their Terms of Service.": "Vous devez accepter les conditions générales d’utilisation de « Let’s Encrypt » pour l’utiliser.",
   "Valid until:": "Valide jusqu’au :",

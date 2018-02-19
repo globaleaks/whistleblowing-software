@@ -27,7 +27,7 @@ LANGUAGES_SUPPORTED = [
   {'code': 'bg', 'name': 'Bulgarian', 'native': u'\u0431\u044a\u043b\u0433\u0430\u0440\u0441\u043a\u0438'},
   {'code': 'bs', 'name': 'Bosnian', 'native': u'Bosanski'},
   {'code': 'ca', 'name': 'Catalan', 'native': u'Catal\xe0'},
-  {'code': 'ca_VA', 'name': 'Valencian', 'native': u'Valenci\xe0'},
+  {'code': 'ca@valencia', 'name': 'Valencian', 'native': u'Valenci\xe0'},
   {'code': 'cs', 'name': 'Czech', 'native': u'\u010de\u0161tina'},
   {'code': 'de', 'name': 'German', 'native': u'Deutsch'},
   {'code': 'el', 'name': 'Greek',  'native': u'\u0395\u03bb\u03bb\u03b7\u03bd\u03b9\u03ba\u03ac'},

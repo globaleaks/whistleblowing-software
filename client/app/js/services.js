@@ -1338,8 +1338,7 @@ factory('AdminUtils', ['AdminContextResource', 'AdminQuestionnaireResource', 'Ad
   }
 
   function validLang(inp) {
-    // Check for valid looking ISOish language string.
-    if (typeof inp !== 'string' || !/^([a-z]{2})(_[A-Z]{2})?$/.test(inp)) {
+    if (typeof inp !== 'string') {
       return false;
     }
 
