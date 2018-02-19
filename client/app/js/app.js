@@ -414,7 +414,7 @@ var GLClient = angular.module('GLClient', [
          "bg": 'js/locale/angular-locale_ca.js',
          "bs": 'js/locale/angular-locale_bs.js',
          "ca": 'js/locale/angular-locale_ca.js',
-         "ca-va": 'js/locale/angular-locale_ca-es-valencia.js',
+         "ca@valencia": 'js/locale/angular-locale_ca-es-valencia.js',
          "cs": 'js/locale/angular-locale_cs.js',
          "de": 'js/locale/angular-locale_de.js',
          "el": 'js/locale/angular-locale_el.js',
