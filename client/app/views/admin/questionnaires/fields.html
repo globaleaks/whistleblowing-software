@@ -5,6 +5,7 @@
       <div class="editorHeader" data-ng-click="field.editable && toggleEditing(); $event.stopPropagation();">
         <div class="row">
           <span class="col-md-6">
+            <span>{{field.label}}</span>
             <span class="fieldIndex label label-default label-as-badge" data-ng-if="field.step_id !== '' || field.fieldgroup_id !== ''">
               <span data-translate>Row</span><span>: {{field.y}}</span>
               <span data-translate>Column</span><span>: {{field.x}}</span>
@@ -78,9 +79,6 @@
               </span>
             </span>
           </span>
-        </div>
-        <div class="row">
-          <span class="col-md-12 fieldLabel">{{field.label}}</span>
         </div>
       </div>
       <div class="fieldEditor" data-ng-if="editing">
