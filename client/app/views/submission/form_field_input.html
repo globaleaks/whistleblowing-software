@@ -1,4 +1,4 @@
-<div data-ng-form="{{fieldFormVarName}}" class="submissionFieldInput">
+<div data-ng-form="{{fieldFormVarName}}">
   <div data-ng-controller="SubmissionFormFieldCtrl" data-ng-switch="field.template_id">
     <div data-ng-switch-when="whistleblower_identity">
       <div data-ng-include="'views/submission/fields/whistleblower_identity.html'"></div>
@@ -94,7 +94,7 @@
       <div data-ng-switch-when="fileupload">
         <div id="{{::fieldEntry}}" data-ng-include="'views/partials/rfile_upload_button.html'"></div>
       </div>
-      <div data-ng-switch-when="fieldgroup">
+      <div data-ng-switch-when="fieldgroup" class="nested-question">
         <div data-ng-include="'views/submission/form.html'"></div>
       </div>
       <div data-ng-switch-default data-ng-class="{'has-error': !f['input-' + entryIndex].$valid}">

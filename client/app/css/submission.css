@@ -204,3 +204,29 @@ html[dir="rtl"] #KeyCodeHintBox:after {
   border-radius: 4px;
   color: #c7254e;
 }
+
+.red-asterisk {
+  color: red;
+  vertical-align: super;
+  font-size: smaller;
+}
+
+.question-label {
+  font-weight: bold;
+}
+
+.question-body {
+  padding-bottom: 1.4em;
+}
+
+.nested-question {
+  font-size: 0.9em;
+}
+
+html[dir="ltr"] .question {
+  padding: 0 0 0 0.8em;
+}
+
+html[dir="rtl"] .question {
+  padding: 0 0.8em 0 0;
+}
