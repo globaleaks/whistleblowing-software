@@ -9,8 +9,8 @@
 .stepDescription,
 .fieldDescription
 {
+  color: #333;
   white-space: pre-wrap;
-  margin-bottom: 1em;
 }
 
 .contextCards, .receiverCards {
@@ -18,7 +18,7 @@
 }
 
 .contextCard, .contextList, .receiverCard {
-  margin-bottom: 20px;
+  margin-bottom: 1em;
   padding: 1em;
   background-color: white;
   border: 1px solid #DDD;

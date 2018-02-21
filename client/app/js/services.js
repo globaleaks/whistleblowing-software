@@ -929,13 +929,6 @@ factory('AdminUtils', ['AdminContextResource', 'AdminQuestionnaireResource', 'Ad
         return 'data:image/png;base64,' + data;
       },
 
-      renderCustomCSS: function() {
-        if (angular.isUndefined($rootScope.node)) {
-          return false;
-        }
-        return this.isWhistleblowerPage() && angular.isDefined($rootScope.node.css);
-      },
-
       attachCustomJS: function() {
         if (angular.isUndefined($rootScope.node)) {
           return false;
