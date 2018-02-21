@@ -15,7 +15,7 @@
             </span>
           </span>
           <span data-ng-if="node['favicon']">
-            <a class="btn btn-primary" href="data:application/octet-stream;base64,{{node['favicon']}}" download={{favicon}}>
+            <a class="btn btn-primary" href="data:application/octet-stream;base64,{{node['favicon']}}" download="{{favicon}}">
               <span class="glyphicon glyphicon-download"></span>
               <span data-translate>Download</span>
             </a>
@@ -30,6 +30,8 @@
     </div>
     <div class="form-group">
       <div data-ng-repeat="admin_file in admin_files" data-ng-include="'views/partials/admin_file.html'"></div>
+    </div>
+    <div class="form-group">
       <label data-translate>Upload custom file</label>
       <br />
       <span data-translate>The file will be available at URL: /s/$filename</span>

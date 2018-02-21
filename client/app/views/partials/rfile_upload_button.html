@@ -5,13 +5,13 @@
        flow-name="uploads[fileinput]"
        extend-flow-valid-size="node.maximum_filesize*1024*1024">
   <div data-ng-if="field === undefined || field.multi_entry">
-    <button id="fileupload" class="btn btn-success fileinput-button" data-ng-disabled="disabled" flow-btn>
+    <button id="fileupload" class="btn btn-sm btn-primary fileinput-button" data-ng-disabled="disabled" flow-btn>
       <i class="glyphicon glyphicon-paperclip"></i>
       <span data-translate>Add file</span>
     </button>
   </div>
   <div data-ng-if="field !== undefined && !field.multi_entry">
-    <button id="fileupload" class="btn btn-success fileinput-button" data-ng-disabled="disabled" flow-btn flow-single-file>
+    <button id="fileupload" class="btn btn-sm btn-success fileinput-button" data-ng-disabled="disabled" flow-btn flow-single-file>
       <i class="glyphicon glyphicon-paperclip"></i>
       <span data-translate>Add file</span>
     </button>

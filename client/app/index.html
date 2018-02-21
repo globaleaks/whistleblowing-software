@@ -22,7 +22,7 @@
 
     <link id="favicon" rel="shortcut icon" href="data:image/x-icon;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQEAYAAABPYyMiAAAABmJLR0T///////8JWPfcAAAACXBIWXMAAABIAAAASABGyWs+AAAAF0lEQVRIx2NgGAWjYBSMglEwCkbBSAcACBAAAeaR9cIAAAAASUVORK5CYII=" type="image/x-icon" />
 
-    <link data-ng-if="Utils.renderCustomCSS()" rel="stylesheet" data-ng-href="data:text/css;base64,{{node.css}}" />
+    <link data-ng-if="::node.css" rel="stylesheet" data-ng-href="data:text/css;base64,{{node.css}}" />
   </head>
 
   <body>
