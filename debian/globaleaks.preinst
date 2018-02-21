@@ -5,9 +5,9 @@ set -e
 if [ -d "/var/globaleaks" ]; then
   timestamp=$(date +%s)
   version=`dpkg -s globaleaks | grep '^Version:' | cut -d ' ' -f2`
-  mkdir -p /var/globaleaks/backups
-  chown globaleaks:globaleaks /var/globaleaks/backups
   filepath=/var/globaleaks/backups/globaleaks-$version-$timestamp.tar.gz
   echo "Creating backup of /var/globaleaks in $filepath"
+  mkdir -p /var/globaleaks/backups
+  chown globaleaks:globaleaks /var/globaleaks/backups
   tar --exclude='/var/globaleaks/backups' -zcvf $filepath /var/globaleaks
 fi
