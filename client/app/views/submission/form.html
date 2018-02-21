@@ -1,7 +1,7 @@
 <div data-ng-repeat="row in rows" data-ng-init="fieldRow=$index" class="row">
   <div data-ng-repeat="field in row | orderBy:'x'" data-ng-init="fieldCol=$index">
     <div data-ng-controller="SubmissionFieldCtrl" data-ng-class="getClass(field, row.length)">
-      <div id="{{fieldId}}" class="question">
+      <div id="{{fieldId}}" class="question" data-ng-if="fieldUtilities.isFieldTriggered(field, answers, total_score)">
         <div class="question-label">
           <label data-content="::field.hint" uib-popover="{{::field.hint}}" popover-placement="right">
             <span class="fieldLabel">{{::field.label}}</span>
