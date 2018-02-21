@@ -157,21 +157,15 @@
     </div>
 
     <div id="BrowserSupported" class="ng-cloak" data-ng-class="{'block-user-input': showLoadingPanel}">
-      <div data-ng-if="started">
-        <div id="BodyDefault" data-ng-class="Utils.classExtension()">
-          <div id="PrivacyBadgeBox" data-ng-if="Utils.showPrivacyBadge()" data-ng-include="'views/partials/privacybadge.html'"></div>
-          <div id="HeaderBox" data-ng-if="!embedded" data-ng-include="'views/partials/header.html'"></div>
-          <div id="MessagesConsoleBox" data-ng-include="'views/partials/messageconsole.html'"></div>
-           <div id="ContentBox" class="container-fluid">
-            <a id="top"></a>
-            <div data-ng-view=""></div>
-          </div>
-           <div id="FooterBox" data-ng-if="!embedded" data-ng-include="'views/partials/footer.html'"></div>
+      <div data-ng-if="started" data-ng-class="Utils.classExtension()">
+        <div id="PrivacyBadgeBox" data-ng-if="Utils.showPrivacyBadge()" data-ng-include="'views/partials/privacybadge.html'"></div>
+        <div id="HeaderBox" data-ng-if="!embedded" data-ng-include="'views/partials/header.html'"></div>
+        <div id="MessagesConsoleBox" data-ng-include="'views/partials/messageconsole.html'"></div>
+        <div id="ContentBox" class="container-fluid">
+          <a id="top"></a>
+          <div data-ng-view=""></div>
         </div>
-
-        <div id="BodyCustom" data-ng-if="Utils.isHomepage() && node.homepage" data-ng-class="Utils.classExtension()" data-ng-controller="HomeCtrl">
-          <div data-ng-include="'custom_homepage.html'"></div>
-        </div>
+        <div id="FooterBox" data-ng-if="!embedded" data-ng-include="'views/partials/footer.html'"></div>
       </div>
 
       <div id="PageOverlay" data-ng-hide="started && !showLoadingPanel">
