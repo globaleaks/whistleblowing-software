@@ -33,7 +33,9 @@ def db_wizard(session, state, tid, request, client_using_tor, language):
     # Guess Tor configuration from thee media used on first configuration and
     # if the user is using Tor preserve node anonymity and perform outgoing connections via Tor
     node.set_val(u'reachable_via_web', not client_using_tor)
+    node.set_val(u'allow_unencrypted', not client_using_tor)
     node.set_val(u'anonymize_outgoing_connections', client_using_tor)
+    node.set_val(u'disable_encryption_warnings', not client_using_tor)
 
     node_l10n = l10n.NodeL10NFactory(session, tid)
     node_l10n.set_val(u'header_title_homepage', language, request['node_name'])

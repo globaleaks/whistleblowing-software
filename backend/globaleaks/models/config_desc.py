@@ -92,7 +92,7 @@ ConfigDescriptor = {
     u'https_custodian': Bool(default=True),
     u'https_whistleblower': Bool(default=True),
     u'https_receiver': Bool(default=True),
-    u'allow_unencrypted': Bool(default=True),
+    u'allow_unencrypted': Bool(default=False),
     u'disable_encryption_warnings': Bool(default=False),
     u'allow_iframes_inclusion': Bool(default=False),
 
