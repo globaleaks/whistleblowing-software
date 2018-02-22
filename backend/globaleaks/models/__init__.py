@@ -204,7 +204,7 @@ class Signup(Model, Base):
 
     id = Column(Integer, primary_key=True, nullable=False)
     tid = Column(Integer, ForeignKey('tenant.id', ondelete='SET NULL'))
-    subdomain = Column(UnicodeText, nullable=False)
+    subdomain = Column(UnicodeText, unique=True, nullable=False)
     name = Column(UnicodeText, nullable=False)
     surname = Column(UnicodeText, nullable=False)
     email = Column(UnicodeText, nullable=False)
