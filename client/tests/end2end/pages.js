@@ -56,6 +56,7 @@ exports.whistleblower = function() {
     element(by.id('step-receiver-selection')).element(by.id('receiver-1')).click();
     element(by.id('NextStepButton')).click();
     element(by.id('step-0')).element(by.id('step-0-field-0-0-input-0')).sendKeys(title);
+    element(by.id('step-0')).element(by.id('step-0-field-1-0-input-0')).sendKeys('x y z');
 
     if (uploadFiles && browser.gl.utils.testFileUpload()) {
       var fileToUpload1 = browser.gl.utils.makeTestFilePath('antani.txt');
