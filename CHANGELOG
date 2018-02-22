@@ -1,3 +1,23 @@
+Changes in version 3.0.0 - 2017-02-22
+    o Implement multitenancy support enabling to create multiple globaleaks
+      sites on a single server process
+    o Apply database structure refactoring and optimization
+    o Adopts SQLAlchemy ORM in place of STORM
+    o Add preliminar support for PostgreSQL, MySQL, SQL Server 2016
+    o Automatic Backup of entire data directory before each upgrade
+    o Reimplement migrations using SQLAlchemy to deprecate storm usage
+    o Improve implementation of file upload reducing
+      exposure for DoS attacks
+    o Revise UI/UX for better usability and internationalization
+    o Implement GZIP as an offline process at build time
+    o Implementation of advanced Whistleblower Identity Management
+      compliant with Italian Anticorruption Authority Specs ANAC)
+    o Implementation of Custodian for Whistleblower Identities
+      compliant with Italian Anticorruption Authority Specs ANAC
+    o Add support for Valencian language
+    o Imlement basic signup capability for demo purposes
+    o Update translations
+
 Changes in version 2.72.31 - 2017-01-15
     o Fix interface for providing the whistleblower identity after
       an initial fully anonymous submission
