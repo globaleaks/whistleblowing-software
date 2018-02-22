@@ -19,10 +19,10 @@
           },
           "type": "inputbox",
           "preview": true,
-          "hint": {
-            "en": "Describe your submission in a few words"
-          },
           "description": {
+            "en": "Describe your submission in a few words."
+          },
+          "hint": {
             "en": ""
           },
           "multi_entry": false,
@@ -30,7 +30,7 @@
             "en": ""
           },
           "stats_enabled": false,
-          "required": false,
+          "required": true,
           "attrs": {
             "min_len": {
               "type": "int",
@@ -60,10 +60,10 @@
           },
           "type": "textarea",
           "preview": false,
-          "hint": {
-            "en": "Describe your submission in detail"
-          },
           "description": {
+            "en": "Describe your submission in detail."
+          },
+          "hint": {
             "en": ""
           },
           "multi_entry": false,
@@ -71,7 +71,7 @@
             "en": ""
           },
           "stats_enabled": false,
-          "required": false,
+          "required": true,
           "attrs": {
             "min_len": {
               "type": "int",
@@ -93,10 +93,10 @@
           },
           "type": "fileupload",
           "preview": false,
-          "hint": {
-            "en": "Attach files relevant to the submission"
-          },
           "description": {
+            "en": "Attach files relevant to the submission."
+          },
+          "hint": {
             "en": ""
           },
           "multi_entry": true,
