@@ -16,12 +16,12 @@ from globaleaks.utils.utility import datetime_now, datetime_null, get_disk_space
 
 
 ANOMALY_MAP = {
-    'started_submissions': 50,
-    'completed_submissions': 5,
+    'started_submissions': 100,
+    'completed_submissions': 20,
     'failed_submissions': 5,
-    'failed_logins': 0,
+    'failed_logins': 5,
     'successful_logins': 20,
-    'files': 10,
+    'files': 30,
     'comments': 30,
     'messages': 30
 }
@@ -42,7 +42,7 @@ def get_disk_anomaly_conditions(free_workdir_bytes, total_workdir_bytes):
              State.tenant_cache[1].threshold_free_disk_percentage_low)
 
     # list of bad conditions ordered starting from the worst case scenario
-    conditions = [
+    return [
         {
             'condition': free_disk_megabytes <= State.tenant_cache[1].threshold_free_disk_megabytes_high or \
                          free_disk_percentage <= State.tenant_cache[1].threshold_free_disk_percentage_high,
@@ -58,8 +58,6 @@ def get_disk_anomaly_conditions(free_workdir_bytes, total_workdir_bytes):
             'accept_submissions': True
         }
     ]
-
-    return conditions
 
 
 @transact
@@ -188,8 +186,7 @@ class Alarm(object):
         accept_submissions = True
         old_accept_submissions = State.accept_submissions
 
-        for c in get_disk_anomaly_conditions(self.measured_freespace,
-                self.measured_totalspace):
+        for c in get_disk_anomaly_conditions(self.measured_freespace, self.measured_totalspace):
             if c['condition']:
                 disk_space = c['alarm_level']
 
