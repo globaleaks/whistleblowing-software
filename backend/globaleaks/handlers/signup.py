@@ -12,7 +12,7 @@ from globaleaks.handlers.base import BaseHandler, new_session
 from globaleaks.handlers.wizard import db_wizard
 from globaleaks.models import config
 from globaleaks.orm import transact
-from globaleaks.rest import requests, errors
+from globaleaks.rest import requests, errors, apicache
 from globaleaks.utils.utility import datetime_to_ISO8601
 from globaleaks.utils.security import generateRandomKey
 
@@ -139,4 +139,9 @@ class SignupActivation(BaseHandler):
   invalidate_cache = True
 
   def get(self, token):
-      return signup_activation(self.state, self.request.tid, token, self.request.language)
+      ret = signup_activation(self.state, self.request.tid, token, self.request.language)
+
+      # invalidate also cache of tenant 1
+      apicache.ApiCache.invalidate(1)
+
+      return ret
