@@ -1,3 +1,14 @@
+Changes in version 3.0.1 - 2017-02-23
+    o Implelement Debian Stretch 8.10 packaging (#2071)
+    o Add Finnish translation
+    o Update translations
+
+    Addresses issues:
+    - https://github.com/globaleaks/GlobaLeaks/issues/2067
+    - https://github.com/globaleaks/GlobaLeaks/issues/2068
+    - https://github.com/globaleaks/GlobaLeaks/issues/2069
+    - https://github.com/globaleaks/GlobaLeaks/issues/2070
+
 Changes in version 3.0.0 - 2017-02-22
     o Implement multitenancy support enabling to create multiple globaleaks
       sites on a single server process
