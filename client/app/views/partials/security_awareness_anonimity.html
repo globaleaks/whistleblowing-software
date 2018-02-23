@@ -38,9 +38,9 @@
   </div>
 </div>
 <div class="modal-footer">
-  <a data-ng-click="ok()"
-     data-ng-disabled="!node.disable_security_awareness_questions && (!answer.value || answer.value !== 'b')"
-     class="btn btn-warning">
+  <button data-ng-click="ok()"
+          data-ng-disabled="!node.disable_security_awareness_questions && (!answer.value || answer.value !== 'b')"
+          class="btn btn-warning">
     <span data-translate>Proceed</span>
-  </a>
+  </button>
 </div>
