@@ -1,0 +1,2336 @@
+# 
+# Translators:
+# Annie Bridges <anniebridges90@gmail.com>, 2014
+# Bogdan Lytvynovskyi <bogdan.lytvynovskyi@gmail.com>, 2014
+# EugeneNemo <eugeye@gmail.com>, 2014
+# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2015-2018
+# jonny_nut, 2014
+# jonny_nut, 2014
+# kyrylkov <kyrylkov@gmail.com>, 2013,2015
+# kyrylkov <kyrylkov@gmail.com>, 2013,2015
+# LinuxChata, 2014
+# LinuxChata, 2014
+# Muhammad Ishaq <ishaq@kahaf.com>, 2014
+# Muhammad Ishfaq Khan <ishfaqkhanniazi@gmail.com>, 2014
+# muhozhrun <inactive+muhozhrun@transifex.com>, 2014
+# muhozhrun <inactive+muhozhrun@transifex.com>, 2014
+# muhozhrun <inactive+muhozhrun@transifex.com>, 2014
+# SG, 2014
+# SG, 2014
+# ukr, 2014-2017
+# Vitali Vovnenko, 2015
+msgid ""
+msgstr ""
+"Project-Id-Version: GlobaLeaks\n"
+"PO-Revision-Date: 2018-02-22 09:13+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"Language-Team: Ukrainian (http://www.transifex.com/otf/globaleaks/language/uk/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: uk\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+
+msgid "Login page"
+msgstr "Сторінка авторизації"
+
+msgid "Log in"
+msgstr "Зайти"
+
+msgid "Administration interface"
+msgstr " Інтерфейс адміністратора"
+
+msgid "Main configuration"
+msgstr "Головні налаштування"
+
+msgid "Theme customization"
+msgstr "Налаштування зовнішнього вигляду"
+
+msgid "Languages"
+msgstr "Мови"
+
+msgid "Text customization"
+msgstr "Налаштування тексту"
+
+msgid "Advanced settings"
+msgstr "Додаткові параметри"
+
+msgid "Questionnaire configuration"
+msgstr "Налаштування анкети із запитаннями"
+
+msgid "Question templates"
+msgstr "Шаблон питання"
+
+msgid "Questionnaires"
+msgstr "Анкети"
+
+msgid "Add new questionnaire"
+msgstr "Створити нову антеку"
+
+msgid "Home"
+msgstr "Домашня"
+
+msgid "Home page"
+msgstr "Домашня сторінка"
+
+msgid "Changelog"
+msgstr "Список змін"
+
+msgid "License"
+msgstr "Ліцензія"
+
+msgid "Notification templates"
+msgstr "Шаблони повідомлень"
+
+msgid "Recipient notification templates"
+msgstr "Шаблони повідомлень для одержувача"
+
+msgid "Admin notification templates"
+msgstr "Шаблони повідомлень для адміністратора"
+
+msgid "Missing data"
+msgstr "Відсутні дані"
+
+msgid "no stats available for the future."
+msgstr "немає статистики стосовно майбутнього часу."
+
+msgid "no stats available for this hour."
+msgstr "немає статистики для цієї години."
+
+msgid "no stats available for current hour; check activities page."
+msgstr "немає статистики для поточної години; перевірити сторінку активності."
+
+msgid "Delete"
+msgstr "Видалити"
+
+msgid "Anomalies"
+msgstr "Аномальна активність "
+
+msgid "Preferences"
+msgstr "Налаштування"
+
+msgid "Recipient interface"
+msgstr "Інтерфейс одержувача"
+
+msgid "Notification settings"
+msgstr "Налаштування оповіщень"
+
+msgid "This recipient has configured the encryption key."
+msgstr "Одержувач налаштував ключ шифрування."
+
+msgid "This recipient has not configured the encryption key."
+msgstr "Одержувач не налаштував ключ шифрування."
+
+msgid "The file is unavailable due to an internal error."
+msgstr "Файл недоступний через внутрішню помилку."
+
+msgid "file unavailable"
+msgstr "файл недоступний"
+
+msgid "Creation date"
+msgstr "Дата Створення"
+
+msgid "Expiration date"
+msgstr "Дата закінчення терміну дії (видалення)"
+
+msgid "Last Access"
+msgstr "Останній Доступ"
+
+msgid "Files"
+msgstr "Файли"
+
+msgid "Comments"
+msgstr "Коментарі"
+
+msgid "Messages"
+msgstr "Повідомлення"
+
+msgid "Select this recipient."
+msgstr "Обрати цього одержувача."
+
+msgid "Unselect this recipient."
+msgstr "Не обирати цього одержувача."
+
+msgid "This recipient cannot be selected."
+msgstr "Наразі не можна обрати цього одержувача."
+
+msgid "This recipient cannot be deselected."
+msgstr "Цього одрежувача не можна виключити зі списку."
+
+msgid "Details"
+msgstr "Деталі"
+
+msgid "Platform wizard"
+msgstr "Майстер налаштувань платформи"
+
+msgid "Step-by-step setup"
+msgstr "Налаштування крок за кроком"
+
+msgid "CREDIT CARD"
+msgstr "Кредитна картка"
+
+msgid "YOUR NAME"
+msgstr "ВАШЕ ІМ'Я"
+
+msgid "Postpone the expiration date"
+msgstr "Відтермінувати дату зачінчення терміну дії"
+
+msgid "Select all"
+msgstr "Обрати все"
+
+msgid "Deselect all"
+msgstr "Зняти всі позначки"
+
+msgid "Refresh page"
+msgstr "Оновити сторінку"
+
+msgid "Context"
+msgstr "Контекст"
+
+msgid "Submission date"
+msgstr "Дата передачі матеріалів"
+
+msgid "Private messages"
+msgstr "Приватні повідомлення"
+
+msgid "Preview"
+msgstr "Попередній перегляд"
+
+msgid "Move up"
+msgstr "Вгору"
+
+msgid "Move down"
+msgstr "Вниз"
+
+msgid "Move left"
+msgstr "Вліво"
+
+msgid "Move right"
+msgstr "Вправо"
+
+msgid "Import"
+msgstr "Імпортувати"
+
+msgid "Export"
+msgstr "Експортувати"
+
+msgid "Save all"
+msgstr "Зберегти все"
+
+msgid "This field is mandatory"
+msgstr "Це поле є обов'язковим"
+
+msgid ""
+"The connection used to send this submission has been secured with HTTPS "
+"ensuring confidentiality."
+msgstr "Інтернет з'єднання для передачі цього повідомлення захищене протоколом HTTPS який забезпечує конфіденційність"
+
+msgid ""
+"The connection used to send this submission has been secured with Tor "
+"ensuring confidentiality and anonymity."
+msgstr "Інтернет з'єднання для передачі цього повідомлення захищене кодом Tor, який забезпечує конфіденційність і анонімність"
+
+msgid "vertical"
+msgstr "вертикально"
+
+msgid "horizontal"
+msgstr "горизонтально"
+
+msgid "Number"
+msgstr "Номер"
+
+msgid "Email"
+msgstr "Електронна пошта"
+
+msgid "Date"
+msgstr "Дата"
+
+msgid "Regular expression validator"
+msgstr "Валідатор регулярних математичних виразів"
+
+msgid "Minimum number of input characters"
+msgstr "Мінімальна кількість символів, що вводять"
+
+msgid "Maximum number of input characters"
+msgstr "Максимальна кількість символів, що вводять"
+
+msgid "Earliest selectable date"
+msgstr "Дата обрана найперше"
+
+msgid "Latest selectable date"
+msgstr "Остання обрана дата"
+
+msgid "0 = auto"
+msgstr "0 = auto"
+
+msgid "-1 = unlimited"
+msgstr "-1 = unlimited"
+
+msgid "True"
+msgstr "Вірно"
+
+msgid "False"
+msgstr "Невірно"
+
+msgid "Yes"
+msgstr "Так"
+
+msgid "No"
+msgstr "Ні"
+
+msgid "Attachment"
+msgstr "Додаток"
+
+msgid "Attachments"
+msgstr "Додатки"
+
+msgid "Change your password"
+msgstr "Змінити пароль"
+
+msgid "First name"
+msgstr "Ім'я"
+
+msgid "Last name"
+msgstr "Прізвище"
+
+msgid "GENDER_OTHER"
+msgstr "інший варіант"
+
+msgid "Male"
+msgstr "чол."
+
+msgid "Female"
+msgstr "жін."
+
+msgid "Date of birth"
+msgstr "Рік народження"
+
+msgid "Place of birth"
+msgstr "Місце народження"
+
+msgid "Social security number"
+msgstr "ідентифікаційний код"
+
+msgid "Residence"
+msgstr "Країна проживання"
+
+msgid "Address"
+msgstr "Адреса"
+
+msgid "Zip code / Postal code"
+msgstr "Поштовий код"
+
+msgid "City"
+msgstr "Місто"
+
+msgid "State"
+msgstr "Область"
+
+msgid "Region"
+msgstr "Район"
+
+msgid "Province"
+msgstr "Регіон"
+
+msgid "Country"
+msgstr "Країна"
+
+msgid "Phone number"
+msgstr "Тел.номер"
+
+msgid "Current job title"
+msgstr "Займана позиція"
+
+msgid "Current job responsibility (role)"
+msgstr "Робочі обов'язки (роль)"
+
+msgid "Current organization unit and job location"
+msgstr "Місцерозташування офісу"
+
+msgid "Job title at the time of the reported fact"
+msgstr "Посада на момент правопорушення про яке повідомляється"
+
+msgid "Job responsibility (role) at the time of the reported fact"
+msgstr "Відповідальності (роль) на момент правопорушення про яке повідомляється"
+
+msgid "Organization unit and job location at the time of the reported fact"
+msgstr "Місцерозташування офісу на момент правопорушення про яке повідомляється"
+
+msgid "List of submissions"
+msgstr "Список наданих свідчень"
+
+msgid "List of access requests to whistleblowers' identities"
+msgstr "Список запитів на інформацію про особу викривача"
+
+msgid "User"
+msgstr "Користувач"
+
+msgid "Motivation"
+msgstr "Мотивація"
+
+msgid "Status"
+msgstr "Стан"
+
+msgid "Request motivation"
+msgstr "Мета запиту"
+
+msgid "Reply motivation"
+msgstr "Мета відповіді"
+
+msgid "Request status"
+msgstr "Статус запиту"
+
+msgid "Custodian"
+msgstr "Зберігач"
+
+msgid "Custodian of the identities"
+msgstr "Зберігач особистих даних"
+
+msgid "Identity"
+msgstr "Особисті дані"
+
+msgid "Available"
+msgstr "Доступні"
+
+msgid "Not available"
+msgstr "Недоступні"
+
+msgid "Access requested"
+msgstr "Наданий запит на доступ"
+
+msgid "Request access to the whistleblower's identity"
+msgstr "Надати запит на інформацію про особу викривача"
+
+msgid "Please write a motivation"
+msgstr "Будь ласка, поясніть мету"
+
+msgid "Reply to the request"
+msgstr "Відповідь на запит"
+
+msgid "Authorized"
+msgstr "Дозволено"
+
+msgid "Denied"
+msgstr "Відхилено"
+
+msgid "Waiting for authorization"
+msgstr "В очікуванні дозволу"
+
+msgid "New request"
+msgstr "Новий запит"
+
+msgid "Authorize"
+msgstr "Дозволити"
+
+msgid "Deny"
+msgstr "Відхилити"
+
+msgid "Deny access to the whistleblower's identity"
+msgstr "Відхитили право доступу до інформації про особу викривача"
+
+msgid "Authorize access to the whistleblower's identity"
+msgstr "Надати право доступу до інформації про особу викривача"
+
+msgid "Templates"
+msgstr "Templates"
+
+msgid "Notification of new submission"
+msgstr "Повідомлення про нове свідчення"
+
+msgid "Notification of new comment"
+msgstr "Повідомлення про новий коментар"
+
+msgid "Notification of new message"
+msgstr "Повідомлення про новий лист"
+
+msgid "Notification of new file attachment"
+msgstr "Повідомлення про новий доданий файл"
+
+msgid "Notification of PGP key expiration"
+msgstr "Повідомлення про закінчення терміну дії PGP ключа"
+
+msgid "Notification of anomaly"
+msgstr "Повідомлення про аномільну активність"
+
+msgid "Template for summary of contents in submission archive"
+msgstr "Шаблон резюме змісту архіву повідомлення"
+
+msgid "Email subject"
+msgstr "Тема листа"
+
+msgid "Email body"
+msgstr "Контент листа"
+
+msgid "in seconds"
+msgstr "у секундах"
+
+msgid "in hours"
+msgstr "у годинах"
+
+msgid "in days"
+msgstr "у днях"
+
+msgid "in characters"
+msgstr "у символів"
+
+msgid "in megabytes"
+msgstr "у мегабайтах"
+
+msgid "in percentage"
+msgstr "у відсотках"
+
+msgid "HTTPS settings"
+msgstr "налаштування HTTPS"
+
+msgid "Anomaly detection thresholds"
+msgstr "Anomaly detection thresholds"
+
+msgid "High risk"
+msgstr "Високий рівень ризику"
+
+msgid "Medium risk"
+msgstr "Середній рівень ризику"
+
+msgid "Low risk"
+msgstr "Низький рівень ризику"
+
+msgid "Available disk space"
+msgstr "Вільне місце на диску"
+
+msgid "Last update"
+msgstr "Оснанні оновлення"
+
+msgid "Custodian notification templates"
+msgstr "Custodian notification templates"
+
+msgid ""
+"This interface allows configuring email templates used to notify custodians."
+msgstr "This interface allows configuring email templates used to notify custodians."
+
+msgid "Disable notifications to administrators"
+msgstr "Disable notifications to administrators"
+
+msgid "Disable notifications to custodians"
+msgstr "Disable notifications to custodians"
+
+msgid "Disable notifications to recipients"
+msgstr "Disable notifications to recipients"
+
+msgid "Score"
+msgstr "Кількість балів"
+
+msgid "Trigger question"
+msgstr "Trigger question"
+
+msgid "Triggered by a score higher than:"
+msgstr "Triggered by a score higher than:"
+
+msgid "Select the question to be triggered when this option is selected"
+msgstr "Оберіть питання яке буде задаватись якщо така опція активована"
+
+msgid "Message shown on top of the status page of the submission"
+msgstr "Повідомлення, яке відображається на верхній частині сторінки статусу повідомлення"
+
+msgid "Copy and paste the PGP public key here"
+msgstr "Скопіюйте PGP ключ cюди"
+
+msgid "Password strength:"
+msgstr "Надійність паролю:"
+
+msgid "Weak"
+msgstr "Слабкий"
+
+msgid "Acceptable"
+msgstr "Прийнятний"
+
+msgid "Strong"
+msgstr "Надійний"
+
+msgid "Loading…"
+msgstr "Завантаження..."
+
+msgid "Text shown on top of the interface for selecting contexts"
+msgstr "Text shown on top of the interface for selecting contexts"
+
+msgid "Show small context cards on submission interface"
+msgstr "Показати тематичні картки на сторінці повідомлень"
+
+msgid "Type of context selector:"
+msgstr "Type of context selector:"
+
+msgid "Type to search…"
+msgstr ""
+
+msgid "Silence email notifications"
+msgstr "Вимкнути повідомлення по електронній пошті"
+
+msgid "Turn on email notifications"
+msgstr "Увімкнути повідомлення по електронній пошті"
+
+msgid "Enter an email address for the administrator"
+msgstr "Enter an email address for the administrator"
+
+msgid "Enter a password for the administrator"
+msgstr "Enter a password for the administrator"
+
+msgid "Test configuration"
+msgstr "Test configuration"
+
+msgid "Failed logins"
+msgstr "Кількість невдалих спроб авторизації"
+
+msgid "Successful logins"
+msgstr "Кількість вдалих спроб авторизації"
+
+msgid "Started submissions"
+msgstr "Початих зверненнь"
+
+msgid "Completed submissions"
+msgstr "Завершених звернень"
+
+msgid "Failed submissions"
+msgstr "Перелік невдалих повідомлень"
+
+msgid "Input validation"
+msgstr "Перевірка вхідних даних"
+
+msgid "Email address"
+msgstr "Електронна пошта"
+
+msgid "Custom"
+msgstr "на замовлення"
+
+msgid "None"
+msgstr "Жодний"
+
+msgid "Regular expression"
+msgstr "регулярний вираз"
+
+msgid "Label the submission"
+msgstr "Позначте повідомлення"
+
+msgid "Activate"
+msgstr "Активувати"
+
+msgid "Search"
+msgstr "Шукати"
+
+msgid ""
+"This custom text is no longer displayed on the platform. The original text "
+"has either changed or been removed."
+msgstr "Текст було видалено"
+
+msgid ""
+"Unless the whistleblower checks the submission by this time, their access to"
+" it will expire."
+msgstr "Доступ до повідомлення буде закритий, якщо інформатора не відкриє повідомлення до обраного часу"
+
+msgid "The whistleblower can no longer access the submission"
+msgstr "Викривач більше не має доступу до повідомлення"
+
+msgid "Warning!"
+msgstr "Увага!"
+
+msgid "You are running an unsupported and potentially vulnerable browser."
+msgstr "Ви використовуєте уразливий браузер, який не підтримується нашою системою."
+
+msgid "You are strongly advised to download and install the Tor Browser."
+msgstr "Наполегливо радимо завантажити та встановити браузер Tor."
+
+msgid ""
+"The Tor Browser includes various privacy and security enhancements not "
+"present in other browsers."
+msgstr "Броузер Tor включає в себе різні поліпшення конфіденційності і безпеки, відсутні в інших браузерах."
+
+msgid "Download the Tor Browser"
+msgstr "Завантажте Tor броузер"
+
+msgid "This is the list of the other supported browsers:"
+msgstr "Це список інших підтримуваних браузерів:"
+
+msgid "System overview"
+msgstr "System overview"
+
+msgid "Stats"
+msgstr "Stats"
+
+msgid "Activities"
+msgstr "Активність"
+
+msgid "Submissions"
+msgstr "Повідомлення"
+
+msgid "Users"
+msgstr "Users"
+
+msgid "From"
+msgstr "Від"
+
+msgid "Number of downloads"
+msgstr ""
+
+msgid "Error with file:"
+msgstr ""
+
+msgid "File size not accepted."
+msgstr ""
+
+msgid "File type not accepted."
+msgstr ""
+
+msgid "Maximum file size is:"
+msgstr ""
+
+msgid "Accepted file types are:"
+msgstr ""
+
+msgid "Scheduled jobs"
+msgstr ""
+
+msgid "Sites management"
+msgstr ""
+
+msgid "Regenerate"
+msgstr ""
+
+msgid "Display options alphabetically"
+msgstr ""
+
+msgid "Enable email notifications for:"
+msgstr ""
+
+msgid "Software updates"
+msgstr ""
+
+msgid "Software problems"
+msgstr ""
+
+msgid "Disable"
+msgstr "Вимкнути"
+
+msgid "Remove"
+msgstr "Вилучити"
+
+msgid "Use as default"
+msgstr ""
+
+msgid "Create your whistleblowing platform"
+msgstr ""
+
+msgid "Select the context of your submission:"
+msgstr "Оберіть контекст Вашого повідомлення"
+
+msgid "Warning! You are not anonymous."
+msgstr "УВАГА! Ви не анонімні."
+
+msgid ""
+"Sending submissions over HTTPS exposes the act of doing so, but not the "
+"content.\\n\\nAlso, hiding the fact that you are submitting something makes "
+"the submission anonymous, which is strongly recommended.\\n\\nThis can be "
+"achieved with the use of the Tor Browser, providing anonymisation not found "
+"in other browsers like Internet Explorer, Firefox, Chrome, Opera etc."
+msgstr "Передача повідомлень через з'єднання захищене протоколом HTTPS робить зміст листа  недоступним для третіх осіб, АЛЕ залишає можливість відстежили факт передачі.\n\nМи наполегливо радимо надсилати свідчення про корупцію анонімним способом, тобто -приховувти не лише зміт, але і сам факт передачі листів.\n\nПриховати факт передачі можна за допомогою браузера Tor, який забезпечуючє анонімність (на відміну від інших браузерах, таких як Internet Explorer, Firefox, Chrome, Opera і т.д.)"
+
+msgid "Are you a whistleblower?"
+msgstr "Ви інформатор?"
+
+msgid "Blow the whistle"
+msgstr "Надати свідчення"
+
+msgid "Have you already filed a submission? Enter your key code."
+msgstr "Ви вже подали матеріали? Вкажіть отриманий ключ."
+
+msgid "Your submission was successful."
+msgstr "Звернення було успішне."
+
+msgid "Submission status"
+msgstr "Статус подання"
+
+msgid "Disable submissions"
+msgstr "Відключити повідомлення"
+
+msgid "Enable insecure configuration without PGP encryption"
+msgstr "Дозволити незахищену конфігурацію без шифрування PGP"
+
+msgid "Danger"
+msgstr "Небезпека"
+
+msgid ""
+"By enabling this option, the system will be storing the submitted files "
+"unencrypted on your server."
+msgstr "При включенні цієї опції, система буде зберігати представлені файли у відкритому вигляді на вашому вузлі."
+
+msgid "This happens whenever encryption is unavailable."
+msgstr "Це відбувається щоразу, коли шифрування недоступнe."
+
+msgid "Disable messages that warn of missing encryption"
+msgstr "Відключити повідомлення, які попереджають про відсутніть шифрування"
+
+msgid ""
+"This setting affects the security of the users and must not be used in "
+"production."
+msgstr "This setting affects the security of the users and must not be used in production."
+
+msgid "Allow other websites to include the platform inside iframes"
+msgstr "Дозволити іншим сайтам підключати платформу, використовуючи iframes"
+
+msgid ""
+"By enabling this option, you are allowing other websites to include the "
+"platform inside iframes; this could potentially be used to endanger the "
+"platform or intercept users' communications"
+msgstr "Включивши це налаштування ви дозволяєте іншим веб-сайтам підключати платформу, використовуючи iframes; в кінцевому рахунку це може використовуватися для зловживання платформою або перехоплення користувачів та їх спілкування"
+
+msgid "Allow recipients to postpone expiration date of the submission"
+msgstr "Дозволити одержувачам продовжувати термін до видалення матеріалів повідомлення."
+
+msgid "Allow recipients to delete submissions"
+msgstr "Дозволити одержувачам видаляти матеріали"
+
+msgid ""
+"Allow recipients to grant permissions to whistleblowers on specific "
+"submissions"
+msgstr "Дозволити одержувачам обирати які типи повідомлень можуть надсилати інформатори "
+
+msgid "Enable search engines indexing"
+msgstr "Включити індексацію пошуковими системами"
+
+msgid "Enabled"
+msgstr "Увімкнений"
+
+msgid "Search engine spiders will be allowed to index the application."
+msgstr "Пошуковикам буде дозволено збирати інформацію для подачі сторінок для пошукових систем."
+
+msgid "Enable custom privacy panel"
+msgstr "Увімкнути значок конфіденційності"
+
+msgid "Custom privacy panel"
+msgstr "власні налаштування панелі приватності"
+
+msgid "Text shown when the whistleblower is not using Tor"
+msgstr "Текст, який показується, коли інформатор не використовує Tor"
+
+msgid "Disable the privacy panel"
+msgstr "Відключити значок конфіденційності"
+
+msgid "Security awareness panel title"
+msgstr "Security awareness panel title"
+
+msgid "Security awareness panel text"
+msgstr "Security awareness panel text"
+
+msgid "Disable the security awareness panel questions"
+msgstr "Відключити питання з питань безпеки"
+
+msgid "Disable the security awareness panel"
+msgstr "Відключити знак попередження про небезпеку"
+
+msgid "Disable the key code hint"
+msgstr "Disable the key code hint"
+
+msgid "Disable the donation panel"
+msgstr "Disable the donation panel"
+
+msgid "Enable CAPTCHA mechanism"
+msgstr "Enable CAPTCHA mechanism"
+
+msgid "Enable proof of work mechanism"
+msgstr "Enable proof of work mechanism"
+
+msgid "Enable simplified login for recipients"
+msgstr "Enable simplified login for recipients"
+
+msgid "Amount of days till whistleblower access expires"
+msgstr "Кількість днів до закінчення терміну доступу інформатора"
+
+msgid ""
+"For security reasons the whistleblower access is subject to expiration."
+msgstr "Для додаткової безпеки доступ інформаторів має обмежений термін дії."
+
+msgid "Tweak this setting only if you know what you are doing."
+msgstr "Tweak this setting only if you know what you are doing."
+
+msgid "Landing page"
+msgstr "Цільова сторінка"
+
+msgid "Home Page"
+msgstr "Домашня Сторінка"
+
+msgid "Submission Page"
+msgstr "Сторінка подання матеріалів"
+
+msgid "Title of the submission page"
+msgstr "Заголовок сторінки подачі свідчень"
+
+msgid "Title of the attachments widget"
+msgstr "Title of the attachments widget"
+
+msgid "Text of prompt for whistleblowers to log in"
+msgstr "Текст, який закликає інформатора авторизуватись"
+
+msgid "Show contexts in alphabetical order"
+msgstr "Упорядкувати тематичні розділи за алфавітом"
+
+msgid "Title of the receipt page"
+msgstr "Заголовок сторінки вхідних повідомолень"
+
+msgid "Title of the submission status page"
+msgstr "Заголовок сторінки статусу свідчень"
+
+msgid "Title of the comments widget"
+msgstr "Title of the comments widget"
+
+msgid "Title of the messages widget"
+msgstr "Title of the messages widget"
+
+msgid "Size limit for file attachments"
+msgstr "Обмеження розміру доданих файлів"
+
+msgid "Notify administrators of software problems"
+msgstr ""
+
+msgid "Notify developers of software problems"
+msgstr ""
+
+msgid ""
+"By enabling this feature, you will contribute to the development and "
+"security of the platform."
+msgstr ""
+
+msgid "Enable HTTP Basic Authentication to limit platform access"
+msgstr "Enable HTTP Basic Authentication to limit platform access"
+
+msgid "Username"
+msgstr "Ім'я користувача"
+
+msgid "Password"
+msgstr "Пароль"
+
+msgid ""
+"This feature keeps regular people from visiting the platform while it is "
+"still under development and should not be used for security purposes. The "
+"input password is stored in plaintext on the server."
+msgstr "This feature keeps regular people from visiting the platform while it is still under development and should not be used for security purposes. The input password is stored in plaintext on the server."
+
+msgid "Enable experimental features"
+msgstr "Enable experimental features"
+
+msgid "Warning"
+msgstr "Увага!"
+
+msgid ""
+"The experimental features may be less stable or even not work at all; enable"
+" this option at your own risk. Support for these features may vary and they "
+"may be removed in the future."
+msgstr "The experimental features may be less stable or even not work at all; enable this option at your own risk. Support for these features may vary and they may be removed in the future."
+
+msgid "Save"
+msgstr "Зберегти"
+
+msgid "Short URL"
+msgstr "Коротке посилання URL"
+
+msgid "Long URL"
+msgstr "Довге посилання URL"
+
+msgid "Add"
+msgstr "Додати"
+
+msgid "Logo"
+msgstr "Логотип"
+
+msgid "Project name"
+msgstr "Назва ініціативи"
+
+msgid "Homepage title"
+msgstr "Назва домашньої сторінки"
+
+msgid "Presentation"
+msgstr "Презентація"
+
+msgid "Description"
+msgstr "Опис"
+
+msgid "Question to solicit possible whistleblowers"
+msgstr "Запитання до Інформатора"
+
+msgid "Whistleblowing button"
+msgstr "Кнопка надання інформації"
+
+msgid "Footer"
+msgstr "Нижній колонтитул"
+
+msgid "Favicon"
+msgstr ""
+
+msgid "Upload"
+msgstr "Додати"
+
+msgid "Download"
+msgstr "Завантажити"
+
+msgid "Upload custom file"
+msgstr "Додайте корегуючий файл"
+
+msgid "The file will be available at URL: /s/$filename"
+msgstr "Файл буде доступний на: /static/$filename"
+
+msgid "Language:"
+msgstr "Мова:"
+
+msgid "Add custom text"
+msgstr "Add custom text"
+
+msgid "Custom text"
+msgstr "Custom text"
+
+msgid "Custom texts"
+msgstr "Custom texts"
+
+msgid "Original text"
+msgstr "Original text"
+
+msgid "Original translation"
+msgstr "Original translation"
+
+msgid "Custom translation"
+msgstr "Custom translation"
+
+msgid "Contexts"
+msgstr "Контексти"
+
+msgid "Name"
+msgstr "Назва"
+
+msgid "Edit"
+msgstr "Редагування"
+
+msgid "Cancel"
+msgstr "Скасувати"
+
+msgid "Questionnaire"
+msgstr "Анкета із переліком питань"
+
+msgid "Recipients"
+msgstr "Одержувачі"
+
+msgid "Allow selection of this context through the context selector."
+msgstr "Allow selection of this context through the context selector."
+
+msgid ""
+"If disabled, submissions for this context will only be accessible through a "
+"direct link to it."
+msgstr "If disabled, submissions for this context will only be accessible through a direct link to it."
+
+msgid "Allow whistleblowers to select their recipients"
+msgstr "Дозволити викривачамам обирати одержувачів"
+
+msgid "Select all recipients by default"
+msgstr "Обрати всіх одержувачів за замовчуванням"
+
+msgid "Maximum number of selectable recipients:"
+msgstr "Максимальна кількість обраних одержувачів:"
+
+msgid "(0 = unlimited)"
+msgstr "(0 = необмежена)"
+
+msgid "Show recipients in alphabetical order"
+msgstr "Упорядкувати одержувачів за алфавітом"
+
+msgid "Show small recipient cards on submission interface"
+msgstr "Відображати логотипи одержувачів на сторінці подачі матеріалів."
+
+msgid "Enable comments"
+msgstr "Увімкнути коментарі"
+
+msgid "Allow whistleblowers to write comments"
+msgstr "Дозволити викривачам коментувати"
+
+msgid "Enable private messages"
+msgstr "Увімкнути приватні повідомлення"
+
+msgid "Allow whistleblowers to send messages"
+msgstr "Дозволити викривачам надсилати повідомлення"
+
+msgid "Let whistleblowers add attachments onto existing submissions"
+msgstr "Дозволити викривачам додавати документи до існуючих повідомлень"
+
+msgid "Show recipient details on the status page of the submission"
+msgstr "Show recipient details on the status page of the submission"
+
+msgid "Let recipients upload files to whistleblowers"
+msgstr ""
+
+msgid "Disabled"
+msgstr "Вимкнено"
+
+msgid "Submission expiration, in days"
+msgstr "Термін до видалення повідомлення, у днях"
+
+msgid ""
+"For security reasons, as a matter of data retention policy, the platform "
+"automatically deletes submissions and their data after a certain amount of "
+"time."
+msgstr "З міркувань безпеки платформа автоматично видаляє повідомлення і їх дані після закінчення певного проміжку часу."
+
+msgid "Text shown on top of the interface for selecting recipients"
+msgstr "Text shown on top of the interface for selecting recipients"
+
+msgid "Welcome to the administration interface!"
+msgstr "Welcome to the administration interface!"
+
+msgid ""
+"This interface may help you understand how the server can be configured and "
+"provides some info on how to connect to other GlobaLeaks users and experts."
+msgstr "Цей інтерфейс допоможе вам зрозуміти, як можна сконфігурувати Вузол, та надасть вам інформацію, як з'єднатися з іншими користувачами та експертами GlobaLeaks."
+
+msgid "Documentation"
+msgstr "Документація"
+
+msgid ""
+"To properly organize your project, please read the following guidelines:"
+msgstr "Будь-ласка, прочитайте наступні вказівки, які допоможуть вам правильно організувати вашу ініціативу:"
+
+msgid "Remember to provide proper security advice to Whistleblowers:"
+msgstr "Незабудьте надати інформаторам пораду щодо покращення їх безпеки"
+
+msgid ""
+"To learn more about GlobaLeaks Security you can read the following document:"
+msgstr ""
+
+msgid "Contact"
+msgstr "Контакти"
+
+msgid ""
+"If you need technical support, have general questions, or have new ideas for"
+" the software:"
+msgstr ""
+
+msgid ""
+"If you want to contribute to software development or report a bug, please "
+"open an issue in our ticketing system:"
+msgstr ""
+
+msgid ""
+"If your non-profit needs support for investigative journalism, activism or a"
+" human rights defense project:"
+msgstr ""
+
+msgid ""
+"For professional support and development of anti corruption and compliance "
+"projects contact the social enterprise maintaining GlobaLeaks:"
+msgstr ""
+
+msgid "Join our IRC chat channel on the irc.oftc.net network:"
+msgstr ""
+
+msgid "Follow the project on:"
+msgstr ""
+
+msgid "Software version:"
+msgstr "Версія програмного забезпечення:"
+
+msgid "An update is available:"
+msgstr ""
+
+msgid "SMTP name"
+msgstr "SMTP name"
+
+msgid "SMTP email address"
+msgstr "SMTP email address"
+
+msgid "Invalid email address"
+msgstr "Недійсна електронна адреса"
+
+msgid "SMTP server address"
+msgstr "Адреса SMTP сервера"
+
+msgid "SMTP server port"
+msgstr "Порт SMTP сервера"
+
+msgid "Transport Security"
+msgstr "Безпека передачі"
+
+msgid "When the option is re-enabled the spooled emails will be sent out."
+msgstr "Коли опція буде знову увімкнена накопичені листи будуть розіслані."
+
+msgid "Reset notification templates to default"
+msgstr "Reset notification templates to default"
+
+msgid "Number of hours before sending a submission expiration alert"
+msgstr "Number of hours before sending a submission expiration alert"
+
+msgid "Maximum emails per hour before triggering email suspension"
+msgstr "Maximum emails per hour before triggering email suspension"
+
+msgid "this configuration only applies to recipients"
+msgstr "this configuration only applies to recipients"
+
+msgid "Test the configuration"
+msgstr "Test the configuration"
+
+msgid "Template"
+msgstr "Template"
+
+msgid "Admin"
+msgstr "Адміністратор"
+
+msgid "Roles enabled to use the platform without Tor:"
+msgstr ""
+
+msgid "Recipient"
+msgstr "Одержувач"
+
+msgid "Whistleblower"
+msgstr "Інформатор"
+
+msgid "Hostname"
+msgstr "Ім'я хосту"
+
+msgid "Verify"
+msgstr "Перевірити"
+
+msgid "Invalid input format."
+msgstr "Недійсний формат вводу"
+
+msgid "Input should be similar to:"
+msgstr ""
+
+msgid ""
+"The platform does not seem to be reachable with the configured hostname."
+msgstr ""
+
+msgid "Using Let's Encrypt requires agreement to their Terms of Service."
+msgstr ""
+
+msgid "Read the Terms of Service"
+msgstr ""
+
+msgid "I agree to the Terms of Service."
+msgstr ""
+
+msgid "Proceed"
+msgstr "Продовжити"
+
+msgid "Configuration completed. You can review the settings or enable it now."
+msgstr ""
+
+msgid "Review"
+msgstr "Огляд"
+
+msgid "Enable"
+msgstr "Увімкнути"
+
+msgid "Country code"
+msgstr ""
+
+msgid "Organization"
+msgstr "Організація"
+
+msgid "Organizational unit"
+msgstr ""
+
+msgid ""
+"This interface can generate a Private Key and a Certificate Signing Request."
+" The Certificate Signing Request can be provided to a Certificate Authority "
+"to retrieve a Certificate. After having validated your request and your "
+"ownership of the hostname, the Certificate Authority will issue you a "
+"Certificate and provide a file containing Intermediate Certificates. Load "
+"the Certificate and the file containing the Intermediate Certificates to "
+"complete the HTTPS setup."
+msgstr ""
+
+msgid "Private Key"
+msgstr ""
+
+msgid "Generate"
+msgstr "Генерувати"
+
+msgid "Certificate Signing Request"
+msgstr ""
+
+msgid "Certificate"
+msgstr ""
+
+msgid "Valid until:"
+msgstr ""
+
+msgid "Issuer:"
+msgstr ""
+
+msgid "Intermediate Certificates"
+msgstr ""
+
+msgid "Reset"
+msgstr "Скинути налаштування"
+
+msgid "Select an option:"
+msgstr ""
+
+msgid "Automatic configuration"
+msgstr ""
+
+msgid ""
+"Using automatic HTTPS configuration will handle the entire process of "
+"requesting, enabling and renewing certificates from the Let's Encrypt "
+"Certificate Authority."
+msgstr ""
+
+msgid ""
+"The platform must be reachable through a public IP address and the selected "
+"hostname must have a corresponding DNS record referencing that address."
+msgstr ""
+
+msgid "Manual configuration"
+msgstr ""
+
+msgid ""
+"The manual configuration wizard will guide you through the setup of HTTPS "
+"from an alternative Certificate Authority."
+msgstr ""
+
+msgid ""
+"The platform supports the configuration of HTTPS through this interface."
+msgstr ""
+
+msgid "The connection to the configured domain failed."
+msgstr ""
+
+msgid "Running"
+msgstr "Запуск"
+
+msgid "Not running"
+msgstr "Не працює"
+
+msgid "Auto-renewal"
+msgstr ""
+
+msgid "System message:"
+msgstr ""
+
+msgid ""
+"Allowing whistleblowers to connect over HTTPS preserves their privacy but "
+"not their anonymity."
+msgstr ""
+
+msgid "Attention!"
+msgstr "Увага!"
+
+msgid ""
+"Configuration in progress. When it is finished you will have to log in "
+"again."
+msgstr ""
+
+msgid "Your browser will be redirected to the following URL."
+msgstr ""
+
+msgid "Tor Onion Service"
+msgstr ""
+
+msgid "Tor Browser download link"
+msgstr "Посилання для скачування в браузері Tor"
+
+msgid "Anonymize outgoing connections"
+msgstr ""
+
+msgid "Let the platform be reachable without Tor"
+msgstr ""
+
+msgid "Stats of the week:"
+msgstr "Статистика тижня:"
+
+msgid "Free disk space"
+msgstr "Вільне місце на диску"
+
+msgid "Event ID"
+msgstr "код події"
+
+msgid "Time"
+msgstr "Час"
+
+msgid "Event"
+msgstr "Подія"
+
+msgid "Response time"
+msgstr "Час відповіді"
+
+msgid "Role"
+msgstr "Роль"
+
+msgid "Last access"
+msgstr "Останній вхід"
+
+msgid "Submission"
+msgstr "Матеріал"
+
+msgid "Path"
+msgstr "Path"
+
+msgid "Size"
+msgstr "Розмір"
+
+msgid "Alarm level"
+msgstr "Поріг сигналу небезпеки"
+
+msgid "Events"
+msgstr "Події"
+
+msgid "Label"
+msgstr "позначка"
+
+msgid "Type"
+msgstr "Тип"
+
+msgid "Single-line text input"
+msgstr "Введення тексту одною строчкою"
+
+msgid "Multi-line text input"
+msgstr "Введення тексту багатьма строчками"
+
+msgid "Multiple choice input"
+msgstr "Кілька варіантів"
+
+msgid "Selection box"
+msgstr "Віконце вибору"
+
+msgid "Checkbox"
+msgstr "Строчка що дозволяє ставити прапорець"
+
+msgid "Terms of service"
+msgstr "Умови використання"
+
+msgid "Group of questions"
+msgstr "Кластер питань"
+
+msgid "Row"
+msgstr "Рядок"
+
+msgid "Column"
+msgstr "Колонка"
+
+msgid "Width"
+msgstr "Ширина"
+
+msgid "Question group"
+msgstr "Питання з групи"
+
+msgid "Hint"
+msgstr "Невелика практична інформація"
+
+msgid "Required"
+msgstr "Необхідно"
+
+msgid "Accept multiple file uploads"
+msgstr "Дозволити завантаження декількох файлів"
+
+msgid "Accept multiple answers for the field"
+msgstr "Дозволити кілька відповідей у полі"
+
+msgid "Hint shown on the button for adding an additional answer"
+msgstr "Підказка на кнопці для додаткової відповіді"
+
+msgid "Clause"
+msgstr "застереження"
+
+msgid "Agreement Text"
+msgstr "Текст згоди"
+
+msgid "Layout orientation"
+msgstr "Layout orientation"
+
+msgid "Subject answer visibility to custodian authorization"
+msgstr "Subject answer visibility to custodian authorization"
+
+msgid "Prompt confirmation upon negative answer"
+msgstr "Prompt confirmation upon negative answer"
+
+msgid "Title of the confirmation question upon negative answer"
+msgstr "Title of the confirmation question upon negative answer"
+
+msgid "Body of the confirmation question upon negative answer"
+msgstr "Body of the confirmation question upon negative answer"
+
+msgid "Options"
+msgstr "Опції"
+
+msgid "Questions"
+msgstr ""
+
+msgid "Add new question"
+msgstr "Add new question"
+
+msgid "Add question from template"
+msgstr "Add question from template"
+
+msgid "Steps"
+msgstr ""
+
+msgid "Configuration"
+msgstr "Налаштування"
+
+msgid "Default"
+msgstr "За замовчуванням"
+
+msgid "Forcefully selected"
+msgstr "Обрано за замовчуванням без права змін"
+
+msgid "Unselectable"
+msgstr "Неможливо вибрати"
+
+msgid "Allow the recipient to postpone the submission expiration date"
+msgstr "Дозволити одержувачам відтерміновувати видалення матеріалів."
+
+msgid "The setting is enabled at a global level."
+msgstr "Це налаштування увімкнено на глобальному рівні."
+
+msgid "Allow the recipient to delete submissions"
+msgstr "Дозволити одержувачу видаляти матеріали"
+
+msgid ""
+"Allow the recipient to grant permissions to whistleblowers on specific "
+"submissions"
+msgstr "Дозволити одержувачу обирати які типи повідомлень можуть надсилати інформатори "
+
+msgid "General settings"
+msgstr "Загальні налаштування"
+
+msgid "Network settings"
+msgstr ""
+
+msgid "Root domain used for secondary sites"
+msgstr ""
+
+msgid "Allow users to sign up"
+msgstr ""
+
+msgid "Sites"
+msgstr ""
+
+msgid "Active"
+msgstr "Актив."
+
+msgid "Inactive"
+msgstr ""
+
+msgid "The default password is:"
+msgstr ""
+
+msgid "The system forces users to change the password at first login."
+msgstr "Система змушує користувачів змінити пароль при першому вході."
+
+msgid "New Password"
+msgstr "Новий пароль"
+
+msgid ""
+"The chosen password is too weak. Make it more secure by adding special "
+"characters, numbers, and unusual symbols."
+msgstr "Пароль занадто слабкий. Додайте спеціальні символи, цифри і незвичайні символи."
+
+msgid "Force password change"
+msgstr "Примусити змінити пароль"
+
+msgid "The user will be forced to change its password on next login."
+msgstr "Користувач буде змушений змінити пароль при наступному вході."
+
+msgid "Language"
+msgstr "Мова"
+
+msgid "Encryption:"
+msgstr ""
+
+msgid "Remove the PGP key"
+msgstr "Видалити PGP ключ"
+
+msgid "Set up encryption by providing a PGP public key"
+msgstr "Налаштуйте шифрування надвши відкритий ключ PGP"
+
+msgid "Request date"
+msgstr "Дата запиту"
+
+msgid "Authorization"
+msgstr "Авторизація"
+
+msgid "Before proceeding, please change your password."
+msgstr "Перш ніж продовжити, будь ласка, змініть пароль."
+
+msgid "Submissions disabled"
+msgstr "Повідомлення деактивовані"
+
+msgid ""
+"You are connecting to the server without anonymity and this server supports "
+"only anonymous submissions"
+msgstr "Ви підключаєтеся до вузла без анонімності. Цей вузол підтримує тільки анонімну подачу матеріалів"
+
+msgid ""
+"Server temporarly unusable due to resource exhaustion; advise the Admin if "
+"you can."
+msgstr "Сервер тимчасово непрацює через перенавантаження; оповістіть про це адміністратора Хабардокс."
+
+msgid "This server is not configured."
+msgstr "Цей вузол не налаштований."
+
+msgid "You will not be able to send a submission."
+msgstr "Ви не зможете здійснити подачу матеріалів."
+
+msgid ""
+"This platform makes use of GlobaLeaks software specifically designed to "
+"protect the identity for submitter and recipient in the exchange of content."
+msgstr "Ця платформа використовує програмне забезпечення спеціально розроблене для безпечного обміну матеріалів, захисту інформатора і одержувача."
+
+msgid ""
+"The software is developed by the non-profit Hermes Center for Transparency "
+"and Digital Human Rights."
+msgstr "Мета даної платформи - покращити ефективність антикорупційних розслідувань."
+
+msgid "Please support Hermes through their donation page."
+msgstr "Будь ласка, підтримайте Хабардокс через нашу сторінку пожертвувань або просто розкажіть про Хабардокс друзям."
+
+msgid "Authentication failed"
+msgstr "Збій автентифікації"
+
+msgid "Please select your account:"
+msgstr "Будь ласка, оберіть ваш обліковий запис:"
+
+msgid "Now type your password, then click 'Log in':"
+msgstr "Введіть пароль і натисніть \"Увійти\":"
+
+msgid "Are you sure?"
+msgstr "Ви впевнені?"
+
+msgid "The operation will reset the configuration and cannot be undone."
+msgstr ""
+
+msgid "Assign score points"
+msgstr "Призначати бали"
+
+msgid ""
+"Enter the number of score points to be assigned when this option is "
+"selected:"
+msgstr "Enter the number of score points to be assigned when this option is selected:"
+
+msgid "Confirm"
+msgstr "Підтвердити відтермінування"
+
+msgid "Are you human?"
+msgstr "Ви людина?"
+
+msgid ""
+"We do not discriminate based on race and gender, but we do against computers"
+" :)"
+msgstr "Ми захіщаємось проти ботів"
+
+msgid ""
+"Just to prove you are human, please answer the following math challenge:"
+msgstr "Будь ласка дайте правильну відповідь:"
+
+msgid "I've solved the math challenge, hide this thing now!"
+msgstr "Я вирішив задачку, можна вже закрити це!"
+
+msgid "Please note that all the associated data will be permanently lost."
+msgstr "Зверніть увагу, що всі пов'язані з ним дані будуть безповоротно втрачені."
+
+msgid ""
+"This means that if the server running the platform were to be seized, it "
+"would be possible to extract the files that have been submitted."
+msgstr "Це означає, що у випадку конфіскації серверу платформи, файли збережені на сервері можуть попасти в руки небажаним особам."
+
+msgid "Are you sure that you wish to continue?"
+msgstr "Ви впевнені, що хочете продовжити?"
+
+msgid ""
+"Downloading a file with malicious content could compromise your computer or "
+"disclose your identity."
+msgstr ""
+
+msgid "The name of the file and its content can be intentionally misleading."
+msgstr ""
+
+msgid ""
+"Please review the following information and decide if you wish to proceed."
+msgstr ""
+
+msgid "Error!"
+msgstr "Помилка!"
+
+msgid "Internal server error"
+msgstr ""
+
+msgid "Error on input validation"
+msgstr ""
+
+msgid "Resource not found"
+msgstr ""
+
+msgid "Forbidden operation"
+msgstr ""
+
+msgid "The specified old password is not valid"
+msgstr "Вказаний старий пароль не вірний"
+
+msgid "Resource can only be accessed via the Tor network"
+msgstr "Ресурс доступний лише через браузер Tor"
+
+msgid "The upload request exceeds the size limit"
+msgstr "Завантаження перевищує дозволений розмір"
+
+msgid "Success!"
+msgstr "Успіх!"
+
+msgid ""
+"It appears that you are browsing this site without any extra privacy and "
+"security!"
+msgstr "Ви переглядаєте цей сайт без додаткового захисту конфіденційності"
+
+msgid ""
+"You are strongly advised to visit this site using the desktop app called Tor"
+" Browser, that protects your identity."
+msgstr "Ми настійно рекомендуємо вам відвідувати цей сайт лише за допомогою браузера Tor, який захищає вашу анонімність."
+
+msgid "Then, copy and paste the following address into the Tor Browser:"
+msgstr "Потім скопіюйте і вставте наступну адресу у встановленій Tor Browser:"
+
+msgid "Details of the PGP key:"
+msgstr "Деталі ключа PGP:"
+
+msgid "Fingerprint"
+msgstr "Цифрові відбитки"
+
+msgid "Add file"
+msgstr "Додати файл"
+
+msgid "Uploading files…"
+msgstr "Файли завантажуються…"
+
+msgid "Upload completed successfully!"
+msgstr "Завантаженння успішно завершено!"
+
+msgid "Error while uploading files; check below for details."
+msgstr "Помилка при завантаженні файлів; перевірте подробиці нижче."
+
+msgid "Estimated upload time:"
+msgstr "Час завершення завантаження"
+
+msgid "seconds"
+msgstr "секунди"
+
+msgid "Which of the following statements is true?"
+msgstr "Яке з наведених нижче стверджень є правильним?"
+
+msgid "HTTPS protects my identity, but not the content of my submission"
+msgstr "HTTPS захищає мої особисті дані, але не вміст мого повідомлення"
+
+msgid "HTTPS protects the content of my submission but not my identity"
+msgstr "HTTPS захищає вміст моєї передачі, але не захищає мої особисті дані"
+
+msgid "HTTPS does not protect the content of my submission nor my identity"
+msgstr "HTTPS не захищає ні мої особисті дані, ні вміст моєї передачі"
+
+msgid "HTTPS does protect both my identity and the content of my submission"
+msgstr "HTTPS захищає мої особисті дані та вміст моєї передачі"
+
+msgid ""
+"You are aware of the risks involved. Go ahead, but consider yourself warned."
+msgstr "Ви ознайомлені з можливими ризиками. Ви були попереджені та можете продовжити роботу."
+
+msgid "Wrong Answer!"
+msgstr "Не вірна відповідь"
+
+msgid "The connection is not secure."
+msgstr "Інтернет з'єднання недостатньо безпечне."
+
+msgid ""
+"The platform is still not configured for HTTPS connections and should "
+"therefore only be used for testing purposes."
+msgstr ""
+
+msgid "Send"
+msgstr "Відправити"
+
+msgid "Allow the whistleblower to write comments"
+msgstr "Дозволити викривачу коментувати"
+
+msgid "Filename"
+msgstr "Назва файлу"
+
+msgid "Upload date"
+msgstr "Дата завантаження"
+
+msgid "Content Type"
+msgstr "Тип"
+
+msgid "File size"
+msgstr "Розмір файлу"
+
+msgid "download"
+msgstr "завантаження"
+
+msgid "No files have been uploaded!"
+msgstr "Жодного файлу не було завантажено!"
+
+msgid "Allow the whistleblower to add attachments to the submission"
+msgstr "Дозволити викривачам надсилати додатки"
+
+msgid "Access expiration"
+msgstr "Закінчення терміну доступу"
+
+msgid "Connection"
+msgstr "З'єднання"
+
+msgid "Never"
+msgstr "Ніколи"
+
+msgid "Revoked"
+msgstr "Відкликано"
+
+msgid "Allow the whistleblower to send messages"
+msgstr "Дозволити викривачу надсилати повідомлення"
+
+msgid "Are you sure that you want to delete the submission?"
+msgstr "Видалити повідомлення?"
+
+msgid ""
+"Everything related to the submission stored on the platform will be deleted."
+msgstr "Всі матеріали свідчення будуть видалені."
+
+msgid ""
+"Please be aware that everything stored off the platform, e.g. files you have"
+" saved on your computer, must be deleted manually."
+msgstr "Увага. Всі файли, які Ви зберегли на комп'ютері і за межами платформи Хабардокс, потрібно незабути видалити вручну. "
+
+msgid "Are you sure that you want to delete all the selected submissions?"
+msgstr "Дійсно хочете видалити всі вибрані повідомлення?"
+
+msgid ""
+"Please make sure that all related data is properly deleted so that the "
+"recipients won't be able to further access to it."
+msgstr "Переконайтеся, що всі пов'язані дані видалені належним чином."
+
+msgid "Please write a motivation for the reply"
+msgstr "Будь ласка, напишіть мотивацію для відповіді"
+
+msgid "Are you sure that you want to postpone the submission expiration date?"
+msgstr "Дійсно хочете відтермінувати термін дії повідомлення?"
+
+msgid "By confirming, you will postpone the expiration date to:"
+msgstr "Після підтвердження термін дії буде до:"
+
+msgid ""
+"Are you sure that you want to postpone the expiration date for all selected "
+"submissions?"
+msgstr "Дійсно хочете відтермінувати термін дії всіх вибраних повідомлень?"
+
+msgid "Questionnaire answers"
+msgstr "Відповіді на питання антети"
+
+msgid "Step"
+msgstr "Крок"
+
+msgid "Recipient list"
+msgstr "Перелік одержувачів"
+
+msgid "Attached files for the whistleblower"
+msgstr "Додані файли для інформатора"
+
+msgid ""
+"Files uploaded here are made available for the whistleblower and other "
+"recipients to download."
+msgstr ""
+
+msgid "Upload a file:"
+msgstr ""
+
+msgid "Logout"
+msgstr "Вихід"
+
+msgid "The key code is either invalid or the submission has expired."
+msgstr "ключ недійсний або термін дії матеріалів закінчився."
+
+msgid "Please check your key code and try again or make a new submission."
+msgstr "Будь ласка, перевірте ваш ключ і спробуйте ще раз або зробіть нове подання матеріалів."
+
+msgid "Files attached by recipients"
+msgstr ""
+
+msgid "These files have been attached to your submission by the recipients."
+msgstr "Ці файли були додані до вашого подання одержувачами."
+
+msgid "Enable submission notification"
+msgstr "Увімкнути сповіщення про нові конфіденційні повідомлення"
+
+msgid "Current Password"
+msgstr "Поточний пароль"
+
+msgid "Old password confirmation required"
+msgstr "Вимагається підтвердження старого паролю"
+
+msgid "The new password must be different from the current one."
+msgstr "Новий пароль повинен відрізнятися від поточного."
+
+msgid "Type your new password again"
+msgstr "Введіть ваш пароль знову"
+
+msgid "The two passwords do not match"
+msgstr "Два паролі не збігаються"
+
+msgid "Thank you!"
+msgstr "Дякуємо!"
+
+msgid "Remember your key code for this submission."
+msgstr "Збережіть ваш унікальний код цього матеріалу."
+
+msgid "We will try to get back to you as soon as possible!"
+msgstr "Надана Вами інформація буде опрацьована якнайшвидше."
+
+msgid ""
+"Use the 16 digit key code to log in. It will allow you to view any messages "
+"we sent you, and also to add extra info."
+msgstr "Використовуйте наданий 16-значний номер, щоб увійти в систему і переглянути повідомлення та коментарі, або щоб нададати додаткову інформацію."
+
+msgid "View your submission"
+msgstr "Переглянути ваш матеріал"
+
+msgid "Hint: How to hide your key code"
+msgstr "Корисна порада: як приховати ваш ключ"
+
+msgid ""
+"A useful way to hide your key code is to write it down like a credit card "
+"number, i.e. by also including an expiration date."
+msgstr "Корисний спосіб приховати ключ наданий вам після подання матеріалів, це записати його у формі номеру кредитної картки, включаючи дату закінчення терміну дії."
+
+msgid "Example:"
+msgstr "Приклад:"
+
+msgid ""
+"You have not set up your encryption key, so the files will not be encrypted "
+"prior to being stored on the server."
+msgstr "Ви ще не налаштували ваші ключі шифрування, тому ваші файли зберігатимуться незашифрованими."
+
+msgid ""
+"This may lead to unintended access to the files by the server administrator "
+"or others in case the server is compromised."
+msgstr "Це може привести до непередбаченого доступу до файлів адміністратором сервера або інших акторів у випадку, якщо сервер компроментовано."
+
+msgid "Please configure your PGP keys in the recipient preferences page."
+msgstr "Будь ласка, налаштуйте свої ключі PGP на сторінці налаштувань одержувача."
+
+msgid ""
+"One or more of the recipients of this submission has not configured a PGP "
+"key."
+msgstr "Один або декілька одержувачів не налаштовали ключі PGP."
+
+msgid ""
+"This means that the submitted files will be stored in plaintext on the "
+"server."
+msgstr "Це означає, що надіслані файли зберігатимуться в простому текстовому форматі."
+
+msgid ""
+"Access to the whistleblower's identity has been requested to the custodian."
+msgstr "Запит на інформацію про особу викривача було надіслано куратору"
+
+msgid "Date of the request"
+msgstr "Дата запиту"
+
+msgid "Congratulations!"
+msgstr "Вітаємо!"
+
+msgid "You have completed the platform activation."
+msgstr ""
+
+msgid "Your whistleblowing platform is now accessible at:"
+msgstr ""
+
+msgid "Users' credentials:"
+msgstr ""
+
+msgid "To log in, visit:"
+msgstr ""
+
+msgid "For the user documentation visit:"
+msgstr ""
+
+msgid "The platform will be automatically deleted on:"
+msgstr ""
+
+msgid "Sign up"
+msgstr "Зареєструватися"
+
+msgid "Domain"
+msgstr "Домен"
+
+msgid "Use Case"
+msgstr ""
+
+msgid "Anticorruption"
+msgstr ""
+
+msgid "Corporate compliance"
+msgstr ""
+
+msgid "Investigative journalism"
+msgstr ""
+
+msgid "Civic activism"
+msgstr ""
+
+msgid "Other"
+msgstr ""
+
+msgid "Complete"
+msgstr "Завершити"
+
+msgid "Your whistleblowing platform is almost ready!"
+msgstr ""
+
+msgid "Check your inbox to activate your account."
+msgstr ""
+
+msgid "The answer is too short."
+msgstr ""
+
+msgid "The specified input is not valid:"
+msgstr "Зазначені дані недійсні:"
+
+msgid "please enter a valid email address."
+msgstr "будь ласка, введіть дійсну адресу електронної пошти."
+
+msgid "please enter numbers only."
+msgstr "будь ласка, введіть лише цифри."
+
+msgid "Recipient selection"
+msgstr "Вибір одержувача"
+
+msgid "previous step"
+msgstr "Попередній крок"
+
+msgid "next step"
+msgstr "Наступний крок"
+
+msgid "Submit"
+msgstr "Надіслати"
+
+msgid "Recipients selected:"
+msgstr "Обрані одержувачі:"
+
+msgid ""
+"In this step the answers to the following questions are either missing or "
+"invalid:"
+msgstr ""
+
+msgid "Submission errors"
+msgstr "Помилки повідослень"
+
+msgid "You must select at least one recipient."
+msgstr "Ви повинні вибрати щонайменше одного одержувача."
+
+msgid "Waiting for the file(s) to finish uploading."
+msgstr "Відбувається завантаження файлу(-ів)."
+
+msgid "The following steps have errors:"
+msgstr "Такі кроки мають помилки:"
+
+msgid "Welcome!"
+msgstr "Ласкаво просимо!"
+
+msgid ""
+"The following step-by-step procedure will guide you through creating your "
+"whistleblowing platform."
+msgstr ""
+
+msgid "Please choose a configuration profile:"
+msgstr ""
+
+msgid ""
+"These profiles contain settings used by successful projects in each "
+"respective field."
+msgstr ""
+
+msgid "Confirm password"
+msgstr "Підтвердить пароль"
+
+msgid "The default username is:"
+msgstr ""
+
+msgid "License Agreement"
+msgstr ""
+
+msgid "Please review the license terms before proceeding."
+msgstr ""
+
+msgid "I have read and agree to the terms of the License Agreement."
+msgstr ""
+
+msgid "You have completed the platform wizard."
+msgstr "Ви закінчили налаштування платформи."
+
+msgid "Fill out your submission"
+msgstr "Заповніть інформацію про ваші матеріали"
+
+msgid "Short title"
+msgstr "Короткий заголовок"
+
+msgid "Describe your submission in a few words."
+msgstr "Опишіть кількома словами надані вами матеріали."
+
+msgid "Full description"
+msgstr "Повний опис"
+
+msgid "Describe your submission in detail."
+msgstr "Опишіть надані вами матеріали детальніше."
+
+msgid "Attach files relevant to the submission."
+msgstr "Прикріпити файли, пов'язані з матеріалом."
+
+msgid "Dear {RecipientName},"
+msgstr "Шановний {RecipientName},"
+
+msgid "Kind regards,"
+msgstr "З повагою,"
+
+msgid ""
+"The number of activities recently detected appears to be higher than usual."
+msgstr "The number of activities recently detected appears to be higher than usual."
+
+msgid ""
+"This could be a sign of an attack (for example, someone flooding your server"
+" with bogus information) or just a usage spike due to an increased "
+"visibility of your project."
+msgstr "This could be a sign of an attack (for example, someone flooding your server with bogus information) or just a usage spike due to an increased visibility of your project."
+
+msgid "Examine the issue to determine whether it is legitimate or not."
+msgstr ""
+
+msgid "The activities with unusual stats are:"
+msgstr "Активність з незвичайною статистикою:"
+
+msgid ""
+"The server cannot guarantee that a new submission can be stored, so "
+"submissions have been disabled."
+msgstr "Сервер не може гарантувати, що нове повідомлення може бути збереженим, тому повідомлення були деактивовані."
+
+msgid ""
+"Please consider asking your technical support to create more disk space on "
+"the server."
+msgstr ""
+
+msgid ""
+"GlobaLeaks technology includes a server status checking component which will"
+" alert you in case something requires your attention."
+msgstr "GlobaLeaks technology includes a server status checking component which will alert you in case something requires your attention."
+
+msgid ""
+"For more information, log in to the Administration interface and look at the"
+" \"System Stats\" and \"Anomalies\" sections."
+msgstr ""
+
+msgid "Anomaly detected in {NodeName}"
+msgstr "Anomaly detected in {NodeName}"
+
+msgid ""
+"This is an email to inform you that the PGP key of the following users is "
+"going to expire or has already expired:"
+msgstr "Інформуємо, що термін дії PGP ключів наступних користувачів скоро вичерпається або вже вичерпаний:"
+
+msgid ""
+"Without a valid PGP key, the system will not be able to send them encrypted "
+"notifications."
+msgstr "Без дійсного PGP ключа, система не зможе відправити їм зашифровані повідомлення."
+
+msgid "PGP key expiration alert"
+msgstr "Попередження про закінчення PGP ключа"
+
+msgid ""
+"This is a test email sent out from the platform's administrative interface."
+msgstr "This is a test email sent out from the platform's administrative interface."
+
+msgid ""
+"Reception of this email indicates that the server was able to authenticate "
+"to and interact with the SMTP mail server."
+msgstr "Reception of this email indicates that the server was able to authenticate to and interact with the SMTP mail server."
+
+msgid "Test email"
+msgstr "Test email"
+
+msgid ""
+"This is an email to notify you of a new comment on an existing submission."
+msgstr "Один з інформаторів залиший новий коментар до існуючого свідчення."
+
+msgid "The submission can be accessed:"
+msgstr "Матеріал можна отримати:"
+
+msgid "via Tor at: {TorUrl}"
+msgstr "вставивши наступне посилання в браузер Тоr: {TorUrl}"
+
+msgid "via HTTPS at: {HTTPSUrl}"
+msgstr "через захищений протокол HTTPS за адресою: {HTTPSUrl}"
+
+msgid "New comment"
+msgstr "Новий Коментар"
+
+msgid "From: {RecipientName}"
+msgstr "Від: {RecipientName}"
+
+msgid "Date: {EventTime}"
+msgstr "Дата: {EventTime}"
+
+msgid "From: Whistleblower"
+msgstr "Від: Інформатора"
+
+msgid "Date: {SubmissionDate}"
+msgstr "Дата: {SubmissionDate}"
+
+msgid "Label: {TipLabel}"
+msgstr "Позначка: {TipLabel}"
+
+msgid "Context: {ContextName}"
+msgstr "Назва тематики: {ContextName}"
+
+msgid ""
+"This is an email to notify you that the whistleblower of submission {TipNum}"
+" has attached new material."
+msgstr "Повідомляємо що інформатор, який надав свідчення {TipNum} , додав новий файл. "
+
+msgid "New attachment"
+msgstr "Новий додаток"
+
+msgid ""
+"The HTTPS certificate loaded on the platform is about to, or has already "
+"expired."
+msgstr ""
+
+msgid "Expiration date: {ExpirationDate}"
+msgstr "Дата закінчення терміну дії: {ExpirationDate}"
+
+msgid ""
+"Without a valid certificate, the platform will be accessible in a secure way"
+" only via Tor."
+msgstr ""
+
+msgid "Log in to solve the issue."
+msgstr ""
+
+msgid "Expiration alert for HTTPS certificate"
+msgstr ""
+
+msgid ""
+"This is an email to notify you that a custodian has authorized you to access"
+" to the whistleblowing identity for the submission {TipNum}."
+msgstr "Повідомляємо, що куратор задовольнив Ваш запит на доступ до даних про інформатора, який надіслав повідомлення {TipNum}"
+
+msgid "Access to whistleblower's identity authorized"
+msgstr "Запит на інформацію про особу викривача було задоволено"
+
+msgid ""
+"This is an email to notify you that a custodian has denied you access to the"
+" wistleblowing identity for the submission {TipNum}."
+msgstr "Повідомляємо, що куратор відхилив Ваш запит на доступ до даних про інформатора, який повідомив свідчення {TipNum}"
+
+msgid "Access to whistleblower's identity denied"
+msgstr "Запит на інформацію про особу викривача було відхилено"
+
+msgid ""
+"This is an email to notify you that a recipient has requested access to the "
+"whistleblower's identity for the submission {TipNum}"
+msgstr "Повідомляємо, що одержувач надав запит на доступ до даних про інформатора, який повідомив свідчення {TipNum}"
+
+msgid "The request can be accessed:"
+msgstr "Запит можна переглянути:"
+
+msgid "New request of access to a whistleblower's identity"
+msgstr "Новий запит на інформацію про особу викривача"
+
+msgid ""
+"This is an email to notify you that the whistleblower for the submission "
+"{TipNum} has provided their identity."
+msgstr "Повідомляємо, що викривач, який надав свідчення {TipNum} додав дані про власну особу."
+
+msgid "The whistleblower has provided their identity"
+msgstr "Викривач ідентифікував себе"
+
+msgid ""
+"This is an email to notify you of a new message on an existing submission."
+msgstr "Один з інформаторів залиший новий коментар до існуючого свідчення."
+
+msgid "New message"
+msgstr "Нове Повідомлення"
+
+msgid ""
+"This is an email to inform you that your PGP key is expiring or has already "
+"expired."
+msgstr "Цей лист інформує, що ваш ключ PGP закінчується або вже закінчився."
+
+msgid ""
+"You should extend its validity and update the key present on the platform, "
+"or upload a new key."
+msgstr "Ви повинні продовжити термін дії і оновити ключ на сайті Xabardocs, або завантажити новий ключ."
+
+msgid ""
+"Without a valid PGP key, the system won't be able to encrypt data provided "
+"to you."
+msgstr "Без дійсного ключа PGP, система не зможе надсилати вам зашифровані повідомлення. "
+
+msgid "It appears that {NodeName} is receiving a large number of requests."
+msgstr "Виявляється, що {NodeName} отримує завелику кількість запитів."
+
+msgid ""
+"To prevent sending you too many emails, the system has disabled email "
+"notifications until the load returns to normal. In the meantime, you can "
+"normally log onto the platform and manually check for new submissions."
+msgstr "Щоб запобігти відправки вам великої кількості листів, система тимчасово припинила сповіщення електронною поштою і  повернеться до нормального режиму після зниження аномальної активності. Ваш аккаут залишається активованим і Ви, як завжди, можете перевіряти повідомлення на сторінці облікового запису. "
+
+msgid ""
+"If you don’t mind and would rather receive such a large number of email "
+"notifications anyhow, please contact your technical support to have them "
+"modify this setting accordingly."
+msgstr "Якщо ви непроти отримувати велику кількість повідомлень по електронній пошті в будь-якому випадку, будь ласка, зверніться до технічної підтримки, щоб вони змінити налаштування відповідним чином."
+
+msgid "Notifications from {NodeName} have been temporarily suspended"
+msgstr "Повідомлення від {NodeName} тимчасово заблоковані"
+
+msgid "Click the link to activate the platform:"
+msgstr ""
+
+msgid "A software update is available."
+msgstr ""
+
+msgid "It is good security practice to keep the platform up to date."
+msgstr ""
+
+msgid "Installed version: {InstalledVersion}"
+msgstr ""
+
+msgid "Latest version: {LatestVersion}"
+msgstr ""
+
+msgid ""
+"To learn about new features and bug fixes in the new version consult the "
+"change log at: {ChangeLogUrl}"
+msgstr ""
+
+msgid ""
+"For instructions on software updates, please refer to the documentation at: "
+"{UpdateGuideUrl}"
+msgstr ""
+
+msgid "The earliest expiration date is {EarliestExpirationDate}."
+msgstr "Перша дата закінчення терміну дії {EarliestExpirationDate}."
+
+msgid "Please remember to check them before they are deleted."
+msgstr "Будь ласка, не забудьте перевірити їх, перш ніж вони будуть видалені."
+
+msgid "Some submissions will expire soon"
+msgstr "Термін дії деяких наданих Вам повідомлень спливає"
+
+msgid ""
+"This is an email to notify you that a whistleblower has selected you as a "
+"valuable recipient of their submission."
+msgstr "Інформатор обрав Вас одержувачем матеріалу, що викриває корупційну діяльність."
+
+msgid ""
+"You are asked to pay special attention to the information and material "
+"contained therein. Please keep in mind that whistleblowers often expose "
+"themselves to high personal risks in the interest of the public. Therefore "
+"the material provided within this submission should be considered to be of "
+"high importance."
+msgstr "Інформатор сподівається, що саме Ви звернете увагу на надані матеріали. Викривачі дуже ризикують. Інформація, яку вони надають, заслуговує особливої уваги!"
+
+msgid "New submission"
+msgstr "Нове повідомлення"

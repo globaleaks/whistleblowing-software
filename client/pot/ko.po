@@ -1,0 +1,2319 @@
+# 
+# Translators:
+# Changkyoon Kim <ocnblu@gmail.com>, 2015
+# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2016-2017
+msgid ""
+msgstr ""
+"Project-Id-Version: GlobaLeaks\n"
+"PO-Revision-Date: 2018-02-22 08:59+0000\n"
+"Last-Translator: Hermes Center <info@hermescenter.org>\n"
+"Language-Team: Korean (http://www.transifex.com/otf/globaleaks/language/ko/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: ko\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "Login page"
+msgstr "로그인 페이지"
+
+msgid "Log in"
+msgstr "로그인"
+
+msgid "Administration interface"
+msgstr "관리 인터페이스"
+
+msgid "Main configuration"
+msgstr "홈페이지 구성"
+
+msgid "Theme customization"
+msgstr "테마 사용자 정의"
+
+msgid "Languages"
+msgstr ""
+
+msgid "Text customization"
+msgstr ""
+
+msgid "Advanced settings"
+msgstr "고급 설정"
+
+msgid "Questionnaire configuration"
+msgstr "설문 구성"
+
+msgid "Question templates"
+msgstr "질문 템플릿"
+
+msgid "Questionnaires"
+msgstr "설문지"
+
+msgid "Add new questionnaire"
+msgstr "새로운 질문을 추가"
+
+msgid "Home"
+msgstr "홈"
+
+msgid "Home page"
+msgstr "홈페이지"
+
+msgid "Changelog"
+msgstr "업데이트 기록"
+
+msgid "License"
+msgstr "라이센스"
+
+msgid "Notification templates"
+msgstr "알림 템플릿"
+
+msgid "Recipient notification templates"
+msgstr "받는 사람 알림 템플릿"
+
+msgid "Admin notification templates"
+msgstr "관리자 알림 템플릿"
+
+msgid "Missing data"
+msgstr "누락 된 데이터"
+
+msgid "no stats available for the future."
+msgstr "미래에 사용할 수있는 통계가 없습니다."
+
+msgid "no stats available for this hour."
+msgstr "이 시간에 사용할 수있는 통계가 없습니다."
+
+msgid "no stats available for current hour; check activities page."
+msgstr "현재 시간에 사용할 수있는 통계가 없다; 활동 페이지를 확인합니다."
+
+msgid "Delete"
+msgstr "지우다"
+
+msgid "Anomalies"
+msgstr "이상"
+
+msgid "Preferences"
+msgstr "환경 설정"
+
+msgid "Recipient interface"
+msgstr "받는 사람 인터페이스"
+
+msgid "Notification settings"
+msgstr "알림 설정"
+
+msgid "This recipient has configured the encryption key."
+msgstr "이 수신자는 암호화 키를 구성했습니다."
+
+msgid "This recipient has not configured the encryption key."
+msgstr "이 수신자는 암호화 키를 구성하지 않았습니다."
+
+msgid "The file is unavailable due to an internal error."
+msgstr "이 파일은 내부 오류로 인해 사용할 수 없습니다."
+
+msgid "file unavailable"
+msgstr "사용할 수없는 파일"
+
+msgid "Creation date"
+msgstr "작성 날짜"
+
+msgid "Expiration date"
+msgstr "유통 기간"
+
+msgid "Last Access"
+msgstr "마지막 액세스"
+
+msgid "Files"
+msgstr "파일"
+
+msgid "Comments"
+msgstr "코멘트"
+
+msgid "Messages"
+msgstr "메시지"
+
+msgid "Select this recipient."
+msgstr "이받는 사람을 선택합니다."
+
+msgid "Unselect this recipient."
+msgstr "이받는 사람을 선택 취소합니다."
+
+msgid "This recipient cannot be selected."
+msgstr "이받는 사람을 선택할 수 없습니다."
+
+msgid "This recipient cannot be deselected."
+msgstr "이받는 사람이 선택을 취소 할 수 없습니다."
+
+msgid "Details"
+msgstr "세부"
+
+msgid "Platform wizard"
+msgstr "플랫폼 마법사"
+
+msgid "Step-by-step setup"
+msgstr "단계별 설치"
+
+msgid "CREDIT CARD"
+msgstr "신용 카드"
+
+msgid "YOUR NAME"
+msgstr "당신의 이름"
+
+msgid "Postpone the expiration date"
+msgstr "만료일 연기"
+
+msgid "Select all"
+msgstr "모든 선택"
+
+msgid "Deselect all"
+msgstr "모든 선택 해제"
+
+msgid "Refresh page"
+msgstr "새로 고침 페이지"
+
+msgid "Context"
+msgstr "문맥"
+
+msgid "Submission date"
+msgstr "제출 날짜"
+
+msgid "Private messages"
+msgstr "개인 메시지"
+
+msgid "Preview"
+msgstr "시사"
+
+msgid "Move up"
+msgstr "위로 이동"
+
+msgid "Move down"
+msgstr "아래로 이동"
+
+msgid "Move left"
+msgstr "이동 왼쪽"
+
+msgid "Move right"
+msgstr "오른쪽으로 이동"
+
+msgid "Import"
+msgstr "수입"
+
+msgid "Export"
+msgstr "수출"
+
+msgid "Save all"
+msgstr "모든 저장"
+
+msgid "This field is mandatory"
+msgstr "이 필드는 필수입니다"
+
+msgid ""
+"The connection used to send this submission has been secured with HTTPS "
+"ensuring confidentiality."
+msgstr "이 제출을 보내는 데 사용되는 연결은 HTTPS는 기밀성을 보장하기로 확보하고있다."
+
+msgid ""
+"The connection used to send this submission has been secured with Tor "
+"ensuring confidentiality and anonymity."
+msgstr ""
+
+msgid "vertical"
+msgstr "수직선"
+
+msgid "horizontal"
+msgstr "수평"
+
+msgid "Number"
+msgstr "번호"
+
+msgid "Email"
+msgstr "이메일"
+
+msgid "Date"
+msgstr "날짜"
+
+msgid "Regular expression validator"
+msgstr "정규 표현식 검사기"
+
+msgid "Minimum number of input characters"
+msgstr "입력 문자의 최소 수"
+
+msgid "Maximum number of input characters"
+msgstr "입력 문자의 최대 수"
+
+msgid "Earliest selectable date"
+msgstr "가장 빠른 선택 가능한 날짜"
+
+msgid "Latest selectable date"
+msgstr "최신 선택할 수 날짜"
+
+msgid "0 = auto"
+msgstr "0 = 자동"
+
+msgid "-1 = unlimited"
+msgstr "-1 = 무제한"
+
+msgid "True"
+msgstr "참된"
+
+msgid "False"
+msgstr "그릇된"
+
+msgid "Yes"
+msgstr "예"
+
+msgid "No"
+msgstr "아니"
+
+msgid "Attachment"
+msgstr "부착"
+
+msgid "Attachments"
+msgstr "첨부 파일"
+
+msgid "Change your password"
+msgstr "비밀번호 변경"
+
+msgid "First name"
+msgstr "이름"
+
+msgid "Last name"
+msgstr "성"
+
+msgid "GENDER_OTHER"
+msgstr "GENDER_OTHER"
+
+msgid "Male"
+msgstr "남성"
+
+msgid "Female"
+msgstr "여자"
+
+msgid "Date of birth"
+msgstr "생년월일"
+
+msgid "Place of birth"
+msgstr "출생지"
+
+msgid "Social security number"
+msgstr "사회 보장 번호"
+
+msgid "Residence"
+msgstr "거주"
+
+msgid "Address"
+msgstr "주소"
+
+msgid "Zip code / Postal code"
+msgstr "우편 번호 / 우편 번호"
+
+msgid "City"
+msgstr "시티"
+
+msgid "State"
+msgstr "상태"
+
+msgid "Region"
+msgstr "부위"
+
+msgid "Province"
+msgstr "지방"
+
+msgid "Country"
+msgstr "국가"
+
+msgid "Phone number"
+msgstr "전화 번호"
+
+msgid "Current job title"
+msgstr "현재 작업 제목"
+
+msgid "Current job responsibility (role)"
+msgstr "현재 작업 책임 (역할)"
+
+msgid "Current organization unit and job location"
+msgstr "현재 조직 단위 및 작업 위치"
+
+msgid "Job title at the time of the reported fact"
+msgstr "보고 된 사실 당시의 직위"
+
+msgid "Job responsibility (role) at the time of the reported fact"
+msgstr "보고 된 사실 당시의 작업 책임 (역할)"
+
+msgid "Organization unit and job location at the time of the reported fact"
+msgstr "보고 된 사실시 조직 단위 및 작업 위치"
+
+msgid "List of submissions"
+msgstr "제출 목록"
+
+msgid "List of access requests to whistleblowers' identities"
+msgstr "제보자의 신원에 대한 액세스 요청 목록"
+
+msgid "User"
+msgstr "사용자"
+
+msgid "Motivation"
+msgstr "자극"
+
+msgid "Status"
+msgstr "지위"
+
+msgid "Request motivation"
+msgstr "요청 동기 부여"
+
+msgid "Reply motivation"
+msgstr "의욕을 회신"
+
+msgid "Request status"
+msgstr "요청 상태"
+
+msgid "Custodian"
+msgstr "후견인"
+
+msgid "Custodian of the identities"
+msgstr "신원의 수탁"
+
+msgid "Identity"
+msgstr "정체"
+
+msgid "Available"
+msgstr "유효한"
+
+msgid "Not available"
+msgstr "사용 불가"
+
+msgid "Access requested"
+msgstr "액세스 요청"
+
+msgid "Request access to the whistleblower's identity"
+msgstr "고발자의 신원에 대한 액세스 요청"
+
+msgid "Please write a motivation"
+msgstr "동기 부여를 작성 해주세요"
+
+msgid "Reply to the request"
+msgstr "요청에 회신"
+
+msgid "Authorized"
+msgstr "인정 받은"
+
+msgid "Denied"
+msgstr "거부"
+
+msgid "Waiting for authorization"
+msgstr "승인 대기 중"
+
+msgid "New request"
+msgstr "새 요청"
+
+msgid "Authorize"
+msgstr "권한 부여"
+
+msgid "Deny"
+msgstr "거부"
+
+msgid "Deny access to the whistleblower's identity"
+msgstr "고발자의 신원에 대한 액세스를 거부"
+
+msgid "Authorize access to the whistleblower's identity"
+msgstr "고발자의 신원에 대한 액세스 권한을 부여"
+
+msgid "Templates"
+msgstr "템플릿"
+
+msgid "Notification of new submission"
+msgstr "새로운 제출 알림"
+
+msgid "Notification of new comment"
+msgstr "새 댓글 알림"
+
+msgid "Notification of new message"
+msgstr "새 메시지 알림"
+
+msgid "Notification of new file attachment"
+msgstr "새 첨부 파일의 알림"
+
+msgid "Notification of PGP key expiration"
+msgstr "PGP 키 만료의 통지"
+
+msgid "Notification of anomaly"
+msgstr "이상 알림"
+
+msgid "Template for summary of contents in submission archive"
+msgstr "제출 아카이브 내용의 요약을위한 템플릿"
+
+msgid "Email subject"
+msgstr "이메일 제목"
+
+msgid "Email body"
+msgstr "이메일 본문"
+
+msgid "in seconds"
+msgstr "초"
+
+msgid "in hours"
+msgstr "시간"
+
+msgid "in days"
+msgstr "일"
+
+msgid "in characters"
+msgstr "문자"
+
+msgid "in megabytes"
+msgstr "메가 바이트"
+
+msgid "in percentage"
+msgstr "백분율"
+
+msgid "HTTPS settings"
+msgstr "HTTPS 설정"
+
+msgid "Anomaly detection thresholds"
+msgstr "이상 검출 임계"
+
+msgid "High risk"
+msgstr "위험"
+
+msgid "Medium risk"
+msgstr "중간 위험"
+
+msgid "Low risk"
+msgstr "낮은 위험"
+
+msgid "Available disk space"
+msgstr "사용 가능한 디스크 공간"
+
+msgid "Last update"
+msgstr "마지막 업데이트"
+
+msgid "Custodian notification templates"
+msgstr "자산 보관 알림 템플릿"
+
+msgid ""
+"This interface allows configuring email templates used to notify custodians."
+msgstr "이 인터페이스는 관리인에게 통지하는 데 사용되는 이메일 템플릿을 구성 허용한다."
+
+msgid "Disable notifications to administrators"
+msgstr "관리자에게 알림을 해제"
+
+msgid "Disable notifications to custodians"
+msgstr "관리인에 알림을 해제"
+
+msgid "Disable notifications to recipients"
+msgstr "받는 사람에게 알림을 해제"
+
+msgid "Score"
+msgstr "점수"
+
+msgid "Trigger question"
+msgstr "트리거 질문"
+
+msgid "Triggered by a score higher than:"
+msgstr "보다 높은 점수 트리거 :"
+
+msgid "Select the question to be triggered when this option is selected"
+msgstr "이 옵션이 선택 될 때 발생되는 문제를 선택"
+
+msgid "Message shown on top of the status page of the submission"
+msgstr "메시지 제출의 상태 페이지의 상단에 표시"
+
+msgid "Copy and paste the PGP public key here"
+msgstr "복사하여 여기에 PGP 공개 키를 붙여"
+
+msgid "Password strength:"
+msgstr "비밀번호 강도:"
+
+msgid "Weak"
+msgstr "약한"
+
+msgid "Acceptable"
+msgstr "허용"
+
+msgid "Strong"
+msgstr "강한"
+
+msgid "Loading…"
+msgstr "로드 중 ..."
+
+msgid "Text shown on top of the interface for selecting contexts"
+msgstr "텍스트 컨텍스트를 선택하기위한 인터페이스의 상단에 도시"
+
+msgid "Show small context cards on submission interface"
+msgstr "제출 인터페이스에 작은 상황에 맞는 카드를보기"
+
+msgid "Type of context selector:"
+msgstr "상황에 맞는 선택의 종류 :"
+
+msgid "Type to search…"
+msgstr ""
+
+msgid "Silence email notifications"
+msgstr ""
+
+msgid "Turn on email notifications"
+msgstr ""
+
+msgid "Enter an email address for the administrator"
+msgstr ""
+
+msgid "Enter a password for the administrator"
+msgstr ""
+
+msgid "Test configuration"
+msgstr ""
+
+msgid "Failed logins"
+msgstr "로그인 실패"
+
+msgid "Successful logins"
+msgstr "성공적인 로그인"
+
+msgid "Started submissions"
+msgstr "시작 제출"
+
+msgid "Completed submissions"
+msgstr "완성 된 제출"
+
+msgid "Failed submissions"
+msgstr ""
+
+msgid "Input validation"
+msgstr ""
+
+msgid "Email address"
+msgstr "이메일 주소"
+
+msgid "Custom"
+msgstr "커스텀"
+
+msgid "None"
+msgstr "없음"
+
+msgid "Regular expression"
+msgstr ""
+
+msgid "Label the submission"
+msgstr ""
+
+msgid "Activate"
+msgstr "활성화"
+
+msgid "Search"
+msgstr "검색"
+
+msgid ""
+"This custom text is no longer displayed on the platform. The original text "
+"has either changed or been removed."
+msgstr ""
+
+msgid ""
+"Unless the whistleblower checks the submission by this time, their access to"
+" it will expire."
+msgstr ""
+
+msgid "The whistleblower can no longer access the submission"
+msgstr ""
+
+msgid "Warning!"
+msgstr ""
+
+msgid "You are running an unsupported and potentially vulnerable browser."
+msgstr ""
+
+msgid "You are strongly advised to download and install the Tor Browser."
+msgstr ""
+
+msgid ""
+"The Tor Browser includes various privacy and security enhancements not "
+"present in other browsers."
+msgstr "토르 브라우저는 다양한 개인 정보 보호 및 다른 브라우저에 존재하지 않는 보안 강화 기능이 포함되어 있습니다."
+
+msgid "Download the Tor Browser"
+msgstr "토르 브라우저 다운로드"
+
+msgid "This is the list of the other supported browsers:"
+msgstr ""
+
+msgid "System overview"
+msgstr ""
+
+msgid "Stats"
+msgstr ""
+
+msgid "Activities"
+msgstr ""
+
+msgid "Submissions"
+msgstr "제출"
+
+msgid "Users"
+msgstr ""
+
+msgid "From"
+msgstr "From"
+
+msgid "Number of downloads"
+msgstr ""
+
+msgid "Error with file:"
+msgstr ""
+
+msgid "File size not accepted."
+msgstr ""
+
+msgid "File type not accepted."
+msgstr ""
+
+msgid "Maximum file size is:"
+msgstr ""
+
+msgid "Accepted file types are:"
+msgstr ""
+
+msgid "Scheduled jobs"
+msgstr ""
+
+msgid "Sites management"
+msgstr ""
+
+msgid "Regenerate"
+msgstr ""
+
+msgid "Display options alphabetically"
+msgstr ""
+
+msgid "Enable email notifications for:"
+msgstr ""
+
+msgid "Software updates"
+msgstr "소프트웨어 업데이트"
+
+msgid "Software problems"
+msgstr ""
+
+msgid "Disable"
+msgstr "비활성화"
+
+msgid "Remove"
+msgstr "삭제"
+
+msgid "Use as default"
+msgstr ""
+
+msgid "Create your whistleblowing platform"
+msgstr ""
+
+msgid "Select the context of your submission:"
+msgstr "제출의 컨텍스트를 선택합니다 :"
+
+msgid "Warning! You are not anonymous."
+msgstr "경고! 익명되지 않습니다."
+
+msgid ""
+"Sending submissions over HTTPS exposes the act of doing so, but not the "
+"content.\\n\\nAlso, hiding the fact that you are submitting something makes "
+"the submission anonymous, which is strongly recommended.\\n\\nThis can be "
+"achieved with the use of the Tor Browser, providing anonymisation not found "
+"in other browsers like Internet Explorer, Firefox, Chrome, Opera etc."
+msgstr ""
+
+msgid "Are you a whistleblower?"
+msgstr "당신은 고발자입니까?"
+
+msgid "Blow the whistle"
+msgstr "휘파람을 불어"
+
+msgid "Have you already filed a submission? Enter your key code."
+msgstr "당신은 이미 제출을 제기 한 적이 있습니까? 키 코드를 입력합니다."
+
+msgid "Your submission was successful."
+msgstr "제출 성공했습니다."
+
+msgid "Submission status"
+msgstr ""
+
+msgid "Disable submissions"
+msgstr "안 제출"
+
+msgid "Enable insecure configuration without PGP encryption"
+msgstr "PGP 암호화하지 않고 안전하지 않은 구성을 사용"
+
+msgid "Danger"
+msgstr "위험"
+
+msgid ""
+"By enabling this option, the system will be storing the submitted files "
+"unencrypted on your server."
+msgstr "이 옵션을 사용하면, 시스템은 서버에 암호화되지 않은 제출 파일을 저장한다."
+
+msgid "This happens whenever encryption is unavailable."
+msgstr "암호화를 사용할 때마다이 문제가 발생합니다."
+
+msgid "Disable messages that warn of missing encryption"
+msgstr "누락 된 암호화 경고 메시지를 해제"
+
+msgid ""
+"This setting affects the security of the users and must not be used in "
+"production."
+msgstr "이 설정은 사용자의 보안에 영향을 미치는 생산에 사용할 수 없습니다."
+
+msgid "Allow other websites to include the platform inside iframes"
+msgstr "다른 웹 사이트가 iframe 내부의 플랫폼을 포함 할 수 있도록 허용"
+
+msgid ""
+"By enabling this option, you are allowing other websites to include the "
+"platform inside iframes; this could potentially be used to endanger the "
+"platform or intercept users' communications"
+msgstr "이 옵션을 사용하도록 설정하면가 iframe 내부의 플랫폼을 포함하는 다른 웹 사이트를 허용하고, 이것은 잠재적으로 플랫폼이나 절편 사용자의 통신을 위태롭게하는 데 사용할 수 있습니다"
+
+msgid "Allow recipients to postpone expiration date of the submission"
+msgstr "받는 사람이 제출 기한을 연기 할 수 있도록 허용"
+
+msgid "Allow recipients to delete submissions"
+msgstr "받는 사람이 제출을 삭제할 수"
+
+msgid ""
+"Allow recipients to grant permissions to whistleblowers on specific "
+"submissions"
+msgstr "받는 사람이 특정 제출에 대한 내부 고발자에 대한 사용 권한을 부여 할 수 있도록 허용"
+
+msgid "Enable search engines indexing"
+msgstr "검색 엔진의 색인을 사용하도록 설정"
+
+msgid "Enabled"
+msgstr "사용"
+
+msgid "Search engine spiders will be allowed to index the application."
+msgstr "검색 엔진 스파이더가 색인에 응용 프로그램을 허용됩니다."
+
+msgid "Enable custom privacy panel"
+msgstr "사용자의 개인 정보 보호 패널 사용"
+
+msgid "Custom privacy panel"
+msgstr "사용자의 개인 정보 보호 패널"
+
+msgid "Text shown when the whistleblower is not using Tor"
+msgstr "텍스트 고발자가 토르를 사용하지 않을 때 표시"
+
+msgid "Disable the privacy panel"
+msgstr "개인 정보 보호 패널을 사용하지 않도록 설정"
+
+msgid "Security awareness panel title"
+msgstr "보안 인식 패널 제목"
+
+msgid "Security awareness panel text"
+msgstr "보안 인식 패널 텍스트"
+
+msgid "Disable the security awareness panel questions"
+msgstr "보안 인식 패널 질문을 해제"
+
+msgid "Disable the security awareness panel"
+msgstr "보안 인식 패널을 사용하지 않도록 설정"
+
+msgid "Disable the key code hint"
+msgstr "키 코드 힌트를 사용하지 않도록 설정"
+
+msgid "Disable the donation panel"
+msgstr "기부 패널을 사용하지 않도록 설정"
+
+msgid "Enable CAPTCHA mechanism"
+msgstr "CAPTCHA 메커니즘을 사용"
+
+msgid "Enable proof of work mechanism"
+msgstr "작업기구의 증명 사용"
+
+msgid "Enable simplified login for recipients"
+msgstr "받는 사람에 대한 간단한 로그인을 사용하도록 설정"
+
+msgid "Amount of days till whistleblower access expires"
+msgstr ""
+
+msgid ""
+"For security reasons the whistleblower access is subject to expiration."
+msgstr ""
+
+msgid "Tweak this setting only if you know what you are doing."
+msgstr ""
+
+msgid "Landing page"
+msgstr "방문 페이지"
+
+msgid "Home Page"
+msgstr "홈 페이지"
+
+msgid "Submission Page"
+msgstr "제출 페이지"
+
+msgid "Title of the submission page"
+msgstr "제출 페이지의 제목"
+
+msgid "Title of the attachments widget"
+msgstr "첨부 위젯의 제목"
+
+msgid "Text of prompt for whistleblowers to log in"
+msgstr ""
+
+msgid "Show contexts in alphabetical order"
+msgstr "알파벳 순서로 표시 컨텍스트"
+
+msgid "Title of the receipt page"
+msgstr "영수증 페이지의 제목"
+
+msgid "Title of the submission status page"
+msgstr "제출 상태 페이지의 제목"
+
+msgid "Title of the comments widget"
+msgstr "코멘트 위젯의 제목"
+
+msgid "Title of the messages widget"
+msgstr "메시지 위젯의 제목"
+
+msgid "Size limit for file attachments"
+msgstr "첨부 파일에 대한 크기 제한"
+
+msgid "Notify administrators of software problems"
+msgstr ""
+
+msgid "Notify developers of software problems"
+msgstr ""
+
+msgid ""
+"By enabling this feature, you will contribute to the development and "
+"security of the platform."
+msgstr ""
+
+msgid "Enable HTTP Basic Authentication to limit platform access"
+msgstr "플랫폼 액세스를 제한하기 위해 HTTP 기본 인증을 사용하도록 설정"
+
+msgid "Username"
+msgstr "사용자 이름"
+
+msgid "Password"
+msgstr "암호"
+
+msgid ""
+"This feature keeps regular people from visiting the platform while it is "
+"still under development and should not be used for security purposes. The "
+"input password is stored in plaintext on the server."
+msgstr "이 기능은 아직 개발 및 보안 목적을 위해 사용되지 않아야하는 동안 플랫폼을 방문하는 일반 명을 유지한다. 입력 된 암호가 서버에 일반 텍스트로 저장됩니다."
+
+msgid "Enable experimental features"
+msgstr "실험 기능 사용"
+
+msgid "Warning"
+msgstr "경고"
+
+msgid ""
+"The experimental features may be less stable or even not work at all; enable"
+" this option at your own risk. Support for these features may vary and they "
+"may be removed in the future."
+msgstr "실험 기능은 덜 안정 또는 전혀 작동하지 않을 수 있습니다; 자신의 위험에이 옵션을 활성화합니다. 이러한 기능에 대한 지원은 다를 수 있습니다 그들은 미래에 제거 될 수있다."
+
+msgid "Save"
+msgstr "구하다"
+
+msgid "Short URL"
+msgstr "짧은 URL"
+
+msgid "Long URL"
+msgstr "긴 URL"
+
+msgid "Add"
+msgstr "더하다"
+
+msgid "Logo"
+msgstr "로고"
+
+msgid "Project name"
+msgstr "프로젝트 이름"
+
+msgid "Homepage title"
+msgstr "홈페이지 제목"
+
+msgid "Presentation"
+msgstr "표시"
+
+msgid "Description"
+msgstr "기술"
+
+msgid "Question to solicit possible whistleblowers"
+msgstr "질문이 가능 고발자를 요청합니다"
+
+msgid "Whistleblowing button"
+msgstr "고발 버튼"
+
+msgid "Footer"
+msgstr "보행인"
+
+msgid "Favicon"
+msgstr ""
+
+msgid "Upload"
+msgstr "업로드"
+
+msgid "Download"
+msgstr "다운로드"
+
+msgid "Upload custom file"
+msgstr "사용자 정의 파일을 업로드"
+
+msgid "The file will be available at URL: /s/$filename"
+msgstr "이 파일은 URL에서 사용할 수 있습니다 : / s의 / $ 파일 이름"
+
+msgid "Language:"
+msgstr ""
+
+msgid "Add custom text"
+msgstr ""
+
+msgid "Custom text"
+msgstr ""
+
+msgid "Custom texts"
+msgstr ""
+
+msgid "Original text"
+msgstr ""
+
+msgid "Original translation"
+msgstr ""
+
+msgid "Custom translation"
+msgstr ""
+
+msgid "Contexts"
+msgstr "컨텍스트"
+
+msgid "Name"
+msgstr "이름"
+
+msgid "Edit"
+msgstr "편집하다"
+
+msgid "Cancel"
+msgstr "취소"
+
+msgid "Questionnaire"
+msgstr "질문 사항"
+
+msgid "Recipients"
+msgstr "받는 사람"
+
+msgid "Allow selection of this context through the context selector."
+msgstr "상황에 맞는 선택을 통해이 문맥의 선택을 허용합니다."
+
+msgid ""
+"If disabled, submissions for this context will only be accessible through a "
+"direct link to it."
+msgstr "사용할 경우,이 문맥에 제출 만에 직접 링크를 통해 액세스 할 수 있습니다."
+
+msgid "Allow whistleblowers to select their recipients"
+msgstr "제보자는 자신의 수신자를 선택할 수 있습니다"
+
+msgid "Select all recipients by default"
+msgstr "기본적으로 모든받는 사람을 선택"
+
+msgid "Maximum number of selectable recipients:"
+msgstr "선택받는 사람의 최대 수 :"
+
+msgid "(0 = unlimited)"
+msgstr "(0 = 무제한)"
+
+msgid "Show recipients in alphabetical order"
+msgstr "알파벳 순서로 표시받는 사람"
+
+msgid "Show small recipient cards on submission interface"
+msgstr "제출 인터페이스에 작은받는 카드보기"
+
+msgid "Enable comments"
+msgstr "코멘트를 활성화"
+
+msgid "Allow whistleblowers to write comments"
+msgstr "제보자는 코멘트를 작성할 수"
+
+msgid "Enable private messages"
+msgstr "비공개 메시지를 사용"
+
+msgid "Allow whistleblowers to send messages"
+msgstr "제보자 메시지를 보낼 수 있도록 허용"
+
+msgid "Let whistleblowers add attachments onto existing submissions"
+msgstr ""
+
+msgid "Show recipient details on the status page of the submission"
+msgstr "제출의 상태 페이지에받는 사람의 정보를보기"
+
+msgid "Let recipients upload files to whistleblowers"
+msgstr ""
+
+msgid "Disabled"
+msgstr "장애인"
+
+msgid "Submission expiration, in days"
+msgstr "일 제출 만료,"
+
+msgid ""
+"For security reasons, as a matter of data retention policy, the platform "
+"automatically deletes submissions and their data after a certain amount of "
+"time."
+msgstr "보안상의 이유로, 데이터 보존 정책적으로 플랫폼은 일정한 시간이 지나면 자동 제출과 그 데이터를 삭제한다."
+
+msgid "Text shown on top of the interface for selecting recipients"
+msgstr "텍스트는 수신자를 선택하기위한 인터페이스의 상단에 도시"
+
+msgid "Welcome to the administration interface!"
+msgstr "관리 인터페이스에 오신 것을 환영합니다!"
+
+msgid ""
+"This interface may help you understand how the server can be configured and "
+"provides some info on how to connect to other GlobaLeaks users and experts."
+msgstr "이 인터페이스는 서버 구성 및 다른 GlobaLeaks 사용자와 전문가에 연결하는 방법에 대한 몇 가지 정보를 제공 할 수있는 방법을 이해하는 데 도움이 될 수 있습니다."
+
+msgid "Documentation"
+msgstr ""
+
+msgid ""
+"To properly organize your project, please read the following guidelines:"
+msgstr "제대로 프로젝트를 구성하려면 다음 지침을 참조하십시오 :"
+
+msgid "Remember to provide proper security advice to Whistleblowers:"
+msgstr "제보자에 적절한 보안 조언을 제공해야합니다 :"
+
+msgid ""
+"To learn more about GlobaLeaks Security you can read the following document:"
+msgstr ""
+
+msgid "Contact"
+msgstr ""
+
+msgid ""
+"If you need technical support, have general questions, or have new ideas for"
+" the software:"
+msgstr ""
+
+msgid ""
+"If you want to contribute to software development or report a bug, please "
+"open an issue in our ticketing system:"
+msgstr ""
+
+msgid ""
+"If your non-profit needs support for investigative journalism, activism or a"
+" human rights defense project:"
+msgstr ""
+
+msgid ""
+"For professional support and development of anti corruption and compliance "
+"projects contact the social enterprise maintaining GlobaLeaks:"
+msgstr ""
+
+msgid "Join our IRC chat channel on the irc.oftc.net network:"
+msgstr ""
+
+msgid "Follow the project on:"
+msgstr ""
+
+msgid "Software version:"
+msgstr "소프트웨어 버전 :"
+
+msgid "An update is available:"
+msgstr ""
+
+msgid "SMTP name"
+msgstr "SMTP 이름"
+
+msgid "SMTP email address"
+msgstr "SMTP 이메일 주소"
+
+msgid "Invalid email address"
+msgstr "잘못된 이메일 주소"
+
+msgid "SMTP server address"
+msgstr "SMTP 서버 주소"
+
+msgid "SMTP server port"
+msgstr "SMTP 서버 포트"
+
+msgid "Transport Security"
+msgstr "운송 보안"
+
+msgid "When the option is re-enabled the spooled emails will be sent out."
+msgstr "옵션이 다시 활성화 될 때 스풀 이메일이 전송됩니다."
+
+msgid "Reset notification templates to default"
+msgstr "기본값으로 알림 템플릿을 재설정"
+
+msgid "Number of hours before sending a submission expiration alert"
+msgstr "제출 만료 경고를 보내기 전에 시간의 수"
+
+msgid "Maximum emails per hour before triggering email suspension"
+msgstr "이메일 정지를 트리거하기 전에 시간 당 최대 이메일"
+
+msgid "this configuration only applies to recipients"
+msgstr "이 구성은받는 사람에게 적용"
+
+msgid "Test the configuration"
+msgstr ""
+
+msgid "Template"
+msgstr "주형"
+
+msgid "Admin"
+msgstr "관리자"
+
+msgid "Roles enabled to use the platform without Tor:"
+msgstr ""
+
+msgid "Recipient"
+msgstr "받는 사람"
+
+msgid "Whistleblower"
+msgstr ""
+
+msgid "Hostname"
+msgstr ""
+
+msgid "Verify"
+msgstr ""
+
+msgid "Invalid input format."
+msgstr ""
+
+msgid "Input should be similar to:"
+msgstr ""
+
+msgid ""
+"The platform does not seem to be reachable with the configured hostname."
+msgstr ""
+
+msgid "Using Let's Encrypt requires agreement to their Terms of Service."
+msgstr ""
+
+msgid "Read the Terms of Service"
+msgstr ""
+
+msgid "I agree to the Terms of Service."
+msgstr ""
+
+msgid "Proceed"
+msgstr "발하다"
+
+msgid "Configuration completed. You can review the settings or enable it now."
+msgstr ""
+
+msgid "Review"
+msgstr ""
+
+msgid "Enable"
+msgstr ""
+
+msgid "Country code"
+msgstr ""
+
+msgid "Organization"
+msgstr ""
+
+msgid "Organizational unit"
+msgstr ""
+
+msgid ""
+"This interface can generate a Private Key and a Certificate Signing Request."
+" The Certificate Signing Request can be provided to a Certificate Authority "
+"to retrieve a Certificate. After having validated your request and your "
+"ownership of the hostname, the Certificate Authority will issue you a "
+"Certificate and provide a file containing Intermediate Certificates. Load "
+"the Certificate and the file containing the Intermediate Certificates to "
+"complete the HTTPS setup."
+msgstr ""
+
+msgid "Private Key"
+msgstr ""
+
+msgid "Generate"
+msgstr ""
+
+msgid "Certificate Signing Request"
+msgstr ""
+
+msgid "Certificate"
+msgstr ""
+
+msgid "Valid until:"
+msgstr ""
+
+msgid "Issuer:"
+msgstr ""
+
+msgid "Intermediate Certificates"
+msgstr ""
+
+msgid "Reset"
+msgstr "다시 놓기"
+
+msgid "Select an option:"
+msgstr ""
+
+msgid "Automatic configuration"
+msgstr ""
+
+msgid ""
+"Using automatic HTTPS configuration will handle the entire process of "
+"requesting, enabling and renewing certificates from the Let's Encrypt "
+"Certificate Authority."
+msgstr ""
+
+msgid ""
+"The platform must be reachable through a public IP address and the selected "
+"hostname must have a corresponding DNS record referencing that address."
+msgstr ""
+
+msgid "Manual configuration"
+msgstr ""
+
+msgid ""
+"The manual configuration wizard will guide you through the setup of HTTPS "
+"from an alternative Certificate Authority."
+msgstr ""
+
+msgid ""
+"The platform supports the configuration of HTTPS through this interface."
+msgstr ""
+
+msgid "The connection to the configured domain failed."
+msgstr ""
+
+msgid "Running"
+msgstr ""
+
+msgid "Not running"
+msgstr ""
+
+msgid "Auto-renewal"
+msgstr ""
+
+msgid "System message:"
+msgstr ""
+
+msgid ""
+"Allowing whistleblowers to connect over HTTPS preserves their privacy but "
+"not their anonymity."
+msgstr ""
+
+msgid "Attention!"
+msgstr ""
+
+msgid ""
+"Configuration in progress. When it is finished you will have to log in "
+"again."
+msgstr ""
+
+msgid "Your browser will be redirected to the following URL."
+msgstr ""
+
+msgid "Tor Onion Service"
+msgstr ""
+
+msgid "Tor Browser download link"
+msgstr ""
+
+msgid "Anonymize outgoing connections"
+msgstr ""
+
+msgid "Let the platform be reachable without Tor"
+msgstr ""
+
+msgid "Stats of the week:"
+msgstr "일주일의 통계 :"
+
+msgid "Free disk space"
+msgstr "디스크 여유 공간"
+
+msgid "Event ID"
+msgstr "이벤트 ID"
+
+msgid "Time"
+msgstr "시각"
+
+msgid "Event"
+msgstr "행사"
+
+msgid "Response time"
+msgstr "응답 시간"
+
+msgid "Role"
+msgstr "역할"
+
+msgid "Last access"
+msgstr ""
+
+msgid "Submission"
+msgstr "제출"
+
+msgid "Path"
+msgstr ""
+
+msgid "Size"
+msgstr "크기"
+
+msgid "Alarm level"
+msgstr "경보 수준"
+
+msgid "Events"
+msgstr "이벤트"
+
+msgid "Label"
+msgstr "상표"
+
+msgid "Type"
+msgstr "유형"
+
+msgid "Single-line text input"
+msgstr "한 줄의 텍스트 입력"
+
+msgid "Multi-line text input"
+msgstr "멀티 라인 텍스트 입력"
+
+msgid "Multiple choice input"
+msgstr "여러 선택 입력"
+
+msgid "Selection box"
+msgstr "선택 상자"
+
+msgid "Checkbox"
+msgstr "확인란"
+
+msgid "Terms of service"
+msgstr "서비스 약관"
+
+msgid "Group of questions"
+msgstr "질문 그룹"
+
+msgid "Row"
+msgstr "열"
+
+msgid "Column"
+msgstr "기둥"
+
+msgid "Width"
+msgstr "폭"
+
+msgid "Question group"
+msgstr "질문 그룹"
+
+msgid "Hint"
+msgstr "힌트"
+
+msgid "Required"
+msgstr "필수"
+
+msgid "Accept multiple file uploads"
+msgstr "여러 파일 업로드를 허용"
+
+msgid "Accept multiple answers for the field"
+msgstr "필드의 여러 답변을 수락"
+
+msgid "Hint shown on the button for adding an additional answer"
+msgstr "추가 답변을 추가하는 버튼에 표시 힌트"
+
+msgid "Clause"
+msgstr "절"
+
+msgid "Agreement Text"
+msgstr "계약 텍스트"
+
+msgid "Layout orientation"
+msgstr "레이아웃 방향"
+
+msgid "Subject answer visibility to custodian authorization"
+msgstr "후견인 권한에 따라 응답 가시성"
+
+msgid "Prompt confirmation upon negative answer"
+msgstr "부정적인 응답시 신속한 확인"
+
+msgid "Title of the confirmation question upon negative answer"
+msgstr "부정적인 응답시 확인 질문의 제목"
+
+msgid "Body of the confirmation question upon negative answer"
+msgstr "부정적인 응답시 확인 질문의 몸"
+
+msgid "Options"
+msgstr "옵션"
+
+msgid "Questions"
+msgstr ""
+
+msgid "Add new question"
+msgstr "새로운 질문을 추가"
+
+msgid "Add question from template"
+msgstr "템플릿에서 질문 추가"
+
+msgid "Steps"
+msgstr ""
+
+msgid "Configuration"
+msgstr "구성"
+
+msgid "Default"
+msgstr "태만"
+
+msgid "Forcefully selected"
+msgstr "강제로 선택"
+
+msgid "Unselectable"
+msgstr "하거나 선택"
+
+msgid "Allow the recipient to postpone the submission expiration date"
+msgstr "받는 사람이 제출 기한을 연기 할 수 있도록 허용"
+
+msgid "The setting is enabled at a global level."
+msgstr "설정은 글로벌 수준에서 사용할 수 있습니다."
+
+msgid "Allow the recipient to delete submissions"
+msgstr "받는 사람이 제출을 삭제할 수"
+
+msgid ""
+"Allow the recipient to grant permissions to whistleblowers on specific "
+"submissions"
+msgstr "받는 사람이 특정 제출에 대한 내부 고발자에 대한 사용 권한을 부여 할 수 있도록 허용"
+
+msgid "General settings"
+msgstr "일반 설정"
+
+msgid "Network settings"
+msgstr ""
+
+msgid "Root domain used for secondary sites"
+msgstr ""
+
+msgid "Allow users to sign up"
+msgstr ""
+
+msgid "Sites"
+msgstr ""
+
+msgid "Active"
+msgstr "활성"
+
+msgid "Inactive"
+msgstr ""
+
+msgid "The default password is:"
+msgstr ""
+
+msgid "The system forces users to change the password at first login."
+msgstr "시스템 강제로 사용자가 처음 로그인 할 때 암호를 변경합니다."
+
+msgid "New Password"
+msgstr "새 비밀번호"
+
+msgid ""
+"The chosen password is too weak. Make it more secure by adding special "
+"characters, numbers, and unusual symbols."
+msgstr ""
+
+msgid "Force password change"
+msgstr "강제 암호 변경"
+
+msgid "The user will be forced to change its password on next login."
+msgstr "사용자는 다음 로그인의 암호를 변경해야한다."
+
+msgid "Language"
+msgstr "언어"
+
+msgid "Encryption:"
+msgstr "암호화:"
+
+msgid "Remove the PGP key"
+msgstr "PGP 키를 제거"
+
+msgid "Set up encryption by providing a PGP public key"
+msgstr "PGP 공개 키를 제공하여 암호화를 설정"
+
+msgid "Request date"
+msgstr "요청 날짜"
+
+msgid "Authorization"
+msgstr "권한 부여"
+
+msgid "Before proceeding, please change your password."
+msgstr "계속하기 전에 암호를 변경하십시오."
+
+msgid "Submissions disabled"
+msgstr ""
+
+msgid ""
+"You are connecting to the server without anonymity and this server supports "
+"only anonymous submissions"
+msgstr "당신은 익명없이 서버에 연결하는이 서버는 익명 제출 지원"
+
+msgid ""
+"Server temporarly unusable due to resource exhaustion; advise the Admin if "
+"you can."
+msgstr "고갈 자원으로 인해 temporarly 사용할 수없는 서버; 당신이 할 수있는 경우에 관리를 조언한다."
+
+msgid "This server is not configured."
+msgstr "이 서버는 구성되어 있지 않습니다."
+
+msgid "You will not be able to send a submission."
+msgstr "당신은 제출을 보낼 수 없습니다."
+
+msgid ""
+"This platform makes use of GlobaLeaks software specifically designed to "
+"protect the identity for submitter and recipient in the exchange of content."
+msgstr ""
+
+msgid ""
+"The software is developed by the non-profit Hermes Center for Transparency "
+"and Digital Human Rights."
+msgstr "이 소프트웨어는 비영리 투명성에 대한 에르메스 센터와 디지털 인권에 의해 개발되고있다."
+
+msgid "Please support Hermes through their donation page."
+msgstr "자신의 기부 페이지를 통해 헤르메스를 지원하십시오."
+
+msgid "Authentication failed"
+msgstr "인증 실패"
+
+msgid "Please select your account:"
+msgstr "계정을 선택하십시오 :"
+
+msgid "Now type your password, then click 'Log in':"
+msgstr "지금 비밀번호를 입력 한 후 '로그인'을 클릭합니다 :"
+
+msgid "Are you sure?"
+msgstr "확실합니까?"
+
+msgid "The operation will reset the configuration and cannot be undone."
+msgstr ""
+
+msgid "Assign score points"
+msgstr "점수 포인트를 할당"
+
+msgid ""
+"Enter the number of score points to be assigned when this option is "
+"selected:"
+msgstr "이 옵션이 선택되면 점수 포인트의 수가 할당 될 입력"
+
+msgid "Confirm"
+msgstr "확인"
+
+msgid "Are you human?"
+msgstr "당신은 사람입니까?"
+
+msgid ""
+"We do not discriminate based on race and gender, but we do against computers"
+" :)"
+msgstr "우리는 인종과 성별에 따라 차별하지 않는다, 그러나 우리는 컴퓨터에 할 :)"
+
+msgid ""
+"Just to prove you are human, please answer the following math challenge:"
+msgstr "그냥 당신이 인간 증명하기 위해, 다음과 같은 수학 문제에 답하시오 :"
+
+msgid "I've solved the math challenge, hide this thing now!"
+msgstr "나는 수학 문제를 해결했습니다, 지금이 일을 숨길!"
+
+msgid "Please note that all the associated data will be permanently lost."
+msgstr ""
+
+msgid ""
+"This means that if the server running the platform were to be seized, it "
+"would be possible to extract the files that have been submitted."
+msgstr "이 플랫폼을 실행하는 서버를 압수 할 수 있다면, 제출 된 파일을 추출 할 수 있다는 것을 의미한다."
+
+msgid "Are you sure that you wish to continue?"
+msgstr "당신은 당신이 계속하고자하는 것이 하시겠습니까?"
+
+msgid ""
+"Downloading a file with malicious content could compromise your computer or "
+"disclose your identity."
+msgstr ""
+
+msgid "The name of the file and its content can be intentionally misleading."
+msgstr ""
+
+msgid ""
+"Please review the following information and decide if you wish to proceed."
+msgstr ""
+
+msgid "Error!"
+msgstr "오류!"
+
+msgid "Internal server error"
+msgstr ""
+
+msgid "Error on input validation"
+msgstr ""
+
+msgid "Resource not found"
+msgstr ""
+
+msgid "Forbidden operation"
+msgstr ""
+
+msgid "The specified old password is not valid"
+msgstr "지정된 이전 암호가 유효하지 않습니다"
+
+msgid "Resource can only be accessed via the Tor network"
+msgstr "자원 Tor 네트워크를 통해서만 액세스 할 수 있습니다"
+
+msgid "The upload request exceeds the size limit"
+msgstr "업로드 요구가 크기 제한을 초과"
+
+msgid "Success!"
+msgstr "성공!"
+
+msgid ""
+"It appears that you are browsing this site without any extra privacy and "
+"security!"
+msgstr "당신이 여분의 개인 정보 보호 및 보안없이이 사이트를 탐색하는 것 같습니다!"
+
+msgid ""
+"You are strongly advised to visit this site using the desktop app called Tor"
+" Browser, that protects your identity."
+msgstr "당신은 강력하게 신원을 보호 토르 브라우저라는 데스크톱 응용 프로그램을 사용하여이 사이트를 방문하는 것이 좋습니다."
+
+msgid "Then, copy and paste the following address into the Tor Browser:"
+msgstr "그런 다음, 복사 토르 브라우저에 다음 주소를 붙여 넣기 :"
+
+msgid "Details of the PGP key:"
+msgstr "PGP 키의 세부 사항 :"
+
+msgid "Fingerprint"
+msgstr ""
+
+msgid "Add file"
+msgstr "파일을 추가합니다"
+
+msgid "Uploading files…"
+msgstr ""
+
+msgid "Upload completed successfully!"
+msgstr "업로드가 성공적으로 완료!"
+
+msgid "Error while uploading files; check below for details."
+msgstr "파일을 업로드하는 동안 오류; 자세한 내용은 아래를 확인합니다."
+
+msgid "Estimated upload time:"
+msgstr "예상 업로드 시간 :"
+
+msgid "seconds"
+msgstr "초"
+
+msgid "Which of the following statements is true?"
+msgstr "다음 설명 중 사실입니까?"
+
+msgid "HTTPS protects my identity, but not the content of my submission"
+msgstr ""
+
+msgid "HTTPS protects the content of my submission but not my identity"
+msgstr ""
+
+msgid "HTTPS does not protect the content of my submission nor my identity"
+msgstr ""
+
+msgid "HTTPS does protect both my identity and the content of my submission"
+msgstr ""
+
+msgid ""
+"You are aware of the risks involved. Go ahead, but consider yourself warned."
+msgstr "당신은 관련된 위험을 알고 있습니다. 어서,하지만 자신이 경고 고려하십시오."
+
+msgid "Wrong Answer!"
+msgstr "잘못된 답변!"
+
+msgid "The connection is not secure."
+msgstr ""
+
+msgid ""
+"The platform is still not configured for HTTPS connections and should "
+"therefore only be used for testing purposes."
+msgstr ""
+
+msgid "Send"
+msgstr "보내다"
+
+msgid "Allow the whistleblower to write comments"
+msgstr "고발자가 코멘트를 작성할 수"
+
+msgid "Filename"
+msgstr "파일 이름"
+
+msgid "Upload date"
+msgstr "업로드 날짜"
+
+msgid "Content Type"
+msgstr "콘텐츠 형식"
+
+msgid "File size"
+msgstr "파일 크기"
+
+msgid "download"
+msgstr "다운로드"
+
+msgid "No files have been uploaded!"
+msgstr "어떤 파일이 업로드되지 않았습니다!"
+
+msgid "Allow the whistleblower to add attachments to the submission"
+msgstr "고발자가 제출에 첨부 파일을 추가 할 수 있도록 허용"
+
+msgid "Access expiration"
+msgstr ""
+
+msgid "Connection"
+msgstr "연결"
+
+msgid "Never"
+msgstr "만료없음"
+
+msgid "Revoked"
+msgstr ""
+
+msgid "Allow the whistleblower to send messages"
+msgstr "고발자 메시지를 보낼 수 있도록 허용"
+
+msgid "Are you sure that you want to delete the submission?"
+msgstr "당신은 당신이 제출을 삭제 하시겠습니까?"
+
+msgid ""
+"Everything related to the submission stored on the platform will be deleted."
+msgstr ""
+
+msgid ""
+"Please be aware that everything stored off the platform, e.g. files you have"
+" saved on your computer, must be deleted manually."
+msgstr ""
+
+msgid "Are you sure that you want to delete all the selected submissions?"
+msgstr "당신은 당신이 선택한 모든 제출을 삭제 하시겠습니까?"
+
+msgid ""
+"Please make sure that all related data is properly deleted so that the "
+"recipients won't be able to further access to it."
+msgstr "받는 사람이 액세스를 촉진 할 수 없습니다 있도록 모든 관련 데이터가 제대로 삭제되었는지 확인하십시오."
+
+msgid "Please write a motivation for the reply"
+msgstr "응답에 대한 의욕을 보냅니다"
+
+msgid "Are you sure that you want to postpone the submission expiration date?"
+msgstr "당신은 당신이 제출 기한을 연기 하시겠습니까?"
+
+msgid "By confirming, you will postpone the expiration date to:"
+msgstr "확인하면 만료 날짜를하는 연기합니다 :"
+
+msgid ""
+"Are you sure that you want to postpone the expiration date for all selected "
+"submissions?"
+msgstr "당신은 당신이 선택한 모든 제출 기한을 연기 하시겠습니까?"
+
+msgid "Questionnaire answers"
+msgstr "설문 답변"
+
+msgid "Step"
+msgstr "단계"
+
+msgid "Recipient list"
+msgstr "받는 사람 목록"
+
+msgid "Attached files for the whistleblower"
+msgstr ""
+
+msgid ""
+"Files uploaded here are made available for the whistleblower and other "
+"recipients to download."
+msgstr ""
+
+msgid "Upload a file:"
+msgstr ""
+
+msgid "Logout"
+msgstr "로그 아웃"
+
+msgid "The key code is either invalid or the submission has expired."
+msgstr "키 코드가 잘못되었거나 제출이 만료되었습니다."
+
+msgid "Please check your key code and try again or make a new submission."
+msgstr "키 코드를 확인하고 다시 시도하거나 새 제출하시기 바랍니다."
+
+msgid "Files attached by recipients"
+msgstr ""
+
+msgid "These files have been attached to your submission by the recipients."
+msgstr ""
+
+msgid "Enable submission notification"
+msgstr "제출 통지를 사용"
+
+msgid "Current Password"
+msgstr "현재 비밀번호"
+
+msgid "Old password confirmation required"
+msgstr "이전 암호 확인 필요"
+
+msgid "The new password must be different from the current one."
+msgstr ""
+
+msgid "Type your new password again"
+msgstr "새 암호를 다시 입력"
+
+msgid "The two passwords do not match"
+msgstr "두 암호가 일치하지 않습니다"
+
+msgid "Thank you!"
+msgstr "고맙습니다!"
+
+msgid "Remember your key code for this submission."
+msgstr "이 제출 키 코드를 기억하십시오."
+
+msgid "We will try to get back to you as soon as possible!"
+msgstr "우리는 가능한 한 빨리 다시 연락을 시도합니다!"
+
+msgid ""
+"Use the 16 digit key code to log in. It will allow you to view any messages "
+"we sent you, and also to add extra info."
+msgstr "로그인 할 수있는 16 자리의 키 코드를 사용합니다. 그것은 당신이 우리가 보낸 모든 메시지를 볼 수 있습니다, 또한 여분의 정보를 추가 할 수 있습니다."
+
+msgid "View your submission"
+msgstr "제출보기"
+
+msgid "Hint: How to hide your key code"
+msgstr "힌트 : 어떻게 키 코드를 숨기려면"
+
+msgid ""
+"A useful way to hide your key code is to write it down like a credit card "
+"number, i.e. by also including an expiration date."
+msgstr "키 코드를 숨길 수있는 유용한 방법은 또한 유효 기간을 포함하여 즉, 신용 카드 번호처럼 그것을 아래로 작성하는 것입니다."
+
+msgid "Example:"
+msgstr "예:"
+
+msgid ""
+"You have not set up your encryption key, so the files will not be encrypted "
+"prior to being stored on the server."
+msgstr "당신은 당신의 암호화 키를 설정하지 않은, 그래서 파일은 서버에 저장되기 전에 암호화되지 않습니다."
+
+msgid ""
+"This may lead to unintended access to the files by the server administrator "
+"or others in case the server is compromised."
+msgstr "이 서버가 손상된 경우 서버 관리자 또는 다른 사람에 의해 파일에 의도하지 않은 액세스가 발생할 수 있습니다."
+
+msgid "Please configure your PGP keys in the recipient preferences page."
+msgstr "받는 사람의 환경 설정 페이지에서 PGP 키를 구성하십시오."
+
+msgid ""
+"One or more of the recipients of this submission has not configured a PGP "
+"key."
+msgstr "이 제출받는 사람 중 하나 이상이 PGP 키를 구성하지 않았습니다."
+
+msgid ""
+"This means that the submitted files will be stored in plaintext on the "
+"server."
+msgstr "이 전송 파일 서버 평문에 저장된다는 것을 의미한다."
+
+msgid ""
+"Access to the whistleblower's identity has been requested to the custodian."
+msgstr "고발자의 신원에 대한 액세스는 관리인에게 요청하고있다."
+
+msgid "Date of the request"
+msgstr "요청 일자"
+
+msgid "Congratulations!"
+msgstr "치하!"
+
+msgid "You have completed the platform activation."
+msgstr ""
+
+msgid "Your whistleblowing platform is now accessible at:"
+msgstr ""
+
+msgid "Users' credentials:"
+msgstr ""
+
+msgid "To log in, visit:"
+msgstr ""
+
+msgid "For the user documentation visit:"
+msgstr ""
+
+msgid "The platform will be automatically deleted on:"
+msgstr ""
+
+msgid "Sign up"
+msgstr "Sign up"
+
+msgid "Domain"
+msgstr "도메인"
+
+msgid "Use Case"
+msgstr ""
+
+msgid "Anticorruption"
+msgstr ""
+
+msgid "Corporate compliance"
+msgstr ""
+
+msgid "Investigative journalism"
+msgstr ""
+
+msgid "Civic activism"
+msgstr ""
+
+msgid "Other"
+msgstr "그 외"
+
+msgid "Complete"
+msgstr "완료"
+
+msgid "Your whistleblowing platform is almost ready!"
+msgstr ""
+
+msgid "Check your inbox to activate your account."
+msgstr ""
+
+msgid "The answer is too short."
+msgstr ""
+
+msgid "The specified input is not valid:"
+msgstr ""
+
+msgid "please enter a valid email address."
+msgstr ""
+
+msgid "please enter numbers only."
+msgstr ""
+
+msgid "Recipient selection"
+msgstr "받는 사람 선택"
+
+msgid "previous step"
+msgstr "이전 단계"
+
+msgid "next step"
+msgstr "다음 단계"
+
+msgid "Submit"
+msgstr "제출"
+
+msgid "Recipients selected:"
+msgstr "받는 사람 선택 :"
+
+msgid ""
+"In this step the answers to the following questions are either missing or "
+"invalid:"
+msgstr ""
+
+msgid "Submission errors"
+msgstr ""
+
+msgid "You must select at least one recipient."
+msgstr ""
+
+msgid "Waiting for the file(s) to finish uploading."
+msgstr ""
+
+msgid "The following steps have errors:"
+msgstr ""
+
+msgid "Welcome!"
+msgstr "환영합니다!"
+
+msgid ""
+"The following step-by-step procedure will guide you through creating your "
+"whistleblowing platform."
+msgstr ""
+
+msgid "Please choose a configuration profile:"
+msgstr ""
+
+msgid ""
+"These profiles contain settings used by successful projects in each "
+"respective field."
+msgstr ""
+
+msgid "Confirm password"
+msgstr "비밀번호 확인"
+
+msgid "The default username is:"
+msgstr ""
+
+msgid "License Agreement"
+msgstr ""
+
+msgid "Please review the license terms before proceeding."
+msgstr ""
+
+msgid "I have read and agree to the terms of the License Agreement."
+msgstr ""
+
+msgid "You have completed the platform wizard."
+msgstr "당신은 성공적으로 플랫폼 마법사를 완료했습니다."
+
+msgid "Fill out your submission"
+msgstr "제출을 작성"
+
+msgid "Short title"
+msgstr "짧은 제목"
+
+msgid "Describe your submission in a few words."
+msgstr ""
+
+msgid "Full description"
+msgstr "전체 설명"
+
+msgid "Describe your submission in detail."
+msgstr ""
+
+msgid "Attach files relevant to the submission."
+msgstr ""
+
+msgid "Dear {RecipientName},"
+msgstr "친애 %의 {RecipientName} 를,"
+
+msgid "Kind regards,"
+msgstr "종류 안부,"
+
+msgid ""
+"The number of activities recently detected appears to be higher than usual."
+msgstr "최근에 검출 된 활동의 수는 통상보다 높게 나타난다."
+
+msgid ""
+"This could be a sign of an attack (for example, someone flooding your server"
+" with bogus information) or just a usage spike due to an increased "
+"visibility of your project."
+msgstr "이것은 아니면 그냥 사용 급증으로 인해 프로젝트의 증가 가시성 (당신의 가짜 정보를 서버에 홍수 사람, 예를 들면) 공격의 표적이 될 수 있습니다."
+
+msgid "Examine the issue to determine whether it is legitimate or not."
+msgstr ""
+
+msgid "The activities with unusual stats are:"
+msgstr "특이한 통계와 활동은 다음과 같습니다 :"
+
+msgid ""
+"The server cannot guarantee that a new submission can be stored, so "
+"submissions have been disabled."
+msgstr "제출이 중지되었습니다 있도록 서버는 새 제출이 저장 될 수 있음을 보증하지 않습니다."
+
+msgid ""
+"Please consider asking your technical support to create more disk space on "
+"the server."
+msgstr ""
+
+msgid ""
+"GlobaLeaks technology includes a server status checking component which will"
+" alert you in case something requires your attention."
+msgstr "GlobaLeaks 기술은 무엇인가주의가 필요한 경우에 당신을 경고하는 서버 상태 확인 구성 요소가 포함되어 있습니다."
+
+msgid ""
+"For more information, log in to the Administration interface and look at the"
+" \"System Stats\" and \"Anomalies\" sections."
+msgstr ""
+
+msgid "Anomaly detected in {NodeName}"
+msgstr ""
+
+msgid ""
+"This is an email to inform you that the PGP key of the following users is "
+"going to expire or has already expired:"
+msgstr "이것은 다음과 같은 사용자의 PGP 키가 만료 예정 또는 만료 이미했음을 알리는 이메일입니다 :"
+
+msgid ""
+"Without a valid PGP key, the system will not be able to send them encrypted "
+"notifications."
+msgstr "유효한 PGP 키가 없으면, 시스템은 그들에게 암호화 된 알림을 보낼 수 없습니다."
+
+msgid "PGP key expiration alert"
+msgstr "PGP 키 만료 경고"
+
+msgid ""
+"This is a test email sent out from the platform's administrative interface."
+msgstr ""
+
+msgid ""
+"Reception of this email indicates that the server was able to authenticate "
+"to and interact with the SMTP mail server."
+msgstr ""
+
+msgid "Test email"
+msgstr ""
+
+msgid ""
+"This is an email to notify you of a new comment on an existing submission."
+msgstr "이는 기존의 제출에 새 댓글을 통지하는 이메일입니다."
+
+msgid "The submission can be accessed:"
+msgstr "제출에 액세스 할 수 있습니다 :"
+
+msgid "via Tor at: {TorUrl}"
+msgstr "{TorUrl} 에서 토르를 통해"
+
+msgid "via HTTPS at: {HTTPSUrl}"
+msgstr "{HTTPSUrl} 에서 HTTPS를 통해"
+
+msgid "New comment"
+msgstr "새로운 코멘트"
+
+msgid "From: {RecipientName}"
+msgstr "보낸 사람 : {RecipientName}"
+
+msgid "Date: {EventTime}"
+msgstr "날짜 : {EventTime}"
+
+msgid "From: Whistleblower"
+msgstr "보낸 사람 : 내부자 고발"
+
+msgid "Date: {SubmissionDate}"
+msgstr "날짜 : {SubmissionDate}"
+
+msgid "Label: {TipLabel}"
+msgstr "레이블 : {TipLabel}"
+
+msgid "Context: {ContextName}"
+msgstr "컨텍스트 : {ContextName}"
+
+msgid ""
+"This is an email to notify you that the whistleblower of submission {TipNum}"
+" has attached new material."
+msgstr "이 제출 %의 {TipNum} 의 %의 내부 고발자가 새로운 자료를 첨부했음을 알리는 이메일입니다."
+
+msgid "New attachment"
+msgstr "새 첨부 파일"
+
+msgid ""
+"The HTTPS certificate loaded on the platform is about to, or has already "
+"expired."
+msgstr ""
+
+msgid "Expiration date: {ExpirationDate}"
+msgstr "유통 기한 : {ExpirationDate}"
+
+msgid ""
+"Without a valid certificate, the platform will be accessible in a secure way"
+" only via Tor."
+msgstr ""
+
+msgid "Log in to solve the issue."
+msgstr ""
+
+msgid "Expiration alert for HTTPS certificate"
+msgstr ""
+
+msgid ""
+"This is an email to notify you that a custodian has authorized you to access"
+" to the whistleblowing identity for the submission {TipNum}."
+msgstr ""
+
+msgid "Access to whistleblower's identity authorized"
+msgstr "내부 고발자의 신원에 대한 액세스 권한을"
+
+msgid ""
+"This is an email to notify you that a custodian has denied you access to the"
+" wistleblowing identity for the submission {TipNum}."
+msgstr "이렇게 보관하면 제출 {TipNum} 의 wistleblowing 정체성에 대한 액세스를 거부했음을 알리는 이메일입니다."
+
+msgid "Access to whistleblower's identity denied"
+msgstr "내부 고발자의 신원에 대한 액세스가 거부"
+
+msgid ""
+"This is an email to notify you that a recipient has requested access to the "
+"whistleblower's identity for the submission {TipNum}"
+msgstr "이것은받는 사람이 제출 {TipNum} 의 제보자의 신원에 대한 액세스를 요청했음을 알리는 이메일입니다"
+
+msgid "The request can be accessed:"
+msgstr "요청이 액세스 할 수 있습니다 :"
+
+msgid "New request of access to a whistleblower's identity"
+msgstr ""
+
+msgid ""
+"This is an email to notify you that the whistleblower for the submission "
+"{TipNum} has provided their identity."
+msgstr "이 제출 %의 TipNum %를위한 내부 고발자가 자신의 정체성을 제공하고 있음을 알리는 이메일입니다."
+
+msgid "The whistleblower has provided their identity"
+msgstr "고발자는 자신의 정체성을 제공하고있다"
+
+msgid ""
+"This is an email to notify you of a new message on an existing submission."
+msgstr "이는 기존의 제출에 새 메시지를 알려하는 이메일입니다."
+
+msgid "New message"
+msgstr "새로운 메시지"
+
+msgid ""
+"This is an email to inform you that your PGP key is expiring or has already "
+"expired."
+msgstr "이것은 당신의 PGP 키가 만료되거나 이미 만료되었음을 알리는 이메일입니다."
+
+msgid ""
+"You should extend its validity and update the key present on the platform, "
+"or upload a new key."
+msgstr "당신은 그 유효 기간을 연장하고 플랫폼에서 키 현재를 업데이트하거나 새 키를 업로드해야합니다."
+
+msgid ""
+"Without a valid PGP key, the system won't be able to encrypt data provided "
+"to you."
+msgstr "유효한 PGP 키가 없으면, 시스템은 귀하에게 제공된 데이터를 암호화 할 수 없습니다."
+
+msgid "It appears that {NodeName} is receiving a large number of requests."
+msgstr ""
+
+msgid ""
+"To prevent sending you too many emails, the system has disabled email "
+"notifications until the load returns to normal. In the meantime, you can "
+"normally log onto the platform and manually check for new submissions."
+msgstr "당신에게 너무 많은 이메일을 보내는 방지하기 위해, 시스템은 정상 부하 돌아갈 때까지 전자 메일 알림을 사용할 수있다. 한편, 당신은 일반적으로 플랫폼에 로그인 할 수 있습니다 수동으로 새 제출을 확인합니다."
+
+msgid ""
+"If you don’t mind and would rather receive such a large number of email "
+"notifications anyhow, please contact your technical support to have them "
+"modify this setting accordingly."
+msgstr "당신이 상관 없어 오히려 어쨌든 이메일 알림 같은 많은 수의받을 경우, 그들을 따라이 설정을 수정하도록 기술 지원을 문의하십시오."
+
+msgid "Notifications from {NodeName} have been temporarily suspended"
+msgstr ""
+
+msgid "Click the link to activate the platform:"
+msgstr ""
+
+msgid "A software update is available."
+msgstr ""
+
+msgid "It is good security practice to keep the platform up to date."
+msgstr ""
+
+msgid "Installed version: {InstalledVersion}"
+msgstr ""
+
+msgid "Latest version: {LatestVersion}"
+msgstr ""
+
+msgid ""
+"To learn about new features and bug fixes in the new version consult the "
+"change log at: {ChangeLogUrl}"
+msgstr ""
+
+msgid ""
+"For instructions on software updates, please refer to the documentation at: "
+"{UpdateGuideUrl}"
+msgstr ""
+
+msgid "The earliest expiration date is {EarliestExpirationDate}."
+msgstr ""
+
+msgid "Please remember to check them before they are deleted."
+msgstr ""
+
+msgid "Some submissions will expire soon"
+msgstr ""
+
+msgid ""
+"This is an email to notify you that a whistleblower has selected you as a "
+"valuable recipient of their submission."
+msgstr ""
+
+msgid ""
+"You are asked to pay special attention to the information and material "
+"contained therein. Please keep in mind that whistleblowers often expose "
+"themselves to high personal risks in the interest of the public. Therefore "
+"the material provided within this submission should be considered to be of "
+"high importance."
+msgstr ""
+
+msgid "New submission"
+msgstr "뉴 제출"

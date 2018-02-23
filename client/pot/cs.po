@@ -1,0 +1,2325 @@
+# 
+# Translators:
+# A5h8d0wf0x <littleslyfoxie28@gmail.com>, 2014
+# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2014-2018
+# Hermes Center <info@hermescenter.org>, 2013
+# Hermes Center <info@hermescenter.org>, 2013
+# Hermes Center <info@hermescenter.org>, 2013
+# Miroslav Kučera <mkucera66@seznam.cz>, 2013-2017
+# Mr Higgins, 2016-2017
+# Pavla Holcova <p.holcova@gmail.com>, 2014-2015
+msgid ""
+msgstr ""
+"Project-Id-Version: GlobaLeaks\n"
+"PO-Revision-Date: 2018-02-22 09:06+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"Language-Team: Czech (http://www.transifex.com/otf/globaleaks/language/cs/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: cs\n"
+"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+
+msgid "Login page"
+msgstr "Přihlašovací stránka"
+
+msgid "Log in"
+msgstr "Přihlášení"
+
+msgid "Administration interface"
+msgstr "Administrační rozhraní"
+
+msgid "Main configuration"
+msgstr "Hlavní konfigurace"
+
+msgid "Theme customization"
+msgstr "Úprava tématu"
+
+msgid "Languages"
+msgstr "Jazyky"
+
+msgid "Text customization"
+msgstr "Přizpůsobení textů"
+
+msgid "Advanced settings"
+msgstr "Rozšířené nastavení"
+
+msgid "Questionnaire configuration"
+msgstr "Konfigurace dotazníků"
+
+msgid "Question templates"
+msgstr "Šablony dotazů"
+
+msgid "Questionnaires"
+msgstr "Dotazníky"
+
+msgid "Add new questionnaire"
+msgstr "Přidat nový dotazník"
+
+msgid "Home"
+msgstr "Domů"
+
+msgid "Home page"
+msgstr "Domovská stránka"
+
+msgid "Changelog"
+msgstr "Přehled změn"
+
+msgid "License"
+msgstr "Licence"
+
+msgid "Notification templates"
+msgstr "Šablony notifikace"
+
+msgid "Recipient notification templates"
+msgstr "Šablony upozornění příjemce"
+
+msgid "Admin notification templates"
+msgstr "Šablony upozornění administrátora"
+
+msgid "Missing data"
+msgstr "Chybějící data"
+
+msgid "no stats available for the future."
+msgstr "žádné dostupné údaje do budoucna."
+
+msgid "no stats available for this hour."
+msgstr "pro tuto hodinu nejsou dostupné údaje."
+
+msgid "no stats available for current hour; check activities page."
+msgstr "pro tuto hodinu nejsou dostupné údaje. Zkontrolujte stránku aktivit."
+
+msgid "Delete"
+msgstr "Smazat"
+
+msgid "Anomalies"
+msgstr "Anomálie"
+
+msgid "Preferences"
+msgstr "Nastavení"
+
+msgid "Recipient interface"
+msgstr "Rozhraní příjemce"
+
+msgid "Notification settings"
+msgstr "Nastavení notifikací"
+
+msgid "This recipient has configured the encryption key."
+msgstr "Příjemce si nastavil šifrovací klíč."
+
+msgid "This recipient has not configured the encryption key."
+msgstr "Příjemce nemá vytvořený šifrovací klíč"
+
+msgid "The file is unavailable due to an internal error."
+msgstr "Soubor nedostupný kvůli interní chybě."
+
+msgid "file unavailable"
+msgstr "Soubor nedostupný"
+
+msgid "Creation date"
+msgstr "Datum vytvoření"
+
+msgid "Expiration date"
+msgstr "Datum vypršení platnosti"
+
+msgid "Last Access"
+msgstr "Poslední přístup"
+
+msgid "Files"
+msgstr "Soubory"
+
+msgid "Comments"
+msgstr "Komentáře"
+
+msgid "Messages"
+msgstr "Zprávy"
+
+msgid "Select this recipient."
+msgstr "Vybrat tohoto příjemce."
+
+msgid "Unselect this recipient."
+msgstr "Zrušit výběr tohoto příjemce."
+
+msgid "This recipient cannot be selected."
+msgstr "Příjemce nemůže být vybrán."
+
+msgid "This recipient cannot be deselected."
+msgstr "Příjemce nemůže být odebrán."
+
+msgid "Details"
+msgstr "Detaily"
+
+msgid "Platform wizard"
+msgstr "Průvodce platformou"
+
+msgid "Step-by-step setup"
+msgstr "Nastavení krok po kroku"
+
+msgid "CREDIT CARD"
+msgstr "Kreditní karta"
+
+msgid "YOUR NAME"
+msgstr "Vaše jméno"
+
+msgid "Postpone the expiration date"
+msgstr "Odložit datum vypršení"
+
+msgid "Select all"
+msgstr "Označit vše"
+
+msgid "Deselect all"
+msgstr "Odznačit vše"
+
+msgid "Refresh page"
+msgstr "Obnovit stránku"
+
+msgid "Context"
+msgstr "Kontext"
+
+msgid "Submission date"
+msgstr "Den odeslání"
+
+msgid "Private messages"
+msgstr "Soukromé zprávy"
+
+msgid "Preview"
+msgstr "Náhled"
+
+msgid "Move up"
+msgstr "Přesun nahoru"
+
+msgid "Move down"
+msgstr "Přesun dolů"
+
+msgid "Move left"
+msgstr "Přesun vlevo"
+
+msgid "Move right"
+msgstr "Přesun vpravo"
+
+msgid "Import"
+msgstr "Import"
+
+msgid "Export"
+msgstr "Export"
+
+msgid "Save all"
+msgstr "Uložit vše"
+
+msgid "This field is mandatory"
+msgstr "Toto pole je povinné"
+
+msgid ""
+"The connection used to send this submission has been secured with HTTPS "
+"ensuring confidentiality."
+msgstr "Spojení použité k odeslání tohoto podání bylo zabezpečeno pomocí HTTPS za účelem zajištění důvěrnosti."
+
+msgid ""
+"The connection used to send this submission has been secured with Tor "
+"ensuring confidentiality and anonymity."
+msgstr "Spojení použité k odeslání tohoto podání bylo zabezpečeno pomocí Tor za účelem zajištění důvěrnosti a anonymity."
+
+msgid "vertical"
+msgstr "vertikální"
+
+msgid "horizontal"
+msgstr "horizontální"
+
+msgid "Number"
+msgstr "Číslo"
+
+msgid "Email"
+msgstr "Email"
+
+msgid "Date"
+msgstr "Datum"
+
+msgid "Regular expression validator"
+msgstr "Validátor regulárních výrazů"
+
+msgid "Minimum number of input characters"
+msgstr "Minimální počet vstupních znaků"
+
+msgid "Maximum number of input characters"
+msgstr "Maximální počet vstupních znaků"
+
+msgid "Earliest selectable date"
+msgstr "Nejdřívější zvolitelné datum"
+
+msgid "Latest selectable date"
+msgstr "Nejpozdější zvolitelné datum"
+
+msgid "0 = auto"
+msgstr "0 = automaticky"
+
+msgid "-1 = unlimited"
+msgstr "-1 = neomezeně"
+
+msgid "True"
+msgstr "Pravda"
+
+msgid "False"
+msgstr "Nepravda"
+
+msgid "Yes"
+msgstr "Ano"
+
+msgid "No"
+msgstr "Ne"
+
+msgid "Attachment"
+msgstr "Příloha"
+
+msgid "Attachments"
+msgstr "Přílohy"
+
+msgid "Change your password"
+msgstr "Změnit heslo"
+
+msgid "First name"
+msgstr "Jméno"
+
+msgid "Last name"
+msgstr "Příjmení"
+
+msgid "GENDER_OTHER"
+msgstr "Jiné"
+
+msgid "Male"
+msgstr "Muž"
+
+msgid "Female"
+msgstr "Žena"
+
+msgid "Date of birth"
+msgstr "Datum narození"
+
+msgid "Place of birth"
+msgstr "Místo narození"
+
+msgid "Social security number"
+msgstr "Číslo OP"
+
+msgid "Residence"
+msgstr "Bydliště"
+
+msgid "Address"
+msgstr "Adresa"
+
+msgid "Zip code / Postal code"
+msgstr "PSČ"
+
+msgid "City"
+msgstr "Město"
+
+msgid "State"
+msgstr "Stát"
+
+msgid "Region"
+msgstr "Region"
+
+msgid "Province"
+msgstr "Kraj"
+
+msgid "Country"
+msgstr "Země"
+
+msgid "Phone number"
+msgstr "Telefonní číslo"
+
+msgid "Current job title"
+msgstr "Aktuální pracovní pozice"
+
+msgid "Current job responsibility (role)"
+msgstr "Aktuální pracovní zodpovědnost (role)"
+
+msgid "Current organization unit and job location"
+msgstr "Aktuální organizační jednotka a lokalita"
+
+msgid "Job title at the time of the reported fact"
+msgstr "Název pracovní pozice v době vztažené k podání"
+
+msgid "Job responsibility (role) at the time of the reported fact"
+msgstr "Pracovní zodpovědnost (role) v době vztažené k podání"
+
+msgid "Organization unit and job location at the time of the reported fact"
+msgstr "Organizační jednotka a lokalita v době podání"
+
+msgid "List of submissions"
+msgstr "Seznam podání"
+
+msgid "List of access requests to whistleblowers' identities"
+msgstr "Seznam žádostí o přístup k identitám oznamovatelů"
+
+msgid "User"
+msgstr "Uživatel"
+
+msgid "Motivation"
+msgstr "Motivace"
+
+msgid "Status"
+msgstr "Stav"
+
+msgid "Request motivation"
+msgstr "Motivace žádosti"
+
+msgid "Reply motivation"
+msgstr "Zodpovědět motivaci"
+
+msgid "Request status"
+msgstr "Stav požadavku"
+
+msgid "Custodian"
+msgstr "Ochránce"
+
+msgid "Custodian of the identities"
+msgstr "Ochránce identit"
+
+msgid "Identity"
+msgstr "Identita"
+
+msgid "Available"
+msgstr "Dostupný"
+
+msgid "Not available"
+msgstr "Nedostupný"
+
+msgid "Access requested"
+msgstr "Požádáno o přístup"
+
+msgid "Request access to the whistleblower's identity"
+msgstr "Požádát o přístup k identitě oznamovatele"
+
+msgid "Please write a motivation"
+msgstr "Prosím vyplňte motivaci"
+
+msgid "Reply to the request"
+msgstr "Odpovědět na požadavek"
+
+msgid "Authorized"
+msgstr "Autorizovaný"
+
+msgid "Denied"
+msgstr "Zamítnutý"
+
+msgid "Waiting for authorization"
+msgstr "Čeká na autorizaci"
+
+msgid "New request"
+msgstr "Nový požadavek"
+
+msgid "Authorize"
+msgstr "Autorizovat"
+
+msgid "Deny"
+msgstr "Zamítnout"
+
+msgid "Deny access to the whistleblower's identity"
+msgstr "Zamítnout přístup k identitě oznamovatelů"
+
+msgid "Authorize access to the whistleblower's identity"
+msgstr "Povolit přístup k identitě oznamovatelů"
+
+msgid "Templates"
+msgstr "Šablony"
+
+msgid "Notification of new submission"
+msgstr "Notifikace o novém podání"
+
+msgid "Notification of new comment"
+msgstr "Notifikace o novém komentáři"
+
+msgid "Notification of new message"
+msgstr "Notifikace o nové zprávě"
+
+msgid "Notification of new file attachment"
+msgstr "Notifikace o nové příloze"
+
+msgid "Notification of PGP key expiration"
+msgstr "Notifikace o expiraci PGP klíče"
+
+msgid "Notification of anomaly"
+msgstr "Oznámení o anomálii"
+
+msgid "Template for summary of contents in submission archive"
+msgstr "Šablona pro souhrn obsahu v archivu podání"
+
+msgid "Email subject"
+msgstr "Předmět emailu"
+
+msgid "Email body"
+msgstr "Obsah emailu"
+
+msgid "in seconds"
+msgstr "v sekundách"
+
+msgid "in hours"
+msgstr "v hodinách"
+
+msgid "in days"
+msgstr "ve dnech"
+
+msgid "in characters"
+msgstr "znaků"
+
+msgid "in megabytes"
+msgstr "megabajtů"
+
+msgid "in percentage"
+msgstr "v procentech"
+
+msgid "HTTPS settings"
+msgstr "Nastavení HTTPS"
+
+msgid "Anomaly detection thresholds"
+msgstr "Prahy detekce anomálií"
+
+msgid "High risk"
+msgstr "Vysoké riziko"
+
+msgid "Medium risk"
+msgstr "Střední riziko"
+
+msgid "Low risk"
+msgstr "Nízké riziko"
+
+msgid "Available disk space"
+msgstr "Dostupný diskový prostor"
+
+msgid "Last update"
+msgstr "Poslední aktualizace"
+
+msgid "Custodian notification templates"
+msgstr "Notifikační šablony ochránců"
+
+msgid ""
+"This interface allows configuring email templates used to notify custodians."
+msgstr "Toto rozhraní umožňuje nakonfigurovat šablony emailů použitých pro notifikace ochránců"
+
+msgid "Disable notifications to administrators"
+msgstr "Vypnout notifikace administrátorům"
+
+msgid "Disable notifications to custodians"
+msgstr "Vypnout notifikace ochráncům"
+
+msgid "Disable notifications to recipients"
+msgstr "Vypnout notifikace příjemcům"
+
+msgid "Score"
+msgstr "Skóre"
+
+msgid "Trigger question"
+msgstr "Následující podotázka"
+
+msgid "Triggered by a score higher than:"
+msgstr "Spuštěno z důvodu skóre vyššího než:"
+
+msgid "Select the question to be triggered when this option is selected"
+msgstr "Vyberte otázku k zodpovězení je-li tato volba vybrána"
+
+msgid "Message shown on top of the status page of the submission"
+msgstr "Zpráva zobrazená na vrchu stránky o stavu podání"
+
+msgid "Copy and paste the PGP public key here"
+msgstr "Kopírujte a vložte Váš PGP klíč zde"
+
+msgid "Password strength:"
+msgstr "Síla hesla:"
+
+msgid "Weak"
+msgstr "Slabý"
+
+msgid "Acceptable"
+msgstr "Akceptovatelný"
+
+msgid "Strong"
+msgstr "Silný"
+
+msgid "Loading…"
+msgstr "Načítám..."
+
+msgid "Text shown on top of the interface for selecting contexts"
+msgstr "Text zobrazený na vrchu rozhraní pro výběr kontextů"
+
+msgid "Show small context cards on submission interface"
+msgstr "Zobrazit malé kontextové karty v oznamovatelském rozhraní"
+
+msgid "Type of context selector:"
+msgstr "Typ výběru kontextu:"
+
+msgid "Type to search…"
+msgstr "Pište pro vyhledávání..."
+
+msgid "Silence email notifications"
+msgstr "Tiché email notifikace"
+
+msgid "Turn on email notifications"
+msgstr "Zapnout email notifikace"
+
+msgid "Enter an email address for the administrator"
+msgstr "Vložte emailovou adresu administrátora"
+
+msgid "Enter a password for the administrator"
+msgstr "Vložte heslo administrátora"
+
+msgid "Test configuration"
+msgstr "Otestovat konfiguraci"
+
+msgid "Failed logins"
+msgstr "Chybná přihlášení"
+
+msgid "Successful logins"
+msgstr "Úspěšná přihlášení"
+
+msgid "Started submissions"
+msgstr "Započatá oznámení"
+
+msgid "Completed submissions"
+msgstr "Dokončená oznámení"
+
+msgid "Failed submissions"
+msgstr "Neúspěšná podání"
+
+msgid "Input validation"
+msgstr "Kontrola vstupu"
+
+msgid "Email address"
+msgstr "Emailová adresa"
+
+msgid "Custom"
+msgstr "Vlastní"
+
+msgid "None"
+msgstr "Nic"
+
+msgid "Regular expression"
+msgstr "Regulární výraz"
+
+msgid "Label the submission"
+msgstr "Štítek podání"
+
+msgid "Activate"
+msgstr "Aktivovat"
+
+msgid "Search"
+msgstr "Hledat"
+
+msgid ""
+"This custom text is no longer displayed on the platform. The original text "
+"has either changed or been removed."
+msgstr "Tento upravený text se nadále v rozhraní nezobrazuje. Původní text byl změněn nebo přesunut."
+
+msgid ""
+"Unless the whistleblower checks the submission by this time, their access to"
+" it will expire."
+msgstr "Doba do které oznamovateli vypší přístup k příspěvku."
+
+msgid "The whistleblower can no longer access the submission"
+msgstr "Oznamovatel nemá nadále přístup k podání"
+
+msgid "Warning!"
+msgstr "Varování!"
+
+msgid "You are running an unsupported and potentially vulnerable browser."
+msgstr "Používáte nepodporovaný a potenciálně zranitelný prohlížeč."
+
+msgid "You are strongly advised to download and install the Tor Browser."
+msgstr "Silně doporučujeme stáhnout, nainstalovat a používat Tor Browser."
+
+msgid ""
+"The Tor Browser includes various privacy and security enhancements not "
+"present in other browsers."
+msgstr "Tor Browser zahrnuje různé úrovně soukromí a zabezpečeníí, jež není k dispozici v jiných prohlížečích."
+
+msgid "Download the Tor Browser"
+msgstr "Stáhnout prohlížeč Tor"
+
+msgid "This is the list of the other supported browsers:"
+msgstr "Toto je seznam dalších podporovaných prohlížečů."
+
+msgid "System overview"
+msgstr "O systému"
+
+msgid "Stats"
+msgstr "Statistiky"
+
+msgid "Activities"
+msgstr "Aktivity"
+
+msgid "Submissions"
+msgstr "Příspěvky"
+
+msgid "Users"
+msgstr "Uživatelé"
+
+msgid "From"
+msgstr "Od"
+
+msgid "Number of downloads"
+msgstr "Počet stažení"
+
+msgid "Error with file:"
+msgstr "Chyba v souboru:"
+
+msgid "File size not accepted."
+msgstr "Velikost souboru není akceptována."
+
+msgid "File type not accepted."
+msgstr "Typ souboru není akceptován."
+
+msgid "Maximum file size is:"
+msgstr "Maximální velikost souboru je:"
+
+msgid "Accepted file types are:"
+msgstr "Přijatelné typy souborů jsou:"
+
+msgid "Scheduled jobs"
+msgstr "Plánované úlohy"
+
+msgid "Sites management"
+msgstr "Správa stránek"
+
+msgid "Regenerate"
+msgstr "Přegenerovat"
+
+msgid "Display options alphabetically"
+msgstr "Zobrazit v abecedním pořadí"
+
+msgid "Enable email notifications for:"
+msgstr "Povolit emailové notifikace pro:"
+
+msgid "Software updates"
+msgstr "Softwareové aktualizace"
+
+msgid "Software problems"
+msgstr "Softwareové problémy"
+
+msgid "Disable"
+msgstr "Zakázat"
+
+msgid "Remove"
+msgstr "Odstranit"
+
+msgid "Use as default"
+msgstr "Použít jako výchozí"
+
+msgid "Create your whistleblowing platform"
+msgstr ""
+
+msgid "Select the context of your submission:"
+msgstr "Vyberte kontext pro vaše podání"
+
+msgid "Warning! You are not anonymous."
+msgstr "Varování! Nejste anonymní."
+
+msgid ""
+"Sending submissions over HTTPS exposes the act of doing so, but not the "
+"content.\\n\\nAlso, hiding the fact that you are submitting something makes "
+"the submission anonymous, which is strongly recommended.\\n\\nThis can be "
+"achieved with the use of the Tor Browser, providing anonymisation not found "
+"in other browsers like Internet Explorer, Firefox, Chrome, Opera etc."
+msgstr "Během odesílání informací přes HTTPS je viditelné, že tak činíte, není však jednoduše zjistitelný obsah zpráv.\\n\\nUtajení těchto Vašich aktivit podstatně chrání Vaší anonymitu, což rozhodně doporučujeme.\\n\\nToho lze dosáhnout použitím prohlížeče Tor Browser, jež obsahuje anonymizující nastavení, která nejsou běžně k dispozici v ostatních prohlížečích jako Internet Explorer, Firefox, Chrome, Opera, atd."
+
+msgid "Are you a whistleblower?"
+msgstr "Jste oznamovatel?"
+
+msgid "Blow the whistle"
+msgstr "Odeslat oznámení"
+
+msgid "Have you already filed a submission? Enter your key code."
+msgstr "Vyplnili jste již podání? Zadejte svůj kód."
+
+msgid "Your submission was successful."
+msgstr "Vaše oznámení bylo úspěšné."
+
+msgid "Submission status"
+msgstr "Stav podáni"
+
+msgid "Disable submissions"
+msgstr "Zakázat podání"
+
+msgid "Enable insecure configuration without PGP encryption"
+msgstr "Povolit nedůvěryhodné nastavení bez PGP šifrování"
+
+msgid "Danger"
+msgstr "Nebezpečí"
+
+msgid ""
+"By enabling this option, the system will be storing the submitted files "
+"unencrypted on your server."
+msgstr "Povolením této volby bude systém ukládat odeslané soubory nezašifrované.."
+
+msgid "This happens whenever encryption is unavailable."
+msgstr "Toto se stane kdykoliv je šifrování nedostupné."
+
+msgid "Disable messages that warn of missing encryption"
+msgstr "Vypnout zprávy varující před chybějícím šifrováním"
+
+msgid ""
+"This setting affects the security of the users and must not be used in "
+"production."
+msgstr "Toto nastavení ovlivňuje bezpečnost uživatelů a nemělo by býti používáno na produkčních systémech."
+
+msgid "Allow other websites to include the platform inside iframes"
+msgstr "Povolit jiným stránkám zobrazovat části tohoto webu pomocí iframe."
+
+msgid ""
+"By enabling this option, you are allowing other websites to include the "
+"platform inside iframes; this could potentially be used to endanger the "
+"platform or intercept users' communications"
+msgstr "Povolením této volby dovolíte jiným stránkám zobrazovat části tohoto webu pomocí iframe. Jejich použití může snížit bezpečnost a důvěrnost komunikace s uživateli."
+
+msgid "Allow recipients to postpone expiration date of the submission"
+msgstr "Povolit příjemci odložit expiraci příspěvku"
+
+msgid "Allow recipients to delete submissions"
+msgstr "Povolit příjemcům smazat příspěvky"
+
+msgid ""
+"Allow recipients to grant permissions to whistleblowers on specific "
+"submissions"
+msgstr "Povolit příjemcům přiřazovat oprávnění oznamovatelům ke konkrétním podáním"
+
+msgid "Enable search engines indexing"
+msgstr "Povolit vyhledávačům indexování."
+
+msgid "Enabled"
+msgstr "Zapnuto"
+
+msgid "Search engine spiders will be allowed to index the application."
+msgstr "Vyhledávacím pavoukům bude povoleno prohledat aplikaci."
+
+msgid "Enable custom privacy panel"
+msgstr "Povolit vlastní panel soukromí"
+
+msgid "Custom privacy panel"
+msgstr "Vlastní panel soukromí"
+
+msgid "Text shown when the whistleblower is not using Tor"
+msgstr "Text znázorňující, že oznamovatel nevyužívá Tor"
+
+msgid "Disable the privacy panel"
+msgstr "Zakázat panel o ochraně osobních údajů."
+
+msgid "Security awareness panel title"
+msgstr "Titulek panelu povědomí o bezpečnosti"
+
+msgid "Security awareness panel text"
+msgstr "Text panelu povědomí o bezpečnosti"
+
+msgid "Disable the security awareness panel questions"
+msgstr "Zakázat otázky ohledně povědomí o bezpečnosti."
+
+msgid "Disable the security awareness panel"
+msgstr "Zakázat panel povědomí o bezpečnosti"
+
+msgid "Disable the key code hint"
+msgstr "Vypnout nápovědu pro key code"
+
+msgid "Disable the donation panel"
+msgstr "Vypnout panel darů"
+
+msgid "Enable CAPTCHA mechanism"
+msgstr "Povolit ochranu CAPTCHA"
+
+msgid "Enable proof of work mechanism"
+msgstr "Povolit proof-of-work mechanismus"
+
+msgid "Enable simplified login for recipients"
+msgstr "Povolit zjednodušené přihlášení pro příjemce"
+
+msgid "Amount of days till whistleblower access expires"
+msgstr "Počet dní do vypršení přístupu oznamovatele"
+
+msgid ""
+"For security reasons the whistleblower access is subject to expiration."
+msgstr "Přístup oznamovatele má z bezpečnostích důvodů časově omezenou platnost."
+
+msgid "Tweak this setting only if you know what you are doing."
+msgstr "Toto nastavení neměnte, ledaže opravdu víte co děláte."
+
+msgid "Landing page"
+msgstr "Vstupní stránka"
+
+msgid "Home Page"
+msgstr "Domovská stránka"
+
+msgid "Submission Page"
+msgstr "Stránka odeslání"
+
+msgid "Title of the submission page"
+msgstr "Titulek stránky s odesláním"
+
+msgid "Title of the attachments widget"
+msgstr "Titulek doplňku s přílohami"
+
+msgid "Text of prompt for whistleblowers to log in"
+msgstr "Text výzývající oznamovatele k přihlášení"
+
+msgid "Show contexts in alphabetical order"
+msgstr "Ukázat kontexty v abecedním pořadí"
+
+msgid "Title of the receipt page"
+msgstr "Titulek stránky s potvrzením"
+
+msgid "Title of the submission status page"
+msgstr "Titulek stránky o stavu podání"
+
+msgid "Title of the comments widget"
+msgstr "Titulek komentářového doplňku"
+
+msgid "Title of the messages widget"
+msgstr "Titulek doplňku se zprávami"
+
+msgid "Size limit for file attachments"
+msgstr "Limit velikosti pro přílohy"
+
+msgid "Notify administrators of software problems"
+msgstr ""
+
+msgid "Notify developers of software problems"
+msgstr "Notifikovat vývojáře ohledně problémů se software"
+
+msgid ""
+"By enabling this feature, you will contribute to the development and "
+"security of the platform."
+msgstr ""
+
+msgid "Enable HTTP Basic Authentication to limit platform access"
+msgstr "Vyžadovat pro přihlášení metodu HTTP Basic Authentication"
+
+msgid "Username"
+msgstr "Uživatelské jméno"
+
+msgid "Password"
+msgstr "Heslo"
+
+msgid ""
+"This feature keeps regular people from visiting the platform while it is "
+"still under development and should not be used for security purposes. The "
+"input password is stored in plaintext on the server."
+msgstr "Tato volba znemožňuje běžným lidem vstup po dobu úprav a neměla by být používána jako mechanismus běžného zabezpečení. Heslo potřebné pro vstup je uloženo v čitelné formě na serveru."
+
+msgid "Enable experimental features"
+msgstr "Povolit experimentální vlastnosti"
+
+msgid "Warning"
+msgstr "Varování"
+
+msgid ""
+"The experimental features may be less stable or even not work at all; enable"
+" this option at your own risk. Support for these features may vary and they "
+"may be removed in the future."
+msgstr "Tyto experimentální vlastnosti mohou ovlivnit stabilitu nebo nemusí fungovat vůbec nebo ne tak, jak bylo zamýšleno. Povolujte pouze na vlastní nebezpečí. Podpora pro tyto vlastnosti nemusí být dostupná a vlastnosti mohou být v budoucnu  bez varování odstraněny."
+
+msgid "Save"
+msgstr "Uložit"
+
+msgid "Short URL"
+msgstr "Krátké URL"
+
+msgid "Long URL"
+msgstr "Dlouhé URL"
+
+msgid "Add"
+msgstr "Přidat"
+
+msgid "Logo"
+msgstr "Logo"
+
+msgid "Project name"
+msgstr "Jméno iniciativy"
+
+msgid "Homepage title"
+msgstr "Nadpis domovské stránky"
+
+msgid "Presentation"
+msgstr "Prezentace"
+
+msgid "Description"
+msgstr "Popis"
+
+msgid "Question to solicit possible whistleblowers"
+msgstr "Otázky pro získávání možných informátorů"
+
+msgid "Whistleblowing button"
+msgstr "Tlačítko zapískání oznamovatele."
+
+msgid "Footer"
+msgstr "Footer"
+
+msgid "Favicon"
+msgstr "Favicon"
+
+msgid "Upload"
+msgstr "Načíst"
+
+msgid "Download"
+msgstr "Stáhnout"
+
+msgid "Upload custom file"
+msgstr "Natažení uživatelského souboru"
+
+msgid "The file will be available at URL: /s/$filename"
+msgstr "Tento soubor bude přístupný na adrese : /s/$filename"
+
+msgid "Language:"
+msgstr "Jazyk:"
+
+msgid "Add custom text"
+msgstr "Přidat vlastní text"
+
+msgid "Custom text"
+msgstr "Vlastní text"
+
+msgid "Custom texts"
+msgstr "Vlastní texty"
+
+msgid "Original text"
+msgstr "Originální text"
+
+msgid "Original translation"
+msgstr "Originální překlad"
+
+msgid "Custom translation"
+msgstr "Vlastní překlad"
+
+msgid "Contexts"
+msgstr "Kontexty"
+
+msgid "Name"
+msgstr "Jméno"
+
+msgid "Edit"
+msgstr "Editovat"
+
+msgid "Cancel"
+msgstr "Zrušit"
+
+msgid "Questionnaire"
+msgstr "Dotazník"
+
+msgid "Recipients"
+msgstr "Příjemci"
+
+msgid "Allow selection of this context through the context selector."
+msgstr "Povolit výběr tohoto kontextu prostřednictvím výběru."
+
+msgid ""
+"If disabled, submissions for this context will only be accessible through a "
+"direct link to it."
+msgstr "Pokud je vypnuto, pak budou podání k tomuto kontextu přístupná pouze přes přímý odkaz."
+
+msgid "Allow whistleblowers to select their recipients"
+msgstr "Povolit oznamovatelům zvolit příjemce"
+
+msgid "Select all recipients by default"
+msgstr "Vyberte standardně všechny příjemce"
+
+msgid "Maximum number of selectable recipients:"
+msgstr "Maximální počet zvolitelných příjemců"
+
+msgid "(0 = unlimited)"
+msgstr "(0 = neomezeně)"
+
+msgid "Show recipients in alphabetical order"
+msgstr "Ukázat příjemce v abecedním pořadí"
+
+msgid "Show small recipient cards on submission interface"
+msgstr "Ukázat kartičku v odesílacím rozhraní"
+
+msgid "Enable comments"
+msgstr "Povolit komentáře"
+
+msgid "Allow whistleblowers to write comments"
+msgstr "Povolit oznamovatelům psát komentáře"
+
+msgid "Enable private messages"
+msgstr "Povolit soukromé zprávy"
+
+msgid "Allow whistleblowers to send messages"
+msgstr "Povolit oznamovatelům posílat zprávy"
+
+msgid "Let whistleblowers add attachments onto existing submissions"
+msgstr "Povolit oznamovatelům přidat přílohy k existujícím podáním"
+
+msgid "Show recipient details on the status page of the submission"
+msgstr "Zobrazit detaily o příjemcích na stránce o stavu podání"
+
+msgid "Let recipients upload files to whistleblowers"
+msgstr "Povolit příjemcům nahrát soubory pro oznamovatele"
+
+msgid "Disabled"
+msgstr "Vypnuto"
+
+msgid "Submission expiration, in days"
+msgstr "Expirace podání, ve dnech"
+
+msgid ""
+"For security reasons, as a matter of data retention policy, the platform "
+"automatically deletes submissions and their data after a certain amount of "
+"time."
+msgstr "Veškeré příspěvky a relevantní data jsou z důvodů bezpečnostní politiky uchovávání údajů (data retention) po jistém čase automaticky odmazávány."
+
+msgid "Text shown on top of the interface for selecting recipients"
+msgstr "Text zobrazený na vrchu stránky s výběrem příjemců"
+
+msgid "Welcome to the administration interface!"
+msgstr "Vítejte v administračním rozhraní!"
+
+msgid ""
+"This interface may help you understand how the server can be configured and "
+"provides some info on how to connect to other GlobaLeaks users and experts."
+msgstr "Toto rozhraní vám může pomoci pochopit, jak může být server konfigurován a poskytuje některé informace o tom, jak se připojit k ostatním GlobaLeaks uživatelům a odborníkům."
+
+msgid "Documentation"
+msgstr "Dokumentace"
+
+msgid ""
+"To properly organize your project, please read the following guidelines:"
+msgstr "Chcete-li správně organizovat svou iniciativu, přečtěte si prosím následující pokyny:"
+
+msgid "Remember to provide proper security advice to Whistleblowers:"
+msgstr "Nezapomeňte zajistit správné bezpečnostní poradenství oznamovatelů:"
+
+msgid ""
+"To learn more about GlobaLeaks Security you can read the following document:"
+msgstr "Další informace o bezpečnosti GlobaLleaks naleznete v následujícím dokumentu"
+
+msgid "Contact"
+msgstr "Kontakt"
+
+msgid ""
+"If you need technical support, have general questions, or have new ideas for"
+" the software:"
+msgstr "Pokud potřebujete technickou podporu, máte obecné dotazy nebo máte nové nápady pro software:"
+
+msgid ""
+"If you want to contribute to software development or report a bug, please "
+"open an issue in our ticketing system:"
+msgstr "Pokud chcete přispět k vývoji softwaru nebo nahlásit chybu, otevřete prosím problém v našem ticket systému:"
+
+msgid ""
+"If your non-profit needs support for investigative journalism, activism or a"
+" human rights defense project:"
+msgstr "Pokud vaše nezisková organizace potřebuje podporu investigativní žurnalistiky, aktivismu nebo projektu ochrany lidských práv:"
+
+msgid ""
+"For professional support and development of anti corruption and compliance "
+"projects contact the social enterprise maintaining GlobaLeaks:"
+msgstr "Pro profesionální podporu a rozvoj projektů proti korupci a dodržování předpisů se obraťte na společenský podnik, který spravuje společnost GlobaLeaks:"
+
+msgid "Join our IRC chat channel on the irc.oftc.net network:"
+msgstr "Připojte se k našemu IRC chatu v síti irc.oftc.net:"
+
+msgid "Follow the project on:"
+msgstr "Sledujte projekt na:"
+
+msgid "Software version:"
+msgstr "Verze software:"
+
+msgid "An update is available:"
+msgstr "Je dostupná aktualizace:"
+
+msgid "SMTP name"
+msgstr "Název SMTP serveru"
+
+msgid "SMTP email address"
+msgstr "Emailová adresa pro SMTP server"
+
+msgid "Invalid email address"
+msgstr "Neplatná emailová adresa"
+
+msgid "SMTP server address"
+msgstr "Adresy serverů SMTP"
+
+msgid "SMTP server port"
+msgstr "Port serveru SMTP"
+
+msgid "Transport Security"
+msgstr "Bezpečnost přenosu"
+
+msgid "When the option is re-enabled the spooled emails will be sent out."
+msgstr "Neodeslané emaily budou ve frontě dokud nebude nastavení znovupovoleno."
+
+msgid "Reset notification templates to default"
+msgstr "Obnovit šablonynotifikací na výchozí hodnoty"
+
+msgid "Number of hours before sending a submission expiration alert"
+msgstr "Počet hodin před odesláním upozornění na expiraci"
+
+msgid "Maximum emails per hour before triggering email suspension"
+msgstr "Práh maximálního počtu emailů za hodinu zastavující zasílání emailů"
+
+msgid "this configuration only applies to recipients"
+msgstr "tato konfigurace se týká pouze příjemců"
+
+msgid "Test the configuration"
+msgstr "Testovat konfiguraci"
+
+msgid "Template"
+msgstr "Šablona"
+
+msgid "Admin"
+msgstr "Admin"
+
+msgid "Roles enabled to use the platform without Tor:"
+msgstr "Role, kterým je dovoleno použití mimo Tor:"
+
+msgid "Recipient"
+msgstr "Příjemce"
+
+msgid "Whistleblower"
+msgstr "Informátor"
+
+msgid "Hostname"
+msgstr "Hostitelské jméno"
+
+msgid "Verify"
+msgstr "Ověřit"
+
+msgid "Invalid input format."
+msgstr "Neplatný vstupní formát."
+
+msgid "Input should be similar to:"
+msgstr "Vstup by měl být podobný k:"
+
+msgid ""
+"The platform does not seem to be reachable with the configured hostname."
+msgstr "Platforma se nezdá být dosažitelná s konfigurovaným názvem hostitele."
+
+msgid "Using Let's Encrypt requires agreement to their Terms of Service."
+msgstr "Použití Let's Encrypt vyžaduje odsouhlasení jejich podmínek užívání služby."
+
+msgid "Read the Terms of Service"
+msgstr "Přečíst podmínky užití služby"
+
+msgid "I agree to the Terms of Service."
+msgstr "Soulasím s Podmínkami užití služby"
+
+msgid "Proceed"
+msgstr "Provést"
+
+msgid "Configuration completed. You can review the settings or enable it now."
+msgstr "Konfigurace dokončena. Můžete provést kontrolu nastavení nebo ji rovnou povolit."
+
+msgid "Review"
+msgstr "Revidovat"
+
+msgid "Enable"
+msgstr "Povoleno"
+
+msgid "Country code"
+msgstr "Kód země"
+
+msgid "Organization"
+msgstr "Organizace"
+
+msgid "Organizational unit"
+msgstr "Organizační jednotka"
+
+msgid ""
+"This interface can generate a Private Key and a Certificate Signing Request."
+" The Certificate Signing Request can be provided to a Certificate Authority "
+"to retrieve a Certificate. After having validated your request and your "
+"ownership of the hostname, the Certificate Authority will issue you a "
+"Certificate and provide a file containing Intermediate Certificates. Load "
+"the Certificate and the file containing the Intermediate Certificates to "
+"complete the HTTPS setup."
+msgstr "Rozhraní může vygenerovat soukromý klíč a žádost o podepsání certifikátu. Žádost o podepsání certifikátu může být poskytnuta certifikační autoritě pro získání certifikátu. Po ověření vaší žádosti a vlastnictví názvu hostitele vám certifikační autorita vystaví certifikát a poskytne soubor s mezilehlými certifikáty. Na dokončení nastavení HTTPS vložte certifikát a soubor obsahující mezilehlé certifikáty."
+
+msgid "Private Key"
+msgstr "Privátní klíč"
+
+msgid "Generate"
+msgstr "Generovat"
+
+msgid "Certificate Signing Request"
+msgstr "Požadavek na podpis certifikátu"
+
+msgid "Certificate"
+msgstr "Certifikát"
+
+msgid "Valid until:"
+msgstr "Platný do:"
+
+msgid "Issuer:"
+msgstr "Vydavatel:"
+
+msgid "Intermediate Certificates"
+msgstr "Výměnní certifikát."
+
+msgid "Reset"
+msgstr "Reset"
+
+msgid "Select an option:"
+msgstr "Zvolte možnost:"
+
+msgid "Automatic configuration"
+msgstr "Automatická konfigurace"
+
+msgid ""
+"Using automatic HTTPS configuration will handle the entire process of "
+"requesting, enabling and renewing certificates from the Let's Encrypt "
+"Certificate Authority."
+msgstr "Použití automatické konfigurace HTTPS zajistí celý proces vyžádání, povolení a obnovení certifikátů od certifikační autority Let's Encrypt."
+
+msgid ""
+"The platform must be reachable through a public IP address and the selected "
+"hostname must have a corresponding DNS record referencing that address."
+msgstr "Platforma musí být dosažitelná prostřednictvím veřejné IP adresy a zvolený název hostitele musí mít odpovídající záznam DNS, který odkazuje na tuto adresu."
+
+msgid "Manual configuration"
+msgstr "Manuální konfigurace"
+
+msgid ""
+"The manual configuration wizard will guide you through the setup of HTTPS "
+"from an alternative Certificate Authority."
+msgstr "Průvodce manuální konfigurací vás provede nastavením HTTPS od alternativní certifikační autority."
+
+msgid ""
+"The platform supports the configuration of HTTPS through this interface."
+msgstr "Platforma podporuje konfiguraci HTTPS prostřednictvím tohoto rozhraní."
+
+msgid "The connection to the configured domain failed."
+msgstr "Připojení k nakonfigurované doméně se nezdařilo."
+
+msgid "Running"
+msgstr "Běží"
+
+msgid "Not running"
+msgstr "Neběží"
+
+msgid "Auto-renewal"
+msgstr "Automatické obnovení"
+
+msgid "System message:"
+msgstr "Systémová zpráva:"
+
+msgid ""
+"Allowing whistleblowers to connect over HTTPS preserves their privacy but "
+"not their anonymity."
+msgstr "Možnost připojení informátorů prostřednictvím HTTPS zachovává jejich soukromí, ale ne jejich anonymitu."
+
+msgid "Attention!"
+msgstr "Pozor!"
+
+msgid ""
+"Configuration in progress. When it is finished you will have to log in "
+"again."
+msgstr ""
+
+msgid "Your browser will be redirected to the following URL."
+msgstr "Váš prohlížeč bude přesměrován na následující adresu URL."
+
+msgid "Tor Onion Service"
+msgstr "Služba Tor Onion"
+
+msgid "Tor Browser download link"
+msgstr "Tor browser odkaz ke stažení"
+
+msgid "Anonymize outgoing connections"
+msgstr "Anonymizace odchozích spojení"
+
+msgid "Let the platform be reachable without Tor"
+msgstr "Povolit dostupnost bez Tor."
+
+msgid "Stats of the week:"
+msgstr "Statistika týdne:"
+
+msgid "Free disk space"
+msgstr "Volný diskový prostor"
+
+msgid "Event ID"
+msgstr "ID události"
+
+msgid "Time"
+msgstr "Čas"
+
+msgid "Event"
+msgstr "Událost"
+
+msgid "Response time"
+msgstr "Čas odpovědi"
+
+msgid "Role"
+msgstr "Role"
+
+msgid "Last access"
+msgstr "Poslední přístup"
+
+msgid "Submission"
+msgstr "Podání"
+
+msgid "Path"
+msgstr "Cesta"
+
+msgid "Size"
+msgstr "Velikost"
+
+msgid "Alarm level"
+msgstr "ǔroveň varování"
+
+msgid "Events"
+msgstr "Události"
+
+msgid "Label"
+msgstr "Štítek"
+
+msgid "Type"
+msgstr "Typ"
+
+msgid "Single-line text input"
+msgstr "Jednořádkový vstup"
+
+msgid "Multi-line text input"
+msgstr "Víceřádkový vstup"
+
+msgid "Multiple choice input"
+msgstr "Vstup jako výběr možností"
+
+msgid "Selection box"
+msgstr "Výběr možností"
+
+msgid "Checkbox"
+msgstr "Zaškrtávátko"
+
+msgid "Terms of service"
+msgstr "Podmínky užívání služby"
+
+msgid "Group of questions"
+msgstr "Skupina otázek"
+
+msgid "Row"
+msgstr "Řádka"
+
+msgid "Column"
+msgstr "Sloupec"
+
+msgid "Width"
+msgstr "Šířka"
+
+msgid "Question group"
+msgstr "Skupina otázek"
+
+msgid "Hint"
+msgstr "Nápověda"
+
+msgid "Required"
+msgstr "Požadováno"
+
+msgid "Accept multiple file uploads"
+msgstr "Akceptován příjem více souborů"
+
+msgid "Accept multiple answers for the field"
+msgstr "Akceptováno pro pole více odpovědí"
+
+msgid "Hint shown on the button for adding an additional answer"
+msgstr "Nápověda objevující se na tlačítku pro přidání doplňující otázky"
+
+msgid "Clause"
+msgstr "Dodatek"
+
+msgid "Agreement Text"
+msgstr "Text dohody"
+
+msgid "Layout orientation"
+msgstr "Orientace"
+
+msgid "Subject answer visibility to custodian authorization"
+msgstr "Vystavit viditelnost oprávnění ochránce"
+
+msgid "Prompt confirmation upon negative answer"
+msgstr "Výzva k potvrzení záporné odpovědi"
+
+msgid "Title of the confirmation question upon negative answer"
+msgstr "Titulek dotazu na potvrzení záporné odpovědi"
+
+msgid "Body of the confirmation question upon negative answer"
+msgstr "Tělo dotazu na potvrzení záporné odpovědi"
+
+msgid "Options"
+msgstr "Volby"
+
+msgid "Questions"
+msgstr "Dotazy"
+
+msgid "Add new question"
+msgstr "Přidat novou otázku"
+
+msgid "Add question from template"
+msgstr "Přidat otázku dle šablony"
+
+msgid "Steps"
+msgstr "Kroky"
+
+msgid "Configuration"
+msgstr "Konfigurace"
+
+msgid "Default"
+msgstr "Přednastavené"
+
+msgid "Forcefully selected"
+msgstr "Nastaveno adminem"
+
+msgid "Unselectable"
+msgstr "Nevybratelné"
+
+msgid "Allow the recipient to postpone the submission expiration date"
+msgstr "Povolit příjemci odložit datum expirace"
+
+msgid "The setting is enabled at a global level."
+msgstr "Nastavení je povoleno na globální úrovni"
+
+msgid "Allow the recipient to delete submissions"
+msgstr "Povolit příjemci smazat příspěvek"
+
+msgid ""
+"Allow the recipient to grant permissions to whistleblowers on specific "
+"submissions"
+msgstr "Povolit příjemci přiřazovat oprávnění oznamovatelům ke konkrétním podáním"
+
+msgid "General settings"
+msgstr "Hlavní nastavení"
+
+msgid "Network settings"
+msgstr "Nastavní sítě"
+
+msgid "Root domain used for secondary sites"
+msgstr ""
+
+msgid "Allow users to sign up"
+msgstr ""
+
+msgid "Sites"
+msgstr "Stránky"
+
+msgid "Active"
+msgstr "Aktivní"
+
+msgid "Inactive"
+msgstr "Neaktivní"
+
+msgid "The default password is:"
+msgstr "Výchozí heslo je:"
+
+msgid "The system forces users to change the password at first login."
+msgstr "Systém vynutí u uživatele změnu hesla po prvním přihlášení."
+
+msgid "New Password"
+msgstr "Nové heslo"
+
+msgid ""
+"The chosen password is too weak. Make it more secure by adding special "
+"characters, numbers, and unusual symbols."
+msgstr "Zvolené heslo je příliš slabé. Jeho bezpečnost zvýšíte přidáním speciálních znaků, čísel a dalších symbolů."
+
+msgid "Force password change"
+msgstr "Vynutit změnu hesla"
+
+msgid "The user will be forced to change its password on next login."
+msgstr "Uživatel bude bude muset po prvním přihlášení změnit heslo."
+
+msgid "Language"
+msgstr "Jazyk"
+
+msgid "Encryption:"
+msgstr "Šifrování:"
+
+msgid "Remove the PGP key"
+msgstr "Odstranení klíče PGP"
+
+msgid "Set up encryption by providing a PGP public key"
+msgstr "Nastavte šifrování poskytnutím veřejné části PGP klíče."
+
+msgid "Request date"
+msgstr "Datum požadavku"
+
+msgid "Authorization"
+msgstr "Autorizace"
+
+msgid "Before proceeding, please change your password."
+msgstr "Před dokončením, prosím, změnte své heslo."
+
+msgid "Submissions disabled"
+msgstr "Příspěvky zakázány"
+
+msgid ""
+"You are connecting to the server without anonymity and this server supports "
+"only anonymous submissions"
+msgstr "Připojujete se k nódu neanonymně. Tento server podporuje pouze anonymní podání."
+
+msgid ""
+"Server temporarly unusable due to resource exhaustion; advise the Admin if "
+"you can."
+msgstr "Server se dočasně nedostupný kvůli vyčerpání zdrojů; pokud můžete, informujte správce."
+
+msgid "This server is not configured."
+msgstr "Tento server není nakonfigurován."
+
+msgid "You will not be able to send a submission."
+msgstr "Nebudete schopen odeslat příspěvek."
+
+msgid ""
+"This platform makes use of GlobaLeaks software specifically designed to "
+"protect the identity for submitter and recipient in the exchange of content."
+msgstr "Toto řešení používá software pro výměnu obsahu, nazvaný Globaleaks, speciálně vyvinutý za účelem ochrany identity oznamovatelů a příjemců"
+
+msgid ""
+"The software is developed by the non-profit Hermes Center for Transparency "
+"and Digital Human Rights."
+msgstr "Tento software je vyvíjen neziskovou organizací Hermes Centra pro transparentnost a digitální lidská práva."
+
+msgid "Please support Hermes through their donation page."
+msgstr "Prosíme podpořte Hermes na jejich stránce pro dary."
+
+msgid "Authentication failed"
+msgstr "Chyba autentizace"
+
+msgid "Please select your account:"
+msgstr "Vyberte, prosím, váš účet"
+
+msgid "Now type your password, then click 'Log in':"
+msgstr "Nyní vepište své heslo, po té stiskněte  přihlášení 'Log in':"
+
+msgid "Are you sure?"
+msgstr "Jste si jistý?"
+
+msgid "The operation will reset the configuration and cannot be undone."
+msgstr "Operace obnoví konfiguraci a tuto změnu nelze vrátit zpět."
+
+msgid "Assign score points"
+msgstr "Přidělit bodové skóre"
+
+msgid ""
+"Enter the number of score points to be assigned when this option is "
+"selected:"
+msgstr "Zadejte počet bodů skóre pro přidělení, je-li tato volba zvolena:"
+
+msgid "Confirm"
+msgstr "Potvrdit"
+
+msgid "Are you human?"
+msgstr "Jste člověk?"
+
+msgid ""
+"We do not discriminate based on race and gender, but we do against computers"
+" :)"
+msgstr "Nediskriminujeme na základě rasy či genderu, jen nemáme rádi roboty:)"
+
+msgid ""
+"Just to prove you are human, please answer the following math challenge:"
+msgstr "Abyste prokázali, že jste lidské rasy, prosím vyřeště následující matematickou úlohu:"
+
+msgid "I've solved the math challenge, hide this thing now!"
+msgstr "Matematická úloha vyřešena, tak už to skryjte."
+
+msgid "Please note that all the associated data will be permanently lost."
+msgstr "Prosím, vezměte na vědomí, že všechna související data budou navždy smazána."
+
+msgid ""
+"This means that if the server running the platform were to be seized, it "
+"would be possible to extract the files that have been submitted."
+msgstr "To znamená, že pokud bude server provozující toto řešení zabaven, bude pravděpodobně možné z něj získat data v něm uložená."
+
+msgid "Are you sure that you wish to continue?"
+msgstr "Jste si jistí zda chcete pokračovat?"
+
+msgid ""
+"Downloading a file with malicious content could compromise your computer or "
+"disclose your identity."
+msgstr "Stažením souboru s podezřelým obsahem můžete narušit zabezpečení vašeho počítače nebo odhalit svou identitu."
+
+msgid "The name of the file and its content can be intentionally misleading."
+msgstr "Název  souboru nebo jeho obsah mohou být úmyslně zavádějící."
+
+msgid ""
+"Please review the following information and decide if you wish to proceed."
+msgstr "Prosím zkontrolujte následující informace and rozmyslete zda chcete pokračovat."
+
+msgid "Error!"
+msgstr "Chyba!"
+
+msgid "Internal server error"
+msgstr ""
+
+msgid "Error on input validation"
+msgstr ""
+
+msgid "Resource not found"
+msgstr ""
+
+msgid "Forbidden operation"
+msgstr ""
+
+msgid "The specified old password is not valid"
+msgstr "Zadané heslo není správné"
+
+msgid "Resource can only be accessed via the Tor network"
+msgstr "Zdroj může být přístupný pouze uvnitř sítě Tor"
+
+msgid "The upload request exceeds the size limit"
+msgstr "Požadavek na upload přesahuje povolený limit MByte."
+
+msgid "Success!"
+msgstr "Úspěch!"
+
+msgid ""
+"It appears that you are browsing this site without any extra privacy and "
+"security!"
+msgstr "Zdá se, že se procházíte tuto stránku bez dodatečného zabezpečení soukromí!"
+
+msgid ""
+"You are strongly advised to visit this site using the desktop app called Tor"
+" Browser, that protects your identity."
+msgstr "Důrazně se doporučuje k návštěvě těchto stránek použít desktopovou aplikaci s názvem Tor Browser. Ten Značně chrání Vaši identitu."
+
+msgid "Then, copy and paste the following address into the Tor Browser:"
+msgstr "Pak zkopírujte a vložte následující adresy do Tor prohlížeče:"
+
+msgid "Details of the PGP key:"
+msgstr "Detaily PGP klíče:"
+
+msgid "Fingerprint"
+msgstr "Otisk klíče"
+
+msgid "Add file"
+msgstr "Přidat soubor"
+
+msgid "Uploading files…"
+msgstr "Nahrávám soubory..."
+
+msgid "Upload completed successfully!"
+msgstr "Nahrání úspěšně proběhlo!"
+
+msgid "Error while uploading files; check below for details."
+msgstr "Chyba během nahrávání souboru. Čtěte dále pro více informací."
+
+msgid "Estimated upload time:"
+msgstr "Odhadovaná doba nahravání:"
+
+msgid "seconds"
+msgstr "sekund"
+
+msgid "Which of the following statements is true?"
+msgstr "Který z následujících výroků je pravdivý?"
+
+msgid "HTTPS protects my identity, but not the content of my submission"
+msgstr "HTTPS ochrání moji identitu, ale nikoli obsah mým podkladů"
+
+msgid "HTTPS protects the content of my submission but not my identity"
+msgstr "HTTPS chrání obsah mých podkladů, ale ne moji identitu"
+
+msgid "HTTPS does not protect the content of my submission nor my identity"
+msgstr "HTTPS nechrání ani obsah mých podkladů, anebo mou identitu"
+
+msgid "HTTPS does protect both my identity and the content of my submission"
+msgstr "HTTPS chrání mou identitu i obsah mých podkladů"
+
+msgid ""
+"You are aware of the risks involved. Go ahead, but consider yourself warned."
+msgstr "Jste si vědom příslušného rizika, pokračujte dále s rozvážností."
+
+msgid "Wrong Answer!"
+msgstr "Chybná odpověď."
+
+msgid "The connection is not secure."
+msgstr "Spojení není zabezpečeno."
+
+msgid ""
+"The platform is still not configured for HTTPS connections and should "
+"therefore only be used for testing purposes."
+msgstr "Platforma stále není nakonfigurována pro připojení via HTTPS a měla by být použita pouze pro účely testování."
+
+msgid "Send"
+msgstr "Odeslat"
+
+msgid "Allow the whistleblower to write comments"
+msgstr "Povolit oznamovateli psát komentáře"
+
+msgid "Filename"
+msgstr "Jméno souboru"
+
+msgid "Upload date"
+msgstr "Datum uploadu"
+
+msgid "Content Type"
+msgstr "Typ obsahu"
+
+msgid "File size"
+msgstr "Velikost souboru"
+
+msgid "download"
+msgstr "download"
+
+msgid "No files have been uploaded!"
+msgstr "Nebyl uploadován žádný soubor"
+
+msgid "Allow the whistleblower to add attachments to the submission"
+msgstr "Povolit oznamovateli přidat přílohy k podáním"
+
+msgid "Access expiration"
+msgstr "Expirace přístupu"
+
+msgid "Connection"
+msgstr "Připojení"
+
+msgid "Never"
+msgstr "Nikdy"
+
+msgid "Revoked"
+msgstr "Zamítnuto"
+
+msgid "Allow the whistleblower to send messages"
+msgstr "Povolit oznamovateli posílat zprávy"
+
+msgid "Are you sure that you want to delete the submission?"
+msgstr "Opravdu chcete smazat tento příspěvek?"
+
+msgid ""
+"Everything related to the submission stored on the platform will be deleted."
+msgstr "Vše týkající se tohoto podání bude smazáno."
+
+msgid ""
+"Please be aware that everything stored off the platform, e.g. files you have"
+" saved on your computer, must be deleted manually."
+msgstr "Prosím, ujistěte se, že ste smazali všechna citlivá data, např. uložená na vašem počítači."
+
+msgid "Are you sure that you want to delete all the selected submissions?"
+msgstr "Opravdu chcete smazat všechny vybrané příspěvky?"
+
+msgid ""
+"Please make sure that all related data is properly deleted so that the "
+"recipients won't be able to further access to it."
+msgstr "Ujistěte se, že všechny související data jsou správně odstraněna a že všichni příjemci nebudou schopni se k nim v budoucnosti dostat."
+
+msgid "Please write a motivation for the reply"
+msgstr "Prosím, napište zdůvodnění odpovědi."
+
+msgid "Are you sure that you want to postpone the submission expiration date?"
+msgstr "Opravdu chcete odložit datum expirace příspěvku?"
+
+msgid "By confirming, you will postpone the expiration date to:"
+msgstr "Potvrzením odložíte datum expirace do:"
+
+msgid ""
+"Are you sure that you want to postpone the expiration date for all selected "
+"submissions?"
+msgstr "Opravdu chcete odložit datum expirace všech těchto příspěvků?"
+
+msgid "Questionnaire answers"
+msgstr "Odpovědi z dotazníků"
+
+msgid "Step"
+msgstr "Krok"
+
+msgid "Recipient list"
+msgstr "Seznam příjemců"
+
+msgid "Attached files for the whistleblower"
+msgstr "Přiložené soubory pro oznamovatele."
+
+msgid ""
+"Files uploaded here are made available for the whistleblower and other "
+"recipients to download."
+msgstr "Sobory zde nahrané jsou přístupné ke stažení oznamovatelům a dalším příjemcům."
+
+msgid "Upload a file:"
+msgstr "Nahrání souboru:"
+
+msgid "Logout"
+msgstr "Odhlášení"
+
+msgid "The key code is either invalid or the submission has expired."
+msgstr "Kód je neplatný, nebo jeho platnost vypršela."
+
+msgid "Please check your key code and try again or make a new submission."
+msgstr "Prosím zkontrolujte kód a zkuste to znovu nebo celé podání zopakujte."
+
+msgid "Files attached by recipients"
+msgstr "Přílohy od příjemců"
+
+msgid "These files have been attached to your submission by the recipients."
+msgstr "Tyto přílohy byly připojené příjemci k vašemu oznámení ."
+
+msgid "Enable submission notification"
+msgstr "Povolit oznámení o příspěvcích"
+
+msgid "Current Password"
+msgstr "Běžné heslo"
+
+msgid "Old password confirmation required"
+msgstr "Požadováno potvrzení starého hesla"
+
+msgid "The new password must be different from the current one."
+msgstr "Nové heslo musí být rozdílné od stávajícího."
+
+msgid "Type your new password again"
+msgstr "Zadejte své nové heslo"
+
+msgid "The two passwords do not match"
+msgstr "Obě hesla si neodpovídají"
+
+msgid "Thank you!"
+msgstr "Děkuji Vám!"
+
+msgid "Remember your key code for this submission."
+msgstr "Zapamatujte si kód Vašeho oznámení"
+
+msgid "We will try to get back to you as soon as possible!"
+msgstr "Pokusíme se Vám odpovědět hned jak to bude možné."
+
+msgid ""
+"Use the 16 digit key code to log in. It will allow you to view any messages "
+"we sent you, and also to add extra info."
+msgstr "Použijte 16ti písmenný kód k přihlášení. Po přihlášení si budete moct přečíst zprávy, které jsme Vám poslali či doplnit informace."
+
+msgid "View your submission"
+msgstr "Prohlédnout se na Vaše oznámení"
+
+msgid "Hint: How to hide your key code"
+msgstr "Nápad: jak ukrýt váš kód"
+
+msgid ""
+"A useful way to hide your key code is to write it down like a credit card "
+"number, i.e. by also including an expiration date."
+msgstr "Užitečný způsob, jak si nenápadně poznamenat kód, je zapsat si ho jako číslo kreditní karty. Pro lepší dojem můžete doplnit  datum expirace."
+
+msgid "Example:"
+msgstr "Příklad:"
+
+msgid ""
+"You have not set up your encryption key, so the files will not be encrypted "
+"prior to being stored on the server."
+msgstr "Zatím jste nenastavili svůj šifrovací klíč. Veškeré nahrávané soubory tedy nebudou ukládány v zašifrované formě."
+
+msgid ""
+"This may lead to unintended access to the files by the server administrator "
+"or others in case the server is compromised."
+msgstr "To může vézt k nechtěnému přístupu k souborům adminsitrátorem serveru v případě sizingu, změny konfigurace  serveru."
+
+msgid "Please configure your PGP keys in the recipient preferences page."
+msgstr "Nakonfigurujte, prosím, na stránce nastavení příjemce Váš klíč PGP ."
+
+msgid ""
+"One or more of the recipients of this submission has not configured a PGP "
+"key."
+msgstr "Jeden nebo více příjemců nemá nakonfigurován PGP klíč."
+
+msgid ""
+"This means that the submitted files will be stored in plaintext on the "
+"server."
+msgstr "To znamená že předložené soubory budou uloženy na serveru v plaintextu."
+
+msgid ""
+"Access to the whistleblower's identity has been requested to the custodian."
+msgstr "Ochránce byl požádán o přístup k identitě oznamovatele"
+
+msgid "Date of the request"
+msgstr "Datum požadavku"
+
+msgid "Congratulations!"
+msgstr "Gratuluji!"
+
+msgid "You have completed the platform activation."
+msgstr ""
+
+msgid "Your whistleblowing platform is now accessible at:"
+msgstr ""
+
+msgid "Users' credentials:"
+msgstr ""
+
+msgid "To log in, visit:"
+msgstr ""
+
+msgid "For the user documentation visit:"
+msgstr ""
+
+msgid "The platform will be automatically deleted on:"
+msgstr ""
+
+msgid "Sign up"
+msgstr "Registrovat se"
+
+msgid "Domain"
+msgstr "Doména"
+
+msgid "Use Case"
+msgstr ""
+
+msgid "Anticorruption"
+msgstr ""
+
+msgid "Corporate compliance"
+msgstr ""
+
+msgid "Investigative journalism"
+msgstr ""
+
+msgid "Civic activism"
+msgstr ""
+
+msgid "Other"
+msgstr "Další"
+
+msgid "Complete"
+msgstr ""
+
+msgid "Your whistleblowing platform is almost ready!"
+msgstr ""
+
+msgid "Check your inbox to activate your account."
+msgstr ""
+
+msgid "The answer is too short."
+msgstr "Odpověď je příliš krátká"
+
+msgid "The specified input is not valid:"
+msgstr "Zadaný vstup není validní:"
+
+msgid "please enter a valid email address."
+msgstr "Prosím vložte validní email adresu."
+
+msgid "please enter numbers only."
+msgstr "Vkládejte, prosím, pouze čísla."
+
+msgid "Recipient selection"
+msgstr "Výběr příjemce"
+
+msgid "previous step"
+msgstr "Předchozí krok"
+
+msgid "next step"
+msgstr "Další krok"
+
+msgid "Submit"
+msgstr "Odeslat"
+
+msgid "Recipients selected:"
+msgstr "Vybraní příjemci:"
+
+msgid ""
+"In this step the answers to the following questions are either missing or "
+"invalid:"
+msgstr "V tomto kroku jsou odpovědi na následující otázky buď chybějící nebo neplatné:"
+
+msgid "Submission errors"
+msgstr "Chyby podání"
+
+msgid "You must select at least one recipient."
+msgstr "Musíte vybrat alespoň jednoho příjemce."
+
+msgid "Waiting for the file(s) to finish uploading."
+msgstr "čekáme na dokončení nahrávání souborů."
+
+msgid "The following steps have errors:"
+msgstr "Následující kroky mají chyby:"
+
+msgid "Welcome!"
+msgstr ""
+
+msgid ""
+"The following step-by-step procedure will guide you through creating your "
+"whistleblowing platform."
+msgstr ""
+
+msgid "Please choose a configuration profile:"
+msgstr "Prosím zvolte profil konfigurace:"
+
+msgid ""
+"These profiles contain settings used by successful projects in each "
+"respective field."
+msgstr "Tyto profily obsahují nastavení používaná úspěšnými projekty v jednotlivých scénářích."
+
+msgid "Confirm password"
+msgstr "Zadejte heslo"
+
+msgid "The default username is:"
+msgstr "Výhozí uživatelské jméno je:"
+
+msgid "License Agreement"
+msgstr "Licenční informace"
+
+msgid "Please review the license terms before proceeding."
+msgstr "Než budete pokračovat, věnujte, prosím, pozornost přečtení licencních podmínek."
+
+msgid "I have read and agree to the terms of the License Agreement."
+msgstr "Prečetl jsem a souhlasím s licenčními podmínkami."
+
+msgid "You have completed the platform wizard."
+msgstr "Právě jste dokončili průvodce základním nastavením."
+
+msgid "Fill out your submission"
+msgstr "Vyplňte vaše podání"
+
+msgid "Short title"
+msgstr "Krátký popis"
+
+msgid "Describe your submission in a few words."
+msgstr "Popište svě podání několika slovy."
+
+msgid "Full description"
+msgstr "Úplný popis"
+
+msgid "Describe your submission in detail."
+msgstr "Popište vaše podání detailně."
+
+msgid "Attach files relevant to the submission."
+msgstr "Připojení souborů relevantních k předložené informaci."
+
+msgid "Dear {RecipientName},"
+msgstr "Vážený/á {RecipientName},"
+
+msgid "Kind regards,"
+msgstr "S poděkováním,"
+
+msgid ""
+"The number of activities recently detected appears to be higher than usual."
+msgstr "Byl zdetekován počet aktivit vyšší než je obvyklé."
+
+msgid ""
+"This could be a sign of an attack (for example, someone flooding your server"
+" with bogus information) or just a usage spike due to an increased "
+"visibility of your project."
+msgstr "Toto může být projevem probíhajícího útoku (například někdo se snaží zaplavit Váš server zbytečnými informacemi) nebo jen pouhý nárůst popularity Vašeho webu."
+
+msgid "Examine the issue to determine whether it is legitimate or not."
+msgstr ""
+
+msgid "The activities with unusual stats are:"
+msgstr "Aktivity s neobvyklou statistikou:"
+
+msgid ""
+"The server cannot guarantee that a new submission can be stored, so "
+"submissions have been disabled."
+msgstr "Server nemohl zajistit uložení nového příspěvku. Příjem dalších podání je tedy zastaven."
+
+msgid ""
+"Please consider asking your technical support to create more disk space on "
+"the server."
+msgstr "Prosím požádejte vaši technickou podporu pro rozšíření dostupného diskového prostoru."
+
+msgid ""
+"GlobaLeaks technology includes a server status checking component which will"
+" alert you in case something requires your attention."
+msgstr "Řešení Globaleaks obsahuje kontrolu stavu komponent a notifikuje případnou potřebu zásahu."
+
+msgid ""
+"For more information, log in to the Administration interface and look at the"
+" \"System Stats\" and \"Anomalies\" sections."
+msgstr "Pro více informací se přihlašte do administrátorského rozhraní a projděte sekci \"Systémové statistiky\" a \"Anomálie\"."
+
+msgid "Anomaly detected in {NodeName}"
+msgstr "Anomálie detekována na uzlu {NodeName}."
+
+msgid ""
+"This is an email to inform you that the PGP key of the following users is "
+"going to expire or has already expired:"
+msgstr "Touto zprávou Vás chceme upozornit, že klíči těchto uživatelů vyprší zanedlouho platnost:"
+
+msgid ""
+"Without a valid PGP key, the system will not be able to send them encrypted "
+"notifications."
+msgstr "Bez platného PGP certifikátu jim systém nebude schopný poslat šifrovaná upozornění."
+
+msgid "PGP key expiration alert"
+msgstr "Upozornění na vypršení platnosti PGP certifikátu."
+
+msgid ""
+"This is a test email sent out from the platform's administrative interface."
+msgstr "Toto je testovací email zaslaný z administrativního rozhraní."
+
+msgid ""
+"Reception of this email indicates that the server was able to authenticate "
+"to and interact with the SMTP mail server."
+msgstr "Přijetí tohoto emailu značí, že server se byl schopen přihlásit na SMTP server a úspěšně s ním komunikovat."
+
+msgid "Test email"
+msgstr "Testovací email"
+
+msgid ""
+"This is an email to notify you of a new comment on an existing submission."
+msgstr "Toto je oznámení o novém komentáři u existujícího příspěvku."
+
+msgid "The submission can be accessed:"
+msgstr "K tomuto podání můžete přistoupit:"
+
+msgid "via Tor at: {TorUrl}"
+msgstr "skrze Tor na: {TorUrl}"
+
+msgid "via HTTPS at: {HTTPSUrl}"
+msgstr "via HTTPS na: {HTTPSUrl}"
+
+msgid "New comment"
+msgstr "Nový komentář"
+
+msgid "From: {RecipientName}"
+msgstr "Od:: {RecipientName}"
+
+msgid "Date: {EventTime}"
+msgstr "Datum: {EventTime}"
+
+msgid "From: Whistleblower"
+msgstr "Od: Oznamovatel"
+
+msgid "Date: {SubmissionDate}"
+msgstr "Datum: {SubmissionDate}"
+
+msgid "Label: {TipLabel}"
+msgstr "Štítek: {TipLabel}"
+
+msgid "Context: {ContextName}"
+msgstr "Kontext: {ContextName}"
+
+msgid ""
+"This is an email to notify you that the whistleblower of submission {TipNum}"
+" has attached new material."
+msgstr "Toto je e-mailové upozornění, že oznamovatel zaslal nový materiál k příspěvku {TipNum}."
+
+msgid "New attachment"
+msgstr "Nová příloha"
+
+msgid ""
+"The HTTPS certificate loaded on the platform is about to, or has already "
+"expired."
+msgstr "Certifikát HTTPS načtený na platformě brzy vyprší nebo již vypršel."
+
+msgid "Expiration date: {ExpirationDate}"
+msgstr "Doba expirace: {ExpirationDate}"
+
+msgid ""
+"Without a valid certificate, the platform will be accessible in a secure way"
+" only via Tor."
+msgstr "Bez platného certifikátu bude platforma bezpečně přístupná pouze prostřednictvím služby Tor."
+
+msgid "Log in to solve the issue."
+msgstr "Přihlaste se pro vyřešení problému."
+
+msgid "Expiration alert for HTTPS certificate"
+msgstr "Výstraha ohledně vypršení platnosti certifikátu HTTPS"
+
+msgid ""
+"This is an email to notify you that a custodian has authorized you to access"
+" to the whistleblowing identity for the submission {TipNum}."
+msgstr "Tímto emailem  Vás chceme informovat, že ochránce Vám povolil přístup k identitě oznamovatele pro pro podání {TipNum}."
+
+msgid "Access to whistleblower's identity authorized"
+msgstr "Přístup k oznamovatelově identitě schválen"
+
+msgid ""
+"This is an email to notify you that a custodian has denied you access to the"
+" wistleblowing identity for the submission {TipNum}."
+msgstr "Tímto emailem  Vás chceme informovat, že ochránce Vám zamítll přístup k identitě oznamovatele pro pro podání {TipNum}."
+
+msgid "Access to whistleblower's identity denied"
+msgstr "Přístup k oznamovatelově identitě zamítnut"
+
+msgid ""
+"This is an email to notify you that a recipient has requested access to the "
+"whistleblower's identity for the submission {TipNum}"
+msgstr "Toto je emailové upozornění, že příjemce požaduje přístup k identitě oznamovatele u příspěvku {TipNum}."
+
+msgid "The request can be accessed:"
+msgstr "Požadavek je dostupný:"
+
+msgid "New request of access to a whistleblower's identity"
+msgstr "Nový požadavek na přístup k identitě oznamovatele"
+
+msgid ""
+"This is an email to notify you that the whistleblower for the submission "
+"{TipNum} has provided their identity."
+msgstr "Toto je e-mailové upozornění, že oznamovatel k příspěvku {TipNum} poskytl svou identitu."
+
+msgid "The whistleblower has provided their identity"
+msgstr "Oznamovatel poskytl svou identitu"
+
+msgid ""
+"This is an email to notify you of a new message on an existing submission."
+msgstr "Toto je e-mailové upozornění o nové zprávě u existujícího příspěvku."
+
+msgid "New message"
+msgstr "Nová zpráva"
+
+msgid ""
+"This is an email to inform you that your PGP key is expiring or has already "
+"expired."
+msgstr "Touto zprávou Vás chceme upozornit, že Vašemu certifikátu vypršela či zanedlouho vyprší platnost."
+
+msgid ""
+"You should extend its validity and update the key present on the platform, "
+"or upload a new key."
+msgstr "Měli byste prodloužit jeho platnost a aktualizovat současný klíč nebo nahrát klíč nový."
+
+msgid ""
+"Without a valid PGP key, the system won't be able to encrypt data provided "
+"to you."
+msgstr "Bez poskytnutí validního PGP klíče nebude systém schopen data s vámi sdílená zašifrovat."
+
+msgid "It appears that {NodeName} is receiving a large number of requests."
+msgstr "Zdá se, že na {NodeName} se valí spousta požadavků."
+
+msgid ""
+"To prevent sending you too many emails, the system has disabled email "
+"notifications until the load returns to normal. In the meantime, you can "
+"normally log onto the platform and manually check for new submissions."
+msgstr "Jako ochranu proti zahlcení vašich emailových schránek příliš velkým počtem emailů, systém automaticky vypnul emailové notifikace až do doby kdy se systémová zátěž vrátí k normálu. V mezičase se můžete běžným způsobem přihlasit přes webové rozhraní a ručně kontrolovat nové příspěvky."
+
+msgid ""
+"If you don’t mind and would rather receive such a large number of email "
+"notifications anyhow, please contact your technical support to have them "
+"modify this setting accordingly."
+msgstr "Pokud Vám to nevadí a chcete přijímat takto velké množství email notifikací, kontaktujte, prosím, vašeho správce aby příslušně upravil nastavení."
+
+msgid "Notifications from {NodeName} have been temporarily suspended"
+msgstr "Notifikace z {NodeName} byly dočasně pozastaveny."
+
+msgid "Click the link to activate the platform:"
+msgstr ""
+
+msgid "A software update is available."
+msgstr "Je k dispozici aktualizace software."
+
+msgid "It is good security practice to keep the platform up to date."
+msgstr "Osvědčeným postupem je udržovat řešení aktualizované na poslední dostupnou verzi."
+
+msgid "Installed version: {InstalledVersion}"
+msgstr "Instalovaná verze: {InstalledVersion}"
+
+msgid "Latest version: {LatestVersion}"
+msgstr "Poslední verze: {LatestVersion}"
+
+msgid ""
+"To learn about new features and bug fixes in the new version consult the "
+"change log at: {ChangeLogUrl}"
+msgstr "Pro informace o nových vlastnostech a opravách v nové verzi, zkontrolujte seznam změn na: {ChangeLogUrl}"
+
+msgid ""
+"For instructions on software updates, please refer to the documentation at: "
+"{UpdateGuideUrl}"
+msgstr "Pro instrukce ohledně postupu aktualizace, nahlédněte, prosím, do dokumentace na {UpdateGuideUrl}"
+
+msgid "The earliest expiration date is {EarliestExpirationDate}."
+msgstr "Nejbližší den vypršení je {EarliestExpirationDate}."
+
+msgid "Please remember to check them before they are deleted."
+msgstr "Pamatujte na jejich kontrolu před smazáním"
+
+msgid "Some submissions will expire soon"
+msgstr "Některá předlození tipu brzy vyprší"
+
+msgid ""
+"This is an email to notify you that a whistleblower has selected you as a "
+"valuable recipient of their submission."
+msgstr "Toto je emailové upozornění, že oznamovatel vybral vás jako cenného příjemce na jeho / její podání."
+
+msgid ""
+"You are asked to pay special attention to the information and material "
+"contained therein. Please keep in mind that whistleblowers often expose "
+"themselves to high personal risks in the interest of the public. Therefore "
+"the material provided within this submission should be considered to be of "
+"high importance."
+msgstr "Rádi by jsme, aby jste věnoval zvláštní pozornost informacím a materiálům v nich obsažených. Prosím, mějte na paměti, že whistlebloweři se často vystavují vysokému osobnímu riziku ve veřejném zájmu. Proto materiály které takto poskytují by měl být považovány za velmi důležitý."
+
+msgid "New submission"
+msgstr "Nový příspěvek"

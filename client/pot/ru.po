@@ -1,0 +1,2342 @@
+# 
+# Translators:
+# Alex Railean <ralienpp@gmail.com>, 2017
+# AlexVox, 2013
+# AlexVox, 2013
+# Andrey Olykainen <andreyjktl@gmail.com>, 2015
+# Annie Bridges <anniebridges90@gmail.com>, 2014
+# Dina Solveig Jalkanen, 2017
+# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2014,2016-2018
+# Hermes Center <info@hermescenter.org>, 2013,2016
+# Hermes Center <info@hermescenter.org>, 2013
+# Hermes Center <info@hermescenter.org>, 2013
+# Kristina Tyskiewicz <savannah5k@yahoo.com>, 2016-2017
+# Lowrider <pams@imail.ru>, 2015
+# Muhammad Ishaq <ishaq@kahaf.com>, 2014
+# Muhammad Ishfaq Khan <ishfaqkhanniazi@gmail.com>, 2014
+# Oleg, 2015
+# Oleg, 2015
+# Lowrider <pams@imail.ru>, 2015
+# Павел Шляк <shlyakpavel@gmail.com>, 2015
+# Umar Hayat, 2016
+# Vitali Vovnenko, 2015
+# Vitaliy Grishenko, 2013
+# Vitaliy Grishenko, 2013-2015
+# Vitaliy Grishenko, 2013
+# Vladislav <yobabay23@gmail.com>, 2015
+# Павел Шляк <shlyakpavel@gmail.com>, 2015,2017
+msgid ""
+msgstr ""
+"Project-Id-Version: GlobaLeaks\n"
+"PO-Revision-Date: 2018-02-22 09:24+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"Language-Team: Russian (http://www.transifex.com/otf/globaleaks/language/ru/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: ru\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%100>=11 && n%100<=14)? 2 : 3);\n"
+
+msgid "Login page"
+msgstr "Страница входа"
+
+msgid "Log in"
+msgstr "Войти"
+
+msgid "Administration interface"
+msgstr "Панель администратора"
+
+msgid "Main configuration"
+msgstr "Основные настройки"
+
+msgid "Theme customization"
+msgstr "Настройка темы"
+
+msgid "Languages"
+msgstr "Языки"
+
+msgid "Text customization"
+msgstr "Настройка текста"
+
+msgid "Advanced settings"
+msgstr "Дополнительные настройки"
+
+msgid "Questionnaire configuration"
+msgstr "Настройки опросника"
+
+msgid "Question templates"
+msgstr "Шаблоны для вопросов"
+
+msgid "Questionnaires"
+msgstr "Опросники"
+
+msgid "Add new questionnaire"
+msgstr "Добавить новый опросник"
+
+msgid "Home"
+msgstr "Главная"
+
+msgid "Home page"
+msgstr "Домашняя страница"
+
+msgid "Changelog"
+msgstr "Журнал изменений"
+
+msgid "License"
+msgstr "Лицензия"
+
+msgid "Notification templates"
+msgstr "Шаблоны уведомлений"
+
+msgid "Recipient notification templates"
+msgstr "Шаблоны уведомлений получателей"
+
+msgid "Admin notification templates"
+msgstr "Шаблоны уведомлений администратора"
+
+msgid "Missing data"
+msgstr "Отсутствуют данные"
+
+msgid "no stats available for the future."
+msgstr "нет статистических данных на будущее."
+
+msgid "no stats available for this hour."
+msgstr "нет статистических данных на этот час."
+
+msgid "no stats available for current hour; check activities page."
+msgstr "нет статистических данных для этого часа; проверьте страницу активности."
+
+msgid "Delete"
+msgstr "Удалить"
+
+msgid "Anomalies"
+msgstr "Аномалии"
+
+msgid "Preferences"
+msgstr "Настройки"
+
+msgid "Recipient interface"
+msgstr "Панель получателя"
+
+msgid "Notification settings"
+msgstr "Настройки уведомлений"
+
+msgid "This recipient has configured the encryption key."
+msgstr "Этот получатель настроил ключ шифрования."
+
+msgid "This recipient has not configured the encryption key."
+msgstr "Этот получатель не настроил ключ шифрования."
+
+msgid "The file is unavailable due to an internal error."
+msgstr "Файл недоступен из-за внутренней ошибки."
+
+msgid "file unavailable"
+msgstr "файл недоступен"
+
+msgid "Creation date"
+msgstr "Дата создания"
+
+msgid "Expiration date"
+msgstr "Дата окончания срока действия"
+
+msgid "Last Access"
+msgstr "Последний доступ"
+
+msgid "Files"
+msgstr "Файлы"
+
+msgid "Comments"
+msgstr "Комментарии"
+
+msgid "Messages"
+msgstr "Сообщения"
+
+msgid "Select this recipient."
+msgstr "Выбор получателя"
+
+msgid "Unselect this recipient."
+msgstr "Отмена выбора получателя."
+
+msgid "This recipient cannot be selected."
+msgstr "Получатель не может быть выбран"
+
+msgid "This recipient cannot be deselected."
+msgstr "Получатель не может быть отменен."
+
+msgid "Details"
+msgstr "Подробности"
+
+msgid "Platform wizard"
+msgstr "Мастер платформы"
+
+msgid "Step-by-step setup"
+msgstr "Пошаговая настройка"
+
+msgid "CREDIT CARD"
+msgstr "КРЕДИТНАЯ КАРТА"
+
+msgid "YOUR NAME"
+msgstr "ВАШЕ ИМЯ"
+
+msgid "Postpone the expiration date"
+msgstr "Отложить срок истечения"
+
+msgid "Select all"
+msgstr "Выбрать всё"
+
+msgid "Deselect all"
+msgstr "Отменить выбор"
+
+msgid "Refresh page"
+msgstr "Обновить страницу"
+
+msgid "Context"
+msgstr "Контекст"
+
+msgid "Submission date"
+msgstr "Дата подачи материала"
+
+msgid "Private messages"
+msgstr "Личные сообщения"
+
+msgid "Preview"
+msgstr "Предпросмотр"
+
+msgid "Move up"
+msgstr "Двиг. вверх"
+
+msgid "Move down"
+msgstr "Двиг. вниз"
+
+msgid "Move left"
+msgstr "Двиг. влево"
+
+msgid "Move right"
+msgstr "Двиг. вправо"
+
+msgid "Import"
+msgstr "Импорт"
+
+msgid "Export"
+msgstr "Экспорт"
+
+msgid "Save all"
+msgstr "Сохранить всё"
+
+msgid "This field is mandatory"
+msgstr "Это поле обязательно"
+
+msgid ""
+"The connection used to send this submission has been secured with HTTPS "
+"ensuring confidentiality."
+msgstr "Соединение, используемое для отправки этого материала, было защищено с помощью средств обеспечения конфиденциальности HTTPS."
+
+msgid ""
+"The connection used to send this submission has been secured with Tor "
+"ensuring confidentiality and anonymity."
+msgstr "Соединение, используемое для отправки этого материала, было защищено с помощью средств обеспечения конфиденциальности и анонимности Tor."
+
+msgid "vertical"
+msgstr "вертикальн."
+
+msgid "horizontal"
+msgstr "горизонтал."
+
+msgid "Number"
+msgstr "Номер"
+
+msgid "Email"
+msgstr "Эл. почта"
+
+msgid "Date"
+msgstr "Дата"
+
+msgid "Regular expression validator"
+msgstr "Валидатор регулярных выражений"
+
+msgid "Minimum number of input characters"
+msgstr "Минимальное кол-во вводимых символов"
+
+msgid "Maximum number of input characters"
+msgstr "Максимальное кол-во вводимых символов"
+
+msgid "Earliest selectable date"
+msgstr "Самая ранняя дата выбора"
+
+msgid "Latest selectable date"
+msgstr "Последняя дата выбора"
+
+msgid "0 = auto"
+msgstr "0 = автоматически"
+
+msgid "-1 = unlimited"
+msgstr "-1 = бесконечно"
+
+msgid "True"
+msgstr "Истина"
+
+msgid "False"
+msgstr "Ложь"
+
+msgid "Yes"
+msgstr "Да"
+
+msgid "No"
+msgstr "Нет"
+
+msgid "Attachment"
+msgstr "Приложение"
+
+msgid "Attachments"
+msgstr "Приложения"
+
+msgid "Change your password"
+msgstr "Изменить пароль"
+
+msgid "First name"
+msgstr "Имя"
+
+msgid "Last name"
+msgstr "Фамилия"
+
+msgid "GENDER_OTHER"
+msgstr "ПОЛ_ДРУГОЙ"
+
+msgid "Male"
+msgstr "Мужской"
+
+msgid "Female"
+msgstr "Женский"
+
+msgid "Date of birth"
+msgstr "Дата рождения"
+
+msgid "Place of birth"
+msgstr "Место рождения"
+
+msgid "Social security number"
+msgstr "Номер социального страхования"
+
+msgid "Residence"
+msgstr "Место жительства"
+
+msgid "Address"
+msgstr "Адрес"
+
+msgid "Zip code / Postal code"
+msgstr "Почтовый индекс"
+
+msgid "City"
+msgstr "Город"
+
+msgid "State"
+msgstr "Область"
+
+msgid "Region"
+msgstr "Регион"
+
+msgid "Province"
+msgstr "Провинция"
+
+msgid "Country"
+msgstr "Страна"
+
+msgid "Phone number"
+msgstr "Номер телефона"
+
+msgid "Current job title"
+msgstr "Текущая должность"
+
+msgid "Current job responsibility (role)"
+msgstr "Текущие служебные обязанности (роль)"
+
+msgid "Current organization unit and job location"
+msgstr "Текущая организационная единица и место работы"
+
+msgid "Job title at the time of the reported fact"
+msgstr "Занимаемая должность во время событий, изложенных в материале"
+
+msgid "Job responsibility (role) at the time of the reported fact"
+msgstr "Служебные обязанности (роль) во время событий, изложенных в материале"
+
+msgid "Organization unit and job location at the time of the reported fact"
+msgstr "Текущая организационная единица и место работы во время событий, изложенных в материале"
+
+msgid "List of submissions"
+msgstr "Список поданных материалов"
+
+msgid "List of access requests to whistleblowers' identities"
+msgstr "Список запросов на доступ к личностям информаторов"
+
+msgid "User"
+msgstr "Пользователь"
+
+msgid "Motivation"
+msgstr "Мотивация"
+
+msgid "Status"
+msgstr "Статус"
+
+msgid "Request motivation"
+msgstr "Запрос мотивации"
+
+msgid "Reply motivation"
+msgstr "حوصلہ افزائی جواب"
+
+msgid "Request status"
+msgstr "Запросить статус"
+
+msgid "Custodian"
+msgstr "محافظ"
+
+msgid "Custodian of the identities"
+msgstr "تشخص کا محافظ"
+
+msgid "Identity"
+msgstr "Личность"
+
+msgid "Available"
+msgstr "Доступно"
+
+msgid "Not available"
+msgstr "Недоступно"
+
+msgid "Access requested"
+msgstr "Доступ запрошен"
+
+msgid "Request access to the whistleblower's identity"
+msgstr "Запросить доступ к личности информатора"
+
+msgid "Please write a motivation"
+msgstr "Пожалуйста укажите мотивацию"
+
+msgid "Reply to the request"
+msgstr "Ответить на запрос"
+
+msgid "Authorized"
+msgstr "Разрешено"
+
+msgid "Denied"
+msgstr "Отказано"
+
+msgid "Waiting for authorization"
+msgstr "Ожидая авторизации"
+
+msgid "New request"
+msgstr "Новый запрос"
+
+msgid "Authorize"
+msgstr "Разрешить"
+
+msgid "Deny"
+msgstr "Отказать"
+
+msgid "Deny access to the whistleblower's identity"
+msgstr "Запретить доступ к личности информатора "
+
+msgid "Authorize access to the whistleblower's identity"
+msgstr "Разрешить доступ к личности информатора"
+
+msgid "Templates"
+msgstr "Шаблоны"
+
+msgid "Notification of new submission"
+msgstr "Уведомление о новом поданном материале"
+
+msgid "Notification of new comment"
+msgstr "Уведомление о новом комментарии"
+
+msgid "Notification of new message"
+msgstr "Уведомление о новом сообщении"
+
+msgid "Notification of new file attachment"
+msgstr "Уведомление о новом приложении"
+
+msgid "Notification of PGP key expiration"
+msgstr "Уведомление об истечении срока действия PGP-ключа"
+
+msgid "Notification of anomaly"
+msgstr " Уведомление об аномалии"
+
+msgid "Template for summary of contents in submission archive"
+msgstr "محفوظ شدہ دستاویزات میں جمع کرانے کے مندرجات کا خلاصہ کے لئے سانچہ"
+
+msgid "Email subject"
+msgstr "Тема электронного сообщения"
+
+msgid "Email body"
+msgstr "Основная часть электронного сообщения"
+
+msgid "in seconds"
+msgstr "секунд"
+
+msgid "in hours"
+msgstr "часов"
+
+msgid "in days"
+msgstr "дней"
+
+msgid "in characters"
+msgstr "символов"
+
+msgid "in megabytes"
+msgstr "мегабайтах"
+
+msgid "in percentage"
+msgstr "процентах"
+
+msgid "HTTPS settings"
+msgstr "настройки HTTPS"
+
+msgid "Anomaly detection thresholds"
+msgstr "Порог обнаружения аномалий"
+
+msgid "High risk"
+msgstr "Высокий риск"
+
+msgid "Medium risk"
+msgstr "Средний риск"
+
+msgid "Low risk"
+msgstr "Низкий риск"
+
+msgid "Available disk space"
+msgstr "Доступное место на диске"
+
+msgid "Last update"
+msgstr "Последнее обновление"
+
+msgid "Custodian notification templates"
+msgstr "Шаблоны уведомлений смотрителей системы"
+
+msgid ""
+"This interface allows configuring email templates used to notify custodians."
+msgstr "Данный интерфейс позволяет настроить шаблоны сообщений эл. почты, используемые для уведомлений смотрителей системы."
+
+msgid "Disable notifications to administrators"
+msgstr "Отключить уведомления администраторам"
+
+msgid "Disable notifications to custodians"
+msgstr "Отключить уведомления хранителям"
+
+msgid "Disable notifications to recipients"
+msgstr "Отключить уведомления получателям"
+
+msgid "Score"
+msgstr "Счет"
+
+msgid "Trigger question"
+msgstr "Инициировать вопрос"
+
+msgid "Triggered by a score higher than:"
+msgstr "Инициируется оценкой выше:"
+
+msgid "Select the question to be triggered when this option is selected"
+msgstr "Выберите вопрос запускающийся выбором этой опции"
+
+msgid "Message shown on top of the status page of the submission"
+msgstr "Сообщение отображается в верхней части страницы подачи материалов"
+
+msgid "Copy and paste the PGP public key here"
+msgstr "Скопируйте и вставьте сюда открытые ключи PGP"
+
+msgid "Password strength:"
+msgstr "Надежность пароля:"
+
+msgid "Weak"
+msgstr "Слабая"
+
+msgid "Acceptable"
+msgstr "Приемлемая"
+
+msgid "Strong"
+msgstr "Сильная"
+
+msgid "Loading…"
+msgstr "Загрузка..."
+
+msgid "Text shown on top of the interface for selecting contexts"
+msgstr "Текст, отображаемый над интерфейсом выбора контекстов"
+
+msgid "Show small context cards on submission interface"
+msgstr "Показать иконки контекста в интерфейсе подачи материалов"
+
+msgid "Type of context selector:"
+msgstr "Вид селектора контекста:"
+
+msgid "Type to search…"
+msgstr "Введите термин для поиска..."
+
+msgid "Silence email notifications"
+msgstr "Заглушить уведомления по эл. почте"
+
+msgid "Turn on email notifications"
+msgstr "Включить уведомления по эл. почте"
+
+msgid "Enter an email address for the administrator"
+msgstr "Укажите адрес эл. почты для администратора"
+
+msgid "Enter a password for the administrator"
+msgstr "Введите пароль для администратора"
+
+msgid "Test configuration"
+msgstr "Тестовые настройки"
+
+msgid "Failed logins"
+msgstr "Ошибки входа"
+
+msgid "Successful logins"
+msgstr "Успешные входы"
+
+msgid "Started submissions"
+msgstr "Начатые материалы"
+
+msgid "Completed submissions"
+msgstr "Завершённые передачи материалов"
+
+msgid "Failed submissions"
+msgstr "Неудавшиеся загрузки"
+
+msgid "Input validation"
+msgstr "Проверка ввода"
+
+msgid "Email address"
+msgstr "Адрес эл. почты"
+
+msgid "Custom"
+msgstr "Пользовательский"
+
+msgid "None"
+msgstr "Нет ответа"
+
+msgid "Regular expression"
+msgstr "Регулярное выражение"
+
+msgid "Label the submission"
+msgstr "Пометить подачу материалов"
+
+msgid "Activate"
+msgstr "Активировать"
+
+msgid "Search"
+msgstr "Поиск"
+
+msgid ""
+"This custom text is no longer displayed on the platform. The original text "
+"has either changed or been removed."
+msgstr "Пользовательский текст более не показывается на платформе. Исходный текст был изменен или удален."
+
+msgid ""
+"Unless the whistleblower checks the submission by this time, their access to"
+" it will expire."
+msgstr "Право доступа информатора истечет если она не проверит поданные документы до этого срока."
+
+msgid "The whistleblower can no longer access the submission"
+msgstr "Информатор больше не имеет доступа к поданным документам."
+
+msgid "Warning!"
+msgstr "Предупреждение!"
+
+msgid "You are running an unsupported and potentially vulnerable browser."
+msgstr "Вы используете неподдерживаемый, потенциально уязвимый, браузер."
+
+msgid "You are strongly advised to download and install the Tor Browser."
+msgstr "Мы настоятельно рекомендуем инсталлировать Tor Browser."
+
+msgid ""
+"The Tor Browser includes various privacy and security enhancements not "
+"present in other browsers."
+msgstr "В Tor Browser реализованы различные улучшения, связанные с обеспечением приватности и безопасности, которые не присутствуют в других браузерах."
+
+msgid "Download the Tor Browser"
+msgstr "Скачать Tor Browser"
+
+msgid "This is the list of the other supported browsers:"
+msgstr "Список поддерживаемый браузеров:"
+
+msgid "System overview"
+msgstr "Обзор системы"
+
+msgid "Stats"
+msgstr "Статистика"
+
+msgid "Activities"
+msgstr "Активность"
+
+msgid "Submissions"
+msgstr "Материалы"
+
+msgid "Users"
+msgstr "Пользователи"
+
+msgid "From"
+msgstr "От"
+
+msgid "Number of downloads"
+msgstr "Количество загрузок"
+
+msgid "Error with file:"
+msgstr "Ошибка файла:"
+
+msgid "File size not accepted."
+msgstr "Ошибка ограничения на размер файла."
+
+msgid "File type not accepted."
+msgstr "Ошибка типа файла."
+
+msgid "Maximum file size is:"
+msgstr "Максимальный размер файла:"
+
+msgid "Accepted file types are:"
+msgstr "Допустимые типы файлов:"
+
+msgid "Scheduled jobs"
+msgstr "Запланированные задания"
+
+msgid "Sites management"
+msgstr "Управление сайтами"
+
+msgid "Regenerate"
+msgstr "Восстановить"
+
+msgid "Display options alphabetically"
+msgstr "Показать варианты по алфавиту"
+
+msgid "Enable email notifications for:"
+msgstr "Включить уведомления электронной почты о:"
+
+msgid "Software updates"
+msgstr "Обновления программного обеспечения"
+
+msgid "Software problems"
+msgstr "Проблемы программного обеспечения"
+
+msgid "Disable"
+msgstr "Отключить"
+
+msgid "Remove"
+msgstr "Удалить"
+
+msgid "Use as default"
+msgstr "Использовать по умолчанию"
+
+msgid "Create your whistleblowing platform"
+msgstr ""
+
+msgid "Select the context of your submission:"
+msgstr "Выберите контекст для ваших материалов:"
+
+msgid "Warning! You are not anonymous."
+msgstr "Предупреждение! Вы не анонимны."
+
+msgid ""
+"Sending submissions over HTTPS exposes the act of doing so, but not the "
+"content.\\n\\nAlso, hiding the fact that you are submitting something makes "
+"the submission anonymous, which is strongly recommended.\\n\\nThis can be "
+"achieved with the use of the Tor Browser, providing anonymisation not found "
+"in other browsers like Internet Explorer, Firefox, Chrome, Opera etc."
+msgstr "Отсылка докуметов по HTTPS раскрывает сам факт отправления, но не содержание.\\n\\Также, скрытие факта самого отправления сильно рекомендуется, т.к. это делает отправку анонимной.\\n\\nДля этого используйте Tor Browser, который предоставляет анонимность, которой нет в других браузерах, Internet Explorer, Firefox, Chrome, Opera и т.д."
+
+msgid "Are you a whistleblower?"
+msgstr "Вы являетесь информатором?"
+
+msgid "Blow the whistle"
+msgstr "Подавайте материалы"
+
+msgid "Have you already filed a submission? Enter your key code."
+msgstr "Вы уже зарегистрировали подачу материалов? Введите код доступа."
+
+msgid "Your submission was successful."
+msgstr "Подача материала успешно завершена."
+
+msgid "Submission status"
+msgstr "Статус подачи материала"
+
+msgid "Disable submissions"
+msgstr "Лишить возможности публиковать материалы"
+
+msgid "Enable insecure configuration without PGP encryption"
+msgstr "Включить небезопасную настройку без шифрования при помощи PGP"
+
+msgid "Danger"
+msgstr "Опасность"
+
+msgid ""
+"By enabling this option, the system will be storing the submitted files "
+"unencrypted on your server."
+msgstr "Включив эту опцию, система будет хранить переданные файлы на вашем узле в незашифрованном виде."
+
+msgid "This happens whenever encryption is unavailable."
+msgstr "Это происходит при недоступности возможностей шифрования."
+
+msgid "Disable messages that warn of missing encryption"
+msgstr "Отключить сообщения, предупреждающие об отсутствии шифровки"
+
+msgid ""
+"This setting affects the security of the users and must not be used in "
+"production."
+msgstr "Эта настройка влияет на безопасность пользователей и не может быть использована."
+
+msgid "Allow other websites to include the platform inside iframes"
+msgstr "Позволять другим веб-сайтам, вставлять элементы платформы GlobaLeaks в качестве плавающих фреймов."
+
+msgid ""
+"By enabling this option, you are allowing other websites to include the "
+"platform inside iframes; this could potentially be used to endanger the "
+"platform or intercept users' communications"
+msgstr "Включая эту опцию, вы позволяете другим веб-сайтам вставлять элементы платформы GlobaLeaks в качестве плавающих фреймов; это потенциально создаёт дополнительную опасность перехвата коммуникаций как для платформы, так и для пользователей"
+
+msgid "Allow recipients to postpone expiration date of the submission"
+msgstr "Разрешить получателям отложить дату истечения срока подачи"
+
+msgid "Allow recipients to delete submissions"
+msgstr "Разрешить получателям удалять материалы"
+
+msgid ""
+"Allow recipients to grant permissions to whistleblowers on specific "
+"submissions"
+msgstr "Разрешить получателям предоставлять информаторам разрешение доступа к обозначенным документам"
+
+msgid "Enable search engines indexing"
+msgstr "Включить индексирование поисковых систем"
+
+msgid "Enabled"
+msgstr "Включено"
+
+msgid "Search engine spiders will be allowed to index the application."
+msgstr "Разрешить поисковым роботам индексировать приложение."
+
+msgid "Enable custom privacy panel"
+msgstr "Включить пользовательскую панель приватности"
+
+msgid "Custom privacy panel"
+msgstr "Панель настройки конфиденциальности"
+
+msgid "Text shown when the whistleblower is not using Tor"
+msgstr "Текст, отображаемый когда информатор не использует Tor"
+
+msgid "Disable the privacy panel"
+msgstr "Отключить панель конфиденциальности"
+
+msgid "Security awareness panel title"
+msgstr "Название панели осведомления по вопросам безопасности"
+
+msgid "Security awareness panel text"
+msgstr "Текст панели осведомлнения по вопросам безопасности"
+
+msgid "Disable the security awareness panel questions"
+msgstr "Отключение вопросов панели осведомления по вопросам безопасности"
+
+msgid "Disable the security awareness panel"
+msgstr "Отключение панели осведомления по вопросам безопасности"
+
+msgid "Disable the key code hint"
+msgstr "Отключение подсказки для кода доступа"
+
+msgid "Disable the donation panel"
+msgstr "Отключить панель пожертвований"
+
+msgid "Enable CAPTCHA mechanism"
+msgstr "Включить механизм CAPTCHA"
+
+msgid "Enable proof of work mechanism"
+msgstr "کے کام کے طریقہ کار کا ثبوت فعال"
+
+msgid "Enable simplified login for recipients"
+msgstr "Разрешить упрощенный вход для получателей"
+
+msgid "Amount of days till whistleblower access expires"
+msgstr "Дней до окончания доступа информатора"
+
+msgid ""
+"For security reasons the whistleblower access is subject to expiration."
+msgstr "Доступ информатора ограничен по времени по причинам безопасности."
+
+msgid "Tweak this setting only if you know what you are doing."
+msgstr "Изменяйте эту настройку только если знаете, что делаете."
+
+msgid "Landing page"
+msgstr "Целевая страница"
+
+msgid "Home Page"
+msgstr "Домашняя страница"
+
+msgid "Submission Page"
+msgstr "Страница подачи материала"
+
+msgid "Title of the submission page"
+msgstr "Название страницы подачи материалов"
+
+msgid "Title of the attachments widget"
+msgstr "Название виджета приложений"
+
+msgid "Text of prompt for whistleblowers to log in"
+msgstr "Текст запроса входа в систему для информаторов"
+
+msgid "Show contexts in alphabetical order"
+msgstr "Сортировать получателей в алфавитном порядке"
+
+msgid "Title of the receipt page"
+msgstr "Название страницы получения"
+
+msgid "Title of the submission status page"
+msgstr "Название страницы статуса подачи материалов"
+
+msgid "Title of the comments widget"
+msgstr "Название виджета комментариев"
+
+msgid "Title of the messages widget"
+msgstr "Название виджета сообщений"
+
+msgid "Size limit for file attachments"
+msgstr "Ограничение в размере для приложений"
+
+msgid "Notify administrators of software problems"
+msgstr ""
+
+msgid "Notify developers of software problems"
+msgstr "Известить разработчиков о проблемах в программе. "
+
+msgid ""
+"By enabling this feature, you will contribute to the development and "
+"security of the platform."
+msgstr ""
+
+msgid "Enable HTTP Basic Authentication to limit platform access"
+msgstr "Включить базовую HTTP авторизацию для ограничения доступа к платформе"
+
+msgid "Username"
+msgstr "Имя пользователя"
+
+msgid "Password"
+msgstr "Пароль"
+
+msgid ""
+"This feature keeps regular people from visiting the platform while it is "
+"still under development and should not be used for security purposes. The "
+"input password is stored in plaintext on the server."
+msgstr "Эта функция не позволяет обычным людям посещать платформу в стадии развития и не должна использоваться в целях безопасности. Пароль хранится в незашифрованном виде.  "
+
+msgid "Enable experimental features"
+msgstr "Включить экспериментальные функции"
+
+msgid "Warning"
+msgstr "Предупреждение"
+
+msgid ""
+"The experimental features may be less stable or even not work at all; enable"
+" this option at your own risk. Support for these features may vary and they "
+"may be removed in the future."
+msgstr "Зкспериментальные функции могут быть нестабильными или совсем не работать. Включите эту опцию на свой собственный риск. Поддержка этих функций может различаться и быть удалена в будущем."
+
+msgid "Save"
+msgstr "Сохранить"
+
+msgid "Short URL"
+msgstr "Короткий URL"
+
+msgid "Long URL"
+msgstr "Длинный URL"
+
+msgid "Add"
+msgstr "Добавить"
+
+msgid "Logo"
+msgstr "Логотип"
+
+msgid "Project name"
+msgstr "Название инициативы"
+
+msgid "Homepage title"
+msgstr "Заголовок домашней страницы"
+
+msgid "Presentation"
+msgstr "Презентация"
+
+msgid "Description"
+msgstr "Описание"
+
+msgid "Question to solicit possible whistleblowers"
+msgstr "Вопрос для потенциальных информаторов"
+
+msgid "Whistleblowing button"
+msgstr "Кнопка информирования"
+
+msgid "Footer"
+msgstr "Нижний колонтитул"
+
+msgid "Favicon"
+msgstr "Значок"
+
+msgid "Upload"
+msgstr "Загрузка"
+
+msgid "Download"
+msgstr "Скачивание"
+
+msgid "Upload custom file"
+msgstr "Загрузить пользовательский файл"
+
+msgid "The file will be available at URL: /s/$filename"
+msgstr "Файл будет доступен по ссылке: /s/$filename"
+
+msgid "Language:"
+msgstr "Язык:"
+
+msgid "Add custom text"
+msgstr "Добавить свой текст"
+
+msgid "Custom text"
+msgstr "Свой текст"
+
+msgid "Custom texts"
+msgstr "Свои тексты"
+
+msgid "Original text"
+msgstr "Исходный текст"
+
+msgid "Original translation"
+msgstr "Исходный перевод"
+
+msgid "Custom translation"
+msgstr "Свой перевод"
+
+msgid "Contexts"
+msgstr "Контексты"
+
+msgid "Name"
+msgstr "Имя"
+
+msgid "Edit"
+msgstr "Изменить"
+
+msgid "Cancel"
+msgstr "Отмена"
+
+msgid "Questionnaire"
+msgstr "Опросник"
+
+msgid "Recipients"
+msgstr "Получатели"
+
+msgid "Allow selection of this context through the context selector."
+msgstr "Текст, отображаемый перед контекстным селектором"
+
+msgid ""
+"If disabled, submissions for this context will only be accessible through a "
+"direct link to it."
+msgstr "Если настройка выключена, подача документов по этой теме доступна только по прямой ссылке к ней."
+
+msgid "Allow whistleblowers to select their recipients"
+msgstr "Разрешить осведомителям выбирать получателей"
+
+msgid "Select all recipients by default"
+msgstr "Выбрать всех получателей по умолчанию"
+
+msgid "Maximum number of selectable recipients:"
+msgstr "Максимальное число получателей"
+
+msgid "(0 = unlimited)"
+msgstr "(0 = бесконечно)"
+
+msgid "Show recipients in alphabetical order"
+msgstr "Сортировать получателей в алфавитном порядке"
+
+msgid "Show small recipient cards on submission interface"
+msgstr "Показать значки получателей при выборе материалов"
+
+msgid "Enable comments"
+msgstr "Включить комментарии"
+
+msgid "Allow whistleblowers to write comments"
+msgstr "Разрешить информаторам добавлять комментарии"
+
+msgid "Enable private messages"
+msgstr "Задействовать личные сообщения"
+
+msgid "Allow whistleblowers to send messages"
+msgstr "Разрешить информаторам отправлять сообщения"
+
+msgid "Let whistleblowers add attachments onto existing submissions"
+msgstr "Разрешить информаторам добавлять приложения к поданным документам"
+
+msgid "Show recipient details on the status page of the submission"
+msgstr "Показать данные получателя на странице состояния подачи материалов"
+
+msgid "Let recipients upload files to whistleblowers"
+msgstr "Позволить получателям загружать файлы для информаторов"
+
+msgid "Disabled"
+msgstr "Отключено"
+
+msgid "Submission expiration, in days"
+msgstr "Истечение срока подачи материалов в количестве дней"
+
+msgid ""
+"For security reasons, as a matter of data retention policy, the platform "
+"automatically deletes submissions and their data after a certain amount of "
+"time."
+msgstr "По соображениям безопасности, касающихся политики хранения данных, платформа автоматически удалит материалы и их данные по прошествии определенного периода времени."
+
+msgid "Text shown on top of the interface for selecting recipients"
+msgstr "Текст, отображаемый над интерфейсом выбора получателей"
+
+msgid "Welcome to the administration interface!"
+msgstr "Добро пожаловать в раздел администрирования!"
+
+msgid ""
+"This interface may help you understand how the server can be configured and "
+"provides some info on how to connect to other GlobaLeaks users and experts."
+msgstr "Этот интерфейс сможет помочь вам настроить Узел и предоставит информацию о процессе подключения к другим пользователям GlobaLeaks  и специалистам."
+
+msgid "Documentation"
+msgstr "Документация"
+
+msgid ""
+"To properly organize your project, please read the following guidelines:"
+msgstr "Для того, чтобы корректно сформулировать свою инициативу, ознакомьтесь, пожалуйста, со следующими правилами:"
+
+msgid "Remember to provide proper security advice to Whistleblowers:"
+msgstr "Не забудьте проконсультировать по вопросам безопасности информаторов:"
+
+msgid ""
+"To learn more about GlobaLeaks Security you can read the following document:"
+msgstr "Для более полного изучения вопросов безопасности GlobaLeaks, ознакомьтесь со следующим документом:"
+
+msgid "Contact"
+msgstr "Контакты"
+
+msgid ""
+"If you need technical support, have general questions, or have new ideas for"
+" the software:"
+msgstr "Если вам необходима техническая поддержка, у вас возникли общие вопросы, есть предложения для программного обеспечения:"
+
+msgid ""
+"If you want to contribute to software development or report a bug, please "
+"open an issue in our ticketing system:"
+msgstr "Если Вы хотите участвовать в разработке программного обеспечения или сообщить об ошибке, пожалуйста, отправьте запрос в нашу систему поддержки:"
+
+msgid ""
+"If your non-profit needs support for investigative journalism, activism or a"
+" human rights defense project:"
+msgstr "Если ваша некоммерческая организация нуждается в поддержке журналистских расследований, активисма или проекта по защите прав человека:"
+
+msgid ""
+"For professional support and development of anti corruption and compliance "
+"projects contact the social enterprise maintaining GlobaLeaks:"
+msgstr "Для профессиональной поддержки и развития антикоррупционных проектов и проектов мониторинга, обратитесь в общественное предприятие, ответственное за поддержку платформы GlobaLeaks:"
+
+msgid "Join our IRC chat channel on the irc.oftc.net network:"
+msgstr "Присоединяйтесь к нашему IRC-каналу на сети irc.oftc.net:"
+
+msgid "Follow the project on:"
+msgstr "Следите за развитием проекта:"
+
+msgid "Software version:"
+msgstr "Версия программного обеспечения:"
+
+msgid "An update is available:"
+msgstr "Доступно обновление:"
+
+msgid "SMTP name"
+msgstr "SMTP имя"
+
+msgid "SMTP email address"
+msgstr "Адрес эл. почты SMTP"
+
+msgid "Invalid email address"
+msgstr "Недействительный адрес эл. почты"
+
+msgid "SMTP server address"
+msgstr "Адрес SMTP сервера"
+
+msgid "SMTP server port"
+msgstr "Порт SMTP сервера"
+
+msgid "Transport Security"
+msgstr "Безопасность передачи"
+
+msgid "When the option is re-enabled the spooled emails will be sent out."
+msgstr "Неотправленные email-сообщения будут поставлены в очередь до тех пор, пока эта опция не будет снова включена"
+
+msgid "Reset notification templates to default"
+msgstr "Сбросить шаблоны уведомлений к значениям по умолчанию"
+
+msgid "Number of hours before sending a submission expiration alert"
+msgstr "Количество часов перед отправкой предупреждения об истечении подачи материалов"
+
+msgid "Maximum emails per hour before triggering email suspension"
+msgstr "Макс. кол-во писем в час до срабатывания приостановки работы электронной почты"
+
+msgid "this configuration only applies to recipients"
+msgstr "эта настройка применима только для получателей"
+
+msgid "Test the configuration"
+msgstr "Проверить конфигурацию"
+
+msgid "Template"
+msgstr "Шаблон"
+
+msgid "Admin"
+msgstr "Администратор"
+
+msgid "Roles enabled to use the platform without Tor:"
+msgstr "Кому позволен доступ к платформе без Tor:"
+
+msgid "Recipient"
+msgstr "Получатель"
+
+msgid "Whistleblower"
+msgstr "Информатор"
+
+msgid "Hostname"
+msgstr "Имя хоста"
+
+msgid "Verify"
+msgstr "Проверка"
+
+msgid "Invalid input format."
+msgstr "Недопустимый формат ввода."
+
+msgid "Input should be similar to:"
+msgstr "Ввод должен быть похож на:"
+
+msgid ""
+"The platform does not seem to be reachable with the configured hostname."
+msgstr "Повидимому, платформа не доступна на указанном имени хоста."
+
+msgid "Using Let's Encrypt requires agreement to their Terms of Service."
+msgstr "Использование Let's Encrypt требует согласия с их условиями обслуживания."
+
+msgid "Read the Terms of Service"
+msgstr "Читать условия использования"
+
+msgid "I agree to the Terms of Service."
+msgstr "Я согласна с условиями использования."
+
+msgid "Proceed"
+msgstr "Продолжить"
+
+msgid "Configuration completed. You can review the settings or enable it now."
+msgstr "Конфигурация завершена. Вы можете просмотреть настройки или запустить программу."
+
+msgid "Review"
+msgstr "Просмотреть"
+
+msgid "Enable"
+msgstr "Включить"
+
+msgid "Country code"
+msgstr "Код страны"
+
+msgid "Organization"
+msgstr "Организация"
+
+msgid "Organizational unit"
+msgstr "Подразделение организации"
+
+msgid ""
+"This interface can generate a Private Key and a Certificate Signing Request."
+" The Certificate Signing Request can be provided to a Certificate Authority "
+"to retrieve a Certificate. After having validated your request and your "
+"ownership of the hostname, the Certificate Authority will issue you a "
+"Certificate and provide a file containing Intermediate Certificates. Load "
+"the Certificate and the file containing the Intermediate Certificates to "
+"complete the HTTPS setup."
+msgstr "Этот интерфейс может сгенерировать приватный ключ и запрос подписки сертификата. Запрос подписки сертификата может быть предоставлен удостоверяющему центру для получения сертификата.  После подтверждения вашего запроса и владения именем хоста, удостоверяющий центр выдаст вам сертификат и предоставит файл с промежуточными сертификатами. Загрузите сертификат и файл с промежуточными сертификатами для завершения настройки HTTPS setup."
+
+msgid "Private Key"
+msgstr "Секретный ключ"
+
+msgid "Generate"
+msgstr "Генерировать"
+
+msgid "Certificate Signing Request"
+msgstr "Запрос подписания сертификата"
+
+msgid "Certificate"
+msgstr "Сертификат"
+
+msgid "Valid until:"
+msgstr "Годен до:"
+
+msgid "Issuer:"
+msgstr "Источник:"
+
+msgid "Intermediate Certificates"
+msgstr "Промежуточные сертификаты"
+
+msgid "Reset"
+msgstr "Сбросить"
+
+msgid "Select an option:"
+msgstr "Выберите один из предложенных вариантов:"
+
+msgid "Automatic configuration"
+msgstr "Автоматическая настройка"
+
+msgid ""
+"Using automatic HTTPS configuration will handle the entire process of "
+"requesting, enabling and renewing certificates from the Let's Encrypt "
+"Certificate Authority."
+msgstr "Автонастрoйка HTTPS управляет всем процессом запроса, пуска и обновления сертификатов Let's Encrypt Certificate Authority."
+
+msgid ""
+"The platform must be reachable through a public IP address and the selected "
+"hostname must have a corresponding DNS record referencing that address."
+msgstr "Платформа должна быть доступна через публичный IP-адрес и выбранный адрес хоста должен иметь соответствующую DNS-запись."
+
+msgid "Manual configuration"
+msgstr "Kонфигурации вручную"
+
+msgid ""
+"The manual configuration wizard will guide you through the setup of HTTPS "
+"from an alternative Certificate Authority."
+msgstr "Мастер настройки проведет вас через процесс конфигурации, позволяя настроить HTTPS из альтернативного центра сертификации. "
+
+msgid ""
+"The platform supports the configuration of HTTPS through this interface."
+msgstr "Платформа поддерживает конфигурацию HTTPS через этот интерфейс."
+
+msgid "The connection to the configured domain failed."
+msgstr "Не удалось установить соединение с указанным доменом."
+
+msgid "Running"
+msgstr "Запущен"
+
+msgid "Not running"
+msgstr "Не запущен"
+
+msgid "Auto-renewal"
+msgstr "Aвтоматическое продление"
+
+msgid "System message:"
+msgstr "Системное сообщение:"
+
+msgid ""
+"Allowing whistleblowers to connect over HTTPS preserves their privacy but "
+"not their anonymity."
+msgstr "Соединение по HTTPS гарантирует конфиденциальность информаторов, но не анонимность."
+
+msgid "Attention!"
+msgstr "Внимание!"
+
+msgid ""
+"Configuration in progress. When it is finished you will have to log in "
+"again."
+msgstr "Проходит конфигурация. После ее завершения вы сможете зайти снова. "
+
+msgid "Your browser will be redirected to the following URL."
+msgstr "Ваш браузер будет перенаправлен на следующий адрес."
+
+msgid "Tor Onion Service"
+msgstr "Сервис Tor Onion"
+
+msgid "Tor Browser download link"
+msgstr "Скачать Tor Browser"
+
+msgid "Anonymize outgoing connections"
+msgstr "Анонимизировать исходящие соединения"
+
+msgid "Let the platform be reachable without Tor"
+msgstr "Позволить доступ к платформе без Tor"
+
+msgid "Stats of the week:"
+msgstr "Статистика за неделю:"
+
+msgid "Free disk space"
+msgstr "Свободное место на диске"
+
+msgid "Event ID"
+msgstr "Идентификатор события"
+
+msgid "Time"
+msgstr "Время"
+
+msgid "Event"
+msgstr "Событие"
+
+msgid "Response time"
+msgstr "Время ответа"
+
+msgid "Role"
+msgstr "Роль"
+
+msgid "Last access"
+msgstr "Последний доступ"
+
+msgid "Submission"
+msgstr "Подача материала"
+
+msgid "Path"
+msgstr "Путь"
+
+msgid "Size"
+msgstr "Размер"
+
+msgid "Alarm level"
+msgstr "Уровень тревоги"
+
+msgid "Events"
+msgstr "События"
+
+msgid "Label"
+msgstr "Метка"
+
+msgid "Type"
+msgstr "Тип"
+
+msgid "Single-line text input"
+msgstr "Однострочный ввод текста"
+
+msgid "Multi-line text input"
+msgstr "Многострочный ввод текста"
+
+msgid "Multiple choice input"
+msgstr "Ввод с множественным выбором"
+
+msgid "Selection box"
+msgstr "Поле выбора"
+
+msgid "Checkbox"
+msgstr "Флажок"
+
+msgid "Terms of service"
+msgstr "Условия использования"
+
+msgid "Group of questions"
+msgstr "Группа вопросов"
+
+msgid "Row"
+msgstr "Строка"
+
+msgid "Column"
+msgstr "Столбец"
+
+msgid "Width"
+msgstr "Ширина"
+
+msgid "Question group"
+msgstr "Группа вопросов"
+
+msgid "Hint"
+msgstr "Подсказка"
+
+msgid "Required"
+msgstr "Обязательно"
+
+msgid "Accept multiple file uploads"
+msgstr "Разрешить загрузку нескольких файлов"
+
+msgid "Accept multiple answers for the field"
+msgstr "Разрешить несколько ответов в поле"
+
+msgid "Hint shown on the button for adding an additional answer"
+msgstr "Кнопка подсказки для добавления дополнительного ответа"
+
+msgid "Clause"
+msgstr "Статья"
+
+msgid "Agreement Text"
+msgstr "Текст соглашения"
+
+msgid "Layout orientation"
+msgstr "Ориентация раскладки"
+
+msgid "Subject answer visibility to custodian authorization"
+msgstr "Доступ к ответам только по разрешению кастодиана"
+
+msgid "Prompt confirmation upon negative answer"
+msgstr "Вызвать подтверждение при получении отрицательного ответа."
+
+msgid "Title of the confirmation question upon negative answer"
+msgstr "Название вопроса о подтверждении при отрицательном ответе"
+
+msgid "Body of the confirmation question upon negative answer"
+msgstr "Текст вопроса о подтверждении при отрицательном ответе"
+
+msgid "Options"
+msgstr "Параметры"
+
+msgid "Questions"
+msgstr "Вопросы"
+
+msgid "Add new question"
+msgstr "Добавить новый вопрос:"
+
+msgid "Add question from template"
+msgstr "Добавить вопрос из шаблона"
+
+msgid "Steps"
+msgstr "Шаги"
+
+msgid "Configuration"
+msgstr "Настройка"
+
+msgid "Default"
+msgstr "По умолчанию"
+
+msgid "Forcefully selected"
+msgstr "Выбрано по требованию"
+
+msgid "Unselectable"
+msgstr "Не выделяемо"
+
+msgid "Allow the recipient to postpone the submission expiration date"
+msgstr "Разрешить получателю откладывать истечение срока действия подачи материалов"
+
+msgid "The setting is enabled at a global level."
+msgstr "Функция включена на глобальном уровене."
+
+msgid "Allow the recipient to delete submissions"
+msgstr "Разрешить получателю удалять материалы"
+
+msgid ""
+"Allow the recipient to grant permissions to whistleblowers on specific "
+"submissions"
+msgstr "مخصوص گذارشات پر whistleblowers کے لئے اجازت عطا کرنے کے وصول کنندہ کی اجازت دیں"
+
+msgid "General settings"
+msgstr "Общие настройки "
+
+msgid "Network settings"
+msgstr "Настройки сети"
+
+msgid "Root domain used for secondary sites"
+msgstr ""
+
+msgid "Allow users to sign up"
+msgstr ""
+
+msgid "Sites"
+msgstr "Сайты"
+
+msgid "Active"
+msgstr "Активно"
+
+msgid "Inactive"
+msgstr "Неактивный"
+
+msgid "The default password is:"
+msgstr "Пароль по умолчанию:"
+
+msgid "The system forces users to change the password at first login."
+msgstr "Система принуждает пользователей изменять пароль при первоначальном входе."
+
+msgid "New Password"
+msgstr "Новый пароль"
+
+msgid ""
+"The chosen password is too weak. Make it more secure by adding special "
+"characters, numbers, and unusual symbols."
+msgstr "Выбранный пароль слишком ненадёжен. Сделайте его более надежным, добавив специальные символы, цифры и необычные символы."
+
+msgid "Force password change"
+msgstr "Принудительная смена пароля"
+
+msgid "The user will be forced to change its password on next login."
+msgstr "Пользователь должен будет сменить свой пароль при следующем входе"
+
+msgid "Language"
+msgstr "Язык"
+
+msgid "Encryption:"
+msgstr "Шифрование:"
+
+msgid "Remove the PGP key"
+msgstr "Удаление PGP-ключа"
+
+msgid "Set up encryption by providing a PGP public key"
+msgstr "Установить шифрование, предоставив открытый PGP-ключ"
+
+msgid "Request date"
+msgstr "Дата запроса"
+
+msgid "Authorization"
+msgstr "Авторизация"
+
+msgid "Before proceeding, please change your password."
+msgstr "Перед тем как продолжить, пожалуйста смените пароль"
+
+msgid "Submissions disabled"
+msgstr "Подача материала недоступна"
+
+msgid ""
+"You are connecting to the server without anonymity and this server supports "
+"only anonymous submissions"
+msgstr "Вы присоединяетесь к узлу не анонимно, данный узел поддерживает только анонимные материалы"
+
+msgid ""
+"Server temporarly unusable due to resource exhaustion; advise the Admin if "
+"you can."
+msgstr "Сервер в настоящее время недоступен из-за перегрузки; если можете, обратитесь за советом к администратору."
+
+msgid "This server is not configured."
+msgstr "Этот узел не настроен."
+
+msgid "You will not be able to send a submission."
+msgstr "Вы не сможете произвести подачу документа."
+
+msgid ""
+"This platform makes use of GlobaLeaks software specifically designed to "
+"protect the identity for submitter and recipient in the exchange of content."
+msgstr "Эта платформа использует ПО GlobaLeaks, которое специально разработано для того, чтобы защитить личности отправителя и получателя при передаче информации."
+
+msgid ""
+"The software is developed by the non-profit Hermes Center for Transparency "
+"and Digital Human Rights."
+msgstr "Программное обеспечение разработано некоммерческой организацией Hermes Center for Transparency and Digital Human Rights."
+
+msgid "Please support Hermes through their donation page."
+msgstr "Пожалуйста, поддержите Hermes, сделав пожертвование на их сайте."
+
+msgid "Authentication failed"
+msgstr "Ошибка аутентификации"
+
+msgid "Please select your account:"
+msgstr "Укажите вашу учётную запись:"
+
+msgid "Now type your password, then click 'Log in':"
+msgstr "Теперь введите ваш пароль, затем нажмите \"Войти\":"
+
+msgid "Are you sure?"
+msgstr "Вы уверены?"
+
+msgid "The operation will reset the configuration and cannot be undone."
+msgstr "Эта операция необратимо сбросит настройки конфигурации."
+
+msgid "Assign score points"
+msgstr "Оценить"
+
+msgid ""
+"Enter the number of score points to be assigned when this option is "
+"selected:"
+msgstr "Количество баллов при выборе этого варианта:"
+
+msgid "Confirm"
+msgstr "Подтвердите расширение"
+
+msgid "Are you human?"
+msgstr "Вы человек?"
+
+msgid ""
+"We do not discriminate based on race and gender, but we do against computers"
+" :)"
+msgstr "Мы не дискриминируем по признаку расы или пола, но мы запрещаем это действие компьютерам :)"
+
+msgid ""
+"Just to prove you are human, please answer the following math challenge:"
+msgstr "Для проверки того, что вы — человек, пожалуйста, решите следующую задачку:"
+
+msgid "I've solved the math challenge, hide this thing now!"
+msgstr "Я решил математическую задачку, спрячьте эту штуку сейчас же!"
+
+msgid "Please note that all the associated data will be permanently lost."
+msgstr "Пожалуйста, имейте ввиду, что все связанные данные будут окончательно удалены."
+
+msgid ""
+"This means that if the server running the platform were to be seized, it "
+"would be possible to extract the files that have been submitted."
+msgstr "Это означает, что в случае конфискации сервера платформы, сохраняется возможность извлечения переданных файлов."
+
+msgid "Are you sure that you wish to continue?"
+msgstr "Вы действительно хотите продолжить?"
+
+msgid ""
+"Downloading a file with malicious content could compromise your computer or "
+"disclose your identity."
+msgstr "Загрузка файла с вредоносным содержимым может повредить вашему компьютеру или раскрыть ваши личные данные."
+
+msgid "The name of the file and its content can be intentionally misleading."
+msgstr "Имя файла и его содержание может нести намеренно лживый характер."
+
+msgid ""
+"Please review the following information and decide if you wish to proceed."
+msgstr "Пожалуйста, ознакомьтесь со следующей иформацией, чтобы продолжить. "
+
+msgid "Error!"
+msgstr "Ошибка!"
+
+msgid "Internal server error"
+msgstr ""
+
+msgid "Error on input validation"
+msgstr ""
+
+msgid "Resource not found"
+msgstr ""
+
+msgid "Forbidden operation"
+msgstr ""
+
+msgid "The specified old password is not valid"
+msgstr "Указанный старый пароль недействителен"
+
+msgid "Resource can only be accessed via the Tor network"
+msgstr "Доступ к ресурсу возможен только из сети Tor"
+
+msgid "The upload request exceeds the size limit"
+msgstr "Запрос на загрузку файла на сервер превышает установленный лимит Мб"
+
+msgid "Success!"
+msgstr "Успешно завершено!"
+
+msgid ""
+"It appears that you are browsing this site without any extra privacy and "
+"security!"
+msgstr "Похоже, что вы просматриваете этот сайт, не обеспечив дополнительную приватность и безопасность!"
+
+msgid ""
+"You are strongly advised to visit this site using the desktop app called Tor"
+" Browser, that protects your identity."
+msgstr "Настоятельно рекомендуем вам посещать этот сайт, используя приложение Tor Browser, которое скрывает идентифицирующую вас информацию."
+
+msgid "Then, copy and paste the following address into the Tor Browser:"
+msgstr "Затем скопируйте и вставьте следующий адрес в адресную строку Tor Browser:"
+
+msgid "Details of the PGP key:"
+msgstr "Информация о PGP-ключе:"
+
+msgid "Fingerprint"
+msgstr "Отпечаток"
+
+msgid "Add file"
+msgstr "Добавить файл"
+
+msgid "Uploading files…"
+msgstr "Загрузка файлов…"
+
+msgid "Upload completed successfully!"
+msgstr "Загрузка завершена удачно!"
+
+msgid "Error while uploading files; check below for details."
+msgstr "Ошибка при загрузке файлов; детали указаны ниже"
+
+msgid "Estimated upload time:"
+msgstr "Расчетное время загрузки:"
+
+msgid "seconds"
+msgstr "секунд"
+
+msgid "Which of the following statements is true?"
+msgstr "Какое из приведенных утверждений верно?"
+
+msgid "HTTPS protects my identity, but not the content of my submission"
+msgstr "HTTPS защищает идентифицирующую меня информацию, но не содержание передаваемой мной информации"
+
+msgid "HTTPS protects the content of my submission but not my identity"
+msgstr "HTTPS защищает переданную мною информацию, но не мои личные данные"
+
+msgid "HTTPS does not protect the content of my submission nor my identity"
+msgstr "HTTPS не защищает передаваемую мной и идентифицирующую меня информацию."
+
+msgid "HTTPS does protect both my identity and the content of my submission"
+msgstr "HTTPS защищает идентифицирующую меня и передаваемую мной информацию"
+
+msgid ""
+"You are aware of the risks involved. Go ahead, but consider yourself warned."
+msgstr "Вы осведомлены о имеющемся риске. Продолжайте, считайте, что вы предупреждены."
+
+msgid "Wrong Answer!"
+msgstr "Неправильный ответ!"
+
+msgid "The connection is not secure."
+msgstr "Соединение не защищено."
+
+msgid ""
+"The platform is still not configured for HTTPS connections and should "
+"therefore only be used for testing purposes."
+msgstr "Платформа все еще не насторена на соединиения HTTPS и поэтому должна использоваться исключительно для тестирования."
+
+msgid "Send"
+msgstr "Отправить"
+
+msgid "Allow the whistleblower to write comments"
+msgstr "Разрешить информатору добавлять комментарии"
+
+msgid "Filename"
+msgstr "Имя файла"
+
+msgid "Upload date"
+msgstr "Дата загрузки"
+
+msgid "Content Type"
+msgstr "Тип содержимого"
+
+msgid "File size"
+msgstr "Размер файла"
+
+msgid "download"
+msgstr "скачивание"
+
+msgid "No files have been uploaded!"
+msgstr "Ошибка загрузки файла!"
+
+msgid "Allow the whistleblower to add attachments to the submission"
+msgstr "Разрешить информатору добавлять приложения к поданным документам"
+
+msgid "Access expiration"
+msgstr "Истечение срока доступа"
+
+msgid "Connection"
+msgstr "Соединение"
+
+msgid "Never"
+msgstr "Никогда"
+
+msgid "Revoked"
+msgstr "Аннулировано"
+
+msgid "Allow the whistleblower to send messages"
+msgstr "Разрешить информатору отправлять комментарии"
+
+msgid "Are you sure that you want to delete the submission?"
+msgstr "Вы уверены, что хотите удалить эти материалы?"
+
+msgid ""
+"Everything related to the submission stored on the platform will be deleted."
+msgstr "Все данные платформы, связанные с подачей информации, будут удалены."
+
+msgid ""
+"Please be aware that everything stored off the platform, e.g. files you have"
+" saved on your computer, must be deleted manually."
+msgstr "Пожалуйста, примите во внимание, что вся информация сохраненная вне платформы, как например, файлы на вашем компьютере, должна быть удалена вручную."
+
+msgid "Are you sure that you want to delete all the selected submissions?"
+msgstr "Вы уверены, что хотите удалить все выбранные материалы?"
+
+msgid ""
+"Please make sure that all related data is properly deleted so that the "
+"recipients won't be able to further access to it."
+msgstr "Пожалуйста, имейте ввиду, что все связанные данные будут удалены, и все получатели не смогут больше получить доступ к ним."
+
+msgid "Please write a motivation for the reply"
+msgstr "Пожалуйста укажите мотивацию"
+
+msgid "Are you sure that you want to postpone the submission expiration date?"
+msgstr "Вы уверены, что хотите отложить срок истечения действия подачи материалов?"
+
+msgid "By confirming, you will postpone the expiration date to:"
+msgstr "Нажимая \"расширить\", вы увеличите срок истечения сведения до:"
+
+msgid ""
+"Are you sure that you want to postpone the expiration date for all selected "
+"submissions?"
+msgstr "Вы уверены, что хотите отложить срок истечения действия для всех выбранных материалов?"
+
+msgid "Questionnaire answers"
+msgstr "Ответы опросника"
+
+msgid "Step"
+msgstr "Шаг"
+
+msgid "Recipient list"
+msgstr "Список получателей"
+
+msgid "Attached files for the whistleblower"
+msgstr "Приложения для информатора"
+
+msgid ""
+"Files uploaded here are made available for the whistleblower and other "
+"recipients to download."
+msgstr "Приложенные файлы доступны для загрузки информатором и другими получателями."
+
+msgid "Upload a file:"
+msgstr "Выгрузить файл:"
+
+msgid "Logout"
+msgstr "Выход"
+
+msgid "The key code is either invalid or the submission has expired."
+msgstr "Ключ доступа либо недействительный, либо подача материала устарела."
+
+msgid "Please check your key code and try again or make a new submission."
+msgstr "Пожалуйста, проверьте код доступа и попробуйте снова, или создайте новую подачу материала."
+
+msgid "Files attached by recipients"
+msgstr "Файлы приложенные получателями"
+
+msgid "These files have been attached to your submission by the recipients."
+msgstr "Получатели приложили следующие файлы к поданными вами документам."
+
+msgid "Enable submission notification"
+msgstr "Включить уведомление о загрузке материала"
+
+msgid "Current Password"
+msgstr "Действующий пароль"
+
+msgid "Old password confirmation required"
+msgstr "Необходимо подтверждение старого пароля"
+
+msgid "The new password must be different from the current one."
+msgstr "Новый пароль должен отличаться от старого."
+
+msgid "Type your new password again"
+msgstr "Введите снова свой новый пароль"
+
+msgid "The two passwords do not match"
+msgstr "Введенные пароли не совпадают"
+
+msgid "Thank you!"
+msgstr "Спасибо!"
+
+msgid "Remember your key code for this submission."
+msgstr "Запомните ваш код доступа к этой подаче материала."
+
+msgid "We will try to get back to you as soon as possible!"
+msgstr "Мы постараемся связаться с вами в ближайшее время!"
+
+msgid ""
+"Use the 16 digit key code to log in. It will allow you to view any messages "
+"we sent you, and also to add extra info."
+msgstr "Используйте 16-значный код доступа для входа. Это позволит вам просматривать все наши сообщения, а также добавлять дополнительную информацию."
+
+msgid "View your submission"
+msgstr "Просмотреть ваш материал"
+
+msgid "Hint: How to hide your key code"
+msgstr "Совет: Как скрыть ваш код доступа"
+
+msgid ""
+"A useful way to hide your key code is to write it down like a credit card "
+"number, i.e. by also including an expiration date."
+msgstr "Удобный способ скрыть ваш код доступа - это записать его, как номер кредитной карты, указав также срок действия."
+
+msgid "Example:"
+msgstr "Пример:"
+
+msgid ""
+"You have not set up your encryption key, so the files will not be encrypted "
+"prior to being stored on the server."
+msgstr "Вы не настроили ваш ключ шифрования, в результате чего файлы не будут зашифрованы перед сохранением на сервере."
+
+msgid ""
+"This may lead to unintended access to the files by the server administrator "
+"or others in case the server is compromised."
+msgstr "Это может привести к нежелательному доступу к файлам администратором сервера или в случае сбоя работы сервера."
+
+msgid "Please configure your PGP keys in the recipient preferences page."
+msgstr "Пожалуйста настройте ваши PGP-ключи на странице настроек получателя"
+
+msgid ""
+"One or more of the recipients of this submission has not configured a PGP "
+"key."
+msgstr "Один или несколько получателей этих материалов не настроили PGP-ключ"
+
+msgid ""
+"This means that the submitted files will be stored in plaintext on the "
+"server."
+msgstr "Это означает, что предоставленные файлы будут храниться на узле в формате обычного текста."
+
+msgid ""
+"Access to the whistleblower's identity has been requested to the custodian."
+msgstr "مخبر کی شناخت تک رسائی نگرانی کرنے کی درخواست کی گئی ہے."
+
+msgid "Date of the request"
+msgstr "Дата запроса"
+
+msgid "Congratulations!"
+msgstr "Поздравляем!"
+
+msgid "You have completed the platform activation."
+msgstr ""
+
+msgid "Your whistleblowing platform is now accessible at:"
+msgstr ""
+
+msgid "Users' credentials:"
+msgstr ""
+
+msgid "To log in, visit:"
+msgstr ""
+
+msgid "For the user documentation visit:"
+msgstr ""
+
+msgid "The platform will be automatically deleted on:"
+msgstr ""
+
+msgid "Sign up"
+msgstr "Зарегистрироваться"
+
+msgid "Domain"
+msgstr "Домен"
+
+msgid "Use Case"
+msgstr ""
+
+msgid "Anticorruption"
+msgstr ""
+
+msgid "Corporate compliance"
+msgstr ""
+
+msgid "Investigative journalism"
+msgstr ""
+
+msgid "Civic activism"
+msgstr ""
+
+msgid "Other"
+msgstr "Другие"
+
+msgid "Complete"
+msgstr "Завершить"
+
+msgid "Your whistleblowing platform is almost ready!"
+msgstr ""
+
+msgid "Check your inbox to activate your account."
+msgstr ""
+
+msgid "The answer is too short."
+msgstr "Ответ очень короткий."
+
+msgid "The specified input is not valid:"
+msgstr "Следующие данные не действительны:"
+
+msgid "please enter a valid email address."
+msgstr "пожалуйста введите действительный адрес вашей электронной почты"
+
+msgid "please enter numbers only."
+msgstr "пожалуйста введите только цифры."
+
+msgid "Recipient selection"
+msgstr "Выбор получателя"
+
+msgid "previous step"
+msgstr "предыдущий шаг"
+
+msgid "next step"
+msgstr "следующий шаг"
+
+msgid "Submit"
+msgstr "Передать"
+
+msgid "Recipients selected:"
+msgstr "Выбранные получатели:"
+
+msgid ""
+"In this step the answers to the following questions are either missing or "
+"invalid:"
+msgstr "Отсутствующие или недостоверные ответы на следующие вопросы:"
+
+msgid "Submission errors"
+msgstr "Ошибки подачи материала"
+
+msgid "You must select at least one recipient."
+msgstr "Вам необходимо выбрать по меньшей мере одного получателя."
+
+msgid "Waiting for the file(s) to finish uploading."
+msgstr "Происходит загрузка файлов."
+
+msgid "The following steps have errors:"
+msgstr "Допущены ошибки в следующих действиях:"
+
+msgid "Welcome!"
+msgstr "Добро пожаловать!"
+
+msgid ""
+"The following step-by-step procedure will guide you through creating your "
+"whistleblowing platform."
+msgstr ""
+
+msgid "Please choose a configuration profile:"
+msgstr "Пожалуйста, выберите профиль конфигурации:"
+
+msgid ""
+"These profiles contain settings used by successful projects in each "
+"respective field."
+msgstr "В данных профилях содержатся програмные установки использованные успешными проектами в соответствующих областях."
+
+msgid "Confirm password"
+msgstr "Подтвердите пароль"
+
+msgid "The default username is:"
+msgstr "Имя пользователя по умолчанию:"
+
+msgid "License Agreement"
+msgstr "Лицензионноe Соглашениe."
+
+msgid "Please review the license terms before proceeding."
+msgstr "Прежде чем продолжить, пожалуйста, ознакомьтесь с условиями лицензии."
+
+msgid "I have read and agree to the terms of the License Agreement."
+msgstr "Я прочитала и согласна с условиями Лицензионного Соглашения."
+
+msgid "You have completed the platform wizard."
+msgstr "Вы завершили работу с мастером настройки платформы."
+
+msgid "Fill out your submission"
+msgstr "Заполните заявку на передачу документов"
+
+msgid "Short title"
+msgstr "Краткое название"
+
+msgid "Describe your submission in a few words."
+msgstr "Опишите ваш материал в нескольких словах."
+
+msgid "Full description"
+msgstr "Полное описание"
+
+msgid "Describe your submission in detail."
+msgstr "Детально опишите ваш материал."
+
+msgid "Attach files relevant to the submission."
+msgstr "Прикладывайте файлы, относящиеся к делу."
+
+msgid "Dear {RecipientName},"
+msgstr "Дорогой(ая) {RecipientName},"
+
+msgid "Kind regards,"
+msgstr "С уважением,"
+
+msgid ""
+"The number of activities recently detected appears to be higher than usual."
+msgstr "Показатель недавно обнаруженной активности оказался выше, чем обычно."
+
+msgid ""
+"This could be a sign of an attack (for example, someone flooding your server"
+" with bogus information) or just a usage spike due to an increased "
+"visibility of your project."
+msgstr "Это может быть признаком атаки (например, кто-то загружает ваш сервер ложной информацией) или просто пиком использования, связанным с увеличением популярности вашего проекта."
+
+msgid "Examine the issue to determine whether it is legitimate or not."
+msgstr ""
+
+msgid "The activities with unusual stats are:"
+msgstr "Активность с нетипичной статистикой:"
+
+msgid ""
+"The server cannot guarantee that a new submission can be stored, so "
+"submissions have been disabled."
+msgstr "Сервер не может гарантировать, что новые материалы могут быть сохранены, поэтому материалы были отключены."
+
+msgid ""
+"Please consider asking your technical support to create more disk space on "
+"the server."
+msgstr "Пожалуйста, обратитесь в вашу службу технической поддержки, чтобы получить больше дискового пространства для сервера."
+
+msgid ""
+"GlobaLeaks technology includes a server status checking component which will"
+" alert you in case something requires your attention."
+msgstr "Технологии GlobaLeaks включают в себя компонент проверки состояния сервера, который будет извещать вас в случае, если что-то потребует вашего внимания."
+
+msgid ""
+"For more information, log in to the Administration interface and look at the"
+" \"System Stats\" and \"Anomalies\" sections."
+msgstr "Для получения информации, войдите в панель администратора и перейдите к разделам \"Статистика Системы\" и \"Аномалии\"."
+
+msgid "Anomaly detected in {NodeName}"
+msgstr "Обнаружена аномалия в {NodeName}"
+
+msgid ""
+"This is an email to inform you that the PGP key of the following users is "
+"going to expire or has already expired:"
+msgstr "Этим письмом мы оповещаем вас о том, что срок действия PGP-ключей следующих пользователей в скором времени истекает или уже закончился."
+
+msgid ""
+"Without a valid PGP key, the system will not be able to send them encrypted "
+"notifications."
+msgstr "Не имея действующего PGP-ключа, система не сможет отправлять им зашифрованные уведомления."
+
+msgid "PGP key expiration alert"
+msgstr "Уведомление об истечении срока действия PGP-ключа"
+
+msgid ""
+"This is a test email sent out from the platform's administrative interface."
+msgstr "Это тестовый email с администрационного интерфейса платформы."
+
+msgid ""
+"Reception of this email indicates that the server was able to authenticate "
+"to and interact with the SMTP mail server."
+msgstr "Успешнoe получение письма означаeт, что сервер смог пройти проверку подлинности и общаться с почтовым сервером SMTP.  "
+
+msgid "Test email"
+msgstr "Пробный email"
+
+msgid ""
+"This is an email to notify you of a new comment on an existing submission."
+msgstr "Этим письмом мы оповещаем вас о новом комментарии к существующим материалам"
+
+msgid "The submission can be accessed:"
+msgstr "Вы можете получить доступ к материалу:"
+
+msgid "via Tor at: {TorUrl}"
+msgstr "через Tor по адресу: {TorUrl}"
+
+msgid "via HTTPS at: {HTTPSUrl}"
+msgstr "через HTTPS по адресу: {HTTPSUrl}"
+
+msgid "New comment"
+msgstr "Новый комментарий"
+
+msgid "From: {RecipientName}"
+msgstr "От: {RecipientName}"
+
+msgid "Date: {EventTime}"
+msgstr "Дата: {EventTime}"
+
+msgid "From: Whistleblower"
+msgstr "От информатора"
+
+msgid "Date: {SubmissionDate}"
+msgstr "Дата: {SubmissionDate}"
+
+msgid "Label: {TipLabel}"
+msgstr "Пометка: {TipLabel}"
+
+msgid "Context: {ContextName}"
+msgstr "Контекст: {ContextName}"
+
+msgid ""
+"This is an email to notify you that the whistleblower of submission {TipNum}"
+" has attached new material."
+msgstr "Этим письмом мы уведомляем вас о том, что информатор материалов {TipNum} добавил новые данные."
+
+msgid "New attachment"
+msgstr "Новое приложение"
+
+msgid ""
+"The HTTPS certificate loaded on the platform is about to, or has already "
+"expired."
+msgstr "Срок действия HTTPS сертификата системы скоро зкончится или уже истек. "
+
+msgid "Expiration date: {ExpirationDate}"
+msgstr "Срок действия: {ExpirationDate}"
+
+msgid ""
+"Without a valid certificate, the platform will be accessible in a secure way"
+" only via Tor."
+msgstr "При отсутсвие действительного сертификата, безопасный вход в систему может осуществляться только через Tor."
+
+msgid "Log in to solve the issue."
+msgstr "Для решения данного вопроса, войдите в систему."
+
+msgid "Expiration alert for HTTPS certificate"
+msgstr "Предупреждение об истечении срока действия сертификата HTTPS "
+
+msgid ""
+"This is an email to notify you that a custodian has authorized you to access"
+" to the whistleblowing identity for the submission {TipNum}."
+msgstr "Этим письмом мы уведомляем вас о том, что кастодиан предоставил Вам доступ к личности информатора материалов {TipNum]."
+
+msgid "Access to whistleblower's identity authorized"
+msgstr "Получен доступ к личности информатора"
+
+msgid ""
+"This is an email to notify you that a custodian has denied you access to the"
+" wistleblowing identity for the submission {TipNum}."
+msgstr "Этим письмом мы уведомляем вас о том, что получатель запросил доступ к личности информатора материалов {TipNum]"
+
+msgid "Access to whistleblower's identity denied"
+msgstr "В доступе к личности информатора отказано"
+
+msgid ""
+"This is an email to notify you that a recipient has requested access to the "
+"whistleblower's identity for the submission {TipNum}"
+msgstr "Этим письмом мы уведомляем вас о том, что получатель запросил доступ к личности информатора материалов {TipNum}"
+
+msgid "The request can be accessed:"
+msgstr "Вы можете получить доступ к запросу:"
+
+msgid "New request of access to a whistleblower's identity"
+msgstr "Новый запрос на получение доступа к личности информатора"
+
+msgid ""
+"This is an email to notify you that the whistleblower for the submission "
+"{TipNum} has provided their identity."
+msgstr "Этим письмом мы оповещаем вас о том, что информатор материалa {TipNum} раскрыл свою личность. "
+
+msgid "The whistleblower has provided their identity"
+msgstr "Осведомитель предоставил информацию о себе"
+
+msgid ""
+"This is an email to notify you of a new message on an existing submission."
+msgstr "Этим письмом мы оповещаем вас о новом сообщении к существующим материалам"
+
+msgid "New message"
+msgstr "Новое сообщение"
+
+msgid ""
+"This is an email to inform you that your PGP key is expiring or has already "
+"expired."
+msgstr "Этим письмом мы оповещаем вас о том, что срок действия вашего PGP-ключа в скором времени истекает или уже закончился. "
+
+msgid ""
+"You should extend its validity and update the key present on the platform, "
+"or upload a new key."
+msgstr "Вы должны продлить срок действия и обновить ключ, действующий на платформе, или загрузить новый."
+
+msgid ""
+"Without a valid PGP key, the system won't be able to encrypt data provided "
+"to you."
+msgstr "Без действующего PGP ключа система не сможет зашифровать данные, предоставленные вам"
+
+msgid "It appears that {NodeName} is receiving a large number of requests."
+msgstr "Похоже, что {NodeName} получает большое количество запросов."
+
+msgid ""
+"To prevent sending you too many emails, the system has disabled email "
+"notifications until the load returns to normal. In the meantime, you can "
+"normally log onto the platform and manually check for new submissions."
+msgstr "Для предотвращения рассылки слишком большого кол-ва писем, в системе отключены уведомления по электронной почте до того момента, пока загрузка не придет в норму. В то же время, вы можете как обычно входить на платформу и вручную проверять наличие новых представлений."
+
+msgid ""
+"If you don’t mind and would rather receive such a large number of email "
+"notifications anyhow, please contact your technical support to have them "
+"modify this setting accordingly."
+msgstr "Если Вы не против и предпочли бы получать такое большое количество уведомлений по электронной почте в любом случае, пожалуйста, обратитесь в службу технической поддержки, чтобы изменять этот параметр соответствующим образом."
+
+msgid "Notifications from {NodeName} have been temporarily suspended"
+msgstr "Уведомления от {NodeName} успешно приостановлены"
+
+msgid "Click the link to activate the platform:"
+msgstr ""
+
+msgid "A software update is available."
+msgstr "Обновление программного обеспечения доступно."
+
+msgid "It is good security practice to keep the platform up to date."
+msgstr "Обновляйте программное обеспечение для поддержания хорошей системы безопасности."
+
+msgid "Installed version: {InstalledVersion}"
+msgstr "Установленная версия: {InstalledVersion}"
+
+msgid "Latest version: {LatestVersion}"
+msgstr "Последняя версия: {LatestVersion}"
+
+msgid ""
+"To learn about new features and bug fixes in the new version consult the "
+"change log at: {ChangeLogUrl}"
+msgstr "Читайте о новых функциях и устранении ошибок в журнале изменений: {ChangeLogUrl}"
+
+msgid ""
+"For instructions on software updates, please refer to the documentation at: "
+"{UpdateGuideUrl}"
+msgstr "Пожалуйста, прочитайте инструкции по установке обновлений программного обеспечения в документации: {UpdateGuideUrl}"
+
+msgid "The earliest expiration date is {EarliestExpirationDate}."
+msgstr "Первый срок действия {EarliestExpirationDate}."
+
+msgid "Please remember to check them before they are deleted."
+msgstr "Пожалуйста, не забудьте проверить их перед тем, как они будут удалены программой"
+
+msgid "Some submissions will expire soon"
+msgstr "Истекает срок подачи некоторых документов"
+
+msgid ""
+"This is an email to notify you that a whistleblower has selected you as a "
+"valuable recipient of their submission."
+msgstr "Этим письмом мы оповещаем вас о том, что информатор выбрал вас в качестве ценного получателя для его/её материала."
+
+msgid ""
+"You are asked to pay special attention to the information and material "
+"contained therein. Please keep in mind that whistleblowers often expose "
+"themselves to high personal risks in the interest of the public. Therefore "
+"the material provided within this submission should be considered to be of "
+"high importance."
+msgstr "Мы просим Вас обратить особое внимание на информацию и материалы содержащиеся здесь. Пожалуйста, помните о том, что информаторы зачастую подвергают себя высокому риску ради общественных интересов. Следовательно, сведения, которые они предоставляют должны рассматриваться как весьма важные."
+
+msgid "New submission"
+msgstr "Новая заявка на передачу информации"

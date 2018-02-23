@@ -1,0 +1,2321 @@
+# 
+# Translators:
+# Allan Nordhøy <epost@anotheragency.no>, 2014-2015
+# Allan Nordhøy <epost@anotheragency.no>, 2014-2018
+# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2014-2018
+# Allan Nordhøy <epost@anotheragency.no>, 2014
+msgid ""
+msgstr ""
+"Project-Id-Version: GlobaLeaks\n"
+"PO-Revision-Date: 2018-02-22 09:23+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"Language-Team: Norwegian Bokmål (Norway) (http://www.transifex.com/otf/globaleaks/language/nb_NO/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: nb_NO\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "Login page"
+msgstr "Innloggingsside"
+
+msgid "Log in"
+msgstr "Innlogging"
+
+msgid "Administration interface"
+msgstr "Administrasjons-grensesnitt"
+
+msgid "Main configuration"
+msgstr "Hovedoppsett"
+
+msgid "Theme customization"
+msgstr "Drakt-skreddersøm"
+
+msgid "Languages"
+msgstr "Språk"
+
+msgid "Text customization"
+msgstr "Tekstbehandling"
+
+msgid "Advanced settings"
+msgstr "Avanserte innstillinger"
+
+msgid "Questionnaire configuration"
+msgstr "Oppsett av spørreskjema"
+
+msgid "Question templates"
+msgstr "Spørsmålsmaler"
+
+msgid "Questionnaires"
+msgstr "Spørreskjema"
+
+msgid "Add new questionnaire"
+msgstr "Legg til nytt spørreskjema"
+
+msgid "Home"
+msgstr "Hjem"
+
+msgid "Home page"
+msgstr "Hjemmeside"
+
+msgid "Changelog"
+msgstr "Endringslogg"
+
+msgid "License"
+msgstr "Lisens"
+
+msgid "Notification templates"
+msgstr "Maler for merknader"
+
+msgid "Recipient notification templates"
+msgstr "Maler for merknader til mottaker"
+
+msgid "Admin notification templates"
+msgstr "Maler for merknader til administrator"
+
+msgid "Missing data"
+msgstr "Mangler data"
+
+msgid "no stats available for the future."
+msgstr "fremtidig statistikk ikke tilgjengelig"
+
+msgid "no stats available for this hour."
+msgstr "ingen statistikk for denne timen."
+
+msgid "no stats available for current hour; check activities page."
+msgstr "ingen statistikk tilgjengelig for gjeldende time; sjekk aktivitetssiden."
+
+msgid "Delete"
+msgstr "Slett"
+
+msgid "Anomalies"
+msgstr "Unormalheter"
+
+msgid "Preferences"
+msgstr "Innstillinger"
+
+msgid "Recipient interface"
+msgstr "Mottaker-grensesnitt"
+
+msgid "Notification settings"
+msgstr "Merknadsinnstillinger"
+
+msgid "This recipient has configured the encryption key."
+msgstr "Denne mottakeren har satt opp krypteringsnøkkelen."
+
+msgid "This recipient has not configured the encryption key."
+msgstr "Denne mottakeren har ikke satt opp krypteringsnøkkelen."
+
+msgid "The file is unavailable due to an internal error."
+msgstr "Filen er utilgjengelig som følge av en intern feil."
+
+msgid "file unavailable"
+msgstr "fil utilgjengelig"
+
+msgid "Creation date"
+msgstr "Opprettelsesdato"
+
+msgid "Expiration date"
+msgstr "Utløpsdato"
+
+msgid "Last Access"
+msgstr "Forrige visning"
+
+msgid "Files"
+msgstr "Filer"
+
+msgid "Comments"
+msgstr "Kommentarer"
+
+msgid "Messages"
+msgstr "Meldinger"
+
+msgid "Select this recipient."
+msgstr "Velg denne mottakeren."
+
+msgid "Unselect this recipient."
+msgstr "Angre valg av denne mottakeren."
+
+msgid "This recipient cannot be selected."
+msgstr "Denne mottakeren kan ikke velges."
+
+msgid "This recipient cannot be deselected."
+msgstr "Denne mottakeren kan ikke fravelges."
+
+msgid "Details"
+msgstr "Detaljer"
+
+msgid "Platform wizard"
+msgstr "Plattform-veileder"
+
+msgid "Step-by-step setup"
+msgstr "Stegvis oppsett"
+
+msgid "CREDIT CARD"
+msgstr "KREDITTKORT"
+
+msgid "YOUR NAME"
+msgstr "DITT NAVN"
+
+msgid "Postpone the expiration date"
+msgstr "Utsett utløpsdato"
+
+msgid "Select all"
+msgstr "Velg alle"
+
+msgid "Deselect all"
+msgstr "Fravelg alle"
+
+msgid "Refresh page"
+msgstr "Gjenoppfrisk side"
+
+msgid "Context"
+msgstr "Bindeleddsinformasjon"
+
+msgid "Submission date"
+msgstr "Innsendelsesdato"
+
+msgid "Private messages"
+msgstr "Privat korrespondanse"
+
+msgid "Preview"
+msgstr "Forhåndsvisning"
+
+msgid "Move up"
+msgstr "Flytt oppover"
+
+msgid "Move down"
+msgstr "Flytt nedover"
+
+msgid "Move left"
+msgstr "Flytt til venstre"
+
+msgid "Move right"
+msgstr "Flytt til høyre"
+
+msgid "Import"
+msgstr "Importer"
+
+msgid "Export"
+msgstr "Exporter"
+
+msgid "Save all"
+msgstr "Lagre alle"
+
+msgid "This field is mandatory"
+msgstr "Dette inndatafeltet er påkrevd"
+
+msgid ""
+"The connection used to send this submission has been secured with HTTPS "
+"ensuring confidentiality."
+msgstr "Tilkoblingen brukt til foresendelse av denne innsendelsen har blitt sikret med HTTPS for å forsikre konfidensialitet."
+
+msgid ""
+"The connection used to send this submission has been secured with Tor "
+"ensuring confidentiality and anonymity."
+msgstr "Tilkoblingen brukt til foresendelse av denne innsendelsen har blitt sikret med Tor for å forsikre konfidensialitet og anonymitet."
+
+msgid "vertical"
+msgstr "vertikal"
+
+msgid "horizontal"
+msgstr "horisontal"
+
+msgid "Number"
+msgstr "Nummer"
+
+msgid "Email"
+msgstr "E-post"
+
+msgid "Date"
+msgstr "Dato"
+
+msgid "Regular expression validator"
+msgstr "Gyldighetssjekk for regulære uttrykk"
+
+msgid "Minimum number of input characters"
+msgstr "Minimalt antall inndata-karakterer"
+
+msgid "Maximum number of input characters"
+msgstr "Maksimalt antall inndata-karakterer"
+
+msgid "Earliest selectable date"
+msgstr "Tidligst valgbare dato"
+
+msgid "Latest selectable date"
+msgstr "Senest valgbare dato"
+
+msgid "0 = auto"
+msgstr "0 = auto"
+
+msgid "-1 = unlimited"
+msgstr "-1 = ubegrenset."
+
+msgid "True"
+msgstr "Sant"
+
+msgid "False"
+msgstr "Usant"
+
+msgid "Yes"
+msgstr "Ja"
+
+msgid "No"
+msgstr "Nei"
+
+msgid "Attachment"
+msgstr "Vedlegg"
+
+msgid "Attachments"
+msgstr "Vedlegg"
+
+msgid "Change your password"
+msgstr "Endre passord"
+
+msgid "First name"
+msgstr "Fornavn"
+
+msgid "Last name"
+msgstr "Etternavn"
+
+msgid "GENDER_OTHER"
+msgstr "Annet"
+
+msgid "Male"
+msgstr "Hannkjønn"
+
+msgid "Female"
+msgstr "Hunnkjønn"
+
+msgid "Date of birth"
+msgstr "Fødselsdato"
+
+msgid "Place of birth"
+msgstr "Fødested"
+
+msgid "Social security number"
+msgstr "Personnummer"
+
+msgid "Residence"
+msgstr "Hushold"
+
+msgid "Address"
+msgstr "Adresse"
+
+msgid "Zip code / Postal code"
+msgstr "Postnummer"
+
+msgid "City"
+msgstr "Sted"
+
+msgid "State"
+msgstr "Region"
+
+msgid "Region"
+msgstr "Kommune"
+
+msgid "Province"
+msgstr "Kommune"
+
+msgid "Country"
+msgstr "Fylke"
+
+msgid "Phone number"
+msgstr "Telefonnummer"
+
+msgid "Current job title"
+msgstr "Gjeldende jobbtittel"
+
+msgid "Current job responsibility (role)"
+msgstr "Gjeldende arbeidsansvar (rolle)"
+
+msgid "Current organization unit and job location"
+msgstr "Gjeldende organisatorisk enhet og arbeidsplassens stedvise plassering"
+
+msgid "Job title at the time of the reported fact"
+msgstr "Jobbtittel i det faktaen ble rapportert"
+
+msgid "Job responsibility (role) at the time of the reported fact"
+msgstr "Arbeidsansvar (rolle) i det faktaen ble rapportert"
+
+msgid "Organization unit and job location at the time of the reported fact"
+msgstr "Organisatorisk enhet og arbeidets stedvise plassering i det faktaen ble rapportert"
+
+msgid "List of submissions"
+msgstr "Liste over innsendelser"
+
+msgid "List of access requests to whistleblowers' identities"
+msgstr "Liste over tilgangsforespørsler til fløyteblåseres sanne identitet"
+
+msgid "User"
+msgstr "Bruker"
+
+msgid "Motivation"
+msgstr "Motivasjon"
+
+msgid "Status"
+msgstr "Status"
+
+msgid "Request motivation"
+msgstr "Motivasjon for foresp."
+
+msgid "Reply motivation"
+msgstr "Motivasjon for svar"
+
+msgid "Request status"
+msgstr "Forespørselsstatus"
+
+msgid "Custodian"
+msgstr "Tillitsperson"
+
+msgid "Custodian of the identities"
+msgstr "Tillitsperson for identiteter"
+
+msgid "Identity"
+msgstr "Identitet"
+
+msgid "Available"
+msgstr "Tilgjengelig"
+
+msgid "Not available"
+msgstr "Opptatt"
+
+msgid "Access requested"
+msgstr "Tilgang forespurt"
+
+msgid "Request access to the whistleblower's identity"
+msgstr "Forespør tilgang til fløyteblåsers sanne identitet"
+
+msgid "Please write a motivation"
+msgstr "Skriv motivasjon for forespørsel"
+
+msgid "Reply to the request"
+msgstr "Besvar forespørsel"
+
+msgid "Authorized"
+msgstr "Bekreftet"
+
+msgid "Denied"
+msgstr "Nektet"
+
+msgid "Waiting for authorization"
+msgstr "Venter på identitetsbekreftelse"
+
+msgid "New request"
+msgstr "Ny forespørsel"
+
+msgid "Authorize"
+msgstr "Bekreft"
+
+msgid "Deny"
+msgstr "Nekt"
+
+msgid "Deny access to the whistleblower's identity"
+msgstr "Nekt tilgang til fløyteblåserens sanne identitet."
+
+msgid "Authorize access to the whistleblower's identity"
+msgstr "Tillat tilgang til fløyteblåsers sanne identitet"
+
+msgid "Templates"
+msgstr "Maler"
+
+msgid "Notification of new submission"
+msgstr "Merknad om ny innsendelse"
+
+msgid "Notification of new comment"
+msgstr "Merknad om ny kommentar"
+
+msgid "Notification of new message"
+msgstr "Merknad om ny melding"
+
+msgid "Notification of new file attachment"
+msgstr "Merknad om nytt fil-vedlegg"
+
+msgid "Notification of PGP key expiration"
+msgstr "Merknad om utløp av PGP-nøkkel"
+
+msgid "Notification of anomaly"
+msgstr "Merknad om unormalitet"
+
+msgid "Template for summary of contents in submission archive"
+msgstr "Mal for filsammendrag av innhold i innsendelsesarkiv"
+
+msgid "Email subject"
+msgstr "e-postemne"
+
+msgid "Email body"
+msgstr "Meldingstekst for e-post"
+
+msgid "in seconds"
+msgstr "i sekunder"
+
+msgid "in hours"
+msgstr "i timer"
+
+msgid "in days"
+msgstr "i dager"
+
+msgid "in characters"
+msgstr "i tegn"
+
+msgid "in megabytes"
+msgstr "i megabyte"
+
+msgid "in percentage"
+msgstr "i prosent"
+
+msgid "HTTPS settings"
+msgstr "HTTPS-innstillinger"
+
+msgid "Anomaly detection thresholds"
+msgstr "Grenseverdi for rapportering av unormalheter"
+
+msgid "High risk"
+msgstr "Høy risiko"
+
+msgid "Medium risk"
+msgstr "Middels risiko"
+
+msgid "Low risk"
+msgstr "Lav risiko"
+
+msgid "Available disk space"
+msgstr "Tilgjengelig lagringsplass"
+
+msgid "Last update"
+msgstr "Siste oppdatering"
+
+msgid "Custodian notification templates"
+msgstr "Maler for merknader til tillitsperson"
+
+msgid ""
+"This interface allows configuring email templates used to notify custodians."
+msgstr "Dette grensesnittet tillater oppsett av e-postmaler brukt for merknader til tillitspersoner."
+
+msgid "Disable notifications to administrators"
+msgstr "Skru av merknader til administratorer"
+
+msgid "Disable notifications to custodians"
+msgstr "Skru av merknader til tillitspersoner"
+
+msgid "Disable notifications to recipients"
+msgstr "Skru av merkander til mottakere"
+
+msgid "Score"
+msgstr "Poengsum"
+
+msgid "Trigger question"
+msgstr "Oppfølgingsspørsmål"
+
+msgid "Triggered by a score higher than:"
+msgstr "Utløst av en poengsum høyere enn:"
+
+msgid "Select the question to be triggered when this option is selected"
+msgstr "Velg et spørsmål som skal utløses når dette valget tas"
+
+msgid "Message shown on top of the status page of the submission"
+msgstr "Melding vist på toppen av statussiden for innsendelsen"
+
+msgid "Copy and paste the PGP public key here"
+msgstr "Kopier og lim inn den offentlige PGP-nøkkelen her"
+
+msgid "Password strength:"
+msgstr "Passordstyrke:"
+
+msgid "Weak"
+msgstr "Svakt"
+
+msgid "Acceptable"
+msgstr "Akseptabelt"
+
+msgid "Strong"
+msgstr "Sterkt"
+
+msgid "Loading…"
+msgstr "Laster…"
+
+msgid "Text shown on top of the interface for selecting contexts"
+msgstr "Tekst vist på toppen av grensesnittet for valg av bindeleddsinformasjon"
+
+msgid "Show small context cards on submission interface"
+msgstr "Vis små bindeleddsinformasjonskort på innsendelses-grensesnittet"
+
+msgid "Type of context selector:"
+msgstr "Valg av type bindeleddsinformasjon:"
+
+msgid "Type to search…"
+msgstr "Skriv for å søke…"
+
+msgid "Silence email notifications"
+msgstr "Skru av e-postmerknader"
+
+msgid "Turn on email notifications"
+msgstr "Skru av e-postmerknader"
+
+msgid "Enter an email address for the administrator"
+msgstr "Skriv inn en e-postadresse for administratoren"
+
+msgid "Enter a password for the administrator"
+msgstr "Skriv inn et passord for administratoren"
+
+msgid "Test configuration"
+msgstr "Test oppsettet"
+
+msgid "Failed logins"
+msgstr "Feilede innloggingsforsøk"
+
+msgid "Successful logins"
+msgstr "Vellykkede innlogginger"
+
+msgid "Started submissions"
+msgstr "Påbegynte innsendelser"
+
+msgid "Completed submissions"
+msgstr "Fullførte innsendelser"
+
+msgid "Failed submissions"
+msgstr "Feilede innsendelser"
+
+msgid "Input validation"
+msgstr "Inndata-bekreftelse"
+
+msgid "Email address"
+msgstr "E-postadresse"
+
+msgid "Custom"
+msgstr "Egendefinert"
+
+msgid "None"
+msgstr "Ingen"
+
+msgid "Regular expression"
+msgstr "Regulært uttrykk"
+
+msgid "Label the submission"
+msgstr "Fest en merkelapp ved innsendelsen"
+
+msgid "Activate"
+msgstr "Aktiver"
+
+msgid "Search"
+msgstr "Søk"
+
+msgid ""
+"This custom text is no longer displayed on the platform. The original text "
+"has either changed or been removed."
+msgstr "Denne egendefinerte teksten blir ikke lenger vist på plattformen. Den orginale nøkkelen har enten blitt endret eller fjernet."
+
+msgid ""
+"Unless the whistleblower checks the submission by this time, their access to"
+" it will expire."
+msgstr "Hvis ikke fløyteblåseren sjekker innsendesen innen da, vil deres tilgang til den utløpe."
+
+msgid "The whistleblower can no longer access the submission"
+msgstr "Fløyteblåseren har mistet tilgang til innsendelsen"
+
+msgid "Warning!"
+msgstr "Advarsel!"
+
+msgid "You are running an unsupported and potentially vulnerable browser."
+msgstr "Du benytter en ustøttet og muligens sårbar nettleser."
+
+msgid "You are strongly advised to download and install the Tor Browser."
+msgstr "Du anbefales sterkt å laste ned og installere Tor-nettleseren."
+
+msgid ""
+"The Tor Browser includes various privacy and security enhancements not "
+"present in other browsers."
+msgstr "Tor-nettleseren inneholder forskjellige personvern og sikkerhetsforbedringer som ikke er å finne i andre nettlesere."
+
+msgid "Download the Tor Browser"
+msgstr "Last ned Tor-nettleseren"
+
+msgid "This is the list of the other supported browsers:"
+msgstr "Dette er en liste over støttede nettlesere:"
+
+msgid "System overview"
+msgstr "Systemoversikt"
+
+msgid "Stats"
+msgstr "Statistikk"
+
+msgid "Activities"
+msgstr "Aktivitet"
+
+msgid "Submissions"
+msgstr "Innsendelser"
+
+msgid "Users"
+msgstr "Brukere"
+
+msgid "From"
+msgstr "Fra"
+
+msgid "Number of downloads"
+msgstr "Antall ganger nedlastet"
+
+msgid "Error with file:"
+msgstr "Feil med fil:"
+
+msgid "File size not accepted."
+msgstr "Filstørrelse ikke godtatt."
+
+msgid "File type not accepted."
+msgstr "Filtypen godtas ikke."
+
+msgid "Maximum file size is:"
+msgstr "Maksimal filstørrelse er:"
+
+msgid "Accepted file types are:"
+msgstr "Godtatte filtyper:"
+
+msgid "Scheduled jobs"
+msgstr "Planlagte jobber"
+
+msgid "Sites management"
+msgstr "Behandling av sider"
+
+msgid "Regenerate"
+msgstr "Regenerer"
+
+msgid "Display options alphabetically"
+msgstr "Vis valg alfabetisk"
+
+msgid "Enable email notifications for:"
+msgstr "Skru på e-postmerknader for:"
+
+msgid "Software updates"
+msgstr "Programvareoppdateringer"
+
+msgid "Software problems"
+msgstr "Programvareproblemer"
+
+msgid "Disable"
+msgstr "Skru av"
+
+msgid "Remove"
+msgstr "Fjern"
+
+msgid "Use as default"
+msgstr "Bruk som forvalg"
+
+msgid "Create your whistleblowing platform"
+msgstr "Opprett din fløyteblåserplattform"
+
+msgid "Select the context of your submission:"
+msgstr "Velg bindeleddsinformasjonen tilhørende din innsendelse:"
+
+msgid "Warning! You are not anonymous."
+msgstr "Advarsel! Du er ikke anonym."
+
+msgid ""
+"Sending submissions over HTTPS exposes the act of doing so, but not the "
+"content.\\n\\nAlso, hiding the fact that you are submitting something makes "
+"the submission anonymous, which is strongly recommended.\\n\\nThis can be "
+"achieved with the use of the Tor Browser, providing anonymisation not found "
+"in other browsers like Internet Explorer, Firefox, Chrome, Opera etc."
+msgstr "Innsendelser over HTTPS avslører utførelsen derav, men ikke innholdet.\\n\\nNår du også skjuler at du sender inn noe, kalles dette anonym innsendelse, hvilket betyr at du nyter full beskyttelse.\\n\\nAnonyme innsendelser anbefales og kan kjøres gjennom Tor-nettleseren. En spesiell nettleser som anonymiserer din kommunikasjon med plattformen, ulikt Internet Explorer, Firefox, Chrome, Opera osv."
+
+msgid "Are you a whistleblower?"
+msgstr "Er du en fløyteblåser/varsler?"
+
+msgid "Blow the whistle"
+msgstr "Blås i fløyta"
+
+msgid "Have you already filed a submission? Enter your key code."
+msgstr "Oppgi kvittering for tidligere innsendelse her hvis den forefinnes."
+
+msgid "Your submission was successful."
+msgstr "Din innsendelse var vellykket."
+
+msgid "Submission status"
+msgstr "Statusside for innsendelser"
+
+msgid "Disable submissions"
+msgstr "Skru av innsendelser"
+
+msgid "Enable insecure configuration without PGP encryption"
+msgstr "Tillat usikkert oppsett (uten PGP-kryptering)"
+
+msgid "Danger"
+msgstr "Fare"
+
+msgid ""
+"By enabling this option, the system will be storing the submitted files "
+"unencrypted on your server."
+msgstr "Ved å skru på dette valget, vil systemet lagre innsendte filer ukryptert på din tjener."
+
+msgid "This happens whenever encryption is unavailable."
+msgstr "Dette skjer hvis kryptering er utilgjengelig"
+
+msgid "Disable messages that warn of missing encryption"
+msgstr "Skru av meldinger som advarer mot manglende kryptering"
+
+msgid ""
+"This setting affects the security of the users and must not be used in "
+"production."
+msgstr "Denne innstillingen har innvirkning på sikkerheten til brukerne og må ikke brukes i produksjon."
+
+msgid "Allow other websites to include the platform inside iframes"
+msgstr "Tillat andre nettsider å inkludere denne plattformen i iframe-element"
+
+msgid ""
+"By enabling this option, you are allowing other websites to include the "
+"platform inside iframes; this could potentially be used to endanger the "
+"platform or intercept users' communications"
+msgstr "Ved å skru på dette vil du tillate andre nettsider å inkludere plattformen i iframe-elementer; dette kan følgelig brukes for å utnytte plattformen eller overhøre brukere og deres kommunikasjon."
+
+msgid "Allow recipients to postpone expiration date of the submission"
+msgstr "Tillat mottakere å utsette utløpsdatoen for innsendelsen"
+
+msgid "Allow recipients to delete submissions"
+msgstr "Tillat mottakere å slette innsendelser"
+
+msgid ""
+"Allow recipients to grant permissions to whistleblowers on specific "
+"submissions"
+msgstr "Tillat mottakere å forære rettigheter til fløyteblåsere på gitte innsendelser"
+
+msgid "Enable search engines indexing"
+msgstr "Skru på søkemotor-indeksering"
+
+msgid "Enabled"
+msgstr "Påskrudd"
+
+msgid "Search engine spiders will be allowed to index the application."
+msgstr "Søkemotor-snoker vil kunne indeksere programmet."
+
+msgid "Enable custom privacy panel"
+msgstr "Skru på egentilpasset personvernspanel"
+
+msgid "Custom privacy panel"
+msgstr "Egentilpasset personvernspanel"
+
+msgid "Text shown when the whistleblower is not using Tor"
+msgstr "Tekst som vises når fløyteblåseren ikke bruker Tor"
+
+msgid "Disable the privacy panel"
+msgstr "Skru av personvernspanelet"
+
+msgid "Security awareness panel title"
+msgstr "Tittel på årvåkenhetspanel for sikkerhet"
+
+msgid "Security awareness panel text"
+msgstr "Tekst på årvåkenhetspanelet for sikkerhet"
+
+msgid "Disable the security awareness panel questions"
+msgstr "Skru av spørsmål tilknyttet årvåkenhetspanelet for sikkerhet"
+
+msgid "Disable the security awareness panel"
+msgstr "Skru av årvåkenhetspanelet for sikkerhet"
+
+msgid "Disable the key code hint"
+msgstr "Skru av nøkkelkode-hint"
+
+msgid "Disable the donation panel"
+msgstr "Skru av donasjonspanelet"
+
+msgid "Enable CAPTCHA mechanism"
+msgstr "Skru på CAPTCHA-mekanisme"
+
+msgid "Enable proof of work mechanism"
+msgstr "Skru på bekreftelsesmekanisme"
+
+msgid "Enable simplified login for recipients"
+msgstr "Skru på forenklet innlogging for mottakere"
+
+msgid "Amount of days till whistleblower access expires"
+msgstr "Antall dager til fløyteblåser-tilgang utløper"
+
+msgid ""
+"For security reasons the whistleblower access is subject to expiration."
+msgstr "Av sikkerhetsgrunner er fløyteblåsertilgang noe som utløper."
+
+msgid "Tweak this setting only if you know what you are doing."
+msgstr "Bare endre denne innstillingen hvis du vet hva du driver på med."
+
+msgid "Landing page"
+msgstr "Landingsside"
+
+msgid "Home Page"
+msgstr "Hjemmeside"
+
+msgid "Submission Page"
+msgstr "Innsendelsesside"
+
+msgid "Title of the submission page"
+msgstr "Tittel for innsendelsesside"
+
+msgid "Title of the attachments widget"
+msgstr "Tittel for skjermelement for vedlegg"
+
+msgid "Text of prompt for whistleblowers to log in"
+msgstr "Tekst som etterspør innlogging for fløyteblåsere"
+
+msgid "Show contexts in alphabetical order"
+msgstr "Vis bindeleddsinformasjon i alfabetisk rekkefølge"
+
+msgid "Title of the receipt page"
+msgstr "Tittel for kvitteringsside"
+
+msgid "Title of the submission status page"
+msgstr "Tittel på statusside for innsendelser"
+
+msgid "Title of the comments widget"
+msgstr "Tittel for skjermelement for kommentarer"
+
+msgid "Title of the messages widget"
+msgstr "Tittel for skjermelement for meldinger"
+
+msgid "Size limit for file attachments"
+msgstr "Størrelsesgrense for vedlegg"
+
+msgid "Notify administrators of software problems"
+msgstr "Gi administratorer beskjed om programvareproblemer"
+
+msgid "Notify developers of software problems"
+msgstr "Gi utviklere beskjed om programvareproblemer"
+
+msgid ""
+"By enabling this feature, you will contribute to the development and "
+"security of the platform."
+msgstr "Ved å skru på denne funksjonen, vil du bidra til utviklingen og sikkerheten av plattformen."
+
+msgid "Enable HTTP Basic Authentication to limit platform access"
+msgstr "Skru på vanlig HTTP-bekreftelse for å begrense plattform-tilgang"
+
+msgid "Username"
+msgstr "Brukernavn"
+
+msgid "Password"
+msgstr "Passord"
+
+msgid ""
+"This feature keeps regular people from visiting the platform while it is "
+"still under development and should not be used for security purposes. The "
+"input password is stored in plaintext on the server."
+msgstr "Denne funksjoner forhindrer vanlige folk fra å besøke plattformen når den er under utvikling og burde ikke brukes av sikkerhetsgrunner. Inndata-passordet lagres i klartekst på tjeneren."
+
+msgid "Enable experimental features"
+msgstr "Skru på eksperimentelle funksjoner"
+
+msgid "Warning"
+msgstr "Advarsel"
+
+msgid ""
+"The experimental features may be less stable or even not work at all; enable"
+" this option at your own risk. Support for these features may vary and they "
+"may be removed in the future."
+msgstr "Eksperimentelle funksjoner kan være ustabile eller ikke fungere overhodet; bruk på egen risiko. Støtte for disse funksjonene varierer, og kan bli fjernet i fremtiden."
+
+msgid "Save"
+msgstr "Lagre"
+
+msgid "Short URL"
+msgstr "Kort nettadresse"
+
+msgid "Long URL"
+msgstr "Lang nettadresse"
+
+msgid "Add"
+msgstr "Legg til"
+
+msgid "Logo"
+msgstr "Logo"
+
+msgid "Project name"
+msgstr "Prosjektets navn"
+
+msgid "Homepage title"
+msgstr "Hjemmesidens tittel"
+
+msgid "Presentation"
+msgstr "Presentasjon"
+
+msgid "Description"
+msgstr "Beskrivelse"
+
+msgid "Question to solicit possible whistleblowers"
+msgstr "Oppfordring til fløyteblåser"
+
+msgid "Whistleblowing button"
+msgstr "Fløyteblåsnings-knapp"
+
+msgid "Footer"
+msgstr "Bunntekst"
+
+msgid "Favicon"
+msgstr "Favicon"
+
+msgid "Upload"
+msgstr "Innlasting"
+
+msgid "Download"
+msgstr "Nedlasting"
+
+msgid "Upload custom file"
+msgstr "Last opp tilpasset fil"
+
+msgid "The file will be available at URL: /s/$filename"
+msgstr "Filen vil bli tilgjengelig på nettadressen:/s/$filename"
+
+msgid "Language:"
+msgstr "Språk:"
+
+msgid "Add custom text"
+msgstr "Legg til egendefinert tekst"
+
+msgid "Custom text"
+msgstr "Egendefinert tekst"
+
+msgid "Custom texts"
+msgstr "Egendefinerte tekster"
+
+msgid "Original text"
+msgstr "Orginaltekst"
+
+msgid "Original translation"
+msgstr "Orginaloversettelse"
+
+msgid "Custom translation"
+msgstr "Egendefinert oversettelse"
+
+msgid "Contexts"
+msgstr "Bindeleddsinformasjon"
+
+msgid "Name"
+msgstr "Navn"
+
+msgid "Edit"
+msgstr "Rediger"
+
+msgid "Cancel"
+msgstr "Avbryt"
+
+msgid "Questionnaire"
+msgstr "Spørreskjema"
+
+msgid "Recipients"
+msgstr "Mottakere"
+
+msgid "Allow selection of this context through the context selector."
+msgstr "Tillat valg av denne bindeleddsinformasjonen gjennom utvalgsverktøyet."
+
+msgid ""
+"If disabled, submissions for this context will only be accessible through a "
+"direct link to it."
+msgstr "Hvis avskrudd vil tilgang til denne bindeleddsinformasjonen bare kunne oppnås ved å følge en direkte lenke til den."
+
+msgid "Allow whistleblowers to select their recipients"
+msgstr "Tillat fløyteblåsere å velge sine mottagere"
+
+msgid "Select all recipients by default"
+msgstr "Velg alle mottakere som forvalg"
+
+msgid "Maximum number of selectable recipients:"
+msgstr "Maksimalt antall mottakere som kan velges:"
+
+msgid "(0 = unlimited)"
+msgstr "(0= ubegrenset)"
+
+msgid "Show recipients in alphabetical order"
+msgstr "Vis mottakere i alfabetisk rekkefølge"
+
+msgid "Show small recipient cards on submission interface"
+msgstr "Vis små mottakerkort på innsendelses-grensesnittet"
+
+msgid "Enable comments"
+msgstr "Skru på kommentarer"
+
+msgid "Allow whistleblowers to write comments"
+msgstr "Tillat fløyteblåsere å skrive kommentarer"
+
+msgid "Enable private messages"
+msgstr "Skru på privat korrespondanse"
+
+msgid "Allow whistleblowers to send messages"
+msgstr "Tillat fløyteblåsere å sende meldinger"
+
+msgid "Let whistleblowers add attachments onto existing submissions"
+msgstr "Tillat fløyteblåsere mulighet for tillegg av vedlegg til eksisterende innsendelser"
+
+msgid "Show recipient details on the status page of the submission"
+msgstr "Vis mottagerdetaljer på statussiden tilhørende innsendelsen"
+
+msgid "Let recipients upload files to whistleblowers"
+msgstr "Tillat mottakere å laste opp filer til fløyteblåsere"
+
+msgid "Disabled"
+msgstr "Avskrudd"
+
+msgid "Submission expiration, in days"
+msgstr "Utløp for innsendelse, i dager"
+
+msgid ""
+"For security reasons, as a matter of data retention policy, the platform "
+"automatically deletes submissions and their data after a certain amount of "
+"time."
+msgstr "Av sikkerhetsgrunneri hensyn til praksisen for datalagring, sletter GlobaLeaks-tjeneren automatisk innsendelser og dataen i dem etter en gitt tid."
+
+msgid "Text shown on top of the interface for selecting recipients"
+msgstr "Tekst vist på toppen av grensesnittet for valg av mottakere"
+
+msgid "Welcome to the administration interface!"
+msgstr "Velkommen til administrasjonsgrensesnittet!"
+
+msgid ""
+"This interface may help you understand how the server can be configured and "
+"provides some info on how to connect to other GlobaLeaks users and experts."
+msgstr "Dette grensesnittet kan hjelpe deg å forstå hvordan tjeneren kan settes opp, samt gi en del info om hvordan man kobler til andre GlobaLeaks- brukere og eksperter."
+
+msgid "Documentation"
+msgstr "Dokumentasjon"
+
+msgid ""
+"To properly organize your project, please read the following guidelines:"
+msgstr "For god organisering av ditt initiativ, les følgende retningslinjer:"
+
+msgid "Remember to provide proper security advice to Whistleblowers:"
+msgstr "Husk å gi gode sikkerhetsanvisninger til fløyteblåsere:"
+
+msgid ""
+"To learn more about GlobaLeaks Security you can read the following document:"
+msgstr "Lær mer om sikkerheten i GlobaLeaks i dette dokumentet:"
+
+msgid "Contact"
+msgstr "Kontakt"
+
+msgid ""
+"If you need technical support, have general questions, or have new ideas for"
+" the software:"
+msgstr "Hvis du trenger teknisk støtte, har spørsmål eller nye idéer for programvaren:"
+
+msgid ""
+"If you want to contribute to software development or report a bug, please "
+"open an issue in our ticketing system:"
+msgstr "Hvis du ønsker å bidra i programvareutvilingen eller innrapportere en feil, åpne en feilrapport på vår problemoversikt:"
+
+msgid ""
+"If your non-profit needs support for investigative journalism, activism or a"
+" human rights defense project:"
+msgstr "Hvis ditt veldedige prosjekt trenger støtte for gravende journalistikk eller et menneskerettighetsprosjekt:"
+
+msgid ""
+"For professional support and development of anti corruption and compliance "
+"projects contact the social enterprise maintaining GlobaLeaks:"
+msgstr "For profesjonell støtte og styrking av antikorrupsjonsarbeid og imøtekommelse av standarder, kontakt den sosiale bedriften som vedlikeholder GlobaLeaks:"
+
+msgid "Join our IRC chat channel on the irc.oftc.net network:"
+msgstr "Ta del i vår IRC-kanal på irc.oftc.net -nettverket:"
+
+msgid "Follow the project on:"
+msgstr "Følg prosjektet på:"
+
+msgid "Software version:"
+msgstr "Programvareversjon:"
+
+msgid "An update is available:"
+msgstr "Oppgradering tilgjengelig:"
+
+msgid "SMTP name"
+msgstr "SMTP-navn"
+
+msgid "SMTP email address"
+msgstr "SMTP for e-postadresse"
+
+msgid "Invalid email address"
+msgstr "Ugyldig e-post -adresse"
+
+msgid "SMTP server address"
+msgstr "SMTP tjener-adresse"
+
+msgid "SMTP server port"
+msgstr "SMTP tjener-port"
+
+msgid "Transport Security"
+msgstr "Transport-sikkerhet"
+
+msgid "When the option is re-enabled the spooled emails will be sent out."
+msgstr "Når dette valget blir påskrudd igjen vil e-postene som er lagt i kø bli utsendt."
+
+msgid "Reset notification templates to default"
+msgstr "Tilbakestill merknadssmaler til forvalg"
+
+msgid "Number of hours before sending a submission expiration alert"
+msgstr "Antall timer før utløpsvarsel for innsendelse vil bli sendt"
+
+msgid "Maximum emails per hour before triggering email suspension"
+msgstr "Maksimalt antall e-poster i timen før e-postsuspendering iverksettes"
+
+msgid "this configuration only applies to recipients"
+msgstr "dette oppsettet har bare med mottakere å gjøre"
+
+msgid "Test the configuration"
+msgstr "Test oppsettet"
+
+msgid "Template"
+msgstr "Mal"
+
+msgid "Admin"
+msgstr "Admin"
+
+msgid "Roles enabled to use the platform without Tor:"
+msgstr "Disse rollene kreves for å bruke plattformen uten Tor:"
+
+msgid "Recipient"
+msgstr "Mottaker"
+
+msgid "Whistleblower"
+msgstr "Fløyteblåser/varsler"
+
+msgid "Hostname"
+msgstr "Vertsnavn"
+
+msgid "Verify"
+msgstr "Bekreft"
+
+msgid "Invalid input format."
+msgstr "Ugyldig inndata-format"
+
+msgid "Input should be similar to:"
+msgstr "Inndata bør ligne:"
+
+msgid ""
+"The platform does not seem to be reachable with the configured hostname."
+msgstr "Plattformen ser ikke ut til å kunne nås med det oppsatte vertsnavnet."
+
+msgid "Using Let's Encrypt requires agreement to their Terms of Service."
+msgstr "Bruk av Let's Encrypt krever at du samtykker til deres tjenestevilkår."
+
+msgid "Read the Terms of Service"
+msgstr "Les tjenestevilkårene"
+
+msgid "I agree to the Terms of Service."
+msgstr "Jeg samtykker til tjenestevilkårene"
+
+msgid "Proceed"
+msgstr "Fortsett"
+
+msgid "Configuration completed. You can review the settings or enable it now."
+msgstr "Oppsett fullført. Du kan gjennomse innstillingene eller sette det i verk nå."
+
+msgid "Review"
+msgstr "Gjennomse"
+
+msgid "Enable"
+msgstr "Skru på"
+
+msgid "Country code"
+msgstr "Landskode"
+
+msgid "Organization"
+msgstr "Organisasjon"
+
+msgid "Organizational unit"
+msgstr "Organisatorisk enhet"
+
+msgid ""
+"This interface can generate a Private Key and a Certificate Signing Request."
+" The Certificate Signing Request can be provided to a Certificate Authority "
+"to retrieve a Certificate. After having validated your request and your "
+"ownership of the hostname, the Certificate Authority will issue you a "
+"Certificate and provide a file containing Intermediate Certificates. Load "
+"the Certificate and the file containing the Intermediate Certificates to "
+"complete the HTTPS setup."
+msgstr "Grensesnittet kan opprette en privat nøkkel og en sertifikatsigneringsforespørsel. Sertifikatsigneringsforespørselen kan gis til en sertifikatsmyndighet for å motta et sertifikat. Etter å ha bekreftet din forespørsel og ditt eierskap av vertsnavnet, vil sertifikatmyndigheten utstede deg et sertifikat og gi deg ei fil som inneholder midlertidige sertifikater. Last sertifikatet og filen inneholdende det midlertidige sertifkatet for å fullføre HTTPS-oppsettet."
+
+msgid "Private Key"
+msgstr "Privat nøkkel"
+
+msgid "Generate"
+msgstr "Generer"
+
+msgid "Certificate Signing Request"
+msgstr "Forespørsel om sertifikatsignering"
+
+msgid "Certificate"
+msgstr "Sertifikat"
+
+msgid "Valid until:"
+msgstr "Gyldig til:"
+
+msgid "Issuer:"
+msgstr "Utsteder:"
+
+msgid "Intermediate Certificates"
+msgstr "Midlertidige sertifikater"
+
+msgid "Reset"
+msgstr "Tilbakestill"
+
+msgid "Select an option:"
+msgstr "Gjør et valg:"
+
+msgid "Automatic configuration"
+msgstr "Automatisk oppsett"
+
+msgid ""
+"Using automatic HTTPS configuration will handle the entire process of "
+"requesting, enabling and renewing certificates from the Let's Encrypt "
+"Certificate Authority."
+msgstr "Det automatiske oppsettet vil ta hånd om hele prosessen med å forespørre, skru på, og fornye HTTPS-sertifikater fra Let's Encrypt-sertifikatutstederen."
+
+msgid ""
+"The platform must be reachable through a public IP address and the selected "
+"hostname must have a corresponding DNS record referencing that address."
+msgstr "Plattformen må kunne nås gjennom en offentlig IP-adresse og valgt vertsnavn må ha en tilhørende DNS-oppføring som nevner den adressen."
+
+msgid "Manual configuration"
+msgstr "Manuelt oppsett"
+
+msgid ""
+"The manual configuration wizard will guide you through the setup of HTTPS "
+"from an alternative Certificate Authority."
+msgstr "Veiviseren vil geleide deg gjennom manuelt oppsett av HTTPS og validering derav på vegne av en alternativ sertifikatsmyndighet."
+
+msgid ""
+"The platform supports the configuration of HTTPS through this interface."
+msgstr "Plattformen støtter oppsett av HTTPS gjennom dette grensesnittet."
+
+msgid "The connection to the configured domain failed."
+msgstr "Tilkoblingen til oppsatt domene mislyktes."
+
+msgid "Running"
+msgstr "Kjører"
+
+msgid "Not running"
+msgstr "Kjører ikke"
+
+msgid "Auto-renewal"
+msgstr "Automatisk fornyelse"
+
+msgid "System message:"
+msgstr "Systemmelding:"
+
+msgid ""
+"Allowing whistleblowers to connect over HTTPS preserves their privacy but "
+"not their anonymity."
+msgstr "Å tillate fløyteblåsere å koble til over HTTPS ivaretar deres personvern, men ikke deres anonymitet."
+
+msgid "Attention!"
+msgstr "Oppmerksomhet!"
+
+msgid ""
+"Configuration in progress. When it is finished you will have to log in "
+"again."
+msgstr "Oppsett underveis. Når det er fullført vil du måtte logge inn igjen."
+
+msgid "Your browser will be redirected to the following URL."
+msgstr "Din nettleser vil bli videresendt til følgende nettadresse."
+
+msgid "Tor Onion Service"
+msgstr "Tor-løktjeneste"
+
+msgid "Tor Browser download link"
+msgstr "Nedlastingslenke for Tor-nettleser"
+
+msgid "Anonymize outgoing connections"
+msgstr "Anonymiser utgående tilkoblinger"
+
+msgid "Let the platform be reachable without Tor"
+msgstr "Tillat at plattformen nås uten Tor"
+
+msgid "Stats of the week:"
+msgstr "Ukas statistikk:"
+
+msgid "Free disk space"
+msgstr "Ledig diskplass"
+
+msgid "Event ID"
+msgstr "Hendelses-ID"
+
+msgid "Time"
+msgstr "Tid"
+
+msgid "Event"
+msgstr "Hendelse"
+
+msgid "Response time"
+msgstr "Svartid"
+
+msgid "Role"
+msgstr "Rolle"
+
+msgid "Last access"
+msgstr "Siste tilgang"
+
+msgid "Submission"
+msgstr "Innsending"
+
+msgid "Path"
+msgstr "Sti"
+
+msgid "Size"
+msgstr "Størrelse"
+
+msgid "Alarm level"
+msgstr "Alarm-nivå"
+
+msgid "Events"
+msgstr "Hendelser"
+
+msgid "Label"
+msgstr "Merkelapp"
+
+msgid "Type"
+msgstr "Type"
+
+msgid "Single-line text input"
+msgstr "Énlinjes tekstfelt for inndata"
+
+msgid "Multi-line text input"
+msgstr "Flerlinjet tekstfelt for inndata"
+
+msgid "Multiple choice input"
+msgstr "Flervalg"
+
+msgid "Selection box"
+msgstr "Rullegardinsvalg"
+
+msgid "Checkbox"
+msgstr "Avkryssingsboks"
+
+msgid "Terms of service"
+msgstr "Tjenestevilkår"
+
+msgid "Group of questions"
+msgstr "Spørsmålsgruppering"
+
+msgid "Row"
+msgstr "Rad"
+
+msgid "Column"
+msgstr "Kolonne"
+
+msgid "Width"
+msgstr "Bredde"
+
+msgid "Question group"
+msgstr "Spørsmålsgruppe"
+
+msgid "Hint"
+msgstr "Hint"
+
+msgid "Required"
+msgstr "Påkrevd"
+
+msgid "Accept multiple file uploads"
+msgstr "Tillat flerfoldige filopplastinger"
+
+msgid "Accept multiple answers for the field"
+msgstr "Tillat flerfoldige svar i inndatafeltet"
+
+msgid "Hint shown on the button for adding an additional answer"
+msgstr "Hint vist på knappen for tillegg av et ekstra spørsmål"
+
+msgid "Clause"
+msgstr "Klausul"
+
+msgid "Agreement Text"
+msgstr "Overenstemmelses-tekst"
+
+msgid "Layout orientation"
+msgstr "Oppsett av sideretning"
+
+msgid "Subject answer visibility to custodian authorization"
+msgstr "Synlighet for emne underlagt godkjenning av tillitsperson"
+
+msgid "Prompt confirmation upon negative answer"
+msgstr "Etterspør bekreftelse ved negativt svar"
+
+msgid "Title of the confirmation question upon negative answer"
+msgstr "Tittel for bekreftelespørsmål ved negativt svar"
+
+msgid "Body of the confirmation question upon negative answer"
+msgstr "Meldingstekst for bekreftelsspørsmål ved negativt svar"
+
+msgid "Options"
+msgstr "Valg"
+
+msgid "Questions"
+msgstr "Spørsmål"
+
+msgid "Add new question"
+msgstr "Legg til nytt spørsmål"
+
+msgid "Add question from template"
+msgstr "Legg til spørsmål fra mal"
+
+msgid "Steps"
+msgstr "Steg"
+
+msgid "Configuration"
+msgstr "Oppsett"
+
+msgid "Default"
+msgstr "Forvalgt"
+
+msgid "Forcefully selected"
+msgstr "Påtvunget forvalg"
+
+msgid "Unselectable"
+msgstr "Ikke valgbart"
+
+msgid "Allow the recipient to postpone the submission expiration date"
+msgstr "Tillat mottakeren å utsette utløpsdatoen for ledetråd"
+
+msgid "The setting is enabled at a global level."
+msgstr "Innstillingen er påskrudd for hele prosjektet ditt."
+
+msgid "Allow the recipient to delete submissions"
+msgstr "Tillat mottaker å slette innsendelser"
+
+msgid ""
+"Allow the recipient to grant permissions to whistleblowers on specific "
+"submissions"
+msgstr "Tillat mottaker å forære rettigheter til fløyteblåsere på gitte innsendelser."
+
+msgid "General settings"
+msgstr "Hovedinnstillinger"
+
+msgid "Network settings"
+msgstr "Nettverksinnstillinger"
+
+msgid "Root domain used for secondary sites"
+msgstr "Rotdomene brukt for sekundære sider"
+
+msgid "Allow users to sign up"
+msgstr "Tillat brukere å registrere seg"
+
+msgid "Sites"
+msgstr "Sider"
+
+msgid "Active"
+msgstr "Aktiv"
+
+msgid "Inactive"
+msgstr "Inaktiv"
+
+msgid "The default password is:"
+msgstr "Det forvalgte passordet er:"
+
+msgid "The system forces users to change the password at first login."
+msgstr "Systemet tvinger brukere til å endre passordet ved første innlogging."
+
+msgid "New Password"
+msgstr "Nytt passord"
+
+msgid ""
+"The chosen password is too weak. Make it more secure by adding special "
+"characters, numbers, and unusual symbols."
+msgstr "Valgt passord for svakt. Gjør det sikrere ved å legge til spesielle tegn, tall og uvanlige symboler."
+
+msgid "Force password change"
+msgstr "Påtving passordendring"
+
+msgid "The user will be forced to change its password on next login."
+msgstr "Mottakeren vil tvinges til å endre passordet sitt ved neste innlogging."
+
+msgid "Language"
+msgstr "Språk"
+
+msgid "Encryption:"
+msgstr "Kryptering:"
+
+msgid "Remove the PGP key"
+msgstr "Fjern PGP-nøkkel"
+
+msgid "Set up encryption by providing a PGP public key"
+msgstr "Sett opp kryptering ved å oppgi en offentlig PGP-nøkkel"
+
+msgid "Request date"
+msgstr "Forespør dato"
+
+msgid "Authorization"
+msgstr "Godkjenning"
+
+msgid "Before proceeding, please change your password."
+msgstr "Før du fortsetter, endre passordet ditt."
+
+msgid "Submissions disabled"
+msgstr "Innsendelser avskrudd"
+
+msgid ""
+"You are connecting to the server without anonymity and this server supports "
+"only anonymous submissions"
+msgstr "Din tilknytning til tjeneren er ikke anonym, denne tjeneren støtter bare anonyme innsendelser"
+
+msgid ""
+"Server temporarly unusable due to resource exhaustion; advise the Admin if "
+"you can."
+msgstr "Tjeneren er utilgjengelig, og  kan ikke nås på grunn av stor pågang; meld fra om dette til administratoren hvis du kan."
+
+msgid "This server is not configured."
+msgstr "Innstillinger for denne tjeneren har ikke blitt gjort enda."
+
+msgid "You will not be able to send a submission."
+msgstr "Innsendelse vil følgelig ikke kunne utføres."
+
+msgid ""
+"This platform makes use of GlobaLeaks software specifically designed to "
+"protect the identity for submitter and recipient in the exchange of content."
+msgstr "Denne plattformen bruker GlobaLeaks-programvare, laget i den hensikt å beskytte identiteten til innsender og mottaker i overrekkelsen av materiale."
+
+msgid ""
+"The software is developed by the non-profit Hermes Center for Transparency "
+"and Digital Human Rights."
+msgstr "Programvaren er utviklet for det veldedige Hermes senter for etterettlighet og digitale menneskerettigheter."
+
+msgid "Please support Hermes through their donation page."
+msgstr "Støtt Hermes gjennom deres donasjons-side."
+
+msgid "Authentication failed"
+msgstr "Identitetsbekreftelse feilet"
+
+msgid "Please select your account:"
+msgstr "Velg din konto:"
+
+msgid "Now type your password, then click 'Log in':"
+msgstr "Skriv inn ditt passord, trykk så 'logg inn':"
+
+msgid "Are you sure?"
+msgstr "Er du sikker?"
+
+msgid "The operation will reset the configuration and cannot be undone."
+msgstr "Operasjonen vil tilbakestille oppsettet og kan ikke angres."
+
+msgid "Assign score points"
+msgstr "Tildel poeng"
+
+msgid ""
+"Enter the number of score points to be assigned when this option is "
+"selected:"
+msgstr "Skriv inn antall poeng som tildeles når dette valget tas:"
+
+msgid "Confirm"
+msgstr "Bekreft tillegg"
+
+msgid "Are you human?"
+msgstr "Bevis at du er et menneske."
+
+msgid ""
+"We do not discriminate based on race and gender, but we do against computers"
+" :)"
+msgstr "Vi skal ikke krangle på rase, kjønn eller kjønnsroller, men vi diskriminerer mot datamaskiner :)"
+
+msgid ""
+"Just to prove you are human, please answer the following math challenge:"
+msgstr "Svar på følgende matte-spørsmål:"
+
+msgid "I've solved the math challenge, hide this thing now!"
+msgstr "Jeg har løst matte-oppgaven, lukk denne greia nå!"
+
+msgid "Please note that all the associated data will be permanently lost."
+msgstr "Merk deg at all tilknyttet data vil gå tapt for godt."
+
+msgid ""
+"This means that if the server running the platform were to be seized, it "
+"would be possible to extract the files that have been submitted."
+msgstr "Dette betyr at hvis tjeneren som kjører plattformen blir beslaglagt eller faller noen i hende, er det mulig å hente ut filene som har blitt innsendt."
+
+msgid "Are you sure that you wish to continue?"
+msgstr "Er du sikker på at du vil forstsette?"
+
+msgid ""
+"Downloading a file with malicious content could compromise your computer or "
+"disclose your identity."
+msgstr "Å late ned en fil med skadelig innhold kan ta over din datamaskin eller lekke din identitet."
+
+msgid "The name of the file and its content can be intentionally misleading."
+msgstr "Navnet på fila og dens innhold kan være misledende med vilje."
+
+msgid ""
+"Please review the following information and decide if you wish to proceed."
+msgstr "Se over følgende informasjon og bestem deg for om du vil fortsette."
+
+msgid "Error!"
+msgstr "Feil!"
+
+msgid "Internal server error"
+msgstr "Intern tjenerfeil"
+
+msgid "Error on input validation"
+msgstr "Feil ved inndatabekreftelse"
+
+msgid "Resource not found"
+msgstr "Fant ikke ressursen"
+
+msgid "Forbidden operation"
+msgstr "Forbudt operasjon"
+
+msgid "The specified old password is not valid"
+msgstr "Oppgitt gammelt passord er ikke riktig"
+
+msgid "Resource can only be accessed via the Tor network"
+msgstr "Ressurs kan nåes bare i Tor-nettverket"
+
+msgid "The upload request exceeds the size limit"
+msgstr "Opplastingsforespørselen overskrider størrelsesavgrensningen"
+
+msgid "Success!"
+msgstr "Suksess!"
+
+msgid ""
+"It appears that you are browsing this site without any extra privacy and "
+"security!"
+msgstr "Det later til at du surfer på denne siden uten bruk av ekstra personvern og sikkerhet!"
+
+msgid ""
+"You are strongly advised to visit this site using the desktop app called Tor"
+" Browser, that protects your identity."
+msgstr "Det er sterkt tilrådelig å besøke denne siden ved bruk av det identitetsbeskyttende skrivebordsprogrammet \"Tor-nettleser\"."
+
+msgid "Then, copy and paste the following address into the Tor Browser:"
+msgstr "Deretter, kopier og lim inn følgende adresse i den nå installerte  Tor-nettleseren:"
+
+msgid "Details of the PGP key:"
+msgstr "Detaljer for PGP-nøkkel:"
+
+msgid "Fingerprint"
+msgstr "Fingeravtrykk"
+
+msgid "Add file"
+msgstr "Legg til fil"
+
+msgid "Uploading files…"
+msgstr "Laster opp filer…"
+
+msgid "Upload completed successfully!"
+msgstr "Opplasting fullført."
+
+msgid "Error while uploading files; check below for details."
+msgstr "Feil under opplasting av filer; se detaljer nedenfor."
+
+msgid "Estimated upload time:"
+msgstr "Forventet opplastingstid:"
+
+msgid "seconds"
+msgstr "sekunder"
+
+msgid "Which of the following statements is true?"
+msgstr "Hvilket av følgende utsagn er sanne?"
+
+msgid "HTTPS protects my identity, but not the content of my submission"
+msgstr "HTTPS beskytter min identitet, men ikke innholdet i min innsendelse"
+
+msgid "HTTPS protects the content of my submission but not my identity"
+msgstr "HTTPS beskytter innholdet i min innsendelse, men ikke min identitet"
+
+msgid "HTTPS does not protect the content of my submission nor my identity"
+msgstr "HTTPS beskytter ikke innholdet i min innsendelse, ei heller min identitet"
+
+msgid "HTTPS does protect both my identity and the content of my submission"
+msgstr "HTTPS beskytter min identitet og innholdet av min innsendelse"
+
+msgid ""
+"You are aware of the risks involved. Go ahead, but consider yourself warned."
+msgstr "Du er klar over risikoene, vær så god, du er advart."
+
+msgid "Wrong Answer!"
+msgstr "Feil svar!"
+
+msgid "The connection is not secure."
+msgstr "Tilkoblingen er ikke sikker."
+
+msgid ""
+"The platform is still not configured for HTTPS connections and should "
+"therefore only be used for testing purposes."
+msgstr "Plattformen er fremdeles ikke satt opp for HTTPS-tilkoblinger og burde bare brukes for testformål."
+
+msgid "Send"
+msgstr "Send"
+
+msgid "Allow the whistleblower to write comments"
+msgstr "Tillat fløyteblåseren å skrive kommentarer"
+
+msgid "Filename"
+msgstr "Filnavn"
+
+msgid "Upload date"
+msgstr "Opplastingsdato"
+
+msgid "Content Type"
+msgstr "Innholdstype"
+
+msgid "File size"
+msgstr "Filstørrelse"
+
+msgid "download"
+msgstr "last ned"
+
+msgid "No files have been uploaded!"
+msgstr "Ingen fil har blitt lastet opp!"
+
+msgid "Allow the whistleblower to add attachments to the submission"
+msgstr "Tillat fløyteblåseren å legge vedlegg til innsendelsen"
+
+msgid "Access expiration"
+msgstr "Tilgangsutløp"
+
+msgid "Connection"
+msgstr "Tilkobling"
+
+msgid "Never"
+msgstr "Aldri"
+
+msgid "Revoked"
+msgstr "Tilbakekalt"
+
+msgid "Allow the whistleblower to send messages"
+msgstr "Tillat fløyteblåseren å sende meldinger"
+
+msgid "Are you sure that you want to delete the submission?"
+msgstr "Bekreft sletting av denne innsendelsen."
+
+msgid ""
+"Everything related to the submission stored on the platform will be deleted."
+msgstr "Alt som har med innsendelsen lagret på plattformen vil bli slettet."
+
+msgid ""
+"Please be aware that everything stored off the platform, e.g. files you have"
+" saved on your computer, must be deleted manually."
+msgstr "Merk deg at alt lagret andre steder enn på plattformen, eksempelvis filer du har lagret på din datamaskin, må slettes manuelt."
+
+msgid "Are you sure that you want to delete all the selected submissions?"
+msgstr "Bekreft sletting av valgte innsendelser."
+
+msgid ""
+"Please make sure that all related data is properly deleted so that the "
+"recipients won't be able to further access to it."
+msgstr "Ha i minnet at all tilhørende data vil bli ordentlig slettet og at alle mottakere ikke lenger vil ha tilgang til det."
+
+msgid "Please write a motivation for the reply"
+msgstr "Skriv motivasjon for forespørsel"
+
+msgid "Are you sure that you want to postpone the submission expiration date?"
+msgstr "Er du sikker på at du vil utsette utløpsdatoen for ledetråden?"
+
+msgid "By confirming, you will postpone the expiration date to:"
+msgstr "Ved å bekrefte vil du utsette utløpsdatoen til:"
+
+msgid ""
+"Are you sure that you want to postpone the expiration date for all selected "
+"submissions?"
+msgstr "Bekreft utsettelse av utløpsdato for valgte innsendelser."
+
+msgid "Questionnaire answers"
+msgstr "Svar oppgitt for spørreskjema"
+
+msgid "Step"
+msgstr "Steg"
+
+msgid "Recipient list"
+msgstr "Mottaker-liste"
+
+msgid "Attached files for the whistleblower"
+msgstr "Vedlagte filer for fløyteblåseren"
+
+msgid ""
+"Files uploaded here are made available for the whistleblower and other "
+"recipients to download."
+msgstr "Filer lastet opp her vil kunne lastes ned av fløyteblåseren og andre mottakere."
+
+msgid "Upload a file:"
+msgstr "Last opp en fil:"
+
+msgid "Logout"
+msgstr "Logg ut"
+
+msgid "The key code is either invalid or the submission has expired."
+msgstr "Nøkkelkoden er enten ugyldig eller så har innsendelsen utløpt."
+
+msgid "Please check your key code and try again or make a new submission."
+msgstr "Sjekk din nøkkelkode igjen eller gjør en ny innsendelse."
+
+msgid "Files attached by recipients"
+msgstr "Filer vedlegt av mottakere"
+
+msgid "These files have been attached to your submission by the recipients."
+msgstr "Disse filene har blitt vedlagt din innsendelse av mottakerne."
+
+msgid "Enable submission notification"
+msgstr "Skru på innsendelsesmerknad"
+
+msgid "Current Password"
+msgstr "Gjeldende passord"
+
+msgid "Old password confirmation required"
+msgstr "Bekreftelse av gammelt passord påkrevd"
+
+msgid "The new password must be different from the current one."
+msgstr "Det nye passordet må være forskjellig fra det gamle."
+
+msgid "Type your new password again"
+msgstr "Skriv inn ditt nye passord igjen"
+
+msgid "The two passwords do not match"
+msgstr "De to passordene samsvarer ikke"
+
+msgid "Thank you!"
+msgstr "Takk!"
+
+msgid "Remember your key code for this submission."
+msgstr "Husk nøkkelkoden tilknyttet denne innsendelsen."
+
+msgid "We will try to get back to you as soon as possible!"
+msgstr "Vi svarer deg snarest råd!"
+
+msgid ""
+"Use the 16 digit key code to log in. It will allow you to view any messages "
+"we sent you, and also to add extra info."
+msgstr "Bruk den 16-sifrede nøkkelkoden for å logge inn og se meldinger vi sender deg, eller hvis du kommer på noe du burde ha lagt til."
+
+msgid "View your submission"
+msgstr "Se over din innsendelse"
+
+msgid "Hint: How to hide your key code"
+msgstr "Hint: Hvordan gjemme din nøkkelkode"
+
+msgid ""
+"A useful way to hide your key code is to write it down like a credit card "
+"number, i.e. by also including an expiration date."
+msgstr "En mulig måte å gjemme koden din på er å hevde at det er et kredittkortnummer man har skrevet ned."
+
+msgid "Example:"
+msgstr "Eksempel:"
+
+msgid ""
+"You have not set up your encryption key, so the files will not be encrypted "
+"prior to being stored on the server."
+msgstr "Du har ikke satt opp krypteringsnøklene dine, filene vil ikke bli kryptert før de lagres på tjeneren."
+
+msgid ""
+"This may lead to unintended access to the files by the server administrator "
+"or others in case the server is compromised."
+msgstr "Dette kan føre til utilsiktet tilgang til filene enten av administratoren for tjeneren, eller ved innbrudd på tjeneren."
+
+msgid "Please configure your PGP keys in the recipient preferences page."
+msgstr "Sett opp PGP-nøklene dine på innstillingssiden for mottaker."
+
+msgid ""
+"One or more of the recipients of this submission has not configured a PGP "
+"key."
+msgstr "En eller flere av mottagerne av denne ledetråden har ikke satt opp en PGP-nøkkel."
+
+msgid ""
+"This means that the submitted files will be stored in plaintext on the "
+"server."
+msgstr "Dette betyr at innsendte filer vil bli lagret i klartekst på tjeneren.."
+
+msgid ""
+"Access to the whistleblower's identity has been requested to the custodian."
+msgstr "Tilgang til fløyteblåsers identitet har blitt forespurt av tillitsperson."
+
+msgid "Date of the request"
+msgstr "Dato for forespørsel"
+
+msgid "Congratulations!"
+msgstr "Gratulerer!"
+
+msgid "You have completed the platform activation."
+msgstr "Du har fullført plattformsaktiveringen."
+
+msgid "Your whistleblowing platform is now accessible at:"
+msgstr "Din fløyteblåserplattform er nå tilgjengelig på:"
+
+msgid "Users' credentials:"
+msgstr ""
+
+msgid "To log in, visit:"
+msgstr "For å logge inn, besøk:"
+
+msgid "For the user documentation visit:"
+msgstr "For brukerdokumentasjon, besøk:"
+
+msgid "The platform will be automatically deleted on:"
+msgstr "Plattformen vil bli slettet automatisk den:"
+
+msgid "Sign up"
+msgstr "Registrer deg"
+
+msgid "Domain"
+msgstr "Domene"
+
+msgid "Use Case"
+msgstr ""
+
+msgid "Anticorruption"
+msgstr "Antikorrupsjon"
+
+msgid "Corporate compliance"
+msgstr ""
+
+msgid "Investigative journalism"
+msgstr "Gravende journalistikk"
+
+msgid "Civic activism"
+msgstr ""
+
+msgid "Other"
+msgstr "Annet"
+
+msgid "Complete"
+msgstr "Ferdig"
+
+msgid "Your whistleblowing platform is almost ready!"
+msgstr "Din fløyteblåserplattform er nesten klar!"
+
+msgid "Check your inbox to activate your account."
+msgstr "Sjekk din innboks for å aktivere kontoen din."
+
+msgid "The answer is too short."
+msgstr "Svaret er for kort."
+
+msgid "The specified input is not valid:"
+msgstr "Angitt inndata er ikke gyldig:"
+
+msgid "please enter a valid email address."
+msgstr "oppgi en gyldig e-postadresse"
+
+msgid "please enter numbers only."
+msgstr "bruk kun tall"
+
+msgid "Recipient selection"
+msgstr "Valg av mottaker"
+
+msgid "previous step"
+msgstr "Forrige steg"
+
+msgid "next step"
+msgstr "Neste steg"
+
+msgid "Submit"
+msgstr "Send inn"
+
+msgid "Recipients selected:"
+msgstr "Mottakere valgt:"
+
+msgid ""
+"In this step the answers to the following questions are either missing or "
+"invalid:"
+msgstr "Disse spørsmålene har ugyldige eller manglende svar i dette steget."
+
+msgid "Submission errors"
+msgstr "Innsendelsesfeil"
+
+msgid "You must select at least one recipient."
+msgstr "Du må velge ihvertfall én mottaker."
+
+msgid "Waiting for the file(s) to finish uploading."
+msgstr "Venter på at ei fil skal lastes opp."
+
+msgid "The following steps have errors:"
+msgstr "Følgende steg har feil:"
+
+msgid "Welcome!"
+msgstr "Velkommen!"
+
+msgid ""
+"The following step-by-step procedure will guide you through creating your "
+"whistleblowing platform."
+msgstr "Denne stegvise prosedyren vil geleide deg gjennom opprettelse av din fløyteblåser-plattform."
+
+msgid "Please choose a configuration profile:"
+msgstr "Velg en oppsettsprofil:"
+
+msgid ""
+"These profiles contain settings used by successful projects in each "
+"respective field."
+msgstr "Disse profilene inneholder innstillinger brukt av vellykkede prosjekter i hvert respektive felt."
+
+msgid "Confirm password"
+msgstr "Bekreft passord"
+
+msgid "The default username is:"
+msgstr "Det forvalgte brukernavnet er:"
+
+msgid "License Agreement"
+msgstr "Lisens-samtykke"
+
+msgid "Please review the license terms before proceeding."
+msgstr "Gjennomse lisensvilkårene før du går videre."
+
+msgid "I have read and agree to the terms of the License Agreement."
+msgstr "Jeg godtar vilkårene i lisensen."
+
+msgid "You have completed the platform wizard."
+msgstr "Du har fullført plattformsveiviseren."
+
+msgid "Fill out your submission"
+msgstr "Fyll ut din innsendelse"
+
+msgid "Short title"
+msgstr "Kort tittel"
+
+msgid "Describe your submission in a few words."
+msgstr "Kort beskrivelse av din innsendelse."
+
+msgid "Full description"
+msgstr "Full beskrivelse"
+
+msgid "Describe your submission in detail."
+msgstr "Beskriv din innsendelse i detalj."
+
+msgid "Attach files relevant to the submission."
+msgstr "Legg ved relevante filer til innsendelsen."
+
+msgid "Dear {RecipientName},"
+msgstr "Kjære {RecipientName},"
+
+msgid "Kind regards,"
+msgstr "Vennlig hilsen,"
+
+msgid ""
+"The number of activities recently detected appears to be higher than usual."
+msgstr "Antallet nylige aktiviteter later til å være høyere enn normalt."
+
+msgid ""
+"This could be a sign of an attack (for example, someone flooding your server"
+" with bogus information) or just a usage spike due to an increased "
+"visibility of your project."
+msgstr "Dette kan indikere angrep (eksempelvis at noen oversvømmer tjeneren med ugyldig informasjon) eller bare en brå økning i aktivitetsnivået på grunn av naturlige årsaker(, som synligheten til ditt prosjekt)."
+
+msgid "Examine the issue to determine whether it is legitimate or not."
+msgstr ""
+
+msgid "The activities with unusual stats are:"
+msgstr "Hendelsesforløpet med uvanlige attributter er:"
+
+msgid ""
+"The server cannot guarantee that a new submission can be stored, so "
+"submissions have been disabled."
+msgstr "Tjeneren kan ikke garantere for at nye innsendelser kan lagres, derfor har innsendelser blitt avskrudd."
+
+msgid ""
+"Please consider asking your technical support to create more disk space on "
+"the server."
+msgstr "Overvei å spørre din tekniske brukerstøtte om å frigjøre eller legge til mer diskplass på tjeneren."
+
+msgid ""
+"GlobaLeaks technology includes a server status checking component which will"
+" alert you in case something requires your attention."
+msgstr "Globaleaks-teknologi innheholder en komponent som sjekker statusen til tjeneren, denne vil holde deg underrettet om noe skulle behøve din oppmerksomhet."
+
+msgid ""
+"For more information, log in to the Administration interface and look at the"
+" \"System Stats\" and \"Anomalies\" sections."
+msgstr "Ytterligere informasjon tilgjengelig ved innlogging på administrasjonspanelet under seksjonene \"Systemstatistikk\" og \"Unormalheter\"."
+
+msgid "Anomaly detected in {NodeName}"
+msgstr "Unormalhet oppdaget i {NodeName}"
+
+msgid ""
+"This is an email to inform you that the PGP key of the following users is "
+"going to expire or has already expired:"
+msgstr "Denne e-postens hensikt er å informere deg om at PGP-nøkkelen til følgende brukere allerede er eller kommer til å utløpe:"
+
+msgid ""
+"Without a valid PGP key, the system will not be able to send them encrypted "
+"notifications."
+msgstr "Uten en gyldig PGP-nøkkel, vil systemet ikke kunne sende dem krypterte merknader."
+
+msgid "PGP key expiration alert"
+msgstr "Utløpsvarsel for PGP-nøkkel"
+
+msgid ""
+"This is a test email sent out from the platform's administrative interface."
+msgstr "Dette er en e-posttest send fra plattformens administrative grensesnitt."
+
+msgid ""
+"Reception of this email indicates that the server was able to authenticate "
+"to and interact with the SMTP mail server."
+msgstr "Mottak av denne e-posten indikerer at tjeneren kunne identitetsbekrefte seg ovenfor og kommunisere med SMTP-e-posttjeneren."
+
+msgid "Test email"
+msgstr "E-posttest"
+
+msgid ""
+"This is an email to notify you of a new comment on an existing submission."
+msgstr "Denne e-postens hensikt er å gjøre deg oppmerksom på at det er en ny kommentar i en tidligere innsendelse."
+
+msgid "The submission can be accessed:"
+msgstr "Innsendelsen kan nåes:"
+
+msgid "via Tor at: {TorUrl}"
+msgstr "via Tor på: {TorUrl}"
+
+msgid "via HTTPS at: {HTTPSUrl}"
+msgstr "via HTTPS på {HTTPSUrl}"
+
+msgid "New comment"
+msgstr "Ny kommentar"
+
+msgid "From: {RecipientName}"
+msgstr "Fra: {RecipientName}"
+
+msgid "Date: {EventTime}"
+msgstr "Dato: {EventTime}"
+
+msgid "From: Whistleblower"
+msgstr "Fra: Fløyteblåser"
+
+msgid "Date: {SubmissionDate}"
+msgstr "Dato: {SubmissionDate}"
+
+msgid "Label: {TipLabel}"
+msgstr "Merkelapp: {TipLabel}"
+
+msgid "Context: {ContextName}"
+msgstr "Bindeleddsinformasjon: {ContextName}"
+
+msgid ""
+"This is an email to notify you that the whistleblower of submission {TipNum}"
+" has attached new material."
+msgstr "Denne e-postens hensikt er å varsle deg om at en fløyteblåser bak innsendelse {TipNum} har lagt ved nytt materiale."
+
+msgid "New attachment"
+msgstr "Nytt vedlegg"
+
+msgid ""
+"The HTTPS certificate loaded on the platform is about to, or has already "
+"expired."
+msgstr "HTTPS-sertifikatet på plattformen er i ferd med å utløpe, eller har allerede gjort det."
+
+msgid "Expiration date: {ExpirationDate}"
+msgstr "Utløpsdato: {ExpirationDate}"
+
+msgid ""
+"Without a valid certificate, the platform will be accessible in a secure way"
+" only via Tor."
+msgstr "Uten et gyldig sertifikat, vil plattformen bare være tilgjengelig på sikkert vis gjennom Tor."
+
+msgid "Log in to solve the issue."
+msgstr "Logg inn for å løse problemet."
+
+msgid "Expiration alert for HTTPS certificate"
+msgstr "Utløpsvarsel for HTTPS-sertifikat"
+
+msgid ""
+"This is an email to notify you that a custodian has authorized you to access"
+" to the whistleblowing identity for the submission {TipNum}."
+msgstr "Dette er en e-post til opplysning om at tillitspersonen har godkjent deg tilgang til den sanne fløyteblåseridentiteten for innsendelsen {TipNum}"
+
+msgid "Access to whistleblower's identity authorized"
+msgstr "Tilgang til fløyteblåserens sanne identitet godkjent"
+
+msgid ""
+"This is an email to notify you that a custodian has denied you access to the"
+" wistleblowing identity for the submission {TipNum}."
+msgstr "Dette er en e-post til opplysning om at tillitspersonen har nektet deg tilgang til den sanne fløyteblåseridentiteten bak innsendelse {TipNum}"
+
+msgid "Access to whistleblower's identity denied"
+msgstr "Nektet tilgang til fløyteblåserens sanne identitet"
+
+msgid ""
+"This is an email to notify you that a recipient has requested access to the "
+"whistleblower's identity for the submission {TipNum}"
+msgstr "Dette er en e-post til opplysning om at mottakeren har forespurt tilgang til den sanne fløyteblåseridentiteten bak innsendelse {TipNum}"
+
+msgid "The request can be accessed:"
+msgstr "Forespørselen finnes per:"
+
+msgid "New request of access to a whistleblower's identity"
+msgstr "Ny tilgangsforespørsel til en fløyteblåsers sanne identitet"
+
+msgid ""
+"This is an email to notify you that the whistleblower for the submission "
+"{TipNum} has provided their identity."
+msgstr "Denne e-postens hensikt er å varsle deg om at fløyteblåseren bak innsendelse {TipNum} har oppgitt sin sanne identitet."
+
+msgid "The whistleblower has provided their identity"
+msgstr "Fløyteblåseren har bekjentgjort sin sanne identitet"
+
+msgid ""
+"This is an email to notify you of a new message on an existing submission."
+msgstr "Denne e-postens hensikt er å gjøre deg oppmerksom på at det er en ny melding i en tidligere innsendelse."
+
+msgid "New message"
+msgstr "Ny melding"
+
+msgid ""
+"This is an email to inform you that your PGP key is expiring or has already "
+"expired."
+msgstr "Dette er en e-post for å informere deg om din PGP-nøkkel allerede er, eller kommer til å utløpe:"
+
+msgid ""
+"You should extend its validity and update the key present on the platform, "
+"or upload a new key."
+msgstr "Du bør forlenge dens gyldighet og oppdatere nøkkelen som finnes på plattformen, eller laste opp en ny nøkkel."
+
+msgid ""
+"Without a valid PGP key, the system won't be able to encrypt data provided "
+"to you."
+msgstr "Uten en gyldig PGP-nøkkel vil ikke systemet kunne kryptere data ment for deg."
+
+msgid "It appears that {NodeName} is receiving a large number of requests."
+msgstr "Det later til at {NodeName} mottar et stort antall forespørsler."
+
+msgid ""
+"To prevent sending you too many emails, the system has disabled email "
+"notifications until the load returns to normal. In the meantime, you can "
+"normally log onto the platform and manually check for new submissions."
+msgstr "For å forhindre utsending av for mange e-poster har systemet skrudd av e-postmerknader til systemlasten igjen er på et normale. I mellomtiden kan du logge inn på plattformen og manuelt sjekke nye innsendelser."
+
+msgid ""
+"If you don’t mind and would rather receive such a large number of email "
+"notifications anyhow, please contact your technical support to have them "
+"modify this setting accordingly."
+msgstr "Hvis du ikke har noen formening og heller vil motta e-postmerknader lass-vis, ta kontakt med teknisk brukerstøtte og få dem til å endre denne innstillingen i henhold til dine ønsker."
+
+msgid "Notifications from {NodeName} have been temporarily suspended"
+msgstr "Merknader fra {NodeName} har blitt midlertidig suspendert"
+
+msgid "Click the link to activate the platform:"
+msgstr "Klikk på lenken for å aktivere plattformen:"
+
+msgid "A software update is available."
+msgstr "En programvareoppgradering er tilgjengelig."
+
+msgid "It is good security practice to keep the platform up to date."
+msgstr "Det er god sikkerhetspraksis å holde plattformen oppdatert."
+
+msgid "Installed version: {InstalledVersion}"
+msgstr "Installert versjon: {InstalledVersion}"
+
+msgid "Latest version: {LatestVersion}"
+msgstr "Siste versjon: {LatestVersion}"
+
+msgid ""
+"To learn about new features and bug fixes in the new version consult the "
+"change log at: {ChangeLogUrl}"
+msgstr "For å lære mer om nye funksjoner og feilrettinger i den nye versjonen, henvend dem til endringsloggen på: {ChangeLogUrl}"
+
+msgid ""
+"For instructions on software updates, please refer to the documentation at: "
+"{UpdateGuideUrl}"
+msgstr "For instruks om programvareoppdateringer, henvend dem til dokumentasjonen på: {UpdateGuideUrl}"
+
+msgid "The earliest expiration date is {EarliestExpirationDate}."
+msgstr "Den tidligste utløpsdatoen er {EarliestExpirationDate}."
+
+msgid "Please remember to check them before they are deleted."
+msgstr "Husk å sjekke dem før de blir slettet."
+
+msgid "Some submissions will expire soon"
+msgstr "Noen innsendelser vil utløpe snart"
+
+msgid ""
+"This is an email to notify you that a whistleblower has selected you as a "
+"valuable recipient of their submission."
+msgstr "Denne e-posten har til hensikt å informere deg om at en fløyteblåser har valgt deg som verdig mottaker av deres innsendelse."
+
+msgid ""
+"You are asked to pay special attention to the information and material "
+"contained therein. Please keep in mind that whistleblowers often expose "
+"themselves to high personal risks in the interest of the public. Therefore "
+"the material provided within this submission should be considered to be of "
+"high importance."
+msgstr "Du er bedt om å se spesielt nøye på informasjonen og innholdet i den. Ha i minnet et fløyteblåsere ofte løper stor personlig risiko i offentlighetens ærende. Derfor er det de skaffer til veie i form av denne innsendelsen å anse som materiale av stor betydning."
+
+msgid "New submission"
+msgstr "Ny innsendelse"
