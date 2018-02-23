@@ -66,7 +66,7 @@ GLClient.controller('AdminFieldEditorCtrl', ['$scope', '$uibModal', 'Utils',
     };
 
     $scope.showAddQuestion = $scope.showAddQuestionFromTemplate = false;
-    $scope.toggleAddQuestion= function() {
+    $scope.toggleAddQuestion = function() {
       $scope.showAddQuestion = !$scope.showAddQuestion;
       $scope.showAddQuestionFromTemplate = false;
     };
