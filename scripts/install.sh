@@ -866,7 +866,7 @@ echo " + required TCP sockets open"
 # Depending on the intention of the user to proceed anyhow installing on
 # a not supported distro we using the experimental package if it exists
 # or xenial as fallback.
-if echo "$DISTRO_CODENAME" | grep -vqE "^(trusty|xenial|wheezy|jessie)$"; then
+if echo "$DISTRO_CODENAME" | grep -vqE "^(trusty|xenial|wheezy|jessie|stretch)$"; then
   # In case of unsupported platforms we fallback on Xenial
   echo "No packages available for the current distribution; the install script will use the Xenial repository."
   echo "In case of a failure refer to the wiki for manual setup possibilities."
