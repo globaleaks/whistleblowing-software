@@ -1,0 +1,2335 @@
+# 
+# Translators:
+# Ali, 2015
+# Ali, 2015
+# signal89, 2014
+# Ali, 2015
+# Amir A. <amir@armandis.com>, 2015
+# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2015,2017
+# Hamed Behravan <behravan.hamed@gmail.com>, 2015
+# Hamed Behravan <behravan.hamed@gmail.com>, 2015
+# Joost KH <fernando.de.la.bia@gmail.com>, 2016
+# Kamyar Behrang <k.g.behrang@gmail.com>, 2016
+# mohammad.s.n, 2013
+# mohammad.s.n, 2013
+# Morpheus, 2013
+# mrphs, 2013
+# Morpheus, 2013
+# Morpheus, 2013
+# signal89, 2014
+# signal89, 2014
+msgid ""
+msgstr ""
+"Project-Id-Version: GlobaLeaks\n"
+"PO-Revision-Date: 2018-02-22 08:59+0000\n"
+"Last-Translator: Hermes Center <info@hermescenter.org>\n"
+"Language-Team: Persian (http://www.transifex.com/otf/globaleaks/language/fa/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: fa\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "Login page"
+msgstr "صفحه ورود"
+
+msgid "Log in"
+msgstr "ورود"
+
+msgid "Administration interface"
+msgstr "واسط مدیریت"
+
+msgid "Main configuration"
+msgstr "ترکیب اصلی"
+
+msgid "Theme customization"
+msgstr "شخصی سازی تم"
+
+msgid "Languages"
+msgstr ""
+
+msgid "Text customization"
+msgstr ""
+
+msgid "Advanced settings"
+msgstr "تنظیمات پیشرفته"
+
+msgid "Questionnaire configuration"
+msgstr "تنظیمات پرسش‌نامه"
+
+msgid "Question templates"
+msgstr "الگوهای سوال"
+
+msgid "Questionnaires"
+msgstr "پرسش‌نامه"
+
+msgid "Add new questionnaire"
+msgstr "اضافه کردن پرسش جدید"
+
+msgid "Home"
+msgstr "خانه"
+
+msgid "Home page"
+msgstr "صفحه اصلی "
+
+msgid "Changelog"
+msgstr "لیست تغییرات"
+
+msgid "License"
+msgstr "پروانه"
+
+msgid "Notification templates"
+msgstr "الگوی اطلاع‌رسانی"
+
+msgid "Recipient notification templates"
+msgstr "الگوی اطلاع‌رسانی گیرنده"
+
+msgid "Admin notification templates"
+msgstr "الگوی اطلاع‌رسانی مدیر "
+
+msgid "Missing data"
+msgstr "اطلاعات مفقود"
+
+msgid "no stats available for the future."
+msgstr "آماری برای آینده موجود نیست"
+
+msgid "no stats available for this hour."
+msgstr "وضعیتی برای این ساعت در درسترس نیست."
+
+msgid "no stats available for current hour; check activities page."
+msgstr "وضعیتی برای ساعت حاضر موجود نیست; صفحه فعالیت ها را چک کنید"
+
+msgid "Delete"
+msgstr "حذف"
+
+msgid "Anomalies"
+msgstr "بیقاعدگی"
+
+msgid "Preferences"
+msgstr "پرفرنس"
+
+msgid "Recipient interface"
+msgstr "رابط دریافتکننده"
+
+msgid "Notification settings"
+msgstr "تنظیمات اعلان ها"
+
+msgid "This recipient has configured the encryption key."
+msgstr "این دریافت کننده کلید رمزگذاری را تنظیم کرده است"
+
+msgid "This recipient has not configured the encryption key."
+msgstr "این دریافت کننده کلید رمزگذاری را تنظیم نکرده است."
+
+msgid "The file is unavailable due to an internal error."
+msgstr "این فایل بدلیل مشکلی داخلی قابل دسترس نیست."
+
+msgid "file unavailable"
+msgstr "فایل در دسترس نیست"
+
+msgid "Creation date"
+msgstr "تاریخ تولید"
+
+msgid "Expiration date"
+msgstr "تاریخ انقضا"
+
+msgid "Last Access"
+msgstr "آخرین دسترسی"
+
+msgid "Files"
+msgstr "فایل‌ها"
+
+msgid "Comments"
+msgstr "دیدگاه‌ها"
+
+msgid "Messages"
+msgstr "پیام‌ها"
+
+msgid "Select this recipient."
+msgstr "این دریافتکننده را انتخاب کن. "
+
+msgid "Unselect this recipient."
+msgstr "این دریافتکننده را انتخاب نکن"
+
+msgid "This recipient cannot be selected."
+msgstr "این دریافتکننده قابل انتخاب کردن نیست."
+
+msgid "This recipient cannot be deselected."
+msgstr "این دریافت کننده را نمی توان از حالت انتخاب شده خارج کرد"
+
+msgid "Details"
+msgstr "جزییات"
+
+msgid "Platform wizard"
+msgstr "صفخه نمایش"
+
+msgid "Step-by-step setup"
+msgstr "تنظیمات قدم به قدم"
+
+msgid "CREDIT CARD"
+msgstr "کارت اعتباری"
+
+msgid "YOUR NAME"
+msgstr "نام شما"
+
+msgid "Postpone the expiration date"
+msgstr "تعویق زمان انقضاء"
+
+msgid "Select all"
+msgstr "انتخاب همه"
+
+msgid "Deselect all"
+msgstr "خارج کردن تمام موارد از حالت انتخاب"
+
+msgid "Refresh page"
+msgstr "بازنشانی صفحه"
+
+msgid "Context"
+msgstr "متن"
+
+msgid "Submission date"
+msgstr "تاریخ ارائه"
+
+msgid "Private messages"
+msgstr "پیام خصوصی"
+
+msgid "Preview"
+msgstr "نمایش"
+
+msgid "Move up"
+msgstr "بالا بردن"
+
+msgid "Move down"
+msgstr "پایین آوردن"
+
+msgid "Move left"
+msgstr "به چپ بردن"
+
+msgid "Move right"
+msgstr "به راست بردن"
+
+msgid "Import"
+msgstr "بارگزاری"
+
+msgid "Export"
+msgstr "دریافت"
+
+msgid "Save all"
+msgstr "ذخیره‌ی همه"
+
+msgid "This field is mandatory"
+msgstr "این قسمت اجباری است"
+
+msgid ""
+"The connection used to send this submission has been secured with HTTPS "
+"ensuring confidentiality."
+msgstr "راه ارتباطی برای ارسال اظهارنامه توسط HTTPS محرمانه شده است."
+
+msgid ""
+"The connection used to send this submission has been secured with Tor "
+"ensuring confidentiality and anonymity."
+msgstr ""
+
+msgid "vertical"
+msgstr "عمودی"
+
+msgid "horizontal"
+msgstr "افقی"
+
+msgid "Number"
+msgstr "عدد"
+
+msgid "Email"
+msgstr "پست الکترونیک"
+
+msgid "Date"
+msgstr "تاریخ"
+
+msgid "Regular expression validator"
+msgstr "اعتبارسنجی اصطلاح رایج"
+
+msgid "Minimum number of input characters"
+msgstr "حداقل تعداد کاراکترهای وارد شده"
+
+msgid "Maximum number of input characters"
+msgstr "حداکثر تعداد کاراکترهای وارد شده"
+
+msgid "Earliest selectable date"
+msgstr ""
+
+msgid "Latest selectable date"
+msgstr ""
+
+msgid "0 = auto"
+msgstr "0 = اتوماتیک"
+
+msgid "-1 = unlimited"
+msgstr "-1 = بدون محدودیت"
+
+msgid "True"
+msgstr "درست"
+
+msgid "False"
+msgstr "نادرست"
+
+msgid "Yes"
+msgstr "بله"
+
+msgid "No"
+msgstr "خیر"
+
+msgid "Attachment"
+msgstr "ضمیمه"
+
+msgid "Attachments"
+msgstr "ضمیمه‌ها"
+
+msgid "Change your password"
+msgstr "تغییر گذرواژه"
+
+msgid "First name"
+msgstr "نام کوچک"
+
+msgid "Last name"
+msgstr "نام خانوداگی"
+
+msgid "GENDER_OTHER"
+msgstr "جنیست_دیگر"
+
+msgid "Male"
+msgstr "مرد"
+
+msgid "Female"
+msgstr "زن"
+
+msgid "Date of birth"
+msgstr "تاریخ تولد"
+
+msgid "Place of birth"
+msgstr "محل تولد"
+
+msgid "Social security number"
+msgstr "شماره امنیت اجتماعی"
+
+msgid "Residence"
+msgstr "محل اقامت"
+
+msgid "Address"
+msgstr "آدرس"
+
+msgid "Zip code / Postal code"
+msgstr "کد پستی"
+
+msgid "City"
+msgstr "شهر"
+
+msgid "State"
+msgstr "ایالت"
+
+msgid "Region"
+msgstr "منطقه"
+
+msgid "Province"
+msgstr "استان"
+
+msgid "Country"
+msgstr "کشور"
+
+msgid "Phone number"
+msgstr "شماره تلفن"
+
+msgid "Current job title"
+msgstr "عنوان شغل کنونی"
+
+msgid "Current job responsibility (role)"
+msgstr "مسئولیت (نقش) شغلی کنونی "
+
+msgid "Current organization unit and job location"
+msgstr "واحد سازمانی کنونی و محل کار"
+
+msgid "Job title at the time of the reported fact"
+msgstr "عنوان شغلی زمانی‌که این گزارش را ارائه کردید"
+
+msgid "Job responsibility (role) at the time of the reported fact"
+msgstr "مسئولیت (نقش) شما زمانی‌که این گزارش را ارائه کردید"
+
+msgid "Organization unit and job location at the time of the reported fact"
+msgstr "واحد سازمانی و محل کار وقتی این گزارش را ارائه کردید"
+
+msgid "List of submissions"
+msgstr "فهرست اظهارها"
+
+msgid "List of access requests to whistleblowers' identities"
+msgstr "فهرست درخواست‌های دریافتی به هویت افشاگران"
+
+msgid "User"
+msgstr "کاربر"
+
+msgid "Motivation"
+msgstr "انگیزه"
+
+msgid "Status"
+msgstr "وضعیت"
+
+msgid "Request motivation"
+msgstr "انگیزه درخواست"
+
+msgid "Reply motivation"
+msgstr "پاسخ به انگیزه"
+
+msgid "Request status"
+msgstr "درخواست وضعیت"
+
+msgid "Custodian"
+msgstr "نگهبان"
+
+msgid "Custodian of the identities"
+msgstr "نگهبانی از هویت"
+
+msgid "Identity"
+msgstr "هویت"
+
+msgid "Available"
+msgstr "در دسترس"
+
+msgid "Not available"
+msgstr "غیرقابل دسترس"
+
+msgid "Access requested"
+msgstr "درخواست دسترسی"
+
+msgid "Request access to the whistleblower's identity"
+msgstr "درخواست دسترسی به هویت افشاگر"
+
+msgid "Please write a motivation"
+msgstr "لطفا انگیزه خود را بنویسید"
+
+msgid "Reply to the request"
+msgstr "پاسخ به درخواست"
+
+msgid "Authorized"
+msgstr "مجاز شده"
+
+msgid "Denied"
+msgstr "رد شده"
+
+msgid "Waiting for authorization"
+msgstr "انتظار برای تایید"
+
+msgid "New request"
+msgstr "درخواست جدید"
+
+msgid "Authorize"
+msgstr "مجاز"
+
+msgid "Deny"
+msgstr "رد"
+
+msgid "Deny access to the whistleblower's identity"
+msgstr "رد کردن درخواست دسترسی به هویت افشاگر"
+
+msgid "Authorize access to the whistleblower's identity"
+msgstr "اجازه دسترسی به هویت افشاگر"
+
+msgid "Templates"
+msgstr "الگو"
+
+msgid "Notification of new submission"
+msgstr "اعلان یک ارائه جدید"
+
+msgid "Notification of new comment"
+msgstr "اعلان یک نظر جدید"
+
+msgid "Notification of new message"
+msgstr "اعلان یک پیام جدید"
+
+msgid "Notification of new file attachment"
+msgstr "اعلان اضافه شدن یک فایل جدید"
+
+msgid "Notification of PGP key expiration"
+msgstr "اعلان انقضای کلید PGP"
+
+msgid "Notification of anomaly"
+msgstr "اعلان یک ناهنجاری"
+
+msgid "Template for summary of contents in submission archive"
+msgstr "الگو برای خلاصه محتوی آرشیو ارائه شده"
+
+msgid "Email subject"
+msgstr "موضوع یارانامه"
+
+msgid "Email body"
+msgstr "محتوی یارانامه"
+
+msgid "in seconds"
+msgstr "چند ثانیه"
+
+msgid "in hours"
+msgstr "چند ساعت"
+
+msgid "in days"
+msgstr "چند روز"
+
+msgid "in characters"
+msgstr "در کارکتارها"
+
+msgid "in megabytes"
+msgstr "در مگابایت"
+
+msgid "in percentage"
+msgstr "در درصد"
+
+msgid "HTTPS settings"
+msgstr "تنظیمات HTTPS"
+
+msgid "Anomaly detection thresholds"
+msgstr "آستانه تشخیص ناهنجاری"
+
+msgid "High risk"
+msgstr "خطر زیاد"
+
+msgid "Medium risk"
+msgstr "خطر معمولی"
+
+msgid "Low risk"
+msgstr "کم خطر"
+
+msgid "Available disk space"
+msgstr "فضای قابل دسترس"
+
+msgid "Last update"
+msgstr "آخرین به‌روز رسانی"
+
+msgid "Custodian notification templates"
+msgstr "الگوی اعلان نگهبانی"
+
+msgid ""
+"This interface allows configuring email templates used to notify custodians."
+msgstr ""
+
+msgid "Disable notifications to administrators"
+msgstr "غیرفعال کردن اعلان به مدیریت"
+
+msgid "Disable notifications to custodians"
+msgstr "غیرفعال کردن اعلان به نگهبان"
+
+msgid "Disable notifications to recipients"
+msgstr "غیرفعال کردن اعلان به دریافت کننده"
+
+msgid "Score"
+msgstr "نمره"
+
+msgid "Trigger question"
+msgstr "سوال رهاساز"
+
+msgid "Triggered by a score higher than:"
+msgstr "رهاسازی شده با نمره بالا از:"
+
+msgid "Select the question to be triggered when this option is selected"
+msgstr "یک سوال را برای رها سازی انتخاب کنید وقتی این سوال انتخاب شد"
+
+msgid "Message shown on top of the status page of the submission"
+msgstr "پیام در بالای صفحه وضعیت‌ِ ارائه دیده شود"
+
+msgid "Copy and paste the PGP public key here"
+msgstr "کلید عمومی PGP را این جا درج کن"
+
+msgid "Password strength:"
+msgstr ""
+
+msgid "Weak"
+msgstr ""
+
+msgid "Acceptable"
+msgstr ""
+
+msgid "Strong"
+msgstr ""
+
+msgid "Loading…"
+msgstr "در حال اجرا…"
+
+msgid "Text shown on top of the interface for selecting contexts"
+msgstr "متن در مقابل محتوی انتخاب شده نمایش داده شود"
+
+msgid "Show small context cards on submission interface"
+msgstr ""
+
+msgid "Type of context selector:"
+msgstr ""
+
+msgid "Type to search…"
+msgstr ""
+
+msgid "Silence email notifications"
+msgstr ""
+
+msgid "Turn on email notifications"
+msgstr ""
+
+msgid "Enter an email address for the administrator"
+msgstr ""
+
+msgid "Enter a password for the administrator"
+msgstr ""
+
+msgid "Test configuration"
+msgstr ""
+
+msgid "Failed logins"
+msgstr "ورود نا موفق"
+
+msgid "Successful logins"
+msgstr "ورود موفق"
+
+msgid "Started submissions"
+msgstr "ارائه‌های آغاز شده"
+
+msgid "Completed submissions"
+msgstr "ارائه‌های کامل‌شده"
+
+msgid "Failed submissions"
+msgstr ""
+
+msgid "Input validation"
+msgstr ""
+
+msgid "Email address"
+msgstr "آدرس ایمیل"
+
+msgid "Custom"
+msgstr "تنظیم خاص"
+
+msgid "None"
+msgstr "هیـچ"
+
+msgid "Regular expression"
+msgstr ""
+
+msgid "Label the submission"
+msgstr ""
+
+msgid "Activate"
+msgstr "فعال كردن"
+
+msgid "Search"
+msgstr "جستجو"
+
+msgid ""
+"This custom text is no longer displayed on the platform. The original text "
+"has either changed or been removed."
+msgstr ""
+
+msgid ""
+"Unless the whistleblower checks the submission by this time, their access to"
+" it will expire."
+msgstr ""
+
+msgid "The whistleblower can no longer access the submission"
+msgstr ""
+
+msgid "Warning!"
+msgstr "هشدار!"
+
+msgid "You are running an unsupported and potentially vulnerable browser."
+msgstr ""
+
+msgid "You are strongly advised to download and install the Tor Browser."
+msgstr ""
+
+msgid ""
+"The Tor Browser includes various privacy and security enhancements not "
+"present in other browsers."
+msgstr "مرورگر تور شامل ویژگیهای امنیتی و حفظ حریم شخصی است که در دیگر مرورگرها موجود نیستند."
+
+msgid "Download the Tor Browser"
+msgstr "مرورگر تور را بارگذاری کن"
+
+msgid "This is the list of the other supported browsers:"
+msgstr ""
+
+msgid "System overview"
+msgstr ""
+
+msgid "Stats"
+msgstr "آمارها"
+
+msgid "Activities"
+msgstr "فعالیتها"
+
+msgid "Submissions"
+msgstr ""
+
+msgid "Users"
+msgstr ""
+
+msgid "From"
+msgstr ""
+
+msgid "Number of downloads"
+msgstr ""
+
+msgid "Error with file:"
+msgstr ""
+
+msgid "File size not accepted."
+msgstr ""
+
+msgid "File type not accepted."
+msgstr ""
+
+msgid "Maximum file size is:"
+msgstr ""
+
+msgid "Accepted file types are:"
+msgstr ""
+
+msgid "Scheduled jobs"
+msgstr ""
+
+msgid "Sites management"
+msgstr ""
+
+msgid "Regenerate"
+msgstr ""
+
+msgid "Display options alphabetically"
+msgstr ""
+
+msgid "Enable email notifications for:"
+msgstr ""
+
+msgid "Software updates"
+msgstr "به‌روز رسانی برنامه"
+
+msgid "Software problems"
+msgstr ""
+
+msgid "Disable"
+msgstr "غیرفعال کردن"
+
+msgid "Remove"
+msgstr "حذف"
+
+msgid "Use as default"
+msgstr ""
+
+msgid "Create your whistleblowing platform"
+msgstr ""
+
+msgid "Select the context of your submission:"
+msgstr ""
+
+msgid "Warning! You are not anonymous."
+msgstr ""
+
+msgid ""
+"Sending submissions over HTTPS exposes the act of doing so, but not the "
+"content.\\n\\nAlso, hiding the fact that you are submitting something makes "
+"the submission anonymous, which is strongly recommended.\\n\\nThis can be "
+"achieved with the use of the Tor Browser, providing anonymisation not found "
+"in other browsers like Internet Explorer, Firefox, Chrome, Opera etc."
+msgstr ""
+
+msgid "Are you a whistleblower?"
+msgstr ""
+
+msgid "Blow the whistle"
+msgstr "در سوت بدمید"
+
+msgid "Have you already filed a submission? Enter your key code."
+msgstr "آیا گزارشی را تسلیم کرده اید؟ کلید رمز خود را وارد کنید"
+
+msgid "Your submission was successful."
+msgstr "ارائه‌ی شما با موفقیت انجام شد."
+
+msgid "Submission status"
+msgstr ""
+
+msgid "Disable submissions"
+msgstr "غیرفعال‌سازی ارائه"
+
+msgid "Enable insecure configuration without PGP encryption"
+msgstr "تنظیمات ناامن بدون رمزگذاری با پی جی پی را فعال کن"
+
+msgid "Danger"
+msgstr "خطر"
+
+msgid ""
+"By enabling this option, the system will be storing the submitted files "
+"unencrypted on your server."
+msgstr "با فعال کردن این گزینه، سیستم تمام اطلاعات را بصورت غیررمزگذاری شده روی گره ذخیره خواهد کرد."
+
+msgid "This happens whenever encryption is unavailable."
+msgstr "این وقتی رمزگذاری در دسترس نباشد اتفاق میافتد"
+
+msgid "Disable messages that warn of missing encryption"
+msgstr ""
+
+msgid ""
+"This setting affects the security of the users and must not be used in "
+"production."
+msgstr "این تنظیمات به روی امنیت کاربران تاثیر می‌گذارد و نباید برای استفاده شود."
+
+msgid "Allow other websites to include the platform inside iframes"
+msgstr "به سایر تارنماها اجازه داده شود تا محتوی پلفرم را به شکل iframes استفاده کنند"
+
+msgid ""
+"By enabling this option, you are allowing other websites to include the "
+"platform inside iframes; this could potentially be used to endanger the "
+"platform or intercept users' communications"
+msgstr "با فعال کردن این گزینه شما به سایت‌های دیگر اجازه می‌دهید که پلتفورم به صورت iframe لود کنند; این کار می‌تواند طوری مورد استفاده قرار گیرد که پلتفورم را به خطر بیاندازد یا ارتباطات کاربران را شنود کند."
+
+msgid "Allow recipients to postpone expiration date of the submission"
+msgstr "به دریافت کننده‌ها اجازه بدهید تا تاریخ انقضا ارائه را به تعویق بیاندازند"
+
+msgid "Allow recipients to delete submissions"
+msgstr "به دریافت کننده‌ها اجازه بدهید که ارائه‌ها را پاک کنند"
+
+msgid ""
+"Allow recipients to grant permissions to whistleblowers on specific "
+"submissions"
+msgstr "به دریافت کننده و به افشاگر اجازه یک اظهار خاص داده شود"
+
+msgid "Enable search engines indexing"
+msgstr "فعال کردن ایندکس سازی موتورهای جستجو"
+
+msgid "Enabled"
+msgstr "فعال شده"
+
+msgid "Search engine spiders will be allowed to index the application."
+msgstr "موتورهای جستجو خواهند توانست که این برنامه را ایندکس کنند."
+
+msgid "Enable custom privacy panel"
+msgstr "فعال سازی پنل پوشیدگی اختصاصی"
+
+msgid "Custom privacy panel"
+msgstr "سفارش‌سازی پنل حریم خصوصی"
+
+msgid "Text shown when the whistleblower is not using Tor"
+msgstr "وقتی افشاگر از شبکه تور استفاده نمیکند این متن نشان داده میشود"
+
+msgid "Disable the privacy panel"
+msgstr "غیر فعال کردن پنل پوشیدگی"
+
+msgid "Security awareness panel title"
+msgstr "عنوان پنل هوشیاری امنیتی"
+
+msgid "Security awareness panel text"
+msgstr "متن پنل هوشیاری امنیتی"
+
+msgid "Disable the security awareness panel questions"
+msgstr "غیر فعال کردن پرسش‌های پنل هوشیاری امنیتی"
+
+msgid "Disable the security awareness panel"
+msgstr "غیر فعال کردن پنل هوشیاری امنیتی"
+
+msgid "Disable the key code hint"
+msgstr "غیرفعال کردن کلید کد اشاره"
+
+msgid "Disable the donation panel"
+msgstr "غیرفعال کردن پنل کمک مالی"
+
+msgid "Enable CAPTCHA mechanism"
+msgstr "ترکیب CAPTCHA فعال شود"
+
+msgid "Enable proof of work mechanism"
+msgstr "ترکیب تایید کار فعال شود"
+
+msgid "Enable simplified login for recipients"
+msgstr "ورود ساده برای دریافت کننده‌ها فعال شود"
+
+msgid "Amount of days till whistleblower access expires"
+msgstr ""
+
+msgid ""
+"For security reasons the whistleblower access is subject to expiration."
+msgstr ""
+
+msgid "Tweak this setting only if you know what you are doing."
+msgstr ""
+
+msgid "Landing page"
+msgstr "صفحه هدف"
+
+msgid "Home Page"
+msgstr "صفه اصلی"
+
+msgid "Submission Page"
+msgstr "صفحه ارسال"
+
+msgid "Title of the submission page"
+msgstr "عنوان صفحه ارائه"
+
+msgid "Title of the attachments widget"
+msgstr "عنوان ابزار ضمیمه‌ها"
+
+msgid "Text of prompt for whistleblowers to log in"
+msgstr ""
+
+msgid "Show contexts in alphabetical order"
+msgstr "متن‌ها را به ترتیب الفبا مرتب کن"
+
+msgid "Title of the receipt page"
+msgstr "عنوان صفحه اعلام وصول"
+
+msgid "Title of the submission status page"
+msgstr "عنوان صفحه اعلام وضعیت ارائه"
+
+msgid "Title of the comments widget"
+msgstr "عنوان ابزار نظرها"
+
+msgid "Title of the messages widget"
+msgstr "عنوان ابراز پیام‌ها"
+
+msgid "Size limit for file attachments"
+msgstr "محدودیت در حجم ضمیمه‌ها"
+
+msgid "Notify administrators of software problems"
+msgstr ""
+
+msgid "Notify developers of software problems"
+msgstr ""
+
+msgid ""
+"By enabling this feature, you will contribute to the development and "
+"security of the platform."
+msgstr ""
+
+msgid "Enable HTTP Basic Authentication to limit platform access"
+msgstr ""
+
+msgid "Username"
+msgstr "نام کاربری"
+
+msgid "Password"
+msgstr "گذرواژه"
+
+msgid ""
+"This feature keeps regular people from visiting the platform while it is "
+"still under development and should not be used for security purposes. The "
+"input password is stored in plaintext on the server."
+msgstr ""
+
+msgid "Enable experimental features"
+msgstr "فعال کردن امکانات تجربی"
+
+msgid "Warning"
+msgstr "هشدار"
+
+msgid ""
+"The experimental features may be less stable or even not work at all; enable"
+" this option at your own risk. Support for these features may vary and they "
+"may be removed in the future."
+msgstr "امکانات تجربی ممکن است با ثبات و یا به طور کلی کار نکند; فعال شدن این گزینه با مسئولیت خود شما خواهد بود. پشتیبانی از این ویژگی ممکن است تغییر کند و یا در آینده به طور کلی حذف شود. "
+
+msgid "Save"
+msgstr "ذخیره"
+
+msgid "Short URL"
+msgstr ""
+
+msgid "Long URL"
+msgstr ""
+
+msgid "Add"
+msgstr "اضافه کن"
+
+msgid "Logo"
+msgstr "آرم"
+
+msgid "Project name"
+msgstr "نام پروژه"
+
+msgid "Homepage title"
+msgstr "اسم صفحه اصلی"
+
+msgid "Presentation"
+msgstr "پرزنتیشن"
+
+msgid "Description"
+msgstr "توضیح"
+
+msgid "Question to solicit possible whistleblowers"
+msgstr "پرسش افشاگری"
+
+msgid "Whistleblowing button"
+msgstr "دکمه افشاگری"
+
+msgid "Footer"
+msgstr "پانویس"
+
+msgid "Favicon"
+msgstr ""
+
+msgid "Upload"
+msgstr "بارگذاری"
+
+msgid "Download"
+msgstr "بارگذاری"
+
+msgid "Upload custom file"
+msgstr "فایل دل‌خواه خود را بارگذاری کنید"
+
+msgid "The file will be available at URL: /s/$filename"
+msgstr "این فایل در این آدرس URL قابل دسترس است: /s/$filename"
+
+msgid "Language:"
+msgstr "زبان"
+
+msgid "Add custom text"
+msgstr ""
+
+msgid "Custom text"
+msgstr ""
+
+msgid "Custom texts"
+msgstr ""
+
+msgid "Original text"
+msgstr "متن اصلی"
+
+msgid "Original translation"
+msgstr ""
+
+msgid "Custom translation"
+msgstr ""
+
+msgid "Contexts"
+msgstr "متن‌ها"
+
+msgid "Name"
+msgstr "نام"
+
+msgid "Edit"
+msgstr "ویرایش"
+
+msgid "Cancel"
+msgstr "لغو"
+
+msgid "Questionnaire"
+msgstr "پرسش‌نامه"
+
+msgid "Recipients"
+msgstr "دریافت‌کننده‌ها"
+
+msgid "Allow selection of this context through the context selector."
+msgstr "اجازه انتخاب زمینه از طریق انتخاب کننده زمینه‌ها"
+
+msgid ""
+"If disabled, submissions for this context will only be accessible through a "
+"direct link to it."
+msgstr "اگر غیرفعال باید، زمینه‌های ارسال شده تنها می‌تواند در دسترس کسانی باشد که لینک مستقیم را داشته باشند."
+
+msgid "Allow whistleblowers to select their recipients"
+msgstr "به افشاگرها اجازه انتخاب وصول کننده داده شود"
+
+msgid "Select all recipients by default"
+msgstr "همه‌ی دریافت‌کنندگان را به صورت پیش‌فرض انتخاب کن"
+
+msgid "Maximum number of selectable recipients:"
+msgstr "حداکثر تعداد دریافت کننده های قابل انتخاب:"
+
+msgid "(0 = unlimited)"
+msgstr "(۰=نامحدود)"
+
+msgid "Show recipients in alphabetical order"
+msgstr ""
+
+msgid "Show small recipient cards on submission interface"
+msgstr ""
+
+msgid "Enable comments"
+msgstr "فعال کردن نظر"
+
+msgid "Allow whistleblowers to write comments"
+msgstr "به افشاگران اجازه ارسال نظر داده شود"
+
+msgid "Enable private messages"
+msgstr "پیام فرستادن خصوصی را فعال کن"
+
+msgid "Allow whistleblowers to send messages"
+msgstr "به افشاگران اجازه ارسال پیام داده شود"
+
+msgid "Let whistleblowers add attachments onto existing submissions"
+msgstr "به افشاگران اجازه داده شود تا ضمیمه‌هایی را به این اظهارات ارائه شده اضافه کنند"
+
+msgid "Show recipient details on the status page of the submission"
+msgstr ""
+
+msgid "Let recipients upload files to whistleblowers"
+msgstr ""
+
+msgid "Disabled"
+msgstr "غیر فعال شد"
+
+msgid "Submission expiration, in days"
+msgstr ""
+
+msgid ""
+"For security reasons, as a matter of data retention policy, the platform "
+"automatically deletes submissions and their data after a certain amount of "
+"time."
+msgstr ""
+
+msgid "Text shown on top of the interface for selecting recipients"
+msgstr ""
+
+msgid "Welcome to the administration interface!"
+msgstr "به رابط ادمین گلوبال لیکش خوش آمدید"
+
+msgid ""
+"This interface may help you understand how the server can be configured and "
+"provides some info on how to connect to other GlobaLeaks users and experts."
+msgstr "این رابط به شما کمک میکنید یاد بگیرید چگونه گره را تنظیم کنید و اطلاعاتی در مورد نحوه ارتباط با دیگر کاربرها وکارشناسهای گلوبال لیکس را در اختیارتان قرار میدهد.  "
+
+msgid "Documentation"
+msgstr "مستندات"
+
+msgid ""
+"To properly organize your project, please read the following guidelines:"
+msgstr "برای ساماندهی صحیح کار خود، لطفا راهنمای زیر را بخوانید:"
+
+msgid "Remember to provide proper security advice to Whistleblowers:"
+msgstr "بیاد داشته باشید مشاوره امنیتی مناسب به افشاگرها اريه دهید:"
+
+msgid ""
+"To learn more about GlobaLeaks Security you can read the following document:"
+msgstr "برای اطلاع بیشتر از امنیت گلوبال لیکس میتوانید متن زیر را بخوانید:"
+
+msgid "Contact"
+msgstr "تماس"
+
+msgid ""
+"If you need technical support, have general questions, or have new ideas for"
+" the software:"
+msgstr ""
+
+msgid ""
+"If you want to contribute to software development or report a bug, please "
+"open an issue in our ticketing system:"
+msgstr ""
+
+msgid ""
+"If your non-profit needs support for investigative journalism, activism or a"
+" human rights defense project:"
+msgstr ""
+
+msgid ""
+"For professional support and development of anti corruption and compliance "
+"projects contact the social enterprise maintaining GlobaLeaks:"
+msgstr ""
+
+msgid "Join our IRC chat channel on the irc.oftc.net network:"
+msgstr ""
+
+msgid "Follow the project on:"
+msgstr ""
+
+msgid "Software version:"
+msgstr "نسخه نرم‌افزار:"
+
+msgid "An update is available:"
+msgstr ""
+
+msgid "SMTP name"
+msgstr ""
+
+msgid "SMTP email address"
+msgstr ""
+
+msgid "Invalid email address"
+msgstr "آدرس ایمیل بی اعتبار"
+
+msgid "SMTP server address"
+msgstr "آدرس سرور SMTP"
+
+msgid "SMTP server port"
+msgstr "درگاه سرور STMP"
+
+msgid "Transport Security"
+msgstr ""
+
+msgid "When the option is re-enabled the spooled emails will be sent out."
+msgstr ""
+
+msgid "Reset notification templates to default"
+msgstr ""
+
+msgid "Number of hours before sending a submission expiration alert"
+msgstr ""
+
+msgid "Maximum emails per hour before triggering email suspension"
+msgstr ""
+
+msgid "this configuration only applies to recipients"
+msgstr ""
+
+msgid "Test the configuration"
+msgstr ""
+
+msgid "Template"
+msgstr ""
+
+msgid "Admin"
+msgstr "مدیر"
+
+msgid "Roles enabled to use the platform without Tor:"
+msgstr ""
+
+msgid "Recipient"
+msgstr "دریافت کننده"
+
+msgid "Whistleblower"
+msgstr "سوت‌زن"
+
+msgid "Hostname"
+msgstr "نام سرور"
+
+msgid "Verify"
+msgstr "تایید"
+
+msgid "Invalid input format."
+msgstr "فرمت ورودی نامعتبر است"
+
+msgid "Input should be similar to:"
+msgstr ""
+
+msgid ""
+"The platform does not seem to be reachable with the configured hostname."
+msgstr ""
+
+msgid "Using Let's Encrypt requires agreement to their Terms of Service."
+msgstr ""
+
+msgid "Read the Terms of Service"
+msgstr ""
+
+msgid "I agree to the Terms of Service."
+msgstr ""
+
+msgid "Proceed"
+msgstr "ادامه بده"
+
+msgid "Configuration completed. You can review the settings or enable it now."
+msgstr ""
+
+msgid "Review"
+msgstr "مرور کنید."
+
+msgid "Enable"
+msgstr "فعّال"
+
+msgid "Country code"
+msgstr ""
+
+msgid "Organization"
+msgstr "سازمان"
+
+msgid "Organizational unit"
+msgstr ""
+
+msgid ""
+"This interface can generate a Private Key and a Certificate Signing Request."
+" The Certificate Signing Request can be provided to a Certificate Authority "
+"to retrieve a Certificate. After having validated your request and your "
+"ownership of the hostname, the Certificate Authority will issue you a "
+"Certificate and provide a file containing Intermediate Certificates. Load "
+"the Certificate and the file containing the Intermediate Certificates to "
+"complete the HTTPS setup."
+msgstr ""
+
+msgid "Private Key"
+msgstr ""
+
+msgid "Generate"
+msgstr "تولید"
+
+msgid "Certificate Signing Request"
+msgstr ""
+
+msgid "Certificate"
+msgstr ""
+
+msgid "Valid until:"
+msgstr ""
+
+msgid "Issuer:"
+msgstr "صادرکننده:"
+
+msgid "Intermediate Certificates"
+msgstr ""
+
+msgid "Reset"
+msgstr "راه اندازی مجدد"
+
+msgid "Select an option:"
+msgstr ""
+
+msgid "Automatic configuration"
+msgstr ""
+
+msgid ""
+"Using automatic HTTPS configuration will handle the entire process of "
+"requesting, enabling and renewing certificates from the Let's Encrypt "
+"Certificate Authority."
+msgstr ""
+
+msgid ""
+"The platform must be reachable through a public IP address and the selected "
+"hostname must have a corresponding DNS record referencing that address."
+msgstr ""
+
+msgid "Manual configuration"
+msgstr ""
+
+msgid ""
+"The manual configuration wizard will guide you through the setup of HTTPS "
+"from an alternative Certificate Authority."
+msgstr ""
+
+msgid ""
+"The platform supports the configuration of HTTPS through this interface."
+msgstr ""
+
+msgid "The connection to the configured domain failed."
+msgstr ""
+
+msgid "Running"
+msgstr "در حال اجرا"
+
+msgid "Not running"
+msgstr ""
+
+msgid "Auto-renewal"
+msgstr ""
+
+msgid "System message:"
+msgstr ""
+
+msgid ""
+"Allowing whistleblowers to connect over HTTPS preserves their privacy but "
+"not their anonymity."
+msgstr ""
+
+msgid "Attention!"
+msgstr ""
+
+msgid ""
+"Configuration in progress. When it is finished you will have to log in "
+"again."
+msgstr ""
+
+msgid "Your browser will be redirected to the following URL."
+msgstr ""
+
+msgid "Tor Onion Service"
+msgstr ""
+
+msgid "Tor Browser download link"
+msgstr ""
+
+msgid "Anonymize outgoing connections"
+msgstr ""
+
+msgid "Let the platform be reachable without Tor"
+msgstr ""
+
+msgid "Stats of the week:"
+msgstr "آمارهای هفته:"
+
+msgid "Free disk space"
+msgstr "فضایی باقی مانده"
+
+msgid "Event ID"
+msgstr "شناسه‌ی رخ‌داد"
+
+msgid "Time"
+msgstr "زمان"
+
+msgid "Event"
+msgstr "رویداد"
+
+msgid "Response time"
+msgstr "زمان پاسخ دهی"
+
+msgid "Role"
+msgstr ""
+
+msgid "Last access"
+msgstr "آخرین دسترسی"
+
+msgid "Submission"
+msgstr ""
+
+msgid "Path"
+msgstr "مسير"
+
+msgid "Size"
+msgstr "اندازه"
+
+msgid "Alarm level"
+msgstr "سطح هشدار"
+
+msgid "Events"
+msgstr "رویداد ها"
+
+msgid "Label"
+msgstr "برچسب"
+
+msgid "Type"
+msgstr "نوع"
+
+msgid "Single-line text input"
+msgstr ""
+
+msgid "Multi-line text input"
+msgstr ""
+
+msgid "Multiple choice input"
+msgstr ""
+
+msgid "Selection box"
+msgstr ""
+
+msgid "Checkbox"
+msgstr "جعبه انتخاب"
+
+msgid "Terms of service"
+msgstr " شرایط خدمات"
+
+msgid "Group of questions"
+msgstr ""
+
+msgid "Row"
+msgstr "ردیف"
+
+msgid "Column"
+msgstr "ستون"
+
+msgid "Width"
+msgstr "عرض"
+
+msgid "Question group"
+msgstr ""
+
+msgid "Hint"
+msgstr "راهنمایی"
+
+msgid "Required"
+msgstr "لازم"
+
+msgid "Accept multiple file uploads"
+msgstr "آپلود متعدد فایلها را قبول کن"
+
+msgid "Accept multiple answers for the field"
+msgstr "پاسخهای متعدد را قبول کن"
+
+msgid "Hint shown on the button for adding an additional answer"
+msgstr ""
+
+msgid "Clause"
+msgstr "بند"
+
+msgid "Agreement Text"
+msgstr "متن توافقنامه"
+
+msgid "Layout orientation"
+msgstr ""
+
+msgid "Subject answer visibility to custodian authorization"
+msgstr ""
+
+msgid "Prompt confirmation upon negative answer"
+msgstr ""
+
+msgid "Title of the confirmation question upon negative answer"
+msgstr ""
+
+msgid "Body of the confirmation question upon negative answer"
+msgstr ""
+
+msgid "Options"
+msgstr "گزینه ها"
+
+msgid "Questions"
+msgstr ""
+
+msgid "Add new question"
+msgstr ""
+
+msgid "Add question from template"
+msgstr ""
+
+msgid "Steps"
+msgstr ""
+
+msgid "Configuration"
+msgstr "تنظیم ترکیبات"
+
+msgid "Default"
+msgstr "پیش فرض"
+
+msgid "Forcefully selected"
+msgstr ""
+
+msgid "Unselectable"
+msgstr "غیرقابل انتخاب"
+
+msgid "Allow the recipient to postpone the submission expiration date"
+msgstr ""
+
+msgid "The setting is enabled at a global level."
+msgstr "این گزینه در سطح جهانی فعال است."
+
+msgid "Allow the recipient to delete submissions"
+msgstr ""
+
+msgid ""
+"Allow the recipient to grant permissions to whistleblowers on specific "
+"submissions"
+msgstr "اجازه دسترسی به دریافت کننده برای ارتباط با افشاگر در یک اظهار خاص"
+
+msgid "General settings"
+msgstr "تنظیمات عمومی"
+
+msgid "Network settings"
+msgstr ""
+
+msgid "Root domain used for secondary sites"
+msgstr ""
+
+msgid "Allow users to sign up"
+msgstr ""
+
+msgid "Sites"
+msgstr ""
+
+msgid "Active"
+msgstr "فعال"
+
+msgid "Inactive"
+msgstr ""
+
+msgid "The default password is:"
+msgstr ""
+
+msgid "The system forces users to change the password at first login."
+msgstr "سیستم کاربرها را در ورود اول وادار به تغییر گذرواژه میکند."
+
+msgid "New Password"
+msgstr "کلمه گذرواژه"
+
+msgid ""
+"The chosen password is too weak. Make it more secure by adding special "
+"characters, numbers, and unusual symbols."
+msgstr ""
+
+msgid "Force password change"
+msgstr ""
+
+msgid "The user will be forced to change its password on next login."
+msgstr ""
+
+msgid "Language"
+msgstr "زبان"
+
+msgid "Encryption:"
+msgstr "رمزگذاری:"
+
+msgid "Remove the PGP key"
+msgstr "کلید پی جی پی را حذف کن"
+
+msgid "Set up encryption by providing a PGP public key"
+msgstr ""
+
+msgid "Request date"
+msgstr ""
+
+msgid "Authorization"
+msgstr ""
+
+msgid "Before proceeding, please change your password."
+msgstr ""
+
+msgid "Submissions disabled"
+msgstr ""
+
+msgid ""
+"You are connecting to the server without anonymity and this server supports "
+"only anonymous submissions"
+msgstr "شما بدون ناشناسی به گره متصل شده اید و این گره فقط گزارشهای ناشناس را قبول میکند"
+
+msgid ""
+"Server temporarly unusable due to resource exhaustion; advise the Admin if "
+"you can."
+msgstr ""
+
+msgid "This server is not configured."
+msgstr "این گره تنظیم نشده است."
+
+msgid "You will not be able to send a submission."
+msgstr "نمیتوانید گزارشی تسلیم کنید"
+
+msgid ""
+"This platform makes use of GlobaLeaks software specifically designed to "
+"protect the identity for submitter and recipient in the exchange of content."
+msgstr ""
+
+msgid ""
+"The software is developed by the non-profit Hermes Center for Transparency "
+"and Digital Human Rights."
+msgstr ""
+
+msgid "Please support Hermes through their donation page."
+msgstr ""
+
+msgid "Authentication failed"
+msgstr "تایید هویت ناموفق بود"
+
+msgid "Please select your account:"
+msgstr "حساب خود را انتخاب کنید:"
+
+msgid "Now type your password, then click 'Log in':"
+msgstr "حالا گذرواژه خود را وارد کنید، و سپس دگمه ورود را کلیک کنید:"
+
+msgid "Are you sure?"
+msgstr "آیا مطمئن هستید؟"
+
+msgid "The operation will reset the configuration and cannot be undone."
+msgstr ""
+
+msgid "Assign score points"
+msgstr ""
+
+msgid ""
+"Enter the number of score points to be assigned when this option is "
+"selected:"
+msgstr ""
+
+msgid "Confirm"
+msgstr "تایید "
+
+msgid "Are you human?"
+msgstr "آیا شما یک انسان هستید؟"
+
+msgid ""
+"We do not discriminate based on race and gender, but we do against computers"
+" :)"
+msgstr ""
+
+msgid ""
+"Just to prove you are human, please answer the following math challenge:"
+msgstr ""
+
+msgid "I've solved the math challenge, hide this thing now!"
+msgstr ""
+
+msgid "Please note that all the associated data will be permanently lost."
+msgstr ""
+
+msgid ""
+"This means that if the server running the platform were to be seized, it "
+"would be possible to extract the files that have been submitted."
+msgstr ""
+
+msgid "Are you sure that you wish to continue?"
+msgstr "آیا مطمئنید میخواهید ادامه دهید؟"
+
+msgid ""
+"Downloading a file with malicious content could compromise your computer or "
+"disclose your identity."
+msgstr ""
+
+msgid "The name of the file and its content can be intentionally misleading."
+msgstr ""
+
+msgid ""
+"Please review the following information and decide if you wish to proceed."
+msgstr ""
+
+msgid "Error!"
+msgstr "خطا!"
+
+msgid "Internal server error"
+msgstr ""
+
+msgid "Error on input validation"
+msgstr ""
+
+msgid "Resource not found"
+msgstr ""
+
+msgid "Forbidden operation"
+msgstr ""
+
+msgid "The specified old password is not valid"
+msgstr "گذرواژه قدیمی ارائه شده معتبر نیست"
+
+msgid "Resource can only be accessed via the Tor network"
+msgstr "این منبع فقط با استفاده از شبکه تور قابل دسترسی است"
+
+msgid "The upload request exceeds the size limit"
+msgstr "آپلود درخواستی بزرگتر از حد مجاز است"
+
+msgid "Success!"
+msgstr "موفقیت!"
+
+msgid ""
+"It appears that you are browsing this site without any extra privacy and "
+"security!"
+msgstr "بنظر میرسه شما در حال مرور این سایت بدون افزایش امنیت یا حفظ حریم خصوصی هستید!"
+
+msgid ""
+"You are strongly advised to visit this site using the desktop app called Tor"
+" Browser, that protects your identity."
+msgstr "به شما شدیدا پیشنهاد میشود با استفاده از مرورگر تور از این تارنما دیدن کنید تا از هویت خود محافظت کنید"
+
+msgid "Then, copy and paste the following address into the Tor Browser:"
+msgstr "سپس این آدرس را در مرورگر درج کنید:"
+
+msgid "Details of the PGP key:"
+msgstr ""
+
+msgid "Fingerprint"
+msgstr "اثر انگشت"
+
+msgid "Add file"
+msgstr "فایل اضافه کن"
+
+msgid "Uploading files…"
+msgstr ""
+
+msgid "Upload completed successfully!"
+msgstr ""
+
+msgid "Error while uploading files; check below for details."
+msgstr ""
+
+msgid "Estimated upload time:"
+msgstr "زمان تخمین‌زده‌شده برای بارگذاری:"
+
+msgid "seconds"
+msgstr "ثانیه"
+
+msgid "Which of the following statements is true?"
+msgstr "کدام یک از جمله های زیر صحیح است؟"
+
+msgid "HTTPS protects my identity, but not the content of my submission"
+msgstr ""
+
+msgid "HTTPS protects the content of my submission but not my identity"
+msgstr ""
+
+msgid "HTTPS does not protect the content of my submission nor my identity"
+msgstr ""
+
+msgid "HTTPS does protect both my identity and the content of my submission"
+msgstr ""
+
+msgid ""
+"You are aware of the risks involved. Go ahead, but consider yourself warned."
+msgstr ""
+
+msgid "Wrong Answer!"
+msgstr "پاسخ غلط"
+
+msgid "The connection is not secure."
+msgstr ""
+
+msgid ""
+"The platform is still not configured for HTTPS connections and should "
+"therefore only be used for testing purposes."
+msgstr ""
+
+msgid "Send"
+msgstr "ارسال"
+
+msgid "Allow the whistleblower to write comments"
+msgstr "به افشاگر اجازه نوشتن نظر داده شود"
+
+msgid "Filename"
+msgstr "نام فایل"
+
+msgid "Upload date"
+msgstr "روز آپلود"
+
+msgid "Content Type"
+msgstr "نوع محتوا"
+
+msgid "File size"
+msgstr "اندازه فایل"
+
+msgid "download"
+msgstr "بارگذاری"
+
+msgid "No files have been uploaded!"
+msgstr "فایلی آپلود نشده!"
+
+msgid "Allow the whistleblower to add attachments to the submission"
+msgstr "به افشاگر اجازه اضافه کردن ضمیمه به این اظهارات داده شود"
+
+msgid "Access expiration"
+msgstr ""
+
+msgid "Connection"
+msgstr "ارتباط"
+
+msgid "Never"
+msgstr "هرگز"
+
+msgid "Revoked"
+msgstr "لغو"
+
+msgid "Allow the whistleblower to send messages"
+msgstr "به افشاگر اجازه ارسال پیام داده شود"
+
+msgid "Are you sure that you want to delete the submission?"
+msgstr ""
+
+msgid ""
+"Everything related to the submission stored on the platform will be deleted."
+msgstr ""
+
+msgid ""
+"Please be aware that everything stored off the platform, e.g. files you have"
+" saved on your computer, must be deleted manually."
+msgstr ""
+
+msgid "Are you sure that you want to delete all the selected submissions?"
+msgstr ""
+
+msgid ""
+"Please make sure that all related data is properly deleted so that the "
+"recipients won't be able to further access to it."
+msgstr ""
+
+msgid "Please write a motivation for the reply"
+msgstr ""
+
+msgid "Are you sure that you want to postpone the submission expiration date?"
+msgstr ""
+
+msgid "By confirming, you will postpone the expiration date to:"
+msgstr ""
+
+msgid ""
+"Are you sure that you want to postpone the expiration date for all selected "
+"submissions?"
+msgstr ""
+
+msgid "Questionnaire answers"
+msgstr "پاسخ‌های به پرسش‌نامه"
+
+msgid "Step"
+msgstr "قدم"
+
+msgid "Recipient list"
+msgstr "فهرست گیرنده‌ها"
+
+msgid "Attached files for the whistleblower"
+msgstr ""
+
+msgid ""
+"Files uploaded here are made available for the whistleblower and other "
+"recipients to download."
+msgstr ""
+
+msgid "Upload a file:"
+msgstr ""
+
+msgid "Logout"
+msgstr "خروج"
+
+msgid "The key code is either invalid or the submission has expired."
+msgstr "یا کلید رمز غلط است یا منقضی شده"
+
+msgid "Please check your key code and try again or make a new submission."
+msgstr ""
+
+msgid "Files attached by recipients"
+msgstr ""
+
+msgid "These files have been attached to your submission by the recipients."
+msgstr ""
+
+msgid "Enable submission notification"
+msgstr "فعال کردن هشدار برای نکته‌ها"
+
+msgid "Current Password"
+msgstr "گذرواژه کنونی"
+
+msgid "Old password confirmation required"
+msgstr "تایید گذرواژه قبلی لازم است"
+
+msgid "The new password must be different from the current one."
+msgstr ""
+
+msgid "Type your new password again"
+msgstr "گذرواژه جدیدتان رو دوباره تایپ کنید"
+
+msgid "The two passwords do not match"
+msgstr "دو گذرواژه یکی نیستند"
+
+msgid "Thank you!"
+msgstr "متشکریم!"
+
+msgid "Remember your key code for this submission."
+msgstr "کد کلید خود را برای این ارائه به خاطر بسپارید."
+
+msgid "We will try to get back to you as soon as possible!"
+msgstr ""
+
+msgid ""
+"Use the 16 digit key code to log in. It will allow you to view any messages "
+"we sent you, and also to add extra info."
+msgstr ""
+
+msgid "View your submission"
+msgstr "درخواست خود را ببینید"
+
+msgid "Hint: How to hide your key code"
+msgstr ""
+
+msgid ""
+"A useful way to hide your key code is to write it down like a credit card "
+"number, i.e. by also including an expiration date."
+msgstr ""
+
+msgid "Example:"
+msgstr "نمونه:"
+
+msgid ""
+"You have not set up your encryption key, so the files will not be encrypted "
+"prior to being stored on the server."
+msgstr ""
+
+msgid ""
+"This may lead to unintended access to the files by the server administrator "
+"or others in case the server is compromised."
+msgstr "این میتواند باعث دسترسی غیر مجاز ادمین سرور، یا رد صورت هک شدن سرور، دسترسی دیگران شود. "
+
+msgid "Please configure your PGP keys in the recipient preferences page."
+msgstr ""
+
+msgid ""
+"One or more of the recipients of this submission has not configured a PGP "
+"key."
+msgstr ""
+
+msgid ""
+"This means that the submitted files will be stored in plaintext on the "
+"server."
+msgstr ""
+
+msgid ""
+"Access to the whistleblower's identity has been requested to the custodian."
+msgstr ""
+
+msgid "Date of the request"
+msgstr ""
+
+msgid "Congratulations!"
+msgstr "تبریک!"
+
+msgid "You have completed the platform activation."
+msgstr ""
+
+msgid "Your whistleblowing platform is now accessible at:"
+msgstr ""
+
+msgid "Users' credentials:"
+msgstr ""
+
+msgid "To log in, visit:"
+msgstr ""
+
+msgid "For the user documentation visit:"
+msgstr ""
+
+msgid "The platform will be automatically deleted on:"
+msgstr ""
+
+msgid "Sign up"
+msgstr ""
+
+msgid "Domain"
+msgstr "دامنه"
+
+msgid "Use Case"
+msgstr ""
+
+msgid "Anticorruption"
+msgstr ""
+
+msgid "Corporate compliance"
+msgstr ""
+
+msgid "Investigative journalism"
+msgstr ""
+
+msgid "Civic activism"
+msgstr ""
+
+msgid "Other"
+msgstr "دیگر"
+
+msgid "Complete"
+msgstr "کامل کنید."
+
+msgid "Your whistleblowing platform is almost ready!"
+msgstr ""
+
+msgid "Check your inbox to activate your account."
+msgstr ""
+
+msgid "The answer is too short."
+msgstr ""
+
+msgid "The specified input is not valid:"
+msgstr ""
+
+msgid "please enter a valid email address."
+msgstr ""
+
+msgid "please enter numbers only."
+msgstr ""
+
+msgid "Recipient selection"
+msgstr "انتخاب گیرنده"
+
+msgid "previous step"
+msgstr "مرحله قبل"
+
+msgid "next step"
+msgstr "مرحله‌ی بعدی"
+
+msgid "Submit"
+msgstr "ارسال"
+
+msgid "Recipients selected:"
+msgstr "گیرنده‌های انتخاب‌شده:"
+
+msgid ""
+"In this step the answers to the following questions are either missing or "
+"invalid:"
+msgstr ""
+
+msgid "Submission errors"
+msgstr ""
+
+msgid "You must select at least one recipient."
+msgstr ""
+
+msgid "Waiting for the file(s) to finish uploading."
+msgstr ""
+
+msgid "The following steps have errors:"
+msgstr ""
+
+msgid "Welcome!"
+msgstr "خوش آمدید!"
+
+msgid ""
+"The following step-by-step procedure will guide you through creating your "
+"whistleblowing platform."
+msgstr ""
+
+msgid "Please choose a configuration profile:"
+msgstr ""
+
+msgid ""
+"These profiles contain settings used by successful projects in each "
+"respective field."
+msgstr ""
+
+msgid "Confirm password"
+msgstr "تایید رمز"
+
+msgid "The default username is:"
+msgstr ""
+
+msgid "License Agreement"
+msgstr ""
+
+msgid "Please review the license terms before proceeding."
+msgstr ""
+
+msgid "I have read and agree to the terms of the License Agreement."
+msgstr ""
+
+msgid "You have completed the platform wizard."
+msgstr ""
+
+msgid "Fill out your submission"
+msgstr ""
+
+msgid "Short title"
+msgstr "عنوان مختصر"
+
+msgid "Describe your submission in a few words."
+msgstr ""
+
+msgid "Full description"
+msgstr "توضیح کامل"
+
+msgid "Describe your submission in detail."
+msgstr ""
+
+msgid "Attach files relevant to the submission."
+msgstr ""
+
+msgid "Dear {RecipientName},"
+msgstr "{RecipientName} گرامی،"
+
+msgid "Kind regards,"
+msgstr "با سپاس،"
+
+msgid ""
+"The number of activities recently detected appears to be higher than usual."
+msgstr ""
+
+msgid ""
+"This could be a sign of an attack (for example, someone flooding your server"
+" with bogus information) or just a usage spike due to an increased "
+"visibility of your project."
+msgstr ""
+
+msgid "Examine the issue to determine whether it is legitimate or not."
+msgstr ""
+
+msgid "The activities with unusual stats are:"
+msgstr ""
+
+msgid ""
+"The server cannot guarantee that a new submission can be stored, so "
+"submissions have been disabled."
+msgstr ""
+
+msgid ""
+"Please consider asking your technical support to create more disk space on "
+"the server."
+msgstr ""
+
+msgid ""
+"GlobaLeaks technology includes a server status checking component which will"
+" alert you in case something requires your attention."
+msgstr ""
+
+msgid ""
+"For more information, log in to the Administration interface and look at the"
+" \"System Stats\" and \"Anomalies\" sections."
+msgstr ""
+
+msgid "Anomaly detected in {NodeName}"
+msgstr ""
+
+msgid ""
+"This is an email to inform you that the PGP key of the following users is "
+"going to expire or has already expired:"
+msgstr ""
+
+msgid ""
+"Without a valid PGP key, the system will not be able to send them encrypted "
+"notifications."
+msgstr ""
+
+msgid "PGP key expiration alert"
+msgstr "هشدار انتقضای کلید PGP"
+
+msgid ""
+"This is a test email sent out from the platform's administrative interface."
+msgstr ""
+
+msgid ""
+"Reception of this email indicates that the server was able to authenticate "
+"to and interact with the SMTP mail server."
+msgstr ""
+
+msgid "Test email"
+msgstr ""
+
+msgid ""
+"This is an email to notify you of a new comment on an existing submission."
+msgstr ""
+
+msgid "The submission can be accessed:"
+msgstr "ارائه قابل دست‌رسی است:"
+
+msgid "via Tor at: {TorUrl}"
+msgstr "از طریق Tor در: {TorUrl}"
+
+msgid "via HTTPS at: {HTTPSUrl}"
+msgstr "از طریق HTTPS در: {HTTPSUrl}"
+
+msgid "New comment"
+msgstr ""
+
+msgid "From: {RecipientName}"
+msgstr ""
+
+msgid "Date: {EventTime}"
+msgstr ""
+
+msgid "From: Whistleblower"
+msgstr ""
+
+msgid "Date: {SubmissionDate}"
+msgstr ""
+
+msgid "Label: {TipLabel}"
+msgstr ""
+
+msgid "Context: {ContextName}"
+msgstr ""
+
+msgid ""
+"This is an email to notify you that the whistleblower of submission {TipNum}"
+" has attached new material."
+msgstr ""
+
+msgid "New attachment"
+msgstr "ضمایم جدید"
+
+msgid ""
+"The HTTPS certificate loaded on the platform is about to, or has already "
+"expired."
+msgstr ""
+
+msgid "Expiration date: {ExpirationDate}"
+msgstr "تاریخ انفضا: {ExpirationDate}"
+
+msgid ""
+"Without a valid certificate, the platform will be accessible in a secure way"
+" only via Tor."
+msgstr ""
+
+msgid "Log in to solve the issue."
+msgstr ""
+
+msgid "Expiration alert for HTTPS certificate"
+msgstr ""
+
+msgid ""
+"This is an email to notify you that a custodian has authorized you to access"
+" to the whistleblowing identity for the submission {TipNum}."
+msgstr ""
+
+msgid "Access to whistleblower's identity authorized"
+msgstr ""
+
+msgid ""
+"This is an email to notify you that a custodian has denied you access to the"
+" wistleblowing identity for the submission {TipNum}."
+msgstr ""
+
+msgid "Access to whistleblower's identity denied"
+msgstr ""
+
+msgid ""
+"This is an email to notify you that a recipient has requested access to the "
+"whistleblower's identity for the submission {TipNum}"
+msgstr ""
+
+msgid "The request can be accessed:"
+msgstr ""
+
+msgid "New request of access to a whistleblower's identity"
+msgstr ""
+
+msgid ""
+"This is an email to notify you that the whistleblower for the submission "
+"{TipNum} has provided their identity."
+msgstr ""
+
+msgid "The whistleblower has provided their identity"
+msgstr ""
+
+msgid ""
+"This is an email to notify you of a new message on an existing submission."
+msgstr ""
+
+msgid "New message"
+msgstr ""
+
+msgid ""
+"This is an email to inform you that your PGP key is expiring or has already "
+"expired."
+msgstr ""
+
+msgid ""
+"You should extend its validity and update the key present on the platform, "
+"or upload a new key."
+msgstr ""
+
+msgid ""
+"Without a valid PGP key, the system won't be able to encrypt data provided "
+"to you."
+msgstr ""
+
+msgid "It appears that {NodeName} is receiving a large number of requests."
+msgstr ""
+
+msgid ""
+"To prevent sending you too many emails, the system has disabled email "
+"notifications until the load returns to normal. In the meantime, you can "
+"normally log onto the platform and manually check for new submissions."
+msgstr ""
+
+msgid ""
+"If you don’t mind and would rather receive such a large number of email "
+"notifications anyhow, please contact your technical support to have them "
+"modify this setting accordingly."
+msgstr ""
+
+msgid "Notifications from {NodeName} have been temporarily suspended"
+msgstr ""
+
+msgid "Click the link to activate the platform:"
+msgstr ""
+
+msgid "A software update is available."
+msgstr ""
+
+msgid "It is good security practice to keep the platform up to date."
+msgstr ""
+
+msgid "Installed version: {InstalledVersion}"
+msgstr ""
+
+msgid "Latest version: {LatestVersion}"
+msgstr ""
+
+msgid ""
+"To learn about new features and bug fixes in the new version consult the "
+"change log at: {ChangeLogUrl}"
+msgstr ""
+
+msgid ""
+"For instructions on software updates, please refer to the documentation at: "
+"{UpdateGuideUrl}"
+msgstr ""
+
+msgid "The earliest expiration date is {EarliestExpirationDate}."
+msgstr ""
+
+msgid "Please remember to check them before they are deleted."
+msgstr ""
+
+msgid "Some submissions will expire soon"
+msgstr ""
+
+msgid ""
+"This is an email to notify you that a whistleblower has selected you as a "
+"valuable recipient of their submission."
+msgstr ""
+
+msgid ""
+"You are asked to pay special attention to the information and material "
+"contained therein. Please keep in mind that whistleblowers often expose "
+"themselves to high personal risks in the interest of the public. Therefore "
+"the material provided within this submission should be considered to be of "
+"high importance."
+msgstr ""
+
+msgid "New submission"
+msgstr ""

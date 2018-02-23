@@ -1,0 +1,2320 @@
+# 
+# Translators:
+# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2016-2017
+# git12a <git12@openmailbox.org>, 2015
+# Sivarajah Bagerathan <bagerathan@gmail.com>, 2013
+msgid ""
+msgstr ""
+"Project-Id-Version: GlobaLeaks\n"
+"PO-Revision-Date: 2018-02-22 08:59+0000\n"
+"Last-Translator: Hermes Center <info@hermescenter.org>\n"
+"Language-Team: Tamil (http://www.transifex.com/otf/globaleaks/language/ta/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: ta\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "Login page"
+msgstr "உள்நுழையும் பக்கம்"
+
+msgid "Log in"
+msgstr "உள் நுழை"
+
+msgid "Administration interface"
+msgstr "நிர்வாகம் முகப்பை"
+
+msgid "Main configuration"
+msgstr "முக்கிய கட்டமைப்பு"
+
+msgid "Theme customization"
+msgstr "தீம் தனிப்பட்ட"
+
+msgid "Languages"
+msgstr ""
+
+msgid "Text customization"
+msgstr ""
+
+msgid "Advanced settings"
+msgstr "மேம்பட்ட அமைப்புக்கள்"
+
+msgid "Questionnaire configuration"
+msgstr "கேள்வித்தாள் கட்டமைப்பு"
+
+msgid "Question templates"
+msgstr "கேள்வி வார்ப்புருக்கள்"
+
+msgid "Questionnaires"
+msgstr "கேள்வித்தாள்கள்"
+
+msgid "Add new questionnaire"
+msgstr "புதிய கேள்வித்தாளை சேர்"
+
+msgid "Home"
+msgstr "முகப்பு"
+
+msgid "Home page"
+msgstr "முகப்பு பக்கம்"
+
+msgid "Changelog"
+msgstr "மாற்றம்குறிக்கும் கோப்பு"
+
+msgid "License"
+msgstr ""
+
+msgid "Notification templates"
+msgstr "அறிவித்தல் வார்ப்புருக்கள்"
+
+msgid "Recipient notification templates"
+msgstr "பெறுநரின் அறிவிப்பை வார்ப்புருக்கள்"
+
+msgid "Admin notification templates"
+msgstr "நிர்வாகம் அறிவிப்பு வார்ப்புருக்கள்"
+
+msgid "Missing data"
+msgstr "தரவு காணவில்லை "
+
+msgid "no stats available for the future."
+msgstr "எதிர்காலத்துக்கு புள்ளிவிவரம் இல்லை."
+
+msgid "no stats available for this hour."
+msgstr "எந்த புள்ளிவிவரங்கள் இந்த மணி நேரம் கிடைக்கும்."
+
+msgid "no stats available for current hour; check activities page."
+msgstr "தற்போதைய மணிநேரத்திற்கு புள்ளி விவரங்கள் இல்லை; நடவடிக்கைகள் பக்கம் பார்க்கவும்."
+
+msgid "Delete"
+msgstr "நீக்கு"
+
+msgid "Anomalies"
+msgstr "முரண்பாடுகள்"
+
+msgid "Preferences"
+msgstr "விருப்பத்தேர்வுகள்"
+
+msgid "Recipient interface"
+msgstr "பெறுநரின் இடைமுகம்"
+
+msgid "Notification settings"
+msgstr "அறிவித்தல் அமைப்புகளை"
+
+msgid "This recipient has configured the encryption key."
+msgstr "இந்த பெறுநர் குறியாக்க விசை அமைத்துள்ளது."
+
+msgid "This recipient has not configured the encryption key."
+msgstr "இந்த பெறுநர் குறியாக்க விசை கட்டமைக்கப்பட்ட இல்லை."
+
+msgid "The file is unavailable due to an internal error."
+msgstr "கோப்பு அகப்பிழையினால் கிடைக்கவில்லை."
+
+msgid "file unavailable"
+msgstr "கோப்பு கிடைக்கவில்லை"
+
+msgid "Creation date"
+msgstr "உருவாக்கிய தேதி"
+
+msgid "Expiration date"
+msgstr "காலாவதி தேதி"
+
+msgid "Last Access"
+msgstr "கடைசியாக அணுகியது"
+
+msgid "Files"
+msgstr "கோப்புக்கள்"
+
+msgid "Comments"
+msgstr "பின்னூட்டங்கள்"
+
+msgid "Messages"
+msgstr "செய்திகள்"
+
+msgid "Select this recipient."
+msgstr "இந்த பெறுநர் தேர்ந்தெடுக்கவும்."
+
+msgid "Unselect this recipient."
+msgstr "இந்த பெறுநர் தேர்வை நீக்கவும்."
+
+msgid "This recipient cannot be selected."
+msgstr "இந்த பெறுநர் தேர்வு செய்ய முடியாது."
+
+msgid "This recipient cannot be deselected."
+msgstr "இந்த பெறுநர் தேர்வுநீக்கிய முடியாது."
+
+msgid "Details"
+msgstr "விபரங்கள்"
+
+msgid "Platform wizard"
+msgstr "மேடை வழிகாட்டி"
+
+msgid "Step-by-step setup"
+msgstr "படி மூலம் படி அமைப்பு"
+
+msgid "CREDIT CARD"
+msgstr "கடன் அட்டை"
+
+msgid "YOUR NAME"
+msgstr "உங்கள் பெயர்"
+
+msgid "Postpone the expiration date"
+msgstr "காலாவதி தேதி ஒத்தி"
+
+msgid "Select all"
+msgstr "அனைத்தையும் தெரிவுசெய்"
+
+msgid "Deselect all"
+msgstr "அனைத்து தெரிவுகளையும் நிராகரி"
+
+msgid "Refresh page"
+msgstr "புதுப்பிப்பு பக்கம்"
+
+msgid "Context"
+msgstr "சூழல்"
+
+msgid "Submission date"
+msgstr "சமர்ப்பிக்கப்பட்ட திகதி"
+
+msgid "Private messages"
+msgstr "தனியார் செய்திகளை"
+
+msgid "Preview"
+msgstr "முன்னோட்டம்"
+
+msgid "Move up"
+msgstr "மேலே நகர்த்து"
+
+msgid "Move down"
+msgstr "கீழே இறங்கு"
+
+msgid "Move left"
+msgstr "இடது நடவடிக்கையை"
+
+msgid "Move right"
+msgstr "வலது நகர்த்த"
+
+msgid "Import"
+msgstr "இறக்குமதி"
+
+msgid "Export"
+msgstr "ஏற்றுமதி"
+
+msgid "Save all"
+msgstr "அனைத்தையும் சேமி"
+
+msgid "This field is mandatory"
+msgstr "இந்த துறையில் அத்தியாவசியமானதாகும்"
+
+msgid ""
+"The connection used to send this submission has been secured with HTTPS "
+"ensuring confidentiality."
+msgstr "இந்த சமர்ப்பிப்பு அனுப்ப பயன்படுத்தப்படுகிறது இணைப்பு, HTTPS இரகசியத்தன்மை உறுதி பெறப்பட்டுள்ளது."
+
+msgid ""
+"The connection used to send this submission has been secured with Tor "
+"ensuring confidentiality and anonymity."
+msgstr ""
+
+msgid "vertical"
+msgstr "செங்குத்து"
+
+msgid "horizontal"
+msgstr "கிடைமட்ட"
+
+msgid "Number"
+msgstr "இலக்கம்"
+
+msgid "Email"
+msgstr "மின்னஞ்சல்"
+
+msgid "Date"
+msgstr "திகதி"
+
+msgid "Regular expression validator"
+msgstr "வழக்கமான வெளிப்பாடு வேலிடேட்டருக்கு"
+
+msgid "Minimum number of input characters"
+msgstr "உள்ளீடு எழுத்துக்கள் குறைந்தபட்ச எண்"
+
+msgid "Maximum number of input characters"
+msgstr "உள்ளீடு எழுத்துக்கள் அதிகபட்ச எண்ணிக்கை"
+
+msgid "Earliest selectable date"
+msgstr "முந்தைய தேர்ந்தெடுக்கக்கூடிய தேதி"
+
+msgid "Latest selectable date"
+msgstr "சமீபத்திய தேர்ந்தெடுக்கக்கூடிய தேதி"
+
+msgid "0 = auto"
+msgstr "0 = கார்"
+
+msgid "-1 = unlimited"
+msgstr "-1 = வரம்பற்ற"
+
+msgid "True"
+msgstr "உண்மை"
+
+msgid "False"
+msgstr "தவறான"
+
+msgid "Yes"
+msgstr "ஆம்"
+
+msgid "No"
+msgstr "இல்லை"
+
+msgid "Attachment"
+msgstr "இணைப்பு"
+
+msgid "Attachments"
+msgstr "இணைப்புகள்"
+
+msgid "Change your password"
+msgstr "உங்கள் கடவுச்சொல்லை மாற்றுக"
+
+msgid "First name"
+msgstr "முதல் பெயர்"
+
+msgid "Last name"
+msgstr "கடைசி பெயர்"
+
+msgid "GENDER_OTHER"
+msgstr "GENDER_OTHER"
+
+msgid "Male"
+msgstr "ஆண்"
+
+msgid "Female"
+msgstr "பெண்"
+
+msgid "Date of birth"
+msgstr "பிறந்த தேதி"
+
+msgid "Place of birth"
+msgstr "பிறந்த இடம்"
+
+msgid "Social security number"
+msgstr "சமூக பாதுகாப்பு எண்"
+
+msgid "Residence"
+msgstr "வதிவிடம்"
+
+msgid "Address"
+msgstr "முகவரி"
+
+msgid "Zip code / Postal code"
+msgstr "Zip குறியீடு / அஞ்சல் குறியீடு"
+
+msgid "City"
+msgstr "சிட்டி"
+
+msgid "State"
+msgstr "நிலை"
+
+msgid "Region"
+msgstr "பகுதி"
+
+msgid "Province"
+msgstr "மாகாணம்"
+
+msgid "Country"
+msgstr "நாடு"
+
+msgid "Phone number"
+msgstr "தொலைபேசி எண்"
+
+msgid "Current job title"
+msgstr "தற்போதைய வேலையின் தலைப்பு"
+
+msgid "Current job responsibility (role)"
+msgstr "தற்போதைய வேலை பொறுப்பை (பங்கு)"
+
+msgid "Current organization unit and job location"
+msgstr "தற்போதைய அமைப்பு பிரிவின் மற்றும் வேலை இடம்"
+
+msgid "Job title at the time of the reported fact"
+msgstr "தகவல் உண்மையில் நேரத்தில் வேலை தலைப்பு"
+
+msgid "Job responsibility (role) at the time of the reported fact"
+msgstr "வேலை பொறுப்பை (பங்கு) அறிவித்தது நேரத்தில்"
+
+msgid "Organization unit and job location at the time of the reported fact"
+msgstr "தகவல் உண்மையில் நேரத்தில் அமைப்பு அலகு மற்றும் வேலை இடம்"
+
+msgid "List of submissions"
+msgstr "சமர்ப்பிப்புகளை பட்டியல்"
+
+msgid "List of access requests to whistleblowers' identities"
+msgstr "இம்மாதிரி 'அடையாளங்களை அணுகல் கோரிக்கைகள் பட்டியல்"
+
+msgid "User"
+msgstr "பயனர்"
+
+msgid "Motivation"
+msgstr "உள்நோக்கம்"
+
+msgid "Status"
+msgstr "நிலை"
+
+msgid "Request motivation"
+msgstr "வேண்டுகோள் உள்நோக்கம்"
+
+msgid "Reply motivation"
+msgstr "உள்நோக்கம் பதில்"
+
+msgid "Request status"
+msgstr "வேண்டுகோள் நிலை"
+
+msgid "Custodian"
+msgstr "பொறுப்பாளரான"
+
+msgid "Custodian of the identities"
+msgstr "அடையாளங்களை பொறுப்பாளரான"
+
+msgid "Identity"
+msgstr "அடையாளம்"
+
+msgid "Available"
+msgstr "கிடைக்கும்"
+
+msgid "Not available"
+msgstr "கிடைக்கவில்லை"
+
+msgid "Access requested"
+msgstr "அணுகல் கோரப்பட்டது"
+
+msgid "Request access to the whistleblower's identity"
+msgstr "தகவல் தெரிவிப்பவர் அடையாளத்திற்கான வேண்டுகோள் அணுகல்"
+
+msgid "Please write a motivation"
+msgstr "ஒரு உள்நோக்கம் எழுத கொள்ளவும்"
+
+msgid "Reply to the request"
+msgstr "கோரிக்கையை பதில்"
+
+msgid "Authorized"
+msgstr "அங்கீகரிக்கப்பட்ட"
+
+msgid "Denied"
+msgstr "மறுக்கப்பட்டது"
+
+msgid "Waiting for authorization"
+msgstr "அங்கீகரிப்பிற்காகக் காத்திருக்கிறது"
+
+msgid "New request"
+msgstr "புதிய கோரிக்கை"
+
+msgid "Authorize"
+msgstr "அங்கீகரி"
+
+msgid "Deny"
+msgstr "மறு"
+
+msgid "Deny access to the whistleblower's identity"
+msgstr "தகவல் தெரிவிப்பவர் அடையாளத்திற்கான அணுகலை மறு"
+
+msgid "Authorize access to the whistleblower's identity"
+msgstr "தகவல் தெரிவிப்பவர் அடையாளத்திற்கான அணுகவும்"
+
+msgid "Templates"
+msgstr "டெம்ப்ளேட்கள்"
+
+msgid "Notification of new submission"
+msgstr "புதிய சமர்ப்பிக்கும் அறிவித்தல்"
+
+msgid "Notification of new comment"
+msgstr "புதிய கருத்து அறிவித்தல்"
+
+msgid "Notification of new message"
+msgstr "புதிய செய்தி அறிவித்தல்"
+
+msgid "Notification of new file attachment"
+msgstr "புதிய கோப்பு இணைப்பு அறிவித்தல்"
+
+msgid "Notification of PGP key expiration"
+msgstr "பிஜிபி முக்கிய முடிவுறும் அறிவித்தல்"
+
+msgid "Notification of anomaly"
+msgstr "ஒழுங்கின்மை அறிவித்தல்"
+
+msgid "Template for summary of contents in submission archive"
+msgstr "சமர்ப்பிப்பு காப்பகத்தில் பொருளடக்கம் டெம்ப்ளேட்"
+
+msgid "Email subject"
+msgstr "மின்னஞ்சல் பொருள்"
+
+msgid "Email body"
+msgstr "மின்னஞ்சல் உடல்"
+
+msgid "in seconds"
+msgstr "வினாடிகளில்"
+
+msgid "in hours"
+msgstr "மணி"
+
+msgid "in days"
+msgstr "நாட்கள்"
+
+msgid "in characters"
+msgstr "கதாபாத்திரங்கள்"
+
+msgid "in megabytes"
+msgstr "மெகாபைட்"
+
+msgid "in percentage"
+msgstr "சதவீதம் உள்ள"
+
+msgid "HTTPS settings"
+msgstr "HTTP அமைப்புகளை"
+
+msgid "Anomaly detection thresholds"
+msgstr "ஒழுங்கின்மை கண்டறிதல் நிலையை"
+
+msgid "High risk"
+msgstr "அதிக ஆபத்து"
+
+msgid "Medium risk"
+msgstr "நடுத்தர ஆபத்து"
+
+msgid "Low risk"
+msgstr "குறைந்த ஆபத்து"
+
+msgid "Available disk space"
+msgstr "வட்டு இடம்"
+
+msgid "Last update"
+msgstr "கடைசியாக புதுப்பிக்கப்பட்டது"
+
+msgid "Custodian notification templates"
+msgstr "பொறுப்பாளரான அறிவிப்பை வார்ப்புருக்கள்"
+
+msgid ""
+"This interface allows configuring email templates used to notify custodians."
+msgstr "இந்த இடைமுகம் பொறுப்பாளர்கள் தெரிவிக்க பயன்படுத்தப்படுகிறது மின்னஞ்சல் டெம்ப்ளேட்களை கட்டமைக்கும் அனுமதிக்கிறது."
+
+msgid "Disable notifications to administrators"
+msgstr "நிர்வாகிகள் அறிவிப்புகளை முடக்கு"
+
+msgid "Disable notifications to custodians"
+msgstr "பொறுப்பாளர்கள் அறிவிப்புகளை முடக்கு"
+
+msgid "Disable notifications to recipients"
+msgstr "பெற்றவர்கள் அறிவிப்புகளை முடக்கு"
+
+msgid "Score"
+msgstr "ஸ்கோர்"
+
+msgid "Trigger question"
+msgstr "தூண்டல் கேள்வி"
+
+msgid "Triggered by a score higher than:"
+msgstr "விட அதிக ஒரு மதிப்பெண் தூண்டப்படலாம்:"
+
+msgid "Select the question to be triggered when this option is selected"
+msgstr "கேள்வி தேர்ந்தெடுக்கவும் போது இந்த விருப்பத்தேர்வு தேர்வு செய்யப்பட்டால் தூண்டப்படலாம் வேண்டும்"
+
+msgid "Message shown on top of the status page of the submission"
+msgstr "செய்தி சமர்ப்பிக்கும் நிலையை பக்கம் மேல் காண்பிக்கப்படும்"
+
+msgid "Copy and paste the PGP public key here"
+msgstr "நகலெடுத்து இங்கே பிஜிபி பொது விசையை ஒட்டவும்"
+
+msgid "Password strength:"
+msgstr "கடவுச்சொல் வலிமை:"
+
+msgid "Weak"
+msgstr "பலவீனமான"
+
+msgid "Acceptable"
+msgstr "ஏற்கக்கூடிய"
+
+msgid "Strong"
+msgstr "வலுவான"
+
+msgid "Loading…"
+msgstr "ஏற்றுகிறது ..."
+
+msgid "Text shown on top of the interface for selecting contexts"
+msgstr "உரை சூழல்களில் தேர்வு இடைமுகம் மேல் காட்டப்படும்"
+
+msgid "Show small context cards on submission interface"
+msgstr "சமர்ப்பிப்பு இடைமுகத்தில் சிறிய சூழலில் அட்டைகள் காட்டு"
+
+msgid "Type of context selector:"
+msgstr "சூழல் தேர்வுக்குழு வகை:"
+
+msgid "Type to search…"
+msgstr ""
+
+msgid "Silence email notifications"
+msgstr ""
+
+msgid "Turn on email notifications"
+msgstr ""
+
+msgid "Enter an email address for the administrator"
+msgstr ""
+
+msgid "Enter a password for the administrator"
+msgstr ""
+
+msgid "Test configuration"
+msgstr ""
+
+msgid "Failed logins"
+msgstr "தோல்வியடைந்தது உள் அனுமதிகள்"
+
+msgid "Successful logins"
+msgstr "வெற்றிகரமான உள்"
+
+msgid "Started submissions"
+msgstr "தொடங்குதல் சமர்ப்பிப்புகளை"
+
+msgid "Completed submissions"
+msgstr "நிறைவு சமர்ப்பிப்புகளை"
+
+msgid "Failed submissions"
+msgstr ""
+
+msgid "Input validation"
+msgstr ""
+
+msgid "Email address"
+msgstr "மின்னஞ்சல் முகவரி"
+
+msgid "Custom"
+msgstr ""
+
+msgid "None"
+msgstr "எதுவுமில்லை"
+
+msgid "Regular expression"
+msgstr ""
+
+msgid "Label the submission"
+msgstr ""
+
+msgid "Activate"
+msgstr "செயல்படுத்தவும்"
+
+msgid "Search"
+msgstr "தேடு"
+
+msgid ""
+"This custom text is no longer displayed on the platform. The original text "
+"has either changed or been removed."
+msgstr ""
+
+msgid ""
+"Unless the whistleblower checks the submission by this time, their access to"
+" it will expire."
+msgstr ""
+
+msgid "The whistleblower can no longer access the submission"
+msgstr ""
+
+msgid "Warning!"
+msgstr "கவனம்!"
+
+msgid "You are running an unsupported and potentially vulnerable browser."
+msgstr ""
+
+msgid "You are strongly advised to download and install the Tor Browser."
+msgstr ""
+
+msgid ""
+"The Tor Browser includes various privacy and security enhancements not "
+"present in other browsers."
+msgstr "தோர் உலாவி பல்வேறு தனியுரிமை மற்றும் பாதுகாப்பு விரிவாக்கங்கள் மற்ற உலாவிகளில் தற்போது இல்லை அடங்கும்."
+
+msgid "Download the Tor Browser"
+msgstr "தோர் உலாவி பதிவிறக்க"
+
+msgid "This is the list of the other supported browsers:"
+msgstr ""
+
+msgid "System overview"
+msgstr ""
+
+msgid "Stats"
+msgstr ""
+
+msgid "Activities"
+msgstr ""
+
+msgid "Submissions"
+msgstr "சமர்ப்பிப்புகள்"
+
+msgid "Users"
+msgstr ""
+
+msgid "From"
+msgstr ""
+
+msgid "Number of downloads"
+msgstr ""
+
+msgid "Error with file:"
+msgstr ""
+
+msgid "File size not accepted."
+msgstr ""
+
+msgid "File type not accepted."
+msgstr ""
+
+msgid "Maximum file size is:"
+msgstr ""
+
+msgid "Accepted file types are:"
+msgstr ""
+
+msgid "Scheduled jobs"
+msgstr ""
+
+msgid "Sites management"
+msgstr ""
+
+msgid "Regenerate"
+msgstr ""
+
+msgid "Display options alphabetically"
+msgstr ""
+
+msgid "Enable email notifications for:"
+msgstr ""
+
+msgid "Software updates"
+msgstr ""
+
+msgid "Software problems"
+msgstr ""
+
+msgid "Disable"
+msgstr ""
+
+msgid "Remove"
+msgstr "நீக்கு"
+
+msgid "Use as default"
+msgstr ""
+
+msgid "Create your whistleblowing platform"
+msgstr ""
+
+msgid "Select the context of your submission:"
+msgstr "உங்கள் சமர்ப்பிப்பு சூழலில் தேர்வு:"
+
+msgid "Warning! You are not anonymous."
+msgstr "எச்சரிக்கை! நீங்கள் அநாமதேய இல்லை."
+
+msgid ""
+"Sending submissions over HTTPS exposes the act of doing so, but not the "
+"content.\\n\\nAlso, hiding the fact that you are submitting something makes "
+"the submission anonymous, which is strongly recommended.\\n\\nThis can be "
+"achieved with the use of the Tor Browser, providing anonymisation not found "
+"in other browsers like Internet Explorer, Firefox, Chrome, Opera etc."
+msgstr ""
+
+msgid "Are you a whistleblower?"
+msgstr "நீங்கள் ஒரு இரகசிய இருக்கிறீர்களா?"
+
+msgid "Blow the whistle"
+msgstr "விசில் ஊதி"
+
+msgid "Have you already filed a submission? Enter your key code."
+msgstr "நீங்கள் ஏற்கனவே ஒரு சமர்ப்பிப்பு தாக்கல் செய்துள்ளனர்? உங்கள் முக்கிய குறியீடு உள்ளிடவும்."
+
+msgid "Your submission was successful."
+msgstr "உங்கள் சமர்ப்பிப்பு வெற்றியடைந்தது."
+
+msgid "Submission status"
+msgstr ""
+
+msgid "Disable submissions"
+msgstr "சமர்ப்பிப்புகளை முடக்கு"
+
+msgid "Enable insecure configuration without PGP encryption"
+msgstr "பிஜிபி குறியாக்க இல்லாமல் பாதுகாப்பற்ற உள்ளமைவு"
+
+msgid "Danger"
+msgstr "ஆபத்து"
+
+msgid ""
+"By enabling this option, the system will be storing the submitted files "
+"unencrypted on your server."
+msgstr "இந்த விருப்பத்தை இயக்குவதன் மூலம், அமைப்பு உங்கள் சர்வரில் மறைகுறியாக்கப்பட்ட சமர்ப்பிக்க கோப்புகளை சேமித்து வைக்கப்படும்."
+
+msgid "This happens whenever encryption is unavailable."
+msgstr "குறியாக்க கிடைக்கவில்லை போதெல்லாம் இது நடக்கும்."
+
+msgid "Disable messages that warn of missing encryption"
+msgstr "காணாமல் குறியாக்க எச்சரிக்கும் செய்திகளை முடக்கு"
+
+msgid ""
+"This setting affects the security of the users and must not be used in "
+"production."
+msgstr "இந்த அமைப்பு செய்த பாதுகாப்பை பாதிக்கும் மற்றும் உற்பத்தியில் பயன்படுத்த கூடாது."
+
+msgid "Allow other websites to include the platform inside iframes"
+msgstr "மற்ற வலைத்தளங்களில் ஃபிரேம்களை உள்ளே மேடையில் சேர்க்க அனுமதிக்க"
+
+msgid ""
+"By enabling this option, you are allowing other websites to include the "
+"platform inside iframes; this could potentially be used to endanger the "
+"platform or intercept users' communications"
+msgstr "இந்த விருப்பத்தை இயக்குவதன் மூலம், ஃபிரேம்களை உள்ளே மேடையில் சேர்க்க மற்ற வலைத்தளங்களில் அனுமதிக்கிறோம்; இந்த சாத்தியமுள்ள மேடையில் அல்லது இடைமறிப்பு பயனாளிகளின் தொடர்புகள் ஆபத்துக்குள்ளாகுகின்ற பயன்படுத்த முடியும்"
+
+msgid "Allow recipients to postpone expiration date of the submission"
+msgstr "பெற்றவர்கள் சமர்ப்பிக்கும் காலாவதி தேதி ஒத்தி அனுமதி"
+
+msgid "Allow recipients to delete submissions"
+msgstr "பெற்றவர்கள் சமர்ப்பிப்புகளை நீக்க அனுமதிக்க"
+
+msgid ""
+"Allow recipients to grant permissions to whistleblowers on specific "
+"submissions"
+msgstr "பெற்றவர்கள் குறிப்பிட்ட சமர்ப்பிப்புகளை இம்மாதிரி செய்ய அனுமதிகளை வழங்க அனுமதி"
+
+msgid "Enable search engines indexing"
+msgstr "தேடுபொறிகள் திருப்பு இயக்கு"
+
+msgid "Enabled"
+msgstr "இயக்கப்பட்டது"
+
+msgid "Search engine spiders will be allowed to index the application."
+msgstr "தேடல் பொறி சிலந்திகள் குறியீட்டு பயன்பாடு அனுமதிக்கப்படும்."
+
+msgid "Enable custom privacy panel"
+msgstr "விருப்ப தனியுரிமை குழு இயக்கு"
+
+msgid "Custom privacy panel"
+msgstr "விருப்ப தனியுரிமை குழு"
+
+msgid "Text shown when the whistleblower is not using Tor"
+msgstr "உரை தகவல் தெரிவிப்பவர் தோர் பயன்படுத்தாத போது காட்டப்பட்டுள்ளது"
+
+msgid "Disable the privacy panel"
+msgstr "தனியுரிமை குழு முடக்கு"
+
+msgid "Security awareness panel title"
+msgstr "பாதுகாப்பு விழிப்புணர்வு குழு தலைப்பு"
+
+msgid "Security awareness panel text"
+msgstr "பாதுகாப்பு விழிப்புணர்வு குழு உரை"
+
+msgid "Disable the security awareness panel questions"
+msgstr "பாதுகாப்பு விழிப்புணர்வு குழு கேள்விகள் முடக்கு"
+
+msgid "Disable the security awareness panel"
+msgstr "பாதுகாப்பு விழிப்புணர்வு குழு முடக்கு"
+
+msgid "Disable the key code hint"
+msgstr "முக்கிய குறியீடு குறிப்பை முடக்கு"
+
+msgid "Disable the donation panel"
+msgstr "நன்கொடை குழு முடக்கு"
+
+msgid "Enable CAPTCHA mechanism"
+msgstr "அப்பாவி பொறிமுறையை இயக்கு"
+
+msgid "Enable proof of work mechanism"
+msgstr "வேலை பொறிமுறையை ஆதாரம் இயக்கு"
+
+msgid "Enable simplified login for recipients"
+msgstr "பெற்றவர்கள் எளிமைப்படுத்தப்பட்ட உள்நுழைவு இயக்கு"
+
+msgid "Amount of days till whistleblower access expires"
+msgstr ""
+
+msgid ""
+"For security reasons the whistleblower access is subject to expiration."
+msgstr ""
+
+msgid "Tweak this setting only if you know what you are doing."
+msgstr ""
+
+msgid "Landing page"
+msgstr "இறங்கும் பக்கம்"
+
+msgid "Home Page"
+msgstr "முகப்பு பக்கம்"
+
+msgid "Submission Page"
+msgstr "சமர்ப்பிக்கும் பக்கம்"
+
+msgid "Title of the submission page"
+msgstr "சமர்ப்பிப்பு பக்கம் தலைப்பு"
+
+msgid "Title of the attachments widget"
+msgstr "இணைப்புகளை சாளரத்தின் தலைப்பு"
+
+msgid "Text of prompt for whistleblowers to log in"
+msgstr ""
+
+msgid "Show contexts in alphabetical order"
+msgstr "அகரவரிசையில் சூழல்களில் காட்டு"
+
+msgid "Title of the receipt page"
+msgstr "ரசீது பக்கம் தலைப்பு"
+
+msgid "Title of the submission status page"
+msgstr "சமர்பித்தல் நிலை பக்கம் தலைப்பு"
+
+msgid "Title of the comments widget"
+msgstr "கருத்துகள் சாளரத்தின் தலைப்பு"
+
+msgid "Title of the messages widget"
+msgstr "செய்திகளை சாளரத்தின் தலைப்பு"
+
+msgid "Size limit for file attachments"
+msgstr "கோப்பு இணைப்புகளை அளவு எல்லை"
+
+msgid "Notify administrators of software problems"
+msgstr ""
+
+msgid "Notify developers of software problems"
+msgstr ""
+
+msgid ""
+"By enabling this feature, you will contribute to the development and "
+"security of the platform."
+msgstr ""
+
+msgid "Enable HTTP Basic Authentication to limit platform access"
+msgstr "மேடையில் அணுகலை கட்டுப்படுத்தும் HTTP அடிப்படை அங்கீகரிப்பு இயக்கு"
+
+msgid "Username"
+msgstr "பயனர்பெயர்"
+
+msgid "Password"
+msgstr "கடவுச்சொல்"
+
+msgid ""
+"This feature keeps regular people from visiting the platform while it is "
+"still under development and should not be used for security purposes. The "
+"input password is stored in plaintext on the server."
+msgstr "இந்த வசதியை இன்னும் மேம்பாட்டில் உள்ளது மற்றும் பாதுகாப்பு காரணங்களுக்காக பயன்படுத்த கூடாது போது மேடையில் வருகை வழக்கமான மக்கள் வைத்திருக்கிறது. உள்ளீடு கடவுச்சொல்லை சர்வரில் இயல்பு சேமிக்கப்படும் உள்ளது."
+
+msgid "Enable experimental features"
+msgstr "சோதனை அம்சங்களை இயக்கு"
+
+msgid "Warning"
+msgstr "எச்சரிக்கை"
+
+msgid ""
+"The experimental features may be less stable or even not work at all; enable"
+" this option at your own risk. Support for these features may vary and they "
+"may be removed in the future."
+msgstr "சோதனை அம்சங்கள் குறைவான நிலையான இருக்கலாம் அல்லது அனைத்து வேலை இல்லை; உங்கள் சொந்த ஆபத்து இந்த விருப்பத்தை செயல்படுத்த. இந்த அம்சங்கள் ஆதரவு மாறுபடலாம் அவர்கள் எதிர்காலத்தில் நீக்கப்படும் இருக்கலாம்."
+
+msgid "Save"
+msgstr "சேமி"
+
+msgid "Short URL"
+msgstr "குறுகிய URL"
+
+msgid "Long URL"
+msgstr "நீண்ட URL"
+
+msgid "Add"
+msgstr "சேர்"
+
+msgid "Logo"
+msgstr ""
+
+msgid "Project name"
+msgstr "திட்ட பெயர்"
+
+msgid "Homepage title"
+msgstr "முகப்பு தலைப்பு"
+
+msgid "Presentation"
+msgstr "வழங்கல்"
+
+msgid "Description"
+msgstr "விபரம்"
+
+msgid "Question to solicit possible whistleblowers"
+msgstr "கேள்வி சாத்தியம் இம்மாதிரி கோர"
+
+msgid "Whistleblowing button"
+msgstr "whistleblowing பொத்தானை"
+
+msgid "Footer"
+msgstr "அடிக்குறிப்பு"
+
+msgid "Favicon"
+msgstr ""
+
+msgid "Upload"
+msgstr "பதிவேற்று"
+
+msgid "Download"
+msgstr "பதிவிறக்க"
+
+msgid "Upload custom file"
+msgstr "விருப்ப கோப்பு பதிவேற்ற"
+
+msgid "The file will be available at URL: /s/$filename"
+msgstr "கோப்பு URL கிடைக்க வேண்டும்: / கள் / $ கோப்பு பெயர்"
+
+msgid "Language:"
+msgstr "மொழி:"
+
+msgid "Add custom text"
+msgstr ""
+
+msgid "Custom text"
+msgstr ""
+
+msgid "Custom texts"
+msgstr ""
+
+msgid "Original text"
+msgstr ""
+
+msgid "Original translation"
+msgstr ""
+
+msgid "Custom translation"
+msgstr ""
+
+msgid "Contexts"
+msgstr "சூழல்"
+
+msgid "Name"
+msgstr "பெயர்"
+
+msgid "Edit"
+msgstr "தொகு"
+
+msgid "Cancel"
+msgstr "நிராகரி"
+
+msgid "Questionnaire"
+msgstr "கேள்வித்தாள்"
+
+msgid "Recipients"
+msgstr "பெற்றவர்கள்"
+
+msgid "Allow selection of this context through the context selector."
+msgstr "இந்த சூழலில் சூழலில் தேர்வுக்குழு மூலம் தேர்வு அனுமதிக்க."
+
+msgid ""
+"If disabled, submissions for this context will only be accessible through a "
+"direct link to it."
+msgstr "முடக்கப்பட்டுள்ளது என்றால், இந்த சூழல் சமர்ப்பிப்புகளை மட்டுமே அது ஒரு நேரடி இணைப்பு மூலம் அணுக வேண்டும்."
+
+msgid "Allow whistleblowers to select their recipients"
+msgstr "இம்மாதிரி தங்கள் பெற்றவர்கள் தேர்ந்தெடுக்க அனுமதிக்கவும்"
+
+msgid "Select all recipients by default"
+msgstr "இயல்பாக அனைத்து பெற்றவர்கள் தேர்வு"
+
+msgid "Maximum number of selectable recipients:"
+msgstr "தேர்ந்தெடுக்கும் பெற்றவர்கள் எண்ணிக்கை:"
+
+msgid "(0 = unlimited)"
+msgstr "(0 = வரம்பற்ற)"
+
+msgid "Show recipients in alphabetical order"
+msgstr "அகரவரிசையில் பெற்றவர்கள் காட்டு"
+
+msgid "Show small recipient cards on submission interface"
+msgstr "சமர்ப்பிப்பு இடைமுகத்தில் சிறிய பெறுநர் அட்டைகள் காட்டு"
+
+msgid "Enable comments"
+msgstr "கருத்துகளை இயக்கு"
+
+msgid "Allow whistleblowers to write comments"
+msgstr "இம்மாதிரி கருத்துக்கள் எழுத அனுமதி"
+
+msgid "Enable private messages"
+msgstr "தனியார் செய்திகளை இயக்கு"
+
+msgid "Allow whistleblowers to send messages"
+msgstr "இம்மாதிரி செய்திகளை அனுப்ப அனுமதிக்க"
+
+msgid "Let whistleblowers add attachments onto existing submissions"
+msgstr ""
+
+msgid "Show recipient details on the status page of the submission"
+msgstr "சமர்ப்பிக்கும் நிலையை பக்கம் பெறுநர் விவரங்களை காட்டு"
+
+msgid "Let recipients upload files to whistleblowers"
+msgstr ""
+
+msgid "Disabled"
+msgstr "முடக்கப்பட்டது"
+
+msgid "Submission expiration, in days"
+msgstr "சமர்ப்பிக்கும் காலாவதி, நாட்கள்"
+
+msgid ""
+"For security reasons, as a matter of data retention policy, the platform "
+"automatically deletes submissions and their data after a certain amount of "
+"time."
+msgstr "பாதுகாப்பு காரணங்களுக்காக, தரவு வைத்திருத்தல் கொள்கை ஒரு விஷயத்தை, மேடையில் தானாக சமர்ப்பிப்புகளை அவர்களின் தரவு நேரம் ஒரு குறிப்பிட்ட அளவு பிறகு நீக்குகிறது."
+
+msgid "Text shown on top of the interface for selecting recipients"
+msgstr "உரை பயனாளிகள் தெரிவுசெய்யப்பட்ட இடைமுகம் மேல் காட்டப்படும்"
+
+msgid "Welcome to the administration interface!"
+msgstr "நிர்வாகம் முகப்பை வரவேற்கிறோம்!"
+
+msgid ""
+"This interface may help you understand how the server can be configured and "
+"provides some info on how to connect to other GlobaLeaks users and experts."
+msgstr "இந்த இடைமுகம் நீங்கள் சர்வர் கட்டமைக்க மற்றும் பிற GlobaLeaks பயனர்கள் மற்றும் நிபுணர்கள் இணைக்க எப்படி சில தகவல் வழங்குகிறது முடியும் என்பதை புரிந்து கொள்ள உதவும்."
+
+msgid "Documentation"
+msgstr ""
+
+msgid ""
+"To properly organize your project, please read the following guidelines:"
+msgstr "ஒழுங்காக உங்கள் திட்டம் ஏற்பாடு, பின்வரும் வழிகாட்டுதல்களைப் படிக்கவும்:"
+
+msgid "Remember to provide proper security advice to Whistleblowers:"
+msgstr "ஊழலை வெளிக்கொணர்ந்தோர் சரியான பாதுகாப்பு ஆலோசனை வழங்க நினைவில்:"
+
+msgid ""
+"To learn more about GlobaLeaks Security you can read the following document:"
+msgstr ""
+
+msgid "Contact"
+msgstr ""
+
+msgid ""
+"If you need technical support, have general questions, or have new ideas for"
+" the software:"
+msgstr ""
+
+msgid ""
+"If you want to contribute to software development or report a bug, please "
+"open an issue in our ticketing system:"
+msgstr ""
+
+msgid ""
+"If your non-profit needs support for investigative journalism, activism or a"
+" human rights defense project:"
+msgstr ""
+
+msgid ""
+"For professional support and development of anti corruption and compliance "
+"projects contact the social enterprise maintaining GlobaLeaks:"
+msgstr ""
+
+msgid "Join our IRC chat channel on the irc.oftc.net network:"
+msgstr ""
+
+msgid "Follow the project on:"
+msgstr ""
+
+msgid "Software version:"
+msgstr "மென்பொருள் பதிப்பு:"
+
+msgid "An update is available:"
+msgstr ""
+
+msgid "SMTP name"
+msgstr "SMTP, பெயர்"
+
+msgid "SMTP email address"
+msgstr "SMTP மின்னஞ்சல் முகவரியை"
+
+msgid "Invalid email address"
+msgstr "பிழையான மின்னஞ்சல் முகவரி"
+
+msgid "SMTP server address"
+msgstr "SMTP சர்வர் முகவரி"
+
+msgid "SMTP server port"
+msgstr "SMTP சர்வர் துறைமுக"
+
+msgid "Transport Security"
+msgstr "போக்குவரத்து பாதுகாப்பு"
+
+msgid "When the option is re-enabled the spooled emails will be sent out."
+msgstr "விருப்பத்தை மீண்டும் செயல்படுத்தும் போது spooled மின்னஞ்சல்களை அனுப்பி வைக்கப்படும்."
+
+msgid "Reset notification templates to default"
+msgstr "திருப்பித்தர முடியாது அறிவிப்பை வார்ப்புருக்கள் மீட்டமை"
+
+msgid "Number of hours before sending a submission expiration alert"
+msgstr "ஒரு சமர்ப்பிப்பு காலாவதி எச்சரிக்கை அனுப்பும் முன் மணி எண்ணிக்கை"
+
+msgid "Maximum emails per hour before triggering email suspension"
+msgstr "மின்னஞ்சல் இடைநீக்கம் தூண்டும் முன் ஒரு மணி நேரத்திற்கு அதிகபட்ச மின்னஞ்சல்களை"
+
+msgid "this configuration only applies to recipients"
+msgstr "இந்த கட்டமைப்பு மட்டுமே பெற்றவர்கள் பொருந்தும்"
+
+msgid "Test the configuration"
+msgstr ""
+
+msgid "Template"
+msgstr "டெம்ப்ளேட்"
+
+msgid "Admin"
+msgstr "நிர்வாகம்"
+
+msgid "Roles enabled to use the platform without Tor:"
+msgstr ""
+
+msgid "Recipient"
+msgstr "பெறுநரின்"
+
+msgid "Whistleblower"
+msgstr ""
+
+msgid "Hostname"
+msgstr ""
+
+msgid "Verify"
+msgstr "சரிபார்க்க"
+
+msgid "Invalid input format."
+msgstr ""
+
+msgid "Input should be similar to:"
+msgstr ""
+
+msgid ""
+"The platform does not seem to be reachable with the configured hostname."
+msgstr ""
+
+msgid "Using Let's Encrypt requires agreement to their Terms of Service."
+msgstr ""
+
+msgid "Read the Terms of Service"
+msgstr ""
+
+msgid "I agree to the Terms of Service."
+msgstr ""
+
+msgid "Proceed"
+msgstr "தொடர்க"
+
+msgid "Configuration completed. You can review the settings or enable it now."
+msgstr ""
+
+msgid "Review"
+msgstr ""
+
+msgid "Enable"
+msgstr ""
+
+msgid "Country code"
+msgstr ""
+
+msgid "Organization"
+msgstr "நிறுவனம்"
+
+msgid "Organizational unit"
+msgstr ""
+
+msgid ""
+"This interface can generate a Private Key and a Certificate Signing Request."
+" The Certificate Signing Request can be provided to a Certificate Authority "
+"to retrieve a Certificate. After having validated your request and your "
+"ownership of the hostname, the Certificate Authority will issue you a "
+"Certificate and provide a file containing Intermediate Certificates. Load "
+"the Certificate and the file containing the Intermediate Certificates to "
+"complete the HTTPS setup."
+msgstr ""
+
+msgid "Private Key"
+msgstr ""
+
+msgid "Generate"
+msgstr "உருவாக்கு"
+
+msgid "Certificate Signing Request"
+msgstr ""
+
+msgid "Certificate"
+msgstr ""
+
+msgid "Valid until:"
+msgstr ""
+
+msgid "Issuer:"
+msgstr ""
+
+msgid "Intermediate Certificates"
+msgstr ""
+
+msgid "Reset"
+msgstr "மீட்டமை"
+
+msgid "Select an option:"
+msgstr ""
+
+msgid "Automatic configuration"
+msgstr ""
+
+msgid ""
+"Using automatic HTTPS configuration will handle the entire process of "
+"requesting, enabling and renewing certificates from the Let's Encrypt "
+"Certificate Authority."
+msgstr ""
+
+msgid ""
+"The platform must be reachable through a public IP address and the selected "
+"hostname must have a corresponding DNS record referencing that address."
+msgstr ""
+
+msgid "Manual configuration"
+msgstr ""
+
+msgid ""
+"The manual configuration wizard will guide you through the setup of HTTPS "
+"from an alternative Certificate Authority."
+msgstr ""
+
+msgid ""
+"The platform supports the configuration of HTTPS through this interface."
+msgstr ""
+
+msgid "The connection to the configured domain failed."
+msgstr ""
+
+msgid "Running"
+msgstr ""
+
+msgid "Not running"
+msgstr ""
+
+msgid "Auto-renewal"
+msgstr ""
+
+msgid "System message:"
+msgstr ""
+
+msgid ""
+"Allowing whistleblowers to connect over HTTPS preserves their privacy but "
+"not their anonymity."
+msgstr ""
+
+msgid "Attention!"
+msgstr ""
+
+msgid ""
+"Configuration in progress. When it is finished you will have to log in "
+"again."
+msgstr ""
+
+msgid "Your browser will be redirected to the following URL."
+msgstr ""
+
+msgid "Tor Onion Service"
+msgstr ""
+
+msgid "Tor Browser download link"
+msgstr ""
+
+msgid "Anonymize outgoing connections"
+msgstr ""
+
+msgid "Let the platform be reachable without Tor"
+msgstr ""
+
+msgid "Stats of the week:"
+msgstr "வாரம் விபரம்:"
+
+msgid "Free disk space"
+msgstr "இலவச வட்டு இடத்தை"
+
+msgid "Event ID"
+msgstr "நிகழ்வு ஐடி"
+
+msgid "Time"
+msgstr "நேரம்"
+
+msgid "Event"
+msgstr "நிகழ்வு"
+
+msgid "Response time"
+msgstr "பதில் நேரம்"
+
+msgid "Role"
+msgstr "பங்கு"
+
+msgid "Last access"
+msgstr "கடைசியாக அணுகியது"
+
+msgid "Submission"
+msgstr "சமர்ப்பிக்கும்"
+
+msgid "Path"
+msgstr ""
+
+msgid "Size"
+msgstr "அளவு"
+
+msgid "Alarm level"
+msgstr "அலார நிலை"
+
+msgid "Events"
+msgstr "நிகழ்வுகள்"
+
+msgid "Label"
+msgstr "லேபிள்"
+
+msgid "Type"
+msgstr "வகை"
+
+msgid "Single-line text input"
+msgstr "ஒற்றை வரி உரை உள்ளீடு"
+
+msgid "Multi-line text input"
+msgstr "பல வரி உரை உள்ளீடு"
+
+msgid "Multiple choice input"
+msgstr "பல தேர்வு உள்ளீடு"
+
+msgid "Selection box"
+msgstr "தேர்வு பெட்டியில்"
+
+msgid "Checkbox"
+msgstr "பெட்டியை"
+
+msgid "Terms of service"
+msgstr "சேவை விதிமுறைகளை"
+
+msgid "Group of questions"
+msgstr "கேள்விகள் குழு"
+
+msgid "Row"
+msgstr "ரோ"
+
+msgid "Column"
+msgstr "வரிசை"
+
+msgid "Width"
+msgstr "அகலம்"
+
+msgid "Question group"
+msgstr "கேள்வி குழு"
+
+msgid "Hint"
+msgstr "சாடைக்குறிப்பு"
+
+msgid "Required"
+msgstr "தேவையான"
+
+msgid "Accept multiple file uploads"
+msgstr "பல கோப்பு பதிவேற்றங்கள் ஏற்கவும்"
+
+msgid "Accept multiple answers for the field"
+msgstr "துறையில் பல பதில்கள் ஏற்கவும்"
+
+msgid "Hint shown on the button for adding an additional answer"
+msgstr "ஒரு கூடுதல் பதில் சேர்க்கும் பொத்தான் குறிப்பு"
+
+msgid "Clause"
+msgstr "உட்கூறு"
+
+msgid "Agreement Text"
+msgstr "ஒப்பந்தம் உரை"
+
+msgid "Layout orientation"
+msgstr "லேஅவுட் நோக்குநிலை"
+
+msgid "Subject answer visibility to custodian authorization"
+msgstr "பாதுகாப்பாளர் அங்கீகாரம் உட்பட்டு பதில் தன்மை"
+
+msgid "Prompt confirmation upon negative answer"
+msgstr "எதிர்மறை பதில் மீது உடனடியான உறுதிப்படுத்தல்"
+
+msgid "Title of the confirmation question upon negative answer"
+msgstr "எதிர்மறை பதில் மீது உறுதிப்படுத்தல் கேள்வி தலைப்பு"
+
+msgid "Body of the confirmation question upon negative answer"
+msgstr "எதிர்மறை பதில் மீது உறுதிப்படுத்தல் கேள்வி உடல்"
+
+msgid "Options"
+msgstr "விருப்பங்கள்"
+
+msgid "Questions"
+msgstr ""
+
+msgid "Add new question"
+msgstr "புதிய கேள்வி சேர்க்க"
+
+msgid "Add question from template"
+msgstr "டெம்ப்ளேட் இருந்து கேள்வி சேர்"
+
+msgid "Steps"
+msgstr ""
+
+msgid "Configuration"
+msgstr "கட்டமைப்பு"
+
+msgid "Default"
+msgstr "இயல்புநிலை"
+
+msgid "Forcefully selected"
+msgstr "கட்டாயப்படுத்தி தேர்வு"
+
+msgid "Unselectable"
+msgstr "Unselectable"
+
+msgid "Allow the recipient to postpone the submission expiration date"
+msgstr "பெறுநர் சமர்ப்பிப்பு காலாவதி தேதி ஒத்தி அனுமதி"
+
+msgid "The setting is enabled at a global level."
+msgstr "அமைப்பை உலக அளவில் செயல்படுத்தப்படும்."
+
+msgid "Allow the recipient to delete submissions"
+msgstr "பெறுநர் சமர்ப்பிப்புகளை நீக்க அனுமதிக்க"
+
+msgid ""
+"Allow the recipient to grant permissions to whistleblowers on specific "
+"submissions"
+msgstr "பெறுநர் குறிப்பிட்ட சமர்ப்பிப்புகளை இம்மாதிரி செய்ய அனுமதிகளை வழங்க அனுமதி"
+
+msgid "General settings"
+msgstr "பொது அமைப்புகள்"
+
+msgid "Network settings"
+msgstr ""
+
+msgid "Root domain used for secondary sites"
+msgstr ""
+
+msgid "Allow users to sign up"
+msgstr ""
+
+msgid "Sites"
+msgstr ""
+
+msgid "Active"
+msgstr ""
+
+msgid "Inactive"
+msgstr ""
+
+msgid "The default password is:"
+msgstr ""
+
+msgid "The system forces users to change the password at first login."
+msgstr "அமைப்பு படைகள் செய்த முதல் உள்நுழைவு பாஸ்வேர்டை மாற்ற."
+
+msgid "New Password"
+msgstr "புதிய கடவுச்சொல்"
+
+msgid ""
+"The chosen password is too weak. Make it more secure by adding special "
+"characters, numbers, and unusual symbols."
+msgstr ""
+
+msgid "Force password change"
+msgstr "படை கடவுச்சொல்லை மாற்றம்"
+
+msgid "The user will be forced to change its password on next login."
+msgstr "அடுத்த முறை பயனர் உள்நுழைவு அதன் கடவுச்சொல்லை மாற்ற வேண்டிய கட்டாயத்தில் இருக்கும்."
+
+msgid "Language"
+msgstr "மொழி"
+
+msgid "Encryption:"
+msgstr ""
+
+msgid "Remove the PGP key"
+msgstr "PGP சாவியை நீக்கவும்"
+
+msgid "Set up encryption by providing a PGP public key"
+msgstr "ஒரு பிஜிபி பொது விசையை வழங்குவதன் மூலம் குறியாக்க அமைக்கவும்"
+
+msgid "Request date"
+msgstr "கோரிக்கை தேதி"
+
+msgid "Authorization"
+msgstr "அங்கீகார"
+
+msgid "Before proceeding, please change your password."
+msgstr "தொடர்வதற்கு முன், உங்கள் கடவுச்சொல்லை மாற்றவும்."
+
+msgid "Submissions disabled"
+msgstr ""
+
+msgid ""
+"You are connecting to the server without anonymity and this server supports "
+"only anonymous submissions"
+msgstr "நீங்கள் தெரியாத இல்லாமல் சர்வர் இணைக்கப்பட்டால் இந்த சர்வர் அநாமதேய சமர்ப்பிப்புகளை மட்டுமே ஆதரிக்கிறது"
+
+msgid ""
+"Server temporarly unusable due to resource exhaustion; advise the Admin if "
+"you can."
+msgstr "சர்வர் சோர்வு ஆதார காரணமாக temporarly பயன்படுத்தப்படாமல்; உங்களால் நிர்வாகம் ஆலோசனை."
+
+msgid "This server is not configured."
+msgstr "இந்த சர்வர் உள்ளமைக்கப்படவில்லை."
+
+msgid "You will not be able to send a submission."
+msgstr "நீங்கள் ஒரு சமர்ப்பிப்பு அனுப்ப முடியாது."
+
+msgid ""
+"This platform makes use of GlobaLeaks software specifically designed to "
+"protect the identity for submitter and recipient in the exchange of content."
+msgstr ""
+
+msgid ""
+"The software is developed by the non-profit Hermes Center for Transparency "
+"and Digital Human Rights."
+msgstr "மென்பொருள் மற்றும் டிரான்ஸ்பரன்சி இலாப ஹெர்ம்ஸ் மையம் டிஜிட்டல் மனித உரிமைகள் உருவாக்கப்பட்டது."
+
+msgid "Please support Hermes through their donation page."
+msgstr "தங்கள் நன்கொடை பக்கம் வழியாக ஹெர்ம்ஸ் ஆதரவு கொள்ளவும்."
+
+msgid "Authentication failed"
+msgstr "அங்கீகரிப்பு தோல்வியுற்றது"
+
+msgid "Please select your account:"
+msgstr "உங்கள் கணக்கு தேர்ந்தெடுக்கவும்:"
+
+msgid "Now type your password, then click 'Log in':"
+msgstr "இப்போது உங்கள் கடவுச்சொல்லை தட்டச்சு, பின்னர் 'நுழைய' கிளிக்:"
+
+msgid "Are you sure?"
+msgstr "நீ சொல்வது உறுதியா?"
+
+msgid "The operation will reset the configuration and cannot be undone."
+msgstr ""
+
+msgid "Assign score points"
+msgstr "ஸ்கோர் புள்ளிகள் ஒதுக்க"
+
+msgid ""
+"Enter the number of score points to be assigned when this option is "
+"selected:"
+msgstr "உள்ளிடவும் போது இந்த விருப்பத்தேர்வு தேர்வு செய்யப்பட்டால் ஸ்கோர் புள்ளிகள் எண்ணிக்கை ஒதுக்கப்படும் வேண்டும்:"
+
+msgid "Confirm"
+msgstr "உறுதிப்படுத்தவும்"
+
+msgid "Are you human?"
+msgstr "நீங்கள் மனிதனா?"
+
+msgid ""
+"We do not discriminate based on race and gender, but we do against computers"
+" :)"
+msgstr "நாம் இனம் மற்றும் பாலினம் அடிப்படையில் வேற்றுமையை இல்லை, ஆனால் நாம் கணினிகள் எதிராக செய்ய :)"
+
+msgid ""
+"Just to prove you are human, please answer the following math challenge:"
+msgstr "நீங்கள் மனித உள்ளன நிரூபிக்க, பின்வரும் கணித சவாலை பதில் தயவு செய்து:"
+
+msgid "I've solved the math challenge, hide this thing now!"
+msgstr "நான் கணித சவாலை தீர்க்கப்பட நான், இப்போது இந்த விஷயம் மறைக்க!"
+
+msgid "Please note that all the associated data will be permanently lost."
+msgstr ""
+
+msgid ""
+"This means that if the server running the platform were to be seized, it "
+"would be possible to extract the files that have been submitted."
+msgstr "இந்த மேடையில் இயங்கும் சர்வர் பறிமுதல் செய்ய வேண்டும் என்றால், அது சமர்ப்பிக்கப்பட்ட கோப்புகளை பிரித்தெடுக்க முடியும் என்று அர்த்தம்."
+
+msgid "Are you sure that you wish to continue?"
+msgstr "நீங்கள் தொடர விரும்புகிறீர்களா என்று உறுதியாக இருக்கிறீர்களா?"
+
+msgid ""
+"Downloading a file with malicious content could compromise your computer or "
+"disclose your identity."
+msgstr ""
+
+msgid "The name of the file and its content can be intentionally misleading."
+msgstr ""
+
+msgid ""
+"Please review the following information and decide if you wish to proceed."
+msgstr ""
+
+msgid "Error!"
+msgstr "பிழை!"
+
+msgid "Internal server error"
+msgstr ""
+
+msgid "Error on input validation"
+msgstr ""
+
+msgid "Resource not found"
+msgstr ""
+
+msgid "Forbidden operation"
+msgstr ""
+
+msgid "The specified old password is not valid"
+msgstr "குறிப்பிட்ட பழைய கடவுச்சொல் தவறானது"
+
+msgid "Resource can only be accessed via the Tor network"
+msgstr "வள மட்டுமே தோர் நெட்வொர்க் வழியாக அணுக முடியும்"
+
+msgid "The upload request exceeds the size limit"
+msgstr "பதிவேற்ற கோரிக்கை அளவு வரம்பை மீறுகிறது"
+
+msgid "Success!"
+msgstr "வெற்றி!"
+
+msgid ""
+"It appears that you are browsing this site without any extra privacy and "
+"security!"
+msgstr "அதை நீங்கள் எந்த கூடுதல் தனியுரிமை மற்றும் பாதுகாப்பு இல்லாமல் இந்த தளத்தில் உலாவும் என்று தோன்றுகிறது!"
+
+msgid ""
+"You are strongly advised to visit this site using the desktop app called Tor"
+" Browser, that protects your identity."
+msgstr "நீங்கள் வலுவாக உங்கள் அடையாளத்தை பாதுகாக்கிறது என்று தோர் உலாவி என டெஸ்க்டாப் பயன்பாட்டை பயன்படுத்தி இந்த தளத்தில் சென்று அறிவுறுத்தப்படுகிறார்கள்."
+
+msgid "Then, copy and paste the following address into the Tor Browser:"
+msgstr "பின்னர், நகல் மற்றும் தோர் உலாவி பின்வரும் முகவரியை ஒட்டவும்:"
+
+msgid "Details of the PGP key:"
+msgstr "பிஜிபி முக்கிய விவரம்:"
+
+msgid "Fingerprint"
+msgstr "கைரேகை"
+
+msgid "Add file"
+msgstr "கோப்பு சேர்"
+
+msgid "Uploading files…"
+msgstr ""
+
+msgid "Upload completed successfully!"
+msgstr "பதிவேற்றம் வெற்றிகரமாக நிறைவு!"
+
+msgid "Error while uploading files; check below for details."
+msgstr "கோப்புகளை பதிவேற்ற போது பிழை; விவரங்கள் கீழே பார்க்கலாம்."
+
+msgid "Estimated upload time:"
+msgstr "கணக்கிடப்பட்ட பதிவேற்ற நேரம்:"
+
+msgid "seconds"
+msgstr "விநாடிகள்"
+
+msgid "Which of the following statements is true?"
+msgstr "பின்வரும் கூற்றுகளில் இதில் எது உண்மை?"
+
+msgid "HTTPS protects my identity, but not the content of my submission"
+msgstr ""
+
+msgid "HTTPS protects the content of my submission but not my identity"
+msgstr ""
+
+msgid "HTTPS does not protect the content of my submission nor my identity"
+msgstr ""
+
+msgid "HTTPS does protect both my identity and the content of my submission"
+msgstr ""
+
+msgid ""
+"You are aware of the risks involved. Go ahead, but consider yourself warned."
+msgstr "நீங்கள் சம்பந்தப்பட்ட அபாயங்கள் பற்றி நன்கு தெரியும். செல்லுங்கள், ஆனால் உங்களை எச்சரித்தார் பரிசீலிக்க."
+
+msgid "Wrong Answer!"
+msgstr "பிழையான பதில்!"
+
+msgid "The connection is not secure."
+msgstr ""
+
+msgid ""
+"The platform is still not configured for HTTPS connections and should "
+"therefore only be used for testing purposes."
+msgstr ""
+
+msgid "Send"
+msgstr "அனுப்பு"
+
+msgid "Allow the whistleblower to write comments"
+msgstr "தகவல் தெரிவிப்பவர் கருத்துக்கள் எழுத அனுமதி"
+
+msgid "Filename"
+msgstr "கோப்பின் பெயர்"
+
+msgid "Upload date"
+msgstr "பதிவேற்ற தேதி"
+
+msgid "Content Type"
+msgstr "உள்ளடக்க வகை"
+
+msgid "File size"
+msgstr "கோப்பின் அளவு"
+
+msgid "download"
+msgstr "தரவிறக்கு"
+
+msgid "No files have been uploaded!"
+msgstr "எந்த கோப்புகளை பதிவேற்றம் செய்யப்பட்டன!"
+
+msgid "Allow the whistleblower to add attachments to the submission"
+msgstr "தகவல் தெரிவிப்பவர் சமர்ப்பிப்பு இணைப்புகளை சேர்க்க அனுமதி"
+
+msgid "Access expiration"
+msgstr ""
+
+msgid "Connection"
+msgstr "இணைப்பு"
+
+msgid "Never"
+msgstr ""
+
+msgid "Revoked"
+msgstr ""
+
+msgid "Allow the whistleblower to send messages"
+msgstr "தகவல் தெரிவிப்பவர் செய்திகளை அனுப்ப அனுமதிக்க"
+
+msgid "Are you sure that you want to delete the submission?"
+msgstr "நிச்சயமாக சமர்ப்பிப்பு நீக்க வேண்டுமா?"
+
+msgid ""
+"Everything related to the submission stored on the platform will be deleted."
+msgstr ""
+
+msgid ""
+"Please be aware that everything stored off the platform, e.g. files you have"
+" saved on your computer, must be deleted manually."
+msgstr ""
+
+msgid "Are you sure that you want to delete all the selected submissions?"
+msgstr "நிச்சயமாக எல்லா தேர்ந்தெடுக்கப்பட்ட சமர்ப்பிப்புகளை நீக்க வேண்டுமா?"
+
+msgid ""
+"Please make sure that all related data is properly deleted so that the "
+"recipients won't be able to further access to it."
+msgstr "என்று பெற்றவர்கள் அதை அணுக முன்னெடுத்துச் செல்வதற்கு முடியாது தொடர்பான அனைத்து தரவு ஒழுங்காக நீக்கப்படும் என்பதை உறுதி செய்து கொள்ளுங்கள்."
+
+msgid "Please write a motivation for the reply"
+msgstr "பதிலுக்கு ஒரு உள்நோக்கம் எழுத கொள்ளவும்"
+
+msgid "Are you sure that you want to postpone the submission expiration date?"
+msgstr "நிச்சயமாக சமர்ப்பிப்பு காலாவதி தேதி ஒத்தி வைக்க வேண்டுமா?"
+
+msgid "By confirming, you will postpone the expiration date to:"
+msgstr "உறுதிப்படுத்துவதன் மூலம், நீங்கள் காலாவதி தேதி தள்ளிப்போட:"
+
+msgid ""
+"Are you sure that you want to postpone the expiration date for all selected "
+"submissions?"
+msgstr "நிச்சயமாக எல்லா தேர்ந்தெடுக்கப்பட்ட சமர்ப்பிப்புகளை காலாவதி தேதி ஒத்தி வைக்க வேண்டுமா?"
+
+msgid "Questionnaire answers"
+msgstr "கேள்வித்தாள் பதில்களை"
+
+msgid "Step"
+msgstr "படி"
+
+msgid "Recipient list"
+msgstr "பெறுநர் பட்டியலில்"
+
+msgid "Attached files for the whistleblower"
+msgstr ""
+
+msgid ""
+"Files uploaded here are made available for the whistleblower and other "
+"recipients to download."
+msgstr ""
+
+msgid "Upload a file:"
+msgstr ""
+
+msgid "Logout"
+msgstr "வெளியேறு"
+
+msgid "The key code is either invalid or the submission has expired."
+msgstr "முக்கிய குறியீடு தவறானது அல்லது சமர்ப்பிப்பு காலாவதியானது."
+
+msgid "Please check your key code and try again or make a new submission."
+msgstr "உங்கள் சாவிக்குறியீட்டை சரிபார்த்து மீண்டும் முயற்சி செய்யவும் அல்லது புதிதாக சமர்ப்பிப்க்கவும்."
+
+msgid "Files attached by recipients"
+msgstr ""
+
+msgid "These files have been attached to your submission by the recipients."
+msgstr ""
+
+msgid "Enable submission notification"
+msgstr "சமர்ப்பிப்பு அறிவிப்பை இயக்கு"
+
+msgid "Current Password"
+msgstr "தற்போதைய கடவுச்சொல்"
+
+msgid "Old password confirmation required"
+msgstr "பழைய கடவுச்சொல் உறுதிப்படுத்தல் அவசியம்"
+
+msgid "The new password must be different from the current one."
+msgstr ""
+
+msgid "Type your new password again"
+msgstr "உங்கள் புதிய கடவுச்சொல்லை மீண்டும் தட்டச்சு"
+
+msgid "The two passwords do not match"
+msgstr "இரண்டு கடவுச்சொற்களும் ஒன்றாயில்லை"
+
+msgid "Thank you!"
+msgstr "நன்றி!"
+
+msgid "Remember your key code for this submission."
+msgstr "இந்த சமர்பிக்கப்படும் உங்கள் முக்கிய குறியீடு நினைவில் கொள்ளுங்கள்."
+
+msgid "We will try to get back to you as soon as possible!"
+msgstr "நாம் விரைவில் நீங்கள் திரும்ப பெற முயற்சி!"
+
+msgid ""
+"Use the 16 digit key code to log in. It will allow you to view any messages "
+"we sent you, and also to add extra info."
+msgstr "புகுபதிகை செய்ய 16 ஐக்கிய முக்கிய குறியீடு பயன்படுத்தவும். அது நாங்கள் உங்களுக்கு அனுப்பிய எந்த செய்திகளை பார்வையிட அனுமதிக்க வேண்டும், மேலும் கூடுதல் தகவல் சேர்க்க."
+
+msgid "View your submission"
+msgstr "உங்கள் சமர்ப்பிப்பு காண்க"
+
+msgid "Hint: How to hide your key code"
+msgstr "குறிப்பு: எப்படி உங்கள் சாவிக்குறியீட்டை மறைக்கலாம் "
+
+msgid ""
+"A useful way to hide your key code is to write it down like a credit card "
+"number, i.e. by also including an expiration date."
+msgstr "உங்கள் முக்கிய குறியீடு மறைக்க ஒரு பயனுள்ள வழியில் ஒரு கடன் அட்டை எண், மேலும் ஒரு காலாவதி தேதி உள்ளிட்ட மூலம் அதாவது போன்ற அதை எழுத வேண்டும்."
+
+msgid "Example:"
+msgstr "உதாரணமாக:"
+
+msgid ""
+"You have not set up your encryption key, so the files will not be encrypted "
+"prior to being stored on the server."
+msgstr "நீங்கள் உங்கள் குறியாக்க விசை அமைக்க வேண்டும் மாட்டேன் வரை, அதனால் கோப்புகள் சர்வரில் சேமித்து இதற்கு முன்னர் குறியாக்கம் முடியாது."
+
+msgid ""
+"This may lead to unintended access to the files by the server administrator "
+"or others in case the server is compromised."
+msgstr "இந்த வழக்கில் சர்வர் சமரசம் செய்து சர்வர் நிர்வாகி அல்லது மற்றவர்கள் கோப்புகளை திட்டமிடப்படாத அணுகல் வழிவகுக்கும்."
+
+msgid "Please configure your PGP keys in the recipient preferences page."
+msgstr "பெறுநர் விருப்பங்களை பக்கம் உங்கள் பிஜிபி விசைகள் கட்டமைக்க கொள்ளவும்."
+
+msgid ""
+"One or more of the recipients of this submission has not configured a PGP "
+"key."
+msgstr "இந்த சமர்ப்பிப்பு பெறுபவர்கள் ஒன்று அல்லது அதற்கு மேற்பட்ட ஒரு பிஜிபி முக்கிய கட்டமைக்கப்பட்ட இல்லை."
+
+msgid ""
+"This means that the submitted files will be stored in plaintext on the "
+"server."
+msgstr "இந்த சமர்ப்பிக்க கோப்புகளை சர்வரில் இயல்பு சேமிக்கப்படும் என்று அர்த்தம்."
+
+msgid ""
+"Access to the whistleblower's identity has been requested to the custodian."
+msgstr "தகவல் தெரிவிப்பவர் அடையாளத்திற்கான அணுகல் பொறுப்பாளரான கேட்கப்பட்டுள்ளது."
+
+msgid "Date of the request"
+msgstr "கோரிக்கையின் தேதி"
+
+msgid "Congratulations!"
+msgstr "வாழ்த்துக்கள்!"
+
+msgid "You have completed the platform activation."
+msgstr ""
+
+msgid "Your whistleblowing platform is now accessible at:"
+msgstr ""
+
+msgid "Users' credentials:"
+msgstr ""
+
+msgid "To log in, visit:"
+msgstr ""
+
+msgid "For the user documentation visit:"
+msgstr ""
+
+msgid "The platform will be automatically deleted on:"
+msgstr ""
+
+msgid "Sign up"
+msgstr ""
+
+msgid "Domain"
+msgstr "டொமைன்"
+
+msgid "Use Case"
+msgstr ""
+
+msgid "Anticorruption"
+msgstr ""
+
+msgid "Corporate compliance"
+msgstr ""
+
+msgid "Investigative journalism"
+msgstr ""
+
+msgid "Civic activism"
+msgstr ""
+
+msgid "Other"
+msgstr ""
+
+msgid "Complete"
+msgstr ""
+
+msgid "Your whistleblowing platform is almost ready!"
+msgstr ""
+
+msgid "Check your inbox to activate your account."
+msgstr ""
+
+msgid "The answer is too short."
+msgstr ""
+
+msgid "The specified input is not valid:"
+msgstr ""
+
+msgid "please enter a valid email address."
+msgstr ""
+
+msgid "please enter numbers only."
+msgstr ""
+
+msgid "Recipient selection"
+msgstr "பெறுநரின் தேர்வை"
+
+msgid "previous step"
+msgstr "முந்தைய படி"
+
+msgid "next step"
+msgstr "அடுத்த அடி"
+
+msgid "Submit"
+msgstr "சமர்ப்பி"
+
+msgid "Recipients selected:"
+msgstr "பெற்றவர்கள் தேர்வு:"
+
+msgid ""
+"In this step the answers to the following questions are either missing or "
+"invalid:"
+msgstr ""
+
+msgid "Submission errors"
+msgstr ""
+
+msgid "You must select at least one recipient."
+msgstr ""
+
+msgid "Waiting for the file(s) to finish uploading."
+msgstr ""
+
+msgid "The following steps have errors:"
+msgstr ""
+
+msgid "Welcome!"
+msgstr ""
+
+msgid ""
+"The following step-by-step procedure will guide you through creating your "
+"whistleblowing platform."
+msgstr ""
+
+msgid "Please choose a configuration profile:"
+msgstr ""
+
+msgid ""
+"These profiles contain settings used by successful projects in each "
+"respective field."
+msgstr ""
+
+msgid "Confirm password"
+msgstr "பாஸ்வேர்டை உறுதி"
+
+msgid "The default username is:"
+msgstr ""
+
+msgid "License Agreement"
+msgstr ""
+
+msgid "Please review the license terms before proceeding."
+msgstr ""
+
+msgid "I have read and agree to the terms of the License Agreement."
+msgstr ""
+
+msgid "You have completed the platform wizard."
+msgstr ""
+
+msgid "Fill out your submission"
+msgstr "உங்கள் சமர்ப்பிப்பு நிரப்ப"
+
+msgid "Short title"
+msgstr "குறுகிய தலைப்பு"
+
+msgid "Describe your submission in a few words."
+msgstr ""
+
+msgid "Full description"
+msgstr "முழு விவரம்"
+
+msgid "Describe your submission in detail."
+msgstr ""
+
+msgid "Attach files relevant to the submission."
+msgstr ""
+
+msgid "Dear {RecipientName},"
+msgstr "அன்பே {RecipientName},"
+
+msgid "Kind regards,"
+msgstr "Kind regards,"
+
+msgid ""
+"The number of activities recently detected appears to be higher than usual."
+msgstr "சமீபத்தில் கண்டுபிடிக்கப்பட்ட நடவடிக்கைகள் எண்ணிக்கை வழக்கத்தை விட அதிக அளவில் காணப்படுகின்றது."
+
+msgid ""
+"This could be a sign of an attack (for example, someone flooding your server"
+" with bogus information) or just a usage spike due to an increased "
+"visibility of your project."
+msgstr "இது உங்கள் திட்டத்தின் ஒரு தன்மை அதிகரித்ததால் அல்லது ஒரு பயன்பாடு ஸ்பைக் தாக்குதல் (போலி தகவல்களை உங்கள் சர்வரை யாரோ உதாரணமாக,) ஒரு அடையாளம் இருக்க முடியும்."
+
+msgid "Examine the issue to determine whether it is legitimate or not."
+msgstr ""
+
+msgid "The activities with unusual stats are:"
+msgstr "அசாதாரண புள்ளிவிவரங்கள் நடவடிக்கைகள் உள்ளன:"
+
+msgid ""
+"The server cannot guarantee that a new submission can be stored, so "
+"submissions have been disabled."
+msgstr "எனவே சமர்ப்பிப்புகளை முடக்கப்பட்டுள்ளன சர்வர், ஒரு புதிய சமர்ப்பிப்பு சேமிக்க முடியும் என்று உத்தரவாதம் அளிக்க முடியாது."
+
+msgid ""
+"Please consider asking your technical support to create more disk space on "
+"the server."
+msgstr ""
+
+msgid ""
+"GlobaLeaks technology includes a server status checking component which will"
+" alert you in case something requires your attention."
+msgstr "GlobaLeaks தொழில்நுட்பம் வழக்கில் ஏதாவது உங்கள் கவனம் தேவை நீங்கள் எச்சரிக்கும் ஒரு சர்வர் சோதிக்கும்போது கூறு அடங்கும்."
+
+msgid ""
+"For more information, log in to the Administration interface and look at the"
+" \"System Stats\" and \"Anomalies\" sections."
+msgstr ""
+
+msgid "Anomaly detected in {NodeName}"
+msgstr ""
+
+msgid ""
+"This is an email to inform you that the PGP key of the following users is "
+"going to expire or has already expired:"
+msgstr "இந்த பின்வரும் பயனர்களை பி.ஜி.பி.பொறியியல் முக்கிய காலாவதியாகும் போகிறது அல்லது ஏற்கனவே காலாவதியாகிவிட்டது என்று நீங்கள் தெரிவிக்க மின்னஞ்சல் உள்ளது:"
+
+msgid ""
+"Without a valid PGP key, the system will not be able to send them encrypted "
+"notifications."
+msgstr "ஒரு செல்லுபடியாகும் PGP முக்கிய இல்லாமல், அமைப்பு குறியாக்கியுள்ளதால் அறிவிப்புகளை அனுப்ப முடியாது."
+
+msgid "PGP key expiration alert"
+msgstr "பிஜிபி முக்கிய காலாவதி எச்சரிக்கை"
+
+msgid ""
+"This is a test email sent out from the platform's administrative interface."
+msgstr ""
+
+msgid ""
+"Reception of this email indicates that the server was able to authenticate "
+"to and interact with the SMTP mail server."
+msgstr ""
+
+msgid "Test email"
+msgstr ""
+
+msgid ""
+"This is an email to notify you of a new comment on an existing submission."
+msgstr "இது ஏற்கனவே உள்ள சமர்ப்பிப்பு ஒரு புதிய கருத்து தெரிவிக்க மின்னஞ்சல் உள்ளது."
+
+msgid "The submission can be accessed:"
+msgstr "சமர்ப்பிப்பு அணுகலாம்:"
+
+msgid "via Tor at: {TorUrl}"
+msgstr "{TorUrl}: மணிக்கு தோர் வrழியாக"
+
+msgid "via HTTPS at: {HTTPSUrl}"
+msgstr "{HTTPSUrl}: மணிக்கு வழியாக, HTTPS"
+
+msgid "New comment"
+msgstr "புதிய கருத்து"
+
+msgid "From: {RecipientName}"
+msgstr "இருந்து: {RecipientName}"
+
+msgid "Date: {EventTime}"
+msgstr "தேதி: {EventTime}"
+
+msgid "From: Whistleblower"
+msgstr "இருந்து: விசில்ப்ளோயர்"
+
+msgid "Date: {SubmissionDate}"
+msgstr "தேதி: {SubmissionDate}"
+
+msgid "Label: {TipLabel}"
+msgstr "லேபிள்: {TipLabel}"
+
+msgid "Context: {ContextName}"
+msgstr "சூழல்: {ContextName}"
+
+msgid ""
+"This is an email to notify you that the whistleblower of submission {TipNum}"
+" has attached new material."
+msgstr "இந்த சமர்ப்பிப்பு {TipNum} என்ற தகவல் தெரிவிப்பவர் புதிய பொருள் இணைத்துள்ளார் என்று அறிவிக்கிறோம் மின்னஞ்சல் உள்ளது."
+
+msgid "New attachment"
+msgstr "புதிய இணைப்பு"
+
+msgid ""
+"The HTTPS certificate loaded on the platform is about to, or has already "
+"expired."
+msgstr ""
+
+msgid "Expiration date: {ExpirationDate}"
+msgstr "காலாவதி தேதி: {ExpirationDate}"
+
+msgid ""
+"Without a valid certificate, the platform will be accessible in a secure way"
+" only via Tor."
+msgstr ""
+
+msgid "Log in to solve the issue."
+msgstr ""
+
+msgid "Expiration alert for HTTPS certificate"
+msgstr ""
+
+msgid ""
+"This is an email to notify you that a custodian has authorized you to access"
+" to the whistleblowing identity for the submission {TipNum}."
+msgstr ""
+
+msgid "Access to whistleblower's identity authorized"
+msgstr "தகவல் தெரிவிப்பவர் அடையாளத்திற்கான அணுகல் அங்கீகாரம்"
+
+msgid ""
+"This is an email to notify you that a custodian has denied you access to the"
+" wistleblowing identity for the submission {TipNum}."
+msgstr "இந்த ஒரு பாதுகாப்பாளர் நீங்கள் சமர்ப்பிப்பு {TipNum} க்கான whistleblowing அடையாள அணுக மறுத்தார் என்று நீங்கள் தெரிவிக்க மின்னஞ்சல் உள்ளது."
+
+msgid "Access to whistleblower's identity denied"
+msgstr "தகவல் தெரிவிப்பவர் அடையாளத்திற்கான அணுகல் மறுக்கப்பட்டது"
+
+msgid ""
+"This is an email to notify you that a recipient has requested access to the "
+"whistleblower's identity for the submission {TipNum}"
+msgstr "இந்த ஒரு பெறுநர் சமர்ப்பிப்பு {TipNum} க்கான தகவல் தெரிவிப்பவர் அடையாளத்திற்கான அணுக கோரிக்கை விடுத்துள்ளார் என்று அறிவிக்கிறோம் மின்னஞ்சல் உள்ளது"
+
+msgid "The request can be accessed:"
+msgstr "கோரிக்கை அணுக முடியும்:"
+
+msgid "New request of access to a whistleblower's identity"
+msgstr ""
+
+msgid ""
+"This is an email to notify you that the whistleblower for the submission "
+"{TipNum} has provided their identity."
+msgstr "இந்த சமர்ப்பிப்பு {TipNum} க்கான தகவல் தெரிவிப்பவர் தங்கள் அடையாளத்தை வழங்கப்படும் என்று நீங்கள் தெரிவிக்க மின்னஞ்சல் உள்ளது."
+
+msgid "The whistleblower has provided their identity"
+msgstr "தகவல் தெரிவிப்பவர் தங்கள் அடையாளத்தை வழங்கியுள்ளது"
+
+msgid ""
+"This is an email to notify you of a new message on an existing submission."
+msgstr "இது ஏற்கனவே உள்ள சமர்ப்பிப்பு ஒரு புதிய செய்தியை தெரிவிக்க மின்னஞ்சல் உள்ளது."
+
+msgid "New message"
+msgstr "புதிய தகவல்"
+
+msgid ""
+"This is an email to inform you that your PGP key is expiring or has already "
+"expired."
+msgstr "இது உங்கள் பிஜிபி முக்கிய காலாவதியாக உள்ளது அல்லது ஏற்கனவே காலாவதியாகிவிட்டது என்று நீங்கள் தெரிவிக்க மின்னஞ்சல் உள்ளது."
+
+msgid ""
+"You should extend its validity and update the key present on the platform, "
+"or upload a new key."
+msgstr "நீங்கள் அதன் மதிப்பை நீட்டிக்க வேண்டும் மற்றும் மேடையில் முக்கிய தற்போது புதுப்பிக்க, அல்லது ஒரு புதிய விசையை பதிவேற்ற."
+
+msgid ""
+"Without a valid PGP key, the system won't be able to encrypt data provided "
+"to you."
+msgstr "ஒரு செல்லுபடியாகும் PGP முக்கிய இல்லாமல், அமைப்பு உங்களுக்கு வழங்கப்படும் தரவை குறியாக்க முடியாது."
+
+msgid "It appears that {NodeName} is receiving a large number of requests."
+msgstr ""
+
+msgid ""
+"To prevent sending you too many emails, the system has disabled email "
+"notifications until the load returns to normal. In the meantime, you can "
+"normally log onto the platform and manually check for new submissions."
+msgstr "நீங்கள் பல மின்னஞ்சல்களை அனுப்பும் தடுக்க, கணினி சாதாரண சுமை வருமானத்தை வரை மின்னஞ்சல் அறிவிப்புகளை முடக்கியுள்ளது. இதற்கிடையில், நீங்கள் சாதாரணமாக அரங்கத்திற்கு உள்நுழைந்து கைமுறையாக புதிய சமர்ப்பிப்புகளை பார்க்கலாம்."
+
+msgid ""
+"If you don’t mind and would rather receive such a large number of email "
+"notifications anyhow, please contact your technical support to have them "
+"modify this setting accordingly."
+msgstr "நீங்கள் ஒன்றும் நினைக்கவில்லை என்றால் மற்றும் மாறாக எப்படியாவது மின்னஞ்சல் அறிவிப்புகளை போன்ற ஒரு பெரிய எண் பெற வேண்டும், அதன்படி அவர்கள் இந்த அமைப்புகளை மாற்ற வேண்டும் உங்கள் தொழில்நுட்ப ஆதரவை தொடர்பு கொள்க."
+
+msgid "Notifications from {NodeName} have been temporarily suspended"
+msgstr ""
+
+msgid "Click the link to activate the platform:"
+msgstr ""
+
+msgid "A software update is available."
+msgstr ""
+
+msgid "It is good security practice to keep the platform up to date."
+msgstr ""
+
+msgid "Installed version: {InstalledVersion}"
+msgstr ""
+
+msgid "Latest version: {LatestVersion}"
+msgstr ""
+
+msgid ""
+"To learn about new features and bug fixes in the new version consult the "
+"change log at: {ChangeLogUrl}"
+msgstr ""
+
+msgid ""
+"For instructions on software updates, please refer to the documentation at: "
+"{UpdateGuideUrl}"
+msgstr ""
+
+msgid "The earliest expiration date is {EarliestExpirationDate}."
+msgstr ""
+
+msgid "Please remember to check them before they are deleted."
+msgstr ""
+
+msgid "Some submissions will expire soon"
+msgstr ""
+
+msgid ""
+"This is an email to notify you that a whistleblower has selected you as a "
+"valuable recipient of their submission."
+msgstr ""
+
+msgid ""
+"You are asked to pay special attention to the information and material "
+"contained therein. Please keep in mind that whistleblowers often expose "
+"themselves to high personal risks in the interest of the public. Therefore "
+"the material provided within this submission should be considered to be of "
+"high importance."
+msgstr ""
+
+msgid "New submission"
+msgstr "புதிய சமர்ப்பிப்பு"

@@ -1,0 +1,2322 @@
+# 
+# Translators:
+# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2014-2018
+# Igor <lyricaltumor@gmail.com>, 2015-2017
+# Igor <lyricaltumor@gmail.com>, 2015-2016
+# Igor <lyricaltumor@gmail.com>, 2015
+# Tea Horvatic <teahorvatic@yahoo.co.uk>, 2014
+msgid ""
+msgstr ""
+"Project-Id-Version: GlobaLeaks\n"
+"PO-Revision-Date: 2018-02-22 09:10+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"Language-Team: Croatian (Croatia) (http://www.transifex.com/otf/globaleaks/language/hr_HR/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: hr_HR\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+
+msgid "Login page"
+msgstr "Stranica prijave"
+
+msgid "Log in"
+msgstr "Prijava"
+
+msgid "Administration interface"
+msgstr "Administratorsko sučelje"
+
+msgid "Main configuration"
+msgstr "Glavna konfiguracija"
+
+msgid "Theme customization"
+msgstr "Podešavanje teme"
+
+msgid "Languages"
+msgstr "Jezici"
+
+msgid "Text customization"
+msgstr "Prilagođavanje teksta"
+
+msgid "Advanced settings"
+msgstr "Napredne postavke"
+
+msgid "Questionnaire configuration"
+msgstr "Postavke upitnika"
+
+msgid "Question templates"
+msgstr "Predlošci pitanja"
+
+msgid "Questionnaires"
+msgstr "Upitnici"
+
+msgid "Add new questionnaire"
+msgstr "Dodaj novi upitnik"
+
+msgid "Home"
+msgstr "Početna stranica"
+
+msgid "Home page"
+msgstr "Početna stranica"
+
+msgid "Changelog"
+msgstr "Zapisi o promjenama"
+
+msgid "License"
+msgstr "Licenca"
+
+msgid "Notification templates"
+msgstr "Obrasci obavijesti"
+
+msgid "Recipient notification templates"
+msgstr "Predlošci obavijesti primatelja"
+
+msgid "Admin notification templates"
+msgstr "Predlošci obavijesti administratora"
+
+msgid "Missing data"
+msgstr "Nedostaju podatci"
+
+msgid "no stats available for the future."
+msgstr "nema statistike dostupne za budućnost."
+
+msgid "no stats available for this hour."
+msgstr "nema dostupne statistike za ovaj sat."
+
+msgid "no stats available for current hour; check activities page."
+msgstr "nema statistike dostupne za trenutno vrijeme; provjerite stranicu s aktivnostima."
+
+msgid "Delete"
+msgstr "Obriši"
+
+msgid "Anomalies"
+msgstr "Anomalije"
+
+msgid "Preferences"
+msgstr "Postavke"
+
+msgid "Recipient interface"
+msgstr "Sučelje primatelja"
+
+msgid "Notification settings"
+msgstr "Postavke obavijesti"
+
+msgid "This recipient has configured the encryption key."
+msgstr "Ovaj primatelj je konfigurirao ključ enkripcije."
+
+msgid "This recipient has not configured the encryption key."
+msgstr "Ovaj primatelj nije konfigurirao ključ enkripcije."
+
+msgid "The file is unavailable due to an internal error."
+msgstr "Datoteka nije dostupna zbog interne greške."
+
+msgid "file unavailable"
+msgstr "datoteka nije dostupna"
+
+msgid "Creation date"
+msgstr "Datum stvaranja"
+
+msgid "Expiration date"
+msgstr "Datum isteka"
+
+msgid "Last Access"
+msgstr "Posljednji pristup"
+
+msgid "Files"
+msgstr "Datoteke"
+
+msgid "Comments"
+msgstr "Komentari"
+
+msgid "Messages"
+msgstr "Poruke"
+
+msgid "Select this recipient."
+msgstr "Označi ovog primatelja."
+
+msgid "Unselect this recipient."
+msgstr "Odznači ovog primatelja."
+
+msgid "This recipient cannot be selected."
+msgstr "Ovaj primatelj ne može biti odabran."
+
+msgid "This recipient cannot be deselected."
+msgstr "Ovaj primatelj ne može biti odznačen."
+
+msgid "Details"
+msgstr "Detalji"
+
+msgid "Platform wizard"
+msgstr "Čarobnjak za platformu"
+
+msgid "Step-by-step setup"
+msgstr "Postavljanje korak po korak"
+
+msgid "CREDIT CARD"
+msgstr "KREDITNA KARTICA"
+
+msgid "YOUR NAME"
+msgstr "VAŠE IME"
+
+msgid "Postpone the expiration date"
+msgstr "Odgodi datum isteka"
+
+msgid "Select all"
+msgstr "Označi sve"
+
+msgid "Deselect all"
+msgstr "Odznači sve"
+
+msgid "Refresh page"
+msgstr "Osvježi stranicu"
+
+msgid "Context"
+msgstr "Kontekst"
+
+msgid "Submission date"
+msgstr "Datum predaje"
+
+msgid "Private messages"
+msgstr "Privatne poruke"
+
+msgid "Preview"
+msgstr "Pretpregled"
+
+msgid "Move up"
+msgstr "Pomakni gore"
+
+msgid "Move down"
+msgstr "Pomakni dolje"
+
+msgid "Move left"
+msgstr "Pomakni lijevo"
+
+msgid "Move right"
+msgstr "Pomakni desno"
+
+msgid "Import"
+msgstr "Uvezi"
+
+msgid "Export"
+msgstr "Izvezi"
+
+msgid "Save all"
+msgstr "Spremi sve"
+
+msgid "This field is mandatory"
+msgstr "Ovo polje je obavezno"
+
+msgid ""
+"The connection used to send this submission has been secured with HTTPS "
+"ensuring confidentiality."
+msgstr "Veza korištena za slanje ove prijave je osigurana HTTPS-om, osiguravajući povjerljivost."
+
+msgid ""
+"The connection used to send this submission has been secured with Tor "
+"ensuring confidentiality and anonymity."
+msgstr "Veza korištena za slanje ove prijave je osigurana koristeći Tor, koji osigurava povjerljivost i anonimnost."
+
+msgid "vertical"
+msgstr "vertikalno"
+
+msgid "horizontal"
+msgstr "horizontalno"
+
+msgid "Number"
+msgstr "Broj"
+
+msgid "Email"
+msgstr "Email"
+
+msgid "Date"
+msgstr "Datum"
+
+msgid "Regular expression validator"
+msgstr "Validator regularnih izraza"
+
+msgid "Minimum number of input characters"
+msgstr "Minimalan broj znakova za unos"
+
+msgid "Maximum number of input characters"
+msgstr "Maksimalan broj znakova za unos"
+
+msgid "Earliest selectable date"
+msgstr "Najraniji datum koji se može odabrati"
+
+msgid "Latest selectable date"
+msgstr "Najkasniji datum koji se može odabrati"
+
+msgid "0 = auto"
+msgstr "0 = automatski"
+
+msgid "-1 = unlimited"
+msgstr "-1 = neograničeno"
+
+msgid "True"
+msgstr "Istina"
+
+msgid "False"
+msgstr "Neistina"
+
+msgid "Yes"
+msgstr "Da"
+
+msgid "No"
+msgstr "Ne"
+
+msgid "Attachment"
+msgstr "Privitak"
+
+msgid "Attachments"
+msgstr "Privitci"
+
+msgid "Change your password"
+msgstr "Promijenite svoju lozinku"
+
+msgid "First name"
+msgstr "Ime"
+
+msgid "Last name"
+msgstr "Prezime"
+
+msgid "GENDER_OTHER"
+msgstr "SPOL_DRUGO"
+
+msgid "Male"
+msgstr "Muško"
+
+msgid "Female"
+msgstr "Žensko"
+
+msgid "Date of birth"
+msgstr "Datum rođenja"
+
+msgid "Place of birth"
+msgstr "Mjesto rođenja"
+
+msgid "Social security number"
+msgstr "OIB"
+
+msgid "Residence"
+msgstr "Mjesto boravka"
+
+msgid "Address"
+msgstr "Adresa"
+
+msgid "Zip code / Postal code"
+msgstr "Poštanski broj"
+
+msgid "City"
+msgstr "Grad"
+
+msgid "State"
+msgstr "Država"
+
+msgid "Region"
+msgstr "Regija"
+
+msgid "Province"
+msgstr "Pokrajina"
+
+msgid "Country"
+msgstr "Država"
+
+msgid "Phone number"
+msgstr "Telefonski broj"
+
+msgid "Current job title"
+msgstr "Trenutna poslovna titula"
+
+msgid "Current job responsibility (role)"
+msgstr "Trenutna poslovna odgovornost (uloga)"
+
+msgid "Current organization unit and job location"
+msgstr "Trenutna organizacijska jedinicia i lokacija posla"
+
+msgid "Job title at the time of the reported fact"
+msgstr "Poslovna titula u vrijeme prijavljene činjenice"
+
+msgid "Job responsibility (role) at the time of the reported fact"
+msgstr "Poslovna odgovornost (uloga) u doba prijavljene činjenice"
+
+msgid "Organization unit and job location at the time of the reported fact"
+msgstr "Organizacijska jedinica i lokacija posla u vrijeme prijavljene činjenice"
+
+msgid "List of submissions"
+msgstr "Popis predaja"
+
+msgid "List of access requests to whistleblowers' identities"
+msgstr "Popis zahtjeva za pristup identitetima zviždača"
+
+msgid "User"
+msgstr "Korisnik"
+
+msgid "Motivation"
+msgstr "Motivacija"
+
+msgid "Status"
+msgstr "Status"
+
+msgid "Request motivation"
+msgstr "Motivacija za zahtjev"
+
+msgid "Reply motivation"
+msgstr "Motivacija za odgovor"
+
+msgid "Request status"
+msgstr "Status zahtjeva"
+
+msgid "Custodian"
+msgstr "Staratelj"
+
+msgid "Custodian of the identities"
+msgstr "Skrbnik identiteta"
+
+msgid "Identity"
+msgstr "Identitet"
+
+msgid "Available"
+msgstr "Dostupno"
+
+msgid "Not available"
+msgstr "Nije dostupno"
+
+msgid "Access requested"
+msgstr "Pristup zahtjevan"
+
+msgid "Request access to the whistleblower's identity"
+msgstr "Zahtjev pristupa identitetu zviždača"
+
+msgid "Please write a motivation"
+msgstr "Molimo Vas da napišete motivaciju"
+
+msgid "Reply to the request"
+msgstr "Odgovor na zahtjev"
+
+msgid "Authorized"
+msgstr "Autorizirano"
+
+msgid "Denied"
+msgstr "Odbijeno"
+
+msgid "Waiting for authorization"
+msgstr "Čekam autorizaciju"
+
+msgid "New request"
+msgstr "Novi zahtjev"
+
+msgid "Authorize"
+msgstr "Autoriziraj"
+
+msgid "Deny"
+msgstr "Odbij"
+
+msgid "Deny access to the whistleblower's identity"
+msgstr "Odbij pristup identitetu zviždača"
+
+msgid "Authorize access to the whistleblower's identity"
+msgstr "Dopusti pristup zviždačevom identitetu"
+
+msgid "Templates"
+msgstr "Predlošci"
+
+msgid "Notification of new submission"
+msgstr "Obavijest o novoj predaji"
+
+msgid "Notification of new comment"
+msgstr "Obavijest o novom komentaru"
+
+msgid "Notification of new message"
+msgstr "Obavijest o novoj poruci"
+
+msgid "Notification of new file attachment"
+msgstr "Obavijest o novom privitku"
+
+msgid "Notification of PGP key expiration"
+msgstr "Obavijest o isteku PGP ključa"
+
+msgid "Notification of anomaly"
+msgstr "Obavijest o anomaliji"
+
+msgid "Template for summary of contents in submission archive"
+msgstr "Predložak za sažetak sadržaja u arhivi predaja"
+
+msgid "Email subject"
+msgstr "Naslov email-a"
+
+msgid "Email body"
+msgstr "Poruka email-a"
+
+msgid "in seconds"
+msgstr "u sekundama"
+
+msgid "in hours"
+msgstr "u satima"
+
+msgid "in days"
+msgstr "u danima"
+
+msgid "in characters"
+msgstr "u znakovima"
+
+msgid "in megabytes"
+msgstr "u megabajtima"
+
+msgid "in percentage"
+msgstr "u postotcima"
+
+msgid "HTTPS settings"
+msgstr "HTTPS postavke"
+
+msgid "Anomaly detection thresholds"
+msgstr "Pragovi detekcije anomalija"
+
+msgid "High risk"
+msgstr "Visok rizik"
+
+msgid "Medium risk"
+msgstr "Srednji rizik"
+
+msgid "Low risk"
+msgstr "Nizak rizik"
+
+msgid "Available disk space"
+msgstr "Dostupno diskovnog prostora"
+
+msgid "Last update"
+msgstr "Posljednje ažuriranje"
+
+msgid "Custodian notification templates"
+msgstr "Predlošci obavijesti skrbnika"
+
+msgid ""
+"This interface allows configuring email templates used to notify custodians."
+msgstr "Ovo sučelje omogućava konfiguriranje email predložaka korištenih za dojavu skrbnicima."
+
+msgid "Disable notifications to administrators"
+msgstr "Onemogući obavijesti prema administratorima"
+
+msgid "Disable notifications to custodians"
+msgstr "Onemogući obavijesti prema skrbnicima"
+
+msgid "Disable notifications to recipients"
+msgstr "Onemogući obavijesti prema primateljima"
+
+msgid "Score"
+msgstr "Rezultat"
+
+msgid "Trigger question"
+msgstr "Pitanje pokretanja"
+
+msgid "Triggered by a score higher than:"
+msgstr "Pokrenuto rezultatom većim od:"
+
+msgid "Select the question to be triggered when this option is selected"
+msgstr "Odaberite pitanje koje će biti pokrenuto kad je ova opcija odabrana"
+
+msgid "Message shown on top of the status page of the submission"
+msgstr "Poruka prikazana na vrhu stranice o statusu predaje"
+
+msgid "Copy and paste the PGP public key here"
+msgstr "Kopirajte i zalijepite PGP javni ključ ovdje"
+
+msgid "Password strength:"
+msgstr "Snaga lozinke:"
+
+msgid "Weak"
+msgstr "Slaba"
+
+msgid "Acceptable"
+msgstr "Prihvatljiva"
+
+msgid "Strong"
+msgstr "Snažna"
+
+msgid "Loading…"
+msgstr "Učitavanje..."
+
+msgid "Text shown on top of the interface for selecting contexts"
+msgstr "Tekst prikazan na vrhu sučelja za odabir konteksta"
+
+msgid "Show small context cards on submission interface"
+msgstr "Prikaži male kartice konteksta na sučelju za predaju"
+
+msgid "Type of context selector:"
+msgstr "Vrsta birača konteksta:"
+
+msgid "Type to search…"
+msgstr "Upišite za pretraživanje..."
+
+msgid "Silence email notifications"
+msgstr "Obavijesti tihim email-om"
+
+msgid "Turn on email notifications"
+msgstr "Uključi email obavijesti"
+
+msgid "Enter an email address for the administrator"
+msgstr "Unesite email adresu za administratora"
+
+msgid "Enter a password for the administrator"
+msgstr "Unesite lozinku za administratora"
+
+msgid "Test configuration"
+msgstr "Testiraj konfiguraciju"
+
+msgid "Failed logins"
+msgstr "Neuspjele prijave"
+
+msgid "Successful logins"
+msgstr "Uspjele prijave"
+
+msgid "Started submissions"
+msgstr "Pokrenute predaje"
+
+msgid "Completed submissions"
+msgstr "Završene predaje"
+
+msgid "Failed submissions"
+msgstr "Neuspjele predaje"
+
+msgid "Input validation"
+msgstr "Validacija unosa"
+
+msgid "Email address"
+msgstr "Email adresa"
+
+msgid "Custom"
+msgstr "Prilagođeno"
+
+msgid "None"
+msgstr "Ništa"
+
+msgid "Regular expression"
+msgstr "Regularni izrazi"
+
+msgid "Label the submission"
+msgstr "Postavite oznaku na predaju"
+
+msgid "Activate"
+msgstr "Aktiviraj"
+
+msgid "Search"
+msgstr "Traži"
+
+msgid ""
+"This custom text is no longer displayed on the platform. The original text "
+"has either changed or been removed."
+msgstr "Ovaj prilagođeni tekst se više ne prikazuje na platformi. Originalni tekst je ili promjenjen ili uklonjen."
+
+msgid ""
+"Unless the whistleblower checks the submission by this time, their access to"
+" it will expire."
+msgstr "Ako zviždač ne provjeri predaju do ovog vremna, njihov pristup prijavi će isteći."
+
+msgid "The whistleblower can no longer access the submission"
+msgstr "Zviždač više ne može pristupiti predaji"
+
+msgid "Warning!"
+msgstr "Upozorenje!"
+
+msgid "You are running an unsupported and potentially vulnerable browser."
+msgstr "Koristite nepodržan i potencijalno ranjiv preglednik"
+
+msgid "You are strongly advised to download and install the Tor Browser."
+msgstr "Preporučamo Vam da preuzmete i instalirate Tor Browser."
+
+msgid ""
+"The Tor Browser includes various privacy and security enhancements not "
+"present in other browsers."
+msgstr "Tor Preglednik uključuje razna poboljšanja privatnosti i sigurnosti koja nisu dostupna u ostalim preglednicima."
+
+msgid "Download the Tor Browser"
+msgstr "Preuzmi Tor Preglednik"
+
+msgid "This is the list of the other supported browsers:"
+msgstr "Ovo su ostali podržani preglednici:"
+
+msgid "System overview"
+msgstr "Pregled sustava"
+
+msgid "Stats"
+msgstr "Statistika"
+
+msgid "Activities"
+msgstr "Aktivnosti"
+
+msgid "Submissions"
+msgstr "Predaje"
+
+msgid "Users"
+msgstr "Korisnici"
+
+msgid "From"
+msgstr "Od"
+
+msgid "Number of downloads"
+msgstr "Broj preuzimanja"
+
+msgid "Error with file:"
+msgstr "Pogreška s datotekom:"
+
+msgid "File size not accepted."
+msgstr "Veličina datoteke nije prihvaćena."
+
+msgid "File type not accepted."
+msgstr "Vrsta datoteke nije prihvaćena."
+
+msgid "Maximum file size is:"
+msgstr "Maksimalna veličina datoteke je:"
+
+msgid "Accepted file types are:"
+msgstr "Prihvaćene vrste datoteke su:"
+
+msgid "Scheduled jobs"
+msgstr "Zakazani poslovi"
+
+msgid "Sites management"
+msgstr ""
+
+msgid "Regenerate"
+msgstr ""
+
+msgid "Display options alphabetically"
+msgstr ""
+
+msgid "Enable email notifications for:"
+msgstr ""
+
+msgid "Software updates"
+msgstr ""
+
+msgid "Software problems"
+msgstr ""
+
+msgid "Disable"
+msgstr "Onemogući"
+
+msgid "Remove"
+msgstr "Ukloni"
+
+msgid "Use as default"
+msgstr ""
+
+msgid "Create your whistleblowing platform"
+msgstr ""
+
+msgid "Select the context of your submission:"
+msgstr "Odaberite kontekst svoje predaje:"
+
+msgid "Warning! You are not anonymous."
+msgstr "Upozorenje! Niste anonimni."
+
+msgid ""
+"Sending submissions over HTTPS exposes the act of doing so, but not the "
+"content.\\n\\nAlso, hiding the fact that you are submitting something makes "
+"the submission anonymous, which is strongly recommended.\\n\\nThis can be "
+"achieved with the use of the Tor Browser, providing anonymisation not found "
+"in other browsers like Internet Explorer, Firefox, Chrome, Opera etc."
+msgstr "Slanje predaja preko HTTPS-a otkriva sam čin slanja, ali ne i sadržaj.\\n\\nSkrivanje činjenice da predajete nešto čini predaju anonimnom, što snažno preporučamo.\\n\\nOvo može biti postignuto kroz uporabu Tor Browser-a, koji pruža anonimizaciju koju nećete pronaću u drugim preglednicima kao što su Internet Explorer, Firefox, Chrome, Opera itd."
+
+msgid "Are you a whistleblower?"
+msgstr "Jeste li zviždač?"
+
+msgid "Blow the whistle"
+msgstr "Zviždi"
+
+msgid "Have you already filed a submission? Enter your key code."
+msgstr "Jeste li već podnijeli predaju? Unesite svoj ključ."
+
+msgid "Your submission was successful."
+msgstr "Vaša prijava je uspjela."
+
+msgid "Submission status"
+msgstr ""
+
+msgid "Disable submissions"
+msgstr "Onemogući predaje"
+
+msgid "Enable insecure configuration without PGP encryption"
+msgstr "Omogući nesigurnu konfiguraciju bez PGP enkripcije"
+
+msgid "Danger"
+msgstr "Opasnost"
+
+msgid ""
+"By enabling this option, the system will be storing the submitted files "
+"unencrypted on your server."
+msgstr "Omogućavanjem ove opcije, sustav će pohranjivati predane datoteke nešifrirane na Vaš poslužitelj."
+
+msgid "This happens whenever encryption is unavailable."
+msgstr "To se događa kad god enkripcija nije dostupna."
+
+msgid "Disable messages that warn of missing encryption"
+msgstr "Onemogući poruke koje upozoravaju o nedostatku enkripcije"
+
+msgid ""
+"This setting affects the security of the users and must not be used in "
+"production."
+msgstr "Ova postavka utječe na sigurnot korisnika i ne smije biti korištena u produkciji."
+
+msgid "Allow other websites to include the platform inside iframes"
+msgstr "Dopusti drugim stranicama da uključe platformu unutar iframe-ova"
+
+msgid ""
+"By enabling this option, you are allowing other websites to include the "
+"platform inside iframes; this could potentially be used to endanger the "
+"platform or intercept users' communications"
+msgstr "Omogućivanjem ove opcije dopuštate drugim web stranicama da uključe platformu unutar iframe-ova; ovo bi potencijalno moglo biti iskorišteno za ugrožavanje platforme ili presretanje korisničkih komunikacija"
+
+msgid "Allow recipients to postpone expiration date of the submission"
+msgstr "Dopusti primateljima da odgode datum isteka predaje"
+
+msgid "Allow recipients to delete submissions"
+msgstr "Dopusti primateljima da brišu predaje"
+
+msgid ""
+"Allow recipients to grant permissions to whistleblowers on specific "
+"submissions"
+msgstr "Dozvoli primateljima da daju dopuštenja zviždačima na određenim predajama"
+
+msgid "Enable search engines indexing"
+msgstr "Omogući indeksiranje tražilica"
+
+msgid "Enabled"
+msgstr "Omogućeno"
+
+msgid "Search engine spiders will be allowed to index the application."
+msgstr "Paucima tražilica će biti dozvoljeno da indeksiraju aplikaciju."
+
+msgid "Enable custom privacy panel"
+msgstr "Omogući prilagođenu ploču privatnosti"
+
+msgid "Custom privacy panel"
+msgstr "Prilagođena ploča privatnosti"
+
+msgid "Text shown when the whistleblower is not using Tor"
+msgstr "Tekst prikazan kad zviždač ne koristi Tor"
+
+msgid "Disable the privacy panel"
+msgstr "Onemogući ploču privatnosti"
+
+msgid "Security awareness panel title"
+msgstr "Naslov ploče sigurnosne svjesnosti"
+
+msgid "Security awareness panel text"
+msgstr "Tekst ploče sigurnosne svjesnosti"
+
+msgid "Disable the security awareness panel questions"
+msgstr "Onemogući pitanja o ploči sigurnosne svjesnosti"
+
+msgid "Disable the security awareness panel"
+msgstr "Onemogući ploču sigurnosne svjesnosti"
+
+msgid "Disable the key code hint"
+msgstr "Onemogući natuknice za ključ"
+
+msgid "Disable the donation panel"
+msgstr "Onemogući ploču za donacije"
+
+msgid "Enable CAPTCHA mechanism"
+msgstr "Omogući CAPTCHA mehanizam"
+
+msgid "Enable proof of work mechanism"
+msgstr "Omogući dokaz o radu mehanizam"
+
+msgid "Enable simplified login for recipients"
+msgstr "Omogući pojednostavljenu prijavu za primatelje"
+
+msgid "Amount of days till whistleblower access expires"
+msgstr "Broj dana preostalih do isteka zviždačevog pristupa"
+
+msgid ""
+"For security reasons the whistleblower access is subject to expiration."
+msgstr "Zbog sigurnosnih razloga, zviždačev pristup ima rok isteka."
+
+msgid "Tweak this setting only if you know what you are doing."
+msgstr "Podešavajte ovu postavku samo ako znate što radite."
+
+msgid "Landing page"
+msgstr "Stranica slijetanja"
+
+msgid "Home Page"
+msgstr "Početna stranica"
+
+msgid "Submission Page"
+msgstr "Stranica za prijave"
+
+msgid "Title of the submission page"
+msgstr "Naziv stranice za predaje"
+
+msgid "Title of the attachments widget"
+msgstr "Naziv widget-a za privitke"
+
+msgid "Text of prompt for whistleblowers to log in"
+msgstr "Tekst upita za zviždačevu prijavu u sustav"
+
+msgid "Show contexts in alphabetical order"
+msgstr "Prikaži kontekste u abecednom slijedu"
+
+msgid "Title of the receipt page"
+msgstr "Naziv stranice za potvrde"
+
+msgid "Title of the submission status page"
+msgstr "Naziv stranice za status predaja"
+
+msgid "Title of the comments widget"
+msgstr "Naziv widget-a za komentare"
+
+msgid "Title of the messages widget"
+msgstr "Naziv widget-a za poruke"
+
+msgid "Size limit for file attachments"
+msgstr "Ograničenje veličine privitaka"
+
+msgid "Notify administrators of software problems"
+msgstr ""
+
+msgid "Notify developers of software problems"
+msgstr ""
+
+msgid ""
+"By enabling this feature, you will contribute to the development and "
+"security of the platform."
+msgstr ""
+
+msgid "Enable HTTP Basic Authentication to limit platform access"
+msgstr "Omogući HTTPS Basic Authentication za ograničenje pristupa platformi"
+
+msgid "Username"
+msgstr "Korisničko ime"
+
+msgid "Password"
+msgstr "Lozinka"
+
+msgid ""
+"This feature keeps regular people from visiting the platform while it is "
+"still under development and should not be used for security purposes. The "
+"input password is stored in plaintext on the server."
+msgstr "Ova značajka sprječava obične ljude da posjećuju platformu dok je ista pod razvojem i ne bi trebala biti korištena iz sigurnosnih razloga. Unešena lozinka je spremljena na poslužitelju u nezaštićenom formatu."
+
+msgid "Enable experimental features"
+msgstr "Omogući eksperimentalne značajke"
+
+msgid "Warning"
+msgstr "Upozorenje"
+
+msgid ""
+"The experimental features may be less stable or even not work at all; enable"
+" this option at your own risk. Support for these features may vary and they "
+"may be removed in the future."
+msgstr "Eksperimentalne značajke mogu biti manje stabilne ili čak ne raditi uopće; omogućujete ovu opciju na vlastiti rizik. Podrška za ove značajke može varirati te one mogu biti uklonjene u budućnosti."
+
+msgid "Save"
+msgstr "Spremi"
+
+msgid "Short URL"
+msgstr "Kratki URL"
+
+msgid "Long URL"
+msgstr "Dugi URL"
+
+msgid "Add"
+msgstr "Dodaj"
+
+msgid "Logo"
+msgstr ""
+
+msgid "Project name"
+msgstr "Naziv projekta"
+
+msgid "Homepage title"
+msgstr "Naslov naslovne stranice"
+
+msgid "Presentation"
+msgstr "Prezentacija"
+
+msgid "Description"
+msgstr "Opis"
+
+msgid "Question to solicit possible whistleblowers"
+msgstr "Pitanje za prikupljanje mogućih zviždača"
+
+msgid "Whistleblowing button"
+msgstr "Gumb zviždanja"
+
+msgid "Footer"
+msgstr "Podnožje"
+
+msgid "Favicon"
+msgstr ""
+
+msgid "Upload"
+msgstr "Učitaj"
+
+msgid "Download"
+msgstr "Preuzmi"
+
+msgid "Upload custom file"
+msgstr "Učitaj prilagođenu datoteku"
+
+msgid "The file will be available at URL: /s/$filename"
+msgstr "Datotetka će biti dostupna na URL-u: /s/$filename"
+
+msgid "Language:"
+msgstr "Jezik:"
+
+msgid "Add custom text"
+msgstr "Dodaj prilagođeni tekst"
+
+msgid "Custom text"
+msgstr "Prilagođeni tekst"
+
+msgid "Custom texts"
+msgstr "Prilagođeni tekstovi"
+
+msgid "Original text"
+msgstr "Originalni tekst"
+
+msgid "Original translation"
+msgstr "Originalni prijevod"
+
+msgid "Custom translation"
+msgstr "Prilagođeni prijevod"
+
+msgid "Contexts"
+msgstr "Konteksti"
+
+msgid "Name"
+msgstr "Ime"
+
+msgid "Edit"
+msgstr "Uredi"
+
+msgid "Cancel"
+msgstr "Otkaži"
+
+msgid "Questionnaire"
+msgstr "Upitnik"
+
+msgid "Recipients"
+msgstr "Primatelji"
+
+msgid "Allow selection of this context through the context selector."
+msgstr "Dopusti odabir ovog konteksta kroz birač konteksta."
+
+msgid ""
+"If disabled, submissions for this context will only be accessible through a "
+"direct link to it."
+msgstr "Ako je ovo onemogućeno, predaje za ovaj kontekst će biti dostupne jedino preko izravne poveznice na njih."
+
+msgid "Allow whistleblowers to select their recipients"
+msgstr "Dozvoli zviždačima da odaberu druge primatelje"
+
+msgid "Select all recipients by default"
+msgstr "Odaberi sve primatelje kao zadano"
+
+msgid "Maximum number of selectable recipients:"
+msgstr "Maksimalan broj primatelja koji se mogu odabrati:"
+
+msgid "(0 = unlimited)"
+msgstr "(0 = neograničeno)"
+
+msgid "Show recipients in alphabetical order"
+msgstr "Prikaži primatelje u abecednom slijedu"
+
+msgid "Show small recipient cards on submission interface"
+msgstr "Prikaži male kartice primatelja na sučelju predaje"
+
+msgid "Enable comments"
+msgstr "Omogući komentare"
+
+msgid "Allow whistleblowers to write comments"
+msgstr "Dopusti zviždačima da pišu komentare"
+
+msgid "Enable private messages"
+msgstr "Omogući privatne poruke"
+
+msgid "Allow whistleblowers to send messages"
+msgstr "Dopusti zviždačima da šalju poruke"
+
+msgid "Let whistleblowers add attachments onto existing submissions"
+msgstr "Dopusti zviždačima da dodaju privitke na postojeće predaje"
+
+msgid "Show recipient details on the status page of the submission"
+msgstr "Prikaži detalje primatelja na stranici statusa o predaji"
+
+msgid "Let recipients upload files to whistleblowers"
+msgstr ""
+
+msgid "Disabled"
+msgstr "Onemogućeno"
+
+msgid "Submission expiration, in days"
+msgstr "Istek predaje, u danima"
+
+msgid ""
+"For security reasons, as a matter of data retention policy, the platform "
+"automatically deletes submissions and their data after a certain amount of "
+"time."
+msgstr "Iz sigurnosnih razloga, kao pravilo zadržavnja podataka, platforma automatski briše predaje i njihove podatke nakon određenog vremena."
+
+msgid "Text shown on top of the interface for selecting recipients"
+msgstr "Tekst prikazan na vrhu sučelja za odabir primatelja"
+
+msgid "Welcome to the administration interface!"
+msgstr "Dobrodošli na administrativno sučelje!"
+
+msgid ""
+"This interface may help you understand how the server can be configured and "
+"provides some info on how to connect to other GlobaLeaks users and experts."
+msgstr "Ovo sučelje Vam može pomoći da shvatite kako poslužitelj može biti konfiguriran i daje neke informacije o tome kako se povezati s drugim GlobaLeaks korisnicima i stručnjacima."
+
+msgid "Documentation"
+msgstr "Dokumentacija"
+
+msgid ""
+"To properly organize your project, please read the following guidelines:"
+msgstr "Da bi ispravno organizirali Vaš projekt, molimo Vas da pročitate sljedeće smjernice:"
+
+msgid "Remember to provide proper security advice to Whistleblowers:"
+msgstr "Ne zaboravite dati ispravne sigurnosne savjete zviždačima:"
+
+msgid ""
+"To learn more about GlobaLeaks Security you can read the following document:"
+msgstr "Da bi saznali više o GlobaLeaks sigurnosti možete pročitati sljedeći dokument:"
+
+msgid "Contact"
+msgstr "Kontakt"
+
+msgid ""
+"If you need technical support, have general questions, or have new ideas for"
+" the software:"
+msgstr "Ako trebate tehničku podršku, imate općenita pitanja ili imate novih ideja za software:"
+
+msgid ""
+"If you want to contribute to software development or report a bug, please "
+"open an issue in our ticketing system:"
+msgstr "Ako želite pridonjeti razvoju softwarea ili prijaviti pogrešku, molimo Vas da otvorite slučaj u našem sustavu prijava:"
+
+msgid ""
+"If your non-profit needs support for investigative journalism, activism or a"
+" human rights defense project:"
+msgstr "Ako Vaša neprofitna organizacija treba podršku za istraživačko novinarstvo, aktivizam ili projekt obrane ljudskih prava:"
+
+msgid ""
+"For professional support and development of anti corruption and compliance "
+"projects contact the social enterprise maintaining GlobaLeaks:"
+msgstr "Za profesionalnu podršku i razvoj anti korupcijskih projekata kontaktirajte društvo koje održava GlobaLeaks:"
+
+msgid "Join our IRC chat channel on the irc.oftc.net network:"
+msgstr "Pridružite se našem IRC kanalu na irc.oftc.net mreži:"
+
+msgid "Follow the project on:"
+msgstr "Pratite projekt na:"
+
+msgid "Software version:"
+msgstr "Verzija software-a:"
+
+msgid "An update is available:"
+msgstr ""
+
+msgid "SMTP name"
+msgstr "SMTP ime"
+
+msgid "SMTP email address"
+msgstr "SMTP email adresa"
+
+msgid "Invalid email address"
+msgstr "Nevaljana adresa e-pošte"
+
+msgid "SMTP server address"
+msgstr "SMTP adresa poslužitelja"
+
+msgid "SMTP server port"
+msgstr "SMTP port poslužitelja"
+
+msgid "Transport Security"
+msgstr "Sigurnost transporta"
+
+msgid "When the option is re-enabled the spooled emails will be sent out."
+msgstr "Neposlani email-ovi će biti poslani kad se opcija ponovo omogući."
+
+msgid "Reset notification templates to default"
+msgstr "Ponovno postavi predloške obavijesti na zadane vrijednosti"
+
+msgid "Number of hours before sending a submission expiration alert"
+msgstr "Broj sati prije nego se pošalje upozorenje o isteku predaje"
+
+msgid "Maximum emails per hour before triggering email suspension"
+msgstr "Maksimalno email-ova po satu prije pokretanja suspenzije email-a"
+
+msgid "this configuration only applies to recipients"
+msgstr "ova postavka se primjenjuje samo na primatelje"
+
+msgid "Test the configuration"
+msgstr "Testiraj konfiguraciju"
+
+msgid "Template"
+msgstr "Obrazac"
+
+msgid "Admin"
+msgstr "Administrator"
+
+msgid "Roles enabled to use the platform without Tor:"
+msgstr ""
+
+msgid "Recipient"
+msgstr "Primatelj"
+
+msgid "Whistleblower"
+msgstr "Zviždač"
+
+msgid "Hostname"
+msgstr "Hostname"
+
+msgid "Verify"
+msgstr "Verificiraj"
+
+msgid "Invalid input format."
+msgstr "Pogrešan format unosa."
+
+msgid "Input should be similar to:"
+msgstr "Unos bi trebao biti sličan:"
+
+msgid ""
+"The platform does not seem to be reachable with the configured hostname."
+msgstr ""
+
+msgid "Using Let's Encrypt requires agreement to their Terms of Service."
+msgstr ""
+
+msgid "Read the Terms of Service"
+msgstr ""
+
+msgid "I agree to the Terms of Service."
+msgstr ""
+
+msgid "Proceed"
+msgstr "Nastavi"
+
+msgid "Configuration completed. You can review the settings or enable it now."
+msgstr ""
+
+msgid "Review"
+msgstr ""
+
+msgid "Enable"
+msgstr "Omogući"
+
+msgid "Country code"
+msgstr "Kod države"
+
+msgid "Organization"
+msgstr "Organizacija"
+
+msgid "Organizational unit"
+msgstr "Organizacijska jedinica"
+
+msgid ""
+"This interface can generate a Private Key and a Certificate Signing Request."
+" The Certificate Signing Request can be provided to a Certificate Authority "
+"to retrieve a Certificate. After having validated your request and your "
+"ownership of the hostname, the Certificate Authority will issue you a "
+"Certificate and provide a file containing Intermediate Certificates. Load "
+"the Certificate and the file containing the Intermediate Certificates to "
+"complete the HTTPS setup."
+msgstr "Sučelje može generirati privatni ključ i zahtjev za potpisivanjem certifikata. Zahtjev za poptisivanje certifikata može biti predan autoritetu za certifikate  kako bi se dobio certifikat. Nakon potvrđivanja Vašeg zahtjeva i vlasništva Vašeg hostnamea, CA će Vam izdati certifikat i dostaviti datoteku koja sadržava posredničke certifikate. Učitajte certifikat i datoteke sa posredničkim certifikatima kako bi dovršili postavljanje HTTPS-a."
+
+msgid "Private Key"
+msgstr "Privatni ključ"
+
+msgid "Generate"
+msgstr "Gneriraj"
+
+msgid "Certificate Signing Request"
+msgstr "Zahtjev za potpisivanje certifikata"
+
+msgid "Certificate"
+msgstr "Certifikat"
+
+msgid "Valid until:"
+msgstr "Vrijedi do:"
+
+msgid "Issuer:"
+msgstr "Izdavatelj:"
+
+msgid "Intermediate Certificates"
+msgstr "Posrednički certifikati"
+
+msgid "Reset"
+msgstr "Ponovno pokreni"
+
+msgid "Select an option:"
+msgstr ""
+
+msgid "Automatic configuration"
+msgstr ""
+
+msgid ""
+"Using automatic HTTPS configuration will handle the entire process of "
+"requesting, enabling and renewing certificates from the Let's Encrypt "
+"Certificate Authority."
+msgstr ""
+
+msgid ""
+"The platform must be reachable through a public IP address and the selected "
+"hostname must have a corresponding DNS record referencing that address."
+msgstr ""
+
+msgid "Manual configuration"
+msgstr ""
+
+msgid ""
+"The manual configuration wizard will guide you through the setup of HTTPS "
+"from an alternative Certificate Authority."
+msgstr ""
+
+msgid ""
+"The platform supports the configuration of HTTPS through this interface."
+msgstr ""
+
+msgid "The connection to the configured domain failed."
+msgstr ""
+
+msgid "Running"
+msgstr "Pokrenuto"
+
+msgid "Not running"
+msgstr "Nije pokrenuto"
+
+msgid "Auto-renewal"
+msgstr ""
+
+msgid "System message:"
+msgstr "Poruka sustava:"
+
+msgid ""
+"Allowing whistleblowers to connect over HTTPS preserves their privacy but "
+"not their anonymity."
+msgstr "Dopuštanje spajanja preko HTTPS-a osigurava privatnost, ali ne i anonimnost zviždača."
+
+msgid "Attention!"
+msgstr ""
+
+msgid ""
+"Configuration in progress. When it is finished you will have to log in "
+"again."
+msgstr ""
+
+msgid "Your browser will be redirected to the following URL."
+msgstr ""
+
+msgid "Tor Onion Service"
+msgstr "Tor Onion Service"
+
+msgid "Tor Browser download link"
+msgstr "Link za preuzimanje Tor Browsera"
+
+msgid "Anonymize outgoing connections"
+msgstr "Anonimiziraj izlazne veze"
+
+msgid "Let the platform be reachable without Tor"
+msgstr ""
+
+msgid "Stats of the week:"
+msgstr "Statistike tjedna:"
+
+msgid "Free disk space"
+msgstr "Slobodni prostor"
+
+msgid "Event ID"
+msgstr "ID događaja"
+
+msgid "Time"
+msgstr "Vrijeme"
+
+msgid "Event"
+msgstr "Događaj"
+
+msgid "Response time"
+msgstr "Vrijeme odgovora"
+
+msgid "Role"
+msgstr "Uloga"
+
+msgid "Last access"
+msgstr "Posljednji pristup"
+
+msgid "Submission"
+msgstr "Predaja"
+
+msgid "Path"
+msgstr "Putanja"
+
+msgid "Size"
+msgstr "Veličina"
+
+msgid "Alarm level"
+msgstr "Razina upozorenja"
+
+msgid "Events"
+msgstr "Događaji"
+
+msgid "Label"
+msgstr "Oznaka"
+
+msgid "Type"
+msgstr "Tip"
+
+msgid "Single-line text input"
+msgstr "Unos teksta u jednoj liniji"
+
+msgid "Multi-line text input"
+msgstr "Unos teksta u više linija"
+
+msgid "Multiple choice input"
+msgstr "Višestruki izbor unosa"
+
+msgid "Selection box"
+msgstr "Kutija za odabir"
+
+msgid "Checkbox"
+msgstr "Kutija za označavanje"
+
+msgid "Terms of service"
+msgstr "Uvjeti korištenja"
+
+msgid "Group of questions"
+msgstr "Grupa pitanja"
+
+msgid "Row"
+msgstr "Red"
+
+msgid "Column"
+msgstr "Stupac"
+
+msgid "Width"
+msgstr "Širina"
+
+msgid "Question group"
+msgstr "Grupa pitanja"
+
+msgid "Hint"
+msgstr "Podsjetnik"
+
+msgid "Required"
+msgstr "Potrebno"
+
+msgid "Accept multiple file uploads"
+msgstr "Prihvati višestruka slanja datoteka"
+
+msgid "Accept multiple answers for the field"
+msgstr "Prihvati višestruke odgovore za polje"
+
+msgid "Hint shown on the button for adding an additional answer"
+msgstr "Natuknica prikazana na gumbu za dodavanje dodatnog odgovora"
+
+msgid "Clause"
+msgstr "Klauzula"
+
+msgid "Agreement Text"
+msgstr "Tekst sporazuma"
+
+msgid "Layout orientation"
+msgstr "Orijentacija rasporeda"
+
+msgid "Subject answer visibility to custodian authorization"
+msgstr "Vidljivost odgovora korisnika na autorizaciju od strane skrbnika"
+
+msgid "Prompt confirmation upon negative answer"
+msgstr "Potvrda na negativan odgovor"
+
+msgid "Title of the confirmation question upon negative answer"
+msgstr "Naslov pitanja potvrde na negativan odgovor"
+
+msgid "Body of the confirmation question upon negative answer"
+msgstr "Poruka pitanja potvrde na negativan odgovor"
+
+msgid "Options"
+msgstr "Opcije"
+
+msgid "Questions"
+msgstr ""
+
+msgid "Add new question"
+msgstr "Dodaj novo pitanje"
+
+msgid "Add question from template"
+msgstr "Dodaj pitanje iz predloška"
+
+msgid "Steps"
+msgstr ""
+
+msgid "Configuration"
+msgstr "Konfiguracija"
+
+msgid "Default"
+msgstr "Zadano"
+
+msgid "Forcefully selected"
+msgstr "Prisilno odabrani"
+
+msgid "Unselectable"
+msgstr "Nije moguće odabrati"
+
+msgid "Allow the recipient to postpone the submission expiration date"
+msgstr "Dopusti primateljima da odgode datum isteka predaje"
+
+msgid "The setting is enabled at a global level."
+msgstr "Postavka je omogućena na globalnoj razini."
+
+msgid "Allow the recipient to delete submissions"
+msgstr "Dopusti primatelju da obriše predaje"
+
+msgid ""
+"Allow the recipient to grant permissions to whistleblowers on specific "
+"submissions"
+msgstr "Dozvoli primatelju da daje dopuštenje zviždačima na određenim predajama"
+
+msgid "General settings"
+msgstr "Općenite postavke"
+
+msgid "Network settings"
+msgstr "Mrežne postavke"
+
+msgid "Root domain used for secondary sites"
+msgstr ""
+
+msgid "Allow users to sign up"
+msgstr ""
+
+msgid "Sites"
+msgstr ""
+
+msgid "Active"
+msgstr ""
+
+msgid "Inactive"
+msgstr ""
+
+msgid "The default password is:"
+msgstr ""
+
+msgid "The system forces users to change the password at first login."
+msgstr "Sustav prisiljava korisnike da promijene lozinku pri prvoj prijavi."
+
+msgid "New Password"
+msgstr "Nova lozinka"
+
+msgid ""
+"The chosen password is too weak. Make it more secure by adding special "
+"characters, numbers, and unusual symbols."
+msgstr "Odabrana lozinka je preslaba. Ojačajte ju dodajući posebne znakove, brojeve i neobične simbole."
+
+msgid "Force password change"
+msgstr "Prisili promjenu lozinke"
+
+msgid "The user will be forced to change its password on next login."
+msgstr "Korisnik će biti prisiljen promijeniti lozinku prilikom sljedeće prijave."
+
+msgid "Language"
+msgstr "Jezik"
+
+msgid "Encryption:"
+msgstr ""
+
+msgid "Remove the PGP key"
+msgstr "Ukloni PGP ključ"
+
+msgid "Set up encryption by providing a PGP public key"
+msgstr "Postavite enkripciju pružanjem PGP javnog ključa"
+
+msgid "Request date"
+msgstr "Datum zahtjeva"
+
+msgid "Authorization"
+msgstr "Autorizacija"
+
+msgid "Before proceeding, please change your password."
+msgstr "Prije nego nastavite, molimo promijenite svoju lozinku."
+
+msgid "Submissions disabled"
+msgstr "Predaje onemogućene"
+
+msgid ""
+"You are connecting to the server without anonymity and this server supports "
+"only anonymous submissions"
+msgstr "Povezujete se s poslužiteljem bez anonimnosti, a ovaj poslužitelj podržava samo anonimne predaje"
+
+msgid ""
+"Server temporarly unusable due to resource exhaustion; advise the Admin if "
+"you can."
+msgstr "Poslužitelj privremeno nije iskoristiv zbog iscrpljenja resursa; javite administratoru ako možete."
+
+msgid "This server is not configured."
+msgstr "Ovaj poslužitelj nije konfiguriran."
+
+msgid "You will not be able to send a submission."
+msgstr "Nećete moći predati predaju."
+
+msgid ""
+"This platform makes use of GlobaLeaks software specifically designed to "
+"protect the identity for submitter and recipient in the exchange of content."
+msgstr "Ova platforma koristi GlobaLeakes software specifično dizajniran kako bi zaštitio identitet predavatelja i primatelja u razmjeni sadržaja."
+
+msgid ""
+"The software is developed by the non-profit Hermes Center for Transparency "
+"and Digital Human Rights."
+msgstr "Ovaj software razvija neprofitni Hermes Centar za transparentnost i digitalna ljudska prava."
+
+msgid "Please support Hermes through their donation page."
+msgstr "Molimo podržite Hermes putem njihove donacijske stranice."
+
+msgid "Authentication failed"
+msgstr "Neuspjela autentikacija"
+
+msgid "Please select your account:"
+msgstr "Molimo odaberite svoj račun:"
+
+msgid "Now type your password, then click 'Log in':"
+msgstr "Sad unesite lozinku, zatim stisnite 'Prijava':"
+
+msgid "Are you sure?"
+msgstr "Jeste li sigurni?"
+
+msgid "The operation will reset the configuration and cannot be undone."
+msgstr ""
+
+msgid "Assign score points"
+msgstr "Dodjeli bodove rezultata"
+
+msgid ""
+"Enter the number of score points to be assigned when this option is "
+"selected:"
+msgstr "Unesite broj bodova koji će biti dodjeljeni kad je ova opcija odabrana:"
+
+msgid "Confirm"
+msgstr "Potvrdi ekstenziju"
+
+msgid "Are you human?"
+msgstr "Jeste li čovjek?"
+
+msgid ""
+"We do not discriminate based on race and gender, but we do against computers"
+" :)"
+msgstr "Ne diskriminiramo na temelju rase ili spola, ali diskriminiramo protiv računala :)"
+
+msgid ""
+"Just to prove you are human, please answer the following math challenge:"
+msgstr "Samo da bi dokazali da ste čovjek, molimo Vas da odgovorite na sljedeće matematičko pitanje:"
+
+msgid "I've solved the math challenge, hide this thing now!"
+msgstr "Rješio/la sam matematičko pitanje, sakrijte ovo sad!"
+
+msgid "Please note that all the associated data will be permanently lost."
+msgstr "Imajte na umu da će svi povezani podatci biti trajno izgubljeni."
+
+msgid ""
+"This means that if the server running the platform were to be seized, it "
+"would be possible to extract the files that have been submitted."
+msgstr "To znači da ako bi poslužitelj na kojem je pokrenuta platforma bio zaplijenjen, bilo bi moguće izvući datoteke koje su predane."
+
+msgid "Are you sure that you wish to continue?"
+msgstr "Jeste li sigurni da želite nastaviti?"
+
+msgid ""
+"Downloading a file with malicious content could compromise your computer or "
+"disclose your identity."
+msgstr "Preuzimanje datoteke sa zlonamjernim sadržajem može ugroziti Vaše računalo i otkriti Vaš identitet."
+
+msgid "The name of the file and its content can be intentionally misleading."
+msgstr "Ime datoteke i njen sadržaj mogu namjerno biti varljivi."
+
+msgid ""
+"Please review the following information and decide if you wish to proceed."
+msgstr "Molimo pregledajte sljedeće informacije i odlučite želite li nastaviti."
+
+msgid "Error!"
+msgstr "Pogreška!"
+
+msgid "Internal server error"
+msgstr ""
+
+msgid "Error on input validation"
+msgstr ""
+
+msgid "Resource not found"
+msgstr ""
+
+msgid "Forbidden operation"
+msgstr ""
+
+msgid "The specified old password is not valid"
+msgstr "navedena strara lozinka nije valjana"
+
+msgid "Resource can only be accessed via the Tor network"
+msgstr "Resursu se može pristupiti samo preko Tor mreže"
+
+msgid "The upload request exceeds the size limit"
+msgstr "Zahtjev za postavljanje premašuje ograničenja veličine"
+
+msgid "Success!"
+msgstr "Uspjeh!"
+
+msgid ""
+"It appears that you are browsing this site without any extra privacy and "
+"security!"
+msgstr "Čini se da pregledavate ovu stranicu bez dodatne privatnosti i sigurnosti!"
+
+msgid ""
+"You are strongly advised to visit this site using the desktop app called Tor"
+" Browser, that protects your identity."
+msgstr "Snažno Vam savjetujemo da posjetite ovu stranicu koristeći Tor Preglednik, aplikaciju koja štiti Vaš identitet."
+
+msgid "Then, copy and paste the following address into the Tor Browser:"
+msgstr "Zatim kopirajte i zalijepite sljedeću adresu u instalirani Tor Preglednik:"
+
+msgid "Details of the PGP key:"
+msgstr "Detalji PGP ključa:"
+
+msgid "Fingerprint"
+msgstr "Otisak prsta"
+
+msgid "Add file"
+msgstr "Dodaj datoteku"
+
+msgid "Uploading files…"
+msgstr "Postavljanje datoteka..."
+
+msgid "Upload completed successfully!"
+msgstr "Postavljanje uspješno završeno!"
+
+msgid "Error while uploading files; check below for details."
+msgstr "Pogreška prilikom postavljanja datoteka; provjerite niže za detalje."
+
+msgid "Estimated upload time:"
+msgstr "Procjenjeno vrijeme postavljanja:"
+
+msgid "seconds"
+msgstr "sekundi"
+
+msgid "Which of the following statements is true?"
+msgstr "Koja od sljedećih izjava je istinita?"
+
+msgid "HTTPS protects my identity, but not the content of my submission"
+msgstr "HTTPS štiti moj identitet, ali ne i sadržaj mojih predaja"
+
+msgid "HTTPS protects the content of my submission but not my identity"
+msgstr "HTTPS štiti sadržaj moje predaje, ali ne i moj identitet"
+
+msgid "HTTPS does not protect the content of my submission nor my identity"
+msgstr "HTTPS ne štiti sadržaj moje predaje niti moj identitet"
+
+msgid "HTTPS does protect both my identity and the content of my submission"
+msgstr "HTTPS štiti i moj identitet i sadržaj moje predaje"
+
+msgid ""
+"You are aware of the risks involved. Go ahead, but consider yourself warned."
+msgstr "Svjesni ste povezanih rizika. Nastavite dalje, smatrajte se upozorenima."
+
+msgid "Wrong Answer!"
+msgstr "Krivi odgovor!"
+
+msgid "The connection is not secure."
+msgstr ""
+
+msgid ""
+"The platform is still not configured for HTTPS connections and should "
+"therefore only be used for testing purposes."
+msgstr ""
+
+msgid "Send"
+msgstr "Pošalji"
+
+msgid "Allow the whistleblower to write comments"
+msgstr "Dopusti zviždaču da piše komentare"
+
+msgid "Filename"
+msgstr "Naziv datoteke"
+
+msgid "Upload date"
+msgstr "Datum postavljanja"
+
+msgid "Content Type"
+msgstr "Tip sadržaja"
+
+msgid "File size"
+msgstr "Veličina datoteke"
+
+msgid "download"
+msgstr "preuzmi"
+
+msgid "No files have been uploaded!"
+msgstr "Nije postavljena nijedna datoteka!"
+
+msgid "Allow the whistleblower to add attachments to the submission"
+msgstr "Dopusti zviždaču da doda privitke predaji"
+
+msgid "Access expiration"
+msgstr "Istek pristupa"
+
+msgid "Connection"
+msgstr "Veza"
+
+msgid "Never"
+msgstr "Nikad"
+
+msgid "Revoked"
+msgstr "Odbijeno"
+
+msgid "Allow the whistleblower to send messages"
+msgstr "Dopusti zviždaču da šalje poruke"
+
+msgid "Are you sure that you want to delete the submission?"
+msgstr "Jeste li sigurni da želite obrisati predaju?"
+
+msgid ""
+"Everything related to the submission stored on the platform will be deleted."
+msgstr "Sve povezano s predajom, a pohranjeno na platformi, će biti obrisano."
+
+msgid ""
+"Please be aware that everything stored off the platform, e.g. files you have"
+" saved on your computer, must be deleted manually."
+msgstr "Imajte na umu da sve pohranjeno van platforme, npr. datoteke koje ste pohranili na svom računalu, moraju biti obrisane ručno."
+
+msgid "Are you sure that you want to delete all the selected submissions?"
+msgstr "Jeste li sigurni da želite obrisati sve odabrane predaje?"
+
+msgid ""
+"Please make sure that all related data is properly deleted so that the "
+"recipients won't be able to further access to it."
+msgstr "Molimo vodite računa da su svi povezani podaci uredno obrisani tako da im primatelji ne mogu dalje pristupati."
+
+msgid "Please write a motivation for the reply"
+msgstr "Molimo Vas da napišete motiv za odgovor"
+
+msgid "Are you sure that you want to postpone the submission expiration date?"
+msgstr "Jeste li sigurni da želite odgoditi datum isteka predaje?"
+
+msgid "By confirming, you will postpone the expiration date to:"
+msgstr "Potvrđivanjem odgađate datum isteka na:"
+
+msgid ""
+"Are you sure that you want to postpone the expiration date for all selected "
+"submissions?"
+msgstr "Jeste li sigurni da želite odgoditi datum isteka za sve odabrane predaje?"
+
+msgid "Questionnaire answers"
+msgstr "Odgovori na upitnik"
+
+msgid "Step"
+msgstr "Korak"
+
+msgid "Recipient list"
+msgstr "Popis primatelja"
+
+msgid "Attached files for the whistleblower"
+msgstr "Privijene datoteke za zviždače"
+
+msgid ""
+"Files uploaded here are made available for the whistleblower and other "
+"recipients to download."
+msgstr "Datoteke postavljene ovdje su dostupne za preuzimanje zviždačima i ostalim primateljima."
+
+msgid "Upload a file:"
+msgstr ""
+
+msgid "Logout"
+msgstr "Odjava"
+
+msgid "The key code is either invalid or the submission has expired."
+msgstr "Ili je ključ neispravan ili je predaja istekla."
+
+msgid "Please check your key code and try again or make a new submission."
+msgstr "Molimo provjerit ključ i probajte opet ili napravite novu predaju."
+
+msgid "Files attached by recipients"
+msgstr "Datoteke privijene od strane primatelja"
+
+msgid "These files have been attached to your submission by the recipients."
+msgstr "Ove datoteke su privijene Vašoj predaji od strane primatelja."
+
+msgid "Enable submission notification"
+msgstr "Omogući obavijesti o predaji"
+
+msgid "Current Password"
+msgstr "Trenutna lozinka"
+
+msgid "Old password confirmation required"
+msgstr "Potrebna je potvrda stare lozinke"
+
+msgid "The new password must be different from the current one."
+msgstr "Nova lozinka mora biti različita od trenutne."
+
+msgid "Type your new password again"
+msgstr "Ponovno upišite svoju novu lozinku"
+
+msgid "The two passwords do not match"
+msgstr "Dvije lozinke se ne podudaraju"
+
+msgid "Thank you!"
+msgstr "Hvala Vam!"
+
+msgid "Remember your key code for this submission."
+msgstr "Zapamtite svoj ključ za ovu prijavu."
+
+msgid "We will try to get back to you as soon as possible!"
+msgstr "Nastojati ćemo javiti Vam se što je prije moguće!"
+
+msgid ""
+"Use the 16 digit key code to log in. It will allow you to view any messages "
+"we sent you, and also to add extra info."
+msgstr "Koristite 16 znamenkasti ključ za prijavljivanje. Omogućiti će Vam pregledavanje bilo kakvih poruka koje ćemo Vam poslati, te će Vam omogućiti dodavanje dodatnih informacija."
+
+msgid "View your submission"
+msgstr "Pregledajte svoju prijavu"
+
+msgid "Hint: How to hide your key code"
+msgstr "Savjet: Kako sakriti Vaš ključ"
+
+msgid ""
+"A useful way to hide your key code is to write it down like a credit card "
+"number, i.e. by also including an expiration date."
+msgstr "Koristan način skrivanja ključa je da ga zapišete kao broj kreditne kartice, npr. također uključite datum isteka."
+
+msgid "Example:"
+msgstr "Primjer:"
+
+msgid ""
+"You have not set up your encryption key, so the files will not be encrypted "
+"prior to being stored on the server."
+msgstr "Niste postavili enkripcijski ključ pa datoteke neće biti enkriptirane prije pohranjivanja na poslužitelj."
+
+msgid ""
+"This may lead to unintended access to the files by the server administrator "
+"or others in case the server is compromised."
+msgstr "To može dovesti do nenamjernog pristupa datotekama od strane administratora poslužitelja ili drugih u slučaju ugroze poslužitelja."
+
+msgid "Please configure your PGP keys in the recipient preferences page."
+msgstr "Molimo konfigurirajte svoje PGP ključeve na stranici postavki primatelja."
+
+msgid ""
+"One or more of the recipients of this submission has not configured a PGP "
+"key."
+msgstr "Jedan ili više primatelja ove predaje nema konfiguriran PGP ključ."
+
+msgid ""
+"This means that the submitted files will be stored in plaintext on the "
+"server."
+msgstr "To znači da će predane datoteke biti pohranjene u običnom tekstu na poslužitelju."
+
+msgid ""
+"Access to the whistleblower's identity has been requested to the custodian."
+msgstr "Od skrbnika se zahtjevao pristup identitetu zviždača."
+
+msgid "Date of the request"
+msgstr "Datum zahtjeva"
+
+msgid "Congratulations!"
+msgstr "Čestitamo!"
+
+msgid "You have completed the platform activation."
+msgstr ""
+
+msgid "Your whistleblowing platform is now accessible at:"
+msgstr ""
+
+msgid "Users' credentials:"
+msgstr ""
+
+msgid "To log in, visit:"
+msgstr ""
+
+msgid "For the user documentation visit:"
+msgstr ""
+
+msgid "The platform will be automatically deleted on:"
+msgstr ""
+
+msgid "Sign up"
+msgstr ""
+
+msgid "Domain"
+msgstr "Domena"
+
+msgid "Use Case"
+msgstr ""
+
+msgid "Anticorruption"
+msgstr ""
+
+msgid "Corporate compliance"
+msgstr ""
+
+msgid "Investigative journalism"
+msgstr ""
+
+msgid "Civic activism"
+msgstr ""
+
+msgid "Other"
+msgstr ""
+
+msgid "Complete"
+msgstr ""
+
+msgid "Your whistleblowing platform is almost ready!"
+msgstr ""
+
+msgid "Check your inbox to activate your account."
+msgstr ""
+
+msgid "The answer is too short."
+msgstr ""
+
+msgid "The specified input is not valid:"
+msgstr "Navedeni unos nije valjan:"
+
+msgid "please enter a valid email address."
+msgstr "molimo unesite valjanu email adresu."
+
+msgid "please enter numbers only."
+msgstr "molimo unesite samo brojeve."
+
+msgid "Recipient selection"
+msgstr "Odabir primatelja"
+
+msgid "previous step"
+msgstr "prethodni korak"
+
+msgid "next step"
+msgstr "sljedeći korak"
+
+msgid "Submit"
+msgstr "Predaj"
+
+msgid "Recipients selected:"
+msgstr "Označeni primatelji:"
+
+msgid ""
+"In this step the answers to the following questions are either missing or "
+"invalid:"
+msgstr "U ovom koraku odgovori na sljedeća pitanja su ili pogrešni ili nedostaju:"
+
+msgid "Submission errors"
+msgstr "Greške predaje"
+
+msgid "You must select at least one recipient."
+msgstr "Morate odabrati bar jednog primatelja."
+
+msgid "Waiting for the file(s) to finish uploading."
+msgstr "Čekam da se završi postavljanje datoteka."
+
+msgid "The following steps have errors:"
+msgstr "Sljedeći koraci imaju greške:"
+
+msgid "Welcome!"
+msgstr ""
+
+msgid ""
+"The following step-by-step procedure will guide you through creating your "
+"whistleblowing platform."
+msgstr ""
+
+msgid "Please choose a configuration profile:"
+msgstr ""
+
+msgid ""
+"These profiles contain settings used by successful projects in each "
+"respective field."
+msgstr ""
+
+msgid "Confirm password"
+msgstr "Potvrdi lozinku"
+
+msgid "The default username is:"
+msgstr ""
+
+msgid "License Agreement"
+msgstr ""
+
+msgid "Please review the license terms before proceeding."
+msgstr ""
+
+msgid "I have read and agree to the terms of the License Agreement."
+msgstr ""
+
+msgid "You have completed the platform wizard."
+msgstr ""
+
+msgid "Fill out your submission"
+msgstr "Ispunite svoju predaju"
+
+msgid "Short title"
+msgstr "Kratki naslov"
+
+msgid "Describe your submission in a few words."
+msgstr "Opišite svoju predaju u par riječi"
+
+msgid "Full description"
+msgstr "Puni opis"
+
+msgid "Describe your submission in detail."
+msgstr "Opišite svoju predaju detaljno"
+
+msgid "Attach files relevant to the submission."
+msgstr "Dodaj datoteke relevantne za prijavu"
+
+msgid "Dear {RecipientName},"
+msgstr "Dragi/a {RecipientName},"
+
+msgid "Kind regards,"
+msgstr "S poštovanjem,"
+
+msgid ""
+"The number of activities recently detected appears to be higher than usual."
+msgstr "Broje nedavno otkrivenih aktivnosti se čini veći nego inače."
+
+msgid ""
+"This could be a sign of an attack (for example, someone flooding your server"
+" with bogus information) or just a usage spike due to an increased "
+"visibility of your project."
+msgstr "Ovo bi mogao biti znak napada (primjerice, netko poplavljuje Vaš poslužitelj lažnim informacijama) ili samo skok u broju korisnika zbog povećane vidljivosti Vašeg projekta."
+
+msgid "Examine the issue to determine whether it is legitimate or not."
+msgstr ""
+
+msgid "The activities with unusual stats are:"
+msgstr "Aktivnosti s neobičnom statiskom su:"
+
+msgid ""
+"The server cannot guarantee that a new submission can be stored, so "
+"submissions have been disabled."
+msgstr "Poslužitelj ne može garantirati da će nove predaje biti pohranjene stoga su predaje onemogućene."
+
+msgid ""
+"Please consider asking your technical support to create more disk space on "
+"the server."
+msgstr ""
+
+msgid ""
+"GlobaLeaks technology includes a server status checking component which will"
+" alert you in case something requires your attention."
+msgstr "GlobaLeaks tehnologija uključuje komponentu provjere stanja poslužitelja koja će Vas upozoriti u slučaju da nešto zahtjeva Vašu pozornost."
+
+msgid ""
+"For more information, log in to the Administration interface and look at the"
+" \"System Stats\" and \"Anomalies\" sections."
+msgstr "Za više informacija, prijavite se na Administratorsko sučelje i pogledajte odjele \"Statistika Sustava\" i \"Anomalije\""
+
+msgid "Anomaly detected in {NodeName}"
+msgstr "Anomalija otkrivena u {NodeName}"
+
+msgid ""
+"This is an email to inform you that the PGP key of the following users is "
+"going to expire or has already expired:"
+msgstr "Ovo je email koji Vas obavještava da će PGP ključ sljedećih korisnika isteći ili je već istekao:"
+
+msgid ""
+"Without a valid PGP key, the system will not be able to send them encrypted "
+"notifications."
+msgstr "Bez valjanog PGP ključa, ovaj sustav im neće moći slati enkriptirane obavijesti."
+
+msgid "PGP key expiration alert"
+msgstr "Upozorenje o isteku PGP ključa"
+
+msgid ""
+"This is a test email sent out from the platform's administrative interface."
+msgstr "Ovo je testni email poslan s administrativnog sučelja platforme."
+
+msgid ""
+"Reception of this email indicates that the server was able to authenticate "
+"to and interact with the SMTP mail server."
+msgstr "Primanje ovog email-a indicira da je poslužitelj mogao autenticirati i interaktirati sa SMTP mail poslužiteljem."
+
+msgid "Test email"
+msgstr "Testiraj email"
+
+msgid ""
+"This is an email to notify you of a new comment on an existing submission."
+msgstr "Ovo je email kojim Vas se obavještava o novom komentaru na postojećoj predaji."
+
+msgid "The submission can be accessed:"
+msgstr "Predaji se može pristupiti:"
+
+msgid "via Tor at: {TorUrl}"
+msgstr "putem Tor-a na: {TorUrl}"
+
+msgid "via HTTPS at: {HTTPSUrl}"
+msgstr "putem HTTPS-a na: {HTTPSUrl}"
+
+msgid "New comment"
+msgstr "Novi komentar"
+
+msgid "From: {RecipientName}"
+msgstr "Od: {RecipientName}"
+
+msgid "Date: {EventTime}"
+msgstr "Datum: {EventTime}"
+
+msgid "From: Whistleblower"
+msgstr "Od: zviždača"
+
+msgid "Date: {SubmissionDate}"
+msgstr "Datum: {SubmissionDate}"
+
+msgid "Label: {TipLabel}"
+msgstr "Oznaka: {TipLabel}"
+
+msgid "Context: {ContextName}"
+msgstr "Kontekst: {ContextName}"
+
+msgid ""
+"This is an email to notify you that the whistleblower of submission {TipNum}"
+" has attached new material."
+msgstr "Ovaj email Vas obavještava da je zviždač predaje {TipNum} dodao novi materijal."
+
+msgid "New attachment"
+msgstr "Novi privitak"
+
+msgid ""
+"The HTTPS certificate loaded on the platform is about to, or has already "
+"expired."
+msgstr ""
+
+msgid "Expiration date: {ExpirationDate}"
+msgstr "Datum isteka: {ExpirationDate}"
+
+msgid ""
+"Without a valid certificate, the platform will be accessible in a secure way"
+" only via Tor."
+msgstr ""
+
+msgid "Log in to solve the issue."
+msgstr ""
+
+msgid "Expiration alert for HTTPS certificate"
+msgstr ""
+
+msgid ""
+"This is an email to notify you that a custodian has authorized you to access"
+" to the whistleblowing identity for the submission {TipNum}."
+msgstr ""
+
+msgid "Access to whistleblower's identity authorized"
+msgstr "Pristup zviždačevom identitetu autoriziran"
+
+msgid ""
+"This is an email to notify you that a custodian has denied you access to the"
+" wistleblowing identity for the submission {TipNum}."
+msgstr "Ovaj email Vas obavještava da Vam je skrbnik odbio pristup identitetu zviždača predaje {TipNum}."
+
+msgid "Access to whistleblower's identity denied"
+msgstr "Pristup zviždačevom identitetu odbijen"
+
+msgid ""
+"This is an email to notify you that a recipient has requested access to the "
+"whistleblower's identity for the submission {TipNum}"
+msgstr "Ovo je email kojim Vas se obavještava da je primatelj zatražio pristup zviždačevom identitetu za predaju {TipNum}"
+
+msgid "The request can be accessed:"
+msgstr "Zahtjevu se može pristupiti:"
+
+msgid "New request of access to a whistleblower's identity"
+msgstr "Novi zahtjev za pristup zviždačevom identitetu"
+
+msgid ""
+"This is an email to notify you that the whistleblower for the submission "
+"{TipNum} has provided their identity."
+msgstr "Ovaj email Vas obavještava da je zviždač predaje {TipNum} pružio svoj identitet."
+
+msgid "The whistleblower has provided their identity"
+msgstr "Zviždač je pružio svoj identitet."
+
+msgid ""
+"This is an email to notify you of a new message on an existing submission."
+msgstr "Ovo je email kojim Vas se obavještava o novoj poruci na postojećoj predaji."
+
+msgid "New message"
+msgstr "Nova poruka"
+
+msgid ""
+"This is an email to inform you that your PGP key is expiring or has already "
+"expired."
+msgstr "Ovo je email koji Vas obavještava da Vaš PGP ključ ističe ili je već istekao."
+
+msgid ""
+"You should extend its validity and update the key present on the platform, "
+"or upload a new key."
+msgstr "Trebali bi ažurirati i produljiti vrijednost ključa prisutnog na platformi, ili postaviti novi ključ."
+
+msgid ""
+"Without a valid PGP key, the system won't be able to encrypt data provided "
+"to you."
+msgstr "Bez važećeg PGP ključa, sustav neće moći enkriptirati Vama pružene podatke."
+
+msgid "It appears that {NodeName} is receiving a large number of requests."
+msgstr "Čini se da {NodeName} prima velik broj zahtjeva."
+
+msgid ""
+"To prevent sending you too many emails, the system has disabled email "
+"notifications until the load returns to normal. In the meantime, you can "
+"normally log onto the platform and manually check for new submissions."
+msgstr "Da bi spriječili da Vam se šalje previše email-ova, sustav je onemogućio email obavijesti dok se opterećenje ne vrati u normalu. U međuvremenu, možete se normalno prijaviti na platformu i ručno provjeriti za nove predaje."
+
+msgid ""
+"If you don’t mind and would rather receive such a large number of email "
+"notifications anyhow, please contact your technical support to have them "
+"modify this setting accordingly."
+msgstr "Ako Vam ne smeta i radije bi ste primali tako veliku količinu email obavijesti, molimo Vas obratite se svojoj tehničkoj podršci kako bi modificirali ovu postavku sukladno tome."
+
+msgid "Notifications from {NodeName} have been temporarily suspended"
+msgstr "Obavijesti sa {NodeName} su privremeno suspendirane"
+
+msgid "Click the link to activate the platform:"
+msgstr ""
+
+msgid "A software update is available."
+msgstr ""
+
+msgid "It is good security practice to keep the platform up to date."
+msgstr ""
+
+msgid "Installed version: {InstalledVersion}"
+msgstr ""
+
+msgid "Latest version: {LatestVersion}"
+msgstr ""
+
+msgid ""
+"To learn about new features and bug fixes in the new version consult the "
+"change log at: {ChangeLogUrl}"
+msgstr ""
+
+msgid ""
+"For instructions on software updates, please refer to the documentation at: "
+"{UpdateGuideUrl}"
+msgstr ""
+
+msgid "The earliest expiration date is {EarliestExpirationDate}."
+msgstr "Najraniji datum isteka je {EarliestExpirationDate}."
+
+msgid "Please remember to check them before they are deleted."
+msgstr "Ne zaboravite provjeriti ih prije brisanja."
+
+msgid "Some submissions will expire soon"
+msgstr "Neke predaje će uskoro isteći"
+
+msgid ""
+"This is an email to notify you that a whistleblower has selected you as a "
+"valuable recipient of their submission."
+msgstr ""
+
+msgid ""
+"You are asked to pay special attention to the information and material "
+"contained therein. Please keep in mind that whistleblowers often expose "
+"themselves to high personal risks in the interest of the public. Therefore "
+"the material provided within this submission should be considered to be of "
+"high importance."
+msgstr ""
+
+msgid "New submission"
+msgstr "Nova predaja"

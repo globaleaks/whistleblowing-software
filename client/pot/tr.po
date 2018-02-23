@@ -1,0 +1,2339 @@
+# 
+# Translators:
+# cerberus23 <hemlockii@riseup.net>, 2013
+# cerberus23 <hemlockii@riseup.net>, 2013
+# cerberus23 <hemlockii@riseup.net>, 2013
+# efe kerem sözeri <eksozeri@hotmail.com>, 2015
+# Emir Sarı <bitigchi@openmailbox.org>, 2015
+# Erdoğan Şahin, 2016
+# Erdoğan Şahin, 2016-2017
+# Erdoğan Şahin, 2016
+# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2014-2018
+# Hermes Center <info@hermescenter.org>, 2013
+# Hermes Center <info@hermescenter.org>, 2013
+# uskumru, 2013
+# msare <mervesareakin@gmail.com>, 2014
+# On the Line Turkiye <onthelineturkiye@gmail.com>, 2016
+# Ozgur Yasin <yasinaydin@korsanparti.org>, 2014
+# Sibel Taskin Simsek <sibelsimsek@sabanciuniv.edu>, 2015
+# Translinguini <translinguini@gmail.com>, 2013
+# Translinguini <translinguini@gmail.com>, 2013
+# Türker öz <man_lise@hotmail.com>, 2015
+# TurkLeaks <turkleaks@riseup.net>, 2015
+# uskumru, 2013
+# Volkan Gezer <volkangezer@gmail.com>, 2014-2016
+msgid ""
+msgstr ""
+"Project-Id-Version: GlobaLeaks\n"
+"PO-Revision-Date: 2018-02-22 09:17+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"Language-Team: Turkish (http://www.transifex.com/otf/globaleaks/language/tr/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: tr\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+msgid "Login page"
+msgstr "Giriş sayfası"
+
+msgid "Log in"
+msgstr "Giriş"
+
+msgid "Administration interface"
+msgstr "Yönetim arayüzü"
+
+msgid "Main configuration"
+msgstr "Ana yapılandırma"
+
+msgid "Theme customization"
+msgstr "Tema özelleştirmesi"
+
+msgid "Languages"
+msgstr "Diller"
+
+msgid "Text customization"
+msgstr "Metin özelleştirmesi"
+
+msgid "Advanced settings"
+msgstr "Gelişmiş ayarlar"
+
+msgid "Questionnaire configuration"
+msgstr "Anket yapılandırması"
+
+msgid "Question templates"
+msgstr "Soru şablonları"
+
+msgid "Questionnaires"
+msgstr "Anketler"
+
+msgid "Add new questionnaire"
+msgstr "Yeni anket ekle"
+
+msgid "Home"
+msgstr "Başlangıç"
+
+msgid "Home page"
+msgstr "Ana sayfa"
+
+msgid "Changelog"
+msgstr "Değişim günlüğü"
+
+msgid "License"
+msgstr "Lisans"
+
+msgid "Notification templates"
+msgstr "Bildirim şablonları"
+
+msgid "Recipient notification templates"
+msgstr "Alıcı bildirim şablonları"
+
+msgid "Admin notification templates"
+msgstr "Yönetici bildirim şablonları"
+
+msgid "Missing data"
+msgstr "Kayıp veri"
+
+msgid "no stats available for the future."
+msgstr "İlerisi için herhangi bir istatistik mevcut değil."
+
+msgid "no stats available for this hour."
+msgstr "Bu saat için herhangi bir istatistik mevcut değil."
+
+msgid "no stats available for current hour; check activities page."
+msgstr "İçinde bulunulan saat için herhangi bir istatistik mevcut değil, etkinlikler sayfasını kontrol edin."
+
+msgid "Delete"
+msgstr "Sil"
+
+msgid "Anomalies"
+msgstr "Anormallikler"
+
+msgid "Preferences"
+msgstr "Tercihler"
+
+msgid "Recipient interface"
+msgstr "Alıcı arayüzü"
+
+msgid "Notification settings"
+msgstr "Bildirim ayarları"
+
+msgid "This recipient has configured the encryption key."
+msgstr "Bu alıcı, şifreleme anahtarını yapılandırdı."
+
+msgid "This recipient has not configured the encryption key."
+msgstr "Bu alıcı şifreleme anahtarını yapılandırmamış."
+
+msgid "The file is unavailable due to an internal error."
+msgstr "Dahili bir hatadan dolayı dosya kullanılabilir değil."
+
+msgid "file unavailable"
+msgstr "Dosya kullanılamıyor"
+
+msgid "Creation date"
+msgstr "Oluşturma tarihi"
+
+msgid "Expiration date"
+msgstr "Geçerlilik tarihi"
+
+msgid "Last Access"
+msgstr "Son erişim"
+
+msgid "Files"
+msgstr "Dosyalar"
+
+msgid "Comments"
+msgstr "Yorumlar"
+
+msgid "Messages"
+msgstr "Mesajlar"
+
+msgid "Select this recipient."
+msgstr "Bu alıcıyı seç."
+
+msgid "Unselect this recipient."
+msgstr "Bu alıcının seçimini kaldır."
+
+msgid "This recipient cannot be selected."
+msgstr "Bu alıcı seçilemez."
+
+msgid "This recipient cannot be deselected."
+msgstr "Bu alıcı seçimi iptal edilemez."
+
+msgid "Details"
+msgstr "Ayrıntılar"
+
+msgid "Platform wizard"
+msgstr "Platform sihirbazı"
+
+msgid "Step-by-step setup"
+msgstr "Adım adım kurulum"
+
+msgid "CREDIT CARD"
+msgstr "KREDİ KARTI"
+
+msgid "YOUR NAME"
+msgstr "ADINIZ"
+
+msgid "Postpone the expiration date"
+msgstr "Son geçerlilik tarihini ertele"
+
+msgid "Select all"
+msgstr "Tümünü seç"
+
+msgid "Deselect all"
+msgstr "Seçimleri kaldır"
+
+msgid "Refresh page"
+msgstr "Sayfayı yenile"
+
+msgid "Context"
+msgstr "Kategori"
+
+msgid "Submission date"
+msgstr "Gönderi Tarihi"
+
+msgid "Private messages"
+msgstr "Özel Mesajlar"
+
+msgid "Preview"
+msgstr "Önizleme"
+
+msgid "Move up"
+msgstr "Yukarı taşı"
+
+msgid "Move down"
+msgstr "Aşağı taşı"
+
+msgid "Move left"
+msgstr "Sola kaydır"
+
+msgid "Move right"
+msgstr "Sağa kaydır"
+
+msgid "Import"
+msgstr "İçeri aktar"
+
+msgid "Export"
+msgstr "Dışarı aktar"
+
+msgid "Save all"
+msgstr "Tümünü kaydet"
+
+msgid "This field is mandatory"
+msgstr "Bu alan zorunludur"
+
+msgid ""
+"The connection used to send this submission has been secured with HTTPS "
+"ensuring confidentiality."
+msgstr "Bu gönderimi sağlamak için kurulan bağlantı gizliliğinizi korumak için HTTPS ile şifrelenmiştir."
+
+msgid ""
+"The connection used to send this submission has been secured with Tor "
+"ensuring confidentiality and anonymity."
+msgstr "Bu gönderimi sağlamak için kurulan bağlantı gizliliğinizi ve anonimliğinizi korumak için Tor ile şifrelenmiştir."
+
+msgid "vertical"
+msgstr "dikey"
+
+msgid "horizontal"
+msgstr "yatay"
+
+msgid "Number"
+msgstr "Sayı"
+
+msgid "Email"
+msgstr "E-posta"
+
+msgid "Date"
+msgstr "Tarih"
+
+msgid "Regular expression validator"
+msgstr "Kurallı ifade onaylatıcısı"
+
+msgid "Minimum number of input characters"
+msgstr "Girilebilecek en az sayıda karakter"
+
+msgid "Maximum number of input characters"
+msgstr "Girilebilecek en fazla sayıda karakter"
+
+msgid "Earliest selectable date"
+msgstr "Seçilebilen en erken tarih"
+
+msgid "Latest selectable date"
+msgstr "Seçilebilen en geç tarih"
+
+msgid "0 = auto"
+msgstr "0 = otomatik"
+
+msgid "-1 = unlimited"
+msgstr "-1 = sınırsız"
+
+msgid "True"
+msgstr "Doğru"
+
+msgid "False"
+msgstr "Yanlış"
+
+msgid "Yes"
+msgstr "Evet"
+
+msgid "No"
+msgstr "Hayır"
+
+msgid "Attachment"
+msgstr "Ek"
+
+msgid "Attachments"
+msgstr "Ekler"
+
+msgid "Change your password"
+msgstr "Şifrenizi değiştirin"
+
+msgid "First name"
+msgstr "İsim"
+
+msgid "Last name"
+msgstr "Soyisim"
+
+msgid "GENDER_OTHER"
+msgstr "DİĞER"
+
+msgid "Male"
+msgstr "Erkek"
+
+msgid "Female"
+msgstr "Kadın"
+
+msgid "Date of birth"
+msgstr "Doğum tarihi"
+
+msgid "Place of birth"
+msgstr "Doğum yeri"
+
+msgid "Social security number"
+msgstr "Kimlik numarası"
+
+msgid "Residence"
+msgstr "Oturum"
+
+msgid "Address"
+msgstr "Adres"
+
+msgid "Zip code / Postal code"
+msgstr "Posta kodu"
+
+msgid "City"
+msgstr "Şehir"
+
+msgid "State"
+msgstr "Eyalet"
+
+msgid "Region"
+msgstr "Bölge"
+
+msgid "Province"
+msgstr "İlçe"
+
+msgid "Country"
+msgstr "Ülke"
+
+msgid "Phone number"
+msgstr "Telefon numarası"
+
+msgid "Current job title"
+msgstr "Şu andaki işi"
+
+msgid "Current job responsibility (role)"
+msgstr "Şu andaki sorumluluğu (rolü)"
+
+msgid "Current organization unit and job location"
+msgstr "Şu andaki kurumu ve işyeri"
+
+msgid "Job title at the time of the reported fact"
+msgstr "Hakkında bilgi verilen olay sırasındaki iş unvanı"
+
+msgid "Job responsibility (role) at the time of the reported fact"
+msgstr "Hakkında bilgi verilen olay sırasındaki sorumluluğu (rolü)"
+
+msgid "Organization unit and job location at the time of the reported fact"
+msgstr "Hakkında bilgi verilen olay sırasındaki kurumu ve iş yeri"
+
+msgid "List of submissions"
+msgstr "Gönderim listesi"
+
+msgid "List of access requests to whistleblowers' identities"
+msgstr "İhbarcıların kimliklerine erişim talepleri listesi"
+
+msgid "User"
+msgstr "Kullanıcı"
+
+msgid "Motivation"
+msgstr "Niyet"
+
+msgid "Status"
+msgstr "Durum"
+
+msgid "Request motivation"
+msgstr "Talep için niyet"
+
+msgid "Reply motivation"
+msgstr "Niyet yanıtı"
+
+msgid "Request status"
+msgstr "Talep durumu"
+
+msgid "Custodian"
+msgstr "Koruyucu"
+
+msgid "Custodian of the identities"
+msgstr "Kimliklerin koruyucusu"
+
+msgid "Identity"
+msgstr "Kimlik"
+
+msgid "Available"
+msgstr "Uygun"
+
+msgid "Not available"
+msgstr "Uygun değil"
+
+msgid "Access requested"
+msgstr "Erişim talep edildi"
+
+msgid "Request access to the whistleblower's identity"
+msgstr "İhbarcının kimliğine erişim talep et"
+
+msgid "Please write a motivation"
+msgstr "Lütfen niyetinizi belirtiniz"
+
+msgid "Reply to the request"
+msgstr "Talebe yanıt"
+
+msgid "Authorized"
+msgstr "İzin verildi"
+
+msgid "Denied"
+msgstr "Reddedildi"
+
+msgid "Waiting for authorization"
+msgstr "İzin bekleniyor"
+
+msgid "New request"
+msgstr "Yeni talep"
+
+msgid "Authorize"
+msgstr "İzin ver"
+
+msgid "Deny"
+msgstr "Reddet"
+
+msgid "Deny access to the whistleblower's identity"
+msgstr "İhbarcının kimliğine erişimi reddet"
+
+msgid "Authorize access to the whistleblower's identity"
+msgstr "İhbarcının kimliğine erişime izin ver"
+
+msgid "Templates"
+msgstr "Şablonlar"
+
+msgid "Notification of new submission"
+msgstr "Yeni gönderim bildirimi"
+
+msgid "Notification of new comment"
+msgstr "Yeni yorum bildirimi"
+
+msgid "Notification of new message"
+msgstr "Yeni mesaj bildirimi"
+
+msgid "Notification of new file attachment"
+msgstr "Yeni ek dosya bildirimi"
+
+msgid "Notification of PGP key expiration"
+msgstr "PGP anahtarının süre dolumu bildirimi"
+
+msgid "Notification of anomaly"
+msgstr "Anormallik bildirimi"
+
+msgid "Template for summary of contents in submission archive"
+msgstr "Gönderim arşivinin içerik özeti şablonu"
+
+msgid "Email subject"
+msgstr "E-posta konusu"
+
+msgid "Email body"
+msgstr "E-posta gövdesi"
+
+msgid "in seconds"
+msgstr "saniye"
+
+msgid "in hours"
+msgstr "saat"
+
+msgid "in days"
+msgstr "gün"
+
+msgid "in characters"
+msgstr "karakter"
+
+msgid "in megabytes"
+msgstr "megabyte"
+
+msgid "in percentage"
+msgstr "yüzde"
+
+msgid "HTTPS settings"
+msgstr "HTTPS ayarları"
+
+msgid "Anomaly detection thresholds"
+msgstr "Anormallik tespit sınırı"
+
+msgid "High risk"
+msgstr "Yüksek risk"
+
+msgid "Medium risk"
+msgstr "Orta risk"
+
+msgid "Low risk"
+msgstr "Düşük risk"
+
+msgid "Available disk space"
+msgstr "Müsait disk alanı"
+
+msgid "Last update"
+msgstr "Son güncelleme"
+
+msgid "Custodian notification templates"
+msgstr "Koruyucu bildirim şablonları"
+
+msgid ""
+"This interface allows configuring email templates used to notify custodians."
+msgstr "Bu arayüz, koruyucu bildirimlerinde kullanılan e-posta şablonlarının yapılandırılmasına izin verir."
+
+msgid "Disable notifications to administrators"
+msgstr "Yönetici bildirimlerini devre dışı bırak"
+
+msgid "Disable notifications to custodians"
+msgstr "Koruyucu bildirimlerini devre dışı bırak"
+
+msgid "Disable notifications to recipients"
+msgstr "Alıcı bildirimlerini devre dışı bırak"
+
+msgid "Score"
+msgstr "Puanlama"
+
+msgid "Trigger question"
+msgstr "Tetikleyici soru"
+
+msgid "Triggered by a score higher than:"
+msgstr "Şundan daha büyük bir puan tarafından tetiklenmiş:"
+
+msgid "Select the question to be triggered when this option is selected"
+msgstr "Seçenek tercih edildiğinde tetiklenecek soruyu seç."
+
+msgid "Message shown on top of the status page of the submission"
+msgstr ""
+
+msgid "Copy and paste the PGP public key here"
+msgstr "PGP ortak anahtarınızı kopyalayıp buraya yapıştırın"
+
+msgid "Password strength:"
+msgstr "Parola kuvveti:"
+
+msgid "Weak"
+msgstr "Zayıf"
+
+msgid "Acceptable"
+msgstr "Kabul edilebilir"
+
+msgid "Strong"
+msgstr "Güçlü"
+
+msgid "Loading…"
+msgstr "Yükleniyor..."
+
+msgid "Text shown on top of the interface for selecting contexts"
+msgstr ""
+
+msgid "Show small context cards on submission interface"
+msgstr ""
+
+msgid "Type of context selector:"
+msgstr ""
+
+msgid "Type to search…"
+msgstr ""
+
+msgid "Silence email notifications"
+msgstr "E-posta bilgilendirmelerini sessize al"
+
+msgid "Turn on email notifications"
+msgstr "E-posta bilgilendirmelerini aç"
+
+msgid "Enter an email address for the administrator"
+msgstr "Yönetici için bir e-posta adresi girin"
+
+msgid "Enter a password for the administrator"
+msgstr "Yönetici için bir şifre girin"
+
+msgid "Test configuration"
+msgstr "Yapılandırmayı test et"
+
+msgid "Failed logins"
+msgstr "Başarısız girişler"
+
+msgid "Successful logins"
+msgstr "Başarılı girişler"
+
+msgid "Started submissions"
+msgstr "Başlamış gönderimler"
+
+msgid "Completed submissions"
+msgstr "Tamamlanmış gönderimler"
+
+msgid "Failed submissions"
+msgstr "Başarısız gönderimler"
+
+msgid "Input validation"
+msgstr ""
+
+msgid "Email address"
+msgstr "E-posta Adresi"
+
+msgid "Custom"
+msgstr "Özel"
+
+msgid "None"
+msgstr "Hiçbiri"
+
+msgid "Regular expression"
+msgstr ""
+
+msgid "Label the submission"
+msgstr "Gönderimi etiketle"
+
+msgid "Activate"
+msgstr "Aktive et"
+
+msgid "Search"
+msgstr "Ara"
+
+msgid ""
+"This custom text is no longer displayed on the platform. The original text "
+"has either changed or been removed."
+msgstr ""
+
+msgid ""
+"Unless the whistleblower checks the submission by this time, their access to"
+" it will expire."
+msgstr ""
+
+msgid "The whistleblower can no longer access the submission"
+msgstr ""
+
+msgid "Warning!"
+msgstr "Uyarı!"
+
+msgid "You are running an unsupported and potentially vulnerable browser."
+msgstr ""
+
+msgid "You are strongly advised to download and install the Tor Browser."
+msgstr ""
+
+msgid ""
+"The Tor Browser includes various privacy and security enhancements not "
+"present in other browsers."
+msgstr "Tor Browser diğer web tarayıcılarında olmayan çeşitli gizlilik ve güvenlik iyileştirmeleri içerir."
+
+msgid "Download the Tor Browser"
+msgstr "Tor Browser İndir"
+
+msgid "This is the list of the other supported browsers:"
+msgstr ""
+
+msgid "System overview"
+msgstr ""
+
+msgid "Stats"
+msgstr "İstatistikler"
+
+msgid "Activities"
+msgstr "Etkinlikler"
+
+msgid "Submissions"
+msgstr "Gönderimler"
+
+msgid "Users"
+msgstr "Kullanıcılar"
+
+msgid "From"
+msgstr "Kimden"
+
+msgid "Number of downloads"
+msgstr ""
+
+msgid "Error with file:"
+msgstr ""
+
+msgid "File size not accepted."
+msgstr "Dosya boyutu kabul edilmedi."
+
+msgid "File type not accepted."
+msgstr "Dosya türü kabul edilmedi."
+
+msgid "Maximum file size is:"
+msgstr "Azami dosya boyutu:"
+
+msgid "Accepted file types are:"
+msgstr "Kabul edilen dosya türleri:"
+
+msgid "Scheduled jobs"
+msgstr ""
+
+msgid "Sites management"
+msgstr ""
+
+msgid "Regenerate"
+msgstr ""
+
+msgid "Display options alphabetically"
+msgstr ""
+
+msgid "Enable email notifications for:"
+msgstr ""
+
+msgid "Software updates"
+msgstr ""
+
+msgid "Software problems"
+msgstr ""
+
+msgid "Disable"
+msgstr "Devre Dışı Bırak"
+
+msgid "Remove"
+msgstr "Sil"
+
+msgid "Use as default"
+msgstr ""
+
+msgid "Create your whistleblowing platform"
+msgstr ""
+
+msgid "Select the context of your submission:"
+msgstr ""
+
+msgid "Warning! You are not anonymous."
+msgstr "Dikkat! Anonim değilsiniz."
+
+msgid ""
+"Sending submissions over HTTPS exposes the act of doing so, but not the "
+"content.\\n\\nAlso, hiding the fact that you are submitting something makes "
+"the submission anonymous, which is strongly recommended.\\n\\nThis can be "
+"achieved with the use of the Tor Browser, providing anonymisation not found "
+"in other browsers like Internet Explorer, Firefox, Chrome, Opera etc."
+msgstr ""
+
+msgid "Are you a whistleblower?"
+msgstr "İhbarcı mısınız?"
+
+msgid "Blow the whistle"
+msgstr "İhbar et"
+
+msgid "Have you already filed a submission? Enter your key code."
+msgstr "Zaten bir gönderim yaptınız mı? Anahtar kodunuzu girin."
+
+msgid "Your submission was successful."
+msgstr "Gönderiminiz başarıyla tamamlandı."
+
+msgid "Submission status"
+msgstr ""
+
+msgid "Disable submissions"
+msgstr "Gönderimleri devre dışı bırak"
+
+msgid "Enable insecure configuration without PGP encryption"
+msgstr "PGP şifrelemesi olmaksızın güvensiz yapılandırmayı etkinleştir"
+
+msgid "Danger"
+msgstr "Tehlike"
+
+msgid ""
+"By enabling this option, the system will be storing the submitted files "
+"unencrypted on your server."
+msgstr "Bu seçeneği etkinleştirmenizle; sistem eklenen dosyaları sunucuda şifresiz olarak saklayacak."
+
+msgid "This happens whenever encryption is unavailable."
+msgstr "Bu durum, şifreleme mümkün olmadığı zamanda gerçekleşir."
+
+msgid "Disable messages that warn of missing encryption"
+msgstr "Eksik şifrelemeleri uyaran mesajnları devre dışı bırak"
+
+msgid ""
+"This setting affects the security of the users and must not be used in "
+"production."
+msgstr ""
+
+msgid "Allow other websites to include the platform inside iframes"
+msgstr "Diğer web sitelerinin platformu iframe içinde eklemelerine izin ver"
+
+msgid ""
+"By enabling this option, you are allowing other websites to include the "
+"platform inside iframes; this could potentially be used to endanger the "
+"platform or intercept users' communications"
+msgstr "Bu seçeneği etkinleştirerek başka web sayfalarının GlobaLeaks platformunu iframe içinde kullanmalarına izin veriyorsunuz; bu, platformu tehlikeye atabilir veya kullanıcı iletişimlerinin izlenmesinde kullanılabilir."
+
+msgid "Allow recipients to postpone expiration date of the submission"
+msgstr "Alıcıların gönderimlerin geçerlilik tarihini ertelemelerine izin ver"
+
+msgid "Allow recipients to delete submissions"
+msgstr "Alıcıların gönderimleri silmelerine izin ver"
+
+msgid ""
+"Allow recipients to grant permissions to whistleblowers on specific "
+"submissions"
+msgstr "Belirli gönderimlerde alıcıların ihbarcılara yetki vermesine izin verin"
+
+msgid "Enable search engines indexing"
+msgstr "Arama motoru dizinlemeyi etkinleştir"
+
+msgid "Enabled"
+msgstr "Etkin"
+
+msgid "Search engine spiders will be allowed to index the application."
+msgstr "Arama motoru örümcekleri, uygulama içerisinde gezinebilecekler."
+
+msgid "Enable custom privacy panel"
+msgstr "Özel gizlilik panelini etkinleştir"
+
+msgid "Custom privacy panel"
+msgstr "Özel gizlilik paneli"
+
+msgid "Text shown when the whistleblower is not using Tor"
+msgstr "İhbarcı Tor kullanmadığında gösterilecek metin"
+
+msgid "Disable the privacy panel"
+msgstr "Gizlilik rozetini devre dışı bırak"
+
+msgid "Security awareness panel title"
+msgstr "Güvenlik farkındalığı rozeti başlığı"
+
+msgid "Security awareness panel text"
+msgstr "Güvenlik farkındalığı rozeti metni"
+
+msgid "Disable the security awareness panel questions"
+msgstr "Güvenlik farkındalığı rozeti sorularını devre dışı bırak"
+
+msgid "Disable the security awareness panel"
+msgstr "Güvenlik farkındalığı rozetini devre dışı bırak"
+
+msgid "Disable the key code hint"
+msgstr "Anahtar kodu ipucunu devre dışı bırak"
+
+msgid "Disable the donation panel"
+msgstr "Bağış panelini devre dışı bırak"
+
+msgid "Enable CAPTCHA mechanism"
+msgstr "CAPTHCA mekanizmasını etkin hale getir"
+
+msgid "Enable proof of work mechanism"
+msgstr "Çalışma kanıtı mekanizmasını etkin hale getir"
+
+msgid "Enable simplified login for recipients"
+msgstr "Alıcılar için kolaylaştırılmış giriş yapmayı etkin hale getir"
+
+msgid "Amount of days till whistleblower access expires"
+msgstr ""
+
+msgid ""
+"For security reasons the whistleblower access is subject to expiration."
+msgstr ""
+
+msgid "Tweak this setting only if you know what you are doing."
+msgstr ""
+
+msgid "Landing page"
+msgstr "Karşılama sayfası"
+
+msgid "Home Page"
+msgstr "Ana sayfa"
+
+msgid "Submission Page"
+msgstr "Gönderim sayfası"
+
+msgid "Title of the submission page"
+msgstr "Gönderim sayfası başlığı"
+
+msgid "Title of the attachments widget"
+msgstr "Dosya ekleme bileşeninin başlığı"
+
+msgid "Text of prompt for whistleblowers to log in"
+msgstr ""
+
+msgid "Show contexts in alphabetical order"
+msgstr "Kategorileri alfabetik sıralı göster"
+
+msgid "Title of the receipt page"
+msgstr "Alıcı sayfası başlığı"
+
+msgid "Title of the submission status page"
+msgstr "Gönderim durumu başlığı"
+
+msgid "Title of the comments widget"
+msgstr "Yorum bileşeninin başlığı"
+
+msgid "Title of the messages widget"
+msgstr "Mesaj bileşeninin başlığı"
+
+msgid "Size limit for file attachments"
+msgstr "Dosya ekleri için boyut sınırı"
+
+msgid "Notify administrators of software problems"
+msgstr ""
+
+msgid "Notify developers of software problems"
+msgstr ""
+
+msgid ""
+"By enabling this feature, you will contribute to the development and "
+"security of the platform."
+msgstr ""
+
+msgid "Enable HTTP Basic Authentication to limit platform access"
+msgstr ""
+
+msgid "Username"
+msgstr "Kullanıcı Adı"
+
+msgid "Password"
+msgstr "Parola"
+
+msgid ""
+"This feature keeps regular people from visiting the platform while it is "
+"still under development and should not be used for security purposes. The "
+"input password is stored in plaintext on the server."
+msgstr ""
+
+msgid "Enable experimental features"
+msgstr "Deneysel özellikleri etkinleştir"
+
+msgid "Warning"
+msgstr "Uyarı"
+
+msgid ""
+"The experimental features may be less stable or even not work at all; enable"
+" this option at your own risk. Support for these features may vary and they "
+"may be removed in the future."
+msgstr "Deneysel özellikler daha az istikrarlı olabilir hatta hiç çalışmayabilir; bu seçeneği kendi adınıza risk alarak etkinleştirin. Bu özelliklere destek değişebilir ve gelecekte silinebilir."
+
+msgid "Save"
+msgstr "Kaydet"
+
+msgid "Short URL"
+msgstr "Kısa URL"
+
+msgid "Long URL"
+msgstr "Uzun URL"
+
+msgid "Add"
+msgstr "Ekle"
+
+msgid "Logo"
+msgstr "Logo"
+
+msgid "Project name"
+msgstr "Proje adı"
+
+msgid "Homepage title"
+msgstr "Anasayfa başlığı"
+
+msgid "Presentation"
+msgstr "Sunum"
+
+msgid "Description"
+msgstr "Açıklama"
+
+msgid "Question to solicit possible whistleblowers"
+msgstr "Daha fazla bilgi alabilmek için muhtemel ihbarcıları sorgulayın."
+
+msgid "Whistleblowing button"
+msgstr "İhbar Butonu"
+
+msgid "Footer"
+msgstr "Sayfa altlığı"
+
+msgid "Favicon"
+msgstr ""
+
+msgid "Upload"
+msgstr "Yükle"
+
+msgid "Download"
+msgstr "İndir"
+
+msgid "Upload custom file"
+msgstr "Özel Dosya Yükle"
+
+msgid "The file will be available at URL: /s/$filename"
+msgstr "Dosya bulunduğu URL: /s/$filename"
+
+msgid "Language:"
+msgstr "Dil:"
+
+msgid "Add custom text"
+msgstr "Özel metin ekleyin"
+
+msgid "Custom text"
+msgstr "Özel metin"
+
+msgid "Custom texts"
+msgstr "Özel metinler"
+
+msgid "Original text"
+msgstr "Orijinal metin"
+
+msgid "Original translation"
+msgstr "Orijinal tercüme"
+
+msgid "Custom translation"
+msgstr "Özel tercüme"
+
+msgid "Contexts"
+msgstr "Kategoriler"
+
+msgid "Name"
+msgstr "Ad"
+
+msgid "Edit"
+msgstr "Düzenle"
+
+msgid "Cancel"
+msgstr "İptal"
+
+msgid "Questionnaire"
+msgstr "Anket"
+
+msgid "Recipients"
+msgstr "Alıcılar"
+
+msgid "Allow selection of this context through the context selector."
+msgstr "Bu kategorinin; kategori seçicisi üzerinden belirlenmesine izin ver."
+
+msgid ""
+"If disabled, submissions for this context will only be accessible through a "
+"direct link to it."
+msgstr "Eğer etkisiz hale getirilirse, bu kategori için gönderimler sadece doğrudan link ile erişilebilir olacak."
+
+msgid "Allow whistleblowers to select their recipients"
+msgstr "İhbarcıların alıcıları seçmesine izin ver"
+
+msgid "Select all recipients by default"
+msgstr "Öntanımlı olarak tüm alıcıları seç"
+
+msgid "Maximum number of selectable recipients:"
+msgstr "Seçilebilir azami alıcı sayısı:"
+
+msgid "(0 = unlimited)"
+msgstr "(0 = sınırsız)"
+
+msgid "Show recipients in alphabetical order"
+msgstr "Alıcıları alfabetik sıralı göster"
+
+msgid "Show small recipient cards on submission interface"
+msgstr "Gönderim arayüzünde küçük alıcı kartlarını göster"
+
+msgid "Enable comments"
+msgstr "Yorumları etkinleştir"
+
+msgid "Allow whistleblowers to write comments"
+msgstr "İhbarcıların yorum yazmasına izin verin"
+
+msgid "Enable private messages"
+msgstr "Özel mesajları etkinleştir"
+
+msgid "Allow whistleblowers to send messages"
+msgstr "İhbarcıların mesaj göndermesine izin verin"
+
+msgid "Let whistleblowers add attachments onto existing submissions"
+msgstr ""
+
+msgid "Show recipient details on the status page of the submission"
+msgstr "Alıcıların ayrıntılarını başvurunun durumu sayfasında göster"
+
+msgid "Let recipients upload files to whistleblowers"
+msgstr ""
+
+msgid "Disabled"
+msgstr "Devre Dışı"
+
+msgid "Submission expiration, in days"
+msgstr "Gönderimin geçerlilik tarihi, gün cinsinden"
+
+msgid ""
+"For security reasons, as a matter of data retention policy, the platform "
+"automatically deletes submissions and their data after a certain amount of "
+"time."
+msgstr "Dosya saklama politikası gereği olarak güvenlik nedeniyle; platform, gönderimleri ve bunlara ilişkin veriyi belirli bir süre sonra otomatik olarak silmektedir."
+
+msgid "Text shown on top of the interface for selecting recipients"
+msgstr ""
+
+msgid "Welcome to the administration interface!"
+msgstr "Yönetici arayüzüne hoşgeldiniz!"
+
+msgid ""
+"This interface may help you understand how the server can be configured and "
+"provides some info on how to connect to other GlobaLeaks users and experts."
+msgstr "Bu arayüz sistemin nasıl yapılandırılacağı konusunda yardımcı olur, ayrıca diğer Globaleaks kullanıcı ve uzmanlarına nasıl ulaşacağınız hakkında bazı bilgiler verir."
+
+msgid "Documentation"
+msgstr "Belgelendirme"
+
+msgid ""
+"To properly organize your project, please read the following guidelines:"
+msgstr "Projenizi düzgün bir şekilde yapılandırmak için, lütfen şu talimatları okuyun:"
+
+msgid "Remember to provide proper security advice to Whistleblowers:"
+msgstr "İhbarcının uygun ve doğru güvenlik önerileri vermeyi unutmayın:"
+
+msgid ""
+"To learn more about GlobaLeaks Security you can read the following document:"
+msgstr ""
+
+msgid "Contact"
+msgstr "İletişim"
+
+msgid ""
+"If you need technical support, have general questions, or have new ideas for"
+" the software:"
+msgstr ""
+
+msgid ""
+"If you want to contribute to software development or report a bug, please "
+"open an issue in our ticketing system:"
+msgstr ""
+
+msgid ""
+"If your non-profit needs support for investigative journalism, activism or a"
+" human rights defense project:"
+msgstr ""
+
+msgid ""
+"For professional support and development of anti corruption and compliance "
+"projects contact the social enterprise maintaining GlobaLeaks:"
+msgstr ""
+
+msgid "Join our IRC chat channel on the irc.oftc.net network:"
+msgstr ""
+
+msgid "Follow the project on:"
+msgstr ""
+
+msgid "Software version:"
+msgstr "Yazılım versiyonu"
+
+msgid "An update is available:"
+msgstr ""
+
+msgid "SMTP name"
+msgstr "SMTP adı"
+
+msgid "SMTP email address"
+msgstr "SMTP e-posta adresi"
+
+msgid "Invalid email address"
+msgstr "Geçersiz e-posta adresi"
+
+msgid "SMTP server address"
+msgstr "SMTP sunucu adresi"
+
+msgid "SMTP server port"
+msgstr "SMTP sunucu bağlantı noktası"
+
+msgid "Transport Security"
+msgstr "Aktarım Güvenliği"
+
+msgid "When the option is re-enabled the spooled emails will be sent out."
+msgstr "Seçenek yeniden etkinleştirildiğinde, bekletilen e-postalar gönderilecek."
+
+msgid "Reset notification templates to default"
+msgstr "Bildirim şablonlarını sıfırla"
+
+msgid "Number of hours before sending a submission expiration alert"
+msgstr "Gönderimin geçerliliğinin son erdiği uyarısı göndermeden önceki gerekli saat sayısı"
+
+msgid "Maximum emails per hour before triggering email suspension"
+msgstr "E-postayı durdurma tetiklemeden önce bir saatteki azami e-posta sayısı"
+
+msgid "this configuration only applies to recipients"
+msgstr "bu yapılandırma sadece alıcılarda geçerlidir"
+
+msgid "Test the configuration"
+msgstr ""
+
+msgid "Template"
+msgstr "Şablon"
+
+msgid "Admin"
+msgstr "Yönetici"
+
+msgid "Roles enabled to use the platform without Tor:"
+msgstr ""
+
+msgid "Recipient"
+msgstr "Alıcı"
+
+msgid "Whistleblower"
+msgstr "İhbarcı"
+
+msgid "Hostname"
+msgstr "Makine adı"
+
+msgid "Verify"
+msgstr "Doğrula"
+
+msgid "Invalid input format."
+msgstr ""
+
+msgid "Input should be similar to:"
+msgstr ""
+
+msgid ""
+"The platform does not seem to be reachable with the configured hostname."
+msgstr ""
+
+msgid "Using Let's Encrypt requires agreement to their Terms of Service."
+msgstr ""
+
+msgid "Read the Terms of Service"
+msgstr ""
+
+msgid "I agree to the Terms of Service."
+msgstr ""
+
+msgid "Proceed"
+msgstr "Devam Et"
+
+msgid "Configuration completed. You can review the settings or enable it now."
+msgstr ""
+
+msgid "Review"
+msgstr ""
+
+msgid "Enable"
+msgstr "Etkinleştir"
+
+msgid "Country code"
+msgstr "Ülke kodu"
+
+msgid "Organization"
+msgstr "Organizasyon"
+
+msgid "Organizational unit"
+msgstr ""
+
+msgid ""
+"This interface can generate a Private Key and a Certificate Signing Request."
+" The Certificate Signing Request can be provided to a Certificate Authority "
+"to retrieve a Certificate. After having validated your request and your "
+"ownership of the hostname, the Certificate Authority will issue you a "
+"Certificate and provide a file containing Intermediate Certificates. Load "
+"the Certificate and the file containing the Intermediate Certificates to "
+"complete the HTTPS setup."
+msgstr ""
+
+msgid "Private Key"
+msgstr ""
+
+msgid "Generate"
+msgstr "Oluştur"
+
+msgid "Certificate Signing Request"
+msgstr ""
+
+msgid "Certificate"
+msgstr "Sertifika"
+
+msgid "Valid until:"
+msgstr ""
+
+msgid "Issuer:"
+msgstr "Gönderen:"
+
+msgid "Intermediate Certificates"
+msgstr ""
+
+msgid "Reset"
+msgstr "Sıfırla"
+
+msgid "Select an option:"
+msgstr ""
+
+msgid "Automatic configuration"
+msgstr ""
+
+msgid ""
+"Using automatic HTTPS configuration will handle the entire process of "
+"requesting, enabling and renewing certificates from the Let's Encrypt "
+"Certificate Authority."
+msgstr ""
+
+msgid ""
+"The platform must be reachable through a public IP address and the selected "
+"hostname must have a corresponding DNS record referencing that address."
+msgstr ""
+
+msgid "Manual configuration"
+msgstr ""
+
+msgid ""
+"The manual configuration wizard will guide you through the setup of HTTPS "
+"from an alternative Certificate Authority."
+msgstr ""
+
+msgid ""
+"The platform supports the configuration of HTTPS through this interface."
+msgstr ""
+
+msgid "The connection to the configured domain failed."
+msgstr ""
+
+msgid "Running"
+msgstr "Çalışıyor"
+
+msgid "Not running"
+msgstr "Çalışmıyor"
+
+msgid "Auto-renewal"
+msgstr ""
+
+msgid "System message:"
+msgstr ""
+
+msgid ""
+"Allowing whistleblowers to connect over HTTPS preserves their privacy but "
+"not their anonymity."
+msgstr ""
+
+msgid "Attention!"
+msgstr ""
+
+msgid ""
+"Configuration in progress. When it is finished you will have to log in "
+"again."
+msgstr ""
+
+msgid "Your browser will be redirected to the following URL."
+msgstr ""
+
+msgid "Tor Onion Service"
+msgstr ""
+
+msgid "Tor Browser download link"
+msgstr "Tor Browser indirme bağlantısı"
+
+msgid "Anonymize outgoing connections"
+msgstr ""
+
+msgid "Let the platform be reachable without Tor"
+msgstr ""
+
+msgid "Stats of the week:"
+msgstr "Haftanın istatistikleri:"
+
+msgid "Free disk space"
+msgstr "Boş disk alanı"
+
+msgid "Event ID"
+msgstr "Olay numarası"
+
+msgid "Time"
+msgstr "Zaman"
+
+msgid "Event"
+msgstr "Olay"
+
+msgid "Response time"
+msgstr "Yanıt süresi"
+
+msgid "Role"
+msgstr "Rol"
+
+msgid "Last access"
+msgstr "Son erişim"
+
+msgid "Submission"
+msgstr "Gönderim"
+
+msgid "Path"
+msgstr "Yol"
+
+msgid "Size"
+msgstr "Boyut"
+
+msgid "Alarm level"
+msgstr "Alarm seviyesi"
+
+msgid "Events"
+msgstr "Olaylar"
+
+msgid "Label"
+msgstr "Etiket"
+
+msgid "Type"
+msgstr "Tür"
+
+msgid "Single-line text input"
+msgstr "Tek satır yazı girişi"
+
+msgid "Multi-line text input"
+msgstr "Çok satırlı yazı girişi"
+
+msgid "Multiple choice input"
+msgstr "Çoktan seçmeli giriş"
+
+msgid "Selection box"
+msgstr "Seçim kutusu"
+
+msgid "Checkbox"
+msgstr "Onay kutusu"
+
+msgid "Terms of service"
+msgstr "Kullanım şartları"
+
+msgid "Group of questions"
+msgstr "Soru grubu"
+
+msgid "Row"
+msgstr "Satır"
+
+msgid "Column"
+msgstr "Sütun"
+
+msgid "Width"
+msgstr "Genişlik"
+
+msgid "Question group"
+msgstr "Soru grubu"
+
+msgid "Hint"
+msgstr "İpucu"
+
+msgid "Required"
+msgstr "Zorunlu"
+
+msgid "Accept multiple file uploads"
+msgstr "Birden fazla dosya kabul et"
+
+msgid "Accept multiple answers for the field"
+msgstr "İlgili alana birden fazla yanıt kabul et"
+
+msgid "Hint shown on the button for adding an additional answer"
+msgstr "Ek cevap vermek için tuşun üzerinde görüntülenecek ipucu"
+
+msgid "Clause"
+msgstr "Cümle"
+
+msgid "Agreement Text"
+msgstr "Sözleşme Metni"
+
+msgid "Layout orientation"
+msgstr "Tasarım yönü"
+
+msgid "Subject answer visibility to custodian authorization"
+msgstr "Koruyucu izninize tabi konu cevabı görünürlüğü"
+
+msgid "Prompt confirmation upon negative answer"
+msgstr "Olumsuz yanıt verildiğinde onay penceresi göster"
+
+msgid "Title of the confirmation question upon negative answer"
+msgstr "Olumsuz yanıt verildiğinde gösterilecek onay penceresi başlığı"
+
+msgid "Body of the confirmation question upon negative answer"
+msgstr "Olumsuz yanıt verildiğinde gösterilecek onay penceresi içeriği"
+
+msgid "Options"
+msgstr "Seçenekler"
+
+msgid "Questions"
+msgstr ""
+
+msgid "Add new question"
+msgstr "Yeni soru ekle"
+
+msgid "Add question from template"
+msgstr "Şablondan soru ekle"
+
+msgid "Steps"
+msgstr ""
+
+msgid "Configuration"
+msgstr "Yapılandırma"
+
+msgid "Default"
+msgstr "Varsayılan"
+
+msgid "Forcefully selected"
+msgstr "Zorunlu seçilmiş"
+
+msgid "Unselectable"
+msgstr "Seçilemez"
+
+msgid "Allow the recipient to postpone the submission expiration date"
+msgstr "Alıcının, gönderinin geçerlilik tarihini ertelemesine izin ver"
+
+msgid "The setting is enabled at a global level."
+msgstr "Ayar genel seviyede etkinleştirildi."
+
+msgid "Allow the recipient to delete submissions"
+msgstr "Alıcının, gönderileri silmesine izin ver"
+
+msgid ""
+"Allow the recipient to grant permissions to whistleblowers on specific "
+"submissions"
+msgstr "Belirli gönderimlerde alıcının ihbarcılara yetki vermesine izin verin"
+
+msgid "General settings"
+msgstr "Genel ayarlar"
+
+msgid "Network settings"
+msgstr "Ağ Ayarları"
+
+msgid "Root domain used for secondary sites"
+msgstr ""
+
+msgid "Allow users to sign up"
+msgstr ""
+
+msgid "Sites"
+msgstr ""
+
+msgid "Active"
+msgstr ""
+
+msgid "Inactive"
+msgstr ""
+
+msgid "The default password is:"
+msgstr ""
+
+msgid "The system forces users to change the password at first login."
+msgstr "Sistem, kullanıcıları ilk girişte şifrelerini değiştirmeye zorlar."
+
+msgid "New Password"
+msgstr "Yeni Parola"
+
+msgid ""
+"The chosen password is too weak. Make it more secure by adding special "
+"characters, numbers, and unusual symbols."
+msgstr "Belirtilen şifre çok zayıf. Daha fazla rakam, özel karakte, olağandışı semboller ekleyerek daha güvenli yapın."
+
+msgid "Force password change"
+msgstr "Şifre değişikliğine zorla"
+
+msgid "The user will be forced to change its password on next login."
+msgstr "Kullanıcı bir sonraki girişinde şifresini değiştirmeye zorlanacak."
+
+msgid "Language"
+msgstr "Dil"
+
+msgid "Encryption:"
+msgstr ""
+
+msgid "Remove the PGP key"
+msgstr "PGP anahtarını kaldır"
+
+msgid "Set up encryption by providing a PGP public key"
+msgstr "Bir PGP açık anahtarı belirterek şifrelemeyi kurun"
+
+msgid "Request date"
+msgstr "Talep tarihi"
+
+msgid "Authorization"
+msgstr "İzin"
+
+msgid "Before proceeding, please change your password."
+msgstr "Devam etmeden önce lütfen şifrenizi değiştirin."
+
+msgid "Submissions disabled"
+msgstr "Gönderimler devre dışı bırakıldı"
+
+msgid ""
+"You are connecting to the server without anonymity and this server supports "
+"only anonymous submissions"
+msgstr "Sisteme anonim olmadan bağlanıyorsunuz ve bu sistem sadece anonim gönderimleri destekliyor."
+
+msgid ""
+"Server temporarly unusable due to resource exhaustion; advise the Admin if "
+"you can."
+msgstr "Kaynak sıkıntısından dolayı sistem geçici kullanım dışıdır ; ulaşabiliyorsanız Yöneticiye bildiriniz."
+
+msgid "This server is not configured."
+msgstr "Bu sunucu yapılandırılmamış."
+
+msgid "You will not be able to send a submission."
+msgstr "Bir gönderim yapamayacaksınız."
+
+msgid ""
+"This platform makes use of GlobaLeaks software specifically designed to "
+"protect the identity for submitter and recipient in the exchange of content."
+msgstr ""
+
+msgid ""
+"The software is developed by the non-profit Hermes Center for Transparency "
+"and Digital Human Rights."
+msgstr "Bu yazılım kar amacı gütmeyen Kamuyu Aydınlatma ve Sayısal İnsan Hakları için Hermes Merkezi tarafından geliştirilmektedir."
+
+msgid "Please support Hermes through their donation page."
+msgstr "Lütfen Hermes'i bağış sayfalarından destekleyin."
+
+msgid "Authentication failed"
+msgstr "Kimlik Doğrulama Başarısız"
+
+msgid "Please select your account:"
+msgstr "Lütfen hesabınızı seçin:"
+
+msgid "Now type your password, then click 'Log in':"
+msgstr "Şimdi şifrenizi yazın ve Giriş'i tıklayın"
+
+msgid "Are you sure?"
+msgstr "Emin misiniz?"
+
+msgid "The operation will reset the configuration and cannot be undone."
+msgstr ""
+
+msgid "Assign score points"
+msgstr "Puanları tahsis et"
+
+msgid ""
+"Enter the number of score points to be assigned when this option is "
+"selected:"
+msgstr "Bu seçenek tercih edildiğinde tahsis edilecek puanların numarasını gir"
+
+msgid "Confirm"
+msgstr "Onayla"
+
+msgid "Are you human?"
+msgstr "İnsan mısınız?"
+
+msgid ""
+"We do not discriminate based on race and gender, but we do against computers"
+" :)"
+msgstr "Irk ve cinsiyet ayrımı yapmıyoruz fakat bilgisayarlara karşıyız :)"
+
+msgid ""
+"Just to prove you are human, please answer the following math challenge:"
+msgstr "İnsan olduğunuzu kanıtlamanız için, lütfen matematik sorusunu cevaplayın:"
+
+msgid "I've solved the math challenge, hide this thing now!"
+msgstr "Matematik sorusunu çözdüm, şimdi şu şeyi sakla!"
+
+msgid "Please note that all the associated data will be permanently lost."
+msgstr ""
+
+msgid ""
+"This means that if the server running the platform were to be seized, it "
+"would be possible to extract the files that have been submitted."
+msgstr "Bu şu anlama geliyor; eğer Globaleaks'i çalıştıran sunucuya el konulursa gönderilen dosyaların ele geçirilmesi mümkün olabilir."
+
+msgid "Are you sure that you wish to continue?"
+msgstr "Devam etmek istediğinizden emin misiniz?"
+
+msgid ""
+"Downloading a file with malicious content could compromise your computer or "
+"disclose your identity."
+msgstr ""
+
+msgid "The name of the file and its content can be intentionally misleading."
+msgstr ""
+
+msgid ""
+"Please review the following information and decide if you wish to proceed."
+msgstr ""
+
+msgid "Error!"
+msgstr "Hata!"
+
+msgid "Internal server error"
+msgstr ""
+
+msgid "Error on input validation"
+msgstr ""
+
+msgid "Resource not found"
+msgstr ""
+
+msgid "Forbidden operation"
+msgstr ""
+
+msgid "The specified old password is not valid"
+msgstr "Belirtilen eski parola geçerli değil"
+
+msgid "Resource can only be accessed via the Tor network"
+msgstr "Kaynak sadece Tor ağı içerisinden erişilebilir"
+
+msgid "The upload request exceeds the size limit"
+msgstr "Yükleme talebi boyut sınırlarını aşıyor"
+
+msgid "Success!"
+msgstr "Başarılı!"
+
+msgid ""
+"It appears that you are browsing this site without any extra privacy and "
+"security!"
+msgstr "Siteyi başka hiç bir ekstra gizlilik ve güvenlik olmadan gezdiğiniz görünüyor."
+
+msgid ""
+"You are strongly advised to visit this site using the desktop app called Tor"
+" Browser, that protects your identity."
+msgstr "Bu siteyi gezerken kimliğinizi gizleyen Tor Browser masaüstü uygulaması kullanmanızı şiddetle öneriyoruz."
+
+msgid "Then, copy and paste the following address into the Tor Browser:"
+msgstr "Sonra, şu adresi kopyalayıp Tor Browser'a yapıştırın:"
+
+msgid "Details of the PGP key:"
+msgstr "PGP anahtarı detayları:"
+
+msgid "Fingerprint"
+msgstr "Parmak izi"
+
+msgid "Add file"
+msgstr "Dosya ekle"
+
+msgid "Uploading files…"
+msgstr "Dosyalar yükleniyor..."
+
+msgid "Upload completed successfully!"
+msgstr "Yükleme başarıyla tamamlandı!"
+
+msgid "Error while uploading files; check below for details."
+msgstr "Yükleme sırasında bir hata oluştu; aşağıda detayları görebilirsiniz."
+
+msgid "Estimated upload time:"
+msgstr "Tahmini yükleme zamanı:"
+
+msgid "seconds"
+msgstr "saniye"
+
+msgid "Which of the following statements is true?"
+msgstr "Aşağıdaki ifadelerden hangisi doğru?"
+
+msgid "HTTPS protects my identity, but not the content of my submission"
+msgstr ""
+
+msgid "HTTPS protects the content of my submission but not my identity"
+msgstr ""
+
+msgid "HTTPS does not protect the content of my submission nor my identity"
+msgstr ""
+
+msgid "HTTPS does protect both my identity and the content of my submission"
+msgstr ""
+
+msgid ""
+"You are aware of the risks involved. Go ahead, but consider yourself warned."
+msgstr "Oluşabilecek risklerin farkındasınız. Devam edin ancak uyarıldığınızı bilin."
+
+msgid "Wrong Answer!"
+msgstr "Yanlış Cevap!"
+
+msgid "The connection is not secure."
+msgstr ""
+
+msgid ""
+"The platform is still not configured for HTTPS connections and should "
+"therefore only be used for testing purposes."
+msgstr ""
+
+msgid "Send"
+msgstr "Gönder"
+
+msgid "Allow the whistleblower to write comments"
+msgstr "İhbarcının yorum yazmasına izin verin"
+
+msgid "Filename"
+msgstr "Dosya adı"
+
+msgid "Upload date"
+msgstr "Yükleme Tarihi"
+
+msgid "Content Type"
+msgstr "İçerik Tür"
+
+msgid "File size"
+msgstr "Dosya Boyutu"
+
+msgid "download"
+msgstr "karşıdan yükle"
+
+msgid "No files have been uploaded!"
+msgstr "Hiçbir dosya yüklenmedi!"
+
+msgid "Allow the whistleblower to add attachments to the submission"
+msgstr "İhbarcının gönderimlerine dosya eklemelerine izin verin"
+
+msgid "Access expiration"
+msgstr ""
+
+msgid "Connection"
+msgstr "Bağlantı"
+
+msgid "Never"
+msgstr "Asla"
+
+msgid "Revoked"
+msgstr "İptal edildi"
+
+msgid "Allow the whistleblower to send messages"
+msgstr "İhbarcının mesaj göndermesine izin verin"
+
+msgid "Are you sure that you want to delete the submission?"
+msgstr "Bu gönderimi silmek istediğinize emin misiniz?"
+
+msgid ""
+"Everything related to the submission stored on the platform will be deleted."
+msgstr ""
+
+msgid ""
+"Please be aware that everything stored off the platform, e.g. files you have"
+" saved on your computer, must be deleted manually."
+msgstr ""
+
+msgid "Are you sure that you want to delete all the selected submissions?"
+msgstr "Seçilen tüm gönderimleri silmek istediğinize emin misiniz?"
+
+msgid ""
+"Please make sure that all related data is properly deleted so that the "
+"recipients won't be able to further access to it."
+msgstr "Lütfen tüm ilişkili verinin düzgün şekilde silindiğinden ve hiçbir alıcının artık erişemeyeceğinden emin olun."
+
+msgid "Please write a motivation for the reply"
+msgstr "Lütfen bu yanıt için niyetinizi belirtin"
+
+msgid "Are you sure that you want to postpone the submission expiration date?"
+msgstr "Gönderimin geçerlilik tarihini ertelemek istediğinize emin misiniz?"
+
+msgid "By confirming, you will postpone the expiration date to:"
+msgstr "Onaylayarak, gönderinin geçerlilik tarihini şu tarihe erteleyeceksiniz:"
+
+msgid ""
+"Are you sure that you want to postpone the expiration date for all selected "
+"submissions?"
+msgstr "Seçilen tüm gönderimlerin geçerlilik tarihlerini ertelemek istediğinize emin misiniz?"
+
+msgid "Questionnaire answers"
+msgstr "Anket cevapları"
+
+msgid "Step"
+msgstr "Adım"
+
+msgid "Recipient list"
+msgstr "Alıcı listesi"
+
+msgid "Attached files for the whistleblower"
+msgstr ""
+
+msgid ""
+"Files uploaded here are made available for the whistleblower and other "
+"recipients to download."
+msgstr ""
+
+msgid "Upload a file:"
+msgstr "Bir dosya yükle:"
+
+msgid "Logout"
+msgstr "Çıkış yap"
+
+msgid "The key code is either invalid or the submission has expired."
+msgstr "Anahtar kod geçersiz veya gönderimin süresi dolmuş."
+
+msgid "Please check your key code and try again or make a new submission."
+msgstr "Lütfen anahtar kodunuzu kontrol edip tekrar deneyin veya yeni bir gönderimde bulunun."
+
+msgid "Files attached by recipients"
+msgstr ""
+
+msgid "These files have been attached to your submission by the recipients."
+msgstr ""
+
+msgid "Enable submission notification"
+msgstr "Gönderim bildirimlerini etkinleştir"
+
+msgid "Current Password"
+msgstr "Mevcut Şifre"
+
+msgid "Old password confirmation required"
+msgstr "Eski parola doğrulaması gerekli"
+
+msgid "The new password must be different from the current one."
+msgstr "Yeni parola, geçerli paroladan farklı olmalıdır."
+
+msgid "Type your new password again"
+msgstr "Yeni şifrenizi tekrar girin"
+
+msgid "The two passwords do not match"
+msgstr "İki parola eşleşmiyor"
+
+msgid "Thank you!"
+msgstr "Teşekkürler!"
+
+msgid "Remember your key code for this submission."
+msgstr "Bu gönderim için anahtar kodunuzu unutmayın."
+
+msgid "We will try to get back to you as soon as possible!"
+msgstr "Size en yakın zamanda geri dönmeye çalışacağız!"
+
+msgid ""
+"Use the 16 digit key code to log in. It will allow you to view any messages "
+"we sent you, and also to add extra info."
+msgstr "Giriş için 16 haneli anahtar kodunuzu kullanın. Bu sayede size göndereceğimiz mesajları görebilir, ayrıca ekstra bilgi ve belge ekleyebilirsiniz."
+
+msgid "View your submission"
+msgstr "Gönderiminizi görüntüleyin"
+
+msgid "Hint: How to hide your key code"
+msgstr "İpucu: Anahtar kodunuzu nasıl saklamalı"
+
+msgid ""
+"A useful way to hide your key code is to write it down like a credit card "
+"number, i.e. by also including an expiration date."
+msgstr "Anahtar kodunuzu saklamanın en kullanışlı yolu son geçerlilik tarihini de içeren kredi kartı görünümünde not etmektir."
+
+msgid "Example:"
+msgstr "Örnek:"
+
+msgid ""
+"You have not set up your encryption key, so the files will not be encrypted "
+"prior to being stored on the server."
+msgstr "Şifreleme anahtarınızı yapılandırmadınız, bu yüzden dosyalar sunucuya yüklenmeden önce şifrelenmeyecek."
+
+msgid ""
+"This may lead to unintended access to the files by the server administrator "
+"or others in case the server is compromised."
+msgstr "Bu, sunucu risk altında olduğunda sunucu yöneticisi veya diğerleri tarafından dosyalara istenmedik erişime sebep olabilir."
+
+msgid "Please configure your PGP keys in the recipient preferences page."
+msgstr "Lütfen alıcı tercihleri sayfasında PGP anahtarlarınızı yapılandırın."
+
+msgid ""
+"One or more of the recipients of this submission has not configured a PGP "
+"key."
+msgstr "Bu gönderinin alıcılarından biri veya birkaçı bir PGP anahtarı yapılandırmamış."
+
+msgid ""
+"This means that the submitted files will be stored in plaintext on the "
+"server."
+msgstr "Bu gönderilen dosyaların sunucuda düz metin olarak saklanacağı anlamına gelmektedir."
+
+msgid ""
+"Access to the whistleblower's identity has been requested to the custodian."
+msgstr "Koruyucu, ihbarcının kimliğine erişim talep etti"
+
+msgid "Date of the request"
+msgstr "Talep tarihi"
+
+msgid "Congratulations!"
+msgstr "Tebrikler!"
+
+msgid "You have completed the platform activation."
+msgstr ""
+
+msgid "Your whistleblowing platform is now accessible at:"
+msgstr ""
+
+msgid "Users' credentials:"
+msgstr ""
+
+msgid "To log in, visit:"
+msgstr ""
+
+msgid "For the user documentation visit:"
+msgstr ""
+
+msgid "The platform will be automatically deleted on:"
+msgstr ""
+
+msgid "Sign up"
+msgstr "Kayıt ol"
+
+msgid "Domain"
+msgstr "Alan Adı"
+
+msgid "Use Case"
+msgstr ""
+
+msgid "Anticorruption"
+msgstr ""
+
+msgid "Corporate compliance"
+msgstr ""
+
+msgid "Investigative journalism"
+msgstr ""
+
+msgid "Civic activism"
+msgstr ""
+
+msgid "Other"
+msgstr "Diğer"
+
+msgid "Complete"
+msgstr ""
+
+msgid "Your whistleblowing platform is almost ready!"
+msgstr ""
+
+msgid "Check your inbox to activate your account."
+msgstr ""
+
+msgid "The answer is too short."
+msgstr ""
+
+msgid "The specified input is not valid:"
+msgstr "Belirtilen girdi geçerli değil:"
+
+msgid "please enter a valid email address."
+msgstr "lütfen geçerli bir e-posta adresi girin."
+
+msgid "please enter numbers only."
+msgstr "Lütfen yalnızca sayı girin."
+
+msgid "Recipient selection"
+msgstr "Alıcı seçimi"
+
+msgid "previous step"
+msgstr "Önceki Adım"
+
+msgid "next step"
+msgstr "Sonraki Adım"
+
+msgid "Submit"
+msgstr "Gönder"
+
+msgid "Recipients selected:"
+msgstr "Seçilen alıcılar:"
+
+msgid ""
+"In this step the answers to the following questions are either missing or "
+"invalid:"
+msgstr ""
+
+msgid "Submission errors"
+msgstr ""
+
+msgid "You must select at least one recipient."
+msgstr ""
+
+msgid "Waiting for the file(s) to finish uploading."
+msgstr ""
+
+msgid "The following steps have errors:"
+msgstr ""
+
+msgid "Welcome!"
+msgstr "Hoş Geldiniz!"
+
+msgid ""
+"The following step-by-step procedure will guide you through creating your "
+"whistleblowing platform."
+msgstr ""
+
+msgid "Please choose a configuration profile:"
+msgstr ""
+
+msgid ""
+"These profiles contain settings used by successful projects in each "
+"respective field."
+msgstr ""
+
+msgid "Confirm password"
+msgstr "Parolayı onayla"
+
+msgid "The default username is:"
+msgstr ""
+
+msgid "License Agreement"
+msgstr ""
+
+msgid "Please review the license terms before proceeding."
+msgstr ""
+
+msgid "I have read and agree to the terms of the License Agreement."
+msgstr ""
+
+msgid "You have completed the platform wizard."
+msgstr "Platform sihirbazını tamamladınız."
+
+msgid "Fill out your submission"
+msgstr "Gönderiminizi doldurun"
+
+msgid "Short title"
+msgstr "Kısa başlık"
+
+msgid "Describe your submission in a few words."
+msgstr "Gönderiminizi birkaç kelime ile tanımlayın"
+
+msgid "Full description"
+msgstr "Tam açıklama"
+
+msgid "Describe your submission in detail."
+msgstr "Gönderiminizi detaylı bir şekilde tanımlayınız"
+
+msgid "Attach files relevant to the submission."
+msgstr "Gönderiminizle ilgili dosyaları ekleyin"
+
+msgid "Dear {RecipientName},"
+msgstr "Sayın {RecipientName},"
+
+msgid "Kind regards,"
+msgstr "Saygılarımızla,"
+
+msgid ""
+"The number of activities recently detected appears to be higher than usual."
+msgstr "Son zamanlarda tespit edilen etkinliklerin sayısı normalden yüksek gibi görünüyor."
+
+msgid ""
+"This could be a sign of an attack (for example, someone flooding your server"
+" with bogus information) or just a usage spike due to an increased "
+"visibility of your project."
+msgstr "Bu, bir sistem saldırısının (örneğin, biri sunucunuzu sahte bilgilerle dolduruyor) veya projenizin tanınırlığının artması sebebiyle kullanımda oluşan ani yükselişin göstergesi olabilir."
+
+msgid "Examine the issue to determine whether it is legitimate or not."
+msgstr ""
+
+msgid "The activities with unusual stats are:"
+msgstr "Alışılmadık istatistik içeren etkinlikler şunlar:"
+
+msgid ""
+"The server cannot guarantee that a new submission can be stored, so "
+"submissions have been disabled."
+msgstr "Sunucu, yeni gönderinin depolanabileceğini garanti edemeyeceğinden gönderiler devre dışı bırakıldı."
+
+msgid ""
+"Please consider asking your technical support to create more disk space on "
+"the server."
+msgstr ""
+
+msgid ""
+"GlobaLeaks technology includes a server status checking component which will"
+" alert you in case something requires your attention."
+msgstr "GlobaLeaks teknolojisi, dikkat etmeniz gereken bir durum olduğunda sizi uyaracak sunucu durum denetim bileşenlerini içerir."
+
+msgid ""
+"For more information, log in to the Administration interface and look at the"
+" \"System Stats\" and \"Anomalies\" sections."
+msgstr "Daha fazla bilgi için Yönetici olarak giriş yaptıktan sonra \"Sistem İstatistikleri\" ve \"Anormallikler\" bölümüne gidin."
+
+msgid "Anomaly detected in {NodeName}"
+msgstr "{NodeName} içinde anormallik tespit edildi"
+
+msgid ""
+"This is an email to inform you that the PGP key of the following users is "
+"going to expire or has already expired:"
+msgstr "Bu e-posta kullanım süreleri sona ermiş veya sona ermek üzere olan PGP anahtarlarına sahip kullanıcıları bildirmek için:"
+
+msgid ""
+"Without a valid PGP key, the system will not be able to send them encrypted "
+"notifications."
+msgstr "Geçerli bir PGP anahtarı olmadan sistem onlara şifreli bildirimleri gönderemeyecek."
+
+msgid "PGP key expiration alert"
+msgstr "PGP Anahtarı Geçerlilik Tarihi Uyarısı"
+
+msgid ""
+"This is a test email sent out from the platform's administrative interface."
+msgstr ""
+
+msgid ""
+"Reception of this email indicates that the server was able to authenticate "
+"to and interact with the SMTP mail server."
+msgstr ""
+
+msgid "Test email"
+msgstr "Test e-postası"
+
+msgid ""
+"This is an email to notify you of a new comment on an existing submission."
+msgstr "Bu email, mevcut bir başvuru hakkındaki yeni bir yorumdan sizi haberdar ediyor. "
+
+msgid "The submission can be accessed:"
+msgstr "Gönderime şuradan erişilebilir:"
+
+msgid "via Tor at: {TorUrl}"
+msgstr "Tor üzerinden: {TorUrl}"
+
+msgid "via HTTPS at: {HTTPSUrl}"
+msgstr "HTTPS üzerinden at: {HTTPSUrl}"
+
+msgid "New comment"
+msgstr "Yeni yorum"
+
+msgid "From: {RecipientName}"
+msgstr "Gönderen: {RecipientName}"
+
+msgid "Date: {EventTime}"
+msgstr "Tarih: {EventTime}"
+
+msgid "From: Whistleblower"
+msgstr "Gönderen: İhbarcı"
+
+msgid "Date: {SubmissionDate}"
+msgstr "Tarih: {SubmissionDate}"
+
+msgid "Label: {TipLabel}"
+msgstr "Etiket: {TipLabel}"
+
+msgid "Context: {ContextName}"
+msgstr "Kategori: {ContextName}"
+
+msgid ""
+"This is an email to notify you that the whistleblower of submission {TipNum}"
+" has attached new material."
+msgstr "Bu e-posta, {TipNum} sayılı gönderime ihbarcının yeni dosya eklediğini bildirmek için gönderilmiştir."
+
+msgid "New attachment"
+msgstr "Yeni ek"
+
+msgid ""
+"The HTTPS certificate loaded on the platform is about to, or has already "
+"expired."
+msgstr ""
+
+msgid "Expiration date: {ExpirationDate}"
+msgstr "Geçerlilik Tarihi: {ExpirationDate}"
+
+msgid ""
+"Without a valid certificate, the platform will be accessible in a secure way"
+" only via Tor."
+msgstr ""
+
+msgid "Log in to solve the issue."
+msgstr ""
+
+msgid "Expiration alert for HTTPS certificate"
+msgstr ""
+
+msgid ""
+"This is an email to notify you that a custodian has authorized you to access"
+" to the whistleblowing identity for the submission {TipNum}."
+msgstr ""
+
+msgid "Access to whistleblower's identity authorized"
+msgstr "İhbarcının kimliğine erişime izin verildi"
+
+msgid ""
+"This is an email to notify you that a custodian has denied you access to the"
+" wistleblowing identity for the submission {TipNum}."
+msgstr "Bu e-posta, bir koruyucunun size {TipNum} sayılı gönderimin muhbirinin kimliğine erişim yetkisini reddettiğini bildirmek için gönderildi."
+
+msgid "Access to whistleblower's identity denied"
+msgstr "İhbarcının kimliğine erişim yetkisi reddedildi"
+
+msgid ""
+"This is an email to notify you that a recipient has requested access to the "
+"whistleblower's identity for the submission {TipNum}"
+msgstr "Bu e-posta, bir alıcının {TipNum} sayılı gönderimin ihbarcının kimliğine erişim yetkisi istediğini bildirmek için gönderildi."
+
+msgid "The request can be accessed:"
+msgstr "Talebe şuradan erişilebilir:"
+
+msgid "New request of access to a whistleblower's identity"
+msgstr "İhbarcının kimliğine yeni erişim talebi"
+
+msgid ""
+"This is an email to notify you that the whistleblower for the submission "
+"{TipNum} has provided their identity."
+msgstr "Bu e-posta, {TipNum} sayılı gönderimin ihbarcının kimliğini açıkladığını bildirmek için gönderildi."
+
+msgid "The whistleblower has provided their identity"
+msgstr "İhbarcı kimliğini açıkladı"
+
+msgid ""
+"This is an email to notify you of a new message on an existing submission."
+msgstr "Bu e-posta, mevcut bir başvuru hakkında yeni bir mesajdan sizi haberdar ediyor. "
+
+msgid "New message"
+msgstr "Yeni mesaj"
+
+msgid ""
+"This is an email to inform you that your PGP key is expiring or has already "
+"expired."
+msgstr "Bu e-posta size PGP anahtarınızın süresinin yakında sona ereceğini ya da ermiş olduğunu bildirmek için gönderildi. "
+
+msgid ""
+"You should extend its validity and update the key present on the platform, "
+"or upload a new key."
+msgstr ""
+
+msgid ""
+"Without a valid PGP key, the system won't be able to encrypt data provided "
+"to you."
+msgstr "Geçerli bir PGP anahtarı olmadan, sistem size sağlanan veriyi şifreleyemeyecektir."
+
+msgid "It appears that {NodeName} is receiving a large number of requests."
+msgstr "{NodeName} çok sayıda istek alıyor gibi görünüyor."
+
+msgid ""
+"To prevent sending you too many emails, the system has disabled email "
+"notifications until the load returns to normal. In the meantime, you can "
+"normally log onto the platform and manually check for new submissions."
+msgstr "Çok fazla e-posta almanızı engellemek için, doluluk durumu normale düşünceye kadar e-posta bildirimleri devre dışı bırakıldı. Bu sırada platforma normalde olduğu gibi oturum açabilir ve yeni gönderileri elle denetleyebilirsiniz."
+
+msgid ""
+"If you don’t mind and would rather receive such a large number of email "
+"notifications anyhow, please contact your technical support to have them "
+"modify this setting accordingly."
+msgstr "Yine de çok sayıda e-posta almak sizin için sorun olmayacaksa, bu ayarı ilgili şekilde değiştirmeleri için teknik desteğiniz ile iletişime geçin."
+
+msgid "Notifications from {NodeName} have been temporarily suspended"
+msgstr "{NodeName} sunucusundan bildirimler geçici olarak askıya alındı"
+
+msgid "Click the link to activate the platform:"
+msgstr ""
+
+msgid "A software update is available."
+msgstr ""
+
+msgid "It is good security practice to keep the platform up to date."
+msgstr ""
+
+msgid "Installed version: {InstalledVersion}"
+msgstr ""
+
+msgid "Latest version: {LatestVersion}"
+msgstr ""
+
+msgid ""
+"To learn about new features and bug fixes in the new version consult the "
+"change log at: {ChangeLogUrl}"
+msgstr ""
+
+msgid ""
+"For instructions on software updates, please refer to the documentation at: "
+"{UpdateGuideUrl}"
+msgstr ""
+
+msgid "The earliest expiration date is {EarliestExpirationDate}."
+msgstr ""
+
+msgid "Please remember to check them before they are deleted."
+msgstr ""
+
+msgid "Some submissions will expire soon"
+msgstr ""
+
+msgid ""
+"This is an email to notify you that a whistleblower has selected you as a "
+"valuable recipient of their submission."
+msgstr ""
+
+msgid ""
+"You are asked to pay special attention to the information and material "
+"contained therein. Please keep in mind that whistleblowers often expose "
+"themselves to high personal risks in the interest of the public. Therefore "
+"the material provided within this submission should be considered to be of "
+"high importance."
+msgstr ""
+
+msgid "New submission"
+msgstr "Yeni gönderim"

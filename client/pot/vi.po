@@ -1,0 +1,2325 @@
+# 
+# Translators:
+# Anh Phan <vietnamesel10n@gmail.com>, 2013
+# Anh Phan <vietnamesel10n@gmail.com>, 2013-2014
+# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2014,2016-2018
+# Hermes Center <info@hermescenter.org>, 2013
+# Hermes Center <info@hermescenter.org>, 2013
+# Hermes Center <info@hermescenter.org>, 2013
+# Anh Phan <vietnamesel10n@gmail.com>, 2013
+# Anh Phan <vietnamesel10n@gmail.com>, 2013
+msgid ""
+msgstr ""
+"Project-Id-Version: GlobaLeaks\n"
+"PO-Revision-Date: 2018-02-22 09:30+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"Language-Team: Vietnamese (http://www.transifex.com/otf/globaleaks/language/vi/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: vi\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "Login page"
+msgstr "Trang đăng nhập"
+
+msgid "Log in"
+msgstr "Đăng nhập"
+
+msgid "Administration interface"
+msgstr "giao diện quản trị"
+
+msgid "Main configuration"
+msgstr "cấu hình chính"
+
+msgid "Theme customization"
+msgstr "tùy biến theme"
+
+msgid "Languages"
+msgstr ""
+
+msgid "Text customization"
+msgstr ""
+
+msgid "Advanced settings"
+msgstr "Thiết lập nâng cao"
+
+msgid "Questionnaire configuration"
+msgstr "cấu hình câu hỏi"
+
+msgid "Question templates"
+msgstr "mẫu câu hỏi"
+
+msgid "Questionnaires"
+msgstr "Bảng câu hỏi"
+
+msgid "Add new questionnaire"
+msgstr "Thêm câu hỏi mới"
+
+msgid "Home"
+msgstr ""
+
+msgid "Home page"
+msgstr ""
+
+msgid "Changelog"
+msgstr "Ký sự thay đổi"
+
+msgid "License"
+msgstr ""
+
+msgid "Notification templates"
+msgstr "Mẫu thông báo"
+
+msgid "Recipient notification templates"
+msgstr "mẫu thông báo người nhận"
+
+msgid "Admin notification templates"
+msgstr "mẫu thông báo quản trị"
+
+msgid "Missing data"
+msgstr "Dữ liệu bị mất"
+
+msgid "no stats available for the future."
+msgstr "không có số liệu thống kê có sẵn cho tương lai."
+
+msgid "no stats available for this hour."
+msgstr "không có số liệu thống kê có sẵn cho giờ này."
+
+msgid "no stats available for current hour; check activities page."
+msgstr "không có số liệu thống kê có sẵn cho giờ hiện hành; kiểm tra trang hoạt động."
+
+msgid "Delete"
+msgstr "Xóa"
+
+msgid "Anomalies"
+msgstr "dị thường"
+
+msgid "Preferences"
+msgstr "Tùy biến"
+
+msgid "Recipient interface"
+msgstr "giao diện người nhận"
+
+msgid "Notification settings"
+msgstr "Thiết lập thông báo"
+
+msgid "This recipient has configured the encryption key."
+msgstr "nhận này được cấu hình khóa mã hóa."
+
+msgid "This recipient has not configured the encryption key."
+msgstr "nhận này chưa thay đổi khóa mã hóa."
+
+msgid "The file is unavailable due to an internal error."
+msgstr "Các tập tin là không có sẵn do lỗi nội bộ."
+
+msgid "file unavailable"
+msgstr "nộp không có sẵn"
+
+msgid "Creation date"
+msgstr "Ngày thành lập"
+
+msgid "Expiration date"
+msgstr "Ngày hết hạn"
+
+msgid "Last Access"
+msgstr "Lần truy cập cuối cùng"
+
+msgid "Files"
+msgstr "Tập tin"
+
+msgid "Comments"
+msgstr "Bình luận"
+
+msgid "Messages"
+msgstr "Tin nhắn"
+
+msgid "Select this recipient."
+msgstr "Chọn người nhận này."
+
+msgid "Unselect this recipient."
+msgstr "Bỏ chọn nhận này."
+
+msgid "This recipient cannot be selected."
+msgstr "Người nhận này không thể được lựa chọn."
+
+msgid "This recipient cannot be deselected."
+msgstr "Người nhận này không thể bị hủy bỏ."
+
+msgid "Details"
+msgstr "Chi tiết"
+
+msgid "Platform wizard"
+msgstr "Wizard nền tảng"
+
+msgid "Step-by-step setup"
+msgstr "Step-by-bước thiết lập"
+
+msgid "CREDIT CARD"
+msgstr "THẺ TÍN DỤNG"
+
+msgid "YOUR NAME"
+msgstr "TÊN CỦA BẠN"
+
+msgid "Postpone the expiration date"
+msgstr "Hoãn ngày hết hạn"
+
+msgid "Select all"
+msgstr "Chọn tất cả"
+
+msgid "Deselect all"
+msgstr "Bỏ chọn tất cả"
+
+msgid "Refresh page"
+msgstr "Làm mới trang"
+
+msgid "Context"
+msgstr "Nội dung"
+
+msgid "Submission date"
+msgstr "Ngày đệ trình"
+
+msgid "Private messages"
+msgstr "Tin nhắn riêng tư"
+
+msgid "Preview"
+msgstr "Xem sơ lược"
+
+msgid "Move up"
+msgstr "Đi lên"
+
+msgid "Move down"
+msgstr "Đi xuống"
+
+msgid "Move left"
+msgstr "Di chuyển sang trái"
+
+msgid "Move right"
+msgstr "Đi sang phải"
+
+msgid "Import"
+msgstr "nhập"
+
+msgid "Export"
+msgstr "Xuất khẩu"
+
+msgid "Save all"
+msgstr "Lưu tất cả"
+
+msgid "This field is mandatory"
+msgstr "Lĩnh vực này là bắt buộc"
+
+msgid ""
+"The connection used to send this submission has been secured with HTTPS "
+"ensuring confidentiality."
+msgstr "Các kết nối được sử dụng để gửi trình này đã được bảo vệ bằng HTTPS đảm bảo bí mật."
+
+msgid ""
+"The connection used to send this submission has been secured with Tor "
+"ensuring confidentiality and anonymity."
+msgstr ""
+
+msgid "vertical"
+msgstr "theo chiều dọc"
+
+msgid "horizontal"
+msgstr "chiều ngang"
+
+msgid "Number"
+msgstr "Số"
+
+msgid "Email"
+msgstr "Email"
+
+msgid "Date"
+msgstr "Ngày tháng"
+
+msgid "Regular expression validator"
+msgstr "validator biểu hiện thường xuyên"
+
+msgid "Minimum number of input characters"
+msgstr "số ký tự tối thiểu đầu vào"
+
+msgid "Maximum number of input characters"
+msgstr "số ký tự tối đa đầu vào"
+
+msgid "Earliest selectable date"
+msgstr "ngày lựa chọn sớm nhất"
+
+msgid "Latest selectable date"
+msgstr "ngày lựa chọn mới nhất"
+
+msgid "0 = auto"
+msgstr "0 = auto"
+
+msgid "-1 = unlimited"
+msgstr "-1 = Không giới hạn"
+
+msgid "True"
+msgstr "Thật"
+
+msgid "False"
+msgstr "Sai"
+
+msgid "Yes"
+msgstr "Vâng"
+
+msgid "No"
+msgstr "Không"
+
+msgid "Attachment"
+msgstr "Tập tin đính kèm"
+
+msgid "Attachments"
+msgstr "File đính kèm"
+
+msgid "Change your password"
+msgstr "Thay đổi mật khẩu của bạn"
+
+msgid "First name"
+msgstr "Họ"
+
+msgid "Last name"
+msgstr "tên họ"
+
+msgid "GENDER_OTHER"
+msgstr "GENDER_OTHER"
+
+msgid "Male"
+msgstr "Nam giới"
+
+msgid "Female"
+msgstr "Phái nữ"
+
+msgid "Date of birth"
+msgstr "Ngày sinh"
+
+msgid "Place of birth"
+msgstr "Nơi sinh"
+
+msgid "Social security number"
+msgstr "số an sinh xã hội"
+
+msgid "Residence"
+msgstr "Nơi cư trú"
+
+msgid "Address"
+msgstr "Địa chỉ nhà"
+
+msgid "Zip code / Postal code"
+msgstr "Zip code / Mã bưu chính"
+
+msgid "City"
+msgstr "thành phố"
+
+msgid "State"
+msgstr "Tiểu bang"
+
+msgid "Region"
+msgstr "Khu"
+
+msgid "Province"
+msgstr "Địa bàn tỉnh"
+
+msgid "Country"
+msgstr "Quốc gia"
+
+msgid "Phone number"
+msgstr "Số điện thoại"
+
+msgid "Current job title"
+msgstr "Chức vụ hiện nay"
+
+msgid "Current job responsibility (role)"
+msgstr "Hiện trách nhiệm công việc (vai trò)"
+
+msgid "Current organization unit and job location"
+msgstr "đơn vị tổ chức hiện tại và vị trí công việc"
+
+msgid "Job title at the time of the reported fact"
+msgstr "Vị trí công việc tại thời điểm thực tế báo cáo"
+
+msgid "Job responsibility (role) at the time of the reported fact"
+msgstr "trách nhiệm công việc (vai trò) tại thời điểm báo cáo thực tế"
+
+msgid "Organization unit and job location at the time of the reported fact"
+msgstr "đơn vị tổ chức và vị trí công việc tại thời điểm thực tế báo cáo"
+
+msgid "List of submissions"
+msgstr "Danh sách bài nộp"
+
+msgid "List of access requests to whistleblowers' identities"
+msgstr "Danh sách các yêu cầu truy cập đến sắc tố '"
+
+msgid "User"
+msgstr "Người dùng"
+
+msgid "Motivation"
+msgstr "Động lực"
+
+msgid "Status"
+msgstr "Trạng thái"
+
+msgid "Request motivation"
+msgstr "Yêu cầu động lực"
+
+msgid "Reply motivation"
+msgstr "trả lời động lực"
+
+msgid "Request status"
+msgstr "tình trạng yêu cầu"
+
+msgid "Custodian"
+msgstr "người bảo quản"
+
+msgid "Custodian of the identities"
+msgstr "Giám sát của bản sắc"
+
+msgid "Identity"
+msgstr "Danh tính"
+
+msgid "Available"
+msgstr "có sẵn"
+
+msgid "Not available"
+msgstr "Không thể"
+
+msgid "Access requested"
+msgstr "yêu cầu truy cập"
+
+msgid "Request access to the whistleblower's identity"
+msgstr "Yêu cầu truy cập đến danh tính của người tố giác"
+
+msgid "Please write a motivation"
+msgstr "Hãy viết một động lực"
+
+msgid "Reply to the request"
+msgstr "Trả lời yêu cầu"
+
+msgid "Authorized"
+msgstr "Ủy quyền"
+
+msgid "Denied"
+msgstr "Bị từ chối"
+
+msgid "Waiting for authorization"
+msgstr "Đang chờ cấp phép"
+
+msgid "New request"
+msgstr "yêu cầu mới"
+
+msgid "Authorize"
+msgstr "ủy quyền"
+
+msgid "Deny"
+msgstr "từ chối"
+
+msgid "Deny access to the whistleblower's identity"
+msgstr "Từ chối truy cập đến danh tính của người tố giác"
+
+msgid "Authorize access to the whistleblower's identity"
+msgstr "Phép truy cập đến danh tính của người tố giác"
+
+msgid "Templates"
+msgstr "Templates"
+
+msgid "Notification of new submission"
+msgstr "Thông báo về việc nộp hồ sơ mới"
+
+msgid "Notification of new comment"
+msgstr "Thông báo về việc bình luận mới"
+
+msgid "Notification of new message"
+msgstr "Thông báo về tin nhắn mới"
+
+msgid "Notification of new file attachment"
+msgstr "Thông báo về việc đính kèm tập tin mới"
+
+msgid "Notification of PGP key expiration"
+msgstr "Thông báo của PGP hết hạn chính"
+
+msgid "Notification of anomaly"
+msgstr "Thông báo về sự bất thường"
+
+msgid "Template for summary of contents in submission archive"
+msgstr "Mẫu tóm tắt các nội dung lưu trữ trong trình"
+
+msgid "Email subject"
+msgstr "Tiêu đề email"
+
+msgid "Email body"
+msgstr "Nội dung email"
+
+msgid "in seconds"
+msgstr "trong vài giây"
+
+msgid "in hours"
+msgstr "trong giờ"
+
+msgid "in days"
+msgstr "trong ngày"
+
+msgid "in characters"
+msgstr "trong ký tự"
+
+msgid "in megabytes"
+msgstr "bằng megabyte"
+
+msgid "in percentage"
+msgstr "tỷ lệ phần trăm"
+
+msgid "HTTPS settings"
+msgstr "cài đặt HTTPS"
+
+msgid "Anomaly detection thresholds"
+msgstr "Ngưỡng phát hiện bất thường"
+
+msgid "High risk"
+msgstr "Rủi ro cao"
+
+msgid "Medium risk"
+msgstr "rủi ro trung bình"
+
+msgid "Low risk"
+msgstr "Nguy cơ thấp"
+
+msgid "Available disk space"
+msgstr "không gian đĩa có sẵn"
+
+msgid "Last update"
+msgstr "Cập nhật cuối cùng"
+
+msgid "Custodian notification templates"
+msgstr "Giám sát các mẫu thông báo"
+
+msgid ""
+"This interface allows configuring email templates used to notify custodians."
+msgstr "Giao diện này cho phép cấu hình các mẫu email được sử dụng để thông báo cho người chăm sóc."
+
+msgid "Disable notifications to administrators"
+msgstr "Vô hiệu hóa các thông báo cho người quản trị"
+
+msgid "Disable notifications to custodians"
+msgstr "Vô hiệu hoá thông báo tới người quản"
+
+msgid "Disable notifications to recipients"
+msgstr "Vô hiệu hoá thông báo đến người nhận"
+
+msgid "Score"
+msgstr "Ghi bàn"
+
+msgid "Trigger question"
+msgstr "câu hỏi kích hoạt"
+
+msgid "Triggered by a score higher than:"
+msgstr "Kích hoạt bởi một số điểm cao hơn:"
+
+msgid "Select the question to be triggered when this option is selected"
+msgstr "Chọn câu hỏi để được kích hoạt khi tùy chọn này được chọn"
+
+msgid "Message shown on top of the status page of the submission"
+msgstr "Tin nhắn hiển thị trên đầu trang trạng thái của các trình"
+
+msgid "Copy and paste the PGP public key here"
+msgstr "Sao chép và dán PGP khóa công khai ở đây"
+
+msgid "Password strength:"
+msgstr "Mật khẩu mạnh:"
+
+msgid "Weak"
+msgstr "Yếu"
+
+msgid "Acceptable"
+msgstr "Chấp nhận được"
+
+msgid "Strong"
+msgstr "Mạnh"
+
+msgid "Loading…"
+msgstr "Tải…"
+
+msgid "Text shown on top of the interface for selecting contexts"
+msgstr "Văn bản hiển thị trên đầu trang của giao diện để lựa chọn bối cảnh"
+
+msgid "Show small context cards on submission interface"
+msgstr "Hiện thẻ bối cảnh nhỏ trên giao diện trình"
+
+msgid "Type of context selector:"
+msgstr "Loại chọn bối cảnh:"
+
+msgid "Type to search…"
+msgstr ""
+
+msgid "Silence email notifications"
+msgstr ""
+
+msgid "Turn on email notifications"
+msgstr ""
+
+msgid "Enter an email address for the administrator"
+msgstr ""
+
+msgid "Enter a password for the administrator"
+msgstr ""
+
+msgid "Test configuration"
+msgstr ""
+
+msgid "Failed logins"
+msgstr "đăng nhập không thành"
+
+msgid "Successful logins"
+msgstr "đăng nhập thành công"
+
+msgid "Started submissions"
+msgstr "đệ trình bắt đầu"
+
+msgid "Completed submissions"
+msgstr "đệ trình hoàn thành"
+
+msgid "Failed submissions"
+msgstr ""
+
+msgid "Input validation"
+msgstr ""
+
+msgid "Email address"
+msgstr "Địa chỉ email"
+
+msgid "Custom"
+msgstr ""
+
+msgid "None"
+msgstr ""
+
+msgid "Regular expression"
+msgstr ""
+
+msgid "Label the submission"
+msgstr ""
+
+msgid "Activate"
+msgstr ""
+
+msgid "Search"
+msgstr ""
+
+msgid ""
+"This custom text is no longer displayed on the platform. The original text "
+"has either changed or been removed."
+msgstr ""
+
+msgid ""
+"Unless the whistleblower checks the submission by this time, their access to"
+" it will expire."
+msgstr ""
+
+msgid "The whistleblower can no longer access the submission"
+msgstr ""
+
+msgid "Warning!"
+msgstr "Cảnh báo!"
+
+msgid "You are running an unsupported and potentially vulnerable browser."
+msgstr ""
+
+msgid "You are strongly advised to download and install the Tor Browser."
+msgstr ""
+
+msgid ""
+"The Tor Browser includes various privacy and security enhancements not "
+"present in other browsers."
+msgstr "Tor trình duyệt bao gồm các quyền riêng tư khác nhau và tăng cường an ninh không có mặt trong các trình duyệt khác."
+
+msgid "Download the Tor Browser"
+msgstr "Tải về các trình duyệt Tor"
+
+msgid "This is the list of the other supported browsers:"
+msgstr ""
+
+msgid "System overview"
+msgstr ""
+
+msgid "Stats"
+msgstr ""
+
+msgid "Activities"
+msgstr ""
+
+msgid "Submissions"
+msgstr "Bài nộp"
+
+msgid "Users"
+msgstr "Người dùng"
+
+msgid "From"
+msgstr ""
+
+msgid "Number of downloads"
+msgstr ""
+
+msgid "Error with file:"
+msgstr ""
+
+msgid "File size not accepted."
+msgstr ""
+
+msgid "File type not accepted."
+msgstr ""
+
+msgid "Maximum file size is:"
+msgstr ""
+
+msgid "Accepted file types are:"
+msgstr ""
+
+msgid "Scheduled jobs"
+msgstr ""
+
+msgid "Sites management"
+msgstr ""
+
+msgid "Regenerate"
+msgstr ""
+
+msgid "Display options alphabetically"
+msgstr ""
+
+msgid "Enable email notifications for:"
+msgstr ""
+
+msgid "Software updates"
+msgstr ""
+
+msgid "Software problems"
+msgstr ""
+
+msgid "Disable"
+msgstr "Tắt"
+
+msgid "Remove"
+msgstr "Bỏ"
+
+msgid "Use as default"
+msgstr ""
+
+msgid "Create your whistleblowing platform"
+msgstr ""
+
+msgid "Select the context of your submission:"
+msgstr "Chọn ngữ cảnh của trình của bạn:"
+
+msgid "Warning! You are not anonymous."
+msgstr "Cảnh báo! Bạn không phải là vô danh."
+
+msgid ""
+"Sending submissions over HTTPS exposes the act of doing so, but not the "
+"content.\\n\\nAlso, hiding the fact that you are submitting something makes "
+"the submission anonymous, which is strongly recommended.\\n\\nThis can be "
+"achieved with the use of the Tor Browser, providing anonymisation not found "
+"in other browsers like Internet Explorer, Firefox, Chrome, Opera etc."
+msgstr ""
+
+msgid "Are you a whistleblower?"
+msgstr "Bạn có phải là người tố giác?"
+
+msgid "Blow the whistle"
+msgstr "Huyt sao"
+
+msgid "Have you already filed a submission? Enter your key code."
+msgstr "bạn đã nộp một bài gửi? Nhập mã khóa của bạn."
+
+msgid "Your submission was successful."
+msgstr "trình của bạn đã thành công."
+
+msgid "Submission status"
+msgstr ""
+
+msgid "Disable submissions"
+msgstr "Vô hiệu hóa đệ trình"
+
+msgid "Enable insecure configuration without PGP encryption"
+msgstr "Kích hoạt cấu hình không an toàn mà không cần mã hóa PGP"
+
+msgid "Danger"
+msgstr "nguy hiểm"
+
+msgid ""
+"By enabling this option, the system will be storing the submitted files "
+"unencrypted on your server."
+msgstr "Bằng cách cho phép tùy chọn này, hệ thống sẽ được lưu trữ các hồ sơ nộp không được mã hóa trên máy chủ của bạn."
+
+msgid "This happens whenever encryption is unavailable."
+msgstr "Điều này xảy ra bất cứ khi nào mã hóa là không có."
+
+msgid "Disable messages that warn of missing encryption"
+msgstr "Vô hiệu hóa tin nhắn cảnh báo về sự mã hóa mất tích"
+
+msgid ""
+"This setting affects the security of the users and must not be used in "
+"production."
+msgstr "Thiết lập này ảnh hưởng đến sự an toàn của người sử dụng và không được sử dụng trong sản xuất."
+
+msgid "Allow other websites to include the platform inside iframes"
+msgstr "Cho phép các trang web khác để bao gồm nền tảng bên trong iframe"
+
+msgid ""
+"By enabling this option, you are allowing other websites to include the "
+"platform inside iframes; this could potentially be used to endanger the "
+"platform or intercept users' communications"
+msgstr "Bằng cách cho phép tùy chọn này, bạn đang cho phép các trang web khác để bao gồm nền tảng bên trong iframe; này có khả năng có thể được sử dụng để gây nguy hiểm cho truyền thông nền tảng hoặc chặn người dùng '"
+
+msgid "Allow recipients to postpone expiration date of the submission"
+msgstr "Cho phép người nhận để hoãn ngày hết hạn nộp"
+
+msgid "Allow recipients to delete submissions"
+msgstr "Cho phép người nhận để xóa bài nộp"
+
+msgid ""
+"Allow recipients to grant permissions to whistleblowers on specific "
+"submissions"
+msgstr "Cho phép người nhận để cấp quyền cho người tố cáo về đệ trình cụ thể"
+
+msgid "Enable search engines indexing"
+msgstr "Bật công cụ tìm kiếm lập chỉ mục"
+
+msgid "Enabled"
+msgstr "Bật"
+
+msgid "Search engine spiders will be allowed to index the application."
+msgstr "Công cụ tìm kiếm nhện sẽ được phép chỉ số ứng dụng."
+
+msgid "Enable custom privacy panel"
+msgstr "Kích hoạt tính năng bảng điều khiển riêng tư tùy chỉnh"
+
+msgid "Custom privacy panel"
+msgstr "bảng điều khiển riêng tư tùy chỉnh"
+
+msgid "Text shown when the whistleblower is not using Tor"
+msgstr "Văn bản hiển thị khi tố cáo là không sử dụng Tor"
+
+msgid "Disable the privacy panel"
+msgstr "Vô hiệu hóa bảng điều khiển riêng tư"
+
+msgid "Security awareness panel title"
+msgstr "An ninh tiêu đề bảng điều khiển nhận thức"
+
+msgid "Security awareness panel text"
+msgstr "văn bản bảng nhận thức an ninh"
+
+msgid "Disable the security awareness panel questions"
+msgstr "Vô hiệu hoá các câu hỏi bảng điều khiển nhận thức an ninh"
+
+msgid "Disable the security awareness panel"
+msgstr "Vô hiệu hóa bảng điều khiển nhận thức an ninh"
+
+msgid "Disable the key code hint"
+msgstr "Vô hiệu hóa các gợi ý mã chủ chốt"
+
+msgid "Disable the donation panel"
+msgstr "Vô hiệu hóa các bảng tặng"
+
+msgid "Enable CAPTCHA mechanism"
+msgstr "Kích hoạt cơ chế CAPTCHA"
+
+msgid "Enable proof of work mechanism"
+msgstr "Kích hoạt bằng chứng về cơ chế làm việc"
+
+msgid "Enable simplified login for recipients"
+msgstr "Bật đăng nhập đơn giản hóa cho người nhận"
+
+msgid "Amount of days till whistleblower access expires"
+msgstr ""
+
+msgid ""
+"For security reasons the whistleblower access is subject to expiration."
+msgstr ""
+
+msgid "Tweak this setting only if you know what you are doing."
+msgstr ""
+
+msgid "Landing page"
+msgstr "Trang đích"
+
+msgid "Home Page"
+msgstr "Trang chủ"
+
+msgid "Submission Page"
+msgstr "thông tin trang"
+
+msgid "Title of the submission page"
+msgstr "Tiêu đề của trang trình"
+
+msgid "Title of the attachments widget"
+msgstr "Tiêu đề của widget file đính kèm"
+
+msgid "Text of prompt for whistleblowers to log in"
+msgstr ""
+
+msgid "Show contexts in alphabetical order"
+msgstr "Hiện bối cảnh theo thứ tự ABC"
+
+msgid "Title of the receipt page"
+msgstr "Tiêu đề của trang biên nhận"
+
+msgid "Title of the submission status page"
+msgstr "Tiêu đề của trang trạng thái gửi"
+
+msgid "Title of the comments widget"
+msgstr "Tiêu đề của widget comments"
+
+msgid "Title of the messages widget"
+msgstr "Tiêu đề của thông điệp phụ tùng"
+
+msgid "Size limit for file attachments"
+msgstr "Kích thước giới hạn cho tập tin đính kèm"
+
+msgid "Notify administrators of software problems"
+msgstr ""
+
+msgid "Notify developers of software problems"
+msgstr ""
+
+msgid ""
+"By enabling this feature, you will contribute to the development and "
+"security of the platform."
+msgstr ""
+
+msgid "Enable HTTP Basic Authentication to limit platform access"
+msgstr "Enable HTTP Basic Authentication để hạn chế truy cập nền tảng"
+
+msgid "Username"
+msgstr "Người dùng"
+
+msgid "Password"
+msgstr "Mật khẩu"
+
+msgid ""
+"This feature keeps regular people from visiting the platform while it is "
+"still under development and should not be used for security purposes. The "
+"input password is stored in plaintext on the server."
+msgstr "Tính năng này giúp người dân thường xuyên truy cập vào nền tảng này trong khi nó vẫn còn đang phát triển và không nên được sử dụng cho các mục đích an ninh. Việc nhập mật khẩu được lưu trữ trong bản rõ trên máy chủ."
+
+msgid "Enable experimental features"
+msgstr "Kích hoạt tính năng thử nghiệm"
+
+msgid "Warning"
+msgstr "Cảnh báo"
+
+msgid ""
+"The experimental features may be less stable or even not work at all; enable"
+" this option at your own risk. Support for these features may vary and they "
+"may be removed in the future."
+msgstr "Các tính năng thử nghiệm có thể ít ổn định hoặc thậm chí không làm việc ở tất cả; kích hoạt tùy chọn này có nguy cơ của riêng bạn. Hỗ trợ cho các tính năng có thể khác nhau và có thể được loại bỏ trong tương lai."
+
+msgid "Save"
+msgstr "Lưu"
+
+msgid "Short URL"
+msgstr "URL ngắn"
+
+msgid "Long URL"
+msgstr "URL long"
+
+msgid "Add"
+msgstr "Thêm"
+
+msgid "Logo"
+msgstr "Biểu tượng"
+
+msgid "Project name"
+msgstr "Tên dự án"
+
+msgid "Homepage title"
+msgstr "tiêu đề trang chủ"
+
+msgid "Presentation"
+msgstr "Phần trình bày"
+
+msgid "Description"
+msgstr "Mô tả"
+
+msgid "Question to solicit possible whistleblowers"
+msgstr "Câu hỏi để thu hút người tố cáo có thể"
+
+msgid "Whistleblowing button"
+msgstr "nút Whistleblowing"
+
+msgid "Footer"
+msgstr "Phía cuối trang"
+
+msgid "Favicon"
+msgstr ""
+
+msgid "Upload"
+msgstr "Đăng tải"
+
+msgid "Download"
+msgstr "Tải về"
+
+msgid "Upload custom file"
+msgstr "Tải lên tập tin tùy chỉnh"
+
+msgid "The file will be available at URL: /s/$filename"
+msgstr "Các tập tin sẽ có sẵn tại URL: / s / $ filename"
+
+msgid "Language:"
+msgstr ""
+
+msgid "Add custom text"
+msgstr ""
+
+msgid "Custom text"
+msgstr ""
+
+msgid "Custom texts"
+msgstr ""
+
+msgid "Original text"
+msgstr ""
+
+msgid "Original translation"
+msgstr ""
+
+msgid "Custom translation"
+msgstr ""
+
+msgid "Contexts"
+msgstr "Nội dung"
+
+msgid "Name"
+msgstr "Tên"
+
+msgid "Edit"
+msgstr "Chỉnh sửa"
+
+msgid "Cancel"
+msgstr "Hủy bỏ"
+
+msgid "Questionnaire"
+msgstr "Bảng câu hỏi"
+
+msgid "Recipients"
+msgstr "Người nhận"
+
+msgid "Allow selection of this context through the context selector."
+msgstr "Cho phép lựa chọn các bối cảnh này thông qua việc chọn bối cảnh."
+
+msgid ""
+"If disabled, submissions for this context will only be accessible through a "
+"direct link to it."
+msgstr "Nếu vô hiệu hóa, gửi cho bối cảnh này sẽ chỉ có thể truy cập thông qua một liên kết trực tiếp với nó."
+
+msgid "Allow whistleblowers to select their recipients"
+msgstr "Cho phép người tố cáo để chọn người nhận họ"
+
+msgid "Select all recipients by default"
+msgstr "Chọn tất cả người nhận mặc định"
+
+msgid "Maximum number of selectable recipients:"
+msgstr "Số lượng người nhận lựa chọn:"
+
+msgid "(0 = unlimited)"
+msgstr "(0 = không giới hạn)"
+
+msgid "Show recipients in alphabetical order"
+msgstr "Hiện người nhận trong thứ tự chữ cái"
+
+msgid "Show small recipient cards on submission interface"
+msgstr "Hiện thẻ nhận nhỏ về giao diện trình"
+
+msgid "Enable comments"
+msgstr "Cho phép nhận xét"
+
+msgid "Allow whistleblowers to write comments"
+msgstr "Cho phép người tố cáo để bình luận"
+
+msgid "Enable private messages"
+msgstr "Kích hoạt tính năng tin nhắn"
+
+msgid "Allow whistleblowers to send messages"
+msgstr "Cho phép người tố cáo để gửi tin nhắn"
+
+msgid "Let whistleblowers add attachments onto existing submissions"
+msgstr ""
+
+msgid "Show recipient details on the status page of the submission"
+msgstr "Hiển thị chi tiết người nhận trên trang trạng thái của trình"
+
+msgid "Let recipients upload files to whistleblowers"
+msgstr ""
+
+msgid "Disabled"
+msgstr "Tàn tật"
+
+msgid "Submission expiration, in days"
+msgstr "hết hạn nộp hồ sơ, trong ngày"
+
+msgid ""
+"For security reasons, as a matter of data retention policy, the platform "
+"automatically deletes submissions and their data after a certain amount of "
+"time."
+msgstr "Vì lý do an ninh, là một vấn đề của chính sách lưu giữ dữ liệu, nền tảng này sẽ tự động xóa đệ trình và dữ liệu của họ sau một thời gian nhất định."
+
+msgid "Text shown on top of the interface for selecting recipients"
+msgstr "Văn bản hiển thị trên đầu trang của giao diện để lựa chọn người nhận"
+
+msgid "Welcome to the administration interface!"
+msgstr "Chào mừng bạn đến giao diện quản trị!"
+
+msgid ""
+"This interface may help you understand how the server can be configured and "
+"provides some info on how to connect to other GlobaLeaks users and experts."
+msgstr "Giao diện này có thể giúp bạn hiểu làm thế nào các máy chủ có thể được cấu hình và cung cấp một số thông tin về làm thế nào để kết nối với người dùng GlobaLeaks khác và các chuyên gia."
+
+msgid "Documentation"
+msgstr ""
+
+msgid ""
+"To properly organize your project, please read the following guidelines:"
+msgstr "Tổ chức tốt dự án của bạn, xin vui lòng đọc các hướng dẫn sau đây:"
+
+msgid "Remember to provide proper security advice to Whistleblowers:"
+msgstr "Hãy nhớ để cung cấp tư vấn bảo mật thích hợp để người tố cáo:"
+
+msgid ""
+"To learn more about GlobaLeaks Security you can read the following document:"
+msgstr ""
+
+msgid "Contact"
+msgstr ""
+
+msgid ""
+"If you need technical support, have general questions, or have new ideas for"
+" the software:"
+msgstr ""
+
+msgid ""
+"If you want to contribute to software development or report a bug, please "
+"open an issue in our ticketing system:"
+msgstr ""
+
+msgid ""
+"If your non-profit needs support for investigative journalism, activism or a"
+" human rights defense project:"
+msgstr ""
+
+msgid ""
+"For professional support and development of anti corruption and compliance "
+"projects contact the social enterprise maintaining GlobaLeaks:"
+msgstr ""
+
+msgid "Join our IRC chat channel on the irc.oftc.net network:"
+msgstr ""
+
+msgid "Follow the project on:"
+msgstr ""
+
+msgid "Software version:"
+msgstr "Phiên bản phần mềm:"
+
+msgid "An update is available:"
+msgstr ""
+
+msgid "SMTP name"
+msgstr "tên SMTP"
+
+msgid "SMTP email address"
+msgstr "địa chỉ email SMTP"
+
+msgid "Invalid email address"
+msgstr "Địa chỉ email không hợp lệ"
+
+msgid "SMTP server address"
+msgstr "Địa chỉ server SMTP"
+
+msgid "SMTP server port"
+msgstr "Cổng server SMTP"
+
+msgid "Transport Security"
+msgstr "Chuyển dữ liệu an toàn"
+
+msgid "When the option is re-enabled the spooled emails will be sent out."
+msgstr "Không thể gửi được email khi tùy chọn chưa được bật."
+
+msgid "Reset notification templates to default"
+msgstr "Thiết lập lại các mẫu thông báo mặc định"
+
+msgid "Number of hours before sending a submission expiration alert"
+msgstr "Số giờ trước khi gửi một cảnh báo hết hạn nộp hồ sơ"
+
+msgid "Maximum emails per hour before triggering email suspension"
+msgstr "email tối đa một giờ trước khi kích hoạt tạm ngưng email"
+
+msgid "this configuration only applies to recipients"
+msgstr "cấu hình này chỉ áp dụng đối với người nhận"
+
+msgid "Test the configuration"
+msgstr ""
+
+msgid "Template"
+msgstr "Bản mẫu"
+
+msgid "Admin"
+msgstr "quản trị viên"
+
+msgid "Roles enabled to use the platform without Tor:"
+msgstr ""
+
+msgid "Recipient"
+msgstr "Người nhận"
+
+msgid "Whistleblower"
+msgstr "Người tố giác"
+
+msgid "Hostname"
+msgstr ""
+
+msgid "Verify"
+msgstr "Phối kiểm"
+
+msgid "Invalid input format."
+msgstr ""
+
+msgid "Input should be similar to:"
+msgstr ""
+
+msgid ""
+"The platform does not seem to be reachable with the configured hostname."
+msgstr ""
+
+msgid "Using Let's Encrypt requires agreement to their Terms of Service."
+msgstr ""
+
+msgid "Read the Terms of Service"
+msgstr ""
+
+msgid "I agree to the Terms of Service."
+msgstr ""
+
+msgid "Proceed"
+msgstr "Tiếp tục"
+
+msgid "Configuration completed. You can review the settings or enable it now."
+msgstr ""
+
+msgid "Review"
+msgstr ""
+
+msgid "Enable"
+msgstr ""
+
+msgid "Country code"
+msgstr ""
+
+msgid "Organization"
+msgstr ""
+
+msgid "Organizational unit"
+msgstr ""
+
+msgid ""
+"This interface can generate a Private Key and a Certificate Signing Request."
+" The Certificate Signing Request can be provided to a Certificate Authority "
+"to retrieve a Certificate. After having validated your request and your "
+"ownership of the hostname, the Certificate Authority will issue you a "
+"Certificate and provide a file containing Intermediate Certificates. Load "
+"the Certificate and the file containing the Intermediate Certificates to "
+"complete the HTTPS setup."
+msgstr ""
+
+msgid "Private Key"
+msgstr ""
+
+msgid "Generate"
+msgstr ""
+
+msgid "Certificate Signing Request"
+msgstr ""
+
+msgid "Certificate"
+msgstr ""
+
+msgid "Valid until:"
+msgstr ""
+
+msgid "Issuer:"
+msgstr ""
+
+msgid "Intermediate Certificates"
+msgstr ""
+
+msgid "Reset"
+msgstr "Cài đặt lại"
+
+msgid "Select an option:"
+msgstr ""
+
+msgid "Automatic configuration"
+msgstr ""
+
+msgid ""
+"Using automatic HTTPS configuration will handle the entire process of "
+"requesting, enabling and renewing certificates from the Let's Encrypt "
+"Certificate Authority."
+msgstr ""
+
+msgid ""
+"The platform must be reachable through a public IP address and the selected "
+"hostname must have a corresponding DNS record referencing that address."
+msgstr ""
+
+msgid "Manual configuration"
+msgstr ""
+
+msgid ""
+"The manual configuration wizard will guide you through the setup of HTTPS "
+"from an alternative Certificate Authority."
+msgstr ""
+
+msgid ""
+"The platform supports the configuration of HTTPS through this interface."
+msgstr ""
+
+msgid "The connection to the configured domain failed."
+msgstr ""
+
+msgid "Running"
+msgstr ""
+
+msgid "Not running"
+msgstr ""
+
+msgid "Auto-renewal"
+msgstr ""
+
+msgid "System message:"
+msgstr ""
+
+msgid ""
+"Allowing whistleblowers to connect over HTTPS preserves their privacy but "
+"not their anonymity."
+msgstr ""
+
+msgid "Attention!"
+msgstr ""
+
+msgid ""
+"Configuration in progress. When it is finished you will have to log in "
+"again."
+msgstr ""
+
+msgid "Your browser will be redirected to the following URL."
+msgstr ""
+
+msgid "Tor Onion Service"
+msgstr ""
+
+msgid "Tor Browser download link"
+msgstr ""
+
+msgid "Anonymize outgoing connections"
+msgstr ""
+
+msgid "Let the platform be reachable without Tor"
+msgstr ""
+
+msgid "Stats of the week:"
+msgstr "Thống kê của tuần:"
+
+msgid "Free disk space"
+msgstr "không gian đĩa miễn phí"
+
+msgid "Event ID"
+msgstr "tổ chức sự kiện ID"
+
+msgid "Time"
+msgstr "Thời gian"
+
+msgid "Event"
+msgstr "Biến cố"
+
+msgid "Response time"
+msgstr "Thời gian đáp ứng"
+
+msgid "Role"
+msgstr "Vai trò"
+
+msgid "Last access"
+msgstr ""
+
+msgid "Submission"
+msgstr "Gợi Ý"
+
+msgid "Path"
+msgstr ""
+
+msgid "Size"
+msgstr "Kích thước"
+
+msgid "Alarm level"
+msgstr "mức báo động"
+
+msgid "Events"
+msgstr "Sự kiện"
+
+msgid "Label"
+msgstr "Nhãn"
+
+msgid "Type"
+msgstr "Loại"
+
+msgid "Single-line text input"
+msgstr "nhập văn bản single-line"
+
+msgid "Multi-line text input"
+msgstr "đầu vào văn bản nhiều dòng"
+
+msgid "Multiple choice input"
+msgstr "Nhiều lựa chọn đầu vào"
+
+msgid "Selection box"
+msgstr "hộp lựa chọn"
+
+msgid "Checkbox"
+msgstr "checkbox"
+
+msgid "Terms of service"
+msgstr "Điều khoản dịch vụ"
+
+msgid "Group of questions"
+msgstr "Nhóm các câu hỏi"
+
+msgid "Row"
+msgstr "hàng"
+
+msgid "Column"
+msgstr "Cột"
+
+msgid "Width"
+msgstr "Chiều rộng"
+
+msgid "Question group"
+msgstr "nhóm câu hỏi"
+
+msgid "Hint"
+msgstr "Gợi ý"
+
+msgid "Required"
+msgstr "Cần thiết"
+
+msgid "Accept multiple file uploads"
+msgstr "Chấp nhận nhiều tập tin tải lên"
+
+msgid "Accept multiple answers for the field"
+msgstr "Chấp nhận nhiều câu trả lời cho các trường"
+
+msgid "Hint shown on the button for adding an additional answer"
+msgstr "Gợi ý được hiển thị trên nút để thêm một câu trả lời khác"
+
+msgid "Clause"
+msgstr "điều khoản"
+
+msgid "Agreement Text"
+msgstr "Hiệp định Tiêu đề"
+
+msgid "Layout orientation"
+msgstr "định hướng bố trí"
+
+msgid "Subject answer visibility to custodian authorization"
+msgstr "câu trả lời tầm nhìn phải xin phép giám sát"
+
+msgid "Prompt confirmation upon negative answer"
+msgstr "xác nhận Prompt vào câu trả lời tiêu cực"
+
+msgid "Title of the confirmation question upon negative answer"
+msgstr "Tiêu đề của câu hỏi xác nhận khi câu trả lời tiêu cực"
+
+msgid "Body of the confirmation question upon negative answer"
+msgstr "Thân thể của câu hỏi xác nhận vào câu trả lời tiêu cực"
+
+msgid "Options"
+msgstr "Tùy chọn"
+
+msgid "Questions"
+msgstr ""
+
+msgid "Add new question"
+msgstr "Thêm câu hỏi mới"
+
+msgid "Add question from template"
+msgstr "Thêm câu hỏi từ mẫu"
+
+msgid "Steps"
+msgstr ""
+
+msgid "Configuration"
+msgstr "Cấu hình"
+
+msgid "Default"
+msgstr "Mặc định"
+
+msgid "Forcefully selected"
+msgstr "mạnh mẽ chọn"
+
+msgid "Unselectable"
+msgstr "Unselectable"
+
+msgid "Allow the recipient to postpone the submission expiration date"
+msgstr "Cho phép người nhận để hoãn ngày hết hạn nộp hồ sơ"
+
+msgid "The setting is enabled at a global level."
+msgstr "Thiết lập này được kích hoạt ở mức độ toàn cầu."
+
+msgid "Allow the recipient to delete submissions"
+msgstr "Cho phép người nhận để xóa bài nộp"
+
+msgid ""
+"Allow the recipient to grant permissions to whistleblowers on specific "
+"submissions"
+msgstr "Cho phép người nhận để cấp quyền cho người tố cáo về đệ trình cụ thể"
+
+msgid "General settings"
+msgstr "Thiết đặt chung"
+
+msgid "Network settings"
+msgstr ""
+
+msgid "Root domain used for secondary sites"
+msgstr ""
+
+msgid "Allow users to sign up"
+msgstr ""
+
+msgid "Sites"
+msgstr ""
+
+msgid "Active"
+msgstr ""
+
+msgid "Inactive"
+msgstr ""
+
+msgid "The default password is:"
+msgstr ""
+
+msgid "The system forces users to change the password at first login."
+msgstr "Người sử dụng lực lượng hệ thống để thay đổi mật khẩu đăng nhập đầu tiên."
+
+msgid "New Password"
+msgstr "Mật khẩu mới"
+
+msgid ""
+"The chosen password is too weak. Make it more secure by adding special "
+"characters, numbers, and unusual symbols."
+msgstr ""
+
+msgid "Force password change"
+msgstr "thay đổi mật khẩu Force"
+
+msgid "The user will be forced to change its password on next login."
+msgstr "Người dùng sẽ buộc phải thay đổi mật khẩu của mình trong lần đăng nhập tiếp theo."
+
+msgid "Language"
+msgstr "ngôn ngữ"
+
+msgid "Encryption:"
+msgstr "Mã hóa:"
+
+msgid "Remove the PGP key"
+msgstr "Xóa bỏ khóa PGP"
+
+msgid "Set up encryption by providing a PGP public key"
+msgstr "Thiết lập mã hóa bằng cách cung cấp một khóa công khai PGP"
+
+msgid "Request date"
+msgstr "Ngày yêu cầu"
+
+msgid "Authorization"
+msgstr "cho phép"
+
+msgid "Before proceeding, please change your password."
+msgstr "Trước khi tiếp tục, hãy thay đổi mật khẩu của bạn."
+
+msgid "Submissions disabled"
+msgstr ""
+
+msgid ""
+"You are connecting to the server without anonymity and this server supports "
+"only anonymous submissions"
+msgstr "Bạn đang kết nối đến máy chủ mà không cần giấu và máy chủ này chỉ hỗ trợ đệ trình ẩn danh"
+
+msgid ""
+"Server temporarly unusable due to resource exhaustion; advise the Admin if "
+"you can."
+msgstr "Máy chủ temporarly không sử dụng được do tài nguyên cạn kiệt; tư vấn quản trị nếu bạn có thể."
+
+msgid "This server is not configured."
+msgstr "Máy chủ này không được cấu hình."
+
+msgid "You will not be able to send a submission."
+msgstr "Bạn sẽ không thể thực hiện việc đệ trình."
+
+msgid ""
+"This platform makes use of GlobaLeaks software specifically designed to "
+"protect the identity for submitter and recipient in the exchange of content."
+msgstr ""
+
+msgid ""
+"The software is developed by the non-profit Hermes Center for Transparency "
+"and Digital Human Rights."
+msgstr "Phần mềm này được phát triển bởi Trung tâm Hermes phi lợi nhuận cho minh bạch và Nhân quyền kỹ thuật số."
+
+msgid "Please support Hermes through their donation page."
+msgstr "Xin hãy ủng hộ Hermes thông qua trang quyên góp của họ."
+
+msgid "Authentication failed"
+msgstr "Quá trình xác thực đã thất bại"
+
+msgid "Please select your account:"
+msgstr "Vui lòng chọn tài khoản của bạn:"
+
+msgid "Now type your password, then click 'Log in':"
+msgstr "Bây giờ gõ mật khẩu của bạn, sau đó nhấp vào 'Đăng nhập':"
+
+msgid "Are you sure?"
+msgstr "Bạn có chắc không?"
+
+msgid "The operation will reset the configuration and cannot be undone."
+msgstr ""
+
+msgid "Assign score points"
+msgstr "Gán thêm điểm"
+
+msgid ""
+"Enter the number of score points to be assigned when this option is "
+"selected:"
+msgstr "Nhập số lượng điểm số điểm được chỉ định khi tùy chọn này được chọn:"
+
+msgid "Confirm"
+msgstr "Xác nhận"
+
+msgid "Are you human?"
+msgstr "Bạn có con người?"
+
+msgid ""
+"We do not discriminate based on race and gender, but we do against computers"
+" :)"
+msgstr "Chúng tôi không phân biệt đối xử dựa trên chủng tộc và giới tính, nhưng chúng tôi làm đối với máy tính :)"
+
+msgid ""
+"Just to prove you are human, please answer the following math challenge:"
+msgstr "Chỉ để chứng minh bạn là con người, hãy trả lời các thách thức toán sau đây:"
+
+msgid "I've solved the math challenge, hide this thing now!"
+msgstr "Tôi đã giải quyết các thách thức toán học, che giấu điều này ngay bây giờ!"
+
+msgid "Please note that all the associated data will be permanently lost."
+msgstr ""
+
+msgid ""
+"This means that if the server running the platform were to be seized, it "
+"would be possible to extract the files that have been submitted."
+msgstr "Điều này có nghĩa rằng nếu các máy chủ chạy nền tảng này đã được thu giữ, nó sẽ có thể để trích xuất các tập tin đã được gửi."
+
+msgid "Are you sure that you wish to continue?"
+msgstr "Bạn có chắc chắn rằng bạn muốn tiếp tục không?"
+
+msgid ""
+"Downloading a file with malicious content could compromise your computer or "
+"disclose your identity."
+msgstr ""
+
+msgid "The name of the file and its content can be intentionally misleading."
+msgstr ""
+
+msgid ""
+"Please review the following information and decide if you wish to proceed."
+msgstr ""
+
+msgid "Error!"
+msgstr "Lỗi!"
+
+msgid "Internal server error"
+msgstr ""
+
+msgid "Error on input validation"
+msgstr ""
+
+msgid "Resource not found"
+msgstr ""
+
+msgid "Forbidden operation"
+msgstr ""
+
+msgid "The specified old password is not valid"
+msgstr "Mật khẩu được xác định trước đó không hợp lệ"
+
+msgid "Resource can only be accessed via the Tor network"
+msgstr "Tài nguyên chỉ có thể được truy cập thông qua mạng Tor"
+
+msgid "The upload request exceeds the size limit"
+msgstr "Các yêu cầu tải lên vượt quá giới hạn kích thước"
+
+msgid "Success!"
+msgstr "Thành công!"
+
+msgid ""
+"It appears that you are browsing this site without any extra privacy and "
+"security!"
+msgstr "Nó xuất hiện rằng bạn đang truy cập trang web này mà không cần bất kỳ sự riêng tư thêm và bảo mật!"
+
+msgid ""
+"You are strongly advised to visit this site using the desktop app called Tor"
+" Browser, that protects your identity."
+msgstr "Bạn được khuyên nên ghé thăm trang web này bằng cách sử dụng ứng dụng máy tính để bàn được gọi là Tor Browser, bảo vệ danh tính của bạn."
+
+msgid "Then, copy and paste the following address into the Tor Browser:"
+msgstr "Sau đó, sao chép và dán địa chỉ sau vào trình duyệt Tor:"
+
+msgid "Details of the PGP key:"
+msgstr "Thông tin chi tiết của khóa PGP:"
+
+msgid "Fingerprint"
+msgstr ""
+
+msgid "Add file"
+msgstr "Thêm tập tin"
+
+msgid "Uploading files…"
+msgstr ""
+
+msgid "Upload completed successfully!"
+msgstr "Tải lên thành công!"
+
+msgid "Error while uploading files; check below for details."
+msgstr "Lỗi trong khi tải lên các tập tin; kiểm tra dưới đây để biết chi tiết."
+
+msgid "Estimated upload time:"
+msgstr "thời gian tải lên dự kiến:"
+
+msgid "seconds"
+msgstr "giây"
+
+msgid "Which of the following statements is true?"
+msgstr "Phần phát biểu nào sau đây là đúng?"
+
+msgid "HTTPS protects my identity, but not the content of my submission"
+msgstr ""
+
+msgid "HTTPS protects the content of my submission but not my identity"
+msgstr ""
+
+msgid "HTTPS does not protect the content of my submission nor my identity"
+msgstr ""
+
+msgid "HTTPS does protect both my identity and the content of my submission"
+msgstr ""
+
+msgid ""
+"You are aware of the risks involved. Go ahead, but consider yourself warned."
+msgstr "Bạn nên cẩn thận tính chất nguy hiểm khi tham gia vào, nhưng nếu bạn vẫn muốn tiếp tục, thì nên nhớ bạn đã được cảnh báo."
+
+msgid "Wrong Answer!"
+msgstr "Đáp án sai!"
+
+msgid "The connection is not secure."
+msgstr ""
+
+msgid ""
+"The platform is still not configured for HTTPS connections and should "
+"therefore only be used for testing purposes."
+msgstr ""
+
+msgid "Send"
+msgstr "gởi"
+
+msgid "Allow the whistleblower to write comments"
+msgstr "Cho phép các tố giác để bình luận"
+
+msgid "Filename"
+msgstr "Têntậptin"
+
+msgid "Upload date"
+msgstr "ngày đăng"
+
+msgid "Content Type"
+msgstr "Loại nội dung"
+
+msgid "File size"
+msgstr "Kích thước tập tin"
+
+msgid "download"
+msgstr "tải xuống"
+
+msgid "No files have been uploaded!"
+msgstr "Vẫn chưa tải lên tập tin nào!"
+
+msgid "Allow the whistleblower to add attachments to the submission"
+msgstr "Cho phép các tố giác để đính kèm tập tin vào trình"
+
+msgid "Access expiration"
+msgstr ""
+
+msgid "Connection"
+msgstr "liên quan"
+
+msgid "Never"
+msgstr ""
+
+msgid "Revoked"
+msgstr ""
+
+msgid "Allow the whistleblower to send messages"
+msgstr "Cho phép các tố giác để gửi tin nhắn"
+
+msgid "Are you sure that you want to delete the submission?"
+msgstr "Bạn có chắc chắn rằng bạn muốn xóa bài gửi?"
+
+msgid ""
+"Everything related to the submission stored on the platform will be deleted."
+msgstr ""
+
+msgid ""
+"Please be aware that everything stored off the platform, e.g. files you have"
+" saved on your computer, must be deleted manually."
+msgstr ""
+
+msgid "Are you sure that you want to delete all the selected submissions?"
+msgstr "Bạn có chắc chắn rằng bạn muốn xóa tất cả các bài dự thi được chọn không?"
+
+msgid ""
+"Please make sure that all related data is properly deleted so that the "
+"recipients won't be able to further access to it."
+msgstr "Hãy chắc chắn rằng tất cả các dữ liệu liên quan sẽ bị xóa đúng như vậy mà người nhận sẽ không thể tiếp tục truy cập vào nó."
+
+msgid "Please write a motivation for the reply"
+msgstr "Hãy viết một động lực cho các bài trả lời"
+
+msgid "Are you sure that you want to postpone the submission expiration date?"
+msgstr "Bạn có chắc chắn rằng bạn muốn hoãn ngày hết hạn nộp hồ sơ?"
+
+msgid "By confirming, you will postpone the expiration date to:"
+msgstr "Bằng cách xác nhận, bạn sẽ hoãn ngày hết hạn để:"
+
+msgid ""
+"Are you sure that you want to postpone the expiration date for all selected "
+"submissions?"
+msgstr "Bạn có chắc chắn rằng bạn muốn hoãn ngày hết hạn cho các bài dự thi được chọn không?"
+
+msgid "Questionnaire answers"
+msgstr "Bảng câu hỏi câu trả lời"
+
+msgid "Step"
+msgstr "Bước đi"
+
+msgid "Recipient list"
+msgstr "danh sách người nhận"
+
+msgid "Attached files for the whistleblower"
+msgstr ""
+
+msgid ""
+"Files uploaded here are made available for the whistleblower and other "
+"recipients to download."
+msgstr ""
+
+msgid "Upload a file:"
+msgstr ""
+
+msgid "Logout"
+msgstr "Đăng xuất"
+
+msgid "The key code is either invalid or the submission has expired."
+msgstr "Các mã chủ chốt là không hợp lệ hoặc nộp đã hết hạn."
+
+msgid "Please check your key code and try again or make a new submission."
+msgstr "Xin hãy kiểm tra mã chìa khóa của bạn và thử lại hoặc thực hiện một trình mới."
+
+msgid "Files attached by recipients"
+msgstr ""
+
+msgid "These files have been attached to your submission by the recipients."
+msgstr ""
+
+msgid "Enable submission notification"
+msgstr "Kích hoạt tính năng thông báo nộp"
+
+msgid "Current Password"
+msgstr "Mật khẩu hiện tại"
+
+msgid "Old password confirmation required"
+msgstr "Yêu cầu xác nhận mật khẩu cũ"
+
+msgid "The new password must be different from the current one."
+msgstr ""
+
+msgid "Type your new password again"
+msgstr "Gõ vào mật khẩu mới của bạn lần nữa"
+
+msgid "The two passwords do not match"
+msgstr "Hai mật khẩu không khớp lẫn nhau"
+
+msgid "Thank you!"
+msgstr "Cảm ơn bạn!"
+
+msgid "Remember your key code for this submission."
+msgstr "Ghi mã khóa của bạn cho việc gửi này."
+
+msgid "We will try to get back to you as soon as possible!"
+msgstr "Chúng tôi sẽ cố gắng để lấy lại cho bạn càng sớm càng tốt!"
+
+msgid ""
+"Use the 16 digit key code to log in. It will allow you to view any messages "
+"we sent you, and also to add extra info."
+msgstr "Sử dụng 16 chữ số mã chủ chốt để đăng nhập. Nó sẽ cho phép bạn xem bất kỳ thông điệp chúng tôi gửi cho bạn, và cũng để thêm thông tin thêm."
+
+msgid "View your submission"
+msgstr "Xem trình của bạn"
+
+msgid "Hint: How to hide your key code"
+msgstr "Gợi ý: Làm thế nào để giấu mã chìa khóa của bạn"
+
+msgid ""
+"A useful way to hide your key code is to write it down like a credit card "
+"number, i.e. by also including an expiration date."
+msgstr "Một cách hữu ích để giấu mã chính của bạn là viết nó xuống như một số thẻ tín dụng, tức là bằng cách cũng bao gồm cả ngày hết hạn."
+
+msgid "Example:"
+msgstr "Thí dụ:"
+
+msgid ""
+"You have not set up your encryption key, so the files will not be encrypted "
+"prior to being stored on the server."
+msgstr "Bạn chưa thiết lập khóa mã hóa của bạn, do đó các tập tin sẽ không được mã hóa trước khi được lưu trữ trên máy chủ."
+
+msgid ""
+"This may lead to unintended access to the files by the server administrator "
+"or others in case the server is compromised."
+msgstr "Điều này có thể dẫn đến các truy cập không theo dự định đến các tập tin từ phía người quản trị máy chủ hoặc trong trường hợp máy chủ đang được duy trì."
+
+msgid "Please configure your PGP keys in the recipient preferences page."
+msgstr "Hãy cấu hình các phím PGP của bạn trong trang sở thích của người nhận."
+
+msgid ""
+"One or more of the recipients of this submission has not configured a PGP "
+"key."
+msgstr "Một hoặc nhiều người nhận trình này đã không được cấu hình một khóa PGP."
+
+msgid ""
+"This means that the submitted files will be stored in plaintext on the "
+"server."
+msgstr "Điều này có nghĩa rằng các tập tin trình sẽ được lưu trữ trong bản rõ trên máy chủ."
+
+msgid ""
+"Access to the whistleblower's identity has been requested to the custodian."
+msgstr "Truy cập đến danh tính của người tố giác đã được yêu cầu để giám sát."
+
+msgid "Date of the request"
+msgstr "Ngày của yêu cầu"
+
+msgid "Congratulations!"
+msgstr "Chúc mừng"
+
+msgid "You have completed the platform activation."
+msgstr ""
+
+msgid "Your whistleblowing platform is now accessible at:"
+msgstr ""
+
+msgid "Users' credentials:"
+msgstr ""
+
+msgid "To log in, visit:"
+msgstr ""
+
+msgid "For the user documentation visit:"
+msgstr ""
+
+msgid "The platform will be automatically deleted on:"
+msgstr ""
+
+msgid "Sign up"
+msgstr ""
+
+msgid "Domain"
+msgstr "Tên miền"
+
+msgid "Use Case"
+msgstr ""
+
+msgid "Anticorruption"
+msgstr ""
+
+msgid "Corporate compliance"
+msgstr ""
+
+msgid "Investigative journalism"
+msgstr ""
+
+msgid "Civic activism"
+msgstr ""
+
+msgid "Other"
+msgstr ""
+
+msgid "Complete"
+msgstr "Hoàn tất"
+
+msgid "Your whistleblowing platform is almost ready!"
+msgstr ""
+
+msgid "Check your inbox to activate your account."
+msgstr ""
+
+msgid "The answer is too short."
+msgstr ""
+
+msgid "The specified input is not valid:"
+msgstr ""
+
+msgid "please enter a valid email address."
+msgstr ""
+
+msgid "please enter numbers only."
+msgstr ""
+
+msgid "Recipient selection"
+msgstr "lựa chọn người nhận"
+
+msgid "previous step"
+msgstr "bước trước"
+
+msgid "next step"
+msgstr "bước tiếp theo"
+
+msgid "Submit"
+msgstr "Đệ trình"
+
+msgid "Recipients selected:"
+msgstr "Người nhận được lựa chọn:"
+
+msgid ""
+"In this step the answers to the following questions are either missing or "
+"invalid:"
+msgstr ""
+
+msgid "Submission errors"
+msgstr ""
+
+msgid "You must select at least one recipient."
+msgstr ""
+
+msgid "Waiting for the file(s) to finish uploading."
+msgstr ""
+
+msgid "The following steps have errors:"
+msgstr ""
+
+msgid "Welcome!"
+msgstr "Chào mừng bạn!"
+
+msgid ""
+"The following step-by-step procedure will guide you through creating your "
+"whistleblowing platform."
+msgstr ""
+
+msgid "Please choose a configuration profile:"
+msgstr ""
+
+msgid ""
+"These profiles contain settings used by successful projects in each "
+"respective field."
+msgstr ""
+
+msgid "Confirm password"
+msgstr "Xác nhận mật khẩu"
+
+msgid "The default username is:"
+msgstr ""
+
+msgid "License Agreement"
+msgstr ""
+
+msgid "Please review the license terms before proceeding."
+msgstr ""
+
+msgid "I have read and agree to the terms of the License Agreement."
+msgstr ""
+
+msgid "You have completed the platform wizard."
+msgstr ""
+
+msgid "Fill out your submission"
+msgstr "Điền vào phần đệ trình của bạn"
+
+msgid "Short title"
+msgstr "tiêu đề ngắn"
+
+msgid "Describe your submission in a few words."
+msgstr "Mô tả trình của bạn với một vài từ"
+
+msgid "Full description"
+msgstr "Mô tả đầy đủ"
+
+msgid "Describe your submission in detail."
+msgstr ""
+
+msgid "Attach files relevant to the submission."
+msgstr "Đính kèm tập tin có liên quan đến việc nộp."
+
+msgid "Dear {RecipientName},"
+msgstr "Kính gửi {RecipientName}"
+
+msgid "Kind regards,"
+msgstr "Trân trọng,"
+
+msgid ""
+"The number of activities recently detected appears to be higher than usual."
+msgstr "Số lượng các hoạt động gần đây phát hiện dường như là cao hơn bình thường."
+
+msgid ""
+"This could be a sign of an attack (for example, someone flooding your server"
+" with bogus information) or just a usage spike due to an increased "
+"visibility of your project."
+msgstr "Đây có thể là một dấu hiệu của một cuộc tấn công (ví dụ, một người nào đó tràn ngập máy chủ của bạn với thông tin không có thật) hoặc chỉ một cành sử dụng do một tầm nhìn tăng của dự án của bạn."
+
+msgid "Examine the issue to determine whether it is legitimate or not."
+msgstr ""
+
+msgid "The activities with unusual stats are:"
+msgstr "Các hoạt động với chỉ số bình thường là:"
+
+msgid ""
+"The server cannot guarantee that a new submission can be stored, so "
+"submissions have been disabled."
+msgstr "Các máy chủ không thể đảm bảo rằng một trình mới có thể được lưu trữ, vì vậy đệ trình đã được vô hiệu hóa."
+
+msgid ""
+"Please consider asking your technical support to create more disk space on "
+"the server."
+msgstr ""
+
+msgid ""
+"GlobaLeaks technology includes a server status checking component which will"
+" alert you in case something requires your attention."
+msgstr "công nghệ GlobaLeaks bao gồm một thành phần kiểm tra tình trạng server đó sẽ cảnh báo bạn trong trường hợp đòi hỏi sự chú ý của bạn."
+
+msgid ""
+"For more information, log in to the Administration interface and look at the"
+" \"System Stats\" and \"Anomalies\" sections."
+msgstr ""
+
+msgid "Anomaly detected in {NodeName}"
+msgstr "Bất thường được phát hiện trong {NodeName}"
+
+msgid ""
+"This is an email to inform you that the PGP key of the following users is "
+"going to expire or has already expired:"
+msgstr "Đây là một email thông báo cho bạn rằng chìa khóa PGP của người sử dụng sau đây được sắp hết hoặc đã hết hạn:"
+
+msgid ""
+"Without a valid PGP key, the system will not be able to send them encrypted "
+"notifications."
+msgstr "Nếu không có một chìa khóa PGP hợp lệ, hệ thống sẽ không thể gửi các thông báo được mã hóa."
+
+msgid "PGP key expiration alert"
+msgstr "PGP cảnh báo hết hạn chính"
+
+msgid ""
+"This is a test email sent out from the platform's administrative interface."
+msgstr ""
+
+msgid ""
+"Reception of this email indicates that the server was able to authenticate "
+"to and interact with the SMTP mail server."
+msgstr ""
+
+msgid "Test email"
+msgstr ""
+
+msgid ""
+"This is an email to notify you of a new comment on an existing submission."
+msgstr "Đây là một email thông báo khi có bình luận mới một trình hiện có."
+
+msgid "The submission can be accessed:"
+msgstr "Việc nộp có thể được truy cập:"
+
+msgid "via Tor at: {TorUrl}"
+msgstr "qua Tor tại: {TorUrl}"
+
+msgid "via HTTPS at: {HTTPSUrl}"
+msgstr "thông qua HTTPS tại: {HTTPSUrl}"
+
+msgid "New comment"
+msgstr "bình luận mới"
+
+msgid "From: {RecipientName}"
+msgstr "Từ: {RecipientName}"
+
+msgid "Date: {EventTime}"
+msgstr "Ngày: {EventTime}"
+
+msgid "From: Whistleblower"
+msgstr "Từ: Whistleblower"
+
+msgid "Date: {SubmissionDate}"
+msgstr "Ngày: {SubmissionDate}"
+
+msgid "Label: {TipLabel}"
+msgstr "Nhãn: {TipLabel}"
+
+msgid "Context: {ContextName}"
+msgstr "Bối cảnh: {ContextName}"
+
+msgid ""
+"This is an email to notify you that the whistleblower of submission {TipNum}"
+" has attached new material."
+msgstr "Đây là một email thông báo cho bạn rằng các tố giác nộp {TipNum} đã gắn vật liệu mới."
+
+msgid "New attachment"
+msgstr "tập tin đính kèm mới"
+
+msgid ""
+"The HTTPS certificate loaded on the platform is about to, or has already "
+"expired."
+msgstr ""
+
+msgid "Expiration date: {ExpirationDate}"
+msgstr "Ngày hết hạn: {ExpirationDate}"
+
+msgid ""
+"Without a valid certificate, the platform will be accessible in a secure way"
+" only via Tor."
+msgstr ""
+
+msgid "Log in to solve the issue."
+msgstr ""
+
+msgid "Expiration alert for HTTPS certificate"
+msgstr ""
+
+msgid ""
+"This is an email to notify you that a custodian has authorized you to access"
+" to the whistleblowing identity for the submission {TipNum}."
+msgstr ""
+
+msgid "Access to whistleblower's identity authorized"
+msgstr "Tiếp cận với bản sắc tố của phép"
+
+msgid ""
+"This is an email to notify you that a custodian has denied you access to the"
+" wistleblowing identity for the submission {TipNum}."
+msgstr "Đây là một email thông báo cho bạn rằng một người giám hộ đã bị từ chối bạn truy cập vào các tính wistleblowing cho việc nộp {TipNum}."
+
+msgid "Access to whistleblower's identity denied"
+msgstr "Tiếp cận với bản sắc tố của bị từ chối"
+
+msgid ""
+"This is an email to notify you that a recipient has requested access to the "
+"whistleblower's identity for the submission {TipNum}"
+msgstr "Đây là một email thông báo cho bạn rằng một người nhận đã yêu cầu truy cập đến danh tính của người tố giác cho việc nộp {TipNum}"
+
+msgid "The request can be accessed:"
+msgstr "Yêu cầu có thể được truy cập:"
+
+msgid "New request of access to a whistleblower's identity"
+msgstr ""
+
+msgid ""
+"This is an email to notify you that the whistleblower for the submission "
+"{TipNum} has provided their identity."
+msgstr "Đây là một email thông báo cho bạn rằng các tố giác cho việc nộp {TipNum} đã cung cấp danh tính của họ."
+
+msgid "The whistleblower has provided their identity"
+msgstr "Các tố cáo đã cung cấp danh tính của họ"
+
+msgid ""
+"This is an email to notify you of a new message on an existing submission."
+msgstr "Đây là một email thông báo khi có tin nhắn mới trên trình hiện có."
+
+msgid "New message"
+msgstr "Tin nhắn mới"
+
+msgid ""
+"This is an email to inform you that your PGP key is expiring or has already "
+"expired."
+msgstr "Đây là một email thông báo cho bạn rằng chìa khóa PGP của bạn hết hạn hoặc đã hết hạn."
+
+msgid ""
+"You should extend its validity and update the key present on the platform, "
+"or upload a new key."
+msgstr "Bạn nên mở rộng hiệu lực của nó và cập nhật các mặt chính trên nền tảng, hoặc tải lên một khoá mới."
+
+msgid ""
+"Without a valid PGP key, the system won't be able to encrypt data provided "
+"to you."
+msgstr "Nếu không có một chìa khóa PGP hợp lệ, hệ thống sẽ không có khả năng mã hóa dữ liệu cung cấp cho bạn."
+
+msgid "It appears that {NodeName} is receiving a large number of requests."
+msgstr "Nó xuất hiện rằng {NodeName} đang nhận được một số lượng lớn các yêu cầu."
+
+msgid ""
+"To prevent sending you too many emails, the system has disabled email "
+"notifications until the load returns to normal. In the meantime, you can "
+"normally log onto the platform and manually check for new submissions."
+msgstr "Để tránh tình trạng gửi bạn quá nhiều email, hệ thống này đã bị vô hiệu hóa các thông báo email đến khi trở về tải về bình thường. Trong khi đó, bạn thường có thể đăng nhập vào nền tảng này và tự kiểm tra nhận hồ sơ mới."
+
+msgid ""
+"If you don’t mind and would rather receive such a large number of email "
+"notifications anyhow, please contact your technical support to have them "
+"modify this setting accordingly."
+msgstr "Nếu bạn không nhớ và thay vì sẽ nhận được một số lượng lớn các thông báo email dù sao đi nữa, xin vui lòng liên hệ với hỗ trợ kỹ thuật của bạn để họ có thay đổi thiết lập này cho phù hợp."
+
+msgid "Notifications from {NodeName} have been temporarily suspended"
+msgstr "Thông báo từ {NodeName} đã tạm thời bị đình chỉ"
+
+msgid "Click the link to activate the platform:"
+msgstr ""
+
+msgid "A software update is available."
+msgstr ""
+
+msgid "It is good security practice to keep the platform up to date."
+msgstr ""
+
+msgid "Installed version: {InstalledVersion}"
+msgstr ""
+
+msgid "Latest version: {LatestVersion}"
+msgstr ""
+
+msgid ""
+"To learn about new features and bug fixes in the new version consult the "
+"change log at: {ChangeLogUrl}"
+msgstr ""
+
+msgid ""
+"For instructions on software updates, please refer to the documentation at: "
+"{UpdateGuideUrl}"
+msgstr ""
+
+msgid "The earliest expiration date is {EarliestExpirationDate}."
+msgstr ""
+
+msgid "Please remember to check them before they are deleted."
+msgstr ""
+
+msgid "Some submissions will expire soon"
+msgstr ""
+
+msgid ""
+"This is an email to notify you that a whistleblower has selected you as a "
+"valuable recipient of their submission."
+msgstr ""
+
+msgid ""
+"You are asked to pay special attention to the information and material "
+"contained therein. Please keep in mind that whistleblowers often expose "
+"themselves to high personal risks in the interest of the public. Therefore "
+"the material provided within this submission should be considered to be of "
+"high importance."
+msgstr ""
+
+msgid "New submission"
+msgstr "trình mới"

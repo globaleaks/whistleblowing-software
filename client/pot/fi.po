@@ -1,0 +1,2323 @@
+# 
+# Translators:
+# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2015-2017
+# Jaakko Korhonen <jaakko.korhonen@gmail.com>, 2018
+# John Wild <ac@elephantleague.org>, 2015
+# Jorma Karvonen <karvonen.jorma@gmail.com>, 2015,2017
+# Juha Nurmi <juha.nurmi@ahmia.fi>, 2015
+# Sami Kuusisto <sami@6sto.com>, 2015
+msgid ""
+msgstr ""
+"Project-Id-Version: GlobaLeaks\n"
+"PO-Revision-Date: 2018-02-22 16:41+0000\n"
+"Last-Translator: Jaakko Korhonen <jaakko.korhonen@gmail.com>\n"
+"Language-Team: Finnish (http://www.transifex.com/otf/globaleaks/language/fi/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: fi\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "Login page"
+msgstr "Kirjautumissivu"
+
+msgid "Log in"
+msgstr "Kirjaudu"
+
+msgid "Administration interface"
+msgstr "Ylläpitokäyttöliittymä"
+
+msgid "Main configuration"
+msgstr "Pääasetukset"
+
+msgid "Theme customization"
+msgstr "Teemamuutokset"
+
+msgid "Languages"
+msgstr "Kielet"
+
+msgid "Text customization"
+msgstr "Tekstin mukautus"
+
+msgid "Advanced settings"
+msgstr "Lisäasetukset"
+
+msgid "Questionnaire configuration"
+msgstr "Kyselyasetukset"
+
+msgid "Question templates"
+msgstr "Kyselypohjat"
+
+msgid "Questionnaires"
+msgstr "Kyselyt"
+
+msgid "Add new questionnaire"
+msgstr "Lisää kysely"
+
+msgid "Home"
+msgstr "Etusivu"
+
+msgid "Home page"
+msgstr "Etusivu"
+
+msgid "Changelog"
+msgstr "Muutosloki"
+
+msgid "License"
+msgstr "Lisenssi"
+
+msgid "Notification templates"
+msgstr "Ilmoituspohjat"
+
+msgid "Recipient notification templates"
+msgstr "Vastaanottajien ilmoituspohjat"
+
+msgid "Admin notification templates"
+msgstr "Ylläpidon ilmoituspohjat"
+
+msgid "Missing data"
+msgstr "Puuttuvat tiedot"
+
+msgid "no stats available for the future."
+msgstr "tilastoja ei ole saatavissa tulevaisuudessa."
+
+msgid "no stats available for this hour."
+msgstr ""
+
+msgid "no stats available for current hour; check activities page."
+msgstr "tilastoja ei ole saatavilla nykyiselle tunnille; tarkista aktiiviteetit-sivu."
+
+msgid "Delete"
+msgstr "Poista"
+
+msgid "Anomalies"
+msgstr "Poikkeavuudet"
+
+msgid "Preferences"
+msgstr "Asetukset"
+
+msgid "Recipient interface"
+msgstr "Vastaanottajakäyttöliittymä"
+
+msgid "Notification settings"
+msgstr "Ilmoitusasetukset"
+
+msgid "This recipient has configured the encryption key."
+msgstr "Tämä vastaanottaja on asettanut salausavaimen."
+
+msgid "This recipient has not configured the encryption key."
+msgstr "Tämä vastaanottaja ei ole asettanut salausavainta."
+
+msgid "The file is unavailable due to an internal error."
+msgstr "Tiedosto ei ole saatavilla sisäisen virheen vuoksi."
+
+msgid "file unavailable"
+msgstr "tiedosto ei ole saatavilla"
+
+msgid "Creation date"
+msgstr "Luontipäivämäärä"
+
+msgid "Expiration date"
+msgstr "Vanhenemispäivämäärä"
+
+msgid "Last Access"
+msgstr "Viimeksi luettu"
+
+msgid "Files"
+msgstr "Tiedostot"
+
+msgid "Comments"
+msgstr "Kommentit"
+
+msgid "Messages"
+msgstr "Viestit"
+
+msgid "Select this recipient."
+msgstr "Valitse tämä vastaanottaja."
+
+msgid "Unselect this recipient."
+msgstr "Poista tämä vastaanottaja."
+
+msgid "This recipient cannot be selected."
+msgstr "Tätä vastaanottajaa ei voida valita."
+
+msgid "This recipient cannot be deselected."
+msgstr "Tätä vastaanottajaa ei voida poistaa."
+
+msgid "Details"
+msgstr "Lisätiedot"
+
+msgid "Platform wizard"
+msgstr ""
+
+msgid "Step-by-step setup"
+msgstr "Vaihe-vaiheelta-asetukset"
+
+msgid "CREDIT CARD"
+msgstr "LUOTTOKORTTI"
+
+msgid "YOUR NAME"
+msgstr "NIMESI"
+
+msgid "Postpone the expiration date"
+msgstr "Siirrä erääntymispäivää"
+
+msgid "Select all"
+msgstr "Valitse kaikki"
+
+msgid "Deselect all"
+msgstr "Poista kaikkien valinta"
+
+msgid "Refresh page"
+msgstr "Päivitä sivua"
+
+msgid "Context"
+msgstr "Asiayhteys"
+
+msgid "Submission date"
+msgstr "Lähetyspäivämäärä"
+
+msgid "Private messages"
+msgstr "Yksityisviestit"
+
+msgid "Preview"
+msgstr "Esikatselu"
+
+msgid "Move up"
+msgstr "Siirry ylöspäin"
+
+msgid "Move down"
+msgstr "Siirry alaspäin"
+
+msgid "Move left"
+msgstr "Siirry vasemmalle"
+
+msgid "Move right"
+msgstr "Siirry oikealle"
+
+msgid "Import"
+msgstr "Tuo"
+
+msgid "Export"
+msgstr "Vie"
+
+msgid "Save all"
+msgstr "Tallenna kaikki"
+
+msgid "This field is mandatory"
+msgstr "Tämä kenttä on pakollinen"
+
+msgid ""
+"The connection used to send this submission has been secured with HTTPS "
+"ensuring confidentiality."
+msgstr ""
+
+msgid ""
+"The connection used to send this submission has been secured with Tor "
+"ensuring confidentiality and anonymity."
+msgstr ""
+
+msgid "vertical"
+msgstr "pystysuora"
+
+msgid "horizontal"
+msgstr "vaakasuora"
+
+msgid "Number"
+msgstr "Numero"
+
+msgid "Email"
+msgstr "Sähköposti"
+
+msgid "Date"
+msgstr "Päivämäärä"
+
+msgid "Regular expression validator"
+msgstr ""
+
+msgid "Minimum number of input characters"
+msgstr "Minimi merkkimäärä"
+
+msgid "Maximum number of input characters"
+msgstr "Maksimi merkkimäärä"
+
+msgid "Earliest selectable date"
+msgstr "Aikaisin valittavissa oleva päivä"
+
+msgid "Latest selectable date"
+msgstr "Myöhäisin valittavissa oleva päivä"
+
+msgid "0 = auto"
+msgstr ""
+
+msgid "-1 = unlimited"
+msgstr ""
+
+msgid "True"
+msgstr "Tosi"
+
+msgid "False"
+msgstr "Epätosi"
+
+msgid "Yes"
+msgstr "Kyllä"
+
+msgid "No"
+msgstr "Ei"
+
+msgid "Attachment"
+msgstr "Liite"
+
+msgid "Attachments"
+msgstr "Liitteet"
+
+msgid "Change your password"
+msgstr "Muuta salasanaasi"
+
+msgid "First name"
+msgstr "Etunimi"
+
+msgid "Last name"
+msgstr "Sukunimi"
+
+msgid "GENDER_OTHER"
+msgstr ""
+
+msgid "Male"
+msgstr "Mies"
+
+msgid "Female"
+msgstr "Nainen"
+
+msgid "Date of birth"
+msgstr "Syntymäpäivä"
+
+msgid "Place of birth"
+msgstr "Syntymäpaikka"
+
+msgid "Social security number"
+msgstr "Henkilötunnus"
+
+msgid "Residence"
+msgstr "Asuinpaikka"
+
+msgid "Address"
+msgstr "Osoite"
+
+msgid "Zip code / Postal code"
+msgstr "Postinumero"
+
+msgid "City"
+msgstr "Kaupunki"
+
+msgid "State"
+msgstr "Valtio"
+
+msgid "Region"
+msgstr "Seutu"
+
+msgid "Province"
+msgstr "Provinssi"
+
+msgid "Country"
+msgstr "Maa"
+
+msgid "Phone number"
+msgstr "Puhelinnumero"
+
+msgid "Current job title"
+msgstr "Nykyinen työnimike"
+
+msgid "Current job responsibility (role)"
+msgstr "Työrooli"
+
+msgid "Current organization unit and job location"
+msgstr "Organisaatio ja sijainti"
+
+msgid "Job title at the time of the reported fact"
+msgstr "Työnimike ilmoitushetkellä"
+
+msgid "Job responsibility (role) at the time of the reported fact"
+msgstr "Työtehtävä ilmoitushetkellä"
+
+msgid "Organization unit and job location at the time of the reported fact"
+msgstr ""
+
+msgid "List of submissions"
+msgstr ""
+
+msgid "List of access requests to whistleblowers' identities"
+msgstr ""
+
+msgid "User"
+msgstr "Käyttäjä"
+
+msgid "Motivation"
+msgstr ""
+
+msgid "Status"
+msgstr "Tila"
+
+msgid "Request motivation"
+msgstr ""
+
+msgid "Reply motivation"
+msgstr ""
+
+msgid "Request status"
+msgstr "Pyynnön tila"
+
+msgid "Custodian"
+msgstr ""
+
+msgid "Custodian of the identities"
+msgstr ""
+
+msgid "Identity"
+msgstr "Identiteetti"
+
+msgid "Available"
+msgstr "Tavoitettavissa"
+
+msgid "Not available"
+msgstr "Ei tavoitettavissa"
+
+msgid "Access requested"
+msgstr ""
+
+msgid "Request access to the whistleblower's identity"
+msgstr ""
+
+msgid "Please write a motivation"
+msgstr ""
+
+msgid "Reply to the request"
+msgstr ""
+
+msgid "Authorized"
+msgstr ""
+
+msgid "Denied"
+msgstr "Kielletty"
+
+msgid "Waiting for authorization"
+msgstr "Odottaa hyväksyntää"
+
+msgid "New request"
+msgstr "Uusi pyyntö"
+
+msgid "Authorize"
+msgstr "Valtuuta"
+
+msgid "Deny"
+msgstr "Kiellä"
+
+msgid "Deny access to the whistleblower's identity"
+msgstr "Kiellä pääsy vihjeen antajan henkilöllisyyteen"
+
+msgid "Authorize access to the whistleblower's identity"
+msgstr "Salli pääsy vihjeen antajan henkilöllisyyteen"
+
+msgid "Templates"
+msgstr "Mallipohjat"
+
+msgid "Notification of new submission"
+msgstr "Ilmoitus uudesta julkaisusta"
+
+msgid "Notification of new comment"
+msgstr "Ilmoitus uudesta kommentista"
+
+msgid "Notification of new message"
+msgstr "Ilmoitus uudesta viestistä"
+
+msgid "Notification of new file attachment"
+msgstr "Ilmoitus uudesta liitteestä"
+
+msgid "Notification of PGP key expiration"
+msgstr "Ilmoitus PGP-avaimen erääntymisestä"
+
+msgid "Notification of anomaly"
+msgstr "Ilmoitus poikkeamasta"
+
+msgid "Template for summary of contents in submission archive"
+msgstr ""
+
+msgid "Email subject"
+msgstr "Sähköpostin otsikko"
+
+msgid "Email body"
+msgstr "Sähköpostin teksti"
+
+msgid "in seconds"
+msgstr "sekunneissa"
+
+msgid "in hours"
+msgstr "tunneissa"
+
+msgid "in days"
+msgstr "päivissä"
+
+msgid "in characters"
+msgstr "merkeissä"
+
+msgid "in megabytes"
+msgstr "megatavuissa"
+
+msgid "in percentage"
+msgstr "prosenteissa"
+
+msgid "HTTPS settings"
+msgstr "HTTPS asetukset"
+
+msgid "Anomaly detection thresholds"
+msgstr "Poikkeaman havainnointikynnys"
+
+msgid "High risk"
+msgstr "Korkea riski"
+
+msgid "Medium risk"
+msgstr "Normaali riski"
+
+msgid "Low risk"
+msgstr "Matala riski"
+
+msgid "Available disk space"
+msgstr "Levytilaa jäljellä"
+
+msgid "Last update"
+msgstr "Viimeisin päivitys"
+
+msgid "Custodian notification templates"
+msgstr ""
+
+msgid ""
+"This interface allows configuring email templates used to notify custodians."
+msgstr ""
+
+msgid "Disable notifications to administrators"
+msgstr "Estä ilmoitukset ylläpidolla"
+
+msgid "Disable notifications to custodians"
+msgstr ""
+
+msgid "Disable notifications to recipients"
+msgstr "Estä ilmoitukset vastaanottajille"
+
+msgid "Score"
+msgstr "Pisteet"
+
+msgid "Trigger question"
+msgstr ""
+
+msgid "Triggered by a score higher than:"
+msgstr ""
+
+msgid "Select the question to be triggered when this option is selected"
+msgstr ""
+
+msgid "Message shown on top of the status page of the submission"
+msgstr ""
+
+msgid "Copy and paste the PGP public key here"
+msgstr "Kopioi ja liitä PGP:n julkinen avain tähän"
+
+msgid "Password strength:"
+msgstr "Salasanan vahvuus"
+
+msgid "Weak"
+msgstr "Heikko"
+
+msgid "Acceptable"
+msgstr "Hyväksyttävä"
+
+msgid "Strong"
+msgstr "Vahva"
+
+msgid "Loading…"
+msgstr "Ladataan…"
+
+msgid "Text shown on top of the interface for selecting contexts"
+msgstr ""
+
+msgid "Show small context cards on submission interface"
+msgstr ""
+
+msgid "Type of context selector:"
+msgstr ""
+
+msgid "Type to search…"
+msgstr "Etsi..."
+
+msgid "Silence email notifications"
+msgstr "Hiljennä sähköposti-ilmoitukset"
+
+msgid "Turn on email notifications"
+msgstr "Sähköposti-ilmoitukset päälle"
+
+msgid "Enter an email address for the administrator"
+msgstr ""
+
+msgid "Enter a password for the administrator"
+msgstr ""
+
+msgid "Test configuration"
+msgstr ""
+
+msgid "Failed logins"
+msgstr "Epäonnistuneita kirjautumisia"
+
+msgid "Successful logins"
+msgstr "Onnistuneita kirjautumisia"
+
+msgid "Started submissions"
+msgstr "Aloitetut lähetykset"
+
+msgid "Completed submissions"
+msgstr "Valmistuneet lähetykset"
+
+msgid "Failed submissions"
+msgstr ""
+
+msgid "Input validation"
+msgstr ""
+
+msgid "Email address"
+msgstr "Sähköposti"
+
+msgid "Custom"
+msgstr "Mukautettu"
+
+msgid "None"
+msgstr "Ei mitään"
+
+msgid "Regular expression"
+msgstr ""
+
+msgid "Label the submission"
+msgstr ""
+
+msgid "Activate"
+msgstr "Ota käyttöön"
+
+msgid "Search"
+msgstr ""
+
+msgid ""
+"This custom text is no longer displayed on the platform. The original text "
+"has either changed or been removed."
+msgstr ""
+
+msgid ""
+"Unless the whistleblower checks the submission by this time, their access to"
+" it will expire."
+msgstr ""
+
+msgid "The whistleblower can no longer access the submission"
+msgstr ""
+
+msgid "Warning!"
+msgstr "Varoitus!"
+
+msgid "You are running an unsupported and potentially vulnerable browser."
+msgstr ""
+
+msgid "You are strongly advised to download and install the Tor Browser."
+msgstr ""
+
+msgid ""
+"The Tor Browser includes various privacy and security enhancements not "
+"present in other browsers."
+msgstr "Tor-selain sisältää useita yksityisyys- ja turvallisuusominaisuuslaajennuksia, joita ei ole muissa selaimissa."
+
+msgid "Download the Tor Browser"
+msgstr "Lataa Tor-selain"
+
+msgid "This is the list of the other supported browsers:"
+msgstr ""
+
+msgid "System overview"
+msgstr ""
+
+msgid "Stats"
+msgstr "Tilastot"
+
+msgid "Activities"
+msgstr "Aktiviteetit"
+
+msgid "Submissions"
+msgstr ""
+
+msgid "Users"
+msgstr ""
+
+msgid "From"
+msgstr "Lähettäjä"
+
+msgid "Number of downloads"
+msgstr ""
+
+msgid "Error with file:"
+msgstr ""
+
+msgid "File size not accepted."
+msgstr ""
+
+msgid "File type not accepted."
+msgstr ""
+
+msgid "Maximum file size is:"
+msgstr ""
+
+msgid "Accepted file types are:"
+msgstr ""
+
+msgid "Scheduled jobs"
+msgstr ""
+
+msgid "Sites management"
+msgstr ""
+
+msgid "Regenerate"
+msgstr ""
+
+msgid "Display options alphabetically"
+msgstr ""
+
+msgid "Enable email notifications for:"
+msgstr ""
+
+msgid "Software updates"
+msgstr "Ohjelmistopäivitykset"
+
+msgid "Software problems"
+msgstr ""
+
+msgid "Disable"
+msgstr "Poista käytöstä"
+
+msgid "Remove"
+msgstr "Poista"
+
+msgid "Use as default"
+msgstr ""
+
+msgid "Create your whistleblowing platform"
+msgstr ""
+
+msgid "Select the context of your submission:"
+msgstr ""
+
+msgid "Warning! You are not anonymous."
+msgstr ""
+
+msgid ""
+"Sending submissions over HTTPS exposes the act of doing so, but not the "
+"content.\\n\\nAlso, hiding the fact that you are submitting something makes "
+"the submission anonymous, which is strongly recommended.\\n\\nThis can be "
+"achieved with the use of the Tor Browser, providing anonymisation not found "
+"in other browsers like Internet Explorer, Firefox, Chrome, Opera etc."
+msgstr ""
+
+msgid "Are you a whistleblower?"
+msgstr "Oletko ilmiantaja?"
+
+msgid "Blow the whistle"
+msgstr "Ilmianna"
+
+msgid "Have you already filed a submission? Enter your key code."
+msgstr "Oletko jo arkistoinnut lähetyksen? Kirjoita avainkoodisi."
+
+msgid "Your submission was successful."
+msgstr "Lähetyksesi onnistui."
+
+msgid "Submission status"
+msgstr ""
+
+msgid "Disable submissions"
+msgstr ""
+
+msgid "Enable insecure configuration without PGP encryption"
+msgstr "Ota käyttöön turvattomat asetukset ilman PGP-salausta"
+
+msgid "Danger"
+msgstr "Vaara"
+
+msgid ""
+"By enabling this option, the system will be storing the submitted files "
+"unencrypted on your server."
+msgstr "Ottamalla tämän valitsimen käyttöön järjestelmä tallentaa lähetetyt tiedostot salaamattomina solmuusi."
+
+msgid "This happens whenever encryption is unavailable."
+msgstr "Tätä tapahtuu silloin kun salausta ei ole saatavilla."
+
+msgid "Disable messages that warn of missing encryption"
+msgstr ""
+
+msgid ""
+"This setting affects the security of the users and must not be used in "
+"production."
+msgstr ""
+
+msgid "Allow other websites to include the platform inside iframes"
+msgstr "Salli muiden webbisivustojen sisällyttää alusta iframes-komponentin sisälle"
+
+msgid ""
+"By enabling this option, you are allowing other websites to include the "
+"platform inside iframes; this could potentially be used to endanger the "
+"platform or intercept users' communications"
+msgstr ""
+
+msgid "Allow recipients to postpone expiration date of the submission"
+msgstr ""
+
+msgid "Allow recipients to delete submissions"
+msgstr ""
+
+msgid ""
+"Allow recipients to grant permissions to whistleblowers on specific "
+"submissions"
+msgstr ""
+
+msgid "Enable search engines indexing"
+msgstr "Ota käyttöön hakukoneiden indeksointi"
+
+msgid "Enabled"
+msgstr "Käyttöönotettu"
+
+msgid "Search engine spiders will be allowed to index the application."
+msgstr "Hakukoneiden hakuohjelmien sallitaan tutkia sovellus."
+
+msgid "Enable custom privacy panel"
+msgstr "Ota käyttöön oma yksityisyyskulkukortti"
+
+msgid "Custom privacy panel"
+msgstr ""
+
+msgid "Text shown when the whistleblower is not using Tor"
+msgstr "Näytettävä teksti, kun ilmiantaja ei käytä Tor-verkkoa"
+
+msgid "Disable the privacy panel"
+msgstr "Ota pois käytöstä yksityisyyskulkukortti"
+
+msgid "Security awareness panel title"
+msgstr ""
+
+msgid "Security awareness panel text"
+msgstr ""
+
+msgid "Disable the security awareness panel questions"
+msgstr "Ota pois käytöstä turvallisuuspaneelin kysymykset"
+
+msgid "Disable the security awareness panel"
+msgstr "Ota pois käytöstä turvallisuuspaneeli"
+
+msgid "Disable the key code hint"
+msgstr ""
+
+msgid "Disable the donation panel"
+msgstr ""
+
+msgid "Enable CAPTCHA mechanism"
+msgstr ""
+
+msgid "Enable proof of work mechanism"
+msgstr ""
+
+msgid "Enable simplified login for recipients"
+msgstr ""
+
+msgid "Amount of days till whistleblower access expires"
+msgstr ""
+
+msgid ""
+"For security reasons the whistleblower access is subject to expiration."
+msgstr ""
+
+msgid "Tweak this setting only if you know what you are doing."
+msgstr ""
+
+msgid "Landing page"
+msgstr "Aloitussivu"
+
+msgid "Home Page"
+msgstr "Kotisivu"
+
+msgid "Submission Page"
+msgstr "Lähetyssivu"
+
+msgid "Title of the submission page"
+msgstr ""
+
+msgid "Title of the attachments widget"
+msgstr ""
+
+msgid "Text of prompt for whistleblowers to log in"
+msgstr ""
+
+msgid "Show contexts in alphabetical order"
+msgstr ""
+
+msgid "Title of the receipt page"
+msgstr ""
+
+msgid "Title of the submission status page"
+msgstr ""
+
+msgid "Title of the comments widget"
+msgstr ""
+
+msgid "Title of the messages widget"
+msgstr ""
+
+msgid "Size limit for file attachments"
+msgstr ""
+
+msgid "Notify administrators of software problems"
+msgstr ""
+
+msgid "Notify developers of software problems"
+msgstr ""
+
+msgid ""
+"By enabling this feature, you will contribute to the development and "
+"security of the platform."
+msgstr ""
+
+msgid "Enable HTTP Basic Authentication to limit platform access"
+msgstr ""
+
+msgid "Username"
+msgstr "Käyttäjätunnus"
+
+msgid "Password"
+msgstr "Salasana"
+
+msgid ""
+"This feature keeps regular people from visiting the platform while it is "
+"still under development and should not be used for security purposes. The "
+"input password is stored in plaintext on the server."
+msgstr ""
+
+msgid "Enable experimental features"
+msgstr ""
+
+msgid "Warning"
+msgstr "Varoitus"
+
+msgid ""
+"The experimental features may be less stable or even not work at all; enable"
+" this option at your own risk. Support for these features may vary and they "
+"may be removed in the future."
+msgstr ""
+
+msgid "Save"
+msgstr "Tallenna"
+
+msgid "Short URL"
+msgstr "Lyhyt verkko-osoite"
+
+msgid "Long URL"
+msgstr "Pitkä verkko-osoite"
+
+msgid "Add"
+msgstr "Lisää"
+
+msgid "Logo"
+msgstr "Logo"
+
+msgid "Project name"
+msgstr "Aloitteen nimi"
+
+msgid "Homepage title"
+msgstr "Kotisivun otsikko"
+
+msgid "Presentation"
+msgstr "Esittely"
+
+msgid "Description"
+msgstr "Kuvaus"
+
+msgid "Question to solicit possible whistleblowers"
+msgstr "Ilmiantamiskysymys"
+
+msgid "Whistleblowing button"
+msgstr "Ilmiantamispainike"
+
+msgid "Footer"
+msgstr "Alaviite"
+
+msgid "Favicon"
+msgstr ""
+
+msgid "Upload"
+msgstr "Lataa"
+
+msgid "Download"
+msgstr "Lataa"
+
+msgid "Upload custom file"
+msgstr "Lataa oma tiedosto"
+
+msgid "The file will be available at URL: /s/$filename"
+msgstr ""
+
+msgid "Language:"
+msgstr "Kieli:"
+
+msgid "Add custom text"
+msgstr ""
+
+msgid "Custom text"
+msgstr ""
+
+msgid "Custom texts"
+msgstr ""
+
+msgid "Original text"
+msgstr "Alkuperäisteksti"
+
+msgid "Original translation"
+msgstr ""
+
+msgid "Custom translation"
+msgstr ""
+
+msgid "Contexts"
+msgstr "Asiayhteydet"
+
+msgid "Name"
+msgstr "Nimi"
+
+msgid "Edit"
+msgstr "Muokkaa"
+
+msgid "Cancel"
+msgstr "Peru"
+
+msgid "Questionnaire"
+msgstr ""
+
+msgid "Recipients"
+msgstr "Vastaanottajat"
+
+msgid "Allow selection of this context through the context selector."
+msgstr ""
+
+msgid ""
+"If disabled, submissions for this context will only be accessible through a "
+"direct link to it."
+msgstr ""
+
+msgid "Allow whistleblowers to select their recipients"
+msgstr ""
+
+msgid "Select all recipients by default"
+msgstr "Valitse oletuksena kaikki vastaanottajat"
+
+msgid "Maximum number of selectable recipients:"
+msgstr ""
+
+msgid "(0 = unlimited)"
+msgstr "(0 = rajoittamaton)"
+
+msgid "Show recipients in alphabetical order"
+msgstr ""
+
+msgid "Show small recipient cards on submission interface"
+msgstr "Näytä pienet vastaanottajakortit lähetyskäyttöliittymässä"
+
+msgid "Enable comments"
+msgstr "Ota käyttöön kommentit"
+
+msgid "Allow whistleblowers to write comments"
+msgstr ""
+
+msgid "Enable private messages"
+msgstr "Ota käyttöön yksityisviestit"
+
+msgid "Allow whistleblowers to send messages"
+msgstr ""
+
+msgid "Let whistleblowers add attachments onto existing submissions"
+msgstr ""
+
+msgid "Show recipient details on the status page of the submission"
+msgstr ""
+
+msgid "Let recipients upload files to whistleblowers"
+msgstr ""
+
+msgid "Disabled"
+msgstr "Otettu pois käytöstä"
+
+msgid "Submission expiration, in days"
+msgstr ""
+
+msgid ""
+"For security reasons, as a matter of data retention policy, the platform "
+"automatically deletes submissions and their data after a certain amount of "
+"time."
+msgstr ""
+
+msgid "Text shown on top of the interface for selecting recipients"
+msgstr ""
+
+msgid "Welcome to the administration interface!"
+msgstr ""
+
+msgid ""
+"This interface may help you understand how the server can be configured and "
+"provides some info on how to connect to other GlobaLeaks users and experts."
+msgstr "Tämä käyttöliittymä auttaa sinua ymmärtämään, kuinka palvelimelle voidaan asettaa määritykset ja tarjoaa joitakin tietoja siitä kuinka otat yhteyttä muihin GlobaLeaks-käyttäjiin ja asiantuntijoihin."
+
+msgid "Documentation"
+msgstr "Dokumentaatio"
+
+msgid ""
+"To properly organize your project, please read the following guidelines:"
+msgstr "Jotta osaisit järjestää aloitteesi oikein, lue seuraavat ohjeet:"
+
+msgid "Remember to provide proper security advice to Whistleblowers:"
+msgstr "Muista tarjota kunnollisia turvaneuvoja ilmiantajille:"
+
+msgid ""
+"To learn more about GlobaLeaks Security you can read the following document:"
+msgstr ""
+
+msgid "Contact"
+msgstr ""
+
+msgid ""
+"If you need technical support, have general questions, or have new ideas for"
+" the software:"
+msgstr ""
+
+msgid ""
+"If you want to contribute to software development or report a bug, please "
+"open an issue in our ticketing system:"
+msgstr ""
+
+msgid ""
+"If your non-profit needs support for investigative journalism, activism or a"
+" human rights defense project:"
+msgstr ""
+
+msgid ""
+"For professional support and development of anti corruption and compliance "
+"projects contact the social enterprise maintaining GlobaLeaks:"
+msgstr ""
+
+msgid "Join our IRC chat channel on the irc.oftc.net network:"
+msgstr ""
+
+msgid "Follow the project on:"
+msgstr ""
+
+msgid "Software version:"
+msgstr ""
+
+msgid "An update is available:"
+msgstr ""
+
+msgid "SMTP name"
+msgstr "SMTP-nimi"
+
+msgid "SMTP email address"
+msgstr "SMTP-sähköpostiosoite"
+
+msgid "Invalid email address"
+msgstr "Virheellinen sähköpostiosoite"
+
+msgid "SMTP server address"
+msgstr "SMTP-palvelinosoite"
+
+msgid "SMTP server port"
+msgstr "SMTP-palvelinportti"
+
+msgid "Transport Security"
+msgstr "Siirtoturvallisuus"
+
+msgid "When the option is re-enabled the spooled emails will be sent out."
+msgstr "Kun tämä valitsin on otettu uudelleen käyttöön, puskuroidut sähköpostiviestit lähetetään liikkeelle."
+
+msgid "Reset notification templates to default"
+msgstr ""
+
+msgid "Number of hours before sending a submission expiration alert"
+msgstr ""
+
+msgid "Maximum emails per hour before triggering email suspension"
+msgstr ""
+
+msgid "this configuration only applies to recipients"
+msgstr ""
+
+msgid "Test the configuration"
+msgstr ""
+
+msgid "Template"
+msgstr "Mallipohja"
+
+msgid "Admin"
+msgstr "Ylläpitäjä"
+
+msgid "Roles enabled to use the platform without Tor:"
+msgstr ""
+
+msgid "Recipient"
+msgstr "Vastaanottaja"
+
+msgid "Whistleblower"
+msgstr "Ilmiantaja"
+
+msgid "Hostname"
+msgstr ""
+
+msgid "Verify"
+msgstr "Todenna"
+
+msgid "Invalid input format."
+msgstr ""
+
+msgid "Input should be similar to:"
+msgstr ""
+
+msgid ""
+"The platform does not seem to be reachable with the configured hostname."
+msgstr ""
+
+msgid "Using Let's Encrypt requires agreement to their Terms of Service."
+msgstr ""
+
+msgid "Read the Terms of Service"
+msgstr ""
+
+msgid "I agree to the Terms of Service."
+msgstr ""
+
+msgid "Proceed"
+msgstr "Etene"
+
+msgid "Configuration completed. You can review the settings or enable it now."
+msgstr ""
+
+msgid "Review"
+msgstr "Katselmoi"
+
+msgid "Enable"
+msgstr "Ota käyttöön"
+
+msgid "Country code"
+msgstr ""
+
+msgid "Organization"
+msgstr "Organisaatio"
+
+msgid "Organizational unit"
+msgstr ""
+
+msgid ""
+"This interface can generate a Private Key and a Certificate Signing Request."
+" The Certificate Signing Request can be provided to a Certificate Authority "
+"to retrieve a Certificate. After having validated your request and your "
+"ownership of the hostname, the Certificate Authority will issue you a "
+"Certificate and provide a file containing Intermediate Certificates. Load "
+"the Certificate and the file containing the Intermediate Certificates to "
+"complete the HTTPS setup."
+msgstr ""
+
+msgid "Private Key"
+msgstr "Yksityinen avain"
+
+msgid "Generate"
+msgstr "Generoi"
+
+msgid "Certificate Signing Request"
+msgstr ""
+
+msgid "Certificate"
+msgstr ""
+
+msgid "Valid until:"
+msgstr ""
+
+msgid "Issuer:"
+msgstr "Julkaisija:"
+
+msgid "Intermediate Certificates"
+msgstr ""
+
+msgid "Reset"
+msgstr "Nollaa"
+
+msgid "Select an option:"
+msgstr ""
+
+msgid "Automatic configuration"
+msgstr ""
+
+msgid ""
+"Using automatic HTTPS configuration will handle the entire process of "
+"requesting, enabling and renewing certificates from the Let's Encrypt "
+"Certificate Authority."
+msgstr ""
+
+msgid ""
+"The platform must be reachable through a public IP address and the selected "
+"hostname must have a corresponding DNS record referencing that address."
+msgstr ""
+
+msgid "Manual configuration"
+msgstr ""
+
+msgid ""
+"The manual configuration wizard will guide you through the setup of HTTPS "
+"from an alternative Certificate Authority."
+msgstr ""
+
+msgid ""
+"The platform supports the configuration of HTTPS through this interface."
+msgstr ""
+
+msgid "The connection to the configured domain failed."
+msgstr ""
+
+msgid "Running"
+msgstr "Käynnissä"
+
+msgid "Not running"
+msgstr "Ei käynnissä"
+
+msgid "Auto-renewal"
+msgstr ""
+
+msgid "System message:"
+msgstr ""
+
+msgid ""
+"Allowing whistleblowers to connect over HTTPS preserves their privacy but "
+"not their anonymity."
+msgstr ""
+
+msgid "Attention!"
+msgstr ""
+
+msgid ""
+"Configuration in progress. When it is finished you will have to log in "
+"again."
+msgstr ""
+
+msgid "Your browser will be redirected to the following URL."
+msgstr ""
+
+msgid "Tor Onion Service"
+msgstr ""
+
+msgid "Tor Browser download link"
+msgstr ""
+
+msgid "Anonymize outgoing connections"
+msgstr ""
+
+msgid "Let the platform be reachable without Tor"
+msgstr ""
+
+msgid "Stats of the week:"
+msgstr "Viikon tilastot:"
+
+msgid "Free disk space"
+msgstr "Vapaa levytila"
+
+msgid "Event ID"
+msgstr "Tapahtumatunniste"
+
+msgid "Time"
+msgstr "Aika"
+
+msgid "Event"
+msgstr "Tapahtuma"
+
+msgid "Response time"
+msgstr "Vastausaika"
+
+msgid "Role"
+msgstr "Rooli"
+
+msgid "Last access"
+msgstr "Viimeksi luettu"
+
+msgid "Submission"
+msgstr "Lähetys"
+
+msgid "Path"
+msgstr "Polku"
+
+msgid "Size"
+msgstr "Koko"
+
+msgid "Alarm level"
+msgstr "Hälytystaso"
+
+msgid "Events"
+msgstr "Tapahtumat"
+
+msgid "Label"
+msgstr "Nimiö"
+
+msgid "Type"
+msgstr "Tyyppi"
+
+msgid "Single-line text input"
+msgstr ""
+
+msgid "Multi-line text input"
+msgstr ""
+
+msgid "Multiple choice input"
+msgstr ""
+
+msgid "Selection box"
+msgstr ""
+
+msgid "Checkbox"
+msgstr "Valintaruutu"
+
+msgid "Terms of service"
+msgstr "Käyttöehdot"
+
+msgid "Group of questions"
+msgstr ""
+
+msgid "Row"
+msgstr ""
+
+msgid "Column"
+msgstr ""
+
+msgid "Width"
+msgstr "Leveys"
+
+msgid "Question group"
+msgstr ""
+
+msgid "Hint"
+msgstr "Vihje"
+
+msgid "Required"
+msgstr "Vaadittu"
+
+msgid "Accept multiple file uploads"
+msgstr "Hyväksy useiden tiedostojen siirto kerralla"
+
+msgid "Accept multiple answers for the field"
+msgstr "Hyväksy useita vastauksia kentälle"
+
+msgid "Hint shown on the button for adding an additional answer"
+msgstr ""
+
+msgid "Clause"
+msgstr "Sopimuskohta"
+
+msgid "Agreement Text"
+msgstr "Sopimusteksti"
+
+msgid "Layout orientation"
+msgstr ""
+
+msgid "Subject answer visibility to custodian authorization"
+msgstr ""
+
+msgid "Prompt confirmation upon negative answer"
+msgstr ""
+
+msgid "Title of the confirmation question upon negative answer"
+msgstr ""
+
+msgid "Body of the confirmation question upon negative answer"
+msgstr ""
+
+msgid "Options"
+msgstr "Valitsimet"
+
+msgid "Questions"
+msgstr ""
+
+msgid "Add new question"
+msgstr ""
+
+msgid "Add question from template"
+msgstr ""
+
+msgid "Steps"
+msgstr ""
+
+msgid "Configuration"
+msgstr "Asetukset"
+
+msgid "Default"
+msgstr "Oletus"
+
+msgid "Forcefully selected"
+msgstr ""
+
+msgid "Unselectable"
+msgstr "Ei ole valittavissa"
+
+msgid "Allow the recipient to postpone the submission expiration date"
+msgstr ""
+
+msgid "The setting is enabled at a global level."
+msgstr "Asetus on otettu käyttöön globaalisti."
+
+msgid "Allow the recipient to delete submissions"
+msgstr ""
+
+msgid ""
+"Allow the recipient to grant permissions to whistleblowers on specific "
+"submissions"
+msgstr ""
+
+msgid "General settings"
+msgstr "Yleisasetukset"
+
+msgid "Network settings"
+msgstr "Verkkoasetukset"
+
+msgid "Root domain used for secondary sites"
+msgstr ""
+
+msgid "Allow users to sign up"
+msgstr ""
+
+msgid "Sites"
+msgstr ""
+
+msgid "Active"
+msgstr ""
+
+msgid "Inactive"
+msgstr ""
+
+msgid "The default password is:"
+msgstr ""
+
+msgid "The system forces users to change the password at first login."
+msgstr "Järjestelmä pakottaa käyttäjät vaihtamaan salasanan ensimmäisen kirjautumisen yhteydessä."
+
+msgid "New Password"
+msgstr "Uusi salasana"
+
+msgid ""
+"The chosen password is too weak. Make it more secure by adding special "
+"characters, numbers, and unusual symbols."
+msgstr ""
+
+msgid "Force password change"
+msgstr ""
+
+msgid "The user will be forced to change its password on next login."
+msgstr ""
+
+msgid "Language"
+msgstr "Kieli"
+
+msgid "Encryption:"
+msgstr "Salaus:"
+
+msgid "Remove the PGP key"
+msgstr "Poista PGP-avain"
+
+msgid "Set up encryption by providing a PGP public key"
+msgstr ""
+
+msgid "Request date"
+msgstr ""
+
+msgid "Authorization"
+msgstr ""
+
+msgid "Before proceeding, please change your password."
+msgstr ""
+
+msgid "Submissions disabled"
+msgstr ""
+
+msgid ""
+"You are connecting to the server without anonymity and this server supports "
+"only anonymous submissions"
+msgstr "Olet yhdistänyt palvelimen ilman anonymiteettiä ja tämä solmu tukee vain nimettömiä lähetyksiä"
+
+msgid ""
+"Server temporarly unusable due to resource exhaustion; advise the Admin if "
+"you can."
+msgstr ""
+
+msgid "This server is not configured."
+msgstr "Tätä solmua ei ole asetettu"
+
+msgid "You will not be able to send a submission."
+msgstr "Et kykene lähettämään lähetystä."
+
+msgid ""
+"This platform makes use of GlobaLeaks software specifically designed to "
+"protect the identity for submitter and recipient in the exchange of content."
+msgstr ""
+
+msgid ""
+"The software is developed by the non-profit Hermes Center for Transparency "
+"and Digital Human Rights."
+msgstr "Ohjelmiston on tuottanut voittoa tavoittelematon ihmisoikeusjärjestö Hermes Center for Transparency and Digital Human Rights."
+
+msgid "Please support Hermes through their donation page."
+msgstr "Voit tukea Hermes-järjestöä heidän lahjoitussivunsa kautta."
+
+msgid "Authentication failed"
+msgstr "Todentaminen epäonnistui"
+
+msgid "Please select your account:"
+msgstr "Valitse tilisi:"
+
+msgid "Now type your password, then click 'Log in':"
+msgstr "Kirjoita nyt salasanasi, napsauta sitten ’Kirjaudu’:"
+
+msgid "Are you sure?"
+msgstr "Oletko varma?"
+
+msgid "The operation will reset the configuration and cannot be undone."
+msgstr ""
+
+msgid "Assign score points"
+msgstr ""
+
+msgid ""
+"Enter the number of score points to be assigned when this option is "
+"selected:"
+msgstr ""
+
+msgid "Confirm"
+msgstr "Vahvista laajennus"
+
+msgid "Are you human?"
+msgstr "Oletko ihminen?"
+
+msgid ""
+"We do not discriminate based on race and gender, but we do against computers"
+" :)"
+msgstr ""
+
+msgid ""
+"Just to prove you are human, please answer the following math challenge:"
+msgstr "Vastaa seuraavaan matematiikkahaasteeseen todistaaksesi, että olet ihminen:"
+
+msgid "I've solved the math challenge, hide this thing now!"
+msgstr "Ratkaisin matematiikkahaasteen, piilota tämä kohta nyt!"
+
+msgid "Please note that all the associated data will be permanently lost."
+msgstr ""
+
+msgid ""
+"This means that if the server running the platform were to be seized, it "
+"would be possible to extract the files that have been submitted."
+msgstr ""
+
+msgid "Are you sure that you wish to continue?"
+msgstr "Oletko varma, että haluat jatkaa?"
+
+msgid ""
+"Downloading a file with malicious content could compromise your computer or "
+"disclose your identity."
+msgstr ""
+
+msgid "The name of the file and its content can be intentionally misleading."
+msgstr ""
+
+msgid ""
+"Please review the following information and decide if you wish to proceed."
+msgstr ""
+
+msgid "Error!"
+msgstr "Virhe!"
+
+msgid "Internal server error"
+msgstr ""
+
+msgid "Error on input validation"
+msgstr ""
+
+msgid "Resource not found"
+msgstr ""
+
+msgid "Forbidden operation"
+msgstr ""
+
+msgid "The specified old password is not valid"
+msgstr "Määritelty vanha salasana ei ole kelvollinen"
+
+msgid "Resource can only be accessed via the Tor network"
+msgstr "Resurssiin on pääsy vain Tor-verkon sisällä"
+
+msgid "The upload request exceeds the size limit"
+msgstr "Pyyntö palvelimelle kopointiin ylittää kokorajat"
+
+msgid "Success!"
+msgstr "Onnistui!"
+
+msgid ""
+"It appears that you are browsing this site without any extra privacy and "
+"security!"
+msgstr "Näyttää, että selaat tätä sivustoa ilman mitään ylimääräistä yksityisyyttä tai turvallisuutta!"
+
+msgid ""
+"You are strongly advised to visit this site using the desktop app called Tor"
+" Browser, that protects your identity."
+msgstr "Suositellaan ponnekkaasti, että vierailet tällä sivustolla käyttäen työpöytäsovellusta nimeltä Tor-selain, joka suojelee henkilöllisyyttäsi."
+
+msgid "Then, copy and paste the following address into the Tor Browser:"
+msgstr "Kopioi ja liitä sitten seuraava osoite asennettuun Tor-selaimeen:"
+
+msgid "Details of the PGP key:"
+msgstr ""
+
+msgid "Fingerprint"
+msgstr "Sormenjälkitunniste"
+
+msgid "Add file"
+msgstr "Lisää tiedosto"
+
+msgid "Uploading files…"
+msgstr ""
+
+msgid "Upload completed successfully!"
+msgstr ""
+
+msgid "Error while uploading files; check below for details."
+msgstr ""
+
+msgid "Estimated upload time:"
+msgstr ""
+
+msgid "seconds"
+msgstr "sekuntia"
+
+msgid "Which of the following statements is true?"
+msgstr "Mitkä seuraavista väittämistä ovat tosia?"
+
+msgid "HTTPS protects my identity, but not the content of my submission"
+msgstr ""
+
+msgid "HTTPS protects the content of my submission but not my identity"
+msgstr ""
+
+msgid "HTTPS does not protect the content of my submission nor my identity"
+msgstr ""
+
+msgid "HTTPS does protect both my identity and the content of my submission"
+msgstr ""
+
+msgid ""
+"You are aware of the risks involved. Go ahead, but consider yourself warned."
+msgstr "Ymmärrän riskit. Voit edetä, mutta huomioi varoitukset."
+
+msgid "Wrong Answer!"
+msgstr "Väärä vastaus!"
+
+msgid "The connection is not secure."
+msgstr ""
+
+msgid ""
+"The platform is still not configured for HTTPS connections and should "
+"therefore only be used for testing purposes."
+msgstr ""
+
+msgid "Send"
+msgstr "Lähetä"
+
+msgid "Allow the whistleblower to write comments"
+msgstr ""
+
+msgid "Filename"
+msgstr "Tiedostonimi"
+
+msgid "Upload date"
+msgstr "Latauspäivä"
+
+msgid "Content Type"
+msgstr "Sisältötyyppi"
+
+msgid "File size"
+msgstr "Tiedostokoko"
+
+msgid "download"
+msgstr "lataa"
+
+msgid "No files have been uploaded!"
+msgstr "Yhtään tiedostoa ei kopioitu palvelimelle!"
+
+msgid "Allow the whistleblower to add attachments to the submission"
+msgstr ""
+
+msgid "Access expiration"
+msgstr ""
+
+msgid "Connection"
+msgstr ""
+
+msgid "Never"
+msgstr "Ei koskaan"
+
+msgid "Revoked"
+msgstr "Kumottu"
+
+msgid "Allow the whistleblower to send messages"
+msgstr ""
+
+msgid "Are you sure that you want to delete the submission?"
+msgstr ""
+
+msgid ""
+"Everything related to the submission stored on the platform will be deleted."
+msgstr ""
+
+msgid ""
+"Please be aware that everything stored off the platform, e.g. files you have"
+" saved on your computer, must be deleted manually."
+msgstr ""
+
+msgid "Are you sure that you want to delete all the selected submissions?"
+msgstr ""
+
+msgid ""
+"Please make sure that all related data is properly deleted so that the "
+"recipients won't be able to further access to it."
+msgstr "Huolehdi, että kaikki liittyvät tiedot on poistettu oikein eikä kenelläkään vastaanottajalla ole enää pääsyä niihin."
+
+msgid "Please write a motivation for the reply"
+msgstr ""
+
+msgid "Are you sure that you want to postpone the submission expiration date?"
+msgstr ""
+
+msgid "By confirming, you will postpone the expiration date to:"
+msgstr ""
+
+msgid ""
+"Are you sure that you want to postpone the expiration date for all selected "
+"submissions?"
+msgstr ""
+
+msgid "Questionnaire answers"
+msgstr ""
+
+msgid "Step"
+msgstr "Vaihe"
+
+msgid "Recipient list"
+msgstr ""
+
+msgid "Attached files for the whistleblower"
+msgstr ""
+
+msgid ""
+"Files uploaded here are made available for the whistleblower and other "
+"recipients to download."
+msgstr ""
+
+msgid "Upload a file:"
+msgstr ""
+
+msgid "Logout"
+msgstr "Kirjaudu ulos"
+
+msgid "The key code is either invalid or the submission has expired."
+msgstr "Avainkoodi on joko virheellinen tai lähetys on vanhentunut."
+
+msgid "Please check your key code and try again or make a new submission."
+msgstr "Tarkista avainkoodisi ja yritä uudelleen tai tee uusi lähetys."
+
+msgid "Files attached by recipients"
+msgstr ""
+
+msgid "These files have been attached to your submission by the recipients."
+msgstr ""
+
+msgid "Enable submission notification"
+msgstr ""
+
+msgid "Current Password"
+msgstr "Nykyinen salasana"
+
+msgid "Old password confirmation required"
+msgstr "Entinen salasanavahvistus vaadittu"
+
+msgid "The new password must be different from the current one."
+msgstr ""
+
+msgid "Type your new password again"
+msgstr "Kirjoita uusi salasana uudelleen"
+
+msgid "The two passwords do not match"
+msgstr "Kaksi salasanaa ei täsmää"
+
+msgid "Thank you!"
+msgstr "Kiitos!"
+
+msgid "Remember your key code for this submission."
+msgstr "Muista avainkoodisi tälle lähetykselle."
+
+msgid "We will try to get back to you as soon as possible!"
+msgstr "Otamme teihin yhteyttä mahdollisimman pian!"
+
+msgid ""
+"Use the 16 digit key code to log in. It will allow you to view any messages "
+"we sent you, and also to add extra info."
+msgstr "Käytä 16-numeroista avainkoodia kirjautumiseen ja katso kaikki viestit, jotka lähetämme sinulle tai jos ajattelet jotain muuta mitä sinä olet lisännyt."
+
+msgid "View your submission"
+msgstr "Katso lähetyksiäsi"
+
+msgid "Hint: How to hide your key code"
+msgstr "Vihje: Kuinka piilottaa avainkoodisi"
+
+msgid ""
+"A useful way to hide your key code is to write it down like a credit card "
+"number, i.e. by also including an expiration date."
+msgstr "Hyödyllinen tapa piilottaa avainkoodisi on kirjoittaa se muistiin kuten luottokorttinumero, toisin sanoen sisällyttää myös vanhenemispäivämäärä."
+
+msgid "Example:"
+msgstr "Esimerkiksi:"
+
+msgid ""
+"You have not set up your encryption key, so the files will not be encrypted "
+"prior to being stored on the server."
+msgstr ""
+
+msgid ""
+"This may lead to unintended access to the files by the server administrator "
+"or others in case the server is compromised."
+msgstr "Tämä voi johtaa tahattomaan palvelinylläpitäjän tai muiden pääsyyn tiedostoihin, jos palvelimelle murtaudutaan."
+
+msgid "Please configure your PGP keys in the recipient preferences page."
+msgstr "Aseta PGP-avaimesi vastaanottajaetuoikeudet-sivulla."
+
+msgid ""
+"One or more of the recipients of this submission has not configured a PGP "
+"key."
+msgstr ""
+
+msgid ""
+"This means that the submitted files will be stored in plaintext on the "
+"server."
+msgstr "Tämä tarkoittaa, että lähetetyt tiedostot tallennetaan tavallisena tekstinä solmuusi."
+
+msgid ""
+"Access to the whistleblower's identity has been requested to the custodian."
+msgstr ""
+
+msgid "Date of the request"
+msgstr ""
+
+msgid "Congratulations!"
+msgstr "Onneksi olkoon!"
+
+msgid "You have completed the platform activation."
+msgstr ""
+
+msgid "Your whistleblowing platform is now accessible at:"
+msgstr ""
+
+msgid "Users' credentials:"
+msgstr ""
+
+msgid "To log in, visit:"
+msgstr ""
+
+msgid "For the user documentation visit:"
+msgstr ""
+
+msgid "The platform will be automatically deleted on:"
+msgstr ""
+
+msgid "Sign up"
+msgstr ""
+
+msgid "Domain"
+msgstr "Verkkotunnus"
+
+msgid "Use Case"
+msgstr ""
+
+msgid "Anticorruption"
+msgstr ""
+
+msgid "Corporate compliance"
+msgstr ""
+
+msgid "Investigative journalism"
+msgstr ""
+
+msgid "Civic activism"
+msgstr ""
+
+msgid "Other"
+msgstr "Muut"
+
+msgid "Complete"
+msgstr "Valmis"
+
+msgid "Your whistleblowing platform is almost ready!"
+msgstr ""
+
+msgid "Check your inbox to activate your account."
+msgstr ""
+
+msgid "The answer is too short."
+msgstr ""
+
+msgid "The specified input is not valid:"
+msgstr ""
+
+msgid "please enter a valid email address."
+msgstr ""
+
+msgid "please enter numbers only."
+msgstr ""
+
+msgid "Recipient selection"
+msgstr "Vastaanottajan valinta"
+
+msgid "previous step"
+msgstr "Takaisin edelliseen vaiheeseen"
+
+msgid "next step"
+msgstr "Etene seuraavaan vaiheeseen"
+
+msgid "Submit"
+msgstr "Lähetä"
+
+msgid "Recipients selected:"
+msgstr "Vastaanottajat valittu:"
+
+msgid ""
+"In this step the answers to the following questions are either missing or "
+"invalid:"
+msgstr ""
+
+msgid "Submission errors"
+msgstr ""
+
+msgid "You must select at least one recipient."
+msgstr ""
+
+msgid "Waiting for the file(s) to finish uploading."
+msgstr ""
+
+msgid "The following steps have errors:"
+msgstr ""
+
+msgid "Welcome!"
+msgstr "Tervetuloa!"
+
+msgid ""
+"The following step-by-step procedure will guide you through creating your "
+"whistleblowing platform."
+msgstr ""
+
+msgid "Please choose a configuration profile:"
+msgstr ""
+
+msgid ""
+"These profiles contain settings used by successful projects in each "
+"respective field."
+msgstr ""
+
+msgid "Confirm password"
+msgstr "Vahvista salasana"
+
+msgid "The default username is:"
+msgstr ""
+
+msgid "License Agreement"
+msgstr ""
+
+msgid "Please review the license terms before proceeding."
+msgstr ""
+
+msgid "I have read and agree to the terms of the License Agreement."
+msgstr ""
+
+msgid "You have completed the platform wizard."
+msgstr ""
+
+msgid "Fill out your submission"
+msgstr "Täytä lähetyslomake"
+
+msgid "Short title"
+msgstr "Lyhyt otsikko"
+
+msgid "Describe your submission in a few words."
+msgstr ""
+
+msgid "Full description"
+msgstr "Koko kuvaus"
+
+msgid "Describe your submission in detail."
+msgstr ""
+
+msgid "Attach files relevant to the submission."
+msgstr ""
+
+msgid "Dear {RecipientName},"
+msgstr "Hyvä {RecipientName},"
+
+msgid "Kind regards,"
+msgstr "Ystävälliset terveiset,"
+
+msgid ""
+"The number of activities recently detected appears to be higher than usual."
+msgstr ""
+
+msgid ""
+"This could be a sign of an attack (for example, someone flooding your server"
+" with bogus information) or just a usage spike due to an increased "
+"visibility of your project."
+msgstr ""
+
+msgid "Examine the issue to determine whether it is legitimate or not."
+msgstr ""
+
+msgid "The activities with unusual stats are:"
+msgstr ""
+
+msgid ""
+"The server cannot guarantee that a new submission can be stored, so "
+"submissions have been disabled."
+msgstr ""
+
+msgid ""
+"Please consider asking your technical support to create more disk space on "
+"the server."
+msgstr ""
+
+msgid ""
+"GlobaLeaks technology includes a server status checking component which will"
+" alert you in case something requires your attention."
+msgstr ""
+
+msgid ""
+"For more information, log in to the Administration interface and look at the"
+" \"System Stats\" and \"Anomalies\" sections."
+msgstr ""
+
+msgid "Anomaly detected in {NodeName}"
+msgstr ""
+
+msgid ""
+"This is an email to inform you that the PGP key of the following users is "
+"going to expire or has already expired:"
+msgstr "Tämä sähköpostiviesti kertoo sinulle, etttä seuraavien käyttäjien PGP-avain on vanhentumassa tai jo vanhentunut:"
+
+msgid ""
+"Without a valid PGP key, the system will not be able to send them encrypted "
+"notifications."
+msgstr "Järjestelmä ei kykene lähettämään salakirjoitettuja ilmoituksia ilman kelvollista PGP-avainta."
+
+msgid "PGP key expiration alert"
+msgstr "PGP-avaimen vanhenemishälytys"
+
+msgid ""
+"This is a test email sent out from the platform's administrative interface."
+msgstr ""
+
+msgid ""
+"Reception of this email indicates that the server was able to authenticate "
+"to and interact with the SMTP mail server."
+msgstr ""
+
+msgid "Test email"
+msgstr ""
+
+msgid ""
+"This is an email to notify you of a new comment on an existing submission."
+msgstr ""
+
+msgid "The submission can be accessed:"
+msgstr "Lähetystä voidaan tarkastella:"
+
+msgid "via Tor at: {TorUrl}"
+msgstr "Tor-sovelluksen kautta osoitteessa: {TorUrl}"
+
+msgid "via HTTPS at: {HTTPSUrl}"
+msgstr "HTTPS-sovelluksen kautta osoitteessa: {HTTPSUrl}"
+
+msgid "New comment"
+msgstr ""
+
+msgid "From: {RecipientName}"
+msgstr ""
+
+msgid "Date: {EventTime}"
+msgstr ""
+
+msgid "From: Whistleblower"
+msgstr ""
+
+msgid "Date: {SubmissionDate}"
+msgstr ""
+
+msgid "Label: {TipLabel}"
+msgstr ""
+
+msgid "Context: {ContextName}"
+msgstr ""
+
+msgid ""
+"This is an email to notify you that the whistleblower of submission {TipNum}"
+" has attached new material."
+msgstr ""
+
+msgid "New attachment"
+msgstr "Uusi liite"
+
+msgid ""
+"The HTTPS certificate loaded on the platform is about to, or has already "
+"expired."
+msgstr ""
+
+msgid "Expiration date: {ExpirationDate}"
+msgstr ""
+
+msgid ""
+"Without a valid certificate, the platform will be accessible in a secure way"
+" only via Tor."
+msgstr ""
+
+msgid "Log in to solve the issue."
+msgstr ""
+
+msgid "Expiration alert for HTTPS certificate"
+msgstr ""
+
+msgid ""
+"This is an email to notify you that a custodian has authorized you to access"
+" to the whistleblowing identity for the submission {TipNum}."
+msgstr ""
+
+msgid "Access to whistleblower's identity authorized"
+msgstr ""
+
+msgid ""
+"This is an email to notify you that a custodian has denied you access to the"
+" wistleblowing identity for the submission {TipNum}."
+msgstr ""
+
+msgid "Access to whistleblower's identity denied"
+msgstr ""
+
+msgid ""
+"This is an email to notify you that a recipient has requested access to the "
+"whistleblower's identity for the submission {TipNum}"
+msgstr ""
+
+msgid "The request can be accessed:"
+msgstr ""
+
+msgid "New request of access to a whistleblower's identity"
+msgstr ""
+
+msgid ""
+"This is an email to notify you that the whistleblower for the submission "
+"{TipNum} has provided their identity."
+msgstr ""
+
+msgid "The whistleblower has provided their identity"
+msgstr ""
+
+msgid ""
+"This is an email to notify you of a new message on an existing submission."
+msgstr ""
+
+msgid "New message"
+msgstr "Uusi viesti"
+
+msgid ""
+"This is an email to inform you that your PGP key is expiring or has already "
+"expired."
+msgstr "Tämä sähköpostiviesti kertoo sinulle, että PGP-avaimesi on vanhentumassa tai jo vanhentunut."
+
+msgid ""
+"You should extend its validity and update the key present on the platform, "
+"or upload a new key."
+msgstr ""
+
+msgid ""
+"Without a valid PGP key, the system won't be able to encrypt data provided "
+"to you."
+msgstr ""
+
+msgid "It appears that {NodeName} is receiving a large number of requests."
+msgstr ""
+
+msgid ""
+"To prevent sending you too many emails, the system has disabled email "
+"notifications until the load returns to normal. In the meantime, you can "
+"normally log onto the platform and manually check for new submissions."
+msgstr "Jotta sinulle ei lähetettäisi liian monta sähköpostiviestiä, järjestelmä on ottanut pois käytöstä sähköposti-ilmoitukset, kunnes kuormitus palautuu normaaliksi. Sillä aikaa voit kirjautua normaalisti alustalle ja tarkistaa uudet lähetykset manuaalisesti."
+
+msgid ""
+"If you don’t mind and would rather receive such a large number of email "
+"notifications anyhow, please contact your technical support to have them "
+"modify this setting accordingly."
+msgstr ""
+
+msgid "Notifications from {NodeName} have been temporarily suspended"
+msgstr ""
+
+msgid "Click the link to activate the platform:"
+msgstr ""
+
+msgid "A software update is available."
+msgstr ""
+
+msgid "It is good security practice to keep the platform up to date."
+msgstr ""
+
+msgid "Installed version: {InstalledVersion}"
+msgstr ""
+
+msgid "Latest version: {LatestVersion}"
+msgstr ""
+
+msgid ""
+"To learn about new features and bug fixes in the new version consult the "
+"change log at: {ChangeLogUrl}"
+msgstr ""
+
+msgid ""
+"For instructions on software updates, please refer to the documentation at: "
+"{UpdateGuideUrl}"
+msgstr ""
+
+msgid "The earliest expiration date is {EarliestExpirationDate}."
+msgstr ""
+
+msgid "Please remember to check them before they are deleted."
+msgstr ""
+
+msgid "Some submissions will expire soon"
+msgstr ""
+
+msgid ""
+"This is an email to notify you that a whistleblower has selected you as a "
+"valuable recipient of their submission."
+msgstr ""
+
+msgid ""
+"You are asked to pay special attention to the information and material "
+"contained therein. Please keep in mind that whistleblowers often expose "
+"themselves to high personal risks in the interest of the public. Therefore "
+"the material provided within this submission should be considered to be of "
+"high importance."
+msgstr ""
+
+msgid "New submission"
+msgstr ""

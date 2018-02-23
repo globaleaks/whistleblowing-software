@@ -1,0 +1,2323 @@
+# 
+# Translators:
+# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2015-2018
+# Masayuki Hatta <mhatta@mhatta.org>, 2014
+# Naofumi <naofum@gmail.com>, 2015-2018
+# Naofumi <naofum@gmail.com>, 2015
+# Suguru Hirahara, 2013
+# Suguru Hirahara, 2013
+msgid ""
+msgstr ""
+"Project-Id-Version: GlobaLeaks\n"
+"PO-Revision-Date: 2018-02-22 09:22+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"Language-Team: Japanese (http://www.transifex.com/otf/globaleaks/language/ja/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: ja\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "Login page"
+msgstr "ログインページ"
+
+msgid "Log in"
+msgstr "ログイン"
+
+msgid "Administration interface"
+msgstr "管理者インターフェース"
+
+msgid "Main configuration"
+msgstr "主要な設定"
+
+msgid "Theme customization"
+msgstr "テーマのカスタマイズ"
+
+msgid "Languages"
+msgstr "言語"
+
+msgid "Text customization"
+msgstr "テキストのカスタマイズ"
+
+msgid "Advanced settings"
+msgstr "詳細設定"
+
+msgid "Questionnaire configuration"
+msgstr "アンケートの設定"
+
+msgid "Question templates"
+msgstr "質問のテンプレート"
+
+msgid "Questionnaires"
+msgstr "アンケート"
+
+msgid "Add new questionnaire"
+msgstr "新しいアンケートを追加"
+
+msgid "Home"
+msgstr "ホーム"
+
+msgid "Home page"
+msgstr "ホームページ"
+
+msgid "Changelog"
+msgstr "変更履歴"
+
+msgid "License"
+msgstr "ライセンス"
+
+msgid "Notification templates"
+msgstr "通知のテンプレート"
+
+msgid "Recipient notification templates"
+msgstr "受信者の通知テンプレート"
+
+msgid "Admin notification templates"
+msgstr "管理者の通知テンプレート"
+
+msgid "Missing data"
+msgstr "データがありません"
+
+msgid "no stats available for the future."
+msgstr "将来の利用可能な統計はありません。"
+
+msgid "no stats available for this hour."
+msgstr "現在の時間に利用可能な統計はありません。"
+
+msgid "no stats available for current hour; check activities page."
+msgstr "現在の時間に利用可能な統計はありません。活動ページを確認してください。"
+
+msgid "Delete"
+msgstr "削除"
+
+msgid "Anomalies"
+msgstr "異変"
+
+msgid "Preferences"
+msgstr "設定"
+
+msgid "Recipient interface"
+msgstr "受信者インターフェース"
+
+msgid "Notification settings"
+msgstr "通知設定"
+
+msgid "This recipient has configured the encryption key."
+msgstr "この受信者は暗号化鍵を設定しています。"
+
+msgid "This recipient has not configured the encryption key."
+msgstr "この受信者は暗号化鍵を設定していません。"
+
+msgid "The file is unavailable due to an internal error."
+msgstr "内部エラーによりファイルは利用できません。"
+
+msgid "file unavailable"
+msgstr "利用不能なファイル"
+
+msgid "Creation date"
+msgstr "作成日"
+
+msgid "Expiration date"
+msgstr "有効期限の日付"
+
+msgid "Last Access"
+msgstr "最終アクセス"
+
+msgid "Files"
+msgstr "ファイル"
+
+msgid "Comments"
+msgstr "コメント"
+
+msgid "Messages"
+msgstr "メッセージ"
+
+msgid "Select this recipient."
+msgstr "この受信者を選択"
+
+msgid "Unselect this recipient."
+msgstr "この受信者の選択を外す"
+
+msgid "This recipient cannot be selected."
+msgstr "この受信者は選択できません。"
+
+msgid "This recipient cannot be deselected."
+msgstr "この受信者の選択は解除できません。"
+
+msgid "Details"
+msgstr "詳細"
+
+msgid "Platform wizard"
+msgstr "プラットフォーム ウィザード"
+
+msgid "Step-by-step setup"
+msgstr "ステップ・バイ・ステップで設定"
+
+msgid "CREDIT CARD"
+msgstr "クレジットカード"
+
+msgid "YOUR NAME"
+msgstr "あなたの名前"
+
+msgid "Postpone the expiration date"
+msgstr "有効期限を延期する"
+
+msgid "Select all"
+msgstr "すべて選択"
+
+msgid "Deselect all"
+msgstr "すべて選択解除"
+
+msgid "Refresh page"
+msgstr "ページを更新する"
+
+msgid "Context"
+msgstr "コンテキスト"
+
+msgid "Submission date"
+msgstr "提出の日付"
+
+msgid "Private messages"
+msgstr "プライベート・メッセージ"
+
+msgid "Preview"
+msgstr "プレビュー"
+
+msgid "Move up"
+msgstr "上に移動"
+
+msgid "Move down"
+msgstr "下に移動"
+
+msgid "Move left"
+msgstr "左に移動"
+
+msgid "Move right"
+msgstr "右に移動"
+
+msgid "Import"
+msgstr "インポート"
+
+msgid "Export"
+msgstr "エクスポート"
+
+msgid "Save all"
+msgstr "すべて保存"
+
+msgid "This field is mandatory"
+msgstr "このフィールドは必須です"
+
+msgid ""
+"The connection used to send this submission has been secured with HTTPS "
+"ensuring confidentiality."
+msgstr "この提出を送信するために使用される接続は、HTTPS で機密性を確保するために保護されます。"
+
+msgid ""
+"The connection used to send this submission has been secured with Tor "
+"ensuring confidentiality and anonymity."
+msgstr "この提出を送信するために使用する接続は、Tor で機密性と匿名性を確保して保護されています。"
+
+msgid "vertical"
+msgstr "縦"
+
+msgid "horizontal"
+msgstr "横"
+
+msgid "Number"
+msgstr "番号"
+
+msgid "Email"
+msgstr "電子メール"
+
+msgid "Date"
+msgstr "日付"
+
+msgid "Regular expression validator"
+msgstr "正規表現バリデーター"
+
+msgid "Minimum number of input characters"
+msgstr "入力文字の最小数"
+
+msgid "Maximum number of input characters"
+msgstr "入力文字の最大数"
+
+msgid "Earliest selectable date"
+msgstr "選択可能な最も早い日付"
+
+msgid "Latest selectable date"
+msgstr "選択可能な最も遅い日付"
+
+msgid "0 = auto"
+msgstr "0 = 自動"
+
+msgid "-1 = unlimited"
+msgstr "-1 = 無制限"
+
+msgid "True"
+msgstr "正"
+
+msgid "False"
+msgstr "誤"
+
+msgid "Yes"
+msgstr "はい"
+
+msgid "No"
+msgstr "いいえ"
+
+msgid "Attachment"
+msgstr "添付"
+
+msgid "Attachments"
+msgstr "添付"
+
+msgid "Change your password"
+msgstr "パスワードを変更してください"
+
+msgid "First name"
+msgstr "名"
+
+msgid "Last name"
+msgstr "姓"
+
+msgid "GENDER_OTHER"
+msgstr "その他"
+
+msgid "Male"
+msgstr "男性"
+
+msgid "Female"
+msgstr "女性"
+
+msgid "Date of birth"
+msgstr "誕生日"
+
+msgid "Place of birth"
+msgstr "誕生地"
+
+msgid "Social security number"
+msgstr "社会保障番号"
+
+msgid "Residence"
+msgstr "住居"
+
+msgid "Address"
+msgstr "住所"
+
+msgid "Zip code / Postal code"
+msgstr "郵便番号"
+
+msgid "City"
+msgstr "市区町村"
+
+msgid "State"
+msgstr "都道府県州"
+
+msgid "Region"
+msgstr "都道府県"
+
+msgid "Province"
+msgstr "地方"
+
+msgid "Country"
+msgstr "国"
+
+msgid "Phone number"
+msgstr "電話番号"
+
+msgid "Current job title"
+msgstr "現在の肩書"
+
+msgid "Current job responsibility (role)"
+msgstr "現在の役職 (役割)"
+
+msgid "Current organization unit and job location"
+msgstr "現在の所属、職場"
+
+msgid "Job title at the time of the reported fact"
+msgstr "報告する事実の時点での肩書"
+
+msgid "Job responsibility (role) at the time of the reported fact"
+msgstr "報告する事実の時点での役職 (役割)"
+
+msgid "Organization unit and job location at the time of the reported fact"
+msgstr "報告する事実の時点での所属、職場"
+
+msgid "List of submissions"
+msgstr "提出のリスト"
+
+msgid "List of access requests to whistleblowers' identities"
+msgstr "内部告発者の身元にアクセスするリクエストのリスト"
+
+msgid "User"
+msgstr "ユーザー"
+
+msgid "Motivation"
+msgstr "動機"
+
+msgid "Status"
+msgstr "状況"
+
+msgid "Request motivation"
+msgstr "リクエストの動機"
+
+msgid "Reply motivation"
+msgstr "返信の動機"
+
+msgid "Request status"
+msgstr "リクエストの状況"
+
+msgid "Custodian"
+msgstr "管理人"
+
+msgid "Custodian of the identities"
+msgstr "身元の管理人"
+
+msgid "Identity"
+msgstr "身元"
+
+msgid "Available"
+msgstr "可能"
+
+msgid "Not available"
+msgstr "不可"
+
+msgid "Access requested"
+msgstr "アクセスをリクエストしました"
+
+msgid "Request access to the whistleblower's identity"
+msgstr "内部告発者の身元にアクセスするリクエスト"
+
+msgid "Please write a motivation"
+msgstr "動機を書いてください"
+
+msgid "Reply to the request"
+msgstr "リクエストに返信"
+
+msgid "Authorized"
+msgstr "承認"
+
+msgid "Denied"
+msgstr "拒否"
+
+msgid "Waiting for authorization"
+msgstr "認証を待っています"
+
+msgid "New request"
+msgstr "新しいリクエスト"
+
+msgid "Authorize"
+msgstr "承認"
+
+msgid "Deny"
+msgstr "拒否"
+
+msgid "Deny access to the whistleblower's identity"
+msgstr "内部告発者の身元へのアクセスを拒否"
+
+msgid "Authorize access to the whistleblower's identity"
+msgstr "内部告発者の身元へのアクセスを承認"
+
+msgid "Templates"
+msgstr "テンプレート"
+
+msgid "Notification of new submission"
+msgstr "新しい提出の通知"
+
+msgid "Notification of new comment"
+msgstr "新しいコメントの通知"
+
+msgid "Notification of new message"
+msgstr "新しいメッセージの通知"
+
+msgid "Notification of new file attachment"
+msgstr "新しい添付ファイルの通知"
+
+msgid "Notification of PGP key expiration"
+msgstr "PGP鍵期限切れの通知"
+
+msgid "Notification of anomaly"
+msgstr "異変の通知"
+
+msgid "Template for summary of contents in submission archive"
+msgstr "提出のアーカイブ内の、内容の概要のテンプレート"
+
+msgid "Email subject"
+msgstr "メールの件名"
+
+msgid "Email body"
+msgstr "メール本文"
+
+msgid "in seconds"
+msgstr "秒で"
+
+msgid "in hours"
+msgstr "時間で"
+
+msgid "in days"
+msgstr "日で"
+
+msgid "in characters"
+msgstr "文字で"
+
+msgid "in megabytes"
+msgstr "メガバイトで"
+
+msgid "in percentage"
+msgstr "パーセントで"
+
+msgid "HTTPS settings"
+msgstr "HTTPS 設定"
+
+msgid "Anomaly detection thresholds"
+msgstr "異変を検出する閾値"
+
+msgid "High risk"
+msgstr "高リスク"
+
+msgid "Medium risk"
+msgstr "中リスク"
+
+msgid "Low risk"
+msgstr "低リスク"
+
+msgid "Available disk space"
+msgstr "利用可能ディスク容量"
+
+msgid "Last update"
+msgstr "最終更新"
+
+msgid "Custodian notification templates"
+msgstr "管理人の通知テンプレート"
+
+msgid ""
+"This interface allows configuring email templates used to notify custodians."
+msgstr "このインターフェースは、管理人の通知に使われるメールのテンプレートを設定することができます。"
+
+msgid "Disable notifications to administrators"
+msgstr "管理者への通知メールを無効にする"
+
+msgid "Disable notifications to custodians"
+msgstr "管理人への通知メールを無効にする"
+
+msgid "Disable notifications to recipients"
+msgstr "受信者への通知メールを無効にする"
+
+msgid "Score"
+msgstr "スコア"
+
+msgid "Trigger question"
+msgstr "トリガーの質問"
+
+msgid "Triggered by a score higher than:"
+msgstr "スコアが次より高いためトリガーされました:"
+
+msgid "Select the question to be triggered when this option is selected"
+msgstr "このオプションを選択したときにトリガーされる質問を選択します"
+
+msgid "Message shown on top of the status page of the submission"
+msgstr "提出のステータスページの上部に表示されるメッセージ"
+
+msgid "Copy and paste the PGP public key here"
+msgstr "PGP公開鍵をここにコピーアンドペーストしてください"
+
+msgid "Password strength:"
+msgstr "パスワードの強さ:"
+
+msgid "Weak"
+msgstr "弱い"
+
+msgid "Acceptable"
+msgstr "満足"
+
+msgid "Strong"
+msgstr "強い"
+
+msgid "Loading…"
+msgstr "読み込み中…"
+
+msgid "Text shown on top of the interface for selecting contexts"
+msgstr "コンテキストを選択するインターフェイスの先頭に表示されるテキスト"
+
+msgid "Show small context cards on submission interface"
+msgstr "提出インターフェースに小さなコンテキスト カードを表示"
+
+msgid "Type of context selector:"
+msgstr "コンテキストセレクターのタイプ:"
+
+msgid "Type to search…"
+msgstr "入力して検索…"
+
+msgid "Silence email notifications"
+msgstr "メール通知をオフにする"
+
+msgid "Turn on email notifications"
+msgstr "メール通知をオンにする"
+
+msgid "Enter an email address for the administrator"
+msgstr "管理者のメールアドレスを入力してください"
+
+msgid "Enter a password for the administrator"
+msgstr "管理者のパスワードを入力してください"
+
+msgid "Test configuration"
+msgstr "設定のテスト"
+
+msgid "Failed logins"
+msgstr "失敗したログイン"
+
+msgid "Successful logins"
+msgstr "成功したログイン"
+
+msgid "Started submissions"
+msgstr "提出を開始"
+
+msgid "Completed submissions"
+msgstr "提出完了"
+
+msgid "Failed submissions"
+msgstr "提出に失敗しました"
+
+msgid "Input validation"
+msgstr "入力の検証"
+
+msgid "Email address"
+msgstr "メールアドレス"
+
+msgid "Custom"
+msgstr "カスタム"
+
+msgid "None"
+msgstr "なし"
+
+msgid "Regular expression"
+msgstr "正規表現"
+
+msgid "Label the submission"
+msgstr "提出にラベルを付ける"
+
+msgid "Activate"
+msgstr "アクティブにする"
+
+msgid "Search"
+msgstr "検索"
+
+msgid ""
+"This custom text is no longer displayed on the platform. The original text "
+"has either changed or been removed."
+msgstr "このカスタムのテキストはもうプラットフォーム上に表示されません。元のキーが変更されたか、削除されています。"
+
+msgid ""
+"Unless the whistleblower checks the submission by this time, their access to"
+" it will expire."
+msgstr "この時点で提出を内部告発者が確認しない限り、アクセスが期限切れになります。"
+
+msgid "The whistleblower can no longer access the submission"
+msgstr "内部告発者はもう提出にアクセスできません"
+
+msgid "Warning!"
+msgstr "警告!"
+
+msgid "You are running an unsupported and potentially vulnerable browser."
+msgstr "サポートされていない、潜在的に脆弱なブラウザを実行しています。"
+
+msgid "You are strongly advised to download and install the Tor Browser."
+msgstr "Tor ブラウザーをダウンロードしてインストールすることを強くお勧めします。"
+
+msgid ""
+"The Tor Browser includes various privacy and security enhancements not "
+"present in other browsers."
+msgstr "Tor Browserには、他のブラウザにはない様々なプライバシーやセキュリティの改良が加えられています。"
+
+msgid "Download the Tor Browser"
+msgstr "Tor Browser をダウンロード"
+
+msgid "This is the list of the other supported browsers:"
+msgstr "これは他のサポートされているブラウザーのリストです:"
+
+msgid "System overview"
+msgstr "システムの概要"
+
+msgid "Stats"
+msgstr "統計"
+
+msgid "Activities"
+msgstr "活動"
+
+msgid "Submissions"
+msgstr "提出"
+
+msgid "Users"
+msgstr "ユーザー"
+
+msgid "From"
+msgstr "送信者"
+
+msgid "Number of downloads"
+msgstr "ダウンロードの数"
+
+msgid "Error with file:"
+msgstr "ファイルでエラー:"
+
+msgid "File size not accepted."
+msgstr "受け付けられないファイルのサイズです。"
+
+msgid "File type not accepted."
+msgstr "受け付けられないファイルの種類です。"
+
+msgid "Maximum file size is:"
+msgstr "最大ファイルサイズは:"
+
+msgid "Accepted file types are:"
+msgstr "受け付けられるファイルの種類は:"
+
+msgid "Scheduled jobs"
+msgstr "スケジュールされたジョブ"
+
+msgid "Sites management"
+msgstr "サイト管理"
+
+msgid "Regenerate"
+msgstr "再生成"
+
+msgid "Display options alphabetically"
+msgstr "オプションをアルファベット順に表示"
+
+msgid "Enable email notifications for:"
+msgstr "メール通知を有効化:"
+
+msgid "Software updates"
+msgstr "ソフトウェアアップデート"
+
+msgid "Software problems"
+msgstr "ソフトウェアの問題"
+
+msgid "Disable"
+msgstr "無効"
+
+msgid "Remove"
+msgstr "削除"
+
+msgid "Use as default"
+msgstr "デフォルトとして使用する"
+
+msgid "Create your whistleblowing platform"
+msgstr "あなたの内部告発プラットフォームを作成"
+
+msgid "Select the context of your submission:"
+msgstr "提出のコンテキストを選択してください:"
+
+msgid "Warning! You are not anonymous."
+msgstr "警告! あなたは匿名ではありません。"
+
+msgid ""
+"Sending submissions over HTTPS exposes the act of doing so, but not the "
+"content.\\n\\nAlso, hiding the fact that you are submitting something makes "
+"the submission anonymous, which is strongly recommended.\\n\\nThis can be "
+"achieved with the use of the Tor Browser, providing anonymisation not found "
+"in other browsers like Internet Explorer, Firefox, Chrome, Opera etc."
+msgstr "HTTPS経由で提出を送信すると、内容ではなく、提出したという行為が暴露されます。\\n\\nあなたが匿名で何かを提出したという事実も隠すことを、強くお勧めします。\\n\\nこれは、Internet Explorer、Firefox、Chrome、Opera、などにはない匿名を提供する、Torブラウザを使用して達成することができます。"
+
+msgid "Are you a whistleblower?"
+msgstr "あなたは内部告発者ですか?"
+
+msgid "Blow the whistle"
+msgstr "内部告発を行う"
+
+msgid "Have you already filed a submission? Enter your key code."
+msgstr "すでに提出済みですか？あなたのキーコードを入力してください。"
+
+msgid "Your submission was successful."
+msgstr "あなたの提出は成功しました。"
+
+msgid "Submission status"
+msgstr "提出ステータスページ"
+
+msgid "Disable submissions"
+msgstr "提出を無効にする"
+
+msgid "Enable insecure configuration without PGP encryption"
+msgstr "PGP暗号化のない、安全ではない設定を有効にする"
+
+msgid "Danger"
+msgstr "危険"
+
+msgid ""
+"By enabling this option, the system will be storing the submitted files "
+"unencrypted on your server."
+msgstr "このオプションを有効にすることで、システムは提出されたファイルを暗号化されていないままあなたのサーバーに保存することになります。"
+
+msgid "This happens whenever encryption is unavailable."
+msgstr "これは、暗号化が利用不可のときには常に起こります。"
+
+msgid "Disable messages that warn of missing encryption"
+msgstr "暗号化が見つからない警告のメッセージを無効にする"
+
+msgid ""
+"This setting affects the security of the users and must not be used in "
+"production."
+msgstr "この設定はユーザーのセキュリティに影響を及ぼし、製品に使用することはできません。"
+
+msgid "Allow other websites to include the platform inside iframes"
+msgstr "他のウェブサイトのインラインフレーム内にプラットフォームを含めることを許可する"
+
+msgid ""
+"By enabling this option, you are allowing other websites to include the "
+"platform inside iframes; this could potentially be used to endanger the "
+"platform or intercept users' communications"
+msgstr "このオプションを有効にすることにより、他のウェブサイトのインラインフレーム内にプラットフォームを含めることができるようになります。これにより、プラットフォームが危険にさらされたり、ユーザーの通信が傍受される可能性があります"
+
+msgid "Allow recipients to postpone expiration date of the submission"
+msgstr "受信者が提出の有効期限を延期することを許可する"
+
+msgid "Allow recipients to delete submissions"
+msgstr "受信者が提出を削除することを許可する"
+
+msgid ""
+"Allow recipients to grant permissions to whistleblowers on specific "
+"submissions"
+msgstr "受信者が、特定の提出の内部告発者に権限を付与することを許可します"
+
+msgid "Enable search engines indexing"
+msgstr "検索エンジンのインデックス化を有効にする"
+
+msgid "Enabled"
+msgstr "有効"
+
+msgid "Search engine spiders will be allowed to index the application."
+msgstr "検索エンジンのスパイダーがアプリケーションをスパイダーすることを許可することになります。"
+
+msgid "Enable custom privacy panel"
+msgstr "カスタムのプライバシー・バッジを有効にする"
+
+msgid "Custom privacy panel"
+msgstr "プライバシー・バッジのカスタム"
+
+msgid "Text shown when the whistleblower is not using Tor"
+msgstr "内部告発者がTorを使用していないときに表示するテキスト"
+
+msgid "Disable the privacy panel"
+msgstr "プライバシー・バッジを無効にする"
+
+msgid "Security awareness panel title"
+msgstr "セキュリティ・アウェアネス・バッジのタイトル"
+
+msgid "Security awareness panel text"
+msgstr "セキュリティ・アウェアネス・バッジのテキスト"
+
+msgid "Disable the security awareness panel questions"
+msgstr "セキュリティ・アウェアネス・バッジの質問を無効"
+
+msgid "Disable the security awareness panel"
+msgstr "セキュリティ・アウェアネス・バッジを無効にする"
+
+msgid "Disable the key code hint"
+msgstr "キーコードのヒントを無効にする"
+
+msgid "Disable the donation panel"
+msgstr "寄付のパネルを無効にする"
+
+msgid "Enable CAPTCHA mechanism"
+msgstr "キャプチャ メカニズムを有効にする"
+
+msgid "Enable proof of work mechanism"
+msgstr "作業証明メカニズムを有効にする"
+
+msgid "Enable simplified login for recipients"
+msgstr "受信者の簡単なログインを有効にする"
+
+msgid "Amount of days till whistleblower access expires"
+msgstr "内部告発者のアクセス有効期限が切れるまでの日数"
+
+msgid ""
+"For security reasons the whistleblower access is subject to expiration."
+msgstr "セキュリティ上の理由から、内部告発のアクセスは有効期限が設定されます。"
+
+msgid "Tweak this setting only if you know what you are doing."
+msgstr "何を行うかを理解している場合にのみ、この設定を調整してください。"
+
+msgid "Landing page"
+msgstr "到達ページ"
+
+msgid "Home Page"
+msgstr "ホームページ"
+
+msgid "Submission Page"
+msgstr "提出ページ"
+
+msgid "Title of the submission page"
+msgstr "提出ページのタイトル"
+
+msgid "Title of the attachments widget"
+msgstr "添付ウィジェットのタイトル"
+
+msgid "Text of prompt for whistleblowers to log in"
+msgstr "内部告発者がログインするプロンプトのテキスト"
+
+msgid "Show contexts in alphabetical order"
+msgstr "コンテキストをアルファベット順に表示"
+
+msgid "Title of the receipt page"
+msgstr "受領ページのタイトル"
+
+msgid "Title of the submission status page"
+msgstr "提出状況ページのタイトル"
+
+msgid "Title of the comments widget"
+msgstr "コメントウィジェットのタイトル"
+
+msgid "Title of the messages widget"
+msgstr "メッセージウィジェットのタイトル"
+
+msgid "Size limit for file attachments"
+msgstr "添付ファイルの制限サイズ"
+
+msgid "Notify administrators of software problems"
+msgstr ""
+
+msgid "Notify developers of software problems"
+msgstr "ソフトウェアの問題を開発者に通知"
+
+msgid ""
+"By enabling this feature, you will contribute to the development and "
+"security of the platform."
+msgstr "この機能を有効にすると、プラットフォームの開発とセキュリティに貢献します。"
+
+msgid "Enable HTTP Basic Authentication to limit platform access"
+msgstr "プラットフォームのアクセスを制限するために HTTP ベーシック認証を有効にする"
+
+msgid "Username"
+msgstr "ユーザー名"
+
+msgid "Password"
+msgstr "パスワード"
+
+msgid ""
+"This feature keeps regular people from visiting the platform while it is "
+"still under development and should not be used for security purposes. The "
+"input password is stored in plaintext on the server."
+msgstr "この機能はプラットフォームを訪れる人々を一定に制限しますが、まだ開発中であり、セキュリティの目的で使用すべきではありません。入力されたパスワードは、サーバー上に平文で保存されます。"
+
+msgid "Enable experimental features"
+msgstr "実験的な機能を有効にする"
+
+msgid "Warning"
+msgstr "警告"
+
+msgid ""
+"The experimental features may be less stable or even not work at all; enable"
+" this option at your own risk. Support for these features may vary and they "
+"may be removed in the future."
+msgstr "実験的な機能はあまり安定していないか、まったく動作しない場合があります。ご自身の責任でこのオプションを有効にしてください。これらの機能のサポートは変更される場合があり、将来削除されることがあります。"
+
+msgid "Save"
+msgstr "保存"
+
+msgid "Short URL"
+msgstr "短縮 URL"
+
+msgid "Long URL"
+msgstr "長い URL"
+
+msgid "Add"
+msgstr "追加"
+
+msgid "Logo"
+msgstr "ロゴ"
+
+msgid "Project name"
+msgstr "プロジェクト名"
+
+msgid "Homepage title"
+msgstr "ホームページのタイトル"
+
+msgid "Presentation"
+msgstr "プレゼンテーション"
+
+msgid "Description"
+msgstr "説明"
+
+msgid "Question to solicit possible whistleblowers"
+msgstr "内部告発の質問"
+
+msgid "Whistleblowing button"
+msgstr "内部告発ボタン"
+
+msgid "Footer"
+msgstr "フッター"
+
+msgid "Favicon"
+msgstr "日本語"
+
+msgid "Upload"
+msgstr "アップロード"
+
+msgid "Download"
+msgstr "ダウンロード"
+
+msgid "Upload custom file"
+msgstr "カスタムファイルをアップロード"
+
+msgid "The file will be available at URL: /s/$filename"
+msgstr "ファイルは URL: /s/$filename から入手可能です"
+
+msgid "Language:"
+msgstr "言語:"
+
+msgid "Add custom text"
+msgstr "カスタムのテキストを追加"
+
+msgid "Custom text"
+msgstr "カスタムのテキスト"
+
+msgid "Custom texts"
+msgstr "カスタムのテキスト"
+
+msgid "Original text"
+msgstr "元のテキスト"
+
+msgid "Original translation"
+msgstr "元の翻訳"
+
+msgid "Custom translation"
+msgstr "カスタムの翻訳"
+
+msgid "Contexts"
+msgstr "コンテキスト"
+
+msgid "Name"
+msgstr "名前"
+
+msgid "Edit"
+msgstr "編集"
+
+msgid "Cancel"
+msgstr "キャンセル"
+
+msgid "Questionnaire"
+msgstr "アンケート"
+
+msgid "Recipients"
+msgstr "受信者"
+
+msgid "Allow selection of this context through the context selector."
+msgstr "コンテキストセレクターを通して、このコンテキストの選択を許可する"
+
+msgid ""
+"If disabled, submissions for this context will only be accessible through a "
+"direct link to it."
+msgstr "無効にした場合、このコンテキストの提出は、その直接リンクを介してのみアクセスできます。"
+
+msgid "Allow whistleblowers to select their recipients"
+msgstr "内部告発者が、受信者を選択することを許可"
+
+msgid "Select all recipients by default"
+msgstr "デフォルトで全受信者を選択"
+
+msgid "Maximum number of selectable recipients:"
+msgstr "選択可能な受信者の最大数:"
+
+msgid "(0 = unlimited)"
+msgstr "(0 = 無制限)"
+
+msgid "Show recipients in alphabetical order"
+msgstr "受信者をアルファベット順に表示"
+
+msgid "Show small recipient cards on submission interface"
+msgstr "提出インターフェースに小さな受信者カードを表示"
+
+msgid "Enable comments"
+msgstr "コメントを有効にする"
+
+msgid "Allow whistleblowers to write comments"
+msgstr "内部告発者が、コメントを書くことを許可"
+
+msgid "Enable private messages"
+msgstr "プライベートメッセージを有効にする"
+
+msgid "Allow whistleblowers to send messages"
+msgstr "内部告発者が、メッセージを送信することを許可"
+
+msgid "Let whistleblowers add attachments onto existing submissions"
+msgstr "内部告発者が、既存の提出に添付ファイルを追加することを許可"
+
+msgid "Show recipient details on the status page of the submission"
+msgstr "提出のステータスページで受信者の詳細を表示する"
+
+msgid "Let recipients upload files to whistleblowers"
+msgstr "受信者が、内部告発者向けのファイルをアップロードすることを許可します"
+
+msgid "Disabled"
+msgstr "無効"
+
+msgid "Submission expiration, in days"
+msgstr "提出有効期限、日数"
+
+msgid ""
+"For security reasons, as a matter of data retention policy, the platform "
+"automatically deletes submissions and their data after a certain amount of "
+"time."
+msgstr "データ保持ポリシーに関連するセキュリティ上の理由から、プラットフォームは一定時間後に提出およびそのデータが自動的に削除されます。"
+
+msgid "Text shown on top of the interface for selecting recipients"
+msgstr "受信者を選択するインターフェイスの先頭に表示されるテキスト"
+
+msgid "Welcome to the administration interface!"
+msgstr "管理インターフェースへようこそ!"
+
+msgid ""
+"This interface may help you understand how the server can be configured and "
+"provides some info on how to connect to other GlobaLeaks users and experts."
+msgstr "このインターフェースは、あなたがサーバーをどのように設定できるか理解するのに役立ちます。また、他のGlobaLeaksユーザーや専門家とつながるための情報を提供します。"
+
+msgid "Documentation"
+msgstr "文書"
+
+msgid ""
+"To properly organize your project, please read the following guidelines:"
+msgstr "あなたのプロジェクトを適切に組織するために、以下のガイドラインをお読みください。"
+
+msgid "Remember to provide proper security advice to Whistleblowers:"
+msgstr "内部告発者にセキュリティに関して適切なアドバイスを提供するのを忘れないでください。"
+
+msgid ""
+"To learn more about GlobaLeaks Security you can read the following document:"
+msgstr "GlobaLeaksのセキュリティに関する詳細は、以下の文書をお読みください。"
+
+msgid "Contact"
+msgstr "連絡先"
+
+msgid ""
+"If you need technical support, have general questions, or have new ideas for"
+" the software:"
+msgstr "技術サポートが必要な場合、一般的な質問がある場合、またはソフトウェアの新しいアイデアをお持ちの場合:"
+
+msgid ""
+"If you want to contribute to software development or report a bug, please "
+"open an issue in our ticketing system:"
+msgstr "ソフトウェア開発に貢献したり、バグを報告したい場合は、チケットシステムで問題を開いてください:"
+
+msgid ""
+"If your non-profit needs support for investigative journalism, activism or a"
+" human rights defense project:"
+msgstr "あなたの非営利団体が調査ジャーナリズム、行動主義、または人権侵害プロジェクトのサポートを必要とする場合:"
+
+msgid ""
+"For professional support and development of anti corruption and compliance "
+"projects contact the social enterprise maintaining GlobaLeaks:"
+msgstr "腐敗防止およびコンプライアンスプロジェクトのプロフェッショナルサポートおよび開発は、GlobaLeaks をメンテナンスしているソーシャル企業にご連絡ください:"
+
+msgid "Join our IRC chat channel on the irc.oftc.net network:"
+msgstr "irc.oftc.net ネットワークの IRC チャットチャンネルにご参加ください:"
+
+msgid "Follow the project on:"
+msgstr "プロジェクトをフォローしてください:"
+
+msgid "Software version:"
+msgstr "ソフトウェア バージョン:"
+
+msgid "An update is available:"
+msgstr "アップデートが利用できます。"
+
+msgid "SMTP name"
+msgstr "SMTP 名"
+
+msgid "SMTP email address"
+msgstr "SMTP メールアドレス"
+
+msgid "Invalid email address"
+msgstr "無効なメールアドレスです"
+
+msgid "SMTP server address"
+msgstr "SMTPサーバーのアドレス"
+
+msgid "SMTP server port"
+msgstr "SMTPサーバーのポート"
+
+msgid "Transport Security"
+msgstr "トランスポート・セキュリティ"
+
+msgid "When the option is re-enabled the spooled emails will be sent out."
+msgstr "オプションが再有効化された場合、スプールされたメールが送られます。"
+
+msgid "Reset notification templates to default"
+msgstr "通知テンプレートをデフォルトにリセットする"
+
+msgid "Number of hours before sending a submission expiration alert"
+msgstr "提出期限アラートが送信されるまでの時間"
+
+msgid "Maximum emails per hour before triggering email suspension"
+msgstr "メールを停止する、時間あたり最大メール数"
+
+msgid "this configuration only applies to recipients"
+msgstr "この設定は受信者に適用するのみです"
+
+msgid "Test the configuration"
+msgstr "設定のテスト"
+
+msgid "Template"
+msgstr "テンプレート"
+
+msgid "Admin"
+msgstr "管理者"
+
+msgid "Roles enabled to use the platform without Tor:"
+msgstr "Tor がなくてもプラットフォームを使用できる役割:"
+
+msgid "Recipient"
+msgstr "受信者"
+
+msgid "Whistleblower"
+msgstr "内部告発者"
+
+msgid "Hostname"
+msgstr "ホスト名"
+
+msgid "Verify"
+msgstr "確認"
+
+msgid "Invalid input format."
+msgstr "不正な入力形式。"
+
+msgid "Input should be similar to:"
+msgstr "入力は次のようになります:"
+
+msgid ""
+"The platform does not seem to be reachable with the configured hostname."
+msgstr "プラットフォームは、設定されたホスト名で到達できないようです。"
+
+msgid "Using Let's Encrypt requires agreement to their Terms of Service."
+msgstr "Let's Encrypt を使用するには、利用規約に同意する必要があります。"
+
+msgid "Read the Terms of Service"
+msgstr "利用規約を読む"
+
+msgid "I agree to the Terms of Service."
+msgstr "利用規約に同意します。"
+
+msgid "Proceed"
+msgstr "続行"
+
+msgid "Configuration completed. You can review the settings or enable it now."
+msgstr "設定は完了です。 設定を確認するか、今すぐ有効にすることができます。"
+
+msgid "Review"
+msgstr "確認"
+
+msgid "Enable"
+msgstr "有効"
+
+msgid "Country code"
+msgstr "国コード"
+
+msgid "Organization"
+msgstr "組織"
+
+msgid "Organizational unit"
+msgstr "組織の単位"
+
+msgid ""
+"This interface can generate a Private Key and a Certificate Signing Request."
+" The Certificate Signing Request can be provided to a Certificate Authority "
+"to retrieve a Certificate. After having validated your request and your "
+"ownership of the hostname, the Certificate Authority will issue you a "
+"Certificate and provide a file containing Intermediate Certificates. Load "
+"the Certificate and the file containing the Intermediate Certificates to "
+"complete the HTTPS setup."
+msgstr "インタフェースは秘密鍵と証明書署名要求を生成することができます。 証明書署名要求を認証機関に提供して、証明書を取得することができます。 あなたの要求とホスト名の所有権を確認した後、認証機関はあなたに証明書を発行し、中間証明書を含むファイルを提供します。 証明書と中間証明書を含むファイルをロードしてHTTPSの設定を完了します。"
+
+msgid "Private Key"
+msgstr "秘密鍵"
+
+msgid "Generate"
+msgstr "生成"
+
+msgid "Certificate Signing Request"
+msgstr "証明書署名要求"
+
+msgid "Certificate"
+msgstr "証明書"
+
+msgid "Valid until:"
+msgstr "有効期限:"
+
+msgid "Issuer:"
+msgstr "発行者:"
+
+msgid "Intermediate Certificates"
+msgstr "中間証明書"
+
+msgid "Reset"
+msgstr "リセット"
+
+msgid "Select an option:"
+msgstr "オプションの選択:"
+
+msgid "Automatic configuration"
+msgstr "自動設定"
+
+msgid ""
+"Using automatic HTTPS configuration will handle the entire process of "
+"requesting, enabling and renewing certificates from the Let's Encrypt "
+"Certificate Authority."
+msgstr "自動 HTTPS 設定は、Let's Encrypt 認証局から証明書を要求、有効化、更新するプロセス全体が処理されます。"
+
+msgid ""
+"The platform must be reachable through a public IP address and the selected "
+"hostname must have a corresponding DNS record referencing that address."
+msgstr "プラットフォームはパブリック IP アドレスでアクセス可能な必要があり、選択されたホスト名は、そのアドレスを参照する、対応する DNS レコードが必要です。"
+
+msgid "Manual configuration"
+msgstr "手動設定"
+
+msgid ""
+"The manual configuration wizard will guide you through the setup of HTTPS "
+"from an alternative Certificate Authority."
+msgstr "手動設定ウィザードは、代替認証局からの HTTPS の設定をガイドします。"
+
+msgid ""
+"The platform supports the configuration of HTTPS through this interface."
+msgstr "このインタフェースを介して、プラットフォームは HTTPS の設定をサポートします。"
+
+msgid "The connection to the configured domain failed."
+msgstr "設定したドメイン名への接続に失敗しました。"
+
+msgid "Running"
+msgstr "実行中"
+
+msgid "Not running"
+msgstr "実行していません"
+
+msgid "Auto-renewal"
+msgstr "自動更新"
+
+msgid "System message:"
+msgstr "システムメッセージ:"
+
+msgid ""
+"Allowing whistleblowers to connect over HTTPS preserves their privacy but "
+"not their anonymity."
+msgstr "内部通報者が HTTPS 経由で接続できるようにすると、プライバシーは保持されますが、匿名性は維持されません。"
+
+msgid "Attention!"
+msgstr "注意!"
+
+msgid ""
+"Configuration in progress. When it is finished you will have to log in "
+"again."
+msgstr "設定の処理中です。 終了したら、もう一度ログインする必要があります。"
+
+msgid "Your browser will be redirected to the following URL."
+msgstr "お使いのブラウザは次の URL にリダイレクトされます。"
+
+msgid "Tor Onion Service"
+msgstr "Tor Onion サービス"
+
+msgid "Tor Browser download link"
+msgstr "Tor ブラウザー ダウンロードのリンク"
+
+msgid "Anonymize outgoing connections"
+msgstr "発信の接続を匿名化"
+
+msgid "Let the platform be reachable without Tor"
+msgstr "Tor がなくてもプラットフォームが到達するようにする"
+
+msgid "Stats of the week:"
+msgstr "週の統計:"
+
+msgid "Free disk space"
+msgstr "ディスク空き容量"
+
+msgid "Event ID"
+msgstr "イベントID"
+
+msgid "Time"
+msgstr "時間"
+
+msgid "Event"
+msgstr "イベント"
+
+msgid "Response time"
+msgstr "レスポンス時間"
+
+msgid "Role"
+msgstr "役割"
+
+msgid "Last access"
+msgstr "最終アクセス"
+
+msgid "Submission"
+msgstr "提出"
+
+msgid "Path"
+msgstr "パス"
+
+msgid "Size"
+msgstr "サイズ"
+
+msgid "Alarm level"
+msgstr "警告レベル"
+
+msgid "Events"
+msgstr "イベント"
+
+msgid "Label"
+msgstr "ラベル"
+
+msgid "Type"
+msgstr "タイプ"
+
+msgid "Single-line text input"
+msgstr "1 行のテキスト入力"
+
+msgid "Multi-line text input"
+msgstr "複数行のテキスト入力"
+
+msgid "Multiple choice input"
+msgstr "複数選択入力"
+
+msgid "Selection box"
+msgstr "選択ボックス"
+
+msgid "Checkbox"
+msgstr "チェックボックス"
+
+msgid "Terms of service"
+msgstr "利用規約"
+
+msgid "Group of questions"
+msgstr "質問のグループ"
+
+msgid "Row"
+msgstr "行"
+
+msgid "Column"
+msgstr "列"
+
+msgid "Width"
+msgstr "幅"
+
+msgid "Question group"
+msgstr "質問グループ"
+
+msgid "Hint"
+msgstr "ヒント"
+
+msgid "Required"
+msgstr "必須"
+
+msgid "Accept multiple file uploads"
+msgstr "複数ファイルのアップロードを受け付ける"
+
+msgid "Accept multiple answers for the field"
+msgstr "フィールドへ複数の回答を受け付ける"
+
+msgid "Hint shown on the button for adding an additional answer"
+msgstr "追加の回答を追加するボタンにヒントを表示します"
+
+msgid "Clause"
+msgstr "項"
+
+msgid "Agreement Text"
+msgstr "同意のテキスト"
+
+msgid "Layout orientation"
+msgstr "レイアウトの向き"
+
+msgid "Subject answer visibility to custodian authorization"
+msgstr "管理人の認証に回答が表示されるか否か"
+
+msgid "Prompt confirmation upon negative answer"
+msgstr "否定の回答時に、確認を表示"
+
+msgid "Title of the confirmation question upon negative answer"
+msgstr "否定の回答時に、確認の質問のタイトル"
+
+msgid "Body of the confirmation question upon negative answer"
+msgstr "否定の回答時に、確認の質問の本文"
+
+msgid "Options"
+msgstr "オプション"
+
+msgid "Questions"
+msgstr "質問"
+
+msgid "Add new question"
+msgstr "新しい質問を追加"
+
+msgid "Add question from template"
+msgstr "質問をテンプレートから追加"
+
+msgid "Steps"
+msgstr "ステップ"
+
+msgid "Configuration"
+msgstr "設定"
+
+msgid "Default"
+msgstr "デフォルト"
+
+msgid "Forcefully selected"
+msgstr "強制的に選択"
+
+msgid "Unselectable"
+msgstr "選択不可"
+
+msgid "Allow the recipient to postpone the submission expiration date"
+msgstr "受信者が提出の有効期限を延期することを許可する"
+
+msgid "The setting is enabled at a global level."
+msgstr "設定は全体で有効になります。"
+
+msgid "Allow the recipient to delete submissions"
+msgstr "受信者が提出を削除することを許可する"
+
+msgid ""
+"Allow the recipient to grant permissions to whistleblowers on specific "
+"submissions"
+msgstr "その受信者が、特定の提出の内部告発者に権限を付与することを許可します"
+
+msgid "General settings"
+msgstr "一般設定"
+
+msgid "Network settings"
+msgstr "ネットワーク設定"
+
+msgid "Root domain used for secondary sites"
+msgstr "二番目のサイトで使用するルートドメイン"
+
+msgid "Allow users to sign up"
+msgstr "ユーザーによるサインアップを許可"
+
+msgid "Sites"
+msgstr "サイト"
+
+msgid "Active"
+msgstr "アクティブ"
+
+msgid "Inactive"
+msgstr "非アクティブ"
+
+msgid "The default password is:"
+msgstr "デフォルトのパスワードは:"
+
+msgid "The system forces users to change the password at first login."
+msgstr "システムにより、ユーザーが最初のログイン時にパスワードを変更することを強制します。"
+
+msgid "New Password"
+msgstr "新しいパスワード"
+
+msgid ""
+"The chosen password is too weak. Make it more secure by adding special "
+"characters, numbers, and unusual symbols."
+msgstr "選択したパスワードは弱すぎます。より安全にするため、特殊文字、数字、および一般的ではない記号を追加してください。"
+
+msgid "Force password change"
+msgstr "強制的にパスワードを変更する"
+
+msgid "The user will be forced to change its password on next login."
+msgstr "次回ログイン時に、受信者はパスワードを変更することを強制されます。"
+
+msgid "Language"
+msgstr "言語"
+
+msgid "Encryption:"
+msgstr "暗号化:"
+
+msgid "Remove the PGP key"
+msgstr "PGP鍵を削除"
+
+msgid "Set up encryption by providing a PGP public key"
+msgstr "PGP公開鍵を提供して暗号化を設定"
+
+msgid "Request date"
+msgstr "リクエスト日"
+
+msgid "Authorization"
+msgstr "認証"
+
+msgid "Before proceeding, please change your password."
+msgstr "次へ進む前に、パスワードを変更してください。"
+
+msgid "Submissions disabled"
+msgstr "提出は無効です"
+
+msgid ""
+"You are connecting to the server without anonymity and this server supports "
+"only anonymous submissions"
+msgstr "あなたは匿名性が無いままサーバーに接続しています。このサーバーは匿名による提出のみをサポートします。"
+
+msgid ""
+"Server temporarly unusable due to resource exhaustion; advise the Admin if "
+"you can."
+msgstr "リソースの消耗によりサーバーは一時的に利用できません。可能であれば管理者にご連絡ください。"
+
+msgid "This server is not configured."
+msgstr "このサーバーは設定されていません"
+
+msgid "You will not be able to send a submission."
+msgstr "提出物を送ることはできません"
+
+msgid ""
+"This platform makes use of GlobaLeaks software specifically designed to "
+"protect the identity for submitter and recipient in the exchange of content."
+msgstr "このプラットフォームはコンテンツの交換において、提出者と受信者の身元の保護を特別に用意したGlobaLeaksソフトウェアを使用します。"
+
+msgid ""
+"The software is developed by the non-profit Hermes Center for Transparency "
+"and Digital Human Rights."
+msgstr "このソフトウェアは非営利団体Hermes Center for Transparency and Digital Human Rightsによって開発されました。"
+
+msgid "Please support Hermes through their donation page."
+msgstr "ぜひ寄付のページをご覧になり、Hermesをサポートしてください。"
+
+msgid "Authentication failed"
+msgstr "認証に失敗しました"
+
+msgid "Please select your account:"
+msgstr "あなたのアカウントを選択してください:"
+
+msgid "Now type your password, then click 'Log in':"
+msgstr "パスワードを入力して、'ログイン'をクリックしてください:"
+
+msgid "Are you sure?"
+msgstr "よろしいですか?"
+
+msgid "The operation will reset the configuration and cannot be undone."
+msgstr "操作によって設定がリセットされ、元に戻すことはできません。"
+
+msgid "Assign score points"
+msgstr "スコアポイントを割り当て"
+
+msgid ""
+"Enter the number of score points to be assigned when this option is "
+"selected:"
+msgstr "このオプションが選択された場合に割り当てるスコアポイントの数を入力してください:"
+
+msgid "Confirm"
+msgstr "延期を確認"
+
+msgid "Are you human?"
+msgstr "あなたは人間ですか?"
+
+msgid ""
+"We do not discriminate based on race and gender, but we do against computers"
+" :)"
+msgstr "私たちは人種や性別に基づく差別はしませんが、コンピュータに対しては行います :)"
+
+msgid ""
+"Just to prove you are human, please answer the following math challenge:"
+msgstr "あなたが人間であることを証明するために、次の数のテストにお答えください:"
+
+msgid "I've solved the math challenge, hide this thing now!"
+msgstr "私は数のテストを解決しました。これを表示しません!"
+
+msgid "Please note that all the associated data will be permanently lost."
+msgstr "すべての関連データが完全に失われますのでご注意ください。"
+
+msgid ""
+"This means that if the server running the platform were to be seized, it "
+"would be possible to extract the files that have been submitted."
+msgstr "つまり、プラットフォームを実行しているサーバーが押収された場合、提出されたファイルを抽出することが可能になる場合があります。"
+
+msgid "Are you sure that you wish to continue?"
+msgstr "本当に続けたいですか?"
+
+msgid ""
+"Downloading a file with malicious content could compromise your computer or "
+"disclose your identity."
+msgstr "悪質なコンテンツを含むファイルをダウンロードすると、コンピュータが侵害されたり、あなたの身元が明らかになる可能性があります。"
+
+msgid "The name of the file and its content can be intentionally misleading."
+msgstr "ファイル名とその内容は意図的に誤解させる可能性があります。"
+
+msgid ""
+"Please review the following information and decide if you wish to proceed."
+msgstr "次の情報を確認して、続行するかどうかを決定してください。"
+
+msgid "Error!"
+msgstr "エラー!"
+
+msgid "Internal server error"
+msgstr "内部サーバーエラー"
+
+msgid "Error on input validation"
+msgstr "入力の検証時にエラー"
+
+msgid "Resource not found"
+msgstr "リソースが見つかりません"
+
+msgid "Forbidden operation"
+msgstr "操作が禁止されています"
+
+msgid "The specified old password is not valid"
+msgstr "指定された旧パスワードは正しくありません"
+
+msgid "Resource can only be accessed via the Tor network"
+msgstr "リソースはTorネットワーク内でのみアクセスできます"
+
+msgid "The upload request exceeds the size limit"
+msgstr "アップロードリクエストがサイズ制限を超過しました"
+
+msgid "Success!"
+msgstr "成功!"
+
+msgid ""
+"It appears that you are browsing this site without any extra privacy and "
+"security!"
+msgstr "何の追加的なプライバシーやセキュリティもなしに、このサイトを参照しているようです!"
+
+msgid ""
+"You are strongly advised to visit this site using the desktop app called Tor"
+" Browser, that protects your identity."
+msgstr "このサイトはTor Browser というデスクトップ アプリケーションを使用してご覧になることを強くお勧めします。Tor Browser はあなたの身元を保護します。"
+
+msgid "Then, copy and paste the following address into the Tor Browser:"
+msgstr "その上で、以下のアドレスをインストールされたTor Browserにコピー&ペーストしてください。"
+
+msgid "Details of the PGP key:"
+msgstr "PGP鍵の詳細:"
+
+msgid "Fingerprint"
+msgstr "フィンガープリント"
+
+msgid "Add file"
+msgstr "ファイルを追加"
+
+msgid "Uploading files…"
+msgstr "ファイルのアップロード中…"
+
+msgid "Upload completed successfully!"
+msgstr "アップロードが正常に完了しました!"
+
+msgid "Error while uploading files; check below for details."
+msgstr "ファイルのアップロード時にエラー。詳細は下記を確認してください。"
+
+msgid "Estimated upload time:"
+msgstr "見積アップロード時間:"
+
+msgid "seconds"
+msgstr "秒"
+
+msgid "Which of the following statements is true?"
+msgstr "以下の文章で正しいのはどれですか?"
+
+msgid "HTTPS protects my identity, but not the content of my submission"
+msgstr "HTTPSは私の身元を保護しますが、私の提出内容は保護しません"
+
+msgid "HTTPS protects the content of my submission but not my identity"
+msgstr "HTTPSは私の提出内容を保護しますが、私の身元は保護しません"
+
+msgid "HTTPS does not protect the content of my submission nor my identity"
+msgstr "HTTPSは私の提出内容も身元も保護しません"
+
+msgid "HTTPS does protect both my identity and the content of my submission"
+msgstr "HTTPSは私の身元も提出内容も保護します"
+
+msgid ""
+"You are aware of the risks involved. Go ahead, but consider yourself warned."
+msgstr "あなたは生じるリスクについて理解しています。警告を受けたことを理解した上で、どうぞ先に進んでください。"
+
+msgid "Wrong Answer!"
+msgstr "間違った答えです!"
+
+msgid "The connection is not secure."
+msgstr "接続が安全ではありません。"
+
+msgid ""
+"The platform is still not configured for HTTPS connections and should "
+"therefore only be used for testing purposes."
+msgstr "プラットフォームはまだ HTTPS 接続用に構成されていないため、テスト目的のみで使用する必要があります。"
+
+msgid "Send"
+msgstr "送信"
+
+msgid "Allow the whistleblower to write comments"
+msgstr "その内部告発者が、コメントを書くことを許可"
+
+msgid "Filename"
+msgstr "ファイル名"
+
+msgid "Upload date"
+msgstr "アップロード日"
+
+msgid "Content Type"
+msgstr "コンテントタイプ"
+
+msgid "File size"
+msgstr "ファイルのサイズ"
+
+msgid "download"
+msgstr "ダウンロード"
+
+msgid "No files have been uploaded!"
+msgstr "アップロードされたファイルはありません!"
+
+msgid "Allow the whistleblower to add attachments to the submission"
+msgstr "その内部告発者が、提出に添付ファイルを追加することを許可"
+
+msgid "Access expiration"
+msgstr "アクセスの有効期限"
+
+msgid "Connection"
+msgstr "接続"
+
+msgid "Never"
+msgstr "しない"
+
+msgid "Revoked"
+msgstr "失効しました"
+
+msgid "Allow the whistleblower to send messages"
+msgstr "その内部告発者が、メッセージを送信することを許可"
+
+msgid "Are you sure that you want to delete the submission?"
+msgstr "提出を削除してもよろしいですか?"
+
+msgid ""
+"Everything related to the submission stored on the platform will be deleted."
+msgstr "プラットフォーム上に格納された提出に関連したすべてが削除されます。"
+
+msgid ""
+"Please be aware that everything stored off the platform, e.g. files you have"
+" saved on your computer, must be deleted manually."
+msgstr "プラットフォーム外に格納されているものすべてに注意してください。例えば、お使いのコンピュータに保存されたファイルは、手動で削除する必要があります。"
+
+msgid "Are you sure that you want to delete all the selected submissions?"
+msgstr "選択した提出をすべて削除してもよろしいですか?"
+
+msgid ""
+"Please make sure that all related data is properly deleted so that the "
+"recipients won't be able to further access to it."
+msgstr "全ての関連するデータが適切に削除され、全ての受信者がこれ以上それにアクセスできないことを確認してください。"
+
+msgid "Please write a motivation for the reply"
+msgstr "返信の動機を書いてください"
+
+msgid "Are you sure that you want to postpone the submission expiration date?"
+msgstr "提出の有効期限を延期してもよろしいですか?"
+
+msgid "By confirming, you will postpone the expiration date to:"
+msgstr "確認すると、有効期限を以下に延期します:"
+
+msgid ""
+"Are you sure that you want to postpone the expiration date for all selected "
+"submissions?"
+msgstr "選択した提出の有効期限をすべて延期してもよろしいですか?"
+
+msgid "Questionnaire answers"
+msgstr "アンケート回答"
+
+msgid "Step"
+msgstr "ステップ"
+
+msgid "Recipient list"
+msgstr "受信者のリスト"
+
+msgid "Attached files for the whistleblower"
+msgstr "内部告発者向けの添付ファイル"
+
+msgid ""
+"Files uploaded here are made available for the whistleblower and other "
+"recipients to download."
+msgstr "ここにアップロードされたファイルは、内部告発者やその他の受信者がダウンロードできるようになっています。"
+
+msgid "Upload a file:"
+msgstr "ファイルをアップロード："
+
+msgid "Logout"
+msgstr "ログアウト"
+
+msgid "The key code is either invalid or the submission has expired."
+msgstr "キーコードが無効か、提出の有効期限が過ぎています。"
+
+msgid "Please check your key code and try again or make a new submission."
+msgstr "キーコードを確認して再度実行するか、新たに提出してください。"
+
+msgid "Files attached by recipients"
+msgstr "受信者が添付したファイル"
+
+msgid "These files have been attached to your submission by the recipients."
+msgstr "これらのファイルは、受信者によって提出に添付されています。"
+
+msgid "Enable submission notification"
+msgstr "提出の通知を有効にする"
+
+msgid "Current Password"
+msgstr "現在のパスワード"
+
+msgid "Old password confirmation required"
+msgstr "旧パスワードの確認が必要"
+
+msgid "The new password must be different from the current one."
+msgstr "新しいパスワードは、現在のものと異なっている必要があります。"
+
+msgid "Type your new password again"
+msgstr "新しいパスワードを再入力してください"
+
+msgid "The two passwords do not match"
+msgstr "二つのパスワードが一致しません"
+
+msgid "Thank you!"
+msgstr "ありがとうございます!"
+
+msgid "Remember your key code for this submission."
+msgstr "この提出に関するあなたのキーコードを覚えておいてください。"
+
+msgid "We will try to get back to you as soon as possible!"
+msgstr "できるだけ早くあなたが戻ってこられますように!"
+
+msgid ""
+"Use the 16 digit key code to log in. It will allow you to view any messages "
+"we sent you, and also to add extra info."
+msgstr "16桁のキーコードを使用してログインください。私たちがあなたに送信したメッセージを表示したり、追加の情報を入力することができます。"
+
+msgid "View your submission"
+msgstr "あなたの提出を見る"
+
+msgid "Hint: How to hide your key code"
+msgstr "ヒント: キーコードを隠すには"
+
+msgid ""
+"A useful way to hide your key code is to write it down like a credit card "
+"number, i.e. by also including an expiration date."
+msgstr "あなたのキーコードを隠す有用な方法は、クレジットカード番号のように書き留めておくことです。有効期限も含めておきましょう。"
+
+msgid "Example:"
+msgstr "例:"
+
+msgid ""
+"You have not set up your encryption key, so the files will not be encrypted "
+"prior to being stored on the server."
+msgstr "暗号化の鍵を設定していないので、ファイルはサーバーに暗号化されないまま保管されます。"
+
+msgid ""
+"This may lead to unintended access to the files by the server administrator "
+"or others in case the server is compromised."
+msgstr "これは、サーバーの管理者や、サーバーが侵入された場合には他人に、ファイルへの意図しないアクセスを許すことに繋がります。"
+
+msgid "Please configure your PGP keys in the recipient preferences page."
+msgstr "あなたのPGP鍵を受信者の設定ページで設定してください。"
+
+msgid ""
+"One or more of the recipients of this submission has not configured a PGP "
+"key."
+msgstr "この提出の受信者のうち誰かがPGP鍵を設定していません。"
+
+msgid ""
+"This means that the submitted files will be stored in plaintext on the "
+"server."
+msgstr "これは、提出されたファイルは平文でサーバーに保管されることを意味します。"
+
+msgid ""
+"Access to the whistleblower's identity has been requested to the custodian."
+msgstr "内部告発者の身元へのアクセスを管理人にリクエストしました。"
+
+msgid "Date of the request"
+msgstr "リクエスト日"
+
+msgid "Congratulations!"
+msgstr "おめでとうございます"
+
+msgid "You have completed the platform activation."
+msgstr "プラットフォームの有効化が完了しました。"
+
+msgid "Your whistleblowing platform is now accessible at:"
+msgstr "内部告発プラットフォームがアクセス可能になりました:"
+
+msgid "Users' credentials:"
+msgstr ""
+
+msgid "To log in, visit:"
+msgstr "ログインはこちら:"
+
+msgid "For the user documentation visit:"
+msgstr "ユーザードキュメントはこちら:"
+
+msgid "The platform will be automatically deleted on:"
+msgstr "プラットフォームは自動的に削除されます:"
+
+msgid "Sign up"
+msgstr "登録"
+
+msgid "Domain"
+msgstr "ドメイン"
+
+msgid "Use Case"
+msgstr "事例"
+
+msgid "Anticorruption"
+msgstr "腐敗防止"
+
+msgid "Corporate compliance"
+msgstr "企業コンプライアンス"
+
+msgid "Investigative journalism"
+msgstr "調査ジャーナリズム"
+
+msgid "Civic activism"
+msgstr "市民運動"
+
+msgid "Other"
+msgstr "その他"
+
+msgid "Complete"
+msgstr "完了"
+
+msgid "Your whistleblowing platform is almost ready!"
+msgstr ""
+
+msgid "Check your inbox to activate your account."
+msgstr ""
+
+msgid "The answer is too short."
+msgstr "回答が短すぎます"
+
+msgid "The specified input is not valid:"
+msgstr "指定された入力は正しくありません:"
+
+msgid "please enter a valid email address."
+msgstr "正しいメールアドレスを入力してください。"
+
+msgid "please enter numbers only."
+msgstr "数字のみで入力してください。"
+
+msgid "Recipient selection"
+msgstr "受信者の選択"
+
+msgid "previous step"
+msgstr "前のステップ"
+
+msgid "next step"
+msgstr "次のステップ"
+
+msgid "Submit"
+msgstr "提出"
+
+msgid "Recipients selected:"
+msgstr "選択された受信者:"
+
+msgid ""
+"In this step the answers to the following questions are either missing or "
+"invalid:"
+msgstr "このステップでは、以下の質問に対する回答が見つからないか、無効です:"
+
+msgid "Submission errors"
+msgstr "提出エラー"
+
+msgid "You must select at least one recipient."
+msgstr "少なくとも一人の受信者を選択する必要があります。"
+
+msgid "Waiting for the file(s) to finish uploading."
+msgstr "ファイルのアップロードが完了するのを待っています。"
+
+msgid "The following steps have errors:"
+msgstr "次のステップにエラーがあります:"
+
+msgid "Welcome!"
+msgstr "ようこそ!"
+
+msgid ""
+"The following step-by-step procedure will guide you through creating your "
+"whistleblowing platform."
+msgstr ""
+
+msgid "Please choose a configuration profile:"
+msgstr "設定プロファイルを選択してください:"
+
+msgid ""
+"These profiles contain settings used by successful projects in each "
+"respective field."
+msgstr "これらのプロファイルには、それぞれのフィールドで成功したプロジェクトで使用された設定が含まれています。"
+
+msgid "Confirm password"
+msgstr "パスワードを確認"
+
+msgid "The default username is:"
+msgstr "デフォルトのユーザー名は:"
+
+msgid "License Agreement"
+msgstr "ライセンス契約"
+
+msgid "Please review the license terms before proceeding."
+msgstr "続ける前に、ライセンス規約を確認してください。"
+
+msgid "I have read and agree to the terms of the License Agreement."
+msgstr "ライセンス契約の規約に同意します。"
+
+msgid "You have completed the platform wizard."
+msgstr "プラットフォーム ウィザードを完了しました。"
+
+msgid "Fill out your submission"
+msgstr "告発内容を記入"
+
+msgid "Short title"
+msgstr "短いタイトル"
+
+msgid "Describe your submission in a few words."
+msgstr "短く提出を説明してください"
+
+msgid "Full description"
+msgstr "詳細な説明"
+
+msgid "Describe your submission in detail."
+msgstr "詳細に提出を説明してください"
+
+msgid "Attach files relevant to the submission."
+msgstr "提出に関連したファイルを添付してください"
+
+msgid "Dear {RecipientName},"
+msgstr "{RecipientName} 様"
+
+msgid "Kind regards,"
+msgstr "敬具"
+
+msgid ""
+"The number of activities recently detected appears to be higher than usual."
+msgstr "最近検出された活動の数が、通常よりも高いようです。"
+
+msgid ""
+"This could be a sign of an attack (for example, someone flooding your server"
+" with bogus information) or just a usage spike due to an increased "
+"visibility of your project."
+msgstr "これは攻撃の兆候かもしれませんし (例えば、偽の情報でサーバーをあふれさせるなど)、あなたのプロジェクトが注目を集めたために利用が跳ね上がったせいかもしれません。"
+
+msgid "Examine the issue to determine whether it is legitimate or not."
+msgstr ""
+
+msgid "The activities with unusual stats are:"
+msgstr "異常な統計の活動は次のとおりです:"
+
+msgid ""
+"The server cannot guarantee that a new submission can be stored, so "
+"submissions have been disabled."
+msgstr "サーバーが新しい提出を保存することが保証できないため、提出が無効になりました。"
+
+msgid ""
+"Please consider asking your technical support to create more disk space on "
+"the server."
+msgstr "技術サポートに依頼して、サーバーのディスク容量の追加を検討してください。"
+
+msgid ""
+"GlobaLeaks technology includes a server status checking component which will"
+" alert you in case something requires your attention."
+msgstr "GlobaLeaks テクノロジーは、あなたが何かの注意を必要とする場合に警告を表示する、サーバー状態のチェックコンポーネントが含まれています。"
+
+msgid ""
+"For more information, log in to the Administration interface and look at the"
+" \"System Stats\" and \"Anomalies\" sections."
+msgstr "詳細については、管理者インターフェースにログインし、「システム統計」と「異常」のセクションを見てください。"
+
+msgid "Anomaly detected in {NodeName}"
+msgstr "{NodeName} で異変を検出しました"
+
+msgid ""
+"This is an email to inform you that the PGP key of the following users is "
+"going to expire or has already expired:"
+msgstr "これは、次のユーザーのPGP鍵が期限切れになること、あるいはすでに期限切れになっていることを通知するメールです。"
+
+msgid ""
+"Without a valid PGP key, the system will not be able to send them encrypted "
+"notifications."
+msgstr "有効なPGP鍵がなければ、システムはあなたに暗号化された通知をお送りすることができません。"
+
+msgid "PGP key expiration alert"
+msgstr "PGP鍵期限切れアラート"
+
+msgid ""
+"This is a test email sent out from the platform's administrative interface."
+msgstr "これはプラットフォームの管理用インタフェースから送信されたテストメールです。"
+
+msgid ""
+"Reception of this email indicates that the server was able to authenticate "
+"to and interact with the SMTP mail server."
+msgstr "このメールを受信したのは、サーバーが認証して、SMTP メールサーバーと対話することができたことを示しています。"
+
+msgid "Test email"
+msgstr "テストメール"
+
+msgid ""
+"This is an email to notify you of a new comment on an existing submission."
+msgstr "これは、既存の提出に新しいコメントがあったことを通知するメールです。"
+
+msgid "The submission can be accessed:"
+msgstr "提出は以下からアクセスできます:"
+
+msgid "via Tor at: {TorUrl}"
+msgstr "Tor 経由: {TorUrl}"
+
+msgid "via HTTPS at: {HTTPSUrl}"
+msgstr "HTTPS 経由: {HTTPSUrl}"
+
+msgid "New comment"
+msgstr "新しいコメント"
+
+msgid "From: {RecipientName}"
+msgstr "差出人: {RecipientName}"
+
+msgid "Date: {EventTime}"
+msgstr "日付: {EventTime}"
+
+msgid "From: Whistleblower"
+msgstr "差出人: Whistleblower"
+
+msgid "Date: {SubmissionDate}"
+msgstr "日付: {SubmissionDate}"
+
+msgid "Label: {TipLabel}"
+msgstr "ラベル: {TipLabel}"
+
+msgid "Context: {ContextName}"
+msgstr "コンテキスト: {ContextName}"
+
+msgid ""
+"This is an email to notify you that the whistleblower of submission {TipNum}"
+" has attached new material."
+msgstr "これは、提出 {TipNum} の内部告発者が新しい資料を添付したことを通知するメールです。"
+
+msgid "New attachment"
+msgstr "新しい添付"
+
+msgid ""
+"The HTTPS certificate loaded on the platform is about to, or has already "
+"expired."
+msgstr "プラットフォームにロードされた HTTPS 証明書が期限切れになるか、すでに期限切れです。"
+
+msgid "Expiration date: {ExpirationDate}"
+msgstr "有効期限日付: {ExpirationDate}"
+
+msgid ""
+"Without a valid certificate, the platform will be accessible in a secure way"
+" only via Tor."
+msgstr "有効な証明書がないと、プラットフォームは 安全な方法の Tor 経由でのみアクセスできます。"
+
+msgid "Log in to solve the issue."
+msgstr "ログインして問題を解決します。"
+
+msgid "Expiration alert for HTTPS certificate"
+msgstr "HTTPS 証明書期限切れアラート"
+
+msgid ""
+"This is an email to notify you that a custodian has authorized you to access"
+" to the whistleblowing identity for the submission {TipNum}."
+msgstr "これは、あなたが提出 {TipNum} の内部告発者の身元にアクセスすることを、管理人が承認したことを通知するメールです。"
+
+msgid "Access to whistleblower's identity authorized"
+msgstr "内部告発者の身元へのアクセスを承認しました"
+
+msgid ""
+"This is an email to notify you that a custodian has denied you access to the"
+" wistleblowing identity for the submission {TipNum}."
+msgstr "これは、あなたが提出 {TipNum} の内部告発者の身元にアクセスすることを、管理人が否認したことを通知するメールです。"
+
+msgid "Access to whistleblower's identity denied"
+msgstr "内部告発者の身元へのアクセスを否認しました"
+
+msgid ""
+"This is an email to notify you that a recipient has requested access to the "
+"whistleblower's identity for the submission {TipNum}"
+msgstr "これは、受信者が提出 {TipNum} の内部告発者の身元にアクセスすることをリクエストしたことを通知するメールです"
+
+msgid "The request can be accessed:"
+msgstr "リクエストは以下からアクセスできます:"
+
+msgid "New request of access to a whistleblower's identity"
+msgstr "内部告発者の身元にアクセスする新しいリクエスト"
+
+msgid ""
+"This is an email to notify you that the whistleblower for the submission "
+"{TipNum} has provided their identity."
+msgstr "これは、提出 {TipNum} の内部告発者が身元を提供したことを通知するメールです。"
+
+msgid "The whistleblower has provided their identity"
+msgstr "内部告発者が身元を提供しました"
+
+msgid ""
+"This is an email to notify you of a new message on an existing submission."
+msgstr "これは、既存の提出に新しいメッセージがあったことを通知するメールです。"
+
+msgid "New message"
+msgstr "新しいメッセージ"
+
+msgid ""
+"This is an email to inform you that your PGP key is expiring or has already "
+"expired."
+msgstr "これは、あなたのPGP鍵が期限切れになること、あるいはすでに期限切れになっていることを通知するメールです。"
+
+msgid ""
+"You should extend its validity and update the key present on the platform, "
+"or upload a new key."
+msgstr "プラットフォーム上に存在する鍵の有効期限を延長および更新するか、新しい鍵をアップロードしてください。"
+
+msgid ""
+"Without a valid PGP key, the system won't be able to encrypt data provided "
+"to you."
+msgstr "有効なPGP鍵がないと、システムはあなたに提供するデータを暗号化できません。"
+
+msgid "It appears that {NodeName} is receiving a large number of requests."
+msgstr "{NodeName} が非常に多くのリクエストを受信しているようです。"
+
+msgid ""
+"To prevent sending you too many emails, the system has disabled email "
+"notifications until the load returns to normal. In the meantime, you can "
+"normally log onto the platform and manually check for new submissions."
+msgstr "あまりにも多くの電子メールを送信しないようにするため、システムの負荷が正常に戻るまでメール通知を無効にしています。それまでの間、プラットフォームに通常通りログオンして、手動で新しい提出を確認することができます。"
+
+msgid ""
+"If you don’t mind and would rather receive such a large number of email "
+"notifications anyhow, please contact your technical support to have them "
+"modify this setting accordingly."
+msgstr "あなたが気にしないで、むしろとにかく大量のメール通知を受け取りたい場合は、必要に応じて技術サポートに連絡して、この設定を変更してください。"
+
+msgid "Notifications from {NodeName} have been temporarily suspended"
+msgstr "{NodeName} からの通知は、一時的に停止しています"
+
+msgid "Click the link to activate the platform:"
+msgstr ""
+
+msgid "A software update is available."
+msgstr "ソフトウェアのアップデートが利用可能です"
+
+msgid "It is good security practice to keep the platform up to date."
+msgstr "プラットフォームを最新化することはセキュリティ向上につながります。"
+
+msgid "Installed version: {InstalledVersion}"
+msgstr "インストールされたバージョン: {InstalledVersion}"
+
+msgid "Latest version: {LatestVersion}"
+msgstr "最新バージョン: {LatestVersion}"
+
+msgid ""
+"To learn about new features and bug fixes in the new version consult the "
+"change log at: {ChangeLogUrl}"
+msgstr "新しい機能や新しいバージョンでのバグ修正については、変更履歴をご覧ください: {ChangeLogUrl}"
+
+msgid ""
+"For instructions on software updates, please refer to the documentation at: "
+"{UpdateGuideUrl}"
+msgstr "ソフトウェア更新の説明は、ドキュメントを参照してください: {UpdateGuideUrl}"
+
+msgid "The earliest expiration date is {EarliestExpirationDate}."
+msgstr "最も早い有効期限は {EarliestExpirationDate} です。"
+
+msgid "Please remember to check them before they are deleted."
+msgstr "削除する前に確認するのを忘れないでください。"
+
+msgid "Some submissions will expire soon"
+msgstr "一部の提出はまもなく期限が切れます"
+
+msgid ""
+"This is an email to notify you that a whistleblower has selected you as a "
+"valuable recipient of their submission."
+msgstr "これは、内部告発者があなたを価値のある受信者として選択したことを通知するメールです。"
+
+msgid ""
+"You are asked to pay special attention to the information and material "
+"contained therein. Please keep in mind that whistleblowers often expose "
+"themselves to high personal risks in the interest of the public. Therefore "
+"the material provided within this submission should be considered to be of "
+"high importance."
+msgstr "あなたは、含まれる情報および資料に特に注意を払うよう求められます。 内部通報者はしばしば、公衆の利益のために高い個人的リスクにさらされることに注意してください。 したがって、この提出書類の中で提供される資料は、重要性が高いと考えるべきです。"
+
+msgid "New submission"
+msgstr "新しい提出"

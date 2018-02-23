@@ -1,0 +1,2331 @@
+# 
+# Translators:
+# Aron <aron.plotnikowski@cryptolab.net>, 2014
+# Damian S., 2015
+# DarLink <darlink@gmail.com>, 2015
+# DarLink <darlink@gmail.com>, 2015
+# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2015-2018
+# Hermes Center <info@hermescenter.org>, 2016
+# Hermes Center <info@hermescenter.org>, 2016
+# Jakub Jakubiak <jakub.jakubiak@gmail.com>, 2014
+# zxcsd <jenisjpl@gmail.com>, 2015
+# Magdalenaem <magdalena.morawiecka1@gmail.com>, 2015
+# Marc B, 2014
+# Marc B, 2014
+# Pawel <mail@pawelzorzan.eu>, 2013
+# zxcsd <jenisjpl@gmail.com>, 2015
+msgid ""
+msgstr ""
+"Project-Id-Version: GlobaLeaks\n"
+"PO-Revision-Date: 2018-02-22 09:30+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"Language-Team: Hebrew (http://www.transifex.com/otf/globaleaks/language/he/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: he\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "Login page"
+msgstr "דף כניסה"
+
+msgid "Log in"
+msgstr "התחבר"
+
+msgid "Administration interface"
+msgstr " ממשק ניהול"
+
+msgid "Main configuration"
+msgstr "הגדרות עיקריות"
+
+msgid "Theme customization"
+msgstr "התאמה אישית של ערכת נושא"
+
+msgid "Languages"
+msgstr ""
+
+msgid "Text customization"
+msgstr ""
+
+msgid "Advanced settings"
+msgstr "הגדרות מתקדמות"
+
+msgid "Questionnaire configuration"
+msgstr "תצורת שאלון"
+
+msgid "Question templates"
+msgstr "תבניות שאלה"
+
+msgid "Questionnaires"
+msgstr "שאלונים"
+
+msgid "Add new questionnaire"
+msgstr "הוספת שאלון חדש"
+
+msgid "Home"
+msgstr "דף הבית"
+
+msgid "Home page"
+msgstr "דף בית"
+
+msgid "Changelog"
+msgstr ""
+
+msgid "License"
+msgstr "רשיון"
+
+msgid "Notification templates"
+msgstr "תבניות הודעות"
+
+msgid "Recipient notification templates"
+msgstr "תבניות להודעות הנמען"
+
+msgid "Admin notification templates"
+msgstr "תבניות להודעות Admin"
+
+msgid "Missing data"
+msgstr "נתונים חסרים"
+
+msgid "no stats available for the future."
+msgstr "אין סטטיסטיקה עתידית"
+
+msgid "no stats available for this hour."
+msgstr "אין סטטיסטיקה לשעה אחרונהף בדוק עמוד הפעילות"
+
+msgid "no stats available for current hour; check activities page."
+msgstr "אין סטטיסטיקה לשעה אחרונהף בדוק עמוד הפעילות"
+
+msgid "Delete"
+msgstr "מחק"
+
+msgid "Anomalies"
+msgstr "אנומליות"
+
+msgid "Preferences"
+msgstr "העדפות"
+
+msgid "Recipient interface"
+msgstr "ממשק המקבל"
+
+msgid "Notification settings"
+msgstr "הגדרות הודעות"
+
+msgid "This recipient has configured the encryption key."
+msgstr " המקבל הזה מוגדר מפתח ההצפנה."
+
+msgid "This recipient has not configured the encryption key."
+msgstr " המקבל הזה לא  הגדיר מפתח ההצפנה."
+
+msgid "The file is unavailable due to an internal error."
+msgstr "הקובץ אינו זמין עקב שגיאה פנימית."
+
+msgid "file unavailable"
+msgstr "קובץ לא זמין"
+
+msgid "Creation date"
+msgstr "תאריך יצירה"
+
+msgid "Expiration date"
+msgstr "תאריך תפוגה"
+
+msgid "Last Access"
+msgstr "גישה אחרונה"
+
+msgid "Files"
+msgstr "קבצים"
+
+msgid "Comments"
+msgstr "הערות"
+
+msgid "Messages"
+msgstr "הודעות פרטיות"
+
+msgid "Select this recipient."
+msgstr "בחר מקבל"
+
+msgid "Unselect this recipient."
+msgstr "בטל מקבל"
+
+msgid "This recipient cannot be selected."
+msgstr "אין אפשרות לבחור נמען"
+
+msgid "This recipient cannot be deselected."
+msgstr "אין אפשרות לבטל בחירת הנמען"
+
+msgid "Details"
+msgstr "פרטים"
+
+msgid "Platform wizard"
+msgstr "אשף פלטפורמה"
+
+msgid "Step-by-step setup"
+msgstr "התקנה צעד-אחר-צעד"
+
+msgid "CREDIT CARD"
+msgstr "כרטיס אשראי"
+
+msgid "YOUR NAME"
+msgstr "שם שלך"
+
+msgid "Postpone the expiration date"
+msgstr "דחה מועד תפוגת טיפ"
+
+msgid "Select all"
+msgstr "בחר הכל"
+
+msgid "Deselect all"
+msgstr "הסר בחירה מהכל"
+
+msgid "Refresh page"
+msgstr "דף רענן"
+
+msgid "Context"
+msgstr "הקשר"
+
+msgid "Submission date"
+msgstr "תאריך הגשה"
+
+msgid "Private messages"
+msgstr "הודעות פרטיות"
+
+msgid "Preview"
+msgstr "תצוגה מקדימה"
+
+msgid "Move up"
+msgstr "הזז למעלה"
+
+msgid "Move down"
+msgstr "לרדת"
+
+msgid "Move left"
+msgstr "זוז שמאלה"
+
+msgid "Move right"
+msgstr "זוז ימינה"
+
+msgid "Import"
+msgstr "יְבוּא"
+
+msgid "Export"
+msgstr "יְצוּא"
+
+msgid "Save all"
+msgstr "שמור הכל"
+
+msgid "This field is mandatory"
+msgstr "שדה חובה"
+
+msgid ""
+"The connection used to send this submission has been secured with HTTPS "
+"ensuring confidentiality."
+msgstr "החיבור המשמש לשליחת הגשה זה אובטח עם HTTPS הקפדה על הסודיות."
+
+msgid ""
+"The connection used to send this submission has been secured with Tor "
+"ensuring confidentiality and anonymity."
+msgstr ""
+
+msgid "vertical"
+msgstr "אֲנָכִי"
+
+msgid "horizontal"
+msgstr "אופקי"
+
+msgid "Number"
+msgstr "Numer"
+
+msgid "Email"
+msgstr "דואר אלקטרוני"
+
+msgid "Date"
+msgstr "תאריך"
+
+msgid "Regular expression validator"
+msgstr "מאמת ביטוי רגולרי"
+
+msgid "Minimum number of input characters"
+msgstr "מספר תווים מינימלי קלט"
+
+msgid "Maximum number of input characters"
+msgstr "מספר התווים המרבי קלט"
+
+msgid "Earliest selectable date"
+msgstr ""
+
+msgid "Latest selectable date"
+msgstr ""
+
+msgid "0 = auto"
+msgstr "0 = אוטומטי"
+
+msgid "-1 = unlimited"
+msgstr "-1 = ללא הגבלה"
+
+msgid "True"
+msgstr "נָכוֹן"
+
+msgid "False"
+msgstr "שֶׁקֶר"
+
+msgid "Yes"
+msgstr "כן"
+
+msgid "No"
+msgstr "לא"
+
+msgid "Attachment"
+msgstr "הִתקַשְׁרוּת"
+
+msgid "Attachments"
+msgstr "קבצים מצורפים"
+
+msgid "Change your password"
+msgstr "שנה את סיסמתך"
+
+msgid "First name"
+msgstr "שם פרטי"
+
+msgid "Last name"
+msgstr "שם משפחה"
+
+msgid "GENDER_OTHER"
+msgstr "GENDER_OTHER"
+
+msgid "Male"
+msgstr "זָכָר"
+
+msgid "Female"
+msgstr "נְקֵבָה"
+
+msgid "Date of birth"
+msgstr "תאריך לידה"
+
+msgid "Place of birth"
+msgstr "מקום לידה"
+
+msgid "Social security number"
+msgstr "מספר ביטוח לאומי"
+
+msgid "Residence"
+msgstr "מגורים"
+
+msgid "Address"
+msgstr "כתובת"
+
+msgid "Zip code / Postal code"
+msgstr "מיקוד / מיקוד"
+
+msgid "City"
+msgstr "עִיר"
+
+msgid "State"
+msgstr "מְדִינָה"
+
+msgid "Region"
+msgstr "אזור"
+
+msgid "Province"
+msgstr "מָחוֹז"
+
+msgid "Country"
+msgstr "מְדִינָה"
+
+msgid "Phone number"
+msgstr "מספר טלפון"
+
+msgid "Current job title"
+msgstr "תיאור המשרה הנוכחית"
+
+msgid "Current job responsibility (role)"
+msgstr "אחריות עבודה נוכחית (תפקיד)"
+
+msgid "Current organization unit and job location"
+msgstr "יחידה ארגונית נוכחית עבודת מיקום"
+
+msgid "Job title at the time of the reported fact"
+msgstr "הגדרת תפקיד בעת עובדת הדיווח"
+
+msgid "Job responsibility (role) at the time of the reported fact"
+msgstr "אחריות איוב (תפקיד) בעת עובדת הדיווח"
+
+msgid "Organization unit and job location at the time of the reported fact"
+msgstr "יחידת ארגון עבודת מיקום בעת עובדת הדיווח"
+
+msgid "List of submissions"
+msgstr "רשימת הגשות"
+
+msgid "List of access requests to whistleblowers' identities"
+msgstr "רשימה של בקשות גישת הזהויות \"שחושף את העוולות"
+
+msgid "User"
+msgstr "מִשׁתַמֵשׁ"
+
+msgid "Motivation"
+msgstr "מוֹטִיבָצִיָה"
+
+msgid "Status"
+msgstr "סטטוס"
+
+msgid "Request motivation"
+msgstr "מוטיבצית בקשה"
+
+msgid "Reply motivation"
+msgstr "תגובת מוטיבציה"
+
+msgid "Request status"
+msgstr "מצב בקשה"
+
+msgid "Custodian"
+msgstr "אַפּוֹטרוֹפּוֹס"
+
+msgid "Custodian of the identities"
+msgstr "אפוטרופוס של הזהויות"
+
+msgid "Identity"
+msgstr "זהות"
+
+msgid "Available"
+msgstr "זמין"
+
+msgid "Not available"
+msgstr "לא זמין"
+
+msgid "Access requested"
+msgstr "נדרש גישה"
+
+msgid "Request access to the whistleblower's identity"
+msgstr "לבקשת גישה אל הזהות של המתריע"
+
+msgid "Please write a motivation"
+msgstr "אנא לכתוב מוטיבציה"
+
+msgid "Reply to the request"
+msgstr "להשיב לבקשה"
+
+msgid "Authorized"
+msgstr "מורשה"
+
+msgid "Denied"
+msgstr "נדחה"
+
+msgid "Waiting for authorization"
+msgstr "ממתין לאישור"
+
+msgid "New request"
+msgstr "בקשה חדשה"
+
+msgid "Authorize"
+msgstr "לְאַשֵׁר"
+
+msgid "Deny"
+msgstr "לְהַכּחִישׁ"
+
+msgid "Deny access to the whistleblower's identity"
+msgstr "מנע גישה אל הזהות של המתריע"
+
+msgid "Authorize access to the whistleblower's identity"
+msgstr "תן הרשאת גישת הזהות של המתריע"
+
+msgid "Templates"
+msgstr "תבניות"
+
+msgid "Notification of new submission"
+msgstr "הודעה על הגשה החדשה"
+
+msgid "Notification of new comment"
+msgstr "הודעה על תגובה חדשה"
+
+msgid "Notification of new message"
+msgstr "הודעה על הודעה חדשה"
+
+msgid "Notification of new file attachment"
+msgstr "הודעה על קובץ מצורף החדש"
+
+msgid "Notification of PGP key expiration"
+msgstr "הודעה על פקיעת מפתח PGP"
+
+msgid "Notification of anomaly"
+msgstr "הודעה על אנומליה"
+
+msgid "Template for summary of contents in submission archive"
+msgstr "תבנית עבור סיכום של תוכן בארכיון הגשה"
+
+msgid "Email subject"
+msgstr "נושא האימייל"
+
+msgid "Email body"
+msgstr "גוף דוא\"ל"
+
+msgid "in seconds"
+msgstr "בשניות"
+
+msgid "in hours"
+msgstr "בשעות"
+
+msgid "in days"
+msgstr "בימים"
+
+msgid "in characters"
+msgstr "באותיות"
+
+msgid "in megabytes"
+msgstr "במגה-בתים"
+
+msgid "in percentage"
+msgstr "באחוזים"
+
+msgid "HTTPS settings"
+msgstr "הגדרות HTTPS"
+
+msgid "Anomaly detection thresholds"
+msgstr "ספי גילוי אנומליות"
+
+msgid "High risk"
+msgstr "סיכון גבוה"
+
+msgid "Medium risk"
+msgstr "סיכון בינוני"
+
+msgid "Low risk"
+msgstr "סיכון נמוך"
+
+msgid "Available disk space"
+msgstr "שטח דיסק זמין"
+
+msgid "Last update"
+msgstr "העדכון אחרון"
+
+msgid "Custodian notification templates"
+msgstr "תבניות להודעות אפוטרופוס"
+
+msgid ""
+"This interface allows configuring email templates used to notify custodians."
+msgstr "ממשק זה מאפשר תצורה של תבניות דואר אלקטרוניות המשמשות להודיע ​​ונאמנים."
+
+msgid "Disable notifications to administrators"
+msgstr "השבת הודעות למנהלים"
+
+msgid "Disable notifications to custodians"
+msgstr "השבת הודעות כדי אפוטרופסים"
+
+msgid "Disable notifications to recipients"
+msgstr "השבת הודעות לנמענים"
+
+msgid "Score"
+msgstr "צִיוּן"
+
+msgid "Trigger question"
+msgstr "שאלת טריגר"
+
+msgid "Triggered by a score higher than:"
+msgstr "מופעל על ידי ציון גבוה יותר:"
+
+msgid "Select the question to be triggered when this option is selected"
+msgstr "בחר את השאלה כדי להיות מופעלים כאשר אפשרות זו נבחרה"
+
+msgid "Message shown on top of the status page of the submission"
+msgstr "הודעה המוצג על גבי דף הסטטוס של ההגשה"
+
+msgid "Copy and paste the PGP public key here"
+msgstr "העתק והדבק את המפתח PGP הציבורי כאן"
+
+msgid "Password strength:"
+msgstr ""
+
+msgid "Weak"
+msgstr ""
+
+msgid "Acceptable"
+msgstr ""
+
+msgid "Strong"
+msgstr ""
+
+msgid "Loading…"
+msgstr ""
+
+msgid "Text shown on top of the interface for selecting contexts"
+msgstr ""
+
+msgid "Show small context cards on submission interface"
+msgstr ""
+
+msgid "Type of context selector:"
+msgstr ""
+
+msgid "Type to search…"
+msgstr ""
+
+msgid "Silence email notifications"
+msgstr ""
+
+msgid "Turn on email notifications"
+msgstr ""
+
+msgid "Enter an email address for the administrator"
+msgstr ""
+
+msgid "Enter a password for the administrator"
+msgstr ""
+
+msgid "Test configuration"
+msgstr ""
+
+msgid "Failed logins"
+msgstr "התחברויות שנכשלו"
+
+msgid "Successful logins"
+msgstr "התחברויות מוצלחים"
+
+msgid "Started submissions"
+msgstr "הגשות שהתחילו"
+
+msgid "Completed submissions"
+msgstr "הגשות שהושלמו"
+
+msgid "Failed submissions"
+msgstr ""
+
+msgid "Input validation"
+msgstr ""
+
+msgid "Email address"
+msgstr "דואר אלקטרוני"
+
+msgid "Custom"
+msgstr ""
+
+msgid "None"
+msgstr ""
+
+msgid "Regular expression"
+msgstr ""
+
+msgid "Label the submission"
+msgstr ""
+
+msgid "Activate"
+msgstr "הפעל"
+
+msgid "Search"
+msgstr "חיפוש"
+
+msgid ""
+"This custom text is no longer displayed on the platform. The original text "
+"has either changed or been removed."
+msgstr ""
+
+msgid ""
+"Unless the whistleblower checks the submission by this time, their access to"
+" it will expire."
+msgstr ""
+
+msgid "The whistleblower can no longer access the submission"
+msgstr ""
+
+msgid "Warning!"
+msgstr "אזהרה!"
+
+msgid "You are running an unsupported and potentially vulnerable browser."
+msgstr ""
+
+msgid "You are strongly advised to download and install the Tor Browser."
+msgstr ""
+
+msgid ""
+"The Tor Browser includes various privacy and security enhancements not "
+"present in other browsers."
+msgstr "דפדפן Tor כולל פרטיות שונות ושיפורי אבטחה שאינם קיימים בדפדפנים אחרים."
+
+msgid "Download the Tor Browser"
+msgstr "הורד דפדפן Tor"
+
+msgid "This is the list of the other supported browsers:"
+msgstr ""
+
+msgid "System overview"
+msgstr ""
+
+msgid "Stats"
+msgstr "סטטיסטיקה"
+
+msgid "Activities"
+msgstr "פעילות"
+
+msgid "Submissions"
+msgstr "הגשות"
+
+msgid "Users"
+msgstr ""
+
+msgid "From"
+msgstr "מאת"
+
+msgid "Number of downloads"
+msgstr ""
+
+msgid "Error with file:"
+msgstr ""
+
+msgid "File size not accepted."
+msgstr ""
+
+msgid "File type not accepted."
+msgstr ""
+
+msgid "Maximum file size is:"
+msgstr ""
+
+msgid "Accepted file types are:"
+msgstr ""
+
+msgid "Scheduled jobs"
+msgstr ""
+
+msgid "Sites management"
+msgstr ""
+
+msgid "Regenerate"
+msgstr ""
+
+msgid "Display options alphabetically"
+msgstr ""
+
+msgid "Enable email notifications for:"
+msgstr ""
+
+msgid "Software updates"
+msgstr "עדכוני תוכנה"
+
+msgid "Software problems"
+msgstr ""
+
+msgid "Disable"
+msgstr "השבת"
+
+msgid "Remove"
+msgstr "הסר"
+
+msgid "Use as default"
+msgstr ""
+
+msgid "Create your whistleblowing platform"
+msgstr ""
+
+msgid "Select the context of your submission:"
+msgstr ""
+
+msgid "Warning! You are not anonymous."
+msgstr "אַזהָרָה! אתה לא אנונימי."
+
+msgid ""
+"Sending submissions over HTTPS exposes the act of doing so, but not the "
+"content.\\n\\nAlso, hiding the fact that you are submitting something makes "
+"the submission anonymous, which is strongly recommended.\\n\\nThis can be "
+"achieved with the use of the Tor Browser, providing anonymisation not found "
+"in other browsers like Internet Explorer, Firefox, Chrome, Opera etc."
+msgstr ""
+
+msgid "Are you a whistleblower?"
+msgstr "האם הנך מדליף?"
+
+msgid "Blow the whistle"
+msgstr "תתריע"
+
+msgid "Have you already filed a submission? Enter your key code."
+msgstr "האם כבר הגשת הגשה? הזן את קוד המפתח שלך."
+
+msgid "Your submission was successful."
+msgstr "הגשתך הצליח."
+
+msgid "Submission status"
+msgstr ""
+
+msgid "Disable submissions"
+msgstr "שבת שליחות"
+
+msgid "Enable insecure configuration without PGP encryption"
+msgstr "אפשר תצורה חסרת ביטחון ללא הצפנת PGP"
+
+msgid "Danger"
+msgstr "סכנה"
+
+msgid ""
+"By enabling this option, the system will be storing the submitted files "
+"unencrypted on your server."
+msgstr "על ידי הפעלת אפשרות זו, המערכת תהיה יחסון הקבצים ללא הצפנה בצומת שלך."
+
+msgid "This happens whenever encryption is unavailable."
+msgstr "זה קורה בכל פעם שההצפנה אינה זמינה."
+
+msgid "Disable messages that warn of missing encryption"
+msgstr ""
+
+msgid ""
+"This setting affects the security of the users and must not be used in "
+"production."
+msgstr "הגדרה זו משפיעה על ביטחון המשתמשים ואסור לשמש בייצור."
+
+msgid "Allow other websites to include the platform inside iframes"
+msgstr "אפשר אתרים אחרים כדי לכלול את הפלטפורמה בתוך iframes"
+
+msgid ""
+"By enabling this option, you are allowing other websites to include the "
+"platform inside iframes; this could potentially be used to endanger the "
+"platform or intercept users' communications"
+msgstr "בכך שהיא מאפשרת את האפשרות הזו, אתה מאפשר אתרים אחרים כדי לכלול את הפלטפורמה בתוך iframes; זה יכול לשמש פוטנציאל לסכן את התקשורת של משתמשי הפלטפורמה או ליירט"
+
+msgid "Allow recipients to postpone expiration date of the submission"
+msgstr "אפשר מקבלים לדחות את מועד תפוגה של ההגשה"
+
+msgid "Allow recipients to delete submissions"
+msgstr "אפשר מקבלים למחוק הגשות"
+
+msgid ""
+"Allow recipients to grant permissions to whistleblowers on specific "
+"submissions"
+msgstr "אפשר מקבלים להעניק הרשאות שחושפים את עוולות על הגשות ספציפיות"
+
+msgid "Enable search engines indexing"
+msgstr "אפשר אינדקס מנועי חיפוש"
+
+msgid "Enabled"
+msgstr "מופעל"
+
+msgid "Search engine spiders will be allowed to index the application."
+msgstr "עכבישים של מנועי חיפוש יהיו רשאים למדד היישום"
+
+msgid "Enable custom privacy panel"
+msgstr "אפשר תג פרטיות מותאם אישית"
+
+msgid "Custom privacy panel"
+msgstr "לוח פרטיות מותאם אישית"
+
+msgid "Text shown when the whistleblower is not using Tor"
+msgstr "הצג מלל זה כאשר מתריע לא משתמש בתור"
+
+msgid "Disable the privacy panel"
+msgstr "בטל תג הפרטיות"
+
+msgid "Security awareness panel title"
+msgstr "כותרת בלוח מודעות אבטחה"
+
+msgid "Security awareness panel text"
+msgstr "טקסט לוח מודעות אבטחה"
+
+msgid "Disable the security awareness panel questions"
+msgstr "בטל תג מודעות אבטחה"
+
+msgid "Disable the security awareness panel"
+msgstr "בטל תג מודעות אבטחה"
+
+msgid "Disable the key code hint"
+msgstr "השבת את רמז קוד המפתח"
+
+msgid "Disable the donation panel"
+msgstr "השבת את לוח התרומה"
+
+msgid "Enable CAPTCHA mechanism"
+msgstr "אפשר מנגנון CAPTCHA"
+
+msgid "Enable proof of work mechanism"
+msgstr "אפשר הוכחה של מנגנון העבודה"
+
+msgid "Enable simplified login for recipients"
+msgstr "הפעל התחברות פשוטה עבור מקבלים"
+
+msgid "Amount of days till whistleblower access expires"
+msgstr ""
+
+msgid ""
+"For security reasons the whistleblower access is subject to expiration."
+msgstr ""
+
+msgid "Tweak this setting only if you know what you are doing."
+msgstr ""
+
+msgid "Landing page"
+msgstr "דף נחיתה"
+
+msgid "Home Page"
+msgstr "דף בית"
+
+msgid "Submission Page"
+msgstr "עמוד הגשה"
+
+msgid "Title of the submission page"
+msgstr "כותרת דף ההגשה"
+
+msgid "Title of the attachments widget"
+msgstr "כותרת של הרכיב מצורפים"
+
+msgid "Text of prompt for whistleblowers to log in"
+msgstr ""
+
+msgid "Show contexts in alphabetical order"
+msgstr "בהקשרים הצג לפי סדר אלפביתי"
+
+msgid "Title of the receipt page"
+msgstr "כותרת של דף הקבלה"
+
+msgid "Title of the submission status page"
+msgstr "כותרת של דף סטטוס ההגשה"
+
+msgid "Title of the comments widget"
+msgstr "כותרת של רכיב התגובות"
+
+msgid "Title of the messages widget"
+msgstr "כותרת של יישומון הודעות"
+
+msgid "Size limit for file attachments"
+msgstr "גודל גבול עבור קבצים מצורפים"
+
+msgid "Notify administrators of software problems"
+msgstr ""
+
+msgid "Notify developers of software problems"
+msgstr ""
+
+msgid ""
+"By enabling this feature, you will contribute to the development and "
+"security of the platform."
+msgstr ""
+
+msgid "Enable HTTP Basic Authentication to limit platform access"
+msgstr ""
+
+msgid "Username"
+msgstr "שם משתמש"
+
+msgid "Password"
+msgstr "סיסמא"
+
+msgid ""
+"This feature keeps regular people from visiting the platform while it is "
+"still under development and should not be used for security purposes. The "
+"input password is stored in plaintext on the server."
+msgstr ""
+
+msgid "Enable experimental features"
+msgstr "אפשר תכונות ניסיוניות"
+
+msgid "Warning"
+msgstr "Warning"
+
+msgid ""
+"The experimental features may be less stable or even not work at all; enable"
+" this option at your own risk. Support for these features may vary and they "
+"may be removed in the future."
+msgstr "התכונות הניסיוניות עשויות להיות פחות יציבות או אפילו לא עובדות בכלל; את האופציה הזו על אחריותך בלבד. תמיכה בתכונות אלה עשויים להשתנות והם ניתן להסיר בעתיד."
+
+msgid "Save"
+msgstr "שמור"
+
+msgid "Short URL"
+msgstr "לינק קצר"
+
+msgid "Long URL"
+msgstr "כתובת ארוכה"
+
+msgid "Add"
+msgstr "הוסף"
+
+msgid "Logo"
+msgstr "הסמליל של"
+
+msgid "Project name"
+msgstr "שם יוזמה"
+
+msgid "Homepage title"
+msgstr "כותרת עמוד הבית"
+
+msgid "Presentation"
+msgstr "מצגת"
+
+msgid "Description"
+msgstr "תיאור"
+
+msgid "Question to solicit possible whistleblowers"
+msgstr "שאלות על הלשנה"
+
+msgid "Whistleblowing button"
+msgstr "כפתור הלשנה"
+
+msgid "Footer"
+msgstr "כותרת תחתונה"
+
+msgid "Favicon"
+msgstr ""
+
+msgid "Upload"
+msgstr "טען"
+
+msgid "Download"
+msgstr "הורד"
+
+msgid "Upload custom file"
+msgstr "טען קובץ מותאם אישית"
+
+msgid "The file will be available at URL: /s/$filename"
+msgstr "הקובץ יהיה זמין בכתובת: / s / $ filename"
+
+msgid "Language:"
+msgstr ""
+
+msgid "Add custom text"
+msgstr ""
+
+msgid "Custom text"
+msgstr ""
+
+msgid "Custom texts"
+msgstr ""
+
+msgid "Original text"
+msgstr ""
+
+msgid "Original translation"
+msgstr ""
+
+msgid "Custom translation"
+msgstr ""
+
+msgid "Contexts"
+msgstr "הקשרים"
+
+msgid "Name"
+msgstr "שם"
+
+msgid "Edit"
+msgstr "עריכה"
+
+msgid "Cancel"
+msgstr "בטל"
+
+msgid "Questionnaire"
+msgstr "שְׁאֵלוֹן"
+
+msgid "Recipients"
+msgstr "מקבלים"
+
+msgid "Allow selection of this context through the context selector."
+msgstr "אפשר בחירה של בהקשר זה דרך בהקשר הבורר."
+
+msgid ""
+"If disabled, submissions for this context will only be accessible through a "
+"direct link to it."
+msgstr "אם מושבת, הגשות בהקשר זה תהיינה נגישות רק דרך קישור ישיר אליו."
+
+msgid "Allow whistleblowers to select their recipients"
+msgstr "אפשר שחושפים את עוולות כדי לבחור נמענים שלהם"
+
+msgid "Select all recipients by default"
+msgstr "בחר את כל המקבלים כברירת מחדל"
+
+msgid "Maximum number of selectable recipients:"
+msgstr "מספר מקסימאלי של מקבלים לבחירה:"
+
+msgid "(0 = unlimited)"
+msgstr "(0 = ללא הגבלה)"
+
+msgid "Show recipients in alphabetical order"
+msgstr "מקבלי הצג לפי סדר אלפביתי"
+
+msgid "Show small recipient cards on submission interface"
+msgstr "הראה כרטיסי נמען בממשק שליחה"
+
+msgid "Enable comments"
+msgstr "אפשר הערות"
+
+msgid "Allow whistleblowers to write comments"
+msgstr "אפשר שחושף את העוולות לכתוב תגובות"
+
+msgid "Enable private messages"
+msgstr "אפשר הודעות פרטיות"
+
+msgid "Allow whistleblowers to send messages"
+msgstr "אפשר שחושף את העוולות לשלוח הודעות"
+
+msgid "Let whistleblowers add attachments onto existing submissions"
+msgstr ""
+
+msgid "Show recipient details on the status page of the submission"
+msgstr "הצג את פרטי הנמען בדף הסיווג של הגשת"
+
+msgid "Let recipients upload files to whistleblowers"
+msgstr ""
+
+msgid "Disabled"
+msgstr "כבוי"
+
+msgid "Submission expiration, in days"
+msgstr "תפוגת הגשה, בימים"
+
+msgid ""
+"For security reasons, as a matter of data retention policy, the platform "
+"automatically deletes submissions and their data after a certain amount of "
+"time."
+msgstr "מטעמי אבטחה, כעניין של מדיניות שמירת נתונים, הפלטפורמה מוחקת אוטומטית הגשות ונתוניהם לאחר פרק זמן מסוים."
+
+msgid "Text shown on top of the interface for selecting recipients"
+msgstr "טקסט המופיע על גבי הממשק לבחירת מקבלים"
+
+msgid "Welcome to the administration interface!"
+msgstr "ברוכים הבאים לממשק ניהול!"
+
+msgid ""
+"This interface may help you understand how the server can be configured and "
+"provides some info on how to connect to other GlobaLeaks users and experts."
+msgstr "ממשק זה עשוי לעזור לך להבין כיצד הצומת יכולה להיות מוגדרת ומספקת קצת מידע על איך להתחבר למשתמשים ומומחי GlobaLeaks אחרים."
+
+msgid "Documentation"
+msgstr "תיעוד"
+
+msgid ""
+"To properly organize your project, please read the following guidelines:"
+msgstr "לארגן היוזמה שלך כמו שצריך, אנא קראו את ההנחיות הבאות:"
+
+msgid "Remember to provide proper security advice to Whistleblowers:"
+msgstr "זכור לספק ייעוץ אבטחה נאות להתרעות:"
+
+msgid ""
+"To learn more about GlobaLeaks Security you can read the following document:"
+msgstr ""
+
+msgid "Contact"
+msgstr ""
+
+msgid ""
+"If you need technical support, have general questions, or have new ideas for"
+" the software:"
+msgstr ""
+
+msgid ""
+"If you want to contribute to software development or report a bug, please "
+"open an issue in our ticketing system:"
+msgstr ""
+
+msgid ""
+"If your non-profit needs support for investigative journalism, activism or a"
+" human rights defense project:"
+msgstr ""
+
+msgid ""
+"For professional support and development of anti corruption and compliance "
+"projects contact the social enterprise maintaining GlobaLeaks:"
+msgstr ""
+
+msgid "Join our IRC chat channel on the irc.oftc.net network:"
+msgstr ""
+
+msgid "Follow the project on:"
+msgstr ""
+
+msgid "Software version:"
+msgstr "גרסת תוכנה:"
+
+msgid "An update is available:"
+msgstr ""
+
+msgid "SMTP name"
+msgstr "שם SMTP"
+
+msgid "SMTP email address"
+msgstr "כתובת הדוא\"ל SMTP"
+
+msgid "Invalid email address"
+msgstr "כתובת דוא\"ל לא חוקית"
+
+msgid "SMTP server address"
+msgstr "כתובת שרת SMTP"
+
+msgid "SMTP server port"
+msgstr "יציאה שרת SMTP"
+
+msgid "Transport Security"
+msgstr "אבטחת תחבורה"
+
+msgid "When the option is re-enabled the spooled emails will be sent out."
+msgstr "כאשר האפשרות יופעל מחדש המיילים הנגללים יישלחו."
+
+msgid "Reset notification templates to default"
+msgstr "איפוס תבניות להודעות לברירת מחדל"
+
+msgid "Number of hours before sending a submission expiration alert"
+msgstr "מספר שעות לפני שליחת התראת תפוגת הגשה"
+
+msgid "Maximum emails per hour before triggering email suspension"
+msgstr "מיילים לשעה לכל היותר לפני להפעלת תהליך ההשעיה דוא\"ל"
+
+msgid "this configuration only applies to recipients"
+msgstr "תצורה זו חלה על מקבלים רק"
+
+msgid "Test the configuration"
+msgstr ""
+
+msgid "Template"
+msgstr "תבנית"
+
+msgid "Admin"
+msgstr "מנהל"
+
+msgid "Roles enabled to use the platform without Tor:"
+msgstr ""
+
+msgid "Recipient"
+msgstr "המקבל"
+
+msgid "Whistleblower"
+msgstr "מתריע"
+
+msgid "Hostname"
+msgstr ""
+
+msgid "Verify"
+msgstr ""
+
+msgid "Invalid input format."
+msgstr ""
+
+msgid "Input should be similar to:"
+msgstr ""
+
+msgid ""
+"The platform does not seem to be reachable with the configured hostname."
+msgstr ""
+
+msgid "Using Let's Encrypt requires agreement to their Terms of Service."
+msgstr ""
+
+msgid "Read the Terms of Service"
+msgstr ""
+
+msgid "I agree to the Terms of Service."
+msgstr ""
+
+msgid "Proceed"
+msgstr "המשך"
+
+msgid "Configuration completed. You can review the settings or enable it now."
+msgstr ""
+
+msgid "Review"
+msgstr ""
+
+msgid "Enable"
+msgstr ""
+
+msgid "Country code"
+msgstr ""
+
+msgid "Organization"
+msgstr ""
+
+msgid "Organizational unit"
+msgstr ""
+
+msgid ""
+"This interface can generate a Private Key and a Certificate Signing Request."
+" The Certificate Signing Request can be provided to a Certificate Authority "
+"to retrieve a Certificate. After having validated your request and your "
+"ownership of the hostname, the Certificate Authority will issue you a "
+"Certificate and provide a file containing Intermediate Certificates. Load "
+"the Certificate and the file containing the Intermediate Certificates to "
+"complete the HTTPS setup."
+msgstr ""
+
+msgid "Private Key"
+msgstr ""
+
+msgid "Generate"
+msgstr "חולל"
+
+msgid "Certificate Signing Request"
+msgstr ""
+
+msgid "Certificate"
+msgstr ""
+
+msgid "Valid until:"
+msgstr ""
+
+msgid "Issuer:"
+msgstr ""
+
+msgid "Intermediate Certificates"
+msgstr ""
+
+msgid "Reset"
+msgstr "אתחול"
+
+msgid "Select an option:"
+msgstr ""
+
+msgid "Automatic configuration"
+msgstr ""
+
+msgid ""
+"Using automatic HTTPS configuration will handle the entire process of "
+"requesting, enabling and renewing certificates from the Let's Encrypt "
+"Certificate Authority."
+msgstr ""
+
+msgid ""
+"The platform must be reachable through a public IP address and the selected "
+"hostname must have a corresponding DNS record referencing that address."
+msgstr ""
+
+msgid "Manual configuration"
+msgstr ""
+
+msgid ""
+"The manual configuration wizard will guide you through the setup of HTTPS "
+"from an alternative Certificate Authority."
+msgstr ""
+
+msgid ""
+"The platform supports the configuration of HTTPS through this interface."
+msgstr ""
+
+msgid "The connection to the configured domain failed."
+msgstr ""
+
+msgid "Running"
+msgstr "מריץ"
+
+msgid "Not running"
+msgstr ""
+
+msgid "Auto-renewal"
+msgstr ""
+
+msgid "System message:"
+msgstr ""
+
+msgid ""
+"Allowing whistleblowers to connect over HTTPS preserves their privacy but "
+"not their anonymity."
+msgstr ""
+
+msgid "Attention!"
+msgstr ""
+
+msgid ""
+"Configuration in progress. When it is finished you will have to log in "
+"again."
+msgstr ""
+
+msgid "Your browser will be redirected to the following URL."
+msgstr ""
+
+msgid "Tor Onion Service"
+msgstr ""
+
+msgid "Tor Browser download link"
+msgstr ""
+
+msgid "Anonymize outgoing connections"
+msgstr ""
+
+msgid "Let the platform be reachable without Tor"
+msgstr ""
+
+msgid "Stats of the week:"
+msgstr "סטטיסטיקות השבוע"
+
+msgid "Free disk space"
+msgstr "שטח דיסק פנוי"
+
+msgid "Event ID"
+msgstr "מספר זיהוי אירוע"
+
+msgid "Time"
+msgstr "זמן"
+
+msgid "Event"
+msgstr "אירוע"
+
+msgid "Response time"
+msgstr "זמן תגובה"
+
+msgid "Role"
+msgstr "תַפְקִיד"
+
+msgid "Last access"
+msgstr "גישה אחרונה"
+
+msgid "Submission"
+msgstr "הגשה"
+
+msgid "Path"
+msgstr ""
+
+msgid "Size"
+msgstr "גודל"
+
+msgid "Alarm level"
+msgstr "רמה מעוררת"
+
+msgid "Events"
+msgstr "אירועים"
+
+msgid "Label"
+msgstr "מדבקה"
+
+msgid "Type"
+msgstr "סוג"
+
+msgid "Single-line text input"
+msgstr "קלט טקסט של שורה אחת"
+
+msgid "Multi-line text input"
+msgstr "קלט טקסט רב-קוי"
+
+msgid "Multiple choice input"
+msgstr "קלט אמריקאיות"
+
+msgid "Selection box"
+msgstr "תיבת בחירה"
+
+msgid "Checkbox"
+msgstr "תיבת סימון"
+
+msgid "Terms of service"
+msgstr "תנאי השירות"
+
+msgid "Group of questions"
+msgstr "קבוצה של שאלות"
+
+msgid "Row"
+msgstr "שׁוּרָה"
+
+msgid "Column"
+msgstr "טור"
+
+msgid "Width"
+msgstr "רוֹחַב"
+
+msgid "Question group"
+msgstr "קבוצת שאלה"
+
+msgid "Hint"
+msgstr "רמז"
+
+msgid "Required"
+msgstr "חובה"
+
+msgid "Accept multiple file uploads"
+msgstr "אפשר העלת קבצים מרובים"
+
+msgid "Accept multiple answers for the field"
+msgstr "קבל תשובות מרובות לשדה"
+
+msgid "Hint shown on the button for adding an additional answer"
+msgstr "רמז לראות על הכפתור להוספת תשובה נוספת"
+
+msgid "Clause"
+msgstr "סעיף"
+
+msgid "Agreement Text"
+msgstr "טקסט ההסכם"
+
+msgid "Layout orientation"
+msgstr "אוריינטציה פריסה"
+
+msgid "Subject answer visibility to custodian authorization"
+msgstr "נראות תשובה בכפופות אישור אפוטרופוס"
+
+msgid "Prompt confirmation upon negative answer"
+msgstr "אישור שורה על תשובה שלילית"
+
+msgid "Title of the confirmation question upon negative answer"
+msgstr "כותרת של שאלת האישור על תשובה שלילית"
+
+msgid "Body of the confirmation question upon negative answer"
+msgstr "גוף של שאלת האישור על תשובה שלילית"
+
+msgid "Options"
+msgstr "אפשרויות"
+
+msgid "Questions"
+msgstr ""
+
+msgid "Add new question"
+msgstr "להוסיף שאלה חדשה"
+
+msgid "Add question from template"
+msgstr "הוסף שאלה מתבנית"
+
+msgid "Steps"
+msgstr ""
+
+msgid "Configuration"
+msgstr "הגדרות"
+
+msgid "Default"
+msgstr "מחדל"
+
+msgid "Forcefully selected"
+msgstr "נבחר בכוח"
+
+msgid "Unselectable"
+msgstr "לא ניתן לבחור"
+
+msgid "Allow the recipient to postpone the submission expiration date"
+msgstr "לאפשר לנמען לדחות את תאריך תפוגת ההגשה"
+
+msgid "The setting is enabled at a global level."
+msgstr "ההגדרות הופעלו ברמה גלובלית."
+
+msgid "Allow the recipient to delete submissions"
+msgstr "לאפשר לנמען למחוק הגשות"
+
+msgid ""
+"Allow the recipient to grant permissions to whistleblowers on specific "
+"submissions"
+msgstr "לאפשר לנמען להעניק הרשאות שחושפים את עוולות על הגשות ספציפיות"
+
+msgid "General settings"
+msgstr "הגדרות כלליות"
+
+msgid "Network settings"
+msgstr "הגדרות רשת"
+
+msgid "Root domain used for secondary sites"
+msgstr ""
+
+msgid "Allow users to sign up"
+msgstr ""
+
+msgid "Sites"
+msgstr ""
+
+msgid "Active"
+msgstr ""
+
+msgid "Inactive"
+msgstr ""
+
+msgid "The default password is:"
+msgstr ""
+
+msgid "The system forces users to change the password at first login."
+msgstr "המערכת מכריחה למשתמשים לשנות את הסיסמה בכניסה ראשונה."
+
+msgid "New Password"
+msgstr "סיסמא חדשה"
+
+msgid ""
+"The chosen password is too weak. Make it more secure by adding special "
+"characters, numbers, and unusual symbols."
+msgstr ""
+
+msgid "Force password change"
+msgstr "כפה שינוי סיסמה"
+
+msgid "The user will be forced to change its password on next login."
+msgstr "המשתמש ייאלץ לשנות את הסיסמה שלו בכניסה הבאה."
+
+msgid "Language"
+msgstr "שפה"
+
+msgid "Encryption:"
+msgstr ""
+
+msgid "Remove the PGP key"
+msgstr "הסר את מפתח PGP"
+
+msgid "Set up encryption by providing a PGP public key"
+msgstr "הגדרת הצפנה על ידי מתן מפתח ציבורי PGP"
+
+msgid "Request date"
+msgstr "תאריך בקשה"
+
+msgid "Authorization"
+msgstr "הרשאה"
+
+msgid "Before proceeding, please change your password."
+msgstr "לפני שתמשיך, לשנות את הסיסמה שלך."
+
+msgid "Submissions disabled"
+msgstr ""
+
+msgid ""
+"You are connecting to the server without anonymity and this server supports "
+"only anonymous submissions"
+msgstr "התחברת לצומת ללא אנונימיות והצומת הזה תומכת רק בהגשות אנונימים"
+
+msgid ""
+"Server temporarly unusable due to resource exhaustion; advise the Admin if "
+"you can."
+msgstr "השרת לא שמיש עקב חוסר משאבים; הודע לאדמין אם אתה יכול."
+
+msgid "This server is not configured."
+msgstr "צומת זו אינה מוגדרת."
+
+msgid "You will not be able to send a submission."
+msgstr "לא תוכל לשלוח הגשה."
+
+msgid ""
+"This platform makes use of GlobaLeaks software specifically designed to "
+"protect the identity for submitter and recipient in the exchange of content."
+msgstr ""
+
+msgid ""
+"The software is developed by the non-profit Hermes Center for Transparency "
+"and Digital Human Rights."
+msgstr "התוכנה שפותחה על ידי קרן מרכז הרמס לשקיפות ולזכויות אדם דיגיטלית."
+
+msgid "Please support Hermes through their donation page."
+msgstr "אנא לתמוך בהרמס דרך דף התרומה שלהם."
+
+msgid "Authentication failed"
+msgstr "אימות נכשלה"
+
+msgid "Please select your account:"
+msgstr "אנא בחר את החשבון"
+
+msgid "Now type your password, then click 'Log in':"
+msgstr "תקליד את סיסמתך ולחץ \"התחבר\""
+
+msgid "Are you sure?"
+msgstr "האם אתה בטוח?"
+
+msgid "The operation will reset the configuration and cannot be undone."
+msgstr ""
+
+msgid "Assign score points"
+msgstr "הקצאת נקודות ציון"
+
+msgid ""
+"Enter the number of score points to be assigned when this option is "
+"selected:"
+msgstr "הזן את מספר נקודות שיוקצה כשאפשרות זו מסומנת:"
+
+msgid "Confirm"
+msgstr "אשר הארכה"
+
+msgid "Are you human?"
+msgstr "האם אתה בן אנוש ?"
+
+msgid ""
+"We do not discriminate based on race and gender, but we do against computers"
+" :)"
+msgstr "אין לנו בעיה עם גזע או מין שלך אבל אנו כן מפלים בין המחשבים"
+
+msgid ""
+"Just to prove you are human, please answer the following math challenge:"
+msgstr "על מנת להוכיח שאתה בן אנוש, אנא פתור את החידה המתמטית הבאה"
+
+msgid "I've solved the math challenge, hide this thing now!"
+msgstr "פתרתי את בעיית החשבון, הסתר מיד!"
+
+msgid "Please note that all the associated data will be permanently lost."
+msgstr ""
+
+msgid ""
+"This means that if the server running the platform were to be seized, it "
+"would be possible to extract the files that have been submitted."
+msgstr "משמעות הדבר היא שאם השרת פועל בפלטפורמת היו להיתפס, אפשר יהיה לחלץ את הקבצים הוגשו."
+
+msgid "Are you sure that you wish to continue?"
+msgstr "האם אתה בטוח שברצונך להמשיך?"
+
+msgid ""
+"Downloading a file with malicious content could compromise your computer or "
+"disclose your identity."
+msgstr ""
+
+msgid "The name of the file and its content can be intentionally misleading."
+msgstr ""
+
+msgid ""
+"Please review the following information and decide if you wish to proceed."
+msgstr ""
+
+msgid "Error!"
+msgstr "שְׁגִיאָה!"
+
+msgid "Internal server error"
+msgstr ""
+
+msgid "Error on input validation"
+msgstr ""
+
+msgid "Resource not found"
+msgstr ""
+
+msgid "Forbidden operation"
+msgstr ""
+
+msgid "The specified old password is not valid"
+msgstr "הסיסמה הישנה שצוינה אינה חוקית"
+
+msgid "Resource can only be accessed via the Tor network"
+msgstr "משאב ניתן לגשת רק בתוך רשת Tor"
+
+msgid "The upload request exceeds the size limit"
+msgstr "בקשת ההעלאה עולה על מגבלות הגודל"
+
+msgid "Success!"
+msgstr "הצליח!"
+
+msgid ""
+"It appears that you are browsing this site without any extra privacy and "
+"security!"
+msgstr "נראה שאתה גולש באתר זה ללא פרטיות ואבטחה נוספות!"
+
+msgid ""
+"You are strongly advised to visit this site using the desktop app called Tor"
+" Browser, that protects your identity."
+msgstr "מומלץ מאוד לבקר באתר זה באמצעות תוכנה שנקרא דפדפן Tor, ששומר על הזהות שלך."
+
+msgid "Then, copy and paste the following address into the Tor Browser:"
+msgstr "לאחר מכן, העתק והדבק כתובת הבאה לדפדפן Tor המותקן:"
+
+msgid "Details of the PGP key:"
+msgstr "פרטים של מפתח PGP:"
+
+msgid "Fingerprint"
+msgstr "טביעת אצבע"
+
+msgid "Add file"
+msgstr "הוסף קובץ"
+
+msgid "Uploading files…"
+msgstr ""
+
+msgid "Upload completed successfully!"
+msgstr "הטעינה הושלמה בהצלחה!"
+
+msgid "Error while uploading files; check below for details."
+msgstr "שגיאה בעת העלאת קבצים; לבדוק להלן."
+
+msgid "Estimated upload time:"
+msgstr "זמן העלאה משוער:"
+
+msgid "seconds"
+msgstr "שניות"
+
+msgid "Which of the following statements is true?"
+msgstr "איזה מהמשפטים הבאים נכון?"
+
+msgid "HTTPS protects my identity, but not the content of my submission"
+msgstr ""
+
+msgid "HTTPS protects the content of my submission but not my identity"
+msgstr ""
+
+msgid "HTTPS does not protect the content of my submission nor my identity"
+msgstr ""
+
+msgid "HTTPS does protect both my identity and the content of my submission"
+msgstr ""
+
+msgid ""
+"You are aware of the risks involved. Go ahead, but consider yourself warned."
+msgstr "אתה מודע לסיכונים כרוכים. קדימה, אבל הוזהרת."
+
+msgid "Wrong Answer!"
+msgstr "תשובה לא נכונה!"
+
+msgid "The connection is not secure."
+msgstr ""
+
+msgid ""
+"The platform is still not configured for HTTPS connections and should "
+"therefore only be used for testing purposes."
+msgstr ""
+
+msgid "Send"
+msgstr "שלח"
+
+msgid "Allow the whistleblower to write comments"
+msgstr "אפשר המתריע לכתוב תגובות"
+
+msgid "Filename"
+msgstr "שם הקובץ"
+
+msgid "Upload date"
+msgstr "תאריך העלאה"
+
+msgid "Content Type"
+msgstr "סוג תוכן"
+
+msgid "File size"
+msgstr "גודל קובץ"
+
+msgid "download"
+msgstr "הורדה"
+
+msgid "No files have been uploaded!"
+msgstr "לא הועלו קבצים!"
+
+msgid "Allow the whistleblower to add attachments to the submission"
+msgstr "אפשר המתריע כדי להוסיף קבצים מצורפים ההגשה"
+
+msgid "Access expiration"
+msgstr ""
+
+msgid "Connection"
+msgstr "חיבור"
+
+msgid "Never"
+msgstr ""
+
+msgid "Revoked"
+msgstr ""
+
+msgid "Allow the whistleblower to send messages"
+msgstr "אפשר המתריע לשלוח הודעות"
+
+msgid "Are you sure that you want to delete the submission?"
+msgstr "האם אתה בטוח שאתה רוצה למחוק את ההגשה?"
+
+msgid ""
+"Everything related to the submission stored on the platform will be deleted."
+msgstr ""
+
+msgid ""
+"Please be aware that everything stored off the platform, e.g. files you have"
+" saved on your computer, must be deleted manually."
+msgstr ""
+
+msgid "Are you sure that you want to delete all the selected submissions?"
+msgstr "האם אתה בטוח שאתה רוצה למחוק את כל ההגשות שנבחרו?"
+
+msgid ""
+"Please make sure that all related data is properly deleted so that the "
+"recipients won't be able to further access to it."
+msgstr "נא תדאג שכל הנתונים הקשורים נמחקו כראוי וכל המקבלים לא יוכלו לגשת עליו"
+
+msgid "Please write a motivation for the reply"
+msgstr "אנא לכתוב מוטיבציה על התשובה"
+
+msgid "Are you sure that you want to postpone the submission expiration date?"
+msgstr "האם אתה בטוח שאתה רוצה לדחות את תאריך תפוגת ההגשה?"
+
+msgid "By confirming, you will postpone the expiration date to:"
+msgstr "לאחר שיאשר, תוכל לדחות את מועד התפוגה:"
+
+msgid ""
+"Are you sure that you want to postpone the expiration date for all selected "
+"submissions?"
+msgstr "האם אתה בטוח שאתה רוצה לדחות את תאריך התפוגה להגשות שנבחרו?"
+
+msgid "Questionnaire answers"
+msgstr "תשובות לשאלון"
+
+msgid "Step"
+msgstr "צעד"
+
+msgid "Recipient list"
+msgstr "רשימת נמענים"
+
+msgid "Attached files for the whistleblower"
+msgstr ""
+
+msgid ""
+"Files uploaded here are made available for the whistleblower and other "
+"recipients to download."
+msgstr ""
+
+msgid "Upload a file:"
+msgstr ""
+
+msgid "Logout"
+msgstr "נתק"
+
+msgid "The key code is either invalid or the submission has expired."
+msgstr "קוד המפתח לא חוקי או ההגשה פגה."
+
+msgid "Please check your key code and try again or make a new submission."
+msgstr "אנא בדוק את קוד המפתח שלך ונסה שוב או עשה הגשה חדשה."
+
+msgid "Files attached by recipients"
+msgstr ""
+
+msgid "These files have been attached to your submission by the recipients."
+msgstr ""
+
+msgid "Enable submission notification"
+msgstr "אפשר הודעת הגשה"
+
+msgid "Current Password"
+msgstr "סיסמא נוכחית"
+
+msgid "Old password confirmation required"
+msgstr "אישור סיסמא הישנה הנדרש"
+
+msgid "The new password must be different from the current one."
+msgstr ""
+
+msgid "Type your new password again"
+msgstr "הקלד את הסיסמה החדשה שוב"
+
+msgid "The two passwords do not match"
+msgstr "שתי סיסמאות אינן תואמות"
+
+msgid "Thank you!"
+msgstr "תודה לך!"
+
+msgid "Remember your key code for this submission."
+msgstr "זכור את קוד המפתח שלך להגשה זו."
+
+msgid "We will try to get back to you as soon as possible!"
+msgstr "ננסה לחזור אליכם בהקדם האפשרי!"
+
+msgid ""
+"Use the 16 digit key code to log in. It will allow you to view any messages "
+"we sent you, and also to add extra info."
+msgstr "השתמש בקוד 16 ספרות לכניסה ולראות אילו הודעות נשלח לך, או אם אתה יכול לחשוב על כל דבר אחר ששכחת"
+
+msgid "View your submission"
+msgstr "הצג הגשתך"
+
+msgid "Hint: How to hide your key code"
+msgstr "רמז: איך להסתיר את קוד המפתח שלך"
+
+msgid ""
+"A useful way to hide your key code is to write it down like a credit card "
+"number, i.e. by also including an expiration date."
+msgstr "דרך שימושית להסתיר את קוד המפתח שלך, היא לכתוב אותו כמו מספר כרטיס אשראי כלומר כוללת תאריך תפוגה."
+
+msgid "Example:"
+msgstr "דוגמא:"
+
+msgid ""
+"You have not set up your encryption key, so the files will not be encrypted "
+"prior to being stored on the server."
+msgstr "אתה לא צריך להגדיר מפתח ההצפנה שלך, כך את הקבצים לא יהיה מוצפן לפני יאוחסן בשרת."
+
+msgid ""
+"This may lead to unintended access to the files by the server administrator "
+"or others in case the server is compromised."
+msgstr "עלול להוביל לגישה לא מכוונת לקבצים על ידי מנהל השרת או אחרים במקרה והשרת לא מאובטח"
+
+msgid "Please configure your PGP keys in the recipient preferences page."
+msgstr "נא להגדיר מפתחות PGP בדף הגדרות נמען"
+
+msgid ""
+"One or more of the recipients of this submission has not configured a PGP "
+"key."
+msgstr "אחת או יותר של מקבלי הגשה זה לא הגדיר מפתח PGP."
+
+msgid ""
+"This means that the submitted files will be stored in plaintext on the "
+"server."
+msgstr "משמעות דבר היא שהקבצים שהוגשו יאוחסנו בטקסט רגיל על הצומת."
+
+msgid ""
+"Access to the whistleblower's identity has been requested to the custodian."
+msgstr "גישה אל הזהות של המתריע התבקש האפוטרופוס."
+
+msgid "Date of the request"
+msgstr "תאריך הבקשה"
+
+msgid "Congratulations!"
+msgstr "מזל טוב!"
+
+msgid "You have completed the platform activation."
+msgstr ""
+
+msgid "Your whistleblowing platform is now accessible at:"
+msgstr ""
+
+msgid "Users' credentials:"
+msgstr ""
+
+msgid "To log in, visit:"
+msgstr ""
+
+msgid "For the user documentation visit:"
+msgstr ""
+
+msgid "The platform will be automatically deleted on:"
+msgstr ""
+
+msgid "Sign up"
+msgstr ""
+
+msgid "Domain"
+msgstr "דומיין"
+
+msgid "Use Case"
+msgstr ""
+
+msgid "Anticorruption"
+msgstr ""
+
+msgid "Corporate compliance"
+msgstr ""
+
+msgid "Investigative journalism"
+msgstr ""
+
+msgid "Civic activism"
+msgstr ""
+
+msgid "Other"
+msgstr ""
+
+msgid "Complete"
+msgstr ""
+
+msgid "Your whistleblowing platform is almost ready!"
+msgstr ""
+
+msgid "Check your inbox to activate your account."
+msgstr ""
+
+msgid "The answer is too short."
+msgstr ""
+
+msgid "The specified input is not valid:"
+msgstr ""
+
+msgid "please enter a valid email address."
+msgstr ""
+
+msgid "please enter numbers only."
+msgstr ""
+
+msgid "Recipient selection"
+msgstr "בחירת מקבלים"
+
+msgid "previous step"
+msgstr "צעד אחורה"
+
+msgid "next step"
+msgstr "צעד קדימה"
+
+msgid "Submit"
+msgstr "הגש"
+
+msgid "Recipients selected:"
+msgstr "מקבלים שנבחרו:"
+
+msgid ""
+"In this step the answers to the following questions are either missing or "
+"invalid:"
+msgstr ""
+
+msgid "Submission errors"
+msgstr ""
+
+msgid "You must select at least one recipient."
+msgstr ""
+
+msgid "Waiting for the file(s) to finish uploading."
+msgstr ""
+
+msgid "The following steps have errors:"
+msgstr ""
+
+msgid "Welcome!"
+msgstr ""
+
+msgid ""
+"The following step-by-step procedure will guide you through creating your "
+"whistleblowing platform."
+msgstr ""
+
+msgid "Please choose a configuration profile:"
+msgstr ""
+
+msgid ""
+"These profiles contain settings used by successful projects in each "
+"respective field."
+msgstr ""
+
+msgid "Confirm password"
+msgstr "אשר סיסמא"
+
+msgid "The default username is:"
+msgstr ""
+
+msgid "License Agreement"
+msgstr ""
+
+msgid "Please review the license terms before proceeding."
+msgstr ""
+
+msgid "I have read and agree to the terms of the License Agreement."
+msgstr ""
+
+msgid "You have completed the platform wizard."
+msgstr "אתה בהצלחה סיימת את אשף הפלטפורמה."
+
+msgid "Fill out your submission"
+msgstr "מלא את ההגשה שלך"
+
+msgid "Short title"
+msgstr "כותרת קצרה"
+
+msgid "Describe your submission in a few words."
+msgstr "תאר את ההגשה שלך עם כמה מילים"
+
+msgid "Full description"
+msgstr "תיאור מלא"
+
+msgid "Describe your submission in detail."
+msgstr ""
+
+msgid "Attach files relevant to the submission."
+msgstr "צרף קבצים רלוונטיים להגשה"
+
+msgid "Dear {RecipientName},"
+msgstr "{RecipientName} יקרים,"
+
+msgid "Kind regards,"
+msgstr "בברכה,"
+
+msgid ""
+"The number of activities recently detected appears to be higher than usual."
+msgstr "מספר פעילויות לאחרונה זוהו שנראה גבוה מרגיל."
+
+msgid ""
+"This could be a sign of an attack (for example, someone flooding your server"
+" with bogus information) or just a usage spike due to an increased "
+"visibility of your project."
+msgstr "זה יכול להיות סימן של תקיפה (למשל, מישהו מציף את שרת עם מידע מזויף) או סתם ספייק שימוש עקב חשיפה מוגברת של הפרויקט שלך."
+
+msgid "Examine the issue to determine whether it is legitimate or not."
+msgstr ""
+
+msgid "The activities with unusual stats are:"
+msgstr "הפעילות עם נתונים סטטיסטיים לא רגילים הן:"
+
+msgid ""
+"The server cannot guarantee that a new submission can be stored, so "
+"submissions have been disabled."
+msgstr "השרת לא יכול להבטיח כי הגשה חדשה ניתן לאחסן, כך הגשות הושבתו."
+
+msgid ""
+"Please consider asking your technical support to create more disk space on "
+"the server."
+msgstr ""
+
+msgid ""
+"GlobaLeaks technology includes a server status checking component which will"
+" alert you in case something requires your attention."
+msgstr "טכנולוגית GlobaLeaks כוללת רכיב בדיקת מצב שרת אשר יתריע למקרה שמשהו דורש את תשומת לבכם."
+
+msgid ""
+"For more information, log in to the Administration interface and look at the"
+" \"System Stats\" and \"Anomalies\" sections."
+msgstr ""
+
+msgid "Anomaly detected in {NodeName}"
+msgstr "Anomaly זוהה {NodeName}"
+
+msgid ""
+"This is an email to inform you that the PGP key of the following users is "
+"going to expire or has already expired:"
+msgstr "אימייל זה בא להודיעך כי מפתח הPGP של המשתמשים הבאים עומד לפוג או כבר פג."
+
+msgid ""
+"Without a valid PGP key, the system will not be able to send them encrypted "
+"notifications."
+msgstr "בלי מפתח PGP תקף, המערכת לא תהיה מסוגלת לשלוח להם הודעות מוצפנות."
+
+msgid "PGP key expiration alert"
+msgstr "התרעת מפתח PGP פג תוקף"
+
+msgid ""
+"This is a test email sent out from the platform's administrative interface."
+msgstr ""
+
+msgid ""
+"Reception of this email indicates that the server was able to authenticate "
+"to and interact with the SMTP mail server."
+msgstr ""
+
+msgid "Test email"
+msgstr ""
+
+msgid ""
+"This is an email to notify you of a new comment on an existing submission."
+msgstr "זוהי הודעת דוא\"ל כדי להודיע ​​לך על תגובה חדשה על הגשה קיימת."
+
+msgid "The submission can be accessed:"
+msgstr "ניתן לגשת להגשה:"
+
+msgid "via Tor at: {TorUrl}"
+msgstr "באמצעות Tor ב: {TorUrl}"
+
+msgid "via HTTPS at: {HTTPSUrl}"
+msgstr "דרך HTTPS ב: {HTTPSUrl}"
+
+msgid "New comment"
+msgstr "תגובה חדשה"
+
+msgid "From: {RecipientName}"
+msgstr "מאת: {RecipientName}"
+
+msgid "Date: {EventTime}"
+msgstr "תאריך: {EventTime}"
+
+msgid "From: Whistleblower"
+msgstr "מאת: Whistleblower"
+
+msgid "Date: {SubmissionDate}"
+msgstr "תאריך: {SubmissionDate}"
+
+msgid "Label: {TipLabel}"
+msgstr "לייבל: {TipLabel}"
+
+msgid "Context: {ContextName}"
+msgstr "הקשר: {ContextName}"
+
+msgid ""
+"This is an email to notify you that the whistleblower of submission {TipNum}"
+" has attached new material."
+msgstr "זוהי הודעת דוא\"ל כדי להודיע ​​לך כי המתריע של {TipNum} צרף חומר חדש."
+
+msgid "New attachment"
+msgstr "מצורף חדש"
+
+msgid ""
+"The HTTPS certificate loaded on the platform is about to, or has already "
+"expired."
+msgstr ""
+
+msgid "Expiration date: {ExpirationDate}"
+msgstr ""
+
+msgid ""
+"Without a valid certificate, the platform will be accessible in a secure way"
+" only via Tor."
+msgstr ""
+
+msgid "Log in to solve the issue."
+msgstr ""
+
+msgid "Expiration alert for HTTPS certificate"
+msgstr ""
+
+msgid ""
+"This is an email to notify you that a custodian has authorized you to access"
+" to the whistleblowing identity for the submission {TipNum}."
+msgstr ""
+
+msgid "Access to whistleblower's identity authorized"
+msgstr "גישה הזהה של המתריע מורשה"
+
+msgid ""
+"This is an email to notify you that a custodian has denied you access to the"
+" wistleblowing identity for the submission {TipNum}."
+msgstr "זוהי הודעת דוא\"ל כדי להודיע ​​לך כי אפוטרופוס הכחיש לך גישה הזהות whistleblowing להגשת {TipNum}."
+
+msgid "Access to whistleblower's identity denied"
+msgstr "גישה הזהה של המתריע הכחישה"
+
+msgid ""
+"This is an email to notify you that a recipient has requested access to the "
+"whistleblower's identity for the submission {TipNum}"
+msgstr "זוהי הודעת דוא\"ל כדי להודיע ​​לך כי הנמען ביקש גישה של זהות המתריע להגשת {TipNum}"
+
+msgid "The request can be accessed:"
+msgstr "הבקשה ניתן לגשת:"
+
+msgid "New request of access to a whistleblower's identity"
+msgstr ""
+
+msgid ""
+"This is an email to notify you that the whistleblower for the submission "
+"{TipNum} has provided their identity."
+msgstr "זוהי הודעת דוא\"ל כדי להודיע ​​לך כי המתריע על {TipNum} סיפקה את זהותם."
+
+msgid "The whistleblower has provided their identity"
+msgstr "המתריע ספק את זהותם"
+
+msgid ""
+"This is an email to notify you of a new message on an existing submission."
+msgstr "זוהי הודעת דוא\"ל כדי להודיע ​​לך על הודעה חדשה על הגשה קיימת."
+
+msgid "New message"
+msgstr "הודעה חדשה"
+
+msgid ""
+"This is an email to inform you that your PGP key is expiring or has already "
+"expired."
+msgstr "אימייל זה בא להודיעך כי מפתח הPGP שלך עומד לפוג או פג כבר ."
+
+msgid ""
+"You should extend its validity and update the key present on the platform, "
+"or upload a new key."
+msgstr "אתה צריך להאריך את תוקפיו ולעדכן הווה המפתח בפלטפורמה, או להעלות מפתח חדש."
+
+msgid ""
+"Without a valid PGP key, the system won't be able to encrypt data provided "
+"to you."
+msgstr "ללא מפתח PGP תקף, המערכת לא תוכל להצפין נתונים שנמסרו לך."
+
+msgid "It appears that {NodeName} is receiving a large number of requests."
+msgstr "נראה כי {NodeName} מקבלים מספר רב של בקשות."
+
+msgid ""
+"To prevent sending you too many emails, the system has disabled email "
+"notifications until the load returns to normal. In the meantime, you can "
+"normally log onto the platform and manually check for new submissions."
+msgstr "כדי למנוע שולח לך יותר מדי דואר אלקטרוני, המערכת השביתה הודעות דוא\"ל עד שיחזור העומס לקדמותו. בינתיים, אתה יכול בדרך כלל להיכנס אל הרציף ולבדוק באופן ידני עבור הגשות חדשות."
+
+msgid ""
+"If you don’t mind and would rather receive such a large number of email "
+"notifications anyhow, please contact your technical support to have them "
+"modify this setting accordingly."
+msgstr "אם לא אכפת לך ואת מעדיפה לקבל מספר כה גדול של הודעות דוא\"ל בכל מקרה, אנא פנה לתמיכה הטכנית שלך כדי לקבל אותם לשנות הגדרה זו בהתאם."
+
+msgid "Notifications from {NodeName} have been temporarily suspended"
+msgstr "התראות מ- {NodeName} הושעו זמנית"
+
+msgid "Click the link to activate the platform:"
+msgstr ""
+
+msgid "A software update is available."
+msgstr ""
+
+msgid "It is good security practice to keep the platform up to date."
+msgstr ""
+
+msgid "Installed version: {InstalledVersion}"
+msgstr ""
+
+msgid "Latest version: {LatestVersion}"
+msgstr ""
+
+msgid ""
+"To learn about new features and bug fixes in the new version consult the "
+"change log at: {ChangeLogUrl}"
+msgstr ""
+
+msgid ""
+"For instructions on software updates, please refer to the documentation at: "
+"{UpdateGuideUrl}"
+msgstr ""
+
+msgid "The earliest expiration date is {EarliestExpirationDate}."
+msgstr ""
+
+msgid "Please remember to check them before they are deleted."
+msgstr ""
+
+msgid "Some submissions will expire soon"
+msgstr ""
+
+msgid ""
+"This is an email to notify you that a whistleblower has selected you as a "
+"valuable recipient of their submission."
+msgstr ""
+
+msgid ""
+"You are asked to pay special attention to the information and material "
+"contained therein. Please keep in mind that whistleblowers often expose "
+"themselves to high personal risks in the interest of the public. Therefore "
+"the material provided within this submission should be considered to be of "
+"high importance."
+msgstr ""
+
+msgid "New submission"
+msgstr "הגשה חדשה"

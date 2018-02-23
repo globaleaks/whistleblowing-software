@@ -1,0 +1,2349 @@
+# 
+# Translators:
+# Anne Mügge <info@numijneigenwebsite.nl>, 2016-2017
+# Barend <b.vanrijn@me.com>, 2015
+# tempuser1234 <c1160321@trbvm.com>, 2014
+# Denis Paciorkowski <denispaciorkowski@gmail.com>, 2015
+# Douwe <douwe@greenhost.nl>, 2013
+# Douwe <douwe@greenhost.nl>, 2013
+# dragnadh <dragnadh@gmail.com>, 2016-2017
+# tyfjoh, 2014
+# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2013-2018
+# Hermes Center <info@hermescenter.org>, 2013
+# Hermes Center <info@hermescenter.org>, 2013
+# Hermes Center <info@hermescenter.org>, 2013
+# Infinity, 2015
+# Infinity, 2015
+# J <drwhax@2600nl.net>, 2014
+# J <drwhax@2600nl.net>, 2013-2014
+# Just ATranslater <transifex@weinand.nl>, 2017
+# kwadronaut <kwadronaut@autistici.org>, 2017
+# Marcel Oomens <mail@marceloomens.com>, 2015-2017
+# Midgard, 2015
+# Mieke van Heesewijk <mieke@netdem.nl>, 2013
+# Mieke van Heesewijk <mieke@netdem.nl>, 2013
+# M M <wouter.moraal92@gmail.com>, 2015
+# Nathan Follens, 2016-2017
+# Niels ten Oever <niels@digitaldissidents.org>, 2013
+# Niels ten Oever <niels@digitaldissidents.org>, 2013
+# Teun Gautier <gautier@groene.nl>, 2013
+# Robin van der Vliet <info@robinvandervliet.nl>, 2015
+# Midgard, 2015
+# tempuser1234 <c1160321@trbvm.com>, 2014
+# Teun Gautier <gautier@groene.nl>, 2013
+# tyfjoh, 2014
+msgid ""
+msgstr ""
+"Project-Id-Version: GlobaLeaks\n"
+"PO-Revision-Date: 2018-02-22 09:07+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"Language-Team: Dutch (http://www.transifex.com/otf/globaleaks/language/nl/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: nl\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "Login page"
+msgstr "Login pagina"
+
+msgid "Log in"
+msgstr "Inloggen"
+
+msgid "Administration interface"
+msgstr "Admin dashboard"
+
+msgid "Main configuration"
+msgstr "Hoofdconfiguratie"
+
+msgid "Theme customization"
+msgstr "Thema aanpassen"
+
+msgid "Languages"
+msgstr "Talen"
+
+msgid "Text customization"
+msgstr "Tekst aanpassing"
+
+msgid "Advanced settings"
+msgstr "Geavanceerde instellingen"
+
+msgid "Questionnaire configuration"
+msgstr "Formulier-configuratie"
+
+msgid "Question templates"
+msgstr "Formuliersjablonen"
+
+msgid "Questionnaires"
+msgstr "Formulieren"
+
+msgid "Add new questionnaire"
+msgstr "Formulier toevoegen"
+
+msgid "Home"
+msgstr "Home"
+
+msgid "Home page"
+msgstr "Startpagina"
+
+msgid "Changelog"
+msgstr "Changelog"
+
+msgid "License"
+msgstr "Licentie"
+
+msgid "Notification templates"
+msgstr "Bericht templates"
+
+msgid "Recipient notification templates"
+msgstr "Sjablonen van Notificaties voor Ontvanger"
+
+msgid "Admin notification templates"
+msgstr "Sjablonen van Notificaties voor Beheerder"
+
+msgid "Missing data"
+msgstr "Ontbrekende gegevens"
+
+msgid "no stats available for the future."
+msgstr "geen statistieken beschikbaar voor de toekomst."
+
+msgid "no stats available for this hour."
+msgstr "geen statistieken beschikbaar voor dit uur."
+
+msgid "no stats available for current hour; check activities page."
+msgstr "geen statistieken beschikbaar voor het huidige uur; controleer de activiteitenpagina."
+
+msgid "Delete"
+msgstr "Verwijderen"
+
+msgid "Anomalies"
+msgstr "Anomalieën"
+
+msgid "Preferences"
+msgstr "Voorkeuren"
+
+msgid "Recipient interface"
+msgstr "Ontvangers-dashboard"
+
+msgid "Notification settings"
+msgstr "Notificatie-instellingen"
+
+msgid "This recipient has configured the encryption key."
+msgstr "Deze ontvanger heeft de versleutelingssleutel geconfigureerd."
+
+msgid "This recipient has not configured the encryption key."
+msgstr "Deze ontvanger heeft de versleutelingssleutel nog niet geconfigureerd."
+
+msgid "The file is unavailable due to an internal error."
+msgstr "Door een interne foutmelding is dit bestand is niet beschikbaar."
+
+msgid "file unavailable"
+msgstr "bestand niet beschikbaar"
+
+msgid "Creation date"
+msgstr "Datum van aanmaken"
+
+msgid "Expiration date"
+msgstr "Vervaldatum"
+
+msgid "Last Access"
+msgstr "Laatste bezoek"
+
+msgid "Files"
+msgstr "Bestanden"
+
+msgid "Comments"
+msgstr "Reacties"
+
+msgid "Messages"
+msgstr "Berichten"
+
+msgid "Select this recipient."
+msgstr "Deze ontvanger selecteren."
+
+msgid "Unselect this recipient."
+msgstr "Deze ontvanger deselecteren."
+
+msgid "This recipient cannot be selected."
+msgstr "Deze ontvanger kan niet worden geselecteerd."
+
+msgid "This recipient cannot be deselected."
+msgstr "Deze ontvanger kan niet worden gedeselecteerd."
+
+msgid "Details"
+msgstr "Details"
+
+msgid "Platform wizard"
+msgstr "Platformwizard"
+
+msgid "Step-by-step setup"
+msgstr "Stap-voor-stap-setup"
+
+msgid "CREDIT CARD"
+msgstr "KREDIETKAART"
+
+msgid "YOUR NAME"
+msgstr "JE NAAM"
+
+msgid "Postpone the expiration date"
+msgstr "Vervaldatum uitstellen"
+
+msgid "Select all"
+msgstr "Alles selecteren"
+
+msgid "Deselect all"
+msgstr "Niets selecteren"
+
+msgid "Refresh page"
+msgstr "Pagina herladen"
+
+msgid "Context"
+msgstr "Context"
+
+msgid "Submission date"
+msgstr "Indieningsdatum"
+
+msgid "Private messages"
+msgstr "Privéberichten"
+
+msgid "Preview"
+msgstr "Voorbeeld"
+
+msgid "Move up"
+msgstr "Omhoog"
+
+msgid "Move down"
+msgstr "Omlaag"
+
+msgid "Move left"
+msgstr "Naar links"
+
+msgid "Move right"
+msgstr "Naar rechts"
+
+msgid "Import"
+msgstr "Importeren"
+
+msgid "Export"
+msgstr "Exporteren"
+
+msgid "Save all"
+msgstr "Alles opslaan"
+
+msgid "This field is mandatory"
+msgstr "Dit veld is verplicht"
+
+msgid ""
+"The connection used to send this submission has been secured with HTTPS "
+"ensuring confidentiality."
+msgstr "De tipgever gebruikte een HTTPS-verbinding tijdens het verzenden van deze tip. HTTPS verzekert de privacy van de tipgever, maar niet de anonimiteit."
+
+msgid ""
+"The connection used to send this submission has been secured with Tor "
+"ensuring confidentiality and anonymity."
+msgstr "Deze inzending is verzonden met behulp van Tor. Tor zorgt voor een vertrouwelijke en anonieme verbinding."
+
+msgid "vertical"
+msgstr "verticaal"
+
+msgid "horizontal"
+msgstr "horizontaal"
+
+msgid "Number"
+msgstr "Nummer"
+
+msgid "Email"
+msgstr "E-mail"
+
+msgid "Date"
+msgstr "Datum"
+
+msgid "Regular expression validator"
+msgstr "Reguliere expressie controleren"
+
+msgid "Minimum number of input characters"
+msgstr "Minimaal aantal karakters"
+
+msgid "Maximum number of input characters"
+msgstr "Maximaal aantal karakters"
+
+msgid "Earliest selectable date"
+msgstr "Vroegst mogelijke datum"
+
+msgid "Latest selectable date"
+msgstr "Uiterste datum"
+
+msgid "0 = auto"
+msgstr "0 = auto"
+
+msgid "-1 = unlimited"
+msgstr "-1 = geen limiet"
+
+msgid "True"
+msgstr "Waar"
+
+msgid "False"
+msgstr "Niet waar"
+
+msgid "Yes"
+msgstr "Ja"
+
+msgid "No"
+msgstr "Nee"
+
+msgid "Attachment"
+msgstr "Bijlage"
+
+msgid "Attachments"
+msgstr "Bijlagen"
+
+msgid "Change your password"
+msgstr "Wachtwoord wijzigen"
+
+msgid "First name"
+msgstr "Voornaam"
+
+msgid "Last name"
+msgstr "Achternaam"
+
+msgid "GENDER_OTHER"
+msgstr "Anders"
+
+msgid "Male"
+msgstr "Man"
+
+msgid "Female"
+msgstr "Vrouw"
+
+msgid "Date of birth"
+msgstr "Geboortedatum"
+
+msgid "Place of birth"
+msgstr "Geboorteplaats"
+
+msgid "Social security number"
+msgstr "Burgerservicenummer (BSN)"
+
+msgid "Residence"
+msgstr "Adres 1"
+
+msgid "Address"
+msgstr "Adres 2"
+
+msgid "Zip code / Postal code"
+msgstr "Postcode"
+
+msgid "City"
+msgstr "Plaats"
+
+msgid "State"
+msgstr "Provincie"
+
+msgid "Region"
+msgstr "Regio-aanduiding"
+
+msgid "Province"
+msgstr "Provincie"
+
+msgid "Country"
+msgstr "Land"
+
+msgid "Phone number"
+msgstr "Telefoonnummer"
+
+msgid "Current job title"
+msgstr "Huidige functie"
+
+msgid "Current job responsibility (role)"
+msgstr "Functieomschrijving (rol)"
+
+msgid "Current organization unit and job location"
+msgstr "Huidige departement en locatie"
+
+msgid "Job title at the time of the reported fact"
+msgstr "Functietitel ten tijde van de misstand"
+
+msgid "Job responsibility (role) at the time of the reported fact"
+msgstr "Rol (verantwoordelijkheid) ten tijde van de misstand"
+
+msgid "Organization unit and job location at the time of the reported fact"
+msgstr "Departement en locatie ten tijde van de misstand"
+
+msgid "List of submissions"
+msgstr "Tiplijst"
+
+msgid "List of access requests to whistleblowers' identities"
+msgstr "Lijst van aanvragen voor de identiteit van klokkenluiders"
+
+msgid "User"
+msgstr "Gebruiker"
+
+msgid "Motivation"
+msgstr "Reden"
+
+msgid "Status"
+msgstr "Status"
+
+msgid "Request motivation"
+msgstr "Motivatie bij de aanvraag"
+
+msgid "Reply motivation"
+msgstr "Reactie op de motivatie"
+
+msgid "Request status"
+msgstr "Status van de aanvraag"
+
+msgid "Custodian"
+msgstr "Vertrouwenspersoon"
+
+msgid "Custodian of the identities"
+msgstr "Vertrouwenspersoon"
+
+msgid "Identity"
+msgstr "Identiteit"
+
+msgid "Available"
+msgstr "Beschikbaar"
+
+msgid "Not available"
+msgstr "Niet beschikbaar"
+
+msgid "Access requested"
+msgstr "Toegang gevraagd"
+
+msgid "Request access to the whistleblower's identity"
+msgstr "Vraag toegang tot de identiteit van de klokkenluider"
+
+msgid "Please write a motivation"
+msgstr "Motiveer de aanvraag"
+
+msgid "Reply to the request"
+msgstr "Reactie op de aanvraag"
+
+msgid "Authorized"
+msgstr "Verleend"
+
+msgid "Denied"
+msgstr "Afgewezen"
+
+msgid "Waiting for authorization"
+msgstr "Wachten op toegang"
+
+msgid "New request"
+msgstr "Nieuwe aanvraag"
+
+msgid "Authorize"
+msgstr "Verlenen"
+
+msgid "Deny"
+msgstr "Afwijzen"
+
+msgid "Deny access to the whistleblower's identity"
+msgstr "Wijs toegang tot de identiteit van de klokkenluider af"
+
+msgid "Authorize access to the whistleblower's identity"
+msgstr "Verleen toegang tot de identiteit van de klokkenluider"
+
+msgid "Templates"
+msgstr "Sjablonen"
+
+msgid "Notification of new submission"
+msgstr "Berichtgeving van een nieuwe tip"
+
+msgid "Notification of new comment"
+msgstr "Berichtgeving van een nieuwe reactie"
+
+msgid "Notification of new message"
+msgstr "Berichtgeving van een nieuw bericht"
+
+msgid "Notification of new file attachment"
+msgstr "Berichtgeving van een nieuwe bijlage"
+
+msgid "Notification of PGP key expiration"
+msgstr "Berichtgeving van een verlopen PGP-sleutel"
+
+msgid "Notification of anomaly"
+msgstr "Melding van een onregelmatigheid"
+
+msgid "Template for summary of contents in submission archive"
+msgstr "Sjabloon voor "
+
+msgid "Email subject"
+msgstr "E-mail-onderwerp"
+
+msgid "Email body"
+msgstr "E-mailbericht"
+
+msgid "in seconds"
+msgstr "in seconden"
+
+msgid "in hours"
+msgstr "in uren"
+
+msgid "in days"
+msgstr "in dagen"
+
+msgid "in characters"
+msgstr "in karakters"
+
+msgid "in megabytes"
+msgstr "in megabytes"
+
+msgid "in percentage"
+msgstr "percentage"
+
+msgid "HTTPS settings"
+msgstr "HTTPS-instellingen"
+
+msgid "Anomaly detection thresholds"
+msgstr "Drempels voor anomaliedetectie"
+
+msgid "High risk"
+msgstr "Hoog risico"
+
+msgid "Medium risk"
+msgstr "Gemiddeld risico"
+
+msgid "Low risk"
+msgstr "Laag risico"
+
+msgid "Available disk space"
+msgstr "Beschikbare schijfruimte"
+
+msgid "Last update"
+msgstr "Voor het laatst bijgewerkt"
+
+msgid "Custodian notification templates"
+msgstr "Sjabloons voor berichten aan vertrouwenspersoon"
+
+msgid ""
+"This interface allows configuring email templates used to notify custodians."
+msgstr "Hier kunt u de sjablonen voor e-mails aan vertrouwenspersonen aanpassen. "
+
+msgid "Disable notifications to administrators"
+msgstr "Berichten aan managers uitschakelen"
+
+msgid "Disable notifications to custodians"
+msgstr "Berichten aan vertrouwenspersonen uitschakelen"
+
+msgid "Disable notifications to recipients"
+msgstr "Berichten aan ontvangers uitschakelen"
+
+msgid "Score"
+msgstr "Score"
+
+msgid "Trigger question"
+msgstr "Trigger vraag"
+
+msgid "Triggered by a score higher than:"
+msgstr "Zichtbaar bij een score hoger dan:"
+
+msgid "Select the question to be triggered when this option is selected"
+msgstr "Kies de vraag die wordt getoond wanneer deze optie wordt gekozen"
+
+msgid "Message shown on top of the status page of the submission"
+msgstr "Melding die getoond wordt boven aan de statuspagina van de inzending"
+
+msgid "Copy and paste the PGP public key here"
+msgstr "Kopieer en plak hier de publieke PGP-sleutel"
+
+msgid "Password strength:"
+msgstr "Wachtwoord sterkte:"
+
+msgid "Weak"
+msgstr "Zwak"
+
+msgid "Acceptable"
+msgstr "Redelijk"
+
+msgid "Strong"
+msgstr "Sterk"
+
+msgid "Loading…"
+msgstr "Bezig..."
+
+msgid "Text shown on top of the interface for selecting contexts"
+msgstr "Tekst die getoond wordt boven de interface om context te selecteren"
+
+msgid "Show small context cards on submission interface"
+msgstr "Toon kleine contextkaartjes op het inzending-interface"
+
+msgid "Type of context selector:"
+msgstr "Contextkeuze-type:"
+
+msgid "Type to search…"
+msgstr "Zoekbegrip ingeven..."
+
+msgid "Silence email notifications"
+msgstr "E-mailmeldingen uitschakelen"
+
+msgid "Turn on email notifications"
+msgstr "E-mailmeldingen inschakelen"
+
+msgid "Enter an email address for the administrator"
+msgstr "Vul een e-mailadres in voor de beheerder"
+
+msgid "Enter a password for the administrator"
+msgstr "Vul een wachtwoord in voor de beheerder"
+
+msgid "Test configuration"
+msgstr "Instelling testen"
+
+msgid "Failed logins"
+msgstr "Mislukte inlogpogingen"
+
+msgid "Successful logins"
+msgstr "Succesvolle inlogpogingen"
+
+msgid "Started submissions"
+msgstr "Gestarte inzendingen"
+
+msgid "Completed submissions"
+msgstr "Afgeronde inzendingen"
+
+msgid "Failed submissions"
+msgstr "Mislukte inzendingen"
+
+msgid "Input validation"
+msgstr "Invoervelden valideren"
+
+msgid "Email address"
+msgstr "Emailadres"
+
+msgid "Custom"
+msgstr "Aanpassing"
+
+msgid "None"
+msgstr "Geen"
+
+msgid "Regular expression"
+msgstr "Reguliere expressie"
+
+msgid "Label the submission"
+msgstr "Label de inzending"
+
+msgid "Activate"
+msgstr "Activeren"
+
+msgid "Search"
+msgstr "Zoeken"
+
+msgid ""
+"This custom text is no longer displayed on the platform. The original text "
+"has either changed or been removed."
+msgstr "Deze aangepaste text is niet meer zichtbaar op het platform. De originele text is gewijzigd of verwijderd."
+
+msgid ""
+"Unless the whistleblower checks the submission by this time, their access to"
+" it will expire."
+msgstr "Als de klokkenluider de inzending niet voor deze datum controleert, dan vervalt zijn of haar toegangsrecht."
+
+msgid "The whistleblower can no longer access the submission"
+msgstr "De klokkenluider kan geen toegang meer krijgen tot de inzending"
+
+msgid "Warning!"
+msgstr "Waarschuwing!"
+
+msgid "You are running an unsupported and potentially vulnerable browser."
+msgstr "Je gebruikt een niet-ondersteunde en potentieel gevaarlijke browser."
+
+msgid "You are strongly advised to download and install the Tor Browser."
+msgstr "Wij adviseren je ten zeerste om de Tor Browser te downloaden en de installeren."
+
+msgid ""
+"The Tor Browser includes various privacy and security enhancements not "
+"present in other browsers."
+msgstr "De Tor-browser bevat diverse privacy- en veiligheidsverbeteringen die niet aanwezig zijn in andere browsers."
+
+msgid "Download the Tor Browser"
+msgstr "De Tor-browser downloaden"
+
+msgid "This is the list of the other supported browsers:"
+msgstr "Dit is de lijst van overige ondersteunde browsers:"
+
+msgid "System overview"
+msgstr "Systeemoverzicht"
+
+msgid "Stats"
+msgstr "Statistieken"
+
+msgid "Activities"
+msgstr "Activiteiten"
+
+msgid "Submissions"
+msgstr "Inzendingen"
+
+msgid "Users"
+msgstr "Gebruikers"
+
+msgid "From"
+msgstr "Afzender"
+
+msgid "Number of downloads"
+msgstr "Aantal keer gedownload"
+
+msgid "Error with file:"
+msgstr "Fout met bestand:"
+
+msgid "File size not accepted."
+msgstr "Bestandsgrootte wordt niet geacepteerd."
+
+msgid "File type not accepted."
+msgstr "Bestandstype wordt niet ondersteund."
+
+msgid "Maximum file size is:"
+msgstr "Maximale bestandsgrootte:"
+
+msgid "Accepted file types are:"
+msgstr "Ondersteunde bestandssoorten zijn:"
+
+msgid "Scheduled jobs"
+msgstr "Geplande werkzaamheden"
+
+msgid "Sites management"
+msgstr "Websitebeheer"
+
+msgid "Regenerate"
+msgstr "Regenereren"
+
+msgid "Display options alphabetically"
+msgstr "Toon opties alfabetisch"
+
+msgid "Enable email notifications for:"
+msgstr "Activeer e-mailmelding voor:"
+
+msgid "Software updates"
+msgstr "Software updates"
+
+msgid "Software problems"
+msgstr "Softwareproblemen"
+
+msgid "Disable"
+msgstr "Uitschakelen"
+
+msgid "Remove"
+msgstr "Verwijder"
+
+msgid "Use as default"
+msgstr "Markeer als standaard"
+
+msgid "Create your whistleblowing platform"
+msgstr ""
+
+msgid "Select the context of your submission:"
+msgstr "Selecteer de context van uw inzending:"
+
+msgid "Warning! You are not anonymous."
+msgstr "Waarschuwing! Uw anonimiteit is niet gewaarborgd."
+
+msgid ""
+"Sending submissions over HTTPS exposes the act of doing so, but not the "
+"content.\\n\\nAlso, hiding the fact that you are submitting something makes "
+"the submission anonymous, which is strongly recommended.\\n\\nThis can be "
+"achieved with the use of the Tor Browser, providing anonymisation not found "
+"in other browsers like Internet Explorer, Firefox, Chrome, Opera etc."
+msgstr "Het versturen van inzendingen per HTTPS zelf kunnen opgespoord worden, hoewel de inhoud niet zichtbaar is. Tevens raden wij u ten sterkste aan dat u maskeert dat u iets wilt inzenden. Dit kunt u doen met behulp van de Tor browser, die anonimiteit waarborgt, welke niet door andere browsers geboden wordt zoals Internet Explorer, Firefox, Chrome, Opera etc."
+
+msgid "Are you a whistleblower?"
+msgstr "Bent u een klokkenluider?"
+
+msgid "Blow the whistle"
+msgstr "Luid de klok"
+
+msgid "Have you already filed a submission? Enter your key code."
+msgstr "Heb je al een inzending gedaan? Vul dan hier je sleutelcode in."
+
+msgid "Your submission was successful."
+msgstr "Je inzending was succesvol."
+
+msgid "Submission status"
+msgstr "Status inzending"
+
+msgid "Disable submissions"
+msgstr "Inzendingen uitschakelen"
+
+msgid "Enable insecure configuration without PGP encryption"
+msgstr "Activeer onveilige configuratie zonder PGP-versleuteling"
+
+msgid "Danger"
+msgstr "Gevaar"
+
+msgid ""
+"By enabling this option, the system will be storing the submitted files "
+"unencrypted on your server."
+msgstr "Door deze optie te activeren zal het systeem de aangeleverde bestanden onversleuteld opslaan op je server."
+
+msgid "This happens whenever encryption is unavailable."
+msgstr "Dit gebeurt wanneer versleuteling niet beschikbaar is."
+
+msgid "Disable messages that warn of missing encryption"
+msgstr "Meldingen uitschakelen die waarschuwen voor ontbrekende versleuteling"
+
+msgid ""
+"This setting affects the security of the users and must not be used in "
+"production."
+msgstr "Deze instelling brengt de gebruiker in gevaar en moet niet worden gebruikt in productiesystemen"
+
+msgid "Allow other websites to include the platform inside iframes"
+msgstr "Gebruik van het platform door middel van iframes op andere websites toestaan"
+
+msgid ""
+"By enabling this option, you are allowing other websites to include the "
+"platform inside iframes; this could potentially be used to endanger the "
+"platform or intercept users' communications"
+msgstr "Met deze optie is het mogelijk om het platform op andere website in te sluiten. Hier zijn risico's aan verbonden. Andere websites kunnen de communicatie tussen gebruiker en platform onderscheppen."
+
+msgid "Allow recipients to postpone expiration date of the submission"
+msgstr "Ontvangers toestaan de vervaldatum van tips uit te stellen"
+
+msgid "Allow recipients to delete submissions"
+msgstr "Ontvangers toestaan tips te verwijderen"
+
+msgid ""
+"Allow recipients to grant permissions to whistleblowers on specific "
+"submissions"
+msgstr "Ontvangers toestaan om klokkenluiders per tip rechten toe te wijzen"
+
+msgid "Enable search engines indexing"
+msgstr "Zoekmachine-indexering inschakelen"
+
+msgid "Enabled"
+msgstr "Ingeschakeld"
+
+msgid "Search engine spiders will be allowed to index the application."
+msgstr "Zoekmachines krijgen toestemming om de applicatie te doorzoeken."
+
+msgid "Enable custom privacy panel"
+msgstr "Gepersonaliseerd privacy-paneel inschakelen"
+
+msgid "Custom privacy panel"
+msgstr "Gepersonaliseerd privacy-paneel"
+
+msgid "Text shown when the whistleblower is not using Tor"
+msgstr "Tekst die wordt getoond wanneer de klokkenluider geen Tor gebruikt"
+
+msgid "Disable the privacy panel"
+msgstr "Privacy-paneel uitschakelen"
+
+msgid "Security awareness panel title"
+msgstr "Titel van het veiligheidsbewustzijnspaneel"
+
+msgid "Security awareness panel text"
+msgstr "Tekst voor het veiligheidsbewustzijnspaneel"
+
+msgid "Disable the security awareness panel questions"
+msgstr "Veiligheidsbewustzijnspaneel-vragen uitzetten"
+
+msgid "Disable the security awareness panel"
+msgstr "Veiligheidsbewustzijn-paneel uitzetten"
+
+msgid "Disable the key code hint"
+msgstr "De sleutelcode-hint uitschakelen"
+
+msgid "Disable the donation panel"
+msgstr "Donatiebox uitschakelen"
+
+msgid "Enable CAPTCHA mechanism"
+msgstr "CAPTCHAS inschakelen"
+
+msgid "Enable proof of work mechanism"
+msgstr "'Proof-of-work'-mechanisme inschakelen"
+
+msgid "Enable simplified login for recipients"
+msgstr "Eenvoudige login voor ontvangers inschakelen"
+
+msgid "Amount of days till whistleblower access expires"
+msgstr "Het aantal dagen totdat de klokkenluider zijn toegang verloopt"
+
+msgid ""
+"For security reasons the whistleblower access is subject to expiration."
+msgstr "Omwille van de veiligheid verloopt het toegangsrecht van de klokkenluider na verloop van tijd."
+
+msgid "Tweak this setting only if you know what you are doing."
+msgstr "Stel deze instellingen alleen bij als u weet wat u doet."
+
+msgid "Landing page"
+msgstr "Landingspagina"
+
+msgid "Home Page"
+msgstr "Startpagina"
+
+msgid "Submission Page"
+msgstr "Inzendingspagina"
+
+msgid "Title of the submission page"
+msgstr "Titel van de inzending-pagina"
+
+msgid "Title of the attachments widget"
+msgstr "Titel van de bijlagen-widget"
+
+msgid "Text of prompt for whistleblowers to log in"
+msgstr "Tekst om de klokkenluider op te roepen om in te loggen"
+
+msgid "Show contexts in alphabetical order"
+msgstr "Toon contexten in alfabetische volgorde"
+
+msgid "Title of the receipt page"
+msgstr "Titel van de ontvanger-pagina"
+
+msgid "Title of the submission status page"
+msgstr "Titel van de inzending status-pagina"
+
+msgid "Title of the comments widget"
+msgstr "Titel van de commentaren-widget"
+
+msgid "Title of the messages widget"
+msgstr "Titel van de meldingen-widget"
+
+msgid "Size limit for file attachments"
+msgstr "Maximale grootte voor bestandsbijlagen"
+
+msgid "Notify administrators of software problems"
+msgstr ""
+
+msgid "Notify developers of software problems"
+msgstr "Meld programmafouten bij ontwikkelaars"
+
+msgid ""
+"By enabling this feature, you will contribute to the development and "
+"security of the platform."
+msgstr ""
+
+msgid "Enable HTTP Basic Authentication to limit platform access"
+msgstr "HTTP Basic Authentication - de basisverificatie - inschakelen om de toegang tot het platform te beperken"
+
+msgid "Username"
+msgstr "Gebruikersnaam"
+
+msgid "Password"
+msgstr "Wachtwoord"
+
+msgid ""
+"This feature keeps regular people from visiting the platform while it is "
+"still under development and should not be used for security purposes. The "
+"input password is stored in plaintext on the server."
+msgstr "Deze functie weerhoudt gewone mensen om het platform te bezoeken tijdens de ontwikkeling en mag niet gebruikt worden ter beveiliging. Het wachtwoord wordt namelijk op de server als niet-versleutelde tekst bewaard."
+
+msgid "Enable experimental features"
+msgstr "Experimentele functies inschakelen"
+
+msgid "Warning"
+msgstr "Waarschuwing"
+
+msgid ""
+"The experimental features may be less stable or even not work at all; enable"
+" this option at your own risk. Support for these features may vary and they "
+"may be removed in the future."
+msgstr "De experimentele functies kunnen minder stabiel zijn of zelfs helemaal niet werken; het inschakelen van deze optie is op eigen risico. Ondersteuning voor deze functies kunnen variëren en worden mogelijk in de toekomst verwijderd."
+
+msgid "Save"
+msgstr "Bewaar"
+
+msgid "Short URL"
+msgstr "Korte URL"
+
+msgid "Long URL"
+msgstr "Lange URL"
+
+msgid "Add"
+msgstr "Toevoegen"
+
+msgid "Logo"
+msgstr "Logo"
+
+msgid "Project name"
+msgstr "Naam van initiatief"
+
+msgid "Homepage title"
+msgstr "Titel van hoofdpagina"
+
+msgid "Presentation"
+msgstr "Presentatie"
+
+msgid "Description"
+msgstr "Omschrijving"
+
+msgid "Question to solicit possible whistleblowers"
+msgstr "Vraag om potentiële klokkenluiders aan te spreken"
+
+msgid "Whistleblowing button"
+msgstr "Klokkenluid-knop"
+
+msgid "Footer"
+msgstr "Voettekst"
+
+msgid "Favicon"
+msgstr "Favicon"
+
+msgid "Upload"
+msgstr "Uploaden"
+
+msgid "Download"
+msgstr "Downloaden"
+
+msgid "Upload custom file"
+msgstr "Aangepast bestand uploaden"
+
+msgid "The file will be available at URL: /s/$filename"
+msgstr "Het bestand zal beschikbaar zijn op URL: /s/$filename"
+
+msgid "Language:"
+msgstr "Taal:"
+
+msgid "Add custom text"
+msgstr "Voeg aangepaste tekst toe"
+
+msgid "Custom text"
+msgstr "Aangepaste tekst"
+
+msgid "Custom texts"
+msgstr "Aangepaste teksten"
+
+msgid "Original text"
+msgstr "Orginele tekst"
+
+msgid "Original translation"
+msgstr "Orginele vertaling"
+
+msgid "Custom translation"
+msgstr "Aangepaste vertaling"
+
+msgid "Contexts"
+msgstr "Categorieën"
+
+msgid "Name"
+msgstr "Naam"
+
+msgid "Edit"
+msgstr "Bewerken"
+
+msgid "Cancel"
+msgstr "Annuleren"
+
+msgid "Questionnaire"
+msgstr "Vragenformulier"
+
+msgid "Recipients"
+msgstr "Ontvangers"
+
+msgid "Allow selection of this context through the context selector."
+msgstr "Selectie van deze context toestaan met behulp van de contextkiezer."
+
+msgid ""
+"If disabled, submissions for this context will only be accessible through a "
+"direct link to it."
+msgstr "Indien uitgeschakeld zijn inzendingen voor deze context uitsluitend mogelijk met een directe link."
+
+msgid "Allow whistleblowers to select their recipients"
+msgstr "Klokkenluiders toestaan hun ontvangers te selecteren"
+
+msgid "Select all recipients by default"
+msgstr "Selecteer standaard alle ontvangers"
+
+msgid "Maximum number of selectable recipients:"
+msgstr "Maximaal aantal selecteerbare ontvangers:"
+
+msgid "(0 = unlimited)"
+msgstr "(0 = onbeperkt)"
+
+msgid "Show recipients in alphabetical order"
+msgstr "Toon ontvangers in alfabetische volgorde"
+
+msgid "Show small recipient cards on submission interface"
+msgstr "Laat een kleine ontvanger kaart zien op de indiening interface"
+
+msgid "Enable comments"
+msgstr "Reacties inschakelen"
+
+msgid "Allow whistleblowers to write comments"
+msgstr "Klokkenluiders toestaan reacties achter te laten"
+
+msgid "Enable private messages"
+msgstr "Privé-berichten inschakelen"
+
+msgid "Allow whistleblowers to send messages"
+msgstr "Klokkenluiders toestaan berichten de versturen"
+
+msgid "Let whistleblowers add attachments onto existing submissions"
+msgstr "Klokkenluiders toestaan bestanden toe te voegen aan bestaande tips"
+
+msgid "Show recipient details on the status page of the submission"
+msgstr "Toon details van de ontvanger op de statuspagina van de inzending"
+
+msgid "Let recipients upload files to whistleblowers"
+msgstr "Sta ontvanger toe om bestanden te versturen voor klokkenluiders"
+
+msgid "Disabled"
+msgstr "Uitgeschakeld"
+
+msgid "Submission expiration, in days"
+msgstr "Verlooptijd van de inzending in dagen"
+
+msgid ""
+"For security reasons, as a matter of data retention policy, the platform "
+"automatically deletes submissions and their data after a certain amount of "
+"time."
+msgstr "Vanwege veiligheidsredenen en in verband met het beleid rondom dataopslag verwijdert het systeem automatisch inzendingen en hun gegevens na een bepaalde tijd. "
+
+msgid "Text shown on top of the interface for selecting recipients"
+msgstr "Tekst die getoond wordt boven de interface om ontvangers te selecteren"
+
+msgid "Welcome to the administration interface!"
+msgstr "Welkom op het beheersinterface!"
+
+msgid ""
+"This interface may help you understand how the server can be configured and "
+"provides some info on how to connect to other GlobaLeaks users and experts."
+msgstr "Deze interface kan u helpen te begrijpen hoe de server.kan worden geconfigureerd en nog wat informatie over hoe te verbinden met andere GlobaLeaks gebruikers en experts."
+
+msgid "Documentation"
+msgstr "Documentatie"
+
+msgid ""
+"To properly organize your project, please read the following guidelines:"
+msgstr "Om uw initiatief goed te organiseren, raden wij u het lezen aan van de volgende richtlijnen:"
+
+msgid "Remember to provide proper security advice to Whistleblowers:"
+msgstr "Vergeet niet om een goed veiligheids advies te geven aan de klokkenluiders."
+
+msgid ""
+"To learn more about GlobaLeaks Security you can read the following document:"
+msgstr "Wilt u meer weten over GlobalLeaks beveiliging kunt u volgende documenten lezen:"
+
+msgid "Contact"
+msgstr "Contact"
+
+msgid ""
+"If you need technical support, have general questions, or have new ideas for"
+" the software:"
+msgstr "Indien u technische ondersteuning nodig heeft, algemene vragen of nieuwe ideeën heeft betreffende de software:"
+
+msgid ""
+"If you want to contribute to software development or report a bug, please "
+"open an issue in our ticketing system:"
+msgstr "Indien u een bijdrage wilt leveren aan het ontwikkelen van de software of een fout wilt rapporteren kunt u dit doen door een nieuw ticket te openen in ons ticketsysteem:"
+
+msgid ""
+"If your non-profit needs support for investigative journalism, activism or a"
+" human rights defense project:"
+msgstr ""
+
+msgid ""
+"For professional support and development of anti corruption and compliance "
+"projects contact the social enterprise maintaining GlobaLeaks:"
+msgstr ""
+
+msgid "Join our IRC chat channel on the irc.oftc.net network:"
+msgstr "Sluit u aan op ons IRC chat-kanaal op het irc.oftc.net netwerk:"
+
+msgid "Follow the project on:"
+msgstr "Volg het project op:"
+
+msgid "Software version:"
+msgstr "Softwareversie:"
+
+msgid "An update is available:"
+msgstr "Een update is beschikbaar:"
+
+msgid "SMTP name"
+msgstr "SMTP-naam"
+
+msgid "SMTP email address"
+msgstr "SMTP-e-mailadres"
+
+msgid "Invalid email address"
+msgstr "Ongeldig e-mailadres"
+
+msgid "SMTP server address"
+msgstr "SMTP-serveradres"
+
+msgid "SMTP server port"
+msgstr "SMTP-serverpoort"
+
+msgid "Transport Security"
+msgstr "Transportbeveiliging"
+
+msgid "When the option is re-enabled the spooled emails will be sent out."
+msgstr "Niet-verzonden emails worden in een wachtrij gezet wanneer de optie wordt opnieuw ingeschakeld."
+
+msgid "Reset notification templates to default"
+msgstr "Notificatiesjablonen herstellen naar standaardversie"
+
+msgid "Number of hours before sending a submission expiration alert"
+msgstr "Aantal uren voordat de melding verstuurt wordt dat een inzending verloopt"
+
+msgid "Maximum emails per hour before triggering email suspension"
+msgstr "Maximaal aantal e-mails per uur voordat e-mail-onderdrukking wordt ingeschakeld"
+
+msgid "this configuration only applies to recipients"
+msgstr "deze configuratie is alleen van toepassing op ontvangers"
+
+msgid "Test the configuration"
+msgstr "Test de instellingen"
+
+msgid "Template"
+msgstr "Sjabloon"
+
+msgid "Admin"
+msgstr "Admin"
+
+msgid "Roles enabled to use the platform without Tor:"
+msgstr "Geactiveerde rollen om het platform te gebruiken zonder Tor:"
+
+msgid "Recipient"
+msgstr "Ontvanger"
+
+msgid "Whistleblower"
+msgstr "Klokkenluider"
+
+msgid "Hostname"
+msgstr "Hostnaam"
+
+msgid "Verify"
+msgstr "Bevestigen"
+
+msgid "Invalid input format."
+msgstr "Ongeldig invoerformaat."
+
+msgid "Input should be similar to:"
+msgstr "Invoer moet lijken op:"
+
+msgid ""
+"The platform does not seem to be reachable with the configured hostname."
+msgstr ""
+
+msgid "Using Let's Encrypt requires agreement to their Terms of Service."
+msgstr "Om Let's Encrypt te gebruiken is het nodig om akkoord te gaan met hun Algemene Voorwaarden."
+
+msgid "Read the Terms of Service"
+msgstr "Lees de Algemene Voorwaarden"
+
+msgid "I agree to the Terms of Service."
+msgstr "Ik g akkoord met de Algemene Voorwaarden"
+
+msgid "Proceed"
+msgstr "Gaat u verder"
+
+msgid "Configuration completed. You can review the settings or enable it now."
+msgstr "Configuratie voltooid. Bekijk de instellingen of activeer nu."
+
+msgid "Review"
+msgstr "Controleren"
+
+msgid "Enable"
+msgstr "Inschakelen"
+
+msgid "Country code"
+msgstr "Landcode"
+
+msgid "Organization"
+msgstr "Organisatie"
+
+msgid "Organizational unit"
+msgstr "Organisatie-eenheid"
+
+msgid ""
+"This interface can generate a Private Key and a Certificate Signing Request."
+" The Certificate Signing Request can be provided to a Certificate Authority "
+"to retrieve a Certificate. After having validated your request and your "
+"ownership of the hostname, the Certificate Authority will issue you a "
+"Certificate and provide a file containing Intermediate Certificates. Load "
+"the Certificate and the file containing the Intermediate Certificates to "
+"complete the HTTPS setup."
+msgstr "Dit interface kan een Privésleutel en een Certificaat-ondertekeningsverzoek genereren. De Certificaat-ondertekeningsverzoek kan worden ingediend bij een Certificaat-autoriteit om een Certificaat te ontvangen. Nadat uw verzoek en uw eigenaarschap zijn geldig verklaard zal de Certificaat-autoriteit een Certificaat uitreiken en een bestand met Intermediair Certificaten. Upload het Certificaat en het bestand om de HTTPS installatie te voltooien."
+
+msgid "Private Key"
+msgstr "Privésleutel"
+
+msgid "Generate"
+msgstr "Aanmaken"
+
+msgid "Certificate Signing Request"
+msgstr "Certificaatondertekeningsverzoek"
+
+msgid "Certificate"
+msgstr "Certificaat"
+
+msgid "Valid until:"
+msgstr "Geldig tot:"
+
+msgid "Issuer:"
+msgstr "Uitgever:"
+
+msgid "Intermediate Certificates"
+msgstr "Tussenliggende certificaten"
+
+msgid "Reset"
+msgstr "Reset"
+
+msgid "Select an option:"
+msgstr "Kies een optie:"
+
+msgid "Automatic configuration"
+msgstr "Automatische configuratie"
+
+msgid ""
+"Using automatic HTTPS configuration will handle the entire process of "
+"requesting, enabling and renewing certificates from the Let's Encrypt "
+"Certificate Authority."
+msgstr "Het gebruik van automatische HTTPS configuratie doorloopt het gehele proces van aanvragen, activeren en vernieuwen van certificaten van de Let's Encrypt Certificate Athuthority"
+
+msgid ""
+"The platform must be reachable through a public IP address and the selected "
+"hostname must have a corresponding DNS record referencing that address."
+msgstr ""
+
+msgid "Manual configuration"
+msgstr "Handmatige configuratie"
+
+msgid ""
+"The manual configuration wizard will guide you through the setup of HTTPS "
+"from an alternative Certificate Authority."
+msgstr "De wizard voor handmatige configuratie leidt u door de inrichting van HTTPS van een alternatieve certificeringsinstelling. "
+
+msgid ""
+"The platform supports the configuration of HTTPS through this interface."
+msgstr "Het platform ondersteunt de configuratie van HTTPS via deze koppeling."
+
+msgid "The connection to the configured domain failed."
+msgstr "De verbinding met het ingestelde domein is mislukt."
+
+msgid "Running"
+msgstr "Wordt uitgevoerd"
+
+msgid "Not running"
+msgstr "Wordt niet uitgevoerd"
+
+msgid "Auto-renewal"
+msgstr "Auto-hernieuwing"
+
+msgid "System message:"
+msgstr "Systeembericht:"
+
+msgid ""
+"Allowing whistleblowers to connect over HTTPS preserves their privacy but "
+"not their anonymity."
+msgstr "Door whistleblowers toe te staan verbinding te maken over HTTPS berschermt dit hun privacy maar niet hun anonimiteit."
+
+msgid "Attention!"
+msgstr "Opgelet!"
+
+msgid ""
+"Configuration in progress. When it is finished you will have to log in "
+"again."
+msgstr "Configuratie wordt uitgevoerd. Wanneer deze voltooid is zult u opnieuw moeten inloggen."
+
+msgid "Your browser will be redirected to the following URL."
+msgstr "Uw browser wordt omgeleid naar volgende URL."
+
+msgid "Tor Onion Service"
+msgstr "Tor-onion-dienst"
+
+msgid "Tor Browser download link"
+msgstr "Tor Browser download link"
+
+msgid "Anonymize outgoing connections"
+msgstr "Anonimiseer uitgaande verbindingen"
+
+msgid "Let the platform be reachable without Tor"
+msgstr "Het platform is bereikbaar zonder Tor"
+
+msgid "Stats of the week:"
+msgstr "Weekstatistieken:"
+
+msgid "Free disk space"
+msgstr "Vrije schijfruimte"
+
+msgid "Event ID"
+msgstr "Gebeurtenis-ID"
+
+msgid "Time"
+msgstr "Tijd"
+
+msgid "Event"
+msgstr "Gebeurtenis"
+
+msgid "Response time"
+msgstr "Responstijd"
+
+msgid "Role"
+msgstr "Rol"
+
+msgid "Last access"
+msgstr "Laatste toegang"
+
+msgid "Submission"
+msgstr "Inzending"
+
+msgid "Path"
+msgstr "Pad"
+
+msgid "Size"
+msgstr "Grootte"
+
+msgid "Alarm level"
+msgstr "Alarmniveau"
+
+msgid "Events"
+msgstr "Gebeurtenis"
+
+msgid "Label"
+msgstr "Label"
+
+msgid "Type"
+msgstr "Type"
+
+msgid "Single-line text input"
+msgstr "Één regel tekst"
+
+msgid "Multi-line text input"
+msgstr "Meerdere regels tekst"
+
+msgid "Multiple choice input"
+msgstr "Meerkeuzevraag"
+
+msgid "Selection box"
+msgstr "Vinkje"
+
+msgid "Checkbox"
+msgstr "Selectievakje"
+
+msgid "Terms of service"
+msgstr "Serviceovereenkomst"
+
+msgid "Group of questions"
+msgstr "Vragengroep"
+
+msgid "Row"
+msgstr "Rij"
+
+msgid "Column"
+msgstr "Kolom"
+
+msgid "Width"
+msgstr "Breedte"
+
+msgid "Question group"
+msgstr "Vragengroep"
+
+msgid "Hint"
+msgstr "Hint"
+
+msgid "Required"
+msgstr "Vereist"
+
+msgid "Accept multiple file uploads"
+msgstr "Uploads van meerdere bestanden accepteren"
+
+msgid "Accept multiple answers for the field"
+msgstr "Accepteren van meerdere antwoorden voor dit veld"
+
+msgid "Hint shown on the button for adding an additional answer"
+msgstr "Hint die getoond wordt op de knop om een extra vraag toe te voegen"
+
+msgid "Clause"
+msgstr "Clausule"
+
+msgid "Agreement Text"
+msgstr "Overeenkomsttekst"
+
+msgid "Layout orientation"
+msgstr "Opmaakoriëntatie"
+
+msgid "Subject answer visibility to custodian authorization"
+msgstr "Onderwerp antwoord zichtbaarheid aan toezichthouder autorisatie"
+
+msgid "Prompt confirmation upon negative answer"
+msgstr "Snelle bevestiging na negatief antwoord"
+
+msgid "Title of the confirmation question upon negative answer"
+msgstr "Titel van de bevestigingsvraag na negatief antwoord"
+
+msgid "Body of the confirmation question upon negative answer"
+msgstr "Inhoud van de bevestigingsvraag na negatief antwoord"
+
+msgid "Options"
+msgstr "Opties"
+
+msgid "Questions"
+msgstr "Vragen"
+
+msgid "Add new question"
+msgstr "Nieuwe vraag toevoegen"
+
+msgid "Add question from template"
+msgstr "Vraag toevoegen van sjabloon"
+
+msgid "Steps"
+msgstr "Stappen"
+
+msgid "Configuration"
+msgstr "Configuratie"
+
+msgid "Default"
+msgstr "Standaard"
+
+msgid "Forcefully selected"
+msgstr "Actief geselecteerd"
+
+msgid "Unselectable"
+msgstr "Onselecteerbaar"
+
+msgid "Allow the recipient to postpone the submission expiration date"
+msgstr "De ontvanger mag de einddatum van de inzending uitstellen"
+
+msgid "The setting is enabled at a global level."
+msgstr "Deze instelling is ingeschakeld op globaal niveau."
+
+msgid "Allow the recipient to delete submissions"
+msgstr "De ontvanger mag de inzendingen verwijderen"
+
+msgid ""
+"Allow the recipient to grant permissions to whistleblowers on specific "
+"submissions"
+msgstr "De ontvanger toestaan om per tip klokkenluiders rechten toe te wijzen"
+
+msgid "General settings"
+msgstr "Algemene instellingen"
+
+msgid "Network settings"
+msgstr "Netwerkinstellingen"
+
+msgid "Root domain used for secondary sites"
+msgstr ""
+
+msgid "Allow users to sign up"
+msgstr ""
+
+msgid "Sites"
+msgstr "Websites"
+
+msgid "Active"
+msgstr "Actief"
+
+msgid "Inactive"
+msgstr "Inactief"
+
+msgid "The default password is:"
+msgstr "Het standaard wachtwoord is:"
+
+msgid "The system forces users to change the password at first login."
+msgstr "Het systeem verlangt van haar gebruikers om het wachtwoord te veranderen op de eerste login."
+
+msgid "New Password"
+msgstr "Nieuw wachtwoord"
+
+msgid ""
+"The chosen password is too weak. Make it more secure by adding special "
+"characters, numbers, and unusual symbols."
+msgstr "Het gekozen wachtwoord is te zwak. Maak het veiliger door er speciale tekens, nummers en ongebruikelijke symbolen in te voegen."
+
+msgid "Force password change"
+msgstr "Forceer wachtwoord verandering"
+
+msgid "The user will be forced to change its password on next login."
+msgstr "De gebruiker moet zijn wachtwoord veranderen bij een volgende login."
+
+msgid "Language"
+msgstr "Taal"
+
+msgid "Encryption:"
+msgstr "Encryptie:"
+
+msgid "Remove the PGP key"
+msgstr "Verwijder de PGP-sleutel"
+
+msgid "Set up encryption by providing a PGP public key"
+msgstr "Versleuteling instellen met een PGP-publieke sleutel"
+
+msgid "Request date"
+msgstr "Aanvraagdatum"
+
+msgid "Authorization"
+msgstr "Autorisatie"
+
+msgid "Before proceeding, please change your password."
+msgstr "Gelieve uw wachtwoord te veranderen vooraleer u verdergaat."
+
+msgid "Submissions disabled"
+msgstr "Inzendingen  uitgeschakeld"
+
+msgid ""
+"You are connecting to the server without anonymity and this server supports "
+"only anonymous submissions"
+msgstr "U bent een niet-anonieme verbinding tot stand aan het brengen en deze website ondersteunt alleen anonieme inzendingen."
+
+msgid ""
+"Server temporarly unusable due to resource exhaustion; advise the Admin if "
+"you can."
+msgstr "De server is tijdelijk niet beschikbaar door overbelasting; benader de beheerder indien je kunt."
+
+msgid "This server is not configured."
+msgstr "Deze server is niet geconfigureerd"
+
+msgid "You will not be able to send a submission."
+msgstr "U zult niet in staat zijn om een document in te dienen."
+
+msgid ""
+"This platform makes use of GlobaLeaks software specifically designed to "
+"protect the identity for submitter and recipient in the exchange of content."
+msgstr "Dit platform maakt gebruik van de GlobaLeaks software, welke speciaal ontworpen is om de identiteit van de indiener en ontvanger te beschermen tijdens het uitwisselen van bestanden."
+
+msgid ""
+"The software is developed by the non-profit Hermes Center for Transparency "
+"and Digital Human Rights."
+msgstr "De software is ontwikkeld door de non-profit Hermes Centrum voor transparantie en digitale mensenrechten."
+
+msgid "Please support Hermes through their donation page."
+msgstr "Steun Hermes via haar donatiepagina"
+
+msgid "Authentication failed"
+msgstr "Authenticatie is mislukt"
+
+msgid "Please select your account:"
+msgstr "Selecteer je account:"
+
+msgid "Now type your password, then click 'Log in':"
+msgstr "Typ nu je wachtwoord, klik dan op 'Log in':"
+
+msgid "Are you sure?"
+msgstr "Weet je het zeker?"
+
+msgid "The operation will reset the configuration and cannot be undone."
+msgstr "Deze actie zet de configuratie  terug naar de beginwaarden en kan niet worden teruggedraaid."
+
+msgid "Assign score points"
+msgstr "Scorepunten toekennen"
+
+msgid ""
+"Enter the number of score points to be assigned when this option is "
+"selected:"
+msgstr "Voer het aantal scorepunten in die toegekend worden wanneer deze optie wordt geselecteerd:"
+
+msgid "Confirm"
+msgstr "Bevestig extentie"
+
+msgid "Are you human?"
+msgstr "Ben jij een mens?"
+
+msgid ""
+"We do not discriminate based on race and gender, but we do against computers"
+" :)"
+msgstr "We willen graag verifiëren of u geen computer bent :)"
+
+msgid ""
+"Just to prove you are human, please answer the following math challenge:"
+msgstr "Beantwoord alsjeblieft de volgende berekening:"
+
+msgid "I've solved the math challenge, hide this thing now!"
+msgstr "Ik heb de berekening voltooid, verberg de verificatie!"
+
+msgid "Please note that all the associated data will be permanently lost."
+msgstr "Let op, alle hiermee verbonden data gaat permanent verloren."
+
+msgid ""
+"This means that if the server running the platform were to be seized, it "
+"would be possible to extract the files that have been submitted."
+msgstr "Dit betekent dat indien de server waarop de platform draait in beslag wordt genomen, het mogelijk is om de ingezonden bestanden te extraheren."
+
+msgid "Are you sure that you wish to continue?"
+msgstr "Weet je zeker dat je door wilt gaan?"
+
+msgid ""
+"Downloading a file with malicious content could compromise your computer or "
+"disclose your identity."
+msgstr "Het downloaden van kwaadwillende content (malware) brengt je computer in gevaar en kan je identiteit prijsgeven."
+
+msgid "The name of the file and its content can be intentionally misleading."
+msgstr "De naam en inhoud van een bestand kan opzettelijk misleidend zijn."
+
+msgid ""
+"Please review the following information and decide if you wish to proceed."
+msgstr "Let goed op onderstaande punten alvorens te beslissen om door te gaan."
+
+msgid "Error!"
+msgstr "Mislukt!"
+
+msgid "Internal server error"
+msgstr ""
+
+msgid "Error on input validation"
+msgstr ""
+
+msgid "Resource not found"
+msgstr ""
+
+msgid "Forbidden operation"
+msgstr ""
+
+msgid "The specified old password is not valid"
+msgstr "Het oude wachtwoord is niet geldig"
+
+msgid "Resource can only be accessed via the Tor network"
+msgstr "Bron is alleen toegankelijk binnen het Tor-netwerk"
+
+msgid "The upload request exceeds the size limit"
+msgstr "De uploadaanvraag overstijgt de MB limiet"
+
+msgid "Success!"
+msgstr " Succes!"
+
+msgid ""
+"It appears that you are browsing this site without any extra privacy and "
+"security!"
+msgstr "Het ziet er naar uit dat je deze website bezoekt zonder extra privacy en beveiliging!"
+
+msgid ""
+"You are strongly advised to visit this site using the desktop app called Tor"
+" Browser, that protects your identity."
+msgstr "U wordt sterk aangeraden om deze website met de desktop-app genaamd Tor-browser te bezoeken, welke uw identiteit beschermt."
+
+msgid "Then, copy and paste the following address into the Tor Browser:"
+msgstr "Kopieer en plak vervolgens het volgende adres in de Tor-browser:"
+
+msgid "Details of the PGP key:"
+msgstr "Details van de PGP-sleutel:"
+
+msgid "Fingerprint"
+msgstr "Vingerafdruk"
+
+msgid "Add file"
+msgstr "Bestand toevoegen"
+
+msgid "Uploading files…"
+msgstr "Uploaden bestanden..."
+
+msgid "Upload completed successfully!"
+msgstr "Upload voltooien is gelukt!"
+
+msgid "Error while uploading files; check below for details."
+msgstr "Fout tijdens uploaden van bestanden; check onderstaande details."
+
+msgid "Estimated upload time:"
+msgstr "Geschatte tijd voor uploaden:"
+
+msgid "seconds"
+msgstr "seconden"
+
+msgid "Which of the following statements is true?"
+msgstr "Welke van de volgende beweringen is waar?"
+
+msgid "HTTPS protects my identity, but not the content of my submission"
+msgstr "HTTPS beschermt mijn identiteit, maar niet de inhoud van mijn inzending"
+
+msgid "HTTPS protects the content of my submission but not my identity"
+msgstr "HTTPS beschermt de inhoud van mijn inzending maar niet mijn identiteit"
+
+msgid "HTTPS does not protect the content of my submission nor my identity"
+msgstr "HTTPS beschermt noch de inhoud van mijn inzending noch mijn identiteit "
+
+msgid "HTTPS does protect both my identity and the content of my submission"
+msgstr "HTTPS beschermt zowel mijn identiteit als ook de inhoud van mijn inzending"
+
+msgid ""
+"You are aware of the risks involved. Go ahead, but consider yourself warned."
+msgstr "U bent zich bewust van de risico's, gaat u verder en blijf alert."
+
+msgid "Wrong Answer!"
+msgstr "Verkeerde antwoord!"
+
+msgid "The connection is not secure."
+msgstr "De verbinding is onbeveiligd."
+
+msgid ""
+"The platform is still not configured for HTTPS connections and should "
+"therefore only be used for testing purposes."
+msgstr "Het platform is nog steeds niet geconfigureerd voor HTTPS verbindingen en mag daarom alleen worden gebruikt om te testen."
+
+msgid "Send"
+msgstr "Verzend"
+
+msgid "Allow the whistleblower to write comments"
+msgstr "De klokkenluider toestaan reacties achter te laten"
+
+msgid "Filename"
+msgstr "Bestandsnaam"
+
+msgid "Upload date"
+msgstr "Upload datum"
+
+msgid "Content Type"
+msgstr "Content Type"
+
+msgid "File size"
+msgstr "Bestandsgrootte"
+
+msgid "download"
+msgstr "download"
+
+msgid "No files have been uploaded!"
+msgstr "Er is geen bestand geüpload!"
+
+msgid "Allow the whistleblower to add attachments to the submission"
+msgstr "De klokkenluider toestaan bestanden toe te voegen aan een tip"
+
+msgid "Access expiration"
+msgstr "Toegang vervaltijd"
+
+msgid "Connection"
+msgstr "Verbinding"
+
+msgid "Never"
+msgstr "Nooit"
+
+msgid "Revoked"
+msgstr "Herroepen"
+
+msgid "Allow the whistleblower to send messages"
+msgstr "De klokkenluider toestaan berichten te versturen"
+
+msgid "Are you sure that you want to delete the submission?"
+msgstr "Weet je zeker dat je de inzending wilt verwijderen?"
+
+msgid ""
+"Everything related to the submission stored on the platform will be deleted."
+msgstr "Alle aan de inzending verbonden data op het platform wordt verwijderd."
+
+msgid ""
+"Please be aware that everything stored off the platform, e.g. files you have"
+" saved on your computer, must be deleted manually."
+msgstr "Let op, alles dat buiten het platform is opgeslagen, zoals bijvoorbeeld bestanden die op je computer zijn opgeslagen, moet handmatig worden verwijderd."
+
+msgid "Are you sure that you want to delete all the selected submissions?"
+msgstr "Weet je zeker dat je alle geselecteerde inzendingen wilt verwijderen?"
+
+msgid ""
+"Please make sure that all related data is properly deleted so that the "
+"recipients won't be able to further access to it."
+msgstr "Let erop dat alle bijbehorende gegevens naar behoren zullen worden verwijderd en de ontvangers de bestanden niet meer kunnen bekijken."
+
+msgid "Please write a motivation for the reply"
+msgstr "Motiveer het antwoord"
+
+msgid "Are you sure that you want to postpone the submission expiration date?"
+msgstr "Weet je zeker dat je de vervaldatum van de inzending wilt uitstellen?"
+
+msgid "By confirming, you will postpone the expiration date to:"
+msgstr "Door te bevestigen, verander je de vervaldatum van de tip in:"
+
+msgid ""
+"Are you sure that you want to postpone the expiration date for all selected "
+"submissions?"
+msgstr "Weet je zeker dat je de vervaldatum voor alle geselecteerde inzendingen wilt uitstellen?"
+
+msgid "Questionnaire answers"
+msgstr "Antwoorden vragenformulier"
+
+msgid "Step"
+msgstr "Stap"
+
+msgid "Recipient list"
+msgstr "Lijst ontvangers"
+
+msgid "Attached files for the whistleblower"
+msgstr "Bijlage voor de klokkenluider"
+
+msgid ""
+"Files uploaded here are made available for the whistleblower and other "
+"recipients to download."
+msgstr "Bestanden die je hier upload zijn beschikbaar als download voor de klokkenluider en andere ontvangers."
+
+msgid "Upload a file:"
+msgstr "Upload een bestand:"
+
+msgid "Logout"
+msgstr "Log uit"
+
+msgid "The key code is either invalid or the submission has expired."
+msgstr "De sleutel code is invalide of de inzending is verlopen."
+
+msgid "Please check your key code and try again or make a new submission."
+msgstr "Controleer uw sleutel code en probeer het opnieuw of maak een nieuwe inzending."
+
+msgid "Files attached by recipients"
+msgstr "Bestanden die door ontvangers zijn toegevoegd"
+
+msgid "These files have been attached to your submission by the recipients."
+msgstr "Deze bestanden zijn door de ontvangers als bijlage toegevoegd aan jouw inzending."
+
+msgid "Enable submission notification"
+msgstr "Activeer meldingen in verband met meldingen"
+
+msgid "Current Password"
+msgstr "Huidig wachtwoord"
+
+msgid "Old password confirmation required"
+msgstr "Bevestiging van oud wachtwoord vereist"
+
+msgid "The new password must be different from the current one."
+msgstr "Het nieuwe wachtwoord moet verschillen van het huidige."
+
+msgid "Type your new password again"
+msgstr "Typ je wachtwoord opnieuw"
+
+msgid "The two passwords do not match"
+msgstr "De wachtwoorden komen niet overeen"
+
+msgid "Thank you!"
+msgstr "Bedankt!"
+
+msgid "Remember your key code for this submission."
+msgstr "Vergeet niet je sleutel code voor deze inzending."
+
+msgid "We will try to get back to you as soon as possible!"
+msgstr "We zullen proberen je zo spoedig mogelijk te helpen!"
+
+msgid ""
+"Use the 16 digit key code to log in. It will allow you to view any messages "
+"we sent you, and also to add extra info."
+msgstr "Gebruik de 16-cijferige code sleutel om in te loggenin te loggen en berichten te zien die wij je sturen of als je denkt dat je meer informatie wilt toevoegen."
+
+msgid "View your submission"
+msgstr "Bekijk je inzending"
+
+msgid "Hint: How to hide your key code"
+msgstr "Hint: Hoe je je sleutel code kunt verbergen"
+
+msgid ""
+"A useful way to hide your key code is to write it down like a credit card "
+"number, i.e. by also including an expiration date."
+msgstr "Een handige manier om uw sleutel code te verbergen, is om het op te schrijven zoals een creditcard nummer. Vergeet niet de vervaldatum erbij te schrijven."
+
+msgid "Example:"
+msgstr "Voorbeeld:"
+
+msgid ""
+"You have not set up your encryption key, so the files will not be encrypted "
+"prior to being stored on the server."
+msgstr "Je hebt je versleutelingssleutel niet ingesteld, dus worden de bestanden niet versleuteld voordat deze worden opgeslagen op de server."
+
+msgid ""
+"This may lead to unintended access to the files by the server administrator "
+"or others in case the server is compromised."
+msgstr "Dit kan leiden tot onbedoelde toegang tot de bestanden door de serverbeheerder of bij inbeslagname van de server."
+
+msgid "Please configure your PGP keys in the recipient preferences page."
+msgstr "Configureer uw PGP-sleutels in de ontvanger voorkeurspagina."
+
+msgid ""
+"One or more of the recipients of this submission has not configured a PGP "
+"key."
+msgstr "Een of meerdere ontvangers van deze inzending hebben geen PGP-sleutel geconfigureerd."
+
+msgid ""
+"This means that the submitted files will be stored in plaintext on the "
+"server."
+msgstr "Dit betekent dat de ingediende dossiers worden opgeslagen als leesbare tekst op de server."
+
+msgid ""
+"Access to the whistleblower's identity has been requested to the custodian."
+msgstr "De toezichthouder heeft een aanvraag ingediend om toegang te krijgen tot de identiteit van de klokkenluider."
+
+msgid "Date of the request"
+msgstr "Datum aanvraag"
+
+msgid "Congratulations!"
+msgstr "Gefeliciteerd!"
+
+msgid "You have completed the platform activation."
+msgstr ""
+
+msgid "Your whistleblowing platform is now accessible at:"
+msgstr ""
+
+msgid "Users' credentials:"
+msgstr ""
+
+msgid "To log in, visit:"
+msgstr ""
+
+msgid "For the user documentation visit:"
+msgstr ""
+
+msgid "The platform will be automatically deleted on:"
+msgstr ""
+
+msgid "Sign up"
+msgstr "Aanmelden"
+
+msgid "Domain"
+msgstr "Domein"
+
+msgid "Use Case"
+msgstr ""
+
+msgid "Anticorruption"
+msgstr ""
+
+msgid "Corporate compliance"
+msgstr ""
+
+msgid "Investigative journalism"
+msgstr ""
+
+msgid "Civic activism"
+msgstr ""
+
+msgid "Other"
+msgstr "Other"
+
+msgid "Complete"
+msgstr "Volledig"
+
+msgid "Your whistleblowing platform is almost ready!"
+msgstr ""
+
+msgid "Check your inbox to activate your account."
+msgstr ""
+
+msgid "The answer is too short."
+msgstr "Antwoord is te kort."
+
+msgid "The specified input is not valid:"
+msgstr "Deze invoer is niet geldig:"
+
+msgid "please enter a valid email address."
+msgstr "vul een geldig e-mailadres in."
+
+msgid "please enter numbers only."
+msgstr "vul enkel getallen in."
+
+msgid "Recipient selection"
+msgstr "Ontvangerselectie"
+
+msgid "previous step"
+msgstr "vorige stap"
+
+msgid "next step"
+msgstr "volgende stap"
+
+msgid "Submit"
+msgstr "Verstuur"
+
+msgid "Recipients selected:"
+msgstr "Ontvangers geselecteerd:"
+
+msgid ""
+"In this step the answers to the following questions are either missing or "
+"invalid:"
+msgstr "In deze stap ontbreken antwoorden of zijn ongeldig op de volgende vragen:"
+
+msgid "Submission errors"
+msgstr "Fouten met de inzending"
+
+msgid "You must select at least one recipient."
+msgstr "Je moet ten minste één ontvanger selecteren."
+
+msgid "Waiting for the file(s) to finish uploading."
+msgstr "Wacht totdat de bestanden volledig zijn verzonden."
+
+msgid "The following steps have errors:"
+msgstr "De volgende stappen bevatten fouter:"
+
+msgid "Welcome!"
+msgstr "Welkom"
+
+msgid ""
+"The following step-by-step procedure will guide you through creating your "
+"whistleblowing platform."
+msgstr ""
+
+msgid "Please choose a configuration profile:"
+msgstr "Kies een configuratie-profiel:"
+
+msgid ""
+"These profiles contain settings used by successful projects in each "
+"respective field."
+msgstr "Deze profielen bevatten instellingen die reeds succesvol zijn getest in elk betreffend veld."
+
+msgid "Confirm password"
+msgstr "Bevestig wachtwoord"
+
+msgid "The default username is:"
+msgstr "De standaard gebruikersnaam is:"
+
+msgid "License Agreement"
+msgstr "Licentie-overeenkomst"
+
+msgid "Please review the license terms before proceeding."
+msgstr "Lees de licentie-voorwaarden alvorens verder te gaan."
+
+msgid "I have read and agree to the terms of the License Agreement."
+msgstr "Ik heb de voorwaarden van de licentie-overeenkomst gelezen en ga ermee akkoord."
+
+msgid "You have completed the platform wizard."
+msgstr "Je hebt de wizard geheel doorlopen."
+
+msgid "Fill out your submission"
+msgstr "Invullen van de inzending"
+
+msgid "Short title"
+msgstr "Korte titel"
+
+msgid "Describe your submission in a few words."
+msgstr "Korte beschrijving van uw inzending."
+
+msgid "Full description"
+msgstr "Volledige omschrijving"
+
+msgid "Describe your submission in detail."
+msgstr "Uw uitgebreide inzending."
+
+msgid "Attach files relevant to the submission."
+msgstr "Voeg bestanden te welke relevant zijn voor de inzending."
+
+msgid "Dear {RecipientName},"
+msgstr "Beste {RecipientName},"
+
+msgid "Kind regards,"
+msgstr "Met vriendelijke groet,"
+
+msgid ""
+"The number of activities recently detected appears to be higher than usual."
+msgstr "Het aantal recente activiteiten blijkt hoger dan gebruikelijk te zijn."
+
+msgid ""
+"This could be a sign of an attack (for example, someone flooding your server"
+" with bogus information) or just a usage spike due to an increased "
+"visibility of your project."
+msgstr "Dit zou een een teken van een aanval kunnen zijn, bijvoorbeeld iemand die je server bestookt met onjuiste informatie, of een piek in het gebruik door verhoogde zichtbaarheid van uw project"
+
+msgid "Examine the issue to determine whether it is legitimate or not."
+msgstr ""
+
+msgid "The activities with unusual stats are:"
+msgstr "De gebeurtenissen met ongebruikelijke statistieken zijn:"
+
+msgid ""
+"The server cannot guarantee that a new submission can be stored, so "
+"submissions have been disabled."
+msgstr "De server kan niet garanderen dat een nieuwe inzending kan worden opgeslagen, daarom is de mogelijkheid inzendingen te versturen uitgeschakeld."
+
+msgid ""
+"Please consider asking your technical support to create more disk space on "
+"the server."
+msgstr "U zou uw technische supportteam kunnen vragen om u meer ruimte op de server te geven."
+
+msgid ""
+"GlobaLeaks technology includes a server status checking component which will"
+" alert you in case something requires your attention."
+msgstr "De GlobaLeaks-technologie bevat een serverstatus-controlerend component dat je alarmeert in het geval er iets je aandacht vereist."
+
+msgid ""
+"For more information, log in to the Administration interface and look at the"
+" \"System Stats\" and \"Anomalies\" sections."
+msgstr "Voor meer informatie, log in op de Administratie-interface en controleer de delen “Systeemstatistieken” en “Anomalieën”."
+
+msgid "Anomaly detected in {NodeName}"
+msgstr "Onregelmatigheid vastgesteld in {NodeName}"
+
+msgid ""
+"This is an email to inform you that the PGP key of the following users is "
+"going to expire or has already expired:"
+msgstr "Dit bericht is ter informatie dat de PGP sleutel van de volgende gebruikers binnenkort verloopt of al verlopen is:"
+
+msgid ""
+"Without a valid PGP key, the system will not be able to send them encrypted "
+"notifications."
+msgstr "Zonder een geldige PGP-sleutel, kan het systeem hen geen versleutelde notificaties sturen."
+
+msgid "PGP key expiration alert"
+msgstr "PGP-sleutelvervalwaarschuwing"
+
+msgid ""
+"This is a test email sent out from the platform's administrative interface."
+msgstr "Dit is een testmailtje verstuurd vanaf het beheerinterface."
+
+msgid ""
+"Reception of this email indicates that the server was able to authenticate "
+"to and interact with the SMTP mail server."
+msgstr "Ontvangst van dit mailtje geeft aan dat de server de authenticatie kon uitvoeren en dat de interactie met de SMTP mailserver werkt."
+
+msgid "Test email"
+msgstr "Testmail"
+
+msgid ""
+"This is an email to notify you of a new comment on an existing submission."
+msgstr "Dit is een mailtje om je te wijzen op een nieuw commentaar op een bestaande inzending."
+
+msgid "The submission can be accessed:"
+msgstr "De inzending kan gezien worden via:"
+
+msgid "via Tor at: {TorUrl}"
+msgstr "via Tor op: {TorUrl}"
+
+msgid "via HTTPS at: {HTTPSUrl}"
+msgstr "via HTTPS op: {HTTPSUrl}"
+
+msgid "New comment"
+msgstr "Nieuw commentaar"
+
+msgid "From: {RecipientName}"
+msgstr "Van: {RecipientName}"
+
+msgid "Date: {EventTime}"
+msgstr "Datum: {EventTime}"
+
+msgid "From: Whistleblower"
+msgstr "Van: Klokkenluider"
+
+msgid "Date: {SubmissionDate}"
+msgstr "Datum: {SubmissionDate}"
+
+msgid "Label: {TipLabel}"
+msgstr "Label: {TipLabel}"
+
+msgid "Context: {ContextName}"
+msgstr "Context: {ContextName}"
+
+msgid ""
+"This is an email to notify you that the whistleblower of submission {TipNum}"
+" has attached new material."
+msgstr "Dit is een mailtje om je erop te wijzen dat de klokkenluider van inzending {TipNum} een bijlage heeft toegevoegd met nieuw materiaal."
+
+msgid "New attachment"
+msgstr "Nieuwe bijlage"
+
+msgid ""
+"The HTTPS certificate loaded on the platform is about to, or has already "
+"expired."
+msgstr ""
+
+msgid "Expiration date: {ExpirationDate}"
+msgstr "Vervaldatum: {ExpirationDate}"
+
+msgid ""
+"Without a valid certificate, the platform will be accessible in a secure way"
+" only via Tor."
+msgstr ""
+
+msgid "Log in to solve the issue."
+msgstr "Log in om de kwestie op te lossen."
+
+msgid "Expiration alert for HTTPS certificate"
+msgstr "HTTPS-certificaat vervalswaarschuwing"
+
+msgid ""
+"This is an email to notify you that a custodian has authorized you to access"
+" to the whistleblowing identity for the submission {TipNum}."
+msgstr "Dit is een mailtje om je erop te wijzen dat een toezichthouder je gemachtigd heeft om de identiteit van de klokkenluider te openen betreffende de inzending {TipNum}."
+
+msgid "Access to whistleblower's identity authorized"
+msgstr "Toegang tot de identiteit van de klokkenluider is goedgekeurd"
+
+msgid ""
+"This is an email to notify you that a custodian has denied you access to the"
+" wistleblowing identity for the submission {TipNum}."
+msgstr "Dit is een mailtje om je te informeren dat een toezichthouder je geen toestemming heeft gegeven om de identiteit van de klokkenluider te openen betreffende de inzending {TipNum}."
+
+msgid "Access to whistleblower's identity denied"
+msgstr "Toegang tot de identiteit van de klokkenluider is ontzegd"
+
+msgid ""
+"This is an email to notify you that a recipient has requested access to the "
+"whistleblower's identity for the submission {TipNum}"
+msgstr "Dit is een mailtje om je erop te wijzen dat een ontvanger heeft toestemming gevraagd om de identiteit van de klokkenluider van de inzending {TipNum} te mogen openen."
+
+msgid "The request can be accessed:"
+msgstr "De aanvraag kan worden ingezien:"
+
+msgid "New request of access to a whistleblower's identity"
+msgstr "Nieuwe aanvraag om de identiteit van een klokkenluider te mogen openen"
+
+msgid ""
+"This is an email to notify you that the whistleblower for the submission "
+"{TipNum} has provided their identity."
+msgstr "Dit is een mailtje om je te informeren dat de klokkenluider van de inzending {TipNum} zijn identiteit heeft kenbaar gemaakt."
+
+msgid "The whistleblower has provided their identity"
+msgstr "De klokkenluider heeft zich geïdentificeerd."
+
+msgid ""
+"This is an email to notify you of a new message on an existing submission."
+msgstr "Dit is een mailtje om je te wijzen op een nieuw bericht betreffende een bestaande inzending."
+
+msgid "New message"
+msgstr "Nieuw bericht"
+
+msgid ""
+"This is an email to inform you that your PGP key is expiring or has already "
+"expired."
+msgstr "Dit bericht is ter informatie dat je PGP sleutel binnenkort verloopt of al verlopen is."
+
+msgid ""
+"You should extend its validity and update the key present on the platform, "
+"or upload a new key."
+msgstr "Je moet je geldigheid verlengen en de huidige sleutel bijwerken of een nieuwe sleutel uploaden."
+
+msgid ""
+"Without a valid PGP key, the system won't be able to encrypt data provided "
+"to you."
+msgstr "Zonder een geldige PGP-sleutel kan het systeem de toegezonden data niet versleutelen."
+
+msgid "It appears that {NodeName} is receiving a large number of requests."
+msgstr "Het ziet ernaar uit dat {NodeName} een groot aantal verzoeken ontvangt."
+
+msgid ""
+"To prevent sending you too many emails, the system has disabled email "
+"notifications until the load returns to normal. In the meantime, you can "
+"normally log onto the platform and manually check for new submissions."
+msgstr "Om te voorkomen dat je te veel e-mails krijgt, heeft het systeem e-mailnotificaties uitgeschakeld tot het aantal terug normaal wordt. Ondertussen kan je op de gewone manier inloggen op het platform en manueel controleren op nieuwe inzendingen."
+
+msgid ""
+"If you don’t mind and would rather receive such a large number of email "
+"notifications anyhow, please contact your technical support to have them "
+"modify this setting accordingly."
+msgstr "Als je dat niet erg vindt en liever toch zo'n grote hoeveelheden e-mailnotificaties wil krijgen, contacteer dan alstublieft uw technische hulpdienst om hen deze instelling te laten aanpassen."
+
+msgid "Notifications from {NodeName} have been temporarily suspended"
+msgstr "Updates over {NodeName} zijn tijdelijk uitgeschakeld."
+
+msgid "Click the link to activate the platform:"
+msgstr ""
+
+msgid "A software update is available."
+msgstr ""
+
+msgid "It is good security practice to keep the platform up to date."
+msgstr ""
+
+msgid "Installed version: {InstalledVersion}"
+msgstr ""
+
+msgid "Latest version: {LatestVersion}"
+msgstr ""
+
+msgid ""
+"To learn about new features and bug fixes in the new version consult the "
+"change log at: {ChangeLogUrl}"
+msgstr ""
+
+msgid ""
+"For instructions on software updates, please refer to the documentation at: "
+"{UpdateGuideUrl}"
+msgstr ""
+
+msgid "The earliest expiration date is {EarliestExpirationDate}."
+msgstr "De vroegste vervaldatum is {EarliestExpirationDate}."
+
+msgid "Please remember to check them before they are deleted."
+msgstr "AUB checken voordat deze worden verwijderd."
+
+msgid "Some submissions will expire soon"
+msgstr "Sommige inzendingen zullen binnenkort vervallen"
+
+msgid ""
+"This is an email to notify you that a whistleblower has selected you as a "
+"valuable recipient of their submission."
+msgstr ""
+
+msgid ""
+"You are asked to pay special attention to the information and material "
+"contained therein. Please keep in mind that whistleblowers often expose "
+"themselves to high personal risks in the interest of the public. Therefore "
+"the material provided within this submission should be considered to be of "
+"high importance."
+msgstr ""
+
+msgid "New submission"
+msgstr "Nieuwe inzending"

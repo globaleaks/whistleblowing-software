@@ -1,0 +1,2321 @@
+# 
+# Translators:
+# Bujar Tafili, 2015
+# Bujar Tafili, 2015
+# F Nilaj <activisti@protonmail.com>, 2016
+# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2015-2018
+msgid ""
+msgstr ""
+"Project-Id-Version: GlobaLeaks\n"
+"PO-Revision-Date: 2018-02-22 09:16+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"Language-Team: Albanian (http://www.transifex.com/otf/globaleaks/language/sq/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: sq\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "Login page"
+msgstr "Faqja hyrëse"
+
+msgid "Log in"
+msgstr "Hyni"
+
+msgid "Administration interface"
+msgstr "Ndërfaqja e Administrimit"
+
+msgid "Main configuration"
+msgstr "Konfigurimi Tërësor"
+
+msgid "Theme customization"
+msgstr "Përshtatja e Temës"
+
+msgid "Languages"
+msgstr "Gjuhët"
+
+msgid "Text customization"
+msgstr "Përshtatja e Tekstit"
+
+msgid "Advanced settings"
+msgstr "Konfigurimi i përparuar"
+
+msgid "Questionnaire configuration"
+msgstr "konfigurimi pyetësori"
+
+msgid "Question templates"
+msgstr "pyetje templates"
+
+msgid "Questionnaires"
+msgstr "pyetësorët"
+
+msgid "Add new questionnaire"
+msgstr "Shto pyetësorit të re"
+
+msgid "Home"
+msgstr "Kryefaqe"
+
+msgid "Home page"
+msgstr "Kryefaqe"
+
+msgid "Changelog"
+msgstr "Regjistri i ndryshimeve"
+
+msgid "License"
+msgstr "Lisencat"
+
+msgid "Notification templates"
+msgstr "Njoftimi templates"
+
+msgid "Recipient notification templates"
+msgstr "njoftimit Marrësi templates"
+
+msgid "Admin notification templates"
+msgstr "njoftimit Admin templates"
+
+msgid "Missing data"
+msgstr "Të dhënat që mungojnë"
+
+msgid "no stats available for the future."
+msgstr "s'ka statistika të disponueshme për të ardhmen."
+
+msgid "no stats available for this hour."
+msgstr "Nuk ka statistika në dispozicion për këtë orë."
+
+msgid "no stats available for current hour; check activities page."
+msgstr "s'ka statistika të disponueshme për këtë orë; kontrolloni faqen e veprimtarive"
+
+msgid "Delete"
+msgstr "Hiqeni"
+
+msgid "Anomalies"
+msgstr "Anomalitë"
+
+msgid "Preferences"
+msgstr "Parapëlqimet"
+
+msgid "Recipient interface"
+msgstr "Ndërfaqja e Marrësit"
+
+msgid "Notification settings"
+msgstr "Konfigurimi i Njoftimit"
+
+msgid "This recipient has configured the encryption key."
+msgstr "Marrësi ka konfiguruar çelësin e shifrimit."
+
+msgid "This recipient has not configured the encryption key."
+msgstr "Marrësi s'e ka konfiguruar çelësin e shifrimit."
+
+msgid "The file is unavailable due to an internal error."
+msgstr "Skedari s'është i disponueshëm, për shkak të një gabimi të brendshëm."
+
+msgid "file unavailable"
+msgstr "skedari s'është i disponueshëm"
+
+msgid "Creation date"
+msgstr "Data e Krijimit"
+
+msgid "Expiration date"
+msgstr "Data e Skadimit"
+
+msgid "Last Access"
+msgstr "Qasja e Fundit"
+
+msgid "Files"
+msgstr "Skedarët"
+
+msgid "Comments"
+msgstr "Komente"
+
+msgid "Messages"
+msgstr "mesazhet"
+
+msgid "Select this recipient."
+msgstr "Përzgjidheni këtë marrës."
+
+msgid "Unselect this recipient."
+msgstr "Zhbëjeni përzgjedhjen për këtë marrës."
+
+msgid "This recipient cannot be selected."
+msgstr "Ky marrës s'mund të përzgjidhet."
+
+msgid "This recipient cannot be deselected."
+msgstr "Këtij marrësi s'mund t'i zhbëhet përzgjidhja."
+
+msgid "Details"
+msgstr "Hollësitë"
+
+msgid "Platform wizard"
+msgstr "Platforma wizard"
+
+msgid "Step-by-step setup"
+msgstr "Konfigurimi hap-pas-hapi"
+
+msgid "CREDIT CARD"
+msgstr "KARTË KREDITI "
+
+msgid "YOUR NAME"
+msgstr "EMRI JUAJ"
+
+msgid "Postpone the expiration date"
+msgstr "Shtyjë datën e skadimit"
+
+msgid "Select all"
+msgstr "Selektoj të gjitha"
+
+msgid "Deselect all"
+msgstr "deselect të gjitha"
+
+msgid "Refresh page"
+msgstr "faqe refresh"
+
+msgid "Context"
+msgstr "Kontekst"
+
+msgid "Submission date"
+msgstr "Data e paraqitjes"
+
+msgid "Private messages"
+msgstr "Mesazhet Private"
+
+msgid "Preview"
+msgstr "Përmbledhje"
+
+msgid "Move up"
+msgstr "Leviz"
+
+msgid "Move down"
+msgstr "Leviz poshtë"
+
+msgid "Move left"
+msgstr "Leviz Majtas"
+
+msgid "Move right"
+msgstr "Leviz djathtas"
+
+msgid "Import"
+msgstr "import"
+
+msgid "Export"
+msgstr "eksport"
+
+msgid "Save all"
+msgstr "Ruaj të gjithë"
+
+msgid "This field is mandatory"
+msgstr "Kjo fushë është e detyrueshme"
+
+msgid ""
+"The connection used to send this submission has been secured with HTTPS "
+"ensuring confidentiality."
+msgstr "Lidhja përdoret për të dërguar këtë parashtresë është siguruar me HTTPS siguruar konfidencialitetin."
+
+msgid ""
+"The connection used to send this submission has been secured with Tor "
+"ensuring confidentiality and anonymity."
+msgstr ""
+
+msgid "vertical"
+msgstr "vertikale"
+
+msgid "horizontal"
+msgstr "horizontal"
+
+msgid "Number"
+msgstr "numër"
+
+msgid "Email"
+msgstr "Email"
+
+msgid "Date"
+msgstr "Data"
+
+msgid "Regular expression validator"
+msgstr "Shprehja validator rregullt"
+
+msgid "Minimum number of input characters"
+msgstr "numri minimal i karaktereve të dhëna"
+
+msgid "Maximum number of input characters"
+msgstr "Numri maksimal i karaktereve të dhëna"
+
+msgid "Earliest selectable date"
+msgstr "date të hershme selectable"
+
+msgid "Latest selectable date"
+msgstr "Latest date selectable"
+
+msgid "0 = auto"
+msgstr "0 = auto"
+
+msgid "-1 = unlimited"
+msgstr "-1 = Pakufizuar"
+
+msgid "True"
+msgstr "i vërtetë"
+
+msgid "False"
+msgstr "I rremë"
+
+msgid "Yes"
+msgstr "Po"
+
+msgid "No"
+msgstr "Jo"
+
+msgid "Attachment"
+msgstr "Attachment"
+
+msgid "Attachments"
+msgstr "attachments"
+
+msgid "Change your password"
+msgstr "Ndrysho fjalëkalimin tuaj"
+
+msgid "First name"
+msgstr "Emri"
+
+msgid "Last name"
+msgstr "Mbiemri"
+
+msgid "GENDER_OTHER"
+msgstr "GENDER_OTHER"
+
+msgid "Male"
+msgstr "mashkull"
+
+msgid "Female"
+msgstr "femër"
+
+msgid "Date of birth"
+msgstr "Data e lindjes"
+
+msgid "Place of birth"
+msgstr "Vendi i lindjes"
+
+msgid "Social security number"
+msgstr "numrin e sigurimit social"
+
+msgid "Residence"
+msgstr "shtëpi"
+
+msgid "Address"
+msgstr "Adresë"
+
+msgid "Zip code / Postal code"
+msgstr "Kodi Zip / Postal code"
+
+msgid "City"
+msgstr "qytet"
+
+msgid "State"
+msgstr "shtet"
+
+msgid "Region"
+msgstr "rajon"
+
+msgid "Province"
+msgstr "krahinë"
+
+msgid "Country"
+msgstr "vend"
+
+msgid "Phone number"
+msgstr "Numri i telefonit"
+
+msgid "Current job title"
+msgstr "Titulli aktuale të punës"
+
+msgid "Current job responsibility (role)"
+msgstr "Përgjegjësia aktuale të punës (rolit)"
+
+msgid "Current organization unit and job location"
+msgstr "Njësia aktuale organizimi dhe vendndodhjen e vendeve të punës"
+
+msgid "Job title at the time of the reported fact"
+msgstr "Titulli Job në kohën e faktit raportuar"
+
+msgid "Job responsibility (role) at the time of the reported fact"
+msgstr "Përgjegjësia Job (roli) në kohën e faktit raportuar"
+
+msgid "Organization unit and job location at the time of the reported fact"
+msgstr "njësi organizative dhe vendin e punës në kohën e faktit raportuar"
+
+msgid "List of submissions"
+msgstr "Lista e aplikimeve"
+
+msgid "List of access requests to whistleblowers' identities"
+msgstr "Lista e kërkesave për qasje në identitetin e informatorëve \""
+
+msgid "User"
+msgstr "përdorues"
+
+msgid "Motivation"
+msgstr "motivimi"
+
+msgid "Status"
+msgstr "Statusi"
+
+msgid "Request motivation"
+msgstr "kërkesa motivimi"
+
+msgid "Reply motivation"
+msgstr "Përgjigju motivimin"
+
+msgid "Request status"
+msgstr "Statusi kërkesa"
+
+msgid "Custodian"
+msgstr "kujdestar"
+
+msgid "Custodian of the identities"
+msgstr "Kujdestari i identiteteve"
+
+msgid "Identity"
+msgstr "identitet"
+
+msgid "Available"
+msgstr "në dispozicion"
+
+msgid "Not available"
+msgstr "I padisponueshem"
+
+msgid "Access requested"
+msgstr "Qasja e kërkuar"
+
+msgid "Request access to the whistleblower's identity"
+msgstr "Qasje kërkesa të identitetit të informatorëve të"
+
+msgid "Please write a motivation"
+msgstr "Ju lutem shkruani një motivim"
+
+msgid "Reply to the request"
+msgstr "Përgjigju kërkesës"
+
+msgid "Authorized"
+msgstr "i autorizuar"
+
+msgid "Denied"
+msgstr "mohuar"
+
+msgid "Waiting for authorization"
+msgstr "Duke pritur për autorizim"
+
+msgid "New request"
+msgstr "kërkesa e re"
+
+msgid "Authorize"
+msgstr "autorizoj"
+
+msgid "Deny"
+msgstr "mohoj"
+
+msgid "Deny access to the whistleblower's identity"
+msgstr "Refuzojnë qasjen në identitetin e Whistleblower së"
+
+msgid "Authorize access to the whistleblower's identity"
+msgstr "Autorizojë qasje në identitetin e Whistleblower së"
+
+msgid "Templates"
+msgstr "templates"
+
+msgid "Notification of new submission"
+msgstr "Njoftimi i dorëzimit të ri"
+
+msgid "Notification of new comment"
+msgstr "Njoftimi i koment të ri"
+
+msgid "Notification of new message"
+msgstr "Njoftimi i mesazhit të ri"
+
+msgid "Notification of new file attachment"
+msgstr "Njoftimi i lidhjes së re fotografi"
+
+msgid "Notification of PGP key expiration"
+msgstr "Njoftimi i skadimit kryesore PGP"
+
+msgid "Notification of anomaly"
+msgstr "Njoftimi i anomalisë"
+
+msgid "Template for summary of contents in submission archive"
+msgstr "Template për përmbledhjen e përmbajtjeve në arkivin e dorëzimit"
+
+msgid "Email subject"
+msgstr "Email subjekt"
+
+msgid "Email body"
+msgstr "trupi Email"
+
+msgid "in seconds"
+msgstr "në sekonda"
+
+msgid "in hours"
+msgstr "në orë"
+
+msgid "in days"
+msgstr "në ditë"
+
+msgid "in characters"
+msgstr "në karaktere"
+
+msgid "in megabytes"
+msgstr "në MB"
+
+msgid "in percentage"
+msgstr "në përqindje"
+
+msgid "HTTPS settings"
+msgstr "settings HTTPS"
+
+msgid "Anomaly detection thresholds"
+msgstr "Anomali zbulimin pragjet"
+
+msgid "High risk"
+msgstr "Rreziku i lartë"
+
+msgid "Medium risk"
+msgstr "rreziku i mesëm"
+
+msgid "Low risk"
+msgstr "rrezik të ulët"
+
+msgid "Available disk space"
+msgstr "hapësirë ​​në dispozicion disk"
+
+msgid "Last update"
+msgstr "Përditësimi i fundit"
+
+msgid "Custodian notification templates"
+msgstr "Custodian njoftimit templates"
+
+msgid ""
+"This interface allows configuring email templates used to notify custodians."
+msgstr "Kjo interface lejon konfigurimin templates mail përdoret për të njoftuar kujdestarët."
+
+msgid "Disable notifications to administrators"
+msgstr "Çaktivizuar njoftimet për administratorët"
+
+msgid "Disable notifications to custodians"
+msgstr "Çaktivizuar njoftimet për kujdestarët"
+
+msgid "Disable notifications to recipients"
+msgstr "Çaktivizuar njoftimet për përfituesit"
+
+msgid "Score"
+msgstr "pikë"
+
+msgid "Trigger question"
+msgstr "Pyetja Trigger"
+
+msgid "Triggered by a score higher than:"
+msgstr "Shkaktuar nga një rezultat më të lartë se:"
+
+msgid "Select the question to be triggered when this option is selected"
+msgstr "Zgjidhni pyetje të shkaktuar kur ky opsion është zgjedhur"
+
+msgid "Message shown on top of the status page of the submission"
+msgstr "Mesazh treguar në krye të faqes së statusit të dorëzimit"
+
+msgid "Copy and paste the PGP public key here"
+msgstr "Kopjojeni dhe ngjiteni çelësin PGP këtu"
+
+msgid "Password strength:"
+msgstr "Fortësia e fjalëkalimit:"
+
+msgid "Weak"
+msgstr "i dobët"
+
+msgid "Acceptable"
+msgstr "I pranueshëm"
+
+msgid "Strong"
+msgstr "i fortë"
+
+msgid "Loading…"
+msgstr "Duke u ngarkuar ..."
+
+msgid "Text shown on top of the interface for selecting contexts"
+msgstr "Tekst treguar në krye të ndërfaqes për zgjedhjen kontekstet"
+
+msgid "Show small context cards on submission interface"
+msgstr "Tregojnë kartat e vogla kontekst në ndërfaqen e dorëzimit"
+
+msgid "Type of context selector:"
+msgstr "Lloji i përzgjedhës kontekstit:"
+
+msgid "Type to search…"
+msgstr ""
+
+msgid "Silence email notifications"
+msgstr ""
+
+msgid "Turn on email notifications"
+msgstr ""
+
+msgid "Enter an email address for the administrator"
+msgstr ""
+
+msgid "Enter a password for the administrator"
+msgstr ""
+
+msgid "Test configuration"
+msgstr ""
+
+msgid "Failed logins"
+msgstr "Hyrjet e dështuara"
+
+msgid "Successful logins"
+msgstr "Hyrjet e suksesshme"
+
+msgid "Started submissions"
+msgstr "Parashtrimet e nisura"
+
+msgid "Completed submissions"
+msgstr "Parashtrimet e plotësura"
+
+msgid "Failed submissions"
+msgstr "Parashtrimet e dështuara"
+
+msgid "Input validation"
+msgstr ""
+
+msgid "Email address"
+msgstr "Adresa e E-postës"
+
+msgid "Custom"
+msgstr "E personalizuar"
+
+msgid "None"
+msgstr "Asnjë"
+
+msgid "Regular expression"
+msgstr "Shprehje të rregullta"
+
+msgid "Label the submission"
+msgstr ""
+
+msgid "Activate"
+msgstr "Aktivizo"
+
+msgid "Search"
+msgstr "Kërkoni"
+
+msgid ""
+"This custom text is no longer displayed on the platform. The original text "
+"has either changed or been removed."
+msgstr ""
+
+msgid ""
+"Unless the whistleblower checks the submission by this time, their access to"
+" it will expire."
+msgstr ""
+
+msgid "The whistleblower can no longer access the submission"
+msgstr ""
+
+msgid "Warning!"
+msgstr "Kujdes!"
+
+msgid "You are running an unsupported and potentially vulnerable browser."
+msgstr ""
+
+msgid "You are strongly advised to download and install the Tor Browser."
+msgstr ""
+
+msgid ""
+"The Tor Browser includes various privacy and security enhancements not "
+"present in other browsers."
+msgstr "Shfletuesi Tor përfshin privatësi të ndryshme, si dhe përmirësime privatësie që s'janë të pranishme në shfletues të tjerë."
+
+msgid "Download the Tor Browser"
+msgstr "Shkarkoni Shfletuesin Tor"
+
+msgid "This is the list of the other supported browsers:"
+msgstr ""
+
+msgid "System overview"
+msgstr ""
+
+msgid "Stats"
+msgstr ""
+
+msgid "Activities"
+msgstr ""
+
+msgid "Submissions"
+msgstr "Submissions"
+
+msgid "Users"
+msgstr ""
+
+msgid "From"
+msgstr "Nga "
+
+msgid "Number of downloads"
+msgstr ""
+
+msgid "Error with file:"
+msgstr ""
+
+msgid "File size not accepted."
+msgstr ""
+
+msgid "File type not accepted."
+msgstr ""
+
+msgid "Maximum file size is:"
+msgstr ""
+
+msgid "Accepted file types are:"
+msgstr ""
+
+msgid "Scheduled jobs"
+msgstr ""
+
+msgid "Sites management"
+msgstr ""
+
+msgid "Regenerate"
+msgstr ""
+
+msgid "Display options alphabetically"
+msgstr ""
+
+msgid "Enable email notifications for:"
+msgstr ""
+
+msgid "Software updates"
+msgstr ""
+
+msgid "Software problems"
+msgstr ""
+
+msgid "Disable"
+msgstr "Çaktivizoje"
+
+msgid "Remove"
+msgstr "Hiqe"
+
+msgid "Use as default"
+msgstr ""
+
+msgid "Create your whistleblowing platform"
+msgstr ""
+
+msgid "Select the context of your submission:"
+msgstr "Zgjidhni kontekstin e paraqitjes tuaj:"
+
+msgid "Warning! You are not anonymous."
+msgstr "Warning! Ju nuk jeni anonim."
+
+msgid ""
+"Sending submissions over HTTPS exposes the act of doing so, but not the "
+"content.\\n\\nAlso, hiding the fact that you are submitting something makes "
+"the submission anonymous, which is strongly recommended.\\n\\nThis can be "
+"achieved with the use of the Tor Browser, providing anonymisation not found "
+"in other browsers like Internet Explorer, Firefox, Chrome, Opera etc."
+msgstr ""
+
+msgid "Are you a whistleblower?"
+msgstr "A jeni një Informator?"
+
+msgid "Blow the whistle"
+msgstr "Fryjini bilbilit"
+
+msgid "Have you already filed a submission? Enter your key code."
+msgstr "A e keni bërë tashmë një parashtrim? Futni kodin e çelësit tuaj."
+
+msgid "Your submission was successful."
+msgstr "Parashtrimi juaj ishte i suksesshëm."
+
+msgid "Submission status"
+msgstr ""
+
+msgid "Disable submissions"
+msgstr "parashtresat Çaktivizo"
+
+msgid "Enable insecure configuration without PGP encryption"
+msgstr "Aktivizoni konfigurimin e pasigurt pa shifrimin PGP"
+
+msgid "Danger"
+msgstr "Rrezik"
+
+msgid ""
+"By enabling this option, the system will be storing the submitted files "
+"unencrypted on your server."
+msgstr "Duke aftësuar këtë mundësi, sistemi do t'i vendosë të shifruar skedarët e paraqitur, në shërbyesin tuaj."
+
+msgid "This happens whenever encryption is unavailable."
+msgstr "Kjo ndodh sa herë që shifrimi s'është i mundshëm."
+
+msgid "Disable messages that warn of missing encryption"
+msgstr "Disable mesazheve që paralajmërojnë për encryption zhdukur"
+
+msgid ""
+"This setting affects the security of the users and must not be used in "
+"production."
+msgstr "Ky cilësim ndikon në sigurinë e përdoruesit dhe nuk duhet të përdoret në prodhim."
+
+msgid "Allow other websites to include the platform inside iframes"
+msgstr "Të lejojë faqet e internetit të tjera të përfshijë platformë brenda iframes"
+
+msgid ""
+"By enabling this option, you are allowing other websites to include the "
+"platform inside iframes; this could potentially be used to endanger the "
+"platform or intercept users' communications"
+msgstr "Duke mundësuar këtë opsion, ju jeni duke lejuar faqet e internetit të tjera të përfshijë platformën brenda iframes; kjo potencialisht mund të përdoret për të rrezikojë komunikimit Platformë apo të kapur përdoruesve"
+
+msgid "Allow recipients to postpone expiration date of the submission"
+msgstr "Lejojnë përfituesit për të shtyrë datën e skadimit të dorëzimit"
+
+msgid "Allow recipients to delete submissions"
+msgstr "Lejojnë përfituesit për të fshirë parashtresat"
+
+msgid ""
+"Allow recipients to grant permissions to whistleblowers on specific "
+"submissions"
+msgstr "Lejojnë përfituesit për të dhënë leje për informuesit në aplikimet specifike"
+
+msgid "Enable search engines indexing"
+msgstr "Mundësoni indeksimin e motorëve të kërkimit"
+
+msgid "Enabled"
+msgstr "Mundësuar"
+
+msgid "Search engine spiders will be allowed to index the application."
+msgstr "\"Zbuluesit\" të motorit të kërkimit do t'i lejohet që ta indeksojë aplikacionin. "
+
+msgid "Enable custom privacy panel"
+msgstr "Aftësoni panelin e privatësisë së përshtatur"
+
+msgid "Custom privacy panel"
+msgstr "Custom panel privacy"
+
+msgid "Text shown when the whistleblower is not using Tor"
+msgstr "Teksti që shfaqet kur informatori s'është duke e përdorur Tor-in"
+
+msgid "Disable the privacy panel"
+msgstr "Paaftësoni panelin e privatësisë së përshtatur"
+
+msgid "Security awareness panel title"
+msgstr "Security Titulli panel vetëdijes"
+
+msgid "Security awareness panel text"
+msgstr "Security panel vetëdijes text"
+
+msgid "Disable the security awareness panel questions"
+msgstr "Paaftësoni pyetjet e panelit të ndërgjegjësimit mbi sigurinë"
+
+msgid "Disable the security awareness panel"
+msgstr "Paaftësoni panelin e ndërgjegjësimit mbi sigurinë"
+
+msgid "Disable the key code hint"
+msgstr "Paaftësoni sugjerimin e kodit të çelësit"
+
+msgid "Disable the donation panel"
+msgstr "Disable panelin donacion"
+
+msgid "Enable CAPTCHA mechanism"
+msgstr "Aktivizo mekanizëm CAPTCHA"
+
+msgid "Enable proof of work mechanism"
+msgstr "Aktivizo dëshmi të mekanizmit të punës"
+
+msgid "Enable simplified login for recipients"
+msgstr "Aktivizo hyrje të thjeshtuar për përfituesit"
+
+msgid "Amount of days till whistleblower access expires"
+msgstr ""
+
+msgid ""
+"For security reasons the whistleblower access is subject to expiration."
+msgstr ""
+
+msgid "Tweak this setting only if you know what you are doing."
+msgstr ""
+
+msgid "Landing page"
+msgstr "Faqja e Destinimit"
+
+msgid "Home Page"
+msgstr "Kryefaqe"
+
+msgid "Submission Page"
+msgstr "Faqja për Paraqitje"
+
+msgid "Title of the submission page"
+msgstr "Titulli i faqes dorëzimit"
+
+msgid "Title of the attachments widget"
+msgstr "Titulli i attachments widget"
+
+msgid "Text of prompt for whistleblowers to log in"
+msgstr ""
+
+msgid "Show contexts in alphabetical order"
+msgstr "Shfaqeni kontekstin të renditur alfabetikisht"
+
+msgid "Title of the receipt page"
+msgstr "Titulli i faqes pranimit"
+
+msgid "Title of the submission status page"
+msgstr "Titulli i faqes status dorëzimit"
+
+msgid "Title of the comments widget"
+msgstr "Titulli i komenteve widget"
+
+msgid "Title of the messages widget"
+msgstr "Titulli i mesazheve widget"
+
+msgid "Size limit for file attachments"
+msgstr "Kufiri Size për fotografi të bashkëngjitni skedarë"
+
+msgid "Notify administrators of software problems"
+msgstr ""
+
+msgid "Notify developers of software problems"
+msgstr ""
+
+msgid ""
+"By enabling this feature, you will contribute to the development and "
+"security of the platform."
+msgstr ""
+
+msgid "Enable HTTP Basic Authentication to limit platform access"
+msgstr "Aktivizo HTTP Basic Authentication për të kufizuar qasjen platformë"
+
+msgid "Username"
+msgstr "Emër përdoruesi"
+
+msgid "Password"
+msgstr "Fjalëkalim"
+
+msgid ""
+"This feature keeps regular people from visiting the platform while it is "
+"still under development and should not be used for security purposes. The "
+"input password is stored in plaintext on the server."
+msgstr "Ky funksion i mban njerëzit të rregullta nga vizita platformë ndërsa ajo është ende në zhvillim e sipër dhe nuk duhet të përdoret për qëllime të sigurisë. Fjalëkalimi input është ruajtur në plaintext në server."
+
+msgid "Enable experimental features"
+msgstr "Aktivizo karakteristika eksperimentale"
+
+msgid "Warning"
+msgstr "paralajmërim"
+
+msgid ""
+"The experimental features may be less stable or even not work at all; enable"
+" this option at your own risk. Support for these features may vary and they "
+"may be removed in the future."
+msgstr "Karakteristika eksperimentale mund të jenë më pak të qëndrueshme apo edhe të mos punojnë në të gjitha; mundësuar këtë opsion në përgjegjësinë tuaj. Mbështetja për këto karakteristika mund të ndryshojnë dhe mund të hiqet në të ardhmen."
+
+msgid "Save"
+msgstr "Ruajeni"
+
+msgid "Short URL"
+msgstr "URL të shkurtër"
+
+msgid "Long URL"
+msgstr "të gjatë URL"
+
+msgid "Add"
+msgstr "Shtoni"
+
+msgid "Logo"
+msgstr ""
+
+msgid "Project name"
+msgstr "Emri i projektit"
+
+msgid "Homepage title"
+msgstr "Titulli i Kryefaqes "
+
+msgid "Presentation"
+msgstr "Prezantim"
+
+msgid "Description"
+msgstr "Përshkrim"
+
+msgid "Question to solicit possible whistleblowers"
+msgstr "Pyetje për të kërkuar informatorë të mundshëm"
+
+msgid "Whistleblowing button"
+msgstr "Butoni i Informimit"
+
+msgid "Footer"
+msgstr "Fundfaqja"
+
+msgid "Favicon"
+msgstr ""
+
+msgid "Upload"
+msgstr "Ngarkoni"
+
+msgid "Download"
+msgstr "Shkarkoni"
+
+msgid "Upload custom file"
+msgstr "Ngarkoni Skedarin e Përshtatur"
+
+msgid "The file will be available at URL: /s/$filename"
+msgstr "Fotografi do të jetë në dispozicion në URL: / s / $ filename"
+
+msgid "Language:"
+msgstr ""
+
+msgid "Add custom text"
+msgstr ""
+
+msgid "Custom text"
+msgstr ""
+
+msgid "Custom texts"
+msgstr ""
+
+msgid "Original text"
+msgstr ""
+
+msgid "Original translation"
+msgstr ""
+
+msgid "Custom translation"
+msgstr ""
+
+msgid "Contexts"
+msgstr "Kontekstet"
+
+msgid "Name"
+msgstr "Emri"
+
+msgid "Edit"
+msgstr "Redaktoni"
+
+msgid "Cancel"
+msgstr "Anulojeni"
+
+msgid "Questionnaire"
+msgstr "pyetësor"
+
+msgid "Recipients"
+msgstr "Marrësit"
+
+msgid "Allow selection of this context through the context selector."
+msgstr "Lejo zgjedhjen e këtë kontekst përmes përzgjedhës përmbajtjes."
+
+msgid ""
+"If disabled, submissions for this context will only be accessible through a "
+"direct link to it."
+msgstr "Nëse me aftësi të kufizuara, aplikimet për këtë kontekst do të jetë i arritshëm vetëm nëpërmjet një lidhje të drejtpërdrejtë me të."
+
+msgid "Allow whistleblowers to select their recipients"
+msgstr "Lejo informatorët për të zgjedhur marrësit e tyre"
+
+msgid "Select all recipients by default"
+msgstr "Përzgjidhni të gjithë marrësit përmes parazgjedhjes."
+
+msgid "Maximum number of selectable recipients:"
+msgstr "Numri maksimal i marrësve të përzgjedhshëm:"
+
+msgid "(0 = unlimited)"
+msgstr "(0 = e pakufizuar)"
+
+msgid "Show recipients in alphabetical order"
+msgstr "Shfaqini marrësit të renditur alfabetikisht"
+
+msgid "Show small recipient cards on submission interface"
+msgstr "Shfaqni kartat e vogla të marrësit në ndërfaqen e paraqitjes"
+
+msgid "Enable comments"
+msgstr "Aktivizo komente"
+
+msgid "Allow whistleblowers to write comments"
+msgstr "Lejo informatorët për të shkruar komente"
+
+msgid "Enable private messages"
+msgstr "Mundësoni mesazhet private"
+
+msgid "Allow whistleblowers to send messages"
+msgstr "Lejo informatorët për të dërguar mesazhe"
+
+msgid "Let whistleblowers add attachments onto existing submissions"
+msgstr ""
+
+msgid "Show recipient details on the status page of the submission"
+msgstr "Trego detajet e marrësit në faqen e statusit të dorëzimit"
+
+msgid "Let recipients upload files to whistleblowers"
+msgstr ""
+
+msgid "Disabled"
+msgstr "Paaftësuar"
+
+msgid "Submission expiration, in days"
+msgstr "skadimit Paraqitja, në ditët e"
+
+msgid ""
+"For security reasons, as a matter of data retention policy, the platform "
+"automatically deletes submissions and their data after a certain amount of "
+"time."
+msgstr "Për arsye sigurie, si një çështje e politikës së ruajtje të të dhënave, platforma automatikisht fshin kërkesat dhe të dhënat e tyre pas një sasi të caktuar kohe."
+
+msgid "Text shown on top of the interface for selecting recipients"
+msgstr "Tekst treguar në krye të ndërfaqes për zgjedhjen e marrësit"
+
+msgid "Welcome to the administration interface!"
+msgstr "Mirë se vini në ndërfaqen e administratës!"
+
+msgid ""
+"This interface may help you understand how the server can be configured and "
+"provides some info on how to connect to other GlobaLeaks users and experts."
+msgstr "Kjo ndërfaqe mund t'ju ndihmojë të kuptoni sesi shërbyesi mund të konfigurohet, si dhe ofron disa informacione sesi të lidheni me përdoruesit dhe ekspertët e tjerë të GlobaLeaks."
+
+msgid "Documentation"
+msgstr "Dokumentacioni"
+
+msgid ""
+"To properly organize your project, please read the following guidelines:"
+msgstr "Që ta organizoni si duhet projektin tuaj, ju lutemi lexoni  udhëzimet në vijim:"
+
+msgid "Remember to provide proper security advice to Whistleblowers:"
+msgstr "Mos harroni që t'u ofroni Informatorëve këshillat e duhura të sigurisë:"
+
+msgid ""
+"To learn more about GlobaLeaks Security you can read the following document:"
+msgstr ""
+
+msgid "Contact"
+msgstr "Kontakt"
+
+msgid ""
+"If you need technical support, have general questions, or have new ideas for"
+" the software:"
+msgstr ""
+
+msgid ""
+"If you want to contribute to software development or report a bug, please "
+"open an issue in our ticketing system:"
+msgstr ""
+
+msgid ""
+"If your non-profit needs support for investigative journalism, activism or a"
+" human rights defense project:"
+msgstr ""
+
+msgid ""
+"For professional support and development of anti corruption and compliance "
+"projects contact the social enterprise maintaining GlobaLeaks:"
+msgstr ""
+
+msgid "Join our IRC chat channel on the irc.oftc.net network:"
+msgstr ""
+
+msgid "Follow the project on:"
+msgstr ""
+
+msgid "Software version:"
+msgstr "version software:"
+
+msgid "An update is available:"
+msgstr ""
+
+msgid "SMTP name"
+msgstr "Emri i SMTP"
+
+msgid "SMTP email address"
+msgstr "SMTP adresë e-mail"
+
+msgid "Invalid email address"
+msgstr "Adresës e-poste e pavlefshme"
+
+msgid "SMTP server address"
+msgstr "Adresa e shërbyesit SMTP "
+
+msgid "SMTP server port"
+msgstr "Porta e shërbyesit SMTP "
+
+msgid "Transport Security"
+msgstr "Siguria e Transportit "
+
+msgid "When the option is re-enabled the spooled emails will be sent out."
+msgstr "Kur ky opsion është i riaktivizuar, e-postat e mbledhura do të dërgohen."
+
+msgid "Reset notification templates to default"
+msgstr "Rivendosini hapat dhe fushat e paracaktuara"
+
+msgid "Number of hours before sending a submission expiration alert"
+msgstr "Numri i orëve të para se të dërgonte një alarm paraqitja e skadimit"
+
+msgid "Maximum emails per hour before triggering email suspension"
+msgstr "email maksimale në orë përpara shkaktuar pezullimin e-mail"
+
+msgid "this configuration only applies to recipients"
+msgstr "ky konfigurim vlen vetëm për përfituesit"
+
+msgid "Test the configuration"
+msgstr ""
+
+msgid "Template"
+msgstr "shabllon"
+
+msgid "Admin"
+msgstr "Administratori"
+
+msgid "Roles enabled to use the platform without Tor:"
+msgstr ""
+
+msgid "Recipient"
+msgstr "Marrës"
+
+msgid "Whistleblower"
+msgstr "Informator"
+
+msgid "Hostname"
+msgstr ""
+
+msgid "Verify"
+msgstr "Verifikoni"
+
+msgid "Invalid input format."
+msgstr ""
+
+msgid "Input should be similar to:"
+msgstr ""
+
+msgid ""
+"The platform does not seem to be reachable with the configured hostname."
+msgstr ""
+
+msgid "Using Let's Encrypt requires agreement to their Terms of Service."
+msgstr ""
+
+msgid "Read the Terms of Service"
+msgstr ""
+
+msgid "I agree to the Terms of Service."
+msgstr ""
+
+msgid "Proceed"
+msgstr "Procedoni"
+
+msgid "Configuration completed. You can review the settings or enable it now."
+msgstr ""
+
+msgid "Review"
+msgstr "Rishiko"
+
+msgid "Enable"
+msgstr "Mundëso"
+
+msgid "Country code"
+msgstr ""
+
+msgid "Organization"
+msgstr "Organizata"
+
+msgid "Organizational unit"
+msgstr ""
+
+msgid ""
+"This interface can generate a Private Key and a Certificate Signing Request."
+" The Certificate Signing Request can be provided to a Certificate Authority "
+"to retrieve a Certificate. After having validated your request and your "
+"ownership of the hostname, the Certificate Authority will issue you a "
+"Certificate and provide a file containing Intermediate Certificates. Load "
+"the Certificate and the file containing the Intermediate Certificates to "
+"complete the HTTPS setup."
+msgstr ""
+
+msgid "Private Key"
+msgstr "Kyç Privat"
+
+msgid "Generate"
+msgstr "Gjeneroni"
+
+msgid "Certificate Signing Request"
+msgstr ""
+
+msgid "Certificate"
+msgstr ""
+
+msgid "Valid until:"
+msgstr ""
+
+msgid "Issuer:"
+msgstr ""
+
+msgid "Intermediate Certificates"
+msgstr ""
+
+msgid "Reset"
+msgstr "Rivendoseni"
+
+msgid "Select an option:"
+msgstr ""
+
+msgid "Automatic configuration"
+msgstr ""
+
+msgid ""
+"Using automatic HTTPS configuration will handle the entire process of "
+"requesting, enabling and renewing certificates from the Let's Encrypt "
+"Certificate Authority."
+msgstr ""
+
+msgid ""
+"The platform must be reachable through a public IP address and the selected "
+"hostname must have a corresponding DNS record referencing that address."
+msgstr ""
+
+msgid "Manual configuration"
+msgstr ""
+
+msgid ""
+"The manual configuration wizard will guide you through the setup of HTTPS "
+"from an alternative Certificate Authority."
+msgstr ""
+
+msgid ""
+"The platform supports the configuration of HTTPS through this interface."
+msgstr ""
+
+msgid "The connection to the configured domain failed."
+msgstr ""
+
+msgid "Running"
+msgstr ""
+
+msgid "Not running"
+msgstr ""
+
+msgid "Auto-renewal"
+msgstr ""
+
+msgid "System message:"
+msgstr ""
+
+msgid ""
+"Allowing whistleblowers to connect over HTTPS preserves their privacy but "
+"not their anonymity."
+msgstr ""
+
+msgid "Attention!"
+msgstr ""
+
+msgid ""
+"Configuration in progress. When it is finished you will have to log in "
+"again."
+msgstr ""
+
+msgid "Your browser will be redirected to the following URL."
+msgstr ""
+
+msgid "Tor Onion Service"
+msgstr ""
+
+msgid "Tor Browser download link"
+msgstr ""
+
+msgid "Anonymize outgoing connections"
+msgstr ""
+
+msgid "Let the platform be reachable without Tor"
+msgstr ""
+
+msgid "Stats of the week:"
+msgstr "Statistikat e javës:"
+
+msgid "Free disk space"
+msgstr "Hapësira e lirë në disk"
+
+msgid "Event ID"
+msgstr "ID e evenimentit"
+
+msgid "Time"
+msgstr "Koha"
+
+msgid "Event"
+msgstr "Evenimenti"
+
+msgid "Response time"
+msgstr "Koha e përgjigjes"
+
+msgid "Role"
+msgstr "rol"
+
+msgid "Last access"
+msgstr "Qasja e fundit"
+
+msgid "Submission"
+msgstr "Paraqitje"
+
+msgid "Path"
+msgstr ""
+
+msgid "Size"
+msgstr "Përmasat"
+
+msgid "Alarm level"
+msgstr "niveli i alarmit"
+
+msgid "Events"
+msgstr "Evenimentet"
+
+msgid "Label"
+msgstr "Titull"
+
+msgid "Type"
+msgstr "Lloji"
+
+msgid "Single-line text input"
+msgstr "input text Single-line"
+
+msgid "Multi-line text input"
+msgstr "input text Multi-line"
+
+msgid "Multiple choice input"
+msgstr "input Multiple zgjedhje"
+
+msgid "Selection box"
+msgstr "box Selection"
+
+msgid "Checkbox"
+msgstr "checkbox"
+
+msgid "Terms of service"
+msgstr "Kushtet e shërbimit"
+
+msgid "Group of questions"
+msgstr "Grupi i pyetjeve"
+
+msgid "Row"
+msgstr "rresht"
+
+msgid "Column"
+msgstr "kolonë"
+
+msgid "Width"
+msgstr "gjerësi"
+
+msgid "Question group"
+msgstr "grupi Pyetje"
+
+msgid "Hint"
+msgstr "Sugjerim"
+
+msgid "Required"
+msgstr "I kërkuar"
+
+msgid "Accept multiple file uploads"
+msgstr "Pranoni ngarkimin e skedarëve të shumëfishtë"
+
+msgid "Accept multiple answers for the field"
+msgstr "Pranoni përgjigje të shumëfishta për fushën"
+
+msgid "Hint shown on the button for adding an additional answer"
+msgstr "Hint treguar në butonin për të shtuar një përgjigje shtesë"
+
+msgid "Clause"
+msgstr "Klauzolë"
+
+msgid "Agreement Text"
+msgstr "Teksti i Marrëveshjes"
+
+msgid "Layout orientation"
+msgstr "Orientimi Layout"
+
+msgid "Subject answer visibility to custodian authorization"
+msgstr "Subject përgjigje shikimit të autorizimit të kujdestarisë"
+
+msgid "Prompt confirmation upon negative answer"
+msgstr "konfirmim të menjëhershëm mbi pergjigje negative"
+
+msgid "Title of the confirmation question upon negative answer"
+msgstr "Titulli i çështjes konfirmimit pas përgjigjes negative"
+
+msgid "Body of the confirmation question upon negative answer"
+msgstr "Trupi i çështjes konfirmimit pas përgjigjes negative"
+
+msgid "Options"
+msgstr "Opsionet"
+
+msgid "Questions"
+msgstr ""
+
+msgid "Add new question"
+msgstr "Shto pyetje të re"
+
+msgid "Add question from template"
+msgstr "Shto pyetje nga template"
+
+msgid "Steps"
+msgstr ""
+
+msgid "Configuration"
+msgstr "Konfigurimi"
+
+msgid "Default"
+msgstr "Parazgjedhja"
+
+msgid "Forcefully selected"
+msgstr "zgjedhur me forcë"
+
+msgid "Unselectable"
+msgstr "I papërzgjedhshëm"
+
+msgid "Allow the recipient to postpone the submission expiration date"
+msgstr "Lejo marrësi për të shtyrë datën e skadimit dorëzimit"
+
+msgid "The setting is enabled at a global level."
+msgstr "Konfigurimi është mundësuar në nivel global."
+
+msgid "Allow the recipient to delete submissions"
+msgstr "Lejo marrësi të fshini parashtresat"
+
+msgid ""
+"Allow the recipient to grant permissions to whistleblowers on specific "
+"submissions"
+msgstr "Lejo marrësi të japë leje për informuesit në aplikimet specifike"
+
+msgid "General settings"
+msgstr "settings përgjithshme"
+
+msgid "Network settings"
+msgstr ""
+
+msgid "Root domain used for secondary sites"
+msgstr ""
+
+msgid "Allow users to sign up"
+msgstr ""
+
+msgid "Sites"
+msgstr ""
+
+msgid "Active"
+msgstr ""
+
+msgid "Inactive"
+msgstr ""
+
+msgid "The default password is:"
+msgstr ""
+
+msgid "The system forces users to change the password at first login."
+msgstr "Sistemi i shtrëngon përdoruesit që të ndryshojnë fjalëkalimin që kur futen për herë të parë."
+
+msgid "New Password"
+msgstr "Fjalëkalimi i Ri"
+
+msgid ""
+"The chosen password is too weak. Make it more secure by adding special "
+"characters, numbers, and unusual symbols."
+msgstr ""
+
+msgid "Force password change"
+msgstr "ndryshimi fjalëkalimin Force"
+
+msgid "The user will be forced to change its password on next login."
+msgstr "Përdorues do të jetë e detyruar për të ndryshuar fjalëkalimin e tij në hyrje të ardhshëm."
+
+msgid "Language"
+msgstr "Gjuha"
+
+msgid "Encryption:"
+msgstr "Fshehtëzim:"
+
+msgid "Remove the PGP key"
+msgstr "Lëvizeni çelësin PGP "
+
+msgid "Set up encryption by providing a PGP public key"
+msgstr "Ngritur encryption, duke siguruar një çelës publik PGP"
+
+msgid "Request date"
+msgstr "date kërkesa"
+
+msgid "Authorization"
+msgstr "autorizim"
+
+msgid "Before proceeding, please change your password."
+msgstr "Para se të vazhdoni, ju lutemi të ndryshuar fjalëkalimin tuaj."
+
+msgid "Submissions disabled"
+msgstr ""
+
+msgid ""
+"You are connecting to the server without anonymity and this server supports "
+"only anonymous submissions"
+msgstr "Ju po lidheni me shërbyesin pa qenë anonim, ndërkohë që ky shërbyes pranon vetëm parashtrime anonime"
+
+msgid ""
+"Server temporarly unusable due to resource exhaustion; advise the Admin if "
+"you can."
+msgstr "Shërbyesi është përkohësisht i papërdorshëm, për shkak të mbarimit të burimit; këshillojeni Administratorin nëse mundeni."
+
+msgid "This server is not configured."
+msgstr "Ky shërbyes s'është konfiguruar."
+
+msgid "You will not be able to send a submission."
+msgstr "Ju s'do mundeni të dërgoni një parashtrim."
+
+msgid ""
+"This platform makes use of GlobaLeaks software specifically designed to "
+"protect the identity for submitter and recipient in the exchange of content."
+msgstr ""
+
+msgid ""
+"The software is developed by the non-profit Hermes Center for Transparency "
+"and Digital Human Rights."
+msgstr "Ky software është zhvilluar prej Qendrës Hermes për Transparencë dhe të Drejtat Digjitale të Njeriut, që është jofitimprurëse."
+
+msgid "Please support Hermes through their donation page."
+msgstr "Ju lutemi mbështeteni Hermes-in, përmes faqes së saj të dhurimeve."
+
+msgid "Authentication failed"
+msgstr "Autentifikimi Dështoi"
+
+msgid "Please select your account:"
+msgstr "Ju lutemi përzgjidhni llogarinë tuaj:"
+
+msgid "Now type your password, then click 'Log in':"
+msgstr "Tani shkruani fjalëkalimin tuaj dhe klikoni \"Hyni\":"
+
+msgid "Are you sure?"
+msgstr "A je i sigurt?"
+
+msgid "The operation will reset the configuration and cannot be undone."
+msgstr ""
+
+msgid "Assign score points"
+msgstr "Cakto pike"
+
+msgid ""
+"Enter the number of score points to be assigned when this option is "
+"selected:"
+msgstr "Shkruani numrin e pikave rezultati të caktuar kur ky opsion është zgjedhur:"
+
+msgid "Confirm"
+msgstr "Konfirmoni Zgjatjen"
+
+msgid "Are you human?"
+msgstr "Jeni njeri?"
+
+msgid ""
+"We do not discriminate based on race and gender, but we do against computers"
+" :)"
+msgstr "Ne nuk diskriminojmë në bazë të racës dhe gjinisë, për e bëjmë këtë kundër kompjuterëve :)"
+
+msgid ""
+"Just to prove you are human, please answer the following math challenge:"
+msgstr "Thjesht për të provuar që jeni njeri, ju lutemi përgjigjuni sfidës matematike në vijim:"
+
+msgid "I've solved the math challenge, hide this thing now!"
+msgstr "E zgjidha sfidën matematike, fshiheni këtë gjë tani!"
+
+msgid "Please note that all the associated data will be permanently lost."
+msgstr ""
+
+msgid ""
+"This means that if the server running the platform were to be seized, it "
+"would be possible to extract the files that have been submitted."
+msgstr "Kjo do të thotë se në qoftë se serveri drejtimin platformë duhej të konfiskuar, do të ishte e mundur për të nxjerrë fotografi që janë paraqitur."
+
+msgid "Are you sure that you wish to continue?"
+msgstr "Jeni i sigurt se doni të vazhdoni?"
+
+msgid ""
+"Downloading a file with malicious content could compromise your computer or "
+"disclose your identity."
+msgstr ""
+
+msgid "The name of the file and its content can be intentionally misleading."
+msgstr ""
+
+msgid ""
+"Please review the following information and decide if you wish to proceed."
+msgstr ""
+
+msgid "Error!"
+msgstr "Error!"
+
+msgid "Internal server error"
+msgstr ""
+
+msgid "Error on input validation"
+msgstr ""
+
+msgid "Resource not found"
+msgstr ""
+
+msgid "Forbidden operation"
+msgstr ""
+
+msgid "The specified old password is not valid"
+msgstr "Fjalëkalimi i vjetër i specifikuar s'është i vlefshëm"
+
+msgid "Resource can only be accessed via the Tor network"
+msgstr "Burimi mund të qaset vetëm përmes rrjetit Tor"
+
+msgid "The upload request exceeds the size limit"
+msgstr "Kërkesa për ngarkim e kalon kufirin e përmasës"
+
+msgid "Success!"
+msgstr "Sukses!"
+
+msgid ""
+"It appears that you are browsing this site without any extra privacy and "
+"security!"
+msgstr "Duket sikur ju po e shfletoni këtë faqe pa privatësi apo siguri të shtuar!"
+
+msgid ""
+"You are strongly advised to visit this site using the desktop app called Tor"
+" Browser, that protects your identity."
+msgstr "Ju këshillojmë fuqishëm që ta vizitoni këtë webfaqe duke përdorur aplikacionin për desktop të quajtur Shfletuesi Tor, që mbron identitetin tuaj."
+
+msgid "Then, copy and paste the following address into the Tor Browser:"
+msgstr "Më pas, kopjojeni dhe ngjiteni tek Shfletuesi Tor adresën në vijim:"
+
+msgid "Details of the PGP key:"
+msgstr "Detajet e kyç PGP:"
+
+msgid "Fingerprint"
+msgstr ""
+
+msgid "Add file"
+msgstr "Shtoni skedar"
+
+msgid "Uploading files…"
+msgstr ""
+
+msgid "Upload completed successfully!"
+msgstr "Ngarko përfunduar me sukses!"
+
+msgid "Error while uploading files; check below for details."
+msgstr "Gabim gjatë ngarkoni fotografi; shikoni më poshtë për detaje."
+
+msgid "Estimated upload time:"
+msgstr "Ora vlerësuar upload:"
+
+msgid "seconds"
+msgstr "sekonda "
+
+msgid "Which of the following statements is true?"
+msgstr "Cila nga deklarimet e mëposhtme është e vërtetë?"
+
+msgid "HTTPS protects my identity, but not the content of my submission"
+msgstr ""
+
+msgid "HTTPS protects the content of my submission but not my identity"
+msgstr ""
+
+msgid "HTTPS does not protect the content of my submission nor my identity"
+msgstr ""
+
+msgid "HTTPS does protect both my identity and the content of my submission"
+msgstr ""
+
+msgid ""
+"You are aware of the risks involved. Go ahead, but consider yourself warned."
+msgstr "Jeni i vetëdijshëm për rreziqet e përfshira. Shkoni përpara, por e konsiderojeni veten të paralajmëruar."
+
+msgid "Wrong Answer!"
+msgstr "Përgjigje e Gabuar!"
+
+msgid "The connection is not secure."
+msgstr ""
+
+msgid ""
+"The platform is still not configured for HTTPS connections and should "
+"therefore only be used for testing purposes."
+msgstr ""
+
+msgid "Send"
+msgstr "dërgoj"
+
+msgid "Allow the whistleblower to write comments"
+msgstr "Lejo whistleblower për të shkruar komente"
+
+msgid "Filename"
+msgstr "Emri i skedarit"
+
+msgid "Upload date"
+msgstr "Data e Ngarkimit"
+
+msgid "Content Type"
+msgstr "Lloji i Përmbajtjes"
+
+msgid "File size"
+msgstr "Përmasat e Skedarit"
+
+msgid "download"
+msgstr "shkarkoni"
+
+msgid "No files have been uploaded!"
+msgstr "S'është ngarkuar asnjë skedar!"
+
+msgid "Allow the whistleblower to add attachments to the submission"
+msgstr "Lejo whistleblower për të shtuar të bashkëngjitni skedarë dorëzimit"
+
+msgid "Access expiration"
+msgstr ""
+
+msgid "Connection"
+msgstr "lidhje"
+
+msgid "Never"
+msgstr "Kurrë"
+
+msgid "Revoked"
+msgstr "I shfuqizuar"
+
+msgid "Allow the whistleblower to send messages"
+msgstr "Lejo whistleblower për të dërguar mesazhe"
+
+msgid "Are you sure that you want to delete the submission?"
+msgstr "Jeni i sigurt se doni të fshini paraqitjen?"
+
+msgid ""
+"Everything related to the submission stored on the platform will be deleted."
+msgstr ""
+
+msgid ""
+"Please be aware that everything stored off the platform, e.g. files you have"
+" saved on your computer, must be deleted manually."
+msgstr ""
+
+msgid "Are you sure that you want to delete all the selected submissions?"
+msgstr "Jeni i sigurt se doni të fshini të gjitha parashtresat e zgjedhura?"
+
+msgid ""
+"Please make sure that all related data is properly deleted so that the "
+"recipients won't be able to further access to it."
+msgstr "Ju lutemi sigurohuni që të gjitha të dhënat e ngjashme janë hequr si duhet, në mënyrë që marrësit të mos munden më që t'i qasen atyre."
+
+msgid "Please write a motivation for the reply"
+msgstr "Ju lutem shkruani një motivim për përgjigjen"
+
+msgid "Are you sure that you want to postpone the submission expiration date?"
+msgstr "Jeni i sigurt se doni të shtyjë paraqitjen datën e skadimit?"
+
+msgid "By confirming, you will postpone the expiration date to:"
+msgstr "Duke konfirmuar, ju do të shtyjë datën e skadimit për:"
+
+msgid ""
+"Are you sure that you want to postpone the expiration date for all selected "
+"submissions?"
+msgstr "Jeni i sigurt se doni të shtyjë datën e skadimit për të gjitha aplikimet e zgjedhura?"
+
+msgid "Questionnaire answers"
+msgstr "përgjigjet e pyetësorit"
+
+msgid "Step"
+msgstr "Hap"
+
+msgid "Recipient list"
+msgstr "Lista marrësi"
+
+msgid "Attached files for the whistleblower"
+msgstr ""
+
+msgid ""
+"Files uploaded here are made available for the whistleblower and other "
+"recipients to download."
+msgstr ""
+
+msgid "Upload a file:"
+msgstr ""
+
+msgid "Logout"
+msgstr "Dilni"
+
+msgid "The key code is either invalid or the submission has expired."
+msgstr "Kodi i çelësit mund të jetë i pavlefshëm, ose parashtrimi ka skaduar."
+
+msgid "Please check your key code and try again or make a new submission."
+msgstr "Ju lutemi kontrolloni kodin e çelësit tuaj dhe përpiquni sërish, ose bëni një parashtrim të ri."
+
+msgid "Files attached by recipients"
+msgstr ""
+
+msgid "These files have been attached to your submission by the recipients."
+msgstr ""
+
+msgid "Enable submission notification"
+msgstr "Aktivizo njoftimin e dorëzimit"
+
+msgid "Current Password"
+msgstr "Fjalëkalimi i Tanishëm"
+
+msgid "Old password confirmation required"
+msgstr "Nevojitet konfirmimi i fjalëkalimit të vjetës"
+
+msgid "The new password must be different from the current one."
+msgstr ""
+
+msgid "Type your new password again"
+msgstr "Shkruajeni sërish fjalëkalimin tuaj të ri"
+
+msgid "The two passwords do not match"
+msgstr "Të dy fjalëkalimet nuk përputhen"
+
+msgid "Thank you!"
+msgstr "Ju faleminderit!"
+
+msgid "Remember your key code for this submission."
+msgstr "Kujtojeni kodin e çelësit tuaj për këtë parashtrim."
+
+msgid "We will try to get back to you as soon as possible!"
+msgstr "Do të përpiqemi që të kthehemi tek ju sa më shpejt të jetë e mundur!"
+
+msgid ""
+"Use the 16 digit key code to log in. It will allow you to view any messages "
+"we sent you, and also to add extra info."
+msgstr "Përdorni kodin e çelësit me 16 shifra për të hyrë. Kjo do t'ju lejojë të shihni çdo mesazh që ju kemi dërguar dhe, madje, që të shtoni informacion shtesë."
+
+msgid "View your submission"
+msgstr "Shiheni parashtrimin tuja"
+
+msgid "Hint: How to hide your key code"
+msgstr "Sugjerim: Si ta fshihni kodin e çelësit tuaj"
+
+msgid ""
+"A useful way to hide your key code is to write it down like a credit card "
+"number, i.e. by also including an expiration date."
+msgstr "Një mënyrë e vlefshme për të fshehur kodin e çelësit tuaj është që ta shkruani atë si të ishte një numër karte krediti; d.m.th. duke përfshirë edhe një datë skadimi."
+
+msgid "Example:"
+msgstr "Shembull:"
+
+msgid ""
+"You have not set up your encryption key, so the files will not be encrypted "
+"prior to being stored on the server."
+msgstr "Ju nuk e keni ngritur kyç tuaj encryption, kështu që dosjet nuk do të jetë i koduar para se të ruajtur në server."
+
+msgid ""
+"This may lead to unintended access to the files by the server administrator "
+"or others in case the server is compromised."
+msgstr "Kjo mund të çojë në qasjen e paqëllimtë tek skedarët, nga administratori i shërbyesit ose të tjerë, në rastin që shërbyesi komprometohet."
+
+msgid "Please configure your PGP keys in the recipient preferences page."
+msgstr "Ju lutemi konfiguroni çelësat tuaj PGP në faqen e parapëlqimeve të marrësit."
+
+msgid ""
+"One or more of the recipients of this submission has not configured a PGP "
+"key."
+msgstr "Një ose më shumë nga përfituesit e këtij dorëzimit nuk ka konfiguruar një çelës PGP."
+
+msgid ""
+"This means that the submitted files will be stored in plaintext on the "
+"server."
+msgstr "Kjo do të thotë se skedarët e parashtruar do të vendosen  me tekst normal në shërbyes."
+
+msgid ""
+"Access to the whistleblower's identity has been requested to the custodian."
+msgstr "Qasja në identitetin e Whistleblower i është kërkuar të kujdestarit."
+
+msgid "Date of the request"
+msgstr "Data e kërkesës"
+
+msgid "Congratulations!"
+msgstr "Urime!"
+
+msgid "You have completed the platform activation."
+msgstr ""
+
+msgid "Your whistleblowing platform is now accessible at:"
+msgstr ""
+
+msgid "Users' credentials:"
+msgstr ""
+
+msgid "To log in, visit:"
+msgstr ""
+
+msgid "For the user documentation visit:"
+msgstr ""
+
+msgid "The platform will be automatically deleted on:"
+msgstr ""
+
+msgid "Sign up"
+msgstr ""
+
+msgid "Domain"
+msgstr "Domen"
+
+msgid "Use Case"
+msgstr ""
+
+msgid "Anticorruption"
+msgstr ""
+
+msgid "Corporate compliance"
+msgstr ""
+
+msgid "Investigative journalism"
+msgstr ""
+
+msgid "Civic activism"
+msgstr ""
+
+msgid "Other"
+msgstr ""
+
+msgid "Complete"
+msgstr "E plotësuar"
+
+msgid "Your whistleblowing platform is almost ready!"
+msgstr ""
+
+msgid "Check your inbox to activate your account."
+msgstr ""
+
+msgid "The answer is too short."
+msgstr ""
+
+msgid "The specified input is not valid:"
+msgstr ""
+
+msgid "please enter a valid email address."
+msgstr ""
+
+msgid "please enter numbers only."
+msgstr ""
+
+msgid "Recipient selection"
+msgstr "Përzgjedhja e marrësit"
+
+msgid "previous step"
+msgstr "Konfigurimi i Mëparshëm"
+
+msgid "next step"
+msgstr "Hapi Tjetër"
+
+msgid "Submit"
+msgstr "Parashtroni"
+
+msgid "Recipients selected:"
+msgstr "Marrësit e përzgjedhur:"
+
+msgid ""
+"In this step the answers to the following questions are either missing or "
+"invalid:"
+msgstr ""
+
+msgid "Submission errors"
+msgstr ""
+
+msgid "You must select at least one recipient."
+msgstr ""
+
+msgid "Waiting for the file(s) to finish uploading."
+msgstr ""
+
+msgid "The following steps have errors:"
+msgstr ""
+
+msgid "Welcome!"
+msgstr ""
+
+msgid ""
+"The following step-by-step procedure will guide you through creating your "
+"whistleblowing platform."
+msgstr ""
+
+msgid "Please choose a configuration profile:"
+msgstr ""
+
+msgid ""
+"These profiles contain settings used by successful projects in each "
+"respective field."
+msgstr ""
+
+msgid "Confirm password"
+msgstr "Konfirmoni fjalëkalimin"
+
+msgid "The default username is:"
+msgstr ""
+
+msgid "License Agreement"
+msgstr ""
+
+msgid "Please review the license terms before proceeding."
+msgstr ""
+
+msgid "I have read and agree to the terms of the License Agreement."
+msgstr ""
+
+msgid "You have completed the platform wizard."
+msgstr ""
+
+msgid "Fill out your submission"
+msgstr "Mbushni parashtrimin tuaj"
+
+msgid "Short title"
+msgstr "Titulli i shkurtër"
+
+msgid "Describe your submission in a few words."
+msgstr ".Përshkruajeni me pak fjalë parashtrimin tuaj"
+
+msgid "Full description"
+msgstr "Përshkrim i plotë"
+
+msgid "Describe your submission in detail."
+msgstr ".Përshkruajeni me pak fjalë parashtrimin tuaj."
+
+msgid "Attach files relevant to the submission."
+msgstr "Shtoni skedarët e rëndësishëm për parashtrimin."
+
+msgid "Dear {RecipientName},"
+msgstr "Dear {RecipientName},"
+
+msgid "Kind regards,"
+msgstr "Me respekt, "
+
+msgid ""
+"The number of activities recently detected appears to be higher than usual."
+msgstr "Numri i aktiviteteve të zbuluara kohët e fundit duket të jetë më i lartë se zakonisht."
+
+msgid ""
+"This could be a sign of an attack (for example, someone flooding your server"
+" with bogus information) or just a usage spike due to an increased "
+"visibility of your project."
+msgstr "Kjo mund të jetë një shenjë e një sulmi (për shembull, dikush përmbytjeve serverin tuaj me informacion fals), ose vetëm një gozhdë përdorimit për shkak të një rritje të shikimit të projektit tuaj."
+
+msgid "Examine the issue to determine whether it is legitimate or not."
+msgstr ""
+
+msgid "The activities with unusual stats are:"
+msgstr "Aktivitetet me statistikat e pazakontë janë:"
+
+msgid ""
+"The server cannot guarantee that a new submission can be stored, so "
+"submissions have been disabled."
+msgstr "Serveri nuk mund të garantojë që një nënshtrim i ri mund të ruhen, në mënyrë parashtresat janë aftësi të kufizuara."
+
+msgid ""
+"Please consider asking your technical support to create more disk space on "
+"the server."
+msgstr ""
+
+msgid ""
+"GlobaLeaks technology includes a server status checking component which will"
+" alert you in case something requires your attention."
+msgstr "teknologjia GlobaLeaks përfshin një komponent kontrolluar statusin server i cili do të lajmërojnë në rast se diçka kërkon vëmendjen tuaj."
+
+msgid ""
+"For more information, log in to the Administration interface and look at the"
+" \"System Stats\" and \"Anomalies\" sections."
+msgstr "Për më shumë informacion, hyni në ndërfaqen e Administratës dhe të kërkoni në \"Statistika Sistemit\" dhe \"anomali\" seksione."
+
+msgid "Anomaly detected in {NodeName}"
+msgstr "zbuluar anomali në {NodeName}"
+
+msgid ""
+"This is an email to inform you that the PGP key of the following users is "
+"going to expire or has already expired:"
+msgstr "Kjo është një e-postë për t'ju njoftuar se çelësi PGP i përdoruesve në vijim do të skadojë ose tashmë është i skaduar:"
+
+msgid ""
+"Without a valid PGP key, the system will not be able to send them encrypted "
+"notifications."
+msgstr "Pa një çelës PGP të vlefshëm, sistemi s'do mund t'u dërgojë atyre njoftime të shifruara."
+
+msgid "PGP key expiration alert"
+msgstr "Alarm për Skadimin e Çelësit PGP"
+
+msgid ""
+"This is a test email sent out from the platform's administrative interface."
+msgstr ""
+
+msgid ""
+"Reception of this email indicates that the server was able to authenticate "
+"to and interact with the SMTP mail server."
+msgstr ""
+
+msgid "Test email"
+msgstr ""
+
+msgid ""
+"This is an email to notify you of a new comment on an existing submission."
+msgstr "Kjo është një e-mail për të njoftuar ju një koment të ri për një dorëzim ekzistues."
+
+msgid "The submission can be accessed:"
+msgstr "Parashtrimi është i qasshëm:"
+
+msgid "via Tor at: {TorUrl}"
+msgstr "përmes Tor në: {TorUrl}"
+
+msgid "via HTTPS at: {HTTPSUrl}"
+msgstr "përmes HTTPS në: {HTTPSUrl}"
+
+msgid "New comment"
+msgstr "një koment të ri"
+
+msgid "From: {RecipientName}"
+msgstr "Nga: {RecipientName}"
+
+msgid "Date: {EventTime}"
+msgstr "Date: {EventTime}"
+
+msgid "From: Whistleblower"
+msgstr "From: Whistleblower"
+
+msgid "Date: {SubmissionDate}"
+msgstr "Date: {SubmissionDate}"
+
+msgid "Label: {TipLabel}"
+msgstr "Label: {TipLabel}"
+
+msgid "Context: {ContextName}"
+msgstr "Konteksti: {ContextName}"
+
+msgid ""
+"This is an email to notify you that the whistleblower of submission {TipNum}"
+" has attached new material."
+msgstr "Kjo është një email që të ju njoftojmë se zbuluesi i dorëzimit {TipNum} ka bashkangjitur materiale të reja."
+
+msgid "New attachment"
+msgstr "lidhja e re"
+
+msgid ""
+"The HTTPS certificate loaded on the platform is about to, or has already "
+"expired."
+msgstr ""
+
+msgid "Expiration date: {ExpirationDate}"
+msgstr "Data e skadimit: {ExpirationDate}"
+
+msgid ""
+"Without a valid certificate, the platform will be accessible in a secure way"
+" only via Tor."
+msgstr ""
+
+msgid "Log in to solve the issue."
+msgstr ""
+
+msgid "Expiration alert for HTTPS certificate"
+msgstr ""
+
+msgid ""
+"This is an email to notify you that a custodian has authorized you to access"
+" to the whistleblowing identity for the submission {TipNum}."
+msgstr ""
+
+msgid "Access to whistleblower's identity authorized"
+msgstr "Qasja në identitetin e informatorëve të autorizuar"
+
+msgid ""
+"This is an email to notify you that a custodian has denied you access to the"
+" wistleblowing identity for the submission {TipNum}."
+msgstr "Kjo është një e-mail për të njoftuar ju se kujdestari ka mohuar qasje në identitetin wistleblowing për dorëzimin {TipNum}."
+
+msgid "Access to whistleblower's identity denied"
+msgstr "Qasja në identitetin Whistleblower mohoi"
+
+msgid ""
+"This is an email to notify you that a recipient has requested access to the "
+"whistleblower's identity for the submission {TipNum}"
+msgstr "Kjo është një email që të ju njoftojmë se një marrës ka kërkuar qasje në identitetin e whistleblower s per paraqitjen {TipNum}"
+
+msgid "The request can be accessed:"
+msgstr "Kërkesa mund të arrihen:"
+
+msgid "New request of access to a whistleblower's identity"
+msgstr ""
+
+msgid ""
+"This is an email to notify you that the whistleblower for the submission "
+"{TipNum} has provided their identity."
+msgstr "Kjo është një email që të ju njoftojmë se whistleblower për dorëzimin {TipNum} ka dhënë identitetin e tyre."
+
+msgid "The whistleblower has provided their identity"
+msgstr "Whistleblower ka dhënë identitetin e tyre"
+
+msgid ""
+"This is an email to notify you of a new message on an existing submission."
+msgstr "Kjo është një e-mail për të njoftuar ju një mesazh të ri në një paraqitjen ekzistuese."
+
+msgid "New message"
+msgstr "mesazh i ri"
+
+msgid ""
+"This is an email to inform you that your PGP key is expiring or has already "
+"expired."
+msgstr "Kjo është një e-postë për t'ju njoftuar se çelësi juaj PGP po skadon ose tashmë është i skaduar."
+
+msgid ""
+"You should extend its validity and update the key present on the platform, "
+"or upload a new key."
+msgstr "Ju duhet të zgjasë vlefshmërinë e tij dhe përditësimin e pranishëm kyç në platformë, ose ngarkoni një çelës të ri."
+
+msgid ""
+"Without a valid PGP key, the system won't be able to encrypt data provided "
+"to you."
+msgstr "Pa çelës vlefshme PGP, sistemi nuk do të jetë në gjendje të encrypt të dhënat e ofruara për ju."
+
+msgid "It appears that {NodeName} is receiving a large number of requests."
+msgstr "Duket se {NodeName} është marrë një numër të madh të kërkesave."
+
+msgid ""
+"To prevent sending you too many emails, the system has disabled email "
+"notifications until the load returns to normal. In the meantime, you can "
+"normally log onto the platform and manually check for new submissions."
+msgstr "Për të parandaluar dërgimin e ju shumë postë elektronike, sistemi ka pezulluar njoftime email deri ngarkesës të kthehet në normale. Në ndërkohë, ju zakonisht mund të hyni mbi platformën dhe me dorë të kontrolloni për aplikimet e reja."
+
+msgid ""
+"If you don’t mind and would rather receive such a large number of email "
+"notifications anyhow, please contact your technical support to have them "
+"modify this setting accordingly."
+msgstr "Nëse ju nuk e mendjes dhe në vend do të marrin një numër kaq të madh të njoftimeve email Gjithsesi, ju lutemi kontaktoni mbështetjen tuaj teknike që ata të ndryshuar këtë vendosjen në përputhje me rrethanat."
+
+msgid "Notifications from {NodeName} have been temporarily suspended"
+msgstr "Njoftimet nga {NodeName} janë pezulluar përkohësisht"
+
+msgid "Click the link to activate the platform:"
+msgstr ""
+
+msgid "A software update is available."
+msgstr ""
+
+msgid "It is good security practice to keep the platform up to date."
+msgstr ""
+
+msgid "Installed version: {InstalledVersion}"
+msgstr ""
+
+msgid "Latest version: {LatestVersion}"
+msgstr ""
+
+msgid ""
+"To learn about new features and bug fixes in the new version consult the "
+"change log at: {ChangeLogUrl}"
+msgstr ""
+
+msgid ""
+"For instructions on software updates, please refer to the documentation at: "
+"{UpdateGuideUrl}"
+msgstr ""
+
+msgid "The earliest expiration date is {EarliestExpirationDate}."
+msgstr ""
+
+msgid "Please remember to check them before they are deleted."
+msgstr ""
+
+msgid "Some submissions will expire soon"
+msgstr ""
+
+msgid ""
+"This is an email to notify you that a whistleblower has selected you as a "
+"valuable recipient of their submission."
+msgstr ""
+
+msgid ""
+"You are asked to pay special attention to the information and material "
+"contained therein. Please keep in mind that whistleblowers often expose "
+"themselves to high personal risks in the interest of the public. Therefore "
+"the material provided within this submission should be considered to be of "
+"high importance."
+msgstr ""
+
+msgid "New submission"
+msgstr "dorëzimi i ri"

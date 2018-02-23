@@ -1,0 +1,2350 @@
+# 
+# Translators:
+# Alexandre Pacheco Vieira <apvieira57@hotmail.com>, 2015
+# Alex Luís Silva <alex.mooca@hotmail.com>, 2014-2015
+# Alex Luís Silva <alex.mooca@hotmail.com>, 2014
+# alfalb_mansil, 2014
+# alfalb_mansil, 2014
+# Communia <ameaneantie@riseup.net>, 2016
+# Claudio M. Vieira <clmantovani@bol.com.br>, 2015
+# Cleber de Souza Corrêa <cscorrea@gmail.com>, 2014
+# Communia <ameaneantie@riseup.net>, 2016
+# danielcn <deo.daniel@gmail.com>, 2013
+# Danton Medrado, 2013
+# Danton Medrado, 2013-2015
+# danielcn <deo.daniel@gmail.com>, 2013
+# ebonsi, 2013
+# Eduardo Bonsi, 2013
+# Eduardo Bonsi, 2013
+# Eduardo Bonsi, 2013-2014
+# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2014-2015,2017-2018
+# Hamilton Junior Mendes Lopes <gigas_x_141@hotmail.com>, 2015
+# Hellen Cristina Silva <hlncrsilva@gmail.com>, 2015
+# Hermes Center <info@hermescenter.org>, 2013
+# Hermes Center <info@hermescenter.org>, 2013
+# Hermes Center <info@hermescenter.org>, 2013
+# Hieroph4nt <hieroph4nt@riseup.net>, 2013
+# Hieroph4nt <hieroph4nt@riseup.net>, 2013
+# alfalb_mansil, 2014
+# Mauro Hemerly Gazzani <mauro.hemerly@gmail.com>, 2017
+# Danton Medrado, 2013
+# onlurking <diogo2fex@gmail.com>, 2015
+# Rodrigo Tudeschini <tudsystem@yahoo.com.br>, 2014
+# Rodrigo Tudeschini <tudsystem@yahoo.com.br>, 2014
+# Tulio Simoes Martins Padilha <tuliouel@gmail.com>, 2014-2015
+# Welington Silva <welington.manoels@gmail.com>, 2015
+msgid ""
+msgstr ""
+"Project-Id-Version: GlobaLeaks\n"
+"PO-Revision-Date: 2018-02-22 09:08+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"Language-Team: Portuguese (Brazil) (http://www.transifex.com/otf/globaleaks/language/pt_BR/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: pt_BR\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+msgid "Login page"
+msgstr "Página de acesso"
+
+msgid "Log in"
+msgstr "Acessar"
+
+msgid "Administration interface"
+msgstr "Interface de Administração"
+
+msgid "Main configuration"
+msgstr "Configuração Principal"
+
+msgid "Theme customization"
+msgstr "Personalização do Tema"
+
+msgid "Languages"
+msgstr "Linguagens"
+
+msgid "Text customization"
+msgstr "Personalização do texto"
+
+msgid "Advanced settings"
+msgstr "Configurações avançadas"
+
+msgid "Questionnaire configuration"
+msgstr "Configuração de questionário"
+
+msgid "Question templates"
+msgstr "Modelos de questões"
+
+msgid "Questionnaires"
+msgstr "Questionários"
+
+msgid "Add new questionnaire"
+msgstr "Adicionar um novo questionário"
+
+msgid "Home"
+msgstr "Principal"
+
+msgid "Home page"
+msgstr "Página principal"
+
+msgid "Changelog"
+msgstr "Registro de alterações"
+
+msgid "License"
+msgstr "Licença"
+
+msgid "Notification templates"
+msgstr "Modelos de notificação"
+
+msgid "Recipient notification templates"
+msgstr "Modelos de Notificação de Destinatários"
+
+msgid "Admin notification templates"
+msgstr "Modelos de Notificações de Administradores"
+
+msgid "Missing data"
+msgstr "Dados ausentes"
+
+msgid "no stats available for the future."
+msgstr "Futuramente, não disponibilizar estatísticas."
+
+msgid "no stats available for this hour."
+msgstr "Não há estatísticas disponíveis para esta hora."
+
+msgid "no stats available for current hour; check activities page."
+msgstr "Nenhuma estatística disponível para a hora atual; verifique a página de atividades."
+
+msgid "Delete"
+msgstr "Apagar"
+
+msgid "Anomalies"
+msgstr "Anomalias"
+
+msgid "Preferences"
+msgstr "Preferências"
+
+msgid "Recipient interface"
+msgstr "Interface de Destinatário"
+
+msgid "Notification settings"
+msgstr "Configurações de notificações"
+
+msgid "This recipient has configured the encryption key."
+msgstr "Este destinatário configurou a chave de criptografia."
+
+msgid "This recipient has not configured the encryption key."
+msgstr "Este destinatário não configurou a chave de criptografia."
+
+msgid "The file is unavailable due to an internal error."
+msgstr "O arquivo não encontra-se disponível devido a um erro interno."
+
+msgid "file unavailable"
+msgstr "arquivo não disponível"
+
+msgid "Creation date"
+msgstr "Data de criação"
+
+msgid "Expiration date"
+msgstr "Data de expiração"
+
+msgid "Last Access"
+msgstr "Último Acesso"
+
+msgid "Files"
+msgstr "Arquivos"
+
+msgid "Comments"
+msgstr "Comentários"
+
+msgid "Messages"
+msgstr "Mensagens"
+
+msgid "Select this recipient."
+msgstr "Selecionar este destinatário."
+
+msgid "Unselect this recipient."
+msgstr "Desmarque este destinatário."
+
+msgid "This recipient cannot be selected."
+msgstr "Este destinatário não pode ser selecionado."
+
+msgid "This recipient cannot be deselected."
+msgstr "Este destinatário não pode ser desmarcado."
+
+msgid "Details"
+msgstr "Detalhes"
+
+msgid "Platform wizard"
+msgstr "Assistente de plataforma"
+
+msgid "Step-by-step setup"
+msgstr "Passo a passo da configuração"
+
+msgid "CREDIT CARD"
+msgstr "CARTÃO DE CRÉDITO"
+
+msgid "YOUR NAME"
+msgstr "SEU NOME"
+
+msgid "Postpone the expiration date"
+msgstr "Adiar a data de expiração"
+
+msgid "Select all"
+msgstr "Selecione todas"
+
+msgid "Deselect all"
+msgstr " Desmarque todas"
+
+msgid "Refresh page"
+msgstr "Atualizar página"
+
+msgid "Context"
+msgstr "Assunto"
+
+msgid "Submission date"
+msgstr "Data de submissão"
+
+msgid "Private messages"
+msgstr "Mensagens privadas"
+
+msgid "Preview"
+msgstr "Visualização"
+
+msgid "Move up"
+msgstr "Mover para cima"
+
+msgid "Move down"
+msgstr "Mover para baixo"
+
+msgid "Move left"
+msgstr "Mover para a esquerda"
+
+msgid "Move right"
+msgstr "Mover para a direita"
+
+msgid "Import"
+msgstr "Importar"
+
+msgid "Export"
+msgstr "Exportar"
+
+msgid "Save all"
+msgstr "Salvar tudo"
+
+msgid "This field is mandatory"
+msgstr "Este campo é obrigatório"
+
+msgid ""
+"The connection used to send this submission has been secured with HTTPS "
+"ensuring confidentiality."
+msgstr "A conexão utilizada para enviar esta submissão foi segurada com HTTPS garantindo confidencialidade."
+
+msgid ""
+"The connection used to send this submission has been secured with Tor "
+"ensuring confidentiality and anonymity."
+msgstr "A conexão usada para enviar esta submissão foi protegida com Tor, garantindo confidencialidade e anonimato."
+
+msgid "vertical"
+msgstr "vertical"
+
+msgid "horizontal"
+msgstr "horizontal"
+
+msgid "Number"
+msgstr "Número"
+
+msgid "Email"
+msgstr "Email"
+
+msgid "Date"
+msgstr "Data"
+
+msgid "Regular expression validator"
+msgstr "Validador de expressão regular"
+
+msgid "Minimum number of input characters"
+msgstr "Número mínimo de caracteres"
+
+msgid "Maximum number of input characters"
+msgstr "Número máximo de caracteres"
+
+msgid "Earliest selectable date"
+msgstr "Data mais antiga a selecionar"
+
+msgid "Latest selectable date"
+msgstr "Data mais recente a selecionar"
+
+msgid "0 = auto"
+msgstr "0 = automático"
+
+msgid "-1 = unlimited"
+msgstr "-1 = ilimitado"
+
+msgid "True"
+msgstr "Verdadeiro"
+
+msgid "False"
+msgstr "Falso"
+
+msgid "Yes"
+msgstr "Sim"
+
+msgid "No"
+msgstr "Não"
+
+msgid "Attachment"
+msgstr "Anexo"
+
+msgid "Attachments"
+msgstr "Anexos"
+
+msgid "Change your password"
+msgstr "Modificar sua senha"
+
+msgid "First name"
+msgstr "Primeiro nome"
+
+msgid "Last name"
+msgstr "Último nome"
+
+msgid "GENDER_OTHER"
+msgstr "Outro"
+
+msgid "Male"
+msgstr "Masculino"
+
+msgid "Female"
+msgstr "Feminino"
+
+msgid "Date of birth"
+msgstr "Data de nascimento"
+
+msgid "Place of birth"
+msgstr "Local de nascimento"
+
+msgid "Social security number"
+msgstr "Número de CPF"
+
+msgid "Residence"
+msgstr "Residência"
+
+msgid "Address"
+msgstr "Endereço"
+
+msgid "Zip code / Postal code"
+msgstr "CEP"
+
+msgid "City"
+msgstr "Cidade"
+
+msgid "State"
+msgstr "Estado"
+
+msgid "Region"
+msgstr "Região"
+
+msgid "Province"
+msgstr "Província"
+
+msgid "Country"
+msgstr "País"
+
+msgid "Phone number"
+msgstr "Telefone"
+
+msgid "Current job title"
+msgstr "Cargo ocupado atualmente"
+
+msgid "Current job responsibility (role)"
+msgstr "Cargo ocupado atualmente (função) "
+
+msgid "Current organization unit and job location"
+msgstr "Unidade de setor atual e lugar de exercício desse cargo"
+
+msgid "Job title at the time of the reported fact"
+msgstr "Cargo ocupado no momento dos fatos relatados"
+
+msgid "Job responsibility (role) at the time of the reported fact"
+msgstr "Cargo (função) ocupado no momento dos fatos relatados "
+
+msgid "Organization unit and job location at the time of the reported fact"
+msgstr "Unidade de setor e lugar de exercício do cargo no momento dos fatos relatados"
+
+msgid "List of submissions"
+msgstr "Lista de submissões"
+
+msgid "List of access requests to whistleblowers' identities"
+msgstr "Lista de pedidos de acesso às identidades dos delatores"
+
+msgid "User"
+msgstr "Usuário"
+
+msgid "Motivation"
+msgstr "Motivação"
+
+msgid "Status"
+msgstr "Status"
+
+msgid "Request motivation"
+msgstr "Motivação do pedido "
+
+msgid "Reply motivation"
+msgstr "Motivação da resposta"
+
+msgid "Request status"
+msgstr "Status do pedido"
+
+msgid "Custodian"
+msgstr "Custodiante"
+
+msgid "Custodian of the identities"
+msgstr "Custodiante das identidades"
+
+msgid "Identity"
+msgstr "Identidade"
+
+msgid "Available"
+msgstr "Disponível"
+
+msgid "Not available"
+msgstr "Indisponível"
+
+msgid "Access requested"
+msgstr "Acesso requerido"
+
+msgid "Request access to the whistleblower's identity"
+msgstr "Pedir acesso à identidade do delator"
+
+msgid "Please write a motivation"
+msgstr "Por favor, escreva uma motivação"
+
+msgid "Reply to the request"
+msgstr "Responder ao pedido"
+
+msgid "Authorized"
+msgstr "Autorizado"
+
+msgid "Denied"
+msgstr "Negado"
+
+msgid "Waiting for authorization"
+msgstr "Aguardando autorização"
+
+msgid "New request"
+msgstr "Novo pedido"
+
+msgid "Authorize"
+msgstr "Autorizar"
+
+msgid "Deny"
+msgstr "Negar"
+
+msgid "Deny access to the whistleblower's identity"
+msgstr "Negar acesso à identidade do delator"
+
+msgid "Authorize access to the whistleblower's identity"
+msgstr "Autorizar acesso à identidade do delator"
+
+msgid "Templates"
+msgstr "Modelos"
+
+msgid "Notification of new submission"
+msgstr "Notificação de nova submissão"
+
+msgid "Notification of new comment"
+msgstr "Notificação de novo comentário"
+
+msgid "Notification of new message"
+msgstr "Notificação de nova mensagem"
+
+msgid "Notification of new file attachment"
+msgstr "Notificacao de novo arquivo anexado"
+
+msgid "Notification of PGP key expiration"
+msgstr "Notificação de expiração de chave PGP"
+
+msgid "Notification of anomaly"
+msgstr "Notificação de anomalia"
+
+msgid "Template for summary of contents in submission archive"
+msgstr "Template para sumário de conteúdos em arquivo de submissão"
+
+msgid "Email subject"
+msgstr "Assunto do e-mail"
+
+msgid "Email body"
+msgstr "Corpo do e-mail"
+
+msgid "in seconds"
+msgstr "em segundos"
+
+msgid "in hours"
+msgstr "em horas"
+
+msgid "in days"
+msgstr "em dias"
+
+msgid "in characters"
+msgstr "em caracteres"
+
+msgid "in megabytes"
+msgstr "em megabytes"
+
+msgid "in percentage"
+msgstr "em porcentagem"
+
+msgid "HTTPS settings"
+msgstr "Configurações HTTPS "
+
+msgid "Anomaly detection thresholds"
+msgstr "Limites de detecção de anomalia  "
+
+msgid "High risk"
+msgstr "Risco alto"
+
+msgid "Medium risk"
+msgstr "Risco médio"
+
+msgid "Low risk"
+msgstr "Risco baixo"
+
+msgid "Available disk space"
+msgstr "Espaço disponível em disco"
+
+msgid "Last update"
+msgstr "Última atualização"
+
+msgid "Custodian notification templates"
+msgstr "Modelos de notificação de custodiantes"
+
+msgid ""
+"This interface allows configuring email templates used to notify custodians."
+msgstr "Esta interface permite a configuração de modelos de e-mail a serem usados para notificar custodiantes."
+
+msgid "Disable notifications to administrators"
+msgstr "Desativar as notificações para os administradores"
+
+msgid "Disable notifications to custodians"
+msgstr "Desativar notificações a custodiantes"
+
+msgid "Disable notifications to recipients"
+msgstr "Desativar notificações a pessoas destinatárias"
+
+msgid "Score"
+msgstr "Pontuação "
+
+msgid "Trigger question"
+msgstr "Ativar questão"
+
+msgid "Triggered by a score higher than:"
+msgstr "Ativada por pontuação superior a:"
+
+msgid "Select the question to be triggered when this option is selected"
+msgstr "Escolher questão a ser ativada quando esta opção for selecionada"
+
+msgid "Message shown on top of the status page of the submission"
+msgstr "Mensagem exibida no início da página do status de envio"
+
+msgid "Copy and paste the PGP public key here"
+msgstr "Copie e cole a chave pública PGP aqui "
+
+msgid "Password strength:"
+msgstr "Segurança da senha:"
+
+msgid "Weak"
+msgstr "Fraca"
+
+msgid "Acceptable"
+msgstr "Aceitável"
+
+msgid "Strong"
+msgstr "Forte"
+
+msgid "Loading…"
+msgstr "Carregando..."
+
+msgid "Text shown on top of the interface for selecting contexts"
+msgstr "Texto exibido no início da página de seleção de assuntos"
+
+msgid "Show small context cards on submission interface"
+msgstr "Exibir pequenos cartões indicando os assuntos na página de envio"
+
+msgid "Type of context selector:"
+msgstr "Tipos de seleção de assuntos:"
+
+msgid "Type to search…"
+msgstr "Tipo de pesquisa..."
+
+msgid "Silence email notifications"
+msgstr "Desabilitar notificações de e-mails"
+
+msgid "Turn on email notifications"
+msgstr "Habilitar notificacao de e-mails"
+
+msgid "Enter an email address for the administrator"
+msgstr "Inserir um endereço e-mail para quem administra "
+
+msgid "Enter a password for the administrator"
+msgstr "Inserir uma senha de administracao "
+
+msgid "Test configuration"
+msgstr "Testar configuracao "
+
+msgid "Failed logins"
+msgstr "Falha no acesso"
+
+msgid "Successful logins"
+msgstr "Acesso bem sucedido"
+
+msgid "Started submissions"
+msgstr "Submissões iniciadas"
+
+msgid "Completed submissions"
+msgstr "Submissões concluídas"
+
+msgid "Failed submissions"
+msgstr "Submissão falhou"
+
+msgid "Input validation"
+msgstr "Preencher validacao "
+
+msgid "Email address"
+msgstr "Endereço de Email"
+
+msgid "Custom"
+msgstr "Pessoa usuária"
+
+msgid "None"
+msgstr "Nenhum"
+
+msgid "Regular expression"
+msgstr "Expressão regular"
+
+msgid "Label the submission"
+msgstr "Rotular a submissão"
+
+msgid "Activate"
+msgstr "Ativar"
+
+msgid "Search"
+msgstr "Pesquisa"
+
+msgid ""
+"This custom text is no longer displayed on the platform. The original text "
+"has either changed or been removed."
+msgstr "Este texto personalizado não é mais listado na plataforma. O texto original ou foi alterado ou removido."
+
+msgid ""
+"Unless the whistleblower checks the submission by this time, their access to"
+" it will expire."
+msgstr "A menos que o delator verifique a submissão desta vez, seu acesso será expirado."
+
+msgid "The whistleblower can no longer access the submission"
+msgstr "O delator não possui mais acesso à submissão"
+
+msgid "Warning!"
+msgstr "Aviso!"
+
+msgid "You are running an unsupported and potentially vulnerable browser."
+msgstr "Você está utilizando um navegador não compatível e potencialmente vulnerável."
+
+msgid "You are strongly advised to download and install the Tor Browser."
+msgstr "Você está fortemente aconselhado a baixar e instalar o navegador Tor."
+
+msgid ""
+"The Tor Browser includes various privacy and security enhancements not "
+"present in other browsers."
+msgstr "O navegador Tor inclui várias melhorias de privacidade e segurança que não estão presentes nos demais navegadores."
+
+msgid "Download the Tor Browser"
+msgstr "Baixe o Navegador Tor"
+
+msgid "This is the list of the other supported browsers:"
+msgstr "Esta é a lista de outros navegadores suportados:"
+
+msgid "System overview"
+msgstr "Visão geral do sistema"
+
+msgid "Stats"
+msgstr "Estatísticas"
+
+msgid "Activities"
+msgstr "Atividades"
+
+msgid "Submissions"
+msgstr "Submissões"
+
+msgid "Users"
+msgstr "Usuários"
+
+msgid "From"
+msgstr "De"
+
+msgid "Number of downloads"
+msgstr "Número de downloads"
+
+msgid "Error with file:"
+msgstr "Erro com o arquivo:"
+
+msgid "File size not accepted."
+msgstr "Tamanho do arquivo não permitido."
+
+msgid "File type not accepted."
+msgstr "Tipo de arquivo não permitido."
+
+msgid "Maximum file size is:"
+msgstr "Máximo tamanho do arquivo é:"
+
+msgid "Accepted file types are:"
+msgstr "Tipos de arquivos aceitos são:"
+
+msgid "Scheduled jobs"
+msgstr "Tarefas programadas"
+
+msgid "Sites management"
+msgstr ""
+
+msgid "Regenerate"
+msgstr ""
+
+msgid "Display options alphabetically"
+msgstr ""
+
+msgid "Enable email notifications for:"
+msgstr ""
+
+msgid "Software updates"
+msgstr "Atualização do software"
+
+msgid "Software problems"
+msgstr ""
+
+msgid "Disable"
+msgstr "Desabilitar"
+
+msgid "Remove"
+msgstr "Remover"
+
+msgid "Use as default"
+msgstr ""
+
+msgid "Create your whistleblowing platform"
+msgstr ""
+
+msgid "Select the context of your submission:"
+msgstr "Selecionar o assunto do seu envio:"
+
+msgid "Warning! You are not anonymous."
+msgstr "Aviso! Você não está anônimo."
+
+msgid ""
+"Sending submissions over HTTPS exposes the act of doing so, but not the "
+"content.\\n\\nAlso, hiding the fact that you are submitting something makes "
+"the submission anonymous, which is strongly recommended.\\n\\nThis can be "
+"achieved with the use of the Tor Browser, providing anonymisation not found "
+"in other browsers like Internet Explorer, Firefox, Chrome, Opera etc."
+msgstr "Enviando submissões por meio de conexão HTTPS expõe o ato de fazê-lo, mas não o conteúdo.\\n\\nPor outro lado, escondendo o fato que Você está submetendo alguma coisa tornaria a submissão anônima, o que é fortemente recomendado.\\n\\nIsto pode ser conseguido com o uso do navegador web Tor, que provê anonimato não encontrado em outros navegadores como Internet Explorer, Firegfox, Chrome, Opera etc."
+
+msgid "Are you a whistleblower?"
+msgstr "Você é um denunciante?"
+
+msgid "Blow the whistle"
+msgstr "Denuncie"
+
+msgid "Have you already filed a submission? Enter your key code."
+msgstr "Você já preencheu uma submissão? Entre com seu código chave."
+
+msgid "Your submission was successful."
+msgstr "Submissão feita com sucesso."
+
+msgid "Submission status"
+msgstr ""
+
+msgid "Disable submissions"
+msgstr "Desativas envios"
+
+msgid "Enable insecure configuration without PGP encryption"
+msgstr "Ativar configuração insegura sem criptografia PGP"
+
+msgid "Danger"
+msgstr "Perigo"
+
+msgid ""
+"By enabling this option, the system will be storing the submitted files "
+"unencrypted on your server."
+msgstr "Ao ativar esta opção o sistema armazenará os arquivos submetidos sem criptografia em nosso servidor."
+
+msgid "This happens whenever encryption is unavailable."
+msgstr "Isso acontece em caso da criptografia não estiver disponível."
+
+msgid "Disable messages that warn of missing encryption"
+msgstr "Desativar mensagens que alertem para a falta de criptografia"
+
+msgid ""
+"This setting affects the security of the users and must not be used in "
+"production."
+msgstr "Esta configuração afeta a segurança dos usuários e não deve ser usado em produção."
+
+msgid "Allow other websites to include the platform inside iframes"
+msgstr "Permitir outros sites da web a incluir a plataforma dentro de iframes"
+
+msgid ""
+"By enabling this option, you are allowing other websites to include the "
+"platform inside iframes; this could potentially be used to endanger the "
+"platform or intercept users' communications"
+msgstr "Habilitando esta opção, você está permitindo que outros websites incluam a plataforma GlobaLeaks dentro de iframes; isto pode potencialmente por em risco a plataforma ou interceptar as comunicações de usuários"
+
+msgid "Allow recipients to postpone expiration date of the submission"
+msgstr "Permitir que pessoas destinatárias adiem a data de expiração de envios"
+
+msgid "Allow recipients to delete submissions"
+msgstr "Permitir que pessoas destinatárias apaguem envios"
+
+msgid ""
+"Allow recipients to grant permissions to whistleblowers on specific "
+"submissions"
+msgstr "Permitir destinatários conceder permissões aos delatores em submissões específicas"
+
+msgid "Enable search engines indexing"
+msgstr "Habilitar indexação aos motores de busca"
+
+msgid "Enabled"
+msgstr "Habilitado"
+
+msgid "Search engine spiders will be allowed to index the application."
+msgstr "Motores de busca serão autorizados a indexar o aplicativo."
+
+msgid "Enable custom privacy panel"
+msgstr "Habilitar painel personalizado de privacidade"
+
+msgid "Custom privacy panel"
+msgstr "Personalizar o painel de privacidade"
+
+msgid "Text shown when the whistleblower is not using Tor"
+msgstr "Texto mostrado quando o denunciante não está usando Tor"
+
+msgid "Disable the privacy panel"
+msgstr "Desativar o painel de privacidade"
+
+msgid "Security awareness panel title"
+msgstr "Título do painel de conscientização de segurança"
+
+msgid "Security awareness panel text"
+msgstr "Texto do painel de conscientização de segurança"
+
+msgid "Disable the security awareness panel questions"
+msgstr "Desativar as perguntas do emblema de percepção de segurança"
+
+msgid "Disable the security awareness panel"
+msgstr "Desabilitar o emblema de percepção de seguança"
+
+msgid "Disable the key code hint"
+msgstr "Desativa a chave de referência de código"
+
+msgid "Disable the donation panel"
+msgstr "Desativar o painel de doação"
+
+msgid "Enable CAPTCHA mechanism"
+msgstr "Habilitar mecanismo de CAPTCHA"
+
+msgid "Enable proof of work mechanism"
+msgstr "Ativar prova de mecanismo de trabalho"
+
+msgid "Enable simplified login for recipients"
+msgstr "Habilitar acesso simplificado para pessoas destinatárias"
+
+msgid "Amount of days till whistleblower access expires"
+msgstr "Quantidade de dias até que o acesso do delator expire"
+
+msgid ""
+"For security reasons the whistleblower access is subject to expiration."
+msgstr "Por razões de segurança o acesso do delator está sujeito à expiração"
+
+msgid "Tweak this setting only if you know what you are doing."
+msgstr "Ajustar esta configuração somente se Você sabe o que está fazendo."
+
+msgid "Landing page"
+msgstr "Página de Destino"
+
+msgid "Home Page"
+msgstr "Página inicial"
+
+msgid "Submission Page"
+msgstr "Página de submissão"
+
+msgid "Title of the submission page"
+msgstr "Título da página de submissão"
+
+msgid "Title of the attachments widget"
+msgstr ""
+
+msgid "Text of prompt for whistleblowers to log in"
+msgstr "Texto de imediato para delatores entrarem"
+
+msgid "Show contexts in alphabetical order"
+msgstr "Mostrar assuntos em ordem alfabética"
+
+msgid "Title of the receipt page"
+msgstr "Título da página do recibo"
+
+msgid "Title of the submission status page"
+msgstr "Título da página de status de submissão"
+
+msgid "Title of the comments widget"
+msgstr ""
+
+msgid "Title of the messages widget"
+msgstr ""
+
+msgid "Size limit for file attachments"
+msgstr "Limite de tamanho para arquivos anexados"
+
+msgid "Notify administrators of software problems"
+msgstr ""
+
+msgid "Notify developers of software problems"
+msgstr ""
+
+msgid ""
+"By enabling this feature, you will contribute to the development and "
+"security of the platform."
+msgstr ""
+
+msgid "Enable HTTP Basic Authentication to limit platform access"
+msgstr "Habilitar Autenticação Básica HTTP para limitar o acesso à plataforma"
+
+msgid "Username"
+msgstr "Usuário"
+
+msgid "Password"
+msgstr "Senha"
+
+msgid ""
+"This feature keeps regular people from visiting the platform while it is "
+"still under development and should not be used for security purposes. The "
+"input password is stored in plaintext on the server."
+msgstr "Esse recurso evita que as pessoas comuns visitem a plataforma enquanto ainda está em desenvolvimento e não deve se usado para fins de segurança. A senha de entrada é armazenada no servidor em texto claro."
+
+msgid "Enable experimental features"
+msgstr "Ativar características experimentais"
+
+msgid "Warning"
+msgstr "Alerta"
+
+msgid ""
+"The experimental features may be less stable or even not work at all; enable"
+" this option at your own risk. Support for these features may vary and they "
+"may be removed in the future."
+msgstr "Os recursos experimental podem estar instável ou mesmo não funcionarem totalmente;ativar esta opção é por sua conta e risco. O suporte para esses recursos pode variar e eles podem ser removidos no futuro."
+
+msgid "Save"
+msgstr "Salvar"
+
+msgid "Short URL"
+msgstr "URL curta"
+
+msgid "Long URL"
+msgstr "URL longa"
+
+msgid "Add"
+msgstr "Adicionar"
+
+msgid "Logo"
+msgstr "Logotipo"
+
+msgid "Project name"
+msgstr "Nome da iniciativa"
+
+msgid "Homepage title"
+msgstr "Título da Página Principal"
+
+msgid "Presentation"
+msgstr "Apresentação"
+
+msgid "Description"
+msgstr "Descrição"
+
+msgid "Question to solicit possible whistleblowers"
+msgstr "Pergunta para solicitar possíveis denunciantes"
+
+msgid "Whistleblowing button"
+msgstr "Botão de Denúncia"
+
+msgid "Footer"
+msgstr "Rodapé"
+
+msgid "Favicon"
+msgstr ""
+
+msgid "Upload"
+msgstr "Carregar"
+
+msgid "Download"
+msgstr "Baixar"
+
+msgid "Upload custom file"
+msgstr "Carregar Arquivo Personalizado"
+
+msgid "The file will be available at URL: /s/$filename"
+msgstr "O arquivo estará disponível em URL: /s/$nomearquivo"
+
+msgid "Language:"
+msgstr "Linguagem:"
+
+msgid "Add custom text"
+msgstr "Adicionar texto personalizado"
+
+msgid "Custom text"
+msgstr "Texto personalizado"
+
+msgid "Custom texts"
+msgstr "Textos personalizados"
+
+msgid "Original text"
+msgstr "Texto original"
+
+msgid "Original translation"
+msgstr "Tradução do original"
+
+msgid "Custom translation"
+msgstr "Tradução personalizada"
+
+msgid "Contexts"
+msgstr "Assuntos"
+
+msgid "Name"
+msgstr "Nome"
+
+msgid "Edit"
+msgstr "Editar"
+
+msgid "Cancel"
+msgstr "Cancelar"
+
+msgid "Questionnaire"
+msgstr "Questionário"
+
+msgid "Recipients"
+msgstr "Destinatários"
+
+msgid "Allow selection of this context through the context selector."
+msgstr "Permitir a seleção deste assunto por meio do se seletor de assuntos."
+
+msgid ""
+"If disabled, submissions for this context will only be accessible through a "
+"direct link to it."
+msgstr "Se desativados, os envios relacionados a este assunto serão acessíveis somente por meio de um link."
+
+msgid "Allow whistleblowers to select their recipients"
+msgstr "Permitir que os delatores selecionem seus destinatários"
+
+msgid "Select all recipients by default"
+msgstr "Selecione todos os destinatários por padrão"
+
+msgid "Maximum number of selectable recipients:"
+msgstr "Número máximo de Destinatários selecionáveis:"
+
+msgid "(0 = unlimited)"
+msgstr "(0 = ilimitado)"
+
+msgid "Show recipients in alphabetical order"
+msgstr "Mostrar destinatários em ordem alfabética"
+
+msgid "Show small recipient cards on submission interface"
+msgstr "Mostrar pequenos cartões ao destinatário na interface de submissão"
+
+msgid "Enable comments"
+msgstr "Habilitar comentários"
+
+msgid "Allow whistleblowers to write comments"
+msgstr "Permitir que os delatores escrevam comentários"
+
+msgid "Enable private messages"
+msgstr "Habilitar mensagens privadas"
+
+msgid "Allow whistleblowers to send messages"
+msgstr "Permitir que os delatores enviem mensagens"
+
+msgid "Let whistleblowers add attachments onto existing submissions"
+msgstr "Permitir que os delatores adicionem anexos em submissões existentes"
+
+msgid "Show recipient details on the status page of the submission"
+msgstr "Mostrar detalhes do destinatário na página de status da submissão"
+
+msgid "Let recipients upload files to whistleblowers"
+msgstr ""
+
+msgid "Disabled"
+msgstr "Desabilitado"
+
+msgid "Submission expiration, in days"
+msgstr "Expiração de submissão, em dias"
+
+msgid ""
+"For security reasons, as a matter of data retention policy, the platform "
+"automatically deletes submissions and their data after a certain amount of "
+"time."
+msgstr "Por razões de segurança, bem como uma questão da política de retenção de dados, a plataforma excluirá automaticamente submissões e seus dados após um certo tempo."
+
+msgid "Text shown on top of the interface for selecting recipients"
+msgstr "Texto mostrado no topo da interface para seleção de destinatários"
+
+msgid "Welcome to the administration interface!"
+msgstr "Bem-vindo à área de administração"
+
+msgid ""
+"This interface may help you understand how the server can be configured and "
+"provides some info on how to connect to other GlobaLeaks users and experts."
+msgstr "Esta interface pode ajudá-lo a entender como o dispositivo pode ser configurado e fornece algumas informações sobre como se conectar com outros usuários e especialistas do GlobaLeaks."
+
+msgid "Documentation"
+msgstr "Documentação"
+
+msgid ""
+"To properly organize your project, please read the following guidelines:"
+msgstr "Para organizar adequadamente a sua iniciativa, por favor, leia as seguintes diretrizes:"
+
+msgid "Remember to provide proper security advice to Whistleblowers:"
+msgstr "Lembre-se de fornecer aos Denunciantes as informações de segurança adequadas:"
+
+msgid ""
+"To learn more about GlobaLeaks Security you can read the following document:"
+msgstr "Para saber mais sobre GlobaLeaks Security Você pode ler o seguinte documento:"
+
+msgid "Contact"
+msgstr "Contato"
+
+msgid ""
+"If you need technical support, have general questions, or have new ideas for"
+" the software:"
+msgstr "Se Você precisar de assistência técnica, ou tem questionamentos gerais, ou até mesmo com noivas ideias para o software:"
+
+msgid ""
+"If you want to contribute to software development or report a bug, please "
+"open an issue in our ticketing system:"
+msgstr "Se Você deseja contribuir no desenvolvimento do software ou reportar um bug, favor abrir um questionamento em nosso sistema de casos:"
+
+msgid ""
+"If your non-profit needs support for investigative journalism, activism or a"
+" human rights defense project:"
+msgstr "Se sua organização sem fins lucrativos necessitar de ajudar de jornalismo investigativo, ativismo ou um projeto de defesa dos direitos humanos:"
+
+msgid ""
+"For professional support and development of anti corruption and compliance "
+"projects contact the social enterprise maintaining GlobaLeaks:"
+msgstr ""
+
+msgid "Join our IRC chat channel on the irc.oftc.net network:"
+msgstr "Junte-se ao nosso canal de char IRC em  irc.oftc.net:"
+
+msgid "Follow the project on:"
+msgstr "Siga o projeto em:"
+
+msgid "Software version:"
+msgstr "Versão do software:"
+
+msgid "An update is available:"
+msgstr ""
+
+msgid "SMTP name"
+msgstr "nome do SMTP"
+
+msgid "SMTP email address"
+msgstr "email do SMTP"
+
+msgid "Invalid email address"
+msgstr "Endereço de email inválido"
+
+msgid "SMTP server address"
+msgstr "Endereço do servidor SMTP"
+
+msgid "SMTP server port"
+msgstr "Porta do servidor SMTP"
+
+msgid "Transport Security"
+msgstr "Segurança de Transporte"
+
+msgid "When the option is re-enabled the spooled emails will be sent out."
+msgstr "Emails não enviados serão armazenados quando a opção for reativada."
+
+msgid "Reset notification templates to default"
+msgstr "Redefinição de temas de notificação para o padrão"
+
+msgid "Number of hours before sending a submission expiration alert"
+msgstr "Número de horas antes alertar sobre a expiração do envio"
+
+msgid "Maximum emails per hour before triggering email suspension"
+msgstr "Máximo de emails por hora antes de ativar suspensão do email"
+
+msgid "this configuration only applies to recipients"
+msgstr "esta configuração só se aplica aos destinatários"
+
+msgid "Test the configuration"
+msgstr "Testar a configuração"
+
+msgid "Template"
+msgstr "Modelo"
+
+msgid "Admin"
+msgstr "Admin"
+
+msgid "Roles enabled to use the platform without Tor:"
+msgstr ""
+
+msgid "Recipient"
+msgstr "Destinatário"
+
+msgid "Whistleblower"
+msgstr "Denunciante"
+
+msgid "Hostname"
+msgstr "Servidor"
+
+msgid "Verify"
+msgstr "Verificar"
+
+msgid "Invalid input format."
+msgstr "Inválido formato de entrada."
+
+msgid "Input should be similar to:"
+msgstr "Entrada deveria ser semelhante a:"
+
+msgid ""
+"The platform does not seem to be reachable with the configured hostname."
+msgstr ""
+
+msgid "Using Let's Encrypt requires agreement to their Terms of Service."
+msgstr "Usando a Autoridade Certificadora Let's Encrypt exige um de acordo com os termos de uso de serviço."
+
+msgid "Read the Terms of Service"
+msgstr "Ler os termos de licença"
+
+msgid "I agree to the Terms of Service."
+msgstr "Concordo com os termos de licença."
+
+msgid "Proceed"
+msgstr "Prosseguir"
+
+msgid "Configuration completed. You can review the settings or enable it now."
+msgstr "Configuração finalizada. Você pode revê-la ou ativá-la agora."
+
+msgid "Review"
+msgstr "Revisão"
+
+msgid "Enable"
+msgstr "Ativar"
+
+msgid "Country code"
+msgstr "Código do país"
+
+msgid "Organization"
+msgstr "Organização"
+
+msgid "Organizational unit"
+msgstr "Unidade organizacional"
+
+msgid ""
+"This interface can generate a Private Key and a Certificate Signing Request."
+" The Certificate Signing Request can be provided to a Certificate Authority "
+"to retrieve a Certificate. After having validated your request and your "
+"ownership of the hostname, the Certificate Authority will issue you a "
+"Certificate and provide a file containing Intermediate Certificates. Load "
+"the Certificate and the file containing the Intermediate Certificates to "
+"complete the HTTPS setup."
+msgstr "A interface pode gerar uma Chave Privada e uma Solicitação de Assinatura do Certificado. A Solicitação de Assinatura do Certificado pode ser atendida por uma Autoridade Certificadora para recuperar um Certificado. Após ter validada a sua solicitação e sua propriedade do servidor, a Autoridade Certificadora lhe emitirá um Certificado e fornecerá um arquivo com os Certificados Intermediários. Carregar o Certificado e o arquivo contendo os Certificados Intermediários completará o passo de configuração da conexão HTTPS."
+
+msgid "Private Key"
+msgstr "Chave privada"
+
+msgid "Generate"
+msgstr "Gerar"
+
+msgid "Certificate Signing Request"
+msgstr "Solicitação de Assinatura de Certificado"
+
+msgid "Certificate"
+msgstr "Certificado"
+
+msgid "Valid until:"
+msgstr "Válido até:"
+
+msgid "Issuer:"
+msgstr "Emissor:"
+
+msgid "Intermediate Certificates"
+msgstr "Certificados intermediários"
+
+msgid "Reset"
+msgstr "Restaurar"
+
+msgid "Select an option:"
+msgstr "Selecionar uma opção:"
+
+msgid "Automatic configuration"
+msgstr ""
+
+msgid ""
+"Using automatic HTTPS configuration will handle the entire process of "
+"requesting, enabling and renewing certificates from the Let's Encrypt "
+"Certificate Authority."
+msgstr "Usando a configuração automática de HTTPS cuidará de todo o processo de solicitação, ativação e renovação de certificados digitais da Autoridade Certificadora Let's Encrypt."
+
+msgid ""
+"The platform must be reachable through a public IP address and the selected "
+"hostname must have a corresponding DNS record referencing that address."
+msgstr "A plataforma pode ser acessada por meio de um endereço IP público e o servidor selecionado deve ter um registro de DNS correspondente que referencia aquele IP."
+
+msgid "Manual configuration"
+msgstr ""
+
+msgid ""
+"The manual configuration wizard will guide you through the setup of HTTPS "
+"from an alternative Certificate Authority."
+msgstr "O assistente de configuração manual lhe auxiliará por meio da inicialização de HTTPS a partir de uma Autoridade Certificadora alternativa."
+
+msgid ""
+"The platform supports the configuration of HTTPS through this interface."
+msgstr "A plataforma suporta configuração de HTTPS por meio desta interface."
+
+msgid "The connection to the configured domain failed."
+msgstr ""
+
+msgid "Running"
+msgstr "Executando"
+
+msgid "Not running"
+msgstr "Não executando"
+
+msgid "Auto-renewal"
+msgstr "Renovação automática"
+
+msgid "System message:"
+msgstr "Mensagem do sistema:"
+
+msgid ""
+"Allowing whistleblowers to connect over HTTPS preserves their privacy but "
+"not their anonymity."
+msgstr "Permite delatores a conectarem com HTTPS preservando sua privacidade mas não a sua anonimidade."
+
+msgid "Attention!"
+msgstr "Atenção!"
+
+msgid ""
+"Configuration in progress. When it is finished you will have to log in "
+"again."
+msgstr ""
+
+msgid "Your browser will be redirected to the following URL."
+msgstr "Seu navegador será redirecionado a URL"
+
+msgid "Tor Onion Service"
+msgstr "Serviço Onion do Tor"
+
+msgid "Tor Browser download link"
+msgstr "Endereço para baixar o navegador Tor"
+
+msgid "Anonymize outgoing connections"
+msgstr "Conexões de saída anônimas"
+
+msgid "Let the platform be reachable without Tor"
+msgstr ""
+
+msgid "Stats of the week:"
+msgstr "Estatísticas da semana:"
+
+msgid "Free disk space"
+msgstr "Espaço em disco disponível"
+
+msgid "Event ID"
+msgstr "ID do evento."
+
+msgid "Time"
+msgstr "Tempo"
+
+msgid "Event"
+msgstr "Evento"
+
+msgid "Response time"
+msgstr "Tempo de resposta"
+
+msgid "Role"
+msgstr "Cargo/Função"
+
+msgid "Last access"
+msgstr "Último acesso"
+
+msgid "Submission"
+msgstr "Submissão"
+
+msgid "Path"
+msgstr "Caminho"
+
+msgid "Size"
+msgstr "Tamanho"
+
+msgid "Alarm level"
+msgstr "Nível de alarme"
+
+msgid "Events"
+msgstr "Eventos"
+
+msgid "Label"
+msgstr "Rótulo"
+
+msgid "Type"
+msgstr "Tipo"
+
+msgid "Single-line text input"
+msgstr "Entrada de texto de linha única"
+
+msgid "Multi-line text input"
+msgstr "Entrada de texto de múltiplas linhas"
+
+msgid "Multiple choice input"
+msgstr "Entrada de múltiplas escolhas"
+
+msgid "Selection box"
+msgstr "Caixa de seleção"
+
+msgid "Checkbox"
+msgstr "Caixa de seleção"
+
+msgid "Terms of service"
+msgstr "Termos do serviço"
+
+msgid "Group of questions"
+msgstr "Grupo de perguntas"
+
+msgid "Row"
+msgstr "Linha"
+
+msgid "Column"
+msgstr "Coluna"
+
+msgid "Width"
+msgstr "Largura"
+
+msgid "Question group"
+msgstr "Grupo de questionamentos"
+
+msgid "Hint"
+msgstr "Sugerir"
+
+msgid "Required"
+msgstr "Obrigatório"
+
+msgid "Accept multiple file uploads"
+msgstr "Aceitar envio de múltiplos arquivos"
+
+msgid "Accept multiple answers for the field"
+msgstr "Aceitar múltiplas respostas para o campo"
+
+msgid "Hint shown on the button for adding an additional answer"
+msgstr ""
+
+msgid "Clause"
+msgstr "Cláusula"
+
+msgid "Agreement Text"
+msgstr "Texto de Concordância"
+
+msgid "Layout orientation"
+msgstr ""
+
+msgid "Subject answer visibility to custodian authorization"
+msgstr "Resposta do assunto sujeita à autorização de custódia"
+
+msgid "Prompt confirmation upon negative answer"
+msgstr ""
+
+msgid "Title of the confirmation question upon negative answer"
+msgstr "Título da pergunta de confirmação em consequência de resposta negativa"
+
+msgid "Body of the confirmation question upon negative answer"
+msgstr "Corpo da pergunta de confirmação em consequência de resposta negativa"
+
+msgid "Options"
+msgstr "Opções"
+
+msgid "Questions"
+msgstr ""
+
+msgid "Add new question"
+msgstr "Adicionar nova pergunta"
+
+msgid "Add question from template"
+msgstr "Adicionar pergunta do template"
+
+msgid "Steps"
+msgstr ""
+
+msgid "Configuration"
+msgstr "Configuração"
+
+msgid "Default"
+msgstr "Padrão"
+
+msgid "Forcefully selected"
+msgstr "Forçosamente selecionado"
+
+msgid "Unselectable"
+msgstr "Não selecionável"
+
+msgid "Allow the recipient to postpone the submission expiration date"
+msgstr "Permitir o destinatário a postergar a data de expiração da submissão"
+
+msgid "The setting is enabled at a global level."
+msgstr "A configuração está habilitada em nível global."
+
+msgid "Allow the recipient to delete submissions"
+msgstr "Permitir ao destinatário excluir submissões"
+
+msgid ""
+"Allow the recipient to grant permissions to whistleblowers on specific "
+"submissions"
+msgstr "Permitir o destinatário conceder permissões aos delatores sobre submissões específicas"
+
+msgid "General settings"
+msgstr "Configurações gerais"
+
+msgid "Network settings"
+msgstr "Configurações de rede"
+
+msgid "Root domain used for secondary sites"
+msgstr ""
+
+msgid "Allow users to sign up"
+msgstr ""
+
+msgid "Sites"
+msgstr ""
+
+msgid "Active"
+msgstr "Ativado"
+
+msgid "Inactive"
+msgstr ""
+
+msgid "The default password is:"
+msgstr ""
+
+msgid "The system forces users to change the password at first login."
+msgstr "O sistema requer que os usuários alterem suas senhas no primeiro acesso."
+
+msgid "New Password"
+msgstr "Nova Senha"
+
+msgid ""
+"The chosen password is too weak. Make it more secure by adding special "
+"characters, numbers, and unusual symbols."
+msgstr "A senha escolhida está muito fraca. Fazê-la mais segura pela adição de caracteres especiais, números e símbolos não usuais."
+
+msgid "Force password change"
+msgstr "Forçar mudança de senha"
+
+msgid "The user will be forced to change its password on next login."
+msgstr "O usuário será forçado a alterar a sua senha na próxima autenticação."
+
+msgid "Language"
+msgstr "Idioma"
+
+msgid "Encryption:"
+msgstr "Criptografia:"
+
+msgid "Remove the PGP key"
+msgstr "Remover a chave PGP"
+
+msgid "Set up encryption by providing a PGP public key"
+msgstr "Definir criptografia pelo fornecimento de uma chave pública PGP"
+
+msgid "Request date"
+msgstr "Data da solicitação"
+
+msgid "Authorization"
+msgstr "Autorização"
+
+msgid "Before proceeding, please change your password."
+msgstr "Antes de continuar, por favor, altere sua senha."
+
+msgid "Submissions disabled"
+msgstr "Submissões desabilitadas"
+
+msgid ""
+"You are connecting to the server without anonymity and this server supports "
+"only anonymous submissions"
+msgstr "Você está se conectando a este dispositivo publicamente e este dispositivo suporta apenas submissões anônimas"
+
+msgid ""
+"Server temporarly unusable due to resource exhaustion; advise the Admin if "
+"you can."
+msgstr "Servidor temporariamente indisponível devido à exaustão de recursos; contate o Administrador se possível."
+
+msgid "This server is not configured."
+msgstr "Este nó não está configurado."
+
+msgid "You will not be able to send a submission."
+msgstr "Você não estará apto a submeter uma submissão."
+
+msgid ""
+"This platform makes use of GlobaLeaks software specifically designed to "
+"protect the identity for submitter and recipient in the exchange of content."
+msgstr "Esta plataforma faz uso do software da GlobaLeaks especificamente projetado para proteger a identidade do submissor e destinatário na troca de conteúdo."
+
+msgid ""
+"The software is developed by the non-profit Hermes Center for Transparency "
+"and Digital Human Rights."
+msgstr "O software é desenvolvido pela organização sem fins lucrativos Hermes Center for Transparency and Digital Human Rights."
+
+msgid "Please support Hermes through their donation page."
+msgstr "Por favor, apoiem Hermes através de sua página de doações."
+
+msgid "Authentication failed"
+msgstr "Falha na Autenticação"
+
+msgid "Please select your account:"
+msgstr "Por favor, selecione sua conta:"
+
+msgid "Now type your password, then click 'Log in':"
+msgstr "Agora digite sua senha e clique em 'Acessar':"
+
+msgid "Are you sure?"
+msgstr "Você tem certeza?"
+
+msgid "The operation will reset the configuration and cannot be undone."
+msgstr ""
+
+msgid "Assign score points"
+msgstr ""
+
+msgid ""
+"Enter the number of score points to be assigned when this option is "
+"selected:"
+msgstr ""
+
+msgid "Confirm"
+msgstr "Confirmar Extensão"
+
+msgid "Are you human?"
+msgstr "Você é humano?"
+
+msgid ""
+"We do not discriminate based on race and gender, but we do against computers"
+" :)"
+msgstr "Nós não discutimos sobre sua raça, sexo, gênero, mas discriminamos computadores :)"
+
+msgid ""
+"Just to prove you are human, please answer the following math challenge:"
+msgstr "Só para provar que você é humano, por favor, responda o seguinte desafio de matemática:"
+
+msgid "I've solved the math challenge, hide this thing now!"
+msgstr "Eu já resolvi o desafio de matemática, esconda essa coisa agora!"
+
+msgid "Please note that all the associated data will be permanently lost."
+msgstr "Favor notar que todos os dados assocados serão permanentemente perdidos."
+
+msgid ""
+"This means that if the server running the platform were to be seized, it "
+"would be possible to extract the files that have been submitted."
+msgstr "Isso significa que, se o servidor que executa essa plataforma for apreendido, talvez seja possível extrair os documentos enviados. "
+
+msgid "Are you sure that you wish to continue?"
+msgstr "Você tem certeza de que deseja continuar?"
+
+msgid ""
+"Downloading a file with malicious content could compromise your computer or "
+"disclose your identity."
+msgstr "Baixando um arquivo com conteúdo adulterado poderia comprometer seu computador ou descobrir a sua identidade."
+
+msgid "The name of the file and its content can be intentionally misleading."
+msgstr "O nome do arquivo e seu conteúdo podem ter sido intencionalmente adulterados."
+
+msgid ""
+"Please review the following information and decide if you wish to proceed."
+msgstr "Favor rever a seguinte informação e decidir se Você deseja prosseguir."
+
+msgid "Error!"
+msgstr "Erro!"
+
+msgid "Internal server error"
+msgstr ""
+
+msgid "Error on input validation"
+msgstr ""
+
+msgid "Resource not found"
+msgstr ""
+
+msgid "Forbidden operation"
+msgstr ""
+
+msgid "The specified old password is not valid"
+msgstr "A senha antiga especificada não é válida"
+
+msgid "Resource can only be accessed via the Tor network"
+msgstr "Recurso só pode ser acessado dentro da rede Tor"
+
+msgid "The upload request exceeds the size limit"
+msgstr "O pedido de envio excede os limites de tamanho"
+
+msgid "Success!"
+msgstr "Sucesso!"
+
+msgid ""
+"It appears that you are browsing this site without any extra privacy and "
+"security!"
+msgstr "Parece que você está acessando este site sem qualquer privacidade e segurança extra!"
+
+msgid ""
+"You are strongly advised to visit this site using the desktop app called Tor"
+" Browser, that protects your identity."
+msgstr "Aconselha-se vivamente a visitar este site usando o aplicativo de computador chamado Tor Browser, que protege a sua identidade."
+
+msgid "Then, copy and paste the following address into the Tor Browser:"
+msgstr "Em seguida, copie e cole o seguinte endereço no Tor Browser instalado:"
+
+msgid "Details of the PGP key:"
+msgstr "Detalhes da chave PGP:"
+
+msgid "Fingerprint"
+msgstr "Impressão digital"
+
+msgid "Add file"
+msgstr "Adicionar arquivo"
+
+msgid "Uploading files…"
+msgstr "Subindo arquivos..."
+
+msgid "Upload completed successfully!"
+msgstr "Carregamento realizado com sucesso!"
+
+msgid "Error while uploading files; check below for details."
+msgstr "Erro ao carregar arquivos; conferir detalhes abaixo."
+
+msgid "Estimated upload time:"
+msgstr "Tempo estimado do upload:"
+
+msgid "seconds"
+msgstr "segundos"
+
+msgid "Which of the following statements is true?"
+msgstr "Qual das seguintes afirmações é verdadeira?"
+
+msgid "HTTPS protects my identity, but not the content of my submission"
+msgstr "HTTPS protege a minha identidade, mas não o conteúdo da minha submissão"
+
+msgid "HTTPS protects the content of my submission but not my identity"
+msgstr "HTTPS protege o conteúdo da minha submissão mas não a minha identidade"
+
+msgid "HTTPS does not protect the content of my submission nor my identity"
+msgstr "HTTPS não protege o conteúdo da minha submissão e nem a minha identidade"
+
+msgid "HTTPS does protect both my identity and the content of my submission"
+msgstr "HTTPS protege tanto a minha identidade quanto o conteúdo da minha submissão"
+
+msgid ""
+"You are aware of the risks involved. Go ahead, but consider yourself warned."
+msgstr "Você está ciente dos riscos envolvidos, vá em frente, mas considere-se avisado."
+
+msgid "Wrong Answer!"
+msgstr "Resposta Errada!"
+
+msgid "The connection is not secure."
+msgstr ""
+
+msgid ""
+"The platform is still not configured for HTTPS connections and should "
+"therefore only be used for testing purposes."
+msgstr ""
+
+msgid "Send"
+msgstr "Enviar"
+
+msgid "Allow the whistleblower to write comments"
+msgstr "Permitir que o delator escreva comentários"
+
+msgid "Filename"
+msgstr "Nome do Arquivo"
+
+msgid "Upload date"
+msgstr "Submeter Data"
+
+msgid "Content Type"
+msgstr "Tipo de Conteúdo"
+
+msgid "File size"
+msgstr "Tamanho do arquivo"
+
+msgid "download"
+msgstr "Baixar"
+
+msgid "No files have been uploaded!"
+msgstr "Nenhum arquivo foi enviado!"
+
+msgid "Allow the whistleblower to add attachments to the submission"
+msgstr "Permitir o delator adicionar anexos a submissão"
+
+msgid "Access expiration"
+msgstr "Acesso expirado"
+
+msgid "Connection"
+msgstr "Conexão"
+
+msgid "Never"
+msgstr "Jamais"
+
+msgid "Revoked"
+msgstr "Revogada"
+
+msgid "Allow the whistleblower to send messages"
+msgstr "Permitir que o delator envie mensagens"
+
+msgid "Are you sure that you want to delete the submission?"
+msgstr "Você tem certeza de querer apagar o seu envio?"
+
+msgid ""
+"Everything related to the submission stored on the platform will be deleted."
+msgstr "Tudo que for relacionado à submissão armazenada na plataforma será apagado."
+
+msgid ""
+"Please be aware that everything stored off the platform, e.g. files you have"
+" saved on your computer, must be deleted manually."
+msgstr "Lembre-se de que tudo armazenado externamente à plataforma, por exemplo arquivos gravados em seu computador, devem ser apagados manualmente."
+
+msgid "Are you sure that you want to delete all the selected submissions?"
+msgstr "Você tem certeza de querer apagar os envios selecionados?"
+
+msgid ""
+"Please make sure that all related data is properly deleted so that the "
+"recipients won't be able to further access to it."
+msgstr "Por favor, tome cuidado para que todos os dados associados sejam devidamente apagados para que todos os destinatários não tenham acesso a eles."
+
+msgid "Please write a motivation for the reply"
+msgstr "Favor escrever uma motivação para a resposta"
+
+msgid "Are you sure that you want to postpone the submission expiration date?"
+msgstr "Você tem certeza de que deseja adiar a data de expiração do envio?"
+
+msgid "By confirming, you will postpone the expiration date to:"
+msgstr "Ao confirmar, você adiará a data de expiração para:"
+
+msgid ""
+"Are you sure that you want to postpone the expiration date for all selected "
+"submissions?"
+msgstr "Tem certeza de querer adiar a data de expiração de todos os envios selecionados?"
+
+msgid "Questionnaire answers"
+msgstr "Respostas ao questionário"
+
+msgid "Step"
+msgstr "Passo"
+
+msgid "Recipient list"
+msgstr "Lista de pessoas destinatárias"
+
+msgid "Attached files for the whistleblower"
+msgstr "Arquivos anexados pelo delator"
+
+msgid ""
+"Files uploaded here are made available for the whistleblower and other "
+"recipients to download."
+msgstr "Arquivos descarregados aqui estão disponíveis ao delator e a outros destinatários para baixar."
+
+msgid "Upload a file:"
+msgstr "Inserir um arquivo:"
+
+msgid "Logout"
+msgstr "Sair"
+
+msgid "The key code is either invalid or the submission has expired."
+msgstr "O código chave é inválido ou a submissão expirou."
+
+msgid "Please check your key code and try again or make a new submission."
+msgstr "Por favor, verifique seu código chave e tente novamente ou faça uma nova submissão."
+
+msgid "Files attached by recipients"
+msgstr "Arquivos anexados por destinatários"
+
+msgid "These files have been attached to your submission by the recipients."
+msgstr "Esses arquivos foram anexados à sua submissão pelo destinatário."
+
+msgid "Enable submission notification"
+msgstr "Habilitar notificacao de envio"
+
+msgid "Current Password"
+msgstr "Senha Atual"
+
+msgid "Old password confirmation required"
+msgstr "Requer confirmação da senha antiga"
+
+msgid "The new password must be different from the current one."
+msgstr "A nova senha deve ser diferente da atual."
+
+msgid "Type your new password again"
+msgstr "Digite sua senha novamente"
+
+msgid "The two passwords do not match"
+msgstr "As duas senhas não coincidem"
+
+msgid "Thank you!"
+msgstr "Obrigado!"
+
+msgid "Remember your key code for this submission."
+msgstr "Lembre-se do código chave desta submissão."
+
+msgid "We will try to get back to you as soon as possible!"
+msgstr "Tentaremos voltar para você o mais rapidamente possível!"
+
+msgid ""
+"Use the 16 digit key code to log in. It will allow you to view any messages "
+"we sent you, and also to add extra info."
+msgstr "Use o código chave de 16 dígitos para acessar. Ele permitirá que você visualize todas as mensagens que te enviamos, e também adicionar informações extras."
+
+msgid "View your submission"
+msgstr "Veja sua submissão"
+
+msgid "Hint: How to hide your key code"
+msgstr "Dica: Como esconder o código da chave"
+
+msgid ""
+"A useful way to hide your key code is to write it down like a credit card "
+"number, i.e. by also including an expiration date."
+msgstr "Uma forma de esconder seu código chave é escrevê-lo como um número de cartão de crédito, isto é, incluindo também uma data de validade."
+
+msgid "Example:"
+msgstr "Exemplo:"
+
+msgid ""
+"You have not set up your encryption key, so the files will not be encrypted "
+"prior to being stored on the server."
+msgstr "Você não definiu a sua chave de cifragem, então os arquivos não serão cifrados antes do armazenamento no servidor."
+
+msgid ""
+"This may lead to unintended access to the files by the server administrator "
+"or others in case the server is compromised."
+msgstr "Isso pode levar ao acesso não intencional aos arquivos pelo administrador do provedor ou outros no caso do provedor ser comprometido."
+
+msgid "Please configure your PGP keys in the recipient preferences page."
+msgstr "Por favor, configure sua chave PGP na página de configurações do destinatário."
+
+msgid ""
+"One or more of the recipients of this submission has not configured a PGP "
+"key."
+msgstr "um ou mais dos destinatários desta submissão não configuraram uma chave PGP."
+
+msgid ""
+"This means that the submitted files will be stored in plaintext on the "
+"server."
+msgstr "Isto significa que as informações submetidas serão armazenadas em texto simples no dispositivo de arquivos."
+
+msgid ""
+"Access to the whistleblower's identity has been requested to the custodian."
+msgstr "Acesso à identidade de um delator foi solicitado ao curador."
+
+msgid "Date of the request"
+msgstr "Data do pedido"
+
+msgid "Congratulations!"
+msgstr "Parabéns!"
+
+msgid "You have completed the platform activation."
+msgstr ""
+
+msgid "Your whistleblowing platform is now accessible at:"
+msgstr ""
+
+msgid "Users' credentials:"
+msgstr ""
+
+msgid "To log in, visit:"
+msgstr ""
+
+msgid "For the user documentation visit:"
+msgstr ""
+
+msgid "The platform will be automatically deleted on:"
+msgstr ""
+
+msgid "Sign up"
+msgstr "Cadastrar"
+
+msgid "Domain"
+msgstr "Domínio"
+
+msgid "Use Case"
+msgstr ""
+
+msgid "Anticorruption"
+msgstr ""
+
+msgid "Corporate compliance"
+msgstr ""
+
+msgid "Investigative journalism"
+msgstr ""
+
+msgid "Civic activism"
+msgstr ""
+
+msgid "Other"
+msgstr "Outros"
+
+msgid "Complete"
+msgstr "Completo"
+
+msgid "Your whistleblowing platform is almost ready!"
+msgstr ""
+
+msgid "Check your inbox to activate your account."
+msgstr ""
+
+msgid "The answer is too short."
+msgstr ""
+
+msgid "The specified input is not valid:"
+msgstr "A entrada especificada não é válida:"
+
+msgid "please enter a valid email address."
+msgstr "favor digitar um email válido"
+
+msgid "please enter numbers only."
+msgstr "favor digitar somente números"
+
+msgid "Recipient selection"
+msgstr "Seleção de destinatário"
+
+msgid "previous step"
+msgstr "passo anterior"
+
+msgid "next step"
+msgstr "próximo passo"
+
+msgid "Submit"
+msgstr "Submeter"
+
+msgid "Recipients selected:"
+msgstr "Destinatários selecionados:"
+
+msgid ""
+"In this step the answers to the following questions are either missing or "
+"invalid:"
+msgstr "Neste passo as respostas às seguintes perguntas ou estão ausentes ou inválidas:"
+
+msgid "Submission errors"
+msgstr "Erros na submissão"
+
+msgid "You must select at least one recipient."
+msgstr "Você deve selecionar pelo menos um destinatário."
+
+msgid "Waiting for the file(s) to finish uploading."
+msgstr "Aguardando a finalização de descarga do(s) arquivos(s)."
+
+msgid "The following steps have errors:"
+msgstr "Os seguintes passos possuem erros:"
+
+msgid "Welcome!"
+msgstr "Bem vindo!"
+
+msgid ""
+"The following step-by-step procedure will guide you through creating your "
+"whistleblowing platform."
+msgstr ""
+
+msgid "Please choose a configuration profile:"
+msgstr ""
+
+msgid ""
+"These profiles contain settings used by successful projects in each "
+"respective field."
+msgstr ""
+
+msgid "Confirm password"
+msgstr "Confirme a senha"
+
+msgid "The default username is:"
+msgstr ""
+
+msgid "License Agreement"
+msgstr ""
+
+msgid "Please review the license terms before proceeding."
+msgstr ""
+
+msgid "I have read and agree to the terms of the License Agreement."
+msgstr ""
+
+msgid "You have completed the platform wizard."
+msgstr ""
+
+msgid "Fill out your submission"
+msgstr "Preencha sua submissão"
+
+msgid "Short title"
+msgstr "Título curto"
+
+msgid "Describe your submission in a few words."
+msgstr "Descrever o seu envio em algumas palavras."
+
+msgid "Full description"
+msgstr "Descrição completa"
+
+msgid "Describe your submission in detail."
+msgstr "Descrever o seu envio em detalhes."
+
+msgid "Attach files relevant to the submission."
+msgstr "Anexar arquivos relevantes para a submissão."
+
+msgid "Dear {RecipientName},"
+msgstr "Prezado/a {RecipientName},"
+
+msgid "Kind regards,"
+msgstr "Atenciosamente,"
+
+msgid ""
+"The number of activities recently detected appears to be higher than usual."
+msgstr "A quantidade de atividades recentemente detectadas parece ser maior do que a habitual."
+
+msgid ""
+"This could be a sign of an attack (for example, someone flooding your server"
+" with bogus information) or just a usage spike due to an increased "
+"visibility of your project."
+msgstr "Este poderia ser um sinal de um ataque (por exemplo, alguém inundando o servidor com informações falsas) ou apenas um pico de utilização, devido a um aumento da visibilidade do seu projeto."
+
+msgid "Examine the issue to determine whether it is legitimate or not."
+msgstr ""
+
+msgid "The activities with unusual stats are:"
+msgstr "As atividades com estatísticas incomuns são:"
+
+msgid ""
+"The server cannot guarantee that a new submission can be stored, so "
+"submissions have been disabled."
+msgstr "O servidor não pode garantir que uma nova submissão seja armazenada, desta forma, as submissões foram desativadas."
+
+msgid ""
+"Please consider asking your technical support to create more disk space on "
+"the server."
+msgstr ""
+
+msgid ""
+"GlobaLeaks technology includes a server status checking component which will"
+" alert you in case something requires your attention."
+msgstr "A tecnologia GlobaLeaks inclui um componente de verificação de status do servidor que irá alertá-lo em caso de algo que requeira sua atenção."
+
+msgid ""
+"For more information, log in to the Administration interface and look at the"
+" \"System Stats\" and \"Anomalies\" sections."
+msgstr "Para obter mais informações, acesse a interface de administração e verifique as 'Estatísticas do Sistema' e as seções 'Anomalias'."
+
+msgid "Anomaly detected in {NodeName}"
+msgstr "Anomalia detectada em {NodeName}"
+
+msgid ""
+"This is an email to inform you that the PGP key of the following users is "
+"going to expire or has already expired:"
+msgstr "Este é um email para informá-lo de que a chave PGP dos seguintes usuários está prestes a expirar ou já expirou:"
+
+msgid ""
+"Without a valid PGP key, the system will not be able to send them encrypted "
+"notifications."
+msgstr "Sem uma chave PGP válida, o sistema não será capaz de enviar-lhes notificações criptografadas."
+
+msgid "PGP key expiration alert"
+msgstr "Alerta de expiração de chave PGP"
+
+msgid ""
+"This is a test email sent out from the platform's administrative interface."
+msgstr "Este é um e-mail de teste enviado do painel de controle administrativo da plataforma."
+
+msgid ""
+"Reception of this email indicates that the server was able to authenticate "
+"to and interact with the SMTP mail server."
+msgstr "A recepção deste e-mail indica que o servidor foi capaz de autenticar e interagir com o servidor SMTP de envio de e-mail."
+
+msgid "Test email"
+msgstr "E-mail de teste"
+
+msgid ""
+"This is an email to notify you of a new comment on an existing submission."
+msgstr "Este é um e-mail para lhe notificar de um novo comentário sobre uma submissão existente."
+
+msgid "The submission can be accessed:"
+msgstr "A submissão pode ser acessada:"
+
+msgid "via Tor at: {TorUrl}"
+msgstr "via Tor em: {TorUrl}"
+
+msgid "via HTTPS at: {HTTPSUrl}"
+msgstr "via HTTPS em: {HTTPSUrl}"
+
+msgid "New comment"
+msgstr "Novo comentário"
+
+msgid "From: {RecipientName}"
+msgstr "De: {RecipientName}"
+
+msgid "Date: {EventTime}"
+msgstr "Data: {EventTime}"
+
+msgid "From: Whistleblower"
+msgstr "De: Delator"
+
+msgid "Date: {SubmissionDate}"
+msgstr "Data: {SubmissionDate}"
+
+msgid "Label: {TipLabel}"
+msgstr "Títulol: {TipLabel}"
+
+msgid "Context: {ContextName}"
+msgstr "Assunto: {ContextName}"
+
+msgid ""
+"This is an email to notify you that the whistleblower of submission {TipNum}"
+" has attached new material."
+msgstr "Este é um e-mail para lhe notificar que o delator da submissão {TipNum} anexou um novo material."
+
+msgid "New attachment"
+msgstr "Novo anexo"
+
+msgid ""
+"The HTTPS certificate loaded on the platform is about to, or has already "
+"expired."
+msgstr ""
+
+msgid "Expiration date: {ExpirationDate}"
+msgstr "Data de expiração: {ExpirationDate}"
+
+msgid ""
+"Without a valid certificate, the platform will be accessible in a secure way"
+" only via Tor."
+msgstr "Sem um certificado digital válido, a plataforma estará acessível de forma segura somente com o navegador Tor."
+
+msgid "Log in to solve the issue."
+msgstr "Entrar para resolver a questão."
+
+msgid "Expiration alert for HTTPS certificate"
+msgstr "Alerta de certificado HTTPS expirado"
+
+msgid ""
+"This is an email to notify you that a custodian has authorized you to access"
+" to the whistleblowing identity for the submission {TipNum}."
+msgstr ""
+
+msgid "Access to whistleblower's identity authorized"
+msgstr "Acesso autorizado à identidade de um delator"
+
+msgid ""
+"This is an email to notify you that a custodian has denied you access to the"
+" wistleblowing identity for the submission {TipNum}."
+msgstr "Este é um e-mail para notificar que um curador lhe negou acesso à identidade de um delator da submissão {TipNum}."
+
+msgid "Access to whistleblower's identity denied"
+msgstr "Acesso negado à identidade de um delator"
+
+msgid ""
+"This is an email to notify you that a recipient has requested access to the "
+"whistleblower's identity for the submission {TipNum}"
+msgstr "Este é um e-mail para lhe notificar que um destinatário pediu acesso à identidade de um delator da submissão {TipNum}"
+
+msgid "The request can be accessed:"
+msgstr "O pedido pode ser acessado:"
+
+msgid "New request of access to a whistleblower's identity"
+msgstr "Novo pedido de acesso à identidade de um delator"
+
+msgid ""
+"This is an email to notify you that the whistleblower for the submission "
+"{TipNum} has provided their identity."
+msgstr "Este é um e-mail para lhe notificar que o delator da submissão {TipNum} forneceu a sua identidade."
+
+msgid "The whistleblower has provided their identity"
+msgstr "O delator forneceu a sua identidade"
+
+msgid ""
+"This is an email to notify you of a new message on an existing submission."
+msgstr "Este é um e-mail para lhe notificar que uma nova mensagem sobre uma submissão existente."
+
+msgid "New message"
+msgstr "Nova mensagem"
+
+msgid ""
+"This is an email to inform you that your PGP key is expiring or has already "
+"expired."
+msgstr "Este email é para informá-lo que a sua chave PGP está expirando ou já expirou."
+
+msgid ""
+"You should extend its validity and update the key present on the platform, "
+"or upload a new key."
+msgstr "Você deveria estender a validade e atualizar a chave presente na plataforma, ou descarregar uma nova chave."
+
+msgid ""
+"Without a valid PGP key, the system won't be able to encrypt data provided "
+"to you."
+msgstr "Sem uma chave PGP válida, o sistema não será capaz de cifrar dados fornecidos a Você."
+
+msgid "It appears that {NodeName} is receiving a large number of requests."
+msgstr "Parece que {NodeName} está recebendo um grande número de pedidos."
+
+msgid ""
+"To prevent sending you too many emails, the system has disabled email "
+"notifications until the load returns to normal. In the meantime, you can "
+"normally log onto the platform and manually check for new submissions."
+msgstr "Para evitar enviar-lhe muitos emails, o sistema desabilitou as notificações de email até que a carga volte ao normal. Enquanto isso, você pode acessar normalmente a plataforma e verificar manualmente os novos envios."
+
+msgid ""
+"If you don’t mind and would rather receive such a large number of email "
+"notifications anyhow, please contact your technical support to have them "
+"modify this setting accordingly."
+msgstr "Se você não se importa em receber um grande número de notificações de e-mail, por favor, entre em contato com o suporte técnico para modificar essa configuração."
+
+msgid "Notifications from {NodeName} have been temporarily suspended"
+msgstr "Notificações de {NodeName} foram suspensas temporariamente"
+
+msgid "Click the link to activate the platform:"
+msgstr ""
+
+msgid "A software update is available."
+msgstr ""
+
+msgid "It is good security practice to keep the platform up to date."
+msgstr ""
+
+msgid "Installed version: {InstalledVersion}"
+msgstr ""
+
+msgid "Latest version: {LatestVersion}"
+msgstr ""
+
+msgid ""
+"To learn about new features and bug fixes in the new version consult the "
+"change log at: {ChangeLogUrl}"
+msgstr ""
+
+msgid ""
+"For instructions on software updates, please refer to the documentation at: "
+"{UpdateGuideUrl}"
+msgstr ""
+
+msgid "The earliest expiration date is {EarliestExpirationDate}."
+msgstr "A data de validade mais antiga é {EarliestExpirationDate}."
+
+msgid "Please remember to check them before they are deleted."
+msgstr "Lembre-se verificá-los antes de excluir."
+
+msgid "Some submissions will expire soon"
+msgstr "Algumas submissões estarão expiradas em breve"
+
+msgid ""
+"This is an email to notify you that a whistleblower has selected you as a "
+"valuable recipient of their submission."
+msgstr ""
+
+msgid ""
+"You are asked to pay special attention to the information and material "
+"contained therein. Please keep in mind that whistleblowers often expose "
+"themselves to high personal risks in the interest of the public. Therefore "
+"the material provided within this submission should be considered to be of "
+"high importance."
+msgstr ""
+
+msgid "New submission"
+msgstr "Nova submissão"

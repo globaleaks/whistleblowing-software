@@ -1,0 +1,2328 @@
+# 
+# Translators:
+# annapapa1980 <anpapath3@gmail.com>, 2015
+# annapapa1980 <anpapath3@gmail.com>, 2015
+# Elektra M. <safiragon@yahoo.gr>, 2017
+# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2014-2018
+# Vasilis Fotopoulos <basalba@gmail.com>, 2015
+# Wasilis <m.wasilis@yahoo.de>, 2013
+# Wasilis Mandratzis-Walz, 2015
+# Wasilis Mandratzis-Walz, 2015
+# Wasilis <m.wasilis@yahoo.de>, 2013
+# ZedRyder <zedryder@gmail.com>, 2014-2016
+# ZedRyder <zedryder@gmail.com>, 2014
+msgid ""
+msgstr ""
+"Project-Id-Version: GlobaLeaks\n"
+"PO-Revision-Date: 2018-02-22 09:12+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"Language-Team: Greek (http://www.transifex.com/otf/globaleaks/language/el/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: el\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "Login page"
+msgstr "Σελίδα εισόδου"
+
+msgid "Log in"
+msgstr "Σύνδεση"
+
+msgid "Administration interface"
+msgstr "Διεπαφή διαχειριστή "
+
+msgid "Main configuration"
+msgstr "Κύριες ρυθμίσεις"
+
+msgid "Theme customization"
+msgstr "Παραμετροποίηση θεμάτων"
+
+msgid "Languages"
+msgstr "Γλώσσες"
+
+msgid "Text customization"
+msgstr "Παραμετροποίηση κειμένου"
+
+msgid "Advanced settings"
+msgstr "Ρυθμίσεις για προχωρημένους"
+
+msgid "Questionnaire configuration"
+msgstr "διαμόρφωση ερωτηματολογίου"
+
+msgid "Question templates"
+msgstr "πρότυπα ερώτηση"
+
+msgid "Questionnaires"
+msgstr "ερωτηματολόγια"
+
+msgid "Add new questionnaire"
+msgstr "Προσθήκη νέου ερωτηματολογίου"
+
+msgid "Home"
+msgstr "Αρχική"
+
+msgid "Home page"
+msgstr "Αρχική σελίδα"
+
+msgid "Changelog"
+msgstr "αρχείο καταγραφής αλλαγών"
+
+msgid "License"
+msgstr "Άδεια"
+
+msgid "Notification templates"
+msgstr "Πρότυπα ειδοποίησης"
+
+msgid "Recipient notification templates"
+msgstr "Πρότυπα ειδοποιήσεων Δέκτη"
+
+msgid "Admin notification templates"
+msgstr "Πρότυπα Ειδοποίησης Διαχειριστή "
+
+msgid "Missing data"
+msgstr "Ελλιπή δεδομένα"
+
+msgid "no stats available for the future."
+msgstr "δεν είναι διαθέσιμα στατιστικά για το μέλλον."
+
+msgid "no stats available for this hour."
+msgstr "δεν υπάρχουν διαθέσιμα στατιστικά για την ώρα."
+
+msgid "no stats available for current hour; check activities page."
+msgstr "δεν είναι διαθέσιμα τα στατιστικά για την τρέχουσα ώρα, ελέγξτε την σελίδα των δραστηριοτήτων."
+
+msgid "Delete"
+msgstr "Διαγραφή"
+
+msgid "Anomalies"
+msgstr "Ανωμαλίες"
+
+msgid "Preferences"
+msgstr "Προτιμήσεις"
+
+msgid "Recipient interface"
+msgstr "Διεπαφή αποδέκτη"
+
+msgid "Notification settings"
+msgstr "Ρυθμίσεις ειδοποιήσεων"
+
+msgid "This recipient has configured the encryption key."
+msgstr "Αυτός ο αποδέκτης έχει παραμετροποιήσει το κλειδί κρυπτογράφησης."
+
+msgid "This recipient has not configured the encryption key."
+msgstr "Αυτός ο αποδέκτης δεν έχει παραμετροποιήσει ακόμη το κλειδί κρυπτογράφησης"
+
+msgid "The file is unavailable due to an internal error."
+msgstr "Το αρχείο δεν είναι διαθέσιμο λόγω εσωτερικού σφάλματος"
+
+msgid "file unavailable"
+msgstr "Μη διαθέσιμο αρχείο"
+
+msgid "Creation date"
+msgstr "Ημερομηνία δημιουργίας"
+
+msgid "Expiration date"
+msgstr "Ημερομηνία λήξης"
+
+msgid "Last Access"
+msgstr "Τελευταία πρόσβαση"
+
+msgid "Files"
+msgstr "Αρχεία"
+
+msgid "Comments"
+msgstr "Σχόλια"
+
+msgid "Messages"
+msgstr "Μηνύματα"
+
+msgid "Select this recipient."
+msgstr "Επιλογή αποδέκτη."
+
+msgid "Unselect this recipient."
+msgstr "Αποεπιλέξτε αυτό τον αποδέκτη."
+
+msgid "This recipient cannot be selected."
+msgstr "Αυτός ο αποδέκτης δεν μπορεί να επιλεχθεί."
+
+msgid "This recipient cannot be deselected."
+msgstr "Αυτός ο αποδέκτης δεν μπορεί να αποεπιλεχθεί"
+
+msgid "Details"
+msgstr "Λεπτομέρειες"
+
+msgid "Platform wizard"
+msgstr "Οδηγός πλατφόρμας"
+
+msgid "Step-by-step setup"
+msgstr "Εγκατάσταση βήμα-βήμα"
+
+msgid "CREDIT CARD"
+msgstr "ΠΙΣΤΩΤΙΚΗ ΚΑΡΤΑ"
+
+msgid "YOUR NAME"
+msgstr "ΤΟ ΟΝΟΜΑ ΣΑΣ"
+
+msgid "Postpone the expiration date"
+msgstr "Να αναβάλει την ημερομηνία λήξης"
+
+msgid "Select all"
+msgstr "Επίλεξέ τα όλα"
+
+msgid "Deselect all"
+msgstr "Αποεπιλογή όλων"
+
+msgid "Refresh page"
+msgstr "Ανανέωση σελίδας"
+
+msgid "Context"
+msgstr "Θεματική ενότητα"
+
+msgid "Submission date"
+msgstr "Ημερομηνία υποβολής"
+
+msgid "Private messages"
+msgstr "Προσωπικά μηνύματα"
+
+msgid "Preview"
+msgstr "Προεπισκόπηση"
+
+msgid "Move up"
+msgstr "Μετακίνηση προς τα επάνω"
+
+msgid "Move down"
+msgstr "Μετακίνηση προς τα κάτω"
+
+msgid "Move left"
+msgstr "Μετακίνηση αριστερά"
+
+msgid "Move right"
+msgstr "Μετακίνηση δεξιά"
+
+msgid "Import"
+msgstr "Εισαγωγή"
+
+msgid "Export"
+msgstr "Εξαγωγή"
+
+msgid "Save all"
+msgstr "Αποθήκευση όλων"
+
+msgid "This field is mandatory"
+msgstr "Αυτό το πεδίο είναι υποχρεωτικό "
+
+msgid ""
+"The connection used to send this submission has been secured with HTTPS "
+"ensuring confidentiality."
+msgstr "Η σύνδεση που χρησιμοποιείται για την αποστολή αυτής της υποβολής έχει ασφαλιστεί με HTTPS για τη διασφάλιση του απορρήτου."
+
+msgid ""
+"The connection used to send this submission has been secured with Tor "
+"ensuring confidentiality and anonymity."
+msgstr "Η σύνδεση που χρησιμοποιήθηκε για την αποστολή αυτής της καταχώρισης έχει διασφαλιστεί με τον Tor εξασφαλίζοντας την εμπιστευτικότητα και την ανωνυμία."
+
+msgid "vertical"
+msgstr "κάθετα"
+
+msgid "horizontal"
+msgstr "Οριζόντια"
+
+msgid "Number"
+msgstr "Αριθμός"
+
+msgid "Email"
+msgstr "Email"
+
+msgid "Date"
+msgstr "Ημερομηνία"
+
+msgid "Regular expression validator"
+msgstr "Τακτικές επικύρωσης της έκφρασης"
+
+msgid "Minimum number of input characters"
+msgstr "Ελάχιστος αριθμός χαρακτήρων εισόδου"
+
+msgid "Maximum number of input characters"
+msgstr "Μέγιστος αριθμός χαρακτήρων εισόδου"
+
+msgid "Earliest selectable date"
+msgstr "Η πιο παλιά επιλέξιμη ημερομηνία"
+
+msgid "Latest selectable date"
+msgstr "Τελευταία επιλέξιμη ημερομηνία"
+
+msgid "0 = auto"
+msgstr "0 = auto"
+
+msgid "-1 = unlimited"
+msgstr "-1 = Απεριόριστο"
+
+msgid "True"
+msgstr "Αληθής"
+
+msgid "False"
+msgstr "Ψευδής"
+
+msgid "Yes"
+msgstr "Ναι"
+
+msgid "No"
+msgstr "Όχι"
+
+msgid "Attachment"
+msgstr "Προσάρτημα"
+
+msgid "Attachments"
+msgstr "συνημμένα"
+
+msgid "Change your password"
+msgstr "Αλλάξτε τον κωδικό σας"
+
+msgid "First name"
+msgstr "Όνομα"
+
+msgid "Last name"
+msgstr "Επίθετο"
+
+msgid "GENDER_OTHER"
+msgstr "GENDER_OTHER"
+
+msgid "Male"
+msgstr "Αρσενικός"
+
+msgid "Female"
+msgstr "Θηλυκός"
+
+msgid "Date of birth"
+msgstr "ΗΜΕΡΟΜΗΝΙΑ ΓΕΝΝΗΣΗΣ"
+
+msgid "Place of birth"
+msgstr "Τόπος γέννησης"
+
+msgid "Social security number"
+msgstr "Αριθμός κοινωνικής ασφάλισης"
+
+msgid "Residence"
+msgstr "Κατοικία"
+
+msgid "Address"
+msgstr "Διεύθυνση"
+
+msgid "Zip code / Postal code"
+msgstr "Ταχυδρομικός κώδικας / Τ.Κ."
+
+msgid "City"
+msgstr "Πόλη"
+
+msgid "State"
+msgstr "Κατάσταση"
+
+msgid "Region"
+msgstr "Περιοχή"
+
+msgid "Province"
+msgstr "Επαρχία"
+
+msgid "Country"
+msgstr "Χώρα"
+
+msgid "Phone number"
+msgstr "Τηλεφωνικό νούμερο"
+
+msgid "Current job title"
+msgstr "Τωρινός τίτλος εργασίας"
+
+msgid "Current job responsibility (role)"
+msgstr "Τρέχουσα ευθύνη δουλειά (ρόλο)"
+
+msgid "Current organization unit and job location"
+msgstr "Τρέχουσα μονάδα οργάνωση και τη θέση εργασίας"
+
+msgid "Job title at the time of the reported fact"
+msgstr "Τίτλος εργασίας κατά το χρόνο της αναφερόμενης γεγονός"
+
+msgid "Job responsibility (role) at the time of the reported fact"
+msgstr "ευθύνη Job (ρόλο) κατά το χρόνο της αναφερόμενης γεγονός"
+
+msgid "Organization unit and job location at the time of the reported fact"
+msgstr "μονάδα οργάνωση και τη θέση εργασίας κατά τη στιγμή της αναφερόμενης γεγονός"
+
+msgid "List of submissions"
+msgstr "Λίστα των υποβολών"
+
+msgid "List of access requests to whistleblowers' identities"
+msgstr "Λίστα των αιτήσεων πρόσβασης σε ταυτότητες πληροφοριοδότες »"
+
+msgid "User"
+msgstr "Μεταχειριζόμενος"
+
+msgid "Motivation"
+msgstr "Κίνητρο"
+
+msgid "Status"
+msgstr "Κατάσταση"
+
+msgid "Request motivation"
+msgstr "κίνητρο Αίτηση"
+
+msgid "Reply motivation"
+msgstr "Απάντηση κίνητρο"
+
+msgid "Request status"
+msgstr "κατάσταση Αίτηση"
+
+msgid "Custodian"
+msgstr "Φύλακας"
+
+msgid "Custodian of the identities"
+msgstr "Θεματοφύλακας των ταυτοτήτων"
+
+msgid "Identity"
+msgstr "Ταυτότητα"
+
+msgid "Available"
+msgstr "Διαθέσιμος"
+
+msgid "Not available"
+msgstr "Μη διαθέσιμος"
+
+msgid "Access requested"
+msgstr "ζήτησε πρόσβαση"
+
+msgid "Request access to the whistleblower's identity"
+msgstr "Αίτημα πρόσβασης για την ταυτότητα του πληροφοριοδότη της"
+
+msgid "Please write a motivation"
+msgstr "Παρακαλούμε γράψτε ένα κίνητρο"
+
+msgid "Reply to the request"
+msgstr "Απάντηση στο αίτημα"
+
+msgid "Authorized"
+msgstr "εξουσιοδοτημένος"
+
+msgid "Denied"
+msgstr "Άρνηση"
+
+msgid "Waiting for authorization"
+msgstr "Αναμονή για έγκριση"
+
+msgid "New request"
+msgstr "νέα αίτηση"
+
+msgid "Authorize"
+msgstr "Εξουσιοδοτώ"
+
+msgid "Deny"
+msgstr "Αρνούμαι"
+
+msgid "Deny access to the whistleblower's identity"
+msgstr "Να αρνηθεί την πρόσβαση προς την ταυτότητα του πληροφοριοδότη της"
+
+msgid "Authorize access to the whistleblower's identity"
+msgstr "Επιτρέψει την πρόσβαση προς την ταυτότητα του πληροφοριοδότη της"
+
+msgid "Templates"
+msgstr "πρότυπα"
+
+msgid "Notification of new submission"
+msgstr "Κοινοποίηση νέων υποβολής"
+
+msgid "Notification of new comment"
+msgstr "Κοινοποίηση νέων σχόλιο"
+
+msgid "Notification of new message"
+msgstr "Κοινοποίηση νέων μηνύματος"
+
+msgid "Notification of new file attachment"
+msgstr "Κοινοποίηση νέων συνημμένο αρχείο"
+
+msgid "Notification of PGP key expiration"
+msgstr "Κοινοποίηση των κλειδιών PGP λήξης"
+
+msgid "Notification of anomaly"
+msgstr "Κοινοποίηση της ανωμαλίας"
+
+msgid "Template for summary of contents in submission archive"
+msgstr "Πρότυπο για την περίληψη του περιεχομένου στο αρχείο υποβολής"
+
+msgid "Email subject"
+msgstr "Θέμα του μέιλ"
+
+msgid "Email body"
+msgstr "σώματος email"
+
+msgid "in seconds"
+msgstr "σε δευτερόλεπτα"
+
+msgid "in hours"
+msgstr "σε ώρες"
+
+msgid "in days"
+msgstr "σε ημέρες"
+
+msgid "in characters"
+msgstr "με χαρακτήρες"
+
+msgid "in megabytes"
+msgstr "σε megabyte"
+
+msgid "in percentage"
+msgstr "σε ποσοστό"
+
+msgid "HTTPS settings"
+msgstr "ρυθμίσεις HTTPS"
+
+msgid "Anomaly detection thresholds"
+msgstr "όρια ανίχνευσης ανωμαλίας"
+
+msgid "High risk"
+msgstr "Υψηλού κινδύνου"
+
+msgid "Medium risk"
+msgstr "Μέτριος κίνδυνος"
+
+msgid "Low risk"
+msgstr "Χαμηλό ρίσκο"
+
+msgid "Available disk space"
+msgstr "Διαθέσιμο χώρο στο δίσκο"
+
+msgid "Last update"
+msgstr "Τελευταία ενημέρωση"
+
+msgid "Custodian notification templates"
+msgstr "πρότυπα γνωστοποίησης Θεματοφύλακας"
+
+msgid ""
+"This interface allows configuring email templates used to notify custodians."
+msgstr "Αυτή η διεπαφή επιτρέπει τη διαμόρφωση πρότυπα ηλεκτρονικού ταχυδρομείου που χρησιμοποιείται για να ενημερώσει θεματοφύλακες."
+
+msgid "Disable notifications to administrators"
+msgstr "Απενεργοποίηση ειδοποιήσεων στους διαχειριστές"
+
+msgid "Disable notifications to custodians"
+msgstr "Απενεργοποίηση ειδοποιήσεων για θεματοφύλακες"
+
+msgid "Disable notifications to recipients"
+msgstr "Απενεργοποίηση ειδοποιήσεων στους παραλήπτες"
+
+msgid "Score"
+msgstr "Σκορ"
+
+msgid "Trigger question"
+msgstr "ερώτηση σκανδάλη"
+
+msgid "Triggered by a score higher than:"
+msgstr "Ενεργοποιείται από μια βαθμολογία μεγαλύτερη από:"
+
+msgid "Select the question to be triggered when this option is selected"
+msgstr "Επιλέξτε το ερώτημα που πρέπει να ενεργοποιείται όταν επιλέγεται αυτή η δυνατότητα"
+
+msgid "Message shown on top of the status page of the submission"
+msgstr "Μήνυμα εμφανίζεται στην κορυφή της σελίδας κατάστασης της υποβολής"
+
+msgid "Copy and paste the PGP public key here"
+msgstr "Αντιγράψτε και επικολλήστε το δημόσιο κλειδί PGP εδώ"
+
+msgid "Password strength:"
+msgstr "Ισχύς Κωδικού Πρόσβασης:"
+
+msgid "Weak"
+msgstr "Αδύναμος"
+
+msgid "Acceptable"
+msgstr "Δεκτός"
+
+msgid "Strong"
+msgstr "Ισχυρός"
+
+msgid "Loading…"
+msgstr "Φόρτωση…"
+
+msgid "Text shown on top of the interface for selecting contexts"
+msgstr "Κείμενο που εμφανίζεται στην κορυφή της διεπαφής για την επιλογή πλαισίων"
+
+msgid "Show small context cards on submission interface"
+msgstr "Εμφάνιση μικρές κάρτες πλαίσιο για διασύνδεση υποβολή"
+
+msgid "Type of context selector:"
+msgstr "Τύπος του επιλογέα πλαίσιο:"
+
+msgid "Type to search…"
+msgstr "Πληκτρολογήστε για αναζήτηση"
+
+msgid "Silence email notifications"
+msgstr "Σίγαση ειδοποιήσεων μέσω email"
+
+msgid "Turn on email notifications"
+msgstr "Ενεργοποίηση ειδοποιήσεων μέσω email"
+
+msgid "Enter an email address for the administrator"
+msgstr "Εισάγετε μια διεύθυνση email για τον διαχειριστή"
+
+msgid "Enter a password for the administrator"
+msgstr "Εισάγετε έναν κωδικό για τον διαχειριστή"
+
+msgid "Test configuration"
+msgstr "Δοκιμή της ρύθμισης παραμέτρων"
+
+msgid "Failed logins"
+msgstr "Αποτυχημένες είσοδοι"
+
+msgid "Successful logins"
+msgstr "Επιτυχημένες είσοδοι"
+
+msgid "Started submissions"
+msgstr "Υποβολές που έχουν ξεκινήσει"
+
+msgid "Completed submissions"
+msgstr "Ολοκληρωμένες υποβολές"
+
+msgid "Failed submissions"
+msgstr "Αποτυχημένες καταχωρίσεις"
+
+msgid "Input validation"
+msgstr "Επικύρωση εισόδου"
+
+msgid "Email address"
+msgstr "Email address"
+
+msgid "Custom"
+msgstr "Προσαρμογή "
+
+msgid "None"
+msgstr "Κανένα"
+
+msgid "Regular expression"
+msgstr "Κανονική έκφραση"
+
+msgid "Label the submission"
+msgstr ""
+
+msgid "Activate"
+msgstr "Ενεργοποίηση"
+
+msgid "Search"
+msgstr "Αναζήτηση"
+
+msgid ""
+"This custom text is no longer displayed on the platform. The original text "
+"has either changed or been removed."
+msgstr ""
+
+msgid ""
+"Unless the whistleblower checks the submission by this time, their access to"
+" it will expire."
+msgstr ""
+
+msgid "The whistleblower can no longer access the submission"
+msgstr "Ο πληροφοριοδότης δεν μπορεί πλέον να έχει πρόσβαση στην υποβολή"
+
+msgid "Warning!"
+msgstr "Προσοχή!"
+
+msgid "You are running an unsupported and potentially vulnerable browser."
+msgstr "Εκτελείτε ένα μη υποστηριζόμενο και δυνητικά ευάλωτο πρόγραμμα περιήγησης."
+
+msgid "You are strongly advised to download and install the Tor Browser."
+msgstr "Σας συνιστούμε να κατεβάσετε και να εγκαταστήσετε το πρόγραμμα περιήγησης Tor."
+
+msgid ""
+"The Tor Browser includes various privacy and security enhancements not "
+"present in other browsers."
+msgstr "Το πρόγραμμα περιήγησης Tor περιλαμβάνει διάφορες προστασία της ιδιωτικής ζωής και βελτιώσεις ασφαλείας που δεν υπάρχουν σε άλλα προγράμματα περιήγησης."
+
+msgid "Download the Tor Browser"
+msgstr "Κατεβάστε το πρόγραμμα περιήγησης Tor"
+
+msgid "This is the list of the other supported browsers:"
+msgstr "Αυτή είναι η λίστα των άλλων υποστηριζόμενων προγραμμάτων περιήγησης:"
+
+msgid "System overview"
+msgstr "Επισκόπηση συστήματος"
+
+msgid "Stats"
+msgstr "Στατιστικά"
+
+msgid "Activities"
+msgstr "Δραστηριότητες"
+
+msgid "Submissions"
+msgstr "υποβολές"
+
+msgid "Users"
+msgstr "Χρήστες"
+
+msgid "From"
+msgstr "Από"
+
+msgid "Number of downloads"
+msgstr "Αριθμός λήψεων"
+
+msgid "Error with file:"
+msgstr "Σφάλμα με το αρχείο:"
+
+msgid "File size not accepted."
+msgstr "Μη αποδεκτό μέγεθος αρχείου."
+
+msgid "File type not accepted."
+msgstr "Μη αποδεκτός τύπος αρχείου."
+
+msgid "Maximum file size is:"
+msgstr "Το μέγιστο μέγεθος αρχείου είναι:"
+
+msgid "Accepted file types are:"
+msgstr "Οι αποδεκτοί τύποι αρχείων είναι:"
+
+msgid "Scheduled jobs"
+msgstr "Προγραμματισμένες εργασίες"
+
+msgid "Sites management"
+msgstr ""
+
+msgid "Regenerate"
+msgstr ""
+
+msgid "Display options alphabetically"
+msgstr ""
+
+msgid "Enable email notifications for:"
+msgstr ""
+
+msgid "Software updates"
+msgstr ""
+
+msgid "Software problems"
+msgstr ""
+
+msgid "Disable"
+msgstr "Απενεργοποίηση"
+
+msgid "Remove"
+msgstr "Αφαίρεση"
+
+msgid "Use as default"
+msgstr ""
+
+msgid "Create your whistleblowing platform"
+msgstr ""
+
+msgid "Select the context of your submission:"
+msgstr "Επιλέξτε το πλαίσιο της υποβολής σας:"
+
+msgid "Warning! You are not anonymous."
+msgstr "Προειδοποίηση! Δεν είναι ανώνυμα."
+
+msgid ""
+"Sending submissions over HTTPS exposes the act of doing so, but not the "
+"content.\\n\\nAlso, hiding the fact that you are submitting something makes "
+"the submission anonymous, which is strongly recommended.\\n\\nThis can be "
+"achieved with the use of the Tor Browser, providing anonymisation not found "
+"in other browsers like Internet Explorer, Firefox, Chrome, Opera etc."
+msgstr ""
+
+msgid "Are you a whistleblower?"
+msgstr "Είστε πληροφοριοδότης;"
+
+msgid "Blow the whistle"
+msgstr "Φύσα τη σφυρίχτρα"
+
+msgid "Have you already filed a submission? Enter your key code."
+msgstr "Έχετε ήδη υποβάλει παρατηρήσεις; Πληκτρολογήστε το κλειδί τον κωδικό σας."
+
+msgid "Your submission was successful."
+msgstr "Η υποβολή σας ήταν επιτυχής"
+
+msgid "Submission status"
+msgstr ""
+
+msgid "Disable submissions"
+msgstr "Απενεργοποίηση υποβολών"
+
+msgid "Enable insecure configuration without PGP encryption"
+msgstr "Ενεργοποιήστε μη ασφαλή παραμετροποίηση χωρίς κρυπτογράφηση PGP"
+
+msgid "Danger"
+msgstr "Κίνδυνος"
+
+msgid ""
+"By enabling this option, the system will be storing the submitted files "
+"unencrypted on your server."
+msgstr "Ενεργοποιώντας αυτή την επιλογή, το σύστημα θα αποθηκεύει τα υποβαλλόμενα αρχεία στον κόμβο σας χωρίς κρυπτογράφηση."
+
+msgid "This happens whenever encryption is unavailable."
+msgstr "Αυτό συμβαίνει όταν η κρυπτογράφηση δεν είναι διαθέσιμη."
+
+msgid "Disable messages that warn of missing encryption"
+msgstr "Απενεργοποίηση μηνύματα που προειδοποιούν για λείπουν κρυπτογράφησης"
+
+msgid ""
+"This setting affects the security of the users and must not be used in "
+"production."
+msgstr "Αυτή η ρύθμιση επηρεάζει την ασφάλεια των χρηστών και δεν πρέπει να χρησιμοποιούνται στην παραγωγή."
+
+msgid "Allow other websites to include the platform inside iframes"
+msgstr "Επιτρέπουν σε άλλους δικτυακούς τόπους για να συμπεριλάβει την πλατφόρμα μέσα από μια αναφορά IFRAME"
+
+msgid ""
+"By enabling this option, you are allowing other websites to include the "
+"platform inside iframes; this could potentially be used to endanger the "
+"platform or intercept users' communications"
+msgstr "Με την ενεργοποίηση αυτής της επιλογής, που επιτρέπουν άλλες ιστοσελίδες για να συμπεριλάβει την πλατφόρμα μέσα από μια αναφορά IFRAME? αυτό θα μπορούσε δυνητικά να χρησιμοποιηθεί για να θέσει σε κίνδυνο τις επικοινωνίες στην πλατφόρμα ή αναχαίτισης των χρηστών"
+
+msgid "Allow recipients to postpone expiration date of the submission"
+msgstr "Επιτρέψτε παραλήπτες να αναβάλει την ημερομηνία λήξης της υποβολής"
+
+msgid "Allow recipients to delete submissions"
+msgstr "Επιτρέψτε παραλήπτες να διαγράψει υποβολές"
+
+msgid ""
+"Allow recipients to grant permissions to whistleblowers on specific "
+"submissions"
+msgstr "Επιτρέψτε παραλήπτες να χορηγήσει άδειες για πληροφοριοδότες σε συγκεκριμένα αιτήματα"
+
+msgid "Enable search engines indexing"
+msgstr "Ενεργοποιήστε τον πίνακα περιεχομένων για τις μηχανές αναζήτησης"
+
+msgid "Enabled"
+msgstr "Ενεργοποιημένο"
+
+msgid "Search engine spiders will be allowed to index the application."
+msgstr "Οι αυτόματοι καταχωρητές των μηχανών αναζήτησης θα επιτρέπεται να καταχωρούν αυτόματα την εφαρμογή."
+
+msgid "Enable custom privacy panel"
+msgstr "Ενεργοποιήστε το διακριτικό ιδιωτικότητας κατά προτίμηση"
+
+msgid "Custom privacy panel"
+msgstr "πάνελ της ιδιωτικής ζωής έθιμο"
+
+msgid "Text shown when the whistleblower is not using Tor"
+msgstr "Το κείμενο εμφανίζεται όταν ο καταγγέλλων δεν χρησιμοποιεί Tor"
+
+msgid "Disable the privacy panel"
+msgstr "Απενεργοποιήστε το πλαίσιο προστασίας της ιδιωτικότητας "
+
+msgid "Security awareness panel title"
+msgstr "Ασφάλεια τίτλο του πίνακα της ευαισθητοποίησης"
+
+msgid "Security awareness panel text"
+msgstr "κειμένου πίνακα ευαισθητοποίησης σε θέματα ασφάλειας"
+
+msgid "Disable the security awareness panel questions"
+msgstr "Απενεργοποιήστε το σήμα ερωτήσεων στην ευαισθητοποίηση ασφάλειας "
+
+msgid "Disable the security awareness panel"
+msgstr "Απενεργοποιήστε το σήμα ευαισθητοποίησης ασφάλειας "
+
+msgid "Disable the key code hint"
+msgstr "Απενεργοποίηση του βασικου κώδικα υπόδειξης"
+
+msgid "Disable the donation panel"
+msgstr "Απενεργοποιήστε τον πίνακα δωρεά"
+
+msgid "Enable CAPTCHA mechanism"
+msgstr "Ενεργοποίηση του μηχανισμού CAPTCHA"
+
+msgid "Enable proof of work mechanism"
+msgstr "Ενεργοποίηση απόδειξη του μηχανισμού εργασίας"
+
+msgid "Enable simplified login for recipients"
+msgstr "Ενεργοποίηση απλοποιημένη login για τους αποδέκτες"
+
+msgid "Amount of days till whistleblower access expires"
+msgstr ""
+
+msgid ""
+"For security reasons the whistleblower access is subject to expiration."
+msgstr ""
+
+msgid "Tweak this setting only if you know what you are doing."
+msgstr ""
+
+msgid "Landing page"
+msgstr "Αρχική σελίδα"
+
+msgid "Home Page"
+msgstr "Αρχική Σελίδα"
+
+msgid "Submission Page"
+msgstr "Σελίδα Υποβολής"
+
+msgid "Title of the submission page"
+msgstr "Τίτλος της σελίδας υποβολής"
+
+msgid "Title of the attachments widget"
+msgstr "Τίτλος του widget συνημμένα"
+
+msgid "Text of prompt for whistleblowers to log in"
+msgstr ""
+
+msgid "Show contexts in alphabetical order"
+msgstr "Εμφάνιση πλαισίων με αλφαβητική σειρά"
+
+msgid "Title of the receipt page"
+msgstr "Τίτλος της σελίδας παραλαβής"
+
+msgid "Title of the submission status page"
+msgstr "Τίτλος της σελίδας κατάστασης υποβολής"
+
+msgid "Title of the comments widget"
+msgstr "Τίτλος σχόλια widget"
+
+msgid "Title of the messages widget"
+msgstr "Τίτλος του widget μηνύματα"
+
+msgid "Size limit for file attachments"
+msgstr "όριο μεγέθους για τα συνημμένα αρχεία"
+
+msgid "Notify administrators of software problems"
+msgstr ""
+
+msgid "Notify developers of software problems"
+msgstr ""
+
+msgid ""
+"By enabling this feature, you will contribute to the development and "
+"security of the platform."
+msgstr ""
+
+msgid "Enable HTTP Basic Authentication to limit platform access"
+msgstr "Ενεργοποίηση HTTP βασικό έλεγχο ταυτότητας να περιορίσει την πρόσβαση πλατφόρμα"
+
+msgid "Username"
+msgstr "Όνομα Χρήστη"
+
+msgid "Password"
+msgstr "Κωδικός"
+
+msgid ""
+"This feature keeps regular people from visiting the platform while it is "
+"still under development and should not be used for security purposes. The "
+"input password is stored in plaintext on the server."
+msgstr "Αυτό το χαρακτηριστικό γνώρισμα κρατά την τακτική τους ανθρώπους από την επίσκεψη της πλατφόρμας, ενώ είναι ακόμα υπό ανάπτυξη και δεν πρέπει να χρησιμοποιούνται για λόγους ασφαλείας. Ο κωδικός πρόσβασης εισόδου αποθηκεύεται στη απλού κειμένου στο διακομιστή."
+
+msgid "Enable experimental features"
+msgstr "Ενεργοποίηση πειραματικών λειτουργιών"
+
+msgid "Warning"
+msgstr "Προειδοποίηση"
+
+msgid ""
+"The experimental features may be less stable or even not work at all; enable"
+" this option at your own risk. Support for these features may vary and they "
+"may be removed in the future."
+msgstr "Οι πειραματικές λειτουργίες ενδέχεται να είναι λιγότερο σταθερές ή ακόμη και να μην λειτουργεί καθόλου? ενεργοποιήσετε αυτή την επιλογή με δική σας ευθύνη. Υποστήριξη για αυτές τις λειτουργίες ενδέχεται να διαφέρουν και μπορούν να αφαιρεθούν στο μέλλον."
+
+msgid "Save"
+msgstr "Αποθήκευση"
+
+msgid "Short URL"
+msgstr "σύντομο URL"
+
+msgid "Long URL"
+msgstr "μακρύ URL"
+
+msgid "Add"
+msgstr "Προσθήκη"
+
+msgid "Logo"
+msgstr ""
+
+msgid "Project name"
+msgstr "Όνομα πρωτοβουλίας"
+
+msgid "Homepage title"
+msgstr "Τίτλος αρχικής σελίδας "
+
+msgid "Presentation"
+msgstr "Παρουσίαση"
+
+msgid "Description"
+msgstr "Περιγραφή"
+
+msgid "Question to solicit possible whistleblowers"
+msgstr "Ερώτηση για την επιδίωξη πιθανών πληροφοριοδοτών"
+
+msgid "Whistleblowing button"
+msgstr "Whistleblowing Πλήκτρο"
+
+msgid "Footer"
+msgstr "Υποσέλιδο"
+
+msgid "Favicon"
+msgstr ""
+
+msgid "Upload"
+msgstr "Φόρτωση"
+
+msgid "Download"
+msgstr "Μεταφόρτωση"
+
+msgid "Upload custom file"
+msgstr "Φορτώστε μη προκαθορισμένο αρχείο"
+
+msgid "The file will be available at URL: /s/$filename"
+msgstr "Το αρχείο θα είναι διαθέσιμο στη διεύθυνση URL: / s / $ filename"
+
+msgid "Language:"
+msgstr "Γλώσσα:"
+
+msgid "Add custom text"
+msgstr ""
+
+msgid "Custom text"
+msgstr ""
+
+msgid "Custom texts"
+msgstr ""
+
+msgid "Original text"
+msgstr "Αρχικό κείμενο"
+
+msgid "Original translation"
+msgstr "Αρχική μετάφραση"
+
+msgid "Custom translation"
+msgstr ""
+
+msgid "Contexts"
+msgstr "Θεματικές ενότητες"
+
+msgid "Name"
+msgstr "Όνομα"
+
+msgid "Edit"
+msgstr "Επεξεργασία "
+
+msgid "Cancel"
+msgstr "Ακύρωση"
+
+msgid "Questionnaire"
+msgstr "Ερωτηματολόγιο"
+
+msgid "Recipients"
+msgstr "Αποδέκτες"
+
+msgid "Allow selection of this context through the context selector."
+msgstr "Επιτρέπουν την επιλογή αυτού του πλαισίου μέσω του επιλογέα πλαίσιο."
+
+msgid ""
+"If disabled, submissions for this context will only be accessible through a "
+"direct link to it."
+msgstr "Αν απενεργοποιηθεί, υποβολές για το πλαίσιο αυτό θα είναι προσβάσιμο μέσω ενός απευθείας σύνδεση με αυτό μόνο."
+
+msgid "Allow whistleblowers to select their recipients"
+msgstr "Επιτρέψτε πληροφοριοδότες για να επιλέξετε παραλήπτες τους"
+
+msgid "Select all recipients by default"
+msgstr "Προεπιλέξτε όλους τους αποδέκτες"
+
+msgid "Maximum number of selectable recipients:"
+msgstr "Μέγιστος αριθμός επιλέξιμων δικαιούχων:"
+
+msgid "(0 = unlimited)"
+msgstr "(0 = απεριόριστο)"
+
+msgid "Show recipients in alphabetical order"
+msgstr "Εμφάνιση παραλήπτες σε αλφαβητική σειρά"
+
+msgid "Show small recipient cards on submission interface"
+msgstr "Προβολή μικρογραφιών καρτών αποδεκτών στην διεπαφή υποβολής"
+
+msgid "Enable comments"
+msgstr "Ενεργοποίηση σχολίων"
+
+msgid "Allow whistleblowers to write comments"
+msgstr "Επιτρέψτε πληροφοριοδότες για να γράψετε σχόλια"
+
+msgid "Enable private messages"
+msgstr "Ενεργοποίηση προσωπικών μηνυμάτων "
+
+msgid "Allow whistleblowers to send messages"
+msgstr "Επιτρέψτε πληροφοριοδότες για την αποστολή μηνυμάτων"
+
+msgid "Let whistleblowers add attachments onto existing submissions"
+msgstr "Επιτρέψτε πληροφοριοδότες για να προσθέσετε συνημμένα σε υφιστάμενες υποβολές"
+
+msgid "Show recipient details on the status page of the submission"
+msgstr "Εμφάνιση λεπτομέρειες παραλήπτη στη σελίδα κατάστασης από την υποβολή"
+
+msgid "Let recipients upload files to whistleblowers"
+msgstr ""
+
+msgid "Disabled"
+msgstr "Απενεργοποιημένο"
+
+msgid "Submission expiration, in days"
+msgstr "Υποβολή λήξης, σε ημέρες"
+
+msgid ""
+"For security reasons, as a matter of data retention policy, the platform "
+"automatically deletes submissions and their data after a certain amount of "
+"time."
+msgstr "Για λόγους ασφαλείας, ως θέμα πολιτικής διατήρησης των δεδομένων, η πλατφόρμα διαγράφει αυτόματα τις παρατηρήσεις και τα δεδομένα τους μετά από ένα ορισμένο χρονικό διάστημα."
+
+msgid "Text shown on top of the interface for selecting recipients"
+msgstr "Κείμενο που εμφανίζεται στο πάνω μέρος της διασύνδεσης για την επιλογή των δικαιούχων"
+
+msgid "Welcome to the administration interface!"
+msgstr "Καλώς ήλθατε στο περιβάλλον διαχείρισης!"
+
+msgid ""
+"This interface may help you understand how the server can be configured and "
+"provides some info on how to connect to other GlobaLeaks users and experts."
+msgstr "Αυτή η διεπαφή μπορεί να σας βοηθήσει να κατανοήσετε πως ο κόμβος μπορεί να παραμετροποιηθεί και παρέχει πληροφορίες για τον τρόπο διασύνδεσης με άλλους χρήστες του GlobaLeaks και ειδικούς."
+
+msgid "Documentation"
+msgstr "Τεκμηρίωση"
+
+msgid ""
+"To properly organize your project, please read the following guidelines:"
+msgstr "Για να οργανώσετε κατάλληλα το σχέδιό σας, παρακαλώ διαβάστε τις παρακάτω οδηγίες: "
+
+msgid "Remember to provide proper security advice to Whistleblowers:"
+msgstr "Θυμηθείτε να παρέχετε σωστές συμβουλές ασφάλειας στους πληροφοριοδότες:"
+
+msgid ""
+"To learn more about GlobaLeaks Security you can read the following document:"
+msgstr "Για να μάθετε περισσότερα σχετικά με την ασφάλεια του GlobaLeaks μπορείτε να διαβάσετε το ακόλουθο έγγραφο:"
+
+msgid "Contact"
+msgstr "Επαφή"
+
+msgid ""
+"If you need technical support, have general questions, or have new ideas for"
+" the software:"
+msgstr ""
+
+msgid ""
+"If you want to contribute to software development or report a bug, please "
+"open an issue in our ticketing system:"
+msgstr ""
+
+msgid ""
+"If your non-profit needs support for investigative journalism, activism or a"
+" human rights defense project:"
+msgstr ""
+
+msgid ""
+"For professional support and development of anti corruption and compliance "
+"projects contact the social enterprise maintaining GlobaLeaks:"
+msgstr ""
+
+msgid "Join our IRC chat channel on the irc.oftc.net network:"
+msgstr ""
+
+msgid "Follow the project on:"
+msgstr "Ακολουθήστε το project στο:"
+
+msgid "Software version:"
+msgstr "έκδοση λογισμικού:"
+
+msgid "An update is available:"
+msgstr "Υπάρχει μια διαθέσιμη ενημέρωση:"
+
+msgid "SMTP name"
+msgstr "Το όνομά SMTP"
+
+msgid "SMTP email address"
+msgstr "SMTP διεύθυνση ηλεκτρονικού ταχυδρομείου"
+
+msgid "Invalid email address"
+msgstr "Άκυρη διεύθυνση ηλεκτρονικού ταχυδρομείου"
+
+msgid "SMTP server address"
+msgstr "Διεύθυνση του διακομιστή SMTP"
+
+msgid "SMTP server port"
+msgstr "SMTP υποδοχή διακομιστή"
+
+msgid "Transport Security"
+msgstr "Ασφάλεια Μεταφορών"
+
+msgid "When the option is re-enabled the spooled emails will be sent out."
+msgstr "Μη απεσταλμένα μηνύματα ηλεκτρονικού ταχυδρομείου θα επανέλθουν όταν η επιλογή ξαναενεργοποιηθεί."
+
+msgid "Reset notification templates to default"
+msgstr "Επαναφορά πρότυπα κοινοποίηση στην προεπιλογή"
+
+msgid "Number of hours before sending a submission expiration alert"
+msgstr "Αριθμός ωρών πριν από την αποστολή ειδοποίησης υποβολή λήξης"
+
+msgid "Maximum emails per hour before triggering email suspension"
+msgstr "Μέγιστη μηνύματα ηλεκτρονικού ταχυδρομείου ανά ώρα πριν από την ενεργοποίηση αναστολή email"
+
+msgid "this configuration only applies to recipients"
+msgstr "Η διαμόρφωση αυτή ισχύει μόνο για τους αποδέκτες"
+
+msgid "Test the configuration"
+msgstr ""
+
+msgid "Template"
+msgstr "Πρότυπο"
+
+msgid "Admin"
+msgstr "Διαχειριστής"
+
+msgid "Roles enabled to use the platform without Tor:"
+msgstr ""
+
+msgid "Recipient"
+msgstr "Αποδέκτης"
+
+msgid "Whistleblower"
+msgstr "Πληροφοριοδότης"
+
+msgid "Hostname"
+msgstr "Όνομα κεντρικού υπολογιστή"
+
+msgid "Verify"
+msgstr "Επιβεβαιώστε "
+
+msgid "Invalid input format."
+msgstr ""
+
+msgid "Input should be similar to:"
+msgstr ""
+
+msgid ""
+"The platform does not seem to be reachable with the configured hostname."
+msgstr ""
+
+msgid "Using Let's Encrypt requires agreement to their Terms of Service."
+msgstr "Η χρήση του Let's Encrypt απαιτεί συμφωνία με τους Όρους Παροχής Υπηρεσιών."
+
+msgid "Read the Terms of Service"
+msgstr "Διαβάστε τους Όρους Χρήσης"
+
+msgid "I agree to the Terms of Service."
+msgstr "Συμφωνώ με τους όρους χρήσης."
+
+msgid "Proceed"
+msgstr "Προχωρώ"
+
+msgid "Configuration completed. You can review the settings or enable it now."
+msgstr ""
+
+msgid "Review"
+msgstr "Ανασκόπηση"
+
+msgid "Enable"
+msgstr "Ενεργοποίηση"
+
+msgid "Country code"
+msgstr "Κωδικός χώρας"
+
+msgid "Organization"
+msgstr "Οργάνωση"
+
+msgid "Organizational unit"
+msgstr ""
+
+msgid ""
+"This interface can generate a Private Key and a Certificate Signing Request."
+" The Certificate Signing Request can be provided to a Certificate Authority "
+"to retrieve a Certificate. After having validated your request and your "
+"ownership of the hostname, the Certificate Authority will issue you a "
+"Certificate and provide a file containing Intermediate Certificates. Load "
+"the Certificate and the file containing the Intermediate Certificates to "
+"complete the HTTPS setup."
+msgstr ""
+
+msgid "Private Key"
+msgstr "Ιδιωτικό Κλειδί"
+
+msgid "Generate"
+msgstr "Δημιουργία"
+
+msgid "Certificate Signing Request"
+msgstr ""
+
+msgid "Certificate"
+msgstr "Πιστοποιητικό"
+
+msgid "Valid until:"
+msgstr "Ισχύει μέχρι:"
+
+msgid "Issuer:"
+msgstr "Εκδότης:"
+
+msgid "Intermediate Certificates"
+msgstr ""
+
+msgid "Reset"
+msgstr "Επαναφορά"
+
+msgid "Select an option:"
+msgstr "Διαλέξτε μια επιλογή:"
+
+msgid "Automatic configuration"
+msgstr ""
+
+msgid ""
+"Using automatic HTTPS configuration will handle the entire process of "
+"requesting, enabling and renewing certificates from the Let's Encrypt "
+"Certificate Authority."
+msgstr ""
+
+msgid ""
+"The platform must be reachable through a public IP address and the selected "
+"hostname must have a corresponding DNS record referencing that address."
+msgstr ""
+
+msgid "Manual configuration"
+msgstr ""
+
+msgid ""
+"The manual configuration wizard will guide you through the setup of HTTPS "
+"from an alternative Certificate Authority."
+msgstr ""
+
+msgid ""
+"The platform supports the configuration of HTTPS through this interface."
+msgstr ""
+
+msgid "The connection to the configured domain failed."
+msgstr ""
+
+msgid "Running"
+msgstr "Running"
+
+msgid "Not running"
+msgstr ""
+
+msgid "Auto-renewal"
+msgstr ""
+
+msgid "System message:"
+msgstr "Μήνυμα συστήματος:"
+
+msgid ""
+"Allowing whistleblowers to connect over HTTPS preserves their privacy but "
+"not their anonymity."
+msgstr "Το να επιτρέπεται στους πληροφοριοδότες να συνδέονται μέσω HTTPS διατηρεί την ιδιωτικότητά τους, αλλά όχι την ανωνυμία τους."
+
+msgid "Attention!"
+msgstr "Προσοχή!"
+
+msgid ""
+"Configuration in progress. When it is finished you will have to log in "
+"again."
+msgstr ""
+
+msgid "Your browser will be redirected to the following URL."
+msgstr "Το πρόγραμμα περιήγησής σας θα ανακατευθυνθεί στην ακόλουθη διεύθυνση URL."
+
+msgid "Tor Onion Service"
+msgstr "Υπηρεσία Tor Onion "
+
+msgid "Tor Browser download link"
+msgstr ""
+
+msgid "Anonymize outgoing connections"
+msgstr ""
+
+msgid "Let the platform be reachable without Tor"
+msgstr ""
+
+msgid "Stats of the week:"
+msgstr "Στατιστικά της εβδομάδας:"
+
+msgid "Free disk space"
+msgstr "Ελεύθερος χώρος στο δίσκο"
+
+msgid "Event ID"
+msgstr "ID συμβάντος"
+
+msgid "Time"
+msgstr "Χρόνος"
+
+msgid "Event"
+msgstr "Συμβάν"
+
+msgid "Response time"
+msgstr "Χρόνος απόκρισης"
+
+msgid "Role"
+msgstr "Ρόλος"
+
+msgid "Last access"
+msgstr "Τελευταία πρόσβαση"
+
+msgid "Submission"
+msgstr "Υποβολή"
+
+msgid "Path"
+msgstr "Διαδρομή"
+
+msgid "Size"
+msgstr "Μέγεθος"
+
+msgid "Alarm level"
+msgstr "επίπεδο συναγερμού"
+
+msgid "Events"
+msgstr "Γεγονότα "
+
+msgid "Label"
+msgstr "Ετικέτα"
+
+msgid "Type"
+msgstr "Τυπος"
+
+msgid "Single-line text input"
+msgstr "εισαγωγής κειμένου μονής γραμμής"
+
+msgid "Multi-line text input"
+msgstr "εισαγωγής κειμένου πολλαπλών γραμμών"
+
+msgid "Multiple choice input"
+msgstr "εισόδου πολλαπλής επιλογής"
+
+msgid "Selection box"
+msgstr "πλαίσιο επιλογής"
+
+msgid "Checkbox"
+msgstr "Checkbox"
+
+msgid "Terms of service"
+msgstr "Όροι χρήσης"
+
+msgid "Group of questions"
+msgstr "Ομάδα των ερωτήσεων"
+
+msgid "Row"
+msgstr "Σειρά"
+
+msgid "Column"
+msgstr "Στήλη"
+
+msgid "Width"
+msgstr "Πλάτος"
+
+msgid "Question group"
+msgstr "ομάδα ερώτηση"
+
+msgid "Hint"
+msgstr "Υπαινιγμός"
+
+msgid "Required"
+msgstr "Απαιτείται"
+
+msgid "Accept multiple file uploads"
+msgstr "Αποδοχή πολλαπλών μεταφορτώσεων φακέλων "
+
+msgid "Accept multiple answers for the field"
+msgstr "Αποδοχή πολλαπλών απαντήσεων για το πεδίο "
+
+msgid "Hint shown on the button for adding an additional answer"
+msgstr "Συμβουλή φαίνεται στο κουμπί για την προσθήκη επιπλέον απάντηση"
+
+msgid "Clause"
+msgstr "Ρήτρα "
+
+msgid "Agreement Text"
+msgstr "Κείμενο συμφωνίας "
+
+msgid "Layout orientation"
+msgstr "διάταξη προσανατολισμού"
+
+msgid "Subject answer visibility to custodian authorization"
+msgstr "Θέμα απάντηση προβολή σε θεματοφύλακα της άδειας"
+
+msgid "Prompt confirmation upon negative answer"
+msgstr "Ερώτηση επιβεβαίωσης κατά την αρνητική απάντηση"
+
+msgid "Title of the confirmation question upon negative answer"
+msgstr "Τίτλος της ερώτησης επιβεβαίωσης μετά την αρνητική απάντηση"
+
+msgid "Body of the confirmation question upon negative answer"
+msgstr "Το σώμα της ερώτησης επιβεβαίωσης μετά την αρνητική απάντηση"
+
+msgid "Options"
+msgstr "Επιλογές "
+
+msgid "Questions"
+msgstr ""
+
+msgid "Add new question"
+msgstr "Προσθέστε νέα ερώτηση"
+
+msgid "Add question from template"
+msgstr "Προσθέστε ερώτηση από το πρότυπο"
+
+msgid "Steps"
+msgstr ""
+
+msgid "Configuration"
+msgstr "Διαμόρφωση "
+
+msgid "Default"
+msgstr "Προεπιλογή"
+
+msgid "Forcefully selected"
+msgstr "δυναμικά επιλεγμένων"
+
+msgid "Unselectable"
+msgstr "Μη επιλεγμένο "
+
+msgid "Allow the recipient to postpone the submission expiration date"
+msgstr "Επιτρέπουν στον κάτοχό τους να αναβάλει την ημερομηνία λήξης υποβολής"
+
+msgid "The setting is enabled at a global level."
+msgstr "Η ρύθμιση είναι ενεργοποιημένη σε παγκόσμιο επίπεδο. "
+
+msgid "Allow the recipient to delete submissions"
+msgstr "Επιτρέπουν στον παραλήπτη να διαγράψει υποβολές"
+
+msgid ""
+"Allow the recipient to grant permissions to whistleblowers on specific "
+"submissions"
+msgstr "Επιτρέπουν στον κάτοχό τους να χορηγήσουν άδειες για πληροφοριοδότες σε συγκεκριμένα αιτήματα"
+
+msgid "General settings"
+msgstr "Γενικές Ρυθμίσεις"
+
+msgid "Network settings"
+msgstr "Ρυθμίσεις δικτύου"
+
+msgid "Root domain used for secondary sites"
+msgstr ""
+
+msgid "Allow users to sign up"
+msgstr ""
+
+msgid "Sites"
+msgstr ""
+
+msgid "Active"
+msgstr "Ενεργό"
+
+msgid "Inactive"
+msgstr ""
+
+msgid "The default password is:"
+msgstr ""
+
+msgid "The system forces users to change the password at first login."
+msgstr "Το σύστημα αναγκάζει τους χρήστες να αλλάξουν τον κωδικό πρόσβασης στην πρώτη σύνδεση. "
+
+msgid "New Password"
+msgstr "Νεος Κωδικός"
+
+msgid ""
+"The chosen password is too weak. Make it more secure by adding special "
+"characters, numbers, and unusual symbols."
+msgstr "Ο επιλεγμένος κωδικός πρόσβασης είναι πολύ αδύναμος. Κάντε τον πιο ασφαλή προσθέτοντας ειδικούς χαρακτήρες, αριθμούς και ασυνήθιστα σύμβολα."
+
+msgid "Force password change"
+msgstr "αλλαγή κωδικού πρόσβασης Force"
+
+msgid "The user will be forced to change its password on next login."
+msgstr "Ο χρήστης θα αναγκαστεί να αλλάξει τον κωδικό πρόσβασής του στο επόμενο login."
+
+msgid "Language"
+msgstr "Γλώσσα "
+
+msgid "Encryption:"
+msgstr ""
+
+msgid "Remove the PGP key"
+msgstr "Αφαίρεση κλειδιού PGP"
+
+msgid "Set up encryption by providing a PGP public key"
+msgstr "Ρύθμιση κρυπτογράφησης με την παροχή ενός δημόσιου κλειδιού PGP"
+
+msgid "Request date"
+msgstr "Ημερομηνία Αίτησης"
+
+msgid "Authorization"
+msgstr "Εξουσιοδότηση"
+
+msgid "Before proceeding, please change your password."
+msgstr "Πριν προχωρήσετε, παρακαλώ αλλάξτε τον κωδικό πρόσβασής σας."
+
+msgid "Submissions disabled"
+msgstr "Οι καταχωρίσεις είναι απενεργοποιημένες"
+
+msgid ""
+"You are connecting to the server without anonymity and this server supports "
+"only anonymous submissions"
+msgstr "Συνδέεστε χωρίς ανωνυμία σε κόμβο που υποστηρίζει μόνο ανώνυμες υποβολές"
+
+msgid ""
+"Server temporarly unusable due to resource exhaustion; advise the Admin if "
+"you can."
+msgstr "Διακομιστή temporarly άχρηστα λόγω πόρων εξάντλησης? συμβουλεύει τον διαχειριστή αν μπορείτε."
+
+msgid "This server is not configured."
+msgstr "Αυτός ο κόμβος δεν έχει ρυθμιστεί."
+
+msgid "You will not be able to send a submission."
+msgstr "Δεν θα μπορείτε να στείλετε μια υποβολή."
+
+msgid ""
+"This platform makes use of GlobaLeaks software specifically designed to "
+"protect the identity for submitter and recipient in the exchange of content."
+msgstr ""
+
+msgid ""
+"The software is developed by the non-profit Hermes Center for Transparency "
+"and Digital Human Rights."
+msgstr "Το λογισμικό έχει αναπτυχθεί από το μη κερδοσκοπικό Hermes Κέντρο Διαφάνειας και Ανθρωπίνων Δικαιωμάτων Digital."
+
+msgid "Please support Hermes through their donation page."
+msgstr "Παρακαλούμε υποστηρίξτε Hermes μέσω της σελίδας της δωρεάς τους."
+
+msgid "Authentication failed"
+msgstr "Αποτυχία πιστοποίησης"
+
+msgid "Please select your account:"
+msgstr "Παρακάλω επιλέξτε το λογαριασμό σας: "
+
+msgid "Now type your password, then click 'Log in':"
+msgstr "Τώρα πληκτρολογήστε τον κωδικό πρόσβασής σας, μετά πιέστε \"Σύνδεση\": "
+
+msgid "Are you sure?"
+msgstr "Είσαι σίγουρος?"
+
+msgid "The operation will reset the configuration and cannot be undone."
+msgstr ""
+
+msgid "Assign score points"
+msgstr "Αναθέστε πόντους"
+
+msgid ""
+"Enter the number of score points to be assigned when this option is "
+"selected:"
+msgstr "Εισάγετε τον αριθμό των σημείων βαθμολογία που θα διατεθεί όταν είναι ενεργοποιημένη αυτή η επιλογή:"
+
+msgid "Confirm"
+msgstr "Επιβεβαιώστε την επέκταση"
+
+msgid "Are you human?"
+msgstr "Είστε άνθρωπος; "
+
+msgid ""
+"We do not discriminate based on race and gender, but we do against computers"
+" :)"
+msgstr "Δεν κάνουμε διακρίσεις με βάση τη φυλή και το φύλο, αλλά το κάνουμε εναντίον τους υπολογιστές :)"
+
+msgid ""
+"Just to prove you are human, please answer the following math challenge:"
+msgstr "Ακριβώς για να αποδείξει είστε ανθρώπινη, παρακαλούμε να απαντήσετε στην ακόλουθη πρόκληση μαθηματικά:"
+
+msgid "I've solved the math challenge, hide this thing now!"
+msgstr "Έχω λυθεί η πρόκληση μαθηματικά, να κρύψει αυτό το πράγμα τώρα!"
+
+msgid "Please note that all the associated data will be permanently lost."
+msgstr "Παρακαλούμε σημειώστε ότι όλα τα σχετικά δεδομένα θα χαθούν οριστικά."
+
+msgid ""
+"This means that if the server running the platform were to be seized, it "
+"would be possible to extract the files that have been submitted."
+msgstr "Αυτό σημαίνει ότι αν ο διακομιστής τρέχει στην πλατφόρμα έπρεπε να κατασχεθεί, θα ήταν δυνατό να εξαγάγετε τα αρχεία που έχουν υποβληθεί."
+
+msgid "Are you sure that you wish to continue?"
+msgstr "Είστε σίγουρος ότι θέλετε να προχωρήσετε;"
+
+msgid ""
+"Downloading a file with malicious content could compromise your computer or "
+"disclose your identity."
+msgstr "Η λήψη ενός αρχείου με κακόβουλο περιεχόμενο ενδέχεται να θέσει σε κίνδυνο τον υπολογιστή σας ή να αποκαλύψει την ταυτότητά σας."
+
+msgid "The name of the file and its content can be intentionally misleading."
+msgstr "Το όνομα του αρχείου και το περιεχόμενό του μπορεί να είναι σκόπιμα παραπλανητικά."
+
+msgid ""
+"Please review the following information and decide if you wish to proceed."
+msgstr ""
+
+msgid "Error!"
+msgstr "Λάθος!"
+
+msgid "Internal server error"
+msgstr ""
+
+msgid "Error on input validation"
+msgstr ""
+
+msgid "Resource not found"
+msgstr ""
+
+msgid "Forbidden operation"
+msgstr ""
+
+msgid "The specified old password is not valid"
+msgstr "Το παλιό συνθηματικό που ορίσατε δεν είναι έγκυρο"
+
+msgid "Resource can only be accessed via the Tor network"
+msgstr "Πρόσβαση στον πόρο μόνο εντός του Tor network"
+
+msgid "The upload request exceeds the size limit"
+msgstr "Το αίτημα ανεβάσματος ξεπερνά τα όρια μεγέθους"
+
+msgid "Success!"
+msgstr "Επιτυχία!"
+
+msgid ""
+"It appears that you are browsing this site without any extra privacy and "
+"security!"
+msgstr "Φαίνεται ότι η περιήγηση σας αυτό το site χωρίς καμία επιπλέον προστασία της ιδιωτικής ζωής και της ασφάλειας!"
+
+msgid ""
+"You are strongly advised to visit this site using the desktop app called Tor"
+" Browser, that protects your identity."
+msgstr "Σας συνιστούμε να επισκεφτείτε αυτό το site χρησιμοποιώντας την εφαρμογή επιφάνειας εργασίας που ονομάζεται Tor Browser, που προστατεύει την ταυτότητά σας."
+
+msgid "Then, copy and paste the following address into the Tor Browser:"
+msgstr "Στη συνέχεια, αντιγράψτε και επικολλήστε την παρακάτω διεύθυνση στο πρόγραμμα περιήγησης Tor:"
+
+msgid "Details of the PGP key:"
+msgstr "Λεπτομέρειες του κλειδιού PGP:"
+
+msgid "Fingerprint"
+msgstr "Αποτύπωμα"
+
+msgid "Add file"
+msgstr "Προσθήκη αρχείου"
+
+msgid "Uploading files…"
+msgstr "Μεταφόρτωση αρχείων ..."
+
+msgid "Upload completed successfully!"
+msgstr "Ανεβάστε ολοκληρώθηκε με επιτυχία!"
+
+msgid "Error while uploading files; check below for details."
+msgstr "Σφάλμα κατά τη μεταφόρτωση αρχείων? ελέγξτε παρακάτω για λεπτομέρειες."
+
+msgid "Estimated upload time:"
+msgstr "Εκτιμώμενος χρόνος αποστολής:"
+
+msgid "seconds"
+msgstr "δευτερόλεπτα"
+
+msgid "Which of the following statements is true?"
+msgstr "Ποιά από τις παρακάτω δηλώσεις είναι αληθής;"
+
+msgid "HTTPS protects my identity, but not the content of my submission"
+msgstr "Το HTTPS προστατεύει την ταυτότητά μου, αλλά όχι το περιεχόμενο της υποβολής μου"
+
+msgid "HTTPS protects the content of my submission but not my identity"
+msgstr "Το HTTPS προστατεύει το περιεχόμενο της υποβολής μου, αλλά όχι την ταυτότητά μου"
+
+msgid "HTTPS does not protect the content of my submission nor my identity"
+msgstr "Το HTTPS δεν προστατεύει το περιεχόμενο της υποβολής μου ούτε την ταυτότητά μου"
+
+msgid "HTTPS does protect both my identity and the content of my submission"
+msgstr "Το HTTPS προστατεύει τόσο την ταυτότητά μου όσο και το περιεχόμενο της υποβολής μου"
+
+msgid ""
+"You are aware of the risks involved. Go ahead, but consider yourself warned."
+msgstr "Θεωρείται ότι γνωρίζετε τους κινδύνους που περιλαμβάνονται. Προχωρήστε, αλλά θεωρήστε ότι σας έχουμε προειδοποιήσει."
+
+msgid "Wrong Answer!"
+msgstr "Λάθος απάντηση!"
+
+msgid "The connection is not secure."
+msgstr "Η σύνδεση δεν είναι ασφαλής."
+
+msgid ""
+"The platform is still not configured for HTTPS connections and should "
+"therefore only be used for testing purposes."
+msgstr ""
+
+msgid "Send"
+msgstr "Αποστολή"
+
+msgid "Allow the whistleblower to write comments"
+msgstr "Αφήστε το πληροφοριοδότη για να γράψετε σχόλια"
+
+msgid "Filename"
+msgstr "Όνομα αρχείου"
+
+msgid "Upload date"
+msgstr "Ημερομηνία ανεβάσματος"
+
+msgid "Content Type"
+msgstr "Τύπος περιεχομένου"
+
+msgid "File size"
+msgstr "Μέγεθος αρχείου"
+
+msgid "download"
+msgstr "Λήψη"
+
+msgid "No files have been uploaded!"
+msgstr "Δεν ανέβηκε κανένα αρχείο!"
+
+msgid "Allow the whistleblower to add attachments to the submission"
+msgstr "Αφήστε το πληροφοριοδότη για να προσθέσετε συνημμένα σε υποβολή"
+
+msgid "Access expiration"
+msgstr "Λήξη πρόσβασης"
+
+msgid "Connection"
+msgstr "Σύνδεση"
+
+msgid "Never"
+msgstr "Ποτέ"
+
+msgid "Revoked"
+msgstr ""
+
+msgid "Allow the whistleblower to send messages"
+msgstr "Αφήστε το πληροφοριοδότη για να στείλετε μηνύματα"
+
+msgid "Are you sure that you want to delete the submission?"
+msgstr "Είστε σίγουροι ότι θέλετε να διαγράψετε την υποβολή;"
+
+msgid ""
+"Everything related to the submission stored on the platform will be deleted."
+msgstr "Όλα όσα σχετίζονται με την υποβολή που είναι αποθηκευμένη στην πλατφόρμα θα διαγραφούν."
+
+msgid ""
+"Please be aware that everything stored off the platform, e.g. files you have"
+" saved on your computer, must be deleted manually."
+msgstr ""
+
+msgid "Are you sure that you want to delete all the selected submissions?"
+msgstr "Είστε σίγουροι ότι θέλετε να διαγράψετε όλες τις επιλεγμένες υποβολές;"
+
+msgid ""
+"Please make sure that all related data is properly deleted so that the "
+"recipients won't be able to further access to it."
+msgstr "Παρακαλώ φροντίστε να διαγράψετε με σωστό τρόπο όλα τα δεδομένα και κανένας αποδέκτης δεν θα είναι σε θέση να αποκτήσει περαιτέρω πρόσβαση σε αυτά."
+
+msgid "Please write a motivation for the reply"
+msgstr "Παρακαλούμε γράψτε ένα κίνητρο για την απάντηση"
+
+msgid "Are you sure that you want to postpone the submission expiration date?"
+msgstr "Είστε σίγουροι ότι θέλετε να αναβάλει την ημερομηνία λήξης υποβολής;"
+
+msgid "By confirming, you will postpone the expiration date to:"
+msgstr "Με την επιβεβαίωση, θα αναβάλει την ημερομηνία λήξης για να:"
+
+msgid ""
+"Are you sure that you want to postpone the expiration date for all selected "
+"submissions?"
+msgstr "Είστε σίγουροι ότι θέλετε να αναβάλει την ημερομηνία λήξης για όλες τις επιλεγμένες υποβολές;"
+
+msgid "Questionnaire answers"
+msgstr "ερωτηματολόγιο απαντήσεις"
+
+msgid "Step"
+msgstr "Βήμα"
+
+msgid "Recipient list"
+msgstr "λίστα παραληπτών"
+
+msgid "Attached files for the whistleblower"
+msgstr "Συνημμένα αρχεία για τον πληροφοριοδότη"
+
+msgid ""
+"Files uploaded here are made available for the whistleblower and other "
+"recipients to download."
+msgstr ""
+
+msgid "Upload a file:"
+msgstr "Ανεβάστε ένα αρχείο:"
+
+msgid "Logout"
+msgstr "Αποσύνδεση"
+
+msgid "The key code is either invalid or the submission has expired."
+msgstr "Ο κωδικός του κλειδιού είναι είτε άκυρος ή η υποβολή έχει λήξει."
+
+msgid "Please check your key code and try again or make a new submission."
+msgstr "Παρακαλώ ελέγξτε τον βασικό κώδικα σας και προσπαθήστε ξανά ή κάντε μια νέα υποβολή."
+
+msgid "Files attached by recipients"
+msgstr ""
+
+msgid "These files have been attached to your submission by the recipients."
+msgstr ""
+
+msgid "Enable submission notification"
+msgstr "Ενεργοποίηση ειδοποίησης υποβολή"
+
+msgid "Current Password"
+msgstr "Τρέχων Κωδικός"
+
+msgid "Old password confirmation required"
+msgstr "Χρειάζεται επιβεβαίωση του παλιού κωδικού"
+
+msgid "The new password must be different from the current one."
+msgstr ""
+
+msgid "Type your new password again"
+msgstr "Πληκτρολογείστε ξανά το νέο σας κωδικό"
+
+msgid "The two passwords do not match"
+msgstr "Οι δύο κωδικοί δεν ταιριάζουν"
+
+msgid "Thank you!"
+msgstr "Ευχαριστώ!"
+
+msgid "Remember your key code for this submission."
+msgstr "Θυμηθείτε το κλειδί κωδικό σας για αυτή την υποβολή."
+
+msgid "We will try to get back to you as soon as possible!"
+msgstr "Εμείς θα προσπαθήσουμε να επικοινωνήσουμε μαζί σας το συντομότερο δυνατόν!"
+
+msgid ""
+"Use the 16 digit key code to log in. It will allow you to view any messages "
+"we sent you, and also to add extra info."
+msgstr "Χρησιμοποιήστε το πλήκτρο κωδικό 16 ψηφίων για να συνδεθείτε. Θα σας επιτρέψει να δείτε όλα τα μηνύματα που σας στείλαμε, και επίσης να προσθέσετε επιπλέον πληροφορίες."
+
+msgid "View your submission"
+msgstr "Δείτε την υποβολή σας"
+
+msgid "Hint: How to hide your key code"
+msgstr "Συμβουλή: Πώς να κρύψει το κλειδί κωδικό σας"
+
+msgid ""
+"A useful way to hide your key code is to write it down like a credit card "
+"number, i.e. by also including an expiration date."
+msgstr "Ένας χρήσιμος τρόπος για να κρύψει το κλειδί κωδικός σας είναι να το γράψετε όπως έναν αριθμό πιστωτικής κάρτας, δηλαδή περιλαμβάνοντας επίσης μια ημερομηνία λήξης."
+
+msgid "Example:"
+msgstr "Παράδειγμα:"
+
+msgid ""
+"You have not set up your encryption key, so the files will not be encrypted "
+"prior to being stored on the server."
+msgstr "Δεν έχετε δημιουργήσει το κλειδί κρυπτογράφησης, έτσι ώστε τα αρχεία δεν θα κρυπτογραφούνται πριν να αποθηκεύονται στο διακομιστή."
+
+msgid ""
+"This may lead to unintended access to the files by the server administrator "
+"or others in case the server is compromised."
+msgstr "Αυτό μπορεί να οδηγήσει σε αθέλητη πρόσβαση στα αρχεία από το διαχειριστή του server ή άλλους σε περίπτωση που ο server είναι εκτεθημένος."
+
+msgid "Please configure your PGP keys in the recipient preferences page."
+msgstr "Παρακαλώ ρυθμίστε τα κλειδιά PGP στη σελίδα προτιμήσεων του αποδέκτη."
+
+msgid ""
+"One or more of the recipients of this submission has not configured a PGP "
+"key."
+msgstr "Ένα ή περισσότερα από τους δικαιούχους αυτής της υποβολής δεν έχει διαμορφωθεί ένα κλειδί PGP."
+
+msgid ""
+"This means that the submitted files will be stored in plaintext on the "
+"server."
+msgstr "Αυτό σημαίνει ότι τα υποβαλλόμενα αρχεία θα αποθηκευτούν στον κόμβο σε μορφή απλού κειμένου."
+
+msgid ""
+"Access to the whistleblower's identity has been requested to the custodian."
+msgstr "Η πρόσβαση στην ταυτότητα του πληροφοριοδότη έχει ζητηθεί στο θεματοφύλακα."
+
+msgid "Date of the request"
+msgstr "Ημερομηνία υποβολής της αίτησης"
+
+msgid "Congratulations!"
+msgstr "Συγχαρητήρια!"
+
+msgid "You have completed the platform activation."
+msgstr ""
+
+msgid "Your whistleblowing platform is now accessible at:"
+msgstr ""
+
+msgid "Users' credentials:"
+msgstr ""
+
+msgid "To log in, visit:"
+msgstr ""
+
+msgid "For the user documentation visit:"
+msgstr ""
+
+msgid "The platform will be automatically deleted on:"
+msgstr ""
+
+msgid "Sign up"
+msgstr ""
+
+msgid "Domain"
+msgstr "Επικράτεια"
+
+msgid "Use Case"
+msgstr ""
+
+msgid "Anticorruption"
+msgstr ""
+
+msgid "Corporate compliance"
+msgstr ""
+
+msgid "Investigative journalism"
+msgstr ""
+
+msgid "Civic activism"
+msgstr ""
+
+msgid "Other"
+msgstr "Άλλο"
+
+msgid "Complete"
+msgstr "Ολοκληρώθηκε"
+
+msgid "Your whistleblowing platform is almost ready!"
+msgstr ""
+
+msgid "Check your inbox to activate your account."
+msgstr ""
+
+msgid "The answer is too short."
+msgstr ""
+
+msgid "The specified input is not valid:"
+msgstr ""
+
+msgid "please enter a valid email address."
+msgstr "Παρακαλούμε εισάγετε μια έγκυρη διεύθυνση ηλεκτρονικού ταχυδρομείου."
+
+msgid "please enter numbers only."
+msgstr "παρακαλούμε εισάγετε μόνο αριθμούς."
+
+msgid "Recipient selection"
+msgstr "Επιλογή αποδέκτη"
+
+msgid "previous step"
+msgstr "Προηγούμενο βήμα"
+
+msgid "next step"
+msgstr "Επόμενο βήμα"
+
+msgid "Submit"
+msgstr "Υποβολή"
+
+msgid "Recipients selected:"
+msgstr "Επιλεγμένοι αποδέκτες:"
+
+msgid ""
+"In this step the answers to the following questions are either missing or "
+"invalid:"
+msgstr ""
+
+msgid "Submission errors"
+msgstr "Σφάλματα υποβολής"
+
+msgid "You must select at least one recipient."
+msgstr "Πρέπει να επιλέξετε τουλάχιστον έναν παραλήπτη."
+
+msgid "Waiting for the file(s) to finish uploading."
+msgstr ""
+
+msgid "The following steps have errors:"
+msgstr "Τα παρακάτω βήματα έχουν σφάλματα:"
+
+msgid "Welcome!"
+msgstr "Καλώς ήρθατε!"
+
+msgid ""
+"The following step-by-step procedure will guide you through creating your "
+"whistleblowing platform."
+msgstr ""
+
+msgid "Please choose a configuration profile:"
+msgstr ""
+
+msgid ""
+"These profiles contain settings used by successful projects in each "
+"respective field."
+msgstr ""
+
+msgid "Confirm password"
+msgstr "Επιβεβαιώστε κωδικό"
+
+msgid "The default username is:"
+msgstr ""
+
+msgid "License Agreement"
+msgstr ""
+
+msgid "Please review the license terms before proceeding."
+msgstr ""
+
+msgid "I have read and agree to the terms of the License Agreement."
+msgstr ""
+
+msgid "You have completed the platform wizard."
+msgstr "Έχετε ολοκληρώσει επιτυχώς τον οδηγό πλατφόρμα."
+
+msgid "Fill out your submission"
+msgstr "Συμπληρώστε την υποβολή σας"
+
+msgid "Short title"
+msgstr "Σύντομος τίτλος"
+
+msgid "Describe your submission in a few words."
+msgstr "Περιγράψτε την υποβολή σας με λίγα λόγια."
+
+msgid "Full description"
+msgstr "Πλήρης περιγραφή"
+
+msgid "Describe your submission in detail."
+msgstr "Περιγράψτε λεπτομερώς την υποβολή σας."
+
+msgid "Attach files relevant to the submission."
+msgstr "Επισυνάψτε τα αρχεία σχετικά με την υποβολή."
+
+msgid "Dear {RecipientName},"
+msgstr "Αγαπητοί {RecipientName}"
+
+msgid "Kind regards,"
+msgstr "Θερμούς χαιρετισμούς,"
+
+msgid ""
+"The number of activities recently detected appears to be higher than usual."
+msgstr "Ο αριθμός των δραστηριοτήτων ανιχνεύθηκαν πρόσφατα φαίνεται να είναι υψηλότερο από το συνηθισμένο."
+
+msgid ""
+"This could be a sign of an attack (for example, someone flooding your server"
+" with bogus information) or just a usage spike due to an increased "
+"visibility of your project."
+msgstr "Αυτό θα μπορούσε να είναι ένα σημάδι μιας επίθεσης (για παράδειγμα, κάποιος πλημμύρες server σας με ψευδείς πληροφορίες) ή απλά μια ακίδα χρήσης οφείλεται στην αυξημένη προβολή του έργου σας."
+
+msgid "Examine the issue to determine whether it is legitimate or not."
+msgstr ""
+
+msgid "The activities with unusual stats are:"
+msgstr "Οι δραστηριότητες με ασυνήθιστο στατιστικά είναι:"
+
+msgid ""
+"The server cannot guarantee that a new submission can be stored, so "
+"submissions have been disabled."
+msgstr "Ο διακομιστής δεν μπορεί να εγγυηθεί ότι ένα νέο υποβολή μπορεί να αποθηκευτεί, έτσι ώστε οι υποβολές έχουν απενεργοποιηθεί."
+
+msgid ""
+"Please consider asking your technical support to create more disk space on "
+"the server."
+msgstr ""
+
+msgid ""
+"GlobaLeaks technology includes a server status checking component which will"
+" alert you in case something requires your attention."
+msgstr "τεχνολογία GlobaLeaks περιλαμβάνει την κατάσταση του διακομιστή στοιχείο ελέγχου, το οποίο θα σας ειδοποιεί σε περίπτωση που κάτι απαιτεί την προσοχή σας."
+
+msgid ""
+"For more information, log in to the Administration interface and look at the"
+" \"System Stats\" and \"Anomalies\" sections."
+msgstr "Για περισσότερες πληροφορίες, συνδεθείτε στο interface Διοίκησης και δείτε τις \"Σύστημα Στατιστικά\" και τα τμήματα «ανωμαλίες»."
+
+msgid "Anomaly detected in {NodeName}"
+msgstr "Ανωμαλία ανιχνευθεί σε {NodeName}"
+
+msgid ""
+"This is an email to inform you that the PGP key of the following users is "
+"going to expire or has already expired:"
+msgstr "Αυτό είναι ένα μήνυμα ηλεκτρονικού ταχυδρομείου για να σας ενημερώσουμε ότι το κλειδί PGP από τους ακόλουθους χρήστες πρόκειται να λήξει ή έχει ήδη λήξει:"
+
+msgid ""
+"Without a valid PGP key, the system will not be able to send them encrypted "
+"notifications."
+msgstr "Χωρίς ένα έγκυρο κλειδί PGP, το σύστημα δεν θα είναι σε θέση να στέλνετε κρυπτογραφημένα ειδοποιήσεις."
+
+msgid "PGP key expiration alert"
+msgstr "PGP κλειδί ειδοποίησης λήξης"
+
+msgid ""
+"This is a test email sent out from the platform's administrative interface."
+msgstr ""
+
+msgid ""
+"Reception of this email indicates that the server was able to authenticate "
+"to and interact with the SMTP mail server."
+msgstr ""
+
+msgid "Test email"
+msgstr "Δοκιμαστικό email"
+
+msgid ""
+"This is an email to notify you of a new comment on an existing submission."
+msgstr "Αυτό είναι ένα μήνυμα ηλεκτρονικού ταχυδρομείου για να σας ενημερώσουμε για ένα νέο σχόλιο σε μια υπάρχουσα υποβολή."
+
+msgid "The submission can be accessed:"
+msgstr "Η υποβολή μπορεί να προσεγγιστεί:"
+
+msgid "via Tor at: {TorUrl}"
+msgstr "μέσω Tor στο: {TorUrl}"
+
+msgid "via HTTPS at: {HTTPSUrl}"
+msgstr "μέσω HTTPS στο: {HTTPSUrl}"
+
+msgid "New comment"
+msgstr "νέο σχόλιο"
+
+msgid "From: {RecipientName}"
+msgstr "Από: {RecipientName}"
+
+msgid "Date: {EventTime}"
+msgstr "Ημερομηνία: {EventTime}"
+
+msgid "From: Whistleblower"
+msgstr "Από: πληροφοριοδότη"
+
+msgid "Date: {SubmissionDate}"
+msgstr "Ημερομηνία: {SubmissionDate}"
+
+msgid "Label: {TipLabel}"
+msgstr "Ετικέτα: {TipLabel}"
+
+msgid "Context: {ContextName}"
+msgstr "Πλαίσιο: {ContextName}"
+
+msgid ""
+"This is an email to notify you that the whistleblower of submission {TipNum}"
+" has attached new material."
+msgstr "Αυτό είναι ένα μήνυμα ηλεκτρονικού ταχυδρομείου για να σας ενημερώσουμε ότι η πληροφοριοδότη της υποβολής {TipNum} έχει επισυνάψει νέο υλικό."
+
+msgid "New attachment"
+msgstr "νέα συνημμένο"
+
+msgid ""
+"The HTTPS certificate loaded on the platform is about to, or has already "
+"expired."
+msgstr ""
+
+msgid "Expiration date: {ExpirationDate}"
+msgstr "Ημερομηνία λήξης: {ExpirationDate}"
+
+msgid ""
+"Without a valid certificate, the platform will be accessible in a secure way"
+" only via Tor."
+msgstr "Χωρίς έγκυρο πιστοποιητικό, η πλατφόρμα θα είναι προσβάσιμη με ασφαλή τρόπο μόνο μέσω του Tor."
+
+msgid "Log in to solve the issue."
+msgstr "Συνδεθείτε για να λύσετε το πρόβλημα."
+
+msgid "Expiration alert for HTTPS certificate"
+msgstr "Ειδοποίηση λήξης πιστοποιητικού HTTPS"
+
+msgid ""
+"This is an email to notify you that a custodian has authorized you to access"
+" to the whistleblowing identity for the submission {TipNum}."
+msgstr ""
+
+msgid "Access to whistleblower's identity authorized"
+msgstr "Η πρόσβαση στην ταυτότητα πληροφοριοδότη του εξουσιοδοτημένου"
+
+msgid ""
+"This is an email to notify you that a custodian has denied you access to the"
+" wistleblowing identity for the submission {TipNum}."
+msgstr "Αυτό είναι ένα μήνυμα ηλεκτρονικού ταχυδρομείου για να σας ενημερώσουμε ότι ένας θεματοφύλακας έχει αρνηθεί την πρόσβαση στην ταυτότητα wistleblowing για την υποβολή˘{TipNum}."
+
+msgid "Access to whistleblower's identity denied"
+msgstr "Η πρόσβαση στην ταυτότητα πληροφοριοδότη αρνήθηκε"
+
+msgid ""
+"This is an email to notify you that a recipient has requested access to the "
+"whistleblower's identity for the submission {TipNum}"
+msgstr "Αυτό είναι ένα μήνυμα ηλεκτρονικού ταχυδρομείου για να σας ενημερώσουμε ότι ο δικαιούχος έχει ζητήσει πρόσβαση προς την ταυτότητα του πληροφοριοδότη για την υποβολή {TipNum}"
+
+msgid "The request can be accessed:"
+msgstr "Η αίτηση μπορεί να προσεγγιστεί:"
+
+msgid "New request of access to a whistleblower's identity"
+msgstr "Νέο αίτημα πρόσβασης στην ταυτότητα ενός πληροφοριοδότη"
+
+msgid ""
+"This is an email to notify you that the whistleblower for the submission "
+"{TipNum} has provided their identity."
+msgstr "Αυτό είναι ένα μήνυμα ηλεκτρονικού ταχυδρομείου για να σας ενημερώσουμε ότι η πληροφοριοδότη για την υποβολή {TipNum} έδωσε την ταυτότητά τους."
+
+msgid "The whistleblower has provided their identity"
+msgstr "Ο πληροφοριοδότης έδωσε την ταυτότητά τους"
+
+msgid ""
+"This is an email to notify you of a new message on an existing submission."
+msgstr "Αυτό είναι ένα μήνυμα ηλεκτρονικού ταχυδρομείου για να σας ενημερώσουμε για ένα νέο μήνυμα σε μια υπάρχουσα υποβολή."
+
+msgid "New message"
+msgstr "Νέο μήνυμα"
+
+msgid ""
+"This is an email to inform you that your PGP key is expiring or has already "
+"expired."
+msgstr "Αυτό είναι ένα μήνυμα ηλεκτρονικού ταχυδρομείου για να σας πω ότι το κλειδί PGP σας λήγει ή έχει ήδη λήξει ενημερώσει."
+
+msgid ""
+"You should extend its validity and update the key present on the platform, "
+"or upload a new key."
+msgstr "Θα πρέπει να παραταθεί η ισχύς της και να ενημερώσετε το κλειδί που βρίσκονται στην πλατφόρμα, ή να ανεβάσετε ένα νέο κλειδί."
+
+msgid ""
+"Without a valid PGP key, the system won't be able to encrypt data provided "
+"to you."
+msgstr "Χωρίς ένα έγκυρο κλειδί PGP, το σύστημα δεν θα είναι σε θέση να κρυπτογραφήσετε τα δεδομένα σας παρέχονται."
+
+msgid "It appears that {NodeName} is receiving a large number of requests."
+msgstr "Φαίνεται ότι {NodeName} λαμβάνει ένα μεγάλο αριθμό αιτήσεων."
+
+msgid ""
+"To prevent sending you too many emails, the system has disabled email "
+"notifications until the load returns to normal. In the meantime, you can "
+"normally log onto the platform and manually check for new submissions."
+msgstr "Για να αποφευχθεί να σας στέλνουν πάρα πολλά μηνύματα ηλεκτρονικού ταχυδρομείου, το σύστημα έχει απενεργοποιήσει τις ειδοποιήσεις ηλεκτρονικού ταχυδρομείου μέχρι τις αποδόσεις φορτίου σε φυσιολογικά επίπεδα. Εν τω μεταξύ, μπορείτε κανονικά να συνδεθείτε στην πλατφόρμα και να ελέγξετε το χέρι για νέες υποβολές."
+
+msgid ""
+"If you don’t mind and would rather receive such a large number of email "
+"notifications anyhow, please contact your technical support to have them "
+"modify this setting accordingly."
+msgstr "Αν δεν σας πειράζει και μάλλον θα λάβετε ένα τόσο μεγάλο αριθμό των κοινοποιήσεων ηλεκτρονικού ταχυδρομείου ούτως ή άλλως, παρακαλούμε επικοινωνήστε με την τεχνική υποστήριξη σας για να έχετε τα τροποποιήσετε αυτή τη ρύθμιση ανάλογα."
+
+msgid "Notifications from {NodeName} have been temporarily suspended"
+msgstr "Ειδοποιήσεις από {NodeName} έχουν προσωρινά ανασταλεί"
+
+msgid "Click the link to activate the platform:"
+msgstr ""
+
+msgid "A software update is available."
+msgstr ""
+
+msgid "It is good security practice to keep the platform up to date."
+msgstr ""
+
+msgid "Installed version: {InstalledVersion}"
+msgstr ""
+
+msgid "Latest version: {LatestVersion}"
+msgstr ""
+
+msgid ""
+"To learn about new features and bug fixes in the new version consult the "
+"change log at: {ChangeLogUrl}"
+msgstr ""
+
+msgid ""
+"For instructions on software updates, please refer to the documentation at: "
+"{UpdateGuideUrl}"
+msgstr ""
+
+msgid "The earliest expiration date is {EarliestExpirationDate}."
+msgstr ""
+
+msgid "Please remember to check them before they are deleted."
+msgstr "Μην ξεχνάτε να τα ελέγξετε πριν διαγραφούν."
+
+msgid "Some submissions will expire soon"
+msgstr "Ορισμένες υποβολές θα λήξουν σύντομα"
+
+msgid ""
+"This is an email to notify you that a whistleblower has selected you as a "
+"valuable recipient of their submission."
+msgstr ""
+
+msgid ""
+"You are asked to pay special attention to the information and material "
+"contained therein. Please keep in mind that whistleblowers often expose "
+"themselves to high personal risks in the interest of the public. Therefore "
+"the material provided within this submission should be considered to be of "
+"high importance."
+msgstr ""
+
+msgid "New submission"
+msgstr "νέα υποβολή"
