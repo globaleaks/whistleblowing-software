@@ -29,7 +29,7 @@ if distro != 'xenial':
     print("WARNING: Read about Technical Requirement at: http://globaleaks.readthedocs.io/en/latest/TechnicalRequirements.html")
     print("WARNING: If it's an old Ubuntu, read more about updating at: https://github.com/globaleaks/GlobaLeaks/wiki/Upgrade-Guide#platform-update")
 
-if distro in ('trusty', 'precise', 'wheezy', 'jessie'):
+if distro in ('precise', 'trusty', 'wheezy', 'jessie'):
     from globaleaks.utils.pip_utils import pip_version_check
 
     requirements_path = os.path.join(root, 'requirements.txt')
