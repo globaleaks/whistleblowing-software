@@ -1,4 +1,7 @@
-Changes in version 3.0.1 - 2017-02-23
+Changes in version 3.0.2 - 2018-02-25
+    o Fix bug on empty notifications of PGP expiration
+
+Changes in version 3.0.1 - 2018-02-23
     o Implelement Debian Stretch 8.10 packaging (#2071)
     o Add Finnish translation
     o Update translations
@@ -9,7 +12,7 @@ Changes in version 3.0.1 - 2017-02-23
     - https://github.com/globaleaks/GlobaLeaks/issues/2069
     - https://github.com/globaleaks/GlobaLeaks/issues/2070
 
-Changes in version 3.0.0 - 2017-02-22
+Changes in version 3.0.0 - 2018-02-22
     o Implement multitenancy support enabling to create multiple globaleaks
       sites on a single server process
     o Apply database structure refactoring and optimization
@@ -29,17 +32,17 @@ Changes in version 3.0.0 - 2017-02-22
     o Imlement basic signup capability for demo purposes
     o Update translations
 
-Changes in version 2.72.31 - 2017-01-15
+Changes in version 2.72.31 - 2018-01-15
     o Fix interface for providing the whistleblower identity after
       an initial fully anonymous submission
 
-Changes in version 2.72.30 - 2017-01-15
+Changes in version 2.72.30 - 2018-01-15
     o Enable to configure the whistleblower identity as mandatory field
 
-Changes in version 2.72.29 - 2017-01-12
+Changes in version 2.72.29 - 2018-01-12
     o Fix API for deletion of models images
 
-Changes in version 2.72.28 - 2017-01-10
+Changes in version 2.72.28 - 2018-01-10
     o Apply UI fix to questions addition
 
 Changes in version 2.72.27 - 2017-12-23
