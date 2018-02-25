@@ -44,7 +44,6 @@ class TestNotification(helpers.TestGLWithPopulatedDB):
             yield notification.run()
             yield self.test_model_count(models.Mail, 24)
 
-
         yield notification.run()
 
         yield self.test_model_count(models.Mail, 0)
