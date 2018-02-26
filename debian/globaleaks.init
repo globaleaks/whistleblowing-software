@@ -168,13 +168,15 @@ network_sandboxing_start()
         fi
 
         # INBOUND LOCAL
-        for PORT in "8082 8083"; do
+        declare -a PORTS=("8082" "8083")
+        for PORT in "${PORTS[@]}"; do
             iptables -m comment --comment "globaleaks-network-sandboxing" -A INPUT -p tcp -d 127.0.0.1 --dport $PORT -s 127.0.0.1 -j ACCEPT
             iptables -m comment --comment "globaleaks-network-sandboxing" -A INPUT -p tcp -d 0.0.0.0/0 --dport $PORT -j DROP
         done
 
         # INBOUND REMOTE
-        for PORT in "80 443"; do
+        declare -a PORTS=("80" "443")
+        for PORT in "${PORTS[@]}"; do
             iptables -m comment --comment "globaleaks-network-sandboxing" -A INPUT -p tcp -d 0.0.0.0/0 --dport $PORT -s 127.0.0.1 -j ACCEPT
             iptables -m comment --comment "globaleaks-network-sandboxing" -A INPUT -p tcp -d 0.0.0.0/0 --dport $PORT -j DROP
         done
