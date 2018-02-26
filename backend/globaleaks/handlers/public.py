@@ -22,7 +22,7 @@ def db_prepare_contexts_serialization(session, contexts):
     contexts_ids = [c.id for c in contexts]
 
     if contexts_ids:
-        for o in session.query(models.Context).filter(models.ContextImg.id.in_(contexts_ids)):
+        for o in session.query(models.ContextImg).filter(models.ContextImg.id.in_(contexts_ids)):
             data['imgs'][o.id] = o.data
 
         for o in session.query(models.ReceiverContext).filter(models.ReceiverContext.context_id.in_(contexts_ids)).order_by(models.ReceiverContext.presentation_order):
