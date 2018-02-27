@@ -48,18 +48,20 @@ def update_db():
     """
     This function handles update of an existing database
     """
-    db_version, _ = get_db_file(Settings.db_path)
+    from globaleaks.db import migration
+
+    db_version, db_file_path = get_db_file(Settings.db_path)
     if db_version == 0:
         return 0
 
     log.err('Found an already initialized database version: %d', db_version)
     if db_version == DATABASE_VERSION:
+        migration.perform_data_update(db_file_path)
         return DATABASE_VERSION
 
     log.err('Performing schema migration from version %d to version %d', db_version, DATABASE_VERSION)
 
     try:
-        from globaleaks.db import migration
         migration.perform_migration(db_version)
     except Exception as exception:
         log.err('Migration failure: %s', exception)
