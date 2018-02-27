@@ -42,6 +42,8 @@ def signup(session, state, tid, request, language):
 
     session.add(signup)
 
+    session.flush()
+
     ret = {
         'signup': serialize_signup(signup),
         'activation_url': 'https://%s/#/activation?token=%s' % (node.get_val(u'rootdomain'), signup.activation_token),
