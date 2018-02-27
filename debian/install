@@ -1,3 +1,5 @@
+LICENSE usr/share/globaleaks/
+CHANGELOG usr/share/globaleaks/
 backend/default usr/share/globaleaks
 backend/requirements.txt usr/share/globaleaks
 client/build/* usr/share/globaleaks/client
