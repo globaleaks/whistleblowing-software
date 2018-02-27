@@ -628,9 +628,6 @@ class FieldAttr(Model, Base):
                                                 'unicode',
                                                 'localized'])),)
 
-    # FieldAttr is a special model.
-    # Here we consider all its attributes as unicode, then
-    # depending on the type we handle the value as a localized value
     unicode_keys = ['field_id', 'name', 'type']
 
     def update(self, values=None):
@@ -639,16 +636,16 @@ class FieldAttr(Model, Base):
         if values is None:
             return
 
-        if self.type == 'localized':
-            value = values['value']
-            previous = getattr(self, 'value')
+        value = values['value']
 
+        if self.type == 'localized':
+            previous = getattr(self, 'value')
             if previous and isinstance(previous, dict):
+                previous = copy.deepcopy(previous)
                 previous.update(value)
-            else:
-                setattr(self, 'value', value)
-        else:
-            setattr(self, 'value', unicode(values['value']))
+                value = previous
+
+        self.value = value
 
 
 class FieldOption(Model, Base):

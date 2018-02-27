@@ -79,7 +79,7 @@ def db_update_fieldattr(session, tid, field_id, attr_name, attr_dict, language):
         fill_localized_keys(attr_dict, ['value'], language)
 
     a = session.query(models.FieldAttr).filter(models.FieldAttr.field_id == field_id, models.FieldAttr.name == attr_name, models.FieldAttr.field_id == models.Field.id, models.Field.tid == tid).one_or_none()
-    if not a:
+    if a is None:
         a = models.db_forge_obj(session, models.FieldAttr, attr_dict)
     else:
         a.update(attr_dict)
