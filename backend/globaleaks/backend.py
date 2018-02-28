@@ -33,6 +33,8 @@ def fail_startup(excep):
 
 
 class Service(service.Service):
+    _shutdown = False
+
     def __init__(self):
         self.state = State
         self.arw = APIResourceWrapper()
@@ -77,17 +79,20 @@ class Service(service.Service):
         reactor.callLater(0, self.deferred_start)
 
     def shutdown(self):
-        def _shutdown(_):
-            self.state.orm_tp.stop()
-
         d = defer.Deferred()
-        d.addBoth(_shutdown)
+
+        def _shutdown(_):
+            if not self._shutdown:
+                self._shutdown = True
+                self.state.orm_tp.stop()
+                d.callback(None)
+
+        reactor.callLater(30, _shutdown, None)
 
         d1 = self.state.process_supervisor.shutdown()
         d2 = self.stop_jobs()
-        defer.DeferredList([d1, d2]).addCallback(d.callback)
 
-        reactor.callLater(30, d.callback, None)
+        defer.DeferredList([d1, d2]).addCallback(_shutdown)
 
         return d
 
