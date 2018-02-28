@@ -159,7 +159,7 @@ api_spec = [
     (r'/l10n/(' + '|'.join(LANGUAGES_SUPPORTED_CODES) + ')', l10n.L10NHandler),
 
     ## This handler attempts to route all non routed get requests
-    (r'/([a-zA-Z0-9_\-\/\.]*)', staticfile.StaticFileHandler, {'path': Settings.client_path})
+    (r'/([a-zA-Z0-9_\-\/\.\@]*)', staticfile.StaticFileHandler, {'path': Settings.client_path})
 ]
 
 
