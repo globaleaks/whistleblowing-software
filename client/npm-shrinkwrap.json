@@ -7193,9 +7193,9 @@
       }
     },
     "npm-check-updates": {
-      "version": "2.14.0",
-      "resolved": "https://registry.npmjs.org/npm-check-updates/-/npm-check-updates-2.14.0.tgz",
-      "integrity": "sha512-WmXK+bZFKxgvfnfVDfMsHUeIx/cyGWEBLl2vpYUmoY7d+oeqFLjUTqY6a2OMqOu0dCvXIryuilXO4/a1w0ExfQ==",
+      "version": "2.14.1",
+      "resolved": "https://registry.npmjs.org/npm-check-updates/-/npm-check-updates-2.14.1.tgz",
+      "integrity": "sha512-xPkMe9YSyA0srqV+ZBH+xkzqpwJ+QbXrk/lNjtX6bzw266QstYPzWiUylu3Ht/nhML0ky9rNG/HSgXnlyKYfWQ==",
       "dev": true,
       "requires": {
         "bluebird": "3.5.1",
@@ -7214,7 +7214,7 @@
         "rc-config-loader": "2.0.1",
         "semver": "5.5.0",
         "semver-utils": "1.1.1",
-        "snyk": "1.69.7",
+        "snyk": "1.69.10",
         "spawn-please": "0.3.0",
         "update-notifier": "2.3.0"
       },
@@ -7950,23 +7950,12 @@
       "dev": true
     },
     "recursive-readdir": {
-      "version": "2.2.1",
-      "resolved": "https://registry.npmjs.org/recursive-readdir/-/recursive-readdir-2.2.1.tgz",
-      "integrity": "sha1-kO8jHQd4xc4JPJpI105cVCLROpk=",
+      "version": "2.2.2",
+      "resolved": "https://registry.npmjs.org/recursive-readdir/-/recursive-readdir-2.2.2.tgz",
+      "integrity": "sha512-nRCcW9Sj7NuZwa2XvH9co8NPeXUBhZP7CRKJtU+cS6PW9FpCIFoI5ib0NT1ZrbNuPoRy0ylyCaUL8Gih4LSyFg==",
       "dev": true,
       "requires": {
-        "minimatch": "3.0.3"
-      },
-      "dependencies": {
-        "minimatch": {
-          "version": "3.0.3",
-          "resolved": "https://registry.npmjs.org/minimatch/-/minimatch-3.0.3.tgz",
-          "integrity": "sha1-Kk5AkLlrLbBqnX3wEFWmKnfJt3Q=",
-          "dev": true,
-          "requires": {
-            "brace-expansion": "1.1.11"
-          }
-        }
+        "minimatch": "3.0.4"
       }
     },
     "redent": {
@@ -8434,16 +8423,16 @@
       }
     },
     "snyk": {
-      "version": "1.69.7",
-      "resolved": "https://registry.npmjs.org/snyk/-/snyk-1.69.7.tgz",
-      "integrity": "sha1-rIeaq7xCWqKot3kAqPbRwhuo0v4=",
+      "version": "1.69.10",
+      "resolved": "https://registry.npmjs.org/snyk/-/snyk-1.69.10.tgz",
+      "integrity": "sha1-NMZrIXkUNd0X+ilVkEpf3WtXQV0=",
       "dev": true,
       "requires": {
         "abbrev": "1.1.1",
         "ansi-escapes": "1.4.0",
         "chalk": "1.1.3",
         "configstore": "1.4.0",
-        "debug": "2.6.9",
+        "debug": "3.1.0",
         "es6-promise": "3.3.1",
         "hasbin": "1.2.3",
         "inquirer": "1.0.3",
@@ -8451,7 +8440,7 @@
         "open": "0.0.5",
         "os-name": "1.0.3",
         "proxy-from-env": "1.0.0",
-        "recursive-readdir": "2.2.1",
+        "recursive-readdir": "2.2.2",
         "semver": "5.5.0",
         "snyk-config": "1.0.1",
         "snyk-go-plugin": "1.4.5",
@@ -8460,11 +8449,11 @@
         "snyk-mvn-plugin": "1.1.1",
         "snyk-nuget-plugin": "1.3.9",
         "snyk-php-plugin": "1.3.2",
-        "snyk-policy": "1.10.1",
+        "snyk-policy": "1.10.2",
         "snyk-python-plugin": "1.5.6",
         "snyk-resolve": "1.0.0",
         "snyk-resolve-deps": "1.7.0",
-        "snyk-sbt-plugin": "1.2.3",
+        "snyk-sbt-plugin": "1.2.4",
         "snyk-tree": "1.0.0",
         "snyk-try-require": "1.2.0",
         "tempfile": "1.1.1",
@@ -8501,15 +8490,6 @@
           "dev": true,
           "requires": {
             "restore-cursor": "1.0.1"
-          }
-        },
-        "debug": {
-          "version": "2.6.9",
-          "resolved": "https://registry.npmjs.org/debug/-/debug-2.6.9.tgz",
-          "integrity": "sha512-bC7ElrdJaJnPbAP+1EotYvqZsb3ecl5wi6Bfi6BJTUcNowp6cvspg0jXznRTKDjm/E7AdgFBVeAPVMNcKGsHMA==",
-          "dev": true,
-          "requires": {
-            "ms": "2.0.0"
           }
         },
         "figures": {
@@ -8769,9 +8749,9 @@
       }
     },
     "snyk-policy": {
-      "version": "1.10.1",
-      "resolved": "https://registry.npmjs.org/snyk-policy/-/snyk-policy-1.10.1.tgz",
-      "integrity": "sha1-saJsiu9SnGFgSso4IRHlNdURt2M=",
+      "version": "1.10.2",
+      "resolved": "https://registry.npmjs.org/snyk-policy/-/snyk-policy-1.10.2.tgz",
+      "integrity": "sha1-Knvw8Hx7gRud2pPPm7sQ3Jkt17w=",
       "dev": true,
       "requires": {
         "debug": "2.6.9",
@@ -8858,9 +8838,9 @@
       }
     },
     "snyk-sbt-plugin": {
-      "version": "1.2.3",
-      "resolved": "https://registry.npmjs.org/snyk-sbt-plugin/-/snyk-sbt-plugin-1.2.3.tgz",
-      "integrity": "sha512-R8L2+wzB7Zc8BZPmszAoQDjtl9tjLjE6Pf3Mu6tjv22+2rbyADlyfHg7FR+vmQXVFtOuJa43p1orXoaZGatE0g==",
+      "version": "1.2.4",
+      "resolved": "https://registry.npmjs.org/snyk-sbt-plugin/-/snyk-sbt-plugin-1.2.4.tgz",
+      "integrity": "sha512-BB/sEXhTXXBmglWNelLkxdHBIISrKyF5Rl52R3xcnsx6jHYgB8WS4wj3Gfwv1tsIwVrqzS7/Mfpnli1wBiOf3Q==",
       "dev": true,
       "requires": {
         "debug": "2.6.9"
