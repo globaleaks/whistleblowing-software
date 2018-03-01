@@ -68,7 +68,7 @@ ConfigDescriptor = {
     u'tip_expiration_threshold': Int(default=72), # Hours
     u'notification_threshold_per_hour': Int(default=20),
 
-    u'enable_admin_exception_notification': Bool(default=True),
+    u'enable_admin_exception_notification': Bool(default=False),
     u'enable_developers_exception_notification': Bool(default=True),
 
     u'name': Unicode(default=u''),
