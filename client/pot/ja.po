@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-02-22 09:22+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2018-02-25 04:43+0000\n"
+"Last-Translator: Naofumi <naofum@gmail.com>\n"
 "Language-Team: Japanese (http://www.transifex.com/otf/globaleaks/language/ja/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -873,7 +873,7 @@ msgid "Size limit for file attachments"
 msgstr "添付ファイルの制限サイズ"
 
 msgid "Notify administrators of software problems"
-msgstr ""
+msgstr "ソフトウェアの問題を管理者に通知"
 
 msgid "Notify developers of software problems"
 msgstr "ソフトウェアの問題を開発者に通知"
@@ -1926,7 +1926,7 @@ msgid "Your whistleblowing platform is now accessible at:"
 msgstr "内部告発プラットフォームがアクセス可能になりました:"
 
 msgid "Users' credentials:"
-msgstr ""
+msgstr "ユーザーの資格情報:"
 
 msgid "To log in, visit:"
 msgstr "ログインはこちら:"
@@ -1965,10 +1965,10 @@ msgid "Complete"
 msgstr "完了"
 
 msgid "Your whistleblowing platform is almost ready!"
-msgstr ""
+msgstr "内部告発プラットフォームがもう少しで準備できます!"
 
 msgid "Check your inbox to activate your account."
-msgstr ""
+msgstr "メールを確認して、アカウントを有効にしてください。"
 
 msgid "The answer is too short."
 msgstr "回答が短すぎます"
@@ -2020,7 +2020,7 @@ msgstr "ようこそ!"
 msgid ""
 "The following step-by-step procedure will guide you through creating your "
 "whistleblowing platform."
-msgstr ""
+msgstr "次のステップバイステップの手順で、内部告発プラットフォームの作成をガイドします。"
 
 msgid "Please choose a configuration profile:"
 msgstr "設定プロファイルを選択してください:"
@@ -2083,7 +2083,7 @@ msgid ""
 msgstr "これは攻撃の兆候かもしれませんし (例えば、偽の情報でサーバーをあふれさせるなど)、あなたのプロジェクトが注目を集めたために利用が跳ね上がったせいかもしれません。"
 
 msgid "Examine the issue to determine whether it is legitimate or not."
-msgstr ""
+msgstr "問題が正当なものかどうかを調べます。"
 
 msgid "The activities with unusual stats are:"
 msgstr "異常な統計の活動は次のとおりです:"
@@ -2273,7 +2273,7 @@ msgid "Notifications from {NodeName} have been temporarily suspended"
 msgstr "{NodeName} からの通知は、一時的に停止しています"
 
 msgid "Click the link to activate the platform:"
-msgstr ""
+msgstr "リンクをクリックしてプラットフォームを有効にしてください:"
 
 msgid "A software update is available."
 msgstr "ソフトウェアのアップデートが利用可能です"

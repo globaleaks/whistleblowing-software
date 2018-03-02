@@ -15,8 +15,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-02-22 09:36+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2018-03-02 08:54+0000\n"
+"Last-Translator: Vicente Andreu <vicente.andreu@antifraucv.es>\n"
 "Language-Team: Catalan (Valencian) (http://www.transifex.com/otf/globaleaks/language/ca%40valencia/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -139,10 +139,10 @@ msgid "Messages"
 msgstr "Missatges"
 
 msgid "Select this recipient."
-msgstr "Selecciona aquest destinatari."
+msgstr "Seleccione aquest destinatari."
 
 msgid "Unselect this recipient."
-msgstr "Desselecciona aquest destinatari."
+msgstr "Desseleccione aquest destinatari."
 
 msgid "This recipient cannot be selected."
 msgstr "Aquest destinatari no pot ser seleccionat."
@@ -163,19 +163,19 @@ msgid "CREDIT CARD"
 msgstr "TARGETA DE CRÈDIT"
 
 msgid "YOUR NAME"
-msgstr "EL TEU NOM"
+msgstr "EL SEU NOM"
 
 msgid "Postpone the expiration date"
-msgstr "Posposa la data de caducitat"
+msgstr "Pospose la data de caducitat"
 
 msgid "Select all"
-msgstr "Selecciona-ho tot"
+msgstr "Seleccione-ho tot"
 
 msgid "Deselect all"
-msgstr "Desselecciona-ho tot"
+msgstr "Desseleccione-ho tot"
 
 msgid "Refresh page"
-msgstr "Actualitza la pàgina"
+msgstr "Actualitze la pàgina"
 
 msgid "Context"
 msgstr "Context"
@@ -190,25 +190,25 @@ msgid "Preview"
 msgstr "Vista prèvia"
 
 msgid "Move up"
-msgstr "Puja"
+msgstr "Pujar"
 
 msgid "Move down"
-msgstr "Baixa"
+msgstr "Baixar"
 
 msgid "Move left"
-msgstr "Vés a l'esquerra"
+msgstr "Anar a l'esquerra"
 
 msgid "Move right"
-msgstr "Vés a la dreta"
+msgstr "Anar a la dreta"
 
 msgid "Import"
-msgstr "Importa"
+msgstr "Importar"
 
 msgid "Export"
-msgstr "Exporta"
+msgstr "Exportar"
 
 msgid "Save all"
-msgstr "Desa-ho tot"
+msgstr "Guarde-ho tot"
 
 msgid "This field is mandatory"
 msgstr "Aquest camp és obligatori"
@@ -347,7 +347,7 @@ msgid "Job responsibility (role) at the time of the reported fact"
 msgstr "Càrrec laboral en el moment dels fets esmentats"
 
 msgid "Organization unit and job location at the time of the reported fact"
-msgstr "Unitat d'organització i localització de feina en el moment dels fets esmentats"
+msgstr "Unitat d'organització i localització del lloc de treball en el moment dels fets esmentats"
 
 msgid "List of submissions"
 msgstr "Llista d'enviaments"
@@ -392,7 +392,7 @@ msgid "Access requested"
 msgstr "Accés demanat"
 
 msgid "Request access to the whistleblower's identity"
-msgstr "Demana l'accés a la identitat de l'informador"
+msgstr "Demane accés a la identitat de l'informador"
 
 msgid "Please write a motivation"
 msgstr "Si us plau, escriu una motivació"
@@ -519,7 +519,7 @@ msgid "Triggered by a score higher than:"
 msgstr "Es desencadena a partir d'una puntuació superior a:"
 
 msgid "Select the question to be triggered when this option is selected"
-msgstr "Selecciona la pregunta que es desencadenarà quan siga seleccionada aquesta opció"
+msgstr "Seleccione la pregunta que es desencadenarà quan siga seleccionada aquesta opció"
 
 msgid "Message shown on top of the status page of the submission"
 msgstr "El missatge es mostra damunt de la pàgina de l'estatus del lliurament"
@@ -546,7 +546,7 @@ msgid "Text shown on top of the interface for selecting contexts"
 msgstr "El text es mostra damunt de la interfície per seleccionar els contextos"
 
 msgid "Show small context cards on submission interface"
-msgstr "Mostra petites targetes de context a l'interfície dels lliuraments"
+msgstr "Mostra xicotetes targetes de context a l'interfície dels lliuraments"
 
 msgid "Type of context selector:"
 msgstr "Tipus de selector de context:"
@@ -654,7 +654,7 @@ msgid "Submissions"
 msgstr "Enviaments"
 
 msgid "Users"
-msgstr "usuaris"
+msgstr "Usuaris"
 
 msgid "From"
 msgstr "De"
@@ -728,7 +728,7 @@ msgid "Are you a whistleblower?"
 msgstr "És vostè un informador?"
 
 msgid "Blow the whistle"
-msgstr "Delate l'informador"
+msgstr "Inici de la comunicació"
 
 msgid "Have you already filed a submission? Enter your key code."
 msgstr "Vol veure l'estat del seu enviament? Introdueixa el seu codi"
@@ -926,7 +926,7 @@ msgid "Long URL"
 msgstr "URL llarga"
 
 msgid "Add"
-msgstr "Afegeix"
+msgstr "Afegeixa"
 
 msgid "Logo"
 msgstr "Logotip"
@@ -971,7 +971,7 @@ msgid "Language:"
 msgstr "Idioma:"
 
 msgid "Add custom text"
-msgstr "Afegeix text personalitzat"
+msgstr "Afegeixa text personalitzat"
 
 msgid "Custom text"
 msgstr "Text personalitzat"
@@ -1449,10 +1449,10 @@ msgid "Questions"
 msgstr "Qüestions"
 
 msgid "Add new question"
-msgstr "Afegeix una nova pregunta"
+msgstr "Afegeixa una nova pregunta"
 
 msgid "Add question from template"
-msgstr "Afegeix una pregunta de la plantilla"
+msgstr "Afegeixa una pregunta de la plantilla"
 
 msgid "Steps"
 msgstr "Passos"
@@ -1567,7 +1567,7 @@ msgstr "No podrà fer un enviament."
 msgid ""
 "This platform makes use of GlobaLeaks software specifically designed to "
 "protect the identity for submitter and recipient in the exchange of content."
-msgstr "Aquesta plataforma utilitza el programari GlobaLeaks, dissenyat específicament per protegir la identitat de la persona que fa el lliurament i del destinatari en l'intercanvi de contingut."
+msgstr "Aquesta plataforma utilitza el programari GlobaLeaks, dissenyat específicament per protegir la identitat de la persona que fa la comunicació i la del destinatari del lliurament."
 
 msgid ""
 "The software is developed by the non-profit Hermes Center for Transparency "
@@ -1671,15 +1671,15 @@ msgstr "Completat!"
 msgid ""
 "It appears that you are browsing this site without any extra privacy and "
 "security!"
-msgstr "Sembla que estàs navegant per aquesta web sense cap mesura addicional de privacitat i seguretat!"
+msgstr "Sembla que esteu navegant per aquesta web sense cap mesura addicional de privacitat i seguretat!"
 
 msgid ""
 "You are strongly advised to visit this site using the desktop app called Tor"
 " Browser, that protects your identity."
-msgstr "Recomanem que visites aquesta web utilitzant una aplicació d'escriptori que es diu Tor Browser, això protegirà la teua identitat."
+msgstr "Recomanem que visiteu aquesta web utilitzant una aplicació d'escriptori que es diu Tor Browser, això protegirà la seua identitat."
 
 msgid "Then, copy and paste the following address into the Tor Browser:"
-msgstr "Després, còpia i enganxa l'adreça següent al Tor Browser instal·lat:"
+msgstr "Després, còpie i enganxe l'adreça següent al Tor Browser instal·lat:"
 
 msgid "Details of the PGP key:"
 msgstr "Detalls de la clau PGP:"
@@ -1688,7 +1688,7 @@ msgid "Fingerprint"
 msgstr "empremta de validació de clau"
 
 msgid "Add file"
-msgstr "Afegeix un arxiu"
+msgstr "Afegeixa un arxiu"
 
 msgid "Uploading files…"
 msgstr "Carregant fitxers..."
@@ -1736,7 +1736,7 @@ msgid ""
 msgstr "La plataforma encara no està configurada per a connexions HTTPS i, per tant, només s'hauria d'utilitzar per fer proves."
 
 msgid "Send"
-msgstr "Envia-ho"
+msgstr "Envie-ho"
 
 msgid "Allow the whistleblower to write comments"
 msgstr "Permet als informadors escriure comentaris"
@@ -1778,7 +1778,7 @@ msgid "Allow the whistleblower to send messages"
 msgstr "Permet als informadors enviar missatges"
 
 msgid "Are you sure that you want to delete the submission?"
-msgstr "Estàs segur que vols esborrar el lliurament?"
+msgstr "Esteu segur que voleu esborrar el lliurament?"
 
 msgid ""
 "Everything related to the submission stored on the platform will be deleted."
@@ -1790,7 +1790,7 @@ msgid ""
 msgstr "Recordeu que tot allò emmagatzemat fora de la plataforma, per exemple els arxius que ha guardat al seu ordinador, s'han d'eliminar manualment."
 
 msgid "Are you sure that you want to delete all the selected submissions?"
-msgstr "Estàs segur que vol esborrar tots els lliuraments que ha seleccionat?"
+msgstr "Esteu segur que voleu esborrar tots els lliuraments que heu seleccionat?"
 
 msgid ""
 "Please make sure that all related data is properly deleted so that the "
@@ -1868,7 +1868,7 @@ msgid "Thank you!"
 msgstr "Gràcies!"
 
 msgid "Remember your key code for this submission."
-msgstr "Recorda el teu codi per a aquest enviament."
+msgstr "Recorde el seu codi per a aquest enviament."
 
 msgid "We will try to get back to you as soon as possible!"
 msgstr "Intentarem posar-nos en contacte amb vosté tan prompte com siga possible!"
@@ -2055,7 +2055,7 @@ msgid "You have completed the platform wizard."
 msgstr "Ha completat amb èxit l'assistent de la plataforma."
 
 msgid "Fill out your submission"
-msgstr "Emplena les dades del seu enviament"
+msgstr "Emplene les dades del seu enviament"
 
 msgid "Short title"
 msgstr "Títol curt"
@@ -2279,7 +2279,7 @@ msgid "Notifications from {NodeName} have been temporarily suspended"
 msgstr "Les notificacions de {NodeName} s'han suspès temporalment"
 
 msgid "Click the link to activate the platform:"
-msgstr ""
+msgstr "Seleccione l'enllaç per activar la plataforma"
 
 msgid "A software update is available."
 msgstr "Actualitzacions de programari disponibles"

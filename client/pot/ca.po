@@ -18,7 +18,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-02-22 10:18+0000\n"
+"PO-Revision-Date: 2018-02-28 14:08+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Catalan (http://www.transifex.com/otf/globaleaks/language/ca/)\n"
 "MIME-Version: 1.0\n"
@@ -657,7 +657,7 @@ msgid "Submissions"
 msgstr "Enviaments"
 
 msgid "Users"
-msgstr "usuaris"
+msgstr "Usuaris"
 
 msgid "From"
 msgstr "De"
