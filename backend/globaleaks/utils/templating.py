@@ -151,13 +151,13 @@ class NodeKeyword(Keyword):
         if not self.data['node']['onionservice']:
             return '[NOT CONFIGURED]'
 
-        return 'http://' + self.data['node']['onionservice'] + '/#/login'
+        return self.TorUrl() + '#/login'
 
     def HTTPSLoginUrl(self):
         if not self.data['node']['hostname']:
             return '[NOT CONFIGURED]'
 
-        return 'https://' + self.data['node']['hostname'] + '/#/login'
+        return self.HTTPSUrl() + '#/login'
 
     def DocumentationUrl(self):
         return 'https://docs.globaleaks.org'
@@ -468,6 +468,12 @@ class PlatformSignupKeyword(NodeKeyword):
     keyword_list = NodeKeyword.keyword_list + platform_signup_keywords
     data_keys = NodeKeyword.data_keys + \
                 ['signup', 'activation_url']
+
+    def _TorUrl(self):
+        return 'http://' + self.data['signup']['subdomain'] + '.' + self.data['node']['onionservice'] + '/'
+
+    def _HTTPSUrl(self):
+        return 'https://' + self.data['signup']['subdomain'] + '.' + self.data['node']['hostname'] + '/'
 
     def RecipientName(self):
         return self.data['signup']['name'] + ' ' + self.data['signup']['surname']
