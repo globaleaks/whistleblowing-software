@@ -657,7 +657,7 @@
   "Use the 16 digit key code to log in. It will allow you to view any messages we sent you, and also to add extra info.": "Fes servir el codi de 16 dígits per entrar i veure els missatges que t'enviem o si creus que hauries d'haver afegit algun altre fitxer.",
   "User": "Usuari",
   "Username": "Nom d'usuari",
-  "Users": "usuaris",
+  "Users": "Usuaris",
   "Users' credentials:": "Credenciales de los usuarios:",
   "Using automatic HTTPS configuration will handle the entire process of requesting, enabling and renewing certificates from the Let's Encrypt Certificate Authority.": "L'ús de la configuració HTTPS automàtica gestionarà tot el procés de sol·licitud, activació i renovació de certificats de l'autoritat de certificació \"Let's Encrypt\".",
   "Using Let's Encrypt requires agreement to their Terms of Service.": "L'ús de \"Let's Encrypt\" requereix 'acceptació de les seves Condicions d'ús.",
