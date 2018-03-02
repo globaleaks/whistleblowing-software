@@ -603,6 +603,8 @@ class MigrationScript(MigrationBase):
         return self.migrate_File_XXX('WhistleblowerFile')
 
     def epilogue(self):
+        self.fail_on_count_mismatch['ShortURL'] = False
+
         self.session_new.add(self.model_to['Tenant']({'label': ''}))
 
         questionnaires = self.session_old.query(self.model_from['ArchivedSchema']).filter(self.model_from['ArchivedSchema'].type == u'questionnaire')
