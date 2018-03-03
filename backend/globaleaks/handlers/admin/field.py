@@ -250,9 +250,9 @@ def delete_field(session, tid, field_id):
 
     if field.template_id == 'whistleblower_identity' and field.step_id is not None:
         session.query(models.Questionnaire) \
-             .filter(models.Questionnaire.tid == tid,
-                     models.Step.id == field.step_id,
-                     models.Questionnaire.id == models.Step.questionnaire_id).set(enable_whistleblower_identity = False)
+               .filter(models.Questionnaire.tid == tid,
+                       models.Step.id == field.step_id,
+                       models.Questionnaire.id == models.Step.questionnaire_id).update({'enable_whistleblower_identity': False})
 
     session.delete(field)
 
