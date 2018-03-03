@@ -1097,8 +1097,8 @@ factory('AdminUtils', ['AdminContextResource', 'AdminQuestionnaireResource', 'Ad
 
         var reader = new $window.FileReader();
 
-        reader.onload = function () {
-          deferred.resolve(reader.result);
+        reader.onload = function (e) {
+          deferred.resolve(e.target.result);
         };
 
         reader.readAsText(file);

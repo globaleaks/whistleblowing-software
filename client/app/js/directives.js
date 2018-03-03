@@ -320,9 +320,11 @@ directive('filePickerInput', function() {
     },
     link: function (scope, iElement) {
       iElement.find('input').on('change', function (event) {
-        scope.$apply(function(){
-          scope.filePickerInput({file: event.target.files[0]});
-        });
+	if(event.target.files && event.target.files.length > 0) {
+          scope.$apply(function(){
+            scope.filePickerInput({file: event.target.files[0]});
+          });
+        }
       });
     },
   };
