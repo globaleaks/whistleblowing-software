@@ -21,6 +21,7 @@ Depends:
  , ${python:Depends}
  , apparmor
  , apparmor-utils
+ , gnupg1
  , haveged
  , iptables
  , python:any (>= 2.7.5-5~), python:any (<< 2.8)
