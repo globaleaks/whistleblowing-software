@@ -83,9 +83,9 @@ class MailGenerator(object):
 
     def process_ReceiverTip(self, session, rtip, data):
         user, context = session.query(models.User, models.Context) \
-                             .filter(models.User.id == rtip.receiver_id,
-                                     models.InternalTip.id == rtip.internaltip_id,
-                                     models.Context.id == models.InternalTip.context_id).one()
+                               .filter(models.User.id == rtip.receiver_id,
+                                       models.InternalTip.id == rtip.internaltip_id,
+                                       models.Context.id == models.InternalTip.context_id).one()
 
         tid = context.tid
 
@@ -101,11 +101,11 @@ class MailGenerator(object):
             return
 
         user, context, rtip = session.query(models.User, models.Context, models.ReceiverTip) \
-                                   .filter(models.User.id == models.ReceiverTip.receiver_id,
-                                           models.ReceiverTip.id == models.Message.receivertip_id,
-                                           models.Context.id == models.InternalTip.context_id,
-                                           models.InternalTip.id == models.ReceiverTip.internaltip_id,
-                                           models.Message.id == message.id).one()
+                                     .filter(models.User.id == models.ReceiverTip.receiver_id,
+                                             models.ReceiverTip.id == models.Message.receivertip_id,
+                                             models.Context.id == models.InternalTip.context_id,
+                                             models.InternalTip.id == models.ReceiverTip.internaltip_id,
+                                             models.Message.id == message.id).one()
 
         tid = context.tid
 
@@ -118,11 +118,11 @@ class MailGenerator(object):
 
     def process_Comment(self, session, comment, data):
         for user, context, rtip in session.query(models.User, models.Context, models.ReceiverTip) \
-                                        .filter(models.User.id == models.ReceiverTip.receiver_id,
-                                                models.ReceiverTip.internaltip_id == comment.internaltip_id,
-                                                models.Context.id == models.InternalTip.context_id,
-                                                models.InternalTip.id == comment.internaltip_id,
-                                                models.ReceiverTip.internaltip_id == comment.internaltip_id):
+                                          .filter(models.User.id == models.ReceiverTip.receiver_id,
+                                                  models.ReceiverTip.internaltip_id == comment.internaltip_id,
+                                                  models.Context.id == models.InternalTip.context_id,
+                                                  models.InternalTip.id == comment.internaltip_id,
+                                                  models.ReceiverTip.internaltip_id == comment.internaltip_id):
             tid = context.tid
 
             # avoid to send emails to the receiver that written the comment
@@ -139,11 +139,11 @@ class MailGenerator(object):
 
     def process_ReceiverFile(self, session, rfile, data):
         user, context, rtip, ifile = session.query(models.User, models.Context, models.ReceiverTip, models.InternalFile) \
-                                          .filter(models.User.id == models.ReceiverTip.receiver_id,
-                                                  models.InternalFile.id == rfile.internalfile_id,
-                                                  models.InternalTip.id == models.InternalFile.internaltip_id,
-                                                  models.ReceiverTip.id == rfile.receivertip_id,
-                                                  models.Context.id == models.InternalTip.context_id).one()
+                                            .filter(models.User.id == models.ReceiverTip.receiver_id,
+                                                    models.InternalFile.id == rfile.internalfile_id,
+                                                    models.InternalTip.id == models.InternalFile.internaltip_id,
+                                                    models.ReceiverTip.id == rfile.receivertip_id,
+                                                    models.Context.id == models.InternalTip.context_id).one()
 
         tid = context.tid
 
@@ -213,22 +213,29 @@ class MailGenerator(object):
         for trigger in ['ReceiverTip', 'Comment', 'Message', 'ReceiverFile']:
             model = trigger_model_map[trigger]
 
+            silent_tids = []
             for tid, cache_item in self.state.tenant_cache.items():
                 if cache_item.notification.disable_receiver_notification_emails:
-                    session.query(models.ReceiverTip).filter(models.ReceiverTip.internaltip_id == models.InternalTip.id,
-                                                             models.InternalTip.tid == tid).update({'new': False})
+                    silent_tids.append(tid)
 
-                    session.query(models.Comment).filter(models.Comment.internaltip_id == models.InternalTip.id,
-                                                         models.InternalTip.tid == tid).update({'new': False})
+            if len(silent_tids):
+                for x in session.query(models.ReceiverTip).filter(models.ReceiverTip.internaltip_id == models.InternalTip.id,
+                                                                  models.InternalTip.tid.in_(silent_tids)):
+                    x.new = False
 
-                    session.query(models.Message).filter(models.Message.receivertip_id == models.ReceiverTip.id,
-                                                         models.ReceiverTip.internaltip_id == models.InternalTip.id,
-                                                         models.InternalTip.tid == tid).update({'new': False})
+                for x in session.query(models.Comment).filter(models.Comment.internaltip_id == models.InternalTip.id,
+                                                              models.InternalTip.tid.in_(silent_tids)):
+                    x.new = False
 
-                    session.query(models.ReceiverFile).filter(models.ReceiverFile.receivertip_id == models.ReceiverTip.id,
+                for x in session.query(models.Message).filter(models.Message.receivertip_id == models.ReceiverTip.id,
                                                               models.ReceiverTip.internaltip_id == models.InternalTip.id,
-                                                              models.InternalTip.tid == tid).update({'new': False})
-                    continue
+                                                              models.InternalTip.tid.in_(silent_tids)):
+                    x.new = False
+
+                for x in session.query(models.ReceiverFile).filter(models.ReceiverFile.receivertip_id == models.ReceiverTip.id,
+                                                                   models.ReceiverTip.internaltip_id == models.InternalTip.id,
+                                                                   models.InternalTip.tid.in_(silent_tids)):
+                    x.new = False
 
             for element in session.query(model).filter(model.new == True):
                 element.new = False
