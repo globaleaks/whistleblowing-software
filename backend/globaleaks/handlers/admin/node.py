@@ -64,7 +64,7 @@ def db_update_enabled_languages(session, tid, languages_enabled, default_languag
     to_remove = list(set(cur_enabled_langs) - set(new_enabled_langs))
     if to_remove:
         session.query(models.User).filter(models.User.tid == tid, models.User.language.in_(to_remove)).update({'language': default_language}, synchronize_session='fetch')
-        session.query(models.EnabledLanguage).filter(models.EnabledLanguage.tid, models.EnabledLanguage.name.in_(to_remove)).delete(synchronize_session='fetch')
+        session.query(models.EnabledLanguage).filter(models.EnabledLanguage.tid == tid, models.EnabledLanguage.name.in_(to_remove)).delete(synchronize_session='fetch')
 
 @transact
 def update_enabled_languages(session, tid, languages_enabled, default_language):
