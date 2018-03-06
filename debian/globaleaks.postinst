@@ -64,7 +64,7 @@ if [ ! -z "$(ls -A /var/globaleaks 2>/dev/null)" ]; then
   chown globaleaks:globaleaks /var/globaleaks/backups
   tar --exclude='/var/globaleaks/backups' -zcf $filepath /var/globaleaks
   echo "Done."
-  echo "Backup available in: filepath"
+  echo "Backup available in: $filepath"
 fi
 
 # Create globaleaks service directories with proper permissios
