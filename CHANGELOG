@@ -1,3 +1,12 @@
+Changes in version 3.0.7 - 2018-03-06
+    o Apply minor bugfixing
+    o Update translations
+
+    Addresses issues:
+    - https://github.com/globaleaks/GlobaLeaks/issues/2190
+    - https://github.com/globaleaks/GlobaLeaks/issues/2156
+    - https://github.com/globaleaks/GlobaLeaks/issues/2192
+
 Changes in version 3.0.6 - 2018-03-01
     o Apply minor bugfixing
 
