@@ -206,7 +206,9 @@ class TipKeyword(UserNodeKeyword, ContextKeyword):
                 if entry.get('value', '') == option['id']:
                     output += indent(indent_n) + option['label'] + '\n'
         elif field_type == 'date':
-            output += indent(indent_n) + ISO8601_to_pretty_str(entry.get('value', '')) + '\n'
+            date = entry.get('value')
+            if date is not None:
+                output += indent(indent_n) + ISO8601_to_pretty_str(entry.get('value')) + '\n'
         elif field_type == 'tos':
             answer = '☑' if entry.get('value', '') == 'True' else '☐'
             output += indent(indent_n) + answer + '\n'
