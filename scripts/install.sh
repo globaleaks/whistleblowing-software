@@ -925,7 +925,7 @@ if [ -d /globaleaks/deb ]; then
   DO "apt-get update -y"
   DO "apt-get install globaleaks -y --allow-unauthenticated"
 else
-  if [ ! -f /etc/apt/sources.list.d/globaleaks.list ]; then
+  if ! grep -q "deb.globaleaks" /etc/apt/sources.list.d/globaleaks.list; then
     if [ $EXPERIMENTAL -eq 0 ]; then
       echo "deb http://deb.globaleaks.org $DISTRO_CODENAME/" > /etc/apt/sources.list.d/globaleaks.list
     else
