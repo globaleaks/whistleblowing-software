@@ -238,7 +238,7 @@ def serialize_field(session, tid, field, language, data=None):
         data = db_prepare_fields_serialization(session, [field])
 
     if field.template_id is not None:
-        f_to_serialize = session.query(models.Field).filter(models.Field.id == field.template_id, models.Field.tid == field.tid).one_or_none()
+        f_to_serialize = session.query(models.Field).filter(models.Field.id == field.template_id).one_or_none()
     else:
         f_to_serialize = field
 
@@ -247,7 +247,7 @@ def serialize_field(session, tid, field, language, data=None):
         attrs[attr.name] = serialize_field_attr(attr, language)
 
     triggered_by_options = []
-    _triggered_by_options = session.query(models.FieldOption).filter(models.FieldOption.trigger_field == field.id, models.Field.tid == field.tid)
+    _triggered_by_options = session.query(models.FieldOption).filter(models.FieldOption.trigger_field == field.id)
     for trigger in _triggered_by_options:
         triggered_by_options.append({
             'field': trigger.field_id,
