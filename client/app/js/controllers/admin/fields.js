@@ -13,10 +13,6 @@ GLClient.controller('AdminFieldEditorCtrl', ['$scope', '$uibModal', 'Utils',
       $scope.editing = !$scope.editing;
     };
 
-    $scope.isMarkableMultiEntry = function(field) {
-      return (['checkbox', 'selectbox', 'tos'].indexOf(field.type) === -1);
-    };
-
     $scope.isMarkableSubjectToStats = function(field) {
       return (['inputbox', 'textarea', 'fieldgroup'].indexOf(field.type) === -1);
     };
@@ -170,7 +166,6 @@ GLClient.controller('AdminFieldEditorCtrl', ['$scope', '$uibModal', 'Utils',
       });
     };
 
-    $scope.fieldIsMarkableMultiEntry = $scope.isMarkableMultiEntry($scope.field);
     $scope.fieldIsMarkableSubjectToStats = $scope.isMarkableSubjectToStats($scope.field);
     $scope.fieldIsMarkableSubjectToPreview = $scope.isMarkableSubjectToPreview($scope.field);
 
