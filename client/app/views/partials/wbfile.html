@@ -2,11 +2,11 @@
   <div class="panel-body">
     <div class="top-row">
       <span class="pull-left">
-        <span class="text-muted" data-ng-if="ctx == 'download'"><span data-translate>Filename</span>:</span>
+        <span class="text-muted" data-ng-if="ctx === 'download'"><span data-translate>Filename</span>:</span>
         <span class="filename">{{::wbfile.name }}</span>
       </span>
       <span class="pull-right">
-        <span data-ng-if="ctx == 'rtip'">
+        <span data-ng-if="ctx === 'rtip'">
           <span class="btn btn-primary btn-xs" data-ng-click="downloadWBFile(wbfile)">
             <span class="glyphicon glyphicon-download"></span> <span data-translate>Download</span>
           </span>
@@ -14,7 +14,7 @@
             <span class="glyphicon glyphicon-trash"></span> <span data-translate>Delete</span>
           </button>
         </span>
-        <span data-ng-if="ctx == 'wbtip'">
+        <span data-ng-if="ctx === 'wbtip'">
           <div class="download-button btn-warning btn btn-small" data-ng-click="showFileDownloadModal(tip, wbfile)">
            <i class="glyphicon glyphicon-download-alt"></i> <span data-translate>Download</span>
           </div>
@@ -37,7 +37,7 @@
         <span class="text-muted" data-translate>Size</span>:&nbsp;
         <span>{{::wbfile.size | byteFmt:2}}</span>
       </span>
-      <span data-ng-if="ctx == 'rtip'" class="side-spaced">
+      <span data-ng-if="ctx === 'rtip'" class="side-spaced">
         <span class="text-muted" data-translate>Number of downloads</span>:&nbsp;
         <span>{{::wbfile.downloads}}</span>
       </span>
