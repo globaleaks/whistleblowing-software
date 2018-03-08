@@ -81,7 +81,7 @@ ConfigDescriptor = {
     u'onionservice': Unicode(default=u''),
     u'rootdomain': Unicode(default=u''),
 
-    u'tb_download_link': Unicode(default=u'https://www.torproject.org/download/download-easy.html.en'),
+    u'tb_download_link': Unicode(default=u'https://www.torproject.org/download/download-easy.html'),
 
     u'default_language': Unicode(default=u'en'),
     u'default_questionnaire': Unicode(default=u'default'),
