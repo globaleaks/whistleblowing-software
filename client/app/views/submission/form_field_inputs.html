@@ -15,7 +15,7 @@
     <div data-ng-include="'views/submission/form_field_input.html'"></div>
   </div>
 </div>
-<div data-ng-if="::field.multi_entry" class="pull-right">
+<div data-ng-if="::field.multi_entry && field.type === 'fieldgroup'" class="pull-right">
   <button class="btn btn-primary" data-ng-click="addAnswerEntry(entries, field.id)">
     <i class="glyphicon glyphicon-plus"></i>
     <span>{{::field.multi_entry_hint}}</span>
