@@ -48,13 +48,9 @@ def get(session, model, *args, **kwargs):
 
 def db_delete(session, model, *args, **kwargs):
     if isinstance(model, collections.Iterable):
-        q = session.query(*model).filter(*args, **kwargs).one_or_none()
+        session.query(*model).filter(*args, **kwargs).delete(synchronize_session='fetch')
     else:
-        q = session.query(model).filter(*args, **kwargs).one_or_none()
-
-    if q is not None:
-        session.query(model).filter(model.id == q.id).delete(synchronize_session='fetch')
-
+        session.query(model).filter(*args, **kwargs).delete(synchronize_session='fetch')
 
 @transact
 def delete(session, model, *args, **kwargs):
