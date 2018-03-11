@@ -8,10 +8,10 @@
             <span data-translate>Domain</span>
             <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
           </label>
-          <div class="row" data-ng-class="{'has-error': signupFormStep1.subdomain.$error.required}">
+          <div class="row" data-ng-class="{'has-error': signupFormStep1.subdomain.$error.required || signupFormStep1.subdomain.$error.pattern}">
             <div class="col-md-12">
               <div class="input-group">
-                <input name="subdomain" class="form-control" data-ng-model="signup.subdomain" type="text" data-ng-attr-placeholder="{{'Domain' | translate}}" required>
+                <input name="subdomain" class="form-control" data-ng-model="signup.subdomain" type="text" data-ng-attr-placeholder="{{'Domain' | translate}}" data-ng-pattern="/^[a-z0-9]+$/" required subdomainvalidator>
                 <span class="input-group-addon">.{{node.rootdomain}}</span>
               </div>
             </div>

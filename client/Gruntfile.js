@@ -637,7 +637,6 @@ module.exports = function(grunt) {
   grunt.registerTask('fetchTranslations', function() {
     var done = this.async(),
       gt = new Gettext(),
-      fileContents = fs.readFileSync("pot/en.po"),
       lang_code;
 
     gt.setTextDomain('main');

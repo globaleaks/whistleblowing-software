@@ -51,6 +51,19 @@ angular.module('GLDirectives', []).
       }
     };
 }).
+  directive('subdomainvalidator', function() {
+    return {
+      require: 'ngModel',
+      link: function(scope, elem, attrs, ngModel) {
+        ngModel.$parsers.unshift(function(viewValue) {
+          viewValue = viewValue.toLowerCase();
+          viewValue = viewValue.replace(/[^a-z0-9]/g,'');
+          angular.element(elem).val(viewValue);
+          return viewValue;
+        });
+      }
+    };
+}).
 directive('zxPasswordMeter', function() {
   return {
     scope: {
