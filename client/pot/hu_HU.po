@@ -21,8 +21,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-02-22 09:15+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2018-03-11 17:54+0000\n"
+"Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Hungarian (Hungary) (http://www.transifex.com/otf/globaleaks/language/hu_HU/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -714,6 +714,15 @@ msgid "Use as default"
 msgstr ""
 
 msgid "Create your whistleblowing platform"
+msgstr ""
+
+msgid "Collapse"
+msgstr ""
+
+msgid "Expand"
+msgstr ""
+
+msgid "Select"
 msgstr ""
 
 msgid "Select the context of your submission:"
@@ -1421,8 +1430,8 @@ msgstr "Kötelező"
 msgid "Accept multiple file uploads"
 msgstr "Több fájlos feltöltések fogadása"
 
-msgid "Accept multiple answers for the field"
-msgstr "Több válasz is elfogadható ehhez a mezőhöz"
+msgid "Accept multiple answers"
+msgstr ""
 
 msgid "Hint shown on the button for adding an additional answer"
 msgstr "Tipp mutatása a gombon egy további válasz hozzáadásáért"
@@ -1710,6 +1719,9 @@ msgstr "Becsült feltöltési idő:"
 
 msgid "seconds"
 msgstr "másodpercet"
+
+msgid "Size:"
+msgstr ""
 
 msgid "Which of the following statements is true?"
 msgstr "Melyik állítás igaz?"

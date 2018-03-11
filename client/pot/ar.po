@@ -38,8 +38,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-02-22 17:00+0000\n"
-"Last-Translator: Rahma Sghaier <sghair.rahma@gmail.com>\n"
+"PO-Revision-Date: 2018-03-11 17:54+0000\n"
+"Last-Translator: Martus Translations <translations@martus.org>\n"
 "Language-Team: Arabic (http://www.transifex.com/otf/globaleaks/language/ar/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -732,6 +732,15 @@ msgstr "التعيين كوضع افتراضي"
 
 msgid "Create your whistleblowing platform"
 msgstr "إنشاء منصة الابلاغ الخاصة بك. "
+
+msgid "Collapse"
+msgstr ""
+
+msgid "Expand"
+msgstr ""
+
+msgid "Select"
+msgstr "تحديد"
 
 msgid "Select the context of your submission:"
 msgstr "حدد سياق بلاغك:"
@@ -1438,8 +1447,8 @@ msgstr "مطلوب"
 msgid "Accept multiple file uploads"
 msgstr "قبول رفع ملفات متعددة"
 
-msgid "Accept multiple answers for the field"
-msgstr "اقبل أجوبة متعدّدة للحقل"
+msgid "Accept multiple answers"
+msgstr "قبول اجابات متعددة"
 
 msgid "Hint shown on the button for adding an additional answer"
 msgstr " يظهر تلميح على الزر لإضافة إجابة إضافية"
@@ -1727,6 +1736,9 @@ msgstr "وقت الرّفع التقديري:"
 
 msgid "seconds"
 msgstr "ثواني"
+
+msgid "Size:"
+msgstr ""
 
 msgid "Which of the following statements is true?"
 msgstr "أي من العبارات التالية صحيح؟"

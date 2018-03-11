@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-02-22 16:41+0000\n"
-"Last-Translator: Jaakko Korhonen <jaakko.korhonen@gmail.com>\n"
+"PO-Revision-Date: 2018-03-11 17:54+0000\n"
+"Last-Translator: Steve Dougherty\n"
 "Language-Team: Finnish (http://www.transifex.com/otf/globaleaks/language/fi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -703,6 +703,15 @@ msgstr ""
 
 msgid "Create your whistleblowing platform"
 msgstr ""
+
+msgid "Collapse"
+msgstr ""
+
+msgid "Expand"
+msgstr ""
+
+msgid "Select"
+msgstr "Valitse"
 
 msgid "Select the context of your submission:"
 msgstr ""
@@ -1409,8 +1418,8 @@ msgstr "Vaadittu"
 msgid "Accept multiple file uploads"
 msgstr "Hyväksy useiden tiedostojen siirto kerralla"
 
-msgid "Accept multiple answers for the field"
-msgstr "Hyväksy useita vastauksia kentälle"
+msgid "Accept multiple answers"
+msgstr ""
 
 msgid "Hint shown on the button for adding an additional answer"
 msgstr ""
@@ -1698,6 +1707,9 @@ msgstr ""
 
 msgid "seconds"
 msgstr "sekuntia"
+
+msgid "Size:"
+msgstr "Koko:"
 
 msgid "Which of the following statements is true?"
 msgstr "Mitkä seuraavista väittämistä ovat tosia?"

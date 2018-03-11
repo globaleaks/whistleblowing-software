@@ -18,8 +18,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-02-22 08:59+0000\n"
-"Last-Translator: Hermes Center <info@hermescenter.org>\n"
+"PO-Revision-Date: 2018-03-11 17:54+0000\n"
+"Last-Translator: YF <yfdyh000@gmail.com>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/otf/globaleaks/language/zh_CN/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -712,6 +712,15 @@ msgstr "默认使用"
 
 msgid "Create your whistleblowing platform"
 msgstr "创建您的举报平台"
+
+msgid "Collapse"
+msgstr "折叠"
+
+msgid "Expand"
+msgstr "展开"
+
+msgid "Select"
+msgstr "选择"
 
 msgid "Select the context of your submission:"
 msgstr "选项提交内容类型："
@@ -1418,8 +1427,8 @@ msgstr "要求"
 msgid "Accept multiple file uploads"
 msgstr "接受上传多个文件"
 
-msgid "Accept multiple answers for the field"
-msgstr "接受对表单字段的回答多个答案"
+msgid "Accept multiple answers"
+msgstr ""
 
 msgid "Hint shown on the button for adding an additional answer"
 msgstr "添加额外回答的按钮上显示的提示"
@@ -1707,6 +1716,9 @@ msgstr "预计上传时间："
 
 msgid "seconds"
 msgstr "秒"
+
+msgid "Size:"
+msgstr "大小："
 
 msgid "Which of the following statements is true?"
 msgstr "以下的陈述哪一项是正确的？"

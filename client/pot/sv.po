@@ -20,8 +20,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-02-22 08:59+0000\n"
-"Last-Translator: Hermes Center <info@hermescenter.org>\n"
+"PO-Revision-Date: 2018-03-11 17:54+0000\n"
+"Last-Translator: Steve Dougherty\n"
 "Language-Team: Swedish (http://www.transifex.com/otf/globaleaks/language/sv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -714,6 +714,15 @@ msgstr ""
 
 msgid "Create your whistleblowing platform"
 msgstr ""
+
+msgid "Collapse"
+msgstr ""
+
+msgid "Expand"
+msgstr ""
+
+msgid "Select"
+msgstr "Välj"
 
 msgid "Select the context of your submission:"
 msgstr ""
@@ -1420,8 +1429,8 @@ msgstr "Obligatorisk"
 msgid "Accept multiple file uploads"
 msgstr "Tillåt uppladning av flera filer"
 
-msgid "Accept multiple answers for the field"
-msgstr "Acceptera flera svar på fältet"
+msgid "Accept multiple answers"
+msgstr ""
 
 msgid "Hint shown on the button for adding an additional answer"
 msgstr ""
@@ -1709,6 +1718,9 @@ msgstr "Uppskattad uppladningstid:"
 
 msgid "seconds"
 msgstr "sekunder"
+
+msgid "Size:"
+msgstr "Storlek:"
 
 msgid "Which of the following statements is true?"
 msgstr "Vilket av följande påståenden är sant?"

@@ -17,8 +17,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-02-22 09:11+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2018-03-11 17:54+0000\n"
+"Last-Translator: pol polearnik <polearnik@mail.ru>\n"
 "Language-Team: Romanian (http://www.transifex.com/otf/globaleaks/language/ro/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -711,6 +711,15 @@ msgstr ""
 
 msgid "Create your whistleblowing platform"
 msgstr ""
+
+msgid "Collapse"
+msgstr "Restrînge"
+
+msgid "Expand"
+msgstr "Extinde"
+
+msgid "Select"
+msgstr "Selectare"
 
 msgid "Select the context of your submission:"
 msgstr "Selectați contextul prezentării dumneavoastră:"
@@ -1417,8 +1426,8 @@ msgstr "Necesar"
 msgid "Accept multiple file uploads"
 msgstr "Acceptă mai multe încărcări de fișiere"
 
-msgid "Accept multiple answers for the field"
-msgstr "Accepta răspunsuri multiple pentru domeniul"
+msgid "Accept multiple answers"
+msgstr ""
 
 msgid "Hint shown on the button for adding an additional answer"
 msgstr "Sugestie afișat pe buton pentru a adăuga un răspuns suplimentar"
@@ -1706,6 +1715,9 @@ msgstr "Timpul estimativ de încărcare:"
 
 msgid "seconds"
 msgstr "secunde"
+
+msgid "Size:"
+msgstr ""
 
 msgid "Which of the following statements is true?"
 msgstr "Care dintre următoarele afirmații este adevărată?"

@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-02-22 08:59+0000\n"
+"PO-Revision-Date: 2018-03-11 17:54+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Slovenian (Slovenia) (http://www.transifex.com/otf/globaleaks/language/sl_SI/)\n"
 "MIME-Version: 1.0\n"
@@ -700,6 +700,15 @@ msgid "Use as default"
 msgstr ""
 
 msgid "Create your whistleblowing platform"
+msgstr ""
+
+msgid "Collapse"
+msgstr ""
+
+msgid "Expand"
+msgstr ""
+
+msgid "Select"
 msgstr ""
 
 msgid "Select the context of your submission:"
@@ -1407,8 +1416,8 @@ msgstr "Zahtevano"
 msgid "Accept multiple file uploads"
 msgstr "Dovoli nalaganje več datotek"
 
-msgid "Accept multiple answers for the field"
-msgstr "Sprejmi več odgovorov za polje"
+msgid "Accept multiple answers"
+msgstr ""
 
 msgid "Hint shown on the button for adding an additional answer"
 msgstr ""
@@ -1696,6 +1705,9 @@ msgstr "Predviden čas prenosa:"
 
 msgid "seconds"
 msgstr "sekund"
+
+msgid "Size:"
+msgstr ""
 
 msgid "Which of the following statements is true?"
 msgstr "Katera od navedenih trditev je pravilna?"

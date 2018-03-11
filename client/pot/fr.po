@@ -38,7 +38,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-02-22 13:23+0000\n"
+"PO-Revision-Date: 2018-03-11 17:54+0000\n"
 "Last-Translator: French language coordinator <french.coordinator@rbox.me>\n"
 "Language-Team: French (http://www.transifex.com/otf/globaleaks/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -210,7 +210,7 @@ msgid "Private messages"
 msgstr "Messages privés"
 
 msgid "Preview"
-msgstr "Prévisualisation"
+msgstr "Aperçu"
 
 msgid "Move up"
 msgstr "Déplacer vers le haut"
@@ -733,6 +733,15 @@ msgstr "Utiliser comme valeur par défaut"
 msgid "Create your whistleblowing platform"
 msgstr "Créer votre plateforme de lancement d’alerte"
 
+msgid "Collapse"
+msgstr "Réduire"
+
+msgid "Expand"
+msgstr "Étendre"
+
+msgid "Select"
+msgstr "Sélectionner"
+
 msgid "Select the context of your submission:"
 msgstr "Choisir le contexte de votre envoi :"
 
@@ -745,7 +754,7 @@ msgid ""
 "the submission anonymous, which is strongly recommended.\\n\\nThis can be "
 "achieved with the use of the Tor Browser, providing anonymisation not found "
 "in other browsers like Internet Explorer, Firefox, Chrome, Opera etc."
-msgstr "Le fait même de transmettre des envois par HTTPS révèle les transmissions, mais pas leur contenu.\\n\\nSi vous cachez aussi le fait que vous envoyez quelque chose, nous avons alors un envoi anonyme, ce qui est fortement recommandé.\\n\\nLe navigateur Tor permet de le faire en fournissant un anonymisation absente des autres navigateurs tels qu’Internet Explorer, Firefox, Chrome, Opera, etc."
+msgstr "Le fait même de transmettre des envois par HTTPS révèle les transmissions, mais pas leur contenu.\\n\\nSi vous cachez aussi le fait que vous envoyez quelque chose, nous avons alors un envoi anonyme, ce qui est fortement recommandé.\\n\\nLe navigateur Tor permet de le faire en fournissant une anonymisation que les autres navigateurs tels qu’Internet Explorer, Firefox, Chrome, Opera, etc. ne proposent pas."
 
 msgid "Are you a whistleblower?"
 msgstr "Êtes-vous un lanceur d’alerte ?"
@@ -754,7 +763,7 @@ msgid "Blow the whistle"
 msgstr "Lancer une alerte"
 
 msgid "Have you already filed a submission? Enter your key code."
-msgstr "Avez-vous déjà transmis un envoi ? Saisissez votre code de clé."
+msgstr "Avez-vous déjà transmis un envoi ? Saisissez votre code-clé."
 
 msgid "Your submission was successful."
 msgstr "Votre envoi a bien été effectué."
@@ -841,7 +850,7 @@ msgid "Disable the security awareness panel"
 msgstr "Désactiver la fenêtre de sensibilisation à la sécurité"
 
 msgid "Disable the key code hint"
-msgstr "Désactiver l’indice de clé de code"
+msgstr "Désactiver l’indice de code-clé"
 
 msgid "Disable the donation panel"
 msgstr "Désactiver le volet des dons"
@@ -1188,7 +1197,7 @@ msgid "Template"
 msgstr "Modèle"
 
 msgid "Admin"
-msgstr "Admin."
+msgstr "Admin"
 
 msgid "Roles enabled to use the platform without Tor:"
 msgstr "Rôles pouvant utiliser la plateforme sans Tor :"
@@ -1438,8 +1447,8 @@ msgstr "Exigé"
 msgid "Accept multiple file uploads"
 msgstr "Accepter le téléversement de plusieurs fichiers"
 
-msgid "Accept multiple answers for the field"
-msgstr "Accepter des réponses multiples pour ce champ"
+msgid "Accept multiple answers"
+msgstr "Accepter des réponses multiples"
 
 msgid "Hint shown on the button for adding an additional answer"
 msgstr "Indication d’ajout de réponse supplémentaire, apparaissant sur le bouton"
@@ -1554,10 +1563,10 @@ msgid "Encryption:"
 msgstr "Chiffrement :"
 
 msgid "Remove the PGP key"
-msgstr "Enlever la clé PGP"
+msgstr "Supprimer la clé PGP"
 
 msgid "Set up encryption by providing a PGP public key"
-msgstr "Mettre le chiffrement en place en fournissant une clé publique PGP"
+msgstr "Configurer le chiffrement en fournissant une clé publique PGP"
 
 msgid "Request date"
 msgstr "Date de la demande"
@@ -1728,6 +1737,9 @@ msgstr "Durée de téléversement estimée :"
 msgid "seconds"
 msgstr "secondes"
 
+msgid "Size:"
+msgstr "Taille:"
+
 msgid "Which of the following statements is true?"
 msgstr "Laquelle de ces déclarations est exacte ?"
 
@@ -1858,10 +1870,10 @@ msgid "Logout"
 msgstr "Déconnexion"
 
 msgid "The key code is either invalid or the submission has expired."
-msgstr "Votre code de clé est invalide, ou votre envoi a expiré."
+msgstr "Votre code-clé est invalide, ou votre envoi a expiré."
 
 msgid "Please check your key code and try again or make a new submission."
-msgstr "Veuillez vérifier votre code de clé et ressayer, ou faites un nouvel envoi."
+msgstr "Veuillez vérifier votre code-clé et ressayer, ou faites un nouvel envoi."
 
 msgid "Files attached by recipients"
 msgstr "Pièces jointes par les destinataires"
@@ -1899,18 +1911,18 @@ msgstr "Nous essaierons de vous contacter dès que possible !"
 msgid ""
 "Use the 16 digit key code to log in. It will allow you to view any messages "
 "we sent you, and also to add extra info."
-msgstr "Utilisez le code de clé à 16 chiffres pour vous connecter. Vous pourrez ainsi lire les messages que nous vous avons envoyés, et aussi ajouter des informations complémentaires."
+msgstr "Utilisez le code-clé à 16 chiffres pour vous connecter. Vous pourrez ainsi lire les messages que nous vous avons envoyés, et aussi ajouter des informations complémentaires."
 
 msgid "View your submission"
 msgstr "Visualisez votre envoi"
 
 msgid "Hint: How to hide your key code"
-msgstr "Astuce : comment cacher votre code de clé"
+msgstr "Astuce : comment cacher votre code-clé"
 
 msgid ""
 "A useful way to hide your key code is to write it down like a credit card "
 "number, i.e. by also including an expiration date."
-msgstr "Une bonne manière de dissimuler votre code de clé est de le noter comme un numéro de carte de crédit, c.-à-d. en ajoutant une date d’expiration."
+msgstr "Une bonne manière de dissimuler votre code-clé est de le noter comme un numéro de carte de crédit, c.-à-d. en ajoutant une date d’expiration."
 
 msgid "Example:"
 msgstr "Exemple :"
@@ -2081,7 +2093,7 @@ msgid "Fill out your submission"
 msgstr "Remplissez votre dossier"
 
 msgid "Short title"
-msgstr "Titre court"
+msgstr "Titre abrégé"
 
 msgid "Describe your submission in a few words."
 msgstr "Décrivez votre envoi en quelques mots."
@@ -2099,7 +2111,7 @@ msgid "Dear {RecipientName},"
 msgstr "Cher, chère {RecipientName},"
 
 msgid "Kind regards,"
-msgstr "Cordialement,"
+msgstr "Salutations cordiales,"
 
 msgid ""
 "The number of activities recently detected appears to be higher than usual."

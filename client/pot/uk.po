@@ -22,8 +22,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-02-22 09:13+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2018-03-11 17:54+0000\n"
+"Last-Translator: Андрій Бандура <andriykopanytsia@gmail.com>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/otf/globaleaks/language/uk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -716,6 +716,15 @@ msgstr ""
 
 msgid "Create your whistleblowing platform"
 msgstr ""
+
+msgid "Collapse"
+msgstr ""
+
+msgid "Expand"
+msgstr ""
+
+msgid "Select"
+msgstr "Вибрати"
 
 msgid "Select the context of your submission:"
 msgstr "Оберіть контекст Вашого повідомлення"
@@ -1422,8 +1431,8 @@ msgstr "Необхідно"
 msgid "Accept multiple file uploads"
 msgstr "Дозволити завантаження декількох файлів"
 
-msgid "Accept multiple answers for the field"
-msgstr "Дозволити кілька відповідей у полі"
+msgid "Accept multiple answers"
+msgstr ""
 
 msgid "Hint shown on the button for adding an additional answer"
 msgstr "Підказка на кнопці для додаткової відповіді"
@@ -1711,6 +1720,9 @@ msgstr "Час завершення завантаження"
 
 msgid "seconds"
 msgstr "секунди"
+
+msgid "Size:"
+msgstr ""
 
 msgid "Which of the following statements is true?"
 msgstr "Яке з наведених нижче стверджень є правильним?"
