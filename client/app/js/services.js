@@ -16,8 +16,8 @@ angular.module('GLServices', ['ngResource']).
     };
   }]).
   factory('Authentication',
-    ['$http', '$location', '$routeParams', '$rootScope', '$timeout', 'GLTranslate', 'locationForce', 'UserPreferences', 'ReceiverPreferences',
-    function($http, $location, $routeParams, $rootScope, $timeout, GLTranslate, locationForce, UserPreferences, ReceiverPreferences) {
+    ['$filter', '$http', '$location', '$routeParams', '$rootScope', '$timeout', 'GLTranslate', 'locationForce', 'UserPreferences', 'ReceiverPreferences',
+    function($filter, $http, $location, $routeParams, $rootScope, $timeout, GLTranslate, locationForce, UserPreferences, ReceiverPreferences) {
       function Session(){
         var self = this;
 
@@ -57,6 +57,10 @@ angular.module('GLServices', ['ngResource']).
           } else if (self.session.role === 'whistleblower') {
             self.session.auth_landing_page = '/status';
             self.session.homepage = '#/status';
+          }
+
+          self.session.role_l10n = function() {
+              return $filter('translate')(self.session.role.charAt(0).toUpperCase() + self.session.role.substr(1));
           }
         }
 

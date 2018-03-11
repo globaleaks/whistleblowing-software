@@ -10,7 +10,7 @@
         <label data-ng-if="session.role === 'whistleblower'" data-translate>Whistleblower</label>
         <span data-ng-if="session.role !== 'whistleblower'" data-ng-switch="session.role">
            <label>{{::preferences.name}}</label>
-           <span class="text-separator">(</span><a data-ng-href="{{session.homepage}}"><span data-ng-switch-when="admin" data-translate>Admin</span><span data-ng-switch-when="receiver" data-translate>Recipient</span><span data-ng-switch-when="custodian" data-translate>Custodian</span></a><span class="text-separator">)</span>
+           <span class="text-separator">(</span><a data-ng-href="{{session.homepage}}">{{session.role_l10n()}}</a><span class="text-separator">)</span>
         </span>
       </span>
      <span id="PreferencesLinkBox" data-ng-if="session.role != 'whistleblower'">
