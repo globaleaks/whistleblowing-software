@@ -46,8 +46,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-02-22 09:23+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2018-03-11 17:54+0000\n"
+"Last-Translator: Ettore Atalan <atalanttore@googlemail.com>\n"
 "Language-Team: German (http://www.transifex.com/otf/globaleaks/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -740,6 +740,15 @@ msgstr "Als Standard verwenden"
 
 msgid "Create your whistleblowing platform"
 msgstr ""
+
+msgid "Collapse"
+msgstr "Einklappen"
+
+msgid "Expand"
+msgstr "Aufklappen"
+
+msgid "Select"
+msgstr "Auswählen"
 
 msgid "Select the context of your submission:"
 msgstr "Wählen Sie den Kontext Ihrer Einreichung aus:"
@@ -1446,8 +1455,8 @@ msgstr "Erforderlich"
 msgid "Accept multiple file uploads"
 msgstr "Mehrere Dateien zum Hochladen akzeptieren"
 
-msgid "Accept multiple answers for the field"
-msgstr "Mehrere Antworten für dieses Feld akzeptieren"
+msgid "Accept multiple answers"
+msgstr ""
 
 msgid "Hint shown on the button for adding an additional answer"
 msgstr "Auf dem button angezeigter Hinweis beim Hinzufügen einer zusätzlichen Antwort"
@@ -1735,6 +1744,9 @@ msgstr "Geschätzte Hochladezeit:"
 
 msgid "seconds"
 msgstr "Sekunden"
+
+msgid "Size:"
+msgstr "Größe:"
 
 msgid "Which of the following statements is true?"
 msgstr "Welche der folgenden Aussagen ist korrekt?"

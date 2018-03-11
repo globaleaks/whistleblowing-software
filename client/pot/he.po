@@ -17,8 +17,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-02-22 09:30+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2018-03-11 17:54+0000\n"
+"Last-Translator: zxcsd <jenisjpl@gmail.com>\n"
 "Language-Team: Hebrew (http://www.transifex.com/otf/globaleaks/language/he/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -711,6 +711,15 @@ msgstr ""
 
 msgid "Create your whistleblowing platform"
 msgstr ""
+
+msgid "Collapse"
+msgstr ""
+
+msgid "Expand"
+msgstr ""
+
+msgid "Select"
+msgstr "בחר"
 
 msgid "Select the context of your submission:"
 msgstr ""
@@ -1417,8 +1426,8 @@ msgstr "חובה"
 msgid "Accept multiple file uploads"
 msgstr "אפשר העלת קבצים מרובים"
 
-msgid "Accept multiple answers for the field"
-msgstr "קבל תשובות מרובות לשדה"
+msgid "Accept multiple answers"
+msgstr ""
 
 msgid "Hint shown on the button for adding an additional answer"
 msgstr "רמז לראות על הכפתור להוספת תשובה נוספת"
@@ -1706,6 +1715,9 @@ msgstr "זמן העלאה משוער:"
 
 msgid "seconds"
 msgstr "שניות"
+
+msgid "Size:"
+msgstr ""
 
 msgid "Which of the following statements is true?"
 msgstr "איזה מהמשפטים הבאים נכון?"

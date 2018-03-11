@@ -18,8 +18,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-02-22 08:59+0000\n"
-"Last-Translator: Hermes Center <info@hermescenter.org>\n"
+"PO-Revision-Date: 2018-03-11 17:54+0000\n"
+"Last-Translator: Marcin Januchta <marcin.januchta@gmail.com>\n"
 "Language-Team: Polish (http://www.transifex.com/otf/globaleaks/language/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -712,6 +712,15 @@ msgstr ""
 
 msgid "Create your whistleblowing platform"
 msgstr ""
+
+msgid "Collapse"
+msgstr "Zwiń"
+
+msgid "Expand"
+msgstr "Rozwiń"
+
+msgid "Select"
+msgstr "Wybierz"
 
 msgid "Select the context of your submission:"
 msgstr "Wybierz kontekst zgłoszenia:"
@@ -1418,8 +1427,8 @@ msgstr "Wymagane"
 msgid "Accept multiple file uploads"
 msgstr "Zaakceptuj przesyłanie wielu plików"
 
-msgid "Accept multiple answers for the field"
-msgstr "Akceptuj wiele odpowiedzi w polu"
+msgid "Accept multiple answers"
+msgstr ""
 
 msgid "Hint shown on the button for adding an additional answer"
 msgstr ""
@@ -1707,6 +1716,9 @@ msgstr ""
 
 msgid "seconds"
 msgstr "sekundy"
+
+msgid "Size:"
+msgstr "Wielkość:"
 
 msgid "Which of the following statements is true?"
 msgstr "Które z podanych stwierdzeń jest prawdziwe?"
