@@ -25,6 +25,8 @@ email_regexp_or_empty             = r'^(([\w+-\.]){0,100}[\w]{1,100}@([\w+-\.]){
 onionservice_regexp_or_empty      = r'^[0-9a-z]{16}\.onion$|^$'
 hostname_regexp                   = r'^[0-9a-z\-\.]+$'
 hostname_regexp_or_empty          = r'^[0-9a-z\-\.]+$|^$'
+subdomain_regexp                  = r'^[0-9a-z]+$'
+subdomain_regexp_or_empty         = r'^[0-9a-z]+$|^$'
 https_url_regexp                  = r'^https://([0-9a-z\-]+)\.(.*)$'
 https_url_regexp_or_empty         = r'^https://([0-9a-z\-]+)\.(.*)$|^$'
 landing_page_regexp               = r'^(homepage|submissionpage)$'
@@ -87,7 +89,7 @@ ContentType = r'(.*)'
 AdminTenantDesc = {
     'label': unicode,
     'active': bool,
-    'subdomain': hostname_regexp_or_empty,
+    'subdomain': subdomain_regexp_or_empty,
 }
 
 FileDesc = {
@@ -548,7 +550,7 @@ WizardDesc = {
 }
 
 SignupDesc = {
-    'subdomain': unicode,
+    'subdomain': subdomain_regexp,
     'name': unicode,
     'surname': unicode,
     'email': unicode,
