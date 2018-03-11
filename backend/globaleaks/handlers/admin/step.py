@@ -72,11 +72,19 @@ def update_step(session, tid, step_id, request, language):
 
 
 @transact
+def delete_step(session, tid, step_id):
+    q_ids = session.query(models.Questionnaire.id).filter(models.Questionnaire.tid == tid)
+
+    session.query(models.Step).filter(models.Step.id == step_id,
+                                      models.Step.questionnaire_id.in_(q_ids.subquery())).delete(synchronize_session='fetch')
+
+
+@transact
 def order_elements(session, handler, req_args, *args, **kwargs):
     steps = session.query(models.Step) \
-                 .filter(models.Step.questionnaire_id == req_args['questionnaire_id'],
-                         models.Questionnaire.id == req_args['questionnaire_id'],
-                         models.Questionnaire.tid == handler.request.tid)
+                   .filter(models.Step.questionnaire_id == req_args['questionnaire_id'],
+                           models.Questionnaire.id == req_args['questionnaire_id'],
+                           models.Questionnaire.tid == handler.request.tid)
 
     id_dict = {step.id: step for step in steps}
     ids = req_args['ids']
@@ -153,6 +161,4 @@ class StepInstance(BaseHandler):
         :param step_id:
         :raises InputValidationError: if validation fails.
         """
-        return models.delete(models.Step, models.Step.id == step_id,
-                                          models.Questionnaire.id == models.Step.questionnaire_id,
-                                          models.Questionnaire.tid == self.request.tid)
+        return delete_step(self.request.tid, step_id)
