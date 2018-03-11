@@ -5,7 +5,7 @@
         <img class="receiverImg" alt="user picture" data-ng-src="{{::Utils.imgDataUri(preferences.picture)}}" /><br />
       </div>
       <p><label><span data-translate>Username</span>:</label> {{::session.username }}</p>
-      <p><label><span data-translate>Role</span>:</label> {{::preferences.role }}</p>
+      <p><label><span data-translate>Role</span>:</label> <span>{{::session.role_l10n()}}</span></p>
       <p><label><span data-translate>Name</span>:</label> {{::preferences.name }}</p>
       <p><label><span data-translate>Email address</span>:</label> {{::preferences.mail_address }}</p>
       <p data-ng-if="preferences.description !== ''"><label data-translate>Description</label> {{::preferences.description }}</p>
@@ -21,7 +21,7 @@
 
 <div class="form-group">
   <label data-translate>Language</label>
-  <select class="form-control" data-ng-model="preferences.language" data-ng-options="item.code as item.name for item in languages_enabled_selector"></select>
+  <select class="form-control" data-ng-model="preferences.language" data-ng-options="item.code as item.native for item in languages_enabled_selector"></select>
 </div>
 
 <div class="form-group" data-ng-if="session.role == 'receiver'">
@@ -53,7 +53,7 @@
     <div class="position-relative">
       <label data-translate>Set up encryption by providing a PGP public key</label>
       <textarea data-pgp-pubkey-validator="canBeEmpty" class="form-control" data-ng-attr-placeholder="{{'Copy and paste the PGP public key here' | translate}}" data-ng-model="preferences.pgp_key_public"></textarea>
-      <label file-picker-input="loadPublicKeyFile(file)" data-label-text="Select" class="btn btn-default textarea-btn"></label>
+      <label file-picker-input="loadPublicKeyFile(file)" data-label-text="{{'Select' | translate}}" class="btn btn-default textarea-btn"></label>
     </div>
   </div>
 </div>
