@@ -47,7 +47,7 @@ def signup(session, state, tid, request, language):
     ret = {
         'signup': serialize_signup(signup),
         'activation_url': 'https://%s/#/activation?token=%s' % (node.get_val(u'rootdomain'), signup.activation_token),
-        'expiration_date': datetime_to_ISO8601(signup.registration_date + timedelta(days=7))
+        'expiration_date': datetime_to_ISO8601(signup.registration_date + timedelta(days=30))
     }
 
     template_vars = copy.deepcopy(ret)
