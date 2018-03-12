@@ -1,0 +1,27 @@
+#!/bin/sh
+# This is the post installation script for globaleaks
+set -e
+
+if [ ! -z "$(ls -A /var/globaleaks 2>/dev/null)" ]; then
+  if ! id -u globaleaks >/dev/null 2>&1; then
+    adduser --quiet \
+            --system \
+            --disabled-login \
+            --disabled-password \
+            --home /var/globaleaks \
+            --shell /bin/false \
+            --group \
+            globaleaks
+  fi
+
+  timestamp=$(date +%s)
+  version=`dpkg -s globaleaks | grep '^Version:' | cut -d ' ' -f2`
+  filepath=/var/globaleaks/backups/globaleaks-$version-$timestamp.tar.gz
+  echo "Detected existing instance of GlobaLeaks"
+  echo "Creating backup of /var/globaleaks ..."
+  mkdir -p /var/globaleaks/backups
+  chown globaleaks:globaleaks /var/globaleaks/backups
+  tar --exclude='/var/globaleaks/backups' -zcf $filepath /var/globaleaks
+  echo "Done."
+  echo "Backup available in: $filepath"
+fi
