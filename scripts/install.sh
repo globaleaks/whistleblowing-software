@@ -828,6 +828,11 @@ if echo "$DISTRO_CODENAME" | grep -vqE "^xenial$" ; then
   fi
 fi
 
+# stops globaleaks if it is running
+if ps aux | grep -q "[g]lobaleaks" ; then
+    DO "/etc/init.d/globaleaks stop"
+fi
+
 # align apt-get cache to up-to-date state on configured repositories
 DO "apt-get update -y"
 
