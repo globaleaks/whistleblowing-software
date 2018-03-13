@@ -549,16 +549,17 @@ class MigrationScript(MigrationBase):
     def migrate_File(self):
         old_objs = self.session_old.query(self.model_from['File'])
         for old_obj in old_objs:
+            obj_id = None
             u = self.session_old.query(self.model_from['User']).filter(self.model_from['User'].img_id == old_obj.id).one_or_none()
             c = self.session_old.query(self.model_from['Context']).filter(self.model_from['Context'].img_id == old_obj.id).one_or_none()
             if u is not None:
                 new_obj = self.model_to['UserImg']()
-                new_obj.id = u.id
+                obj_id = u.id
                 self.entries_count['UserImg'] += 1
                 self.entries_count['File'] -= 1
             elif c is not None:
                 new_obj = self.model_to['ContextImg']()
-                new_obj.id = c.id
+                obj_id = c.id
                 self.entries_count['ContextImg'] += 1
                 self.entries_count['File'] -= 1
             else:
@@ -571,6 +572,9 @@ class MigrationScript(MigrationBase):
                     new_obj.name = ''
                 else:
                     setattr(new_obj, key, getattr(old_obj, key))
+
+            if obj_id is not None:
+                new_obj.id = obj_id
 
             self.session_new.add(new_obj)
 
