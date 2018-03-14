@@ -829,7 +829,7 @@ if echo "$DISTRO_CODENAME" | grep -vqE "^xenial$" ; then
 fi
 
 # stops globaleaks if it is running
-if ps aux | grep -q "[g]lobaleaks" ; then
+if ! ps aux | grep -q "[g]lobaleaks" ; then
     DO "/etc/init.d/globaleaks stop"
 fi
 
