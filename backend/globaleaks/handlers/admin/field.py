@@ -249,10 +249,9 @@ def delete_field(session, tid, field_id):
         raise errors.InputValidationError("Cannot remove the field template as it is used by one or more questionnaires")
 
     if field.template_id == 'whistleblower_identity' and field.step_id is not None:
-        session.query(models.Questionnaire) \
-               .filter(models.Questionnaire.tid == tid,
-                       models.Step.id == field.step_id,
-                       models.Questionnaire.id == models.Step.questionnaire_id).update({'enable_whistleblower_identity': False})
+        step_id = session.query(models.Step.id).filter(models.Step.id == field.step_id)
+
+        session.query(models.Questionnaire).filter(models.Questionnaire.id == step_id.subquery()).update({'enable_whistleblower_identity': False}, synchronize_session='fetch')
 
     session.delete(field)
 
