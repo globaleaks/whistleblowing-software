@@ -1,10 +1,3 @@
-<div class="row" data-ng-show="errors[0].code == 29">
-  <div class="col-md-9">
-    <div class="alert alert-danger">
-      <strong><span data-translate>Authentication failed</span></strong>
-    </div>
-  </div>
-</div>
 <div class="row">
   <div class="col-md-4">
     <form name="loginForm" autocomplete="off" novalidate >
@@ -17,6 +10,10 @@
         <div class="form-group">
           <label data-translate>Password</label>
           <input class="form-control" name="password" data-ng-model="loginPassword" type="password" required />
+        </div>
+
+        <div class="alert alert-danger" data-ng-show="errors[0].code === 9">
+          <span data-translate>Authentication failed</span>
         </div>
 
         <button id="login-button" class="btn btn-success" data-ng-disabled="Authentication.loginInProgress || loginForm.$invalid" data-ng-click="Authentication.login(loginUsername, loginPassword)" type="submit">
@@ -33,6 +30,10 @@
         <div class="form-group" data-ng-show="loginUsername">
           <label data-translate>Now type your password, then click 'Log in':</label>
           <input class="form-control" name="password" data-ng-model="loginPassword" type="password" autocomplete="off" required />
+        </div>
+
+        <div class="alert alert-danger" data-ng-show="errors[0].code === 9">
+          <span data-translate>Authentication failed</span>
         </div>
 
         <div class="form-group" data-ng-show="loginUsername">
