@@ -96,7 +96,7 @@ def signup_activation(session, state, tid, token, language):
             'notification': db_get_notification(session, 1, language),
             'signup': serialize_signup(signup),
             'activation_url': '',
-            'expiration_date': datetime_to_ISO8601(signup.registration_date + timedelta(days=7))
+            'expiration_date': datetime_to_ISO8601(signup.registration_date + timedelta(days=30))
         }
 
         state.format_and_send_mail(session, 1, {'mail_address': signup.email}, template_vars)
