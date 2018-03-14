@@ -59,12 +59,12 @@
                   <span class="badge badge-info">{{tenant.id}}</span>
                   <span>{{tenant.id === 1 ? admin.node.name : tenant.label}}</span>
                   <span data-ng-if="tenant.active && (tenant.onionservice || (tenant.id == 1 && tenant.hostname) || (tenant.id > 1 && (tenant.subdomain || tenant.hostname)))">
-                    <span class="label label-primary" data-ng-if="tenant.onionservice">{{tenant.onionservice}}</span>
+                    <a class="label label-primary" data-ng-if="tenant.onionservice" data-ng-href="http://{{tenant.onionservice}}" target="_blank">{{tenant.onionservice}}</a>
                     <span data-ng-if="tenant.id > 1 && admin.node.hostname">
-                      <span class="label label-primary">p{{tenant.id}}.{{admin.node.hostname}}</span>
-                      <span class="label label-primary" data-ng-if="tenant.subdomain">{{tenant.subdomain}}.{{admin.node.hostname}}</span>
+                      <a class="label label-primary" data-ng-href="https://p{{tenant.id}}.{{admin.node.hostname}}" target="_blank">p{{tenant.id}}.{{admin.node.hostname}}</a>
+		      <a class="label label-primary" data-ng-if="tenant.subdomain" data-ng-href="https://{{tenant.subdomain}}.{{admin.node.hostname}}" target="_blank">{{tenant.subdomain}}.{{admin.node.hostname}}</a>
                     </span>
-                    <span class="label label-primary" data-ng-if="tenant.hostname">{{tenant.hostname}}</span>
+                    <a class="label label-primary" data-ng-if="tenant.hostname" data-ng-href="https://{{tenant.hostname}}" target="_blank">{{tenant.hostname}}</a>
                   </span>
                 </div>
               </div>
