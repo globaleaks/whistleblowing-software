@@ -227,6 +227,8 @@
   "Collapse": "Collapse",
   "Expand": "Expand",
   "Select": "Selecionar",
+  "Selected by default": "Selected by default",
+  "Unselected by default": "Unselected by default",
   "Select the context of your submission:": "Selecione o contexto da sua submissão:",
   "Warning! You are not anonymous.": "Aviso! Não está anónimo.",
   "Sending submissions over HTTPS exposes the act of doing so, but not the content.\\n\\nAlso, hiding the fact that you are submitting something makes the submission anonymous, which is strongly recommended.\\n\\nThis can be achieved with the use of the Tor Browser, providing anonymisation not found in other browsers like Internet Explorer, Firefox, Chrome, Opera etc.": "Enviar submissões por HTTPS expõe o ato de o fazer, mas não o conteúdo.\n\nTambém, ocultando o facto de que está a submeter alguma coisa torna a mesma anónima, o que é fortemente recomendado.\n\nisto pode ser obtido com a utilização do Tor Browser, fornecendo anonimato não encontrado em outros navegadores, tais como Chrome, Firefox,  Internet Explorer, Opera...",

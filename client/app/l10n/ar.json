@@ -227,6 +227,8 @@
   "Collapse": "Collapse",
   "Expand": "Expand",
   "Select": "تحديد",
+  "Selected by default": "Selected by default",
+  "Unselected by default": "Unselected by default",
   "Select the context of your submission:": "حدد سياق بلاغك:",
   "Warning! You are not anonymous.": "تحذير! أنت لست مجهول الهوية.",
   "Sending submissions over HTTPS exposes the act of doing so, but not the content.\\n\\nAlso, hiding the fact that you are submitting something makes the submission anonymous, which is strongly recommended.\\n\\nThis can be achieved with the use of the Tor Browser, providing anonymisation not found in other browsers like Internet Explorer, Firefox, Chrome, Opera etc.": "إرسال البلاغات عبر HTTPS يكشف هذا الفعل، ولكن ليس المحتوى.\n\nإخفاء حقيقة أن كنت تقدم شيئا يجعل التقديم مجهول الهوية، و هو ما  ينصح به بشدة.\n\nهذا لا يمكن أن يتحقق الا مع استخدام متصفح تور وتوفير اللاهوية لا توجد في غيره من المتصفحات مثل إنترنت إكسبلورر، فايرفوكس، كروم، أوبرا الخ.",

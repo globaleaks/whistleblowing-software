@@ -227,6 +227,8 @@
   "Collapse": "Restrînge",
   "Expand": "Extinde",
   "Select": "Selectare",
+  "Selected by default": "Selected by default",
+  "Unselected by default": "Unselected by default",
   "Select the context of your submission:": "Selectați contextul prezentării dumneavoastră:",
   "Warning! You are not anonymous.": "Avertizare! Nu ești anonim.",
   "Sending submissions over HTTPS exposes the act of doing so, but not the content.\\n\\nAlso, hiding the fact that you are submitting something makes the submission anonymous, which is strongly recommended.\\n\\nThis can be achieved with the use of the Tor Browser, providing anonymisation not found in other browsers like Internet Explorer, Firefox, Chrome, Opera etc.": "Trimitere livrarilor prin HTTPS scoate la iveal faptul ca faci asta, dar nu continutul. Deci, ascunzand faptul ca trimiti ceva va face livrarea anonima, ceea ce este recomandat. Acest lucru poate fi atins prin utilizarea browser-ului Tor, care ofera o anonimizare care nu se regaseste in browsere precum Internet Explorer, Firefox, Chrome, Opera etc.",

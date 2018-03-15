@@ -227,6 +227,8 @@
   "Collapse": "Collapse",
   "Expand": "Expand",
   "Select": "Вибрати",
+  "Selected by default": "Selected by default",
+  "Unselected by default": "Unselected by default",
   "Select the context of your submission:": "Оберіть контекст Вашого повідомлення",
   "Warning! You are not anonymous.": "УВАГА! Ви не анонімні.",
   "Sending submissions over HTTPS exposes the act of doing so, but not the content.\\n\\nAlso, hiding the fact that you are submitting something makes the submission anonymous, which is strongly recommended.\\n\\nThis can be achieved with the use of the Tor Browser, providing anonymisation not found in other browsers like Internet Explorer, Firefox, Chrome, Opera etc.": "Передача повідомлень через з'єднання захищене протоколом HTTPS робить зміст листа  недоступним для третіх осіб, АЛЕ залишає можливість відстежили факт передачі.\n\nМи наполегливо радимо надсилати свідчення про корупцію анонімним способом, тобто -приховувти не лише зміт, але і сам факт передачі листів.\n\nПриховати факт передачі можна за допомогою браузера Tor, який забезпечуючє анонімність (на відміну від інших браузерах, таких як Internet Explorer, Firefox, Chrome, Opera і т.д.)",

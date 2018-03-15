@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-03-11 17:54+0000\n"
-"Last-Translator: Steve Dougherty\n"
+"PO-Revision-Date: 2018-03-15 15:07+0000\n"
+"Last-Translator: Naofumi <naofum@gmail.com>\n"
 "Language-Team: Japanese (http://www.transifex.com/otf/globaleaks/language/ja/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -705,13 +705,19 @@ msgid "Create your whistleblowing platform"
 msgstr "あなたの内部告発プラットフォームを作成"
 
 msgid "Collapse"
-msgstr ""
+msgstr "折りたたむ"
 
 msgid "Expand"
-msgstr ""
+msgstr "展開する"
 
 msgid "Select"
 msgstr "選択"
+
+msgid "Selected by default"
+msgstr "デフォルトで選択"
+
+msgid "Unselected by default"
+msgstr "デフォルトで非選択"
 
 msgid "Select the context of your submission:"
 msgstr "提出のコンテキストを選択してください:"
@@ -1419,7 +1425,7 @@ msgid "Accept multiple file uploads"
 msgstr "複数ファイルのアップロードを受け付ける"
 
 msgid "Accept multiple answers"
-msgstr ""
+msgstr "複数の回答を受け付ける"
 
 msgid "Hint shown on the button for adding an additional answer"
 msgstr "追加の回答を追加するボタンにヒントを表示します"

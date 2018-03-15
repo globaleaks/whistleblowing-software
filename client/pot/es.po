@@ -29,8 +29,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-03-11 17:54+0000\n"
-"Last-Translator: Steve Dougherty\n"
+"PO-Revision-Date: 2018-03-14 13:24+0000\n"
+"Last-Translator: strel\n"
 "Language-Team: Spanish (http://www.transifex.com/otf/globaleaks/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -732,6 +732,12 @@ msgstr "Expandir"
 
 msgid "Select"
 msgstr "Seleccionar"
+
+msgid "Selected by default"
+msgstr "Seleccionado por defecto"
+
+msgid "Unselected by default"
+msgstr "Deseleccionado por defecto"
 
 msgid "Select the context of your submission:"
 msgstr "Seleccione el contexto de su entrega:"

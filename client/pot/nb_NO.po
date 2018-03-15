@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-03-11 17:54+0000\n"
+"PO-Revision-Date: 2018-03-15 07:16+0000\n"
 "Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Norwegian Bokmål (Norway) (http://www.transifex.com/otf/globaleaks/language/nb_NO/)\n"
 "MIME-Version: 1.0\n"
@@ -703,13 +703,19 @@ msgid "Create your whistleblowing platform"
 msgstr "Opprett din fløyteblåserplattform"
 
 msgid "Collapse"
-msgstr ""
+msgstr "Fold sammen"
 
 msgid "Expand"
-msgstr ""
+msgstr "Utvid"
 
 msgid "Select"
 msgstr "Velg"
+
+msgid "Selected by default"
+msgstr "Forvalgt"
+
+msgid "Unselected by default"
+msgstr "Ikke forvalgt"
 
 msgid "Select the context of your submission:"
 msgstr "Velg bindeleddsinformasjonen tilhørende din innsendelse:"
@@ -1417,7 +1423,7 @@ msgid "Accept multiple file uploads"
 msgstr "Tillat flerfoldige filopplastinger"
 
 msgid "Accept multiple answers"
-msgstr ""
+msgstr "Godta flere svar"
 
 msgid "Hint shown on the button for adding an additional answer"
 msgstr "Hint vist på knappen for tillegg av et ekstra spørsmål"
@@ -1954,7 +1960,7 @@ msgid "Domain"
 msgstr "Domene"
 
 msgid "Use Case"
-msgstr ""
+msgstr "Bruksmønster"
 
 msgid "Anticorruption"
 msgstr "Antikorrupsjon"

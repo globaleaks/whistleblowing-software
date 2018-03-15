@@ -25,7 +25,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-03-11 17:57+0000\n"
+"PO-Revision-Date: 2018-03-15 15:56+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Italian (http://www.transifex.com/otf/globaleaks/language/it/)\n"
 "MIME-Version: 1.0\n"
@@ -728,6 +728,12 @@ msgstr "Espandi"
 
 msgid "Select"
 msgstr "Selezione"
+
+msgid "Selected by default"
+msgstr "Selezionato di default"
+
+msgid "Unselected by default"
+msgstr "Non selezionato di default"
 
 msgid "Select the context of your submission:"
 msgstr "Seleziona il contesto della tua segnalazione"
