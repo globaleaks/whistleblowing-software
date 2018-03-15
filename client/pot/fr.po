@@ -38,8 +38,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-03-11 17:54+0000\n"
-"Last-Translator: French language coordinator <french.coordinator@rbox.me>\n"
+"PO-Revision-Date: 2018-03-14 11:06+0000\n"
+"Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: French (http://www.transifex.com/otf/globaleaks/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -563,7 +563,7 @@ msgid "Strong"
 msgstr "Robuste"
 
 msgid "Loading…"
-msgstr "Chargement..."
+msgstr "Chargement…"
 
 msgid "Text shown on top of the interface for selecting contexts"
 msgstr "Texte de sélection des contextes, affiché en haut de l’interface"
@@ -575,7 +575,7 @@ msgid "Type of context selector:"
 msgstr "Type de sélecteur de contexte :"
 
 msgid "Type to search…"
-msgstr "Taper pour chercher..."
+msgstr "Taper pour chercher…"
 
 msgid "Silence email notifications"
 msgstr "Désactiver les courriel de notification"
@@ -737,10 +737,16 @@ msgid "Collapse"
 msgstr "Réduire"
 
 msgid "Expand"
-msgstr "Étendre"
+msgstr "Développer"
 
 msgid "Select"
 msgstr "Sélectionner"
+
+msgid "Selected by default"
+msgstr ""
+
+msgid "Unselected by default"
+msgstr ""
 
 msgid "Select the context of your submission:"
 msgstr "Choisir le contexte de votre envoi :"
@@ -1723,7 +1729,7 @@ msgid "Add file"
 msgstr "Ajouter un fichier"
 
 msgid "Uploading files…"
-msgstr "Téléversement des fichiers..."
+msgstr "Téléversement des fichiers…"
 
 msgid "Upload completed successfully!"
 msgstr "Le téléversement s’est terminé avec succès !"
@@ -1738,7 +1744,7 @@ msgid "seconds"
 msgstr "secondes"
 
 msgid "Size:"
-msgstr "Taille:"
+msgstr "Taille :"
 
 msgid "Which of the following statements is true?"
 msgstr "Laquelle de ces déclarations est exacte ?"
@@ -2308,7 +2314,7 @@ msgid ""
 "If you don’t mind and would rather receive such a large number of email "
 "notifications anyhow, please contact your technical support to have them "
 "modify this setting accordingly."
-msgstr "S’il vous importe peu et que vous préféreriez quand même recevoir un si grand nombre de courriels de notification, veuillez contacter votre soutien technique pour leur demander de modifier ce paramètre adéquatement."
+msgstr "S’il vous importe peu et que vous préférez quand même recevoir un si grand nombre de courriels de notification, veuillez contacter votre soutien technique pour leur demander de modifier ce paramètre en conséquence."
 
 msgid "Notifications from {NodeName} have been temporarily suspended"
 msgstr "Les notifications provenant de {NodeName} ont été suspendues temporairement"

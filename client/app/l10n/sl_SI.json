@@ -227,6 +227,8 @@
   "Collapse": "Collapse",
   "Expand": "Expand",
   "Select": "Select",
+  "Selected by default": "Selected by default",
+  "Unselected by default": "Unselected by default",
   "Select the context of your submission:": "Izberite tematiko vašega prispevka:",
   "Warning! You are not anonymous.": "Opozorilo! Vaša identiteta ni skrita.",
   "Sending submissions over HTTPS exposes the act of doing so, but not the content.\\n\\nAlso, hiding the fact that you are submitting something makes the submission anonymous, which is strongly recommended.\\n\\nThis can be achieved with the use of the Tor Browser, providing anonymisation not found in other browsers like Internet Explorer, Firefox, Chrome, Opera etc.": "Sending submissions over HTTPS exposes the act of doing so, but not the content.\n\nAlso, hiding the fact that you are submitting something makes the submission anonymous, which is strongly recommended.\n\nThis can be achieved with the use of the Tor Browser, providing anonymisation not found in other browsers like Internet Explorer, Firefox, Chrome, Opera etc.",

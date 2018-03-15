@@ -11,7 +11,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-03-11 17:54+0000\n"
+"PO-Revision-Date: 2018-03-14 11:06+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Bulgarian (http://www.transifex.com/otf/globaleaks/language/bg/)\n"
 "MIME-Version: 1.0\n"
@@ -713,6 +713,12 @@ msgid "Expand"
 msgstr ""
 
 msgid "Select"
+msgstr ""
+
+msgid "Selected by default"
+msgstr ""
+
+msgid "Unselected by default"
 msgstr ""
 
 msgid "Select the context of your submission:"

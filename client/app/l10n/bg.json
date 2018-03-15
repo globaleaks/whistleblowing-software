@@ -227,6 +227,8 @@
   "Collapse": "Collapse",
   "Expand": "Expand",
   "Select": "Select",
+  "Selected by default": "Selected by default",
+  "Unselected by default": "Unselected by default",
   "Select the context of your submission:": "Изберете контекста на подадения сигнал:",
   "Warning! You are not anonymous.": "Предупреждени! Не сте анонимен.",
   "Sending submissions over HTTPS exposes the act of doing so, but not the content.\\n\\nAlso, hiding the fact that you are submitting something makes the submission anonymous, which is strongly recommended.\\n\\nThis can be achieved with the use of the Tor Browser, providing anonymisation not found in other browsers like Internet Explorer, Firefox, Chrome, Opera etc.": "Изпращането на сингал през HTTPS показва, че сте направили точно това, но не и съдържанието.\n\nПрикриването на факта, че дори сте направили това прави подаването на сигнала анонимно, което е силно препоръчително.\n\nТова може да бъде постигнато като се използва Tor браузъра, който предлага анонимизиране, което не може да бъде намерено в други браузъри като Internet Explorer, Firefox, Chrome, Opera и т.н.",

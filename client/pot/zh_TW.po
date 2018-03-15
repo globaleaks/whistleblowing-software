@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-03-11 17:54+0000\n"
-"Last-Translator: Mingye Wang <arthur200126@gmail.com>\n"
+"PO-Revision-Date: 2018-03-14 11:06+0000\n"
+"Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/otf/globaleaks/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -713,6 +713,12 @@ msgstr ""
 
 msgid "Select"
 msgstr "選擇"
+
+msgid "Selected by default"
+msgstr ""
+
+msgid "Unselected by default"
+msgstr ""
 
 msgid "Select the context of your submission:"
 msgstr "選擇你提交的內文說明"
