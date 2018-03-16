@@ -50,8 +50,7 @@ from globaleaks.handlers.admin import tenant as admin_tenant
 from globaleaks.handlers.admin import user as admin_user
 from globaleaks.rest import apicache, requests, errors
 from globaleaks.settings import Settings
-from globaleaks.state import State
-from globaleaks.utils.mailutils import extract_exception_traceback_and_schedule_email
+from globaleaks.state import State, extract_exception_traceback_and_schedule_email
 
 
 uuid_regexp = r'([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})'
@@ -267,6 +266,8 @@ class APIResourceWrapper(Resource):
         elif isinstance(e.value, errors.GLException):
             e = e.value
         else:
+            e.tid = request.tid
+            e.url = request.client_proto + '://' + request.hostname + request.uri
             extract_exception_traceback_and_schedule_email(e)
             e = errors.InternalServerError('Unexpected')
 

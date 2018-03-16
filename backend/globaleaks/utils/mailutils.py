@@ -4,11 +4,8 @@
 # *********
 #
 # GlobaLeaks Utility used to handle Mail, format, exception, etc
-
 import StringIO
-import re
 import sys
-import traceback
 from email import utils, Charset  # pylint: disable=no-name-in-module
 from email.header import Header
 from email.mime.multipart import MIMEMultipart
@@ -19,7 +16,6 @@ from twisted.internet import reactor, defer
 from twisted.internet.endpoints import TCP4ClientEndpoint
 from twisted.mail.smtp import ESMTPSenderFactory, SMTPError
 from twisted.protocols import tls
-from twisted.python.failure import Failure
 
 from globaleaks import __version__
 from globaleaks.utils.tls import TLSClientContextFactory
@@ -132,44 +128,3 @@ def sendmail(tid, username, password, smtp_host, smtp_port, security, from_name,
         # avoids raising an exception inside email logic to avoid chained errors
         log.err("Unexpected exception in sendmail: %s", str(excep), tid=tid)
         return defer.succeed(False)
-
-
-def mail_exception_handler(etype, value, tback):
-    """
-    Formats traceback and exception data and emails the error,
-    This would be enabled only in the testing phase and testing release,
-    not in production release.
-    """
-    if isinstance(value, (GeneratorExit,
-                          defer.AlreadyCalledError,
-                          SMTPError)) or \
-        (etype == AssertionError and value.message == "Request closed"):
-        # we need to bypass email notification for some exception that:
-        # 1) raise frequently or lie in a twisted bug;
-        # 2) lack of useful stacktraces;
-        # 3) can be cause of email storm amplification
-        #
-        # this kind of exception can be simply logged error logs.
-        log.err("exception mail suppressed for exception (%s) [reason: special exception]", str(etype))
-        return
-
-    # collection of the stacktrace info
-    exc_type = re.sub("(<(type|class ')|'exceptions.|'>|__main__.)",
-                      "", str(etype))
-    error_message = "%s %s" % (exc_type.strip(), etype.__doc__)
-    traceinfo = '\n'.join(traceback.format_exception(etype, value, tback))
-
-    mail_body = error_message + "\n\n" + traceinfo
-
-    log.err("Unhandled exception raised:")
-    log.err(mail_body)
-
-    from globaleaks.state import State
-    State.schedule_exception_email(mail_body)
-
-
-def extract_exception_traceback_and_schedule_email(e):
-    if isinstance(e, Failure):
-        mail_exception_handler(e.type, e.value, e.getTracebackObject())
-    else:
-        mail_exception_handler(*sys.exc_info())

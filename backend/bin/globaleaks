@@ -43,9 +43,8 @@ from twisted.scripts._twistd_unix import ServerOptions, UnixApplicationRunner
 
 
 from globaleaks import DATABASE_VERSION
-from globaleaks.utils.mailutils import mail_exception_handler
 from globaleaks.settings import Settings
-from globaleaks.state import State
+from globaleaks.state import State, mail_exception_handler
 
 Settings.parser.add_option("-n", "--nodaemon", action='store_true',
     help="don't daemonize",
