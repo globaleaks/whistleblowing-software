@@ -11,7 +11,7 @@ pyasn1==0.1.9
 pyasn1_modules==0.0.7
 pycparser==2.14
 python_debian==0.1.28
-python_gnupg==0.4.1
+python_gnupg==0.3.8
 requests==2.9.1
 scrypt==0.6.1
 service_identity==16.0.0
