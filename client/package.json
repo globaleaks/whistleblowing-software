@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@flowjs/flow.js": "2.13.0",
-    "@flowjs/ng-flow": "2.7.7",
+    "@flowjs/ng-flow": "2.7.8",
     "angular": "1.6.9",
     "angular-aria": "1.6.9",
     "angular-dynamic-locale": "0.1.32",
@@ -35,7 +35,7 @@
   },
   "devDependencies": {
     "coveralls": "3.0.0",
-    "eslint": "4.18.2",
+    "eslint": "4.19.0",
     "gettext-parser": "1.4.0",
     "grunt": "1.0.2",
     "grunt-angular-templates": "1.1.0",
