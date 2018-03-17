@@ -259,7 +259,7 @@ directive('pgpPubkeyDisplay', ['pgp', 'glbcKeyLib', function(pgp, glbcKeyLib) {
         if (newVal === "") {
           return;
         }
-        glbcKeyLib.validPublicKey(newVal).then(result => {
+        glbcKeyLib.validPublicKey(newVal).then(function(result) {
           if (result) {
             scope.key_details = pgpKeyDetails(newVal);
           }
@@ -285,8 +285,6 @@ directive('pgpPubkeyValidator', ['$q', 'glbcKeyLib', function($q, glbcKeyLib) {
     // modelValue is the models value, viewVal is displayed on the page.
     ngModel.$asyncValidators.pgpPubKeyValidator = function(modelVal) {
       // Check for obvious problems.
-      var defer = $q.defer();
-
       if (typeof modelVal !== 'string') {
         modelVal = '';
       }

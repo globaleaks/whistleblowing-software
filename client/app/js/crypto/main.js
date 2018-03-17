@@ -108,7 +108,7 @@ angular.module('GLBrowserCrypto', [])
         }
 
         // Verify expiration, revocation, and self sigs.
-        key.verifyPrimaryKey().then(keyStatus => {
+        key.verifyPrimaryKey().then(function(keyStatus) {
           if (keyStatus === pgp.enums.keyStatus.valid) {
             defer.resolve(true);
           } else {
