@@ -10,9 +10,9 @@
       "integrity": "sha1-7VneHFmR9e68sdgQQ2wchpQSBGI="
     },
     "@flowjs/ng-flow": {
-      "version": "2.7.7",
-      "resolved": "https://registry.npmjs.org/@flowjs/ng-flow/-/ng-flow-2.7.7.tgz",
-      "integrity": "sha1-thK7zNeLkC59yQywaQW2sDKY2WM="
+      "version": "2.7.8",
+      "resolved": "https://registry.npmjs.org/@flowjs/ng-flow/-/ng-flow-2.7.8.tgz",
+      "integrity": "sha512-zO6jNvz41oMOJj9+1N+vLT0ytitbCtuGABJQRzQDOPXyRMmlSXfJ7om5oYOztyUFrr4jDpE4QFPt+r2/RFceCg=="
     },
     "@types/node": {
       "version": "6.0.101",
@@ -2162,9 +2162,9 @@
       }
     },
     "eslint": {
-      "version": "4.18.2",
-      "resolved": "https://registry.npmjs.org/eslint/-/eslint-4.18.2.tgz",
-      "integrity": "sha512-qy4i3wODqKMYfz9LUI8N2qYDkHkoieTbiHpMrYUI/WbjhXJQr7lI4VngixTgaG+yHX+NBCv7nW4hA0ShbvaNKw==",
+      "version": "4.19.0",
+      "resolved": "https://registry.npmjs.org/eslint/-/eslint-4.19.0.tgz",
+      "integrity": "sha512-r83L5CuqaocDvfwdojbz68b6tCUk8KJkqfppO+gmSAQqYCzTr0bCSMu6A6yFCLKG65j5eKcKUw4Cw4Yl4gfWkg==",
       "dev": true,
       "requires": {
         "ajv": "5.5.2",
@@ -2198,6 +2198,7 @@
         "path-is-inside": "1.0.2",
         "pluralize": "7.0.0",
         "progress": "2.0.0",
+        "regexpp": "1.0.1",
         "require-uncached": "1.0.3",
         "semver": "5.5.0",
         "strip-ansi": "4.0.0",
@@ -3795,7 +3796,7 @@
       "integrity": "sha512-wEa2WjMGVDzQbq1QmOiDX51/CfaAIS5xx1oSKIjfWVLl/fYbV7PtfWsUhuaQrPIy1se4Crpg3kZFZndw02l16g==",
       "dev": true,
       "requires": {
-        "eslint": "4.18.2"
+        "eslint": "4.19.0"
       }
     },
     "handlebars": {
@@ -8293,6 +8294,12 @@
         "indent-string": "2.1.0",
         "strip-indent": "1.0.1"
       }
+    },
+    "regexpp": {
+      "version": "1.0.1",
+      "resolved": "https://registry.npmjs.org/regexpp/-/regexpp-1.0.1.tgz",
+      "integrity": "sha512-8Ph721maXiOYSLtaDGKVmDn5wdsNaF6Px85qFNeMPQq0r8K5Y10tgP6YuR65Ws35n4DvzFcCxEnRNBIXQunzLw==",
+      "dev": true
     },
     "registry-auth-token": {
       "version": "3.3.2",
