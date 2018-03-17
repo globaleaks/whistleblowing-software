@@ -259,10 +259,11 @@ directive('pgpPubkeyDisplay', ['pgp', 'glbcKeyLib', function(pgp, glbcKeyLib) {
         if (newVal === "") {
           return;
         }
-        scope.is_valid_key = glbcKeyLib.validPublicKey(newVal);
-        if (scope.is_valid_key) {
-          scope.key_details = pgpKeyDetails(newVal);
-        }
+        glbcKeyLib.validPublicKey(newVal).then(function(result) {
+          if (result) {
+            scope.key_details = pgpKeyDetails(newVal);
+          }
+        });
       });
     },
   };
@@ -272,7 +273,7 @@ directive('pgpPubkeyDisplay', ['pgp', 'glbcKeyLib', function(pgp, glbcKeyLib) {
 // containing form's ngModelController NOT the ngModel bound to the value of the
 // text-area itself. If the key word 'canBeEmpty' the pgp key validator is disabled
 // when the textarea's input is empty.
-directive('pgpPubkeyValidator', ['glbcKeyLib', function(glbcKeyLib) {
+directive('pgpPubkeyValidator', ['$q', 'glbcKeyLib', function($q, glbcKeyLib) {
   // scope is the directives scope
   // elem is a jqlite reference to the bound element
   // attrs is the list of directives on the element
@@ -282,14 +283,14 @@ directive('pgpPubkeyValidator', ['glbcKeyLib', function(glbcKeyLib) {
     scope.canBeEmpty = scope.pgpPubkeyValidator === 'canBeEmpty';
 
     // modelValue is the models value, viewVal is displayed on the page.
-    ngModel.$validators.pgpPubKeyValidator = function(modelVal) {
+    ngModel.$asyncValidators.pgpPubKeyValidator = function(modelVal) {
       // Check for obvious problems.
       if (typeof modelVal !== 'string') {
         modelVal = '';
       }
 
       if (scope.canBeEmpty && modelVal === '') {
-        return true;
+        return $q.reject();
       }
 
       return glbcKeyLib.validPublicKey(modelVal);
