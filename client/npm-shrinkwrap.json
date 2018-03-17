@@ -2049,7 +2049,7 @@
       "dev": true
     },
     "elliptic": {
-      "version": "github:openpgpjs/elliptic#8b8ee8475b86402b125d4ad3a863a4ccd762e48c",
+      "version": "github:openpgpjs/elliptic#e187e706e11fa51bcd20e46e5119054be4e2a4a6",
       "requires": {
         "bn.js": "4.11.8",
         "brorand": "1.1.0",
@@ -7666,16 +7666,16 @@
       "dev": true
     },
     "openpgp": {
-      "version": "3.0.0",
-      "resolved": "https://registry.npmjs.org/openpgp/-/openpgp-3.0.0.tgz",
-      "integrity": "sha512-meIqCm8OJVHPfUyZNoXHGNQyaZAhlI3KMn+3eyffbplbEqhS/XMdSHjwVR5TjDsRosML9H/HotfMCVNB8ZqMWw==",
+      "version": "3.0.2",
+      "resolved": "https://registry.npmjs.org/openpgp/-/openpgp-3.0.2.tgz",
+      "integrity": "sha512-uRCB74x3dJKhVzFH1yMwGLdpKnfMkxXrK/iW2v2ptx/IluroNWIJwm6n4/K+ZFesaMC1xeFzJeCJKs6mdCeQKQ==",
       "requires": {
         "asmcrypto.js": "0.22.0",
         "asn1.js": "5.0.0",
         "bn.js": "4.11.8",
         "buffer": "5.1.0",
         "compressjs": "github:openpgpjs/compressjs#ce5ccbede61f075926081e29573c8a79ddf10d88",
-        "elliptic": "github:openpgpjs/elliptic#8b8ee8475b86402b125d4ad3a863a4ccd762e48c",
+        "elliptic": "github:openpgpjs/elliptic#e187e706e11fa51bcd20e46e5119054be4e2a4a6",
         "hash.js": "1.1.3",
         "node-fetch": "1.7.3",
         "node-localstorage": "1.3.0",

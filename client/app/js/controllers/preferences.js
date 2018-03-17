@@ -1,5 +1,5 @@
-GLClient.controller('PreferencesCtrl', ['$scope', '$rootScope', 'Utils', 'CONSTANTS',
-  function($scope, $rootScope, Utils, CONSTANTS) {
+GLClient.controller('PreferencesCtrl', ['$scope', '$q', '$rootScope', 'Utils', 'CONSTANTS',
+  function($scope, $q, $rootScope, Utils, CONSTANTS) {
     $scope.tabs = [
       {
         title: "Preferences",
