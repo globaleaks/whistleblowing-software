@@ -298,15 +298,6 @@ def mail_exception_handler(etype, value, tback):
     exc_type = re.sub("(<(type|class ')|'exceptions.|'>|__main__.)",
                       "", str(etype))
 
-    if hasattr(value, 'tid') and value.tid != 1:
-        mail_body += "Site ID: %d\nHost: %s (%s)\n\n" % \
-                     (value.tid,
-                      State.tenant_cache[value.tid].hostname,
-                      State.tenant_cache[value.tid].onionservice)
-
-    if hasattr(value, 'url'):
-        mail_body += "URL: %s\n\n" % value.url
-
     mail_body += "%s %s\n\n" % (exc_type.strip(), etype.__doc__)
 
     mail_body += '\n'.join(traceback.format_exception(etype, value, tback))
@@ -322,12 +313,6 @@ def extract_exception_traceback_and_schedule_email(e):
         type, value, traceback = e.type, e.value, e.getTracebackObject()
     else:
         type, value, traceback = sys.exc_info()
-
-    if hasattr(e, 'tid'):
-        value.tid = e.tid
-
-    if hasattr(e, 'url'):
-        value.url = e.url
 
     mail_exception_handler(type, value, traceback)
 
