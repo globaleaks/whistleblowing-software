@@ -11,8 +11,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-03-14 11:06+0000\n"
-"Last-Translator: Hermes Center <info@hermescenter.org>\n"
+"PO-Revision-Date: 2018-03-18 10:51+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Bulgarian (http://www.transifex.com/otf/globaleaks/language/bg/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1717,7 +1717,7 @@ msgid "seconds"
 msgstr "секунди"
 
 msgid "Size:"
-msgstr ""
+msgstr "Размер:"
 
 msgid "Which of the following statements is true?"
 msgstr "Кое от следните твърдения е вярно?"
@@ -1963,7 +1963,7 @@ msgstr "Регистриане"
 msgid "Domain"
 msgstr "Домейн"
 
-msgid "Use Case"
+msgid "Use case"
 msgstr "Причина за ползване"
 
 msgid "Anticorruption"
