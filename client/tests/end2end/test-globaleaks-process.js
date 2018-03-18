@@ -13,23 +13,24 @@ describe('globaLeaks process', function() {
   var receiver_username = "recipient";
   var receiver_password = browser.gl.utils.vars['user_password'];
 
-  var perform_submission = function() {
+  var perform_submission = function(done) {
     var wb = new browser.gl.pages.whistleblower();
     wb.performSubmission(tip_text, true).then(function(receipt) {
       receipts.unshift(receipt);
+      done();
     });
   };
 
-  it('Whistleblowers should be able to submit tips (1)', function() {
-    perform_submission();
+  it('Whistleblowers should be able to submit tips (1)', function(done) {
+    perform_submission(done);
   });
 
-  it('Whistleblowers should be able to submit tips (2)', function() {
-    perform_submission();
+  it('Whistleblowers should be able to submit tips (2)', function(done) {
+    perform_submission(done);
   });
 
-  it('Whistleblowers should be able to submit tips (3)', function() {
-    perform_submission();
+  it('Whistleblowers should be able to submit tips (3)', function(done) {
+    perform_submission(done);
   });
 
   it('Whistleblower should be able to access the last submission', function() {
