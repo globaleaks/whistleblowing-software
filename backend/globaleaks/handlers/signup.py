@@ -8,6 +8,7 @@ from globaleaks import models
 from globaleaks.handlers.admin.node import db_admin_serialize_node
 from globaleaks.handlers.admin.notification import db_get_notification
 from globaleaks.handlers.admin.tenant import db_create as db_create_tenant
+from globaleaks.handlers.admin.user import db_get_admin_users
 from globaleaks.handlers.base import BaseHandler, new_session
 from globaleaks.handlers.wizard import db_wizard
 from globaleaks.models import config
@@ -50,6 +51,14 @@ def signup(session, state, tid, request, language):
         'expiration_date': datetime_to_ISO8601(signup.registration_date + timedelta(days=30))
     }
 
+    # We need to send two emails
+    #
+    # The first one is sent to the platform owner with the activation email.
+    #
+    # The second goes to the instance administrators notifying them that a new
+    # platform has been added.
+
+    # Email 1 - Activation Link
     template_vars = copy.deepcopy(ret)
     template_vars.update({
         'type': 'signup',
@@ -58,6 +67,18 @@ def signup(session, state, tid, request, language):
     })
 
     state.format_and_send_mail(session, 1, {'mail_address': signup.email}, template_vars)
+
+    # Email 2 - Admin Notification
+    template_vars = copy.deepcopy(ret)
+    template_vars.update({
+        'type': 'admin_signup_alert',
+        'signup': serialize_signup(signup),
+        'node': db_admin_serialize_node(session, 1, language),
+        'notification': db_get_notification(session, 1, language),
+    })
+
+    for user_desc in db_get_admin_users(session, 1):
+        state.format_and_send_mail(session, 1, user_desc, template_vars)
 
     return ret
 
