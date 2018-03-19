@@ -503,7 +503,8 @@ supported_template_types = {
     u'https_certificate_expiration': CertificateExprKeyword,
     u'software_update_available': SoftwareUpdateKeyword,
     u'signup': PlatformSignupKeyword,
-    u'activation': PlatformSignupKeyword
+    u'activation': PlatformSignupKeyword,
+    u'admin_signup_alert': PlatformSignupKeyword
 }
 
 
