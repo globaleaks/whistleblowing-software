@@ -26,8 +26,8 @@ if platform.system() == 'Linux':
 if distro != 'xenial':
     print("WARNING: The long term supported platform is Ubuntu Xenial (16.04)")
     print("WARNING: It is recommended to use only this platform to ensure stability and security")
-    print("WARNING: Read about Technical Requirement at: http://globaleaks.readthedocs.io/en/latest/TechnicalRequirements.html")
-    print("WARNING: If it's an old Ubuntu, read more about updating at: https://github.com/globaleaks/GlobaLeaks/wiki/Upgrade-Guide#platform-update")
+    print("WARNING: Read about Technical Requirements at: https://docs.globaleaks.org/en/latest/TechnicalRequirements.html")
+    print("WARNING: If it's an old Ubuntu, read more about updating at: https://docs.globaleaks.org/en/latest/UpgradeGuide.html")
 
 if distro in ('precise', 'trusty', 'wheezy', 'jessie'):
     from globaleaks.utils.pip_utils import pip_version_check
