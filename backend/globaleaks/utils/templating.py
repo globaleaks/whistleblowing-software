@@ -95,9 +95,9 @@ software_update_keywords = [
 platform_signup_keywords = [
     '{RecipientName}',
     '{ActivationUrl}',
-    '{ExpirationDate}'
+    '{ExpirationDate}',
+    '{UseCase}'
 ]
-
 
 def indent(n=1):
     return '  ' * n
@@ -486,6 +486,23 @@ class PlatformSignupKeyword(NodeKeyword):
     def ExpirationDate(self):
         return ISO8601_to_day_str(self.data['expiration_date'])
 
+    def UseCase(self):
+        # Some special handling is required here. use_case is, as the name
+        # suggests is the reason why a new tenant signed up for a GL platform,
+        # however, "Other" is allowed as a valid reason, so we need to catch
+        # that and send it seperately.
+        #
+        # The l10n for this is a little wonky because of the way the seperator
+        # works, this might require changing it to string replacement so it can
+        # be properly handled in gettext.
+
+        signup_data = self.data['signup']
+        if signup_data['use_case'] == 'other':
+            return signup_data['use_case'] + \
+                   " - " + \
+                   signup_data['use_case_other']
+        else:
+            return signup_data['use_case']
 
 supported_template_types = {
     u'tip': TipKeyword,

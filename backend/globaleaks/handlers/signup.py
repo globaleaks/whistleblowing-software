@@ -25,7 +25,9 @@ def serialize_signup(signup):
         'email': signup.email,
         'subdomain': signup.subdomain,
         'activation_token': signup.activation_token,
-        'registration_date': datetime_to_ISO8601(signup.registration_date)
+        'registration_date': datetime_to_ISO8601(signup.registration_date),
+        'use_case': signup.use_case,
+        'use_case_other': signup.use_case_other
     }
 
 
