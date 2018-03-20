@@ -249,14 +249,14 @@ class SettingsClass(object):
             self.print_msg("Invalid user: cannot run as root")
             sys.exit(1)
 
-        if self.cmdline_options.working_path:
-            self.working_path = self.cmdline_options.working_path
-
         if self.cmdline_options.developer_name:
             self.print_msg("Enabling development mode for %s" % self.cmdline_options.developer_name)
             self.developer_name = unicode(self.cmdline_options.developer_name)
             self.set_devel_mode()
             self.orm_debug = self.cmdline_options.orm_debug
+
+        if self.cmdline_options.working_path:
+            self.working_path = self.cmdline_options.working_path
 
         self.api_prefix = self.cmdline_options.api_prefix
 
