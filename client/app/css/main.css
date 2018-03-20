@@ -395,10 +395,6 @@ html[dir='rtl'] .imageUpload .changePictureButton, html[dir='ltr'] .imageUpload 
   vertical-align: middle;
 }
 
-.filename {
-  font-size: 1em;
-}
-
 .file-info-row {
   margin-top: 10px;
 }

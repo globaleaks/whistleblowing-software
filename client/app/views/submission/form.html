@@ -8,12 +8,8 @@
             <span data-ng-if="::field.hint">
               <i class="glyphicon glyphicon-question-sign"></i>
             </span>
+            <span data-ng-if="::field.required" class="red-asterisk">*</span>
           </label>
-          <span class="red-asterisk"
-                aria-hidden="true"
-                data-ng-if="::field.required"
-                uib-popover="{{'This field is mandatory' | translate}}"
-                popover-placement="right">*</span>
         </div>
         <div class="question-body">
           <div class="fieldDescription">{{::field.description}}</div>

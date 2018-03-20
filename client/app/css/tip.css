@@ -57,3 +57,7 @@
 .fieldLabel {
   font-weight: bold;
 }
+
+.question {
+  margin-bottom: 1em;
+}
