@@ -14,34 +14,18 @@
         <table class="table table-striped" id="fileList">
           <thead>
             <tr>
-              <th>
-                <span data-translate>Filename</span>
-              </th>
-              <th>
-                <span data-translate>Upload date</span>
-              </th>
-              <th>
-                <span data-translate>Content Type</span>
-              </th>
-              <th>
-                <span data-translate>File size</span>
-              </th>
+              <th data-translate>Filename</th>
+              <th data-translate>Upload date</th>
+              <th data-translate>Type</th>
+              <th data-translate>File size</th>
             </tr>
           </thead>
           <tbody id="fileListBody">
             <tr id="file-{{$index}}" data-ng-repeat="file in tip.rfiles | orderBy:'creation_date'">
-              <td>
-                <span class="filename">{{::file.name}}</span>
-              </td>
-              <td>
-                <span>{{::file.creation_date | date:'dd-MM-yyyy'}}</span>
-              </td>
-              <td>
-                <span>{{::file.content_type}}</span>
-              </td>
-              <td>
-                <span>{{::file.size | byteFmt:2}}</span>
-              </td>
+              <td>{{::file.name}}</td>
+              <td>{{::file.creation_date | date:'dd-MM-yyyy'}}</td>
+              <td>{{::file.content_type}}</td>
+              <td>{{::file.size | byteFmt:2}}</td>
             </tr>
           </tbody>
         </table>

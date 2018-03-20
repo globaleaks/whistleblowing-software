@@ -14,28 +14,16 @@
         <table class="table table-striped" id="fileList">
           <thead>
             <tr>
-              <th class="FileTableName">
-                <span data-translate>Filename</span>
-              </th>
-              <th class="FileTableInfo">
-                <span data-translate>Download</span>
-              </th>
-              <th class="FileTableInfo">
-                <span data-translate>Upload date</span>
-              </th>
-              <th class="FileTableInfo">
-                <span data-translate>Content Type</span>
-              </th>
-              <th class="FileTableInfo">
-                <span data-translate>File size</span>
-              </th>
+              <th data-translate>Filename</th>
+              <th data-translate>Download</th>
+              <th data-translate>Upload date</th>
+              <th data-translate>Type</th>
+              <th data-translate>File size</th>
             </tr>
           </thead>
           <tbody id="fileListBody">
             <tr id="file-{{$index}}" data-ng-repeat="file in tip.rfiles">
-              <td>
-                <span class="filename">{{::file.name}}</span>
-              </td>
+              <td>{{::file.name}}</td>
               <td data-ng-show="file.status != 'unavailable'">
                 <button class="tip-action-download-file"
                         uib-popover="{{'Download' | translate}}"
@@ -52,15 +40,9 @@
               <td data-ng-show="file.status == 'nokey'">
                 <div class="label label-warning" uib-popover="{{'The file is unavailable due to missing pgp key.' | translate}}" popover-placement="bottom" data-translate>file unavailable</div>
               </td>
-              <td>
-                <span>{{::file.creation_date | date:'dd-MM-yyyy'}}</span>
-              </td>
-              <td>
-                <span>{{::file.content_type}}</span>
-              </td>
-              <td>
-                <span>{{::file.size | byteFmt:2}}</span>
-              </td>
+	      <td>{{::file.creation_date | date:'dd-MM-yyyy'}}</td>
+	      <td>{{::file.content_type}}</td>
+              <td>{{::file.size | byteFmt:2}}</td>
             </tr>
           </tbody>
         </table>
