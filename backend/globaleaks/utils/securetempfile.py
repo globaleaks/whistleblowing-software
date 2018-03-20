@@ -20,15 +20,15 @@ class SecureTemporaryFile(object):
         self.key_counter_nonce = os.urandom(16)
         self.cipher = Cipher(algorithms.AES(self.key), modes.CTR(self.key_counter_nonce), backend=crypto_backend)
         self.filepath = os.path.join(filesdir, "%s.aes" % self.key_id)
+        self.enc = self.cipher.encryptor()
+        self.dec = self.cipher.decryptor()
 
     def open(self, mode):
         if self.file is None:
            if mode == 'w':
                self.file = open(self.filepath, 'a+')
-               self.encdec = self.cipher.encryptor()
            else:
                self.file = open(self.filepath, 'r')
-               self.encdec = self.cipher.decryptor()
 
         return self
 
@@ -36,10 +36,10 @@ class SecureTemporaryFile(object):
         if isinstance(data, unicode):
             data = data.encode('utf-8')
 
-        self.file.write(self.encdec.update(data))
+        self.file.write(self.enc.update(data))
 
     def finalize_write(self):
-        self.file.write(self.encdec.finalize())
+        self.file.write(self.enc.finalize())
 
     def read(self, c=None):
         if c is None:
@@ -48,9 +48,9 @@ class SecureTemporaryFile(object):
             data = self.file.read(c)
 
         if data:
-            return self.encdec.update(data)
+            return self.dec.update(data)
 
-        return self.encdec.finalize()
+        return self.dec.finalize()
 
     def close(self):
         self.file.close()
