@@ -397,7 +397,6 @@ html[dir='rtl'] .imageUpload .changePictureButton, html[dir='ltr'] .imageUpload 
 
 .filename {
   font-size: 1em;
-  font-weight: bold;
 }
 
 .file-info-row {
