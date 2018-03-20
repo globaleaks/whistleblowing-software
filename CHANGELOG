@@ -1,3 +1,12 @@
+Changes in version 3.0.14 - 2018-03-21
+    o Fix regression in file uploads bigger than 1MB (#2226)
+    o Improve UI of mandatory fields
+    o Apply minor bugfixing
+    o Update translations
+
+    Addresses issues:
+    - https://github.com/globaleaks/GlobaLeaks/issues/2226
+
 Changes in version 3.0.13 - 2018-03-18
     o Apply minor bugfixing
 
