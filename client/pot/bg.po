@@ -11,7 +11,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-03-18 10:51+0000\n"
+"PO-Revision-Date: 2018-03-20 23:35+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Bulgarian (http://www.transifex.com/otf/globaleaks/language/bg/)\n"
 "MIME-Version: 1.0\n"
@@ -205,9 +205,6 @@ msgstr "Изнасяне"
 
 msgid "Save all"
 msgstr "Запазване на всички"
-
-msgid "This field is mandatory"
-msgstr "Това поне е задължително"
 
 msgid ""
 "The connection used to send this submission has been secured with HTTPS "
@@ -1011,6 +1008,9 @@ msgstr "Редактирай"
 msgid "Cancel"
 msgstr "Откажи"
 
+msgid "This field is mandatory"
+msgstr "Това поне е задължително"
+
 msgid "Questionnaire"
 msgstr "Въпросник"
 
@@ -1761,9 +1761,6 @@ msgstr "Име на файл"
 msgid "Upload date"
 msgstr "Дата на качване"
 
-msgid "Content Type"
-msgstr "Вид на съдържанието"
-
 msgid "File size"
 msgstr "Размер на файла"
 
@@ -1990,9 +1987,6 @@ msgstr "Вашата платформа за източници е почити 
 msgid "Check your inbox to activate your account."
 msgstr "Проверете пощенската си кутия, за да активирате профила си."
 
-msgid "The answer is too short."
-msgstr "Отговорът е твърде кратък."
-
 msgid "The specified input is not valid:"
 msgstr "Зададената информация не е валидна:"
 
@@ -2001,6 +1995,12 @@ msgstr "моля, въведете валиден имейл"
 
 msgid "please enter numbers only."
 msgstr "моля, въвдете само цифри."
+
+msgid "This field is mandatory."
+msgstr "Това поне е задължително."
+
+msgid "The answer is too short."
+msgstr "Отговорът е твърде кратък."
 
 msgid "Recipient selection"
 msgstr "Избор на получатели"

@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-03-18 10:50+0000\n"
+"PO-Revision-Date: 2018-03-20 23:24+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Bosnian (http://www.transifex.com/otf/globaleaks/language/bs/)\n"
 "MIME-Version: 1.0\n"
@@ -200,9 +200,6 @@ msgstr "izvoz"
 
 msgid "Save all"
 msgstr "Sačuvaj sve"
-
-msgid "This field is mandatory"
-msgstr "Ovo polje je obavezno"
 
 msgid ""
 "The connection used to send this submission has been secured with HTTPS "
@@ -1006,6 +1003,9 @@ msgstr "Uredi"
 msgid "Cancel"
 msgstr "Odustani"
 
+msgid "This field is mandatory"
+msgstr "Ovo polje je obavezno"
+
 msgid "Questionnaire"
 msgstr "upitnik"
 
@@ -1756,9 +1756,6 @@ msgstr "Naziv datoteke"
 msgid "Upload date"
 msgstr "Upload datum"
 
-msgid "Content Type"
-msgstr "sadržaj Type"
-
 msgid "File size"
 msgstr "Veličina fajla"
 
@@ -1985,9 +1982,6 @@ msgstr ""
 msgid "Check your inbox to activate your account."
 msgstr ""
 
-msgid "The answer is too short."
-msgstr ""
-
 msgid "The specified input is not valid:"
 msgstr ""
 
@@ -1995,6 +1989,12 @@ msgid "please enter a valid email address."
 msgstr ""
 
 msgid "please enter numbers only."
+msgstr ""
+
+msgid "This field is mandatory."
+msgstr ""
+
+msgid "The answer is too short."
 msgstr ""
 
 msgid "Recipient selection"

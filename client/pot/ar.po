@@ -38,7 +38,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-03-18 10:52+0000\n"
+"PO-Revision-Date: 2018-03-20 23:24+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Arabic (http://www.transifex.com/otf/globaleaks/language/ar/)\n"
 "MIME-Version: 1.0\n"
@@ -232,9 +232,6 @@ msgstr "إخراج"
 
 msgid "Save all"
 msgstr "تخزين الكل"
-
-msgid "This field is mandatory"
-msgstr "هذا الحقل إلزامي"
 
 msgid ""
 "The connection used to send this submission has been secured with HTTPS "
@@ -1038,6 +1035,9 @@ msgstr "تحرير"
 msgid "Cancel"
 msgstr "إلغاء"
 
+msgid "This field is mandatory"
+msgstr "هذا الحقل إلزامي"
+
 msgid "Questionnaire"
 msgstr "استبيان"
 
@@ -1788,9 +1788,6 @@ msgstr "إسم الملف"
 msgid "Upload date"
 msgstr "تاريخ  الرّفع"
 
-msgid "Content Type"
-msgstr "نوع المحتوى"
-
 msgid "File size"
 msgstr "حجم الملف"
 
@@ -2017,9 +2014,6 @@ msgstr "منصة التبليغ الخاصة بك على وشك أن تكون ج
 msgid "Check your inbox to activate your account."
 msgstr "تحقق من بريدك الوارد لتفعيل حسابك."
 
-msgid "The answer is too short."
-msgstr "الاجابة قصيرة جدّا."
-
 msgid "The specified input is not valid:"
 msgstr "الإدخال المحدد غير صالح:"
 
@@ -2028,6 +2022,12 @@ msgstr "الرجاء إدخال بريد الكتروني صحيح."
 
 msgid "please enter numbers only."
 msgstr "الرجاء ادخال أرقام فقط."
+
+msgid "This field is mandatory."
+msgstr "هذا الحقل إلزامي."
+
+msgid "The answer is too short."
+msgstr "الاجابة قصيرة جدّا."
 
 msgid "Recipient selection"
 msgstr "اختيار المتلقّي"

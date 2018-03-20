@@ -28,8 +28,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-03-18 10:50+0000\n"
-"Last-Translator: Hermes Center <info@hermescenter.org>\n"
+"PO-Revision-Date: 2018-03-20 23:26+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Russian (http://www.transifex.com/otf/globaleaks/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -222,9 +222,6 @@ msgstr "Экспорт"
 
 msgid "Save all"
 msgstr "Сохранить всё"
-
-msgid "This field is mandatory"
-msgstr "Это поле обязательно"
 
 msgid ""
 "The connection used to send this submission has been secured with HTTPS "
@@ -1028,6 +1025,9 @@ msgstr "Изменить"
 msgid "Cancel"
 msgstr "Отмена"
 
+msgid "This field is mandatory"
+msgstr "Это поле обязательно"
+
 msgid "Questionnaire"
 msgstr "Опросник"
 
@@ -1778,9 +1778,6 @@ msgstr "Имя файла"
 msgid "Upload date"
 msgstr "Дата загрузки"
 
-msgid "Content Type"
-msgstr "Тип содержимого"
-
 msgid "File size"
 msgstr "Размер файла"
 
@@ -2007,9 +2004,6 @@ msgstr ""
 msgid "Check your inbox to activate your account."
 msgstr ""
 
-msgid "The answer is too short."
-msgstr "Ответ очень короткий."
-
 msgid "The specified input is not valid:"
 msgstr "Следующие данные не действительны:"
 
@@ -2018,6 +2012,12 @@ msgstr "пожалуйста введите действительный адр�
 
 msgid "please enter numbers only."
 msgstr "пожалуйста введите только цифры."
+
+msgid "This field is mandatory."
+msgstr "Это поле обязательно."
+
+msgid "The answer is too short."
+msgstr "Ответ очень короткий."
 
 msgid "Recipient selection"
 msgstr "Выбор получателя"

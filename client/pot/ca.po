@@ -18,8 +18,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-03-18 10:50+0000\n"
-"Last-Translator: Hermes Center <info@hermescenter.org>\n"
+"PO-Revision-Date: 2018-03-20 23:26+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Catalan (http://www.transifex.com/otf/globaleaks/language/ca/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -212,9 +212,6 @@ msgstr "Exporta"
 
 msgid "Save all"
 msgstr "Desa-ho tot"
-
-msgid "This field is mandatory"
-msgstr "Aquest camp és obligatori"
 
 msgid ""
 "The connection used to send this submission has been secured with HTTPS "
@@ -1018,6 +1015,9 @@ msgstr "Edita"
 msgid "Cancel"
 msgstr "Cancel·la"
 
+msgid "This field is mandatory"
+msgstr "Aquest camp és obligatori"
+
 msgid "Questionnaire"
 msgstr "Qüestionari"
 
@@ -1768,9 +1768,6 @@ msgstr "Nom del fitxer"
 msgid "Upload date"
 msgstr "Data de pujada"
 
-msgid "Content Type"
-msgstr "Tipus de contingut"
-
 msgid "File size"
 msgstr "Mida del fitxer"
 
@@ -1997,9 +1994,6 @@ msgstr "¡Su plataforma para informantes casi está lista!"
 msgid "Check your inbox to activate your account."
 msgstr "Check your inbox to activate your account."
 
-msgid "The answer is too short."
-msgstr "La respuesta es demasiado corta."
-
 msgid "The specified input is not valid:"
 msgstr "La informació que has introduït no és vàlida:"
 
@@ -2008,6 +2002,12 @@ msgstr "si us plau, introdueix una adreça electrònica correcta."
 
 msgid "please enter numbers only."
 msgstr "si us plau, introdueix només nombres."
+
+msgid "This field is mandatory."
+msgstr "Aquest camp és obligatori."
+
+msgid "The answer is too short."
+msgstr "La respuesta es demasiado corta."
 
 msgid "Recipient selection"
 msgstr "Selecciona el destinatari"

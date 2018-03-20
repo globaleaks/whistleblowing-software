@@ -11,8 +11,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-03-18 10:50+0000\n"
-"Last-Translator: Hermes Center <info@hermescenter.org>\n"
+"PO-Revision-Date: 2018-03-20 23:27+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Czech (http://www.transifex.com/otf/globaleaks/language/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -205,9 +205,6 @@ msgstr "Export"
 
 msgid "Save all"
 msgstr "Uložit vše"
-
-msgid "This field is mandatory"
-msgstr "Toto pole je povinné"
 
 msgid ""
 "The connection used to send this submission has been secured with HTTPS "
@@ -1011,6 +1008,9 @@ msgstr "Editovat"
 msgid "Cancel"
 msgstr "Zrušit"
 
+msgid "This field is mandatory"
+msgstr "Toto pole je povinné"
+
 msgid "Questionnaire"
 msgstr "Dotazník"
 
@@ -1761,9 +1761,6 @@ msgstr "Jméno souboru"
 msgid "Upload date"
 msgstr "Datum uploadu"
 
-msgid "Content Type"
-msgstr "Typ obsahu"
-
 msgid "File size"
 msgstr "Velikost souboru"
 
@@ -1990,9 +1987,6 @@ msgstr ""
 msgid "Check your inbox to activate your account."
 msgstr ""
 
-msgid "The answer is too short."
-msgstr "Odpověď je příliš krátká"
-
 msgid "The specified input is not valid:"
 msgstr "Zadaný vstup není validní:"
 
@@ -2001,6 +1995,12 @@ msgstr "Prosím vložte validní email adresu."
 
 msgid "please enter numbers only."
 msgstr "Vkládejte, prosím, pouze čísla."
+
+msgid "This field is mandatory."
+msgstr "Toto pole je povinné."
+
+msgid "The answer is too short."
+msgstr "Odpověď je příliš krátká"
 
 msgid "Recipient selection"
 msgstr "Výběr příjemce"

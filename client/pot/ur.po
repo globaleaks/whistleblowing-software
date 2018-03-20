@@ -13,8 +13,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-03-18 10:50+0000\n"
-"Last-Translator: Hermes Center <info@hermescenter.org>\n"
+"PO-Revision-Date: 2018-03-20 23:28+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Urdu (http://www.transifex.com/otf/globaleaks/language/ur/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -207,9 +207,6 @@ msgstr "برامد"
 
 msgid "Save all"
 msgstr "سب محفوظ کریں"
-
-msgid "This field is mandatory"
-msgstr "يہ خانہ پر کرنا ضروری ہے ۔"
 
 msgid ""
 "The connection used to send this submission has been secured with HTTPS "
@@ -1013,6 +1010,9 @@ msgstr "ترمیم و تبديل کيجیے"
 msgid "Cancel"
 msgstr "تسنیخ"
 
+msgid "This field is mandatory"
+msgstr "يہ خانہ پر کرنا ضروری ہے ۔"
+
 msgid "Questionnaire"
 msgstr "سوالنامہ"
 
@@ -1763,9 +1763,6 @@ msgstr "فائل کا نام"
 msgid "Upload date"
 msgstr "اپ لوڈ کی تاریخ"
 
-msgid "Content Type"
-msgstr "مواد کی قسم"
-
 msgid "File size"
 msgstr "فائل کا سائز"
 
@@ -1992,9 +1989,6 @@ msgstr ""
 msgid "Check your inbox to activate your account."
 msgstr ""
 
-msgid "The answer is too short."
-msgstr ""
-
 msgid "The specified input is not valid:"
 msgstr ""
 
@@ -2002,6 +1996,12 @@ msgid "please enter a valid email address."
 msgstr ""
 
 msgid "please enter numbers only."
+msgstr ""
+
+msgid "This field is mandatory."
+msgstr "يہ خانہ پر کرنا ضروری ہے ۔"
+
+msgid "The answer is too short."
 msgstr ""
 
 msgid "Recipient selection"

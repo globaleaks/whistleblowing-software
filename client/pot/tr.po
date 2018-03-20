@@ -25,7 +25,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-03-18 10:50+0000\n"
+"PO-Revision-Date: 2018-03-20 23:24+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Turkish (http://www.transifex.com/otf/globaleaks/language/tr/)\n"
 "MIME-Version: 1.0\n"
@@ -219,9 +219,6 @@ msgstr "Dışarı aktar"
 
 msgid "Save all"
 msgstr "Tümünü kaydet"
-
-msgid "This field is mandatory"
-msgstr "Bu alan zorunludur"
 
 msgid ""
 "The connection used to send this submission has been secured with HTTPS "
@@ -1025,6 +1022,9 @@ msgstr "Düzenle"
 msgid "Cancel"
 msgstr "İptal"
 
+msgid "This field is mandatory"
+msgstr "Bu alan zorunludur"
+
 msgid "Questionnaire"
 msgstr "Anket"
 
@@ -1775,9 +1775,6 @@ msgstr "Dosya adı"
 msgid "Upload date"
 msgstr "Yükleme Tarihi"
 
-msgid "Content Type"
-msgstr "İçerik Tür"
-
 msgid "File size"
 msgstr "Dosya Boyutu"
 
@@ -2004,9 +2001,6 @@ msgstr ""
 msgid "Check your inbox to activate your account."
 msgstr ""
 
-msgid "The answer is too short."
-msgstr ""
-
 msgid "The specified input is not valid:"
 msgstr "Belirtilen girdi geçerli değil:"
 
@@ -2015,6 +2009,12 @@ msgstr "lütfen geçerli bir e-posta adresi girin."
 
 msgid "please enter numbers only."
 msgstr "Lütfen yalnızca sayı girin."
+
+msgid "This field is mandatory."
+msgstr ""
+
+msgid "The answer is too short."
+msgstr ""
 
 msgid "Recipient selection"
 msgstr "Alıcı seçimi"
