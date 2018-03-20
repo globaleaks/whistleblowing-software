@@ -14,6 +14,11 @@
       "resolved": "https://registry.npmjs.org/@flowjs/ng-flow/-/ng-flow-2.7.8.tgz",
       "integrity": "sha512-zO6jNvz41oMOJj9+1N+vLT0ytitbCtuGABJQRzQDOPXyRMmlSXfJ7om5oYOztyUFrr4jDpE4QFPt+r2/RFceCg=="
     },
+    "@types/angular": {
+      "version": "1.6.43",
+      "resolved": "https://registry.npmjs.org/@types/angular/-/angular-1.6.43.tgz",
+      "integrity": "sha512-3GrHCRZS62ruJjHMtOx3WYsS0I8i0FRcIqOwqIfWXnlR9g2FebEhUNdMk3LZIvfhZ08xe+S1x2iwP1t9vKCHag=="
+    },
     "@types/node": {
       "version": "6.0.101",
       "resolved": "https://registry.npmjs.org/@types/node/-/node-6.0.101.tgz",
@@ -140,9 +145,12 @@
       "integrity": "sha512-I2SR17Ux0o0R9KD3DRzjR5NNX3pUSKvtWYLFCLg22qvR5+736olCQSyptNIvKsvjALwfXBw1Irdlq0jyohDn+Q=="
     },
     "angular-dynamic-locale": {
-      "version": "0.1.32",
-      "resolved": "https://registry.npmjs.org/angular-dynamic-locale/-/angular-dynamic-locale-0.1.32.tgz",
-      "integrity": "sha1-0H/qdSgfJbqUpb5bRt8qAsXjWDY="
+      "version": "0.1.35",
+      "resolved": "https://registry.npmjs.org/angular-dynamic-locale/-/angular-dynamic-locale-0.1.35.tgz",
+      "integrity": "sha1-PoXHHmF/0aOq95P1EssHL58P4cw=",
+      "requires": {
+        "@types/angular": "1.6.43"
+      }
     },
     "angular-file-saver": {
       "version": "1.1.3",
@@ -697,7 +705,7 @@
       "integrity": "sha512-YkIRgwsZwJWTnyQrsBTWefizHh+8GYj3kbL1BTiAQ/9pwpino0G7B2gp5tx/FUBqUlvtxV85KNR3mwfAtv15Yw==",
       "requires": {
         "base64-js": "1.2.3",
-        "ieee754": "1.1.8"
+        "ieee754": "1.1.10"
       },
       "dependencies": {
         "base64-js": {
@@ -1184,23 +1192,6 @@
         "crc32-stream": "2.0.0",
         "normalize-path": "2.1.1",
         "readable-stream": "2.3.4"
-      }
-    },
-    "compressjs": {
-      "version": "github:openpgpjs/compressjs#ce5ccbede61f075926081e29573c8a79ddf10d88",
-      "requires": {
-        "amdefine": "1.0.1",
-        "commander": "2.8.1"
-      },
-      "dependencies": {
-        "commander": {
-          "version": "2.8.1",
-          "resolved": "https://registry.npmjs.org/commander/-/commander-2.8.1.tgz",
-          "integrity": "sha1-Br42f+v9oMMwqh4qBy09yXYkJdQ=",
-          "requires": {
-            "graceful-readlink": "1.0.1"
-          }
-        }
       }
     },
     "concat-map": {
@@ -2047,18 +2038,6 @@
       "resolved": "https://registry.npmjs.org/ee-first/-/ee-first-1.1.1.tgz",
       "integrity": "sha1-WQxhFWsK4vTwJVcyoViyZrxWsh0=",
       "dev": true
-    },
-    "elliptic": {
-      "version": "github:openpgpjs/elliptic#e187e706e11fa51bcd20e46e5119054be4e2a4a6",
-      "requires": {
-        "bn.js": "4.11.8",
-        "brorand": "1.1.0",
-        "hash.js": "1.1.3",
-        "hmac-drbg": "1.0.1",
-        "inherits": "2.0.3",
-        "minimalistic-assert": "1.0.0",
-        "minimalistic-crypto-utils": "1.0.1"
-      }
     },
     "email-validator": {
       "version": "1.1.1",
@@ -4024,9 +4003,9 @@
       "integrity": "sha512-oTZqweIP51xaGPI4uPa56/Pri/480R+mo7SeU+YETByQNhDG55ycFyNLIgta9vXhILrxXDmF7ZGhqZIcuN0gJQ=="
     },
     "ieee754": {
-      "version": "1.1.8",
-      "resolved": "https://registry.npmjs.org/ieee754/-/ieee754-1.1.8.tgz",
-      "integrity": "sha1-vjPUCsEO8ZJnAfbwii2G+/0a0+Q="
+      "version": "1.1.10",
+      "resolved": "https://registry.npmjs.org/ieee754/-/ieee754-1.1.10.tgz",
+      "integrity": "sha512-byWFX8OyW/qeVxcY21r6Ncxl0ZYHgnf0cPup2h34eHXrCJbOp7IuqnJ4Q0omfyWl6Z++BTI6bByf31pZt7iRLg=="
     },
     "iferr": {
       "version": "0.1.5",
@@ -5132,9 +5111,9 @@
       }
     },
     "node-localstorage": {
-      "version": "1.3.0",
-      "resolved": "https://registry.npmjs.org/node-localstorage/-/node-localstorage-1.3.0.tgz",
-      "integrity": "sha1-LkNqro3Mms6XtDxlwWwNV3vgpVw=",
+      "version": "1.3.1",
+      "resolved": "https://registry.npmjs.org/node-localstorage/-/node-localstorage-1.3.1.tgz",
+      "integrity": "sha512-NMWCSWWc6JbHT5PyWlNT2i8r7PgGYXVntmKawY83k/M0UJScZ5jirb61TLnqKwd815DfBQu+lR3sRw08SPzIaQ==",
       "requires": {
         "write-file-atomic": "1.3.4"
       }
@@ -7667,9 +7646,9 @@
       "dev": true
     },
     "openpgp": {
-      "version": "3.0.2",
-      "resolved": "https://registry.npmjs.org/openpgp/-/openpgp-3.0.2.tgz",
-      "integrity": "sha512-uRCB74x3dJKhVzFH1yMwGLdpKnfMkxXrK/iW2v2ptx/IluroNWIJwm6n4/K+ZFesaMC1xeFzJeCJKs6mdCeQKQ==",
+      "version": "3.0.3",
+      "resolved": "https://registry.npmjs.org/openpgp/-/openpgp-3.0.3.tgz",
+      "integrity": "sha512-a6dKqQCUFJxmrjWbFLbUneTOGF6+ZenhIcr3xz/HzeuS7igxhYAhHjZro6HTUU0vlbn/0x4N4Mzd0DaTZVIDjw==",
       "requires": {
         "asmcrypto.js": "0.22.0",
         "asn1.js": "5.0.0",
@@ -7679,9 +7658,38 @@
         "elliptic": "github:openpgpjs/elliptic#e187e706e11fa51bcd20e46e5119054be4e2a4a6",
         "hash.js": "1.1.3",
         "node-fetch": "1.7.3",
-        "node-localstorage": "1.3.0",
+        "node-localstorage": "1.3.1",
         "pako": "1.0.6",
         "rusha": "0.8.13"
+      },
+      "dependencies": {
+        "commander": {
+          "version": "2.8.1",
+          "resolved": "https://registry.npmjs.org/commander/-/commander-2.8.1.tgz",
+          "integrity": "sha1-Br42f+v9oMMwqh4qBy09yXYkJdQ=",
+          "requires": {
+            "graceful-readlink": "1.0.1"
+          }
+        },
+        "compressjs": {
+          "version": "github:openpgpjs/compressjs#ce5ccbede61f075926081e29573c8a79ddf10d88",
+          "requires": {
+            "amdefine": "1.0.1",
+            "commander": "2.8.1"
+          }
+        },
+        "elliptic": {
+          "version": "github:openpgpjs/elliptic#e187e706e11fa51bcd20e46e5119054be4e2a4a6",
+          "requires": {
+            "bn.js": "4.11.8",
+            "brorand": "1.1.0",
+            "hash.js": "1.1.3",
+            "hmac-drbg": "1.0.1",
+            "inherits": "2.0.3",
+            "minimalistic-assert": "1.0.0",
+            "minimalistic-crypto-utils": "1.0.1"
+          }
+        }
       }
     },
     "opn": {
