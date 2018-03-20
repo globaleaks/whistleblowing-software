@@ -329,6 +329,28 @@ GLClient.controller('SubmissionCtrl',
     }
   };
 
+  $scope.onAnswerUpdate = function(field, entry) {
+    if (field.type === 'inputbox' || field.type === 'textarea') {
+      field.required_status = (field.required || field.attrs.min_len.value > 0) && !entry['value'];
+    } else if (field.type === 'checkbox') {
+      if (!field.required) {
+        field.required_status = false;
+        return;
+      }
+
+      for (var i=0; i<field.options.length; i++) {
+        if (entry[field.options[i].id] && entry[field.options[i].id]) {
+          field.required_status = false;
+          return;
+        }
+      }
+
+      field.required_status = true;
+    } else {
+      field.required_status = field.required && !entry['value'];
+    }
+  }
+
   $scope.displayErrors = function() {
     if (!($scope.navigation > $scope.selection || $scope.submitPressed || $scope.submission.done)) {
       return false;

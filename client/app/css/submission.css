@@ -206,8 +206,11 @@ html[dir="rtl"] #KeyCodeHintBox:after {
   color: #c7254e;
 }
 
+.red-text, .red-asterisk {
+  color: #a94442;
+}
+
 .red-asterisk {
-  color: red;
   vertical-align: super;
   font-size: smaller;
 }
