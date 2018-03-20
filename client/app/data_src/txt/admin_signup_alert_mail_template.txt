@@ -3,6 +3,9 @@ Dear {RecipientName},
 A new whistleblowing platform has been registered at:
 {HTTPSUrl}
 
+The sign-up had a selected use case of:
+{UseCase}
+
 The platform will be automatically deleted on:
 {ExpirationDate}
 
