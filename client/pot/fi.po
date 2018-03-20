@@ -1,6 +1,6 @@
 # 
 # Translators:
-# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2015-2017
+# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2015-2018
 # Jaakko Korhonen <jaakko.korhonen@gmail.com>, 2018
 # John Wild <ac@elephantleague.org>, 2015
 # Jorma Karvonen <karvonen.jorma@gmail.com>, 2015,2017
@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-03-18 10:50+0000\n"
-"Last-Translator: Hermes Center <info@hermescenter.org>\n"
+"PO-Revision-Date: 2018-03-20 23:27+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Finnish (http://www.transifex.com/otf/globaleaks/language/fi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -203,9 +203,6 @@ msgstr "Vie"
 
 msgid "Save all"
 msgstr "Tallenna kaikki"
-
-msgid "This field is mandatory"
-msgstr "Tämä kenttä on pakollinen"
 
 msgid ""
 "The connection used to send this submission has been secured with HTTPS "
@@ -1009,6 +1006,9 @@ msgstr "Muokkaa"
 msgid "Cancel"
 msgstr "Peru"
 
+msgid "This field is mandatory"
+msgstr "Tämä kenttä on pakollinen"
+
 msgid "Questionnaire"
 msgstr ""
 
@@ -1759,9 +1759,6 @@ msgstr "Tiedostonimi"
 msgid "Upload date"
 msgstr "Latauspäivä"
 
-msgid "Content Type"
-msgstr "Sisältötyyppi"
-
 msgid "File size"
 msgstr "Tiedostokoko"
 
@@ -1988,9 +1985,6 @@ msgstr ""
 msgid "Check your inbox to activate your account."
 msgstr ""
 
-msgid "The answer is too short."
-msgstr ""
-
 msgid "The specified input is not valid:"
 msgstr ""
 
@@ -1998,6 +1992,12 @@ msgid "please enter a valid email address."
 msgstr ""
 
 msgid "please enter numbers only."
+msgstr ""
+
+msgid "This field is mandatory."
+msgstr "Tämä kenttä on pakollinen."
+
+msgid "The answer is too short."
 msgstr ""
 
 msgid "Recipient selection"

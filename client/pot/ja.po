@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-03-18 10:50+0000\n"
-"Last-Translator: Hermes Center <info@hermescenter.org>\n"
+"PO-Revision-Date: 2018-03-20 23:36+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Japanese (http://www.transifex.com/otf/globaleaks/language/ja/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -203,9 +203,6 @@ msgstr "エクスポート"
 
 msgid "Save all"
 msgstr "すべて保存"
-
-msgid "This field is mandatory"
-msgstr "このフィールドは必須です"
 
 msgid ""
 "The connection used to send this submission has been secured with HTTPS "
@@ -1009,6 +1006,9 @@ msgstr "編集"
 msgid "Cancel"
 msgstr "キャンセル"
 
+msgid "This field is mandatory"
+msgstr "このフィールドは必須です"
+
 msgid "Questionnaire"
 msgstr "アンケート"
 
@@ -1016,7 +1016,7 @@ msgid "Recipients"
 msgstr "受信者"
 
 msgid "Allow selection of this context through the context selector."
-msgstr "コンテキストセレクターを通して、このコンテキストの選択を許可する"
+msgstr "コンテキストセレクターを通して、このコンテキストの選択を許可する。"
 
 msgid ""
 "If disabled, submissions for this context will only be accessible through a "
@@ -1759,9 +1759,6 @@ msgstr "ファイル名"
 msgid "Upload date"
 msgstr "アップロード日"
 
-msgid "Content Type"
-msgstr "コンテントタイプ"
-
 msgid "File size"
 msgstr "ファイルのサイズ"
 
@@ -1988,9 +1985,6 @@ msgstr "内部告発プラットフォームがもう少しで準備できます
 msgid "Check your inbox to activate your account."
 msgstr "メールを確認して、アカウントを有効にしてください。"
 
-msgid "The answer is too short."
-msgstr "回答が短すぎます"
-
 msgid "The specified input is not valid:"
 msgstr "指定された入力は正しくありません:"
 
@@ -1999,6 +1993,12 @@ msgstr "正しいメールアドレスを入力してください。"
 
 msgid "please enter numbers only."
 msgstr "数字のみで入力してください。"
+
+msgid "This field is mandatory."
+msgstr "このフィールドは必須です。"
+
+msgid "The answer is too short."
+msgstr "回答が短すぎます"
 
 msgid "Recipient selection"
 msgstr "受信者の選択"

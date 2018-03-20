@@ -17,7 +17,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-03-18 10:50+0000\n"
+"PO-Revision-Date: 2018-03-20 23:24+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Hebrew (http://www.transifex.com/otf/globaleaks/language/he/)\n"
 "MIME-Version: 1.0\n"
@@ -211,9 +211,6 @@ msgstr "יְצוּא"
 
 msgid "Save all"
 msgstr "שמור הכל"
-
-msgid "This field is mandatory"
-msgstr "שדה חובה"
 
 msgid ""
 "The connection used to send this submission has been secured with HTTPS "
@@ -1017,6 +1014,9 @@ msgstr "עריכה"
 msgid "Cancel"
 msgstr "בטל"
 
+msgid "This field is mandatory"
+msgstr "שדה חובה"
+
 msgid "Questionnaire"
 msgstr "שְׁאֵלוֹן"
 
@@ -1767,9 +1767,6 @@ msgstr "שם הקובץ"
 msgid "Upload date"
 msgstr "תאריך העלאה"
 
-msgid "Content Type"
-msgstr "סוג תוכן"
-
 msgid "File size"
 msgstr "גודל קובץ"
 
@@ -1996,9 +1993,6 @@ msgstr ""
 msgid "Check your inbox to activate your account."
 msgstr ""
 
-msgid "The answer is too short."
-msgstr ""
-
 msgid "The specified input is not valid:"
 msgstr ""
 
@@ -2006,6 +2000,12 @@ msgid "please enter a valid email address."
 msgstr ""
 
 msgid "please enter numbers only."
+msgstr ""
+
+msgid "This field is mandatory."
+msgstr ""
+
+msgid "The answer is too short."
 msgstr ""
 
 msgid "Recipient selection"

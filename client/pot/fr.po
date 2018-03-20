@@ -38,7 +38,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-03-18 10:51+0000\n"
+"PO-Revision-Date: 2018-03-20 23:25+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: French (http://www.transifex.com/otf/globaleaks/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -232,9 +232,6 @@ msgstr "Exporter"
 
 msgid "Save all"
 msgstr "Tout enregistrer"
-
-msgid "This field is mandatory"
-msgstr "Ce champ est obligatoire"
 
 msgid ""
 "The connection used to send this submission has been secured with HTTPS "
@@ -743,10 +740,10 @@ msgid "Select"
 msgstr "Sélectionner"
 
 msgid "Selected by default"
-msgstr ""
+msgstr "Sélectionné par défaut"
 
 msgid "Unselected by default"
-msgstr ""
+msgstr "Non sélectionné par défaut"
 
 msgid "Select the context of your submission:"
 msgstr "Choisir le contexte de votre envoi :"
@@ -1038,6 +1035,9 @@ msgstr "Modifier"
 msgid "Cancel"
 msgstr "Annuler"
 
+msgid "This field is mandatory"
+msgstr "Ce champ est obligatoire"
+
 msgid "Questionnaire"
 msgstr "Questionnaire"
 
@@ -1170,7 +1170,7 @@ msgid "SMTP email address"
 msgstr "Adresse courriel SMTP"
 
 msgid "Invalid email address"
-msgstr "Adresse courriel invalide"
+msgstr "L’adresse courriel est invalide"
 
 msgid "SMTP server address"
 msgstr "Adresse du serveur SMTP"
@@ -1788,9 +1788,6 @@ msgstr "Nom de fichier"
 msgid "Upload date"
 msgstr "Date de téléversement"
 
-msgid "Content Type"
-msgstr "Type de contenu"
-
 msgid "File size"
 msgstr "Taille du fichier"
 
@@ -2017,9 +2014,6 @@ msgstr "Votre plateforme de lancement d’alerte est presque prête !"
 msgid "Check your inbox to activate your account."
 msgstr "Vérifiez votre boîte de réception de courriels pour activer votre compte."
 
-msgid "The answer is too short."
-msgstr "La réponse est trop courte"
-
 msgid "The specified input is not valid:"
 msgstr "L’entrée spécifiée n’est pas valide :"
 
@@ -2028,6 +2022,12 @@ msgstr "veuillez saisir une adresse courriel valide."
 
 msgid "please enter numbers only."
 msgstr "veuillez ne saisir que des chiffres."
+
+msgid "This field is mandatory."
+msgstr "Ce champ est obligatoire."
+
+msgid "The answer is too short."
+msgstr "La réponse est trop courte"
 
 msgid "Recipient selection"
 msgstr "Sélection du destinataire"

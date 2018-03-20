@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-03-18 10:51+0000\n"
+"PO-Revision-Date: 2018-03-20 23:36+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Norwegian Bokmål (Norway) (http://www.transifex.com/otf/globaleaks/language/nb_NO/)\n"
 "MIME-Version: 1.0\n"
@@ -201,9 +201,6 @@ msgstr "Exporter"
 
 msgid "Save all"
 msgstr "Lagre alle"
-
-msgid "This field is mandatory"
-msgstr "Dette inndatafeltet er påkrevd"
 
 msgid ""
 "The connection used to send this submission has been secured with HTTPS "
@@ -1007,6 +1004,9 @@ msgstr "Rediger"
 msgid "Cancel"
 msgstr "Avbryt"
 
+msgid "This field is mandatory"
+msgstr "Dette inndatafeltet er påkrevd"
+
 msgid "Questionnaire"
 msgstr "Spørreskjema"
 
@@ -1757,9 +1757,6 @@ msgstr "Filnavn"
 msgid "Upload date"
 msgstr "Opplastingsdato"
 
-msgid "Content Type"
-msgstr "Innholdstype"
-
 msgid "File size"
 msgstr "Filstørrelse"
 
@@ -1986,9 +1983,6 @@ msgstr "Din fløyteblåserplattform er nesten klar!"
 msgid "Check your inbox to activate your account."
 msgstr "Sjekk din innboks for å aktivere kontoen din."
 
-msgid "The answer is too short."
-msgstr "Svaret er for kort."
-
 msgid "The specified input is not valid:"
 msgstr "Angitt inndata er ikke gyldig:"
 
@@ -1997,6 +1991,12 @@ msgstr "oppgi en gyldig e-postadresse"
 
 msgid "please enter numbers only."
 msgstr "bruk kun tall"
+
+msgid "This field is mandatory."
+msgstr "Dette inndatafeltet er påkrevd."
+
+msgid "The answer is too short."
+msgstr "Svaret er for kort."
 
 msgid "Recipient selection"
 msgstr "Valg av mottaker"

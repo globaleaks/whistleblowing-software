@@ -20,7 +20,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-03-18 10:50+0000\n"
+"PO-Revision-Date: 2018-03-20 23:24+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Swedish (http://www.transifex.com/otf/globaleaks/language/sv/)\n"
 "MIME-Version: 1.0\n"
@@ -214,9 +214,6 @@ msgstr "Exportera"
 
 msgid "Save all"
 msgstr "Spara allt"
-
-msgid "This field is mandatory"
-msgstr "Detta fält är obligatoriskt"
 
 msgid ""
 "The connection used to send this submission has been secured with HTTPS "
@@ -1020,6 +1017,9 @@ msgstr "Redigera"
 msgid "Cancel"
 msgstr "Avbryt"
 
+msgid "This field is mandatory"
+msgstr "Detta fält är obligatoriskt"
+
 msgid "Questionnaire"
 msgstr "Formulär"
 
@@ -1770,9 +1770,6 @@ msgstr "Filnamn"
 msgid "Upload date"
 msgstr "Datum för uppladdning"
 
-msgid "Content Type"
-msgstr "Innehållstyp"
-
 msgid "File size"
 msgstr "Filstorlek"
 
@@ -1999,9 +1996,6 @@ msgstr ""
 msgid "Check your inbox to activate your account."
 msgstr ""
 
-msgid "The answer is too short."
-msgstr ""
-
 msgid "The specified input is not valid:"
 msgstr ""
 
@@ -2009,6 +2003,12 @@ msgid "please enter a valid email address."
 msgstr ""
 
 msgid "please enter numbers only."
+msgstr ""
+
+msgid "This field is mandatory."
+msgstr ""
+
+msgid "The answer is too short."
 msgstr ""
 
 msgid "Recipient selection"

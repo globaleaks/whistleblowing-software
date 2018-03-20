@@ -1,12 +1,12 @@
 # 
 # Translators:
 # Changkyoon Kim <ocnblu@gmail.com>, 2015
-# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2016-2017
+# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2016-2018
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-03-18 10:50+0000\n"
-"Last-Translator: Hermes Center <info@hermescenter.org>\n"
+"PO-Revision-Date: 2018-03-20 23:25+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Korean (http://www.transifex.com/otf/globaleaks/language/ko/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -199,9 +199,6 @@ msgstr "수출"
 
 msgid "Save all"
 msgstr "모든 저장"
-
-msgid "This field is mandatory"
-msgstr "이 필드는 필수입니다"
 
 msgid ""
 "The connection used to send this submission has been secured with HTTPS "
@@ -1005,6 +1002,9 @@ msgstr "편집하다"
 msgid "Cancel"
 msgstr "취소"
 
+msgid "This field is mandatory"
+msgstr "이 필드는 필수입니다"
+
 msgid "Questionnaire"
 msgstr "질문 사항"
 
@@ -1755,9 +1755,6 @@ msgstr "파일 이름"
 msgid "Upload date"
 msgstr "업로드 날짜"
 
-msgid "Content Type"
-msgstr "콘텐츠 형식"
-
 msgid "File size"
 msgstr "파일 크기"
 
@@ -1984,9 +1981,6 @@ msgstr ""
 msgid "Check your inbox to activate your account."
 msgstr ""
 
-msgid "The answer is too short."
-msgstr ""
-
 msgid "The specified input is not valid:"
 msgstr ""
 
@@ -1994,6 +1988,12 @@ msgid "please enter a valid email address."
 msgstr ""
 
 msgid "please enter numbers only."
+msgstr ""
+
+msgid "This field is mandatory."
+msgstr "이 필드는 필수입니다"
+
+msgid "The answer is too short."
 msgstr ""
 
 msgid "Recipient selection"

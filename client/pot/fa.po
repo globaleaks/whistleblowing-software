@@ -22,7 +22,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-03-18 10:50+0000\n"
+"PO-Revision-Date: 2018-03-20 23:24+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Persian (http://www.transifex.com/otf/globaleaks/language/fa/)\n"
 "MIME-Version: 1.0\n"
@@ -216,9 +216,6 @@ msgstr "دریافت"
 
 msgid "Save all"
 msgstr "ذخیره‌ی همه"
-
-msgid "This field is mandatory"
-msgstr "این قسمت اجباری است"
 
 msgid ""
 "The connection used to send this submission has been secured with HTTPS "
@@ -1022,6 +1019,9 @@ msgstr "ویرایش"
 msgid "Cancel"
 msgstr "لغو"
 
+msgid "This field is mandatory"
+msgstr "این قسمت اجباری است"
+
 msgid "Questionnaire"
 msgstr "پرسش‌نامه"
 
@@ -1772,9 +1772,6 @@ msgstr "نام فایل"
 msgid "Upload date"
 msgstr "روز آپلود"
 
-msgid "Content Type"
-msgstr "نوع محتوا"
-
 msgid "File size"
 msgstr "اندازه فایل"
 
@@ -2001,9 +1998,6 @@ msgstr ""
 msgid "Check your inbox to activate your account."
 msgstr ""
 
-msgid "The answer is too short."
-msgstr ""
-
 msgid "The specified input is not valid:"
 msgstr ""
 
@@ -2011,6 +2005,12 @@ msgid "please enter a valid email address."
 msgstr ""
 
 msgid "please enter numbers only."
+msgstr ""
+
+msgid "This field is mandatory."
+msgstr ""
+
+msgid "The answer is too short."
 msgstr ""
 
 msgid "Recipient selection"

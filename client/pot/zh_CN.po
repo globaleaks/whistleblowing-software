@@ -18,7 +18,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-03-18 10:50+0000\n"
+"PO-Revision-Date: 2018-03-20 23:24+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/otf/globaleaks/language/zh_CN/)\n"
 "MIME-Version: 1.0\n"
@@ -212,9 +212,6 @@ msgstr "导出"
 
 msgid "Save all"
 msgstr "全部保存"
-
-msgid "This field is mandatory"
-msgstr "此字段是必须的"
 
 msgid ""
 "The connection used to send this submission has been secured with HTTPS "
@@ -1018,6 +1015,9 @@ msgstr "编辑"
 msgid "Cancel"
 msgstr "取消"
 
+msgid "This field is mandatory"
+msgstr "此字段是必须的"
+
 msgid "Questionnaire"
 msgstr "问卷"
 
@@ -1768,9 +1768,6 @@ msgstr "文件名"
 msgid "Upload date"
 msgstr "上传日期"
 
-msgid "Content Type"
-msgstr "内容类型"
-
 msgid "File size"
 msgstr "文件大小"
 
@@ -1997,9 +1994,6 @@ msgstr ""
 msgid "Check your inbox to activate your account."
 msgstr ""
 
-msgid "The answer is too short."
-msgstr "此回答少于最低要求字数。"
-
 msgid "The specified input is not valid:"
 msgstr "特定输入无效："
 
@@ -2008,6 +2002,12 @@ msgstr "请输入有效的电子邮箱地址。"
 
 msgid "please enter numbers only."
 msgstr "输入必须为数字。"
+
+msgid "This field is mandatory."
+msgstr ""
+
+msgid "The answer is too short."
+msgstr "此回答少于最低要求字数。"
 
 msgid "Recipient selection"
 msgstr "选定接收者"

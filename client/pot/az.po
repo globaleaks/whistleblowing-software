@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-03-18 10:50+0000\n"
-"Last-Translator: Hermes Center <info@hermescenter.org>\n"
+"PO-Revision-Date: 2018-03-20 23:35+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Azerbaijani (http://www.transifex.com/otf/globaleaks/language/az/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -203,9 +203,6 @@ msgstr "İxrac"
 
 msgid "Save all"
 msgstr "Hamısını saxla"
-
-msgid "This field is mandatory"
-msgstr "Məcburi sahədir"
 
 msgid ""
 "The connection used to send this submission has been secured with HTTPS "
@@ -1009,6 +1006,9 @@ msgstr "Düzəlt"
 msgid "Cancel"
 msgstr "Ləğv et"
 
+msgid "This field is mandatory"
+msgstr "Məcburi sahədir"
+
 msgid "Questionnaire"
 msgstr "Sorğu"
 
@@ -1759,9 +1759,6 @@ msgstr "Fayl adı"
 msgid "Upload date"
 msgstr "Yüklənmə tarixi"
 
-msgid "Content Type"
-msgstr "Məzmun növü"
-
 msgid "File size"
 msgstr "Faylın ölçüsü"
 
@@ -1988,9 +1985,6 @@ msgstr ""
 msgid "Check your inbox to activate your account."
 msgstr ""
 
-msgid "The answer is too short."
-msgstr "Cavab çox qısadır."
-
 msgid "The specified input is not valid:"
 msgstr "Göstərilən giriş düzgün deyil:"
 
@@ -1999,6 +1993,12 @@ msgstr "Etibarlı  e-mail ünvanı daxil edin."
 
 msgid "please enter numbers only."
 msgstr "xahiş edirik, yalnız rəqəmləri qeyd edin"
+
+msgid "This field is mandatory."
+msgstr "Məcburi sahədir."
+
+msgid "The answer is too short."
+msgstr "Cavab çox qısadır."
 
 msgid "Recipient selection"
 msgstr "Alıcı seçimi"

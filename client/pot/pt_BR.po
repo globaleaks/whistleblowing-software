@@ -36,8 +36,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-03-18 10:50+0000\n"
-"Last-Translator: Hermes Center <info@hermescenter.org>\n"
+"PO-Revision-Date: 2018-03-20 23:29+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/otf/globaleaks/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -230,9 +230,6 @@ msgstr "Exportar"
 
 msgid "Save all"
 msgstr "Salvar tudo"
-
-msgid "This field is mandatory"
-msgstr "Este campo é obrigatório"
 
 msgid ""
 "The connection used to send this submission has been secured with HTTPS "
@@ -1036,6 +1033,9 @@ msgstr "Editar"
 msgid "Cancel"
 msgstr "Cancelar"
 
+msgid "This field is mandatory"
+msgstr "Este campo é obrigatório"
+
 msgid "Questionnaire"
 msgstr "Questionário"
 
@@ -1786,9 +1786,6 @@ msgstr "Nome do Arquivo"
 msgid "Upload date"
 msgstr "Submeter Data"
 
-msgid "Content Type"
-msgstr "Tipo de Conteúdo"
-
 msgid "File size"
 msgstr "Tamanho do arquivo"
 
@@ -2015,9 +2012,6 @@ msgstr ""
 msgid "Check your inbox to activate your account."
 msgstr ""
 
-msgid "The answer is too short."
-msgstr ""
-
 msgid "The specified input is not valid:"
 msgstr "A entrada especificada não é válida:"
 
@@ -2026,6 +2020,12 @@ msgstr "favor digitar um email válido"
 
 msgid "please enter numbers only."
 msgstr "favor digitar somente números"
+
+msgid "This field is mandatory."
+msgstr "Este campo é obrigatório."
+
+msgid "The answer is too short."
+msgstr ""
 
 msgid "Recipient selection"
 msgstr "Seleção de destinatário"

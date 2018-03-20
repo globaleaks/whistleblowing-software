@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-03-18 10:50+0000\n"
+"PO-Revision-Date: 2018-03-20 23:24+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Georgian (http://www.transifex.com/otf/globaleaks/language/ka/)\n"
 "MIME-Version: 1.0\n"
@@ -198,9 +198,6 @@ msgstr "ექსპორტი"
 
 msgid "Save all"
 msgstr "შენახვა ყველა"
-
-msgid "This field is mandatory"
-msgstr "ამ სფეროში სავალდებულოა"
 
 msgid ""
 "The connection used to send this submission has been secured with HTTPS "
@@ -1004,6 +1001,9 @@ msgstr "რედაქტირება"
 msgid "Cancel"
 msgstr "გაუქმება"
 
+msgid "This field is mandatory"
+msgstr "ამ სფეროში სავალდებულოა"
+
 msgid "Questionnaire"
 msgstr "კითხვარი"
 
@@ -1754,9 +1754,6 @@ msgstr "ფაილის სახელი"
 msgid "Upload date"
 msgstr "ატვირთვა თარიღი"
 
-msgid "Content Type"
-msgstr "შინაარსი ტიპი"
-
 msgid "File size"
 msgstr "ფაილის ზომა"
 
@@ -1983,9 +1980,6 @@ msgstr ""
 msgid "Check your inbox to activate your account."
 msgstr ""
 
-msgid "The answer is too short."
-msgstr ""
-
 msgid "The specified input is not valid:"
 msgstr ""
 
@@ -1993,6 +1987,12 @@ msgid "please enter a valid email address."
 msgstr ""
 
 msgid "please enter numbers only."
+msgstr ""
+
+msgid "This field is mandatory."
+msgstr ""
+
+msgid "The answer is too short."
 msgstr ""
 
 msgid "Recipient selection"

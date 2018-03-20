@@ -10,7 +10,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-03-18 10:50+0000\n"
+"PO-Revision-Date: 2018-03-20 23:24+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Thai (http://www.transifex.com/otf/globaleaks/language/th/)\n"
 "MIME-Version: 1.0\n"
@@ -204,9 +204,6 @@ msgstr "ส่งออก"
 
 msgid "Save all"
 msgstr "บันทึกทั้งหมด"
-
-msgid "This field is mandatory"
-msgstr "ฟิลด์นี้มีผลบังคับใช้"
 
 msgid ""
 "The connection used to send this submission has been secured with HTTPS "
@@ -1010,6 +1007,9 @@ msgstr "แก้ไข"
 msgid "Cancel"
 msgstr "ยกเลิก"
 
+msgid "This field is mandatory"
+msgstr "ฟิลด์นี้มีผลบังคับใช้"
+
 msgid "Questionnaire"
 msgstr "แบบสอบถาม"
 
@@ -1760,9 +1760,6 @@ msgstr "ชื่อไฟล์"
 msgid "Upload date"
 msgstr "วันที่อัปโหลด"
 
-msgid "Content Type"
-msgstr "ชนิดของเนื้อหา"
-
 msgid "File size"
 msgstr "ขนาดไฟล์"
 
@@ -1989,9 +1986,6 @@ msgstr ""
 msgid "Check your inbox to activate your account."
 msgstr ""
 
-msgid "The answer is too short."
-msgstr ""
-
 msgid "The specified input is not valid:"
 msgstr ""
 
@@ -1999,6 +1993,12 @@ msgid "please enter a valid email address."
 msgstr ""
 
 msgid "please enter numbers only."
+msgstr ""
+
+msgid "This field is mandatory."
+msgstr ""
+
+msgid "The answer is too short."
 msgstr ""
 
 msgid "Recipient selection"
