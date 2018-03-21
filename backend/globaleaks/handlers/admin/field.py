@@ -135,30 +135,30 @@ def db_create_field(session, tid, field_dict, language):
 
     check_field_association(session, tid, field_dict)
 
-    field = models.db_forge_obj(session, models.Field, field_dict)
-
-    if field.template_id is not None:
-        # special handling of the whistleblower_identity field
-        if field.template_id == 'whistleblower_identity':
-            field_attrs = read_json_file(Settings.field_attrs_file)
-            attrs = field_attrs.get(field.template_id, {})
-            db_add_field_attrs(session, field.id, attrs)
-
-            if field.step_id is not None:
-                questionnaire = session.query(models.Questionnaire) \
-                                       .filter(models.Field.id == field.id,
-                                               models.Field.step_id == models.Step.id,
-                                               models.Step.questionnaire_id == models.Questionnaire.id,
-                                               models.Questionnaire.tid == tid).one()
-
-                if questionnaire.enable_whistleblower_identity is False:
-                    questionnaire.enable_whistleblower_identity = True
-                else:
-                    raise errors.InputValidationError("Whistleblower identity field already present")
-            else:
+    if field_dict.get('template_id', '') != '':
+        if field_dict['template_id'] == 'whistleblower_identity':
+            if field_dict.get('step_id', '') == '':
                 raise errors.InputValidationError("Cannot associate whistleblower identity field to a fieldgroup")
 
+            q_id = session.query(models.Questionnaire.id) \
+                          .filter(models.Questionnaire.id == models.Step.questionnaire_id,
+                                  models.Step.id == field_dict['step_id'])
+
+            field = session.query(models.Field) \
+                           .filter(models.Field.template_id == u'whistleblower_identity',
+                                   models.Field.step_id == models.Step.id,
+                                   models.Step.questionnaire_id.in_(q_id.subquery())).one_or_none()
+
+            if field is not None:
+                raise errors.InputValidationError("Whistleblower identity field already present")
+
+        field = models.db_forge_obj(session, models.Field, field_dict)
+        field_attrs = read_json_file(Settings.field_attrs_file)
+        attrs = field_attrs.get(field.template_id, {})
+        db_add_field_attrs(session, field.id, attrs)
+
     else:
+        field = models.db_forge_obj(session, models.Field, field_dict)
         attrs = field_dict.get('attrs', [])
         options = field_dict.get('options', [])
 
@@ -247,11 +247,6 @@ def delete_field(session, tid, field_id):
 
     if field.instance == 'template' and session.query(models.Field).filter(models.Field.tid == tid, models.Field.template_id == field.id).count():
         raise errors.InputValidationError("Cannot remove the field template as it is used by one or more questionnaires")
-
-    if field.template_id == 'whistleblower_identity' and field.step_id is not None:
-        step_id = session.query(models.Step.id).filter(models.Step.id == field.step_id)
-
-        session.query(models.Questionnaire).filter(models.Questionnaire.id == step_id.subquery()).update({'enable_whistleblower_identity': False}, synchronize_session='fetch')
 
     session.delete(field)
 

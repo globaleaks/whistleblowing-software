@@ -307,7 +307,13 @@ def db_create_submission(session, tid, request, uploaded_files, client_using_tor
     submission.enable_two_way_comments = context.enable_two_way_comments
     submission.enable_two_way_messages = context.enable_two_way_messages
     submission.enable_attachments = context.enable_attachments
-    submission.enable_whistleblower_identity = questionnaire.enable_whistleblower_identity
+
+    whistleblower_identity = session.query(models.Field) \
+                                    .filter(models.Field.template_id == u'whistleblower_identity',
+                                            models.Field.step_id == models.Step.id,
+                                            models.Step.questionnaire_id == context.questionnaire_id).one_or_none()
+
+    submission.enable_whistleblower_identity = whistleblower_identity is not None
 
     if submission.enable_whistleblower_identity and request['identity_provided']:
         submission.identity_provided = True
