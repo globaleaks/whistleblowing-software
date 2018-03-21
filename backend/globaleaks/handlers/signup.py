@@ -90,6 +90,8 @@ def signup_activation(session, state, tid, token, language):
 
         db_wizard(session, state, signup.tid, wizard, False, language)
 
+        session.query(models.User).filter(models.User.tid == signup.tid).update({'password_change_needed': False})
+
         template_vars = {
             'type': 'activation',
             'node': db_admin_serialize_node(session, 1, language),
@@ -102,21 +104,19 @@ def signup_activation(session, state, tid, token, language):
         state.format_and_send_mail(session, 1, {'mail_address': signup.email}, template_vars)
 
     if session.query(models.Tenant).filter(models.Tenant.id == signup.tid).one_or_none() is not None:
-        admin = session.query(models.User).filter(models.User.tid == signup.tid, models.User.role == u'admin').one()
-        admin.password_change_needed = False
+        admin = session.query(models.User).filter(models.User.tid == signup.tid, models.User.role == u'admin', models.User.username == u'admin').one_or_none()
+        recipient = session.query(models.User).filter(models.User.tid == signup.tid, models.User.role == u'receiver', models.User.username == u'recipient').one_or_none()
 
-        recipient = session.query(models.User).filter(models.User.tid == signup.tid, models.User.role == u'receiver').one()
-        recipient.password_change_needed = False
+        if admin is not None and recipient is not None:
+            return {
+                'platform_url': 'https://%s.%s' % (signup.subdomain, node.get_val(u'rootdomain')),
+                'login_url': 'https://%s.%s/#/login' % (signup.subdomain, node.get_val(u'rootdomain')),
+                'admin_login_url': 'https://%s.%s/#/login?token=%s' % (signup.subdomain, node.get_val(u'rootdomain'), admin.auth_token),
+                'recipient_login_url': 'https://%s.%s/#/login?token=%s' % (signup.subdomain, node.get_val(u'rootdomain'), recipient.auth_token),
+                'expiration_date': datetime_to_ISO8601(signup.registration_date + timedelta(days=7))
+            }
 
-        return {
-            'platform_url': 'https://%s.%s' % (signup.subdomain, node.get_val(u'rootdomain')),
-            'login_url': 'https://%s.%s/#/login' % (signup.subdomain, node.get_val(u'rootdomain')),
-            'admin_login_url': 'https://%s.%s/#/login?token=%s' % (signup.subdomain, node.get_val(u'rootdomain'), admin.auth_token),
-            'recipient_login_url': 'https://%s.%s/#/login?token=%s' % (signup.subdomain, node.get_val(u'rootdomain'), recipient.auth_token),
-            'expiration_date': datetime_to_ISO8601(signup.registration_date + timedelta(days=7))
-        }
-    else:
-        return {}
+    return {}
 
 
 class Signup(BaseHandler):
