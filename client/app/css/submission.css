@@ -223,10 +223,6 @@ html[dir="rtl"] #KeyCodeHintBox:after {
   padding-bottom: 1.4em;
 }
 
-.nested-question {
-  font-size: 0.9em;
-}
-
 html[dir="ltr"] .question {
   padding: 0 0 0 0.8em;
 }
