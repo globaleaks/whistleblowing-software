@@ -60,12 +60,12 @@ def db_update_fieldoptions(session, tid, field_id, options, language):
     options_ids = [db_update_fieldoption(session, tid, field_id, option['id'], option, language, idx) for idx, option in enumerate(options)]
 
     if options_ids:
-        ids = [x[0] for x in session.query(models.FieldOption.id).filter(models.FieldOption.field_id == field_id,
-                                                                         not_(models.FieldOption.id.in_(options_ids)),
-                                                                         models.FieldOption.field_id == models.Field.id,
-                                                                         models.Field.tid == tid)]
-        if ids:
-            session.query(models.FieldOption).filter(models.FieldOption.id.in_(ids)).delete(synchronize_session='fetch')
+        ids_to_remove = session.query(models.FieldOption.id).filter(models.FieldOption.field_id == field_id,
+                                                                    not_(models.FieldOption.id.in_(options_ids)),
+                                                                    models.FieldOption.field_id == models.Field.id,
+                                                                    models.Field.tid == tid)
+
+        session.query(models.FieldOption).filter(models.FieldOption.id.in_(ids_to_remove.subquery())).delete(synchronize_session='fetch')
 
 
 def db_update_fieldattr(session, tid, field_id, attr_name, attr_dict, language):
@@ -91,13 +91,12 @@ def db_update_fieldattrs(session, tid, field_id, field_attrs, language):
     attrs_ids = [db_update_fieldattr(session, tid, field_id, attr_name, attr, language) for attr_name, attr in field_attrs.items()]
 
     if attrs_ids:
-        ids = [x[0] for x in session.query(models.FieldAttr.id).filter(models.FieldAttr.field_id == field_id,
-                                                                       not_(models.FieldAttr.id.in_(attrs_ids)),
-                                                                       models.FieldAttr.field_id == models.Field.id,
-                                                                       models.Field.tid == tid)]
+        ids_to_remove = session.query(models.FieldAttr.id).filter(models.FieldAttr.field_id == field_id,
+                                                                  not_(models.FieldAttr.id.in_(attrs_ids)),
+                                                                  models.FieldAttr.field_id == models.Field.id,
+                                                                  models.Field.tid == tid)
 
-        if ids:
-            session.query(models.FieldAttr).filter(models.FieldAttr.id.in_(ids)).delete(synchronize_session='fetch')
+        session.query(models.FieldAttr).filter(models.FieldAttr.id.in_(ids_to_remove.subquery())).delete(synchronize_session='fetch')
 
 
 def check_field_association(session, tid, field_dict):
