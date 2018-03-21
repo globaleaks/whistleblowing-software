@@ -1,38 +1,196 @@
-<div id="HomePageBox">
-  <div id="NodeIntro" data-ng-if="node.presentation">{{::node.presentation}}</div>
+<div id="HomePageBox" data-ng-controller="HomeCtrl" data-ng-if="GLTranslate.indirect.appLanguage == 'fr'">
+  <div id="section0">
+    <p>Le Bureau du Procureur (Le Bureau) m&egrave;ne des enqu&ecirc;tes portant sur des <a onclick="go_to(3)">crimes contre l'humanit&eacute; et des crimes de guerre</a> commis en R&eacute;publique centrafricaine depuis le 1er ao&ucirc;t 2012. Cette plateforme est con&ccedil;ue pour aider le Bureau du Procureur &agrave; identifier les personnes susceptibles de d&eacute;tenir des informations pertinentes pour son enqu&ecirc;te. Cette plateforme n'est pas con&ccedil;ue pour pr&eacute;senter une demande de participation en tant que victime ou toute autre demande. Les renseignements <a onclick="go_to(4)">anonymes</a> que vous nous transmettez seront examin&eacute;s et exploit&eacute;s par les &eacute;quipes d'enqu&ecirc;teurs.</p>
+    <p>Nous vous enverrons un message via la plate-forme, si nous souhaitons nous entretenir avec vous ou vous poser d'autres questions. Nous examinerons tous les renseignements communiqu&eacute;s, mais nous ne serons pas en mesure de recontacter tout le monde. Si vous d&eacute;cidez de quitter la plateforme sans avoir cliqu&eacute; sur "envoyer" &agrave; la fin du questionnaire, aucune information ne sera enregistr&eacute;e.</p><br />
 
-  <div id="WhistleblowerBox" class="row">
-    <div data-ng-show="node.configured">
-      <div id="WhistleblowerSubmitBoxButton" class="row" data-ng-show="node.disable_submissions || !node.accept_submissions || (!node.https_whistleblower && !connection.tor)">
-        <button class="btn btn-danger disabled">
-          <i class="glyphicon glyphicon-ban-circle"></i>
-          <span data-translate>Submissions disabled</span>
-        </button>
-      </div>
-      <div class="row" data-ng-show="!node.https_whistleblower && !connection.tor">
-        <p class="text-danger" data-translate>You are connecting to the server without anonymity and this server supports only anonymous submissions</p>
-      </div>
-      <div class="row" data-ng-show="!node.disable_submissions && node.accept_submissions && (node.https_whistleblower || connection.tor)">
-        <div id="WhistleblowerSubmitBox">
-          <div id="WhistleblowerSubmitBoxHeader">{{::node.whistleblowing_question}}</div>
-          <div id="WhistleblowerSubmitBoxButton">
-            <button data-ng-click="evaluateDisclaimerModalOpening() || Utils.go('/submission')" class="btn btn-primary">{{::node.whistleblowing_button}}</button>
-          </div>
-        </div>
-        <div id="WhistleblowerReceiptBox" class="center-block" data-ng-include="'views/partials/wb_login_box.html'"></div>
-      </div>
+    <div class="form-group">
+      <label class="checkbox-inline">
+        <input lass="form-control" type="checkbox" ng-model="understand0" />
+        <span>Je confirme que, si je compl&egrave;te le questionnaire et que je clique sur "envoyer", je consens &grave; &ecirc;tre recontact&eacute; via la plateforme par le Bureau du Procureur.</span>
+      </label>
     </div>
-    <div data-ng-hide="node.configured">
-      <div class="title2" data-translate>This server is not configured.</div>
-      <div class="title3" data-translate>You will not be able to send a submission.</div>
+    <br />
+    <div style="width:100%; text-align:right">
+      <button id="button-right" class="btn btn-primary" data-ng-disabled="!understand0" onclick="next()">Suivant</button>
     </div>
   </div>
 
-  <div id="DonationPanel" class="row" data-ng-if="!node.disable_donation_panel">
-    <div class="col-md-12">
-      <span data-translate>This platform makes use of GlobaLeaks software specifically designed to protect the identity for submitter and recipient in the exchange of content.</span><br />
-      <span data-translate>The software is developed by the non-profit Hermes Center for Transparency and Digital Human Rights.</span>
-      <a href="https://www.globaleaks.org/donate/" target="_blank" rel="noreferrer noopener"><span data-translate>Please support Hermes through their donation page.</span></a>
+  <div id="section1">
+    <p><u><b>Ce que nous pouvons faire</b></u></p>
+    <p>Le Bureau <a onclick="go_to(5)">crypte</a> les donn&eacute;es &eacute;chang&eacute;es entre votre ordinateur et la plate-forme.</p>
+    <p>Le Bureau <a onclick="go_to(5)">crypte</a> les informations stock&eacute;es ainsi que toute communication &eacute;chang&eacute;e par la suite via la plate-forme.</p>
+
+    <p><u><b>Ce que nous ne pouvons pas faire</b></u></p>
+    <p>Le Bureau ne peut en aucun cas garantir la s&eacute;curit&eacute; de votre ordinateur, de votre connexion au r&eacute;seau ou de l'endroit o&ugrave; vous vous trouvez.</p>
+
+    <p><u><b>Ce que vous devriez faire</b></u></p>
+    <p>N'acc&eacute;dez &agrave; la plate-forme que si vous &ecirc;tes dans un lieu s&ucirc;r et en passant par l'adresse s&eacute;curis&eacute;e suivante https://www.icc-cpi.int. Cherchez le lien dans la barre de "raccourcis".</p>
+    <p>Utilisez un ordinateur fiable.</p>
+    <p>Assurez-vous que personne ne vous observe quand vous vous rendez sur la plate-forme.</p>
+    <p>Gardez vos contacts avec le Bureau secrets: ne parlez &agrave; personne de l'utilisation que vous faites de la plate-forme, que ce soit oralement ou au travers d'autres moyens comme les courriels, les m&eacute;dias sociaux, etc.</p>
+    <p>Une fois que vous aurez soumis vos informations, un code personnel vous sera attribu&eacute; afin de vous permettre de rester en contact. Gardez ce code secret.</p>
+    <p><b><u>Rappel</b></u></p>
+    <p>La communication d'informations se fait sous le couvert de l'anonymat.</p>
+    <p>Le Bureau ne vous contactera que via cette plate-forme.</p>
+
+    <div class="form-group">
+      <label class="checkbox-inline">
+        <input lass="form-control" type="checkbox" ng-model="understand1" />
+        <span>Je confirme avoir lu et compris les informations en mati&egrave;re de s&eacute;curit&eacute; &eacute;nonc&eacute;es ci-dessus et souhaite poursuivre.</span>
+      </label>
     </div>
+    <br />
+    <div style="width:100%; text-align:right">
+      <button class="btn btn-primary" onclick="previous()">Pr&eacute;c&eacute;dant</button>&nbsp;<button id="button-right" class="btn btn-primary" data-ng-disabled="!understand1" onclick="next()">Suivant</button>
+    </div>
+  </div>
+
+  <div id="section2">
+    <p>Les renseignements que vous fournissez &agrave; ce stade via cette plate-forme se pr&eacute;sentent sous la forme de r&eacute;ponses &agrave; une s&eacute;rie de questions &agrave; choix multiples, qui ne permettront pas de vous identifier et sont con&ccedil;ues pour aider le Bureau &agrave; comprendre comment vous pouvez aider &agrave; faire avancer l'enqu&ecirc;te. Ces renseignements anonymes peuvent &ecirc;tre communiqu&eacute;s, &agrave; titre confidentiel, aux juges, aux accus&eacute;s, &agrave; leurs conseils et aux repr&eacute;sentants l&eacute;gaux des victimes.</p></br>
+
+    <div class="form-group">
+      <label class="checkbox-inline">
+        <input lass="form-control" type="checkbox" ng-model="understand2" />
+        <span>J'ai compris les informations qui pr&eacute;c&egrave;dent et souhaite poursuivre.</span>
+      </label>
+    </div>
+
+    </br>
+
+    <div id="WhistleblowerBox">
+      <div id="WhistleblowerSubmitBox">
+        <div id="WhistleblowerSubmitBoxButton">
+          <button data-ng-disabled="!understand2" data-ng-click="Utils.go('/submission')" class="btn btn-primary">
+            <span>{{::node.whistleblowing_button}}</span>
+          </button>
+        </div>
+      </div>
+
+      <br /><br />
+
+      <div class="center-block">
+        <span data-ng-include="'views/partials/wb_login_box.html'"></span>
+      </div>
+    </div>
+
+    <br />
+
+    <div><button id="button-right" class="btn btn-primary" onclick="previous()">Pr&eacute;c&eacute;dant</button></div>
+  </div>
+
+  <div id="section3">
+    <p>Les crimes relevant de la comp&eacute;tence de la CPI comprennent: le meurtre, la mutilation, la torture et les traitements cruels, le viol et autres formes de violences sexuelles, l'utilisation d'enfants de moins de 15 ans pour les faire participer &agrave; des hostilit&eacute;s, la destruction de biens et le pillage, les attaques d&eacute;lib&eacute;r&eacute;es contre des civils et des missions d'aide humanitaire, les attaques contre des biens prot&eacute;g&eacute;s et les pers&eacute;cutions de personnes en raison de leur appartenance &agrave; un certain groupe. Ces crimes doivent avoir &eacute;t&eacute; commis dans le contexte d'un conflit arm&eacute; ou dans le cadre d'une attaque g&eacute;n&eacute;ralis&eacute;e ou syst&eacute;matique lanc&eacute;e contre toute population civile.</p>
+    <br />
+    <div><button id="button-right" class="btn btn-primary" onclick="go_to(0)">Pr&eacute;c&eacute;dant</button></div>
+  </div>
+
+  <div id="section4">
+    <p>Lorsque nous disons que les renseignements sont transmis de mani&egrave;re 'anonymat e, cela signifie que le Bureau du Procureur n'enregistrera pas votre identit&eacute;, l'adresse IP de votre ordinateur, votre adresse mail ou toute autre information qui pourrait permettre de vous identifier.</p>
+    <br />
+    <div><button id="button-right" class="btn btn-primary" onclick="go_to(0)">Pr&eacute;c&eacute;dant</button></div>
+  </div>
+
+  <div id="section5">
+    <p>Le cryptage est un moyen de s&eacute;curiser les donn&eacute;es. Pour lire un dossier crypt&eacute; vous devriez avoir acc&egrave;s &agrave; un code confidentiel ou un mot de passe.</p>
+    <br />
+    <div><button id="button-right" class="btn btn-primary" onclick="go_to(1)">Pr&eacute;c&eacute;dant</button></div>
+  </div>
+</div>
+<div id="HomePageBox" data-ng-controller="HomeCtrl" data-ng-if="GLTranslate.indirect.appLanguage == 'en'">
+  <div id="section0">
+    <p>The Office of the Prosecutor (OTP) is investigating <a onclick="go_to(3)">crimes against humanity and war crimes</a> committed in Central African Republic since August 1, 2012. This platform is designed to help the OTP identify persons who may have information relevant to its investigation. It is not designed for the registration of victims or any other purpose. The <a onclick="go_to(4)">anonymous</a> information you share will be reviewed and may be used in the investigation.</p>
+    <p>We will send you a return message via the platform if we want to talk to you or if we have more questions. We will review every submission, but cannot re-contact everyone. If you choose to exit the platform without pressing the "Submit" button, no information will be recorded.</p><br />
+
+    <div class="form-group">
+      <label class="checkbox-inline">
+        <input lass="form-control" type="checkbox" ng-model="understand0" />
+        <span>I confirm that, if I complete my submission, I consent to being re-contacted via the platform by the OTP.</span>
+      </label>
+    </div>
+    <br />
+    <div style="width:100%; text-align:right">
+      <button id="button-right" class="btn btn-primary" data-ng-disabled="!understand0" onclick="next()">Next</button>
+    </div>
+  </div>
+
+  <div id="section1">
+    <p><u><b>What we can do</b></u></p>
+    <p>The OTP <a onclick="go_to(5)">encrypts</a> the data sent between your computer and the platform.</p>
+    <p>The OTP <a onclick="go_to(5)">encrypts</a> the stored data and any subsequent communication via the platform.</p>
+
+    <p><u><b>What we cannot do</b></u></p>
+    <p>The OTP cannot ensure the security of your computer, your network connection, or your physical environment.</p>
+
+    <p><u><b>What you should do</b></u></p>
+    <p>Access the platform only in a place you trust and via the following secure address https://www.icc-cpi.int. Look for the link in the "Shortcut" section.</p>
+    <p>Use a computer that you trust.</p>
+    <p>Make sure that people cannot see what you are doing while you access the platform.</p>
+    <p>Keep your contact with the OTP confidential: do not discuss your use of this platform with anyone, either in person or by other means such as email, social media etc.</p>
+    <p>You will be given a personal code after you make a submission to allow you to keep in touch. You should keep this code confidential.</p>
+    <p><b><u>Remember</b></u></p>
+    <p>Your submission is anonymous.</p>
+    <p>The OTP will only contact you via the platform.</p>
+
+    <div class="form-group">
+      <label class="checkbox-inline">
+        <input lass="form-control" type="checkbox" ng-model="understand1" />
+        <span>I confirm that I have read and understood the security information above and wish to proceed.</span>
+      </label>
+    </div>
+    <br />
+    <div style="width:100%; text-align:right">
+      <button class="btn btn-primary" onclick="previous()">Previous</button>&nbsp;<button id="button-right" class="btn btn-primary" data-ng-disabled="!understand1" onclick="next()">Next</button>
+    </div>
+  </div>
+
+  <div id="section2">
+    <p>The information you provide via this platform at this stage will consist of answers to a series of multiple-choice questions that will not identify you and are designed to help the OTP understand how you can assist the investigation. This anonymous information may be shared, on a confidential basis, with judges, accused persons, counsel for the accused and legal representatives of the victims.</p></br>
+
+    <div class="form-group">
+      <label class="checkbox-inline">
+        <input lass="form-control" type="checkbox" ng-model="understand2" />
+        <span>I understand the above and wish to proceed.</span>
+      </label>
+    </div>
+
+    </br>
+
+    <div id="WhistleblowerBox">
+      <div id="WhistleblowerSubmitBox">
+        <div id="WhistleblowerSubmitBoxButton">
+          <button data-ng-disabled="!understand2" data-ng-click="evaluateAnonimityModalOpening() || Utils.go('/submission')" class="btn btn-primary">
+            <span>{{::node.whistleblowing_button}}</span>
+          </button>
+        </div>
+      </div>
+
+      <br /><br />
+
+      <div class="center-block">
+        <span data-ng-include="'views/partials/wb_login_box.html'"></span>
+      </div>
+    </div>
+
+    <br />
+
+    <div><button id="button-right" class="btn btn-primary" onclick="previous()">Previous</button></div>
+  </div>
+
+  <div id="section3">
+    <p>The crimes under the ICC's jurisdiction include murder, mutilation, torture and cruel treatment, rape and other forms of sexual violence, using children under the age of 15 in hostilities, destruction of property and pillaging, deliberately attacking civilians or humanitarian missions, attacking protected objects, and persecution of people because they belong to a certain group. These crimes must have been committed in the context of an armed conflict or as part of a widespread or systematic attack directed against any civilian population.</p>
+    <br />
+    <div><button id="button-right" class="btn btn-primary" onclick="go_to(0)">Back</button></div>
+  </div>
+
+  <div id="section4">
+    <p>When we say that the information collected is anonymous, we mean that the OTP does not collect your name, the IP address of your computer, your email address, or any other information that could be used to identify who you are when you make a submission.</p>
+    <br />
+    <div><button id="button-right" class="btn btn-primary" onclick="go_to(0)">Back</button></div>
+  </div>
+
+  <div id="section5">
+    <p>Encryption is a way to secure data. To read an encrypted file, you must have access to a secret key or password.</p>
+    <br />
+    <div><button id="button-right" class="btn btn-primary" onclick="go_to(1)">Back</button></div>
   </div>
 </div>
