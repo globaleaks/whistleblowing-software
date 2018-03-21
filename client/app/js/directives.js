@@ -300,7 +300,7 @@ directive('pgpPubkeyValidator', ['$q', 'glbcKeyLib', function($q, glbcKeyLib) {
       }
 
       if (scope.canBeEmpty && modelVal === '') {
-        return $q.reject();
+        return $q.resolve(true);
       }
 
       return glbcKeyLib.validPublicKey(modelVal);
