@@ -38,8 +38,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-03-20 23:25+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2018-03-21 17:17+0000\n"
+"Last-Translator: French language coordinator <french.coordinator@rbox.me>\n"
 "Language-Team: French (http://www.transifex.com/otf/globaleaks/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -536,7 +536,7 @@ msgid "Trigger question"
 msgstr "Déclencher une question"
 
 msgid "Triggered by a score higher than:"
-msgstr "Déclenché par un pointage supérieur à :"
+msgstr "Déclenché par un pointage supérieur à  :"
 
 msgid "Select the question to be triggered when this option is selected"
 msgstr "Choisir la question qui sera déclenchée par la sélection de cette option"
@@ -548,7 +548,7 @@ msgid "Copy and paste the PGP public key here"
 msgstr "Copier et coller la clé publique PGP ici"
 
 msgid "Password strength:"
-msgstr "Robustesse du mot de passe :"
+msgstr "Robustesse du mot de passe  :"
 
 msgid "Weak"
 msgstr "Faible"
@@ -569,7 +569,7 @@ msgid "Show small context cards on submission interface"
 msgstr "Sur l’interface d’envoi, afficher les contextes sous forme de petites cartes "
 
 msgid "Type of context selector:"
-msgstr "Type de sélecteur de contexte :"
+msgstr "Type de sélecteur de contexte :"
 
 msgid "Type to search…"
 msgstr "Taper pour chercher…"
@@ -659,7 +659,7 @@ msgid "Download the Tor Browser"
 msgstr "Télécharger le navigateur Tor"
 
 msgid "This is the list of the other supported browsers:"
-msgstr "Voici la liste des autres navigateurs pris en charge :"
+msgstr "Voici la liste des autres navigateurs pris en charge :"
 
 msgid "System overview"
 msgstr "Vue d’ensemble du système"
@@ -683,7 +683,7 @@ msgid "Number of downloads"
 msgstr "Nombre de téléchargements"
 
 msgid "Error with file:"
-msgstr "Erreur avec le fichier :"
+msgstr "Erreur avec le fichier :"
 
 msgid "File size not accepted."
 msgstr "La taille du fichier a été refusée."
@@ -692,10 +692,10 @@ msgid "File type not accepted."
 msgstr "Le type de fichier n’est pas accepté."
 
 msgid "Maximum file size is:"
-msgstr "La taille de fichier maximale est :"
+msgstr "La taille de fichier maximale est :"
 
 msgid "Accepted file types are:"
-msgstr "Les types de fichier acceptés sont :"
+msgstr "Les types de fichier acceptés sont :"
 
 msgid "Scheduled jobs"
 msgstr "Travaux planifiés"
@@ -710,7 +710,7 @@ msgid "Display options alphabetically"
 msgstr "Afficher les options en ordre alphabétique"
 
 msgid "Enable email notifications for:"
-msgstr "Activer les notifications par courriel pour :"
+msgstr "Activer les notifications par courriel pour :"
 
 msgid "Software updates"
 msgstr "Mises à jour logicielles"
@@ -746,7 +746,7 @@ msgid "Unselected by default"
 msgstr "Non sélectionné par défaut"
 
 msgid "Select the context of your submission:"
-msgstr "Choisir le contexte de votre envoi :"
+msgstr "Choisir le contexte de votre envoi :"
 
 msgid "Warning! You are not anonymous."
 msgstr "Avertissement ! Vous n’êtes pas anonyme."
@@ -800,13 +800,13 @@ msgid ""
 msgstr "Ce paramètre affecte la sécurité des utilisateurs et ne doit pas être utilisé en production."
 
 msgid "Allow other websites to include the platform inside iframes"
-msgstr "Permettre à d’autres sites Web d’inclure la plateforme à l’intérieur de cadres « iframes »"
+msgstr "Permettre à d’autres sites Web d’inclure la plateforme à l’intérieur de cadres « iframes »"
 
 msgid ""
 "By enabling this option, you are allowing other websites to include the "
 "platform inside iframes; this could potentially be used to endanger the "
 "platform or intercept users' communications"
-msgstr "En activant cette option, vous permettez à d’autres sites Web d’inclure la plateforme à l’intérieur de cadres « iframes » ; cela pourrait potentiellement être utilisé afin de compromettre la plateforme ou d’intercepter les communications des utilisateurs."
+msgstr "En activant cette option, vous permettez à d’autres sites Web d’inclure la plateforme à l’intérieur de cadres « iframes » ; cela pourrait potentiellement être utilisé afin de compromettre la plateforme ou d’intercepter les communications des utilisateurs."
 
 msgid "Allow recipients to postpone expiration date of the submission"
 msgstr "Autoriser les destinataires à repousser la date d’expiration des envois"
@@ -1000,10 +1000,10 @@ msgid "Upload custom file"
 msgstr "Téléverser un fichier personnalisé"
 
 msgid "The file will be available at URL: /s/$filename"
-msgstr "Le fichier sera accessible à URL : /s/$filename"
+msgstr "Le fichier sera accessible à URL : /s/$filename"
 
 msgid "Language:"
-msgstr "Langue :"
+msgstr "Langue :"
 
 msgid "Add custom text"
 msgstr "Ajouter un texte personnalisé"
@@ -1059,7 +1059,7 @@ msgid "Select all recipients by default"
 msgstr "Par défaut, sélectionner tous les destinataires"
 
 msgid "Maximum number of selectable recipients:"
-msgstr "Nombre maximal de destinataires sélectionnables :"
+msgstr "Nombre maximal de destinataires sélectionnables :"
 
 msgid "(0 = unlimited)"
 msgstr "(0 = illimité)"
@@ -1119,14 +1119,14 @@ msgstr "Documentation"
 
 msgid ""
 "To properly organize your project, please read the following guidelines:"
-msgstr "Afin d’organiser correctement votre projet, veuillez lire les directives suivantes :"
+msgstr "Afin d’organiser correctement votre projet, veuillez lire les directives suivantes :"
 
 msgid "Remember to provide proper security advice to Whistleblowers:"
-msgstr "Pensez à fournir des conseils de sécurité appropriés aux lanceurs d’alerte :"
+msgstr "Pensez à fournir des conseils de sécurité appropriés aux lanceurs d’alerte :"
 
 msgid ""
 "To learn more about GlobaLeaks Security you can read the following document:"
-msgstr "Pour en apprendre davantage au sujet de la sécurité de GlobaLeaks, vous pouvez lire le document suivant :"
+msgstr "Pour en apprendre davantage au sujet de la sécurité de GlobaLeaks, vous pouvez lire le document suivant :"
 
 msgid "Contact"
 msgstr "Contact"
@@ -1134,34 +1134,34 @@ msgstr "Contact"
 msgid ""
 "If you need technical support, have general questions, or have new ideas for"
 " the software:"
-msgstr "Si vous souhaitez obtenir du soutien technique, si avez des questions d’ordre général ou une nouvelle idée pour le logiciel :"
+msgstr "Si vous souhaitez obtenir du soutien technique, si avez des questions d’ordre général ou une nouvelle idée pour le logiciel :"
 
 msgid ""
 "If you want to contribute to software development or report a bug, please "
 "open an issue in our ticketing system:"
-msgstr "Si vous souhaitez participer au développement logiciel ou signaler un bogue, veuillez créer un billet de problème sur notre système de suivi :"
+msgstr "Si vous souhaitez participer au développement logiciel ou signaler un bogue, veuillez créer un billet de problème sur notre système de suivi :"
 
 msgid ""
 "If your non-profit needs support for investigative journalism, activism or a"
 " human rights defense project:"
-msgstr "Si votre OSBL a besoin de soutien pour un projet de journalisme d’enquête, d’activisme ou de défense des droits de la personne :"
+msgstr "Si votre OSBL a besoin de soutien pour un projet de journalisme d’enquête, d’activisme ou de défense des droits de la personne :"
 
 msgid ""
 "For professional support and development of anti corruption and compliance "
 "projects contact the social enterprise maintaining GlobaLeaks:"
-msgstr "Pour un soutien professionnel et le développement de projets anticorruptions et de conformité, contactez l’entreprise sociale qui maintient GlobaLeaks :"
+msgstr "Pour un soutien professionnel et le développement de projets anticorruptions et de conformité, contactez l’entreprise sociale qui maintient GlobaLeaks :"
 
 msgid "Join our IRC chat channel on the irc.oftc.net network:"
-msgstr "Rejoignez notre canal de clavardage IRC sur le réseau irc.oftc.net :"
+msgstr "Rejoignez notre canal de clavardage IRC sur le réseau irc.oftc.net :"
 
 msgid "Follow the project on:"
-msgstr "Suivez le projet sur :"
+msgstr "Suivez le projet sur :"
 
 msgid "Software version:"
-msgstr "Version du logiciel :"
+msgstr "Version du logiciel :"
 
 msgid "An update is available:"
-msgstr "Une mise à jour est proposée :"
+msgstr "Une mise à jour est proposée :"
 
 msgid "SMTP name"
 msgstr "Nom SMTP"
@@ -1224,14 +1224,14 @@ msgid "Invalid input format."
 msgstr "Le format de saisie est invalide."
 
 msgid "Input should be similar to:"
-msgstr "L’entrée devrait être similaire à :"
+msgstr "L’entrée devrait être similaire à :"
 
 msgid ""
 "The platform does not seem to be reachable with the configured hostname."
 msgstr "La plateforme ne semble pas être accessible avec le nom d’hôte configuré."
 
 msgid "Using Let's Encrypt requires agreement to their Terms of Service."
-msgstr "Vous devez accepter les conditions générales d’utilisation de « Let’s Encrypt » pour l’utiliser."
+msgstr "Vous devez accepter les conditions générales d’utilisation de « Let’s Encrypt » pour l’utiliser."
 
 msgid "Read the Terms of Service"
 msgstr "Lire les conditions générales d’utilisation"
@@ -1283,10 +1283,10 @@ msgid "Certificate"
 msgstr "Certificat"
 
 msgid "Valid until:"
-msgstr "Valide jusqu’au :"
+msgstr "Valide jusqu’au :"
 
 msgid "Issuer:"
-msgstr "Émetteur :"
+msgstr "Émetteur :"
 
 msgid "Intermediate Certificates"
 msgstr "Certificats intermédiaires"
@@ -1295,7 +1295,7 @@ msgid "Reset"
 msgstr "Réinitialiser"
 
 msgid "Select an option:"
-msgstr "Sélectionner une option :"
+msgstr "Sélectionner une option :"
 
 msgid "Automatic configuration"
 msgstr "Configuration automatique"
@@ -1304,7 +1304,7 @@ msgid ""
 "Using automatic HTTPS configuration will handle the entire process of "
 "requesting, enabling and renewing certificates from the Let's Encrypt "
 "Certificate Authority."
-msgstr "L’utilisation de la configuration automatique HTTPS prendra en charge le processus complet de demande, d’activation et de renouvellement des certificats de l’autorité de certification « Let’s Encrypt »."
+msgstr "L’utilisation de la configuration automatique HTTPS prendra en charge le processus complet de demande, d’activation et de renouvellement des certificats de l’autorité de certification « Let’s Encrypt »."
 
 msgid ""
 "The platform must be reachable through a public IP address and the selected "
@@ -1336,7 +1336,7 @@ msgid "Auto-renewal"
 msgstr "Renouvellement automatique"
 
 msgid "System message:"
-msgstr "Message système :"
+msgstr "Message système :"
 
 msgid ""
 "Allowing whistleblowers to connect over HTTPS preserves their privacy but "
@@ -1367,7 +1367,7 @@ msgid "Let the platform be reachable without Tor"
 msgstr "Permettre l’accès à la plateforme sans Tor"
 
 msgid "Stats of the week:"
-msgstr "Statistiques hebdomadaires :"
+msgstr "Statistiques hebdomadaires :"
 
 msgid "Free disk space"
 msgstr "Espace disque libre"
@@ -1566,7 +1566,7 @@ msgid "Language"
 msgstr "Langue"
 
 msgid "Encryption:"
-msgstr "Chiffrement :"
+msgstr "Chiffrement :"
 
 msgid "Remove the PGP key"
 msgstr "Supprimer la clé PGP"
@@ -1619,10 +1619,10 @@ msgid "Authentication failed"
 msgstr "Échec lors de l’authentification"
 
 msgid "Please select your account:"
-msgstr "Veuillez sélectionner votre compte :"
+msgstr "Veuillez sélectionner votre compte :"
 
 msgid "Now type your password, then click 'Log in':"
-msgstr "Saisissez maintenant votre mot de passe, puis cliquez sur « Connexion » :"
+msgstr "Saisissez maintenant votre mot de passe, puis cliquez sur « Connexion » :"
 
 msgid "Are you sure?"
 msgstr "Êtes-vous certain ?"
@@ -1636,7 +1636,7 @@ msgstr "Assigner un pointage"
 msgid ""
 "Enter the number of score points to be assigned when this option is "
 "selected:"
-msgstr "Saisir le nombre de points à attribuer lorsque cette option est choisie :"
+msgstr "Saisir le nombre de points à attribuer lorsque cette option est choisie :"
 
 msgid "Confirm"
 msgstr "Confirmer"
@@ -1651,7 +1651,7 @@ msgstr "Nous n’exerçons aucune discrimination d’après votre race, votre se
 
 msgid ""
 "Just to prove you are human, please answer the following math challenge:"
-msgstr "Pour prouver que vous êtes un être humain, veuillez répondre au problème mathématique suivant :"
+msgstr "Pour prouver que vous êtes un être humain, veuillez répondre au problème mathématique suivant :"
 
 msgid "I've solved the math challenge, hide this thing now!"
 msgstr "J’ai résolu le problème mathématique, cachez cela maintenant !"
@@ -1717,10 +1717,10 @@ msgid ""
 msgstr "Il vous est fortement recommandé d’utiliser le navigateur Tor pour accéder à ce site afin de protéger votre identité."
 
 msgid "Then, copy and paste the following address into the Tor Browser:"
-msgstr "Copier et coller ensuite l’adresse suivante dans le navigateur Tor :"
+msgstr "Copier et coller ensuite l’adresse suivante dans le navigateur Tor :"
 
 msgid "Details of the PGP key:"
-msgstr "Détails de la clé PGP :"
+msgstr "Détails de la clé PGP :"
 
 msgid "Fingerprint"
 msgstr "Empreinte"
@@ -1738,7 +1738,7 @@ msgid "Error while uploading files; check below for details."
 msgstr "Erreur de téléversement des fichiers ; voir les détails ci-dessous."
 
 msgid "Estimated upload time:"
-msgstr "Durée de téléversement estimée :"
+msgstr "Durée de téléversement estimée :"
 
 msgid "seconds"
 msgstr "secondes"
@@ -1842,7 +1842,7 @@ msgid "Are you sure that you want to postpone the submission expiration date?"
 msgstr "Voulez-vous vraiment repousser la date d’expiration de l’envoi ?"
 
 msgid "By confirming, you will postpone the expiration date to:"
-msgstr "En confirmant, vous repousserez la date d’expiration au :"
+msgstr "En confirmant, vous repousserez la date d’expiration au :"
 
 msgid ""
 "Are you sure that you want to postpone the expiration date for all selected "
@@ -1928,7 +1928,7 @@ msgid ""
 msgstr "Une bonne manière de dissimuler votre code-clé est de le noter comme un numéro de carte de crédit, c.-à-d. en ajoutant une date d’expiration."
 
 msgid "Example:"
-msgstr "Exemple :"
+msgstr "Exemple :"
 
 msgid ""
 "You have not set up your encryption key, so the files will not be encrypted "
@@ -2015,7 +2015,7 @@ msgid "Check your inbox to activate your account."
 msgstr "Vérifiez votre boîte de réception de courriels pour activer votre compte."
 
 msgid "The specified input is not valid:"
-msgstr "L’entrée spécifiée n’est pas valide :"
+msgstr "L’entrée spécifiée n’est pas valide :"
 
 msgid "please enter a valid email address."
 msgstr "veuillez saisir une adresse courriel valide."
@@ -2042,12 +2042,12 @@ msgid "Submit"
 msgstr "Envoyer"
 
 msgid "Recipients selected:"
-msgstr "Destinataires sélectionnés :"
+msgstr "Destinataires sélectionnés :"
 
 msgid ""
 "In this step the answers to the following questions are either missing or "
 "invalid:"
-msgstr "Dans cette étape, les réponses aux questions suivantes sont soit manquantes, soit invalides :"
+msgstr "Dans cette étape, les réponses aux questions suivantes sont soit manquantes, soit invalides :"
 
 msgid "Submission errors"
 msgstr "Erreurs d’envoi"
@@ -2059,7 +2059,7 @@ msgid "Waiting for the file(s) to finish uploading."
 msgstr "En attente de la fin du téléversement des fichiers."
 
 msgid "The following steps have errors:"
-msgstr "Les étapes suivantes présentent des erreurs :"
+msgstr "Les étapes suivantes présentent des erreurs :"
 
 msgid "Welcome!"
 msgstr "Bienvenue !"
@@ -2070,7 +2070,7 @@ msgid ""
 msgstr "La procédure étape par étape suivante vous guidera dans la création de votre plateforme de lancement d’alerte."
 
 msgid "Please choose a configuration profile:"
-msgstr "Veuillez choisir un profil de configuration :"
+msgstr "Veuillez choisir un profil de configuration :"
 
 msgid ""
 "These profiles contain settings used by successful projects in each "
@@ -2133,7 +2133,7 @@ msgid "Examine the issue to determine whether it is legitimate or not."
 msgstr "Examiner le problème afin de déterminer s’il est valide ou non."
 
 msgid "The activities with unusual stats are:"
-msgstr "Voici les activités présentant des statistiques inhabituelles :"
+msgstr "Voici les activités présentant des statistiques inhabituelles :"
 
 msgid ""
 "The server cannot guarantee that a new submission can be stored, so "
@@ -2153,7 +2153,7 @@ msgstr "La technologie GlobaLeaks inclut un composant de vérification de l’é
 msgid ""
 "For more information, log in to the Administration interface and look at the"
 " \"System Stats\" and \"Anomalies\" sections."
-msgstr "Pour davantage d’informations, connectez-vous à l’interface d’administration et consultez les sections « Statistiques du système » et « Anomalies »."
+msgstr "Pour davantage d’informations, connectez-vous à l’interface d’administration et consultez les sections « Statistiques du système » et « Anomalies »."
 
 msgid "Anomaly detected in {NodeName}"
 msgstr "Une anomalie a été détectée sur {NodeName}"
@@ -2161,7 +2161,7 @@ msgstr "Une anomalie a été détectée sur {NodeName}"
 msgid ""
 "This is an email to inform you that the PGP key of the following users is "
 "going to expire or has already expired:"
-msgstr "Le but de ce courriel est de vous informer que la clé PGP des utilisateurs suivants va expirer ou a déjà expirée :"
+msgstr "Le but de ce courriel est de vous informer que la clé PGP des utilisateurs suivants va expirer ou a déjà expirée :"
 
 msgid ""
 "Without a valid PGP key, the system will not be able to send them encrypted "
@@ -2188,34 +2188,34 @@ msgid ""
 msgstr "Le but de ce courriel est de vous signaler un nouveau commentaire à propos d’un envoi existant."
 
 msgid "The submission can be accessed:"
-msgstr "On peut accéder à l’alerte :"
+msgstr "Vous pouvez accéder à l’alerte :"
 
 msgid "via Tor at: {TorUrl}"
-msgstr "par Tor à : {TorUrl}"
+msgstr "par Tor à : {TorUrl}"
 
 msgid "via HTTPS at: {HTTPSUrl}"
-msgstr "par HTTPS à : {HTTPSUrl}"
+msgstr "par HTTPS à : {HTTPSUrl}"
 
 msgid "New comment"
 msgstr "Nouveau commentaire"
 
 msgid "From: {RecipientName}"
-msgstr "De : {RecipientName}"
+msgstr "De : {RecipientName}"
 
 msgid "Date: {EventTime}"
-msgstr "Date : {EventTime}"
+msgstr "Date : {EventTime}"
 
 msgid "From: Whistleblower"
-msgstr "De : Lanceur d’alerte"
+msgstr "De : lanceur d’alerte"
 
 msgid "Date: {SubmissionDate}"
-msgstr "Date : {SubmissionDate}"
+msgstr "Date : {SubmissionDate}"
 
 msgid "Label: {TipLabel}"
-msgstr "Étiquette : {TipLabel}"
+msgstr "Étiquette : {TipLabel}"
 
 msgid "Context: {ContextName}"
-msgstr "Contexte : {ContextName}"
+msgstr "Contexte : {ContextName}"
 
 msgid ""
 "This is an email to notify you that the whistleblower of submission {TipNum}"
@@ -2266,7 +2266,7 @@ msgid ""
 msgstr "Le but de ce courriel est de vous signaler qu’un destinataire a demandé l’accès à l’identité du lanceur d’alerte pour l’envoi {TipNum}."
 
 msgid "The request can be accessed:"
-msgstr "On peut accéder à la demande :"
+msgstr "Vous pouvez à la demande :"
 
 msgid "New request of access to a whistleblower's identity"
 msgstr "Nouvelle demande d’accès à l’identité d’un lanceur d’alerte "
@@ -2329,10 +2329,10 @@ msgid "It is good security practice to keep the platform up to date."
 msgstr "Garder la plateforme à jour constitue une bonne pratique de sécurité."
 
 msgid "Installed version: {InstalledVersion}"
-msgstr "Version installée : {InstalledVersion}"
+msgstr "Version installée : {InstalledVersion}"
 
 msgid "Latest version: {LatestVersion}"
-msgstr "Dernière version : {LatestVersion}"
+msgstr "Dernière version : {LatestVersion}"
 
 msgid ""
 "To learn about new features and bug fixes in the new version consult the "
