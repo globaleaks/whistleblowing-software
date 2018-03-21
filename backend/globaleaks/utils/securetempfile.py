@@ -21,7 +21,7 @@ class SecureTemporaryFile(object):
         self.cipher = Cipher(algorithms.AES(self.key), modes.CTR(self.key_counter_nonce), backend=crypto_backend)
         self.filepath = os.path.join(filesdir, "%s.aes" % self.key_id)
         self.enc = self.cipher.encryptor()
-        self.dec = self.cipher.decryptor()
+        self.dec = None
 
     def open(self, mode):
         if self.file is None:
@@ -29,6 +29,7 @@ class SecureTemporaryFile(object):
                self.file = open(self.filepath, 'a+')
            else:
                self.file = open(self.filepath, 'r')
+               self.dec = self.cipher.decryptor()
 
         return self
 
