@@ -52,9 +52,11 @@ class StateClass(ObjectDict):
 
         self.https_socks = []
         self.http_socks = []
+
         self.jobs = []
         self.jobs_monitor = None
         self.services = []
+        self.onion_service_job = None
 
         self.api_token_session = None
 
@@ -71,6 +73,7 @@ class StateClass(ObjectDict):
 
         self.set_orm_tp(ThreadPool(4, 16))
         self.TempUploadFiles = TempDict(timeout=3600)
+
 
     def init_environment(self):
         os.umask(077)
@@ -241,7 +244,7 @@ class StateClass(ObjectDict):
 
     def refresh_tenant_states(self):
         # Remove selected onion services and add missing services
-        if self.onion_service_job:
+        if self.onion_service_job is not None:
             def f(*args):
                 return self.onion_service_job.add_all_hidden_services()
 
