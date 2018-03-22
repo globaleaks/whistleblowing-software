@@ -39,6 +39,9 @@ def load_default_fields(session):
         question = read_json_file(ffile)
         question['tid'] = 1
         session.query(models.Field).filter(models.Field.id == question['id']).delete(synchronize_session='fetch')
+        session.query(models.Field).filter(models.Field.fieldgroup_id == question['id']).delete(synchronize_session='fetch')
+        session.query(models.FieldAttr).filter(models.FieldAttr.field_id == question['id']).delete(synchronize_session='fetch')
+        session.query(models.FieldOption).filter(models.FieldOption.field_id == question['id']).delete(synchronize_session='fetch')
         db_create_field(session, 1, question, None)
 
 
