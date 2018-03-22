@@ -25,8 +25,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-03-20 23:24+0000\n"
-"Last-Translator: Hermes Center <info@hermescenter.org>\n"
+"PO-Revision-Date: 2018-03-22 16:05+0000\n"
+"Last-Translator: efe kerem sözeri <eksozeri@hotmail.com>\n"
 "Language-Team: Turkish (http://www.transifex.com/otf/globaleaks/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -292,6 +292,9 @@ msgstr "İsim"
 
 msgid "Last name"
 msgstr "Soyisim"
+
+msgid "Gender"
+msgstr "Cinsiyet"
 
 msgid "GENDER_OTHER"
 msgstr "DİĞER"

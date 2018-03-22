@@ -84,6 +84,7 @@
   "Change your password": "비밀번호 변경",
   "First name": "이름",
   "Last name": "성",
+  "Gender": "성별",
   "GENDER_OTHER": "GENDER_OTHER",
   "Male": "남성",
   "Female": "여자",

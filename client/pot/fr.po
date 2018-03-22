@@ -38,7 +38,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-03-21 17:17+0000\n"
+"PO-Revision-Date: 2018-03-22 16:05+0000\n"
 "Last-Translator: French language coordinator <french.coordinator@rbox.me>\n"
 "Language-Team: French (http://www.transifex.com/otf/globaleaks/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -305,6 +305,9 @@ msgstr "Prénom"
 
 msgid "Last name"
 msgstr "Nom de famille"
+
+msgid "Gender"
+msgstr "Genre"
 
 msgid "GENDER_OTHER"
 msgstr "Autre"

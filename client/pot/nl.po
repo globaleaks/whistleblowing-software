@@ -35,8 +35,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-03-20 23:28+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2018-03-22 16:05+0000\n"
+"Last-Translator: Anne Mügge <info@numijneigenwebsite.nl>\n"
 "Language-Team: Dutch (http://www.transifex.com/otf/globaleaks/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -302,6 +302,9 @@ msgstr "Voornaam"
 
 msgid "Last name"
 msgstr "Achternaam"
+
+msgid "Gender"
+msgstr "Geslacht"
 
 msgid "GENDER_OTHER"
 msgstr "Anders"

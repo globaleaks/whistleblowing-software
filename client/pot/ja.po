@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-03-20 23:36+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2018-03-22 16:05+0000\n"
+"Last-Translator: Naofumi <naofum@gmail.com>\n"
 "Language-Team: Japanese (http://www.transifex.com/otf/globaleaks/language/ja/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -276,6 +276,9 @@ msgstr "名"
 
 msgid "Last name"
 msgstr "姓"
+
+msgid "Gender"
+msgstr "性別"
 
 msgid "GENDER_OTHER"
 msgstr "その他"
@@ -1959,7 +1962,7 @@ msgid "Domain"
 msgstr "ドメイン"
 
 msgid "Use case"
-msgstr ""
+msgstr "事例"
 
 msgid "Anticorruption"
 msgstr "腐敗防止"
