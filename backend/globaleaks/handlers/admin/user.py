@@ -82,6 +82,10 @@ def db_create_user(session, state, tid, request, language):
 
     fill_localized_keys(request, models.User.localized_keys, language)
 
+    user = session.query(models.User).filter(models.User.tid == tid, models.User.username == unicode(request['username'])).one_or_none()
+    if user is not None:
+        raise errors.InputValidationError('Username already in use')
+
     user = models.User({
         'tid': tid,
         'username': request['username'],
@@ -126,6 +130,11 @@ def db_admin_update_user(session, state, tid, user_id, request, language):
     fill_localized_keys(request, models.User.localized_keys, language)
 
     user = models.db_get(session, models.User, models.User.tid == tid, models.User.id == user_id)
+
+    if user.username != request['username']:
+        user = session.query(models.User).filter(models.User.tid == tid, models.User.username == unicode(request['username'])).one_or_none()
+        if user is not None:
+            raise errors.InputValidationError('Username already in use')
 
     user.update(request)
 

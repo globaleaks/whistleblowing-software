@@ -2,7 +2,7 @@
 # pylint: disable=unused-import
 import json
 
-from sqlalchemy import Column, CheckConstraint, ForeignKeyConstraint, types
+from sqlalchemy import Column, CheckConstraint, ForeignKeyConstraint, UniqueConstraint, types
 from sqlalchemy.types import Boolean, DateTime, Integer, Unicode, UnicodeText
 from sqlalchemy.ext.declarative import declarative_base, declared_attr
 from sqlalchemy.schema import ForeignKey
