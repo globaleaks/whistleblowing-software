@@ -1,3 +1,12 @@
+Changes in version 3.0.16 - 2018-03-22
+    o Apply minor UI bugfixing
+    o Prevent multitenancy regression that allow admin
+      configuration of reused usernames
+    o Update translations
+
+    Addresses issues:
+    - https://github.com/globaleaks/GlobaLeaks/issues/2217
+
 Changes in version 3.0.15 - 2018-03-21
     o Apply minor bugfixing
 
