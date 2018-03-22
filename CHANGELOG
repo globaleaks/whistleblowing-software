@@ -1,3 +1,6 @@
+Changes in version 3.0.17 - 2018-03-22
+    o Fix update of whistleblower identity question
+
 Changes in version 3.0.16 - 2018-03-22
     o Apply minor UI bugfixing
     o Prevent multitenancy regression that allow admin
