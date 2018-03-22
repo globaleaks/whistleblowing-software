@@ -33,8 +33,8 @@ Other resources:
 ### Code quality:
 | Branch | Codacy | Coveralls |
 | :---: | :---: | :---: |
-| [master](https://github.com/globaleaks/GlobaLeaks/tree/master) | [![Codacy Badge](https://api.codacy.com/project/badge/Grade/https://api.codacy.com/project/badge/Grade/https://api.codacy.com/project/badge/Grade/8bd2370745cf4ca0b2432e8a5fb7c053?branch=master?branch=master?branch=master)](https://www.codacy.com/app/GlobaLeaks/GlobaLeaks) | [![Coverage Status](https://coveralls.io/repos/globaleaks/GlobaLeaks/badge.svg?branch=master)](https://coveralls.io/r/globaleaks/GlobaLeaks?branch=master)
-| [devel](https://github.com/globaleaks/GlobaLeaks/tree/master) | [![Codacy Badge](https://api.codacy.com/project/badge/Grade/829f1847c5794c758e17d6e939cb76f0?branch=master)](https://www.codacy.com/app/GlobaLeaks/GlobaLeaks) | [![Coverage Status](https://coveralls.io/repos/globaleaks/GlobaLeaks/badge.svg?branch=devel)](https://coveralls.io/r/globaleaks/GlobaLeaks?branch=devel)
+| [master](https://github.com/globaleaks/GlobaLeaks/tree/master) | [![Codacy Badge](https://api.codacy.com/project/badge/Grade/4e072e7e5287478fa56468f3719d94ef?branch=master)](https://www.codacy.com/app/GlobaLeaks/GlobaLeaks) | [![Coverage Status](https://coveralls.io/repos/globaleaks/GlobaLeaks/badge.svg?branch=master)](https://coveralls.io/r/globaleaks/GlobaLeaks?branch=master)
+| [devel](https://github.com/globaleaks/GlobaLeaks/tree/master) | [![Codacy Badge](https://api.codacy.com/project/badge/Grade/4e072e7e5287478fa56468f3719d94ef?branch=devel)](https://www.codacy.com/app/GlobaLeaks/GlobaLeaks) | [![Coverage Status](https://coveralls.io/repos/globaleaks/GlobaLeaks/badge.svg?branch=devel)](https://coveralls.io/r/globaleaks/GlobaLeaks?branch=devel)
 
 ## Donate
 To support the GlobaLeaks project you can help us with donations that will goes entirely for the software development.
