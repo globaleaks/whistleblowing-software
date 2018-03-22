@@ -269,7 +269,8 @@ class User(Model, Base):
     pgp_key_expiration = Column(DateTime, default=datetime_null, nullable=False)
     # END of PGP key fields
 
-    __table_args__ = (CheckConstraint(role.in_(['admin','receiver', 'custodian'])), \
+    __table_args__ = (UniqueConstraint('tid', 'username'), \
+                      CheckConstraint(role.in_(['admin','receiver', 'custodian'])), \
                       CheckConstraint(state.in_(['disabled', 'enabled'])))
 
     unicode_keys = ['username', 'role', 'state',
