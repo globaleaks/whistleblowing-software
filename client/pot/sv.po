@@ -20,8 +20,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-03-20 23:24+0000\n"
-"Last-Translator: Hermes Center <info@hermescenter.org>\n"
+"PO-Revision-Date: 2018-03-22 16:05+0000\n"
+"Last-Translator: Henrik Mattsson-Mårn <h@reglage.net>\n"
 "Language-Team: Swedish (http://www.transifex.com/otf/globaleaks/language/sv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -287,6 +287,9 @@ msgstr "Förnamn"
 
 msgid "Last name"
 msgstr "Efternamn"
+
+msgid "Gender"
+msgstr "Kön"
 
 msgid "GENDER_OTHER"
 msgstr "GENDER_OTHER"

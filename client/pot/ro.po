@@ -17,7 +17,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-03-20 23:29+0000\n"
+"PO-Revision-Date: 2018-03-22 16:05+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Romanian (http://www.transifex.com/otf/globaleaks/language/ro/)\n"
 "MIME-Version: 1.0\n"
@@ -284,6 +284,9 @@ msgstr "Primul nume"
 
 msgid "Last name"
 msgstr "Numele de familie"
+
+msgid "Gender"
+msgstr "Gen"
 
 msgid "GENDER_OTHER"
 msgstr "GENDER_OTHER"

@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-03-20 23:24+0000\n"
-"Last-Translator: Hermes Center <info@hermescenter.org>\n"
+"PO-Revision-Date: 2018-03-22 16:05+0000\n"
+"Last-Translator: Chi-Hsun Tsai\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/otf/globaleaks/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -277,6 +277,9 @@ msgstr "名"
 
 msgid "Last name"
 msgstr "姓"
+
+msgid "Gender"
+msgstr "姓別"
 
 msgid "GENDER_OTHER"
 msgstr "其它"

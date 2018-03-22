@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-03-20 23:25+0000\n"
+"PO-Revision-Date: 2018-03-22 16:05+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Korean (http://www.transifex.com/otf/globaleaks/language/ko/)\n"
 "MIME-Version: 1.0\n"
@@ -272,6 +272,9 @@ msgstr "이름"
 
 msgid "Last name"
 msgstr "성"
+
+msgid "Gender"
+msgstr "성별"
 
 msgid "GENDER_OTHER"
 msgstr "GENDER_OTHER"
