@@ -16,19 +16,12 @@ def get_dummy_tenant_desc():
         'subdomain': 'subdomain',
     }
 
-
-class TenantTestEnv(helpers.TestHandlerWithPopulatedDB):
-    @inlineCallbacks
-    def setUp(self):
-        yield helpers.TestHandlerWithPopulatedDB.setUp(self)
-        State.onion_service_job = False
-
-
 @transact
 def get_salt(session, tid):
     return config.ConfigFactory(session, tid, 'node').get_val(u'receipt_salt')
 
-class TestTenantCollection(TenantTestEnv):
+
+class TestTenantCollection(helpers.TestHandlerWithPopulatedDB):
     _handler = tenant.TenantCollection
 
     @inlineCallbacks
@@ -62,12 +55,12 @@ class TestTenantCollection(TenantTestEnv):
         self.assertNotEqual(second, third)
 
 
-class TestTenantInstance(TenantTestEnv):
+class TestTenantInstance(helpers.TestHandlerWithPopulatedDB):
     _handler = tenant.TenantInstance
 
     @inlineCallbacks
     def setUp(self):
-        yield TenantTestEnv.setUp(self)
+        yield helpers.TestHandlerWithPopulatedDB.setUp(self)
         t = yield tenant.create(get_dummy_tenant_desc())
         self.handler = self.request(t, role='admin')
         yield refresh_memory_variables([4])
