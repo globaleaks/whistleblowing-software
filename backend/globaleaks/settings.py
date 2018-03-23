@@ -170,7 +170,7 @@ class SettingsClass(object):
         self.mail_timeout = 15 # seconds
         self.mail_attempts_limit = 3 # per mail limit
 
-        self.acme_directory_url = 'https://acme-v01.api.letsencrypt.org/directory'
+        self.acme_directory_url = 'https://acme-v02.api.letsencrypt.org/directory'
 
         self.maximum_namesize = 128
         self.maximum_textsize = 4096
@@ -216,11 +216,7 @@ class SettingsClass(object):
         else:
             self.developer_name = text_type(self.cmdline_options.developer_name)
 
-        # when running in development mode lower the key bits to 512
-        self.key_bits = 512
-        self.csr_sign_bits = 256
-
-        self.acme_directory_url = 'https://acme-staging.api.letsencrypt.org/directory'
+        self.acme_directory_url = 'https://acme-staging-v02.api.letsencrypt.org/directory'
 
         self.pid_path = os.path.join(self.src_path, 'workingdir')
         self.working_path = os.path.join(self.src_path, 'workingdir')
