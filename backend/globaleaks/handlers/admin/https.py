@@ -364,7 +364,6 @@ def reset_https_config(session, tid):
     config.set_val(u'https_csr', '')
     config.set_val(u'acme', False)
     config.set_val(u'acme_accnt_key', '')
-    config.set_val(u'acme_accnt_uri', '')
 
     State.tenant_cache[tid].https_enabled = False
 
@@ -472,12 +471,6 @@ class AcmeAccntKeyRes:
 
         return priv_key
 
-    @classmethod
-    @transact
-    def save_accnt_uri(session, cls, tid, uri):
-        ConfigFactory(session, tid, 'node').set_val(u'acme_accnt_uri', uri)
-
-
 @transact
 def can_perform_acme_run(session, tid):
     config = ConfigFactory(session, tid, 'node')
@@ -514,20 +507,14 @@ def db_acme_cert_issuance(session, tid):
 
 
     priv_key = priv_fact.get_val(u'https_priv_key')
-    regr_uri = priv_fact.get_val(u'acme_accnt_uri')
-
-    csr_fields = {'CN': hostname}
-    # NOTE sha256 is always employed as hash fnc here.
-    csr = tls.gen_x509_csr(priv_key, csr_fields, 256)
 
     tmp_chall_dict = State.tenant_state[tid].acme_tmp_chall_dict
 
     # Run ACME registration all the way to resolution
     cert_str, chain_str = letsencrypt.run_acme_reg_to_finish(hostname,
-                                                             regr_uri,
                                                              accnt_key,
                                                              priv_key,
-                                                             csr,
+                                                             hostname,
                                                              tmp_chall_dict,
                                                              Settings.acme_directory_url)
 
@@ -549,9 +536,7 @@ class AcmeHandler(BaseHandler):
     def post(self):
         accnt_key = yield AcmeAccntKeyRes.create_file(self.request.tid)
 
-        regr_uri, tos_url = letsencrypt.register_account_key(Settings.acme_directory_url, accnt_key)
-
-        yield AcmeAccntKeyRes.save_accnt_uri(self.request.tid, regr_uri)
+        tos_url = letsencrypt.get_boulder_tos(Settings.acme_directory_url, accnt_key)
 
         returnValue({'terms_of_service': tos_url})
 

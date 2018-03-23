@@ -39,7 +39,6 @@ ConfigDescriptor = {
 
     u'acme': Bool(default=False),
     u'acme_accnt_key': Unicode(),
-    u'acme_accnt_uri': Unicode(),
 
     u'tor_onion_key': Unicode(), # Limits from txtorcon
 
@@ -199,7 +198,6 @@ ConfigFilters = {
         u'latest_version',
         u'acme',
         u'acme_accnt_key',
-        u'acme_accnt_uri',
         u'tor_onion_key',
         u'https_priv_key',
         u'https_priv_gen',
@@ -230,7 +228,6 @@ ConfigFilters = {
 ConfigFilters['admin_node'] = ConfigFilters['node'] - set([
     u'receipt_salt',
     u'acme_accnt_key',
-    u'acme_accnt_uri',
     u'tor_onion_key',
     u'https_priv_key',
     u'https_priv_gen',
