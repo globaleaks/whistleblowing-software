@@ -232,7 +232,7 @@ class EnabledLanguage(Model, Base):
 
     @classmethod
     def tid_list(cls, session, tid_list):
-        return [(lang.tid, lang.name) for lang in session.query(EnabledLanguage).filter(EnabledLanguage.tid.in_(tid_list)).order_by('tid', 'name')]
+        return [(lang.tid, lang.name) for lang in session.query(EnabledLanguage).filter(EnabledLanguage.tid.in_(tid_list))]
 
 
 class User(Model, Base):
