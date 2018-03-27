@@ -1,34 +1,32 @@
-<div class="addField">
-  <div data-ng-form="newField">
-    <div class="form-group">
-      <label data-translate>Label</label>
-      <input name="label" class="form-control" data-ng-model="new_field.label" type="text" required>
-      <div class="text-danger" data-ng-show="newField.label.$error.required">
-        <span data-translate>This field is mandatory</span>
-      </div>
+<div class="addField" data-ng-form="newField">
+  <div class="form-group">
+    <label data-translate>Label</label>
+    <input name="label" class="form-control" data-ng-model="new_field.label" type="text" required>
+    <div class="text-danger" data-ng-show="newField.label.$error.required">
+      <span data-translate>This field is mandatory</span>
     </div>
-    <div class="form-group">
-      <label data-translate>Type</label>
-      <select name="type" class="form-control" data-ng-model="new_field.type" required>
-        <option value="inputbox" data-translate>Single-line text input</option>
-        <option value="textarea" data-translate>Multi-line text input</option>
-        <option value="multichoice" data-translate>Multiple choice input</option>
-        <option value="selectbox" data-translate>Selection box</option>
-        <option value="checkbox" data-translate>Checkbox</option>
-        <option value="fileupload" data-translate>Attachment</option>
-        <option value="tos" data-translate>Terms of service</option>
-        <option value="date" data-translate>Date</option>
-        <option value="fieldgroup" data-translate>Group of questions</option>
-      </select>
-      <div class="text-danger" data-ng-show="newField.type.$error.required">
-        <span data-translate>This field is mandatory</span>
-      </div>
+  </div>
+  <div class="form-group">
+    <label data-translate>Type</label>
+    <select name="type" class="form-control" data-ng-model="new_field.type" required>
+      <option value="inputbox" data-translate>Single-line text input</option>
+      <option value="textarea" data-translate>Multi-line text input</option>
+      <option value="multichoice" data-translate>Multiple choice input</option>
+      <option value="selectbox" data-translate>Selection box</option>
+      <option value="checkbox" data-translate>Checkbox</option>
+      <option value="fileupload" data-translate>Attachment</option>
+      <option value="tos" data-translate>Terms of service</option>
+      <option value="date" data-translate>Date</option>
+      <option value="fieldgroup" data-translate>Group of questions</option>
+    </select>
+    <div class="text-danger" data-ng-show="newField.type.$error.required">
+      <span data-translate>This field is mandatory</span>
     </div>
-    <div class="form-group">
-      <button id="add-field-btn" class="btn btn-primary" data-ng-disabled="newField.$invalid" data-ng-click="add_field(); toggleAddQuestion()">
-        <i class="glyphicon glyphicon-plus-sign"></i>
-        <span data-translate>Add</span>
-      </button>
-    </div>
+  </div>
+  <div class="form-group">
+    <button id="add-field-btn" class="btn btn-primary" data-ng-disabled="newField.$invalid" data-ng-click="add_field(); toggleAddQuestion()">
+      <i class="glyphicon glyphicon-plus-sign"></i>
+      <span data-translate>Add</span>
+    </button>
   </div>
 </div>

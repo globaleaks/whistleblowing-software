@@ -713,13 +713,6 @@ factory('AdminUtils', ['AdminContextResource', 'AdminQuestionnaireResource', 'Ad
       return field;
     },
 
-    new_field_from_template: function(template_id, step_id, fieldgroup_id) {
-      var field = this.new_field(step_id, fieldgroup_id);
-      field.template_id = template_id;
-      field.instance = 'reference';
-      return field;
-    },
-
     new_field_template: function (fieldgroup_id) {
       var field = new AdminFieldTemplateResource();
       field.id = '';

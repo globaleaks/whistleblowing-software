@@ -41,10 +41,6 @@ controller('AdminStepEditorCtrl', ['$scope', '$rootScope', '$http', 'Utils', 'Ad
       $scope.showAddQuestion = false;
     };
 
-    $scope.addField = function(field) {
-      $scope.fields.push(field);
-    };
-
     $scope.delField = function(field) {
       return Utils.deleteResource($scope.fieldResource, $scope.fields, field);
     };
@@ -61,17 +57,20 @@ controller('AdminStepEditorCtrl', ['$scope', '$rootScope', '$http', 'Utils', 'Ad
       }
 
       field.$save(function(new_field){
-        $scope.addField(new_field);
+        $scope.fields.push(new_field);
         $scope.new_field = {};
       });
     };
 
-    $scope.add_field_from_template = function(template_id) {
-      var field = $scope.admin_utils.new_field_from_template(template_id, $scope.step.id, '');
+    $scope.add_field_from_template = function() {
+      var field = $scope.admin_utils.new_field($scope.step.id, '');
+      field.template_id = $scope.new_field.template_id;
+      field.instance = 'reference';
       field.y = $scope.newItemOrder($scope.fields, 'y');
 
       field.$save(function(new_field) {
         $scope.fields.push(new_field);
+        $scope.new_field = {};
       });
     };
 

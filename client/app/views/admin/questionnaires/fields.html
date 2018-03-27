@@ -104,7 +104,7 @@
               <input data-ng-model="field.required" type="checkbox">
               <label data-translate>Required</label>
             </div>
-            <div class="form-group" data-ng-if="::field.type === 'fieldgroup' || field.type === 'fileupload'">
+            <div class="form-group" data-ng-if="::(field.type === 'fieldgroup' || field.type === 'fileupload') && field.template_id === ''">
               <div data-ng-switch="" on="typeSwitch(field.type)">
                 <input data-ng-model="field.multi_entry" type="checkbox">
                 <label data-ng-switch-when="fileupload" data-translate>Accept multiple file uploads</label>
