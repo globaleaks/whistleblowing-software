@@ -152,6 +152,13 @@ def db_create_field(session, tid, field_dict, language):
                 raise errors.InputValidationError("Whistleblower identity field already present")
 
         field = models.db_forge_obj(session, models.Field, field_dict)
+
+        template = session.query(models.Field).filter(models.Field.id == field_dict['template_id']).one()
+
+        field.label = template.label
+        field.hint = template.hint
+        field.description = template.description
+
         field_attrs = read_json_file(Settings.field_attrs_file)
         attrs = field_attrs.get(field.template_id, {})
         db_add_field_attrs(session, field.id, attrs)
@@ -188,13 +195,13 @@ def db_update_field(session, tid, field_id, field_dict, language):
 
     check_field_association(session, tid, field_dict)
 
+    fill_localized_keys(field_dict, models.Field.localized_keys, language)
+
     db_update_fieldattrs(session, tid, field.id, field_dict['attrs'], language)
 
     # make not possible to change field type
     field_dict['type'] = field.type
     if field_dict['instance'] != 'reference':
-        fill_localized_keys(field_dict, models.Field.localized_keys, language)
-
         db_update_fieldoptions(session, tid, field.id, field_dict['options'], language)
 
         # full update
@@ -203,10 +210,13 @@ def db_update_field(session, tid, field_id, field_dict, language):
     else:
         # partial update
         field.update({
+          'label': field_dict['label'],
+          'hint': field_dict['hint'],
+          'description': field_dict['description'],
           'x': field_dict['x'],
           'y': field_dict['y'],
           'width': field_dict['width'],
-          'multi_entry': field_dict['multi_entry']
+          'required': field_dict['required']
         })
 
     return field

@@ -262,8 +262,8 @@ def serialize_field(session, tid, field, language, data=None):
         'template_id': field.template_id if field.template_id else '',
         'step_id': field.step_id if field.step_id else '',
         'fieldgroup_id': field.fieldgroup_id if field.fieldgroup_id else '',
-        'multi_entry': field.multi_entry,
-        'required': f_to_serialize.required,
+        'multi_entry': f_to_serialize.multi_entry,
+        'required': field.required,
         'preview': field.preview,
         'stats_enabled': field.stats_enabled,
         'attrs': attrs,
@@ -276,7 +276,7 @@ def serialize_field(session, tid, field, language, data=None):
         'children': [serialize_field(session, tid, f, language) for f in data['fields'].get(f_to_serialize.id, [])]
     }
 
-    return get_localized_values(ret_dict, f_to_serialize, field.localized_keys, language)
+    return get_localized_values(ret_dict, field, field.localized_keys, language)
 
 
 def serialize_step(session, tid, step, language):

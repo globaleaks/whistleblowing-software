@@ -53,10 +53,6 @@ GLClient.controller('AdminFieldEditorCtrl', ['$scope', '$uibModal', 'Utils',
       return false;
     };
 
-    $scope.addField = function(new_field) {
-      $scope.field.children.push(new_field);
-    };
-
     $scope.delField = function(field) {
       return Utils.deleteResource($scope.fieldResource, $scope.fields, field);
     };
@@ -147,22 +143,20 @@ GLClient.controller('AdminFieldEditorCtrl', ['$scope', '$uibModal', 'Utils',
       }
 
       field.$save(function(new_field){
-        $scope.addField(new_field);
+        $scope.field.children.push(new_field);
         $scope.new_field = {};
       });
     };
 
-    $scope.add_field_from_template = function(template_id) {
-      var field = $scope.admin_utils.new_field_from_template(template_id, '', $scope.field.id);
-
-      if ($scope.$parent.field) {
-        field.y = $scope.newItemOrder($scope.$parent.field.children, 'y');
-      } else {
-        field.y = $scope.newItemOrder($scope.step.children, 'y');
-      }
+    $scope.add_field_from_template = function() {
+      var field = $scope.admin_utils.new_field('', $scope.field.id);
+      field.template_id = $scope.new_field.template_id;
+      field.instance = 'reference';
+      field.y = $scope.newItemOrder($scope.field.children, 'y');
 
       field.$save(function(new_field){
         $scope.field.children.push(new_field);
+	$scope.new_field = {};
       });
     };
 
@@ -218,10 +212,6 @@ controller('AdminFieldTemplatesCtrl', ['$scope', 'Utils', 'AdminFieldTemplateRes
     $scope.admin.fieldtemplates.$promise.then(function(fields) {
       $scope.fields = fields;
     });
-
-    $scope.addField = function(new_field) {
-      $scope.fields.push(new_field);
-    };
   }
 ]).
 controller('AdminFieldTemplatesAddCtrl', ['$scope',
@@ -236,7 +226,7 @@ controller('AdminFieldTemplatesAddCtrl', ['$scope',
       field.attrs = $scope.admin.get_field_attrs(field.type);
 
       field.$save(function(new_field){
-        $scope.addField(new_field);
+        $scope.fields.push(new_field);
         $scope.new_field = {};
       });
     };
