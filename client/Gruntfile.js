@@ -535,7 +535,7 @@ module.exports = function(grunt) {
     var gt = new Gettext(),
       translationStringRegexpHTML1 = /"(.+?)"\s+\|\s+translate/gi,
       translationStringRegexpHTML2 = /translate>(.+?)</gi,
-      translationStringRegexpJSON = /"en": "(.+)"/gi;
+      translationStringRegexpJSON = /"en":\s?"(.+)"/gi;
 
     gt.setTextDomain('main');
 
