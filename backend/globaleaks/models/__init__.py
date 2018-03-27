@@ -199,7 +199,7 @@ class Signup(Model, Base):
     __tablename__ = 'signup'
 
     id = Column(Integer, primary_key=True, nullable=False)
-    tid = Column(Integer, ForeignKey('tenant.id', ondelete='SET NULL'))
+    tid = Column(Integer, ForeignKey('tenant.id', ondelete='SET NULL', deferrable=True, initially='DEFERRED'))
     subdomain = Column(UnicodeText, unique=True, nullable=False)
     name = Column(UnicodeText, nullable=False)
     surname = Column(UnicodeText, nullable=False)
@@ -216,7 +216,7 @@ class Signup(Model, Base):
 class EnabledLanguage(Model, Base):
     __tablename__ = 'enabledlanguage'
 
-    tid = Column(Integer, ForeignKey('tenant.id', ondelete='CASCADE'), primary_key=True, default=1, nullable=False)
+    tid = Column(Integer, ForeignKey('tenant.id', ondelete='CASCADE', deferrable=True, initially='DEFERRED'), primary_key=True, default=1, nullable=False)
     name = Column(Unicode(5), primary_key=True, nullable=False)
 
     def __init__(self, tid=1, name=None, migrate=False):
@@ -243,7 +243,7 @@ class User(Model, Base):
 
     id = Column(Unicode(36), primary_key=True, default=uuid4, nullable=False)
 
-    tid = Column(Integer, ForeignKey('tenant.id', ondelete='CASCADE'), default=1, nullable=False)
+    tid = Column(Integer, ForeignKey('tenant.id', ondelete='CASCADE', deferrable=True, initially='DEFERRED'), default=1, nullable=False)
 
     creation_date = Column(DateTime, default=datetime_now, nullable=False)
     username = Column(UnicodeText, default=u'', nullable=False)
@@ -292,7 +292,7 @@ class Context(Model, Base):
 
     id = Column(Unicode(36), primary_key=True, default=uuid4, nullable=False)
 
-    tid = Column(Integer, ForeignKey('tenant.id', ondelete='CASCADE'), default=1, nullable=False)
+    tid = Column(Integer, ForeignKey('tenant.id', ondelete='CASCADE', deferrable=True, initially='DEFERRED'), default=1, nullable=False)
 
     show_small_receiver_cards = Column(Boolean, default=False, nullable=False)
     show_context = Column(Boolean, default=True, nullable=False)
@@ -314,7 +314,7 @@ class Context(Model, Base):
     show_receivers_in_alphabetical_order = Column(Boolean, default=True, nullable=False)
     presentation_order = Column(Integer, default=0, nullable=False)
 
-    questionnaire_id = Column(Unicode(36), ForeignKey('questionnaire.id'), default=u'default', nullable=False)
+    questionnaire_id = Column(Unicode(36), ForeignKey('questionnaire.id', deferrable=True, initially='DEFERRED'), default=u'default', nullable=False)
 
     unicode_keys = ['questionnaire_id']
 
@@ -356,8 +356,8 @@ class InternalTip(Model, Base):
 
     creation_date = Column(DateTime, default=datetime_now, nullable=False)
     update_date = Column(DateTime, default=datetime_now, nullable=False)
-    context_id = Column(Unicode(36), ForeignKey('context.id', ondelete='CASCADE'), nullable=False)
-    questionnaire_hash = Column(Unicode(64), ForeignKey('archivedschema.hash', ondelete='CASCADE'), nullable=False)
+    context_id = Column(Unicode(36), ForeignKey('context.id', ondelete='CASCADE', deferrable=True, initially='DEFERRED'), nullable=False)
+    questionnaire_hash = Column(Unicode(64), ForeignKey('archivedschema.hash', ondelete='CASCADE', deferrable=True, initially='DEFERRED'), nullable=False)
     preview = Column(JSON, nullable=False)
     progressive = Column(Integer, default=0, nullable=False)
     https = Column(Boolean, default=False, nullable=False)
@@ -384,8 +384,8 @@ class ReceiverTip(Model, Base):
 
     id = Column(Unicode(36), primary_key=True, default=uuid4, nullable=False)
 
-    internaltip_id = Column(Unicode(36), ForeignKey('internaltip.id', ondelete='CASCADE'), nullable=False)
-    receiver_id = Column(Unicode(36), ForeignKey('receiver.id', ondelete='CASCADE'), nullable=False)
+    internaltip_id = Column(Unicode(36), ForeignKey('internaltip.id', ondelete='CASCADE', deferrable=True, initially='DEFERRED'), nullable=False)
+    receiver_id = Column(Unicode(36), ForeignKey('receiver.id', ondelete='CASCADE', deferrable=True, initially='DEFERRED'), nullable=False)
     last_access = Column(DateTime, default=datetime_null, nullable=False)
     access_counter = Column(Integer, default=0, nullable=False)
     label = Column(UnicodeText, default=u'', nullable=False)
@@ -407,7 +407,7 @@ class IdentityAccessRequest(Model, Base):
 
     id = Column(Unicode(36), primary_key=True, default=uuid4, nullable=False)
 
-    receivertip_id = Column(Unicode(36), ForeignKey('receivertip.id', ondelete='CASCADE'), nullable=False)
+    receivertip_id = Column(Unicode(36), ForeignKey('receivertip.id', ondelete='CASCADE', deferrable=True, initially='DEFERRED'), nullable=False)
     request_date = Column(DateTime, default=datetime_now, nullable=False)
     request_motivation = Column(UnicodeText, default=u'')
     reply_date = Column(DateTime, default=datetime_null, nullable=False)
@@ -443,8 +443,8 @@ class ReceiverFile(Model, Base):
 
     id = Column(Unicode(36), primary_key=True, default=uuid4, nullable=False)
 
-    internalfile_id = Column(Unicode(36), ForeignKey('internalfile.id', ondelete='CASCADE'), nullable=False)
-    receivertip_id = Column(Unicode(36), ForeignKey('receivertip.id', ondelete='CASCADE'), nullable=False)
+    internalfile_id = Column(Unicode(36), ForeignKey('internalfile.id', ondelete='CASCADE', deferrable=True, initially='DEFERRED'), nullable=False)
+    receivertip_id = Column(Unicode(36), ForeignKey('receivertip.id', ondelete='CASCADE', deferrable=True, initially='DEFERRED'), nullable=False)
     file_path = Column(UnicodeText, nullable=False)
     size = Column(Integer, nullable=False)
     downloads = Column(Integer, default=0, nullable=False)
@@ -485,8 +485,8 @@ class Comment(Model, Base):
     id = Column(Unicode(36), primary_key=True, default=uuid4, nullable=False)
 
     creation_date = Column(DateTime, default=datetime_now, nullable=False)
-    internaltip_id = Column(Unicode(36), ForeignKey('internaltip.id', ondelete='CASCADE'), nullable=False)
-    author_id = Column(Unicode(36), ForeignKey('user.id', ondelete='SET NULL'))
+    internaltip_id = Column(Unicode(36), ForeignKey('internaltip.id', ondelete='CASCADE', deferrable=True, initially='DEFERRED'), nullable=False)
+    author_id = Column(Unicode(36), ForeignKey('user.id', ondelete='SET NULL', deferrable=True, initially='DEFERRED'))
     content = Column(UnicodeText, nullable=False)
     type = Column(UnicodeText, nullable=False)
     new = Column(Integer, default=True, nullable=False)
@@ -518,7 +518,7 @@ class Mail(Model, Base):
 
     id = Column(Unicode(36), primary_key=True, default=uuid4, nullable=False)
 
-    tid = Column(Integer, ForeignKey('tenant.id', ondelete='CASCADE'), default=1, nullable=False)
+    tid = Column(Integer, ForeignKey('tenant.id', ondelete='CASCADE', deferrable=True, initially='DEFERRED'), default=1, nullable=False)
 
     creation_date = Column(DateTime, default=datetime_now, nullable=False)
     address = Column(UnicodeText, nullable=False)
@@ -535,7 +535,7 @@ class Receiver(Model, Base):
     """
     __tablename__ = 'receiver'
 
-    id = Column(Unicode(36), ForeignKey('user.id', ondelete='CASCADE'), primary_key=True, default=uuid4, nullable=False)
+    id = Column(Unicode(36), ForeignKey('user.id', ondelete='CASCADE', deferrable=True, initially='DEFERRED'), primary_key=True, default=uuid4, nullable=False)
 
     configuration = Column(UnicodeText, default=u'default', nullable=False)
     can_delete_submission = Column(Boolean, default=False, nullable=False)
@@ -578,9 +578,9 @@ class Field(Model, Base):
     stats_enabled = Column(Boolean, default=False, nullable=False)
     triggered_by_score = Column(Integer, default=0, nullable=False)
 
-    template_id = Column(Unicode(36), ForeignKey('field.id', ondelete='CASCADE'))
-    fieldgroup_id = Column(Unicode(36), ForeignKey('field.id', ondelete='CASCADE'))
-    step_id = Column(Unicode(36), ForeignKey('step.id', ondelete='CASCADE'))
+    template_id = Column(Unicode(36), ForeignKey('field.id', ondelete='CASCADE', deferrable=True, initially='DEFERRED'))
+    fieldgroup_id = Column(Unicode(36), ForeignKey('field.id', ondelete='CASCADE', deferrable=True, initially='DEFERRED'))
+    step_id = Column(Unicode(36), ForeignKey('step.id', ondelete='CASCADE', deferrable=True, initially='DEFERRED'))
 
     type = Column(UnicodeText, default=u'inputbox', nullable=False)
     instance = Column(UnicodeText, default=u'instance', nullable=False)
@@ -650,11 +650,11 @@ class FieldOption(Model, Base):
 
     id = Column(Unicode(36), primary_key=True, default=uuid4, nullable=False)
 
-    field_id = Column(Unicode(36), ForeignKey('field.id', ondelete='CASCADE'), nullable=False)
+    field_id = Column(Unicode(36), ForeignKey('field.id', ondelete='CASCADE', deferrable=True, initially='DEFERRED'), nullable=False)
     presentation_order = Column(Integer, default=0, nullable=False)
     label = Column(JSON, nullable=False)
     score_points = Column(Integer, default=0, nullable=False)
-    trigger_field = Column(Unicode(36), ForeignKey('field.id', ondelete='SET NULL'))
+    trigger_field = Column(Unicode(36), ForeignKey('field.id', ondelete='SET NULL', deferrable=True, initially='DEFERRED'))
 
     unicode_keys = ['field_id']
     int_keys = ['presentation_order', 'score_points']
@@ -667,8 +667,8 @@ class FieldAnswer(Model, Base):
 
     id = Column(Unicode(36), primary_key=True, default=uuid4, nullable=False)
 
-    internaltip_id = Column(Unicode(36), ForeignKey('internaltip.id', ondelete='CASCADE'), nullable=True)
-    fieldanswergroup_id = Column(Unicode(36), ForeignKey('fieldanswergroup.id', ondelete='CASCADE'), nullable=True)
+    internaltip_id = Column(Unicode(36), ForeignKey('internaltip.id', ondelete='CASCADE', deferrable=True, initially='DEFERRED'), nullable=True)
+    fieldanswergroup_id = Column(Unicode(36), ForeignKey('fieldanswergroup.id', ondelete='CASCADE', deferrable=True, initially='DEFERRED'), nullable=True)
     key = Column(UnicodeText, default=u'', nullable=False)
     is_leaf = Column(Boolean, default=True, nullable=False)
     value = Column(UnicodeText, default=u'', nullable=False)
@@ -682,7 +682,7 @@ class FieldAnswerGroup(Model, Base):
 
     id = Column(Unicode(36), primary_key=True, default=uuid4, nullable=False)
     number = Column(Integer, default=0, nullable=False)
-    fieldanswer_id = Column(Unicode(36), ForeignKey('fieldanswer.id', ondelete='CASCADE'), nullable=False)
+    fieldanswer_id = Column(Unicode(36), ForeignKey('fieldanswer.id', ondelete='CASCADE', deferrable=True, initially='DEFERRED'), nullable=False)
 
     unicode_keys = ['fieldanswer_id']
     int_keys = ['number']
@@ -708,7 +708,7 @@ class Questionnaire(Model, Base):
 
     id = Column(Unicode(36), primary_key=True, default=uuid4, nullable=False)
 
-    tid = Column(Integer, ForeignKey('tenant.id', ondelete='CASCADE'), default=1, nullable=False)
+    tid = Column(Integer, ForeignKey('tenant.id', ondelete='CASCADE', deferrable=True, initially='DEFERRED'), default=1, nullable=False)
 
     name = Column(UnicodeText, default=u'', nullable=False)
     enable_whistleblower_identity = Column(Boolean, default=False, nullable=False)
@@ -735,7 +735,7 @@ class Stats(Model, Base):
 
     id = Column(Unicode(36), primary_key=True, default=uuid4, nullable=False)
 
-    tid = Column(Integer, ForeignKey('tenant.id', ondelete='CASCADE'), default=1, nullable=False)
+    tid = Column(Integer, ForeignKey('tenant.id', ondelete='CASCADE', deferrable=True, initially='DEFERRED'), default=1, nullable=False)
 
     start = Column(DateTime, nullable=False)
     summary = Column(JSON, nullable=False)
@@ -746,7 +746,7 @@ class Anomalies(Model, Base):
 
     id = Column(Unicode(36), primary_key=True, default=uuid4, nullable=False)
 
-    tid = Column(Integer, ForeignKey('tenant.id', ondelete='CASCADE'), default=1, nullable=False)
+    tid = Column(Integer, ForeignKey('tenant.id', ondelete='CASCADE', deferrable=True, initially='DEFERRED'), default=1, nullable=False)
 
     date = Column(DateTime, nullable=False)
     alarm = Column(Integer, nullable=False)
@@ -767,8 +767,8 @@ class ReceiverContext(Model, Base):
     """
     __tablename__ = 'receiver_context'
 
-    context_id = Column(Unicode(36), ForeignKey('context.id', ondelete='CASCADE'), primary_key=True, nullable=False)
-    receiver_id = Column(Unicode(36), ForeignKey('receiver.id', ondelete='CASCADE'), primary_key=True, nullable=False)
+    context_id = Column(Unicode(36), ForeignKey('context.id', ondelete='CASCADE', deferrable=True, initially='DEFERRED'), primary_key=True, nullable=False)
+    receiver_id = Column(Unicode(36), ForeignKey('receiver.id', ondelete='CASCADE', deferrable=True, initially='DEFERRED'), primary_key=True, nullable=False)
 
     presentation_order = Column(Integer, default=0, nullable=False)
 
@@ -782,7 +782,7 @@ class Counter(Model, Base):
     """
     __tablename__ = 'counter'
 
-    tid = Column(Integer, ForeignKey('tenant.id', ondelete='CASCADE'), primary_key=True, default=1, nullable=False)
+    tid = Column(Integer, ForeignKey('tenant.id', ondelete='CASCADE', deferrable=True, initially='DEFERRED'), primary_key=True, default=1, nullable=False)
     key = Column(Unicode(32), primary_key=True, nullable=False)
 
     counter = Column(Integer, default=1, nullable=False)
@@ -800,7 +800,7 @@ class ShortURL(Model, Base):
 
     id = Column(Unicode(36), primary_key=True, default=uuid4, nullable=False)
 
-    tid = Column(Integer, ForeignKey('tenant.id', ondelete='CASCADE'), default=1, nullable=False)
+    tid = Column(Integer, ForeignKey('tenant.id', ondelete='CASCADE', deferrable=True, initially='DEFERRED'), default=1, nullable=False)
 
     shorturl = Column(UnicodeText, nullable=False)
     longurl = Column(UnicodeText, nullable=False)
@@ -814,7 +814,7 @@ class File(Model, Base):
     """
     __tablename__ = 'file'
 
-    tid = Column(Integer, ForeignKey('tenant.id', ondelete='CASCADE'), primary_key=True, default=1, nullable=False)
+    tid = Column(Integer, ForeignKey('tenant.id', ondelete='CASCADE', deferrable=True, initially='DEFERRED'), primary_key=True, default=1, nullable=False)
     id = Column(Unicode(36), primary_key=True, default=uuid4, nullable=False)
 
     name = Column(UnicodeText, default=u'', nullable=False)
@@ -829,7 +829,7 @@ class UserImg(Model, Base):
     """
     __tablename__ = 'userimg'
 
-    id = Column(Unicode(36), ForeignKey('user.id', ondelete='CASCADE'), primary_key=True, default=uuid4, nullable=False)
+    id = Column(Unicode(36), ForeignKey('user.id', ondelete='CASCADE', deferrable=True, initially='DEFERRED'), primary_key=True, default=uuid4, nullable=False)
 
     data = Column(UnicodeText, nullable=False)
 
@@ -842,7 +842,7 @@ class ContextImg(Model, Base):
     """
     __tablename__ = 'contextimg'
 
-    id = Column(Unicode(36), ForeignKey('context.id', ondelete='CASCADE'), primary_key=True, default=uuid4, nullable=False)
+    id = Column(Unicode(36), ForeignKey('context.id', ondelete='CASCADE', deferrable=True, initially='DEFERRED'), primary_key=True, default=uuid4, nullable=False)
 
     data = Column(UnicodeText, nullable=False)
 
@@ -857,7 +857,7 @@ class CustomTexts(Model, Base):
 
     id = Column(Unicode(36), primary_key=True, default=uuid4, nullable=False)
 
-    tid = Column(Integer, ForeignKey('tenant.id', ondelete='CASCADE'), default=1, nullable=False)
+    tid = Column(Integer, ForeignKey('tenant.id', ondelete='CASCADE', deferrable=True, initially='DEFERRED'), default=1, nullable=False)
 
     lang = Column(Unicode(5), primary_key=True, nullable=False)
     texts = Column(JSON, nullable=False)

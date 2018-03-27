@@ -15,7 +15,7 @@ class ConfigL10N(models.Model, Base):
     value = Column(UnicodeText)
     customized = Column(Boolean, default=False)
 
-    __table_args__ = (ForeignKeyConstraint(['tid', 'lang'], ['enabledlanguage.tid', 'enabledlanguage.name'], ondelete='CASCADE'),)
+    __table_args__ = (ForeignKeyConstraint(['tid', 'lang'], ['enabledlanguage.tid', 'enabledlanguage.name'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),)
 
     def __init__(self, tid=1, lang_code=None, var_name=None, value='', migrate=False):
         if migrate:
