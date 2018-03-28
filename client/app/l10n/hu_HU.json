@@ -646,6 +646,7 @@
   "Full description": "Hosszú leírás",
   "Describe your submission in detail.": "Feltöltött anyag részletes leírása.",
   "Attach files relevant to the submission.": "A beküldéshez kapcsolódó fájlok hozzáadása.",
+  "Do you want to provide your identification information?": "Meg szeretné adni az azonosítási információit?",
   "Dear {RecipientName},": "Kedves {RecipientName},",
   "Kind regards,": "Szívélyes üdvözlettel,",
   "The number of activities recently detected appears to be higher than usual.": "A jelenleg észlelt tevékenységek magasabbnak tűnnek szokásosnál.",

@@ -10,7 +10,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-03-22 16:05+0000\n"
+"PO-Revision-Date: 2018-03-27 10:49+0000\n"
 "Last-Translator: Chi-Hsun Tsai\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/otf/globaleaks/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
@@ -2087,6 +2087,9 @@ msgstr ""
 
 msgid "Attach files relevant to the submission."
 msgstr ""
+
+msgid "Do you want to provide your identification information?"
+msgstr "你要提供自己的身份資訊嗎？"
 
 msgid "Dear {RecipientName},"
 msgstr "敬愛的 {RecipientName},"

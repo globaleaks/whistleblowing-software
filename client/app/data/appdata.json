@@ -1514,7 +1514,7 @@
       "tr": "Sayın {RecipientName},\n\nA software update is available.\nIt is good security practice to keep the platform up to date.\n\nInstalled version: {InstalledVersion}\nLatest version: {LatestVersion}\n\nTo learn about new features and bug fixes in the new version consult the change log at: {ChangeLogUrl}\nFor instructions on software updates, please refer to the documentation at: {UpdateGuideUrl}\n\nSaygılarımızla,\n{NodeName}",
       "uk": "Шановний {RecipientName},\n\nA software update is available.\nIt is good security practice to keep the platform up to date.\n\nInstalled version: {InstalledVersion}\nLatest version: {LatestVersion}\n\nTo learn about new features and bug fixes in the new version consult the change log at: {ChangeLogUrl}\nFor instructions on software updates, please refer to the documentation at: {UpdateGuideUrl}\n\nЗ повагою,\n{NodeName}",
       "ur": "محترم{RecipientName}،\n\nA software update is available.\nIt is good security practice to keep the platform up to date.\n\nInstalled version: {InstalledVersion}\nLatest version: {LatestVersion}\n\nTo learn about new features and bug fixes in the new version consult the change log at: {ChangeLogUrl}\nFor instructions on software updates, please refer to the documentation at: {UpdateGuideUrl}\n\nبہت نوازش، مخلص\n{NodeName}",
-      "vi": "Kính gửi {RecipientName}\n\nA software update is available.\nIt is good security practice to keep the platform up to date.\n\nInstalled version: {InstalledVersion}\nLatest version: {LatestVersion}\n\nTo learn about new features and bug fixes in the new version consult the change log at: {ChangeLogUrl}\nFor instructions on software updates, please refer to the documentation at: {UpdateGuideUrl}\n\nTrân trọng,\n{NodeName}",
+      "vi": "Kính gửi {RecipientName}\n\nCập nhật phần mềm.\nIt is good security practice to keep the platform up to date.\n\nInstalled version: {InstalledVersion}\nPhiên bản cuối cùng: {LatestVersion}\n\nTo learn about new features and bug fixes in the new version consult the change log at: {ChangeLogUrl}\nFor instructions on software updates, please refer to the documentation at: {UpdateGuideUrl}\n\nTrân trọng,\n{NodeName}",
       "zh_CN": "亲爱的 {RecipientName}，\n\n有可用软件更新\nIt is good security practice to keep the platform up to date.\n\n已安装版本: {InstalledVersion}\n最新版本: {LatestVersion}\n\n欲了解更多关于新版本的更新功能和补丁修复，请参阅更新日志：{ChangeLogUrl}\n有关软件更新的说明，请参阅以下文档：{UpdateGuideUrl}\n\n亲切的问候，\n{NodeName}",
       "zh_TW": "敬愛的 {RecipientName},\n\n有軟體更新可用\n為安全起見,請維持平台版本為更新狀態\n\n已安裝的版本: {InstalledVersion}\n最新版本: {LatestVersion}\n\n了解新版本的功能與修復的問題,請諮詢此處的變動記錄: {ChangeLogUrl}\n關於軟體更新的指示, 請參考此處的文件: {UpdateGuideUrl}\n\nKind regards,\n{NodeName}"
     },
@@ -1555,7 +1555,7 @@
       "tr": "A software update is available.",
       "uk": "A software update is available.",
       "ur": "A software update is available.",
-      "vi": "A software update is available.",
+      "vi": "Cập nhật phần mềm.",
       "zh_CN": "有可用软件更新",
       "zh_TW": "有軟體更新可用"
     },
@@ -2213,7 +2213,7 @@
       "tr": "Ekler",
       "uk": "Додатки",
       "ur": "آئٹم کے ساتھ منسلک",
-      "vi": "File đính kèm",
+      "vi": "Các tập tin đính kèm",
       "zh_CN": "附件",
       "zh_TW": "附件"
     }

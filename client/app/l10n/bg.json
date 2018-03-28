@@ -646,6 +646,7 @@
   "Full description": "Пълно описание",
   "Describe your submission in detail.": "Опишете подадения сигнал в детайли.",
   "Attach files relevant to the submission.": "Прикачете файлове към сигнала.",
+  "Do you want to provide your identification information?": "Желаете ли да изпратите информация за самоличността си?",
   "Dear {RecipientName},": "Скъпи {RecipientName},",
   "Kind regards,": "Поздрави, ",
   "The number of activities recently detected appears to be higher than usual.": "Броя на дейностите отчетени наскоро изглежда по-голям от обикновено.",

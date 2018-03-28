@@ -646,6 +646,7 @@
   "Full description": "وصف كامل",
   "Describe your submission in detail.": "الرجاء وصف البلاغ بالتفصيل.",
   "Attach files relevant to the submission.": "إرفاق ملفات ذات صلة بالبلاغ.",
+  "Do you want to provide your identification information?": "هل ترغب في تقديم معلومات عن هويتك؟",
   "Dear {RecipientName},": "عزيزي {RecipientName},",
   "Kind regards,": "أطيب التحيّات،",
   "The number of activities recently detected appears to be higher than usual.": "عدد الأنشطة التي تم الكشف عنها مؤخرا يبدو أعلى من امعتاد.",

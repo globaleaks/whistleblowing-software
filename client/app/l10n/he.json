@@ -646,6 +646,7 @@
   "Full description": "תיאור מלא",
   "Describe your submission in detail.": "Describe your submission in detail.",
   "Attach files relevant to the submission.": "צרף קבצים רלוונטיים להגשה",
+  "Do you want to provide your identification information?": "האם אתה רוצה לספק מידע זיהוי שלך?",
   "Dear {RecipientName},": "{RecipientName} יקרים,",
   "Kind regards,": "בברכה,",
   "The number of activities recently detected appears to be higher than usual.": "מספר פעילויות לאחרונה זוהו שנראה גבוה מרגיל.",

@@ -646,6 +646,7 @@
   "Full description": "คำอธิบายแบบเต็ม",
   "Describe your submission in detail.": "Describe your submission in detail.",
   "Attach files relevant to the submission.": "แนบไฟล์ที่เกี่ยวข้องกับการส่ง",
+  "Do you want to provide your identification information?": "คุณต้องการที่จะให้ข้อมูลที่ระบุตัวตนของคุณหรือไม่",
   "Dear {RecipientName},": "เรียน {RecipientName}",
   "Kind regards,": "ขอแสดงความนับถือ,",
   "The number of activities recently detected appears to be higher than usual.": "จำนวนของกิจกรรมที่ตรวจพบเมื่อเร็ว ๆ นี้ดูเหมือนจะสูงกว่าปกติ",

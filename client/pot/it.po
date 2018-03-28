@@ -25,7 +25,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-03-22 16:05+0000\n"
+"PO-Revision-Date: 2018-03-28 10:38+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Italian (http://www.transifex.com/otf/globaleaks/language/it/)\n"
 "MIME-Version: 1.0\n"
@@ -1023,7 +1023,7 @@ msgid "Edit"
 msgstr "Modifica"
 
 msgid "Cancel"
-msgstr "Annula"
+msgstr "Annulla"
 
 msgid "This field is mandatory"
 msgstr "Questo campo è obbligatorio"
@@ -1282,7 +1282,7 @@ msgid "Intermediate Certificates"
 msgstr "Certificati intermedi"
 
 msgid "Reset"
-msgstr "Ripristina"
+msgstr "Resetta"
 
 msgid "Select an option:"
 msgstr "Seleziona una opzione:"
@@ -2102,6 +2102,9 @@ msgstr "Descrivi la tua segnalazione in dettaglio."
 
 msgid "Attach files relevant to the submission."
 msgstr "Allega file rilevanti per la segnalazione."
+
+msgid "Do you want to provide your identification information?"
+msgstr "Vuoi fornire i tuoi dati identificativi?"
 
 msgid "Dear {RecipientName},"
 msgstr "Caro {RecipientName}"

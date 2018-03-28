@@ -646,6 +646,7 @@
   "Full description": "Descripció completa",
   "Describe your submission in detail.": "Descriu els detalls del teu enviament.",
   "Attach files relevant to the submission.": "Adjunta arxius rellevants per a l'enviament.",
+  "Do you want to provide your identification information?": "Vols introduir la teva informació d'identificació?",
   "Dear {RecipientName},": "Benvolgut/uda {RecipientName},",
   "Kind regards,": "Rep una salutació cordial,",
   "The number of activities recently detected appears to be higher than usual.": "Sembla que el nombre d'activitats que s'ha detectat fa poc és més elevat de l'habitual.",

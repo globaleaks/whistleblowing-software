@@ -646,6 +646,7 @@
   "Full description": "Tam açıklama",
   "Describe your submission in detail.": "Gönderiminizi detaylı bir şekilde tanımlayınız",
   "Attach files relevant to the submission.": "Gönderiminizle ilgili dosyaları ekleyin",
+  "Do you want to provide your identification information?": "Kimlik bilgilerinizi girmek istiyor musunuz?",
   "Dear {RecipientName},": "Sayın {RecipientName},",
   "Kind regards,": "Saygılarımızla,",
   "The number of activities recently detected appears to be higher than usual.": "Son zamanlarda tespit edilen etkinliklerin sayısı normalden yüksek gibi görünüyor.",

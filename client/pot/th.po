@@ -10,7 +10,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-03-22 16:05+0000\n"
+"PO-Revision-Date: 2018-03-27 10:49+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Thai (http://www.transifex.com/otf/globaleaks/language/th/)\n"
 "MIME-Version: 1.0\n"
@@ -2087,6 +2087,9 @@ msgstr ""
 
 msgid "Attach files relevant to the submission."
 msgstr "แนบไฟล์ที่เกี่ยวข้องกับการส่ง"
+
+msgid "Do you want to provide your identification information?"
+msgstr "คุณต้องการที่จะให้ข้อมูลที่ระบุตัวตนของคุณหรือไม่"
 
 msgid "Dear {RecipientName},"
 msgstr "เรียน {RecipientName}"

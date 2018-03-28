@@ -646,6 +646,7 @@
   "Full description": "전체 설명",
   "Describe your submission in detail.": "Describe your submission in detail.",
   "Attach files relevant to the submission.": "Attach files relevant to the submission.",
+  "Do you want to provide your identification information?": "당신은 당신의 식별 정보를 제공 하시겠습니까?",
   "Dear {RecipientName},": "친애 %의 {RecipientName} 를,",
   "Kind regards,": "종류 안부,",
   "The number of activities recently detected appears to be higher than usual.": "최근에 검출 된 활동의 수는 통상보다 높게 나타난다.",

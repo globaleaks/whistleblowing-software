@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-03-22 16:05+0000\n"
+"PO-Revision-Date: 2018-03-27 10:49+0000\n"
 "Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Norwegian Bokmål (Norway) (http://www.transifex.com/otf/globaleaks/language/nb_NO/)\n"
 "MIME-Version: 1.0\n"
@@ -1966,13 +1966,13 @@ msgid "Anticorruption"
 msgstr "Antikorrupsjon"
 
 msgid "Corporate compliance"
-msgstr ""
+msgstr "Bedriftsretningslinjer"
 
 msgid "Investigative journalism"
 msgstr "Gravende journalistikk"
 
 msgid "Civic activism"
-msgstr ""
+msgstr "Sivil aktivisme"
 
 msgid "Other"
 msgstr "Annet"
@@ -2084,6 +2084,9 @@ msgstr "Beskriv din innsendelse i detalj."
 
 msgid "Attach files relevant to the submission."
 msgstr "Legg ved relevante filer til innsendelsen."
+
+msgid "Do you want to provide your identification information?"
+msgstr "Ønsker du å oppgi identifiserbar informasjon?"
 
 msgid "Dear {RecipientName},"
 msgstr "Kjære {RecipientName},"

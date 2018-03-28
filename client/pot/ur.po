@@ -13,8 +13,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-03-22 16:05+0000\n"
-"Last-Translator: Hermes Center <info@hermescenter.org>\n"
+"PO-Revision-Date: 2018-03-27 10:49+0000\n"
+"Last-Translator: Umar Hayat\n"
 "Language-Team: Urdu (http://www.transifex.com/otf/globaleaks/language/ur/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -2090,6 +2090,9 @@ msgstr ""
 
 msgid "Attach files relevant to the submission."
 msgstr "منسلک فائلیں داخل کردہ گذارشات سے متعلق ہیں"
+
+msgid "Do you want to provide your identification information?"
+msgstr "کیا آپ اپنی شناخت کی معلومات فراہم کرنا چاہتے ہیں؟"
 
 msgid "Dear {RecipientName},"
 msgstr "محترم{RecipientName}،"

@@ -2,6 +2,7 @@
 # Translators:
 # Anh Phan <vietnamesel10n@gmail.com>, 2013
 # Anh Phan <vietnamesel10n@gmail.com>, 2013-2014
+# Dong Quoc <huynhquocdong@gmail.com>, 2018
 # Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2014,2016-2018
 # Hermes Center <info@hermescenter.org>, 2013
 # Hermes Center <info@hermescenter.org>, 2013
@@ -11,7 +12,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-03-22 16:05+0000\n"
+"PO-Revision-Date: 2018-03-28 13:44+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Vietnamese (http://www.transifex.com/otf/globaleaks/language/vi/)\n"
 "MIME-Version: 1.0\n"
@@ -33,13 +34,13 @@ msgid "Main configuration"
 msgstr "cấu hình chính"
 
 msgid "Theme customization"
-msgstr "tùy biến theme"
+msgstr "Tùy biến chủ đề"
 
 msgid "Languages"
-msgstr ""
+msgstr "Ngôn ngữ"
 
 msgid "Text customization"
-msgstr ""
+msgstr "Tùy chọn văn bản"
 
 msgid "Advanced settings"
 msgstr "Thiết lập nâng cao"
@@ -66,7 +67,7 @@ msgid "Changelog"
 msgstr "Ký sự thay đổi"
 
 msgid "License"
-msgstr ""
+msgstr "Giấy phép"
 
 msgid "Notification templates"
 msgstr "Mẫu thông báo"
@@ -153,7 +154,7 @@ msgid "Platform wizard"
 msgstr "Wizard nền tảng"
 
 msgid "Step-by-step setup"
-msgstr "Step-by-bước thiết lập"
+msgstr "Thiết lập từng bước"
 
 msgid "CREDIT CARD"
 msgstr "THẺ TÍN DỤNG"
@@ -186,22 +187,22 @@ msgid "Preview"
 msgstr "Xem sơ lược"
 
 msgid "Move up"
-msgstr "Đi lên"
+msgstr "Di chuyển lên"
 
 msgid "Move down"
-msgstr "Đi xuống"
+msgstr "Di chuyển xuống"
 
 msgid "Move left"
 msgstr "Di chuyển sang trái"
 
 msgid "Move right"
-msgstr "Đi sang phải"
+msgstr "Di chuyển sang phải"
 
 msgid "Import"
-msgstr "nhập"
+msgstr "Nhập"
 
 msgid "Export"
-msgstr "Xuất khẩu"
+msgstr "Xuất"
 
 msgid "Save all"
 msgstr "Lưu tất cả"
@@ -214,13 +215,13 @@ msgstr "Các kết nối được sử dụng để gửi trình này đã đư�
 msgid ""
 "The connection used to send this submission has been secured with Tor "
 "ensuring confidentiality and anonymity."
-msgstr ""
+msgstr "Kết nối được sử dụng để gửi bản đệ trình này đã được đảm bảo với Tor đảm bảo tính bí mật và ẩn danh."
 
 msgid "vertical"
-msgstr "theo chiều dọc"
+msgstr "Chiều dọc"
 
 msgid "horizontal"
-msgstr "chiều ngang"
+msgstr "Chiều ngang"
 
 msgid "Number"
 msgstr "Số"
@@ -229,7 +230,7 @@ msgid "Email"
 msgstr "Email"
 
 msgid "Date"
-msgstr "Ngày tháng"
+msgstr "Ngày"
 
 msgid "Regular expression validator"
 msgstr "validator biểu hiện thường xuyên"
@@ -253,7 +254,7 @@ msgid "-1 = unlimited"
 msgstr "-1 = Không giới hạn"
 
 msgid "True"
-msgstr "Thật"
+msgstr "Đúng"
 
 msgid "False"
 msgstr "Sai"
@@ -268,28 +269,28 @@ msgid "Attachment"
 msgstr "Tập tin đính kèm"
 
 msgid "Attachments"
-msgstr "File đính kèm"
+msgstr "Các tập tin đính kèm"
 
 msgid "Change your password"
 msgstr "Thay đổi mật khẩu của bạn"
 
 msgid "First name"
-msgstr "Họ"
+msgstr "Tên"
 
 msgid "Last name"
-msgstr "tên họ"
+msgstr "Họ"
 
 msgid "Gender"
-msgstr "tính"
+msgstr "Giới tính"
 
 msgid "GENDER_OTHER"
-msgstr "GENDER_OTHER"
+msgstr "GIỚI TÍNH KHÁC"
 
 msgid "Male"
 msgstr "Nam giới"
 
 msgid "Female"
-msgstr "Phái nữ"
+msgstr "Nữ giới"
 
 msgid "Date of birth"
 msgstr "Ngày sinh"
@@ -316,7 +317,7 @@ msgid "State"
 msgstr "Tiểu bang"
 
 msgid "Region"
-msgstr "Khu"
+msgstr "Khu vực"
 
 msgid "Province"
 msgstr "Địa bàn tỉnh"
@@ -328,7 +329,7 @@ msgid "Phone number"
 msgstr "Số điện thoại"
 
 msgid "Current job title"
-msgstr "Chức vụ hiện nay"
+msgstr "Công việc hiện tại"
 
 msgid "Current job responsibility (role)"
 msgstr "Hiện trách nhiệm công việc (vai trò)"
@@ -2089,6 +2090,9 @@ msgstr ""
 msgid "Attach files relevant to the submission."
 msgstr "Đính kèm tập tin có liên quan đến việc nộp."
 
+msgid "Do you want to provide your identification information?"
+msgstr "Bạn muốn cung cấp thông tin nhận dạng của bạn?"
+
 msgid "Dear {RecipientName},"
 msgstr "Kính gửi {RecipientName}"
 
@@ -2299,7 +2303,7 @@ msgid "Click the link to activate the platform:"
 msgstr ""
 
 msgid "A software update is available."
-msgstr ""
+msgstr "Cập nhật phần mềm."
 
 msgid "It is good security practice to keep the platform up to date."
 msgstr ""
@@ -2308,7 +2312,7 @@ msgid "Installed version: {InstalledVersion}"
 msgstr ""
 
 msgid "Latest version: {LatestVersion}"
-msgstr ""
+msgstr "Phiên bản cuối cùng: {LatestVersion}"
 
 msgid ""
 "To learn about new features and bug fixes in the new version consult the "
