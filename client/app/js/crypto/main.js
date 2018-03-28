@@ -74,12 +74,12 @@ angular.module('GLBrowserCrypto', [])
         var defer = $q.defer();
 
         if (typeof textInput !== 'string') {
-          return defer.reject();
+          return $q.reject();
         }
 
         var s = textInput.trim();
         if (s.substr(0, 5) !== '-----') {
-          return defer.reject();
+          return $q.reject();
         }
 
         // Try to parse the key.
@@ -87,24 +87,24 @@ angular.module('GLBrowserCrypto', [])
         try {
           result = pgp.key.readArmored(s);
         } catch (err) {
-          return defer.reject();
+          return $q.reject();
         }
 
         // Assert that the parse created no errors.
         if (angular.isDefined(result.err)) {
-          return defer.reject();
+          return $q.reject();
         }
 
         // Assert that there is only one key in the input.
         if (result.keys.length !== 1) {
-          return defer.reject();
+          return $q.reject();
         }
 
         var key = result.keys[0];
 
         // Assert that the key type is not private and the public flag is set.
         if (!key.isPublic() || key.isPrivate()) {
-          return defer.reject();
+          return $q.reject();
         }
 
         // Verify expiration, revocation, and self sigs.
