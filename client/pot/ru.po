@@ -28,7 +28,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-03-22 16:05+0000\n"
+"PO-Revision-Date: 2018-03-27 10:49+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Russian (http://www.transifex.com/otf/globaleaks/language/ru/)\n"
 "MIME-Version: 1.0\n"
@@ -2105,6 +2105,9 @@ msgstr "Детально опишите ваш материал."
 
 msgid "Attach files relevant to the submission."
 msgstr "Прикладывайте файлы, относящиеся к делу."
+
+msgid "Do you want to provide your identification information?"
+msgstr "Вы хотите оставить информацию о себе?"
 
 msgid "Dear {RecipientName},"
 msgstr "Дорогой(ая) {RecipientName},"

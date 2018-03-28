@@ -646,6 +646,7 @@
   "Full description": "詳細な説明",
   "Describe your submission in detail.": "詳細に提出を説明してください",
   "Attach files relevant to the submission.": "提出に関連したファイルを添付してください",
+  "Do you want to provide your identification information?": "あなたの身元情報を提供しますか?",
   "Dear {RecipientName},": "{RecipientName} 様",
   "Kind regards,": "敬具",
   "The number of activities recently detected appears to be higher than usual.": "最近検出された活動の数が、通常よりも高いようです。",

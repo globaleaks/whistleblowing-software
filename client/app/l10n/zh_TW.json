@@ -646,6 +646,7 @@
   "Full description": "完整描述",
   "Describe your submission in detail.": "Describe your submission in detail.",
   "Attach files relevant to the submission.": "Attach files relevant to the submission.",
+  "Do you want to provide your identification information?": "你要提供自己的身份資訊嗎？",
   "Dear {RecipientName},": "敬愛的 {RecipientName},",
   "Kind regards,": "Kind regards,",
   "The number of activities recently detected appears to be higher than usual.": "偵測到最近的活動數量似乎高於正常",

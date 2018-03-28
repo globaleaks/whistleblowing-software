@@ -646,6 +646,7 @@
   "Full description": "Description complète",
   "Describe your submission in detail.": "Décrivez votre envoi en détail.",
   "Attach files relevant to the submission.": "Joignez les fichiers pertinents à votre envoi.",
+  "Do you want to provide your identification information?": "Voulez-vous fournir vos informations d’identification ?",
   "Dear {RecipientName},": "Cher, chère {RecipientName},",
   "Kind regards,": "Salutations cordiales,",
   "The number of activities recently detected appears to be higher than usual.": "Le nombre d’activités détectées récemment semble supérieur à l’habitude.",

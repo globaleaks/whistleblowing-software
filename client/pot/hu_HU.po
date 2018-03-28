@@ -21,8 +21,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-03-22 16:05+0000\n"
-"Last-Translator: benewfy <benewfy@gmail.com>\n"
+"PO-Revision-Date: 2018-03-27 10:49+0000\n"
+"Last-Translator: vargaviktor <viktor.varga@gmail.com>\n"
 "Language-Team: Hungarian (Hungary) (http://www.transifex.com/otf/globaleaks/language/hu_HU/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -2098,6 +2098,9 @@ msgstr "Feltöltött anyag részletes leírása."
 
 msgid "Attach files relevant to the submission."
 msgstr "A beküldéshez kapcsolódó fájlok hozzáadása."
+
+msgid "Do you want to provide your identification information?"
+msgstr "Meg szeretné adni az azonosítási információit?"
 
 msgid "Dear {RecipientName},"
 msgstr "Kedves {RecipientName},"

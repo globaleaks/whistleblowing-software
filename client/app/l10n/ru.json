@@ -646,6 +646,7 @@
   "Full description": "Полное описание",
   "Describe your submission in detail.": "Детально опишите ваш материал.",
   "Attach files relevant to the submission.": "Прикладывайте файлы, относящиеся к делу.",
+  "Do you want to provide your identification information?": "Вы хотите оставить информацию о себе?",
   "Dear {RecipientName},": "Дорогой(ая) {RecipientName},",
   "Kind regards,": "С уважением,",
   "The number of activities recently detected appears to be higher than usual.": "Показатель недавно обнаруженной активности оказался выше, чем обычно.",
