@@ -12,6 +12,8 @@ GLClient.controller('AdminQuestionnaireCtrl',
     }
   ];
 
+  $scope.deleted_fields_ids = [];
+
   $scope.admin.get_field_attrs = function(type) {
     if (type in $scope.admin.field_attrs) {
       return $scope.admin.field_attrs[type];
