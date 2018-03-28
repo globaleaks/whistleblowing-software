@@ -54,6 +54,7 @@ GLClient.controller('AdminFieldEditorCtrl', ['$scope', '$uibModal', 'Utils',
     };
 
     $scope.delField = function(field) {
+      $scope.deleted_fields_ids.push(field.id);
       return Utils.deleteResource($scope.fieldResource, $scope.fields, field);
     };
 
@@ -101,6 +102,12 @@ GLClient.controller('AdminFieldEditorCtrl', ['$scope', '$uibModal', 'Utils',
 
     $scope.save_field = function(field) {
       var updated_field;
+
+      field.options.forEach(function(option) {
+        if ($scope.deleted_fields_ids.indexOf(option.trigger_field) !== -1) {
+          option.trigger_field = '';
+        }
+      });
 
       Utils.assignUniqueOrderIndex(field.options);
 
@@ -208,6 +215,7 @@ GLClient.controller('AdminFieldEditorCtrl', ['$scope', '$uibModal', 'Utils',
 controller('AdminFieldTemplatesCtrl', ['$scope', 'Utils', 'AdminFieldTemplateResource',
   function($scope, Utils, AdminFieldTemplateResource) {
     $scope.fieldResource = AdminFieldTemplateResource;
+    $scope.deleted_fields_ids = [];
 
     $scope.admin.fieldtemplates.$promise.then(function(fields) {
       $scope.fields = fields;
