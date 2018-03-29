@@ -37,7 +37,9 @@ module.exports = function(grunt) {
         '!app/js/lib/*.js',
         '!app/js/locale/*.js',
         '!app/js/crypto/lib/*.js',
-        'tests/**/*.js'
+        'tests/end2end/*.js',
+        'tests/api/*.js',
+        'tests/unit/*.js'
       ]
     },
 
@@ -95,8 +97,46 @@ module.exports = function(grunt) {
             ],
             expand: true
           }]
+      },
+      unittest: {
+        files: [{
+            expand: true,
+            flatten: true,
+            cwd: 'node_modules',
+            src: ['mocha/mocha.css', 'mocha/mocha.js', 'chai/chai.js','angular-mocks/angular-mocks.js'],
+            dest: 'tests/unit/lib',
+          },
+          // Imports to preserve absolute paths used within glbcProofOfWork
+          {
+            expand: true,
+            flatten: true,
+            src: 'app/js/crypto/scrypt-async.worker.js',
+            dest: 'js/crypto/',
+          },
+          {
+            expand: true,
+            flatten: true,
+            src: 'app/js/crypto/lib/scrypt-async.min.js',
+            dest: 'js/crypto/lib/',
+          }
+        ],
       }
     },
+
+    browserify: {
+      unittest: {
+        files: {
+          'tests/unit/lib/unittest-bundle.js': 'tests/unit/unittest.js'
+        },
+      }
+    },
+
+    mocha_istanbul: {
+      coverage: {
+        src: 'tests/unit/node-angular-shim.js',
+      },
+    },
+
 
     useminPrepare: {
       html: [
@@ -288,10 +328,12 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-connect');
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-istanbul');
+  grunt.loadNpmTasks('grunt-mocha-istanbul');
   grunt.loadNpmTasks('grunt-protractor-coverage');
   grunt.loadNpmTasks('grunt-string-replace');
   grunt.loadNpmTasks('grunt-usemin');
   grunt.loadNpmTasks('grunt-mocha-test');
+  grunt.loadNpmTasks('grunt-browserify');
   grunt.loadNpmTasks("gruntify-eslint");
 
   var readNoTranslateStrings = function() {
@@ -943,4 +985,13 @@ module.exports = function(grunt) {
     'makeReport',
     'generateCoverallsJson'
   ]);
+
+  grunt.registerTask('unittest', [
+    'copy:unittest',
+    'browserify:unittest',
+  ]);
+
+  grunt.registerTask('mocha-coverage-report', [
+    'mocha_istanbul'
+  ])
 };
