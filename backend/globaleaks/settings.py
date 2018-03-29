@@ -4,12 +4,16 @@
 from __future__ import print_function
 
 import getpass
-import grp
+import platform
 import logging
 import os
-import pwd
 import re
 import sys
+
+if platform.system() != 'Windows':
+    import grp
+    import pwd
+
 # pylint: enable=no-name-in-module
 from optparse import OptionParser
 
@@ -120,8 +124,14 @@ class SettingsClass(object):
 
         self.user = getpass.getuser()
         self.group = getpass.getuser()
-        self.uid = os.getuid()
-        self.gid = os.getgid()
+
+        if platform.system() != 'Windows':
+            self.uid = os.getuid()
+            self.gid = os.getgid()
+        else:
+            self.uid = None
+            self.gid = None
+
         self.devel_mode = False
         self.developer_name = ''
         self.disable_swap = False
@@ -232,13 +242,17 @@ class SettingsClass(object):
         if self.cmdline_options.user and self.cmdline_options.group:
             self.user = self.cmdline_options.user
             self.group = self.cmdline_options.group
-            self.uid = pwd.getpwnam(self.cmdline_options.user).pw_uid
-            self.gid = grp.getgrnam(self.cmdline_options.group).gr_gid
+
+            if platform.system() != 'Windows':
+                self.uid = pwd.getpwnam(self.cmdline_options.user).pw_uid
+                self.gid = grp.getgrnam(self.cmdline_options.group).gr_gi
         elif self.cmdline_options.user:
             # user selected: get also the associated group
             self.user = self.cmdline_options.user
-            self.uid = pwd.getpwnam(self.cmdline_options.user).pw_uid
-            self.gid = pwd.getpwnam(self.cmdline_options.user).pw_gid
+
+            if platform.system() == 'Windows':
+                self.uid = pwd.getpwnam(self.cmdline_options.user).pw_uid
+                self.gid = pwd.getpwnam(self.cmdline_options.user).pw_gid
         elif self.cmdline_options.group:
             # group selected: keep the current user
             self.group = self.cmdline_options.group

@@ -15,6 +15,7 @@ import re
 import sys
 import traceback
 import uuid
+import platform
 from datetime import datetime, timedelta
 
 
@@ -69,24 +70,29 @@ def read_json_file(p):
 
 
 def drop_privileges(user, uid, gid):
-    if os.getgid() != gid:
-        os.setgid(gid)
-        os.initgroups(user, gid)
+    if platform.system() != 'Windows':
+        if os.getgid() != gid:
+            os.setgid(gid)
+            os.initgroups(user, gid)
 
-    if os.getuid() != uid:
-        os.setuid(uid)
-
+        if os.getuid() != uid:
+            os.setuid(uid)
+    else:
+        log.err("Unable to securely drop permissions on Windows")
 
 def fix_file_permissions(path, uid, gid, dchmod, fchmod):
     """
     Recursively fix file permissions on a given path
     """
     def fix(path):
-        os.chown(path, uid, gid)
-        if os.path.isfile(path):
-            os.chmod(path, 0o600)
+        if platform.system() != 'Windows':
+            os.chown(path, uid, gid)
+            if os.path.isfile(path):
+                os.chmod(path, 0o600)
+            else:
+                os.chmod(path, 0o700)
         else:
-            os.chmod(path, 0o700)
+            log.err("Unable to secure %s on Windows", path)
 
     fix(path)
     for item in glob.glob(path + '/*'):
