@@ -5,8 +5,6 @@ import time
 
 from sqlalchemy import create_engine, event
 from sqlalchemy.exc import OperationalError
-
-from sqlite3 import dbapi2 as sqlite
 from sqlalchemy.orm import sessionmaker
 
 
@@ -36,7 +34,7 @@ def get_engine(db_uri=None, foreign_keys=True):
     if db_uri is None:
         db_uri = get_db_uri()
 
-    engine = create_engine(db_uri, module=sqlite, connect_args={'timeout': 30})
+    engine = create_engine(db_uri, connect_args={'timeout': 30})
 
     if foreign_keys:
         def on_connect(conn, record):
