@@ -40,8 +40,8 @@ ConfigDescriptor = {
     u'acme': Bool(default=False),
     u'acme_accnt_key': Unicode(),
     u'acme_accnt_uri': Unicode(),
-
-    u'tor_onion_key': Unicode(), # Limits from txtorcon
+    u'tor_enabled': Bool(default=True),
+    u'tor_onion_key': Unicode(),
 
     u'https_priv_key': Unicode(),
     u'https_priv_gen': Bool(default=False),
