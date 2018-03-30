@@ -113,16 +113,16 @@ describe('GLBrowserCrypto', function() {
     });
 
     it('encryptAndSignMessage', function(done) {
-      glbcKeyRing.initialize(test_data.key_ring.priv_key, test_data.key_ring.uuid);
-      glbcKeyRing.unlockKeyRing(test_data.key_ring.passphrase);
-      var uuid = 'faceface-face-face-facefaceface';
-      glbcKeyRing.addPubKey(uuid, test_data.key_ring.pub_key);
-
-      var m = 'Hello, world!'
-      glbcCipherLib.encryptAndSignMessage(m, uuid, false).then(function(cipher) {
-        var m = openpgp.message.readArmored(cipher);
-        expect(m).to.not.be.null;
-        done();
+      glbcKeyRing.initialize(test_data.key_ring.priv_key, test_data.key_ring.uuid).then(function() {
+        var uuid = 'faceface-face-face-facefaceface';
+        glbcKeyRing.addPubKey(uuid, test_data.key_ring.pub_key).then(function() {
+          var m = 'Hello, world!'
+          glbcCipherLib.encryptAndSignMessage(m, uuid, false).then(function(cipher) {
+            var m = openpgp.message.readArmored(cipher);
+            expect(m).to.not.be.null;
+            done();
+          });
+        });
       });
     });
   });
@@ -171,35 +171,42 @@ describe('GLBrowserCrypto', function() {
       });
     }).timeout(test_data.const.SCRYPT_MAX);
 
-    it('generateKeycode', function() {
-      for (var i = 0; i < 25; i++) {
-        var keycode = glbcKeyLib.generateKeycode();
+    it('generateKeycode', function(done) {
+      glbcKeyLib.generateKeycode().then(function(keycode) {
         expect(/^[0-9]{16}$/.test(keycode)).to.be.true;
-      }
+        done();
+      });
     });
 
-    it('validPrivateKey', function() {
-        var a = glbcKeyLib.validPrivateKey(test_data.key_ring.bad_key);
-        expect(a).to.be.false;
-
-        var b = glbcKeyLib.validPrivateKey(test_data.key_ring.pub_key);
-        expect(b).to.be.false;
-
-        var c = glbcKeyLib.validPrivateKey(test_data.key_ring.priv_key);
-        expect(c).to.be.true;
+    it('validPrivateKey', function(done) {
+      glbcKeyLib.validPrivateKey(test_data.key_ring.bad_key).then(function() {
+      }, function () {
+        // fail
+        glbcKeyLib.validPrivateKey(test_data.key_ring.pub_key).then(function() {
+        }, function () {
+          // fail
+          glbcKeyLib.validPrivateKey(test_data.key_ring.priv_key).then(function() {
+            //success
+            done();
+          });
+        });
+      });
     });
 
     it('validPublicKey', function() {
-      var a = glbcKeyLib.validPublicKey(test_data.key_ring.bad_key);
-      expect(a).to.be.false;
-
-      var b = glbcKeyLib.validPublicKey(test_data.key_ring.priv_key);
-      expect(b).to.be.false;
-
-      var c = glbcKeyLib.validPublicKey(test_data.key_ring.pub_key);
-      expect(c).to.be.true;
+      glbcKeyLib.validPublicKey(test_data.key_ring.bad_key).then(function() {
+      }, function () {
+        // fail
+        glbcKeyLib.validPublicKey(test_data.key_ring.priv_key).then(function() {
+        }, function () {
+          // fail
+          glbcKeyLib.validPublicKey(test_data.key_ring.pub_key).then(function() {
+            //success
+            done();
+          });
+        });
+      });
     });
-
   });
 
   describe('glbcKeyRing', function() {
@@ -210,66 +217,64 @@ describe('GLBrowserCrypto', function() {
       });
     });
 
-    it('test initialize and clear', function() {
+    it('test initialize and clear', function(done) {
       expect(glbcKeyRing.isInitialized()).to.be.false;
 
-      glbcKeyRing.initialize(test_data.key_ring.priv_key, test_data.key_ring.uuid);
+      glbcKeyRing.initialize(test_data.key_ring.priv_key, test_data.key_ring.uuid).then(function() {
+        expect(glbcKeyRing.isInitialized()).to.be.true;
 
-      expect(glbcKeyRing.isInitialized()).to.be.true;
+        var a = glbcKeyRing.getPubKey('private');
+        var b = glbcKeyRing.getPubKey(test_data.key_ring.uuid);
+        var stored = openpgp.key.readArmored(test_data.key_ring.pub_key).keys[0];
 
-      var a = glbcKeyRing.getPubKey('private');
-      var b = glbcKeyRing.getPubKey(test_data.key_ring.uuid);
-      var stored = openpgp.key.readArmored(test_data.key_ring.pub_key).keys[0];
+        expect(a.primaryKey.fingerprint).to.equal(stored.primaryKey.fingerprint);
+        expect(b.primaryKey.fingerprint).to.equal(stored.primaryKey.fingerprint);
 
-      expect(a.primaryKey.fingerprint).to.equal(stored.primaryKey.fingerprint);
-      expect(b.primaryKey.fingerprint).to.equal(stored.primaryKey.fingerprint);
+        // Add receiver keys to the KeyRing.
+        glbcKeyRing.addPubKey(test_data.key_ring.bad_key, 'bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb').then(function() {
+        }, function() {
+          glbcKeyRing.addPubKey(test_data.bob.uuid, test_data.bob.cckey_pub).then(function() {
+            var c = glbcKeyRing.getPubKey(test_data.bob.uuid);
 
-      // Add receiver keys to the KeyRing.
-      expect(glbcKeyRing.addPubKey.bind(test_data.key_ring.bad_key, 'bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb'))
-        .to.throw('Could not add pubkey to key ring!');
+            var bob_pkey = openpgp.key.readArmored(test_data.bob.cckey_pub).keys[0];
+            expect(c.primaryKey.fingerprint).to.equal(bob_pkey.primaryKey.fingerprint);
 
-      glbcKeyRing.addPubKey(test_data.bob.uuid, test_data.bob.cckey_pub);
+            // Test priv_key export protection
+            glbcKeyRing.lockKeyRing(test_data.key_ring.passphrase).then(function() {
 
-      var c = glbcKeyRing.getPubKey(test_data.bob.uuid);
+              var d = openpgp.key.readArmored(glbcKeyRing.exportPrivKey()).keys[0];
+              expect(d.primaryKey.fingerprint).to.equal(glbcKeyRing.getKey().primaryKey.fingerprint);
 
-      var bob_pkey = openpgp.key.readArmored(test_data.bob.cckey_pub).keys[0];
-      expect(c.primaryKey.fingerprint).to.equal(bob_pkey.primaryKey.fingerprint);
+              // Change key passphrase
+              glbcKeyRing.changeKeyPassphrase(test_data.key_ring.passphrase, 'fake-passphrase').then(function() {
+                glbcKeyRing.unlockKeyRing('fake-passphrase').then(function() {
+                  expect(glbcKeyRing.exportPrivKey.bind()).to.throw('Attempted to export decrypted privateKey');
 
-      // Test priv_key export protection
-      glbcKeyRing.lockKeyRing(test_data.key_ring.passphrase);
+                  // Use getters and setters on a session key
+                  expect(glbcKeyRing.getSessionKey()).to.equal(null);
 
-      var d = openpgp.key.readArmored(glbcKeyRing.exportPrivKey()).keys[0];
-      expect(d.primaryKey.isDecrypted).to.be.false;
-      expect(d.primaryKey.fingerprint).to.equal(glbcKeyRing.getKey().primaryKey.fingerprint);
+                  glbcKeyRing.setSessionKey(test_data.submission.sess_cckey_prv_enc);
 
-      var f = glbcKeyRing.unlockKeyRing(test_data.key_ring.passphrase);
-      expect(f).to.be.true;
-      expect(glbcKeyRing.exportPrivKey.bind()).to.throw('Attempted to export decrypted privateKey');
+                  expect(glbcKeyRing.getSessionKey().length).to.be.above(100);
 
-      // Change key passphrase
-      glbcKeyRing.changeKeyPassphrase(test_data.key_ring.passphrase, 'fake-passphrase');
+                  // Test clearing the keyRing
+                  expect(glbcKeyRing.getPubKey('private')).to.not.be.null;
 
-      expect(glbcKeyRing.unlockKeyRing(test_data.key_ring.passphrase)).to.be.false;
+                  glbcKeyRing.clear();
 
-      expect(glbcKeyRing.unlockKeyRing('fake-passphrase')).to.be.true;
+                  expect(glbcKeyRing.isInitialized()).to.be.false;
 
-      expect(glbcKeyRing.exportPrivKey.bind()).to.throw('Attempted to export decrypted privateKey');
+                  expect(glbcKeyRing.getPubKey('private')).to.be.null;
 
-      // Use getters and setters on a session key
-      expect(glbcKeyRing.getSessionKey()).to.equal(null);
+                  expect(glbcKeyRing.getSessionKey()).to.be.null;
 
-      glbcKeyRing.setSessionKey(test_data.submission.sess_cckey_prv_enc);
-
-      expect(glbcKeyRing.getSessionKey().length).to.be.above(100);
-
-      // Test clearing the keyRing
-      expect(glbcKeyRing.getPubKey('private')).to.not.be.null;
-
-      glbcKeyRing.clear();
-
-      expect(glbcKeyRing.isInitialized()).to.be.false;
-      expect(glbcKeyRing.getPubKey('private')).to.be.null;
-      expect(glbcKeyRing.getSessionKey()).to.be.null;
+                  done();
+                });
+              });
+            });
+          });
+        });
+      });
     });
   });
 
@@ -288,11 +293,10 @@ describe('GLBrowserCrypto', function() {
         .then(function(res) {
           return glbcKeyLib.generateCCryptoKey(res.passphrase);
         }).then(function(res) {
-          var b = glbcKeyRing.initialize(res.ccrypto_key_private.armor(), test_data.bob.uuid)
-          expect(b).to.be.true;
-          return glbcReceiver.loadSessionKey(test_data.submission.sess_cckey_prv_enc);
-        }).then(function() {
-          done();
+          return glbcKeyRing.initialize(res.ccrypto_key_private.armor(), test_data.bob.uuid).then(function() {
+            // TODO: generate a tip session key and simulate its use
+            done();
+          });
         });
     }).timeout(test_data.const.SCRYPT_MAX);
 
@@ -324,36 +328,31 @@ describe('GLBrowserCrypto', function() {
         sess_cckey_prv_enc: '',
       };
 
-      var keycode = glbcKeyLib.generateKeycode();
-      glbcWhistleblower.deriveKey(keycode, test_data.node.receipt_salt, submission).then(function() {
-
-        glbcKeyRing.addPubKey(test_data.bob.uuid, test_data.bob.cckey_pub);
-        return glbcWhistleblower.deriveSessionKey([test_data.bob.uuid, 'whistleblower'], submission)
-      }).then(function() {
-
-        return glbcWhistleblower.encryptAndSignAnswers(test_data.submission.jsonAnswers, true);
-      }).then(function(res) {
-
-        return glbcCipherLib.decryptAndVerifyAnswers(res, true);
-      }).then(function(res) {
-
-        expect(res.data).to.equal(test_data.submission.jsonAnswers);
-        done();
+      glbcKeyLib.generateKeycode().then(function(keycode) {
+        return glbcWhistleblower.deriveKey(keycode, test_data.node.receipt_salt, submission).then(function() {
+          return glbcKeyRing.addPubKey(test_data.bob.uuid, test_data.bob.cckey_pub).then(function() {
+            return glbcWhistleblower.deriveSessionKey([test_data.bob.uuid, 'whistleblower'], submission)
+          });
+        }).then(function() {
+          return glbcWhistleblower.encryptAndSignAnswers(test_data.submission.jsonAnswers, true);
+        }).then(function(res) {
+          return glbcCipherLib.decryptAndVerifyAnswers(res, true);
+        }).then(function(res) {
+          expect(res.data).to.equal(test_data.submission.jsonAnswers);
+          done();
+        });
       });
     }).timeout(test_data.const.SCRYPT_MAX*2);
 
     it('whistleblower should reuse an encrypted private key', function(done) {
       glbcKeyLib.deriveUserPassword(test_data.wb.keycode, test_data.node.receipt_salt).then(function(res) {
-
         glbcWhistleblower.storePassphrase(res.passphrase);
-        glbcWhistleblower.initialize(test_data.wb.wb_cckey_prv_penc, []);
-
-        return glbcWhistleblower.unlock();
+        return glbcWhistleblower.initialize(test_data.wb.wb_cckey_prv_penc, []).then(function() {
+          return glbcWhistleblower.unlock();
+        });
       }).then(function() {
-
         return glbcCipherLib.decryptAndVerifyAnswers(test_data.submission.jsonAnswersEnc, true);
       }).then(function(res) {
-
         expect(res.data).to.equal(test_data.submission.jsonAnswers);
         done();
       });
@@ -399,12 +398,11 @@ describe('GLBrowserCrypto', function() {
          var priv_key = openpgp.key.readArmored(resp.cckey_prv_penc).keys[0];
          expect(priv_key.isPrivate()).to.be.true;
 
-         // Assert the exported private key is encrypted with the expected scrypt_passphrase
          expect(priv_key.primaryKey.isDecrypted).to.be.false;
-         expect(priv_key.decrypt(test_data.key_gen.scrypt_passphrase)).to.be.true;
-         expect(priv_key.primaryKey.isDecrypted).to.be.true;
-
-         done();
+         priv_key.decrypt(test_data.key_gen.scrypt_passphrase).then(function() {
+           expect(priv_key.primaryKey.isDecrypted).to.be.true;
+           done();
+         });
        });
     }).timeout(test_data.const.SCRYPT_MAX*2);
   });
