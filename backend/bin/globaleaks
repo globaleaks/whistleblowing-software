@@ -5,6 +5,7 @@ from __future__ import print_function
 import os
 import platform
 import sys
+import mimetypes
 
 # Use UTF-8 for all string to unicode conversions
 reload(sys)
@@ -140,6 +141,20 @@ if Settings.cmdline_options.kill:
         print("Unable kill PID found in %s: kill option ignored (%s)" % (Settings.pidfile_path, excep))
 
 State.init_environment()
+
+# Mimetypes initialization
+if platform.system() == 'Windows':
+    # this is an ugly ugly hack.
+    #
+    # Essentially, on Windows, mimetypes does not load from a well known
+    # source, *or* the python hardcoded database. Instead it queries the
+    # Windows registry and uses that. That would be dandy but the Windows
+    # registry MIGHT not have things like .js/.css (my laptop didn't), so
+    # this forces the mimetypes module to ignore the registry and load the
+    # Python hardcoded list. It MIGHT be better that we just ship mime.types
+    # ourselves and load it, but this is enough to get us started
+    print("WARNING: Overriding MIMETypes for Windows")
+    mimetypes.init([])
 
 args = ['-y', Settings.backend_script]
 if Settings.nodaemon:
