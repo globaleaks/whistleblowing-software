@@ -39,7 +39,7 @@ GLClient.controller('AdminQuestionnaireCtrl',
         url: 'admin/questionnaires?multilang=1',
         data: txt,
       })
-    }).then(function(resp) {
+    }).then(function() {
        $route.reload();
     }, Utils.displayErrorMsg);
   };
