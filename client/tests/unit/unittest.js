@@ -193,7 +193,7 @@ describe('GLBrowserCrypto', function() {
       });
     });
 
-    it('validPublicKey', function() {
+    it('validPublicKey', function(done) {
       glbcKeyLib.validPublicKey(test_data.key_ring.bad_key).then(function() {
       }, function () {
         // fail
@@ -279,12 +279,11 @@ describe('GLBrowserCrypto', function() {
   });
 
   describe('glbcReceiver', function() {
-    var glbcKeyRing, glbcKeyLib, glbcReceiver;
+    var glbcKeyRing, glbcKeyLib;
     beforeEach(function() {
-      window.inject(function(_glbcKeyRing_, _glbcKeyLib_, _glbcReceiver_) {
+      window.inject(function(_glbcKeyRing_, _glbcKeyLib_) {
         glbcKeyRing = _glbcKeyRing_;
         glbcKeyLib = _glbcKeyLib_;
-        glbcReceiver = _glbcReceiver_;
       });
     });
 

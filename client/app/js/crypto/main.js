@@ -392,7 +392,7 @@ angular.module('GLBrowserCrypto', [])
      * passed file.
      */
     createArrayFromBlob: function(blob) {
-      return $q(function(resolve, reject) {
+      return $q(function(resolve) {
         var fileReader = new FileReader();
 
         fileReader.onload = function() {
@@ -647,7 +647,7 @@ angular.module('GLBrowserCrypto', [])
      */
     initialize: function(armoredPrivKey, uuid) {
       return $q(function(resolve, reject) {
-        glbcKeyLib.validPrivateKey(armoredPrivKey).then(function(keyStatus) {
+        glbcKeyLib.validPrivateKey(armoredPrivKey).then(function() {
           // Parsing the private key here should produce no errors. Once it is no
           // longer needed we will explicity remove references to this key.
           var tmpKeyRef = pgp.key.readArmored(armoredPrivKey).keys[0];
@@ -663,7 +663,7 @@ angular.module('GLBrowserCrypto', [])
           resolve();
 
         }, function(err) {
-          reject(e);
+          reject(err);
         });
       });
     },
