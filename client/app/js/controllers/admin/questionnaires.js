@@ -1,6 +1,6 @@
 GLClient.controller('AdminQuestionnaireCtrl',
-  ['$scope', '$http', 'Utils', 'AdminQuestionnaireResource',
-  function($scope, $http, Utils, AdminQuestionnaireResource){
+  ['$scope', '$http', '$route', 'Utils', 'AdminQuestionnaireResource',
+  function($scope, $http, $route, Utils, AdminQuestionnaireResource){
   $scope.tabs = [
     {
       title:"Questionnaires",
@@ -40,8 +40,7 @@ GLClient.controller('AdminQuestionnaireCtrl',
         data: txt,
       })
     }).then(function(resp) {
-      var new_q = new AdminQuestionnaireResource(resp.data);
-      $scope.admin.questionnaires.push(new_q);
+       $route.reload();
     }, Utils.displayErrorMsg);
   };
 
