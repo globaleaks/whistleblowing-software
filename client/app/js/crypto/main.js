@@ -239,7 +239,7 @@ angular.module('GLBrowserCrypto', [])
         var key_options = {
           userIds: [{ name:'Random User', email:'randomuser@globaleaks.org' }],
           passphrase: passphrase,
-          numBits: glbcConstants.ccrypto_key_bits
+          curve: "p521"
         };
 
         pgp.generateKey(key_options).then(function(keyPair) {
@@ -258,11 +258,14 @@ angular.module('GLBrowserCrypto', [])
        * frontend.
        */
       generateKeycode: function() {
-        var keycode = '';
-        for (var i=0; i<16; i++) {
-          keycode += pgp.crypto.random.getSecureRandom(0, 9);
-        }
-        return keycode;
+        return pgp.crypto.random.getRandomBytes(16).then(function(ret) {
+          var result = '';
+          for (var i = 0; i < ret.length; i++) {
+            result += ret[i] % 9;
+          }
+
+          return result;
+        });
       },
 
       /**
@@ -273,27 +276,29 @@ angular.module('GLBrowserCrypto', [])
        * @return {Bool}
        */
       validPrivateKey: function(textInput) {
-        if (typeof textInput !== 'string') {
-          return false;
-        }
-        var result = pgp.key.readArmored(textInput);
-        if (angular.isDefined(result.err) || result.keys.length !== 1) {
-          return false;
-        }
+        return $q(function(resolve, reject) {
+          if (typeof textInput !== 'string') {
+            return reject();
+          }
 
-        var key = result.keys[0];
-        if (!key.isPrivate() || key.isPublic()) {
-          return false;
-        }
+          var result = pgp.key.readArmored(textInput);
+          if (angular.isDefined(result.err) || result.keys.length !== 1) {
+            return reject();
+          }
 
-        // Verify expiration, revocation, and self sigs.
-        if (key.verifyPrimaryKey() !== pgp.enums.keyStatus.valid) {
-          return false;
-        }
-
-        // TODO check if key secret packets are encrypted.
-
-        return true;
+          var key = result.keys[0];
+          if (!key.isPrivate() || key.isPublic()) {
+            return reject();
+          }
+          // Verify expiration, revocation, and self sigs.
+          return key.verifyPrimaryKey().then(function(keyStatus) {
+            if (keyStatus === pgp.enums.keyStatus.valid) {
+              return resolve(true);
+            } else {
+              return reject();
+            }
+          })
+        })
       },
 
       /**
@@ -303,52 +308,51 @@ angular.module('GLBrowserCrypto', [])
        * @return {Bool}
        */
       validPublicKey: function(textInput) {
-        var defer = $q.defer();
-
-        if (typeof textInput !== 'string') {
-          return $q.reject();
-        }
-
-        var s = textInput.trim();
-        if (s.substr(0, 5) !== '-----') {
-          return $q.reject();
-        }
-
-        // Try to parse the key.
-        var result;
-        try {
-          result = pgp.key.readArmored(s);
-        } catch (err) {
-          return $q.reject();
-        }
-
-        // Assert that the parse created no errors.
-        if (angular.isDefined(result.err)) {
-          return $q.reject();
-        }
-
-        // Assert that there is only one key in the input.
-        if (result.keys.length !== 1) {
-          return $q.reject();
-        }
-
-        var key = result.keys[0];
-
-        // Assert that the key type is not private and the public flag is set.
-        if (!key.isPublic() || key.isPrivate()) {
-          return $q.reject();
-        }
-
-        // Verify expiration, revocation, and self sigs.
-        key.verifyPrimaryKey().then(function(keyStatus) {
-          if (keyStatus === pgp.enums.keyStatus.valid) {
-            defer.resolve(true);
-          } else {
-            defer.reject();
+        return $q(function(resolve, reject) {
+          if (typeof textInput !== 'string') {
+            return reject();
           }
-        })
 
-        return defer.promise;
+          var s = textInput.trim();
+          if (s.substr(0, 5) !== '-----') {
+            return reject();
+          }
+
+          // Try to parse the key.
+          var result;
+
+          try {
+            result = pgp.key.readArmored(s);
+          } catch (err) {
+            return reject();
+          }
+
+          // Assert that the parse created no errors.
+          if (angular.isDefined(result.err)) {
+            return reject();
+          }
+
+          // Assert that there is only one key in the input.
+          if (result.keys.length !== 1) {
+            return reject();
+          }
+
+          var key = result.keys[0];
+
+          // Assert that the key type is not private and the public flag is set.
+          if (!key.isPublic() || key.isPrivate()) {
+            return reject();
+          }
+
+          // Verify expiration, revocation, and self sigs.
+          return key.verifyPrimaryKey().then(function(keyStatus) {
+            if (keyStatus === pgp.enums.keyStatus.valid) {
+              return resolve(true);
+            } else {
+              return reject();
+            }
+          })
+        })
       },
     };
 }])
@@ -388,18 +392,17 @@ angular.module('GLBrowserCrypto', [])
      * passed file.
      */
     createArrayFromBlob: function(blob) {
-      var deferred = $q.defer();
-      var fileReader = new FileReader();
+      return $q(function(resolve, reject) {
+        var fileReader = new FileReader();
 
-      fileReader.onload = function() {
-        var arrayBufferNew = this.result;
-        var uintArray = new Uint8Array(arrayBufferNew);
-        deferred.resolve(uintArray);
-      };
+        fileReader.onload = function() {
+          var arrayBufferNew = this.result;
+          var uintArray = new Uint8Array(arrayBufferNew);
+          resolve(uintArray);
+        };
 
-      fileReader.readAsArrayBuffer(blob);
-
-      return deferred.promise;
+        fileReader.readAsArrayBuffer(blob);
+      })
     },
 
     /**
@@ -411,6 +414,7 @@ angular.module('GLBrowserCrypto', [])
     encryptAndSignMessage: function(m, uuid, sign) {
       var pubKeys = [glbcKeyRing.getPubKey(uuid),
                      glbcKeyRing.getPubKey('private')];
+
 
       // TODO(bugfix) params passed here are incorrect.
       var options = {
@@ -542,12 +546,10 @@ angular.module('GLBrowserCrypto', [])
      */
     decryptAndVerifyAnswers: function(message, verify) {
       // Convert the encrypted answers into an openpgpjs message.
-      var c = pgp.message.readArmored(message);
       var options = {
-        message: c,
+        message: pgp.message.readArmored(message),
         format: 'utf8',
-        // TODO split receiver and WB actions
-        privateKey: glbcKeyRing.getKey(),
+        privateKeys: [glbcKeyRing.getKey()],
       };
 
       if (verify) {
@@ -590,6 +592,7 @@ angular.module('GLBrowserCrypto', [])
       if (keyRing.privateKey.primaryKey.isDecrypted) {
         throw new Error("Attempted to export decrypted privateKey");
       }
+
       return fncs.getKey().armor();
     },
 
@@ -621,12 +624,15 @@ angular.module('GLBrowserCrypto', [])
      * @param {String} armored
      */
     addPubKey: function(uuid, armored) {
-      if (glbcKeyLib.validPublicKey(armored)) {
-        var key = pgp.key.readArmored(armored).keys[0];
-        keyRing.publicKeys[uuid] = key;
-      } else {
-        throw new Error('Could not add pubkey to key ring!');
-      }
+      return $q(function(resolve, reject) {
+        glbcKeyLib.validPublicKey(armored).then(function() {
+          var key = pgp.key.readArmored(armored).keys[0];
+          keyRing.publicKeys[uuid] = key;
+          resolve();
+        }, function() {
+          reject();
+        });
+      });
     },
 
     isInitialized: function() {
@@ -640,28 +646,26 @@ angular.module('GLBrowserCrypto', [])
      * @return {Bool}
      */
     initialize: function(armoredPrivKey, uuid) {
-      console.log(glbcKeyLib.validPrivateKey(armoredPrivKey));
-      if (!glbcKeyLib.validPrivateKey(armoredPrivKey)) {
-        throw new Error('Failed to parse private key!');
-      }
+      return $q(function(resolve, reject) {
+        glbcKeyLib.validPrivateKey(armoredPrivKey).then(function(keyStatus) {
+          // Parsing the private key here should produce no errors. Once it is no
+          // longer needed we will explicity remove references to this key.
+          var tmpKeyRef = pgp.key.readArmored(armoredPrivKey).keys[0];
 
-      // Parsing the private key here should produce no errors. Once it is no
-      // longer needed we will explicity remove references to this key.
-      var tmpKeyRef = pgp.key.readArmored(armoredPrivKey).keys[0];
+          keyRing.privateKey = tmpKeyRef;
+          keyRing._pubKey = tmpKeyRef.toPublic();
 
-      // TODO assert that the pgp key is locked
+          if (angular.isUndefined(uuid)) {
+            uuid = 'public';
+          }
 
-      keyRing.privateKey = tmpKeyRef;
-      keyRing._pubKey = tmpKeyRef.toPublic();
-      tmpKeyRef = null;
+          keyRing.publicKeys[uuid] = keyRing._pubKey;
+          resolve();
 
-      if (angular.isUndefined(uuid)) {
-        uuid = 'public';
-      }
-
-      keyRing.publicKeys[uuid] = keyRing._pubKey;
-
-      return true;
+        }, function(err) {
+          reject(e);
+        });
+      });
     },
 
     createNewCCryptoKey: function() {
@@ -691,7 +695,7 @@ angular.module('GLBrowserCrypto', [])
 
     changeKeyPassphrase: function(old_pw, new_pw) {
       if (fncs.unlockKeyRing(old_pw)) {
-        fncs.lockKeyRing(new_pw);
+        return fncs.lockKeyRing(new_pw);
       } else {
         throw new Error('Unable to unlock key');
       }
