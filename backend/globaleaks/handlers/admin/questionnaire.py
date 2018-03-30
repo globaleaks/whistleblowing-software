@@ -64,6 +64,7 @@ def db_create_questionnaire(session, state, tid, questionnaire_dict, language):
     q = models.db_forge_obj(session, models.Questionnaire, questionnaire_dict)
 
     for step in questionnaire_dict.get('steps', []):
+        step['questionnaire_id'] = q.id
         db_create_step(session, tid, step, language)
 
     return q
