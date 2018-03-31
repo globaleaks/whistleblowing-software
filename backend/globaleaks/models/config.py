@@ -15,20 +15,13 @@ class Config(Model, Base):
     value = Column(JSON, nullable=False)
     customized = Column(Boolean, default=False, nullable=False)
 
-    cfg_desc = ConfigDescriptor
-
-    def __init__(self, tid=1, name=None, value=None, cfg_desc=None, migrate=False):
+    def __init__(self, tid=1, name=None, value=None, migrate=False):
         """
         :param value:    This input is passed directly into set_v
         :param migrate:  Added to comply with models.Model constructor which is
                          used to copy every field returned by the ORM from the db
                          from an old_obj to a new one.
-        :param cfg_desc: Used to specify where to look for the Config objs descripitor.
-                         This is used in mig 34.
         """
-        if cfg_desc is not None:
-            self.cfg_desc = cfg_desc
-
         if migrate:
             return
 

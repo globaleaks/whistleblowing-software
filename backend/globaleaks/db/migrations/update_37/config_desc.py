@@ -6,7 +6,7 @@ from globaleaks.utils.security import generateRandomSalt as salt
 from globaleaks.utils.utility import datetime_null, iso_strf_time
 
 
-GLConfig = {
+GLConfig_v_37 = {
     'private': {
         'receipt_salt': Unicode(default=salt()), # is always customized
         'smtp_password': Unicode(default=u'yes_you_really_should_change_me'),

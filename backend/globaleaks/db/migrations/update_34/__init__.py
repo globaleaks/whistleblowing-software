@@ -9,6 +9,7 @@ from globaleaks.models.properties import *
 from globaleaks.settings import Settings
 from globaleaks.utils.utility import datetime_null, iso_strf_time
 
+
 class Node_v_33(models.Model):
     __tablename__ = 'node'
     id = Column(Unicode(36), primary_key=True, default=uuid4, nullable=False)
@@ -242,7 +243,7 @@ class MigrationScript(MigrationBase):
         # Migrate Config saved in Node
         for var_name, _ in GLConfig_v_35['node'].items():
             old_val = getattr(old_node, var_name)
-            self.session_new.add(self.model_to['Config']('node', var_name, old_val, cfg_desc=GLConfig_v_35))
+            self.session_new.add(self.model_to['Config']('node', var_name, old_val))
 
         # Migrate Config saved in Notification
         for var_name, _ in GLConfig_v_35['notification'].items():
@@ -251,7 +252,7 @@ class MigrationScript(MigrationBase):
             if var_name == 'exception_email_pgp_key_expiration' and old_val is not None:
                 old_val = iso_strf_time(old_val)
 
-            self.session_new.add(self.model_to['Config']('notification', var_name, old_val, cfg_desc=GLConfig_v_35))
+            self.session_new.add(self.model_to['Config']('notification', var_name, old_val))
 
         # Migrate private fields
         self.session_new.add(self.model_to['Config']('private', 'receipt_salt', old_node.receipt_salt))

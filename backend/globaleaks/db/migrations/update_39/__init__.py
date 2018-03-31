@@ -3,7 +3,7 @@ import os
 import shutil
 
 from globaleaks.db.migrations.update import MigrationBase
-from globaleaks.db.migrations.update_37.config_desc import GLConfig
+from globaleaks.db.migrations.update_37.config_desc import GLConfig_v_37
 from globaleaks.models import *
 from globaleaks.models import config_desc
 from globaleaks.models.properties import *
@@ -39,16 +39,12 @@ class Comment_v_38(Model):
 
 class Config_v_38(Model):
     __tablename__ = 'config'
-    cfg_desc = GLConfig
     var_group = Column(UnicodeText, primary_key=True)
     var_name = Column(UnicodeText, primary_key=True)
     value = Column(JSON)
     customized = Column(Boolean, default=False)
 
-    def __init__(self, group=None, name=None, value=None, cfg_desc=None, migrate=False):
-        if cfg_desc is not None:
-            self.cfg_desc = cfg_desc
-
+    def __init__(self, group=None, name=None, value=None, migrate=False):
         if migrate:
             return
 
@@ -66,7 +62,7 @@ class Config_v_38(Model):
         return d
 
     def set_v(self, val):
-        desc = self.find_descriptor(self.cfg_desc, self.var_group, self.var_name)
+        desc = self.find_descriptor(GLConfig_v_37, self.var_group, self.var_name)
         if val is None:
             val = desc._type()
         if isinstance(desc, config_desc.Unicode) and isinstance(val, str):
@@ -104,7 +100,6 @@ class ConfigL10N_v_38(Model):
         self.var_group = unicode(group)
         self.var_name = unicode(var_name)
         self.value = unicode(value)
-
 
     def set_v(self, value):
         value = unicode(value)
