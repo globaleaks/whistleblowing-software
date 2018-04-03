@@ -10,7 +10,7 @@
 import copy
 
 from globaleaks import models
-from globaleaks.models.l10n import NotificationL10NFactory
+from globaleaks.models.config import NotificationL10NFactory
 from globaleaks.utils.sets import merge_dicts
 
 

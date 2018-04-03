@@ -8,8 +8,7 @@ from globaleaks import models, utils, LANGUAGES_SUPPORTED_CODES, LANGUAGES_SUPPO
 from globaleaks.db import db_refresh_memory_variables
 from globaleaks.db.appdata import load_appdata
 from globaleaks.handlers.base import BaseHandler
-from globaleaks.models.config import ConfigFactory
-from globaleaks.models.l10n import NodeL10NFactory
+from globaleaks.models.config import ConfigFactory, NodeL10NFactory
 from globaleaks.orm import transact
 from globaleaks.rest import errors, requests
 from globaleaks.state import State
@@ -60,7 +59,7 @@ def db_update_enabled_languages(session, tid, languages_enabled, default_languag
             if appdata is None:
                 appdata = load_appdata()
             log.debug("Adding a new lang %s" % lang_code)
-            models.l10n.add_new_lang(session, tid, lang_code, appdata)
+            models.config.add_new_lang(session, tid, lang_code, appdata)
 
     to_remove = list(set(cur_enabled_langs) - set(new_enabled_langs))
     if to_remove:

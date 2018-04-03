@@ -49,7 +49,7 @@ def db_create(session, desc):
 
     models.config.system_cfg_init(session, tid=t.id)
 
-    models.l10n.add_new_lang(session, t.id, u'en', appdata)
+    models.config.add_new_lang(session, t.id, u'en', appdata)
 
     file_descs = [
       (u'logo', 'data/logo.png'),

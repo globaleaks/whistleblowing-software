@@ -6,8 +6,7 @@ import copy
 from globaleaks import models, LANGUAGES_SUPPORTED, LANGUAGES_SUPPORTED_CODES
 from globaleaks.handlers.admin.file import db_get_file
 from globaleaks.handlers.base import BaseHandler
-from globaleaks.models.config import ConfigFactory
-from globaleaks.models.l10n import NodeL10NFactory
+from globaleaks.models.config import ConfigFactory, NodeL10NFactory
 from globaleaks.orm import transact
 from globaleaks.state import State
 from globaleaks.utils.sets import merge_dicts

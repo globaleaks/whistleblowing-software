@@ -6,7 +6,8 @@ from twisted.web.client import readBody
 
 from globaleaks.db import db_refresh_memory_variables
 from globaleaks.handlers.operation import OperationHandler
-from globaleaks.models.config import ConfigFactory, Config
+from globaleaks.models import Config
+from globaleaks.models.config import ConfigFactory
 from globaleaks.orm import transact
 from globaleaks.rest import errors
 from globaleaks.utils.utility import is_common_net_error

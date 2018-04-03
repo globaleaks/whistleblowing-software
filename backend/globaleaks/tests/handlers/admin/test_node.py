@@ -2,7 +2,7 @@
 
 from globaleaks import __version__
 from globaleaks.handlers.admin import node
-from globaleaks.models.l10n import NodeL10NFactory
+from globaleaks.models.config import NodeL10NFactory
 from globaleaks.rest.errors import InputValidationError
 from globaleaks.tests import helpers
 from twisted.internet.defer import inlineCallbacks
