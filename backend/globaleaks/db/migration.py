@@ -33,7 +33,7 @@ from globaleaks.db.migrations.update_39 import \
     ReceiverFile_v_38, ReceiverTip_v_38, ShortURL_v_38, Stats_v_38, \
     Step_v_38, User_v_38, WhistleblowerFile_v_38, WhistleblowerTip_v_38
 from globaleaks.orm import get_engine
-from globaleaks.models import config, l10n, Base
+from globaleaks.models import config, Base
 from globaleaks.models.config import ConfigFactory
 from globaleaks.settings import Settings
 from globaleaks.utils.security import overwrite_and_remove
@@ -44,8 +44,8 @@ migration_mapping = OrderedDict([
     ('Anomalies', [-1, -1, -1, -1, -1, -1, Anomalies_v_38, 0, 0, 0, 0, 0, 0, 0, 0, models.Anomalies]),
     ('ArchivedSchema', [ArchivedSchema_v_38, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, models.ArchivedSchema]),
     ('Comment', [Comment_v_31, 0, 0, 0, 0, 0, 0, 0, Comment_v_38, 0, 0, 0, 0, 0, 0, models.Comment]),
-    ('Config', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, Config_v_38, 0, 0, 0, 0, config.Config]),
-    ('ConfigL10N', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, ConfigL10N_v_38, 0, 0, 0, 0, l10n.ConfigL10N]),
+    ('Config', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, Config_v_38, 0, 0, 0, 0, models.Config]),
+    ('ConfigL10N', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, ConfigL10N_v_38, 0, 0, 0, 0, models.ConfigL10N]),
     ('Context', [Context_v_26, 0, 0, Context_v_28, 0, Context_v_29, Context_v_30, Context_v_34, 0, 0, 0, Context_v_38, 0, 0, 0, models.Context]),
     ('ContextImg', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, models.ContextImg]),
     ('Counter', [Counter_v_38, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, models.Counter]),
@@ -124,8 +124,7 @@ def perform_data_update(db_file):
             # currently stored in the DB.
             for tid in [t[0] for t in session.query(models.Tenant.id)]:
                 appdata = load_appdata()
-                config.update_defaults(session, tid)
-                l10n.update_defaults(session, tid, appdata)
+                config.update_defaults(session, tid, appdata)
 
             db_update_defaults(session)
             db_fix_fields_attrs(session)

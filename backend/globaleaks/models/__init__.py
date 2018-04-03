@@ -6,6 +6,7 @@ from __future__ import absolute_import
 import collections
 import copy
 
+from globaleaks.models.config_desc import ConfigDescriptor
 from globaleaks.models.properties import *
 from globaleaks.orm import transact
 from globaleaks.rest import errors
@@ -864,3 +865,71 @@ class CustomTexts(Model, Base):
 
     unicode_keys = ['lang']
     json_keys = ['texts']
+
+
+class Config(Model, Base):
+    __tablename__ = 'config'
+    tid = Column(Integer, ForeignKey('tenant.id', ondelete='CASCADE', deferrable=True, initially='DEFERRED'), primary_key=True, default=1, nullable=False)
+    var_name = Column(Unicode(64), primary_key=True, nullable=False)
+    value = Column(JSON, nullable=False)
+    customized = Column(Boolean, default=False, nullable=False)
+
+    def __init__(self, tid=1, name=None, value=None, migrate=False):
+        """
+        :param value:    This input is passed directly into set_v
+        :param migrate:  Added to comply with models.Model constructor which is
+                         used to copy every field returned by the ORM from the db
+                         from an old_obj to a new one.
+        """
+        if migrate:
+            return
+
+        self.tid = tid
+        self.var_name = unicode(name)
+        self.set_v(value)
+
+    def set_v(self, val):
+        desc = ConfigDescriptor[self.var_name]
+        if val is None:
+            val = desc._type()
+
+        if isinstance(desc, config_desc.Unicode) and isinstance(val, str):
+            val = unicode(val)
+
+        if not isinstance(val, desc._type):
+            raise ValueError("Cannot assign %s with %s" % (self, type(val)))
+
+        if self.value is not None:
+            self.customized = True
+
+        self.value = val
+
+    def get_v(self):
+        return self.value
+
+
+class ConfigL10N(Model, Base):
+    __tablename__ = 'config_l10n'
+
+    tid = Column(Integer, primary_key=True, default=1, nullable=False)
+    lang = Column(Unicode(5), primary_key=True)
+    var_name = Column(Unicode(64), primary_key=True)
+    value = Column(UnicodeText)
+    customized = Column(Boolean, default=False)
+
+    __table_args__ = (ForeignKeyConstraint(['tid', 'lang'], ['enabledlanguage.tid', 'enabledlanguage.name'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),)
+
+    def __init__(self, tid=1, lang_code=None, var_name=None, value='', migrate=False):
+        if migrate:
+            return
+
+        self.tid = tid
+        self.lang = unicode(lang_code)
+        self.var_name = unicode(var_name)
+        self.value = unicode(value)
+
+    def set_v(self, value):
+        value = unicode(value)
+        if self.value != value:
+            self.value = value
+            self.customized = True

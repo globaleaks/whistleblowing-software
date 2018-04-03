@@ -6,8 +6,7 @@ from globaleaks.db.appdata import load_appdata
 from globaleaks.handlers.admin.node import admin_serialize_node
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.user import get_user_settings
-from globaleaks.models.config import ConfigFactory
-from globaleaks.models.l10n import NotificationL10NFactory
+from globaleaks.models.config import ConfigFactory, NotificationL10NFactory
 from globaleaks.orm import transact
 from globaleaks.rest import requests
 from globaleaks.state import State

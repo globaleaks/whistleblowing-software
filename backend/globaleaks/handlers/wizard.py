@@ -7,7 +7,7 @@ from globaleaks.handlers.admin.context import db_create_context
 from globaleaks.handlers.admin.node import db_update_enabled_languages
 from globaleaks.handlers.admin.user import db_create_user, db_create_receiver_user
 from globaleaks.handlers.base import BaseHandler
-from globaleaks.models import config, l10n, profiles
+from globaleaks.models import config, profiles
 from globaleaks.orm import transact
 from globaleaks.rest import requests, errors
 from globaleaks.utils.utility import log
@@ -37,7 +37,7 @@ def db_wizard(session, state, tid, request, client_using_tor, language):
     node.set_val(u'anonymize_outgoing_connections', client_using_tor)
     node.set_val(u'disable_encryption_warnings', not client_using_tor)
 
-    node_l10n = l10n.NodeL10NFactory(session, tid)
+    node_l10n = config.NodeL10NFactory(session, tid)
     node_l10n.set_val(u'header_title_homepage', language, request['node_name'])
 
     profiles.load_profile(session, tid, request['profile'])
