@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-03-27 10:49+0000\n"
-"Last-Translator: Chi-Hsun Tsai\n"
+"PO-Revision-Date: 2018-04-04 12:51+0000\n"
+"Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/otf/globaleaks/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -718,6 +718,9 @@ msgid "Selected by default"
 msgstr ""
 
 msgid "Unselected by default"
+msgstr ""
+
+msgid "Surname"
 msgstr ""
 
 msgid "Select the context of your submission:"
@@ -1454,6 +1457,9 @@ msgstr "否定回答時再次確認問題之標題"
 
 msgid "Body of the confirmation question upon negative answer"
 msgstr "否定回覆時，再次確認問題的內容"
+
+msgid "Text of the final statement upon negative answer"
+msgstr ""
 
 msgid "Options"
 msgstr "選項"

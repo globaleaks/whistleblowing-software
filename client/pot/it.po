@@ -25,7 +25,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-03-28 10:38+0000\n"
+"PO-Revision-Date: 2018-04-04 16:30+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Italian (http://www.transifex.com/otf/globaleaks/language/it/)\n"
 "MIME-Version: 1.0\n"
@@ -734,6 +734,9 @@ msgstr "Selezionato di default"
 
 msgid "Unselected by default"
 msgstr "Non selezionato di default"
+
+msgid "Surname"
+msgstr "Cognome"
 
 msgid "Select the context of your submission:"
 msgstr "Seleziona il contesto della tua segnalazione"
@@ -1468,6 +1471,9 @@ msgid "Title of the confirmation question upon negative answer"
 msgstr "Titolo della domanda di conferma in caso di risposta negativa"
 
 msgid "Body of the confirmation question upon negative answer"
+msgstr "Testo della domanda di conferma in caso di risposta negativa"
+
+msgid "Text of the final statement upon negative answer"
 msgstr "Testo della domanda di conferma in caso di risposta negativa"
 
 msgid "Options"

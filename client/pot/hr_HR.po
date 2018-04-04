@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-03-27 10:49+0000\n"
-"Last-Translator: Igor <lyricaltumor@gmail.com>\n"
+"PO-Revision-Date: 2018-04-04 12:51+0000\n"
+"Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Croatian (Croatia) (http://www.transifex.com/otf/globaleaks/language/hr_HR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -716,6 +716,9 @@ msgid "Selected by default"
 msgstr ""
 
 msgid "Unselected by default"
+msgstr ""
+
+msgid "Surname"
 msgstr ""
 
 msgid "Select the context of your submission:"
@@ -1452,6 +1455,9 @@ msgstr "Naslov pitanja potvrde na negativan odgovor"
 
 msgid "Body of the confirmation question upon negative answer"
 msgstr "Poruka pitanja potvrde na negativan odgovor"
+
+msgid "Text of the final statement upon negative answer"
+msgstr ""
 
 msgid "Options"
 msgstr "Opcije"
