@@ -139,7 +139,7 @@ def update_identity_information(session, tid, tip_id, identity_field_id, identit
     questionnaire = db_serialize_archived_questionnaire_schema(session, aqs.schema, language)
     for step in questionnaire:
         for field in step['children']:
-            if field['id'] == identity_field_id and field['id'] == 'whistleblower_identity':
+            if field['id'] == identity_field_id and field['template_id'] == 'whistleblower_identity':
                 db_save_questionnaire_answers(session, tid, internaltip.id,
                                               {identity_field_id: [identity_field_answers]})
                 now = datetime_now()
