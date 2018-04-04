@@ -1,3 +1,12 @@
+Changes in version 3.0.19 - 2018-04-04
+    o Update translations
+    o Bump npm dependencies to latest stables versions
+
+    Addresses issues:
+    - https://github.com/globaleaks/GlobaLeaks/issues/2238
+    - https://github.com/globaleaks/GlobaLeaks/issues/2240
+    - https://github.com/globaleaks/GlobaLeaks/issues/2249
+
 Changes in version 3.0.18 - 2018-03-28
     o Fix errors on validation of PGP key
     o Update translations
