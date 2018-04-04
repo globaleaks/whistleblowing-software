@@ -1,11 +1,11 @@
-<div id="PrivacyBadge" data-ng-init="open = true" data-ng-mouseenter="open = true" data-ng-if="!node.enable_custom_privacy_badge">
-  <div data-ng-if="!connection.tor" id="PrivacyBadgeTextBox" class="pull-left">
-    <div>
+<div data-ng-aaaaif="!connection.tor" data-ng-init="connection.privacy_badge_open = true" data-ng-mouseenter="connection.privacy_badge_open = true">
+  <div id="PrivacyBadge" data-ng-if="!node.enable_custom_privacy_badge">
+    <div id="PrivacyBadgeTextBox" class="pull-left">
       <span class="label label-warning">
         <i class="glyphicon glyphicon-warning-sign"></i>
         <span data-translate>Warning</span>
       </span>
-      <div data-ng-show="open">
+      <div data-ng-show="connection.privacy_badge_open">
         <div id="PrivacyBadgeText">
           <div data-translate>It appears that you are browsing this site without any extra privacy and security!</div>
           <div data-translate>You are strongly advised to visit this site using the desktop app called Tor Browser, that protects your identity.</div>
@@ -17,21 +17,21 @@
         </div>
       </div>
     </div>
+    <div id="PrivacyBoxCloseButton" class="pull-right">
+      <a type="submit" data-ng-click="connection.privacy_badge_open = false">
+        <i class="glyphicon glyphicon glyphicon-remove-circle"></i>
+      </a>
+    </div>
   </div>
-  <div id="PrivacyBoxCloseButton" class="pull-right">
-    <a data-ng-show="open" type="submit" data-ng-click="open = false">
-      <i class="glyphicon glyphicon glyphicon-remove-circle"></i>
-    </a>
+  <div id="PrivacyBadgeCustom" data-ng-if="node.enable_custom_privacy_badge">
+    <div id="PrivacyBoxTextBox" class="pull-left">
+      <span id="PrivacyBadgeCustomText" data-ng-show="connection.privacy_badge_open">{{node.custom_privacy_badge_text}}</span>
+    </div>
+    <div id="PrivacyBoxCloseButton" class="pull-right">
+      <a type="submit" data-ng-click="connection.privacy_badge_open = false">
+        <i class="glyphicon glyphicon-remove-circle"></i>
+      </a>
+    </div>
   </div>
   <div class="clearfix"></div>
-</div>
-<div id="PrivacyBadgeCustom" data-ng-if="node.enable_custom_privacy_badge">
-  <div data-ng-if="!connection.tor" id="PrivacyBoxTextBox">
-    <span id="PrivacyBadgeCustomText">{{node.custom_privacy_badge_text}}</span>
-  </div>
-  <div id="PrivacyBoxCloseButton" class="pull-right">
-    <a data-ng-show="open" type="submit" data-ng-click="open = false">
-      <i class="glyphicon glyphicon glyphicon-remove-circle"></i>
-    </a>
-  </div>
 </div>
