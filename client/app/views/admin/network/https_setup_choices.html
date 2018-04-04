@@ -3,12 +3,12 @@
 <div class="row">
   <div class="col-md-6">
     <div class="panel panel-default">
-      <div class="panel-heading"> <span data-translate>Automatic configuration</div>
+      <div class="panel-heading" data-translate>Automatic configuration</div>
       <div class="panel-body">
         <p>
           <span data-translate>Using automatic HTTPS configuration will handle the entire process of requesting, enabling and renewing certificates from the Let's Encrypt Certificate Authority.</span> <span data-translate>The platform must be reachable through a public IP address and the selected hostname must have a corresponding DNS record referencing that address.</span> <a href="https://letsencrypt.org" rel="noreferrer noopener">Read more</a>.
         </p>
-        <button id="HTTPSAutoMode" class="btn btn-primary" data-ng-click="initAcme()">Proceed</button>
+        <button id="HTTPSAutoMode" class="btn btn-primary" data-ng-click="initAcme()" data-translate>Proceed</button>
       </div>
     </div>
   </div>
@@ -17,7 +17,7 @@
       <div class="panel-heading" data-translate>Manual configuration</div>
       <div class="panel-body">
       <p data-translate>The manual configuration wizard will guide you through the setup of HTTPS from an alternative Certificate Authority.</p>
-      <button id="HTTPSManualMode" class="btn btn-primary" data-ng-click="chooseManCfg()">Proceed</button>
+      <button id="HTTPSManualMode" class="btn btn-primary" data-ng-click="chooseManCfg()" data-translate>Proceed</button>
     </div>
   </div>
 </div>
