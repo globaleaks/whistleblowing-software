@@ -46,7 +46,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-03-27 10:49+0000\n"
+"PO-Revision-Date: 2018-04-04 12:51+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: German (http://www.transifex.com/otf/globaleaks/language/de/)\n"
 "MIME-Version: 1.0\n"
@@ -754,6 +754,9 @@ msgid "Selected by default"
 msgstr ""
 
 msgid "Unselected by default"
+msgstr ""
+
+msgid "Surname"
 msgstr ""
 
 msgid "Select the context of your submission:"
@@ -1490,6 +1493,9 @@ msgstr "Titel der Bestätigungsfrage bei negativer Antwort"
 
 msgid "Body of the confirmation question upon negative answer"
 msgstr "Körper der Bestätigung Frage auf negative Antwort"
+
+msgid "Text of the final statement upon negative answer"
+msgstr ""
 
 msgid "Options"
 msgstr "Optionen"

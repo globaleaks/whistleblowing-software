@@ -38,8 +38,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-03-27 10:49+0000\n"
-"Last-Translator: Rahma Sghaier <sghair.rahma@gmail.com>\n"
+"PO-Revision-Date: 2018-04-04 12:51+0000\n"
+"Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Arabic (http://www.transifex.com/otf/globaleaks/language/ar/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -737,15 +737,18 @@ msgid "Collapse"
 msgstr ""
 
 msgid "Expand"
-msgstr ""
+msgstr "تمديد"
 
 msgid "Select"
 msgstr "تحديد"
 
 msgid "Selected by default"
-msgstr ""
+msgstr "مختار/ة افتراضيا"
 
 msgid "Unselected by default"
+msgstr "غير مختار/ة افتراضيا"
+
+msgid "Surname"
 msgstr ""
 
 msgid "Select the context of your submission:"
@@ -1482,6 +1485,9 @@ msgstr "عنوان سؤال التأكيد على الإجابة السلبية"
 
 msgid "Body of the confirmation question upon negative answer"
 msgstr "نص سؤال التأكيد على الإجابة السلبية"
+
+msgid "Text of the final statement upon negative answer"
+msgstr ""
 
 msgid "Options"
 msgstr "خيارات"
