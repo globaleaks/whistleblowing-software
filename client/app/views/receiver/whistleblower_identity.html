@@ -2,8 +2,7 @@
   <div class="panel-heading" data-ng-click="collapsed = !collapsed; $event.stopPropagation();">
     <div>
       <span>
-        <span data-translate>Identity</span><span>:</span>
-        <span data-translate>Available</span>
+        <span data-translate>Identity</span><span></span>
         <span class="pull-right">
           <i data-ng-if="!collapsed" class="glyphicon glyphicon-collapse-down" uib-popover="{{'Collapse' | translate}}" popover-placement="left"></i>
           <i data-ng-if="collapsed" class="glyphicon glyphicon-fullscreen" uib-popover="{{'Expand' | translate}}" popover-placement="left"></i>
@@ -29,7 +28,8 @@
       </div>
       <div data-ng-if="iar.reply == 'denied'"><label data-translate>Reply motivation</label>:<span>{{tip.last_iarl.reply_motivation}}</span></div>
     </div>
-    <div data-ng-if="!whistleblower_identity_field.attrs.visibility_subject_to_authorization.value || (tip.last_iar && tip.last_iar.reply == 'authorized')">
+    <span data-ng-if="!internaltip.identity_provided" data-translate>Undeclared</span>
+    <div data-ng-if="tip.identity_provided && !whistleblower_identity_field.attrs.visibility_subject_to_authorization.value || (tip.last_iar && tip.last_iar.reply == 'authorized')">
       <dd data-ng-repeat="field in whistleblower_identity_field.children | orderBy:['y', 'x']">
         <span data-ng-init="fieldAnswers=tip.answers[whistleblower_identity_field.id][0]" data-ng-include="'views/partials/tip_field.html'"></span>
       <dd>
