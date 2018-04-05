@@ -191,7 +191,7 @@ class _Anomalies(Model):
     events = Column(JSON, nullable=False)
 
     @declared_attr
-    def __table_args__(cls):
+    def __table_args__(cls): # pylint: disable=no-self-argument
         return (ForeignKeyConstraint(['tid'], ['tenant.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),)
 
 
@@ -222,7 +222,7 @@ class _Comment(Model):
     new = Column(Integer, default=True, nullable=False)
 
     @declared_attr
-    def __table_args__(cls):
+    def __table_args__(cls): # pylint: disable=no-self-argument
         return (ForeignKeyConstraint(['id'], ['user.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),
                 ForeignKeyConstraint(['author_id'], ['user.id'], ondelete='SET NULL', deferrable=True, initially='DEFERRED'),)
 
@@ -249,7 +249,7 @@ class _Config(Model):
         self.set_v(value)
 
     @declared_attr
-    def __table_args__(cls):
+    def __table_args__(cls): # pylint: disable=no-self-argument
         return (ForeignKeyConstraint(['tid'], ['tenant.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),)
 
     def set_v(self, val):
@@ -282,7 +282,7 @@ class _ConfigL10N(Model):
     customized = Column(Boolean, default=False)
 
     @declared_attr
-    def __table_args__(cls):
+    def __table_args__(cls): # pylint: disable=no-self-argument
         return (ForeignKeyConstraint(['tid', 'lang'], ['enabledlanguage.tid', 'enabledlanguage.name'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),)
 
     def __init__(self, tid=1, lang_code=None, var_name=None, value='', migrate=False):
@@ -360,7 +360,7 @@ class _Context(Model):
     list_keys = ['receivers']
 
     @declared_attr
-    def __table_args__(cls):
+    def __table_args__(cls): # pylint: disable=no-self-argument
         return (ForeignKeyConstraint(['tid'], ['tenant.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),
                 ForeignKeyConstraint(['questionnaire_id'], ['questionnaire.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'))
 
@@ -378,7 +378,7 @@ class _ContextImg(Model):
     unicode_keys = ['data']
 
     @declared_attr
-    def __table_args__(cls):
+    def __table_args__(cls): # pylint: disable=no-self-argument
         return (ForeignKeyConstraint(['id'], ['context.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),)
 
 
@@ -398,7 +398,7 @@ class _Counter(Model):
     int_keys = ['number']
 
     @declared_attr
-    def __table_args__(cls):
+    def __table_args__(cls): # pylint: disable=no-self-argument
         return (ForeignKeyConstraint(['tid'], ['tenant.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),)
 
 
@@ -419,7 +419,7 @@ class _CustomTexts(Model):
     json_keys = ['texts']
 
     @declared_attr
-    def __table_args__(cls):
+    def __table_args__(cls): # pylint: disable=no-self-argument
         return (ForeignKeyConstraint(['tid'], ['tenant.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),)
 
 
@@ -445,7 +445,7 @@ class _EnabledLanguage(Model):
         return [(lang.tid, lang.name) for lang in session.query(EnabledLanguage).filter(EnabledLanguage.tid.in_(tid_list))]
 
     @declared_attr
-    def __table_args__(cls):
+    def __table_args__(cls): # pylint: disable=no-self-argument
         return (ForeignKeyConstraint(['tid'], ['tenant.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),)
 
 
@@ -479,7 +479,7 @@ class _Field(Model):
     editable = Column(Boolean, default=True, nullable=False)
 
     @declared_attr
-    def __table_args__(cls):
+    def __table_args__(cls): # pylint: disable=no-self-argument
         return (ForeignKeyConstraint(['tid'], ['tenant.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),
                 ForeignKeyConstraint(['template_id'], ['field.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),
                 ForeignKeyConstraint(['fieldgroup_id'], ['field.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),
@@ -521,7 +521,7 @@ class _FieldAttr(Model):
     unicode_keys = ['field_id', 'name', 'type']
 
     @declared_attr
-    def __table_args__(cls):
+    def __table_args__(cls): # pylint: disable=no-self-argument
         return (ForeignKeyConstraint(['field_id'], ['field.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),
                 CheckConstraint(cls.type.in_(['int',
                                               'bool',
@@ -562,7 +562,7 @@ class _FieldAnswer(Model):
     bool_keys = ['is_leaf']
 
     @declared_attr
-    def __table_args__(cls):
+    def __table_args__(cls): # pylint: disable=no-self-argument
         return (ForeignKeyConstraint(['internaltip_id'], ['internaltip.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),
                 ForeignKeyConstraint(['fieldanswergroup_id'], ['fieldanswergroup.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'))
 
@@ -578,7 +578,7 @@ class _FieldAnswerGroup(Model):
     int_keys = ['number']
 
     @declared_attr
-    def __table_args__(cls):
+    def __table_args__(cls): # pylint: disable=no-self-argument
         return (ForeignKeyConstraint(['fieldanswer_id'], ['fieldanswer.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),)
 
 
@@ -599,7 +599,7 @@ class _FieldOption(Model):
     optional_references = ['trigger_field']
 
     @declared_attr
-    def __table_args__(cls):
+    def __table_args__(cls): # pylint: disable=no-self-argument
         return (ForeignKeyConstraint(['field_id'], ['field.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),
                 ForeignKeyConstraint(['trigger_field'], ['field.id'], ondelete='SET NULL', deferrable=True, initially='DEFERRED'))
 
@@ -619,7 +619,7 @@ class _File(Model):
     unicode_keys = ['data', 'name']
 
     @declared_attr
-    def __table_args__(cls):
+    def __table_args__(cls): # pylint: disable=no-self-argument
         return (ForeignKeyConstraint(['tid'], ['tenant.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),)
 
 
@@ -641,7 +641,7 @@ class _IdentityAccessRequest(Model):
     reply = Column(UnicodeText, default=u'pending', nullable=False)
 
     @declared_attr
-    def __table_args__(cls):
+    def __table_args__(cls): # pylint: disable=no-self-argument
         return (ForeignKeyConstraint(['receivertip_id'], ['receivertip.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),)
 
 
@@ -664,7 +664,7 @@ class _InternalFile(Model):
     processing_attempts = Column(Integer, default=0, nullable=False)
 
     @declared_attr
-    def __table_args__(cls):
+    def __table_args__(cls): # pylint: disable=no-self-argument
         return (ForeignKeyConstraint(['internaltip_id'], ['internaltip.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),)
 
 
@@ -698,7 +698,7 @@ class _InternalTip(Model):
     wb_access_counter = Column(Integer, default=0, nullable=False)
 
     @declared_attr
-    def __table_args__(cls):
+    def __table_args__(cls): # pylint: disable=no-self-argument
         return (ForeignKeyConstraint(['tid'], ['tenant.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),
                 ForeignKeyConstraint(['context_id'], ['context.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),
                 ForeignKeyConstraint(['questionnaire_hash'], ['archivedschema.hash'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'))
@@ -723,7 +723,7 @@ class _Mail(Model):
     unicode_keys = ['address', 'subject', 'body']
 
     @declared_attr
-    def __table_args__(cls):
+    def __table_args__(cls): # pylint: disable=no-self-argument
         return (ForeignKeyConstraint(['tid'], ['tenant.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),)
 
 
@@ -743,7 +743,7 @@ class _Message(Model):
     new = Column(Integer, default=True, nullable=False)
 
     @declared_attr
-    def __table_args__(cls):
+    def __table_args__(cls): # pylint: disable=no-self-argument
         return (ForeignKeyConstraint(['receivertip_id'], ['receivertip.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),
                 CheckConstraint(cls.type.in_(['receiver', 'whistleblower'])))
 
@@ -764,7 +764,7 @@ class _Questionnaire(Model):
     list_keys = ['steps']
 
     @declared_attr
-    def __table_args__(cls):
+    def __table_args__(cls): # pylint: disable=no-self-argument
         return (ForeignKeyConstraint(['tid'], ['tenant.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),)
 
 
@@ -783,7 +783,7 @@ class _Receiver(Model):
     tip_notification = Column(Boolean, default=True, nullable=False)
 
     @declared_attr
-    def __table_args__(cls):
+    def __table_args__(cls): # pylint: disable=no-self-argument
         return (ForeignKeyConstraint(['id'], ['user.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),
                 CheckConstraint(cls.configuration.in_(['default', 'forcefully_selected', 'unselectable'])))
 
@@ -814,7 +814,7 @@ class _ReceiverContext(Model):
     int_keys = ['presentation_order']
 
     @declared_attr
-    def __table_args__(cls):
+    def __table_args__(cls): # pylint: disable=no-self-argument
         return (ForeignKeyConstraint(['context_id'], ['context.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),
                 ForeignKeyConstraint(['receiver_id'], ['receiver.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'))
 
@@ -837,7 +837,7 @@ class _ReceiverFile(Model):
     status = Column(UnicodeText, nullable=False)
 
     @declared_attr
-    def __table_args__(cls):
+    def __table_args__(cls): # pylint: disable=no-self-argument
         return (ForeignKeyConstraint(['internalfile_id'], ['internalfile.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),
                 ForeignKeyConstraint(['receivertip_id'], ['receivertip.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),
                 CheckConstraint(cls.status.in_(['processing', 'reference', 'encrypted', 'unavailable', 'nokey'])))
@@ -867,7 +867,7 @@ class _ReceiverTip(Model):
     bool_keys = ['enable_notifications']
 
     @declared_attr
-    def __table_args__(cls):
+    def __table_args__(cls): # pylint: disable=no-self-argument
         return (ForeignKeyConstraint(['receiver_id'], ['receiver.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),
                 ForeignKeyConstraint(['internaltip_id'], ['internaltip.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'))
 
@@ -897,7 +897,7 @@ class _Signup(Model):
     unicode_keys = ['subdomain', 'name', 'surname', 'email', 'activation_token', 'use_case', 'use_case_other', 'language']
 
     @declared_attr
-    def __table_args__(cls):
+    def __table_args__(cls): # pylint: disable=no-self-argument
         return (ForeignKeyConstraint(['tid'], ['tenant.id'], ondelete='SET NULL', deferrable=True, initially='DEFERRED'),)
 
 
@@ -917,7 +917,7 @@ class _ShortURL(Model):
     unicode_keys = ['shorturl', 'longurl']
 
     @declared_attr
-    def __table_args__(cls):
+    def __table_args__(cls): # pylint: disable=no-self-argument
         return (ForeignKeyConstraint(['tid'], ['tenant.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),)
 
 
@@ -936,7 +936,7 @@ class _Step(Model):
     localized_keys = ['label', 'description']
 
     @declared_attr
-    def __table_args__(cls):
+    def __table_args__(cls): # pylint: disable=no-self-argument
         return (ForeignKeyConstraint(['questionnaire_id'], ['questionnaire.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),)
 
 
@@ -951,7 +951,7 @@ class _Stats(Model):
     summary = Column(JSON, nullable=False)
 
     @declared_attr
-    def __table_args__(cls):
+    def __table_args__(cls): # pylint: disable=no-self-argument
         return (ForeignKeyConstraint(['tid'], ['tenant.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),)
 
 
@@ -1017,7 +1017,7 @@ class _User(Model):
     date_keys = ['creation_date', 'last_login', 'password_change_date', 'pgp_key_expiration']
 
     @declared_attr
-    def __table_args__(cls):
+    def __table_args__(cls): # pylint: disable=no-self-argument
         return (ForeignKeyConstraint(['tid'], ['tenant.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),
                 UniqueConstraint('tid', 'username'),
                 CheckConstraint(cls.role.in_(['admin','receiver', 'custodian'])),
@@ -1037,7 +1037,7 @@ class _UserImg(Model):
     unicode_keys = ['data']
 
     @declared_attr
-    def __table_args__(cls):
+    def __table_args__(cls): # pylint: disable=no-self-argument
         return (ForeignKeyConstraint(['id'], ['user.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),)
 
 
@@ -1062,7 +1062,7 @@ class _WhistleblowerFile(Model):
     description = Column(UnicodeText, nullable=False)
 
     @declared_attr
-    def __table_args__(cls):
+    def __table_args__(cls): # pylint: disable=no-self-argument
         return (ForeignKeyConstraint(['receivertip_id'], ['receivertip.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),)
 
 
