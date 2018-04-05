@@ -98,7 +98,7 @@ class ConfigL10NFactory(object):
             ConfigL10NFactory.initialize(self, lang_code, l10n_data_src, list(set(self.keys) - set(old_keys)))
 
     def get_val(self, var_name, lang_code):
-        return models.db_get(self.session, ConfigL10N, ConfigL10N.tid == self.tid, ConfigL10N.lang == lang_code, ConfigL10N.var_name == var_name).value
+        return self.session.query(ConfigL10N).filter(ConfigL10N.tid == self.tid, ConfigL10N.lang == lang_code, ConfigL10N.var_name == var_name).value
 
     def set_val(self, var_name, lang_code, value):
         cfg = self.session.query(ConfigL10N).filter(ConfigL10N.tid == self.tid, ConfigL10N.lang == lang_code, ConfigL10N.var_name == var_name).one()
