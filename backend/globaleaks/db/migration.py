@@ -32,7 +32,7 @@ from globaleaks.db.migrations.update_39 import \
     Questionnaire_v_38, Receiver_v_38, ReceiverContext_v_38, \
     ReceiverFile_v_38, ReceiverTip_v_38, ShortURL_v_38, Stats_v_38, \
     Step_v_38, User_v_38, WhistleblowerFile_v_38, WhistleblowerTip_v_38
-from globaleaks.orm import get_engine
+from globaleaks.orm import get_engine, make_db_uri
 from globaleaks.models import config, Base
 from globaleaks.models.config import ConfigFactory
 from globaleaks.settings import Settings
@@ -99,7 +99,7 @@ def get_right_model(migration_mapping, model_name, version):
 
 
 def perform_data_update(db_file):
-    engine = get_engine('sqlite+pysqlite:////' + db_file, foreign_keys=False)
+    engine = get_engine(make_db_uri(db_file), foreign_keys=False)
     session = sessionmaker(bind=engine)()
 
     enabled_languages = [lang.name for lang in session.query(models.EnabledLanguage)]
@@ -173,10 +173,10 @@ def perform_migration(version):
             log.info("Updating DB from version %d to version %d" % (version, version + 1))
 
             j = version - FIRST_DATABASE_VERSION_SUPPORTED
-            engine = get_engine('sqlite+pysqlite:////' + old_db_file, foreign_keys=False)
+            engine = get_engine(make_db_uri(old_db_file), foreign_keys=False)
             session_old = sessionmaker(bind=engine)()
 
-            engine = get_engine('sqlite+pysqlite:////' + new_db_file, foreign_keys=False)
+            engine = get_engine(make_db_uri(new_db_file), foreign_keys=False)
             if FIRST_DATABASE_VERSION_SUPPORTED + j + 1 == DATABASE_VERSION:
                 Base.metadata.create_all(engine)
             else:
@@ -222,7 +222,7 @@ def perform_migration(version):
             log.info("Migration stats:")
 
             # we open a new db in order to verify integrity of the generated file
-            engine = get_engine('sqlite+pysqlite:////' + new_db_file)
+            engine = get_engine(make_db_uri(new_db_file))
             session_verify = sessionmaker(bind=engine)()
 
             for model_name, _ in migration_mapping.items():
