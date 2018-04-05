@@ -18,8 +18,6 @@ this_directory = os.path.dirname(__file__)
 root = os.path.abspath(os.path.join(this_directory, '..'))
 sys.path.insert(0, root)
 
-print("Starting GlobaLeaks ...")
-
 distro='unknown'
 if platform.system() == 'Linux':
     distro = platform.linux_distribution()[2]
@@ -41,8 +39,6 @@ if platform.system() == 'Linux':
 
 elif platform.system() == 'Windows':
     print("WARNING: Windows support is extremely experimental at this time, and should not be used for production environments")
-    print("WARNING: pip dependency checking not supported on Windows at this time")
-    # FIXME, locate root directory of GL path via registry for pip check
 
 from twisted.python import usage
 

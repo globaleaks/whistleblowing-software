@@ -56,7 +56,13 @@ FAILURES_TOR_OUTGOING = (
 
 
 def get_disk_space(path):
-    if platform.system() == 'Windows':
+    if platform.system() != 'Windows':
+        statvfs = os.statvfs(path)
+        free_bytes = statvfs.f_frsize * statvfs.f_bavail
+        total_bytes = statvfs.f_frsize * statvfs.f_blocks
+
+        return free_bytes, total_bytes
+    else:
         # statvfs not available on Windows; the only way to get it
         # without a new pypi dependency is to invoke ctypes voodoo
 
@@ -75,11 +81,6 @@ def get_disk_space(path):
             ctypes.pointer(free_bytes))
 
         return free_bytes.value, total_bytes.value
-    else:
-        statvfs = os.statvfs(path)
-        free_bytes = statvfs.f_frsize * statvfs.f_bavail
-        total_bytes = statvfs.f_frsize * statvfs.f_blocks
-    return free_bytes, total_bytes
 
 
 def read_file(p):
