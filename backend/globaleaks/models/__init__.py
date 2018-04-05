@@ -6,7 +6,7 @@ from __future__ import absolute_import
 import collections
 import copy
 
-from globaleaks.models.config_desc import ConfigDescriptor
+from globaleaks.models import config_desc
 from globaleaks.models.properties import *
 from globaleaks.orm import transact
 from globaleaks.rest import errors
@@ -253,7 +253,7 @@ class _Config(Model):
         return (ForeignKeyConstraint(['tid'], ['tenant.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),)
 
     def set_v(self, val):
-        desc = ConfigDescriptor[self.var_name]
+        desc = config_desc.ConfigDescriptor[self.var_name]
         if val is None:
             val = desc._type()
 
