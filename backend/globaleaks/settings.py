@@ -125,12 +125,14 @@ class SettingsClass(object):
         self.user = getpass.getuser()
         self.group = getpass.getuser()
 
+        # Initialize to None since Windows doesn't have a direct 1:1 concept
+        # of uid/gid.
+        self.uid = None
+        self.gid = None
+
         if platform.system() != 'Windows':
             self.uid = os.getuid()
             self.gid = os.getgid()
-        else:
-            self.uid = None
-            self.gid = None
 
         self.devel_mode = False
         self.developer_name = ''
