@@ -18,6 +18,8 @@ import uuid
 import platform
 from datetime import datetime, timedelta
 
+if platform.system() == 'Windows':
+    import ctypes
 
 from txsocksx.errors import TTLExpired, ConnectionRefused, ServerFailure
 from twisted.internet import reactor
@@ -54,9 +56,29 @@ FAILURES_TOR_OUTGOING = (
 
 
 def get_disk_space(path):
-    statvfs = os.statvfs(path)
-    free_bytes = statvfs.f_frsize * statvfs.f_bavail
-    total_bytes = statvfs.f_frsize * statvfs.f_blocks
+    if platform.system() == 'Windows':
+        # statvfs not available on Windows; the only way to get it
+        # without a new pypi dependency is to invoke ctypes voodoo
+
+        abs_path = os.path.abspath(path)
+        dir_path = os.path.dirname(abs_path)
+
+        free_bytes = ctypes.c_ulonglong(0)
+        total_bytes = ctypes.c_ulonglong(0)
+
+        # GetDiskFreeSpaceEx expects a directory path, and returns two
+        # pointers with the necessary information
+        ctypes.windll.kernel32.GetDiskFreeSpaceExW(
+            ctypes.c_wchar_p(dir_path),
+            None,
+            ctypes.pointer(total_bytes),
+            ctypes.pointer(free_bytes))
+
+        return free_bytes.value, total_bytes.value
+    else:
+        statvfs = os.statvfs(path)
+        free_bytes = statvfs.f_frsize * statvfs.f_bavail
+        total_bytes = statvfs.f_frsize * statvfs.f_blocks
     return free_bytes, total_bytes
 
 
