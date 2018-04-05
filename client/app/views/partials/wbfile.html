@@ -15,7 +15,7 @@
           </button>
         </span>
         <span data-ng-if="ctx === 'wbtip'">
-          <div class="download-button btn-warning btn btn-small" data-ng-click="showFileDownloadModal(tip, wbfile)">
+          <div class="download-button btn-warning btn btn-small" data-ng-click="downloadWBFile(wbfile)">
            <i class="glyphicon glyphicon-download-alt"></i> <span data-translate>Download</span>
           </div>
         </span>
@@ -25,9 +25,7 @@
     <p class="file-info-row">
       <span class="side-spaced">
         <span class="text-muted" data-translate>From</span>:&nbsp;
-        <span>
-        {{::wbfile.author | wbfileCreator: tip.receivers }}
-        </span>
+        <span>{{::wbfile.author | wbfileCreator: tip.receivers }}</span>
       </span>
       <span class="side-spaced">
         <span class="text-muted" data-translate>Creation date</span>:&nbsp;
@@ -46,7 +44,7 @@
       <span class="text-muted">
         <span data-translate>Description</span>:
       </span>
-      {{::wbfile.description }}
+      <span>{{::wbfile.description }}</span>
     </p>
   </div>
 </div>

@@ -23,7 +23,7 @@ def wb_serialize_ifile(session, ifile):
 
 def wb_serialize_wbfile(session, wbfile):
     receiver_id = session.query(models.ReceiverTip.receiver_id) \
-                         .filter(models.ReceiverTip.id == wbfile.receivertip_id).one()
+                         .filter(models.ReceiverTip.id == wbfile.receivertip_id).one()[0]
 
     return {
         'id': wbfile.id,

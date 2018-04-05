@@ -1,6 +1,6 @@
 GLClient.controller('TipCtrl',
-  ['$scope', '$location', '$route', '$routeParams', '$uibModal', '$http', 'Utils', 'Authentication', 'RTip', 'WBTip', 'ReceiverPreferences', 'RTipExport', 'RTipDownloadRFile', 'fieldUtilities',
-  function($scope, $location, $route, $routeParams, $uibModal, $http, Utils, Authentication, RTip, WBTip, ReceiverPreferences, RTipExport, RTipDownloadRFile, fieldUtilities) {
+  ['$scope', '$location', '$route', '$routeParams', '$uibModal', '$http', 'Utils', 'Authentication', 'RTip', 'WBTip', 'ReceiverPreferences', 'RTipExport', 'RTipDownloadRFile', 'WBTipDownloadFile', 'fieldUtilities',
+  function($scope, $location, $route, $routeParams, $uibModal, $http, Utils, Authentication, RTip, WBTip, ReceiverPreferences, RTipExport, RTipDownloadRFile, WBTipDownloadFile, fieldUtilities) {
     $scope.fieldUtilities = fieldUtilities;
 
     $scope.tip_id = $routeParams.tip_id;
@@ -96,16 +96,10 @@ GLClient.controller('TipCtrl',
           return ctx.enable_rc_to_wb_files && (tip.wbfiles.length > 0);
         };
 
-        $scope.showFileDownloadModal = function(tip, file) {
-          // Intentionally kept generic for later reuse.
-          $uibModal.open({
-            templateUrl: 'views/partials/file_download_modal.html',
-            controller: 'WBTipFileDownloadCtrl',
-            resolve: {
-              'file': function() { return file; },
-              'tip': function() { return tip; },
-            }
-          });
+        var reloadUI = function (){ $scope.reload(); };
+
+        $scope.downloadWBFile = function(file) {
+          WBTipDownloadFile(file).finally(reloadUI);
         };
 
         // FIXME: remove this variable that is now needed only to map wb_identity_field
