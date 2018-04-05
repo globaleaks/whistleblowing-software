@@ -124,7 +124,13 @@ def directory_traversal_check(trusted_absolute_prefix, untrusted_path):
         raise Exception("programming error: trusted_absolute_prefix is not an absolute path: %s" %
                         trusted_absolute_prefix)
 
+    # Windows fix, the trusted_absolute_prefix needs to be normalized for
+    # commonprefix to actually work as / is a valid path seperator, but
+    # you can end up with things like this: C:\\GlobaLeaks\\client\\app/
+    # without it
+
     untrusted_path = os.path.abspath(untrusted_path)
+    trusted_absolute_prefix = os.path.abspath(trusted_absolute_prefix)
 
     if trusted_absolute_prefix != os.path.commonprefix([trusted_absolute_prefix, untrusted_path]):
         log.err("Blocked file operation for: (prefix, attempted_path) : ('%s', '%s')",
