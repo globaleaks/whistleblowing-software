@@ -27,15 +27,6 @@
     },
     "header_title_tippage": {
       "en": "Submission status"
-    },
-    "widget_comments_title": {
-      "en": "Comments"
-    },
-    "widget_messages_title": {
-      "en": "Private messages"
-    },
-    "widget_files_title": {
-      "en": "Attachments"
     }
   },
   "templates" : {}
