@@ -20,7 +20,7 @@ controller('ConfirmableDialogCtrl', ['$scope', '$uibModalInstance', 'arg', funct
   };
 }]);
 
-GLClient.controller('AnonimityModalCtrl', ['$scope', '$location', '$uibModalInstance',
+GLClient.controller('DisclaimerModalCtrl', ['$scope', '$location', '$uibModalInstance',
                     function($scope, $location, $uibModalInstance) {
   $scope.ok = function () {
     $uibModalInstance.close();
