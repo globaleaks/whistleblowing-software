@@ -35,7 +35,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-04-04 12:51+0000\n"
+"PO-Revision-Date: 2018-04-08 11:12+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Dutch (http://www.transifex.com/otf/globaleaks/language/nl/)\n"
 "MIME-Version: 1.0\n"
@@ -825,12 +825,6 @@ msgstr "Ontvangers toestaan om klokkenluiders per tip rechten toe te wijzen"
 msgid "Enable search engines indexing"
 msgstr "Zoekmachine-indexering inschakelen"
 
-msgid "Enabled"
-msgstr "Ingeschakeld"
-
-msgid "Search engine spiders will be allowed to index the application."
-msgstr "Zoekmachines krijgen toestemming om de applicatie te doorzoeken."
-
 msgid "Enable custom privacy panel"
 msgstr "Gepersonaliseerd privacy-paneel inschakelen"
 
@@ -843,14 +837,14 @@ msgstr "Tekst die wordt getoond wanneer de klokkenluider geen Tor gebruikt"
 msgid "Disable the privacy panel"
 msgstr "Privacy-paneel uitschakelen"
 
-msgid "Security awareness panel title"
-msgstr "Titel van het veiligheidsbewustzijnspaneel"
+msgid "Enable disclaimer"
+msgstr ""
 
-msgid "Security awareness panel text"
-msgstr "Tekst voor het veiligheidsbewustzijnspaneel"
+msgid "Title"
+msgstr "Titel"
 
-msgid "Disable the security awareness panel questions"
-msgstr "Veiligheidsbewustzijnspaneel-vragen uitzetten"
+msgid "Text"
+msgstr "Tekst"
 
 msgid "Disable the security awareness panel"
 msgstr "Veiligheidsbewustzijn-paneel uitzetten"
@@ -892,9 +886,6 @@ msgstr "Inzendingspagina"
 msgid "Title of the submission page"
 msgstr "Titel van de inzending-pagina"
 
-msgid "Title of the attachments widget"
-msgstr "Titel van de bijlagen-widget"
-
 msgid "Text of prompt for whistleblowers to log in"
 msgstr "Tekst om de klokkenluider op te roepen om in te loggen"
 
@@ -906,12 +897,6 @@ msgstr "Titel van de ontvanger-pagina"
 
 msgid "Title of the submission status page"
 msgstr "Titel van de inzending status-pagina"
-
-msgid "Title of the comments widget"
-msgstr "Titel van de commentaren-widget"
-
-msgid "Title of the messages widget"
-msgstr "Titel van de meldingen-widget"
 
 msgid "Size limit for file attachments"
 msgstr "Maximale grootte voor bestandsbijlagen"
@@ -935,12 +920,6 @@ msgstr "Gebruikersnaam"
 
 msgid "Password"
 msgstr "Wachtwoord"
-
-msgid ""
-"This feature keeps regular people from visiting the platform while it is "
-"still under development and should not be used for security purposes. The "
-"input password is stored in plaintext on the server."
-msgstr "Deze functie weerhoudt gewone mensen om het platform te bezoeken tijdens de ontwikkeling en mag niet gebruikt worden ter beveiliging. Het wachtwoord wordt namelijk op de server als niet-versleutelde tekst bewaard."
 
 msgid "Enable experimental features"
 msgstr "Experimentele functies inschakelen"
@@ -1096,6 +1075,9 @@ msgstr "Sta ontvanger toe om bestanden te versturen voor klokkenluiders"
 
 msgid "Disabled"
 msgstr "Uitgeschakeld"
+
+msgid "Enabled"
+msgstr "Ingeschakeld"
 
 msgid "Submission expiration, in days"
 msgstr "Verlooptijd van de inzending in dagen"
@@ -1673,18 +1655,6 @@ msgstr "Dit betekent dat indien de server waarop de platform draait in beslag wo
 msgid "Are you sure that you wish to continue?"
 msgstr "Weet je zeker dat je door wilt gaan?"
 
-msgid ""
-"Downloading a file with malicious content could compromise your computer or "
-"disclose your identity."
-msgstr "Het downloaden van kwaadwillende content (malware) brengt je computer in gevaar en kan je identiteit prijsgeven."
-
-msgid "The name of the file and its content can be intentionally misleading."
-msgstr "De naam en inhoud van een bestand kan opzettelijk misleidend zijn."
-
-msgid ""
-"Please review the following information and decide if you wish to proceed."
-msgstr "Let goed op onderstaande punten alvorens te beslissen om door te gaan."
-
 msgid "Error!"
 msgstr "Mislukt!"
 
@@ -1751,28 +1721,6 @@ msgstr "seconden"
 
 msgid "Size:"
 msgstr "Grootte:"
-
-msgid "Which of the following statements is true?"
-msgstr "Welke van de volgende beweringen is waar?"
-
-msgid "HTTPS protects my identity, but not the content of my submission"
-msgstr "HTTPS beschermt mijn identiteit, maar niet de inhoud van mijn inzending"
-
-msgid "HTTPS protects the content of my submission but not my identity"
-msgstr "HTTPS beschermt de inhoud van mijn inzending maar niet mijn identiteit"
-
-msgid "HTTPS does not protect the content of my submission nor my identity"
-msgstr "HTTPS beschermt noch de inhoud van mijn inzending noch mijn identiteit "
-
-msgid "HTTPS does protect both my identity and the content of my submission"
-msgstr "HTTPS beschermt zowel mijn identiteit als ook de inhoud van mijn inzending"
-
-msgid ""
-"You are aware of the risks involved. Go ahead, but consider yourself warned."
-msgstr "U bent zich bewust van de risico's, gaat u verder en blijf alert."
-
-msgid "Wrong Answer!"
-msgstr "Verkeerde antwoord!"
 
 msgid "The connection is not secure."
 msgstr "De verbinding is onbeveiligd."
@@ -1966,6 +1914,9 @@ msgstr "De toezichthouder heeft een aanvraag ingediend om toegang te krijgen tot
 msgid "Date of the request"
 msgstr "Datum aanvraag"
 
+msgid "Undeclared"
+msgstr ""
+
 msgid "Congratulations!"
 msgstr "Gefeliciteerd!"
 
@@ -2128,6 +2079,9 @@ msgstr "Beste {RecipientName},"
 msgid "Kind regards,"
 msgstr "Met vriendelijke groet,"
 
+msgid "Access instructions"
+msgstr ""
+
 msgid ""
 "The number of activities recently detected appears to be higher than usual."
 msgstr "Het aantal recente activiteiten blijkt hoger dan gebruikelijk te zijn."
@@ -2179,6 +2133,27 @@ msgstr "Zonder een geldige PGP-sleutel, kan het systeem hen geen versleutelde no
 
 msgid "PGP key expiration alert"
 msgstr "PGP-sleutelvervalwaarschuwing"
+
+msgid "A new whistleblowing site has been registered."
+msgstr ""
+
+msgid "Registration data:"
+msgstr ""
+
+msgid "Site: {HTTPSUrl} "
+msgstr ""
+
+msgid "Name: {Name}"
+msgstr ""
+
+msgid "Email: {Email}"
+msgstr ""
+
+msgid "Use case: {UseCase}"
+msgstr ""
+
+msgid "New whistleblowing site registered"
+msgstr ""
 
 msgid ""
 "This is a test email sent out from the platform's administrative interface."
@@ -2329,6 +2304,9 @@ msgid "Notifications from {NodeName} have been temporarily suspended"
 msgstr "Updates over {NodeName} zijn tijdelijk uitgeschakeld."
 
 msgid "Click the link to activate the platform:"
+msgstr ""
+
+msgid "Activation"
 msgstr ""
 
 msgid "A software update is available."

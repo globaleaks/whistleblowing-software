@@ -12,7 +12,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-04-04 12:51+0000\n"
+"PO-Revision-Date: 2018-04-08 11:12+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Vietnamese (http://www.transifex.com/otf/globaleaks/language/vi/)\n"
 "MIME-Version: 1.0\n"
@@ -802,12 +802,6 @@ msgstr "Cho phép người nhận để cấp quyền cho người tố cáo v�
 msgid "Enable search engines indexing"
 msgstr "Bật công cụ tìm kiếm lập chỉ mục"
 
-msgid "Enabled"
-msgstr "Bật"
-
-msgid "Search engine spiders will be allowed to index the application."
-msgstr "Công cụ tìm kiếm nhện sẽ được phép chỉ số ứng dụng."
-
 msgid "Enable custom privacy panel"
 msgstr "Kích hoạt tính năng bảng điều khiển riêng tư tùy chỉnh"
 
@@ -820,14 +814,14 @@ msgstr "Văn bản hiển thị khi tố cáo là không sử dụng Tor"
 msgid "Disable the privacy panel"
 msgstr "Vô hiệu hóa bảng điều khiển riêng tư"
 
-msgid "Security awareness panel title"
-msgstr "An ninh tiêu đề bảng điều khiển nhận thức"
+msgid "Enable disclaimer"
+msgstr ""
 
-msgid "Security awareness panel text"
-msgstr "văn bản bảng nhận thức an ninh"
+msgid "Title"
+msgstr "Tiêu đề"
 
-msgid "Disable the security awareness panel questions"
-msgstr "Vô hiệu hoá các câu hỏi bảng điều khiển nhận thức an ninh"
+msgid "Text"
+msgstr "Văn bản"
 
 msgid "Disable the security awareness panel"
 msgstr "Vô hiệu hóa bảng điều khiển nhận thức an ninh"
@@ -869,9 +863,6 @@ msgstr "thông tin trang"
 msgid "Title of the submission page"
 msgstr "Tiêu đề của trang trình"
 
-msgid "Title of the attachments widget"
-msgstr "Tiêu đề của widget file đính kèm"
-
 msgid "Text of prompt for whistleblowers to log in"
 msgstr ""
 
@@ -883,12 +874,6 @@ msgstr "Tiêu đề của trang biên nhận"
 
 msgid "Title of the submission status page"
 msgstr "Tiêu đề của trang trạng thái gửi"
-
-msgid "Title of the comments widget"
-msgstr "Tiêu đề của widget comments"
-
-msgid "Title of the messages widget"
-msgstr "Tiêu đề của thông điệp phụ tùng"
 
 msgid "Size limit for file attachments"
 msgstr "Kích thước giới hạn cho tập tin đính kèm"
@@ -912,12 +897,6 @@ msgstr "Người dùng"
 
 msgid "Password"
 msgstr "Mật khẩu"
-
-msgid ""
-"This feature keeps regular people from visiting the platform while it is "
-"still under development and should not be used for security purposes. The "
-"input password is stored in plaintext on the server."
-msgstr "Tính năng này giúp người dân thường xuyên truy cập vào nền tảng này trong khi nó vẫn còn đang phát triển và không nên được sử dụng cho các mục đích an ninh. Việc nhập mật khẩu được lưu trữ trong bản rõ trên máy chủ."
 
 msgid "Enable experimental features"
 msgstr "Kích hoạt tính năng thử nghiệm"
@@ -1073,6 +1052,9 @@ msgstr ""
 
 msgid "Disabled"
 msgstr "Tàn tật"
+
+msgid "Enabled"
+msgstr "Bật"
 
 msgid "Submission expiration, in days"
 msgstr "hết hạn nộp hồ sơ, trong ngày"
@@ -1650,18 +1632,6 @@ msgstr "Điều này có nghĩa rằng nếu các máy chủ chạy nền tảng
 msgid "Are you sure that you wish to continue?"
 msgstr "Bạn có chắc chắn rằng bạn muốn tiếp tục không?"
 
-msgid ""
-"Downloading a file with malicious content could compromise your computer or "
-"disclose your identity."
-msgstr ""
-
-msgid "The name of the file and its content can be intentionally misleading."
-msgstr ""
-
-msgid ""
-"Please review the following information and decide if you wish to proceed."
-msgstr ""
-
 msgid "Error!"
 msgstr "Lỗi!"
 
@@ -1728,28 +1698,6 @@ msgstr "giây"
 
 msgid "Size:"
 msgstr ""
-
-msgid "Which of the following statements is true?"
-msgstr "Phần phát biểu nào sau đây là đúng?"
-
-msgid "HTTPS protects my identity, but not the content of my submission"
-msgstr ""
-
-msgid "HTTPS protects the content of my submission but not my identity"
-msgstr ""
-
-msgid "HTTPS does not protect the content of my submission nor my identity"
-msgstr ""
-
-msgid "HTTPS does protect both my identity and the content of my submission"
-msgstr ""
-
-msgid ""
-"You are aware of the risks involved. Go ahead, but consider yourself warned."
-msgstr "Bạn nên cẩn thận tính chất nguy hiểm khi tham gia vào, nhưng nếu bạn vẫn muốn tiếp tục, thì nên nhớ bạn đã được cảnh báo."
-
-msgid "Wrong Answer!"
-msgstr "Đáp án sai!"
 
 msgid "The connection is not secure."
 msgstr ""
@@ -1943,6 +1891,9 @@ msgstr "Truy cập đến danh tính của người tố giác đã được yê
 msgid "Date of the request"
 msgstr "Ngày của yêu cầu"
 
+msgid "Undeclared"
+msgstr ""
+
 msgid "Congratulations!"
 msgstr "Chúc mừng"
 
@@ -2105,6 +2056,9 @@ msgstr "Kính gửi {RecipientName}"
 msgid "Kind regards,"
 msgstr "Trân trọng,"
 
+msgid "Access instructions"
+msgstr ""
+
 msgid ""
 "The number of activities recently detected appears to be higher than usual."
 msgstr "Số lượng các hoạt động gần đây phát hiện dường như là cao hơn bình thường."
@@ -2156,6 +2110,27 @@ msgstr "Nếu không có một chìa khóa PGP hợp lệ, hệ thống sẽ kh�
 
 msgid "PGP key expiration alert"
 msgstr "PGP cảnh báo hết hạn chính"
+
+msgid "A new whistleblowing site has been registered."
+msgstr ""
+
+msgid "Registration data:"
+msgstr ""
+
+msgid "Site: {HTTPSUrl} "
+msgstr ""
+
+msgid "Name: {Name}"
+msgstr ""
+
+msgid "Email: {Email}"
+msgstr ""
+
+msgid "Use case: {UseCase}"
+msgstr ""
+
+msgid "New whistleblowing site registered"
+msgstr ""
 
 msgid ""
 "This is a test email sent out from the platform's administrative interface."
@@ -2306,6 +2281,9 @@ msgid "Notifications from {NodeName} have been temporarily suspended"
 msgstr "Thông báo từ {NodeName} đã tạm thời bị đình chỉ"
 
 msgid "Click the link to activate the platform:"
+msgstr ""
+
+msgid "Activation"
 msgstr ""
 
 msgid "A software update is available."

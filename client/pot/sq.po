@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-04-04 12:51+0000\n"
+"PO-Revision-Date: 2018-04-08 11:12+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Albanian (http://www.transifex.com/otf/globaleaks/language/sq/)\n"
 "MIME-Version: 1.0\n"
@@ -797,12 +797,6 @@ msgstr "Lejojnë përfituesit për të dhënë leje për informuesit në aplikim
 msgid "Enable search engines indexing"
 msgstr "Mundësoni indeksimin e motorëve të kërkimit"
 
-msgid "Enabled"
-msgstr "Mundësuar"
-
-msgid "Search engine spiders will be allowed to index the application."
-msgstr "\"Zbuluesit\" të motorit të kërkimit do t'i lejohet që ta indeksojë aplikacionin. "
-
 msgid "Enable custom privacy panel"
 msgstr "Aftësoni panelin e privatësisë së përshtatur"
 
@@ -815,14 +809,14 @@ msgstr "Teksti që shfaqet kur informatori s'është duke e përdorur Tor-in"
 msgid "Disable the privacy panel"
 msgstr "Paaftësoni panelin e privatësisë së përshtatur"
 
-msgid "Security awareness panel title"
-msgstr "Security Titulli panel vetëdijes"
+msgid "Enable disclaimer"
+msgstr ""
 
-msgid "Security awareness panel text"
-msgstr "Security panel vetëdijes text"
+msgid "Title"
+msgstr "Titulli"
 
-msgid "Disable the security awareness panel questions"
-msgstr "Paaftësoni pyetjet e panelit të ndërgjegjësimit mbi sigurinë"
+msgid "Text"
+msgstr "Tekst"
 
 msgid "Disable the security awareness panel"
 msgstr "Paaftësoni panelin e ndërgjegjësimit mbi sigurinë"
@@ -864,9 +858,6 @@ msgstr "Faqja për Paraqitje"
 msgid "Title of the submission page"
 msgstr "Titulli i faqes dorëzimit"
 
-msgid "Title of the attachments widget"
-msgstr "Titulli i attachments widget"
-
 msgid "Text of prompt for whistleblowers to log in"
 msgstr ""
 
@@ -878,12 +869,6 @@ msgstr "Titulli i faqes pranimit"
 
 msgid "Title of the submission status page"
 msgstr "Titulli i faqes status dorëzimit"
-
-msgid "Title of the comments widget"
-msgstr "Titulli i komenteve widget"
-
-msgid "Title of the messages widget"
-msgstr "Titulli i mesazheve widget"
 
 msgid "Size limit for file attachments"
 msgstr "Kufiri Size për fotografi të bashkëngjitni skedarë"
@@ -907,12 +892,6 @@ msgstr "Emër përdoruesi"
 
 msgid "Password"
 msgstr "Fjalëkalim"
-
-msgid ""
-"This feature keeps regular people from visiting the platform while it is "
-"still under development and should not be used for security purposes. The "
-"input password is stored in plaintext on the server."
-msgstr "Ky funksion i mban njerëzit të rregullta nga vizita platformë ndërsa ajo është ende në zhvillim e sipër dhe nuk duhet të përdoret për qëllime të sigurisë. Fjalëkalimi input është ruajtur në plaintext në server."
 
 msgid "Enable experimental features"
 msgstr "Aktivizo karakteristika eksperimentale"
@@ -1068,6 +1047,9 @@ msgstr ""
 
 msgid "Disabled"
 msgstr "Paaftësuar"
+
+msgid "Enabled"
+msgstr "Mundësuar"
 
 msgid "Submission expiration, in days"
 msgstr "skadimit Paraqitja, në ditët e"
@@ -1645,18 +1627,6 @@ msgstr "Kjo do të thotë se në qoftë se serveri drejtimin platformë duhej t�
 msgid "Are you sure that you wish to continue?"
 msgstr "Jeni i sigurt se doni të vazhdoni?"
 
-msgid ""
-"Downloading a file with malicious content could compromise your computer or "
-"disclose your identity."
-msgstr ""
-
-msgid "The name of the file and its content can be intentionally misleading."
-msgstr ""
-
-msgid ""
-"Please review the following information and decide if you wish to proceed."
-msgstr ""
-
 msgid "Error!"
 msgstr "Error!"
 
@@ -1723,28 +1693,6 @@ msgstr "sekonda "
 
 msgid "Size:"
 msgstr ""
-
-msgid "Which of the following statements is true?"
-msgstr "Cila nga deklarimet e mëposhtme është e vërtetë?"
-
-msgid "HTTPS protects my identity, but not the content of my submission"
-msgstr ""
-
-msgid "HTTPS protects the content of my submission but not my identity"
-msgstr ""
-
-msgid "HTTPS does not protect the content of my submission nor my identity"
-msgstr ""
-
-msgid "HTTPS does protect both my identity and the content of my submission"
-msgstr ""
-
-msgid ""
-"You are aware of the risks involved. Go ahead, but consider yourself warned."
-msgstr "Jeni i vetëdijshëm për rreziqet e përfshira. Shkoni përpara, por e konsiderojeni veten të paralajmëruar."
-
-msgid "Wrong Answer!"
-msgstr "Përgjigje e Gabuar!"
 
 msgid "The connection is not secure."
 msgstr ""
@@ -1938,6 +1886,9 @@ msgstr "Qasja në identitetin e Whistleblower i është kërkuar të kujdestarit
 msgid "Date of the request"
 msgstr "Data e kërkesës"
 
+msgid "Undeclared"
+msgstr ""
+
 msgid "Congratulations!"
 msgstr "Urime!"
 
@@ -2100,6 +2051,9 @@ msgstr "Dear {RecipientName},"
 msgid "Kind regards,"
 msgstr "Me respekt, "
 
+msgid "Access instructions"
+msgstr ""
+
 msgid ""
 "The number of activities recently detected appears to be higher than usual."
 msgstr "Numri i aktiviteteve të zbuluara kohët e fundit duket të jetë më i lartë se zakonisht."
@@ -2151,6 +2105,27 @@ msgstr "Pa një çelës PGP të vlefshëm, sistemi s'do mund t'u dërgojë atyre
 
 msgid "PGP key expiration alert"
 msgstr "Alarm për Skadimin e Çelësit PGP"
+
+msgid "A new whistleblowing site has been registered."
+msgstr ""
+
+msgid "Registration data:"
+msgstr ""
+
+msgid "Site: {HTTPSUrl} "
+msgstr ""
+
+msgid "Name: {Name}"
+msgstr ""
+
+msgid "Email: {Email}"
+msgstr ""
+
+msgid "Use case: {UseCase}"
+msgstr ""
+
+msgid "New whistleblowing site registered"
+msgstr ""
 
 msgid ""
 "This is a test email sent out from the platform's administrative interface."
@@ -2301,6 +2276,9 @@ msgid "Notifications from {NodeName} have been temporarily suspended"
 msgstr "Njoftimet nga {NodeName} janë pezulluar përkohësisht"
 
 msgid "Click the link to activate the platform:"
+msgstr ""
+
+msgid "Activation"
 msgstr ""
 
 msgid "A software update is available."

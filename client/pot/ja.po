@@ -9,7 +9,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-04-04 12:51+0000\n"
+"PO-Revision-Date: 2018-04-08 11:12+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Japanese (http://www.transifex.com/otf/globaleaks/language/ja/)\n"
 "MIME-Version: 1.0\n"
@@ -799,12 +799,6 @@ msgstr "受信者が、特定の提出の内部告発者に権限を付与する
 msgid "Enable search engines indexing"
 msgstr "検索エンジンのインデックス化を有効にする"
 
-msgid "Enabled"
-msgstr "有効"
-
-msgid "Search engine spiders will be allowed to index the application."
-msgstr "検索エンジンのスパイダーがアプリケーションをスパイダーすることを許可することになります。"
-
 msgid "Enable custom privacy panel"
 msgstr "カスタムのプライバシー・バッジを有効にする"
 
@@ -817,14 +811,14 @@ msgstr "内部告発者がTorを使用していないときに表示するテキ
 msgid "Disable the privacy panel"
 msgstr "プライバシー・バッジを無効にする"
 
-msgid "Security awareness panel title"
-msgstr "セキュリティ・アウェアネス・バッジのタイトル"
+msgid "Enable disclaimer"
+msgstr ""
 
-msgid "Security awareness panel text"
-msgstr "セキュリティ・アウェアネス・バッジのテキスト"
+msgid "Title"
+msgstr "タイトル"
 
-msgid "Disable the security awareness panel questions"
-msgstr "セキュリティ・アウェアネス・バッジの質問を無効"
+msgid "Text"
+msgstr "テキスト"
 
 msgid "Disable the security awareness panel"
 msgstr "セキュリティ・アウェアネス・バッジを無効にする"
@@ -866,9 +860,6 @@ msgstr "提出ページ"
 msgid "Title of the submission page"
 msgstr "提出ページのタイトル"
 
-msgid "Title of the attachments widget"
-msgstr "添付ウィジェットのタイトル"
-
 msgid "Text of prompt for whistleblowers to log in"
 msgstr "内部告発者がログインするプロンプトのテキスト"
 
@@ -880,12 +871,6 @@ msgstr "受領ページのタイトル"
 
 msgid "Title of the submission status page"
 msgstr "提出状況ページのタイトル"
-
-msgid "Title of the comments widget"
-msgstr "コメントウィジェットのタイトル"
-
-msgid "Title of the messages widget"
-msgstr "メッセージウィジェットのタイトル"
 
 msgid "Size limit for file attachments"
 msgstr "添付ファイルの制限サイズ"
@@ -909,12 +894,6 @@ msgstr "ユーザー名"
 
 msgid "Password"
 msgstr "パスワード"
-
-msgid ""
-"This feature keeps regular people from visiting the platform while it is "
-"still under development and should not be used for security purposes. The "
-"input password is stored in plaintext on the server."
-msgstr "この機能はプラットフォームを訪れる人々を一定に制限しますが、まだ開発中であり、セキュリティの目的で使用すべきではありません。入力されたパスワードは、サーバー上に平文で保存されます。"
 
 msgid "Enable experimental features"
 msgstr "実験的な機能を有効にする"
@@ -1070,6 +1049,9 @@ msgstr "受信者が、内部告発者向けのファイルをアップロード
 
 msgid "Disabled"
 msgstr "無効"
+
+msgid "Enabled"
+msgstr "有効"
 
 msgid "Submission expiration, in days"
 msgstr "提出有効期限、日数"
@@ -1458,7 +1440,7 @@ msgid "Body of the confirmation question upon negative answer"
 msgstr "否定の回答時に、確認の質問の本文"
 
 msgid "Text of the final statement upon negative answer"
-msgstr ""
+msgstr "否定の回答時に、最後の文章のテキスト"
 
 msgid "Options"
 msgstr "オプション"
@@ -1647,18 +1629,6 @@ msgstr "つまり、プラットフォームを実行しているサーバーが
 msgid "Are you sure that you wish to continue?"
 msgstr "本当に続けたいですか?"
 
-msgid ""
-"Downloading a file with malicious content could compromise your computer or "
-"disclose your identity."
-msgstr "悪質なコンテンツを含むファイルをダウンロードすると、コンピュータが侵害されたり、あなたの身元が明らかになる可能性があります。"
-
-msgid "The name of the file and its content can be intentionally misleading."
-msgstr "ファイル名とその内容は意図的に誤解させる可能性があります。"
-
-msgid ""
-"Please review the following information and decide if you wish to proceed."
-msgstr "次の情報を確認して、続行するかどうかを決定してください。"
-
 msgid "Error!"
 msgstr "エラー!"
 
@@ -1725,28 +1695,6 @@ msgstr "秒"
 
 msgid "Size:"
 msgstr "サイズ："
-
-msgid "Which of the following statements is true?"
-msgstr "以下の文章で正しいのはどれですか?"
-
-msgid "HTTPS protects my identity, but not the content of my submission"
-msgstr "HTTPSは私の身元を保護しますが、私の提出内容は保護しません"
-
-msgid "HTTPS protects the content of my submission but not my identity"
-msgstr "HTTPSは私の提出内容を保護しますが、私の身元は保護しません"
-
-msgid "HTTPS does not protect the content of my submission nor my identity"
-msgstr "HTTPSは私の提出内容も身元も保護しません"
-
-msgid "HTTPS does protect both my identity and the content of my submission"
-msgstr "HTTPSは私の身元も提出内容も保護します"
-
-msgid ""
-"You are aware of the risks involved. Go ahead, but consider yourself warned."
-msgstr "あなたは生じるリスクについて理解しています。警告を受けたことを理解した上で、どうぞ先に進んでください。"
-
-msgid "Wrong Answer!"
-msgstr "間違った答えです!"
 
 msgid "The connection is not secure."
 msgstr "接続が安全ではありません。"
@@ -1940,6 +1888,9 @@ msgstr "内部告発者の身元へのアクセスを管理人にリクエスト
 msgid "Date of the request"
 msgstr "リクエスト日"
 
+msgid "Undeclared"
+msgstr ""
+
 msgid "Congratulations!"
 msgstr "おめでとうございます"
 
@@ -2102,6 +2053,9 @@ msgstr "{RecipientName} 様"
 msgid "Kind regards,"
 msgstr "敬具"
 
+msgid "Access instructions"
+msgstr ""
+
 msgid ""
 "The number of activities recently detected appears to be higher than usual."
 msgstr "最近検出された活動の数が、通常よりも高いようです。"
@@ -2153,6 +2107,27 @@ msgstr "有効なPGP鍵がなければ、システムはあなたに暗号化さ
 
 msgid "PGP key expiration alert"
 msgstr "PGP鍵期限切れアラート"
+
+msgid "A new whistleblowing site has been registered."
+msgstr ""
+
+msgid "Registration data:"
+msgstr ""
+
+msgid "Site: {HTTPSUrl} "
+msgstr ""
+
+msgid "Name: {Name}"
+msgstr ""
+
+msgid "Email: {Email}"
+msgstr ""
+
+msgid "Use case: {UseCase}"
+msgstr ""
+
+msgid "New whistleblowing site registered"
+msgstr ""
 
 msgid ""
 "This is a test email sent out from the platform's administrative interface."
@@ -2304,6 +2279,9 @@ msgstr "{NodeName} からの通知は、一時的に停止しています"
 
 msgid "Click the link to activate the platform:"
 msgstr "リンクをクリックしてプラットフォームを有効にしてください:"
+
+msgid "Activation"
+msgstr ""
 
 msgid "A software update is available."
 msgstr "ソフトウェアのアップデートが利用可能です"

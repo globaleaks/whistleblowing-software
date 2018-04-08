@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-04-04 12:51+0000\n"
+"PO-Revision-Date: 2018-04-08 11:12+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Norwegian Bokmål (Norway) (http://www.transifex.com/otf/globaleaks/language/nb_NO/)\n"
 "MIME-Version: 1.0\n"
@@ -797,12 +797,6 @@ msgstr "Tillat mottakere å forære rettigheter til fløyteblåsere på gitte in
 msgid "Enable search engines indexing"
 msgstr "Skru på søkemotor-indeksering"
 
-msgid "Enabled"
-msgstr "Påskrudd"
-
-msgid "Search engine spiders will be allowed to index the application."
-msgstr "Søkemotor-snoker vil kunne indeksere programmet."
-
 msgid "Enable custom privacy panel"
 msgstr "Skru på egentilpasset personvernspanel"
 
@@ -815,14 +809,14 @@ msgstr "Tekst som vises når fløyteblåseren ikke bruker Tor"
 msgid "Disable the privacy panel"
 msgstr "Skru av personvernspanelet"
 
-msgid "Security awareness panel title"
-msgstr "Tittel på årvåkenhetspanel for sikkerhet"
+msgid "Enable disclaimer"
+msgstr ""
 
-msgid "Security awareness panel text"
-msgstr "Tekst på årvåkenhetspanelet for sikkerhet"
+msgid "Title"
+msgstr "Tittel"
 
-msgid "Disable the security awareness panel questions"
-msgstr "Skru av spørsmål tilknyttet årvåkenhetspanelet for sikkerhet"
+msgid "Text"
+msgstr "Tekst"
 
 msgid "Disable the security awareness panel"
 msgstr "Skru av årvåkenhetspanelet for sikkerhet"
@@ -864,9 +858,6 @@ msgstr "Innsendelsesside"
 msgid "Title of the submission page"
 msgstr "Tittel for innsendelsesside"
 
-msgid "Title of the attachments widget"
-msgstr "Tittel for skjermelement for vedlegg"
-
 msgid "Text of prompt for whistleblowers to log in"
 msgstr "Tekst som etterspør innlogging for fløyteblåsere"
 
@@ -878,12 +869,6 @@ msgstr "Tittel for kvitteringsside"
 
 msgid "Title of the submission status page"
 msgstr "Tittel på statusside for innsendelser"
-
-msgid "Title of the comments widget"
-msgstr "Tittel for skjermelement for kommentarer"
-
-msgid "Title of the messages widget"
-msgstr "Tittel for skjermelement for meldinger"
 
 msgid "Size limit for file attachments"
 msgstr "Størrelsesgrense for vedlegg"
@@ -907,12 +892,6 @@ msgstr "Brukernavn"
 
 msgid "Password"
 msgstr "Passord"
-
-msgid ""
-"This feature keeps regular people from visiting the platform while it is "
-"still under development and should not be used for security purposes. The "
-"input password is stored in plaintext on the server."
-msgstr "Denne funksjoner forhindrer vanlige folk fra å besøke plattformen når den er under utvikling og burde ikke brukes av sikkerhetsgrunner. Inndata-passordet lagres i klartekst på tjeneren."
 
 msgid "Enable experimental features"
 msgstr "Skru på eksperimentelle funksjoner"
@@ -1068,6 +1047,9 @@ msgstr "Tillat mottakere å laste opp filer til fløyteblåsere"
 
 msgid "Disabled"
 msgstr "Avskrudd"
+
+msgid "Enabled"
+msgstr "Påskrudd"
 
 msgid "Submission expiration, in days"
 msgstr "Utløp for innsendelse, i dager"
@@ -1645,18 +1627,6 @@ msgstr "Dette betyr at hvis tjeneren som kjører plattformen blir beslaglagt ell
 msgid "Are you sure that you wish to continue?"
 msgstr "Er du sikker på at du vil forstsette?"
 
-msgid ""
-"Downloading a file with malicious content could compromise your computer or "
-"disclose your identity."
-msgstr "Å late ned en fil med skadelig innhold kan ta over din datamaskin eller lekke din identitet."
-
-msgid "The name of the file and its content can be intentionally misleading."
-msgstr "Navnet på fila og dens innhold kan være misledende med vilje."
-
-msgid ""
-"Please review the following information and decide if you wish to proceed."
-msgstr "Se over følgende informasjon og bestem deg for om du vil fortsette."
-
 msgid "Error!"
 msgstr "Feil!"
 
@@ -1723,28 +1693,6 @@ msgstr "sekunder"
 
 msgid "Size:"
 msgstr "Størrelse:"
-
-msgid "Which of the following statements is true?"
-msgstr "Hvilket av følgende utsagn er sanne?"
-
-msgid "HTTPS protects my identity, but not the content of my submission"
-msgstr "HTTPS beskytter min identitet, men ikke innholdet i min innsendelse"
-
-msgid "HTTPS protects the content of my submission but not my identity"
-msgstr "HTTPS beskytter innholdet i min innsendelse, men ikke min identitet"
-
-msgid "HTTPS does not protect the content of my submission nor my identity"
-msgstr "HTTPS beskytter ikke innholdet i min innsendelse, ei heller min identitet"
-
-msgid "HTTPS does protect both my identity and the content of my submission"
-msgstr "HTTPS beskytter min identitet og innholdet av min innsendelse"
-
-msgid ""
-"You are aware of the risks involved. Go ahead, but consider yourself warned."
-msgstr "Du er klar over risikoene, vær så god, du er advart."
-
-msgid "Wrong Answer!"
-msgstr "Feil svar!"
 
 msgid "The connection is not secure."
 msgstr "Tilkoblingen er ikke sikker."
@@ -1938,6 +1886,9 @@ msgstr "Tilgang til fløyteblåsers identitet har blitt forespurt av tillitspers
 msgid "Date of the request"
 msgstr "Dato for forespørsel"
 
+msgid "Undeclared"
+msgstr ""
+
 msgid "Congratulations!"
 msgstr "Gratulerer!"
 
@@ -2100,6 +2051,9 @@ msgstr "Kjære {RecipientName},"
 msgid "Kind regards,"
 msgstr "Vennlig hilsen,"
 
+msgid "Access instructions"
+msgstr ""
+
 msgid ""
 "The number of activities recently detected appears to be higher than usual."
 msgstr "Antallet nylige aktiviteter later til å være høyere enn normalt."
@@ -2151,6 +2105,27 @@ msgstr "Uten en gyldig PGP-nøkkel, vil systemet ikke kunne sende dem krypterte 
 
 msgid "PGP key expiration alert"
 msgstr "Utløpsvarsel for PGP-nøkkel"
+
+msgid "A new whistleblowing site has been registered."
+msgstr ""
+
+msgid "Registration data:"
+msgstr ""
+
+msgid "Site: {HTTPSUrl} "
+msgstr ""
+
+msgid "Name: {Name}"
+msgstr ""
+
+msgid "Email: {Email}"
+msgstr ""
+
+msgid "Use case: {UseCase}"
+msgstr ""
+
+msgid "New whistleblowing site registered"
+msgstr ""
 
 msgid ""
 "This is a test email sent out from the platform's administrative interface."
@@ -2302,6 +2277,9 @@ msgstr "Merknader fra {NodeName} har blitt midlertidig suspendert"
 
 msgid "Click the link to activate the platform:"
 msgstr "Klikk på lenken for å aktivere plattformen:"
+
+msgid "Activation"
+msgstr ""
 
 msgid "A software update is available."
 msgstr "En programvareoppgradering er tilgjengelig."

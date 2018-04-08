@@ -25,7 +25,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-04-04 16:30+0000\n"
+"PO-Revision-Date: 2018-04-08 11:27+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Italian (http://www.transifex.com/otf/globaleaks/language/it/)\n"
 "MIME-Version: 1.0\n"
@@ -815,12 +815,6 @@ msgstr "Permetti ai riceventi di modificare i privilegi dei whistleblower su spe
 msgid "Enable search engines indexing"
 msgstr "Abilita l'indicizzazione da parte dei motori di ricerca"
 
-msgid "Enabled"
-msgstr "Abilitato"
-
-msgid "Search engine spiders will be allowed to index the application."
-msgstr "I motori di ricerca saranno ora abilitati ad indicizzare l'applicazione."
-
 msgid "Enable custom privacy panel"
 msgstr "Abilita privacy panel personalizzato"
 
@@ -833,14 +827,14 @@ msgstr "Testo mostrato quando il whistleblower non sta utilizzando Tor"
 msgid "Disable the privacy panel"
 msgstr "Disabilita il privacy panel"
 
-msgid "Security awareness panel title"
-msgstr "Titolo del pannello di security awareness"
+msgid "Enable disclaimer"
+msgstr "Abilita disclaimer"
 
-msgid "Security awareness panel text"
-msgstr "Testo del pannello di security awareness"
+msgid "Title"
+msgstr "Titolo"
 
-msgid "Disable the security awareness panel questions"
-msgstr "Disabilita le domande del security awareness panel"
+msgid "Text"
+msgstr "testo"
 
 msgid "Disable the security awareness panel"
 msgstr "Disabilita il security awareness panel"
@@ -882,9 +876,6 @@ msgstr "Pagina di Segnalazione"
 msgid "Title of the submission page"
 msgstr "TItolo della pagina di segnalazione"
 
-msgid "Title of the attachments widget"
-msgstr "Titolo del widget allegati"
-
 msgid "Text of prompt for whistleblowers to log in"
 msgstr "Testo che invita il whistleblower a loggarsi sulla piattaforma"
 
@@ -896,12 +887,6 @@ msgstr "Titolo della pagina di ricevuta"
 
 msgid "Title of the submission status page"
 msgstr "Titolo della pagina dello stato della segnalazione"
-
-msgid "Title of the comments widget"
-msgstr "Titolo del widget commenti"
-
-msgid "Title of the messages widget"
-msgstr "Titolo del widget messaggi"
 
 msgid "Size limit for file attachments"
 msgstr "Dimensione limite dei file allegati"
@@ -925,12 +910,6 @@ msgstr "Nome utente"
 
 msgid "Password"
 msgstr "Password"
-
-msgid ""
-"This feature keeps regular people from visiting the platform while it is "
-"still under development and should not be used for security purposes. The "
-"input password is stored in plaintext on the server."
-msgstr "Questa opzione previene che normali visitatori accedano alla piattaforma mentre questa è in sviluppo e non dovrebbe essere utilizzata per ragioni di sicurezza. La password è memorizzata in chiaro sul server."
 
 msgid "Enable experimental features"
 msgstr "Abilità funzionalità sperimentali"
@@ -1086,6 +1065,9 @@ msgstr "Permetti ai riceventi di caricare file destinati al whistleblower"
 
 msgid "Disabled"
 msgstr "Disabilitato"
+
+msgid "Enabled"
+msgstr "Abilitato"
 
 msgid "Submission expiration, in days"
 msgstr "Scadenza delle segnalazioni, in giorni"
@@ -1663,18 +1645,6 @@ msgstr "Questo significa che se il server su cui esegue la piattaforma fosse con
 msgid "Are you sure that you wish to continue?"
 msgstr "Sei sicuro di voler conferermare?"
 
-msgid ""
-"Downloading a file with malicious content could compromise your computer or "
-"disclose your identity."
-msgstr "Scaricando un file con contenuto malevolo potresti compromettere il tuo computer o svelare la tua identità."
-
-msgid "The name of the file and its content can be intentionally misleading."
-msgstr "Il nome del file ed il suo contenuto potrebbero essere volutamente ingannevoli."
-
-msgid ""
-"Please review the following information and decide if you wish to proceed."
-msgstr "Si prega di rivedere le seguenti informazioni e decidere se procedere."
-
 msgid "Error!"
 msgstr "Errore!"
 
@@ -1741,28 +1711,6 @@ msgstr "secondi"
 
 msgid "Size:"
 msgstr "Dimensione:"
-
-msgid "Which of the following statements is true?"
-msgstr "Quale delle seguenti affermazioni è vera?"
-
-msgid "HTTPS protects my identity, but not the content of my submission"
-msgstr "HTTPS protegge la mia identità, ma non il contenuto della mia segnalazione"
-
-msgid "HTTPS protects the content of my submission but not my identity"
-msgstr "HTTPS protegge il contenuto della mia segnalazione ma non la mia identità"
-
-msgid "HTTPS does not protect the content of my submission nor my identity"
-msgstr "HTTPS non protegge il contenuto della mia segnalazione e nemmeno la mia  identità"
-
-msgid "HTTPS does protect both my identity and the content of my submission"
-msgstr "HTTPS protegge la mia identità ed il contenuto della mia segnalazione"
-
-msgid ""
-"You are aware of the risks involved. Go ahead, but consider yourself warned."
-msgstr "Se sei conscio dei rischi connessi, procedi pure, considerati avvertito."
-
-msgid "Wrong Answer!"
-msgstr "Risposta Errata!"
 
 msgid "The connection is not secure."
 msgstr "La connessione non è sicura."
@@ -1956,6 +1904,9 @@ msgstr "L'accesso all'identità del whistleblower è stato richiesto al custode.
 msgid "Date of the request"
 msgstr "Data della richiesta"
 
+msgid "Undeclared"
+msgstr "Non dichiarata"
+
 msgid "Congratulations!"
 msgstr "Congratulazioni!"
 
@@ -2118,6 +2069,9 @@ msgstr "Caro {RecipientName}"
 msgid "Kind regards,"
 msgstr "Distinti saluti,"
 
+msgid "Access instructions"
+msgstr "Istruzioni per l'accesso"
+
 msgid ""
 "The number of activities recently detected appears to be higher than usual."
 msgstr "Il numero di attività rilevate nell'ultimo periodo risultano essere maggiori del solito."
@@ -2169,6 +2123,27 @@ msgstr "Senza una chiave PGP valida, il sistema non sarà in grado di inviare lo
 
 msgid "PGP key expiration alert"
 msgstr "Notifica di scadenza chiave PGP"
+
+msgid "A new whistleblowing site has been registered."
+msgstr "Un nuovo sito di whistleblowing è stato registrato."
+
+msgid "Registration data:"
+msgstr "Dati di registrazione"
+
+msgid "Site: {HTTPSUrl} "
+msgstr "Sito: {HTTPSUrl} "
+
+msgid "Name: {Name}"
+msgstr "Nome: {Name}"
+
+msgid "Email: {Email}"
+msgstr "Email: {Email}"
+
+msgid "Use case: {UseCase}"
+msgstr "Caso d'uso: {UseCase}"
+
+msgid "New whistleblowing site registered"
+msgstr "Nuovo sito di whistlebowing registrato"
 
 msgid ""
 "This is a test email sent out from the platform's administrative interface."
@@ -2320,6 +2295,9 @@ msgstr "Le notifiche da {NodeName} sono state temporaneamente sospese"
 
 msgid "Click the link to activate the platform:"
 msgstr "Clicca il link per attivare la piattaforma:"
+
+msgid "Activation"
+msgstr "Attivazione"
 
 msgid "A software update is available."
 msgstr "E' disponibile un aggiornamento software."
