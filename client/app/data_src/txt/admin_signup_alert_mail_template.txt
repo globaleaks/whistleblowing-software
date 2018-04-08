@@ -1,11 +1,10 @@
 Dear {RecipientName},
 
-A new whistleblowing platform has been registered at:
-{HTTPSUrl}
+A new whistleblowing site has been registered.
 
 Registration data:
+Site: {HTTPSUrl}
 Name: {Name}
-Surname: {Surname}
 Email: {Email}
 Use case: {UseCase}
 

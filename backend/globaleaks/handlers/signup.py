@@ -76,10 +76,11 @@ def signup(session, state, tid, request, language):
         'type': 'admin_signup_alert',
         'signup': serialize_signup(signup),
         'node': db_admin_serialize_node(session, 1, language),
-        'notification': db_get_notification(session, 1, language),
+        'notification': db_get_notification(session, 1, language)
     })
 
     for user_desc in db_get_admin_users(session, 1):
+        template_vars['user'] = user_desc
         state.format_and_send_mail(session, 1, user_desc, template_vars)
 
     return ret
