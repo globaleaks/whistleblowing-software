@@ -513,6 +513,11 @@ class PlatformSignupKeyword(NodeKeyword):
         else:
             return signup_data['use_case']
 
+
+class AdminPlatformSignupKeyword(PlatformSignupKeyword):
+    def RecipientName(self):
+        return self.data['user']['name']
+
 supported_template_types = {
     u'tip': TipKeyword,
     u'comment': CommentKeyword,
@@ -528,9 +533,9 @@ supported_template_types = {
     u'admin_test': UserNodeKeyword,
     u'https_certificate_expiration': CertificateExprKeyword,
     u'software_update_available': SoftwareUpdateKeyword,
+    u'admin_signup_alert': AdminPlatformSignupKeyword,
     u'signup': PlatformSignupKeyword,
-    u'activation': PlatformSignupKeyword,
-    u'admin_signup_alert': PlatformSignupKeyword
+    u'activation': PlatformSignupKeyword
 }
 
 
