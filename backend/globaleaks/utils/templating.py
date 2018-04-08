@@ -303,7 +303,7 @@ class TipKeyword(UserNodeKeyword, ContextKeyword):
         if not len(comments):
             return '{Blank}'
 
-        ret = self.data['node']['widget_comments_title'] + ':\n'
+        ret = 'Comments:\n'
         ret += self.dump_messages(comments) + '\n'
         return ret + '\n'
 
@@ -312,7 +312,7 @@ class TipKeyword(UserNodeKeyword, ContextKeyword):
         if not len(messages):
             return '{Blank}'
 
-        ret = self.data['node']['widget_messages_title'] + ':\n'
+        ret = 'Private messages:\n'
         ret += self.dump_messages(messages)
         return ret + '\n'
 

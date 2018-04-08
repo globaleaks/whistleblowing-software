@@ -431,10 +431,7 @@ NodeDesc = {
     'enable_captcha': bool,
     'enable_proof_of_work':  bool,
     'enable_custom_privacy_badge': bool,
-    'custom_privacy_badge_text': unicode,
-    'widget_comments_title': unicode,
-    'widget_messages_title': unicode,
-    'widget_files_title': unicode
+    'custom_privacy_badge_text': unicode
 }
 
 TipOverviewDesc = {
