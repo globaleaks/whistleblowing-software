@@ -9,7 +9,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-04-04 12:51+0000\n"
+"PO-Revision-Date: 2018-04-08 11:12+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Azerbaijani (http://www.transifex.com/otf/globaleaks/language/az/)\n"
 "MIME-Version: 1.0\n"
@@ -799,12 +799,6 @@ msgstr "Qəbul edicilərə, informasiya ötürənlərin müəyyən təsdiqlərə
 msgid "Enable search engines indexing"
 msgstr "Axtarış motorlarının indeksləşməsini aktivləşdirin"
 
-msgid "Enabled"
-msgstr "Aktivdir"
-
-msgid "Search engine spiders will be allowed to index the application."
-msgstr "Axtarış Motor hörümcəklərinə müraciətləri qeyd etməsinə icazə veriləcək"
-
 msgid "Enable custom privacy panel"
 msgstr "Fərdi gizlilik panelini aktiv edin"
 
@@ -817,14 +811,14 @@ msgstr "İnformasiya ötürən  Tordan istifadə etmədikdə göstərilən mətn
 msgid "Disable the privacy panel"
 msgstr "Məxfilik panelini ləğv et"
 
-msgid "Security awareness panel title"
-msgstr "Təhlükəsizlik xəbərdarlığı panel başlığı"
+msgid "Enable disclaimer"
+msgstr ""
 
-msgid "Security awareness panel text"
-msgstr "Təhlükəsizlik xəbərdarlıq panel mətni"
+msgid "Title"
+msgstr "Başlıq"
 
-msgid "Disable the security awareness panel questions"
-msgstr "Təhlükəsizlik xəbərdarlıq panel suallarını sıradan çıxart"
+msgid "Text"
+msgstr "Mətn"
 
 msgid "Disable the security awareness panel"
 msgstr "Təhlükəsizlik xəbərdarlıq panelini sıradan çıxart"
@@ -866,9 +860,6 @@ msgstr "Təqdimat səhifəsi"
 msgid "Title of the submission page"
 msgstr "Təqdimat səhifəsinin adı"
 
-msgid "Title of the attachments widget"
-msgstr "Əlavələr blokunun adı"
-
 msgid "Text of prompt for whistleblowers to log in"
 msgstr "Daxil olmaq üçün informasiya ötürənlərə dəvət mətni "
 
@@ -880,12 +871,6 @@ msgstr "Qəbz səhifəsinin adı"
 
 msgid "Title of the submission status page"
 msgstr "Təqdimat  statusu səhifəsinin adı"
-
-msgid "Title of the comments widget"
-msgstr "Şərhlər blokunun adı "
-
-msgid "Title of the messages widget"
-msgstr "Mesajlar blokunun adı"
 
 msgid "Size limit for file attachments"
 msgstr "Fayl əlavələri üçün ölçü həddi"
@@ -909,12 +894,6 @@ msgstr "İstifadəçi adı"
 
 msgid "Password"
 msgstr "Şifrə"
-
-msgid ""
-"This feature keeps regular people from visiting the platform while it is "
-"still under development and should not be used for security purposes. The "
-"input password is stored in plaintext on the server."
-msgstr "Bu özəllik hələlik inkişaf mərhələsindədir və təhlükəsizlik məqsədləri üçün istifadə edilməməlidir. Giriş şifrəsi serverdə sadə mətndə saxlanılır."
 
 msgid "Enable experimental features"
 msgstr "Təcrübi imkanları aktivləşdirin"
@@ -1070,6 +1049,9 @@ msgstr "Qəbul edicilərə, informasiya ötürənlər üçün fayllar yükləmə
 
 msgid "Disabled"
 msgstr "Sönlüdür"
+
+msgid "Enabled"
+msgstr "Aktivdir"
 
 msgid "Submission expiration, in days"
 msgstr "təqdimat müddəti, gün"
@@ -1647,18 +1629,6 @@ msgstr "Platformanı işlədən server ələ keçirildiyi halda ixrac edilən fa
 msgid "Are you sure that you wish to continue?"
 msgstr "Davam etmək istədiyinizə əminsiniz mi?"
 
-msgid ""
-"Downloading a file with malicious content could compromise your computer or "
-"disclose your identity."
-msgstr "Zərərli məzmunlu bir faylın yüklənməsi kompüterinizi təhlükə altına və ya şəxsiyyətinizi ortaya qoyur."
-
-msgid "The name of the file and its content can be intentionally misleading."
-msgstr "Faylın adı və məzmunu qəsdən aldadıcı ola bilər."
-
-msgid ""
-"Please review the following information and decide if you wish to proceed."
-msgstr "Aşağıdakı məlumatları nəzərdən keçirin və davam etmək istəyib-istəmədiyiniz barədə qərar verin."
-
 msgid "Error!"
 msgstr "Səhv!"
 
@@ -1725,28 +1695,6 @@ msgstr "saniyə"
 
 msgid "Size:"
 msgstr ""
-
-msgid "Which of the following statements is true?"
-msgstr "Aşağıdakı ifadələrdən hansı doğrudur? "
-
-msgid "HTTPS protects my identity, but not the content of my submission"
-msgstr "HTTPS mənim təqdimat məzmunu deyil, kimliyimi qoruyur. "
-
-msgid "HTTPS protects the content of my submission but not my identity"
-msgstr "HTTPS mənim kimliyimi deyil, təqdimat məzmununu qoruyur. "
-
-msgid "HTTPS does not protect the content of my submission nor my identity"
-msgstr "HTTPS mənim nə kimliyimi, nə də təqdimat məzmununu qoruyur. "
-
-msgid "HTTPS does protect both my identity and the content of my submission"
-msgstr "HTTPS həm kimliyimi, həm də təqdimat məzmununu qoruyur. "
-
-msgid ""
-"You are aware of the risks involved. Go ahead, but consider yourself warned."
-msgstr "Sizə aid olan risklərdən xəbərdarsınız. Davam edin, amma risklərdən xəbərdar olduğunuzu unutmayın. "
-
-msgid "Wrong Answer!"
-msgstr "Yanlış cavab!"
 
 msgid "The connection is not secure."
 msgstr "Bağlantı təhlükəlidir."
@@ -1940,6 +1888,9 @@ msgstr "Mühafizəçidən informasiya ötürənin kimliyinə giriş tələb olun
 msgid "Date of the request"
 msgstr "Tələb olunan tarix"
 
+msgid "Undeclared"
+msgstr ""
+
 msgid "Congratulations!"
 msgstr "Təbriklər!"
 
@@ -1983,7 +1934,7 @@ msgid "Civic activism"
 msgstr ""
 
 msgid "Other"
-msgstr ""
+msgstr "Digər"
 
 msgid "Complete"
 msgstr "Tamamla"
@@ -2102,6 +2053,9 @@ msgstr "Əziz {RecipientName}, "
 msgid "Kind regards,"
 msgstr "Xoş arzularla,"
 
+msgid "Access instructions"
+msgstr ""
+
 msgid ""
 "The number of activities recently detected appears to be higher than usual."
 msgstr "Son zamanlarda aşkarlanan fəaliyyətlərin sayı normaldan daha yüksəkdir."
@@ -2153,6 +2107,27 @@ msgstr "Mümkün PGP açarı olmadan sistem şifrəli bildirişlər göndərə b
 
 msgid "PGP key expiration alert"
 msgstr "PGP əsas həyəcan siqnalı"
+
+msgid "A new whistleblowing site has been registered."
+msgstr ""
+
+msgid "Registration data:"
+msgstr ""
+
+msgid "Site: {HTTPSUrl} "
+msgstr ""
+
+msgid "Name: {Name}"
+msgstr ""
+
+msgid "Email: {Email}"
+msgstr ""
+
+msgid "Use case: {UseCase}"
+msgstr ""
+
+msgid "New whistleblowing site registered"
+msgstr ""
 
 msgid ""
 "This is a test email sent out from the platform's administrative interface."
@@ -2303,6 +2278,9 @@ msgid "Notifications from {NodeName} have been temporarily suspended"
 msgstr "{NodeName} dan gələn bildirişlər müvəqqəti dayandırılıb"
 
 msgid "Click the link to activate the platform:"
+msgstr ""
+
+msgid "Activation"
 msgstr ""
 
 msgid "A software update is available."

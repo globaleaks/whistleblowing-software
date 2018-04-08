@@ -9,7 +9,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-04-04 12:51+0000\n"
+"PO-Revision-Date: 2018-04-08 11:12+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Finnish (http://www.transifex.com/otf/globaleaks/language/fi/)\n"
 "MIME-Version: 1.0\n"
@@ -799,12 +799,6 @@ msgstr ""
 msgid "Enable search engines indexing"
 msgstr "Ota käyttöön hakukoneiden indeksointi"
 
-msgid "Enabled"
-msgstr "Käyttöönotettu"
-
-msgid "Search engine spiders will be allowed to index the application."
-msgstr "Hakukoneiden hakuohjelmien sallitaan tutkia sovellus."
-
 msgid "Enable custom privacy panel"
 msgstr "Ota käyttöön oma yksityisyyskulkukortti"
 
@@ -817,14 +811,14 @@ msgstr "Näytettävä teksti, kun ilmiantaja ei käytä Tor-verkkoa"
 msgid "Disable the privacy panel"
 msgstr "Ota pois käytöstä yksityisyyskulkukortti"
 
-msgid "Security awareness panel title"
+msgid "Enable disclaimer"
 msgstr ""
 
-msgid "Security awareness panel text"
-msgstr ""
+msgid "Title"
+msgstr "Otsikko"
 
-msgid "Disable the security awareness panel questions"
-msgstr "Ota pois käytöstä turvallisuuspaneelin kysymykset"
+msgid "Text"
+msgstr "Teksti"
 
 msgid "Disable the security awareness panel"
 msgstr "Ota pois käytöstä turvallisuuspaneeli"
@@ -866,9 +860,6 @@ msgstr "Lähetyssivu"
 msgid "Title of the submission page"
 msgstr ""
 
-msgid "Title of the attachments widget"
-msgstr ""
-
 msgid "Text of prompt for whistleblowers to log in"
 msgstr ""
 
@@ -879,12 +870,6 @@ msgid "Title of the receipt page"
 msgstr ""
 
 msgid "Title of the submission status page"
-msgstr ""
-
-msgid "Title of the comments widget"
-msgstr ""
-
-msgid "Title of the messages widget"
 msgstr ""
 
 msgid "Size limit for file attachments"
@@ -909,12 +894,6 @@ msgstr "Käyttäjätunnus"
 
 msgid "Password"
 msgstr "Salasana"
-
-msgid ""
-"This feature keeps regular people from visiting the platform while it is "
-"still under development and should not be used for security purposes. The "
-"input password is stored in plaintext on the server."
-msgstr ""
 
 msgid "Enable experimental features"
 msgstr ""
@@ -1070,6 +1049,9 @@ msgstr ""
 
 msgid "Disabled"
 msgstr "Otettu pois käytöstä"
+
+msgid "Enabled"
+msgstr "Käyttöönotettu"
 
 msgid "Submission expiration, in days"
 msgstr ""
@@ -1647,18 +1629,6 @@ msgstr ""
 msgid "Are you sure that you wish to continue?"
 msgstr "Oletko varma, että haluat jatkaa?"
 
-msgid ""
-"Downloading a file with malicious content could compromise your computer or "
-"disclose your identity."
-msgstr ""
-
-msgid "The name of the file and its content can be intentionally misleading."
-msgstr ""
-
-msgid ""
-"Please review the following information and decide if you wish to proceed."
-msgstr ""
-
 msgid "Error!"
 msgstr "Virhe!"
 
@@ -1725,28 +1695,6 @@ msgstr "sekuntia"
 
 msgid "Size:"
 msgstr "Koko:"
-
-msgid "Which of the following statements is true?"
-msgstr "Mitkä seuraavista väittämistä ovat tosia?"
-
-msgid "HTTPS protects my identity, but not the content of my submission"
-msgstr ""
-
-msgid "HTTPS protects the content of my submission but not my identity"
-msgstr ""
-
-msgid "HTTPS does not protect the content of my submission nor my identity"
-msgstr ""
-
-msgid "HTTPS does protect both my identity and the content of my submission"
-msgstr ""
-
-msgid ""
-"You are aware of the risks involved. Go ahead, but consider yourself warned."
-msgstr "Ymmärrän riskit. Voit edetä, mutta huomioi varoitukset."
-
-msgid "Wrong Answer!"
-msgstr "Väärä vastaus!"
 
 msgid "The connection is not secure."
 msgstr ""
@@ -1940,6 +1888,9 @@ msgstr ""
 msgid "Date of the request"
 msgstr ""
 
+msgid "Undeclared"
+msgstr ""
+
 msgid "Congratulations!"
 msgstr "Onneksi olkoon!"
 
@@ -2102,6 +2053,9 @@ msgstr "Hyvä {RecipientName},"
 msgid "Kind regards,"
 msgstr "Ystävälliset terveiset,"
 
+msgid "Access instructions"
+msgstr ""
+
 msgid ""
 "The number of activities recently detected appears to be higher than usual."
 msgstr ""
@@ -2153,6 +2107,27 @@ msgstr "Järjestelmä ei kykene lähettämään salakirjoitettuja ilmoituksia il
 
 msgid "PGP key expiration alert"
 msgstr "PGP-avaimen vanhenemishälytys"
+
+msgid "A new whistleblowing site has been registered."
+msgstr ""
+
+msgid "Registration data:"
+msgstr ""
+
+msgid "Site: {HTTPSUrl} "
+msgstr ""
+
+msgid "Name: {Name}"
+msgstr ""
+
+msgid "Email: {Email}"
+msgstr ""
+
+msgid "Use case: {UseCase}"
+msgstr ""
+
+msgid "New whistleblowing site registered"
+msgstr ""
 
 msgid ""
 "This is a test email sent out from the platform's administrative interface."
@@ -2303,6 +2278,9 @@ msgid "Notifications from {NodeName} have been temporarily suspended"
 msgstr ""
 
 msgid "Click the link to activate the platform:"
+msgstr ""
+
+msgid "Activation"
 msgstr ""
 
 msgid "A software update is available."

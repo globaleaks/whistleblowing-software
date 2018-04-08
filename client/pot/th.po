@@ -10,7 +10,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-04-04 12:51+0000\n"
+"PO-Revision-Date: 2018-04-08 11:12+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Thai (http://www.transifex.com/otf/globaleaks/language/th/)\n"
 "MIME-Version: 1.0\n"
@@ -598,7 +598,7 @@ msgid "Label the submission"
 msgstr ""
 
 msgid "Activate"
-msgstr ""
+msgstr "เปิดใช้งาน"
 
 msgid "Search"
 msgstr ""
@@ -800,12 +800,6 @@ msgstr "อนุญาตให้ผู้รับการให้สิท
 msgid "Enable search engines indexing"
 msgstr "เปิดใช้งานการจัดทำดัชนีเครื่องมือค้นหา"
 
-msgid "Enabled"
-msgstr "เปิดใช้งาน"
-
-msgid "Search engine spiders will be allowed to index the application."
-msgstr "แมงมุมเครื่องมือค้นหาจะได้รับอนุญาตให้ดัชนีแอพลิเคชัน"
-
 msgid "Enable custom privacy panel"
 msgstr "เปิดใช้งานแผงความเป็นส่วนตัวที่กำหนดเอง"
 
@@ -818,14 +812,14 @@ msgstr "ข้อความแสดงเมื่อ whistleblower จะไ
 msgid "Disable the privacy panel"
 msgstr "ปิดการใช้งานแผงความเป็นส่วนตัว"
 
-msgid "Security awareness panel title"
-msgstr "การรักษาความปลอดภัยชื่อแผงการรับรู้"
+msgid "Enable disclaimer"
+msgstr ""
 
-msgid "Security awareness panel text"
-msgstr "ข้อความแผงตระหนักถึงความปลอดภัย"
+msgid "Title"
+msgstr "ชื่อเรื่อง"
 
-msgid "Disable the security awareness panel questions"
-msgstr "ปิดการใช้งานแผงคำถามความตระหนักในการรักษาความปลอดภัย"
+msgid "Text"
+msgstr "ข้อความ"
 
 msgid "Disable the security awareness panel"
 msgstr "ปิดการใช้งานแผงความตระหนักในการรักษาความปลอดภัย"
@@ -867,9 +861,6 @@ msgstr "หน้าการส่ง"
 msgid "Title of the submission page"
 msgstr "ชื่อของเพจส่ง"
 
-msgid "Title of the attachments widget"
-msgstr "ชื่อของวิดเจ็ตที่แนบมา"
-
 msgid "Text of prompt for whistleblowers to log in"
 msgstr ""
 
@@ -881,12 +872,6 @@ msgstr "ชื่อของเพจใบเสร็จรับเงิน
 
 msgid "Title of the submission status page"
 msgstr "ชื่อของหน้าสถานะการส่ง"
-
-msgid "Title of the comments widget"
-msgstr "ชื่อของวิดเจ็ตเมนต์"
-
-msgid "Title of the messages widget"
-msgstr "ชื่อของวิดเจ็ตข้อความ"
 
 msgid "Size limit for file attachments"
 msgstr "ขนาด จำกัด ของไฟล์ที่แนบมา"
@@ -910,12 +895,6 @@ msgstr "ชื่อผู้ใช้"
 
 msgid "Password"
 msgstr "รหัสผ่าน"
-
-msgid ""
-"This feature keeps regular people from visiting the platform while it is "
-"still under development and should not be used for security purposes. The "
-"input password is stored in plaintext on the server."
-msgstr ""
 
 msgid "Enable experimental features"
 msgstr "เปิดใช้งานคุณลักษณะการทดลอง"
@@ -1072,6 +1051,9 @@ msgstr ""
 msgid "Disabled"
 msgstr "พิการ"
 
+msgid "Enabled"
+msgstr "เปิดใช้งาน"
+
 msgid "Submission expiration, in days"
 msgstr "ส่งหมดอายุในวันที่"
 
@@ -1227,7 +1209,7 @@ msgid "Review"
 msgstr ""
 
 msgid "Enable"
-msgstr ""
+msgstr "เปิดใช้งาน"
 
 msgid "Country code"
 msgstr ""
@@ -1648,18 +1630,6 @@ msgstr "ซึ่งหมายความว่าหากเซิร์ฟ
 msgid "Are you sure that you wish to continue?"
 msgstr "คุณแน่ใจหรือว่าคุณต้องการที่จะต่อหรือไม่?"
 
-msgid ""
-"Downloading a file with malicious content could compromise your computer or "
-"disclose your identity."
-msgstr ""
-
-msgid "The name of the file and its content can be intentionally misleading."
-msgstr ""
-
-msgid ""
-"Please review the following information and decide if you wish to proceed."
-msgstr ""
-
 msgid "Error!"
 msgstr "ข้อผิดพลาด!"
 
@@ -1726,28 +1696,6 @@ msgstr "วินาที"
 
 msgid "Size:"
 msgstr ""
-
-msgid "Which of the following statements is true?"
-msgstr "ซึ่งงบดังต่อไปนี้เป็นจริงหรือไม่?"
-
-msgid "HTTPS protects my identity, but not the content of my submission"
-msgstr ""
-
-msgid "HTTPS protects the content of my submission but not my identity"
-msgstr ""
-
-msgid "HTTPS does not protect the content of my submission nor my identity"
-msgstr ""
-
-msgid "HTTPS does protect both my identity and the content of my submission"
-msgstr ""
-
-msgid ""
-"You are aware of the risks involved. Go ahead, but consider yourself warned."
-msgstr "คุณจะตระหนักถึงความเสี่ยงที่เกี่ยวข้อง ไปข้างหน้า แต่จะพิจารณาตัวเองเตือน"
-
-msgid "Wrong Answer!"
-msgstr "คำตอบที่ไม่ถูกต้อง!"
 
 msgid "The connection is not secure."
 msgstr ""
@@ -1941,6 +1889,9 @@ msgstr "การเข้าถึงตัวตน whistleblower ที่ไ
 msgid "Date of the request"
 msgstr "วันของการร้องขอ"
 
+msgid "Undeclared"
+msgstr ""
+
 msgid "Congratulations!"
 msgstr "ขอแสดงความยินดี!"
 
@@ -2103,6 +2054,9 @@ msgstr "เรียน {RecipientName}"
 msgid "Kind regards,"
 msgstr "ขอแสดงความนับถือ,"
 
+msgid "Access instructions"
+msgstr ""
+
 msgid ""
 "The number of activities recently detected appears to be higher than usual."
 msgstr "จำนวนของกิจกรรมที่ตรวจพบเมื่อเร็ว ๆ นี้ดูเหมือนจะสูงกว่าปกติ"
@@ -2154,6 +2108,27 @@ msgstr "โดยไม่ต้องคีย์ PGP ที่ถูกต้�
 
 msgid "PGP key expiration alert"
 msgstr "PGP แจ้งเตือนวันหมดอายุที่สำคัญ"
+
+msgid "A new whistleblowing site has been registered."
+msgstr ""
+
+msgid "Registration data:"
+msgstr ""
+
+msgid "Site: {HTTPSUrl} "
+msgstr ""
+
+msgid "Name: {Name}"
+msgstr ""
+
+msgid "Email: {Email}"
+msgstr ""
+
+msgid "Use case: {UseCase}"
+msgstr ""
+
+msgid "New whistleblowing site registered"
+msgstr ""
 
 msgid ""
 "This is a test email sent out from the platform's administrative interface."
@@ -2304,6 +2279,9 @@ msgid "Notifications from {NodeName} have been temporarily suspended"
 msgstr "การแจ้งเตือนจาก {NodeName} ได้ถูกระงับชั่วคราว"
 
 msgid "Click the link to activate the platform:"
+msgstr ""
+
+msgid "Activation"
 msgstr ""
 
 msgid "A software update is available."

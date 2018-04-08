@@ -22,7 +22,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-04-04 12:51+0000\n"
+"PO-Revision-Date: 2018-04-08 11:12+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Persian (http://www.transifex.com/otf/globaleaks/language/fa/)\n"
 "MIME-Version: 1.0\n"
@@ -812,12 +812,6 @@ msgstr "به دریافت کننده و به افشاگر اجازه یک اظه
 msgid "Enable search engines indexing"
 msgstr "فعال کردن ایندکس سازی موتورهای جستجو"
 
-msgid "Enabled"
-msgstr "فعال شده"
-
-msgid "Search engine spiders will be allowed to index the application."
-msgstr "موتورهای جستجو خواهند توانست که این برنامه را ایندکس کنند."
-
 msgid "Enable custom privacy panel"
 msgstr "فعال سازی پنل پوشیدگی اختصاصی"
 
@@ -830,14 +824,14 @@ msgstr "وقتی افشاگر از شبکه تور استفاده نمیکند �
 msgid "Disable the privacy panel"
 msgstr "غیر فعال کردن پنل پوشیدگی"
 
-msgid "Security awareness panel title"
-msgstr "عنوان پنل هوشیاری امنیتی"
+msgid "Enable disclaimer"
+msgstr ""
 
-msgid "Security awareness panel text"
-msgstr "متن پنل هوشیاری امنیتی"
+msgid "Title"
+msgstr "عنوان"
 
-msgid "Disable the security awareness panel questions"
-msgstr "غیر فعال کردن پرسش‌های پنل هوشیاری امنیتی"
+msgid "Text"
+msgstr "متن"
 
 msgid "Disable the security awareness panel"
 msgstr "غیر فعال کردن پنل هوشیاری امنیتی"
@@ -879,9 +873,6 @@ msgstr "صفحه ارسال"
 msgid "Title of the submission page"
 msgstr "عنوان صفحه ارائه"
 
-msgid "Title of the attachments widget"
-msgstr "عنوان ابزار ضمیمه‌ها"
-
 msgid "Text of prompt for whistleblowers to log in"
 msgstr ""
 
@@ -893,12 +884,6 @@ msgstr "عنوان صفحه اعلام وصول"
 
 msgid "Title of the submission status page"
 msgstr "عنوان صفحه اعلام وضعیت ارائه"
-
-msgid "Title of the comments widget"
-msgstr "عنوان ابزار نظرها"
-
-msgid "Title of the messages widget"
-msgstr "عنوان ابراز پیام‌ها"
 
 msgid "Size limit for file attachments"
 msgstr "محدودیت در حجم ضمیمه‌ها"
@@ -922,12 +907,6 @@ msgstr "نام کاربری"
 
 msgid "Password"
 msgstr "گذرواژه"
-
-msgid ""
-"This feature keeps regular people from visiting the platform while it is "
-"still under development and should not be used for security purposes. The "
-"input password is stored in plaintext on the server."
-msgstr ""
 
 msgid "Enable experimental features"
 msgstr "فعال کردن امکانات تجربی"
@@ -1083,6 +1062,9 @@ msgstr ""
 
 msgid "Disabled"
 msgstr "غیر فعال شد"
+
+msgid "Enabled"
+msgstr "فعال شده"
 
 msgid "Submission expiration, in days"
 msgstr ""
@@ -1660,18 +1642,6 @@ msgstr ""
 msgid "Are you sure that you wish to continue?"
 msgstr "آیا مطمئنید میخواهید ادامه دهید؟"
 
-msgid ""
-"Downloading a file with malicious content could compromise your computer or "
-"disclose your identity."
-msgstr ""
-
-msgid "The name of the file and its content can be intentionally misleading."
-msgstr ""
-
-msgid ""
-"Please review the following information and decide if you wish to proceed."
-msgstr ""
-
 msgid "Error!"
 msgstr "خطا!"
 
@@ -1738,28 +1708,6 @@ msgstr "ثانیه"
 
 msgid "Size:"
 msgstr ""
-
-msgid "Which of the following statements is true?"
-msgstr "کدام یک از جمله های زیر صحیح است؟"
-
-msgid "HTTPS protects my identity, but not the content of my submission"
-msgstr ""
-
-msgid "HTTPS protects the content of my submission but not my identity"
-msgstr ""
-
-msgid "HTTPS does not protect the content of my submission nor my identity"
-msgstr ""
-
-msgid "HTTPS does protect both my identity and the content of my submission"
-msgstr ""
-
-msgid ""
-"You are aware of the risks involved. Go ahead, but consider yourself warned."
-msgstr ""
-
-msgid "Wrong Answer!"
-msgstr "پاسخ غلط"
 
 msgid "The connection is not secure."
 msgstr ""
@@ -1953,6 +1901,9 @@ msgstr ""
 msgid "Date of the request"
 msgstr ""
 
+msgid "Undeclared"
+msgstr ""
+
 msgid "Congratulations!"
 msgstr "تبریک!"
 
@@ -2115,6 +2066,9 @@ msgstr "{RecipientName} گرامی،"
 msgid "Kind regards,"
 msgstr "با سپاس،"
 
+msgid "Access instructions"
+msgstr ""
+
 msgid ""
 "The number of activities recently detected appears to be higher than usual."
 msgstr ""
@@ -2166,6 +2120,27 @@ msgstr ""
 
 msgid "PGP key expiration alert"
 msgstr "هشدار انتقضای کلید PGP"
+
+msgid "A new whistleblowing site has been registered."
+msgstr ""
+
+msgid "Registration data:"
+msgstr ""
+
+msgid "Site: {HTTPSUrl} "
+msgstr ""
+
+msgid "Name: {Name}"
+msgstr ""
+
+msgid "Email: {Email}"
+msgstr ""
+
+msgid "Use case: {UseCase}"
+msgstr ""
+
+msgid "New whistleblowing site registered"
+msgstr ""
 
 msgid ""
 "This is a test email sent out from the platform's administrative interface."
@@ -2316,6 +2291,9 @@ msgid "Notifications from {NodeName} have been temporarily suspended"
 msgstr ""
 
 msgid "Click the link to activate the platform:"
+msgstr ""
+
+msgid "Activation"
 msgstr ""
 
 msgid "A software update is available."

@@ -20,7 +20,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-04-04 12:51+0000\n"
+"PO-Revision-Date: 2018-04-08 11:12+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Swedish (http://www.transifex.com/otf/globaleaks/language/sv/)\n"
 "MIME-Version: 1.0\n"
@@ -810,12 +810,6 @@ msgstr ""
 msgid "Enable search engines indexing"
 msgstr "Aktivera sökmotorindexering"
 
-msgid "Enabled"
-msgstr "Aktiverad"
-
-msgid "Search engine spiders will be allowed to index the application."
-msgstr "Sökmotorer tillåts indexera applikationen"
-
 msgid "Enable custom privacy panel"
 msgstr "Aktivera eget integritetsemblem"
 
@@ -828,14 +822,14 @@ msgstr "Text som visas när uppgiftslämnaren inte använder Tor"
 msgid "Disable the privacy panel"
 msgstr "Inaktivera integritetsemblem"
 
-msgid "Security awareness panel title"
-msgstr "Titel på emblem för säkerhetsmedvetenhet"
+msgid "Enable disclaimer"
+msgstr ""
 
-msgid "Security awareness panel text"
-msgstr "Text på emblem för säkerhetsmedvetenhet"
+msgid "Title"
+msgstr "Titel"
 
-msgid "Disable the security awareness panel questions"
-msgstr "Inaktivera frågor för emblem för säkerhetsmedvetenhet"
+msgid "Text"
+msgstr "Text"
 
 msgid "Disable the security awareness panel"
 msgstr "Inaktivera emblemet för säkerhetsmedvetenhet"
@@ -877,9 +871,6 @@ msgstr "Postningssida"
 msgid "Title of the submission page"
 msgstr ""
 
-msgid "Title of the attachments widget"
-msgstr ""
-
 msgid "Text of prompt for whistleblowers to log in"
 msgstr ""
 
@@ -890,12 +881,6 @@ msgid "Title of the receipt page"
 msgstr ""
 
 msgid "Title of the submission status page"
-msgstr ""
-
-msgid "Title of the comments widget"
-msgstr ""
-
-msgid "Title of the messages widget"
 msgstr ""
 
 msgid "Size limit for file attachments"
@@ -920,12 +905,6 @@ msgstr "Användarnamn"
 
 msgid "Password"
 msgstr "Lösenord"
-
-msgid ""
-"This feature keeps regular people from visiting the platform while it is "
-"still under development and should not be used for security purposes. The "
-"input password is stored in plaintext on the server."
-msgstr ""
 
 msgid "Enable experimental features"
 msgstr ""
@@ -1081,6 +1060,9 @@ msgstr ""
 
 msgid "Disabled"
 msgstr "Inaktiverad"
+
+msgid "Enabled"
+msgstr "Aktiverad"
 
 msgid "Submission expiration, in days"
 msgstr ""
@@ -1658,18 +1640,6 @@ msgstr ""
 msgid "Are you sure that you wish to continue?"
 msgstr "Är du säker på att du vill fortsätta?"
 
-msgid ""
-"Downloading a file with malicious content could compromise your computer or "
-"disclose your identity."
-msgstr ""
-
-msgid "The name of the file and its content can be intentionally misleading."
-msgstr ""
-
-msgid ""
-"Please review the following information and decide if you wish to proceed."
-msgstr ""
-
 msgid "Error!"
 msgstr "Fel!"
 
@@ -1736,28 +1706,6 @@ msgstr "sekunder"
 
 msgid "Size:"
 msgstr "Storlek:"
-
-msgid "Which of the following statements is true?"
-msgstr "Vilket av följande påståenden är sant?"
-
-msgid "HTTPS protects my identity, but not the content of my submission"
-msgstr ""
-
-msgid "HTTPS protects the content of my submission but not my identity"
-msgstr ""
-
-msgid "HTTPS does not protect the content of my submission nor my identity"
-msgstr ""
-
-msgid "HTTPS does protect both my identity and the content of my submission"
-msgstr ""
-
-msgid ""
-"You are aware of the risks involved. Go ahead, but consider yourself warned."
-msgstr "Du är medventen om riskerna. Forsätt, och vet att du är varnad."
-
-msgid "Wrong Answer!"
-msgstr "Fel svar!"
 
 msgid "The connection is not secure."
 msgstr ""
@@ -1951,6 +1899,9 @@ msgstr ""
 msgid "Date of the request"
 msgstr ""
 
+msgid "Undeclared"
+msgstr ""
+
 msgid "Congratulations!"
 msgstr "Grattis!"
 
@@ -2113,6 +2064,9 @@ msgstr "Kära {RecipientName},"
 msgid "Kind regards,"
 msgstr "Med vänliga hälsningar,"
 
+msgid "Access instructions"
+msgstr ""
+
 msgid ""
 "The number of activities recently detected appears to be higher than usual."
 msgstr ""
@@ -2164,6 +2118,27 @@ msgstr "Utan giltiga PGP-nycklar kan systemet inte skicka krypterade meddelanden
 
 msgid "PGP key expiration alert"
 msgstr "Larm för utgång av giltighetstid för PGP nyckel"
+
+msgid "A new whistleblowing site has been registered."
+msgstr ""
+
+msgid "Registration data:"
+msgstr ""
+
+msgid "Site: {HTTPSUrl} "
+msgstr ""
+
+msgid "Name: {Name}"
+msgstr ""
+
+msgid "Email: {Email}"
+msgstr ""
+
+msgid "Use case: {UseCase}"
+msgstr ""
+
+msgid "New whistleblowing site registered"
+msgstr ""
 
 msgid ""
 "This is a test email sent out from the platform's administrative interface."
@@ -2314,6 +2289,9 @@ msgid "Notifications from {NodeName} have been temporarily suspended"
 msgstr ""
 
 msgid "Click the link to activate the platform:"
+msgstr ""
+
+msgid "Activation"
 msgstr ""
 
 msgid "A software update is available."

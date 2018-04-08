@@ -21,7 +21,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-04-04 12:51+0000\n"
+"PO-Revision-Date: 2018-04-08 11:12+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Hungarian (Hungary) (http://www.transifex.com/otf/globaleaks/language/hu_HU/)\n"
 "MIME-Version: 1.0\n"
@@ -811,12 +811,6 @@ msgstr "Engedélyezés a címzetteknek, hogy jogosultságokat biztosítsanak a s
 msgid "Enable search engines indexing"
 msgstr "Keresőmotorok indexelésének engedélyezése"
 
-msgid "Enabled"
-msgstr "Engedélyezve"
-
-msgid "Search engine spiders will be allowed to index the application."
-msgstr "A keresőmotoroknak engedélyezett, hogy indexeljék az alkalmazást"
-
 msgid "Enable custom privacy panel"
 msgstr "Egyedi adatvédelmi panel engedélyezése"
 
@@ -829,14 +823,14 @@ msgstr "Megjelenített szöveg, amikor a szivárogtató nem Tor-t használ"
 msgid "Disable the privacy panel"
 msgstr "Adatvédelmi panel letiltása"
 
-msgid "Security awareness panel title"
-msgstr "Biztonság-tudatosság panel cím"
+msgid "Enable disclaimer"
+msgstr ""
 
-msgid "Security awareness panel text"
-msgstr "Biztonság-tudatosság panel szöveg"
+msgid "Title"
+msgstr ""
 
-msgid "Disable the security awareness panel questions"
-msgstr "A biztonság-tudatosság panel kérdések letiltása"
+msgid "Text"
+msgstr "Szöveg"
 
 msgid "Disable the security awareness panel"
 msgstr "A biztonság-tudatosság panel letiltása"
@@ -878,9 +872,6 @@ msgstr "Beadvány Oldal"
 msgid "Title of the submission page"
 msgstr "A beadvány oldal címe"
 
-msgid "Title of the attachments widget"
-msgstr "A mellékletek widget címe"
-
 msgid "Text of prompt for whistleblowers to log in"
 msgstr ""
 
@@ -892,12 +883,6 @@ msgstr "Az jelentés oldal címe"
 
 msgid "Title of the submission status page"
 msgstr "A beadvány állapot oldal címe"
-
-msgid "Title of the comments widget"
-msgstr "A hozzászólások widget címe"
-
-msgid "Title of the messages widget"
-msgstr "Az üzenetek widget címe"
 
 msgid "Size limit for file attachments"
 msgstr "Méret korlát a mellékleteknek"
@@ -921,12 +906,6 @@ msgstr "Felhasználónév"
 
 msgid "Password"
 msgstr "Jelszó"
-
-msgid ""
-"This feature keeps regular people from visiting the platform while it is "
-"still under development and should not be used for security purposes. The "
-"input password is stored in plaintext on the server."
-msgstr "Ez a beállítás lehetővé teszi, hogy kívül tartsa a látogatókat a platformról, amíg az beállítás alatt van és nem használható biztonsági funkcióként. A jelszó a szerveren szöveges állományként kerül tárolásra."
 
 msgid "Enable experimental features"
 msgstr "Kísérleti fejlesztések bekapcsolása"
@@ -1082,6 +1061,9 @@ msgstr ""
 
 msgid "Disabled"
 msgstr "Leiltva"
+
+msgid "Enabled"
+msgstr "Engedélyezve"
 
 msgid "Submission expiration, in days"
 msgstr "Beadvány lejárat, napokban"
@@ -1659,18 +1641,6 @@ msgstr "Ez azt jelenti, hogy ha a platformot futtató kiszolgáló le volt fogla
 msgid "Are you sure that you wish to continue?"
 msgstr "Biztos, hogy folytatni akarja?"
 
-msgid ""
-"Downloading a file with malicious content could compromise your computer or "
-"disclose your identity."
-msgstr ""
-
-msgid "The name of the file and its content can be intentionally misleading."
-msgstr ""
-
-msgid ""
-"Please review the following information and decide if you wish to proceed."
-msgstr ""
-
 msgid "Error!"
 msgstr "Hiba!"
 
@@ -1737,28 +1707,6 @@ msgstr "másodpercet"
 
 msgid "Size:"
 msgstr ""
-
-msgid "Which of the following statements is true?"
-msgstr "Melyik állítás igaz?"
-
-msgid "HTTPS protects my identity, but not the content of my submission"
-msgstr ""
-
-msgid "HTTPS protects the content of my submission but not my identity"
-msgstr ""
-
-msgid "HTTPS does not protect the content of my submission nor my identity"
-msgstr ""
-
-msgid "HTTPS does protect both my identity and the content of my submission"
-msgstr ""
-
-msgid ""
-"You are aware of the risks involved. Go ahead, but consider yourself warned."
-msgstr "Ha megértette a kockázatokat, lépjen tovább, és vegye úgy, hogy figyelmeztettük."
-
-msgid "Wrong Answer!"
-msgstr "Hibás válasz!"
 
 msgid "The connection is not secure."
 msgstr ""
@@ -1952,6 +1900,9 @@ msgstr "A szivárogtatók személyazonosságához való hozzáférés kérelmezv
 msgid "Date of the request"
 msgstr "A kérés dátuma"
 
+msgid "Undeclared"
+msgstr ""
+
 msgid "Congratulations!"
 msgstr "Gratulálunk!"
 
@@ -2114,6 +2065,9 @@ msgstr "Kedves {RecipientName},"
 msgid "Kind regards,"
 msgstr "Szívélyes üdvözlettel,"
 
+msgid "Access instructions"
+msgstr ""
+
 msgid ""
 "The number of activities recently detected appears to be higher than usual."
 msgstr "A jelenleg észlelt tevékenységek magasabbnak tűnnek szokásosnál."
@@ -2165,6 +2119,27 @@ msgstr "Érvényes PGP kulcs nélkül a rendszer nem fog tudni titkosított ért
 
 msgid "PGP key expiration alert"
 msgstr "PGP Kulcs lejárat értesítés"
+
+msgid "A new whistleblowing site has been registered."
+msgstr ""
+
+msgid "Registration data:"
+msgstr ""
+
+msgid "Site: {HTTPSUrl} "
+msgstr ""
+
+msgid "Name: {Name}"
+msgstr ""
+
+msgid "Email: {Email}"
+msgstr ""
+
+msgid "Use case: {UseCase}"
+msgstr ""
+
+msgid "New whistleblowing site registered"
+msgstr ""
 
 msgid ""
 "This is a test email sent out from the platform's administrative interface."
@@ -2315,6 +2290,9 @@ msgid "Notifications from {NodeName} have been temporarily suspended"
 msgstr "Értesítések tőle: {NodeName} átmenetileg felfüggesztve"
 
 msgid "Click the link to activate the platform:"
+msgstr ""
+
+msgid "Activation"
 msgstr ""
 
 msgid "A software update is available."

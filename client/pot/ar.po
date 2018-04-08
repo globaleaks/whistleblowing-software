@@ -38,7 +38,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-04-04 12:51+0000\n"
+"PO-Revision-Date: 2018-04-08 11:12+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Arabic (http://www.transifex.com/otf/globaleaks/language/ar/)\n"
 "MIME-Version: 1.0\n"
@@ -749,7 +749,7 @@ msgid "Unselected by default"
 msgstr "غير مختار/ة افتراضيا"
 
 msgid "Surname"
-msgstr ""
+msgstr "اللقب"
 
 msgid "Select the context of your submission:"
 msgstr "حدد سياق بلاغك:"
@@ -828,12 +828,6 @@ msgstr "السماح للمتقبلين بمنح تراخيص للمبلغين �
 msgid "Enable search engines indexing"
 msgstr "تفعيل فهرسة محركات البحث"
 
-msgid "Enabled"
-msgstr "مفعل"
-
-msgid "Search engine spiders will be allowed to index the application."
-msgstr "سيسمح لمحركات البحث بفهرسة التطبيق."
-
 msgid "Enable custom privacy panel"
 msgstr "تمكين شريط الخصوصيّة المخصّص"
 
@@ -846,14 +840,14 @@ msgstr "النص الظاهر حين لا يستخدم المبلغ متصفح �
 msgid "Disable the privacy panel"
 msgstr "تعطيل شارة الخصوصية"
 
-msgid "Security awareness panel title"
-msgstr "عنوان لوحة الوعي الأمني"
+msgid "Enable disclaimer"
+msgstr ""
 
-msgid "Security awareness panel text"
-msgstr "نص لوحة الوعي الأمني"
+msgid "Title"
+msgstr "العنوان"
 
-msgid "Disable the security awareness panel questions"
-msgstr "تعطيل أسئلة شارة التنبيه إلى السلامة"
+msgid "Text"
+msgstr "نص"
 
 msgid "Disable the security awareness panel"
 msgstr "تعطيل شارة التنبيه إلى السلامة"
@@ -895,9 +889,6 @@ msgstr "صفحة الابلاغ"
 msgid "Title of the submission page"
 msgstr "عنوان صفحة الابلاغ"
 
-msgid "Title of the attachments widget"
-msgstr "عنوان التطبيق المصغر للملفات المرفقة"
-
 msgid "Text of prompt for whistleblowers to log in"
 msgstr "نص لحث المبلغين على تسجيل الدخول"
 
@@ -909,12 +900,6 @@ msgstr "عنوان صفحة الاستلام"
 
 msgid "Title of the submission status page"
 msgstr "عنوان صفحة حالة البلاغ"
-
-msgid "Title of the comments widget"
-msgstr "عنوان التطبيق المصغر للتعليقات"
-
-msgid "Title of the messages widget"
-msgstr "عنوان التطبيق المصغر للرسائل"
 
 msgid "Size limit for file attachments"
 msgstr "الحد الأقصى لحجم الملفات المرفقة"
@@ -938,12 +923,6 @@ msgstr "اسم المستخدم"
 
 msgid "Password"
 msgstr "كلمة السرّ"
-
-msgid ""
-"This feature keeps regular people from visiting the platform while it is "
-"still under development and should not be used for security purposes. The "
-"input password is stored in plaintext on the server."
-msgstr "هذه الميزة تمنع الناس العاديين من زيارة المنصة حين تزال قيد التطوير، ويجب أن لا تستخدم لأغراض أمنية. يتم تخزين إدخال كلمة المرور في نص عادي على الخادم."
 
 msgid "Enable experimental features"
 msgstr "تمكين الميزات التجريبية"
@@ -1099,6 +1078,9 @@ msgstr "السماح للمتلقّين برفع ملفات للمبلغين."
 
 msgid "Disabled"
 msgstr "غير مفعل"
+
+msgid "Enabled"
+msgstr "مفعل"
 
 msgid "Submission expiration, in days"
 msgstr "انتهاء مدة التقديم، بالأيام"
@@ -1676,18 +1658,6 @@ msgstr "هذا يعني أنّه اذا تمّ الاستيلاء على الخ�
 msgid "Are you sure that you wish to continue?"
 msgstr "هل أنت متأكد من أنك تريد المتابعة؟"
 
-msgid ""
-"Downloading a file with malicious content could compromise your computer or "
-"disclose your identity."
-msgstr "تحميل ملف فيه محتوى ضار يمكن أن يهدد جهاز الكمبيوتر الخاص بك أو يكشف عن هويتك."
-
-msgid "The name of the file and its content can be intentionally misleading."
-msgstr "اسم الملف ومحتوياته يمكن أن تكون مضللة عن عمد."
-
-msgid ""
-"Please review the following information and decide if you wish to proceed."
-msgstr "يرجى مراجعة المعلومات التالية وتقرير ما إذا كنت ترغب في المضي قدما."
-
 msgid "Error!"
 msgstr "خطأ!"
 
@@ -1754,28 +1724,6 @@ msgstr "ثواني"
 
 msgid "Size:"
 msgstr "حجم:"
-
-msgid "Which of the following statements is true?"
-msgstr "أي من العبارات التالية صحيح؟"
-
-msgid "HTTPS protects my identity, but not the content of my submission"
-msgstr "HTTPS يحمي هويّتي ,و لكنه لا يحمي محتوى البلاغ"
-
-msgid "HTTPS protects the content of my submission but not my identity"
-msgstr "HTTPS يحمي محتوى البلاغ و لكن لا يحمي هويتي"
-
-msgid "HTTPS does not protect the content of my submission nor my identity"
-msgstr "HTTPS لا يحمي هويتي كما و لا يحمي محتوى البلاغ"
-
-msgid "HTTPS does protect both my identity and the content of my submission"
-msgstr "HTTPS يحمي كلاّ من هويتي ومحتوى البلاغ"
-
-msgid ""
-"You are aware of the risks involved. Go ahead, but consider yourself warned."
-msgstr "انت تعلم بالأخطار المتوقعة . يمكنك الإستمرار و لكن إعتبر أنه قد تم تحذيرك."
-
-msgid "Wrong Answer!"
-msgstr "جواب خطأ!"
 
 msgid "The connection is not secure."
 msgstr "الاتصال غير آمن."
@@ -1969,6 +1917,9 @@ msgstr "تمّ طلب الحصول على هوية المبلغ من الوصي�
 msgid "Date of the request"
 msgstr "تاريخ الطلب"
 
+msgid "Undeclared"
+msgstr ""
+
 msgid "Congratulations!"
 msgstr "تهانينا!"
 
@@ -2131,6 +2082,9 @@ msgstr "عزيزي {RecipientName},"
 msgid "Kind regards,"
 msgstr "أطيب التحيّات،"
 
+msgid "Access instructions"
+msgstr ""
+
 msgid ""
 "The number of activities recently detected appears to be higher than usual."
 msgstr "عدد الأنشطة التي تم الكشف عنها مؤخرا يبدو أعلى من امعتاد."
@@ -2182,6 +2136,27 @@ msgstr "بدون مفتاح PGP صالح، لن يكون النظام قادرا
 
 msgid "PGP key expiration alert"
 msgstr "تنبيه انتهاء صلاحية مفتاح PGP"
+
+msgid "A new whistleblowing site has been registered."
+msgstr ""
+
+msgid "Registration data:"
+msgstr ""
+
+msgid "Site: {HTTPSUrl} "
+msgstr ""
+
+msgid "Name: {Name}"
+msgstr ""
+
+msgid "Email: {Email}"
+msgstr ""
+
+msgid "Use case: {UseCase}"
+msgstr ""
+
+msgid "New whistleblowing site registered"
+msgstr ""
 
 msgid ""
 "This is a test email sent out from the platform's administrative interface."
@@ -2333,6 +2308,9 @@ msgstr "الاشعارات من {NodeName} علقت مؤقتا"
 
 msgid "Click the link to activate the platform:"
 msgstr "إنقر الرابط لتفعيل المنصة."
+
+msgid "Activation"
+msgstr ""
 
 msgid "A software update is available."
 msgstr "التحديث متوفّر:"

@@ -17,7 +17,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-04-04 12:51+0000\n"
+"PO-Revision-Date: 2018-04-08 11:12+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Hebrew (http://www.transifex.com/otf/globaleaks/language/he/)\n"
 "MIME-Version: 1.0\n"
@@ -807,12 +807,6 @@ msgstr "אפשר מקבלים להעניק הרשאות שחושפים את עו
 msgid "Enable search engines indexing"
 msgstr "אפשר אינדקס מנועי חיפוש"
 
-msgid "Enabled"
-msgstr "מופעל"
-
-msgid "Search engine spiders will be allowed to index the application."
-msgstr "עכבישים של מנועי חיפוש יהיו רשאים למדד היישום"
-
 msgid "Enable custom privacy panel"
 msgstr "אפשר תג פרטיות מותאם אישית"
 
@@ -825,14 +819,14 @@ msgstr "הצג מלל זה כאשר מתריע לא משתמש בתור"
 msgid "Disable the privacy panel"
 msgstr "בטל תג הפרטיות"
 
-msgid "Security awareness panel title"
-msgstr "כותרת בלוח מודעות אבטחה"
+msgid "Enable disclaimer"
+msgstr ""
 
-msgid "Security awareness panel text"
-msgstr "טקסט לוח מודעות אבטחה"
+msgid "Title"
+msgstr "כותרת"
 
-msgid "Disable the security awareness panel questions"
-msgstr "בטל תג מודעות אבטחה"
+msgid "Text"
+msgstr "טקסט"
 
 msgid "Disable the security awareness panel"
 msgstr "בטל תג מודעות אבטחה"
@@ -874,9 +868,6 @@ msgstr "עמוד הגשה"
 msgid "Title of the submission page"
 msgstr "כותרת דף ההגשה"
 
-msgid "Title of the attachments widget"
-msgstr "כותרת של הרכיב מצורפים"
-
 msgid "Text of prompt for whistleblowers to log in"
 msgstr ""
 
@@ -888,12 +879,6 @@ msgstr "כותרת של דף הקבלה"
 
 msgid "Title of the submission status page"
 msgstr "כותרת של דף סטטוס ההגשה"
-
-msgid "Title of the comments widget"
-msgstr "כותרת של רכיב התגובות"
-
-msgid "Title of the messages widget"
-msgstr "כותרת של יישומון הודעות"
 
 msgid "Size limit for file attachments"
 msgstr "גודל גבול עבור קבצים מצורפים"
@@ -917,12 +902,6 @@ msgstr "שם משתמש"
 
 msgid "Password"
 msgstr "סיסמא"
-
-msgid ""
-"This feature keeps regular people from visiting the platform while it is "
-"still under development and should not be used for security purposes. The "
-"input password is stored in plaintext on the server."
-msgstr ""
 
 msgid "Enable experimental features"
 msgstr "אפשר תכונות ניסיוניות"
@@ -1078,6 +1057,9 @@ msgstr ""
 
 msgid "Disabled"
 msgstr "כבוי"
+
+msgid "Enabled"
+msgstr "מופעל"
 
 msgid "Submission expiration, in days"
 msgstr "תפוגת הגשה, בימים"
@@ -1655,18 +1637,6 @@ msgstr "משמעות הדבר היא שאם השרת פועל בפלטפורמת
 msgid "Are you sure that you wish to continue?"
 msgstr "האם אתה בטוח שברצונך להמשיך?"
 
-msgid ""
-"Downloading a file with malicious content could compromise your computer or "
-"disclose your identity."
-msgstr ""
-
-msgid "The name of the file and its content can be intentionally misleading."
-msgstr ""
-
-msgid ""
-"Please review the following information and decide if you wish to proceed."
-msgstr ""
-
 msgid "Error!"
 msgstr "שְׁגִיאָה!"
 
@@ -1733,28 +1703,6 @@ msgstr "שניות"
 
 msgid "Size:"
 msgstr ""
-
-msgid "Which of the following statements is true?"
-msgstr "איזה מהמשפטים הבאים נכון?"
-
-msgid "HTTPS protects my identity, but not the content of my submission"
-msgstr ""
-
-msgid "HTTPS protects the content of my submission but not my identity"
-msgstr ""
-
-msgid "HTTPS does not protect the content of my submission nor my identity"
-msgstr ""
-
-msgid "HTTPS does protect both my identity and the content of my submission"
-msgstr ""
-
-msgid ""
-"You are aware of the risks involved. Go ahead, but consider yourself warned."
-msgstr "אתה מודע לסיכונים כרוכים. קדימה, אבל הוזהרת."
-
-msgid "Wrong Answer!"
-msgstr "תשובה לא נכונה!"
 
 msgid "The connection is not secure."
 msgstr ""
@@ -1948,6 +1896,9 @@ msgstr "גישה אל הזהות של המתריע התבקש האפוטרופו
 msgid "Date of the request"
 msgstr "תאריך הבקשה"
 
+msgid "Undeclared"
+msgstr ""
+
 msgid "Congratulations!"
 msgstr "מזל טוב!"
 
@@ -2110,6 +2061,9 @@ msgstr "{RecipientName} יקרים,"
 msgid "Kind regards,"
 msgstr "בברכה,"
 
+msgid "Access instructions"
+msgstr ""
+
 msgid ""
 "The number of activities recently detected appears to be higher than usual."
 msgstr "מספר פעילויות לאחרונה זוהו שנראה גבוה מרגיל."
@@ -2161,6 +2115,27 @@ msgstr "בלי מפתח PGP תקף, המערכת לא תהיה מסוגלת לש
 
 msgid "PGP key expiration alert"
 msgstr "התרעת מפתח PGP פג תוקף"
+
+msgid "A new whistleblowing site has been registered."
+msgstr ""
+
+msgid "Registration data:"
+msgstr ""
+
+msgid "Site: {HTTPSUrl} "
+msgstr ""
+
+msgid "Name: {Name}"
+msgstr ""
+
+msgid "Email: {Email}"
+msgstr ""
+
+msgid "Use case: {UseCase}"
+msgstr ""
+
+msgid "New whistleblowing site registered"
+msgstr ""
 
 msgid ""
 "This is a test email sent out from the platform's administrative interface."
@@ -2311,6 +2286,9 @@ msgid "Notifications from {NodeName} have been temporarily suspended"
 msgstr "התראות מ- {NodeName} הושעו זמנית"
 
 msgid "Click the link to activate the platform:"
+msgstr ""
+
+msgid "Activation"
 msgstr ""
 
 msgid "A software update is available."

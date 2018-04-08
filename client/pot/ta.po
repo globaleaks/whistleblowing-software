@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-04-04 12:51+0000\n"
+"PO-Revision-Date: 2018-04-08 11:12+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Tamil (http://www.transifex.com/otf/globaleaks/language/ta/)\n"
 "MIME-Version: 1.0\n"
@@ -796,12 +796,6 @@ msgstr "பெற்றவர்கள் குறிப்பிட்ட ச�
 msgid "Enable search engines indexing"
 msgstr "தேடுபொறிகள் திருப்பு இயக்கு"
 
-msgid "Enabled"
-msgstr "இயக்கப்பட்டது"
-
-msgid "Search engine spiders will be allowed to index the application."
-msgstr "தேடல் பொறி சிலந்திகள் குறியீட்டு பயன்பாடு அனுமதிக்கப்படும்."
-
 msgid "Enable custom privacy panel"
 msgstr "விருப்ப தனியுரிமை குழு இயக்கு"
 
@@ -814,14 +808,14 @@ msgstr "உரை தகவல் தெரிவிப்பவர் தோ
 msgid "Disable the privacy panel"
 msgstr "தனியுரிமை குழு முடக்கு"
 
-msgid "Security awareness panel title"
-msgstr "பாதுகாப்பு விழிப்புணர்வு குழு தலைப்பு"
+msgid "Enable disclaimer"
+msgstr ""
 
-msgid "Security awareness panel text"
-msgstr "பாதுகாப்பு விழிப்புணர்வு குழு உரை"
+msgid "Title"
+msgstr "தலைப்பு"
 
-msgid "Disable the security awareness panel questions"
-msgstr "பாதுகாப்பு விழிப்புணர்வு குழு கேள்விகள் முடக்கு"
+msgid "Text"
+msgstr "உரை"
 
 msgid "Disable the security awareness panel"
 msgstr "பாதுகாப்பு விழிப்புணர்வு குழு முடக்கு"
@@ -863,9 +857,6 @@ msgstr "சமர்ப்பிக்கும் பக்கம்"
 msgid "Title of the submission page"
 msgstr "சமர்ப்பிப்பு பக்கம் தலைப்பு"
 
-msgid "Title of the attachments widget"
-msgstr "இணைப்புகளை சாளரத்தின் தலைப்பு"
-
 msgid "Text of prompt for whistleblowers to log in"
 msgstr ""
 
@@ -877,12 +868,6 @@ msgstr "ரசீது பக்கம் தலைப்பு"
 
 msgid "Title of the submission status page"
 msgstr "சமர்பித்தல் நிலை பக்கம் தலைப்பு"
-
-msgid "Title of the comments widget"
-msgstr "கருத்துகள் சாளரத்தின் தலைப்பு"
-
-msgid "Title of the messages widget"
-msgstr "செய்திகளை சாளரத்தின் தலைப்பு"
 
 msgid "Size limit for file attachments"
 msgstr "கோப்பு இணைப்புகளை அளவு எல்லை"
@@ -906,12 +891,6 @@ msgstr "பயனர்பெயர்"
 
 msgid "Password"
 msgstr "கடவுச்சொல்"
-
-msgid ""
-"This feature keeps regular people from visiting the platform while it is "
-"still under development and should not be used for security purposes. The "
-"input password is stored in plaintext on the server."
-msgstr "இந்த வசதியை இன்னும் மேம்பாட்டில் உள்ளது மற்றும் பாதுகாப்பு காரணங்களுக்காக பயன்படுத்த கூடாது போது மேடையில் வருகை வழக்கமான மக்கள் வைத்திருக்கிறது. உள்ளீடு கடவுச்சொல்லை சர்வரில் இயல்பு சேமிக்கப்படும் உள்ளது."
 
 msgid "Enable experimental features"
 msgstr "சோதனை அம்சங்களை இயக்கு"
@@ -1067,6 +1046,9 @@ msgstr ""
 
 msgid "Disabled"
 msgstr "முடக்கப்பட்டது"
+
+msgid "Enabled"
+msgstr "இயக்கப்பட்டது"
 
 msgid "Submission expiration, in days"
 msgstr "சமர்ப்பிக்கும் காலாவதி, நாட்கள்"
@@ -1644,18 +1626,6 @@ msgstr "இந்த மேடையில் இயங்கும் சர்
 msgid "Are you sure that you wish to continue?"
 msgstr "நீங்கள் தொடர விரும்புகிறீர்களா என்று உறுதியாக இருக்கிறீர்களா?"
 
-msgid ""
-"Downloading a file with malicious content could compromise your computer or "
-"disclose your identity."
-msgstr ""
-
-msgid "The name of the file and its content can be intentionally misleading."
-msgstr ""
-
-msgid ""
-"Please review the following information and decide if you wish to proceed."
-msgstr ""
-
 msgid "Error!"
 msgstr "பிழை!"
 
@@ -1722,28 +1692,6 @@ msgstr "விநாடிகள்"
 
 msgid "Size:"
 msgstr ""
-
-msgid "Which of the following statements is true?"
-msgstr "பின்வரும் கூற்றுகளில் இதில் எது உண்மை?"
-
-msgid "HTTPS protects my identity, but not the content of my submission"
-msgstr ""
-
-msgid "HTTPS protects the content of my submission but not my identity"
-msgstr ""
-
-msgid "HTTPS does not protect the content of my submission nor my identity"
-msgstr ""
-
-msgid "HTTPS does protect both my identity and the content of my submission"
-msgstr ""
-
-msgid ""
-"You are aware of the risks involved. Go ahead, but consider yourself warned."
-msgstr "நீங்கள் சம்பந்தப்பட்ட அபாயங்கள் பற்றி நன்கு தெரியும். செல்லுங்கள், ஆனால் உங்களை எச்சரித்தார் பரிசீலிக்க."
-
-msgid "Wrong Answer!"
-msgstr "பிழையான பதில்!"
 
 msgid "The connection is not secure."
 msgstr ""
@@ -1937,6 +1885,9 @@ msgstr "தகவல் தெரிவிப்பவர் அடையாள�
 msgid "Date of the request"
 msgstr "கோரிக்கையின் தேதி"
 
+msgid "Undeclared"
+msgstr ""
+
 msgid "Congratulations!"
 msgstr "வாழ்த்துக்கள்!"
 
@@ -2099,6 +2050,9 @@ msgstr "அன்பே {RecipientName},"
 msgid "Kind regards,"
 msgstr "Kind regards,"
 
+msgid "Access instructions"
+msgstr ""
+
 msgid ""
 "The number of activities recently detected appears to be higher than usual."
 msgstr "சமீபத்தில் கண்டுபிடிக்கப்பட்ட நடவடிக்கைகள் எண்ணிக்கை வழக்கத்தை விட அதிக அளவில் காணப்படுகின்றது."
@@ -2150,6 +2104,27 @@ msgstr "ஒரு செல்லுபடியாகும் PGP முக்
 
 msgid "PGP key expiration alert"
 msgstr "பிஜிபி முக்கிய காலாவதி எச்சரிக்கை"
+
+msgid "A new whistleblowing site has been registered."
+msgstr ""
+
+msgid "Registration data:"
+msgstr ""
+
+msgid "Site: {HTTPSUrl} "
+msgstr ""
+
+msgid "Name: {Name}"
+msgstr ""
+
+msgid "Email: {Email}"
+msgstr ""
+
+msgid "Use case: {UseCase}"
+msgstr ""
+
+msgid "New whistleblowing site registered"
+msgstr ""
 
 msgid ""
 "This is a test email sent out from the platform's administrative interface."
@@ -2300,6 +2275,9 @@ msgid "Notifications from {NodeName} have been temporarily suspended"
 msgstr ""
 
 msgid "Click the link to activate the platform:"
+msgstr ""
+
+msgid "Activation"
 msgstr ""
 
 msgid "A software update is available."

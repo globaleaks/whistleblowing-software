@@ -18,7 +18,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-04-04 12:51+0000\n"
+"PO-Revision-Date: 2018-04-08 11:12+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Polish (http://www.transifex.com/otf/globaleaks/language/pl/)\n"
 "MIME-Version: 1.0\n"
@@ -808,12 +808,6 @@ msgstr "Odbiorcy mogą nadawać uprawnienia sygnalistom do poszczególnych zgło
 msgid "Enable search engines indexing"
 msgstr "Włącz indeksowanie przez wyszukiwarki internetowe"
 
-msgid "Enabled"
-msgstr "Włączone"
-
-msgid "Search engine spiders will be allowed to index the application."
-msgstr "Wyszukiwarki będą mogły indeksować zawartość serwisu"
-
 msgid "Enable custom privacy panel"
 msgstr "Włącz własne ustawienia prywatności"
 
@@ -826,14 +820,14 @@ msgstr "Tekst wyświetlany, gdy sygnalista nie używa Tor"
 msgid "Disable the privacy panel"
 msgstr "Wyłącz panel prywatności"
 
-msgid "Security awareness panel title"
-msgstr "Tytuł panelu zabezpieczeń"
+msgid "Enable disclaimer"
+msgstr ""
 
-msgid "Security awareness panel text"
-msgstr "Tekst w panelu zabezpieczeń"
+msgid "Title"
+msgstr "Tytuł"
 
-msgid "Disable the security awareness panel questions"
-msgstr "Wyłącz pytania do panelu zabezpieczeń"
+msgid "Text"
+msgstr "Tekst"
 
 msgid "Disable the security awareness panel"
 msgstr "Wyłącz panel zabezpieczeń"
@@ -875,9 +869,6 @@ msgstr "Strona zgłoszeń"
 msgid "Title of the submission page"
 msgstr "Tytuł strony ze zgłoszeniem"
 
-msgid "Title of the attachments widget"
-msgstr "Tytuł sekcji z załącznikami"
-
 msgid "Text of prompt for whistleblowers to log in"
 msgstr "Zachęta do zalogowania dla sygnalistów"
 
@@ -889,12 +880,6 @@ msgstr "Tytuł strony z potwierdzeniem zgłoszenia"
 
 msgid "Title of the submission status page"
 msgstr "Tytuł strony ze statusem zgłoszenia"
-
-msgid "Title of the comments widget"
-msgstr "Tytuł sekcji z komentarzami"
-
-msgid "Title of the messages widget"
-msgstr "Tytuł sekcji z wiadomościami"
 
 msgid "Size limit for file attachments"
 msgstr "Limit wielkości załączników"
@@ -918,12 +903,6 @@ msgstr "Nazwa użytkownika"
 
 msgid "Password"
 msgstr "Hasło"
-
-msgid ""
-"This feature keeps regular people from visiting the platform while it is "
-"still under development and should not be used for security purposes. The "
-"input password is stored in plaintext on the server."
-msgstr "Chronimy platforme przed dostępem postronnych osób na czas naprawiania lub rozwoju platformy. Hasło jest przechowywane na serwerze niezaszyfrowane - jako plaintext!"
 
 msgid "Enable experimental features"
 msgstr "Włącz opcje eksperymentalne"
@@ -1079,6 +1058,9 @@ msgstr ""
 
 msgid "Disabled"
 msgstr "Wyłączone"
+
+msgid "Enabled"
+msgstr "Włączone"
 
 msgid "Submission expiration, in days"
 msgstr ""
@@ -1656,18 +1638,6 @@ msgstr ""
 msgid "Are you sure that you wish to continue?"
 msgstr "Czy jesteś pewien że chcesz kontynuować?"
 
-msgid ""
-"Downloading a file with malicious content could compromise your computer or "
-"disclose your identity."
-msgstr ""
-
-msgid "The name of the file and its content can be intentionally misleading."
-msgstr ""
-
-msgid ""
-"Please review the following information and decide if you wish to proceed."
-msgstr ""
-
 msgid "Error!"
 msgstr "Błąd!"
 
@@ -1734,28 +1704,6 @@ msgstr "sekundy"
 
 msgid "Size:"
 msgstr "Wielkość:"
-
-msgid "Which of the following statements is true?"
-msgstr "Które z podanych stwierdzeń jest prawdziwe?"
-
-msgid "HTTPS protects my identity, but not the content of my submission"
-msgstr ""
-
-msgid "HTTPS protects the content of my submission but not my identity"
-msgstr ""
-
-msgid "HTTPS does not protect the content of my submission nor my identity"
-msgstr ""
-
-msgid "HTTPS does protect both my identity and the content of my submission"
-msgstr ""
-
-msgid ""
-"You are aware of the risks involved. Go ahead, but consider yourself warned."
-msgstr "Jesteś świadom potencjalnych zagrożeń. Kontynuuj, ale pamiętaj że zostałeś ostrzeżny."
-
-msgid "Wrong Answer!"
-msgstr "Zła Odpowiedź!"
 
 msgid "The connection is not secure."
 msgstr ""
@@ -1949,6 +1897,9 @@ msgstr ""
 msgid "Date of the request"
 msgstr ""
 
+msgid "Undeclared"
+msgstr ""
+
 msgid "Congratulations!"
 msgstr "Gratulacje!"
 
@@ -2111,6 +2062,9 @@ msgstr ""
 msgid "Kind regards,"
 msgstr ""
 
+msgid "Access instructions"
+msgstr ""
+
 msgid ""
 "The number of activities recently detected appears to be higher than usual."
 msgstr ""
@@ -2161,6 +2115,27 @@ msgid ""
 msgstr ""
 
 msgid "PGP key expiration alert"
+msgstr ""
+
+msgid "A new whistleblowing site has been registered."
+msgstr ""
+
+msgid "Registration data:"
+msgstr ""
+
+msgid "Site: {HTTPSUrl} "
+msgstr ""
+
+msgid "Name: {Name}"
+msgstr ""
+
+msgid "Email: {Email}"
+msgstr ""
+
+msgid "Use case: {UseCase}"
+msgstr ""
+
+msgid "New whistleblowing site registered"
 msgstr ""
 
 msgid ""
@@ -2312,6 +2287,9 @@ msgid "Notifications from {NodeName} have been temporarily suspended"
 msgstr ""
 
 msgid "Click the link to activate the platform:"
+msgstr ""
+
+msgid "Activation"
 msgstr ""
 
 msgid "A software update is available."

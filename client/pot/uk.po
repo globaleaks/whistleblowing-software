@@ -22,7 +22,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-04-04 12:51+0000\n"
+"PO-Revision-Date: 2018-04-08 11:12+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/otf/globaleaks/language/uk/)\n"
 "MIME-Version: 1.0\n"
@@ -812,12 +812,6 @@ msgstr "Дозволити одержувачам обирати які типи
 msgid "Enable search engines indexing"
 msgstr "Включити індексацію пошуковими системами"
 
-msgid "Enabled"
-msgstr "Увімкнений"
-
-msgid "Search engine spiders will be allowed to index the application."
-msgstr "Пошуковикам буде дозволено збирати інформацію для подачі сторінок для пошукових систем."
-
 msgid "Enable custom privacy panel"
 msgstr "Увімкнути значок конфіденційності"
 
@@ -830,14 +824,14 @@ msgstr "Текст, який показується, коли інформато
 msgid "Disable the privacy panel"
 msgstr "Відключити значок конфіденційності"
 
-msgid "Security awareness panel title"
-msgstr "Security awareness panel title"
+msgid "Enable disclaimer"
+msgstr ""
 
-msgid "Security awareness panel text"
-msgstr "Security awareness panel text"
+msgid "Title"
+msgstr "Назва"
 
-msgid "Disable the security awareness panel questions"
-msgstr "Відключити питання з питань безпеки"
+msgid "Text"
+msgstr "Текст"
 
 msgid "Disable the security awareness panel"
 msgstr "Відключити знак попередження про небезпеку"
@@ -879,9 +873,6 @@ msgstr "Сторінка подання матеріалів"
 msgid "Title of the submission page"
 msgstr "Заголовок сторінки подачі свідчень"
 
-msgid "Title of the attachments widget"
-msgstr "Title of the attachments widget"
-
 msgid "Text of prompt for whistleblowers to log in"
 msgstr "Текст, який закликає інформатора авторизуватись"
 
@@ -893,12 +884,6 @@ msgstr "Заголовок сторінки вхідних повідомоле�
 
 msgid "Title of the submission status page"
 msgstr "Заголовок сторінки статусу свідчень"
-
-msgid "Title of the comments widget"
-msgstr "Title of the comments widget"
-
-msgid "Title of the messages widget"
-msgstr "Title of the messages widget"
 
 msgid "Size limit for file attachments"
 msgstr "Обмеження розміру доданих файлів"
@@ -922,12 +907,6 @@ msgstr "Ім'я користувача"
 
 msgid "Password"
 msgstr "Пароль"
-
-msgid ""
-"This feature keeps regular people from visiting the platform while it is "
-"still under development and should not be used for security purposes. The "
-"input password is stored in plaintext on the server."
-msgstr "This feature keeps regular people from visiting the platform while it is still under development and should not be used for security purposes. The input password is stored in plaintext on the server."
 
 msgid "Enable experimental features"
 msgstr "Enable experimental features"
@@ -1083,6 +1062,9 @@ msgstr ""
 
 msgid "Disabled"
 msgstr "Вимкнено"
+
+msgid "Enabled"
+msgstr "Увімкнений"
 
 msgid "Submission expiration, in days"
 msgstr "Термін до видалення повідомлення, у днях"
@@ -1660,18 +1642,6 @@ msgstr "Це означає, що у випадку конфіскації се�
 msgid "Are you sure that you wish to continue?"
 msgstr "Ви впевнені, що хочете продовжити?"
 
-msgid ""
-"Downloading a file with malicious content could compromise your computer or "
-"disclose your identity."
-msgstr ""
-
-msgid "The name of the file and its content can be intentionally misleading."
-msgstr ""
-
-msgid ""
-"Please review the following information and decide if you wish to proceed."
-msgstr ""
-
 msgid "Error!"
 msgstr "Помилка!"
 
@@ -1738,28 +1708,6 @@ msgstr "секунди"
 
 msgid "Size:"
 msgstr ""
-
-msgid "Which of the following statements is true?"
-msgstr "Яке з наведених нижче стверджень є правильним?"
-
-msgid "HTTPS protects my identity, but not the content of my submission"
-msgstr "HTTPS захищає мої особисті дані, але не вміст мого повідомлення"
-
-msgid "HTTPS protects the content of my submission but not my identity"
-msgstr "HTTPS захищає вміст моєї передачі, але не захищає мої особисті дані"
-
-msgid "HTTPS does not protect the content of my submission nor my identity"
-msgstr "HTTPS не захищає ні мої особисті дані, ні вміст моєї передачі"
-
-msgid "HTTPS does protect both my identity and the content of my submission"
-msgstr "HTTPS захищає мої особисті дані та вміст моєї передачі"
-
-msgid ""
-"You are aware of the risks involved. Go ahead, but consider yourself warned."
-msgstr "Ви ознайомлені з можливими ризиками. Ви були попереджені та можете продовжити роботу."
-
-msgid "Wrong Answer!"
-msgstr "Не вірна відповідь"
 
 msgid "The connection is not secure."
 msgstr "Інтернет з'єднання недостатньо безпечне."
@@ -1953,6 +1901,9 @@ msgstr "Запит на інформацію про особу викривач�
 msgid "Date of the request"
 msgstr "Дата запиту"
 
+msgid "Undeclared"
+msgstr ""
+
 msgid "Congratulations!"
 msgstr "Вітаємо!"
 
@@ -2115,6 +2066,9 @@ msgstr "Шановний {RecipientName},"
 msgid "Kind regards,"
 msgstr "З повагою,"
 
+msgid "Access instructions"
+msgstr ""
+
 msgid ""
 "The number of activities recently detected appears to be higher than usual."
 msgstr "The number of activities recently detected appears to be higher than usual."
@@ -2166,6 +2120,27 @@ msgstr "Без дійсного PGP ключа, система не зможе �
 
 msgid "PGP key expiration alert"
 msgstr "Попередження про закінчення PGP ключа"
+
+msgid "A new whistleblowing site has been registered."
+msgstr ""
+
+msgid "Registration data:"
+msgstr ""
+
+msgid "Site: {HTTPSUrl} "
+msgstr ""
+
+msgid "Name: {Name}"
+msgstr ""
+
+msgid "Email: {Email}"
+msgstr ""
+
+msgid "Use case: {UseCase}"
+msgstr ""
+
+msgid "New whistleblowing site registered"
+msgstr ""
 
 msgid ""
 "This is a test email sent out from the platform's administrative interface."
@@ -2316,6 +2291,9 @@ msgid "Notifications from {NodeName} have been temporarily suspended"
 msgstr "Повідомлення від {NodeName} тимчасово заблоковані"
 
 msgid "Click the link to activate the platform:"
+msgstr ""
+
+msgid "Activation"
 msgstr ""
 
 msgid "A software update is available."

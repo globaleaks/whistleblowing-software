@@ -18,7 +18,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-04-04 12:51+0000\n"
+"PO-Revision-Date: 2018-04-08 11:12+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/otf/globaleaks/language/zh_CN/)\n"
 "MIME-Version: 1.0\n"
@@ -808,12 +808,6 @@ msgstr "允许接收者为告密者授予在特定提交上的权限"
 msgid "Enable search engines indexing"
 msgstr "启用搜索引擎索引"
 
-msgid "Enabled"
-msgstr "启用"
-
-msgid "Search engine spiders will be allowed to index the application."
-msgstr "搜索引擎蜘蛛将会被允许去抓取这个应用程序上的信息。"
-
 msgid "Enable custom privacy panel"
 msgstr "启用自定义隐私面板"
 
@@ -826,14 +820,14 @@ msgstr "未使用 Tor 浏览告密者时显示的文本"
 msgid "Disable the privacy panel"
 msgstr "禁用隐私面板"
 
-msgid "Security awareness panel title"
-msgstr "安全警示面板标题"
+msgid "Enable disclaimer"
+msgstr ""
 
-msgid "Security awareness panel text"
-msgstr "安全警示面板文本"
+msgid "Title"
+msgstr "标题"
 
-msgid "Disable the security awareness panel questions"
-msgstr "禁用安全警示面板徽章问题"
+msgid "Text"
+msgstr "文本"
 
 msgid "Disable the security awareness panel"
 msgstr "禁用安全警示徽章"
@@ -875,9 +869,6 @@ msgstr "提交页面"
 msgid "Title of the submission page"
 msgstr "提交页面的标题"
 
-msgid "Title of the attachments widget"
-msgstr "附件小工具的标题"
-
 msgid "Text of prompt for whistleblowers to log in"
 msgstr "揭发人登录时弹出的消息"
 
@@ -889,12 +880,6 @@ msgstr "收据页面的标题"
 
 msgid "Title of the submission status page"
 msgstr "提交状态页面的标题"
-
-msgid "Title of the comments widget"
-msgstr "评论小工具的标题"
-
-msgid "Title of the messages widget"
-msgstr "消息小工具的标题"
 
 msgid "Size limit for file attachments"
 msgstr "文件附件大小限制"
@@ -918,12 +903,6 @@ msgstr "用户名"
 
 msgid "Password"
 msgstr "密码"
-
-msgid ""
-"This feature keeps regular people from visiting the platform while it is "
-"still under development and should not be used for security purposes. The "
-"input password is stored in plaintext on the server."
-msgstr "该功能用于避免普通用户访问尚在开发中的平台，不可用于安全目的。输入的密码将以明文方式保存在服务器上。"
 
 msgid "Enable experimental features"
 msgstr "启用试验功能"
@@ -1079,6 +1058,9 @@ msgstr "允许接收人为揭发人上传文件"
 
 msgid "Disabled"
 msgstr "关闭"
+
+msgid "Enabled"
+msgstr "启用"
 
 msgid "Submission expiration, in days"
 msgstr "提交有效期，以天计"
@@ -1656,18 +1638,6 @@ msgstr "如果平台所在服务器被查收，将无法提取已提交的文件
 msgid "Are you sure that you wish to continue?"
 msgstr "你确定你想要继续吗？"
 
-msgid ""
-"Downloading a file with malicious content could compromise your computer or "
-"disclose your identity."
-msgstr "下载恶意文件可能破坏或降低你所用计算机的安全性，并可能导致身份曝光。"
-
-msgid "The name of the file and its content can be intentionally misleading."
-msgstr "文件标题及其内容可能存在有意误导。"
-
-msgid ""
-"Please review the following information and decide if you wish to proceed."
-msgstr "在决定是否继续之前，请检查以下信息。"
-
 msgid "Error!"
 msgstr "错误！"
 
@@ -1734,28 +1704,6 @@ msgstr "秒"
 
 msgid "Size:"
 msgstr "大小："
-
-msgid "Which of the following statements is true?"
-msgstr "以下的陈述哪一项是正确的？"
-
-msgid "HTTPS protects my identity, but not the content of my submission"
-msgstr "HTTPS 可保护身份，但无法保护提交内容"
-
-msgid "HTTPS protects the content of my submission but not my identity"
-msgstr "HTTPS 可保护提交内容，但无法保护身份"
-
-msgid "HTTPS does not protect the content of my submission nor my identity"
-msgstr "HTTPS 无法保护身份和提交内容"
-
-msgid "HTTPS does protect both my identity and the content of my submission"
-msgstr "HTTPS 可保护身份和提交内容"
-
-msgid ""
-"You are aware of the risks involved. Go ahead, but consider yourself warned."
-msgstr "你已清楚相关的风险。继续，但认为你自己已被警告过了。"
-
-msgid "Wrong Answer!"
-msgstr "答案错误"
 
 msgid "The connection is not secure."
 msgstr "此连接存在安全隐患。"
@@ -1949,6 +1897,9 @@ msgstr "获取揭发人身份的请求已发送至保管人。"
 msgid "Date of the request"
 msgstr "申请日期"
 
+msgid "Undeclared"
+msgstr ""
+
 msgid "Congratulations!"
 msgstr "祝贺你！"
 
@@ -2111,6 +2062,9 @@ msgstr "亲爱的 {RecipientName}，"
 msgid "Kind regards,"
 msgstr "亲切的问候，"
 
+msgid "Access instructions"
+msgstr ""
+
 msgid ""
 "The number of activities recently detected appears to be higher than usual."
 msgstr "最近检测到的活动情况似乎比平时更高。"
@@ -2162,6 +2116,27 @@ msgstr "若没有有效的 PGP 密钥，系统将不能向他们发送加密的�
 
 msgid "PGP key expiration alert"
 msgstr "PGP 密钥过期警告"
+
+msgid "A new whistleblowing site has been registered."
+msgstr ""
+
+msgid "Registration data:"
+msgstr ""
+
+msgid "Site: {HTTPSUrl} "
+msgstr ""
+
+msgid "Name: {Name}"
+msgstr ""
+
+msgid "Email: {Email}"
+msgstr ""
+
+msgid "Use case: {UseCase}"
+msgstr ""
+
+msgid "New whistleblowing site registered"
+msgstr ""
 
 msgid ""
 "This is a test email sent out from the platform's administrative interface."
@@ -2312,6 +2287,9 @@ msgid "Notifications from {NodeName} have been temporarily suspended"
 msgstr "来自 {NodeName} 的通知已暂停"
 
 msgid "Click the link to activate the platform:"
+msgstr ""
+
+msgid "Activation"
 msgstr ""
 
 msgid "A software update is available."
