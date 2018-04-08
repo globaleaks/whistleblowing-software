@@ -1,0 +1,17 @@
+Dear {RecipientName},
+
+A new whistleblowing platform has been registered at:
+{HTTPSUrl}
+
+Registration data:
+Name: {Name}
+Surname: {Surname}
+Email: {Email}
+Use case: {UseCase}
+
+The platform will be automatically deleted on:
+{ExpirationDate}
+
+Kind regards,
+
+{NodeName}

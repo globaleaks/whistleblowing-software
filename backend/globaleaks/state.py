@@ -188,7 +188,7 @@ class StateClass(ObjectDict):
                        self.tenant_cache[tid].notification.smtp_source_name,
                        self.tenant_cache[tid].notification.smtp_source_email,
                        to_address,
-                       subject,
+                       self.tenant_cache[tid].name + ' - ' + subject,
                        body,
                        self.tenant_cache[tid].anonymize_outgoing_connections,
                        self.settings.socks_host,
