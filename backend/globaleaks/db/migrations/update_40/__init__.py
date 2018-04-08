@@ -30,5 +30,4 @@ class MigrationScript(MigrationBase):
                 else:
                     setattr(new_obj, key, getattr(old_obj, key))
 
-            print "j"
             self.session_new.add(new_obj)
