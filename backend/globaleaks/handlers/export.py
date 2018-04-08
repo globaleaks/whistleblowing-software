@@ -61,7 +61,7 @@ def get_tip_export(session, tid, user_id, rtip_id, language):
                                                              models.ReceiverTip.internaltip_id == rtip.internaltip_id,
                                                              models.InternalTip.id == rtip.internaltip_id,
                                                              models.InternalTip.tid == tid):
-        file_dict = models.serializers.serialize_wbfile(tid, wf)
+        file_dict = models.serializers.serialize_wbfile(session, tid, wf)
         file_dict['name'] = 'files_from_recipients/' + file_dict['name']
         export_dict['files'].append(file_dict)
 
