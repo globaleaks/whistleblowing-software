@@ -20,9 +20,9 @@
       "integrity": "sha512-3GrHCRZS62ruJjHMtOx3WYsS0I8i0FRcIqOwqIfWXnlR9g2FebEhUNdMk3LZIvfhZ08xe+S1x2iwP1t9vKCHag=="
     },
     "@types/node": {
-      "version": "6.0.101",
-      "resolved": "https://registry.npmjs.org/@types/node/-/node-6.0.101.tgz",
-      "integrity": "sha512-IQ7V3D6+kK1DArTqTBrnl3M+YgJZLw8ta8w3Q9xjR79HaJzMAoTbZ8TNzUTztrkCKPTqIstE2exdbs1FzsYLUw==",
+      "version": "6.0.104",
+      "resolved": "https://registry.npmjs.org/@types/node/-/node-6.0.104.tgz",
+      "integrity": "sha512-xPuI3Yeyc3u5SY7aFu6ILTJHFXo820DSfqNqYi1gxPmbpul+vLSfo3vhrY80d0+SdOYR9KdXHg6ozx4i/02LCg==",
       "dev": true
     },
     "@types/q": {
@@ -1668,6 +1668,23 @@
         "crc32-stream": "2.0.0",
         "normalize-path": "2.1.1",
         "readable-stream": "2.3.4"
+      }
+    },
+    "compressjs": {
+      "version": "github:openpgpjs/compressjs#ce5ccbede61f075926081e29573c8a79ddf10d88",
+      "requires": {
+        "amdefine": "1.0.1",
+        "commander": "2.8.1"
+      },
+      "dependencies": {
+        "commander": {
+          "version": "2.8.1",
+          "resolved": "https://registry.npmjs.org/commander/-/commander-2.8.1.tgz",
+          "integrity": "sha1-Br42f+v9oMMwqh4qBy09yXYkJdQ=",
+          "requires": {
+            "graceful-readlink": "1.0.1"
+          }
+        }
       }
     },
     "concat-map": {
@@ -9781,9 +9798,9 @@
       "dev": true
     },
     "openpgp": {
-      "version": "3.0.3",
-      "resolved": "https://registry.npmjs.org/openpgp/-/openpgp-3.0.3.tgz",
-      "integrity": "sha512-a6dKqQCUFJxmrjWbFLbUneTOGF6+ZenhIcr3xz/HzeuS7igxhYAhHjZro6HTUU0vlbn/0x4N4Mzd0DaTZVIDjw==",
+      "version": "3.0.4",
+      "resolved": "https://registry.npmjs.org/openpgp/-/openpgp-3.0.4.tgz",
+      "integrity": "sha512-9YFXBeDX9OLAH75AuWtrYDa2Ef7BhzWyxCkxFlKA0oSwb+StQgV6MXSluxB+VC4jvV8B6OuwZ3Kd6pS7aC3icw==",
       "requires": {
         "asmcrypto.js": "0.22.0",
         "asn1.js": "5.0.0",
@@ -9798,21 +9815,6 @@
         "rusha": "0.8.13"
       },
       "dependencies": {
-        "commander": {
-          "version": "2.8.1",
-          "resolved": "https://registry.npmjs.org/commander/-/commander-2.8.1.tgz",
-          "integrity": "sha1-Br42f+v9oMMwqh4qBy09yXYkJdQ=",
-          "requires": {
-            "graceful-readlink": "1.0.1"
-          }
-        },
-        "compressjs": {
-          "version": "github:openpgpjs/compressjs#ce5ccbede61f075926081e29573c8a79ddf10d88",
-          "requires": {
-            "amdefine": "1.0.1",
-            "commander": "2.8.1"
-          }
-        },
         "elliptic": {
           "version": "github:openpgpjs/elliptic#e187e706e11fa51bcd20e46e5119054be4e2a4a6",
           "requires": {
@@ -10279,12 +10281,12 @@
       }
     },
     "protractor": {
-      "version": "5.3.0",
-      "resolved": "https://registry.npmjs.org/protractor/-/protractor-5.3.0.tgz",
-      "integrity": "sha512-8z1TWtc/I9Kn4fkfg87DhkSAi0arul7DHBEeJ70sy66teQAeffjQED1s0Gduigme7hxHRYdYEKbhHYz28fpv5w==",
+      "version": "5.3.1",
+      "resolved": "https://registry.npmjs.org/protractor/-/protractor-5.3.1.tgz",
+      "integrity": "sha512-AW9qJ0prx2QEMy1gnhJ1Sl1WBQL2R3fx/VnG09FEmWprPIQPK14t0B83OB/pAGddpxiDCAAV0KiNNLf2c2Y/lQ==",
       "dev": true,
       "requires": {
-        "@types/node": "6.0.101",
+        "@types/node": "6.0.104",
         "@types/q": "0.0.32",
         "@types/selenium-webdriver": "2.53.43",
         "blocking-proxy": "1.0.1",
