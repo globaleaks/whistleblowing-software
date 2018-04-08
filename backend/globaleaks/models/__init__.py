@@ -223,7 +223,7 @@ class _Comment(Model):
 
     @declared_attr
     def __table_args__(cls): # pylint: disable=no-self-argument
-        return (ForeignKeyConstraint(['id'], ['user.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),
+        return (ForeignKeyConstraint(['internaltip_id'], ['internaltip.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),
                 ForeignKeyConstraint(['author_id'], ['user.id'], ondelete='SET NULL', deferrable=True, initially='DEFERRED'),)
 
 
@@ -362,7 +362,7 @@ class _Context(Model):
     @declared_attr
     def __table_args__(cls): # pylint: disable=no-self-argument
         return (ForeignKeyConstraint(['tid'], ['tenant.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),
-                ForeignKeyConstraint(['questionnaire_id'], ['questionnaire.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'))
+                ForeignKeyConstraint(['questionnaire_id'], ['questionnaire.id'], deferrable=True, initially='DEFERRED'))
 
 
 class _ContextImg(Model):
