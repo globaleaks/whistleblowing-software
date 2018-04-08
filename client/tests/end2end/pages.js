@@ -38,11 +38,6 @@ exports.whistleblower = function() {
   this.performSubmission = function(title, uploadFiles) {
     browser.get('/#/submission');
 
-    browser.gl.utils.waitUntilPresent(by.cssContainingText("div.modal-title", "Warning! You are not anonymous."));
-    element(by.id("answer-2")).click();
-    browser.gl.utils.waitUntilClickable(by.cssContainingText("button", "Proceed"));
-    element(by.cssContainingText("button", "Proceed")).click();
-
     browser.gl.utils.waitUntilPresent(by.id('submissionForm'));
 
     browser.wait(function(){
