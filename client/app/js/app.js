@@ -495,10 +495,10 @@ var GLClient = angular.module('GLClient', [
       });
     };
 
-    $rootScope.open_anonimity_modal = function () {
+    $rootScope.open_disclaimer_modal = function () {
       $uibModal.open({
-        templateUrl: 'views/partials/security_awareness_anonimity.html',
-        controller: 'AnonimityModalCtrl',
+        templateUrl: 'views/partials/disclaimer.html',
+        controller: 'DisclaimerModalCtrl',
         size: 'lg',
         scope: $rootScope,
         backdrop: 'static',
@@ -521,13 +521,10 @@ var GLClient = angular.module('GLClient', [
       return false;
     }
 
-    $rootScope.evaluateAnonimityModalOpening = function () {
-      if (!$rootScope.node.disable_security_awareness_badge &&
-          !$rootScope.confidentiality_warning_opened &&
-          !$rootScope.connection.tor &&
-          !$rootScope.anonimity_warning_opened) {
-        $rootScope.anonimity_warning_opened = true;
-        $rootScope.open_anonimity_modal();
+    $rootScope.evaluateDisclaimerModalOpening = function () {
+      if ($rootScope.node.enable_disclaimer && !$rootScope.disclaimer_opened) {
+        $rootScope.disclaimer_opened = true;
+        $rootScope.open_disclaimer_modal();
         return true;
       }
 

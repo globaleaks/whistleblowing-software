@@ -110,8 +110,8 @@ class NodeL10NFactory(ConfigL10NFactory):
         u'description',
         u'presentation',
         u'footer',
-        u'security_awareness_title',
-        u'security_awareness_text',
+        u'disclaimer_title',
+        u'disclaimer_text',
         u'whistleblowing_question',
         u'whistleblowing_button',
         u'whistleblowing_receipt_prompt',
@@ -120,10 +120,7 @@ class NodeL10NFactory(ConfigL10NFactory):
         u'header_title_submissionpage',
         u'header_title_receiptpage',
         u'header_title_tippage',
-        u'contexts_clarification',
-        u'widget_comments_title',
-        u'widget_messages_title',
-        u'widget_files_title',
+        u'contexts_clarification'
     ]
 
 
