@@ -125,7 +125,7 @@
       </div>
     </div>
   </div>
-  <div data-ng-if="field.required_status" class="red-text float-left">
+  <div data-ng-if="field.required_status" class="float-left" data-ng-class="{'red-text': displayErrors()}">
     <span data-ng-if="field.type === 'inputbox' || field.type === 'textarea'">
       <span data-ng-if="field.attrs.min_len.value <= 0" data-translate>This field is mandatory.</span>
       <span data-ng-if="field.attrs.min_len.value > 0" data-translate>The answer is too short.</span>
