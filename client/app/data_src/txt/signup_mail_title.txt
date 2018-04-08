@@ -1,1 +1,1 @@
-{NodeName} - Activation
+Activation

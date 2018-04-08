@@ -95,9 +95,12 @@ software_update_keywords = [
 platform_signup_keywords = [
     '{RecipientName}',
     '{ActivationUrl}',
-    '{ExpirationDate}'
+    '{ExpirationDate}',
+    '{Name}',
+    '{Surname}',
+    '{Email}',
+    '{UseCase}'
 ]
-
 
 def indent(n=1):
     return '  ' * n
@@ -486,6 +489,29 @@ class PlatformSignupKeyword(NodeKeyword):
     def ExpirationDate(self):
         return ISO8601_to_day_str(self.data['expiration_date'])
 
+    def Name(self):
+        return signup_data['name']
+
+    def Surname(self):
+        return signup_data['surname']
+
+    def Email(self):
+        return signup_data['email']
+
+    def UseCase(self):
+        # Some special handling is required here. use_case is, as the name
+        # suggests is the reason why a new tenant signed up for a GL platform,
+        # however, "Other" is allowed as a valid reason, so we need to catch
+        # that and send it seperately.
+        #
+        # The field is currently not subject to internationaliation.
+        signup_data = self.data['signup']
+        if signup_data['use_case'] == 'other':
+            return signup_data['use_case'] + \
+                   " - " + \
+                   signup_data['use_case_other']
+        else:
+            return signup_data['use_case']
 
 supported_template_types = {
     u'tip': TipKeyword,
@@ -503,7 +529,8 @@ supported_template_types = {
     u'https_certificate_expiration': CertificateExprKeyword,
     u'software_update_available': SoftwareUpdateKeyword,
     u'signup': PlatformSignupKeyword,
-    u'activation': PlatformSignupKeyword
+    u'activation': PlatformSignupKeyword,
+    u'admin_signup_alert': PlatformSignupKeyword
 }
 
 
