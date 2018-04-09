@@ -60,7 +60,7 @@ if [ "$GLTEST" = "test" ]; then
   $TRAVIS_BUILD_DIR/backend/bin/globaleaks -z $TRAVIS_USR -k9
   sleep 3
 
-  node_modules/protractor/bin/webdriver-manager update
+  node_modules/protractor/bin/webdriver-manager update --gecko=false
 
   grunt protractor_coverage
   grunt end2end-coverage-report
@@ -114,7 +114,8 @@ elif [ "$GLTEST" = "build_and_install" ]; then
   sudo ./scripts/install.sh --assume-yes --test
   setupClientDependencies
   cd $TRAVIS_BUILD_DIR/client
-  node_modules/protractor/bin/webdriver-manager update
+
+  node_modules/protractor/bin/webdriver-manager update --gecko=false
   node_modules/protractor/bin/protractor tests/end2end/protractor.config.js
 
 elif [[ $GLTEST =~ ^end2end-.* ]]; then
