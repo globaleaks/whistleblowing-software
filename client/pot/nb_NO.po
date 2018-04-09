@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-04-08 11:12+0000\n"
-"Last-Translator: Hermes Center <info@hermescenter.org>\n"
+"PO-Revision-Date: 2018-04-09 05:41+0000\n"
+"Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Norwegian Bokmål (Norway) (http://www.transifex.com/otf/globaleaks/language/nb_NO/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -810,7 +810,7 @@ msgid "Disable the privacy panel"
 msgstr "Skru av personvernspanelet"
 
 msgid "Enable disclaimer"
-msgstr ""
+msgstr "Slå på ansvarsfraskrivelse"
 
 msgid "Title"
 msgstr "Tittel"
@@ -1438,7 +1438,7 @@ msgid "Body of the confirmation question upon negative answer"
 msgstr "Meldingstekst for bekreftelsspørsmål ved negativt svar"
 
 msgid "Text of the final statement upon negative answer"
-msgstr ""
+msgstr "Tekst for siste kunngjøring ved negativt svar"
 
 msgid "Options"
 msgstr "Valg"
@@ -1887,7 +1887,7 @@ msgid "Date of the request"
 msgstr "Dato for forespørsel"
 
 msgid "Undeclared"
-msgstr ""
+msgstr "Uklarert"
 
 msgid "Congratulations!"
 msgstr "Gratulerer!"
@@ -2052,7 +2052,7 @@ msgid "Kind regards,"
 msgstr "Vennlig hilsen,"
 
 msgid "Access instructions"
-msgstr ""
+msgstr "Tilgangsinstruksjoner"
 
 msgid ""
 "The number of activities recently detected appears to be higher than usual."
@@ -2107,25 +2107,25 @@ msgid "PGP key expiration alert"
 msgstr "Utløpsvarsel for PGP-nøkkel"
 
 msgid "A new whistleblowing site has been registered."
-msgstr ""
+msgstr "En ny fløyteblåserside har blitt registrert."
 
 msgid "Registration data:"
-msgstr ""
+msgstr "Registreringsdata:"
 
 msgid "Site: {HTTPSUrl} "
-msgstr ""
+msgstr "Side: {HTTPSUrl} "
 
 msgid "Name: {Name}"
-msgstr ""
+msgstr "Navn: {Name}"
 
 msgid "Email: {Email}"
-msgstr ""
+msgstr "E-post: {Email}"
 
 msgid "Use case: {UseCase}"
-msgstr ""
+msgstr "Bruksmønster: {UseCase}"
 
 msgid "New whistleblowing site registered"
-msgstr ""
+msgstr "Ny fløyteblåserside registrert"
 
 msgid ""
 "This is a test email sent out from the platform's administrative interface."
@@ -2279,7 +2279,7 @@ msgid "Click the link to activate the platform:"
 msgstr "Klikk på lenken for å aktivere plattformen:"
 
 msgid "Activation"
-msgstr ""
+msgstr "Aktivering"
 
 msgid "A software update is available."
 msgstr "En programvareoppgradering er tilgjengelig."
