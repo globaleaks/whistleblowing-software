@@ -67,7 +67,7 @@ module.exports = function(grunt) {
           { dest: 'app/js/lib/', cwd: '.', src: ['node_modules/angular-translate-loader-url/angular-translate-loader-url.min.js'], expand: true, flatten: true },
           { dest: 'app/js/lib/', cwd: '.', src: ['node_modules/angular-translate-loader-static-files/angular-translate-loader-static-files.min.js'], expand: true, flatten: true },
           { dest: 'app/js/lib/', cwd: '.', src: ['node_modules/angular-ui-bootstrap/dist/ui-bootstrap-tpls.js'], expand: true, flatten: true },
-          { dest: 'app/js/lib/', cwd: '.', src: ['node_modules/d3/build/d3.min.js'], expand: true, flatten: true },
+          { dest: 'app/js/lib/', cwd: '.', src: ['node_modules/d3/dist/d3.min.js'], expand: true, flatten: true },
           { dest: 'app/js/lib/', cwd: '.', src: ['node_modules/file-saver/FileSaver.js'], expand: true, flatten: true },
           { dest: 'app/js/lib/', cwd: '.', src: ['node_modules/angular-file-saver/dist/angular-file-saver.min.js'], expand: true, flatten: true },
           { dest: 'app/js/lib/', cwd: '.', src: ['node_modules/@flowjs/flow.js/dist/flow.min.js'], expand: true, flatten: true },
