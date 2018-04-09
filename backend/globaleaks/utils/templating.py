@@ -490,13 +490,10 @@ class PlatformSignupKeyword(NodeKeyword):
         return ISO8601_to_day_str(self.data['expiration_date'])
 
     def Name(self):
-        return signup_data['name']
-
-    def Surname(self):
-        return signup_data['surname']
+        return self.data['signup']['name'] + ' ' + self.data['signup']['surname']
 
     def Email(self):
-        return signup_data['email']
+        return self.data['signup']['email']
 
     def UseCase(self):
         # Some special handling is required here. use_case is, as the name
