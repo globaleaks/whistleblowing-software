@@ -1,3 +1,6 @@
+Changes in version 3.0.21 - 2018-04-09
+    o Fix regression preventing the application to start
+
 Changes in version 3.0.20 - 2018-04-09
     o Implement first round of fixes for supporting Win32
     o Implement admin notifications for users signup
