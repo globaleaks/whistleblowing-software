@@ -1,3 +1,15 @@
+Changes in version 3.0.20 - 2018-04-09
+    o Implement first round of fixes for supporting Win32
+    o Implement admin notifications for users signup
+    o Complete migrations necessary for implementing deferred foreign keys
+    o Update translations
+    o Bump npm dependencies to latest stables versions
+
+    Addresses issues:
+    - https://github.com/globaleaks/GlobaLeaks/issues/2050
+    - https://github.com/globaleaks/GlobaLeaks/issues/2248
+    - https://github.com/globaleaks/GlobaLeaks/issues/2196
+
 Changes in version 3.0.19 - 2018-04-04
     o Update translations
     o Bump npm dependencies to latest stables versions
