@@ -1,3 +1,6 @@
+Changes in version 3.0.22 - 2018-04-09
+    o Fix packaging in relation to D3 library inclusion
+
 Changes in version 3.0.21 - 2018-04-09
     o Fix regression preventing the application to start
 
