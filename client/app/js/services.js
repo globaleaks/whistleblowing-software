@@ -372,7 +372,7 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
 }]).
   factory('RTipDownloadRFile', ['$http', 'FileSaver', function($http, FileSaver) {
     return function(file) {
-      $http({
+      return $http({
         method: 'GET',
         url: 'rtip/rfile/' + file.id,
         responseType: 'blob',
@@ -476,7 +476,7 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
 }]).
   factory('WBTipDownloadFile', ['$http', 'FileSaver', function($http, FileSaver) {
     return function(file) {
-      $http({
+      return $http({
         method: 'GET',
         url: 'wbtip/wbfile/' + file.id,
         responseType: 'blob',
