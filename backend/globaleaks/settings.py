@@ -247,7 +247,7 @@ class SettingsClass(object):
 
             if platform.system() != 'Windows':
                 self.uid = pwd.getpwnam(self.cmdline_options.user).pw_uid
-                self.gid = grp.getgrnam(self.cmdline_options.group).gr_gi
+                self.gid = grp.getgrnam(self.cmdline_options.group).gr_gid
         elif self.cmdline_options.user:
             # user selected: get also the associated group
             self.user = self.cmdline_options.user
