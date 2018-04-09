@@ -49,4 +49,3 @@ class MigrationScript(MigrationBase):
             usernames[new_obj.tid][new_obj.username] = True
 
             self.session_new.add(new_obj)
-            self.session_new.commit()
