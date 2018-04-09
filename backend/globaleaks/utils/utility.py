@@ -15,8 +15,11 @@ import re
 import sys
 import traceback
 import uuid
+import platform
 from datetime import datetime, timedelta
 
+if platform.system() == 'Windows':
+    import ctypes
 
 from txsocksx.errors import TTLExpired, ConnectionRefused, ServerFailure
 from twisted.internet import reactor
@@ -53,10 +56,31 @@ FAILURES_TOR_OUTGOING = (
 
 
 def get_disk_space(path):
-    statvfs = os.statvfs(path)
-    free_bytes = statvfs.f_frsize * statvfs.f_bavail
-    total_bytes = statvfs.f_frsize * statvfs.f_blocks
-    return free_bytes, total_bytes
+    if platform.system() != 'Windows':
+        statvfs = os.statvfs(path)
+        free_bytes = statvfs.f_frsize * statvfs.f_bavail
+        total_bytes = statvfs.f_frsize * statvfs.f_blocks
+
+        return free_bytes, total_bytes
+    else:
+        # statvfs not available on Windows; the only way to get it
+        # without a new pypi dependency is to invoke ctypes voodoo
+
+        abs_path = os.path.abspath(path)
+        dir_path = os.path.dirname(abs_path)
+
+        free_bytes = ctypes.c_ulonglong(0)
+        total_bytes = ctypes.c_ulonglong(0)
+
+        # GetDiskFreeSpaceEx expects a directory path, and returns two
+        # pointers with the necessary information
+        ctypes.windll.kernel32.GetDiskFreeSpaceExW(
+            ctypes.c_wchar_p(dir_path),
+            None,
+            ctypes.pointer(total_bytes),
+            ctypes.pointer(free_bytes))
+
+        return free_bytes.value, total_bytes.value
 
 
 def read_file(p):
@@ -69,24 +93,29 @@ def read_json_file(p):
 
 
 def drop_privileges(user, uid, gid):
-    if os.getgid() != gid:
-        os.setgid(gid)
-        os.initgroups(user, gid)
+    if platform.system() != 'Windows':
+        if os.getgid() != gid:
+            os.setgid(gid)
+            os.initgroups(user, gid)
 
-    if os.getuid() != uid:
-        os.setuid(uid)
-
+        if os.getuid() != uid:
+            os.setuid(uid)
+    else:
+        log.err("Unable to securely drop permissions on Windows")
 
 def fix_file_permissions(path, uid, gid, dchmod, fchmod):
     """
     Recursively fix file permissions on a given path
     """
     def fix(path):
-        os.chown(path, uid, gid)
-        if os.path.isfile(path):
-            os.chmod(path, 0o600)
+        if platform.system() != 'Windows':
+            os.chown(path, uid, gid)
+            if os.path.isfile(path):
+                os.chmod(path, 0o600)
+            else:
+                os.chmod(path, 0o700)
         else:
-            os.chmod(path, 0o700)
+            log.err("Unable to secure %s on Windows", path)
 
     fix(path)
     for item in glob.glob(path + '/*'):

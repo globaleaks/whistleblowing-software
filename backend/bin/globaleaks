@@ -5,6 +5,7 @@ from __future__ import print_function
 import os
 import platform
 import sys
+import mimetypes
 
 # Use UTF-8 for all string to unicode conversions
 reload(sys)
@@ -17,29 +18,37 @@ this_directory = os.path.dirname(__file__)
 root = os.path.abspath(os.path.join(this_directory, '..'))
 sys.path.insert(0, root)
 
-print("Starting GlobaLeaks…")
-
 distro='unknown'
 if platform.system() == 'Linux':
     distro = platform.linux_distribution()[2]
 
-if distro != 'xenial':
-    print("WARNING: The long term supported platform is Ubuntu Xenial (16.04)")
-    print("WARNING: It is recommended to use only this platform to ensure stability and security")
-    print("WARNING: Read about Technical Requirements at: https://docs.globaleaks.org/en/latest/TechnicalRequirements.html")
-    print("WARNING: If it's an old Ubuntu, read more about updating at: https://docs.globaleaks.org/en/latest/UpgradeGuide.html")
+    if distro != 'xenial':
+        print("WARNING: The long term supported platform is Ubuntu Xenial (16.04)")
+        print("WARNING: It is recommended to use only this platform to ensure stability and security")
+        print("WARNING: Read about Technical Requirements at: https://docs.globaleaks.org/en/latest/TechnicalRequirements.html")
+        print("WARNING: If it's an old Ubuntu, read more about updating at: https://docs.globaleaks.org/en/latest/UpgradeGuide.html")
 
-if distro in ('precise', 'trusty', 'wheezy', 'jessie'):
-    from globaleaks.utils.pip_utils import pip_version_check
+        if distro in ('precise', 'trusty', 'wheezy', 'jessie'):
+            from globaleaks.utils.pip_utils import pip_version_check
 
-    requirements_path = os.path.join(root, 'requirements.txt')
-    if not os.path.exists(requirements_path):
-        requirements_path = '/usr/share/globaleaks/requirements.txt'
+            requirements_path = os.path.join(root, 'requirements.txt')
+            if not os.path.exists(requirements_path):
+                requirements_path = '/usr/share/globaleaks/requirements.txt'
 
-    pip_version_check(requirements_path)
+            pip_version_check(requirements_path)
+
+elif platform.system() == 'Windows':
+    print("WARNING: Windows support is extremely experimental at this time, and should not be used for production environments")
 
 from twisted.python import usage
-from twisted.scripts._twistd_unix import ServerOptions, UnixApplicationRunner
+
+# Win32 can't use the standard _twistd_unix, but provides it's own variant
+if platform.system() == 'Windows':
+    from twisted.scripts._twistw import ServerOptions
+    from twisted.scripts._twistw import WindowsApplicationRunner as TwistedApplicationRunner
+else:
+    from twisted.scripts._twistd_unix import ServerOptions
+    from twisted.scripts._twistd_unix import UnixApplicationRunner as TwistedApplicationRunner
 
 
 from globaleaks import DATABASE_VERSION
@@ -129,11 +138,27 @@ if Settings.cmdline_options.kill:
 
 State.init_environment()
 
+# Mimetypes initialization
+if platform.system() == 'Windows':
+    # this is an ugly ugly hack.
+    #
+    # Essentially, on Windows, mimetypes does not load from a well known
+    # source, *or* the python hardcoded database. Instead it queries the
+    # Windows registry and uses that. That would be dandy but the Windows
+    # registry MIGHT not have things like .js/.css (my laptop didn't), so
+    # this forces the mimetypes module to ignore the registry and load the
+    # Python hardcoded list. It MIGHT be better that we just ship mime.types
+    # ourselves and load it, but this is enough to get us started
+    print("WARNING: Overriding MIMETypes for Windows")
+    mimetypes.init([])
+
 args = ['-y', Settings.backend_script]
 if Settings.nodaemon:
     args += ['-n']
 
-args +=['--pidfile', Settings.pidfile_path]
+# PIDFile only supported on UNIX
+if platform.system() != 'Windows':
+    args +=['--pidfile', Settings.pidfile_path]
 
 sys.argv[1:] = args
 
@@ -147,7 +172,7 @@ def run_backend():
         sys.exit(50)
     try:
         # This blocks until the app exits
-        UnixApplicationRunner(config).run()
+        TwistedApplicationRunner(config).run()
         print("Exiting GlobaLeaks")
     except Exception as excep:
         print("Unable to start GlobaLeaks: %s" % excep)
