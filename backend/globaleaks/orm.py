@@ -1,7 +1,7 @@
 # -*- coding: utf-8
 import random
 import time
-
+import platform
 
 from sqlalchemy import create_engine, event
 from sqlalchemy.exc import OperationalError
@@ -10,6 +10,7 @@ from sqlalchemy.orm import sessionmaker
 
 from twisted.internet import reactor
 from twisted.internet.threads import deferToThreadPool
+from globaleaks.utils.utility import datetime_now, deferred_sleep, log
 
 
 __DB_URI = 'sqlite:'
@@ -17,7 +18,19 @@ __THREAD_POOL = None
 
 
 def make_db_uri(db_file):
-    return 'sqlite+pysqlite:////' + db_file
+    # ugly ugly hack to allow this to work properly on windows
+    prefix = 'sqlite+pysqlite://'
+    if platform.system() == 'Windows':
+        # Specifically, the problem is SQLite is expecting a double-backslashed path
+        # on Windows (i.e., c:\\dir\\db) despite this being a Python API. If anything
+        # this feels like a bug somewhere, but until then, this hack is required.
+        #
+        # The expected start path becomes sqlite+pysqlite:///C:\\test\\test.db
+        prefix += '/'
+        db_file = str(db_file).replace('\\', '\\\\')
+    else:
+        prefix += '//'
+    return prefix + db_file
 
 
 def set_db_uri(db_uri):
