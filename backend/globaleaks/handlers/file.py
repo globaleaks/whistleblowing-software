@@ -17,7 +17,6 @@ def get_file_id(session, tid, name):
 
 class FileHandler(BaseHandler):
     check_roles = '*'
-    cache_resource = True
 
     @defer.inlineCallbacks
     def get(self, name):
