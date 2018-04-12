@@ -1,4 +1,4 @@
-<div data-ng-aaaaif="!connection.tor" data-ng-init="connection.privacy_badge_open = true" data-ng-mouseenter="connection.privacy_badge_open = true">
+<div data-ng-if="!connection.tor" data-ng-init="connection.privacy_badge_open = true" data-ng-mouseenter="connection.privacy_badge_open = true">
   <div id="PrivacyBadge" data-ng-if="!node.enable_custom_privacy_badge">
     <div id="PrivacyBadgeTextBox" class="pull-left">
       <span class="label label-warning">
