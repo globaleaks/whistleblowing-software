@@ -14,8 +14,8 @@ from globaleaks.handlers.wizard import db_wizard
 from globaleaks.models import config
 from globaleaks.orm import transact
 from globaleaks.rest import requests, errors, apicache
-from globaleaks.utils.utility import datetime_to_ISO8601
 from globaleaks.utils.security import generateRandomKey
+from globaleaks.utils.utility import datetime_to_ISO8601
 
 
 def serialize_signup(signup):
@@ -71,16 +71,16 @@ def signup(session, state, tid, request, language):
     state.format_and_send_mail(session, 1, {'mail_address': signup.email}, template_vars)
 
     # Email 2 - Admin Notification
-    template_vars = copy.deepcopy(ret)
-    template_vars.update({
-        'type': 'admin_signup_alert',
-        'signup': serialize_signup(signup),
-        'node': db_admin_serialize_node(session, 1, language),
-        'notification': db_get_notification(session, 1, language)
-    })
-
     for user_desc in db_get_admin_users(session, 1):
-        template_vars['user'] = user_desc
+        template_vars = copy.deepcopy(ret)
+        template_vars.update({
+            'type': 'admin_signup_alert',
+            'signup': serialize_signup(signup),
+            'node': db_admin_serialize_node(session, 1, user_desc['language']),
+            'notification': db_get_notification(session, 1, user_desc['language']),
+            'user': user_desc
+        })
+
         state.format_and_send_mail(session, 1, user_desc, template_vars)
 
     return ret
