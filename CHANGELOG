@@ -1,3 +1,6 @@
+Changes in version 3.0.24 - 2018-04-12
+    o Fix regression on privacy badge visible also over Tor
+
 Changes in version 3.0.23 - 2018-04-11
     o Fix static file handler in relation to broken cache
     o Fix packaging in relation to disclaimer.html template
