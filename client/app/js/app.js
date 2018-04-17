@@ -754,8 +754,8 @@ var GLClient = angular.module('GLClient', [
            'arguments': response.data.arguments
          };
 
-         /* 9: Not Authenticated */
-         if (error.code === 9) {
+         /* 10: Not Authenticated */
+         if (error.code === 10) {
            $rootScope.Authentication.loginRedirect(false);
          }
 
