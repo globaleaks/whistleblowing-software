@@ -41,9 +41,5 @@
     <label>{{::node.whistleblowing_receipt_prompt}}</label>
   </div>
   <div data-ng-include="'views/partials/wb_login.html'"></div>
-  <div class="LoginErrorBoxHomepage row" data-ng-show="errors[0].code == 29">
-    <div class="col-md-12">
-      <div class="alert alert-danger" data-translate>The key code is either invalid or the submission has expired.</div>
-    </div>
-  </div>
+  <div class="LoginErrorBoxHomepage alert alert-danger" data-ng-show="errors[0].code == 9" data-translate>The key code is either invalid or the submission has expired.</div>
 </div>

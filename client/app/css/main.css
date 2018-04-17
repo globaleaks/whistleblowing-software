@@ -278,16 +278,12 @@ html[dir='rtl'] .imageUpload .changePictureButton, html[dir='ltr'] .imageUpload 
   padding: 1.25em;
 }
 
-.LoginErrorBox {
-  margin-top: 0.8em;
+.LoginErrorBox, .LoginErrorBoxHomepage {
+  display: inline-block;
 }
 
 .LoginErrorBox {
   margin: 0.2em;
-}
-
-.LoginErrorBox .alert {
-  margin: 0;
 }
 
 .LoginErrorBoxHomepage {
