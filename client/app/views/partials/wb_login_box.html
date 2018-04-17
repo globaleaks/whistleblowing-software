@@ -1,12 +1,5 @@
 <div id="WhistleblowerLoginBox">
   <div id="WhistleblowerLoginPrompt">{{::node.whistleblowing_receipt_prompt}}</div>
   <div data-ng-include="'views/partials/wb_login.html'"></div>
-  <div class="LoginErrorBoxHomepage row" data-ng-show="errors[0].code == 9">
-    <div class="col-md-12">
-      <div class="alert alert-danger">
-        <div data-translate>The key code is either invalid or the submission has expired.</div>
-        <div data-translate>Please check your key code and try again or make a new submission.</div>
-      </div>
-    </div>
-  </div>
+  <div class="LoginErrorBoxHomepage alert alert-danger" data-ng-show="errors[0].code == 9" data-translate>The key code is either invalid or the submission has expired.</div>
 </div>
