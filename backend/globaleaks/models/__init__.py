@@ -137,14 +137,6 @@ class Model(object):
             if k in values and values[k]:
                 setattr(self, k, values[k])
 
-    def __str__(self):
-        # pylint: disable=no-member
-        values = ['{}={}'.format(attr, getattr(self, attr)) for attr in self.properties]
-        return '<%s model with values %s>' % (self.__class__.__name__, ', '.join(values))
-
-    def __repr__(self):
-        return self.__str__()
-
     def __setattr__(self, name, value):
         # harder better faster stronger
         if isinstance(value, str):
@@ -152,7 +144,7 @@ class Model(object):
 
         return super(Model, self).__setattr__(name, value)
 
-    def dict(self, language):
+    def dict(self, language=None):
         """
         Return a dictionary serialization of the current model.
         """
@@ -163,7 +155,10 @@ class Model(object):
 
             if value is not None:
                 if k in self.localized_keys:
-                    ret[k] = value[language] if language in value else u''
+                    if language is not None:
+                        ret[k] = value[language] if language in value else u''
+                    else:
+                        ret[k] = value
 
                 elif k in self.date_keys:
                     ret[k] = datetime_to_ISO8601(value)
