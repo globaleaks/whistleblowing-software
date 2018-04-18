@@ -134,7 +134,7 @@
             "ur": "Describe your submission in a few words.",
             "vi": "Mô tả trình của bạn với một vài từ",
             "zh_CN": "Describe your submission in a few words.",
-            "zh_TW": "Describe your submission in a few words."
+            "zh_TW": "請簡述所提交的資料"
           },
           "hint": {
             "en": ""
@@ -251,7 +251,7 @@
             "ur": "Describe your submission in detail.",
             "vi": "Describe your submission in detail.",
             "zh_CN": "Describe your submission in detail.",
-            "zh_TW": "Describe your submission in detail."
+            "zh_TW": "請詳述所提交的資料"
           },
           "hint": {
             "en": ""
@@ -360,7 +360,7 @@
             "ur": "منسلک فائلیں داخل کردہ گذارشات سے متعلق ہیں",
             "vi": "Đính kèm tập tin có liên quan đến việc nộp.",
             "zh_CN": "Attach files relevant to the submission.",
-            "zh_TW": "Attach files relevant to the submission."
+            "zh_TW": "此提交相關的附件資料"
           },
           "hint": {
             "en": ""

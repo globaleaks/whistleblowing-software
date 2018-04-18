@@ -29,8 +29,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-04-08 11:12+0000\n"
-"Last-Translator: Hermes Center <info@hermescenter.org>\n"
+"PO-Revision-Date: 2018-04-09 18:16+0000\n"
+"Last-Translator: strel\n"
 "Language-Team: Spanish (http://www.transifex.com/otf/globaleaks/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -832,7 +832,7 @@ msgid "Disable the privacy panel"
 msgstr "Deshabilitar el panel de privacidad"
 
 msgid "Enable disclaimer"
-msgstr ""
+msgstr "Habilitar descargo"
 
 msgid "Title"
 msgstr "Título"
@@ -1460,7 +1460,7 @@ msgid "Body of the confirmation question upon negative answer"
 msgstr "Cuerpo de la pregunta de confirmación sobre una respuesta negativa"
 
 msgid "Text of the final statement upon negative answer"
-msgstr ""
+msgstr "Texto de la declaración final sobre respuesta negativa"
 
 msgid "Options"
 msgstr "Opciones"
@@ -1909,7 +1909,7 @@ msgid "Date of the request"
 msgstr "Fecha de la solicitud"
 
 msgid "Undeclared"
-msgstr ""
+msgstr "No declarado"
 
 msgid "Congratulations!"
 msgstr "¡Felicidades!"
@@ -2074,7 +2074,7 @@ msgid "Kind regards,"
 msgstr "Saludos cordiales,"
 
 msgid "Access instructions"
-msgstr ""
+msgstr "Instrucciones de acceso"
 
 msgid ""
 "The number of activities recently detected appears to be higher than usual."
@@ -2129,25 +2129,25 @@ msgid "PGP key expiration alert"
 msgstr "Alerta de caducidad de clave PGP"
 
 msgid "A new whistleblowing site has been registered."
-msgstr ""
+msgstr "Se ha registrado un nuevo sitio para informantes."
 
 msgid "Registration data:"
-msgstr ""
+msgstr "Datos de registro:"
 
 msgid "Site: {HTTPSUrl} "
-msgstr ""
+msgstr "Sitio: {HTTPSUrl} "
 
 msgid "Name: {Name}"
-msgstr ""
+msgstr "Nombre: {Name}"
 
 msgid "Email: {Email}"
-msgstr ""
+msgstr "Correo electrónico: {Email}"
 
 msgid "Use case: {UseCase}"
-msgstr ""
+msgstr "Caso de uso: {UseCase}"
 
 msgid "New whistleblowing site registered"
-msgstr ""
+msgstr "Se ha registrado el nuevo sitio para informantes"
 
 msgid ""
 "This is a test email sent out from the platform's administrative interface."
@@ -2301,7 +2301,7 @@ msgid "Click the link to activate the platform:"
 msgstr "Pulse el enlace para activar la plataforma:"
 
 msgid "Activation"
-msgstr ""
+msgstr "Activación"
 
 msgid "A software update is available."
 msgstr "Hay disponible una actualización del software."

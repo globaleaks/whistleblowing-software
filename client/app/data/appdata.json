@@ -40,12 +40,12 @@
       "ur": "محترم{RecipientName}،\n\nYour whistleblowing platform is now accessible at:\n{HTTPSUrl}\n\nTo log in, visit:\n{HTTPSLoginUrl}\n\nUsers' credentials:\n{AdminCredentials}\n{RecipientCredentials}\n\nFor the user documentation visit:\n{DocumentationUrl}\n\nThe platform will be automatically deleted on:\n{ExpirationDate}\n\nبہت نوازش، مخلص\n\n{NodeName}",
       "vi": "Kính gửi {RecipientName}\n\nYour whistleblowing platform is now accessible at:\n{HTTPSUrl}\n\nTo log in, visit:\n{HTTPSLoginUrl}\n\nUsers' credentials:\n{AdminCredentials}\n{RecipientCredentials}\n\nFor the user documentation visit:\n{DocumentationUrl}\n\nThe platform will be automatically deleted on:\n{ExpirationDate}\n\nTrân trọng,\n\n{NodeName}",
       "zh_CN": "亲爱的 {RecipientName}，\n\n您的举报平台现在可通过以下网址访问：\n{HTTPSUrl}\n\n登陆访问：\n{HTTPSLoginUrl}\n\nUsers' credentials:\n{AdminCredentials}\n{RecipientCredentials}\n\nFor the user documentation visit:\n{DocumentationUrl}\n\nThe platform will be automatically deleted on:\n{ExpirationDate}\n\n亲切的问候，\n\n{NodeName}",
-      "zh_TW": "敬愛的 {RecipientName},\n\nYour whistleblowing platform is now accessible at:\n{HTTPSUrl}\n\nTo log in, visit:\n{HTTPSLoginUrl}\n\nUsers' credentials:\n{AdminCredentials}\n{RecipientCredentials}\n\nFor the user documentation visit:\n{DocumentationUrl}\n\nThe platform will be automatically deleted on:\n{ExpirationDate}\n\nKind regards,\n\n{NodeName}"
+      "zh_TW": "敬愛的 {RecipientName},\n\n吹哨揭密平台已啟用:\n{HTTPSUrl}\n\n欲登入請到:\n{HTTPSLoginUrl}\n\n用戶的證書:\n{AdminCredentials}\n{RecipientCredentials}\n\n使用文件在:\n{DocumentationUrl}\n\n平台會自動進行刪除:\n{ExpirationDate}\n\nKind regards,\n\n{NodeName}"
     },
     "activation_mail_title": {
       "ar": "Access instructions",
       "az": "Access instructions",
-      "bg": "Access instructions",
+      "bg": "Инструкции за достъп",
       "bs": "Access instructions",
       "ca": "Access instructions",
       "ca@valencia": "Access instructions",
@@ -53,10 +53,10 @@
       "de": "Access instructions",
       "el": "Access instructions",
       "en": "Access instructions",
-      "es": "Access instructions",
+      "es": "Instrucciones de acceso",
       "fa": "Access instructions",
       "fi": "Access instructions",
-      "fr": "Access instructions",
+      "fr": "Instructions d’accès",
       "he": "Access instructions",
       "hr_HR": "Access instructions",
       "hu_HU": "Access instructions",
@@ -81,7 +81,7 @@
       "ur": "Access instructions",
       "vi": "Access instructions",
       "zh_CN": "Access instructions",
-      "zh_TW": "Access instructions"
+      "zh_TW": "取用的指示"
     },
     "admin_anomaly_activities": {
       "ar": "عدد الأنشطة التي تم الكشف عنها مؤخرا يبدو أعلى من امعتاد.\n\nهذا يمكن أن يكون علامة على وجود هجوم (على سبيل المثال، شخص ما يرسل بكثافة معلومات وهمية الى المشغل الخاص بك) أو مجرد ارتفاع الاستخدام نظرا لزيادة رؤية مشروعك.\n\nالرجاء دراسة المسألة لتحديد ما إذا كانت مشروعة أم لا.\n\nالأنشطة ذات الاحصائيات غير عادية هي:\n{ActivityDump}",
@@ -122,7 +122,7 @@
       "ur": "سرگرمیوں حال ہی پتہ چلنے کی تعداد معمول سے زیادہ ہو جائے کرنے کے لئے ظاہر.\n\nیہ یا صرف ایک کے استعمال کی بڑھتی ہوئی وارداتوں کی وجہ سے اپنے منصوبے کی ایک بڑھتی ہوئی نمائش کرنے کے لئے ایک حملے (کسی بوگس معلومات کے ساتھ آپ کے سرور سیلاب مثال کے طور پر) کی ایک علامت ہو سکتی ہے.\n\nExamine the issue to determine whether it is legitimate or not.\n\nغیر معمولی اعدادوشمار کے ساتھ سرگرمیوں ہیں:\n{ActivityDump}",
       "vi": "Số lượng các hoạt động gần đây phát hiện dường như là cao hơn bình thường.\n\nĐây có thể là một dấu hiệu của một cuộc tấn công (ví dụ, một người nào đó tràn ngập máy chủ của bạn với thông tin không có thật) hoặc chỉ một cành sử dụng do một tầm nhìn tăng của dự án của bạn.\n\nExamine the issue to determine whether it is legitimate or not.\n\nCác hoạt động với chỉ số bình thường là:\n{ActivityDump}",
       "zh_CN": "最近检测到的活动情况似乎比平时更高。\n\n这可能是一次攻击的标志（例如：有人用洪泛的虚假信息充斥你的服务器），或者只是由于你的项目曝光率提升而导致的突发使用量。\n\nExamine the issue to determine whether it is legitimate or not.\n\n不寻常的活动统计如下：\n{ActivityDump}",
-      "zh_TW": "偵測到最近的活動數量似乎高於正常\n\n這可能是遭到攻擊的徵兆(例如某人試圖以偽造的資訊來淹沒你的網站)或是由於專案能見度大增致使用流量提高\n\nExamine the issue to determine whether it is legitimate or not.\n\n非正常活動的統計為：\n{ActivityDump}"
+      "zh_TW": "偵測到最近的活動數量似乎高於正常\n\n這可能是遭到攻擊的徵兆(例如某人試圖以偽造的資訊來淹沒你的網站)或是由於專案能見度大增致使用流量提高\n\n查驗此問題以決定其是否合理。\n\n非正常活動的統計為：\n{ActivityDump}"
     },
     "admin_anomaly_disk_high": {
       "ar": "{FreeMemory} of {TotalMemory} available diskspace used.\n\nلا يمكن للخادم ضمان أن البلاغ الجديد يمكن تخزينه، لذلك تم تعطيل التقديمات.",
@@ -373,7 +373,7 @@
     "admin_signup_alert_mail_template": {
       "ar": "عزيزي {RecipientName},\n\nA new whistleblowing site has been registered.\n\nRegistration data:\nSite: {HTTPSUrl}\nName: {Name}\nEmail: {Email}\nUse case: {UseCase}\n\nسيتم حذف المنصة تلقائيا في:\n{ExpirationDate}\n\nأطيب التحيّات،\n\n{NodeName}",
       "az": "Əziz {RecipientName}, \n\nA new whistleblowing site has been registered.\n\nRegistration data:\nSite: {HTTPSUrl}\nName: {Name}\nEmail: {Email}\nUse case: {UseCase}\n\nThe platform will be automatically deleted on:\n{ExpirationDate}\n\nXoş arzularla,\n\n{NodeName}",
-      "bg": "Скъпи {RecipientName},\n\nA new whistleblowing site has been registered.\n\nRegistration data:\nSite: {HTTPSUrl}\nName: {Name}\nEmail: {Email}\nUse case: {UseCase}\n\nПлатформата ще бъде автоматично изтрита на:\n{ExpirationDate}\n\nПоздрави, \n\n{NodeName}",
+      "bg": "Скъпи {RecipientName},\n\nНов сайт за подаване на поверителна информация е регистриран.\n\nРегистрационна информация:\nSite: {HTTPSUrl}\nИме: {Name}\nИмейл: {Email}\nМотивация: {UseCase}\n\nПлатформата ще бъде автоматично изтрита на:\n{ExpirationDate}\n\nПоздрави, \n\n{NodeName}",
       "bs": "Dragi {RecipientName},\n\nA new whistleblowing site has been registered.\n\nRegistration data:\nSite: {HTTPSUrl}\nName: {Name}\nEmail: {Email}\nUse case: {UseCase}\n\nThe platform will be automatically deleted on:\n{ExpirationDate}\n\nLijep pozdrav,\n\n{NodeName}",
       "ca": "Benvolgut/uda {RecipientName},\n\nA new whistleblowing site has been registered.\n\nRegistration data:\nSite: {HTTPSUrl}\nName: {Name}\nEmail: {Email}\nUse case: {UseCase}\n\nThe platform will be automatically deleted on:\n{ExpirationDate}\n\nRep una salutació cordial,\n\n{NodeName}",
       "ca@valencia": "Benvolgut/uda {RecipientName},\n\nA new whistleblowing site has been registered.\n\nRegistration data:\nSite: {HTTPSUrl}\nName: {Name}\nEmail: {Email}\nUse case: {UseCase}\n\nLa plataforma serà automàticament eliminada el:\n{ExpirationDate}\n\nReba una salutació cordial,\n\n{NodeName}",
@@ -381,10 +381,10 @@
       "de": "Sehr geehrte(r) {RecipientName},\n\nA new whistleblowing site has been registered.\n\nRegistration data:\nSite: {HTTPSUrl}\nName: {Name}\nEmail: {Email}\nUse case: {UseCase}\n\nThe platform will be automatically deleted on:\n{ExpirationDate}\n\nMit freundlichen Grüßen\n\n{NodeName}",
       "el": "Αγαπητοί {RecipientName}\n\nA new whistleblowing site has been registered.\n\nRegistration data:\nSite: {HTTPSUrl}\nName: {Name}\nEmail: {Email}\nUse case: {UseCase}\n\nThe platform will be automatically deleted on:\n{ExpirationDate}\n\nΘερμούς χαιρετισμούς,\n\n{NodeName}",
       "en": "Dear {RecipientName},\n\nA new whistleblowing site has been registered.\n\nRegistration data:\nSite: {HTTPSUrl}\nName: {Name}\nEmail: {Email}\nUse case: {UseCase}\n\nThe platform will be automatically deleted on:\n{ExpirationDate}\n\nKind regards,\n\n{NodeName}",
-      "es": "Estimado {RecipientName},\n\nA new whistleblowing site has been registered.\n\nRegistration data:\nSite: {HTTPSUrl}\nName: {Name}\nEmail: {Email}\nUse case: {UseCase}\n\nThe platform will be automatically deleted on:\n{ExpirationDate}\n\nSaludos cordiales,\n\n{NodeName}",
+      "es": "Estimado {RecipientName},\n\nSe ha registrado un nuevo sitio para informantes.\n\nDatos de registro:\nSite: {HTTPSUrl}\nNombre: {Name}\nCorreo electrónico: {Email}\nCaso de uso: {UseCase}\n\nThe platform will be automatically deleted on:\n{ExpirationDate}\n\nSaludos cordiales,\n\n{NodeName}",
       "fa": "{RecipientName} گرامی،\n\nA new whistleblowing site has been registered.\n\nRegistration data:\nSite: {HTTPSUrl}\nName: {Name}\nEmail: {Email}\nUse case: {UseCase}\n\nThe platform will be automatically deleted on:\n{ExpirationDate}\n\nبا سپاس،\n\n{NodeName}",
       "fi": "Hyvä {RecipientName},\n\nA new whistleblowing site has been registered.\n\nRegistration data:\nSite: {HTTPSUrl}\nName: {Name}\nEmail: {Email}\nUse case: {UseCase}\n\nThe platform will be automatically deleted on:\n{ExpirationDate}\n\nYstävälliset terveiset,\n\n{NodeName}",
-      "fr": "Cher, chère {RecipientName},\n\nA new whistleblowing site has been registered.\n\nRegistration data:\nSite: {HTTPSUrl}\nName: {Name}\nEmail: {Email}\nUse case: {UseCase}\n\nLa plateforme sera supprimée automatiquement le :\n{ExpirationDate}\n\nSalutations cordiales,\n\n{NodeName}",
+      "fr": "Cher, chère {RecipientName},\n\nUn nouveau site de lancement d’alerte a été enregistré.\n\nDonnées d’enregistrement :\nSite: {HTTPSUrl}\nNom : {Name}\nAdresse courriel : {Email}\nCas d’usage : {UseCase}\n\nLa plateforme sera supprimée automatiquement le :\n{ExpirationDate}\n\nSalutations cordiales,\n\n{NodeName}",
       "he": "{RecipientName} יקרים,\n\nA new whistleblowing site has been registered.\n\nRegistration data:\nSite: {HTTPSUrl}\nName: {Name}\nEmail: {Email}\nUse case: {UseCase}\n\nThe platform will be automatically deleted on:\n{ExpirationDate}\n\nבברכה,\n\n{NodeName}",
       "hr_HR": "Dragi/a {RecipientName},\n\nA new whistleblowing site has been registered.\n\nRegistration data:\nSite: {HTTPSUrl}\nName: {Name}\nEmail: {Email}\nUse case: {UseCase}\n\nThe platform will be automatically deleted on:\n{ExpirationDate}\n\nS poštovanjem,\n\n{NodeName}",
       "hu_HU": "Kedves {RecipientName},\n\nA new whistleblowing site has been registered.\n\nRegistration data:\nSite: {HTTPSUrl}\nName: {Name}\nEmail: {Email}\nUse case: {UseCase}\n\nThe platform will be automatically deleted on:\n{ExpirationDate}\n\nSzívélyes üdvözlettel,\n\n{NodeName}",
@@ -409,12 +409,12 @@
       "ur": "محترم{RecipientName}،\n\nA new whistleblowing site has been registered.\n\nRegistration data:\nSite: {HTTPSUrl}\nName: {Name}\nEmail: {Email}\nUse case: {UseCase}\n\nThe platform will be automatically deleted on:\n{ExpirationDate}\n\nبہت نوازش، مخلص\n\n{NodeName}",
       "vi": "Kính gửi {RecipientName}\n\nA new whistleblowing site has been registered.\n\nRegistration data:\nSite: {HTTPSUrl}\nName: {Name}\nEmail: {Email}\nUse case: {UseCase}\n\nThe platform will be automatically deleted on:\n{ExpirationDate}\n\nTrân trọng,\n\n{NodeName}",
       "zh_CN": "亲爱的 {RecipientName}，\n\nA new whistleblowing site has been registered.\n\nRegistration data:\nSite: {HTTPSUrl}\nName: {Name}\nEmail: {Email}\nUse case: {UseCase}\n\nThe platform will be automatically deleted on:\n{ExpirationDate}\n\n亲切的问候，\n\n{NodeName}",
-      "zh_TW": "敬愛的 {RecipientName},\n\nA new whistleblowing site has been registered.\n\nRegistration data:\nSite: {HTTPSUrl}\nName: {Name}\nEmail: {Email}\nUse case: {UseCase}\n\nThe platform will be automatically deleted on:\n{ExpirationDate}\n\nKind regards,\n\n{NodeName}"
+      "zh_TW": "敬愛的 {RecipientName},\n\n新建的吹哨網站已完成註冊\n\n註冊資料:\nSite: {HTTPSUrl}\n名稱: {Name}\nEmail: {Email}\n使用案例: {UseCase}\n\n平台會自動進行刪除:\n{ExpirationDate}\n\nKind regards,\n\n{NodeName}"
     },
     "admin_signup_alert_mail_title": {
       "ar": "New whistleblowing site registered",
       "az": "New whistleblowing site registered",
-      "bg": "New whistleblowing site registered",
+      "bg": "Новият сайт за подаване на поверителна информация е регистриран",
       "bs": "New whistleblowing site registered",
       "ca": "New whistleblowing site registered",
       "ca@valencia": "New whistleblowing site registered",
@@ -422,10 +422,10 @@
       "de": "New whistleblowing site registered",
       "el": "New whistleblowing site registered",
       "en": "New whistleblowing site registered",
-      "es": "New whistleblowing site registered",
+      "es": "Se ha registrado el nuevo sitio para informantes",
       "fa": "New whistleblowing site registered",
       "fi": "New whistleblowing site registered",
-      "fr": "New whistleblowing site registered",
+      "fr": "Un nouveau site de lancement d’alerte a été enregistré.",
       "he": "New whistleblowing site registered",
       "hr_HR": "New whistleblowing site registered",
       "hu_HU": "New whistleblowing site registered",
@@ -450,7 +450,7 @@
       "ur": "New whistleblowing site registered",
       "vi": "New whistleblowing site registered",
       "zh_CN": "New whistleblowing site registered",
-      "zh_TW": "New whistleblowing site registered"
+      "zh_TW": "有新的吹哨揭密網站加入"
     },
     "admin_test_mail_template": {
       "ar": "عزيزي {RecipientName},\n\nهذا بريد الإلكتروني على سبيل الاختبار يرسل من الواجهة الإدارية للمنصة.\n\nاستقبال هذه الرسالة يشير إلى أن الخادم كان قادرا على المصادقة والتفاعل مع خادم البريد SMTP.\n\nأطيب التحيّات،\n{NodeName}",
@@ -1516,12 +1516,12 @@
       "ur": "محترم{RecipientName}،\n\nYour whistleblowing platform is almost ready!\n\nClick the link to activate the platform:\n{ActivationUrl}\n\nبہت نوازش، مخلص\n\n{NodeName}",
       "vi": "Kính gửi {RecipientName}\n\nYour whistleblowing platform is almost ready!\n\nClick the link to activate the platform:\n{ActivationUrl}\n\nTrân trọng,\n\n{NodeName}",
       "zh_CN": "亲爱的 {RecipientName}，\n\nYour whistleblowing platform is almost ready!\n\nClick the link to activate the platform:\n{ActivationUrl}\n\n亲切的问候，\n\n{NodeName}",
-      "zh_TW": "敬愛的 {RecipientName},\n\nYour whistleblowing platform is almost ready!\n\nClick the link to activate the platform:\n{ActivationUrl}\n\nKind regards,\n\n{NodeName}"
+      "zh_TW": "敬愛的 {RecipientName},\n\n吹哨揭密平台已接近完成！\n\n點擊此連結以激活平台：\n{ActivationUrl}\n\nKind regards,\n\n{NodeName}"
     },
     "signup_mail_title": {
       "ar": "Activation",
       "az": "Activation",
-      "bg": "Activation",
+      "bg": "Активация",
       "bs": "Activation",
       "ca": "Activation",
       "ca@valencia": "Activation",
@@ -1529,7 +1529,7 @@
       "de": "Activation",
       "el": "Activation",
       "en": "Activation",
-      "es": "Activation",
+      "es": "Activación",
       "fa": "Activation",
       "fi": "Activation",
       "fr": "Activation",
@@ -1557,7 +1557,7 @@
       "ur": "Activation",
       "vi": "Activation",
       "zh_CN": "Activation",
-      "zh_TW": "Activation"
+      "zh_TW": "激活"
     },
     "software_update_available_mail_template": {
       "ar": "عزيزي {RecipientName},\n\nالتحديث متوفّر:\nانّها ممارسة أمنية جيدة الحفاظ على المنصة محيّنة.\n\nالإصدار المثبت: {InstalledVersion}\nأحدث إصدار: {LatestVersion}\n\nلمتابعة الخاصيّات الجديدة واصلاح الخللات في الاصدار الجديد  انظر في سجلّ التغييرات في : {ChangeLogUrl}\nلتعليمات حول تحديثات البرنامج , الرجاء مراجعة التوثيق في : {UpdateGuideUrl}\n\nأطيب التحيّات،\n{NodeName}",

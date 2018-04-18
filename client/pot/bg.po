@@ -11,8 +11,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-04-08 11:12+0000\n"
-"Last-Translator: Hermes Center <info@hermescenter.org>\n"
+"PO-Revision-Date: 2018-04-13 01:26+0000\n"
+"Last-Translator: Ivo\n"
 "Language-Team: Bulgarian (http://www.transifex.com/otf/globaleaks/language/bg/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -814,7 +814,7 @@ msgid "Disable the privacy panel"
 msgstr "Деактивирай панела за поверителност"
 
 msgid "Enable disclaimer"
-msgstr ""
+msgstr "Активиране на секцията отказване от права"
 
 msgid "Title"
 msgstr "Заглавие"
@@ -1442,7 +1442,7 @@ msgid "Body of the confirmation question upon negative answer"
 msgstr "Тяло на диалогът за потвърждаване при негативен отговор на въпрос"
 
 msgid "Text of the final statement upon negative answer"
-msgstr ""
+msgstr "Текст при негативен отговор на крайното заявление"
 
 msgid "Options"
 msgstr "Опции"
@@ -1891,7 +1891,7 @@ msgid "Date of the request"
 msgstr "Дата на заявката"
 
 msgid "Undeclared"
-msgstr ""
+msgstr "Недклариран"
 
 msgid "Congratulations!"
 msgstr "Поздравления!"
@@ -2056,7 +2056,7 @@ msgid "Kind regards,"
 msgstr "Поздрави, "
 
 msgid "Access instructions"
-msgstr ""
+msgstr "Инструкции за достъп"
 
 msgid ""
 "The number of activities recently detected appears to be higher than usual."
@@ -2111,25 +2111,25 @@ msgid "PGP key expiration alert"
 msgstr "Аларма за изтичащи PGP ключове"
 
 msgid "A new whistleblowing site has been registered."
-msgstr ""
+msgstr "Нов сайт за подаване на поверителна информация е регистриран."
 
 msgid "Registration data:"
-msgstr ""
+msgstr "Регистрационна информация:"
 
 msgid "Site: {HTTPSUrl} "
-msgstr ""
+msgstr "Сайт: {HTTPSUrl} "
 
 msgid "Name: {Name}"
-msgstr ""
+msgstr "Име: {Name}"
 
 msgid "Email: {Email}"
-msgstr ""
+msgstr "Имейл: {Email}"
 
 msgid "Use case: {UseCase}"
-msgstr ""
+msgstr "Мотивация: {UseCase}"
 
 msgid "New whistleblowing site registered"
-msgstr ""
+msgstr "Новият сайт за подаване на поверителна информация е регистриран"
 
 msgid ""
 "This is a test email sent out from the platform's administrative interface."
@@ -2283,7 +2283,7 @@ msgid "Click the link to activate the platform:"
 msgstr "Последвайте връзката, за да активирате платформата:"
 
 msgid "Activation"
-msgstr ""
+msgstr "Активация"
 
 msgid "A software update is available."
 msgstr "Има ново обновление на софтуера."
