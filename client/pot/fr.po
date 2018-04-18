@@ -38,8 +38,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-04-08 11:12+0000\n"
-"Last-Translator: Hermes Center <info@hermescenter.org>\n"
+"PO-Revision-Date: 2018-04-18 16:49+0000\n"
+"Last-Translator: French language coordinator <french.coordinator@rbox.me>\n"
 "Language-Team: French (http://www.transifex.com/otf/globaleaks/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -841,7 +841,7 @@ msgid "Disable the privacy panel"
 msgstr "Désactiver le volet de confidentialité"
 
 msgid "Enable disclaimer"
-msgstr ""
+msgstr "Activer un avis"
 
 msgid "Title"
 msgstr "Titre"
@@ -1469,7 +1469,7 @@ msgid "Body of the confirmation question upon negative answer"
 msgstr "Corps de la question de confirmation en cas de réponse négative"
 
 msgid "Text of the final statement upon negative answer"
-msgstr "Texte de la déclaration finale en cas de réponse négative"
+msgstr "Texte du message final en cas de réponse négative"
 
 msgid "Options"
 msgstr "Options"
@@ -1918,7 +1918,7 @@ msgid "Date of the request"
 msgstr "Date de la demande"
 
 msgid "Undeclared"
-msgstr ""
+msgstr "Non déclarée"
 
 msgid "Congratulations!"
 msgstr "Félicitations !"
@@ -2083,7 +2083,7 @@ msgid "Kind regards,"
 msgstr "Salutations cordiales,"
 
 msgid "Access instructions"
-msgstr ""
+msgstr "Instructions d’accès"
 
 msgid ""
 "The number of activities recently detected appears to be higher than usual."
@@ -2138,25 +2138,25 @@ msgid "PGP key expiration alert"
 msgstr "Alerte d’expiration de la clé PGP"
 
 msgid "A new whistleblowing site has been registered."
-msgstr ""
+msgstr "Un nouveau site de lancement d’alerte a été enregistré."
 
 msgid "Registration data:"
-msgstr ""
+msgstr "Données d’enregistrement :"
 
 msgid "Site: {HTTPSUrl} "
-msgstr ""
+msgstr "Site : {HTTPSUrl} "
 
 msgid "Name: {Name}"
-msgstr ""
+msgstr "Nom : {Name}"
 
 msgid "Email: {Email}"
-msgstr ""
+msgstr "Adresse courriel : {Email}"
 
 msgid "Use case: {UseCase}"
-msgstr ""
+msgstr "Cas d’usage : {UseCase}"
 
 msgid "New whistleblowing site registered"
-msgstr ""
+msgstr "Un nouveau site de lancement d’alerte a été enregistré."
 
 msgid ""
 "This is a test email sent out from the platform's administrative interface."
@@ -2310,7 +2310,7 @@ msgid "Click the link to activate the platform:"
 msgstr "Cliquer sur le lien pour activer la plateforme :"
 
 msgid "Activation"
-msgstr ""
+msgstr "Activation"
 
 msgid "A software update is available."
 msgstr "Une mise à jour logicielle est proposée."

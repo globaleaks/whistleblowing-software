@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-04-08 11:12+0000\n"
-"Last-Translator: Hermes Center <info@hermescenter.org>\n"
+"PO-Revision-Date: 2018-04-10 07:46+0000\n"
+"Last-Translator: Chi-Hsun Tsai\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/otf/globaleaks/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -703,25 +703,25 @@ msgid "Use as default"
 msgstr "以默認方式使用"
 
 msgid "Create your whistleblowing platform"
-msgstr ""
+msgstr "創建一個吹哨者揭密平台"
 
 msgid "Collapse"
-msgstr ""
+msgstr "崩潰"
 
 msgid "Expand"
-msgstr ""
+msgstr " 拓展"
 
 msgid "Select"
 msgstr "選擇"
 
 msgid "Selected by default"
-msgstr ""
+msgstr "預設為已挑選"
 
 msgid "Unselected by default"
-msgstr ""
+msgstr "預設為未挑選"
 
 msgid "Surname"
-msgstr ""
+msgstr "姓氏"
 
 msgid "Select the context of your submission:"
 msgstr "選擇你提交的內文說明"
@@ -877,7 +877,7 @@ msgid "Size limit for file attachments"
 msgstr "附件檔案的大小限制"
 
 msgid "Notify administrators of software problems"
-msgstr ""
+msgstr "通知管理員軟體出了問題"
 
 msgid "Notify developers of software problems"
 msgstr "知會開發者軟體出問題"
@@ -885,7 +885,7 @@ msgstr "知會開發者軟體出問題"
 msgid ""
 "By enabling this feature, you will contribute to the development and "
 "security of the platform."
-msgstr ""
+msgstr "啟動此功能後，可協助平台的開發與安全維護工作。"
 
 msgid "Enable HTTP Basic Authentication to limit platform access"
 msgstr "啟用 HTTP 基本認證限制平台的近用"
@@ -1414,7 +1414,7 @@ msgid "Accept multiple file uploads"
 msgstr "接受多檔案上傳"
 
 msgid "Accept multiple answers"
-msgstr ""
+msgstr "接受多個答案"
 
 msgid "Hint shown on the button for adding an additional answer"
 msgstr "按鍵上顯示其它答案的提示"
@@ -1491,10 +1491,10 @@ msgid "Network settings"
 msgstr "網路設定"
 
 msgid "Root domain used for secondary sites"
-msgstr ""
+msgstr "二級網站使用的根域名"
 
 msgid "Allow users to sign up"
-msgstr ""
+msgstr "可接受新用戶註冊"
 
 msgid "Sites"
 msgstr "網站"
@@ -1634,16 +1634,16 @@ msgid "Error!"
 msgstr "出錯"
 
 msgid "Internal server error"
-msgstr ""
+msgstr "內部伺服器出錯"
 
 msgid "Error on input validation"
-msgstr ""
+msgstr "輸入的驗證有誤"
 
 msgid "Resource not found"
-msgstr ""
+msgstr "查無此資訊"
 
 msgid "Forbidden operation"
-msgstr ""
+msgstr "被禁止的操作"
 
 msgid "The specified old password is not valid"
 msgstr "此舊密碼不再有效"
@@ -1890,61 +1890,61 @@ msgid "Date of the request"
 msgstr "提出要求的日期"
 
 msgid "Undeclared"
-msgstr ""
+msgstr "未作宣告的"
 
 msgid "Congratulations!"
 msgstr "恭喜！"
 
 msgid "You have completed the platform activation."
-msgstr ""
+msgstr "已完成平台的激活"
 
 msgid "Your whistleblowing platform is now accessible at:"
-msgstr ""
+msgstr "吹哨揭密平台已啟用:"
 
 msgid "Users' credentials:"
-msgstr ""
+msgstr "用戶的證書:"
 
 msgid "To log in, visit:"
-msgstr ""
+msgstr "欲登入請到:"
 
 msgid "For the user documentation visit:"
-msgstr ""
+msgstr "使用文件在:"
 
 msgid "The platform will be automatically deleted on:"
-msgstr ""
+msgstr "平台會自動進行刪除:"
 
 msgid "Sign up"
-msgstr ""
+msgstr "註冊"
 
 msgid "Domain"
 msgstr "網域名"
 
 msgid "Use case"
-msgstr ""
+msgstr "使用案例"
 
 msgid "Anticorruption"
-msgstr ""
+msgstr "反貪腐"
 
 msgid "Corporate compliance"
-msgstr ""
+msgstr "企業遵法"
 
 msgid "Investigative journalism"
-msgstr ""
+msgstr "調查報導"
 
 msgid "Civic activism"
-msgstr ""
+msgstr "公民行動"
 
 msgid "Other"
-msgstr ""
+msgstr "其它"
 
 msgid "Complete"
 msgstr "完成"
 
 msgid "Your whistleblowing platform is almost ready!"
-msgstr ""
+msgstr "吹哨揭密平台已接近完成！"
 
 msgid "Check your inbox to activate your account."
-msgstr ""
+msgstr "檢查信件來激活帳戶"
 
 msgid "The specified input is not valid:"
 msgstr "這個特定的輸入無效："
@@ -1956,7 +1956,7 @@ msgid "please enter numbers only."
 msgstr "請只輸入數字"
 
 msgid "This field is mandatory."
-msgstr ""
+msgstr "此欄位為必填"
 
 msgid "The answer is too short."
 msgstr "這個答案太過簡短"
@@ -1999,7 +1999,7 @@ msgstr "歡迎！"
 msgid ""
 "The following step-by-step procedure will guide you through creating your "
 "whistleblowing platform."
-msgstr ""
+msgstr "下方的步驟指引將協助按步完成吹哨平台建置"
 
 msgid "Please choose a configuration profile:"
 msgstr "請選擇一個設定個人身份頁面"
@@ -2034,16 +2034,16 @@ msgid "Short title"
 msgstr "短標題"
 
 msgid "Describe your submission in a few words."
-msgstr ""
+msgstr "請簡述所提交的資料"
 
 msgid "Full description"
 msgstr "完整描述"
 
 msgid "Describe your submission in detail."
-msgstr ""
+msgstr "請詳述所提交的資料"
 
 msgid "Attach files relevant to the submission."
-msgstr ""
+msgstr "此提交相關的附件資料"
 
 msgid "Do you want to provide your identification information?"
 msgstr "你要提供自己的身份資訊嗎？"
@@ -2055,7 +2055,7 @@ msgid "Kind regards,"
 msgstr "Kind regards,"
 
 msgid "Access instructions"
-msgstr ""
+msgstr "取用的指示"
 
 msgid ""
 "The number of activities recently detected appears to be higher than usual."
@@ -2068,7 +2068,7 @@ msgid ""
 msgstr "這可能是遭到攻擊的徵兆(例如某人試圖以偽造的資訊來淹沒你的網站)或是由於專案能見度大增致使用流量提高"
 
 msgid "Examine the issue to determine whether it is legitimate or not."
-msgstr ""
+msgstr "查驗此問題以決定其是否合理。"
 
 msgid "The activities with unusual stats are:"
 msgstr "非正常活動的統計為："
@@ -2110,25 +2110,25 @@ msgid "PGP key expiration alert"
 msgstr "PGP 金鑰到期警示　"
 
 msgid "A new whistleblowing site has been registered."
-msgstr ""
+msgstr "新建的吹哨網站已完成註冊"
 
 msgid "Registration data:"
-msgstr ""
+msgstr "註冊資料:"
 
 msgid "Site: {HTTPSUrl} "
-msgstr ""
+msgstr "網站: {HTTPSUrl} "
 
 msgid "Name: {Name}"
-msgstr ""
+msgstr "名稱: {Name}"
 
 msgid "Email: {Email}"
-msgstr ""
+msgstr "Email: {Email}"
 
 msgid "Use case: {UseCase}"
-msgstr ""
+msgstr "使用案例: {UseCase}"
 
 msgid "New whistleblowing site registered"
-msgstr ""
+msgstr "有新的吹哨揭密網站加入"
 
 msgid ""
 "This is a test email sent out from the platform's administrative interface."
@@ -2279,10 +2279,10 @@ msgid "Notifications from {NodeName} have been temporarily suspended"
 msgstr "來自 {NodeName}的通知將暫時中斷"
 
 msgid "Click the link to activate the platform:"
-msgstr ""
+msgstr "點擊此連結以激活平台："
 
 msgid "Activation"
-msgstr ""
+msgstr "激活"
 
 msgid "A software update is available."
 msgstr "有軟體更新可用"
