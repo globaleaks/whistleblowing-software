@@ -119,8 +119,6 @@ def perform_data_update(db_file):
         stored_ver = prv.get_val(u'version')
 
         if stored_ver != __version__:
-            prv.set_val(u'version', __version__)
-
             # The below commands can change the current store based on the what is
             # currently stored in the DB.
             for tid in [t[0] for t in session.query(models.Tenant.id)]:
@@ -129,6 +127,9 @@ def perform_data_update(db_file):
 
             db_update_defaults(session)
             db_fix_fields_attrs(session)
+
+            prv.set_val(u'version', __version__)
+            prv.set_val(u'latest_version', __version__)
 
         session.commit()
     except:
