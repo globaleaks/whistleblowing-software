@@ -719,6 +719,8 @@ var GLClient = angular.module('GLClient', [
           errors array the error message.
        */
 
+       var $rootScope = $injector.get('$rootScope');
+       var $http = $injector.get('$http');
        var $q = $injector.get('$q');
        var $location = $injector.get('$location');
 
