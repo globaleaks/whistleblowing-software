@@ -1,3 +1,6 @@
+Changes in version 3.0.26 - 2018-04-19
+    Fix minor regression in exception notification
+
 Changes in version 3.0.25 - 2018-04-18
     Fix migration of default fields attributes in relation to wb_identity
     Update translations
