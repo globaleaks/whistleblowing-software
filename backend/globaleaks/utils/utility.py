@@ -21,7 +21,6 @@ from datetime import datetime, timedelta
 if platform.system() == 'Windows':
     import ctypes
 
-from txsocksx.errors import TTLExpired, ConnectionRefused, ServerFailure
 from twisted.internet import reactor
 from twisted.internet.defer import Deferred
 from twisted.internet.error import ConnectionLost, ConnectionRefusedError, DNSLookupError, TimeoutError
@@ -47,10 +46,7 @@ FAILURES_TOR_OUTGOING = (
     ConnectionRefusedError,
     ResponseNeverReceived,
     ResponseFailed,
-    TTLExpired,
     RuntimeError,
-    ConnectionRefused,
-    ServerFailure,
     TimeoutError,
 )
 
