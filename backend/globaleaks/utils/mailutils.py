@@ -10,7 +10,6 @@ from email import utils, Charset  # pylint: disable=no-name-in-module
 from email.header import Header
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
-from txsocksx.client import SOCKS5ClientEndpoint
 
 from twisted.internet import reactor, defer
 from twisted.internet.endpoints import TCP4ClientEndpoint
@@ -18,6 +17,7 @@ from twisted.mail.smtp import ESMTPSenderFactory, SMTPError
 from twisted.protocols import tls
 
 from globaleaks import __version__
+from globaleaks.utils.socks import SOCKS5ClientEndpoint
 from globaleaks.utils.tls import TLSClientContextFactory
 from globaleaks.utils.utility import log
 

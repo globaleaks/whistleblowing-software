@@ -118,7 +118,7 @@ class LoopingJob(BaseJob):
 class NetLoopingJob(LoopingJob):
     def on_error(self, excep):
         """
-        Handles known errors that the twisted.web.client.Agent or txsocksx.http.SOCKS5Agent
+        Handles known errors that the twisted.web.client.Agent
         can throw while connecting through their respective networks.
         """
         if is_common_net_error(State.tenant_cache[1], excep):
