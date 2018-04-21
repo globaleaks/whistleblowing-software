@@ -18,7 +18,6 @@ service_identity==16.0.0
 six==1.10.0
 sqlalchemy==1.0.15
 transaction==1.4.3
-txsocksx==1.15.0.2
 txtorcon==0.18.0
 zope.component==4.2.2
 zope.event==4.2.0

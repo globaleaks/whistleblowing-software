@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from txsocksx.http import SOCKS5Agent
+from globaleaks.utils.socks import SOCKS5Agent
 
 from twisted.internet import reactor
 from twisted.internet.endpoints import TCP4ClientEndpoint
