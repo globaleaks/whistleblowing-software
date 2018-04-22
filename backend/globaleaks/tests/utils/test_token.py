@@ -33,7 +33,7 @@ class TestToken(helpers.TestGL):
         self.assertEqual(st_dict['remaining_uses'], Token.MAX_USES)
 
         if st.human_captcha:
-            self.assertTrue(st.human_captcha.has_key('answer'))
+            self.assertTrue('answer' in st.human_captcha)
             self.assertTrue(isinstance(st.human_captcha['answer'], int))
 
     def test_token_create_and_get_upload_expire(self):

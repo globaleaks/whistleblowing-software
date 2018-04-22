@@ -2,7 +2,7 @@
 import json
 import ssl
 import tempfile
-import urllib2
+from six.moves import urllib
 
 from twisted.internet import threads, reactor
 from twisted.internet.defer import inlineCallbacks

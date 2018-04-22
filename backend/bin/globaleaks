@@ -167,7 +167,7 @@ def run_backend():
     config = ServerOptions()
     try:
         config.parseOptions()
-    except usage.error, ue:
+    except usage.error as ue:
         print("%s: %s" % (sys.argv[0], ue))
         sys.exit(50)
     try:

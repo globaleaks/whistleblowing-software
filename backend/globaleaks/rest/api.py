@@ -394,7 +394,7 @@ class APIResourceWrapper(Resource):
 
             if not request_finished[0]:
                 if ret is not None:
-                   if isinstance(ret, (types.DictType, types.ListType)):
+                   if isinstance(ret, (dict, list)):
                        ret = json.dumps(ret, separators=(',', ':'))
                        request.setHeader(b'content-type', b'application/json')
 
