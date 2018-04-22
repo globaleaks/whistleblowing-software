@@ -1,5 +1,7 @@
 # -*- coding: utf-8
 
+from six import text_type
+
 from globaleaks import __version__, DATABASE_VERSION
 from globaleaks.utils.security import generateRandomSalt as salt
 
@@ -12,7 +14,7 @@ class Item:
 
 
 class Unicode(Item):
-    _type = str
+    _type = text_type
 
     def __init__(self, *args, **kwargs):
         if 'default' not in kwargs:
@@ -33,9 +35,9 @@ ConfigDescriptor = {
     u'creation_date': Int(default=0),
     u'receipt_salt': Unicode(default=salt),
 
-    u'version': Unicode(default=str(__version__)),
+    u'version': Unicode(default=text_type(__version__)),
     u'version_db': Int(default=DATABASE_VERSION),
-    u'latest_version': Unicode(default=str(__version__)),
+    u'latest_version': Unicode(default=text_type(__version__)),
 
     u'acme': Bool(default=False),
     u'acme_accnt_key': Unicode(),
