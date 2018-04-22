@@ -9,6 +9,7 @@ import string
 import time
 from datetime import datetime
 
+from six import text_type
 from cryptography.hazmat.backends import default_backend
 from cryptography.hazmat.primitives import constant_time, hashes
 from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
@@ -148,8 +149,8 @@ def hash_password(password, salt):
         the salted scrypt hash of the provided password
     """
     password = password.encode('utf-8')
-    salt = salt.encode('utf-8')
-    return scrypt.hash(password, salt).encode('hex')
+    salt = text_type(salt).encode('utf-8')
+    return binascii.hexlify(scrypt.hash(password, salt))
 
 
 def check_password(guessed_password, salt, password_hash):

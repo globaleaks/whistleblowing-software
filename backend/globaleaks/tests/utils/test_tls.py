@@ -10,6 +10,7 @@ from globaleaks.orm import transact
 from globaleaks.tests import helpers
 from globaleaks.utils import tls
 
+from six import text_type
 
 class TestKeyGen(TestCase):
     def test_dh_params(self):
@@ -29,7 +30,7 @@ def get_valid_setup():
     d = {'hostname': 'localhost:9999'}
     for k, fname in valid_setup_files.items():
         with open(os.path.join(test_data_dir, 'valid', fname), 'r') as fd:
-            d[k] = unicode(fd.read())
+            d[k] = text_type(fd.read())
 
     return d
 
