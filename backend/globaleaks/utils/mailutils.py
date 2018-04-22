@@ -4,9 +4,16 @@
 # *********
 #
 # GlobaLeaks Utility used to handle Mail, format, exception, etc
-import StringIO
+
+# Py3 handling logic
+try:
+    from StringIO import StringIO
+except ImportError:
+    from io import StringIO
+
 import sys
-from email import utils, Charset  # pylint: disable=no-name-in-module
+import email
+from email import utils  # pylint: disable=no-name-in-module
 from email.header import Header
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
@@ -27,7 +34,8 @@ def MIME_mail_build(src_name, src_mail, dest_name, dest_mail, title, mail_body):
     # base64, and instead use quoted-printable (for both subject and body).  I
     # can't figure out a way to specify QP (quoted-printable) instead of base64 in
     # a way that doesn't modify global state. :-(
-    Charset.add_charset('utf-8', Charset.QP, Charset.QP, 'utf-8')
+    if sys.version_info[0] == 2:
+	    email.Charset.add_charset('utf-8', Charset.QP, Charset.QP, 'utf-8')
 
     # This example is of an email with text and html alternatives.
     multipart = MIMEMultipart('alternative')

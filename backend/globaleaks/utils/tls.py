@@ -24,7 +24,7 @@ def load_dh_params_from_string(ctx, dh_params_string):
 
 def gen_dh_params(bits):
     dh = _lib.DH_new()
-    _lib.DH_generate_parameters_ex(dh, bits, 2L, _ffi.NULL)
+    _lib.DH_generate_parameters_ex(dh, bits, 2, _ffi.NULL)
 
     bio = _new_mem_buf()
     _lib.PEM_write_bio_DHparams(bio, dh)

@@ -4,8 +4,11 @@
 Utilities and basic TestCases.
 """
 import sys
-reload(sys)
-sys.setdefaultencoding('utf8')
+
+# Py3 Compat fix
+if sys.version[0] == '2':
+    reload(sys)
+    sys.setdefaultencoding('utf8')
 
 # pylint: disable=no-name-in-module
 from distutils import dir_util
@@ -41,13 +44,16 @@ from globaleaks.workers.supervisor import ProcessSupervisor
 
 from . import TEST_DIR
 
+from future.standard_library import install_aliases
+install_aliases()
+
 import base64
 import copy
 import json
 import os
 import shutil
 import signal
-import urlparse
+from urllib.parse import urlparse
 
 from datetime import timedelta
 

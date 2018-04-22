@@ -1,6 +1,6 @@
 # -*- coding: utf-8
 from datetime import datetime
-from urllib2 import urlopen, Request
+from six.moves import urllib
 
 from OpenSSL.crypto import FILETYPE_PEM, dump_certificate
 
@@ -10,6 +10,7 @@ from globaleaks.utils.utility import log
 from globaleaks.mocks import acme_mocks # pylint: disable=W0611
 
 from acme import challenges, client, jose, messages
+from functools import reduce
 
 
 class ChallTok:
