@@ -76,7 +76,7 @@ class StateClass(ObjectDict):
 
 
     def init_environment(self):
-        os.umask(077)
+        os.umask(0o77)
         self.settings.eval_paths()
         self.create_directories()
         self.cleaning_dead_files()
