@@ -43,7 +43,12 @@ class SitemapHandler(BaseHandler):
         data = "<?xml version='1.0' encoding='UTF-8' ?>\n" + \
                "<urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9' xmlns:xhtml='http://www.w3.org/1999/xhtml'>\n"
 
-        for url in ['/#/', '/#/submission']:
+        urls = ['/#/', '/#/submission']
+
+        if (self.request.tid == 1 and State.tenant_cache[1].enable_signup):
+            urls.append('/#/signup')
+
+        for url in urls:
             data += "  <url>\n" + \
                     "    <loc>" + site + url + "</loc>\n" + \
                     "    <changefreq>weekly</changefreq>\n" + \
