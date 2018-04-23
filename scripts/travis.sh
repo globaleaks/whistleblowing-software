@@ -20,7 +20,7 @@ setupClientDependencies() {
 setupBackendDependencies() {
   cd $TRAVIS_BUILD_DIR/backend  # to install backend dependencies
   rm -rf requirements.txt
-  if [ "$GLTEST" = "py3-test" ]; then
+  if [ "$GLTEST" = "py3_test" ]; then
     # Installs Py3 stuff unconditionally while we're trying to bring this up
     ln -s requirements/requirements-py3dev.txt requirements.txt
   else
@@ -38,7 +38,7 @@ sudo iptables -t nat -A OUTPUT -o lo -p tcp --dport 9000 -j REDIRECT --to-port 8
 
 npm install -g grunt grunt-cli
 
-if [ "$GLTEST" = "test" ] || [ "$GLTEST" = "py3-test" ]; then
+if [ "$GLTEST" = "test" ] || [ "$GLTEST" = "py3_test" ]; then
   pip install coveralls==1.0b1
   sudo apt-get install -y python-coverage tor
 
