@@ -44,7 +44,11 @@ class TestTipsCollection(helpers.TestHandlerWithPopulatedDB):
     @inlineCallbacks
     def test_get(self):
         handler = self.request(user_id=self.dummyReceiver_1['id'], role='receiver')
-        yield handler.get()
+        ret = yield handler.get()
+        for idx in range(len(ret)):
+            self.assertEqual(ret[idx]['file_count'], 2)
+            self.assertEqual(ret[idx]['comment_count'], 3)
+            self.assertEqual(ret[idx]['message_count'], 2)
 
 
 class TestTipsOperations(helpers.TestHandlerWithPopulatedDB):
@@ -98,6 +102,6 @@ class TestTipsOperations(helpers.TestHandlerWithPopulatedDB):
         handler = self.request(data_request, user_id = self.dummyReceiver_1['id'], role='receiver')
         yield handler.put()
 
-        #rtips = yield receiver.get_receivertip_list(1, self.dummyReceiver_1['id'], 'en')
+        rtips = yield receiver.get_receivertip_list(1, self.dummyReceiver_1['id'], 'en')
 
-        #self.assertEqual(len(rtips), 0)
+        self.assertEqual(len(rtips), 0)
