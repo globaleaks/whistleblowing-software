@@ -1,3 +1,8 @@
+Changes in version 3.0.27 - 2018-04-24
+    Fix counters for files,messages,comments shown in the tip list
+    Implement minimal self-contained SOCKS5 capability (#2243)
+    Update npm dependencies to latest versions
+
 Changes in version 3.0.26 - 2018-04-19
     Fix minor regression in exception notification
 
