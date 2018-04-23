@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 try:
-    from StringIO import StringIO
+    import StringIO
 except ImportError:
     from io import StringIO
 
