@@ -119,27 +119,27 @@
             <i class="glyphicon glyphicon-eye-open"></i>
           </th>
           <th>
-            <span data-ng-click="sortKey = 'file_counter'; sortReverse = !sortReverse">
+            <span data-ng-click="sortKey = 'file_count'; sortReverse = !sortReverse">
               <i class="glyphicon glyphicon-file"></i>
-              <span class="btn btn-xs" data-ng-show="sortKey == 'file_counter'">
+              <span class="btn btn-xs" data-ng-show="sortKey == 'file_count'">
                 <span data-ng-show="!sortReverse" class="glyphicon glyphicon-triangle-bottom"></span>
                 <span data-ng-show="sortReverse" class="glyphicon glyphicon-triangle-top"></span>
               </span>
             </span>
           </th>
           <th>
-            <span data-ng-click="sortKey = 'comment_counter'; sortReverse = !sortReverse">
+            <span data-ng-click="sortKey = 'comment_count'; sortReverse = !sortReverse">
               <i class="glyphicon glyphicon-comment"></i>
-              <span class="btn btn-xs" data-ng-show="sortKey == 'comment_counter'">
+              <span class="btn btn-xs" data-ng-show="sortKey == 'comment_count'">
                 <span data-ng-show="!sortReverse" class="glyphicon glyphicon-triangle-bottom"></span>
                 <span data-ng-show="sortReverse" class="glyphicon glyphicon-triangle-top"></span>
               </span>
             </span>
           </th>
           <th>
-            <span data-ng-click="sortKey = 'message_counter'; sortReverse = !sortReverse">
+            <span data-ng-click="sortKey = 'message_count'; sortReverse = !sortReverse">
               <i class="glyphicon glyphicon-envelope"></i>
-              <span class="btn btn-xs" data-ng-show="sortKey == 'message_counter'">
+              <span class="btn btn-xs" data-ng-show="sortKey == 'message_count'">
                 <span data-ng-show="!sortReverse" class="glyphicon glyphicon-triangle-bottom"></span>
                 <span data-ng-show="sortReverse" class="glyphicon glyphicon-triangle-top"></span>
               </span>
@@ -204,9 +204,9 @@
             <i data-ng-if="tip.wb_last_access < tip.update_date" class="glyphicon glyphicon-remove"
                uib-popover="{{'The whistleblower has not read the latest update yet' | translate }}"></i>
           </td>
-          <td>{{::tip.file_counter}}</td>
-          <td>{{::tip.comment_counter}}</td>
-          <td>{{::tip.message_counter}}</td>
+          <td>{{::tip.file_count}}</td>
+          <td>{{::tip.comment_count}}</td>
+          <td>{{::tip.message_count}}</td>
           <td>
             <span data-ng-if="tip.https"
               class="label label-warning"
