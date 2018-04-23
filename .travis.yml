@@ -14,6 +14,9 @@ matrix:
     - env: GLTEST='test'
       python: "2.7"
 
+    - env: GLTEST='py3_test'
+      python: "3.6"
+
     - env: GLTEST='lint'
       python: "2.7"
 
@@ -78,6 +81,7 @@ matrix:
         sauce_connect: true
 
   allow_failures:
+    - env: GLTEST='py3_test'
     - env: GLTEST='end2end-0' BROWSER='edge 15'
     - env: GLTEST='end2end-1' BROWSER='ie 11'
     - env: GLTEST='end2end-2' BROWSER='firefox 34'
