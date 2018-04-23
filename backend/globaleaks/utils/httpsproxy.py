@@ -1,6 +1,11 @@
 # -*- coding: utf-8 -*-
 import io
-import urlparse
+import sys
+
+if sys.version[0] == '2':
+    import urlparse
+else:
+    from urllib.parse import urlparse
 
 from twisted.internet import reactor, protocol, defer
 from twisted.internet.protocol import connectionDone
