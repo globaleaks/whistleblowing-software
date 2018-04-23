@@ -5,7 +5,7 @@ cffi==1.5.2
 chardet==2.3.0
 cryptography==1.2.3
 idna==2.6
-pyOpenSSL==0.15.1
+pyOpenSSL==17.5.0
 pyasn1==0.1.9
 pyasn1_modules==0.0.7
 pycparser==2.14
