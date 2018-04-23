@@ -2,6 +2,8 @@
 import base64
 import os
 
+from six import text_type
+
 from globaleaks import models
 from globaleaks.db.migrations.update import MigrationBase
 from globaleaks.db.migrations.update_34.config import GLConfig_v_35

@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+from six import text_type
+
 from sqlalchemy import not_
 
 from globaleaks import __version__
@@ -14,7 +16,7 @@ class ConfigFactory(object):
     def __init__(self, session, tid, group, *args, **kwargs):
         self.session = session
         self.tid = tid
-        self.group = unicode(group)
+        self.group = text_type(group)
         self.res = None
         self.keys = ConfigFilters[group]
 
