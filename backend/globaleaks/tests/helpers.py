@@ -53,9 +53,9 @@ import signal
 import sys
 
 if sys.version[0] == '2':
-    import urlparse
+    import urlparse # pylint: disable=import-error
 else:
-    from urllib.parse import urlparse
+    from urllib.parse import urlparse # pylint: disable=import-error
 
 from datetime import timedelta
 
