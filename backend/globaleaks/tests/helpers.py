@@ -4,8 +4,11 @@
 Utilities and basic TestCases.
 """
 import sys
-reload(sys)
-sys.setdefaultencoding('utf8')
+
+# Py3 Compat fix
+if sys.version[0] == '2':
+    reload(sys)
+    sys.setdefaultencoding('utf8')
 
 # pylint: disable=no-name-in-module
 from distutils import dir_util
@@ -47,7 +50,12 @@ import json
 import os
 import shutil
 import signal
-import urlparse
+import sys
+
+if sys.version[0] == '2':
+    import urlparse # pylint: disable=import-error
+else:
+    from urllib.parse import urlparse # pylint: disable=import-error
 
 from datetime import timedelta
 
@@ -60,6 +68,8 @@ from twisted.internet.address import IPv4Address
 from twisted.internet.defer import inlineCallbacks, Deferred, returnValue
 from twisted.trial import unittest
 from twisted.internet.protocol import ProcessProtocol
+
+from six import text_type
 
 ## constants
 VALID_PASSWORD1 = u'ACollectionOfDiplomaticHistorySince_1966_ToThe_Pr esentDay#'
@@ -77,7 +87,7 @@ DATA_DIR = os.path.join(TEST_DIR, 'data')
 kp = os.path.join(DATA_DIR, 'gpg')
 for filename in os.listdir(kp):
     with open(os.path.join(kp, filename)) as pgp_file:
-        PGPKEYS[filename] = unicode(pgp_file.read())
+        PGPKEYS[filename] = text_type(pgp_file.read())
 
 def deferred_sleep_mock(seconds):
     return
@@ -451,7 +461,7 @@ class TestGL(unittest.TestCase):
         new_u['role'] = role
         new_u['username'] = username
         new_u['name'] = new_u['mail_address'] = \
-            unicode("%s@%s.xxx" % (username, username))
+            text_type("%s@%s.xxx" % (username, username))
         new_u['description'] = u''
         new_u['password'] = VALID_PASSWORD1
         new_u['state'] = u'enabled'
@@ -482,7 +492,7 @@ class TestGL(unittest.TestCase):
             for child in field['children']:
                 self.fill_random_field_recursively(value, child)
         else:
-            value = {'value': unicode(''.join(unichr(x) for x in range(0x400, 0x4FF)))}
+            value = {'value': text_type(''.join(unichr(x) for x in range(0x400, 0x4FF)))}
 
         answers[field['id']] = [value]
 

@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 import io
-import urlparse
+import sys
+
+from six.moves import urllib
 
 from twisted.internet import reactor, protocol, defer
 from twisted.internet.protocol import connectionDone
@@ -88,7 +90,8 @@ class HTTPStreamProxyRequest(http.Request):
             self.reset_buffer()
 
     def process(self):
-        proxy_url = bytes(urlparse.urljoin(self.channel.proxy_url, self.uri))
+        joined_url = urllib.parse.urljoin(self.channel.proxy_url, self.uri)
+        proxy_url = bytes(urllib.parse.urlparse(joined_url))
 
         hdrs = self.requestHeaders
         hdrs.setRawHeaders('GL-Forwarded-For', [self.getClientIP()])

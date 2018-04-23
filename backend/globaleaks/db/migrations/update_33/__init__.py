@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from six import text_type
 from globaleaks import __version__, DATABASE_VERSION, LANGUAGES_SUPPORTED_CODES, models
 from globaleaks.db.migrations.update import MigrationBase
 from globaleaks.models.properties import *
@@ -8,8 +9,8 @@ from globaleaks.utils.utility import datetime_now, datetime_null
 class Node_v_32(models.Model):
     __tablename__ = 'node'
     id = Column(Unicode(36), primary_key=True, default=uuid4, nullable=False)
-    version = Column(UnicodeText, default=unicode(__version__))
-    version_db = Column(UnicodeText, default=unicode(DATABASE_VERSION))
+    version = Column(UnicodeText, default=text_type(__version__))
+    version_db = Column(UnicodeText, default=text_type(DATABASE_VERSION))
     name = Column(UnicodeText, default=u'')
     basic_auth = Column(Boolean, default=False)
     basic_auth_username = Column(UnicodeText, default=u'')

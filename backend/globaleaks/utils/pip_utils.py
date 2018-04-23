@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+from __future__ import print_function
 import re
 import sys
 
@@ -60,9 +61,9 @@ def pip_version_check(path):
         print("Unmet requirements:")
         for unmet_requirement_desc in unmet_requirements:
             if unmet_requirement_desc[1]:
-                print("\t", unmet_requirement_desc[0] + " [ Installed", unmet_requirement_desc[1], "]")
+                print(("\t", unmet_requirement_desc[0] + " [ Installed", unmet_requirement_desc[1], "]"))
             else:
-                print("\t", unmet_requirement_desc[0])
+                print(("\t", unmet_requirement_desc[0]))
 
         print("\n")
         print("The problem can be solved by:")

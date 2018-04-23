@@ -2,7 +2,7 @@
 import json
 import ssl
 import tempfile
-import urllib2
+from six.moves import urllib
 
 from twisted.internet import threads, reactor
 from twisted.internet.defer import inlineCallbacks
@@ -113,17 +113,17 @@ class TestSubprocessRun(helpers.TestGL):
 
     def fetch_resource_with_fail(self):
         try:
-            urllib2.urlopen('https://127.0.0.1:9443')
+            urllib.request.urlopen('https://127.0.0.1:9443')
 
             self.fail('Request had to throw a 502')
-        except urllib2.HTTPError as e:
+        except urllib.error.HTTPError as e:
             # Ensure the connection always has an HSTS header
             self.assertEqual(e.headers.get('Strict-Transport-Security'), 'max-age=31536000')
             self.assertEqual(e.code, 502)
             return
 
     def fetch_resource(self):
-        response = urllib2.urlopen('https://127.0.0.1:9443/hello.txt')
+        response = urllib.request.urlopen('https://127.0.0.1:9443/hello.txt')
         hdrs = response.info()
         self.assertEqual(hdrs.get('Strict-Transport-Security'), 'max-age=31536000')
 

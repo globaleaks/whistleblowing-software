@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-import cStringIO
+import io
 import gzip
 import json
 import types
@@ -8,7 +8,7 @@ from twisted.internet import defer
 
 
 def gzipdata(data):
-    fgz = cStringIO.StringIO()
+    fgz = io.BytesIO()
     gzip_obj = gzip.GzipFile(mode='wb', fileobj=fgz)
     gzip_obj.write(data)
     gzip_obj.close()
@@ -57,7 +57,7 @@ def decorator_cache_get(f):
             d = defer.maybeDeferred(f, self, *args, **kwargs)
 
             def callback(data):
-                if isinstance(data, (types.DictType, types.ListType)):
+                if isinstance(data, (dict, list)):
                     self.request.setHeader(b'content-type', b'application/json')
                     data = json.dumps(data)
 

@@ -4,9 +4,12 @@
 # *********
 #
 # GlobaLeaks Utility used to handle Mail, format, exception, etc
-import StringIO
+
+from six.moves import StringIO
+
 import sys
-from email import utils, Charset  # pylint: disable=no-name-in-module
+import email
+from email import utils  # pylint: disable=no-name-in-module
 from email.header import Header
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
@@ -27,7 +30,8 @@ def MIME_mail_build(src_name, src_mail, dest_name, dest_mail, title, mail_body):
     # base64, and instead use quoted-printable (for both subject and body).  I
     # can't figure out a way to specify QP (quoted-printable) instead of base64 in
     # a way that doesn't modify global state. :-(
-    Charset.add_charset('utf-8', Charset.QP, Charset.QP, 'utf-8')
+    if sys.version_info[0] == 2:
+	    email.Charset.add_charset('utf-8', Charset.QP, Charset.QP, 'utf-8') # pylint: disable=undefined-variable, no-member
 
     # This example is of an email with text and html alternatives.
     multipart = MIMEMultipart('alternative')
@@ -44,7 +48,7 @@ def MIME_mail_build(src_name, src_mail, dest_name, dest_mail, title, mail_body):
 
     multipart.attach(MIMEText(mail_body.encode('utf-8'), 'plain', 'UTF-8'))
 
-    return StringIO.StringIO(multipart.as_string())
+    return StringIO(multipart.as_string())
 
 
 def sendmail(tid, username, password, smtp_host, smtp_port, security, from_name, from_address, to_address, subject, body, anonymize=True, socks_host='127.0.0.1', socks_port=9050):

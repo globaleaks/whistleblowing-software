@@ -139,7 +139,7 @@ class ZipInfo(object):
         self.volume = 0                  # Volume number of file header
         self.internal_attr = 0           # Internal attributes
 
-        self.external_attr = 0600 << 16  # Security: Forced File Attributes
+        self.external_attr = 0o600 << 16  # Security: Forced File Attributes
 
         # Other attributes set by class ZipFile:
         self.header_offset = 0           # Byte offset to the file header

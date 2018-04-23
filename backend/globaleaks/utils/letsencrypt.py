@@ -1,6 +1,6 @@
 # -*- coding: utf-8
 from datetime import datetime
-from urllib2 import urlopen, Request
+from six.moves import urllib
 
 from OpenSSL.crypto import FILETYPE_PEM, dump_certificate
 
@@ -10,6 +10,7 @@ from globaleaks.utils.utility import log
 from globaleaks.mocks import acme_mocks # pylint: disable=W0611
 
 from acme import challenges, client, jose, messages
+from functools import reduce
 
 
 class ChallTok:
@@ -53,11 +54,11 @@ def run_acme_reg_to_finish(domain, regr_uri, accnt_key, site_key, csr, tmp_chall
     tmp_chall_dict.set(v, ChallTok(chall_tok))
 
     test_path = 'http://localhost:8082{}'.format(challb.path)
-    local_req = Request(test_path, headers={'Host': domain})
+    local_req = urllib.request.Request(test_path, headers={'Host': domain})
     log.debug('Testing local url path: %s', test_path)
 
     try:
-        resp = urlopen(local_req)
+        resp = urllib.request.urlopen(local_req)
         t = resp.read().decode('utf-8').strip()
         if t != chall_tok:
             raise ValueError
