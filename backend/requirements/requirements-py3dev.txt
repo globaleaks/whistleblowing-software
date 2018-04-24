@@ -15,7 +15,7 @@ requests==2.9.1
 scrypt==0.6.1
 service_identity==16.0.0
 six==1.10.0
-sqlalchemy==1.0.11
+sqlalchemy==1.1.11
 txtorcon==0.20.0
 zope.component==4.2.2
 zope.event==4.2.0
