@@ -127,7 +127,7 @@ class TestAPI(TestGL):
         self.assertTrue(request.client_using_tor)
         self.assertEqual(request.responseCode, 301)
         location = request.responseHeaders.getRawHeaders(b'location')[0]
-        self.assertEqual('http://aaaaaaaaaaaaaaaa.onion/', location)
+        self.assertEqual(b'http://aaaaaaaaaaaaaaaa.onion/', location)
 
         State.tor_exit_set.clear()
 
@@ -140,7 +140,7 @@ class TestAPI(TestGL):
         self.assertFalse(request.client_using_tor)
         self.assertEqual(request.responseCode, 301)
         location = request.responseHeaders.getRawHeaders(b'location')[0]
-        self.assertEqual('https://www.globaleaks.org/', location)
+        self.assertEqual(b'https://www.globaleaks.org/', location)
 
         State.tenant_cache[1].https_enabled = True
         State.tenant_cache[1].hostname = 'www.globaleaks.org'
@@ -149,4 +149,4 @@ class TestAPI(TestGL):
         self.assertFalse(request.client_using_tor)
         self.assertEqual(request.responseCode, 301)
         location = request.responseHeaders.getRawHeaders(b'location')[0]
-        self.assertEqual('https://www.globaleaks.org/public', location)
+        self.assertEqual(b'https://www.globaleaks.org/public', location)
