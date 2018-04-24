@@ -7,7 +7,6 @@
 import json
 import re
 import types
-import urlparse
 
 from twisted.internet import defer
 from twisted.internet.abstract import isIPAddress, isIPv6Address
@@ -52,6 +51,8 @@ from globaleaks.rest import apicache, requests, errors
 from globaleaks.settings import Settings
 from globaleaks.state import State, extract_exception_traceback_and_schedule_email
 
+from six import text_type
+from six.moves.urllib.parse import urlparse
 
 uuid_regexp = r'([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})'
 key_regexp = r'([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}|[a-z_]{0,100})'
@@ -308,7 +309,7 @@ class APIResourceWrapper(Resource):
         if 'x-tor2web' in request.headers:
             request.client_using_tor = False
 
-        request.language = unicode(self.detect_language(request))
+        request.language = text_type(self.detect_language(request))
         if 'multilang' in request.args:
             request.language = None
 
@@ -357,7 +358,7 @@ class APIResourceWrapper(Resource):
             return b''
 
         f = getattr(handler, method)
-        groups = [unicode(g) for g in match.groups()]
+        groups = [text_type(g) for g in match.groups()]
 
         self.handler = handler(State, request, **args)
 
