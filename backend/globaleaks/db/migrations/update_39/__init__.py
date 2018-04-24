@@ -10,6 +10,7 @@ from globaleaks.models.properties import *
 from globaleaks.settings import Settings
 from globaleaks.utils.utility import datetime_now
 
+from six import text_type
 
 class Anomalies_v_38(Model):
     __tablename__ = 'anomalies'
@@ -48,8 +49,8 @@ class Config_v_38(Model):
         if migrate:
             return
 
-        self.var_group = unicode(group)
-        self.var_name = unicode(name)
+        self.var_group = text_type(group)
+        self.var_name = text_type(name)
 
         self.set_v(value)
 
@@ -66,7 +67,7 @@ class Config_v_38(Model):
         if val is None:
             val = desc._type()
         if isinstance(desc, config_desc.Unicode) and isinstance(val, str):
-            val = unicode(val)
+            val = text_type(val)
         if not isinstance(val, desc._type):
             raise ValueError("Cannot assign %s with %s" % (self, type(val)))
 
@@ -96,13 +97,13 @@ class ConfigL10N_v_38(Model):
         if migrate:
             return
 
-        self.lang = unicode(lang_code)
-        self.var_group = unicode(group)
-        self.var_name = unicode(var_name)
-        self.value = unicode(value)
+        self.lang = text_type(lang_code)
+        self.var_group = text_type(group)
+        self.var_name = text_type(var_name)
+        self.value = text_type(value)
 
     def set_v(self, value):
-        value = unicode(value)
+        value = text_type(value)
         if self.value != value:
             self.value = value
             self.customized = True
@@ -154,7 +155,7 @@ class EnabledLanguage_v_38(Model):
         if migrate:
             return
 
-        self.name = unicode(name)
+        self.name = text_type(name)
 
     @classmethod
     def list(cls, session):
@@ -210,7 +211,7 @@ class FieldAttr_v_38(Model):
             else:
                 setattr(self, 'value', value)
         else:
-            setattr(self, 'value', unicode(values['value']))
+            setattr(self, 'value', text_type(values['value']))
 
 
 class FieldOption_v_38(Model):

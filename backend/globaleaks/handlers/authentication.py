@@ -14,6 +14,7 @@ from globaleaks.settings import Settings
 from globaleaks.state import State
 from globaleaks.utils.utility import datetime_now, deferred_sleep, log
 
+from six import text_type
 
 def random_login_delay():
     """
@@ -47,7 +48,7 @@ def random_login_delay():
 def db_get_wbtip_by_receipt(session, tid, receipt):
     hashed_receipt = security.hash_password(receipt, State.tenant_cache[tid].receipt_salt)
     return session.query(InternalTip) \
-                  .filter(InternalTip.receipt_hash == unicode(hashed_receipt),
+                  .filter(InternalTip.receipt_hash == text_type(hashed_receipt),
                           InternalTip.tid == tid).one_or_none()
 
 

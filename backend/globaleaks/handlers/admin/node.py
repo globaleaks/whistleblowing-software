@@ -14,6 +14,7 @@ from globaleaks.rest import errors, requests
 from globaleaks.state import State
 from globaleaks.utils.utility import log
 
+from six import text_type
 
 def db_admin_serialize_node(session, tid, language):
     config = ConfigFactory(session, tid, 'admin_node').serialize()
@@ -42,7 +43,7 @@ def admin_serialize_node(session, tid, language):
 
 def db_update_enabled_languages(session, tid, languages_enabled, default_language):
     cur_enabled_langs = models.EnabledLanguage.list(session, tid)
-    new_enabled_langs = [unicode(y) for y in languages_enabled]
+    new_enabled_langs = [text_type(y) for y in languages_enabled]
 
     if len(new_enabled_langs) < 1:
         raise errors.InputValidationError("No languages enabled!")

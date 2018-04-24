@@ -5,6 +5,7 @@ from globaleaks.rest import errors
 from globaleaks.tests import helpers
 from twisted.internet.defer import inlineCallbacks
 
+from six import text_type
 
 class TestUserInstance(helpers.TestHandlerWithPopulatedDB):
     _handler = user.UserInstance
@@ -64,7 +65,7 @@ class TestUserInstance(helpers.TestHandlerWithPopulatedDB):
         self.assertEqual(response['pgp_key_expiration'], '1970-01-01T00:00:00Z')
 
         # perform and test key update
-        response['pgp_key_public'] = unicode(helpers.PGPKEYS['VALID_PGP_KEY2_PUB'])
+        response['pgp_key_public'] = text_type(helpers.PGPKEYS['VALID_PGP_KEY2_PUB'])
         response['pgp_key_remove'] = False
         handler = self.request(response, user_id=self.rcvr_id, role='receiver')
         response = yield handler.put()
@@ -90,7 +91,7 @@ class TestUserInstance(helpers.TestHandlerWithPopulatedDB):
 
         response = yield handler.get()
 
-        response['pgp_key_public'] = unicode(helpers.PGPKEYS['VALID_PGP_KEY1_PUB']).replace('A', 'B')
+        response['pgp_key_public'] = text_type(helpers.PGPKEYS['VALID_PGP_KEY1_PUB']).replace('A', 'B')
         response['pgp_key_remove'] = False
         handler = self.request(response, user_id=self.rcvr_id, role='receiver')
         yield self.assertFailure(handler.put(), errors.InputValidationError)

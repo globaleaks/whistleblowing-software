@@ -1,6 +1,4 @@
 # -*- coding: utf-8
-import urlparse
-
 from twisted.internet.defer import inlineCallbacks
 from twisted.web.client import readBody
 
@@ -12,6 +10,7 @@ from globaleaks.orm import transact
 from globaleaks.rest import errors
 from globaleaks.utils.utility import is_common_net_error
 
+from six.moves.urllib.parse import urlparse
 
 @transact
 def check_hostname(session, tid, input_hostname):
