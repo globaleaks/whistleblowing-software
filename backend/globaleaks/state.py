@@ -205,7 +205,7 @@ class StateClass(ObjectDict):
 
         exception_text = (exception_text % args) if args else exception_text
 
-        sha256_hash = sha256(bytes(exception_text))
+        sha256_hash = sha256(exception_text.encode())
 
         if sha256_hash not in self.exceptions:
             self.exceptions[sha256_hash] = 0
