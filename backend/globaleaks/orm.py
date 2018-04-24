@@ -19,7 +19,7 @@ __THREAD_POOL = None
 
 def make_db_uri(db_file):
     # ugly ugly hack to allow this to work properly on windows
-    prefix = 'sqlite+pysqlite://'
+    prefix = 'sqlite://'
     if platform.system() == 'Windows':
         # Specifically, the problem is SQLite is expecting a double-backslashed path
         # on Windows (i.e., c:\\dir\\db) despite this being a Python API. If anything
