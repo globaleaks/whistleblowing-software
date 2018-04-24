@@ -22,6 +22,8 @@ from globaleaks.utils.security import sha256
 from globaleaks.utils.utility import datetime_now, log
 from globaleaks.utils.tempdict import TempDict
 
+from six import text_type
+
 def getAlarm(state):
     from globaleaks.anomaly import Alarm
     return Alarm(state)
@@ -224,7 +226,7 @@ class StateClass(ObjectDict):
             mail_subject +=  " [%s]" % self.settings.developer_name
             delivery_list = [("globaleaks-stackexception-devel@globaleaks.org", '')]
 
-        mail_body = bytes("Platform: %s\nHost: %s (%s)\nVersion: %s\n\n%s" \
+        mail_body = text_type("Platform: %s\nHost: %s (%s)\nVersion: %s\n\n%s" \
                           % (self.tenant_cache[1].name,
                              self.tenant_cache[1].hostname,
                              self.tenant_cache[1].onionservice,

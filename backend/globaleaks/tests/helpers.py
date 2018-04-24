@@ -301,7 +301,7 @@ def forge_request(uri='https://www.globaleaks.org/',
     request.requestHeaders.setRawHeaders('host', ['127.0.0.1'])
 
     for k, v in headers.items():
-        request.requestHeaders.setRawHeaders(text_type(k), [text_type(v)])
+        request.requestHeaders.setRawHeaders(k.encode(), [v.encode()])
 
     request.headers = request.getAllHeaders()
 

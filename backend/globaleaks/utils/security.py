@@ -61,7 +61,7 @@ def generate_api_token():
     :rtype: A `tuple` containing (digest `str`, token `str`)
     """
     token = generateRandomKey(Settings.api_token_len)
-    return token, sha512(token)
+    return token, sha512(token.encode())
 
 
 def _overwrite(absolutefpath, pattern):
