@@ -9,13 +9,14 @@ import string
 import time
 from datetime import datetime
 
-from six import text_type
 from cryptography.hazmat.backends import default_backend
 from cryptography.hazmat.primitives import constant_time, hashes
 from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
 from globaleaks.rest import errors
 from globaleaks.settings import Settings
 from globaleaks.utils.utility import log
+
+from six import text_type
 
 crypto_backend = default_backend()
 
@@ -36,14 +37,14 @@ def generateRandomReceipt():
     """
     Return a random receipt of 16 digits
     """
-    return ''.join(random.SystemRandom().choice(string.digits) for _ in range(16)).encode('utf-8')
+    return ''.join(random.SystemRandom().choice(string.digits) for _ in range(16))
 
 
 def generateRandomKey(N):
     """
     Return a random key of N characters in a-zA-Z0-9
     """
-    return ''.join(random.SystemRandom().choice(string.ascii_letters + string.digits) for _ in range(N)).encode('utf-8')
+    return ''.join(random.SystemRandom().choice(string.ascii_letters + string.digits) for _ in range(N))
 
 
 def generateRandomSalt():
