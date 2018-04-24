@@ -23,7 +23,7 @@ from globaleaks.settings import Settings
 from globaleaks.utils.tempdict import TempDict
 from globaleaks.utils.utility import datetime_now, deferred_sleep, log
 
-from six import text_type
+from six import text_type, binary_type
 
 HANDLER_EXEC_TIME_THRESHOLD = 120
 
@@ -181,9 +181,9 @@ class BaseHandler(object):
 
     def basic_auth(self):
         msg = None
-        if "authorization" in self.request.headers:
+        if b"authorization" in self.request.headers:
             try:
-                auth_type, data = self.request.headers["authorization"].split()
+                auth_type, data = self.request.headers[b"authorization"].split()
                 usr, pwd = base64.b64decode(data).split(":", 1)
                 if auth_type != "Basic" or \
                     usr != self.state.tenant_cache[self.request.tid].basic_auth_username or \
@@ -410,10 +410,10 @@ class BaseHandler(object):
 
     def get_api_session(self):
         token = ''
-        if 'api-token' in self.request.args:
-            token = bytes(self.request.args['api-token'][0])
-        elif 'x-api-token' in self.request.headers:
-            token = bytes(self.request.headers['x-api-token'])
+        if b'api-token' in self.request.args:
+            token = binary_type(self.request.args[b'api-token'][0])
+        elif b'x-api-token' in self.request.headers:
+            token = binary_type(self.request.headers[b'x-api-token'])
 
         # Assert the input is okay and the api_token state is acceptable
         if self.request.tid != 1 or \
@@ -422,7 +422,7 @@ class BaseHandler(object):
            not self.state.tenant_cache[self.request.tid].admin_api_token_digest:
             return None
 
-        stored_token_hash = bytes(self.state.tenant_cache[self.request.tid].admin_api_token_digest)
+        stored_token_hash = self.state.tenant_cache[self.request.tid].admin_api_token_digest.encode()
 
         if constant_time.bytes_eq(sha512(token), stored_token_hash):
             return self.state.api_token_session
@@ -435,7 +435,7 @@ class BaseHandler(object):
         total_file_size = int(self.request.args['flowTotalSize'][0])
         flow_identifier = self.request.args['flowIdentifier'][0]
 
-        chunk_size = len(self.request.args['file'][0])
+        chunk_size = len(self.request.args[b'file'][0])
         if ((chunk_size / (1024 * 1024)) > self.state.tenant_cache[self.request.tid].maximum_filesize or
             (total_file_size / (1024 * 1024)) > self.state.tenant_cache[self.request.tid].maximum_filesize):
             log.err("File upload request rejected: file too big", tid=self.request.tid)
