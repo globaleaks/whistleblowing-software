@@ -31,6 +31,7 @@ from twisted.web._newclient import ResponseNeverReceived, ResponseFailed
 
 from globaleaks import LANGUAGES_SUPPORTED_CODES
 
+from six import text_type
 
 FAILURES_NET_OUTGOING = (
     ConnectionLost,
@@ -124,7 +125,7 @@ def uuid4():
 
     The function is not intended to be used for security reasons.
     """
-    return unicode(uuid.uuid4())
+    return text_type(uuid.uuid4())
 
 
 def sum_dicts(*dicts):

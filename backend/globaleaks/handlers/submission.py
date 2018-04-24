@@ -16,6 +16,7 @@ from globaleaks.utils.token import TokenList
 from globaleaks.utils.utility import log, get_expiration, \
     datetime_now, datetime_never, datetime_to_ISO8601
 
+from six import text_type
 
 def get_submission_sequence_number(itip):
     return "%s-%d" % (itip.creation_date.strftime("%Y%m%d"), itip.progressive)
@@ -175,7 +176,7 @@ def db_save_questionnaire_answers(session, tid, internaltip_id, entries):
                 n += 1
         else:
             field_answer.is_leaf = True
-            field_answer.value = unicode(value)
+            field_answer.value = text_type(value)
 
         ret.append(field_answer)
 
@@ -281,7 +282,7 @@ def db_create_submission(session, tid, request, uploaded_files, client_using_tor
         raise errors.ModelNotFound(models.Context)
 
     steps = db_get_questionnaire(session, tid, questionnaire.id, None)['steps']
-    questionnaire_hash = unicode(sha256(json.dumps(steps)))
+    questionnaire_hash = text_type(sha256(json.dumps(steps)))
     db_archive_questionnaire_schema(session, steps, questionnaire_hash)
 
     submission = models.InternalTip()
@@ -322,7 +323,7 @@ def db_create_submission(session, tid, request, uploaded_files, client_using_tor
     submission.questionnaire_hash = questionnaire_hash
     submission.preview = extract_answers_preview(steps, answers)
 
-    receipt = unicode(generateRandomReceipt())
+    receipt = text_type(generateRandomReceipt())
 
     submission.receipt_hash = hash_password(receipt, State.tenant_cache[tid].receipt_salt)
 

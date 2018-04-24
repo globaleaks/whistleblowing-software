@@ -6,7 +6,7 @@ from __future__ import absolute_import
 import collections
 import copy
 
-from six import text_type
+from six import text_type, binary_type
 
 from globaleaks.models import config_desc
 from globaleaks.models.properties import *
@@ -141,8 +141,8 @@ class Model(object):
 
     def __setattr__(self, name, value):
         # harder better faster stronger
-        if isinstance(value, str):
-            value = text_type(value)
+        if isinstance(value, binary_type):
+            value = text_type(value, 'utf-8')
 
         return super(Model, self).__setattr__(name, value)
 
@@ -254,8 +254,8 @@ class _Config(Model):
         if val is None:
             val = desc._type()
 
-        if isinstance(desc, config_desc.Unicode) and isinstance(val, str):
-            val = text_type(val)
+        if isinstance(desc, config_desc.Unicode) and isinstance(val, binary_type):
+            val = text_type(val, 'utf-8')
 
         if not isinstance(val, desc._type):
             raise ValueError("Cannot assign %s with %s" % (self, type(val)))
