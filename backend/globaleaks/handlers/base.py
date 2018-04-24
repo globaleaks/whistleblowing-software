@@ -23,6 +23,8 @@ from globaleaks.settings import Settings
 from globaleaks.utils.tempdict import TempDict
 from globaleaks.utils.utility import datetime_now, deferred_sleep, log
 
+from six import text_type
+
 HANDLER_EXEC_TIME_THRESHOLD = 120
 
 
@@ -226,7 +228,7 @@ class BaseHandler(object):
         Return True if the python class matches the given regexp.
         """
         try:
-            value = unicode(value)
+            value = text_type(value)
         except:
             return False
 

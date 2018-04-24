@@ -22,6 +22,8 @@ from globaleaks.orm import make_db_uri, set_db_uri
 from globaleaks.utils.singleton import Singleton
 from globaleaks.utils.utility import log
 
+from six import text_type
+
 this_directory = os.path.dirname(__file__)
 
 possible_client_paths = [
@@ -214,7 +216,7 @@ class SettingsClass(object):
         if not self.cmdline_options:
             self.developer_name = u"Random GlobaLeaks Developer"
         else:
-            self.developer_name = unicode(self.cmdline_options.developer_name)
+            self.developer_name = text_type(self.cmdline_options.developer_name)
 
         # when running in development mode lower the key bits to 512
         self.key_bits = 512
@@ -267,7 +269,7 @@ class SettingsClass(object):
 
         if self.cmdline_options.developer_name:
             self.print_msg("Enabling development mode for %s" % self.cmdline_options.developer_name)
-            self.developer_name = unicode(self.cmdline_options.developer_name)
+            self.developer_name = text_type(self.cmdline_options.developer_name)
             self.set_devel_mode()
             self.orm_debug = self.cmdline_options.orm_debug
 

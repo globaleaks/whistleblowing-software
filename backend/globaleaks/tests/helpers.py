@@ -52,11 +52,6 @@ import shutil
 import signal
 import sys
 
-if sys.version[0] == '2':
-    import urlparse # pylint: disable=import-error
-else:
-    from urllib.parse import urlparse # pylint: disable=import-error
-
 from datetime import timedelta
 
 
@@ -70,6 +65,7 @@ from twisted.trial import unittest
 from twisted.internet.protocol import ProcessProtocol
 
 from six import text_type
+from six.moves.urllib.parse import urlparse, urlsplit
 
 ## constants
 VALID_PASSWORD1 = u'ACollectionOfDiplomaticHistorySince_1966_ToThe_Pr esentDay#'
@@ -262,7 +258,7 @@ def forge_request(uri='https://www.globaleaks.org/',
     if headers is None:
         headers = {}
 
-    _, host, path, query, frag = urlparse.urlsplit(uri)
+    _, host, path, query, frag = urlsplit(uri)
 
     x = host.split (':')
     if len(x) > 1:
@@ -275,7 +271,7 @@ def forge_request(uri='https://www.globaleaks.org/',
     request.method = method
     request.uri = uri
     request.path = path
-    request._serverName = bytes(host)
+    request._serverName = text_type(host)
 
     request.code = 200
     request.client_ip = '127.0.0.1'
@@ -305,7 +301,7 @@ def forge_request(uri='https://www.globaleaks.org/',
     request.requestHeaders.setRawHeaders('host', ['127.0.0.1'])
 
     for k, v in headers.items():
-        request.requestHeaders.setRawHeaders(bytes(k), [bytes(v)])
+        request.requestHeaders.setRawHeaders(text_type(k), [text_type(v)])
 
     request.headers = request.getAllHeaders()
 

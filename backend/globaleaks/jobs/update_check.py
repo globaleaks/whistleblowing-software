@@ -14,6 +14,8 @@ from globaleaks.orm import transact
 from globaleaks.utils.agent import get_page
 from globaleaks.utils.utility import log
 
+from six import text_type
+
 DEB_PACKAGE_URL = 'https://deb.globaleaks.org/xenial/Packages'
 
 
@@ -55,7 +57,7 @@ class UpdateCheck(NetLoopingJob):
         versions = [p['Version'] for p in deb822.Deb822.iter_paragraphs(packages_file) if p['Package'] == 'globaleaks']
         versions.sort(key=V)
 
-        latest_version = unicode(versions[-1])
+        latest_version = text_type(versions[-1])
 
         yield evaluate_update_notification(self.state, latest_version)
 
