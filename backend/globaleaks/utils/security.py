@@ -155,7 +155,7 @@ def hash_password(password, salt):
 
 
 def check_password(guessed_password, salt, password_hash):
-    return constant_time.bytes_eq(hash_password(guessed_password, salt), bytes(password_hash))
+    return constant_time.bytes_eq(hash_password(guessed_password, salt), password_hash.encode())
 
 
 def change_password(old_password_hash, old_password, new_password, salt):
