@@ -57,7 +57,7 @@ def db_create(session, desc):
     ]
 
     for file_desc in file_descs:
-        with open(os.path.join(Settings.client_path, file_desc[1]), 'r') as f:
+        with open(os.path.join(Settings.client_path, file_desc[1]), 'rb') as f:
             data = base64.b64encode(f.read())
             file.db_add_file(session, t.id, file_desc[0], u'', data)
 
