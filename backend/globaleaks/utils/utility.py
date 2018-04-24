@@ -191,7 +191,7 @@ def log_remove_escapes(s):
     """
     This function removes escape sequence from log strings
     """
-    if isinstance(s, unicode):
+    if isinstance(s, text_type):
         return codecs.encode(s, 'unicode_escape')
     else:
         try:
@@ -260,7 +260,7 @@ class Logger(object):
         if not isinstance(msg, str) and not isinstance(msg, unicode):
             msg = str(msg)
 
-        if isinstance(msg, unicode):
+        if isinstance(msg, text_type):
             msg = msg.encode('utf-8')
 
         msg = (msg % args) if args else msg
