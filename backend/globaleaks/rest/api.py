@@ -52,7 +52,7 @@ from globaleaks.settings import Settings
 from globaleaks.state import State, extract_exception_traceback_and_schedule_email
 
 from six import text_type
-from six.moves.urllib.parse import urlparse
+from six.moves.urllib.parse import urlparse, urlsplit, urlunparse, urlunsplit
 
 uuid_regexp = r'([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})'
 key_regexp = r'([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}|[a-z_]{0,100})'
@@ -241,13 +241,13 @@ class APIResourceWrapper(Resource):
         request.setHeader(b"location", url)
 
     def redirect_https(self, request):
-        _, _, path, query, frag = urlparse.urlsplit(request.uri)
-        redirect_url = urlparse.urlunsplit(('https', request.hostname, path, query, frag))
+        _, _, path, query, frag = urlsplit(request.uri)
+        redirect_url = urlunsplit(('https', request.hostname, path, query, frag))
         self.redirect(request, redirect_url)
 
     def redirect_tor(self, request):
-        _, _, path, query, frag = urlparse.urlsplit(request.uri)
-        redirect_url = urlparse.urlunsplit(('http', State.tenant_cache[request.tid].onionservice, path, query, frag))
+        _, _, path, query, frag = urlsplit(request.uri)
+        redirect_url = urlunsplit(('http', State.tenant_cache[request.tid].onionservice, path, query, frag))
         self.redirect(request, redirect_url)
 
     def handle_exception(self, e, request):
