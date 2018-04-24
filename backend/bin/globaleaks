@@ -8,8 +8,9 @@ import sys
 import mimetypes
 
 # Use UTF-8 for all string to unicode conversions
-reload(sys)
-sys.setdefaultencoding('utf8')
+if sys.version[0] == '2':
+    reload(sys)
+    sys.setdefaultencoding('utf8')
 
 # Avoid writing bytecode files at runtime
 sys.dont_write_bytecode = True
