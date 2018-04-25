@@ -21,6 +21,7 @@ from globaleaks.state import State
 from globaleaks.utils.utility import log, get_expiration, datetime_now, datetime_never, \
     datetime_to_ISO8601
 
+from six import text_type
 
 def receiver_serialize_rfile(session, rfile):
     ifile = session.query(models.InternalFile) \
@@ -397,7 +398,7 @@ class RTipInstance(OperationHandler):
           'set': (RTipInstance.set_tip_val,
                   {'key': '^(enable_two_way_comments|enable_two_way_messages|enable_attachments|enable_notifications)$',
                    'value': bool}),
-          'set_label': (RTipInstance.set_label, {'value': unicode})
+          'set_label': (RTipInstance.set_label, {'value': text_type})
         }
 
 
