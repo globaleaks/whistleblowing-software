@@ -4,10 +4,15 @@ import gzip
 import json
 import types
 
+from six import text_type, binary_type
+
 from twisted.internet import defer
 
 
 def gzipdata(data):
+    if isinstance(data, text_type):
+        data = data.encode()
+
     fgz = io.BytesIO()
     gzip_obj = gzip.GzipFile(mode='wb', fileobj=fgz)
     gzip_obj.write(data)
@@ -28,7 +33,7 @@ class ApiCache(object):
 
     @classmethod
     def set(cls, tid, resource, language, content_type, data):
-        data = gzipdata(bytes(data))
+        data = gzipdata(data)
 
         if tid not in ApiCache.memory_cache_dict:
             cls.memory_cache_dict[tid] = {}
