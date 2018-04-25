@@ -64,6 +64,7 @@ from twisted.internet.defer import inlineCallbacks, Deferred, returnValue
 from twisted.trial import unittest
 from twisted.internet.protocol import ProcessProtocol
 
+import six
 from six import text_type
 from six.moves.urllib.parse import urlparse, urlsplit
 
@@ -218,7 +219,7 @@ def get_dummy_file(filename=None, content_type=None, content=None):
     files_count += 1
 
     if filename is None:
-        filename = ''.join(unichr(x) for x in range(0x400, 0x40A)).join('-%d' % files_count)
+        filename = ''.join(six.unichr(x) for x in range(0x400, 0x40A)).join('-%d' % files_count)
 
     content_type = 'application/octet'
 
@@ -488,7 +489,7 @@ class TestGL(unittest.TestCase):
             for child in field['children']:
                 self.fill_random_field_recursively(value, child)
         else:
-            value = {'value': text_type(''.join(unichr(x) for x in range(0x400, 0x4FF)))}
+            value = {'value': text_type(''.join(six.unichr(x) for x in range(0x400, 0x4FF)))}
 
         answers[field['id']] = [value]
 
@@ -585,10 +586,10 @@ class TestGL(unittest.TestCase):
         for i in session.query(models.InternalTip) \
                          .filter(models.InternalTip.tid == 1):
             x = wbtip.serialize_wbtip(session, i, 'en')
-            x['receivers_ids'] = zip(*session.query(models.ReceiverTip.receiver_id) \
+            x['receivers_ids'] = list(zip(*session.query(models.ReceiverTip.receiver_id) \
                                            .filter(models.ReceiverTip.internaltip_id == i.id,
                                                    models.InternalTip.id == i.id,
-                                                   models.InternalTip.tid == 1))[0]
+                                                   models.InternalTip.tid == 1)))[0]
             ret.append(x)
 
         return ret
