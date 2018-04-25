@@ -61,7 +61,13 @@ def generateRandomSalt():
     """
     Return a base64 encoded string with 128 bit of entropy
     """
-    return base64.b64encode(os.urandom(16))
+
+    # Py3 fix explaination: Normally, we'd use text_type here,
+    # however, on Py2, scrypt *wants* str on both Python2/3, (and throws an
+    # an exception). As B64 encoded data is always ASCII, this should be
+    # able to go safely in and out of the database.
+
+    return str(base64.b64encode(os.urandom(16)))
 
 
 def generate_api_token():
@@ -165,7 +171,9 @@ def hash_password(password, salt):
 
 
 def check_password(guessed_password, salt, password_hash):
-    return constant_time.bytes_eq(hash_password(guessed_password, salt), password_hash.encode())
+    if isinstance(password_hash, text_type):
+        password_hash = password_hash.encode()
+    return constant_time.bytes_eq(hash_password(guessed_password, salt), password_hash)
 
 
 def change_password(old_password_hash, old_password, new_password, salt):
