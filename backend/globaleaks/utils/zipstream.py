@@ -12,11 +12,6 @@ import os
 import struct
 import time
 
-try:
-    import zlib # We may need its compression method
-except ImportError:
-    zlib = None
-
 from six import text_type, binary_type
 
 __all__ = ["ZIP_STORED", "ZIP_DEFLATED", "ZipStream"]
