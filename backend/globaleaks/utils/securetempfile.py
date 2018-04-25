@@ -7,6 +7,7 @@ from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
 from globaleaks.rest import errors
 from globaleaks.utils.security import crypto_backend, generateRandomKey
 
+from six import text_type
 
 class SecureTemporaryFile(object):
     file = None
@@ -26,15 +27,15 @@ class SecureTemporaryFile(object):
     def open(self, mode):
         if self.file is None:
            if mode == 'w':
-               self.file = open(self.filepath, 'a+')
+               self.file = open(self.filepath, 'ab+')
            else:
-               self.file = open(self.filepath, 'r')
+               self.file = open(self.filepath, 'rb')
                self.dec = self.cipher.decryptor()
 
         return self
 
     def write(self, data):
-        if isinstance(data, unicode):
+        if isinstance(data, text_type):
             data = data.encode('utf-8')
 
         self.file.write(self.enc.update(data))

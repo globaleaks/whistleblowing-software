@@ -16,19 +16,29 @@ from globaleaks.rest import errors
 from globaleaks.settings import Settings
 from globaleaks.utils.utility import log
 
-from six import text_type
+from six import text_type, binary_type
 
 crypto_backend = default_backend()
 
 
 def sha256(data):
     h = hashes.Hash(hashes.SHA256(), backend=crypto_backend)
+
+    # Transparently convert str types to bytes
+    if isinstance(data, text_type):
+        data = data.encode()
+
     h.update(data)
     return binascii.b2a_hex(h.finalize())
 
 
 def sha512(data):
     h = hashes.Hash(hashes.SHA512(), backend=crypto_backend)
+
+    # Transparently convert str types to bytes
+    if isinstance(data, text_type):
+        data = data.encode()
+
     h.update(data)
     return binascii.b2a_hex(h.finalize())
 

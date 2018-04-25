@@ -12,6 +12,7 @@ from globaleaks.rest import errors
 from globaleaks.utils.utility import ISO8601_to_pretty_str, ISO8601_to_day_str, \
     bytes_to_pretty_str
 
+from six import text_type
 
 node_keywords = [
     '{NodeName}',
@@ -270,7 +271,7 @@ class TipKeyword(UserNodeKeyword, ContextKeyword):
             data['message'] = copy.deepcopy(message)
             template = 'export_message_whistleblower' if (message['type'] == 'whistleblower') else 'export_message_recipient'
             ret += indent_text('-' * 40) + '\n'
-            ret += indent_text(Templating().format_template(self.data['notification'][template], data).encode('utf-8')) + '\n\n'
+            ret += indent_text(text_type(Templating().format_template(self.data['notification'][template], data))) + '\n\n'
 
         return ret
 
