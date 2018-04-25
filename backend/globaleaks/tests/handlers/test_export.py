@@ -30,4 +30,4 @@ class TestExportHandler(helpers.TestHandlerWithPopulatedDB):
         handler.current_user.user_id = rtips_desc[0]['receiver_id']
 
         yield handler.get(rtips_desc[0]['id'])
-        self.assertNotEqual(handler.request.getResponseBody(), '')
+        self.assertNotEqual(handler.request.getResponseBody(), b'')

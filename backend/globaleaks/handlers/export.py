@@ -114,7 +114,7 @@ class ZipStreamProducer(object):
                 if chunk_size >= Settings.file_chunk_size:
                     return ''.join(chunk)
 
-        return ''.join(chunk)
+        return b''.join(chunk)
 
 
 class ExportHandler(BaseHandler):
