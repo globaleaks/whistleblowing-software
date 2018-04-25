@@ -8,6 +8,7 @@ import mimetypes
 import os
 import re
 import shutil
+import copy
 from datetime import datetime
 
 from cryptography.hazmat.primitives import constant_time
@@ -31,11 +32,14 @@ HANDLER_EXEC_TIME_THRESHOLD = 120
 class SessionsFactory(TempDict):
     """Extends TempDict to provide session management functions ontop of temp session keys"""
     def revoke_all_sessions(self, user_id):
+        to_delete = []
         for other_session in Sessions.values():
             if other_session.user_id == user_id:
                 log.debug("Revoking old session for %s", user_id)
-                Sessions.delete(other_session.id)
+                to_delete.append(other_session.id)
 
+        for id in to_delete:
+            Sessions.delete(id)
 
 Sessions = SessionsFactory(timeout=Settings.authentication_lifetime)
 
