@@ -868,7 +868,7 @@ class TestHandler(TestGLWithPopulatedDB):
 
         if role is not None:
             session = new_session(1, user_id, role, 'enabled')
-            handler.request.headers['x-session'] = session.id
+            handler.request.headers[b'x-session'] = session.id.encode()
 
         if handler.upload_handler:
             handler.uploaded_file = self.get_dummy_file('upload.pdf')
