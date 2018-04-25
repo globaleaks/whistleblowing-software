@@ -31,7 +31,7 @@ ZIP_DEFLATED = 8
 # Here are some struct module formats for reading headers
 structEndArchive = b"<4s4H2lH"     # 9 items, end of archive, 22 bytes
 stringEndArchive = b"PK\005\006"   # magic number for end of archive record
-structCentralDir = b"<4s4B4HlLL5HLl"# 19 items, central directory, 46 bytes
+structCentralDir = b"<4s4B4HLLL5HLl"# 19 items, central directory, 46 bytes
 stringCentralDir = b"PK\001\002"   # magic number for central directory
 structFileHeader = b"<4s2B4HlLL2H"  # 12 items, file header record, 30 bytes
 stringFileHeader = b"PK\003\004"   # magic number for file header
