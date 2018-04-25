@@ -17,6 +17,8 @@ try:
 except ImportError:
     zlib = None
 
+from six import text_type, binary_type
+
 __all__ = ["ZIP_STORED", "ZIP_DEFLATED", "ZipStream"]
 
 ZIP64_LIMIT= (1 << 31) - 1
@@ -27,17 +29,17 @@ ZIP_DEFLATED = 8
 # Other ZIP compression methods not supported
 
 # Here are some struct module formats for reading headers
-structEndArchive = "<4s4H2lH"     # 9 items, end of archive, 22 bytes
-stringEndArchive = "PK\005\006"   # magic number for end of archive record
-structCentralDir = "<4s4B4HlLL5HLl"# 19 items, central directory, 46 bytes
-stringCentralDir = "PK\001\002"   # magic number for central directory
-structFileHeader = "<4s2B4HlLL2H"  # 12 items, file header record, 30 bytes
-stringFileHeader = "PK\003\004"   # magic number for file header
-structEndArchive64Locator = "<4slql" # 4 items, locate Zip64 header, 20 bytes
-stringEndArchive64Locator = "PK\x06\x07" # magic token for locator header
-structEndArchive64 = "<4sqhhllqqqq" # 10 items, end of archive (Zip64), 56 bytes
-stringEndArchive64 = "PK\x06\x06" # magic token for Zip64 header
-stringDataDescriptor = "PK\x07\x08" # magic number for data descriptor
+structEndArchive = b"<4s4H2lH"     # 9 items, end of archive, 22 bytes
+stringEndArchive = b"PK\005\006"   # magic number for end of archive record
+structCentralDir = b"<4s4B4HlLL5HLl"# 19 items, central directory, 46 bytes
+stringCentralDir = b"PK\001\002"   # magic number for central directory
+structFileHeader = b"<4s2B4HlLL2H"  # 12 items, file header record, 30 bytes
+stringFileHeader = b"PK\003\004"   # magic number for file header
+structEndArchive64Locator = b"<4slql" # 4 items, locate Zip64 header, 20 bytes
+stringEndArchive64Locator = b"PK\x06\x07" # magic token for locator header
+structEndArchive64 = b"<4sqhhllqqqq" # 10 items, end of archive (Zip64), 56 bytes
+stringEndArchive64 = b"PK\x06\x06" # magic token for Zip64 header
+stringDataDescriptor = b"PK\x07\x08" # magic number for data descriptor
 
 # indexes of entries in the central directory structure
 _CD_SIGNATURE = 0
@@ -100,6 +102,7 @@ class ZipInfo(object):
         )
 
     def __init__(self, filename="NoName", date_time=(1980,1,1,0,0,0), compression=ZIP_DEFLATED):
+        # Convert filename to bytes before we work with it
         self.orig_filename = filename   # Original file name in archive
 
         # Terminate the file name at the first null byte.  Null bytes in file
@@ -115,11 +118,10 @@ class ZipInfo(object):
 
         self.filename = filename         # Normalized file name
         self.date_time = date_time       # year, month, day, hour, min, sec
-
         # Standard values:
         self.compress_type = compression # Type of compression for the file
-        self.comment = ""                # Comment for each file
-        self.extra = ""                  # ZIP extra data
+        self.comment = b""                # Comment for each file
+        self.extra = b""                  # ZIP extra data
 
         # System which created ZIP archive
         #
@@ -148,7 +150,7 @@ class ZipInfo(object):
         self.file_size = 0
 
     def _encodeFilenameFlags(self):
-        if isinstance(self.filename, unicode):
+        if isinstance(self.filename, text_type):
             try:
                 return self.filename.encode('ascii'), self.flag_bits
             except UnicodeEncodeError:
@@ -158,9 +160,9 @@ class ZipInfo(object):
 
     def DataDescriptor(self):
         if self.compress_size > ZIP64_LIMIT or self.file_size > ZIP64_LIMIT:
-            fmt = "<4slQQ"
+            fmt = "<4sLQQ"
         else:
-            fmt = "<4slLL"
+            fmt = "<4sLLL"
         return struct.pack(fmt, stringDataDescriptor, self.CRC, self.compress_size, self.file_size)
 
     def FileHeader(self):
@@ -181,7 +183,7 @@ class ZipInfo(object):
         if file_size > ZIP64_LIMIT or compress_size > ZIP64_LIMIT:
             # File is larger than what fits into a 4 byte integer,
             # fall back to the ZIP64 extension
-            fmt = '<hhqq'
+            fmt = b'<hhqq'
             extra = extra + struct.pack(fmt,
                     1, struct.calcsize(fmt)-4, file_size, compress_size)
             file_size = 0xffffffff # -1
@@ -275,7 +277,13 @@ class ZipStream(object):
                 if not buf:
                     break
                 zinfo.file_size += len(buf)
-                zinfo.CRC = binascii.crc32(buf, zinfo.CRC)
+
+                # Py3 change, this comes out unsigned. Easiest to always make
+                # everything unsigned and change how we pack it
+                #
+                # the fix is in the documentation:
+                # https://docs.python.org/3/library/binascii.html
+                zinfo.CRC = binascii.crc32(buf, zinfo.CRC) & 0xffffffff
                 if cmpr:
                     buf = cmpr.compress(buf)
                     zinfo.compress_size += len(buf)
@@ -316,13 +324,13 @@ class ZipStream(object):
         else:
             cmpr = None
 
-        zinfo.file_size = len(filebuf)
-        zinfo.CRC = binascii.crc32(filebuf, zinfo.CRC)
-
-        if isinstance(filebuf, unicode):
-            buf = filebuf.encode('utf-8')
+        if isinstance(filebuf, text_type):
+            buf = filebuf.encode()
         else:
             buf = filebuf
+
+        zinfo.CRC = binascii.crc32(buf, zinfo.CRC)  & 0xffffffff
+        zinfo.file_size = len(buf)
 
         if cmpr:
             buf = cmpr.compress(buf)
@@ -427,4 +435,4 @@ class ZipStream(object):
                                  0, 0, count, count, pos2 - pos1, pos1, 0)
             data.append( self.update_data_ptr(endrec))
 
-        return ''.join(data)
+        return b''.join(data)
