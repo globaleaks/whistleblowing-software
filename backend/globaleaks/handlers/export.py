@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 #
 # API handling export of submissions
+from six import text_type
+
 from twisted.internet.defer import Deferred, inlineCallbacks
 
 from globaleaks import models
@@ -43,7 +45,7 @@ def get_tip_export(session, tid, user_id, rtip_id, language):
 
     export_template = Templating().format_template(export_dict['notification']['export_template'], export_dict).encode('utf-8')
 
-    export_template = msdos_encode(export_template)
+    export_template = msdos_encode(text_type(export_template, 'utf-8'))
 
     export_dict['files'].append({'buf': export_template, 'name': "data.txt"})
 
