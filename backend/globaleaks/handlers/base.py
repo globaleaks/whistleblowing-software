@@ -390,12 +390,17 @@ class BaseHandler(object):
             return api_session
 
         # Check for the session header
-        session_id = self.request.headers.get('x-session')
+        session_id = self.request.headers.get(b'x-session')
         if session_id is None:
             return None
 
         # Check that that provided session exists and is legit
-        session = Sessions.get(session_id)
+
+        # We need to convert here to text_type as sessions generate a
+        # random string in text form. It seems sessions assume that it will
+        # be a string while twisted returns headers in bytes
+
+        session = Sessions.get(text_type(session_id, 'utf-8'))
         if session is None or session.tid != self.request.tid:
             return None
 
