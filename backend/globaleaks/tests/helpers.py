@@ -65,7 +65,7 @@ from twisted.trial import unittest
 from twisted.internet.protocol import ProcessProtocol
 
 import six
-from six import text_type
+from six import text_type, binary_type
 from six.moves.urllib.parse import urlparse, urlsplit
 
 ## constants
@@ -280,7 +280,14 @@ def forge_request(uri='https://www.globaleaks.org/',
     request.client_using_tor = False
 
     def getResponseBody():
-        return ''.join(request.written)
+        # Ugh, hack. Twisted returns this all as bytes, and we want it as str
+        request_body_list = []
+        if isinstance(request.written[0], binary_type):
+            for written_entry in request.written:
+                request_body_list.append(text_type(written_entry, 'utf-8'))
+        else:
+            request_body_list = request.written
+        return ''.join(request_body_list)
 
     request.getResponseBody = getResponseBody
 
