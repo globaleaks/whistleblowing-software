@@ -281,13 +281,10 @@ def forge_request(uri='https://www.globaleaks.org/',
 
     def getResponseBody():
         # Ugh, hack. Twisted returns this all as bytes, and we want it as str
-        request_body_list = []
         if isinstance(request.written[0], binary_type):
-            for written_entry in request.written:
-                request_body_list.append(text_type(written_entry, 'utf-8'))
+            return b''.join(request.written)
         else:
-            request_body_list = request.written
-        return ''.join(request_body_list)
+            return ''.join(request.written)
 
     request.getResponseBody = getResponseBody
 
