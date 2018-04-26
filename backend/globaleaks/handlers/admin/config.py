@@ -10,7 +10,8 @@ from globaleaks.orm import transact
 from globaleaks.rest import errors
 from globaleaks.utils.utility import is_common_net_error
 
-from six.moves.urllib.parse import urlparse
+from six import text_type, binary_type
+from six.moves.urllib.parse import urlparse, urlunsplit
 
 @transact
 def check_hostname(session, tid, input_hostname):
@@ -61,7 +62,7 @@ class AdminConfigHandler(OperationHandler):
     def verify_hostname(self, req_args, *args, **kwargs):
         net_agent = self.state.get_agent()
 
-        url = bytes(urlparse.urlunsplit(('http', req_args['value'], 'robots.txt', None, None)))
+        url = urlunsplit(('http', req_args['value'], 'robots.txt', None, None)).encode()
 
         try:
             resp = yield net_agent.request('GET', url)
@@ -79,6 +80,6 @@ class AdminConfigHandler(OperationHandler):
 
     def operation_descriptors(self):
         return {
-            'set_hostname': (AdminConfigHandler.set_hostname, {'value': unicode}),
-            'verify_hostname': (AdminConfigHandler.verify_hostname, {'value': unicode})
+            'set_hostname': (AdminConfigHandler.set_hostname, {'value': text_type}),
+            'verify_hostname': (AdminConfigHandler.verify_hostname, {'value': text_type})
         }
