@@ -11,7 +11,7 @@ from globaleaks.mocks import acme_mocks # pylint: disable=W0611
 
 from acme import challenges, client, jose, messages
 from functools import reduce
-
+from six import text_type
 
 class ChallTok:
     def __init__(self, tok):
@@ -19,7 +19,7 @@ class ChallTok:
 
 
 def convert_asn1_date(asn1_bytes):
-    return datetime.strptime(asn1_bytes,'%Y%m%d%H%M%SZ')
+    return datetime.strptime(text_type(asn1_bytes, 'utf-8'),'%Y%m%d%H%M%SZ')
 
 
 def register_account_key(directory_url, accnt_key):
