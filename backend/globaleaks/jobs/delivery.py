@@ -106,7 +106,7 @@ def fsops_pgp_encrypt(state, sf, key, fingerprint):
 
     pgpctx.load_key(key)
 
-    with sf.open('r') as f:
+    with sf.open('rb') as f:
         encrypted_file_path = os.path.join(os.path.abspath(state.settings.attachments_path), "pgp_encrypted-%s" % generateRandomKey(16))
         _, encrypted_file_size = pgpctx.encrypt_file(fingerprint, f, encrypted_file_path)
 
