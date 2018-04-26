@@ -191,17 +191,25 @@ def log_remove_escapes(s):
     """
     This function removes escape sequence from log strings
     """
+
+    # This is ugly as sin on Py3
     if isinstance(s, text_type):
-        return codecs.encode(s, 'unicode_escape')
+        return text_type(codecs.encode(s, 'unicode_escape'), 'utf-8')
     else:
         try:
-            unicodelogmsg = str(s).decode('utf-8')
+            if sys.version_info[0] == 2:
+                string = s.decode('utf-8').encode('unicode_escape')
+            else:
+                string = text_type(s, 'unicode_escape')
         except UnicodeDecodeError:
-            return codecs.encode(s, 'string_escape')
+            if sys.version_info[0] == 2:
+                return codecs.encode(s, 'string_escape')
+            else:
+                return text_type(s, 'string_escape')
         except Exception as e:
             return "Failure in log_remove_escapes %r" % e
         else:
-            return codecs.encode(unicodelogmsg, 'unicode_escape')
+            return string
 
 
 def timedLogFormatter(timestamp, request):
