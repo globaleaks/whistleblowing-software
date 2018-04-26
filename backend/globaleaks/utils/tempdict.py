@@ -2,6 +2,7 @@
 
 from collections import OrderedDict
 
+import six
 from twisted.internet import reactor as _reactor
 
 
@@ -56,7 +57,7 @@ class TempDict(OrderedDict):
         if size_limit is not None:
             while len(self) >= size_limit:
                 # retrieves the oldest key in the OD
-                k = next(self.iterkeys())
+                k = next(six.iterkeys(self))
                 self.delete(k)
 
     def _expire(self, key):

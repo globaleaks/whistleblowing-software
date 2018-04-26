@@ -72,7 +72,7 @@ class CfgFDProcProtocol(ProcessProtocol):
         self.startup_promise = defer.Deferred()
 
     def connectionMade(self):
-        self.transport.writeToChild(self.cfg_fd, self.cfg)
+        self.transport.writeToChild(self.cfg_fd, self.cfg.encode())
         self.transport.closeChildFD(self.cfg_fd)
 
         self.startup_promise.callback(None)
