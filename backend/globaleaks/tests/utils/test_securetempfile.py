@@ -5,6 +5,7 @@ from globaleaks.utils.securetempfile import SecureTemporaryFile, SecureTemporary
 from globaleaks.settings import Settings
 from globaleaks.tests import helpers
 
+from six import text_type
 
 class TestSecureTemporaryFiles(helpers.TestGL):
     def test_temporary_file(self):
@@ -17,4 +18,4 @@ class TestSecureTemporaryFiles(helpers.TestGL):
 
         with a.open('r') as f:
             for x in range(1000):
-                self.assertTrue(antani == f.read(10))
+                self.assertTrue(antani == text_type(f.read(10), 'utf-8'))

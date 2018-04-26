@@ -187,9 +187,9 @@ class TestCSRHandler(helpers.TestHandler):
         pem_csr = crypto.load_certificate_request(SSL.FILETYPE_PEM, response)
 
         comps = pem_csr.get_subject().get_components()
-        self.assertIn(('CN', 'notreal.ns.com'), comps)
-        self.assertIn(('C', 'IT'), comps)
-        self.assertIn(('L', 'citta'), comps)
+        self.assertIn((b'CN', b'notreal.ns.com'), comps)
+        self.assertIn((b'C', b'IT'), comps)
+        self.assertIn((b'L', b'citta'), comps)
 
 
 class TestAcmeHandler(helpers.TestHandler):

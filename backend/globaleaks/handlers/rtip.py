@@ -474,7 +474,7 @@ class WhistleblowerFileHandler(BaseHandler):
         rtip = yield get_rtip(self.request.tid, self.current_user.user_id, tip_id, self.request.language)
 
         # First: dump the file in the filesystem
-        filename = string.split(os.path.basename(self.uploaded_file['path']), '.aes')[0] + '.plain'
+        filename = str.split(os.path.basename(self.uploaded_file['path']), '.aes')[0] + '.plain'
 
         dst = os.path.join(Settings.attachments_path, filename)
 

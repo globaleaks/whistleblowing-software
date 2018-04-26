@@ -406,7 +406,6 @@ class CSRFileHandler(FileHandler):
                                         requests.AdminCSRFileDesc)
 
         desc = request['content']
-
         csr_fields = {
                 'C':  desc['country'].upper(),
                 'ST': desc['province'],
@@ -508,7 +507,7 @@ def db_acme_cert_issuance(session, tid):
     hostname = State.tenant_cache[tid].hostname
 
     raw_accnt_key = priv_fact.get_val(u'acme_accnt_key')
-    accnt_key = serialization.load_pem_private_key(str(raw_accnt_key),
+    accnt_key = serialization.load_pem_private_key(raw_accnt_key.encode(),
                                                    password=None,
                                                    backend=default_backend())
 
