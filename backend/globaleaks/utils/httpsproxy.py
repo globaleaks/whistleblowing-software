@@ -10,7 +10,7 @@ from twisted.web import http
 from twisted.web.client import Agent
 from twisted.web.iweb import IBodyProducer
 from twisted.web.server import NOT_DONE_YET
-from zope.interface import implements
+from zope.interface import implementer
 
 
 class BodyStreamer(protocol.Protocol):
@@ -27,8 +27,8 @@ class BodyStreamer(protocol.Protocol):
         self._finished = None
 
 
+@implementer(IBodyProducer)
 class BodyProducer(object):
-    implements(IBodyProducer)
 
     BUF_MAX_SIZE = 64 * 1024 # TODO Use the hardcoded value for buf max size
     length = 0
