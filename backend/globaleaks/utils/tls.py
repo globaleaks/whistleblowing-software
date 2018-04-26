@@ -139,7 +139,7 @@ def new_tls_server_context():
 
     ctx.set_mode(SSL.MODE_RELEASE_BUFFERS)
 
-    cipher_list = bytes('ECDHE-RSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-SHA384:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-SHA256:ECDHE-RSA-AES256-SHA:DHE-DSS-AES256-SHA:DHE-RSA-AES128-SHA')
+    cipher_list = b'ECDHE-RSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-SHA384:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-SHA256:ECDHE-RSA-AES256-SHA:DHE-DSS-AES256-SHA:DHE-RSA-AES128-SHA'
     ctx.set_cipher_list(cipher_list)
 
     return ctx
@@ -224,7 +224,7 @@ class PrivKeyValidator(CtxValidator):
 
         # Note that the empty string here prevents valid PKCS8 encrypted
         # keys from being used instead of plain pem keys.
-        priv_key = load_privatekey(FILETYPE_PEM, raw_str, passphrase="")
+        priv_key = load_privatekey(FILETYPE_PEM, raw_str, passphrase=b"")
 
         if priv_key.type() != TYPE_RSA or not priv_key.check():
             raise ValidationException('Invalid RSA key')
@@ -252,7 +252,7 @@ class CertValidator(CtxValidator):
 
         ctx.use_certificate(x509)
 
-        priv_key = load_privatekey(FILETYPE_PEM, cfg['ssl_key'], passphrase='')
+        priv_key = load_privatekey(FILETYPE_PEM, cfg['ssl_key'], passphrase=b'')
 
         ctx.use_privatekey(priv_key)
 
