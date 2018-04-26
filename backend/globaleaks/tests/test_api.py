@@ -33,12 +33,12 @@ class TestAPI(TestGL):
             self.assertTrue('unauthenticated' not in check_roles or len(check_roles) == 1)
             self.assertTrue('*' not in check_roles or len(check_roles) == 1)
 
-            rest = filter(lambda a: a not in ['*',
+            rest = list(filter(lambda a: a not in ['*',
                                               'unauthenticated',
                                               'whistleblower',
                                               'admin',
                                               'receiver',
-                                              'custodian'], check_roles)
+                                              'custodian'], check_roles))
             self.assertTrue(len(rest) == 0)
 
     def test_get_with_no_language_header(self):
@@ -70,12 +70,12 @@ class TestAPI(TestGL):
 
     def test_status_codes_assigned(self):
         test_cases = [
-            (b'GET', 200),
-            (b'POST', 405),
-            (b'PUT', 405),
-            (b'DELETE', 405),
-            (b'XXX', 405),
-            (b'', 405),
+            ('GET', 200),
+            ('POST', 405),
+            ('PUT', 405),
+            ('DELETE', 405),
+            ('XXX', 405),
+            ('', 405),
         ]
 
         for meth, status_code in test_cases:
