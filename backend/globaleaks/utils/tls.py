@@ -6,6 +6,7 @@ from OpenSSL import crypto, SSL
 from OpenSSL._util import lib as _lib, ffi as _ffi
 from OpenSSL.crypto import load_certificate, load_privatekey, FILETYPE_PEM, TYPE_RSA, PKey, dump_certificate_request, \
     X509Req, _new_mem_buf, _bio_to_string
+from six import text_type, binary_type
 from twisted.internet import ssl
 
 
@@ -109,8 +110,12 @@ def split_pem_chain(s):
     gex_str = r"-----BEGIN CERTIFICATE-----\r?.+?\r?-----END CERTIFICATE-----\r?\n?"
     gex = re.compile(gex_str, re.DOTALL)
 
-    return [m.group(0) for m in gex.finditer(s)]
-
+    if isinstance(s, binary_type):
+        s = text_type(s, 'utf-8')
+    try:
+        return [m.group(0) for m in gex.finditer(s)]
+    except UnicodeDecodeError:
+        return None
 
 def new_tls_client_context():
     # evilaliv3:
@@ -274,7 +279,7 @@ class ChainValidator(CtxValidator):
 
         for cert in chain:
             x509 = load_certificate(FILETYPE_PEM, cert)
-
+    
             if check_expiration and x509.has_expired():
                 raise ValidationException('An intermediate certificate has expired')
 
