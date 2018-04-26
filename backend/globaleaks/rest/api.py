@@ -51,7 +51,7 @@ from globaleaks.rest import apicache, requests, errors
 from globaleaks.settings import Settings
 from globaleaks.state import State, extract_exception_traceback_and_schedule_email
 
-from six import text_type
+from six import text_type, binary_type
 from six.moves.urllib.parse import urlparse, urlsplit, urlunparse, urlunsplit
 
 uuid_regexp = r'([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})'
@@ -281,7 +281,7 @@ class APIResourceWrapper(Resource):
             'arguments': getattr(e, 'arguments', [])
         })
 
-        request.write(bytes(response))
+        request.write(response.encode())
 
     def preprocess(self, request):
         request.headers = request.getAllHeaders()
@@ -353,7 +353,7 @@ class APIResourceWrapper(Resource):
             return b''
 
         method = request.method.lower()
-        if not method in self.method_map or not hasattr(handler, method):
+        if not method in self.method_map.keys() or not hasattr(handler, method):
             self.handle_exception(errors.MethodNotImplemented(), request)
             return b''
 
@@ -439,8 +439,8 @@ class APIResourceWrapper(Resource):
         request.setHeader(b'x-check-tor', bytes(request.client_using_tor))
 
     def parse_accept_language_header(self, request):
-        if "accept-language" in request.headers:
-            languages = request.headers["accept-language"].split(",")
+        if b"accept-language" in request.headers:
+            languages = text_type(request.headers[b"accept-language"], 'utf-8').split(",")
             locales = []
             for language in languages:
                 parts = language.strip().split(";")
@@ -460,12 +460,14 @@ class APIResourceWrapper(Resource):
         return State.tenant_cache[request.tid].default_language
 
     def detect_language(self, request):
-        language = request.headers.get('gl-language')
+        language = request.headers.get(b'gl-language')
         if language is None:
             for l in self.parse_accept_language_header(request):
                 if l in State.tenant_cache[request.tid].languages_enabled:
                     language = l
                     break
+        else:
+            language = text_type(language, 'utf-8')
 
         if language is None or language not in State.tenant_cache[request.tid].languages_enabled:
             language = State.tenant_cache[request.tid].default_language
