@@ -221,7 +221,7 @@ class MigrationScript(MigrationBase):
                     continue
 
                 new_file = self.model_to['File']()
-                with open(path, 'r') as f:
+                with open(path, 'rb') as f:
                     new_file.data = base64.b64encode(f.read())
 
                 self.session_new.add(new_file)

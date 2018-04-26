@@ -211,7 +211,7 @@ class MigrationScript(MigrationBase):
         old_node = self.session_old.query(self.model_from['Node']).one()
         old_notif = self.session_old.query(self.model_from['Notification']).one()
 
-        with open(os.path.join(Settings.client_path, 'data', 'favicon.ico'), 'r') as favicon_file:
+        with open(os.path.join(Settings.client_path, 'data', 'favicon.ico'), 'rb') as favicon_file:
             data = favicon_file.read()
             new_file = self.model_to['File']()
             new_file.id = u'favicon'
