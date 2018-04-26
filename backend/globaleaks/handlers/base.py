@@ -485,7 +485,7 @@ class BaseHandler(object):
         try:
             log.debug('Creating file %s with %d bytes', destination, self.uploaded_file['size'])
 
-            with self.uploaded_file['body'].open('r') as encrypted_file, open(destination, 'w') as plaintext_file:
+            with self.uploaded_file['body'].open('r') as encrypted_file, open(destination, 'wb') as plaintext_file:
                 while True:
                     chunk = encrypted_file.read(4096)
                     if not chunk:
