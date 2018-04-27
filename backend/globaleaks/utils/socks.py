@@ -36,7 +36,7 @@ class SOCKS5ClientProtocol(ProtocolWrapper):
         self._connectedDeferred = connectedDeferred
         self._host = host
         self._port = port
-        self._buf = ''
+        self._buf = b''
         self.state = 0
 
     def error(self, error):
@@ -84,7 +84,7 @@ class SOCKS5ClientProtocol(ProtocolWrapper):
         if len(self._buf):
             self.wrappedProtocol.dataReceived(self._buf)
 
-        self._buf = ''
+        self._buf = b''
 
         self.state = 4
 
@@ -94,7 +94,7 @@ class SOCKS5ClientProtocol(ProtocolWrapper):
         self.factory.registerProtocol(self)
 
         # We implement only Anonymous access
-        self.transport.write(struct.pack("!BB", 5, len("\x00")) + "\x00")
+        self.transport.write(struct.pack("!BB", 5, len(b"\x00")) + b"\x00")
 
         self.transport.write(struct.pack("!BBBBB", 5, 1, 0, 3, len(self._host)) + self._host + struct.pack("!H", self._port))
         self.wrappedProtocol.makeConnection(self)
@@ -108,7 +108,7 @@ class SOCKS5ClientProtocol(ProtocolWrapper):
 
     def dataReceived(self, data):
         if self.state != 4:
-            self._buf = ''.join([self._buf, data])
+            self._buf = b''.join([self._buf, data])
             getattr(self, 'socks_state_%s' % self.state)()
         else:
             self.wrappedProtocol.dataReceived(data)
