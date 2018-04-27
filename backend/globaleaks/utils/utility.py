@@ -31,7 +31,7 @@ from twisted.web._newclient import ResponseNeverReceived, ResponseFailed
 
 from globaleaks import LANGUAGES_SUPPORTED_CODES
 
-from six import text_type
+from six import text_type, binary_type
 
 FAILURES_NET_OUTGOING = (
     ConnectionLost,
@@ -265,11 +265,8 @@ class Logger(object):
         self.loglevel = loglevel
 
     def _print_logline(self, prefix, msg, *args, **kwargs):
-        if not isinstance(msg, str) and not isinstance(msg, unicode):
-            msg = str(msg)
-
-        if isinstance(msg, text_type):
-            msg = msg.encode('utf-8')
+        if isinstance(msg, binary_type):
+            msg = msg.decode
 
         msg = (msg % args) if args else msg
 

@@ -112,7 +112,7 @@ class ZipStreamProducer(object):
                 chunk_size += len(data)
                 chunk.append(data)
                 if chunk_size >= Settings.file_chunk_size:
-                    return ''.join(chunk)
+                    return b''.join(chunk)
 
         return b''.join(chunk)
 
