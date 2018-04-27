@@ -9,25 +9,25 @@ from globaleaks.utils.utility import datetime_now, datetime_to_ISO8601
 
 def file_upload_check(uri):
     # /submission/ + token_id + /file  = 59 bytes
-    return (len(uri) == 59 and uri.endswith('/file')) or uri == '/wbtip/upload'
+    return (len(uri) == 59 and uri.endswith(b'/file')) or uri == b'/wbtip/upload'
 
 
 def submission_check(uri):
     # Precise len checks are needed to match only submission urls and not file ones
     # that are like /submission/0SjnzrUhuKx89hePh5Tw9eR3D18ftFZVQG6MaiK1Dy/file
-    return uri.startswith('/submission') and (len(uri) == 54 or len(uri) == 11)
+    return uri.startswith(b'/submission') and (len(uri) == 54 or len(uri) == 11)
 
 
 def login_check(uri):
-    return uri == '/authentication'
+    return uri == b'/authentication'
 
 
 def message_check(uri):
-    return uri.startswith('/wbtip/messages/') or uri.startswith('/rtip/messages/')
+    return uri.startswith(b'/wbtip/messages/') or uri.startswith(b'/rtip/messages/')
 
 
 def comment_check(uri):
-    return uri == '/wbtip/comments' or uri.startswith('/rtip/comments')
+    return uri == b'/wbtip/comments' or uri.startswith(b'/rtip/comments')
 
 
 def failure_status_check(http_code):
