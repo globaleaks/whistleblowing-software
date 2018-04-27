@@ -11,7 +11,7 @@
 # code concept from https://github.com/habnabit/txsocksx
 
 import struct
-
+from six import text_type
 from zope.interface import implementer, directlyProvides, providedBy
 
 from twisted.internet import defer, interfaces
@@ -52,7 +52,7 @@ class SOCKS5ClientProtocol(ProtocolWrapper):
         if len(self._buf) < 2:
             return
 
-        if self._buf[:2] != "\x05\x00":
+        if self._buf[:2] != b"\x05\x00":
             # Anonymous access denied
             self.error(Failure(SOCKSError(0x00)))
             return
@@ -66,7 +66,7 @@ class SOCKS5ClientProtocol(ProtocolWrapper):
         if len(self._buf) < 2:
             return
 
-        if self._buf[:2] != "\x05\x00":
+        if self._buf[:2] != b"\x05\x00":
             self.error(Failure(SOCKSError(ord(self._buf[1]))))
             return
 
@@ -206,7 +206,7 @@ class SOCKS5Agent(object):
     def _getEndpoint(self, scheme, host, port):
         endpoint = self.endpointFactory(host, port, self.proxyEndpoint, **self.endpointArgs)
 
-        if scheme == 'https':
+        if scheme == b'https':
             tlsPolicy = self._policyForHTTPS.creatorForNetloc(host, port)
             endpoint = self._tlsWrapper(tlsPolicy, endpoint)
 
