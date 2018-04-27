@@ -16,7 +16,7 @@ from globaleaks.utils.utility import log
 
 from six import text_type
 
-DEB_PACKAGE_URL = 'https://deb.globaleaks.org/xenial/Packages'
+DEB_PACKAGE_URL = b'https://deb.globaleaks.org/xenial/Packages'
 
 
 @transact
@@ -54,7 +54,7 @@ class UpdateCheck(NetLoopingJob):
     def operation(self):
         log.debug('Fetching latest GlobaLeaks version from repository')
         packages_file = yield self.fetch_packages_file()
-        versions = [p['Version'] for p in deb822.Deb822.iter_paragraphs(packages_file) if p['Package'] == 'globaleaks']
+        versions = [p['Version'] for p in deb822.Deb822.iter_paragraphs(packages_file) if p['Package'] == b'globaleaks']
         versions.sort(key=V)
 
         latest_version = text_type(versions[-1])

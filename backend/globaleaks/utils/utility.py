@@ -265,9 +265,6 @@ class Logger(object):
         self.loglevel = loglevel
 
     def _print_logline(self, prefix, msg, *args, **kwargs):
-        if isinstance(msg, binary_type):
-            msg = msg.decode
-
         msg = (msg % args) if args else msg
 
         msg = log_remove_escapes(msg)
