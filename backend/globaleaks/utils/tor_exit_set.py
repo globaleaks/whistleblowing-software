@@ -14,7 +14,6 @@ class TorExitSet(set):
         self.clear()
 
         for ip in re.findall( r'ExitAddress ([^ ]*) ', text_type(data)):
-            print(ip)
             self.add(ip)
 
     def update(self, agent):
