@@ -286,7 +286,7 @@ class APIResourceWrapper(Resource):
     def preprocess(self, request):
         request.headers = request.getAllHeaders()
 
-        request.hostname = request.getRequestHostname().split(':')[0]
+        request.hostname = request.getRequestHostname().decode('utf-8')
         request.port = request.getHost().port
 
         if (request.hostname == 'localhost' or
@@ -344,7 +344,7 @@ class APIResourceWrapper(Resource):
 
         match = None
         for regexp, handler, args in self._registry:
-            match = regexp.match(request.path)
+            match = regexp.match(request.path.decode('utf-8'))
             if match:
                 break
 
@@ -352,7 +352,7 @@ class APIResourceWrapper(Resource):
             self.handle_exception(errors.ResourceNotFound(), request)
             return b''
 
-        method = request.method.lower()
+        method = request.method.lower().decode('utf-8')
         if not method in self.method_map.keys() or not hasattr(handler, method):
             self.handle_exception(errors.MethodNotImplemented(), request)
             return b''
@@ -399,7 +399,10 @@ class APIResourceWrapper(Resource):
                        ret = json.dumps(ret, separators=(',', ':'))
                        request.setHeader(b'content-type', b'application/json')
 
-                   request.write(bytes(ret))
+                   if isinstance(ret, text_type):
+                       ret = ret.encode()
+
+                   request.write(ret)
 
                 request.finish()
 
