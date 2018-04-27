@@ -249,7 +249,7 @@ def get_file_upload(self):
 BaseHandler.get_file_upload = get_file_upload
 
 
-def forge_request(uri='https://www.globaleaks.org/',
+def forge_request(uri=b'https://www.globaleaks.org/',
                   headers=None, body='', client_addr=None, method='GET',
                   handler_cls=None, attached_file={}):
     """
@@ -261,22 +261,22 @@ def forge_request(uri='https://www.globaleaks.org/',
 
     _, host, path, query, frag = urlsplit(uri)
 
-    x = host.split (':')
+    x = host.split (b':')
     if len(x) > 1:
         port = int(x[1])
     else:
         port = 80
 
-    request = DummyRequest([''])
+    request = DummyRequest([b''])
     request.tid = 1
     request.method = method
     request.uri = uri
     request.path = path
-    request._serverName = text_type(host)
+    request._serverName = host
 
     request.code = 200
-    request.client_ip = '127.0.0.1'
-    request.client_proto = 'https'
+    request.client_ip = b'127.0.0.1'
+    request.client_proto = b'https'
     request.client_using_tor = False
 
     def getResponseBody():
@@ -289,12 +289,12 @@ def forge_request(uri='https://www.globaleaks.org/',
     request.getResponseBody = getResponseBody
 
     if client_addr is None:
-        request.client = IPv4Address('TCP', '1.2.3.4', 12345)
+        request.client = IPv4Address('TCP', b'1.2.3.4', 12345)
     else:
         request.client = client_addr
 
     def getHost():
-        return IPv4Address('TCP', '127.0.0.1', port)
+        return IPv4Address('TCP', b'127.0.0.1', port)
 
     request.getHost = getHost
 
@@ -303,10 +303,10 @@ def forge_request(uri='https://www.globaleaks.org/',
 
     request.notifyFinish = notifyFinish
 
-    request.requestHeaders.setRawHeaders('host', ['127.0.0.1'])
+    request.requestHeaders.setRawHeaders('host', [b'127.0.0.1'])
 
     for k, v in headers.items():
-        request.requestHeaders.setRawHeaders(k.encode(), [v.encode()])
+        request.requestHeaders.setRawHeaders(k, [v])
 
     request.headers = request.getAllHeaders()
 
@@ -822,7 +822,7 @@ class TestHandler(TestGLWithPopulatedDB):
         # we need to reset ApiCache to keep each test independent
         ApiCache.invalidate()
 
-    def request(self, body='', uri='https://www.globaleaks.org/',
+    def request(self, body='', uri=b'https://www.globaleaks.org/',
                 user_id=None,  role=None, multilang=False, headers=None,
                 client_addr=None, method='GET', handler_cls=None,
                 attached_file={}, kwargs={}):
@@ -838,7 +838,7 @@ class TestHandler(TestGLWithPopulatedDB):
                                 headers=headers,
                                 body=body,
                                 client_addr=client_addr,
-                                method='GET',
+                                method=b'GET',
                                 attached_file=attached_file)
 
         x = api.APIResourceWrapper()

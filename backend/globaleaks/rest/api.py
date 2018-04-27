@@ -231,7 +231,7 @@ class APIResourceWrapper(Resource):
 
     def should_redirect_tor(self, request):
         if request.client_using_tor and \
-            request.hostname not in ['127.0.0.1'] + State.tenant_cache[request.tid].onionnames:
+            request.hostname not in [b'127.0.0.1'] + State.tenant_cache[request.tid].onionnames:
             return True
 
         return False
@@ -268,7 +268,7 @@ class APIResourceWrapper(Resource):
             e = e.value
         else:
             e.tid = request.tid
-            e.url = request.client_proto + '://' + request.hostname + request.uri
+            e.url = request.client_proto + b'://' + request.hostname + request.uri
             extract_exception_traceback_and_schedule_email(e)
             e = errors.InternalServerError('Unexpected')
 
@@ -286,7 +286,7 @@ class APIResourceWrapper(Resource):
     def preprocess(self, request):
         request.headers = request.getAllHeaders()
 
-        request.hostname = request.getRequestHostname().decode('utf-8')
+        request.hostname = request.getRequestHostname()
         request.port = request.getHost().port
 
         if (request.hostname == 'localhost' or
@@ -297,10 +297,10 @@ class APIResourceWrapper(Resource):
             request.tid = State.tenant_hostname_id_map.get(request.hostname, 1)
 
         request.client_ip = request.headers.get('gl-forwarded-for')
-        request.client_proto = 'https'
+        request.client_proto = b'https'
         if request.client_ip is None:
             request.client_ip = request.getClientIP()
-            request.client_proto = 'http'
+            request.client_proto = b'http'
 
         request.client_using_tor = request.client_ip in State.tor_exit_set or \
                                    request.port == 8083
@@ -412,8 +412,6 @@ class APIResourceWrapper(Resource):
         return NOT_DONE_YET
 
     def set_headers(self, request):
-        # to avoid version attacks
-
         request.setHeader("Server", "Globaleaks")
 
         request.setHeader('Content-Language', request.language)
