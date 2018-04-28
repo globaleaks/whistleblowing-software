@@ -70,21 +70,21 @@ class TestAPI(TestGL):
 
     def test_status_codes_assigned(self):
         test_cases = [
-            ('GET', 200),
-            ('POST', 405),
-            ('PUT', 405),
-            ('DELETE', 405),
-            ('XXX', 405),
-            ('', 405),
+            (b'GET', 200),
+            (b'POST', 405),
+            (b'PUT', 405),
+            (b'DELETE', 405),
+            (b'XXX', 405),
+            (b'', 405),
         ]
 
         for meth, status_code in test_cases:
-            request = forge_request(uri="https://www.globaleaks.org/", method=meth)
+            request = forge_request(uri=b"https://www.globaleaks.org/", method=meth)
             self.api.render(request)
             self.assertEqual(request.responseCode, status_code)
 
     def test_request_state(self):
-        url = "https://www.globaleaks.org/"
+        url = b"https://www.globaleaks.org/"
 
         request = forge_request(url)
         self.api.render(request)
@@ -96,15 +96,15 @@ class TestAPI(TestGL):
         self.assertFalse(request.client_using_tor)
         self.assertEqual(request.responseCode, 200)
 
-        request = forge_request(uri='http://127.0.0.1:8083/', client_addr=IPv4Address('TCP', '127.0.0.1', 12345))
+        request = forge_request(uri=b'http://127.0.0.1:8083/', client_addr=IPv4Address('TCP', '127.0.0.1', 12345))
         self.api.render(request)
         self.assertTrue(request.client_using_tor)
         self.assertEqual(request.responseCode, 200)
 
     def test_tor_detection(self):
-        url = 'http://aaaaaaaaaaaaaaaa.onion/'
+        url = b'http://aaaaaaaaaaaaaaaa.onion/'
 
-        State.tor_exit_set.add('1.2.3.4')
+        State.tor_exit_set.add(b'1.2.3.4')
 
         request = forge_request(url)
         self.api.render(request)
@@ -119,9 +119,9 @@ class TestAPI(TestGL):
         State.tor_exit_set.clear()
 
     def test_tor_redirection(self):
-        State.tor_exit_set.add('1.2.3.4')
+        State.tor_exit_set.add(b'1.2.3.4')
 
-        request = forge_request(uri="https://www.globaleaks.org/")
+        request = forge_request(uri=b"https://www.globaleaks.org/")
 
         self.api.render(request)
         self.assertTrue(request.client_using_tor)
@@ -135,7 +135,7 @@ class TestAPI(TestGL):
         State.tenant_cache[1].https_enabled = True
         State.tenant_cache[1].hostname = 'www.globaleaks.org'
 
-        request = forge_request(uri="https://www.globaleaks.org/", headers={'X-Tor2Web': '1'})
+        request = forge_request(uri=b"https://www.globaleaks.org/", headers={'X-Tor2Web': '1'})
         self.api.render(request)
         self.assertFalse(request.client_using_tor)
         self.assertEqual(request.responseCode, 301)
@@ -144,7 +144,7 @@ class TestAPI(TestGL):
 
         State.tenant_cache[1].https_enabled = True
         State.tenant_cache[1].hostname = 'www.globaleaks.org'
-        request = forge_request(uri="http://www.globaleaks.org/public", headers={'X-Tor2Web': '1'})
+        request = forge_request(uri=b"http://www.globaleaks.org/public", headers={'X-Tor2Web': '1'})
         self.api.render(request)
         self.assertFalse(request.client_using_tor)
         self.assertEqual(request.responseCode, 301)

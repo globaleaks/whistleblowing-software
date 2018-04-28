@@ -19,7 +19,7 @@ class ChallTok:
 
 
 def convert_asn1_date(asn1_bytes):
-    return datetime.strptime(text_type(asn1_bytes, 'utf-8'),'%Y%m%d%H%M%SZ')
+    return datetime.strptime(asn1_bytes,'%Y%m%d%H%M%SZ')
 
 
 def register_account_key(directory_url, accnt_key):

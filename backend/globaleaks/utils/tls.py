@@ -17,7 +17,7 @@ class ValidationException(Exception):
 def load_dh_params_from_string(ctx, dh_params_string):
     bio = _new_mem_buf()
 
-    _lib.BIO_write(bio, str(dh_params_string), len(str(dh_params_string)))
+    _lib.BIO_write(bio, dh_params_string.encode('ascii'), len(dh_params_string.encode('ascii')))
     dh = _lib.PEM_read_bio_DHparams(bio, _ffi.NULL, _ffi.NULL, _ffi.NULL)
     dh = _ffi.gc(dh, _lib.DH_free)
     _lib.SSL_CTX_set_tmp_dh(ctx._context, dh)
@@ -110,9 +110,9 @@ def split_pem_chain(s):
     gex_str = r"-----BEGIN CERTIFICATE-----\r?.+?\r?-----END CERTIFICATE-----\r?\n?"
     gex = re.compile(gex_str, re.DOTALL)
 
-    if isinstance(s, binary_type):
-        s = text_type(s, 'utf-8')
     try:
+        if isinstance(s, binary_type):
+            s = text_type(s, 'utf-8')
         return [m.group(0) for m in gex.finditer(s)]
     except UnicodeDecodeError:
         return None

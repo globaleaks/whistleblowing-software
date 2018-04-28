@@ -103,7 +103,7 @@ class SettingsClass(object):
         self.staticfile_regexp = r'(.*)'
         self.staticfile_overwrite = False
 
-        self.local_hosts = ['127.0.0.1', 'localhost']
+        self.local_hosts = [b'127.0.0.1', b'localhost']
 
         self.onionservice = None
 
