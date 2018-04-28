@@ -6,6 +6,7 @@
 
 import json
 import re
+import sys
 import types
 
 from twisted.internet import defer
@@ -219,9 +220,10 @@ class APIResourceWrapper(Resource):
             self._registry.append((re.compile(pattern), handler, args))
 
     def should_redirect_https(self, request):
-        if ((request.hostname.endswith(State.tenant_cache[1].rootdomain) and
+        hostname = text_type(request.hostname, 'utf-8')
+        if ((hostname.endswith(State.tenant_cache[1].rootdomain) and
              State.tenant_cache[1].https_enabled) or
-            (request.hostname == State.tenant_cache[request.tid].hostname and
+            (hostname == State.tenant_cache[request.tid].hostname and
              State.tenant_cache[request.tid].https_enabled)) and \
            request.client_proto == 'http' and \
            request.client_ip not in Settings.local_hosts:
@@ -286,7 +288,17 @@ class APIResourceWrapper(Resource):
     def preprocess(self, request):
         request.headers = request.getAllHeaders()
 
-        request.hostname = request.getRequestHostname()
+        hostname = request.getRequestHostname()
+
+        # Twisted annoyingly different between Py2/Py3
+        # which requires us to handle this specially in each
+        # case.
+
+        if sys.version[0] == '2':
+            request.hostname = request.getRequestHostname().decode('utf-8')
+        else:
+            request.hostname = request.getRequestHostname()
+
         request.port = request.getHost().port
 
         if (request.hostname == 'localhost' or
