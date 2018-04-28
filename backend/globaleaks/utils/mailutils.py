@@ -5,13 +5,15 @@
 #
 # GlobaLeaks Utility used to handle Mail, format, exception, etc
 
-from six import BytesIO
-
 import sys
 import email
 
+from six import StringIO
+
 if sys.version_info[0] == 2:
     from email import Charset # pylint: disable=no-name-in-module
+else:
+    from io import BytesIO
 
 from email import utils  # pylint: disable=no-name-in-module
 from email.header import Header
@@ -51,7 +53,10 @@ def MIME_mail_build(src_name, src_mail, dest_name, dest_mail, title, mail_body):
 
     multipart.attach(MIMEText(mail_body.encode('utf-8'), 'plain', 'UTF-8'))
 
-    return BytesIO(multipart.as_bytes())
+    if sys.version_info[0] == 2:
+        return StringIO(multipart.as_string())
+    else:
+        return BytesIO(multipart.as_bytes())
 
 
 def sendmail(tid, username, password, smtp_host, smtp_port, security, from_name, from_address, to_address, subject, body, anonymize=True, socks_host='127.0.0.1', socks_port=9050):
