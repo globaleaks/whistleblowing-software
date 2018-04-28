@@ -8,9 +8,8 @@
 import sys
 import email
 
-from six import StringIO
-
 if sys.version_info[0] == 2:
+    from six import StringIO
     from email import Charset # pylint: disable=no-name-in-module
 else:
     from io import BytesIO
@@ -36,7 +35,7 @@ def MIME_mail_build(src_name, src_mail, dest_name, dest_mail, title, mail_body):
     # can't figure out a way to specify QP (quoted-printable) instead of base64 in
     # a way that doesn't modify global state. :-(
     if sys.version_info[0] == 2:
-	    Charset.add_charset('utf-8', Charset.QP, Charset.QP, 'utf-8') # pylint: disable=undefined-variable, no-member
+        Charset.add_charset('utf-8', Charset.QP, Charset.QP, 'utf-8') # pylint: disable=undefined-variable, no-member
 
     # This example is of an email with text and html alternatives.
     multipart = MIMEMultipart('alternative')
