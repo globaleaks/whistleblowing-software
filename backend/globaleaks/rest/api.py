@@ -221,14 +221,19 @@ class APIResourceWrapper(Resource):
 
     def should_redirect_https(self, request):
         hostname = request.hostname
+        tenant_hostname = State.tenant_cache[request.tid].hostname
+
         if isinstance(hostname, binary_type):
              hostname = request.hostname.decode('utf-8')
 
+        if isinstance(hostname, binary_type):
+             hostname = State.tenant_cache[request.tid].hostname.decode('utf-8')
+
         if ((hostname.endswith(State.tenant_cache[1].rootdomain) and
              State.tenant_cache[1].https_enabled) or
-            (hostname == State.tenant_cache[request.tid].hostname and
+            (hostname == tenant_hostname and
              State.tenant_cache[request.tid].https_enabled)) and \
-           request.client_proto == 'http' and \
+           request.client_proto == b'http' and \
            request.client_ip not in Settings.local_hosts:
             return True
 
@@ -247,12 +252,12 @@ class APIResourceWrapper(Resource):
 
     def redirect_https(self, request):
         _, _, path, query, frag = urlsplit(request.uri)
-        redirect_url = urlunsplit(('https', request.hostname, path, query, frag))
+        redirect_url = urlunsplit((b'https', request.hostname, path, query, frag))
         self.redirect(request, redirect_url)
 
     def redirect_tor(self, request):
         _, _, path, query, frag = urlsplit(request.uri)
-        redirect_url = urlunsplit(('http', State.tenant_cache[request.tid].onionservice, path, query, frag))
+        redirect_url = urlunsplit((b'http', State.tenant_cache[request.tid].onionservice.encode(), path, query, frag))
         self.redirect(request, redirect_url)
 
     def handle_exception(self, e, request):
@@ -291,8 +296,6 @@ class APIResourceWrapper(Resource):
     def preprocess(self, request):
         request.headers = request.getAllHeaders()
 
-        hostname = request.getRequestHostname()
-
         # Twisted annoyingly different between Py2/Py3
         # which requires us to handle this specially in each
         # case.
@@ -302,25 +305,28 @@ class APIResourceWrapper(Resource):
         else:
             request.hostname = request.getRequestHostname()
 
+        request.hostname = request.hostname.split(b':')[0]
         request.port = request.getHost().port
 
-        if (request.hostname == 'localhost' or
+        if (request.hostname == b'localhost' or
             isIPAddress(request.hostname) or
             isIPv6Address(request.hostname)):
             request.tid = 1
         else:
             request.tid = State.tenant_hostname_id_map.get(request.hostname, 1)
 
-        request.client_ip = request.headers.get('gl-forwarded-for')
+        request.client_ip = request.headers.get(b'gl-forwarded-for')
         request.client_proto = b'https'
         if request.client_ip is None:
             request.client_ip = request.getClientIP()
             request.client_proto = b'http'
 
+        client_ip = request.client_ip
+        if isinstance(request.client_ip, binary_type):
+            client_ip = request.client_ip.decode('utf-8')
+
         request.client_using_tor = request.client_ip in State.tor_exit_set or \
                                    request.port == 8083
-
-
         if 'x-tor2web' in request.headers:
             request.client_using_tor = False
 

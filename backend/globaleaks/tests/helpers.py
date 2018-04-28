@@ -248,7 +248,7 @@ BaseHandler.get_file_upload = get_file_upload
 
 
 def forge_request(uri=b'https://www.globaleaks.org/',
-                  headers=None, body='', client_addr=None, method='GET',
+                  headers=None, body='', client_addr=None, method=b'GET',
                   handler_cls=None, attached_file={}):
     """
     Creates a twisted.web.Request compliant request that is from an external
