@@ -84,27 +84,25 @@ class HTTPStreamProxyRequest(http.Request):
 
     def gotLength(self, length):
         http.Request.gotLength(self, length)
-        if isinstance(self.content, file):
+        if hasattr(self.content, 'close'):
             self.content.close()
             self.content = io.BytesIO()
             self.reset_buffer()
 
     def process(self):
-        joined_url = urllib.parse.urljoin(self.channel.proxy_url, self.uri)
-        proxy_url = bytes(urllib.parse.urlparse(joined_url))
-
+        joined_url = urllib.parse.urljoin(self.channel.proxy_url.encode('utf-8'), self.uri)
         hdrs = self.requestHeaders
-        hdrs.setRawHeaders('GL-Forwarded-For', [self.getClientIP()])
+        hdrs.setRawHeaders(b'GL-Forwarded-For', [self.getClientIP()])
 
         prod = None
-        content_length = self.getHeader('Content-Length')
+        content_length = self.getHeader(b'Content-Length')
         if content_length is not None:
-            hdrs.removeHeader('Content-Length')
+            hdrs.removeHeader(b'Content-Length')
             prod = BodyProducer(self.content, self.reset_buffer, int(content_length))
             self.registerProducer(prod, streaming=True)
 
         proxy_d = self.channel.http_agent.request(method=self.method,
-                                                  uri=proxy_url,
+                                                  uri=joined_url,
                                                   headers=hdrs,
                                                   bodyProducer=prod)
         if prod is not None:

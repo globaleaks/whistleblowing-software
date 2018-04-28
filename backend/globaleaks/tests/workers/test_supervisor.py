@@ -80,7 +80,8 @@ class TestSubprocessRun(helpers.TestGL):
 
         https_sock, _ = reserve_port_for_ip('127.0.0.1', 9443)
         self.https_socks = [https_sock]
-        ssl._https_verify_certificates(enable=False)
+        ssl._create_default_https_context = ssl._create_unverified_context
+
         yield test_tls.commit_valid_config()
 
     @inlineCallbacks
@@ -93,7 +94,7 @@ class TestSubprocessRun(helpers.TestGL):
         }
         valid_cfg['site_cfgs'] = yield wrap_db_tx(load_tls_dict_list)
 
-        tmp = tempfile.TemporaryFile()
+        tmp = tempfile.TemporaryFile(mode='w')
         tmp.write(json.dumps(valid_cfg))
         tmp.seek(0,0)
         tmp_fd = tmp.fileno()
