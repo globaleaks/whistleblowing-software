@@ -220,7 +220,10 @@ class APIResourceWrapper(Resource):
             self._registry.append((re.compile(pattern), handler, args))
 
     def should_redirect_https(self, request):
-        hostname = text_type(request.hostname, 'utf-8')
+        hostname = request.hostname
+        if isinstance(hostname, binary_type):
+             hostname = request.hostname.decode('utf-8')
+
         if ((hostname.endswith(State.tenant_cache[1].rootdomain) and
              State.tenant_cache[1].https_enabled) or
             (hostname == State.tenant_cache[request.tid].hostname and

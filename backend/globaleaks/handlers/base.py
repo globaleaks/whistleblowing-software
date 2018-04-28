@@ -3,12 +3,13 @@
 # Base class for all the handlers
 import base64
 import collections
+import copy
 import json
 import mimetypes
 import os
 import re
 import shutil
-import copy
+
 from datetime import datetime
 
 from cryptography.hazmat.primitives import constant_time
@@ -350,6 +351,9 @@ class BaseHandler(object):
     @staticmethod
     def validate_message(message, message_template):
         try:
+            if isinstance(message, binary_type):
+                message = message.decode('utf-8')
+
             jmessage = json.loads(message)
         except ValueError:
             raise errors.InputValidationError("Invalid JSON format")

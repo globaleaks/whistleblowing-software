@@ -50,10 +50,8 @@ import json
 import os
 import shutil
 import signal
-import sys
 
 from datetime import timedelta
-
 
 from twisted.python.failure import Failure
 
@@ -317,9 +315,14 @@ def forge_request(uri=b'https://www.globaleaks.org/',
     class fakeBody(object):
         def read(self):
             if isinstance(body, dict):
-                return json.dumps(body)
+                ret = json.dumps(body)
             else:
-                return body
+                ret = body
+
+            if isinstance(ret, text_type):
+                ret = ret.encode('utf-8')
+
+            return ret
 
         def close(self):
             pass
