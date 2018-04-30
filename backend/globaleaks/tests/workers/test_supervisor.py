@@ -128,7 +128,7 @@ class TestSubprocessRun(helpers.TestGL):
         hdrs = response.info()
         self.assertEqual(hdrs.get('Strict-Transport-Security'), 'max-age=31536000')
 
-        self.assertEqual(response.read(), 'Hello, world!\n')
+        self.assertEqual(response.read(), b'Hello, world!\n')
 
     def tearDown(self):
         if hasattr(self, 'http_process'):
