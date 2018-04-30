@@ -1,6 +1,4 @@
 # -*- coding: utf-8 -*-
-from six import text_type
-
 from sqlalchemy import not_
 
 from globaleaks import __version__
@@ -8,6 +6,7 @@ from globaleaks.models import Config, ConfigL10N, EnabledLanguage
 from globaleaks.models.properties import *
 from globaleaks.models.config_desc import ConfigDescriptor, ConfigFilters
 
+from six import text_type
 
 class ConfigFactory(object):
     """

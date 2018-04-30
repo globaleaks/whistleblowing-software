@@ -6,8 +6,6 @@ from __future__ import absolute_import
 import collections
 import copy
 
-from six import text_type, binary_type
-
 from globaleaks.models import config_desc
 from globaleaks.models.properties import *
 from globaleaks.orm import transact
@@ -15,6 +13,7 @@ from globaleaks.rest import errors
 from globaleaks.utils.security import generateRandomKey
 from globaleaks.utils.utility import datetime_now, datetime_null, datetime_to_ISO8601
 
+from six import text_type, binary_type
 
 def get_auth_token():
     return text_type(generateRandomKey(32))
