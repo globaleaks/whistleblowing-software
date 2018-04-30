@@ -1,17 +1,16 @@
-# -*- coding: utf-8
+# -*- coding: utf-
 from datetime import datetime
+from functools import reduce
+from six import text_type
 from six.moves import urllib
 
 from OpenSSL.crypto import FILETYPE_PEM, dump_certificate
 
-from globaleaks.utils.utility import log
-
 # this import seems unused but it is required in order to load the mocks
 from globaleaks.mocks import acme_mocks # pylint: disable=W0611
+from globaleaks.utils.utility import log
 
 from acme import challenges, client, jose, messages
-from functools import reduce
-from six import text_type
 
 class ChallTok:
     def __init__(self, tok):

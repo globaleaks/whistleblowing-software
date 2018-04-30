@@ -1,14 +1,12 @@
 # -*- coding: utf-8 -*-
-
+import six
 from collections import OrderedDict
 
-import six
 from twisted.internet import reactor as _reactor
 
 
 # needed in order to allow UT override
 reactor = _reactor
-
 
 class TempDict(OrderedDict):
     expireCallback = None

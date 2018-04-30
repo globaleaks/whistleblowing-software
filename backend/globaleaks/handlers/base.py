@@ -11,9 +11,8 @@ import re
 import shutil
 
 from datetime import datetime
-
 from cryptography.hazmat.primitives import constant_time
-
+from six import text_type, binary_type
 from twisted.internet import defer
 from twisted.internet.defer import inlineCallbacks
 
@@ -24,8 +23,6 @@ from globaleaks.utils.security import generateRandomKey, sha512
 from globaleaks.settings import Settings
 from globaleaks.utils.tempdict import TempDict
 from globaleaks.utils.utility import datetime_now, deferred_sleep, log
-
-from six import text_type, binary_type
 
 HANDLER_EXEC_TIME_THRESHOLD = 120
 

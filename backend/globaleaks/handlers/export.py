@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 #
 # API handling export of submissions
+from six import text_type
 from twisted.internet.defer import Deferred, inlineCallbacks
 
 from globaleaks import models
@@ -15,8 +16,6 @@ from globaleaks.settings import Settings
 from globaleaks.utils.templating import Templating
 from globaleaks.utils.utility import msdos_encode, datetime_now
 from globaleaks.utils.zipstream import ZipStream
-
-from six import text_type
 
 @transact
 def get_tip_export(session, tid, user_id, rtip_id, language):

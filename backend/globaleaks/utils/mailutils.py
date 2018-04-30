@@ -4,9 +4,8 @@
 # *********
 #
 # GlobaLeaks Utility used to handle Mail, format, exception, etc
-
-import sys
 import email
+import sys
 
 if sys.version_info[0] == 2:
     from six import StringIO

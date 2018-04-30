@@ -2,6 +2,8 @@
 import os
 import shutil
 
+from six import text_type
+
 from globaleaks.db.migrations.update import MigrationBase
 from globaleaks.db.migrations.update_37.config_desc import GLConfig_v_37
 from globaleaks.models import *
@@ -9,8 +11,6 @@ from globaleaks.models import config_desc
 from globaleaks.models.properties import *
 from globaleaks.settings import Settings
 from globaleaks.utils.utility import datetime_now
-
-from six import text_type
 
 class Anomalies_v_38(Model):
     __tablename__ = 'anomalies'

@@ -4,10 +4,10 @@ import tempfile
 import time
 
 from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
+from six import text_type
+
 from globaleaks.rest import errors
 from globaleaks.utils.security import crypto_backend, generateRandomKey
-
-from six import text_type
 
 class SecureTemporaryFile(object):
     file = None

@@ -4,6 +4,8 @@ import re
 import sys
 import traceback
 
+from six import text_type
+
 from twisted.internet import defer
 from twisted.mail.smtp import SMTPError
 from twisted.python.failure import Failure
@@ -21,8 +23,6 @@ from globaleaks.utils.pgp import PGPContext
 from globaleaks.utils.security import sha256
 from globaleaks.utils.utility import datetime_now, log
 from globaleaks.utils.tempdict import TempDict
-
-from six import text_type
 
 def getAlarm(state):
     from globaleaks.anomaly import Alarm
