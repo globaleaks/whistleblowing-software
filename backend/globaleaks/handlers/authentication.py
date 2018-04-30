@@ -2,7 +2,7 @@
 #
 # Handlers dealing with platform authentication
 from random import SystemRandom
-
+from six import text_type
 from twisted.internet.defer import inlineCallbacks, returnValue
 
 from globaleaks.utils import security
@@ -13,8 +13,6 @@ from globaleaks.rest import errors, requests
 from globaleaks.settings import Settings
 from globaleaks.state import State
 from globaleaks.utils.utility import datetime_now, deferred_sleep, log
-
-from six import text_type
 
 def random_login_delay():
     """

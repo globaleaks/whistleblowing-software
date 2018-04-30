@@ -1,9 +1,8 @@
 # -*- coding: utf-8 -*-
-
 import re
+from six import text_type
 
 from globaleaks.utils.agent import get_page
-from six import text_type
 
 
 EXIT_ADDR_URL = b'https://check.torproject.org/exit-addresses'

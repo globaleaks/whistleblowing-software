@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
-from distutils.version import LooseVersion as V  # pylint: disable=no-name-in-module,import-error
-
 from debian import deb822
+from distutils.version import LooseVersion as V  # pylint: disable=no-name-in-module,import-error
+from six import text_type
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import __version__
@@ -13,8 +13,6 @@ from globaleaks.models.config import ConfigFactory
 from globaleaks.orm import transact
 from globaleaks.utils.agent import get_page
 from globaleaks.utils.utility import log
-
-from six import text_type
 
 DEB_PACKAGE_URL = b'https://deb.globaleaks.org/xenial/Packages'
 

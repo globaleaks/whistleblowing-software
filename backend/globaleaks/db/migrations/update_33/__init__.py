@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
+from six import text_type
+
 from globaleaks import __version__, DATABASE_VERSION, LANGUAGES_SUPPORTED_CODES, models
 from globaleaks.db.migrations.update import MigrationBase
 from globaleaks.models.properties import *
 from globaleaks.utils.utility import datetime_now, datetime_null
-
-from six import text_type
 
 class Node_v_32(models.Model):
     __tablename__ = 'node'

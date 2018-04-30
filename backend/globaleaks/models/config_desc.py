@@ -1,9 +1,8 @@
 # -*- coding: utf-8
+from six import text_type
 
 from globaleaks import __version__, DATABASE_VERSION
 from globaleaks.utils.security import generateRandomSalt as salt
-
-from six import text_type
 
 class Item:
     _type = None

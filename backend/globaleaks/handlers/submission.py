@@ -4,6 +4,8 @@
 import copy
 import json
 
+from six import text_type
+
 from globaleaks import models
 from globaleaks.handlers.admin.questionnaire import db_get_questionnaire
 from globaleaks.handlers.base import BaseHandler
@@ -15,8 +17,6 @@ from globaleaks.utils.structures import get_localized_values
 from globaleaks.utils.token import TokenList
 from globaleaks.utils.utility import log, get_expiration, \
     datetime_now, datetime_never, datetime_to_ISO8601
-
-from six import text_type
 
 def get_submission_sequence_number(itip):
     return "%s-%d" % (itip.creation_date.strftime("%Y%m%d"), itip.progressive)

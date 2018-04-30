@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
-from six import text_type
-
 import json
+
+from six import text_type
 
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.rest.errors import InputValidationError

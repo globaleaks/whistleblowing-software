@@ -13,6 +13,29 @@ if sys.version[0] == '2':
 # pylint: disable=no-name-in-module
 from distutils import dir_util
 
+import base64
+import copy
+import json
+import os
+import shutil
+import signal
+import six
+
+from datetime import timedelta
+
+from six import text_type, binary_type
+from six.moves.urllib.parse import urlparse, urlsplit # pylint: disable=import-error
+
+from twisted.internet import threads, defer, task
+from twisted.internet.address import IPv4Address
+from twisted.internet.defer import inlineCallbacks, Deferred, returnValue
+from twisted.internet.protocol import ProcessProtocol
+from twisted.python.failure import Failure
+from twisted.trial import unittest
+from twisted.web.test.requesthelper import DummyRequest
+
+from . import TEST_DIR
+
 from globaleaks import db, models, orm, event, jobs, __version__
 from globaleaks.anomaly import Alarm
 from globaleaks.db.appdata import load_appdata
@@ -41,30 +64,6 @@ from globaleaks.utils.utility import datetime_null, datetime_now, datetime_to_IS
 
 from globaleaks.workers import process
 from globaleaks.workers.supervisor import ProcessSupervisor
-
-from . import TEST_DIR
-
-import base64
-import copy
-import json
-import os
-import shutil
-import signal
-
-from datetime import timedelta
-
-from twisted.python.failure import Failure
-
-from twisted.web.test.requesthelper import DummyRequest
-from twisted.internet import threads, defer, task
-from twisted.internet.address import IPv4Address
-from twisted.internet.defer import inlineCallbacks, Deferred, returnValue
-from twisted.trial import unittest
-from twisted.internet.protocol import ProcessProtocol
-
-import six
-from six import text_type, binary_type
-from six.moves.urllib.parse import urlparse, urlsplit # pylint: disable=import-error
 
 ## constants
 VALID_PASSWORD1 = u'ACollectionOfDiplomaticHistorySince_1966_ToThe_Pr esentDay#'

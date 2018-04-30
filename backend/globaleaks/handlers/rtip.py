@@ -4,6 +4,7 @@
 import os
 import string
 
+from six import text_type
 from twisted.internet import threads
 from twisted.internet.defer import inlineCallbacks
 
@@ -20,8 +21,6 @@ from globaleaks.utils.security import directory_traversal_check
 from globaleaks.state import State
 from globaleaks.utils.utility import log, get_expiration, datetime_now, datetime_never, \
     datetime_to_ISO8601
-
-from six import text_type
 
 def receiver_serialize_rfile(session, rfile):
     ifile = session.query(models.InternalFile) \

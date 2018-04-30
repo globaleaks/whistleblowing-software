@@ -9,11 +9,11 @@
 # This code differs from handlers/file.py because files here are not tracked in the DB
 import json
 
+from six import binary_type
+
 from globaleaks import models
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.orm import transact
-
-from six import binary_type
 
 @transact
 def get(session, tid, lang):
