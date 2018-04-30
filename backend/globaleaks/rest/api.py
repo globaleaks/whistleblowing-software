@@ -53,7 +53,7 @@ from globaleaks.settings import Settings
 from globaleaks.state import State, extract_exception_traceback_and_schedule_email
 
 from six import text_type, binary_type
-from six.moves.urllib.parse import urlparse, urlsplit, urlunparse, urlunsplit
+from six.moves.urllib.parse import urlparse, urlsplit, urlunparse, urlunsplit # pylint: disable=import-error
 
 uuid_regexp = r'([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})'
 key_regexp = r'([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}|[a-z_]{0,100})'

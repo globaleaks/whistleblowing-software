@@ -7,7 +7,7 @@ from twisted.trial.unittest import TestCase
 
 class TestRunAcmeReg(TestCase):
     def test_format_asn1_date(self):
-        s = '20170827153000Z'
+        s = b'20170827153000Z'
 
         d = letsencrypt.convert_asn1_date(s)
 

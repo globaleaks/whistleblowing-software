@@ -3,7 +3,7 @@ from globaleaks.db.migrations.update import MigrationBase
 from globaleaks.models.properties import *
 
 from six import text_type
-from six.moves.urllib.parse import urlparse
+from six.moves.urllib.parse import urlparse # pylint: disable=import-error
 
 class MigrationScript(MigrationBase):
     def epilogue(self):

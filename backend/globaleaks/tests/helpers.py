@@ -64,7 +64,7 @@ from twisted.internet.protocol import ProcessProtocol
 
 import six
 from six import text_type, binary_type
-from six.moves.urllib.parse import urlparse, urlsplit
+from six.moves.urllib.parse import urlparse, urlsplit # pylint: disable=import-error
 
 ## constants
 VALID_PASSWORD1 = u'ACollectionOfDiplomaticHistorySince_1966_ToThe_Pr esentDay#'
