@@ -195,6 +195,7 @@ class TestCSRHandler(helpers.TestHandler):
 class TestAcmeHandler(helpers.TestHandler):
     _handler = https.AcmeHandler
 
+# This tests is disabled as it requires external network connections
 #    @inlineCallbacks
 #    def test_post(self):
 #        hostname = 'gl.dl.localhost.com'
