@@ -365,7 +365,10 @@ class APIResourceWrapper(Resource):
 
         match = None
         for regexp, handler, args in self._registry:
-            match = regexp.match(request.path.decode('utf-8'))
+            try:
+                match = regexp.match(request.path.decode('utf-8'))
+            except UnicodeDecodeError:
+                match = None
             if match:
                 break
 
