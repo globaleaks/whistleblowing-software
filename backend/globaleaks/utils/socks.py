@@ -11,8 +11,8 @@
 # code concept from https://github.com/habnabit/txsocksx
 
 import struct
+
 from six import text_type
-from zope.interface import implementer, directlyProvides, providedBy
 
 from twisted.internet import defer, interfaces
 from twisted.internet.protocol import Protocol
@@ -21,7 +21,7 @@ from twisted.protocols.policies import ProtocolWrapper, WrappingFactory
 from twisted.python.failure import Failure
 from twisted.web.client import Agent, BrowserLikePolicyForHTTPS
 from twisted.web.iweb import IAgentEndpointFactory, IAgent, IPolicyForHTTPS
-from zope.interface import implementer
+from zope.interface import implementer, directlyProvides, providedBy
 
 
 class SOCKSError(Exception):

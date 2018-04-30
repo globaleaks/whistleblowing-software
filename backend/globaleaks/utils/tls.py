@@ -279,7 +279,7 @@ class ChainValidator(CtxValidator):
 
         for cert in chain:
             x509 = load_certificate(FILETYPE_PEM, cert)
-    
+
             if check_expiration and x509.has_expired():
                 raise ValidationException('An intermediate certificate has expired')
 
