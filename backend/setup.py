@@ -11,9 +11,6 @@ from setuptools.command.test import test as _TestCommand
 
 import globaleaks
 
-install_requires = [str(r.req) for r in pip.req.parse_requirements('requirements.txt',
-                                                                   session=pip.download.PipSession())]
-
 
 class TestCommand(_TestCommand):
     def run_tests(self):
@@ -40,6 +37,5 @@ setup(
         'bin/globaleaks',
         'bin/gl-admin',
         'bin/gl-fix-permissions'
-    ],
-    install_requires=install_requires
+    ]
 )
