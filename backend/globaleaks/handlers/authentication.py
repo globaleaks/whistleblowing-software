@@ -2,7 +2,7 @@
 #
 # Handlers dealing with platform authentication
 from random import SystemRandom
-
+from six import text_type
 from twisted.internet.defer import inlineCallbacks, returnValue
 
 from globaleaks.utils import security
@@ -13,7 +13,6 @@ from globaleaks.rest import errors, requests
 from globaleaks.settings import Settings
 from globaleaks.state import State
 from globaleaks.utils.utility import datetime_now, deferred_sleep, log
-
 
 def random_login_delay():
     """
@@ -47,7 +46,7 @@ def random_login_delay():
 def db_get_wbtip_by_receipt(session, tid, receipt):
     hashed_receipt = security.hash_password(receipt, State.tenant_cache[tid].receipt_salt)
     return session.query(InternalTip) \
-                  .filter(InternalTip.receipt_hash == unicode(hashed_receipt),
+                  .filter(InternalTip.receipt_hash == text_type(hashed_receipt, 'utf-8'),
                           InternalTip.tid == tid).one_or_none()
 
 

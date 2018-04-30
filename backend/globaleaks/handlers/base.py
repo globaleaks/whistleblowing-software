@@ -3,15 +3,16 @@
 # Base class for all the handlers
 import base64
 import collections
+import copy
 import json
 import mimetypes
 import os
 import re
 import shutil
+
 from datetime import datetime
-
 from cryptography.hazmat.primitives import constant_time
-
+from six import text_type, binary_type
 from twisted.internet import defer
 from twisted.internet.defer import inlineCallbacks
 
@@ -29,11 +30,14 @@ HANDLER_EXEC_TIME_THRESHOLD = 120
 class SessionsFactory(TempDict):
     """Extends TempDict to provide session management functions ontop of temp session keys"""
     def revoke_all_sessions(self, user_id):
+        to_delete = []
         for other_session in Sessions.values():
             if other_session.user_id == user_id:
                 log.debug("Revoking old session for %s", user_id)
-                Sessions.delete(other_session.id)
+                to_delete.append(other_session.id)
 
+        for id in to_delete:
+            Sessions.delete(id)
 
 Sessions = SessionsFactory(timeout=Settings.authentication_lifetime)
 
@@ -179,9 +183,9 @@ class BaseHandler(object):
 
     def basic_auth(self):
         msg = None
-        if "authorization" in self.request.headers:
+        if b"authorization" in self.request.headers:
             try:
-                auth_type, data = self.request.headers["authorization"].split()
+                auth_type, data = self.request.headers[b"authorization"].split()
                 usr, pwd = base64.b64decode(data).split(":", 1)
                 if auth_type != "Basic" or \
                     usr != self.state.tenant_cache[self.request.tid].basic_auth_username or \
@@ -226,7 +230,7 @@ class BaseHandler(object):
         Return True if the python class matches the given regexp.
         """
         try:
-            value = unicode(value)
+            value = text_type(value)
         except:
             return False
 
@@ -344,6 +348,9 @@ class BaseHandler(object):
     @staticmethod
     def validate_message(message, message_template):
         try:
+            if isinstance(message, binary_type):
+                message = message.decode('utf-8')
+
             jmessage = json.loads(message)
         except ValueError:
             raise errors.InputValidationError("Invalid JSON format")
@@ -388,12 +395,17 @@ class BaseHandler(object):
             return api_session
 
         # Check for the session header
-        session_id = self.request.headers.get('x-session')
+        session_id = self.request.headers.get(b'x-session')
         if session_id is None:
             return None
 
         # Check that that provided session exists and is legit
-        session = Sessions.get(session_id)
+
+        # We need to convert here to text_type as sessions generate a
+        # random string in text form. It seems sessions assume that it will
+        # be a string while twisted returns headers in bytes
+
+        session = Sessions.get(text_type(session_id, 'utf-8'))
         if session is None or session.tid != self.request.tid:
             return None
 
@@ -408,10 +420,10 @@ class BaseHandler(object):
 
     def get_api_session(self):
         token = ''
-        if 'api-token' in self.request.args:
-            token = bytes(self.request.args['api-token'][0])
-        elif 'x-api-token' in self.request.headers:
-            token = bytes(self.request.headers['x-api-token'])
+        if b'api-token' in self.request.args:
+            token = binary_type(self.request.args[b'api-token'][0])
+        elif b'x-api-token' in self.request.headers:
+            token = binary_type(self.request.headers[b'x-api-token'])
 
         # Assert the input is okay and the api_token state is acceptable
         if self.request.tid != 1 or \
@@ -420,7 +432,7 @@ class BaseHandler(object):
            not self.state.tenant_cache[self.request.tid].admin_api_token_digest:
             return None
 
-        stored_token_hash = bytes(self.state.tenant_cache[self.request.tid].admin_api_token_digest)
+        stored_token_hash = self.state.tenant_cache[self.request.tid].admin_api_token_digest.encode()
 
         if constant_time.bytes_eq(sha512(token), stored_token_hash):
             return self.state.api_token_session
@@ -433,7 +445,7 @@ class BaseHandler(object):
         total_file_size = int(self.request.args['flowTotalSize'][0])
         flow_identifier = self.request.args['flowIdentifier'][0]
 
-        chunk_size = len(self.request.args['file'][0])
+        chunk_size = len(self.request.args[b'file'][0])
         if ((chunk_size / (1024 * 1024)) > self.state.tenant_cache[self.request.tid].maximum_filesize or
             (total_file_size / (1024 * 1024)) > self.state.tenant_cache[self.request.tid].maximum_filesize):
             log.err("File upload request rejected: file too big", tid=self.request.tid)
@@ -474,7 +486,7 @@ class BaseHandler(object):
         try:
             log.debug('Creating file %s with %d bytes', destination, self.uploaded_file['size'])
 
-            with self.uploaded_file['body'].open('r') as encrypted_file, open(destination, 'w') as plaintext_file:
+            with self.uploaded_file['body'].open('r') as encrypted_file, open(destination, 'wb') as plaintext_file:
                 while True:
                     chunk = encrypted_file.read(4096)
                     if not chunk:

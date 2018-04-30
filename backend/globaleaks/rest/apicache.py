@@ -1,14 +1,19 @@
 # -*- coding: utf-8 -*-
-import cStringIO
+import io
 import gzip
 import json
 import types
+
+from six import text_type, binary_type
 
 from twisted.internet import defer
 
 
 def gzipdata(data):
-    fgz = cStringIO.StringIO()
+    if isinstance(data, text_type):
+        data = data.encode()
+
+    fgz = io.BytesIO()
     gzip_obj = gzip.GzipFile(mode='wb', fileobj=fgz)
     gzip_obj.write(data)
     gzip_obj.close()
@@ -28,7 +33,7 @@ class ApiCache(object):
 
     @classmethod
     def set(cls, tid, resource, language, content_type, data):
-        data = gzipdata(bytes(data))
+        data = gzipdata(data)
 
         if tid not in ApiCache.memory_cache_dict:
             cls.memory_cache_dict[tid] = {}
@@ -57,7 +62,7 @@ def decorator_cache_get(f):
             d = defer.maybeDeferred(f, self, *args, **kwargs)
 
             def callback(data):
-                if isinstance(data, (types.DictType, types.ListType)):
+                if isinstance(data, (dict, list)):
                     self.request.setHeader(b'content-type', b'application/json')
                     data = json.dumps(data)
 

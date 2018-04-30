@@ -8,8 +8,9 @@ import sys
 import mimetypes
 
 # Use UTF-8 for all string to unicode conversions
-reload(sys)
-sys.setdefaultencoding('utf8')
+if sys.version[0] == '2':
+    reload(sys)
+    sys.setdefaultencoding('utf8')
 
 # Avoid writing bytecode files at runtime
 sys.dont_write_bytecode = True
@@ -167,7 +168,7 @@ def run_backend():
     config = ServerOptions()
     try:
         config.parseOptions()
-    except usage.error, ue:
+    except usage.error as ue:
         print("%s: %s" % (sys.argv[0], ue))
         sys.exit(50)
     try:

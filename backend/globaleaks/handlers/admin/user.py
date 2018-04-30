@@ -4,6 +4,8 @@
 #   *****
 # Implementation of the User model functionalities
 #
+from six import text_type
+
 from globaleaks import models
 from globaleaks.db import db_refresh_memory_variables
 from globaleaks.handlers.base import BaseHandler
@@ -14,7 +16,6 @@ from globaleaks.state import State
 from globaleaks.utils import security
 from globaleaks.utils.structures import fill_localized_keys, get_localized_values
 from globaleaks.utils.utility import datetime_now
-
 
 def admin_serialize_receiver(session, receiver, user, language):
     """
@@ -82,7 +83,7 @@ def db_create_user(session, state, tid, request, language):
 
     fill_localized_keys(request, models.User.localized_keys, language)
 
-    user = session.query(models.User).filter(models.User.tid == tid, models.User.username == unicode(request['username'])).one_or_none()
+    user = session.query(models.User).filter(models.User.tid == tid, models.User.username == text_type(request['username'])).one_or_none()
     if user is not None:
         raise errors.InputValidationError('Username already in use')
 
@@ -132,7 +133,7 @@ def db_admin_update_user(session, state, tid, user_id, request, language):
     user = models.db_get(session, models.User, models.User.tid == tid, models.User.id == user_id)
 
     if user.username != request['username']:
-        check = session.query(models.User).filter(models.User.tid == tid, models.User.username == unicode(request['username'])).one_or_none()
+        check = session.query(models.User).filter(models.User.tid == tid, models.User.username == text_type(request['username'])).one_or_none()
         if check is not None:
             raise errors.InputValidationError('Username already in use')
 

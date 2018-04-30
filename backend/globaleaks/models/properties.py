@@ -2,6 +2,8 @@
 # pylint: disable=unused-import
 import json
 
+from six import text_type
+
 from sqlalchemy import Column, CheckConstraint, ForeignKeyConstraint, UniqueConstraint, types
 from sqlalchemy.types import Boolean, DateTime, Integer, Unicode, UnicodeText
 from sqlalchemy.ext.declarative import declarative_base, declared_attr
@@ -14,9 +16,9 @@ class JSON(types.TypeDecorator):
     """Stores and retrieves JSON as TEXT."""
     impl = types.UnicodeText
 
-    def process_bind_param(self, value, dialect): 
+    def process_bind_param(self, value, dialect):
         if value is not None:
-            return unicode(json.dumps(value))
+            return text_type(json.dumps(value))
 
         return value
 

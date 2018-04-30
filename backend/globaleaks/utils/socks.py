@@ -12,7 +12,7 @@
 
 import struct
 
-from zope.interface import implementer, directlyProvides, providedBy
+from six import text_type
 
 from twisted.internet import defer, interfaces
 from twisted.internet.protocol import Protocol
@@ -21,7 +21,7 @@ from twisted.protocols.policies import ProtocolWrapper, WrappingFactory
 from twisted.python.failure import Failure
 from twisted.web.client import Agent, BrowserLikePolicyForHTTPS
 from twisted.web.iweb import IAgentEndpointFactory, IAgent, IPolicyForHTTPS
-from zope.interface import implementer
+from zope.interface import implementer, directlyProvides, providedBy
 
 
 class SOCKSError(Exception):
@@ -36,7 +36,7 @@ class SOCKS5ClientProtocol(ProtocolWrapper):
         self._connectedDeferred = connectedDeferred
         self._host = host
         self._port = port
-        self._buf = ''
+        self._buf = b''
         self.state = 0
 
     def error(self, error):
@@ -52,7 +52,7 @@ class SOCKS5ClientProtocol(ProtocolWrapper):
         if len(self._buf) < 2:
             return
 
-        if self._buf[:2] != "\x05\x00":
+        if self._buf[:2] != b"\x05\x00":
             # Anonymous access denied
             self.error(Failure(SOCKSError(0x00)))
             return
@@ -66,7 +66,7 @@ class SOCKS5ClientProtocol(ProtocolWrapper):
         if len(self._buf) < 2:
             return
 
-        if self._buf[:2] != "\x05\x00":
+        if self._buf[:2] != b"\x05\x00":
             self.error(Failure(SOCKSError(ord(self._buf[1]))))
             return
 
@@ -84,7 +84,7 @@ class SOCKS5ClientProtocol(ProtocolWrapper):
         if len(self._buf):
             self.wrappedProtocol.dataReceived(self._buf)
 
-        self._buf = ''
+        self._buf = b''
 
         self.state = 4
 
@@ -94,7 +94,7 @@ class SOCKS5ClientProtocol(ProtocolWrapper):
         self.factory.registerProtocol(self)
 
         # We implement only Anonymous access
-        self.transport.write(struct.pack("!BB", 5, len("\x00")) + "\x00")
+        self.transport.write(struct.pack("!BB", 5, len(b"\x00")) + b"\x00")
 
         self.transport.write(struct.pack("!BBBBB", 5, 1, 0, 3, len(self._host)) + self._host + struct.pack("!H", self._port))
         self.wrappedProtocol.makeConnection(self)
@@ -108,7 +108,7 @@ class SOCKS5ClientProtocol(ProtocolWrapper):
 
     def dataReceived(self, data):
         if self.state != 4:
-            self._buf = ''.join([self._buf, data])
+            self._buf = b''.join([self._buf, data])
             getattr(self, 'socks_state_%s' % self.state)()
         else:
             self.wrappedProtocol.dataReceived(data)
@@ -206,7 +206,7 @@ class SOCKS5Agent(object):
     def _getEndpoint(self, scheme, host, port):
         endpoint = self.endpointFactory(host, port, self.proxyEndpoint, **self.endpointArgs)
 
-        if scheme == 'https':
+        if scheme == b'https':
             tlsPolicy = self._policyForHTTPS.creatorForNetloc(host, port)
             endpoint = self._tlsWrapper(tlsPolicy, endpoint)
 

@@ -11,4 +11,4 @@ class TestUtility(unittest.TestCase):
         self.assertEqual(od['foo'], 'bar')
         self.assertEqual(od.foo, 'bar')
         od.key = 'value'
-        self.assertEqual(od['key'], 'value')
+        self.assertEqual(od['key'], b'value')

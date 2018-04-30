@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
-from distutils.version import LooseVersion as V  # pylint: disable=no-name-in-module,import-error
-
 from debian import deb822
+from distutils.version import LooseVersion as V  # pylint: disable=no-name-in-module,import-error
+from six import text_type
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import __version__
@@ -14,7 +14,7 @@ from globaleaks.orm import transact
 from globaleaks.utils.agent import get_page
 from globaleaks.utils.utility import log
 
-DEB_PACKAGE_URL = 'https://deb.globaleaks.org/xenial/Packages'
+DEB_PACKAGE_URL = b'https://deb.globaleaks.org/xenial/Packages'
 
 
 @transact
@@ -52,10 +52,11 @@ class UpdateCheck(NetLoopingJob):
     def operation(self):
         log.debug('Fetching latest GlobaLeaks version from repository')
         packages_file = yield self.fetch_packages_file()
+        packages_file = text_type(packages_file, 'utf-8')
         versions = [p['Version'] for p in deb822.Deb822.iter_paragraphs(packages_file) if p['Package'] == 'globaleaks']
         versions.sort(key=V)
 
-        latest_version = unicode(versions[-1])
+        latest_version = versions[-1]
 
         yield evaluate_update_notification(self.state, latest_version)
 

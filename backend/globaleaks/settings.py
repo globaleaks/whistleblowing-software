@@ -17,6 +17,8 @@ if platform.system() != 'Windows':
 # pylint: enable=no-name-in-module
 from optparse import OptionParser
 
+from six import text_type
+
 from globaleaks import __version__, DATABASE_VERSION
 from globaleaks.orm import make_db_uri, set_db_uri
 from globaleaks.utils.singleton import Singleton
@@ -101,7 +103,7 @@ class SettingsClass(object):
         self.staticfile_regexp = r'(.*)'
         self.staticfile_overwrite = False
 
-        self.local_hosts = ['127.0.0.1', 'localhost']
+        self.local_hosts = [b'127.0.0.1', b'localhost']
 
         self.onionservice = None
 
@@ -214,7 +216,7 @@ class SettingsClass(object):
         if not self.cmdline_options:
             self.developer_name = u"Random GlobaLeaks Developer"
         else:
-            self.developer_name = unicode(self.cmdline_options.developer_name)
+            self.developer_name = text_type(self.cmdline_options.developer_name)
 
         # when running in development mode lower the key bits to 512
         self.key_bits = 512
@@ -267,7 +269,7 @@ class SettingsClass(object):
 
         if self.cmdline_options.developer_name:
             self.print_msg("Enabling development mode for %s" % self.cmdline_options.developer_name)
-            self.developer_name = unicode(self.cmdline_options.developer_name)
+            self.developer_name = text_type(self.cmdline_options.developer_name)
             self.set_devel_mode()
             self.orm_debug = self.cmdline_options.orm_debug
 

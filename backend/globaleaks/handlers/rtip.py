@@ -4,6 +4,7 @@
 import os
 import string
 
+from six import text_type
 from twisted.internet import threads
 from twisted.internet.defer import inlineCallbacks
 
@@ -20,7 +21,6 @@ from globaleaks.utils.security import directory_traversal_check
 from globaleaks.state import State
 from globaleaks.utils.utility import log, get_expiration, datetime_now, datetime_never, \
     datetime_to_ISO8601
-
 
 def receiver_serialize_rfile(session, rfile):
     ifile = session.query(models.InternalFile) \
@@ -397,7 +397,7 @@ class RTipInstance(OperationHandler):
           'set': (RTipInstance.set_tip_val,
                   {'key': '^(enable_two_way_comments|enable_two_way_messages|enable_attachments|enable_notifications)$',
                    'value': bool}),
-          'set_label': (RTipInstance.set_label, {'value': unicode})
+          'set_label': (RTipInstance.set_label, {'value': text_type})
         }
 
 
@@ -473,7 +473,7 @@ class WhistleblowerFileHandler(BaseHandler):
         rtip = yield get_rtip(self.request.tid, self.current_user.user_id, tip_id, self.request.language)
 
         # First: dump the file in the filesystem
-        filename = string.split(os.path.basename(self.uploaded_file['path']), '.aes')[0] + '.plain'
+        filename = str.split(os.path.basename(self.uploaded_file['path']), '.aes')[0] + '.plain'
 
         dst = os.path.join(Settings.attachments_path, filename)
 

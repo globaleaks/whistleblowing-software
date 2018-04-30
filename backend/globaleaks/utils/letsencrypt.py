@@ -1,16 +1,16 @@
-# -*- coding: utf-8
+# -*- coding: utf-
 from datetime import datetime
-from urllib2 import urlopen, Request
+from functools import reduce
+from six import text_type
+from six.moves import urllib
 
 from OpenSSL.crypto import FILETYPE_PEM, dump_certificate
 
-from globaleaks.utils.utility import log
-
 # this import seems unused but it is required in order to load the mocks
 from globaleaks.mocks import acme_mocks # pylint: disable=W0611
+from globaleaks.utils.utility import log
 
 from acme import challenges, client, jose, messages
-
 
 class ChallTok:
     def __init__(self, tok):
@@ -18,7 +18,7 @@ class ChallTok:
 
 
 def convert_asn1_date(asn1_bytes):
-    return datetime.strptime(asn1_bytes,'%Y%m%d%H%M%SZ')
+    return datetime.strptime(text_type(asn1_bytes, 'utf-8'), '%Y%m%d%H%M%SZ')
 
 
 def register_account_key(directory_url, accnt_key):
@@ -53,11 +53,11 @@ def run_acme_reg_to_finish(domain, regr_uri, accnt_key, site_key, csr, tmp_chall
     tmp_chall_dict.set(v, ChallTok(chall_tok))
 
     test_path = 'http://localhost:8082{}'.format(challb.path)
-    local_req = Request(test_path, headers={'Host': domain})
+    local_req = urllib.request.Request(test_path, headers={'Host': domain})
     log.debug('Testing local url path: %s', test_path)
 
     try:
-        resp = urlopen(local_req)
+        resp = urllib.request.urlopen(local_req)
         t = resp.read().decode('utf-8').strip()
         if t != chall_tok:
             raise ValueError

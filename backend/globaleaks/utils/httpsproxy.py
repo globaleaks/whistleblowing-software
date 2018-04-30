@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 import io
-import urlparse
+import sys
+
+from six.moves import urllib
 
 from twisted.internet import reactor, protocol, defer
 from twisted.internet.protocol import connectionDone
@@ -8,7 +10,7 @@ from twisted.web import http
 from twisted.web.client import Agent
 from twisted.web.iweb import IBodyProducer
 from twisted.web.server import NOT_DONE_YET
-from zope.interface import implements
+from zope.interface import implementer
 
 
 class BodyStreamer(protocol.Protocol):
@@ -25,8 +27,8 @@ class BodyStreamer(protocol.Protocol):
         self._finished = None
 
 
+@implementer(IBodyProducer)
 class BodyProducer(object):
-    implements(IBodyProducer)
 
     BUF_MAX_SIZE = 64 * 1024 # TODO Use the hardcoded value for buf max size
     length = 0
@@ -82,26 +84,25 @@ class HTTPStreamProxyRequest(http.Request):
 
     def gotLength(self, length):
         http.Request.gotLength(self, length)
-        if isinstance(self.content, file):
+        if hasattr(self.content, 'close'):
             self.content.close()
             self.content = io.BytesIO()
             self.reset_buffer()
 
     def process(self):
-        proxy_url = bytes(urlparse.urljoin(self.channel.proxy_url, self.uri))
-
+        joined_url = urllib.parse.urljoin(self.channel.proxy_url.encode('utf-8'), self.uri)
         hdrs = self.requestHeaders
-        hdrs.setRawHeaders('GL-Forwarded-For', [self.getClientIP()])
+        hdrs.setRawHeaders(b'GL-Forwarded-For', [self.getClientIP()])
 
         prod = None
-        content_length = self.getHeader('Content-Length')
+        content_length = self.getHeader(b'Content-Length')
         if content_length is not None:
-            hdrs.removeHeader('Content-Length')
+            hdrs.removeHeader(b'Content-Length')
             prod = BodyProducer(self.content, self.reset_buffer, int(content_length))
             self.registerProducer(prod, streaming=True)
 
         proxy_d = self.channel.http_agent.request(method=self.method,
-                                                  uri=proxy_url,
+                                                  uri=joined_url,
                                                   headers=hdrs,
                                                   bodyProducer=prod)
         if prod is not None:
@@ -115,7 +116,7 @@ class HTTPStreamProxyRequest(http.Request):
     def proxySuccess(self, response):
         self.responseHeaders = response.headers
 
-        self.responseHeaders.setRawHeaders('Strict-Transport-Security', ['max-age=31536000'])
+        self.responseHeaders.setRawHeaders(b'Strict-Transport-Security', [b'max-age=31536000'])
 
         self.setResponseCode(response.code)
 
@@ -127,7 +128,7 @@ class HTTPStreamProxyRequest(http.Request):
 
     def proxyError(self, fail):
         # Always apply the HSTS header. Compliant browsers using plain HTTP will ignore it.
-        self.responseHeaders.setRawHeaders('Strict-Transport-Security', ['max-age=31536000'])
+        self.responseHeaders.setRawHeaders(b'Strict-Transport-Security', [b'max-age=31536000'])
         self.setResponseCode(502)
         self.forwardClose()
 

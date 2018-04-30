@@ -38,13 +38,13 @@ class TestPGP(helpers.TestGL):
         pgpctx = PGPContext()
         pgpctx.load_key(helpers.PGPKEYS['VALID_PGP_KEY1_PRV'])
 
-        with open(file_src, 'w+') as f:
-            f.write(self.secret_content)
+        with open(file_src, 'wb+') as f:
+            f.write(self.secret_content.encode())
             f.seek(0)
 
             pgpctx.encrypt_file(fake_receiver_desc['pgp_key_fingerprint'], f, file_dst)
 
-        with open(file_dst, 'r') as f:
+        with open(file_dst, 'rb') as f:
             self.assertEqual(str(pgpctx.gnupg.decrypt_file(f)), self.secret_content)
 
     def test_read_expirations(self):

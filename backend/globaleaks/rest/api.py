@@ -6,8 +6,11 @@
 
 import json
 import re
+import sys
 import types
-import urlparse
+
+from six import text_type, binary_type
+from six.moves.urllib.parse import urlparse, urlsplit, urlunparse, urlunsplit # pylint: disable=import-error
 
 from twisted.internet import defer
 from twisted.internet.abstract import isIPAddress, isIPv6Address
@@ -51,7 +54,6 @@ from globaleaks.handlers.admin import user as admin_user
 from globaleaks.rest import apicache, requests, errors
 from globaleaks.settings import Settings
 from globaleaks.state import State, extract_exception_traceback_and_schedule_email
-
 
 uuid_regexp = r'([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})'
 key_regexp = r'([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}|[a-z_]{0,100})'
@@ -218,11 +220,20 @@ class APIResourceWrapper(Resource):
             self._registry.append((re.compile(pattern), handler, args))
 
     def should_redirect_https(self, request):
-        if ((request.hostname.endswith(State.tenant_cache[1].rootdomain) and
+        hostname = request.hostname
+        tenant_hostname = State.tenant_cache[request.tid].hostname
+
+        if isinstance(hostname, binary_type):
+             hostname = request.hostname.decode('utf-8')
+
+        if isinstance(hostname, binary_type):
+             hostname = State.tenant_cache[request.tid].hostname.decode('utf-8')
+
+        if ((hostname.endswith(State.tenant_cache[1].rootdomain) and
              State.tenant_cache[1].https_enabled) or
-            (request.hostname == State.tenant_cache[request.tid].hostname and
+            (hostname == tenant_hostname and
              State.tenant_cache[request.tid].https_enabled)) and \
-           request.client_proto == 'http' and \
+           request.client_proto == b'http' and \
            request.client_ip not in Settings.local_hosts:
             return True
 
@@ -230,7 +241,7 @@ class APIResourceWrapper(Resource):
 
     def should_redirect_tor(self, request):
         if request.client_using_tor and \
-            request.hostname not in ['127.0.0.1'] + State.tenant_cache[request.tid].onionnames:
+            request.hostname not in [b'127.0.0.1'] + State.tenant_cache[request.tid].onionnames:
             return True
 
         return False
@@ -240,13 +251,13 @@ class APIResourceWrapper(Resource):
         request.setHeader(b"location", url)
 
     def redirect_https(self, request):
-        _, _, path, query, frag = urlparse.urlsplit(request.uri)
-        redirect_url = urlparse.urlunsplit(('https', request.hostname, path, query, frag))
+        _, _, path, query, frag = urlsplit(request.uri)
+        redirect_url = urlunsplit((b'https', request.hostname, path, query, frag))
         self.redirect(request, redirect_url)
 
     def redirect_tor(self, request):
-        _, _, path, query, frag = urlparse.urlsplit(request.uri)
-        redirect_url = urlparse.urlunsplit(('http', State.tenant_cache[request.tid].onionservice, path, query, frag))
+        _, _, path, query, frag = urlsplit(request.uri)
+        redirect_url = urlunsplit((b'http', State.tenant_cache[request.tid].onionservice.encode(), path, query, frag))
         self.redirect(request, redirect_url)
 
     def handle_exception(self, e, request):
@@ -267,7 +278,7 @@ class APIResourceWrapper(Resource):
             e = e.value
         else:
             e.tid = request.tid
-            e.url = request.client_proto + '://' + request.hostname + request.uri
+            e.url = request.client_proto + b'://' + request.hostname + request.uri
             extract_exception_traceback_and_schedule_email(e)
             e = errors.InternalServerError('Unexpected')
 
@@ -280,35 +291,46 @@ class APIResourceWrapper(Resource):
             'arguments': getattr(e, 'arguments', [])
         })
 
-        request.write(bytes(response))
+        request.write(response.encode())
 
     def preprocess(self, request):
         request.headers = request.getAllHeaders()
 
-        request.hostname = request.getRequestHostname().split(':')[0]
+        # Twisted annoyingly different between Py2/Py3
+        # which requires us to handle this specially in each
+        # case.
+
+        if sys.version[0] == '2':
+            request.hostname = request.getRequestHostname().decode('utf-8')
+        else:
+            request.hostname = request.getRequestHostname()
+
+        request.hostname = request.hostname.split(b':')[0]
         request.port = request.getHost().port
 
-        if (request.hostname == 'localhost' or
+        if (request.hostname == b'localhost' or
             isIPAddress(request.hostname) or
             isIPv6Address(request.hostname)):
             request.tid = 1
         else:
             request.tid = State.tenant_hostname_id_map.get(request.hostname, 1)
 
-        request.client_ip = request.headers.get('gl-forwarded-for')
-        request.client_proto = 'https'
+        request.client_ip = request.headers.get(b'gl-forwarded-for')
+        request.client_proto = b'https'
         if request.client_ip is None:
             request.client_ip = request.getClientIP()
-            request.client_proto = 'http'
+            request.client_proto = b'http'
+
+        client_ip = request.client_ip
+        if isinstance(request.client_ip, binary_type):
+            client_ip = request.client_ip.decode('utf-8')
 
         request.client_using_tor = request.client_ip in State.tor_exit_set or \
                                    request.port == 8083
-
-
         if 'x-tor2web' in request.headers:
             request.client_using_tor = False
 
-        request.language = unicode(self.detect_language(request))
+        request.language = text_type(self.detect_language(request))
         if 'multilang' in request.args:
             request.language = None
 
@@ -343,7 +365,10 @@ class APIResourceWrapper(Resource):
 
         match = None
         for regexp, handler, args in self._registry:
-            match = regexp.match(request.path)
+            try:
+                match = regexp.match(request.path.decode('utf-8'))
+            except UnicodeDecodeError:
+                match = None
             if match:
                 break
 
@@ -351,13 +376,13 @@ class APIResourceWrapper(Resource):
             self.handle_exception(errors.ResourceNotFound(), request)
             return b''
 
-        method = request.method.lower()
-        if not method in self.method_map or not hasattr(handler, method):
+        method = request.method.lower().decode('utf-8')
+        if not method in self.method_map.keys() or not hasattr(handler, method):
             self.handle_exception(errors.MethodNotImplemented(), request)
             return b''
 
         f = getattr(handler, method)
-        groups = [unicode(g) for g in match.groups()]
+        groups = [text_type(g) for g in match.groups()]
 
         self.handler = handler(State, request, **args)
 
@@ -394,11 +419,14 @@ class APIResourceWrapper(Resource):
 
             if not request_finished[0]:
                 if ret is not None:
-                   if isinstance(ret, (types.DictType, types.ListType)):
+                   if isinstance(ret, (dict, list)):
                        ret = json.dumps(ret, separators=(',', ':'))
                        request.setHeader(b'content-type', b'application/json')
 
-                   request.write(bytes(ret))
+                   if isinstance(ret, text_type):
+                       ret = ret.encode()
+
+                   request.write(ret)
 
                 request.finish()
 
@@ -408,8 +436,6 @@ class APIResourceWrapper(Resource):
         return NOT_DONE_YET
 
     def set_headers(self, request):
-        # to avoid version attacks
-
         request.setHeader("Server", "Globaleaks")
 
         request.setHeader('Content-Language', request.language)
@@ -438,8 +464,8 @@ class APIResourceWrapper(Resource):
         request.setHeader(b'x-check-tor', bytes(request.client_using_tor))
 
     def parse_accept_language_header(self, request):
-        if "accept-language" in request.headers:
-            languages = request.headers["accept-language"].split(",")
+        if b"accept-language" in request.headers:
+            languages = text_type(request.headers[b"accept-language"], 'utf-8').split(",")
             locales = []
             for language in languages:
                 parts = language.strip().split(";")
@@ -459,12 +485,14 @@ class APIResourceWrapper(Resource):
         return State.tenant_cache[request.tid].default_language
 
     def detect_language(self, request):
-        language = request.headers.get('gl-language')
+        language = request.headers.get(b'gl-language')
         if language is None:
             for l in self.parse_accept_language_header(request):
                 if l in State.tenant_cache[request.tid].languages_enabled:
                     language = l
                     break
+        else:
+            language = text_type(language, 'utf-8')
 
         if language is None or language not in State.tenant_cache[request.tid].languages_enabled:
             language = State.tenant_cache[request.tid].default_language

@@ -1,6 +1,4 @@
 # -*- coding: utf-8
-import urlparse
-
 from twisted.internet.defer import inlineCallbacks
 from twisted.web.client import readBody
 
@@ -12,6 +10,8 @@ from globaleaks.orm import transact
 from globaleaks.rest import errors
 from globaleaks.utils.utility import is_common_net_error
 
+from six import text_type, binary_type
+from six.moves.urllib.parse import urlparse, urlunsplit # pylint: disable=import-error
 
 @transact
 def check_hostname(session, tid, input_hostname):
@@ -19,7 +19,7 @@ def check_hostname(session, tid, input_hostname):
     Ensure the hostname does not collide across tenants or include an origin
     that it shouldn't.
     """
-    if input_hostname == u'':
+    if input_hostname == '':
         raise errors.InputValidationError('Hostname cannot be empty')
 
     root_hostname = ConfigFactory(session, 1, 'node').get_val(u'hostname')
@@ -28,8 +28,9 @@ def check_hostname(session, tid, input_hostname):
     if tid != 1 and root_hostname != '':
         forbidden_endings.append(root_hostname)
 
-    if reduce(lambda b, v: b or input_hostname.endswith(v), forbidden_endings, False):
-        raise errors.InputValidationError('Hostname contains a forbidden origin')
+    for v in forbidden_endings:
+        if input_hostname.endswith(v):
+            raise errors.InputValidationError('Hostname contains a forbidden origin')
 
     existing_hostnames = {h.get_v() for h in session.query(Config) \
                                                     .filter(Config.tid != tid,
@@ -62,14 +63,14 @@ class AdminConfigHandler(OperationHandler):
     def verify_hostname(self, req_args, *args, **kwargs):
         net_agent = self.state.get_agent()
 
-        url = bytes(urlparse.urlunsplit(('http', req_args['value'], 'robots.txt', None, None)))
+        url = urlunsplit(('http', req_args['value'], 'robots.txt', None, None)).encode()
 
         try:
-            resp = yield net_agent.request('GET', url)
+            resp = yield net_agent.request(b'GET', url)
             body = yield readBody(resp)
 
-            server_h = resp.headers.getRawHeaders('Server', [None])[-1].lower()
-            if not body.startswith('User-agent: *') or server_h != 'globaleaks':
+            server_h = resp.headers.getRawHeaders(b'Server', [None])[-1].lower()
+            if not body.startswith(b'User-agent: *') or server_h != b'globaleaks':
                 raise EnvironmentError('Response unexpected')
 
         except Exception as e:
@@ -80,6 +81,6 @@ class AdminConfigHandler(OperationHandler):
 
     def operation_descriptors(self):
         return {
-            'set_hostname': (AdminConfigHandler.set_hostname, {'value': unicode}),
-            'verify_hostname': (AdminConfigHandler.verify_hostname, {'value': unicode})
+            'set_hostname': (AdminConfigHandler.set_hostname, {'value': text_type}),
+            'verify_hostname': (AdminConfigHandler.verify_hostname, {'value': text_type})
         }

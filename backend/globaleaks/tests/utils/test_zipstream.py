@@ -1,11 +1,17 @@
 # -*- coding: utf-8 -*-
-import StringIO
+try:
+    from BytesIO import BytesIO
+except ImportError:
+    from io import BytesIO
+
 import os
+import six
+
+from twisted.internet.defer import inlineCallbacks
 from zipfile import ZipFile
 
 from globaleaks.tests import helpers
 from globaleaks.utils.zipstream import ZipStream
-from twisted.internet.defer import inlineCallbacks
 
 
 class TestZipStream(helpers.TestGL):
@@ -13,7 +19,7 @@ class TestZipStream(helpers.TestGL):
     def setUp(self):
         yield helpers.TestGL.setUp(self)
 
-        self.unicode_seq = ''.join(unichr(x) for x in range(0x400, 0x40A))
+        self.unicode_seq = ''.join(six.unichr(x) for x in range(0x400, 0x40A))
 
         self.files = [
           {'name': self.unicode_seq, 'buf': self.unicode_seq},
@@ -21,7 +27,7 @@ class TestZipStream(helpers.TestGL):
         ]
 
     def test_zipstream(self):
-        output = StringIO.StringIO()
+        output = BytesIO()
 
         for data in ZipStream(self.files):
             output.write(data)
@@ -34,6 +40,6 @@ class TestZipStream(helpers.TestGL):
             self.assertTrue(len(infolist), 2)
             for ff in infolist:
                 if ff.filename == self.unicode_seq:
-                    self.assertTrue(ff.file_size == len(self.unicode_seq))
+                    self.assertTrue(ff.file_size == len(self.unicode_seq.encode()))
                 else:
                     self.assertTrue(ff.file_size == os.stat(os.path.abspath(__file__)).st_size)

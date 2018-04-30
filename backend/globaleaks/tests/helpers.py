@@ -4,11 +4,37 @@
 Utilities and basic TestCases.
 """
 import sys
-reload(sys)
-sys.setdefaultencoding('utf8')
+
+# Py3 Compat fix
+if sys.version[0] == '2':
+    reload(sys)
+    sys.setdefaultencoding('utf8')
 
 # pylint: disable=no-name-in-module
 from distutils import dir_util
+
+import base64
+import copy
+import json
+import os
+import shutil
+import signal
+import six
+
+from datetime import timedelta
+
+from six import text_type, binary_type
+from six.moves.urllib.parse import urlparse, urlsplit # pylint: disable=import-error
+
+from twisted.internet import threads, defer, task
+from twisted.internet.address import IPv4Address
+from twisted.internet.defer import inlineCallbacks, Deferred, returnValue
+from twisted.internet.protocol import ProcessProtocol
+from twisted.python.failure import Failure
+from twisted.trial import unittest
+from twisted.web.test.requesthelper import DummyRequest
+
+from . import TEST_DIR
 
 from globaleaks import db, models, orm, event, jobs, __version__
 from globaleaks.anomaly import Alarm
@@ -39,28 +65,6 @@ from globaleaks.utils.utility import datetime_null, datetime_now, datetime_to_IS
 from globaleaks.workers import process
 from globaleaks.workers.supervisor import ProcessSupervisor
 
-from . import TEST_DIR
-
-import base64
-import copy
-import json
-import os
-import shutil
-import signal
-import urlparse
-
-from datetime import timedelta
-
-
-from twisted.python.failure import Failure
-
-from twisted.web.test.requesthelper import DummyRequest
-from twisted.internet import threads, defer, task
-from twisted.internet.address import IPv4Address
-from twisted.internet.defer import inlineCallbacks, Deferred, returnValue
-from twisted.trial import unittest
-from twisted.internet.protocol import ProcessProtocol
-
 ## constants
 VALID_PASSWORD1 = u'ACollectionOfDiplomaticHistorySince_1966_ToThe_Pr esentDay#'
 VALID_PASSWORD2 = VALID_PASSWORD1
@@ -77,7 +81,7 @@ DATA_DIR = os.path.join(TEST_DIR, 'data')
 kp = os.path.join(DATA_DIR, 'gpg')
 for filename in os.listdir(kp):
     with open(os.path.join(kp, filename)) as pgp_file:
-        PGPKEYS[filename] = unicode(pgp_file.read())
+        PGPKEYS[filename] = text_type(pgp_file.read())
 
 def deferred_sleep_mock(seconds):
     return
@@ -212,7 +216,7 @@ def get_dummy_file(filename=None, content_type=None, content=None):
     files_count += 1
 
     if filename is None:
-        filename = ''.join(unichr(x) for x in range(0x400, 0x40A)).join('-%d' % files_count)
+        filename = ''.join(six.unichr(x) for x in range(0x400, 0x40A)).join('-%d' % files_count)
 
     content_type = 'application/octet'
 
@@ -242,8 +246,8 @@ def get_file_upload(self):
 BaseHandler.get_file_upload = get_file_upload
 
 
-def forge_request(uri='https://www.globaleaks.org/',
-                  headers=None, body='', client_addr=None, method='GET',
+def forge_request(uri=b'https://www.globaleaks.org/',
+                  headers=None, body='', client_addr=None, method=b'GET',
                   handler_cls=None, attached_file={}):
     """
     Creates a twisted.web.Request compliant request that is from an external
@@ -252,38 +256,42 @@ def forge_request(uri='https://www.globaleaks.org/',
     if headers is None:
         headers = {}
 
-    _, host, path, query, frag = urlparse.urlsplit(uri)
+    _, host, path, query, frag = urlsplit(uri)
 
-    x = host.split (':')
+    x = host.split (b':')
     if len(x) > 1:
         port = int(x[1])
     else:
         port = 80
 
-    request = DummyRequest([''])
+    request = DummyRequest([b''])
     request.tid = 1
     request.method = method
     request.uri = uri
     request.path = path
-    request._serverName = bytes(host)
+    request._serverName = host
 
     request.code = 200
-    request.client_ip = '127.0.0.1'
-    request.client_proto = 'https'
+    request.client_ip = b'127.0.0.1'
+    request.client_proto = b'https'
     request.client_using_tor = False
 
     def getResponseBody():
-        return ''.join(request.written)
+        # Ugh, hack. Twisted returns this all as bytes, and we want it as str
+        if isinstance(request.written[0], binary_type):
+            return b''.join(request.written)
+        else:
+            return ''.join(request.written)
 
     request.getResponseBody = getResponseBody
 
     if client_addr is None:
-        request.client = IPv4Address('TCP', '1.2.3.4', 12345)
+        request.client = IPv4Address('TCP', b'1.2.3.4', 12345)
     else:
         request.client = client_addr
 
     def getHost():
-        return IPv4Address('TCP', '127.0.0.1', port)
+        return IPv4Address('TCP', b'127.0.0.1', port)
 
     request.getHost = getHost
 
@@ -292,10 +300,10 @@ def forge_request(uri='https://www.globaleaks.org/',
 
     request.notifyFinish = notifyFinish
 
-    request.requestHeaders.setRawHeaders('host', ['127.0.0.1'])
+    request.requestHeaders.setRawHeaders('host', [b'127.0.0.1'])
 
     for k, v in headers.items():
-        request.requestHeaders.setRawHeaders(bytes(k), [bytes(v)])
+        request.requestHeaders.setRawHeaders(k, [v])
 
     request.headers = request.getAllHeaders()
 
@@ -306,9 +314,14 @@ def forge_request(uri='https://www.globaleaks.org/',
     class fakeBody(object):
         def read(self):
             if isinstance(body, dict):
-                return json.dumps(body)
+                ret = json.dumps(body)
             else:
-                return body
+                ret = body
+
+            if isinstance(ret, text_type):
+                ret = ret.encode('utf-8')
+
+            return ret
 
         def close(self):
             pass
@@ -451,7 +464,7 @@ class TestGL(unittest.TestCase):
         new_u['role'] = role
         new_u['username'] = username
         new_u['name'] = new_u['mail_address'] = \
-            unicode("%s@%s.xxx" % (username, username))
+            text_type("%s@%s.xxx" % (username, username))
         new_u['description'] = u''
         new_u['password'] = VALID_PASSWORD1
         new_u['state'] = u'enabled'
@@ -482,7 +495,7 @@ class TestGL(unittest.TestCase):
             for child in field['children']:
                 self.fill_random_field_recursively(value, child)
         else:
-            value = {'value': unicode(''.join(unichr(x) for x in range(0x400, 0x4FF)))}
+            value = {'value': text_type(''.join(six.unichr(x) for x in range(0x400, 0x4FF)))}
 
         answers[field['id']] = [value]
 
@@ -579,10 +592,10 @@ class TestGL(unittest.TestCase):
         for i in session.query(models.InternalTip) \
                          .filter(models.InternalTip.tid == 1):
             x = wbtip.serialize_wbtip(session, i, 'en')
-            x['receivers_ids'] = zip(*session.query(models.ReceiverTip.receiver_id) \
+            x['receivers_ids'] = list(zip(*session.query(models.ReceiverTip.receiver_id) \
                                            .filter(models.ReceiverTip.internaltip_id == i.id,
                                                    models.InternalTip.id == i.id,
-                                                   models.InternalTip.tid == 1))[0]
+                                                   models.InternalTip.tid == 1)))[0]
             ret.append(x)
 
         return ret
@@ -811,7 +824,7 @@ class TestHandler(TestGLWithPopulatedDB):
         # we need to reset ApiCache to keep each test independent
         ApiCache.invalidate()
 
-    def request(self, body='', uri='https://www.globaleaks.org/',
+    def request(self, body='', uri=b'https://www.globaleaks.org/',
                 user_id=None,  role=None, multilang=False, headers=None,
                 client_addr=None, method='GET', handler_cls=None,
                 attached_file={}, kwargs={}):
@@ -827,7 +840,7 @@ class TestHandler(TestGLWithPopulatedDB):
                                 headers=headers,
                                 body=body,
                                 client_addr=client_addr,
-                                method='GET',
+                                method=b'GET',
                                 attached_file=attached_file)
 
         x = api.APIResourceWrapper()
@@ -854,7 +867,7 @@ class TestHandler(TestGLWithPopulatedDB):
 
         if role is not None:
             session = new_session(1, user_id, role, 'enabled')
-            handler.request.headers['x-session'] = session.id
+            handler.request.headers[b'x-session'] = session.id.encode()
 
         if handler.upload_handler:
             handler.uploaded_file = self.get_dummy_file('upload.pdf')

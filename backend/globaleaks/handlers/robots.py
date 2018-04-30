@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
 #
 # Handlerse dealing with robots/sitemap resources
+from six import binary_type
+
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.rest import errors
 from globaleaks.state import State
-
 
 class RobotstxtHandler(BaseHandler):
     check_roles = '*'
@@ -19,9 +20,13 @@ class RobotstxtHandler(BaseHandler):
            (not State.tenant_cache[self.request.tid].allow_indexing):
             return "User-agent: *\nDisallow: /"
 
+        hostname = State.tenant_cache[self.request.tid].hostname
+        if isinstance(hostname, binary_type):
+            hostname = hostname.decode('utf-8')
+
         data = "User-agent: *\n"
         data += "Allow: /\n"
-        data += "Sitemap: https://%s/sitemap.xml" % State.tenant_cache[self.request.tid].hostname
+        data += "Sitemap: https://%s/sitemap.xml" % hostname
 
         return data
 

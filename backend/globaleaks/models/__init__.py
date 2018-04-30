@@ -6,6 +6,8 @@ from __future__ import absolute_import
 import collections
 import copy
 
+from six import text_type, binary_type
+
 from globaleaks.models import config_desc
 from globaleaks.models.properties import *
 from globaleaks.orm import transact
@@ -13,9 +15,8 @@ from globaleaks.rest import errors
 from globaleaks.utils.security import generateRandomKey
 from globaleaks.utils.utility import datetime_now, datetime_null, datetime_to_ISO8601
 
-
 def get_auth_token():
-    return unicode(generateRandomKey(32))
+    return text_type(generateRandomKey(32))
 
 
 def db_forge_obj(session, mock_class, mock_fields):
@@ -98,7 +99,7 @@ class Model(object):
 
         for k in getattr(self, 'unicode_keys'):
             if k in values and values[k] is not None:
-                setattr(self, k, unicode(values[k]))
+                setattr(self, k, text_type(values[k]))
 
         for k in getattr(self, 'int_keys'):
             if k in values and values[k] is not None:
@@ -139,8 +140,8 @@ class Model(object):
 
     def __setattr__(self, name, value):
         # harder better faster stronger
-        if isinstance(value, str):
-            value = unicode(value)
+        if isinstance(value, binary_type):
+            value = text_type(value, 'utf-8')
 
         return super(Model, self).__setattr__(name, value)
 
@@ -240,7 +241,7 @@ class _Config(Model):
             return
 
         self.tid = tid
-        self.var_name = unicode(name)
+        self.var_name = text_type(name)
         self.set_v(value)
 
     @declared_attr
@@ -252,8 +253,8 @@ class _Config(Model):
         if val is None:
             val = desc._type()
 
-        if isinstance(desc, config_desc.Unicode) and isinstance(val, str):
-            val = unicode(val)
+        if isinstance(desc, config_desc.Unicode) and isinstance(val, binary_type):
+            val = text_type(val, 'utf-8')
 
         if not isinstance(val, desc._type):
             raise ValueError("Cannot assign %s with %s" % (self, type(val)))
@@ -285,12 +286,12 @@ class _ConfigL10N(Model):
             return
 
         self.tid = tid
-        self.lang = unicode(lang_code)
-        self.var_name = unicode(var_name)
-        self.value = unicode(value)
+        self.lang = text_type(lang_code)
+        self.var_name = text_type(var_name)
+        self.value = text_type(value)
 
     def set_v(self, value):
-        value = unicode(value)
+        value = text_type(value)
         if self.value != value:
             self.value = value
             self.customized = True
@@ -429,7 +430,7 @@ class _EnabledLanguage(Model):
             return
 
         self.tid = tid
-        self.name = unicode(name)
+        self.name = text_type(name)
 
     @classmethod
     def list(cls, session, tid):

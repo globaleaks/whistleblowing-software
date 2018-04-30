@@ -6,6 +6,7 @@ from OpenSSL import crypto, SSL
 from OpenSSL._util import lib as _lib, ffi as _ffi
 from OpenSSL.crypto import load_certificate, load_privatekey, FILETYPE_PEM, TYPE_RSA, PKey, dump_certificate_request, \
     X509Req, _new_mem_buf, _bio_to_string
+from six import text_type, binary_type
 from twisted.internet import ssl
 
 
@@ -16,7 +17,7 @@ class ValidationException(Exception):
 def load_dh_params_from_string(ctx, dh_params_string):
     bio = _new_mem_buf()
 
-    _lib.BIO_write(bio, str(dh_params_string), len(str(dh_params_string)))
+    _lib.BIO_write(bio, dh_params_string.encode('ascii'), len(dh_params_string.encode('ascii')))
     dh = _lib.PEM_read_bio_DHparams(bio, _ffi.NULL, _ffi.NULL, _ffi.NULL)
     dh = _ffi.gc(dh, _lib.DH_free)
     _lib.SSL_CTX_set_tmp_dh(ctx._context, dh)
@@ -24,7 +25,7 @@ def load_dh_params_from_string(ctx, dh_params_string):
 
 def gen_dh_params(bits):
     dh = _lib.DH_new()
-    _lib.DH_generate_parameters_ex(dh, bits, 2L, _ffi.NULL)
+    _lib.DH_generate_parameters_ex(dh, bits, 2, _ffi.NULL)
 
     bio = _new_mem_buf()
     _lib.PEM_write_bio_DHparams(bio, dh)
@@ -109,8 +110,12 @@ def split_pem_chain(s):
     gex_str = r"-----BEGIN CERTIFICATE-----\r?.+?\r?-----END CERTIFICATE-----\r?\n?"
     gex = re.compile(gex_str, re.DOTALL)
 
-    return [m.group(0) for m in gex.finditer(s)]
-
+    try:
+        if isinstance(s, binary_type):
+            s = text_type(s, 'utf-8')
+        return [m.group(0) for m in gex.finditer(s)]
+    except UnicodeDecodeError:
+        return None
 
 def new_tls_client_context():
     # evilaliv3:
@@ -139,7 +144,7 @@ def new_tls_server_context():
 
     ctx.set_mode(SSL.MODE_RELEASE_BUFFERS)
 
-    cipher_list = bytes('ECDHE-RSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-SHA384:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-SHA256:ECDHE-RSA-AES256-SHA:DHE-DSS-AES256-SHA:DHE-RSA-AES128-SHA')
+    cipher_list = b'ECDHE-RSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-SHA384:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-SHA256:ECDHE-RSA-AES256-SHA:DHE-DSS-AES256-SHA:DHE-RSA-AES128-SHA'
     ctx.set_cipher_list(cipher_list)
 
     return ctx
@@ -224,7 +229,7 @@ class PrivKeyValidator(CtxValidator):
 
         # Note that the empty string here prevents valid PKCS8 encrypted
         # keys from being used instead of plain pem keys.
-        priv_key = load_privatekey(FILETYPE_PEM, raw_str, passphrase="")
+        priv_key = load_privatekey(FILETYPE_PEM, raw_str, passphrase=b"")
 
         if priv_key.type() != TYPE_RSA or not priv_key.check():
             raise ValidationException('Invalid RSA key')
@@ -252,7 +257,7 @@ class CertValidator(CtxValidator):
 
         ctx.use_certificate(x509)
 
-        priv_key = load_privatekey(FILETYPE_PEM, cfg['ssl_key'], passphrase='')
+        priv_key = load_privatekey(FILETYPE_PEM, cfg['ssl_key'], passphrase=b'')
 
         ctx.use_privatekey(priv_key)
 

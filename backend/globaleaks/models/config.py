@@ -1,11 +1,12 @@
 # -*- coding: utf-8 -*-
 from sqlalchemy import not_
 
+from six import text_type
+
 from globaleaks import __version__
 from globaleaks.models import Config, ConfigL10N, EnabledLanguage
 from globaleaks.models.properties import *
 from globaleaks.models.config_desc import ConfigDescriptor, ConfigFilters
-
 
 class ConfigFactory(object):
     """
@@ -14,7 +15,7 @@ class ConfigFactory(object):
     def __init__(self, session, tid, group, *args, **kwargs):
         self.session = session
         self.tid = tid
-        self.group = unicode(group)
+        self.group = text_type(group)
         self.res = None
         self.keys = ConfigFilters[group]
 

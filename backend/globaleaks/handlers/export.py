@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 #
 # API handling export of submissions
+from six import text_type
 from twisted.internet.defer import Deferred, inlineCallbacks
 
 from globaleaks import models
@@ -15,7 +16,6 @@ from globaleaks.settings import Settings
 from globaleaks.utils.templating import Templating
 from globaleaks.utils.utility import msdos_encode, datetime_now
 from globaleaks.utils.zipstream import ZipStream
-
 
 @transact
 def get_tip_export(session, tid, user_id, rtip_id, language):
@@ -43,7 +43,7 @@ def get_tip_export(session, tid, user_id, rtip_id, language):
 
     export_template = Templating().format_template(export_dict['notification']['export_template'], export_dict).encode('utf-8')
 
-    export_template = msdos_encode(export_template)
+    export_template = msdos_encode(text_type(export_template, 'utf-8'))
 
     export_dict['files'].append({'buf': export_template, 'name': "data.txt"})
 
@@ -110,9 +110,9 @@ class ZipStreamProducer(object):
                 chunk_size += len(data)
                 chunk.append(data)
                 if chunk_size >= Settings.file_chunk_size:
-                    return ''.join(chunk)
+                    return b''.join(chunk)
 
-        return ''.join(chunk)
+        return b''.join(chunk)
 
 
 class ExportHandler(BaseHandler):

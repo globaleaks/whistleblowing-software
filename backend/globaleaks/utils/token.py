@@ -8,6 +8,7 @@
 import os
 from datetime import datetime, timedelta
 from random import SystemRandom
+from six import binary_type
 
 from globaleaks.rest import errors
 from globaleaks.utils.security import sha256, generateRandomKey
@@ -15,7 +16,6 @@ from globaleaks.settings import Settings
 from globaleaks.state import State
 from globaleaks.utils.tempdict import TempDict
 from globaleaks.utils.utility import log, datetime_now, datetime_to_ISO8601
-
 
 class TokenListClass(TempDict):
     def __init__(self, *args, **kwds):
@@ -149,10 +149,10 @@ class Token(object):
         :param resolved_proof_of_work: a string, that has to be an integer
         :return:
         """
-        HASH_ENDS_WITH = '00'
+        HASH_ENDS_WITH = b'00'
 
         resolved = "%s%d" % (self.proof_of_work['question'], request_answer)
-        x = sha256(bytes(resolved))
+        x = sha256(resolved.encode())
         if not x.endswith(HASH_ENDS_WITH):
             log.debug("Failed proof of work validation: expected '%s' at the end of the hash %s (seeds %s + %d)",
                       HASH_ENDS_WITH, x, self.proof_of_work['question'], request_answer)

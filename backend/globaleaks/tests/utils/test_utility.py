@@ -1,5 +1,9 @@
 # -*- coding: utf-8 -*-
-import StringIO
+try:
+    from StringIO import StringIO
+except ImportError:
+    from io import StringIO
+
 import re
 import sys
 from datetime import datetime
@@ -105,14 +109,14 @@ class TestUtility(unittest.TestCase):
 
 class TestLogging(unittest.TestCase):
     def setUp(self):
-        fake_std_out = StringIO.StringIO()
+        fake_std_out = StringIO()
         self._stdout, sys.stdout = sys.stdout, fake_std_out
 
     def tearDown(self):
         sys.stdout = self._stdout
 
     def test_log_emission(self):
-        output_buff = StringIO.StringIO()
+        output_buff = StringIO()
 
         observer = utility.GLLogObserver(output_buff)
         observer.start()

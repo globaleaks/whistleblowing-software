@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
+from six import text_type
 from twisted.internet.defer import inlineCallbacks
+
 from globaleaks.handlers import shorturl
 from globaleaks.handlers.admin import shorturl as admin_shorturl
 from globaleaks.rest import errors
 from globaleaks.tests import helpers
-
 
 class TestShortURLCollection(helpers.TestHandlerWithPopulatedDB):
     _handler = shorturl.ShortURL
@@ -18,5 +19,5 @@ class TestShortURLCollection(helpers.TestHandlerWithPopulatedDB):
             req = self.get_dummy_shorturl(str(i))
             yield admin_shorturl.create_shorturl(1, req)
             handler = self.request(role='admin')
-            response = yield handler.get(unicode(req['shorturl']))
+            response = yield handler.get(text_type(req['shorturl']))
             self.assertEqual(handler.request.responseHeaders.getRawHeaders('location')[0], req['longurl'])

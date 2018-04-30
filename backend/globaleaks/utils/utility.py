@@ -17,6 +17,7 @@ import traceback
 import uuid
 import platform
 from datetime import datetime, timedelta
+from six import text_type, binary_type
 
 if platform.system() == 'Windows':
     import ctypes
@@ -30,7 +31,6 @@ from twisted.web.http import _escape
 from twisted.web._newclient import ResponseNeverReceived, ResponseFailed
 
 from globaleaks import LANGUAGES_SUPPORTED_CODES
-
 
 FAILURES_NET_OUTGOING = (
     ConnectionLost,
@@ -80,7 +80,7 @@ def get_disk_space(path):
 
 
 def read_file(p):
-    with file(p, 'r') as f:
+    with open(p, 'r') as f:
         return f.read().rstrip("\n")
 
 
@@ -124,7 +124,7 @@ def uuid4():
 
     The function is not intended to be used for security reasons.
     """
-    return unicode(uuid.uuid4())
+    return text_type(uuid.uuid4())
 
 
 def sum_dicts(*dicts):
@@ -190,17 +190,25 @@ def log_remove_escapes(s):
     """
     This function removes escape sequence from log strings
     """
-    if isinstance(s, unicode):
-        return codecs.encode(s, 'unicode_escape')
+
+    # This is ugly as sin on Py3
+    if isinstance(s, text_type):
+        return text_type(codecs.encode(s, 'unicode_escape'), 'utf-8')
     else:
         try:
-            unicodelogmsg = str(s).decode('utf-8')
+            if sys.version_info[0] == 2:
+                string = s.decode('utf-8').encode('unicode_escape')
+            else:
+                string = text_type(s, 'unicode_escape')
         except UnicodeDecodeError:
-            return codecs.encode(s, 'string_escape')
+            if sys.version_info[0] == 2:
+                return codecs.encode(s, 'string_escape')
+            else:
+                return text_type(s, 'string_escape')
         except Exception as e:
             return "Failure in log_remove_escapes %r" % e
         else:
-            return codecs.encode(unicodelogmsg, 'unicode_escape')
+            return string
 
 
 def timedLogFormatter(timestamp, request):
@@ -256,12 +264,6 @@ class Logger(object):
         self.loglevel = loglevel
 
     def _print_logline(self, prefix, msg, *args, **kwargs):
-        if not isinstance(msg, str) and not isinstance(msg, unicode):
-            msg = str(msg)
-
-        if isinstance(msg, unicode):
-            msg = msg.encode('utf-8')
-
         msg = (msg % args) if args else msg
 
         msg = log_remove_escapes(msg)

@@ -16,17 +16,29 @@ from globaleaks.rest import errors
 from globaleaks.settings import Settings
 from globaleaks.utils.utility import log
 
+from six import text_type, binary_type
+
 crypto_backend = default_backend()
 
 
 def sha256(data):
     h = hashes.Hash(hashes.SHA256(), backend=crypto_backend)
+
+    # Transparently convert str types to bytes
+    if isinstance(data, text_type):
+        data = data.encode()
+
     h.update(data)
     return binascii.b2a_hex(h.finalize())
 
 
 def sha512(data):
     h = hashes.Hash(hashes.SHA512(), backend=crypto_backend)
+
+    # Transparently convert str types to bytes
+    if isinstance(data, text_type):
+        data = data.encode()
+
     h.update(data)
     return binascii.b2a_hex(h.finalize())
 
@@ -35,21 +47,27 @@ def generateRandomReceipt():
     """
     Return a random receipt of 16 digits
     """
-    return ''.join(random.SystemRandom().choice(string.digits) for _ in range(16)).encode('utf-8')
+    return ''.join(random.SystemRandom().choice(string.digits) for _ in range(16))
 
 
 def generateRandomKey(N):
     """
     Return a random key of N characters in a-zA-Z0-9
     """
-    return ''.join(random.SystemRandom().choice(string.ascii_letters + string.digits) for _ in range(N)).encode('utf-8')
+    return ''.join(random.SystemRandom().choice(string.ascii_letters + string.digits) for _ in range(N))
 
 
 def generateRandomSalt():
     """
     Return a base64 encoded string with 128 bit of entropy
     """
-    return base64.b64encode(os.urandom(16))
+
+    # Py3 fix explaination: Normally, we'd use text_type here,
+    # however, on Py2, scrypt *wants* str on both Python2/3, (and throws an
+    # an exception). As B64 encoded data is always ASCII, this should be
+    # able to go safely in and out of the database.
+
+    return str(base64.b64encode(os.urandom(16)))
 
 
 def generate_api_token():
@@ -59,7 +77,7 @@ def generate_api_token():
     :rtype: A `tuple` containing (digest `str`, token `str`)
     """
     token = generateRandomKey(Settings.api_token_len)
-    return token, sha512(token)
+    return token, sha512(token.encode())
 
 
 def _overwrite(absolutefpath, pattern):
@@ -148,12 +166,14 @@ def hash_password(password, salt):
         the salted scrypt hash of the provided password
     """
     password = password.encode('utf-8')
-    salt = salt.encode('utf-8')
-    return scrypt.hash(password, salt).encode('hex')
+    salt = text_type(salt).encode('utf-8')
+    return binascii.hexlify(scrypt.hash(password, salt))
 
 
 def check_password(guessed_password, salt, password_hash):
-    return constant_time.bytes_eq(hash_password(guessed_password, salt), bytes(password_hash))
+    if isinstance(password_hash, text_type):
+        password_hash = password_hash.encode()
+    return constant_time.bytes_eq(hash_password(guessed_password, salt), password_hash)
 
 
 def change_password(old_password_hash, old_password, new_password, salt):

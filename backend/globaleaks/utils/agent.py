@@ -6,7 +6,7 @@ from twisted.internet.endpoints import TCP4ClientEndpoint
 from twisted.web.client import Agent, readBody
 
 
-def get_tor_agent(socks_host='127.0.0.1', socks_port=9050):
+def get_tor_agent(socks_host=b'127.0.0.1', socks_port=9050):
     """
     An HTTP agent that uses SOCKS5 to proxy all requests through the socks_port
 
@@ -24,7 +24,7 @@ def get_web_agent():
 
 
 def get_page(agent, url):
-    request = agent.request('GET', url)
+    request = agent.request(b'GET', url)
 
     request.addCallback(readBody)
 

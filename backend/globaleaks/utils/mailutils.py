@@ -4,9 +4,16 @@
 # *********
 #
 # GlobaLeaks Utility used to handle Mail, format, exception, etc
-import StringIO
+import email
 import sys
-from email import utils, Charset  # pylint: disable=no-name-in-module
+
+if sys.version_info[0] == 2:
+    from six import StringIO
+    from email import Charset # pylint: disable=no-name-in-module
+else:
+    from io import BytesIO
+
+from email import utils  # pylint: disable=no-name-in-module
 from email.header import Header
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
@@ -21,13 +28,13 @@ from globaleaks.utils.socks import SOCKS5ClientEndpoint
 from globaleaks.utils.tls import TLSClientContextFactory
 from globaleaks.utils.utility import log
 
-
 def MIME_mail_build(src_name, src_mail, dest_name, dest_mail, title, mail_body):
     # Override python's weird assumption that utf-8 text should be encoded with
     # base64, and instead use quoted-printable (for both subject and body).  I
     # can't figure out a way to specify QP (quoted-printable) instead of base64 in
     # a way that doesn't modify global state. :-(
-    Charset.add_charset('utf-8', Charset.QP, Charset.QP, 'utf-8')
+    if sys.version_info[0] == 2:
+        Charset.add_charset('utf-8', Charset.QP, Charset.QP, 'utf-8') # pylint: disable=undefined-variable, no-member
 
     # This example is of an email with text and html alternatives.
     multipart = MIMEMultipart('alternative')
@@ -44,7 +51,10 @@ def MIME_mail_build(src_name, src_mail, dest_name, dest_mail, title, mail_body):
 
     multipart.attach(MIMEText(mail_body.encode('utf-8'), 'plain', 'UTF-8'))
 
-    return StringIO.StringIO(multipart.as_string())
+    if sys.version_info[0] == 2:
+        return StringIO(multipart.as_string())
+    else:
+        return BytesIO(multipart.as_bytes()) # pylint: disable=no-member
 
 
 def sendmail(tid, username, password, smtp_host, smtp_port, security, from_name, from_address, to_address, subject, body, anonymize=True, socks_host='127.0.0.1', socks_port=9050):

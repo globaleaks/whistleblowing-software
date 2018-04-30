@@ -1,9 +1,9 @@
 # -*- coding: utf-8
-from urlparse import urlparse
+from six import text_type
+from six.moves.urllib.parse import urlparse # pylint: disable=import-error
 
 from globaleaks.db.migrations.update import MigrationBase
 from globaleaks.models.properties import *
-
 
 class MigrationScript(MigrationBase):
     def epilogue(self):
@@ -22,14 +22,14 @@ class MigrationScript(MigrationBase):
 
         self.session_new.query(config).filter(config.var_group == u'node', config.var_name == u'public_site').delete()
 
-        add_raw_config(self.session_new, u'node', u'hostname', domain != '', unicode(domain))
+        add_raw_config(self.session_new, u'node', u'hostname', domain != '', text_type(domain))
 
         o = urlparse(self.session_new.query(config).filter(config.var_name == u'hidden_service').one().value['v'])
         domain = o.hostname if not o.hostname is None else ''
 
         self.session_new.query(config).filter(config.var_group == u'node', config.var_name == u'hidden_service').delete(synchronize_session='fetch')
 
-        add_raw_config(self.session_new, u'node', u'onionservice', domain != '', unicode(domain))
+        add_raw_config(self.session_new, u'node', u'onionservice', domain != '', text_type(domain))
 
         add_raw_config(self.session_new, u'node', u'reachable_via_web', False, False)
         self.entries_count['Config'] += 1

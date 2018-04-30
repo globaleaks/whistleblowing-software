@@ -14,6 +14,9 @@ matrix:
     - env: GLTEST='test'
       python: "2.7"
 
+    - env: GLTEST='py3_test'
+      python: "3.6"
+
     - env: GLTEST='lint'
       python: "2.7"
 

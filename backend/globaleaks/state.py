@@ -4,6 +4,8 @@ import re
 import sys
 import traceback
 
+from six import text_type
+
 from twisted.internet import defer
 from twisted.mail.smtp import SMTPError
 from twisted.python.failure import Failure
@@ -76,7 +78,7 @@ class StateClass(ObjectDict):
 
 
     def init_environment(self):
-        os.umask(077)
+        os.umask(0o77)
         self.settings.eval_paths()
         self.create_directories()
         self.cleaning_dead_files()
@@ -205,7 +207,7 @@ class StateClass(ObjectDict):
 
         exception_text = (exception_text % args) if args else exception_text
 
-        sha256_hash = sha256(bytes(exception_text))
+        sha256_hash = sha256(exception_text.encode())
 
         if sha256_hash not in self.exceptions:
             self.exceptions[sha256_hash] = 0
@@ -224,7 +226,7 @@ class StateClass(ObjectDict):
             mail_subject +=  " [%s]" % self.settings.developer_name
             delivery_list = [("globaleaks-stackexception-devel@globaleaks.org", '')]
 
-        mail_body = bytes("Platform: %s\nHost: %s (%s)\nVersion: %s\n\n%s" \
+        mail_body = text_type("Platform: %s\nHost: %s (%s)\nVersion: %s\n\n%s" \
                           % (self.tenant_cache[1].name,
                              self.tenant_cache[1].hostname,
                              self.tenant_cache[1].onionservice,

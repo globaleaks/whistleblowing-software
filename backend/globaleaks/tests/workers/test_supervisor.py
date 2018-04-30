@@ -2,7 +2,7 @@
 import json
 import ssl
 import tempfile
-import urllib2
+from six.moves import urllib
 
 from twisted.internet import threads, reactor
 from twisted.internet.defer import inlineCallbacks
@@ -80,7 +80,8 @@ class TestSubprocessRun(helpers.TestGL):
 
         https_sock, _ = reserve_port_for_ip('127.0.0.1', 9443)
         self.https_socks = [https_sock]
-        ssl._https_verify_certificates(enable=False)
+        ssl._create_default_https_context = ssl._create_unverified_context
+
         yield test_tls.commit_valid_config()
 
     @inlineCallbacks
@@ -93,7 +94,7 @@ class TestSubprocessRun(helpers.TestGL):
         }
         valid_cfg['site_cfgs'] = yield wrap_db_tx(load_tls_dict_list)
 
-        tmp = tempfile.TemporaryFile()
+        tmp = tempfile.TemporaryFile(mode='w')
         tmp.write(json.dumps(valid_cfg))
         tmp.seek(0,0)
         tmp_fd = tmp.fileno()
@@ -113,21 +114,21 @@ class TestSubprocessRun(helpers.TestGL):
 
     def fetch_resource_with_fail(self):
         try:
-            urllib2.urlopen('https://127.0.0.1:9443')
+            urllib.request.urlopen('https://127.0.0.1:9443')
 
             self.fail('Request had to throw a 502')
-        except urllib2.HTTPError as e:
+        except urllib.error.HTTPError as e:
             # Ensure the connection always has an HSTS header
             self.assertEqual(e.headers.get('Strict-Transport-Security'), 'max-age=31536000')
             self.assertEqual(e.code, 502)
             return
 
     def fetch_resource(self):
-        response = urllib2.urlopen('https://127.0.0.1:9443/hello.txt')
+        response = urllib.request.urlopen('https://127.0.0.1:9443/hello.txt')
         hdrs = response.info()
         self.assertEqual(hdrs.get('Strict-Transport-Security'), 'max-age=31536000')
 
-        self.assertEqual(response.read(), 'Hello, world!\n')
+        self.assertEqual(response.read(), b'Hello, world!\n')
 
     def tearDown(self):
         if hasattr(self, 'http_process'):

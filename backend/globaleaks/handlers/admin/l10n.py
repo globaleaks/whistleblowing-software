@@ -9,10 +9,11 @@
 # This code differs from handlers/file.py because files here are not tracked in the DB
 import json
 
+from six import binary_type
+
 from globaleaks import models
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.orm import transact
-
 
 @transact
 def get(session, tid, lang):
@@ -40,7 +41,11 @@ class AdminL10NHandler(BaseHandler):
         return get(self.request.tid, lang)
 
     def put(self, lang):
-        return update(self.request.tid, lang, json.loads(self.request.content.read()))
+        content = self.request.content.read()
+        if isinstance(content, binary_type):
+            content = content.decode('utf-8')
+
+        return update(self.request.tid, lang, json.loads(content))
 
     def delete(self, lang):
         return models.delete(models.CustomTexts, models.CustomTexts.tid == self.request.tid, models.CustomTexts.lang == lang)
