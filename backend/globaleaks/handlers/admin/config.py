@@ -11,7 +11,7 @@ from globaleaks.rest import errors
 from globaleaks.utils.utility import is_common_net_error
 
 from six import text_type, binary_type
-from six.moves.urllib.parse import urlparse, urlunsplit
+from six.moves.urllib.parse import urlparse, urlunsplit # pylint: disable=import-error
 
 @transact
 def check_hostname(session, tid, input_hostname):
