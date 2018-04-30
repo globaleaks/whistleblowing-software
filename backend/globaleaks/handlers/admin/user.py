@@ -4,6 +4,8 @@
 #   *****
 # Implementation of the User model functionalities
 #
+from six import text_type
+
 from globaleaks import models
 from globaleaks.db import db_refresh_memory_variables
 from globaleaks.handlers.base import BaseHandler
@@ -14,8 +16,6 @@ from globaleaks.state import State
 from globaleaks.utils import security
 from globaleaks.utils.structures import fill_localized_keys, get_localized_values
 from globaleaks.utils.utility import datetime_now
-
-from six import text_type
 
 def admin_serialize_receiver(session, receiver, user, language):
     """

@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
+from six import text_type
 from twisted.internet.defer import inlineCallbacks
+
 from globaleaks.handlers import shorturl
 from globaleaks.handlers.admin import shorturl as admin_shorturl
 from globaleaks.rest import errors
 from globaleaks.tests import helpers
-
-from six import text_type
 
 class TestShortURLCollection(helpers.TestHandlerWithPopulatedDB):
     _handler = shorturl.ShortURL

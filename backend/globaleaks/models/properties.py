@@ -2,13 +2,14 @@
 # pylint: disable=unused-import
 import json
 
+from six import text_type
+
 from sqlalchemy import Column, CheckConstraint, ForeignKeyConstraint, UniqueConstraint, types
 from sqlalchemy.types import Boolean, DateTime, Integer, Unicode, UnicodeText
 from sqlalchemy.ext.declarative import declarative_base, declared_attr
 from sqlalchemy.schema import ForeignKey
 
 from globaleaks.utils.utility import uuid4
-from six import text_type
 # pylint: enable=unused-import
 
 class JSON(types.TypeDecorator):

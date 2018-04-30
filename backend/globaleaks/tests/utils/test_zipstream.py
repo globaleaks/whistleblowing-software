@@ -5,13 +5,13 @@ except ImportError:
     from io import BytesIO
 
 import os
-from zipfile import ZipFile
-
 import six
+
+from twisted.internet.defer import inlineCallbacks
+from zipfile import ZipFile
 
 from globaleaks.tests import helpers
 from globaleaks.utils.zipstream import ZipStream
-from twisted.internet.defer import inlineCallbacks
 
 
 class TestZipStream(helpers.TestGL):

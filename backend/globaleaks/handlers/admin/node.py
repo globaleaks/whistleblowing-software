@@ -3,6 +3,7 @@
 #   /admin/node
 #   *****
 # Implementation of the code executed on handler /admin/node
+from six import text_type
 
 from globaleaks import models, utils, LANGUAGES_SUPPORTED_CODES, LANGUAGES_SUPPORTED
 from globaleaks.db import db_refresh_memory_variables
@@ -13,8 +14,6 @@ from globaleaks.orm import transact
 from globaleaks.rest import errors, requests
 from globaleaks.state import State
 from globaleaks.utils.utility import log
-
-from six import text_type
 
 def db_admin_serialize_node(session, tid, language):
     config = ConfigFactory(session, tid, 'admin_node').serialize()

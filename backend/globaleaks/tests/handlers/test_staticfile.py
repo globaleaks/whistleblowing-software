@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
+from six import text_type
+from twisted.internet.defer import inlineCallbacks
+
 from globaleaks.handlers.staticfile import StaticFileHandler
 from globaleaks.rest import errors
 from globaleaks.settings import Settings
 from globaleaks.tests import helpers
-from twisted.internet.defer import inlineCallbacks
-
-from six import text_type
 
 FUTURE = 100
 

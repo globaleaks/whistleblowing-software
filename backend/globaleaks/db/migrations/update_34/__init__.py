@@ -2,14 +2,14 @@
 import base64
 import os
 
+from six import text_type
+
 from globaleaks import models
 from globaleaks.db.migrations.update import MigrationBase
 from globaleaks.db.migrations.update_34.config import GLConfig_v_35
 from globaleaks.models.properties import *
 from globaleaks.settings import Settings
 from globaleaks.utils.utility import datetime_null, iso_strf_time
-
-from six import text_type
 
 class Node_v_33(models.Model):
     __tablename__ = 'node'

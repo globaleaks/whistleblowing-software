@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 #
 # Handlerse dealing with robots/sitemap resources
+from six import binary_type
+
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.rest import errors
 from globaleaks.state import State
-
-from six import binary_type
 
 class RobotstxtHandler(BaseHandler):
     check_roles = '*'

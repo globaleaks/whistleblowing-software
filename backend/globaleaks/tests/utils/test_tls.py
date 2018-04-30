@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import os
 
+from six import text_type
 from OpenSSL import crypto
 from OpenSSL.crypto import FILETYPE_PEM
 from twisted.trial.unittest import TestCase
@@ -9,8 +10,6 @@ from globaleaks.models.config import ConfigFactory
 from globaleaks.orm import transact
 from globaleaks.tests import helpers
 from globaleaks.utils import tls
-
-from six import text_type
 
 class TestKeyGen(TestCase):
     def test_dh_params(self):

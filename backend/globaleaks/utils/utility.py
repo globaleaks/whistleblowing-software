@@ -17,6 +17,7 @@ import traceback
 import uuid
 import platform
 from datetime import datetime, timedelta
+from six import text_type, binary_type
 
 if platform.system() == 'Windows':
     import ctypes
@@ -30,8 +31,6 @@ from twisted.web.http import _escape
 from twisted.web._newclient import ResponseNeverReceived, ResponseFailed
 
 from globaleaks import LANGUAGES_SUPPORTED_CODES
-
-from six import text_type, binary_type
 
 FAILURES_NET_OUTGOING = (
     ConnectionLost,

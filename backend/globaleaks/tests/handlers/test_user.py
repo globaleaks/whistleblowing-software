@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
+from six import text_type
+from twisted.internet.defer import inlineCallbacks
+
 from globaleaks.handlers import user
 from globaleaks.handlers.admin import receiver
 from globaleaks.rest import errors
 from globaleaks.tests import helpers
-from twisted.internet.defer import inlineCallbacks
-
-from six import text_type
 
 class TestUserInstance(helpers.TestHandlerWithPopulatedDB):
     _handler = user.UserInstance
