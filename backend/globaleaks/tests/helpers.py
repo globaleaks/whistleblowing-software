@@ -36,7 +36,7 @@ from twisted.web.test.requesthelper import DummyRequest
 
 from . import TEST_DIR
 
-from globaleaks import db, models, orm, event, jobs, __version__
+from globaleaks import db, models, orm, event, jobs, __version__, DATABASE_VERSION
 from globaleaks.anomaly import Alarm
 from globaleaks.db.appdata import load_appdata
 from globaleaks.orm import transact
@@ -353,8 +353,8 @@ class TestGL(unittest.TestCase):
 
         if self.initialize_test_database_using_archived_db:
             shutil.copy(
-                os.path.join(TEST_DIR, 'db', 'empty', Settings.db_file_name),
-                os.path.join(Settings.working_path, 'db', Settings.db_file_name)
+                os.path.join(TEST_DIR, 'db', 'empty', 'glbackend-%d.db' % DATABASE_VERSION),
+                os.path.join(Settings.db_file_path)
             )
         else:
             yield db.create_db()
