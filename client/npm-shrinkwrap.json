@@ -1397,6 +1397,23 @@
         "readable-stream": "2.3.4"
       }
     },
+    "compressjs": {
+      "version": "github:openpgpjs/compressjs#ce5ccbede61f075926081e29573c8a79ddf10d88",
+      "requires": {
+        "amdefine": "1.0.1",
+        "commander": "2.8.1"
+      },
+      "dependencies": {
+        "commander": {
+          "version": "2.8.1",
+          "resolved": "https://registry.npmjs.org/commander/-/commander-2.8.1.tgz",
+          "integrity": "sha1-Br42f+v9oMMwqh4qBy09yXYkJdQ=",
+          "requires": {
+            "graceful-readlink": "1.0.1"
+          }
+        }
+      }
+    },
     "concat-map": {
       "version": "0.0.1",
       "resolved": "https://registry.npmjs.org/concat-map/-/concat-map-0.0.1.tgz",
@@ -1708,9 +1725,9 @@
       }
     },
     "coveralls": {
-      "version": "3.0.0",
-      "resolved": "https://registry.npmjs.org/coveralls/-/coveralls-3.0.0.tgz",
-      "integrity": "sha512-ZppXR9y5PraUOrf/DzHJY6gzNUhXYE3b9D43xEXs4QYZ7/Oe0Gy0CS+IPKWFfvQFXB3RG9QduaQUFehzSpGAFw==",
+      "version": "3.0.1",
+      "resolved": "https://registry.npmjs.org/coveralls/-/coveralls-3.0.1.tgz",
+      "integrity": "sha512-FAzXwiDOYLGDWH+zgoIA+8GbWv50hlx+kpEJyvzLKOdnIBv9uWoVl4DhqGgyUHpiRjAlF8KYZSipWXYtllWH6Q==",
       "dev": true,
       "requires": {
         "js-yaml": "3.10.0",
@@ -2922,9 +2939,9 @@
       }
     },
     "formidable": {
-      "version": "1.1.1",
-      "resolved": "https://registry.npmjs.org/formidable/-/formidable-1.1.1.tgz",
-      "integrity": "sha1-lriIb3w8NQi5Mta9cMTTqI818ak=",
+      "version": "1.2.1",
+      "resolved": "https://registry.npmjs.org/formidable/-/formidable-1.2.1.tgz",
+      "integrity": "sha512-Fs9VRguL0gqGHkXS5GQiMCr1VhZBxz0JnJs4JmMp/2jL18Fmbzvv7vOFRU+U8TBkHEE/CX1qDXzJplVULgsLeg==",
       "dev": true
     },
     "fresh": {
@@ -5835,9 +5852,9 @@
       "optional": true
     },
     "jsdom": {
-      "version": "11.9.0",
-      "resolved": "https://registry.npmjs.org/jsdom/-/jsdom-11.9.0.tgz",
-      "integrity": "sha512-sb3omwJTJ+HwAltLZevM/KQBusY+l2Ar5UfnTCWk9oUVBiDnQPBNiG1BaTAKttCnneonYbNo7vi4EFDY2lBfNA==",
+      "version": "11.10.0",
+      "resolved": "https://registry.npmjs.org/jsdom/-/jsdom-11.10.0.tgz",
+      "integrity": "sha512-x5No5FpJgBg3j5aBwA8ka6eGuS5IxbC8FOkmyccKvObtFT0bDMict/LOxINZsZGZSfGdNomLZ/qRV9Bpq/GIBA==",
       "dev": true,
       "requires": {
         "abab": "1.0.4",
@@ -9160,9 +9177,9 @@
       }
     },
     "openpgp": {
-      "version": "3.0.7",
-      "resolved": "https://registry.npmjs.org/openpgp/-/openpgp-3.0.7.tgz",
-      "integrity": "sha512-jIzuxwAQfOeFuZ1ezVXcIvDghfuPIt3FQCoT4DBvTQ3RTKJuC1oFkjP5pyVeAy5QbwXsBuKaEwy31a0Sv8I5Qw==",
+      "version": "3.0.9",
+      "resolved": "https://registry.npmjs.org/openpgp/-/openpgp-3.0.9.tgz",
+      "integrity": "sha512-XtbbcL7I2bdSP0MGaEgUGvYXQA7PMnTpPz7SvcS+DZxvg5Nda6/toGeV+owG93crm7HMhVwNUd3gjqVaB+WJ7g==",
       "requires": {
         "asmcrypto.js": "0.22.0",
         "asn1.js": "5.0.0",
@@ -9177,21 +9194,6 @@
         "rusha": "0.8.13"
       },
       "dependencies": {
-        "commander": {
-          "version": "2.8.1",
-          "resolved": "https://registry.npmjs.org/commander/-/commander-2.8.1.tgz",
-          "integrity": "sha1-Br42f+v9oMMwqh4qBy09yXYkJdQ=",
-          "requires": {
-            "graceful-readlink": "1.0.1"
-          }
-        },
-        "compressjs": {
-          "version": "github:openpgpjs/compressjs#ce5ccbede61f075926081e29573c8a79ddf10d88",
-          "requires": {
-            "amdefine": "1.0.1",
-            "commander": "2.8.1"
-          }
-        },
         "elliptic": {
           "version": "github:openpgpjs/elliptic#e187e706e11fa51bcd20e46e5119054be4e2a4a6",
           "requires": {
@@ -10717,9 +10719,9 @@
       }
     },
     "superagent": {
-      "version": "3.8.2",
-      "resolved": "https://registry.npmjs.org/superagent/-/superagent-3.8.2.tgz",
-      "integrity": "sha512-gVH4QfYHcY3P0f/BZzavLreHW3T1v7hG9B+hpMQotGQqurOvhv87GcMCd6LWySmBuf+BDR44TQd0aISjVHLeNQ==",
+      "version": "3.8.3",
+      "resolved": "https://registry.npmjs.org/superagent/-/superagent-3.8.3.tgz",
+      "integrity": "sha512-GLQtLMCoEIK4eDv6OGtkOoSMt3D+oq0y3dsxMuYuDvaNUvuT8eFBuLmfR0iYYzHC1e8hpzC6ZsxbuP6DIalMFA==",
       "dev": true,
       "requires": {
         "component-emitter": "1.2.1",
@@ -10727,11 +10729,37 @@
         "debug": "3.1.0",
         "extend": "3.0.1",
         "form-data": "2.3.2",
-        "formidable": "1.1.1",
+        "formidable": "1.2.1",
         "methods": "1.1.2",
         "mime": "1.4.1",
         "qs": "6.5.1",
-        "readable-stream": "2.3.4"
+        "readable-stream": "2.3.6"
+      },
+      "dependencies": {
+        "readable-stream": {
+          "version": "2.3.6",
+          "resolved": "https://registry.npmjs.org/readable-stream/-/readable-stream-2.3.6.tgz",
+          "integrity": "sha512-tQtKA9WIAhBF3+VLAseyMqZeBjW0AHJoxOtYqSUZNJxauErmLbVm2FW1y+J/YA9dUrAC39ITejlZWhVIwawkKw==",
+          "dev": true,
+          "requires": {
+            "core-util-is": "1.0.2",
+            "inherits": "2.0.3",
+            "isarray": "1.0.0",
+            "process-nextick-args": "2.0.0",
+            "safe-buffer": "5.1.1",
+            "string_decoder": "1.1.1",
+            "util-deprecate": "1.0.2"
+          }
+        },
+        "string_decoder": {
+          "version": "1.1.1",
+          "resolved": "https://registry.npmjs.org/string_decoder/-/string_decoder-1.1.1.tgz",
+          "integrity": "sha512-n/ShnvDi6FHbbVfviro+WojiFzv+s8MPMHBczVePfUpDJLwoLT0ht1l4YwBCbi8pJAveEEdnkHyPyTP/mzRfwg==",
+          "dev": true,
+          "requires": {
+            "safe-buffer": "5.1.1"
+          }
+        }
       }
     },
     "supertest": {
@@ -10741,7 +10769,7 @@
       "dev": true,
       "requires": {
         "methods": "1.1.2",
-        "superagent": "3.8.2"
+        "superagent": "3.8.3"
       }
     },
     "supports-color": {
