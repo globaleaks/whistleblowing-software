@@ -12,7 +12,7 @@ model_map = {
 }
 
 
-def db_get_model_img(session, tid, obj_key, obj_id):
+def db_get_model_img(session, obj_key, obj_id):
     model = model_map[obj_key]
     img =  session.query(model).filter(model.id == obj_id).one_or_none()
     if img is None:
@@ -22,8 +22,8 @@ def db_get_model_img(session, tid, obj_key, obj_id):
 
 
 @transact
-def get_model_img(session, tid, obj_key, obj_id):
-    return db_get_model_img(session, tid, obj_key, obj_id)
+def get_model_img(session, obj_key, obj_id):
+    return db_get_model_img(session, obj_key, obj_id)
 
 
 @transact
