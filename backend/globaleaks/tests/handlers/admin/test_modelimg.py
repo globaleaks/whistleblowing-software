@@ -13,7 +13,7 @@ class TestModelImgInstance(helpers.TestHandlerWithPopulatedDB):
 
         yield handler.post('users', self.dummyReceiverUser_1['id'])
 
-        img = yield modelimgs.get_model_img(1, 'users', self.dummyReceiverUser_1['id'])
+        img = yield modelimgs.get_model_img('users', self.dummyReceiverUser_1['id'])
         self.assertNotEqual(img, '')
 
     @inlineCallbacks
@@ -21,5 +21,5 @@ class TestModelImgInstance(helpers.TestHandlerWithPopulatedDB):
         handler = self.request({}, role='admin')
         yield handler.delete('users', self.dummyReceiverUser_1['id'])
 
-        img = yield modelimgs.get_model_img(1, 'users', self.dummyReceiverUser_1['id'])
+        img = yield modelimgs.get_model_img('users', self.dummyReceiverUser_1['id'])
         self.assertEqual(img, '')

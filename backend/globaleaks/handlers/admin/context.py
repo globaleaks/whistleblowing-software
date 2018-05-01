@@ -26,7 +26,7 @@ def admin_serialize_context(session, context, language):
     receivers = [r[0] for r in session.query(models.ReceiverContext.receiver_id) \
                                       .filter(models.ReceiverContext.context_id == context.id) \
                                       .order_by(models.ReceiverContext.presentation_order)]
-    picture = db_get_model_img(session, context.tid, 'contexts', context.id)
+    picture = db_get_model_img(session, 'contexts', context.id)
 
     ret_dict = {
         'id': context.id,
