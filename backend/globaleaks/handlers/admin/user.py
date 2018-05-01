@@ -100,9 +100,6 @@ def db_create_user(session, state, tid, request, language):
         'mail_address': request['mail_address']
     })
 
-    if not request['username']:
-        user.username = user.id
-
     if request['password']:
         password = request['password']
     elif user.role == 'receiver':
@@ -120,6 +117,9 @@ def db_create_user(session, state, tid, request, language):
     session.add(user)
 
     session.flush()
+
+    if not request['username']:
+        user.username = user.id
 
     return user
 
