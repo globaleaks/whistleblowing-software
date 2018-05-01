@@ -120,7 +120,6 @@ class StateClass(ObjectDict):
         because here stay all the files needed by the application except the python scripts
         """
         for dirpath in [self.settings.working_path,
-                        self.settings.db_path,
                         self.settings.files_path,
                         self.settings.attachments_path,
                         self.settings.tmp_path,

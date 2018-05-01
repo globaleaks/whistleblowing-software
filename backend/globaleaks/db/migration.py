@@ -32,7 +32,7 @@ from globaleaks.db.migrations.update_39 import \
     Questionnaire_v_38, Receiver_v_38, ReceiverContext_v_38, \
     ReceiverFile_v_38, ReceiverTip_v_38, ShortURL_v_38, Stats_v_38, \
     Step_v_38, User_v_38, WhistleblowerFile_v_38, WhistleblowerTip_v_38
-from globaleaks.orm import get_engine, make_db_uri
+from globaleaks.orm import get_engine, get_session, make_db_uri
 from globaleaks.models import config, Base
 from globaleaks.models.config import ConfigFactory
 from globaleaks.settings import Settings
@@ -100,8 +100,7 @@ def get_right_model(migration_mapping, model_name, version):
 
 
 def perform_data_update(db_file):
-    engine = get_engine(make_db_uri(db_file), foreign_keys=False)
-    session = sessionmaker(bind=engine)()
+    session = get_session(make_db_uri(db_file))
 
     enabled_languages = [lang.name for lang in session.query(models.EnabledLanguage)]
 
@@ -151,9 +150,13 @@ def perform_migration(version):
         log.info("Migrations from DB version lower than %d are no longer supported!" % FIRST_DATABASE_VERSION_SUPPORTED)
         quit()
 
-    tmpdir =  os.path.abspath(os.path.join(Settings.db_path, 'tmp'))
-    orig_db_file = os.path.abspath(os.path.join(Settings.db_path, 'glbackend-%d.db' % version))
-    final_db_file = os.path.abspath(os.path.join(Settings.db_path, 'glbackend-%d.db' % DATABASE_VERSION))
+    tmpdir =  os.path.abspath(os.path.join(Settings.tmp_path, 'tmp'))
+    if version < 41:
+        orig_db_file = os.path.abspath(os.path.join(Settings.working_path, 'db', 'glbackend-%d.db' % version))
+    else:
+        orig_db_file = os.path.abspath(os.path.join(Settings.working_path, 'globaleaks.db'))
+
+    final_db_file = os.path.abspath(os.path.join(Settings.working_path, 'globaleaks.db'))
 
     shutil.rmtree(tmpdir, True)
     os.mkdir(tmpdir)
@@ -175,8 +178,7 @@ def perform_migration(version):
             log.info("Updating DB from version %d to version %d" % (version, version + 1))
 
             j = version - FIRST_DATABASE_VERSION_SUPPORTED
-            engine = get_engine(make_db_uri(old_db_file), foreign_keys=False)
-            session_old = sessionmaker(bind=engine)()
+            session_old = get_session(make_db_uri(old_db_file))
 
             engine = get_engine(make_db_uri(new_db_file), foreign_keys=False)
             if FIRST_DATABASE_VERSION_SUPPORTED + j + 1 == DATABASE_VERSION:
@@ -224,8 +226,7 @@ def perform_migration(version):
             log.info("Migration stats:")
 
             # we open a new db in order to verify integrity of the generated file
-            engine = get_engine(make_db_uri(new_db_file))
-            session_verify = sessionmaker(bind=engine)()
+            session_verify = get_session(make_db_uri(new_db_file))
 
             for model_name, _ in migration_mapping.items():
                 if migration_script.model_from[model_name] is not None and migration_script.model_to[model_name] is not None:
@@ -254,6 +255,10 @@ def perform_migration(version):
         # in case of success first copy the new migrated db, then as last action delete the original db file
         shutil.copy(new_db_file, final_db_file)
         overwrite_and_remove(orig_db_file)
+
+        path = os.path.join(Settings.working_path, 'db')
+        if os.path.exists(path):
+            shutil.rmtree(path)
 
     finally:
         # Always cleanup the temporary directory used for the migration

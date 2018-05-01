@@ -10,9 +10,9 @@ from sqlalchemy import exc as sa_exc
 
 from globaleaks import models, DATABASE_VERSION
 from globaleaks.handlers.base import Session
-from globaleaks.models import Config
+from globaleaks.models import Config, Tenant
 from globaleaks.models.config_desc import ConfigFilters
-from globaleaks.orm import transact, transact_sync
+from globaleaks.orm import transact, transact_sync, get_session, make_db_uri
 from globaleaks.settings import Settings
 from globaleaks.state import State, TenantState
 from globaleaks.utils import security
@@ -20,9 +20,16 @@ from globaleaks.utils.objectdict import ObjectDict
 from globaleaks.utils.utility import log
 
 def get_db_file(db_path):
+    path = os.path.join(db_path, 'globaleaks.db')
+    if os.path.exists(path):
+        session = get_session(make_db_uri(path))
+        version_db = session.query(models.Config.value).filter(Config.tid == 1, Config.var_name == u'version_db').one()[0]
+        session.close()
+        return (version_db, path)
+
     for i in reversed(range(0, DATABASE_VERSION + 1)):
         file_name = 'glbackend-%d.db' % i
-        db_file_path = os.path.join(db_path, file_name)
+        db_file_path = os.path.join(db_path, 'db', file_name)
         if os.path.exists(db_file_path):
             return (i, db_file_path)
 
@@ -51,15 +58,14 @@ def update_db():
     """
     This function handles update of an existing database
     """
+    db_version, db_file_path = get_db_file(Settings.working_path)
+    if db_version == 0:
+        return 0
+
     try:
         with warnings.catch_warnings():
-            warnings.simplefilter("ignore", category=sa_exc.SAWarning)
-
             from globaleaks.db import migration
-
-            db_version, db_file_path = get_db_file(Settings.db_path)
-            if db_version == 0:
-                return 0
+            warnings.simplefilter("ignore", category=sa_exc.SAWarning)
 
             log.err('Found an already initialized database version: %d', db_version)
             if db_version == DATABASE_VERSION:
