@@ -208,7 +208,8 @@ ConfigFilters = {
         u'https_chain',
         u'https_dh_params',
         u'https_enabled',
-        u'admin_api_token_digest'
+        u'admin_api_token_digest',
+        u'ip_filter_authenticated'
     ]),
     'notification': set([
         u'smtp_server',
