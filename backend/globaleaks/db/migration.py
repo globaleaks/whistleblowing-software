@@ -130,6 +130,7 @@ def perform_data_update(db_file):
 
             prv.set_val(u'version', __version__)
             prv.set_val(u'latest_version', __version__)
+            prv.set_val(u'version_db', DATABASE_VERSION)
 
         session.commit()
     except:
