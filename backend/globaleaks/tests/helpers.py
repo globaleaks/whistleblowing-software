@@ -1116,7 +1116,9 @@ class MockDict:
             'reachable_via_web': False,
             'anonymize_outgoing_connections': False,
             'enable_admin_exception_notification': True,
-            'enable_developers_exception_notification': True
+            'enable_developers_exception_notification': True,
+            'ip_filter_authenticated_enable': False,
+            'ip_filter_authenticated': u''
 
         }
 
