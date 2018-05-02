@@ -139,8 +139,7 @@ ConfigDescriptor = {
     u'reachable_via_web': Bool(default=True),
     u'anonymize_outgoing_connections': Bool(default=True),
 
-    u'ip_filter_authenticated': Unicode(default=u''),
-    u'ip_filter_unauthenticated': Unicode(default=u'')
+    u'ip_filter_authenticated': Unicode(default=u'')
 }
 
 ConfigFilters = {
