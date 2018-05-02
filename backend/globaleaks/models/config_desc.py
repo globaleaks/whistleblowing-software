@@ -137,7 +137,12 @@ ConfigDescriptor = {
     u'context_selector_type': Unicode(default=u'list'),
 
     u'reachable_via_web': Bool(default=True),
-    u'anonymize_outgoing_connections': Bool(default=True)
+    u'anonymize_outgoing_connections': Bool(default=True),
+
+    u'ip_filter_admin': Unicode(default=u''),
+    u'ip_filter_custodian': Unicode(default=u''),
+    u'ip_filter_recipient': Unicode(default=u''),
+    u'ip_filter_whistleblower': Unicode(default=u'')
 }
 
 ConfigFilters = {
