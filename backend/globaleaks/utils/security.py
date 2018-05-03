@@ -7,6 +7,7 @@ import random
 import scrypt
 import string
 import time
+import sys
 from datetime import datetime
 
 from cryptography.hazmat.backends import default_backend
@@ -104,7 +105,11 @@ def overwrite_and_remove(absolutefpath, iterations_number=1):
     try:
         # in the following loop, the file is open and closed on purpose, to trigger flush operations
         all_zeros = "\0\0\0\0" * 1024               # 4kb of zeros
-        all_ones = "FFFFFFFF".decode("hex") * 1024  # 4kb of ones
+
+        if sys.version_info[0] == 2:
+            all_ones = "FFFFFFFF".decode("hex") * 1024  # 4kb of ones
+        else:
+            all_ones = "\xFF" * 4096
 
         for iteration in range(iterations_number):
             OPTIMIZATION_RANDOM_BLOCK = randomgen.randint(4096, 4096 * 2)
