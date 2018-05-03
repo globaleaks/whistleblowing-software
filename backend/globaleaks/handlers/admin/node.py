@@ -13,7 +13,7 @@ from globaleaks.models.config import ConfigFactory, NodeL10NFactory
 from globaleaks.orm import transact
 from globaleaks.rest import errors, requests
 from globaleaks.state import State
-from globaleaks.utils.utility import log
+from globaleaks.utils.utility import log, parse_csv_ip_ranges_to_ip_networks
 
 def db_admin_serialize_node(session, tid, language):
     config = ConfigFactory(session, tid, 'admin_node').serialize()
@@ -92,6 +92,11 @@ def db_update_node(session, tid, request, language):
         node.set_val(u'basic_auth_password', request['basic_auth_password'])
     else:
         node.set_val(u'basic_auth', False)
+
+    # Validate that IP addresses/ranges we're getting are goo
+    if request['ip_filter_authenticated_enable'] and request['ip_filter_authenticated']:
+        # Make sure we can validate and parse the whole thing
+        parse_csv_ip_ranges_to_ip_networks(request['ip_filter_authenticated'])
 
     db_update_enabled_languages(session, tid, request['languages_enabled'], request['default_language'])
 
