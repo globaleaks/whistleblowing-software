@@ -1117,7 +1117,6 @@ class MockDict:
             'anonymize_outgoing_connections': False,
             'enable_admin_exception_notification': True,
             'enable_developers_exception_notification': True
-
         }
 
 
