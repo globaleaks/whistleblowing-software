@@ -120,6 +120,16 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
         yield user_handler.get()
 
 
+    @inlineCallbacks
+    def test_login_reject_on_ip_filtering(self):
+        handler = self.request({
+            'username': 'admin',
+            'password': helpers.VALID_PASSWORD1,
+            'token': ''
+        })
+        response = yield handler.post()
+        yield self.assertFailure(handler.post(), errors.AccessLocationInvalid)
+
 class TestReceiptAuth(helpers.TestHandlerWithPopulatedDB):
     _handler = authentication.ReceiptAuthHandler
 
@@ -197,7 +207,6 @@ class TestReceiptAuth(helpers.TestHandlerWithPopulatedDB):
         wbtip_handler = self.request(headers={'x-session': second_id},
                                      handler_cls=WBTipInstance)
         yield wbtip_handler.get()
-
 
 class TestSessionHandler(helpers.TestHandlerWithPopulatedDB):
     @inlineCallbacks
