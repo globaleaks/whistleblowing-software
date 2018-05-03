@@ -4,11 +4,13 @@ try:
 except ImportError:
     from io import StringIO
 
+import ipaddress
 import re
 import sys
 from datetime import datetime
 
 from globaleaks.utils import utility
+from globaleaks.rest import errors
 from twisted.python import log as twlog
 from twisted.python.failure import Failure
 from twisted.trial import unittest
@@ -106,6 +108,20 @@ class TestUtility(unittest.TestCase):
         utility.log.info("info")
         utility.log.debug("debug")
 
+    def test_ip_str_to_ip_networks(self):
+        # This should return two objects, both in IPNetwork form
+        ip_str = "192.168.1.1,10.0.0.0/8,::1,2001:db8::/32"
+        ip_list = utility.parse_csv_ip_ranges_to_ip_networks(ip_str)
+        self.assertEqual(len(ip_list), 4)
+        self.assertIn(ipaddress.ip_network("192.168.1.1/32"), ip_list)
+        self.assertIn(ipaddress.ip_network("10.0.0.0/8"), ip_list)
+        self.assertIn(ipaddress.ip_network("::1/128"), ip_list)
+        self.assertIn(ipaddress.ip_network("2001:db8::/32"), ip_list)
+
+        # Now confirm we properly fail when garbage is appended
+        ip_str = ip_str + ",abcdef"
+        with self.assertRaises(errors.InputValidationError):
+            utility.parse_csv_ip_ranges_to_ip_networks(ip_str)
 
 class TestLogging(unittest.TestCase):
     def setUp(self):

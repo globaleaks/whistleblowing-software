@@ -28,7 +28,6 @@ class Int(Item):
 class Bool(Item):
     _type = bool
 
-
 ConfigDescriptor = {
     u'creation_date': Int(default=0),
     u'receipt_salt': Unicode(default=salt),
