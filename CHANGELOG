@@ -1,3 +1,6 @@
+Changes in version 3.0.28 - 2018-05-04
+    Fix bug related to overlapping usernames (#2266)
+
 Changes in version 3.0.27 - 2018-04-24
     Fix counters for files,messages,comments shown in the tip list
     Implement minimal self-contained SOCKS5 capability (#2243)
