@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 #
 # Handlers dealing with platform authentication
+import ipaddress
+
 from random import SystemRandom
 from six import text_type
 from twisted.internet.defer import inlineCallbacks, returnValue
@@ -12,7 +14,7 @@ from globaleaks.orm import transact
 from globaleaks.rest import errors, requests
 from globaleaks.settings import Settings
 from globaleaks.state import State
-from globaleaks.utils.utility import datetime_now, deferred_sleep, log
+from globaleaks.utils.utility import datetime_now, deferred_sleep, log, parse_csv_ip_ranges_to_ip_networks
 
 def random_login_delay():
     """
@@ -73,7 +75,7 @@ def login_whistleblower(session, tid, receipt, client_using_tor):
 
 
 @transact
-def login(session, tid, username, password, client_using_tor, token=''):
+def login(session, tid, username, password, client_using_tor, client_ip, token=''):
     """
     login returns a tuple (user_id, state, pcn)
     """
@@ -94,6 +96,25 @@ def login(session, tid, username, password, client_using_tor, token=''):
     if not client_using_tor and not State.tenant_cache[tid]['https_' + user.role]:
         log.err("Denied login request over Web for role '%s'" % user.role)
         raise errors.TorNetworkRequired
+
+    # Check if we're doing IP address checks today
+    if State.tenant_cache[tid]['ip_filter_authenticated_enable'] is True:
+        ip_networks = parse_csv_ip_ranges_to_ip_networks(
+            State.tenant_cache[tid]['ip_filter_authenticated']
+        )
+        client_ip_obj = ipaddress.ip_address(client_ip)
+
+        # Safety check, we always allow localhost to log in
+        success = False
+        if client_ip_obj.is_loopback is True:
+            success = True
+
+        for ip_network in ip_networks:
+            if client_ip_obj in ip_network:
+                success = True
+
+        if success is not True:
+            raise errors.AccessLocationInvalid
 
     log.debug("Login: Success (%s)" % user.role)
 
@@ -121,6 +142,7 @@ class AuthenticationHandler(BaseHandler):
                                                  request['username'],
                                                  request['password'],
                                                  self.request.client_using_tor,
+                                                 self.request.client_ip,
                                                  request['token'])
 
         session = new_session(self.request.tid, user_id, role, status)
