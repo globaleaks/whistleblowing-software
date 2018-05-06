@@ -1,9 +1,11 @@
 # -*- coding: utf-8 -*-
 # Functions related to importing/exporting the data from a GL instance
 
-from globaleaks import models
+import os
 
+from globaleaks import models
 from globaleaks.db import get_db_file, make_db_uri
+from globaleaks.models import Base
 from globaleaks.settings import Settings
 from globaleaks.orm import get_engine, get_session
 
@@ -30,6 +32,40 @@ DIRECT_TID_REFERENCES = [
     ('stats', models.Stats),
     ('user', models.User),
     ('usertenant', models.UserTenant)
+]
+
+IMPORT_ORDER = [
+    'anomalies',
+    'config',
+    'config_l10n',
+    'context',
+    'counters',
+    'custom_texts',
+    'enabledlanguages',
+    'field',
+    'file',
+    'internaltip',
+    'mail',
+    'questionaire',
+    'signup',
+    'shorturl',
+    'stats',
+    'user',
+    'usertenant',
+    'comment',
+    'contextimg',
+    'fieldanswer',
+    'fieldanswergroup',
+    'fieldattr',
+    'fieldoption',
+    'internalfile',
+    'receiver',
+    'receivercontext',
+    'receivertip',
+    'identityaccessrequest',
+    'step',
+    'userimg',
+    'whistleblowerfile'
 ]
 
 def row_serializator(session, rowset, output_list):
@@ -159,5 +195,40 @@ def collect_all_tenant_data(db_file, tid):
     tenant_data['whistleblowerfile'] = collect_pk_relation(session, models.WhistleblowerFile, receivertip_ids, 'receivertip_id')
     print("  Serialized whistleblowerfile (" + str(len(tenant_data['whistleblowerfile'])) + " rows)")
 
-    #import pprint
-    #pprint.pprint(tenant_data)
+    session.close()
+    return tenant_data
+
+def write_tenant_to_fresh_db(tenant_data):
+    '''Writes the tenant data to a fresh database'''
+    
+    # Now we need to initialize a fresh database
+    db_path = '/tmp/globaleaks.db'
+
+    # FIXME: Remove testing code for proper temp db
+    try:
+        os.remove(db_path)
+    except FileNotFoundError:
+        pass
+
+    # Need the engine to initialize all the base classes
+    engine = get_engine(make_db_uri(db_path))
+    engine.execute('PRAGMA foreign_keys = ON')
+    engine.execute('PRAGMA secure_delete = ON')
+    engine.execute('PRAGMA auto_vacuum = FULL')
+
+    Base.metadata.create_all(engine)
+    print("Initialized empty GlobaLeaks database at " + db_path)
+
+    session = get_session(make_db_uri(db_path))
+
+    # Create the root tenant object
+    session.merge(tenant_data['tenant'])
+
+    # Replay the tenant data
+    for element in IMPORT_ORDER:
+        for row in tenant_data[element]:
+            session.merge(row)
+
+    print("Export Complete!")
+    session.commit()
+    session.close()

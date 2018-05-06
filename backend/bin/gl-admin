@@ -86,7 +86,8 @@ def backup(args):
     print("Success: The archived backup was created at:", args.backuppath)
 
 def export(args):
-    import_export.collect_all_tenant_data(get_db_file(args.dbpath)[1], 1)
+    data = import_export.collect_all_tenant_data(get_db_file(args.dbpath)[1], 1)
+    import_export.write_tenant_to_fresh_db(data)
 
 def restore(args):
     check_dir(args.workdir)
