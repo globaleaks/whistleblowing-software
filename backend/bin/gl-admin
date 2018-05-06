@@ -18,13 +18,14 @@ import sys
 from datetime import datetime
 from six import text_type
 
-from globaleaks.utils import security
+from globaleaks.utils import security, import_export
 from globaleaks.db import get_db_file
 from globaleaks.orm import make_db_uri, get_engine
 from globaleaks.models import config, config_desc
 from globaleaks.rest.requests import AdminNotificationDesc, AdminNodeDesc
 from globaleaks.settings import Settings
 
+from six import text_type
 
 def check_file(f):
     if not os.path.isfile(f):
@@ -78,6 +79,8 @@ def backup(args):
     if must_stop: sp.check_call("service globaleaks start", shell=True)
     print("Success: The archived backup was created at:", args.backuppath)
 
+def export(args):
+    import_export.collect_all_tenant_data(get_db_file(args.dbpath)[1], 1)
 
 def restore(args):
     check_dir(args.workdir)
@@ -249,6 +252,11 @@ res_p.add_argument("-w", "--workdir", help="the location of dynamic gl content",
 res_p.add_argument("backuppath", nargs="?", help="the path and name of the backup",
                    default=default_backup_path())
 res_p.set_defaults(func=restore)
+
+export_p = subp.add_parser("export", help="exports a tenant from the system")
+add_db_path_arg(export_p)
+export_p.add_argument("--tid", help="Tenant ID to export")
+export_p.set_defaults(func=export)
 
 pw_p = subp.add_parser("resetpass", help="reset a user's password")
 add_db_path_arg(pw_p)
