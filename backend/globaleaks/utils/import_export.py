@@ -40,18 +40,20 @@ DIRECT_TID_REFERENCES = [
 ]
 
 IMPORT_ORDER = [
+    'archivedschema',
     'anomalies',
+    'enabledlanguages',
     'config',
     'config_l10n',
+    'questionaire',
     'context',
+    'step',
     'counters',
     'custom_texts',
-    'enabledlanguages',
     'field',
     'file',
     'internaltip',
     'mail',
-    'questionaire',
     'signup',
     'shorturl',
     'stats',
@@ -59,8 +61,9 @@ IMPORT_ORDER = [
     'usertenant',
     'comment',
     'contextimg',
-    'fieldanswer',
+    'fieldanswer_nulled', # See below for this ugly hack
     'fieldanswergroup',
+    'fieldanswer',
     'fieldattr',
     'fieldoption',
     'internalfile',
@@ -68,7 +71,6 @@ IMPORT_ORDER = [
     'receivercontext',
     'receivertip',
     'identityaccessrequest',
-    'step',
     'userimg',
     'whistleblowerfile'
 ]
@@ -139,7 +141,12 @@ def collect_all_tenant_data(session, tid):
     internaltip_ids = build_id_list(tenant_data['internaltip'], 'id')
     user_ids = build_id_list(tenant_data['user'], 'id')
     questionaire_id = build_id_list(tenant_data['questionaire'], 'id')
+    questionairehash_id = build_id_list(tenant_data['internaltip'], 'questionnaire_hash')
 
+    # ArchivedSchema
+    tenant_data['archivedschema'] = collect_pk_relation(session, models.ArchivedSchema, questionairehash_id, 'hash')
+    print("  Serialized archivedschema (" + str(len(tenant_data['archivedschema'])) + " rows)")
+    
     # Comment
     tenant_data['comment'] = collect_pk_relation(session, models.Comment, internaltip_ids, 'internaltip_id')
     print("  Serialized comment (" + str(len(tenant_data['comment'])) + " rows)")
@@ -152,9 +159,15 @@ def collect_all_tenant_data(session, tid):
     tenant_data['fieldanswer'] = collect_pk_relation(session, models.FieldAnswer, internaltip_ids, 'internaltip_id')
     print("  Serialized fieldanswer (" + str(len(tenant_data['fieldanswer'])) + " rows)")
 
+    # HACK ALERT: fieldanswer has a circular dependency on fieldanswergroup. To allow this to fly, we need
+    # to create a version of fieldanswer with the FK nulled out, import that, and then override it
+    tenant_data['fieldanswer_nulled'] = copy.deepcopy(tenant_data['fieldanswer'])
+    for fieldanswer in tenant_data['fieldanswer_nulled']:
+        fieldanswer.fieldanswergroup_id = None
+
     # FieldAnswerGroup
     fieldanswer_ids = build_id_list(tenant_data['fieldanswer'], 'id')
-    tenant_data['fieldanswergroup'] = collect_pk_relation(session, models.FieldAnswerGroup, fieldanswer_ids, 'id')
+    tenant_data['fieldanswergroup'] = collect_pk_relation(session, models.FieldAnswerGroup, fieldanswer_ids, 'fieldanswer_id')
     print("  Serialized fieldanswergroup (" + str(len(tenant_data['fieldanswergroup'])) + " rows)")
 
     # FieldAttr
@@ -182,7 +195,7 @@ def collect_all_tenant_data(session, tid):
     print("  Serialized receivertip (" + str(len(tenant_data['receivertip'])) + " rows)")
 
     # IdentityAccessRequest
-    receivertip_ids = build_id_list(tenant_data['receivertip'], 'receivertip_id')
+    receivertip_ids = build_id_list(tenant_data['receivertip'], 'id')
     tenant_data['identityaccessrequest'] = collect_pk_relation(session, models.IdentityAccessRequest, receivertip_ids, 'id')
     print("  Serialized identityaccessrequest (" + str(len(tenant_data['identityaccessrequest'])) + " rows)")
 
@@ -262,11 +275,18 @@ def merge_tenant_data(session, tenant_data, tid=None):
 
     # Replay the tenant data
     for element in IMPORT_ORDER:
-        for row in tenant_data[element]:
-            session.merge(row)
+        if element == 'fieldanswer':
+            # fieldanswer needs to deNULL the above
+            for fieldanswer in tenant_data['fieldanswer']:
+                nulled_field = session.query(models.FieldAnswer).filter_by(id=fieldanswer.id).first()
+                nulled_field.fieldanswergroup_id = fieldanswer.fieldanswergroup_id
+                session.commit()
+        else:
+            for row in tenant_data[element]:
+                session.merge(row)
+                session.commit()
 
     print("Export Complete!")
-    session.commit()
     session.close()
 
 def create_export_tarball(session, tid):
