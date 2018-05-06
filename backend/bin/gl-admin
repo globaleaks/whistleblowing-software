@@ -16,13 +16,14 @@ import subprocess as sp
 import sys
 from datetime import datetime
 
-from globaleaks.utils import security
+from globaleaks.utils import security, import_export
 from globaleaks.db import get_db_file
 from globaleaks.orm import make_db_uri, get_engine
 from globaleaks.models import config, config_desc
 from globaleaks.rest.requests import AdminNotificationDesc, AdminNodeDesc
 from globaleaks.settings import Settings
 
+from six import text_type
 
 def check_file(f):
     if not os.path.isfile(f):
@@ -52,7 +53,7 @@ def default_workdir():
 
 
 def default_db_path():
-    return Settings.db_path
+    return Settings.working_path
 
 
 def is_gl_running():
@@ -84,6 +85,8 @@ def backup(args):
     if must_stop: sp.check_call("service globaleaks start", shell=True)
     print("Success: The archived backup was created at:", args.backuppath)
 
+def export(args):
+    import_export.collect_all_tenant_data(get_db_file(args.dbpath)[1], 1)
 
 def restore(args):
     check_dir(args.workdir)
@@ -256,6 +259,11 @@ res_p.add_argument("backuppath", nargs="?", help="the path and name of the backu
                    default=default_backup_path())
 res_p.set_defaults(func=restore)
 
+export_p = subp.add_parser("export", help="exports a tenant from the system")
+add_db_path_arg(export_p)
+export_p.add_argument("--tid", help="Tenant ID to export")
+export_p.set_defaults(func=export)
+
 pw_p = subp.add_parser("resetpass", help="reset a user's password")
 add_db_path_arg(pw_p)
 pw_p.add_argument("--tid", help="the tenant id", default='1', type=int)
@@ -267,13 +275,13 @@ pw_p.set_defaults(func=reset_pass)
 rv_p = subp.add_parser("getvar", help="get database config variable")
 add_db_path_arg(rv_p)
 rv_p.add_argument("--tid", help="the tenant id", default='1', type=int)
-rv_p.add_argument("varname", help="the name of the config var", default='version', type=unicode)
+rv_p.add_argument("varname", help="the name of the config var", default='version', type=text_type)
 rv_p.set_defaults(func=get_var)
 
 sv_p = subp.add_parser("setvar", help="set database config variable")
 add_db_path_arg(sv_p)
 sv_p.add_argument("--tid", help="the tenant id", default='1', type=int)
-sv_p.add_argument("varname", help="the name of the config var", type=unicode)
+sv_p.add_argument("varname", help="the name of the config var", type=text_type)
 sv_p.add_argument("value", help="value which must be of the correct type Bool(0|1), Int(0-9^9), String(everything else)")
 sv_p.set_defaults(func=set_var)
 
