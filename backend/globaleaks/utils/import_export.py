@@ -94,15 +94,70 @@ def collect_all_tenant_data(db_file, tid):
     # go fishing for what we actually need.
 
     # We'll get a list of IDs we need from the primary data
+    context_ids = build_id_list(tenant_data['context'], 'id')
+    field_ids = build_id_list(tenant_data['field'], 'id')
+    internaltip_ids = build_id_list(tenant_data['internaltip'], 'id')
     user_ids = build_id_list(tenant_data['user'], 'id')
+    questionaire_id = build_id_list(tenant_data['questionaire'], 'id')
 
+    # Comment
+    tenant_data['comment'] = collect_pk_relation(session, models.Comment, internaltip_ids, 'internaltip_id')
+    print("  Serialized comment (" + str(len(tenant_data['comment'])) + " rows)")
+
+    # ContextImg
+    tenant_data['contextimg'] = collect_pk_relation(session, models.ContextImg, context_ids, 'id')
+    print("  Serialized contextimg (" + str(len(tenant_data['contextimg'])) + " rows)")
+
+    # FieldAnswer
+    tenant_data['fieldanswer'] = collect_pk_relation(session, models.FieldAnswer, internaltip_ids, 'internaltip_id')
+    print("  Serialized fieldanswer (" + str(len(tenant_data['fieldanswer'])) + " rows)")
+
+    # FieldAnswerGroup
+    fieldanswer_ids = build_id_list(tenant_data['fieldanswer'], 'id')
+    tenant_data['fieldanswergroup'] = collect_pk_relation(session, models.FieldAnswerGroup, fieldanswer_ids, 'id')
+    print("  Serialized fieldanswergroup (" + str(len(tenant_data['fieldanswergroup'])) + " rows)")
+
+    # FieldAttr
+    tenant_data['fieldattr'] = collect_pk_relation(session, models.FieldAttr, field_ids, 'field_id')
+    print("  Serialized fieldattr (" + str(len(tenant_data['fieldattr'])) + " rows)")
+
+    # FieldOption
+    tenant_data['fieldoption'] = collect_pk_relation(session, models.FieldOption, field_ids, 'field_id')
+    print("  Serialized fieldoption (" + str(len(tenant_data['fieldoption'])) + " rows)")
+
+    # InternalFile
+    tenant_data['internalfile'] = collect_pk_relation(session, models.InternalFile, field_ids, 'internaltip_id')
+    print("  Serialized internalfile (" + str(len(tenant_data['internalfile'])) + " rows)")
+    
     # Receivers
     tenant_data['receiver'] = collect_pk_relation(session, models.Receiver, user_ids, 'id')
     print("  Serialized receiver (" + str(len(tenant_data['receiver'])) + " rows)")
 
+    # ReceiverContext
+    tenant_data['receivercontext'] = collect_pk_relation(session, models.ReceiverContext, context_ids, 'context_id')
+    print("  Serialized receivercontext (" + str(len(tenant_data['receivercontext'])) + " rows)")
+
+    # ReceiverTip
+    tenant_data['receivertip'] = collect_pk_relation(session, models.ReceiverTip, internaltip_ids, 'internaltip_id')
+    print("  Serialized receivertip (" + str(len(tenant_data['receivertip'])) + " rows)")
+
+    # IdentityAccessRequest
+    receivertip_ids = build_id_list(tenant_data['receivertip'], 'receivertip_id')
+    tenant_data['identityaccessrequest'] = collect_pk_relation(session, models.IdentityAccessRequest, receivertip_ids, 'id')
+    print("  Serialized identityaccessrequest (" + str(len(tenant_data['identityaccessrequest'])) + " rows)")
+
+    # Step
+    tenant_data['step'] = collect_pk_relation(session, models.Step, questionaire_id, 'questionnaire_id')
+    print("  Serialized step (" + str(len(tenant_data['step'])) + " rows)")
+
     # UserImg
     tenant_data['userimg'] = collect_pk_relation(session, models.UserImg, user_ids, 'id')
     print("  Serialized userimg (" + str(len(tenant_data['userimg'])) + " rows)")
+
+
+    # WhistleblowerFile
+    tenant_data['whistleblowerfile'] = collect_pk_relation(session, models.WhistleblowerFile, receivertip_ids, 'receivertip_id')
+    print("  Serialized whistleblowerfile (" + str(len(tenant_data['whistleblowerfile'])) + " rows)")
 
     #import pprint
     #pprint.pprint(tenant_data)
