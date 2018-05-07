@@ -70,6 +70,11 @@
               </div>
               <div class="col-md-6" data-ng-if="tenant.id > 1">
                 <span class="pull-right">
+                  <a class="downloadButton btn btn-xs btn-default"
+                    data-ng-click="exportTenant($event); $event.stopPropagation()">
+                    <i class="glyphicon glyphicon-save-file"></i>
+                    <span data-translate>Export</span>
+                  </a>
                   <span data-ng-show="tenant.active && !$first" class="btn btn-xs btn-primary"
                     data-ng-click="toggleActivation($event)"
                     data-translate>Active</span>

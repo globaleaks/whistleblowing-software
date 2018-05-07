@@ -17,7 +17,7 @@ angular.module('GLClient')
   $scope.currentPage = 1;
   $scope.itemsPerPage = 20;
 }])
-.controller('TenantEditorCtrl', ['$scope', '$rootScope', 'Utils', 'AdminTenantResource', function($scope, $rootScope, Utils, AdminTenantResource) {
+.controller('TenantEditorCtrl', ['$scope', '$rootScope', '$http', 'Utils', 'FileSaver', 'AdminTenantResource', function($scope, $rootScope, $http, Utils, FileSaver, AdminTenantResource) {
   var tenant = $scope.tenant;
 
   $scope.toggleEditing = function($event) {
@@ -37,6 +37,17 @@ angular.module('GLClient')
     $event.stopPropagation();
     tenant.active = !tenant.active;
     tenant.$update();
+  };
+
+  $scope.exportTenant = function($event) {
+    $event.stopPropagation();
+    $http({
+      method: 'GET',
+      url: 'admin/tenants/' + tenant.id + '/export',
+      responseType: 'blob',
+    }).then(function (response) {
+      FileSaver.saveAs(response.data, 'tenant_export_tid_' + tenant.id + '.tar.gz');
+    });
   };
 
   $scope.saveTenant = function() {
