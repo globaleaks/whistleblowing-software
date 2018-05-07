@@ -16,12 +16,12 @@
 # Petrovics Sándor <egeramasrol@gmail.com>, 2015
 # benewfy <benewfy@gmail.com>, 2015
 # vargaviktor <viktor.varga@gmail.com>, 2014
-# vargaviktor <viktor.varga@gmail.com>, 2014-2017
+# vargaviktor <viktor.varga@gmail.com>, 2014-2018
 # zala krisztina <zalakri@gmail.com>, 2013
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-04-08 11:12+0000\n"
+"PO-Revision-Date: 2018-05-07 17:23+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Hungarian (Hungary) (http://www.transifex.com/otf/globaleaks/language/hu_HU/)\n"
 "MIME-Version: 1.0\n"
@@ -73,10 +73,10 @@ msgid "Home page"
 msgstr "Honlap"
 
 msgid "Changelog"
-msgstr ""
+msgstr "Változási napló"
 
 msgid "License"
-msgstr ""
+msgstr "Licensz"
 
 msgid "Notification templates"
 msgstr "Értesítési sablonok"
@@ -282,78 +282,6 @@ msgstr "Mellékletek"
 
 msgid "Change your password"
 msgstr "Változtassa meg a jelszavát"
-
-msgid "First name"
-msgstr "Keresztnév"
-
-msgid "Last name"
-msgstr "Vezetéknév"
-
-msgid "Gender"
-msgstr "Nem"
-
-msgid "GENDER_OTHER"
-msgstr "Egyéb"
-
-msgid "Male"
-msgstr "Férfi"
-
-msgid "Female"
-msgstr "Nő"
-
-msgid "Date of birth"
-msgstr "Születési idő"
-
-msgid "Place of birth"
-msgstr "Születési hely"
-
-msgid "Social security number"
-msgstr "Személyi azonosító"
-
-msgid "Residence"
-msgstr "Lakóhely"
-
-msgid "Address"
-msgstr "Cím"
-
-msgid "Zip code / Postal code"
-msgstr "Irányítószám"
-
-msgid "City"
-msgstr "Város"
-
-msgid "State"
-msgstr "Állam"
-
-msgid "Region"
-msgstr "Régió"
-
-msgid "Province"
-msgstr "Tartomány"
-
-msgid "Country"
-msgstr "Ország"
-
-msgid "Phone number"
-msgstr "Telefonszám"
-
-msgid "Current job title"
-msgstr "Jelenlegi munka megnevezése"
-
-msgid "Current job responsibility (role)"
-msgstr "Jelenlegi munka felelőssége (szerepe)"
-
-msgid "Current organization unit and job location"
-msgstr "Jelenlegi szervezeti egység és munka helye"
-
-msgid "Job title at the time of the reported fact"
-msgstr "Munka megnevezése a bejelentett tény idejében"
-
-msgid "Job responsibility (role) at the time of the reported fact"
-msgstr "Munka felelőssége (szerepe) a bejelentett tény idejében"
-
-msgid "Organization unit and job location at the time of the reported fact"
-msgstr "Szervezeti egység és munka helye a bejelentett tény idejében"
 
 msgid "List of submissions"
 msgstr "Beadványok listája"
@@ -1225,6 +1153,12 @@ msgstr ""
 msgid "Country code"
 msgstr ""
 
+msgid "State"
+msgstr "Állam"
+
+msgid "City"
+msgstr "Város"
+
 msgid "Organization"
 msgstr ""
 
@@ -1430,6 +1364,9 @@ msgstr ""
 msgid "Hint shown on the button for adding an additional answer"
 msgstr "Tipp mutatása a gombon egy további válasz hozzáadásáért"
 
+msgid "Phone number"
+msgstr "Telefonszám"
+
 msgid "Clause"
 msgstr "Záradék"
 
@@ -1589,14 +1526,14 @@ msgstr "A szoftver fejlesztését a non-profit Hermes Center végzi a Transparen
 msgid "Please support Hermes through their donation page."
 msgstr "Kérjük támogassa a Hermes-t a támogatói oldalán keresztül"
 
-msgid "Authentication failed"
-msgstr "Az azonosítás nem sikerült"
-
 msgid "Please select your account:"
 msgstr "Kérjük válassza ki fiókját:"
 
 msgid "Now type your password, then click 'Log in':"
 msgstr "Kérjük adja meg jelszavát majd kattinson a Belépés gombra:"
+
+msgid "Authentication failed"
+msgstr "Az azonosítás nem sikerült"
 
 msgid "Are you sure?"
 msgstr "Biztosan?"
@@ -1814,9 +1751,6 @@ msgstr "Kilépés"
 
 msgid "The key code is either invalid or the submission has expired."
 msgstr "A kulcs kód vagy nem érvényes,vagy a beküldés lejárt."
-
-msgid "Please check your key code and try again or make a new submission."
-msgstr "Kérjük ellenőrizze a kulcskódját, vagy kézítsen egy másik beküldést"
 
 msgid "Files attached by recipients"
 msgstr ""
@@ -2059,6 +1993,60 @@ msgstr "A beküldéshez kapcsolódó fájlok hozzáadása."
 msgid "Do you want to provide your identification information?"
 msgstr "Meg szeretné adni az azonosítási információit?"
 
+msgid "First name"
+msgstr "Keresztnév"
+
+msgid "Last name"
+msgstr "Vezetéknév"
+
+msgid "Sex"
+msgstr ""
+
+msgid "Male"
+msgstr "Férfi"
+
+msgid "Female"
+msgstr "Nő"
+
+msgid "Date of birth"
+msgstr "Születési idő"
+
+msgid "Place of birth"
+msgstr "Születési hely"
+
+msgid "Social security number"
+msgstr "Személyi azonosító"
+
+msgid "Residence"
+msgstr "Lakóhely"
+
+msgid "Address"
+msgstr "Cím"
+
+msgid "Zip code / Postal code"
+msgstr "Irányítószám"
+
+msgid "Province"
+msgstr "Tartomány"
+
+msgid "Current job title"
+msgstr "Jelenlegi munka megnevezése"
+
+msgid "Current job responsibility (role)"
+msgstr "Jelenlegi munka felelőssége (szerepe)"
+
+msgid "Current organization unit and job location"
+msgstr "Jelenlegi szervezeti egység és munka helye"
+
+msgid "Job title at the time of the reported fact"
+msgstr "Munka megnevezése a bejelentett tény idejében"
+
+msgid "Job responsibility (role) at the time of the reported fact"
+msgstr "Munka felelőssége (szerepe) a bejelentett tény idejében"
+
+msgid "Organization unit and job location at the time of the reported fact"
+msgstr "Szervezeti egység és munka helye a bejelentett tény idejében"
+
 msgid "Dear {RecipientName},"
 msgstr "Kedves {RecipientName},"
 
@@ -2126,7 +2114,7 @@ msgstr ""
 msgid "Registration data:"
 msgstr ""
 
-msgid "Site: {HTTPSUrl} "
+msgid "Site: {HTTPSUrl}"
 msgstr ""
 
 msgid "Name: {Name}"
@@ -2296,16 +2284,16 @@ msgid "Activation"
 msgstr ""
 
 msgid "A software update is available."
-msgstr ""
+msgstr "Egy szoftver frissítés elérhető."
 
 msgid "It is good security practice to keep the platform up to date."
 msgstr ""
 
 msgid "Installed version: {InstalledVersion}"
-msgstr ""
+msgstr "Telepített verzió: {InstalledVersion}"
 
 msgid "Latest version: {LatestVersion}"
-msgstr ""
+msgstr "Legutolsó verzió: {LatestVersion}"
 
 msgid ""
 "To learn about new features and bug fixes in the new version consult the "

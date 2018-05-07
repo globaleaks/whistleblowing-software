@@ -22,7 +22,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-04-08 11:12+0000\n"
+"PO-Revision-Date: 2018-05-07 17:23+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/otf/globaleaks/language/uk/)\n"
 "MIME-Version: 1.0\n"
@@ -283,78 +283,6 @@ msgstr "Додатки"
 
 msgid "Change your password"
 msgstr "Змінити пароль"
-
-msgid "First name"
-msgstr "Ім'я"
-
-msgid "Last name"
-msgstr "Прізвище"
-
-msgid "Gender"
-msgstr "Стать"
-
-msgid "GENDER_OTHER"
-msgstr "інший варіант"
-
-msgid "Male"
-msgstr "чол."
-
-msgid "Female"
-msgstr "жін."
-
-msgid "Date of birth"
-msgstr "Рік народження"
-
-msgid "Place of birth"
-msgstr "Місце народження"
-
-msgid "Social security number"
-msgstr "ідентифікаційний код"
-
-msgid "Residence"
-msgstr "Країна проживання"
-
-msgid "Address"
-msgstr "Адреса"
-
-msgid "Zip code / Postal code"
-msgstr "Поштовий код"
-
-msgid "City"
-msgstr "Місто"
-
-msgid "State"
-msgstr "Область"
-
-msgid "Region"
-msgstr "Район"
-
-msgid "Province"
-msgstr "Регіон"
-
-msgid "Country"
-msgstr "Країна"
-
-msgid "Phone number"
-msgstr "Тел.номер"
-
-msgid "Current job title"
-msgstr "Займана позиція"
-
-msgid "Current job responsibility (role)"
-msgstr "Робочі обов'язки (роль)"
-
-msgid "Current organization unit and job location"
-msgstr "Місцерозташування офісу"
-
-msgid "Job title at the time of the reported fact"
-msgstr "Посада на момент правопорушення про яке повідомляється"
-
-msgid "Job responsibility (role) at the time of the reported fact"
-msgstr "Відповідальності (роль) на момент правопорушення про яке повідомляється"
-
-msgid "Organization unit and job location at the time of the reported fact"
-msgstr "Місцерозташування офісу на момент правопорушення про яке повідомляється"
 
 msgid "List of submissions"
 msgstr "Список наданих свідчень"
@@ -1226,6 +1154,12 @@ msgstr "Увімкнути"
 msgid "Country code"
 msgstr ""
 
+msgid "State"
+msgstr "Область"
+
+msgid "City"
+msgstr "Місто"
+
 msgid "Organization"
 msgstr "Організація"
 
@@ -1431,6 +1365,9 @@ msgstr ""
 msgid "Hint shown on the button for adding an additional answer"
 msgstr "Підказка на кнопці для додаткової відповіді"
 
+msgid "Phone number"
+msgstr "Тел.номер"
+
 msgid "Clause"
 msgstr "застереження"
 
@@ -1590,14 +1527,14 @@ msgstr "Мета даної платформи - покращити ефекти
 msgid "Please support Hermes through their donation page."
 msgstr "Будь ласка, підтримайте Хабардокс через нашу сторінку пожертвувань або просто розкажіть про Хабардокс друзям."
 
-msgid "Authentication failed"
-msgstr "Збій автентифікації"
-
 msgid "Please select your account:"
 msgstr "Будь ласка, оберіть ваш обліковий запис:"
 
 msgid "Now type your password, then click 'Log in':"
 msgstr "Введіть пароль і натисніть \"Увійти\":"
+
+msgid "Authentication failed"
+msgstr "Збій автентифікації"
 
 msgid "Are you sure?"
 msgstr "Ви впевнені?"
@@ -1815,9 +1752,6 @@ msgstr "Вихід"
 
 msgid "The key code is either invalid or the submission has expired."
 msgstr "ключ недійсний або термін дії матеріалів закінчився."
-
-msgid "Please check your key code and try again or make a new submission."
-msgstr "Будь ласка, перевірте ваш ключ і спробуйте ще раз або зробіть нове подання матеріалів."
 
 msgid "Files attached by recipients"
 msgstr ""
@@ -2060,6 +1994,60 @@ msgstr "Прикріпити файли, пов'язані з матеріало
 msgid "Do you want to provide your identification information?"
 msgstr "Ви бажаєте ідентифікувати себе?"
 
+msgid "First name"
+msgstr "Ім'я"
+
+msgid "Last name"
+msgstr "Прізвище"
+
+msgid "Sex"
+msgstr ""
+
+msgid "Male"
+msgstr "чол."
+
+msgid "Female"
+msgstr "жін."
+
+msgid "Date of birth"
+msgstr "Рік народження"
+
+msgid "Place of birth"
+msgstr "Місце народження"
+
+msgid "Social security number"
+msgstr "ідентифікаційний код"
+
+msgid "Residence"
+msgstr "Країна проживання"
+
+msgid "Address"
+msgstr "Адреса"
+
+msgid "Zip code / Postal code"
+msgstr "Поштовий код"
+
+msgid "Province"
+msgstr "Регіон"
+
+msgid "Current job title"
+msgstr "Займана позиція"
+
+msgid "Current job responsibility (role)"
+msgstr "Робочі обов'язки (роль)"
+
+msgid "Current organization unit and job location"
+msgstr "Місцерозташування офісу"
+
+msgid "Job title at the time of the reported fact"
+msgstr "Посада на момент правопорушення про яке повідомляється"
+
+msgid "Job responsibility (role) at the time of the reported fact"
+msgstr "Відповідальності (роль) на момент правопорушення про яке повідомляється"
+
+msgid "Organization unit and job location at the time of the reported fact"
+msgstr "Місцерозташування офісу на момент правопорушення про яке повідомляється"
+
 msgid "Dear {RecipientName},"
 msgstr "Шановний {RecipientName},"
 
@@ -2127,7 +2115,7 @@ msgstr ""
 msgid "Registration data:"
 msgstr ""
 
-msgid "Site: {HTTPSUrl} "
+msgid "Site: {HTTPSUrl}"
 msgstr ""
 
 msgid "Name: {Name}"

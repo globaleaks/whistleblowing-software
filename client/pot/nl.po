@@ -3,7 +3,7 @@
 # Anne Mügge <info@numijneigenwebsite.nl>, 2016-2017
 # Barend <b.vanrijn@me.com>, 2015
 # tempuser1234 <c1160321@trbvm.com>, 2014
-# Denis Paciorkowski <denispaciorkowski@gmail.com>, 2015
+# Denis Paciorkowski <inactive+denispaciorkowski@transifex.com>, 2015
 # Douwe <douwe@greenhost.nl>, 2013
 # Douwe <douwe@greenhost.nl>, 2013
 # dragnadh <dragnadh@gmail.com>, 2016-2017
@@ -35,7 +35,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-04-08 11:12+0000\n"
+"PO-Revision-Date: 2018-05-07 17:23+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Dutch (http://www.transifex.com/otf/globaleaks/language/nl/)\n"
 "MIME-Version: 1.0\n"
@@ -296,78 +296,6 @@ msgstr "Bijlagen"
 
 msgid "Change your password"
 msgstr "Wachtwoord wijzigen"
-
-msgid "First name"
-msgstr "Voornaam"
-
-msgid "Last name"
-msgstr "Achternaam"
-
-msgid "Gender"
-msgstr "Geslacht"
-
-msgid "GENDER_OTHER"
-msgstr "Anders"
-
-msgid "Male"
-msgstr "Man"
-
-msgid "Female"
-msgstr "Vrouw"
-
-msgid "Date of birth"
-msgstr "Geboortedatum"
-
-msgid "Place of birth"
-msgstr "Geboorteplaats"
-
-msgid "Social security number"
-msgstr "Burgerservicenummer (BSN)"
-
-msgid "Residence"
-msgstr "Adres 1"
-
-msgid "Address"
-msgstr "Adres 2"
-
-msgid "Zip code / Postal code"
-msgstr "Postcode"
-
-msgid "City"
-msgstr "Plaats"
-
-msgid "State"
-msgstr "Provincie"
-
-msgid "Region"
-msgstr "Regio-aanduiding"
-
-msgid "Province"
-msgstr "Provincie"
-
-msgid "Country"
-msgstr "Land"
-
-msgid "Phone number"
-msgstr "Telefoonnummer"
-
-msgid "Current job title"
-msgstr "Huidige functie"
-
-msgid "Current job responsibility (role)"
-msgstr "Functieomschrijving (rol)"
-
-msgid "Current organization unit and job location"
-msgstr "Huidige departement en locatie"
-
-msgid "Job title at the time of the reported fact"
-msgstr "Functietitel ten tijde van de misstand"
-
-msgid "Job responsibility (role) at the time of the reported fact"
-msgstr "Rol (verantwoordelijkheid) ten tijde van de misstand"
-
-msgid "Organization unit and job location at the time of the reported fact"
-msgstr "Departement en locatie ten tijde van de misstand"
 
 msgid "List of submissions"
 msgstr "Tiplijst"
@@ -1239,6 +1167,12 @@ msgstr "Inschakelen"
 msgid "Country code"
 msgstr "Landcode"
 
+msgid "State"
+msgstr "Provincie"
+
+msgid "City"
+msgstr "Plaats"
+
 msgid "Organization"
 msgstr "Organisatie"
 
@@ -1444,6 +1378,9 @@ msgstr ""
 msgid "Hint shown on the button for adding an additional answer"
 msgstr "Hint die getoond wordt op de knop om een extra vraag toe te voegen"
 
+msgid "Phone number"
+msgstr "Telefoonnummer"
+
 msgid "Clause"
 msgstr "Clausule"
 
@@ -1603,14 +1540,14 @@ msgstr "De software is ontwikkeld door de non-profit Hermes Centrum voor transpa
 msgid "Please support Hermes through their donation page."
 msgstr "Steun Hermes via haar donatiepagina"
 
-msgid "Authentication failed"
-msgstr "Authenticatie is mislukt"
-
 msgid "Please select your account:"
 msgstr "Selecteer je account:"
 
 msgid "Now type your password, then click 'Log in':"
 msgstr "Typ nu je wachtwoord, klik dan op 'Log in':"
+
+msgid "Authentication failed"
+msgstr "Authenticatie is mislukt"
 
 msgid "Are you sure?"
 msgstr "Weet je het zeker?"
@@ -1828,9 +1765,6 @@ msgstr "Log uit"
 
 msgid "The key code is either invalid or the submission has expired."
 msgstr "De sleutel code is invalide of de inzending is verlopen."
-
-msgid "Please check your key code and try again or make a new submission."
-msgstr "Controleer uw sleutel code en probeer het opnieuw of maak een nieuwe inzending."
 
 msgid "Files attached by recipients"
 msgstr "Bestanden die door ontvangers zijn toegevoegd"
@@ -2073,6 +2007,60 @@ msgstr "Voeg bestanden te welke relevant zijn voor de inzending."
 msgid "Do you want to provide your identification information?"
 msgstr "Wil je je identificeren?"
 
+msgid "First name"
+msgstr "Voornaam"
+
+msgid "Last name"
+msgstr "Achternaam"
+
+msgid "Sex"
+msgstr ""
+
+msgid "Male"
+msgstr "Man"
+
+msgid "Female"
+msgstr "Vrouw"
+
+msgid "Date of birth"
+msgstr "Geboortedatum"
+
+msgid "Place of birth"
+msgstr "Geboorteplaats"
+
+msgid "Social security number"
+msgstr "Burgerservicenummer (BSN)"
+
+msgid "Residence"
+msgstr "Adres 1"
+
+msgid "Address"
+msgstr "Adres 2"
+
+msgid "Zip code / Postal code"
+msgstr "Postcode"
+
+msgid "Province"
+msgstr "Provincie"
+
+msgid "Current job title"
+msgstr "Huidige functie"
+
+msgid "Current job responsibility (role)"
+msgstr "Functieomschrijving (rol)"
+
+msgid "Current organization unit and job location"
+msgstr "Huidige departement en locatie"
+
+msgid "Job title at the time of the reported fact"
+msgstr "Functietitel ten tijde van de misstand"
+
+msgid "Job responsibility (role) at the time of the reported fact"
+msgstr "Rol (verantwoordelijkheid) ten tijde van de misstand"
+
+msgid "Organization unit and job location at the time of the reported fact"
+msgstr "Departement en locatie ten tijde van de misstand"
+
 msgid "Dear {RecipientName},"
 msgstr "Beste {RecipientName},"
 
@@ -2140,7 +2128,7 @@ msgstr ""
 msgid "Registration data:"
 msgstr ""
 
-msgid "Site: {HTTPSUrl} "
+msgid "Site: {HTTPSUrl}"
 msgstr ""
 
 msgid "Name: {Name}"

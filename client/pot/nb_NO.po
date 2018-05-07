@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-04-11 17:53+0000\n"
-"Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
+"PO-Revision-Date: 2018-05-07 17:27+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Norwegian Bokmål (Norway) (http://www.transifex.com/otf/globaleaks/language/nb_NO/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -268,78 +268,6 @@ msgstr "Vedlegg"
 
 msgid "Change your password"
 msgstr "Endre passord"
-
-msgid "First name"
-msgstr "Fornavn"
-
-msgid "Last name"
-msgstr "Etternavn"
-
-msgid "Gender"
-msgstr "Kjønn"
-
-msgid "GENDER_OTHER"
-msgstr "Annet"
-
-msgid "Male"
-msgstr "Hannkjønn"
-
-msgid "Female"
-msgstr "Hunnkjønn"
-
-msgid "Date of birth"
-msgstr "Fødselsdato"
-
-msgid "Place of birth"
-msgstr "Fødested"
-
-msgid "Social security number"
-msgstr "Personnummer"
-
-msgid "Residence"
-msgstr "Hushold"
-
-msgid "Address"
-msgstr "Adresse"
-
-msgid "Zip code / Postal code"
-msgstr "Postnummer"
-
-msgid "City"
-msgstr "Sted"
-
-msgid "State"
-msgstr "Region"
-
-msgid "Region"
-msgstr "Kommune"
-
-msgid "Province"
-msgstr "Kommune"
-
-msgid "Country"
-msgstr "Fylke"
-
-msgid "Phone number"
-msgstr "Telefonnummer"
-
-msgid "Current job title"
-msgstr "Gjeldende jobbtittel"
-
-msgid "Current job responsibility (role)"
-msgstr "Gjeldende arbeidsansvar (rolle)"
-
-msgid "Current organization unit and job location"
-msgstr "Gjeldende organisatorisk enhet og arbeidsplassens stedvise plassering"
-
-msgid "Job title at the time of the reported fact"
-msgstr "Jobbtittel i det faktaen ble rapportert"
-
-msgid "Job responsibility (role) at the time of the reported fact"
-msgstr "Arbeidsansvar (rolle) i det faktaen ble rapportert"
-
-msgid "Organization unit and job location at the time of the reported fact"
-msgstr "Organisatorisk enhet og arbeidets stedvise plassering i det faktaen ble rapportert"
 
 msgid "List of submissions"
 msgstr "Liste over innsendelser"
@@ -1211,6 +1139,12 @@ msgstr "Skru på"
 msgid "Country code"
 msgstr "Landskode"
 
+msgid "State"
+msgstr "Region"
+
+msgid "City"
+msgstr "Sted"
+
 msgid "Organization"
 msgstr "Organisasjon"
 
@@ -1416,6 +1350,9 @@ msgstr "Godta flere svar"
 msgid "Hint shown on the button for adding an additional answer"
 msgstr "Hint vist på knappen for tillegg av et ekstra spørsmål"
 
+msgid "Phone number"
+msgstr "Telefonnummer"
+
 msgid "Clause"
 msgstr "Klausul"
 
@@ -1575,14 +1512,14 @@ msgstr "Programvaren er utviklet for det veldedige Hermes senter for etterettlig
 msgid "Please support Hermes through their donation page."
 msgstr "Støtt Hermes gjennom deres donasjons-side."
 
-msgid "Authentication failed"
-msgstr "Identitetsbekreftelse feilet"
-
 msgid "Please select your account:"
 msgstr "Velg din konto:"
 
 msgid "Now type your password, then click 'Log in':"
 msgstr "Skriv inn ditt passord, trykk så 'logg inn':"
+
+msgid "Authentication failed"
+msgstr "Identitetsbekreftelse feilet"
 
 msgid "Are you sure?"
 msgstr "Er du sikker?"
@@ -1800,9 +1737,6 @@ msgstr "Logg ut"
 
 msgid "The key code is either invalid or the submission has expired."
 msgstr "Nøkkelkoden er enten ugyldig eller så har innsendelsen utløpt."
-
-msgid "Please check your key code and try again or make a new submission."
-msgstr "Sjekk din nøkkelkode igjen eller gjør en ny innsendelse."
 
 msgid "Files attached by recipients"
 msgstr "Filer vedlegt av mottakere"
@@ -2045,6 +1979,60 @@ msgstr "Legg ved relevante filer til innsendelsen."
 msgid "Do you want to provide your identification information?"
 msgstr "Ønsker du å oppgi identifiserbar informasjon?"
 
+msgid "First name"
+msgstr "Fornavn"
+
+msgid "Last name"
+msgstr "Etternavn"
+
+msgid "Sex"
+msgstr ""
+
+msgid "Male"
+msgstr "Hannkjønn"
+
+msgid "Female"
+msgstr "Hunnkjønn"
+
+msgid "Date of birth"
+msgstr "Fødselsdato"
+
+msgid "Place of birth"
+msgstr "Fødested"
+
+msgid "Social security number"
+msgstr "Personnummer"
+
+msgid "Residence"
+msgstr "Hushold"
+
+msgid "Address"
+msgstr "Adresse"
+
+msgid "Zip code / Postal code"
+msgstr "Postnummer"
+
+msgid "Province"
+msgstr "Kommune"
+
+msgid "Current job title"
+msgstr "Gjeldende jobbtittel"
+
+msgid "Current job responsibility (role)"
+msgstr "Gjeldende arbeidsansvar (rolle)"
+
+msgid "Current organization unit and job location"
+msgstr "Gjeldende organisatorisk enhet og arbeidsplassens stedvise plassering"
+
+msgid "Job title at the time of the reported fact"
+msgstr "Jobbtittel i det faktaen ble rapportert"
+
+msgid "Job responsibility (role) at the time of the reported fact"
+msgstr "Arbeidsansvar (rolle) i det faktaen ble rapportert"
+
+msgid "Organization unit and job location at the time of the reported fact"
+msgstr "Organisatorisk enhet og arbeidets stedvise plassering i det faktaen ble rapportert"
+
 msgid "Dear {RecipientName},"
 msgstr "Kjære {RecipientName},"
 
@@ -2112,8 +2100,8 @@ msgstr "En ny fløyteblåserside har blitt registrert."
 msgid "Registration data:"
 msgstr "Registreringsdata:"
 
-msgid "Site: {HTTPSUrl} "
-msgstr "Side: {HTTPSUrl} "
+msgid "Site: {HTTPSUrl}"
+msgstr "Side: {HTTPSUrl}"
 
 msgid "Name: {Name}"
 msgstr "Navn: {Name}"

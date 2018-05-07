@@ -11,7 +11,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-04-08 11:12+0000\n"
+"PO-Revision-Date: 2018-05-07 17:23+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Czech (http://www.transifex.com/otf/globaleaks/language/cs/)\n"
 "MIME-Version: 1.0\n"
@@ -272,78 +272,6 @@ msgstr "Přílohy"
 
 msgid "Change your password"
 msgstr "Změnit heslo"
-
-msgid "First name"
-msgstr "Jméno"
-
-msgid "Last name"
-msgstr "Příjmení"
-
-msgid "Gender"
-msgstr "Pohlaví"
-
-msgid "GENDER_OTHER"
-msgstr "Jiné"
-
-msgid "Male"
-msgstr "Muž"
-
-msgid "Female"
-msgstr "Žena"
-
-msgid "Date of birth"
-msgstr "Datum narození"
-
-msgid "Place of birth"
-msgstr "Místo narození"
-
-msgid "Social security number"
-msgstr "Číslo OP"
-
-msgid "Residence"
-msgstr "Bydliště"
-
-msgid "Address"
-msgstr "Adresa"
-
-msgid "Zip code / Postal code"
-msgstr "PSČ"
-
-msgid "City"
-msgstr "Město"
-
-msgid "State"
-msgstr "Stát"
-
-msgid "Region"
-msgstr "Region"
-
-msgid "Province"
-msgstr "Kraj"
-
-msgid "Country"
-msgstr "Země"
-
-msgid "Phone number"
-msgstr "Telefonní číslo"
-
-msgid "Current job title"
-msgstr "Aktuální pracovní pozice"
-
-msgid "Current job responsibility (role)"
-msgstr "Aktuální pracovní zodpovědnost (role)"
-
-msgid "Current organization unit and job location"
-msgstr "Aktuální organizační jednotka a lokalita"
-
-msgid "Job title at the time of the reported fact"
-msgstr "Název pracovní pozice v době vztažené k podání"
-
-msgid "Job responsibility (role) at the time of the reported fact"
-msgstr "Pracovní zodpovědnost (role) v době vztažené k podání"
-
-msgid "Organization unit and job location at the time of the reported fact"
-msgstr "Organizační jednotka a lokalita v době podání"
 
 msgid "List of submissions"
 msgstr "Seznam podání"
@@ -1215,6 +1143,12 @@ msgstr "Povoleno"
 msgid "Country code"
 msgstr "Kód země"
 
+msgid "State"
+msgstr "Stát"
+
+msgid "City"
+msgstr "Město"
+
 msgid "Organization"
 msgstr "Organizace"
 
@@ -1420,6 +1354,9 @@ msgstr "Povolit více odpovědí"
 msgid "Hint shown on the button for adding an additional answer"
 msgstr "Nápověda objevující se na tlačítku pro přidání doplňující otázky"
 
+msgid "Phone number"
+msgstr "Telefonní číslo"
+
 msgid "Clause"
 msgstr "Dodatek"
 
@@ -1579,14 +1516,14 @@ msgstr "Tento software je vyvíjen neziskovou organizací Hermes Centra pro tran
 msgid "Please support Hermes through their donation page."
 msgstr "Podpořte, prosím,organizaci Hermes na jejich stránce pro dary."
 
-msgid "Authentication failed"
-msgstr "Chyba autentizace"
-
 msgid "Please select your account:"
 msgstr "Vyberte, prosím, váš účet"
 
 msgid "Now type your password, then click 'Log in':"
 msgstr "Nyní vepište své heslo, po té stiskněte  přihlášení 'Log in':"
+
+msgid "Authentication failed"
+msgstr "Chyba autentizace"
 
 msgid "Are you sure?"
 msgstr "Jste si jistý?"
@@ -1804,9 +1741,6 @@ msgstr "Odhlášení"
 
 msgid "The key code is either invalid or the submission has expired."
 msgstr "Přístupový kód je neplatný, nebo jeho platnost vypršela."
-
-msgid "Please check your key code and try again or make a new submission."
-msgstr "Prosím zkontrolujte přístupový kód a zkuste to znovu nebo celé podání zopakujte."
 
 msgid "Files attached by recipients"
 msgstr "Přílohy od příjemců"
@@ -2049,6 +1983,60 @@ msgstr "Připojení souborů relevantních k předložené informaci."
 msgid "Do you want to provide your identification information?"
 msgstr "Chcete poskytnout informace o Vaší identitě?"
 
+msgid "First name"
+msgstr "Jméno"
+
+msgid "Last name"
+msgstr "Příjmení"
+
+msgid "Sex"
+msgstr ""
+
+msgid "Male"
+msgstr "Muž"
+
+msgid "Female"
+msgstr "Žena"
+
+msgid "Date of birth"
+msgstr "Datum narození"
+
+msgid "Place of birth"
+msgstr "Místo narození"
+
+msgid "Social security number"
+msgstr "Číslo OP"
+
+msgid "Residence"
+msgstr "Bydliště"
+
+msgid "Address"
+msgstr "Adresa"
+
+msgid "Zip code / Postal code"
+msgstr "PSČ"
+
+msgid "Province"
+msgstr "Kraj"
+
+msgid "Current job title"
+msgstr "Aktuální pracovní pozice"
+
+msgid "Current job responsibility (role)"
+msgstr "Aktuální pracovní zodpovědnost (role)"
+
+msgid "Current organization unit and job location"
+msgstr "Aktuální organizační jednotka a lokalita"
+
+msgid "Job title at the time of the reported fact"
+msgstr "Název pracovní pozice v době vztažené k podání"
+
+msgid "Job responsibility (role) at the time of the reported fact"
+msgstr "Pracovní zodpovědnost (role) v době vztažené k podání"
+
+msgid "Organization unit and job location at the time of the reported fact"
+msgstr "Organizační jednotka a lokalita v době podání"
+
 msgid "Dear {RecipientName},"
 msgstr "Vážený/á {RecipientName},"
 
@@ -2116,7 +2104,7 @@ msgstr ""
 msgid "Registration data:"
 msgstr ""
 
-msgid "Site: {HTTPSUrl} "
+msgid "Site: {HTTPSUrl}"
 msgstr ""
 
 msgid "Name: {Name}"

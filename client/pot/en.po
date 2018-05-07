@@ -39,7 +39,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-04-08 11:12+0000\n"
+"PO-Revision-Date: 2018-05-07 17:23+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: English (http://www.transifex.com/otf/globaleaks/language/en/)\n"
 "MIME-Version: 1.0\n"
@@ -300,78 +300,6 @@ msgstr "Attachments"
 
 msgid "Change your password"
 msgstr "Change your password"
-
-msgid "First name"
-msgstr "First name"
-
-msgid "Last name"
-msgstr "Last name"
-
-msgid "Gender"
-msgstr "Gender"
-
-msgid "GENDER_OTHER"
-msgstr "GENDER_OTHER"
-
-msgid "Male"
-msgstr "Male"
-
-msgid "Female"
-msgstr "Female"
-
-msgid "Date of birth"
-msgstr "Date of birth"
-
-msgid "Place of birth"
-msgstr "Place of birth"
-
-msgid "Social security number"
-msgstr "Social security number"
-
-msgid "Residence"
-msgstr "Residence"
-
-msgid "Address"
-msgstr "Address"
-
-msgid "Zip code / Postal code"
-msgstr "Zip code / Postal code"
-
-msgid "City"
-msgstr "City"
-
-msgid "State"
-msgstr "State"
-
-msgid "Region"
-msgstr "Region"
-
-msgid "Province"
-msgstr "Province"
-
-msgid "Country"
-msgstr "Country"
-
-msgid "Phone number"
-msgstr "Phone number"
-
-msgid "Current job title"
-msgstr "Current job title"
-
-msgid "Current job responsibility (role)"
-msgstr "Current job responsibility (role)"
-
-msgid "Current organization unit and job location"
-msgstr "Current organization unit and job location"
-
-msgid "Job title at the time of the reported fact"
-msgstr "Job title at the time of the reported fact"
-
-msgid "Job responsibility (role) at the time of the reported fact"
-msgstr "Job responsibility (role) at the time of the reported fact"
-
-msgid "Organization unit and job location at the time of the reported fact"
-msgstr "Organization unit and job location at the time of the reported fact"
 
 msgid "List of submissions"
 msgstr "List of submissions"
@@ -1243,6 +1171,12 @@ msgstr "Enable"
 msgid "Country code"
 msgstr "Country code"
 
+msgid "State"
+msgstr "State"
+
+msgid "City"
+msgstr "City"
+
 msgid "Organization"
 msgstr "Organization"
 
@@ -1448,6 +1382,9 @@ msgstr "Accept multiple answers"
 msgid "Hint shown on the button for adding an additional answer"
 msgstr "Hint shown on the button for adding an additional answer"
 
+msgid "Phone number"
+msgstr "Phone number"
+
 msgid "Clause"
 msgstr "Clause"
 
@@ -1607,14 +1544,14 @@ msgstr "The software is developed by the non-profit Hermes Center for Transparen
 msgid "Please support Hermes through their donation page."
 msgstr "Please support Hermes through their donation page."
 
-msgid "Authentication failed"
-msgstr "Authentication failed"
-
 msgid "Please select your account:"
 msgstr "Please select your account:"
 
 msgid "Now type your password, then click 'Log in':"
 msgstr "Now type your password, then click 'Log in':"
+
+msgid "Authentication failed"
+msgstr "Authentication failed"
 
 msgid "Are you sure?"
 msgstr "Are you sure?"
@@ -1832,9 +1769,6 @@ msgstr "Logout"
 
 msgid "The key code is either invalid or the submission has expired."
 msgstr "The key code is either invalid or the submission has expired."
-
-msgid "Please check your key code and try again or make a new submission."
-msgstr "Please check your key code and try again or make a new submission."
 
 msgid "Files attached by recipients"
 msgstr "Files attached by recipients"
@@ -2077,6 +2011,60 @@ msgstr "Attach files relevant to the submission."
 msgid "Do you want to provide your identification information?"
 msgstr "Do you want to provide your identification information?"
 
+msgid "First name"
+msgstr "First name"
+
+msgid "Last name"
+msgstr "Last name"
+
+msgid "Sex"
+msgstr "Sex"
+
+msgid "Male"
+msgstr "Male"
+
+msgid "Female"
+msgstr "Female"
+
+msgid "Date of birth"
+msgstr "Date of birth"
+
+msgid "Place of birth"
+msgstr "Place of birth"
+
+msgid "Social security number"
+msgstr "Social security number"
+
+msgid "Residence"
+msgstr "Residence"
+
+msgid "Address"
+msgstr "Address"
+
+msgid "Zip code / Postal code"
+msgstr "Zip code / Postal code"
+
+msgid "Province"
+msgstr "Province"
+
+msgid "Current job title"
+msgstr "Current job title"
+
+msgid "Current job responsibility (role)"
+msgstr "Current job responsibility (role)"
+
+msgid "Current organization unit and job location"
+msgstr "Current organization unit and job location"
+
+msgid "Job title at the time of the reported fact"
+msgstr "Job title at the time of the reported fact"
+
+msgid "Job responsibility (role) at the time of the reported fact"
+msgstr "Job responsibility (role) at the time of the reported fact"
+
+msgid "Organization unit and job location at the time of the reported fact"
+msgstr "Organization unit and job location at the time of the reported fact"
+
 msgid "Dear {RecipientName},"
 msgstr "Dear {RecipientName},"
 
@@ -2144,8 +2132,8 @@ msgstr "A new whistleblowing site has been registered."
 msgid "Registration data:"
 msgstr "Registration data:"
 
-msgid "Site: {HTTPSUrl} "
-msgstr "Site: {HTTPSUrl} "
+msgid "Site: {HTTPSUrl}"
+msgstr "Site: {HTTPSUrl}"
 
 msgid "Name: {Name}"
 msgstr "Name: {Name}"

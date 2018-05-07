@@ -17,7 +17,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-04-08 11:12+0000\n"
+"PO-Revision-Date: 2018-05-07 17:23+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Romanian (http://www.transifex.com/otf/globaleaks/language/ro/)\n"
 "MIME-Version: 1.0\n"
@@ -278,78 +278,6 @@ msgstr "atașamente"
 
 msgid "Change your password"
 msgstr "Schimbați-vă parola"
-
-msgid "First name"
-msgstr "Primul nume"
-
-msgid "Last name"
-msgstr "Numele de familie"
-
-msgid "Gender"
-msgstr "Gen"
-
-msgid "GENDER_OTHER"
-msgstr "GENDER_OTHER"
-
-msgid "Male"
-msgstr "Masculin"
-
-msgid "Female"
-msgstr "Femeie"
-
-msgid "Date of birth"
-msgstr "Data de nastere"
-
-msgid "Place of birth"
-msgstr "Locul nasterii"
-
-msgid "Social security number"
-msgstr "Cod numeric personal"
-
-msgid "Residence"
-msgstr "Şedere"
-
-msgid "Address"
-msgstr "Adresa"
-
-msgid "Zip code / Postal code"
-msgstr "Cod postal / Cod postal"
-
-msgid "City"
-msgstr "Oraș"
-
-msgid "State"
-msgstr "Stat"
-
-msgid "Region"
-msgstr "Regiune"
-
-msgid "Province"
-msgstr "Provincie"
-
-msgid "Country"
-msgstr "Țară"
-
-msgid "Phone number"
-msgstr "Numar de telefon"
-
-msgid "Current job title"
-msgstr "Denumirea curentă a lucrării"
-
-msgid "Current job responsibility (role)"
-msgstr "Responsabilitatea de muncă actual (rol)"
-
-msgid "Current organization unit and job location"
-msgstr "Unitate de organizare curentă și locația de locuri de muncă"
-
-msgid "Job title at the time of the reported fact"
-msgstr "titlu loc de muncă la momentul faptului raportat"
-
-msgid "Job responsibility (role) at the time of the reported fact"
-msgstr "Responsabilitatea de muncă (rol), în momentul faptului raportat"
-
-msgid "Organization unit and job location at the time of the reported fact"
-msgstr "Unitate de organizare și locație de locuri de muncă la momentul faptului raportat"
 
 msgid "List of submissions"
 msgstr "Lista de depuneri"
@@ -1221,6 +1149,12 @@ msgstr "Activează:"
 msgid "Country code"
 msgstr "Codul țării"
 
+msgid "State"
+msgstr "Stat"
+
+msgid "City"
+msgstr "Oraș"
+
 msgid "Organization"
 msgstr "Organizația"
 
@@ -1426,6 +1360,9 @@ msgstr ""
 msgid "Hint shown on the button for adding an additional answer"
 msgstr "Sugestie afișat pe buton pentru a adăuga un răspuns suplimentar"
 
+msgid "Phone number"
+msgstr "Numar de telefon"
+
 msgid "Clause"
 msgstr "Clauză"
 
@@ -1585,14 +1522,14 @@ msgstr "Software-ul este dezvoltat de non-profit Hermes Centrul pentru Transpare
 msgid "Please support Hermes through their donation page."
 msgstr "Vă rugăm să sprijine Hermes prin intermediul paginii lor de donare."
 
-msgid "Authentication failed"
-msgstr "Autentificare esuata"
-
 msgid "Please select your account:"
 msgstr "Vă rugăm să selectați contul:"
 
 msgid "Now type your password, then click 'Log in':"
 msgstr "Acum tastați parola, apoi faceți clic pe \"Conectare\":"
+
+msgid "Authentication failed"
+msgstr "Autentificare esuata"
 
 msgid "Are you sure?"
 msgstr "Esti sigur?"
@@ -1810,9 +1747,6 @@ msgstr "Deconectare"
 
 msgid "The key code is either invalid or the submission has expired."
 msgstr "Codul cheii este incorect sau de depunere a expirat."
-
-msgid "Please check your key code and try again or make a new submission."
-msgstr "Vă rugăm să verificați codul cheie și încercați din nou sau de a face o nouă depunere."
 
 msgid "Files attached by recipients"
 msgstr "Fișiere atașate de către destinatari"
@@ -2055,6 +1989,60 @@ msgstr "Atașa fișiere relevante pentru depunerea."
 msgid "Do you want to provide your identification information?"
 msgstr "Doriți să furnizați informațiile de identificare?"
 
+msgid "First name"
+msgstr "Primul nume"
+
+msgid "Last name"
+msgstr "Numele de familie"
+
+msgid "Sex"
+msgstr ""
+
+msgid "Male"
+msgstr "Masculin"
+
+msgid "Female"
+msgstr "Femeie"
+
+msgid "Date of birth"
+msgstr "Data de nastere"
+
+msgid "Place of birth"
+msgstr "Locul nasterii"
+
+msgid "Social security number"
+msgstr "Cod numeric personal"
+
+msgid "Residence"
+msgstr "Şedere"
+
+msgid "Address"
+msgstr "Adresa"
+
+msgid "Zip code / Postal code"
+msgstr "Cod postal / Cod postal"
+
+msgid "Province"
+msgstr "Provincie"
+
+msgid "Current job title"
+msgstr "Denumirea curentă a lucrării"
+
+msgid "Current job responsibility (role)"
+msgstr "Responsabilitatea de muncă actual (rol)"
+
+msgid "Current organization unit and job location"
+msgstr "Unitate de organizare curentă și locația de locuri de muncă"
+
+msgid "Job title at the time of the reported fact"
+msgstr "titlu loc de muncă la momentul faptului raportat"
+
+msgid "Job responsibility (role) at the time of the reported fact"
+msgstr "Responsabilitatea de muncă (rol), în momentul faptului raportat"
+
+msgid "Organization unit and job location at the time of the reported fact"
+msgstr "Unitate de organizare și locație de locuri de muncă la momentul faptului raportat"
+
 msgid "Dear {RecipientName},"
 msgstr "Buna {RecipientName},"
 
@@ -2122,7 +2110,7 @@ msgstr ""
 msgid "Registration data:"
 msgstr ""
 
-msgid "Site: {HTTPSUrl} "
+msgid "Site: {HTTPSUrl}"
 msgstr ""
 
 msgid "Name: {Name}"

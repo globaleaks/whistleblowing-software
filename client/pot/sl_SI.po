@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-04-08 11:12+0000\n"
+"PO-Revision-Date: 2018-05-07 17:23+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Slovenian (Slovenia) (http://www.transifex.com/otf/globaleaks/language/sl_SI/)\n"
 "MIME-Version: 1.0\n"
@@ -268,78 +268,6 @@ msgstr "Priloge"
 
 msgid "Change your password"
 msgstr "Spremenite svoje geslo"
-
-msgid "First name"
-msgstr "Ime"
-
-msgid "Last name"
-msgstr "Priimek"
-
-msgid "Gender"
-msgstr "Spol"
-
-msgid "GENDER_OTHER"
-msgstr "SPOL_OSTALO"
-
-msgid "Male"
-msgstr "Moški"
-
-msgid "Female"
-msgstr "Ženska"
-
-msgid "Date of birth"
-msgstr "Datum rojstva"
-
-msgid "Place of birth"
-msgstr "Kraj rojstva"
-
-msgid "Social security number"
-msgstr "EMŠO"
-
-msgid "Residence"
-msgstr "Prebivališče"
-
-msgid "Address"
-msgstr "Naslov"
-
-msgid "Zip code / Postal code"
-msgstr "Poštna številka"
-
-msgid "City"
-msgstr "Mesto"
-
-msgid "State"
-msgstr "Država"
-
-msgid "Region"
-msgstr "Regija"
-
-msgid "Province"
-msgstr "Provinca"
-
-msgid "Country"
-msgstr "Država"
-
-msgid "Phone number"
-msgstr "Telefonska številka"
-
-msgid "Current job title"
-msgstr "Delovno mesto"
-
-msgid "Current job responsibility (role)"
-msgstr "Odgovornost na delu (vloga)"
-
-msgid "Current organization unit and job location"
-msgstr "Organizacijska enota in lokacija dela"
-
-msgid "Job title at the time of the reported fact"
-msgstr "Naziv delovnega mesta ob poročanju"
-
-msgid "Job responsibility (role) at the time of the reported fact"
-msgstr "Odgovornost na delu (vloga) ob poročanju"
-
-msgid "Organization unit and job location at the time of the reported fact"
-msgstr "Organizacijska enota in lokacija dela ob poročanju"
 
 msgid "List of submissions"
 msgstr "Seznam prispevkov"
@@ -1211,6 +1139,12 @@ msgstr "Omogoči"
 msgid "Country code"
 msgstr ""
 
+msgid "State"
+msgstr "Država"
+
+msgid "City"
+msgstr "Mesto"
+
 msgid "Organization"
 msgstr ""
 
@@ -1416,6 +1350,9 @@ msgstr ""
 msgid "Hint shown on the button for adding an additional answer"
 msgstr ""
 
+msgid "Phone number"
+msgstr "Telefonska številka"
+
 msgid "Clause"
 msgstr "Določba"
 
@@ -1575,14 +1512,14 @@ msgstr "To programje smo razvili v nepridobitnem centru Heremes, kjer se ukvarja
 msgid "Please support Hermes through their donation page."
 msgstr "Prosimo, da podprete Hermes na naši strani za donacije."
 
-msgid "Authentication failed"
-msgstr "Overitev ni uspela"
-
 msgid "Please select your account:"
 msgstr "Izberite svoj račun:"
 
 msgid "Now type your password, then click 'Log in':"
 msgstr "Zdaj vpišite svoje geslo, nato kliknite \"Prijavi\":"
+
+msgid "Authentication failed"
+msgstr "Overitev ni uspela"
 
 msgid "Are you sure?"
 msgstr "Ste prepričani ?"
@@ -1800,9 +1737,6 @@ msgstr "Odjavi"
 
 msgid "The key code is either invalid or the submission has expired."
 msgstr "Šifra ključa je neveljavna ali pa je naznanitvi potekla časovna omejitev."
-
-msgid "Please check your key code and try again or make a new submission."
-msgstr "Preverite vašo šifro ključa in poizkusite ponovno ali pa pričnite z novo naznanitvijo."
 
 msgid "Files attached by recipients"
 msgstr ""
@@ -2045,6 +1979,60 @@ msgstr ""
 msgid "Do you want to provide your identification information?"
 msgstr "Ali želite navesti podatke o vaši identiteti?"
 
+msgid "First name"
+msgstr "Ime"
+
+msgid "Last name"
+msgstr "Priimek"
+
+msgid "Sex"
+msgstr ""
+
+msgid "Male"
+msgstr "Moški"
+
+msgid "Female"
+msgstr "Ženska"
+
+msgid "Date of birth"
+msgstr "Datum rojstva"
+
+msgid "Place of birth"
+msgstr "Kraj rojstva"
+
+msgid "Social security number"
+msgstr "EMŠO"
+
+msgid "Residence"
+msgstr "Prebivališče"
+
+msgid "Address"
+msgstr "Naslov"
+
+msgid "Zip code / Postal code"
+msgstr "Poštna številka"
+
+msgid "Province"
+msgstr "Provinca"
+
+msgid "Current job title"
+msgstr "Delovno mesto"
+
+msgid "Current job responsibility (role)"
+msgstr "Odgovornost na delu (vloga)"
+
+msgid "Current organization unit and job location"
+msgstr "Organizacijska enota in lokacija dela"
+
+msgid "Job title at the time of the reported fact"
+msgstr "Naziv delovnega mesta ob poročanju"
+
+msgid "Job responsibility (role) at the time of the reported fact"
+msgstr "Odgovornost na delu (vloga) ob poročanju"
+
+msgid "Organization unit and job location at the time of the reported fact"
+msgstr "Organizacijska enota in lokacija dela ob poročanju"
+
 msgid "Dear {RecipientName},"
 msgstr "Spoštovani {RecipientName},"
 
@@ -2112,7 +2100,7 @@ msgstr ""
 msgid "Registration data:"
 msgstr ""
 
-msgid "Site: {HTTPSUrl} "
+msgid "Site: {HTTPSUrl}"
 msgstr ""
 
 msgid "Name: {Name}"

@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-04-12 18:47+0000\n"
-"Last-Translator: Besnik <besnik@programeshqip.org>\n"
+"PO-Revision-Date: 2018-05-07 17:23+0000\n"
+"Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Albanian (http://www.transifex.com/otf/globaleaks/language/sq/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -268,78 +268,6 @@ msgstr "attachments"
 
 msgid "Change your password"
 msgstr "Ndrysho fjalëkalimin tuaj"
-
-msgid "First name"
-msgstr "Emri"
-
-msgid "Last name"
-msgstr "Mbiemri"
-
-msgid "Gender"
-msgstr "gjini"
-
-msgid "GENDER_OTHER"
-msgstr "GENDER_OTHER"
-
-msgid "Male"
-msgstr "mashkull"
-
-msgid "Female"
-msgstr "femër"
-
-msgid "Date of birth"
-msgstr "Data e lindjes"
-
-msgid "Place of birth"
-msgstr "Vendi i lindjes"
-
-msgid "Social security number"
-msgstr "numrin e sigurimit social"
-
-msgid "Residence"
-msgstr "shtëpi"
-
-msgid "Address"
-msgstr "Adresë"
-
-msgid "Zip code / Postal code"
-msgstr "Kodi Zip / Postal code"
-
-msgid "City"
-msgstr "qytet"
-
-msgid "State"
-msgstr "shtet"
-
-msgid "Region"
-msgstr "rajon"
-
-msgid "Province"
-msgstr "krahinë"
-
-msgid "Country"
-msgstr "vend"
-
-msgid "Phone number"
-msgstr "Numri i telefonit"
-
-msgid "Current job title"
-msgstr "Titulli aktuale të punës"
-
-msgid "Current job responsibility (role)"
-msgstr "Përgjegjësia aktuale të punës (rolit)"
-
-msgid "Current organization unit and job location"
-msgstr "Njësia aktuale organizimi dhe vendndodhjen e vendeve të punës"
-
-msgid "Job title at the time of the reported fact"
-msgstr "Titulli Job në kohën e faktit raportuar"
-
-msgid "Job responsibility (role) at the time of the reported fact"
-msgstr "Përgjegjësia Job (roli) në kohën e faktit raportuar"
-
-msgid "Organization unit and job location at the time of the reported fact"
-msgstr "njësi organizative dhe vendin e punës në kohën e faktit raportuar"
 
 msgid "List of submissions"
 msgstr "Lista e aplikimeve"
@@ -1211,6 +1139,12 @@ msgstr "Mundëso"
 msgid "Country code"
 msgstr ""
 
+msgid "State"
+msgstr "shtet"
+
+msgid "City"
+msgstr "qytet"
+
 msgid "Organization"
 msgstr "Organizata"
 
@@ -1416,6 +1350,9 @@ msgstr ""
 msgid "Hint shown on the button for adding an additional answer"
 msgstr "Hint treguar në butonin për të shtuar një përgjigje shtesë"
 
+msgid "Phone number"
+msgstr "Numri i telefonit"
+
 msgid "Clause"
 msgstr "Klauzolë"
 
@@ -1575,14 +1512,14 @@ msgstr "Ky software është zhvilluar prej Qendrës Hermes për Transparencë dh
 msgid "Please support Hermes through their donation page."
 msgstr "Ju lutemi mbështeteni Hermes-in, përmes faqes së saj të dhurimeve."
 
-msgid "Authentication failed"
-msgstr "Autentifikimi Dështoi"
-
 msgid "Please select your account:"
 msgstr "Ju lutemi përzgjidhni llogarinë tuaj:"
 
 msgid "Now type your password, then click 'Log in':"
 msgstr "Tani shkruani fjalëkalimin tuaj dhe klikoni \"Hyni\":"
+
+msgid "Authentication failed"
+msgstr "Autentifikimi Dështoi"
 
 msgid "Are you sure?"
 msgstr "A je i sigurt?"
@@ -1800,9 +1737,6 @@ msgstr "Dilni"
 
 msgid "The key code is either invalid or the submission has expired."
 msgstr "Kodi i çelësit mund të jetë i pavlefshëm, ose parashtrimi ka skaduar."
-
-msgid "Please check your key code and try again or make a new submission."
-msgstr "Ju lutemi kontrolloni kodin e çelësit tuaj dhe përpiquni sërish, ose bëni një parashtrim të ri."
 
 msgid "Files attached by recipients"
 msgstr ""
@@ -2045,6 +1979,60 @@ msgstr "Shtoni skedarët e rëndësishëm për parashtrimin."
 msgid "Do you want to provide your identification information?"
 msgstr "A doni për të siguruar të dhënat tuaja të identifikimit?"
 
+msgid "First name"
+msgstr "Emri"
+
+msgid "Last name"
+msgstr "Mbiemri"
+
+msgid "Sex"
+msgstr ""
+
+msgid "Male"
+msgstr "mashkull"
+
+msgid "Female"
+msgstr "femër"
+
+msgid "Date of birth"
+msgstr "Data e lindjes"
+
+msgid "Place of birth"
+msgstr "Vendi i lindjes"
+
+msgid "Social security number"
+msgstr "numrin e sigurimit social"
+
+msgid "Residence"
+msgstr "shtëpi"
+
+msgid "Address"
+msgstr "Adresë"
+
+msgid "Zip code / Postal code"
+msgstr "Kodi Zip / Postal code"
+
+msgid "Province"
+msgstr "krahinë"
+
+msgid "Current job title"
+msgstr "Titulli aktuale të punës"
+
+msgid "Current job responsibility (role)"
+msgstr "Përgjegjësia aktuale të punës (rolit)"
+
+msgid "Current organization unit and job location"
+msgstr "Njësia aktuale organizimi dhe vendndodhjen e vendeve të punës"
+
+msgid "Job title at the time of the reported fact"
+msgstr "Titulli Job në kohën e faktit raportuar"
+
+msgid "Job responsibility (role) at the time of the reported fact"
+msgstr "Përgjegjësia Job (roli) në kohën e faktit raportuar"
+
+msgid "Organization unit and job location at the time of the reported fact"
+msgstr "njësi organizative dhe vendin e punës në kohën e faktit raportuar"
+
 msgid "Dear {RecipientName},"
 msgstr "Dear {RecipientName},"
 
@@ -2112,7 +2100,7 @@ msgstr ""
 msgid "Registration data:"
 msgstr ""
 
-msgid "Site: {HTTPSUrl} "
+msgid "Site: {HTTPSUrl}"
 msgstr ""
 
 msgid "Name: {Name}"

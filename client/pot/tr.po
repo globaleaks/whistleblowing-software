@@ -25,7 +25,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-04-08 11:12+0000\n"
+"PO-Revision-Date: 2018-05-07 17:23+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Turkish (http://www.transifex.com/otf/globaleaks/language/tr/)\n"
 "MIME-Version: 1.0\n"
@@ -286,78 +286,6 @@ msgstr "Ekler"
 
 msgid "Change your password"
 msgstr "Şifrenizi değiştirin"
-
-msgid "First name"
-msgstr "İsim"
-
-msgid "Last name"
-msgstr "Soyisim"
-
-msgid "Gender"
-msgstr "Cinsiyet"
-
-msgid "GENDER_OTHER"
-msgstr "DİĞER"
-
-msgid "Male"
-msgstr "Erkek"
-
-msgid "Female"
-msgstr "Kadın"
-
-msgid "Date of birth"
-msgstr "Doğum tarihi"
-
-msgid "Place of birth"
-msgstr "Doğum yeri"
-
-msgid "Social security number"
-msgstr "Kimlik numarası"
-
-msgid "Residence"
-msgstr "Oturum"
-
-msgid "Address"
-msgstr "Adres"
-
-msgid "Zip code / Postal code"
-msgstr "Posta kodu"
-
-msgid "City"
-msgstr "Şehir"
-
-msgid "State"
-msgstr "Eyalet"
-
-msgid "Region"
-msgstr "Bölge"
-
-msgid "Province"
-msgstr "İlçe"
-
-msgid "Country"
-msgstr "Ülke"
-
-msgid "Phone number"
-msgstr "Telefon numarası"
-
-msgid "Current job title"
-msgstr "Şu andaki işi"
-
-msgid "Current job responsibility (role)"
-msgstr "Şu andaki sorumluluğu (rolü)"
-
-msgid "Current organization unit and job location"
-msgstr "Şu andaki kurumu ve işyeri"
-
-msgid "Job title at the time of the reported fact"
-msgstr "Hakkında bilgi verilen olay sırasındaki iş unvanı"
-
-msgid "Job responsibility (role) at the time of the reported fact"
-msgstr "Hakkında bilgi verilen olay sırasındaki sorumluluğu (rolü)"
-
-msgid "Organization unit and job location at the time of the reported fact"
-msgstr "Hakkında bilgi verilen olay sırasındaki kurumu ve iş yeri"
 
 msgid "List of submissions"
 msgstr "Gönderim listesi"
@@ -1229,6 +1157,12 @@ msgstr "Etkinleştir"
 msgid "Country code"
 msgstr "Ülke kodu"
 
+msgid "State"
+msgstr "Eyalet"
+
+msgid "City"
+msgstr "Şehir"
+
 msgid "Organization"
 msgstr "Organizasyon"
 
@@ -1434,6 +1368,9 @@ msgstr ""
 msgid "Hint shown on the button for adding an additional answer"
 msgstr "Ek cevap vermek için tuşun üzerinde görüntülenecek ipucu"
 
+msgid "Phone number"
+msgstr "Telefon numarası"
+
 msgid "Clause"
 msgstr "Cümle"
 
@@ -1593,14 +1530,14 @@ msgstr "Bu yazılım kar amacı gütmeyen Kamuyu Aydınlatma ve Sayısal İnsan 
 msgid "Please support Hermes through their donation page."
 msgstr "Lütfen Hermes'i bağış sayfalarından destekleyin."
 
-msgid "Authentication failed"
-msgstr "Kimlik Doğrulama Başarısız"
-
 msgid "Please select your account:"
 msgstr "Lütfen hesabınızı seçin:"
 
 msgid "Now type your password, then click 'Log in':"
 msgstr "Şimdi şifrenizi yazın ve Giriş'i tıklayın"
+
+msgid "Authentication failed"
+msgstr "Kimlik Doğrulama Başarısız"
 
 msgid "Are you sure?"
 msgstr "Emin misiniz?"
@@ -1818,9 +1755,6 @@ msgstr "Çıkış yap"
 
 msgid "The key code is either invalid or the submission has expired."
 msgstr "Anahtar kod geçersiz veya gönderimin süresi dolmuş."
-
-msgid "Please check your key code and try again or make a new submission."
-msgstr "Lütfen anahtar kodunuzu kontrol edip tekrar deneyin veya yeni bir gönderimde bulunun."
 
 msgid "Files attached by recipients"
 msgstr ""
@@ -2063,6 +1997,60 @@ msgstr "Gönderiminizle ilgili dosyaları ekleyin"
 msgid "Do you want to provide your identification information?"
 msgstr "Kimlik bilgilerinizi girmek istiyor musunuz?"
 
+msgid "First name"
+msgstr "İsim"
+
+msgid "Last name"
+msgstr "Soyisim"
+
+msgid "Sex"
+msgstr ""
+
+msgid "Male"
+msgstr "Erkek"
+
+msgid "Female"
+msgstr "Kadın"
+
+msgid "Date of birth"
+msgstr "Doğum tarihi"
+
+msgid "Place of birth"
+msgstr "Doğum yeri"
+
+msgid "Social security number"
+msgstr "Kimlik numarası"
+
+msgid "Residence"
+msgstr "Oturum"
+
+msgid "Address"
+msgstr "Adres"
+
+msgid "Zip code / Postal code"
+msgstr "Posta kodu"
+
+msgid "Province"
+msgstr "İlçe"
+
+msgid "Current job title"
+msgstr "Şu andaki işi"
+
+msgid "Current job responsibility (role)"
+msgstr "Şu andaki sorumluluğu (rolü)"
+
+msgid "Current organization unit and job location"
+msgstr "Şu andaki kurumu ve işyeri"
+
+msgid "Job title at the time of the reported fact"
+msgstr "Hakkında bilgi verilen olay sırasındaki iş unvanı"
+
+msgid "Job responsibility (role) at the time of the reported fact"
+msgstr "Hakkında bilgi verilen olay sırasındaki sorumluluğu (rolü)"
+
+msgid "Organization unit and job location at the time of the reported fact"
+msgstr "Hakkında bilgi verilen olay sırasındaki kurumu ve iş yeri"
+
 msgid "Dear {RecipientName},"
 msgstr "Sayın {RecipientName},"
 
@@ -2130,7 +2118,7 @@ msgstr ""
 msgid "Registration data:"
 msgstr ""
 
-msgid "Site: {HTTPSUrl} "
+msgid "Site: {HTTPSUrl}"
 msgstr ""
 
 msgid "Name: {Name}"

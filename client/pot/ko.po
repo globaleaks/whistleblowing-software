@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-04-08 11:12+0000\n"
+"PO-Revision-Date: 2018-05-07 17:23+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Korean (http://www.transifex.com/otf/globaleaks/language/ko/)\n"
 "MIME-Version: 1.0\n"
@@ -266,78 +266,6 @@ msgstr "첨부 파일"
 
 msgid "Change your password"
 msgstr "비밀번호 변경"
-
-msgid "First name"
-msgstr "이름"
-
-msgid "Last name"
-msgstr "성"
-
-msgid "Gender"
-msgstr "성별"
-
-msgid "GENDER_OTHER"
-msgstr "GENDER_OTHER"
-
-msgid "Male"
-msgstr "남성"
-
-msgid "Female"
-msgstr "여자"
-
-msgid "Date of birth"
-msgstr "생년월일"
-
-msgid "Place of birth"
-msgstr "출생지"
-
-msgid "Social security number"
-msgstr "사회 보장 번호"
-
-msgid "Residence"
-msgstr "거주"
-
-msgid "Address"
-msgstr "주소"
-
-msgid "Zip code / Postal code"
-msgstr "우편 번호 / 우편 번호"
-
-msgid "City"
-msgstr "시티"
-
-msgid "State"
-msgstr "상태"
-
-msgid "Region"
-msgstr "부위"
-
-msgid "Province"
-msgstr "지방"
-
-msgid "Country"
-msgstr "국가"
-
-msgid "Phone number"
-msgstr "전화 번호"
-
-msgid "Current job title"
-msgstr "현재 작업 제목"
-
-msgid "Current job responsibility (role)"
-msgstr "현재 작업 책임 (역할)"
-
-msgid "Current organization unit and job location"
-msgstr "현재 조직 단위 및 작업 위치"
-
-msgid "Job title at the time of the reported fact"
-msgstr "보고 된 사실 당시의 직위"
-
-msgid "Job responsibility (role) at the time of the reported fact"
-msgstr "보고 된 사실 당시의 작업 책임 (역할)"
-
-msgid "Organization unit and job location at the time of the reported fact"
-msgstr "보고 된 사실시 조직 단위 및 작업 위치"
 
 msgid "List of submissions"
 msgstr "제출 목록"
@@ -1209,6 +1137,12 @@ msgstr ""
 msgid "Country code"
 msgstr ""
 
+msgid "State"
+msgstr "상태"
+
+msgid "City"
+msgstr "시티"
+
 msgid "Organization"
 msgstr ""
 
@@ -1414,6 +1348,9 @@ msgstr ""
 msgid "Hint shown on the button for adding an additional answer"
 msgstr "추가 답변을 추가하는 버튼에 표시 힌트"
 
+msgid "Phone number"
+msgstr "전화 번호"
+
 msgid "Clause"
 msgstr "절"
 
@@ -1573,14 +1510,14 @@ msgstr "이 소프트웨어는 비영리 투명성에 대한 에르메스 센터
 msgid "Please support Hermes through their donation page."
 msgstr "자신의 기부 페이지를 통해 헤르메스를 지원하십시오."
 
-msgid "Authentication failed"
-msgstr "인증 실패"
-
 msgid "Please select your account:"
 msgstr "계정을 선택하십시오 :"
 
 msgid "Now type your password, then click 'Log in':"
 msgstr "지금 비밀번호를 입력 한 후 '로그인'을 클릭합니다 :"
+
+msgid "Authentication failed"
+msgstr "인증 실패"
 
 msgid "Are you sure?"
 msgstr "확실합니까?"
@@ -1798,9 +1735,6 @@ msgstr "로그 아웃"
 
 msgid "The key code is either invalid or the submission has expired."
 msgstr "키 코드가 잘못되었거나 제출이 만료되었습니다."
-
-msgid "Please check your key code and try again or make a new submission."
-msgstr "키 코드를 확인하고 다시 시도하거나 새 제출하시기 바랍니다."
 
 msgid "Files attached by recipients"
 msgstr ""
@@ -2043,6 +1977,60 @@ msgstr ""
 msgid "Do you want to provide your identification information?"
 msgstr "당신은 당신의 식별 정보를 제공 하시겠습니까?"
 
+msgid "First name"
+msgstr "이름"
+
+msgid "Last name"
+msgstr "성"
+
+msgid "Sex"
+msgstr ""
+
+msgid "Male"
+msgstr "남성"
+
+msgid "Female"
+msgstr "여자"
+
+msgid "Date of birth"
+msgstr "생년월일"
+
+msgid "Place of birth"
+msgstr "출생지"
+
+msgid "Social security number"
+msgstr "사회 보장 번호"
+
+msgid "Residence"
+msgstr "거주"
+
+msgid "Address"
+msgstr "주소"
+
+msgid "Zip code / Postal code"
+msgstr "우편 번호 / 우편 번호"
+
+msgid "Province"
+msgstr "지방"
+
+msgid "Current job title"
+msgstr "현재 작업 제목"
+
+msgid "Current job responsibility (role)"
+msgstr "현재 작업 책임 (역할)"
+
+msgid "Current organization unit and job location"
+msgstr "현재 조직 단위 및 작업 위치"
+
+msgid "Job title at the time of the reported fact"
+msgstr "보고 된 사실 당시의 직위"
+
+msgid "Job responsibility (role) at the time of the reported fact"
+msgstr "보고 된 사실 당시의 작업 책임 (역할)"
+
+msgid "Organization unit and job location at the time of the reported fact"
+msgstr "보고 된 사실시 조직 단위 및 작업 위치"
+
 msgid "Dear {RecipientName},"
 msgstr "친애 %의 {RecipientName} 를,"
 
@@ -2110,7 +2098,7 @@ msgstr ""
 msgid "Registration data:"
 msgstr ""
 
-msgid "Site: {HTTPSUrl} "
+msgid "Site: {HTTPSUrl}"
 msgstr ""
 
 msgid "Name: {Name}"

@@ -17,7 +17,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-04-08 11:12+0000\n"
+"PO-Revision-Date: 2018-05-07 17:23+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Hebrew (http://www.transifex.com/otf/globaleaks/language/he/)\n"
 "MIME-Version: 1.0\n"
@@ -278,78 +278,6 @@ msgstr "קבצים מצורפים"
 
 msgid "Change your password"
 msgstr "שנה את סיסמתך"
-
-msgid "First name"
-msgstr "שם פרטי"
-
-msgid "Last name"
-msgstr "שם משפחה"
-
-msgid "Gender"
-msgstr "מִין"
-
-msgid "GENDER_OTHER"
-msgstr "GENDER_OTHER"
-
-msgid "Male"
-msgstr "זָכָר"
-
-msgid "Female"
-msgstr "נְקֵבָה"
-
-msgid "Date of birth"
-msgstr "תאריך לידה"
-
-msgid "Place of birth"
-msgstr "מקום לידה"
-
-msgid "Social security number"
-msgstr "מספר ביטוח לאומי"
-
-msgid "Residence"
-msgstr "מגורים"
-
-msgid "Address"
-msgstr "כתובת"
-
-msgid "Zip code / Postal code"
-msgstr "מיקוד / מיקוד"
-
-msgid "City"
-msgstr "עִיר"
-
-msgid "State"
-msgstr "מְדִינָה"
-
-msgid "Region"
-msgstr "אזור"
-
-msgid "Province"
-msgstr "מָחוֹז"
-
-msgid "Country"
-msgstr "מְדִינָה"
-
-msgid "Phone number"
-msgstr "מספר טלפון"
-
-msgid "Current job title"
-msgstr "תיאור המשרה הנוכחית"
-
-msgid "Current job responsibility (role)"
-msgstr "אחריות עבודה נוכחית (תפקיד)"
-
-msgid "Current organization unit and job location"
-msgstr "יחידה ארגונית נוכחית עבודת מיקום"
-
-msgid "Job title at the time of the reported fact"
-msgstr "הגדרת תפקיד בעת עובדת הדיווח"
-
-msgid "Job responsibility (role) at the time of the reported fact"
-msgstr "אחריות איוב (תפקיד) בעת עובדת הדיווח"
-
-msgid "Organization unit and job location at the time of the reported fact"
-msgstr "יחידת ארגון עבודת מיקום בעת עובדת הדיווח"
 
 msgid "List of submissions"
 msgstr "רשימת הגשות"
@@ -1221,6 +1149,12 @@ msgstr ""
 msgid "Country code"
 msgstr ""
 
+msgid "State"
+msgstr "מְדִינָה"
+
+msgid "City"
+msgstr "עִיר"
+
 msgid "Organization"
 msgstr ""
 
@@ -1426,6 +1360,9 @@ msgstr ""
 msgid "Hint shown on the button for adding an additional answer"
 msgstr "רמז לראות על הכפתור להוספת תשובה נוספת"
 
+msgid "Phone number"
+msgstr "מספר טלפון"
+
 msgid "Clause"
 msgstr "סעיף"
 
@@ -1585,14 +1522,14 @@ msgstr "התוכנה שפותחה על ידי קרן מרכז הרמס לשקי�
 msgid "Please support Hermes through their donation page."
 msgstr "אנא לתמוך בהרמס דרך דף התרומה שלהם."
 
-msgid "Authentication failed"
-msgstr "אימות נכשלה"
-
 msgid "Please select your account:"
 msgstr "אנא בחר את החשבון"
 
 msgid "Now type your password, then click 'Log in':"
 msgstr "תקליד את סיסמתך ולחץ \"התחבר\""
+
+msgid "Authentication failed"
+msgstr "אימות נכשלה"
 
 msgid "Are you sure?"
 msgstr "האם אתה בטוח?"
@@ -1810,9 +1747,6 @@ msgstr "נתק"
 
 msgid "The key code is either invalid or the submission has expired."
 msgstr "קוד המפתח לא חוקי או ההגשה פגה."
-
-msgid "Please check your key code and try again or make a new submission."
-msgstr "אנא בדוק את קוד המפתח שלך ונסה שוב או עשה הגשה חדשה."
 
 msgid "Files attached by recipients"
 msgstr ""
@@ -2055,6 +1989,60 @@ msgstr "צרף קבצים רלוונטיים להגשה"
 msgid "Do you want to provide your identification information?"
 msgstr "האם אתה רוצה לספק מידע זיהוי שלך?"
 
+msgid "First name"
+msgstr "שם פרטי"
+
+msgid "Last name"
+msgstr "שם משפחה"
+
+msgid "Sex"
+msgstr ""
+
+msgid "Male"
+msgstr "זָכָר"
+
+msgid "Female"
+msgstr "נְקֵבָה"
+
+msgid "Date of birth"
+msgstr "תאריך לידה"
+
+msgid "Place of birth"
+msgstr "מקום לידה"
+
+msgid "Social security number"
+msgstr "מספר ביטוח לאומי"
+
+msgid "Residence"
+msgstr "מגורים"
+
+msgid "Address"
+msgstr "כתובת"
+
+msgid "Zip code / Postal code"
+msgstr "מיקוד / מיקוד"
+
+msgid "Province"
+msgstr "מָחוֹז"
+
+msgid "Current job title"
+msgstr "תיאור המשרה הנוכחית"
+
+msgid "Current job responsibility (role)"
+msgstr "אחריות עבודה נוכחית (תפקיד)"
+
+msgid "Current organization unit and job location"
+msgstr "יחידה ארגונית נוכחית עבודת מיקום"
+
+msgid "Job title at the time of the reported fact"
+msgstr "הגדרת תפקיד בעת עובדת הדיווח"
+
+msgid "Job responsibility (role) at the time of the reported fact"
+msgstr "אחריות איוב (תפקיד) בעת עובדת הדיווח"
+
+msgid "Organization unit and job location at the time of the reported fact"
+msgstr "יחידת ארגון עבודת מיקום בעת עובדת הדיווח"
+
 msgid "Dear {RecipientName},"
 msgstr "{RecipientName} יקרים,"
 
@@ -2122,7 +2110,7 @@ msgstr ""
 msgid "Registration data:"
 msgstr ""
 
-msgid "Site: {HTTPSUrl} "
+msgid "Site: {HTTPSUrl}"
 msgstr ""
 
 msgid "Name: {Name}"

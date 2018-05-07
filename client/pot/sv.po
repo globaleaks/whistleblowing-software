@@ -20,7 +20,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-04-08 11:12+0000\n"
+"PO-Revision-Date: 2018-05-07 17:23+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Swedish (http://www.transifex.com/otf/globaleaks/language/sv/)\n"
 "MIME-Version: 1.0\n"
@@ -281,78 +281,6 @@ msgstr "Bilagor"
 
 msgid "Change your password"
 msgstr "Ändra ditt lösenord"
-
-msgid "First name"
-msgstr "Förnamn"
-
-msgid "Last name"
-msgstr "Efternamn"
-
-msgid "Gender"
-msgstr "Kön"
-
-msgid "GENDER_OTHER"
-msgstr "GENDER_OTHER"
-
-msgid "Male"
-msgstr "Man"
-
-msgid "Female"
-msgstr "Kvinna"
-
-msgid "Date of birth"
-msgstr "Födelsedatum"
-
-msgid "Place of birth"
-msgstr "Födelseort"
-
-msgid "Social security number"
-msgstr "Personnummer"
-
-msgid "Residence"
-msgstr ""
-
-msgid "Address"
-msgstr "Adress"
-
-msgid "Zip code / Postal code"
-msgstr "Postkod"
-
-msgid "City"
-msgstr "Stad"
-
-msgid "State"
-msgstr "Tillstånd"
-
-msgid "Region"
-msgstr "Region"
-
-msgid "Province"
-msgstr "Provins"
-
-msgid "Country"
-msgstr "Land"
-
-msgid "Phone number"
-msgstr "Telefonnummer"
-
-msgid "Current job title"
-msgstr "Nuvarande yrke"
-
-msgid "Current job responsibility (role)"
-msgstr "Nuvarande arbetsansvar (roll)"
-
-msgid "Current organization unit and job location"
-msgstr "Nuvarande organisationsenhet och jobb plats"
-
-msgid "Job title at the time of the reported fact"
-msgstr "Jobb titel vid tid av rapporterad fakta"
-
-msgid "Job responsibility (role) at the time of the reported fact"
-msgstr "Arbetsansvar (roll) vid tidpunkten för det rapporterade faktumet"
-
-msgid "Organization unit and job location at the time of the reported fact"
-msgstr "Organisationsenhet och arbetsplats vid tidpunkten för det rapporterade faktumet"
 
 msgid "List of submissions"
 msgstr "Förteckning över inlämningar"
@@ -1224,6 +1152,12 @@ msgstr "Aktivera"
 msgid "Country code"
 msgstr "Landskod"
 
+msgid "State"
+msgstr "Tillstånd"
+
+msgid "City"
+msgstr "Stad"
+
 msgid "Organization"
 msgstr "Organization"
 
@@ -1429,6 +1363,9 @@ msgstr ""
 msgid "Hint shown on the button for adding an additional answer"
 msgstr ""
 
+msgid "Phone number"
+msgstr "Telefonnummer"
+
 msgid "Clause"
 msgstr "Klausul"
 
@@ -1588,14 +1525,14 @@ msgstr "Mjukvaran är utvecklad av den icke-vinstdrivande organisationen Hermes 
 msgid "Please support Hermes through their donation page."
 msgstr "Vänligen stöd Hermes med en donation."
 
-msgid "Authentication failed"
-msgstr "Ingen behörighet"
-
 msgid "Please select your account:"
 msgstr "Vänligen välj ditt konto."
 
 msgid "Now type your password, then click 'Log in':"
 msgstr "Ange ditt lösenord, och välj sedan 'Log in':"
+
+msgid "Authentication failed"
+msgstr "Ingen behörighet"
 
 msgid "Are you sure?"
 msgstr "Är du säker?"
@@ -1813,9 +1750,6 @@ msgstr "Logga ut"
 
 msgid "The key code is either invalid or the submission has expired."
 msgstr "Koden är antingen fel eller så har tipset upphört."
-
-msgid "Please check your key code and try again or make a new submission."
-msgstr "Var god kontrollera koden och försök igen eller lämna ett nytt tips."
 
 msgid "Files attached by recipients"
 msgstr ""
@@ -2058,6 +1992,60 @@ msgstr ""
 msgid "Do you want to provide your identification information?"
 msgstr ""
 
+msgid "First name"
+msgstr "Förnamn"
+
+msgid "Last name"
+msgstr "Efternamn"
+
+msgid "Sex"
+msgstr ""
+
+msgid "Male"
+msgstr "Man"
+
+msgid "Female"
+msgstr "Kvinna"
+
+msgid "Date of birth"
+msgstr "Födelsedatum"
+
+msgid "Place of birth"
+msgstr "Födelseort"
+
+msgid "Social security number"
+msgstr "Personnummer"
+
+msgid "Residence"
+msgstr ""
+
+msgid "Address"
+msgstr "Adress"
+
+msgid "Zip code / Postal code"
+msgstr "Postkod"
+
+msgid "Province"
+msgstr "Provins"
+
+msgid "Current job title"
+msgstr "Nuvarande yrke"
+
+msgid "Current job responsibility (role)"
+msgstr "Nuvarande arbetsansvar (roll)"
+
+msgid "Current organization unit and job location"
+msgstr "Nuvarande organisationsenhet och jobb plats"
+
+msgid "Job title at the time of the reported fact"
+msgstr "Jobb titel vid tid av rapporterad fakta"
+
+msgid "Job responsibility (role) at the time of the reported fact"
+msgstr "Arbetsansvar (roll) vid tidpunkten för det rapporterade faktumet"
+
+msgid "Organization unit and job location at the time of the reported fact"
+msgstr "Organisationsenhet och arbetsplats vid tidpunkten för det rapporterade faktumet"
+
 msgid "Dear {RecipientName},"
 msgstr "Kära {RecipientName},"
 
@@ -2125,7 +2113,7 @@ msgstr ""
 msgid "Registration data:"
 msgstr ""
 
-msgid "Site: {HTTPSUrl} "
+msgid "Site: {HTTPSUrl}"
 msgstr ""
 
 msgid "Name: {Name}"

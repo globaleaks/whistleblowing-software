@@ -9,7 +9,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-04-08 11:12+0000\n"
+"PO-Revision-Date: 2018-05-07 17:23+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Japanese (http://www.transifex.com/otf/globaleaks/language/ja/)\n"
 "MIME-Version: 1.0\n"
@@ -270,78 +270,6 @@ msgstr "添付"
 
 msgid "Change your password"
 msgstr "パスワードを変更してください"
-
-msgid "First name"
-msgstr "名"
-
-msgid "Last name"
-msgstr "姓"
-
-msgid "Gender"
-msgstr "性別"
-
-msgid "GENDER_OTHER"
-msgstr "その他"
-
-msgid "Male"
-msgstr "男性"
-
-msgid "Female"
-msgstr "女性"
-
-msgid "Date of birth"
-msgstr "誕生日"
-
-msgid "Place of birth"
-msgstr "誕生地"
-
-msgid "Social security number"
-msgstr "社会保障番号"
-
-msgid "Residence"
-msgstr "住居"
-
-msgid "Address"
-msgstr "住所"
-
-msgid "Zip code / Postal code"
-msgstr "郵便番号"
-
-msgid "City"
-msgstr "市区町村"
-
-msgid "State"
-msgstr "都道府県州"
-
-msgid "Region"
-msgstr "都道府県"
-
-msgid "Province"
-msgstr "地方"
-
-msgid "Country"
-msgstr "国"
-
-msgid "Phone number"
-msgstr "電話番号"
-
-msgid "Current job title"
-msgstr "現在の肩書"
-
-msgid "Current job responsibility (role)"
-msgstr "現在の役職 (役割)"
-
-msgid "Current organization unit and job location"
-msgstr "現在の所属、職場"
-
-msgid "Job title at the time of the reported fact"
-msgstr "報告する事実の時点での肩書"
-
-msgid "Job responsibility (role) at the time of the reported fact"
-msgstr "報告する事実の時点での役職 (役割)"
-
-msgid "Organization unit and job location at the time of the reported fact"
-msgstr "報告する事実の時点での所属、職場"
 
 msgid "List of submissions"
 msgstr "提出のリスト"
@@ -1213,6 +1141,12 @@ msgstr "有効"
 msgid "Country code"
 msgstr "国コード"
 
+msgid "State"
+msgstr "都道府県州"
+
+msgid "City"
+msgstr "市区町村"
+
 msgid "Organization"
 msgstr "組織"
 
@@ -1418,6 +1352,9 @@ msgstr "複数の回答を受け付ける"
 msgid "Hint shown on the button for adding an additional answer"
 msgstr "追加の回答を追加するボタンにヒントを表示します"
 
+msgid "Phone number"
+msgstr "電話番号"
+
 msgid "Clause"
 msgstr "項"
 
@@ -1577,14 +1514,14 @@ msgstr "このソフトウェアは非営利団体Hermes Center for Transparency
 msgid "Please support Hermes through their donation page."
 msgstr "ぜひ寄付のページをご覧になり、Hermesをサポートしてください。"
 
-msgid "Authentication failed"
-msgstr "認証に失敗しました"
-
 msgid "Please select your account:"
 msgstr "あなたのアカウントを選択してください:"
 
 msgid "Now type your password, then click 'Log in':"
 msgstr "パスワードを入力して、'ログイン'をクリックしてください:"
+
+msgid "Authentication failed"
+msgstr "認証に失敗しました"
 
 msgid "Are you sure?"
 msgstr "よろしいですか?"
@@ -1802,9 +1739,6 @@ msgstr "ログアウト"
 
 msgid "The key code is either invalid or the submission has expired."
 msgstr "キーコードが無効か、提出の有効期限が過ぎています。"
-
-msgid "Please check your key code and try again or make a new submission."
-msgstr "キーコードを確認して再度実行するか、新たに提出してください。"
 
 msgid "Files attached by recipients"
 msgstr "受信者が添付したファイル"
@@ -2047,6 +1981,60 @@ msgstr "提出に関連したファイルを添付してください"
 msgid "Do you want to provide your identification information?"
 msgstr "あなたの身元情報を提供しますか?"
 
+msgid "First name"
+msgstr "名"
+
+msgid "Last name"
+msgstr "姓"
+
+msgid "Sex"
+msgstr ""
+
+msgid "Male"
+msgstr "男性"
+
+msgid "Female"
+msgstr "女性"
+
+msgid "Date of birth"
+msgstr "誕生日"
+
+msgid "Place of birth"
+msgstr "誕生地"
+
+msgid "Social security number"
+msgstr "社会保障番号"
+
+msgid "Residence"
+msgstr "住居"
+
+msgid "Address"
+msgstr "住所"
+
+msgid "Zip code / Postal code"
+msgstr "郵便番号"
+
+msgid "Province"
+msgstr "地方"
+
+msgid "Current job title"
+msgstr "現在の肩書"
+
+msgid "Current job responsibility (role)"
+msgstr "現在の役職 (役割)"
+
+msgid "Current organization unit and job location"
+msgstr "現在の所属、職場"
+
+msgid "Job title at the time of the reported fact"
+msgstr "報告する事実の時点での肩書"
+
+msgid "Job responsibility (role) at the time of the reported fact"
+msgstr "報告する事実の時点での役職 (役割)"
+
+msgid "Organization unit and job location at the time of the reported fact"
+msgstr "報告する事実の時点での所属、職場"
+
 msgid "Dear {RecipientName},"
 msgstr "{RecipientName} 様"
 
@@ -2114,7 +2102,7 @@ msgstr ""
 msgid "Registration data:"
 msgstr ""
 
-msgid "Site: {HTTPSUrl} "
+msgid "Site: {HTTPSUrl}"
 msgstr ""
 
 msgid "Name: {Name}"
