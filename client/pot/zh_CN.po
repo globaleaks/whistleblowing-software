@@ -18,7 +18,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-04-08 11:12+0000\n"
+"PO-Revision-Date: 2018-05-07 17:23+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/otf/globaleaks/language/zh_CN/)\n"
 "MIME-Version: 1.0\n"
@@ -279,78 +279,6 @@ msgstr "附件"
 
 msgid "Change your password"
 msgstr "更改您的密码"
-
-msgid "First name"
-msgstr "名"
-
-msgid "Last name"
-msgstr "姓"
-
-msgid "Gender"
-msgstr "性别"
-
-msgid "GENDER_OTHER"
-msgstr "其他"
-
-msgid "Male"
-msgstr "男"
-
-msgid "Female"
-msgstr "女"
-
-msgid "Date of birth"
-msgstr "出生日期"
-
-msgid "Place of birth"
-msgstr "出生地"
-
-msgid "Social security number"
-msgstr "身份证号"
-
-msgid "Residence"
-msgstr "国籍"
-
-msgid "Address"
-msgstr "地址"
-
-msgid "Zip code / Postal code"
-msgstr "邮政编码"
-
-msgid "City"
-msgstr "城市"
-
-msgid "State"
-msgstr "州"
-
-msgid "Region"
-msgstr "区域"
-
-msgid "Province"
-msgstr "省"
-
-msgid "Country"
-msgstr "国家"
-
-msgid "Phone number"
-msgstr "电话号码"
-
-msgid "Current job title"
-msgstr "当前职位"
-
-msgid "Current job responsibility (role)"
-msgstr "当前工作职责（角色）"
-
-msgid "Current organization unit and job location"
-msgstr "当前的组织单位和工作地点"
-
-msgid "Job title at the time of the reported fact"
-msgstr "报道事实时的职位名称"
-
-msgid "Job responsibility (role) at the time of the reported fact"
-msgstr "报道事实时的工作职责（角色）"
-
-msgid "Organization unit and job location at the time of the reported fact"
-msgstr "报道事实的组织单位和工作地点"
 
 msgid "List of submissions"
 msgstr "提交一览"
@@ -1222,6 +1150,12 @@ msgstr "开启"
 msgid "Country code"
 msgstr "国家或地区代码"
 
+msgid "State"
+msgstr "州"
+
+msgid "City"
+msgstr "城市"
+
 msgid "Organization"
 msgstr "机构"
 
@@ -1427,6 +1361,9 @@ msgstr ""
 msgid "Hint shown on the button for adding an additional answer"
 msgstr "添加额外回答的按钮上显示的提示"
 
+msgid "Phone number"
+msgstr "电话号码"
+
 msgid "Clause"
 msgstr "条款"
 
@@ -1586,14 +1523,14 @@ msgstr "这个软件由非牟利的爱马仕透明度和数字人权中心开发
 msgid "Please support Hermes through their donation page."
 msgstr "请通过爱马仕的资助网页支持他们。"
 
-msgid "Authentication failed"
-msgstr "认证失败"
-
 msgid "Please select your account:"
 msgstr "请选择您的账号："
 
 msgid "Now type your password, then click 'Log in':"
 msgstr "现在输入您的密码，然后点击“登录”："
+
+msgid "Authentication failed"
+msgstr "认证失败"
 
 msgid "Are you sure?"
 msgstr "您确定吗？"
@@ -1811,9 +1748,6 @@ msgstr "注销"
 
 msgid "The key code is either invalid or the submission has expired."
 msgstr "关键代码无效或已过期。"
-
-msgid "Please check your key code and try again or make a new submission."
-msgstr "请检查您的关键代码并重试或开始一次新的提交。"
 
 msgid "Files attached by recipients"
 msgstr "来自接收人的附件"
@@ -2056,6 +1990,60 @@ msgstr ""
 msgid "Do you want to provide your identification information?"
 msgstr "是否提供身份信息？"
 
+msgid "First name"
+msgstr "名"
+
+msgid "Last name"
+msgstr "姓"
+
+msgid "Sex"
+msgstr ""
+
+msgid "Male"
+msgstr "男"
+
+msgid "Female"
+msgstr "女"
+
+msgid "Date of birth"
+msgstr "出生日期"
+
+msgid "Place of birth"
+msgstr "出生地"
+
+msgid "Social security number"
+msgstr "身份证号"
+
+msgid "Residence"
+msgstr "国籍"
+
+msgid "Address"
+msgstr "地址"
+
+msgid "Zip code / Postal code"
+msgstr "邮政编码"
+
+msgid "Province"
+msgstr "省"
+
+msgid "Current job title"
+msgstr "当前职位"
+
+msgid "Current job responsibility (role)"
+msgstr "当前工作职责（角色）"
+
+msgid "Current organization unit and job location"
+msgstr "当前的组织单位和工作地点"
+
+msgid "Job title at the time of the reported fact"
+msgstr "报道事实时的职位名称"
+
+msgid "Job responsibility (role) at the time of the reported fact"
+msgstr "报道事实时的工作职责（角色）"
+
+msgid "Organization unit and job location at the time of the reported fact"
+msgstr "报道事实的组织单位和工作地点"
+
 msgid "Dear {RecipientName},"
 msgstr "亲爱的 {RecipientName}，"
 
@@ -2123,7 +2111,7 @@ msgstr ""
 msgid "Registration data:"
 msgstr ""
 
-msgid "Site: {HTTPSUrl} "
+msgid "Site: {HTTPSUrl}"
 msgstr ""
 
 msgid "Name: {Name}"

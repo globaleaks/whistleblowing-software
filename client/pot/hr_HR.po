@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-04-08 11:12+0000\n"
+"PO-Revision-Date: 2018-05-07 17:23+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Croatian (Croatia) (http://www.transifex.com/otf/globaleaks/language/hr_HR/)\n"
 "MIME-Version: 1.0\n"
@@ -269,78 +269,6 @@ msgstr "Privitci"
 
 msgid "Change your password"
 msgstr "Promijenite svoju lozinku"
-
-msgid "First name"
-msgstr "Ime"
-
-msgid "Last name"
-msgstr "Prezime"
-
-msgid "Gender"
-msgstr "Spol"
-
-msgid "GENDER_OTHER"
-msgstr "SPOL_DRUGO"
-
-msgid "Male"
-msgstr "Muško"
-
-msgid "Female"
-msgstr "Žensko"
-
-msgid "Date of birth"
-msgstr "Datum rođenja"
-
-msgid "Place of birth"
-msgstr "Mjesto rođenja"
-
-msgid "Social security number"
-msgstr "OIB"
-
-msgid "Residence"
-msgstr "Mjesto boravka"
-
-msgid "Address"
-msgstr "Adresa"
-
-msgid "Zip code / Postal code"
-msgstr "Poštanski broj"
-
-msgid "City"
-msgstr "Grad"
-
-msgid "State"
-msgstr "Država"
-
-msgid "Region"
-msgstr "Regija"
-
-msgid "Province"
-msgstr "Pokrajina"
-
-msgid "Country"
-msgstr "Država"
-
-msgid "Phone number"
-msgstr "Telefonski broj"
-
-msgid "Current job title"
-msgstr "Trenutna poslovna titula"
-
-msgid "Current job responsibility (role)"
-msgstr "Trenutna poslovna odgovornost (uloga)"
-
-msgid "Current organization unit and job location"
-msgstr "Trenutna organizacijska jedinicia i lokacija posla"
-
-msgid "Job title at the time of the reported fact"
-msgstr "Poslovna titula u vrijeme prijavljene činjenice"
-
-msgid "Job responsibility (role) at the time of the reported fact"
-msgstr "Poslovna odgovornost (uloga) u doba prijavljene činjenice"
-
-msgid "Organization unit and job location at the time of the reported fact"
-msgstr "Organizacijska jedinica i lokacija posla u vrijeme prijavljene činjenice"
 
 msgid "List of submissions"
 msgstr "Popis predaja"
@@ -1212,6 +1140,12 @@ msgstr "Omogući"
 msgid "Country code"
 msgstr "Kod države"
 
+msgid "State"
+msgstr "Država"
+
+msgid "City"
+msgstr "Grad"
+
 msgid "Organization"
 msgstr "Organizacija"
 
@@ -1417,6 +1351,9 @@ msgstr ""
 msgid "Hint shown on the button for adding an additional answer"
 msgstr "Natuknica prikazana na gumbu za dodavanje dodatnog odgovora"
 
+msgid "Phone number"
+msgstr "Telefonski broj"
+
 msgid "Clause"
 msgstr "Klauzula"
 
@@ -1576,14 +1513,14 @@ msgstr "Ovaj software razvija neprofitni Hermes Centar za transparentnost i digi
 msgid "Please support Hermes through their donation page."
 msgstr "Molimo podržite Hermes putem njihove donacijske stranice."
 
-msgid "Authentication failed"
-msgstr "Neuspjela autentikacija"
-
 msgid "Please select your account:"
 msgstr "Molimo odaberite svoj račun:"
 
 msgid "Now type your password, then click 'Log in':"
 msgstr "Sad unesite lozinku, zatim stisnite 'Prijava':"
+
+msgid "Authentication failed"
+msgstr "Neuspjela autentikacija"
 
 msgid "Are you sure?"
 msgstr "Jeste li sigurni?"
@@ -1801,9 +1738,6 @@ msgstr "Odjava"
 
 msgid "The key code is either invalid or the submission has expired."
 msgstr "Ili je ključ neispravan ili je predaja istekla."
-
-msgid "Please check your key code and try again or make a new submission."
-msgstr "Molimo provjerit ključ i probajte opet ili napravite novu predaju."
 
 msgid "Files attached by recipients"
 msgstr "Datoteke privijene od strane primatelja"
@@ -2046,6 +1980,60 @@ msgstr "Dodaj datoteke relevantne za prijavu"
 msgid "Do you want to provide your identification information?"
 msgstr "Želite li pružiti informacije o Vašoj identifikaciji?"
 
+msgid "First name"
+msgstr "Ime"
+
+msgid "Last name"
+msgstr "Prezime"
+
+msgid "Sex"
+msgstr ""
+
+msgid "Male"
+msgstr "Muško"
+
+msgid "Female"
+msgstr "Žensko"
+
+msgid "Date of birth"
+msgstr "Datum rođenja"
+
+msgid "Place of birth"
+msgstr "Mjesto rođenja"
+
+msgid "Social security number"
+msgstr "OIB"
+
+msgid "Residence"
+msgstr "Mjesto boravka"
+
+msgid "Address"
+msgstr "Adresa"
+
+msgid "Zip code / Postal code"
+msgstr "Poštanski broj"
+
+msgid "Province"
+msgstr "Pokrajina"
+
+msgid "Current job title"
+msgstr "Trenutna poslovna titula"
+
+msgid "Current job responsibility (role)"
+msgstr "Trenutna poslovna odgovornost (uloga)"
+
+msgid "Current organization unit and job location"
+msgstr "Trenutna organizacijska jedinicia i lokacija posla"
+
+msgid "Job title at the time of the reported fact"
+msgstr "Poslovna titula u vrijeme prijavljene činjenice"
+
+msgid "Job responsibility (role) at the time of the reported fact"
+msgstr "Poslovna odgovornost (uloga) u doba prijavljene činjenice"
+
+msgid "Organization unit and job location at the time of the reported fact"
+msgstr "Organizacijska jedinica i lokacija posla u vrijeme prijavljene činjenice"
+
 msgid "Dear {RecipientName},"
 msgstr "Dragi/a {RecipientName},"
 
@@ -2113,7 +2101,7 @@ msgstr ""
 msgid "Registration data:"
 msgstr ""
 
-msgid "Site: {HTTPSUrl} "
+msgid "Site: {HTTPSUrl}"
 msgstr ""
 
 msgid "Name: {Name}"

@@ -38,8 +38,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-04-18 16:49+0000\n"
-"Last-Translator: French language coordinator <french.coordinator@rbox.me>\n"
+"PO-Revision-Date: 2018-05-07 17:27+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: French (http://www.transifex.com/otf/globaleaks/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -299,78 +299,6 @@ msgstr "Pièces jointes"
 
 msgid "Change your password"
 msgstr "Changez votre mot de passe"
-
-msgid "First name"
-msgstr "Prénom"
-
-msgid "Last name"
-msgstr "Nom de famille"
-
-msgid "Gender"
-msgstr "Genre"
-
-msgid "GENDER_OTHER"
-msgstr "Autre"
-
-msgid "Male"
-msgstr "Homme"
-
-msgid "Female"
-msgstr "Femme"
-
-msgid "Date of birth"
-msgstr "Date de naissance"
-
-msgid "Place of birth"
-msgstr "Lieu de naissance"
-
-msgid "Social security number"
-msgstr "Numéro d’assurance sociale"
-
-msgid "Residence"
-msgstr "Résidence"
-
-msgid "Address"
-msgstr "Adresse"
-
-msgid "Zip code / Postal code"
-msgstr "Code postal"
-
-msgid "City"
-msgstr "Ville"
-
-msgid "State"
-msgstr "État"
-
-msgid "Region"
-msgstr "Région"
-
-msgid "Province"
-msgstr "Province"
-
-msgid "Country"
-msgstr "Pays"
-
-msgid "Phone number"
-msgstr "Numéro de téléphone"
-
-msgid "Current job title"
-msgstr "Appellation d’emploi actuelle"
-
-msgid "Current job responsibility (role)"
-msgstr "Responsabilité professionnelle (rôle) actuelle"
-
-msgid "Current organization unit and job location"
-msgstr "Unité organisationnelle et lieu d’emploi actuels"
-
-msgid "Job title at the time of the reported fact"
-msgstr "Appellation d’emploi à l’époque du fait rapporté"
-
-msgid "Job responsibility (role) at the time of the reported fact"
-msgstr "Responsabilité professionnelle (rôle) à l’époque du fait rapporté"
-
-msgid "Organization unit and job location at the time of the reported fact"
-msgstr "Unité organisationnelle et lieu d’emploi à l’époque du fait rapporté"
 
 msgid "List of submissions"
 msgstr "Liste d’envois"
@@ -1242,6 +1170,12 @@ msgstr "Activer"
 msgid "Country code"
 msgstr "Code de pays"
 
+msgid "State"
+msgstr "État"
+
+msgid "City"
+msgstr "Ville"
+
 msgid "Organization"
 msgstr "Organisation"
 
@@ -1447,6 +1381,9 @@ msgstr "Accepter des réponses multiples"
 msgid "Hint shown on the button for adding an additional answer"
 msgstr "Indication d’ajout de réponse supplémentaire, apparaissant sur le bouton"
 
+msgid "Phone number"
+msgstr "Numéro de téléphone"
+
 msgid "Clause"
 msgstr "Clause"
 
@@ -1606,14 +1543,14 @@ msgstr "Le logiciel est développé par le Centre Hermès pour la transparence e
 msgid "Please support Hermes through their donation page."
 msgstr "Veuillez encourager Hermès en visitant leur page de don."
 
-msgid "Authentication failed"
-msgstr "Échec lors de l’authentification"
-
 msgid "Please select your account:"
 msgstr "Veuillez sélectionner votre compte :"
 
 msgid "Now type your password, then click 'Log in':"
 msgstr "Saisissez maintenant votre mot de passe, puis cliquez sur « Connexion » :"
+
+msgid "Authentication failed"
+msgstr "Échec lors de l’authentification"
 
 msgid "Are you sure?"
 msgstr "Êtes-vous certain ?"
@@ -1831,9 +1768,6 @@ msgstr "Déconnexion"
 
 msgid "The key code is either invalid or the submission has expired."
 msgstr "Votre code-clé est invalide, ou votre envoi a expiré."
-
-msgid "Please check your key code and try again or make a new submission."
-msgstr "Veuillez vérifier votre code-clé et ressayer, ou faites un nouvel envoi."
 
 msgid "Files attached by recipients"
 msgstr "Pièces jointes par les destinataires"
@@ -2076,6 +2010,60 @@ msgstr "Joignez les fichiers pertinents à votre envoi."
 msgid "Do you want to provide your identification information?"
 msgstr "Voulez-vous fournir vos renseignements d’identification ?"
 
+msgid "First name"
+msgstr "Prénom"
+
+msgid "Last name"
+msgstr "Nom de famille"
+
+msgid "Sex"
+msgstr ""
+
+msgid "Male"
+msgstr "Homme"
+
+msgid "Female"
+msgstr "Femme"
+
+msgid "Date of birth"
+msgstr "Date de naissance"
+
+msgid "Place of birth"
+msgstr "Lieu de naissance"
+
+msgid "Social security number"
+msgstr "Numéro d’assurance sociale"
+
+msgid "Residence"
+msgstr "Résidence"
+
+msgid "Address"
+msgstr "Adresse"
+
+msgid "Zip code / Postal code"
+msgstr "Code postal"
+
+msgid "Province"
+msgstr "Province"
+
+msgid "Current job title"
+msgstr "Appellation d’emploi actuelle"
+
+msgid "Current job responsibility (role)"
+msgstr "Responsabilité professionnelle (rôle) actuelle"
+
+msgid "Current organization unit and job location"
+msgstr "Unité organisationnelle et lieu d’emploi actuels"
+
+msgid "Job title at the time of the reported fact"
+msgstr "Appellation d’emploi à l’époque du fait rapporté"
+
+msgid "Job responsibility (role) at the time of the reported fact"
+msgstr "Responsabilité professionnelle (rôle) à l’époque du fait rapporté"
+
+msgid "Organization unit and job location at the time of the reported fact"
+msgstr "Unité organisationnelle et lieu d’emploi à l’époque du fait rapporté"
+
 msgid "Dear {RecipientName},"
 msgstr "Cher, chère {RecipientName},"
 
@@ -2143,8 +2131,8 @@ msgstr "Un nouveau site de lancement d’alerte a été enregistré."
 msgid "Registration data:"
 msgstr "Données d’enregistrement :"
 
-msgid "Site: {HTTPSUrl} "
-msgstr "Site : {HTTPSUrl} "
+msgid "Site: {HTTPSUrl}"
+msgstr "Site : {HTTPSUrl}"
 
 msgid "Name: {Name}"
 msgstr "Nom : {Name}"

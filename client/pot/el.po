@@ -14,7 +14,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-04-08 11:12+0000\n"
+"PO-Revision-Date: 2018-05-07 17:23+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Greek (http://www.transifex.com/otf/globaleaks/language/el/)\n"
 "MIME-Version: 1.0\n"
@@ -275,78 +275,6 @@ msgstr "συνημμένα"
 
 msgid "Change your password"
 msgstr "Αλλάξτε τον κωδικό σας"
-
-msgid "First name"
-msgstr "Όνομα"
-
-msgid "Last name"
-msgstr "Επίθετο"
-
-msgid "Gender"
-msgstr "Γένος"
-
-msgid "GENDER_OTHER"
-msgstr "GENDER_OTHER"
-
-msgid "Male"
-msgstr "Αρσενικός"
-
-msgid "Female"
-msgstr "Θηλυκός"
-
-msgid "Date of birth"
-msgstr "ΗΜΕΡΟΜΗΝΙΑ ΓΕΝΝΗΣΗΣ"
-
-msgid "Place of birth"
-msgstr "Τόπος γέννησης"
-
-msgid "Social security number"
-msgstr "Αριθμός κοινωνικής ασφάλισης"
-
-msgid "Residence"
-msgstr "Κατοικία"
-
-msgid "Address"
-msgstr "Διεύθυνση"
-
-msgid "Zip code / Postal code"
-msgstr "Ταχυδρομικός κώδικας / Τ.Κ."
-
-msgid "City"
-msgstr "Πόλη"
-
-msgid "State"
-msgstr "Κατάσταση"
-
-msgid "Region"
-msgstr "Περιοχή"
-
-msgid "Province"
-msgstr "Επαρχία"
-
-msgid "Country"
-msgstr "Χώρα"
-
-msgid "Phone number"
-msgstr "Τηλεφωνικό νούμερο"
-
-msgid "Current job title"
-msgstr "Τωρινός τίτλος εργασίας"
-
-msgid "Current job responsibility (role)"
-msgstr "Τρέχουσα ευθύνη δουλειά (ρόλο)"
-
-msgid "Current organization unit and job location"
-msgstr "Τρέχουσα μονάδα οργάνωση και τη θέση εργασίας"
-
-msgid "Job title at the time of the reported fact"
-msgstr "Τίτλος εργασίας κατά το χρόνο της αναφερόμενης γεγονός"
-
-msgid "Job responsibility (role) at the time of the reported fact"
-msgstr "ευθύνη Job (ρόλο) κατά το χρόνο της αναφερόμενης γεγονός"
-
-msgid "Organization unit and job location at the time of the reported fact"
-msgstr "μονάδα οργάνωση και τη θέση εργασίας κατά τη στιγμή της αναφερόμενης γεγονός"
 
 msgid "List of submissions"
 msgstr "Λίστα των υποβολών"
@@ -1218,6 +1146,12 @@ msgstr "Ενεργοποίηση"
 msgid "Country code"
 msgstr "Κωδικός χώρας"
 
+msgid "State"
+msgstr "Κατάσταση"
+
+msgid "City"
+msgstr "Πόλη"
+
 msgid "Organization"
 msgstr "Οργάνωση"
 
@@ -1423,6 +1357,9 @@ msgstr ""
 msgid "Hint shown on the button for adding an additional answer"
 msgstr "Συμβουλή φαίνεται στο κουμπί για την προσθήκη επιπλέον απάντηση"
 
+msgid "Phone number"
+msgstr "Τηλεφωνικό νούμερο"
+
 msgid "Clause"
 msgstr "Ρήτρα "
 
@@ -1582,14 +1519,14 @@ msgstr "Το λογισμικό έχει αναπτυχθεί από το μη �
 msgid "Please support Hermes through their donation page."
 msgstr "Παρακαλούμε υποστηρίξτε Hermes μέσω της σελίδας της δωρεάς τους."
 
-msgid "Authentication failed"
-msgstr "Αποτυχία πιστοποίησης"
-
 msgid "Please select your account:"
 msgstr "Παρακάλω επιλέξτε το λογαριασμό σας: "
 
 msgid "Now type your password, then click 'Log in':"
 msgstr "Τώρα πληκτρολογήστε τον κωδικό πρόσβασής σας, μετά πιέστε \"Σύνδεση\": "
+
+msgid "Authentication failed"
+msgstr "Αποτυχία πιστοποίησης"
 
 msgid "Are you sure?"
 msgstr "Είσαι σίγουρος?"
@@ -1807,9 +1744,6 @@ msgstr "Αποσύνδεση"
 
 msgid "The key code is either invalid or the submission has expired."
 msgstr "Ο κωδικός του κλειδιού είναι είτε άκυρος ή η υποβολή έχει λήξει."
-
-msgid "Please check your key code and try again or make a new submission."
-msgstr "Παρακαλώ ελέγξτε τον βασικό κώδικα σας και προσπαθήστε ξανά ή κάντε μια νέα υποβολή."
 
 msgid "Files attached by recipients"
 msgstr ""
@@ -2052,6 +1986,60 @@ msgstr "Επισυνάψτε τα αρχεία σχετικά με την υπο
 msgid "Do you want to provide your identification information?"
 msgstr "Θέλετε να παρέχουν πληροφορίες ταυτοποίησης σας;"
 
+msgid "First name"
+msgstr "Όνομα"
+
+msgid "Last name"
+msgstr "Επίθετο"
+
+msgid "Sex"
+msgstr ""
+
+msgid "Male"
+msgstr "Αρσενικός"
+
+msgid "Female"
+msgstr "Θηλυκός"
+
+msgid "Date of birth"
+msgstr "ΗΜΕΡΟΜΗΝΙΑ ΓΕΝΝΗΣΗΣ"
+
+msgid "Place of birth"
+msgstr "Τόπος γέννησης"
+
+msgid "Social security number"
+msgstr "Αριθμός κοινωνικής ασφάλισης"
+
+msgid "Residence"
+msgstr "Κατοικία"
+
+msgid "Address"
+msgstr "Διεύθυνση"
+
+msgid "Zip code / Postal code"
+msgstr "Ταχυδρομικός κώδικας / Τ.Κ."
+
+msgid "Province"
+msgstr "Επαρχία"
+
+msgid "Current job title"
+msgstr "Τωρινός τίτλος εργασίας"
+
+msgid "Current job responsibility (role)"
+msgstr "Τρέχουσα ευθύνη δουλειά (ρόλο)"
+
+msgid "Current organization unit and job location"
+msgstr "Τρέχουσα μονάδα οργάνωση και τη θέση εργασίας"
+
+msgid "Job title at the time of the reported fact"
+msgstr "Τίτλος εργασίας κατά το χρόνο της αναφερόμενης γεγονός"
+
+msgid "Job responsibility (role) at the time of the reported fact"
+msgstr "ευθύνη Job (ρόλο) κατά το χρόνο της αναφερόμενης γεγονός"
+
+msgid "Organization unit and job location at the time of the reported fact"
+msgstr "μονάδα οργάνωση και τη θέση εργασίας κατά τη στιγμή της αναφερόμενης γεγονός"
+
 msgid "Dear {RecipientName},"
 msgstr "Αγαπητοί {RecipientName}"
 
@@ -2119,7 +2107,7 @@ msgstr ""
 msgid "Registration data:"
 msgstr ""
 
-msgid "Site: {HTTPSUrl} "
+msgid "Site: {HTTPSUrl}"
 msgstr ""
 
 msgid "Name: {Name}"

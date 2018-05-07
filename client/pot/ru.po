@@ -28,8 +28,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-04-09 07:09+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2018-05-07 17:23+0000\n"
+"Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Russian (http://www.transifex.com/otf/globaleaks/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -289,78 +289,6 @@ msgstr "Приложения"
 
 msgid "Change your password"
 msgstr "Изменить пароль"
-
-msgid "First name"
-msgstr "Имя"
-
-msgid "Last name"
-msgstr "Фамилия"
-
-msgid "Gender"
-msgstr "Пол"
-
-msgid "GENDER_OTHER"
-msgstr "ПОЛ_ДРУГОЙ"
-
-msgid "Male"
-msgstr "Мужской"
-
-msgid "Female"
-msgstr "Женский"
-
-msgid "Date of birth"
-msgstr "Дата рождения"
-
-msgid "Place of birth"
-msgstr "Место рождения"
-
-msgid "Social security number"
-msgstr "Номер социального страхования"
-
-msgid "Residence"
-msgstr "Место жительства"
-
-msgid "Address"
-msgstr "Адрес"
-
-msgid "Zip code / Postal code"
-msgstr "Почтовый индекс"
-
-msgid "City"
-msgstr "Город"
-
-msgid "State"
-msgstr "Область"
-
-msgid "Region"
-msgstr "Регион"
-
-msgid "Province"
-msgstr "Провинция"
-
-msgid "Country"
-msgstr "Страна"
-
-msgid "Phone number"
-msgstr "Номер телефона"
-
-msgid "Current job title"
-msgstr "Текущая должность"
-
-msgid "Current job responsibility (role)"
-msgstr "Текущие служебные обязанности (роль)"
-
-msgid "Current organization unit and job location"
-msgstr "Текущая организационная единица и место работы"
-
-msgid "Job title at the time of the reported fact"
-msgstr "Занимаемая должность во время событий, изложенных в материале"
-
-msgid "Job responsibility (role) at the time of the reported fact"
-msgstr "Служебные обязанности (роль) во время событий, изложенных в материале"
-
-msgid "Organization unit and job location at the time of the reported fact"
-msgstr "Текущая организационная единица и место работы во время событий, изложенных в материале"
 
 msgid "List of submissions"
 msgstr "Список поданных материалов"
@@ -1232,6 +1160,12 @@ msgstr "Включить"
 msgid "Country code"
 msgstr "Код страны"
 
+msgid "State"
+msgstr "Область"
+
+msgid "City"
+msgstr "Город"
+
 msgid "Organization"
 msgstr "Организация"
 
@@ -1437,6 +1371,9 @@ msgstr ""
 msgid "Hint shown on the button for adding an additional answer"
 msgstr "Кнопка подсказки для добавления дополнительного ответа"
 
+msgid "Phone number"
+msgstr "Номер телефона"
+
 msgid "Clause"
 msgstr "Статья"
 
@@ -1596,14 +1533,14 @@ msgstr "Программное обеспечение разработано н�
 msgid "Please support Hermes through their donation page."
 msgstr "Пожалуйста, поддержите Hermes, сделав пожертвование на их сайте."
 
-msgid "Authentication failed"
-msgstr "Ошибка аутентификации"
-
 msgid "Please select your account:"
 msgstr "Укажите вашу учётную запись:"
 
 msgid "Now type your password, then click 'Log in':"
 msgstr "Теперь введите ваш пароль, затем нажмите \"Войти\":"
+
+msgid "Authentication failed"
+msgstr "Ошибка аутентификации"
 
 msgid "Are you sure?"
 msgstr "Вы уверены?"
@@ -1821,9 +1758,6 @@ msgstr "Выход"
 
 msgid "The key code is either invalid or the submission has expired."
 msgstr "Ключ доступа либо недействительный, либо подача материала устарела."
-
-msgid "Please check your key code and try again or make a new submission."
-msgstr "Пожалуйста, проверьте код доступа и попробуйте снова, или создайте новую подачу материала."
 
 msgid "Files attached by recipients"
 msgstr "Файлы приложенные получателями"
@@ -2066,6 +2000,60 @@ msgstr "Прикладывайте файлы, относящиеся к дел�
 msgid "Do you want to provide your identification information?"
 msgstr "Вы хотите оставить информацию о себе?"
 
+msgid "First name"
+msgstr "Имя"
+
+msgid "Last name"
+msgstr "Фамилия"
+
+msgid "Sex"
+msgstr ""
+
+msgid "Male"
+msgstr "Мужской"
+
+msgid "Female"
+msgstr "Женский"
+
+msgid "Date of birth"
+msgstr "Дата рождения"
+
+msgid "Place of birth"
+msgstr "Место рождения"
+
+msgid "Social security number"
+msgstr "Номер социального страхования"
+
+msgid "Residence"
+msgstr "Место жительства"
+
+msgid "Address"
+msgstr "Адрес"
+
+msgid "Zip code / Postal code"
+msgstr "Почтовый индекс"
+
+msgid "Province"
+msgstr "Провинция"
+
+msgid "Current job title"
+msgstr "Текущая должность"
+
+msgid "Current job responsibility (role)"
+msgstr "Текущие служебные обязанности (роль)"
+
+msgid "Current organization unit and job location"
+msgstr "Текущая организационная единица и место работы"
+
+msgid "Job title at the time of the reported fact"
+msgstr "Занимаемая должность во время событий, изложенных в материале"
+
+msgid "Job responsibility (role) at the time of the reported fact"
+msgstr "Служебные обязанности (роль) во время событий, изложенных в материале"
+
+msgid "Organization unit and job location at the time of the reported fact"
+msgstr "Текущая организационная единица и место работы во время событий, изложенных в материале"
+
 msgid "Dear {RecipientName},"
 msgstr "Дорогой(ая) {RecipientName},"
 
@@ -2133,7 +2121,7 @@ msgstr ""
 msgid "Registration data:"
 msgstr ""
 
-msgid "Site: {HTTPSUrl} "
+msgid "Site: {HTTPSUrl}"
 msgstr ""
 
 msgid "Name: {Name}"

@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-04-10 07:46+0000\n"
-"Last-Translator: Chi-Hsun Tsai\n"
+"PO-Revision-Date: 2018-05-07 17:23+0000\n"
+"Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/otf/globaleaks/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -271,78 +271,6 @@ msgstr "附件"
 
 msgid "Change your password"
 msgstr "改變密碼"
-
-msgid "First name"
-msgstr "名"
-
-msgid "Last name"
-msgstr "姓"
-
-msgid "Gender"
-msgstr "姓別"
-
-msgid "GENDER_OTHER"
-msgstr "其它"
-
-msgid "Male"
-msgstr "男性"
-
-msgid "Female"
-msgstr "女性"
-
-msgid "Date of birth"
-msgstr "出生日期"
-
-msgid "Place of birth"
-msgstr "出生地點"
-
-msgid "Social security number"
-msgstr "身份證號碼"
-
-msgid "Residence"
-msgstr "住處"
-
-msgid "Address"
-msgstr "地址"
-
-msgid "Zip code / Postal code"
-msgstr "郵遞區號"
-
-msgid "City"
-msgstr "城市"
-
-msgid "State"
-msgstr "州/省"
-
-msgid "Region"
-msgstr "州/省"
-
-msgid "Province"
-msgstr "州/省"
-
-msgid "Country"
-msgstr "國家"
-
-msgid "Phone number"
-msgstr "電話號碼"
-
-msgid "Current job title"
-msgstr "目前工作職稱"
-
-msgid "Current job responsibility (role)"
-msgstr "目前工作的責任"
-
-msgid "Current organization unit and job location"
-msgstr "目前的組織單位與工作地點"
-
-msgid "Job title at the time of the reported fact"
-msgstr "報告實情時的工作職稱"
-
-msgid "Job responsibility (role) at the time of the reported fact"
-msgstr "報告實情時的工作職責"
-
-msgid "Organization unit and job location at the time of the reported fact"
-msgstr "報告實情時的工作組織單位與工作地點"
 
 msgid "List of submissions"
 msgstr "提交清單"
@@ -1214,6 +1142,12 @@ msgstr "啟用"
 msgid "Country code"
 msgstr "國碼"
 
+msgid "State"
+msgstr "州/省"
+
+msgid "City"
+msgstr "城市"
+
 msgid "Organization"
 msgstr "組織"
 
@@ -1419,6 +1353,9 @@ msgstr "接受多個答案"
 msgid "Hint shown on the button for adding an additional answer"
 msgstr "按鍵上顯示其它答案的提示"
 
+msgid "Phone number"
+msgstr "電話號碼"
+
 msgid "Clause"
 msgstr "修款"
 
@@ -1578,14 +1515,14 @@ msgstr "這種軟體是由非營利的 Hermes Center for Transparency and Digita
 msgid "Please support Hermes through their donation page."
 msgstr "透過捐款頁面支持 Hermes"
 
-msgid "Authentication failed"
-msgstr "認證失敗"
-
 msgid "Please select your account:"
 msgstr "請選擇你的帳號"
 
 msgid "Now type your password, then click 'Log in':"
 msgstr "現在輸入你的密碼後點擊「登入」鍵"
+
+msgid "Authentication failed"
+msgstr "認證失敗"
 
 msgid "Are you sure?"
 msgstr "你確定嗎？"
@@ -1803,9 +1740,6 @@ msgstr "登出"
 
 msgid "The key code is either invalid or the submission has expired."
 msgstr "鑰匙碼無效或是提交已過期"
-
-msgid "Please check your key code and try again or make a new submission."
-msgstr "請檢查你的鑰碼重試一次或是另作一次新的揭密提交"
 
 msgid "Files attached by recipients"
 msgstr "收件者所附加的檔案"
@@ -2048,6 +1982,60 @@ msgstr "此提交相關的附件資料"
 msgid "Do you want to provide your identification information?"
 msgstr "你要提供自己的身份資訊嗎？"
 
+msgid "First name"
+msgstr "名"
+
+msgid "Last name"
+msgstr "姓"
+
+msgid "Sex"
+msgstr ""
+
+msgid "Male"
+msgstr "男性"
+
+msgid "Female"
+msgstr "女性"
+
+msgid "Date of birth"
+msgstr "出生日期"
+
+msgid "Place of birth"
+msgstr "出生地點"
+
+msgid "Social security number"
+msgstr "身份證號碼"
+
+msgid "Residence"
+msgstr "住處"
+
+msgid "Address"
+msgstr "地址"
+
+msgid "Zip code / Postal code"
+msgstr "郵遞區號"
+
+msgid "Province"
+msgstr "州/省"
+
+msgid "Current job title"
+msgstr "目前工作職稱"
+
+msgid "Current job responsibility (role)"
+msgstr "目前工作的責任"
+
+msgid "Current organization unit and job location"
+msgstr "目前的組織單位與工作地點"
+
+msgid "Job title at the time of the reported fact"
+msgstr "報告實情時的工作職稱"
+
+msgid "Job responsibility (role) at the time of the reported fact"
+msgstr "報告實情時的工作職責"
+
+msgid "Organization unit and job location at the time of the reported fact"
+msgstr "報告實情時的工作組織單位與工作地點"
+
 msgid "Dear {RecipientName},"
 msgstr "敬愛的 {RecipientName},"
 
@@ -2115,8 +2103,8 @@ msgstr "新建的吹哨網站已完成註冊"
 msgid "Registration data:"
 msgstr "註冊資料:"
 
-msgid "Site: {HTTPSUrl} "
-msgstr "網站: {HTTPSUrl} "
+msgid "Site: {HTTPSUrl}"
+msgstr ""
 
 msgid "Name: {Name}"
 msgstr "名稱: {Name}"

@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-04-10 15:18+0000\n"
-"Last-Translator: Acclaro Thailand <bkk-project@acclaro.com>\n"
+"PO-Revision-Date: 2018-05-07 17:23+0000\n"
+"Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Thai (http://www.transifex.com/otf/globaleaks/language/th/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -271,78 +271,6 @@ msgstr "สิ่งที่แนบมา"
 
 msgid "Change your password"
 msgstr "เปลี่ยนรหัสผ่านของคุณ"
-
-msgid "First name"
-msgstr "ชื่อจริง"
-
-msgid "Last name"
-msgstr "นามสกุล"
-
-msgid "Gender"
-msgstr "เพศ"
-
-msgid "GENDER_OTHER"
-msgstr "GENDER_OTHER"
-
-msgid "Male"
-msgstr "ชาย"
-
-msgid "Female"
-msgstr "หญิง"
-
-msgid "Date of birth"
-msgstr "วันเกิด"
-
-msgid "Place of birth"
-msgstr "สถานที่เกิด"
-
-msgid "Social security number"
-msgstr "หมายเลขประกันสังคม"
-
-msgid "Residence"
-msgstr "ที่อยู่อาศัย"
-
-msgid "Address"
-msgstr "ที่อยู่"
-
-msgid "Zip code / Postal code"
-msgstr "รหัสไปรษณีย์ / รหัสไปรษณีย์"
-
-msgid "City"
-msgstr "เมือง"
-
-msgid "State"
-msgstr "สถานะ"
-
-msgid "Region"
-msgstr "ภูมิภาค"
-
-msgid "Province"
-msgstr "จังหวัด"
-
-msgid "Country"
-msgstr "ประเทศ"
-
-msgid "Phone number"
-msgstr "หมายเลขโทรศัพท์"
-
-msgid "Current job title"
-msgstr "ชื่องานปัจจุบัน"
-
-msgid "Current job responsibility (role)"
-msgstr "ความรับผิดชอบต่องานที่ทำปัจจุบัน (บทบาท)"
-
-msgid "Current organization unit and job location"
-msgstr "หน่วยขององค์กรในปัจจุบันและสถานที่ปฏิบัติงาน"
-
-msgid "Job title at the time of the reported fact"
-msgstr "ตำแหน่งงานในช่วงเวลาของความเป็นจริงรายงาน"
-
-msgid "Job responsibility (role) at the time of the reported fact"
-msgstr "รับผิดชอบงาน (บทบาท) ในช่วงเวลาของความเป็นจริงรายงาน"
-
-msgid "Organization unit and job location at the time of the reported fact"
-msgstr "องค์กรหน่วยงานและสถานที่ปฏิบัติงานในช่วงเวลาของความเป็นจริงรายงาน"
 
 msgid "List of submissions"
 msgstr "รายการของการส่ง"
@@ -1214,6 +1142,12 @@ msgstr "เปิดใช้งาน"
 msgid "Country code"
 msgstr ""
 
+msgid "State"
+msgstr "สถานะ"
+
+msgid "City"
+msgstr "เมือง"
+
 msgid "Organization"
 msgstr ""
 
@@ -1419,6 +1353,9 @@ msgstr ""
 msgid "Hint shown on the button for adding an additional answer"
 msgstr "คำแนะนำที่แสดงบนปุ่มสำหรับการเพิ่มคำตอบเพิ่มเติม"
 
+msgid "Phone number"
+msgstr "หมายเลขโทรศัพท์"
+
 msgid "Clause"
 msgstr "ประโยค"
 
@@ -1578,14 +1515,14 @@ msgstr "ซอฟต์แวร์ที่ได้รับการพัฒ
 msgid "Please support Hermes through their donation page."
 msgstr "กรุณาสนับสนุน Hermes ผ่านทางหน้าบริจาคของพวกเขา"
 
-msgid "Authentication failed"
-msgstr "รับรองความถูกต้องล้มเหลว"
-
 msgid "Please select your account:"
 msgstr "กรุณาเลือกบัญชีของคุณ:"
 
 msgid "Now type your password, then click 'Log in':"
 msgstr "ตอนนี้พิมพ์รหัสผ่านของคุณแล้วคลิก 'เข้าสู่ระบบ:"
+
+msgid "Authentication failed"
+msgstr "รับรองความถูกต้องล้มเหลว"
 
 msgid "Are you sure?"
 msgstr "คุณแน่ใจไหม?"
@@ -1803,9 +1740,6 @@ msgstr "ออกจากระบบ"
 
 msgid "The key code is either invalid or the submission has expired."
 msgstr "รหัสที่สำคัญคือไม่ถูกต้องหรือการส่งหมดอายุแล้ว"
-
-msgid "Please check your key code and try again or make a new submission."
-msgstr "โปรดตรวจสอบรหัสที่สำคัญของคุณและลองอีกครั้งหรือทำให้การส่งใหม่"
 
 msgid "Files attached by recipients"
 msgstr ""
@@ -2048,6 +1982,60 @@ msgstr "แนบไฟล์ที่เกี่ยวข้องกับก
 msgid "Do you want to provide your identification information?"
 msgstr "คุณต้องการที่จะให้ข้อมูลที่ระบุตัวตนของคุณหรือไม่"
 
+msgid "First name"
+msgstr "ชื่อจริง"
+
+msgid "Last name"
+msgstr "นามสกุล"
+
+msgid "Sex"
+msgstr ""
+
+msgid "Male"
+msgstr "ชาย"
+
+msgid "Female"
+msgstr "หญิง"
+
+msgid "Date of birth"
+msgstr "วันเกิด"
+
+msgid "Place of birth"
+msgstr "สถานที่เกิด"
+
+msgid "Social security number"
+msgstr "หมายเลขประกันสังคม"
+
+msgid "Residence"
+msgstr "ที่อยู่อาศัย"
+
+msgid "Address"
+msgstr "ที่อยู่"
+
+msgid "Zip code / Postal code"
+msgstr "รหัสไปรษณีย์ / รหัสไปรษณีย์"
+
+msgid "Province"
+msgstr "จังหวัด"
+
+msgid "Current job title"
+msgstr "ชื่องานปัจจุบัน"
+
+msgid "Current job responsibility (role)"
+msgstr "ความรับผิดชอบต่องานที่ทำปัจจุบัน (บทบาท)"
+
+msgid "Current organization unit and job location"
+msgstr "หน่วยขององค์กรในปัจจุบันและสถานที่ปฏิบัติงาน"
+
+msgid "Job title at the time of the reported fact"
+msgstr "ตำแหน่งงานในช่วงเวลาของความเป็นจริงรายงาน"
+
+msgid "Job responsibility (role) at the time of the reported fact"
+msgstr "รับผิดชอบงาน (บทบาท) ในช่วงเวลาของความเป็นจริงรายงาน"
+
+msgid "Organization unit and job location at the time of the reported fact"
+msgstr "องค์กรหน่วยงานและสถานที่ปฏิบัติงานในช่วงเวลาของความเป็นจริงรายงาน"
+
 msgid "Dear {RecipientName},"
 msgstr "เรียน {RecipientName}"
 
@@ -2115,7 +2103,7 @@ msgstr ""
 msgid "Registration data:"
 msgstr ""
 
-msgid "Site: {HTTPSUrl} "
+msgid "Site: {HTTPSUrl}"
 msgstr ""
 
 msgid "Name: {Name}"

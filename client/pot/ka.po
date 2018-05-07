@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-04-08 11:12+0000\n"
+"PO-Revision-Date: 2018-05-07 17:23+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Georgian (http://www.transifex.com/otf/globaleaks/language/ka/)\n"
 "MIME-Version: 1.0\n"
@@ -265,78 +265,6 @@ msgstr "attachments"
 
 msgid "Change your password"
 msgstr "შეცვალეთ თქვენი პაროლი"
-
-msgid "First name"
-msgstr "სახელი"
-
-msgid "Last name"
-msgstr "გვარი"
-
-msgid "Gender"
-msgstr "სქესი"
-
-msgid "GENDER_OTHER"
-msgstr "GENDER_OTHER"
-
-msgid "Male"
-msgstr "კაცი"
-
-msgid "Female"
-msgstr "ქალი"
-
-msgid "Date of birth"
-msgstr "დაბადების თარიღი"
-
-msgid "Place of birth"
-msgstr "დაბადების ადგილი"
-
-msgid "Social security number"
-msgstr "სოციალური დაცვის ნომერი"
-
-msgid "Residence"
-msgstr "Residence"
-
-msgid "Address"
-msgstr "მისამართი"
-
-msgid "Zip code / Postal code"
-msgstr "Zip კოდი / საფოსტო კოდი"
-
-msgid "City"
-msgstr "ქალაქი"
-
-msgid "State"
-msgstr "სახელმწიფო"
-
-msgid "Region"
-msgstr "რეგიონი"
-
-msgid "Province"
-msgstr "პროვინციაში"
-
-msgid "Country"
-msgstr "ქვეყანა"
-
-msgid "Phone number"
-msgstr "ტელეფონის ნომერი"
-
-msgid "Current job title"
-msgstr "აქტუალური თანამდებობა"
-
-msgid "Current job responsibility (role)"
-msgstr "მიმდინარე სამუშაოს პასუხისმგებლობა (როლი)"
-
-msgid "Current organization unit and job location"
-msgstr "მიმდინარე ორგანიზაცია ერთეული და სამუშაოს ადგილმდებარეობა"
-
-msgid "Job title at the time of the reported fact"
-msgstr "თანამდებობა დროს ინფორმაციით ფაქტი"
-
-msgid "Job responsibility (role) at the time of the reported fact"
-msgstr "სამუშაო პასუხისმგებლობა (როლი) დროს ინფორმაციით ფაქტი"
-
-msgid "Organization unit and job location at the time of the reported fact"
-msgstr "ორგანიზაცია ერთეული და სამუშაოს ადგილმდებარეობა დროს ინფორმაციით ფაქტი"
 
 msgid "List of submissions"
 msgstr "სია წარდგინება"
@@ -1208,6 +1136,12 @@ msgstr ""
 msgid "Country code"
 msgstr ""
 
+msgid "State"
+msgstr "სახელმწიფო"
+
+msgid "City"
+msgstr "ქალაქი"
+
 msgid "Organization"
 msgstr ""
 
@@ -1413,6 +1347,9 @@ msgstr ""
 msgid "Hint shown on the button for adding an additional answer"
 msgstr "მინიშნება ნაჩვენები ღილაკს დამატებით პასუხი"
 
+msgid "Phone number"
+msgstr "ტელეფონის ნომერი"
+
 msgid "Clause"
 msgstr "მუხლი"
 
@@ -1572,14 +1509,14 @@ msgstr "პროგრამული უზრუნველყოფა მ�
 msgid "Please support Hermes through their donation page."
 msgstr "გთხოვთ მხარი Hermes მათი შემოწირულობის გვერდი."
 
-msgid "Authentication failed"
-msgstr "ავთენტიფიკაცია ვერ"
-
 msgid "Please select your account:"
 msgstr "გთხოვთ, აირჩიოთ თქვენი ანგარიში:"
 
 msgid "Now type your password, then click 'Log in':"
 msgstr "ახლა აკრიფოთ თქვენი პაროლი, შემდეგ დააჭირეთ \"შესვლა\":"
+
+msgid "Authentication failed"
+msgstr "ავთენტიფიკაცია ვერ"
 
 msgid "Are you sure?"
 msgstr "დარწმუნებული ხარ?"
@@ -1797,9 +1734,6 @@ msgstr "გამოსვლა"
 
 msgid "The key code is either invalid or the submission has expired."
 msgstr "გასაღები კოდი ან არასწორი ან წარდგენის ვადა გაუვიდა."
-
-msgid "Please check your key code and try again or make a new submission."
-msgstr "გთხოვთ გადაამოწმოთ თქვენი გასაღები კოდი და სცადეთ კიდევ ერთხელ ან მიიღოს ახალი წარდგენა."
 
 msgid "Files attached by recipients"
 msgstr ""
@@ -2042,6 +1976,60 @@ msgstr "ფაილების მიმაგრება შესაბა�
 msgid "Do you want to provide your identification information?"
 msgstr "გსურთ თქვენი საიდენტიფიკაციო ინფორმაცია?"
 
+msgid "First name"
+msgstr "სახელი"
+
+msgid "Last name"
+msgstr "გვარი"
+
+msgid "Sex"
+msgstr ""
+
+msgid "Male"
+msgstr "კაცი"
+
+msgid "Female"
+msgstr "ქალი"
+
+msgid "Date of birth"
+msgstr "დაბადების თარიღი"
+
+msgid "Place of birth"
+msgstr "დაბადების ადგილი"
+
+msgid "Social security number"
+msgstr "სოციალური დაცვის ნომერი"
+
+msgid "Residence"
+msgstr "Residence"
+
+msgid "Address"
+msgstr "მისამართი"
+
+msgid "Zip code / Postal code"
+msgstr "Zip კოდი / საფოსტო კოდი"
+
+msgid "Province"
+msgstr "პროვინციაში"
+
+msgid "Current job title"
+msgstr "აქტუალური თანამდებობა"
+
+msgid "Current job responsibility (role)"
+msgstr "მიმდინარე სამუშაოს პასუხისმგებლობა (როლი)"
+
+msgid "Current organization unit and job location"
+msgstr "მიმდინარე ორგანიზაცია ერთეული და სამუშაოს ადგილმდებარეობა"
+
+msgid "Job title at the time of the reported fact"
+msgstr "თანამდებობა დროს ინფორმაციით ფაქტი"
+
+msgid "Job responsibility (role) at the time of the reported fact"
+msgstr "სამუშაო პასუხისმგებლობა (როლი) დროს ინფორმაციით ფაქტი"
+
+msgid "Organization unit and job location at the time of the reported fact"
+msgstr "ორგანიზაცია ერთეული და სამუშაოს ადგილმდებარეობა დროს ინფორმაციით ფაქტი"
+
 msgid "Dear {RecipientName},"
 msgstr "ძვირფასო {RecipientName}"
 
@@ -2109,7 +2097,7 @@ msgstr ""
 msgid "Registration data:"
 msgstr ""
 
-msgid "Site: {HTTPSUrl} "
+msgid "Site: {HTTPSUrl}"
 msgstr ""
 
 msgid "Name: {Name}"

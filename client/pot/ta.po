@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-04-15 16:40+0000\n"
-"Last-Translator: Bala Subramaniyan <balapandu222@hotmail.com>\n"
+"PO-Revision-Date: 2018-05-07 17:23+0000\n"
+"Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Tamil (http://www.transifex.com/otf/globaleaks/language/ta/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -267,78 +267,6 @@ msgstr "இணைப்புகள்"
 
 msgid "Change your password"
 msgstr "உங்கள் கடவுச்சொல்லை மாற்றுக"
-
-msgid "First name"
-msgstr "முதல் பெயர்"
-
-msgid "Last name"
-msgstr "கடைசி பெயர்"
-
-msgid "Gender"
-msgstr "பாலினம்"
-
-msgid "GENDER_OTHER"
-msgstr "GENDER_OTHER"
-
-msgid "Male"
-msgstr "ஆண்"
-
-msgid "Female"
-msgstr "பெண்"
-
-msgid "Date of birth"
-msgstr "பிறந்த தேதி"
-
-msgid "Place of birth"
-msgstr "பிறந்த இடம்"
-
-msgid "Social security number"
-msgstr "சமூக பாதுகாப்பு எண்"
-
-msgid "Residence"
-msgstr "வதிவிடம்"
-
-msgid "Address"
-msgstr "முகவரி"
-
-msgid "Zip code / Postal code"
-msgstr "Zip குறியீடு / அஞ்சல் குறியீடு"
-
-msgid "City"
-msgstr "சிட்டி"
-
-msgid "State"
-msgstr "நிலை"
-
-msgid "Region"
-msgstr "பகுதி"
-
-msgid "Province"
-msgstr "மாகாணம்"
-
-msgid "Country"
-msgstr "நாடு"
-
-msgid "Phone number"
-msgstr "தொலைபேசி எண்"
-
-msgid "Current job title"
-msgstr "தற்போதைய வேலையின் தலைப்பு"
-
-msgid "Current job responsibility (role)"
-msgstr "தற்போதைய வேலை பொறுப்பை (பங்கு)"
-
-msgid "Current organization unit and job location"
-msgstr "தற்போதைய அமைப்பு பிரிவின் மற்றும் வேலை இடம்"
-
-msgid "Job title at the time of the reported fact"
-msgstr "தகவல் உண்மையில் நேரத்தில் வேலை தலைப்பு"
-
-msgid "Job responsibility (role) at the time of the reported fact"
-msgstr "வேலை பொறுப்பை (பங்கு) அறிவித்தது நேரத்தில்"
-
-msgid "Organization unit and job location at the time of the reported fact"
-msgstr "தகவல் உண்மையில் நேரத்தில் அமைப்பு அலகு மற்றும் வேலை இடம்"
 
 msgid "List of submissions"
 msgstr "சமர்ப்பிப்புகளை பட்டியல்"
@@ -690,7 +618,7 @@ msgid "Software problems"
 msgstr ""
 
 msgid "Disable"
-msgstr ""
+msgstr "முடக்கு"
 
 msgid "Remove"
 msgstr "நீக்கு"
@@ -1205,10 +1133,16 @@ msgid "Review"
 msgstr ""
 
 msgid "Enable"
-msgstr ""
+msgstr "செயல்படுத்து"
 
 msgid "Country code"
 msgstr ""
+
+msgid "State"
+msgstr "நிலை"
+
+msgid "City"
+msgstr "சிட்டி"
 
 msgid "Organization"
 msgstr "நிறுவனம்"
@@ -1415,6 +1349,9 @@ msgstr ""
 msgid "Hint shown on the button for adding an additional answer"
 msgstr "ஒரு கூடுதல் பதில் சேர்க்கும் பொத்தான் குறிப்பு"
 
+msgid "Phone number"
+msgstr "தொலைபேசி எண்"
+
 msgid "Clause"
 msgstr "உட்கூறு"
 
@@ -1574,14 +1511,14 @@ msgstr "மென்பொருள் மற்றும் டிரான�
 msgid "Please support Hermes through their donation page."
 msgstr "தங்கள் நன்கொடை பக்கம் வழியாக ஹெர்ம்ஸ் ஆதரவு கொள்ளவும்."
 
-msgid "Authentication failed"
-msgstr "அங்கீகரிப்பு தோல்வியுற்றது"
-
 msgid "Please select your account:"
 msgstr "உங்கள் கணக்கு தேர்ந்தெடுக்கவும்:"
 
 msgid "Now type your password, then click 'Log in':"
 msgstr "இப்போது உங்கள் கடவுச்சொல்லை தட்டச்சு, பின்னர் 'நுழைய' கிளிக்:"
+
+msgid "Authentication failed"
+msgstr "அங்கீகரிப்பு தோல்வியுற்றது"
 
 msgid "Are you sure?"
 msgstr "நீ சொல்வது உறுதியா?"
@@ -1799,9 +1736,6 @@ msgstr "வெளியேறு"
 
 msgid "The key code is either invalid or the submission has expired."
 msgstr "முக்கிய குறியீடு தவறானது அல்லது சமர்ப்பிப்பு காலாவதியானது."
-
-msgid "Please check your key code and try again or make a new submission."
-msgstr "உங்கள் சாவிக்குறியீட்டை சரிபார்த்து மீண்டும் முயற்சி செய்யவும் அல்லது புதிதாக சமர்ப்பிப்க்கவும்."
 
 msgid "Files attached by recipients"
 msgstr ""
@@ -2044,6 +1978,60 @@ msgstr ""
 msgid "Do you want to provide your identification information?"
 msgstr "நீங்கள் உங்கள் அடையாள தகவல் வழங்க வேண்டும் என்று விரும்புகிறீர்கள்?"
 
+msgid "First name"
+msgstr "முதல் பெயர்"
+
+msgid "Last name"
+msgstr "கடைசி பெயர்"
+
+msgid "Sex"
+msgstr ""
+
+msgid "Male"
+msgstr "ஆண்"
+
+msgid "Female"
+msgstr "பெண்"
+
+msgid "Date of birth"
+msgstr "பிறந்த தேதி"
+
+msgid "Place of birth"
+msgstr "பிறந்த இடம்"
+
+msgid "Social security number"
+msgstr "சமூக பாதுகாப்பு எண்"
+
+msgid "Residence"
+msgstr "வதிவிடம்"
+
+msgid "Address"
+msgstr "முகவரி"
+
+msgid "Zip code / Postal code"
+msgstr "Zip குறியீடு / அஞ்சல் குறியீடு"
+
+msgid "Province"
+msgstr "மாகாணம்"
+
+msgid "Current job title"
+msgstr "தற்போதைய வேலையின் தலைப்பு"
+
+msgid "Current job responsibility (role)"
+msgstr "தற்போதைய வேலை பொறுப்பை (பங்கு)"
+
+msgid "Current organization unit and job location"
+msgstr "தற்போதைய அமைப்பு பிரிவின் மற்றும் வேலை இடம்"
+
+msgid "Job title at the time of the reported fact"
+msgstr "தகவல் உண்மையில் நேரத்தில் வேலை தலைப்பு"
+
+msgid "Job responsibility (role) at the time of the reported fact"
+msgstr "வேலை பொறுப்பை (பங்கு) அறிவித்தது நேரத்தில்"
+
+msgid "Organization unit and job location at the time of the reported fact"
+msgstr "தகவல் உண்மையில் நேரத்தில் அமைப்பு அலகு மற்றும் வேலை இடம்"
+
 msgid "Dear {RecipientName},"
 msgstr "அன்பே {RecipientName},"
 
@@ -2111,7 +2099,7 @@ msgstr ""
 msgid "Registration data:"
 msgstr ""
 
-msgid "Site: {HTTPSUrl} "
+msgid "Site: {HTTPSUrl}"
 msgstr ""
 
 msgid "Name: {Name}"

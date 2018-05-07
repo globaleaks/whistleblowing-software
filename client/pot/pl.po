@@ -18,7 +18,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-04-08 11:12+0000\n"
+"PO-Revision-Date: 2018-05-07 17:23+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Polish (http://www.transifex.com/otf/globaleaks/language/pl/)\n"
 "MIME-Version: 1.0\n"
@@ -279,78 +279,6 @@ msgstr "Załączniki"
 
 msgid "Change your password"
 msgstr "Zmień hasło"
-
-msgid "First name"
-msgstr "Imię"
-
-msgid "Last name"
-msgstr "Nazwisko"
-
-msgid "Gender"
-msgstr ""
-
-msgid "GENDER_OTHER"
-msgstr "Wolę nie podawać"
-
-msgid "Male"
-msgstr "Mężczyzna"
-
-msgid "Female"
-msgstr "Kobieta"
-
-msgid "Date of birth"
-msgstr "Data urodzenia"
-
-msgid "Place of birth"
-msgstr "Miejsce urodzenia"
-
-msgid "Social security number"
-msgstr "PESEL"
-
-msgid "Residence"
-msgstr "Miejsce zamieszkania"
-
-msgid "Address"
-msgstr "Adres"
-
-msgid "Zip code / Postal code"
-msgstr "Kod pocztowy"
-
-msgid "City"
-msgstr "Miejscowość"
-
-msgid "State"
-msgstr "województwo"
-
-msgid "Region"
-msgstr "Region"
-
-msgid "Province"
-msgstr "Prowincja"
-
-msgid "Country"
-msgstr "Państwo"
-
-msgid "Phone number"
-msgstr "Telefon"
-
-msgid "Current job title"
-msgstr "Stanowisko"
-
-msgid "Current job responsibility (role)"
-msgstr "Zakres obowiązków (zadania)"
-
-msgid "Current organization unit and job location"
-msgstr "Miejsce i instytucja, gdzie pracujesz"
-
-msgid "Job title at the time of the reported fact"
-msgstr "Stanowisko w czasie, gdy działa się sytuacja, którą zgłaszasz"
-
-msgid "Job responsibility (role) at the time of the reported fact"
-msgstr "Zakres obowiązków (zadania) w czasie, gdy działa się sytuacja, którą zgłaszasz"
-
-msgid "Organization unit and job location at the time of the reported fact"
-msgstr "Miejsce i instytucja Twojej pracy w czasie, którego dotyczy zgłoszenie"
 
 msgid "List of submissions"
 msgstr "Lista zgłoszeń"
@@ -1222,6 +1150,12 @@ msgstr "Włącz"
 msgid "Country code"
 msgstr ""
 
+msgid "State"
+msgstr "województwo"
+
+msgid "City"
+msgstr "Miejscowość"
+
 msgid "Organization"
 msgstr "Organizacja"
 
@@ -1427,6 +1361,9 @@ msgstr ""
 msgid "Hint shown on the button for adding an additional answer"
 msgstr ""
 
+msgid "Phone number"
+msgstr "Telefon"
+
 msgid "Clause"
 msgstr "Warunek"
 
@@ -1586,14 +1523,14 @@ msgstr "Ten program został opracowany przez organizację non - profit Hermes Ce
 msgid "Please support Hermes through their donation page."
 msgstr "Odwiedź naszą strona darowizn aby pomóc nam dalej wspierać rozwój GlobaLeaks."
 
-msgid "Authentication failed"
-msgstr "Uwierzytelnienie nie powiodło się"
-
 msgid "Please select your account:"
 msgstr "Wybierz swoje konto:"
 
 msgid "Now type your password, then click 'Log in':"
 msgstr "Wpisz swoje hasło i kliknij 'Zaloguj':"
+
+msgid "Authentication failed"
+msgstr "Uwierzytelnienie nie powiodło się"
 
 msgid "Are you sure?"
 msgstr "Jesteś pewien?"
@@ -1810,9 +1747,6 @@ msgid "Logout"
 msgstr "Wyloguj"
 
 msgid "The key code is either invalid or the submission has expired."
-msgstr ""
-
-msgid "Please check your key code and try again or make a new submission."
 msgstr ""
 
 msgid "Files attached by recipients"
@@ -2056,6 +1990,60 @@ msgstr ""
 msgid "Do you want to provide your identification information?"
 msgstr ""
 
+msgid "First name"
+msgstr "Imię"
+
+msgid "Last name"
+msgstr "Nazwisko"
+
+msgid "Sex"
+msgstr ""
+
+msgid "Male"
+msgstr "Mężczyzna"
+
+msgid "Female"
+msgstr "Kobieta"
+
+msgid "Date of birth"
+msgstr "Data urodzenia"
+
+msgid "Place of birth"
+msgstr "Miejsce urodzenia"
+
+msgid "Social security number"
+msgstr "PESEL"
+
+msgid "Residence"
+msgstr "Miejsce zamieszkania"
+
+msgid "Address"
+msgstr "Adres"
+
+msgid "Zip code / Postal code"
+msgstr "Kod pocztowy"
+
+msgid "Province"
+msgstr "Prowincja"
+
+msgid "Current job title"
+msgstr "Stanowisko"
+
+msgid "Current job responsibility (role)"
+msgstr "Zakres obowiązków (zadania)"
+
+msgid "Current organization unit and job location"
+msgstr "Miejsce i instytucja, gdzie pracujesz"
+
+msgid "Job title at the time of the reported fact"
+msgstr "Stanowisko w czasie, gdy działa się sytuacja, którą zgłaszasz"
+
+msgid "Job responsibility (role) at the time of the reported fact"
+msgstr "Zakres obowiązków (zadania) w czasie, gdy działa się sytuacja, którą zgłaszasz"
+
+msgid "Organization unit and job location at the time of the reported fact"
+msgstr "Miejsce i instytucja Twojej pracy w czasie, którego dotyczy zgłoszenie"
+
 msgid "Dear {RecipientName},"
 msgstr ""
 
@@ -2123,7 +2111,7 @@ msgstr ""
 msgid "Registration data:"
 msgstr ""
 
-msgid "Site: {HTTPSUrl} "
+msgid "Site: {HTTPSUrl}"
 msgstr ""
 
 msgid "Name: {Name}"

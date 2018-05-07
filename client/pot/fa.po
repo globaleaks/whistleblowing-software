@@ -22,7 +22,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-04-08 11:12+0000\n"
+"PO-Revision-Date: 2018-05-07 17:23+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Persian (http://www.transifex.com/otf/globaleaks/language/fa/)\n"
 "MIME-Version: 1.0\n"
@@ -283,78 +283,6 @@ msgstr "ضمیمه‌ها"
 
 msgid "Change your password"
 msgstr "تغییر گذرواژه"
-
-msgid "First name"
-msgstr "نام کوچک"
-
-msgid "Last name"
-msgstr "نام خانوداگی"
-
-msgid "Gender"
-msgstr "جنسیت"
-
-msgid "GENDER_OTHER"
-msgstr "جنیست_دیگر"
-
-msgid "Male"
-msgstr "مرد"
-
-msgid "Female"
-msgstr "زن"
-
-msgid "Date of birth"
-msgstr "تاریخ تولد"
-
-msgid "Place of birth"
-msgstr "محل تولد"
-
-msgid "Social security number"
-msgstr "شماره امنیت اجتماعی"
-
-msgid "Residence"
-msgstr "محل اقامت"
-
-msgid "Address"
-msgstr "آدرس"
-
-msgid "Zip code / Postal code"
-msgstr "کد پستی"
-
-msgid "City"
-msgstr "شهر"
-
-msgid "State"
-msgstr "ایالت"
-
-msgid "Region"
-msgstr "منطقه"
-
-msgid "Province"
-msgstr "استان"
-
-msgid "Country"
-msgstr "کشور"
-
-msgid "Phone number"
-msgstr "شماره تلفن"
-
-msgid "Current job title"
-msgstr "عنوان شغل کنونی"
-
-msgid "Current job responsibility (role)"
-msgstr "مسئولیت (نقش) شغلی کنونی "
-
-msgid "Current organization unit and job location"
-msgstr "واحد سازمانی کنونی و محل کار"
-
-msgid "Job title at the time of the reported fact"
-msgstr "عنوان شغلی زمانی‌که این گزارش را ارائه کردید"
-
-msgid "Job responsibility (role) at the time of the reported fact"
-msgstr "مسئولیت (نقش) شما زمانی‌که این گزارش را ارائه کردید"
-
-msgid "Organization unit and job location at the time of the reported fact"
-msgstr "واحد سازمانی و محل کار وقتی این گزارش را ارائه کردید"
 
 msgid "List of submissions"
 msgstr "فهرست اظهارها"
@@ -1226,6 +1154,12 @@ msgstr "فعّال"
 msgid "Country code"
 msgstr ""
 
+msgid "State"
+msgstr "ایالت"
+
+msgid "City"
+msgstr "شهر"
+
 msgid "Organization"
 msgstr "سازمان"
 
@@ -1431,6 +1365,9 @@ msgstr ""
 msgid "Hint shown on the button for adding an additional answer"
 msgstr ""
 
+msgid "Phone number"
+msgstr "شماره تلفن"
+
 msgid "Clause"
 msgstr "بند"
 
@@ -1590,14 +1527,14 @@ msgstr ""
 msgid "Please support Hermes through their donation page."
 msgstr ""
 
-msgid "Authentication failed"
-msgstr "تایید هویت ناموفق بود"
-
 msgid "Please select your account:"
 msgstr "حساب خود را انتخاب کنید:"
 
 msgid "Now type your password, then click 'Log in':"
 msgstr "حالا گذرواژه خود را وارد کنید، و سپس دگمه ورود را کلیک کنید:"
+
+msgid "Authentication failed"
+msgstr "تایید هویت ناموفق بود"
 
 msgid "Are you sure?"
 msgstr "آیا مطمئن هستید؟"
@@ -1815,9 +1752,6 @@ msgstr "خروج"
 
 msgid "The key code is either invalid or the submission has expired."
 msgstr "یا کلید رمز غلط است یا منقضی شده"
-
-msgid "Please check your key code and try again or make a new submission."
-msgstr ""
 
 msgid "Files attached by recipients"
 msgstr ""
@@ -2060,6 +1994,60 @@ msgstr ""
 msgid "Do you want to provide your identification information?"
 msgstr ""
 
+msgid "First name"
+msgstr "نام کوچک"
+
+msgid "Last name"
+msgstr "نام خانوداگی"
+
+msgid "Sex"
+msgstr ""
+
+msgid "Male"
+msgstr "مرد"
+
+msgid "Female"
+msgstr "زن"
+
+msgid "Date of birth"
+msgstr "تاریخ تولد"
+
+msgid "Place of birth"
+msgstr "محل تولد"
+
+msgid "Social security number"
+msgstr "شماره امنیت اجتماعی"
+
+msgid "Residence"
+msgstr "محل اقامت"
+
+msgid "Address"
+msgstr "آدرس"
+
+msgid "Zip code / Postal code"
+msgstr "کد پستی"
+
+msgid "Province"
+msgstr "استان"
+
+msgid "Current job title"
+msgstr "عنوان شغل کنونی"
+
+msgid "Current job responsibility (role)"
+msgstr "مسئولیت (نقش) شغلی کنونی "
+
+msgid "Current organization unit and job location"
+msgstr "واحد سازمانی کنونی و محل کار"
+
+msgid "Job title at the time of the reported fact"
+msgstr "عنوان شغلی زمانی‌که این گزارش را ارائه کردید"
+
+msgid "Job responsibility (role) at the time of the reported fact"
+msgstr "مسئولیت (نقش) شما زمانی‌که این گزارش را ارائه کردید"
+
+msgid "Organization unit and job location at the time of the reported fact"
+msgstr "واحد سازمانی و محل کار وقتی این گزارش را ارائه کردید"
+
 msgid "Dear {RecipientName},"
 msgstr "{RecipientName} گرامی،"
 
@@ -2127,7 +2115,7 @@ msgstr ""
 msgid "Registration data:"
 msgstr ""
 
-msgid "Site: {HTTPSUrl} "
+msgid "Site: {HTTPSUrl}"
 msgstr ""
 
 msgid "Name: {Name}"

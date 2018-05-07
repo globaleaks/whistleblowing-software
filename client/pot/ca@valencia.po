@@ -15,7 +15,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-04-08 11:12+0000\n"
+"PO-Revision-Date: 2018-05-07 17:23+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Catalan (Valencian) (http://www.transifex.com/otf/globaleaks/language/ca%40valencia/)\n"
 "MIME-Version: 1.0\n"
@@ -276,78 +276,6 @@ msgstr "Adjunts"
 
 msgid "Change your password"
 msgstr "Canvia la contrasenya"
-
-msgid "First name"
-msgstr "Nom"
-
-msgid "Last name"
-msgstr "Cognom(s)"
-
-msgid "Gender"
-msgstr ""
-
-msgid "GENDER_OTHER"
-msgstr "GÈNERE_ALTRE"
-
-msgid "Male"
-msgstr "Masculí"
-
-msgid "Female"
-msgstr "Femení"
-
-msgid "Date of birth"
-msgstr "Data de naixement"
-
-msgid "Place of birth"
-msgstr "Lloc de naixement"
-
-msgid "Social security number"
-msgstr "Número de SS"
-
-msgid "Residence"
-msgstr "Residència"
-
-msgid "Address"
-msgstr "Adreça"
-
-msgid "Zip code / Postal code"
-msgstr "Codi postal"
-
-msgid "City"
-msgstr "Població"
-
-msgid "State"
-msgstr "Comunitat autònoma"
-
-msgid "Region"
-msgstr "Comarca"
-
-msgid "Province"
-msgstr "Província"
-
-msgid "Country"
-msgstr "Estat"
-
-msgid "Phone number"
-msgstr "Número de telèfon"
-
-msgid "Current job title"
-msgstr "Professió actual"
-
-msgid "Current job responsibility (role)"
-msgstr "Professió actual (càrrec)"
-
-msgid "Current organization unit and job location"
-msgstr "Departament i feina actual"
-
-msgid "Job title at the time of the reported fact"
-msgstr "Càrrec laboral en el moment dels fets esmentats"
-
-msgid "Job responsibility (role) at the time of the reported fact"
-msgstr "Càrrec laboral en el moment dels fets esmentats"
-
-msgid "Organization unit and job location at the time of the reported fact"
-msgstr "Unitat d'organització i localització del lloc de treball en el moment dels fets esmentats"
 
 msgid "List of submissions"
 msgstr "Llista d'enviaments"
@@ -1219,6 +1147,12 @@ msgstr "Habilitar"
 msgid "Country code"
 msgstr "Codi de país"
 
+msgid "State"
+msgstr "Comunitat autònoma"
+
+msgid "City"
+msgstr "Població"
+
 msgid "Organization"
 msgstr "Organització"
 
@@ -1424,6 +1358,9 @@ msgstr ""
 msgid "Hint shown on the button for adding an additional answer"
 msgstr "Indici que es mostra al botó per afegir una resposta més"
 
+msgid "Phone number"
+msgstr "Número de telèfon"
+
 msgid "Clause"
 msgstr "Clàusula"
 
@@ -1583,14 +1520,14 @@ msgstr "El programari està desenvolupat per l'organització sense ànim de lucr
 msgid "Please support Hermes through their donation page."
 msgstr "Pot donar suport a Hermes mitjançant la seva pàgina de donacions."
 
-msgid "Authentication failed"
-msgstr "Autenticació fallida"
-
 msgid "Please select your account:"
 msgstr "Per favor, seleccione el seu compte:"
 
 msgid "Now type your password, then click 'Log in':"
 msgstr "Ara escriga la seua contrasenya, després clique \"Inicia sessió\":"
+
+msgid "Authentication failed"
+msgstr "Autenticació fallida"
 
 msgid "Are you sure?"
 msgstr "Està vosté segur?"
@@ -1808,9 +1745,6 @@ msgstr "Tanca sessió"
 
 msgid "The key code is either invalid or the submission has expired."
 msgstr "El codi és invàlid o l'enviament ha expirat."
-
-msgid "Please check your key code and try again or make a new submission."
-msgstr "Per favor, revise el seu codi i torne-ho a provar o faça un nou enviament."
 
 msgid "Files attached by recipients"
 msgstr "Arxius adjuntats pels receptors"
@@ -2053,6 +1987,60 @@ msgstr "Adjunta arxius rellevants per a l'enviament."
 msgid "Do you want to provide your identification information?"
 msgstr ""
 
+msgid "First name"
+msgstr "Nom"
+
+msgid "Last name"
+msgstr "Cognom(s)"
+
+msgid "Sex"
+msgstr ""
+
+msgid "Male"
+msgstr "Masculí"
+
+msgid "Female"
+msgstr "Femení"
+
+msgid "Date of birth"
+msgstr "Data de naixement"
+
+msgid "Place of birth"
+msgstr "Lloc de naixement"
+
+msgid "Social security number"
+msgstr "Número de SS"
+
+msgid "Residence"
+msgstr "Residència"
+
+msgid "Address"
+msgstr "Adreça"
+
+msgid "Zip code / Postal code"
+msgstr "Codi postal"
+
+msgid "Province"
+msgstr "Província"
+
+msgid "Current job title"
+msgstr "Professió actual"
+
+msgid "Current job responsibility (role)"
+msgstr "Professió actual (càrrec)"
+
+msgid "Current organization unit and job location"
+msgstr "Departament i feina actual"
+
+msgid "Job title at the time of the reported fact"
+msgstr "Càrrec laboral en el moment dels fets esmentats"
+
+msgid "Job responsibility (role) at the time of the reported fact"
+msgstr "Càrrec laboral en el moment dels fets esmentats"
+
+msgid "Organization unit and job location at the time of the reported fact"
+msgstr "Unitat d'organització i localització del lloc de treball en el moment dels fets esmentats"
+
 msgid "Dear {RecipientName},"
 msgstr "Benvolgut/uda {RecipientName},"
 
@@ -2120,7 +2108,7 @@ msgstr ""
 msgid "Registration data:"
 msgstr ""
 
-msgid "Site: {HTTPSUrl} "
+msgid "Site: {HTTPSUrl}"
 msgstr ""
 
 msgid "Name: {Name}"

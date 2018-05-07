@@ -21,7 +21,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-04-08 11:12+0000\n"
+"PO-Revision-Date: 2018-05-07 17:23+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Portuguese (Portugal) (http://www.transifex.com/otf/globaleaks/language/pt_PT/)\n"
 "MIME-Version: 1.0\n"
@@ -282,78 +282,6 @@ msgstr "Anexos"
 
 msgid "Change your password"
 msgstr "Altere a sua palavra-passe"
-
-msgid "First name"
-msgstr "Nome"
-
-msgid "Last name"
-msgstr "Sobrenome"
-
-msgid "Gender"
-msgstr "Sexo"
-
-msgid "GENDER_OTHER"
-msgstr "GÉNERO-OUTROS"
-
-msgid "Male"
-msgstr "Masculino"
-
-msgid "Female"
-msgstr "Feminino"
-
-msgid "Date of birth"
-msgstr "Data de nascimento"
-
-msgid "Place of birth"
-msgstr "Local de nascimento"
-
-msgid "Social security number"
-msgstr "Número de segurança social"
-
-msgid "Residence"
-msgstr "Residência"
-
-msgid "Address"
-msgstr "Morada"
-
-msgid "Zip code / Postal code"
-msgstr "Código postal"
-
-msgid "City"
-msgstr "Cidade"
-
-msgid "State"
-msgstr "Distrito"
-
-msgid "Region"
-msgstr "Região"
-
-msgid "Province"
-msgstr "Província"
-
-msgid "Country"
-msgstr "País"
-
-msgid "Phone number"
-msgstr "Número de telefone"
-
-msgid "Current job title"
-msgstr "Título do trabalho atual"
-
-msgid "Current job responsibility (role)"
-msgstr "Responsabilidade no emprego atual (função)"
-
-msgid "Current organization unit and job location"
-msgstr "Unidade organizacional e local de trabalho atual"
-
-msgid "Job title at the time of the reported fact"
-msgstr "Título do trabalho no momento do facto relatado."
-
-msgid "Job responsibility (role) at the time of the reported fact"
-msgstr "Responsabilidade de trabalho (função) no momento do facto comunicado"
-
-msgid "Organization unit and job location at the time of the reported fact"
-msgstr "Organização, unidade e local de trabalho no momento do facto relatado"
 
 msgid "List of submissions"
 msgstr "Lista de submissões"
@@ -1225,6 +1153,12 @@ msgstr "Ativar"
 msgid "Country code"
 msgstr "Código do país"
 
+msgid "State"
+msgstr "Distrito"
+
+msgid "City"
+msgstr "Cidade"
+
 msgid "Organization"
 msgstr "Organização"
 
@@ -1430,6 +1364,9 @@ msgstr ""
 msgid "Hint shown on the button for adding an additional answer"
 msgstr "Dica mostrada no botão para adicionar uma resposta adicional"
 
+msgid "Phone number"
+msgstr "Número de telefone"
+
 msgid "Clause"
 msgstr "Cláusula"
 
@@ -1589,14 +1526,14 @@ msgstr "O software é desenvolvido pela organização sem fins lucrativos Hermes
 msgid "Please support Hermes through their donation page."
 msgstr "Apoie o centro Hermes através da sua página para donativos."
 
-msgid "Authentication failed"
-msgstr "Falhou a autenticação"
-
 msgid "Please select your account:"
 msgstr "Selecione a sua conta:"
 
 msgid "Now type your password, then click 'Log in':"
 msgstr "Digite a sua palavra-passe e clique e \"Iniciar sessão\":"
+
+msgid "Authentication failed"
+msgstr "Falhou a autenticação"
 
 msgid "Are you sure?"
 msgstr "Tem a certeza?"
@@ -1814,9 +1751,6 @@ msgstr "Terminar sessão"
 
 msgid "The key code is either invalid or the submission has expired."
 msgstr "O código chave é inválido ou a submissão expirou."
-
-msgid "Please check your key code and try again or make a new submission."
-msgstr "Por favor, verifique o seu código chave e tente novamente, ou efetue uma nova submissão."
 
 msgid "Files attached by recipients"
 msgstr "Ficheiros anexados pelos destinatários"
@@ -2059,6 +1993,60 @@ msgstr "Anexe os ficheiros relevantes para a submissão."
 msgid "Do you want to provide your identification information?"
 msgstr "Deseja indicar a sua informação de identificação?"
 
+msgid "First name"
+msgstr "Nome"
+
+msgid "Last name"
+msgstr "Sobrenome"
+
+msgid "Sex"
+msgstr ""
+
+msgid "Male"
+msgstr "Masculino"
+
+msgid "Female"
+msgstr "Feminino"
+
+msgid "Date of birth"
+msgstr "Data de nascimento"
+
+msgid "Place of birth"
+msgstr "Local de nascimento"
+
+msgid "Social security number"
+msgstr "Número de segurança social"
+
+msgid "Residence"
+msgstr "Residência"
+
+msgid "Address"
+msgstr "Morada"
+
+msgid "Zip code / Postal code"
+msgstr "Código postal"
+
+msgid "Province"
+msgstr "Província"
+
+msgid "Current job title"
+msgstr "Título do trabalho atual"
+
+msgid "Current job responsibility (role)"
+msgstr "Responsabilidade no emprego atual (função)"
+
+msgid "Current organization unit and job location"
+msgstr "Unidade organizacional e local de trabalho atual"
+
+msgid "Job title at the time of the reported fact"
+msgstr "Título do trabalho no momento do facto relatado."
+
+msgid "Job responsibility (role) at the time of the reported fact"
+msgstr "Responsabilidade de trabalho (função) no momento do facto comunicado"
+
+msgid "Organization unit and job location at the time of the reported fact"
+msgstr "Organização, unidade e local de trabalho no momento do facto relatado"
+
 msgid "Dear {RecipientName},"
 msgstr "Caro {RecipientName},"
 
@@ -2126,7 +2114,7 @@ msgstr ""
 msgid "Registration data:"
 msgstr ""
 
-msgid "Site: {HTTPSUrl} "
+msgid "Site: {HTTPSUrl}"
 msgstr ""
 
 msgid "Name: {Name}"

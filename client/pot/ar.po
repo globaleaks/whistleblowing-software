@@ -38,7 +38,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-04-08 11:12+0000\n"
+"PO-Revision-Date: 2018-05-07 17:23+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Arabic (http://www.transifex.com/otf/globaleaks/language/ar/)\n"
 "MIME-Version: 1.0\n"
@@ -299,78 +299,6 @@ msgstr "مرفقات"
 
 msgid "Change your password"
 msgstr "تغيير كلمة المرور"
-
-msgid "First name"
-msgstr "الاسم"
-
-msgid "Last name"
-msgstr "الكنية"
-
-msgid "Gender"
-msgstr "الجنس"
-
-msgid "GENDER_OTHER"
-msgstr "GENDER_آخر"
-
-msgid "Male"
-msgstr "ذكر"
-
-msgid "Female"
-msgstr "أنثى"
-
-msgid "Date of birth"
-msgstr "تاريخ الولادة"
-
-msgid "Place of birth"
-msgstr "مكان الولادة"
-
-msgid "Social security number"
-msgstr "رقم الضمان الاجتماعي"
-
-msgid "Residence"
-msgstr "الاقامة"
-
-msgid "Address"
-msgstr "العنوان"
-
-msgid "Zip code / Postal code"
-msgstr "الرمز البريدي"
-
-msgid "City"
-msgstr "المدينة"
-
-msgid "State"
-msgstr "الدولة "
-
-msgid "Region"
-msgstr "الجهة أو المنطقة"
-
-msgid "Province"
-msgstr "المحافظة أو الولاية"
-
-msgid "Country"
-msgstr "البلد"
-
-msgid "Phone number"
-msgstr "رقم الهاتف"
-
-msgid "Current job title"
-msgstr "المنصب الحالي المشغول"
-
-msgid "Current job responsibility (role)"
-msgstr "(المسؤولية في العمل) الدور"
-
-msgid "Current organization unit and job location"
-msgstr "وحدة المنظمة الحالية و مكان العمل"
-
-msgid "Job title at the time of the reported fact"
-msgstr "اسم المنصب وقت الابلاغ عن الواقعة"
-
-msgid "Job responsibility (role) at the time of the reported fact"
-msgstr "المسؤولية في العمل (الدور) وقت الابلاغ عن الواقعة"
-
-msgid "Organization unit and job location at the time of the reported fact"
-msgstr "وحدة المنظمة و مكان العمل وقت الابلاغ عن الواقعة"
 
 msgid "List of submissions"
 msgstr "قائمة البلاغات"
@@ -1242,6 +1170,12 @@ msgstr "تمكين"
 msgid "Country code"
 msgstr "مفتاح الدّولة"
 
+msgid "State"
+msgstr "الدولة "
+
+msgid "City"
+msgstr "المدينة"
+
 msgid "Organization"
 msgstr "منظمة"
 
@@ -1447,6 +1381,9 @@ msgstr "قبول اجابات متعددة"
 msgid "Hint shown on the button for adding an additional answer"
 msgstr " يظهر تلميح على الزر لإضافة إجابة إضافية"
 
+msgid "Phone number"
+msgstr "رقم الهاتف"
+
 msgid "Clause"
 msgstr "بند"
 
@@ -1606,14 +1543,14 @@ msgstr "تم تطوير هذا البرنامج من قبل مركز Hermes ال
 msgid "Please support Hermes through their donation page."
 msgstr "الرجاء دعم Hermes من خلال صفحة التبرع."
 
-msgid "Authentication failed"
-msgstr "فشلت المصادقة."
-
 msgid "Please select your account:"
 msgstr "الرجاء اختيار حسابك"
 
 msgid "Now type your password, then click 'Log in':"
 msgstr "الآن اكتب كلمة العبور الخاصة بك، ثم انقر على \"تسجيل الدخول\":"
+
+msgid "Authentication failed"
+msgstr "فشلت المصادقة."
 
 msgid "Are you sure?"
 msgstr "هل أنت متأكد؟"
@@ -1831,9 +1768,6 @@ msgstr "تسجيل الخروج"
 
 msgid "The key code is either invalid or the submission has expired."
 msgstr "إمّا أنّ رمز المفتاح غير صالح أو أنّ صلاحيّة البلاغ انتهت."
-
-msgid "Please check your key code and try again or make a new submission."
-msgstr "يرجى التحقق من رمز المفتاح الخاص بك والمحاولة مجدّدا, أو قم بالابلاغ مجددا."
 
 msgid "Files attached by recipients"
 msgstr "الملفات المرفقة من قبل المتلقّين"
@@ -2076,6 +2010,60 @@ msgstr "إرفاق ملفات ذات صلة بالبلاغ."
 msgid "Do you want to provide your identification information?"
 msgstr "هل ترغب في تقديم معلومات عن هويتك؟"
 
+msgid "First name"
+msgstr "الاسم"
+
+msgid "Last name"
+msgstr "الكنية"
+
+msgid "Sex"
+msgstr ""
+
+msgid "Male"
+msgstr "ذكر"
+
+msgid "Female"
+msgstr "أنثى"
+
+msgid "Date of birth"
+msgstr "تاريخ الولادة"
+
+msgid "Place of birth"
+msgstr "مكان الولادة"
+
+msgid "Social security number"
+msgstr "رقم الضمان الاجتماعي"
+
+msgid "Residence"
+msgstr "الاقامة"
+
+msgid "Address"
+msgstr "العنوان"
+
+msgid "Zip code / Postal code"
+msgstr "الرمز البريدي"
+
+msgid "Province"
+msgstr "المحافظة أو الولاية"
+
+msgid "Current job title"
+msgstr "المنصب الحالي المشغول"
+
+msgid "Current job responsibility (role)"
+msgstr "(المسؤولية في العمل) الدور"
+
+msgid "Current organization unit and job location"
+msgstr "وحدة المنظمة الحالية و مكان العمل"
+
+msgid "Job title at the time of the reported fact"
+msgstr "اسم المنصب وقت الابلاغ عن الواقعة"
+
+msgid "Job responsibility (role) at the time of the reported fact"
+msgstr "المسؤولية في العمل (الدور) وقت الابلاغ عن الواقعة"
+
+msgid "Organization unit and job location at the time of the reported fact"
+msgstr "وحدة المنظمة و مكان العمل وقت الابلاغ عن الواقعة"
+
 msgid "Dear {RecipientName},"
 msgstr "عزيزي {RecipientName},"
 
@@ -2143,7 +2131,7 @@ msgstr ""
 msgid "Registration data:"
 msgstr ""
 
-msgid "Site: {HTTPSUrl} "
+msgid "Site: {HTTPSUrl}"
 msgstr ""
 
 msgid "Name: {Name}"

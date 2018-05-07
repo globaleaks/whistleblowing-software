@@ -11,8 +11,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-04-13 01:26+0000\n"
-"Last-Translator: Ivo\n"
+"PO-Revision-Date: 2018-05-07 17:24+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Bulgarian (http://www.transifex.com/otf/globaleaks/language/bg/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -272,78 +272,6 @@ msgstr "Прикачени файлове"
 
 msgid "Change your password"
 msgstr "Промяна на паролата Ви"
-
-msgid "First name"
-msgstr "Първо име"
-
-msgid "Last name"
-msgstr "Фамилия"
-
-msgid "Gender"
-msgstr "Пол"
-
-msgid "GENDER_OTHER"
-msgstr "Друг"
-
-msgid "Male"
-msgstr "Мъж"
-
-msgid "Female"
-msgstr "Жена"
-
-msgid "Date of birth"
-msgstr "Дата на раждане"
-
-msgid "Place of birth"
-msgstr "Място на раждане"
-
-msgid "Social security number"
-msgstr "ЕГН"
-
-msgid "Residence"
-msgstr "Местожителство"
-
-msgid "Address"
-msgstr "Адрес"
-
-msgid "Zip code / Postal code"
-msgstr "Пощенски код"
-
-msgid "City"
-msgstr "Град"
-
-msgid "State"
-msgstr "Област"
-
-msgid "Region"
-msgstr "Регион"
-
-msgid "Province"
-msgstr "Провинция"
-
-msgid "Country"
-msgstr "Държава"
-
-msgid "Phone number"
-msgstr "Телефонен номер"
-
-msgid "Current job title"
-msgstr "Текуща длъжност"
-
-msgid "Current job responsibility (role)"
-msgstr "Текущи изисквания (роля)"
-
-msgid "Current organization unit and job location"
-msgstr "Текуща отдел и местоположение на работата"
-
-msgid "Job title at the time of the reported fact"
-msgstr "Наименование на длъжността за периода на подадения сигнал"
-
-msgid "Job responsibility (role) at the time of the reported fact"
-msgstr "Изисквания (роля) за периода на подадения сигнал"
-
-msgid "Organization unit and job location at the time of the reported fact"
-msgstr "Отдел и местоположение на работата за периода на подадения сигнал"
 
 msgid "List of submissions"
 msgstr "Списък от подадени сигнали"
@@ -1215,6 +1143,12 @@ msgstr "Активиране"
 msgid "Country code"
 msgstr "Код на държавата"
 
+msgid "State"
+msgstr "Област"
+
+msgid "City"
+msgstr "Град"
+
 msgid "Organization"
 msgstr "Организация"
 
@@ -1420,6 +1354,9 @@ msgstr "Примане на множество отговори"
 msgid "Hint shown on the button for adding an additional answer"
 msgstr "Подсказка показана върху бутона за добавяне на допълнителен отговор"
 
+msgid "Phone number"
+msgstr "Телефонен номер"
+
 msgid "Clause"
 msgstr "Клауза"
 
@@ -1579,14 +1516,14 @@ msgstr "Софтуерът е разработен от благотворите
 msgid "Please support Hermes through their donation page."
 msgstr "Моля, подкрепете Хермес през страницата им за дарения."
 
-msgid "Authentication failed"
-msgstr "Проверката за самоличност е неуспешна"
-
 msgid "Please select your account:"
 msgstr "Моля изберете профила си:"
 
 msgid "Now type your password, then click 'Log in':"
 msgstr "Сега напишете паролата си и натиснете 'Вписване':"
+
+msgid "Authentication failed"
+msgstr "Проверката за самоличност е неуспешна"
 
 msgid "Are you sure?"
 msgstr "Сигурни ли сте?"
@@ -1804,9 +1741,6 @@ msgstr "Отписване"
 
 msgid "The key code is either invalid or the submission has expired."
 msgstr "Кодът за достъп е или невалиден или сигналът е изтекъл."
-
-msgid "Please check your key code and try again or make a new submission."
-msgstr "Моля, проверете кодът и опитайте отново, или създайдете нов сигнал."
 
 msgid "Files attached by recipients"
 msgstr "Прикачени, от получателите, файлове"
@@ -2049,6 +1983,60 @@ msgstr "Прикачете файлове към сигнала."
 msgid "Do you want to provide your identification information?"
 msgstr "Желаете ли да изпратите информация за самоличността си?"
 
+msgid "First name"
+msgstr "Първо име"
+
+msgid "Last name"
+msgstr "Фамилия"
+
+msgid "Sex"
+msgstr ""
+
+msgid "Male"
+msgstr "Мъж"
+
+msgid "Female"
+msgstr "Жена"
+
+msgid "Date of birth"
+msgstr "Дата на раждане"
+
+msgid "Place of birth"
+msgstr "Място на раждане"
+
+msgid "Social security number"
+msgstr "ЕГН"
+
+msgid "Residence"
+msgstr "Местожителство"
+
+msgid "Address"
+msgstr "Адрес"
+
+msgid "Zip code / Postal code"
+msgstr "Пощенски код"
+
+msgid "Province"
+msgstr "Провинция"
+
+msgid "Current job title"
+msgstr "Текуща длъжност"
+
+msgid "Current job responsibility (role)"
+msgstr "Текущи изисквания (роля)"
+
+msgid "Current organization unit and job location"
+msgstr "Текуща отдел и местоположение на работата"
+
+msgid "Job title at the time of the reported fact"
+msgstr "Наименование на длъжността за периода на подадения сигнал"
+
+msgid "Job responsibility (role) at the time of the reported fact"
+msgstr "Изисквания (роля) за периода на подадения сигнал"
+
+msgid "Organization unit and job location at the time of the reported fact"
+msgstr "Отдел и местоположение на работата за периода на подадения сигнал"
+
 msgid "Dear {RecipientName},"
 msgstr "Скъпи {RecipientName},"
 
@@ -2116,8 +2104,8 @@ msgstr "Нов сайт за подаване на поверителна инф
 msgid "Registration data:"
 msgstr "Регистрационна информация:"
 
-msgid "Site: {HTTPSUrl} "
-msgstr "Сайт: {HTTPSUrl} "
+msgid "Site: {HTTPSUrl}"
+msgstr "Сайт: {HTTPSUrl}"
 
 msgid "Name: {Name}"
 msgstr "Име: {Name}"

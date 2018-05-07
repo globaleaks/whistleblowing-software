@@ -12,7 +12,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-04-08 11:12+0000\n"
+"PO-Revision-Date: 2018-05-07 17:23+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Vietnamese (http://www.transifex.com/otf/globaleaks/language/vi/)\n"
 "MIME-Version: 1.0\n"
@@ -273,78 +273,6 @@ msgstr "Các tập tin đính kèm"
 
 msgid "Change your password"
 msgstr "Thay đổi mật khẩu của bạn"
-
-msgid "First name"
-msgstr "Tên"
-
-msgid "Last name"
-msgstr "Họ"
-
-msgid "Gender"
-msgstr "Giới tính"
-
-msgid "GENDER_OTHER"
-msgstr "GIỚI TÍNH KHÁC"
-
-msgid "Male"
-msgstr "Nam giới"
-
-msgid "Female"
-msgstr "Nữ giới"
-
-msgid "Date of birth"
-msgstr "Ngày sinh"
-
-msgid "Place of birth"
-msgstr "Nơi sinh"
-
-msgid "Social security number"
-msgstr "số an sinh xã hội"
-
-msgid "Residence"
-msgstr "Nơi cư trú"
-
-msgid "Address"
-msgstr "Địa chỉ nhà"
-
-msgid "Zip code / Postal code"
-msgstr "Zip code / Mã bưu chính"
-
-msgid "City"
-msgstr "thành phố"
-
-msgid "State"
-msgstr "Tiểu bang"
-
-msgid "Region"
-msgstr "Khu vực"
-
-msgid "Province"
-msgstr "Địa bàn tỉnh"
-
-msgid "Country"
-msgstr "Quốc gia"
-
-msgid "Phone number"
-msgstr "Số điện thoại"
-
-msgid "Current job title"
-msgstr "Công việc hiện tại"
-
-msgid "Current job responsibility (role)"
-msgstr "Hiện trách nhiệm công việc (vai trò)"
-
-msgid "Current organization unit and job location"
-msgstr "đơn vị tổ chức hiện tại và vị trí công việc"
-
-msgid "Job title at the time of the reported fact"
-msgstr "Vị trí công việc tại thời điểm thực tế báo cáo"
-
-msgid "Job responsibility (role) at the time of the reported fact"
-msgstr "trách nhiệm công việc (vai trò) tại thời điểm báo cáo thực tế"
-
-msgid "Organization unit and job location at the time of the reported fact"
-msgstr "đơn vị tổ chức và vị trí công việc tại thời điểm thực tế báo cáo"
 
 msgid "List of submissions"
 msgstr "Danh sách bài nộp"
@@ -1216,6 +1144,12 @@ msgstr ""
 msgid "Country code"
 msgstr ""
 
+msgid "State"
+msgstr "Tiểu bang"
+
+msgid "City"
+msgstr "thành phố"
+
 msgid "Organization"
 msgstr ""
 
@@ -1421,6 +1355,9 @@ msgstr ""
 msgid "Hint shown on the button for adding an additional answer"
 msgstr "Gợi ý được hiển thị trên nút để thêm một câu trả lời khác"
 
+msgid "Phone number"
+msgstr "Số điện thoại"
+
 msgid "Clause"
 msgstr "điều khoản"
 
@@ -1580,14 +1517,14 @@ msgstr "Phần mềm này được phát triển bởi Trung tâm Hermes phi l�
 msgid "Please support Hermes through their donation page."
 msgstr "Xin hãy ủng hộ Hermes thông qua trang quyên góp của họ."
 
-msgid "Authentication failed"
-msgstr "Quá trình xác thực đã thất bại"
-
 msgid "Please select your account:"
 msgstr "Vui lòng chọn tài khoản của bạn:"
 
 msgid "Now type your password, then click 'Log in':"
 msgstr "Bây giờ gõ mật khẩu của bạn, sau đó nhấp vào 'Đăng nhập':"
+
+msgid "Authentication failed"
+msgstr "Quá trình xác thực đã thất bại"
 
 msgid "Are you sure?"
 msgstr "Bạn có chắc không?"
@@ -1805,9 +1742,6 @@ msgstr "Đăng xuất"
 
 msgid "The key code is either invalid or the submission has expired."
 msgstr "Các mã chủ chốt là không hợp lệ hoặc nộp đã hết hạn."
-
-msgid "Please check your key code and try again or make a new submission."
-msgstr "Xin hãy kiểm tra mã chìa khóa của bạn và thử lại hoặc thực hiện một trình mới."
 
 msgid "Files attached by recipients"
 msgstr ""
@@ -2050,6 +1984,60 @@ msgstr "Đính kèm tập tin có liên quan đến việc nộp."
 msgid "Do you want to provide your identification information?"
 msgstr "Bạn muốn cung cấp thông tin nhận dạng của bạn?"
 
+msgid "First name"
+msgstr "Tên"
+
+msgid "Last name"
+msgstr "Họ"
+
+msgid "Sex"
+msgstr ""
+
+msgid "Male"
+msgstr "Nam giới"
+
+msgid "Female"
+msgstr "Nữ giới"
+
+msgid "Date of birth"
+msgstr "Ngày sinh"
+
+msgid "Place of birth"
+msgstr "Nơi sinh"
+
+msgid "Social security number"
+msgstr "số an sinh xã hội"
+
+msgid "Residence"
+msgstr "Nơi cư trú"
+
+msgid "Address"
+msgstr "Địa chỉ nhà"
+
+msgid "Zip code / Postal code"
+msgstr "Zip code / Mã bưu chính"
+
+msgid "Province"
+msgstr "Địa bàn tỉnh"
+
+msgid "Current job title"
+msgstr "Công việc hiện tại"
+
+msgid "Current job responsibility (role)"
+msgstr "Hiện trách nhiệm công việc (vai trò)"
+
+msgid "Current organization unit and job location"
+msgstr "đơn vị tổ chức hiện tại và vị trí công việc"
+
+msgid "Job title at the time of the reported fact"
+msgstr "Vị trí công việc tại thời điểm thực tế báo cáo"
+
+msgid "Job responsibility (role) at the time of the reported fact"
+msgstr "trách nhiệm công việc (vai trò) tại thời điểm báo cáo thực tế"
+
+msgid "Organization unit and job location at the time of the reported fact"
+msgstr "đơn vị tổ chức và vị trí công việc tại thời điểm thực tế báo cáo"
+
 msgid "Dear {RecipientName},"
 msgstr "Kính gửi {RecipientName}"
 
@@ -2117,7 +2105,7 @@ msgstr ""
 msgid "Registration data:"
 msgstr ""
 
-msgid "Site: {HTTPSUrl} "
+msgid "Site: {HTTPSUrl}"
 msgstr ""
 
 msgid "Name: {Name}"
