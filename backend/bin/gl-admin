@@ -87,7 +87,7 @@ def backup(args):
 
 def export_tenant(args):
     session = get_session(make_db_uri(args.dbpath))
-    data = import_export.collect_all_tenant_data(session, args.tid)
+    data = import_export.collect_all_tenant_data(get_db_file(args.dbpath)[1], args.tid)
     import_export.write_tenant_to_fresh_db(data, args.output)
 
 def import_tenant(args):
@@ -268,7 +268,13 @@ res_p.set_defaults(func=restore)
 export_p = subp.add_parser("export", help="exports a tenant from the system")
 add_db_path_arg(export_p)
 export_p.add_argument("--tid", help="Tenant ID to export")
-export_p.set_defaults(func=export)
+export_p.add_argument("--output", help="Output File")
+export_p.set_defaults(func=export_tenant)
+
+import_p = subp.add_parser("import", help="imports a tenant into the system")
+add_db_path_arg(import_p)
+import_p.add_argument("import_file", help="Import File")
+import_p.set_defaults(func=import_tenant)
 
 pw_p = subp.add_parser("resetpass", help="reset a user's password")
 add_db_path_arg(pw_p)

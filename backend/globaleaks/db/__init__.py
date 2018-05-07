@@ -7,6 +7,7 @@ import traceback
 import warnings
 
 from sqlalchemy import exc as sa_exc
+from sqlalchemy.orm import exc as sa_orm_exc
 
 from globaleaks import models, DATABASE_VERSION
 from globaleaks.handlers.base import Session
@@ -23,7 +24,10 @@ def get_db_file(db_path):
     path = os.path.join(db_path, 'globaleaks.db')
     if os.path.exists(path):
         session = get_session(make_db_uri(path))
-        version_db = session.query(models.Config.value).filter(Config.tid == 1, Config.var_name == u'version_db').one()[0]
+        try:
+            version_db = session.query(models.Config.value).filter(Config.tid == 1, Config.var_name == u'version_db').one()[0]
+        except sa_orm_exc.NoResultFound:
+            version_db = session.query(models.Config.value).filter(Config.tid == 0, Config.var_name == u'version_db').one()[0]
         session.close()
         return (version_db, path)
 
