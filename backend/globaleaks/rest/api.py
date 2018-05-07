@@ -159,6 +159,7 @@ api_spec = [
     (r'/admin/files/(.+)', admin_file.FileInstance),
     (r'/admin/tenants', admin_tenant.TenantCollection),
     (r'/admin/tenants/' + '([0-9]{1,20})', admin_tenant.TenantInstance),
+    (r'/admin/tenants/' + '([0-9]{1,20})' + r'/export', admin_tenant.TenantExport),
     (r'/admin/overview/tips', admin_overview.Tips),
     (r'/admin/overview/files', admin_overview.Files),
     (r'/admin/manifest', admin_manifest.ManifestHandler),
