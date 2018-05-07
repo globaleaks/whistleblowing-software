@@ -318,8 +318,14 @@ def merge_tenant_data(session, tenant_data, tid=None):
 def create_export_tarball(session, tid):
     '''Creates an export tarball, either as a file on disk, or in memory as a variable'''
 
+    # Collect tenant data
+    tenant_data = collect_all_tenant_data(session, tid)
+
     try:
         dirpath = tempfile.mkdtemp()
+
+        # Create the export database
+        write_tenant_to_fresh_db(tenant_data, dirpath + "/globaleaks.db")
 
         # Write out a export format version marker
         with open(dirpath + "/EXPORT_FORMAT", 'w') as f:
@@ -329,6 +335,7 @@ def create_export_tarball(session, tid):
 
         with tarfile.open(fileobj=output_file, mode='w:gz') as export_tarball:
             export_tarball.add(dirpath + "/EXPORT_FORMAT", arcname="EXPORT_FORMAT")
+            export_tarball.add(dirpath + "/globaleaks.db", arcname="globaleaks.db")
 
     finally:
         shutil.rmtree(dirpath)
