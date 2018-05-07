@@ -18,7 +18,7 @@ from datetime import datetime
 
 from globaleaks.utils import security, import_export
 from globaleaks.db import get_db_file
-from globaleaks.orm import make_db_uri, get_engine
+from globaleaks.orm import make_db_uri, get_engine, get_session
 from globaleaks.models import config, config_desc
 from globaleaks.rest.requests import AdminNotificationDesc, AdminNodeDesc
 from globaleaks.settings import Settings
@@ -85,9 +85,14 @@ def backup(args):
     if must_stop: sp.check_call("service globaleaks start", shell=True)
     print("Success: The archived backup was created at:", args.backuppath)
 
-def export(args):
-    data = import_export.collect_all_tenant_data(get_db_file(args.dbpath)[1], 1)
-    import_export.write_tenant_to_fresh_db(data)
+def export_tenant(args):
+    session = get_session(make_db_uri(args.dbpath))
+    data = import_export.collect_all_tenant_data(session, args.tid)
+    import_export.write_tenant_to_fresh_db(data, args.output)
+
+def import_tenant(args):
+    data = import_export.collect_all_tenant_data(get_db_file(args.import_file)[1], 0)
+    import_export.write_tenant_to_preexisting_db(data, args.dbpath)
 
 def restore(args):
     check_dir(args.workdir)

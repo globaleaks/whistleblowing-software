@@ -1,7 +1,12 @@
 # -*- coding: utf-8 -*-
 # Functions related to importing/exporting the data from a GL instance
 
+import copy
+import io
 import os
+import shutil
+import tarfile
+import tempfile
 
 from globaleaks import models
 from globaleaks.db import get_db_file, make_db_uri
@@ -96,14 +101,13 @@ def collect_pk_relation(session, model, pks, filter_column):
 
     return data
 
-def collect_all_tenant_data(db_file, tid):
+def collect_all_tenant_data(session, tid):
     '''Collects the tenant data into dictionary form ready for serialization
        into a new database instance detaching the information from SQLAlchemy'''
 
     tenant_data = {}
 
     # First recover the base tenant data
-    session = get_session(make_db_uri(db_file))
     tenant = session.query(models.Tenant).filter_by(id=tid).first()
     print("Exporting Tenant: " + tenant.label)
     session.expunge(tenant)
@@ -224,6 +228,38 @@ def write_tenant_to_fresh_db(tenant_data):
     # Create the root tenant object
     session.merge(tenant_data['tenant'])
 
+def write_tenant_to_preexisting_db(tenant_data, db_path):
+    '''Writes the tenant data to a pre-existing DB'''
+    session = get_session(make_db_uri(db_path))
+    merge_tenant_data(session, tenant_data, None)
+
+def merge_tenant_data(session, tenant_data, tid=None):
+    '''Merges the tenant data into a new and/or existing database
+
+    tid is None means an autoincremented one is take from the database
+    '''
+
+    if tid is None:
+        tenant_data['tenant'].id = None
+        tenant_obj = session.merge(tenant_data['tenant'])
+        session.flush()
+        tid = tenant_obj.id
+    else:
+        tenant_data['tenant'].id = tid
+        session.merge(tenant_data['tenant'])
+
+    # Correct the TID in all rows
+    for datatype, rowset in tenant_data.items():
+        if datatype is 'tenant':
+            continue
+
+        for row in rowset:
+            if hasattr(row, 'tid'):
+                row.tid = tid
+            if hasattr(row, 'tenant_id'):
+                row.tenant_id = tid
+>>>>>>> 78d9b7a4f... Wire up stub functions to handle creation of a whistleblower tarball
+
     # Replay the tenant data
     for element in IMPORT_ORDER:
         for row in tenant_data[element]:
@@ -232,3 +268,23 @@ def write_tenant_to_fresh_db(tenant_data):
     print("Export Complete!")
     session.commit()
     session.close()
+
+def create_export_tarball(session, tid):
+    '''Creates an export tarball, either as a file on disk, or in memory as a variable'''
+
+    try:
+        dirpath = tempfile.mkdtemp()
+
+        # Write out a export format version marker
+        with open(dirpath + "/EXPORT_FORMAT", 'w') as f:
+            f.write(str(1))
+
+        output_file = io.BytesIO()
+
+        with tarfile.open(fileobj=output_file, mode='w:gz') as export_tarball:
+            export_tarball.add(dirpath + "/EXPORT_FORMAT", arcname="EXPORT_FORMAT")
+
+    finally:
+        shutil.rmtree(dirpath)
+
+    return output_file.getvalue()

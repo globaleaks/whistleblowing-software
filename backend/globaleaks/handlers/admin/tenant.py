@@ -100,6 +100,9 @@ def delete(session, id):
 
     db_refresh_memory_variables(session, [id])
 
+@transact
+def export_tenant(session, tid):
+    return import_export.create_export_tarball(session, tid)
 
 class TenantCollection(BaseHandler):
     check_roles = 'admin'
@@ -156,3 +159,14 @@ class TenantInstance(BaseHandler):
         log.info('Removing tenant with id: %d', tenant_id, tid=self.request.tid)
 
         return delete(tenant_id)
+
+class TenantExport(BaseHandler):
+    check_roles = 'admin'
+    invalidate_cache = True
+    root_tenant_only = True
+    invalidate_tenant_states = True
+
+    def get(self, tenant_id):
+        tenant_id = int(tenant_id)
+
+        return export_tenant(tenant_id)
