@@ -1,3 +1,6 @@
+Changes in version 3.0.29 - 2018-05-07
+    Apply code revisions for compatibility with both py2 and py3
+
 Changes in version 3.0.28 - 2018-05-04
     Fix bug related to overlapping usernames (#2266)
 
