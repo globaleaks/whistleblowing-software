@@ -1,5 +1,5 @@
 angular.module('GLClient')
-.controller('TenantCtrl', ['$scope', function($scope) {
+.controller('TenantCtrl', ['$scope', '$http', 'Utils', function($scope, $http, Utils) {
   $scope.newTenant = new $scope.admin_utils.new_tenant();
 
   $scope.showAddTenant = false;
@@ -12,7 +12,17 @@ angular.module('GLClient')
       $scope.admin.tenants.push(tenant);
       $scope.newTenant = new $scope.admin_utils.new_tenant();
     });
-  }
+  };
+
+  $scope.importTenant = function(file) {
+    $http({
+      method: 'POST',
+      url: 'admin/tenants/import',
+      data: file,
+    }).then(function() {
+       $route.reload();
+    }, Utils.displayErrorMsg);
+  };
 
   $scope.currentPage = 1;
   $scope.itemsPerPage = 20;

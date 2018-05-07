@@ -161,7 +161,7 @@ class TenantInstance(BaseHandler):
 
         return delete(tenant_id)
 
-class TenantExport(BaseHandler):
+class TenantImportExport(BaseHandler):
     check_roles = 'admin'
     invalidate_cache = True
     root_tenant_only = True
@@ -171,3 +171,6 @@ class TenantExport(BaseHandler):
         tenant_id = int(tenant_id)
 
         return export_tenant(tenant_id)
+    
+    def post(self):
+        print("HERE")
