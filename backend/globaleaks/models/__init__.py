@@ -450,7 +450,7 @@ class _EmailValidations(Model):
     """
 
     __tablename__ = 'emailvalidations'
-    user_id = Column(Integer, primary_key=True, nullable=False)
+    user_id = Column(Unicode(36), primary_key=True, nullable=False)
     new_email = Column(UnicodeText, default=u'', nullable=False)
     validation_token = Column(UnicodeText, default=u'', nullable=False)
 
