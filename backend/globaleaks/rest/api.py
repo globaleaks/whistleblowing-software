@@ -108,7 +108,7 @@ api_spec = [
     (r'/custodian/identityaccessrequest/' + uuid_regexp, custodian.IdentityAccessRequestInstance),
 
     ## Email Validation Handler
-    (r'/email/validation/' + email_validation.EmailValidation),
+    (r'/email/validation/(.+)', email_validation.EmailValidation),
 
     ## Admin Handlers ##
     (r'/admin/node', admin_node.NodeInstance),

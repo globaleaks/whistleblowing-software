@@ -5,6 +5,7 @@
 from globaleaks.handlers.base import BaseHandler
 
 class EmailValidation(BaseHandler):
-    def get(self, validation_token):
-        return "Test " + validation_token
+    check_roles = '*'
 
+    def get(self, validation_token):
+        return self.redirect("/#/email/validation/success")

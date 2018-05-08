@@ -40,3 +40,8 @@ GLClient.controller('PreferencesCtrl', ['$scope', '$q', '$rootScope', 'Utils', '
        }, Utils.displayErrorMsg);
     };
 }]);
+
+GLClient.controller('EmailValidationCtrl', ['$scope',
+  function($scope) {
+
+}]);
