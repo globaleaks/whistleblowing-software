@@ -91,7 +91,7 @@ def db_user_update_user(session, state, tid, user_id, request):
     user = models.db_get(session, models.User, models.User.id == user_id, models.User.tid == tid)
 
     user.language = request.get('language', State.tenant_cache[tid].default_language)
-
+    user.name = request['name']
     new_password = request['password']
     old_password = request['old_password']
 

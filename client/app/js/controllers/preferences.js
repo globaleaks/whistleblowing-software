@@ -12,6 +12,11 @@ GLClient.controller('PreferencesCtrl', ['$scope', '$q', '$rootScope', 'Utils', '
     ];
 
     $scope.email_regexp = CONSTANTS.email_regexp;
+    $scope.editingName = false;
+
+    $scope.toggleNameEditing = function () {
+      $scope.editingName = $scope.editingName ^ 1;
+    };
 
     $scope.save = function() {
       if ($scope.preferences.pgp_key_remove) {
@@ -20,6 +25,7 @@ GLClient.controller('PreferencesCtrl', ['$scope', '$q', '$rootScope', 'Utils', '
 
       $scope.preferences.$update(function() {
         $rootScope.successes.push({message: 'Updated your preferences!'});
+        $scope.reload()
       });
     };
 
