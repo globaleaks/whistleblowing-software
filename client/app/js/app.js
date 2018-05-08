@@ -378,6 +378,24 @@ var GLClient = angular.module('GLClient', [
           access: noAuth(),
         }
       }).
+      when('/email/validation/success', {
+        templateUrl: 'views/email_validation_success.html',
+        controller: 'EmailValidationCtrl',
+        header_title: '',
+        header_subtitle: '',
+        resolve: {
+          access: noAuth(),
+        }
+      }).
+      when('/email/validation/failure', {
+        templateUrl: 'views/email_validation_failure.html',
+        controller: 'EmailValidationCtrl',
+        header_title: '',
+        header_subtitle: '',
+        resolve: {
+          access: noAuth(),
+        }
+      }).
       when('/', {
         templateUrl: 'views/home.html',
         controller: 'HomeCtrl',
