@@ -83,11 +83,17 @@ def db_user_update_user(session, state, tid, user_id, request):
     Updates the specified user.
     This version of the function is specific for users that with comparison with
     admins can change only few things:
+      - real name
+      - email address
       - preferred language
       - the password (with old password check)
       - pgp key
     raises: globaleaks.errors.ResourceNotFound` if the receiver does not exist.
     """
+    from globaleaks.handlers.admin.notification import db_get_notification
+    from globaleaks.handlers.admin.node import db_admin_serialize_node
+    from globaleaks.handlers.admin.user import get_user
+
     user = models.db_get(session, models.User, models.User.id == user_id, models.User.tid == tid)
 
     user.language = request.get('language', State.tenant_cache[tid].default_language)
@@ -106,6 +112,18 @@ def db_user_update_user(session, state, tid, user_id, request):
 
         user.password_change_date = datetime_now()
 
+    # If the email address changed, send a validation email
+    if request['mail_address'] != user.mail_address:
+        user_desc = user_serialize_user(session, user, user.language)
+        template_vars = {
+            'type': 'email_validation',
+            'user': user_desc,
+            'node': db_admin_serialize_node(session, 1, user.language),
+            'notification': db_get_notification(session, tid, user.language)
+        }
+        state.format_and_send_mail(session, tid, user_desc, template_vars)
+
+    # We don't directly change user email addresses, if a user
     # The various options related in manage PGP keys are used here.
     parse_pgp_options(state, user, request)
 

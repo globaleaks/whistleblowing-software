@@ -102,6 +102,12 @@ platform_signup_keywords = [
     '{UseCase}'
 ]
 
+email_validation_keywords = [
+    '{RecipientName}',
+    '{NewEmailAddress}',
+    '{ValidationAddress}'
+]
+
 def indent(n=1):
     return '  ' * n
 
@@ -515,6 +521,13 @@ class AdminPlatformSignupKeyword(PlatformSignupKeyword):
     def RecipientName(self):
         return self.data['user']['name']
 
+class EmailValidationKeyword(UserNodeKeyword):
+    def NewEmailAddress(self):
+        return "test@test.com"
+
+    def ValidationAddress(self):
+        return "some URL"
+
 supported_template_types = {
     u'tip': TipKeyword,
     u'comment': CommentKeyword,
@@ -532,7 +545,8 @@ supported_template_types = {
     u'software_update_available': SoftwareUpdateKeyword,
     u'admin_signup_alert': AdminPlatformSignupKeyword,
     u'signup': PlatformSignupKeyword,
-    u'activation': PlatformSignupKeyword
+    u'activation': PlatformSignupKeyword,
+    u'email_validation': EmailValidationKeyword
 }
 
 
