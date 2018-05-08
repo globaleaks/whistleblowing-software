@@ -35,7 +35,7 @@
             <div class="col-md-12">
               <div class="form-group" data-ng-show="editingEmailAddress">
                 <label data-translate>Email address</label>
-                <input class="form-control" name="mail_address" data-ng-model="preferences.mail_address" type="text" required />
+                <input class="form-control" name="mail_address" data-ng-model="preferences.mail_address" data-ng-pattern="email_regexp" type="text" required />
                 <div class="text-danger" data-ng-show="editingEmailAddress.name.$error.required" data-translate>This field is mandatory</div>
               </div>
             </div>
