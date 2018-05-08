@@ -149,7 +149,7 @@
     {
       "id":"",
       "label":{
-        "en":"Sex"
+        "en":"Gender"
       },
       "description":{
         "en":""
@@ -203,6 +203,15 @@
           "score_points":0,
           "label":{
             "en":"Female"
+          },
+          "id":""
+        },
+        {
+          "presentation_order":2,
+          "trigger_field":"",
+          "score_points":0,
+          "label":{
+            "en":"Other gender identity"
           },
           "id":""
         }
