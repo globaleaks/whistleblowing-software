@@ -118,6 +118,8 @@ def db_user_update_user(session, state, tid, user_id, request):
         template_vars = {
             'type': 'email_validation',
             'user': user_desc,
+            'new_email_address': request['mail_address'],
+            'validation_token': "abcdef",
             'node': db_admin_serialize_node(session, 1, user.language),
             'notification': db_get_notification(session, tid, user.language)
         }
