@@ -105,7 +105,8 @@ platform_signup_keywords = [
 email_validation_keywords = [
     '{RecipientName}',
     '{NewEmailAddress}',
-    '{ValidationAddress}'
+    '{HTTPSValidationUrl}',
+    '{TorValidationUrl}'
 ]
 
 def indent(n=1):
@@ -522,11 +523,18 @@ class AdminPlatformSignupKeyword(PlatformSignupKeyword):
         return self.data['user']['name']
 
 class EmailValidationKeyword(UserNodeKeyword):
-    def NewEmailAddress(self):
-        return "test@test.com"
+    keyword_list = NodeKeyword.keyword_list + email_validation_keywords
+    data_keys = NodeKeyword.data_keys + \
+        ['new_email_address', 'validation_token']
 
-    def ValidationAddress(self):
-        return "some URL"
+    def NewEmailAddress(self):
+        return self.data['new_email_address']
+
+    def TorValidationUrl(self):
+        return 'http://' + self.data['node']['onionservice'] + '/email/validation/' + self.data['validation_token']
+
+    def HTTPSValidationUrl(self):
+        return 'https://' + self.data['node']['hostname'] + '/email/validation/' + self.data['validation_token']
 
 supported_template_types = {
     u'tip': TipKeyword,
