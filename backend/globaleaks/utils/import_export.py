@@ -341,3 +341,21 @@ def create_export_tarball(session, tid):
         shutil.rmtree(dirpath)
 
     return output_file.getvalue()
+
+def read_import_tarball(gl_session, tarball_blob):
+    '''Reads a tarball in and imports it's tenant'''
+
+    try:
+        dirpath = tempfile.mkdtemp()
+
+        # Extract the bits and start getting things going
+        export_tarball = io.BytesIO(tarball_blob)
+        with tarfile.open(fileobj=export_tarball, mode='r:gz') as export_tarball:
+            export_tarball.extractall(path=dirpath)
+
+        tenant_session = get_session(make_db_uri(dirpath + "/globaleaks.db"))
+        tenant_data = collect_all_tenant_data(tenant_session, EXPORTED_TENANT_ID)
+        merge_tenant_data(gl_session, tenant_data, tid=None)
+
+    finally:
+        shutil.rmtree(dirpath)
