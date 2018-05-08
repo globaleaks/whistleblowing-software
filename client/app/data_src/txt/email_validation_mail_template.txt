@@ -1,0 +1,10 @@
+Dear {RecipientName},
+
+This is an email to notify you that a request has been made to change your email address to {NewEmailAddress}.
+
+Click this link to validate this change: {ValidationAddress}
+
+If you didn't request this change, change your password and contact your system administrator.
+
+Kind regards,
+{NodeName}
