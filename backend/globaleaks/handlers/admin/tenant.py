@@ -142,6 +142,10 @@ def delete(session, id):
 def export_tenant(session, tid):
     return import_export.create_export_tarball(session, tid)
 
+@transact
+def import_tenant(session, tarball_blob):
+    return import_export.read_import_tarball(session, tarball_blob)
+
 class TenantCollection(BaseHandler):
     check_roles = 'admin'
     cache_resource = True
@@ -208,6 +212,7 @@ class TenantImportExport(BaseHandler):
         tenant_id = int(tenant_id)
 
         return export_tenant(tenant_id)
-    
+
     def post(self):
-        print("HERE")
+        import_tenant(self.request.content.read())
+        return None
