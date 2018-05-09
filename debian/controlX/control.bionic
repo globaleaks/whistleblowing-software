@@ -1,0 +1,39 @@
+Source: globaleaks
+Maintainer: Random GlobaLeaks developers <info@globaleaks.org>
+Section: web
+Priority: optional
+Build-Depends:
+ build-essential
+ , debhelper
+ , dh-apparmor
+ , dh-python
+ , python3 (>= 3.5)
+ , python3-pip
+ , python3-setuptools
+ , python3-sphinx
+Vcs-Git: https://github.com/globaleaks/GlobaLeaks.git
+Standards-Version: 3.9.8
+
+Package: globaleaks
+Architecture: all
+Depends:
+ , ${misc:Depends}
+ , ${python3:Depends}
+ , apparmor
+ , apparmor-utils
+ , gnupg1
+ , haveged
+ , iptables
+ , lsb-base
+ , python3:any
+ , python3-acme
+ , python3-openssl
+ , python3-gnupg
+ , python3-scrypt
+ , python3-sqlalchemy
+ , python3-twisted
+ , python3-txtorcon
+ , tor (>= 0.2.9.11)
+Description: Opensource whistleblowing platform.
+ GlobaLeaks is an open source project aimed to create a worldwide, anonymous,
+ censorship-resistant, distributed whistleblowing platform.
