@@ -267,8 +267,6 @@ def db_create_receivertip(session, receiver, internaltip):
 
     session.add(receivertip)
 
-    return receivertip.id
-
 
 def db_create_submission(session, tid, request, uploaded_files, client_using_tor):
     answers = request['answers']
