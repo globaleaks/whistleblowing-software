@@ -203,7 +203,6 @@ def db_archive_questionnaire_schema(session, questionnaire, questionnaire_hash):
     aqs.preview = [f for s in questionnaire for f in s['children'] if f['preview']]
 
     session.add(aqs)
-    session.flush()
 
 
 def db_get_itip_receiver_list(session, itip):
