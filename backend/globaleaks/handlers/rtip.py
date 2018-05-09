@@ -225,28 +225,27 @@ def db_mark_file_for_secure_deletion(session, relpath):
 
 
 def db_delete_itips_files(session, itips_ids):
-    files_paths = set()
     ifiles_ids = set()
+    files_names = set()
 
     if itips_ids:
-        for ifile in session.query(models.InternalFile) \
-                            .filter(models.InternalFile.internaltip_id.in_(itips_ids)):
-            files_paths.add(ifile.file_path)
-            ifiles_ids.add(ifile.id)
+        for ifile_id, ifile_filename in session.query(models.InternalFile.id, models.InternalFile.file_path) \
+                                               .filter(models.InternalFile.internaltip_id.in_(itips_ids)):
+            ifiles_ids.add(ifile_id)
+            files_names.add(ifile_filename)
+
+        for wbfile_filename in session.query(models.WhistleblowerFile.file_path) \
+                                      .filter(models.WhistleblowerFile.receivertip_id == models.ReceiverTip.id,
+                                              models.ReceiverTip.internaltip_id.in_(list(itips_ids))):
+            files_names.add(wbfile_filename[0])
 
     if ifiles_ids:
-        for rfile in session.query(models.ReceiverFile) \
-                            .filter(models.ReceiverFile.internalfile_id.in_(list(ifiles_ids))):
-            files_paths.add(rfile.file_path)
+        for rfile_filename in session.query(models.ReceiverFile.file_path) \
+                                     .filter(models.ReceiverFile.internalfile_id.in_(list(ifiles_ids))):
+            files_names.add(rfile_filename[0])
 
-    if ifiles_ids:
-        for wbfile in session.query(models.WhistleblowerFile) \
-                             .filter(models.WhistleblowerFile.receivertip_id == models.ReceiverTip.id,
-                                     models.ReceiverTip.internaltip_id.in_(list(ifiles_ids))):
-            files_paths.add(wbfile.file_path)
-
-    for file_path in files_paths:
-        db_mark_file_for_secure_deletion(session, file_path)
+    for filepath in files_names:
+        db_mark_file_for_secure_deletion(session, filepath)
 
 
 def db_delete_itips(session, itips_ids):
