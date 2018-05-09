@@ -43,7 +43,6 @@ class TestWBFileWorkFlow(helpers.TestHandlerWithPopulatedDB):
 
                 yield self.test_model_count(models.SecureFileDelete, len(deleted_wbfiles_ids))
 
-
         # check that the files are effectively gone from the db
         rtips_desc = yield self.get_rtips()
         for rtip_desc in rtips_desc:
