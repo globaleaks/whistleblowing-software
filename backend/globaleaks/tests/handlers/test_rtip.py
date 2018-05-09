@@ -121,20 +121,17 @@ class TestRTipInstance(helpers.TestHandlerWithPopulatedDB):
             response = yield handler.get(rtip_desc['id'])
             self.assertEqual(response[key], True)
 
-    @inlineCallbacks
     def test_put_enable_two_way_comments(self):
         State.tenant_cache[1].can_grant_permissions = True
-        yield self.switch_enabler('enable_two_way_comments')
+        return self.switch_enabler('enable_two_way_comments')
 
-    @inlineCallbacks
     def test_put_enable_two_way_messages(self):
         State.tenant_cache[1].can_grant_permissions = True
-        yield self.switch_enabler('enable_two_way_messages')
+        return self.switch_enabler('enable_two_way_messages')
 
-    @inlineCallbacks
     def test_put_enable_attachments(self):
         State.tenant_cache[1].can_grant_permissions = True
-        yield self.switch_enabler('enable_attachments')
+        return self.switch_enabler('enable_attachments')
 
     @inlineCallbacks
     def test_put_label(self):
