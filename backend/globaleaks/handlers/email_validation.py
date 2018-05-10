@@ -11,11 +11,15 @@ from globaleaks.handlers.base import BaseHandler
 from globaleaks.orm import transact
 from globaleaks.utils.security import generateRandomKey
 
+@transact
 def generate_email_change_token(session, user, new_email):
+    return db_generate_email_change_token(session, user, new_email)
+
+def db_generate_email_change_token(session, user_id, new_email):
     validation_token = generateRandomKey(32)
 
     validation_obj = models.EmailValidations()
-    validation_obj.user_id = user.id
+    validation_obj.user_id = user_id
     validation_obj.new_email = new_email
     validation_obj.validation_token = validation_token
     session.merge(validation_obj)
@@ -25,13 +29,11 @@ def generate_email_change_token(session, user, new_email):
 
 @transact
 def get_email_change_token(session, validation_token):
+    '''transact version of db_get_email_change_token'''
     return db_get_email_change_token(session, validation_token)
 
-@transact
-def delete_email_change_token(session, validation_token):
-    return db_delete_email_change_token(session, validation_token)
-
 def db_get_email_change_token(session, validation_token):
+    '''Retrieves an email change token for validation in the backend'''
     token = session.query(models.EmailValidations).filter(
         models.EmailValidations.validation_token == validation_token
     ).first()
@@ -41,7 +43,14 @@ def db_get_email_change_token(session, validation_token):
 
     return token
 
+@transact
+def delete_email_change_token(session, validation_token):
+    '''transact wrapper for db_delete_email_change_token'''
+    return db_delete_email_change_token(session, validation_token)
+
 def db_delete_email_change_token(session, validation_token):
+    '''Deletes an email change token, done if it's expired or used successfully'''
+
     session.query(models.EmailValidations).filter(
         models.EmailValidations.validation_token == validation_token
     ).delete()
@@ -49,6 +58,8 @@ def db_delete_email_change_token(session, validation_token):
 
 @transact
 def change_user_email(session, user_id, email):
+    '''Updates the email address in the database from the emailvalidation token'''
+
     user = user = models.db_get(
         session, models.User, models.User.id == user_id
     )
@@ -63,7 +74,7 @@ class EmailValidation(BaseHandler):
         token = yield get_email_change_token(validation_token)
         if token is not None:
             # Tokens are only valid for 72 hours from their creation data
-            if token.creation_date+timedelta(hours=72) < datetime.now():
+            if token.creation_date-timedelta(hours=72) > datetime.now():
                 # Token is expired
                 yield delete_email_change_token(validation_token)
                 return self.redirect("/#/email/validation/failure")

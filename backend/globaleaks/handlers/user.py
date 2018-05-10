@@ -4,7 +4,7 @@
 from globaleaks import models
 from globaleaks.handlers.admin.modelimgs import db_get_model_img
 from globaleaks.handlers.base import BaseHandler
-from globaleaks.handlers.email_validation import generate_email_change_token
+from globaleaks.handlers.email_validation import db_generate_email_change_token
 from globaleaks.orm import transact
 from globaleaks.rest import requests
 from globaleaks.state import State
@@ -116,7 +116,7 @@ def db_user_update_user(session, state, tid, user_id, request):
     # If the email address changed, send a validation email
     if request['mail_address'] != user.mail_address:
         user_desc = user_serialize_user(session, user, user.language)
-        validation_token = generate_email_change_token(session, user, request['mail_address'])
+        validation_token = db_generate_email_change_token(session, user.id, request['mail_address'])
         template_vars = {
             'type': 'email_validation',
             'user': user_desc,

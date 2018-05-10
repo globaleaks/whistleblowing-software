@@ -2,11 +2,28 @@
 from six import text_type
 from twisted.internet.defer import inlineCallbacks
 
+from globaleaks import models
+from globaleaks.orm import transact
 from globaleaks.handlers import user
 from globaleaks.handlers.admin import receiver
 from globaleaks.rest import errors
 from globaleaks.tests import helpers
 
+@transact
+def get_token_for_user_id(session, user_id):
+    token = session.query(models.EmailValidations).filter(
+        models.EmailValidations.user_id == user_id
+    ).first()
+
+    session.expunge(token)
+    return token
+
+@transact
+def get_token_count(session, user_id):
+    return session.query(models.EmailValidations).filter(
+        models.EmailValidations.user_id == user_id
+    ).count()
+    
 class TestUserInstance(helpers.TestHandlerWithPopulatedDB):
     _handler = user.UserInstance
 
@@ -95,3 +112,36 @@ class TestUserInstance(helpers.TestHandlerWithPopulatedDB):
         response['pgp_key_remove'] = False
         handler = self.request(response, user_id=self.rcvr_id, role='receiver')
         yield self.assertFailure(handler.put(), errors.InputValidationError)
+
+    @inlineCallbacks
+    def test_change_name(self):
+        handler = self.request(user_id = self.rcvr_id, role='receiver')
+
+        response = yield handler.get()
+        response['name'] = "Test Name"
+        handler = self.request(response, user_id=self.rcvr_id, role='receiver')
+
+        response = yield handler.put()
+        self.assertEqual(response['name'], 'Test Name')
+
+    @inlineCallbacks
+    def test_start_email_change_process(self, email="127test@test.com"):
+        handler = self.request(user_id = self.rcvr_id, role='receiver')
+
+        response = yield handler.get()
+        response['mail_address'] = email
+        handler = self.request(response, user_id=self.rcvr_id, role='receiver')
+
+        response = yield handler.put()
+        self.assertNotEqual(response['mail_address'], email)
+
+        token = yield get_token_for_user_id(response['id'])
+        self.assertEqual(token.new_email, email)
+
+    @inlineCallbacks
+    def test_email_validation_token_replaced_if_present(self):
+        yield self.test_start_email_change_process()
+        yield self.test_start_email_change_process(email="999test@999.com")
+        count = yield get_token_count(self.rcvr_id)
+        self.assertEqual(count, 1)
+
