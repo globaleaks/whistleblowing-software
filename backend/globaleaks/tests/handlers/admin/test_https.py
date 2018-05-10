@@ -192,49 +192,6 @@ class TestCSRHandler(helpers.TestHandler):
         self.assertIn((b'L', b'citta'), comps)
 
 
-class TestAcmeHandler(helpers.TestHandler):
-    _handler = https.AcmeHandler
-
-# This tests is disabled as it requires external network connections
-#    @inlineCallbacks
-#    def test_post(self):
-#        hostname = 'gl.dl.localhost.com'
-#        State.tenant_cache[1].hostname = hostname
-#        valid_setup = test_tls.get_valid_setup()
-#        yield https.PrivKeyFileRes.create_file(1, valid_setup['key'])
-#
-#        handler = self.request(role='admin')
-#        resp = yield handler.post()
-#
-#        current_le_tos = 'https://letsencrypt.org/documents/LE-SA-v1.2-November-15-2017.pdf'
-#        self.assertEqual(resp['terms_of_service'], current_le_tos)
-
-    @inlineCallbacks
-    def test_put(self):
-        valid_setup = test_tls.get_valid_setup()
-        yield https.AcmeAccntKeyRes.create_file(1)
-        yield https.AcmeAccntKeyRes.save_accnt_uri(1, 'http://localhost:9999')
-        yield https.PrivKeyFileRes.create_file(1, valid_setup['key'])
-        hostname = 'gl.dl.localhost.com'
-        State.tenant_cache[1].hostname = hostname
-
-        body = {
-           'name': 'xxx',
-           'content': {
-               'commonname': hostname,
-               'country': 'it',
-               'province': 'regione',
-               'city': 'citta',
-               'company': 'azienda',
-               'department': 'reparto',
-               'email': 'indrizzio@email',
-           }
-        }
-
-        handler = self.request(body, role='admin')
-        yield self.assertFailure(handler.put(), ConnectionError)
-
-
 class TestAcmeChallengeHandler(helpers.TestHandler):
     _handler = https.AcmeChallengeHandler
 
