@@ -50,16 +50,17 @@ class TestToken(helpers.TestGL):
             self.emulate_file_upload(token, 3)
 
             for f in token.uploaded_files:
-                self.assertTrue(os.path.exists(f['path']))
-                file_list.append(f['path'])
+                filepath = os.path.abspath(os.path.join(self.state.settings.tmp_path, f['filename']))
+                self.assertTrue(os.path.exists(filepath))
+                file_list.append(filepath)
 
-        self.test_reactor.advance(TokenList.get_timeout()+1)
+        self.test_reactor.advance(TokenList.get_timeout() + 1)
 
         for t in token_collection:
             self.assertRaises(errors.TokenFailure, TokenList.get, t.id)
 
-            for f in file_list:
-                self.assertFalse(os.path.exists(f))
+            for filepath in file_list:
+                self.assertFalse(os.path.exists(filepath))
 
     def test_token_update_right_answer(self):
         token = Token(1, 'submission')

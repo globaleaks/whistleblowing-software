@@ -272,9 +272,9 @@ class StateClass(ObjectDict):
             'tid': tid,
         }))
 
-    def get_tmp_file_by_path(self, path):
+    def get_tmp_file_by_name(self, filename):
         for k, v in self.TempUploadFiles.items():
-            if v.filepath == path:
+            if os.path.basename(v.filepath) == filename:
                 return self.TempUploadFiles.pop(k)
 
 def mail_exception_handler(etype, value, tback):

@@ -32,6 +32,7 @@ from globaleaks.db.migrations.update_39 import \
     Questionnaire_v_38, Receiver_v_38, ReceiverContext_v_38, \
     ReceiverFile_v_38, ReceiverTip_v_38, ShortURL_v_38, Stats_v_38, \
     Step_v_38, User_v_38, WhistleblowerFile_v_38, WhistleblowerTip_v_38
+from globaleaks.db.migrations.update_41 import InternalFile_v_40, ReceiverFile_v_40, WhistleblowerFile_v_40
 from globaleaks.orm import get_engine, get_session, make_db_uri
 from globaleaks.models import config, Base
 from globaleaks.models.config import ConfigFactory
@@ -60,7 +61,7 @@ migration_mapping = OrderedDict([
     ('FieldOption', [FieldOption_v_27, 0, 0, 0, FieldOption_v_38, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, models._FieldOption, 0, 0]),
     ('File', [-1, -1, -1, -1, -1, -1, -1, File_v_38, 0, 0, 0, 0, 0, 0, 0, models._File, 0, 0]),
     ('IdentityAccessRequest', [IdentityAccessRequest_v_38, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, models._IdentityAccessRequest, 0, 0]),
-    ('InternalFile', [InternalFile_v_25, 0, InternalFile_v_38, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, models._InternalFile, 0, 0]),
+    ('InternalFile', [InternalFile_v_25, 0, InternalFile_v_38, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, InternalFile_v_40, 0, models._InternalFile]),
     ('InternalTip', [InternalTip_v_32, 0, 0, 0, 0, 0, 0, 0, 0, InternalTip_v_34, 0, InternalTip_v_38, 0, 0, 0, models._InternalTip, 0, 0]),
     ('Mail', [-1, -1, Mail_v_38, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, models._Mail, 0, 0]),
     ('Message', [Message_v_31, 0, 0, 0, 0, 0, 0, 0, Message_v_38, 0, 0, 0, 0, 0, 0, models._Message, 0, 0]),
@@ -69,7 +70,7 @@ migration_mapping = OrderedDict([
     ('Questionnaire', [-1, -1, -1, -1, -1, -1, Questionnaire_v_37, 0, 0, 0, 0, 0, 0, 0, Questionnaire_v_38, models._Questionnaire, 0, 0]),
     ('Receiver', [Receiver_v_38, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, models._Receiver, 0, 0]),
     ('ReceiverContext', [ReceiverContext_v_38, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, models._ReceiverContext, 0, 0]),
-    ('ReceiverFile', [ReceiverFile_v_38, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, models._ReceiverFile, 0, 0]),
+    ('ReceiverFile', [ReceiverFile_v_38, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ReceiverFile_v_40, 0, models._ReceiverFile]),
     ('ReceiverTip', [ReceiverTip_v_30, 0, 0, 0, 0, 0, 0, ReceiverTip_v_38, 0, 0, 0, 0, 0, 0, 0, models._ReceiverTip, 0, 0]),
     ('SecureFileDelete', [SecureFileDelete_v_24, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, models._SecureFileDelete, 0, 0]),
     ('ShortURL', [-1, -1, ShortURL_v_38, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, models._ShortURL, 0, 0]),
@@ -81,7 +82,7 @@ migration_mapping = OrderedDict([
     ('User', [User_v_24, User_v_30, 0, 0, 0, 0, 0, User_v_31, User_v_32, User_v_38, 0, 0, 0, 0, 0, models._User, 0, 0]),
     ('UserImg', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, models._UserImg, 0, 0]),
     ('UserTenant', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, models._UserTenant]),
-    ('WhistleblowerFile', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, WhistleblowerFile_v_38, 0, 0, 0, models._WhistleblowerFile, 0, 0]),
+    ('WhistleblowerFile', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, WhistleblowerFile_v_38, 0, 0, 0, WhistleblowerFile_v_40, 0, models._WhistleblowerFile]),
     ('WhistleblowerTip', [WhistleblowerTip_v_32, 0, 0, 0, 0, 0, 0, 0, 0, WhistleblowerTip_v_34, 0, WhistleblowerTip_v_38, 0, 0, 0, -1, -1, -1])
 ])
 

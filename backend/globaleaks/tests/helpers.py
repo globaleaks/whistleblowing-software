@@ -1,8 +1,8 @@
 # -*- coding: utf-8
-
 """
 Utilities and basic TestCases.
 """
+import os
 import sys
 
 # Py3 Compat fix
@@ -235,7 +235,7 @@ def get_dummy_file(filename=None, content_type=None, content=None):
         'description': 'description',
         'body': temporary_file,
         'size': len(content),
-        'path': temporary_file.filepath,
+        'filename': os.path.basename(temporary_file.filepath),
         'type': content_type,
         'submission': False
     }
@@ -551,15 +551,7 @@ class TestGL(unittest.TestCase):
         This emulates the file upload of an incomplete submission
         """
         for _ in range(n):
-            dummyFile = self.get_dummy_file()
-
-            dst = os.path.join(Settings.tmp_path,
-                               os.path.basename(dummyFile['path']))
-
-            shutil.move(dummyFile['path'], dst)
-            dummyFile['path'] = dst
-
-            token.associate_file(dummyFile)
+            token.associate_file(self.get_dummy_file())
 
     def pollute_events(self, number_of_times=10):
         for _ in range(number_of_times):
@@ -702,7 +694,18 @@ class TestGLWithPopulatedDB(TestGL):
         self.dummyToken.solve()
 
     def perform_submission_uploads(self):
-        self.emulate_file_upload(self.dummyToken, self.population_of_attachments)
+        for _ in range(self.population_of_attachments):
+            dummyFile = self.get_dummy_file()
+
+            src = os.path.join(Settings.tmp_path,
+                               os.path.basename(dummyFile['filename']))
+
+            dst = os.path.join(Settings.attachments_path,
+                               os.path.basename(dummyFile['filename']))
+
+            shutil.move(src, dst)
+
+            self.dummyToken.associate_file(dummyFile)
 
     @inlineCallbacks
     def perform_submission_actions(self):

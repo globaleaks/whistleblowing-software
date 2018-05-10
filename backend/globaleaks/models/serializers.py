@@ -27,7 +27,7 @@ def serialize_rfile(session, tid, rfile):
         'name': ("%s.pgp" % ifile.name) if rfile.status == u'encrypted' else ifile.name,
         'size': rfile.size,
         'content_type': ifile.content_type,
-        'path': rfile.file_path,
+        'filename': rfile.filename,
         'downloads': rfile.downloads,
         'status': rfile.status
     }
@@ -43,7 +43,7 @@ def serialize_wbfile(session, tid, wbfile):
         'name': wbfile.name,
         'size': wbfile.size,
         'content_type': wbfile.content_type,
-        'path': wbfile.file_path,
+        'filename': wbfile.filename,
         'downloads': wbfile.downloads,
         'author': receiver_id,
     }
