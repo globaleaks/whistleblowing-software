@@ -453,6 +453,7 @@ class _EmailValidations(Model):
     user_id = Column(Unicode(36), primary_key=True, nullable=False)
     new_email = Column(UnicodeText, default=u'', nullable=False)
     validation_token = Column(UnicodeText, default=u'', nullable=False)
+    creation_date = Column(DateTime, default=datetime_now, nullable=False)
 
     @declared_attr
     def __table_args__(cls): # pylint: disable=no-self-argument

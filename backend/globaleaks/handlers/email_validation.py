@@ -2,11 +2,12 @@
 #
 # Validates the token for email changes
 
+from datetime import datetime, timedelta
+
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import models
 from globaleaks.handlers.base import BaseHandler
-from globaleaks.handlers.user import user_serialize_user
 from globaleaks.orm import transact
 from globaleaks.utils.security import generateRandomKey
 
@@ -35,6 +36,9 @@ def db_get_email_change_token(session, validation_token):
         models.EmailValidations.validation_token == validation_token
     ).first()
 
+    if token is not None:
+        session.expunge(token)
+
     return token
 
 def db_delete_email_change_token(session, validation_token):
@@ -45,10 +49,9 @@ def db_delete_email_change_token(session, validation_token):
 
 @transact
 def change_user_email(session, user_id, email):
-    from globaleaks.handlers.admin.user import get_user
-
-    user = get_user
-    print(user)
+    user = user = models.db_get(
+        session, models.User, models.User.id == user_id
+    )
     user.mail_address = email
     session.flush()
 
@@ -58,10 +61,16 @@ class EmailValidation(BaseHandler):
     @inlineCallbacks
     def get(self, validation_token):
         token = yield get_email_change_token(validation_token)
-        print(token.user_id)
         if token is not None:
+            # Tokens are only valid for 72 hours from their creation data
+            if token.creation_date+timedelta(hours=72) < datetime.now():
+                # Token is expired
+                yield delete_email_change_token(validation_token)
+                return self.redirect("/#/email/validation/failure")
+
+            # If the token is valid, change the email and delete the token
             yield change_user_email(token.user_id, token.new_email)
-            #yield db_delete_email_change_token(validation_token)
+            yield delete_email_change_token(validation_token)
             return self.redirect("/#/email/validation/success")
         else:
             return self.redirect("/#/email/validation/failure")
