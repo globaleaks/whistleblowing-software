@@ -70,7 +70,7 @@ class FileInstance(BaseHandler):
 
     def post(self, id):
         if id != 'custom':
-            sf = self.state.get_tmp_file_by_path(self.uploaded_file['path'])
+            sf = self.state.get_tmp_file_by_name(self.uploaded_file['filename'])
             with sf.open('r') as encrypted_file:
                 data = encrypted_file.read()
 

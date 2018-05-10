@@ -58,11 +58,8 @@ def get_engine(db_uri=None, foreign_keys=True):
     return engine
 
 
-
-def get_session(db_uri=None):
-    engine  = get_engine(db_uri)
-    session = sessionmaker(bind=engine)
-    return session()
+def get_session(db_uri=None, foreign_keys=True):
+    return sessionmaker(bind=get_engine(db_uri))()
 
 
 def set_thread_pool(thread_pool):

@@ -10,11 +10,11 @@ import shutil
 
 from sqlalchemy.orm import sessionmaker
 
-from globaleaks import __version__, DATABASE_VERSION, FIRST_DATABASE_VERSION_SUPPORTED, models, orm
+from globaleaks import __version__, DATABASE_VERSION, FIRST_DATABASE_VERSION_SUPPORTED, models
 from globaleaks.db import migration, update_db
 from globaleaks.db.migrations import update_37
 from globaleaks.models import config
-from globaleaks.orm import get_engine
+from globaleaks.orm import get_session, make_db_uri, set_db_uri
 from globaleaks.rest import errors
 from globaleaks.settings import Settings
 from globaleaks.tests import helpers
@@ -26,17 +26,16 @@ class TestMigrationRoutines(unittest.TestCase):
         f = 'glbackend-%d.db' % version
 
         helpers.init_state()
-        Settings.db_path = os.path.join(Settings.tmp_path, 'db_test')
-        self.start_db_file = os.path.abspath(os.path.join(Settings.db_path, 'glbackend-%d.db' % version))
-        self.final_db_file = os.path.abspath(os.path.join(Settings.db_path, 'glbackend-%d.db' % DATABASE_VERSION))
-        self.start_db_uri = orm.make_db_uri(self.start_db_file)
+        self.db_path = os.path.join(Settings.working_path, 'db')
+        Settings.db_file_path = os.path.join(Settings.working_path, 'db', 'glbackend-%d.db' % version)
+        self.final_db_file = os.path.abspath(os.path.join(Settings.working_path, 'globaleaks.db'))
 
-        orm.set_db_uri('sqlite:' + self.final_db_file)
+        set_db_uri('sqlite:' + self.final_db_file)
 
-        shutil.rmtree(Settings.db_path, True)
-        os.mkdir(Settings.db_path)
+        shutil.rmtree(self.db_path, True)
+        os.mkdir(self.db_path)
         dbpath = os.path.join(path, f)
-        dbfile = os.path.join(Settings.db_path, f)
+        dbfile = os.path.join(self.db_path, f)
         shutil.copyfile(dbpath, dbfile)
 
         # TESTS PRECONDITIONS
@@ -51,7 +50,7 @@ class TestMigrationRoutines(unittest.TestCase):
         if postconditions is not None:
             postconditions()
 
-        shutil.rmtree(Settings.db_path)
+        #shutil.rmtree(self.db_path, True)
         self.assertNotEqual(ret, -1)
 
     def preconditions_30(self):
@@ -62,17 +61,13 @@ class TestMigrationRoutines(unittest.TestCase):
         shutil.copy(os.path.join(helpers.DATA_DIR, 'tor/hostname'), css_path)
 
     def postconditions_30(self):
-        new_uri = orm.make_db_uri(os.path.join(Settings.db_path, Settings.db_file_name))
-
-        engine = get_engine(new_uri)
-        session = sessionmaker(bind=engine)()
-
+        session = get_session(make_db_uri(self.final_db_file))
         self.assertTrue(session.query(models.File).filter(models.File.id == u'logo').count() == 1)
         self.assertTrue(session.query(models.File).filter(models.File.id == u'css').count() == 1)
         session.close()
 
     def preconditions_36(self):
-        update_37.TOR_DIR = Settings.db_path
+        update_37.TOR_DIR = Settings.working_path
 
         pk_path = os.path.join(update_37.TOR_DIR, 'private_key')
         hn_path = os.path.join(update_37.TOR_DIR, 'hostname')
@@ -81,10 +76,7 @@ class TestMigrationRoutines(unittest.TestCase):
         shutil.copy(os.path.join(helpers.DATA_DIR, 'tor/hostname'), hn_path)
 
     def postconditions_36(self):
-        new_uri = orm.make_db_uri(os.path.join(Settings.db_path, Settings.db_file_name))
-
-        engine = get_engine(new_uri)
-        session = sessionmaker(bind=engine)()
+        session = get_session(make_db_uri(self.final_db_file))
 
         hs = session.query(config.Config).filter(config.Config.tid == 1, config.Config.var_name == u'onionservice').one().value
         pk = session.query(config.Config).filter(config.Config.tid == 1, config.Config.var_name == u'tor_onion_key').one().value
