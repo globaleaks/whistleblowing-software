@@ -199,7 +199,6 @@ class TestObjectValidators(TestCase):
         #self.assertTrue(isinstance(err, tls.ValidationException))
 
         ok, err = chn_v.validate(self.cfg, check_expiration=False)
-        print(err)
         self.assertTrue(ok)
         self.assertIsNone(err)
 
