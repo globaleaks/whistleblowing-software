@@ -184,3 +184,8 @@ class SubmissionDisabled(GLException):
     reason = "Submissions are disabled"
     error_code = 16
     status_code = 503 # Service not available
+
+class AccessLocationInvalid(GLException):
+    reason = "IP Address not allows to login from this location"
+    error_code = 17
+    status_code = 401

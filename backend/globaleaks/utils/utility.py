@@ -9,6 +9,7 @@ import cgi
 import codecs
 import glob
 import json
+import ipaddress
 import logging
 import os
 import re
@@ -31,6 +32,7 @@ from twisted.web.http import _escape
 from twisted.web._newclient import ResponseNeverReceived, ResponseFailed
 
 from globaleaks import LANGUAGES_SUPPORTED_CODES
+from globaleaks.rest import errors
 
 FAILURES_NET_OUTGOING = (
     ConnectionLost,
@@ -466,3 +468,35 @@ def bytes_to_pretty_str(b):
         return "%dMB" % int(b / 1000000)
 
     return "%dKB" % int(b / 1000)
+
+def parse_csv_ip_ranges_to_ip_networks(ip_str):
+    '''Takes a list of IP addresses and/or CIDRs, and converts them to a list
+    of python objects'''
+    ip_str = text_type(ip_str)
+
+    ip_network_list = []
+
+    for ip_network_str in ip_str.split(','):
+        # We want to normalize to IPvXNetwork, so we can run in comparsions on
+        # IP ranges for authentications. However, we may get IP addresses, CIDR
+        # ranges, or garbage. Python does provide strict=True with the ipaddress
+        # methods; however, it will accept any integer is which *not* what we want
+        # so we need to handle this carefully.
+
+        # If it has a /, we'll assume it's a CIDR address, otherwise, a raw IP
+        try:
+            if "/" in ip_network_str:
+                ip_net_obj = ipaddress.ip_network(ip_network_str, strict=True)
+                ip_network_list.append(ip_net_obj)
+            else:
+                # Let's try and see if we can work with this
+                ip_addr_obj = ipaddress.ip_address(ip_network_str)
+
+                # If we got here, it is, convert it to a proper /32 (or /128)
+                cidr_len = ip_addr_obj.max_prefixlen
+                ip_network = ipaddress.ip_network(ip_network_str + '/' + str(cidr_len))
+                ip_network_list.append(ip_network)
+        except ValueError:
+            raise errors.InputValidationError("Unable to parse IP address: %s" % ip_network_str)
+
+    return ip_network_list

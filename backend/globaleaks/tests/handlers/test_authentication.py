@@ -7,6 +7,7 @@ from globaleaks.rest import errors
 from globaleaks.settings import Settings
 from globaleaks.state import State
 from globaleaks.tests import helpers
+from twisted.internet.address import IPv4Address, IPv6Address
 from twisted.internet.defer import inlineCallbacks
 
 
@@ -120,6 +121,46 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
         yield user_handler.get()
 
 
+    @inlineCallbacks
+    def test_login_reject_on_ip_filtering(self):
+        State.tenant_cache[1]['ip_filter_authenticated_enable'] = True
+        State.tenant_cache[1]['ip_filter_authenticated'] = '192.168.2.0/24'
+
+        handler = self.request({
+            'username': 'admin',
+            'password': helpers.VALID_PASSWORD1,
+            'token': ''
+        }, client_addr=IPv4Address('TCP', '192.168.1.1', 12345))
+        yield self.assertFailure(handler.post(), errors.AccessLocationInvalid)
+
+    @inlineCallbacks
+    def test_login_success_on_ip_filtering(self):
+        State.tenant_cache[1]['ip_filter_authenticated_enable'] = True
+        State.tenant_cache[1]['ip_filter_authenticated'] = '192.168.2.0/24'
+
+        handler = self.request({
+            'username': 'admin',
+            'password': helpers.VALID_PASSWORD1,
+            'token': ''
+        }, client_addr=IPv4Address('TCP', '192.168.2.1', 12345))
+        response = yield handler.post()
+        self.assertTrue('session_id' in response)
+        self.assertEqual(len(Sessions), 1)
+
+    @inlineCallbacks
+    def test_login_localhost_on_ip_filtering(self):
+        State.tenant_cache[1]['ip_filter_authenticated_enable'] = True
+        State.tenant_cache[1]['ip_filter_authenticated'] = '192.168.2.0/24'
+
+        handler = self.request({
+            'username': 'admin',
+            'password': helpers.VALID_PASSWORD1,
+            'token': ''
+        }, client_addr=IPv4Address('TCP', '127.0.0.1', 12345))
+        response = yield handler.post()
+        self.assertTrue('session_id' in response)
+        self.assertEqual(len(Sessions), 1)
+
 class TestReceiptAuth(helpers.TestHandlerWithPopulatedDB):
     _handler = authentication.ReceiptAuthHandler
 
@@ -128,7 +169,6 @@ class TestReceiptAuth(helpers.TestHandlerWithPopulatedDB):
         handler = self.request({
             'receipt': 'INVALIDRECEIPT'
         })
-
         yield self.assertFailure(handler.post(), errors.InvalidAuthentication)
 
     @inlineCallbacks
@@ -197,7 +237,6 @@ class TestReceiptAuth(helpers.TestHandlerWithPopulatedDB):
         wbtip_handler = self.request(headers={'x-session': second_id},
                                      handler_cls=WBTipInstance)
         yield wbtip_handler.get()
-
 
 class TestSessionHandler(helpers.TestHandlerWithPopulatedDB):
     @inlineCallbacks
