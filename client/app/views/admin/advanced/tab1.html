@@ -262,6 +262,24 @@
 
     <div class="form-group">
       <label>
+        <input data-ng-model="admin.node.ip_filter_authenticated_enable" type="checkbox" />
+        <span data-translate>Restrict privelleged logins to specific IP addresses?</span>
+      </label>
+      <div data-ng-if="admin.node.ip_filter_authenticated_enable" class="nested">
+        <label data-translate>Whitelisted IP addresses</label>
+        <input class="form-control" name="ip_filter_list" data-ng-model="admin.node.ip_filter_authenticated" type="text" autocomplete="off" />
+        <span data-translate>Either individual IP addresses or CIDR ranges are accepted here.</span>
+        <span data-translate>Example:</span>
+        <span>192.0.2.0/24</span>
+        <br />
+        <br />
+        <span data-translate>Each entry must be seperated with a comma. </span>
+        <span data-translate>Example:</span>
+        <span>212.35.212.87,192.0.2.0/24,2001:db8::/32</span>
+      </div>
+    </div>
+    <div class="form-group">
+      <label>
         <input data-ng-model="admin.node.enable_experimental_features" type="checkbox" />
         <span data-translate>Enable experimental features</span>
       </label>
