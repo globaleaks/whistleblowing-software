@@ -92,10 +92,11 @@ def db_get_tracked_files(session):
     """
     returns a list the basenames of files tracked by InternalFile and ReceiverFile.
     """
-    ifiles = [x[0] for x in session.query(models.InternalFile.file_path)]
-    rfiles = [x[0] for x in session.query(models.ReceiverFile.file_path)]
-    wbfiles = [x[0] for x in session.query(models.WhistleblowerFile.file_path)]
-    return [ os.path.basename(files) for files in list(set(ifiles + rfiles + wbfiles)) ]
+    ifiles = [x[0] for x in session.query(models.InternalFile.filename)]
+    rfiles = [x[0] for x in session.query(models.ReceiverFile.filename)]
+    wbfiles = [x[0] for x in session.query(models.WhistleblowerFile.filename)]
+
+    return [files for files in list(set(ifiles + rfiles + wbfiles))]
 
 
 @transact_sync

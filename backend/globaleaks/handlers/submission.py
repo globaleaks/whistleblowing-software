@@ -338,7 +338,7 @@ def db_create_submission(session, tid, request, uploaded_files, client_using_tor
         new_file.size = filedesc['size']
         new_file.internaltip_id = submission.id
         new_file.submission = filedesc['submission']
-        new_file.file_path = filedesc['path']
+        new_file.filename = filedesc['filename']
         session.add(new_file)
         log.debug("=> file associated %s|%s (%d bytes)",
                   new_file.name, new_file.content_type, new_file.size)

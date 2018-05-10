@@ -56,7 +56,7 @@ def receiverfile_planning(session):
             receiverfile = models.ReceiverFile()
             receiverfile.internalfile_id = ifile.id
             receiverfile.receivertip_id = rtip.id
-            receiverfile.file_path = ifile.file_path
+            receiverfile.filename = ifile.filename
             receiverfile.size = ifile.size
             receiverfile.status = u'processing'
 
@@ -73,7 +73,7 @@ def receiverfile_planning(session):
                 receiverfiles_maps[ifile.id] = {
                   'plaintext_file_needed': False,
                   'ifile_id': ifile.id,
-                  'ifile_path': ifile.file_path,
+                  'ifile_name': ifile.filename,
                   'ifile_size': ifile.size,
                   'rfiles': [],
                   'tid': user.tid,
@@ -82,7 +82,7 @@ def receiverfile_planning(session):
             receiverfiles_maps[ifile.id]['rfiles'].append({
                 'id': receiverfile.id,
                 'status': u'processing',
-                'path': ifile.file_path,
+                'filename': ifile.filename,
                 'size': ifile.size,
                 'receiver': {
                     'name': user.name,
@@ -107,10 +107,10 @@ def fsops_pgp_encrypt(state, sf, key, fingerprint):
     pgpctx.load_key(key)
 
     with sf.open('rb') as f:
-        encrypted_file_path = os.path.join(os.path.abspath(state.settings.attachments_path), "pgp_encrypted-%s" % generateRandomKey(16))
+        encrypted_file_path = os.path.abspath(os.path.join(state.settings.attachments_path, "pgp_encrypted-%s" % generateRandomKey(16)))
         _, encrypted_file_size = pgpctx.encrypt_file(fingerprint, f, encrypted_file_path)
 
-    return encrypted_file_path, encrypted_file_size
+    return os.path.basename(encrypted_file_path), encrypted_file_size
 
 
 def process_files(state, receiverfiles_maps):
@@ -119,42 +119,42 @@ def process_files(state, receiverfiles_maps):
     @return: return None
     """
     for ifile_id, receiverfiles_map in receiverfiles_maps.items():
-        ifile_path = receiverfiles_map['ifile_path']
-        ifile_name = os.path.basename(ifile_path).split('.')[0]
-        plain_path = os.path.join(Settings.attachments_path, "%s.plain" % ifile_name)
+        ifile_name = receiverfiles_map['ifile_name']
+        plain_name = "%s.plain" % ifile_name.split('.')[0]
+        plain_path = os.path.abspath(os.path.join(Settings.attachments_path, ifile_name))
 
-        sf = state.get_tmp_file_by_path(ifile_path)
+        sf = state.get_tmp_file_by_name(ifile_name)
 
         receiverfiles_map['plaintext_file_needed'] = False
         for rcounter, rfileinfo in enumerate(receiverfiles_map['rfiles']):
             if rfileinfo['receiver']['pgp_key_public']:
                 try:
-                    new_path, new_size = fsops_pgp_encrypt(state,
-                                                           sf,
-                                                           rfileinfo['receiver']['pgp_key_public'],
-                                                           rfileinfo['receiver']['pgp_key_fingerprint'])
+                    new_filename, new_size = fsops_pgp_encrypt(state,
+                                                               sf,
+                                                               rfileinfo['receiver']['pgp_key_public'],
+                                                               rfileinfo['receiver']['pgp_key_fingerprint'])
 
-                    log.debug("%d# Switch on Receiver File for %s path %s => %s size %d => %d",
-                              rcounter,  rfileinfo['receiver']['name'], rfileinfo['path'],
-                              new_path, rfileinfo['size'], new_size)
+                    log.debug("%d# Switch on Receiver File for %s filename %s => %s size %d => %d",
+                              rcounter,  rfileinfo['receiver']['name'], rfileinfo['filename'],
+                              new_filename, rfileinfo['size'], new_size)
 
-                    rfileinfo['path'] = new_path
+                    rfileinfo['filename'] = new_filename
                     rfileinfo['size'] = new_size
                     rfileinfo['status'] = u'encrypted'
                 except Exception as excep:
                     log.err("%d# Unable to complete PGP encrypt for %s on %s: %s. marking the file as unavailable.",
-                            rcounter, rfileinfo['receiver']['name'], rfileinfo['path'], excep)
+                            rcounter, rfileinfo['receiver']['name'], rfileinfo['filename'], excep)
                     rfileinfo['status'] = u'unavailable'
             elif state.tenant_cache[receiverfiles_map['tid']].allow_unencrypted:
                 receiverfiles_map['plaintext_file_needed'] = True
+                rfileinfo['filename'] = plain_name
                 rfileinfo['status'] = u'reference'
-                rfileinfo['path'] = plain_path
             else:
                 rfileinfo['status'] = u'nokey'
 
         if receiverfiles_map['plaintext_file_needed']:
             log.debug("Not all receivers support PGP and the system allows plaintext version of files: %s saved as plaintext file %s",
-                      ifile_path, plain_path)
+                      ifile_name, plain_name)
 
             try:
                 with sf.open('r') as encrypted_file, open(plain_path, "a+") as plaintext_file:
@@ -164,7 +164,7 @@ def process_files(state, receiverfiles_maps):
                             break
                         plaintext_file.write(chunk)
 
-                receiverfiles_map['ifile_path'] = plain_path
+                receiverfiles_map['ifile_name'] = plain_name
             except Exception as excep:
                 log.err("Unable to create plaintext file %s: %s", plain_path, excep)
         else:
@@ -181,7 +181,7 @@ def update_internalfile_and_store_receiverfiles(session, receiverfiles_maps):
         ifile.new = False
 
         # update filepath possibly changed in case of plaintext file needed
-        ifile.file_path = receiverfiles_map['ifile_path']
+        ifile.filename = receiverfiles_map['ifile_name']
 
         for rf in receiverfiles_map['rfiles']:
             rfile = session.query(models.ReceiverFile).filter(models.ReceiverFile.id == rf['id']).one_or_none()
@@ -189,7 +189,7 @@ def update_internalfile_and_store_receiverfiles(session, receiverfiles_maps):
                 continue
 
             rfile.status = rf['status']
-            rfile.file_path = rf['path']
+            rfile.filename = rf['filename']
             rfile.size = rf['size']
 
 
