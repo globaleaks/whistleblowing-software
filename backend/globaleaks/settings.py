@@ -183,7 +183,6 @@ class SettingsClass(object):
         self.pidfile_path = os.path.join(self.pid_path, 'globaleaks.pid')
         self.files_path = os.path.abspath(os.path.join(self.working_path, 'files'))
 
-        self.db_path = os.path.abspath(os.path.join(self.working_path, 'db'))
         self.log_path = os.path.abspath(os.path.join(self.working_path, 'log'))
         self.attachments_path = os.path.abspath(os.path.join(self.working_path, 'attachments'))
         self.tmp_path = os.path.abspath(os.path.join(self.working_path, 'tmp'))
@@ -191,8 +190,7 @@ class SettingsClass(object):
         self.static_db_source = os.path.abspath(os.path.join(self.src_path, 'globaleaks', 'db'))
 
         self.db_schema = os.path.join(self.static_db_source, 'sqlite.sql')
-        self.db_file_name = 'glbackend-%d.db' % DATABASE_VERSION
-        self.db_file_path = os.path.join(os.path.abspath(os.path.join(self.db_path, self.db_file_name)))
+        self.db_file_path = os.path.join(os.path.abspath(os.path.join(self.working_path, 'globaleaks.db')))
 
         self.logfile = os.path.abspath(os.path.join(self.log_path, 'globaleaks.log'))
         self.httplogfile = os.path.abspath(os.path.join(self.log_path, "http.log"))

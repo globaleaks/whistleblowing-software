@@ -652,7 +652,7 @@ class _InternalFile(Model):
     creation_date = Column(DateTime, default=datetime_now, nullable=False)
     internaltip_id = Column(Unicode(36), nullable=False)
     name = Column(UnicodeText, nullable=False)
-    file_path = Column(UnicodeText, nullable=False)
+    filename = Column(Unicode(255), nullable=False)
     content_type = Column(UnicodeText, nullable=False)
     size = Column(Integer, nullable=False)
     new = Column(Integer, default=True, nullable=False)
@@ -825,7 +825,7 @@ class _ReceiverFile(Model):
 
     internalfile_id = Column(Unicode(36), nullable=False)
     receivertip_id = Column(Unicode(36), nullable=False)
-    file_path = Column(UnicodeText, nullable=False)
+    filename = Column(Unicode(255), nullable=False)
     size = Column(Integer, nullable=False)
     downloads = Column(Integer, default=0, nullable=False)
     last_access = Column(DateTime, default=datetime_null, nullable=False)
@@ -1020,6 +1020,21 @@ class _User(Model):
                 CheckConstraint(cls.state.in_(['disabled', 'enabled'])))
 
 
+class _UserTenant(Model):
+    """
+    Class used for implementing user-tenant association
+    """
+    __tablename__ = 'usertenant'
+
+    user_id = Column(Unicode(36), primary_key=True, default=uuid4, nullable=False)
+    tenant_id = Column(Integer, default=1, nullable=False)
+
+    @declared_attr
+    def __table_args__(cls): # pylint: disable=no-self-argument
+        return (ForeignKeyConstraint(['user_id'], ['user.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),
+                ForeignKeyConstraint(['tenant_id'], ['tenant.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'))
+
+
 class _UserImg(Model):
     """
     Class used for storing user pictures
@@ -1049,7 +1064,7 @@ class _WhistleblowerFile(Model):
 
     receivertip_id = Column(Unicode(36), nullable=False)
     name = Column(UnicodeText, nullable=False)
-    file_path = Column(UnicodeText, nullable=False)
+    filename = Column(Unicode(255), nullable=False)
     size = Column(Integer, nullable=False)
     content_type = Column(UnicodeText, nullable=False)
     downloads = Column(Integer, default=0, nullable=False)
@@ -1096,4 +1111,5 @@ class Step(_Step, Base): pass
 class Tenant(_Tenant, Base): pass
 class User(_User, Base): pass
 class UserImg(_UserImg, Base): pass
+class UserTenant(_UserTenant, Base): pass
 class WhistleblowerFile(_WhistleblowerFile, Base): pass

@@ -31,7 +31,7 @@ def register_ifile_on_db(session, tid, uploaded_file, internaltip_id):
     new_file.size = uploaded_file['size']
     new_file.internaltip_id = internaltip_id
     new_file.submission = uploaded_file['submission']
-    new_file.file_path = uploaded_file['path']
+    new_file.filename = uploaded_file['filename']
     session.add(new_file)
 
     return serializers.serialize_ifile(session, new_file)

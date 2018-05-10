@@ -12,7 +12,6 @@ from six import binary_type
 
 from globaleaks.rest import errors
 from globaleaks.utils.security import sha256, generateRandomKey
-from globaleaks.settings import Settings
 from globaleaks.state import State
 from globaleaks.utils.tempdict import TempDict
 from globaleaks.utils.utility import log, datetime_now, datetime_to_ISO8601
@@ -22,13 +21,15 @@ class TokenListClass(TempDict):
         TempDict.__init__(self, *args, **kwds)
 
     def get_timeout(self):
-        return Settings.submission_minimum_delay + \
-               Settings.submission_maximum_ttl
+        return State.settings.submission_minimum_delay + \
+               State.settings.submission_maximum_ttl
 
     def expireCallback(self, item):
         for f in item.uploaded_files:
             try:
-                os.remove(f['path'])
+                path = os.path.abspath(os.path.join(State.settings.tmp_path, f['filename']))
+                if os.path.exists(path):
+                    os.remove(path)
             except:
                 pass
 
@@ -121,12 +122,12 @@ class Token(object):
         timedelta_check verifies that the current time is between the start
         validity time and the end validity time.
         """
-        min_delay = Settings.submission_minimum_delay
+        min_delay = State.settings.submission_minimum_delay
 
-        if Settings.devel_mode:
+        if State.settings.devel_mode:
             min_delay = 0
 
-        max_ttl = Settings.submission_maximum_ttl
+        max_ttl = State.settings.submission_maximum_ttl
 
         now = datetime_now()
         start = (self.creation_date + timedelta(seconds=min_delay))

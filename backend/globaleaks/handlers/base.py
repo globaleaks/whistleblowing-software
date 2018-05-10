@@ -472,7 +472,7 @@ class BaseHandler(object):
             'name': self.request.args['flowFilename'][0],
             'type': mime_type,
             'size': total_file_size,
-            'path': f.filepath,
+            'filename': os.path.basename(f.filepath),
             'body': f,
             'description': self.request.args.get('description', [''])[0]
         }

@@ -191,7 +191,7 @@ def register_wbfile_on_db(session, tid, rtip_id, uploaded_file):
     new_file.content_type = uploaded_file['type']
     new_file.size = uploaded_file['size']
     new_file.receivertip_id = rtip_id
-    new_file.file_path = uploaded_file['path']
+    new_file.filename = uploaded_file['filename']
 
     session.add(new_file)
 
@@ -229,23 +229,23 @@ def db_delete_itips_files(session, itips_ids):
     files_names = set()
 
     if itips_ids:
-        for ifile_id, ifile_filename in session.query(models.InternalFile.id, models.InternalFile.file_path) \
+        for ifile_id, ifile_filename in session.query(models.InternalFile.id, models.InternalFile.filename) \
                                                .filter(models.InternalFile.internaltip_id.in_(itips_ids)):
             ifiles_ids.add(ifile_id)
             files_names.add(ifile_filename)
 
-        for wbfile_filename in session.query(models.WhistleblowerFile.file_path) \
+        for wbfile_filename in session.query(models.WhistleblowerFile.filename) \
                                       .filter(models.WhistleblowerFile.receivertip_id == models.ReceiverTip.id,
-                                              models.ReceiverTip.internaltip_id.in_(list(itips_ids))):
+                                              models.ReceiverTip.internaltip_id.in_(itips_ids)):
             files_names.add(wbfile_filename[0])
 
     if ifiles_ids:
-        for rfile_filename in session.query(models.ReceiverFile.file_path) \
-                                     .filter(models.ReceiverFile.internalfile_id.in_(list(ifiles_ids))):
+        for rfile_filename in session.query(models.ReceiverFile.filename) \
+                                     .filter(models.ReceiverFile.internalfile_id.in_(ifiles_ids)):
             files_names.add(rfile_filename[0])
 
-    for filepath in files_names:
-        db_mark_file_for_secure_deletion(session, filepath)
+    for filename in files_names:
+        db_mark_file_for_secure_deletion(session, filename)
 
 
 def db_delete_itips(session, itips_ids):
@@ -254,8 +254,10 @@ def db_delete_itips(session, itips_ids):
     session.query(models.InternalTip) \
          .filter(models.InternalTip.id.in_(itips_ids)).delete(synchronize_session='fetch')
 
+
 def db_delete_itip(session, itip):
     db_delete_itips(session, [itip.id])
+
 
 def db_postpone_expiration_date(session, tid, itip):
     context = session.query(models.Context).filter(models.Context.id == itip.context_id, models.Context.tid == tid).one()
@@ -377,7 +379,7 @@ def create_message(session, tid, user_id, rtip_id, request):
 @transact
 def delete_wbfile(session, tid, user_id, file_id):
     wbfile = db_access_wbfile(session, tid, user_id, file_id)
-    db_mark_file_for_secure_deletion(session, wbfile.file_path)
+    db_mark_file_for_secure_deletion(session, wbfile.filename)
     session.delete(wbfile)
 
 
@@ -472,7 +474,7 @@ class WhistleblowerFileHandler(BaseHandler):
         rtip = yield get_rtip(self.request.tid, self.current_user.user_id, tip_id, self.request.language)
 
         # First: dump the file in the filesystem
-        filename = str.split(os.path.basename(self.uploaded_file['path']), '.aes')[0] + '.plain'
+        filename = str.split(os.path.basename(self.uploaded_file['filename']), '.aes')[0] + '.plain'
 
         dst = os.path.join(Settings.attachments_path, filename)
 
@@ -480,6 +482,7 @@ class WhistleblowerFileHandler(BaseHandler):
 
         yield threads.deferToThread(self.write_upload_plaintext_to_disk, dst)
 
+        self.uploaded_file['filename'] = filename
         self.uploaded_file['creation_date'] = datetime_now()
         self.uploaded_file['submission'] = False
 
@@ -516,7 +519,7 @@ class WBFileHandler(BaseHandler):
     def get(self, wbfile_id):
         wbfile = yield self.download_wbfile(self.request.tid, self.current_user.user_id, wbfile_id)
 
-        filelocation = os.path.join(Settings.attachments_path, wbfile['path'])
+        filelocation = os.path.join(Settings.attachments_path, wbfile['filename'])
 
         directory_traversal_check(Settings.attachments_path, filelocation)
 
@@ -580,7 +583,7 @@ class ReceiverFileDownload(BaseHandler):
     def get(self, rfile_id):
         rfile = yield self.download_rfile(self.request.tid, self.current_user.user_id, rfile_id)
 
-        filelocation = os.path.join(Settings.attachments_path, rfile['path'])
+        filelocation = os.path.join(Settings.attachments_path, rfile['filename'])
 
         directory_traversal_check(Settings.attachments_path, filelocation)
 

@@ -31,12 +31,14 @@ class TestSubmissionAttachment(helpers.TestHandlerWithPopulatedDB):
         token.TokenList.reactor.pump([1] * (token.TokenList.get_timeout() - 1))
 
         for f in self.dummyToken.uploaded_files:
-            self.assertTrue(os.path.exists(f['path']))
+            path = os.path.abspath(os.path.join(self.state.settings.tmp_path, f['filename']))
+            self.assertTrue(os.path.exists(path))
 
         token.TokenList.reactor.advance(1)
 
         for f in self.dummyToken.uploaded_files:
-            yield self.assertFalse(os.path.exists(f['path']))
+            path = os.path.abspath(os.path.join(self.state.settings.attachments_path, f['filename']))
+            yield self.assertFalse(os.path.exists(path))
 
     def test_post_file_on_unexistent_submission(self):
         handler = self.request()

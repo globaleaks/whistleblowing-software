@@ -249,7 +249,9 @@ AdminNodeDesc = {
     'reachable_via_web': bool,
     'anonymize_outgoing_connections': bool,
     'enable_admin_exception_notification': bool,
-    'enable_developers_exception_notification': bool
+    'enable_developers_exception_notification': bool,
+    'ip_filter_authenticated_enable': bool,
+    'ip_filter_authenticated': text_type
 }
 
 AdminNotificationDesc = merge_dicts({
