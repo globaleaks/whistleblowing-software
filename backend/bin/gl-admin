@@ -93,8 +93,10 @@ def export_tenant(args):
     print("Written export tarball to " + args.output)
 
 def import_tenant(args):
-    data = import_export.collect_all_tenant_data(get_db_file(args.import_file)[1], 0)
-    import_export.write_tenant_to_preexisting_db(data, args.dbpath)
+    with open(args.import_file, 'rb') as f:
+        tarball_blob = f.read()
+    session = get_session(make_db_uri(args.dbpath))
+    import_export.read_import_tarball(session, tarball_blob)
 
 def restore(args):
     check_dir(args.workdir)
