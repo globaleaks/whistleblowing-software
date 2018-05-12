@@ -157,7 +157,7 @@ def process_files(state, receiverfiles_maps):
                       ifile_name, plain_name)
 
             try:
-                with sf.open('r') as encrypted_file, open(plain_path, "a+") as plaintext_file:
+                with sf.open('rb') as encrypted_file, open(plain_path, "a+b") as plaintext_file:
                     while True:
                         chunk = encrypted_file.read(4096)
                         if not chunk:
