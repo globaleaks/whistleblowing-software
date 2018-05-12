@@ -298,7 +298,6 @@ def merge_tenant_data(session, tenant_data, tid=None):
                 row.tid = tid
             if hasattr(row, 'tenant_id'):
                 row.tenant_id = tid
->>>>>>> 78d9b7a4f... Wire up stub functions to handle creation of a whistleblower tarball
 
     # Replay the tenant data
     for element in IMPORT_ORDER:
