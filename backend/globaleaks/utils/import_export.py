@@ -9,10 +9,12 @@ import tarfile
 import tempfile
 
 from globaleaks import models
-from globaleaks.db import get_db_file, make_db_uri
+from globaleaks.db import make_db_uri
 from globaleaks.models import Base
 from globaleaks.settings import Settings
 from globaleaks.orm import get_engine, get_session
+from globaleaks.utils.utility import fix_file_permissions
+from globaleaks.utils.security import generateRandomKey, overwrite_and_remove
 
 # Allows for easy testing as a new root tenant
 EXPORTED_TENANT_ID = 0
@@ -273,37 +275,6 @@ def merge_tenant_data(session, tenant_data, tid=None):
             if hasattr(row, 'tenant_id'):
                 row.tenant_id = tid
 
-def write_tenant_to_preexisting_db(tenant_data, db_path):
-    '''Writes the tenant data to a pre-existing DB'''
-    session = get_session(make_db_uri(db_path))
-    merge_tenant_data(session, tenant_data, None)
-
-def merge_tenant_data(session, tenant_data, tid=None):
-    '''Merges the tenant data into a new and/or existing database
-
-    tid is None means an autoincremented one is take from the database
-    '''
-
-    if tid is None:
-        tenant_data['tenant'].id = None
-        tenant_obj = session.merge(tenant_data['tenant'])
-        session.flush()
-        tid = tenant_obj.id
-    else:
-        tenant_data['tenant'].id = tid
-        session.merge(tenant_data['tenant'])
-
-    # Correct the TID in all rows
-    for datatype, rowset in tenant_data.items():
-        if datatype is 'tenant':
-            continue
-
-        for row in rowset:
-            if hasattr(row, 'tid'):
-                row.tid = tid
-            if hasattr(row, 'tenant_id'):
-                row.tenant_id = tid
-
     # Replay the tenant data
     for element in IMPORT_ORDER:
         if element == 'fieldanswer':
@@ -341,16 +312,18 @@ def create_export_tarball(session, tid):
             export_tarball.add(dirpath + "/globaleaks.db", arcname="globaleaks.db")
 
             def process_files_for_tarball(fileset):
-                for receiverfile in fileset:
-                    tarball_file = "attachments/"+receiverfile.filename
-                    file_to_read = os.path.join(Settings.attachments_path, receiverfile.filename)
+                for file_obj in fileset:
+                    tarball_file = "attachments/"+file_obj.filename
+                    file_to_read = os.path.join(Settings.attachments_path, file_obj.filename)
                     try:
                         export_tarball.add(file_to_read, arcname=tarball_file)
                     except FileNotFoundError:
-                        # Reference files might not exist if the system successfully encrypted 
-                        # them for all receivers
-                        if receiverfile.status == u'reference':
-                            print("Reference file " + file_to_read + " not found, skipping.")
+                        # Reference files might not exist if the system
+                        # successfully encrypted them for all receivers
+
+                        if hasattr(file_obj, 'status'):
+                            if file_obj.status == u'reference':
+                                print("Reference file " + file_to_read + " not found, skipping.")
 
             process_files_for_tarball(tenant_data['receiverfile'])
             process_files_for_tarball(tenant_data['whistleblowerfile'])
@@ -373,7 +346,58 @@ def read_import_tarball(gl_session, tarball_blob):
 
         tenant_session = get_session(make_db_uri(dirpath + "/globaleaks.db"))
         tenant_data = collect_all_tenant_data(tenant_session, EXPORTED_TENANT_ID)
+
+        # What follows now is that we need to re-randomize the tenant filenames.
+        #
+        # There is a method to this seeming madness is that there are logicial reasons
+        # why you might import a tenant into the same instance it came from (i.e.
+        # creating a test instance to show skinning information, or as a point-in-time
+        # archive). While these usecases are fridge, they're both valid. This seperates
+        # the lifecycle of the files across cloned tenants
+
+        incoming_attachment_folder = os.path.join(dirpath, 'attachments')
+
+        def randomize_filename_and_copy(row, status):
+            orig_filename = row.filename
+            if status == 'encrypted':
+                row.filename = "pgp_encrypted-" + generateRandomKey(16)
+            else:
+                row.filename = generateRandomKey(16) + ".plain"
+
+            input_filename = os.path.join(incoming_attachment_folder, orig_filename)
+            output_filename = os.path.join(Settings.attachments_path, row.filename)
+
+            # Make sure we don't accidently override a file
+            if os.path.isfile(output_filename):
+                # Oops, try again
+                randomize_filename_and_copy(row, status)
+
+            # If it's a reference file, its allowed not to exist
+            if status == 'reference' and \
+                os.path.isfile(input_filename) is False:
+                    return
+
+            shutil.copy(input_filename, output_filename)
+            overwrite_and_remove(input_filename)
+
+        # Now run the copies
+        for row in tenant_data['receiverfile']:
+            randomize_filename_and_copy(row, row.status)
+
+        for row in tenant_data['whistleblowerfile']:
+            randomize_filename_and_copy(row, 'plain')
+
+        # And dump the new data into the DB
         merge_tenant_data(gl_session, tenant_data, tid=None)
+        overwrite_and_remove(dirpath + "/globaleaks.db")
 
     finally:
         shutil.rmtree(dirpath)
+
+        # Fix permissions for the new files
+        fix_file_permissions(Settings.working_path,
+                             Settings.uid,
+                             Settings.gid,
+                             0o700,
+                             0o600)
+

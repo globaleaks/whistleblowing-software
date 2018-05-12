@@ -208,8 +208,6 @@ class SettingsClass(object):
 
         self.pid_path = os.path.join(self.src_path, 'workingdir')
         self.working_path = os.path.join(self.src_path, 'workingdir')
-        print(self.working_path)
-        print(self.attachments_path)
 
     def load_cmdline_options(self):
         self.nodaemon = self.cmdline_options.nodaemon
