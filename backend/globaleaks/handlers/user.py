@@ -4,6 +4,7 @@
 from globaleaks import models
 from globaleaks.handlers.admin.modelimgs import db_get_model_img
 from globaleaks.handlers.base import BaseHandler
+from globaleaks.handlers.email_validation import db_generate_email_change_token
 from globaleaks.orm import transact
 from globaleaks.rest import requests
 from globaleaks.state import State
@@ -83,15 +84,21 @@ def db_user_update_user(session, state, tid, user_id, request):
     Updates the specified user.
     This version of the function is specific for users that with comparison with
     admins can change only few things:
+      - real name
+      - email address
       - preferred language
       - the password (with old password check)
       - pgp key
     raises: globaleaks.errors.ResourceNotFound` if the receiver does not exist.
     """
+    from globaleaks.handlers.admin.notification import db_get_notification
+    from globaleaks.handlers.admin.node import db_admin_serialize_node
+    from globaleaks.handlers.admin.user import get_user
+
     user = models.db_get(session, models.User, models.User.id == user_id, models.User.tid == tid)
 
     user.language = request.get('language', State.tenant_cache[tid].default_language)
-
+    user.name = request['name']
     new_password = request['password']
     old_password = request['old_password']
 
@@ -106,6 +113,21 @@ def db_user_update_user(session, state, tid, user_id, request):
 
         user.password_change_date = datetime_now()
 
+    # If the email address changed, send a validation email
+    if request['mail_address'] != user.mail_address:
+        user_desc = user_serialize_user(session, user, user.language)
+        validation_token = db_generate_email_change_token(session, user.id, request['mail_address'])
+        template_vars = {
+            'type': 'email_validation',
+            'user': user_desc,
+            'new_email_address': request['mail_address'],
+            'validation_token': validation_token,
+            'node': db_admin_serialize_node(session, 1, user.language),
+            'notification': db_get_notification(session, tid, user.language)
+        }
+        state.format_and_send_mail(session, tid, user_desc, template_vars)
+
+    # We don't directly change user email addresses, if a user
     # The various options related in manage PGP keys are used here.
     parse_pgp_options(state, user, request)
 

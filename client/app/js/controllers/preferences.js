@@ -12,6 +12,16 @@ GLClient.controller('PreferencesCtrl', ['$scope', '$q', '$rootScope', 'Utils', '
     ];
 
     $scope.email_regexp = CONSTANTS.email_regexp;
+    $scope.editingName = false;
+    $scope.editingEmail = false;
+
+    $scope.toggleNameEditing = function () {
+      $scope.editingName = $scope.editingName ^ 1;
+    };
+
+    $scope.toggleEmailAddressEditing = function() {
+      $scope.editingEmailAddress = $scope.editingEmailAddress ^ 1;
+    };
 
     $scope.save = function() {
       if ($scope.preferences.pgp_key_remove) {
@@ -20,6 +30,7 @@ GLClient.controller('PreferencesCtrl', ['$scope', '$q', '$rootScope', 'Utils', '
 
       $scope.preferences.$update(function() {
         $rootScope.successes.push({message: 'Updated your preferences!'});
+        $scope.reload()
       });
     };
 
@@ -28,4 +39,9 @@ GLClient.controller('PreferencesCtrl', ['$scope', '$q', '$rootScope', 'Utils', '
         $scope.preferences.pgp_key_public = txt;
        }, Utils.displayErrorMsg);
     };
+}]);
+
+GLClient.controller('EmailValidationCtrl', ['$scope',
+  function($scope) {
+
 }]);
