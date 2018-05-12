@@ -445,6 +445,22 @@ class _EnabledLanguage(Model):
         return (ForeignKeyConstraint(['tid'], ['tenant.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),)
 
 
+class _EmailValidations(Model):
+    """
+    Contains tokens generated for email changes
+    """
+
+    __tablename__ = 'emailvalidations'
+    user_id = Column(Unicode(36), primary_key=True, nullable=False)
+    new_email = Column(UnicodeText, default=u'', nullable=False)
+    validation_token = Column(UnicodeText, default=u'', unique=True, nullable=False)
+    creation_date = Column(DateTime, default=datetime_now, nullable=False)
+
+    @declared_attr
+    def __table_args__(cls): # pylint: disable=no-self-argument
+        return (ForeignKeyConstraint(['user_id'], ['user.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),)
+
+
 class _Field(Model):
     __tablename__ = 'field'
 
@@ -1087,6 +1103,7 @@ class ContextImg(_ContextImg, Base): pass
 class Counter(_Counter, Base): pass
 class CustomTexts(_CustomTexts, Base): pass
 class EnabledLanguage(_EnabledLanguage, Base): pass
+class EmailValidations(_EmailValidations, Base): pass
 class Field(_Field, Base): pass
 class FieldAttr(_FieldAttr, Base): pass
 class FieldAnswer(_FieldAnswer, Base): pass

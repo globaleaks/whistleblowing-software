@@ -19,6 +19,7 @@ from twisted.web.server import NOT_DONE_YET
 
 from globaleaks import LANGUAGES_SUPPORTED_CODES
 from globaleaks.handlers import custodian, \
+                                email_validation, \
                                 exception, \
                                 file, \
                                 receiver, \
@@ -105,6 +106,9 @@ api_spec = [
 
     (r'/custodian/identityaccessrequests', custodian.IdentityAccessRequestsCollection),
     (r'/custodian/identityaccessrequest/' + uuid_regexp, custodian.IdentityAccessRequestInstance),
+
+    ## Email Validation Handler
+    (r'/email/validation/(.+)', email_validation.EmailValidation),
 
     ## Admin Handlers ##
     (r'/admin/node', admin_node.NodeInstance),

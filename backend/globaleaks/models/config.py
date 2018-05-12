@@ -170,7 +170,9 @@ class NotificationL10NFactory(ConfigL10NFactory):
         u'activation_mail_title',
         u'activation_mail_template',
         u'admin_signup_alert_mail_title',
-        u'admin_signup_alert_mail_template'
+        u'admin_signup_alert_mail_template',
+        u'email_validation_mail_title',
+        u'email_validation_mail_template'
     ]
 
     def __init__(self, session, tid, *args, **kwargs):
