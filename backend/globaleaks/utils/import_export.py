@@ -70,6 +70,7 @@ IMPORT_ORDER = [
     'receiver',
     'receivercontext',
     'receivertip',
+    'receiverfile',
     'identityaccessrequest',
     'userimg',
     'whistleblowerfile'
@@ -179,9 +180,9 @@ def collect_all_tenant_data(session, tid):
     print("  Serialized fieldoption (" + str(len(tenant_data['fieldoption'])) + " rows)")
 
     # InternalFile
-    tenant_data['internalfile'] = collect_pk_relation(session, models.InternalFile, field_ids, 'internaltip_id')
+    tenant_data['internalfile'] = collect_pk_relation(session, models.InternalFile, internaltip_ids, 'internaltip_id')
     print("  Serialized internalfile (" + str(len(tenant_data['internalfile'])) + " rows)")
-    
+
     # Receivers
     tenant_data['receiver'] = collect_pk_relation(session, models.Receiver, user_ids, 'id')
     print("  Serialized receiver (" + str(len(tenant_data['receiver'])) + " rows)")
@@ -193,6 +194,11 @@ def collect_all_tenant_data(session, tid):
     # ReceiverTip
     tenant_data['receivertip'] = collect_pk_relation(session, models.ReceiverTip, internaltip_ids, 'internaltip_id')
     print("  Serialized receivertip (" + str(len(tenant_data['receivertip'])) + " rows)")
+
+    # ReceiverFiles
+    internalfile_ids = build_id_list(tenant_data['internalfile'], 'id')
+    tenant_data['receiverfile'] = collect_pk_relation(session, models.ReceiverFile, internalfile_ids, 'internalfile_id')
+    print("  Serialized receiverfile (" + str(len(tenant_data['receiverfile'])) + " rows)")
 
     # IdentityAccessRequest
     receivertip_ids = build_id_list(tenant_data['receivertip'], 'id')
@@ -256,7 +262,6 @@ def merge_tenant_data(session, tenant_data, tid=None):
         tenant_data['tenant'].id = tid
         session.merge(tenant_data['tenant'])
 
-    print(tid)
     # Correct the TID in all rows
     for datatype, rowset in tenant_data.items():
         if datatype is 'tenant':
@@ -311,7 +316,6 @@ def merge_tenant_data(session, tenant_data, tid=None):
                 session.merge(row)
 
     session.commit()
-    print("Complete!")
     session.close()
 
 def create_export_tarball(session, tid):
@@ -335,6 +339,21 @@ def create_export_tarball(session, tid):
         with tarfile.open(fileobj=output_file, mode='w:gz') as export_tarball:
             export_tarball.add(dirpath + "/EXPORT_FORMAT", arcname="EXPORT_FORMAT")
             export_tarball.add(dirpath + "/globaleaks.db", arcname="globaleaks.db")
+
+            def process_files_for_tarball(fileset):
+                for receiverfile in fileset:
+                    tarball_file = "attachments/"+receiverfile.filename
+                    file_to_read = os.path.join(Settings.attachments_path, receiverfile.filename)
+                    try:
+                        export_tarball.add(file_to_read, arcname=tarball_file)
+                    except FileNotFoundError:
+                        # Reference files might not exist if the system successfully encrypted 
+                        # them for all receivers
+                        if receiverfile.status == u'reference':
+                            print("Reference file " + file_to_read + " not found, skipping.")
+
+            process_files_for_tarball(tenant_data['receiverfile'])
+            process_files_for_tarball(tenant_data['whistleblowerfile'])
 
     finally:
         shutil.rmtree(dirpath)
