@@ -81,8 +81,10 @@ def backup(args):
 
 def export_tenant(args):
     session = get_session(make_db_uri(args.dbpath))
-    data = import_export.collect_all_tenant_data(get_db_file(args.dbpath)[1], args.tid)
-    import_export.write_tenant_to_fresh_db(data, args.output)
+    data = import_export.create_export_tarball(session, args.tid)
+    with open(args.output, 'wb') as f:
+        f.write(data)
+    print("Written export tarball to " + args.output)
 
 def import_tenant(args):
     data = import_export.collect_all_tenant_data(get_db_file(args.import_file)[1], 0)
@@ -243,6 +245,8 @@ Settings.eval_paths()
 parser = argparse.ArgumentParser(prog="gl-admin",
                  description="GlobaLeaks backend administator interface")
 
+parser.add_argument("-z", help="enable devel mode", default=False, action='store_true', dest="devel_mode")
+
 subp = parser.add_subparsers(title="commands")
 
 bck_p = subp.add_parser("backup", help="create a backup of the setup")
@@ -303,4 +307,7 @@ dt_p.set_defaults(func=disable_api_token)
 
 if __name__ == '__main__':
     args = parser.parse_args()
+    if args.devel_mode is True:
+        Settings.set_devel_mode()
+        Settings.eval_paths()
     args.func(args)
