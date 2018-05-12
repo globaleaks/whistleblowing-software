@@ -444,6 +444,7 @@ class _EnabledLanguage(Model):
     def __table_args__(cls): # pylint: disable=no-self-argument
         return (ForeignKeyConstraint(['tid'], ['tenant.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),)
 
+
 class _EmailValidations(Model):
     """
     Contains tokens generated for email changes
@@ -452,12 +453,13 @@ class _EmailValidations(Model):
     __tablename__ = 'emailvalidations'
     user_id = Column(Unicode(36), primary_key=True, nullable=False)
     new_email = Column(UnicodeText, default=u'', nullable=False)
-    validation_token = Column(UnicodeText, default=u'', nullable=False)
+    validation_token = Column(UnicodeText, default=u'', unique=True, nullable=False)
     creation_date = Column(DateTime, default=datetime_now, nullable=False)
 
     @declared_attr
     def __table_args__(cls): # pylint: disable=no-self-argument
         return (ForeignKeyConstraint(['user_id'], ['user.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),)
+
 
 class _Field(Model):
     __tablename__ = 'field'

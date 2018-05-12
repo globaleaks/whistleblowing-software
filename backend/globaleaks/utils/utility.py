@@ -469,6 +469,7 @@ def bytes_to_pretty_str(b):
 
     return "%dKB" % int(b / 1000)
 
+
 def parse_csv_ip_ranges_to_ip_networks(ip_str):
     '''Takes a list of IP addresses and/or CIDRs, and converts them to a list
     of python objects'''
