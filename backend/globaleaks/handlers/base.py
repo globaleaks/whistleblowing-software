@@ -439,11 +439,11 @@ class BaseHandler(object):
         return None
 
     def process_file_upload(self):
-        if 'flowFilename' not in self.request.args:
+        if b'flowFilename' not in self.request.args:
             return None
 
-        total_file_size = int(self.request.args['flowTotalSize'][0])
-        flow_identifier = self.request.args['flowIdentifier'][0]
+        total_file_size = int(self.request.args[b'flowTotalSize'][0])
+        flow_identifier = self.request.args[b'flowIdentifier'][0]
 
         chunk_size = len(self.request.args[b'file'][0])
         if ((chunk_size / (1024 * 1024)) > self.state.tenant_cache[self.request.tid].maximum_filesize or
@@ -456,25 +456,25 @@ class BaseHandler(object):
 
         f = self.state.TempUploadFiles[flow_identifier]
         with f.open('w') as f:
-            f.write(self.request.args['file'][0])
+            f.write(self.request.args[b'file'][0])
 
-            if self.request.args['flowChunkNumber'][0] != self.request.args['flowTotalChunks'][0]:
+            if self.request.args[b'flowChunkNumber'][0] != self.request.args[b'flowTotalChunks'][0]:
                 return None
             else:
                 f.finalize_write()
 
-        mime_type, _ = mimetypes.guess_type(self.request.args['flowFilename'][0])
+        mime_type, _ = mimetypes.guess_type(text_type(self.request.args[b'flowFilename'][0], 'utf-8'))
         if mime_type is None:
             mime_type = 'application/octet-stream'
 
         self.uploaded_file = {
             'date': datetime_now(),
-            'name': self.request.args['flowFilename'][0],
+            'name': self.request.args[b'flowFilename'][0],
             'type': mime_type,
             'size': total_file_size,
             'filename': os.path.basename(f.filepath),
             'body': f,
-            'description': self.request.args.get('description', [''])[0]
+            'description': self.request.args.get(b'description', [''])[0]
         }
 
     def write_upload_plaintext_to_disk(self, destination):
