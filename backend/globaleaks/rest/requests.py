@@ -227,6 +227,7 @@ AdminNodeDesc = {
     'enable_proof_of_work': bool,
     'enable_experimental_features': bool,
     'enable_signup': bool,
+    'enable_footer_customization': bool,
     'enable_custom_privacy_badge': bool,
     'custom_privacy_badge_text': text_type,
     'header_title_homepage': text_type,

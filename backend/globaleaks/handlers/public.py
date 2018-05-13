@@ -126,6 +126,13 @@ def db_serialize_node(session, tid, language):
 
     l10n_dict = NodeL10NFactory(session, tid).localized_dict(language)
 
+    if tid != 1:
+        root_tenant_node = ConfigFactory(session, 1, 'public_node')
+        misc_dict['enable_footer_customization'] = root_tenant_node.get_val(u'enable_footer_customization')
+
+        root_tenant_l10n = NodeL10NFactory(session, tid)
+        l10n_dict['footer'] = root_tenant_l10n.get_val(u'footer', language)
+
     return merge_dicts(node, l10n_dict, misc_dict)
 
 
