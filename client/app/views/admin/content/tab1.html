@@ -43,7 +43,7 @@
       <input class="form-control" data-ng-model="admin.node.whistleblowing_button" type="text" />
     </div>
 
-    <div class="form-group">
+    <div class="form-group" data-ng-if="admin.node.root_tenant || admin.node.enable_footer_customization">
       <label data-translate>Footer</label>
       <div>
         <textarea class="form-control" data-ng-model="admin.node.footer"></textarea>

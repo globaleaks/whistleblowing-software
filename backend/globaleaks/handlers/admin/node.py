@@ -30,6 +30,10 @@ def db_admin_serialize_node(session, tid, language):
         'https_possible': tid == 1 or State.tenant_cache[1].reachable_via_web,
     }
 
+    if tid != 1:
+        root_tenant_node = ConfigFactory(session, 1, 'node')
+        misc_dict['enable_footer_customization'] = root_tenant_node.get_val(u'enable_footer_customization')
+
     l10n_dict = NodeL10NFactory(session, tid).localized_dict(language)
 
     return utils.sets.merge_dicts(config, misc_dict, l10n_dict)
