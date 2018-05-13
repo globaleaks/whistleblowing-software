@@ -690,6 +690,12 @@ class _InternalTip(Model):
 
     tid = Column(Integer, default=1, nullable=False)
 
+    encrypted = Column(Boolean, default=False, nullable=False)
+    wb_prv_key = Column(Unicode, default=u'', nullable=False)
+    wb_pub_key = Column(Unicode, default=u'', nullable=False)
+    wb_tip_key = Column(Unicode, default=u'', nullable=False)
+    enc_data = Column(Unicode, default=u'', nullable=False)
+
     creation_date = Column(DateTime, default=datetime_now, nullable=False)
     update_date = Column(DateTime, default=datetime_now, nullable=False)
     context_id = Column(Unicode(36), nullable=False)
@@ -865,6 +871,8 @@ class _ReceiverTip(Model):
 
     id = Column(Unicode(36), primary_key=True, default=uuid4, nullable=False)
 
+    tip_key = Column(Unicode, default=u'', nullable=False)
+
     internaltip_id = Column(Unicode(36), nullable=False)
     receiver_id = Column(Unicode(36), nullable=False)
     last_access = Column(DateTime, default=datetime_null, nullable=False)
@@ -1011,6 +1019,9 @@ class _User(Model):
     password_change_date = Column(DateTime, default=datetime_null, nullable=False)
 
     auth_token = Column(UnicodeText, default=get_auth_token, nullable=False)
+
+    enc_prv_key = Column(Unicode, default=u'', nullable=False)
+    enc_pub_key = Column(Unicode, default=u'', nullable=False)
 
     # BEGIN of PGP key fields
     pgp_key_fingerprint = Column(UnicodeText, default=u'', nullable=False)

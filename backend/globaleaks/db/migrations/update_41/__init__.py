@@ -21,6 +21,30 @@ class InternalFile_v_40(Model):
     processing_attempts = Column(Integer, default=0, nullable=False)
 
 
+class InternalTip_v_40(Model):
+    __tablename__ = 'internaltip'
+    id = Column(Unicode(36), primary_key=True, default=uuid4, nullable=False)
+    tid = Column(Integer, default=1, nullable=False)
+    creation_date = Column(DateTime, default=datetime_now, nullable=False)
+    update_date = Column(DateTime, default=datetime_now, nullable=False)
+    context_id = Column(Unicode(36), nullable=False)
+    questionnaire_hash = Column(Unicode(64), nullable=False)
+    preview = Column(JSON, nullable=False)
+    progressive = Column(Integer, default=0, nullable=False)
+    https = Column(Boolean, default=False, nullable=False)
+    total_score = Column(Integer, default=0, nullable=False)
+    expiration_date = Column(DateTime, nullable=False)
+    identity_provided = Column(Boolean, default=False, nullable=False)
+    identity_provided_date = Column(DateTime, default=datetime_null, nullable=False)
+    enable_two_way_comments = Column(Boolean, default=True, nullable=False)
+    enable_two_way_messages = Column(Boolean, default=True, nullable=False)
+    enable_attachments = Column(Boolean, default=True, nullable=False)
+    enable_whistleblower_identity = Column(Boolean, default=False, nullable=False)
+    receipt_hash = Column(Unicode(128), nullable=False)
+    wb_last_access = Column(DateTime, default=datetime_now, nullable=False)
+    wb_access_counter = Column(Integer, default=0, nullable=False)
+
+
 class ReceiverFile_v_40(Model):
     __tablename__ = 'receiverfile'
     id = Column(Unicode(36), primary_key=True, default=uuid4, nullable=False)
@@ -32,6 +56,42 @@ class ReceiverFile_v_40(Model):
     last_access = Column(DateTime, default=datetime_null)
     new = Column(Integer, default=True)
     status = Column(UnicodeText)
+
+
+class ReceiverTip_v_40(Model):
+    __tablename__ = 'receivertip'
+    id = Column(Unicode(36), primary_key=True, default=uuid4, nullable=False)
+    internaltip_id = Column(Unicode(36), nullable=False)
+    receiver_id = Column(Unicode(36), nullable=False)
+    last_access = Column(DateTime, default=datetime_null, nullable=False)
+    access_counter = Column(Integer, default=0, nullable=False)
+    label = Column(UnicodeText, default=u'', nullable=False)
+    can_access_whistleblower_identity = Column(Boolean, default=False, nullable=False)
+    new = Column(Integer, default=True, nullable=False)
+    enable_notifications = Column(Boolean, default=True, nullable=False)
+
+
+class User_v_40(Model):
+    __tablename__ = 'user'
+    id = Column(Unicode(36), primary_key=True, default=uuid4, nullable=False)
+    tid = Column(Integer, default=1, nullable=False)
+    creation_date = Column(DateTime, default=datetime_now, nullable=False)
+    username = Column(UnicodeText, default=u'', nullable=False)
+    password = Column(UnicodeText, default=u'', nullable=False)
+    salt = Column(Unicode(24), nullable=False)
+    name = Column(UnicodeText, default=u'', nullable=False)
+    description = Column(JSON, default=dict, nullable=False)
+    role = Column(UnicodeText, default=u'receiver', nullable=False)
+    state = Column(UnicodeText, default=u'enabled', nullable=False)
+    last_login = Column(DateTime, default=datetime_null, nullable=False)
+    mail_address = Column(UnicodeText, default=u'', nullable=False)
+    language = Column(UnicodeText, nullable=False)
+    password_change_needed = Column(Boolean, default=True, nullable=False)
+    password_change_date = Column(DateTime, default=datetime_null, nullable=False)
+    auth_token = Column(UnicodeText, default=u'', nullable=False)
+    pgp_key_fingerprint = Column(UnicodeText, default=u'', nullable=False)
+    pgp_key_public = Column(UnicodeText, default=u'', nullable=False)
+    pgp_key_expiration = Column(DateTime, default=datetime_null, nullable=False)
 
 
 class WhistleblowerFile_v_40(Model):
@@ -46,6 +106,7 @@ class WhistleblowerFile_v_40(Model):
     creation_date = Column(DateTime, default=datetime_now, nullable=False)
     last_access = Column(DateTime, default=datetime_null, nullable=False)
     description = Column(UnicodeText, nullable=False)
+
 
 
 class MigrationScript(MigrationBase):
