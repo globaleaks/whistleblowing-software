@@ -13,7 +13,8 @@ from globaleaks.models.properties import *
 from globaleaks.orm import transact
 from globaleaks.rest import errors
 from globaleaks.utils.security import generateRandomKey
-from globaleaks.utils.utility import datetime_now, datetime_null, datetime_to_ISO8601
+from globaleaks.utils.utility import datetime_now, datetime_null, datetime_never, datetime_to_ISO8601
+
 
 def get_auth_token():
     return text_type(generateRandomKey(32))
@@ -443,22 +444,6 @@ class _EnabledLanguage(Model):
     @declared_attr
     def __table_args__(cls): # pylint: disable=no-self-argument
         return (ForeignKeyConstraint(['tid'], ['tenant.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),)
-
-
-class _EmailValidations(Model):
-    """
-    Contains tokens generated for email changes
-    """
-
-    __tablename__ = 'emailvalidations'
-    user_id = Column(Unicode(36), primary_key=True, nullable=False)
-    new_email = Column(UnicodeText, default=u'', nullable=False)
-    validation_token = Column(UnicodeText, default=u'', unique=True, nullable=False)
-    creation_date = Column(DateTime, default=datetime_now, nullable=False)
-
-    @declared_attr
-    def __table_args__(cls): # pylint: disable=no-self-argument
-        return (ForeignKeyConstraint(['user_id'], ['user.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),)
 
 
 class _Field(Model):
@@ -1023,6 +1008,10 @@ class _User(Model):
     enc_prv_key = Column(Unicode, default=u'', nullable=False)
     enc_pub_key = Column(Unicode, default=u'', nullable=False)
 
+    change_email_address = Column(UnicodeText, default=u'', nullable=False)
+    change_email_token = Column(UnicodeText, unique=True, nullable=True)
+    change_email_date = Column(DateTime, default=datetime_never, nullable=False)
+
     # BEGIN of PGP key fields
     pgp_key_fingerprint = Column(UnicodeText, default=u'', nullable=False)
     pgp_key_public = Column(UnicodeText, default=u'', nullable=False)
@@ -1031,7 +1020,7 @@ class _User(Model):
 
     unicode_keys = ['username', 'role', 'state',
                     'language', 'mail_address', 'name',
-                    'language']
+                    'language', 'change_email_address']
 
     localized_keys = ['description']
 
@@ -1114,7 +1103,6 @@ class ContextImg(_ContextImg, Base): pass
 class Counter(_Counter, Base): pass
 class CustomTexts(_CustomTexts, Base): pass
 class EnabledLanguage(_EnabledLanguage, Base): pass
-class EmailValidations(_EmailValidations, Base): pass
 class Field(_Field, Base): pass
 class FieldAttr(_FieldAttr, Base): pass
 class FieldAnswer(_FieldAnswer, Base): pass

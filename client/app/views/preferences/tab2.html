@@ -1,41 +1,45 @@
-<div class="form-group" data-ng-class="{'has-error': preferencesForm.oldpassword.$error.required}">
-  <label>
-    <span data-translate>Current Password</span>
-    <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
-  </label>
-  <input class="form-control" name="oldpassword" data-ng-model="preferences.old_password" type="password" autocomplete="off" required />
-  <p class="text-danger" data-ng-show="preferencesForm.oldpassword.$error.required">
-    <span data-translate>Old password confirmation required</span>
-  </p>
-</div>
-
-<div class="form-group" data-ng-class="{'has-error': preferencesForm.password.$error.required || preferencesForm.password.$error.passwordStrength}">
-  <label>
-    <span data-translate>New Password</span>
-    <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
-  </label>
-  <input class="form-control" name="password" data-ng-model="preferences.password" type="password" autocomplete="off" data-zxcvbn="passwordStrength" data-zx-min-score="3" required />
-  <zx-password-meter value="passwordStrength"></zx-password-meter>
-  <div class="text-danger" data-ng-show="!preferencesForm.password.$error.required && preferencesForm.password.$error.passwordStrength">
-    <p data-translate>The chosen password is too weak. Make it more secure by adding special characters, numbers, and unusual symbols.</p>
-   </div>
-  <div class="text-danger" data-ng-show="preferences.password !== '' && preferences.password === preferences.old_password">
-    <p data-translate>The new password must be different from the current one.</p>
+<form name="passwordChangeForm">
+  <div class="form-group" data-ng-class="{'has-error': passwordChangeForm.oldpassword.$error.required}">
+    <label>
+      <span data-translate>Current Password</span>
+      <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
+    </label>
+    <input class="form-control" name="oldpassword" data-ng-model="preferences.old_password" type="password" autocomplete="off" required />
+    <p class="text-danger" data-ng-show="passwordChangeForm.oldpassword.$error.required">
+      <span data-translate>Old password confirmation required</span>
+    </p>
   </div>
-</div>
 
-<div class="form-group" data-ng-class="{'has-error': !preferencesForm.password.$error && (preferencesForm.checkpassword.$error.required || preferences.password !== preferences.check_password)}">
-  <label>
-    <span data-translate>Type your new password again</span>
-    <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
-  </label>
-  <input class="form-control" name="checkpassword" data-ng-model="preferences.check_password" type="password" autocomplete="off" required/>
-  <p class="text-danger" data-ng-show="!preferencesForm.password.$error.passwordStrength && (preferences.password !== preferences.check_password)">
-    <span data-translate>The two passwords do not match</span>
-  </p>
-</div>
+  <div class="form-group" data-ng-class="{'has-error': passwordChangeForm.password.$error.required || passwordChangeForm.password.$error.passwordStrength}">
+    <label>
+      <span data-translate>New Password</span>
+      <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
+    </label>
+    <input class="form-control" name="password" data-ng-model="preferences.password" type="password" autocomplete="off" data-zxcvbn="passwordStrength" data-zx-min-score="3" required />
+    <zx-password-meter value="passwordStrength"></zx-password-meter>
+    <div class="text-danger" data-ng-show="!passwordChangeForm.password.$error.required && passwordChangeForm.password.$error.passwordStrength">
+      <p data-translate>The chosen password is too weak. Make it more secure by adding special characters, numbers, and unusual symbols.</p>
+     </div>
+    <div class="text-danger" data-ng-show="preferences.password !== '' && preferences.password === preferences.old_password">
+      <p data-translate>The new password must be different from the current one.</p>
+    </div>
+  </div>
 
-<button type="submit" class="btn btn-success" data-ng-disabled="preferencesForm.$invalid || preferencesForm.$pristine || preferences.password !== preferences.check_password || (preferences.password !== '' && preferences.password === preferences.old_password)" data-ng-click="save()">
-  <i class="glyphicon glyphicon-ok"></i>
-  <span data-translate>Save</span>
-</button>
+  <div class="form-group" data-ng-class="{'has-error': !passwordChangeForm.password.$error && (passwordChangeForm.checkpassword.$error.required || preferences.password !== preferences.check_password)}">
+    <label>
+      <span data-translate>Type your new password again</span>
+      <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
+    </label>
+    <input class="form-control" name="checkpassword" data-ng-model="preferences.check_password" type="password" autocomplete="off" required/>
+    <p class="text-danger" data-ng-show="!passwordChangeForm.password.$error.passwordStrength && (preferences.password !== preferences.check_password)">
+      <span data-translate>The two passwords do not match</span>
+    </p>
+  </div>
+
+  <br />
+
+  <button type="submit" class="btn btn-success" data-ng-disabled="passwordChangeForm.$invalid || passwordChangeForm.$pristine || preferences.password !== preferences.check_password || (preferences.password !== '' && preferences.password === preferences.old_password)" data-ng-click="save()">
+    <i class="glyphicon glyphicon-ok"></i>
+    <span data-translate>Save</span>
+  </button>
+</div>

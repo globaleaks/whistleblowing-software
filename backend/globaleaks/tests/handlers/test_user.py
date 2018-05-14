@@ -9,21 +9,7 @@ from globaleaks.handlers.admin import receiver
 from globaleaks.rest import errors
 from globaleaks.tests import helpers
 
-@transact
-def get_token_for_user_id(session, user_id):
-    token = session.query(models.EmailValidations).filter(
-        models.EmailValidations.user_id == user_id
-    ).first()
 
-    session.expunge(token)
-    return token
-
-@transact
-def get_token_count(session, user_id):
-    return session.query(models.EmailValidations).filter(
-        models.EmailValidations.user_id == user_id
-    ).count()
-    
 class TestUserInstance(helpers.TestHandlerWithPopulatedDB):
     _handler = user.UserInstance
 
@@ -125,23 +111,22 @@ class TestUserInstance(helpers.TestHandlerWithPopulatedDB):
         self.assertEqual(response['name'], 'Test Name')
 
     @inlineCallbacks
-    def test_start_email_change_process(self, email="127test@test.com"):
+    def test_start_email_change_process(self):
         handler = self.request(user_id = self.rcvr_id, role='receiver')
 
         response = yield handler.get()
+
+        email= "change1@test.com"
         response['mail_address'] = email
         handler = self.request(response, user_id=self.rcvr_id, role='receiver')
-
         response = yield handler.put()
+
         self.assertNotEqual(response['mail_address'], email)
+        self.assertEqual(response['change_email_address'], email)
 
-        token = yield get_token_for_user_id(response['id'])
-        self.assertEqual(token.new_email, email)
+        email="change2@test.com"
+        response['mail_address'] = email
+        handler = self.request(response, user_id=self.rcvr_id, role='receiver')
+        response = yield handler.put()
 
-    @inlineCallbacks
-    def test_email_validation_token_replaced_if_present(self):
-        yield self.test_start_email_change_process()
-        yield self.test_start_email_change_process(email="999test@999.com")
-        count = yield get_token_count(self.rcvr_id)
-        self.assertEqual(count, 1)
-
+        self.assertEqual(response['change_email_address'], email)
