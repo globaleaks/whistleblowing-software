@@ -1,11 +1,11 @@
 <div class="row">
   <div class="col-md-12">
-    <form class="row" name="preferencesForm" novalidate>
+    <div class="row">
       <uib-tabset>
         <uib-tab data-ng-repeat="tab in tabs" heading="{{tab.title | translate}}">
           <div class="tab-content" data-ng-include="tab.template"></div>
         </uib-tab>
       </uib-tabset>
-    </form>
+    </div>
   </div> 
 </div>

@@ -4,12 +4,11 @@
 from globaleaks import models
 from globaleaks.handlers.admin.modelimgs import db_get_model_img
 from globaleaks.handlers.base import BaseHandler
-from globaleaks.handlers.email_validation import db_generate_email_change_token
 from globaleaks.orm import transact
 from globaleaks.rest import requests
 from globaleaks.state import State
 from globaleaks.utils.pgp import PGPContext
-from globaleaks.utils.security import change_password
+from globaleaks.utils.security import change_password, generateRandomKey
 from globaleaks.utils.structures import get_localized_values
 from globaleaks.utils.utility import datetime_to_ISO8601, datetime_now, datetime_null
 
@@ -59,6 +58,7 @@ def user_serialize_user(session, user, language):
         'name': user.name,
         'description': user.description,
         'mail_address': user.mail_address,
+        'change_email_address': user.change_email_address,
         'language': user.language,
         'password_change_needed': user.password_change_needed,
         'password_change_date': datetime_to_ISO8601(user.password_change_date),
@@ -115,16 +115,21 @@ def db_user_update_user(session, state, tid, user_id, request):
 
     # If the email address changed, send a validation email
     if request['mail_address'] != user.mail_address:
+        user.change_email_address = request['mail_address']
+        user.change_email_date = datetime_now()
+        user.change_email_token = generateRandomKey(32)
+
         user_desc = user_serialize_user(session, user, user.language)
-        validation_token = db_generate_email_change_token(session, user.id, request['mail_address'])
+
         template_vars = {
             'type': 'email_validation',
             'user': user_desc,
             'new_email_address': request['mail_address'],
-            'validation_token': validation_token,
+            'validation_token': user.change_email_token,
             'node': db_admin_serialize_node(session, 1, user.language),
             'notification': db_get_notification(session, tid, user.language)
         }
+
         state.format_and_send_mail(session, tid, user_desc, template_vars)
 
     # We don't directly change user email addresses, if a user

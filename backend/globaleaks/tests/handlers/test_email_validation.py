@@ -10,15 +10,15 @@ from globaleaks.handlers import email_validation
 from globaleaks.handlers.admin import receiver
 from globaleaks.rest import errors
 from globaleaks.tests import helpers
+from globaleaks.utils.utility import datetime_now
 
 @transact
-def void_email_token(session, validation_token):
-    token = session.query(models.EmailValidations).filter(
-        models.EmailValidations.validation_token == validation_token
-    ).first()
+def set_email_token(session, user_id, validation_token, email):
+    user = models.db_get(session, models.User, models.User.id == user_id)
+    user.change_email_date = datetime_now()
+    user.change_email_token = validation_token
+    user.change_email_address = email
 
-    token.creation_date = datetime.now()+timedelta(days=100)
-    session.flush()
 
 class TestEmailValidationInstance(helpers.TestHandlerWithPopulatedDB):
     _handler = email_validation.EmailValidation
@@ -35,30 +35,31 @@ class TestEmailValidationInstance(helpers.TestHandlerWithPopulatedDB):
     @inlineCallbacks
     def test_get_success(self):
         handler = self.request()
-        token = yield email_validation.generate_email_change_token(
+        yield set_email_token(
             self.user['id'],
-            "test@test.com"
+            u"token",
+            u"test@changeemail.com"
         )
 
-        yield handler.get(token)
+        yield handler.get(u"token")
 
         # Now we check if the token was update
         for r in (yield receiver.get_receiver_list(1, 'en')):
             if r['pgp_key_fingerprint'] == u'BFB3C82D1B5F6A94BDAC55C6E70460ABF9A4C8C1':
-                self.assertEqual(r['mail_address'], 'test@test.com')
+                self.assertEqual(r['mail_address'], 'test@changeemail.com')
 
     @inlineCallbacks
     def test_get_failure(self):
         handler = self.request()
-        token = yield email_validation.generate_email_change_token(
+        yield set_email_token(
             self.user['id'],
-            "test2@test2.com"
+            u"token",
+            u"test@changeemail.com"
         )
 
-        yield void_email_token(token)
-        yield handler.get(token)
+        yield handler.get(u"wrong_token")
 
         # Now we check if the token was update
         for r in (yield receiver.get_receiver_list(1, 'en')):
             if r['pgp_key_fingerprint'] == u'BFB3C82D1B5F6A94BDAC55C6E70460ABF9A4C8C1':
-                self.assertNotEqual(r['mail_address'], 'test2@test2.com')
+                self.assertNotEqual(r['mail_address'], 'test@changeemail.com')
