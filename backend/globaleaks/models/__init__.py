@@ -1012,6 +1012,9 @@ class _User(Model):
     change_email_token = Column(UnicodeText, unique=True, nullable=True)
     change_email_date = Column(DateTime, default=datetime_never, nullable=False)
 
+    reset_password_token = Column(UnicodeText, unique=True, nullable=True)
+    reset_password_date = Column(UnicodeText, default=datetime_never, nullable=False)
+
     # BEGIN of PGP key fields
     pgp_key_fingerprint = Column(UnicodeText, default=u'', nullable=False)
     pgp_key_public = Column(UnicodeText, default=u'', nullable=False)
