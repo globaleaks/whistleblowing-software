@@ -530,10 +530,10 @@ class EmailValidationKeyword(UserNodeKeyword):
     def NewEmailAddress(self):
         return self.data['new_email_address']
 
-    def TorValidationUrl(self):
+    def TorUrl(self):
         return 'http://' + self.data['node']['onionservice'] + '/email/validation/' + self.data['validation_token']
 
-    def HTTPSValidationUrl(self):
+    def HTTPSUrl(self):
         return 'https://' + self.data['node']['hostname'] + '/email/validation/' + self.data['validation_token']
 
 supported_template_types = {
