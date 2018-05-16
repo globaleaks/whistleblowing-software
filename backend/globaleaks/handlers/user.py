@@ -66,7 +66,8 @@ def user_serialize_user(session, user, language):
         'pgp_key_public': user.pgp_key_public,
         'pgp_key_expiration': datetime_to_ISO8601(user.pgp_key_expiration),
         'pgp_key_remove': False,
-        'picture': picture
+        'picture': picture,
+        'can_edit_general_settings': user.can_edit_general_settings
     }
 
     return get_localized_values(ret_dict, user, user.localized_keys, language)

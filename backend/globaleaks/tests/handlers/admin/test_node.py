@@ -1,18 +1,39 @@
 # -*- coding: utf-8 -*-
 
 from globaleaks import __version__
-from globaleaks.handlers.admin import node
+from globaleaks import models
+from globaleaks.handlers.admin import node, receiver
+from globaleaks.orm import transact
 from globaleaks.models.config import NodeL10NFactory
-from globaleaks.rest.errors import InputValidationError
+from globaleaks.rest.errors import InputValidationError, InvalidAuthentication
 from globaleaks.tests import helpers
 from twisted.internet.defer import inlineCallbacks
 
 # special guest:
 stuff = u"³²¼½¬¼³²"
 
+@transact
+def set_receiver_acl_flag_true(session, rcvr_id):
+    rcvr = session.query(models.User).filter_by(id=rcvr_id).first()
+    rcvr.can_edit_general_settings = True
+    session.merge(rcvr)
+    session.commit()
+
+@transact
+def get_config_value(session, tid, config_key):
+    config_value = session.query(models.Config).filter_by(var_name=config_key, tid=tid).first()
+    return config_value.value
 
 class TestNodeInstance(helpers.TestHandlerWithPopulatedDB):
     _handler = node.NodeInstance
+
+    @inlineCallbacks
+    def setUp(self):
+        yield helpers.TestHandlerWithPopulatedDB.setUp(self)
+
+        for r in (yield receiver.get_receiver_list(1, 'en')):
+            if r['pgp_key_fingerprint'] == u'BFB3C82D1B5F6A94BDAC55C6E70460ABF9A4C8C1':
+                self.rcvr_id = r['id']
 
     @inlineCallbacks
     def test_get(self):
@@ -20,6 +41,23 @@ class TestNodeInstance(helpers.TestHandlerWithPopulatedDB):
         response = yield handler.get()
 
         self.assertTrue(response['version'], __version__)
+
+    @inlineCallbacks
+    def test_get_receiver_general_settings_acl(self):
+        '''Confirm receivers can read general settings ACL'''
+        yield set_receiver_acl_flag_true(self.rcvr_id)
+
+        handler = self.request(user_id=self.rcvr_id, role='receiver')
+        response = yield handler.get()
+
+        self.assertNotIn('version', response)
+        self.assertIn('header_title_submissionpage', response)
+
+    @inlineCallbacks
+    def test_confirm_fail_receiver_acl_cleared(self):
+        handler = self.request(user_id=self.rcvr_id, role='receiver')
+        with self.assertRaises(InvalidAuthentication):
+            yield handler.get()
 
     @inlineCallbacks
     def test_put_update_node(self):
@@ -91,3 +129,29 @@ class TestNodeInstance(helpers.TestHandlerWithPopulatedDB):
 
         self.assertNotEqual('xxx', resp['hostname'])
         self.assertNotEqual('yyy', resp['onionservice'])
+
+    @inlineCallbacks
+    def test_receiver_general_settings_update_field(self):
+        '''Confirm fields out of the receiver's set updates'''
+
+        yield set_receiver_acl_flag_true(self.rcvr_id)
+        self.dummyNode['header_title_submissionpage'] = "Whisteblowing FTW"
+
+        handler = self.request(self.dummyNode, role='receiver')
+        resp = yield handler.put()
+        self.assertEqual("Whisteblowing FTW", resp['header_title_submissionpage'])
+
+    @inlineCallbacks
+    def test_receiver_confirm_failure_for_priv_fields_updates(self):
+        '''Confirm privelleged fields are ignored'''
+
+        yield set_receiver_acl_flag_true(self.rcvr_id)
+        self.dummyNode['header_title_submissionpage'] = "Whisteblowing FTW"
+        self.dummyNode['smtp_server'] = 'not.a.real.smtpserver'
+
+        handler = self.request(self.dummyNode, role='receiver')
+        resp = yield handler.put()
+
+        smtp_server = yield get_config_value(1, 'smtp_server')
+        self.assertEqual("Whisteblowing FTW", resp['header_title_submissionpage'])
+        self.assertNotEqual('not.a.real.smtpserver', smtp_server)
