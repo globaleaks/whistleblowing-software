@@ -1008,6 +1008,8 @@ class _User(Model):
     enc_prv_key = Column(Unicode, default=u'', nullable=False)
     enc_pub_key = Column(Unicode, default=u'', nullable=False)
 
+    can_edit_general_settings = Column(Boolean, default=False, nullable=False)
+
     change_email_address = Column(UnicodeText, default=u'', nullable=False)
     change_email_token = Column(UnicodeText, unique=True, nullable=True)
     change_email_date = Column(DateTime, default=datetime_never, nullable=False)
@@ -1027,7 +1029,7 @@ class _User(Model):
 
     localized_keys = ['description']
 
-    bool_keys = ['password_change_needed']
+    bool_keys = ['password_change_needed', 'can_edit_general_settings']
 
     date_keys = ['creation_date', 'last_login', 'password_change_date', 'pgp_key_expiration']
 
