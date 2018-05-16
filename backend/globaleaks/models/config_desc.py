@@ -114,6 +114,8 @@ ConfigDescriptor = {
     u'enable_proof_of_work': Bool(default=True),
 
     u'enable_signup': Bool(default=False),
+    u'signup_mode': Unicode(default=u'default'),
+
     u'enable_footer_customization': Bool(default=False),
 
     u'enable_experimental_features': Bool(default=False),
@@ -176,6 +178,7 @@ ConfigFilters = {
         u'disable_key_code_hint',
         u'disable_donation_panel',
         u'enable_signup',
+        u'signup_mode',
         u'enable_footer_customization',
         u'enable_captcha',
         u'enable_proof_of_work',

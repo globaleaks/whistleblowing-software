@@ -890,16 +890,31 @@ class _Signup(Model):
     id = Column(Integer, primary_key=True, nullable=False)
     tid = Column(Integer, nullable=True)
     subdomain = Column(UnicodeText, unique=True, nullable=False)
+    language = Column(UnicodeText, nullable=False)
     name = Column(UnicodeText, nullable=False)
     surname = Column(UnicodeText, nullable=False)
+    role = Column(UnicodeText, default=u'', nullable=False)
     email = Column(UnicodeText, nullable=False)
-    use_case = Column(UnicodeText, nullable=False)
-    use_case_other = Column(UnicodeText, nullable=False)
-    language = Column(UnicodeText, nullable=False)
+    secondary_email = Column(UnicodeText, default=u'', nullable=False)
+    phone = Column(UnicodeText, default=u'', nullable=False)
+    use_case = Column(UnicodeText, default=u'', nullable=False)
+    use_case_other = Column(UnicodeText, default=u'', nullable=False)
+    organization_name = Column(UnicodeText, default=u'', nullable=False)
+    organization_type = Column(UnicodeText, default=u'', nullable=False)
+    organization_city = Column(UnicodeText, default=u'', nullable=False)
+    organization_province = Column(UnicodeText, default=u'', nullable=False)
+    organization_region = Column(UnicodeText, default=u'', nullable=False)
+    organization_country = Column(UnicodeText, default=u'', nullable=False)
+    organization_number_employee = Column(UnicodeText, default=u'', nullable=False)
+    organization_number_users = Column(UnicodeText, default=u'', nullable=False)
     activation_token = Column(UnicodeText, nullable=False)
     registration_date = Column(DateTime, default=datetime_now, nullable=False)
 
-    unicode_keys = ['subdomain', 'name', 'surname', 'email', 'activation_token', 'use_case', 'use_case_other', 'language']
+    unicode_keys = ['subdomain', 'language', 'name', 'surname', 'role', 'email', 'secondary_email', 'phone',
+                    'use_case', 'use_case_other',
+                    'organization_city', 'organization_province', 'organization_region', 'organization_country',
+                    'organization_number_employee', 'organization_number_users',
+                    'activation_token']
 
     @declared_attr
     def __table_args__(cls): # pylint: disable=no-self-argument

@@ -102,6 +102,7 @@ def signup_activation(session, state, tid, token, language):
                                                 'subdomain': signup.subdomain}).id
 
         wizard = {
+            'node_language': signup.language,
             'node_name': signup.subdomain,
             'admin_name': signup.name + ' ' + signup.surname,
             'admin_password': '',
