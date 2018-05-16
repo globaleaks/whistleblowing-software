@@ -64,7 +64,7 @@ def run_acme_reg_to_finish(domain, accnt_key, priv_key, hostname, tmp_chall_dict
     # future, as well as mandate OCSP-Must-Staple if/when GL's HTTPS server
     # supports it
 
-    csr = crypto_util.make_csr(priv_key, [hostname], False)
+    csr = crypto_util.make_csr(priv_key, [text_type(hostname, 'utf-8')], False)
     order = client.new_order(csr)
     authzr = order.authorizations
 

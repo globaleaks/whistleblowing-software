@@ -1,6 +1,4 @@
 # -*- coding: utf-8 -*-
-from requests.exceptions import ConnectionError
-
 from OpenSSL import crypto, SSL
 from globaleaks.handlers.admin import https
 from globaleaks.models.config import ConfigFactory
@@ -10,6 +8,7 @@ from globaleaks.state import State
 from globaleaks.tests import helpers
 from globaleaks.tests.utils import test_tls
 from globaleaks.utils.letsencrypt import ChallTok
+from six.moves import urllib
 from twisted.internet.defer import inlineCallbacks, returnValue
 
 
