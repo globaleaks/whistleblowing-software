@@ -125,7 +125,7 @@
                     <div class="text-danger" data-ng-show="editUser.email.$error.required" data-translate>This field is mandatory</div>
                     <div class="text-danger" data-ng-show="editUser.email.$error.pattern" data-translate>Invalid email address</div>
                   </div>
-                  <div data-ng-init="user.newpassword = false" data-ng-if="!user.newpassword" class="btn btn-warning" data-ng-click="user.newpassword=!user.newpassword" data-ng-translate>New Password</div>
+                  <div data-ng-init="user.newpassword = false" data-ng-if="!user.newpassword" class="btn btn-warning" data-ng-click="user.newpassword=!user.newpassword" data-translate>New Password</div>
                   <div data-ng-if="user.newpassword" class="form-group" data-ng-form="userPasswordForm" data-ng-class="{'has-error': passwordStrength.score > 0 && !userPassword.password.$valid}">
                     <label data-translate>Password</label>
                     <input name="password" class="form-control" data-ng-model="user.password" type="password" autocomplete="off" zxcvbn="passwordStrength" zx-min-score="3" />
