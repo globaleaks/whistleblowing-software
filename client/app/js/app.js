@@ -241,7 +241,7 @@ var GLClient = angular.module('GLClient', [
         header_title: 'Administration interface',
         header_subtitle: '',
         resolve: {
-          resources: fetchResources('admin', ['manifest', 'node']),
+          resources: fetchResources('acl', ['manifest', 'node']),
         }
       }).
       when('/admin/content', {
@@ -250,7 +250,7 @@ var GLClient = angular.module('GLClient', [
         header_title: 'Administration interface',
         header_subtitle: 'General settings',
         resolve: {
-          resources: fetchResources('admin', ['node']),
+          resources: fetchResources('acl', ['node']),
         }
       }).
       when('/admin/contexts', {
