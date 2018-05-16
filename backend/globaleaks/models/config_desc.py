@@ -274,3 +274,24 @@ ConfigFilters['public_node'] = ConfigFilters['admin_node'] - set([
     'anonymize_outgoing_connections',
     'counter_submissions'
 ])
+
+# Settings related to general settings
+ConfigFilters['general_settings'] = set([
+    'logo',
+    'name',
+    'header_title_homepage',
+    'header_title_submissionpage',
+    'header_title_receiptpage',
+    'header_title_tippage',
+    'presentation',
+    'description',
+    'whistleblowing_question',
+    'whistleblowing_button',
+    'enable_footer_customization',
+    'footer',
+    'maximum_filesize',
+    'favicon',
+    'languages_enabled',
+    'default_language',
+    'languages_supported'
+])

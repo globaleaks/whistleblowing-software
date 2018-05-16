@@ -8,6 +8,7 @@ import base64
 import os
 
 from twisted.internet import threads
+from twisted.internet.defer import inlineCallbacks, returnValue
 
 from globaleaks import models
 from globaleaks.handlers.base import BaseHandler
@@ -64,40 +65,47 @@ def get_file(session, tid, id):
 
 
 class FileInstance(BaseHandler):
-    check_roles = 'admin'
+    check_roles =  {'admin', 'receiver', 'custodian'}
     invalidate_cache = True
     upload_handler = True
 
+    @inlineCallbacks
     def post(self, id):
+        yield self.can_edit_general_settings_or_raise()
         if id != 'custom':
             sf = self.state.get_tmp_file_by_name(self.uploaded_file['filename'])
             with sf.open('r') as encrypted_file:
                 data = encrypted_file.read()
 
             data = base64.b64encode(data)
-            d = add_file(self.request.tid, id, u'', data)
+            d = yield add_file(self.request.tid, id, u'', data)
         else:
             id = uuid4()
             path = os.path.join(self.state.settings.files_path, id)
-            d = threads.deferToThread(self.write_upload_plaintext_to_disk, path)
-            d.addCallback(lambda x: add_file(self.request.tid, id, self.uploaded_file['name'], u''))
+            d = yield self.write_upload_plaintext_to_disk(path)
+            yield add_file(self.request.tid, id, self.uploaded_file['name'], u'')
 
-        return d
+        returnValue(d)
 
+    @inlineCallbacks
     def delete(self, id):
+        yield self.can_edit_general_settings_or_raise()
         path = os.path.join(self.state.settings.files_path, id)
         directory_traversal_check(self.state.settings.files_path, path)
         if os.path.exists(path):
             os.remove(path)
 
-        return models.delete(models.File, models.File.tid == self.request.tid, models.File.id == id)
-
+        result = yield models.delete(models.File, models.File.tid == self.request.tid, models.File.id == id)
+        returnValue(result)
 
 class FileCollection(BaseHandler):
-    check_roles = 'admin'
+    check_roles =  {'admin', 'receiver', 'custodian'}
 
+    @inlineCallbacks
     def get(self):
         """
         Return the list of files and their info
         """
-        return get_files(self.request.tid)
+        yield self.can_edit_general_settings_or_raise()
+        result = yield get_files(self.request.tid)
+        returnValue(result)
