@@ -71,6 +71,21 @@ class ReceiverTip_v_40(Model):
     enable_notifications = Column(Boolean, default=True, nullable=False)
 
 
+class Signup_v_40(Model):
+    __tablename__ = 'signup'
+    id = Column(Integer, primary_key=True, nullable=False)
+    tid = Column(Integer, nullable=True)
+    subdomain = Column(UnicodeText, unique=True, nullable=False)
+    name = Column(UnicodeText, nullable=False)
+    surname = Column(UnicodeText, nullable=False)
+    email = Column(UnicodeText, nullable=False)
+    use_case = Column(UnicodeText, nullable=False)
+    use_case_other = Column(UnicodeText, nullable=False)
+    language = Column(UnicodeText, nullable=False)
+    activation_token = Column(UnicodeText, nullable=False)
+    registration_date = Column(DateTime, default=datetime_now, nullable=False)
+
+
 class User_v_40(Model):
     __tablename__ = 'user'
     id = Column(Unicode(36), primary_key=True, default=uuid4, nullable=False)

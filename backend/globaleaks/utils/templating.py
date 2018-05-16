@@ -105,8 +105,8 @@ platform_signup_keywords = [
 email_validation_keywords = [
     '{RecipientName}',
     '{NewEmailAddress}',
-    '{HTTPSValidationUrl}',
-    '{TorValidationUrl}'
+    '{HTTPSUrl}',
+    '{TorUrl}'
 ]
 
 def indent(n=1):

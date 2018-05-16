@@ -1095,6 +1095,7 @@ class MockDict:
             'enable_proof_of_work': False,
             'enable_experimental_features': False,
             'enable_signup': True,
+            'signup_mode': u'default',
             'enable_footer_customization': False,
             'enable_custom_privacy_badge': False,
             'custom_privacy_badge_text': u'',
