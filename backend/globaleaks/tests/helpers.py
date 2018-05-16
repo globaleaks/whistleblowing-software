@@ -410,6 +410,7 @@ class TestGL(unittest.TestCase):
         dummyStuff = MockDict()
 
         self.dummyWizard = {
+            'node_language': u'en',
             'node_name': 'test',
             'admin_name': 'Giovanni Pellerano',
             'admin_password': 'P4ssword',
