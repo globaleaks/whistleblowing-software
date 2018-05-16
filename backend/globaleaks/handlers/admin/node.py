@@ -32,6 +32,8 @@ def db_admin_serialize_node(session, tid, language):
 
     if tid != 1:
         root_tenant_node = ConfigFactory(session, 1, 'node')
+        misc_dict['version'] = root_tenant_node.get_val(u'version')
+        misc_dict['latest_version'] = root_tenant_node.get_val(u'latest_version')
         misc_dict['enable_footer_customization'] = root_tenant_node.get_val(u'enable_footer_customization')
 
     l10n_dict = NodeL10NFactory(session, tid).localized_dict(language)
