@@ -6,6 +6,7 @@ Registration data:
 Site: {HTTPSUrl}
 Name: {Name}
 Email: {Email}
+Language: {Language}
 Use case: {UseCase}
 
 The platform will be automatically deleted on:

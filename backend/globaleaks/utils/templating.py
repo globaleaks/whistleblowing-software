@@ -517,10 +517,14 @@ class PlatformSignupKeyword(NodeKeyword):
         else:
             return signup_data['use_case']
 
+    def Language(self):
+        return self.data['signup']['language']
+
 
 class AdminPlatformSignupKeyword(PlatformSignupKeyword):
     def RecipientName(self):
         return self.data['user']['name']
+
 
 class EmailValidationKeyword(UserNodeKeyword):
     keyword_list = NodeKeyword.keyword_list + email_validation_keywords
