@@ -535,6 +535,7 @@ InternalTipDesc = {
 }
 
 WizardDesc = {
+    'node_language': text_type,
     'node_name': text_type,
     'admin_name': text_type,
     'admin_password': text_type,

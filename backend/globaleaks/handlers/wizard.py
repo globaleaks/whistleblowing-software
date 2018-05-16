@@ -14,6 +14,8 @@ from globaleaks.utils.utility import log
 
 
 def db_wizard(session, state, tid, request, client_using_tor, language):
+    language = request['node_language']
+
     node = config.ConfigFactory(session, tid, 'node')
 
     if node.get_val(u'wizard_done'):
