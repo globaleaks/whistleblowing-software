@@ -903,6 +903,15 @@ if echo "$DISTRO" | grep -qE "^(Ubuntu)$"; then
   fi
 fi
 
+if echo "$DISTRO_CODENAME" | grep -vq "^xenial$" ; then
+  DO  "add-apt-repository ppa:certbot/certbot"
+  DO "apt-get update"
+  DO "apt-get install certbot"
+elif echo "$DISTRO_CODENAME" | grep -vq "^stretch$" ; then
+  DO  "add-apt-repository 'deb http://ftp.debian.org/debian/ stretch-backports main'"
+fi
+
+
 # Add Tor repository and its key
 echo "Adding Tor PGP key to trusted APT"
 TMPFILE=$TMPDIR/torproject_key
