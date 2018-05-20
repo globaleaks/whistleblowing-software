@@ -42,7 +42,7 @@ profile usr.bin.globaleaks flags=(attach_disconnected) {
     /usr/include/python3.6/** r,
     /usr/lib/python3/** mr,
     /usr/lib/python3.6/** mr,
-    /usr/local/lib/python3,6/** mr,
+    /usr/local/lib/python3.6/** mr,
 
     /var/globaleaks/ wr,
     /var/globaleaks/** lrwk,
