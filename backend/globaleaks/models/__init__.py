@@ -379,26 +379,6 @@ class _ContextImg(Model):
         return (ForeignKeyConstraint(['id'], ['context.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),)
 
 
-class _Counter(Model):
-    """
-    Class used to implement unique counters
-    """
-    __tablename__ = 'counter'
-
-    tid = Column(Integer, primary_key=True, default=1, nullable=False)
-    key = Column(Unicode(32), primary_key=True, nullable=False)
-
-    counter = Column(Integer, default=1, nullable=False)
-    update_date = Column(DateTime, default=datetime_now, nullable=False)
-
-    unicode_keys = ['key']
-    int_keys = ['number']
-
-    @declared_attr
-    def __table_args__(cls): # pylint: disable=no-self-argument
-        return (ForeignKeyConstraint(['tid'], ['tenant.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),)
-
-
 class _CustomTexts(Model):
     """
     Class used to implement custom texts
@@ -1120,7 +1100,6 @@ class Config(_Config, Base): pass
 class ConfigL10N(_ConfigL10N, Base): pass
 class Context(_Context, Base): pass
 class ContextImg(_ContextImg, Base): pass
-class Counter(_Counter, Base): pass
 class CustomTexts(_CustomTexts, Base): pass
 class EnabledLanguage(_EnabledLanguage, Base): pass
 class Field(_Field, Base): pass

@@ -109,6 +109,8 @@ ConfigDescriptor = {
     u'disable_key_code_hint': Bool(default=False),
     u'disable_donation_panel': Bool(default=False),
 
+    u'counter_submissions': Int(default=0),
+
     u'enable_captcha': Bool(default=True),
     u'enable_proof_of_work': Bool(default=True),
 
@@ -179,6 +181,7 @@ ConfigFilters = {
         u'enable_signup',
         u'signup_mode',
         u'enable_footer_customization',
+        u'counter_submissions',
         u'enable_captcha',
         u'enable_proof_of_work',
         u'enable_admin_exception_notification',
@@ -263,5 +266,6 @@ ConfigFilters['public_node'] = ConfigFilters['admin_node'] - set([
     'threshold_free_disk_megabytes_low',
     'threshold_free_disk_percentage_high',
     'threshold_free_disk_percentage_low',
-    'anonymize_outgoing_connections'
+    'anonymize_outgoing_connections',
+    'counter_submissions'
 ])

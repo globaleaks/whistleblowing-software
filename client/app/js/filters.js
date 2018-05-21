@@ -39,14 +39,6 @@ filter('anomalyToString', function() {
     return anomalies[anomaly];
   };
 }).
-filter('tipID', ['$filter', function($filter) {
-  return function(tip) {
-    if (angular.isDefined(tip)) {
-      var d = $filter('date')(tip.creation_date, 'yyyyMMdd', '0');
-      return d + '-' + tip.progressive;
-    }
-  };
-}]).
 filter('wbfileCreator', [function() {
   return function(rec_id, rec_list) {
     for (var i = 0; i < rec_list.length; i++) {

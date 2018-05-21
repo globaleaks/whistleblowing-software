@@ -291,7 +291,7 @@ class TipKeyword(UserNodeKeyword, ContextKeyword):
         return 'https://' + self.data['node']['hostname'] + '/#/status/' + self.data['tip']['id']
 
     def TipNum(self):
-        return self.data['tip']['sequence_number']
+        return str(self.data['tip']['progressive'])
 
     def TipLabel(self):
         return self.data['tip']['label']

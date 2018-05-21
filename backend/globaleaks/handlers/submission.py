@@ -18,26 +18,11 @@ from globaleaks.utils.token import TokenList
 from globaleaks.utils.utility import log, get_expiration, \
     datetime_now, datetime_never, datetime_to_ISO8601
 
-def get_submission_sequence_number(itip):
-    return "%s-%d" % (itip.creation_date.strftime("%Y%m%d"), itip.progressive)
-
 
 def db_assign_submission_progressive(session, tid):
-    counter = session.query(models.Counter).filter(models.Counter.key == u'submission_sequence', models.Counter.tid == tid).one_or_none()
-    if counter is None:
-        counter = models.Counter({'key': u'submission_sequence', 'tid': tid})
-        session.add(counter)
-    else:
-        now = datetime_now()
-        update = counter.update_date
-        if ((now > update) and
-            (not((now.year == update.year) and (now.month == update.month) and (now.day == update.day)))):
-            counter.counter = 0
-
-        counter.counter += 1
-        counter.update_date = now
-
-    return counter.counter
+    counter = session.query(models.Config).filter(models.Config.tid == tid, models.Config.var_name == u'counter_submissions').one()
+    counter.value += 1
+    return counter.value
 
 
 def _db_serialize_archived_field_recursively(field, language):
@@ -229,7 +214,7 @@ def serialize_itip(session, internaltip, language):
         'creation_date': datetime_to_ISO8601(internaltip.creation_date),
         'update_date': datetime_to_ISO8601(internaltip.update_date),
         'expiration_date': datetime_to_ISO8601(internaltip.expiration_date),
-        'sequence_number': get_submission_sequence_number(internaltip),
+        'progressive': internaltip.progressive,
         'context_id': internaltip.context_id,
         'questionnaire': db_serialize_archived_questionnaire_schema(session, aq.schema, language),
         'receivers': db_get_itip_receiver_list(session, internaltip),
@@ -250,7 +235,6 @@ def serialize_usertip(session, usertip, itip, language):
     ret = serialize_itip(session, itip, language)
     ret['id'] = usertip.id
     ret['internaltip_id'] = itip.id
-    ret['progressive'] = itip.progressive
     ret['answers'] = db_serialize_questionnaire_answers(session, itip.tid, usertip, itip)
     return ret
 

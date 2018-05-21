@@ -140,13 +140,6 @@ class CustomTexts_v_38(Model):
     texts = Column(JSON)
 
 
-class Counter_v_38(Model):
-    __tablename__ = 'counter'
-    key = Column(UnicodeText, primary_key=True)
-    counter = Column(Integer, default=1)
-    update_date = Column(DateTime, default=datetime_now)
-
-
 class EnabledLanguage_v_38(Model):
     __tablename__ = 'enabledlanguage'
     name = Column(UnicodeText, primary_key=True)

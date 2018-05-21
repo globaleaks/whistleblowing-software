@@ -1124,7 +1124,8 @@ class MockDict:
             'enable_admin_exception_notification': True,
             'enable_developers_exception_notification': True,
             'ip_filter_authenticated': u'',
-            'ip_filter_authenticated_enable': False
+            'ip_filter_authenticated_enable': False,
+            'counter_submissions': 0
         }
 
 

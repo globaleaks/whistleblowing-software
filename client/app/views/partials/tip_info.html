@@ -69,7 +69,7 @@
       </thead>
       <tbody>
         <tr>
-          <td id="tipID" data-ng-if="::session.role == 'receiver'">{{::tip | tipID }}</td>
+          <td id="tipID" data-ng-if="::session.role == 'receiver'">#{{::tip.progressive}}</td>
           <td>{{::tip.context.name}}</td>
           <td>{{::tip.creation_date | date:'dd-MM-yyyy HH:mm'}}</td>
           <td>{{::tip.update_date | date:'dd-MM-yyyy HH:mm'}}</td>
