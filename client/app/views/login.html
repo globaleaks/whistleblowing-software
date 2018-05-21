@@ -12,6 +12,10 @@
           <input class="form-control" name="password" data-ng-model="loginPassword" type="password" required />
         </div>
 
+        <div data-ng-if="::passwordResetEnabled">
+          <a href="/#/login/passwordreset"><span data-translate>Reset password ...</span></a>
+        </div>
+ 
         <button id="login-button" class="btn btn-success" data-ng-disabled="Authentication.loginInProgress || loginForm.$invalid" data-ng-click="Authentication.login(loginUsername, loginPassword)" type="submit">
           <i class="glyphicon glyphicon-log-in"></i>
           <span data-translate>Log in</span>

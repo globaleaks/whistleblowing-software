@@ -176,7 +176,11 @@ class NotificationL10NFactory(ConfigL10NFactory):
         u'admin_signup_alert_mail_title',
         u'admin_signup_alert_mail_template',
         u'email_validation_mail_title',
-        u'email_validation_mail_template'
+        u'email_validation_mail_template',
+        u'password_reset_validation_mail_title',
+        u'password_reset_validation_mail_template',
+        u'password_reset_complete_mail_title',
+        u'password_reset_complete_mail_template'
     ]
 
     def __init__(self, session, tid, *args, **kwargs):
