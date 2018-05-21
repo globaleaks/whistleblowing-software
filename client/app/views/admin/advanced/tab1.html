@@ -271,6 +271,15 @@
         <span>212.35.212.87,192.0.2.0/24,2001:db8::/32</span>
       </div>
     </div>
+
+    <div class="form-group">
+      <input data-ng-model="admin.node.enable_password_reset" type="checkbox" />
+      <label data-translate>Allow users to reset their password</label>
+      <div data-ng-if="admin.node.enable_password_reset">
+        <span class="label label-warning" data-translate>Warning</span>
+        <span data-translate>Allowing users to reset password may reduce the security of the platform due to security becoming dependent on the security of user's email accounts.</span>
+      </div>
+    </div>
     <div class="form-group">
       <label>
         <input data-ng-model="admin.node.enable_experimental_features" type="checkbox" />
