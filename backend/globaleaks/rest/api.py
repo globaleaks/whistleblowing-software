@@ -23,6 +23,7 @@ from globaleaks.handlers import custodian, \
                                 exception, \
                                 file, \
                                 receiver, \
+                                password_reset, \
                                 public, \
                                 submission, \
                                 rtip, wbtip, \
@@ -109,6 +110,10 @@ api_spec = [
 
     ## Email Validation Handler
     (r'/email/validation/(.+)', email_validation.EmailValidation),
+
+    ## Reset Password Handler
+    (r'/reset/password', password_reset.PasswordResetHandler),
+    (r'/reset/password/(.+)', password_reset.PasswordResetHandler),
 
     ## Admin Handlers ##
     (r'/admin/node', admin_node.NodeInstance),

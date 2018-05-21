@@ -144,7 +144,9 @@ ConfigDescriptor = {
     u'anonymize_outgoing_connections': Bool(default=True),
 
     u'ip_filter_authenticated': Unicode(default=u''),
-    u'ip_filter_authenticated_enable': Bool(default=False)
+    u'ip_filter_authenticated_enable': Bool(default=False),
+
+    u'enable_password_reset': Bool(default=False)
 }
 
 ConfigFilters = {
@@ -217,7 +219,8 @@ ConfigFilters = {
         u'https_enabled',
         u'admin_api_token_digest',
         u'ip_filter_authenticated',
-        u'ip_filter_authenticated_enable'
+        u'ip_filter_authenticated_enable',
+        u'enable_password_reset'
     ]),
     'notification': set([
         u'smtp_server',
