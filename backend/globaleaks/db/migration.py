@@ -25,7 +25,7 @@ from globaleaks.db.migrations.update_35 import Context_v_34, InternalTip_v_34, W
 from globaleaks.db.migrations.update_38 import Field_v_37, Questionnaire_v_37
 from globaleaks.db.migrations.update_39 import \
     Anomalies_v_38, ArchivedSchema_v_38, Comment_v_38, Config_v_38, ConfigL10N_v_38, \
-    Context_v_38, Counter_v_38, CustomTexts_v_38, EnabledLanguage_v_38, \
+    Context_v_38, CustomTexts_v_38, EnabledLanguage_v_38, \
     Field_v_38, FieldAnswer_v_38, FieldAnswerGroup_v_38, FieldAttr_v_38, \
     FieldOption_v_38, File_v_38, IdentityAccessRequest_v_38, \
     InternalFile_v_38, InternalTip_v_38, Mail_v_38, Message_v_38, \
@@ -50,7 +50,6 @@ migration_mapping = OrderedDict([
     ('ConfigL10N', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, ConfigL10N_v_38, 0, 0, 0, 0, models._ConfigL10N, 0, 0]),
     ('Context', [Context_v_26, 0, 0, Context_v_28, 0, Context_v_29, Context_v_30, Context_v_34, 0, 0, 0, Context_v_38, 0, 0, 0, models._Context, 0, 0]),
     ('ContextImg', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, models._ContextImg, 0, 0]),
-    ('Counter', [Counter_v_38, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, models._Counter, 0, 0]),
     ('CustomTexts', [-1, -1, -1, -1, -1, -1, -1, -1, CustomTexts_v_38, 0, 0, 0, 0, 0, 0, models._CustomTexts, 0, 0]),
     ('EnabledLanguage', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, EnabledLanguage_v_38, 0, 0, 0, 0, models._EnabledLanguage, 0, 0]),
     ('Field', [Field_v_27, 0, 0, 0, Field_v_37, 0, 0, 0, 0, 0, 0, 0, 0, 0, Field_v_38, models._Field, 0, 0]),

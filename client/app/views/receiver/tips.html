@@ -189,7 +189,7 @@
               </button>
             </span>
           </td>
-          <td class="tipID">{{ tip | tipID }}</td>
+          <td class="tipID">#{{ tip.progressive }}</td>
           <td data-ng-if="contexts.length > 1">{{::tip.context_name}}</td>
           <td>{{::tip.label}}</td>
           <td>{{::tip.creation_date | date:'dd-MM-yyyy HH:mm'}}</td>

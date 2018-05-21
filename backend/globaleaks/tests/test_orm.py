@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from globaleaks.models import Counter
+from globaleaks.models import Tenant
 from globaleaks.orm import get_session, transact
 from globaleaks.tests import helpers
 from twisted.internet.defer import inlineCallbacks
@@ -25,7 +25,7 @@ class TestORM(helpers.TestGL):
         raise Exception("antani")
 
     def db_add_config(self, session):
-        session.add(Counter({'tid': 1, 'key': 'antani', 'number': 31337}))
+        session.add(Tenant())
 
     @inlineCallbacks
     def test_pragmas(self):
@@ -37,16 +37,16 @@ class TestORM(helpers.TestGL):
 
         # now check data actually written
         session = get_session()
-        self.assertEqual(session.query(Counter).count(), 1)
+        self.assertEqual(session.query(Tenant).count(), 2)
 
     @inlineCallbacks
     def test_transaction_with_exception(self):
         session = get_session()
-        count1 = session.query(Counter).count()
+        count1 = session.query(Tenant).count()
 
         yield self.assertFailure(self._transact_with_exception(), Exception)
 
-        count2 = session.query(Counter).count()
+        count2 = session.query(Tenant).count()
 
         self.assertEqual(count1, count2)
 

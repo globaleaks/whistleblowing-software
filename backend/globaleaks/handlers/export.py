@@ -128,7 +128,7 @@ class ExportHandler(BaseHandler):
 
         self.request.setHeader('X-Download-Options', 'noopen')
         self.request.setHeader('Content-Type', 'application/octet-stream')
-        self.request.setHeader('Content-Disposition', 'attachment; filename=\"%s.zip\"' % tip_export['tip']['sequence_number'])
+        self.request.setHeader('Content-Disposition', 'attachment; filename=\"submission.zip\"')
 
         self.zip_stream = iter(ZipStream(tip_export['files']))
 
