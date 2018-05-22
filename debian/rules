@@ -4,15 +4,17 @@
 export PYBUILD_NAME=globaleaks
 export PYBUILD_DISABLE=test
 export PYBUILD_INSTALL_ARGS=--no-compile
-RELEASE := $(shell lsb_release -sr)
 
-ifeq ($(RELEASE),18.04))
+DISTRIBUTION := $(shell dpkg-parsechangelog -S Distribution)
+
+ifeq ($(DISTRIBUTION),bionic)
         PYTHON_BIN := python3
 	PYTHON_VER := python3
 else
         PYTHON_BIN := python2
 	PYTHON_VER := python2
 endif
+
 
 %:
 	dh $@ --with $(PYTHON_VER) --buildsystem=pybuild --sourcedirectory=backend/; \
