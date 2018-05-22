@@ -828,19 +828,19 @@ if echo "$DISTRO_CODENAME" | grep -vqE "^xenial$" ; then
 fi
 
 # stops globaleaks if it is running
-if ! ps aux | grep -q "[g]lobaleaks" ; then
+if ps aux | grep -q "[g]lobaleaks"; then
     DO "/etc/init.d/globaleaks stop"
 fi
 
 # align apt-get cache to up-to-date state on configured repositories
-DO "apt-get update -y"
+DO "apt-get -y update"
 
 # fix curl requirement
 if which curl >/dev/null; then
     echo " + curl requirement met"
   else
     echo " - curl requirement not met. Installing curl"
-    DO "apt-get install curl -y"
+    DO "apt-get -y install curl"
 fi
 
 # fix netstat requirement
@@ -848,7 +848,7 @@ if which netstat >/dev/null; then
     echo " + netstat requirement met"
   else
     echo " - netstat requirement not met. Installing net-tools"
-    DO "apt-get install net-tools -y"
+    DO "apt-get -y install net-tools"
 fi
 
 function is_tcp_sock_free_check {
@@ -888,10 +888,10 @@ DO "rm $TMPFILE"
 
 if echo "$DISTRO_CODENAME" | grep -qE "^(wheezy)$"; then
   echo "Installing python-software-properties"
-  DO "apt-get install python-software-properties -y"
+  DO "apt-get -y install python-software-properties"
 else
   echo "Installing software-properties-common"
-  DO "apt-get install software-properties-common -y"
+  DO "apt-get -y install software-properties-common"
 fi
 
 # try adding universe repo only on Ubuntu
@@ -899,16 +899,14 @@ if echo "$DISTRO" | grep -qE "^(Ubuntu)$"; then
 
   if ! grep -q "^deb .*universe" /etc/apt/sources.list /etc/apt/sources.list.d/*; then
     echo "Adding Ubuntu Universe repository"
-    DO "add-apt-repository 'deb http://archive.ubuntu.com/ubuntu $DISTRO_CODENAME universe'"
+    DO "add-apt-repository -y 'deb http://archive.ubuntu.com/ubuntu $DISTRO_CODENAME universe'"
   fi
 fi
 
-if echo "$DISTRO_CODENAME" | grep -vq "^xenial$" ; then
-  DO  "add-apt-repository ppa:certbot/certbot"
-  DO "apt-get update"
-  DO "apt-get install certbot"
-elif echo "$DISTRO_CODENAME" | grep -vq "^stretch$" ; then
-  DO  "add-apt-repository 'deb http://ftp.debian.org/debian/ stretch-backports main'"
+if ! echo "$REAL_DISTRO_CODENAME" | grep -vq "^xenial$" ; then
+  DO  "add-apt-repository -y ppa:certbot/certbot"
+elif ! echo "$REAL_DISTRO_CODENAME" | grep -vq "^stretch$" ; then
+  DO  "add-apt-repository -y 'deb http://ftp.debian.org/debian/ stretch-backports main'"
 fi
 
 
@@ -925,15 +923,15 @@ if ! grep -q "^deb .*torproject" /etc/apt/sources.list /etc/apt/sources.list.d/*
 fi
 
 if [ -d /globaleaks/deb ]; then
-  DO "apt-get update -y"
-  DO "apt-get install dpkg-dev -y"
+  DO "apt-get -y update"
+  DO "apt-get -y install dpkg-dev"
   echo "Installing from locally provided debian package"
   cd /globaleaks/deb/ && dpkg-scanpackages . /dev/null | gzip -c -9 > /globaleaks/deb/Packages.gz
   if [ ! -f /etc/apt/sources.list.d/globaleaks.local.list ]; then
     echo "deb file:///globaleaks/deb/ /" >> /etc/apt/sources.list.d/globaleaks.local.list
   fi
-  DO "apt-get update -y"
-  DO "apt-get install globaleaks -y --allow-unauthenticated"
+  DO "apt-get -y update"
+  DO "apt-get -y install globaleaks --allow-unauthenticated"
 else
   if ! grep -q "deb.globaleaks" /etc/apt/sources.list.d/globaleaks.list; then
     if [ $EXPERIMENTAL -eq 0 ]; then
@@ -942,8 +940,8 @@ else
       echo "deb http://deb.globaleaks.org unstable/" > /etc/apt/sources.list.d/globaleaks.list
     fi
   fi
-  DO "apt-get update -y"
-  DO "apt-get install globaleaks -y"
+  DO "apt-get -y update"
+  DO "apt-get -y install globaleaks"
 fi
 
 # Set the script to its success condition
