@@ -10,6 +10,7 @@ profile usr.bin.globaleaks flags=(attach_disconnected) {
     capability fowner,
     capability chown,
     capability dac_override,
+    capability dac_read_search,
     capability sys_tty_config,
 
     /etc/lsb-release r,
