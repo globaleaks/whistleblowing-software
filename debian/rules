@@ -5,7 +5,7 @@ export PYBUILD_NAME=globaleaks
 export PYBUILD_DISABLE=test
 export PYBUILD_INSTALL_ARGS=--no-compile
 
-DISTRIBUTION := $(shell dpkg-parsechangelog -S Distribution)
+DISTRIBUTION := $(shell head -n1  debian/changelog | cut -d ' ' -f3 | cut -d ';' -f1)
 
 ifeq ($(DISTRIBUTION),bionic)
         PYTHON_BIN := python3
