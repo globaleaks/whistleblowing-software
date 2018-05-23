@@ -7,8 +7,6 @@ from six.moves import urllib
 import OpenSSL
 from OpenSSL.crypto import FILETYPE_PEM, load_certificate, dump_certificate
 
-# this import seems unused but it is required in order to load the mocks
-from globaleaks.mocks import acme_mocks # pylint: disable=W0611
 from globaleaks.utils.utility import log
 
 from acme import messages,challenges, client, messages, crypto_util
