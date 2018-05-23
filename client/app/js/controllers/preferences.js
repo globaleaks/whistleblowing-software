@@ -41,7 +41,7 @@ GLClient.controller('PreferencesCtrl', ['$scope', '$q', '$rootScope', 'Utils', '
     };
 }]);
 
-GLClient.controller('EmailValidationCtrl', ['$scope',
-  function($scope) {
+GLClient.controller('EmailValidationCtrl', [
+  function() {
 
 }]);
