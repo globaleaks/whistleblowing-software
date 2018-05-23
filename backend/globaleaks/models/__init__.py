@@ -889,6 +889,7 @@ class _Signup(Model):
     organization_number_users = Column(UnicodeText, default=u'', nullable=False)
     activation_token = Column(UnicodeText, nullable=False)
     registration_date = Column(DateTime, default=datetime_now, nullable=False)
+    tos = Column(UnicodeText, default=u'', nullable=False)
 
     unicode_keys = ['subdomain', 'language', 'name', 'surname', 'role', 'email', 'secondary_email', 'phone',
                     'use_case', 'use_case_other',
