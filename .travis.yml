@@ -94,15 +94,6 @@ matrix:
     - env: GLTEST='end2end-10' BROWSER='iphone 8.0'
     - env: GLTEST='end2end-11' BROWSER='iphone 11.0'
 
-before_install:
-  - nvm install 6.11
-  - nvm use 6.11
-  - export CHROME_BIN=/usr/bin/google-chrome
-  - export DISPLAY=:99.0
-  - sudo apt-get install -y libappindicator1 fonts-liberation
-  - wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-  - sudo dpkg -i google-chrome*.deb
-  - /sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -ac -screen 0 1280x1024x16
 install: true
 script:
   - $TRAVIS_BUILD_DIR/scripts/travis.sh
