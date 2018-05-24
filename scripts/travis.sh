@@ -3,7 +3,7 @@
 set -e
 
 if [ -z "$GLREQUIREMENTS" ]; then
-  GLREQUIREMENTS="trusty"
+  GLREQUIREMENTS="xenial"
 fi
 
 TRAVIS_USR="travis-$(git rev-parse --short HEAD)"
@@ -97,7 +97,7 @@ elif [ "$GLTEST" = "build_and_install" ]; then
   trap atexit EXIT
 
   echo "Running Build & Install and BrowserTesting tests"
-  # we build all packages to test build for each distributions and then we test against trusty
+  # we build all packages to test build for each distributions and then we test against xenial
   sudo apt-get update -y
   sudo apt-get install -y debhelper devscripts dh-apparmor dh-python python python-pip python-setuptools python-sphinx
   curl -sL https://deb.nodesource.com/setup | sudo bash -
@@ -106,8 +106,8 @@ elif [ "$GLTEST" = "build_and_install" ]; then
   sed -ie 's/key_bits = 2048/key_bits = 512/g' backend/globaleaks/settings.py
   sed -ie 's/csr_sign_bits = 512/csr_sign_bits = 256/g' backend/globaleaks/settings.py
   rm debian/control backend/requirements.txt
-  cp debian/controlX/control.trusty debian/control
-  cp backend/requirements/requirements-trusty.txt backend/requirements.txt
+  cp debian/controlX/control.xenial debian/control
+  cp backend/requirements/requirements-xenial.txt backend/requirements.txt
   cd client
   npm install grunt-cli
   npm install
@@ -117,11 +117,6 @@ elif [ "$GLTEST" = "build_and_install" ]; then
   sudo mkdir -p /globaleaks/deb/
   sudo cp ../globaleaks*deb /globaleaks/deb/
   sudo ./scripts/install.sh --assume-yes --test
-  setupClientDependencies
-  cd $TRAVIS_BUILD_DIR/client
-
-  node_modules/protractor/bin/webdriver-manager update --gecko=false
-  node_modules/protractor/bin/protractor tests/end2end/protractor.config.js
 
 elif [[ $GLTEST =~ ^end2end-.* ]]; then
 
@@ -154,5 +149,4 @@ elif [[ $GLTEST =~ ^end2end-.* ]]; then
   sleep 5
   cd $TRAVIS_BUILD_DIR/client
   node_modules/protractor/bin/protractor tests/end2end/protractor-sauce.config.js
-
 fi
