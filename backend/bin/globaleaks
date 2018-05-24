@@ -29,15 +29,6 @@ if platform.system() == 'Linux':
         print("WARNING: Read about Technical Requirements at: https://docs.globaleaks.org/en/latest/TechnicalRequirements.html")
         print("WARNING: If it's an old Ubuntu, read more about updating at: https://docs.globaleaks.org/en/latest/UpgradeGuide.html")
 
-        if distro in ('precise', 'trusty', 'wheezy', 'jessie'):
-            from globaleaks.utils.pip_utils import pip_version_check
-
-            requirements_path = os.path.join(root, 'requirements.txt')
-            if not os.path.exists(requirements_path):
-                requirements_path = '/usr/share/globaleaks/requirements.txt'
-
-            pip_version_check(requirements_path)
-
 elif platform.system() == 'Windows':
     print("WARNING: Windows support is extremely experimental at this time, and should not be used for production environments")
 

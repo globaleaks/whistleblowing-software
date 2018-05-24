@@ -59,11 +59,7 @@ fi
 echo "GlobaLeaks Setup Development Environment Script"
 
 echo "Step 1/8: add universe repository"
-if [ "$DISTRO_CODENAME" = "precise" ]; then
-  sudo apt-get install python-software-properties -y
-else
-  sudo apt-get install software-properties-common
-fi
+sudo apt-get install software-properties-common
 sudo add-apt-repository universe
 
 echo "Step 2/8: update"
