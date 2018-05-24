@@ -2,7 +2,7 @@
 
 set -e
 
-DISTRIBUTION="trusty"
+DISTRIBUTION="xenial"
 TAG="master"
 NOSIGN=0
 
@@ -12,13 +12,13 @@ usage() {
   echo " -h"
   echo -e " -t tagname (build specific release/branch)"
   echo -e " -l (Use local repository & enviroment)"
-  echo -e " -d distribution (available: bionic, trusty, xenial, wheezy, jessie, stretch)"
+  echo -e " -d distribution (available: bionic, xenial, jessie, stretch)"
   echo -e " -n (do not sign)"
   echo -e " -p (push on repository)"
 }
 
-TARGETS="trusty xenial wheezy jessie stretch bionic"
-DISTRIBUTION="trusty"
+TARGETS="xenial stretch bionic"
+DISTRIBUTION="xenial"
 TAG="master"
 LOCAL_ENV=0
 NOSIGN=0
