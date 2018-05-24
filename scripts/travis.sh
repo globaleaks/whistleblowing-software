@@ -8,6 +8,15 @@ fi
 
 TRAVIS_USR="travis-$(git rev-parse --short HEAD)"
 
+setupChrome() {
+  export CHROME_BIN=/usr/bin/google-chrome
+  export DISPLAY=:99.0
+  sudo apt-get install -y libappindicator1 fonts-liberation
+  wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+  sudo dpkg -i google-chrome*.deb
+  /sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -ac -screen 0 1280x1024x16
+}
+
 setupClientDependencies() {
   cd $TRAVIS_BUILD_DIR/client  # to install frontend dependencies
   npm install
@@ -39,6 +48,8 @@ sudo iptables -t nat -A OUTPUT -o lo -p tcp --dport 9000 -j REDIRECT --to-port 8
 npm install -g grunt grunt-cli
 
 if [ "$GLTEST" = "test" ] || [ "$GLTEST" = "py3_test" ]; then
+  setupChrome
+
   pip install coveralls==1.0b1
   sudo apt-get install -y python-coverage tor
 
@@ -119,8 +130,9 @@ elif [ "$GLTEST" = "build_and_install" ]; then
   sudo ./scripts/install.sh --assume-yes --test
 
 elif [[ $GLTEST =~ ^end2end-.* ]]; then
-
   echo "Running Browsertesting on Saucelabs"
+
+  setupChrome
 
   declare -a capabilities=(
     "export SELENIUM_BROWSER_CAPABILITIES='{\"browserName\":\"MicrosoftEdge\", \"version\":\"16.16299\", \"platform\":\"Windows 10\", \"maxDuration\":\"7200\", \"commandTimeout\":\"600\", \"idleTimeout\":\"270\"}'"
