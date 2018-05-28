@@ -17,18 +17,18 @@ class ValidationException(Exception):
 def load_dh_params_from_string(ctx, dh_params_string):
     bio = _new_mem_buf()
 
-    _lib.BIO_write(bio, dh_params_string.encode('ascii'), len(dh_params_string.encode('ascii')))
-    dh = _lib.PEM_read_bio_DHparams(bio, _ffi.NULL, _ffi.NULL, _ffi.NULL)
-    dh = _ffi.gc(dh, _lib.DH_free)
-    _lib.SSL_CTX_set_tmp_dh(ctx._context, dh)
+    _lib.BIO_write(bio, dh_params_string.encode('ascii'), len(dh_params_string.encode('ascii'))) # pylint: disable=no-member
+    dh = _lib.PEM_read_bio_DHparams(bio, _ffi.NULL, _ffi.NULL, _ffi.NULL) # pylint: disable=no-member
+    dh = _ffi.gc(dh, _lib.DH_free) # pylint: disable=no-member
+    _lib.SSL_CTX_set_tmp_dh(ctx._context, dh) # pylint: disable=no-member
 
 
 def gen_dh_params(bits):
-    dh = _lib.DH_new()
-    _lib.DH_generate_parameters_ex(dh, bits, 2, _ffi.NULL)
+    dh = _lib.DH_new() # pylint: disable=no-member
+    _lib.DH_generate_parameters_ex(dh, bits, 2, _ffi.NULL) # pylint: disable=no-member
 
     bio = _new_mem_buf()
-    _lib.PEM_write_bio_DHparams(bio, dh)
+    _lib.PEM_write_bio_DHparams(bio, dh) # pylint: disable=no-member
     return _bio_to_string(bio)
 
 
@@ -177,9 +177,9 @@ class TLSServerContextFactory(ssl.ContextFactory):
 
         load_dh_params_from_string(self.ctx, dh)
 
-        ecdh = _lib.EC_KEY_new_by_curve_name(_lib.NID_X9_62_prime256v1)
-        ecdh = _ffi.gc(ecdh, _lib.EC_KEY_free)
-        _lib.SSL_CTX_set_tmp_ecdh(self.ctx._context, ecdh)
+        ecdh = _lib.EC_KEY_new_by_curve_name(_lib.NID_X9_62_prime256v1) # pylint: disable=no-member
+        ecdh = _ffi.gc(ecdh, _lib.EC_KEY_free) # pylint: disable=no-member
+        _lib.SSL_CTX_set_tmp_ecdh(self.ctx._context, ecdh) # pylint: disable=no-member
 
     def getContext(self):
         return self.ctx
