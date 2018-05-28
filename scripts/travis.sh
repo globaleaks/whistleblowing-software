@@ -2,8 +2,12 @@
 
 set -e
 
-if [ -z "$GLREQUIREMENTS" ]; then
-  GLREQUIREMENTS="xenial"
+if [ -z "$TESTS_REQUIREMENTS" ]; then
+  TESTS_REQUIREMENTS="bionic"
+fi
+
+if [ -z "$BUILD_DISTRO" ]; then
+  BUILD_DISTRO="bionic"
 fi
 
 TRAVIS_USR="travis-$(git rev-parse --short HEAD)"
@@ -33,7 +37,7 @@ setupBackendDependencies() {
     # Installs Py3 stuff unconditionally while we're trying to bring this up
     ln -s requirements/requirements-py3dev.txt requirements.txt
   else
-    ln -s requirements/requirements-${GLREQUIREMENTS}.txt requirements.txt
+    ln -s requirements/requirements-${TESTS_REQUIREMENTS}.txt requirements.txt
   fi
   pip install -r requirements.txt
 }
@@ -107,27 +111,51 @@ elif [ "$GLTEST" = "build_and_install" ]; then
 
   trap atexit EXIT
 
-  echo "Running Build & Install and BrowserTesting tests"
-  # we build all packages to test build for each distributions and then we test against xenial
-  sudo apt-get update -y
-  sudo apt-get install -y debhelper devscripts dh-apparmor dh-python python python-pip python-setuptools python-sphinx
-  curl -sL https://deb.nodesource.com/setup | sudo bash -
-  sudo apt-get install -y nodejs
-  cd $TRAVIS_BUILD_DIR
-  sed -ie 's/key_bits = 2048/key_bits = 512/g' backend/globaleaks/settings.py
-  sed -ie 's/csr_sign_bits = 512/csr_sign_bits = 256/g' backend/globaleaks/settings.py
-  rm debian/control backend/requirements.txt
-  cp debian/controlX/control.xenial debian/control
-  cp backend/requirements/requirements-xenial.txt backend/requirements.txt
-  cd client
-  npm install grunt-cli
-  npm install
-  grunt build
-  cd ..
-  debuild -i -us -uc -b
-  sudo mkdir -p /globaleaks/deb/
-  sudo cp ../globaleaks*deb /globaleaks/deb/
-  sudo ./scripts/install.sh --assume-yes --test
+  export chroot="/tmp/globaleaks_chroot/"
+  mkdir -p "$chroot/build"
+  sudo cp -R $TRAVIS_BUILD_DIR/ "$chroot/build"
+  sudo apt-get update
+  sudo apt-get install -y debootstrap
+  export LC_ALL=en_US.utf8
+
+  if [ $BUILD_DISTRO = "bionic" ]; then
+    sudo debootstrap --arch=amd64 bionic "$chroot" http://archive.ubuntu.com/ubuntu/
+    sudo su -c 'echo "deb http://archive.ubuntu.com/ubuntu bionic main universe" > /tmp/globaleaks_chroot/etc/apt/sources.list'
+    sudo su -c 'echo "deb http://archive.ubuntu.com/ubuntu bionic-updates main universe" >> /tmp/globaleaks_chroot/etc/apt/sources.list'
+  elif [ $BUILD_DISTRO = "xenial" ]; then
+    sudo debootstrap --arch=amd64 xenial "$chroot" http://archive.ubuntu.com/ubuntu/
+    sudo su -c 'echo "deb http://archive.ubuntu.com/ubuntu xenial main universe" > /tmp/globaleaks_chroot/etc/apt/sources.list'
+    sudo su -c 'echo "deb http://archive.ubuntu.com/ubuntu xenial-updates main universe" >> /tmp/globaleaks_chroot/etc/apt/sources.list'
+  elif [ $BUILD_DISTRO = "stretch" ]; then
+    sudo debootstrap --arch=amd64 stretch "$chroot" http://deb.debian.org/debian/
+    sudo su -c 'echo "deb http://deb.debian.org/debian stretch main contrib" > /tmp/globaleaks_chroot/etc/apt/sources.list'
+    sudo su -c 'echo "deb http://deb.debian.org/debian stretch main contrib" >> /tmp/globaleaks_chroot/etc/apt/sources.list'
+  fi
+
+
+  if [ $BUILD_DISTRO = "bionic" ] || [ $BUILD_DISTRO = "xenial" ]; then
+    sudo mount --rbind /dev/pts "$chroot/dev/pts"
+  fi
+
+  if [ $BUILD_DISTRO = "xenial" ]; then
+    sudo mount --rbind /dev/shm "$chroot/dev/shm"
+  fi
+
+  sudo mount --rbind /proc "$chroot/proc"
+  sudo mount --rbind /sys "$chroot/sys"
+
+  sudo chroot "$chroot" apt-get update -y
+  sudo chroot "$chroot" apt-get upgrade -y
+
+  sudo chroot "$chroot" apt-get install -y lsb-release locales sudo
+
+  sudo su -c 'echo "en_US.UTF-8 UTF-8" >> /tmp/globaleaks_chroot/etc/locale.gen'
+  sudo chroot "$chroot" locale-gen
+
+  sudo chroot "$chroot" useradd -m builduser
+  sudo su -c 'echo "builduser ALL=NOPASSWD: ALL" >> "$chroot"/etc/sudoers'
+  sudo chroot "$chroot" chown builduser -R /build
+  sudo chroot "$chroot" su - builduser /bin/bash -c '/build/GlobaLeaks/scripts/build_and_install.sh'
 
 elif [[ $GLTEST =~ ^end2end-.* ]]; then
   echo "Running Browsertesting on Saucelabs"
