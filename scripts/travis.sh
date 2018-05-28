@@ -51,7 +51,7 @@ sudo iptables -t nat -A OUTPUT -o lo -p tcp --dport 9000 -j REDIRECT --to-port 8
 
 npm install -g grunt grunt-cli
 
-if [ "$GLTEST" = "test" ] || [ "$GLTEST" = "py3_test" ]; then
+if [ "$GLTEST" = "py2_test" ] || [ "$GLTEST" = "py3_test" ]; then
   setupChrome
 
   pip install coveralls==1.0b1
@@ -87,10 +87,12 @@ if [ "$GLTEST" = "test" ] || [ "$GLTEST" = "py3_test" ]; then
 
   cd $TRAVIS_BUILD_DIR/backend
 
-  coveralls --merge=../client/coverage/coveralls.json
+  if [ -n "COVERALLS" ]; then
+    coveralls --merge=../client/coverage/coveralls.json
+  fi
 
 elif [ "$GLTEST" = "lint" ]; then
-  pip install pylint==1.6.5
+  pip install pylint
 
   setupDependencies
 
