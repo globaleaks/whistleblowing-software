@@ -828,7 +828,7 @@ if echo "$DISTRO_CODENAME" | grep -vqE "^xenial$" ; then
 fi
 
 # stops globaleaks if it is running
-if ps aux | grep -q "[g]lobaleaks"; then
+if ! ps aux | grep -q "[g]lobaleaks"; then
     DO "/etc/init.d/globaleaks stop"
 fi
 
@@ -902,13 +902,6 @@ if echo "$DISTRO" | grep -qE "^(Ubuntu)$"; then
     DO "add-apt-repository -y 'deb http://archive.ubuntu.com/ubuntu $DISTRO_CODENAME universe'"
   fi
 fi
-
-if ! echo "$REAL_DISTRO_CODENAME" | grep -vq "^xenial$" ; then
-  DO  "add-apt-repository -y ppa:certbot/certbot"
-elif ! echo "$REAL_DISTRO_CODENAME" | grep -vq "^stretch$" ; then
-  DO  "add-apt-repository -y 'deb http://ftp.debian.org/debian/ stretch-backports main'"
-fi
-
 
 # Add Tor repository and its key
 echo "Adding Tor PGP key to trusted APT"
