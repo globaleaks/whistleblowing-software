@@ -4,6 +4,7 @@
 #   *****
 # Implementation of the code executed on handler /admin/steps
 #
+from six import text_type
 
 from globaleaks import models
 from globaleaks.handlers.admin.field import db_create_field, db_update_field
@@ -125,7 +126,7 @@ class StepCollection(OperationHandler):
                 order_elements,
                 {
                   'questionnaire_id': requests.uuid_regexp,
-                  'ids': [unicode],
+                  'ids': [text_type],
                 }
             )
         }
