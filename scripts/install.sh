@@ -331,6 +331,17 @@ do
   sleep 1
 done
 
+dpkg -l
+do_start
+netstat -nat
+pstree
+sleep 15
+netstat -nat
+pstree
+sleep 15
+ls -al /var
+ls -al /var/globaleaks
+
 #ERROR
 echo "Ouch! The installation is complete but GlobaLeaks failed to start."
 last_status "1"
