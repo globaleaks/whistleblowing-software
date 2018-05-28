@@ -66,7 +66,7 @@ echo "Step 2/8: update"
 sudo apt-get update
 
 echo "Step 3/8: apt-get install"
-sudo apt-get install build-essential curl git python-pip libssl-dev libffi-dev python-virtualenv python-dev
+sudo apt-get install build-essential curl git python-pip libssl-dev libffi-dev python-virtualenv python-dev python-sphinx
 
 echo "Step 4/8: git clone"
 git clone https://github.com/globaleaks/GlobaLeaks.git
@@ -75,7 +75,7 @@ if [ "$TAG" != "master"]; then
 fi
 
 echo "Step 5/8: install npm and node"
-curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
+curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
 sudo apt-get install -y nodejs
 
 echo "Step 6/8: install grunt"
