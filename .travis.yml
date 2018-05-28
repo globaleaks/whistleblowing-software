@@ -87,6 +87,7 @@ matrix:
         sauce_connect: true
 
   allow_failures:
+    - env: GLTEST='build_and_install' BUILD_DISTRO='bionic'
     - env: GLTEST='end2end-0' BROWSER='edge 15'
     - env: GLTEST='end2end-1' BROWSER='ie 11'
     - env: GLTEST='end2end-2' BROWSER='firefox 34'
