@@ -70,8 +70,8 @@ def run_acme_reg_to_finish(domain, accnt_key, priv_key, hostname, tmp_chall_dict
 
     # authrz is a list of Authorization resources, we need to find the
     # HTTP-01 challenge and use it
-    for auth_req in authzr:
-        for chall_body in auth_req.body.challenges:
+    for auth_req in authzr: # pylint: disable=not-an-iterable
+       for chall_body in auth_req.body.challenges:
             if isinstance(chall_body.chall, challenges.HTTP01):
                 challb = chall_body
                 break

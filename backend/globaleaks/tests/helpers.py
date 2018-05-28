@@ -7,8 +7,8 @@ import sys
 
 # Py3 Compat fix
 if sys.version[0] == '2':
-    reload(sys)
-    sys.setdefaultencoding('utf8')
+    reload(sys) # pylint: disable=undefined-variable
+    sys.setdefaultencoding('utf8') # pylint: disable=no-member
 
 # pylint: disable=no-name-in-module
 from distutils import dir_util
