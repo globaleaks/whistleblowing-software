@@ -923,18 +923,8 @@ if [ -d /globaleaks/deb ]; then
   if [ ! -f /etc/apt/sources.list.d/globaleaks.local.list ]; then
     echo "deb file:///globaleaks/deb/ /" >> /etc/apt/sources.list.d/globaleaks.local.list
   fi
-  DO "apt-get -y update"
-  DO "apt-get -y install globaleaks --allow-unauthenticated"
-else
-  if ! grep -q "deb.globaleaks" /etc/apt/sources.list.d/globaleaks.list; then
-    if [ $EXPERIMENTAL -eq 0 ]; then
-      echo "deb http://deb.globaleaks.org $DISTRO_CODENAME/" > /etc/apt/sources.list.d/globaleaks.list
-    else
-      echo "deb http://deb.globaleaks.org unstable/" > /etc/apt/sources.list.d/globaleaks.list
-    fi
-  fi
-  DO "apt-get -y update"
-  DO "apt-get -y install globaleaks"
+  DO "sudo apt -o Acquire::AllowInsecureRepositories=true -o Acquire::AllowDowngradeToInsecureRepositories=true update"
+  DO "apt-get -y --allow-unauthenticated install globaleaks"
 fi
 
 # Set the script to its success condition
