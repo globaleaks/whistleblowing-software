@@ -1,0 +1,2362 @@
+# 
+# Translators:
+# Aesthese, 2016
+# Bo Elkjaer <eboe@dr.dk>, 2018
+# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2018
+msgid ""
+msgstr ""
+"Project-Id-Version: GlobaLeaks\n"
+"PO-Revision-Date: 2018-05-29 14:14+0000\n"
+"Last-Translator: Hermes Center <info@hermescenter.org>\n"
+"Language-Team: Danish (http://www.transifex.com/otf/globaleaks/language/da/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: da\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "Login page"
+msgstr "Login-side"
+
+msgid "Log in"
+msgstr "Log ind"
+
+msgid "Administration interface"
+msgstr "Administrationsbrugerflade"
+
+msgid "Main configuration"
+msgstr "Primær konfiguration"
+
+msgid "Theme customization"
+msgstr "Tematilpasning"
+
+msgid "Languages"
+msgstr "Sprog"
+
+msgid "Text customization"
+msgstr "Teksttilpasning"
+
+msgid "Advanced settings"
+msgstr "Avancerede indstillinger"
+
+msgid "Questionnaire configuration"
+msgstr "Konfiguration af spørgeskema"
+
+msgid "Question templates"
+msgstr "Spørgsmålsskabeloner"
+
+msgid "Questionnaires"
+msgstr "Spørgeskemaer"
+
+msgid "Add new questionnaire"
+msgstr "Tilføj nyt spørgeskema"
+
+msgid "Home"
+msgstr "Hjem"
+
+msgid "Home page"
+msgstr "Hjemmeside"
+
+msgid "Changelog"
+msgstr "Log over ændringer"
+
+msgid "License"
+msgstr "Licens"
+
+msgid "Notification templates"
+msgstr "Notifikationsskabeloner"
+
+msgid "Recipient notification templates"
+msgstr "Modtager-notifikationsskabeloner"
+
+msgid "Admin notification templates"
+msgstr "Administrator-notifikationsskabeloner"
+
+msgid "Missing data"
+msgstr "Manglende data"
+
+msgid "no stats available for the future."
+msgstr "ingen statistik tilgængelig for fremtiden."
+
+msgid "no stats available for this hour."
+msgstr "ingen statistik tilgængelig for denne time."
+
+msgid "no stats available for current hour; check activities page."
+msgstr "ingen statistik tilgængelig for nuværende time; tjek aktivitetssiden."
+
+msgid "Delete"
+msgstr "Slet"
+
+msgid "Anomalies"
+msgstr "Uregelmæssigheder"
+
+msgid "Preferences"
+msgstr "Præferencer"
+
+msgid "Recipient interface"
+msgstr "Modtagerbrugerflade"
+
+msgid "Notification settings"
+msgstr "Notifikationsindstillinger"
+
+msgid "This recipient has configured the encryption key."
+msgstr "Denne modtager har konfigureret krypteringsnøglen."
+
+msgid "This recipient has not configured the encryption key."
+msgstr "Denne modtager har ikke konfigureret krypteringsnøglen."
+
+msgid "The file is unavailable due to an internal error."
+msgstr "Denne fil er utilgængelig grundet en intern fejl."
+
+msgid "file unavailable"
+msgstr "fil utilgængelig"
+
+msgid "Creation date"
+msgstr "Oprettelsesdato"
+
+msgid "Expiration date"
+msgstr "Udløbsdato"
+
+msgid "Last Access"
+msgstr "Sidste Adgang"
+
+msgid "Files"
+msgstr "Filer"
+
+msgid "Comments"
+msgstr "Kommentarer"
+
+msgid "Messages"
+msgstr "Beskeder"
+
+msgid "Select this recipient."
+msgstr "Vælg denne modtager."
+
+msgid "Unselect this recipient."
+msgstr "Fravælg denne modtager."
+
+msgid "This recipient cannot be selected."
+msgstr "Denne modtager kan ikke vælges."
+
+msgid "This recipient cannot be deselected."
+msgstr "Denne modtager kan ikke fravælges."
+
+msgid "Details"
+msgstr "Detaljer"
+
+msgid "Platform wizard"
+msgstr "Platformsguide"
+
+msgid "Step-by-step setup"
+msgstr "Trin-for-trin opsætning"
+
+msgid "CREDIT CARD"
+msgstr "KREDITKORT"
+
+msgid "YOUR NAME"
+msgstr "DIT NAVN"
+
+msgid "Postpone the expiration date"
+msgstr "Udsæt udløbsdatoen"
+
+msgid "Select all"
+msgstr "Vælg alle"
+
+msgid "Deselect all"
+msgstr "Fravælg alle"
+
+msgid "Refresh page"
+msgstr "Opdater side"
+
+msgid "Context"
+msgstr "Kontekst"
+
+msgid "Submission date"
+msgstr "Indsendelsesdato"
+
+msgid "Private messages"
+msgstr "Private beskeder"
+
+msgid "Preview"
+msgstr "Forhåndsvisning"
+
+msgid "Move up"
+msgstr "Flyt op"
+
+msgid "Move down"
+msgstr "Flyt ned"
+
+msgid "Move left"
+msgstr "Flyt til venstre"
+
+msgid "Move right"
+msgstr "Flyt til højre"
+
+msgid "Import"
+msgstr "Importer"
+
+msgid "Export"
+msgstr "Eksporter"
+
+msgid "Save all"
+msgstr "Gem alle"
+
+msgid ""
+"The connection used to send this submission has been secured with HTTPS "
+"ensuring confidentiality."
+msgstr "Den forbindelse der er anvendt til at sende denne indsendelse er sikret med HTTPS, hvilket forsikrer fortrolighed."
+
+msgid ""
+"The connection used to send this submission has been secured with Tor "
+"ensuring confidentiality and anonymity."
+msgstr "Den forbindelse der er anvendt til at sende denne indsendelse er sikret med Tor, hvilket sikrer fortrolighed og anonymitet."
+
+msgid "vertical"
+msgstr "vertikal"
+
+msgid "horizontal"
+msgstr "horisontal"
+
+msgid "Number"
+msgstr "Nummer"
+
+msgid "Email"
+msgstr "E-mail"
+
+msgid "Date"
+msgstr "Dato"
+
+msgid "Regular expression validator"
+msgstr "Regulært udtryk validator"
+
+msgid "Minimum number of input characters"
+msgstr "Minimum antal indtastede tegn"
+
+msgid "Maximum number of input characters"
+msgstr "Maksimum antal indtastede tegn"
+
+msgid "Earliest selectable date"
+msgstr "Tidligst tilgængelige dato"
+
+msgid "Latest selectable date"
+msgstr "Senest tilgængelige dato"
+
+msgid "0 = auto"
+msgstr "0 = auto"
+
+msgid "-1 = unlimited"
+msgstr "-1 = ubegrænset"
+
+msgid "True"
+msgstr "Sandt"
+
+msgid "False"
+msgstr "Falsk"
+
+msgid "Yes"
+msgstr "Ja"
+
+msgid "No"
+msgstr "Nej"
+
+msgid "Attachment"
+msgstr "Vedhæftelse"
+
+msgid "Attachments"
+msgstr "Vedhæftelser"
+
+msgid "Change your password"
+msgstr "Skift dit password"
+
+msgid "List of submissions"
+msgstr "Liste over indsendelser"
+
+msgid "List of access requests to whistleblowers' identities"
+msgstr "Liste over adgangsforespørgsler til whistleblowers identiteter"
+
+msgid "User"
+msgstr "Bruger"
+
+msgid "Motivation"
+msgstr "Begrundelse"
+
+msgid "Status"
+msgstr "Status"
+
+msgid "Request motivation"
+msgstr "Anmod om begrundelse"
+
+msgid "Reply motivation"
+msgstr "Besvar begrundelse"
+
+msgid "Request status"
+msgstr "Status for anmodning"
+
+msgid "Custodian"
+msgstr "Ansvarshaver"
+
+msgid "Custodian of the identities"
+msgstr "Den ansvarlige for identiteterne"
+
+msgid "Identity"
+msgstr "Identitet"
+
+msgid "Available"
+msgstr "Tilgængelig"
+
+msgid "Not available"
+msgstr "Ikke tilgængelig"
+
+msgid "Access requested"
+msgstr "Anmodning om adgang"
+
+msgid "Request access to the whistleblower's identity"
+msgstr "Anmod om adgang til whistleblowerens identitet"
+
+msgid "Please write a motivation"
+msgstr "Skriv venligst en begrundelse"
+
+msgid "Reply to the request"
+msgstr "Svar på forespørgslen"
+
+msgid "Authorized"
+msgstr "Godkendt"
+
+msgid "Denied"
+msgstr "Afvist"
+
+msgid "Waiting for authorization"
+msgstr "Afventer godkendelse"
+
+msgid "New request"
+msgstr "Ny forespørgsel"
+
+msgid "Authorize"
+msgstr "Godkend"
+
+msgid "Deny"
+msgstr "Afvis"
+
+msgid "Deny access to the whistleblower's identity"
+msgstr "Afvis adgang til whistleblowerens identitet"
+
+msgid "Authorize access to the whistleblower's identity"
+msgstr "Godkend adgang til whistleblowerens identitet"
+
+msgid "Templates"
+msgstr "Skabeloner"
+
+msgid "Notification of new submission"
+msgstr "Notifikation om nyt materiale"
+
+msgid "Notification of new comment"
+msgstr "Notifikation om ny kommentar"
+
+msgid "Notification of new message"
+msgstr "Notifikation om ny besked"
+
+msgid "Notification of new file attachment"
+msgstr "Notifikation om ny vedhæftelse af fil"
+
+msgid "Notification of PGP key expiration"
+msgstr "Notifikation om udløb af PGP-nøgle"
+
+msgid "Notification of anomaly"
+msgstr "Notifikation om afvigelse"
+
+msgid "Template for summary of contents in submission archive"
+msgstr "Skabelon for indholdsoversigt i materialearkiv"
+
+msgid "Email subject"
+msgstr "Mail emnelinje"
+
+msgid "Email body"
+msgstr "Mail indhold"
+
+msgid "in seconds"
+msgstr "I sekunder"
+
+msgid "in hours"
+msgstr "I timer"
+
+msgid "in days"
+msgstr "I dage"
+
+msgid "in characters"
+msgstr "I karakterer"
+
+msgid "in megabytes"
+msgstr "I megabyte"
+
+msgid "in percentage"
+msgstr "I procent"
+
+msgid "HTTPS settings"
+msgstr "HTTPS indstillinger"
+
+msgid "Anomaly detection thresholds"
+msgstr "Grænseværdier for sporing af afvigelser"
+
+msgid "High risk"
+msgstr "Høj risiko"
+
+msgid "Medium risk"
+msgstr "Medium risiko"
+
+msgid "Low risk"
+msgstr "Lav risiko"
+
+msgid "Available disk space"
+msgstr "Tilgængelig plads på harddisk"
+
+msgid "Last update"
+msgstr "Seneste opdatering"
+
+msgid "Custodian notification templates"
+msgstr "Skabeloner til notifikation af kontoindehaver"
+
+msgid ""
+"This interface allows configuring email templates used to notify custodians."
+msgstr "Dette interface gør det muligt at konfigurere e-mail-skabeloner til underretning af kontoindehavere."
+
+msgid "Disable notifications to administrators"
+msgstr "Deaktiver notifikation af administratorer"
+
+msgid "Disable notifications to custodians"
+msgstr "Deaktiver notifikation af kontoindehavere"
+
+msgid "Disable notifications to recipients"
+msgstr "Deaktiver notifikation af modtagere"
+
+msgid "Score"
+msgstr "Pointtal"
+
+msgid "Trigger question"
+msgstr "Trigger spørgsmål"
+
+msgid "Triggered by a score higher than:"
+msgstr "Udløst af højere score end:"
+
+msgid "Select the question to be triggered when this option is selected"
+msgstr "Vælg det spørgsmål, der skal udløses når denne mulighed er valgt"
+
+msgid "Message shown on top of the status page of the submission"
+msgstr "Besked der vises i toppen af det indsendte materiales statusside"
+
+msgid "Copy and paste the PGP public key here"
+msgstr "Kopier og indsæt den offentlige PGP-nøgle her"
+
+msgid "Password strength:"
+msgstr "Password styrke"
+
+msgid "Weak"
+msgstr "Svag"
+
+msgid "Acceptable"
+msgstr "Acceptabel"
+
+msgid "Strong"
+msgstr "Stærk"
+
+msgid "Loading…"
+msgstr "Indlæser..."
+
+msgid "Text shown on top of the interface for selecting contexts"
+msgstr "Tekst der vises øverst på det interface hvor sammenhænge vælges"
+
+msgid "Show small context cards on submission interface"
+msgstr "Vis små indholdskort på indsendelses-interfacet"
+
+msgid "Type of context selector:"
+msgstr "Vælg indholdstype:"
+
+msgid "Type to search…"
+msgstr "Skriv for at søge..."
+
+msgid "Silence email notifications"
+msgstr "Slå mail-notifikation fra"
+
+msgid "Turn on email notifications"
+msgstr "Slå mail-notifikation til"
+
+msgid "Enter an email address for the administrator"
+msgstr "Tilføj mail adresse til administratoren"
+
+msgid "Enter a password for the administrator"
+msgstr "Skriv administrator password"
+
+msgid "Test configuration"
+msgstr "Test opsætningen"
+
+msgid "Failed logins"
+msgstr "Mislykkede loginforsøg"
+
+msgid "Successful logins"
+msgstr "Godkendte loginforsøg"
+
+msgid "Started submissions"
+msgstr "Påbegyndte indsendelser"
+
+msgid "Completed submissions"
+msgstr "Afsluttede indsendelser"
+
+msgid "Failed submissions"
+msgstr "Mislykkede indsendelser"
+
+msgid "Input validation"
+msgstr "Validering af input"
+
+msgid "Email address"
+msgstr "Mail-adresse"
+
+msgid "Custom"
+msgstr "Brugerdefineret"
+
+msgid "None"
+msgstr "Ingen"
+
+msgid "Regular expression"
+msgstr "Regular expression"
+
+msgid "Label the submission"
+msgstr "Marker indsendelsen"
+
+msgid "Activate"
+msgstr "Aktiver"
+
+msgid "Search"
+msgstr "Søg"
+
+msgid ""
+"This custom text is no longer displayed on the platform. The original text "
+"has either changed or been removed."
+msgstr "Denne brugerdefinerede tekst bliver ikke længere vist på platformen. Den originale tekst er enten ændret eller fjernet"
+
+msgid ""
+"Unless the whistleblower checks the submission by this time, their access to"
+" it will expire."
+msgstr "Hvis ikke whistlebloweren kontrollerer indsendelsen inden dette tidspunkt vil vedkommendes adgang til materialet udløbe."
+
+msgid "The whistleblower can no longer access the submission"
+msgstr "Whistlebloweren har ikke længere adgang til det indleverede materiale."
+
+msgid "Warning!"
+msgstr "Advarsel!"
+
+msgid "You are running an unsupported and potentially vulnerable browser."
+msgstr "Du anvender en ikke-understøttet og potentielt sårbar browser."
+
+msgid "You are strongly advised to download and install the Tor Browser."
+msgstr "Det anbefales kraftigt at downloade og installere Tor browser."
+
+msgid ""
+"The Tor Browser includes various privacy and security enhancements not "
+"present in other browsers."
+msgstr "Tor browseren indeholder forskellige privatlivs- og sikkerhedsudvidelser, der ikke findes i andre browsere."
+
+msgid "Download the Tor Browser"
+msgstr "Download Tor browseren"
+
+msgid "This is the list of the other supported browsers:"
+msgstr "Dette er listen over andre understøttede browsere:"
+
+msgid "System overview"
+msgstr "Overblik over systemet"
+
+msgid "Stats"
+msgstr "Statistik"
+
+msgid "Activities"
+msgstr "Aktiviteter"
+
+msgid "Submissions"
+msgstr "Indsendelser"
+
+msgid "Users"
+msgstr "Brugere"
+
+msgid "From"
+msgstr "Fra"
+
+msgid "Number of downloads"
+msgstr "Antal downloads"
+
+msgid "Error with file:"
+msgstr "Fejl i fil:"
+
+msgid "File size not accepted."
+msgstr "Filstørrelse kan ikke godkendes."
+
+msgid "File type not accepted."
+msgstr "Filtype kan ikke godkendes."
+
+msgid "Maximum file size is:"
+msgstr "Maksimal filstørrelse er:"
+
+msgid "Accepted file types are:"
+msgstr "Godkendte filtyper:"
+
+msgid "Scheduled jobs"
+msgstr "Planlagte kørsler"
+
+msgid "Sites management"
+msgstr "Administration af websted"
+
+msgid "Regenerate"
+msgstr "Regenerer"
+
+msgid "Display options alphabetically"
+msgstr "Alfabetisk visning af muligheder"
+
+msgid "Enable email notifications for:"
+msgstr "Aktiver mail-notifikationer for:"
+
+msgid "Software updates"
+msgstr "Programopdateringer"
+
+msgid "Software problems"
+msgstr "Programfejl"
+
+msgid "Disable"
+msgstr "Deaktivere"
+
+msgid "Remove"
+msgstr "Fjern"
+
+msgid "Use as default"
+msgstr "Brug som standard"
+
+msgid "Create your whistleblowing platform"
+msgstr "Byg din whistleblower-platform"
+
+msgid "Collapse"
+msgstr "Fold sammen"
+
+msgid "Expand"
+msgstr "Udvid"
+
+msgid "Select"
+msgstr "Vælg"
+
+msgid "Selected by default"
+msgstr "Valgt som standard"
+
+msgid "Unselected by default"
+msgstr "Fravalgt som standard"
+
+msgid "Surname"
+msgstr "Efternavn"
+
+msgid "Do not create the admin user"
+msgstr ""
+
+msgid "Select the context of your submission:"
+msgstr "Vælg den sammenhæng, din indsendelse indgår i:"
+
+msgid "Warning! You are not anonymous."
+msgstr "Advarsel! Du er ikke anonym."
+
+msgid ""
+"Sending submissions over HTTPS exposes the act of doing so, but not the "
+"content.\\n\\nAlso, hiding the fact that you are submitting something makes "
+"the submission anonymous, which is strongly recommended.\\n\\nThis can be "
+"achieved with the use of the Tor Browser, providing anonymisation not found "
+"in other browsers like Internet Explorer, Firefox, Chrome, Opera etc."
+msgstr ""
+
+msgid "Are you a whistleblower?"
+msgstr "Er du whistleblower?"
+
+msgid "Blow the whistle"
+msgstr "Blæs i fløjten"
+
+msgid "Have you already filed a submission? Enter your key code."
+msgstr "Har du tidligere afleveret en indsendelse? Indtast din nøglekode."
+
+msgid "Your submission was successful."
+msgstr "Din indsendelse er gennemført."
+
+msgid "Submission status"
+msgstr "Status for indsendelsen"
+
+msgid "Disable submissions"
+msgstr "Deaktiver indsendelser"
+
+msgid "Enable insecure configuration without PGP encryption"
+msgstr "Aktiver usikker konfiguration uden PGP kryptering"
+
+msgid "Danger"
+msgstr "Fare"
+
+msgid ""
+"By enabling this option, the system will be storing the submitted files "
+"unencrypted on your server."
+msgstr "Aktiveres denne mulighed vil systemet lagre indsendte filer ukrypteret på serveren."
+
+msgid "This happens whenever encryption is unavailable."
+msgstr "Dette sker, når kryptering ikke er tilgængelig."
+
+msgid "Disable messages that warn of missing encryption"
+msgstr "Deaktiver meddelelser der advarer om manglende kryptering"
+
+msgid ""
+"This setting affects the security of the users and must not be used in "
+"production."
+msgstr "Denne indstilling påvirker brugernes sikkerhed og må ikke bruges i produktion."
+
+msgid "Allow other websites to include the platform inside iframes"
+msgstr "Tillad andre websteder at inkludere platformen i iframes"
+
+msgid ""
+"By enabling this option, you are allowing other websites to include the "
+"platform inside iframes; this could potentially be used to endanger the "
+"platform or intercept users' communications"
+msgstr "Ved at aktivere denne mulighed tillader du andre websteder at inkludere platformen i iframes; Dette kan potentielt svække platformens sikkerhed eller bruges til at overvåge brugeres kommunikation med systemet"
+
+msgid "Allow recipients to postpone expiration date of the submission"
+msgstr "Tillad modtagere at udsætte udløbsdatoen for indsendelsen"
+
+msgid "Allow recipients to delete submissions"
+msgstr "Tillad modtagere at slette indsendelser"
+
+msgid ""
+"Allow recipients to grant permissions to whistleblowers on specific "
+"submissions"
+msgstr "Lad modtagere give whistleblowere tilladelser på specifikke indsendelser"
+
+msgid "Enable search engines indexing"
+msgstr "Aktiver søgemaskiners indeksering"
+
+msgid "Enable custom privacy panel"
+msgstr "Aktiver brugertilpasset privatlivspanel"
+
+msgid "Custom privacy panel"
+msgstr "Brugertilpasset privatlivspanel"
+
+msgid "Text shown when the whistleblower is not using Tor"
+msgstr "Tekst der vises når whistlebloweren ikke bruger Tor"
+
+msgid "Disable the privacy panel"
+msgstr "Deaktiver privatlivspanelet"
+
+msgid "Enable disclaimer"
+msgstr "Aktiver ansvarsfraskrivelse"
+
+msgid "Title"
+msgstr "Titel"
+
+msgid "Text"
+msgstr "Tekst"
+
+msgid "Disable the security awareness panel"
+msgstr ""
+
+msgid "Disable the key code hint"
+msgstr ""
+
+msgid "Disable the donation panel"
+msgstr ""
+
+msgid "Enable CAPTCHA mechanism"
+msgstr ""
+
+msgid "Enable proof of work mechanism"
+msgstr ""
+
+msgid "Enable simplified login for recipients"
+msgstr ""
+
+msgid "Amount of days till whistleblower access expires"
+msgstr "Antal dage til whistleblowerens adgang udløber"
+
+msgid ""
+"For security reasons the whistleblower access is subject to expiration."
+msgstr "Af sikkerhedsmæssige årsager vil whistleblowerens adgang til materialet være tidsmæssigt begrænset."
+
+msgid "Tweak this setting only if you know what you are doing."
+msgstr "Du skal kun justere denne indstilling hvis du ved, hvad du gør."
+
+msgid "Landing page"
+msgstr "Destinationsside"
+
+msgid "Home Page"
+msgstr ""
+
+msgid "Submission Page"
+msgstr ""
+
+msgid "Title of the submission page"
+msgstr ""
+
+msgid "Text of prompt for whistleblowers to log in"
+msgstr ""
+
+msgid "Show contexts in alphabetical order"
+msgstr ""
+
+msgid "Title of the receipt page"
+msgstr ""
+
+msgid "Title of the submission status page"
+msgstr ""
+
+msgid "Size limit for file attachments"
+msgstr ""
+
+msgid "Notify administrators of software problems"
+msgstr ""
+
+msgid "Notify developers of software problems"
+msgstr ""
+
+msgid ""
+"By enabling this feature, you will contribute to the development and "
+"security of the platform."
+msgstr ""
+
+msgid "Enable HTTP Basic Authentication to limit platform access"
+msgstr ""
+
+msgid "Username"
+msgstr "Brugernavn"
+
+msgid "Password"
+msgstr "Kodeord"
+
+msgid "Restrict privileged logins to specific IP addresses"
+msgstr ""
+
+msgid "Whitelisted IP addresses"
+msgstr "Godkendte IP-adresser"
+
+msgid "Either individual IP addresses or CIDR ranges are accepted here."
+msgstr ""
+
+msgid "Example:"
+msgstr "Eksempel:"
+
+msgid "Enable experimental features"
+msgstr "Aktivér eksperimentelle funktioner"
+
+msgid "Warning"
+msgstr "Advarsel"
+
+msgid ""
+"The experimental features may be less stable or even not work at all; enable"
+" this option at your own risk. Support for these features may vary and they "
+"may be removed in the future."
+msgstr ""
+
+msgid "Save"
+msgstr "Gem"
+
+msgid "Short URL"
+msgstr "Kort URL"
+
+msgid "Long URL"
+msgstr "Lang URL"
+
+msgid "Add"
+msgstr "Tilføj"
+
+msgid "Logo"
+msgstr "Logo"
+
+msgid "Project name"
+msgstr "Projektnavn"
+
+msgid "Homepage title"
+msgstr "Titel på hjemmesiden"
+
+msgid "Presentation"
+msgstr ""
+
+msgid "Description"
+msgstr "Beskrivelse"
+
+msgid "Question to solicit possible whistleblowers"
+msgstr ""
+
+msgid "Whistleblowing button"
+msgstr ""
+
+msgid "Footer"
+msgstr ""
+
+msgid "Favicon"
+msgstr "Favicon"
+
+msgid "Upload"
+msgstr "Upload"
+
+msgid "Download"
+msgstr "Download"
+
+msgid "Upload custom file"
+msgstr ""
+
+msgid "The file will be available at URL: /s/$filename"
+msgstr ""
+
+msgid "Language:"
+msgstr ""
+
+msgid "Add custom text"
+msgstr ""
+
+msgid "Custom text"
+msgstr ""
+
+msgid "Custom texts"
+msgstr ""
+
+msgid "Original text"
+msgstr "Oprindelig tekst"
+
+msgid "Original translation"
+msgstr "Oprindelig oversættelse"
+
+msgid "Custom translation"
+msgstr ""
+
+msgid "Contexts"
+msgstr ""
+
+msgid "Name"
+msgstr "Navn"
+
+msgid "Edit"
+msgstr "Rediger"
+
+msgid "Cancel"
+msgstr "Annullér"
+
+msgid "This field is mandatory"
+msgstr "Dette felt er obligatorisk"
+
+msgid "Questionnaire"
+msgstr ""
+
+msgid "Recipients"
+msgstr "Modtagere"
+
+msgid "Allow selection of this context through the context selector."
+msgstr ""
+
+msgid ""
+"If disabled, submissions for this context will only be accessible through a "
+"direct link to it."
+msgstr ""
+
+msgid "Allow whistleblowers to select their recipients"
+msgstr "Tillad whistleblowere at vælge deres modtagere"
+
+msgid "Select all recipients by default"
+msgstr "Vælg alle modtagere som standard"
+
+msgid "Maximum number of selectable recipients:"
+msgstr "Maksimalt antal modtagere der kan vælges:"
+
+msgid "(0 = unlimited)"
+msgstr "(0 = ubegrænset)"
+
+msgid "Show recipients in alphabetical order"
+msgstr "Vis modtagere i alfabetisk rækkefølge"
+
+msgid "Show small recipient cards on submission interface"
+msgstr ""
+
+msgid "Enable comments"
+msgstr "Aktiver kommentarer"
+
+msgid "Allow whistleblowers to write comments"
+msgstr "Tillad whistleblowere at skrive kommentarer"
+
+msgid "Enable private messages"
+msgstr "Aktiver private meddelelser"
+
+msgid "Allow whistleblowers to send messages"
+msgstr "Tillad whistleblowere at sende beskeder"
+
+msgid "Let whistleblowers add attachments onto existing submissions"
+msgstr "Tillad at whistleblowere kan tilføje vedhæftelser til eksisterende indsendelser"
+
+msgid "Show recipient details on the status page of the submission"
+msgstr ""
+
+msgid "Let recipients upload files to whistleblowers"
+msgstr "Tillad at modtagere kan uploade filer til whistleblowere"
+
+msgid "Disabled"
+msgstr "Deaktiveret"
+
+msgid "Enabled"
+msgstr "Aktiveret"
+
+msgid "Submission expiration, in days"
+msgstr "Indsendelse udløber, om dage"
+
+msgid ""
+"For security reasons, as a matter of data retention policy, the platform "
+"automatically deletes submissions and their data after a certain amount of "
+"time."
+msgstr "Af sikkerhedsgrunde, og som datalagringspolitik, vil platformen automatisk efter et bestemt tidsforløb slette indsendelser og tilkoblet data."
+
+msgid "Text shown on top of the interface for selecting recipients"
+msgstr "Tekst der vises øverst på det interface hvor modtagere vælges"
+
+msgid "Welcome to the administration interface!"
+msgstr "Velkommen til administrationssiden!"
+
+msgid ""
+"This interface may help you understand how the server can be configured and "
+"provides some info on how to connect to other GlobaLeaks users and experts."
+msgstr ""
+
+msgid "Documentation"
+msgstr "Dokumentation"
+
+msgid ""
+"To properly organize your project, please read the following guidelines:"
+msgstr ""
+
+msgid "Remember to provide proper security advice to Whistleblowers:"
+msgstr ""
+
+msgid ""
+"To learn more about GlobaLeaks Security you can read the following document:"
+msgstr "Hvis du vil vide mere om Globaleaks Security kan du læse dette dokument:"
+
+msgid "Contact"
+msgstr "Kontakt"
+
+msgid ""
+"If you need technical support, have general questions, or have new ideas for"
+" the software:"
+msgstr "Hvis du har brug for teknisk support, har generelle spørgsmål eller har nye forslag til softwaren:"
+
+msgid ""
+"If you want to contribute to software development or report a bug, please "
+"open an issue in our ticketing system:"
+msgstr ""
+
+msgid ""
+"If your non-profit needs support for investigative journalism, activism or a"
+" human rights defense project:"
+msgstr ""
+
+msgid ""
+"For professional support and development of anti corruption and compliance "
+"projects contact the social enterprise maintaining GlobaLeaks:"
+msgstr ""
+
+msgid "Join our IRC chat channel on the irc.oftc.net network:"
+msgstr ""
+
+msgid "Follow the project on:"
+msgstr "Følg projektet på:"
+
+msgid "Software version:"
+msgstr "Software version:"
+
+msgid "An update is available:"
+msgstr "Der er tilgængelige opdateringer:"
+
+msgid "SMTP name"
+msgstr "SMTP navn"
+
+msgid "SMTP email address"
+msgstr "SMTP mailadresse"
+
+msgid "Invalid email address"
+msgstr "Ugyldig mailadresse"
+
+msgid "SMTP server address"
+msgstr "SMTP server adresse"
+
+msgid "SMTP server port"
+msgstr "SMTP server port"
+
+msgid "Transport Security"
+msgstr ""
+
+msgid "When the option is re-enabled the spooled emails will be sent out."
+msgstr "Når denne mulighed genaktiveres bliver de lagrede mails sendt ud."
+
+msgid "Reset notification templates to default"
+msgstr ""
+
+msgid "Number of hours before sending a submission expiration alert"
+msgstr ""
+
+msgid "Maximum emails per hour before triggering email suspension"
+msgstr ""
+
+msgid "this configuration only applies to recipients"
+msgstr ""
+
+msgid "Test the configuration"
+msgstr "Test indstillingen"
+
+msgid "Template"
+msgstr "Skabelon"
+
+msgid "Admin"
+msgstr "Admin"
+
+msgid "Roles enabled to use the platform without Tor:"
+msgstr ""
+
+msgid "Recipient"
+msgstr "Modtager"
+
+msgid "Whistleblower"
+msgstr "Whistleblower"
+
+msgid "Hostname"
+msgstr "Hostnavn"
+
+msgid "Verify"
+msgstr "Bekræft"
+
+msgid "Invalid input format."
+msgstr ""
+
+msgid "Input should be similar to:"
+msgstr ""
+
+msgid ""
+"The platform does not seem to be reachable with the configured hostname."
+msgstr ""
+
+msgid "Using Let's Encrypt requires agreement to their Terms of Service."
+msgstr ""
+
+msgid "Read the Terms of Service"
+msgstr ""
+
+msgid "I agree to the Terms of Service."
+msgstr ""
+
+msgid "Proceed"
+msgstr "Fortsæt"
+
+msgid "Configuration completed. You can review the settings or enable it now."
+msgstr ""
+
+msgid "Review"
+msgstr ""
+
+msgid "Enable"
+msgstr ""
+
+msgid "Country code"
+msgstr "Landekode"
+
+msgid "State"
+msgstr "Kommune"
+
+msgid "City"
+msgstr "By"
+
+msgid "Organization"
+msgstr "Organisation"
+
+msgid "Organizational unit"
+msgstr ""
+
+msgid ""
+"This interface can generate a Private Key and a Certificate Signing Request."
+" The Certificate Signing Request can be provided to a Certificate Authority "
+"to retrieve a Certificate. After having validated your request and your "
+"ownership of the hostname, the Certificate Authority will issue you a "
+"Certificate and provide a file containing Intermediate Certificates. Load "
+"the Certificate and the file containing the Intermediate Certificates to "
+"complete the HTTPS setup."
+msgstr ""
+
+msgid "Private Key"
+msgstr ""
+
+msgid "Generate"
+msgstr ""
+
+msgid "Certificate Signing Request"
+msgstr ""
+
+msgid "Certificate"
+msgstr ""
+
+msgid "Valid until:"
+msgstr "Gyldig indtil:"
+
+msgid "Issuer:"
+msgstr "Udsteder:"
+
+msgid "Intermediate Certificates"
+msgstr "Midlertidige certifikater"
+
+msgid "Reset"
+msgstr ""
+
+msgid "Select an option:"
+msgstr ""
+
+msgid "Automatic configuration"
+msgstr ""
+
+msgid ""
+"Using automatic HTTPS configuration will handle the entire process of "
+"requesting, enabling and renewing certificates from the Let's Encrypt "
+"Certificate Authority."
+msgstr ""
+
+msgid ""
+"The platform must be reachable through a public IP address and the selected "
+"hostname must have a corresponding DNS record referencing that address."
+msgstr ""
+
+msgid "Manual configuration"
+msgstr "Manuel konfiguration"
+
+msgid ""
+"The manual configuration wizard will guide you through the setup of HTTPS "
+"from an alternative Certificate Authority."
+msgstr ""
+
+msgid ""
+"The platform supports the configuration of HTTPS through this interface."
+msgstr ""
+
+msgid "The connection to the configured domain failed."
+msgstr ""
+
+msgid "Running"
+msgstr "Kører"
+
+msgid "Not running"
+msgstr "Kører ikke"
+
+msgid "Auto-renewal"
+msgstr ""
+
+msgid "System message:"
+msgstr ""
+
+msgid ""
+"Allowing whistleblowers to connect over HTTPS preserves their privacy but "
+"not their anonymity."
+msgstr "Tillader du whistleblowere at få adgang til systemet via HTTPS sikrer du deres privatliv, men ikke deres anonymitet."
+
+msgid "Attention!"
+msgstr ""
+
+msgid ""
+"Configuration in progress. When it is finished you will have to log in "
+"again."
+msgstr ""
+
+msgid "Your browser will be redirected to the following URL."
+msgstr ""
+
+msgid "Tor Onion Service"
+msgstr "Tor Onion Service"
+
+msgid "Tor Browser download link"
+msgstr "Tor Browser download link"
+
+msgid "Anonymize outgoing connections"
+msgstr "Anonymiser udgående forbindelser"
+
+msgid "Let the platform be reachable without Tor"
+msgstr "Tillad at platformen kan tilgås uden Tor"
+
+msgid "Stats of the week:"
+msgstr "Ugens statistik"
+
+msgid "Free disk space"
+msgstr "Ledig diskplads"
+
+msgid "Event ID"
+msgstr ""
+
+msgid "Time"
+msgstr ""
+
+msgid "Event"
+msgstr ""
+
+msgid "Response time"
+msgstr "Svartid"
+
+msgid "Role"
+msgstr "Rolle"
+
+msgid "Last access"
+msgstr "Seneste tilgang"
+
+msgid "Submission"
+msgstr ""
+
+msgid "Path"
+msgstr "Sti"
+
+msgid "Size"
+msgstr "Størrelse"
+
+msgid "Alarm level"
+msgstr ""
+
+msgid "Events"
+msgstr ""
+
+msgid "Label"
+msgstr ""
+
+msgid "Type"
+msgstr ""
+
+msgid "Single-line text input"
+msgstr ""
+
+msgid "Multi-line text input"
+msgstr ""
+
+msgid "Multiple choice input"
+msgstr ""
+
+msgid "Selection box"
+msgstr ""
+
+msgid "Checkbox"
+msgstr ""
+
+msgid "Terms of service"
+msgstr ""
+
+msgid "Group of questions"
+msgstr ""
+
+msgid "Row"
+msgstr ""
+
+msgid "Column"
+msgstr ""
+
+msgid "Width"
+msgstr ""
+
+msgid "Question group"
+msgstr ""
+
+msgid "Hint"
+msgstr ""
+
+msgid "Required"
+msgstr ""
+
+msgid "Accept multiple file uploads"
+msgstr ""
+
+msgid "Accept multiple answers"
+msgstr ""
+
+msgid "Hint shown on the button for adding an additional answer"
+msgstr ""
+
+msgid "Phone number"
+msgstr "Telefonnummer"
+
+msgid "Clause"
+msgstr ""
+
+msgid "Agreement Text"
+msgstr ""
+
+msgid "Layout orientation"
+msgstr ""
+
+msgid "Subject answer visibility to custodian authorization"
+msgstr ""
+
+msgid "Prompt confirmation upon negative answer"
+msgstr ""
+
+msgid "Title of the confirmation question upon negative answer"
+msgstr ""
+
+msgid "Body of the confirmation question upon negative answer"
+msgstr ""
+
+msgid "Text of the final statement upon negative answer"
+msgstr ""
+
+msgid "Options"
+msgstr ""
+
+msgid "Questions"
+msgstr ""
+
+msgid "Add new question"
+msgstr ""
+
+msgid "Add question from template"
+msgstr ""
+
+msgid "Steps"
+msgstr ""
+
+msgid "Configuration"
+msgstr ""
+
+msgid "Default"
+msgstr ""
+
+msgid "Forcefully selected"
+msgstr ""
+
+msgid "Unselectable"
+msgstr ""
+
+msgid "Allow the recipient to postpone the submission expiration date"
+msgstr ""
+
+msgid "The setting is enabled at a global level."
+msgstr ""
+
+msgid "Allow the recipient to delete submissions"
+msgstr ""
+
+msgid ""
+"Allow the recipient to grant permissions to whistleblowers on specific "
+"submissions"
+msgstr "Lad modtageren give whistleblowere tilladelser på specifikke indsendelser"
+
+msgid "General settings"
+msgstr "Generelle indstillinger"
+
+msgid "Network settings"
+msgstr ""
+
+msgid "Root domain used for secondary sites"
+msgstr ""
+
+msgid "Allow users to sign up"
+msgstr ""
+
+msgid "Enable footer customization"
+msgstr ""
+
+msgid "Sites"
+msgstr ""
+
+msgid "Active"
+msgstr "Aktiv"
+
+msgid "Inactive"
+msgstr ""
+
+msgid "The default password is:"
+msgstr ""
+
+msgid "The system forces users to change the password at first login."
+msgstr ""
+
+msgid "New Password"
+msgstr ""
+
+msgid ""
+"The chosen password is too weak. Make it more secure by adding special "
+"characters, numbers, and unusual symbols."
+msgstr ""
+
+msgid "Force password change"
+msgstr ""
+
+msgid "The user will be forced to change its password on next login."
+msgstr ""
+
+msgid "Language"
+msgstr ""
+
+msgid "Remove the PGP key"
+msgstr ""
+
+msgid "Set up encryption by providing a PGP public key"
+msgstr ""
+
+msgid "Request date"
+msgstr ""
+
+msgid "Authorization"
+msgstr ""
+
+msgid "The validation link is either incorrect or has expired."
+msgstr ""
+
+msgid "Your new email address has been validated."
+msgstr ""
+
+msgid "Before proceeding, please change your password."
+msgstr ""
+
+msgid "Submissions disabled"
+msgstr ""
+
+msgid ""
+"You are connecting to the server without anonymity and this server supports "
+"only anonymous submissions"
+msgstr ""
+
+msgid ""
+"Server temporarly unusable due to resource exhaustion; advise the Admin if "
+"you can."
+msgstr ""
+
+msgid "This server is not configured."
+msgstr ""
+
+msgid "You will not be able to send a submission."
+msgstr ""
+
+msgid ""
+"This platform makes use of GlobaLeaks software specifically designed to "
+"protect the identity for submitter and recipient in the exchange of content."
+msgstr ""
+
+msgid ""
+"The software is developed by the non-profit Hermes Center for Transparency "
+"and Digital Human Rights."
+msgstr ""
+
+msgid "Please support Hermes through their donation page."
+msgstr ""
+
+msgid "Please select your account:"
+msgstr ""
+
+msgid "Now type your password, then click 'Log in':"
+msgstr ""
+
+msgid "Authentication failed"
+msgstr ""
+
+msgid "Are you sure?"
+msgstr ""
+
+msgid "The operation will reset the configuration and cannot be undone."
+msgstr ""
+
+msgid "Assign score points"
+msgstr ""
+
+msgid ""
+"Enter the number of score points to be assigned when this option is "
+"selected:"
+msgstr ""
+
+msgid "Confirm"
+msgstr ""
+
+msgid "Are you human?"
+msgstr ""
+
+msgid ""
+"We do not discriminate based on race and gender, but we do against computers"
+" :)"
+msgstr ""
+
+msgid ""
+"Just to prove you are human, please answer the following math challenge:"
+msgstr ""
+
+msgid "I've solved the math challenge, hide this thing now!"
+msgstr ""
+
+msgid "Please note that all the associated data will be permanently lost."
+msgstr ""
+
+msgid ""
+"This means that if the server running the platform were to be seized, it "
+"would be possible to extract the files that have been submitted."
+msgstr ""
+
+msgid "Are you sure that you wish to continue?"
+msgstr ""
+
+msgid "Error!"
+msgstr ""
+
+msgid "Internal server error"
+msgstr ""
+
+msgid "Error on input validation"
+msgstr ""
+
+msgid "Resource not found"
+msgstr ""
+
+msgid "Forbidden operation"
+msgstr ""
+
+msgid "The specified old password is not valid"
+msgstr ""
+
+msgid "Resource can only be accessed via the Tor network"
+msgstr ""
+
+msgid "The upload request exceeds the size limit"
+msgstr ""
+
+msgid "Success!"
+msgstr ""
+
+msgid ""
+"It appears that you are browsing this site without any extra privacy and "
+"security!"
+msgstr ""
+
+msgid ""
+"You are strongly advised to visit this site using the desktop app called Tor"
+" Browser, that protects your identity."
+msgstr ""
+
+msgid "Then, copy and paste the following address into the Tor Browser:"
+msgstr ""
+
+msgid "Details of the PGP key:"
+msgstr ""
+
+msgid "Fingerprint"
+msgstr ""
+
+msgid "Add file"
+msgstr ""
+
+msgid "Uploading files…"
+msgstr ""
+
+msgid "Upload completed successfully!"
+msgstr ""
+
+msgid "Error while uploading files; check below for details."
+msgstr ""
+
+msgid "Estimated upload time:"
+msgstr ""
+
+msgid "seconds"
+msgstr ""
+
+msgid "Size:"
+msgstr ""
+
+msgid "The connection is not secure."
+msgstr ""
+
+msgid ""
+"The platform is still not configured for HTTPS connections and should "
+"therefore only be used for testing purposes."
+msgstr ""
+
+msgid "Send"
+msgstr ""
+
+msgid "Allow the whistleblower to write comments"
+msgstr "Tillad whistlebloweren at skrive kommentarer"
+
+msgid "Filename"
+msgstr ""
+
+msgid "Upload date"
+msgstr ""
+
+msgid "File size"
+msgstr ""
+
+msgid "download"
+msgstr ""
+
+msgid "No files have been uploaded!"
+msgstr ""
+
+msgid "Allow the whistleblower to add attachments to the submission"
+msgstr "Tillad whistlebloweren at tilføje vedhæftelser til indsendelsen"
+
+msgid "Access expiration"
+msgstr ""
+
+msgid "Connection"
+msgstr ""
+
+msgid "Never"
+msgstr ""
+
+msgid "Revoked"
+msgstr ""
+
+msgid "Allow the whistleblower to send messages"
+msgstr "Tillad whistlebloweren at sende beskeder"
+
+msgid "Are you sure that you want to delete the submission?"
+msgstr ""
+
+msgid ""
+"Everything related to the submission stored on the platform will be deleted."
+msgstr ""
+
+msgid ""
+"Please be aware that everything stored off the platform, e.g. files you have"
+" saved on your computer, must be deleted manually."
+msgstr ""
+
+msgid "Are you sure that you want to delete all the selected submissions?"
+msgstr ""
+
+msgid ""
+"Please make sure that all related data is properly deleted so that the "
+"recipients won't be able to further access to it."
+msgstr ""
+
+msgid "Please write a motivation for the reply"
+msgstr ""
+
+msgid "Are you sure that you want to postpone the submission expiration date?"
+msgstr ""
+
+msgid "By confirming, you will postpone the expiration date to:"
+msgstr ""
+
+msgid ""
+"Are you sure that you want to postpone the expiration date for all selected "
+"submissions?"
+msgstr ""
+
+msgid "Questionnaire answers"
+msgstr ""
+
+msgid "Step"
+msgstr ""
+
+msgid "Recipient list"
+msgstr ""
+
+msgid "Attached files for the whistleblower"
+msgstr ""
+
+msgid "Upload a file:"
+msgstr ""
+
+msgid "Logout"
+msgstr ""
+
+msgid "The key code is either invalid or the submission has expired."
+msgstr ""
+
+msgid "Files attached by recipients"
+msgstr ""
+
+msgid "These files have been attached to your submission by the recipients."
+msgstr ""
+
+msgid "Validation of email address change in progress."
+msgstr ""
+
+msgid "Please check your inbox for:"
+msgstr ""
+
+msgid "Enable submission notification"
+msgstr ""
+
+msgid "Current Password"
+msgstr ""
+
+msgid "Old password confirmation required"
+msgstr ""
+
+msgid "The new password must be different from the current one."
+msgstr ""
+
+msgid "Type your new password again"
+msgstr ""
+
+msgid "The two passwords do not match"
+msgstr ""
+
+msgid "Thank you!"
+msgstr ""
+
+msgid "Remember your key code for this submission."
+msgstr ""
+
+msgid "We will try to get back to you as soon as possible!"
+msgstr ""
+
+msgid ""
+"Use the 16 digit key code to log in. It will allow you to view any messages "
+"we sent you, and also to add extra info."
+msgstr ""
+
+msgid "View your submission"
+msgstr ""
+
+msgid "Hint: How to hide your key code"
+msgstr ""
+
+msgid ""
+"A useful way to hide your key code is to write it down like a credit card "
+"number, i.e. by also including an expiration date."
+msgstr ""
+
+msgid ""
+"You have not set up your encryption key, so the files will not be encrypted "
+"prior to being stored on the server."
+msgstr ""
+
+msgid ""
+"This may lead to unintended access to the files by the server administrator "
+"or others in case the server is compromised."
+msgstr ""
+
+msgid "Please configure your PGP keys in the recipient preferences page."
+msgstr ""
+
+msgid ""
+"One or more of the recipients of this submission has not configured a PGP "
+"key."
+msgstr ""
+
+msgid ""
+"This means that the submitted files will be stored in plaintext on the "
+"server."
+msgstr ""
+
+msgid ""
+"Access to the whistleblower's identity has been requested to the custodian."
+msgstr ""
+
+msgid "Date of the request"
+msgstr ""
+
+msgid "Undeclared"
+msgstr ""
+
+msgid "Congratulations!"
+msgstr ""
+
+msgid "You have completed the platform activation."
+msgstr ""
+
+msgid "Your whistleblowing platform is now accessible at:"
+msgstr ""
+
+msgid "Users' credentials:"
+msgstr ""
+
+msgid "To log in, visit:"
+msgstr ""
+
+msgid "For the user documentation visit:"
+msgstr ""
+
+msgid "The platform will be automatically deleted on:"
+msgstr ""
+
+msgid "Sign up"
+msgstr ""
+
+msgid "Domain"
+msgstr "Domæne"
+
+msgid "Use case"
+msgstr ""
+
+msgid "Anticorruption"
+msgstr ""
+
+msgid "Corporate compliance"
+msgstr ""
+
+msgid "Investigative journalism"
+msgstr ""
+
+msgid "Civic activism"
+msgstr ""
+
+msgid "Other"
+msgstr ""
+
+msgid "Complete"
+msgstr ""
+
+msgid "Your whistleblowing platform is almost ready!"
+msgstr ""
+
+msgid "Check your inbox to activate your account."
+msgstr ""
+
+msgid "The specified input is not valid:"
+msgstr ""
+
+msgid "please enter a valid email address."
+msgstr ""
+
+msgid "please enter numbers only."
+msgstr ""
+
+msgid "This field is mandatory."
+msgstr "Dette felt er obligatorisk."
+
+msgid "The answer is too short."
+msgstr ""
+
+msgid "Recipient selection"
+msgstr ""
+
+msgid "previous step"
+msgstr ""
+
+msgid "next step"
+msgstr ""
+
+msgid "Submit"
+msgstr "Indsend"
+
+msgid "Recipients selected:"
+msgstr ""
+
+msgid ""
+"In this step the answers to the following questions are either missing or "
+"invalid:"
+msgstr ""
+
+msgid "Submission errors"
+msgstr ""
+
+msgid "You must select at least one recipient."
+msgstr ""
+
+msgid "Waiting for the file(s) to finish uploading."
+msgstr ""
+
+msgid "The following steps have errors:"
+msgstr ""
+
+msgid "Welcome!"
+msgstr ""
+
+msgid ""
+"The following step-by-step procedure will guide you through creating your "
+"whistleblowing platform."
+msgstr ""
+
+msgid "Please choose a configuration profile:"
+msgstr ""
+
+msgid ""
+"These profiles contain settings used by successful projects in each "
+"respective field."
+msgstr ""
+
+msgid "Confirm password"
+msgstr ""
+
+msgid "The default username is:"
+msgstr ""
+
+msgid "License Agreement"
+msgstr ""
+
+msgid "Please review the license terms before proceeding."
+msgstr ""
+
+msgid "I have read and agree to the terms of the License Agreement."
+msgstr ""
+
+msgid "You have completed the platform wizard."
+msgstr ""
+
+msgid "Fill out your submission"
+msgstr ""
+
+msgid "Short title"
+msgstr ""
+
+msgid "Describe your submission in a few words."
+msgstr ""
+
+msgid "Full description"
+msgstr ""
+
+msgid "Describe your submission in detail."
+msgstr ""
+
+msgid "Attach files relevant to the submission."
+msgstr ""
+
+msgid "Do you want to provide your identification information?"
+msgstr ""
+
+msgid "First name"
+msgstr "Fornavn"
+
+msgid "Last name"
+msgstr "Efternavn"
+
+msgid "Gender"
+msgstr ""
+
+msgid "Male"
+msgstr "Mand"
+
+msgid "Female"
+msgstr "Kvinde"
+
+msgid "Other gender identity"
+msgstr ""
+
+msgid "Date of birth"
+msgstr "Fødselsdato"
+
+msgid "Place of birth"
+msgstr "Fødested"
+
+msgid "Social security number"
+msgstr "CPR-nummer"
+
+msgid "Residence"
+msgstr "Bopæl"
+
+msgid "Address"
+msgstr "Adresse"
+
+msgid "Zip code / Postal code"
+msgstr "Postnummer"
+
+msgid "Province"
+msgstr "Provins"
+
+msgid "Current job title"
+msgstr "Nuværende jobtitel"
+
+msgid "Current job responsibility (role)"
+msgstr "Nuværende arbejdsopgave (rolle)"
+
+msgid "Current organization unit and job location"
+msgstr "Nuværende organisationsenhed og jobplacering"
+
+msgid "Job title at the time of the reported fact"
+msgstr "Jobtitel på tidspunktet for de omstændigheder der rapporteres om"
+
+msgid "Job responsibility (role) at the time of the reported fact"
+msgstr "Arbejdsopgave (rolle) på tidspunktet for de omstændigheder der rapporteres om"
+
+msgid "Organization unit and job location at the time of the reported fact"
+msgstr ""
+
+msgid "Dear {RecipientName},"
+msgstr ""
+
+msgid "Kind regards,"
+msgstr ""
+
+msgid "Access instructions"
+msgstr ""
+
+msgid ""
+"The number of activities recently detected appears to be higher than usual."
+msgstr ""
+
+msgid ""
+"This could be a sign of an attack (for example, someone flooding your server"
+" with bogus information) or just a usage spike due to an increased "
+"visibility of your project."
+msgstr ""
+
+msgid "Examine the issue to determine whether it is legitimate or not."
+msgstr ""
+
+msgid "The activities with unusual stats are:"
+msgstr ""
+
+msgid ""
+"The server cannot guarantee that a new submission can be stored, so "
+"submissions have been disabled."
+msgstr ""
+
+msgid ""
+"Please consider asking your technical support to create more disk space on "
+"the server."
+msgstr ""
+
+msgid ""
+"GlobaLeaks technology includes a server status checking component which will"
+" alert you in case something requires your attention."
+msgstr ""
+
+msgid ""
+"For more information, log in to the Administration interface and look at the"
+" \"System Stats\" and \"Anomalies\" sections."
+msgstr ""
+
+msgid "Anomaly detected in {NodeName}"
+msgstr ""
+
+msgid ""
+"This is an email to inform you that the PGP key of the following users is "
+"going to expire or has already expired:"
+msgstr ""
+
+msgid ""
+"Without a valid PGP key, the system will not be able to send them encrypted "
+"notifications."
+msgstr ""
+
+msgid "PGP key expiration alert"
+msgstr ""
+
+msgid "A new whistleblowing site has been registered."
+msgstr ""
+
+msgid "Registration data:"
+msgstr ""
+
+msgid "Site: {HTTPSUrl}"
+msgstr ""
+
+msgid "Name: {Name}"
+msgstr ""
+
+msgid "Email: {Email}"
+msgstr ""
+
+msgid "Language: {Language}"
+msgstr ""
+
+msgid "Use case: {UseCase}"
+msgstr ""
+
+msgid "New whistleblowing site registered"
+msgstr ""
+
+msgid ""
+"This is a test email sent out from the platform's administrative interface."
+msgstr ""
+
+msgid ""
+"Reception of this email indicates that the server was able to authenticate "
+"to and interact with the SMTP mail server."
+msgstr ""
+
+msgid "Test email"
+msgstr ""
+
+msgid ""
+"This is an email to notify you of a new comment on an existing submission."
+msgstr "Dette er en e-mail for at give dig underretning om at der er en ny kommentar til et eksisterende indlæg."
+
+msgid "The submission can be accessed:"
+msgstr ""
+
+msgid "via Tor at: {TorUrl}"
+msgstr "Via TOR på: {TorUrl}"
+
+msgid "via HTTPS at: {HTTPSUrl}"
+msgstr ""
+
+msgid "New comment"
+msgstr "Ny kommentar"
+
+msgid ""
+"This is an email to notify you that a request has been made to change your "
+"email address to {NewEmailAddress}."
+msgstr ""
+
+msgid "Click the following link to validate this change: {HTTPSUrl}"
+msgstr ""
+
+msgid ""
+"If you wish to validate your new email with Tor, you may use the following "
+"link: {TorUrl}"
+msgstr ""
+
+msgid ""
+"If you didn't request this change, change your password and contact your "
+"system administrator."
+msgstr ""
+
+msgid "Email change request"
+msgstr ""
+
+msgid "From: {RecipientName}"
+msgstr ""
+
+msgid "Date: {EventTime}"
+msgstr "Dato: {EventTime}"
+
+msgid "From: Whistleblower"
+msgstr ""
+
+msgid "Date: {SubmissionDate}"
+msgstr ""
+
+msgid "Label: {TipLabel}"
+msgstr ""
+
+msgid "Context: {ContextName}"
+msgstr ""
+
+msgid ""
+"This is an email to notify you that the whistleblower of submission {TipNum}"
+" has attached new material."
+msgstr ""
+
+msgid "New attachment"
+msgstr "Ny tilføjelse"
+
+msgid ""
+"The HTTPS certificate loaded on the platform is about to, or has already "
+"expired."
+msgstr ""
+
+msgid "Expiration date: {ExpirationDate}"
+msgstr ""
+
+msgid ""
+"Without a valid certificate, the platform will be accessible in a secure way"
+" only via Tor."
+msgstr ""
+
+msgid "Log in to solve the issue."
+msgstr "Log ind for at løse problemet."
+
+msgid "Expiration alert for HTTPS certificate"
+msgstr "Varsling om udløb af HTTPS-certifikat"
+
+msgid ""
+"This is an email to notify you that a custodian has authorized you to access"
+" to the whistleblowing identity for the submission {TipNum}."
+msgstr ""
+
+msgid "Access to whistleblower's identity authorized"
+msgstr "Adgang til whistleblowers identitet godkendes"
+
+msgid ""
+"This is an email to notify you that a custodian has denied you access to the"
+" wistleblowing identity for the submission {TipNum}."
+msgstr ""
+
+msgid "Access to whistleblower's identity denied"
+msgstr "Adgang til whistleblowers identitet afvist"
+
+msgid ""
+"This is an email to notify you that a recipient has requested access to the "
+"whistleblower's identity for the submission {TipNum}"
+msgstr ""
+
+msgid "The request can be accessed:"
+msgstr ""
+
+msgid "New request of access to a whistleblower's identity"
+msgstr ""
+
+msgid ""
+"This is an email to notify you that the whistleblower for the submission "
+"{TipNum} has provided their identity."
+msgstr ""
+
+msgid "The whistleblower has provided their identity"
+msgstr "Whistlebloweren har oplyst sin identitet"
+
+msgid ""
+"This is an email to notify you of a new message on an existing submission."
+msgstr ""
+
+msgid "New message"
+msgstr "Ny meddelelse"
+
+msgid ""
+"This is an email to inform you that your PGP key is expiring or has already "
+"expired."
+msgstr ""
+
+msgid ""
+"You should extend its validity and update the key present on the platform, "
+"or upload a new key."
+msgstr ""
+
+msgid ""
+"Without a valid PGP key, the system won't be able to encrypt data provided "
+"to you."
+msgstr "Uden en gyldig PGP-nøgle kan systemet ikke kryptere data, der er leveret til dig."
+
+msgid "It appears that {NodeName} is receiving a large number of requests."
+msgstr "Det ser ud til, at {NodeName} modtager et meget stort antal anmodninger."
+
+msgid ""
+"To prevent sending you too many emails, the system has disabled email "
+"notifications until the load returns to normal. In the meantime, you can "
+"normally log onto the platform and manually check for new submissions."
+msgstr ""
+
+msgid ""
+"If you don’t mind and would rather receive such a large number of email "
+"notifications anyhow, please contact your technical support to have them "
+"modify this setting accordingly."
+msgstr ""
+
+msgid "Notifications from {NodeName} have been temporarily suspended"
+msgstr ""
+
+msgid "Click the link to activate the platform:"
+msgstr "Klik på linket for at aktivere platformen:"
+
+msgid "Activation"
+msgstr "Aktiver"
+
+msgid "A software update is available."
+msgstr "Der er en software-opdatering tilgængelig"
+
+msgid "It is good security practice to keep the platform up to date."
+msgstr "Det er god sikkerhedspraksis at holde platformen opdateret."
+
+msgid "Installed version: {InstalledVersion}"
+msgstr "Installeret version: {InstalledVersion}"
+
+msgid "Latest version: {LatestVersion}"
+msgstr "Nyeste version: {LatestVersion}"
+
+msgid ""
+"To learn about new features and bug fixes in the new version consult the "
+"change log at: {ChangeLogUrl}"
+msgstr "Du kan læse mere om nye features og programrettelser i den nye version i versionshistorikken på: {ChangeLogUrl}"
+
+msgid ""
+"For instructions on software updates, please refer to the documentation at: "
+"{UpdateGuideUrl}"
+msgstr ""
+
+msgid "The earliest expiration date is {EarliestExpirationDate}."
+msgstr ""
+
+msgid "Please remember to check them before they are deleted."
+msgstr ""
+
+msgid "Some submissions will expire soon"
+msgstr ""
+
+msgid ""
+"This is an email to notify you that a whistleblower has selected you as a "
+"valuable recipient of their submission."
+msgstr ""
+
+msgid ""
+"You are asked to pay special attention to the information and material "
+"contained therein. Please keep in mind that whistleblowers often expose "
+"themselves to high personal risks in the interest of the public. Therefore "
+"the material provided within this submission should be considered to be of "
+"high importance."
+msgstr "Du skal være særlig opmærksom på oplysninger og materiale, der er indeholdt heri. Vær opmærksom på, at whistleblowere ofte udsætter sig for store personlige risici i offentlighedens interesse. Derfor skal det indleverede materiale håndteres som særligt følsomt."
+
+msgid "New submission"
+msgstr "Ny indsendelse"
