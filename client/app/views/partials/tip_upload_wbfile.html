@@ -10,13 +10,6 @@
   </div>
   <div class="TipPageSectionContent panel-body" data-ng-show="!collapsed"
        data-ng-controller="RTipWBFileUploadCtrl">
-
-    <div class="alert alert-warning">
-      <i class="glyphicon glyphicon-warning-sign"></i>
-      <strong><span data-translate>Warning</span></strong>
-      <span data-translate>Files uploaded here are made available for the whistleblower and other recipients to download.</span>
-    </div>
-
     <div data-ng-repeat="wbfile in tip.wbfiles | orderBy: 'creation_date'">
       <div id="wbfile-{{$index}}" data-wbfile data-ctx="'rtip'"></div>
     </div>
