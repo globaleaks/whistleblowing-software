@@ -2,9 +2,12 @@
 
 set -e
 
-DISTRIBUTION="xenial"
+TARGETS="xenial stretch bionic"
+DISTRIBUTION="bionic"
 TAG="master"
+LOCAL_ENV=0
 NOSIGN=0
+PUSH=0
 
 usage() {
   echo "GlobaLeaks Build Script"
@@ -12,17 +15,10 @@ usage() {
   echo " -h"
   echo -e " -t tagname (build specific release/branch)"
   echo -e " -l (Use local repository & enviroment)"
-  echo -e " -d distribution (available: bionic, xenial, jessie, stretch)"
+  echo -e " -d distribution (available: bionic, xenial, stretch)"
   echo -e " -n (do not sign)"
   echo -e " -p (push on repository)"
 }
-
-TARGETS="xenial stretch bionic"
-DISTRIBUTION="xenial"
-TAG="master"
-LOCAL_ENV=0
-NOSIGN=0
-PUSH=0
 
 while getopts "d:t:np:h:l" opt; do
   case $opt in
