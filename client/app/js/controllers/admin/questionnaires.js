@@ -58,9 +58,14 @@ controller('AdminQuestionnaireEditorCtrl', ['$scope', '$http', 'Utils', 'FileSav
   function($scope, $http, Utils, FileSaver, AdminStepResource) {
 
   $scope.editing = false;
+  $scope.duplicating = false;
 
   $scope.toggleEditing = function () {
     $scope.editing = !$scope.editing;
+  };
+
+  $scope.toggleDuplicating = function () {
+    $scope.duplicating = !$scope.duplicating;
   };
 
   $scope.showAddStep = false;
@@ -70,6 +75,18 @@ controller('AdminQuestionnaireEditorCtrl', ['$scope', '$http', 'Utils', 'FileSav
 
   $scope.delStep = function(step) {
     return Utils.deleteResource(AdminStepResource, $scope.questionnaire.steps, step);
+  };
+
+  $scope.duplicate_questionnaire = function(obj) {
+    $http.post(
+      'admin/questionnaires/duplicate',
+      {
+        questionnaire_id: obj.id,
+        new_name: obj.duplicate_name
+      }
+    ).then(function (response) {
+      $scope.reload()
+    })
   };
 
   $scope.exportQuestionnaire = function(obj) {

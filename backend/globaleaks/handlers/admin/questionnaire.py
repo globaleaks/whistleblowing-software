@@ -4,6 +4,9 @@
 #   *****
 # Implementation of the code executed on handler /admin/questionnaires
 #
+
+import uuid
+
 from twisted.internet.defer import inlineCallbacks, returnValue
 
 from globaleaks import models, QUESTIONNAIRE_EXPORT_VERSION
@@ -15,6 +18,7 @@ from globaleaks.rest import requests
 from globaleaks.utils.structures import fill_localized_keys
 from globaleaks.utils.utility import datetime_to_ISO8601, datetime_now
 
+from six import text_type
 
 def db_get_questionnaire_list(session, tid, language):
     questionnaires = session.query(models.Questionnaire).filter(models.Questionnaire.tid.in_(set([1, tid])))
@@ -108,6 +112,35 @@ def update_questionnaire(session, tid, questionnaire_id, request, language):
 
     return serialize_questionnaire(session, tid, questionnaire, language)
 
+@transact
+def duplicate_questionnaire(session, state, tid, questionnaire_id, new_name):
+    """
+    Duplicates a questionaire, assigning new IDs to all sub components
+    """
+
+    q = db_get_questionnaire(session, tid, questionnaire_id, None)
+
+    # We need to change the primary key references and so this can be reimported
+    # as a new questionnaire
+
+    q['id'] = text_type(uuid.uuid4())
+
+    # Each step has a UUID that needs to be replaced
+    for step in q['steps']:
+        step['id'] = text_type(uuid.uuid4())
+
+        # And each child has a reference to a step that needs changing too
+        for child in step['children']:
+            child['id'] = text_type(uuid.uuid4())
+            child['step_id'] = step['id']
+
+            # And now we need to keep going down the latter
+            for attr in child['attrs'].values():
+                attr['id'] = text_type(uuid.uuid4())
+
+    q['name'] = new_name
+
+    db_create_questionnaire(session, state, tid, q, None)
 
 class QuestionnairesCollection(BaseHandler):
     check_roles = 'admin'
@@ -160,4 +193,23 @@ class QuestionnaireInstance(BaseHandler):
         q = yield get_questionnaire(self.request.tid, questionnaire_id, None)
         q['export_date'] = datetime_to_ISO8601(datetime_now())
         q['export_version'] = QUESTIONNAIRE_EXPORT_VERSION
+        returnValue(q)
+
+class QuestionnareDuplication(BaseHandler):
+    check_roles = 'admin'
+    invalidate_cache = True
+
+    @inlineCallbacks
+    def post(self):
+        """
+        Duplicates a questionnaire
+        """
+
+        request = self.validate_message(self.request.content.read(),
+                                        requests.QuestionnaireDuplicationDesc)
+
+        q = yield duplicate_questionnaire(self.state,
+                                          self.request.tid,
+                                          request['questionnaire_id'],
+                                          request['new_name'])
         returnValue(q)
