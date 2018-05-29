@@ -590,3 +590,8 @@ GeneralSettingsDesc = {
     'custom_privacy_badge_text': text_type,
     'contexts_clarification': text_type
 }
+
+QuestionnaireDuplicationDesc = {
+    'questionnaire_id': text_type,
+    'new_name': text_type
+}
