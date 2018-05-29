@@ -8,15 +8,6 @@ env:
 matrix:
   fast_finish: true
   include:
-    - env: GLTEST='build_and_install' BUILD_DISTRO='bionic'
-      python: "3.6"
-
-    - env: GLTEST='build_and_install' BUILD_DISTRO='xenial'
-      python: "3.6"
-
-    - env: GLTEST='build_and_install' BUILD_DISTRO='stretch'
-      python: "3.6"
-
     - env: GLTEST='py3_test' TESTS_REQUIREMENTS='bionic' COVERALLS=true
       python: "3.6"
 
@@ -24,6 +15,15 @@ matrix:
       python: "2.7"
 
     - env: GLTEST='lint'
+      python: "3.6"
+
+    - env: GLTEST='build_and_install' BUILD_DISTRO='bionic'
+      python: "3.6"
+
+    - env: GLTEST='build_and_install' BUILD_DISTRO='xenial'
+      python: "3.6"
+
+    - env: GLTEST='build_and_install' BUILD_DISTRO='stretch'
       python: "3.6"
 
     - env: GLTEST='end2end-0' BROWSER='edge 15'
@@ -87,6 +87,9 @@ matrix:
         sauce_connect: true
 
   allow_failures:
+    - env: GLTEST='build_and_install' BUILD_DISTRO='bionic'
+    - env: GLTEST='build_and_install' BUILD_DISTRO='xenial'
+    - env: GLTEST='build_and_install' BUILD_DISTRO='stretch'
     - env: GLTEST='end2end-0' BROWSER='edge 15'
     - env: GLTEST='end2end-1' BROWSER='ie 11'
     - env: GLTEST='end2end-2' BROWSER='firefox 34'
