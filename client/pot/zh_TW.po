@@ -10,7 +10,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-05-07 17:23+0000\n"
+"PO-Revision-Date: 2018-05-29 14:14+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/otf/globaleaks/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
@@ -651,6 +651,9 @@ msgstr "預設為未挑選"
 msgid "Surname"
 msgstr "姓氏"
 
+msgid "Do not create the admin user"
+msgstr ""
+
 msgid "Select the context of your submission:"
 msgstr "選擇你提交的內文說明"
 
@@ -741,7 +744,7 @@ msgid "Disable the privacy panel"
 msgstr "取消隱私面板"
 
 msgid "Enable disclaimer"
-msgstr ""
+msgstr "開啟免責聲明編輯功能"
 
 msgid "Title"
 msgstr "標題"
@@ -823,6 +826,18 @@ msgstr "用戶名"
 
 msgid "Password"
 msgstr "密碼"
+
+msgid "Restrict privileged logins to specific IP addresses"
+msgstr "僅授權特定 IP 地址方可以登錄"
+
+msgid "Whitelisted IP addresses"
+msgstr "IP 地址白名單"
+
+msgid "Either individual IP addresses or CIDR ranges are accepted here."
+msgstr "無效的 IP 地址或 CIDR 範圍不被接受。"
+
+msgid "Example:"
+msgstr "例子："
 
 msgid "Enable experimental features"
 msgstr "開啟示範性功能"
@@ -1378,7 +1393,7 @@ msgid "Body of the confirmation question upon negative answer"
 msgstr "否定回覆時，再次確認問題的內容"
 
 msgid "Text of the final statement upon negative answer"
-msgstr ""
+msgstr "否定回答的最後陳述文字"
 
 msgid "Options"
 msgstr "選項"
@@ -1433,6 +1448,9 @@ msgstr "二級網站使用的根域名"
 msgid "Allow users to sign up"
 msgstr "可接受新用戶註冊"
 
+msgid "Enable footer customization"
+msgstr "啟用網頁底部內容自定"
+
 msgid "Sites"
 msgstr "網站"
 
@@ -1465,9 +1483,6 @@ msgstr "使用者將在下回登入時更改密碼"
 msgid "Language"
 msgstr "語言"
 
-msgid "Encryption:"
-msgstr "加密:"
-
 msgid "Remove the PGP key"
 msgstr "移除 PGP 金鑰"
 
@@ -1479,6 +1494,12 @@ msgstr "請求日期"
 
 msgid "Authorization"
 msgstr "授權"
+
+msgid "The validation link is either incorrect or has expired."
+msgstr ""
+
+msgid "Your new email address has been validated."
+msgstr ""
 
 msgid "Before proceeding, please change your password."
 msgstr "開始前，請先改變你的密碼"
@@ -1727,11 +1748,6 @@ msgstr "收件人清單"
 msgid "Attached files for the whistleblower"
 msgstr "給吹哨者的附加檔案"
 
-msgid ""
-"Files uploaded here are made available for the whistleblower and other "
-"recipients to download."
-msgstr "此處上傳檔案可提供給吹哨者或其它收件者下載"
-
 msgid "Upload a file:"
 msgstr "上傳檔案 :"
 
@@ -1746,6 +1762,12 @@ msgstr "收件者所附加的檔案"
 
 msgid "These files have been attached to your submission by the recipients."
 msgstr "這些檔案是由你提交的收件者所附加的"
+
+msgid "Validation of email address change in progress."
+msgstr "正在查驗電郵地址變更"
+
+msgid "Please check your inbox for:"
+msgstr "請檢查你的電郵信箱:"
 
 msgid "Enable submission notification"
 msgstr "啟動提交通知"
@@ -1789,9 +1811,6 @@ msgid ""
 "A useful way to hide your key code is to write it down like a credit card "
 "number, i.e. by also including an expiration date."
 msgstr "保存鑰碼的有用作法是把它記到紙上，就如同信用卡，包括記下到期日資訊"
-
-msgid "Example:"
-msgstr "例子："
 
 msgid ""
 "You have not set up your encryption key, so the files will not be encrypted "
@@ -1988,14 +2007,17 @@ msgstr "名"
 msgid "Last name"
 msgstr "姓"
 
-msgid "Sex"
-msgstr ""
+msgid "Gender"
+msgstr "姓別"
 
 msgid "Male"
 msgstr "男性"
 
 msgid "Female"
 msgstr "女性"
+
+msgid "Other gender identity"
+msgstr "其它性別認同"
 
 msgid "Date of birth"
 msgstr "出生日期"
@@ -2104,13 +2126,16 @@ msgid "Registration data:"
 msgstr "註冊資料:"
 
 msgid "Site: {HTTPSUrl}"
-msgstr ""
+msgstr "網站: {HTTPSUrl} "
 
 msgid "Name: {Name}"
 msgstr "名稱: {Name}"
 
 msgid "Email: {Email}"
 msgstr "Email: {Email}"
+
+msgid "Language: {Language}"
+msgstr "語言: {Language}"
 
 msgid "Use case: {UseCase}"
 msgstr "使用案例: {UseCase}"
@@ -2145,6 +2170,27 @@ msgstr "透過HTTPS at: {HTTPSUrl}"
 
 msgid "New comment"
 msgstr "新評論"
+
+msgid ""
+"This is an email to notify you that a request has been made to change your "
+"email address to {NewEmailAddress}."
+msgstr "本郵件通知你，有人請求將你的電郵地址變更為 {NewEmailAddress}."
+
+msgid "Click the following link to validate this change: {HTTPSUrl}"
+msgstr ""
+
+msgid ""
+"If you wish to validate your new email with Tor, you may use the following "
+"link: {TorUrl}"
+msgstr "若需要透過 Tor  網路來驗證新的電郵地址，可以使以下方的連結： {TorUrl}"
+
+msgid ""
+"If you didn't request this change, change your password and contact your "
+"system administrator."
+msgstr "如果你並未作此請求，請儘快更新密碼並連絡通知系統管理者。"
+
+msgid "Email change request"
+msgstr "電郵變更請求"
 
 msgid "From: {RecipientName}"
 msgstr "來自: {RecipientName}"

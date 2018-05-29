@@ -36,7 +36,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-05-07 17:23+0000\n"
+"PO-Revision-Date: 2018-05-29 14:14+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/otf/globaleaks/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
@@ -677,6 +677,9 @@ msgstr ""
 msgid "Surname"
 msgstr ""
 
+msgid "Do not create the admin user"
+msgstr ""
+
 msgid "Select the context of your submission:"
 msgstr "Selecionar o assunto do seu envio:"
 
@@ -849,6 +852,18 @@ msgstr "Usuário"
 
 msgid "Password"
 msgstr "Senha"
+
+msgid "Restrict privileged logins to specific IP addresses"
+msgstr ""
+
+msgid "Whitelisted IP addresses"
+msgstr ""
+
+msgid "Either individual IP addresses or CIDR ranges are accepted here."
+msgstr ""
+
+msgid "Example:"
+msgstr "Exemplo:"
 
 msgid "Enable experimental features"
 msgstr "Ativar características experimentais"
@@ -1459,6 +1474,9 @@ msgstr ""
 msgid "Allow users to sign up"
 msgstr ""
 
+msgid "Enable footer customization"
+msgstr ""
+
 msgid "Sites"
 msgstr ""
 
@@ -1491,9 +1509,6 @@ msgstr "O usuário será forçado a alterar a sua senha na próxima autenticaç�
 msgid "Language"
 msgstr "Idioma"
 
-msgid "Encryption:"
-msgstr "Criptografia:"
-
 msgid "Remove the PGP key"
 msgstr "Remover a chave PGP"
 
@@ -1505,6 +1520,12 @@ msgstr "Data da solicitação"
 
 msgid "Authorization"
 msgstr "Autorização"
+
+msgid "The validation link is either incorrect or has expired."
+msgstr ""
+
+msgid "Your new email address has been validated."
+msgstr ""
 
 msgid "Before proceeding, please change your password."
 msgstr "Antes de continuar, por favor, altere sua senha."
@@ -1753,11 +1774,6 @@ msgstr "Lista de pessoas destinatárias"
 msgid "Attached files for the whistleblower"
 msgstr "Arquivos anexados pelo delator"
 
-msgid ""
-"Files uploaded here are made available for the whistleblower and other "
-"recipients to download."
-msgstr "Arquivos descarregados aqui estão disponíveis ao delator e a outros destinatários para baixar."
-
 msgid "Upload a file:"
 msgstr "Inserir um arquivo:"
 
@@ -1772,6 +1788,12 @@ msgstr "Arquivos anexados por destinatários"
 
 msgid "These files have been attached to your submission by the recipients."
 msgstr "Esses arquivos foram anexados à sua submissão pelo destinatário."
+
+msgid "Validation of email address change in progress."
+msgstr ""
+
+msgid "Please check your inbox for:"
+msgstr ""
 
 msgid "Enable submission notification"
 msgstr "Habilitar notificacao de envio"
@@ -1815,9 +1837,6 @@ msgid ""
 "A useful way to hide your key code is to write it down like a credit card "
 "number, i.e. by also including an expiration date."
 msgstr "Uma forma de esconder seu código chave é escrevê-lo como um número de cartão de crédito, isto é, incluindo também uma data de validade."
-
-msgid "Example:"
-msgstr "Exemplo:"
 
 msgid ""
 "You have not set up your encryption key, so the files will not be encrypted "
@@ -2014,14 +2033,17 @@ msgstr "Primeiro nome"
 msgid "Last name"
 msgstr "Último nome"
 
-msgid "Sex"
-msgstr ""
+msgid "Gender"
+msgstr "Gênero"
 
 msgid "Male"
 msgstr "Masculino"
 
 msgid "Female"
 msgstr "Feminino"
+
+msgid "Other gender identity"
+msgstr ""
 
 msgid "Date of birth"
 msgstr "Data de nascimento"
@@ -2138,6 +2160,9 @@ msgstr ""
 msgid "Email: {Email}"
 msgstr ""
 
+msgid "Language: {Language}"
+msgstr ""
+
 msgid "Use case: {UseCase}"
 msgstr ""
 
@@ -2171,6 +2196,27 @@ msgstr "via HTTPS em: {HTTPSUrl}"
 
 msgid "New comment"
 msgstr "Novo comentário"
+
+msgid ""
+"This is an email to notify you that a request has been made to change your "
+"email address to {NewEmailAddress}."
+msgstr ""
+
+msgid "Click the following link to validate this change: {HTTPSUrl}"
+msgstr ""
+
+msgid ""
+"If you wish to validate your new email with Tor, you may use the following "
+"link: {TorUrl}"
+msgstr ""
+
+msgid ""
+"If you didn't request this change, change your password and contact your "
+"system administrator."
+msgstr ""
+
+msgid "Email change request"
+msgstr ""
 
 msgid "From: {RecipientName}"
 msgstr "De: {RecipientName}"

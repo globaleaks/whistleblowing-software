@@ -12,7 +12,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-05-07 17:23+0000\n"
+"PO-Revision-Date: 2018-05-29 14:14+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Vietnamese (http://www.transifex.com/otf/globaleaks/language/vi/)\n"
 "MIME-Version: 1.0\n"
@@ -653,6 +653,9 @@ msgstr ""
 msgid "Surname"
 msgstr ""
 
+msgid "Do not create the admin user"
+msgstr ""
+
 msgid "Select the context of your submission:"
 msgstr "Chọn ngữ cảnh của trình của bạn:"
 
@@ -825,6 +828,18 @@ msgstr "Người dùng"
 
 msgid "Password"
 msgstr "Mật khẩu"
+
+msgid "Restrict privileged logins to specific IP addresses"
+msgstr ""
+
+msgid "Whitelisted IP addresses"
+msgstr ""
+
+msgid "Either individual IP addresses or CIDR ranges are accepted here."
+msgstr ""
+
+msgid "Example:"
+msgstr "Thí dụ:"
 
 msgid "Enable experimental features"
 msgstr "Kích hoạt tính năng thử nghiệm"
@@ -1435,6 +1450,9 @@ msgstr ""
 msgid "Allow users to sign up"
 msgstr ""
 
+msgid "Enable footer customization"
+msgstr ""
+
 msgid "Sites"
 msgstr ""
 
@@ -1467,9 +1485,6 @@ msgstr "Người dùng sẽ buộc phải thay đổi mật khẩu của mình t
 msgid "Language"
 msgstr "ngôn ngữ"
 
-msgid "Encryption:"
-msgstr "Mã hóa:"
-
 msgid "Remove the PGP key"
 msgstr "Xóa bỏ khóa PGP"
 
@@ -1481,6 +1496,12 @@ msgstr "Ngày yêu cầu"
 
 msgid "Authorization"
 msgstr "cho phép"
+
+msgid "The validation link is either incorrect or has expired."
+msgstr ""
+
+msgid "Your new email address has been validated."
+msgstr ""
 
 msgid "Before proceeding, please change your password."
 msgstr "Trước khi tiếp tục, hãy thay đổi mật khẩu của bạn."
@@ -1729,11 +1750,6 @@ msgstr "danh sách người nhận"
 msgid "Attached files for the whistleblower"
 msgstr ""
 
-msgid ""
-"Files uploaded here are made available for the whistleblower and other "
-"recipients to download."
-msgstr ""
-
 msgid "Upload a file:"
 msgstr ""
 
@@ -1747,6 +1763,12 @@ msgid "Files attached by recipients"
 msgstr ""
 
 msgid "These files have been attached to your submission by the recipients."
+msgstr ""
+
+msgid "Validation of email address change in progress."
+msgstr ""
+
+msgid "Please check your inbox for:"
 msgstr ""
 
 msgid "Enable submission notification"
@@ -1791,9 +1813,6 @@ msgid ""
 "A useful way to hide your key code is to write it down like a credit card "
 "number, i.e. by also including an expiration date."
 msgstr "Một cách hữu ích để giấu mã chính của bạn là viết nó xuống như một số thẻ tín dụng, tức là bằng cách cũng bao gồm cả ngày hết hạn."
-
-msgid "Example:"
-msgstr "Thí dụ:"
 
 msgid ""
 "You have not set up your encryption key, so the files will not be encrypted "
@@ -1990,14 +2009,17 @@ msgstr "Tên"
 msgid "Last name"
 msgstr "Họ"
 
-msgid "Sex"
-msgstr ""
+msgid "Gender"
+msgstr "Giới tính"
 
 msgid "Male"
 msgstr "Nam giới"
 
 msgid "Female"
 msgstr "Nữ giới"
+
+msgid "Other gender identity"
+msgstr ""
 
 msgid "Date of birth"
 msgstr "Ngày sinh"
@@ -2114,6 +2136,9 @@ msgstr ""
 msgid "Email: {Email}"
 msgstr ""
 
+msgid "Language: {Language}"
+msgstr ""
+
 msgid "Use case: {UseCase}"
 msgstr ""
 
@@ -2147,6 +2172,27 @@ msgstr "thông qua HTTPS tại: {HTTPSUrl}"
 
 msgid "New comment"
 msgstr "bình luận mới"
+
+msgid ""
+"This is an email to notify you that a request has been made to change your "
+"email address to {NewEmailAddress}."
+msgstr ""
+
+msgid "Click the following link to validate this change: {HTTPSUrl}"
+msgstr ""
+
+msgid ""
+"If you wish to validate your new email with Tor, you may use the following "
+"link: {TorUrl}"
+msgstr ""
+
+msgid ""
+"If you didn't request this change, change your password and contact your "
+"system administrator."
+msgstr ""
+
+msgid "Email change request"
+msgstr ""
 
 msgid "From: {RecipientName}"
 msgstr "Từ: {RecipientName}"

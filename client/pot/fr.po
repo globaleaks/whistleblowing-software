@@ -38,8 +38,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-05-07 17:27+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2018-05-29 15:00+0000\n"
+"Last-Translator: French language coordinator <french.coordinator@rbox.me>\n"
 "Language-Team: French (http://www.transifex.com/otf/globaleaks/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -679,6 +679,9 @@ msgstr "Non sélectionné par défaut"
 msgid "Surname"
 msgstr "Nom de famille"
 
+msgid "Do not create the admin user"
+msgstr "Ne pas créer l’utilisateur admin"
+
 msgid "Select the context of your submission:"
 msgstr "Choisir le contexte de votre envoi :"
 
@@ -851,6 +854,18 @@ msgstr "Nom d’utilisateur"
 
 msgid "Password"
 msgstr "Mot de passe"
+
+msgid "Restrict privileged logins to specific IP addresses"
+msgstr "Restreindre les connexions privilégiées à des adresses IP précises"
+
+msgid "Whitelisted IP addresses"
+msgstr "Adresses IP sur liste blanche"
+
+msgid "Either individual IP addresses or CIDR ranges are accepted here."
+msgstr "Des adresses IP particulières ou des plages de routage interdomaine sans classes (CIDR) peuvent être saisies ici."
+
+msgid "Example:"
+msgstr "Exemple :"
 
 msgid "Enable experimental features"
 msgstr "Activer les fonctions expérimentales"
@@ -1461,6 +1476,9 @@ msgstr "Domaine racine utilisé pour les sites secondaires"
 msgid "Allow users to sign up"
 msgstr "Permettre aux utilisateurs de s’inscrire"
 
+msgid "Enable footer customization"
+msgstr "Activer la personnalisation du bas de page "
+
 msgid "Sites"
 msgstr "Sites"
 
@@ -1493,9 +1511,6 @@ msgstr "L’utilisateur sera forcé de changer le mot de passe lors de la procha
 msgid "Language"
 msgstr "Langue"
 
-msgid "Encryption:"
-msgstr "Chiffrement :"
-
 msgid "Remove the PGP key"
 msgstr "Supprimer la clé PGP"
 
@@ -1507,6 +1522,12 @@ msgstr "Date de la demande"
 
 msgid "Authorization"
 msgstr "Autorisation"
+
+msgid "The validation link is either incorrect or has expired."
+msgstr "Soit le lien de validation est incorrect soit il est expiré."
+
+msgid "Your new email address has been validated."
+msgstr "Votre nouvelle adresse courriel a été validée."
 
 msgid "Before proceeding, please change your password."
 msgstr "Avant de continuer, veuillez changer votre mot de passe."
@@ -1755,11 +1776,6 @@ msgstr "Liste des destinataires"
 msgid "Attached files for the whistleblower"
 msgstr "Pièces jointes pour le lanceur d’alerte"
 
-msgid ""
-"Files uploaded here are made available for the whistleblower and other "
-"recipients to download."
-msgstr "Les fichiers téléversés deviennent téléchargeables par le lanceur d’alerte et les autres destinataires."
-
 msgid "Upload a file:"
 msgstr "Téléverser un fichier :"
 
@@ -1774,6 +1790,12 @@ msgstr "Pièces jointes par les destinataires"
 
 msgid "These files have been attached to your submission by the recipients."
 msgstr "Ces fichiers ont été joints à votre envoi par les destinataires."
+
+msgid "Validation of email address change in progress."
+msgstr "La validation du changement d’adresse courriel est en cours."
+
+msgid "Please check your inbox for:"
+msgstr "Veuillez vérifier votre boîte de réception :"
 
 msgid "Enable submission notification"
 msgstr "Activer la notification d’envoi"
@@ -1817,9 +1839,6 @@ msgid ""
 "A useful way to hide your key code is to write it down like a credit card "
 "number, i.e. by also including an expiration date."
 msgstr "Une bonne manière de dissimuler votre code-clé est de le noter comme un numéro de carte de crédit, c.-à-d. en ajoutant une date d’expiration."
-
-msgid "Example:"
-msgstr "Exemple :"
 
 msgid ""
 "You have not set up your encryption key, so the files will not be encrypted "
@@ -2016,14 +2035,17 @@ msgstr "Prénom"
 msgid "Last name"
 msgstr "Nom de famille"
 
-msgid "Sex"
-msgstr ""
+msgid "Gender"
+msgstr "Genre"
 
 msgid "Male"
 msgstr "Homme"
 
 msgid "Female"
 msgstr "Femme"
+
+msgid "Other gender identity"
+msgstr "Autre identité de genre"
 
 msgid "Date of birth"
 msgstr "Date de naissance"
@@ -2140,6 +2162,9 @@ msgstr "Nom : {Name}"
 msgid "Email: {Email}"
 msgstr "Adresse courriel : {Email}"
 
+msgid "Language: {Language}"
+msgstr "Langue : {Language}"
+
 msgid "Use case: {UseCase}"
 msgstr "Cas d’usage : {UseCase}"
 
@@ -2173,6 +2198,27 @@ msgstr "par HTTPS à : {HTTPSUrl}"
 
 msgid "New comment"
 msgstr "Nouveau commentaire"
+
+msgid ""
+"This is an email to notify you that a request has been made to change your "
+"email address to {NewEmailAddress}."
+msgstr "Le but de ce courriel est de vous informer qu’une demande a été faite pour changer votre adresse courriel en {NewEmailAddress}."
+
+msgid "Click the following link to validate this change: {HTTPSUrl}"
+msgstr "Cliquez sur le lien suivant pour valider ce changement : {HTTPSUrl}"
+
+msgid ""
+"If you wish to validate your new email with Tor, you may use the following "
+"link: {TorUrl}"
+msgstr "Si vous souhaitez valider votre nouvelle adresse courriel en utilisant Tor, vous pouvez utiliser le lien suivant : {TorUrl}"
+
+msgid ""
+"If you didn't request this change, change your password and contact your "
+"system administrator."
+msgstr "Si vous n’êtes pas à l’origine de cette demande, changez votre mot de passe et contactez votre administrateur de système."
+
+msgid "Email change request"
+msgstr "Demande de changement d’adresse courriel"
 
 msgid "From: {RecipientName}"
 msgstr "De : {RecipientName}"

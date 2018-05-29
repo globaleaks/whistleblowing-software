@@ -11,14 +11,14 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-05-07 17:23+0000\n"
+"PO-Revision-Date: 2018-05-29 14:14+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Czech (http://www.transifex.com/otf/globaleaks/language/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: cs\n"
-"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+"Plural-Forms: nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n >= 2 && n <= 4 && n % 1 == 0) ? 1: (n % 1 != 0 ) ? 2 : 3;\n"
 
 msgid "Login page"
 msgstr "Přihlašovací stránka"
@@ -652,6 +652,9 @@ msgstr "Nezvoleno ve výchozím nastavení"
 msgid "Surname"
 msgstr "Příjmení"
 
+msgid "Do not create the admin user"
+msgstr ""
+
 msgid "Select the context of your submission:"
 msgstr "Vyberte kontext pro vaše podání"
 
@@ -824,6 +827,18 @@ msgstr "Uživatelské jméno"
 
 msgid "Password"
 msgstr "Heslo"
+
+msgid "Restrict privileged logins to specific IP addresses"
+msgstr ""
+
+msgid "Whitelisted IP addresses"
+msgstr ""
+
+msgid "Either individual IP addresses or CIDR ranges are accepted here."
+msgstr ""
+
+msgid "Example:"
+msgstr "Příklad:"
 
 msgid "Enable experimental features"
 msgstr "Povolit experimentální vlastnosti"
@@ -1434,6 +1449,9 @@ msgstr "Kořenová doména pro sekundární stránky"
 msgid "Allow users to sign up"
 msgstr "Povolit uživatelům registraci"
 
+msgid "Enable footer customization"
+msgstr ""
+
 msgid "Sites"
 msgstr "Stránky"
 
@@ -1466,9 +1484,6 @@ msgstr "Uživatel bude bude muset po prvním přihlášení změnit heslo."
 msgid "Language"
 msgstr "Jazyk"
 
-msgid "Encryption:"
-msgstr "Šifrování:"
-
 msgid "Remove the PGP key"
 msgstr "Odstranení klíče PGP"
 
@@ -1480,6 +1495,12 @@ msgstr "Datum požadavku"
 
 msgid "Authorization"
 msgstr "Autorizace"
+
+msgid "The validation link is either incorrect or has expired."
+msgstr ""
+
+msgid "Your new email address has been validated."
+msgstr ""
 
 msgid "Before proceeding, please change your password."
 msgstr "Před dokončením, prosím, změnte své heslo."
@@ -1728,11 +1749,6 @@ msgstr "Seznam příjemců"
 msgid "Attached files for the whistleblower"
 msgstr "Přiložené soubory pro oznamovatele."
 
-msgid ""
-"Files uploaded here are made available for the whistleblower and other "
-"recipients to download."
-msgstr "Sobory zde nahrané jsou přístupné ke stažení oznamovatelům a dalším příjemcům."
-
 msgid "Upload a file:"
 msgstr "Nahrání souboru:"
 
@@ -1747,6 +1763,12 @@ msgstr "Přílohy od příjemců"
 
 msgid "These files have been attached to your submission by the recipients."
 msgstr "Tyto přílohy byly připojené příjemci k vašemu oznámení ."
+
+msgid "Validation of email address change in progress."
+msgstr ""
+
+msgid "Please check your inbox for:"
+msgstr ""
 
 msgid "Enable submission notification"
 msgstr "Povolit oznámení o příspěvcích"
@@ -1790,9 +1812,6 @@ msgid ""
 "A useful way to hide your key code is to write it down like a credit card "
 "number, i.e. by also including an expiration date."
 msgstr "Užitečný způsob, jak si nenápadně poznamenat přístupový kód, je zapsat si ho jako číslo kreditní karty. Pro lepší dojem můžete doplnit datum expirace."
-
-msgid "Example:"
-msgstr "Příklad:"
 
 msgid ""
 "You have not set up your encryption key, so the files will not be encrypted "
@@ -1989,14 +2008,17 @@ msgstr "Jméno"
 msgid "Last name"
 msgstr "Příjmení"
 
-msgid "Sex"
-msgstr ""
+msgid "Gender"
+msgstr "Pohlaví"
 
 msgid "Male"
 msgstr "Muž"
 
 msgid "Female"
 msgstr "Žena"
+
+msgid "Other gender identity"
+msgstr ""
 
 msgid "Date of birth"
 msgstr "Datum narození"
@@ -2113,6 +2135,9 @@ msgstr ""
 msgid "Email: {Email}"
 msgstr ""
 
+msgid "Language: {Language}"
+msgstr ""
+
 msgid "Use case: {UseCase}"
 msgstr ""
 
@@ -2146,6 +2171,27 @@ msgstr "via HTTPS na: {HTTPSUrl}"
 
 msgid "New comment"
 msgstr "Nový komentář"
+
+msgid ""
+"This is an email to notify you that a request has been made to change your "
+"email address to {NewEmailAddress}."
+msgstr ""
+
+msgid "Click the following link to validate this change: {HTTPSUrl}"
+msgstr ""
+
+msgid ""
+"If you wish to validate your new email with Tor, you may use the following "
+"link: {TorUrl}"
+msgstr ""
+
+msgid ""
+"If you didn't request this change, change your password and contact your "
+"system administrator."
+msgstr ""
+
+msgid "Email change request"
+msgstr ""
 
 msgid "From: {RecipientName}"
 msgstr "Od:: {RecipientName}"
