@@ -1,3 +1,20 @@
+Changes in version 3.1.0 - 2018-05-29
+    Complete compatibility with Py3 while maintaining support for Py2
+    Complete packaging for Ubuntu Bionic
+    Drop support to pip based distributions: trusty, wheezy, jessie
+    Upgrade Letsencrypt to use APIv2
+    Implement database additions to support next round of features
+    Implement optional IP filtering for authenticated users (1211)
+    Implement possibility for users to change their visualized name (2271)
+    Implement possibility for users to change their email address (2272)
+    Make it possible to configure the same footer for all the tenants (2274)
+    Add Danish translation thanks to volunteers support!
+    Update translations
+    Update npm dependencies to latest versions
+
+    Addresses issues:
+    - https://github.com/globaleaks/GlobaLeaks/issues/2269
+
 Changes in version 3.0.29 - 2018-05-07
     Apply code revisions for compatibility with both py2 and py3
 
