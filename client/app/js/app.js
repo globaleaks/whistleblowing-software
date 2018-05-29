@@ -363,7 +363,7 @@ var GLClient = angular.module('GLClient', [
       when('/preferences', {
         templateUrl: 'views/preferences.html',
         controller: 'PreferencesCtrl',
-        header_title: 'User preferences',
+        header_title: 'Preferences',
         header_subtitle: '',
         resolve: {
           access: requireAuth('*'),
