@@ -35,7 +35,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-05-07 17:23+0000\n"
+"PO-Revision-Date: 2018-05-29 14:14+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Dutch (http://www.transifex.com/otf/globaleaks/language/nl/)\n"
 "MIME-Version: 1.0\n"
@@ -676,6 +676,9 @@ msgstr ""
 msgid "Surname"
 msgstr ""
 
+msgid "Do not create the admin user"
+msgstr ""
+
 msgid "Select the context of your submission:"
 msgstr "Selecteer de context van uw inzending:"
 
@@ -848,6 +851,18 @@ msgstr "Gebruikersnaam"
 
 msgid "Password"
 msgstr "Wachtwoord"
+
+msgid "Restrict privileged logins to specific IP addresses"
+msgstr ""
+
+msgid "Whitelisted IP addresses"
+msgstr ""
+
+msgid "Either individual IP addresses or CIDR ranges are accepted here."
+msgstr ""
+
+msgid "Example:"
+msgstr "Voorbeeld:"
 
 msgid "Enable experimental features"
 msgstr "Experimentele functies inschakelen"
@@ -1458,6 +1473,9 @@ msgstr ""
 msgid "Allow users to sign up"
 msgstr ""
 
+msgid "Enable footer customization"
+msgstr ""
+
 msgid "Sites"
 msgstr "Websites"
 
@@ -1490,9 +1508,6 @@ msgstr "De gebruiker moet zijn wachtwoord veranderen bij een volgende login."
 msgid "Language"
 msgstr "Taal"
 
-msgid "Encryption:"
-msgstr "Encryptie:"
-
 msgid "Remove the PGP key"
 msgstr "Verwijder de PGP-sleutel"
 
@@ -1504,6 +1519,12 @@ msgstr "Aanvraagdatum"
 
 msgid "Authorization"
 msgstr "Autorisatie"
+
+msgid "The validation link is either incorrect or has expired."
+msgstr ""
+
+msgid "Your new email address has been validated."
+msgstr ""
 
 msgid "Before proceeding, please change your password."
 msgstr "Gelieve uw wachtwoord te veranderen vooraleer u verdergaat."
@@ -1752,11 +1773,6 @@ msgstr "Lijst ontvangers"
 msgid "Attached files for the whistleblower"
 msgstr "Bijlage voor de klokkenluider"
 
-msgid ""
-"Files uploaded here are made available for the whistleblower and other "
-"recipients to download."
-msgstr "Bestanden die je hier upload zijn beschikbaar als download voor de klokkenluider en andere ontvangers."
-
 msgid "Upload a file:"
 msgstr "Upload een bestand:"
 
@@ -1771,6 +1787,12 @@ msgstr "Bestanden die door ontvangers zijn toegevoegd"
 
 msgid "These files have been attached to your submission by the recipients."
 msgstr "Deze bestanden zijn door de ontvangers als bijlage toegevoegd aan jouw inzending."
+
+msgid "Validation of email address change in progress."
+msgstr ""
+
+msgid "Please check your inbox for:"
+msgstr ""
 
 msgid "Enable submission notification"
 msgstr "Activeer meldingen in verband met meldingen"
@@ -1814,9 +1836,6 @@ msgid ""
 "A useful way to hide your key code is to write it down like a credit card "
 "number, i.e. by also including an expiration date."
 msgstr "Een handige manier om uw sleutel code te verbergen, is om het op te schrijven zoals een creditcard nummer. Vergeet niet de vervaldatum erbij te schrijven."
-
-msgid "Example:"
-msgstr "Voorbeeld:"
 
 msgid ""
 "You have not set up your encryption key, so the files will not be encrypted "
@@ -2013,14 +2032,17 @@ msgstr "Voornaam"
 msgid "Last name"
 msgstr "Achternaam"
 
-msgid "Sex"
-msgstr ""
+msgid "Gender"
+msgstr "Geslacht"
 
 msgid "Male"
 msgstr "Man"
 
 msgid "Female"
 msgstr "Vrouw"
+
+msgid "Other gender identity"
+msgstr ""
 
 msgid "Date of birth"
 msgstr "Geboortedatum"
@@ -2137,6 +2159,9 @@ msgstr ""
 msgid "Email: {Email}"
 msgstr ""
 
+msgid "Language: {Language}"
+msgstr ""
+
 msgid "Use case: {UseCase}"
 msgstr ""
 
@@ -2170,6 +2195,27 @@ msgstr "via HTTPS op: {HTTPSUrl}"
 
 msgid "New comment"
 msgstr "Nieuw commentaar"
+
+msgid ""
+"This is an email to notify you that a request has been made to change your "
+"email address to {NewEmailAddress}."
+msgstr ""
+
+msgid "Click the following link to validate this change: {HTTPSUrl}"
+msgstr ""
+
+msgid ""
+"If you wish to validate your new email with Tor, you may use the following "
+"link: {TorUrl}"
+msgstr ""
+
+msgid ""
+"If you didn't request this change, change your password and contact your "
+"system administrator."
+msgstr ""
+
+msgid "Email change request"
+msgstr ""
 
 msgid "From: {RecipientName}"
 msgstr "Van: {RecipientName}"

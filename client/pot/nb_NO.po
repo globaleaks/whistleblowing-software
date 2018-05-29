@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-05-07 17:27+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2018-05-29 14:14+0000\n"
+"Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Norwegian Bokmål (Norway) (http://www.transifex.com/otf/globaleaks/language/nb_NO/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -648,6 +648,9 @@ msgstr "Ikke forvalgt"
 msgid "Surname"
 msgstr "Etternavn"
 
+msgid "Do not create the admin user"
+msgstr ""
+
 msgid "Select the context of your submission:"
 msgstr "Velg bindeleddsinformasjonen tilhørende din innsendelse:"
 
@@ -820,6 +823,18 @@ msgstr "Brukernavn"
 
 msgid "Password"
 msgstr "Passord"
+
+msgid "Restrict privileged logins to specific IP addresses"
+msgstr "Begrens priviligerte innlogginger til gitte IP-adresser"
+
+msgid "Whitelisted IP addresses"
+msgstr "Hvitlistede IP-adresser"
+
+msgid "Either individual IP addresses or CIDR ranges are accepted here."
+msgstr "Enten individuelle IP-adresser eller CIDR-blokker godtas her."
+
+msgid "Example:"
+msgstr "Eksempel:"
 
 msgid "Enable experimental features"
 msgstr "Skru på eksperimentelle funksjoner"
@@ -1430,6 +1445,9 @@ msgstr "Rotdomene brukt for sekundære sider"
 msgid "Allow users to sign up"
 msgstr "Tillat brukere å registrere seg"
 
+msgid "Enable footer customization"
+msgstr "Skru på tilpasning av bunntekst"
+
 msgid "Sites"
 msgstr "Sider"
 
@@ -1462,9 +1480,6 @@ msgstr "Mottakeren vil tvinges til å endre passordet sitt ved neste innlogging.
 msgid "Language"
 msgstr "Språk"
 
-msgid "Encryption:"
-msgstr "Kryptering:"
-
 msgid "Remove the PGP key"
 msgstr "Fjern PGP-nøkkel"
 
@@ -1476,6 +1491,12 @@ msgstr "Forespør dato"
 
 msgid "Authorization"
 msgstr "Godkjenning"
+
+msgid "The validation link is either incorrect or has expired."
+msgstr ""
+
+msgid "Your new email address has been validated."
+msgstr ""
 
 msgid "Before proceeding, please change your password."
 msgstr "Før du fortsetter, endre passordet ditt."
@@ -1724,11 +1745,6 @@ msgstr "Mottaker-liste"
 msgid "Attached files for the whistleblower"
 msgstr "Vedlagte filer for fløyteblåseren"
 
-msgid ""
-"Files uploaded here are made available for the whistleblower and other "
-"recipients to download."
-msgstr "Filer lastet opp her vil kunne lastes ned av fløyteblåseren og andre mottakere."
-
 msgid "Upload a file:"
 msgstr "Last opp en fil:"
 
@@ -1743,6 +1759,12 @@ msgstr "Filer vedlegt av mottakere"
 
 msgid "These files have been attached to your submission by the recipients."
 msgstr "Disse filene har blitt vedlagt din innsendelse av mottakerne."
+
+msgid "Validation of email address change in progress."
+msgstr "Bekreftelse av e-postendring underveis."
+
+msgid "Please check your inbox for:"
+msgstr "Sjekk din innboks for:"
 
 msgid "Enable submission notification"
 msgstr "Skru på innsendelsesmerknad"
@@ -1786,9 +1808,6 @@ msgid ""
 "A useful way to hide your key code is to write it down like a credit card "
 "number, i.e. by also including an expiration date."
 msgstr "En mulig måte å gjemme koden din på er å hevde at det er et kredittkortnummer man har skrevet ned."
-
-msgid "Example:"
-msgstr "Eksempel:"
 
 msgid ""
 "You have not set up your encryption key, so the files will not be encrypted "
@@ -1985,14 +2004,17 @@ msgstr "Fornavn"
 msgid "Last name"
 msgstr "Etternavn"
 
-msgid "Sex"
-msgstr ""
+msgid "Gender"
+msgstr "Kjønn"
 
 msgid "Male"
 msgstr "Hannkjønn"
 
 msgid "Female"
 msgstr "Hunnkjønn"
+
+msgid "Other gender identity"
+msgstr "Annen kjønnsidentitet"
 
 msgid "Date of birth"
 msgstr "Fødselsdato"
@@ -2109,6 +2131,9 @@ msgstr "Navn: {Name}"
 msgid "Email: {Email}"
 msgstr "E-post: {Email}"
 
+msgid "Language: {Language}"
+msgstr "Språk: {Language}"
+
 msgid "Use case: {UseCase}"
 msgstr "Bruksmønster: {UseCase}"
 
@@ -2142,6 +2167,27 @@ msgstr "via HTTPS på {HTTPSUrl}"
 
 msgid "New comment"
 msgstr "Ny kommentar"
+
+msgid ""
+"This is an email to notify you that a request has been made to change your "
+"email address to {NewEmailAddress}."
+msgstr "Dette er en e-post til påminnelse om at en forespørsel har funnet sted om endring av din e-postadresse til {NewEmailAddress}."
+
+msgid "Click the following link to validate this change: {HTTPSUrl}"
+msgstr ""
+
+msgid ""
+"If you wish to validate your new email with Tor, you may use the following "
+"link: {TorUrl}"
+msgstr "Hvis du ønsker å bekrefte din nye e-post med Tor, kan du bruke følgende lenke: {TorUrl}"
+
+msgid ""
+"If you didn't request this change, change your password and contact your "
+"system administrator."
+msgstr "Hvis du ikke forespurte denne endringen, bytt passord og kontakt din systemadministrator."
+
+msgid "Email change request"
+msgstr "E-postendringsforespørsel"
 
 msgid "From: {RecipientName}"
 msgstr "Fra: {RecipientName}"

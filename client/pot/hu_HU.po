@@ -21,7 +21,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-05-07 17:23+0000\n"
+"PO-Revision-Date: 2018-05-29 14:14+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Hungarian (Hungary) (http://www.transifex.com/otf/globaleaks/language/hu_HU/)\n"
 "MIME-Version: 1.0\n"
@@ -662,6 +662,9 @@ msgstr ""
 msgid "Surname"
 msgstr ""
 
+msgid "Do not create the admin user"
+msgstr ""
+
 msgid "Select the context of your submission:"
 msgstr "Válassza ki a beküldés környezetét:"
 
@@ -834,6 +837,18 @@ msgstr "Felhasználónév"
 
 msgid "Password"
 msgstr "Jelszó"
+
+msgid "Restrict privileged logins to specific IP addresses"
+msgstr ""
+
+msgid "Whitelisted IP addresses"
+msgstr ""
+
+msgid "Either individual IP addresses or CIDR ranges are accepted here."
+msgstr ""
+
+msgid "Example:"
+msgstr "Példa:"
 
 msgid "Enable experimental features"
 msgstr "Kísérleti fejlesztések bekapcsolása"
@@ -1444,6 +1459,9 @@ msgstr ""
 msgid "Allow users to sign up"
 msgstr ""
 
+msgid "Enable footer customization"
+msgstr ""
+
 msgid "Sites"
 msgstr ""
 
@@ -1476,9 +1494,6 @@ msgstr "A felhasználó kényszeríve lesz, hogy megváltoztassa a jelszavát a 
 msgid "Language"
 msgstr "Nyelv:"
 
-msgid "Encryption:"
-msgstr ""
-
 msgid "Remove the PGP key"
 msgstr "PGP kulcs eltávolítása"
 
@@ -1489,6 +1504,12 @@ msgid "Request date"
 msgstr "Kérés dátuma"
 
 msgid "Authorization"
+msgstr ""
+
+msgid "The validation link is either incorrect or has expired."
+msgstr ""
+
+msgid "Your new email address has been validated."
 msgstr ""
 
 msgid "Before proceeding, please change your password."
@@ -1738,11 +1759,6 @@ msgstr "Címzett lista"
 msgid "Attached files for the whistleblower"
 msgstr ""
 
-msgid ""
-"Files uploaded here are made available for the whistleblower and other "
-"recipients to download."
-msgstr ""
-
 msgid "Upload a file:"
 msgstr ""
 
@@ -1756,6 +1772,12 @@ msgid "Files attached by recipients"
 msgstr ""
 
 msgid "These files have been attached to your submission by the recipients."
+msgstr ""
+
+msgid "Validation of email address change in progress."
+msgstr ""
+
+msgid "Please check your inbox for:"
 msgstr ""
 
 msgid "Enable submission notification"
@@ -1800,9 +1822,6 @@ msgid ""
 "A useful way to hide your key code is to write it down like a credit card "
 "number, i.e. by also including an expiration date."
 msgstr "A kulcs kódja elrejtéséhez jó ötlet lehet, ha leírja mint egy hitelkártya számot, azaz hozzáad egy lejárati dátumot is. "
-
-msgid "Example:"
-msgstr "Példa:"
 
 msgid ""
 "You have not set up your encryption key, so the files will not be encrypted "
@@ -1999,14 +2018,17 @@ msgstr "Keresztnév"
 msgid "Last name"
 msgstr "Vezetéknév"
 
-msgid "Sex"
-msgstr ""
+msgid "Gender"
+msgstr "Nem"
 
 msgid "Male"
 msgstr "Férfi"
 
 msgid "Female"
 msgstr "Nő"
+
+msgid "Other gender identity"
+msgstr ""
 
 msgid "Date of birth"
 msgstr "Születési idő"
@@ -2123,6 +2145,9 @@ msgstr ""
 msgid "Email: {Email}"
 msgstr ""
 
+msgid "Language: {Language}"
+msgstr ""
+
 msgid "Use case: {UseCase}"
 msgstr ""
 
@@ -2156,6 +2181,27 @@ msgstr ""
 
 msgid "New comment"
 msgstr "Új hozzászólás"
+
+msgid ""
+"This is an email to notify you that a request has been made to change your "
+"email address to {NewEmailAddress}."
+msgstr ""
+
+msgid "Click the following link to validate this change: {HTTPSUrl}"
+msgstr ""
+
+msgid ""
+"If you wish to validate your new email with Tor, you may use the following "
+"link: {TorUrl}"
+msgstr ""
+
+msgid ""
+"If you didn't request this change, change your password and contact your "
+"system administrator."
+msgstr ""
+
+msgid "Email change request"
+msgstr ""
 
 msgid "From: {RecipientName}"
 msgstr "Tőle: {RecipientName}"

@@ -17,7 +17,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-05-07 17:23+0000\n"
+"PO-Revision-Date: 2018-05-29 14:14+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Romanian (http://www.transifex.com/otf/globaleaks/language/ro/)\n"
 "MIME-Version: 1.0\n"
@@ -658,6 +658,9 @@ msgstr ""
 msgid "Surname"
 msgstr ""
 
+msgid "Do not create the admin user"
+msgstr ""
+
 msgid "Select the context of your submission:"
 msgstr "Selectați contextul prezentării dumneavoastră:"
 
@@ -830,6 +833,18 @@ msgstr "Nume Utilizator"
 
 msgid "Password"
 msgstr "Parolă"
+
+msgid "Restrict privileged logins to specific IP addresses"
+msgstr ""
+
+msgid "Whitelisted IP addresses"
+msgstr ""
+
+msgid "Either individual IP addresses or CIDR ranges are accepted here."
+msgstr ""
+
+msgid "Example:"
+msgstr "Exemplu:"
 
 msgid "Enable experimental features"
 msgstr "Activați funcțiile experimentale"
@@ -1440,6 +1455,9 @@ msgstr ""
 msgid "Allow users to sign up"
 msgstr ""
 
+msgid "Enable footer customization"
+msgstr ""
+
 msgid "Sites"
 msgstr ""
 
@@ -1472,9 +1490,6 @@ msgstr "Utilizatorul va fi forțat să schimbe parola cu privire la următoarea 
 msgid "Language"
 msgstr "Limba"
 
-msgid "Encryption:"
-msgstr "Criptare:"
-
 msgid "Remove the PGP key"
 msgstr "Scoateți cheia PGP"
 
@@ -1486,6 +1501,12 @@ msgstr "Data ceruta"
 
 msgid "Authorization"
 msgstr "Autorizare"
+
+msgid "The validation link is either incorrect or has expired."
+msgstr ""
+
+msgid "Your new email address has been validated."
+msgstr ""
 
 msgid "Before proceeding, please change your password."
 msgstr "Inainte de a continua, vă rugăm să schimbați parola."
@@ -1734,11 +1755,6 @@ msgstr "lista de destinatari"
 msgid "Attached files for the whistleblower"
 msgstr "Fișiere atașate pentru informator"
 
-msgid ""
-"Files uploaded here are made available for the whistleblower and other "
-"recipients to download."
-msgstr "Fișierele încărcate aici sunt disponibile atât pentru informator cât și pentru alți destinatari pentru a fi descărcate."
-
 msgid "Upload a file:"
 msgstr "Încarcă un fișier:"
 
@@ -1753,6 +1769,12 @@ msgstr "Fișiere atașate de către destinatari"
 
 msgid "These files have been attached to your submission by the recipients."
 msgstr "Aceste fișiere au fost atașate conținutului tău de către destinatari."
+
+msgid "Validation of email address change in progress."
+msgstr ""
+
+msgid "Please check your inbox for:"
+msgstr ""
 
 msgid "Enable submission notification"
 msgstr "Activați notificarea în depunerea"
@@ -1796,9 +1818,6 @@ msgid ""
 "A useful way to hide your key code is to write it down like a credit card "
 "number, i.e. by also including an expiration date."
 msgstr "Un mod util de a ascunde codul cheie este să-l scrie în jos ca un număr de card de credit, și anume prin includerea, de asemenea, o dată de expirare."
-
-msgid "Example:"
-msgstr "Exemplu:"
 
 msgid ""
 "You have not set up your encryption key, so the files will not be encrypted "
@@ -1995,14 +2014,17 @@ msgstr "Primul nume"
 msgid "Last name"
 msgstr "Numele de familie"
 
-msgid "Sex"
-msgstr ""
+msgid "Gender"
+msgstr "Gen"
 
 msgid "Male"
 msgstr "Masculin"
 
 msgid "Female"
 msgstr "Femeie"
+
+msgid "Other gender identity"
+msgstr ""
 
 msgid "Date of birth"
 msgstr "Data de nastere"
@@ -2119,6 +2141,9 @@ msgstr ""
 msgid "Email: {Email}"
 msgstr ""
 
+msgid "Language: {Language}"
+msgstr ""
+
 msgid "Use case: {UseCase}"
 msgstr ""
 
@@ -2152,6 +2177,27 @@ msgstr "prin HTTPS la: {HTTPSUrl}"
 
 msgid "New comment"
 msgstr "Comentariu nou"
+
+msgid ""
+"This is an email to notify you that a request has been made to change your "
+"email address to {NewEmailAddress}."
+msgstr ""
+
+msgid "Click the following link to validate this change: {HTTPSUrl}"
+msgstr ""
+
+msgid ""
+"If you wish to validate your new email with Tor, you may use the following "
+"link: {TorUrl}"
+msgstr ""
+
+msgid ""
+"If you didn't request this change, change your password and contact your "
+"system administrator."
+msgstr ""
+
+msgid "Email change request"
+msgstr ""
 
 msgid "From: {RecipientName}"
 msgstr "De la: {RecipientName}"

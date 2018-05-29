@@ -18,7 +18,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-05-07 17:23+0000\n"
+"PO-Revision-Date: 2018-05-29 14:14+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/otf/globaleaks/language/zh_CN/)\n"
 "MIME-Version: 1.0\n"
@@ -659,6 +659,9 @@ msgstr ""
 msgid "Surname"
 msgstr "姓"
 
+msgid "Do not create the admin user"
+msgstr ""
+
 msgid "Select the context of your submission:"
 msgstr "选项提交内容类型："
 
@@ -831,6 +834,18 @@ msgstr "用户名"
 
 msgid "Password"
 msgstr "密码"
+
+msgid "Restrict privileged logins to specific IP addresses"
+msgstr ""
+
+msgid "Whitelisted IP addresses"
+msgstr ""
+
+msgid "Either individual IP addresses or CIDR ranges are accepted here."
+msgstr ""
+
+msgid "Example:"
+msgstr "例子："
 
 msgid "Enable experimental features"
 msgstr "启用试验功能"
@@ -1441,6 +1456,9 @@ msgstr ""
 msgid "Allow users to sign up"
 msgstr "允许用户登陆"
 
+msgid "Enable footer customization"
+msgstr ""
+
 msgid "Sites"
 msgstr "网站"
 
@@ -1473,9 +1491,6 @@ msgstr "该用户将被强制在下次登录时更改其密码。"
 msgid "Language"
 msgstr "语言"
 
-msgid "Encryption:"
-msgstr "算法:"
-
 msgid "Remove the PGP key"
 msgstr "移除 PGP 密钥文件"
 
@@ -1487,6 +1502,12 @@ msgstr "请求日期"
 
 msgid "Authorization"
 msgstr "授权"
+
+msgid "The validation link is either incorrect or has expired."
+msgstr ""
+
+msgid "Your new email address has been validated."
+msgstr ""
 
 msgid "Before proceeding, please change your password."
 msgstr "请修改密码，然后继续。"
@@ -1735,11 +1756,6 @@ msgstr "收件人列表"
 msgid "Attached files for the whistleblower"
 msgstr "发送给揭发人的附件"
 
-msgid ""
-"Files uploaded here are made available for the whistleblower and other "
-"recipients to download."
-msgstr "此处上传的文件可供揭发人和其他接收人下载。"
-
 msgid "Upload a file:"
 msgstr "上传文件："
 
@@ -1754,6 +1770,12 @@ msgstr "来自接收人的附件"
 
 msgid "These files have been attached to your submission by the recipients."
 msgstr "这些附件由接收人添加至你的提交内容。"
+
+msgid "Validation of email address change in progress."
+msgstr ""
+
+msgid "Please check your inbox for:"
+msgstr ""
 
 msgid "Enable submission notification"
 msgstr "启用提交通知"
@@ -1797,9 +1819,6 @@ msgid ""
 "A useful way to hide your key code is to write it down like a credit card "
 "number, i.e. by also including an expiration date."
 msgstr "隐藏您的关键代码有一个好用的方法，那就是把它写下来，并伪装成像是一个信用卡号码，比如也写上一个到期日。"
-
-msgid "Example:"
-msgstr "例子："
 
 msgid ""
 "You have not set up your encryption key, so the files will not be encrypted "
@@ -1996,14 +2015,17 @@ msgstr "名"
 msgid "Last name"
 msgstr "姓"
 
-msgid "Sex"
-msgstr ""
+msgid "Gender"
+msgstr "性别"
 
 msgid "Male"
 msgstr "男"
 
 msgid "Female"
 msgstr "女"
+
+msgid "Other gender identity"
+msgstr ""
 
 msgid "Date of birth"
 msgstr "出生日期"
@@ -2120,6 +2142,9 @@ msgstr ""
 msgid "Email: {Email}"
 msgstr ""
 
+msgid "Language: {Language}"
+msgstr ""
+
 msgid "Use case: {UseCase}"
 msgstr ""
 
@@ -2153,6 +2178,27 @@ msgstr "通过HTTPS 上的：{HTTPSUrl}"
 
 msgid "New comment"
 msgstr "新评论"
+
+msgid ""
+"This is an email to notify you that a request has been made to change your "
+"email address to {NewEmailAddress}."
+msgstr ""
+
+msgid "Click the following link to validate this change: {HTTPSUrl}"
+msgstr ""
+
+msgid ""
+"If you wish to validate your new email with Tor, you may use the following "
+"link: {TorUrl}"
+msgstr ""
+
+msgid ""
+"If you didn't request this change, change your password and contact your "
+"system administrator."
+msgstr ""
+
+msgid "Email change request"
+msgstr ""
 
 msgid "From: {RecipientName}"
 msgstr "来自：{RecipientName}"

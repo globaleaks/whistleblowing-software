@@ -17,18 +17,18 @@
 # Oleg, 2015
 # Oleg, 2015
 # Lowrider <pams@imail.ru>, 2015
-# Павел Шляк <shlyakpavel@gmail.com>, 2015
+# Pavel Shlyak <shlyakpavel@gmail.com>, 2015
 # Umar Hayat, 2016
 # Vitali Vovnenko, 2015
 # Vitaliy Grishenko, 2013
 # Vitaliy Grishenko, 2013-2015
 # Vitaliy Grishenko, 2013
 # Vladislav <yobabay23@gmail.com>, 2015
-# Павел Шляк <shlyakpavel@gmail.com>, 2015,2017
+# Pavel Shlyak <shlyakpavel@gmail.com>, 2015,2017
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-05-07 17:23+0000\n"
+"PO-Revision-Date: 2018-05-29 14:14+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Russian (http://www.transifex.com/otf/globaleaks/language/ru/)\n"
 "MIME-Version: 1.0\n"
@@ -669,6 +669,9 @@ msgstr ""
 msgid "Surname"
 msgstr ""
 
+msgid "Do not create the admin user"
+msgstr ""
+
 msgid "Select the context of your submission:"
 msgstr "Выберите контекст для ваших материалов:"
 
@@ -841,6 +844,18 @@ msgstr "Имя пользователя"
 
 msgid "Password"
 msgstr "Пароль"
+
+msgid "Restrict privileged logins to specific IP addresses"
+msgstr ""
+
+msgid "Whitelisted IP addresses"
+msgstr ""
+
+msgid "Either individual IP addresses or CIDR ranges are accepted here."
+msgstr ""
+
+msgid "Example:"
+msgstr "Пример:"
 
 msgid "Enable experimental features"
 msgstr "Включить экспериментальные функции"
@@ -1451,6 +1466,9 @@ msgstr ""
 msgid "Allow users to sign up"
 msgstr ""
 
+msgid "Enable footer customization"
+msgstr ""
+
 msgid "Sites"
 msgstr "Сайты"
 
@@ -1483,9 +1501,6 @@ msgstr "Пользователь должен будет сменить свой
 msgid "Language"
 msgstr "Язык"
 
-msgid "Encryption:"
-msgstr "Шифрование:"
-
 msgid "Remove the PGP key"
 msgstr "Удаление PGP-ключа"
 
@@ -1497,6 +1512,12 @@ msgstr "Дата запроса"
 
 msgid "Authorization"
 msgstr "Авторизация"
+
+msgid "The validation link is either incorrect or has expired."
+msgstr ""
+
+msgid "Your new email address has been validated."
+msgstr ""
 
 msgid "Before proceeding, please change your password."
 msgstr "Перед тем как продолжить, пожалуйста смените пароль"
@@ -1745,11 +1766,6 @@ msgstr "Список получателей"
 msgid "Attached files for the whistleblower"
 msgstr "Приложения для информатора"
 
-msgid ""
-"Files uploaded here are made available for the whistleblower and other "
-"recipients to download."
-msgstr "Приложенные файлы доступны для загрузки информатором и другими получателями."
-
 msgid "Upload a file:"
 msgstr "Выгрузить файл:"
 
@@ -1764,6 +1780,12 @@ msgstr "Файлы приложенные получателями"
 
 msgid "These files have been attached to your submission by the recipients."
 msgstr "Получатели приложили следующие файлы к поданными вами документам."
+
+msgid "Validation of email address change in progress."
+msgstr ""
+
+msgid "Please check your inbox for:"
+msgstr ""
 
 msgid "Enable submission notification"
 msgstr "Включить уведомление о загрузке материала"
@@ -1807,9 +1829,6 @@ msgid ""
 "A useful way to hide your key code is to write it down like a credit card "
 "number, i.e. by also including an expiration date."
 msgstr "Удобный способ скрыть ваш код доступа - это записать его, как номер кредитной карты, указав также срок действия."
-
-msgid "Example:"
-msgstr "Пример:"
 
 msgid ""
 "You have not set up your encryption key, so the files will not be encrypted "
@@ -2006,14 +2025,17 @@ msgstr "Имя"
 msgid "Last name"
 msgstr "Фамилия"
 
-msgid "Sex"
-msgstr ""
+msgid "Gender"
+msgstr "Пол"
 
 msgid "Male"
 msgstr "Мужской"
 
 msgid "Female"
 msgstr "Женский"
+
+msgid "Other gender identity"
+msgstr ""
 
 msgid "Date of birth"
 msgstr "Дата рождения"
@@ -2130,6 +2152,9 @@ msgstr ""
 msgid "Email: {Email}"
 msgstr ""
 
+msgid "Language: {Language}"
+msgstr ""
+
 msgid "Use case: {UseCase}"
 msgstr ""
 
@@ -2163,6 +2188,27 @@ msgstr "через HTTPS по адресу: {HTTPSUrl}"
 
 msgid "New comment"
 msgstr "Новый комментарий"
+
+msgid ""
+"This is an email to notify you that a request has been made to change your "
+"email address to {NewEmailAddress}."
+msgstr ""
+
+msgid "Click the following link to validate this change: {HTTPSUrl}"
+msgstr ""
+
+msgid ""
+"If you wish to validate your new email with Tor, you may use the following "
+"link: {TorUrl}"
+msgstr ""
+
+msgid ""
+"If you didn't request this change, change your password and contact your "
+"system administrator."
+msgstr ""
+
+msgid "Email change request"
+msgstr ""
 
 msgid "From: {RecipientName}"
 msgstr "От: {RecipientName}"

@@ -9,7 +9,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-05-07 17:23+0000\n"
+"PO-Revision-Date: 2018-05-29 14:14+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Azerbaijani (http://www.transifex.com/otf/globaleaks/language/az/)\n"
 "MIME-Version: 1.0\n"
@@ -650,6 +650,9 @@ msgstr ""
 msgid "Surname"
 msgstr ""
 
+msgid "Do not create the admin user"
+msgstr ""
+
 msgid "Select the context of your submission:"
 msgstr "Təqdimatınızın məzmunu seçin:"
 
@@ -822,6 +825,18 @@ msgstr "İstifadəçi adı"
 
 msgid "Password"
 msgstr "Şifrə"
+
+msgid "Restrict privileged logins to specific IP addresses"
+msgstr ""
+
+msgid "Whitelisted IP addresses"
+msgstr ""
+
+msgid "Either individual IP addresses or CIDR ranges are accepted here."
+msgstr ""
+
+msgid "Example:"
+msgstr "Məsələn:"
 
 msgid "Enable experimental features"
 msgstr "Təcrübi imkanları aktivləşdirin"
@@ -1432,6 +1447,9 @@ msgstr ""
 msgid "Allow users to sign up"
 msgstr ""
 
+msgid "Enable footer customization"
+msgstr ""
+
 msgid "Sites"
 msgstr "Saytlar"
 
@@ -1464,9 +1482,6 @@ msgstr "İstifadəçi növbəti giriş zamanı şifrəsini dəyişməyə məcbur
 msgid "Language"
 msgstr "Dil"
 
-msgid "Encryption:"
-msgstr "Şifrələmə:"
-
 msgid "Remove the PGP key"
 msgstr "PGP açarını sil"
 
@@ -1478,6 +1493,12 @@ msgstr "Tələb olunan tarix"
 
 msgid "Authorization"
 msgstr "Səlahiyyətvermə"
+
+msgid "The validation link is either incorrect or has expired."
+msgstr ""
+
+msgid "Your new email address has been validated."
+msgstr ""
 
 msgid "Before proceeding, please change your password."
 msgstr "Davam etmədən öncə, parolunuzu dəyişdirin."
@@ -1726,11 +1747,6 @@ msgstr "Qəbul edici siyahısı"
 msgid "Attached files for the whistleblower"
 msgstr "İnformasiya ötürən üçün əlavə edilmiş fayllar"
 
-msgid ""
-"Files uploaded here are made available for the whistleblower and other "
-"recipients to download."
-msgstr "Bura yüklənən fayllar informasiya ötürən və digər alıcılara yüklənmək üçün təqdim edilir."
-
 msgid "Upload a file:"
 msgstr "Yeni fayl yüklə:"
 
@@ -1745,6 +1761,12 @@ msgstr "Qəbul edicilər tərəfindən yüklənilmiş fayllar"
 
 msgid "These files have been attached to your submission by the recipients."
 msgstr "Bu fayllar sizin təqdimata alıcılar tərəfindən əlavə edilib."
+
+msgid "Validation of email address change in progress."
+msgstr ""
+
+msgid "Please check your inbox for:"
+msgstr ""
 
 msgid "Enable submission notification"
 msgstr "Təqdimat bildirişini aktivləşdirin"
@@ -1788,9 +1810,6 @@ msgid ""
 "A useful way to hide your key code is to write it down like a credit card "
 "number, i.e. by also including an expiration date."
 msgstr "Açar kodunuzu gizlətmək üçün faydalı yollardan biri kredit kartı nömrəsini son istifadə tarixi ilə yazmaqdır."
-
-msgid "Example:"
-msgstr "Məsələn:"
 
 msgid ""
 "You have not set up your encryption key, so the files will not be encrypted "
@@ -1987,14 +2006,17 @@ msgstr "Ad"
 msgid "Last name"
 msgstr "Soyad"
 
-msgid "Sex"
-msgstr ""
+msgid "Gender"
+msgstr "Cins"
 
 msgid "Male"
 msgstr "Kişi"
 
 msgid "Female"
 msgstr "Qadın"
+
+msgid "Other gender identity"
+msgstr ""
 
 msgid "Date of birth"
 msgstr "Doğum yeri"
@@ -2111,6 +2133,9 @@ msgstr ""
 msgid "Email: {Email}"
 msgstr ""
 
+msgid "Language: {Language}"
+msgstr ""
+
 msgid "Use case: {UseCase}"
 msgstr ""
 
@@ -2144,6 +2169,27 @@ msgstr "HTTPS vasitəsilə :{HTTPSUrl}"
 
 msgid "New comment"
 msgstr "Yeni şərh"
+
+msgid ""
+"This is an email to notify you that a request has been made to change your "
+"email address to {NewEmailAddress}."
+msgstr ""
+
+msgid "Click the following link to validate this change: {HTTPSUrl}"
+msgstr ""
+
+msgid ""
+"If you wish to validate your new email with Tor, you may use the following "
+"link: {TorUrl}"
+msgstr ""
+
+msgid ""
+"If you didn't request this change, change your password and contact your "
+"system administrator."
+msgstr ""
+
+msgid "Email change request"
+msgstr ""
 
 msgid "From: {RecipientName}"
 msgstr "Dan: {RecipientName}"

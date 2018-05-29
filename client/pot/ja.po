@@ -9,7 +9,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-05-07 17:23+0000\n"
+"PO-Revision-Date: 2018-05-29 14:14+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Japanese (http://www.transifex.com/otf/globaleaks/language/ja/)\n"
 "MIME-Version: 1.0\n"
@@ -650,6 +650,9 @@ msgstr "デフォルトで非選択"
 msgid "Surname"
 msgstr "敬称"
 
+msgid "Do not create the admin user"
+msgstr ""
+
 msgid "Select the context of your submission:"
 msgstr "提出のコンテキストを選択してください:"
 
@@ -822,6 +825,18 @@ msgstr "ユーザー名"
 
 msgid "Password"
 msgstr "パスワード"
+
+msgid "Restrict privileged logins to specific IP addresses"
+msgstr ""
+
+msgid "Whitelisted IP addresses"
+msgstr ""
+
+msgid "Either individual IP addresses or CIDR ranges are accepted here."
+msgstr ""
+
+msgid "Example:"
+msgstr "例:"
 
 msgid "Enable experimental features"
 msgstr "実験的な機能を有効にする"
@@ -1432,6 +1447,9 @@ msgstr "二番目のサイトで使用するルートドメイン"
 msgid "Allow users to sign up"
 msgstr "ユーザーによるサインアップを許可"
 
+msgid "Enable footer customization"
+msgstr ""
+
 msgid "Sites"
 msgstr "サイト"
 
@@ -1464,9 +1482,6 @@ msgstr "次回ログイン時に、受信者はパスワードを変更するこ
 msgid "Language"
 msgstr "言語"
 
-msgid "Encryption:"
-msgstr "暗号化:"
-
 msgid "Remove the PGP key"
 msgstr "PGP鍵を削除"
 
@@ -1478,6 +1493,12 @@ msgstr "リクエスト日"
 
 msgid "Authorization"
 msgstr "認証"
+
+msgid "The validation link is either incorrect or has expired."
+msgstr ""
+
+msgid "Your new email address has been validated."
+msgstr ""
 
 msgid "Before proceeding, please change your password."
 msgstr "次へ進む前に、パスワードを変更してください。"
@@ -1726,11 +1747,6 @@ msgstr "受信者のリスト"
 msgid "Attached files for the whistleblower"
 msgstr "内部告発者向けの添付ファイル"
 
-msgid ""
-"Files uploaded here are made available for the whistleblower and other "
-"recipients to download."
-msgstr "ここにアップロードされたファイルは、内部告発者やその他の受信者がダウンロードできるようになっています。"
-
 msgid "Upload a file:"
 msgstr "ファイルをアップロード："
 
@@ -1745,6 +1761,12 @@ msgstr "受信者が添付したファイル"
 
 msgid "These files have been attached to your submission by the recipients."
 msgstr "これらのファイルは、受信者によって提出に添付されています。"
+
+msgid "Validation of email address change in progress."
+msgstr ""
+
+msgid "Please check your inbox for:"
+msgstr ""
 
 msgid "Enable submission notification"
 msgstr "提出の通知を有効にする"
@@ -1788,9 +1810,6 @@ msgid ""
 "A useful way to hide your key code is to write it down like a credit card "
 "number, i.e. by also including an expiration date."
 msgstr "あなたのキーコードを隠す有用な方法は、クレジットカード番号のように書き留めておくことです。有効期限も含めておきましょう。"
-
-msgid "Example:"
-msgstr "例:"
 
 msgid ""
 "You have not set up your encryption key, so the files will not be encrypted "
@@ -1987,14 +2006,17 @@ msgstr "名"
 msgid "Last name"
 msgstr "姓"
 
-msgid "Sex"
-msgstr ""
+msgid "Gender"
+msgstr "性別"
 
 msgid "Male"
 msgstr "男性"
 
 msgid "Female"
 msgstr "女性"
+
+msgid "Other gender identity"
+msgstr ""
 
 msgid "Date of birth"
 msgstr "誕生日"
@@ -2111,6 +2133,9 @@ msgstr ""
 msgid "Email: {Email}"
 msgstr ""
 
+msgid "Language: {Language}"
+msgstr ""
+
 msgid "Use case: {UseCase}"
 msgstr ""
 
@@ -2144,6 +2169,27 @@ msgstr "HTTPS 経由: {HTTPSUrl}"
 
 msgid "New comment"
 msgstr "新しいコメント"
+
+msgid ""
+"This is an email to notify you that a request has been made to change your "
+"email address to {NewEmailAddress}."
+msgstr ""
+
+msgid "Click the following link to validate this change: {HTTPSUrl}"
+msgstr ""
+
+msgid ""
+"If you wish to validate your new email with Tor, you may use the following "
+"link: {TorUrl}"
+msgstr ""
+
+msgid ""
+"If you didn't request this change, change your password and contact your "
+"system administrator."
+msgstr ""
+
+msgid "Email change request"
+msgstr ""
 
 msgid "From: {RecipientName}"
 msgstr "差出人: {RecipientName}"

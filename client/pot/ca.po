@@ -18,7 +18,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-05-07 17:23+0000\n"
+"PO-Revision-Date: 2018-05-29 14:14+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Catalan (http://www.transifex.com/otf/globaleaks/language/ca/)\n"
 "MIME-Version: 1.0\n"
@@ -659,6 +659,9 @@ msgstr "Desactivat per defecte"
 msgid "Surname"
 msgstr ""
 
+msgid "Do not create the admin user"
+msgstr ""
+
 msgid "Select the context of your submission:"
 msgstr "Selecciona el context del teu enviament:"
 
@@ -831,6 +834,18 @@ msgstr "Nom d'usuari"
 
 msgid "Password"
 msgstr "Contrassenya"
+
+msgid "Restrict privileged logins to specific IP addresses"
+msgstr ""
+
+msgid "Whitelisted IP addresses"
+msgstr ""
+
+msgid "Either individual IP addresses or CIDR ranges are accepted here."
+msgstr ""
+
+msgid "Example:"
+msgstr "Exemple:"
 
 msgid "Enable experimental features"
 msgstr "Activa els trets experimentals"
@@ -1441,6 +1456,9 @@ msgstr "Dominio raíz usado para sitios secundarios"
 msgid "Allow users to sign up"
 msgstr "Permitir registrarse a los usuarios"
 
+msgid "Enable footer customization"
+msgstr ""
+
 msgid "Sites"
 msgstr "Sitios"
 
@@ -1473,9 +1491,6 @@ msgstr "L'usuari es veurà forçat a canviar la contrasenya la propera vegada qu
 msgid "Language"
 msgstr "Idioma"
 
-msgid "Encryption:"
-msgstr "Xifratge:"
-
 msgid "Remove the PGP key"
 msgstr "Elimina la clau PGP"
 
@@ -1487,6 +1502,12 @@ msgstr "Data de sol·licitud"
 
 msgid "Authorization"
 msgstr "Autorització"
+
+msgid "The validation link is either incorrect or has expired."
+msgstr ""
+
+msgid "Your new email address has been validated."
+msgstr ""
 
 msgid "Before proceeding, please change your password."
 msgstr "Abans de continuar, si us plau canvia, la teva contrasenya."
@@ -1735,11 +1756,6 @@ msgstr "Llista del destinatari"
 msgid "Attached files for the whistleblower"
 msgstr "Els arxius adjunts per al informador"
 
-msgid ""
-"Files uploaded here are made available for the whistleblower and other "
-"recipients to download."
-msgstr "Les càrregues aquí es posen a disposició per l'informador i d'altres receptors per a descàrrega."
-
 msgid "Upload a file:"
 msgstr "Pujar un fitxer:"
 
@@ -1754,6 +1770,12 @@ msgstr "Arxius adjuntats pels receptors"
 
 msgid "These files have been attached to your submission by the recipients."
 msgstr "Aquests arxius s'han adjuntat al seu enviament per el receptor"
+
+msgid "Validation of email address change in progress."
+msgstr ""
+
+msgid "Please check your inbox for:"
+msgstr ""
 
 msgid "Enable submission notification"
 msgstr "Activa la notificació de l'entrega"
@@ -1797,9 +1819,6 @@ msgid ""
 "A useful way to hide your key code is to write it down like a credit card "
 "number, i.e. by also including an expiration date."
 msgstr "Un manera útil de recordar el codi és escriure'l com si fos el número d'una targeta de crèdit. A més, també pots incloure la data de caducitat."
-
-msgid "Example:"
-msgstr "Exemple:"
 
 msgid ""
 "You have not set up your encryption key, so the files will not be encrypted "
@@ -1996,14 +2015,17 @@ msgstr "Nom"
 msgid "Last name"
 msgstr "Cognom(s)"
 
-msgid "Sex"
-msgstr ""
+msgid "Gender"
+msgstr "Gènere"
 
 msgid "Male"
 msgstr "Masculí"
 
 msgid "Female"
 msgstr "Femení"
+
+msgid "Other gender identity"
+msgstr ""
 
 msgid "Date of birth"
 msgstr "Data de naixement"
@@ -2120,6 +2142,9 @@ msgstr ""
 msgid "Email: {Email}"
 msgstr ""
 
+msgid "Language: {Language}"
+msgstr ""
+
 msgid "Use case: {UseCase}"
 msgstr ""
 
@@ -2153,6 +2178,27 @@ msgstr "per HTTPS a: {HTTPSUrl}"
 
 msgid "New comment"
 msgstr "Nou commentari"
+
+msgid ""
+"This is an email to notify you that a request has been made to change your "
+"email address to {NewEmailAddress}."
+msgstr ""
+
+msgid "Click the following link to validate this change: {HTTPSUrl}"
+msgstr ""
+
+msgid ""
+"If you wish to validate your new email with Tor, you may use the following "
+"link: {TorUrl}"
+msgstr ""
+
+msgid ""
+"If you didn't request this change, change your password and contact your "
+"system administrator."
+msgstr ""
+
+msgid "Email change request"
+msgstr ""
 
 msgid "From: {RecipientName}"
 msgstr "De: {RecipientName}"
