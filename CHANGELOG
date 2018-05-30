@@ -1,3 +1,6 @@
+Changes in version 3.1.2 - 2018-05-30
+    Fix issue on navigation of submissions steps
+
 Changes in version 3.1.1 - 2018-05-30
     Add constraint on python-acme (>= 0.22)
 
