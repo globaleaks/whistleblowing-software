@@ -5,12 +5,12 @@
     <div class="tabbable tabs-below">
       <ul id="SubmissionTabsNavigationBox" class="nav nav-tabs" data-ng-if="show_steps_navigation_bar">
         <li data-ng-if="receiver_selection_step" data-ng-class="{active: selection === receiver_selection_step_index}">
-          <a id="receiver-selection-link" class="StepTitle" href="javascript:void(0)" data-ng-click="goToStep(receiver_selection_step_index)">
+          <a id="receiver-selection-link" class="StepTitle" data-ng-click="goToStep(receiver_selection_step_index)">
             1 - <span data-translate>Recipient selection</span>
           </a>
         </li>
         <li data-ng-repeat="step in submission.context.questionnaire.steps | orderBy:'presentation_order'" data-ng-class="{active: selection === $index}">
-          <a id="step-{{$index}}-link" class="StepTitle" href="javascript:void(0)" data-ng-click="goToStep($index)">
+          <a id="step-{{$index}}-link" class="StepTitle" data-ng-click="goToStep($index)">
             <span>{{$index + (receiver_selection_step ? 2 : 1)}} - {{::step.label}}</span>
           </a>
         </li>
