@@ -826,7 +826,7 @@ echo "Detected OS: $DISTRO - $DISTRO_CODENAME"
 last_command "check_distro"
 
 if echo "$DISTRO_CODENAME" | grep -vqE "^bionic$" ; then
-  echo "WARNING: GlobaLeaks is activelty developed and tested specifically for Ubuntu Bionic 18.04"
+  echo "WARNING: GlobaLeaks is actively developed and tested specifically for Ubuntu Bionic 18.04"
   echo "WARNING: The software lifecycle of the platform includes full support for all Ubuntu LTS versions starting from Ubuntu Xenial 16.04"
 
   prompt_for_continuation
