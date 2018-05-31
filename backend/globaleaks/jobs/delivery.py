@@ -121,7 +121,7 @@ def process_files(state, receiverfiles_maps):
     for ifile_id, receiverfiles_map in receiverfiles_maps.items():
         ifile_name = receiverfiles_map['ifile_name']
         plain_name = "%s.plain" % ifile_name.split('.')[0]
-        plain_path = os.path.abspath(os.path.join(Settings.attachments_path, ifile_name))
+        plain_path = os.path.abspath(os.path.join(Settings.attachments_path, plain_name))
 
         sf = state.get_tmp_file_by_name(ifile_name)
 
