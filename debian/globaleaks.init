@@ -32,7 +32,7 @@ if test -e "/usr/share/globaleaks/default" ; then
     . "/usr/share/globaleaks/default"
 fi
 
-if [[ ! -d /var/globaleaks/db ]]; then
+if [[ ! -f /var/globaleaks/globaleaks.db ]]; then
     # FIRST SETUP
     NETWORK_SANDBOXING=0
 elif [[ "$(gl-admin getvar reachable_via_web 2>1&)" != "True" ]]; then
