@@ -768,6 +768,19 @@ function last_status () {
   echo $1 > $TMPDIR/last_status
 }
 
+function prompt_for_continuation () {
+  if [ $ASSUMEYES -eq 0 ]; then
+    while true; do
+      read -p "Do you wish to continue anyway? [y|n]?" yn
+      case $yn in
+        [Yy]*) break;;
+        [Nn]*) exit 1;;
+        *) echo $yn; echo "Please answer y/n.";  continue;;
+      esac
+    done
+  fi
+}
+
 function atexit {
   echo "For Professional Support requests please visit: https://www.globaleaks.org/contact/"
   echo "Please report encountered issues to the Community Forum at https://forum.globaleaks.org"
@@ -810,21 +823,13 @@ fi
 
 echo "Detected OS: $DISTRO - $DISTRO_CODENAME"
 
-if echo "$DISTRO_CODENAME" | grep -vqE "^xenial$" ; then
-  echo "WARNING: GlobaLeaks is supported and tested only on Ubuntu Xenial (16.04)"
+last_command "check_distro"
 
-  last_command "check_distro"
+if echo "$DISTRO_CODENAME" | grep -vqE "^bionic$" ; then
+  echo "WARNING: GlobaLeaks is activelty developed and tested specifically for Ubuntu Bionic 18.04"
+  echo "WARNING: The software lifecycle of the platform includes full support for all Ubuntu LTS versions starting from Ubuntu Xenial 16.04"
 
-  if [ $ASSUMEYES -eq 0 ]; then
-    while true; do
-      read -p "Do you wish to continue anyway? [y|n]?" yn
-      case $yn in
-        [Yy]*) break;;
-        [Nn]*) exit 1;;
-        *) echo $yn; echo "Please answer y/n.";  continue;;
-      esac
-    done
-  fi
+  prompt_for_continuation
 fi
 
 # stops globaleaks if it is running
@@ -870,13 +875,13 @@ echo " + required TCP sockets open"
 # Depending on the intention of the user to proceed anyhow installing on
 # a not supported distro we using the experimental package if it exists
 # or xenial as fallback.
-if echo "$DISTRO_CODENAME" | grep -vqE "^(trusty|bionic|xenial|wheezy|jessie|stretch)$"; then
-  # In case of unsupported platforms we fallback on Xenial
-  echo "No packages available for the current distribution; the install script will use the Xenial repository."
+if echo "$DISTRO_CODENAME" | grep -vqE "^(bionic|xenial|stretch)$"; then
+  # In case of unsupported platforms we fallback on Bionic
+  echo "No packages available for the current distribution; the install script will use the Bionic repository."
   echo "In case of a failure refer to the wiki for manual setup possibilities."
   echo "GlobaLeaks wiki: https://github.com/globaleaks/GlobaLeaks/wiki"
   DISTRO="Ubuntu"
-  DISTRO_CODENAME="xenial"
+  DISTRO_CODENAME="bionic"
 fi
 
 echo "Adding GlobaLeaks PGP key to trusted APT keys"
