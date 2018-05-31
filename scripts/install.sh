@@ -925,6 +925,12 @@ if [ -d /globaleaks/deb ]; then
   fi
   DO "sudo apt -o Acquire::AllowInsecureRepositories=true -o Acquire::AllowDowngradeToInsecureRepositories=true update"
   DO "apt-get -y --allow-unauthenticated install globaleaks"
+else
+  if [ ! -f /etc/apt/sources.list.d/globaleaks.list ]; then
+    echo "deb http://deb.globaleaks.org $DISTRO_CODENAME/" > /etc/apt/sources.list.d/globaleaks.list
+  fi
+  DO "apt-get update -y"
+  DO "apt-get install globaleaks -y"
 fi
 
 # Set the script to its success condition
