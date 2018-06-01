@@ -24,17 +24,11 @@ Other resources:
 * Follow us on [Twitter](https://twitter.com/globaleaks)
 * Follow us on [Facebook](https://www.facebook.com/globaleaks)
 
-#### Build Status
-| Branch | Build status | Browser compatibility |
-| :---: | :---: | :---: |
-| [master](https://github.com/globaleaks/GlobaLeaks/tree/master) | [![Build Status](https://travis-ci.org/globaleaks/GlobaLeaks.svg?branch=master)](https://travis-ci.org/globaleaks/GlobaLeaks) | [![Browser Status](https://badges.herokuapp.com/sauce/globaleaks?tag=master&labels=none)](https://saucelabs.com/u/globaleaks)
-| [devel](https://github.com/globaleaks/GlobaLeaks/tree/devel) | [![Build Status](https://travis-ci.org/globaleaks/GlobaLeaks.svg?branch=devel)](https://travis-ci.org/globaleaks/GlobaLeaks) | [![Browser Status](https://badges.herokuapp.com/sauce/globaleaks?tag=devel&labels=none)](https://saucelabs.com/u/globaleaks)
-
-### Code quality:
-| Branch | Codacy | Coveralls |
-| :---: | :---: | :---: |
-| [master](https://github.com/globaleaks/GlobaLeaks/tree/master) | [![Codacy Badge](https://api.codacy.com/project/badge/Grade/4e072e7e5287478fa56468f3719d94ef?branch=master)](https://www.codacy.com/app/GlobaLeaks/GlobaLeaks) | [![Coverage Status](https://coveralls.io/repos/globaleaks/GlobaLeaks/badge.svg?branch=master)](https://coveralls.io/r/globaleaks/GlobaLeaks?branch=master)
-| [devel](https://github.com/globaleaks/GlobaLeaks/tree/master) | [![Codacy Badge](https://api.codacy.com/project/badge/Grade/4e072e7e5287478fa56468f3719d94ef?branch=devel)](https://www.codacy.com/app/GlobaLeaks/GlobaLeaks) | [![Coverage Status](https://coveralls.io/repos/globaleaks/GlobaLeaks/badge.svg?branch=devel)](https://coveralls.io/r/globaleaks/GlobaLeaks?branch=devel)
+#### Build Quality Indicators
+| Branch | Status | Quality | Coverage | Browser Compatibility
+| :---: | :---: | :---: | :---: | :---: |
+| [master](https://github.com/globaleaks/GlobaLeaks/tree/master) | [![Build Status](https://travis-ci.org/globaleaks/GlobaLeaks.svg?branch=master)](https://travis-ci.org/globaleaks/GlobaLeaks) | [![Codacy Badge](https://api.codacy.com/project/badge/Grade/4e072e7e5287478fa56468f3719d94ef?branch=master)](https://www.codacy.com/app/GlobaLeaks/GlobaLeaks) | [![Coverage Status](https://coveralls.io/repos/globaleaks/GlobaLeaks/badge.svg?branch=master)](https://coveralls.io/r/globaleaks/GlobaLeaks?branch=master) | [![Browser Status](https://badges.herokuapp.com/sauce/globaleaks?tag=master&labels=none)](https://saucelabs.com/u/globaleaks)
+| [devel](https://github.com/globaleaks/GlobaLeaks/tree/devel) | [![Build Status](https://travis-ci.org/globaleaks/GlobaLeaks.svg?branch=devel)](https://travis-ci.org/globaleaks/GlobaLeaks) | [![Codacy Badge](https://api.codacy.com/project/badge/Grade/4e072e7e5287478fa56468f3719d94ef?branch=devel)](https://www.codacy.com/app/GlobaLeaks/GlobaLeaks) | [![Coverage Status](https://coveralls.io/repos/globaleaks/GlobaLeaks/badge.svg?branch=devel)](https://coveralls.io/r/globaleaks/GlobaLeaks?branch=devel) | [![Browser Status](https://badges.herokuapp.com/sauce/globaleaks?tag=devel&labels=none)](https://saucelabs.com/u/globaleaks)
 
 ## Donate
 To support the GlobaLeaks project you can help us with donations that will goes entirely for the software development.
