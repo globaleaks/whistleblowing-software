@@ -53,7 +53,7 @@ LANGUAGES_SUPPORTED = [
   {'code': 'ru', 'name': 'Russian', 'native': u'\u0440\u0443\u0441\u0441\u043a\u0438\u0439'},
   {'code': 'sl_SI', 'name': 'Slovenian', 'native': u'sloven\u0161\u010dina'},
   {'code': 'sq', 'name': 'Albanian', 'native': u'Shqip'},
-  {'code': 'sv', 'name': 'Swedish', 'native': u'Vvenska'},
+  {'code': 'sv', 'name': 'Swedish', 'native': u'Svenska'},
   {'code': 'ta', 'name': 'Tamil', 'native': u'\u0ba4\u0bae\u0bbf\u0bb4\u0bcd'},
   {'code': 'th', 'name': 'Thai', 'native': u'\u0e44\u0e17\u0e22'},
   {'code': 'tr', 'name': 'Turkish', 'native': u'T\xfcrk\xe7e'},
