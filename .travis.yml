@@ -26,7 +26,7 @@ matrix:
     - env: GLTEST='build_and_install' BUILD_DISTRO='stretch'
       python: "3.6"
 
-    - env: GLTEST='end2end-0' BROWSER='edge 15'
+    - env: GLTEST='end2end-0' BROWSER='edge 17'
       python: "3.6"
       addons:
         sauce_connect: true
@@ -41,7 +41,7 @@ matrix:
       addons:
         sauce_connect: true
 
-    - env: GLTEST='end2end-3' BROWSER='firefox 54'
+    - env: GLTEST='end2end-3' BROWSER='firefox 60'
       python: "3.6"
       addons:
         sauce_connect: true
@@ -51,7 +51,7 @@ matrix:
       addons:
         sauce_connect: true
 
-    - env: GLTEST='end2end-5' BROWSER='chrome 59'
+    - env: GLTEST='end2end-5' BROWSER='chrome 67'
       python: "3.6"
       addons:
         sauce_connect: true
@@ -76,12 +76,12 @@ matrix:
       addons:
         sauce_connect: true
 
-    - env: GLTEST='end2end-10' BROWSER='iphone 8.0'
+    - env: GLTEST='end2end-10' BROWSER='ipad 9.3'
       python: "3.6"
       addons:
         sauce_connect: true
 
-    - env: GLTEST='end2end-11' BROWSER='iphone 11.0'
+    - env: GLTEST='end2end-11' BROWSER='ipad 11.3'
       python: "3.6"
       addons:
         sauce_connect: true
@@ -90,18 +90,18 @@ matrix:
     - env: GLTEST='build_and_install' BUILD_DISTRO='bionic'
     - env: GLTEST='build_and_install' BUILD_DISTRO='xenial'
     - env: GLTEST='build_and_install' BUILD_DISTRO='stretch'
-    - env: GLTEST='end2end-0' BROWSER='edge 15'
+    - env: GLTEST='end2end-0' BROWSER='edge 17'
     - env: GLTEST='end2end-1' BROWSER='ie 11'
     - env: GLTEST='end2end-2' BROWSER='firefox 34'
-    - env: GLTEST='end2end-3' BROWSER='firefox 54'
+    - env: GLTEST='end2end-3' BROWSER='firefox 60'
     - env: GLTEST='end2end-4' BROWSER='chrome 37'
-    - env: GLTEST='end2end-5' BROWSER='chrome 59'
+    - env: GLTEST='end2end-5' BROWSER='chrome 67'
     - env: GLTEST='end2end-6' BROWSER='safari 8'
     - env: GLTEST='end2end-7' BROWSER='safari 10'
     - env: GLTEST='end2end-8' BROWSER='android 4.4'
     - env: GLTEST='end2end-9' BROWSER='android 6.0'
-    - env: GLTEST='end2end-10' BROWSER='iphone 8.0'
-    - env: GLTEST='end2end-11' BROWSER='iphone 11.0'
+    - env: GLTEST='end2end-10' BROWSER='ipad 9.3'
+    - env: GLTEST='end2end-11' BROWSER='ipad 11.3'
 install: true
 script:
   - $TRAVIS_BUILD_DIR/travis/script.sh
