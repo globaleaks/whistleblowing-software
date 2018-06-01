@@ -140,7 +140,6 @@ elif [ "$GLTEST" = "build_and_install" ]; then
     sudo su -c 'echo "deb http://deb.debian.org/debian stretch main contrib" >> /tmp/globaleaks_chroot/etc/apt/sources.list'
   fi
 
-
   if [ $BUILD_DISTRO = "bionic" ] || [ $BUILD_DISTRO = "xenial" ]; then
     sudo mount --rbind /dev/pts "$chroot/dev/pts"
   fi
