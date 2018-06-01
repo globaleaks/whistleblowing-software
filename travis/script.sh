@@ -162,7 +162,7 @@ elif [ "$GLTEST" = "build_and_install" ]; then
   sudo chroot "$chroot" useradd -m builduser
   sudo su -c 'echo "builduser ALL=NOPASSWD: ALL" >> "$chroot"/etc/sudoers'
   sudo chroot "$chroot" chown builduser -R /build
-  sudo chroot "$chroot" su - builduser /bin/bash -c '/build/GlobaLeaks/scripts/build_and_install.sh'
+  sudo chroot "$chroot" su - builduser /bin/bash -c '/build/GlobaLeaks/travis/build_and_install.sh'
 
 elif [[ $GLTEST =~ ^end2end-.* ]]; then
   echo "Running Browsertesting on Saucelabs"
