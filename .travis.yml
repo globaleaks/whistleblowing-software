@@ -104,4 +104,4 @@ matrix:
     - env: GLTEST='end2end-11' BROWSER='iphone 11.0'
 install: true
 script:
-  - $TRAVIS_BUILD_DIR/scripts/travis.sh
+  - $TRAVIS_BUILD_DIR/travis/script.sh
