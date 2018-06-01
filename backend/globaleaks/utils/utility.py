@@ -8,6 +8,7 @@ from __future__ import print_function
 import cgi
 import codecs
 import glob
+import io
 import json
 import ipaddress
 import logging
@@ -82,7 +83,7 @@ def get_disk_space(path):
 
 
 def read_file(p):
-    with open(p, 'r') as f:
+    with io.open(p, 'r', encoding='utf-8') as f:
         return f.read().rstrip("\n")
 
 
