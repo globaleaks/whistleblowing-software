@@ -29,21 +29,15 @@ profile usr.bin.globaleaks flags=(attach_disconnected) {
     # that sadly use the shell for communicating to gnupg
     /bin/sh ix,
     /bin/dash ix,
-    /usr/bin/gpg ix,
-    /usr/bin/gpg1 ix,
-
-    /usr/bin/python2.7 ix,
-    /usr/bin/python3 ix,
+    /usr/bin/gpg{,1} ix,
+    /usr/bin/python{,2,2.7,3,3.[0-9]} ix,
 
     /usr/ r,
     /usr/share/** r,
-    /usr/include/python2.7/** r,
-    /usr/lib/python2.7/** mr,
-    /usr/local/lib/python2.7/** mr,
-    /usr/include/python3.6/** r,
-    /usr/lib/python3/** mr,
-    /usr/lib/python3.6/** mr,
-    /usr/local/lib/python3.6/** mr,
+
+    /usr/include/python{,2,2.7,3,3.[0-9]}/** r,
+    /usr/lib/python{,2,2.7,3,3.[0-9]}/** mr,
+    /usr/local/lib/python{,2,2.7,3,3.[0-9]}/** mr,
 
     /var/globaleaks/ wr,
     /var/globaleaks/** lrwk,
