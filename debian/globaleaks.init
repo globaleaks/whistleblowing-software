@@ -185,10 +185,6 @@ network_sandboxing_start()
         # All outbound connections from GlobaLeaks goes through Tor except of allowed and enstablished connections.
         iptables -m comment --comment "globaleaks-network-sandboxing" -A OUTPUT -m state --state RELATED,ESTABLISHED -m owner --uid-owner globaleaks -d 127.0.0.1 -j ACCEPT
         iptables -m comment --comment "globaleaks-network-sandboxing" -t nat -A OUTPUT ! -o lo -p tcp -m owner --uid-owner ${USERNAME} -m tcp -j REDIRECT --to-ports 9050
-<<<<<<< HEAD
-        iptables -m comment --comment "globaleaks-network-sandboxing" -t nat -A OUTPUT ! -o lo -p udp -m owner --uid-owner ${USERNAME} -m udp --dport 53 -j REDIRECT --to-ports 5353
-        iptables -m comment --comment "globaleaks-network-sandboxing" -t filter -A OUTPUT -p tcp -m owner --uid-owner ${USERNAME} -m tcp -d 127.0.0.1 --dport 9040 -j ACCEPT
-        iptables -m comment --comment "globaleaks-network-sandboxing" -t filter -A OUTPUT -p udp -m owner --uid-owner ${USERNAME} -m udp -d 127.0.0.1 --dport 53 -j ACCEPT
         iptables -m comment --comment "globaleaks-network-sandboxing" -t filter -A OUTPUT -p tcp -m owner --uid-owner ${USERNAME} -m tcp -d 127.0.0.1 --dport 9050 -j ACCEPT
         iptables -m comment --comment "globaleaks-network-sandboxing" -t filter -A OUTPUT ! -o lo -m owner --uid-owner ${USERNAME} -j LOG --log-prefix "GLOBALEAKS-OUTPUT:DROP: "
         iptables -m comment --comment "globaleaks-network-sandboxing" -t filter -A OUTPUT ! -o lo -m owner --uid-owner ${USERNAME} -j DROP
