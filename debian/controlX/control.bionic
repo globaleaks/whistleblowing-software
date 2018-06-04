@@ -27,6 +27,7 @@ Depends:
  , lsb-base
  , python3:any
  , python3-acme
+ , python3-debian
  , python3-openssl
  , python3-gnupg
  , python3-scrypt
