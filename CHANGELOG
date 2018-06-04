@@ -1,4 +1,12 @@
-Changes in version 3.1.4 - 2018-07-01
+Changes in version 3.1.5 - 2018-06-05
+    Fix p2/p3 issues in letsencrypt utilities
+    Fix init script in relation to NETWORK_SANDBOXING startup
+    Fix apparmor script for the multiple versions of python supported
+
+    Addresses issues:
+    - https://github.com/globaleaks/GlobaLeaks/issues/2306
+
+Changes in version 3.1.4 - 2018-06-01
     Fix init script in relation to NETWORK_SANDBOXING startup
 
 Changes in version 3.1.3 - 2018-05-31
@@ -20,7 +28,7 @@ Changes in version 3.1.0 - 2018-05-29
     Implement possibility for users to change their visualized name (2271)
     Implement possibility for users to change their email address (2272)
     Make it possible to configure the same footer for all the tenants (2274)
-    Add Danish translation thanks to volunteers support!
+    Add Danish translation thanks to voluqnteers support!
     Update translations
     Update npm dependencies to latest versions
 
