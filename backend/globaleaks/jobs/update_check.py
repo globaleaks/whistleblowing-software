@@ -14,7 +14,7 @@ from globaleaks.orm import transact
 from globaleaks.utils.agent import get_page
 from globaleaks.utils.utility import log
 
-DEB_PACKAGE_URL = b'https://deb.globaleaks.org/xenial/Packages'
+DEB_PACKAGE_URL = b'https://deb.globaleaks.org/bionic/Packages'
 
 
 @transact
