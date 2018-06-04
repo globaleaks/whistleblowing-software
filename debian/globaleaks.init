@@ -189,6 +189,7 @@ network_sandboxing_start()
         iptables -m comment --comment "globaleaks-network-sandboxing" -t filter -A OUTPUT -p tcp -m owner --uid-owner ${USERNAME} -m tcp -s 127.0.0.1 -d 127.0.0.1 --dport 9040 -j ACCEPT
         iptables -m comment --comment "globaleaks-network-sandboxing" -t filter -A OUTPUT -p udp -m owner --uid-owner ${USERNAME} -m udp -s 127.0.0.1 -d 127.0.0.1 --dport 53 -j ACCEPT
         iptables -m comment --comment "globaleaks-network-sandboxing" -t filter -A OUTPUT -p tcp -m owner --uid-owner ${USERNAME} -m tcp -s 127.0.0.1 -d 127.0.0.1 --dport 9050 -j ACCEPT
+        iptables -m comment --comment "globaleaks-network-sandboxing" -t filter -A OUTPUT ! -o lo -m owner --uid-owner ${USERNAME} -j LOG --log-prefix "GLOBALEAKS-OUTPUT:DROP: "
         iptables -m comment --comment "globaleaks-network-sandboxing" -t filter -A OUTPUT ! -o lo -m owner --uid-owner ${USERNAME} -j DROP
 
         log_action_end_msg 0
