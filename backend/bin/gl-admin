@@ -47,14 +47,6 @@ def default_backup_path():
     return os.path.join("/tmp", name)
 
 
-def default_workdir():
-    return Settings.working_path
-
-
-def default_db_path():
-    return Settings.db_path
-
-
 def is_gl_running():
     try:
         with open(Settings.pidfile_path, 'r') as fd:
@@ -233,7 +225,7 @@ def disable_api_token(args):
 def add_db_path_arg(parser):
     parser.add_argument("--dbpath",
                         help="the path to the globaleaks db directory",
-                        default=default_db_path())
+                        default=Settings.working_path)
 
 Settings.eval_paths()
 
@@ -244,14 +236,14 @@ subp = parser.add_subparsers(title="commands")
 
 bck_p = subp.add_parser("backup", help="create a backup of the setup")
 bck_p.add_argument("-w", "--workdir", help="the location of dynamic globaleaks content",
-                   default=default_workdir())
+                   default=Settings.working_path)
 bck_p.add_argument("backuppath", nargs="?", help="the path and name of the backup",
                    default=default_backup_path())
 bck_p.set_defaults(func=backup)
 
 res_p = subp.add_parser("restore", help="restore a backup of the setup")
 res_p.add_argument("-w", "--workdir", help="the location of dynamic gl content",
-                   default=default_workdir())
+                   default=Settings.working_path)
 res_p.add_argument("backuppath", nargs="?", help="the path and name of the backup",
                    default=default_backup_path())
 res_p.set_defaults(func=restore)
