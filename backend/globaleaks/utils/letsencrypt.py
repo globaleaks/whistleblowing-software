@@ -9,7 +9,7 @@ from OpenSSL.crypto import FILETYPE_PEM, load_certificate, dump_certificate
 
 from globaleaks.utils.utility import log
 
-from acme import messages,challenges, client, messages, crypto_util
+from acme import challenges, client, crypto_util, messages
 import josepy
 
 class ChallTok:
@@ -80,42 +80,24 @@ def run_acme_reg_to_finish(domain, accnt_key, priv_key, hostname, tmp_chall_dict
         raise Exception("HTTP01 challenge unavailable!")
 
     response, chall_tok = challb.response_and_validation(client.net.key)
-
-    # This bit of deep magic encode("token") was lifted from certbot to
-    # determine the name of the validation file for well-known
-
     v = chall_body.chall.encode("token")
     log.info('Exposing challenge on %s', v)
     tmp_chall_dict.set(v, ChallTok(chall_tok))
 
-    test_path = 'http://localhost:8082{}'.format(challb.path)
-    local_req = urllib.request.Request(test_path, headers={'Host': domain})
-    log.debug('Testing local url path: %s', test_path)
-
-    try:
-        resp = urllib.request.urlopen(local_req)
-        t = resp.read().decode('utf-8').strip()
-        if t != chall_tok:
-            raise ValueError
-    except (IOError, ValueError):
-        log.info('Resolving challenge locally failed. ACME request will fail. %s', test_path)
-        raise
-
     cr = client.answer_challenge(challb, challb.response(client.net.key))
     log.debug('Acme CA responded to challenge request with: %s', cr)
 
+    # Wrap this step and log the failure particularly here because this is
+    # the expected point of failure for applications that are not reachable
+    # from the public internet.
     try:
-        # Wrap this step and log the failure particularly here because this is
-        # the expected point of failure for applications that are not reachable
-        # from the public internet.
         order = client.poll_and_finalize(order)
 
     except messages.Error as error:
         log.err("Failed in request issuance step %s", error)
         raise
 
-
-    # V2 only returns a full chain certificate, and ACME doesn't ship with
+    # ACME V2 returns a full chain certificate, and ACME doesn't ship with
     # helper functions out of the box. Fortunately, searching through cerbot
     # this is easily enough to do with pyOpenSSL
 
