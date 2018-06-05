@@ -25,7 +25,7 @@ def create_v2_client(directory_url, accnt_key):
     '''Creates an ACME v2 Client for making requests to Let's Encrypt with'''
 
     accnt_key = josepy.JWKRSA(key=accnt_key)
-    net = client.ClientNetwork(accnt_key, user_agent="GlobalLeaks Let's Encrypt Client")
+    net = client.ClientNetwork(accnt_key, user_agent="GlobaLeaks Let's Encrypt Client")
     directory = messages.Directory.from_json(net.get(directory_url).json())
     acme = client.ClientV2(directory, net)
 
@@ -61,8 +61,7 @@ def run_acme_reg_to_finish(domain, accnt_key, priv_key, hostname, tmp_chall_dict
     # This will also let us support multi-domain certificat requests in the
     # future, as well as mandate OCSP-Must-Staple if/when GL's HTTPS server
     # supports it
-
-    csr = crypto_util.make_csr(priv_key, [text_type(hostname, 'utf-8')], False)
+    csr = crypto_util.make_csr(priv_key, [hostname], False)
     order = client.new_order(csr)
     authzr = order.authorizations
 
