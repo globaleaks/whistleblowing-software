@@ -1,5 +1,8 @@
+Changes in version 3.1.6 - 2018-06-5
+    Fix py2/py3 compatibility issues
+
 Changes in version 3.1.5 - 2018-06-05
-    Fix p2/p3 issues in letsencrypt utilities
+    Fix py2/py3 issues in letsencrypt utilities
     Fix init script in relation to NETWORK_SANDBOXING startup
     Fix apparmor script for the multiple versions of python supported
 
