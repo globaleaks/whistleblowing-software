@@ -1200,9 +1200,11 @@ factory('AdminUtils', ['AdminContextResource', 'AdminQuestionnaireResource', 'Ad
             return answers_obj[key][0];
           }
 
-          r = findField(answers_obj[key][0], field_id);
-          if (r !== undefined) {
-            return r;
+          if (answers_obj.hasOwnProperty(key) && answers_obj[key] instanceof Array && answers_obj[key].length) {
+            r = findField(answers_obj[key][0], field_id);
+            if (r !== undefined) {
+              return r;
+            }
           }
         }
         return r;
@@ -1210,6 +1212,7 @@ factory('AdminUtils', ['AdminContextResource', 'AdminQuestionnaireResource', 'Ad
 
       var isFieldTriggered = function(field, answers, score) {
         if (field.triggered_by_score > score) {
+          alert('score low');
           return false;
         }
 
@@ -1225,7 +1228,8 @@ factory('AdminUtils', ['AdminContextResource', 'AdminQuestionnaireResource', 'Ad
           }
 
           // Check if triggering field is in answers object
-          if (trigger_obj.option === answers_field.value) {
+          if (trigger_obj.option === answers_field.value ||
+	      (answers_field.hasOwnProperty(trigger_obj.option) && answers_field[trigger_obj.option])) {
             return true;
           }
         }
