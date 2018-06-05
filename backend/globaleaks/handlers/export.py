@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 #
 # API handling export of submissions
+import os
 from six import text_type
 from twisted.internet.defer import Deferred, inlineCallbacks
 
@@ -22,10 +23,10 @@ def get_tip_export(session, tid, user_id, rtip_id, language):
     rtip, itip = db_access_rtip(session, tid, user_id, rtip_id)
 
     user, context = session.query(models.User, models.Context) \
-                         .filter(models.User.id == rtip.receiver_id,
-                                 models.Context.id == models.InternalTip.context_id,
-                                 models.InternalTip.id == rtip.internaltip_id,
-                                 models.User.tid == tid).one()
+                           .filter(models.User.id == rtip.receiver_id,
+                                   models.Context.id == models.InternalTip.context_id,
+                                   models.InternalTip.id == rtip.internaltip_id,
+                                   models.User.tid == tid).one()
 
     rtip_dict = serialize_rtip(session, rtip, itip, language)
 
@@ -47,22 +48,20 @@ def get_tip_export(session, tid, user_id, rtip_id, language):
 
     export_dict['files'].append({'buf': export_template, 'name': "data.txt"})
 
-    for rfile in session.query(models.ReceiverFile).filter(models.ReceiverFile.receivertip_id == rtip_id,
-                                                           models.ReceiverTip.id == rtip_id,
-                                                           models.ReceiverTip.internaltip_id == models.InternalTip.id,
-                                                           models.InternalTip.tid == tid):
+    for rfile in session.query(models.ReceiverFile).filter(models.ReceiverFile.receivertip_id == rtip_id):
         rfile.last_access = datetime_now()
         rfile.downloads += 1
         file_dict = models.serializers.serialize_rfile(session, tid, rfile)
         file_dict['name'] = 'files/' + file_dict['name']
+        file_dict['path'] = os.path.join(Settings.attachments_path, file_dict['filename'])
         export_dict['files'].append(file_dict)
 
     for wf in session.query(models.WhistleblowerFile).filter(models.WhistleblowerFile.receivertip_id == models.ReceiverTip.id,
                                                              models.ReceiverTip.internaltip_id == rtip.internaltip_id,
-                                                             models.InternalTip.id == rtip.internaltip_id,
-                                                             models.InternalTip.tid == tid):
+                                                             models.InternalTip.id == rtip.internaltip_id):
         file_dict = models.serializers.serialize_wbfile(session, tid, wf)
         file_dict['name'] = 'files_from_recipients/' + file_dict['name']
+        file_dict['path'] = os.path.join(Settings.attachments_path, file_dict['filename'])
         export_dict['files'].append(file_dict)
 
     return export_dict

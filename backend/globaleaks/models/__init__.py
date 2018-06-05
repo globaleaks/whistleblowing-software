@@ -864,6 +864,7 @@ class _SecureFileDelete(Model):
 
     filepath = Column(UnicodeText, nullable=False)
 
+
 class _Signup(Model):
     __tablename__ = 'signup'
 
