@@ -1229,7 +1229,7 @@ factory('AdminUtils', ['AdminContextResource', 'AdminQuestionnaireResource', 'Ad
 
           // Check if triggering field is in answers object
           if (trigger_obj.option === answers_field.value ||
-	      (answers_field.hasOwnProperty(trigger_obj.option) && answers_field[trigger_obj.option])) {
+              (answers_field.hasOwnProperty(trigger_obj.option) && answers_field[trigger_obj.option])) {
             return true;
           }
         }
