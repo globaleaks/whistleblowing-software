@@ -2,7 +2,6 @@ Parsley==1.2
 Twisted==16.6.0
 acme==0.22.2
 chardet==2.3.0
-debian==0.1.30
 cffi==1.9.1
 cryptography==1.9
 enum34==1.1.2

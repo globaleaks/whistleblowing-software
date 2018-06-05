@@ -4,7 +4,6 @@ acme==0.22.2
 chardet==3.0.4
 cffi==1.11.5
 cryptography==2.1.4
-debian==0.1.32
 idna==2.6
 pyOpenSSL==17.5.0
 pyasn1==0.4.2
