@@ -14,7 +14,9 @@ import re
 import sqlite3
 import subprocess as sp
 import sys
+
 from datetime import datetime
+from six import text_type
 
 from globaleaks.utils import security
 from globaleaks.db import get_db_file
@@ -259,13 +261,13 @@ pw_p.set_defaults(func=reset_pass)
 rv_p = subp.add_parser("getvar", help="get database config variable")
 add_db_path_arg(rv_p)
 rv_p.add_argument("--tid", help="the tenant id", default='1', type=int)
-rv_p.add_argument("varname", help="the name of the config var", default='version', type=unicode)
+rv_p.add_argument("varname", help="the name of the config var", default='version', type=text_type)
 rv_p.set_defaults(func=get_var)
 
 sv_p = subp.add_parser("setvar", help="set database config variable")
 add_db_path_arg(sv_p)
 sv_p.add_argument("--tid", help="the tenant id", default='1', type=int)
-sv_p.add_argument("varname", help="the name of the config var", type=unicode)
+sv_p.add_argument("varname", help="the name of the config var", type=text_type)
 sv_p.add_argument("value", help="value which must be of the correct type Bool(0|1), Int(0-9^9), String(everything else)")
 sv_p.set_defaults(func=set_var)
 
