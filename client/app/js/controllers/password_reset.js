@@ -1,21 +1,15 @@
-GLClient.controller('PasswordResetCtrl', ['$scope', '$rootScope', '$location', '$http',
-  function($scope, $rootScope, $location, $http) {
-  // If already logged in, just go to the landing page.
-  if ($scope.session !== undefined && $scope.session.auth_landing_page) {
-    $location.path($scope.session.auth_landing_page);
-  }
-
-  $scope.resetCredentials = {
-    'username': '',
-    'mail_address': '',
+GLClient.controller('PasswordResetCtrl', ['$scope', '$location', '$http',
+  function($scope, $location, $http) {
+  $scope.data = {
+    'username_or_email': ''
   };
 
-  var completed = false;
+  if (!$scope.node.enable_password_reset) {
+    $location.path("/");
+  }
 
-  $scope.passwordResetEnabled = $scope.node.enable_password_reset;
-
-  $scope.complete = function() {
-    $http.post('reset/password', $scope.resetCredentials)
-    $rootScope.successes.push({message: 'If the specificed account exists, then instructions have been sent to your email.'});
+  $scope.submit = function() {
+    $http.post('reset/password', $scope.data);
+    $location.path("/login/passwordreset/requested");
   }
 }]);
