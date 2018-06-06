@@ -40,6 +40,8 @@ class TestPasswordResetInstance(helpers.TestHandlerWithPopulatedDB):
 
     @inlineCallbacks
     def test_get_success(self):
+        State.tenant_cache[1]['enable_password_reset'] = True
+
         handler = self.request()
 
         # Get the original password being used
@@ -52,13 +54,16 @@ class TestPasswordResetInstance(helpers.TestHandlerWithPopulatedDB):
 
         yield handler.get(u"token")
 
-        # Now we check if the token was update
+        # Now we check the auth token has been set
         user = yield get_user(self.rcvr_id)
-        self.assertNotEqual(user.password, user_orig.password)
+        self.assertNotEqual(user.auth_token, user_orig.auth_token)
+
+        # TODO: assess a mail has been created
 
     @inlineCallbacks
     def test_get_failure(self):
         State.tenant_cache[1]['enable_password_reset'] = True
+
         handler = self.request()
 
         # Get the original password being used
@@ -71,36 +76,18 @@ class TestPasswordResetInstance(helpers.TestHandlerWithPopulatedDB):
 
         yield handler.get(u"wrong_token")
 
-        # Now we check if the token was update
+        # Now we check the auth token has been set
         user = yield get_user(self.rcvr_id)
-        self.assertEqual(user.password, user_orig.password)
+        self.assertEqual(user.auth_token, user_orig.auth_token)
 
-    @inlineCallbacks
-    def test_get_disabled(self):
-        State.tenant_cache[1]['enable_password_reset'] = False
-        handler = self.request()
-
-        # Get the original password being used
-        user_orig = yield get_user(self.rcvr_id)
-
-        yield set_reset_token(
-            self.user['id'],
-            u"token"
-        )
-
-        yield handler.get(u"token")
-
-        # Now we check if the token was update
-        user = yield get_user(self.rcvr_id)
-        self.assertNotEqual(user.password, user_orig.password)
+        # TODO: assess no mail has been created
 
     @inlineCallbacks
     def test_post(self):
         State.tenant_cache[1]['enable_password_reset'] = True
 
         data_request = {
-            'username': self.user['username'],
-            'mail_address': self.user['mail_address']
+            'username_or_email': self.user['username']
         }
         handler = self.request(data_request)
 

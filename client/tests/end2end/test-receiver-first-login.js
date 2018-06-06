@@ -10,7 +10,6 @@ describe('receiver first login', function() {
   });
 
   it('should be able to change password from the default one', function() {
-    element(by.model('preferences.old_password')).sendKeys('recipient');
     element(by.model('preferences.password')).sendKeys(browser.gl.utils.vars['user_password']);
     element(by.model('preferences.check_password')).sendKeys(browser.gl.utils.vars['user_password']);
     element(by.css('[data-ng-click="save()"]')).click();

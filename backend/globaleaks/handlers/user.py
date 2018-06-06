@@ -5,10 +5,10 @@ from globaleaks import models
 from globaleaks.handlers.admin.modelimgs import db_get_model_img
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.orm import transact
-from globaleaks.rest import requests
+from globaleaks.rest import errors, requests
 from globaleaks.state import State
 from globaleaks.utils.pgp import PGPContext
-from globaleaks.utils.security import change_password, generateRandomKey
+from globaleaks.utils.security import check_password, hash_password, generateRandomKey
 from globaleaks.utils.structures import get_localized_values
 from globaleaks.utils.utility import datetime_to_ISO8601, datetime_now, datetime_null
 
@@ -102,15 +102,16 @@ def db_user_update_user(session, state, tid, user_id, request):
     new_password = request['password']
     old_password = request['old_password']
 
-    if new_password and old_password:
-        user.password = change_password(user.password,
-                                        old_password,
-                                        new_password,
-                                        user.salt)
-
+    if new_password:
         if user.password_change_needed:
             user.password_change_needed = False
+        else:
+            if not check_password(old_password,
+                                  user.salt,
+                                  user.password):
+                raise errors.InvalidOldPassword
 
+        user.password = hash_password(new_password, user.salt)
         user.password_change_date = datetime_now()
 
     # If the email address changed, send a validation email
