@@ -491,3 +491,12 @@ html[rtl] .float-right {
 .display-block {
   display: block;
 }
+
+.red-text, .red-asterisk {
+  color: #a94442;
+}
+
+.red-asterisk {
+  vertical-align: super;
+  font-size: smaller;
+}

@@ -1,0 +1,23 @@
+<div class="row">
+  <div class="col-md-12">
+    <label data-translate>Enter your account's username or your email address to request a password reset.</label>
+  </div>
+</div>
+<div class="row">	
+  <div class="col-md-3">
+    <form name="form" autocomplete="off" novalidate>
+      <div class="form-group">
+        <input class="form-control" name="username" data-ng-model="data.username_or_email" type="text" required />
+      </div>
+
+      <button id="login-button" class="btn btn-primary" data-ng-click="submit()" type="submit">
+        <span data-translate>Request password reset</span>
+      </button>
+    </form>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+	  <div><span class="red-asterisk">*</span> <span data-translate>Password reset feature is unavailable for admin users.</span></div>
+  </div>
+</div>

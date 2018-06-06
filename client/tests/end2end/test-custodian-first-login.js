@@ -6,7 +6,6 @@ describe('receiver first login', function() {
   });
 
   it('should be able to change password from the default one', function() {
-    element(by.model('preferences.old_password')).sendKeys('custodian');
     element(by.model('preferences.password')).sendKeys(temporary_password);
     element(by.model('preferences.check_password')).sendKeys(temporary_password);
     element(by.css('[data-ng-click="save()"]')).click();

@@ -175,24 +175,16 @@ def hash_password(password, salt):
     return binascii.hexlify(scrypt.hash(password, salt))
 
 
-def check_password(guessed_password, salt, password_hash):
-    if isinstance(password_hash, text_type):
-        password_hash = password_hash.encode()
-    return constant_time.bytes_eq(hash_password(guessed_password, salt), password_hash)
-
-
-def change_password(old_password_hash, old_password, new_password, salt):
+def check_password(password, salt, password_hash):
     """
-    @param old_password_hash: the stored password hash.
-    @param old_password: The user provided old password for password change protection.
-    @param new_password: The user provided new password.
-    @param salt: The salt to be used for password hashing.
+    @param password: the user provided password
+    @param salt: The salt to be used for password hashing
+    @param password_hash: the expected hash
 
     @return:
         the scrypt hash in base64 of the new password
     """
-    if not check_password(old_password, salt, old_password_hash):
-        log.debug("change_password(): Error - provided invalid old_password")
-        raise errors.InvalidOldPassword
+    if isinstance(password_hash, text_type):
+        password_hash = password_hash.encode()
 
-    return hash_password(new_password, salt)
+    return constant_time.bytes_eq(hash_password(password, salt), password_hash)

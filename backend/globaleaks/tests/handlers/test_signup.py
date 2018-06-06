@@ -56,4 +56,3 @@ class TestSignupActivation(helpers.TestHandler):
         r = yield handler.get(u'invalid')
 
         self.assertTrue(not r)
-
