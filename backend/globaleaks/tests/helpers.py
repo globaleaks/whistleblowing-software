@@ -422,9 +422,9 @@ class TestGL(unittest.TestCase):
         }
 
         self.dummySignup = {
-            'name': 'Giovanni',
-            'surname': 'Pellerano',
-            'email': 'giovanni.pellerano@evilaliv3.org',
+            'name': 'Raffaele',
+            'surname': 'Cantone',
+            'email': 'raffaele.cantone@anticorruzione.it',
             'subdomain': 'ringobongo',
             'use_case': 'anticorruption',
             'use_case_other': ''
@@ -1125,7 +1125,8 @@ class MockDict:
             'enable_developers_exception_notification': True,
             'ip_filter_authenticated': u'',
             'ip_filter_authenticated_enable': False,
-            'counter_submissions': 0
+            'counter_submissions': 0,
+            'enable_password_reset': True
         }
 
 

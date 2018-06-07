@@ -11,11 +11,15 @@
           <label data-translate>Password</label>
           <input class="form-control" name="password" data-ng-model="loginPassword" type="password" required />
         </div>
-
+ 
         <button id="login-button" class="btn btn-success" data-ng-disabled="Authentication.loginInProgress || loginForm.$invalid" data-ng-click="Authentication.login(loginUsername, loginPassword)" type="submit">
           <i class="glyphicon glyphicon-log-in"></i>
           <span data-translate>Log in</span>
         </button>
+
+        <span data-ng-if="::passwordResetEnabled">
+          <a class="btn btn-default" href="/#/login/passwordreset" data-translate>Forgot password?</a>
+        </span>
       </div>
       <div data-ng-if="::simplifiedLogin">
         <div class="form-group">

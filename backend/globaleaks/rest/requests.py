@@ -253,7 +253,8 @@ AdminNodeDesc = {
     'enable_admin_exception_notification': bool,
     'enable_developers_exception_notification': bool,
     'ip_filter_authenticated_enable': bool,
-    'ip_filter_authenticated': text_type
+    'ip_filter_authenticated': text_type,
+    'enable_password_reset': bool
 }
 
 AdminNotificationDesc = merge_dicts({
@@ -561,4 +562,8 @@ ExceptionDesc = {
     'errorMessage': text_type,
     'stackTrace': list,
     'agent': text_type
+}
+
+PasswordResetDesc = {
+    'username_or_email': text_type
 }

@@ -10,7 +10,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-05-29 14:14+0000\n"
+"PO-Revision-Date: 2018-06-07 10:00+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Thai (http://www.transifex.com/otf/globaleaks/language/th/)\n"
 "MIME-Version: 1.0\n"
@@ -767,9 +767,6 @@ msgstr "เปิดใช้กลไก CAPTCHA"
 msgid "Enable proof of work mechanism"
 msgstr "เปิดใช้หลักฐานของกลไกการทำงาน"
 
-msgid "Enable simplified login for recipients"
-msgstr "เปิดใช้งานการเข้าสู่ระบบที่เรียบง่ายสำหรับผู้รับ"
-
 msgid "Amount of days till whistleblower access expires"
 msgstr ""
 
@@ -839,11 +836,20 @@ msgstr ""
 msgid "Example:"
 msgstr "ตัวอย่าง:"
 
-msgid "Enable experimental features"
-msgstr "เปิดใช้งานคุณลักษณะการทดลอง"
+msgid "Allow users to reset their password"
+msgstr ""
 
 msgid "Warning"
 msgstr ""
+
+msgid ""
+"Allowing users to reset their password may reduce the security of the "
+"platform due to security becoming dependent on the security of user's email "
+"accounts."
+msgstr ""
+
+msgid "Enable experimental features"
+msgstr "เปิดใช้งานคุณลักษณะการทดลอง"
 
 msgid ""
 "The experimental features may be less stable or even not work at all; enable"
@@ -1501,8 +1507,8 @@ msgstr ""
 msgid "Your new email address has been validated."
 msgstr ""
 
-msgid "Before proceeding, please change your password."
-msgstr "ก่อนที่จะดำเนินการต่อโปรดเปลี่ยนรหัสผ่านของคุณ"
+msgid "Before proceeding, please set a new password."
+msgstr ""
 
 msgid "Submissions disabled"
 msgstr ""
@@ -1535,6 +1541,9 @@ msgstr "ซอฟต์แวร์ที่ได้รับการพัฒ
 
 msgid "Please support Hermes through their donation page."
 msgstr "กรุณาสนับสนุน Hermes ผ่านทางหน้าบริจาคของพวกเขา"
+
+msgid "Forgot password?"
+msgstr ""
 
 msgid "Please select your account:"
 msgstr "กรุณาเลือกบัญชีของคุณ:"
@@ -1763,10 +1772,27 @@ msgstr ""
 msgid "These files have been attached to your submission by the recipients."
 msgstr ""
 
-msgid "Validation of email address change in progress."
+msgid "The provided reset token is invalid or expired."
 msgstr ""
 
-msgid "Please check your inbox for:"
+msgid ""
+"Enter your account's username or your email address to request a password "
+"reset."
+msgstr ""
+
+msgid "Request password reset"
+msgstr ""
+
+msgid "Password reset feature is unavailable for admin users."
+msgstr ""
+
+msgid "Password reset requested."
+msgstr ""
+
+msgid "Please check your email inbox for further instructions."
+msgstr ""
+
+msgid "Validation of email address change in progress."
 msgstr ""
 
 msgid "Enable submission notification"
@@ -2278,6 +2304,20 @@ msgstr "นี่คืออีเมลไปแจ้งให้คุณท
 
 msgid "New message"
 msgstr "ข้อความใหม่"
+
+msgid "You're receiving this email because you requested a password reset."
+msgstr ""
+
+msgid ""
+"If you didn't make this request, you may safely ignore and delete this "
+"email."
+msgstr ""
+
+msgid "You can confirm your request by clicking the following links:"
+msgstr ""
+
+msgid "Password reset instructions"
+msgstr ""
 
 msgid ""
 "This is an email to inform you that your PGP key is expiring or has already "

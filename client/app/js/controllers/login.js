@@ -6,6 +6,7 @@ GLClient.controller('LoginCtrl', ['$scope', '$location',
   }
 
   $scope.simplifiedLogin = !!($location.path() === '/login' && $scope.node.simplified_login);
+  $scope.passwordResetEnabled = $scope.node.enable_password_reset;
 
   $scope.token = $location.search().token;
 

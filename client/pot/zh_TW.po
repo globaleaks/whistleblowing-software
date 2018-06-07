@@ -10,7 +10,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-05-29 14:14+0000\n"
+"PO-Revision-Date: 2018-06-07 10:00+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/otf/globaleaks/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
@@ -767,9 +767,6 @@ msgstr "啟動 CAPTCHA 機制"
 msgid "Enable proof of work mechanism"
 msgstr "啟動工作機制證明"
 
-msgid "Enable simplified login for recipients"
-msgstr "開啟收件者的快速登入"
-
 msgid "Amount of days till whistleblower access expires"
 msgstr "吹哨者讀取使的到期剩餘天數"
 
@@ -839,11 +836,20 @@ msgstr "無效的 IP 地址或 CIDR 範圍不被接受。"
 msgid "Example:"
 msgstr "例子："
 
-msgid "Enable experimental features"
-msgstr "開啟示範性功能"
+msgid "Allow users to reset their password"
+msgstr ""
 
 msgid "Warning"
 msgstr "警示"
+
+msgid ""
+"Allowing users to reset their password may reduce the security of the "
+"platform due to security becoming dependent on the security of user's email "
+"accounts."
+msgstr ""
+
+msgid "Enable experimental features"
+msgstr "開啟示範性功能"
 
 msgid ""
 "The experimental features may be less stable or even not work at all; enable"
@@ -1501,8 +1507,8 @@ msgstr ""
 msgid "Your new email address has been validated."
 msgstr ""
 
-msgid "Before proceeding, please change your password."
-msgstr "開始前，請先改變你的密碼"
+msgid "Before proceeding, please set a new password."
+msgstr ""
 
 msgid "Submissions disabled"
 msgstr "提交功能取消"
@@ -1535,6 +1541,9 @@ msgstr "這種軟體是由非營利的 Hermes Center for Transparency and Digita
 
 msgid "Please support Hermes through their donation page."
 msgstr "透過捐款頁面支持 Hermes"
+
+msgid "Forgot password?"
+msgstr ""
 
 msgid "Please select your account:"
 msgstr "請選擇你的帳號"
@@ -1763,11 +1772,28 @@ msgstr "收件者所附加的檔案"
 msgid "These files have been attached to your submission by the recipients."
 msgstr "這些檔案是由你提交的收件者所附加的"
 
+msgid "The provided reset token is invalid or expired."
+msgstr ""
+
+msgid ""
+"Enter your account's username or your email address to request a password "
+"reset."
+msgstr ""
+
+msgid "Request password reset"
+msgstr ""
+
+msgid "Password reset feature is unavailable for admin users."
+msgstr ""
+
+msgid "Password reset requested."
+msgstr ""
+
+msgid "Please check your email inbox for further instructions."
+msgstr ""
+
 msgid "Validation of email address change in progress."
 msgstr "正在查驗電郵地址變更"
-
-msgid "Please check your inbox for:"
-msgstr "請檢查你的電郵信箱:"
 
 msgid "Enable submission notification"
 msgstr "啟動提交通知"
@@ -2278,6 +2304,20 @@ msgstr "這封電子郵件是通知你在現已提交的揭密上有一則新訊
 
 msgid "New message"
 msgstr "新訊息"
+
+msgid "You're receiving this email because you requested a password reset."
+msgstr ""
+
+msgid ""
+"If you didn't make this request, you may safely ignore and delete this "
+"email."
+msgstr ""
+
+msgid "You can confirm your request by clicking the following links:"
+msgstr ""
+
+msgid "Password reset instructions"
+msgstr ""
 
 msgid ""
 "This is an email to inform you that your PGP key is expiring or has already "

@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-05-29 14:14+0000\n"
+"PO-Revision-Date: 2018-06-07 10:00+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Danish (http://www.transifex.com/otf/globaleaks/language/da/)\n"
 "MIME-Version: 1.0\n"
@@ -648,7 +648,7 @@ msgid "Surname"
 msgstr "Efternavn"
 
 msgid "Do not create the admin user"
-msgstr ""
+msgstr "Undlad at oprette administrator-konto"
 
 msgid "Select the context of your submission:"
 msgstr "Vælg den sammenhæng, din indsendelse indgår i:"
@@ -662,7 +662,7 @@ msgid ""
 "the submission anonymous, which is strongly recommended.\\n\\nThis can be "
 "achieved with the use of the Tor Browser, providing anonymisation not found "
 "in other browsers like Internet Explorer, Firefox, Chrome, Opera etc."
-msgstr ""
+msgstr "Når du indsender over HTTPS kan det afsløre, at indsendelsen foregår, men det kan ikke afsløre selve indholdet. \\n\\nHvis du skjuler, at du foretager indsendelsen, kan det være med til at gøre den anonym, hvilket stærkt anbefales.\\n\\n. Det kan gøres ved at bruge Tor Browser, der tilbyder et lag af anonymisering, som ikke findes andre browsere som for eksempel Internet Explorer, Firefox, Chrome, Opera osv. "
 
 msgid "Are you a whistleblower?"
 msgstr "Er du whistleblower?"
@@ -749,22 +749,19 @@ msgid "Text"
 msgstr "Tekst"
 
 msgid "Disable the security awareness panel"
-msgstr ""
+msgstr "Deaktiver sikkerhedspanelet"
 
 msgid "Disable the key code hint"
-msgstr ""
+msgstr "Deaktiver nøglekode-hintet"
 
 msgid "Disable the donation panel"
-msgstr ""
+msgstr "Deaktiver donationspanelet"
 
 msgid "Enable CAPTCHA mechanism"
-msgstr ""
+msgstr "Aktiver CAPTCHA-mekanismen"
 
 msgid "Enable proof of work mechanism"
-msgstr ""
-
-msgid "Enable simplified login for recipients"
-msgstr ""
+msgstr "Aktiver proof-of-work mekanismen"
 
 msgid "Amount of days till whistleblower access expires"
 msgstr "Antal dage til whistleblowerens adgang udløber"
@@ -780,39 +777,39 @@ msgid "Landing page"
 msgstr "Destinationsside"
 
 msgid "Home Page"
-msgstr ""
+msgstr "Hjemmeside"
 
 msgid "Submission Page"
-msgstr ""
+msgstr "Indleveringsside"
 
 msgid "Title of the submission page"
-msgstr ""
+msgstr "Titel på indleveringssiden"
 
 msgid "Text of prompt for whistleblowers to log in"
-msgstr ""
+msgstr "Tekst hvor whistleblowere anmodes om at logge ind"
 
 msgid "Show contexts in alphabetical order"
-msgstr ""
+msgstr "Vis sammenhænge i alfabetisk rækkefølge"
 
 msgid "Title of the receipt page"
-msgstr ""
+msgstr "Titel på kvitteringssiden"
 
 msgid "Title of the submission status page"
-msgstr ""
+msgstr "Titel på siden med status for indleveringen"
 
 msgid "Size limit for file attachments"
-msgstr ""
+msgstr "Størrelsesgrænse for vedhæftede filer"
 
 msgid "Notify administrators of software problems"
-msgstr ""
+msgstr "Underret administratorer om softwareproblemer"
 
 msgid "Notify developers of software problems"
-msgstr ""
+msgstr "Underret udviklere om softwareproblemer"
 
 msgid ""
 "By enabling this feature, you will contribute to the development and "
 "security of the platform."
-msgstr ""
+msgstr "Ved at slå denne egenskab til vil du bidrage til udvikling og sikkerhed af platformen."
 
 msgid "Enable HTTP Basic Authentication to limit platform access"
 msgstr ""
@@ -824,28 +821,37 @@ msgid "Password"
 msgstr "Kodeord"
 
 msgid "Restrict privileged logins to specific IP addresses"
-msgstr ""
+msgstr "Begræns priviligeret login til specifikke IP-adresser"
 
 msgid "Whitelisted IP addresses"
 msgstr "Godkendte IP-adresser"
 
 msgid "Either individual IP addresses or CIDR ranges are accepted here."
-msgstr ""
+msgstr "Individuelle IP-adresser eller CIDR-adresser kan bruges her."
 
 msgid "Example:"
 msgstr "Eksempel:"
 
-msgid "Enable experimental features"
-msgstr "Aktivér eksperimentelle funktioner"
+msgid "Allow users to reset their password"
+msgstr "Tillad brugere at nulstille deres kodeord"
 
 msgid "Warning"
 msgstr "Advarsel"
 
 msgid ""
+"Allowing users to reset their password may reduce the security of the "
+"platform due to security becoming dependent on the security of user's email "
+"accounts."
+msgstr "At tillade brugere at nulstille deres kodeord kan svække platformens sikkerhed, da sikkerheden bliver afhængig af sikkerheden på brugernes mailkonti."
+
+msgid "Enable experimental features"
+msgstr "Aktivér eksperimentelle funktioner"
+
+msgid ""
 "The experimental features may be less stable or even not work at all; enable"
 " this option at your own risk. Support for these features may vary and they "
 "may be removed in the future."
-msgstr ""
+msgstr "Eksperimentelle egenskaber kan være mindre stabile, eller slet ikke virke overhovedet. Det er på egen risiko, at du slår denne mulighed til. Understøttelse af disse egenskaber kan skifte og de kan blive helt fjernet i senere udgaver."
 
 msgid "Save"
 msgstr "Gem"
@@ -869,19 +875,19 @@ msgid "Homepage title"
 msgstr "Titel på hjemmesiden"
 
 msgid "Presentation"
-msgstr ""
+msgstr "Præsentation"
 
 msgid "Description"
 msgstr "Beskrivelse"
 
 msgid "Question to solicit possible whistleblowers"
-msgstr ""
+msgstr "Spørgsmål der skal bruges til at anmode om nye whistleblowere"
 
 msgid "Whistleblowing button"
-msgstr ""
+msgstr "Whistleblower-knap"
 
 msgid "Footer"
-msgstr ""
+msgstr "Sidefod"
 
 msgid "Favicon"
 msgstr "Favicon"
@@ -893,22 +899,22 @@ msgid "Download"
 msgstr "Download"
 
 msgid "Upload custom file"
-msgstr ""
+msgstr "Upload brugerdefineret fil"
 
 msgid "The file will be available at URL: /s/$filename"
-msgstr ""
+msgstr "Filen vil være tilgængelig på URL: /s/$filename"
 
 msgid "Language:"
-msgstr ""
+msgstr "Sprog:"
 
 msgid "Add custom text"
-msgstr ""
+msgstr "Tilføj brugerdefineret tekst"
 
 msgid "Custom text"
-msgstr ""
+msgstr "Brugerdefineret tekst"
 
 msgid "Custom texts"
-msgstr ""
+msgstr "Brugerdefinerede tekster"
 
 msgid "Original text"
 msgstr "Oprindelig tekst"
@@ -917,10 +923,10 @@ msgid "Original translation"
 msgstr "Oprindelig oversættelse"
 
 msgid "Custom translation"
-msgstr ""
+msgstr "Brugerdefineret oversættelse"
 
 msgid "Contexts"
-msgstr ""
+msgstr "Sammenhænge"
 
 msgid "Name"
 msgstr "Navn"
@@ -935,18 +941,18 @@ msgid "This field is mandatory"
 msgstr "Dette felt er obligatorisk"
 
 msgid "Questionnaire"
-msgstr ""
+msgstr "Spørgeskema"
 
 msgid "Recipients"
 msgstr "Modtagere"
 
 msgid "Allow selection of this context through the context selector."
-msgstr ""
+msgstr "Tillad valg af denne sammenhæng via sammenhængsvælgeren"
 
 msgid ""
 "If disabled, submissions for this context will only be accessible through a "
 "direct link to it."
-msgstr ""
+msgstr "Hvis den er slået fra vil indleveringer til denne sammenhæng kun være tilgængelige via direkte link."
 
 msgid "Allow whistleblowers to select their recipients"
 msgstr "Tillad whistleblowere at vælge deres modtagere"
@@ -964,7 +970,7 @@ msgid "Show recipients in alphabetical order"
 msgstr "Vis modtagere i alfabetisk rækkefølge"
 
 msgid "Show small recipient cards on submission interface"
-msgstr ""
+msgstr "Vis små kort med modtagere på indleveringssiden"
 
 msgid "Enable comments"
 msgstr "Aktiver kommentarer"
@@ -982,7 +988,7 @@ msgid "Let whistleblowers add attachments onto existing submissions"
 msgstr "Tillad at whistleblowere kan tilføje vedhæftelser til eksisterende indsendelser"
 
 msgid "Show recipient details on the status page of the submission"
-msgstr ""
+msgstr "Vis modtagerdetaljer på statussiden for indleveringen"
 
 msgid "Let recipients upload files to whistleblowers"
 msgstr "Tillad at modtagere kan uploade filer til whistleblowere"
@@ -1011,17 +1017,17 @@ msgstr "Velkommen til administrationssiden!"
 msgid ""
 "This interface may help you understand how the server can be configured and "
 "provides some info on how to connect to other GlobaLeaks users and experts."
-msgstr ""
+msgstr "Dette interface kan hjælpe dig med at få overblik over, hvordan serveren kan konfigureres og give information om, hvordan du kommer i forbindelse med andre Globaleaks-brugere og eksperter."
 
 msgid "Documentation"
 msgstr "Dokumentation"
 
 msgid ""
 "To properly organize your project, please read the following guidelines:"
-msgstr ""
+msgstr "Læs venligst følgende retningslinjer for at organisere dit projekt korrekt:"
 
 msgid "Remember to provide proper security advice to Whistleblowers:"
-msgstr ""
+msgstr "Husk at give korrekt rådgivning om sikkerhed til whistleblowers:"
 
 msgid ""
 "To learn more about GlobaLeaks Security you can read the following document:"
@@ -1038,7 +1044,7 @@ msgstr "Hvis du har brug for teknisk support, har generelle spørgsmål eller ha
 msgid ""
 "If you want to contribute to software development or report a bug, please "
 "open an issue in our ticketing system:"
-msgstr ""
+msgstr "Hvis du ønsker at bidrage til softwareudviklingen eller rapportere om en fejl, så vær venlig at åbne den som sag i vores ticketing system:"
 
 msgid ""
 "If your non-profit needs support for investigative journalism, activism or a"
@@ -1090,10 +1096,10 @@ msgid "Number of hours before sending a submission expiration alert"
 msgstr ""
 
 msgid "Maximum emails per hour before triggering email suspension"
-msgstr ""
+msgstr "Maksimalt antal mails per time før mail-suspendering aktiveres"
 
 msgid "this configuration only applies to recipients"
-msgstr ""
+msgstr "Denn indstilling gælder kun modtagere"
 
 msgid "Test the configuration"
 msgstr "Test indstillingen"
@@ -1105,7 +1111,7 @@ msgid "Admin"
 msgstr "Admin"
 
 msgid "Roles enabled to use the platform without Tor:"
-msgstr ""
+msgstr "Roller der er aktiveret så platformen kan anvendes uden Tor:"
 
 msgid "Recipient"
 msgstr "Modtager"
@@ -1120,35 +1126,35 @@ msgid "Verify"
 msgstr "Bekræft"
 
 msgid "Invalid input format."
-msgstr ""
+msgstr "Ugyldigt inputformat"
 
 msgid "Input should be similar to:"
-msgstr ""
+msgstr "Input skal svare til:"
 
 msgid ""
 "The platform does not seem to be reachable with the configured hostname."
-msgstr ""
+msgstr "Det ser ikke ud til, at platformen er tilgængelig med det konfigurerede værtsnavn."
 
 msgid "Using Let's Encrypt requires agreement to their Terms of Service."
 msgstr ""
 
 msgid "Read the Terms of Service"
-msgstr ""
+msgstr "Læs servicebetingelserne"
 
 msgid "I agree to the Terms of Service."
-msgstr ""
+msgstr "Jeg godkender hermed servicebetingelserne."
 
 msgid "Proceed"
 msgstr "Fortsæt"
 
 msgid "Configuration completed. You can review the settings or enable it now."
-msgstr ""
+msgstr "Konfiguration er gennemført. Du kan nu gennemgå indstillingerne eller aktivere dem."
 
 msgid "Review"
-msgstr ""
+msgstr "Gennemgå"
 
 msgid "Enable"
-msgstr ""
+msgstr "Aktiver"
 
 msgid "Country code"
 msgstr "Landekode"
@@ -1163,7 +1169,7 @@ msgid "Organization"
 msgstr "Organisation"
 
 msgid "Organizational unit"
-msgstr ""
+msgstr "Organisationsenhed"
 
 msgid ""
 "This interface can generate a Private Key and a Certificate Signing Request."
@@ -1176,10 +1182,10 @@ msgid ""
 msgstr ""
 
 msgid "Private Key"
-msgstr ""
+msgstr "Privat nøgle"
 
 msgid "Generate"
-msgstr ""
+msgstr "Generer"
 
 msgid "Certificate Signing Request"
 msgstr ""
@@ -1238,10 +1244,10 @@ msgid "Not running"
 msgstr "Kører ikke"
 
 msgid "Auto-renewal"
-msgstr ""
+msgstr "Automatisk fornyelse"
 
 msgid "System message:"
-msgstr ""
+msgstr "Systemmeddelelse:"
 
 msgid ""
 "Allowing whistleblowers to connect over HTTPS preserves their privacy but "
@@ -1249,15 +1255,15 @@ msgid ""
 msgstr "Tillader du whistleblowere at få adgang til systemet via HTTPS sikrer du deres privatliv, men ikke deres anonymitet."
 
 msgid "Attention!"
-msgstr ""
+msgstr "Bemærk!"
 
 msgid ""
 "Configuration in progress. When it is finished you will have to log in "
 "again."
-msgstr ""
+msgstr "Konfiguration i gang. Når den er færdig vil det være nødvendigt at logge ind igen."
 
 msgid "Your browser will be redirected to the following URL."
-msgstr ""
+msgstr "Din browser vil blive viderestillet til følgende URL."
 
 msgid "Tor Onion Service"
 msgstr "Tor Onion Service"
@@ -1281,10 +1287,10 @@ msgid "Event ID"
 msgstr ""
 
 msgid "Time"
-msgstr ""
+msgstr "Tid"
 
 msgid "Event"
-msgstr ""
+msgstr "Event"
 
 msgid "Response time"
 msgstr "Svartid"
@@ -1296,7 +1302,7 @@ msgid "Last access"
 msgstr "Seneste tilgang"
 
 msgid "Submission"
-msgstr ""
+msgstr "Indsendelse"
 
 msgid "Path"
 msgstr "Sti"
@@ -1308,19 +1314,19 @@ msgid "Alarm level"
 msgstr ""
 
 msgid "Events"
-msgstr ""
+msgstr "Events"
 
 msgid "Label"
-msgstr ""
+msgstr "Etiket"
 
 msgid "Type"
-msgstr ""
+msgstr "Type"
 
 msgid "Single-line text input"
-msgstr ""
+msgstr "Enkelt-linje tekst-input"
 
 msgid "Multi-line text input"
-msgstr ""
+msgstr "Flere linjers tekst-input"
 
 msgid "Multiple choice input"
 msgstr ""
@@ -1335,34 +1341,34 @@ msgid "Terms of service"
 msgstr ""
 
 msgid "Group of questions"
-msgstr ""
+msgstr "Gruppe af spørgsmål"
 
 msgid "Row"
-msgstr ""
+msgstr "Række"
 
 msgid "Column"
-msgstr ""
+msgstr "Kolonne"
 
 msgid "Width"
-msgstr ""
+msgstr "Bredde"
 
 msgid "Question group"
-msgstr ""
+msgstr "Spørgsmåls-gruppe"
 
 msgid "Hint"
-msgstr ""
+msgstr "Tips"
 
 msgid "Required"
-msgstr ""
+msgstr "Obligatorisk"
 
 msgid "Accept multiple file uploads"
-msgstr ""
+msgstr "Tillad upload af flere filer"
 
 msgid "Accept multiple answers"
-msgstr ""
+msgstr "Tillad flere svar"
 
 msgid "Hint shown on the button for adding an additional answer"
-msgstr ""
+msgstr "Tip der vises ved den knap der filføjer yderligere svar"
 
 msgid "Phone number"
 msgstr "Telefonnummer"
@@ -1392,25 +1398,25 @@ msgid "Text of the final statement upon negative answer"
 msgstr ""
 
 msgid "Options"
-msgstr ""
+msgstr "Valgmuligheder"
 
 msgid "Questions"
-msgstr ""
+msgstr "Spørgsmål"
 
 msgid "Add new question"
-msgstr ""
+msgstr "Tilføj nyt spørgsmål"
 
 msgid "Add question from template"
-msgstr ""
+msgstr "Tilføj spørgsmål fra skabelon"
 
 msgid "Steps"
-msgstr ""
+msgstr "Skridt"
 
 msgid "Configuration"
-msgstr ""
+msgstr "Konfiguration"
 
 msgid "Default"
-msgstr ""
+msgstr "Standard"
 
 msgid "Forcefully selected"
 msgstr ""
@@ -1419,13 +1425,13 @@ msgid "Unselectable"
 msgstr ""
 
 msgid "Allow the recipient to postpone the submission expiration date"
-msgstr ""
+msgstr "Tillad modtagerne at udsætte udløbsdato for indsendelsen"
 
 msgid "The setting is enabled at a global level."
 msgstr ""
 
 msgid "Allow the recipient to delete submissions"
-msgstr ""
+msgstr "Tillad modtagere at slette indsendelser"
 
 msgid ""
 "Allow the recipient to grant permissions to whistleblowers on specific "
@@ -1436,7 +1442,7 @@ msgid "General settings"
 msgstr "Generelle indstillinger"
 
 msgid "Network settings"
-msgstr ""
+msgstr "Netværksindstillinger"
 
 msgid "Root domain used for secondary sites"
 msgstr ""
@@ -1454,59 +1460,59 @@ msgid "Active"
 msgstr "Aktiv"
 
 msgid "Inactive"
-msgstr ""
+msgstr "Inaktiv"
 
 msgid "The default password is:"
-msgstr ""
+msgstr "Standardkodeordet er:"
 
 msgid "The system forces users to change the password at first login."
-msgstr ""
+msgstr "Systemet tvinger brugere til at skifte kodeord første gang de logger ind."
 
 msgid "New Password"
-msgstr ""
+msgstr "Nyt kodeord"
 
 msgid ""
 "The chosen password is too weak. Make it more secure by adding special "
 "characters, numbers, and unusual symbols."
-msgstr ""
+msgstr "Det valgte kodeord er for svagt. Gør det mere sikkert ved at tilføje specialkarakterer, tal og symboler."
 
 msgid "Force password change"
-msgstr ""
+msgstr "Gennemtving skift af kodeord"
 
 msgid "The user will be forced to change its password on next login."
-msgstr ""
+msgstr "Brugeren bliver tvunget til at skifte kodeord ved næste login."
 
 msgid "Language"
-msgstr ""
+msgstr "Sprog"
 
 msgid "Remove the PGP key"
-msgstr ""
+msgstr "Fjern PGP nøglen"
 
 msgid "Set up encryption by providing a PGP public key"
-msgstr ""
+msgstr "Opsæt kryptering ved at indsende en offentlig PGP nøgle"
 
 msgid "Request date"
-msgstr ""
+msgstr "Anmod om dato"
 
 msgid "Authorization"
-msgstr ""
+msgstr "Autorisation"
 
 msgid "The validation link is either incorrect or has expired."
-msgstr ""
+msgstr "Bekræftelseslinket er ugyldig eller udløbet."
 
 msgid "Your new email address has been validated."
-msgstr ""
+msgstr "Din nye mailadresse er blevet valideret."
 
-msgid "Before proceeding, please change your password."
-msgstr ""
+msgid "Before proceeding, please set a new password."
+msgstr "Før du fortsætter bedes du indstille nyt kodeord."
 
 msgid "Submissions disabled"
-msgstr ""
+msgstr "Indsendelser er slået fra"
 
 msgid ""
 "You are connecting to the server without anonymity and this server supports "
 "only anonymous submissions"
-msgstr ""
+msgstr "Du forbinder til serveren uden anonymitet og denne server tillader kun anonymiserede indsendelser"
 
 msgid ""
 "Server temporarly unusable due to resource exhaustion; advise the Admin if "
@@ -1514,38 +1520,41 @@ msgid ""
 msgstr ""
 
 msgid "This server is not configured."
-msgstr ""
+msgstr "Serveren er ikke konfigureret"
 
 msgid "You will not be able to send a submission."
-msgstr ""
+msgstr "Det vil ikke være muligt at foretage indsendelse."
 
 msgid ""
 "This platform makes use of GlobaLeaks software specifically designed to "
 "protect the identity for submitter and recipient in the exchange of content."
-msgstr ""
+msgstr "Denne platform bruger Globaleaks software, der er specifikt designet til at beskytte indsenderes og modtageres identitet under udveksling af informationer."
 
 msgid ""
 "The software is developed by the non-profit Hermes Center for Transparency "
 "and Digital Human Rights."
-msgstr ""
+msgstr "Denne software er udviklet af non-profit organisationen Hermes Center for Transparency and Digital Human Rights."
 
 msgid "Please support Hermes through their donation page."
-msgstr ""
+msgstr "Støt Hermes via deres donationsside."
+
+msgid "Forgot password?"
+msgstr "Glemt kodeord?"
 
 msgid "Please select your account:"
-msgstr ""
+msgstr "Vælg venligst din konto:"
 
 msgid "Now type your password, then click 'Log in':"
-msgstr ""
+msgstr "Skriv nu dit kodeord og klik 'login':"
 
 msgid "Authentication failed"
 msgstr ""
 
 msgid "Are you sure?"
-msgstr ""
+msgstr "Er du sikker?"
 
 msgid "The operation will reset the configuration and cannot be undone."
-msgstr ""
+msgstr "Denne handling vil nulstille konfigurationen og kan ikke fortrydes."
 
 msgid "Assign score points"
 msgstr ""
@@ -1556,25 +1565,25 @@ msgid ""
 msgstr ""
 
 msgid "Confirm"
-msgstr ""
+msgstr "Bekræft"
 
 msgid "Are you human?"
-msgstr ""
+msgstr "Er du menneske?"
 
 msgid ""
 "We do not discriminate based on race and gender, but we do against computers"
 " :)"
-msgstr ""
+msgstr "Vi diskriminerer ikke på baggrund af race og køn, men vi gør mod computere :)"
 
 msgid ""
 "Just to prove you are human, please answer the following math challenge:"
-msgstr ""
+msgstr "Blot for at bevise, at du er menneske, beder vi dig løse følgende matematikopgave:"
 
 msgid "I've solved the math challenge, hide this thing now!"
-msgstr ""
+msgstr "Jeg har løst matematikopgaven, så skjul dimsen nu!"
 
 msgid "Please note that all the associated data will be permanently lost."
-msgstr ""
+msgstr "Vær opmærksom på, at alle tilknyttede data vil blive permanent slettet."
 
 msgid ""
 "This means that if the server running the platform were to be seized, it "
@@ -1582,28 +1591,28 @@ msgid ""
 msgstr ""
 
 msgid "Are you sure that you wish to continue?"
-msgstr ""
+msgstr "Er du sikker på, at du ønsker at fortsætte?"
 
 msgid "Error!"
-msgstr ""
+msgstr "Fejl!"
 
 msgid "Internal server error"
-msgstr ""
+msgstr "Intern server fejl"
 
 msgid "Error on input validation"
-msgstr ""
+msgstr "Fejl i input-validering"
 
 msgid "Resource not found"
-msgstr ""
+msgstr "Ressourcen kan ikke findes"
 
 msgid "Forbidden operation"
-msgstr ""
+msgstr "Ulovlig handling"
 
 msgid "The specified old password is not valid"
-msgstr ""
+msgstr "Det angivne gamle kodeord er ikke korrekt"
 
 msgid "Resource can only be accessed via the Tor network"
-msgstr ""
+msgstr "Denne ressource kan kun tilgås via Tor netværket"
 
 msgid "The upload request exceeds the size limit"
 msgstr ""
@@ -1678,7 +1687,7 @@ msgid "download"
 msgstr ""
 
 msgid "No files have been uploaded!"
-msgstr ""
+msgstr "Ingen filer er blevet uploadet!"
 
 msgid "Allow the whistleblower to add attachments to the submission"
 msgstr "Tillad whistlebloweren at tilføje vedhæftelser til indsendelsen"
@@ -1687,19 +1696,19 @@ msgid "Access expiration"
 msgstr ""
 
 msgid "Connection"
-msgstr ""
+msgstr "Forbindelse"
 
 msgid "Never"
-msgstr ""
+msgstr "Aldrig"
 
 msgid "Revoked"
-msgstr ""
+msgstr "Tilbagekaldt"
 
 msgid "Allow the whistleblower to send messages"
 msgstr "Tillad whistlebloweren at sende beskeder"
 
 msgid "Are you sure that you want to delete the submission?"
-msgstr ""
+msgstr "Er du sikker på, at du ønsker at slette indsendelsen?"
 
 msgid ""
 "Everything related to the submission stored on the platform will be deleted."
@@ -1739,58 +1748,75 @@ msgid "Step"
 msgstr ""
 
 msgid "Recipient list"
-msgstr ""
+msgstr "Modtagerliste"
 
 msgid "Attached files for the whistleblower"
-msgstr ""
+msgstr "Vedhæftede filer til whistlebloweren"
 
 msgid "Upload a file:"
-msgstr ""
+msgstr "Upload en fil:"
 
 msgid "Logout"
-msgstr ""
+msgstr "Log ud"
 
 msgid "The key code is either invalid or the submission has expired."
-msgstr ""
+msgstr "Nøglekoden er ugyldig eller indsendelsen er udløbet."
 
 msgid "Files attached by recipients"
-msgstr ""
+msgstr "Filer der er vedhæftet af modtagere"
 
 msgid "These files have been attached to your submission by the recipients."
+msgstr "Disse filer er blevet vedhæftet af modtagerne til din indsendelse."
+
+msgid "The provided reset token is invalid or expired."
+msgstr ""
+
+msgid ""
+"Enter your account's username or your email address to request a password "
+"reset."
+msgstr ""
+
+msgid "Request password reset"
+msgstr ""
+
+msgid "Password reset feature is unavailable for admin users."
+msgstr ""
+
+msgid "Password reset requested."
+msgstr ""
+
+msgid "Please check your email inbox for further instructions."
 msgstr ""
 
 msgid "Validation of email address change in progress."
-msgstr ""
-
-msgid "Please check your inbox for:"
 msgstr ""
 
 msgid "Enable submission notification"
 msgstr ""
 
 msgid "Current Password"
-msgstr ""
+msgstr "Nuværende kodeord"
 
 msgid "Old password confirmation required"
 msgstr ""
 
 msgid "The new password must be different from the current one."
-msgstr ""
+msgstr "Det nye kodeord skal være forskelligt fra det nuværende."
 
 msgid "Type your new password again"
-msgstr ""
+msgstr "Skriv dit nye kodeord igen"
 
 msgid "The two passwords do not match"
-msgstr ""
+msgstr "De to kodeord matcher ikke"
 
 msgid "Thank you!"
-msgstr ""
+msgstr "Tak!"
 
 msgid "Remember your key code for this submission."
-msgstr ""
+msgstr "Husk din nøglekode for denne indsendelse."
 
 msgid "We will try to get back to you as soon as possible!"
-msgstr ""
+msgstr "Vi vil vende tilbage til dig så hurtigt som muligt!"
 
 msgid ""
 "Use the 16 digit key code to log in. It will allow you to view any messages "
@@ -1878,7 +1904,7 @@ msgid "Corporate compliance"
 msgstr ""
 
 msgid "Investigative journalism"
-msgstr ""
+msgstr "Undersøgende journalistik"
 
 msgid "Civic activism"
 msgstr ""
@@ -1908,22 +1934,22 @@ msgid "This field is mandatory."
 msgstr "Dette felt er obligatorisk."
 
 msgid "The answer is too short."
-msgstr ""
+msgstr "Svaret er for kort."
 
 msgid "Recipient selection"
-msgstr ""
+msgstr "Vælg modtagere"
 
 msgid "previous step"
-msgstr ""
+msgstr "Forrige skridt"
 
 msgid "next step"
-msgstr ""
+msgstr "Næste skridt"
 
 msgid "Submit"
 msgstr "Indsend"
 
 msgid "Recipients selected:"
-msgstr ""
+msgstr "Valgte modtagere:"
 
 msgid ""
 "In this step the answers to the following questions are either missing or "
@@ -1943,7 +1969,7 @@ msgid "The following steps have errors:"
 msgstr ""
 
 msgid "Welcome!"
-msgstr ""
+msgstr "Velkommen!"
 
 msgid ""
 "The following step-by-step procedure will guide you through creating your "
@@ -1959,7 +1985,7 @@ msgid ""
 msgstr ""
 
 msgid "Confirm password"
-msgstr ""
+msgstr "Bekræft kodeord"
 
 msgid "The default username is:"
 msgstr ""
@@ -1980,19 +2006,19 @@ msgid "Fill out your submission"
 msgstr ""
 
 msgid "Short title"
-msgstr ""
+msgstr "Kort titel"
 
 msgid "Describe your submission in a few words."
-msgstr ""
+msgstr "Beskriv i få ord din indsendelse."
 
 msgid "Full description"
-msgstr ""
+msgstr "Fuld beskrivelse"
 
 msgid "Describe your submission in detail."
-msgstr ""
+msgstr "Beskriv i detaljer din indsendelse."
 
 msgid "Attach files relevant to the submission."
-msgstr ""
+msgstr "Vedhæft de filer der vedrører indsendelsen."
 
 msgid "Do you want to provide your identification information?"
 msgstr ""
@@ -2004,7 +2030,7 @@ msgid "Last name"
 msgstr "Efternavn"
 
 msgid "Gender"
-msgstr ""
+msgstr "Køn"
 
 msgid "Male"
 msgstr "Mand"
@@ -2013,7 +2039,7 @@ msgid "Female"
 msgstr "Kvinde"
 
 msgid "Other gender identity"
-msgstr ""
+msgstr "Anden kønsidentitet"
 
 msgid "Date of birth"
 msgstr "Fødselsdato"
@@ -2055,52 +2081,52 @@ msgid "Organization unit and job location at the time of the reported fact"
 msgstr ""
 
 msgid "Dear {RecipientName},"
-msgstr ""
+msgstr "Kære {RecipientName},"
 
 msgid "Kind regards,"
-msgstr ""
+msgstr "Med venlig hilsen"
 
 msgid "Access instructions"
 msgstr ""
 
 msgid ""
 "The number of activities recently detected appears to be higher than usual."
-msgstr ""
+msgstr "Antallet af aktiviteter, der senest er registreret forekommer højere end normalt."
 
 msgid ""
 "This could be a sign of an attack (for example, someone flooding your server"
 " with bogus information) or just a usage spike due to an increased "
 "visibility of your project."
-msgstr ""
+msgstr "Det kan være tegn på et angreb (for eksempel at nogen forsøger at overbelaste din server med falske oplysninger) eller blot forhøjet trafik som følge af større synlighed omkring dit projekt."
 
 msgid "Examine the issue to determine whether it is legitimate or not."
-msgstr ""
+msgstr "Undersøg forholdene og afklar om de er legitime eller ej."
 
 msgid "The activities with unusual stats are:"
-msgstr ""
+msgstr "Aktiviteterne med usædvanlig statistik er:"
 
 msgid ""
 "The server cannot guarantee that a new submission can be stored, so "
 "submissions have been disabled."
-msgstr ""
+msgstr "Serveren kan ikke garantere, at nye indsendelser kan lagres. Derfor er indsendelser slået fra."
 
 msgid ""
 "Please consider asking your technical support to create more disk space on "
 "the server."
-msgstr ""
+msgstr "Du bør anmode din tekniske support om at give mere diskplads på serveren."
 
 msgid ""
 "GlobaLeaks technology includes a server status checking component which will"
 " alert you in case something requires your attention."
-msgstr ""
+msgstr "Globaleaks-programmet indeholder en komponent, der kontrollerer serverens status, og som vil advare dig, hvis noget kræver opmærksomhed."
 
 msgid ""
 "For more information, log in to the Administration interface and look at the"
 " \"System Stats\" and \"Anomalies\" sections."
-msgstr ""
+msgstr "For yderligere oplysninger, log ind på administrationssiden og kontroller sektionerne med \"Systemstatistik\" og \"afvigelser\"."
 
 msgid "Anomaly detected in {NodeName}"
-msgstr ""
+msgstr "Afvigelse sporet i {NodeName}"
 
 msgid ""
 "This is an email to inform you that the PGP key of the following users is "
@@ -2258,22 +2284,36 @@ msgid "The request can be accessed:"
 msgstr ""
 
 msgid "New request of access to a whistleblower's identity"
-msgstr ""
+msgstr "Ny forespørgsel om adgang til whistleblowerens identitet"
 
 msgid ""
 "This is an email to notify you that the whistleblower for the submission "
 "{TipNum} has provided their identity."
-msgstr ""
+msgstr "Dette er en mail for at underrette dig om, at whistleblower for indsendelsen {TipNum} har angivet sin identitet."
 
 msgid "The whistleblower has provided their identity"
 msgstr "Whistlebloweren har oplyst sin identitet"
 
 msgid ""
 "This is an email to notify you of a new message on an existing submission."
-msgstr ""
+msgstr "Dette er en mail for at underrette dig om, at der er en ny besked på en tidligere afleveret indsendelse."
 
 msgid "New message"
 msgstr "Ny meddelelse"
+
+msgid "You're receiving this email because you requested a password reset."
+msgstr ""
+
+msgid ""
+"If you didn't make this request, you may safely ignore and delete this "
+"email."
+msgstr "Hvis du ikke foretog denne anmodning kan du blot ignorere og slette denne mail."
+
+msgid "You can confirm your request by clicking the following links:"
+msgstr "Du kan bekræfte din anmodning ved at klikke på følgende link:"
+
+msgid "Password reset instructions"
+msgstr ""
 
 msgid ""
 "This is an email to inform you that your PGP key is expiring or has already "
@@ -2348,7 +2388,7 @@ msgstr ""
 msgid ""
 "This is an email to notify you that a whistleblower has selected you as a "
 "valuable recipient of their submission."
-msgstr ""
+msgstr "Dette er en mail for at orientere dig om, at en whistleblower har valgt dig som modtager af sin indsendelse."
 
 msgid ""
 "You are asked to pay special attention to the information and material "

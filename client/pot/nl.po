@@ -35,7 +35,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-05-29 14:14+0000\n"
+"PO-Revision-Date: 2018-06-07 10:00+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Dutch (http://www.transifex.com/otf/globaleaks/language/nl/)\n"
 "MIME-Version: 1.0\n"
@@ -792,9 +792,6 @@ msgstr "CAPTCHAS inschakelen"
 msgid "Enable proof of work mechanism"
 msgstr "'Proof-of-work'-mechanisme inschakelen"
 
-msgid "Enable simplified login for recipients"
-msgstr "Eenvoudige login voor ontvangers inschakelen"
-
 msgid "Amount of days till whistleblower access expires"
 msgstr "Het aantal dagen totdat de klokkenluider zijn toegang verloopt"
 
@@ -864,11 +861,20 @@ msgstr ""
 msgid "Example:"
 msgstr "Voorbeeld:"
 
-msgid "Enable experimental features"
-msgstr "Experimentele functies inschakelen"
+msgid "Allow users to reset their password"
+msgstr ""
 
 msgid "Warning"
 msgstr "Waarschuwing"
+
+msgid ""
+"Allowing users to reset their password may reduce the security of the "
+"platform due to security becoming dependent on the security of user's email "
+"accounts."
+msgstr ""
+
+msgid "Enable experimental features"
+msgstr "Experimentele functies inschakelen"
 
 msgid ""
 "The experimental features may be less stable or even not work at all; enable"
@@ -1526,8 +1532,8 @@ msgstr ""
 msgid "Your new email address has been validated."
 msgstr ""
 
-msgid "Before proceeding, please change your password."
-msgstr "Gelieve uw wachtwoord te veranderen vooraleer u verdergaat."
+msgid "Before proceeding, please set a new password."
+msgstr ""
 
 msgid "Submissions disabled"
 msgstr "Inzendingen  uitgeschakeld"
@@ -1560,6 +1566,9 @@ msgstr "De software is ontwikkeld door de non-profit Hermes Centrum voor transpa
 
 msgid "Please support Hermes through their donation page."
 msgstr "Steun Hermes via haar donatiepagina"
+
+msgid "Forgot password?"
+msgstr ""
 
 msgid "Please select your account:"
 msgstr "Selecteer je account:"
@@ -1788,10 +1797,27 @@ msgstr "Bestanden die door ontvangers zijn toegevoegd"
 msgid "These files have been attached to your submission by the recipients."
 msgstr "Deze bestanden zijn door de ontvangers als bijlage toegevoegd aan jouw inzending."
 
-msgid "Validation of email address change in progress."
+msgid "The provided reset token is invalid or expired."
 msgstr ""
 
-msgid "Please check your inbox for:"
+msgid ""
+"Enter your account's username or your email address to request a password "
+"reset."
+msgstr ""
+
+msgid "Request password reset"
+msgstr ""
+
+msgid "Password reset feature is unavailable for admin users."
+msgstr ""
+
+msgid "Password reset requested."
+msgstr ""
+
+msgid "Please check your email inbox for further instructions."
+msgstr ""
+
+msgid "Validation of email address change in progress."
 msgstr ""
 
 msgid "Enable submission notification"
@@ -2303,6 +2329,20 @@ msgstr "Dit is een mailtje om je te wijzen op een nieuw bericht betreffende een 
 
 msgid "New message"
 msgstr "Nieuw bericht"
+
+msgid "You're receiving this email because you requested a password reset."
+msgstr ""
+
+msgid ""
+"If you didn't make this request, you may safely ignore and delete this "
+"email."
+msgstr ""
+
+msgid "You can confirm your request by clicking the following links:"
+msgstr ""
+
+msgid "Password reset instructions"
+msgstr ""
 
 msgid ""
 "This is an email to inform you that your PGP key is expiring or has already "

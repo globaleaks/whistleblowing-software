@@ -39,7 +39,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-05-29 14:14+0000\n"
+"PO-Revision-Date: 2018-06-07 10:00+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: English (http://www.transifex.com/otf/globaleaks/language/en/)\n"
 "MIME-Version: 1.0\n"
@@ -796,9 +796,6 @@ msgstr "Enable CAPTCHA mechanism"
 msgid "Enable proof of work mechanism"
 msgstr "Enable proof of work mechanism"
 
-msgid "Enable simplified login for recipients"
-msgstr "Enable simplified login for recipients"
-
 msgid "Amount of days till whistleblower access expires"
 msgstr "Amount of days till whistleblower access expires"
 
@@ -868,11 +865,20 @@ msgstr "Either individual IP addresses or CIDR ranges are accepted here."
 msgid "Example:"
 msgstr "Example:"
 
-msgid "Enable experimental features"
-msgstr "Enable experimental features"
+msgid "Allow users to reset their password"
+msgstr "Allow users to reset their password"
 
 msgid "Warning"
 msgstr "Warning"
+
+msgid ""
+"Allowing users to reset their password may reduce the security of the "
+"platform due to security becoming dependent on the security of user's email "
+"accounts."
+msgstr "Allowing users to reset their password may reduce the security of the platform due to security becoming dependent on the security of user's email accounts."
+
+msgid "Enable experimental features"
+msgstr "Enable experimental features"
 
 msgid ""
 "The experimental features may be less stable or even not work at all; enable"
@@ -1530,8 +1536,8 @@ msgstr "The validation link is either incorrect or has expired."
 msgid "Your new email address has been validated."
 msgstr "Your new email address has been validated."
 
-msgid "Before proceeding, please change your password."
-msgstr "Before proceeding, please change your password."
+msgid "Before proceeding, please set a new password."
+msgstr "Before proceeding, please set a new password."
 
 msgid "Submissions disabled"
 msgstr "Submissions disabled"
@@ -1564,6 +1570,9 @@ msgstr "The software is developed by the non-profit Hermes Center for Transparen
 
 msgid "Please support Hermes through their donation page."
 msgstr "Please support Hermes through their donation page."
+
+msgid "Forgot password?"
+msgstr "Forgot password?"
 
 msgid "Please select your account:"
 msgstr "Please select your account:"
@@ -1792,11 +1801,28 @@ msgstr "Files attached by recipients"
 msgid "These files have been attached to your submission by the recipients."
 msgstr "These files have been attached to your submission by the recipients."
 
+msgid "The provided reset token is invalid or expired."
+msgstr "The provided reset token is invalid or expired."
+
+msgid ""
+"Enter your account's username or your email address to request a password "
+"reset."
+msgstr "Enter your account's username or your email address to request a password reset."
+
+msgid "Request password reset"
+msgstr "Request password reset"
+
+msgid "Password reset feature is unavailable for admin users."
+msgstr "Password reset feature is unavailable for admin users."
+
+msgid "Password reset requested."
+msgstr "Password reset requested."
+
+msgid "Please check your email inbox for further instructions."
+msgstr "Please check your email inbox for further instructions."
+
 msgid "Validation of email address change in progress."
 msgstr "Validation of email address change in progress."
-
-msgid "Please check your inbox for:"
-msgstr "Please check your inbox for:"
 
 msgid "Enable submission notification"
 msgstr "Enable submission notification"
@@ -2307,6 +2333,20 @@ msgstr "This is an email to notify you of a new message on an existing submissio
 
 msgid "New message"
 msgstr "New message"
+
+msgid "You're receiving this email because you requested a password reset."
+msgstr "You're receiving this email because you requested a password reset."
+
+msgid ""
+"If you didn't make this request, you may safely ignore and delete this "
+"email."
+msgstr "If you didn't make this request, you may safely ignore and delete this email."
+
+msgid "You can confirm your request by clicking the following links:"
+msgstr "You can confirm your request by clicking the following links:"
+
+msgid "Password reset instructions"
+msgstr "Password reset instructions"
 
 msgid ""
 "This is an email to inform you that your PGP key is expiring or has already "
