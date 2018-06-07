@@ -18,7 +18,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-05-29 14:14+0000\n"
+"PO-Revision-Date: 2018-06-07 10:00+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Catalan (http://www.transifex.com/otf/globaleaks/language/ca/)\n"
 "MIME-Version: 1.0\n"
@@ -657,10 +657,10 @@ msgid "Unselected by default"
 msgstr "Desactivat per defecte"
 
 msgid "Surname"
-msgstr ""
+msgstr "Cognom"
 
 msgid "Do not create the admin user"
-msgstr ""
+msgstr "No creeu l'usuari admin"
 
 msgid "Select the context of your submission:"
 msgstr "Selecciona el context del teu enviament:"
@@ -752,7 +752,7 @@ msgid "Disable the privacy panel"
 msgstr "Deshabilita el distintiu de privacitat "
 
 msgid "Enable disclaimer"
-msgstr ""
+msgstr "Activar l'avís legal"
 
 msgid "Title"
 msgstr "Títol"
@@ -774,9 +774,6 @@ msgstr "Activa el mecanisme CAPTCHA"
 
 msgid "Enable proof of work mechanism"
 msgstr "Activa el mecanisme de prova de funcionament"
-
-msgid "Enable simplified login for recipients"
-msgstr "Activa l'accés simplificat per als destinataris"
 
 msgid "Amount of days till whistleblower access expires"
 msgstr "Quantitat de dies fins a l'accés dels informadors expira"
@@ -836,22 +833,31 @@ msgid "Password"
 msgstr "Contrassenya"
 
 msgid "Restrict privileged logins to specific IP addresses"
-msgstr ""
+msgstr "Restringir accessos privilegiats a IPs específiques"
 
 msgid "Whitelisted IP addresses"
-msgstr ""
+msgstr "Llista d'adreces IP acceptades"
 
 msgid "Either individual IP addresses or CIDR ranges are accepted here."
-msgstr ""
+msgstr "S'admeten tant adreces IP concretes com intervals de CIDR ."
 
 msgid "Example:"
 msgstr "Exemple:"
 
-msgid "Enable experimental features"
-msgstr "Activa els trets experimentals"
+msgid "Allow users to reset their password"
+msgstr ""
 
 msgid "Warning"
 msgstr "Alerta"
+
+msgid ""
+"Allowing users to reset their password may reduce the security of the "
+"platform due to security becoming dependent on the security of user's email "
+"accounts."
+msgstr ""
+
+msgid "Enable experimental features"
+msgstr "Activa els trets experimentals"
 
 msgid ""
 "The experimental features may be less stable or even not work at all; enable"
@@ -1401,7 +1407,7 @@ msgid "Body of the confirmation question upon negative answer"
 msgstr "Text de la pregunta de confirmació davant una resposta negativa"
 
 msgid "Text of the final statement upon negative answer"
-msgstr ""
+msgstr "Text de la declaració final sobre la resposta negativa"
 
 msgid "Options"
 msgstr "Opcions"
@@ -1457,7 +1463,7 @@ msgid "Allow users to sign up"
 msgstr "Permitir registrarse a los usuarios"
 
 msgid "Enable footer customization"
-msgstr ""
+msgstr "Activa la personalització del peu de pàgina"
 
 msgid "Sites"
 msgstr "Sitios"
@@ -1504,13 +1510,13 @@ msgid "Authorization"
 msgstr "Autorització"
 
 msgid "The validation link is either incorrect or has expired."
-msgstr ""
+msgstr "El vincle de validació és incorrecte o ha caducat."
 
 msgid "Your new email address has been validated."
-msgstr ""
+msgstr "S'ha validat la vostra nova adreça de correu electrònic."
 
-msgid "Before proceeding, please change your password."
-msgstr "Abans de continuar, si us plau canvia, la teva contrasenya."
+msgid "Before proceeding, please set a new password."
+msgstr ""
 
 msgid "Submissions disabled"
 msgstr "Enviaments deshabilitats"
@@ -1543,6 +1549,9 @@ msgstr "El programari està desenvolupat per l'organització sense ànim de lucr
 
 msgid "Please support Hermes through their donation page."
 msgstr "Si us plau, dóna suport a Hermes mitjançant la seva pàgina de donacions."
+
+msgid "Forgot password?"
+msgstr ""
 
 msgid "Please select your account:"
 msgstr "Si us plau, selecciona el teu compte:"
@@ -1771,11 +1780,28 @@ msgstr "Arxius adjuntats pels receptors"
 msgid "These files have been attached to your submission by the recipients."
 msgstr "Aquests arxius s'han adjuntat al seu enviament per el receptor"
 
-msgid "Validation of email address change in progress."
+msgid "The provided reset token is invalid or expired."
 msgstr ""
 
-msgid "Please check your inbox for:"
+msgid ""
+"Enter your account's username or your email address to request a password "
+"reset."
 msgstr ""
+
+msgid "Request password reset"
+msgstr ""
+
+msgid "Password reset feature is unavailable for admin users."
+msgstr ""
+
+msgid "Password reset requested."
+msgstr ""
+
+msgid "Please check your email inbox for further instructions."
+msgstr ""
+
+msgid "Validation of email address change in progress."
+msgstr "Validació del canvi d'adreça electrònica en progrés."
 
 msgid "Enable submission notification"
 msgstr "Activa la notificació de l'entrega"
@@ -1851,7 +1877,7 @@ msgid "Date of the request"
 msgstr "Data de la petició"
 
 msgid "Undeclared"
-msgstr ""
+msgstr "No declarat"
 
 msgid "Congratulations!"
 msgstr "Enhorabona!"
@@ -2025,7 +2051,7 @@ msgid "Female"
 msgstr "Femení"
 
 msgid "Other gender identity"
-msgstr ""
+msgstr "Altres identitats de gènere"
 
 msgid "Date of birth"
 msgstr "Data de naixement"
@@ -2073,7 +2099,7 @@ msgid "Kind regards,"
 msgstr "Rep una salutació cordial,"
 
 msgid "Access instructions"
-msgstr ""
+msgstr "Instruccions d'accés"
 
 msgid ""
 "The number of activities recently detected appears to be higher than usual."
@@ -2128,28 +2154,28 @@ msgid "PGP key expiration alert"
 msgstr "Alerta d'expiració de la clau PGP"
 
 msgid "A new whistleblowing site has been registered."
-msgstr ""
+msgstr "S'ha registrat un nou lloc de denúncia."
 
 msgid "Registration data:"
-msgstr ""
+msgstr "Dades de registre:"
 
 msgid "Site: {HTTPSUrl}"
-msgstr ""
+msgstr "Lloc Web: {HTTPSUrl}"
 
 msgid "Name: {Name}"
-msgstr ""
+msgstr "Nom: {Name}"
 
 msgid "Email: {Email}"
-msgstr ""
+msgstr "Correu electrònic: {Email}"
 
 msgid "Language: {Language}"
-msgstr ""
+msgstr "Idioma: {Language}"
 
 msgid "Use case: {UseCase}"
-msgstr ""
+msgstr "Cas d'ús: {UseCase}"
 
 msgid "New whistleblowing site registered"
-msgstr ""
+msgstr "S'ha registrat un nou lloc de denúncia"
 
 msgid ""
 "This is a test email sent out from the platform's administrative interface."
@@ -2182,23 +2208,23 @@ msgstr "Nou commentari"
 msgid ""
 "This is an email to notify you that a request has been made to change your "
 "email address to {NewEmailAddress}."
-msgstr ""
+msgstr "Aquest és un correu electrònic per notificar-li que s'ha fet una sol·licitud per canviar la vostra adreça de correu electrònic a {NewEmailAddress}."
 
 msgid "Click the following link to validate this change: {HTTPSUrl}"
-msgstr ""
+msgstr "Feu clic al següent enllaç per validar aquest canvi: {HTTPSUrl}"
 
 msgid ""
 "If you wish to validate your new email with Tor, you may use the following "
 "link: {TorUrl}"
-msgstr ""
+msgstr "Si voleu validar el vostre nou correu electrònic amb Tor, podeu utilitzar el següent enllaç: {TorUrl}"
 
 msgid ""
 "If you didn't request this change, change your password and contact your "
 "system administrator."
-msgstr ""
+msgstr "Si no heu sol·licitat aquest canvi, canvieu la contrasenya i contacteu amb l'administrador del sistema."
 
 msgid "Email change request"
-msgstr ""
+msgstr "Petició de canvi d'adreça de correu"
 
 msgid "From: {RecipientName}"
 msgstr "De: {RecipientName}"
@@ -2287,6 +2313,20 @@ msgstr "Amb aquest missatge de correu electrònic et volem notificar que hi ha u
 msgid "New message"
 msgstr "Nous missatge"
 
+msgid "You're receiving this email because you requested a password reset."
+msgstr ""
+
+msgid ""
+"If you didn't make this request, you may safely ignore and delete this "
+"email."
+msgstr ""
+
+msgid "You can confirm your request by clicking the following links:"
+msgstr ""
+
+msgid "Password reset instructions"
+msgstr ""
+
 msgid ""
 "This is an email to inform you that your PGP key is expiring or has already "
 "expired."
@@ -2324,7 +2364,7 @@ msgid "Click the link to activate the platform:"
 msgstr "Pulse el enlace para activar la plataforma:"
 
 msgid "Activation"
-msgstr ""
+msgstr "Activació"
 
 msgid "A software update is available."
 msgstr "Actualitzacions de programari disponibles"
