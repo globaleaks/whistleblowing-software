@@ -22,7 +22,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-05-29 14:14+0000\n"
+"PO-Revision-Date: 2018-06-07 10:00+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/otf/globaleaks/language/uk/)\n"
 "MIME-Version: 1.0\n"
@@ -779,9 +779,6 @@ msgstr "Enable CAPTCHA mechanism"
 msgid "Enable proof of work mechanism"
 msgstr "Enable proof of work mechanism"
 
-msgid "Enable simplified login for recipients"
-msgstr "Enable simplified login for recipients"
-
 msgid "Amount of days till whistleblower access expires"
 msgstr "Кількість днів до закінчення терміну доступу інформатора"
 
@@ -851,11 +848,20 @@ msgstr ""
 msgid "Example:"
 msgstr "Приклад:"
 
-msgid "Enable experimental features"
-msgstr "Enable experimental features"
+msgid "Allow users to reset their password"
+msgstr ""
 
 msgid "Warning"
 msgstr "Увага!"
+
+msgid ""
+"Allowing users to reset their password may reduce the security of the "
+"platform due to security becoming dependent on the security of user's email "
+"accounts."
+msgstr ""
+
+msgid "Enable experimental features"
+msgstr "Enable experimental features"
 
 msgid ""
 "The experimental features may be less stable or even not work at all; enable"
@@ -1513,8 +1519,8 @@ msgstr ""
 msgid "Your new email address has been validated."
 msgstr ""
 
-msgid "Before proceeding, please change your password."
-msgstr "Перш ніж продовжити, будь ласка, змініть пароль."
+msgid "Before proceeding, please set a new password."
+msgstr ""
 
 msgid "Submissions disabled"
 msgstr "Повідомлення деактивовані"
@@ -1547,6 +1553,9 @@ msgstr "Мета даної платформи - покращити ефекти
 
 msgid "Please support Hermes through their donation page."
 msgstr "Будь ласка, підтримайте Хабардокс через нашу сторінку пожертвувань або просто розкажіть про Хабардокс друзям."
+
+msgid "Forgot password?"
+msgstr ""
 
 msgid "Please select your account:"
 msgstr "Будь ласка, оберіть ваш обліковий запис:"
@@ -1775,10 +1784,27 @@ msgstr ""
 msgid "These files have been attached to your submission by the recipients."
 msgstr "Ці файли були додані до вашого подання одержувачами."
 
-msgid "Validation of email address change in progress."
+msgid "The provided reset token is invalid or expired."
 msgstr ""
 
-msgid "Please check your inbox for:"
+msgid ""
+"Enter your account's username or your email address to request a password "
+"reset."
+msgstr ""
+
+msgid "Request password reset"
+msgstr ""
+
+msgid "Password reset feature is unavailable for admin users."
+msgstr ""
+
+msgid "Password reset requested."
+msgstr ""
+
+msgid "Please check your email inbox for further instructions."
+msgstr ""
+
+msgid "Validation of email address change in progress."
 msgstr ""
 
 msgid "Enable submission notification"
@@ -2290,6 +2316,20 @@ msgstr "Один з інформаторів залиший новий коме�
 
 msgid "New message"
 msgstr "Нове Повідомлення"
+
+msgid "You're receiving this email because you requested a password reset."
+msgstr ""
+
+msgid ""
+"If you didn't make this request, you may safely ignore and delete this "
+"email."
+msgstr ""
+
+msgid "You can confirm your request by clicking the following links:"
+msgstr ""
+
+msgid "Password reset instructions"
+msgstr ""
 
 msgid ""
 "This is an email to inform you that your PGP key is expiring or has already "

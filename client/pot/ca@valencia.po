@@ -15,7 +15,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-05-29 14:14+0000\n"
+"PO-Revision-Date: 2018-06-07 10:00+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Catalan (Valencian) (http://www.transifex.com/otf/globaleaks/language/ca%40valencia/)\n"
 "MIME-Version: 1.0\n"
@@ -772,9 +772,6 @@ msgstr "Activa el mecanisme CAPTCHA"
 msgid "Enable proof of work mechanism"
 msgstr "Activa el mecanisme de prova de funcionament"
 
-msgid "Enable simplified login for recipients"
-msgstr "Activa l'accés simplificat per als destinataris"
-
 msgid "Amount of days till whistleblower access expires"
 msgstr "Quantitat de dies fins que l'accés dels informadors expira"
 
@@ -844,11 +841,20 @@ msgstr ""
 msgid "Example:"
 msgstr "Exemple:"
 
-msgid "Enable experimental features"
-msgstr "Activa les funcionalitats experimentals"
+msgid "Allow users to reset their password"
+msgstr ""
 
 msgid "Warning"
 msgstr "Advertència"
+
+msgid ""
+"Allowing users to reset their password may reduce the security of the "
+"platform due to security becoming dependent on the security of user's email "
+"accounts."
+msgstr ""
+
+msgid "Enable experimental features"
+msgstr "Activa les funcionalitats experimentals"
 
 msgid ""
 "The experimental features may be less stable or even not work at all; enable"
@@ -1506,8 +1512,8 @@ msgstr ""
 msgid "Your new email address has been validated."
 msgstr ""
 
-msgid "Before proceeding, please change your password."
-msgstr "Abans de continuar, per favor, canvie la teua contrasenya."
+msgid "Before proceeding, please set a new password."
+msgstr ""
 
 msgid "Submissions disabled"
 msgstr "Enviaments deshabilitats"
@@ -1540,6 +1546,9 @@ msgstr "El programari està desenvolupat per l'organització sense ànim de lucr
 
 msgid "Please support Hermes through their donation page."
 msgstr "Pot donar suport a Hermes mitjançant la seva pàgina de donacions."
+
+msgid "Forgot password?"
+msgstr ""
 
 msgid "Please select your account:"
 msgstr "Per favor, seleccione el seu compte:"
@@ -1768,10 +1777,27 @@ msgstr "Arxius adjuntats pels receptors"
 msgid "These files have been attached to your submission by the recipients."
 msgstr "Aquests arxius s'han adjuntat al seu enviament pels receptors"
 
-msgid "Validation of email address change in progress."
+msgid "The provided reset token is invalid or expired."
 msgstr ""
 
-msgid "Please check your inbox for:"
+msgid ""
+"Enter your account's username or your email address to request a password "
+"reset."
+msgstr ""
+
+msgid "Request password reset"
+msgstr ""
+
+msgid "Password reset feature is unavailable for admin users."
+msgstr ""
+
+msgid "Password reset requested."
+msgstr ""
+
+msgid "Please check your email inbox for further instructions."
+msgstr ""
+
+msgid "Validation of email address change in progress."
 msgstr ""
 
 msgid "Enable submission notification"
@@ -2283,6 +2309,20 @@ msgstr "Amb aquest missatge de correu electrònic li notifiquem que hi ha un nou
 
 msgid "New message"
 msgstr "Nou missatge"
+
+msgid "You're receiving this email because you requested a password reset."
+msgstr ""
+
+msgid ""
+"If you didn't make this request, you may safely ignore and delete this "
+"email."
+msgstr ""
+
+msgid "You can confirm your request by clicking the following links:"
+msgstr ""
+
+msgid "Password reset instructions"
+msgstr ""
 
 msgid ""
 "This is an email to inform you that your PGP key is expiring or has already "
