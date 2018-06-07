@@ -38,8 +38,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-05-29 15:00+0000\n"
-"Last-Translator: French language coordinator <french.coordinator@rbox.me>\n"
+"PO-Revision-Date: 2018-06-07 10:00+0000\n"
+"Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: French (http://www.transifex.com/otf/globaleaks/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -795,9 +795,6 @@ msgstr "Activer un mécanisme CAPTCHA"
 msgid "Enable proof of work mechanism"
 msgstr "Activer un mécanisme de preuve de travail"
 
-msgid "Enable simplified login for recipients"
-msgstr "Activer la connexion simplifiée pour les destinataires"
-
 msgid "Amount of days till whistleblower access expires"
 msgstr "Nombre de jours avant que l’accès du lanceur d’alerte ne soit expiré."
 
@@ -867,11 +864,20 @@ msgstr "Des adresses IP particulières ou des plages de routage interdomaine san
 msgid "Example:"
 msgstr "Exemple :"
 
-msgid "Enable experimental features"
-msgstr "Activer les fonctions expérimentales"
+msgid "Allow users to reset their password"
+msgstr "Autoriser les utilisateurs à réinitialiser leurs mots de passe"
 
 msgid "Warning"
 msgstr "Avertissement"
+
+msgid ""
+"Allowing users to reset their password may reduce the security of the "
+"platform due to security becoming dependent on the security of user's email "
+"accounts."
+msgstr "Autoriser les utilisateurs à réinitialiser leur mot de passe pourrait réduire la sécurité de la plate-forme, car cette sécurité dépendrait de la sécurité des comptes de courriel des utilisateurs."
+
+msgid "Enable experimental features"
+msgstr "Activer les fonctions expérimentales"
 
 msgid ""
 "The experimental features may be less stable or even not work at all; enable"
@@ -1529,8 +1535,8 @@ msgstr "Soit le lien de validation est incorrect soit il est expiré."
 msgid "Your new email address has been validated."
 msgstr "Votre nouvelle adresse courriel a été validée."
 
-msgid "Before proceeding, please change your password."
-msgstr "Avant de continuer, veuillez changer votre mot de passe."
+msgid "Before proceeding, please set a new password."
+msgstr "Avant de continuer, veuillez définir un nouveau mot de passe."
 
 msgid "Submissions disabled"
 msgstr "Envois désactivés"
@@ -1563,6 +1569,9 @@ msgstr "Le logiciel est développé par le Centre Hermès pour la transparence e
 
 msgid "Please support Hermes through their donation page."
 msgstr "Veuillez encourager Hermès en visitant leur page de don."
+
+msgid "Forgot password?"
+msgstr "Mot de passe oublié ?"
 
 msgid "Please select your account:"
 msgstr "Veuillez sélectionner votre compte :"
@@ -1791,11 +1800,28 @@ msgstr "Pièces jointes par les destinataires"
 msgid "These files have been attached to your submission by the recipients."
 msgstr "Ces fichiers ont été joints à votre envoi par les destinataires."
 
+msgid "The provided reset token is invalid or expired."
+msgstr ""
+
+msgid ""
+"Enter your account's username or your email address to request a password "
+"reset."
+msgstr "Saisissez le nom d’utilisateur de votre compte ou votre adresse courriel pour demander une réinitialisation du mot de passe."
+
+msgid "Request password reset"
+msgstr "Demander une réinitialisation de mot de passe"
+
+msgid "Password reset feature is unavailable for admin users."
+msgstr ""
+
+msgid "Password reset requested."
+msgstr "Une réinitialisation de mot de passe a été demandée."
+
+msgid "Please check your email inbox for further instructions."
+msgstr "Veuillez vérifier votre boîte de réception de courriels pour de plus amples instructions."
+
 msgid "Validation of email address change in progress."
 msgstr "La validation du changement d’adresse courriel est en cours."
-
-msgid "Please check your inbox for:"
-msgstr "Veuillez vérifier votre boîte de réception :"
 
 msgid "Enable submission notification"
 msgstr "Activer la notification d’envoi"
@@ -2306,6 +2332,20 @@ msgstr "Le but de ce courriel est de vous signaler un nouveau commentaire à pro
 
 msgid "New message"
 msgstr "Nouveau message"
+
+msgid "You're receiving this email because you requested a password reset."
+msgstr ""
+
+msgid ""
+"If you didn't make this request, you may safely ignore and delete this "
+"email."
+msgstr "Si vous n’êtes pas à l’origine de cette demande, vous pouvez en toute sécurité ignorer et supprimer ce courriel."
+
+msgid "You can confirm your request by clicking the following links:"
+msgstr "Vous pouvez confirmer votre demande en cliquant sur les liens suivants :"
+
+msgid "Password reset instructions"
+msgstr "Instructions de réinitialisation du mot de passe"
 
 msgid ""
 "This is an email to inform you that your PGP key is expiring or has already "

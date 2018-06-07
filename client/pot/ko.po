@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-05-29 14:14+0000\n"
+"PO-Revision-Date: 2018-06-07 10:00+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Korean (http://www.transifex.com/otf/globaleaks/language/ko/)\n"
 "MIME-Version: 1.0\n"
@@ -762,9 +762,6 @@ msgstr "CAPTCHA 메커니즘을 사용"
 msgid "Enable proof of work mechanism"
 msgstr "작업기구의 증명 사용"
 
-msgid "Enable simplified login for recipients"
-msgstr "받는 사람에 대한 간단한 로그인을 사용하도록 설정"
-
 msgid "Amount of days till whistleblower access expires"
 msgstr ""
 
@@ -834,11 +831,20 @@ msgstr ""
 msgid "Example:"
 msgstr "예:"
 
-msgid "Enable experimental features"
-msgstr "실험 기능 사용"
+msgid "Allow users to reset their password"
+msgstr ""
 
 msgid "Warning"
 msgstr "경고"
+
+msgid ""
+"Allowing users to reset their password may reduce the security of the "
+"platform due to security becoming dependent on the security of user's email "
+"accounts."
+msgstr ""
+
+msgid "Enable experimental features"
+msgstr "실험 기능 사용"
 
 msgid ""
 "The experimental features may be less stable or even not work at all; enable"
@@ -1496,8 +1502,8 @@ msgstr ""
 msgid "Your new email address has been validated."
 msgstr ""
 
-msgid "Before proceeding, please change your password."
-msgstr "계속하기 전에 암호를 변경하십시오."
+msgid "Before proceeding, please set a new password."
+msgstr ""
 
 msgid "Submissions disabled"
 msgstr ""
@@ -1530,6 +1536,9 @@ msgstr "이 소프트웨어는 비영리 투명성에 대한 에르메스 센터
 
 msgid "Please support Hermes through their donation page."
 msgstr "자신의 기부 페이지를 통해 헤르메스를 지원하십시오."
+
+msgid "Forgot password?"
+msgstr ""
 
 msgid "Please select your account:"
 msgstr "계정을 선택하십시오 :"
@@ -1758,10 +1767,27 @@ msgstr ""
 msgid "These files have been attached to your submission by the recipients."
 msgstr ""
 
-msgid "Validation of email address change in progress."
+msgid "The provided reset token is invalid or expired."
 msgstr ""
 
-msgid "Please check your inbox for:"
+msgid ""
+"Enter your account's username or your email address to request a password "
+"reset."
+msgstr ""
+
+msgid "Request password reset"
+msgstr ""
+
+msgid "Password reset feature is unavailable for admin users."
+msgstr ""
+
+msgid "Password reset requested."
+msgstr ""
+
+msgid "Please check your email inbox for further instructions."
+msgstr ""
+
+msgid "Validation of email address change in progress."
 msgstr ""
 
 msgid "Enable submission notification"
@@ -2273,6 +2299,20 @@ msgstr "이는 기존의 제출에 새 메시지를 알려하는 이메일입니
 
 msgid "New message"
 msgstr "새로운 메시지"
+
+msgid "You're receiving this email because you requested a password reset."
+msgstr ""
+
+msgid ""
+"If you didn't make this request, you may safely ignore and delete this "
+"email."
+msgstr ""
+
+msgid "You can confirm your request by clicking the following links:"
+msgstr ""
+
+msgid "Password reset instructions"
+msgstr ""
 
 msgid ""
 "This is an email to inform you that your PGP key is expiring or has already "
