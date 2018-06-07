@@ -47,12 +47,6 @@ setupDependencies() {
 
 sudo iptables -t nat -A OUTPUT -o lo -p tcp --dport 9000 -j REDIRECT --to-port 8082
 
-wget  http://mirrors.kernel.org/ubuntu/pool/main/d/dpkg/dpkg_1.17.5ubuntu5.8_amd64.deb
-sudo dpkg -i dpkg_1.17.5ubuntu5.8_amd64.deb
-
-wget http://mirrors.kernel.org/ubuntu/pool/main/d/debootstrap/debootstrap_1.0.95_all.deb
-sudo dpkg -i debootstrap_1.0.95_all.deb
-
 npm install -g grunt grunt-cli
 
 if [ "$GLTEST" = "py2_test" ] || [ "$GLTEST" = "py3_test" ]; then
@@ -116,6 +110,12 @@ elif [ "$GLTEST" = "build_and_install" ]; then
   }
 
   trap atexit EXIT
+
+  wget  http://mirrors.kernel.org/ubuntu/pool/main/d/dpkg/dpkg_1.17.5ubuntu5.8_amd64.deb
+  sudo dpkg -i dpkg_1.17.5ubuntu5.8_amd64.deb
+
+  wget http://mirrors.kernel.org/ubuntu/pool/main/d/debootstrap/debootstrap_1.0.95_all.deb
+  sudo dpkg -i debootstrap_1.0.95_all.deb
 
   export chroot="/tmp/globaleaks_chroot/"
   mkdir -p "$chroot/build"
