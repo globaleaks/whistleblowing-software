@@ -59,7 +59,7 @@ def get_engine(db_uri=None, foreign_keys=True):
 
 
 def get_session(db_uri=None, foreign_keys=True):
-    return sessionmaker(bind=get_engine(db_uri))()
+    return sessionmaker(bind=get_engine(db_uri, foreign_keys))()
 
 
 def set_thread_pool(thread_pool):
