@@ -155,6 +155,10 @@ class Signup(BaseHandler):
         request = self.validate_message(self.request.content.read(),
                                         requests.SignupDesc)
 
+        if self.state.tenant_cache[1].signup_fingerprint:
+            request['client_ip_address'] = self.request.client_ip
+            request['client_user_agent'] = self.request.client_ua
+
         return signup(self.state, self.request.tid, request, self.request.language)
 
 

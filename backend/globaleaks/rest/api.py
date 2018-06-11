@@ -336,8 +336,11 @@ class APIResourceWrapper(Resource):
 
         request.client_using_tor = request.client_ip in State.tor_exit_set or \
                                    request.port == 8083
+
         if 'x-tor2web' in request.headers:
             request.client_using_tor = False
+
+        request.client_ua = request.headers.get(b'user-agent', u'')
 
         request.language = text_type(self.detect_language(request))
         if 'multilang' in request.args:
