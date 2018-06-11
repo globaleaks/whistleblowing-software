@@ -102,7 +102,7 @@ def login(session, tid, username, password, client_using_tor, client_ip, token='
         ip_networks = parse_csv_ip_ranges_to_ip_networks(
             State.tenant_cache[tid]['ip_filter_authenticated']
         )
-        client_ip = text_type(client_ip)
+        client_ip = client_ip.decode()
         client_ip_obj = ipaddress.ip_address(client_ip)
 
         # Safety check, we always allow localhost to log in
