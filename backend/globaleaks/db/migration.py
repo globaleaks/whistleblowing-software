@@ -102,7 +102,7 @@ def get_right_model(migration_mapping, model_name, version):
 
 
 def perform_data_update(db_file):
-    session = get_session(make_db_uri(db_file))
+    session = get_session(make_db_uri(db_file), foreign_keys=False)
 
     enabled_languages = [lang.name for lang in session.query(models.EnabledLanguage)]
 
