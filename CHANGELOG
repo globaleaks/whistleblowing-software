@@ -1,3 +1,6 @@
+Changes in version 3.1.8 - 2018-06-11
+    Fix issue in migration of default questiont templates
+
 Changes in version 3.1.7 - 2018-06-05
     Fix issues on multiple field triggers and change of their state
 
