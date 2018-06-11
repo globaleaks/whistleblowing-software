@@ -889,6 +889,8 @@ class _Signup(Model):
     organization_number_employee = Column(UnicodeText, default=u'', nullable=False)
     organization_number_users = Column(UnicodeText, default=u'', nullable=False)
     activation_token = Column(UnicodeText, nullable=False)
+    client_ip_address = Column(UnicodeText, default=u'', nullable=False)
+    client_user_agent = Column(UnicodeText, default=u'', nullable=False)
     registration_date = Column(DateTime, default=datetime_now, nullable=False)
     tos = Column(UnicodeText, default=u'', nullable=False)
 
@@ -896,6 +898,7 @@ class _Signup(Model):
                     'use_case', 'use_case_other',
                     'organization_city', 'organization_province', 'organization_region', 'organization_country',
                     'organization_number_employee', 'organization_number_users',
+                    'client_ip_address', 'client_user_agent',
                     'activation_token']
 
     @declared_attr

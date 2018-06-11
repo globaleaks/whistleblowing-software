@@ -301,6 +301,7 @@ def forge_request(uri=b'https://www.globaleaks.org/',
     request.notifyFinish = notifyFinish
 
     request.requestHeaders.setRawHeaders('host', [b'127.0.0.1'])
+    request.requestHeaders.setRawHeaders('user-agent', [b'NSA Agent'])
 
     for k, v in headers.items():
         request.requestHeaders.setRawHeaders(k, [v])
