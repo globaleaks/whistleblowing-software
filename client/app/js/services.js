@@ -204,7 +204,11 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
     },
 
     isAuthenticated: function (role) {
-      if (Authentication.session && (role === '*' || Authentication.session.role === role)) {
+      // acl is a special auth level meaning that access is conditional on
+      // backend flags and the only way to know for sure if a given op will
+      // work is to test
+
+      if (Authentication.session && (role === '*' || role === 'acl' || Authentication.session.role === role)) {
         return $q.resolve(Access.OK);
       } else {
         return $q.reject(Access.FORBIDDEN);

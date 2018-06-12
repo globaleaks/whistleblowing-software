@@ -11,6 +11,8 @@ import json
 
 from six import binary_type
 
+from twisted.internet.defer import inlineCallbacks, returnValue
+
 from globaleaks import models
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.orm import transact
@@ -34,18 +36,27 @@ def update(session, tid, lang, request):
 
 
 class AdminL10NHandler(BaseHandler):
-    check_roles = 'admin'
+    check_roles =  {'admin', 'receiver', 'custodian'}
     invalidate_cache = True
 
+    @inlineCallbacks
     def get(self, lang):
-        return get(self.request.tid, lang)
+        yield self.can_edit_general_settings_or_raise()
+        result = yield get(self.request.tid, lang)
+        returnValue(result)
 
+    @inlineCallbacks
     def put(self, lang):
+        yield self.can_edit_general_settings_or_raise()
         content = self.request.content.read()
         if isinstance(content, binary_type):
             content = content.decode('utf-8')
 
-        return update(self.request.tid, lang, json.loads(content))
+        result = yield update(self.request.tid, lang, json.loads(content))
+        returnValue(result)
 
+    @inlineCallbacks
     def delete(self, lang):
-        return models.delete(models.CustomTexts, models.CustomTexts.tid == self.request.tid, models.CustomTexts.lang == lang)
+        yield self.can_edit_general_settings_or_raise()
+        result = yield models.delete(models.CustomTexts, models.CustomTexts.tid == self.request.tid, models.CustomTexts.lang == lang)
+        returnValue(result)
