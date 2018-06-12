@@ -569,8 +569,7 @@ PasswordResetDesc = {
     'username_or_email': text_type
 }
 
-# Settings related to general settings
-NonAdminGeneralSettingsDesc = {
+GeneralSettingsDesc = {
     'name': text_type,
     'header_title_homepage': text_type,
     'header_title_submissionpage': text_type,

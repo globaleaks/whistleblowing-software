@@ -42,22 +42,27 @@ controller('AdminGeneralSettingsCtrl', ['$scope', '$filter', '$http', 'Files', '
   function($scope, $filter, $http, Files, AdminL10NResource, DefaultL10NResource){
   $scope.tabs = [
     {
-      title:"Main configuration",
+      title: "Main configuration",
       template: "views/admin/content/tab1.html"
-    },
-    {
-      title:"Theme customization",
-      template: "views/admin/content/tab2.html"
-    },
-    {
-      title: "Languages",
-      template: "views/admin/content/tab3.html"
-    },
-    {
-      title: "Text customization",
-      template: "views/admin/content/tab4.html"
     }
   ];
+
+  if ($scope.session.role === 'admin') {
+    $scope.tabs = $scope.tabs.concat([
+      {
+        title: "Theme customization",
+        template: "views/admin/content/tab2.html"
+      },
+      {
+        title: "Languages",
+        template: "views/admin/content/tab3.html"
+      },
+      {
+        title: "Text customization",
+        template: "views/admin/content/tab4.html"
+      }
+    ]);
+  }
 
   $scope.admin_files = [
       {
