@@ -72,6 +72,9 @@ class FileInstance(BaseHandler):
     @inlineCallbacks
     def post(self, id):
         yield self.can_edit_general_settings_or_raise()
+        if self.current_user.user_role != 'admin' and id != 'logo':
+            raise errors.InvalidAuthentication
+
         if id != 'custom':
             sf = self.state.get_tmp_file_by_name(self.uploaded_file['filename'])
             with sf.open('r') as encrypted_file:
