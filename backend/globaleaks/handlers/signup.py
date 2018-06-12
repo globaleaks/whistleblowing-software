@@ -151,6 +151,7 @@ class Signup(BaseHandler):
     """
     check_roles = 'unauthenticated'
     invalidate_cache = True
+    root_tenant_only = True
 
     def post(self):
         request = self.validate_message(self.request.content.read(),
