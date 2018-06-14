@@ -1127,7 +1127,8 @@ class MockDict:
             'ip_filter_authenticated': u'',
             'ip_filter_authenticated_enable': False,
             'counter_submissions': 0,
-            'enable_password_reset': True
+            'enable_password_reset': True,
+            'enable_user_pgp_key_upload': False
         }
 
 
