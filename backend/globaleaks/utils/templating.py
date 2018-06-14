@@ -11,7 +11,7 @@ from globaleaks import __version__
 from globaleaks import models
 from globaleaks.rest import errors
 from globaleaks.utils.utility import ISO8601_to_pretty_str, ISO8601_to_day_str, \
-    bytes_to_pretty_str
+    bytes_to_pretty_str, datetime_to_pretty_str
 
 node_keywords = [
     '{NodeName}',
@@ -466,8 +466,7 @@ class CertificateExprKeyword(UserNodeKeyword):
     data_keys = UserNodeKeyword.data_keys + ['expiration_date']
 
     def ExpirationDate(self):
-        # is not time zone dependent, is UTC for everyone
-        return ISO8601_to_day_str(self.data['expiration_date'])
+        return datetime_to_pretty_str(self.data['expiration_date'])
 
     def _TorUrl(self):
         return 'http://' + self.data['node']['onionservice'] + '/#/admin/network'
@@ -598,7 +597,8 @@ supported_template_types = {
     u'activation': PlatformSignupKeyword,
     u'email_validation': EmailValidationKeyword,
     u'password_reset_validation': PasswordResetValidation,
-    u'password_reset_complete': PasswordResetComplete
+    u'password_reset_complete': PasswordResetComplete,
+    u'admin_acme_validation_failure': CertificateExprKeyword,
 }
 
 
