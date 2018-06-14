@@ -130,6 +130,9 @@ def db_serialize_node(session, tid, language):
         root_tenant_node = ConfigFactory(session, 1, 'public_node')
         misc_dict['enable_footer_customization'] = root_tenant_node.get_val(u'enable_footer_customization')
 
+        if language not in models.EnabledLanguage.list(session, tid):
+            language = root_tenant_node.get_val(u'default_language')
+
         root_tenant_l10n = NodeL10NFactory(session, tid)
         l10n_dict['footer'] = root_tenant_l10n.get_val(u'footer', language)
 
