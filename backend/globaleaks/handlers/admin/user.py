@@ -83,9 +83,10 @@ def db_create_user(session, state, tid, request, language):
 
     fill_localized_keys(request, models.User.localized_keys, language)
 
-    user = session.query(models.User).filter(models.User.tid == tid, models.User.username == text_type(request['username'])).one_or_none()
-    if user is not None:
-        raise errors.InputValidationError('Username already in use')
+    if request['username']:
+        user = session.query(models.User).filter(models.User.tid == tid, models.User.username == text_type(request['username'])).one_or_none()
+        if user is not None:
+            raise errors.InputValidationError('Username already in use')
 
     user = models.User({
         'tid': tid,
