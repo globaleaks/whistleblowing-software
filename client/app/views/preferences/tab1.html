@@ -57,7 +57,7 @@
     <label data-translate>Enable submission notification</label>
   </div>
 
-  <div data-ng-form="pgpkeyForm">
+  <div data-ng-form="pgpkeyForm" data-ng-if="node.enable_user_pgp_key_upload">
     <div data-ng-show="preferences.pgp_key_fingerprint !== ''">
       <div class="form-group" pgp-pubkey-display key-str="preferences.pgp_key_public"></div>
 
