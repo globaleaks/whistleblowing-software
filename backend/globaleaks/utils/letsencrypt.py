@@ -16,6 +16,8 @@ class ChallTok:
     def __init__(self, tok):
         self.tok = tok
 
+class AcmeValidationFailure(Exception):
+    '''ACME validation failed, user intervention required'''
 
 def convert_asn1_date(asn1_bytes):
     return datetime.strptime(text_type(asn1_bytes, 'utf-8'), '%Y%m%d%H%M%SZ')
@@ -94,7 +96,7 @@ def run_acme_reg_to_finish(domain, accnt_key, priv_key, hostname, tmp_chall_dict
 
     except messages.Error as error:
         log.err("Failed in request issuance step %s", error)
-        raise
+        raise AcmeValidationFailure("ACME validation failure, see logs!")
 
     # ACME V2 returns a full chain certificate, and ACME doesn't ship with
     # helper functions out of the box. Fortunately, searching through cerbot

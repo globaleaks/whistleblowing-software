@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+import acme
+
 from datetime import datetime, timedelta
 
 from OpenSSL.crypto import load_certificate, FILETYPE_PEM
@@ -13,6 +15,7 @@ from globaleaks.handlers.admin.user import db_get_admin_users
 from globaleaks.jobs.base import LoopingJob
 from globaleaks.orm import transact
 from globaleaks.utils import letsencrypt
+from globaleaks.utils.letsencrypt import AcmeValidationFailure
 from globaleaks.utils.utility import datetime_to_ISO8601, log
 
 class CertificateCheck(LoopingJob):
@@ -20,15 +23,14 @@ class CertificateCheck(LoopingJob):
 
     notify_expr_within = 15
     acme_try_renewal = 30
-    acme_failures = 0
     should_restart_https = False
 
-    def certificate_mail_creation(self, session, tid, expiration_date):
+    def certificate_mail_creation(self, mail_type, session, tid, expiration_date):
         for user_desc in db_get_admin_users(session, tid):
             lang = user_desc['language']
 
             template_vars = {
-                'type': 'https_certificate_expiration',
+                'type': mail_type,
                 'node': db_admin_serialize_node(session, tid, lang),
                 'notification': db_get_notification(session, tid, lang),
                 'expiration_date': expiration_date,
@@ -50,25 +52,30 @@ class CertificateCheck(LoopingJob):
 
         cert = load_certificate(FILETYPE_PEM, priv_fact.get_val(u'https_cert'))
         expiration_date = letsencrypt.convert_asn1_date(cert.get_notAfter())
+        if not self.state.tenant_cache[tid].notification.disable_admin_notification_emails:
+            self.certificate_mail_creation('https_certificate_expiration', session, tid, expiration_date)
 
         # Acme renewal checks
         if priv_fact.get_val(u'acme') and datetime.now() > expiration_date - timedelta(days=self.acme_try_renewal):
             try:
                 db_acme_cert_issuance(session, tid)
-            except Exception as excep:
-                self.acme_failures =+ 1
-                log.err('ACME certificate renewal failed with: %s', excep, tid=tid)
-                raise
+                self.should_restart_https = True
+            except AcmeValidationFailure:
+                log.err('ACME certificate renewal failed to validate with: %s', excep, tid=tid)
 
-            self.should_restart_https = True
-            self.acme_failures = 0
+                # Send an email to the admin cause this requires user intervention
+                if not self.state.tenant_cache[tid].notification.disable_admin_notification_emails:
+                    self.certificate_mail_creation(session, 'https_certificate_expiration', tid, expiration_date)
+
+            except Exception as excep:
+                log.err('ACME certificate renewal failed with: %s', excep, tid=tid)
 
         # Regular certificates expiration checks
-        elif datetime.now() > expiration_date - timedelta(days=self.notify_expr_within):
+        if datetime.now() > expiration_date - timedelta(days=self.notify_expr_within):
             expiration_date = datetime_to_ISO8601(expiration_date)
             log.info('The HTTPS Certificate is expiring on %s', expiration_date, tid=tid)
             if not self.state.tenant_cache[tid].notification.disable_admin_notification_emails:
-                self.certificate_mail_creation(session, tid, expiration_date)
+                self.certificate_mail_creation('admin_acme_validation_failure', session, tid, expiration_date)
 
     @inlineCallbacks
     def operation(self):
