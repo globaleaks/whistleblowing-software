@@ -44,7 +44,7 @@ class MigrationScript(MigrationBase):
                 usernames[new_obj.tid] = {}
 
             if new_obj.username in usernames[new_obj.tid]:
-                new_obj.username = new_obj.id
+                new_obj.username = old_obj.id
 
             usernames[new_obj.tid][new_obj.username] = True
 
