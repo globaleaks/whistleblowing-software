@@ -34,10 +34,9 @@ setupBackendDependencies() {
   cd $TRAVIS_BUILD_DIR/backend  # to install backend dependencies
   rm -rf requirements.txt
   if [ "$GLTEST" = "py3_test" ]; then
-    # Installs Py3 stuff unconditionally while we're trying to bring this up
-    ln -s requirements/requirements-py3dev.txt requirements.txt
+    ln -s requirements/requirements-bionic.txt requirements.txt
   else
-    ln -s requirements/requirements-${TESTS_REQUIREMENTS}.txt requirements.txt
+    ln -s requirements/requirements-xenial.txt requirements.txt
   fi
   pip install -r requirements.txt
 }
