@@ -30,9 +30,8 @@
  },
  "whistleblower_identity": {
    "visibility_subject_to_authorization": {"type":"bool", "value": false},
+   "text_shown_upon_negative_answer": {"type":"localized", "value": ""},
    "prompt_confirmation_upon_negative_answer": {"type":"bool", "value": false},
-   "title_of_confirmation_question_upon_negative_answer": {"type":"localized", "value": ""},
-   "text_of_confirmation_question_upon_negative_answer": {"type":"localized", "value": ""},
    "text_of_final_statement_upon_negative_answer": {"type":"localized", "value": ""}
  }
 }
