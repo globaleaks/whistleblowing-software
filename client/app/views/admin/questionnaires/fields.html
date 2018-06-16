@@ -239,24 +239,18 @@
               </div>
               <div data-ng-if="!field.required">
                 <div class="form-group">
+                  <label data-translate>Text shown upon negative answer</label>
+                  <div>
+                    <textarea class="form-control" data-ng-model="field.attrs.text_shown_upon_negative_answer.value"></textarea>
+                  </div>
+                </div>
+                <div class="form-group">
                   <input data-ng-model="field.attrs.prompt_confirmation_upon_negative_answer.value" type="checkbox">
                   <label data-translate>Prompt confirmation upon negative answer</label>
                 </div>
                 <div data-ng-show="field.attrs.prompt_confirmation_upon_negative_answer.value">
                   <div class="form-group">
-                    <label data-translate>Title of the confirmation question upon negative answer</label>
-                    <div>
-                      <textarea class="form-control" data-ng-model="field.attrs.title_of_confirmation_question_upon_negative_answer.value"></textarea>
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label data-translate>Body of the confirmation question upon negative answer</label>
-                    <div>
-                      <textarea class="form-control" data-ng-model="field.attrs.text_of_confirmation_question_upon_negative_answer.value"></textarea>
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label data-translate>Text of the final statement upon negative answer</label>
+                    <label data-translate>Text shown upon confirmation</label>
                     <div>
                       <textarea class="form-control" data-ng-model="field.attrs.text_of_final_statement_upon_negative_answer.value"></textarea>
                     </div>
