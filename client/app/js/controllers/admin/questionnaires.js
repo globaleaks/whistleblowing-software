@@ -58,7 +58,6 @@ controller('AdminQuestionnaireEditorCtrl', ['$scope', '$uibModal', '$http', 'Uti
   function($scope, $uibModal, $http, Utils, FileSaver, AdminStepResource) {
 
   $scope.editing = false;
-  $scope.duplicating = false;
 
   $scope.toggleEditing = function () {
     $scope.editing = !$scope.editing;

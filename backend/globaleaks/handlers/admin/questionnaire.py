@@ -112,6 +112,7 @@ def update_questionnaire(session, tid, questionnaire_id, request, language):
 
     return serialize_questionnaire(session, tid, questionnaire, language)
 
+
 @transact
 def duplicate_questionnaire(session, state, tid, questionnaire_id, new_name):
     """
@@ -126,41 +127,49 @@ def duplicate_questionnaire(session, state, tid, questionnaire_id, new_name):
 
     # Each step has a UUID that needs to be replaced
     old_to_new_field_ids = {}
-    old_to_new_options_id = {}
 
+    def fix_field_pass_1(field):
+        new_child_id = text_type(uuid.uuid4())
+        old_to_new_field_ids[field['id']] = new_child_id
+        field['id'] = new_child_id
+
+        # Rewrite the option ID if it exists
+        for option in field['options']:
+            option_id = option.get('id', None)
+            if option_id is not None:
+                option['id'] = text_type(uuid.uuid4())
+
+        # And now we need to keep going down the latter
+        for attr in field['attrs'].values():
+            attr['id'] = text_type(uuid.uuid4())
+
+        # Recursion!
+        for child in field['children']:
+            child['field_id'] = new_child_id
+            fix_field_pass_1(child)
+
+    def fix_field_pass_2(field):
+        # Fix triggers references
+        for option in field['options']:
+            option['trigger_field'] = old_to_new_field_ids[option['trigger_field']]
+
+        # Recursion!
+        for child in field['children']:
+            fix_field_pass_2(child)
+
+    # Step1: replacement of IDs
     for step in q['steps']:
         step['id'] = text_type(uuid.uuid4())
 
-        # And each child has a reference to a step that needs changing too
+        # Each field has a UUID that needs to be replaced
+        for field in step['children']:
+            field['step_id'] = step['id']
+            fix_field_pass_1(field)
 
-        # We need to walk these twice to rewrite option IDs
-        for child in step['children']:
-            new_child_id = text_type(uuid.uuid4())
-            old_to_new_field_ids[child['id']] = new_child_id
-
-            child['id'] = new_child_id
-            child['step_id'] = step['id']
-
-            # Rewrite the option ID if it exists
-            for option in child['options']:
-                option_id = option.get('id', None)
-                if option_id is not None:
-                    new_option_id = text_type(uuid.uuid4())
-                    old_to_new_options_id[option_id] = new_option_id
-                    option['id'] = new_option_id
-
-            # And now we need to keep going down the latter
-            for attr in child['attrs'].values():
-                attr['id'] = text_type(uuid.uuid4())
-
-    # Now that we've gone and assigned new field IDs
-    # we can go through and replace option
+    # Step2: fix of fields triggers following IDs replacement
     for step in q['steps']:
-        for child in step['children']:
-            # if we have a trigger id, replace it
-            for option in child['options']:
-                if 'trigger_field' in option:
-                    option['trigger_field'] = old_to_new_field_ids[option['trigger_field']]
+        for field in step['children']:
+            fix_field_pass_2(field)
 
     q['name'] = new_name
 
