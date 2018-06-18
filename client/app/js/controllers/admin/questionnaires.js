@@ -54,8 +54,8 @@ GLClient.controller('AdminQuestionnaireCtrl',
     return Utils.deleteResource(AdminQuestionnaireResource, $scope.admin.questionnaires, questionnaire);
   };
 }]).
-controller('AdminQuestionnaireEditorCtrl', ['$scope', '$http', 'Utils', 'FileSaver', 'AdminStepResource',
-  function($scope, $http, Utils, FileSaver, AdminStepResource) {
+controller('AdminQuestionnaireEditorCtrl', ['$scope', '$uibModal', '$http', 'Utils', 'FileSaver', 'AdminStepResource',
+  function($scope, $uibModal, $http, Utils, FileSaver, AdminStepResource) {
 
   $scope.editing = false;
 
@@ -70,6 +70,22 @@ controller('AdminQuestionnaireEditorCtrl', ['$scope', '$http', 'Utils', 'FileSav
 
   $scope.delStep = function(step) {
     return Utils.deleteResource(AdminStepResource, $scope.questionnaire.steps, step);
+  };
+
+
+  $scope.duplicate_questionnaire = function(questionnaire) {
+    $uibModal.open({
+      templateUrl: 'views/partials/questionnaire_duplication.html',
+      controller: 'QuestionaireOperationsCtrl',
+      resolve: {
+        questionnaire: function () {
+          return questionnaire;
+        },
+        operation: function () {
+          return 'duplicate';
+        }
+      }
+    });
   };
 
   $scope.exportQuestionnaire = function(obj) {
@@ -94,5 +110,31 @@ controller('AdminQuestionnaireAddCtrl', ['$scope', function($scope) {
       $scope.admin.questionnaires.push(new_questionnaire);
       $scope.new_questionnaire = {};
     });
+  };
+}]).
+controller('QuestionaireOperationsCtrl',
+  ['$scope', '$http', '$route', '$location', '$uibModalInstance', 'questionnaire', 'operation',
+   function ($scope, $http, $route, $location, $uibModalInstance, questionnaire, operation) {
+  $scope.questionnaire = questionnaire;
+  $scope.operation = operation;
+
+  $scope.cancel = function () {
+    $uibModalInstance.close();
+  };
+
+  $scope.ok = function () {
+    $uibModalInstance.close();
+
+    if ($scope.operation === 'duplicate') {
+      $http.post(
+        'admin/questionnaires/duplicate',
+        {
+          questionnaire_id: $scope.questionnaire.id,
+          new_name: $scope.duplicate_questionnaire.name
+        }
+      ).then(function (response) {
+        $route.reload();
+      });
+    }
   };
 }]);

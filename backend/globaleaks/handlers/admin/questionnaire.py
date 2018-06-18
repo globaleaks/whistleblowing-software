@@ -4,6 +4,9 @@
 #   *****
 # Implementation of the code executed on handler /admin/questionnaires
 #
+
+import uuid
+
 from twisted.internet.defer import inlineCallbacks, returnValue
 
 from globaleaks import models, QUESTIONNAIRE_EXPORT_VERSION
@@ -15,6 +18,7 @@ from globaleaks.rest import requests
 from globaleaks.utils.structures import fill_localized_keys
 from globaleaks.utils.utility import datetime_to_ISO8601, datetime_now
 
+from six import text_type
 
 def db_get_questionnaire_list(session, tid, language):
     questionnaires = session.query(models.Questionnaire).filter(models.Questionnaire.tid.in_(set([1, tid])))
@@ -109,6 +113,68 @@ def update_questionnaire(session, tid, questionnaire_id, request, language):
     return serialize_questionnaire(session, tid, questionnaire, language)
 
 
+@transact
+def duplicate_questionnaire(session, state, tid, questionnaire_id, new_name):
+    """
+    Duplicates a questionaire, assigning new IDs to all sub components
+    """
+
+    q = db_get_questionnaire(session, tid, questionnaire_id, None)
+
+    # We need to change the primary key references and so this can be reimported
+    # as a new questionnaire
+    q['id'] = text_type(uuid.uuid4())
+
+    # Each step has a UUID that needs to be replaced
+    old_to_new_field_ids = {}
+
+    def fix_field_pass_1(field):
+        new_child_id = text_type(uuid.uuid4())
+        old_to_new_field_ids[field['id']] = new_child_id
+        field['id'] = new_child_id
+
+        # Rewrite the option ID if it exists
+        for option in field['options']:
+            option_id = option.get('id', None)
+            if option_id is not None:
+                option['id'] = text_type(uuid.uuid4())
+
+        # And now we need to keep going down the latter
+        for attr in field['attrs'].values():
+            attr['id'] = text_type(uuid.uuid4())
+
+        # Recursion!
+        for child in field['children']:
+            child['field_id'] = new_child_id
+            fix_field_pass_1(child)
+
+    def fix_field_pass_2(field):
+        # Fix triggers references
+        for option in field['options']:
+            option['trigger_field'] = old_to_new_field_ids[option['trigger_field']]
+
+        # Recursion!
+        for child in field['children']:
+            fix_field_pass_2(child)
+
+    # Step1: replacement of IDs
+    for step in q['steps']:
+        step['id'] = text_type(uuid.uuid4())
+
+        # Each field has a UUID that needs to be replaced
+        for field in step['children']:
+            field['step_id'] = step['id']
+            fix_field_pass_1(field)
+
+    # Step2: fix of fields triggers following IDs replacement
+    for step in q['steps']:
+        for field in step['children']:
+            fix_field_pass_2(field)
+
+    q['name'] = new_name
+
+    db_create_questionnaire(session, state, tid, q, None)
+
 class QuestionnairesCollection(BaseHandler):
     check_roles = 'admin'
     cache_resource = True
@@ -160,4 +226,23 @@ class QuestionnaireInstance(BaseHandler):
         q = yield get_questionnaire(self.request.tid, questionnaire_id, None)
         q['export_date'] = datetime_to_ISO8601(datetime_now())
         q['export_version'] = QUESTIONNAIRE_EXPORT_VERSION
+        returnValue(q)
+
+class QuestionnareDuplication(BaseHandler):
+    check_roles = 'admin'
+    invalidate_cache = True
+
+    @inlineCallbacks
+    def post(self):
+        """
+        Duplicates a questionnaire
+        """
+
+        request = self.validate_message(self.request.content.read(),
+                                        requests.QuestionnaireDuplicationDesc)
+
+        q = yield duplicate_questionnaire(self.state,
+                                          self.request.tid,
+                                          request['questionnaire_id'],
+                                          request['new_name'])
         returnValue(q)

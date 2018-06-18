@@ -123,6 +123,7 @@ api_spec = [
     (r'/admin/contexts/' + uuid_regexp, admin_context.ContextInstance),
     (r'/admin/(users|contexts)/' + uuid_regexp  + r'/img', admin_modelimgs.ModelImgInstance),
     (r'/admin/questionnaires', admin_questionnaire.QuestionnairesCollection),
+    (r'/admin/questionnaires/duplicate', admin_questionnaire.QuestionnareDuplication),
     (r'/admin/questionnaires/' + key_regexp, admin_questionnaire.QuestionnaireInstance),
     (r'/admin/receivers', admin_receiver.ReceiversCollection),
     (r'/admin/receivers/' + uuid_regexp, admin_receiver.ReceiverInstance),
