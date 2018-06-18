@@ -462,7 +462,7 @@ class CertificateExprKeyword(UserNodeKeyword):
     data_keys = UserNodeKeyword.data_keys + ['expiration_date']
 
     def ExpirationDate(self):
-        return datetime_to_pretty_str(self.data['expiration_date'])
+        return ISO8601_to_pretty_str(self.data['expiration_date'])
 
     def _TorUrl(self):
         return 'http://' + self.data['node']['onionservice'] + '/#/admin/network'
@@ -552,6 +552,7 @@ class EmailValidationKeyword(UserNodeKeyword):
     def HTTPSUrl(self):
         return 'https://' + self.data['node']['hostname'] + '/email/validation/' + self.data['validation_token']
 
+
 class PasswordResetValidation(UserNodeKeyword):
     keyword_list = NodeKeyword.keyword_list + password_reset_validation_keyworlds
 
@@ -564,6 +565,7 @@ class PasswordResetValidation(UserNodeKeyword):
     def HTTPSUrl(self):
         return 'https://' + self.data['node']['hostname'] + '/reset/password/' + self.data['reset_token']
 
+
 class PasswordResetComplete(UserNodeKeyword):
     keyword_list = NodeKeyword.keyword_list + password_reset_complete_keyworlds
 
@@ -572,6 +574,7 @@ class PasswordResetComplete(UserNodeKeyword):
 
     def NewPassword(self):
         return self.data['new_password']
+
 
 supported_template_types = {
     u'tip': TipKeyword,
@@ -587,14 +590,14 @@ supported_template_types = {
     u'admin_anomaly': AnomalyKeyword,
     u'admin_test': UserNodeKeyword,
     u'https_certificate_expiration': CertificateExprKeyword,
+    u'https_certificate_renewal_failure': CertificateExprKeyword,
     u'software_update_available': SoftwareUpdateKeyword,
     u'admin_signup_alert': AdminPlatformSignupKeyword,
     u'signup': PlatformSignupKeyword,
     u'activation': PlatformSignupKeyword,
     u'email_validation': EmailValidationKeyword,
     u'password_reset_validation': PasswordResetValidation,
-    u'password_reset_complete': PasswordResetComplete,
-    u'admin_acme_validation_failure': CertificateExprKeyword,
+    u'password_reset_complete': PasswordResetComplete
 }
 
 
