@@ -1,0 +1,15 @@
+Dear {RecipientName},
+
+The automatic HTTPS certificate renewal scheduled for today just failed.
+
+The system will keep retrying.
+
+Expiration date: {ExpirationDate}
+
+Without a valid certificate, the platform will be accessible in a secure way only via Tor.
+
+via Tor at: {TorUrl}
+via HTTPS at: {HTTPSUrl}
+
+Kind regards,
+{NodeName}
