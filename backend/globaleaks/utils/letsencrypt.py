@@ -1,23 +1,19 @@
 # -*- coding: utf-
 from datetime import datetime
+from acme import challenges, client, crypto_util, messages
 from functools import reduce
 from six import text_type
 from six.moves import urllib
 
+import josepy
 import OpenSSL
 from OpenSSL.crypto import FILETYPE_PEM, load_certificate, dump_certificate
 
 from globaleaks.utils.utility import log
 
-from acme import challenges, client, crypto_util, messages
-import josepy
-
 class ChallTok:
     def __init__(self, tok):
         self.tok = tok
-
-class AcmeValidationFailure(Exception):
-    '''ACME validation failed, user intervention required'''
 
 def convert_asn1_date(asn1_bytes):
     return datetime.strptime(text_type(asn1_bytes, 'utf-8'), '%Y%m%d%H%M%SZ')
