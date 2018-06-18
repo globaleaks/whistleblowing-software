@@ -882,6 +882,15 @@ function is_tcp_sock_free_check {
 for SOCK in "0.0.0.0:80" "0.0.0.0:443" "127.0.0.1:8082" "127.0.0.1:8083"
 do
     TRY "is_tcp_sock_free_check $SOCK"
+    if [ "$STATUS" -ne "0" ]; then
+        echo "Unable to open $SOCK"
+        echo ""
+        echo "This typically means that a webserver is running. Common web server packages"
+        echo "include nginx and apache. Confirm that both are either uninstalled or disabled"
+        echo "The command \"netstat -tlpn | grep -F $SOCK\" may assist in locating the problem."
+        echo ""
+        exit 1
+    fi
 done
 
 echo " + required TCP sockets open"
