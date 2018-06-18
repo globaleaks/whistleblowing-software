@@ -30,7 +30,7 @@
     <div data-ng-repeat="questionnaire in admin.questionnaires | filter: {editable: true}">
       <form id="questionnaire-{{$index}}" class="configItem" name="editQuestionnaire" data-ng-controller="AdminQuestionnaireEditorCtrl" novalidate>
         <div>
-          <div class="editorHeader row" data-ng-click="questionnaire.editable && toggleEditing(); $event.stopPropagation();">
+          <div class="editorHeader row">
             <span class="col-md-7 editorHeaderTitle">{{questionnaire.name}}</span>
             <span class="col-md-5" data-ng-if="questionnaire.editable">
               <span class="pull-right">
@@ -60,7 +60,7 @@
                 </a>
                 <button
                   class="btn btn-xs btn-default"
-                  data-ng-click="toggleDuplicating(); $event.stopPropagation()">
+                  data-ng-click="duplicate_questionnaire(questionnaire)">
                   <span data-translate>Duplicate</span>
                 </a>
                 <button
@@ -80,28 +80,6 @@
                   <label data-translate>Name</label>
                   <input name="name" class="form-control" data-ng-model="questionnaire.name" type="text" required>
                   <div class="text-danger" data-ng-show="editQuestionnaire.name.$error.required">
-                    <span data-translate>This field is mandatory</span>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-12" data-ng-include="'views/admin/questionnaires/steps.html'"></div>
-            </div>
-          </div>
-          <div data-ng-if="duplicating">
-            <hr />
-            <div class="row">
-              <div class="col-md-6">
-                <div class="form-group">
-                  <label data-translate>Duplicate Name</label>
-                  <input name="duplicate_name" data-ng-model="questionnaire.duplicate_name" class="form-control" type="text" required>
-                  <br />
-                  <button
-                    class="btn btn-success"
-                    data-ng-show="duplicating"
-                    data-ng-click="duplicate_questionnaire(questionnaire)">
-                    <span data-translate>Duplicate</span>
-                  </button>
-                  <div class="text-danger" data-ng-show="duplicateQuestionnaire.name.$error.required">
                     <span data-translate>This field is mandatory</span>
                   </div>
                 </div>
