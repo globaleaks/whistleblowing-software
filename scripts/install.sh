@@ -24,13 +24,26 @@ if [ $ERR -ne 0 ]; then
   exit 1
 fi
 
-function DO () {
-  CMD="$1"
+function DO() {
+  DO_ACTUAL "$1" 0 $2
+}
 
-  if [ -z "$2" ]; then
+function TRY() {
+  RET=0
+  if [ -z "$3" ]; then
+    RET=$2
+  fi
+  DO_ACTUAL "$1" 1 $2
+}
+
+function DO_ACTUAL () {
+  CMD="$1"
+  CAN_FAIL=$2
+
+  if [ -z "$3" ]; then
     EXPECTED_RET=0
   else
-    EXPECTED_RET=$2
+    EXPECTED_RET=$3
   fi
 
   echo -n "Running: \"$CMD\"... "
@@ -45,10 +58,12 @@ function DO () {
     echo "SUCCESS"
   else
     echo "FAIL"
-    echo "Ouch! The installation failed."
-    echo "COMBINED STDOUT/STDERR OUTPUT OF FAILED COMMAND:"
-    cat ${LOGFILE}
-    exit 1
+    if [ "$CAN_FAIL" -eq "0" ]; then
+      echo "Ouch! The installation failed."
+      echo "COMBINED STDOUT/STDERR OUTPUT OF FAILED COMMAND:"
+      cat ${LOGFILE}
+      exit 1
+    fi
   fi
 }
 
@@ -832,8 +847,11 @@ if echo "$DISTRO_CODENAME" | grep -vqE "^bionic$" ; then
   prompt_for_continuation
 fi
 
-# stops globaleaks if it is running
-if ! ps aux | grep -q "[g]lobaleaks"; then
+# SysV scripts can safely stopped multiple times
+# in a row so if we have a GL script, attempt
+# stop
+if [ -f "/etc/init.d/globaleaks" ]; then
+    echo " + stopping globaleaks for upgrade"
     DO "/etc/init.d/globaleaks stop"
 fi
 
@@ -863,7 +881,7 @@ function is_tcp_sock_free_check {
 # check the required sockets to see if they are already used
 for SOCK in "0.0.0.0:80" "0.0.0.0:443" "127.0.0.1:8082" "127.0.0.1:8083"
 do
-    DO "is_tcp_sock_free_check $SOCK"
+    TRY "is_tcp_sock_free_check $SOCK"
 done
 
 echo " + required TCP sockets open"
