@@ -66,7 +66,7 @@ class TestQuestionnareDuplication(helpers.TestHandlerWithPopulatedDB):
     def get_new_questionnare(self, session):
         '''Returns first questionnare ID'''
         questionnare_obj = session.query(models.Questionnaire).filter(
-            models.Questionnaire.id != 'default').first()
+            models.Questionnaire.id != u'default').first()
         session.expunge(questionnare_obj)
         return questionnare_obj
 
