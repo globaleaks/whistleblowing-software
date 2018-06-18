@@ -167,6 +167,8 @@ class NotificationL10NFactory(ConfigL10NFactory):
         u'export_message_recipient',
         u'https_certificate_expiration_mail_template',
         u'https_certificate_expiration_mail_title',
+        u'https_certificate_renewal_failure_mail_template',
+        u'https_certificate_renewal_failure_mail_title',
         u'software_update_available_mail_template',
         u'software_update_available_mail_title',
         u'signup_mail_title',
