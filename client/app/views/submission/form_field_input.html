@@ -128,7 +128,7 @@
           <div data-ng-if="field.required_status" class="float-left" data-ng-class="{'red-text': displayErrors()}">
           </div>
           <span data-ng-show="f['input-' + entryIndex].$error.required" data-ng-class="{'text-danger': (f['input-' + entryIndex].$dirty || displayErrors())} " data-translate>This field is mandatory.</span>
-          <span data-ng-show="f['input-' + entryIndex].$error.minlength" data-ng-class="{'text-danger': (f['input-' + entryIndex].$dirty || displayErrors()}" data-translate>The answer is too short.</span>
+          <span data-ng-show="f['input-' + entryIndex].$error.minlength" data-ng-class="{'text-danger': (f['input-' + entryIndex].$dirty || displayErrors())}" data-translate>The answer is too short.</span>
         </div>
       </div>
     </div>
