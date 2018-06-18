@@ -2,7 +2,7 @@ Dear {RecipientName},
 
 The automatic HTTPS certificate renewal scheduled for today just failed.
 
-The system will keep retrying.
+The system will keep trying.
 
 Expiration date: {ExpirationDate}
 
