@@ -83,7 +83,8 @@ class TestNodeInstance(helpers.TestHandlerWithPopulatedDB):
                                 'configured', 'wizard_done',
                                 'receipt_salt', 'languages_enabled',
                                 'root_tenant', 'https_possible',
-                                'hostname', 'onionservice']:
+                                'hostname', 'onionservice',
+                                'signup_fingerprint']:
                 continue
 
             self.assertEqual(response[response_key],
