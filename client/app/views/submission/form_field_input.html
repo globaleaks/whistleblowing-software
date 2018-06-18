@@ -20,7 +20,11 @@
         <div>
           <div data-ng-if="entry['value'].length && maxlength >= 0 && (maxlength - entry['value'].length) <= 50" class="float-right">{{entry['value'].length}}/{{maxlength}}</div>
         </div>
-      </div>
+        <div data-ng-class="{'has-error': field.required_status}">
+          <span ng-show="f['input-' + entryIndex].$error.required" data-ng-class="{'text-danger': f['input-' + entryIndex].$dirty }" data-translate>This field is mandatory.</span>
+          <span ng-show="f['input-' + entryIndex].$error.minlength" data-ng-class="{'text-danger': f['input-' + entryIndex].$dirty }" data-translate>The answer is too short.</span>  
+        </div>
+    </div>
       <div data-ng-switch-when="multichoice" data-ng-class="{'has-error': field.required_status}">
         <div data-ng-class="{'radio': (field.attrs.layout_orientation.value != 'horizontal')}">
           <label data-ng-class="{'radio-inline': (field.attrs.layout_orientation.value == 'horizontal')}" data-ng-repeat="option in field.options | orderBy:field.attrs.display_alphabetically.value ? 'label' : 'presentation_order'" name="{{'input-' +  entryIndex}}">
@@ -121,15 +125,15 @@
             </span>
           </div>
           <div data-ng-if="entry['value'].length && maxlength >= 0 && (maxlength - entry['value'].length) <= 50" class="float-right">{{entry['value'].length}}/{{maxlength}}</div>
+          <div data-ng-if="field.required_status" class="float-left" data-ng-class="{'red-text': displayErrors()}">
+          </div>
+          <span data-ng-show="f['input-' + entryIndex].$error.required" data-ng-class="{'text-danger': f['input-' + entryIndex].$dirty }" data-translate>This field is mandatory.</span>
+          <span data-ng-show="f['input-' + entryIndex].$error.minlength" data-ng-class="{'text-danger': f['input-' + entryIndex].$dirty }" data-translate>The answer is too short.</span>
         </div>
       </div>
     </div>
   </div>
   <div data-ng-if="field.required_status" class="float-left" data-ng-class="{'red-text': displayErrors()}">
-    <span data-ng-if="field.type === 'inputbox' || field.type === 'textarea'">
-      <span data-ng-if="field.attrs.min_len.value <= 0" data-translate>This field is mandatory.</span>
-      <span data-ng-if="field.attrs.min_len.value > 0" data-translate>The answer is too short.</span>
-    </span>
     <span data-ng-if="field.type !== 'inputbox' && field.type !== 'textarea'" data-translate>This field is mandatory.</span>
   </div>
 </div>
