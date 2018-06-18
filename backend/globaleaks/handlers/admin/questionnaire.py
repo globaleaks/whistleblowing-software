@@ -122,21 +122,45 @@ def duplicate_questionnaire(session, state, tid, questionnaire_id, new_name):
 
     # We need to change the primary key references and so this can be reimported
     # as a new questionnaire
-
     q['id'] = text_type(uuid.uuid4())
 
     # Each step has a UUID that needs to be replaced
+    old_to_new_field_ids = {}
+    old_to_new_options_id = {}
+
     for step in q['steps']:
         step['id'] = text_type(uuid.uuid4())
 
         # And each child has a reference to a step that needs changing too
+
+        # We need to walk these twice to rewrite option IDs
         for child in step['children']:
-            child['id'] = text_type(uuid.uuid4())
+            new_child_id = text_type(uuid.uuid4())
+            old_to_new_field_ids[child['id']] = new_child_id
+
+            child['id'] = new_child_id
             child['step_id'] = step['id']
+
+            # Rewrite the option ID if it exists
+            for option in child['options']:
+                option_id = option.get('id', None)
+                if option_id is not None:
+                    new_option_id = text_type(uuid.uuid4())
+                    old_to_new_options_id[option_id] = new_option_id
+                    option['id'] = new_option_id
 
             # And now we need to keep going down the latter
             for attr in child['attrs'].values():
                 attr['id'] = text_type(uuid.uuid4())
+
+    # Now that we've gone and assigned new field IDs
+    # we can go through and replace option
+    for step in q['steps']:
+        for child in step['children']:
+            # if we have a trigger id, replace it
+            for option in child['options']:
+                if 'trigger_field' in option:
+                    option['trigger_field'] = old_to_new_field_ids[option['trigger_field']]
 
     q['name'] = new_name
 
