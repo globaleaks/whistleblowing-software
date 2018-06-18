@@ -886,7 +886,8 @@ do
         echo "Unable to open $SOCK"
         echo ""
         echo "This typically means that a webserver is running. Common web server packages"
-        echo "include nginx and apache. Confirm that both are either uninstalled or disabled"
+        echo "include nginx and apache. Confirm that no webserver is present on this system."
+        echo ""
         echo "The command \"netstat -tlpn | grep -F $SOCK\" may assist in locating the problem."
         echo ""
         exit 1
@@ -941,6 +942,21 @@ TMPFILE=$TMPDIR/torproject_key
 echo "$TOR_PGP_KEY" > $TMPFILE
 DO "apt-key add $TMPFILE"
 DO "rm $TMPFILE"
+
+# See if we can reach torproject
+TRY "ping -c 1 deb.torproject.org1"
+if [ "$STATUS" -ne "0" ]; then
+  echo "Unable to reach deb.torproject.org!"
+  echo ""
+  echo "Due to either network connectivity issues or censorship, deb.torproject.org can not be reached"
+  echo ""
+  echo "GlobaLeaks is dependent on tor to provide anonymization services for whistleblowers. While it is"
+  echo "possible to run GlobaLeaks without tor, this is not a recommended scenario. If you're understanding"
+  echo "of the risks, or have manually installed tor, you can override this check by editting install.sh, and"
+  echo "and removing line \"exit 451\""
+  echo ""
+  exit 451
+fi
 
 if ! grep -q "^deb .*torproject" /etc/apt/sources.list /etc/apt/sources.list.d/*; then
   echo "Adding Tor repository"
