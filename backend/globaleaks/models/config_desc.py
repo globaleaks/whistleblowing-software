@@ -147,7 +147,8 @@ ConfigDescriptor = {
     u'ip_filter_authenticated': Unicode(default=u''),
     u'ip_filter_authenticated_enable': Bool(default=False),
 
-    u'enable_password_reset': Bool(default=False)
+    u'enable_password_reset': Bool(default=False),
+    u'enable_user_pgp_key_upload': Bool(default=True)
 }
 
 ConfigFilters = {
@@ -222,7 +223,8 @@ ConfigFilters = {
         u'admin_api_token_digest',
         u'ip_filter_authenticated',
         u'ip_filter_authenticated_enable',
-        u'enable_password_reset'
+        u'enable_password_reset',
+        u'enable_user_pgp_key_upload'
     ]),
     'notification': set([
         u'smtp_server',

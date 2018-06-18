@@ -255,7 +255,8 @@ AdminNodeDesc = {
     'enable_developers_exception_notification': bool,
     'ip_filter_authenticated_enable': bool,
     'ip_filter_authenticated': text_type,
-    'enable_password_reset': bool
+    'enable_password_reset': bool,
+    'enable_user_pgp_key_upload': bool
 }
 
 AdminNotificationDesc = merge_dicts({
