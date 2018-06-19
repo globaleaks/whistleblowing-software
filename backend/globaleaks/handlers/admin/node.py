@@ -89,9 +89,6 @@ def db_update_node(session, tid, request, language, config_node):
     """
     node = ConfigFactory(session, tid, config_node)
 
-    if tid != 1:
-        request['enable_signup'] = False
-
     node.update(request)
 
     if 'basic_auth' in request:
@@ -114,13 +111,12 @@ def db_update_node(session, tid, request, language, config_node):
                                     request['languages_enabled'],
                                     request['default_language'])
 
-        if language in request['languages_enabled']:
-            node_l10n = NodeL10NFactory(session, tid)
-            node_l10n.update(request, language)
+    if language in models.EnabledLanguage.list(session, tid):
+        node_l10n = NodeL10NFactory(session, tid)
+        node_l10n.update(request, language)
 
     db_refresh_memory_variables(session, [tid])
 
-    # TODO pass instance of db_update_node into admin_serialize
     return db_admin_serialize_node(session, tid, language)
 
 

@@ -16,7 +16,6 @@ stuff = u"³²¼½¬¼³²"
 def set_receiver_acl_flag_true(session, rcvr_id):
     rcvr = session.query(models.User).filter_by(id=rcvr_id).first()
     rcvr.can_edit_general_settings = True
-    session.merge(rcvr)
     session.commit()
 
 @transact
@@ -136,23 +135,21 @@ class TestNodeInstance(helpers.TestHandlerWithPopulatedDB):
         '''Confirm fields out of the receiver's set updates'''
 
         yield set_receiver_acl_flag_true(self.rcvr_id)
-        self.dummyNode['header_title_submissionpage'] = "Whisteblowing FTW"
+        self.dummyNode['header_title_homepage'] = "Whistleblowing Homepage"
 
         handler = self.request(self.dummyNode, role='receiver')
         resp = yield handler.put()
-        self.assertEqual("Whisteblowing FTW", resp['header_title_submissionpage'])
+        self.assertEqual("Whistleblowing Homepage", resp['header_title_homepage'])
 
     @inlineCallbacks
     def test_receiver_confirm_failure_for_priv_fields_updates(self):
         '''Confirm privelleged fields are ignored'''
 
         yield set_receiver_acl_flag_true(self.rcvr_id)
-        self.dummyNode['header_title_submissionpage'] = "Whisteblowing FTW"
         self.dummyNode['smtp_server'] = 'not.a.real.smtpserver'
 
         handler = self.request(self.dummyNode, role='receiver')
         resp = yield handler.put()
 
         smtp_server = yield get_config_value(1, 'smtp_server')
-        self.assertEqual("Whisteblowing FTW", resp['header_title_submissionpage'])
         self.assertNotEqual('not.a.real.smtpserver', smtp_server)

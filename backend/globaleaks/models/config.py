@@ -25,7 +25,7 @@ class ConfigFactory(object):
     def update(self, request):
         self._query_group()
 
-        for key in (key for key in request.keys() if key in self.res):
+        for key in (x for x in self.res if x in request):
             self.res[key].set_v(request[key])
 
     def get_cfg(self, var_name):
@@ -84,7 +84,7 @@ class ConfigL10NFactory(object):
     def update(self, request, lang_code):
         c_map = {c.var_name : c for c in self.get_all(lang_code)}
 
-        for key in self.keys:
+        for key in (x for x in self.keys if x in request):
             c_map[key].set_v(request[key])
 
     def update_defaults(self, langs, l10n_data_src, reset=False):
