@@ -826,8 +826,8 @@ factory('AdminUtils', ['AdminContextResource', 'AdminQuestionnaireResource', 'Ad
   factory('DefaultL10NResource', ['GLResource', function(GLResource) {
     return new GLResource('l10n/:lang.json', {lang: '@lang'});
 }]).
-  factory('Utils', ['$rootScope', '$q', '$location', '$filter', '$sce', '$uibModal', '$window', 'Authentication',
-  function($rootScope, $q, $location, $filter, $sce, $uibModal, $window, Authentication) {
+  factory('Utils', ['$rootScope', '$http', '$q', '$location', '$filter', '$sce', '$uibModal', '$window', 'Authentication',
+  function($rootScope, $http, $q, $location, $filter, $sce, $uibModal, $window, Authentication) {
     return {
       array_to_map: function(array) {
         var ret = {};
@@ -1172,6 +1172,16 @@ factory('AdminUtils', ['AdminContextResource', 'AdminQuestionnaireResource', 'Ad
         $window.open(url, '_blank');
       }
 
+      setHostname: function(new_hostname) {    
+        var req = {
+          'operation': 'set_hostname',
+          'args': {
+            'value': new_hostname //$scope.admin.node.hostname
+          }
+        };
+    
+        return $http({method: 'PUT', url: 'admin/config', data: req});
+      },
     }
 }]).
   factory('fieldUtilities', ['$filter', 'CONSTANTS', function($filter, CONSTANTS) {
