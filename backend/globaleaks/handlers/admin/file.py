@@ -13,6 +13,7 @@ from twisted.internet.defer import inlineCallbacks, returnValue
 from globaleaks import models
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.orm import transact
+from globaleaks.rest import errors
 from globaleaks.utils.security import directory_traversal_check
 from globaleaks.utils.utility import uuid4
 
