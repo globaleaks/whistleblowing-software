@@ -4,7 +4,7 @@
 import ipaddress
 
 from random import SystemRandom
-from six import text_type
+from six import text_type, binary_type
 from twisted.internet.defer import inlineCallbacks, returnValue
 
 from globaleaks.utils import security
@@ -102,7 +102,10 @@ def login(session, tid, username, password, client_using_tor, client_ip, token='
         ip_networks = parse_csv_ip_ranges_to_ip_networks(
             State.tenant_cache[tid]['ip_filter_authenticated']
         )
-        client_ip = client_ip.decode()
+
+        if isinstance(client_ip, binary_type):
+            client_ip = client_ip.decode()
+
         client_ip_obj = ipaddress.ip_address(client_ip)
 
         # Safety check, we always allow localhost to log in
