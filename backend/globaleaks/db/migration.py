@@ -35,6 +35,8 @@ from globaleaks.db.migrations.update_39 import \
     Step_v_38, User_v_38, WhistleblowerFile_v_38, WhistleblowerTip_v_38
 from globaleaks.db.migrations.update_41 import InternalFile_v_40, InternalTip_v_40, ReceiverFile_v_40, ReceiverTip_v_40, \
     Signup_v_40, User_v_40, WhistleblowerFile_v_40
+from globaleaks.db.migrations.update_42 import Signup_v_41
+
 from globaleaks.orm import get_engine, get_session, make_db_uri
 from globaleaks.models import config, Base
 from globaleaks.models.config import ConfigFactory
@@ -75,7 +77,7 @@ migration_mapping = OrderedDict([
     ('ReceiverTip', [ReceiverTip_v_30, 0, 0, 0, 0, 0, 0, ReceiverTip_v_38, 0, 0, 0, 0, 0, 0, 0, ReceiverTip_v_40, 0, models._ReceiverTip, 0]),
     ('SecureFileDelete', [SecureFileDelete_v_24, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, models._SecureFileDelete, 0, 0, 0]),
     ('ShortURL', [-1, -1, ShortURL_v_38, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, models._ShortURL, 0, 0, 0]),
-    ('Signup', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, Signup_v_40, 0, models._Signup, 0]),
+    ('Signup', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, Signup_v_40, 0, Signup_v_41, models._Signup]),
     ('Stats', [Stats_v_38, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, models._Stats, 0, 0, 0]),
     ('Step', [Step_v_27, 0, 0, 0, Step_v_29, 0, Step_v_38, 0, 0, 0, 0, 0, 0, 0, 0, models._Step, 0, 0, 0]),
     ('StepField', [StepField_v_27, 0, 0, 0, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1]),
