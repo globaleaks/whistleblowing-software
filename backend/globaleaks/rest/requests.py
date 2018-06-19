@@ -573,23 +573,11 @@ PasswordResetDesc = {
 GeneralSettingsDesc = {
     'name': text_type,
     'header_title_homepage': text_type,
-    'header_title_submissionpage': text_type,
-    'header_title_receiptpage': text_type,
-    'header_title_tippage': text_type,
     'presentation': text_type,
     'description': text_type,
     'whistleblowing_question': text_type,
     'whistleblowing_button': text_type,
-    'footer': text_type,
-    'maximum_filesize': int,
-    'languages_enabled': [text_type],
-    'default_language': text_type,
-    'languages_supported': list,
-    'disclaimer_title': text_type,
-    'disclaimer_text': text_type,
-    'whistleblowing_receipt_prompt': text_type,
-    'custom_privacy_badge_text': text_type,
-    'contexts_clarification': text_type
+    'footer': text_type
 }
 
 QuestionnaireDuplicationDesc = {
