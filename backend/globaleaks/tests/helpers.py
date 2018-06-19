@@ -127,7 +127,7 @@ def init_state():
     Settings.set_devel_mode()
     Settings.logging = None
     Settings.failed_login_attempts = 0
-    Settings.working_path = './working_path'
+    Settings.working_path = os.path.abspath('./working_path')
 
     Settings.eval_paths()
 

@@ -190,7 +190,7 @@ class SettingsClass(object):
         self.static_db_source = os.path.abspath(os.path.join(self.src_path, 'globaleaks', 'db'))
 
         self.db_schema = os.path.join(self.static_db_source, 'sqlite.sql')
-        self.db_file_path = os.path.join(os.path.abspath(os.path.join(self.working_path, 'globaleaks.db')))
+        self.db_file_path = os.path.abspath(os.path.join(self.working_path, 'globaleaks.db'))
 
         self.logfile = os.path.abspath(os.path.join(self.log_path, 'globaleaks.log'))
         self.httplogfile = os.path.abspath(os.path.join(self.log_path, "http.log"))
