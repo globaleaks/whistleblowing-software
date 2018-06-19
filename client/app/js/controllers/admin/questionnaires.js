@@ -132,7 +132,7 @@ controller('QuestionaireOperationsCtrl',
           questionnaire_id: $scope.questionnaire.id,
           new_name: $scope.duplicate_questionnaire.name
         }
-      ).then(function (response) {
+      ).then(function () {
         $route.reload();
       });
     }
