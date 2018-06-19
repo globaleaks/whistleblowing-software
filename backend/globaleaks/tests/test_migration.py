@@ -27,7 +27,6 @@ class TestMigrationRoutines(unittest.TestCase):
 
         helpers.init_state()
         self.db_path = os.path.join(Settings.working_path, 'db')
-        Settings.db_file_path = os.path.join(Settings.working_path, 'db', 'glbackend-%d.db' % version)
         self.final_db_file = os.path.abspath(os.path.join(Settings.working_path, 'globaleaks.db'))
 
         set_db_uri('sqlite:' + self.final_db_file)
@@ -35,7 +34,12 @@ class TestMigrationRoutines(unittest.TestCase):
         shutil.rmtree(self.db_path, True)
         os.mkdir(self.db_path)
         dbpath = os.path.join(path, f)
-        dbfile = os.path.join(self.db_path, f)
+        if version < 41:
+            dbfile = os.path.join(self.db_path, f)
+            Settings.db_file_path = os.path.join(Settings.working_path, 'db', 'glbackend-%d.db' % version)
+        else:
+            dbfile = os.path.join(Settings.working_path, 'globaleaks.db')
+
         shutil.copyfile(dbpath, dbfile)
 
         # TESTS PRECONDITIONS
@@ -50,7 +54,6 @@ class TestMigrationRoutines(unittest.TestCase):
         if postconditions is not None:
             postconditions()
 
-        #shutil.rmtree(self.db_path, True)
         self.assertNotEqual(ret, -1)
 
     def preconditions_30(self):
