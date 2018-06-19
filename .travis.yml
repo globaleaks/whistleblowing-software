@@ -102,6 +102,9 @@ matrix:
     - env: GLTEST='end2end-9' BROWSER='android 6.0'
     - env: GLTEST='end2end-10' BROWSER='ipad 9.3'
     - env: GLTEST='end2end-11' BROWSER='ipad 11.3'
+before_install:
+  - nvm install stable
+  - nvm use stable
 install: true
 script:
   - $TRAVIS_BUILD_DIR/travis/script.sh
