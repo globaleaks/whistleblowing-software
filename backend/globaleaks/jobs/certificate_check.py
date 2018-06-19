@@ -57,7 +57,7 @@ class CertificateCheck(LoopingJob):
             try:
                 db_acme_cert_issuance(session, tid)
             except Exception as exc:
-                log.err('Automatic HTTPS renewal failed: %s', excep, tid=tid)
+                log.err('Automatic HTTPS renewal failed: %s', exc, tid=tid)
 
                 # Send an email to the admin cause this requires user intervention
                 if not self.state.tenant_cache[tid].notification.disable_admin_notification_emails:

@@ -87,12 +87,7 @@ def run_acme_reg_to_finish(domain, accnt_key, priv_key, hostname, tmp_chall_dict
     # Wrap this step and log the failure particularly here because this is
     # the expected point of failure for applications that are not reachable
     # from the public internet.
-    try:
-        order = client.poll_and_finalize(order)
-
-    except messages.Error as error:
-        log.err("Failed in request issuance step %s", error)
-        raise AcmeValidationFailure("ACME validation failure, see logs!")
+    order = client.poll_and_finalize(order)
 
     # ACME V2 returns a full chain certificate, and ACME doesn't ship with
     # helper functions out of the box. Fortunately, searching through cerbot
