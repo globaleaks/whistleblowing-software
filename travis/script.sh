@@ -33,12 +33,11 @@ setupClientDependencies() {
 setupBackendDependencies() {
   cd $TRAVIS_BUILD_DIR/backend  # to install backend dependencies
   rm -rf requirements.txt
-  if [ "$GLTEST" = "py3_test" ]; then
-    ln -s requirements/requirements-bionic.txt requirements.txt
+  if [ "$GLTEST" = "py2_test" ]; then
+    pip install -r requirements/requirements.txt
   else
-    ln -s requirements/requirements-xenial.txt requirements.txt
+    pip3 install -r requirements/requirements-bionic.txt
   fi
-  pip install -r requirements.txt
 }
 
 setupDependencies() {
