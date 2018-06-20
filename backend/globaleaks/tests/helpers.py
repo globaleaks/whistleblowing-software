@@ -1097,6 +1097,8 @@ class MockDict:
             'enable_experimental_features': False,
             'enable_signup': True,
             'signup_mode': u'default',
+            'signup_fingerprint': False,
+            'signup_no_admin_user': False,
             'enable_footer_customization': False,
             'enable_custom_privacy_badge': False,
             'custom_privacy_badge_text': u'',
