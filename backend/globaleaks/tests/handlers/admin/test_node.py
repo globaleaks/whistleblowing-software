@@ -86,6 +86,7 @@ class TestNodeInstance(helpers.TestHandlerWithPopulatedDB):
                                 'signup_fingerprint']:
                 continue
 
+            print(response_key)
             self.assertEqual(response[response_key],
                              self.dummyNode[response_key])
 
