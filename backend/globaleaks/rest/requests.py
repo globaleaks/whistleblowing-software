@@ -229,6 +229,8 @@ AdminNodeDesc = {
     'enable_experimental_features': bool,
     'enable_signup': bool,
     'signup_mode': text_type,
+    'signup_fingerprint': bool,
+    'signup_no_admin_user': bool,
     'enable_footer_customization': bool,
     'enable_custom_privacy_badge': bool,
     'custom_privacy_badge_text': text_type,

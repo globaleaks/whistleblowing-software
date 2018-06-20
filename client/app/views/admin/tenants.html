@@ -21,6 +21,18 @@
             <span data-translate>Enable footer customization<span>
           <label>
         </div>
+        <div class="form-group">
+          <label>
+            <input data-ng-model="admin.node.signup_fingerprint" type="checkbox" />
+            <span data-translate>Record IP address and user agent of registered users<span>
+          <label>
+        </div>
+        <div class="form-group">
+          <label>
+            <input data-ng-model="admin.node.signup_no_admin_user" type="checkbox" />
+            <span data-translate>Do not create the admin user<span>
+          <label>
+        </div>
         <button class="btn btn-success" data-ng-click="updateNode()">
           <i class="glyphicon glyphicon-ok"></i>
           <span data-translate>Save</span>

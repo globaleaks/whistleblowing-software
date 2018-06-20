@@ -117,6 +117,7 @@ ConfigDescriptor = {
     u'enable_signup': Bool(default=False),
     u'signup_mode': Unicode(default=u'default'),
     u'signup_fingerprint': Bool(default=False),
+    u'signup_no_admin_user': Bool(default=False),
 
     u'enable_footer_customization': Bool(default=False),
 
@@ -185,6 +186,7 @@ ConfigFilters = {
         u'enable_signup',
         u'signup_mode',
         u'signup_fingerprint',
+        u'signup_no_admin_user',
         u'enable_footer_customization',
         u'counter_submissions',
         u'enable_captcha',
