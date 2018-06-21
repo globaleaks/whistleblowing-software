@@ -20,8 +20,9 @@
           </div>
         </span>
       </span>
-      <span class="pull-right">
-        <i data-ng-if="!collapsed" class="glyphicon glyphicon-collapse-down" uib-popover="{{'Collapse' | translate}}" popover-placement="left"></i>
+    </div>
+    <span class="pull-right">
+      <i data-ng-if="!collapsed" class="glyphicon glyphicon-collapse-down" uib-popover="{{'Collapse' | translate}}" popover-placement="left"></i>
         <i data-ng-if="collapsed" class="glyphicon glyphicon-fullscreen" uib-popover="{{'Expand' | translate}}" popover-placement="left"></i>
       </span>
     </div>
@@ -60,6 +61,10 @@
           <th>
             <i class="glyphicon glyphicon-send"></i>
             <span data-translate>Connection</span>
+          </th>
+          <th>
+            <i class="glyphicon glyphicon-flash"></i>
+            <span data-translate>Submission Status</span>
           </th>
           <th data-ng-if="::session.role == 'receiver' && node.enable_experimental_features">
             <i class="glyphicon glyphicon-flash"></i>
@@ -102,6 +107,7 @@
                 class="label label-success"
                 uib-popover="{{'The connection used to send this submission has been secured with Tor ensuring confidentiality and anonymity.' | translate}}" popover-placement="left">Tor</span>
           </td>
+          <td>{{submissionStateStr}} {{submissionSubStateStr}}</td>
           <td data-ng-if="::session.role == 'receiver' && node.enable_experimental_features">{{::tip.total_score}}</td>
         </tr>
       </tbody>

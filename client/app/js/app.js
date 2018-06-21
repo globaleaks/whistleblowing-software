@@ -120,7 +120,7 @@ var GLClient = angular.module('GLClient', [
     }
 
     function fetchResources(role, lst) {
-      return ['$q', 'Access', 'AdminContextResource', 'AdminQuestionnaireResource', 'AdminStepResource', 'AdminFieldResource', 'AdminFieldTemplateResource', 'AdminUserResource', 'AdminReceiverResource', 'AdminNodeResource', 'AdminNotificationResource', 'AdminShorturlResource', 'AdminTenantResource', 'FieldAttrs', 'ActivitiesCollection', 'AnomaliesCollection', 'TipOverview', 'FileOverview', 'JobsOverview', 'ManifestResource', function($q, Access, AdminContextResource, AdminQuestionnaireResource, AdminStepResource, AdminFieldResource, AdminFieldTemplateResource, AdminUserResource, AdminReceiverResource, AdminNodeResource, AdminNotificationResource, AdminShorturlResource, AdminTenantResource, FieldAttrs, ActivitiesCollection, AnomaliesCollection, TipOverview, FileOverview, JobsOverview, ManifestResource) {
+      return ['$q', 'Access', 'AdminContextResource', 'AdminQuestionnaireResource', 'AdminStepResource', 'AdminFieldResource', 'AdminFieldTemplateResource', 'AdminUserResource', 'AdminReceiverResource', 'AdminNodeResource', 'AdminNotificationResource', 'AdminShorturlResource', 'AdminTenantResource', 'FieldAttrs', 'ActivitiesCollection', 'AnomaliesCollection', 'TipOverview', 'FileOverview', 'JobsOverview', 'ManifestResource', 'AdminSubmissionStateResource', 'AdminSubmissionSubStateResource', function($q, Access, AdminContextResource, AdminQuestionnaireResource, AdminStepResource, AdminFieldResource, AdminFieldTemplateResource, AdminUserResource, AdminReceiverResource, AdminNodeResource, AdminNotificationResource, AdminShorturlResource, AdminTenantResource, FieldAttrs, ActivitiesCollection, AnomaliesCollection, TipOverview, FileOverview, JobsOverview, ManifestResource, AdminSubmissionStateResource, AdminSubmissionSubStateResource) {
         var resourcesPromises = {
           node: function() { return AdminNodeResource.get().$promise },
           manifest: function() { return ManifestResource.get().$promise; },
@@ -138,6 +138,7 @@ var GLClient = angular.module('GLClient', [
           file_overview: function() { return FileOverview.query().$promise },
           jobs_overview: function() { return JobsOverview.query().$promise },
           questionnaires: function() { return AdminQuestionnaireResource.query().$promise },
+          submission_states: function() { return AdminSubmissionStateResource.query().$promise },
         }
 
         return Access.isAuthenticated(role).then(function() {
@@ -332,6 +333,15 @@ var GLClient = angular.module('GLClient', [
         header_subtitle: 'Sites management',
         resolve: {
           resources: fetchResources('admin', ['node', 'tenants']),
+        }
+      }).
+      when('/admin/submission_states', {
+        templateUrl: 'views/admin/submission_states/index.html',
+        controller: 'AdminCtrl',
+        header_title: 'Administration interface',
+        header_subtitle: 'Submission states',
+        resolve: {
+          resources: fetchResources('admin', ['node', 'submission_states']),
         }
       }).
       when('/admin', {
