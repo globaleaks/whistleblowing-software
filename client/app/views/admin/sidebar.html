@@ -42,6 +42,14 @@
   </li>
 
   <li data-ng-class="active.mail" data-ng-if="session.role === 'admin'">
+  <li data-ng-class="active.submission_states">
+    <a href="#/admin/submission_states">
+      <i class="glyphicon glyphicon-chevron-right"></i>
+      <span data-translate>Submission States</span>
+    </a>
+  </li>
+
+  <li data-ng-class="active.mail" data-ng-if="session.role === 'admin'">
     <a href="#/admin/mail">
       <i class="glyphicon glyphicon-chevron-right"></i>
       <span data-translate>Notification settings</span>
