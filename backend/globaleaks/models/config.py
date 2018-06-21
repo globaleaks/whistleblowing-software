@@ -1,10 +1,12 @@
 # -*- coding: utf-8 -*-
+import uuid
+
 from sqlalchemy import not_
 
 from six import text_type
 
 from globaleaks import __version__
-from globaleaks.models import Config, ConfigL10N, EnabledLanguage
+from globaleaks.models import Config, ConfigL10N, EnabledLanguage, SubmissionStates, SubmissionSubStates
 from globaleaks.models.properties import *
 from globaleaks.models.config_desc import ConfigDescriptor, ConfigFilters
 
@@ -232,3 +234,31 @@ def system_cfg_init(session, tid):
             default = desc.default
 
         session.add(Config(tid, var_name, default))
+
+
+def load_required_submission_states(session, tid):
+    '''We'll merge the required states so they will update changes for known states'''
+    new_state = SubmissionStates()
+    new_state.tid = tid
+    new_state.label = 'New'
+    new_state.description = ''
+    new_state.system_defined = True
+    new_state.system_usage = 'new'
+
+    open_state = SubmissionStates()
+    open_state.tid = tid
+    open_state.label = 'Open'
+    open_state.description = ''
+    open_state.system_defined = True
+    open_state.system_usage = 'open'
+
+    closed_state = SubmissionStates()
+    closed_state.tid = tid
+    closed_state.label = 'Closed'
+    closed_state.description = ''
+    closed_state.system_defined = True
+    closed_state.system_usage = 'closed'
+
+    session.add(new_state)
+    session.add(open_state)
+    session.add(closed_state)
