@@ -53,6 +53,7 @@ from globaleaks.handlers.admin import statistics as admin_statistics
 from globaleaks.handlers.admin import step as admin_step
 from globaleaks.handlers.admin import tenant as admin_tenant
 from globaleaks.handlers.admin import user as admin_user
+from globaleaks.handlers.admin import submission_states as admin_submission_states
 from globaleaks.rest import apicache, requests, errors
 from globaleaks.settings import Settings
 from globaleaks.state import State, extract_exception_traceback_and_schedule_email
@@ -155,6 +156,11 @@ api_spec = [
     (r'/admin/overview/files', admin_overview.Files),
     (r'/admin/manifest', admin_manifest.ManifestHandler),
     (r'/admin/signup', admin_signup.SignupList),
+    (r'/admin/submission_states', admin_submission_states.SubmissionStateCollection),
+    (r'/admin/submission_states/' + uuid_regexp, admin_submission_states.SubmissionStateInstance),
+    (r'/admin/submission_states/' + uuid_regexp + r'/substates', admin_submission_states.SubmissionSubStateCollection),
+    (r'/admin/submission_states/' + uuid_regexp + r'/substates/' + uuid_regexp, admin_submission_states.SubmissionSubStateInstance),
+
     (r'/wizard', wizard.Wizard),
     (r'/signup', signup.Signup),
     (r'/signup/([a-zA-Z0-9_\-]{32})', signup.SignupActivation),
