@@ -51,6 +51,8 @@ def db_create(session, desc):
 
     models.config.add_new_lang(session, t.id, u'en', appdata)
 
+    models.config.load_required_submission_states(session, t.id)
+
     file_descs = [
       (u'logo', 'data/logo.png'),
       (u'favicon', 'data/favicon.ico')
