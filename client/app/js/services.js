@@ -459,6 +459,15 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
           return tip.setVar('label', label, 'set_label');
         };
 
+        tip.updateSubmissionState = function(submission_state_id, submission_substate_id) {
+          if (!submission_substate_id) {
+            submission_substate_id = ""
+          }
+
+          var set_string = submission_state_id + "," + submission_substate_id
+          return tip.setVar('tip_state', set_string, 'set_submission_state')
+        };
+
         tip.localChange = function() {
           tip.update_date = (new Date()).toISOString();
         }
@@ -587,7 +596,12 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
 }]).
   factory('AdminReceiverResource', ['GLResource', function(GLResource) {
     return new GLResource('admin/receivers/:id', {id: '@id'});
-
+}]).
+  factory('AdminSubmissionStateResource', ['GLResource', function(GLResource) {
+    return new GLResource('admin/submission_states/:id', {id: '@id'});
+}]).
+factory('AdminSubmissionSubStateResource', ['GLResource', function(GLResource) {
+  return new GLResource('admin/submission_states/:submissionstate_id/substates/:id', {id: '@id', submissionstate_id: '@submissionstate_id'});
 }]).
 service('UpdateService', [function() {
   return {

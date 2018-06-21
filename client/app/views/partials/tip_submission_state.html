@@ -1,0 +1,46 @@
+<div id="TipSubmissionStatus" class="panel panel-default" data-ng-init="collapsed = false">
+    <div class="panel-heading" data-ng-click="collapsed = !collapsed; $event.stopPropagation();">
+        <div>
+            <span data-translate>Submission Status</span>
+            <span class="pull-right">
+                <i data-ng-if="!collapsed" class="glyphicon glyphicon-collapse-down" uib-popover="{{'Collapse' | translate}}" popover-placement="left"></i>
+                <i data-ng-if="collapsed" class="glyphicon glyphicon-fullscreen" uib-popover="{{'Expand' | translate}}" popover-placement="left"></i>
+            </span>
+        </div>
+    </div>
+    <div class="TipPageSectionContent panel-body" data-ng-show="!collapsed">
+        <div class="row">
+            <div class="col-md-12">
+                <span data-ng-if="showEditLabelInput" class="form-inline" data-ng-click="$event.stopPropagation();">
+                    <div id="row">
+                        <div id="AssignSubmissionState" class="form-group">
+                            <label>
+                                <span data-translate>Submission State: </span>
+                            </label>
+                            <select id="assignSubmissionState" ng-model="tip.selectedSubmissionState" ng-options="state as state.label for state in ::tip.submission_states">
+                            </select>
+                        </div>
+                    </div>
+                    <div id="row">
+                        <div class="form-group">
+                            <label>
+                                <span data-translate>Substate: </span>
+                            </label>
+                            <select id="assignSubmissionSubState" ng-model="tip.selectedSubmissionSubState" ng-options="substate as substate.label for substate in ::tip.selectedSubmissionState.substates">
+                                <option value=""><span data-translate>(None)</span></option>
+                            </select>
+                        </div>
+                    </div>
+                    <div id="row">
+                        <div class="form-group">
+                            <button id="comment-action-send" class="btn btn-sm btn-primary" data-ng-click="updateSubmissionState()">
+                                <i class="glyphicon glyphicon-comment"></i>
+                                <span data-translate>Update</span>
+                            </button>
+                        </div>
+                    </div>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>

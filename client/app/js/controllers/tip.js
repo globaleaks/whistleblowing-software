@@ -2,7 +2,6 @@ GLClient.controller('TipCtrl',
   ['$scope', '$location', '$route', '$routeParams', '$uibModal', '$http', 'Utils', 'Authentication', 'RTip', 'WBTip', 'ReceiverPreferences', 'RTipExport', 'RTipDownloadRFile', 'WBTipDownloadFile', 'fieldUtilities',
   function($scope, $location, $route, $routeParams, $uibModal, $http, Utils, Authentication, RTip, WBTip, ReceiverPreferences, RTipExport, RTipDownloadRFile, WBTipDownloadFile, fieldUtilities) {
     $scope.fieldUtilities = fieldUtilities;
-
     $scope.tip_id = $routeParams.tip_id;
     $scope.target_file = '#';
 
@@ -74,6 +73,32 @@ GLClient.controller('TipCtrl',
       return field.type !== 'fileupload';
     };
 
+    /**
+     * Handles submission state display and updating
+     */
+
+     $scope.handleSubmissionStateDisplay = function(match_state, match_substate) {
+      var s_states = $scope.tip.submission_states
+      for (var i = 0; i < s_states.length; i++) {
+        if ($scope.tip.submission_states[i].id === match_state) {
+          $scope.submissionStateStr = $scope.tip.submission_states[i].label
+          $scope.tip.selectedSubmissionState = $scope.tip.submission_states[i]
+
+          if (match_substate !== "") { // may be undefined
+            var s_substates = $scope.tip.submission_states[i].substates
+            for (var j = 0; j < s_substates.length; j++) {
+              if (s_substates[j].id == match_substate) {
+                // CHECK L10N HERE
+                $scope.submissionSubStateStr = "(" + s_substates[j].label + ")"
+                $scope.tip.selectedSubmissionSubState = s_substates[j]
+              }
+            }
+          }
+          break;
+        }
+      }
+    }
+
     if ($scope.session.role === 'whistleblower') {
       $scope.fileupload_url = 'wbtip/rfile';
 
@@ -82,6 +107,8 @@ GLClient.controller('TipCtrl',
         $scope.total_score = $scope.tip.total_score;
         $scope.ctx = 'wbtip';
         $scope.extractSpecialTipFields(tip);
+
+        $scope.handleSubmissionStateDisplay($scope.tip.tip_state, $scope.tip.tip_substate);
 
         $scope.tip_unencrypted = false;
         for(var i = 0; i < tip.receivers.length; i++) {
@@ -143,6 +170,8 @@ GLClient.controller('TipCtrl',
 
         $scope.showEditLabelInput = $scope.tip.label === '';
 
+        $scope.handleSubmissionStateDisplay($scope.tip.tip_state, $scope.tip.tip_substate);
+
         $scope.showWBFileUpload = function() {
           var ctx = Utils.getContext(tip.context_id);
           return ctx.enable_rc_to_wb_files;
@@ -165,6 +194,16 @@ GLClient.controller('TipCtrl',
     $scope.updateLabel = function(label) {
       $scope.tip.updateLabel(label);
       $scope.showEditLabelInput = false;
+    };
+
+    $scope.updateSubmissionState = function() {
+      var substate_id = "";
+      // Substate ID can be null
+      if ($scope.tip.selectedSubmissionSubState) {
+        substate_id = $scope.tip.selectedSubmissionSubState.id
+      }
+      $scope.tip.updateSubmissionState($scope.tip.selectedSubmissionState.id, );
+      $scope.handleSubmissionStateDisplay($scope.tip.selectedSubmissionState.id, substate_id);
     };
 
     $scope.newComment = function() {
