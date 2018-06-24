@@ -237,28 +237,12 @@ def system_cfg_init(session, tid):
 
 
 def load_required_submission_states(session, tid):
-    '''We'll merge the required states so they will update changes for known states'''
-    new_state = SubmissionStates()
-    new_state.tid = tid
-    new_state.label = 'New'
-    new_state.description = ''
-    new_state.system_defined = True
-    new_state.system_usage = 'new'
-
-    open_state = SubmissionStates()
-    open_state.tid = tid
-    open_state.label = 'Open'
-    open_state.description = ''
-    open_state.system_defined = True
-    open_state.system_usage = 'open'
-
-    closed_state = SubmissionStates()
-    closed_state.tid = tid
-    closed_state.label = 'Closed'
-    closed_state.description = ''
-    closed_state.system_defined = True
-    closed_state.system_usage = 'closed'
-
-    session.add(new_state)
-    session.add(open_state)
-    session.add(closed_state)
+    for s in [{'label': 'New', 'system_usage': 'new'},
+              {'label': 'Open', 'system_usage':'open'},
+              {'label': 'Closed', 'system_usage': 'closed'}]:
+        state = SubmissionStates()
+        state.tid = tid
+        state.label = s['label']
+        state.system_defined = True
+        state.system_usage = s['system_usage']
+        session.add(state)
