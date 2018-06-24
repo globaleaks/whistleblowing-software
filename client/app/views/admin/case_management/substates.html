@@ -1,0 +1,85 @@
+<div id="SubstateEditBox">
+  <div class="editorTitle row">
+    <span class="col-md-8">
+      <span data-translate>Substates</span>
+      <button class="btn btn-xs btn-primary show-add-step-btn" data-ng-click="toggleAddSubstate()">
+        <i class="glyphicon glyphicon-plus"></i>
+        <span data-translate>Add</span>
+      </button>
+    </span>
+  </div>
+  <div id="SubstateAddBox" data-ng-controller="AdminSubmissionSubStateAddCtrl" class="row" data-ng-if="showAddSubstate">
+    <div class="col-md-6">
+      <div data-ng-form="newSubstate">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-group">
+              <label data-translate>Label</label>
+              <input name="label" class="form-control" data-ng-model="new_substate.label" type="text" required>
+              <div class="text-danger" data-ng-show="newSubstate.label.$error.required">
+                <span data-translate>This field is mandatory</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-group">
+              <button id="add-step-btn" class="pull-left btn btn-primary" data-ng-disabled="newSubstate.$invalid"
+                      data-ng-click="addSubmissionSubState(); toggleAddSubstate()">
+                <i class="glyphicon glyphicon-plus-sign"></i>
+                <span data-translate>Add</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div data-ng-repeat="substate in submission_state.substates">
+      <div class="col-md-12" data-ng-controller="AdminSubmissionSubStateEditorCtrl">
+        <div class="configItem">
+          <div class="editorHeader row" data-ng-click="toggleEditing(); $event.stopPropagation();">
+            <span class="col-md-7">
+              <span class="substateLabel">{{substate.label}}</span>
+            </span>
+            <span class="col-md-5">
+              <span class="pull-right">
+                <button class="btn btn-xs btn-default" data-ng-show="!editing"
+                        data-ng-click="toggleEditing(); $event.stopPropagation();">
+                  <span data-translate>Edit</span>
+                </button>
+                <button class="btn btn-xs btn-success" data-ng-show="editing"
+                        data-ng-click="save_submission_substate(substate);">
+                  <span data-translate>Save</span>
+                </button>
+                <button class="btn btn-xs btn-default" data-ng-show="editing"
+                        data-ng-click="toggleEditing(); $event.stopPropagation();">
+                  <span data-translate>Cancel</span>
+                </button>
+                <button class="btn btn-xs btn-danger"
+                        data-ng-click="deleteSubSubmissionState(step); $event.stopPropagation();"
+                        uib-popover="{{Delete | translate}}"
+                        popover-placement="right">
+                  <span data-translate>Delete</span>
+                </button>
+              </span>
+            </span>
+          </div>
+          <div data-ng-form="editStep" data-ng-if="editing">
+            <hr/>
+            <div class="row">
+              <div class="form-group">
+                <div class="col-md-6">
+                  <label data-translate>Label</label>
+                  <input class="form-control" data-ng-model="substate.label" type="text" required/>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

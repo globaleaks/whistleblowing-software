@@ -335,11 +335,11 @@ var GLClient = angular.module('GLClient', [
           resources: fetchResources('admin', ['node', 'tenants']),
         }
       }).
-      when('/admin/submission_states', {
-        templateUrl: 'views/admin/submission_states/index.html',
+      when('/admin/case_management', {
+        templateUrl: 'views/admin/case_management.html',
         controller: 'AdminCtrl',
         header_title: 'Administration interface',
-        header_subtitle: 'Submission states',
+        header_subtitle: 'Case management',
         resolve: {
           resources: fetchResources('admin', ['node', 'submission_states']),
         }

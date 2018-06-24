@@ -1138,7 +1138,13 @@ class MockDict:
             'ip_filter_authenticated_enable': False,
             'counter_submissions': 0,
             'enable_password_reset': True,
-            'enable_user_pgp_key_upload': False
+            'enable_user_pgp_key_upload': False,
+            'signup_tos1_enable': False,
+            'signup_tos1_clause': u'',
+            'signup_tos1_agreement': u'',
+            'signup_tos2_enable': False,
+            'signup_tos2_clause': u'',
+            'signup_tos2_agreement': u''
         }
 
 
