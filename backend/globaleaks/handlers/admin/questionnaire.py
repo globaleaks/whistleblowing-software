@@ -232,7 +232,6 @@ class QuestionnareDuplication(BaseHandler):
     check_roles = 'admin'
     invalidate_cache = True
 
-    @inlineCallbacks
     def post(self):
         """
         Duplicates a questionnaire
@@ -241,8 +240,7 @@ class QuestionnareDuplication(BaseHandler):
         request = self.validate_message(self.request.content.read(),
                                         requests.QuestionnaireDuplicationDesc)
 
-        q = yield duplicate_questionnaire(self.state,
-                                          self.request.tid,
-                                          request['questionnaire_id'],
-                                          request['new_name'])
-        returnValue(q)
+        return duplicate_questionnaire(self.state,
+                                       self.request.tid,
+                                       request['questionnaire_id'],
+                                       request['new_name'])
