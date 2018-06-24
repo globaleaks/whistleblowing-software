@@ -315,21 +315,17 @@ def set_receivertip_variable(session, tid, user_id, rtip_id, key, value):
     rtip, _ = db_access_rtip(session, tid, user_id, rtip_id)
     setattr(rtip, key, value)
 
+
 @transact
 def set_tip_submission_state(session, tid, user_id, rtip_id, submission_state_uuid, submission_substate_uuid, comment):
-    # FIXME: Modifying itip here doesn't seem to work?!
     rtip, itip = db_access_rtip(session, tid, user_id, rtip_id)
 
     db_set_submission_state(session, tid, itip.id, submission_state_uuid, submission_substate_uuid)
     submission_state_change = models.SubmissionStateChanges()
     submission_state_change.internaltip_id = itip.id
-    submission_state_change.previous_state = itip.tip_state
-    submission_state_change.previous_substate = itip.tip_substate
     submission_state_change.changed_by = user_id
-    submission_state_change.change_reason = comment
 
     session.add(submission_state_change)
-    session.flush()
 
 @transact
 def get_rtip(session, tid, user_id, rtip_id, language):
