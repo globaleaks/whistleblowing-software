@@ -263,7 +263,9 @@ def perform_migration(version):
     else:
         # in case of success first copy the new migrated db, then as last action delete the original db file
         shutil.copy(new_db_file, final_db_file)
-        overwrite_and_remove(orig_db_file)
+
+        if orig_db_file != final_db_file:
+            overwrite_and_remove(orig_db_file)
 
         path = os.path.join(Settings.working_path, 'db')
         if os.path.exists(path):
