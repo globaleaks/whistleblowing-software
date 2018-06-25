@@ -126,10 +126,12 @@ class NodeL10NFactory(ConfigL10NFactory):
         u'header_title_receiptpage',
         u'header_title_tippage',
         u'contexts_clarification',
-        u'signup_tos1_clause',
-        u'signup_tos1_agreement',
-        u'signup_tos2_clause',
-        u'signup_tos2_agreement'
+        u'signup_tos1_title',
+        u'signup_tos1_text',
+        u'signup_tos1_checkbox_label',
+        u'signup_tos2_title',
+        u'signup_tos2_text',
+        u'signup_tos2_checkbox_label'
     ]
 
 
