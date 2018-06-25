@@ -164,7 +164,7 @@ html[dir="rtl"] #KeyCodeHintBox:after {
   bottom: 0px;
 }
 
-.tos-clause {
+.tos-text {
   display: block;
   padding: 10px;
   margin: 0 0 0.8em;
@@ -178,7 +178,7 @@ html[dir="rtl"] #KeyCodeHintBox:after {
   border-radius: 5px;
 }
 
-.tos-agreement {
+.tos-checkbox-label {
   font-weight: bold;
 }
 

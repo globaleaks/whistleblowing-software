@@ -500,3 +500,8 @@ html[rtl] .float-right {
   vertical-align: super;
   font-size: smaller;
 }
+
+#SignupTos1 .tos-text, #SignupTos2 .tos-text {
+  height: 10em;
+  overflow-y: scroll;
+}
