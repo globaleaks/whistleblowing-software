@@ -15,9 +15,7 @@ GLClient.controller('AdminCaseManagementCtrl', ['$scope', function($scope){
 ]).controller('AdminSubmissionStateEditorCtrl', ['$scope', '$http', 'Utils', 'AdminSubmissionStateResource',
   function ($scope, $http, Utils, AdminSubmissionStateResource) {
     $scope.editing = false;
-    console.log(123);
     $scope.toggleEditing = function () {
-      alert($scope.editing);
       $scope.editing = !$scope.editing;
     };
 
