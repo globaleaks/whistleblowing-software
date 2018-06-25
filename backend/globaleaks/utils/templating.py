@@ -466,7 +466,7 @@ class CertificateExprKeyword(UserNodeKeyword):
     data_keys = UserNodeKeyword.data_keys + ['expiration_date']
 
     def ExpirationDate(self):
-        return ISO8601_to_pretty_str(self.data['expiration_date'])
+        return datetime_to_pretty_str(self.data['expiration_date'])
 
     def _TorUrl(self):
         return 'http://' + self.data['node']['onionservice'] + '/#/admin/network'
