@@ -89,4 +89,47 @@ GLClient.controller('AdminCaseManagementCtrl', ['$scope', function($scope){
         $scope.reload();
       })
     }
-}]);
+}]).controller('AdminSubmissionClosingStateCtrl', ['$scope', '$http',
+  function ($scope, $http) {
+
+    $scope.closedState = undefined;
+
+    // Find the closed state from the states list so we can directly manipulate it
+    for (var i = 0; i < $scope.admin.submission_states.length; i++) {
+      var state = $scope.admin.submission_states[i];
+      if (state.system_defined === true && state.system_usage === 'closed') {
+        $scope.closedState = state;
+        break;
+      }
+    }
+
+    $scope.editing = false;
+    $scope.showAddState = false;
+
+    $scope.toggleEditing = function () {
+      $scope.editing = !$scope.editing;
+    };
+
+    $scope.toggleAddState = function () {
+      $scope.showAddState = !$scope.showAddState;
+    };
+  }
+]).controller('AdminSubmissionClosedSubStateAddCtrl', ['$scope', '$http',
+  function ($scope, $http) {
+
+    // It would be nice to refactor this with addSubmissionSubState
+  $scope.addClosingSubmissionSubState = function () {
+    new_submission_substate = {
+      'label': $scope.new_closed_submission_substate.label
+    }
+
+    $http.post(
+      '/admin/submission_states/' + $scope.closedState.id + '/substates',
+      new_submission_substate
+    ).then(function (response) {
+      $scope.reload();
+    })
+  }
+
+  }
+])
