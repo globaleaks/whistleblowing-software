@@ -163,12 +163,12 @@
             </div>
             <div data-ng-if="field.type === 'tos'">
               <div class="form-group">
-                <label data-translate>Clause</label>
-                <textarea data-ng-model="field.attrs.clause.value" class="form-control" data-ng-disabled="!field.editable"></textarea>
+                <label data-translate>Text</label>
+                <textarea data-ng-model="field.attrs.text.value" class="form-control" data-ng-disabled="!field.editable"></textarea>
               </div>
               <div class="form-group">
-                <label data-translate>Agreement Text</label>
-                <input data-ng-model="field.attrs.agreement_statement.value" type="text" class="form-control" data-ng-disabled="!field.editable" />
+                <label data-translate>Checkbox label</label>
+                <input data-ng-model="field.attrs.checkbox_label.value" type="text" class="form-control" data-ng-disabled="!field.editable" />
               </div>
             </div>
             <div data-ng-disabled="!field.editable">

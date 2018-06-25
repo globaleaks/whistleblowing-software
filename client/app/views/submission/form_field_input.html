@@ -78,19 +78,19 @@
         </div>
       </div>
       <div data-ng-switch-when="tos">
-        <div class="form-group tos-clause" data-ng-click="entry['value'] = !entry['value']">{{field.attrs.clause.value}}</div>
+        <div class="form-group tos-text" data-ng-click="entry['value'] = !entry['value']">{{field.attrs.text.value}}</div>
         <div class="checkbox" data-ng-class="{'has-error': field.required_status}">
           <label>
             <input id="{{::fieldEntry}}"
                    name="input-{{entryIndex}}"
                    class="inputelem"
                    data-ng-model="entry['value']"
-                    data-ng-change="onAnswerUpdate(field, entry)"
+                   data-ng-change="onAnswerUpdate(field, entry)"
                    data-ng-required="field.required_status"
                    value="{{field.value}}"
                    data-ng-attr-placeholder="{{field.placeholder || 'false'}}"
                    type="checkbox" />
-            <span class="tos-agreement">{{field.attrs.agreement_statement.value}}</span>
+            <span class="tos-checkbox-label">{{field.attrs.checkbox_label.value}}</span>
           </label>
         </div>
       </div>

@@ -1,74 +1,93 @@
-<form name= "signupForm" novalidate>
-  <div data-ng-show="step == 1" data-ng-form="signupFormStep1">
-    <div class="row wizard-block">
-      <div class="title" data-translate>Sign up</div>
-      <div class="col-md-6">
-        <div class="form-group col-md-12">
+<form name="signupForm" novalidate>
+  <div class="row wizard-block">
+    <div class="title" data-translate>Sign up</div>
+    <div class="col-md-6">
+      <div class="form-group col-md-12">
+        <label>
+          <span data-translate>Domain</span>
+          <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
+        </label>
+        <div class="row" data-ng-class="{'has-error': signupForm.subdomain.$error.required || signupForm.subdomain.$error.pattern}">
+          <div class="col-md-12">
+            <div class="input-group">
+              <input name="subdomain" class="form-control" data-ng-model="signup.subdomain" type="text" data-ng-attr-placeholder="{{'Domain' | translate}}" data-ng-pattern="/^[a-z0-9]+$/" required subdomainvalidator>
+              <span class="input-group-addon">.{{node.rootdomain}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="form-group col-md-12">
+        <label data-translate>Name</label>
+        <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
+        <div class="row" data-ng-class="{'has-error': signupForm.name.$error.required}">
+          <div class="col-md-6">
+            <input name="name" class="form-control" data-ng-model="signup.name" type="text" data-ng-attr-placeholder="{{'Name' | translate}}" required>
+          </div>
+          <div class="col-md-6">
+            <input name="surname" class="form-control" data-ng-model="signup.surname" type="text" data-ng-attr-placeholder="{{'Surname' | translate}}" required>
+          </div>
+        </div>
+      </div>
+      <div class="form-group col-md-12">
+        <label>
+          <span data-translate>Email address</span>
+          <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
+        </label>
+        <div class="row" data-ng-class="{'has-error': signupForm.mail_address.$error.required || signupForm.mail_address.$error.pattern}">
+          <div class="col-md-12">
+            <input name="mail_address" class="form-control" data-ng-model="signup.email" data-ng-attr-placeholder="{{'Email address' | translate}}" data-ng-pattern="email_regexp" type="text" required>
+            <div class="text-danger" data-ng-show="signupForm.mail_address.$error.pattern">
+              <span data-translate>Invalid email address</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="form-group col-md-6">
+        <label data-translate>Use case</label>
+        <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
+        <div data-ng-class="{'has-error': signupForm.use_case.$error.required}">
+          <select name="use_case" class="form-control" data-ng-model="signup.use_case" required>
+            <option value="anticorruption" data-translate>Anticorruption</option>
+            <option value="corporate_compliance" data-translate>Corporate compliance</option>
+            <option value="investigative_journalism" data-translate>Investigative journalism</option>
+            <option value="civic_activism" data-translate>Civic activism</option>
+            <option value="other" data-translate>Other</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group col-md-6" data-ng-if="signup.use_case == 'other'">
+        <label data-translate>Other</label>
+        <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
+        <input name="use_case_other" class="form-control" data-ng-model="signup.use_case_other" type="text" data-ng-attr-placeholder="{{'Other' | translate}}" required>
+      </div>
+      <div id="SignupTos1" class="form-group col-md-12">
+        <label>{{node.signup_tos1_title}}</label>
+        <div class="tos-text">{{node.signup_tos1_text}}</div>
+        <div class="checkbox" data-ng-class="{'has-error': signupForm.tos1.$error.required}">
           <label>
-            <span data-translate>Domain</span>
-            <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
+            <input name="tos1" type="checkbox" data-ng-model="signup.tos1" required />
+            <span class="tos-checkbox-label">{{node.signup_tos1_checkbox_label}}</span>
           </label>
-          <div class="row" data-ng-class="{'has-error': signupFormStep1.subdomain.$error.required || signupFormStep1.subdomain.$error.pattern}">
-            <div class="col-md-12">
-              <div class="input-group">
-                <input name="subdomain" class="form-control" data-ng-model="signup.subdomain" type="text" data-ng-attr-placeholder="{{'Domain' | translate}}" data-ng-pattern="/^[a-z0-9]+$/" required subdomainvalidator>
-                <span class="input-group-addon">.{{node.rootdomain}}</span>
-              </div>
-            </div>
-          </div>
         </div>
-        <div class="form-group col-md-12">
-          <label data-translate>Name</label>
-          <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
-          <div class="row" data-ng-class="{'has-error': signupFormStep1.name.$error.required}">
-            <div class="col-md-6">
-              <input name="name" class="form-control" data-ng-model="signup.name" type="text" data-ng-attr-placeholder="{{'Name' | translate}}" required>
-            </div>
-            <div class="col-md-6">
-              <input name="surname" class="form-control" data-ng-model="signup.surname" type="text" data-ng-attr-placeholder="{{'Surname' | translate}}" required>
-            </div>
-          </div>
-        </div>
-        <div class="form-group col-md-12">
+      </div>
+      <div id="SignupTos2" class="form-group col-md-12">
+        <label>{{node.signup_tos2_title}}</label>
+        <div class="tos-text">{{node.signup_tos2_text}}</div>
+        <div class="checkbox" data-ng-class="{'has-error': signupForm.tos2.$error.required}">
           <label>
-            <span data-translate>Email address</span>
-            <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
+            <input name="tos2" type="checkbox" data-ng-model="signup.tos2" required />
+            <span class="tos-checkbox-label">{{node.signup_tos2_checkbox_label}}</span>
           </label>
-          <div class="row" data-ng-class="{'has-error': signupFormStep1.mail_address.$error.required || signupFormStep1.mail_address.$error.pattern}">
-            <div class="col-md-12">
-              <input name="mail_address" class="form-control" data-ng-model="signup.email" data-ng-attr-placeholder="{{'Email address' | translate}}" data-ng-pattern="email_regexp" type="text" required>
-              <div class="text-danger" data-ng-show="signupFormStep1.mail_address.$error.pattern">
-                <span data-translate>Invalid email address</span>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="form-group col-md-6">
-          <label data-translate>Use case</label>
-          <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
-	  <div data-ng-class="{'has-error': signupFormStep1.use_case.$error.required}">
-            <select name="use_case" class="form-control" data-ng-model="signup.use_case" required>
-              <option value="anticorruption" data-translate>Anticorruption</option>
-              <option value="corporate_compliance" data-translate>Corporate compliance</option>
-              <option value="investigative_journalism" data-translate>Investigative journalism</option>
-              <option value="civic_activism" data-translate>Civic activism</option>
-              <option value="other" data-translate>Other</option>
-            </select>
-	  </div>
-        </div>
-        <div class="form-group col-md-6" data-ng-if="signup.use_case == 'other'">
-          <label data-translate>Other</label>
-          <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
-          <input name="use_case_other" class="form-control" data-ng-model="signup.use_case_other" type="text" data-ng-attr-placeholder="{{'Other' | translate}}" required>
         </div>
       </div>
     </div>
-    <div class="pager pull-right">
-      <button class="ButtonNext btn btn-success" data-ng-click="complete()" data-ng-disabled="signupFormStep1.$invalid || (signup.admin_password !== admin_check_password)">
-        <i class="glyphicon glyphicon glyphicon-ok-sign"></i>
-        <span data-translate>Complete</span>
-      </button>
-    </div>
+  </div>
+  <div class="pager pull-right">
+    <button class="ButtonNext btn btn-success" data-ng-click="complete()" data-ng-disabled="signupForm.$invalid || (signup.admin_password !== admin_check_password)">
+      <i class="glyphicon glyphicon glyphicon-ok-sign"></i>
+      <span data-translate>Complete</span>
+    </button>
+  </div>
   </div>
   <div data-ng-show="step == 2">
     <div class="row signup-block">
@@ -83,4 +102,3 @@
       </div>
     </div>
   </div>
-</form>

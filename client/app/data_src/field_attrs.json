@@ -21,8 +21,8 @@
     "display_alphabetically": {"type": "bool", "value": true }
  },
   "tos": {
-    "clause": {"type": "localized", "value": ""},
-    "agreement_statement": {"type": "localized", "value": ""}
+    "text": {"type": "localized", "value": ""},
+    "checkbox_label": {"type": "localized", "value": ""}
  },
   "date": {
     "min_date": {"type": "unicode", "value": ""},
