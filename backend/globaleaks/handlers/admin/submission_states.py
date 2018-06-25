@@ -23,6 +23,8 @@ def serialize_submission_state(session, row):
         'tid': row.tid,
         'label': row.label,
         'system_defined': row.system_defined,
+        'system_usage': row.system_usage,
+        'presentation_order': row.presentation_order,
         'substates': []
     }
 
