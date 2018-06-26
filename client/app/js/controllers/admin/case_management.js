@@ -34,12 +34,54 @@ GLClient.controller('AdminCaseManagementCtrl', ['$scope', function($scope){
       var updated_submission_state = new AdminSubmissionStateResource(context);
       return Utils.update(updated_submission_state, cb);
     }
+
+    $scope.moveUp = function(e, idx) { swap(e, idx, -1); };
+    $scope.moveDown = function(e, idx) { swap(e, idx, 1); };
+  
+    function swap($event, index, n) {
+      $event.stopPropagation();
+  
+      var target = index + n;
+
+      if (target < 0 || target >= $scope.admin.submission_states.length) {
+        return;
+      }
+  
+      $scope.admin.submission_states[index] = $scope.admin.submission_states[target];
+      $scope.admin.submission_states[target] = $scope.submission_state;
+
+      // Return only the ids we want to reorder
+      reordered_ids = {
+        'ids': $scope.admin.submission_states.map(function(c) {
+          if (c.system_defined === false) return c.id;
+          }
+        ).filter(function (c) {
+          if (c !== null) {
+            return c
+          }
+        })
+      }
+
+      $http({
+        method: 'PUT',
+        url: '/admin/submission_states',
+        data: {
+          'operation': 'order_elements',
+          'args': reordered_ids,
+        },
+      }).then(function() {
+        $rootScope.successes.push({});
+      });
+    }  
   }
 ]).controller('AdminSubmissionStateAddCtrl', ['$scope', '$http',
   function ($scope, $http) {
+    var presentation_order = $scope.newItemOrder($scope.admin.submission_states, 'presentation_order');
+
     $scope.addSubmissionState = function () {
       new_submission_state = {
-        'label': $scope.new_submission_state.label
+        'label': $scope.new_submission_state.label,
+        'presentation_order': presentation_order
       }
 
       $http.post(
@@ -78,8 +120,11 @@ GLClient.controller('AdminCaseManagementCtrl', ['$scope', function($scope){
 ]).controller('AdminSubmissionSubStateAddCtrl', ['$scope', '$http',
   function ($scope, $http) {
     $scope.addSubmissionSubState = function () {
+      var presentation_order = $scope.newItemOrder($scope.admin.submission_states, 'presentation_order');
+
       new_submission_substate = {
-        'label': $scope.new_substate.label
+        'label': $scope.new_substate.label,
+        'presentation_order': $scope.presentation_order
       }
 
       $http.post(
