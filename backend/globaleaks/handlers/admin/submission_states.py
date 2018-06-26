@@ -11,6 +11,7 @@ from twisted.internet.defer import inlineCallbacks, returnValue
 from globaleaks import models
 from globaleaks.rest import errors
 from globaleaks.handlers.base import BaseHandler
+from globaleaks.handlers.operation import OperationHandler
 from globaleaks.orm import transact
 from globaleaks.rest import requests
 from globaleaks.utils.security import directory_traversal_check
@@ -45,7 +46,8 @@ def serialized_submission_substate(row):
     submission_substate = {
         'id': row.id,
         'label': row.label,
-        'submissionstate_id': row.submissionstate_id
+        'submissionstate_id': row.submissionstate_id,
+        'presentation_order': row.presentation_order
     }
 
     return submission_substate
@@ -60,7 +62,10 @@ def db_retrieve_all_submission_states(session, tid):
     '''Retrieves all submission states'''
     submission_states = []
 
-    rows = session.query(models.SubmissionStates).filter(models.SubmissionStates.tid == tid)
+    rows = session.query(models.SubmissionStates) \
+        .filter(models.SubmissionStates.tid == tid) \
+        .order_by(models.SubmissionStates.presentation_order)
+
     for row in rows:
         submission_states.append(
             serialize_submission_state(session, row)
@@ -87,6 +92,7 @@ def db_retrieve_specific_submission_state(session, tid, submission_state_uuid):
 def update_state_model_from_request(model_obj, request):
     '''Populates the model from the request, as well as setting default values'''
     model_obj.label = request['label']
+    model_obj.presentation_order = request['presentation_order']
     return model_obj
 
 
@@ -150,6 +156,7 @@ def get_submission_state(session, tid, submission_state_uuid):
 def update_substate_model_from_request(model_obj, substate_request):
     '''Populates the model off each value from requests['substate']'''
     model_obj.label = substate_request['label']
+    model_obj.presentation_order = substate_request['presentation_order']
     return model_obj
 
 
@@ -190,7 +197,7 @@ def create_submission_substate(session, tid, submission_state_uuid, request):
     session.add(substate_obj)
 
 
-class SubmissionStateCollection(BaseHandler):
+class SubmissionStateCollection(OperationHandler):
     '''Handles submission states on the backend'''
     check_roles = 'admin'
 
@@ -203,6 +210,25 @@ class SubmissionStateCollection(BaseHandler):
 
         return create_submission_state(self.request.tid, request)
 
+    def operation_descriptors(self):
+        return {
+            'order_elements': (order_elements, {'ids': [text_type]}),
+        }
+
+@transact
+def order_elements(session, handler, req_args, *args, **kwargs):
+    states = session.query(models.SubmissionStates).filter(
+        models.SubmissionStates.tid == handler.request.tid,
+        models.SubmissionStates.system_defined == 0)
+
+    id_dict = { state.id: state for state in states }
+    ids = req_args['ids']
+
+    if len(ids) != len(id_dict) or set(ids) != set(id_dict):
+        raise errors.InputValidationError('list does not contain all context ids')
+
+    for i, state_id in enumerate(ids):
+        id_dict[state_id].presentation_order = i
 
 class SubmissionStateInstance(BaseHandler):
     '''Manipulates a specific submission state'''
@@ -218,7 +244,6 @@ class SubmissionStateInstance(BaseHandler):
         return models.delete(models.SubmissionStates, \
                              models.SubmissionStates.tid == self.request.tid, \
                              models.SubmissionStates.id == submission_state_uuid)
-
 
 class SubmissionSubStateCollection(BaseHandler):
     '''Manages substates for a given state'''

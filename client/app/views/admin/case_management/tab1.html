@@ -36,6 +36,12 @@
         </span>
         <span class="col-md-5">
           <span class="pull-right">
+            <button data-ng-if="!$first" class="btn btn-xs btn-primary" data-ng-click="moveUp($event, $index)" uib-popover="{{'Move up' | translate}}" popover-placement="left">
+              <i class="glyphicon glyphicon-menu-up"></i>
+            </button>
+            <button data-ng-if="!$last" class="btn btn-xs btn-primary" data-ng-click="moveDown($event, $index)" uib-popover="{{'Move down' | translate}}" popover-placement="left">
+              <i class="glyphicon glyphicon-menu-down"></i>
+            </button>
             <button class="btn btn-xs btn-default" data-ng-show="!editing" data-ng-click="toggleEditing(); $event.stopPropagation();">
               <span data-translate>Edit</span>
             </button>

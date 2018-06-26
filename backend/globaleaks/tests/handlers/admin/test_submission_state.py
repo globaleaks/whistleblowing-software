@@ -20,7 +20,7 @@ def create_substate(session, submissionstate_id):
     substate = models.SubmissionSubStates()
     substate.submissionstate_id = submissionstate_id
     substate.label = "Test1"
-
+    substate.presentation_order = 0
     session.add(substate)
 
 
@@ -41,7 +41,8 @@ class SubmissionStateCollectionDesc(helpers.TestHandlerWithPopulatedDB):
     def test_post(self):
         # Create a submission state
         data_request = {
-            'label': 'test_state'
+            'label': 'test_state',
+            'presentation_order': 0
         }
         handler = self.request(data_request, role='admin')
         yield handler.post()
@@ -80,7 +81,8 @@ class SubmissionStateInstanceDesc(helpers.TestHandlerWithPopulatedDB):
         self._handler = submission_states.SubmissionStateCollection
 
         data_request = {
-            'label': 'test_state'
+            'label': 'test_state',
+            'presentation_order': 0
         }
         handler = self.request(data_request, role='admin')
 
@@ -98,7 +100,8 @@ class SubmissionStateInstanceDesc(helpers.TestHandlerWithPopulatedDB):
 
         # Change the submission state info
         data_request = {
-            'label': '12345'
+            'label': '12345',
+            'presentation_order': 0
         }
 
         self._handler = submission_states.SubmissionStateInstance
@@ -169,7 +172,8 @@ class SubmissionSubStateCollectionDesc(helpers.TestHandlerWithPopulatedDB):
     def test_post(self):
         new_state_id = yield submission_states.get_id_for_system_state(1, 'new')
         data_request = {
-            'label': '12345'
+            'label': '12345',
+            'presentation_order': 0
         }
         handler = self.request(data_request, role='admin')
         response = yield handler.post(new_state_id)
@@ -192,7 +196,8 @@ class SubmissionSubStateInstanceDesc(helpers.TestHandlerWithPopulatedDB):
         substate_uuid = submission_state['substates'][0]['id']
 
         data_request = {
-            'label': '12345'
+            'label': '12345',
+            'presentation_order': 0
         }
 
         handler = self.request(data_request, role='admin')
