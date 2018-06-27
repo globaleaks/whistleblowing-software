@@ -17,6 +17,12 @@
         </div>
         <div data-ng-if="admin.node.enable_signup">
           <div class="form-group">
+            <label data-translate>Signup mode:</label>
+            <select name="type" class="form-control" data-ng-model="admin.node.signup_mode" required>
+              <option value="default">default</option>
+            </select>
+          </div>
+          <div class="form-group">
             <label>
               <input data-ng-model="admin.node.signup_fingerprint" type="checkbox" />
               <span data-translate>Record IP address and user agent of registered users<span>
@@ -120,7 +126,7 @@
                     <a class="label label-primary" data-ng-if="tenant.onionservice" data-ng-href="http://{{tenant.onionservice}}" target="_blank" isolate-click>{{tenant.onionservice}}</a>
                     <span data-ng-if="tenant.id > 1 && admin.node.hostname">
                       <a class="label label-primary" data-ng-href="https://p{{tenant.id}}.{{admin.node.hostname}}" target="_blank" isolate-click>p{{tenant.id}}.{{admin.node.hostname}}</a>
-		      <a class="label label-primary" data-ng-if="tenant.subdomain" data-ng-href="https://{{tenant.subdomain}}.{{admin.node.rootdomain}}" target="_blank" isolate-click>{{tenant.subdomain}}.{{admin.node.rootdomain}}</a>
+                      <a class="label label-primary" data-ng-if="tenant.subdomain" data-ng-href="https://{{tenant.subdomain}}.{{admin.node.rootdomain}}" target="_blank" isolate-click>{{tenant.subdomain}}.{{admin.node.rootdomain}}</a>
                     </span>
                     <a class="label label-primary" data-ng-if="tenant.hostname" data-ng-href="https://{{tenant.hostname}}" target="_blank" isolate-click>{{tenant.hostname}}</a>
                   </span>
