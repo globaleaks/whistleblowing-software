@@ -886,7 +886,7 @@ class _Signup(Model):
     organization_province = Column(UnicodeText, default=u'', nullable=False)
     organization_region = Column(UnicodeText, default=u'', nullable=False)
     organization_country = Column(UnicodeText, default=u'', nullable=False)
-    organization_number_employee = Column(UnicodeText, default=u'', nullable=False)
+    organization_number_employees = Column(UnicodeText, default=u'', nullable=False)
     organization_number_users = Column(UnicodeText, default=u'', nullable=False)
     activation_token = Column(UnicodeText, nullable=False)
     client_ip_address = Column(UnicodeText, default=u'', nullable=False)
@@ -897,7 +897,7 @@ class _Signup(Model):
     unicode_keys = ['subdomain', 'language', 'name', 'surname', 'role', 'email', 'secondary_email', 'phone',
                     'use_case', 'use_case_other',
                     'organization_city', 'organization_province', 'organization_region', 'organization_country',
-                    'organization_number_employee', 'organization_number_users',
+                    'organization_number_employees', 'organization_number_users',
                     'client_ip_address', 'client_user_agent',
                     'activation_token']
 
