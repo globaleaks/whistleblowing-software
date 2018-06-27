@@ -30,8 +30,9 @@ def serialize_submission_state(session, row):
     }
 
     # See if we have any substates we need to serialize
-    substate_rows = session.query(models.SubmissionSubStates).filter( \
-        models.SubmissionSubStates.submissionstate_id == row.id)
+    substate_rows = session.query(models.SubmissionSubStates) \
+        .filter(models.SubmissionSubStates.submissionstate_id == row.id) \
+        .order_by(models.SubmissionSubStates.presentation_order)
 
     for substate_row in substate_rows:
         submission_state['substates'].append(
@@ -196,6 +197,36 @@ def create_submission_substate(session, tid, submission_state_uuid, request):
     update_substate_model_from_request(substate_obj, request)
     session.add(substate_obj)
 
+@transact
+def order_state_elements(session, handler, req_args, *args, **kwargs):
+    states = session.query(models.SubmissionStates).filter(
+        models.SubmissionStates.tid == handler.request.tid,
+        models.SubmissionStates.system_defined == 0)
+
+    id_dict = {state.id: state for state in states}
+    ids = req_args['ids']
+
+    if len(ids) != len(id_dict) or set(ids) != set(id_dict):
+        raise errors.InputValidationError('list does not contain all context ids')
+
+    for i, state_id in enumerate(ids):
+        id_dict[state_id].presentation_order = i
+
+@transact
+def order_substate_elements(session, handler, req_args, *args, **kwargs):
+    submission_state_id = args[0]
+
+    substates = session.query(models.SubmissionSubStates).filter(
+        models.SubmissionSubStates.submissionstate_id == submission_state_id)
+
+    id_dict = {substate.id: substate for substate in substates}
+    ids = req_args['ids']
+
+    if len(ids) != len(id_dict) or set(ids) != set(id_dict):
+        raise errors.InputValidationError('list does not contain all context ids')
+
+    for i, substate_id in enumerate(ids):
+        id_dict[substate_id].presentation_order = i
 
 class SubmissionStateCollection(OperationHandler):
     '''Handles submission states on the backend'''
@@ -212,23 +243,8 @@ class SubmissionStateCollection(OperationHandler):
 
     def operation_descriptors(self):
         return {
-            'order_elements': (order_elements, {'ids': [text_type]}),
+            'order_elements': (order_state_elements, {'ids': [text_type]}),
         }
-
-@transact
-def order_elements(session, handler, req_args, *args, **kwargs):
-    states = session.query(models.SubmissionStates).filter(
-        models.SubmissionStates.tid == handler.request.tid,
-        models.SubmissionStates.system_defined == 0)
-
-    id_dict = { state.id: state for state in states }
-    ids = req_args['ids']
-
-    if len(ids) != len(id_dict) or set(ids) != set(id_dict):
-        raise errors.InputValidationError('list does not contain all context ids')
-
-    for i, state_id in enumerate(ids):
-        id_dict[state_id].presentation_order = i
 
 class SubmissionStateInstance(BaseHandler):
     '''Manipulates a specific submission state'''
@@ -245,7 +261,7 @@ class SubmissionStateInstance(BaseHandler):
                              models.SubmissionStates.tid == self.request.tid, \
                              models.SubmissionStates.id == submission_state_uuid)
 
-class SubmissionSubStateCollection(BaseHandler):
+class SubmissionSubStateCollection(OperationHandler):
     '''Manages substates for a given state'''
     check_roles = 'admin'
 
@@ -261,6 +277,10 @@ class SubmissionSubStateCollection(BaseHandler):
 
         return create_submission_substate(self.request.tid, submission_state_uuid, request)
 
+    def operation_descriptors(self):
+        return {
+            'order_elements': (order_substate_elements, {'ids': [text_type]}),
+        }
 
 class SubmissionSubStateInstance(BaseHandler):
     '''Manipulates a specific submission state'''

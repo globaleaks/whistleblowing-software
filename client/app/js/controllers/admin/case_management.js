@@ -116,17 +116,47 @@ GLClient.controller('AdminCaseManagementCtrl', ['$scope', function($scope){
       var updated_submission_substate = new AdminSubmissionSubStateResource(substate);
       return Utils.update(updated_submission_substate, cb);
     };
+
+    $scope.moveSsUp = function(e, idx) { swapSs(e, idx, -1); };
+    $scope.moveSsDown = function(e, idx) { swapSs(e, idx, 1); };
+  
+    function swapSs($event, index, n) {
+      $event.stopPropagation();
+  
+      var target = index + n;
+
+      if (target < 0 || target >= $scope.submission_state.substates.length) {
+        return;
+      }
+
+      $scope.submission_state.substates[index] = $scope.submission_state.substates[target];
+      $scope.submission_state.substates[target] = $scope.substate;
+
+      $http({
+        method: 'PUT',
+        url: '/admin/submission_states/' + $scope.submission_state.id + '/substates',
+        data: {
+          'operation': 'order_elements',
+          'args':  {'ids' : $scope.submission_state.substates.map(function(c) { return c.id })}
+        },
+      }).then(function() {
+        $rootScope.successes.push({});
+      });
+    }
   }
 ]).controller('AdminSubmissionSubStateAddCtrl', ['$scope', '$http',
   function ($scope, $http) {
+    $scope.presentation_order = $scope.newItemOrder($scope.submission_state.substates, 'presentation_order');
+
     $scope.addSubmissionSubState = function () {
-      var presentation_order = $scope.newItemOrder($scope.admin.submission_states, 'presentation_order');
+      console.log($scope.submission_state.substates)
 
       new_submission_substate = {
         'label': $scope.new_substate.label,
         'presentation_order': $scope.presentation_order
       }
 
+      console.log(new_submission_substate);
       $http.post(
         '/admin/submission_states/' + $scope.submission_state.id + '/substates',
         new_submission_substate
@@ -134,7 +164,8 @@ GLClient.controller('AdminCaseManagementCtrl', ['$scope', function($scope){
         $scope.reload();
       })
     }
-}]).controller('AdminSubmissionClosingStateCtrl', ['$scope', '$http',
+  }
+]).controller('AdminSubmissionClosingStateCtrl', ['$scope', '$http',
   function ($scope, $http) {
 
     $scope.closedState = undefined;
