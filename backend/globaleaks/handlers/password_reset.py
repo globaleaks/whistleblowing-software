@@ -52,7 +52,7 @@ def db_validate_password_reset(session, state, tid, reset_token):
     return user.auth_token
 
 
-def db_generate_password_reset_token(session, state, tid, username_or_email):
+def db_generate_password_reset_token(session, state, tid, username_or_email, allow_admins=False):
     '''Generates a reset token against the backend, then send email to validate it'''
     from globaleaks.handlers.admin.notification import db_get_notification
     from globaleaks.handlers.admin.node import db_admin_serialize_node
@@ -62,11 +62,13 @@ def db_generate_password_reset_token(session, state, tid, username_or_email):
     users = session.query(models.User).filter(
       or_(models.User.username == username_or_email,
           models.User.mail_address == username_or_email),
-      models.User.tid == tid,
-      models.User.role != u'admin'
+      models.User.tid == tid
     ).distinct()
 
     for user in users:
+        if user.role == u'admin' and allow_admins is False:
+            continue
+
         user.reset_password_token = generateRandomKey(32)
         user.reset_password_date = datetime_now()
 
@@ -84,18 +86,19 @@ def db_generate_password_reset_token(session, state, tid, username_or_email):
 
 
 @transact
-def generate_password_reset_token(session, state, tid, username_or_email):
+def generate_password_reset_token(session, state, tid, username_or_email, allow_admins=False):
     '''transact version of db_generate_password_reset_token'''
-    return db_generate_password_reset_token(session, state, tid, username_or_email)
+    return db_generate_password_reset_token(session, state, tid, username_or_email, allow_admins=allow_admins)
 
 class BasePasswordResetHandler(BaseHandler):
-    def pw_reset_handler(self):
+    def pw_reset_handler(self, allow_admins=False):
         request = self.validate_message(self.request.content.read(),
                                         requests.PasswordResetDesc)
 
         return generate_password_reset_token(self.state,
                                              self.request.tid,
-                                             request['username_or_email'])
+                                             request['username_or_email'],
+                                             allow_admins=allow_admins)
 
 class PasswordResetHandler(BasePasswordResetHandler):
     check_roles = 'unauthenticated'
@@ -122,4 +125,4 @@ class AdminPasswordResetHandler(BasePasswordResetHandler):
     check_roles = 'admin'
 
     def post(self):
-        return self.pw_reset_handler()
+        return self.pw_reset_handler(allow_admins=True)
