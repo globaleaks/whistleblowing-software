@@ -17,7 +17,7 @@
               <label data-translate>Submission state:</label>
               <!-- We need slice(1) here to hide the new state as it's always the first thing back out, but the returned string might be internationalized -->
               <select id="assignSubmissionState" data-ng-model="tip.selectedSubmissionState" data-ng-options="state as state.label for state in ::tip.submission_states.slice(1)"></select>
-              <select id="assignSubmissionSubState" data-ng-model="tip.selectedSubmissionSubState" data-ng-options="substate as substate.label for substate in ::tip.selectedSubmissionState.substates" data-ng-hide="::tip.selectedSubmissionState.substates.length === 0">
+              <select id="assignSubmissionSubState" data-ng-model="tip.selectedSubmissionSubState" data-ng-options="substate as substate.label for substate in tip.selectedSubmissionState.substates" data-ng-hide="tip.selectedSubmissionState.substates.length === 0">
                 <option value=""><span data-translate>(None)</span></option>
               </select>
             </div>

@@ -93,6 +93,8 @@ GLClient.controller('TipCtrl',
                 $scope.tip.selectedSubmissionSubState = s_substates[j]
               }
             }
+          } else {
+            $scope.submissionSubStateStr = ""
           }
           break;
         }
@@ -202,7 +204,6 @@ GLClient.controller('TipCtrl',
       if ($scope.tip.selectedSubmissionSubState) {
         substate_id = $scope.tip.selectedSubmissionSubState.id
       }
-      $scope.tip.updateSubmissionState($scope.tip.selectedSubmissionState.id, );
       $scope.handleSubmissionStateDisplay($scope.tip.selectedSubmissionState.id, substate_id);
     };
 
