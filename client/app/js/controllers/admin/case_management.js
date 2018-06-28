@@ -30,6 +30,27 @@ GLClient.controller('AdminCaseManagementCtrl', ['$scope', function($scope){
       });
     }
 
+    $scope.editableStatesList = function() {
+      var displayedStates = []
+      for (var i = 0; i < $scope.admin.submission_states.length; i++) {
+        var state = $scope.admin.submission_states[i];
+        if (state.system_defined === false) {
+          displayedStates.push(state);
+        }
+      }
+
+      return displayedStates;
+    }
+
+    function ss_idx(ss_id) {
+      for (var i = 0; i < $scope.admin.submission_states.length; i++) {
+        var state = $scope.admin.submission_states[i];
+        if (state.id === ss_id) {
+          return i;
+        }
+      }
+    }
+
     $scope.save_submission_state = function (context, cb) {
       var updated_submission_state = new AdminSubmissionStateResource(context);
       return Utils.update(updated_submission_state, cb);
@@ -42,20 +63,25 @@ GLClient.controller('AdminCaseManagementCtrl', ['$scope', function($scope){
       $event.stopPropagation();
   
       var target = index + n;
+      var states_list = $scope.editableStatesList();
 
-      if (target < 0 || target >= $scope.admin.submission_states.length) {
+      if (target < 0 || target >= states_list.length) {
         return;
       }
   
-      $scope.admin.submission_states[index] = $scope.admin.submission_states[target];
-      $scope.admin.submission_states[target] = $scope.submission_state;
+      // Because the base data structure and the one we display don't match ...
+      orig_index = ss_idx(states_list[index].id);
+      orig_target = ss_idx(states_list[target].id)
+
+      var moving_state = $scope.admin.submission_states[orig_index]
+      $scope.admin.submission_states[orig_index] = $scope.admin.submission_states[orig_target];
+      $scope.admin.submission_states[orig_target] = moving_state;
 
       // Return only the ids we want to reorder
       reordered_ids = {
         'ids': $scope.admin.submission_states.map(function(c) {
           if (c.system_defined === false) return c.id;
-          }
-        ).filter(function (c) {
+        }).filter(function (c) {
           if (c !== null) {
             return c
           }
@@ -149,14 +175,11 @@ GLClient.controller('AdminCaseManagementCtrl', ['$scope', function($scope){
     $scope.presentation_order = $scope.newItemOrder($scope.submission_state.substates, 'presentation_order');
 
     $scope.addSubmissionSubState = function () {
-      console.log($scope.submission_state.substates)
-
       new_submission_substate = {
         'label': $scope.new_substate.label,
         'presentation_order': $scope.presentation_order
       }
 
-      console.log(new_submission_substate);
       $http.post(
         '/admin/submission_states/' + $scope.submission_state.id + '/substates',
         new_submission_substate
@@ -179,6 +202,9 @@ GLClient.controller('AdminCaseManagementCtrl', ['$scope', function($scope){
       }
     }
 
+    // When we're under this controller, submission state changes
+    $scope.submission_state = $scope.closedState;
+
     $scope.editing = false;
     $scope.showAddState = false;
 
@@ -192,20 +218,21 @@ GLClient.controller('AdminCaseManagementCtrl', ['$scope', function($scope){
   }
 ]).controller('AdminSubmissionClosedSubStateAddCtrl', ['$scope', '$http',
   function ($scope, $http) {
+    $scope.closed_ss_presentation_order = $scope.newItemOrder($scope.closedState.substates, 'presentation_order');
 
     // It would be nice to refactor this with addSubmissionSubState
-  $scope.addClosingSubmissionSubState = function () {
-    new_submission_substate = {
-      'label': $scope.new_closed_submission_substate.label
+    $scope.addClosingSubmissionSubState = function () {
+      new_submission_substate = {
+        'label': $scope.new_closed_submission_substate.label,
+        'presentation_order': $scope.closed_ss_presentation_order
+      }
+
+      $http.post(
+        '/admin/submission_states/' + $scope.closedState.id + '/substates',
+        new_submission_substate
+      ).then(function (response) {
+        $scope.reload();
+      })
     }
-
-    $http.post(
-      '/admin/submission_states/' + $scope.closedState.id + '/substates',
-      new_submission_substate
-    ).then(function (response) {
-      $scope.reload();
-    })
-  }
-
   }
 ])
