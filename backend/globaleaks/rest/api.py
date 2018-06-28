@@ -115,6 +115,9 @@ api_spec = [
     (r'/reset/password', password_reset.PasswordResetHandler),
     (r'/reset/password/(.+)', password_reset.PasswordResetHandler),
 
+    # Admins can force a reset regardless of the system state
+    (r'/admin/reset/password', password_reset.AdminPasswordResetHandler),
+
     ## Admin Handlers ##
     (r'/admin/node', admin_node.NodeInstance),
     (r'/admin/users', admin_user.UsersCollection),
