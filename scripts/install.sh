@@ -9,7 +9,7 @@ fi
 # Preliminary requirements check
 ERR=0
 echo "Checking preliminary packaging GlobaLeaks requirements"
-for REQ in apt-key apt-get
+for REQ in apt-key apt-get gpg
 do
   if which $REQ >/dev/null; then
     echo " + $REQ requirement met"
