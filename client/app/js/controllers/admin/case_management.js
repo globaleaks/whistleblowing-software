@@ -5,15 +5,15 @@ GLClient.controller('AdminCaseManagementCtrl', ['$scope', function($scope){
       template:"views/admin/case_management/tab1.html"
     }
   ];
-}]).controller('AdminSubmissionStateCtrl', ['$scope', 'AdminSubmissionStateResource',
-  function ($scope, AdminSubmissionStateResource) {
+}]).controller('AdminSubmissionStateCtrl', ['$scope',
+  function ($scope) {
     $scope.showAddState = false;
     $scope.toggleAddState = function () {
       $scope.showAddState = !$scope.showAddState;
     };
   }
-]).controller('AdminSubmissionStateEditorCtrl', ['$scope', '$http', 'Utils', 'AdminSubmissionStateResource',
-  function ($scope, $http, Utils, AdminSubmissionStateResource) {
+]).controller('AdminSubmissionStateEditorCtrl', ['$scope', '$rootScope', '$http', 'Utils', 'AdminSubmissionStateResource',
+  function ($scope, $rootScope, $http, Utils, AdminSubmissionStateResource) {
     $scope.editing = false;
     $scope.toggleEditing = function () {
       $scope.editing = !$scope.editing;
@@ -70,15 +70,15 @@ GLClient.controller('AdminCaseManagementCtrl', ['$scope', function($scope){
       }
   
       // Because the base data structure and the one we display don't match ...
-      orig_index = ss_idx(states_list[index].id);
-      orig_target = ss_idx(states_list[target].id)
+      var orig_index = ss_idx(states_list[index].id);
+      var orig_target = ss_idx(states_list[target].id)
 
       var moving_state = $scope.admin.submission_states[orig_index]
       $scope.admin.submission_states[orig_index] = $scope.admin.submission_states[orig_target];
       $scope.admin.submission_states[orig_target] = moving_state;
 
       // Return only the ids we want to reorder
-      reordered_ids = {
+      var reordered_ids = {
         'ids': $scope.admin.submission_states.map(function(c) {
           if (c.system_defined === false) return c.id;
         }).filter(function (c) {
@@ -105,7 +105,7 @@ GLClient.controller('AdminCaseManagementCtrl', ['$scope', function($scope){
     var presentation_order = $scope.newItemOrder($scope.admin.submission_states, 'presentation_order');
 
     $scope.addSubmissionState = function () {
-      new_submission_state = {
+      var new_submission_state = {
         'label': $scope.new_submission_state.label,
         'presentation_order': presentation_order
       }
@@ -113,14 +113,14 @@ GLClient.controller('AdminCaseManagementCtrl', ['$scope', function($scope){
       $http.post(
         '/admin/submission_states',
         new_submission_state
-      ).then(function (response) {
+      ).then(function () {
         $scope.reload();
       })
     }
-}]).controller('AdminSubmissionSubStateCtrl', ['$scope', 'AdminSubmissionStateResource',
-  function ($scope, AdminSubmissionStateResource) {
-}]).controller('AdminSubmissionSubStateEditorCtrl', ['$scope', '$http', 'Utils', 'AdminSubmissionSubStateResource',
-  function ($scope, $http, Utils, AdminSubmissionSubStateResource) {
+}]).controller('AdminSubmissionSubStateCtrl', [
+  function () {
+}]).controller('AdminSubmissionSubStateEditorCtrl', ['$scope', '$rootScope', '$http', 'Utils', 'AdminSubmissionSubStateResource',
+  function ($scope, $rootScope, $http, Utils, AdminSubmissionSubStateResource) {
     $scope.editing = false;
     $scope.toggleEditing = function () {
       $scope.editing = !$scope.editing;
@@ -175,7 +175,7 @@ GLClient.controller('AdminCaseManagementCtrl', ['$scope', function($scope){
     $scope.presentation_order = $scope.newItemOrder($scope.submission_state.substates, 'presentation_order');
 
     $scope.addSubmissionSubState = function () {
-      new_submission_substate = {
+      var new_submission_substate = {
         'label': $scope.new_substate.label,
         'presentation_order': $scope.presentation_order
       }
@@ -183,13 +183,13 @@ GLClient.controller('AdminCaseManagementCtrl', ['$scope', function($scope){
       $http.post(
         '/admin/submission_states/' + $scope.submission_state.id + '/substates',
         new_submission_substate
-      ).then(function (response) {
+      ).then(function () {
         $scope.reload();
       })
     }
   }
-]).controller('AdminSubmissionClosingStateCtrl', ['$scope', '$http',
-  function ($scope, $http) {
+]).controller('AdminSubmissionClosingStateCtrl', ['$scope',
+  function ($scope) {
 
     $scope.closedState = undefined;
 
@@ -222,7 +222,7 @@ GLClient.controller('AdminCaseManagementCtrl', ['$scope', function($scope){
 
     // It would be nice to refactor this with addSubmissionSubState
     $scope.addClosingSubmissionSubState = function () {
-      new_submission_substate = {
+      var new_submission_substate = {
         'label': $scope.new_closed_submission_substate.label,
         'presentation_order': $scope.closed_ss_presentation_order
       }
@@ -230,7 +230,7 @@ GLClient.controller('AdminCaseManagementCtrl', ['$scope', function($scope){
       $http.post(
         '/admin/submission_states/' + $scope.closedState.id + '/substates',
         new_submission_substate
-      ).then(function (response) {
+      ).then(function () {
         $scope.reload();
       })
     }

@@ -1,6 +1,4 @@
 # Handle manipulation of submission states
-import base64
-import os
 import uuid
 
 from six import text_type
@@ -14,11 +12,9 @@ from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.operation import OperationHandler
 from globaleaks.orm import transact
 from globaleaks.rest import requests
-from globaleaks.utils.security import directory_traversal_check
-from globaleaks.utils.utility import uuid4
-
 
 def serialize_submission_state(session, row):
+    '''Serializes a submission state into dictionary form for the client'''
     submission_state = {
         'id': row.id,
         'tid': row.tid,
@@ -56,6 +52,7 @@ def serialized_submission_substate(row):
 
 @transact
 def retrieve_all_submission_states(session, tid):
+    '''Transact version of db_retrieve_all_submission_states'''
     return db_retrieve_all_submission_states(session, tid)
 
 
@@ -97,10 +94,12 @@ def db_retrieve_all_submission_states(session, tid):
 
 @transact
 def retrieve_specific_submission_state(session, tid, submission_state_uuid):
+    '''Transact version of db_retrieve_specific_submission_state'''
     return db_retrieve_specific_submission_state(session, tid, submission_state_uuid)
 
 
 def db_retrieve_specific_submission_state(session, tid, submission_state_uuid):
+    '''Retrieves a specific state serialized as a rows'''
     state = session.query(models.SubmissionStates) \
         .filter(models.SubmissionStates.tid == tid, \
                 models.SubmissionStates.id == submission_state_uuid).first()
@@ -133,6 +132,7 @@ def create_submission_state(session, tid, request):
 
 @transact
 def update_submission_state(session, tid, submission_state_uuid, request):
+    '''Updates the submission state from request objects'''
     state = session.query(models.SubmissionStates) \
         .filter(models.SubmissionStates.tid == tid, \
                 models.SubmissionStates.id == submission_state_uuid).first()
@@ -147,6 +147,7 @@ def update_submission_state(session, tid, submission_state_uuid, request):
 
 @transact
 def get_id_for_system_state(session, tid, system_state):
+    '''Returns the ID of a system defined state'''
     return db_get_id_for_system_state(session, tid, system_state)
 
 
@@ -184,6 +185,7 @@ def update_substate_model_from_request(model_obj, substate_request):
 
 @transact
 def update_submission_substate(session, tid, submission_state_uuid, substate_uuid, request):
+    '''Updates a substate from a request object'''
     # Safety check
     db_retrieve_specific_submission_state(session, tid, submission_state_uuid)
 
@@ -220,6 +222,9 @@ def create_submission_substate(session, tid, submission_state_uuid, request):
 
 @transact
 def order_state_elements(session, handler, req_args, *args, **kwargs):
+    '''Sets the presentation order for state elements'''
+
+    # Presentation order is ignored for states
     states = session.query(models.SubmissionStates).filter(
         models.SubmissionStates.tid == handler.request.tid,
         models.SubmissionStates.system_defined == 0)
@@ -235,6 +240,8 @@ def order_state_elements(session, handler, req_args, *args, **kwargs):
 
 @transact
 def order_substate_elements(session, handler, req_args, *args, **kwargs):
+    '''Sets presentation order for substates'''
+
     submission_state_id = args[0]
 
     substates = session.query(models.SubmissionSubStates).filter(
@@ -288,7 +295,8 @@ class SubmissionSubStateCollection(OperationHandler):
 
     @inlineCallbacks
     def get(self, submission_state_uuid):
-        submission_state = yield retrieve_specific_submission_state(self.request.tid, submission_state_uuid)
+        submission_state = yield retrieve_specific_submission_state(
+            self.request.tid, submission_state_uuid)
 
         returnValue(submission_state['substates'])
 
