@@ -4,8 +4,8 @@ GLClient.controller('AdminUsersCtrl', ['$scope',
     $scope.toggleAddUser = function() {
       $scope.showAddUser = !$scope.showAddUser;
     };
-}]).controller('AdminUserEditorCtrl', ['$scope', '$rootScope', 'Utils', 'AdminUserResource',
-  function($scope, $rootScope, Utils, AdminUserResource) {
+}]).controller('AdminUserEditorCtrl', ['$scope', '$rootScope', '$http', 'Utils', 'AdminUserResource',
+  function($scope, $rootScope, $http, Utils, AdminUserResource) {
     $scope.deleteUser = function() {
       Utils.deleteDialog($scope.user).then(function() {
         return Utils.deleteResource(AdminUserResource, $scope.admin.users, $scope.user);
@@ -44,6 +44,15 @@ GLClient.controller('AdminUsersCtrl', ['$scope',
         $scope.user.pgp_key_public = txt;
       }, Utils.displayErrorMsg);
     }
+
+    $scope.resetUserPassword = function() {
+      $http.post(
+        'admin/reset/password',
+        { 'username_or_email' : $scope.user.username }
+      ).then(function() {
+        $rootScope.successes.push({message: 'Success!'});
+      })
+    }  
 }]).
 controller('AdminUserAddCtrl', ['$scope',
   function($scope) {
