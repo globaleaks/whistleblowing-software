@@ -1,22 +1,22 @@
-# -*- coding: utf-8 -*-
-import json
+'''Tests Submission State code'''
 
+# -*- coding: utf-8 -*-
 from globaleaks import models
 from globaleaks.handlers.admin import submission_states
-from globaleaks.jobs.delivery import Delivery
-from globaleaks.rest import requests
+from globaleaks.orm import transact
 from globaleaks.tests import helpers
 from twisted.internet.defer import inlineCallbacks
 
-from globaleaks.orm import transact
 
 @transact
 def count_submission_states(session, tid):
-    return session.query(models.SubmissionStates).filter(
-        models.SubmissionStates.tid==tid).count()
+    '''Counts all submission states in the system'''
+    return session.query(models.SubmissionStates) \
+        .filter(models.SubmissionStates.tid==tid).count()
 
 @transact
 def create_substate(session, submissionstate_id):
+    '''Creates a test substate'''
     substate = models.SubmissionSubStates()
     substate.submissionstate_id = submissionstate_id
     substate.label = "Test1"
