@@ -62,15 +62,36 @@ def retrieve_all_submission_states(session, tid):
 def db_retrieve_all_submission_states(session, tid):
     '''Retrieves all submission states'''
     submission_states = []
+    user_submission_states = []
 
     rows = session.query(models.SubmissionStates) \
         .filter(models.SubmissionStates.tid == tid) \
         .order_by(models.SubmissionStates.presentation_order)
 
+    # We need special handle system states vs. user defined ones
+    new_state = None
+    open_state = None
+    closed_state = None
+
     for row in rows:
-        submission_states.append(
-            serialize_submission_state(session, row)
-        )
+        if row.system_defined is False:
+            user_submission_states.append(
+                serialize_submission_state(session, row)
+            )
+        elif row.system_usage == 'new':
+            new_state = serialize_submission_state(session, row)
+        elif row.system_usage == 'open':
+            open_state = serialize_submission_state(session, row)
+        elif row.system_usage == 'closed':
+            closed_state = serialize_submission_state(session, row)
+
+    # Build the final array in the correct order
+    submission_states.append(new_state)
+    submission_states.append(open_state)
+    submission_states += user_submission_states
+    submission_states.append(closed_state)
+
+    # Now we need to return it in the properly sorted order
     return submission_states
 
 

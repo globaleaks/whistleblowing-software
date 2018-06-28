@@ -27,47 +27,49 @@
     </div>
   </div>
 </div>
-<div class="submissionStateList" data-ng-repeat="submission_state in admin.submission_states">
-  <div data-ng-form="submissionState-{{$index}}" name="editsubmissionState" data-ng-controller="AdminSubmissionStateEditorCtrl" data-ng-if="!submission_state.system_usage" novalidate>
-    <div class="configItem">
-      <div class="editorHeader row">
-        <span class="col-md-7 editorHeaderTitle">
-          <span>{{submission_state.label}}</span>
-        </span>
-        <span class="col-md-5">
-          <span class="pull-right">
-            <button data-ng-if="!$first" class="btn btn-xs btn-primary" data-ng-click="moveUp($event, $index)" uib-popover="{{'Move up' | translate}}" popover-placement="left">
-              <i class="glyphicon glyphicon-menu-up"></i>
-            </button>
-            <button data-ng-if="!$last" class="btn btn-xs btn-primary" data-ng-click="moveDown($event, $index)" uib-popover="{{'Move down' | translate}}" popover-placement="left">
-              <i class="glyphicon glyphicon-menu-down"></i>
-            </button>
-            <button class="btn btn-xs btn-default" data-ng-show="!editing" data-ng-click="toggleEditing(); $event.stopPropagation();">
-              <span data-translate>Edit</span>
-            </button>
-            <button class="btn btn-xs btn-success" data-ng-show="editing" data-ng-disabled="editSubmissionState.$invalid" data-ng-click="save_submission_state(submission_state)">
-              <span data-translate>Save</span>
-            </button>
-            <button class="btn btn-xs btn-default" data-ng-show="editing" data-ng-click="toggleEditing(); $event.stopPropagation();">
-              <span data-translate>Cancel</span>
-            </button>
-            <button class="btn btn-xs btn-danger" data-ng-if=!submission_state.default data-ng-click="deleteSubmissionState(); $event.stopPropagation();">
-              <span data-translate>Delete</span>
-            </button>
+<div data-ng-controller="AdminSubmissionStateEditorCtrl" class="submissionStateList">
+  <div data-ng-repeat="submission_state in editableStatesList()">
+    <div data-ng-form="submissionState-{{$index}}" name="editsubmissionState" novalidate>
+      <div class="configItem">
+        <div class="editorHeader row">
+          <span class="col-md-7 editorHeaderTitle">
+            <span>{{submission_state.label}}</span>
           </span>
-        </span>
-      </div>
-      <div data-ng-if="editing">
-        <hr />
-        <div class="row">
-          <div class="col-md-6">
-            <div class="form-group">
-              <label data-translate>Label</label>
-              <input name="name" class="form-control" data-ng-model="submission_state.label" type="text" required>
-              <div class="text-danger" data-ng-show="editSubmissionState.name.$error.required" data-translate>This field is mandatory</div>
+          <span class="col-md-5">
+            <span class="pull-right">
+              <button data-ng-if="!$first" class="btn btn-xs btn-primary" data-ng-click="moveUp($event, $index)" uib-popover="{{'Move up' | translate}}" popover-placement="left">
+                <i class="glyphicon glyphicon-menu-up"></i>
+              </button>
+              <button data-ng-if="!$last" class="btn btn-xs btn-primary" data-ng-click="moveDown($event, $index)" uib-popover="{{'Move down' | translate}}" popover-placement="left">
+                <i class="glyphicon glyphicon-menu-down"></i>
+              </button>
+              <button class="btn btn-xs btn-default" data-ng-show="!editing" data-ng-click="toggleEditing(); $event.stopPropagation();">
+                <span data-translate>Edit</span>
+              </button>
+              <button class="btn btn-xs btn-success" data-ng-show="editing" data-ng-disabled="editSubmissionState.$invalid" data-ng-click="save_submission_state(submission_state)">
+                <span data-translate>Save</span>
+              </button>
+              <button class="btn btn-xs btn-default" data-ng-show="editing" data-ng-click="toggleEditing(); $event.stopPropagation();">
+                <span data-translate>Cancel</span>
+              </button>
+              <button class="btn btn-xs btn-danger" data-ng-if=!submission_state.default data-ng-click="deleteSubmissionState(); $event.stopPropagation();">
+                <span data-translate>Delete</span>
+              </button>
+            </span>
+          </span>
+        </div>
+        <div data-ng-if="editing">
+          <hr />
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label data-translate>Label</label>
+                <input name="name" class="form-control" data-ng-model="submission_state.label" type="text" required>
+                <div class="text-danger" data-ng-show="editSubmissionState.name.$error.required" data-translate>This field is mandatory</div>
+              </div>
             </div>
+            <div class="col-md-12" data-ng-include="'views/admin/case_management/substates.html'"></div>
           </div>
-          <div class="col-md-12" data-ng-include="'views/admin/case_management/substates.html'"></div>
         </div>
       </div>
     </div>
@@ -111,6 +113,12 @@
             </span>
             <span class="col-md-5">
               <span class="pull-right">
+                <button data-ng-if="!$first" class="btn btn-xs btn-primary" data-ng-click="moveSsUp($event, $index)" uib-popover="{{'Move up' | translate}}" popover-placement="left">
+                  <i class="glyphicon glyphicon-menu-up"></i>
+                </button>
+                <button data-ng-if="!$last" class="btn btn-xs btn-primary" data-ng-click="moveSsDown($event, $index)" uib-popover="{{'Move down' | translate}}" popover-placement="left">
+                  <i class="glyphicon glyphicon-menu-down"></i>
+                </button>    
                 <button class="btn btn-xs btn-default" data-ng-show="!editing" data-ng-click="toggleEditing(); $event.stopPropagation();">
                   <span data-translate>Edit</span>
                 </button>
