@@ -88,8 +88,16 @@ def generate_password_reset_token(session, state, tid, username_or_email):
     '''transact version of db_generate_password_reset_token'''
     return db_generate_password_reset_token(session, state, tid, username_or_email)
 
+class BasePasswordResetHandler(BaseHandler):
+    def pw_reset_handler(self):
+        request = self.validate_message(self.request.content.read(),
+                                        requests.PasswordResetDesc)
 
-class PasswordResetHandler(BaseHandler):
+        return generate_password_reset_token(self.state,
+                                             self.request.tid,
+                                             request['username_or_email'])
+
+class PasswordResetHandler(BasePasswordResetHandler):
     check_roles = 'unauthenticated'
     failure_url = "/#/login/passwordreset/failure"
 
@@ -104,12 +112,14 @@ class PasswordResetHandler(BaseHandler):
         self.redirect(self.failure_url)
 
     def post(self):
-        request = self.validate_message(self.request.content.read(),
-                                        requests.PasswordResetDesc)
-
         if State.tenant_cache[self.request.tid]['enable_password_reset'] is False:
             return
 
-        return generate_password_reset_token(self.state,
-                                             self.request.tid,
-                                             request['username_or_email'])
+        return self.pw_reset_handler()
+
+class AdminPasswordResetHandler(BasePasswordResetHandler):
+    '''Admins can force a PW reset'''
+    check_roles = 'admin'
+
+    def post(self):
+        return self.pw_reset_handler()
