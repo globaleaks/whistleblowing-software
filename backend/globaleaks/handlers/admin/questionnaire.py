@@ -38,19 +38,19 @@ def get_questionnaire_list(session, tid, language):
     return db_get_questionnaire_list(session, tid, language)
 
 
-def db_get_questionnaire(session, tid, questionnaire_id, language):
+def db_get_questionnaire(session, tid, questionnaire_id, language, serialize_templates=True):
     """
     Returns:
         (dict) the questionnaire with the specified id.
     """
     questionnaire = models.db_get(session, models.Questionnaire, models.Questionnaire.tid.in_(set([1, tid])), models.Questionnaire.id == questionnaire_id)
 
-    return serialize_questionnaire(session, tid, questionnaire, language)
+    return serialize_questionnaire(session, tid, questionnaire, language, serialize_templates=serialize_templates)
 
 
 @transact
-def get_questionnaire(session, tid, questionnaire_id, language):
-    return db_get_questionnaire(session, tid, questionnaire_id, language)
+def get_questionnaire(session, tid, questionnaire_id, language,serialize_templates=True):
+    return db_get_questionnaire(session, tid, questionnaire_id, language, serialize_templates=serialize_templates)
 
 
 def db_update_questionnaire(session, questionnaire, request, language):
@@ -119,7 +119,7 @@ def duplicate_questionnaire(session, state, tid, questionnaire_id, new_name):
     Duplicates a questionaire, assigning new IDs to all sub components
     """
 
-    q = db_get_questionnaire(session, tid, questionnaire_id, None)
+    q = db_get_questionnaire(session, tid, questionnaire_id, None, serialize_templates=False)
 
     # We need to change the primary key references and so this can be reimported
     # as a new questionnaire
