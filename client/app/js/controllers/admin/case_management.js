@@ -11,6 +11,18 @@ GLClient.controller('AdminCaseManagementCtrl', ['$scope', function($scope){
     $scope.toggleAddState = function () {
       $scope.showAddState = !$scope.showAddState;
     };
+
+    $scope.editableStatesList = function() {
+      var displayedStates = []
+      for (var i = 0; i < $scope.admin.submission_states.length; i++) {
+        var state = $scope.admin.submission_states[i];
+        if (state.system_defined === false) {
+          displayedStates.push(state);
+        }
+      }
+
+      return displayedStates;
+    }
   }
 ]).controller('AdminSubmissionStateEditorCtrl', ['$scope', '$rootScope', '$http', 'Utils', 'AdminSubmissionStateResource',
   function ($scope, $rootScope, $http, Utils, AdminSubmissionStateResource) {
@@ -25,21 +37,9 @@ GLClient.controller('AdminCaseManagementCtrl', ['$scope', function($scope){
     };
 
     $scope.deleteSubmissionState = function() {
-      Utils.deleteDialog($scope.context).then(function() {
+      Utils.deleteDialog($scope.submission_state).then(function() {
         return Utils.deleteResource(AdminSubmissionStateResource, $scope.admin.submission_states, $scope.submission_state);
       });
-    }
-
-    $scope.editableStatesList = function() {
-      var displayedStates = []
-      for (var i = 0; i < $scope.admin.submission_states.length; i++) {
-        var state = $scope.admin.submission_states[i];
-        if (state.system_defined === false) {
-          displayedStates.push(state);
-        }
-      }
-
-      return displayedStates;
     }
 
     function ss_idx(ss_id) {
@@ -58,17 +58,17 @@ GLClient.controller('AdminCaseManagementCtrl', ['$scope', function($scope){
 
     $scope.moveUp = function(e, idx) { swap(e, idx, -1); };
     $scope.moveDown = function(e, idx) { swap(e, idx, 1); };
-  
+
     function swap($event, index, n) {
       $event.stopPropagation();
-  
+
       var target = index + n;
       var states_list = $scope.editableStatesList();
 
       if (target < 0 || target >= states_list.length) {
         return;
       }
-  
+
       // Because the base data structure and the one we display don't match ...
       var orig_index = ss_idx(states_list[index].id);
       var orig_target = ss_idx(states_list[target].id)
@@ -98,7 +98,7 @@ GLClient.controller('AdminCaseManagementCtrl', ['$scope', function($scope){
       }).then(function() {
         $rootScope.successes.push({});
       });
-    }  
+    }
   }
 ]).controller('AdminSubmissionStateAddCtrl', ['$scope', '$http',
   function ($scope, $http) {
@@ -121,9 +121,9 @@ GLClient.controller('AdminCaseManagementCtrl', ['$scope', function($scope){
   function () {
 }]).controller('AdminSubmissionSubStateEditorCtrl', ['$scope', '$rootScope', '$http', 'Utils', 'AdminSubmissionSubStateResource',
   function ($scope, $rootScope, $http, Utils, AdminSubmissionSubStateResource) {
-    $scope.editing = false;
-    $scope.toggleEditing = function () {
-      $scope.editing = !$scope.editing;
+    $scope.substate_editing = false;
+    $scope.toggleSubstateEditing = function () {
+      $scope.substate_editing = !$scope.substate_editing;
     }
 
     $scope.deleteSubSubmissionState = function() {
@@ -145,10 +145,10 @@ GLClient.controller('AdminCaseManagementCtrl', ['$scope', function($scope){
 
     $scope.moveSsUp = function(e, idx) { swapSs(e, idx, -1); };
     $scope.moveSsDown = function(e, idx) { swapSs(e, idx, 1); };
-  
+
     function swapSs($event, index, n) {
       $event.stopPropagation();
-  
+
       var target = index + n;
 
       if (target < 0 || target >= $scope.submission_state.substates.length) {
@@ -205,12 +205,7 @@ GLClient.controller('AdminCaseManagementCtrl', ['$scope', function($scope){
     // When we're under this controller, submission state changes
     $scope.submission_state = $scope.closedState;
 
-    $scope.editing = false;
     $scope.showAddState = false;
-
-    $scope.toggleEditing = function () {
-      $scope.editing = !$scope.editing;
-    };
 
     $scope.toggleAddState = function () {
       $scope.showAddState = !$scope.showAddState;
