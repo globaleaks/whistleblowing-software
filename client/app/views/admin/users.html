@@ -125,7 +125,16 @@
                     <div class="text-danger" data-ng-show="editUser.email.$error.required" data-translate>This field is mandatory</div>
                     <div class="text-danger" data-ng-show="editUser.email.$error.pattern" data-translate>Invalid email address</div>
                   </div>
-                  <div class="btn btn-warning" data-ng-click="resetUserPassword()" data-translate>New Password</div>
+                  <div class="btn btn-warning" data-ng-click="resetUserPassword()" data-translate>Reset Password</div>
+                  <div data-ng-init="user.newpassword = false" data-ng-if="!user.newpassword" class="btn btn-warning" data-ng-click="user.newpassword=!user.newpassword" data-translate>New Password</div>
+                  <div data-ng-if="user.newpassword" class="form-group" data-ng-form="userPasswordForm" data-ng-class="{'has-error': passwordStrength.score > 0 && !userPassword.password.$valid}">
+                    <label data-translate>Password</label>
+                    <input name="password" class="form-control" data-ng-model="user.password" type="password" autocomplete="off" zxcvbn="passwordStrength" zx-min-score="3" />
+                    <zx-password-meter value="passwordStrength"></zx-password-meter>
+                    <div class="text-danger" data-ng-show="user.password != '' && editUser.password.$error.passwordStrength">
+                      <p data-translate>The chosen password is too weak. Make it more secure by adding special characters, numbers, and unusual symbols.</p>
+                    </div>
+                  </div>                  
                   <div class="form-group">
                     <input data-ng-model="user.password_change_needed" type="checkbox" />
                     <label data-translate>Force password change</label>
