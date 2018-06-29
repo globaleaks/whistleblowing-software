@@ -20,7 +20,7 @@ GLClient.controller('AdminNetworkCtrl', ['$scope', '$http', function($scope, $ht
       }
     };
 
-    return $http({method: 'PUT', url: 'admin/config', data: req});
+    return $http({method: 'PUT', url: 'admin/cmd', data: req});
   };
 
   $scope.verifyHostname = function() {
@@ -33,7 +33,7 @@ GLClient.controller('AdminNetworkCtrl', ['$scope', '$http', function($scope, $ht
       }
     };
 
-    return $http({method: 'PUT', url: 'admin/config', data: req}).then(
+    return $http({method: 'PUT', url: 'admin/cmd', data: req}).then(
       function() {
         $scope.verifyFailed = false;
       }, function() {
@@ -142,7 +142,7 @@ controller('AdminHTTPSConfigCtrl', ['$q', '$location', '$http', '$scope', '$uibM
   $scope.downloadFile = function(resource) {
      $http({
         method: 'GET',
-        url: 'admin/config/tls/files/' + resource.name,
+        url: 'admin/cmd/tls/files/' + resource.name,
         responseType: 'blob',
      }).then(function (response) {
         FileSaver.saveAs(response.data, resource.name + '.pem');
