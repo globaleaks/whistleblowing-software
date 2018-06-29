@@ -10,6 +10,7 @@ from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import models
 from globaleaks.handlers.base import BaseHandler
+from globaleaks.handlers.operation import OperationHandler
 from globaleaks.handlers.user import user_serialize_user
 
 from globaleaks.models import get_auth_token
@@ -54,11 +55,6 @@ def db_validate_password_reset(session, state, tid, reset_token):
 
 def db_generate_password_reset_token(session, state, tid, username_or_email, allow_admins=False):
     '''Generates a reset token against the backend, then send email to validate it'''
-    from globaleaks.handlers.admin.notification import db_get_notification
-    from globaleaks.handlers.admin.node import db_admin_serialize_node
-    from globaleaks.handlers.admin.user import get_user
-    from globaleaks.handlers.user import user_serialize_user
-
     users = session.query(models.User).filter(
       or_(models.User.username == username_or_email,
           models.User.mail_address == username_or_email),
@@ -66,23 +62,33 @@ def db_generate_password_reset_token(session, state, tid, username_or_email, all
     ).distinct()
 
     for user in users:
-        if user.role == u'admin' and allow_admins is False:
-            continue
+        do_password_reset_for_user(
+            session, state, tid, user, allow_admins=allow_admins
+        )
 
-        user.reset_password_token = generateRandomKey(32)
-        user.reset_password_date = datetime_now()
+def do_password_reset_for_user(session, state, tid, user, allow_admins=False):
+    from globaleaks.handlers.admin.notification import db_get_notification
+    from globaleaks.handlers.admin.node import db_admin_serialize_node
+    from globaleaks.handlers.admin.user import get_user
+    from globaleaks.handlers.user import user_serialize_user
 
-        user_desc = user_serialize_user(session, user, user.language)
+    if user.role == u'admin' and allow_admins is False:
+        return
 
-        template_vars = {
-            'type': 'password_reset_validation',
-            'user': user_desc,
-            'reset_token': user.reset_password_token,
-            'node': db_admin_serialize_node(session, 1, user.language),
-            'notification': db_get_notification(session, tid, user.language)
-        }
+    user.reset_password_token = generateRandomKey(32)
+    user.reset_password_date = datetime_now()
 
-        state.format_and_send_mail(session, tid, user_desc, template_vars)
+    user_desc = user_serialize_user(session, user, user.language)
+
+    template_vars = {
+        'type': 'password_reset_validation',
+        'user': user_desc,
+        'reset_token': user.reset_password_token,
+        'node': db_admin_serialize_node(session, 1, user.language),
+        'notification': db_get_notification(session, tid, user.language)
+    }
+
+    state.format_and_send_mail(session, tid, user_desc, template_vars)
 
 
 @transact
@@ -90,17 +96,13 @@ def generate_password_reset_token(session, state, tid, username_or_email, allow_
     '''transact version of db_generate_password_reset_token'''
     return db_generate_password_reset_token(session, state, tid, username_or_email, allow_admins=allow_admins)
 
-class BasePasswordResetHandler(BaseHandler):
-    def pw_reset_handler(self, allow_admins=False):
-        request = self.validate_message(self.request.content.read(),
-                                        requests.PasswordResetDesc)
+@transact
+def admin_reset_user_pw(session, state, tid, user_id, allow_admins=False):
+    user = session.query(models.User).filter(
+        models.User.id == user_id).first()
+    do_password_reset_for_user(session, state, tid, user, allow_admins=True)
 
-        return generate_password_reset_token(self.state,
-                                             self.request.tid,
-                                             request['username_or_email'],
-                                             allow_admins=allow_admins)
-
-class PasswordResetHandler(BasePasswordResetHandler):
+class PasswordResetHandler(BaseHandler):
     check_roles = 'unauthenticated'
     failure_url = "/#/login/passwordreset/failure"
 
@@ -118,11 +120,10 @@ class PasswordResetHandler(BasePasswordResetHandler):
         if State.tenant_cache[self.request.tid]['enable_password_reset'] is False:
             return
 
-        return self.pw_reset_handler()
+        request = self.validate_message(self.request.content.read(),
+                                        requests.PasswordResetDesc)
 
-class AdminPasswordResetHandler(BasePasswordResetHandler):
-    '''Admins can force a PW reset'''
-    check_roles = 'admin'
-
-    def post(self):
-        return self.pw_reset_handler(allow_admins=True)
+        return generate_password_reset_token(self.state,
+                                             self.request.tid,
+                                             request['username_or_email'],
+                                             allow_admins=True)
