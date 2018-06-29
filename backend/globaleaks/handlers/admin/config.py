@@ -47,7 +47,7 @@ def set_config_variable(session, tid, var, val):
     db_refresh_memory_variables(session, [tid])
 
 
-class AdminConfigHandler(OperationHandler):
+class AdminOperationsHandler(OperationHandler):
     """
     This interface exposes the enable to configure and verify the platform hostname
     """
@@ -83,4 +83,5 @@ class AdminConfigHandler(OperationHandler):
         return {
             'set_hostname': (AdminConfigHandler.set_hostname, {'value': text_type}),
             'verify_hostname': (AdminConfigHandler.verify_hostname, {'value': text_type})
+
         }
