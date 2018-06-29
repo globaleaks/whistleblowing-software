@@ -8,7 +8,7 @@ from twisted.internet import defer, reactor
 
 
 class TestHostnameConfig(helpers.TestHandler):
-    _handler = config.AdminConfigHandler
+    _handler = config.AdminOperationsHandler
 
     @defer.inlineCallbacks
     def test_put(self):
