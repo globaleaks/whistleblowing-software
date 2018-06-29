@@ -59,6 +59,7 @@ ConfigDescriptor = {
     u'smtp_source_name': Unicode(default=u'GlobaLeaks - CHANGE EMAIL ACCOUNT USED FOR NOTIFICATION'),
     u'smtp_source_email': Unicode(default=u'notification@demo.globaleaks.org'),
     u'smtp_security': Unicode(default=u'TLS'),
+    u'smtp_authentication': Bool(default=True),
 
     u'disable_admin_notification_emails': Bool(default=False),
     u'disable_custodian_notification_emails': Bool(default=False),
@@ -240,6 +241,7 @@ ConfigFilters = {
         u'smtp_source_name',
         u'smtp_source_email',
         u'smtp_security',
+        u'smtp_authentication',
         u'disable_admin_notification_emails',
         u'disable_custodian_notification_emails',
         u'disable_receiver_notification_emails',

@@ -57,7 +57,7 @@ def MIME_mail_build(src_name, src_mail, dest_name, dest_mail, title, mail_body):
         return BytesIO(multipart.as_bytes()) # pylint: disable=no-member
 
 
-def sendmail(tid, username, password, smtp_host, smtp_port, security, from_name, from_address, to_address, subject, body, anonymize=True, socks_host='127.0.0.1', socks_port=9050):
+def sendmail(tid, smtp_host, smtp_port, security, authentication, username, password, from_name, from_address, to_address, subject, body, anonymize=True, socks_host='127.0.0.1', socks_port=9050):
     """
     Send an email using SMTPS/SMTP+TLS and maybe torify the connection.
 
@@ -97,8 +97,8 @@ def sendmail(tid, username, password, smtp_host, smtp_port, security, from_name,
             message,
             smtp_deferred,
             contextFactory=context_factory,
-            requireAuthentication=True,
-            requireTransportSecurity=(security != 'SSL'),
+            requireAuthentication=authentication,
+            requireTransportSecurity=(security == 'TLS'),
             retries=0,
             timeout=timeout)
 
