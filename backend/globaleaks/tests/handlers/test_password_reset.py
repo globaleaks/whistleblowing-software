@@ -96,30 +96,3 @@ class TestPasswordResetInstance(helpers.TestHandlerWithPopulatedDB):
         # Now we check if the token was update
         user = yield get_user(self.rcvr_id)
         self.assertNotEqual(user.reset_password_token, None)
-
-class TestAdminPasswordResetInstance(helpers.TestHandlerWithPopulatedDB):
-    _handler = password_reset.AdminPasswordResetHandler
-
-    @inlineCallbacks
-    def setUp(self):
-        yield helpers.TestHandlerWithPopulatedDB.setUp(self)
-
-        for r in (yield receiver.get_receiver_list(1, 'en')):
-            if r['pgp_key_fingerprint'] == u'BFB3C82D1B5F6A94BDAC55C6E70460ABF9A4C8C1':
-                self.rcvr_id = r['id']
-                self.user = r
-
-    @inlineCallbacks
-    def test_post_reset_off(self):
-        State.tenant_cache[1]['enable_password_reset'] = False
-
-        data_request = {
-            'username_or_email': self.user['username']
-        }
-        handler = self.request(data_request, role='admin')
-
-        yield handler.post()
-
-        # Now we check if the token was update
-        user = yield get_user(self.rcvr_id)
-        self.assertNotEqual(user.reset_password_token, None)

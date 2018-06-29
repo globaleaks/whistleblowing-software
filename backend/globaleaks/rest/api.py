@@ -34,7 +34,7 @@ from globaleaks.handlers import custodian, \
                                 staticfile, \
                                 signup
 
-from globaleaks.handlers.admin import config as admin_config
+from globaleaks.handlers.admin import operations as admin_operations
 from globaleaks.handlers.admin import context as admin_context
 from globaleaks.handlers.admin import field as admin_field
 from globaleaks.handlers.admin import file as admin_file
@@ -115,9 +115,6 @@ api_spec = [
     (r'/reset/password', password_reset.PasswordResetHandler),
     (r'/reset/password/(.+)', password_reset.PasswordResetHandler),
 
-    # Admins can force a reset regardless of the system state
-    (r'/admin/reset/password', password_reset.AdminPasswordResetHandler),
-
     ## Admin Handlers ##
     (r'/admin/node', admin_node.NodeInstance),
     (r'/admin/users', admin_user.UsersCollection),
@@ -146,7 +143,7 @@ api_spec = [
     (r'/admin/jobs', admin_statistics.JobsTiming),
     (r'/admin/l10n/(' + '|'.join(LANGUAGES_SUPPORTED_CODES) + ')', admin_l10n.AdminL10NHandler),
     (r'/admin/files/(logo|favicon|css|homepage|script)', admin_file.FileInstance),
-    (r'/admin/cmd', admin_config.AdminOperationsHandler),
+    (r'/admin/cmd', admin_operations.AdminOperationsHandler),
     (r'/admin/config/tls', https.ConfigHandler),
     (r'/admin/config/tls/files/(csr)', https.CSRFileHandler),
     (r'/admin/config/tls/files/(cert|chain|priv_key)', https.FileHandler),
