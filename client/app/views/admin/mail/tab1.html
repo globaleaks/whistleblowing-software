@@ -14,16 +14,6 @@
     </div>
 
     <div class="form-group">
-      <label data-translate>Username</label>
-      <input class="form-control" data-ng-model="admin.notification.smtp_username" type="text" />
-    </div>
-
-    <div class="form-group">
-      <label data-translate>Password</label>
-      <input class="form-control" data-ng-model="admin.notification.smtp_password" type="password" placeholder="*****************" />
-    </div>
-
-    <div class="form-group">
       <label data-translate>SMTP server address</label>
       <input class="form-control" data-ng-model="admin.notification.smtp_server" type="text" />
     </div>
@@ -35,12 +25,30 @@
 
     <div class="form-group">
       <label data-translate>Transport Security</label>
+      <span data-ng-show="admin.notification.smtp_security == 'PLAIN'" class="label label-danger" data-translate>Warning</span>
       <select class="form-control" data-ng-model="admin.notification.smtp_security">
+        <option value="PLAIN">PLAIN</option>
         <option value="SSL">SMTPS</option>
         <option value="TLS">SMTP/TLS</option>
       </select>
     </div>
 
+    <div class="form-group">
+      <input data-ng-model="admin.notification.smtp_authentication" type="checkbox">
+      <label data-translate>Require authentication</label>
+      <span data-ng-show="!admin.notification.smtp_authentication" class="label label-danger" data-translate>Warning</span>
+    </div>
+
+    <div data-ng-show="admin.notification.smtp_authentication">
+      <div class="form-group">
+        <label data-translate>Username</label>
+        <input class="form-control" data-ng-model="admin.notification.smtp_username" type="text" />
+      </div>
+      <div class="form-group">
+        <label data-translate>Password</label>
+        <input class="form-control" data-ng-model="admin.notification.smtp_password" type="password" placeholder="*****************" />
+      </div>
+    </div>
     <div class="form-group">
       <input data-ng-model="admin.notification.disable_admin_notification_emails" type="checkbox">
       <label data-translate>Disable notifications to administrators</label>
