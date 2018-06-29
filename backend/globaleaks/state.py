@@ -181,11 +181,12 @@ class StateClass(ObjectDict):
            return defer.succeed(True)
 
        return sendmail(tid,
-                       self.tenant_cache[tid].notification.smtp_username,
-                       self.tenant_cache[tid].notification.smtp_password,
                        self.tenant_cache[tid].notification.smtp_server,
                        self.tenant_cache[tid].notification.smtp_port,
                        self.tenant_cache[tid].notification.smtp_security,
+                       self.tenant_cache[tid].notification.smtp_authentication,
+                       self.tenant_cache[tid].notification.smtp_username,
+                       self.tenant_cache[tid].notification.smtp_password,
                        self.tenant_cache[tid].notification.smtp_source_name,
                        self.tenant_cache[tid].notification.smtp_source_email,
                        to_address,
