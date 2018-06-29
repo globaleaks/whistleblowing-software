@@ -24,7 +24,7 @@ if platform.system() == 'Linux':
     distro = platform.linux_distribution()[2]
 
     if distro != 'xenial':
-        print("WARNING: The long term supported platform is Ubuntu Xenial (16.04)")
+        print("WARNING: The long term supported platform is Ubuntu Bionic (18.04)")
         print("WARNING: It is recommended to use only this platform to ensure stability and security")
         print("WARNING: Read about Technical Requirements at: https://docs.globaleaks.org/en/latest/TechnicalRequirements.html")
         print("WARNING: If it's an old Ubuntu, read more about updating at: https://docs.globaleaks.org/en/latest/UpgradeGuide.html")
