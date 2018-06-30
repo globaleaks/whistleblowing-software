@@ -8,6 +8,8 @@ from six import text_type
 
 from globaleaks import models
 from globaleaks.handlers.admin.questionnaire import db_get_questionnaire
+from globaleaks.handlers.admin.submission_states import db_get_id_for_system_state
+
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.orm import transact
 from globaleaks.rest import errors, requests
@@ -227,7 +229,9 @@ def serialize_itip(session, internaltip, language):
         'identity_provided_date': datetime_to_ISO8601(internaltip.identity_provided_date),
         'wb_last_access': datetime_to_ISO8601(internaltip.wb_last_access),
         'wb_access_revoked': internaltip.receipt_hash == None,
-        'total_score': internaltip.total_score
+        'total_score': internaltip.total_score,
+        'state': internaltip.state,
+        'substate': internaltip.substate
     }
 
 
@@ -268,6 +272,7 @@ def db_create_submission(session, tid, request, uploaded_files, client_using_tor
 
     submission = models.InternalTip()
     submission.tid = tid
+    submission.state = db_get_id_for_system_state(session, tid, 'new')
 
     submission.progressive = db_assign_submission_progressive(session, tid)
 
@@ -348,6 +353,19 @@ def db_create_submission(session, tid, request, uploaded_files, client_using_tor
     log.debug("The finalized submission had created %d models.ReceiverTip(s)", rtips_count)
 
     return {'receipt': receipt}
+
+
+def db_update_submission_state(session, tid, user_id, itip, submission_state_uuid, submission_substate_uuid):
+    itip.state = submission_state_uuid
+    itip.substate = submission_substate_uuid or None
+
+    submission_state_change = models.SubmissionStateChange()
+    submission_state_change.internaltip_id = itip.id
+    submission_state_change.state = submission_state_uuid
+    submission_state_change.substate = submission_substate_uuid or None
+    submission_state_change.changed_by = user_id
+
+    session.add(submission_state_change)
 
 
 @transact

@@ -41,6 +41,14 @@
     </a>
   </li>
 
+  <li data-ng-class="active.case_management" data-ng-if="session.role === 'admin'">
+  <li data-ng-class="active.case_management">
+    <a href="#/admin/case_management">
+      <i class="glyphicon glyphicon-chevron-right"></i>
+      <span data-translate>Case management</span>
+    </a>
+  </li>
+
   <li data-ng-class="active.mail" data-ng-if="session.role === 'admin'">
     <a href="#/admin/mail">
       <i class="glyphicon glyphicon-chevron-right"></i>

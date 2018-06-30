@@ -6,6 +6,7 @@ import copy
 from globaleaks import models, LANGUAGES_SUPPORTED, LANGUAGES_SUPPORTED_CODES
 from globaleaks.handlers.admin.file import db_get_file
 from globaleaks.handlers.base import BaseHandler
+from globaleaks.handlers.admin.submission_states import db_retrieve_all_submission_states
 from globaleaks.models.config import ConfigFactory, NodeL10NFactory
 from globaleaks.orm import transact
 from globaleaks.state import State
@@ -383,6 +384,7 @@ def get_public_resources(session, tid, language):
         'contexts': db_get_public_context_list(session, tid, language),
         'questionnaires': db_get_questionnaire_list(session, tid, language),
         'receivers': db_get_public_receiver_list(session, tid, language),
+        'submission_states': db_retrieve_all_submission_states(session, tid)
     }
 
 

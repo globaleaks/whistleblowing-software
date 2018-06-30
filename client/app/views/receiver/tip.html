@@ -93,8 +93,9 @@
   <div class="col-md-6">
     <div data-ng-include="'views/partials/tip_questionnaire_answers.html'"></div>
   </div>
-  <div class="col-md-6" data-ng-if="tip.enable_whistleblower_identity">
-    <div data-ng-include="'views/receiver/whistleblower_identity.html'"></div>
+
+  <div class="col-md-6">
+    <div data-ng-if="tip.enable_whistleblower_identity" data-ng-include="'views/receiver/whistleblower_identity.html'"></div>
   </div>
   <div class="col-md-6" data-ng-if="showWBFileUpload()">
     <div data-ng-include="'views/partials/tip_upload_wbfile.html'"></div>

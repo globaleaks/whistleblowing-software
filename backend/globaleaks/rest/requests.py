@@ -595,3 +595,13 @@ QuestionnaireDuplicationDesc = {
     'questionnaire_id': text_type,
     'new_name': text_type
 }
+
+SubmissionStateDesc = {
+    'label': text_type,
+    'presentation_order': int
+}
+
+SubmissionSubStateDesc = {
+    'label': text_type,
+    'presentation_order': int
+}

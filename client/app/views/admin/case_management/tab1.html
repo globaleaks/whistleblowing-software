@@ -1,0 +1,154 @@
+<div data-ng-controller="AdminSubmissionStateCtrl" class="adminConfigSection">
+  <div class="editorTitle">
+    <span data-translate>Submission states</span>
+    <button class="btn btn-xs btn-primary show-add-user-btn" data-ng-click="toggleAddState()">
+      <i class="glyphicon glyphicon-plus"></i>
+      <span data-translate>Add</span>
+    </button>
+  </div>
+  <div class="adminConfigSection row" data-ng-controller="AdminSubmissionStateAddCtrl" data-ng-if="showAddState">
+    <div data-ng-form="newSubmissionState" class="addSubmissionState col-md-6" novalidate>
+      <div class="form-group">
+        <label>
+          <span data-translate>Label</span>
+          <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
+        </label>
+        <div data-ng-class="{'has-error': newSubmissionState.submission_state.$error.required}">
+          <input name="name" class="form-control" data-ng-model="new_submission_state.label" type="text" required />
+        </div>
+      </div>
+      <div class="form-group">
+        <button id="add-btn" class="btn btn-primary" data-ng-disabled="newSubmissionState.$invalid" data-ng-click="addSubmissionState(); toggleAddState()"
+          type="submit">
+          <i class="glyphicon glyphicon-plus-sign"></i>
+          <span data-translate>Add</span>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div data-ng-repeat="submission_state in editableStatesList()">
+    <div data-ng-controller="AdminSubmissionStateEditorCtrl" class="submissionStateList">
+      <div data-ng-form="submissionState-{{$index}}" name="editsubmissionState" novalidate>
+        <div class="configItem">
+          <div class="editorHeader row" data-ng-click="toggleEditing(); $event.stopPropagation();">
+            <span class="col-md-7 editorHeaderTitle">
+              <span>{{submission_state.label}}</span>
+            </span>
+            <span class="col-md-5">
+              <span class="pull-right">
+                <button data-ng-if="!$first" class="btn btn-xs btn-primary" data-ng-click="moveUp($event, $index)" uib-popover="{{'Move up' | translate}}" popover-placement="left">
+                  <i class="glyphicon glyphicon-menu-up"></i>
+                </button>
+                <button data-ng-if="!$last" class="btn btn-xs btn-primary" data-ng-click="moveDown($event, $index)" uib-popover="{{'Move down' | translate}}" popover-placement="left">
+                  <i class="glyphicon glyphicon-menu-down"></i>
+                </button>
+                <button class="btn btn-xs btn-default" data-ng-show="!editing" data-ng-click="toggleEditing(); $event.stopPropagation();">
+                  <span data-translate>Edit</span>
+                </button>
+                <button class="btn btn-xs btn-success" data-ng-show="editing" data-ng-disabled="editSubmissionState.$invalid" data-ng-click="save_submission_state(submission_state); toggleEditing();">
+                  <span data-translate>Save</span>
+                </button>
+                <button class="btn btn-xs btn-default" data-ng-show="editing" data-ng-click="toggleEditing(); $event.stopPropagation();">
+                  <span data-translate>Cancel</span>
+                </button>
+                <button class="btn btn-xs btn-danger" data-ng-click="deleteSubmissionState(); $event.stopPropagation();">
+                  <span data-translate>Delete</span>
+                </button>
+              </span>
+            </span>
+          </div>
+          <div data-ng-if="editing">
+            <hr />
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label data-translate>Label</label>
+                  <input name="name" class="form-control" data-ng-model="submission_state.label" type="text" required>
+                  <div class="text-danger" data-ng-show="editSubmissionState.name.$error.required" data-translate>This field is mandatory</div>
+                </div>
+              </div>
+              <div class="col-md-12" data-ng-include="'views/admin/case_management/substates.html'"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br /><br />
+  <div class="adminConfigSection" data-ng-controller="AdminSubmissionClosingStateCtrl">
+    <div class="editorTitle">
+      <span data-translate>Closing states</span>
+      <button class="btn btn-xs btn-primary show-add-user-btn" data-ng-click="toggleAddState()">
+        <i class="glyphicon glyphicon-plus"></i>
+        <span data-translate>Add</span>
+      </button>
+    </div>
+    <div class="row" data-ng-if="showAddState" data-ng-controller="AdminSubmissionClosedSubStateAddCtrl">
+      <div data-ng-form="newClosedSubmissionSubState" class="addSubmissionState col-md-6" novalidate>
+        <div class="form-group">
+          <label>
+            <span data-translate>Label</span>
+            <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
+          </label>
+          <div data-ng-class="{'has-error': newSubmissionState.submission_state.$error.required}">
+            <input name="name" class="form-control" data-ng-model="new_closed_submission_substate.label" type="text" required />
+          </div>
+        </div>
+        <div class="form-group">
+          <button id="add-btn" class="btn btn-primary" data-ng-disabled="newSubmissionState.$invalid" data-ng-click="addClosingSubmissionSubState(); toggleAddState()"
+            type="submit">
+            <i class="glyphicon glyphicon-plus-sign"></i>
+            <span data-translate>Add</span>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div data-ng-repeat="substate in submission_state.substates">
+        <div class="col-md-12" data-ng-controller="AdminSubmissionSubStateEditorCtrl">
+          <div class="configItem">
+            <div class="editorHeader row" data-ng-click="toggleSubstateEditing(); $event.stopPropagation();">
+              <span class="col-md-7 editorHeaderTitle">
+                <span class="substateLabel">{{substate.label}}</span>
+              </span>
+              <span class="col-md-5">
+                <span class="pull-right">
+                  <button data-ng-if="!$first" class="btn btn-xs btn-primary" data-ng-click="moveSsUp($event, $index)" uib-popover="{{'Move up' | translate}}" popover-placement="left">
+                    <i class="glyphicon glyphicon-menu-up"></i>
+                  </button>
+                  <button data-ng-if="!$last" class="btn btn-xs btn-primary" data-ng-click="moveSsDown($event, $index)" uib-popover="{{'Move down' | translate}}" popover-placement="left">
+                    <i class="glyphicon glyphicon-menu-down"></i>
+                  </button>
+                  <button class="btn btn-xs btn-default" data-ng-show="!substate_editing" data-ng-click="toggleSubstateEditing(); $event.stopPropagation();">
+                    <span data-translate>Edit</span>
+                  </button>
+                  <button class="btn btn-xs btn-success" data-ng-show="substate_editing" data-ng-click="save_submission_substate(substate);">
+                    <span data-translate>Save</span>
+                  </button>
+                  <button class="btn btn-xs btn-default" data-ng-show="substate_editing" data-ng-click="toggleSubstateEditing(); $event.stopPropagation();">
+                    <span data-translate>Cancel</span>
+                  </button>
+                  <button class="btn btn-xs btn-danger" data-ng-click="deleteSubSubmissionState(step); $event.stopPropagation();" uib-popover="{{Delete | translate}}"
+                    popover-placement="right">
+                    <span data-translate>Delete</span>
+                  </button>
+                </span>
+              </span>
+            </div>
+            <div data-ng-form="editStep" data-ng-if="substate_editing">
+              <hr/>
+              <div class="row">
+                <div class="form-group">
+                  <div class="col-md-6">
+                    <label data-translate>Label</label>
+                    <input class="form-control" data-ng-model="substate.label" type="text" required/>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

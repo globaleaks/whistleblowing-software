@@ -2,7 +2,6 @@ GLClient.controller('TipCtrl',
   ['$scope', '$location', '$route', '$routeParams', '$uibModal', '$http', 'Utils', 'Authentication', 'RTip', 'WBTip', 'ReceiverPreferences', 'RTipExport', 'RTipDownloadRFile', 'WBTipDownloadFile', 'fieldUtilities',
   function($scope, $location, $route, $routeParams, $uibModal, $http, Utils, Authentication, RTip, WBTip, ReceiverPreferences, RTipExport, RTipDownloadRFile, WBTipDownloadFile, fieldUtilities) {
     $scope.fieldUtilities = fieldUtilities;
-
     $scope.tip_id = $routeParams.tip_id;
     $scope.target_file = '#';
 
@@ -83,6 +82,8 @@ GLClient.controller('TipCtrl',
         $scope.ctx = 'wbtip';
         $scope.extractSpecialTipFields(tip);
 
+        $scope.Utils.evalSubmissionState($scope.tip, $scope.submission_states);
+
         $scope.tip_unencrypted = false;
         for(var i = 0; i < tip.receivers.length; i++) {
           if (tip.receivers[i].pgp_key_public === '') {
@@ -143,6 +144,8 @@ GLClient.controller('TipCtrl',
 
         $scope.showEditLabelInput = $scope.tip.label === '';
 
+        $scope.Utils.evalSubmissionState($scope.tip, $scope.submission_states);
+
         $scope.showWBFileUpload = function() {
           var ctx = Utils.getContext(tip.context_id);
           return ctx.enable_rc_to_wb_files;
@@ -165,6 +168,12 @@ GLClient.controller('TipCtrl',
     $scope.updateLabel = function(label) {
       $scope.tip.updateLabel(label);
       $scope.showEditLabelInput = false;
+    };
+
+    $scope.updateSubmissionState = function() {
+      $scope.tip.updateSubmissionState().then(function() {
+        $scope.Utils.evalSubmissionState($scope.tip, $scope.submission_states);
+      });
     };
 
     $scope.newComment = function() {

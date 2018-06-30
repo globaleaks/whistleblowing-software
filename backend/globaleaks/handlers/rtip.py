@@ -12,7 +12,7 @@ from globaleaks import models
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.custodian import serialize_identityaccessrequest, db_get_identityaccessrequest_list
 from globaleaks.handlers.operation import OperationHandler
-from globaleaks.handlers.submission import serialize_usertip
+from globaleaks.handlers.submission import serialize_usertip, db_update_submission_state
 from globaleaks.models import serializers
 from globaleaks.orm import transact
 from globaleaks.rest import errors, requests
@@ -119,7 +119,6 @@ def serialize_rtip(session, rtip, itip, language):
     ret['wbfiles'] = db_receiver_get_wbfile_list(session, itip.tid, itip.id)
     ret['iars'] = db_get_identityaccessrequest_list(session, itip.tid, rtip.id)
     ret['enable_notifications'] = bool(rtip.enable_notifications)
-
     return ret
 
 
@@ -203,8 +202,23 @@ def receiver_get_rfile_list(session, tid, rtip_id):
     return db_receiver_get_rfile_list(session, tid, rtip_id)
 
 
+def db_set_itip_open_if_new(session, tid, user_id, itip):
+    new_state_id = session.query(models.SubmissionState.id) \
+                          .filter(models.SubmissionState.tid == tid,
+                                  models.SubmissionState.system_usage == 'new').one()[0]
+
+    if new_state_id == itip.state:
+        open_state_id = session.query(models.SubmissionState.id) \
+                              .filter(models.SubmissionState.tid == tid,
+                                      models.SubmissionState.system_usage == 'open').one()[0]
+
+        db_update_submission_state(session, tid, user_id, itip, open_state_id, '')
+
+
 def db_get_rtip(session, tid, user_id, rtip_id, language):
     rtip, itip = db_access_rtip(session, tid, user_id, rtip_id)
+
+    db_set_itip_open_if_new(session, tid, user_id, itip)
 
     rtip.access_counter += 1
     rtip.last_access = datetime_now()
@@ -318,6 +332,13 @@ def set_receivertip_variable(session, tid, user_id, rtip_id, key, value):
 
 
 @transact
+def update_tip_submission_state(session, tid, user_id, rtip_id, submission_state_uuid, submission_substate_uuid):
+    rtip, itip = db_access_rtip(session, tid, user_id, rtip_id)
+
+    db_update_submission_state(session, tid, user_id, itip, submission_state_uuid, submission_substate_uuid)
+
+
+@transact
 def get_rtip(session, tid, user_id, rtip_id, language):
     return db_get_rtip(session, tid, user_id, rtip_id, language)
 
@@ -398,7 +419,9 @@ class RTipInstance(OperationHandler):
           'set': (RTipInstance.set_tip_val,
                   {'key': '^(enable_two_way_comments|enable_two_way_messages|enable_attachments|enable_notifications)$',
                    'value': bool}),
-          'set_label': (RTipInstance.set_label, {'value': text_type})
+          'update_label': (RTipInstance.update_label, {'value': text_type}),
+          'update_state': (RTipInstance.update_submission_state, {'state': text_type,
+                                                                  'substate': text_type})
         }
 
 
@@ -414,8 +437,12 @@ class RTipInstance(OperationHandler):
     def postpone_expiration(self, _, tip_id, *args, **kwargs):
         return postpone_expiration_date(self.request.tid, self.current_user.user_id, tip_id)
 
-    def set_label(self, req_args, tip_id, *args, **kwargs):
+    def update_label(self, req_args, tip_id, *args, **kwargs):
         return set_receivertip_variable(self.request.tid, self.current_user.user_id, tip_id, 'label', req_args['value'])
+
+    def update_submission_state(self, req_args, tip_id, *args, **kwargs):
+        return update_tip_submission_state(self.request.tid, self.current_user.user_id, tip_id,
+                                           req_args['state'], req_args['substate'])
 
     def delete(self, tip_id):
         """
