@@ -159,14 +159,17 @@ def db_create_field(session, tid, field_dict, language):
         field.hint = template.hint
         field.description = template.description
 
-        field_attrs = read_json_file(Settings.field_attrs_file)
-        attrs = field_attrs.get(field.template_id, {})
+        attrs = field_dict.get('attrs')
+        if not attrs:
+            field_attrs = read_json_file(Settings.field_attrs_file)
+            attrs = field_attrs.get(field.template_id, {})
+
         db_add_field_attrs(session, field.id, attrs)
 
     else:
         field = models.db_forge_obj(session, models.Field, field_dict)
-        attrs = field_dict.get('attrs', [])
-        options = field_dict.get('options', [])
+        attrs = field_dict.get('attrs')
+        options = field_dict.get('options')
 
         db_update_fieldattrs(session, tid, field.id, attrs, language)
         db_update_fieldoptions(session, tid, field.id, options, language)
