@@ -34,8 +34,8 @@
     "zxcvbn": "4.4.2"
   },
   "devDependencies": {
-    "coveralls": "3.0.1",
-    "eslint": "5.0.0",
+    "coveralls": "3.0.2",
+    "eslint": "5.0.1",
     "gettext-parser": "1.4.0",
     "grunt": "1.0.3",
     "grunt-angular-templates": "1.1.0",
@@ -50,7 +50,7 @@
     "grunt-protractor-coverage": "0.2.18",
     "grunt-string-replace": "1.3.1",
     "grunt-usemin": "3.1.1",
-    "gruntify-eslint": "4.0.0",
+    "gruntify-eslint": "5.0.0",
     "mocha": "5.2.0",
     "node-gettext": "2.0.0",
     "npm-check-updates": "2.14.2",
