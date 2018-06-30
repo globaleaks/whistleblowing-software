@@ -8,8 +8,7 @@ from six import text_type
 
 from globaleaks import models
 from globaleaks.handlers.admin.questionnaire import db_get_questionnaire
-from globaleaks.handlers.admin.submission_states import db_get_id_for_system_state, \
-    db_retrieve_all_submission_states
+from globaleaks.handlers.admin.submission_states import db_get_id_for_system_state
 
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.orm import transact
@@ -231,9 +230,8 @@ def serialize_itip(session, internaltip, language):
         'wb_last_access': datetime_to_ISO8601(internaltip.wb_last_access),
         'wb_access_revoked': internaltip.receipt_hash == None,
         'total_score': internaltip.total_score,
-        'tip_state': internaltip.tip_state,
-        'tip_substate': internaltip.tip_substate,
-        'submission_states': db_retrieve_all_submission_states(session, internaltip.tid)
+        'state': internaltip.state,
+        'substate': internaltip.substate
     }
 
 
@@ -274,7 +272,7 @@ def db_create_submission(session, tid, request, uploaded_files, client_using_tor
 
     submission = models.InternalTip()
     submission.tid = tid
-    submission.tip_state = db_get_id_for_system_state(session, tid, 'new')
+    submission.state = db_get_id_for_system_state(session, tid, 'new')
 
     submission.progressive = db_assign_submission_progressive(session, tid)
 
@@ -356,13 +354,19 @@ def db_create_submission(session, tid, request, uploaded_files, client_using_tor
 
     return {'receipt': receipt}
 
-def db_set_submission_state(session, tid, itip_id, submission_state_uuid, submission_substate_uuid):
-    itip = session.query(models.InternalTip) \
-                 .filter(models.InternalTip.tid == tid) \
-                 .filter(models.InternalTip.id == itip_id).first()
 
-    itip.tip_state = submission_state_uuid
-    itip.tip_substate = submission_substate_uuid
+def db_update_submission_state(session, tid, user_id, itip, submission_state_uuid, submission_substate_uuid):
+    itip.state = submission_state_uuid
+    itip.substate = submission_substate_uuid or None
+
+    submission_state_change = models.SubmissionStateChange()
+    submission_state_change.internaltip_id = itip.id
+    submission_state_change.state = submission_state_uuid
+    submission_state_change.substate = submission_substate_uuid or None
+    submission_state_change.changed_by = user_id
+
+    session.add(submission_state_change)
+
 
 @transact
 def create_submission(session, tid, request, uploaded_files, client_using_tor):

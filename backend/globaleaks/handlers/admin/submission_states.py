@@ -26,28 +26,26 @@ def serialize_submission_state(session, row):
     }
 
     # See if we have any substates we need to serialize
-    substate_rows = session.query(models.SubmissionSubStates) \
-        .filter(models.SubmissionSubStates.submissionstate_id == row.id) \
-        .order_by(models.SubmissionSubStates.presentation_order)
+    substate_rows = session.query(models.SubmissionSubState) \
+                           .filter(models.SubmissionSubState.submissionstate_id == row.id) \
+                           .order_by(models.SubmissionSubState.presentation_order)
 
     for substate_row in substate_rows:
         submission_state['substates'].append(
-            serialized_submission_substate(substate_row)
+            serialize_submission_substate(substate_row)
         )
 
     return submission_state
 
 
-def serialized_submission_substate(row):
+def serialize_submission_substate(row):
     '''Serializes the submission's substates'''
-    submission_substate = {
+    return {
         'id': row.id,
         'label': row.label,
         'submissionstate_id': row.submissionstate_id,
         'presentation_order': row.presentation_order
     }
-
-    return submission_substate
 
 
 @transact
@@ -58,37 +56,28 @@ def retrieve_all_submission_states(session, tid):
 
 def db_retrieve_all_submission_states(session, tid):
     '''Retrieves all submission states'''
+    system_states = {}
     submission_states = []
     user_submission_states = []
 
-    rows = session.query(models.SubmissionStates) \
-        .filter(models.SubmissionStates.tid == tid) \
-        .order_by(models.SubmissionStates.presentation_order)
-
-    # We need special handle system states vs. user defined ones
-    new_state = None
-    open_state = None
-    closed_state = None
+    rows = session.query(models.SubmissionState) \
+                  .filter(models.SubmissionState.tid == tid) \
+                  .order_by(models.SubmissionState.presentation_order)
 
     for row in rows:
         if row.system_defined is False:
             user_submission_states.append(
                 serialize_submission_state(session, row)
             )
-        elif row.system_usage == 'new':
-            new_state = serialize_submission_state(session, row)
-        elif row.system_usage == 'open':
-            open_state = serialize_submission_state(session, row)
-        elif row.system_usage == 'closed':
-            closed_state = serialize_submission_state(session, row)
+        else:
+            system_states[row.system_usage] = serialize_submission_state(session, row)
 
     # Build the final array in the correct order
-    submission_states.append(new_state)
-    submission_states.append(open_state)
+    submission_states.append(system_states['new'])
+    submission_states.append(system_states['open'])
     submission_states += user_submission_states
-    submission_states.append(closed_state)
+    submission_states.append(system_states['closed'])
 
-    # Now we need to return it in the properly sorted order
     return submission_states
 
 
@@ -100,9 +89,9 @@ def retrieve_specific_submission_state(session, tid, submission_state_uuid):
 
 def db_retrieve_specific_submission_state(session, tid, submission_state_uuid):
     '''Retrieves a specific state serialized as a rows'''
-    state = session.query(models.SubmissionStates) \
-        .filter(models.SubmissionStates.tid == tid, \
-                models.SubmissionStates.id == submission_state_uuid).first()
+    state = session.query(models.SubmissionState) \
+                   .filter(models.SubmissionState.tid == tid, \
+                           models.SubmissionState.id == submission_state_uuid).one_or_none()
 
     if state is None:
         raise errors.ResourceNotFound
@@ -120,29 +109,28 @@ def update_state_model_from_request(model_obj, request):
 @transact
 def create_submission_state(session, tid, request):
     '''Creates submission state'''
-    new_state = models.SubmissionStates()
-    new_state.id = text_type(uuid.uuid4())
+    new_state = models.SubmissionState()
     new_state.tid = tid
-
     update_state_model_from_request(new_state, request)
 
     session.add(new_state)
-    session.commit()
+    session.flush()
+
+    return serialize_submission_state(session, new_state)
 
 
 @transact
 def update_submission_state(session, tid, submission_state_uuid, request):
     '''Updates the submission state from request objects'''
-    state = session.query(models.SubmissionStates) \
-        .filter(models.SubmissionStates.tid == tid, \
-                models.SubmissionStates.id == submission_state_uuid).first()
+    state = session.query(models.SubmissionState) \
+                   .filter(models.SubmissionState.tid == tid, \
+                           models.SubmissionState.id == submission_state_uuid).one_or_none()
 
     if state is None:
         raise errors.ResourceNotFound
 
     state = update_state_model_from_request(state, request)
     session.merge(state)
-    session.commit()
 
 
 @transact
@@ -153,9 +141,9 @@ def get_id_for_system_state(session, tid, system_state):
 
 def db_get_id_for_system_state(session, tid, system_state):
     '''Returns the UUID of a given submission state'''
-    state = session.query(models.SubmissionStates) \
-        .filter(models.SubmissionStates.tid == tid, \
-                models.SubmissionStates.system_usage == system_state).first()
+    state = session.query(models.SubmissionState) \
+                   .filter(models.SubmissionState.tid == tid, \
+                           models.SubmissionState.system_usage == system_state).one_or_none()
 
     if state is None:
         raise errors.ResourceNotFound
@@ -166,9 +154,9 @@ def db_get_id_for_system_state(session, tid, system_state):
 @transact
 def get_submission_state(session, tid, submission_state_uuid):
     '''Returns the UUID of a given submission state'''
-    state = session.query(models.SubmissionStates) \
-        .filter(models.SubmissionStates.tid == tid, \
-                models.SubmissionStates.id == submission_state_uuid).first()
+    state = session.query(models.SubmissionState) \
+                   .filter(models.SubmissionState.tid == tid, \
+                           models.SubmissionState.id == submission_state_uuid).one_or_none()
 
     if state is None:
         raise errors.ResourceNotFound
@@ -186,19 +174,17 @@ def update_substate_model_from_request(model_obj, substate_request):
 @transact
 def update_submission_substate(session, tid, submission_state_uuid, substate_uuid, request):
     '''Updates a substate from a request object'''
-    # Safety check
-    db_retrieve_specific_submission_state(session, tid, submission_state_uuid)
-
-    substate = session.query(models.SubmissionSubStates) \
-        .filter(models.SubmissionSubStates.submissionstate_id == submission_state_uuid, \
-                models.SubmissionSubStates.id == substate_uuid).first()
+    substate = session.query(models.SubmissionSubState) \
+                      .filter(models.SubmissionState.id == submission_state_uuid,
+                              models.SubmissionState.tid == tid,
+                              models.SubmissionSubState.submissionstate_id == submission_state_uuid, \
+                              models.SubmissionSubState.id == substate_uuid).one()
 
     if substate is None:
         raise errors.ResourceNotFound
 
     substate = update_substate_model_from_request(substate, request)
     session.merge(substate)
-    session.commit()
 
 
 @transact
@@ -210,24 +196,25 @@ def create_submission_substate(session, tid, submission_state_uuid, request):
     # 2. is part of our tid
     db_retrieve_specific_submission_state(session, tid, submission_state_uuid)
 
-    substate_obj = models.SubmissionSubStates()
-    substate_obj.submissionstate_id = submission_state_uuid
-
-     # submissionsate_id is not normally set from requests; unsafe to do so because
-     # as it should never change in normal operations
+    substate_obj = models.SubmissionSubState()
     substate_obj.submissionstate_id = submission_state_uuid
 
     update_substate_model_from_request(substate_obj, request)
+
     session.add(substate_obj)
+    session.flush()
+
+    return serialize_submission_substate(substate_obj)
+
 
 @transact
 def order_state_elements(session, handler, req_args, *args, **kwargs):
     '''Sets the presentation order for state elements'''
 
     # Presentation order is ignored for states
-    states = session.query(models.SubmissionStates).filter(
-        models.SubmissionStates.tid == handler.request.tid,
-        models.SubmissionStates.system_defined == 0)
+    states = session.query(models.SubmissionState).filter(
+        models.SubmissionState.tid == handler.request.tid,
+        models.SubmissionState.system_defined == 0)
 
     id_dict = {state.id: state for state in states}
     ids = req_args['ids']
@@ -238,14 +225,15 @@ def order_state_elements(session, handler, req_args, *args, **kwargs):
     for i, state_id in enumerate(ids):
         id_dict[state_id].presentation_order = i
 
+
 @transact
 def order_substate_elements(session, handler, req_args, *args, **kwargs):
     '''Sets presentation order for substates'''
 
     submission_state_id = args[0]
 
-    substates = session.query(models.SubmissionSubStates).filter(
-        models.SubmissionSubStates.submissionstate_id == submission_state_id)
+    substates = session.query(models.SubmissionSubState).filter(
+        models.SubmissionSubState.submissionstate_id == submission_state_id)
 
     id_dict = {substate.id: substate for substate in substates}
     ids = req_args['ids']
@@ -255,6 +243,7 @@ def order_substate_elements(session, handler, req_args, *args, **kwargs):
 
     for i, substate_id in enumerate(ids):
         id_dict[substate_id].presentation_order = i
+
 
 class SubmissionStateCollection(OperationHandler):
     '''Handles submission states on the backend'''
@@ -274,6 +263,7 @@ class SubmissionStateCollection(OperationHandler):
             'order_elements': (order_state_elements, {'ids': [text_type]}),
         }
 
+
 class SubmissionStateInstance(BaseHandler):
     '''Manipulates a specific submission state'''
     check_roles = 'admin'
@@ -285,9 +275,10 @@ class SubmissionStateInstance(BaseHandler):
         return update_submission_state(self.request.tid, submission_state_uuid, request)
 
     def delete(self, submission_state_uuid):
-        return models.delete(models.SubmissionStates, \
-                             models.SubmissionStates.tid == self.request.tid, \
-                             models.SubmissionStates.id == submission_state_uuid)
+        return models.delete(models.SubmissionState, \
+                             models.SubmissionState.tid == self.request.tid, \
+                             models.SubmissionState.id == submission_state_uuid)
+
 
 class SubmissionSubStateCollection(OperationHandler):
     '''Manages substates for a given state'''
@@ -295,8 +286,7 @@ class SubmissionSubStateCollection(OperationHandler):
 
     @inlineCallbacks
     def get(self, submission_state_uuid):
-        submission_state = yield retrieve_specific_submission_state(
-            self.request.tid, submission_state_uuid)
+        submission_state = yield retrieve_specific_submission_state(self.request.tid, submission_state_uuid)
 
         returnValue(submission_state['substates'])
 
@@ -310,6 +300,7 @@ class SubmissionSubStateCollection(OperationHandler):
         return {
             'order_elements': (order_substate_elements, {'ids': [text_type]}),
         }
+
 
 class SubmissionSubStateInstance(BaseHandler):
     '''Manipulates a specific submission state'''
@@ -325,6 +316,6 @@ class SubmissionSubStateInstance(BaseHandler):
     def delete(self, submission_state_uuid, submission_substate_uuid):
         yield retrieve_specific_submission_state(self.request.tid, submission_state_uuid)
 
-        yield models.delete(models.SubmissionSubStates,
-                            models.SubmissionSubStates.submissionstate_id == submission_state_uuid,
-                            models.SubmissionSubStates.id == submission_substate_uuid)
+        yield models.delete(models.SubmissionSubState,
+                            models.SubmissionSubState.submissionstate_id == submission_state_uuid,
+                            models.SubmissionSubState.id == submission_substate_uuid)

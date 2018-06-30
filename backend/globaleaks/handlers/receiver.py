@@ -128,7 +128,9 @@ def get_receivertip_list(session, tid, receiver_id, language):
             'preview_schema': db_serialize_archived_preview_schema(session, archivedschema.preview, language),
             'preview': internaltip.preview,
             'total_score': internaltip.total_score,
-            'label': rtip.label
+            'label': rtip.label,
+            'state': internaltip.state,
+            'substate': internaltip.substate
         })
 
     return rtip_summary_list

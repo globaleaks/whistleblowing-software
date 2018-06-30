@@ -6,9 +6,10 @@ from sqlalchemy import not_
 from six import text_type
 
 from globaleaks import __version__
-from globaleaks.models import Config, ConfigL10N, EnabledLanguage, SubmissionStates, SubmissionSubStates
+from globaleaks.models import Config, ConfigL10N, EnabledLanguage
 from globaleaks.models.properties import *
 from globaleaks.models.config_desc import ConfigDescriptor, ConfigFilters
+
 
 class ConfigFactory(object):
     """
@@ -234,15 +235,3 @@ def system_cfg_init(session, tid):
             default = desc.default
 
         session.add(Config(tid, var_name, default))
-
-
-def load_required_submission_states(session, tid):
-    for s in [{'label': 'New', 'system_usage': 'new'},
-              {'label': 'Open', 'system_usage':'open'},
-              {'label': 'Closed', 'system_usage': 'closed'}]:
-        state = SubmissionStates()
-        state.tid = tid
-        state.label = s['label']
-        state.system_defined = True
-        state.system_usage = s['system_usage']
-        session.add(state)

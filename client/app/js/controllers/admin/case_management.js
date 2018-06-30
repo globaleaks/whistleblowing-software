@@ -83,7 +83,7 @@ GLClient.controller('AdminCaseManagementCtrl', ['$scope', function($scope){
           if (c.system_defined === false) return c.id;
         }).filter(function (c) {
           if (c !== null) {
-            return c
+            return c;
           }
         })
       }
@@ -95,8 +95,6 @@ GLClient.controller('AdminCaseManagementCtrl', ['$scope', function($scope){
           'operation': 'order_elements',
           'args': reordered_ids,
         },
-      }).then(function() {
-        $rootScope.successes.push({});
       });
     }
   }
@@ -113,9 +111,9 @@ GLClient.controller('AdminCaseManagementCtrl', ['$scope', function($scope){
       $http.post(
         '/admin/submission_states',
         new_submission_state
-      ).then(function () {
-        $scope.reload();
-      })
+      ).then(function (result) {
+        $scope.admin.submission_states.push(result.data);
+      });
     }
 }]).controller('AdminSubmissionSubStateCtrl', [
   function () {
@@ -132,8 +130,8 @@ GLClient.controller('AdminCaseManagementCtrl', ['$scope', function($scope){
           id: $scope.substate.id,
           submissionstate_id: $scope.substate.submissionstate_id
         }, function() {
-          var list = $scope.submission_state.substates
-          list.splice(list.indexOf($scope.substate), 1);
+          var index = $scope.indexOf($scope.substate);
+          $scope.submission_state.substates.splice(index, 1);
         });
       });
     }
@@ -165,8 +163,6 @@ GLClient.controller('AdminCaseManagementCtrl', ['$scope', function($scope){
           'operation': 'order_elements',
           'args':  {'ids' : $scope.submission_state.substates.map(function(c) { return c.id })}
         },
-      }).then(function() {
-        $rootScope.successes.push({});
       });
     }
   }
@@ -183,37 +179,33 @@ GLClient.controller('AdminCaseManagementCtrl', ['$scope', function($scope){
       $http.post(
         '/admin/submission_states/' + $scope.submission_state.id + '/substates',
         new_submission_substate
-      ).then(function () {
-        $scope.reload();
+      ).then(function (result) {
+        $scope.submission_state.substates.push(result.data);
       })
     }
   }
 ]).controller('AdminSubmissionClosingStateCtrl', ['$scope',
   function ($scope) {
-
-    $scope.closedState = undefined;
-
-    // Find the closed state from the states list so we can directly manipulate it
-    for (var i = 0; i < $scope.admin.submission_states.length; i++) {
-      var state = $scope.admin.submission_states[i];
-      if (state.system_defined === true && state.system_usage === 'closed') {
-        $scope.closedState = state;
-        break;
-      }
-    }
-
-    // When we're under this controller, submission state changes
-    $scope.submission_state = $scope.closedState;
+    $scope.submission_state = undefined;
 
     $scope.showAddState = false;
 
     $scope.toggleAddState = function () {
       $scope.showAddState = !$scope.showAddState;
     };
+
+    // Find the closed state from the states list so we can directly manipulate it
+    for (var i = 0; i < $scope.admin.submission_states.length; i++) {
+      var state = $scope.admin.submission_states[i];
+      if (state.system_defined === true && state.system_usage === 'closed') {
+        $scope.submission_state = state;
+        return;
+      }
+    }
   }
 ]).controller('AdminSubmissionClosedSubStateAddCtrl', ['$scope', '$http',
   function ($scope, $http) {
-    $scope.closed_ss_presentation_order = $scope.newItemOrder($scope.closedState.substates, 'presentation_order');
+    $scope.closed_ss_presentation_order = $scope.newItemOrder($scope.submission_state.substates, 'presentation_order');
 
     // It would be nice to refactor this with addSubmissionSubState
     $scope.addClosingSubmissionSubState = function () {
@@ -223,11 +215,11 @@ GLClient.controller('AdminCaseManagementCtrl', ['$scope', function($scope){
       }
 
       $http.post(
-        '/admin/submission_states/' + $scope.closedState.id + '/substates',
+        '/admin/submission_states/' + $scope.submission_state.id + '/substates',
         new_submission_substate
-      ).then(function () {
-        $scope.reload();
-      })
+      ).then(function (result) {
+        $scope.submission_state.substates.push(result.data);
+      });
     }
   }
 ])
