@@ -603,6 +603,8 @@ var GLClient = angular.module('GLClient', [
         $rootScope.questionnaires = result.questionnaires;
         $rootScope.questionnaires_by_id = $rootScope.Utils.array_to_map(result.questionnaires);
 
+        $rootScope.submission_states = result.submission_states;
+
         angular.forEach($rootScope.contexts_by_id, function(element, key) {
           $rootScope.contexts_by_id[key].questionnaire = $rootScope.questionnaires_by_id[$rootScope.contexts_by_id[key].questionnaire_id];
         });

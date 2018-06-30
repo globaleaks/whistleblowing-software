@@ -1,6 +1,6 @@
 <div data-ng-controller="AdminSubmissionStateCtrl" class="adminConfigSection">
   <div class="editorTitle">
-    <span data-translate>Submission States</span>
+    <span data-translate>Submission states</span>
     <button class="btn btn-xs btn-primary show-add-user-btn" data-ng-click="toggleAddState()">
       <i class="glyphicon glyphicon-plus"></i>
       <span data-translate>Add</span>
@@ -30,7 +30,7 @@
     <div data-ng-controller="AdminSubmissionStateEditorCtrl" class="submissionStateList">
       <div data-ng-form="submissionState-{{$index}}" name="editsubmissionState" novalidate>
         <div class="configItem">
-          <div class="editorHeader row">
+          <div class="editorHeader row" data-ng-click="toggleEditing(); $event.stopPropagation();">
             <span class="col-md-7 editorHeaderTitle">
               <span>{{submission_state.label}}</span>
             </span>
@@ -45,7 +45,7 @@
                 <button class="btn btn-xs btn-default" data-ng-show="!editing" data-ng-click="toggleEditing(); $event.stopPropagation();">
                   <span data-translate>Edit</span>
                 </button>
-                <button class="btn btn-xs btn-success" data-ng-show="editing" data-ng-disabled="editSubmissionState.$invalid" data-ng-click="save_submission_state(submission_state)">
+                <button class="btn btn-xs btn-success" data-ng-show="editing" data-ng-disabled="editSubmissionState.$invalid" data-ng-click="save_submission_state(submission_state); toggleEditing();">
                   <span data-translate>Save</span>
                 </button>
                 <button class="btn btn-xs btn-default" data-ng-show="editing" data-ng-click="toggleEditing(); $event.stopPropagation();">
@@ -74,15 +74,16 @@
       </div>
     </div>
   </div>
+  <br /><br />
   <div class="adminConfigSection" data-ng-controller="AdminSubmissionClosingStateCtrl">
     <div class="editorTitle">
-      <span data-translate>Closing States</span>
+      <span data-translate>Closing states</span>
       <button class="btn btn-xs btn-primary show-add-user-btn" data-ng-click="toggleAddState()">
         <i class="glyphicon glyphicon-plus"></i>
         <span data-translate>Add</span>
       </button>
     </div>
-    <div class="adminConfigSection row" data-ng-if="showAddState" data-ng-controller="AdminSubmissionClosedSubStateAddCtrl">
+    <div class="row" data-ng-if="showAddState" data-ng-controller="AdminSubmissionClosedSubStateAddCtrl">
       <div data-ng-form="newClosedSubmissionSubState" class="addSubmissionState col-md-6" novalidate>
         <div class="form-group">
           <label>
@@ -103,7 +104,7 @@
       </div>
     </div>
     <div class="row">
-      <div data-ng-repeat="substate in closedState.substates">
+      <div data-ng-repeat="substate in submission_state.substates">
         <div class="col-md-12" data-ng-controller="AdminSubmissionSubStateEditorCtrl">
           <div class="configItem">
             <div class="editorHeader row" data-ng-click="toggleSubstateEditing(); $event.stopPropagation();">

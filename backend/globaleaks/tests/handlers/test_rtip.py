@@ -138,9 +138,8 @@ class TestRTipInstance(helpers.TestHandlerWithPopulatedDB):
         rtip_descs = yield self.get_rtips()
         for rtip_desc in rtip_descs:
             operation = {
-              'operation': 'set_label',
+              'operation': 'update_label',
               'args': {
-                'key': 'label',
                 'value': 'PASSANTEDIPROFESSIONE'
               }
             }

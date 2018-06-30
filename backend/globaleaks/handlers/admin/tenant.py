@@ -19,6 +19,18 @@ from globaleaks.settings import Settings
 from globaleaks.state import State
 
 
+def initialize_submission_states(session, tid):
+    for s in [{'label': 'New', 'system_usage': 'new'},
+              {'label': 'Open', 'system_usage':'open'},
+              {'label': 'Closed', 'system_usage': 'closed'}]:
+        state = models.SubmissionState()
+        state.tid = tid
+        state.label = s['label']
+        state.system_defined = True
+        state.system_usage = s['system_usage']
+        session.add(state)
+
+
 def serialize_tenant(session, tenant):
     ret = {
         'id': tenant.id,
@@ -51,7 +63,7 @@ def db_create(session, desc):
 
     models.config.add_new_lang(session, t.id, u'en', appdata)
 
-    models.config.load_required_submission_states(session, t.id)
+    initialize_submission_states(session, t.id)
 
     file_descs = [
       (u'logo', 'data/logo.png'),
