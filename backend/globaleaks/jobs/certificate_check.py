@@ -51,6 +51,7 @@ class CertificateCheck(LoopingJob):
 
         cert = load_certificate(FILETYPE_PEM, priv_fact.get_val(u'https_cert'))
         expiration_date = letsencrypt.convert_asn1_date(cert.get_notAfter())
+        expiration_date_iso = datetime_to_ISO8601(expiration_date)
 
         # Acme renewal checks
         if priv_fact.get_val(u'acme') and datetime.now() > expiration_date - timedelta(days=self.acme_try_renewal):
@@ -61,16 +62,15 @@ class CertificateCheck(LoopingJob):
 
                 # Send an email to the admin cause this requires user intervention
                 if not self.state.tenant_cache[tid].notification.disable_admin_notification_emails:
-                    self.certificate_mail_creation(session, 'https_certificate_renewal_failure', tid, expiration_date)
+                    self.certificate_mail_creation(session, 'https_certificate_renewal_failure', tid, expiration_date_iso)
             else:
                 self.should_restart_https = True
 
         # Regular certificates expiration checks
         elif datetime.now() > expiration_date - timedelta(days=self.notify_expr_within):
-            expiration_date = datetime_to_ISO8601(expiration_date)
             log.info('The HTTPS Certificate is expiring on %s', expiration_date, tid=tid)
             if not self.state.tenant_cache[tid].notification.disable_admin_notification_emails:
-                self.certificate_mail_creation(session, 'https_certificate_expiration', tid, expiration_date)
+                self.certificate_mail_creation(session, 'https_certificate_expiration', tid, expiration_date_iso)
 
     @inlineCallbacks
     def operation(self):
