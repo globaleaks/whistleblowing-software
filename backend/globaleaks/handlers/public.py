@@ -173,7 +173,7 @@ def serialize_context(session, context, language, data=None):
     return get_localized_values(ret_dict, context, context.localized_keys, language)
 
 
-def serialize_questionnaire(session, tid, questionnaire, language):
+def serialize_questionnaire(session, tid, questionnaire, language, serialize_templates=True):
     """
     Serialize the specified questionnaire
 
@@ -188,7 +188,7 @@ def serialize_questionnaire(session, tid, questionnaire, language):
         'id': questionnaire.id,
         'editable': questionnaire.editable and questionnaire.tid == tid,
         'name': questionnaire.name,
-        'steps': sorted([serialize_step(session, tid, s, language) for s in steps],
+        'steps': sorted([serialize_step(session, tid, s, language, serialize_templates=serialize_templates) for s in steps],
                         key=lambda x: x['presentation_order'])
     }
 
@@ -236,7 +236,7 @@ def serialize_field_attr(attr, language):
     return ret_dict
 
 
-def serialize_field(session, tid, field, language, data=None):
+def serialize_field(session, tid, field, language, data=None, serialize_templates=True):
     """
     Serialize a field, localizing its content depending on the language.
 
@@ -247,10 +247,9 @@ def serialize_field(session, tid, field, language, data=None):
     if data is None:
         data = db_prepare_fields_serialization(session, [field])
 
-    if field.template_id is not None:
+    f_to_serialize = field
+    if field.template_id is not None and serialize_templates is True:
         f_to_serialize = session.query(models.Field).filter(models.Field.id == field.template_id).one_or_none()
-    else:
-        f_to_serialize = field
 
     attrs = {}
     for attr in data['attrs'].get(field.id, {}):
@@ -289,7 +288,7 @@ def serialize_field(session, tid, field, language, data=None):
     return get_localized_values(ret_dict, field, field.localized_keys, language)
 
 
-def serialize_step(session, tid, step, language):
+def serialize_step(session, tid, step, language, serialize_templates=True):
     """
     Serialize a step, localizing its content depending on the language.
 
@@ -305,7 +304,9 @@ def serialize_step(session, tid, step, language):
         'id': step.id,
         'questionnaire_id': step.questionnaire_id,
         'presentation_order': step.presentation_order,
-        'children': [serialize_field(session, tid, f, language, data) for f in children]
+        'children': [serialize_field(
+            session, tid, f, language, data, serialize_templates=serialize_templates
+        ) for f in children]
     }
 
     return get_localized_values(ret_dict, step, step.localized_keys, language)
