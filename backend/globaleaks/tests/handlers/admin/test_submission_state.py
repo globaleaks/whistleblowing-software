@@ -19,7 +19,7 @@ def create_substate(session, submissionstate_id):
     '''Creates a test substate'''
     substate = models.SubmissionSubState()
     substate.submissionstate_id = submissionstate_id
-    substate.label = "Test1"
+    substate.label = {'en': "Test1"}
     substate.presentation_order = 0
     session.add(substate)
 
@@ -92,7 +92,7 @@ class SubmissionStateInstanceDesc(helpers.TestHandlerWithPopulatedDB):
     def test_put(self):
         '''Create a new state and then edit it'''
         yield self.create_test_state()
-        states = yield submission_states.retrieve_all_submission_states(1)
+        states = yield submission_states.retrieve_all_submission_states(1, u'en')
 
         for state in states:
             if state['label'] == 'test_state':
@@ -107,7 +107,7 @@ class SubmissionStateInstanceDesc(helpers.TestHandlerWithPopulatedDB):
         self._handler = submission_states.SubmissionStateInstance
         handler = self.request(data_request, role='admin')
         yield handler.put(state_uuid)
-        states = yield submission_states.retrieve_all_submission_states(1)
+        states = yield submission_states.retrieve_all_submission_states(1, u'en')
 
         found_label = False
 
@@ -122,7 +122,7 @@ class SubmissionStateInstanceDesc(helpers.TestHandlerWithPopulatedDB):
     def test_delete(self):
         '''Delete a state (if possible)'''
         yield self.create_test_state()
-        states = yield submission_states.retrieve_all_submission_states(1)
+        states = yield submission_states.retrieve_all_submission_states(1, u'en')
 
         for state in states:
             if state['label'] == 'test_state':
@@ -139,7 +139,7 @@ class SubmissionStateInstanceDesc(helpers.TestHandlerWithPopulatedDB):
     def test_delete_with_substates(self):
         '''Delete a state (if possible)'''
         yield self.create_test_state()
-        states = yield submission_states.retrieve_all_submission_states(1)
+        states = yield submission_states.retrieve_all_submission_states(1, u'en')
 
         for state in states:
             if state['label'] == 'test_state':
@@ -178,7 +178,7 @@ class SubmissionSubStateCollectionDesc(helpers.TestHandlerWithPopulatedDB):
         handler = self.request(data_request, role='admin')
         response = yield handler.post(new_state_id)
 
-        submission_state = yield submission_states.retrieve_specific_submission_state(1, new_state_id)
+        submission_state = yield submission_states.retrieve_specific_submission_state(1, new_state_id, u'en')
         self.assertEqual(len(submission_state['substates']), 1)
 
 class SubmissionSubStateInstanceDesc(helpers.TestHandlerWithPopulatedDB):
@@ -192,7 +192,7 @@ class SubmissionSubStateInstanceDesc(helpers.TestHandlerWithPopulatedDB):
         new_state_id = yield submission_states.get_id_for_system_state(1, 'new')
         yield create_substate(new_state_id)
 
-        submission_state = yield submission_states.retrieve_specific_submission_state(1, new_state_id)
+        submission_state = yield submission_states.retrieve_specific_submission_state(1, new_state_id, u'en')
         substate_uuid = submission_state['substates'][0]['id']
 
         data_request = {
@@ -203,7 +203,7 @@ class SubmissionSubStateInstanceDesc(helpers.TestHandlerWithPopulatedDB):
         handler = self.request(data_request, role='admin')
         yield handler.put(new_state_id, substate_uuid)
 
-        submission_state = yield submission_states.retrieve_specific_submission_state(1, new_state_id)
+        submission_state = yield submission_states.retrieve_specific_submission_state(1, new_state_id, u'en')
         self.assertEqual(submission_state['substates'][0]['label'], '12345')
 
     @inlineCallbacks
@@ -211,11 +211,11 @@ class SubmissionSubStateInstanceDesc(helpers.TestHandlerWithPopulatedDB):
         new_state_id = yield submission_states.get_id_for_system_state(1, 'new')
         yield create_substate(new_state_id)
 
-        submission_state = yield submission_states.retrieve_specific_submission_state(1, new_state_id)
+        submission_state = yield submission_states.retrieve_specific_submission_state(1, new_state_id, u'en')
         substate_uuid = submission_state['substates'][0]['id']
 
         handler = self.request({}, role='admin')
         yield handler.delete(new_state_id, substate_uuid)
 
-        submission_state = yield submission_states.retrieve_specific_submission_state(1, new_state_id)
+        submission_state = yield submission_states.retrieve_specific_submission_state(1, new_state_id, u'en')
         self.assertEqual(len(submission_state['substates']), 0)

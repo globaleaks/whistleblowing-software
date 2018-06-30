@@ -58,6 +58,8 @@ class Rosetta(object):
             return translated_dict[language]
         elif default_language in translated_dict:
             return translated_dict[default_language]
+        elif u'en' in translated_dict:
+            return translated_dict[u'en']
         else:
             return ""
 
