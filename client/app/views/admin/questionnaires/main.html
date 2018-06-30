@@ -30,7 +30,7 @@
     <div data-ng-repeat="questionnaire in admin.questionnaires | filter: {editable: true}">
       <form id="questionnaire-{{$index}}" class="configItem" name="editQuestionnaire" data-ng-controller="AdminQuestionnaireEditorCtrl" novalidate>
         <div>
-          <div class="editorHeader row" data-ng-click="toggleEditing(); $event.stopPropagation();">
+          <div class="editorHeader row">
             <span class="col-md-7 editorHeaderTitle">{{questionnaire.name}}</span>
             <span class="col-md-5" data-ng-if="questionnaire.editable">
               <span class="pull-right">
@@ -61,6 +61,7 @@
                 <button
                   class="btn btn-xs btn-default"
                   data-ng-click="duplicate_questionnaire(questionnaire)">
+                  <i class="glyphicon glyphicon-duplicate"></i>
                   <span data-translate>Duplicate</span>
                 </button>
                 <button
