@@ -85,7 +85,6 @@ def db_fix_fields_attrs(session):
         db_add_field_attrs(session, field.id, attrs)
 
 
-
 def db_update_defaults(session):
     load_default_questionnaires(session)
     load_default_fields(session)

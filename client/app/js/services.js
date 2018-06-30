@@ -440,32 +440,29 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
           });
         };
 
-        tip.setVar = function(var_name, var_value, operation) {
-          operation = angular.isDefined(operation) ? operation : 'set';
+        tip.operation = function(operation, args) {
           var req = {
             'operation': operation,
-            'args': {
-              'key': var_name,
-              'value': var_value
-            }
+            'args': args
           };
 
-          return $http({method: 'PUT', url: 'rtip/' + tip.id, data: req}).then(function () {
-            tip[var_name] = var_value;
-          });
+          return $http({method: 'PUT', url: 'rtip/' + tip.id, data: req});
         };
 
         tip.updateLabel = function(label) {
-          return tip.setVar('label', label, 'set_label');
+          return tip.operation('update_label', {'value': label}).then(function () {
+            tip['label'] = label;
+          });
         };
 
-        tip.updateSubmissionState = function(submission_state_id, submission_substate_id) {
-          if (!submission_substate_id) {
-            submission_substate_id = ""
-          }
-
-          var set_string = submission_state_id + "," + submission_substate_id
-          return tip.setVar('tip_state', set_string, 'set_submission_state')
+        tip.updateSubmissionState = function() {
+          var state = tip.submissionStateObj.id;
+          var substate = tip.submissionSubStateObj ? tip.submissionSubStateObj.id : '';
+          return tip.operation('update_state', {'state': state,
+                                                'substate': substate}).then(function () {
+            tip.state = state;
+            tip.substate = substate;
+          });
         };
 
         tip.localChange = function() {
@@ -1139,6 +1136,28 @@ factory('AdminUtils', ['AdminContextResource', 'AdminQuestionnaireResource', 'Ad
         };
         $rootScope.errors.push(error);
       },
+
+      evalSubmissionState: function(tip, submission_states) {
+        for (var i = 0; i < submission_states.length; i++) {
+          if (submission_states[i].id === tip.state) {
+            tip.submissionStateObj = submission_states[i];
+
+            var substates = submission_states[i].substates;
+            for (var j = 0; j < substates.length; j++) {
+              if (substates[j].id == tip.substate) {
+                tip.submissionSubStateObj = substates[j];
+                break;
+              }
+            }
+            break;
+          }
+        }
+        tip.submissionStateStr = tip.submissionStateObj.label;
+        if (tip.submissionSubStateObj) {
+            tip.submissionStateStr += '(' + tip.submissionStateObj.label + ')';
+        }
+      }
+
     }
 }]).
   factory('fieldUtilities', ['$filter', 'CONSTANTS', function($filter, CONSTANTS) {

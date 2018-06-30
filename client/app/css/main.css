@@ -505,3 +505,8 @@ html[rtl] .float-right {
   height: 10em;
   overflow-y: scroll;
 }
+
+.spaced-heading-elem {
+  padding-right: 2em;
+  padding-left: 2em;
+}

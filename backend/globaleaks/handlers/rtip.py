@@ -12,7 +12,7 @@ from globaleaks import models
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.custodian import serialize_identityaccessrequest, db_get_identityaccessrequest_list
 from globaleaks.handlers.operation import OperationHandler
-from globaleaks.handlers.submission import serialize_usertip, db_set_submission_state
+from globaleaks.handlers.submission import serialize_usertip, db_update_submission_state
 from globaleaks.models import serializers
 from globaleaks.orm import transact
 from globaleaks.rest import errors, requests
@@ -202,8 +202,23 @@ def receiver_get_rfile_list(session, tid, rtip_id):
     return db_receiver_get_rfile_list(session, tid, rtip_id)
 
 
+def db_set_itip_open_if_new(session, tid, user_id, itip):
+    new_state_id = session.query(models.SubmissionState.id) \
+                          .filter(models.SubmissionState.tid == tid,
+                                  models.SubmissionState.system_usage == 'new').one()[0]
+
+    if new_state_id == itip.state:
+        open_state_id = session.query(models.SubmissionState.id) \
+                              .filter(models.SubmissionState.tid == tid,
+                                      models.SubmissionState.system_usage == 'open').one()[0]
+
+        db_update_submission_state(session, tid, user_id, itip, open_state_id, '')
+
+
 def db_get_rtip(session, tid, user_id, rtip_id, language):
     rtip, itip = db_access_rtip(session, tid, user_id, rtip_id)
+
+    db_set_itip_open_if_new(session, tid, user_id, itip)
 
     rtip.access_counter += 1
     rtip.last_access = datetime_now()
@@ -317,15 +332,11 @@ def set_receivertip_variable(session, tid, user_id, rtip_id, key, value):
 
 
 @transact
-def set_tip_submission_state(session, tid, user_id, rtip_id, submission_state_uuid, submission_substate_uuid, comment):
+def update_tip_submission_state(session, tid, user_id, rtip_id, submission_state_uuid, submission_substate_uuid):
     rtip, itip = db_access_rtip(session, tid, user_id, rtip_id)
 
-    db_set_submission_state(session, tid, itip.id, submission_state_uuid, submission_substate_uuid)
-    submission_state_change = models.SubmissionStateChanges()
-    submission_state_change.internaltip_id = itip.id
-    submission_state_change.changed_by = user_id
+    db_update_submission_state(session, tid, user_id, itip, submission_state_uuid, submission_substate_uuid)
 
-    session.add(submission_state_change)
 
 @transact
 def get_rtip(session, tid, user_id, rtip_id, language):
@@ -334,6 +345,7 @@ def get_rtip(session, tid, user_id, rtip_id, language):
 
 def db_get_itip_comment_list(session, tid, itip):
     return [serialize_comment(session, comment) for comment in session.query(models.Comment).filter(models.Comment.internaltip_id == itip.id)]
+
 
 @transact
 def create_identityaccessrequest(session, tid, user_id, rtip_id, request):
@@ -407,8 +419,9 @@ class RTipInstance(OperationHandler):
           'set': (RTipInstance.set_tip_val,
                   {'key': '^(enable_two_way_comments|enable_two_way_messages|enable_attachments|enable_notifications)$',
                    'value': bool}),
-          'set_label': (RTipInstance.set_label, {'value': text_type}),
-          'set_submission_state': (RTipInstance.set_submission_state, {'value': text_type},)
+          'update_label': (RTipInstance.update_label, {'value': text_type}),
+          'update_state': (RTipInstance.update_submission_state, {'state': text_type,
+                                                                  'substate': text_type})
         }
 
 
@@ -424,22 +437,12 @@ class RTipInstance(OperationHandler):
     def postpone_expiration(self, _, tip_id, *args, **kwargs):
         return postpone_expiration_date(self.request.tid, self.current_user.user_id, tip_id)
 
-    def set_label(self, req_args, tip_id, *args, **kwargs):
+    def update_label(self, req_args, tip_id, *args, **kwargs):
         return set_receivertip_variable(self.request.tid, self.current_user.user_id, tip_id, 'label', req_args['value'])
 
-    def set_submission_state(self, req_args, tip_id, *args, **kwargs):
-        # This is hacky, but I really don't want to go through the pain of defining a specific
-        # handler just to set the tip state for receiver tip interface
-        states = req_args['value'].split(',')
-
-        if len(states) == 1: # no comma(?!)
-            raise errors.InputValidationError("Malformed submission set line")
-
-        # Replace empty string with NULL for SQLalchemy serialization
-        if states[1] == "":
-            states[1] = None
-
-        return set_tip_submission_state(self.request.tid, self.current_user.user_id, tip_id, states[0], states[1], "")
+    def update_submission_state(self, req_args, tip_id, *args, **kwargs):
+        return update_tip_submission_state(self.request.tid, self.current_user.user_id, tip_id,
+                                           req_args['state'], req_args['substate'])
 
     def delete(self, tip_id):
         """

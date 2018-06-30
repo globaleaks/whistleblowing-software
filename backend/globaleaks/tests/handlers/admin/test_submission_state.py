@@ -11,13 +11,13 @@ from twisted.internet.defer import inlineCallbacks
 @transact
 def count_submission_states(session, tid):
     '''Counts all submission states in the system'''
-    return session.query(models.SubmissionStates) \
-        .filter(models.SubmissionStates.tid==tid).count()
+    return session.query(models.SubmissionState) \
+        .filter(models.SubmissionState.tid==tid).count()
 
 @transact
 def create_substate(session, submissionstate_id):
     '''Creates a test substate'''
-    substate = models.SubmissionSubStates()
+    substate = models.SubmissionSubState()
     substate.submissionstate_id = submissionstate_id
     substate.label = "Test1"
     substate.presentation_order = 0
