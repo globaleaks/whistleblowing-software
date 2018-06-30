@@ -384,7 +384,7 @@ def get_public_resources(session, tid, language):
         'contexts': db_get_public_context_list(session, tid, language),
         'questionnaires': db_get_questionnaire_list(session, tid, language),
         'receivers': db_get_public_receiver_list(session, tid, language),
-        'submission_states': db_retrieve_all_submission_states(session, tid)
+        'submission_states': db_retrieve_all_submission_states(session, tid, language)
     }
 
 

@@ -20,9 +20,9 @@ from globaleaks.state import State
 
 
 def initialize_submission_states(session, tid):
-    for s in [{'label': 'New', 'system_usage': 'new'},
-              {'label': 'Open', 'system_usage':'open'},
-              {'label': 'Closed', 'system_usage': 'closed'}]:
+    for s in [{'label': {'en': 'New'}, 'system_usage': 'new'},
+              {'label': {'en': 'Open'}, 'system_usage':'open'},
+              {'label': {'en':' Closed'}, 'system_usage': 'closed'}]:
         state = models.SubmissionState()
         state.tid = tid
         state.label = s['label']
