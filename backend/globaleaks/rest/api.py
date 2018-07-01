@@ -34,7 +34,7 @@ from globaleaks.handlers import custodian, \
                                 staticfile, \
                                 signup
 
-from globaleaks.handlers.admin import operations as admin_operations
+from globaleaks.handlers.admin import operation as admin_operation
 from globaleaks.handlers.admin import context as admin_context
 from globaleaks.handlers.admin import field as admin_field
 from globaleaks.handlers.admin import file as admin_file
@@ -144,7 +144,7 @@ api_spec = [
     (r'/admin/jobs', admin_statistics.JobsTiming),
     (r'/admin/l10n/(' + '|'.join(LANGUAGES_SUPPORTED_CODES) + ')', admin_l10n.AdminL10NHandler),
     (r'/admin/files/(logo|favicon|css|homepage|script)', admin_file.FileInstance),
-    (r'/admin/cmd', admin_operations.AdminOperationsHandler),
+    (r'/admin/cmd', admin_operation.AdminOperationHandler),
     (r'/admin/config/tls', https.ConfigHandler),
     (r'/admin/config/tls/files/(csr)', https.CSRFileHandler),
     (r'/admin/config/tls/files/(cert|chain|priv_key)', https.FileHandler),

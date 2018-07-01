@@ -50,7 +50,7 @@ GLClient.controller('AdminUsersCtrl', ['$scope',
         'admin/cmd', { 
           'operation': 'reset_user_password',
           'args': {
-            'value': $scope.user.id
+            'value': $scope.user.username
           }
       }).then(function() {
         $rootScope.successes.push({message: 'Success!'});

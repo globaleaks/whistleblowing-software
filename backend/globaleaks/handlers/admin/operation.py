@@ -4,7 +4,7 @@ from twisted.web.client import readBody
 
 from globaleaks.db import db_refresh_memory_variables
 from globaleaks.handlers.operation import OperationHandler
-from globaleaks.handlers.password_reset import admin_reset_user_pw
+from globaleaks.handlers.password_reset import generate_password_reset_token
 from globaleaks.models import Config
 from globaleaks.models.config import ConfigFactory
 from globaleaks.orm import transact
@@ -48,7 +48,7 @@ def set_config_variable(session, tid, var, val):
     db_refresh_memory_variables(session, [tid])
 
 
-class AdminOperationsHandler(OperationHandler):
+class AdminOperationHandler(OperationHandler):
     """
     This interface exposes the enable to configure and verify the platform hostname
     """
@@ -80,16 +80,15 @@ class AdminOperationsHandler(OperationHandler):
                 raise errors.ExternalResourceError()
             raise e
 
-    @inlineCallbacks
     def reset_user_password(self, req_args, *args, **kwargs):
-        return admin_reset_user_pw(self.state,
-                                   self.request.tid,
-                                   req_args['value'],
-                                   allow_admins=True)
+        return generate_password_reset_token(self.state,
+                                             self.request.tid,
+                                             req_args['value'],
+                                             allow_admin_reset=True)
 
     def operation_descriptors(self):
         return {
-            'set_hostname': (AdminOperationsHandler.set_hostname, {'value': text_type}),
-            'verify_hostname': (AdminOperationsHandler.verify_hostname, {'value': text_type}),
-            'reset_user_password': (AdminOperationsHandler.reset_user_password, {'value': text_type})
+            'set_hostname': (AdminOperationHandler.set_hostname, {'value': text_type}),
+            'verify_hostname': (AdminOperationHandler.verify_hostname, {'value': text_type}),
+            'reset_user_password': (AdminOperationHandler.reset_user_password, {'value': text_type})
         }
