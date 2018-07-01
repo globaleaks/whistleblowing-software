@@ -82,8 +82,6 @@ class MigrationScript(MigrationBase):
 
             self.session_new.add(new_obj)
 
-
-class MigrationScript(MigrationBase):
     def migrate_InternalTip(self):
         old_objs = self.session_old.query(self.model_from['InternalTip'])
         for old_obj in old_objs:
