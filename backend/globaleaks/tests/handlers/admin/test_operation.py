@@ -1,5 +1,5 @@
 # -*- coding: utf-8
-from globaleaks.handlers.admin import config
+from globaleaks.handlers.admin.operation import AdminOperationHandler
 from globaleaks.rest import errors
 from globaleaks.state import State
 from globaleaks.tests import helpers
@@ -10,7 +10,7 @@ from twisted.internet import defer, reactor
 
 
 class TestHostnameConfig(helpers.TestHandler):
-    _handler = config.AdminOperationsHandler
+    _handler = AdminOperationHandler
 
     @defer.inlineCallbacks
     def test_put(self):
@@ -59,7 +59,7 @@ class TestHostnameConfig(helpers.TestHandler):
 
 
 class TestAdminPasswordReset(helpers.TestHandlerWithPopulatedDB):
-    _handler = config.AdminOperationsHandler
+    _handler = AdminOperationHandler
 
     @defer.inlineCallbacks
     def setUp(self):
@@ -67,8 +67,8 @@ class TestAdminPasswordReset(helpers.TestHandlerWithPopulatedDB):
 
         for r in (yield receiver.get_receiver_list(1, 'en')):
             if r['pgp_key_fingerprint'] == u'BFB3C82D1B5F6A94BDAC55C6E70460ABF9A4C8C1':
-                self.rcvr_id = r['id']
                 self.user = r
+                break
 
     @defer.inlineCallbacks
     def test_put(self):
@@ -77,7 +77,7 @@ class TestAdminPasswordReset(helpers.TestHandlerWithPopulatedDB):
         data_request = {
             'operation': 'reset_user_password', 
             'args': {
-                'value': self.rcvr_id
+                'value': self.user['username']
             }
         }
 
@@ -86,5 +86,5 @@ class TestAdminPasswordReset(helpers.TestHandlerWithPopulatedDB):
         yield handler.put()
 
         # Now we check if the token was update
-        user = yield get_user(self.rcvr_id)
+        user = yield get_user(self.user['id'])
         self.assertNotEqual(user.reset_password_token, None)
