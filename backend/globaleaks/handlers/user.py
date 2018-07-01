@@ -94,7 +94,6 @@ def db_user_update_user(session, state, tid, user_id, request):
     """
     from globaleaks.handlers.admin.notification import db_get_notification
     from globaleaks.handlers.admin.node import db_admin_serialize_node
-    from globaleaks.handlers.admin.user import get_user
 
     user = models.db_get(session, models.User, models.User.id == user_id, models.User.tid == tid)
 

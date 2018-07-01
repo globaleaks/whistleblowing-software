@@ -1,14 +1,16 @@
 # -*- coding: utf-8
-from globaleaks.handlers.admin import config
+from globaleaks.handlers.admin.operation import AdminOperationHandler
 from globaleaks.rest import errors
 from globaleaks.state import State
 from globaleaks.tests import helpers
+from globaleaks.handlers.admin import receiver
+from globaleaks.tests.handlers.test_password_reset import get_user
 
 from twisted.internet import defer, reactor
 
 
 class TestHostnameConfig(helpers.TestHandler):
-    _handler = config.AdminConfigHandler
+    _handler = AdminOperationHandler
 
     @defer.inlineCallbacks
     def test_put(self):
@@ -47,8 +49,6 @@ class TestHostnameConfig(helpers.TestHandler):
         handler = self.request({'operation': 'set_hostname', 'args': {'value': 'antani.gov'}}, role='admin')
         yield handler.put()
 
-
-
     @defer.inlineCallbacks
     def tearDown(self):
         if hasattr(self, 'pp'):
@@ -56,3 +56,35 @@ class TestHostnameConfig(helpers.TestHandler):
             self.pp.transport.signalProcess('KILL')
 
         yield super(TestHostnameConfig, self).tearDown()
+
+
+class TestAdminPasswordReset(helpers.TestHandlerWithPopulatedDB):
+    _handler = AdminOperationHandler
+
+    @defer.inlineCallbacks
+    def setUp(self):
+        yield helpers.TestHandlerWithPopulatedDB.setUp(self)
+
+        for r in (yield receiver.get_receiver_list(1, 'en')):
+            if r['pgp_key_fingerprint'] == u'BFB3C82D1B5F6A94BDAC55C6E70460ABF9A4C8C1':
+                self.user = r
+                break
+
+    @defer.inlineCallbacks
+    def test_put(self):
+        State.tenant_cache[1]['enable_password_reset'] = False
+
+        data_request = {
+            'operation': 'reset_user_password', 
+            'args': {
+                'value': self.user['username']
+            }
+        }
+
+        handler = self.request(data_request, role='admin')
+
+        yield handler.put()
+
+        # Now we check if the token was update
+        user = yield get_user(self.user['id'])
+        self.assertNotEqual(user.reset_password_token, None)
