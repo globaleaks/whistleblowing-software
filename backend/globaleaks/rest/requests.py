@@ -621,3 +621,7 @@ SubmissionSubStatusDesc = {
     'label': text_type,
     'presentation_order': int
 }
+
+UserTenantDesc = {
+    'tenant_id': int
+}
