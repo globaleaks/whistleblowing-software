@@ -1,5 +1,5 @@
 # -*- coding: utf-8
-# Implementation of the cleaning operations.
+# Implementation of the daily operations.
 import datetime
 import fnmatch
 import os
@@ -23,10 +23,10 @@ from globaleaks.utils.templating import Templating
 from globaleaks.utils.utility import datetime_now, datetime_to_ISO8601, is_expired
 
 
-__all__ = ['Cleaning']
+__all__ = ['Daily']
 
 
-class Cleaning(LoopingJob):
+class Daily(LoopingJob):
     interval = 24 * 3600
     monitor_interval = 5 * 60
 
