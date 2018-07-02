@@ -220,3 +220,72 @@ class UserInstance(BaseHandler):
         Delete the specified user.
         """
         return models.delete(models.User, models.User.tid == self.request.tid, models.User.id == user_id)
+
+## UserTenant stuff goes here
+def serialize_usertenant_assoications(usertenant_row):
+    '''Serializes the UserTenant assoications'''
+    ret_dict = {
+        'user_id': usertenant_row.user_id,
+        'tenant_id': usertenant_row.tenant_id
+    }
+
+    return ret_dict
+
+@transact
+def get_usertenant_assoications(session, user_id):
+    usertenants = session.query(models.UserTenant) \
+                          .filter(models.UserTenant.user_id == user_id)
+
+    entries = []
+    for usertenant in usertenants:
+        entries.append(
+            usertenant
+        )
+    return entries
+
+@transact
+def get_specific_userteantn_assoication(session, user_id, tenant_id):
+    usertenant = session.query(models.UserTenant) \
+                       .filter(models.UserTenant.user_id == user_id) \
+                       .filter(models.UserTenant.tenant_id == tenant_id) \
+                       .first()
+
+    if usertenant is None:
+        raise errors.ResourceNotFound("UserTenant assiocation not found")
+
+    return serialize_usertenant_assoications(usertenant)
+
+@transact
+def create_usertenant_assoication(session, user_id, tenant_id):
+    usertenant = models.UserTenant()
+    usertenant.user_id = user_id
+    usertenant.tenant_id = tenant_id
+    session.add(usertenant)
+
+class UserTenantCollection(BaseHandler):
+    check_roles = 'admin'
+    invalidate_cache = True
+    root_tenant_only = True
+
+    def get(self, user_id):
+        """Gets a list of user tenant assoications"""
+        return get_usertenant_assoications(user_id)
+
+    def post(self, user_id):
+        """Creates a list of user/tenant assoications"""
+        request = self.validate_message(self.request.content.read(), requests.UserTenantDesc)
+
+class UserTenantInstance(BaseHandler):
+    check_role = 'admin'
+    invalidate_cache = True
+
+    # Instances usually have a put() method, but in this case, we have no
+    # attributes to set on this assoication
+
+    def delete(self, user_id, tenant_id):
+        # Make sure a given model exists
+        yield get_specific_userteantn_assoication(user_id, tenant_id)
+
+        yield models.delete(models.UserTenant,
+                            models.UserTenant.user_id == user_id,
+                            models.UserTenant.tenant_id == tenant_id)
