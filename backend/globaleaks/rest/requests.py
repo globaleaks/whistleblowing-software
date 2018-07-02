@@ -255,6 +255,7 @@ AdminNodeDesc = {
     'threshold_free_disk_megabytes_low': int,
     'threshold_free_disk_percentage_high': int,
     'threshold_free_disk_percentage_low': int,
+    'password_change_period': int,
     'wbtip_timetolive': int,
     'basic_auth': bool,
     'basic_auth_username': text_type,

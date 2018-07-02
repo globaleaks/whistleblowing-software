@@ -1126,6 +1126,7 @@ class MockDict:
             'threshold_free_disk_megabytes_low': 1000,
             'threshold_free_disk_percentage_high': 3,
             'threshold_free_disk_percentage_low': 10,
+            'password_change_period': -1,
             'wbtip_timetolive': 90,
             'basic_auth': False,
             'basic_auth_username': '',
