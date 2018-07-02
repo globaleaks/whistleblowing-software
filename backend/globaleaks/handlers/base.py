@@ -186,8 +186,8 @@ class BaseHandler(object):
         if b"authorization" in self.request.headers:
             try:
                 auth_type, data = self.request.headers[b"authorization"].split()
-                usr, pwd = base64.b64decode(data).split(":", 1)
-                if auth_type != "Basic" or \
+                usr, pwd = text_type(base64.b64decode(data), 'utf-8').split(":", 1)
+                if auth_type != b"Basic" or \
                     usr != self.state.tenant_cache[self.request.tid].basic_auth_username or \
                     pwd != self.state.tenant_cache[self.request.tid].basic_auth_password:
                     msg = "Authentication failed"
