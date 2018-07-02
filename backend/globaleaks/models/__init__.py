@@ -1118,7 +1118,7 @@ class _UserTenant(Model):
     __tablename__ = 'usertenant'
 
     user_id = Column(Unicode(36), primary_key=True, default=uuid4, nullable=False)
-    tenant_id = Column(Integer, default=1, nullable=False)
+    tenant_id = Column(Integer, primary_key=True, default=1, nullable=False)
 
     @declared_attr
     def __table_args__(cls): # pylint: disable=no-self-argument
