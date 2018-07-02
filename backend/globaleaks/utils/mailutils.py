@@ -90,8 +90,8 @@ def sendmail(tid, smtp_host, smtp_port, security, authentication, username, pass
         smtp_deferred = defer.Deferred()
 
         factory = ESMTPSenderFactory(
-            username.encode('utf-8'),
-            password.encode('utf-8'),
+            username.encode('utf-8') if authentication else None,
+            password.encode('utf-8') if authentication else None,
             from_address,
             to_address,
             message,
