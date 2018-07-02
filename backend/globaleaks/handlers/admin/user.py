@@ -17,6 +17,8 @@ from globaleaks.utils import security
 from globaleaks.utils.structures import fill_localized_keys, get_localized_values
 from globaleaks.utils.utility import datetime_now
 
+from twisted.internet.defer import inlineCallbacks
+
 def admin_serialize_receiver(session, receiver, user, language):
     """
     Serialize the specified receiver
@@ -239,12 +241,12 @@ def get_usertenant_assoications(session, user_id):
     entries = []
     for usertenant in usertenants:
         entries.append(
-            usertenant
+            serialize_usertenant_assoications(usertenant)
         )
     return entries
 
 @transact
-def get_specific_userteantn_assoication(session, user_id, tenant_id):
+def get_specific_usertenant_assoication(session, user_id, tenant_id):
     usertenant = session.query(models.UserTenant) \
                        .filter(models.UserTenant.user_id == user_id) \
                        .filter(models.UserTenant.tenant_id == tenant_id) \
@@ -274,6 +276,7 @@ class UserTenantCollection(BaseHandler):
     def post(self, user_id):
         """Creates a list of user/tenant assoications"""
         request = self.validate_message(self.request.content.read(), requests.UserTenantDesc)
+        return create_usertenant_assoication(user_id, request['tenant_id'])
 
 class UserTenantInstance(BaseHandler):
     check_role = 'admin'
@@ -282,9 +285,10 @@ class UserTenantInstance(BaseHandler):
     # Instances usually have a put() method, but in this case, we have no
     # attributes to set on this assoication
 
+    @inlineCallbacks
     def delete(self, user_id, tenant_id):
         # Make sure a given model exists
-        yield get_specific_userteantn_assoication(user_id, tenant_id)
+        yield get_specific_usertenant_assoication(user_id, tenant_id)
 
         yield models.delete(models.UserTenant,
                             models.UserTenant.user_id == user_id,
