@@ -121,7 +121,6 @@ def db_serialize_node(session, tid, language):
         'logo': db_get_file(session, tid, u'logo'),
         'favicon': db_get_file(session, tid, u'favicon'),
         'css': db_get_file(session, tid, u'css'),
-        'homepage': db_get_file(session, tid, u'homepage'),
         'script': db_get_file(session, tid, u'script')
     }
 
