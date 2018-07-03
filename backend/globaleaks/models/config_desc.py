@@ -122,6 +122,7 @@ ConfigDescriptor = {
     u'signup_tos1_enable': Bool(default=False),
     u'signup_tos2_enable': Bool(default=False),
 
+    u'enable_graphic_customization': Bool(default=False),
     u'enable_footer_customization': Bool(default=False),
 
     u'enable_experimental_features': Bool(default=False),
@@ -193,6 +194,7 @@ ConfigFilters = {
         u'signup_no_admin_user',
         u'signup_tos1_enable',
         u'signup_tos2_enable',
+        u'enable_graphic_customization',
         u'enable_footer_customization',
         u'counter_submissions',
         u'enable_captcha',
@@ -299,7 +301,6 @@ ConfigFilters['general_settings'] = set([
     'description',
     'whistleblowing_question',
     'whistleblowing_button',
-    'enable_footer_customization',
     'footer',
     'maximum_filesize',
     'favicon',
