@@ -71,10 +71,16 @@ class FileInstance(BaseHandler):
     upload_handler = True
 
     @inlineCallbacks
-    def post(self, id):
-        yield self.can_edit_general_settings_or_raise()
-        if self.current_user.user_role != 'admin' and id != 'logo':
+    def permission_check(self):
+        if id == 'logo' and self.current_user.user_role != 'admin':
+            yield self.can_edit_general_settings_or_raise()
             raise errors.InvalidAuthentication
+        elif not self.state.tenant_cache[self.request.tid]['enable_graphic_customization'] or self.current_user.user_role != 'admin':
+            raise errors.InvalidAuthentication
+
+    @inlineCallbacks
+    def post(self, id):
+        yield self.permission_check()
 
         if id != 'custom':
             sf = self.state.get_tmp_file_by_name(self.uploaded_file['filename'])
@@ -93,7 +99,8 @@ class FileInstance(BaseHandler):
 
     @inlineCallbacks
     def delete(self, id):
-        yield self.can_edit_general_settings_or_raise()
+        yield self.permission_check()
+
         path = os.path.join(self.state.settings.files_path, id)
         directory_traversal_check(self.state.settings.files_path, path)
         if os.path.exists(path):
@@ -102,14 +109,12 @@ class FileInstance(BaseHandler):
         result = yield models.delete(models.File, models.File.tid == self.request.tid, models.File.id == id)
         returnValue(result)
 
+
 class FileCollection(BaseHandler):
     check_roles =  {'admin', 'receiver', 'custodian'}
 
-    @inlineCallbacks
     def get(self):
         """
         Return the list of files and their info
         """
-        yield self.can_edit_general_settings_or_raise()
-        result = yield get_files(self.request.tid)
-        returnValue(result)
+        return get_files(self.request.tid)
