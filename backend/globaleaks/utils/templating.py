@@ -359,6 +359,9 @@ class ExportMessageKeyword(TipKeyword):
     def Content(self):
         return self.data['message']['content']
 
+    def EventTime(self):
+        return ISO8601_to_pretty_str(self.data['message']['creation_date'])
+
 
 class ExpirationSummaryKeyword(UserNodeKeyword):
     keyword_list = UserNodeKeyword.keyword_list + expiration_summary_keywords
