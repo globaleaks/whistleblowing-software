@@ -5,6 +5,7 @@ import ipaddress
 
 from random import SystemRandom
 from six import text_type, binary_type
+from sqlalchemy import and_, or_
 from twisted.internet.defer import inlineCallbacks, returnValue
 
 from globaleaks.utils import security
@@ -79,16 +80,23 @@ def login(session, tid, username, password, client_using_tor, client_ip, token='
     """
     login returns a tuple (user_id, state, pcn)
     """
-    if token:
-        user = session.query(User).filter(User.auth_token == token, \
-                                          User.state != u'disabled', \
-                                          User.tid == tid).one_or_none()
-    else:
-        user = session.query(User).filter(User.username == username, \
-                                          User.state != u'disabled', \
-                                          User.tid == tid).one_or_none()
+    user = None
 
-    if user is None or (not token and not security.check_password(password, user.salt, user.password)):
+    if token:
+        users = session.query(User).filter(User.auth_token == token, \
+                                          User.state != u'disabled', \
+                                          (or_(and_(User.role == u'admin', User.tid.in_(set([1, tid]))),
+                                               and_(User.role != u'admin', User.tid == tid))))
+    else:
+        users = session.query(User).filter(User.username == username, \
+                                          User.state != u'disabled', \
+                                          (or_(and_(User.role == u'admin', User.tid.in_(set([1, tid]))),
+                                               and_(User.role != u'admin', User.tid == tid))))
+    for u in users:
+        if security.check_password(password, u.salt, u.password):
+            user = u
+
+    if user is None:
         log.debug("Login: Invalid credentials")
         Settings.failed_login_attempts += 1
         raise errors.InvalidAuthentication
