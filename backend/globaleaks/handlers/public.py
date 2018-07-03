@@ -113,22 +113,19 @@ def db_serialize_node(session, tid, language):
 
     node = ConfigFactory(session, tid, 'public_node').serialize()
 
-    misc_dict = {
+    ret_dict = {
         'languages_enabled': models.EnabledLanguage.list(session, tid) if node['wizard_done'] else list(LANGUAGES_SUPPORTED_CODES),
         'languages_supported': LANGUAGES_SUPPORTED,
         'configured': configured,
         'accept_submissions': State.accept_submissions,
-        'logo': db_get_file(session, tid, u'logo'),
-        'favicon': db_get_file(session, tid, u'favicon'),
-        'css': db_get_file(session, tid, u'css'),
-        'script': db_get_file(session, tid, u'script')
+        'logo': db_get_file(session, tid, u'logo')
     }
 
     l10n_dict = NodeL10NFactory(session, tid).localized_dict(language)
 
     if tid != 1:
         root_tenant_node = ConfigFactory(session, 1, 'public_node')
-        misc_dict['enable_footer_customization'] = root_tenant_node.get_val(u'enable_footer_customization')
+        ret_dict['enable_footer_customization'] = root_tenant_node.get_val(u'enable_footer_customization')
 
         if language not in models.EnabledLanguage.list(session, tid):
             language = root_tenant_node.get_val(u'default_language')
@@ -136,7 +133,13 @@ def db_serialize_node(session, tid, language):
         root_tenant_l10n = NodeL10NFactory(session, tid)
         l10n_dict['footer'] = root_tenant_l10n.get_val(u'footer', language)
 
-    return merge_dicts(node, l10n_dict, misc_dict)
+    ret_dict['favicon'] = ret_dict['css'] = ret_dict['script'] = ''
+    if tid == 1 or node['enable_graphic_customization']:
+        ret_dict['css'] = db_get_file(session, tid, u'css')
+        ret_dict['favicon'] = db_get_file(session, tid, u'favicon')
+        ret_dict['script'] = db_get_file(session, tid, u'script')
+
+    return merge_dicts(node, ret_dict, l10n_dict)
 
 
 def serialize_context(session, context, language, data=None):
