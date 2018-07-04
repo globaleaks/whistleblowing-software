@@ -18,6 +18,11 @@ GLClient.controller('AdminUsersCtrl', ['$scope',
       $scope.editing = $scope.editing ^ 1;
     };
 
+    $scope.showAddUserTenantAssociation = false;
+    $scope.toggleAddUserTenantAssociation = function () {
+      $scope.showAddUserTenantAssociation = !$scope.showAddUserTenantAssociation;
+    };
+
     $scope.saveUser = function() {
       var user = $scope.user;
       if (user.pgp_key_remove) {
@@ -56,6 +61,22 @@ GLClient.controller('AdminUsersCtrl', ['$scope',
         $rootScope.successes.push({message: 'Success!'});
       })
     }  
+}]).
+controller('AdminUserTenantAssociationAddCtrl', ['$scope', '$http',
+function ($scope, $http) {
+  $scope.presentation_order = $scope.newItemOrder($scope.submission_state.substates, 'presentation_order');
+
+  $scope.addUserTenantAssociation = function () {
+    /* IMPLEMENT ME */
+  }
+}]).
+controller('AdminUserTenantAssociationEditorCtrl', ['$scope', '$rootScope', '$http', 'Utils', 'AdminSubmissionSubStateResource',
+function ($scope, $rootScope, $http, Utils, AdminSubmissionSubStateResource) {
+  // FIX AdminSubmissionSubStateResource - MUST BE CHANGED
+  $scope.usertenant_association_editing = false;
+  $scope.toggleUserTenantAssociationEditing = function () {
+    $scope.usertenant_association_editing = !$scope.usertenant_association_editing;
+  }
 }]).
 controller('AdminUserAddCtrl', ['$scope',
   function($scope) {
