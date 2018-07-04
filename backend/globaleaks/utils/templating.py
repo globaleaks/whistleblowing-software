@@ -99,7 +99,8 @@ platform_signup_keywords = [
     '{Name}',
     '{Surname}',
     '{Email}',
-    '{UseCase}'
+    '{UseCase}',
+    '{Language}'
 ]
 
 email_validation_keywords = [
