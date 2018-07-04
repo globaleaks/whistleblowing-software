@@ -45,6 +45,7 @@ def user_serialize_user(session, user, language):
     :return: a serialization of the object
     """
     picture = db_get_model_img(session, 'users', user.id)
+    usertenant_assoic = db_get_usertenant_assoications(session, user.id)
 
     ret_dict = {
         'id': user.id,
@@ -67,7 +68,8 @@ def user_serialize_user(session, user, language):
         'pgp_key_expiration': datetime_to_ISO8601(user.pgp_key_expiration),
         'pgp_key_remove': False,
         'picture': picture,
-        'can_edit_general_settings': user.can_edit_general_settings
+        'can_edit_general_settings': user.can_edit_general_settings,
+        'usertenant_assocations': usertenant_assoic
     }
 
     return get_localized_values(ret_dict, user, user.localized_keys, language)
@@ -146,6 +148,41 @@ def update_user_settings(session, state, tid, user_id, request, language):
 
     return user_serialize_user(session, user, language)
 
+def db_get_usertenant_assoications(session, user_id):
+    usertenants = session.query(models.UserTenant) \
+                          .filter(models.UserTenant.user_id == user_id)
+
+    entries = []
+    for usertenant in usertenants:
+        entries.append(
+            serialize_usertenant_assoications(usertenant)
+        )
+    return entries
+
+@transact
+def get_usertenant_assoications(session, user_id):
+    return db_get_usertenant_assoications(session, user_id)
+
+@transact
+def get_specific_usertenant_assoication(session, user_id, tenant_id):
+    usertenant = session.query(models.UserTenant) \
+                       .filter(models.UserTenant.user_id == user_id) \
+                       .filter(models.UserTenant.tenant_id == tenant_id) \
+                       .first()
+
+    if usertenant is None:
+        raise errors.ResourceNotFound("UserTenant assiocation not found")
+
+    return serialize_usertenant_assoications(usertenant)
+
+def serialize_usertenant_assoications(usertenant_row):
+    '''Serializes the UserTenant assoications'''
+    ret_dict = {
+        'user_id': usertenant_row.user_id,
+        'tenant_id': usertenant_row.tenant_id
+    }
+
+    return ret_dict
 
 class UserInstance(BaseHandler):
     """

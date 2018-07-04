@@ -119,6 +119,9 @@ api_spec = [
     (r'/admin/node', admin_node.NodeInstance),
     (r'/admin/users', admin_user.UsersCollection),
     (r'/admin/users/' + uuid_regexp, admin_user.UserInstance),
+    (r'/admin/users/' + uuid_regexp + r'/tenant_assoications', admin_user.UserTenantCollection),
+    (r'/admin/users/' + uuid_regexp + r'/tenant_assoications/' + uuid_regexp, admin_user.UserTenantCollection),
+
     (r'/admin/contexts', admin_context.ContextsCollection),
     (r'/admin/contexts/' + uuid_regexp, admin_context.ContextInstance),
     (r'/admin/(users|contexts)/' + uuid_regexp  + r'/img', admin_modelimgs.ModelImgInstance),

@@ -9,7 +9,7 @@ from six import text_type
 from globaleaks import models
 from globaleaks.db import db_refresh_memory_variables
 from globaleaks.handlers.base import BaseHandler
-from globaleaks.handlers.user import parse_pgp_options, user_serialize_user
+from globaleaks.handlers.user import parse_pgp_options, user_serialize_user, get_specific_usertenant_assoication, get_usertenant_assoications
 from globaleaks.orm import transact
 from globaleaks.rest import requests, errors
 from globaleaks.state import State
@@ -224,39 +224,6 @@ class UserInstance(BaseHandler):
         return models.delete(models.User, models.User.tid == self.request.tid, models.User.id == user_id)
 
 ## UserTenant stuff goes here
-def serialize_usertenant_assoications(usertenant_row):
-    '''Serializes the UserTenant assoications'''
-    ret_dict = {
-        'user_id': usertenant_row.user_id,
-        'tenant_id': usertenant_row.tenant_id
-    }
-
-    return ret_dict
-
-@transact
-def get_usertenant_assoications(session, user_id):
-    usertenants = session.query(models.UserTenant) \
-                          .filter(models.UserTenant.user_id == user_id)
-
-    entries = []
-    for usertenant in usertenants:
-        entries.append(
-            serialize_usertenant_assoications(usertenant)
-        )
-    return entries
-
-@transact
-def get_specific_usertenant_assoication(session, user_id, tenant_id):
-    usertenant = session.query(models.UserTenant) \
-                       .filter(models.UserTenant.user_id == user_id) \
-                       .filter(models.UserTenant.tenant_id == tenant_id) \
-                       .first()
-
-    if usertenant is None:
-        raise errors.ResourceNotFound("UserTenant assiocation not found")
-
-    return serialize_usertenant_assoications(usertenant)
-
 @transact
 def create_usertenant_assoication(session, user_id, tenant_id):
     usertenant = models.UserTenant()
