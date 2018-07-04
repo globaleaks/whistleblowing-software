@@ -273,12 +273,12 @@ var GLClient = angular.module('GLClient', [
         }
       }).
       when('/admin/users', {
-        templateUrl: 'views/admin/users.html',
+        templateUrl: 'views/admin/users/userlist.html',
         controller: 'AdminCtrl',
         header_title: 'Administration interface',
         header_subtitle: 'Users',
         resolve: {
-          resources: fetchResources('admin', ['node', 'users']),
+          resources: fetchResources('admin', ['node', 'users', 'tenants']),
         }
       }).
       when('/admin/receivers', {

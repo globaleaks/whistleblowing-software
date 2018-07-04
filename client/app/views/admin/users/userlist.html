@@ -197,6 +197,9 @@
                   </div>
                 </div>
               </div>
+              <div data-ng-show="admin.tenants.length > 1">
+                <div class="col-md-12" data-ng-include="'views/admin/users/tenant_associations.html'"></div>
+              </div>
             </div>
           </div>
         </form>
