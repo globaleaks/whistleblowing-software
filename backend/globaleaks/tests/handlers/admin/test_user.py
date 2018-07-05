@@ -129,6 +129,8 @@ class TestUserTenantCollection(UserTenantTestBaseClass):
         }
         handler = self.request(request_data, role='admin')
         response = yield handler.post(self.rcvr_id)
+        self.assertEqual(response['user_id'], self.rcvr_id)
+        self.assertEqual(response['tenant_id'], 4)
 
         response = yield handler.get(self.rcvr_id)
         self.assertEqual(response[0]['user_id'], self.rcvr_id)

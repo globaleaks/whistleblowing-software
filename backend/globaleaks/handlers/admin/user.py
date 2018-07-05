@@ -9,7 +9,7 @@ from six import text_type
 from globaleaks import models
 from globaleaks.db import db_refresh_memory_variables
 from globaleaks.handlers.base import BaseHandler
-from globaleaks.handlers.user import parse_pgp_options, user_serialize_user, get_specific_usertenant_assoication, get_usertenant_assoications
+from globaleaks.handlers.user import parse_pgp_options, user_serialize_user, get_specific_usertenant_assoication, get_usertenant_assoications, serialize_usertenant_assoications
 from globaleaks.orm import transact
 from globaleaks.rest import requests, errors
 from globaleaks.state import State
@@ -230,6 +230,8 @@ def create_usertenant_assoication(session, user_id, tenant_id):
     usertenant.user_id = user_id
     usertenant.tenant_id = tenant_id
     session.add(usertenant)
+
+    return serialize_usertenant_assoications(usertenant)
 
 class UserTenantCollection(BaseHandler):
     check_roles = 'admin'

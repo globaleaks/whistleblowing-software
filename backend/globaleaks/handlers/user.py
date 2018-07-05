@@ -69,6 +69,7 @@ def user_serialize_user(session, user, language):
         'pgp_key_remove': False,
         'picture': picture,
         'can_edit_general_settings': user.can_edit_general_settings,
+        'tid': user.tid,
         'usertenant_assocations': usertenant_assoic
     }
 
