@@ -64,10 +64,55 @@ GLClient.controller('AdminUsersCtrl', ['$scope',
 }]).
 controller('AdminUserTenantAssociationAddCtrl', ['$scope', '$http',
 function ($scope, $http) {
-  $scope.presentation_order = $scope.newItemOrder($scope.submission_state.substates, 'presentation_order');
+  $scope.refreshAvailableTenants = function() {
+    var tenantList = [];
+
+    /* Build a list of tenants that we can actually add */
+    for (var i = 0; i < $scope.admin.tenants.length; i++) {
+      var tenant = $scope.admin.tenants[i];
+
+      /* If user.tid matches, it's not an elligable choice */
+      if ($scope.user.tid === tenant.id) {
+        continue;
+      }
+
+      /* Same if user is already associated */
+      var already_associated = false;
+      for (var j = 0; i < $scope.user.usertenant_assocations.length; j++) {
+        var t_assoc = $scope.user.usertenant_assocations[j]
+        if (t_assoc.tenant_id === tenant.id) {
+          already_associated = true;
+          break;
+        }
+      }
+
+      if (already_associated === true) {
+        continue;
+      }
+
+      // *phew*, we can add it to the list
+      tenantList.push(tenant);
+    }
+
+    return tenantList;
+  }
+
+  if (!$scope.availableTenants) {
+    $scope.availableTenants = $scope.refreshAvailableTenants();
+  }
 
   $scope.addUserTenantAssociation = function () {
-    /* IMPLEMENT ME */
+    console.log($scope.selectedTenant);
+    var new_submission_substate = {
+      'tenant_id':$scope.selectedTenant.id
+    }
+
+    $http.post(
+      '/admin/users/' + $scope.user.id + '/tenant_assoications',
+      new_submission_substate
+    ).then(function (result) {
+      $scope.user.usertenant_assocations.push(result.data);
+    })
   }
 }]).
 controller('AdminUserTenantAssociationEditorCtrl', ['$scope', '$rootScope', '$http', 'Utils', 'AdminSubmissionSubStateResource',

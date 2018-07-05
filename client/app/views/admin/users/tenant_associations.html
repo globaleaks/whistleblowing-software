@@ -14,18 +14,15 @@
         <div class="row">
           <div class="col-md-12">
             <div class="form-group">
-              <label data-translate>Label</label>
-              <input name="label" class="form-control" data-ng-model="new_substate.label" type="text" required>
-              <div class="text-danger" data-ng-show="newSubstate.label.$error.required">
-                <span data-translate>This field is mandatory</span>
-              </div>
+              <label data-translate>Tenant</label>
+              <select id="newUserTenantAssociation" class="form-control" data-ng-model="selectedTenant" data-ng-options="tenant as tenant.label for tenant in ::availableTenants"></select>
             </div>
           </div>
         </div>
         <div class="row">
           <div class="col-md-12">
             <div class="form-group">
-              <button id="add-step-btn" class="pull-left btn btn-primary" data-ng-disabled="newSubstate.$invalid"
+              <button id="add-step-btn" class="pull-left btn btn-primary" data-ng-disabled="selectedTenant == ''"
                       data-ng-click="addUserTenantAssociation(); toggleAddUserTenantAssociation()">
                 <i class="glyphicon glyphicon-plus-sign"></i>
                 <span data-translate>Add</span>
