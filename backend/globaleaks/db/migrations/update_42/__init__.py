@@ -1,7 +1,7 @@
 # -*- coding: UTF-8
 from globaleaks.db.migrations.update import MigrationBase
-from globaleaks.handlers.admin.tenant import initialize_submission_states
-from globaleaks.handlers.submission import db_update_submission_state
+from globaleaks.handlers.admin.tenant import initialize_submission_statuses
+from globaleaks.handlers.submission import db_update_submission_status
 from globaleaks.models import Model
 from globaleaks.models.properties import *
 from globaleaks.utils.utility import datetime_now, datetime_null
@@ -87,8 +87,8 @@ class MigrationScript(MigrationBase):
         for old_obj in old_objs:
             new_obj = self.model_to['InternalTip']()
             for key in [c.key for c in new_obj.__table__.columns]:
-                new_obj.state = 'antani!'
-                if key == 'state' or key =='substate':
+                new_obj.status = 'antani!'
+                if key == 'status' or key =='substatus':
                     pass
                 else:
                     setattr(new_obj, key, getattr(old_obj, key))
@@ -99,7 +99,7 @@ class MigrationScript(MigrationBase):
     def epilogue(self):
         tenants = self.session_old.query(self.model_from['Tenant'])
         for tenant in tenants:
-            initialize_submission_states(self.session_new, tenant.id)
+            initialize_submission_statuses(self.session_new, tenant.id)
 
         self.session_new.flush()
 
@@ -108,10 +108,10 @@ class MigrationScript(MigrationBase):
                                     .filter(self.model_to['InternalTip'].context_id == self.model_to['Context'].id,
                                             self.model_to['Context'].tid == tenant.id)
             for itip in itips:
-                open_state_id = self.session_new.query(self.model_to['SubmissionState'].id)\
-                                                .filter(self.model_to['SubmissionState'].tid == tenant.id,
-                                                        self.model_to['SubmissionState'].system_usage == 'open').one()[0]
+                open_status_id = self.session_new.query(self.model_to['SubmissionStatus'].id)\
+                                                .filter(self.model_to['SubmissionStatus'].tid == tenant.id,
+                                                        self.model_to['SubmissionStatus'].system_usage == 'open').one()[0]
 
                 first_rtip = self.session_new.query(self.model_to['ReceiverTip'])\
                                          .filter(self.model_to['ReceiverTip'].internaltip_id == itip.id).first()
-                db_update_submission_state(self.session_new, tenant.id, first_rtip.receiver_id, itip, open_state_id, u'')
+                db_update_submission_status(self.session_new, tenant.id, first_rtip.receiver_id, itip, open_status_id, u'')

@@ -12,7 +12,7 @@ from globaleaks import models
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.custodian import serialize_identityaccessrequest, db_get_identityaccessrequest_list
 from globaleaks.handlers.operation import OperationHandler
-from globaleaks.handlers.submission import serialize_usertip, db_update_submission_state
+from globaleaks.handlers.submission import serialize_usertip, db_update_submission_status
 from globaleaks.models import serializers
 from globaleaks.orm import transact
 from globaleaks.rest import errors, requests
@@ -21,6 +21,7 @@ from globaleaks.utils.security import directory_traversal_check
 from globaleaks.state import State
 from globaleaks.utils.utility import log, get_expiration, datetime_now, datetime_never, \
     datetime_to_ISO8601
+
 
 def receiver_serialize_rfile(session, rfile):
     ifile = session.query(models.InternalFile) \
@@ -203,16 +204,16 @@ def receiver_get_rfile_list(session, tid, rtip_id):
 
 
 def db_set_itip_open_if_new(session, tid, user_id, itip):
-    new_state_id = session.query(models.SubmissionState.id) \
-                          .filter(models.SubmissionState.tid == tid,
-                                  models.SubmissionState.system_usage == 'new').one()[0]
+    new_status_id = session.query(models.SubmissionStatus.id) \
+                          .filter(models.SubmissionStatus.tid == tid,
+                                  models.SubmissionStatus.system_usage == 'new').one()[0]
 
-    if new_state_id == itip.state:
-        open_state_id = session.query(models.SubmissionState.id) \
-                              .filter(models.SubmissionState.tid == tid,
-                                      models.SubmissionState.system_usage == 'open').one()[0]
+    if new_status_id == itip.status:
+        open_status_id = session.query(models.SubmissionStatus.id) \
+                              .filter(models.SubmissionStatus.tid == tid,
+                                      models.SubmissionStatus.system_usage == 'open').one()[0]
 
-        db_update_submission_state(session, tid, user_id, itip, open_state_id, '')
+        db_update_submission_status(session, tid, user_id, itip, open_status_id, '')
 
 
 def db_get_rtip(session, tid, user_id, rtip_id, language):
@@ -332,10 +333,10 @@ def set_receivertip_variable(session, tid, user_id, rtip_id, key, value):
 
 
 @transact
-def update_tip_submission_state(session, tid, user_id, rtip_id, submission_state_uuid, submission_substate_uuid):
+def update_tip_submission_status(session, tid, user_id, rtip_id, submission_status_uuid, submission_substatus_uuid):
     rtip, itip = db_access_rtip(session, tid, user_id, rtip_id)
 
-    db_update_submission_state(session, tid, user_id, itip, submission_state_uuid, submission_substate_uuid)
+    db_update_submission_status(session, tid, user_id, itip, submission_status_uuid, submission_substatus_uuid)
 
 
 @transact
@@ -420,8 +421,8 @@ class RTipInstance(OperationHandler):
                   {'key': '^(enable_two_way_comments|enable_two_way_messages|enable_attachments|enable_notifications)$',
                    'value': bool}),
           'update_label': (RTipInstance.update_label, {'value': text_type}),
-          'update_state': (RTipInstance.update_submission_state, {'state': text_type,
-                                                                  'substate': text_type})
+          'update_status': (RTipInstance.update_submission_status, {'status': text_type,
+                                                                    'substatus': text_type})
         }
 
 
@@ -440,9 +441,9 @@ class RTipInstance(OperationHandler):
     def update_label(self, req_args, tip_id, *args, **kwargs):
         return set_receivertip_variable(self.request.tid, self.current_user.user_id, tip_id, 'label', req_args['value'])
 
-    def update_submission_state(self, req_args, tip_id, *args, **kwargs):
-        return update_tip_submission_state(self.request.tid, self.current_user.user_id, tip_id,
-                                           req_args['state'], req_args['substate'])
+    def update_submission_status(self, req_args, tip_id, *args, **kwargs):
+        return update_tip_submission_status(self.request.tid, self.current_user.user_id, tip_id,
+                                            req_args['status'], req_args['substatus'])
 
     def delete(self, tip_id):
         """

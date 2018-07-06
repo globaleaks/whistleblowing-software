@@ -122,7 +122,7 @@ class BaseHandler(object):
     cache_resource = False
     invalidate_global_cache = False
     invalidate_cache = False
-    invalidate_tenant_states = False
+    invalidate_tenant_statuses = False
     bypass_basic_auth = False
     root_tenant_only = False
     upload_handler = False
@@ -165,14 +165,14 @@ class BaseHandler(object):
         return wrapper
 
     @staticmethod
-    def decorator_invalidate_tenant_states(f):
+    def decorator_invalidate_tenant_statuses(f):
         """
-        Decorator for invalidation of tenant states
+        Decorator for invalidation of tenant statuses
         """
         def wrapper(self, *args, **kwargs):
             d = defer.maybeDeferred(f, self, *args, **kwargs)
             def callback(data):
-                self.state.refresh_tenant_states()
+                self.state.refresh_tenant_statuses()
                 return data
 
             d.addCallback(callback)

@@ -1,9 +1,0 @@
-<span class="form-inline" data-ng-click="$event.stopPropagation();">
-  <span id="AssignSubmissionState">
-    <label data-translate>Submission state:</label>
-    <select id="assignSubmissionState" class="form-control" data-ng-model="tip.submissionStateObj" data-ng-options="state as state.label for state in ::submission_states.slice(1)" data-ng-change="updateSubmissionState()"></select>
-    <select id="assignSubmissionSubState" class="form-control" data-ng-model="tip.submissionSubStateObj" data-ng-options="substate as substate.label for substate in tip.submissionStateObj.substates" data-ng-hide="tip.submissionStateObj.substates.length === 0" data-ng-change="updateSubmissionState()">
-      <option value="" data-translate></option>
-    </select>
-  </span>
-</span>

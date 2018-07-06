@@ -88,8 +88,8 @@
           <th>
             <span data-ng-click="sortKey = 'creation_date'; sortReverse = !sortReverse">
               <i class="glyphicon glyphicon-record"></i>
-              <span data-translate>Submission state</span>
-              <span class="btn btn-xs" data-ng-show="sortKey == 'submissionStateStr'">
+              <span data-translate>Submission status</span>
+              <span class="btn btn-xs" data-ng-show="sortKey == 'submissionStatusStr'">
                 <span data-ng-show="!sortReverse" class="glyphicon glyphicon-triangle-bottom"></span>
                 <span data-ng-show="sortReverse" class="glyphicon glyphicon-triangle-top"></span>
               </span>
@@ -196,7 +196,7 @@
           <td class="tipID">#{{ tip.progressive }}</td>
           <td data-ng-if="contexts.length > 1">{{::tip.context_name}}</td>
           <td>{{::tip.label}}</td>
-	  <td><span>{{tip.submissionStateStr}}</span></td>
+	  <td><span>{{tip.submissionStatusStr}}</span></td>
           <td>{{::tip.creation_date | date:'dd-MM-yyyy HH:mm'}}</td>
           <td>{{::tip.update_date | date:'dd-MM-yyyy HH:mm'}}</td>
           <td>

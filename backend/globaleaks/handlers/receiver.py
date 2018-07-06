@@ -129,8 +129,8 @@ def get_receivertip_list(session, tid, receiver_id, language):
             'preview': internaltip.preview,
             'total_score': internaltip.total_score,
             'label': rtip.label,
-            'state': internaltip.state,
-            'substate': internaltip.substate
+            'status': internaltip.status,
+            'substatus': internaltip.substatus
         })
 
     return rtip_summary_list
