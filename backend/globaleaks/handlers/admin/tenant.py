@@ -19,11 +19,11 @@ from globaleaks.settings import Settings
 from globaleaks.state import State
 
 
-def initialize_submission_states(session, tid):
+def initialize_submission_statuses(session, tid):
     for s in [{'label': {'en': 'New'}, 'system_usage': 'new'},
               {'label': {'en': 'Open'}, 'system_usage':'open'},
               {'label': {'en':' Closed'}, 'system_usage': 'closed'}]:
-        state = models.SubmissionState()
+        state = models.SubmissionStatus()
         state.tid = tid
         state.label = s['label']
         state.system_defined = True
@@ -63,7 +63,7 @@ def db_create(session, desc):
 
     models.config.add_new_lang(session, t.id, u'en', appdata)
 
-    initialize_submission_states(session, t.id)
+    initialize_submission_statuses(session, t.id)
 
     file_descs = [
       (u'logo', 'data/logo.png'),
@@ -120,7 +120,7 @@ class TenantCollection(BaseHandler):
     cache_resource = True
     root_tenant_only = True
     invalidate_cache = True
-    invalidate_tenant_states = True
+    invalidate_tenant_statuses = True
 
     def get(self):
         """
@@ -143,7 +143,7 @@ class TenantInstance(BaseHandler):
     check_roles = 'admin'
     invalidate_cache = True
     root_tenant_only = True
-    invalidate_tenant_states = True
+    invalidate_tenant_statuses = True
 
     def get(self, tenant_id):
         tenant_id = int(tenant_id)

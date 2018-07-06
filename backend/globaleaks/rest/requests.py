@@ -20,7 +20,7 @@ key_regexp_or_empty               = r'^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0
 uuid_regexp                       = r'^([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})$'
 uuid_regexp_or_empty              = r'^([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})$|^$'
 user_roles_regexp                 = r'^(admin|custodian|receiver)$'
-user_states_regexp                = r'^(enabled|disabled)$'
+user_statuses_regexp                = r'^(enabled|disabled)$'
 email_regexp                      = r'^(([\w+-\.]){0,100}[\w]{1,100}@([\w+-\.]){0,100}[\w]{1,100})$'
 email_regexp_or_empty             = r'^(([\w+-\.]){0,100}[\w]{1,100}@([\w+-\.]){0,100}[\w]{1,100})$|^$'
 onionservice_regexp_or_empty      = r'^[0-9a-z]{16}\.onion$|^$'
@@ -137,7 +137,7 @@ UserUserDesc = {
     'password': text_type,
     'old_password': text_type,
     'password_change_needed': bool,
-    'state': user_states_regexp,
+    'state': user_statuses_regexp,
     'mail_address': email_regexp,
     'pgp_key_remove': bool,
     'pgp_key_fingerprint': text_type,
@@ -502,7 +502,7 @@ ReceiverDesc = {
     'name': text_type,
     'description': text_type,
     'id': uuid_regexp,
-    'state': user_states_regexp,
+    'state': user_statuses_regexp,
     'can_delete_submission': bool,
     'can_postpone_expiration': bool,
     'can_grant_permissions': bool
@@ -598,12 +598,12 @@ QuestionnaireDuplicationDesc = {
     'new_name': text_type
 }
 
-SubmissionStateDesc = {
+SubmissionStatusDesc = {
     'label': text_type,
     'presentation_order': int
 }
 
-SubmissionSubStateDesc = {
+SubmissionSubStatusDesc = {
     'label': text_type,
     'presentation_order': int
 }

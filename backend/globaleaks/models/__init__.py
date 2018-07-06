@@ -680,16 +680,16 @@ class _InternalTip(Model):
     wb_last_access = Column(DateTime, default=datetime_now, nullable=False)
     wb_access_counter = Column(Integer, default=0, nullable=False)
 
-    state = Column(Unicode(36), nullable=False)
-    substate = Column(Unicode(36), nullable=True)
+    status = Column(Unicode(36), nullable=False)
+    substatus = Column(Unicode(36), nullable=True)
 
     @declared_attr
     def __table_args__(cls): # pylint: disable=no-self-argument
         return (ForeignKeyConstraint(['tid'], ['tenant.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),
                 ForeignKeyConstraint(['context_id'], ['context.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),
                 ForeignKeyConstraint(['questionnaire_hash'], ['archivedschema.hash'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),
-                ForeignKeyConstraint(['state'], ['submissionstate.id'], deferrable=True, initially='DEFERRED'),
-                ForeignKeyConstraint(['substate'], ['submissionsubstate.id'], deferrable=True, initially='DEFERRED'))
+                ForeignKeyConstraint(['status'], ['submissionstatus.id'], deferrable=True, initially='DEFERRED'),
+                ForeignKeyConstraint(['substatus'], ['submissionsubstatus.id'], deferrable=True, initially='DEFERRED'))
 
 
 class _Mail(Model):
@@ -965,11 +965,11 @@ class _Stats(Model):
         return (ForeignKeyConstraint(['tid'], ['tenant.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),)
 
 
-class _SubmissionState(Model):
+class _SubmissionStatus(Model):
     """
-    Contains the states a submission may be in
+    Contains the statuses a submission may be in
     """
-    __tablename__ = 'submissionstate'
+    __tablename__ = 'submissionstatus'
 
     id = Column(Unicode(36), primary_key=True, default=uuid4, nullable=False)
     tid = Column(Integer, default=1, nullable=False)
@@ -988,14 +988,14 @@ class _SubmissionState(Model):
         return (ForeignKeyConstraint(['tid'], ['tenant.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),)
 
 
-class _SubmissionSubState(Model):
+class _SubmissionSubStatus(Model):
     """
-    Contains the substates that a state may be in
+    Contains the substatuses that a submission may be in
     """
-    __tablename__ = 'submissionsubstate'
+    __tablename__ = 'submissionsubstatus'
 
     id = Column(Unicode(36), primary_key=True, default=uuid4, nullable=False)
-    submissionstate_id = Column(Unicode(36), nullable=False)
+    submissionstatus_id = Column(Unicode(36), nullable=False)
     label = Column(JSON, nullable=False)
 
     presentation_order = Column(Integer, default=0, nullable=False)
@@ -1005,28 +1005,28 @@ class _SubmissionSubState(Model):
 
     @declared_attr
     def __table_args__(cls): # pylint: disable=no-self-argument
-        return (ForeignKeyConstraint(['submissionstate_id'], ['submissionstate.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),)
+        return (ForeignKeyConstraint(['submissionstatus_id'], ['submissionstatus.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),)
 
 
-class _SubmissionStateChange(Model):
+class _SubmissionStatusChange(Model):
     """
-    Contains a record of all changes of state of a submission
+    Contains a record of all changes of status of a submission
     """
 
-    __tablename__ = 'submissionstatechange'
+    __tablename__ = 'submissionstatuschange'
 
     id = Column(Unicode(36), primary_key=True, default=uuid4, nullable=False)
     internaltip_id = Column(Unicode(36), nullable=False)
-    state = Column(Unicode(36), nullable=False)
-    substate = Column(Unicode(36), nullable=True)
+    status = Column(Unicode(36), nullable=False)
+    substatus = Column(Unicode(36), nullable=True)
     changed_on = Column(DateTime, default=datetime_now, nullable=False)
     changed_by = Column(Unicode(36), nullable=False)
 
     @declared_attr
     def __table_args__(cls): # pylint: disable=no-self-argument
         return (ForeignKeyConstraint(['internaltip_id'], ['internaltip.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),
-                ForeignKeyConstraint(['state'], ['submissionstate.id'], deferrable=True, initially='DEFERRED'),
-                ForeignKeyConstraint(['substate'], ['submissionsubstate.id'], deferrable=True, initially='DEFERRED'),
+                ForeignKeyConstraint(['status'], ['submissionstatus.id'], deferrable=True, initially='DEFERRED'),
+                ForeignKeyConstraint(['substatus'], ['submissionsubstatus.id'], deferrable=True, initially='DEFERRED'),
                 ForeignKeyConstraint(['changed_by'], ['user.id'], ondelete='SET NULL', deferrable=True, initially='DEFERRED'))
 
 
@@ -1196,9 +1196,9 @@ class ReceiverTip(_ReceiverTip, Base): pass
 class SecureFileDelete(_SecureFileDelete, Base): pass
 class ShortURL(_ShortURL, Base): pass
 class Signup(_Signup, Base): pass
-class SubmissionState(_SubmissionState, Base): pass
-class SubmissionSubState(_SubmissionSubState, Base): pass
-class SubmissionStateChange(_SubmissionStateChange, Base): pass
+class SubmissionStatus(_SubmissionStatus, Base): pass
+class SubmissionSubStatus(_SubmissionSubStatus, Base): pass
+class SubmissionStatusChange(_SubmissionStatusChange, Base): pass
 class Stats(_Stats, Base): pass
 class Step(_Step, Base): pass
 class Tenant(_Tenant, Base): pass

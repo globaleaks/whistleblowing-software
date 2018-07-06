@@ -1,24 +1,24 @@
-<div data-ng-controller="AdminSubmissionStateCtrl" class="adminConfigSection">
+<div data-ng-controller="AdminSubmissionStatusCtrl" class="adminConfigSection">
   <div class="editorTitle">
-    <span data-translate>Submission states</span>
+    <span data-translate>Submission statuses</span>
     <button class="btn btn-xs btn-primary show-add-user-btn" data-ng-click="toggleAddState()">
       <i class="glyphicon glyphicon-plus"></i>
       <span data-translate>Add</span>
     </button>
   </div>
-  <div class="adminConfigSection row" data-ng-controller="AdminSubmissionStateAddCtrl" data-ng-if="showAddState">
-    <div data-ng-form="newSubmissionState" class="addSubmissionState col-md-6" novalidate>
+  <div class="adminConfigSection row" data-ng-controller="AdminSubmissionStatusAddCtrl" data-ng-if="showAddState">
+    <div data-ng-form="newSubmissionStatus" class="addSubmissionStatus col-md-6" novalidate>
       <div class="form-group">
         <label>
           <span data-translate>Label</span>
           <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
         </label>
-        <div data-ng-class="{'has-error': newSubmissionState.submission_state.$error.required}">
-          <input name="name" class="form-control" data-ng-model="new_submission_state.label" type="text" required />
+        <div data-ng-class="{'has-error': newSubmissionStatus.submissions_status.$error.required}">
+          <input name="name" class="form-control" data-ng-model="new_submissions_status.label" type="text" required />
         </div>
       </div>
       <div class="form-group">
-        <button id="add-btn" class="btn btn-primary" data-ng-disabled="newSubmissionState.$invalid" data-ng-click="addSubmissionState(); toggleAddState()"
+        <button id="add-btn" class="btn btn-primary" data-ng-disabled="newSubmissionStatus.$invalid" data-ng-click="addSubmissionStatus(); toggleAddState()"
           type="submit">
           <i class="glyphicon glyphicon-plus-sign"></i>
           <span data-translate>Add</span>
@@ -26,13 +26,13 @@
       </div>
     </div>
   </div>
-  <div data-ng-repeat="submission_state in editableStatesList()">
-    <div data-ng-controller="AdminSubmissionStateEditorCtrl" class="submissionStateList">
-      <div data-ng-form="submissionState-{{$index}}" name="editsubmissionState" novalidate>
+  <div data-ng-repeat="submissions_status in editableStatusesList()">
+    <div data-ng-controller="AdminSubmissionStatusEditorCtrl" class="submissionStatusList">
+      <div data-ng-form="submissionStatus-{{$index}}" name="editsubmissionStatus" novalidate>
         <div class="configItem">
           <div class="editorHeader row" data-ng-click="toggleEditing(); $event.stopPropagation();">
             <span class="col-md-7 editorHeaderTitle">
-              <span>{{submission_state.label}}</span>
+              <span>{{submissions_status.label}}</span>
             </span>
             <span class="col-md-5">
               <span class="pull-right">
@@ -45,13 +45,13 @@
                 <button class="btn btn-xs btn-default" data-ng-show="!editing" data-ng-click="toggleEditing(); $event.stopPropagation();">
                   <span data-translate>Edit</span>
                 </button>
-                <button class="btn btn-xs btn-success" data-ng-show="editing" data-ng-disabled="editSubmissionState.$invalid" data-ng-click="save_submission_state(submission_state); toggleEditing();">
+                <button class="btn btn-xs btn-success" data-ng-show="editing" data-ng-disabled="editSubmissionStatus.$invalid" data-ng-click="save_submissions_status(submissions_status); toggleEditing();">
                   <span data-translate>Save</span>
                 </button>
                 <button class="btn btn-xs btn-default" data-ng-show="editing" data-ng-click="toggleEditing(); $event.stopPropagation();">
                   <span data-translate>Cancel</span>
                 </button>
-                <button class="btn btn-xs btn-danger" data-ng-click="deleteSubmissionState(); $event.stopPropagation();">
+                <button class="btn btn-xs btn-danger" data-ng-click="deleteSubmissionStatus(); $event.stopPropagation();">
                   <span data-translate>Delete</span>
                 </button>
               </span>
@@ -63,11 +63,11 @@
               <div class="col-md-6">
                 <div class="form-group">
                   <label data-translate>Label</label>
-                  <input name="name" class="form-control" data-ng-model="submission_state.label" type="text" required>
-                  <div class="text-danger" data-ng-show="editSubmissionState.name.$error.required" data-translate>This field is mandatory</div>
+                  <input name="name" class="form-control" data-ng-model="submissions_status.label" type="text" required>
+                  <div class="text-danger" data-ng-show="editSubmissionStatus.name.$error.required" data-translate>This field is mandatory</div>
                 </div>
               </div>
-              <div class="col-md-12" data-ng-include="'views/admin/case_management/substates.html'"></div>
+              <div class="col-md-12" data-ng-include="'views/admin/case_management/substatuses.html'"></div>
             </div>
           </div>
         </div>
@@ -77,25 +77,25 @@
   <br /><br />
   <div class="adminConfigSection" data-ng-controller="AdminSubmissionClosingStateCtrl">
     <div class="editorTitle">
-      <span data-translate>Closing states</span>
+      <span data-translate>Closing statuses</span>
       <button class="btn btn-xs btn-primary show-add-user-btn" data-ng-click="toggleAddState()">
         <i class="glyphicon glyphicon-plus"></i>
         <span data-translate>Add</span>
       </button>
     </div>
-    <div class="row" data-ng-if="showAddState" data-ng-controller="AdminSubmissionClosedSubStateAddCtrl">
-      <div data-ng-form="newClosedSubmissionSubState" class="addSubmissionState col-md-6" novalidate>
+    <div class="row" data-ng-if="showAddState" data-ng-controller="AdminSubmissionClosedSubStatusAddCtrl">
+      <div data-ng-form="newClosedSubmissionSubStatus" class="addSubmissionStatus col-md-6" novalidate>
         <div class="form-group">
           <label>
             <span data-translate>Label</span>
             <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
           </label>
-          <div data-ng-class="{'has-error': newSubmissionState.submission_state.$error.required}">
-            <input name="name" class="form-control" data-ng-model="new_closed_submission_substate.label" type="text" required />
+          <div data-ng-class="{'has-error': newSubmissionStatus.submissions_status.$error.required}">
+            <input name="name" class="form-control" data-ng-model="new_closed_submissions_substatuses.label" type="text" required />
           </div>
         </div>
         <div class="form-group">
-          <button id="add-btn" class="btn btn-primary" data-ng-disabled="newSubmissionState.$invalid" data-ng-click="addClosingSubmissionSubState(); toggleAddState()"
+          <button id="add-btn" class="btn btn-primary" data-ng-disabled="newSubmissionStatus.$invalid" data-ng-click="addClosingSubmissionSubStatus(); toggleAddState()"
             type="submit">
             <i class="glyphicon glyphicon-plus-sign"></i>
             <span data-translate>Add</span>
@@ -104,8 +104,8 @@
       </div>
     </div>
     <div class="row">
-      <div data-ng-repeat="substate in submission_state.substates">
-        <div class="col-md-12" data-ng-controller="AdminSubmissionSubStateEditorCtrl">
+      <div data-ng-repeat="substate in submissions_status.substatuses">
+        <div class="col-md-12" data-ng-controller="AdminSubmissionSubStatusEditorCtrl">
           <div class="configItem">
             <div class="editorHeader row" data-ng-click="toggleSubstateEditing(); $event.stopPropagation();">
               <span class="col-md-7 editorHeaderTitle">
@@ -122,13 +122,13 @@
                   <button class="btn btn-xs btn-default" data-ng-show="!substate_editing" data-ng-click="toggleSubstateEditing(); $event.stopPropagation();">
                     <span data-translate>Edit</span>
                   </button>
-                  <button class="btn btn-xs btn-success" data-ng-show="substate_editing" data-ng-click="save_submission_substate(substate);">
+                  <button class="btn btn-xs btn-success" data-ng-show="substate_editing" data-ng-click="save_submissions_substatuses(substate);">
                     <span data-translate>Save</span>
                   </button>
                   <button class="btn btn-xs btn-default" data-ng-show="substate_editing" data-ng-click="toggleSubstateEditing(); $event.stopPropagation();">
                     <span data-translate>Cancel</span>
                   </button>
-                  <button class="btn btn-xs btn-danger" data-ng-click="deleteSubSubmissionState(step); $event.stopPropagation();" uib-popover="{{Delete | translate}}"
+                  <button class="btn btn-xs btn-danger" data-ng-click="deleteSubSubmissionStatus(step); $event.stopPropagation();" uib-popover="{{Delete | translate}}"
                     popover-placement="right">
                     <span data-translate>Delete</span>
                   </button>
