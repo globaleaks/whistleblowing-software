@@ -8,7 +8,7 @@ GLClient.controller('ReceiverTipsCtrl', ['$scope',  '$filter', '$http', '$route'
     angular.forEach(tips, function (tip) {
       tip.context = $scope.contexts_by_id[tip.context_id];
       tip.context_name = tip.context.name;
-      $scope.Utils.evalSubmissionState(tip, $scope.submission_states);
+      $scope.Utils.evalSubmissionStatus(tip, $scope.submission_statuses);
     });
   });
 

@@ -82,7 +82,7 @@ GLClient.controller('TipCtrl',
         $scope.ctx = 'wbtip';
         $scope.extractSpecialTipFields(tip);
 
-        $scope.Utils.evalSubmissionState($scope.tip, $scope.submission_states);
+        $scope.Utils.evalSubmissionStatus($scope.tip, $scope.submission_statuses);
 
         $scope.tip_unencrypted = false;
         for(var i = 0; i < tip.receivers.length; i++) {
@@ -144,7 +144,7 @@ GLClient.controller('TipCtrl',
 
         $scope.showEditLabelInput = $scope.tip.label === '';
 
-        $scope.Utils.evalSubmissionState($scope.tip, $scope.submission_states);
+        $scope.Utils.evalSubmissionStatus($scope.tip, $scope.submission_statuses);
 
         $scope.showWBFileUpload = function() {
           var ctx = Utils.getContext(tip.context_id);
@@ -170,9 +170,9 @@ GLClient.controller('TipCtrl',
       $scope.showEditLabelInput = false;
     };
 
-    $scope.updateSubmissionState = function() {
-      $scope.tip.updateSubmissionState().then(function() {
-        $scope.Utils.evalSubmissionState($scope.tip, $scope.submission_states);
+    $scope.updateSubmissionStatus = function() {
+      $scope.tip.updateSubmissionStatus().then(function() {
+        $scope.Utils.evalSubmissionStatus($scope.tip, $scope.submission_statuses);
       });
     };
 

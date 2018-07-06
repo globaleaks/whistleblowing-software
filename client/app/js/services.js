@@ -70,7 +70,7 @@ angular.module('GLServices', ['ngResource']).
           var success_fn = function(response) {
             self.set_session(response);
 
-            // reset login state before returning
+            // reset login status before returning
             self.loginInProgress = false;
 
             if ($routeParams.src) {
@@ -455,9 +455,9 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
           });
         };
 
-        tip.updateSubmissionState = function() {
-          var state = tip.submissionStateObj.id;
-          var substate = tip.submissionSubStateObj ? tip.submissionSubStateObj.id : '';
+        tip.updateSubmissionStatus = function() {
+          var state = tip.submissionStatusObj.id;
+          var substate = tip.submissionSubStatusObj ? tip.submissionSubStatusObj.id : '';
           return tip.operation('update_state', {'state': state,
                                                 'substate': substate}).then(function () {
             tip.state = state;
@@ -594,11 +594,11 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
   factory('AdminReceiverResource', ['GLResource', function(GLResource) {
     return new GLResource('admin/receivers/:id', {id: '@id'});
 }]).
-  factory('AdminSubmissionStateResource', ['GLResource', function(GLResource) {
-    return new GLResource('admin/submission_states/:id', {id: '@id'});
+  factory('AdminSubmissionStatusResource', ['GLResource', function(GLResource) {
+    return new GLResource('admin/submission_statuses/:id', {id: '@id'});
 }]).
-factory('AdminSubmissionSubStateResource', ['GLResource', function(GLResource) {
-  return new GLResource('admin/submission_states/:submissionstate_id/substates/:id', {id: '@id', submissionstate_id: '@submissionstate_id'});
+factory('AdminSubmissionSubStatusResource', ['GLResource', function(GLResource) {
+  return new GLResource('admin/submission_statuses/:submissionstate_id/substatuses/:id', {id: '@id', submissionstate_id: '@submissionstate_id'});
 }]).
 service('UpdateService', [function() {
   return {
@@ -1137,24 +1137,24 @@ factory('AdminUtils', ['AdminContextResource', 'AdminQuestionnaireResource', 'Ad
         $rootScope.errors.push(error);
       },
 
-      evalSubmissionState: function(tip, submission_states) {
-        for (var i = 0; i < submission_states.length; i++) {
-          if (submission_states[i].id === tip.state) {
-            tip.submissionStateObj = submission_states[i];
+      evalSubmissionStatus: function(tip, submission_statuses) {
+        for (var i = 0; i < submission_statuses.length; i++) {
+          if (submission_statuses[i].id === tip.state) {
+            tip.submissionStatusObj = submission_statuses[i];
 
-            var substates = submission_states[i].substates;
-            for (var j = 0; j < substates.length; j++) {
-              if (substates[j].id == tip.substate) {
-                tip.submissionSubStateObj = substates[j];
+            var substatuses = submission_statuses[i].substatuses;
+            for (var j = 0; j < substatuses.length; j++) {
+              if (substatuses[j].id == tip.substate) {
+                tip.submissionSubStatusObj = substatuses[j];
                 break;
               }
             }
             break;
           }
         }
-        tip.submissionStateStr = tip.submissionStateObj.label;
-        if (tip.submissionSubStateObj) {
-            tip.submissionStateStr += '(' + tip.submissionStateObj.label + ')';
+        tip.submissionStatusStr = tip.submissionStatusObj.label;
+        if (tip.submissionSubStatusObj) {
+            tip.submissionStatusStr += '(' + tip.submissionStatusObj.label + ')';
         }
       }
 

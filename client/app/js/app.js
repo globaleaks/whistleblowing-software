@@ -120,7 +120,7 @@ var GLClient = angular.module('GLClient', [
     }
 
     function fetchResources(role, lst) {
-      return ['$q', 'Access', 'AdminContextResource', 'AdminQuestionnaireResource', 'AdminStepResource', 'AdminFieldResource', 'AdminFieldTemplateResource', 'AdminUserResource', 'AdminReceiverResource', 'AdminNodeResource', 'AdminNotificationResource', 'AdminShorturlResource', 'AdminTenantResource', 'FieldAttrs', 'ActivitiesCollection', 'AnomaliesCollection', 'TipOverview', 'FileOverview', 'JobsOverview', 'ManifestResource', 'AdminSubmissionStateResource', function($q, Access, AdminContextResource, AdminQuestionnaireResource, AdminStepResource, AdminFieldResource, AdminFieldTemplateResource, AdminUserResource, AdminReceiverResource, AdminNodeResource, AdminNotificationResource, AdminShorturlResource, AdminTenantResource, FieldAttrs, ActivitiesCollection, AnomaliesCollection, TipOverview, FileOverview, JobsOverview, ManifestResource, AdminSubmissionStateResource) {
+      return ['$q', 'Access', 'AdminContextResource', 'AdminQuestionnaireResource', 'AdminStepResource', 'AdminFieldResource', 'AdminFieldTemplateResource', 'AdminUserResource', 'AdminReceiverResource', 'AdminNodeResource', 'AdminNotificationResource', 'AdminShorturlResource', 'AdminTenantResource', 'FieldAttrs', 'ActivitiesCollection', 'AnomaliesCollection', 'TipOverview', 'FileOverview', 'JobsOverview', 'ManifestResource', 'AdminSubmissionStatusResource', function($q, Access, AdminContextResource, AdminQuestionnaireResource, AdminStepResource, AdminFieldResource, AdminFieldTemplateResource, AdminUserResource, AdminReceiverResource, AdminNodeResource, AdminNotificationResource, AdminShorturlResource, AdminTenantResource, FieldAttrs, ActivitiesCollection, AnomaliesCollection, TipOverview, FileOverview, JobsOverview, ManifestResource, AdminSubmissionStatusResource) {
         var resourcesPromises = {
           node: function() { return AdminNodeResource.get().$promise },
           manifest: function() { return ManifestResource.get().$promise; },
@@ -138,7 +138,7 @@ var GLClient = angular.module('GLClient', [
           file_overview: function() { return FileOverview.query().$promise },
           jobs_overview: function() { return JobsOverview.query().$promise },
           questionnaires: function() { return AdminQuestionnaireResource.query().$promise },
-          submission_states: function() { return AdminSubmissionStateResource.query().$promise },
+          submission_statuses: function() { return AdminSubmissionStatusResource.query().$promise },
         }
 
         return Access.isAuthenticated(role).then(function() {
@@ -341,7 +341,7 @@ var GLClient = angular.module('GLClient', [
         header_title: 'Administration interface',
         header_subtitle: 'Case management',
         resolve: {
-          resources: fetchResources('admin', ['node', 'submission_states']),
+          resources: fetchResources('admin', ['node', 'submission_statuses']),
         }
       }).
       when('/admin', {
@@ -603,7 +603,7 @@ var GLClient = angular.module('GLClient', [
         $rootScope.questionnaires = result.questionnaires;
         $rootScope.questionnaires_by_id = $rootScope.Utils.array_to_map(result.questionnaires);
 
-        $rootScope.submission_states = result.submission_states;
+        $rootScope.submission_statuses = result.submission_statuses;
 
         angular.forEach($rootScope.contexts_by_id, function(element, key) {
           $rootScope.contexts_by_id[key].questionnaire = $rootScope.questionnaires_by_id[$rootScope.contexts_by_id[key].questionnaire_id];

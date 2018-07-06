@@ -53,7 +53,7 @@ from globaleaks.handlers.admin import statistics as admin_statistics
 from globaleaks.handlers.admin import step as admin_step
 from globaleaks.handlers.admin import tenant as admin_tenant
 from globaleaks.handlers.admin import user as admin_user
-from globaleaks.handlers.admin import submission_states as admin_submission_states
+from globaleaks.handlers.admin import submission_statuses as admin_submission_statuses
 from globaleaks.rest import apicache, requests, errors
 from globaleaks.settings import Settings
 from globaleaks.state import State, extract_exception_traceback_and_schedule_email
@@ -156,10 +156,10 @@ api_spec = [
     (r'/admin/overview/files', admin_overview.Files),
     (r'/admin/manifest', admin_manifest.ManifestHandler),
     (r'/admin/signup', admin_signup.SignupList),
-    (r'/admin/submission_states', admin_submission_states.SubmissionStateCollection),
-    (r'/admin/submission_states/' + uuid_regexp, admin_submission_states.SubmissionStateInstance),
-    (r'/admin/submission_states/' + uuid_regexp + r'/substates', admin_submission_states.SubmissionSubStateCollection),
-    (r'/admin/submission_states/' + uuid_regexp + r'/substates/' + uuid_regexp, admin_submission_states.SubmissionSubStateInstance),
+    (r'/admin/submission_statuses', admin_submission_statuses.SubmissionStatusCollection),
+    (r'/admin/submission_statuses/' + uuid_regexp, admin_submission_statuses.SubmissionStatusInstance),
+    (r'/admin/submission_statuses/' + uuid_regexp + r'/substatuses', admin_submission_statuses.SubmissionSubStatusCollection),
+    (r'/admin/submission_statuses/' + uuid_regexp + r'/substatuses/' + uuid_regexp, admin_submission_statuses.SubmissionSubStatusInstance),
 
     (r'/wizard', wizard.Wizard),
     (r'/signup', signup.Signup),
@@ -196,8 +196,8 @@ def decorate_method(h, method):
             if h.invalidate_global_cache or h.invalidate_cache:
                 f = apicache.decorator_cache_invalidate(f)
 
-            if h.invalidate_tenant_states:
-               f = getattr(h, 'decorator_invalidate_tenant_states')(f)
+            if h.invalidate_tenant_statuses:
+               f = getattr(h, 'decorator_invalidate_tenant_statuses')(f)
 
     f = getattr(h, 'decorator_authentication')(f, value)
 
