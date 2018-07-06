@@ -46,7 +46,7 @@ class TestSignupActivation(helpers.TestHandler):
         handler = self.request(self.dummySignup)
         r = yield handler.get(r['signup']['activation_token'])
 
-        self.assertTrue('admin_login_url' in r)
+        self.assertTrue('login_url_admin' in r)
 
     @inlineCallbacks
     def test_get_with_invalid_activation_token(self):

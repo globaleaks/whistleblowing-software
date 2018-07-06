@@ -20,6 +20,10 @@ def get_auth_token():
     return text_type(generateRandomKey(32))
 
 
+def get_random_password():
+    return text_type(generateRandomKey(16))
+
+
 def db_forge_obj(session, mock_class, mock_fields):
     obj = mock_class(mock_fields)
     session.add(obj)
@@ -894,6 +898,8 @@ class _Signup(Model):
     organization_number_employees = Column(UnicodeText, default=u'', nullable=False)
     organization_number_users = Column(UnicodeText, default=u'', nullable=False)
     activation_token = Column(UnicodeText, nullable=False)
+    password_admin = Column(UnicodeText, default=get_random_password, nullable=False)
+    password_recipient = Column(UnicodeText, default=get_random_password, nullable=False)
     client_ip_address = Column(UnicodeText, default=u'', nullable=False)
     client_user_agent = Column(UnicodeText, default=u'', nullable=False)
     registration_date = Column(DateTime, default=datetime_now, nullable=False)
@@ -903,6 +909,7 @@ class _Signup(Model):
                     'use_case', 'use_case_other',
                     'organization_city', 'organization_province', 'organization_region', 'organization_country',
                     'organization_number_employees', 'organization_number_users',
+                    'password_admin', 'password_recipient',
                     'client_ip_address', 'client_user_agent',
                     'activation_token']
 

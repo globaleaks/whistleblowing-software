@@ -1156,6 +1156,10 @@ factory('AdminUtils', ['AdminContextResource', 'AdminQuestionnaireResource', 'Ad
         if (tip.submissionSubStatusObj) {
             tip.submissionStatusStr += '(' + tip.submissionStatusObj.label + ')';
         }
+      },
+
+      openUrl: function(url) {
+        $window.open(url, '_blank');
       }
 
     }
