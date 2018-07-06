@@ -600,6 +600,9 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
 factory('AdminSubmissionSubStatusResource', ['GLResource', function(GLResource) {
   return new GLResource('admin/submission_statuses/:submissionstate_id/substatuses/:id', {id: '@id', submissionstate_id: '@submissionstate_id'});
 }]).
+factory('AdminUserTenantAssociationResource', ['GLResource', function(GLResource) {
+  return new GLResource('admin/users/:user_id/tenant_associations/:tenant_id', {user_id: '@user_id', tenant_id: '@tenant_id'});
+}]).
 service('UpdateService', [function() {
   return {
     new_data: function(installed_version, latest_version) {

@@ -78,7 +78,7 @@ function ($scope, $http) {
 
       /* Same if user is already associated */
       var already_associated = false;
-      for (var j = 0; i < $scope.user.usertenant_assocations.length; j++) {
+      for (var j = 0; j < $scope.user.usertenant_assocations.length; j++) {
         var t_assoc = $scope.user.usertenant_assocations[j]
         if (t_assoc.tenant_id === tenant.id) {
           already_associated = true;
@@ -102,26 +102,38 @@ function ($scope, $http) {
   }
 
   $scope.addUserTenantAssociation = function () {
-    console.log($scope.selectedTenant);
     var new_submission_substate = {
       'tenant_id':$scope.selectedTenant.id
     }
 
     $http.post(
-      '/admin/users/' + $scope.user.id + '/tenant_assoications',
+      '/admin/users/' + $scope.user.id + '/tenant_associations',
       new_submission_substate
     ).then(function (result) {
       $scope.user.usertenant_assocations.push(result.data);
     })
   }
 }]).
-controller('AdminUserTenantAssociationEditorCtrl', ['$scope', '$rootScope', '$http', 'Utils', 'AdminSubmissionSubStateResource',
-function ($scope, $rootScope, $http, Utils, AdminSubmissionSubStateResource) {
-  // FIX AdminSubmissionSubStateResource - MUST BE CHANGED
+controller('AdminUserTenantAssociationEditorCtrl', ['$scope', '$rootScope', '$http', 'Utils', 'AdminUserTenantAssociationResource',
+function ($scope, $rootScope, $http, Utils, AdminUserTenantAssociationResource) {
   $scope.usertenant_association_editing = false;
   $scope.toggleUserTenantAssociationEditing = function () {
     $scope.usertenant_association_editing = !$scope.usertenant_association_editing;
   }
+
+  $scope.deleteUserTenantAssociation = function() {
+    Utils.deleteDialog($scope.association).then(function() {
+      AdminUserTenantAssociationResource.delete({
+        user_id: $scope.user.id,
+        tenant_id: $scope.association.tenant_id
+      }, function() {
+        var index = $scope.user.usertenant_assocations.indexOf($scope.association);
+        $scope.user.usertenant_assocations.splice(index, 1);
+        $scope.refreshAvailableTenants();
+      });
+    });
+  }
+
 }]).
 controller('AdminUserAddCtrl', ['$scope',
   function($scope) {
