@@ -678,7 +678,7 @@ class TestGLWithPopulatedDB(TestGL):
         for i in range(1, self.population_of_tenants):
             name = 'tenant-' + str(i+1)
             t = yield create_tenant({'label': name, 'active': True, 'subdomain': name})
-            yield wizard(self.state, t['id'], self.dummyWizard, True, u'en')
+            yield wizard(self.state, t['id'], self.dummyWizard, True, True, u'en')
             yield self.set_hostnames(i+1)
 
     @transact
@@ -1004,7 +1004,8 @@ class MockDict:
             'pgp_key_fingerprint': u'',
             'pgp_key_public': u'',
             'pgp_key_expiration': u'1970-01-01 00:00:00.000000',
-            'pgp_key_remove': False
+            'pgp_key_remove': False,
+            'can_edit_general_settings': False
         }
 
         self.dummyReceiver = copy.deepcopy(self.dummyUser)
