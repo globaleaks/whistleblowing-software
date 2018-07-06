@@ -21,15 +21,15 @@
           </tr>
           </thead>
           <tbody>
-          <tr>
+          <tr data-ng-if='data.password_admin'>
             <td>Admin</td>
             <td>admin</td>
-            <td>admin</td>
+	    <td class="monospace">{{data.password_admin}}</td>
           </tr>
-          <tr>
+          <tr data-ng-if='data.password_recipient'>
             <td>Recipient</td>
             <td>recipient</td>
-            <td>recipient</td>
+	    <td class="monospace">{{data.password_recipient}}</td>
           </tr>
           </tbody>
         </table>
@@ -51,8 +51,8 @@
   <div class="row">
     <div class="col-md-12">
       <div class="pager pull-right">
-        <button class="ButtonNext btn btn-primary" data-ng-click="goToAdminInterface()" type="submit"><i class="glyphicon glyphicon-link"></i><span data-translate>Administration interface</span></button>
-        <button class="ButtonNext btn btn-primary" data-ng-click="goToRecipientInterface()" type="submit"><i class="glyphicon glyphicon-link"></i> <span data-translate>Recipient interface</span></button>
+        <button data-ng-if='data.login_url_admin' class="ButtonNext btn btn-primary" data-ng-click="Utils.openUrl(data.login_url_admin)" type="submit"><i class="glyphicon glyphicon-link"></i><span data-translate>Administration interface</span></button>
+        <button data-ng-if='data.login_url_recipient' class="ButtonNext btn btn-primary" data-ng-click="Utils.openUrl(data.login_url_recipient)" type="submit"><i class="glyphicon glyphicon-link"></i> <span data-translate>Recipient interface</span></button>
       </div>
     </div>
   </div>

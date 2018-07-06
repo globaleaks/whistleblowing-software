@@ -98,7 +98,8 @@ def db_create_user(session, state, tid, request, language):
         'name': request['name'],
         'language': language,
         'password_change_needed': request['password_change_needed'],
-        'mail_address': request['mail_address']
+        'mail_address': request['mail_address'],
+        'can_edit_general_settings': request['can_edit_general_settings']
     })
 
     if request['password']:

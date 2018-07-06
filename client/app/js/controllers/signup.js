@@ -1,6 +1,5 @@
     GLClient.controller('SignupCtrl', ['$scope', '$location', '$route', '$http', 'Authentication', 'CONSTANTS',
                     function($scope, $location, $route, $http, Authentication, CONSTANTS) {
-
   $scope.email_regexp = CONSTANTS.email_regexp;
 
   $scope.hostname = $location.search().hostname || '';
@@ -29,22 +28,13 @@
     });
   };
 }]).
-controller('SignupActivationCtrl', ['$scope', '$location', '$route', '$http', '$window',
-                    function($scope, $location, $route, $http, $window) {
+controller('SignupActivationCtrl', ['$scope', '$location', '$http',
+                    function($scope, $location, $http) {
   var token = $location.search().token;
-  $scope.login_url = '';
 
   if (token) {
     $http.get('signup/' + token).then(function(response) {
       $scope.data = response.data;
     });
   }
-
-  $scope.goToAdminInterface = function() {
-    $window.open($scope.data.admin_login_url, '_blank');
-  };
-
-  $scope.goToRecipientInterface = function() {
-    $window.open($scope.data.recipient_login_url, '_blank');
-  };
 }]);
