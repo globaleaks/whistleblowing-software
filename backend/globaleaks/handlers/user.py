@@ -150,7 +150,8 @@ def update_user_settings(session, state, tid, user_id, request, language):
     return user_serialize_user(session, user, language)
 
 def db_get_usertenant_assoications(session, user_id):
-    usertenants = session.query(models.UserTenant) \
+    usertenants = session.query(models.UserTenant.tenant_id, models.UserTenant.user_id, models.Tenant.label) \
+                          .join(models.Tenant) \
                           .filter(models.UserTenant.user_id == user_id)
 
     entries = []
@@ -166,7 +167,11 @@ def get_usertenant_assoications(session, user_id):
 
 @transact
 def get_specific_usertenant_assoication(session, user_id, tenant_id):
-    usertenant = session.query(models.UserTenant) \
+    return db_get_specific_usertenant_assoication(session, user_id, tenant_id)
+
+def db_get_specific_usertenant_assoication(session, user_id, tenant_id):
+    usertenant = session.query(models.UserTenant.tenant_id, models.UserTenant.user_id, models.Tenant.label) \
+                       .join(models.Tenant) \
                        .filter(models.UserTenant.user_id == user_id) \
                        .filter(models.UserTenant.tenant_id == tenant_id) \
                        .first()
@@ -180,7 +185,8 @@ def serialize_usertenant_assoications(usertenant_row):
     '''Serializes the UserTenant assoications'''
     ret_dict = {
         'user_id': usertenant_row.user_id,
-        'tenant_id': usertenant_row.tenant_id
+        'tenant_id': usertenant_row.tenant_id,
+        'tenant_label': usertenant_row.label
     }
 
     return ret_dict
