@@ -17,7 +17,7 @@ def load_appdata():
     return read_json_file(Settings.appdata_file)
 
 
-def load_default_questionnaires(session):
+def db_load_default_questionnaires(session):
     qfiles = [os.path.join(Settings.questionnaires_path, path) for path in os.listdir(Settings.questionnaires_path)]
     questionnaires = []
     qids = []
@@ -33,7 +33,7 @@ def load_default_questionnaires(session):
         db_create_questionnaire(session, State, 1, questionnaire, None)
 
 
-def load_default_fields(session):
+def db_load_default_fields(session):
     ffiles = [os.path.join(Settings.questions_path, path) for path in os.listdir(Settings.questions_path)]
     questions = []
     qids = []
@@ -86,6 +86,6 @@ def db_fix_fields_attrs(session):
 
 
 def db_update_defaults(session):
-    load_default_questionnaires(session)
-    load_default_fields(session)
+    db_load_default_questionnaires(session)
+    db_load_default_fields(session)
     db_fix_fields_attrs(session)

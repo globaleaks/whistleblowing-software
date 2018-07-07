@@ -133,7 +133,6 @@ def perform_data_update(db_file):
                 config.update_defaults(session, tid, appdata)
 
             db_update_defaults(session)
-            db_fix_fields_attrs(session)
 
             prv.set_val(u'version', __version__)
             prv.set_val(u'latest_version', __version__)
