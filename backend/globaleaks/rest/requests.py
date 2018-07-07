@@ -567,9 +567,25 @@ SignupDesc = {
     'subdomain': subdomain_regexp,
     'name': text_type,
     'surname': text_type,
+    'role': text_type,
+    'phone': text_type,
     'email': text_type,
+    'secondary_email': text_type,
     'use_case': text_type,
-    'use_case_other': text_type
+    'use_case_other': text_type,
+    'organization_name': text_type,
+    'organization_type': text_type,
+    'organization_location1': text_type,
+    'organization_location2': text_type,
+    'organization_location3': text_type,
+    'organization_location4': text_type,
+    'organization_site': text_type,
+    'organization_number_employees': text_type,
+    'organization_number_users': text_type,
+    'hear_channel': text_type,
+    'hear_channel_other': text_type,
+    'tos1': bool,
+    'tos2': bool
 }
 
 ExceptionDesc = {

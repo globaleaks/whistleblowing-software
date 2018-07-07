@@ -9,9 +9,24 @@
     'subdomain': '',
     'name': '',
     'surname': '',
+    'role': '',
+    'phone': '',
     'email': '',
+    'secondary_email': '',
     'use_case': '',
-    'use_case_other': ''
+    'use_case_other': '',
+    'organization_name': '',
+    'organization_type': '',
+    'organization_location1': '',
+    'organization_location2': '',
+    'organization_location3': '',
+    'organization_location4': '',
+    'organization_number_employees': '',
+    'organization_number_users': '',
+    'hear_channel': '',
+    'hear_channel_other': '',
+    'tos1': false,
+    'tos2': false
   };
 
   var completed = false;

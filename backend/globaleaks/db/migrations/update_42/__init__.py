@@ -48,7 +48,6 @@ class Signup_v_41(Model):
     surname = Column(UnicodeText, nullable=False)
     role = Column(UnicodeText, default=u'', nullable=False)
     email = Column(UnicodeText, nullable=False)
-    secondary_email = Column(UnicodeText, default=u'', nullable=False)
     phone = Column(UnicodeText, default=u'', nullable=False)
     use_case = Column(UnicodeText, default=u'', nullable=False)
     use_case_other = Column(UnicodeText, default=u'', nullable=False)
@@ -90,7 +89,7 @@ class MigrationScript(MigrationBase):
                 new_obj.status = 'antani!'
                 if key == 'status' or key =='substatus':
                     pass
-                else:
+                elif key in [c.key for c in old_obj.__table__.columns]:
                     setattr(new_obj, key, getattr(old_obj, key))
 
             self.session_new.add(new_obj)

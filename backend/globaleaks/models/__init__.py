@@ -884,34 +884,40 @@ class _Signup(Model):
     name = Column(UnicodeText, nullable=False)
     surname = Column(UnicodeText, nullable=False)
     role = Column(UnicodeText, default=u'', nullable=False)
-    email = Column(UnicodeText, nullable=False)
-    secondary_email = Column(UnicodeText, default=u'', nullable=False)
     phone = Column(UnicodeText, default=u'', nullable=False)
+    email = Column(UnicodeText, nullable=False)
     use_case = Column(UnicodeText, default=u'', nullable=False)
     use_case_other = Column(UnicodeText, default=u'', nullable=False)
     organization_name = Column(UnicodeText, default=u'', nullable=False)
     organization_type = Column(UnicodeText, default=u'', nullable=False)
-    organization_city = Column(UnicodeText, default=u'', nullable=False)
-    organization_province = Column(UnicodeText, default=u'', nullable=False)
-    organization_region = Column(UnicodeText, default=u'', nullable=False)
-    organization_country = Column(UnicodeText, default=u'', nullable=False)
+    organization_location1 = Column(UnicodeText, default=u'', nullable=False)
+    organization_location2 = Column(UnicodeText, default=u'', nullable=False)
+    organization_location3 = Column(UnicodeText, default=u'', nullable=False)
+    organization_location4 = Column(UnicodeText, default=u'', nullable=False)
+    organization_site = Column(UnicodeText, default=u'', nullable=False)
     organization_number_employees = Column(UnicodeText, default=u'', nullable=False)
     organization_number_users = Column(UnicodeText, default=u'', nullable=False)
+    hear_channel = Column(UnicodeText, default=u'', nullable=False)
     activation_token = Column(UnicodeText, nullable=False)
     password_admin = Column(UnicodeText, default=get_random_password, nullable=False)
     password_recipient = Column(UnicodeText, default=get_random_password, nullable=False)
     client_ip_address = Column(UnicodeText, default=u'', nullable=False)
     client_user_agent = Column(UnicodeText, default=u'', nullable=False)
     registration_date = Column(DateTime, default=datetime_now, nullable=False)
-    tos = Column(UnicodeText, default=u'', nullable=False)
+    tos1 = Column(UnicodeText, default=u'', nullable=False)
+    tos2 = Column(UnicodeText, default=u'', nullable=False)
 
-    unicode_keys = ['subdomain', 'language', 'name', 'surname', 'role', 'email', 'secondary_email', 'phone',
+    unicode_keys = ['subdomain', 'language', 'name', 'surname', 'role', 'phone', 'email',
                     'use_case', 'use_case_other',
-                    'organization_city', 'organization_province', 'organization_region', 'organization_country',
+                    'organization_name', 'organization_type', 'organization_site',
+                    'organization_location1', 'organization_location2', 'organization_location3', 'organization_location4',
                     'organization_number_employees', 'organization_number_users',
+                    'hear_channel',
                     'password_admin', 'password_recipient',
                     'client_ip_address', 'client_user_agent',
                     'activation_token']
+
+    bool_keys = ['tos1', 'tos2']
 
     @declared_attr
     def __table_args__(cls): # pylint: disable=no-self-argument
