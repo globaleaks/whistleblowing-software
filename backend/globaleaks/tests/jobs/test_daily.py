@@ -5,6 +5,7 @@ from globaleaks import models
 from globaleaks.jobs import daily, delivery
 from globaleaks.orm import transact
 from globaleaks.settings import Settings
+from globaleaks.state import State
 from globaleaks.tests import helpers
 from twisted.internet.defer import inlineCallbacks
 
@@ -77,6 +78,15 @@ class TestDaily(helpers.TestGLWithPopulatedDB):
         self.db_test_model_count(session, models.Mail, self.population_of_recipients)
         self.db_test_model_count(session, models.SecureFileDelete, 0)
 
+    @transact
+    def check5(self, session):
+        # Ensure admin PW ready for reset
+        pw_reset_count = session.query(models.User) \
+            .filter(models.User.password_change_needed == True) \
+            .filter(models.User.tid == 1) \
+            .count()
+        self.assertEqual(pw_reset_count, 1)
+
     @inlineCallbacks
     def test_submission_life(self):
         # verify that the system starts clean
@@ -114,3 +124,9 @@ class TestDaily(helpers.TestGLWithPopulatedDB):
 
         # verify cascade deletion when tips expire
         yield self.check4()
+
+        # Make sure password resets actually happen
+        State.tenant_cache[1]['password_change_period'] = 90
+        yield self.set_passwords_ready_to_expire(1)
+        yield daily.Daily().run()
+        yield self.check5()

@@ -800,6 +800,26 @@ class TestGLWithPopulatedDB(TestGL):
     def set_contexts_timetolive(self, session, ttl):
         session.query(models.Context).update({'tip_timetolive': ttl})
 
+    @transact
+    def set_passwords_ready_to_expire(self, session, tid):
+        # First, let's make all the user PWs good so we can make sure the
+        # job does the right thing
+        session.query(models.User) \
+            .filter(models.User.tid == tid) \
+            .filter(models.User.username != 'admin') \
+            .update({
+                'password_change_date': datetime_now(),
+                'password_change_needed': False,
+            })
+
+        # Now make the admin password reset
+        session.query(models.User) \
+            .filter(models.User.tid == tid) \
+            .filter(models.User.username == 'admin') \
+            .update({
+                'password_change_date': datetime_null(),
+                'password_change_needed': False,
+            })
 
 class TestHandler(TestGLWithPopulatedDB):
     """
@@ -1128,7 +1148,7 @@ class MockDict:
             'threshold_free_disk_megabytes_low': 1000,
             'threshold_free_disk_percentage_high': 3,
             'threshold_free_disk_percentage_low': 10,
-            'password_change_period': -1,
+            'password_change_period': 90,
             'wbtip_timetolive': 90,
             'basic_auth': False,
             'basic_auth_username': '',
