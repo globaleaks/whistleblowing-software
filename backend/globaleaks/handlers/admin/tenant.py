@@ -128,7 +128,7 @@ class TenantCollection(BaseHandler):
     cache_resource = True
     root_tenant_only = True
     invalidate_cache = True
-    invalidate_tenant_statuses = True
+    invalidate_tenant_state = True
 
     def get(self):
         """
@@ -151,7 +151,7 @@ class TenantInstance(BaseHandler):
     check_roles = 'admin'
     invalidate_cache = True
     root_tenant_only = True
-    invalidate_tenant_statuses = True
+    invalidate_tenant_state = True
 
     def get(self, tenant_id):
         tenant_id = int(tenant_id)

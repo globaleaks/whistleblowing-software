@@ -197,6 +197,6 @@ class SignupActivation(BaseHandler):
       # invalidate also cache of tenant 1
       apicache.ApiCache.invalidate(1)
 
-      self.state.refresh_tenant_statuses()
+      self.state.refresh_tenant_state()
 
       return ret
