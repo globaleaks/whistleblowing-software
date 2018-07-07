@@ -103,9 +103,8 @@ def signup_activation(session, state, tid, token, language):
     if signup is None:
         return {}
 
-    tenant = session.query(models.Tenant).filter(models.Tenant.id == signup.tid, models.Tenant.active == False).one_or_none()
-    if tenant is not None:
-        db_initialize_tenant(session, tenant.id)
+    if not session.query(models.Config).filter(models.Config.tid == signup.tid).count():
+        db_initialize_tenant(session, signup.tid)
 
         create_admin = not node.get_val(u'signup_no_admin_user')
 
