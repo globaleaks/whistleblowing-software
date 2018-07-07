@@ -194,8 +194,8 @@ def decorate_method(h, method):
             if h.invalidate_global_cache or h.invalidate_cache:
                 f = apicache.decorator_cache_invalidate(f)
 
-            if h.invalidate_tenant_statuses:
-               f = getattr(h, 'decorator_invalidate_tenant_statuses')(f)
+            if h.invalidate_tenant_state:
+               f = getattr(h, 'decorator_invalidate_tenant_state')(f)
 
     f = getattr(h, 'decorator_authentication')(f, value)
 

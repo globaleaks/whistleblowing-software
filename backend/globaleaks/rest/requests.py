@@ -19,8 +19,8 @@ key_regexp                        = r'^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0
 key_regexp_or_empty               = r'^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$|^[a-z_]{0,100}$|^$'
 uuid_regexp                       = r'^([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})$'
 uuid_regexp_or_empty              = r'^([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})$|^$'
-user_roles_regexp                 = r'^(admin|custodian|receiver)$'
-user_statuses_regexp                = r'^(enabled|disabled)$'
+user_role_regexp                  = r'^(admin|custodian|receiver)$'
+user_state_regexp                 = r'^(enabled|disabled)$'
 email_regexp                      = r'^(([\w+-\.]){0,100}[\w]{1,100}@([\w+-\.]){0,100}[\w]{1,100})$'
 email_regexp_or_empty             = r'^(([\w+-\.]){0,100}[\w]{1,100}@([\w+-\.]){0,100}[\w]{1,100})$|^$'
 onionservice_regexp_or_empty      = r'^[0-9a-z]{16}\.onion$|^$'
@@ -133,11 +133,11 @@ UserUserDesc = {
     'username': text_type,
     'name': text_type,
     'description': text_type,
-    'role': user_roles_regexp,
+    'role': user_role_regexp,
     'password': text_type,
     'old_password': text_type,
     'password_change_needed': bool,
-    'state': user_statuses_regexp,
+    'state': user_state_regexp,
     'mail_address': email_regexp,
     'pgp_key_remove': bool,
     'pgp_key_fingerprint': text_type,
@@ -153,7 +153,7 @@ ReceiverReceiverDesc = {
     'username': text_type,
     'name': text_type,
     'description': text_type,
-    'role': user_roles_regexp,
+    'role': user_role_regexp,
     'password': text_type,
     'old_password': text_type,
     'password_change_needed': bool,
@@ -502,7 +502,7 @@ ReceiverDesc = {
     'name': text_type,
     'description': text_type,
     'id': uuid_regexp,
-    'state': user_statuses_regexp,
+    'state': user_state_regexp,
     'can_delete_submission': bool,
     'can_postpone_expiration': bool,
     'can_grant_permissions': bool
