@@ -425,10 +425,25 @@ class TestGL(unittest.TestCase):
         self.dummySignup = {
             'name': 'Raffaele',
             'surname': 'Cantone',
+            'role': '',
             'email': 'raffaele.cantone@anticorruzione.it',
+            'secondary_email': '',
+            'phone': '',
             'subdomain': 'ringobongo',
             'use_case': 'anticorruption',
-            'use_case_other': ''
+            'use_case_other': '',
+            'organization_name': '',
+            'organization_type': '',
+            'organization_location1': '',
+            'organization_location2': '',
+            'organization_location3': '',
+            'organization_location4': '',
+            'organization_number_employees': '',
+            'organization_number_users': '',
+            'hear_channel': '',
+            'hear_channel_other': '',
+            'tos1': True,
+            'tos2': True
         }
 
         self.dummyContext = dummyStuff.dummyContext
