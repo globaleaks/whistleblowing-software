@@ -59,12 +59,12 @@ class TestQuestionnareDuplication(helpers.TestHandlerWithPopulatedDB):
 
     @transact
     def get_questionnare_count(self, session):
-        '''Gets a count of the questionnaires'''
+        """Gets a count of the questionnaires"""
         return session.query(models.Questionnaire).count()
 
     @transact
     def get_new_questionnare(self, session):
-        '''Returns first questionnare ID'''
+        """Returns first questionnare ID"""
         questionnare_obj = session.query(models.Questionnaire).filter(
             models.Questionnaire.id != u'default').first()
         session.expunge(questionnare_obj)

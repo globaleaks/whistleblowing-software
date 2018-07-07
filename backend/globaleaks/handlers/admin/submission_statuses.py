@@ -13,7 +13,7 @@ from globaleaks.utils.structures import fill_localized_keys, get_localized_value
 
 
 def serialize_submission_status(session, row, language):
-    '''Serializes a submission status into dictionary form for the client'''
+    """Serializes a submission status into dictionary form for the client"""
     submission_status = {
         'id': row.id,
         'tid': row.tid,
@@ -37,7 +37,7 @@ def serialize_submission_status(session, row, language):
 
 
 def serialize_submission_substatus(row, language):
-    '''Serializes the submission's substatuses'''
+    """Serializes the submission's substatuses"""
     submission_substatus = {
         'id': row.id,
         'submissionstatus_id': row.submissionstatus_id,
@@ -48,7 +48,7 @@ def serialize_submission_substatus(row, language):
 
 
 def db_retrieve_all_submission_statuses(session, tid, language):
-    '''Retrieves all submission statuses'''
+    """Retrieves all submission statuses"""
     system_statuses = {}
     submission_statuses = []
     user_submission_statuses = []
@@ -76,14 +76,14 @@ def db_retrieve_all_submission_statuses(session, tid, language):
 
 @transact
 def retrieve_all_submission_statuses(session, tid, language):
-    '''Transact version of db_retrieve_all_submission_statuses'''
+    """Transact version of db_retrieve_all_submission_statuses"""
     return db_retrieve_all_submission_statuses(session, tid, language)
 
 
 def db_retrieve_specific_submission_status(session, tid, submission_status_id, language):
-    '''Retrieves a specific status serialized as a rows'''
+    """Retrieves a specific status serialized as a rows"""
     status = session.query(models.SubmissionStatus) \
-                   .filter(models.SubmissionStatus.tid == tid, \
+                   .filter(models.SubmissionStatus.tid == tid,
                            models.SubmissionStatus.id == submission_status_id).one_or_none()
 
     if status is None:
@@ -94,12 +94,12 @@ def db_retrieve_specific_submission_status(session, tid, submission_status_id, l
 
 @transact
 def retrieve_specific_submission_status(session, tid, submission_status_id, language):
-    '''Transact version of db_retrieve_specific_submission_status'''
+    """Transact version of db_retrieve_specific_submission_status"""
     return db_retrieve_specific_submission_status(session, tid, submission_status_id, language)
 
 
 def update_status_model_from_request(model_obj, request, language):
-    '''Populates the model from the request, as well as setting default values'''
+    """Populates the model from the request, as well as setting default values"""
     fill_localized_keys(request, models.SubmissionStatus.localized_keys, language)
 
     model_obj.label = request['label']
@@ -109,7 +109,7 @@ def update_status_model_from_request(model_obj, request, language):
 
 @transact
 def create_submission_status(session, tid, request, language):
-    '''Creates submission status'''
+    """Creates submission status"""
     new_status = models.SubmissionStatus()
     new_status.tid = tid
     update_status_model_from_request(new_status, request, language)
@@ -122,9 +122,9 @@ def create_submission_status(session, tid, request, language):
 
 @transact
 def update_submission_status(session, tid, submission_status_id, request, language):
-    '''Updates the submission status from request objects'''
+    """Updates the submission status from request objects"""
     status = session.query(models.SubmissionStatus) \
-                   .filter(models.SubmissionStatus.tid == tid, \
+                   .filter(models.SubmissionStatus.tid == tid,
                            models.SubmissionStatus.id == submission_status_id).one_or_none()
 
     if status is None:
@@ -136,14 +136,14 @@ def update_submission_status(session, tid, submission_status_id, request, langua
 
 @transact
 def get_id_for_system_status(session, tid, system_status):
-    '''Returns the ID of a system defined status'''
+    """Returns the ID of a system defined status"""
     return db_get_id_for_system_status(session, tid, system_status)
 
 
 def db_get_id_for_system_status(session, tid, system_status):
-    '''Returns the UUID of a given submission status'''
+    """Returns the UUID of a given submission status"""
     status = session.query(models.SubmissionStatus) \
-                   .filter(models.SubmissionStatus.tid == tid, \
+                   .filter(models.SubmissionStatus.tid == tid,
                            models.SubmissionStatus.system_usage == system_status).one_or_none()
 
     if status is None:
@@ -154,9 +154,9 @@ def db_get_id_for_system_status(session, tid, system_status):
 
 @transact
 def get_submission_status(session, tid, submission_status_id):
-    '''Returns the UUID of a given submission status'''
+    """Returns the UUID of a given submission status"""
     status = session.query(models.SubmissionStatus) \
-                   .filter(models.SubmissionStatus.tid == tid, \
+                   .filter(models.SubmissionStatus.tid == tid,
                            models.SubmissionStatus.id == submission_status_id).one_or_none()
 
     if status is None:
@@ -166,7 +166,7 @@ def get_submission_status(session, tid, submission_status_id):
 
 
 def update_substatus_model_from_request(model_obj, request, language):
-    '''Populates the model off each value from requests['substatus']'''
+    """Populates the model off each value from requests['substatus']"""
     fill_localized_keys(request, models.SubmissionSubStatus.localized_keys, language)
 
     model_obj.label = request['label']
@@ -176,7 +176,7 @@ def update_substatus_model_from_request(model_obj, request, language):
 
 @transact
 def update_submission_substatus(session, tid, submission_status_id, substatus_id, request, language):
-    '''Updates a substatus from a request object'''
+    """Updates a substatus from a request object"""
     substatus = session.query(models.SubmissionSubStatus) \
                       .filter(models.SubmissionStatus.id == submission_status_id,
                               models.SubmissionStatus.tid == tid,
@@ -192,7 +192,7 @@ def update_submission_substatus(session, tid, submission_status_id, substatus_id
 
 @transact
 def create_submission_substatus(session, tid, submission_status_id, request, language):
-    '''Creates a substatus'''
+    """Creates a substatus"""
 
     # Safety check here, make sure that the submission status we're looking for
     # 1. exists
@@ -212,7 +212,7 @@ def create_submission_substatus(session, tid, submission_status_id, request, lan
 
 @transact
 def order_status_elements(session, handler, req_args, *args, **kwargs):
-    '''Sets the presentation order for status elements'''
+    """Sets the presentation order for status elements"""
 
     # Presentation order is ignored for statuses
     statuses = session.query(models.SubmissionStatus)\
@@ -231,7 +231,7 @@ def order_status_elements(session, handler, req_args, *args, **kwargs):
 
 @transact
 def order_substatus_elements(session, handler, req_args, *args, **kwargs):
-    '''Sets presentation order for substatuses'''
+    """Sets presentation order for substatuses"""
 
     submission_status_id = args[0]
 
@@ -249,7 +249,7 @@ def order_substatus_elements(session, handler, req_args, *args, **kwargs):
 
 
 class SubmissionStatusCollection(OperationHandler):
-    '''Handles submission statuses on the backend'''
+    """Handles submission statuses on the backend"""
     check_roles = 'admin'
 
     def get(self):
@@ -268,7 +268,7 @@ class SubmissionStatusCollection(OperationHandler):
 
 
 class SubmissionStatusInstance(BaseHandler):
-    '''Manipulates a specific submission status'''
+    """Manipulates a specific submission status"""
     check_roles = 'admin'
 
     def put(self, submission_status_id):
@@ -284,7 +284,7 @@ class SubmissionStatusInstance(BaseHandler):
 
 
 class SubmissionSubStatusCollection(OperationHandler):
-    '''Manages substatuses for a given status'''
+    """Manages substatuses for a given status"""
     check_roles = 'admin'
 
     @inlineCallbacks
@@ -306,7 +306,7 @@ class SubmissionSubStatusCollection(OperationHandler):
 
 
 class SubmissionSubStatusInstance(BaseHandler):
-    '''Manipulates a specific submission status'''
+    """Manipulates a specific submission status"""
     check_roles = 'admin'
 
     def put(self, submission_status_id, submission_substatus_id):

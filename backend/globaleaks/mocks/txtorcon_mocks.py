@@ -9,13 +9,13 @@ from twisted.python import log
 
 
 class EphemeralHiddenService(object):
-    '''
+    """
     This uses the ephemeral hidden-service APIs (in comparison to
     torrc or SETCONF). This means your hidden-service private-key is
     never in a file. It also means that when the process exits, that
     HS goes away. See documentation for ADD_ONION in torspec:
     https://gitweb.torproject.org/torspec.git/tree/control-spec.txt#n1295
-    '''
+    """
 
     # XXX the "ports" stuff is still kind of an awkward API, especialy
     # making the actual list public (since it'll have
@@ -44,11 +44,11 @@ class EphemeralHiddenService(object):
 
     @defer.inlineCallbacks
     def add_to_tor(self, protocol):
-        '''
+        """
         Returns a Deferred which fires with 'self' after at least one
         descriptor has been uploaded. Errback if no descriptor upload
         succeeds.
-        '''
+        """
         ports = ' '.join(map(lambda x: 'Port=' + x.strip(), self._ports))
         cmd = 'ADD_ONION %s %s' % (self._key_blob, ports)
         ans = yield protocol.queue_command(cmd)
@@ -114,9 +114,9 @@ class EphemeralHiddenService(object):
 
     @defer.inlineCallbacks
     def remove_from_tor(self, protocol):
-        '''
+        """
         Returns a Deferred which fires with None
-        '''
+        """
         r = yield protocol.queue_command('DEL_ONION %s' % self.hostname[:-6])
         if r.strip() != 'OK':
             raise RuntimeError('Failed to remove hidden service: "%s".' % r)

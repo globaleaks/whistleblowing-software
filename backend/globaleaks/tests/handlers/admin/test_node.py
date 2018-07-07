@@ -43,7 +43,7 @@ class TestNodeInstance(helpers.TestHandlerWithPopulatedDB):
 
     @inlineCallbacks
     def test_get_receiver_general_settings_acl(self):
-        '''Confirm receivers can read general settings ACL'''
+        """Confirm receivers can read general settings ACL"""
         yield set_receiver_acl_flag_true(self.rcvr_id)
 
         handler = self.request(user_id=self.rcvr_id, role='receiver')
@@ -132,7 +132,7 @@ class TestNodeInstance(helpers.TestHandlerWithPopulatedDB):
 
     @inlineCallbacks
     def test_receiver_general_settings_update_field(self):
-        '''Confirm fields out of the receiver's set updates'''
+        """Confirm fields out of the receiver's set updates"""
 
         yield set_receiver_acl_flag_true(self.rcvr_id)
         self.dummyNode['header_title_homepage'] = "Whistleblowing Homepage"
@@ -143,7 +143,7 @@ class TestNodeInstance(helpers.TestHandlerWithPopulatedDB):
 
     @inlineCallbacks
     def test_receiver_confirm_failure_for_priv_fields_updates(self):
-        '''Confirm privelleged fields are ignored'''
+        """Confirm privelleged fields are ignored"""
 
         yield set_receiver_acl_flag_true(self.rcvr_id)
         self.dummyNode['smtp_server'] = 'not.a.real.smtpserver'

@@ -335,9 +335,8 @@ class APIResourceWrapper(Resource):
             request.client_ip = request.getClientIP()
             request.client_proto = b'http'
 
-        client_ip = request.client_ip
         if isinstance(request.client_ip, binary_type):
-            client_ip = request.client_ip.decode('utf-8')
+            request.client_ip = request.client_ip.decode('utf-8')
 
         request.client_using_tor = request.client_ip in State.tor_exit_set or \
                                    request.port == 8083
@@ -405,7 +404,7 @@ class APIResourceWrapper(Resource):
 
         request.setResponseCode(self.method_map[method])
 
-        if (self.handler.root_tenant_only and request.tid != 1):
+        if self.handler.root_tenant_only and request.tid != 1:
             self.handle_exception(errors.ForbiddenOperation(), request)
             return b''
 

@@ -83,13 +83,13 @@ def login(session, tid, username, password, client_using_tor, client_ip, token='
     user = None
 
     if token:
-        user = session.query(User).filter(User.auth_token == token, \
-                                          User.state != u'disabled', \
+        user = session.query(User).filter(User.auth_token == token,
+                                          User.state != u'disabled',
                                           User.tid == tid).one_or_none()
     else:
-        users = session.query(User).filter(User.username == username, \
-                                          User.state != u'disabled', \
-                                          (or_(and_(User.role == u'admin', User.tid.in_(set([1, tid]))),
+        users = session.query(User).filter(User.username == username,
+                                           User.state != u'disabled',
+                                           (or_(and_(User.role == u'admin', User.tid.in_(set([1, tid]))),
                                                and_(User.role != u'admin', User.tid == tid))))
         for u in users:
             if security.check_password(password, u.salt, u.password):
