@@ -427,7 +427,6 @@ class TestGL(unittest.TestCase):
             'surname': 'Cantone',
             'role': '',
             'email': 'raffaele.cantone@anticorruzione.it',
-            'secondary_email': '',
             'phone': '',
             'subdomain': 'ringobongo',
             'use_case': 'anticorruption',
@@ -438,10 +437,10 @@ class TestGL(unittest.TestCase):
             'organization_location2': '',
             'organization_location3': '',
             'organization_location4': '',
+            'organization_site': '',
             'organization_number_employees': '',
             'organization_number_users': '',
             'hear_channel': '',
-            'hear_channel_other': '',
             'tos1': True,
             'tos2': True
         }

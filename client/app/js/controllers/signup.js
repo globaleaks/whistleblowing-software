@@ -10,9 +10,8 @@
     'name': '',
     'surname': '',
     'role': '',
-    'phone': '',
     'email': '',
-    'secondary_email': '',
+    'phone': '',
     'use_case': '',
     'use_case_other': '',
     'organization_name': '',
@@ -23,8 +22,8 @@
     'organization_location4': '',
     'organization_number_employees': '',
     'organization_number_users': '',
+    'organizaion_site': '',
     'hear_channel': '',
-    'hear_channel_other': '',
     'tos1': false,
     'tos2': false
   };

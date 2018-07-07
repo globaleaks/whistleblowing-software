@@ -570,7 +570,6 @@ SignupDesc = {
     'role': text_type,
     'phone': text_type,
     'email': text_type,
-    'secondary_email': text_type,
     'use_case': text_type,
     'use_case_other': text_type,
     'organization_name': text_type,
@@ -583,7 +582,6 @@ SignupDesc = {
     'organization_number_employees': text_type,
     'organization_number_users': text_type,
     'hear_channel': text_type,
-    'hear_channel_other': text_type,
     'tos1': bool,
     'tos2': bool
 }
