@@ -9,7 +9,7 @@ import os
 
 from globaleaks import models
 from globaleaks.db import db_refresh_memory_variables
-from globaleaks.db.appdata import db_update_defaults, load_appdata
+from globaleaks.db.appdata import load_appdata
 from globaleaks.handlers.admin import file
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.orm import transact
@@ -48,20 +48,22 @@ def serialize_tenant(session, tenant):
 
     return ret
 
-
-def db_create(session, desc):
-    appdata = load_appdata()
-
+def db_preallocate(session, desc):
     t = models.db_forge_obj(session, models.Tenant, desc)
 
-    # required to generate/retrive the id
+    # required to generate the tenant id
     session.flush()
 
-    models.config.system_cfg_init(session, tid=t.id)
+    return t
 
-    models.config.add_new_lang(session, t.id, u'en', appdata)
+def db_initialize(session, tid):
+    appdata = load_appdata()
 
-    initialize_submission_statuses(session, t.id)
+    models.config.system_cfg_init(session, tid=tid)
+
+    models.config.add_new_lang(session, tid, u'en', appdata)
+
+    initialize_submission_statuses(session, tid)
 
     file_descs = [
       (u'logo', 'data/logo.png'),
@@ -71,7 +73,15 @@ def db_create(session, desc):
     for file_desc in file_descs:
         with open(os.path.join(Settings.client_path, file_desc[1]), 'rb') as f:
             data = base64.b64encode(f.read())
-            file.db_add_file(session, t.id, file_desc[0], u'', data)
+            file.db_add_file(session, tid, file_desc[0], u'', data)
+
+
+def db_create(session, desc):
+    t = db_preallocate(session, desc)
+
+    t.active = True
+
+    db_initialize(session, t.id)
 
     db_refresh_memory_variables(session, [t.id])
 

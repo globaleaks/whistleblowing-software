@@ -7,7 +7,8 @@ from datetime import timedelta
 from globaleaks import models
 from globaleaks.handlers.admin.node import db_admin_serialize_node
 from globaleaks.handlers.admin.notification import db_get_notification
-from globaleaks.handlers.admin.tenant import db_create as db_create_tenant
+from globaleaks.handlers.admin.tenant import db_preallocate as db_preallocate_tenant,\
+    db_initialize as db_initialize_tenant
 from globaleaks.handlers.admin.user import db_get_admin_users
 from globaleaks.handlers.base import BaseHandler, new_session
 from globaleaks.handlers.wizard import db_wizard
@@ -42,11 +43,15 @@ def signup(session, state, tid, request, language):
     request['activation_token'] = generateRandomKey(32)
     request['language'] = language
 
+    tenant_id = db_preallocate_tenant(session, {'label': request['subdomain'],
+                                                'subdomain': request['subdomain']}).id
+
+
     signup = models.Signup(request)
 
-    session.add(signup)
+    signup.tid = tenant_id
 
-    session.flush()
+    session.add(signup)
 
     ret = {
         'signup': serialize_signup(signup),
@@ -94,15 +99,15 @@ def signup_activation(session, state, tid, token, language):
     if not node.get_val(u'enable_signup'):
         raise errors.ForbiddenOperation
 
-    create_admin = not node.get_val(u'signup_no_admin_user')
-
     signup = session.query(models.Signup).filter(models.Signup.activation_token == token).one_or_none()
     if signup is None:
         return {}
 
-    if signup.tid is None:
-        signup.tid = db_create_tenant(session, {'label': signup.subdomain,
-                                                'subdomain': signup.subdomain}).id
+    tenant = session.query(models.Tenant).filter(models.Tenant.id == signup.tid, models.Tenant.active == False).one_or_none()
+    if tenant is not None:
+        db_initialize_tenant(session, tenant.id)
+
+        create_admin = not node.get_val(u'signup_no_admin_user')
 
         if create_admin:
             signup.password_admin = generateRandomKey(16)
