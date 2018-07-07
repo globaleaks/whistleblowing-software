@@ -36,7 +36,7 @@ def load_tls_dict(session, tid):
 
 
 def load_tls_dict_list(session):
-    return [load_tls_dict(session, tid[0]) for tid in session.query(models.Tenant.id)]
+    return [load_tls_dict(session, tid[0]) for tid in session.query(models.Tenant.id).filter(models.Tenant.active == True)]
 
 
 class FileResource(object):
