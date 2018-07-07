@@ -142,6 +142,22 @@ class Daily(LoopingJob):
             if is_expired(timestamp, days=15):
                 os.remove(path)
 
+    @transact
+    def expire_old_passwords(self, session):
+        """
+        Expires passwords if past the last change date
+        """
+        for tid in self.state.tenant_state:
+            # if the expiration threshold is 0, ignore it
+            if State.tenant_cache[tid].password_change_period == 0:
+                continue
+
+            threshold = datetime_now() - timedelta(days=State.tenant_cache[tid].password_change_period)
+
+            session.query(models.User) \
+                   .filter(models.User.tid == tid,
+                           models.User.password_change_date < threshold).update({'password_change_needed': True})
+
     @inlineCallbacks
     def operation(self):
         yield self.clean_expired_wbtips()
@@ -153,3 +169,5 @@ class Daily(LoopingJob):
         yield self.clean_db()
 
         yield self.perform_secure_deletion_of_files()
+
+        yield self.expire_old_passwords()

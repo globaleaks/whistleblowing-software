@@ -136,7 +136,7 @@ ConfigDescriptor = {
     u'show_small_context_cards': Bool(default=False),
     u'show_contexts_in_alphabetical_order': Bool(default=True),
 
-    u'password_change_period': Int(default=-1),
+    u'password_change_period': Int(default=90), # Days
     u'wbtip_timetolive': Int(default=90), # Days
 
     u'threshold_free_disk_megabytes_high': Int(default=200),

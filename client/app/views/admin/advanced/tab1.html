@@ -156,6 +156,14 @@
     </div>
 
     <div class="form-group">
+      <label data-translate>Amount of days until a password change is required</label>
+      <input class="form-control" data-ng-model="admin.node.password_change_period" type="number" min="0" />
+      <span class="label label-danger" data-translate>Danger</span>
+      <span data-translate>For security reasons, password changes are required at regular intervals.</span>
+      <span data-translate>A value of 0 disables this feature.</span>
+    </div>
+
+    <div class="form-group">
       <label data-translate>Landing page</label>
       <select name="type" class="form-control" data-ng-model="admin.node.landing_page" required>
         <option value="homepage" data-translate>Home Page</option>
