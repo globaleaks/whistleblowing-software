@@ -17,7 +17,7 @@ from globaleaks.utils.security import generateRandomKey
 
 @transact
 def validate_password_reset(session, state, tid, reset_token):
-    '''Retrieves a user given a password reset validation token'''
+    """Retrieves a user given a password reset validation token"""
     user = session.query(models.User).filter(
         models.User.reset_password_token == reset_token,
         models.User.reset_password_date >= datetime.now() - timedelta(hours=72)
@@ -68,7 +68,7 @@ def db_generate_password_reset_token(session, state, tid, username_or_email, all
 
 @transact
 def generate_password_reset_token(session, state, tid, username_or_email, allow_admin_reset = False):
-    '''Generates a reset token against the backend, then send email to validate it'''
+    """Generates a reset token against the backend, then send email to validate it"""
     return db_generate_password_reset_token(session, state, tid, username_or_email, allow_admin_reset)
 
 

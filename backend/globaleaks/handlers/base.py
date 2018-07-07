@@ -3,12 +3,10 @@
 # Base class for all the handlers
 import base64
 import collections
-import copy
 import json
 import mimetypes
 import os
 import re
-import shutil
 
 from datetime import datetime
 from cryptography.hazmat.primitives import constant_time
@@ -516,7 +514,7 @@ class BaseHandler(object):
 
     @inlineCallbacks
     def can_edit_general_settings_or_raise(self):
-        '''Determines if this user has ACL permissions to edit general settings'''
+        """Determines if this user has ACL permissions to edit general settings"""
 
         from globaleaks.handlers.admin.user import get_user
 

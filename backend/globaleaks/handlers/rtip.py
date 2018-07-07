@@ -2,7 +2,6 @@
 #
 # Handlers dealing with tip interface for receivers (rtip)
 import os
-import string
 
 from six import text_type
 from twisted.internet import threads

@@ -20,7 +20,7 @@ def receiver_serialize_receiver(session, tid, receiver, user, language):
     user = session.query(models.User).filter(models.User.id == receiver.id, models.User.tid == tid).one_or_none()
 
     contexts = [x[0] for x in session.query(models.ReceiverContext.context_id) \
-                                     .filter(models.ReceiverContext.receiver_id == receiver.id, \
+                                     .filter(models.ReceiverContext.receiver_id == receiver.id,
                                              models.User.id == receiver.id,
                                              models.User.tid == tid)]
 

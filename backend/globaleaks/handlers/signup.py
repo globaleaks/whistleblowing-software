@@ -10,7 +10,7 @@ from globaleaks.handlers.admin.notification import db_get_notification
 from globaleaks.handlers.admin.tenant import db_preallocate as db_preallocate_tenant,\
     db_initialize as db_initialize_tenant
 from globaleaks.handlers.admin.user import db_get_admin_users
-from globaleaks.handlers.base import BaseHandler, new_session
+from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.wizard import db_wizard
 from globaleaks.models import config
 from globaleaks.orm import transact

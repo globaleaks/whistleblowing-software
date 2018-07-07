@@ -16,7 +16,7 @@ from globaleaks.utils.structures import fill_localized_keys
 def get_receiver_list(session, tid, language):
     return [admin_serialize_receiver(session, receiver, user, language)
         for receiver, user in session.query(models.Receiver, models.User) \
-                                     .filter(models.Receiver.id == models.User.id, \
+                                     .filter(models.Receiver.id == models.User.id,
                                              models.User.tid == tid) \
                                      .order_by(models.User.id)]
 

@@ -131,7 +131,7 @@ class NodeInstance(BaseHandler):
 
     @inlineCallbacks
     def determine_allow_config_filter(self):
-        '''Determines what filters are allowed, else throws invalid authentication'''
+        """Determines what filters are allowed, else throws invalid authentication"""
         if self.current_user.user_role == 'admin':
             node = ('admin_node', requests.AdminNodeDesc)
         else:

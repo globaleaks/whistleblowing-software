@@ -24,11 +24,11 @@ import six
 from datetime import timedelta
 
 from six import text_type, binary_type
-from six.moves.urllib.parse import urlparse, urlsplit # pylint: disable=import-error
+from six.moves.urllib.parse import urlsplit # pylint: disable=import-error
 
-from twisted.internet import threads, defer, task
+from twisted.internet import defer, task
 from twisted.internet.address import IPv4Address
-from twisted.internet.defer import inlineCallbacks, Deferred, returnValue
+from twisted.internet.defer import inlineCallbacks, Deferred
 from twisted.internet.protocol import ProcessProtocol
 from twisted.python.failure import Failure
 from twisted.trial import unittest
@@ -37,7 +37,6 @@ from twisted.web.test.requesthelper import DummyRequest
 from . import TEST_DIR
 
 from globaleaks import db, models, orm, event, jobs, __version__, DATABASE_VERSION
-from globaleaks.anomaly import Alarm
 from globaleaks.db.appdata import load_appdata
 from globaleaks.orm import transact
 from globaleaks.handlers import rtip, wbtip
@@ -52,13 +51,11 @@ from globaleaks.handlers.admin.user import create_user, create_receiver_user
 from globaleaks.handlers.wizard import wizard
 from globaleaks.handlers.submission import create_submission
 from globaleaks.rest.apicache import ApiCache
-from globaleaks.rest import errors
 from globaleaks.settings import Settings
 from globaleaks.state import State
 from globaleaks.utils import security, tempdict, token, utility
 from globaleaks.utils.securetempfile import SecureTemporaryFile
 from globaleaks.utils.objectdict import ObjectDict
-from globaleaks.utils.structures import fill_localized_keys
 from globaleaks.utils.utility import datetime_null, datetime_now, datetime_to_ISO8601, \
     log, sum_dicts
 

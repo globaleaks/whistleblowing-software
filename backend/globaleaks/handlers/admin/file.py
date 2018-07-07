@@ -7,7 +7,6 @@
 import base64
 import os
 
-from twisted.internet import threads
 from twisted.internet.defer import inlineCallbacks, returnValue
 
 from globaleaks import models

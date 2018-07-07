@@ -472,8 +472,8 @@ def bytes_to_pretty_str(b):
 
 
 def parse_csv_ip_ranges_to_ip_networks(ip_str):
-    '''Takes a list of IP addresses and/or CIDRs, and converts them to a list
-    of python objects'''
+    """Takes a list of IP addresses and/or CIDRs, and converts them to a list
+    of python objects"""
     ip_str = text_type(ip_str)
 
     ip_network_list = []

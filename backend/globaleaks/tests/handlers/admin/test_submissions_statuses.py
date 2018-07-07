@@ -1,4 +1,4 @@
-'''Tests Submission status code'''
+"""Tests Submission status code"""
 
 # -*- coding: utf-8 -*-
 from twisted.internet.defer import inlineCallbacks
@@ -12,14 +12,14 @@ from twisted.internet.defer import inlineCallbacks
 
 @transact
 def count_submission_statuses(session, tid):
-    '''Counts all submission statuses in the system'''
+    """Counts all submission statuses in the system"""
     return session.query(models.SubmissionStatus) \
         .filter(models.SubmissionStatus.tid==tid).count()
 
 
 @transact
 def create_substatus(session, submissionstatus_id):
-    '''Creates a test substatus'''
+    """Creates a test substatus"""
     substatus = models.SubmissionSubStatus()
     substatus.submissionstatus_id = submissionstatus_id
     substatus.label = {'en': "Test1"}
@@ -93,7 +93,7 @@ class SubmissionStatusInstanceDesc(helpers.TestHandlerWithPopulatedDB):
 
     @inlineCallbacks
     def test_put(self):
-        '''Create a new status and then edit it'''
+        """Create a new status and then edit it"""
         yield self.create_test_status()
         statuses = yield submission_statuses.retrieve_all_submission_statuses(1, u'en')
 
@@ -123,7 +123,7 @@ class SubmissionStatusInstanceDesc(helpers.TestHandlerWithPopulatedDB):
 
     @inlineCallbacks
     def test_delete(self):
-        '''Delete a status (if possible)'''
+        """Delete a status (if possible)"""
         yield self.create_test_status()
         statuses = yield submission_statuses.retrieve_all_submission_statuses(1, u'en')
 
@@ -140,7 +140,7 @@ class SubmissionStatusInstanceDesc(helpers.TestHandlerWithPopulatedDB):
 
     @inlineCallbacks
     def test_delete_with_substatuses(self):
-        '''Delete a status (if possible)'''
+        """Delete a status (if possible)"""
         yield self.create_test_status()
         statuses = yield submission_statuses.retrieve_all_submission_statuses(1, u'en')
 

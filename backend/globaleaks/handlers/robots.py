@@ -50,7 +50,7 @@ class SitemapHandler(BaseHandler):
 
         urls = ['/#/', '/#/submission']
 
-        if (self.request.tid == 1 and State.tenant_cache[1].enable_signup):
+        if self.request.tid == 1 and State.tenant_cache[1].enable_signup:
             urls.append('/#/signup')
 
         for url in urls:

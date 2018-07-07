@@ -11,7 +11,7 @@ from sqlalchemy import exc as sa_exc
 from globaleaks import models, DATABASE_VERSION
 from globaleaks.db.appdata import db_load_default_questionnaires, db_load_default_fields
 from globaleaks.handlers.base import Session
-from globaleaks.models import Config, Tenant
+from globaleaks.models import Config
 from globaleaks.models.config_desc import ConfigFilters
 from globaleaks.orm import transact, transact_sync, get_session, make_db_uri
 from globaleaks.settings import Settings
@@ -26,15 +26,15 @@ def get_db_file(db_path):
         session = get_session(make_db_uri(path))
         version_db = session.query(models.Config.value).filter(Config.tid == 1, Config.var_name == u'version_db').one()[0]
         session.close()
-        return (version_db, path)
+        return version_db, path
 
     for i in reversed(range(0, DATABASE_VERSION + 1)):
         file_name = 'glbackend-%d.db' % i
         db_file_path = os.path.join(db_path, 'db', file_name)
         if os.path.exists(db_file_path):
-            return (i, db_file_path)
+            return i, db_file_path
 
-    return (0, '')
+    return 0, ''
 
 
 def create_db():

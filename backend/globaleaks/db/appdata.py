@@ -7,7 +7,6 @@ from sqlalchemy import not_
 from globaleaks import models
 from globaleaks.handlers.admin.field import db_create_field, db_add_field_attrs
 from globaleaks.handlers.admin.questionnaire import db_create_questionnaire
-from globaleaks.orm import transact
 from globaleaks.settings import Settings
 from globaleaks.state import State
 from globaleaks.utils.utility import log, read_json_file
