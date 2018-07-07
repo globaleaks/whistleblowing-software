@@ -878,7 +878,7 @@ class _Signup(Model):
     __tablename__ = 'signup'
 
     id = Column(Integer, primary_key=True, nullable=False)
-    tid = Column(Integer, nullable=True)
+    tid = Column(Integer, nullable=False)
     subdomain = Column(UnicodeText, unique=True, nullable=False)
     language = Column(UnicodeText, nullable=False)
     name = Column(UnicodeText, nullable=False)
@@ -1046,7 +1046,7 @@ class _Tenant(Model):
     id = Column(Integer, primary_key=True, nullable=False)
 
     label = Column(UnicodeText, default=u'', nullable=False)
-    active = Column(Boolean, default=True, nullable=False)
+    active = Column(Boolean, default=False, nullable=False)
     creation_date = Column(DateTime, default=datetime_now, nullable=False)
     subdomain = Column(UnicodeText, default=u'', nullable=False)
 
