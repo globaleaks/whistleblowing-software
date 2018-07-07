@@ -57,8 +57,6 @@ def db_create(session, desc):
     # required to generate/retrive the id
     session.flush()
 
-    db_update_defaults(session)
-
     models.config.system_cfg_init(session, tid=t.id)
 
     models.config.add_new_lang(session, t.id, u'en', appdata)

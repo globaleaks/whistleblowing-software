@@ -9,6 +9,7 @@ import warnings
 from sqlalchemy import exc as sa_exc
 
 from globaleaks import models, DATABASE_VERSION
+from globaleaks.db.appdata import db_load_default_questionnaires, db_load_default_fields
 from globaleaks.handlers.base import Session
 from globaleaks.models import Config, Tenant
 from globaleaks.models.config_desc import ConfigFilters
@@ -52,6 +53,8 @@ def create_db():
 def init_db(session):
     from globaleaks.handlers.admin import tenant
     tenant.db_create(session, {})
+    db_load_default_questionnaires(session)
+    db_load_default_fields(session)
 
 
 def update_db():
