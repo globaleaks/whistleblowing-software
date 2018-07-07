@@ -48,6 +48,7 @@ def serialize_tenant(session, tenant):
 
     return ret
 
+
 def db_preallocate(session, desc):
     t = models.db_forge_obj(session, models.Tenant, desc)
 
@@ -55,6 +56,7 @@ def db_preallocate(session, desc):
     session.flush()
 
     return t
+
 
 def db_initialize(session, tid):
     appdata = load_appdata()
@@ -111,6 +113,11 @@ def get(session, id):
 def update(session, id, request):
     tenant = models.db_get(session, models.Tenant, models.Tenant.id == id)
     tenant.update(request)
+
+    # A tenant created via signup but not activate may require initialization
+    if not session.query(models.Config).filter(models.Config.tid == id).count():
+        db_initialize_tenant(session, id)
+
     db_refresh_memory_variables(session, [id])
 
     return serialize_tenant(session, tenant)
