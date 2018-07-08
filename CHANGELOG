@@ -1,3 +1,13 @@
+Changes in version 3.1.10 - 2018-07-08
+    Bump python-acme to version 0.25.1
+    The updated is required to make HTTPS certificate renewal to work
+    due to a breaking change in the LE protocol.
+
+    Addressed issues:
+    - https://github.com/globaleaks/GlobaLeaks/issues/2324
+    - https://github.com/globaleaks/GlobaLeaks/issues/2349
+    - https://github.com/globaleaks/GlobaLeaks/issues/2351
+
 Changes in version 3.1.9 - 2018-06-14
     Apply minor bugfixing
 
