@@ -105,7 +105,7 @@ def fill_context_request(tid, request, language):
     if not request['allow_recipients_selection']:
         request['select_all_receivers'] = True
 
-    request['tip_timetolive'] = -1 if request['tip_timetolive'] < 0 else request['tip_timetolive']
+    request['tip_timetolive'] = 0 if request['tip_timetolive'] < 0 else request['tip_timetolive']
 
     if request['select_all_receivers']:
         request['maximum_selectable_receivers'] = 0

@@ -276,7 +276,7 @@ def db_create_submission(session, tid, request, uploaded_files, client_using_tor
 
     submission.progressive = db_assign_submission_progressive(session, tid)
 
-    if context.tip_timetolive > -1:
+    if context.tip_timetolive > 0:
         submission.expiration_date = get_expiration(context.tip_timetolive)
     else:
         submission.expiration_date = datetime_never()
