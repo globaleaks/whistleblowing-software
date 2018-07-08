@@ -156,11 +156,10 @@
     </div>
 
     <div class="form-group">
-      <label data-translate>Amount of days until a password change is required</label>
+      <label data-translate>Password change interval</label>
       <input class="form-control" data-ng-model="admin.node.password_change_period" type="number" min="0" />
-      <span class="label label-danger" data-translate>Danger</span>
-      <span data-translate>For security reasons, password changes are required at regular intervals.</span>
-      <span data-translate>A value of 0 disables this feature.</span>
+      <div data-translate>For security reasons, password changes are required at regular intervals.</div>
+      <div data-translate>Set the value to 0 to disable this feature.</div>
     </div>
 
     <div class="form-group">
