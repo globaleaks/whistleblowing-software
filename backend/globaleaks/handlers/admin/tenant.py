@@ -116,7 +116,7 @@ def update(session, id, request):
 
     # A tenant created via signup but not activate may require initialization
     if not session.query(models.Config).filter(models.Config.tid == id).count():
-        db_initialize_tenant(session, id)
+        db_initialize(session, id)
 
     db_refresh_memory_variables(session, [id])
 
