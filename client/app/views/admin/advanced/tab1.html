@@ -13,9 +13,11 @@
         <span data-translate>Enable insecure configuration without PGP encryption</span>
       </label>
       <div data-ng-if="admin.node.allow_unencrypted">
-        <span class="label label-danger" data-translate>Danger</span>
-        <span data-translate>By enabling this option, the system will be storing the submitted files unencrypted on your server.</span>
-        <span data-translate>This happens whenever encryption is unavailable.</span>
+        <div>
+          <span class="label label-warning" data-translate>Warning</span>
+          <span data-translate>By enabling this option, the system will be storing the submitted files unencrypted on your server.</span>
+	  <span data-translate>This happens whenever encryption is unavailable.</span>
+	</div>
       </div>
     </div>
 
@@ -24,10 +26,6 @@
         <input data-ng-model="admin.node.disable_encryption_warnings" type="checkbox" />
         <span data-translate>Disable messages that warn of missing encryption</span>
       </label>
-      <div data-ng-if="admin.node.disable_encryption_warnings">
-        <span class="label label-danger" data-translate>Danger</span>
-        <span data-translate>This setting affects the security of the users and must not be used in production.</span>
-      </div>
     </div>
 
     <div class="form-group">
@@ -36,7 +34,7 @@
         <span data-translate>Allow other websites to include the platform inside iframes</span>
       </label>
       <div data-ng-if="admin.node.allow_iframes_inclusion">
-        <span class="label label-danger" data-translate>Danger</span>
+        <span class="label label-warning" data-translate>Warning</span>
         <span data-translate>By enabling this option, you are allowing other websites to include the platform inside iframes; this could potentially be used to endanger the platform or intercept users' communications</span>
       </div>
     </div>
@@ -150,9 +148,8 @@
     <div class="form-group">
       <label data-translate>Amount of days till whistleblower access expires</label>
       <input class="form-control" data-ng-model="admin.node.wbtip_timetolive" type="number" min="1" />
-      <span class="label label-danger" data-translate>Danger</span>
-      <span data-translate>For security reasons the whistleblower access is subject to expiration.</span>
-      <span data-translate>Tweak this setting only if you know what you are doing.</span>
+      <div data-translate>For security reasons the whistleblower access is subject to expiration.</div>
+      <div data-translate>Tweak this setting only if you know what you are doing.</div>
     </div>
 
     <div class="form-group">
