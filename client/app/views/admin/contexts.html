@@ -131,6 +131,17 @@
                       </li>
                     </ol>
                   </div>
+                  <div class="form-group">
+                    <label>
+                      <span data-translate>Submission expiration</span> (<span data-translate>days</span>)
+                    </label>
+                    <div>
+                      <span data-ng-class="{'has-error': editContext.timetolive.$invalid}">
+                        <input class="form-control" name="timetolive" data-ng-model="context.tip_timetolive" type="number" min="0" max="3650" />
+                      </span>
+                      <div data-translate>Set the value to 0 to disable the feature.</div>
+                    </div>
+                  </div>
                 </div>
               </div>
               <hr />
@@ -226,22 +237,6 @@
                             <input data-ng-model="context.enable_rc_to_wb_files" type="checkbox" />
                             <span data-translate>Let recipients upload files to whistleblowers</span>
                           </label>
-                        </div>
-                        <div class="form-group">
-                          <label>
-                            <span class="btn btn-xs" data-ng-class="{'btn-danger': tip_ttl_off, 'btn-success': !tip_ttl_off}"
-                                  data-ng-click="context.tip_timetolive = tip_ttl_off ? 15 : -1">
-                              <span ng-if="tip_ttl_off" data-translate>Disabled</span>
-                              <span ng-if="!tip_ttl_off" data-translate>Enabled</span>
-                            </span>
-                            <span data-translate>Submission expiration, in days</span>
-                          </label>
-                          <div data-ng-if="!tip_ttl_off">
-                            <span data-ng-class="{'has-error': editContext.timetolive.$invalid}">
-                              <input class="form-control" name="timetolive" data-ng-model="context.tip_timetolive" type="number" min="0" max="3650" />
-                            </span>
-                            <div data-translate>For security reasons, as a matter of data retention policy, the platform automatically deletes submissions and their data after a certain amount of time.</div>
-                          </div>
                         </div>
                         <div class="form-group">
                           <label data-translate>Text shown on top of the interface for selecting recipients</label>

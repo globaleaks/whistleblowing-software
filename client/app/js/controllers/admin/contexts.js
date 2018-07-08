@@ -90,13 +90,6 @@ controller('AdminContextEditorCtrl', ['$scope', '$rootScope', '$http', 'Utils', 
 
   $scope.updateContextImgUrl();
 
-  $scope.tip_ttl_off = $scope.context.tip_timetolive === -1;
-  $scope.$watch('context.tip_timetolive', function(new_val) {
-    if (angular.isDefined(new_val)) {
-      $scope.tip_ttl_off = new_val === -1;
-    }
-  });
-
   $scope.deleteContext = function() {
     Utils.deleteDialog($scope.context).then(function() {
       return Utils.deleteResource(AdminContextResource, $scope.admin.contexts, $scope.context);

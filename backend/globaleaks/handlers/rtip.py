@@ -276,7 +276,7 @@ def db_delete_itip(session, itip):
 def db_postpone_expiration_date(session, tid, itip):
     context = session.query(models.Context).filter(models.Context.id == itip.context_id, models.Context.tid == tid).one()
 
-    if context.tip_timetolive > -1:
+    if context.tip_timetolive > 0:
         itip.expiration_date = get_expiration(context.tip_timetolive)
     else:
         itip.expiration_date = datetime_never()

@@ -65,6 +65,18 @@ class Signup_v_41(Model):
 
 
 class MigrationScript(MigrationBase):
+    def migrate_Context(self):
+        old_objs = self.session_old.query(self.model_from['Context'])
+        for old_obj in old_objs:
+            new_obj = self.model_to['Context']()
+            for key in [c.key for c in new_obj.__table__.columns]:
+                setattr(new_obj, key, getattr(old_obj, key))
+
+            if old_obj.tip_timetolive == -1:
+                new_obj.tip_timetolive = 0
+
+            self.session_new.add(new_obj)
+
     def migrate_FieldAttr(self):
         old_objs = self.session_old.query(self.model_from['FieldAttr'])
         for old_obj in old_objs:
