@@ -39,7 +39,7 @@ sudo cp ../globaleaks*deb /globaleaks/deb/
 
 if [ $distro = "xenial" ] || [ $distro = "stretch" ]; then
   sudo curl http://http.us.debian.org/debian/pool/main/p/python-josepy/python-josepy_1.0.1-1~bpo9+1_all.deb --output /globaleaks/deb/python-josepy_1.0.1-1~bpo9+1_all.deb
-  sudo curl http://http.us.debian.org/debian/pool/main/p/python-acme/python-acme_0.22.2-1~bpo9+1_all.deb --output /globaleaks/deb/python-acme_0.22.2-1~bpo9+1_all.deb
+  sudo curl http://http.us.debian.org/debian/pool/main/p/python-acme/python-acme_0.25.1-1~bpo9+1_all.deb --output /globaleaks/deb/python-acme_0.25.1-1~bpo9+1_all.deb
 fi
 
 sudo ./scripts/install.sh --assume-yes --test
