@@ -34,8 +34,7 @@ class Daily(LoopingJob):
         current_time = datetime_now()
         return (3600 * 24) - (current_time.hour * 3600) - (current_time.minute * 60) - current_time.second
 
-    @transact
-    def clean_expired_wbtips(self, session):
+    def db_clean_expired_wbtips(self, session):
         """
         This function checks all the InternalTips and deletes the receipt if the delete threshold is exceeded
         """
@@ -46,8 +45,7 @@ class Daily(LoopingJob):
                    .filter(models.InternalTip.tid == tid,
                            models.InternalTip.wb_last_access < threshold).update({'receipt_hash': u''})
 
-    @transact
-    def clean_expired_itips(self, session):
+    def db_clean_expired_itips(self, session):
         """
         This function, checks all the InternalTips and their expiration date.
         if expired InternalTips are found, it removes that along with
@@ -57,8 +55,7 @@ class Daily(LoopingJob):
         if itips_ids:
             db_delete_itips(session, itips_ids)
 
-    @transact
-    def check_for_expiring_submissions(self, session):
+    def db_check_for_expiring_submissions(self, session):
         for tid in self.state.tenant_state:
             threshold = datetime_now() + timedelta(hours=State.tenant_cache[tid].notification.tip_expiration_threshold)
 
@@ -96,8 +93,22 @@ class Daily(LoopingJob):
                     'body': body
                  }))
 
-    @transact
-    def clean_db(self, session):
+    def db_expire_old_passwords(self, session):
+        """
+        Expires passwords if past the last change date
+        """
+        for tid in self.state.tenant_state:
+            # if the expiration threshold is 0, ignore it
+            if State.tenant_cache[tid].password_change_period == 0:
+                continue
+
+            threshold = datetime_now() - timedelta(days=State.tenant_cache[tid].password_change_period)
+
+            session.query(models.User) \
+                   .filter(models.User.tid == tid,
+                           models.User.password_change_date < threshold).update({'password_change_needed': True})
+
+    def db_clean(self, session):
         # delete stats older than 3 months
         session.query(models.Stats).filter(models.Stats.start < datetime_now() - timedelta(3*(365/12))).delete(synchronize_session='fetch')
 
@@ -143,31 +154,20 @@ class Daily(LoopingJob):
                 os.remove(path)
 
     @transact
-    def expire_old_passwords(self, session):
-        """
-        Expires passwords if past the last change date
-        """
-        for tid in self.state.tenant_state:
-            # if the expiration threshold is 0, ignore it
-            if State.tenant_cache[tid].password_change_period == 0:
-                continue
+    def daily_clean(self, session):
+        self.db_clean_expired_wbtips(session)
 
-            threshold = datetime_now() - timedelta(days=State.tenant_cache[tid].password_change_period)
+        self.db_clean_expired_itips(session)
 
-            session.query(models.User) \
-                   .filter(models.User.tid == tid,
-                           models.User.password_change_date < threshold).update({'password_change_needed': True})
+        self.db_check_for_expiring_submissions(session)
+
+        self.db_expire_old_passwords(session)
+
+        self.db_clean(session)
 
     @inlineCallbacks
     def operation(self):
-        yield self.clean_expired_wbtips()
-
-        yield self.clean_expired_itips()
-
-        yield self.check_for_expiring_submissions()
-
-        yield self.clean_db()
+        yield self.daily_clean()
 
         yield self.perform_secure_deletion_of_files()
 
-        yield self.expire_old_passwords()

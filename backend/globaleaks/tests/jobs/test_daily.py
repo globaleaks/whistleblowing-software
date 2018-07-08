@@ -88,7 +88,7 @@ class TestDaily(helpers.TestGLWithPopulatedDB):
         self.assertEqual(pw_reset_count, 1)
 
     @inlineCallbacks
-    def test_submission_life(self):
+    def test_job(self):
         # verify that the system starts clean
         yield self.check0()
 
