@@ -75,11 +75,9 @@ def create(state, tid, request, language):
         raise errors.InputValidationError
 
     if request['role'] == 'receiver':
-        d = create_receiver_user(state, tid, request, language)
-    else:
-        d = create_user(state, tid, request, language)
+        return create_receiver_user(state, tid, request, language)
 
-    return d
+    return create_user(state, tid, request, language)
 
 
 def db_create_user(session, state, tid, request, language):
