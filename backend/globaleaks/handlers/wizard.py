@@ -24,8 +24,9 @@ def db_wizard(session, state, tid, request, create_admin, client_using_tor, lang
 
     db_update_enabled_languages(session, tid, [language], language)
 
-    tenant = models.db_get(session, models.Tenant, models.Tenant.id == tid)
-    tenant.label = request['node_name']
+    if tid != 1:
+        tenant = models.db_get(session, models.Tenant, models.Tenant.id == tid)
+        tenant.label = request['node_name']
 
     node.set_val(u'name', request['node_name'])
     node.set_val(u'default_language', language)

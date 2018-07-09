@@ -4,6 +4,8 @@ GLClient.controller('AdminUsersCtrl', ['$scope',
     $scope.toggleAddUser = function() {
       $scope.showAddUser = !$scope.showAddUser;
     };
+
+    $scope.tenants_by_id = $scope.Utils.array_to_map($scope.admin.tenants);
 }]).controller('AdminUserEditorCtrl', ['$scope', '$rootScope', '$http', 'Utils', 'AdminUserResource',
   function($scope, $rootScope, $http, Utils, AdminUserResource) {
     $scope.deleteUser = function() {
@@ -62,9 +64,9 @@ GLClient.controller('AdminUsersCtrl', ['$scope',
       })
     }  
 }]).
-controller('AdminUserTenantAssociationAddCtrl', ['$scope', '$http',
-function ($scope, $http) {
-  $scope.refreshAvailableTenants = function() {
+controller('AdminUserTenantAssociationAddCtrl', ['$scope', '$http', '$filter',
+function ($scope, $http, $filter) {
+  $scope.refreshAvailableTenants = function(filter) {)
     var tenantList = [];
 
     /* Build a list of tenants that we can actually add */
@@ -94,16 +96,18 @@ function ($scope, $http) {
       tenantList.push(tenant);
     }
 
-    return tenantList;
+    if (filter) {
+      tenantList = $filter('filter')(tenantList, filter);
+    }
+
+    $scope.availableTenants = tenantList;
   }
 
-  if (!$scope.availableTenants) {
-    $scope.availableTenants = $scope.refreshAvailableTenants();
-  }
+  $scope.refreshAvailableTenants();
 
-  $scope.addUserTenantAssociation = function () {
+  $scope.addUserTenantAssociation = function (tenant) {
     var new_submission_substate = {
-      'tenant_id':$scope.selectedTenant.id
+      'tenant_id':tenant.id
     }
 
     $http.post(

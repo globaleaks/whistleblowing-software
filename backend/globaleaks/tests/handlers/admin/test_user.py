@@ -1,19 +1,15 @@
 # -*- coding: utf-8 -*-
-from globaleaks.db import refresh_memory_variables
+from twisted.internet.defer import inlineCallbacks
 
+from globaleaks import models
 from globaleaks.handlers.admin import receiver
 from globaleaks.handlers.admin import user
-from globaleaks.handlers.admin import tenant
-
-from globaleaks.models import User
 from globaleaks.tests import helpers
-from globaleaks.tests.handlers.admin.test_tenant import get_dummy_tenant_desc
-from twisted.internet.defer import inlineCallbacks
 
 class TestAdminCollection(helpers.TestCollectionHandler):
     _handler = user.UsersCollection
     _test_desc = {
-      'model': User,
+      'model': models.User,
       'create': user.create,
       'data': {
           'role': 'admin',
@@ -33,7 +29,7 @@ class TestAdminCollection(helpers.TestCollectionHandler):
 class TestAdminInstance(helpers.TestInstanceHandler):
     _handler = user.UserInstance
     _test_desc = {
-      'model': User,
+      'model': models.User,
       'create': user.create,
       'data': {
           'role': 'admin',
@@ -51,7 +47,7 @@ class TestAdminInstance(helpers.TestInstanceHandler):
 
 class TestReceiverCollection(TestAdminCollection):
     _test_desc = {
-      'model': User,
+      'model': models.User,
       'create': user.create,
       'data': {
           'name': u'Mario Rossi',
@@ -63,7 +59,7 @@ class TestReceiverCollection(TestAdminCollection):
 
 class TestReceiverInstance(TestAdminInstance):
     _test_desc = {
-      'model': User,
+      'model': models.User,
       'create': user.create,
       'data': {
           'name': u'Mario Rossi',
@@ -75,7 +71,7 @@ class TestReceiverInstance(TestAdminInstance):
 
 class TestCustodianCollection(TestAdminCollection):
     _test_desc = {
-      'model': User,
+      'model': models.User,
       'create': user.create,
       'data': {
           'role': 'custodian',
@@ -88,7 +84,7 @@ class TestCustodianCollection(TestAdminCollection):
 
 class TestCustodianInstance(TestAdminCollection):
     _test_desc = {
-      'model': User,
+      'model': models.User,
       'create': user.create,
       'data': {
           'role': 'custodian',
@@ -96,6 +92,7 @@ class TestCustodianInstance(TestAdminCollection):
           'language': 'en'
       }
     }
+
 
 class UserTenantTestBaseClass(helpers.TestHandlerWithPopulatedDB):
     _handler = user.UserTenantCollection
@@ -108,44 +105,34 @@ class UserTenantTestBaseClass(helpers.TestHandlerWithPopulatedDB):
             if r['pgp_key_fingerprint'] == u'BFB3C82D1B5F6A94BDAC55C6E70460ABF9A4C8C1':
                 self.rcvr_id = r['id']
 
-        t = yield tenant.create(get_dummy_tenant_desc())
-        yield refresh_memory_variables([4])
+        yield self.test_model_count(models.UserTenant, 0)
+        yield user.create_usertenant_association(self.rcvr_id, 2)
+        yield self.test_model_count(models.UserTenant, 1)
+
 
 class TestUserTenantCollection(UserTenantTestBaseClass):
     _handler = user.UserTenantCollection
 
     @inlineCallbacks
-    def test_get(self):
-        yield user.create_usertenant_assoication(self.rcvr_id, 4)
-        handler = self.request(role='admin')
-        response = yield handler.get(self.rcvr_id)
-        self.assertEqual(response[0]['user_id'], self.rcvr_id)
-        self.assertEqual(response[0]['tenant_id'], 4)
-
-    @inlineCallbacks
     def test_post(self):
         request_data = {
-            'tenant_id': 4
+            'tenant_id': 3
         }
+
         handler = self.request(request_data, role='admin')
         response = yield handler.post(self.rcvr_id)
         self.assertEqual(response['user_id'], self.rcvr_id)
-        self.assertEqual(response['tenant_id'], 4)
+        self.assertEqual(response['tenant_id'], 3)
 
-        response = yield handler.get(self.rcvr_id)
-        self.assertEqual(response[0]['user_id'], self.rcvr_id)
-        self.assertEqual(response[0]['tenant_id'], 4)
+        yield self.test_model_count(models.UserTenant, 2)
+
 
 class TestUserTenantInstance(UserTenantTestBaseClass):
     _handler = user.UserTenantInstance
 
     @inlineCallbacks
     def test_delete(self):
-        yield user.create_usertenant_assoication(self.rcvr_id, 4)
         handler = self.request(role='admin')
-        response = yield handler.delete(self.rcvr_id, 4)
+        yield handler.delete(self.rcvr_id, 2)
 
-        self._handler = user.UserTenantCollection
-        handler = self.request(role='admin')
-        response = yield handler.get(self.rcvr_id)
-        self.assertEqual(len(response), 0)
+        yield self.test_model_count(models.UserTenant, 0)
