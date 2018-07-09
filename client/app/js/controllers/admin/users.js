@@ -66,7 +66,7 @@ GLClient.controller('AdminUsersCtrl', ['$scope',
 }]).
 controller('AdminUserTenantAssociationAddCtrl', ['$scope', '$http', '$filter',
 function ($scope, $http, $filter) {
-  $scope.refreshAvailableTenants = function(filter) {)
+  $scope.refreshAvailableTenants = function(filter) {
     var tenantList = [];
 
     /* Build a list of tenants that we can actually add */
