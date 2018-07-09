@@ -1,59 +1,36 @@
 <div id="UserTenantAssociationsEditBox">
-  <div class="editorTitle row">
-    <span class="col-md-8">
-      <span data-translate>Tenant Assocations</span>
-      <button class="btn btn-xs btn-primary show-add-step-btn" data-ng-click="refreshAvailableTenants(); toggleAddUserTenantAssociation()">
-        <i class="glyphicon glyphicon-plus"></i>
-        <span data-translate>Add</span>
-      </button>
-    </span>
-  </div>
-  <div id="UserTenantAssociationsAddBox" data-ng-controller="AdminUserTenantAssociationAddCtrl" class="row" data-ng-if="showAddUserTenantAssociation">
-    <div class="col-md-6">
-      <div data-ng-form="newSubstate">
-        <div class="row">
-          <div class="col-md-12">
-            <div class="form-group">
-              <label data-translate>Tenant</label>
-              <select id="newUserTenantAssociation" class="form-control" data-ng-model="selectedTenant" data-ng-options="tenant as tenant.label for tenant in ::availableTenants"></select>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-12">
-            <div class="form-group">
-              <button id="add-step-btn" class="pull-left btn btn-primary" data-ng-disabled="selectedTenant == ''"
-                      data-ng-click="addUserTenantAssociation(); toggleAddUserTenantAssociation()">
-                <i class="glyphicon glyphicon-plus-sign"></i>
-                <span data-translate>Add</span>
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
+  <label>
+    <span data-translate>Sites</span>
+    <button class="btn btn-xs btn-primary add-receiver-btn" data-ng-click="refreshAvailableTenants(); toggleAddUserTenantAssociation()">
+      <i class="glyphicon glyphicon-plus"></i>
+      <span data-translate>Add</span>
+    </button>
+  </label>
+  <div id="ReceiverContextAdder" class="row" data-ng-controller="AdminUserTenantAssociationAddCtrl" data-ng-if="showAddUserTenantAssociation">
+    <div class="col-md-12">
+      <ui-select data-ng-model="selected.value" data-theme="bootstrap" data-on-select='addUserTenantAssociation($item); toggleAddUserTenantAssociation()'>
+        <ui-select-match data-ng-attr-placeholder="{{'Type to search…' | translate}}">
+          <span data-ng-bind="$select.selected.label"></span>
+        </ui-select-match>
+        <ui-select-choices data-repeat="tenant in availableTenants" refresh="refreshAvailableTenants($select.search)">
+          <span data-ng-bind-html="tenant.id + ': ' + tenant.label | highlight: $select.search"></span>
+        </ui-select-choices>
+      </ui-select>
+      <br/>
     </div>
   </div>
-  <div class="row">
-    <div data-ng-repeat="association in user.usertenant_assocations">
-      <div class="col-md-12" data-ng-controller="AdminUserTenantAssociationEditorCtrl">
-        <div class="configItem">
-          <div class="editorHeader row" data-ng-click="toggleUserTenantAssociationEditing(); $event.stopPropagation();">
-            <span class="col-md-7">
-              <span class="substateLabel">{{association.tenant_label}}</span>
-            </span>
-            <span class="col-md-5">
-              <span class="pull-right">
-                <button class="btn btn-xs btn-danger"
-                        data-ng-click="deleteUserTenantAssociation(association); $event.stopPropagation();"
-                        uib-popover="{{Delete | translate}}"
-                        popover-placement="right">
-                  <span data-translate>Delete</span>
-                </button>
-              </span>
-            </span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+  <ol class="selectionList" data-ng-if="user.usertenant_assocations">
+    <li data-ng-repeat="association in user.usertenant_assocations | orderBy:'tenant_id'"">
+      <span data-ng-controller="AdminUserTenantAssociationEditorCtrl">
+        <span class="action-btns" data-ng-if="association.tenant_id == user.tid">
+            <i class="glyphicon glyphicon-record"></i>
+        </span>
+        <span class="action-btns" data-ng-if="association.tenant_id != user.tid" data-ng-click="deleteUserTenantAssociation(association)" uib-popover="{{'Remove' | translate}}">
+          <i class="glyphicon glyphicon-remove"></i>
+        </span>
+        </span>
+        <span data-ng-class="{'bold': association.tenant_id == user.tid}"><span>{{tenants_by_id[association.tenant_id].id}}: {{tenants_by_id[association.tenant_id].label}}</span><span data-ng-if="association.tenant_id == user.tid"> (<span data-translate>main</span>)</span></span>
+      </span>
+    </li>
+  </ol>
 </div>

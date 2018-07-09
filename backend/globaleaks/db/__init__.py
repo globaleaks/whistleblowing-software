@@ -52,7 +52,7 @@ def create_db():
 @transact_sync
 def init_db(session):
     from globaleaks.handlers.admin import tenant
-    tenant.db_create(session, {})
+    tenant.db_create(session, {'label': 'root'})
     db_load_default_questionnaires(session)
     db_load_default_fields(session)
 

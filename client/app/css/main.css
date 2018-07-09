@@ -514,3 +514,7 @@ html[rtl] .float-right {
 .monospace {
   font-family: monospace;
 }
+
+.bold {
+  font-weight: bold;
+}

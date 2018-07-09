@@ -45,7 +45,7 @@ def user_serialize_user(session, user, language):
     :return: a serialization of the object
     """
     picture = db_get_model_img(session, 'users', user.id)
-    usertenant_assoic = db_get_usertenant_assoications(session, user.id)
+    user_tenants = db_get_usertenant_associations(session, user)
 
     ret_dict = {
         'id': user.id,
@@ -70,10 +70,18 @@ def user_serialize_user(session, user, language):
         'picture': picture,
         'can_edit_general_settings': user.can_edit_general_settings,
         'tid': user.tid,
-        'usertenant_assocations': usertenant_assoic
+        'usertenant_assocations': user_tenants
     }
 
     return get_localized_values(ret_dict, user, user.localized_keys, language)
+
+
+def serialize_usertenant_association(row):
+    '''Serializes the UserTenant associations'''
+    return {
+        'user_id': row.user_id,
+        'tenant_id': row.tenant_id
+    }
 
 
 @transact
@@ -149,47 +157,18 @@ def update_user_settings(session, state, tid, user_id, request, language):
 
     return user_serialize_user(session, user, language)
 
-def db_get_usertenant_assoications(session, user_id):
-    usertenants = session.query(models.UserTenant.tenant_id, models.UserTenant.user_id, models.Tenant.label) \
-                          .join(models.Tenant) \
-                          .filter(models.UserTenant.user_id == user_id)
 
-    entries = []
-    for usertenant in usertenants:
-        entries.append(
-            serialize_usertenant_assoications(usertenant)
-        )
-    return entries
 
-@transact
-def get_usertenant_assoications(session, user_id):
-    return db_get_usertenant_assoications(session, user_id)
+def db_get_usertenant_associations(session, user):
+    usertenants = session.query(models.UserTenant) \
+                         .filter(models.UserTenant.user_id == user.id)
 
-@transact
-def get_specific_usertenant_assoication(session, user_id, tenant_id):
-    return db_get_specific_usertenant_assoication(session, user_id, tenant_id)
+    ret = [serialize_usertenant_association(usertenant) for usertenant in usertenants]
 
-def db_get_specific_usertenant_assoication(session, user_id, tenant_id):
-    usertenant = session.query(models.UserTenant.tenant_id, models.UserTenant.user_id, models.Tenant.label) \
-                       .join(models.Tenant) \
-                       .filter(models.UserTenant.user_id == user_id) \
-                       .filter(models.UserTenant.tenant_id == tenant_id) \
-                       .first()
+    ret.append({'user_id': user.id, 'tenant_id': user.tid})
 
-    if usertenant is None:
-        raise errors.ResourceNotFound("UserTenant assiocation not found")
+    return ret
 
-    return serialize_usertenant_assoications(usertenant)
-
-def serialize_usertenant_assoications(usertenant_row):
-    '''Serializes the UserTenant assoications'''
-    ret_dict = {
-        'user_id': usertenant_row.user_id,
-        'tenant_id': usertenant_row.tenant_id,
-        'tenant_label': usertenant_row.label
-    }
-
-    return ret_dict
 
 class UserInstance(BaseHandler):
     """

@@ -11,10 +11,8 @@ from globaleaks.db import db_refresh_memory_variables
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.user import parse_pgp_options, \
                                      user_serialize_user, \
-                                     get_specific_usertenant_assoication, \
-                                     get_usertenant_assoications, \
-                                     serialize_usertenant_assoications, \
-                                     db_get_specific_usertenant_assoication
+                                     serialize_usertenant_association
+
 from globaleaks.orm import transact
 from globaleaks.rest import requests, errors
 from globaleaks.state import State
@@ -22,7 +20,6 @@ from globaleaks.utils import security
 from globaleaks.utils.structures import fill_localized_keys, get_localized_values
 from globaleaks.utils.utility import datetime_now
 
-from twisted.internet.defer import inlineCallbacks
 
 def admin_serialize_receiver(session, receiver, user, language):
     """
@@ -228,43 +225,33 @@ class UserInstance(BaseHandler):
         """
         return models.delete(models.User, models.User.tid == self.request.tid, models.User.id == user_id)
 
-## UserTenant stuff goes here
+
 @transact
-def create_usertenant_assoication(session, user_id, tenant_id):
+def create_usertenant_association(session, user_id, tenant_id):
     usertenant = models.UserTenant()
     usertenant.user_id = user_id
     usertenant.tenant_id = tenant_id
     session.add(usertenant)
-    session.flush()
+    return serialize_usertenant_association(usertenant)
 
-    return db_get_specific_usertenant_assoication(session, user_id, tenant_id)
 
 class UserTenantCollection(BaseHandler):
     check_roles = 'admin'
     invalidate_cache = True
     root_tenant_only = True
 
-    def get(self, user_id):
-        """Gets a list of user tenant assoications"""
-        return get_usertenant_assoications(user_id)
-
     def post(self, user_id):
-        """Creates a list of user/tenant assoications"""
+        """Creates a list of user/tenant associations"""
         request = self.validate_message(self.request.content.read(), requests.UserTenantDesc)
-        return create_usertenant_assoication(user_id, request['tenant_id'])
+        return create_usertenant_association(user_id, request['tenant_id'])
+
 
 class UserTenantInstance(BaseHandler):
     check_role = 'admin'
     invalidate_cache = True
+    root_tenant_only = True
 
-    # Instances usually have a put() method, but in this case, we have no
-    # attributes to set on this assoication
-
-    @inlineCallbacks
     def delete(self, user_id, tenant_id):
-        # Make sure a given model exists
-        yield get_specific_usertenant_assoication(user_id, tenant_id)
-
-        yield models.delete(models.UserTenant,
-                            models.UserTenant.user_id == user_id,
-                            models.UserTenant.tenant_id == tenant_id)
+        return models.delete(models.UserTenant,
+                             models.UserTenant.user_id == user_id,
+                             models.UserTenant.tenant_id == tenant_id)
