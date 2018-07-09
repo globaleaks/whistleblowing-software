@@ -16,7 +16,6 @@ def serialize_submission_status(session, row, language):
     """Serializes a submission status into dictionary form for the client"""
     submission_status = {
         'id': row.id,
-        'tid': row.tid,
         'system_defined': row.system_defined,
         'system_usage': row.system_usage,
         'presentation_order': row.presentation_order,
@@ -25,8 +24,8 @@ def serialize_submission_status(session, row, language):
 
     # See if we have any substatuses we need to serialize
     substatus_rows = session.query(models.SubmissionSubStatus) \
-                           .filter(models.SubmissionSubStatus.submissionstatus_id == row.id) \
-                           .order_by(models.SubmissionSubStatus.presentation_order)
+                            .filter(models.SubmissionSubStatus.submissionstatus_id == row.id) \
+                            .order_by(models.SubmissionSubStatus.presentation_order)
 
     for substatus_row in substatus_rows:
         submission_status['substatuses'].append(
