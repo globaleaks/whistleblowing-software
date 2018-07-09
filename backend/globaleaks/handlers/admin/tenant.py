@@ -31,7 +31,9 @@ def initialize_submission_statuses(session, tid):
         session.add(state)
 
 
-def serialize_tenant(session, tenant):
+def serialize_tenant(session, tenant, signup=None):
+    from globaleaks.handlers.signup import serialize_signup
+
     ret = {
         'id': tenant.id,
         'label': tenant.label,
@@ -45,6 +47,9 @@ def serialize_tenant(session, tenant):
         tc = State.tenant_cache[tenant.id]
         ret['hostname'] = tc.hostname
         ret['onionservice'] = tc.onionservice
+
+    if signup is not None:
+        ret['signup'] = serialize_signup(signup)
 
     return ret
 
@@ -96,7 +101,8 @@ def create(session, desc, *args, **kwargs):
 
 
 def db_get_tenant_list(session):
-    return [serialize_tenant(session, tenant) for tenant in session.query(models.Tenant)]
+    return [serialize_tenant(session, r[0], r[1]) for r in session.query(models.Tenant, models.Signup)
+                                                                  .outerjoin(models.Signup, models.Tenant.id == models.Signup.tid)]
 
 
 @transact
