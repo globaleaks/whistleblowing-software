@@ -338,11 +338,11 @@ class APIResourceWrapper(Resource):
             request.client_ip = request.getClientIP()
             request.client_proto = b'http'
 
-        if isinstance(request.client_ip, binary_type):
-            request.client_ip = request.client_ip.decode('utf-8')
-
         request.client_using_tor = request.client_ip in State.tor_exit_set or \
                                    request.port == 8083
+
+        if isinstance(request.client_ip, binary_type):
+            request.client_ip = request.client_ip.decode('utf-8')
 
         if 'x-tor2web' in request.headers:
             request.client_using_tor = False
