@@ -12,8 +12,12 @@ USERNAME=globaleaks
 GROUP=globaleaks
 
 # APPARMOR_SANDBOXING = [0/1]
-#   permits to enable apparmor sandboxing; requires apparmor
+#   permits to enable apparmor sandboxing
 APPARMOR_SANDBOXING=1
+
+# NETWORK_SANDBOXING = [0/1]
+#   permits to enable network sandboxing
+NETWORK_SANDBOXING=1
 
 # API_PREFIX = [prefix]
 API_PREFIX=
