@@ -9,7 +9,9 @@ from globaleaks.models import Config
 from globaleaks.models.config import ConfigFactory
 from globaleaks.orm import transact
 from globaleaks.rest import errors
+from globaleaks.state import State
 from globaleaks.utils.utility import is_common_net_error
+from globaleaks.jobs.onion_service import set_onion_service_info, get_onion_service_info
 
 from six import text_type, binary_type
 from six.moves.urllib.parse import urlparse, urlunsplit # pylint: disable=import-error
@@ -86,9 +88,22 @@ class AdminOperationHandler(OperationHandler):
                                              req_args['value'],
                                              allow_admin_reset=True)
 
+    @inlineCallbacks
+    def reset_onion_private_key(self, req_args, *args, **kargs):
+        yield set_onion_service_info(self.request.tid, None, None)
+        yield State.onion_service_job.add_hidden_service(None, None, self.request.tid)
+        yield State.onion_service_job.remove_unwanted_hidden_services()
+
+        # Return the new key
+        onion_details = yield get_onion_service_info(self.request.tid)
+        return {
+            'onionservice': onion_details[0]
+        }
+
     def operation_descriptors(self):
         return {
             'set_hostname': (AdminOperationHandler.set_hostname, {'value': text_type}),
             'verify_hostname': (AdminOperationHandler.verify_hostname, {'value': text_type}),
-            'reset_user_password': (AdminOperationHandler.reset_user_password, {'value': text_type})
+            'reset_user_password': (AdminOperationHandler.reset_user_password, {'value': text_type}),
+            'reset_onion_private_key': (AdminOperationHandler.reset_onion_private_key, {})
         }

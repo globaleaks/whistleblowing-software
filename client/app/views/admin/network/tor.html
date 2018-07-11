@@ -4,10 +4,17 @@
       <div class="row">
         <div class="col-md-12">
           <div class="form-group">
-              <label><span data-translate>Tor Onion Service</span>:
-                  <span ng-hide="admin.node.onionservice === ''"  class="label label-primary">{{admin.node.onionservice}}</span>
-                  <span ng-show="admin.node.onionservice === ''" class="label label-warning" data-translate>Not running</span>
-              </label>
+            <div ng-hide="admin.node.onionservice === ''">
+              <p class="input-group">
+                <span class="input-group-addon" data-translate>Tor Onion Service</span>
+                <input name="onionservice" class="form-control" type="text" data-ng-model="admin.node.onionservice" data-ng-disabled="true">
+                </input>
+                <span class="input-group-btn">
+                  <button class="btn btn-danger" data-ng-disabled="torOnionResetInProgress === true" data-ng-click="resetOnionPrivateKey()" data-translate>Regenerate</button>
+                </span>
+              </p>
+            </div>
+            <span ng-show="admin.node.onionservice === ''" class="label label-warning" data-translate>Not running</span>
           </div>
           <div class="form-group" data-ng-class="{'has-error': adminNetForm.tb_download_link.$error.pattern}">
             <label data-translate>Tor Browser download link</label>
@@ -33,19 +40,27 @@
               <tbody>
                 <tr>
                   <td data-translate>Admin</td>
-                  <td><input data-ng-model="admin.node.https_admin" type="checkbox"></td>
+                  <td>
+                    <input data-ng-model="admin.node.https_admin" type="checkbox">
+                  </td>
                 </tr>
                 <tr>
                   <td data-translate>Custodian</td>
-                  <td><input data-ng-model="admin.node.https_custodian" type="checkbox"></td>
+                  <td>
+                    <input data-ng-model="admin.node.https_custodian" type="checkbox">
+                  </td>
                 </tr>
                 <tr>
                   <td data-translate>Recipient</td>
-                  <td><input data-ng-model="admin.node.https_receiver" type="checkbox"></td>
+                  <td>
+                    <input data-ng-model="admin.node.https_receiver" type="checkbox">
+                  </td>
                 </tr>
                 <tr uib-popover-template="'views/admin/network/https_wb_warning.html'" popover-placement="bottom">
                   <td data-translate>Whistleblower</td>
-                  <td><input data-ng-model="admin.node.https_whistleblower" type="checkbox"></td>
+                  <td>
+                    <input data-ng-model="admin.node.https_whistleblower" type="checkbox">
+                  </td>
                 </tr>
               </tbody>
             </table>
