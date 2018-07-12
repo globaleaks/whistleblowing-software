@@ -28,6 +28,7 @@ from globaleaks.utils.socks import SOCKS5ClientEndpoint
 from globaleaks.utils.tls import TLSClientContextFactory
 from globaleaks.utils.utility import log
 
+
 def MIME_mail_build(src_name, src_mail, dest_name, dest_mail, title, mail_body):
     # Override python's weird assumption that utf-8 text should be encoded with
     # base64, and instead use quoted-printable (for both subject and body).  I

@@ -96,13 +96,12 @@ Settings.parser.add_option("-P", "--disable-swap", action='store_true',
     help="disable process swap [default: False]",
     dest="disable_swap", default=False)
 
-Settings.parser.add_option("-z", "--devel-mode", type='string',
-    help="hacks some config. Specify your name to receive personalized exceptions [default: %default]. "\
-         "Note that all exceptions when this mode is enabled are routed to globaleaks-stackexception-devel@globaleaks.org",
-    dest="developer_name")
+Settings.parser.add_option("-z", "--devel-mode", action='store_true',
+    help="set development mode [default: False]",
+    dest="devel_mode", default=False)
 
 Settings.parser.add_option("-o", "--orm-debug", action='store_true',
-    help="enable ORM debugging (AVAILABLE ONLY IN DEVEL MODE)",
+    help="enable ORM debugging [default: False]",
     dest="orm_debug", default=False)
 
 Settings.parser.add_option("-v", "--version", action='store_true',

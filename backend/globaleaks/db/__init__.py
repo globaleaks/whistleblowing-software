@@ -126,15 +126,12 @@ def db_set_cache_exception_delivery_list(session, tenant_cache):
     """
     lst = []
 
-    if tenant_cache.enable_developers_exception_notification:
+    if not Settings.devel_mode and tenant_cache.enable_developers_exception_notification:
         lst.append((u'globaleaks-stackexception@lists.globaleaks.org', ''))
 
     if tenant_cache.enable_admin_exception_notification:
         results = session.query(models.User.mail_address, models.User.pgp_key_public).filter(models.User.role == u'admin')
         lst.extend([(mail, pub_key) for mail, pub_key in results])
-
-    if Settings.developer_name:
-        tenant_cache.notification.source_name = Settings.developer_name
 
     tenant_cache.notification.exception_delivery_list = filter(lambda x: x[0] != '', lst)
 
