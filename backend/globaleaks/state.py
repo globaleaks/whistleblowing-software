@@ -222,10 +222,6 @@ class StateClass(ObjectDict):
         mail_subject = "GlobaLeaks Exception"
         delivery_list = self.tenant_cache[1].notification.exception_delivery_list
 
-        if self.settings.devel_mode:
-            mail_subject +=  " [%s]" % self.settings.developer_name
-            delivery_list = [("globaleaks-stackexception-devel@globaleaks.org", '')]
-
         mail_body = text_type("Platform: %s\nHost: %s (%s)\nVersion: %s\n\n%s" \
                           % (self.tenant_cache[1].name,
                              self.tenant_cache[1].hostname,

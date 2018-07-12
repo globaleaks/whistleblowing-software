@@ -137,7 +137,6 @@ class SettingsClass(object):
             self.gid = os.getgid()
 
         self.devel_mode = False
-        self.developer_name = ''
         self.disable_swap = False
 
         # Number of failed login enough to generate an alarm
@@ -210,12 +209,6 @@ class SettingsClass(object):
     def set_devel_mode(self):
         self.devel_mode = True
 
-        # is forced by -z, but unitTest has not:
-        if not self.cmdline_options:
-            self.developer_name = u"Random GlobaLeaks Developer"
-        else:
-            self.developer_name = text_type(self.cmdline_options.developer_name)
-
         self.acme_directory_url = 'https://acme-staging-v02.api.letsencrypt.org/directory'
 
         self.pid_path = os.path.join(self.src_path, 'workingdir')
@@ -261,11 +254,10 @@ class SettingsClass(object):
             self.print_msg("Invalid user: cannot run as root")
             sys.exit(1)
 
-        if self.cmdline_options.developer_name:
-            self.print_msg("Enabling development mode for %s" % self.cmdline_options.developer_name)
-            self.developer_name = text_type(self.cmdline_options.developer_name)
+        if self.cmdline_options.devel_mode:
             self.set_devel_mode()
-            self.orm_debug = self.cmdline_options.orm_debug
+
+        self.orm_debug = self.cmdline_options.orm_debug
 
         if self.cmdline_options.working_path:
             self.working_path = self.cmdline_options.working_path
