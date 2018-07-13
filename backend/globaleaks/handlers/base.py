@@ -195,7 +195,7 @@ class BaseHandler(object):
             msg = "Authentication required"
 
         if msg is not None:
-            self.request.setHeader("WWW-Authenticate", "Basic realm=\"globaleaks\"")
+            self.request.setHeader(b'WWW-Authenticate', b'Basic realm="globaleaks"')
             raise errors.HTTPAuthenticationRequired()
 
     @staticmethod
@@ -360,7 +360,7 @@ class BaseHandler(object):
 
     def redirect(self, url):
         self.request.setResponseCode(301)
-        self.request.setHeader(b"location", url)
+        self.request.setHeader(b'location', url)
         self.request.finish()
 
     def write_file(self, filename, filepath):
@@ -368,12 +368,12 @@ class BaseHandler(object):
             raise errors.ResourceNotFound()
 
         if filename.endswith('.gz'):
-            self.request.setHeader("Content-encoding", "gzip")
+            self.request.setHeader(b'Content-encoding', b'gzip')
             filename = filename[:-3]
 
         mime_type, _ = mimetypes.guess_type(filename)
         if mime_type:
-            self.request.setHeader("Content-Type", mime_type)
+            self.request.setHeader(b'Content-Type', mime_type)
 
         return FileProducer(self.request, filepath).start()
 
@@ -381,9 +381,9 @@ class BaseHandler(object):
         if not os.path.exists(filepath) or not os.path.isfile(filepath):
             raise errors.ResourceNotFound()
 
-        self.request.setHeader('X-Download-Options', 'noopen')
-        self.request.setHeader('Content-Type', 'application/octet-stream')
-        self.request.setHeader('Content-Disposition', 'attachment; filename=\"%s\"' % filename)
+        self.request.setHeader(b'X-Download-Options', b'noopen')
+        self.request.setHeader(b'Content-Type', b'application/octet-stream')
+        self.request.setHeader(b'Content-Disposition', b'attachment; filename="%s"' % filename)
 
         return FileProducer(self.request, filepath).start()
 

@@ -66,9 +66,9 @@ def decorator_cache_get(f):
                     self.request.setHeader(b'content-type', b'application/json')
                     data = json.dumps(data)
 
-                self.request.setHeader("Content-encoding", "gzip")
+                self.request.setHeader(b'Content-encoding', b'gzip')
 
-                c = self.request.responseHeaders.getRawHeaders("Content-type", ["application/json"])[0]
+                c = self.request.responseHeaders.getRawHeaders(b'Content-type', [b'application/json'])[0]
                 return ApiCache.set(self.request.tid, self.request.path, self.request.language, c, data)[1]
 
             d.addCallback(callback)
@@ -76,8 +76,8 @@ def decorator_cache_get(f):
             return d
 
         else:
-            self.request.setHeader("Content-encoding", "gzip")
-            self.request.setHeader("Content-type", c[0])
+            self.request.setHeader(b'Content-encoding', b'gzip')
+            self.request.setHeader(b'Content-type', c[0])
 
         return c[1]
 

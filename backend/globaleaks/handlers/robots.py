@@ -14,7 +14,7 @@ class RobotstxtHandler(BaseHandler):
         """
         Get the robots.txt
         """
-        self.request.setHeader('Content-Type', 'text/plain')
+        self.request.setHeader(b'Content-Type', b'text/plain')
 
         if (self.request.tid != 1 and State.tenant_cache[1].enable_signup) or \
            (not State.tenant_cache[self.request.tid].allow_indexing):
@@ -43,7 +43,7 @@ class SitemapHandler(BaseHandler):
 
         site = 'https://' + State.tenant_cache[self.request.tid].hostname
 
-        self.request.setHeader('Content-Type', 'text/xml')
+        self.request.setHeader(b'Content-Type', b'text/xml')
 
         data = "<?xml version='1.0' encoding='UTF-8' ?>\n" + \
                "<urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9' xmlns:xhtml='http://www.w3.org/1999/xhtml'>\n"
