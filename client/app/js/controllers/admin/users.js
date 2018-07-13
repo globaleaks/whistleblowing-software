@@ -54,7 +54,7 @@ GLClient.controller('AdminUsersCtrl', ['$scope',
 
     $scope.resetUserPassword = function() {
       $http.put(
-        'admin/cmd', { 
+        'admin/config', {
           'operation': 'reset_user_password',
           'args': {
             'value': $scope.user.username

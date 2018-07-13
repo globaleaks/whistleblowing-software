@@ -146,7 +146,7 @@ api_spec = [
     (r'/admin/jobs', admin_statistics.JobsTiming),
     (r'/admin/l10n/(' + '|'.join(LANGUAGES_SUPPORTED_CODES) + ')', admin_l10n.AdminL10NHandler),
     (r'/admin/files/(logo|favicon|css|homepage|script)', admin_file.FileInstance),
-    (r'/admin/cmd', admin_operation.AdminOperationHandler),
+    (r'/admin/config', admin_operation.AdminOperationHandler),
     (r'/admin/config/tls', https.ConfigHandler),
     (r'/admin/config/tls/files/(csr)', https.CSRFileHandler),
     (r'/admin/config/tls/files/(cert|chain|priv_key)', https.FileHandler),
