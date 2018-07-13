@@ -273,7 +273,7 @@ var GLClient = angular.module('GLClient', [
         }
       }).
       when('/admin/users', {
-        templateUrl: 'views/admin/users/userlist.html',
+        templateUrl: 'views/admin/users/main.html',
         controller: 'AdminCtrl',
         header_title: 'Administration interface',
         header_subtitle: 'Users',
