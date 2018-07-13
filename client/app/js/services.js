@@ -1256,7 +1256,6 @@ factory('AdminUtils', ['AdminContextResource', 'AdminQuestionnaireResource', 'Ad
 
       var isFieldTriggered = function(field, answers, score) {
         if (field.triggered_by_score > score) {
-          alert('score low');
           return false;
         }
 
