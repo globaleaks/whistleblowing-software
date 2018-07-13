@@ -278,7 +278,7 @@ var GLClient = angular.module('GLClient', [
         header_title: 'Administration interface',
         header_subtitle: 'Users',
         resolve: {
-          resources: fetchResources('admin', ['node', 'users', 'tenants']),
+          resources: fetchResources('admin', ['node', 'users']),
         }
       }).
       when('/admin/receivers', {
@@ -344,24 +344,6 @@ var GLClient = angular.module('GLClient', [
           resources: fetchResources('admin', ['node', 'submission_statuses']),
         }
       }).
-      when('/admin', {
-        templateUrl: 'views/login.html',
-        controller: 'LoginCtrl',
-        header_title: 'Login',
-        header_subtitle: '',
-        resolve: {
-          access: noAuth(),
-        }
-      }).
-      when('/custodian', {
-        templateUrl: 'views/login.html',
-        controller: 'LoginCtrl',
-        header_title: 'Login',
-        header_subtitle: '',
-        resolve: {
-          access: noAuth(),
-        }
-      }).
       when('/custodian/identityaccessrequests', {
         templateUrl: 'views/custodian/identity_access_requests.html',
         header_title: 'Custodian of the identities',
@@ -380,7 +362,25 @@ var GLClient = angular.module('GLClient', [
         }
       }).
       when('/login', {
-        templateUrl: 'views/login.html',
+        templateUrl: 'views/login/main.html',
+        controller: 'LoginCtrl',
+        header_title: 'Login',
+        header_subtitle: '',
+        resolve: {
+          access: noAuth(),
+        }
+      }).
+      when('/admin', {
+        templateUrl: 'views/login/main.html',
+        controller: 'LoginCtrl',
+        header_title: 'Login',
+        header_subtitle: '',
+        resolve: {
+          access: noAuth(),
+        }
+      }).
+      when('/multisitelogin', {
+        templateUrl: 'views/login/main.html',
         controller: 'LoginCtrl',
         header_title: 'Login',
         header_subtitle: '',
@@ -773,7 +773,6 @@ var GLClient = angular.module('GLClient', [
           When the response has failed write the rootScope
           errors array the error message.
        */
-
        var $rootScope = $injector.get('$rootScope');
        var $http = $injector.get('$http');
        var $q = $injector.get('$q');

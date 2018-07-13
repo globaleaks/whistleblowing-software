@@ -82,10 +82,11 @@ class TestDaily(helpers.TestGLWithPopulatedDB):
     def check5(self, session):
         # Ensure admin PW ready for reset
         pw_reset_count = session.query(models.User) \
-            .filter(models.User.password_change_needed == True) \
-            .filter(models.User.tid == 1) \
-            .count()
-        self.assertEqual(pw_reset_count, 1)
+                                .filter(models.User.password_change_needed == True,
+                                        models.UserTenant.user_id == models.User.id,
+                                        models.UserTenant.tenant_id == 1) \
+                                .count()
+        self.assertEqual(pw_reset_count, 4)
 
     @inlineCallbacks
     def test_job(self):

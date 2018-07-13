@@ -128,7 +128,10 @@ def signup_activation(session, state, tid, token, language):
 
         db_wizard(session, state, signup.tid, wizard, create_admin, False, language)
 
-        session.query(models.User).filter(models.User.tid == signup.tid).update({'password_change_needed': False})
+        ids = [r[0] for r in session.query(models.User.id).filter(models.UserTenant.user_id == models.User.id,
+                                                                  models.UserTenant.tenant_id == signup.tid)]
+
+        session.query(models.User).filter(models.User.id.in_(ids)).update({'password_change_needed': False}, synchronize_session='fetch')
 
         template_vars = {
             'type': 'activation',
@@ -142,8 +145,15 @@ def signup_activation(session, state, tid, token, language):
         state.format_and_send_mail(session, 1, {'mail_address': signup.email}, template_vars)
 
     if session.query(models.Tenant).filter(models.Tenant.id == signup.tid).one_or_none() is not None:
-        admin = session.query(models.User).filter(models.User.tid == signup.tid, models.User.role == u'admin', models.User.username == u'admin').one_or_none()
-        recipient = session.query(models.User).filter(models.User.tid == signup.tid, models.User.role == u'receiver', models.User.username == u'recipient').one_or_none()
+        admin = session.query(models.User).filter(models.User.role == u'admin',
+                                                  models.User.username == u'admin',
+                                                  models.UserTenant.user_id == models.User.id,
+                                                  models.UserTenant.tenant_id == signup.tid).one_or_none()
+
+        recipient = session.query(models.User).filter(models.User.role == u'receiver',
+                                                      models.User.username == u'recipient',
+                                                      models.UserTenant.user_id == models.User.id,
+                                                      models.UserTenant.tenant_id == signup.tid).one_or_none()
 
         ret_dict = {
             'platform_url': 'https://%s.%s' % (signup.subdomain, node.get_val(u'rootdomain')),

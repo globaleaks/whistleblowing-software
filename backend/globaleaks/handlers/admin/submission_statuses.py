@@ -215,8 +215,8 @@ def order_status_elements(session, handler, req_args, *args, **kwargs):
 
     # Presentation order is ignored for statuses
     statuses = session.query(models.SubmissionStatus)\
-                    .filter(models.SubmissionStatus.tid == handler.request.tid,
-                            models.SubmissionStatus.system_defined == False)
+                      .filter(models.SubmissionStatus.tid == handler.request.tid,
+                              models.SubmissionStatus.system_defined == False)
 
     id_dict = {status.id: status for status in statuses}
     ids = req_args['ids']

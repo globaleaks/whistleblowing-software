@@ -25,7 +25,7 @@ GLClient.controller('WizardCtrl', ['$scope', '$location', '$route', '$http', 'Au
   };
 
   $scope.goToAdminInterface = function() {
-    Authentication.login('admin', $scope.wizard.admin_password, null, function() {
+    Authentication.login(0, 'admin', $scope.wizard.admin_password, null, function() {
       $scope.reload("/admin/home");
     });
   };

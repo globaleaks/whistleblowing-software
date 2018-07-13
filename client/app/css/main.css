@@ -357,11 +357,6 @@ html[dir='rtl'] .imageUpload .changePictureButton, html[dir='ltr'] .imageUpload 
   font-weight: bold;
 }
 
-.hiddenButton {
-  display: none;
-  visibility: hidden;
-}
-
 #TipList table {
   table-layout: auto;
 }
@@ -466,6 +461,7 @@ html[dir] .btn-circle {
 
 .hidden {
   display: none;
+  visibility: none;
 }
 
 html[dir] .badge-info {

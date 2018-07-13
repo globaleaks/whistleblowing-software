@@ -86,7 +86,11 @@ def serialize_usertenant_association(row):
 
 @transact
 def get_user_settings(session, tid, user_id, language):
-    user = models.db_get(session, models.User, models.User.id == user_id, models.User.tid == tid)
+    user = models.db_get(session,
+                         models.User,
+                         models.User.id == user_id,
+                         models.UserTenant.user_id == user_id,
+                         models.UserTenant.tenant_id == tid)
 
     return user_serialize_user(session, user, language)
 
@@ -106,7 +110,11 @@ def db_user_update_user(session, state, tid, user_id, request):
     from globaleaks.handlers.admin.notification import db_get_notification
     from globaleaks.handlers.admin.node import db_admin_serialize_node
 
-    user = models.db_get(session, models.User, models.User.id == user_id, models.User.tid == tid)
+    user = models.db_get(session,
+                         models.User,
+                         models.User.id == user_id,
+                         models.UserTenant.user_id == user_id,
+                         models.UserTenant.tenant_id == tid)
 
     user.language = request.get('language', State.tenant_cache[tid].default_language)
     user.name = request['name']
@@ -163,11 +171,7 @@ def db_get_usertenant_associations(session, user):
     usertenants = session.query(models.UserTenant) \
                          .filter(models.UserTenant.user_id == user.id)
 
-    ret = [serialize_usertenant_association(usertenant) for usertenant in usertenants]
-
-    ret.append({'user_id': user.id, 'tenant_id': user.tid})
-
-    return ret
+    return [serialize_usertenant_association(usertenant) for usertenant in usertenants]
 
 
 class UserInstance(BaseHandler):

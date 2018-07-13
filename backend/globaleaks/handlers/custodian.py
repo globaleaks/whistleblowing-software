@@ -13,11 +13,13 @@ def serialize_identityaccessrequest(session, tid, identityaccessrequest):
                       .filter(models.InternalTip.id == models.ReceiverTip.internaltip_id,
                               models.ReceiverTip.id == identityaccessrequest.receivertip_id,
                               models.ReceiverTip.receiver_id == models.User.id,
-                              models.User.tid == tid).one()
+                              models.UserTenant.user_id == models.User.id,
+                              models.UserTenant.tenant_id == tid).one()
 
     reply_user = session.query(models.User) \
                       .filter(models.User.id == identityaccessrequest.reply_user_id,
-                              models.User.tid == tid).one_or_none()
+                              models.UserTenant.user_id == models.User.id,
+                              models.UserTenant.tenant_id == tid).one_or_none()
     return {
         'id': identityaccessrequest.id,
         'receivertip_id': identityaccessrequest.receivertip_id,

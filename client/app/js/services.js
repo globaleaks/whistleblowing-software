@@ -16,8 +16,8 @@ angular.module('GLServices', ['ngResource']).
     };
   }]).
   factory('Authentication',
-    ['$filter', '$http', '$location', '$routeParams', '$rootScope', '$timeout', 'GLTranslate', 'locationForce', 'UserPreferences', 'ReceiverPreferences',
-    function($filter, $http, $location, $routeParams, $rootScope, $timeout, GLTranslate, locationForce, UserPreferences, ReceiverPreferences) {
+    ['$filter', '$http', '$location', '$window', '$routeParams', '$rootScope', '$timeout', 'GLTranslate', 'locationForce', 'UserPreferences', 'ReceiverPreferences',
+    function($filter, $http, $location, $window, $routeParams, $rootScope, $timeout, GLTranslate, locationForce, UserPreferences, ReceiverPreferences) {
       function Session(){
         var self = this;
 
@@ -60,18 +60,22 @@ angular.module('GLServices', ['ngResource']).
           }
 
           self.session.role_l10n = function() {
-              return $filter('translate')(self.session.role.charAt(0).toUpperCase() + self.session.role.substr(1));
+            return $filter('translate')(self.session.role.charAt(0).toUpperCase() + self.session.role.substr(1));
           }
         }
 
-        self.login = function(username, password, token, cb) {
+        self.login = function(tid, username, password, token, cb) {
           self.loginInProgress = true;
 
           var success_fn = function(response) {
-            self.set_session(response);
-
             // reset login status before returning
             self.loginInProgress = false;
+
+            if ('redirect' in response.data) {
+              $window.location.replace(response.data['redirect']);
+            }
+
+            self.set_session(response);
 
             if ($routeParams.src) {
               $location.path($routeParams.src);
@@ -99,12 +103,12 @@ angular.module('GLServices', ['ngResource']).
               self.loginInProgress = false;
             });
           } else if (token) {
-            return $http.post('authentication', {'username': '', 'password': '', 'token': token}).
+            return $http.post('authentication', {'tid': tid, 'username': '', 'password': '', 'token': token}).
             then(success_fn, function() {
               self.loginInProgress = false;
             });
           } else {
-            return $http.post('authentication', {'username': username, 'password': password, 'token': ''}).
+            return $http.post('authentication', {'tid': tid, 'username': username, 'password': password, 'token': ''}).
             then(success_fn, function() {
               self.loginInProgress = false;
             });
@@ -602,6 +606,9 @@ factory('AdminSubmissionSubStatusResource', ['GLResource', function(GLResource) 
 }]).
 factory('AdminUserTenantAssociationResource', ['GLResource', function(GLResource) {
   return new GLResource('admin/users/:user_id/tenant_associations/:tenant_id', {user_id: '@user_id', tenant_id: '@tenant_id'});
+}]).
+factory('Sites', ['GLResource', function(GLResource) {
+    return new GLResource('sites');
 }]).
 service('UpdateService', [function() {
   return {

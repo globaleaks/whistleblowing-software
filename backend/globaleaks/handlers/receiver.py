@@ -17,12 +17,14 @@ from globaleaks.utils.utility import datetime_to_ISO8601
 
 
 def receiver_serialize_receiver(session, tid, receiver, user, language):
-    user = session.query(models.User).filter(models.User.id == receiver.id, models.User.tid == tid).one_or_none()
+    user = session.query(models.User).filter(models.User.id == receiver.id,
+                                             models.UserTenant.user_id == receiver.id,
+                                             models.UserTenant.tenant_id == tid).one_or_none()
 
     contexts = [x[0] for x in session.query(models.ReceiverContext.context_id) \
                                      .filter(models.ReceiverContext.receiver_id == receiver.id,
-                                             models.User.id == receiver.id,
-                                             models.User.tid == tid)]
+                                             models.UserTenant.user_id == receiver.id,
+                                             models.UserTenant.tenant_id == tid)]
 
     ret_dict = user_serialize_user(session, user, language)
 
@@ -42,7 +44,8 @@ def get_receiver_settings(session, tid, receiver_id, language):
     receiver, user = session.query(models.Receiver, models.User) \
                             .filter(models.Receiver.id == receiver_id,
                                     models.User.id == receiver_id,
-                                    models.User.tid == tid).one()
+                                    models.UserTenant.user_id == receiver_id,
+                                    models.UserTenant.tenant_id == tid).one()
 
     return receiver_serialize_receiver(session, tid, receiver, user, language)
 
@@ -54,7 +57,8 @@ def update_receiver_settings(session, state, tid, receiver_id, request, language
     receiver, user = session.query(models.Receiver, models.User). \
                            filter(models.Receiver.id == receiver_id,
                                   models.User.id == receiver_id,
-                                  models.User.tid == tid).one_or_none()
+                                  models.UserTenant.user_id == receiver_id,
+                                  models.UserTenant.tenant_id == tid).one_or_none()
 
     receiver.tip_notification = request['tip_notification']
 
@@ -156,6 +160,7 @@ def perform_tips_operation(session, tid, receiver_id, operation, rtips_ids):
 
         else:
             raise errors.ForbiddenOperation
+
 
 class ReceiverInstance(BaseHandler):
     """

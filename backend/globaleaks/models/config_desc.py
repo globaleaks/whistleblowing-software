@@ -127,6 +127,7 @@ ConfigDescriptor = {
 
     u'enable_experimental_features': Bool(default=False),
 
+    u'multisite_login': Bool(default=False),
     u'simplified_login': Bool(default=False),
 
     u'enable_custom_privacy_badge': Bool(default=False),
@@ -202,6 +203,7 @@ ConfigFilters = {
         u'enable_admin_exception_notification',
         u'enable_developers_exception_notification',
         u'enable_experimental_features',
+        u'multisite_login',
         u'simplified_login',
         u'enable_custom_privacy_badge',
         u'landing_page',

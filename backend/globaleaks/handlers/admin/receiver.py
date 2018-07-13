@@ -17,16 +17,17 @@ def get_receiver_list(session, tid, language):
     return [admin_serialize_receiver(session, receiver, user, language)
         for receiver, user in session.query(models.Receiver, models.User) \
                                      .filter(models.Receiver.id == models.User.id,
-                                             models.User.tid == tid) \
+                                             models.UserTenant.user_id == models.User.id,
+                                             models.UserTenant.tenant_id == tid) \
                                      .order_by(models.User.id)]
 
 
 def db_get_receiver(session, tid, receiver_id):
-    return models.db_get(session,
-                         (models.Receiver, models.User),
-                          models.Receiver.id == receiver_id,
+    return session.query(models.Receiver, models.User) \
+                  .filter(models.Receiver.id == receiver_id,
                           models.User.id == receiver_id,
-                          models.User.tid == tid)
+                          models.UserTenant.user_id == models.User.id,
+                          models.UserTenant.tenant_id == tid).one_or_none()
 
 
 @transact

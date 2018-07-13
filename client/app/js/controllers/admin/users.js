@@ -1,11 +1,17 @@
-GLClient.controller('AdminUsersCtrl', ['$scope',
-  function($scope) {
+GLClient.controller('AdminUsersCtrl', ['$scope', 'AdminTenantResource',
+  function($scope, AdminTenantResource) {
     $scope.showAddUser = false;
     $scope.toggleAddUser = function() {
       $scope.showAddUser = !$scope.showAddUser;
     };
 
-    $scope.tenants_by_id = $scope.Utils.array_to_map($scope.admin.tenants);
+    if ($scope.node.root_tenant) {
+      AdminTenantResource.query(function(result) {
+        $scope.admin.tenants = result;
+        $scope.tenants_by_id = $scope.Utils.array_to_map($scope.admin.tenants);
+      });
+    }
+
 }]).controller('AdminUserEditorCtrl', ['$scope', '$rootScope', '$http', 'Utils', 'AdminUserResource',
   function($scope, $rootScope, $http, Utils, AdminUserResource) {
     $scope.deleteUser = function() {
@@ -62,7 +68,7 @@ GLClient.controller('AdminUsersCtrl', ['$scope',
       }).then(function() {
         $rootScope.successes.push({message: 'Success!'});
       })
-    }  
+    }
 }]).
 controller('AdminUserTenantAssociationAddCtrl', ['$scope', '$http', '$filter',
 function ($scope, $http, $filter) {
@@ -103,7 +109,9 @@ function ($scope, $http, $filter) {
     $scope.availableTenants = tenantList;
   }
 
-  $scope.refreshAvailableTenants();
+  if ($scope.node.root_tenant) {
+    $scope.refreshAvailableTenants();
+  }
 
   $scope.addUserTenantAssociation = function (tenant) {
     var new_submission_substate = {

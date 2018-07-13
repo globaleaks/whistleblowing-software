@@ -342,7 +342,8 @@ def db_create_submission(session, tid, request, uploaded_files, client_using_tor
                                          models.ReceiverContext.receiver_id == models.Receiver.id,
                                          models.ReceiverContext.context_id == context.id,
                                          models.User.id == models.Receiver.id,
-                                         models.User.tid == tid):
+                                         models.UserTenant.user_id == models.User.id,
+                                         models.UserTenant.tenant_id == tid):
         if user.pgp_key_public or State.tenant_cache[tid].allow_unencrypted:
             db_create_receivertip(session, receiver, submission)
             rtips_count += 1

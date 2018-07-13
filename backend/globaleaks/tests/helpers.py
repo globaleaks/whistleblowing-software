@@ -643,6 +643,10 @@ class TestGL(unittest.TestCase):
     def test_model_count(self, session, model, n):
         self.db_test_model_count(session, model, n)
 
+    @transact
+    def get_model_count(self, session, model):
+        return session.query(model).count()
+
 
 class TestGLWithPopulatedDB(TestGL):
     complex_field_population = False
@@ -814,20 +818,8 @@ class TestGLWithPopulatedDB(TestGL):
 
     @transact
     def set_passwords_ready_to_expire(self, session, tid):
-        # First, let's make all the user PWs good so we can make sure the
-        # job does the right thing
         session.query(models.User) \
             .filter(models.User.tid == tid) \
-            .filter(models.User.username != 'admin') \
-            .update({
-                'password_change_date': datetime_now(),
-                'password_change_needed': False,
-            })
-
-        # Now make the admin password reset
-        session.query(models.User) \
-            .filter(models.User.tid == tid) \
-            .filter(models.User.username == 'admin') \
             .update({
                 'password_change_date': datetime_null(),
                 'password_change_needed': False,
@@ -1124,6 +1116,7 @@ class MockDict:
             'default_password': u'globaleaks',
             'default_questionnaire': u'default',
             'admin_language': u'en',
+            'multisite_login': False,
             'simplified_login': False,
             'enable_captcha': False,
             'enable_proof_of_work': False,

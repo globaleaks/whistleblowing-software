@@ -1,0 +1,11 @@
+<div class="row">
+  <div class="col-md-4">
+    <form name="loginForm" autocomplete="off" novalidate>
+      <div data-ng-include="login_template"></div>
+      <br />
+      <div id="LoginError" class="alert alert-danger" data-ng-show="errors[0].code === 9">
+        <span data-translate>Authentication failed</span>
+      </div>
+    </form>
+  </div>
+</div>

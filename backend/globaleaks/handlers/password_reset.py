@@ -43,7 +43,8 @@ def db_generate_password_reset_token(session, state, tid, username_or_email, all
     users = session.query(models.User).filter(
       or_(models.User.username == username_or_email,
           models.User.mail_address == username_or_email),
-      models.User.tid == tid
+      models.UserTenant.user_id == models.User.id,
+      models.UserTenant.tenant_id == tid
     ).distinct()
 
     for user in users:

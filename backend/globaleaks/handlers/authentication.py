@@ -10,12 +10,13 @@ from twisted.internet.defer import inlineCallbacks, returnValue
 
 from globaleaks.utils import security
 from globaleaks.handlers.base import BaseHandler, Sessions, new_session
-from globaleaks.models import InternalTip, User
+from globaleaks.models import InternalTip, User, UserTenant, get_auth_token
 from globaleaks.orm import transact
 from globaleaks.rest import errors, requests
 from globaleaks.settings import Settings
 from globaleaks.state import State
 from globaleaks.utils.utility import datetime_now, deferred_sleep, log, parse_csv_ip_ranges_to_ip_networks
+
 
 def random_login_delay():
     """
@@ -82,15 +83,17 @@ def login(session, tid, username, password, client_using_tor, client_ip, token='
     """
     user = None
 
+    tenant_condition = or_(and_(UserTenant.user_id == User.id, UserTenant.tenant_id == tid),
+                           and_(User.role == u'admin', UserTenant.user_id == User.id, UserTenant.tenant_id == 1))
+
     if token:
         user = session.query(User).filter(User.auth_token == token,
                                           User.state != u'disabled',
-                                          User.tid == tid).one_or_none()
+                                          tenant_condition).one_or_none()
     else:
         users = session.query(User).filter(User.username == username,
                                            User.state != u'disabled',
-                                           (or_(and_(User.role == u'admin', User.tid.in_(set([1, tid]))),
-                                               and_(User.role != u'admin', User.tid == tid))))
+                                           tenant_condition).distinct()
         for u in users:
             if security.check_password(password, u.salt, u.password):
                 user = u
@@ -134,6 +137,25 @@ def login(session, tid, username, password, client_using_tor, client_ip, token='
     return user.id, user.state, user.role, user.password_change_needed
 
 
+@transact
+def set_auth_token(session, user_id):
+    token = get_auth_token()
+
+    session.query(User).filter(User.id == user_id).update({'auth_token': token})
+
+    return token
+
+
+@transact
+def get_tenant_switch_token(session, user_id):
+    token = get_auth_token()
+
+    session.query(User, UserTenant).filter(User.id == user_id).update({'auth_token': token})
+
+    return token
+
+
+
 class AuthenticationHandler(BaseHandler):
     """
     Login handler for admins and recipents and custodians
@@ -149,23 +171,35 @@ class AuthenticationHandler(BaseHandler):
         if delay:
             yield deferred_sleep(delay)
 
-        user_id, status, role, pcn = yield login(self.request.tid,
+        tid = int(request['tid'])
+        if tid == 0:
+             tid = self.request.tid
+
+        user_id, status, role, pcn = yield login(tid,
                                                  request['username'],
                                                  request['password'],
                                                  self.request.client_using_tor,
                                                  self.request.client_ip,
                                                  request['token'])
+        if tid == self.request.tid:
+            session = new_session(self.request.tid, user_id, role, status)
 
-        session = new_session(self.request.tid, user_id, role, status)
+            returnValue({
+                'session_id': session.id,
+                'role': session.user_role,
+                'user_id': session.user_id,
+                'session_expiration': int(session.getTime()),
+                'status': session.user_status,
+                'password_change_needed': pcn
+            })
 
-        returnValue({
-            'session_id': session.id,
-            'role': session.user_role,
-            'user_id': session.user_id,
-            'session_expiration': int(session.getTime()),
-            'status': session.user_status,
-            'password_change_needed': pcn
-        })
+        else:
+            token = yield set_auth_token(user_id)
+
+            returnValue({
+                'redirect': 'https://%s/#/login?token=%s' % (State.tenant_cache[tid].hostname, token)
+            })
+
 
 class ReceiptAuthHandler(BaseHandler):
     """
@@ -220,3 +254,17 @@ class SessionHandler(BaseHandler):
         Logout
         """
         del Sessions[self.current_user.id]
+
+
+class TenantSwitchHandler(BaseHandler):
+    """
+    Login handler for switching tenant
+    """
+    check_roles = {'admin','receiver','custodian'}
+    uniform_answer_time = True
+
+    @inlineCallbacks
+    def get(self, tid):
+        token = yield tenant_switch(self.current_user.user_id, user_id, new_tid)
+
+        self.redirect('https://%s/#/login?token=%s' % (State.tenant_cache[tid].hostname, token))
