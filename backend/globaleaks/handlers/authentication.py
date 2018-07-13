@@ -10,7 +10,7 @@ from twisted.internet.defer import inlineCallbacks, returnValue
 
 from globaleaks.utils import security
 from globaleaks.handlers.base import BaseHandler, Sessions, new_session
-from globaleaks.models import InternalTip, User, UserTenant, get_auth_token
+from globaleaks.models import InternalTip, User, UserTenant, WhistleblowerTip, get_auth_token
 from globaleaks.orm import transact
 from globaleaks.rest import errors, requests
 from globaleaks.settings import Settings
@@ -50,7 +50,8 @@ def random_login_delay():
 def db_get_wbtip_by_receipt(session, tid, receipt):
     hashed_receipt = security.hash_password(receipt, State.tenant_cache[tid].receipt_salt)
     return session.query(InternalTip) \
-                  .filter(InternalTip.receipt_hash == text_type(hashed_receipt, 'utf-8'),
+                  .filter(WhistleblowerTip.receipt_hash == text_type(hashed_receipt, 'utf-8'),
+                          InternalTip.id == WhistleblowerTip.id,
                           InternalTip.tid == tid).one_or_none()
 
 
