@@ -211,6 +211,8 @@ def db_get_itip_receiver_list(session, itip):
 def serialize_itip(session, internaltip, language):
     aq = session.query(models.ArchivedSchema).filter(models.ArchivedSchema.hash == internaltip.questionnaire_hash).one()
 
+    wb_access_revoked = session.query(models.WhistleblowerTip).filter(models.WhistleblowerTip.id == internaltip.id).count() == 0
+
     return {
         'id': internaltip.id,
         'creation_date': datetime_to_ISO8601(internaltip.creation_date),
@@ -228,7 +230,7 @@ def serialize_itip(session, internaltip, language):
         'identity_provided': internaltip.identity_provided,
         'identity_provided_date': datetime_to_ISO8601(internaltip.identity_provided_date),
         'wb_last_access': datetime_to_ISO8601(internaltip.wb_last_access),
-        'wb_access_revoked': internaltip.receipt_hash == None,
+        'wb_access_revoked': wb_access_revoked,
         'total_score': internaltip.total_score,
         'status': internaltip.status,
         'substatus': internaltip.substatus
@@ -309,12 +311,15 @@ def db_create_submission(session, tid, request, uploaded_files, client_using_tor
     submission.questionnaire_hash = questionnaire_hash
     submission.preview = extract_answers_preview(steps, answers)
 
-    receipt = text_type(generateRandomReceipt())
-
-    submission.receipt_hash = hash_password(receipt, State.tenant_cache[tid].receipt_salt)
-
     session.add(submission)
     session.flush()
+
+    receipt = text_type(generateRandomReceipt())
+
+    wbtip = models.WhistleblowerTip()
+    wbtip.id = submission.id
+    wbtip.receipt_hash = hash_password(receipt, State.tenant_cache[tid].receipt_salt)
+    session.add(wbtip)
 
     db_save_questionnaire_answers(session, tid, submission.id, answers)
 

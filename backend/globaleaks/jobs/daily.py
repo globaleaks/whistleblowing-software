@@ -41,9 +41,12 @@ class Daily(LoopingJob):
         for tid in self.state.tenant_state:
             threshold = datetime_now() - timedelta(days=State.tenant_cache[tid].wbtip_timetolive)
 
-            session.query(models.InternalTip) \
-                   .filter(models.InternalTip.tid == tid,
-                           models.InternalTip.wb_last_access < threshold).update({'receipt_hash': u''})
+            wbtips_ids = [r[0] for r in session.query(models.InternalTip.id) \
+                                               .filter(models.InternalTip.tid == tid,
+                                                       models.InternalTip.wb_last_access < threshold)]
+
+            if wbtips_ids:
+                session.query(models.WhistleblowerTip).filter(models.WhistleblowerTip.id.in_(wbtips_ids)).delete(synchronize_session = 'fetch')
 
     def db_clean_expired_itips(self, session):
         """
