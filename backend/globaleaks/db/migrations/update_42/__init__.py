@@ -111,7 +111,39 @@ class MigrationScript(MigrationBase):
             new_wbtip.receipt_hash = old_obj.receipt_hash
             self.session_new.add(new_wbtip)
 
+    def migrate_Signup(self):
+        old_objs = self.session_old.query(self.model_from['Signup'])
+        for old_obj in old_objs:
+            new_obj = self.model_to['Signup']()
+            for key in [c.key for c in new_obj.__table__.columns]:
+                if key not in old_obj.__table__.columns:
+                    continue
 
+                setattr(new_obj, key, getattr(old_obj, key))
+
+            if old_obj.tid is None:
+                self.entries_count['Signup'] -= 1
+                continue
+
+            self.session_new.add(new_obj)
+
+    def migrate_User(self):
+        old_objs = self.session_old.query(self.model_from['User'])
+        for old_obj in old_objs:
+            new_obj = self.model_to['User']()
+            for key in [c.key for c in new_obj.__table__.columns]:
+                if key not in old_obj.__table__.columns:
+                    continue
+
+                setattr(new_obj, key, getattr(old_obj, key))
+
+            self.session_new.add(new_obj)
+
+            user_tenant = self.model_to['UserTenant']()
+            user_tenant.user_id = new_obj.id
+            user_tenant.tenant_id = new_obj.tid
+            self.session_new.add(user_tenant)
+            self.entries_count['UserTenant'] += 1
 
     def epilogue(self):
         tenants = self.session_old.query(self.model_from['Tenant'])
@@ -129,6 +161,4 @@ class MigrationScript(MigrationBase):
                                                 .filter(self.model_to['SubmissionStatus'].tid == tenant.id,
                                                         self.model_to['SubmissionStatus'].system_usage == 'open').one()[0]
 
-                first_rtip = self.session_new.query(self.model_to['ReceiverTip'])\
-                                         .filter(self.model_to['ReceiverTip'].internaltip_id == itip.id).first()
-                db_update_submission_status(self.session_new, tenant.id, first_rtip.receiver_id, itip, open_status_id, u'')
+                db_update_submission_status(self.session_new, tenant.id, u'', itip, open_status_id, u'')
