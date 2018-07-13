@@ -265,7 +265,7 @@ class APIResourceWrapper(Resource):
 
     def redirect(self, request, url):
         request.setResponseCode(301)
-        request.setHeader(b"location", url)
+        request.setHeader(b'location', url)
 
     def redirect_https(self, request):
         _, _, path, query, frag = urlsplit(request.uri)
@@ -455,40 +455,40 @@ class APIResourceWrapper(Resource):
         return NOT_DONE_YET
 
     def set_headers(self, request):
-        request.setHeader("Server", "Globaleaks")
+        request.setHeader(b'Server', b'Globaleaks')
 
-        request.setHeader('Content-Language', request.language)
+        request.setHeader(b'Content-Language', request.language)
 
         # to reduce possibility for XSS attacks.
-        request.setHeader("X-Content-Type-Options", "nosniff")
-        request.setHeader("X-XSS-Protection", "1; mode=block")
+        request.setHeader(b'X-Content-Type-Options', b'nosniff')
+        request.setHeader(b'X-XSS-Protection', b'1; mode=block')
 
         # to disable caching
-        request.setHeader("Cache-control", "no-cache, no-store, must-revalidate")
-        request.setHeader("Pragma", "no-cache")
-        request.setHeader("Expires", "-1")
+        request.setHeader(b'Cache-control', b'no-cache, no-store, must-revalidate')
+        request.setHeader(b'Pragma', b'no-cache')
+        request.setHeader(b'Expires', b'-1')
 
         # to avoid information leakage via referrer
-        request.setHeader("Referrer-Policy", "no-referrer")
+        request.setHeader(b'Referrer-Policy', b'no-referrer')
 
         # to avoid Robots spidering, indexing, caching
         if not State.tenant_cache[request.tid].allow_indexing:
-            request.setHeader("X-Robots-Tag", "noindex")
+            request.setHeader(b'X-Robots-Tag', b'noindex')
 
         # to mitigate clickjaking attacks on iframes allowing only same origin
         # same origin is needed in order to include svg and other html <object>
         if not State.tenant_cache[request.tid].allow_iframes_inclusion:
-            request.setHeader("X-Frame-Options", "sameorigin")
+            request.setHeader(b'X-Frame-Options', b'sameorigin')
 
         if request.client_using_tor is True:
-            request.setHeader('x-check-tor', "True")
+            request.setHeader(b'x-check-tor', b'True')
         else:
-            request.setHeader('x-check-tor', "False")
+            request.setHeader(b'x-check-tor', b'False')
 
 
     def parse_accept_language_header(self, request):
-        if b"accept-language" in request.headers:
-            languages = text_type(request.headers[b"accept-language"], 'utf-8').split(",")
+        if b'accept-language' in request.headers:
+            languages = text_type(request.headers[b'accept-language'], 'utf-8').split(",")
             locales = []
             for language in languages:
                 parts = language.strip().split(";")
