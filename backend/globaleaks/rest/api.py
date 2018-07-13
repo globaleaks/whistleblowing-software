@@ -480,7 +480,11 @@ class APIResourceWrapper(Resource):
         if not State.tenant_cache[request.tid].allow_iframes_inclusion:
             request.setHeader("X-Frame-Options", "sameorigin")
 
-        request.setHeader(b'x-check-tor', bytes(request.client_using_tor))
+        if request.client_using_tor is True:
+            request.setHeader('x-check-tor', "True")
+        else:
+            request.setHeader('x-check-tor', "False")
+
 
     def parse_accept_language_header(self, request):
         if b"accept-language" in request.headers:
