@@ -26,7 +26,8 @@ def get_tip_export(session, tid, user_id, rtip_id, language):
                            .filter(models.User.id == rtip.receiver_id,
                                    models.Context.id == models.InternalTip.context_id,
                                    models.InternalTip.id == rtip.internaltip_id,
-                                   models.User.tid == tid).one()
+                                   models.UserTenant.user_id == models.User.id,
+                                   models.UserTenant.tenant_id == tid).one()
 
     rtip_dict = serialize_rtip(session, rtip, itip, language)
 

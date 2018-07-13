@@ -114,6 +114,7 @@ def db_serialize_node(session, tid, language):
     node = ConfigFactory(session, tid, 'public_node').serialize()
 
     ret_dict = {
+        'root_tenant': tid == 1,
         'languages_enabled': models.EnabledLanguage.list(session, tid) if node['wizard_done'] else list(LANGUAGES_SUPPORTED_CODES),
         'languages_supported': LANGUAGES_SUPPORTED,
         'configured': configured,
@@ -366,7 +367,8 @@ def db_get_questionnaire_list(session, tid, language):
 def db_get_public_receiver_list(session, tid, language):
     receivers = session.query(models.Receiver).filter(models.Receiver.id == models.User.id,
                                                       models.User.state != u'disabled',
-                                                      models.User.tid == tid)
+                                                      models.UserTenant.user_id == models.User.id,
+                                                      models.UserTenant.tenant_id == tid)
 
     data = db_prepare_receivers_serialization(session, receivers)
 

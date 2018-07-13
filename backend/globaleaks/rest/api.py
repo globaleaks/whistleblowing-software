@@ -31,8 +31,9 @@ from globaleaks.handlers import custodian, \
                                 export, l10n, wizard,\
                                 user, shorturl, \
                                 robots, \
-                                staticfile, \
-                                signup
+                                signup, \
+                                site, \
+                                staticfile
 
 from globaleaks.handlers.admin import operation as admin_operation
 from globaleaks.handlers.admin import context as admin_context
@@ -70,6 +71,9 @@ api_spec = [
 
     ## Public API ##
     (r'/public', public.PublicResource),
+
+    ## Sites API ##
+    (r'/sites', site.SiteCollection),
 
     # User Preferences Handler
     (r'/preferences', user.UserInstance),

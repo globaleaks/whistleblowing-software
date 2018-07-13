@@ -39,6 +39,7 @@ class SessionsFactory(TempDict):
 
 Sessions = SessionsFactory(timeout=Settings.authentication_lifetime)
 
+
 # https://github.com/globaleaks/GlobaLeaks/issues/1601
 mimetypes.add_type('image/svg+xml', '.svg')
 mimetypes.add_type('application/vnd.ms-fontobject', '.eot')

@@ -102,6 +102,7 @@ FileDesc = {
 }
 
 AuthDesc = {
+    'tid': int,
     'username': text_type,
     'password': text_type,
     'token': text_type
@@ -223,6 +224,7 @@ AdminNodeDesc = {
     'disable_key_code_hint': bool,
     'disable_donation_panel': bool,
     'disable_submissions': bool,
+    'multisite_login': bool,
     'simplified_login': bool,
     'enable_captcha': bool,
     'enable_proof_of_work': bool,
@@ -448,6 +450,7 @@ NodeDesc = {
     'allow_unencrypted': bool,
     'disable_privacy_badge': bool,
     'disable_key_code_hint': bool,
+    'multisite_login': bool,
     'simplified_login': bool,
     'enable_captcha': bool,
     'enable_proof_of_work':  bool,

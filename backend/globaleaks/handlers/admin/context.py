@@ -73,9 +73,9 @@ def db_associate_context_receivers(session, tid, context, receiver_ids):
         return
 
     if session.query(models.Context).filter(models.Context.id == context.id,
-                                            models.Context.tid != tid).count() or \
-       session.query(models.User).filter(models.User.id.in_(receiver_ids),
-                                         models.User.tid != tid).count():
+                                            models.Context.tid == models.UserTenant.tenant_id,
+                                            models.User.id.in_(receiver_ids),
+                                            models.UserTenant.user_id == models.User.id).count == 0:
         raise errors.InputValidationError()
 
     session.query(models.ReceiverContext).filter(models.ReceiverContext.context_id == context.id).delete(synchronize_session='fetch')

@@ -1,4 +1,7 @@
 # -*- coding: utf-8 -*-
+from twisted.internet.address import IPv4Address
+from twisted.internet.defer import inlineCallbacks
+
 from globaleaks.handlers import authentication, admin
 from globaleaks.handlers.base import Sessions
 from globaleaks.handlers.user import UserInstance
@@ -7,8 +10,6 @@ from globaleaks.rest import errors
 from globaleaks.settings import Settings
 from globaleaks.state import State
 from globaleaks.tests import helpers
-from twisted.internet.address import IPv4Address, IPv6Address
-from twisted.internet.defer import inlineCallbacks
 
 
 class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
@@ -20,6 +21,7 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
     @inlineCallbacks
     def test_successful_login(self):
         handler = self.request({
+            'tid': 1,
             'username': 'admin',
             'password': helpers.VALID_PASSWORD1,
             'token': ''
@@ -29,8 +31,22 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
         self.assertEqual(len(Sessions), 1)
 
     @inlineCallbacks
+    def test_successful_multitenant_login(self):
+        handler = self.request({
+            'tid': 2,
+            'username': 'admin',
+            'password': helpers.VALID_PASSWORD1,
+            'token': ''
+        })
+
+        yield handler.post()
+
+        self.assertTrue(handler.request.responseHeaders.hasHeader(b'location'))
+
+    @inlineCallbacks
     def test_accept_login_in_https(self):
         handler = self.request({
+            'tid': 1,
             'username': 'admin',
             'password': helpers.VALID_PASSWORD1,
             'token': ''
@@ -43,6 +59,7 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
     @inlineCallbacks
     def test_deny_login_in_https(self):
         handler = self.request({
+            'tid': 1,
             'username': 'admin',
             'password': helpers.VALID_PASSWORD1,
             'token': ''
@@ -53,6 +70,7 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
     @inlineCallbacks
     def test_invalid_login_wrong_password(self):
         handler = self.request({
+            'tid': 1,
             'username': 'admin',
             'password': 'INVALIDPASSWORD',
             'token': ''
@@ -63,6 +81,7 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
     @inlineCallbacks
     def test_failed_login_counter(self):
         handler = self.request({
+            'tid': 1,
             'username': 'admin',
             'password': 'INVALIDPASSWORD',
             'token': ''
@@ -78,6 +97,7 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
     @inlineCallbacks
     def test_single_session_per_user(self):
         handler = self.request({
+            'tid': 1,
             'username': 'admin',
             'password': helpers.VALID_PASSWORD1,
             'token': ''
@@ -92,6 +112,7 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
     @inlineCallbacks
     def test_session_is_revoked(self):
         auth_handler = self.request({
+            'tid': 1,
             'username': 'receiver1',
             'password': helpers.VALID_PASSWORD1,
             'token': ''
@@ -120,13 +141,13 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
 
         yield user_handler.get()
 
-
     @inlineCallbacks
     def test_login_reject_on_ip_filtering(self):
         State.tenant_cache[1]['ip_filter_authenticated_enable'] = True
         State.tenant_cache[1]['ip_filter_authenticated'] = '192.168.2.0/24'
 
         handler = self.request({
+            'tid': 1,
             'username': 'admin',
             'password': helpers.VALID_PASSWORD1,
             'token': ''
@@ -139,6 +160,7 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
         State.tenant_cache[1]['ip_filter_authenticated'] = '192.168.2.0/24'
 
         handler = self.request({
+            'tid': 1,
             'username': 'admin',
             'password': helpers.VALID_PASSWORD1,
             'token': ''
@@ -153,6 +175,7 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
         State.tenant_cache[1]['ip_filter_authenticated'] = '192.168.2.0/24'
 
         handler = self.request({
+            'tid': 1,
             'username': 'admin',
             'password': helpers.VALID_PASSWORD1,
             'token': ''
@@ -160,6 +183,7 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
         response = yield handler.post()
         self.assertTrue('session_id' in response)
         self.assertEqual(len(Sessions), 1)
+
 
 class TestReceiptAuth(helpers.TestHandlerWithPopulatedDB):
     _handler = authentication.ReceiptAuthHandler
@@ -238,6 +262,7 @@ class TestReceiptAuth(helpers.TestHandlerWithPopulatedDB):
                                      handler_cls=WBTipInstance)
         yield wbtip_handler.get()
 
+
 class TestSessionHandler(helpers.TestHandlerWithPopulatedDB):
     @inlineCallbacks
     def test_successful_admin_logout(self):
@@ -245,6 +270,7 @@ class TestSessionHandler(helpers.TestHandlerWithPopulatedDB):
 
         # Login
         handler = self.request({
+            'tid': 1,
             'username': 'admin',
             'password': helpers.VALID_PASSWORD1,
             'token': ''

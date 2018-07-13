@@ -105,9 +105,9 @@ class UserTenantTestBaseClass(helpers.TestHandlerWithPopulatedDB):
             if r['pgp_key_fingerprint'] == u'BFB3C82D1B5F6A94BDAC55C6E70460ABF9A4C8C1':
                 self.rcvr_id = r['id']
 
-        yield self.test_model_count(models.UserTenant, 0)
+        self.initial_user_tenant_count = yield self.get_model_count(models.UserTenant)
         yield user.create_usertenant_association(self.rcvr_id, 2)
-        yield self.test_model_count(models.UserTenant, 1)
+        yield self.test_model_count(models.UserTenant, self.initial_user_tenant_count + 1)
 
 
 class TestUserTenantCollection(UserTenantTestBaseClass):
@@ -124,7 +124,7 @@ class TestUserTenantCollection(UserTenantTestBaseClass):
         self.assertEqual(response['user_id'], self.rcvr_id)
         self.assertEqual(response['tenant_id'], 3)
 
-        yield self.test_model_count(models.UserTenant, 2)
+        yield self.test_model_count(models.UserTenant, self.initial_user_tenant_count + 2)
 
 
 class TestUserTenantInstance(UserTenantTestBaseClass):
@@ -135,4 +135,4 @@ class TestUserTenantInstance(UserTenantTestBaseClass):
         handler = self.request(role='admin')
         yield handler.delete(self.rcvr_id, 2)
 
-        yield self.test_model_count(models.UserTenant, 0)
+        yield self.test_model_count(models.UserTenant, self.initial_user_tenant_count)

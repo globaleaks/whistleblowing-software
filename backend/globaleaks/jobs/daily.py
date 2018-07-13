@@ -59,7 +59,9 @@ class Daily(LoopingJob):
         for tid in self.state.tenant_state:
             threshold = datetime_now() + timedelta(hours=State.tenant_cache[tid].notification.tip_expiration_threshold)
 
-            for user in session.query(models.User).filter(models.User.tid == tid, models.User.role == u'receiver'):
+            for user in session.query(models.User).filter(models.User.role == u'receiver',
+                                                          models.UserTenant.user_id == models.User.id,
+                                                          models.UserTenant.tenant_id == tid):
                 itip_ids = [id[0] for id in session.query(models.InternalTip.id) \
                                                  .filter(models.InternalTip.tid == tid,
                                                          models.ReceiverTip.internaltip_id == models.InternalTip.id,
@@ -104,9 +106,13 @@ class Daily(LoopingJob):
 
             threshold = datetime_now() - timedelta(days=State.tenant_cache[tid].password_change_period)
 
-            session.query(models.User) \
-                   .filter(models.User.tid == tid,
-                           models.User.password_change_date < threshold).update({'password_change_needed': True})
+            ids = [r[0] for r in session.query(models.User.id) \
+                                        .join(models.UserTenant) \
+                                        .filter(models.User.password_change_date < threshold,
+                                                models.UserTenant.user_id == models.User.id,
+                                                models.UserTenant.tenant_id == tid)]
+
+            session.query(models.User).filter(models.User.id.in_(ids)).update({'password_change_needed': True}, synchronize_session='fetch')
 
     def db_clean(self, session):
         # delete stats older than 3 months

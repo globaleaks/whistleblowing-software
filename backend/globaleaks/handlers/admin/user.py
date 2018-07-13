@@ -42,6 +42,19 @@ def admin_serialize_receiver(session, receiver, user, language):
     return get_localized_values(ret_dict, receiver, receiver.localized_keys, language)
 
 
+def db_create_usertenant_association(session, user_id, tenant_id):
+    usertenant = models.UserTenant()
+    usertenant.user_id = user_id
+    usertenant.tenant_id = tenant_id
+    session.add(usertenant)
+    return serialize_usertenant_association(usertenant)
+
+
+@transact
+def create_usertenant_association(session, user_id, tenant_id):
+    return db_create_usertenant_association(session, user_id, tenant_id)
+
+
 @transact
 def create_user(session, state, tid, request, language):
     return user_serialize_user(session, db_create_user(session, state, tid, request, language), language)
@@ -86,7 +99,9 @@ def db_create_user(session, state, tid, request, language):
     fill_localized_keys(request, models.User.localized_keys, language)
 
     if request['username']:
-        user = session.query(models.User).filter(models.User.tid == tid, models.User.username == text_type(request['username'])).one_or_none()
+        user = session.query(models.User).filter(models.User.username == text_type(request['username']),
+                                                 models.UserTenant.user_id == models.User.id,
+                                                 models.UserTenant.tenant_id == tid).one_or_none()
         if user is not None:
             raise errors.InputValidationError('Username already in use')
 
@@ -125,6 +140,8 @@ def db_create_user(session, state, tid, request, language):
     if not request['username']:
         user.username = user.id
 
+    db_create_usertenant_association(session, user.id, tid)
+
     return user
 
 
@@ -134,10 +151,12 @@ def db_admin_update_user(session, state, tid, user_id, request, language):
     """
     fill_localized_keys(request, models.User.localized_keys, language)
 
-    user = models.db_get(session, models.User, models.User.tid == tid, models.User.id == user_id)
+    user = db_get_user(session, tid, user_id)
 
     if user.username != request['username']:
-        check = session.query(models.User).filter(models.User.tid == tid, models.User.username == text_type(request['username'])).one_or_none()
+        check = session.query(models.User).filter(models.User.username == text_type(request['username']),
+                                                  models.UserTenant.user_id == models.User.id,
+                                                  models.UserTenant.tenant_id == tid).one_or_none()
         if check is not None:
             raise errors.InputValidationError('Username already in use')
 
@@ -162,16 +181,33 @@ def admin_update_user(session, state, tid, user_id, request, language):
     return user_serialize_user(session, db_admin_update_user(session, state, tid, user_id, request, language), language)
 
 
+def db_get_user(session, tid, user_id):
+    user = session.query(models.User) \
+                  .filter(models.User.id == user_id, models.UserTenant.user_id == models.User.id, models.UserTenant.tenant_id == tid).one_or_none()
+
+
+    return user
+
 @transact
 def get_user(session, tid, user_id, language):
-    user = models.db_get(session, models.User, models.User.tid == tid, models.User.id == user_id)
+    user = db_get_user(session, tid, user_id)
 
     return user_serialize_user(session, user, language)
 
 
+@transact
+def delete_user(session, tid, user_id):
+    user = db_get_user(session, tid, user_id)
+
+    if user is not None:
+        session.delete(user)
+
+
 def db_get_admin_users(session, tid):
     return [user_serialize_user(session, user, State.tenant_cache[tid].default_language)
-            for user in session.query(models.User).filter(models.User.tid == tid, models.User.role ==u'admin')]
+            for user in session.query(models.User).filter(models.User.role ==u'admin',
+                                                          models.UserTenant.user_id == models.User.id,
+                                                          models.UserTenant.tenant_id == tid)]
 
 
 @transact
@@ -180,7 +216,8 @@ def get_user_list(session, tid, language):
     Returns:
         (list) the list of users
     """
-    users = session.query(models.User).filter(models.User.tid == tid)
+    users = session.query(models.User).filter(models.UserTenant.user_id == models.User.id,
+                                              models.UserTenant.tenant_id == tid)
     return [user_serialize_user(session, user, language) for user in users]
 
 
@@ -221,16 +258,7 @@ class UserInstance(BaseHandler):
         """
         Delete the specified user.
         """
-        return models.delete(models.User, models.User.tid == self.request.tid, models.User.id == user_id)
-
-
-@transact
-def create_usertenant_association(session, user_id, tenant_id):
-    usertenant = models.UserTenant()
-    usertenant.user_id = user_id
-    usertenant.tenant_id = tenant_id
-    session.add(usertenant)
-    return serialize_usertenant_association(usertenant)
+        return delete_user(self.request.tid, user_id)
 
 
 class UserTenantCollection(BaseHandler):
