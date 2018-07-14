@@ -140,22 +140,17 @@ def login(session, tid, username, password, client_using_tor, client_ip, token='
 
 
 @transact
-def set_auth_token(session, user_id):
+def get_multitenant_auth_token(session, user_id, tid):
+    # check that the user can really access the tenant requested
+    count = session.query(UserTenant).filter(UserTenant.user_id == user_id,
+                                             UserTenant.tenant_id == tid).count()
+
+    if not count:
+        return u''
+
     token = get_auth_token()
-
-    session.query(User).filter(User.id == user_id).update({'auth_token': token})
-
+    session.query(User.id).filter(User.id == user_id).update({'auth_token': token})
     return token
-
-
-@transact
-def get_tenant_switch_token(session, user_id):
-    token = get_auth_token()
-
-    session.query(User, UserTenant).filter(User.id == user_id).update({'auth_token': token})
-
-    return token
-
 
 
 class AuthenticationHandler(BaseHandler):
@@ -196,11 +191,12 @@ class AuthenticationHandler(BaseHandler):
             })
 
         else:
-            token = yield set_auth_token(user_id)
+            token = yield get_multitenant_auth_token(user_id, tid)
 
-            returnValue({
-                'redirect': 'https://%s/#/login?token=%s' % (State.tenant_cache[tid].hostname, token)
-            })
+            if token:
+                returnValue({
+                    'redirect': 'https://%s/#/login?token=%s' % (State.tenant_cache[tid].hostname, token)
+                })
 
 
 class ReceiptAuthHandler(BaseHandler):
@@ -258,7 +254,7 @@ class SessionHandler(BaseHandler):
         del Sessions[self.current_user.id]
 
 
-class TenantSwitchHandler(BaseHandler):
+class TenantAuthSwitchHandler(BaseHandler):
     """
     Login handler for switching tenant
     """
@@ -267,6 +263,9 @@ class TenantSwitchHandler(BaseHandler):
 
     @inlineCallbacks
     def get(self, tid):
-        token = yield tenant_switch(self.current_user.user_id, user_id, new_tid)
+        token = yield get_multitenant_auth_token(self.current_user.user_id, tid)
 
-        self.redirect('https://%s/#/login?token=%s' % (State.tenant_cache[tid].hostname, token))
+        if token:
+            returnValue({
+                'redirect': 'https://%s/#/login?token=%s' % (State.tenant_cache[tid].hostname, token)
+            })
