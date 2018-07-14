@@ -39,9 +39,8 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
             'token': ''
         })
 
-        yield handler.post()
-
-        self.assertTrue(handler.request.responseHeaders.hasHeader(b'location'))
+        response = yield handler.post()
+        self.assertTrue('redirect' in response)
 
     @inlineCallbacks
     def test_accept_login_in_https(self):
