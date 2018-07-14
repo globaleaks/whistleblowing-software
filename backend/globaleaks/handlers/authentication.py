@@ -51,8 +51,9 @@ def db_get_wbtip_by_receipt(session, tid, receipt):
     hashed_receipt = security.hash_password(receipt, State.tenant_cache[tid].receipt_salt)
     return session.query(InternalTip) \
                   .filter(WhistleblowerTip.receipt_hash == text_type(hashed_receipt, 'utf-8'),
+                          WhistleblowerTip.tid == tid,
                           InternalTip.id == WhistleblowerTip.id,
-                          InternalTip.tid == tid).one_or_none()
+                          InternalTip.tid == WhistleblowerTip.tid).one_or_none()
 
 
 @transact

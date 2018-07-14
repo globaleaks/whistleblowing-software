@@ -1181,7 +1181,7 @@ class _WhistleblowerTip(Model):
     __tablename__ = 'whistleblowertip'
 
     id = Column(Unicode(36), primary_key=True, default=uuid4, nullable=False)
-
+    tid = Column(Integer, default=1, nullable=False)
     receipt_hash = Column(Unicode(128), nullable=False)
 
     wb_prv_key = Column(Unicode, default=u'', nullable=False)
@@ -1191,7 +1191,9 @@ class _WhistleblowerTip(Model):
 
     @declared_attr
     def __table_args__(cls): # pylint: disable=no-self-argument
-        return (ForeignKeyConstraint(['id'], ['internaltip.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),)
+        return (UniqueConstraint('tid', 'receipt_hash'),
+                ForeignKeyConstraint(['id'], ['internaltip.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),
+                ForeignKeyConstraint(['tid'], ['tenant.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'))
 
 
 class Anomalies(_Anomalies, Base): pass
