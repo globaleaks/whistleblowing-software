@@ -2,7 +2,7 @@
   <div class="editorTitle row">
     <span class="col-md-8">
       <span data-translate>Substatuses</span>
-      <button class="btn btn-xs btn-primary show-add-step-btn" data-ng-click="toggleAddSubstate()">
+      <button class="btn btn-xs btn-primary" data-ng-click="toggleAddSubstate()">
         <i class="glyphicon glyphicon-plus"></i>
         <span data-translate>Add</span>
       </button>
@@ -25,7 +25,7 @@
         <div class="row">
           <div class="col-md-12">
             <div class="form-group">
-              <button id="add-step-btn" class="pull-left btn btn-primary" data-ng-disabled="newSubstate.$invalid"
+              <button class="pull-left btn btn-primary" data-ng-disabled="newSubstate.$invalid"
                       data-ng-click="addSubmissionSubStatus(); toggleAddSubstate()">
                 <i class="glyphicon glyphicon-plus-sign"></i>
                 <span data-translate>Add</span>
@@ -65,7 +65,7 @@
                   <span data-translate>Cancel</span>
                 </button>
                 <button class="btn btn-xs btn-danger"
-                        data-ng-click="deleteSubSubmissionStatus(step); $event.stopPropagation();"
+                        data-ng-click="deleteSubSubmissionStatus(substate); $event.stopPropagation();"
                         uib-popover="{{Delete | translate}}"
                         popover-placement="right">
                   <span data-translate>Delete</span>

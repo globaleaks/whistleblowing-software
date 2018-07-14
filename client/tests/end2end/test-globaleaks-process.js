@@ -34,7 +34,7 @@ describe('globaLeaks process', function() {
   });
 
   it('Whistleblower should be able to access the last submission', function() {
-    browser.gl.utils.login_whistleblower(receipts[2]);
+    browser.gl.utils.login_whistleblower(receipts[0]);
     expect(element(by.xpath("//*[contains(text(),'" + tip_text + "')]")).getText()).toEqual(tip_text);
     browser.gl.utils.logout();
   });

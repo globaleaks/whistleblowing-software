@@ -141,7 +141,7 @@ exports.login_receiver = function(username, password, url, firstlogin) {
 exports.login_custodian = function(username, password, url, firstlogin) {
   username = username === undefined ? 'Custodian1' : username;
   password = password === undefined ? exports.vars['user_password'] : password;
-  url = url === undefined ? '/#/custodian' : url;
+  url = url === undefined ? '/#/login' : url;
 
   browser.get(url);
   element(by.model('loginUsername')).sendKeys(username);
@@ -152,7 +152,7 @@ exports.login_custodian = function(username, password, url, firstlogin) {
     url = '/forcedpasswordchange';
   } else {
     url = url.split('#')[1];
-    url = url === '/custodian' ? '/custodian/identityaccessrequests' : url;
+    url = url === '/login' ? '/custodian/identityaccessrequests' : url;
   }
 
   exports.waitForUrl(url);

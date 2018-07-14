@@ -124,14 +124,14 @@ angular.module('GLServices', ['ngResource']).
             } else if (path.indexOf('/admin') === 0) {
               loginUri = '/admin';
             } else if (path.indexOf('/custodian') === 0) {
-              loginUri = '/custodian';
+              loginUri = '/login';
             }
           } else if (role === 'whistleblower') {
             loginUri = ('/');
           } else if (role === 'admin') {
             loginUri = '/admin';
           } else if (role === 'custodian') {
-            loginUri = '/custodian';
+            loginUri = '/login';
           }
 
           return loginUri;
@@ -460,12 +460,12 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
         };
 
         tip.updateSubmissionStatus = function() {
-          var state = tip.submissionStatusObj.id;
-          var substate = tip.submissionSubStatusObj ? tip.submissionSubStatusObj.id : '';
-          return tip.operation('update_state', {'state': state,
-                                                'substate': substate}).then(function () {
-            tip.state = state;
-            tip.substate = substate;
+          var status = tip.submissionStatusObj.id;
+          var substatus = tip.submissionSubStatusObj ? tip.submissionSubStatusObj.id : '';
+          return tip.operation('update_status', {'status': status,
+                                                 'substatus': substatus}).then(function () {
+            tip.status = status;
+            tip.substatus = substatus;
           });
         };
 
@@ -1149,12 +1149,12 @@ factory('AdminUtils', ['AdminContextResource', 'AdminQuestionnaireResource', 'Ad
 
       evalSubmissionStatus: function(tip, submission_statuses) {
         for (var i = 0; i < submission_statuses.length; i++) {
-          if (submission_statuses[i].id === tip.state) {
+          if (submission_statuses[i].id === tip.status) {
             tip.submissionStatusObj = submission_statuses[i];
 
             var substatuses = submission_statuses[i].substatuses;
             for (var j = 0; j < substatuses.length; j++) {
-              if (substatuses[j].id == tip.substate) {
+              if (substatuses[j].id == tip.substatus) {
                 tip.submissionSubStatusObj = substatuses[j];
                 break;
               }
@@ -1162,9 +1162,10 @@ factory('AdminUtils', ['AdminContextResource', 'AdminQuestionnaireResource', 'Ad
             break;
           }
         }
+
         tip.submissionStatusStr = tip.submissionStatusObj.label;
         if (tip.submissionSubStatusObj) {
-            tip.submissionStatusStr += '(' + tip.submissionStatusObj.label + ')';
+          tip.submissionStatusStr += '(' + tip.submissionStatusObj.label + ')';
         }
       },
 

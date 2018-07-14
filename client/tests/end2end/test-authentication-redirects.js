@@ -20,6 +20,6 @@ describe('perform rediects on authenticated pages', function() {
   it('test custodian redirect to login page', function() {
     browser.get('/#/custodian/identityaccessrequests');
 
-    browser.gl.utils.waitForUrl('/custodian?src=%2Fcustodian%2Fidentityaccessrequests');
+    browser.gl.utils.waitForUrl('/login?src=%2Fcustodian%2Fidentityaccessrequests');
   });
 });
