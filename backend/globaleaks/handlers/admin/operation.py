@@ -1,5 +1,5 @@
 # -*- coding: utf-8
-from twisted.internet.defer import inlineCallbacks
+from twisted.internet.defer import inlineCallbacks, returnValue
 from twisted.web.client import readBody
 
 from globaleaks.db import db_refresh_memory_variables
@@ -95,9 +95,9 @@ class AdminOperationHandler(OperationHandler):
 
         # Return the new key
         onion_details = yield get_onion_service_info(self.request.tid)
-        return {
+        returnValue({
             'onionservice': onion_details[0]
-        }
+        })
 
     def operation_descriptors(self):
         return {
