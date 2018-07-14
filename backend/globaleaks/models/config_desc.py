@@ -39,7 +39,6 @@ ConfigDescriptor = {
 
     u'acme': Bool(default=False),
     u'acme_accnt_key': Unicode(),
-    u'tor_enabled': Bool(default=True),
     u'tor_onion_key': Unicode(),
 
     u'https_priv_key': Unicode(),

@@ -1170,7 +1170,7 @@ factory('AdminUtils', ['AdminContextResource', 'AdminQuestionnaireResource', 'Ad
 
       openUrl: function(url) {
         $window.open(url, '_blank');
-      }
+      },
 
       setHostname: function(hostname) {
         var req = {
