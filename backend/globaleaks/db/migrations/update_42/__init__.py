@@ -127,6 +127,22 @@ class MigrationScript(MigrationBase):
 
             self.session_new.add(new_obj)
 
+    def migrate_Stats(self):
+        old_objs = self.session_old.query(self.model_from['Stats'])
+        for old_obj in old_objs:
+            if not old_obj.summary:
+                self.entries_count['Stats'] -= 1
+                continue
+
+            new_obj = self.model_to['Stats']()
+            for key in [c.key for c in new_obj.__table__.columns]:
+                if key not in old_obj.__table__.columns:
+                    continue
+
+                setattr(new_obj, key, getattr(old_obj, key))
+
+            self.session_new.add(new_obj)
+
     def migrate_User(self):
         old_objs = self.session_old.query(self.model_from['User'])
         for old_obj in old_objs:

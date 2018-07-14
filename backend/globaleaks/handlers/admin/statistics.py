@@ -84,15 +84,14 @@ def get_stats(session, tid, week_delta):
                 #  the hour is lacking from the results: -1
                 #  the hour is in the future: -2
                 #  the hour is the current hour (in the current day): -3
+                marker = -1
                 if current_week != looked_week:
-                    marker = -1
+                    pass
                 elif day > current_wday or \
                     (day == current_wday and hour > current_hour):
                     marker = -2
                 elif current_wday == day and hour == current_hour:
                     marker = -3
-                else:
-                    marker = -1
 
                 week_map[day][hour] = {
                     'hour': hour,
