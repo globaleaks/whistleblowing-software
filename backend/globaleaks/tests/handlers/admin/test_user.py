@@ -106,8 +106,6 @@ class UserTenantTestBaseClass(helpers.TestHandlerWithPopulatedDB):
                 self.rcvr_id = r['id']
 
         self.initial_user_tenant_count = yield self.get_model_count(models.UserTenant)
-        yield user.create_usertenant_association(self.rcvr_id, 2)
-        yield self.test_model_count(models.UserTenant, self.initial_user_tenant_count + 1)
 
 
 class TestUserTenantCollection(UserTenantTestBaseClass):
@@ -124,7 +122,7 @@ class TestUserTenantCollection(UserTenantTestBaseClass):
         self.assertEqual(response['user_id'], self.rcvr_id)
         self.assertEqual(response['tenant_id'], 3)
 
-        yield self.test_model_count(models.UserTenant, self.initial_user_tenant_count + 2)
+        yield self.test_model_count(models.UserTenant, self.initial_user_tenant_count + 1)
 
 
 class TestUserTenantInstance(UserTenantTestBaseClass):
@@ -135,4 +133,4 @@ class TestUserTenantInstance(UserTenantTestBaseClass):
         handler = self.request(role='admin')
         yield handler.delete(self.rcvr_id, 2)
 
-        yield self.test_model_count(models.UserTenant, self.initial_user_tenant_count)
+        yield self.test_model_count(models.UserTenant, self.initial_user_tenant_count - 1)

@@ -42,6 +42,24 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
         response = yield handler.post()
         self.assertTrue('redirect' in response)
 
+
+    @inlineCallbacks
+    def test_successful_multitenant_login_switch(self):
+        handler = self.request({
+            'tid': 1,
+            'username': 'admin',
+            'password': helpers.VALID_PASSWORD1,
+            'token': ''
+        })
+
+        response = yield handler.post()
+
+        self._handler = authentication.TenantAuthSwitchHandler
+        auth_switch_handler = self.request({}, headers={'x-session': response['session_id']})
+        response = yield auth_switch_handler.get(2)
+        self.assertTrue('redirect' in response)
+
+
     @inlineCallbacks
     def test_accept_login_in_https(self):
         handler = self.request({
