@@ -1172,14 +1172,14 @@ factory('AdminUtils', ['AdminContextResource', 'AdminQuestionnaireResource', 'Ad
         $window.open(url, '_blank');
       }
 
-      setHostname: function(new_hostname) {    
+      setHostname: function(hostname) {
         var req = {
           'operation': 'set_hostname',
           'args': {
-            'value': new_hostname //$scope.admin.node.hostname
+            'value': hostname
           }
         };
-    
+
         return $http({method: 'PUT', url: 'admin/config', data: req});
       },
     }
