@@ -1,4 +1,4 @@
-GLClient.controller('AdminNetworkCtrl', ['$scope', '$http', function($scope, $http) {
+GLClient.controller('AdminNetworkCtrl', ['$scope', '$http', 'Utils', function($scope, $http, Utils) {
   $scope.tabs = [
     {
       title:"HTTPS",
@@ -38,6 +38,17 @@ GLClient.controller('AdminNetworkCtrl', ['$scope', '$http', function($scope, $ht
         $scope.verifyFailed = false;
       }, function() {
         $scope.verifyFailed = true;
+    });
+  };
+
+  $scope.resetOnionPrivateKey = function() {
+    var req = {
+      'operation': 'reset_onion_private_key',
+      'args': {}
+    }
+
+    return $http({method: 'PUT', url: 'admin/config', data: req}).then(function(response) {
+      $scope.admin.node.onionservice = response.data.onionservice;
     });
   };
 }]).
