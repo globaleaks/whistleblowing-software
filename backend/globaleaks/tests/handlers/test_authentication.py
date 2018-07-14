@@ -54,11 +54,12 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
 
         response = yield handler.post()
 
-        self._handler = authentication.TenantAuthSwitchHandler
-        auth_switch_handler = self.request({}, headers={'x-session': response['session_id']})
+        auth_switch_handler = self.request({},
+                                           headers={'x-session': response['session_id']},
+                                           handler_cls=authentication.TenantAuthSwitchHandler)
+
         response = yield auth_switch_handler.get(2)
         self.assertTrue('redirect' in response)
-
 
     @inlineCallbacks
     def test_accept_login_in_https(self):
