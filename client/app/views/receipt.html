@@ -19,7 +19,7 @@
         <p data-translate>Use the 16 digit key code to log in. It will allow you to view any messages we sent you, and also to add extra info.</p>
       </div>
       <div>
-        <button id="ReceiptButton" class="btn btn-default" data-ng-click="Authentication.login('whistleblower', keycode)" data-translate>View your submission</button>
+        <button id="ReceiptButton" class="btn btn-default" data-ng-click="Authentication.login(0, 'whistleblower', keycode)" data-translate>View your submission</button>
       </div>
     </div>
     <div class="col-md-6" data-ng-if="!node.disable_key_code_hint">

@@ -108,6 +108,7 @@ class MigrationScript(MigrationBase):
 
             new_wbtip = self.model_to['WhistleblowerTip']()
             new_wbtip.id = old_obj.id
+            new_wbtip.tid = old_obj.tid
             new_wbtip.receipt_hash = old_obj.receipt_hash
             self.session_new.add(new_wbtip)
 

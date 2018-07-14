@@ -318,6 +318,7 @@ def db_create_submission(session, tid, request, uploaded_files, client_using_tor
 
     wbtip = models.WhistleblowerTip()
     wbtip.id = submission.id
+    wbtip.tid = submission.tid
     wbtip.receipt_hash = hash_password(receipt, State.tenant_cache[tid].receipt_salt)
     session.add(wbtip)
 
