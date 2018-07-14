@@ -91,7 +91,7 @@ class AdminOperationHandler(OperationHandler):
     @inlineCallbacks
     def reset_onion_private_key(self, req_args, *args, **kargs):
         yield set_onion_service_info(self.request.tid, None, None)
-        yield State.onion_service_job.add_hidden_service(None, None, self.request.tid)
+        yield State.onion_service_job.add_hidden_service(self.request.tid, None, None)
         yield State.onion_service_job.remove_unwanted_hidden_services()
 
         # Return the new key
