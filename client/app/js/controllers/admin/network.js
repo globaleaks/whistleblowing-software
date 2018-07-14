@@ -49,8 +49,7 @@ controller('AdminHTTPSConfigCtrl', ['$q', '$location', '$http', '$scope', '$uibM
 
   $scope.saveNodeAndProceed = function() {
     Utils.setHostname($scope.admin.node.hostname).then(function() {
-      console.log($scope.admin.node.hostname);
-      Utils.update($scope.admin.node, function(){ $scope.setMenu('choice'); })
+      Utils.update($scope.admin.node, function(){ $scope.setMenu('choice'); });
     })
   };
 
