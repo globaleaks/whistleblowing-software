@@ -118,11 +118,11 @@ class Daily(LoopingJob):
             session.query(models.User).filter(models.User.id.in_(ids)).update({'password_change_needed': True}, synchronize_session='fetch')
 
     def db_clean(self, session):
-        # delete stats older than 3 months
-        session.query(models.Stats).filter(models.Stats.start < datetime_now() - timedelta(3*(365/12))).delete(synchronize_session='fetch')
+        # delete stats older than 1 year
+        session.query(models.Stats).filter(models.Stats.start < datetime_now() - timedelta(90)).delete(synchronize_session='fetch')
 
-        # delete anomalies older than 1 months
-        session.query(models.Anomalies).filter(models.Anomalies.date < datetime_now() - timedelta(365/12)).delete(synchronize_session='fetch')
+        # delete anomalies older than 1 year
+        session.query(models.Anomalies).filter(models.Anomalies.date < datetime_now() - timedelta(365)).delete(synchronize_session='fetch')
 
         # delete archived schemas not used by any existing submission
         hashes = [x[0] for x in session.query(models.InternalTip.questionnaire_hash)]

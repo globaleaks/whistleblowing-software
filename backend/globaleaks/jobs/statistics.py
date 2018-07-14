@@ -23,6 +23,10 @@ def get_statistics(state):
 @transact
 def save_statistics(session, start, end, stats):
     for tid in stats:
+        if not stats[tid]:
+            # avoid to save empty stats
+            continue
+
         newstat = Stats()
         newstat.tid = tid
         newstat.start = start
