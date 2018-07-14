@@ -97,10 +97,8 @@ GLClient.controller('TipCtrl',
           return ctx.enable_rc_to_wb_files && (tip.wbfiles.length > 0);
         };
 
-        var reloadUI = function (){ $scope.reload(); };
-
         $scope.downloadWBFile = function(file) {
-          WBTipDownloadFile(file).finally(reloadUI);
+          WBTipDownloadFile(file);
         };
 
         // FIXME: remove this variable that is now needed only to map wb_identity_field
@@ -127,7 +125,7 @@ GLClient.controller('TipCtrl',
               $scope.tip.updateMessages();
             }
           }
-        }, false);
+        }, true);
       });
 
     } else if ($scope.session.role === 'receiver') {
@@ -187,7 +185,9 @@ GLClient.controller('TipCtrl',
     };
 
     $scope.tip_notify = function(enable) {
-      $scope.tip.setVar('enable_notifications', enable);
+      return $scope.tip.operation('set', {'key': 'enable_notifications', 'value': enable}).then(function() {
+        $scope.tip.enable_notifications = enable;
+      });
     };
 
     $scope.tip_delete = function () {
