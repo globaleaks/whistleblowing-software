@@ -58,21 +58,27 @@ class OnionService(BaseJob):
     def stop(self):
         super(OnionService, self).stop()
 
-        if self.tor_conn is not None:
-            tor_conn = self.tor_conn
-            self.tor_conn = None
-            return tor_conn.protocol.quit()
+        if self.tor_conn is None:
+            return
+
+        tor_conn = self.tor_conn
+        self.tor_conn = None
+        return tor_conn.protocol.quit()
 
     @defer.inlineCallbacks
     def add_all_hidden_services(self):
+        if self.tor_conn is None:
+            return
+
         hostname_key_list = yield list_onion_service_info()
+        for hostname, key, tid in hostname_key_list:
+            if hostname not in self.hs_map:
+                yield self.add_hidden_service(tid, hostname, key)
 
-        if self.tor_conn is not None:
-            for hostname, key, tid in hostname_key_list:
-                if hostname not in self.hs_map:
-                    yield self.add_hidden_service(hostname, key, tid)
+    def add_hidden_service(self, tid, hostname, key):
+        if self.tor_conn is None:
+            return
 
-    def add_hidden_service(self, hostname, key, tid):
         hs_loc = ('80 localhost:8083')
         if not hostname and not key:
             if tid in self.startup_semaphore:
