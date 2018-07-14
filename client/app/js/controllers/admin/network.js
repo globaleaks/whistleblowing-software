@@ -12,16 +12,8 @@ GLClient.controller('AdminNetworkCtrl', ['$scope', '$http', 'Utils', function($s
 
   $scope.setHostname = function() {
     $scope.verifyFailed = false;
-
-    var req = {
-      'operation': 'set_hostname',
-      'args': {
-        'value': $scope.admin.node.hostname
-      }
-    };
-
-    return $http({method: 'PUT', url: 'admin/config', data: req});
-  };
+    Utils.setHostname($scope.admin.node.hostname)
+  }
 
   $scope.verifyHostname = function() {
     $scope.verifyFailed = false;
@@ -67,7 +59,9 @@ controller('AdminHTTPSConfigCtrl', ['$q', '$location', '$http', '$scope', '$uibM
   };
 
   $scope.saveNodeAndProceed = function() {
-    Utils.update($scope.admin.node, function(){ $scope.setMenu('choice'); });
+    Utils.setHostname($scope.admin.node.hostname).then(function() {
+      Utils.update($scope.admin.node, function(){ $scope.setMenu('choice'); });
+    })
   };
 
   $scope.parseTLSConfig = function(tlsConfig) {
