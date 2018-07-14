@@ -42,16 +42,14 @@ GLClient.controller('AdminNetworkCtrl', ['$scope', '$http', 'Utils', function($s
   };
 
   $scope.resetOnionPrivateKey = function() {
-    Utils.deleteDialog($scope).then(function() {
-      var req = {
-        'operation': 'reset_onion_private_key',
-        'args': {}
-      }
+    var req = {
+      'operation': 'reset_onion_private_key',
+      'args': {}
+    }
 
-      return $http({method: 'PUT', url: 'admin/cmd', data: req}).then(function(response) {
-        $scope.admin.node.onionservice = response.data.onionservice;
-      })
-    })
+    return $http({method: 'PUT', url: 'admin/config', data: req}).then(function(response) {
+      $scope.admin.node.onionservice = response.data.onionservice;
+    });
   };
 }]).
 controller('AdminHTTPSConfigCtrl', ['$q', '$location', '$http', '$scope', '$uibModal', 'Utils', 'FileSaver', 'AdminTLSConfigResource', 'AdminTLSCfgFileResource', 'AdminAcmeResource',
