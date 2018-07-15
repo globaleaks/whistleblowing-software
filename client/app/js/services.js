@@ -1479,6 +1479,7 @@ factory('AdminUtils', ['AdminContextResource', 'AdminQuestionnaireResource', 'Ad
     indirect.appLanguage = bestLanguage(facts);
     if (indirect.appLanguage !== null) {
       updateTranslationServices(indirect.appLanguage);
+      GLClient.language = indirect.appLanguage;
     }
   }
 
