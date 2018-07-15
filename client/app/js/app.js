@@ -713,6 +713,10 @@ var GLClient = angular.module('GLClient', [
           Utils.set_title();
         }
       }
+
+      if (GLClient.mockEngine) {
+        $timeout(function(){GLClient.mockEngine.run($rootScope)}, 0, false);
+      }
     });
 
     $rootScope.$on('$routeChangeError', function(event, current, previous, rejection) {
