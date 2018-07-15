@@ -15,6 +15,7 @@ from globaleaks.jobs.onion_service import set_onion_service_info, get_onion_serv
 from six import text_type
 from six.moves.urllib.parse import urlunsplit # pylint: disable=import-error
 
+
 @transact
 def check_hostname(session, tid, input_hostname):
     """
