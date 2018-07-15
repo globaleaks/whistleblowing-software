@@ -44,10 +44,6 @@ def set_onion_service_info(session, tid, hostname, key):
     ConfigFactory(session, tid, 'node').set_val(u'onionservice', hostname)
     ConfigFactory(session, tid, 'node').set_val(u'tor_onion_key', key)
 
-    # Update external application state
-    State.tenant_cache[tid].onionservice = hostname
-    State.tenant_hostname_id_map[hostname] = tid
-
 
 class OnionService(BaseJob):
     print_startup_error = True
@@ -96,8 +92,6 @@ class OnionService(BaseJob):
         def init_callback(ret):
             log.info('Initialization of hidden-service %s completed.', ephs.hostname, tid=tid)
             if not hostname and not key:
-                del self.startup_semaphore[tid]
-
                 if tid in State.tenant_cache:
                     self.hs_map[ephs.hostname] = ephs
                     yield set_onion_service_info(tid, ephs.hostname, ephs.private_key)
@@ -108,9 +102,10 @@ class OnionService(BaseJob):
 
                 for x in tid_list:
                     ApiCache().invalidate(x)
-                    ApiCache().invalidate(x)
 
                 yield refresh_memory_variables(tid_list)
+
+                del self.startup_semaphore[tid]
 
         def init_errback(failure):
             if tid in self.startup_semaphore:

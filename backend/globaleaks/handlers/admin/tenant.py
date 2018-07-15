@@ -39,8 +39,8 @@ def serialize_tenant(session, tenant, signup=None):
         'label': tenant.label,
         'active': tenant.active,
         'subdomain': tenant.subdomain,
-        'hostname': '',
-        'onionservice': ''
+        'hostname': u'',
+        'onionservice': u''
     }
 
     if tenant.id in State.tenant_cache:

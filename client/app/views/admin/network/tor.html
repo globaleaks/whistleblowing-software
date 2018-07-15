@@ -3,7 +3,10 @@
     <span class="input-group-addon" data-translate>Tor Onion Service</span>
     <input name="onionservice" class="form-control" type="text" value="{{admin.node.onionservice ? admin.node.onionservice : ('Not running' | translate)}}" disabled="true" />
     <span class="input-group-btn">
-      <button class="btn btn-danger" data-ng-disabled="torOnionResetInProgress" data-ng-click="resetOnionPrivateKey()" data-translate>Regenerate</button>
+      <button class="btn btn-danger" data-ng-disabled="torOnionResetInProgress" data-ng-click="resetOnionPrivateKey()">
+        <i class="glyphicon glyphicon-refresh"></i>
+        <span data-translate>Regenerate</span>
+      </button>
     </span>
   </div>
 </div>

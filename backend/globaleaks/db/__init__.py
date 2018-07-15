@@ -155,8 +155,6 @@ def db_refresh_tenant_cache(session, tid_list):
 
 
 def db_refresh_memory_variables(session, to_refresh=None):
-    session.flush()
-
     tenant_map = {tenant.id:tenant for tenant in session.query(models.Tenant).filter(models.Tenant.active == True)}
 
     existing_tids = set(tenant_map.keys())
