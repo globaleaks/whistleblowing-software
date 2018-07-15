@@ -1,1 +1,1 @@
-Failure in the renewal of the HTTPS certificate
+Failed HTTPS certificate renewal
