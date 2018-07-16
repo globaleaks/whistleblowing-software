@@ -259,10 +259,6 @@ def perform_migration(version):
 
         perform_data_update(new_db_file)
 
-    except:
-        raise
-
-    else:
         # in case of success first copy the new migrated db, then as last action delete the original db file
         shutil.copy(new_db_file, final_db_file)
 
