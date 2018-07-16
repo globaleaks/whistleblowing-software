@@ -20,7 +20,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-06-07 10:00+0000\n"
+"PO-Revision-Date: 2018-07-15 20:39+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Swedish (http://www.transifex.com/otf/globaleaks/language/sv/)\n"
 "MIME-Version: 1.0\n"
@@ -661,8 +661,14 @@ msgstr ""
 msgid "Surname"
 msgstr ""
 
-msgid "Do not create the admin user"
-msgstr ""
+msgid "New"
+msgstr "Nytt"
+
+msgid "Open"
+msgstr "Öppen"
+
+msgid "Closed"
+msgstr "Stängd"
 
 msgid "Select the context of your submission:"
 msgstr ""
@@ -699,8 +705,8 @@ msgstr ""
 msgid "Enable insecure configuration without PGP encryption"
 msgstr "Aktivera osäker konfiguration utan PGP-kryptering"
 
-msgid "Danger"
-msgstr "Fara"
+msgid "Warning"
+msgstr "Varning"
 
 msgid ""
 "By enabling this option, the system will be storing the submitted files "
@@ -711,11 +717,6 @@ msgid "This happens whenever encryption is unavailable."
 msgstr "Det här händer om krypteringen inte är tillgänglig."
 
 msgid "Disable messages that warn of missing encryption"
-msgstr ""
-
-msgid ""
-"This setting affects the security of the users and must not be used in "
-"production."
 msgstr ""
 
 msgid "Allow other websites to include the platform inside iframes"
@@ -787,6 +788,16 @@ msgstr ""
 msgid "Tweak this setting only if you know what you are doing."
 msgstr ""
 
+msgid "Password change interval"
+msgstr ""
+
+msgid ""
+"For security reasons, password changes are required at regular intervals."
+msgstr ""
+
+msgid "Set the value to 0 to disable this feature."
+msgstr ""
+
 msgid "Landing page"
 msgstr "Startsida"
 
@@ -846,16 +857,25 @@ msgstr ""
 msgid "Example:"
 msgstr "Exempel:"
 
-msgid "Allow users to reset their password"
+msgid "Each entry must be separated with a comma."
 msgstr ""
 
-msgid "Warning"
-msgstr "Varning"
+msgid "Allow users to reset their passwords"
+msgstr ""
 
 msgid ""
-"Allowing users to reset their password may reduce the security of the "
+"Allowing users to reset their passwords may reduce the security of the "
 "platform due to security becoming dependent on the security of user's email "
 "accounts."
+msgstr ""
+
+msgid "Enable users to upload their PGP keys"
+msgstr ""
+
+msgid "Enable multi-site login"
+msgstr ""
+
+msgid "Enable simplified login"
 msgstr ""
 
 msgid "Enable experimental features"
@@ -878,6 +898,27 @@ msgstr "Lång URL"
 
 msgid "Add"
 msgstr "Lägg til"
+
+msgid "Substatuses"
+msgstr ""
+
+msgid "Label"
+msgstr "Etikett"
+
+msgid "This field is mandatory"
+msgstr "Detta fält är obligatoriskt"
+
+msgid "Edit"
+msgstr "Redigera"
+
+msgid "Cancel"
+msgstr "Avbryt"
+
+msgid "Submission statuses"
+msgstr ""
+
+msgid "Closing statuses"
+msgstr ""
 
 msgid "Logo"
 msgstr "Logga"
@@ -945,20 +986,17 @@ msgstr "Kontexter"
 msgid "Name"
 msgstr "Namn"
 
-msgid "Edit"
-msgstr "Redigera"
-
-msgid "Cancel"
-msgstr "Avbryt"
-
-msgid "This field is mandatory"
-msgstr "Detta fält är obligatoriskt"
-
 msgid "Questionnaire"
 msgstr "Formulär"
 
 msgid "Recipients"
 msgstr "Mottagare"
+
+msgid "Submission expiration"
+msgstr ""
+
+msgid "days"
+msgstr "dagar"
 
 msgid "Allow selection of this context through the context selector."
 msgstr ""
@@ -1005,21 +1043,6 @@ msgid "Show recipient details on the status page of the submission"
 msgstr ""
 
 msgid "Let recipients upload files to whistleblowers"
-msgstr ""
-
-msgid "Disabled"
-msgstr "Inaktiverad"
-
-msgid "Enabled"
-msgstr "Aktiverad"
-
-msgid "Submission expiration, in days"
-msgstr ""
-
-msgid ""
-"For security reasons, as a matter of data retention policy, the platform "
-"automatically deletes submissions and their data after a certain amount of "
-"time."
 msgstr ""
 
 msgid "Text shown on top of the interface for selecting recipients"
@@ -1099,6 +1122,12 @@ msgstr "SMTP-serverport"
 
 msgid "Transport Security"
 msgstr "Transportsäkerhet"
+
+msgid "Require authentication"
+msgstr ""
+
+msgid "Disabled"
+msgstr "Inaktiverad"
 
 msgid "When the option is re-enabled the spooled emails will be sent out."
 msgstr "E-postmeddelanden som genererats kommer att skickas när denna funktion återaktiveras."
@@ -1251,6 +1280,9 @@ msgstr ""
 msgid "The connection to the configured domain failed."
 msgstr ""
 
+msgid "Enabled"
+msgstr "Aktiverad"
+
 msgid "Running"
 msgstr "Kör"
 
@@ -1262,6 +1294,9 @@ msgstr ""
 
 msgid "System message:"
 msgstr "Systemmeddelande:"
+
+msgid "Danger"
+msgstr "Fara"
 
 msgid ""
 "Allowing whistleblowers to connect over HTTPS preserves their privacy but "
@@ -1330,9 +1365,6 @@ msgstr "Larmnivå"
 msgid "Events"
 msgstr "Händelser"
 
-msgid "Label"
-msgstr "Etikett"
-
 msgid "Type"
 msgstr "Typ"
 
@@ -1387,11 +1419,8 @@ msgstr ""
 msgid "Phone number"
 msgstr "Telefonnummer"
 
-msgid "Clause"
-msgstr "Klausul"
-
-msgid "Agreement Text"
-msgstr "Avtalstext"
+msgid "Checkbox label"
+msgstr ""
 
 msgid "Layout orientation"
 msgstr ""
@@ -1399,16 +1428,13 @@ msgstr ""
 msgid "Subject answer visibility to custodian authorization"
 msgstr ""
 
+msgid "Text shown upon negative answer"
+msgstr ""
+
 msgid "Prompt confirmation upon negative answer"
 msgstr ""
 
-msgid "Title of the confirmation question upon negative answer"
-msgstr ""
-
-msgid "Body of the confirmation question upon negative answer"
-msgstr ""
-
-msgid "Text of the final statement upon negative answer"
+msgid "Text shown upon confirmation"
 msgstr ""
 
 msgid "Options"
@@ -1422,6 +1448,9 @@ msgstr ""
 
 msgid "Add question from template"
 msgstr "Lägg till fråga från mall"
+
+msgid "Duplicate"
+msgstr ""
 
 msgid "Steps"
 msgstr ""
@@ -1455,6 +1484,9 @@ msgstr ""
 msgid "General settings"
 msgstr "Allmänna inställningar"
 
+msgid "Case management"
+msgstr ""
+
 msgid "Network settings"
 msgstr "Nätverksinställningar"
 
@@ -1464,7 +1496,16 @@ msgstr ""
 msgid "Allow users to sign up"
 msgstr ""
 
-msgid "Enable footer customization"
+msgid "Signup mode:"
+msgstr ""
+
+msgid "Record IP address and user agent of registered users"
+msgstr ""
+
+msgid "Do not create the admin user"
+msgstr ""
+
+msgid "Enable terms of service"
 msgstr ""
 
 msgid "Sites"
@@ -1482,7 +1523,10 @@ msgstr ""
 msgid "The system forces users to change the password at first login."
 msgstr "Systemet tvinhar användare att ändra lösenord vid första påloggning."
 
-msgid "New Password"
+msgid "Reset password"
+msgstr ""
+
+msgid "New password"
 msgstr "Nytt lösenord"
 
 msgid ""
@@ -1503,6 +1547,12 @@ msgid "Remove the PGP key"
 msgstr "Ta bort PGP-nyckel"
 
 msgid "Set up encryption by providing a PGP public key"
+msgstr ""
+
+msgid "User has administrative access to the following features:"
+msgstr ""
+
+msgid "main"
 msgstr ""
 
 msgid "Request date"
@@ -1555,14 +1605,20 @@ msgstr "Vänligen stöd Hermes med en donation."
 msgid "Forgot password?"
 msgstr ""
 
+msgid "Authentication failed"
+msgstr "Ingen behörighet"
+
+msgid "Site"
+msgstr "Sida"
+
+msgid "Back"
+msgstr "Tillbaka"
+
 msgid "Please select your account:"
 msgstr "Vänligen välj ditt konto."
 
 msgid "Now type your password, then click 'Log in':"
 msgstr "Ange ditt lösenord, och välj sedan 'Log in':"
-
-msgid "Authentication failed"
-msgstr "Ingen behörighet"
 
 msgid "Are you sure?"
 msgstr "Är du säker?"
@@ -1652,6 +1708,9 @@ msgstr ""
 
 msgid "Fingerprint"
 msgstr "Fingeravtryck"
+
+msgid "Enter a name for the copy"
+msgstr ""
 
 msgid "Add file"
 msgstr "Lägg till fil"
@@ -1764,10 +1823,16 @@ msgstr "Steg"
 msgid "Recipient list"
 msgstr "Lista på mottagare"
 
+msgid "Submission status:"
+msgstr ""
+
 msgid "Attached files for the whistleblower"
 msgstr ""
 
 msgid "Upload a file:"
+msgstr ""
+
+msgid "Site settings"
 msgstr ""
 
 msgid "Logout"
@@ -1814,6 +1879,9 @@ msgstr "Nuvarande lösenord"
 msgid "Old password confirmation required"
 msgstr "Kräv bekräftelse på gammalt lösenord"
 
+msgid "New Password"
+msgstr "Nytt lösenord"
+
 msgid "The new password must be different from the current one."
 msgstr ""
 
@@ -1847,6 +1915,12 @@ msgid ""
 "A useful way to hide your key code is to write it down like a credit card "
 "number, i.e. by also including an expiration date."
 msgstr "Ett användbart sätt att dölja din kod är att skriva ner den som ett kreditkortsnummer, inklusive giltighetsdatum."
+
+msgid "Welcome!"
+msgstr "Välkommen!"
+
+msgid "User preferences"
+msgstr "Användarinställningar"
 
 msgid ""
 "You have not set up your encryption key, so the files will not be encrypted "
@@ -1935,6 +2009,12 @@ msgstr ""
 msgid "Check your inbox to activate your account."
 msgstr ""
 
+msgid "This field is mandatory."
+msgstr ""
+
+msgid "The answer is too short."
+msgstr ""
+
 msgid "The specified input is not valid:"
 msgstr ""
 
@@ -1942,12 +2022,6 @@ msgid "please enter a valid email address."
 msgstr ""
 
 msgid "please enter numbers only."
-msgstr ""
-
-msgid "This field is mandatory."
-msgstr ""
-
-msgid "The answer is too short."
 msgstr ""
 
 msgid "Recipient selection"
@@ -1981,9 +2055,6 @@ msgstr ""
 
 msgid "The following steps have errors:"
 msgstr ""
-
-msgid "Welcome!"
-msgstr "Välkommen!"
 
 msgid ""
 "The following step-by-step procedure will guide you through creating your "
@@ -2274,6 +2345,16 @@ msgid "Expiration alert for HTTPS certificate"
 msgstr ""
 
 msgid ""
+"The automatic HTTPS certificate renewal scheduled for today just failed."
+msgstr ""
+
+msgid "The system will keep trying."
+msgstr ""
+
+msgid "Failed HTTPS certificate renewal"
+msgstr ""
+
+msgid ""
 "This is an email to notify you that a custodian has authorized you to access"
 " to the whistleblowing identity for the submission {TipNum}."
 msgstr ""
@@ -2315,7 +2396,9 @@ msgstr ""
 msgid "New message"
 msgstr "Nytt meddelande"
 
-msgid "You're receiving this email because you requested a password reset."
+msgid ""
+"You're receiving this email because a password reset has been requested for "
+"your account."
 msgstr ""
 
 msgid ""

@@ -12,7 +12,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-06-07 10:00+0000\n"
+"PO-Revision-Date: 2018-07-15 20:39+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Vietnamese (http://www.transifex.com/otf/globaleaks/language/vi/)\n"
 "MIME-Version: 1.0\n"
@@ -653,8 +653,14 @@ msgstr ""
 msgid "Surname"
 msgstr ""
 
-msgid "Do not create the admin user"
-msgstr ""
+msgid "New"
+msgstr "Mới"
+
+msgid "Open"
+msgstr "Mở"
+
+msgid "Closed"
+msgstr "Đã đóng"
 
 msgid "Select the context of your submission:"
 msgstr "Chọn ngữ cảnh của trình của bạn:"
@@ -691,8 +697,8 @@ msgstr "Vô hiệu hóa đệ trình"
 msgid "Enable insecure configuration without PGP encryption"
 msgstr "Kích hoạt cấu hình không an toàn mà không cần mã hóa PGP"
 
-msgid "Danger"
-msgstr "nguy hiểm"
+msgid "Warning"
+msgstr "Cảnh báo"
 
 msgid ""
 "By enabling this option, the system will be storing the submitted files "
@@ -704,11 +710,6 @@ msgstr "Điều này xảy ra bất cứ khi nào mã hóa là không có."
 
 msgid "Disable messages that warn of missing encryption"
 msgstr "Vô hiệu hóa tin nhắn cảnh báo về sự mã hóa mất tích"
-
-msgid ""
-"This setting affects the security of the users and must not be used in "
-"production."
-msgstr "Thiết lập này ảnh hưởng đến sự an toàn của người sử dụng và không được sử dụng trong sản xuất."
 
 msgid "Allow other websites to include the platform inside iframes"
 msgstr "Cho phép các trang web khác để bao gồm nền tảng bên trong iframe"
@@ -779,6 +780,16 @@ msgstr ""
 msgid "Tweak this setting only if you know what you are doing."
 msgstr ""
 
+msgid "Password change interval"
+msgstr ""
+
+msgid ""
+"For security reasons, password changes are required at regular intervals."
+msgstr ""
+
+msgid "Set the value to 0 to disable this feature."
+msgstr ""
+
 msgid "Landing page"
 msgstr "Trang đích"
 
@@ -838,16 +849,25 @@ msgstr ""
 msgid "Example:"
 msgstr "Thí dụ:"
 
-msgid "Allow users to reset their password"
+msgid "Each entry must be separated with a comma."
 msgstr ""
 
-msgid "Warning"
-msgstr "Cảnh báo"
+msgid "Allow users to reset their passwords"
+msgstr ""
 
 msgid ""
-"Allowing users to reset their password may reduce the security of the "
+"Allowing users to reset their passwords may reduce the security of the "
 "platform due to security becoming dependent on the security of user's email "
 "accounts."
+msgstr ""
+
+msgid "Enable users to upload their PGP keys"
+msgstr ""
+
+msgid "Enable multi-site login"
+msgstr ""
+
+msgid "Enable simplified login"
 msgstr ""
 
 msgid "Enable experimental features"
@@ -870,6 +890,27 @@ msgstr "URL long"
 
 msgid "Add"
 msgstr "Thêm"
+
+msgid "Substatuses"
+msgstr ""
+
+msgid "Label"
+msgstr "Nhãn"
+
+msgid "This field is mandatory"
+msgstr "Lĩnh vực này là bắt buộc"
+
+msgid "Edit"
+msgstr "Chỉnh sửa"
+
+msgid "Cancel"
+msgstr "Hủy bỏ"
+
+msgid "Submission statuses"
+msgstr ""
+
+msgid "Closing statuses"
+msgstr ""
 
 msgid "Logo"
 msgstr "Biểu tượng"
@@ -937,20 +978,17 @@ msgstr "Nội dung"
 msgid "Name"
 msgstr "Tên"
 
-msgid "Edit"
-msgstr "Chỉnh sửa"
-
-msgid "Cancel"
-msgstr "Hủy bỏ"
-
-msgid "This field is mandatory"
-msgstr "Lĩnh vực này là bắt buộc"
-
 msgid "Questionnaire"
 msgstr "Bảng câu hỏi"
 
 msgid "Recipients"
 msgstr "Người nhận"
+
+msgid "Submission expiration"
+msgstr ""
+
+msgid "days"
+msgstr "ngày"
 
 msgid "Allow selection of this context through the context selector."
 msgstr "Cho phép lựa chọn các bối cảnh này thông qua việc chọn bối cảnh."
@@ -998,21 +1036,6 @@ msgstr "Hiển thị chi tiết người nhận trên trang trạng thái của 
 
 msgid "Let recipients upload files to whistleblowers"
 msgstr ""
-
-msgid "Disabled"
-msgstr "Tàn tật"
-
-msgid "Enabled"
-msgstr "Bật"
-
-msgid "Submission expiration, in days"
-msgstr "hết hạn nộp hồ sơ, trong ngày"
-
-msgid ""
-"For security reasons, as a matter of data retention policy, the platform "
-"automatically deletes submissions and their data after a certain amount of "
-"time."
-msgstr "Vì lý do an ninh, là một vấn đề của chính sách lưu giữ dữ liệu, nền tảng này sẽ tự động xóa đệ trình và dữ liệu của họ sau một thời gian nhất định."
 
 msgid "Text shown on top of the interface for selecting recipients"
 msgstr "Văn bản hiển thị trên đầu trang của giao diện để lựa chọn người nhận"
@@ -1091,6 +1114,12 @@ msgstr "Cổng server SMTP"
 
 msgid "Transport Security"
 msgstr "Chuyển dữ liệu an toàn"
+
+msgid "Require authentication"
+msgstr ""
+
+msgid "Disabled"
+msgstr "Tàn tật"
 
 msgid "When the option is re-enabled the spooled emails will be sent out."
 msgstr "Không thể gửi được email khi tùy chọn chưa được bật."
@@ -1243,6 +1272,9 @@ msgstr ""
 msgid "The connection to the configured domain failed."
 msgstr ""
 
+msgid "Enabled"
+msgstr "Bật"
+
 msgid "Running"
 msgstr ""
 
@@ -1254,6 +1286,9 @@ msgstr ""
 
 msgid "System message:"
 msgstr ""
+
+msgid "Danger"
+msgstr "nguy hiểm"
 
 msgid ""
 "Allowing whistleblowers to connect over HTTPS preserves their privacy but "
@@ -1322,9 +1357,6 @@ msgstr "mức báo động"
 msgid "Events"
 msgstr "Sự kiện"
 
-msgid "Label"
-msgstr "Nhãn"
-
 msgid "Type"
 msgstr "Loại"
 
@@ -1379,11 +1411,8 @@ msgstr "Gợi ý được hiển thị trên nút để thêm một câu trả l
 msgid "Phone number"
 msgstr "Số điện thoại"
 
-msgid "Clause"
-msgstr "điều khoản"
-
-msgid "Agreement Text"
-msgstr "Hiệp định Tiêu đề"
+msgid "Checkbox label"
+msgstr ""
 
 msgid "Layout orientation"
 msgstr "định hướng bố trí"
@@ -1391,16 +1420,13 @@ msgstr "định hướng bố trí"
 msgid "Subject answer visibility to custodian authorization"
 msgstr "câu trả lời tầm nhìn phải xin phép giám sát"
 
+msgid "Text shown upon negative answer"
+msgstr ""
+
 msgid "Prompt confirmation upon negative answer"
 msgstr "xác nhận Prompt vào câu trả lời tiêu cực"
 
-msgid "Title of the confirmation question upon negative answer"
-msgstr "Tiêu đề của câu hỏi xác nhận khi câu trả lời tiêu cực"
-
-msgid "Body of the confirmation question upon negative answer"
-msgstr "Thân thể của câu hỏi xác nhận vào câu trả lời tiêu cực"
-
-msgid "Text of the final statement upon negative answer"
+msgid "Text shown upon confirmation"
 msgstr ""
 
 msgid "Options"
@@ -1414,6 +1440,9 @@ msgstr "Thêm câu hỏi mới"
 
 msgid "Add question from template"
 msgstr "Thêm câu hỏi từ mẫu"
+
+msgid "Duplicate"
+msgstr ""
 
 msgid "Steps"
 msgstr ""
@@ -1447,6 +1476,9 @@ msgstr "Cho phép người nhận để cấp quyền cho người tố cáo v�
 msgid "General settings"
 msgstr "Thiết đặt chung"
 
+msgid "Case management"
+msgstr ""
+
 msgid "Network settings"
 msgstr ""
 
@@ -1456,7 +1488,16 @@ msgstr ""
 msgid "Allow users to sign up"
 msgstr ""
 
-msgid "Enable footer customization"
+msgid "Signup mode:"
+msgstr ""
+
+msgid "Record IP address and user agent of registered users"
+msgstr ""
+
+msgid "Do not create the admin user"
+msgstr ""
+
+msgid "Enable terms of service"
 msgstr ""
 
 msgid "Sites"
@@ -1474,7 +1515,10 @@ msgstr ""
 msgid "The system forces users to change the password at first login."
 msgstr "Người sử dụng lực lượng hệ thống để thay đổi mật khẩu đăng nhập đầu tiên."
 
-msgid "New Password"
+msgid "Reset password"
+msgstr "Đặt lại mật khẩu"
+
+msgid "New password"
 msgstr "Mật khẩu mới"
 
 msgid ""
@@ -1496,6 +1540,12 @@ msgstr "Xóa bỏ khóa PGP"
 
 msgid "Set up encryption by providing a PGP public key"
 msgstr "Thiết lập mã hóa bằng cách cung cấp một khóa công khai PGP"
+
+msgid "User has administrative access to the following features:"
+msgstr ""
+
+msgid "main"
+msgstr ""
 
 msgid "Request date"
 msgstr "Ngày yêu cầu"
@@ -1547,14 +1597,20 @@ msgstr "Xin hãy ủng hộ Hermes thông qua trang quyên góp của họ."
 msgid "Forgot password?"
 msgstr ""
 
+msgid "Authentication failed"
+msgstr "Quá trình xác thực đã thất bại"
+
+msgid "Site"
+msgstr "Trang web"
+
+msgid "Back"
+msgstr "Lùi"
+
 msgid "Please select your account:"
 msgstr "Vui lòng chọn tài khoản của bạn:"
 
 msgid "Now type your password, then click 'Log in':"
 msgstr "Bây giờ gõ mật khẩu của bạn, sau đó nhấp vào 'Đăng nhập':"
-
-msgid "Authentication failed"
-msgstr "Quá trình xác thực đã thất bại"
 
 msgid "Are you sure?"
 msgstr "Bạn có chắc không?"
@@ -1643,6 +1699,9 @@ msgid "Details of the PGP key:"
 msgstr "Thông tin chi tiết của khóa PGP:"
 
 msgid "Fingerprint"
+msgstr ""
+
+msgid "Enter a name for the copy"
 msgstr ""
 
 msgid "Add file"
@@ -1756,10 +1815,16 @@ msgstr "Bước đi"
 msgid "Recipient list"
 msgstr "danh sách người nhận"
 
+msgid "Submission status:"
+msgstr ""
+
 msgid "Attached files for the whistleblower"
 msgstr ""
 
 msgid "Upload a file:"
+msgstr ""
+
+msgid "Site settings"
 msgstr ""
 
 msgid "Logout"
@@ -1806,6 +1871,9 @@ msgstr "Mật khẩu hiện tại"
 msgid "Old password confirmation required"
 msgstr "Yêu cầu xác nhận mật khẩu cũ"
 
+msgid "New Password"
+msgstr "Mật khẩu mới"
+
 msgid "The new password must be different from the current one."
 msgstr ""
 
@@ -1839,6 +1907,12 @@ msgid ""
 "A useful way to hide your key code is to write it down like a credit card "
 "number, i.e. by also including an expiration date."
 msgstr "Một cách hữu ích để giấu mã chính của bạn là viết nó xuống như một số thẻ tín dụng, tức là bằng cách cũng bao gồm cả ngày hết hạn."
+
+msgid "Welcome!"
+msgstr "Chào mừng bạn!"
+
+msgid "User preferences"
+msgstr ""
 
 msgid ""
 "You have not set up your encryption key, so the files will not be encrypted "
@@ -1927,6 +2001,12 @@ msgstr ""
 msgid "Check your inbox to activate your account."
 msgstr ""
 
+msgid "This field is mandatory."
+msgstr ""
+
+msgid "The answer is too short."
+msgstr ""
+
 msgid "The specified input is not valid:"
 msgstr ""
 
@@ -1934,12 +2014,6 @@ msgid "please enter a valid email address."
 msgstr ""
 
 msgid "please enter numbers only."
-msgstr ""
-
-msgid "This field is mandatory."
-msgstr ""
-
-msgid "The answer is too short."
 msgstr ""
 
 msgid "Recipient selection"
@@ -1973,9 +2047,6 @@ msgstr ""
 
 msgid "The following steps have errors:"
 msgstr ""
-
-msgid "Welcome!"
-msgstr "Chào mừng bạn!"
 
 msgid ""
 "The following step-by-step procedure will guide you through creating your "
@@ -2266,6 +2337,16 @@ msgid "Expiration alert for HTTPS certificate"
 msgstr ""
 
 msgid ""
+"The automatic HTTPS certificate renewal scheduled for today just failed."
+msgstr ""
+
+msgid "The system will keep trying."
+msgstr ""
+
+msgid "Failed HTTPS certificate renewal"
+msgstr ""
+
+msgid ""
 "This is an email to notify you that a custodian has authorized you to access"
 " to the whistleblowing identity for the submission {TipNum}."
 msgstr ""
@@ -2307,7 +2388,9 @@ msgstr "Đây là một email thông báo khi có tin nhắn mới trên trình 
 msgid "New message"
 msgstr "Tin nhắn mới"
 
-msgid "You're receiving this email because you requested a password reset."
+msgid ""
+"You're receiving this email because a password reset has been requested for "
+"your account."
 msgstr ""
 
 msgid ""

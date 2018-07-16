@@ -13,7 +13,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-06-07 10:00+0000\n"
+"PO-Revision-Date: 2018-07-15 20:39+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Urdu (http://www.transifex.com/otf/globaleaks/language/ur/)\n"
 "MIME-Version: 1.0\n"
@@ -654,7 +654,13 @@ msgstr ""
 msgid "Surname"
 msgstr ""
 
-msgid "Do not create the admin user"
+msgid "New"
+msgstr ""
+
+msgid "Open"
+msgstr "کھولیں"
+
+msgid "Closed"
 msgstr ""
 
 msgid "Select the context of your submission:"
@@ -692,8 +698,8 @@ msgstr "غیر فعال گذارشات"
 msgid "Enable insecure configuration without PGP encryption"
 msgstr "پی جی پی خفیہ کاری کے بغیر غیر محفوظ تشکیل فعال کریں"
 
-msgid "Danger"
-msgstr "خطرہ"
+msgid "Warning"
+msgstr "انتباہ"
 
 msgid ""
 "By enabling this option, the system will be storing the submitted files "
@@ -705,11 +711,6 @@ msgstr "ایسا خفیہ کاری کی عدم دستیابی کی صورت می
 
 msgid "Disable messages that warn of missing encryption"
 msgstr "خفیہ کاری کی غیر موجودگی کے پیغامات کو غیر فعال کریں"
-
-msgid ""
-"This setting affects the security of the users and must not be used in "
-"production."
-msgstr "یہ ترتیب صارفین کی سلامتی پر اثر انداز ہوتا ہے اور پیداوار میں استعمال نہیں کیا جانا چاہئے."
 
 msgid "Allow other websites to include the platform inside iframes"
 msgstr "دیگر ویب سائٹوں کے اندر iframes کی پلیٹ فارم میں شامل کرنے کی اجازت دیں"
@@ -780,6 +781,16 @@ msgstr ""
 msgid "Tweak this setting only if you know what you are doing."
 msgstr ""
 
+msgid "Password change interval"
+msgstr ""
+
+msgid ""
+"For security reasons, password changes are required at regular intervals."
+msgstr ""
+
+msgid "Set the value to 0 to disable this feature."
+msgstr ""
+
 msgid "Landing page"
 msgstr "صحفہِ آمد"
 
@@ -839,16 +850,25 @@ msgstr ""
 msgid "Example:"
 msgstr "مثال:"
 
-msgid "Allow users to reset their password"
+msgid "Each entry must be separated with a comma."
 msgstr ""
 
-msgid "Warning"
-msgstr "انتباہ"
+msgid "Allow users to reset their passwords"
+msgstr ""
 
 msgid ""
-"Allowing users to reset their password may reduce the security of the "
+"Allowing users to reset their passwords may reduce the security of the "
 "platform due to security becoming dependent on the security of user's email "
 "accounts."
+msgstr ""
+
+msgid "Enable users to upload their PGP keys"
+msgstr ""
+
+msgid "Enable multi-site login"
+msgstr ""
+
+msgid "Enable simplified login"
 msgstr ""
 
 msgid "Enable experimental features"
@@ -871,6 +891,27 @@ msgstr "لانگ URL"
 
 msgid "Add"
 msgstr "شامل کریں"
+
+msgid "Substatuses"
+msgstr ""
+
+msgid "Label"
+msgstr "لیبل"
+
+msgid "This field is mandatory"
+msgstr "يہ خانہ پر کرنا ضروری ہے ۔"
+
+msgid "Edit"
+msgstr "ترمیم و تبديل کيجیے"
+
+msgid "Cancel"
+msgstr "تسنیخ"
+
+msgid "Submission statuses"
+msgstr ""
+
+msgid "Closing statuses"
+msgstr ""
 
 msgid "Logo"
 msgstr ""
@@ -938,20 +979,17 @@ msgstr "سیاق و سباق"
 msgid "Name"
 msgstr "نام"
 
-msgid "Edit"
-msgstr "ترمیم و تبديل کيجیے"
-
-msgid "Cancel"
-msgstr "تسنیخ"
-
-msgid "This field is mandatory"
-msgstr "يہ خانہ پر کرنا ضروری ہے ۔"
-
 msgid "Questionnaire"
 msgstr "سوالنامہ"
 
 msgid "Recipients"
 msgstr "وصول کنندگان"
+
+msgid "Submission expiration"
+msgstr ""
+
+msgid "days"
+msgstr ""
 
 msgid "Allow selection of this context through the context selector."
 msgstr "سیاق و سباق سلیکٹر کے ذریعے اس تناظر کے انتخاب کی اجازت دیں."
@@ -999,21 +1037,6 @@ msgstr "جمع کرانے کی حیثیت کے صفحے پر وصول کنندہ
 
 msgid "Let recipients upload files to whistleblowers"
 msgstr ""
-
-msgid "Disabled"
-msgstr "غیر فعال"
-
-msgid "Enabled"
-msgstr "فعال"
-
-msgid "Submission expiration, in days"
-msgstr "ایسا تسلیم اور استقرار کا وقت ختم، دنوں میں"
-
-msgid ""
-"For security reasons, as a matter of data retention policy, the platform "
-"automatically deletes submissions and their data after a certain amount of "
-"time."
-msgstr "سیکورٹی وجوہات کی بناء، ڈیٹا برقرار رکھنے کی پالیسی کی بات کے طور پر، خود کار طریقے سے پلیٹ فارم گذارشات اور ان کے ڈیٹا کو وقت کی ایک مقررہ رقم کے بعد خارج کرتا ہے."
 
 msgid "Text shown on top of the interface for selecting recipients"
 msgstr "ہائے وصول کنندگان کے انتخاب کے لئے انٹرفیس کے سب سے اوپر پر دکھایا گیا"
@@ -1092,6 +1115,12 @@ msgstr "ایس ایم ٹی پی سرور کی پورٹ "
 
 msgid "Transport Security"
 msgstr "ٹرانسپورٹ سکیورٹی"
+
+msgid "Require authentication"
+msgstr ""
+
+msgid "Disabled"
+msgstr "غیر فعال"
 
 msgid "When the option is re-enabled the spooled emails will be sent out."
 msgstr "آپشن دوبارہ فعال ہونے جمع شدہ ای میلز کو بھیجا جائے گا"
@@ -1244,6 +1273,9 @@ msgstr ""
 msgid "The connection to the configured domain failed."
 msgstr ""
 
+msgid "Enabled"
+msgstr "فعال"
+
 msgid "Running"
 msgstr ""
 
@@ -1255,6 +1287,9 @@ msgstr ""
 
 msgid "System message:"
 msgstr ""
+
+msgid "Danger"
+msgstr "خطرہ"
 
 msgid ""
 "Allowing whistleblowers to connect over HTTPS preserves their privacy but "
@@ -1323,9 +1358,6 @@ msgstr "الارم کی سطح"
 msgid "Events"
 msgstr "مواقع یا ایونٹس "
 
-msgid "Label"
-msgstr "لیبل"
-
 msgid "Type"
 msgstr "قسم"
 
@@ -1380,11 +1412,8 @@ msgstr "ایک اضافی جواب کے شامل کرنے کے لئے بٹن پ�
 msgid "Phone number"
 msgstr "فون نمبر"
 
-msgid "Clause"
-msgstr "شق"
-
-msgid "Agreement Text"
-msgstr "معاہدے کا متن"
+msgid "Checkbox label"
+msgstr ""
 
 msgid "Layout orientation"
 msgstr "لے آؤٹ واقفیت"
@@ -1392,16 +1421,13 @@ msgstr "لے آؤٹ واقفیت"
 msgid "Subject answer visibility to custodian authorization"
 msgstr "ابرکشک اجازت سے مشروط جواب کی نمائش کو"
 
+msgid "Text shown upon negative answer"
+msgstr ""
+
 msgid "Prompt confirmation upon negative answer"
 msgstr "منفی جواب پر فوری طور پر تصدیق"
 
-msgid "Title of the confirmation question upon negative answer"
-msgstr "منفی جواب پر تصدیق کے سوال کا عنوان"
-
-msgid "Body of the confirmation question upon negative answer"
-msgstr "منفی جواب پر تصدیق کے سوال کا جسم"
-
-msgid "Text of the final statement upon negative answer"
+msgid "Text shown upon confirmation"
 msgstr ""
 
 msgid "Options"
@@ -1415,6 +1441,9 @@ msgstr "نیا سوال شامل کریں"
 
 msgid "Add question from template"
 msgstr "سانچے سے سوال شامل کریں"
+
+msgid "Duplicate"
+msgstr ""
 
 msgid "Steps"
 msgstr ""
@@ -1448,6 +1477,9 @@ msgstr "مخصوص گذارشات پر whistleblowers کے لئے اجازت ع�
 msgid "General settings"
 msgstr "عام ترتیبات"
 
+msgid "Case management"
+msgstr ""
+
 msgid "Network settings"
 msgstr ""
 
@@ -1457,7 +1489,16 @@ msgstr ""
 msgid "Allow users to sign up"
 msgstr ""
 
-msgid "Enable footer customization"
+msgid "Signup mode:"
+msgstr ""
+
+msgid "Record IP address and user agent of registered users"
+msgstr ""
+
+msgid "Do not create the admin user"
+msgstr ""
+
+msgid "Enable terms of service"
 msgstr ""
 
 msgid "Sites"
@@ -1475,8 +1516,11 @@ msgstr ""
 msgid "The system forces users to change the password at first login."
 msgstr "اس نظام کے تحط پہلی بار لاگ اِن کرنے پر آپ کو اپنا پاس ورڈ تبديل کرنا ضروری ہے۔"
 
-msgid "New Password"
-msgstr "نیا پاس ورڈ"
+msgid "Reset password"
+msgstr ""
+
+msgid "New password"
+msgstr ""
 
 msgid ""
 "The chosen password is too weak. Make it more secure by adding special "
@@ -1497,6 +1541,12 @@ msgstr "پی جی پی  چابی کلید مٹادیں"
 
 msgid "Set up encryption by providing a PGP public key"
 msgstr "ایک PGP عوامی کلید فراہم کی طرف سے خفیہ کاری سیٹ اپ کریں"
+
+msgid "User has administrative access to the following features:"
+msgstr ""
+
+msgid "main"
+msgstr ""
 
 msgid "Request date"
 msgstr "تاریخ کی گذارش"
@@ -1548,14 +1598,20 @@ msgstr "عطیہ کے صفحے کے ذریعے ہرمیس کی حمایت کری
 msgid "Forgot password?"
 msgstr ""
 
+msgid "Authentication failed"
+msgstr "ناکام استناد"
+
+msgid "Site"
+msgstr "ویب سائٹ"
+
+msgid "Back"
+msgstr "پیچھے"
+
 msgid "Please select your account:"
 msgstr "براہ مہربانی اپنا اکاؤنٹ منتخب کیجیے:"
 
 msgid "Now type your password, then click 'Log in':"
 msgstr "اب اپنا پاس ورڈ لکھیے اور لاگ اِن پر کلک کیجیے۔"
-
-msgid "Authentication failed"
-msgstr "ناکام استناد"
 
 msgid "Are you sure?"
 msgstr "کیا آپ کو یقین ہے؟"
@@ -1644,6 +1700,9 @@ msgid "Details of the PGP key:"
 msgstr "PGP چابی کی تفصیلات:"
 
 msgid "Fingerprint"
+msgstr ""
+
+msgid "Enter a name for the copy"
 msgstr ""
 
 msgid "Add file"
@@ -1757,10 +1816,16 @@ msgstr "قدم"
 msgid "Recipient list"
 msgstr "وصول کنندہ کی فہرست"
 
+msgid "Submission status:"
+msgstr ""
+
 msgid "Attached files for the whistleblower"
 msgstr ""
 
 msgid "Upload a file:"
+msgstr ""
+
+msgid "Site settings"
 msgstr ""
 
 msgid "Logout"
@@ -1807,6 +1872,9 @@ msgstr "موجودہ پاس ورڈ"
 msgid "Old password confirmation required"
 msgstr "پرانے پاس ورڈ کی تصدیق کی ضرورت ہے"
 
+msgid "New Password"
+msgstr "نیا پاس ورڈ"
+
 msgid "The new password must be different from the current one."
 msgstr ""
 
@@ -1840,6 +1908,12 @@ msgid ""
 "A useful way to hide your key code is to write it down like a credit card "
 "number, i.e. by also including an expiration date."
 msgstr "اپنا کلیدی کوڈ خفیہ رکھنے کا بہترین طریقہ یہ ہے کہ اسے کریڈٹ کارڈ کے نمبروں کی طرز پر لکھیے، جس میں اس کے غیر مؤثر ہوجانے کی تاریخ بھی موجود ہو۔   "
+
+msgid "Welcome!"
+msgstr ""
+
+msgid "User preferences"
+msgstr ""
 
 msgid ""
 "You have not set up your encryption key, so the files will not be encrypted "
@@ -1928,6 +2002,12 @@ msgstr ""
 msgid "Check your inbox to activate your account."
 msgstr ""
 
+msgid "This field is mandatory."
+msgstr "يہ خانہ پر کرنا ضروری ہے ۔"
+
+msgid "The answer is too short."
+msgstr ""
+
 msgid "The specified input is not valid:"
 msgstr ""
 
@@ -1935,12 +2015,6 @@ msgid "please enter a valid email address."
 msgstr ""
 
 msgid "please enter numbers only."
-msgstr ""
-
-msgid "This field is mandatory."
-msgstr "يہ خانہ پر کرنا ضروری ہے ۔"
-
-msgid "The answer is too short."
 msgstr ""
 
 msgid "Recipient selection"
@@ -1973,9 +2047,6 @@ msgid "Waiting for the file(s) to finish uploading."
 msgstr ""
 
 msgid "The following steps have errors:"
-msgstr ""
-
-msgid "Welcome!"
 msgstr ""
 
 msgid ""
@@ -2267,6 +2338,16 @@ msgid "Expiration alert for HTTPS certificate"
 msgstr ""
 
 msgid ""
+"The automatic HTTPS certificate renewal scheduled for today just failed."
+msgstr ""
+
+msgid "The system will keep trying."
+msgstr ""
+
+msgid "Failed HTTPS certificate renewal"
+msgstr ""
+
+msgid ""
 "This is an email to notify you that a custodian has authorized you to access"
 " to the whistleblowing identity for the submission {TipNum}."
 msgstr "اس سے آپ کو مطلع کرنے کے لئے ایک ای میل ہے کہ ایک متولی جمع کرانے {TipNum} کے لئے wistleblowing شناخت تک رسائی کے لئے آپ کو اختیار دیا ہے."
@@ -2308,7 +2389,9 @@ msgstr "یہ ایک موجودہ جمع کرانے پر ایک نیا پیغام
 msgid "New message"
 msgstr "نیا پیغام"
 
-msgid "You're receiving this email because you requested a password reset."
+msgid ""
+"You're receiving this email because a password reset has been requested for "
+"your account."
 msgstr ""
 
 msgid ""

@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-06-07 10:00+0000\n"
+"PO-Revision-Date: 2018-07-15 20:39+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Norwegian Bokmål (Norway) (http://www.transifex.com/otf/globaleaks/language/nb_NO/)\n"
 "MIME-Version: 1.0\n"
@@ -648,7 +648,13 @@ msgstr "Ikke forvalgt"
 msgid "Surname"
 msgstr "Etternavn"
 
-msgid "Do not create the admin user"
+msgid "New"
+msgstr "Ny"
+
+msgid "Open"
+msgstr "Åpne"
+
+msgid "Closed"
 msgstr ""
 
 msgid "Select the context of your submission:"
@@ -686,8 +692,8 @@ msgstr "Skru av innsendelser"
 msgid "Enable insecure configuration without PGP encryption"
 msgstr "Tillat usikkert oppsett (uten PGP-kryptering)"
 
-msgid "Danger"
-msgstr "Fare"
+msgid "Warning"
+msgstr "Advarsel"
 
 msgid ""
 "By enabling this option, the system will be storing the submitted files "
@@ -699,11 +705,6 @@ msgstr "Dette skjer hvis kryptering er utilgjengelig"
 
 msgid "Disable messages that warn of missing encryption"
 msgstr "Skru av meldinger som advarer mot manglende kryptering"
-
-msgid ""
-"This setting affects the security of the users and must not be used in "
-"production."
-msgstr "Denne innstillingen har innvirkning på sikkerheten til brukerne og må ikke brukes i produksjon."
 
 msgid "Allow other websites to include the platform inside iframes"
 msgstr "Tillat andre nettsider å inkludere denne plattformen i iframe-element"
@@ -774,6 +775,16 @@ msgstr "Av sikkerhetsgrunner er fløyteblåsertilgang noe som utløper."
 msgid "Tweak this setting only if you know what you are doing."
 msgstr "Bare endre denne innstillingen hvis du vet hva du driver på med."
 
+msgid "Password change interval"
+msgstr ""
+
+msgid ""
+"For security reasons, password changes are required at regular intervals."
+msgstr ""
+
+msgid "Set the value to 0 to disable this feature."
+msgstr ""
+
 msgid "Landing page"
 msgstr "Landingsside"
 
@@ -833,16 +844,25 @@ msgstr "Enten individuelle IP-adresser eller CIDR-blokker godtas her."
 msgid "Example:"
 msgstr "Eksempel:"
 
-msgid "Allow users to reset their password"
+msgid "Each entry must be separated with a comma."
 msgstr ""
 
-msgid "Warning"
-msgstr "Advarsel"
+msgid "Allow users to reset their passwords"
+msgstr ""
 
 msgid ""
-"Allowing users to reset their password may reduce the security of the "
+"Allowing users to reset their passwords may reduce the security of the "
 "platform due to security becoming dependent on the security of user's email "
 "accounts."
+msgstr ""
+
+msgid "Enable users to upload their PGP keys"
+msgstr ""
+
+msgid "Enable multi-site login"
+msgstr ""
+
+msgid "Enable simplified login"
 msgstr ""
 
 msgid "Enable experimental features"
@@ -865,6 +885,27 @@ msgstr "Lang nettadresse"
 
 msgid "Add"
 msgstr "Legg til"
+
+msgid "Substatuses"
+msgstr ""
+
+msgid "Label"
+msgstr "Merkelapp"
+
+msgid "This field is mandatory"
+msgstr "Dette inndatafeltet er påkrevd"
+
+msgid "Edit"
+msgstr "Rediger"
+
+msgid "Cancel"
+msgstr "Avbryt"
+
+msgid "Submission statuses"
+msgstr ""
+
+msgid "Closing statuses"
+msgstr ""
 
 msgid "Logo"
 msgstr "Logo"
@@ -932,20 +973,17 @@ msgstr "Bindeleddsinformasjon"
 msgid "Name"
 msgstr "Navn"
 
-msgid "Edit"
-msgstr "Rediger"
-
-msgid "Cancel"
-msgstr "Avbryt"
-
-msgid "This field is mandatory"
-msgstr "Dette inndatafeltet er påkrevd"
-
 msgid "Questionnaire"
 msgstr "Spørreskjema"
 
 msgid "Recipients"
 msgstr "Mottakere"
+
+msgid "Submission expiration"
+msgstr ""
+
+msgid "days"
+msgstr "dager"
 
 msgid "Allow selection of this context through the context selector."
 msgstr "Tillat valg av denne bindeleddsinformasjonen gjennom utvalgsverktøyet."
@@ -993,21 +1031,6 @@ msgstr "Vis mottagerdetaljer på statussiden tilhørende innsendelsen"
 
 msgid "Let recipients upload files to whistleblowers"
 msgstr "Tillat mottakere å laste opp filer til fløyteblåsere"
-
-msgid "Disabled"
-msgstr "Avskrudd"
-
-msgid "Enabled"
-msgstr "Påskrudd"
-
-msgid "Submission expiration, in days"
-msgstr "Utløp for innsendelse, i dager"
-
-msgid ""
-"For security reasons, as a matter of data retention policy, the platform "
-"automatically deletes submissions and their data after a certain amount of "
-"time."
-msgstr "Av sikkerhetsgrunneri hensyn til praksisen for datalagring, sletter GlobaLeaks-tjeneren automatisk innsendelser og dataen i dem etter en gitt tid."
 
 msgid "Text shown on top of the interface for selecting recipients"
 msgstr "Tekst vist på toppen av grensesnittet for valg av mottakere"
@@ -1086,6 +1109,12 @@ msgstr "SMTP tjener-port"
 
 msgid "Transport Security"
 msgstr "Transport-sikkerhet"
+
+msgid "Require authentication"
+msgstr ""
+
+msgid "Disabled"
+msgstr "Avskrudd"
 
 msgid "When the option is re-enabled the spooled emails will be sent out."
 msgstr "Når dette valget blir påskrudd igjen vil e-postene som er lagt i kø bli utsendt."
@@ -1238,6 +1267,9 @@ msgstr "Plattformen støtter oppsett av HTTPS gjennom dette grensesnittet."
 msgid "The connection to the configured domain failed."
 msgstr "Tilkoblingen til oppsatt domene mislyktes."
 
+msgid "Enabled"
+msgstr "Påskrudd"
+
 msgid "Running"
 msgstr "Kjører"
 
@@ -1249,6 +1281,9 @@ msgstr "Automatisk fornyelse"
 
 msgid "System message:"
 msgstr "Systemmelding:"
+
+msgid "Danger"
+msgstr "Fare"
 
 msgid ""
 "Allowing whistleblowers to connect over HTTPS preserves their privacy but "
@@ -1317,9 +1352,6 @@ msgstr "Alarm-nivå"
 msgid "Events"
 msgstr "Hendelser"
 
-msgid "Label"
-msgstr "Merkelapp"
-
 msgid "Type"
 msgstr "Type"
 
@@ -1374,11 +1406,8 @@ msgstr "Hint vist på knappen for tillegg av et ekstra spørsmål"
 msgid "Phone number"
 msgstr "Telefonnummer"
 
-msgid "Clause"
-msgstr "Klausul"
-
-msgid "Agreement Text"
-msgstr "Overenstemmelses-tekst"
+msgid "Checkbox label"
+msgstr ""
 
 msgid "Layout orientation"
 msgstr "Oppsett av sideretning"
@@ -1386,17 +1415,14 @@ msgstr "Oppsett av sideretning"
 msgid "Subject answer visibility to custodian authorization"
 msgstr "Synlighet for emne underlagt godkjenning av tillitsperson"
 
+msgid "Text shown upon negative answer"
+msgstr ""
+
 msgid "Prompt confirmation upon negative answer"
 msgstr "Etterspør bekreftelse ved negativt svar"
 
-msgid "Title of the confirmation question upon negative answer"
-msgstr "Tittel for bekreftelespørsmål ved negativt svar"
-
-msgid "Body of the confirmation question upon negative answer"
-msgstr "Meldingstekst for bekreftelsspørsmål ved negativt svar"
-
-msgid "Text of the final statement upon negative answer"
-msgstr "Tekst for siste kunngjøring ved negativt svar"
+msgid "Text shown upon confirmation"
+msgstr ""
 
 msgid "Options"
 msgstr "Valg"
@@ -1409,6 +1435,9 @@ msgstr "Legg til nytt spørsmål"
 
 msgid "Add question from template"
 msgstr "Legg til spørsmål fra mal"
+
+msgid "Duplicate"
+msgstr ""
 
 msgid "Steps"
 msgstr "Steg"
@@ -1442,6 +1471,9 @@ msgstr "Tillat mottaker å forære rettigheter til fløyteblåsere på gitte inn
 msgid "General settings"
 msgstr "Hovedinnstillinger"
 
+msgid "Case management"
+msgstr ""
+
 msgid "Network settings"
 msgstr "Nettverksinnstillinger"
 
@@ -1451,8 +1483,17 @@ msgstr "Rotdomene brukt for sekundære sider"
 msgid "Allow users to sign up"
 msgstr "Tillat brukere å registrere seg"
 
-msgid "Enable footer customization"
-msgstr "Skru på tilpasning av bunntekst"
+msgid "Signup mode:"
+msgstr ""
+
+msgid "Record IP address and user agent of registered users"
+msgstr ""
+
+msgid "Do not create the admin user"
+msgstr ""
+
+msgid "Enable terms of service"
+msgstr ""
 
 msgid "Sites"
 msgstr "Sider"
@@ -1469,7 +1510,10 @@ msgstr "Det forvalgte passordet er:"
 msgid "The system forces users to change the password at first login."
 msgstr "Systemet tvinger brukere til å endre passordet ved første innlogging."
 
-msgid "New Password"
+msgid "Reset password"
+msgstr "Tilbakestill passord"
+
+msgid "New password"
 msgstr "Nytt passord"
 
 msgid ""
@@ -1491,6 +1535,12 @@ msgstr "Fjern PGP-nøkkel"
 
 msgid "Set up encryption by providing a PGP public key"
 msgstr "Sett opp kryptering ved å oppgi en offentlig PGP-nøkkel"
+
+msgid "User has administrative access to the following features:"
+msgstr ""
+
+msgid "main"
+msgstr ""
 
 msgid "Request date"
 msgstr "Forespør dato"
@@ -1542,14 +1592,20 @@ msgstr "Støtt Hermes gjennom deres donasjons-side."
 msgid "Forgot password?"
 msgstr ""
 
+msgid "Authentication failed"
+msgstr "Identitetsbekreftelse feilet"
+
+msgid "Site"
+msgstr ""
+
+msgid "Back"
+msgstr "Tilbake"
+
 msgid "Please select your account:"
 msgstr "Velg din konto:"
 
 msgid "Now type your password, then click 'Log in':"
 msgstr "Skriv inn ditt passord, trykk så 'logg inn':"
-
-msgid "Authentication failed"
-msgstr "Identitetsbekreftelse feilet"
 
 msgid "Are you sure?"
 msgstr "Er du sikker?"
@@ -1639,6 +1695,9 @@ msgstr "Detaljer for PGP-nøkkel:"
 
 msgid "Fingerprint"
 msgstr "Fingeravtrykk"
+
+msgid "Enter a name for the copy"
+msgstr ""
 
 msgid "Add file"
 msgstr "Legg til fil"
@@ -1751,11 +1810,17 @@ msgstr "Steg"
 msgid "Recipient list"
 msgstr "Mottaker-liste"
 
+msgid "Submission status:"
+msgstr ""
+
 msgid "Attached files for the whistleblower"
 msgstr "Vedlagte filer for fløyteblåseren"
 
 msgid "Upload a file:"
 msgstr "Last opp en fil:"
+
+msgid "Site settings"
+msgstr ""
 
 msgid "Logout"
 msgstr "Logg ut"
@@ -1801,6 +1866,9 @@ msgstr "Gjeldende passord"
 msgid "Old password confirmation required"
 msgstr "Bekreftelse av gammelt passord påkrevd"
 
+msgid "New Password"
+msgstr "Nytt passord"
+
 msgid "The new password must be different from the current one."
 msgstr "Det nye passordet må være forskjellig fra det gamle."
 
@@ -1834,6 +1902,12 @@ msgid ""
 "A useful way to hide your key code is to write it down like a credit card "
 "number, i.e. by also including an expiration date."
 msgstr "En mulig måte å gjemme koden din på er å hevde at det er et kredittkortnummer man har skrevet ned."
+
+msgid "Welcome!"
+msgstr "Velkommen!"
+
+msgid "User preferences"
+msgstr "Brukervalg"
 
 msgid ""
 "You have not set up your encryption key, so the files will not be encrypted "
@@ -1922,6 +1996,12 @@ msgstr "Din fløyteblåserplattform er nesten klar!"
 msgid "Check your inbox to activate your account."
 msgstr "Sjekk din innboks for å aktivere kontoen din."
 
+msgid "This field is mandatory."
+msgstr "Dette inndatafeltet er påkrevd."
+
+msgid "The answer is too short."
+msgstr "Svaret er for kort."
+
 msgid "The specified input is not valid:"
 msgstr "Angitt inndata er ikke gyldig:"
 
@@ -1930,12 +2010,6 @@ msgstr "oppgi en gyldig e-postadresse"
 
 msgid "please enter numbers only."
 msgstr "bruk kun tall"
-
-msgid "This field is mandatory."
-msgstr "Dette inndatafeltet er påkrevd."
-
-msgid "The answer is too short."
-msgstr "Svaret er for kort."
 
 msgid "Recipient selection"
 msgstr "Valg av mottaker"
@@ -1968,9 +2042,6 @@ msgstr "Venter på at ei fil skal lastes opp."
 
 msgid "The following steps have errors:"
 msgstr "Følgende steg har feil:"
-
-msgid "Welcome!"
-msgstr "Velkommen!"
 
 msgid ""
 "The following step-by-step procedure will guide you through creating your "
@@ -2261,6 +2332,16 @@ msgid "Expiration alert for HTTPS certificate"
 msgstr "Utløpsvarsel for HTTPS-sertifikat"
 
 msgid ""
+"The automatic HTTPS certificate renewal scheduled for today just failed."
+msgstr ""
+
+msgid "The system will keep trying."
+msgstr ""
+
+msgid "Failed HTTPS certificate renewal"
+msgstr ""
+
+msgid ""
 "This is an email to notify you that a custodian has authorized you to access"
 " to the whistleblowing identity for the submission {TipNum}."
 msgstr "Dette er en e-post til opplysning om at tillitspersonen har godkjent deg tilgang til den sanne fløyteblåseridentiteten for innsendelsen {TipNum}"
@@ -2302,7 +2383,9 @@ msgstr "Denne e-postens hensikt er å gjøre deg oppmerksom på at det er en ny 
 msgid "New message"
 msgstr "Ny melding"
 
-msgid "You're receiving this email because you requested a password reset."
+msgid ""
+"You're receiving this email because a password reset has been requested for "
+"your account."
 msgstr ""
 
 msgid ""

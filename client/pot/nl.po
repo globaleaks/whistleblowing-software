@@ -35,7 +35,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-06-07 10:00+0000\n"
+"PO-Revision-Date: 2018-07-15 20:39+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Dutch (http://www.transifex.com/otf/globaleaks/language/nl/)\n"
 "MIME-Version: 1.0\n"
@@ -676,8 +676,14 @@ msgstr ""
 msgid "Surname"
 msgstr ""
 
-msgid "Do not create the admin user"
-msgstr ""
+msgid "New"
+msgstr "Nieuw"
+
+msgid "Open"
+msgstr "Open"
+
+msgid "Closed"
+msgstr "Gesloten"
 
 msgid "Select the context of your submission:"
 msgstr "Selecteer de context van uw inzending:"
@@ -714,8 +720,8 @@ msgstr "Inzendingen uitschakelen"
 msgid "Enable insecure configuration without PGP encryption"
 msgstr "Activeer onveilige configuratie zonder PGP-versleuteling"
 
-msgid "Danger"
-msgstr "Gevaar"
+msgid "Warning"
+msgstr "Waarschuwing"
 
 msgid ""
 "By enabling this option, the system will be storing the submitted files "
@@ -727,11 +733,6 @@ msgstr "Dit gebeurt wanneer versleuteling niet beschikbaar is."
 
 msgid "Disable messages that warn of missing encryption"
 msgstr "Meldingen uitschakelen die waarschuwen voor ontbrekende versleuteling"
-
-msgid ""
-"This setting affects the security of the users and must not be used in "
-"production."
-msgstr "Deze instelling brengt de gebruiker in gevaar en moet niet worden gebruikt in productiesystemen"
 
 msgid "Allow other websites to include the platform inside iframes"
 msgstr "Gebruik van het platform door middel van iframes op andere websites toestaan"
@@ -802,6 +803,16 @@ msgstr "Omwille van de veiligheid verloopt het toegangsrecht van de klokkenluide
 msgid "Tweak this setting only if you know what you are doing."
 msgstr "Stel deze instellingen alleen bij als u weet wat u doet."
 
+msgid "Password change interval"
+msgstr ""
+
+msgid ""
+"For security reasons, password changes are required at regular intervals."
+msgstr ""
+
+msgid "Set the value to 0 to disable this feature."
+msgstr ""
+
 msgid "Landing page"
 msgstr "Landingspagina"
 
@@ -861,16 +872,25 @@ msgstr ""
 msgid "Example:"
 msgstr "Voorbeeld:"
 
-msgid "Allow users to reset their password"
+msgid "Each entry must be separated with a comma."
 msgstr ""
 
-msgid "Warning"
-msgstr "Waarschuwing"
+msgid "Allow users to reset their passwords"
+msgstr ""
 
 msgid ""
-"Allowing users to reset their password may reduce the security of the "
+"Allowing users to reset their passwords may reduce the security of the "
 "platform due to security becoming dependent on the security of user's email "
 "accounts."
+msgstr ""
+
+msgid "Enable users to upload their PGP keys"
+msgstr ""
+
+msgid "Enable multi-site login"
+msgstr ""
+
+msgid "Enable simplified login"
 msgstr ""
 
 msgid "Enable experimental features"
@@ -893,6 +913,27 @@ msgstr "Lange URL"
 
 msgid "Add"
 msgstr "Toevoegen"
+
+msgid "Substatuses"
+msgstr ""
+
+msgid "Label"
+msgstr "Label"
+
+msgid "This field is mandatory"
+msgstr "Dit veld is verplicht"
+
+msgid "Edit"
+msgstr "Bewerken"
+
+msgid "Cancel"
+msgstr "Annuleren"
+
+msgid "Submission statuses"
+msgstr ""
+
+msgid "Closing statuses"
+msgstr ""
 
 msgid "Logo"
 msgstr "Logo"
@@ -960,20 +1001,17 @@ msgstr "Categorieën"
 msgid "Name"
 msgstr "Naam"
 
-msgid "Edit"
-msgstr "Bewerken"
-
-msgid "Cancel"
-msgstr "Annuleren"
-
-msgid "This field is mandatory"
-msgstr "Dit veld is verplicht"
-
 msgid "Questionnaire"
 msgstr "Vragenformulier"
 
 msgid "Recipients"
 msgstr "Ontvangers"
+
+msgid "Submission expiration"
+msgstr ""
+
+msgid "days"
+msgstr "dagen"
 
 msgid "Allow selection of this context through the context selector."
 msgstr "Selectie van deze context toestaan met behulp van de contextkiezer."
@@ -1021,21 +1059,6 @@ msgstr "Toon details van de ontvanger op de statuspagina van de inzending"
 
 msgid "Let recipients upload files to whistleblowers"
 msgstr "Sta ontvanger toe om bestanden te versturen voor klokkenluiders"
-
-msgid "Disabled"
-msgstr "Uitgeschakeld"
-
-msgid "Enabled"
-msgstr "Ingeschakeld"
-
-msgid "Submission expiration, in days"
-msgstr "Verlooptijd van de inzending in dagen"
-
-msgid ""
-"For security reasons, as a matter of data retention policy, the platform "
-"automatically deletes submissions and their data after a certain amount of "
-"time."
-msgstr "Vanwege veiligheidsredenen en in verband met het beleid rondom dataopslag verwijdert het systeem automatisch inzendingen en hun gegevens na een bepaalde tijd. "
 
 msgid "Text shown on top of the interface for selecting recipients"
 msgstr "Tekst die getoond wordt boven de interface om ontvangers te selecteren"
@@ -1114,6 +1137,12 @@ msgstr "SMTP-serverpoort"
 
 msgid "Transport Security"
 msgstr "Transportbeveiliging"
+
+msgid "Require authentication"
+msgstr ""
+
+msgid "Disabled"
+msgstr "Uitgeschakeld"
 
 msgid "When the option is re-enabled the spooled emails will be sent out."
 msgstr "Niet-verzonden emails worden in een wachtrij gezet wanneer de optie wordt opnieuw ingeschakeld."
@@ -1266,6 +1295,9 @@ msgstr "Het platform ondersteunt de configuratie van HTTPS via deze koppeling."
 msgid "The connection to the configured domain failed."
 msgstr "De verbinding met het ingestelde domein is mislukt."
 
+msgid "Enabled"
+msgstr "Ingeschakeld"
+
 msgid "Running"
 msgstr "Wordt uitgevoerd"
 
@@ -1277,6 +1309,9 @@ msgstr "Auto-hernieuwing"
 
 msgid "System message:"
 msgstr "Systeembericht:"
+
+msgid "Danger"
+msgstr "Gevaar"
 
 msgid ""
 "Allowing whistleblowers to connect over HTTPS preserves their privacy but "
@@ -1345,9 +1380,6 @@ msgstr "Alarmniveau"
 msgid "Events"
 msgstr "Gebeurtenis"
 
-msgid "Label"
-msgstr "Label"
-
 msgid "Type"
 msgstr "Type"
 
@@ -1402,11 +1434,8 @@ msgstr "Hint die getoond wordt op de knop om een extra vraag toe te voegen"
 msgid "Phone number"
 msgstr "Telefoonnummer"
 
-msgid "Clause"
-msgstr "Clausule"
-
-msgid "Agreement Text"
-msgstr "Overeenkomsttekst"
+msgid "Checkbox label"
+msgstr ""
 
 msgid "Layout orientation"
 msgstr "Opmaakoriëntatie"
@@ -1414,16 +1443,13 @@ msgstr "Opmaakoriëntatie"
 msgid "Subject answer visibility to custodian authorization"
 msgstr "Onderwerp antwoord zichtbaarheid aan toezichthouder autorisatie"
 
+msgid "Text shown upon negative answer"
+msgstr ""
+
 msgid "Prompt confirmation upon negative answer"
 msgstr "Snelle bevestiging na negatief antwoord"
 
-msgid "Title of the confirmation question upon negative answer"
-msgstr "Titel van de bevestigingsvraag na negatief antwoord"
-
-msgid "Body of the confirmation question upon negative answer"
-msgstr "Inhoud van de bevestigingsvraag na negatief antwoord"
-
-msgid "Text of the final statement upon negative answer"
+msgid "Text shown upon confirmation"
 msgstr ""
 
 msgid "Options"
@@ -1437,6 +1463,9 @@ msgstr "Nieuwe vraag toevoegen"
 
 msgid "Add question from template"
 msgstr "Vraag toevoegen van sjabloon"
+
+msgid "Duplicate"
+msgstr ""
 
 msgid "Steps"
 msgstr "Stappen"
@@ -1470,6 +1499,9 @@ msgstr "De ontvanger toestaan om per tip klokkenluiders rechten toe te wijzen"
 msgid "General settings"
 msgstr "Algemene instellingen"
 
+msgid "Case management"
+msgstr ""
+
 msgid "Network settings"
 msgstr "Netwerkinstellingen"
 
@@ -1479,7 +1511,16 @@ msgstr ""
 msgid "Allow users to sign up"
 msgstr ""
 
-msgid "Enable footer customization"
+msgid "Signup mode:"
+msgstr ""
+
+msgid "Record IP address and user agent of registered users"
+msgstr ""
+
+msgid "Do not create the admin user"
+msgstr ""
+
+msgid "Enable terms of service"
 msgstr ""
 
 msgid "Sites"
@@ -1497,7 +1538,10 @@ msgstr "Het standaard wachtwoord is:"
 msgid "The system forces users to change the password at first login."
 msgstr "Het systeem verlangt van haar gebruikers om het wachtwoord te veranderen op de eerste login."
 
-msgid "New Password"
+msgid "Reset password"
+msgstr "Wachtwoord resetten"
+
+msgid "New password"
 msgstr "Nieuw wachtwoord"
 
 msgid ""
@@ -1519,6 +1563,12 @@ msgstr "Verwijder de PGP-sleutel"
 
 msgid "Set up encryption by providing a PGP public key"
 msgstr "Versleuteling instellen met een PGP-publieke sleutel"
+
+msgid "User has administrative access to the following features:"
+msgstr ""
+
+msgid "main"
+msgstr ""
 
 msgid "Request date"
 msgstr "Aanvraagdatum"
@@ -1570,14 +1620,20 @@ msgstr "Steun Hermes via haar donatiepagina"
 msgid "Forgot password?"
 msgstr ""
 
+msgid "Authentication failed"
+msgstr "Authenticatie is mislukt"
+
+msgid "Site"
+msgstr "Site"
+
+msgid "Back"
+msgstr "Terug"
+
 msgid "Please select your account:"
 msgstr "Selecteer je account:"
 
 msgid "Now type your password, then click 'Log in':"
 msgstr "Typ nu je wachtwoord, klik dan op 'Log in':"
-
-msgid "Authentication failed"
-msgstr "Authenticatie is mislukt"
 
 msgid "Are you sure?"
 msgstr "Weet je het zeker?"
@@ -1667,6 +1723,9 @@ msgstr "Details van de PGP-sleutel:"
 
 msgid "Fingerprint"
 msgstr "Vingerafdruk"
+
+msgid "Enter a name for the copy"
+msgstr ""
 
 msgid "Add file"
 msgstr "Bestand toevoegen"
@@ -1779,11 +1838,17 @@ msgstr "Stap"
 msgid "Recipient list"
 msgstr "Lijst ontvangers"
 
+msgid "Submission status:"
+msgstr ""
+
 msgid "Attached files for the whistleblower"
 msgstr "Bijlage voor de klokkenluider"
 
 msgid "Upload a file:"
 msgstr "Upload een bestand:"
+
+msgid "Site settings"
+msgstr ""
 
 msgid "Logout"
 msgstr "Log uit"
@@ -1829,6 +1894,9 @@ msgstr "Huidig wachtwoord"
 msgid "Old password confirmation required"
 msgstr "Bevestiging van oud wachtwoord vereist"
 
+msgid "New Password"
+msgstr "Nieuw wachtwoord"
+
 msgid "The new password must be different from the current one."
 msgstr "Het nieuwe wachtwoord moet verschillen van het huidige."
 
@@ -1862,6 +1930,12 @@ msgid ""
 "A useful way to hide your key code is to write it down like a credit card "
 "number, i.e. by also including an expiration date."
 msgstr "Een handige manier om uw sleutel code te verbergen, is om het op te schrijven zoals een creditcard nummer. Vergeet niet de vervaldatum erbij te schrijven."
+
+msgid "Welcome!"
+msgstr "Welkom"
+
+msgid "User preferences"
+msgstr ""
 
 msgid ""
 "You have not set up your encryption key, so the files will not be encrypted "
@@ -1950,6 +2024,12 @@ msgstr ""
 msgid "Check your inbox to activate your account."
 msgstr ""
 
+msgid "This field is mandatory."
+msgstr "Dit veld is verplicht"
+
+msgid "The answer is too short."
+msgstr "Antwoord is te kort."
+
 msgid "The specified input is not valid:"
 msgstr "Deze invoer is niet geldig:"
 
@@ -1958,12 +2038,6 @@ msgstr "vul een geldig e-mailadres in."
 
 msgid "please enter numbers only."
 msgstr "vul enkel getallen in."
-
-msgid "This field is mandatory."
-msgstr "Dit veld is verplicht"
-
-msgid "The answer is too short."
-msgstr "Antwoord is te kort."
 
 msgid "Recipient selection"
 msgstr "Ontvangerselectie"
@@ -1996,9 +2070,6 @@ msgstr "Wacht totdat de bestanden volledig zijn verzonden."
 
 msgid "The following steps have errors:"
 msgstr "De volgende stappen bevatten fouter:"
-
-msgid "Welcome!"
-msgstr "Welkom"
 
 msgid ""
 "The following step-by-step procedure will guide you through creating your "
@@ -2289,6 +2360,16 @@ msgid "Expiration alert for HTTPS certificate"
 msgstr "HTTPS-certificaat vervalswaarschuwing"
 
 msgid ""
+"The automatic HTTPS certificate renewal scheduled for today just failed."
+msgstr ""
+
+msgid "The system will keep trying."
+msgstr ""
+
+msgid "Failed HTTPS certificate renewal"
+msgstr ""
+
+msgid ""
 "This is an email to notify you that a custodian has authorized you to access"
 " to the whistleblowing identity for the submission {TipNum}."
 msgstr "Dit is een mailtje om je erop te wijzen dat een toezichthouder je gemachtigd heeft om de identiteit van de klokkenluider te openen betreffende de inzending {TipNum}."
@@ -2330,7 +2411,9 @@ msgstr "Dit is een mailtje om je te wijzen op een nieuw bericht betreffende een 
 msgid "New message"
 msgstr "Nieuw bericht"
 
-msgid "You're receiving this email because you requested a password reset."
+msgid ""
+"You're receiving this email because a password reset has been requested for "
+"your account."
 msgstr ""
 
 msgid ""

@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-06-07 10:00+0000\n"
+"PO-Revision-Date: 2018-07-15 20:39+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Georgian (http://www.transifex.com/otf/globaleaks/language/ka/)\n"
 "MIME-Version: 1.0\n"
@@ -56,7 +56,7 @@ msgid "Home page"
 msgstr ""
 
 msgid "Changelog"
-msgstr ""
+msgstr "ცვლილებები"
 
 msgid "License"
 msgstr ""
@@ -645,7 +645,13 @@ msgstr ""
 msgid "Surname"
 msgstr ""
 
-msgid "Do not create the admin user"
+msgid "New"
+msgstr "ახალი"
+
+msgid "Open"
+msgstr "გახსნა"
+
+msgid "Closed"
 msgstr ""
 
 msgid "Select the context of your submission:"
@@ -683,8 +689,8 @@ msgstr "შეზღუდული შესაძლებლობები�
 msgid "Enable insecure configuration without PGP encryption"
 msgstr "ჩართვა არასაიმედო კონფიგურაციის გარეშე PGP დაშიფვრის"
 
-msgid "Danger"
-msgstr "Danger"
+msgid "Warning"
+msgstr "გაფრთხილება"
 
 msgid ""
 "By enabling this option, the system will be storing the submitted files "
@@ -696,11 +702,6 @@ msgstr "ეს ხდება მაშინ, როდესაც კოდ�
 
 msgid "Disable messages that warn of missing encryption"
 msgstr "შეზღუდული შესაძლებლობების მქონე შეტყობინებები რომ გააფრთხილოს დაკარგული დაშიფვრის"
-
-msgid ""
-"This setting affects the security of the users and must not be used in "
-"production."
-msgstr "ეს პარამეტრი გავლენას ახდენს უსაფრთხოების წევრებს და არ უნდა იქნას გამოყენებული წარმოების."
 
 msgid "Allow other websites to include the platform inside iframes"
 msgstr "ნება სხვა საიტებზე მოიცავს პლატფორმა შიგნით iframes"
@@ -771,6 +772,16 @@ msgstr ""
 msgid "Tweak this setting only if you know what you are doing."
 msgstr ""
 
+msgid "Password change interval"
+msgstr ""
+
+msgid ""
+"For security reasons, password changes are required at regular intervals."
+msgstr ""
+
+msgid "Set the value to 0 to disable this feature."
+msgstr ""
+
 msgid "Landing page"
 msgstr "სადესანტო გვერდი"
 
@@ -830,16 +841,25 @@ msgstr ""
 msgid "Example:"
 msgstr "მაგალითად:"
 
-msgid "Allow users to reset their password"
+msgid "Each entry must be separated with a comma."
 msgstr ""
 
-msgid "Warning"
-msgstr "გაფრთხილება"
+msgid "Allow users to reset their passwords"
+msgstr ""
 
 msgid ""
-"Allowing users to reset their password may reduce the security of the "
+"Allowing users to reset their passwords may reduce the security of the "
 "platform due to security becoming dependent on the security of user's email "
 "accounts."
+msgstr ""
+
+msgid "Enable users to upload their PGP keys"
+msgstr ""
+
+msgid "Enable multi-site login"
+msgstr ""
+
+msgid "Enable simplified login"
 msgstr ""
 
 msgid "Enable experimental features"
@@ -862,6 +882,27 @@ msgstr "დიდხანს URL"
 
 msgid "Add"
 msgstr "სანიშნეს"
+
+msgid "Substatuses"
+msgstr ""
+
+msgid "Label"
+msgstr "Label"
+
+msgid "This field is mandatory"
+msgstr "ამ სფეროში სავალდებულოა"
+
+msgid "Edit"
+msgstr "რედაქტირება"
+
+msgid "Cancel"
+msgstr "გაუქმება"
+
+msgid "Submission statuses"
+msgstr ""
+
+msgid "Closing statuses"
+msgstr ""
 
 msgid "Logo"
 msgstr ""
@@ -929,20 +970,17 @@ msgstr "კონტექსტში"
 msgid "Name"
 msgstr "სახელი"
 
-msgid "Edit"
-msgstr "რედაქტირება"
-
-msgid "Cancel"
-msgstr "გაუქმება"
-
-msgid "This field is mandatory"
-msgstr "ამ სფეროში სავალდებულოა"
-
 msgid "Questionnaire"
 msgstr "კითხვარი"
 
 msgid "Recipients"
 msgstr "მიმღები"
+
+msgid "Submission expiration"
+msgstr ""
+
+msgid "days"
+msgstr "დღე"
 
 msgid "Allow selection of this context through the context selector."
 msgstr "ნება შერჩევა ამ კონტექსტში კონტექსტში selector."
@@ -990,21 +1028,6 @@ msgstr "აჩვენეთ მიმღები დეტალები მ
 
 msgid "Let recipients upload files to whistleblowers"
 msgstr ""
-
-msgid "Disabled"
-msgstr "შეზღუდული შესაძლებლობების მქონე"
-
-msgid "Enabled"
-msgstr "ჩართულია"
-
-msgid "Submission expiration, in days"
-msgstr "წარდგენის ვადის გასვლამდე, დღის განმავლობაში"
-
-msgid ""
-"For security reasons, as a matter of data retention policy, the platform "
-"automatically deletes submissions and their data after a certain amount of "
-"time."
-msgstr "უსაფრთხოების მიზეზების გამო, როგორც საკითხია მონაცემების შენახვა პოლიტიკა, პლატფორმა ავტომატურად წაშლის წარდგინება და მათი მონაცემები შემდეგ გარკვეული დროის."
 
 msgid "Text shown on top of the interface for selecting recipients"
 msgstr "ტექსტი ნაჩვენები თავზე ინტერფეისი შერჩევის მიმღები"
@@ -1083,6 +1106,12 @@ msgstr "SMTP სერვერის პორტი"
 
 msgid "Transport Security"
 msgstr "Transport Security"
+
+msgid "Require authentication"
+msgstr ""
+
+msgid "Disabled"
+msgstr "შეზღუდული შესაძლებლობების მქონე"
 
 msgid "When the option is re-enabled the spooled emails will be sent out."
 msgstr "როდესაც ვარიანტი ხელახლა ჩართულია spooled წერილებს გადაეგზავნება out."
@@ -1235,6 +1264,9 @@ msgstr ""
 msgid "The connection to the configured domain failed."
 msgstr ""
 
+msgid "Enabled"
+msgstr "ჩართულია"
+
 msgid "Running"
 msgstr ""
 
@@ -1246,6 +1278,9 @@ msgstr ""
 
 msgid "System message:"
 msgstr ""
+
+msgid "Danger"
+msgstr "Danger"
 
 msgid ""
 "Allowing whistleblowers to connect over HTTPS preserves their privacy but "
@@ -1314,9 +1349,6 @@ msgstr "განგაშის დონე"
 msgid "Events"
 msgstr "მოვლენები"
 
-msgid "Label"
-msgstr "Label"
-
 msgid "Type"
 msgstr "ტიპი"
 
@@ -1371,11 +1403,8 @@ msgstr "მინიშნება ნაჩვენები ღილაკ�
 msgid "Phone number"
 msgstr "ტელეფონის ნომერი"
 
-msgid "Clause"
-msgstr "მუხლი"
-
-msgid "Agreement Text"
-msgstr "ხელშეკრულების ტექსტი"
+msgid "Checkbox label"
+msgstr ""
 
 msgid "Layout orientation"
 msgstr "განლაგება ორიენტაციის"
@@ -1383,16 +1412,13 @@ msgstr "განლაგება ორიენტაციის"
 msgid "Subject answer visibility to custodian authorization"
 msgstr "თემა პასუხი ხილვადობა მეურვის ნებართვის"
 
+msgid "Text shown upon negative answer"
+msgstr ""
+
 msgid "Prompt confirmation upon negative answer"
 msgstr "სწრაფი დადასტურება საფუძველზე უარყოფითი პასუხი"
 
-msgid "Title of the confirmation question upon negative answer"
-msgstr "სტატუსი დადასტურება კითხვა საფუძველზე უარყოფითი პასუხი"
-
-msgid "Body of the confirmation question upon negative answer"
-msgstr "Body დადასტურება კითხვა საფუძველზე უარყოფითი პასუხი"
-
-msgid "Text of the final statement upon negative answer"
+msgid "Text shown upon confirmation"
 msgstr ""
 
 msgid "Options"
@@ -1406,6 +1432,9 @@ msgstr "ახალი კითხვა"
 
 msgid "Add question from template"
 msgstr "სანიშნეს კითხვა template"
+
+msgid "Duplicate"
+msgstr ""
 
 msgid "Steps"
 msgstr ""
@@ -1439,6 +1468,9 @@ msgstr "მისცემს მიმღები გასცეს ნებ
 msgid "General settings"
 msgstr "ძირითადი პარამეტრები"
 
+msgid "Case management"
+msgstr ""
+
 msgid "Network settings"
 msgstr ""
 
@@ -1448,7 +1480,16 @@ msgstr ""
 msgid "Allow users to sign up"
 msgstr ""
 
-msgid "Enable footer customization"
+msgid "Signup mode:"
+msgstr ""
+
+msgid "Record IP address and user agent of registered users"
+msgstr ""
+
+msgid "Do not create the admin user"
+msgstr ""
+
+msgid "Enable terms of service"
 msgstr ""
 
 msgid "Sites"
@@ -1466,8 +1507,11 @@ msgstr ""
 msgid "The system forces users to change the password at first login."
 msgstr "სისტემის ძალები მომხმარებლის პაროლის შეცვლა პირველი შესვლისას."
 
-msgid "New Password"
-msgstr "ახალი პაროლი"
+msgid "Reset password"
+msgstr ""
+
+msgid "New password"
+msgstr ""
 
 msgid ""
 "The chosen password is too weak. Make it more secure by adding special "
@@ -1488,6 +1532,12 @@ msgstr "ამოღება PGP გასაღები"
 
 msgid "Set up encryption by providing a PGP public key"
 msgstr "შეიქმნა დაშიფვრის უზრუნველყოფს PGP საჯარო გასაღები"
+
+msgid "User has administrative access to the following features:"
+msgstr ""
+
+msgid "main"
+msgstr ""
 
 msgid "Request date"
 msgstr "მოთხოვნა თარიღი"
@@ -1539,14 +1589,20 @@ msgstr "გთხოვთ მხარი Hermes მათი შემოწ�
 msgid "Forgot password?"
 msgstr ""
 
+msgid "Authentication failed"
+msgstr "ავთენტიფიკაცია ვერ"
+
+msgid "Site"
+msgstr "საიტი"
+
+msgid "Back"
+msgstr "უკან"
+
 msgid "Please select your account:"
 msgstr "გთხოვთ, აირჩიოთ თქვენი ანგარიში:"
 
 msgid "Now type your password, then click 'Log in':"
 msgstr "ახლა აკრიფოთ თქვენი პაროლი, შემდეგ დააჭირეთ \"შესვლა\":"
-
-msgid "Authentication failed"
-msgstr "ავთენტიფიკაცია ვერ"
 
 msgid "Are you sure?"
 msgstr "დარწმუნებული ხარ?"
@@ -1635,6 +1691,9 @@ msgid "Details of the PGP key:"
 msgstr "დეტალები PGP გასაღები:"
 
 msgid "Fingerprint"
+msgstr ""
+
+msgid "Enter a name for the copy"
 msgstr ""
 
 msgid "Add file"
@@ -1748,10 +1807,16 @@ msgstr "ნაბიჯი"
 msgid "Recipient list"
 msgstr "მიმღები სია"
 
+msgid "Submission status:"
+msgstr ""
+
 msgid "Attached files for the whistleblower"
 msgstr ""
 
 msgid "Upload a file:"
+msgstr ""
+
+msgid "Site settings"
 msgstr ""
 
 msgid "Logout"
@@ -1798,6 +1863,9 @@ msgstr "მიმდინარე პაროლი"
 msgid "Old password confirmation required"
 msgstr "ძველი პაროლი დადასტურება"
 
+msgid "New Password"
+msgstr "ახალი პაროლი"
+
 msgid "The new password must be different from the current one."
 msgstr ""
 
@@ -1831,6 +1899,12 @@ msgid ""
 "A useful way to hide your key code is to write it down like a credit card "
 "number, i.e. by also including an expiration date."
 msgstr "სასარგებლო იქნება დაფაროთ თქვენი გასაღები კოდი ჩავიწერე, როგორიცაა საკრედიტო ბარათის ნომერი, ანუ ასევე მათ შორის გასვლის თარიღი."
+
+msgid "Welcome!"
+msgstr ""
+
+msgid "User preferences"
+msgstr ""
 
 msgid ""
 "You have not set up your encryption key, so the files will not be encrypted "
@@ -1919,6 +1993,12 @@ msgstr ""
 msgid "Check your inbox to activate your account."
 msgstr ""
 
+msgid "This field is mandatory."
+msgstr ""
+
+msgid "The answer is too short."
+msgstr ""
+
 msgid "The specified input is not valid:"
 msgstr ""
 
@@ -1926,12 +2006,6 @@ msgid "please enter a valid email address."
 msgstr ""
 
 msgid "please enter numbers only."
-msgstr ""
-
-msgid "This field is mandatory."
-msgstr ""
-
-msgid "The answer is too short."
 msgstr ""
 
 msgid "Recipient selection"
@@ -1964,9 +2038,6 @@ msgid "Waiting for the file(s) to finish uploading."
 msgstr ""
 
 msgid "The following steps have errors:"
-msgstr ""
-
-msgid "Welcome!"
 msgstr ""
 
 msgid ""
@@ -2258,6 +2329,16 @@ msgid "Expiration alert for HTTPS certificate"
 msgstr ""
 
 msgid ""
+"The automatic HTTPS certificate renewal scheduled for today just failed."
+msgstr ""
+
+msgid "The system will keep trying."
+msgstr ""
+
+msgid "Failed HTTPS certificate renewal"
+msgstr ""
+
+msgid ""
 "This is an email to notify you that a custodian has authorized you to access"
 " to the whistleblowing identity for the submission {TipNum}."
 msgstr ""
@@ -2299,7 +2380,9 @@ msgstr "ეს არის ელ გაცნობებთ ახალი �
 msgid "New message"
 msgstr "ახალი შეტყობინება"
 
-msgid "You're receiving this email because you requested a password reset."
+msgid ""
+"You're receiving this email because a password reset has been requested for "
+"your account."
 msgstr ""
 
 msgid ""

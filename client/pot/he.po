@@ -17,7 +17,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-06-07 10:00+0000\n"
+"PO-Revision-Date: 2018-07-15 20:39+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Hebrew (http://www.transifex.com/otf/globaleaks/language/he/)\n"
 "MIME-Version: 1.0\n"
@@ -658,8 +658,14 @@ msgstr ""
 msgid "Surname"
 msgstr ""
 
-msgid "Do not create the admin user"
-msgstr ""
+msgid "New"
+msgstr "חדש"
+
+msgid "Open"
+msgstr "פתח"
+
+msgid "Closed"
+msgstr "סגור"
 
 msgid "Select the context of your submission:"
 msgstr ""
@@ -696,8 +702,8 @@ msgstr "שבת שליחות"
 msgid "Enable insecure configuration without PGP encryption"
 msgstr "אפשר תצורה חסרת ביטחון ללא הצפנת PGP"
 
-msgid "Danger"
-msgstr "סכנה"
+msgid "Warning"
+msgstr "Warning"
 
 msgid ""
 "By enabling this option, the system will be storing the submitted files "
@@ -709,11 +715,6 @@ msgstr "זה קורה בכל פעם שההצפנה אינה זמינה."
 
 msgid "Disable messages that warn of missing encryption"
 msgstr ""
-
-msgid ""
-"This setting affects the security of the users and must not be used in "
-"production."
-msgstr "הגדרה זו משפיעה על ביטחון המשתמשים ואסור לשמש בייצור."
 
 msgid "Allow other websites to include the platform inside iframes"
 msgstr "אפשר אתרים אחרים כדי לכלול את הפלטפורמה בתוך iframes"
@@ -784,6 +785,16 @@ msgstr ""
 msgid "Tweak this setting only if you know what you are doing."
 msgstr ""
 
+msgid "Password change interval"
+msgstr ""
+
+msgid ""
+"For security reasons, password changes are required at regular intervals."
+msgstr ""
+
+msgid "Set the value to 0 to disable this feature."
+msgstr ""
+
 msgid "Landing page"
 msgstr "דף נחיתה"
 
@@ -843,16 +854,25 @@ msgstr ""
 msgid "Example:"
 msgstr "דוגמא:"
 
-msgid "Allow users to reset their password"
+msgid "Each entry must be separated with a comma."
 msgstr ""
 
-msgid "Warning"
-msgstr "Warning"
+msgid "Allow users to reset their passwords"
+msgstr ""
 
 msgid ""
-"Allowing users to reset their password may reduce the security of the "
+"Allowing users to reset their passwords may reduce the security of the "
 "platform due to security becoming dependent on the security of user's email "
 "accounts."
+msgstr ""
+
+msgid "Enable users to upload their PGP keys"
+msgstr ""
+
+msgid "Enable multi-site login"
+msgstr ""
+
+msgid "Enable simplified login"
 msgstr ""
 
 msgid "Enable experimental features"
@@ -875,6 +895,27 @@ msgstr "כתובת ארוכה"
 
 msgid "Add"
 msgstr "הוסף"
+
+msgid "Substatuses"
+msgstr ""
+
+msgid "Label"
+msgstr "מדבקה"
+
+msgid "This field is mandatory"
+msgstr "שדה חובה"
+
+msgid "Edit"
+msgstr "עריכה"
+
+msgid "Cancel"
+msgstr "בטל"
+
+msgid "Submission statuses"
+msgstr ""
+
+msgid "Closing statuses"
+msgstr ""
 
 msgid "Logo"
 msgstr "הסמליל של"
@@ -942,20 +983,17 @@ msgstr "הקשרים"
 msgid "Name"
 msgstr "שם"
 
-msgid "Edit"
-msgstr "עריכה"
-
-msgid "Cancel"
-msgstr "בטל"
-
-msgid "This field is mandatory"
-msgstr "שדה חובה"
-
 msgid "Questionnaire"
 msgstr "שְׁאֵלוֹן"
 
 msgid "Recipients"
 msgstr "מקבלים"
+
+msgid "Submission expiration"
+msgstr ""
+
+msgid "days"
+msgstr ""
 
 msgid "Allow selection of this context through the context selector."
 msgstr "אפשר בחירה של בהקשר זה דרך בהקשר הבורר."
@@ -1003,21 +1041,6 @@ msgstr "הצג את פרטי הנמען בדף הסיווג של הגשת"
 
 msgid "Let recipients upload files to whistleblowers"
 msgstr ""
-
-msgid "Disabled"
-msgstr "כבוי"
-
-msgid "Enabled"
-msgstr "מופעל"
-
-msgid "Submission expiration, in days"
-msgstr "תפוגת הגשה, בימים"
-
-msgid ""
-"For security reasons, as a matter of data retention policy, the platform "
-"automatically deletes submissions and their data after a certain amount of "
-"time."
-msgstr "מטעמי אבטחה, כעניין של מדיניות שמירת נתונים, הפלטפורמה מוחקת אוטומטית הגשות ונתוניהם לאחר פרק זמן מסוים."
 
 msgid "Text shown on top of the interface for selecting recipients"
 msgstr "טקסט המופיע על גבי הממשק לבחירת מקבלים"
@@ -1096,6 +1119,12 @@ msgstr "יציאה שרת SMTP"
 
 msgid "Transport Security"
 msgstr "אבטחת תחבורה"
+
+msgid "Require authentication"
+msgstr ""
+
+msgid "Disabled"
+msgstr "כבוי"
 
 msgid "When the option is re-enabled the spooled emails will be sent out."
 msgstr "כאשר האפשרות יופעל מחדש המיילים הנגללים יישלחו."
@@ -1248,6 +1277,9 @@ msgstr ""
 msgid "The connection to the configured domain failed."
 msgstr ""
 
+msgid "Enabled"
+msgstr "מופעל"
+
 msgid "Running"
 msgstr "מריץ"
 
@@ -1259,6 +1291,9 @@ msgstr ""
 
 msgid "System message:"
 msgstr ""
+
+msgid "Danger"
+msgstr "סכנה"
 
 msgid ""
 "Allowing whistleblowers to connect over HTTPS preserves their privacy but "
@@ -1327,9 +1362,6 @@ msgstr "רמה מעוררת"
 msgid "Events"
 msgstr "אירועים"
 
-msgid "Label"
-msgstr "מדבקה"
-
 msgid "Type"
 msgstr "סוג"
 
@@ -1384,11 +1416,8 @@ msgstr "רמז לראות על הכפתור להוספת תשובה נוספת"
 msgid "Phone number"
 msgstr "מספר טלפון"
 
-msgid "Clause"
-msgstr "סעיף"
-
-msgid "Agreement Text"
-msgstr "טקסט ההסכם"
+msgid "Checkbox label"
+msgstr ""
 
 msgid "Layout orientation"
 msgstr "אוריינטציה פריסה"
@@ -1396,16 +1425,13 @@ msgstr "אוריינטציה פריסה"
 msgid "Subject answer visibility to custodian authorization"
 msgstr "נראות תשובה בכפופות אישור אפוטרופוס"
 
+msgid "Text shown upon negative answer"
+msgstr ""
+
 msgid "Prompt confirmation upon negative answer"
 msgstr "אישור שורה על תשובה שלילית"
 
-msgid "Title of the confirmation question upon negative answer"
-msgstr "כותרת של שאלת האישור על תשובה שלילית"
-
-msgid "Body of the confirmation question upon negative answer"
-msgstr "גוף של שאלת האישור על תשובה שלילית"
-
-msgid "Text of the final statement upon negative answer"
+msgid "Text shown upon confirmation"
 msgstr ""
 
 msgid "Options"
@@ -1419,6 +1445,9 @@ msgstr "להוסיף שאלה חדשה"
 
 msgid "Add question from template"
 msgstr "הוסף שאלה מתבנית"
+
+msgid "Duplicate"
+msgstr ""
 
 msgid "Steps"
 msgstr ""
@@ -1452,6 +1481,9 @@ msgstr "לאפשר לנמען להעניק הרשאות שחושפים את עו
 msgid "General settings"
 msgstr "הגדרות כלליות"
 
+msgid "Case management"
+msgstr ""
+
 msgid "Network settings"
 msgstr "הגדרות רשת"
 
@@ -1461,7 +1493,16 @@ msgstr ""
 msgid "Allow users to sign up"
 msgstr ""
 
-msgid "Enable footer customization"
+msgid "Signup mode:"
+msgstr ""
+
+msgid "Record IP address and user agent of registered users"
+msgstr ""
+
+msgid "Do not create the admin user"
+msgstr ""
+
+msgid "Enable terms of service"
 msgstr ""
 
 msgid "Sites"
@@ -1479,7 +1520,10 @@ msgstr ""
 msgid "The system forces users to change the password at first login."
 msgstr "המערכת מכריחה למשתמשים לשנות את הסיסמה בכניסה ראשונה."
 
-msgid "New Password"
+msgid "Reset password"
+msgstr ""
+
+msgid "New password"
 msgstr "סיסמא חדשה"
 
 msgid ""
@@ -1501,6 +1545,12 @@ msgstr "הסר את מפתח PGP"
 
 msgid "Set up encryption by providing a PGP public key"
 msgstr "הגדרת הצפנה על ידי מתן מפתח ציבורי PGP"
+
+msgid "User has administrative access to the following features:"
+msgstr ""
+
+msgid "main"
+msgstr ""
 
 msgid "Request date"
 msgstr "תאריך בקשה"
@@ -1552,14 +1602,20 @@ msgstr "אנא לתמוך בהרמס דרך דף התרומה שלהם."
 msgid "Forgot password?"
 msgstr ""
 
+msgid "Authentication failed"
+msgstr "אימות נכשלה"
+
+msgid "Site"
+msgstr "אתר"
+
+msgid "Back"
+msgstr "חזור"
+
 msgid "Please select your account:"
 msgstr "אנא בחר את החשבון"
 
 msgid "Now type your password, then click 'Log in':"
 msgstr "תקליד את סיסמתך ולחץ \"התחבר\""
-
-msgid "Authentication failed"
-msgstr "אימות נכשלה"
 
 msgid "Are you sure?"
 msgstr "האם אתה בטוח?"
@@ -1649,6 +1705,9 @@ msgstr "פרטים של מפתח PGP:"
 
 msgid "Fingerprint"
 msgstr "טביעת אצבע"
+
+msgid "Enter a name for the copy"
+msgstr ""
 
 msgid "Add file"
 msgstr "הוסף קובץ"
@@ -1761,10 +1820,16 @@ msgstr "צעד"
 msgid "Recipient list"
 msgstr "רשימת נמענים"
 
+msgid "Submission status:"
+msgstr ""
+
 msgid "Attached files for the whistleblower"
 msgstr ""
 
 msgid "Upload a file:"
+msgstr ""
+
+msgid "Site settings"
 msgstr ""
 
 msgid "Logout"
@@ -1811,6 +1876,9 @@ msgstr "סיסמא נוכחית"
 msgid "Old password confirmation required"
 msgstr "אישור סיסמא הישנה הנדרש"
 
+msgid "New Password"
+msgstr "סיסמא חדשה"
+
 msgid "The new password must be different from the current one."
 msgstr ""
 
@@ -1844,6 +1912,12 @@ msgid ""
 "A useful way to hide your key code is to write it down like a credit card "
 "number, i.e. by also including an expiration date."
 msgstr "דרך שימושית להסתיר את קוד המפתח שלך, היא לכתוב אותו כמו מספר כרטיס אשראי כלומר כוללת תאריך תפוגה."
+
+msgid "Welcome!"
+msgstr ""
+
+msgid "User preferences"
+msgstr "הגדרות משתמש"
 
 msgid ""
 "You have not set up your encryption key, so the files will not be encrypted "
@@ -1932,6 +2006,12 @@ msgstr ""
 msgid "Check your inbox to activate your account."
 msgstr ""
 
+msgid "This field is mandatory."
+msgstr ""
+
+msgid "The answer is too short."
+msgstr ""
+
 msgid "The specified input is not valid:"
 msgstr ""
 
@@ -1939,12 +2019,6 @@ msgid "please enter a valid email address."
 msgstr ""
 
 msgid "please enter numbers only."
-msgstr ""
-
-msgid "This field is mandatory."
-msgstr ""
-
-msgid "The answer is too short."
 msgstr ""
 
 msgid "Recipient selection"
@@ -1977,9 +2051,6 @@ msgid "Waiting for the file(s) to finish uploading."
 msgstr ""
 
 msgid "The following steps have errors:"
-msgstr ""
-
-msgid "Welcome!"
 msgstr ""
 
 msgid ""
@@ -2271,6 +2342,16 @@ msgid "Expiration alert for HTTPS certificate"
 msgstr ""
 
 msgid ""
+"The automatic HTTPS certificate renewal scheduled for today just failed."
+msgstr ""
+
+msgid "The system will keep trying."
+msgstr ""
+
+msgid "Failed HTTPS certificate renewal"
+msgstr ""
+
+msgid ""
 "This is an email to notify you that a custodian has authorized you to access"
 " to the whistleblowing identity for the submission {TipNum}."
 msgstr ""
@@ -2312,7 +2393,9 @@ msgstr "זוהי הודעת דוא\"ל כדי להודיע ​​לך על הו�
 msgid "New message"
 msgstr "הודעה חדשה"
 
-msgid "You're receiving this email because you requested a password reset."
+msgid ""
+"You're receiving this email because a password reset has been requested for "
+"your account."
 msgstr ""
 
 msgid ""

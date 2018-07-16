@@ -18,7 +18,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-06-07 10:00+0000\n"
+"PO-Revision-Date: 2018-07-15 20:39+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Catalan (http://www.transifex.com/otf/globaleaks/language/ca/)\n"
 "MIME-Version: 1.0\n"
@@ -659,8 +659,14 @@ msgstr "Desactivat per defecte"
 msgid "Surname"
 msgstr "Cognom"
 
-msgid "Do not create the admin user"
-msgstr "No creeu l'usuari admin"
+msgid "New"
+msgstr "Nova"
+
+msgid "Open"
+msgstr "Obrir"
+
+msgid "Closed"
+msgstr "Tancat"
 
 msgid "Select the context of your submission:"
 msgstr "Selecciona el context del teu enviament:"
@@ -697,8 +703,8 @@ msgstr "Deshabilita els enviaments"
 msgid "Enable insecure configuration without PGP encryption"
 msgstr "Habilita configuració insegura sense xifrat PGP"
 
-msgid "Danger"
-msgstr "Perill"
+msgid "Warning"
+msgstr "Alerta"
 
 msgid ""
 "By enabling this option, the system will be storing the submitted files "
@@ -710,11 +716,6 @@ msgstr "Això passa en cas que el xifrat no estigui disponible."
 
 msgid "Disable messages that warn of missing encryption"
 msgstr "Deshabilita els missatges que adverteixen de la manca de xifratge"
-
-msgid ""
-"This setting affects the security of the users and must not be used in "
-"production."
-msgstr "Aquesta configuració afecta la seguretat dels usuaris i no es pot utilitzar en la fase de producció."
 
 msgid "Allow other websites to include the platform inside iframes"
 msgstr "Permet que altres webs incloguin la plataforma a l'interior d'Iframes"
@@ -785,6 +786,16 @@ msgstr "Per raons de seguretat l'accés del informador està subjecte a caducita
 msgid "Tweak this setting only if you know what you are doing."
 msgstr "Ajustar aquesta configuració només si sap el que està fent."
 
+msgid "Password change interval"
+msgstr ""
+
+msgid ""
+"For security reasons, password changes are required at regular intervals."
+msgstr ""
+
+msgid "Set the value to 0 to disable this feature."
+msgstr ""
+
 msgid "Landing page"
 msgstr "Pàgina d'aterratge"
 
@@ -844,16 +855,25 @@ msgstr "S'admeten tant adreces IP concretes com intervals de CIDR ."
 msgid "Example:"
 msgstr "Exemple:"
 
-msgid "Allow users to reset their password"
+msgid "Each entry must be separated with a comma."
 msgstr ""
 
-msgid "Warning"
-msgstr "Alerta"
+msgid "Allow users to reset their passwords"
+msgstr ""
 
 msgid ""
-"Allowing users to reset their password may reduce the security of the "
+"Allowing users to reset their passwords may reduce the security of the "
 "platform due to security becoming dependent on the security of user's email "
 "accounts."
+msgstr ""
+
+msgid "Enable users to upload their PGP keys"
+msgstr ""
+
+msgid "Enable multi-site login"
+msgstr ""
+
+msgid "Enable simplified login"
 msgstr ""
 
 msgid "Enable experimental features"
@@ -876,6 +896,27 @@ msgstr "URL llarga"
 
 msgid "Add"
 msgstr "Afegeix"
+
+msgid "Substatuses"
+msgstr ""
+
+msgid "Label"
+msgstr "Etiqueta"
+
+msgid "This field is mandatory"
+msgstr "Aquest camp és obligatori"
+
+msgid "Edit"
+msgstr "Edita"
+
+msgid "Cancel"
+msgstr "Cancel·la"
+
+msgid "Submission statuses"
+msgstr ""
+
+msgid "Closing statuses"
+msgstr ""
 
 msgid "Logo"
 msgstr "Logotip"
@@ -943,20 +984,17 @@ msgstr "Contextos"
 msgid "Name"
 msgstr "Nom"
 
-msgid "Edit"
-msgstr "Edita"
-
-msgid "Cancel"
-msgstr "Cancel·la"
-
-msgid "This field is mandatory"
-msgstr "Aquest camp és obligatori"
-
 msgid "Questionnaire"
 msgstr "Qüestionari"
 
 msgid "Recipients"
 msgstr "Destinataris"
+
+msgid "Submission expiration"
+msgstr ""
+
+msgid "days"
+msgstr "dies"
 
 msgid "Allow selection of this context through the context selector."
 msgstr "Permet la selecció d'aquest context a través del selector de contextos."
@@ -1004,21 +1042,6 @@ msgstr "Mostra la informació dels destinataris a la pàgina de l'estatus de l'e
 
 msgid "Let recipients upload files to whistleblowers"
 msgstr "Permet als receptors carregar arxius per als informadors"
-
-msgid "Disabled"
-msgstr "Deshabilitat"
-
-msgid "Enabled"
-msgstr "Habilitat"
-
-msgid "Submission expiration, in days"
-msgstr "Caducitat de l'entrega, en dies"
-
-msgid ""
-"For security reasons, as a matter of data retention policy, the platform "
-"automatically deletes submissions and their data after a certain amount of "
-"time."
-msgstr "Per raons de seguretat, i com a política de manteniment de les dades, la plataforma esborra automàticament les entregues i les dades relacionades un cop passi un temps determinat."
 
 msgid "Text shown on top of the interface for selecting recipients"
 msgstr "El text es mostra a sobre de la interfície per seleccionar els destinataris"
@@ -1097,6 +1120,12 @@ msgstr "Port del servidor SMTP"
 
 msgid "Transport Security"
 msgstr "Seguretat del transport"
+
+msgid "Require authentication"
+msgstr ""
+
+msgid "Disabled"
+msgstr "Deshabilitat"
 
 msgid "When the option is re-enabled the spooled emails will be sent out."
 msgstr "Els correus no enviats podran ser tranferits quan la opció sigui rehabilitada"
@@ -1249,6 +1278,9 @@ msgstr "La plataforma admet la configuració d'HTTPS a través d'aquesta interf�
 msgid "The connection to the configured domain failed."
 msgstr "Ha fallat la connexió al domini configurat."
 
+msgid "Enabled"
+msgstr "Habilitat"
+
 msgid "Running"
 msgstr "S'està executant"
 
@@ -1260,6 +1292,9 @@ msgstr "Renovació automàtica"
 
 msgid "System message:"
 msgstr "MIssatge del sistema:"
+
+msgid "Danger"
+msgstr "Perill"
 
 msgid ""
 "Allowing whistleblowers to connect over HTTPS preserves their privacy but "
@@ -1328,9 +1363,6 @@ msgstr "Alarma"
 msgid "Events"
 msgstr "Esdeveniments"
 
-msgid "Label"
-msgstr "Etiqueta"
-
 msgid "Type"
 msgstr "Tipus"
 
@@ -1385,11 +1417,8 @@ msgstr "Toc que es mostra al botó per afegir una resposta més"
 msgid "Phone number"
 msgstr "Número de telèfon"
 
-msgid "Clause"
-msgstr "Clàusula"
-
-msgid "Agreement Text"
-msgstr "Text de l'acord"
+msgid "Checkbox label"
+msgstr ""
 
 msgid "Layout orientation"
 msgstr "Orientació de la maqueta"
@@ -1397,17 +1426,14 @@ msgstr "Orientació de la maqueta"
 msgid "Subject answer visibility to custodian authorization"
 msgstr "Visibilitat de la resposta subjecta a l'autorització del guardià"
 
+msgid "Text shown upon negative answer"
+msgstr ""
+
 msgid "Prompt confirmation upon negative answer"
 msgstr "Mostra la confirmació si hi ha una resposta negativa"
 
-msgid "Title of the confirmation question upon negative answer"
-msgstr "Títol de la pregunta de confirmació davant una resposta negativa"
-
-msgid "Body of the confirmation question upon negative answer"
-msgstr "Text de la pregunta de confirmació davant una resposta negativa"
-
-msgid "Text of the final statement upon negative answer"
-msgstr "Text de la declaració final sobre la resposta negativa"
+msgid "Text shown upon confirmation"
+msgstr ""
 
 msgid "Options"
 msgstr "Opcions"
@@ -1420,6 +1446,9 @@ msgstr "Afegeix una nova pregunta"
 
 msgid "Add question from template"
 msgstr "Afegeix una pregunta de la plantilla"
+
+msgid "Duplicate"
+msgstr ""
 
 msgid "Steps"
 msgstr "Pasos"
@@ -1453,6 +1482,9 @@ msgstr "Permet al destinatari concedir permisos als informadors sobre determinat
 msgid "General settings"
 msgstr "Configuració general"
 
+msgid "Case management"
+msgstr ""
+
 msgid "Network settings"
 msgstr "Configuració de xarxa"
 
@@ -1462,8 +1494,17 @@ msgstr "Dominio raíz usado para sitios secundarios"
 msgid "Allow users to sign up"
 msgstr "Permitir registrarse a los usuarios"
 
-msgid "Enable footer customization"
-msgstr "Activa la personalització del peu de pàgina"
+msgid "Signup mode:"
+msgstr ""
+
+msgid "Record IP address and user agent of registered users"
+msgstr ""
+
+msgid "Do not create the admin user"
+msgstr "No creeu l'usuari admin"
+
+msgid "Enable terms of service"
+msgstr ""
 
 msgid "Sites"
 msgstr "Sitios"
@@ -1480,8 +1521,11 @@ msgstr "La contrasenya d'usuari per defecte és:"
 msgid "The system forces users to change the password at first login."
 msgstr "El sistema obliga a canviar la contrasenya el primer cop que s'inicia sessió."
 
-msgid "New Password"
-msgstr "Nova contrassenya"
+msgid "Reset password"
+msgstr ""
+
+msgid "New password"
+msgstr "Contrassenya nova"
 
 msgid ""
 "The chosen password is too weak. Make it more secure by adding special "
@@ -1502,6 +1546,12 @@ msgstr "Elimina la clau PGP"
 
 msgid "Set up encryption by providing a PGP public key"
 msgstr "Estableix l'encriptació oferint una clau pública PGP"
+
+msgid "User has administrative access to the following features:"
+msgstr ""
+
+msgid "main"
+msgstr ""
 
 msgid "Request date"
 msgstr "Data de sol·licitud"
@@ -1553,14 +1603,20 @@ msgstr "Si us plau, dóna suport a Hermes mitjançant la seva pàgina de donacio
 msgid "Forgot password?"
 msgstr ""
 
+msgid "Authentication failed"
+msgstr "Autentificació fallida"
+
+msgid "Site"
+msgstr "Lloc"
+
+msgid "Back"
+msgstr "Enrera"
+
 msgid "Please select your account:"
 msgstr "Si us plau, selecciona el teu compte:"
 
 msgid "Now type your password, then click 'Log in':"
 msgstr "Ara escriu la teva contrasenya, després clica \"Inicia sessió\":"
-
-msgid "Authentication failed"
-msgstr "Autentificació fallida"
 
 msgid "Are you sure?"
 msgstr "N'estàs segur?"
@@ -1650,6 +1706,9 @@ msgstr "Detalls de la clau PGP:"
 
 msgid "Fingerprint"
 msgstr "empremta de validació de clau"
+
+msgid "Enter a name for the copy"
+msgstr ""
 
 msgid "Add file"
 msgstr "Afegeix un arxiu"
@@ -1762,11 +1821,17 @@ msgstr "Pas"
 msgid "Recipient list"
 msgstr "Llista del destinatari"
 
+msgid "Submission status:"
+msgstr ""
+
 msgid "Attached files for the whistleblower"
 msgstr "Els arxius adjunts per al informador"
 
 msgid "Upload a file:"
 msgstr "Pujar un fitxer:"
+
+msgid "Site settings"
+msgstr ""
 
 msgid "Logout"
 msgstr "Tanca sessió"
@@ -1812,6 +1877,9 @@ msgstr "Contrassenya actual"
 msgid "Old password confirmation required"
 msgstr "Es requereix confirmació de l'anterior contrassenya"
 
+msgid "New Password"
+msgstr "Nova contrassenya"
+
 msgid "The new password must be different from the current one."
 msgstr "La nova contrasenya ha de ser diferent de l'actual."
 
@@ -1845,6 +1913,12 @@ msgid ""
 "A useful way to hide your key code is to write it down like a credit card "
 "number, i.e. by also including an expiration date."
 msgstr "Un manera útil de recordar el codi és escriure'l com si fos el número d'una targeta de crèdit. A més, també pots incloure la data de caducitat."
+
+msgid "Welcome!"
+msgstr "Welcome!"
+
+msgid "User preferences"
+msgstr "Paràmetres d'usuari"
 
 msgid ""
 "You have not set up your encryption key, so the files will not be encrypted "
@@ -1933,6 +2007,12 @@ msgstr "¡Su plataforma para informantes casi está lista!"
 msgid "Check your inbox to activate your account."
 msgstr "Check your inbox to activate your account."
 
+msgid "This field is mandatory."
+msgstr "Aquest camp és obligatori."
+
+msgid "The answer is too short."
+msgstr "La respuesta es demasiado corta."
+
 msgid "The specified input is not valid:"
 msgstr "La informació que has introduït no és vàlida:"
 
@@ -1941,12 +2021,6 @@ msgstr "si us plau, introdueix una adreça electrònica correcta."
 
 msgid "please enter numbers only."
 msgstr "si us plau, introdueix només nombres."
-
-msgid "This field is mandatory."
-msgstr "Aquest camp és obligatori."
-
-msgid "The answer is too short."
-msgstr "La respuesta es demasiado corta."
 
 msgid "Recipient selection"
 msgstr "Selecciona el destinatari"
@@ -1979,9 +2053,6 @@ msgstr "Esperant que la pujada d'arxiu(s) es completi"
 
 msgid "The following steps have errors:"
 msgstr "Els passos següents tenen errors:"
-
-msgid "Welcome!"
-msgstr "Welcome!"
 
 msgid ""
 "The following step-by-step procedure will guide you through creating your "
@@ -2272,6 +2343,16 @@ msgid "Expiration alert for HTTPS certificate"
 msgstr "Alerta de caducitat del certificat HTTPS"
 
 msgid ""
+"The automatic HTTPS certificate renewal scheduled for today just failed."
+msgstr ""
+
+msgid "The system will keep trying."
+msgstr ""
+
+msgid "Failed HTTPS certificate renewal"
+msgstr ""
+
+msgid ""
 "This is an email to notify you that a custodian has authorized you to access"
 " to the whistleblowing identity for the submission {TipNum}."
 msgstr "Amb aquest missatge de correu electrònic et volem notificar que el guardià us ha autoritzat a accedir a la identitat de l'informador de l'entrega {TipNum}."
@@ -2313,7 +2394,9 @@ msgstr "Amb aquest missatge de correu electrònic et volem notificar que hi ha u
 msgid "New message"
 msgstr "Nous missatge"
 
-msgid "You're receiving this email because you requested a password reset."
+msgid ""
+"You're receiving this email because a password reset has been requested for "
+"your account."
 msgstr ""
 
 msgid ""

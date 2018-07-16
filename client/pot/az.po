@@ -9,7 +9,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-06-07 10:00+0000\n"
+"PO-Revision-Date: 2018-07-15 20:39+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Azerbaijani (http://www.transifex.com/otf/globaleaks/language/az/)\n"
 "MIME-Version: 1.0\n"
@@ -650,7 +650,13 @@ msgstr ""
 msgid "Surname"
 msgstr ""
 
-msgid "Do not create the admin user"
+msgid "New"
+msgstr "Yeni"
+
+msgid "Open"
+msgstr "Açın"
+
+msgid "Closed"
 msgstr ""
 
 msgid "Select the context of your submission:"
@@ -688,8 +694,8 @@ msgstr "Təqdimatları sıradan çıxart"
 msgid "Enable insecure configuration without PGP encryption"
 msgstr "Təhlükəli quraşdırmanı PGP şifrələməsiz aktivləşdir"
 
-msgid "Danger"
-msgstr "Təhlükə"
+msgid "Warning"
+msgstr "Xəbərdarlıq"
 
 msgid ""
 "By enabling this option, the system will be storing the submitted files "
@@ -701,11 +707,6 @@ msgstr "Şifrələmə mümkün olmadıqda bu baş verir:"
 
 msgid "Disable messages that warn of missing encryption"
 msgstr "Şifrələmə çatışmazlığı barədə xəbərdarlıq mesajlarını sıradan çıxart"
-
-msgid ""
-"This setting affects the security of the users and must not be used in "
-"production."
-msgstr "Bu tənzimləmə, istifadəçilərin təhlükəsizliyinə təsir edir və istehsal prosesində istifadə edilməməlidir. "
 
 msgid "Allow other websites to include the platform inside iframes"
 msgstr "Digər saytlara platformanı sətir içi çərçivələrə daxil etməsinə icazə verin."
@@ -776,6 +777,16 @@ msgstr "Təhlükəsizlik səbəblərinə görə informasiya ötürənin mövzuya
 msgid "Tweak this setting only if you know what you are doing."
 msgstr "Bu tənzimləməni, nə etdiyinizi bildiyiniz halda istifadə edin. "
 
+msgid "Password change interval"
+msgstr ""
+
+msgid ""
+"For security reasons, password changes are required at regular intervals."
+msgstr ""
+
+msgid "Set the value to 0 to disable this feature."
+msgstr ""
+
 msgid "Landing page"
 msgstr "Daxil olma səhifəsi"
 
@@ -835,16 +846,25 @@ msgstr ""
 msgid "Example:"
 msgstr "Məsələn:"
 
-msgid "Allow users to reset their password"
+msgid "Each entry must be separated with a comma."
 msgstr ""
 
-msgid "Warning"
-msgstr "Xəbərdarlıq"
+msgid "Allow users to reset their passwords"
+msgstr ""
 
 msgid ""
-"Allowing users to reset their password may reduce the security of the "
+"Allowing users to reset their passwords may reduce the security of the "
 "platform due to security becoming dependent on the security of user's email "
 "accounts."
+msgstr ""
+
+msgid "Enable users to upload their PGP keys"
+msgstr ""
+
+msgid "Enable multi-site login"
+msgstr ""
+
+msgid "Enable simplified login"
 msgstr ""
 
 msgid "Enable experimental features"
@@ -867,6 +887,27 @@ msgstr "Uzun URL"
 
 msgid "Add"
 msgstr "Əlavə et"
+
+msgid "Substatuses"
+msgstr ""
+
+msgid "Label"
+msgstr "Başlıq"
+
+msgid "This field is mandatory"
+msgstr "Məcburi sahədir"
+
+msgid "Edit"
+msgstr "Düzəlt"
+
+msgid "Cancel"
+msgstr "Ləğv et"
+
+msgid "Submission statuses"
+msgstr ""
+
+msgid "Closing statuses"
+msgstr ""
 
 msgid "Logo"
 msgstr "Loqo"
@@ -934,20 +975,17 @@ msgstr "Kontekst"
 msgid "Name"
 msgstr "Ad"
 
-msgid "Edit"
-msgstr "Düzəlt"
-
-msgid "Cancel"
-msgstr "Ləğv et"
-
-msgid "This field is mandatory"
-msgstr "Məcburi sahədir"
-
 msgid "Questionnaire"
 msgstr "Sorğu"
 
 msgid "Recipients"
 msgstr "Qəbul edicilər"
+
+msgid "Submission expiration"
+msgstr ""
+
+msgid "days"
+msgstr ""
 
 msgid "Allow selection of this context through the context selector."
 msgstr "Bu kontekstin, kontekst seçicisi vasitəsilə seçilməsinə icazə verin."
@@ -995,21 +1033,6 @@ msgstr "Təqdimat səhifəsində qəbul edicilərin məlumatlarını göstərin"
 
 msgid "Let recipients upload files to whistleblowers"
 msgstr "Qəbul edicilərə, informasiya ötürənlər üçün fayllar yükləməsinə icazə verin"
-
-msgid "Disabled"
-msgstr "Sönlüdür"
-
-msgid "Enabled"
-msgstr "Aktivdir"
-
-msgid "Submission expiration, in days"
-msgstr "təqdimat müddəti, gün"
-
-msgid ""
-"For security reasons, as a matter of data retention policy, the platform "
-"automatically deletes submissions and their data after a certain amount of "
-"time."
-msgstr "Təhlükəsizlik səbəbindən, məlumatların saxlanılması qaydası uyğun olaraq platforma  təqdimatların və məlumatların müəyyən müddətdən sonra silinməsini təmin edir."
 
 msgid "Text shown on top of the interface for selecting recipients"
 msgstr "Qəbul ediciləri seçmək üçün ekran üzərində göstərilən mətn"
@@ -1088,6 +1111,12 @@ msgstr "SMTP server portu"
 
 msgid "Transport Security"
 msgstr "Köçürmə təhlükəsizliyi"
+
+msgid "Require authentication"
+msgstr ""
+
+msgid "Disabled"
+msgstr "Sönlüdür"
 
 msgid "When the option is re-enabled the spooled emails will be sent out."
 msgstr "Seçim  aktivləşdirilən zaman toplanılan e-maillər göndəriləcək"
@@ -1240,6 +1269,9 @@ msgstr "Platforma bu ekran vasitəsilə HTTPS quraşdırmanı dəstəkləyir."
 msgid "The connection to the configured domain failed."
 msgstr "Quraşdırılmış domenə keçid uğursuz oldu."
 
+msgid "Enabled"
+msgstr "Aktivdir"
+
 msgid "Running"
 msgstr "İşləyir"
 
@@ -1251,6 +1283,9 @@ msgstr "Avto yeniləmə"
 
 msgid "System message:"
 msgstr "Sistem mesajı:"
+
+msgid "Danger"
+msgstr "Təhlükə"
 
 msgid ""
 "Allowing whistleblowers to connect over HTTPS preserves their privacy but "
@@ -1319,9 +1354,6 @@ msgstr "Siqnal səviyyəsi"
 msgid "Events"
 msgstr "Tədbirlər"
 
-msgid "Label"
-msgstr "Başlıq"
-
 msgid "Type"
 msgstr "Tip"
 
@@ -1376,11 +1408,8 @@ msgstr "Əlavə cavab üçün düymə üzərində göstərilən işarə"
 msgid "Phone number"
 msgstr "Telefon nömrə"
 
-msgid "Clause"
-msgstr "Qeyd"
-
-msgid "Agreement Text"
-msgstr "Razılaşma mətni"
+msgid "Checkbox label"
+msgstr ""
 
 msgid "Layout orientation"
 msgstr "Yerləşmə istiqaməti"
@@ -1388,16 +1417,13 @@ msgstr "Yerləşmə istiqaməti"
 msgid "Subject answer visibility to custodian authorization"
 msgstr "Mövzu mühafizəçiyə cavab olaraq görünür"
 
+msgid "Text shown upon negative answer"
+msgstr ""
+
 msgid "Prompt confirmation upon negative answer"
 msgstr "Mənfi cavab üzərindən tez təsdiqlənmə"
 
-msgid "Title of the confirmation question upon negative answer"
-msgstr "Mənfi cavab üzərindən təsdiqləyici sualın adı"
-
-msgid "Body of the confirmation question upon negative answer"
-msgstr "Mənfi cavab üzərindən təsdiqləyici sualın əsas hissəsi"
-
-msgid "Text of the final statement upon negative answer"
+msgid "Text shown upon confirmation"
 msgstr ""
 
 msgid "Options"
@@ -1411,6 +1437,9 @@ msgstr "Yeni sual əlavə et"
 
 msgid "Add question from template"
 msgstr "Şablondan sual əlavə et"
+
+msgid "Duplicate"
+msgstr ""
 
 msgid "Steps"
 msgstr "Mərhələlər"
@@ -1444,6 +1473,9 @@ msgstr "Qəbul ediciyə, informasiya ötürənlərin müəyyən təsdiqlərə ç
 msgid "General settings"
 msgstr "Ümumi seçimlər"
 
+msgid "Case management"
+msgstr ""
+
 msgid "Network settings"
 msgstr "Şəbəkə tənzimləmələri"
 
@@ -1453,7 +1485,16 @@ msgstr ""
 msgid "Allow users to sign up"
 msgstr ""
 
-msgid "Enable footer customization"
+msgid "Signup mode:"
+msgstr ""
+
+msgid "Record IP address and user agent of registered users"
+msgstr ""
+
+msgid "Do not create the admin user"
+msgstr ""
+
+msgid "Enable terms of service"
 msgstr ""
 
 msgid "Sites"
@@ -1471,8 +1512,11 @@ msgstr "Standart şifrə:"
 msgid "The system forces users to change the password at first login."
 msgstr "Sistem istifadəçiləri ilk girişdə parol dəyişdirməyə məcbur edir."
 
-msgid "New Password"
-msgstr "Yeni Şifrə"
+msgid "Reset password"
+msgstr "Parolu yenilə"
+
+msgid "New password"
+msgstr "Yeni şifrə"
 
 msgid ""
 "The chosen password is too weak. Make it more secure by adding special "
@@ -1493,6 +1537,12 @@ msgstr "PGP açarını sil"
 
 msgid "Set up encryption by providing a PGP public key"
 msgstr "Bir PGP ictimai açarı istifadə edərək şifrələmə yaradın"
+
+msgid "User has administrative access to the following features:"
+msgstr ""
+
+msgid "main"
+msgstr ""
 
 msgid "Request date"
 msgstr "Tələb olunan tarix"
@@ -1544,14 +1594,20 @@ msgstr "Xahiş edirik ki, Hermes-i onların ianə səhifələri vasitəsi ilə d
 msgid "Forgot password?"
 msgstr ""
 
+msgid "Authentication failed"
+msgstr "Kimlik təsdiqləməsi uğursuzdur"
+
+msgid "Site"
+msgstr "Sayt"
+
+msgid "Back"
+msgstr "Geri"
+
 msgid "Please select your account:"
 msgstr "Xahiş edirik  hesabınızı seçəsiniz. "
 
 msgid "Now type your password, then click 'Log in':"
 msgstr "Şifrənizi daxil edin, daha sonra \"Giriş\" düyməsinə basın"
-
-msgid "Authentication failed"
-msgstr "Kimlik təsdiqləməsi uğursuzdur"
 
 msgid "Are you sure?"
 msgstr "Əminsiniz mi?"
@@ -1641,6 +1697,9 @@ msgstr "PGP açarının detalları"
 
 msgid "Fingerprint"
 msgstr "Barmaq izi"
+
+msgid "Enter a name for the copy"
+msgstr ""
 
 msgid "Add file"
 msgstr "Fayl əlavə et"
@@ -1753,11 +1812,17 @@ msgstr "Addım"
 msgid "Recipient list"
 msgstr "Qəbul edici siyahısı"
 
+msgid "Submission status:"
+msgstr ""
+
 msgid "Attached files for the whistleblower"
 msgstr "İnformasiya ötürən üçün əlavə edilmiş fayllar"
 
 msgid "Upload a file:"
 msgstr "Yeni fayl yüklə:"
+
+msgid "Site settings"
+msgstr ""
 
 msgid "Logout"
 msgstr "Çıxış"
@@ -1803,6 +1868,9 @@ msgstr "Hazırki Şifrə"
 msgid "Old password confirmation required"
 msgstr "Köhnə şifrənin təsdiqi tələb edilir"
 
+msgid "New Password"
+msgstr "Yeni Şifrə"
+
 msgid "The new password must be different from the current one."
 msgstr "Yeni şifrə cari şifrədən fəqrli olmalıdır."
 
@@ -1836,6 +1904,12 @@ msgid ""
 "A useful way to hide your key code is to write it down like a credit card "
 "number, i.e. by also including an expiration date."
 msgstr "Açar kodunuzu gizlətmək üçün faydalı yollardan biri kredit kartı nömrəsini son istifadə tarixi ilə yazmaqdır."
+
+msgid "Welcome!"
+msgstr ""
+
+msgid "User preferences"
+msgstr ""
 
 msgid ""
 "You have not set up your encryption key, so the files will not be encrypted "
@@ -1924,6 +1998,12 @@ msgstr ""
 msgid "Check your inbox to activate your account."
 msgstr ""
 
+msgid "This field is mandatory."
+msgstr "Məcburi sahədir."
+
+msgid "The answer is too short."
+msgstr "Cavab çox qısadır."
+
 msgid "The specified input is not valid:"
 msgstr "Göstərilən giriş düzgün deyil:"
 
@@ -1932,12 +2012,6 @@ msgstr "Etibarlı  e-mail ünvanı daxil edin."
 
 msgid "please enter numbers only."
 msgstr "xahiş edirik, yalnız rəqəmləri qeyd edin"
-
-msgid "This field is mandatory."
-msgstr "Məcburi sahədir."
-
-msgid "The answer is too short."
-msgstr "Cavab çox qısadır."
 
 msgid "Recipient selection"
 msgstr "Alıcı seçimi"
@@ -1970,9 +2044,6 @@ msgstr "Yükənən faylın (lar) bitməsini gözləyirəm."
 
 msgid "The following steps have errors:"
 msgstr "Aşağıdakı addımlarda səhvlər var:"
-
-msgid "Welcome!"
-msgstr ""
 
 msgid ""
 "The following step-by-step procedure will guide you through creating your "
@@ -2263,6 +2334,16 @@ msgid "Expiration alert for HTTPS certificate"
 msgstr "HTTPS sertifikatı üçün bitmə xəbərdarlığı"
 
 msgid ""
+"The automatic HTTPS certificate renewal scheduled for today just failed."
+msgstr ""
+
+msgid "The system will keep trying."
+msgstr ""
+
+msgid "Failed HTTPS certificate renewal"
+msgstr ""
+
+msgid ""
 "This is an email to notify you that a custodian has authorized you to access"
 " to the whistleblowing identity for the submission {TipNum}."
 msgstr "Bu email sizə təqdimat üçün informasiya ötürənin kimliyinə girməyə icazə verdiyini bildirmək üçün \nmühafizəçi tərəfindən göndərilib {TipNum}."
@@ -2304,7 +2385,9 @@ msgstr "Bu e-poçt, sizi mövcud təqdimatla bağlı gələn yeni mesaj barədə
 msgid "New message"
 msgstr "Yeni mesaj"
 
-msgid "You're receiving this email because you requested a password reset."
+msgid ""
+"You're receiving this email because a password reset has been requested for "
+"your account."
 msgstr ""
 
 msgid ""
