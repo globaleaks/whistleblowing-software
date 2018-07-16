@@ -38,7 +38,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-06-07 10:00+0000\n"
+"PO-Revision-Date: 2018-07-15 20:39+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Arabic (http://www.transifex.com/otf/globaleaks/language/ar/)\n"
 "MIME-Version: 1.0\n"
@@ -679,8 +679,14 @@ msgstr "غير مختار/ة افتراضيا"
 msgid "Surname"
 msgstr "اللقب"
 
-msgid "Do not create the admin user"
-msgstr ""
+msgid "New"
+msgstr "‮جديد"
+
+msgid "Open"
+msgstr "‮فتح"
+
+msgid "Closed"
+msgstr "مغلق"
 
 msgid "Select the context of your submission:"
 msgstr "حدد سياق بلاغك:"
@@ -717,8 +723,8 @@ msgstr "منع البلاغات"
 msgid "Enable insecure configuration without PGP encryption"
 msgstr "السماح بالإعدادات غير الآمنة بدون التشفير بنظام PGP"
 
-msgid "Danger"
-msgstr "خطر"
+msgid "Warning"
+msgstr "تنبيه"
 
 msgid ""
 "By enabling this option, the system will be storing the submitted files "
@@ -730,11 +736,6 @@ msgstr "يحدث هذا عندما لا يتوفر التشفير."
 
 msgid "Disable messages that warn of missing encryption"
 msgstr "الغاء رسائل التحذير التي تظهر حين لا يتوفر التشفير"
-
-msgid ""
-"This setting affects the security of the users and must not be used in "
-"production."
-msgstr "الاعدادات تؤثر على أمن المستخدمين و لا يجب استخدامها في الانتاج."
 
 msgid "Allow other websites to include the platform inside iframes"
 msgstr "السماح للمواقع الأخرى بادماج المنصّة داخل النوافذ المدمجة."
@@ -805,6 +806,16 @@ msgstr "لأسباب أمنية يخضع نفاذ المبلغ لانتهاء ا
 msgid "Tweak this setting only if you know what you are doing."
 msgstr " عدّل هذه الإعدادات فقط إذا كنت تعرف ما تقوم به."
 
+msgid "Password change interval"
+msgstr ""
+
+msgid ""
+"For security reasons, password changes are required at regular intervals."
+msgstr ""
+
+msgid "Set the value to 0 to disable this feature."
+msgstr ""
+
 msgid "Landing page"
 msgstr "صفحة الرسو "
 
@@ -864,16 +875,25 @@ msgstr ""
 msgid "Example:"
 msgstr "مثال"
 
-msgid "Allow users to reset their password"
+msgid "Each entry must be separated with a comma."
 msgstr ""
 
-msgid "Warning"
-msgstr "تنبيه"
+msgid "Allow users to reset their passwords"
+msgstr ""
 
 msgid ""
-"Allowing users to reset their password may reduce the security of the "
+"Allowing users to reset their passwords may reduce the security of the "
 "platform due to security becoming dependent on the security of user's email "
 "accounts."
+msgstr ""
+
+msgid "Enable users to upload their PGP keys"
+msgstr ""
+
+msgid "Enable multi-site login"
+msgstr ""
+
+msgid "Enable simplified login"
 msgstr ""
 
 msgid "Enable experimental features"
@@ -896,6 +916,27 @@ msgstr "URL طويل "
 
 msgid "Add"
 msgstr "أضف"
+
+msgid "Substatuses"
+msgstr ""
+
+msgid "Label"
+msgstr "التسمية"
+
+msgid "This field is mandatory"
+msgstr "هذا الحقل إلزامي"
+
+msgid "Edit"
+msgstr "تحرير"
+
+msgid "Cancel"
+msgstr "إلغاء"
+
+msgid "Submission statuses"
+msgstr ""
+
+msgid "Closing statuses"
+msgstr ""
 
 msgid "Logo"
 msgstr "الشعار "
@@ -963,20 +1004,17 @@ msgstr "سياقات"
 msgid "Name"
 msgstr "اسم"
 
-msgid "Edit"
-msgstr "تحرير"
-
-msgid "Cancel"
-msgstr "إلغاء"
-
-msgid "This field is mandatory"
-msgstr "هذا الحقل إلزامي"
-
 msgid "Questionnaire"
 msgstr "استبيان"
 
 msgid "Recipients"
 msgstr "المتلقّون"
+
+msgid "Submission expiration"
+msgstr ""
+
+msgid "days"
+msgstr "‮أيّام"
 
 msgid "Allow selection of this context through the context selector."
 msgstr "السماح باختيار هذا السياق من خلال محدد السياق."
@@ -1024,21 +1062,6 @@ msgstr "عرض تفاصيل المتلقي على صفحة حالة البلاغ
 
 msgid "Let recipients upload files to whistleblowers"
 msgstr "السماح للمتلقّين برفع ملفات للمبلغين."
-
-msgid "Disabled"
-msgstr "غير مفعل"
-
-msgid "Enabled"
-msgstr "مفعل"
-
-msgid "Submission expiration, in days"
-msgstr "انتهاء مدة التقديم، بالأيام"
-
-msgid ""
-"For security reasons, as a matter of data retention policy, the platform "
-"automatically deletes submissions and their data after a certain amount of "
-"time."
-msgstr "لأسباب أمنية، و احتراما لسياسة الاحتفاظ بالبيانات، تحذف المنصة تلقائيا البلاغات والبيانات الخاصة بها بعد فترة معينة من الزمن."
 
 msgid "Text shown on top of the interface for selecting recipients"
 msgstr "النص الظّاهر في أعلى الواجهة لاختيار المتلقّين"
@@ -1117,6 +1140,12 @@ msgstr "منفذ الخادم SMTP"
 
 msgid "Transport Security"
 msgstr "تأمين التحويل "
+
+msgid "Require authentication"
+msgstr ""
+
+msgid "Disabled"
+msgstr "غير مفعل"
 
 msgid "When the option is re-enabled the spooled emails will be sent out."
 msgstr " سيتم اعادة ارسال الرسائل الإلكترونية غير المرسلة عند إعادة تفعيل هذا الخيار."
@@ -1269,6 +1298,9 @@ msgstr "تمكّن المنصة تهيئة HTTPS من خلال هذه الواج
 msgid "The connection to the configured domain failed."
 msgstr "تعذّر الاتصال بالنطاق الذي تمت تهيئته."
 
+msgid "Enabled"
+msgstr "مفعل"
+
 msgid "Running"
 msgstr "يعمل"
 
@@ -1280,6 +1312,9 @@ msgstr "تجديد تلقائي"
 
 msgid "System message:"
 msgstr "رسالة النظام"
+
+msgid "Danger"
+msgstr "خطر"
 
 msgid ""
 "Allowing whistleblowers to connect over HTTPS preserves their privacy but "
@@ -1348,9 +1383,6 @@ msgstr "مستوى الإنذار"
 msgid "Events"
 msgstr "الأحداث"
 
-msgid "Label"
-msgstr "التسمية"
-
 msgid "Type"
 msgstr "نوع"
 
@@ -1405,11 +1437,8 @@ msgstr " يظهر تلميح على الزر لإضافة إجابة إضافي�
 msgid "Phone number"
 msgstr "رقم الهاتف"
 
-msgid "Clause"
-msgstr "بند"
-
-msgid "Agreement Text"
-msgstr "نص الاتفاق"
+msgid "Checkbox label"
+msgstr ""
 
 msgid "Layout orientation"
 msgstr "توجه التخطيط"
@@ -1417,16 +1446,13 @@ msgstr "توجه التخطيط"
 msgid "Subject answer visibility to custodian authorization"
 msgstr "اظهار الجواب الى السلطات المفوّضة"
 
+msgid "Text shown upon negative answer"
+msgstr ""
+
 msgid "Prompt confirmation upon negative answer"
 msgstr "تأكيد فوري على الإجابة السلبية"
 
-msgid "Title of the confirmation question upon negative answer"
-msgstr "عنوان سؤال التأكيد على الإجابة السلبية"
-
-msgid "Body of the confirmation question upon negative answer"
-msgstr "نص سؤال التأكيد على الإجابة السلبية"
-
-msgid "Text of the final statement upon negative answer"
+msgid "Text shown upon confirmation"
 msgstr ""
 
 msgid "Options"
@@ -1440,6 +1466,9 @@ msgstr "إضافة سؤال جديد"
 
 msgid "Add question from template"
 msgstr "إضافة سؤال من نموذج"
+
+msgid "Duplicate"
+msgstr ""
 
 msgid "Steps"
 msgstr "الخطوات"
@@ -1473,6 +1502,9 @@ msgstr "السماح للمتقبل بمنح تراخيص للمبلغين بش�
 msgid "General settings"
 msgstr "الاعدادات العامة"
 
+msgid "Case management"
+msgstr ""
+
 msgid "Network settings"
 msgstr "اعدادات الشبكة"
 
@@ -1482,7 +1514,16 @@ msgstr "النطاق الرئيسي المستخدم في المواقع الث�
 msgid "Allow users to sign up"
 msgstr "السماح للمستخدمين بالاشتراك"
 
-msgid "Enable footer customization"
+msgid "Signup mode:"
+msgstr ""
+
+msgid "Record IP address and user agent of registered users"
+msgstr ""
+
+msgid "Do not create the admin user"
+msgstr ""
+
+msgid "Enable terms of service"
 msgstr ""
 
 msgid "Sites"
@@ -1500,8 +1541,11 @@ msgstr "كلمة السر الافتراضية هي:"
 msgid "The system forces users to change the password at first login."
 msgstr "النضام يجبر المستخدمين على تغيير كلمة السر بعد تسجيل الدخول الأول"
 
-msgid "New Password"
-msgstr "كلمة سرّ جديدة"
+msgid "Reset password"
+msgstr "إعادة ضبط كلمة السر"
+
+msgid "New password"
+msgstr "كلمة السر الجديدة"
 
 msgid ""
 "The chosen password is too weak. Make it more secure by adding special "
@@ -1522,6 +1566,12 @@ msgstr "حذف مفتاح PGP"
 
 msgid "Set up encryption by providing a PGP public key"
 msgstr "إعداد التشفير عن طريق توفير مفتاح PGP عمومي "
+
+msgid "User has administrative access to the following features:"
+msgstr ""
+
+msgid "main"
+msgstr ""
 
 msgid "Request date"
 msgstr "تاريخ الطلب"
@@ -1573,14 +1623,20 @@ msgstr "الرجاء دعم Hermes من خلال صفحة التبرع."
 msgid "Forgot password?"
 msgstr ""
 
+msgid "Authentication failed"
+msgstr "فشلت المصادقة."
+
+msgid "Site"
+msgstr "الموقع"
+
+msgid "Back"
+msgstr "السابق"
+
 msgid "Please select your account:"
 msgstr "الرجاء اختيار حسابك"
 
 msgid "Now type your password, then click 'Log in':"
 msgstr "الآن اكتب كلمة العبور الخاصة بك، ثم انقر على \"تسجيل الدخول\":"
-
-msgid "Authentication failed"
-msgstr "فشلت المصادقة."
 
 msgid "Are you sure?"
 msgstr "هل أنت متأكد؟"
@@ -1670,6 +1726,9 @@ msgstr "تفاصيل مفتاح PGP:"
 
 msgid "Fingerprint"
 msgstr "بصمة المفتاح العلني"
+
+msgid "Enter a name for the copy"
+msgstr ""
 
 msgid "Add file"
 msgstr "اضف ملف"
@@ -1782,11 +1841,17 @@ msgstr "خطوة"
 msgid "Recipient list"
 msgstr "قائمة المتلقّين"
 
+msgid "Submission status:"
+msgstr ""
+
 msgid "Attached files for the whistleblower"
 msgstr "الملفات المرفقة للمبلغ"
 
 msgid "Upload a file:"
 msgstr "رفع ملف:"
+
+msgid "Site settings"
+msgstr ""
 
 msgid "Logout"
 msgstr "تسجيل الخروج"
@@ -1832,6 +1897,9 @@ msgstr "كلمة السرّ الحاليّة"
 msgid "Old password confirmation required"
 msgstr "تأكيد كلمة المرور القديمةمطلوب"
 
+msgid "New Password"
+msgstr "كلمة سرّ جديدة"
+
 msgid "The new password must be different from the current one."
 msgstr "لا بدّ أن تكون كلمة السر الجديدة مختلفة عن كلمة السر الحالية."
 
@@ -1865,6 +1933,12 @@ msgid ""
 "A useful way to hide your key code is to write it down like a credit card "
 "number, i.e. by also including an expiration date."
 msgstr " طريقة مفيدة لإخفاء رمز المفتاح الخاص بك، هو أن تدوّنه مثل رقم بطاقة الائتمان ,أي مع تضمين تاريخ انتهاء صلاحية أيضا."
+
+msgid "Welcome!"
+msgstr "مرحبا!"
+
+msgid "User preferences"
+msgstr "تفضيلات المستخدم"
 
 msgid ""
 "You have not set up your encryption key, so the files will not be encrypted "
@@ -1953,6 +2027,12 @@ msgstr "منصة التبليغ الخاصة بك على وشك أن تكون ج
 msgid "Check your inbox to activate your account."
 msgstr "تحقق من بريدك الوارد لتفعيل حسابك."
 
+msgid "This field is mandatory."
+msgstr "هذا الحقل إلزامي."
+
+msgid "The answer is too short."
+msgstr "الاجابة قصيرة جدّا."
+
 msgid "The specified input is not valid:"
 msgstr "الإدخال المحدد غير صالح:"
 
@@ -1961,12 +2041,6 @@ msgstr "الرجاء إدخال بريد الكتروني صحيح."
 
 msgid "please enter numbers only."
 msgstr "الرجاء ادخال أرقام فقط."
-
-msgid "This field is mandatory."
-msgstr "هذا الحقل إلزامي."
-
-msgid "The answer is too short."
-msgstr "الاجابة قصيرة جدّا."
 
 msgid "Recipient selection"
 msgstr "اختيار المتلقّي"
@@ -1999,9 +2073,6 @@ msgstr "يجري انتظار إنهاء رفع الملف/الملفات."
 
 msgid "The following steps have errors:"
 msgstr "توجد أخطاء في الخطوات التالية:"
-
-msgid "Welcome!"
-msgstr "مرحبا!"
 
 msgid ""
 "The following step-by-step procedure will guide you through creating your "
@@ -2292,6 +2363,16 @@ msgid "Expiration alert for HTTPS certificate"
 msgstr "ﺖﻨﺒﻴﻫ ﺎﻨﺘﻫﺍﺀ ﺹﻼﺤﻳﺓ ﺶﻫﺍﺩﺓ HTTPS"
 
 msgid ""
+"The automatic HTTPS certificate renewal scheduled for today just failed."
+msgstr ""
+
+msgid "The system will keep trying."
+msgstr ""
+
+msgid "Failed HTTPS certificate renewal"
+msgstr ""
+
+msgid ""
 "This is an email to notify you that a custodian has authorized you to access"
 " to the whistleblowing identity for the submission {TipNum}."
 msgstr "هذا هو البريد الالكتروني لإعلامك أن أمين الحفظ قد أذن لك بالوصول إلى هوية مبلغ هذا البلاغ {TipNum}."
@@ -2333,7 +2414,9 @@ msgstr "هذا بريد إلكتروني لإشعارك برسالة جديدة 
 msgid "New message"
 msgstr "رسالة جديدة"
 
-msgid "You're receiving this email because you requested a password reset."
+msgid ""
+"You're receiving this email because a password reset has been requested for "
+"your account."
 msgstr ""
 
 msgid ""

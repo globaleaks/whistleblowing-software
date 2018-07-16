@@ -18,7 +18,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-06-07 10:00+0000\n"
+"PO-Revision-Date: 2018-07-15 20:39+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Polish (http://www.transifex.com/otf/globaleaks/language/pl/)\n"
 "MIME-Version: 1.0\n"
@@ -659,8 +659,14 @@ msgstr ""
 msgid "Surname"
 msgstr ""
 
-msgid "Do not create the admin user"
-msgstr ""
+msgid "New"
+msgstr "Nowe"
+
+msgid "Open"
+msgstr "Otwórz"
+
+msgid "Closed"
+msgstr "Zamknięte"
 
 msgid "Select the context of your submission:"
 msgstr "Wybierz kontekst zgłoszenia:"
@@ -697,8 +703,8 @@ msgstr "Wyłącz zgłaszanie"
 msgid "Enable insecure configuration without PGP encryption"
 msgstr "Włącz niezabezpieczoną konfigurację bez szyfrowania PGP"
 
-msgid "Danger"
-msgstr "Niebezpieczeństwo"
+msgid "Warning"
+msgstr "Ostrzeżenie"
 
 msgid ""
 "By enabling this option, the system will be storing the submitted files "
@@ -710,11 +716,6 @@ msgstr "Widzisz to, bo szyfrowanie jest niedostępne."
 
 msgid "Disable messages that warn of missing encryption"
 msgstr "Wyłącz ostrzeganie o braku szyfrowania"
-
-msgid ""
-"This setting affects the security of the users and must not be used in "
-"production."
-msgstr "To ustawienie ma wpływ na bezpieczeństwo użytkowników i nie powinno być używane w produkcyjnej wersji serwisu"
 
 msgid "Allow other websites to include the platform inside iframes"
 msgstr "Pozwól innym stronom wyświetlać tę platformę w ramkach iframe"
@@ -785,6 +786,16 @@ msgstr "Ze względów bezpieczeństwa dostęp sygnalisty wygaśnie"
 msgid "Tweak this setting only if you know what you are doing."
 msgstr "Zmieniaj to ustawienie tylko jeśli dobrze wiesz, co robisz"
 
+msgid "Password change interval"
+msgstr ""
+
+msgid ""
+"For security reasons, password changes are required at regular intervals."
+msgstr ""
+
+msgid "Set the value to 0 to disable this feature."
+msgstr ""
+
 msgid "Landing page"
 msgstr "Strona domowa"
 
@@ -844,16 +855,25 @@ msgstr ""
 msgid "Example:"
 msgstr "Przykład:"
 
-msgid "Allow users to reset their password"
+msgid "Each entry must be separated with a comma."
 msgstr ""
 
-msgid "Warning"
-msgstr "Ostrzeżenie"
+msgid "Allow users to reset their passwords"
+msgstr ""
 
 msgid ""
-"Allowing users to reset their password may reduce the security of the "
+"Allowing users to reset their passwords may reduce the security of the "
 "platform due to security becoming dependent on the security of user's email "
 "accounts."
+msgstr ""
+
+msgid "Enable users to upload their PGP keys"
+msgstr ""
+
+msgid "Enable multi-site login"
+msgstr ""
+
+msgid "Enable simplified login"
 msgstr ""
 
 msgid "Enable experimental features"
@@ -876,6 +896,27 @@ msgstr ""
 
 msgid "Add"
 msgstr "Dodaj"
+
+msgid "Substatuses"
+msgstr ""
+
+msgid "Label"
+msgstr "Etykieta"
+
+msgid "This field is mandatory"
+msgstr "To pole jest obligatoryjne"
+
+msgid "Edit"
+msgstr "Edytuj"
+
+msgid "Cancel"
+msgstr "Anuluj"
+
+msgid "Submission statuses"
+msgstr ""
+
+msgid "Closing statuses"
+msgstr ""
 
 msgid "Logo"
 msgstr "Logo"
@@ -943,20 +984,17 @@ msgstr "Konteksty"
 msgid "Name"
 msgstr "Imię"
 
-msgid "Edit"
-msgstr "Edytuj"
-
-msgid "Cancel"
-msgstr "Anuluj"
-
-msgid "This field is mandatory"
-msgstr "To pole jest obligatoryjne"
-
 msgid "Questionnaire"
 msgstr "Ankieta"
 
 msgid "Recipients"
 msgstr "Odbiorcy"
+
+msgid "Submission expiration"
+msgstr ""
+
+msgid "days"
+msgstr "dni"
 
 msgid "Allow selection of this context through the context selector."
 msgstr ""
@@ -1003,21 +1041,6 @@ msgid "Show recipient details on the status page of the submission"
 msgstr ""
 
 msgid "Let recipients upload files to whistleblowers"
-msgstr ""
-
-msgid "Disabled"
-msgstr "Wyłączone"
-
-msgid "Enabled"
-msgstr "Włączone"
-
-msgid "Submission expiration, in days"
-msgstr ""
-
-msgid ""
-"For security reasons, as a matter of data retention policy, the platform "
-"automatically deletes submissions and their data after a certain amount of "
-"time."
 msgstr ""
 
 msgid "Text shown on top of the interface for selecting recipients"
@@ -1097,6 +1120,12 @@ msgstr "Port serwera SMTP"
 
 msgid "Transport Security"
 msgstr "Bezpieczeństwo transportu"
+
+msgid "Require authentication"
+msgstr ""
+
+msgid "Disabled"
+msgstr "Wyłączone"
 
 msgid "When the option is re-enabled the spooled emails will be sent out."
 msgstr "Niewysłane wiadomości trafią do kolejki gdy ta opcja jest uaktywniona ponownie"
@@ -1209,7 +1238,7 @@ msgid "Valid until:"
 msgstr ""
 
 msgid "Issuer:"
-msgstr ""
+msgstr "Emitent:"
 
 msgid "Intermediate Certificates"
 msgstr ""
@@ -1249,6 +1278,9 @@ msgstr ""
 msgid "The connection to the configured domain failed."
 msgstr ""
 
+msgid "Enabled"
+msgstr "Włączone"
+
 msgid "Running"
 msgstr "Uruchomiony"
 
@@ -1260,6 +1292,9 @@ msgstr ""
 
 msgid "System message:"
 msgstr ""
+
+msgid "Danger"
+msgstr "Niebezpieczeństwo"
 
 msgid ""
 "Allowing whistleblowers to connect over HTTPS preserves their privacy but "
@@ -1328,9 +1363,6 @@ msgstr "Poziom alarmowy"
 msgid "Events"
 msgstr "Zdarzenia"
 
-msgid "Label"
-msgstr "Etykieta"
-
 msgid "Type"
 msgstr "Typ"
 
@@ -1385,11 +1417,8 @@ msgstr ""
 msgid "Phone number"
 msgstr "Telefon"
 
-msgid "Clause"
-msgstr "Warunek"
-
-msgid "Agreement Text"
-msgstr "Teks umowy "
+msgid "Checkbox label"
+msgstr ""
 
 msgid "Layout orientation"
 msgstr ""
@@ -1397,16 +1426,13 @@ msgstr ""
 msgid "Subject answer visibility to custodian authorization"
 msgstr ""
 
+msgid "Text shown upon negative answer"
+msgstr ""
+
 msgid "Prompt confirmation upon negative answer"
 msgstr ""
 
-msgid "Title of the confirmation question upon negative answer"
-msgstr ""
-
-msgid "Body of the confirmation question upon negative answer"
-msgstr ""
-
-msgid "Text of the final statement upon negative answer"
+msgid "Text shown upon confirmation"
 msgstr ""
 
 msgid "Options"
@@ -1419,6 +1445,9 @@ msgid "Add new question"
 msgstr ""
 
 msgid "Add question from template"
+msgstr ""
+
+msgid "Duplicate"
 msgstr ""
 
 msgid "Steps"
@@ -1453,6 +1482,9 @@ msgstr "Odbiorca może nadawać uprawnienia sygnalistom do poszczególnych zgło
 msgid "General settings"
 msgstr "Ustawienia ogólne"
 
+msgid "Case management"
+msgstr ""
+
 msgid "Network settings"
 msgstr "Ustawienia sieci"
 
@@ -1462,7 +1494,16 @@ msgstr ""
 msgid "Allow users to sign up"
 msgstr ""
 
-msgid "Enable footer customization"
+msgid "Signup mode:"
+msgstr ""
+
+msgid "Record IP address and user agent of registered users"
+msgstr ""
+
+msgid "Do not create the admin user"
+msgstr ""
+
+msgid "Enable terms of service"
 msgstr ""
 
 msgid "Sites"
@@ -1480,7 +1521,10 @@ msgstr ""
 msgid "The system forces users to change the password at first login."
 msgstr "System wymusza na użytkowniku zmianę hasła podczas pierwszego logowania."
 
-msgid "New Password"
+msgid "Reset password"
+msgstr ""
+
+msgid "New password"
 msgstr "Nowe hasło"
 
 msgid ""
@@ -1501,6 +1545,12 @@ msgid "Remove the PGP key"
 msgstr "Usuń klucz PGP"
 
 msgid "Set up encryption by providing a PGP public key"
+msgstr ""
+
+msgid "User has administrative access to the following features:"
+msgstr ""
+
+msgid "main"
 msgstr ""
 
 msgid "Request date"
@@ -1553,14 +1603,20 @@ msgstr "Odwiedź naszą strona darowizn aby pomóc nam dalej wspierać rozwój G
 msgid "Forgot password?"
 msgstr ""
 
+msgid "Authentication failed"
+msgstr "Uwierzytelnienie nie powiodło się"
+
+msgid "Site"
+msgstr "Strona"
+
+msgid "Back"
+msgstr "Wstecz"
+
 msgid "Please select your account:"
 msgstr "Wybierz swoje konto:"
 
 msgid "Now type your password, then click 'Log in':"
 msgstr "Wpisz swoje hasło i kliknij 'Zaloguj':"
-
-msgid "Authentication failed"
-msgstr "Uwierzytelnienie nie powiodło się"
 
 msgid "Are you sure?"
 msgstr "Jesteś pewien?"
@@ -1650,6 +1706,9 @@ msgstr ""
 
 msgid "Fingerprint"
 msgstr "Fingerprint"
+
+msgid "Enter a name for the copy"
+msgstr ""
 
 msgid "Add file"
 msgstr "Dodaj pole"
@@ -1762,11 +1821,17 @@ msgstr "Krok"
 msgid "Recipient list"
 msgstr "Lista odbiorców"
 
+msgid "Submission status:"
+msgstr ""
+
 msgid "Attached files for the whistleblower"
 msgstr ""
 
 msgid "Upload a file:"
 msgstr "Wyślij plik"
+
+msgid "Site settings"
+msgstr ""
 
 msgid "Logout"
 msgstr "Wyloguj"
@@ -1812,6 +1877,9 @@ msgstr "Aktualne hasło"
 msgid "Old password confirmation required"
 msgstr "Wymagane potwierdzenie starego hasła"
 
+msgid "New Password"
+msgstr "Nowe hasło"
+
 msgid "The new password must be different from the current one."
 msgstr ""
 
@@ -1845,6 +1913,12 @@ msgid ""
 "A useful way to hide your key code is to write it down like a credit card "
 "number, i.e. by also including an expiration date."
 msgstr ""
+
+msgid "Welcome!"
+msgstr ""
+
+msgid "User preferences"
+msgstr "Ustawienia użytkownika"
 
 msgid ""
 "You have not set up your encryption key, so the files will not be encrypted "
@@ -1933,6 +2007,12 @@ msgstr ""
 msgid "Check your inbox to activate your account."
 msgstr ""
 
+msgid "This field is mandatory."
+msgstr "To pole jest obligatoryjne."
+
+msgid "The answer is too short."
+msgstr ""
+
 msgid "The specified input is not valid:"
 msgstr ""
 
@@ -1940,12 +2020,6 @@ msgid "please enter a valid email address."
 msgstr ""
 
 msgid "please enter numbers only."
-msgstr ""
-
-msgid "This field is mandatory."
-msgstr "To pole jest obligatoryjne."
-
-msgid "The answer is too short."
 msgstr ""
 
 msgid "Recipient selection"
@@ -1978,9 +2052,6 @@ msgid "Waiting for the file(s) to finish uploading."
 msgstr ""
 
 msgid "The following steps have errors:"
-msgstr ""
-
-msgid "Welcome!"
 msgstr ""
 
 msgid ""
@@ -2272,6 +2343,16 @@ msgid "Expiration alert for HTTPS certificate"
 msgstr ""
 
 msgid ""
+"The automatic HTTPS certificate renewal scheduled for today just failed."
+msgstr ""
+
+msgid "The system will keep trying."
+msgstr ""
+
+msgid "Failed HTTPS certificate renewal"
+msgstr ""
+
+msgid ""
 "This is an email to notify you that a custodian has authorized you to access"
 " to the whistleblowing identity for the submission {TipNum}."
 msgstr ""
@@ -2313,7 +2394,9 @@ msgstr ""
 msgid "New message"
 msgstr ""
 
-msgid "You're receiving this email because you requested a password reset."
+msgid ""
+"You're receiving this email because a password reset has been requested for "
+"your account."
 msgstr ""
 
 msgid ""

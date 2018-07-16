@@ -18,7 +18,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-06-07 10:00+0000\n"
+"PO-Revision-Date: 2018-07-15 20:39+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/otf/globaleaks/language/zh_CN/)\n"
 "MIME-Version: 1.0\n"
@@ -659,8 +659,14 @@ msgstr ""
 msgid "Surname"
 msgstr "姓"
 
-msgid "Do not create the admin user"
-msgstr ""
+msgid "New"
+msgstr "新密码"
+
+msgid "Open"
+msgstr "打开"
+
+msgid "Closed"
+msgstr "已关闭"
 
 msgid "Select the context of your submission:"
 msgstr "选项提交内容类型："
@@ -697,8 +703,8 @@ msgstr "禁用提交"
 msgid "Enable insecure configuration without PGP encryption"
 msgstr "启用没有 PGP 加密的不安全配置"
 
-msgid "Danger"
-msgstr "危险"
+msgid "Warning"
+msgstr "警告"
 
 msgid ""
 "By enabling this option, the system will be storing the submitted files "
@@ -710,11 +716,6 @@ msgstr "这个情况在无法加密时就会发生。"
 
 msgid "Disable messages that warn of missing encryption"
 msgstr "禁用无加密警告消息"
-
-msgid ""
-"This setting affects the security of the users and must not be used in "
-"production."
-msgstr "该设置可影响用户安全，请勿在产品中使用。"
 
 msgid "Allow other websites to include the platform inside iframes"
 msgstr "允许其他网站借 iframe 包含此网站内容。"
@@ -785,6 +786,16 @@ msgstr "出于安全考量，揭发人访问权限在到期后将被撤销。"
 msgid "Tweak this setting only if you know what you are doing."
 msgstr "仅在需要时可调整该设置。请慎重使用并防止发生意外。"
 
+msgid "Password change interval"
+msgstr ""
+
+msgid ""
+"For security reasons, password changes are required at regular intervals."
+msgstr ""
+
+msgid "Set the value to 0 to disable this feature."
+msgstr ""
+
 msgid "Landing page"
 msgstr "登录页面"
 
@@ -844,16 +855,25 @@ msgstr ""
 msgid "Example:"
 msgstr "例子："
 
-msgid "Allow users to reset their password"
+msgid "Each entry must be separated with a comma."
 msgstr ""
 
-msgid "Warning"
-msgstr "警告"
+msgid "Allow users to reset their passwords"
+msgstr ""
 
 msgid ""
-"Allowing users to reset their password may reduce the security of the "
+"Allowing users to reset their passwords may reduce the security of the "
 "platform due to security becoming dependent on the security of user's email "
 "accounts."
+msgstr ""
+
+msgid "Enable users to upload their PGP keys"
+msgstr ""
+
+msgid "Enable multi-site login"
+msgstr ""
+
+msgid "Enable simplified login"
 msgstr ""
 
 msgid "Enable experimental features"
@@ -876,6 +896,27 @@ msgstr "长网址"
 
 msgid "Add"
 msgstr "添加"
+
+msgid "Substatuses"
+msgstr ""
+
+msgid "Label"
+msgstr "标签"
+
+msgid "This field is mandatory"
+msgstr "此字段是必须的"
+
+msgid "Edit"
+msgstr "编辑"
+
+msgid "Cancel"
+msgstr "取消"
+
+msgid "Submission statuses"
+msgstr ""
+
+msgid "Closing statuses"
+msgstr ""
 
 msgid "Logo"
 msgstr "标识"
@@ -943,20 +984,17 @@ msgstr "情境"
 msgid "Name"
 msgstr "名字"
 
-msgid "Edit"
-msgstr "编辑"
-
-msgid "Cancel"
-msgstr "取消"
-
-msgid "This field is mandatory"
-msgstr "此字段是必须的"
-
 msgid "Questionnaire"
 msgstr "问卷"
 
 msgid "Recipients"
 msgstr "接收者"
+
+msgid "Submission expiration"
+msgstr ""
+
+msgid "days"
+msgstr "天"
 
 msgid "Allow selection of this context through the context selector."
 msgstr "允许使用情境选择器选择此情境。"
@@ -1004,21 +1042,6 @@ msgstr "在提交状态页面显示接收人详情"
 
 msgid "Let recipients upload files to whistleblowers"
 msgstr "允许接收人为揭发人上传文件"
-
-msgid "Disabled"
-msgstr "关闭"
-
-msgid "Enabled"
-msgstr "启用"
-
-msgid "Submission expiration, in days"
-msgstr "提交有效期，以天计"
-
-msgid ""
-"For security reasons, as a matter of data retention policy, the platform "
-"automatically deletes submissions and their data after a certain amount of "
-"time."
-msgstr "因为安全方面的原因，本平台将根据数据保留策略，在一定量的时间后自动删除提交及其数据。"
 
 msgid "Text shown on top of the interface for selecting recipients"
 msgstr "在选择接收人界面上方显示的文本"
@@ -1097,6 +1120,12 @@ msgstr "SMTP 服务器端口"
 
 msgid "Transport Security"
 msgstr "传输安全"
+
+msgid "Require authentication"
+msgstr ""
+
+msgid "Disabled"
+msgstr "关闭"
 
 msgid "When the option is re-enabled the spooled emails will be sent out."
 msgstr "当这个选项设置为重新启用时，延滞的邮件将会被发送出去。"
@@ -1249,6 +1278,9 @@ msgstr "平台支持通过此接口配置 HTTPS 连接。"
 msgid "The connection to the configured domain failed."
 msgstr "无法连接已配置的域。"
 
+msgid "Enabled"
+msgstr "启用"
+
 msgid "Running"
 msgstr "正在运行"
 
@@ -1260,6 +1292,9 @@ msgstr ""
 
 msgid "System message:"
 msgstr "系统消息："
+
+msgid "Danger"
+msgstr "危险"
 
 msgid ""
 "Allowing whistleblowers to connect over HTTPS preserves their privacy but "
@@ -1328,9 +1363,6 @@ msgstr "警戒等级"
 msgid "Events"
 msgstr "事件"
 
-msgid "Label"
-msgstr "标签"
-
 msgid "Type"
 msgstr "种类"
 
@@ -1385,11 +1417,8 @@ msgstr "添加额外回答的按钮上显示的提示"
 msgid "Phone number"
 msgstr "电话号码"
 
-msgid "Clause"
-msgstr "条款"
-
-msgid "Agreement Text"
-msgstr "协议文本"
+msgid "Checkbox label"
+msgstr ""
 
 msgid "Layout orientation"
 msgstr "布局方向"
@@ -1397,16 +1426,13 @@ msgstr "布局方向"
 msgid "Subject answer visibility to custodian authorization"
 msgstr "回答可见性取决于保管人授权"
 
+msgid "Text shown upon negative answer"
+msgstr ""
+
 msgid "Prompt confirmation upon negative answer"
 msgstr "否定回答时弹出确认框"
 
-msgid "Title of the confirmation question upon negative answer"
-msgstr "否定回答确认框标题"
-
-msgid "Body of the confirmation question upon negative answer"
-msgstr "否定回答确认框内容"
-
-msgid "Text of the final statement upon negative answer"
+msgid "Text shown upon confirmation"
 msgstr ""
 
 msgid "Options"
@@ -1420,6 +1446,9 @@ msgstr "添加新问题"
 
 msgid "Add question from template"
 msgstr "从模板添加问题"
+
+msgid "Duplicate"
+msgstr ""
 
 msgid "Steps"
 msgstr "步骤"
@@ -1453,6 +1482,9 @@ msgstr "允许该接收者为告密者授予在特定提交上的权限"
 msgid "General settings"
 msgstr "一般设置"
 
+msgid "Case management"
+msgstr ""
+
 msgid "Network settings"
 msgstr "网络设置"
 
@@ -1462,7 +1494,16 @@ msgstr ""
 msgid "Allow users to sign up"
 msgstr "允许用户登陆"
 
-msgid "Enable footer customization"
+msgid "Signup mode:"
+msgstr ""
+
+msgid "Record IP address and user agent of registered users"
+msgstr ""
+
+msgid "Do not create the admin user"
+msgstr ""
+
+msgid "Enable terms of service"
 msgstr ""
 
 msgid "Sites"
@@ -1480,7 +1521,10 @@ msgstr "默认密码:"
 msgid "The system forces users to change the password at first login."
 msgstr "系统强制用户在首次登录时更改密码。"
 
-msgid "New Password"
+msgid "Reset password"
+msgstr "重设密码"
+
+msgid "New password"
 msgstr "新密码"
 
 msgid ""
@@ -1502,6 +1546,12 @@ msgstr "移除 PGP 密钥文件"
 
 msgid "Set up encryption by providing a PGP public key"
 msgstr "使用提供的 PGP 公钥加密"
+
+msgid "User has administrative access to the following features:"
+msgstr ""
+
+msgid "main"
+msgstr ""
 
 msgid "Request date"
 msgstr "请求日期"
@@ -1553,14 +1603,20 @@ msgstr "请通过爱马仕的资助网页支持他们。"
 msgid "Forgot password?"
 msgstr ""
 
+msgid "Authentication failed"
+msgstr "认证失败"
+
+msgid "Site"
+msgstr "网站"
+
+msgid "Back"
+msgstr "后退"
+
 msgid "Please select your account:"
 msgstr "请选择您的账号："
 
 msgid "Now type your password, then click 'Log in':"
 msgstr "现在输入您的密码，然后点击“登录”："
-
-msgid "Authentication failed"
-msgstr "认证失败"
 
 msgid "Are you sure?"
 msgstr "您确定吗？"
@@ -1650,6 +1706,9 @@ msgstr "PGP 密钥的详细信息："
 
 msgid "Fingerprint"
 msgstr "指纹码"
+
+msgid "Enter a name for the copy"
+msgstr ""
 
 msgid "Add file"
 msgstr "添加文件"
@@ -1762,11 +1821,17 @@ msgstr "步骤"
 msgid "Recipient list"
 msgstr "收件人列表"
 
+msgid "Submission status:"
+msgstr ""
+
 msgid "Attached files for the whistleblower"
 msgstr "发送给揭发人的附件"
 
 msgid "Upload a file:"
 msgstr "上传文件："
+
+msgid "Site settings"
+msgstr ""
 
 msgid "Logout"
 msgstr "注销"
@@ -1812,6 +1877,9 @@ msgstr "当前密码"
 msgid "Old password confirmation required"
 msgstr "旧密码确认请求"
 
+msgid "New Password"
+msgstr "新密码"
+
 msgid "The new password must be different from the current one."
 msgstr "新密码不能与当前密码相同。"
 
@@ -1845,6 +1913,12 @@ msgid ""
 "A useful way to hide your key code is to write it down like a credit card "
 "number, i.e. by also including an expiration date."
 msgstr "隐藏您的关键代码有一个好用的方法，那就是把它写下来，并伪装成像是一个信用卡号码，比如也写上一个到期日。"
+
+msgid "Welcome!"
+msgstr "欢迎！"
+
+msgid "User preferences"
+msgstr "用户偏好"
 
 msgid ""
 "You have not set up your encryption key, so the files will not be encrypted "
@@ -1933,6 +2007,12 @@ msgstr ""
 msgid "Check your inbox to activate your account."
 msgstr ""
 
+msgid "This field is mandatory."
+msgstr ""
+
+msgid "The answer is too short."
+msgstr "此回答少于最低要求字数。"
+
 msgid "The specified input is not valid:"
 msgstr "特定输入无效："
 
@@ -1941,12 +2021,6 @@ msgstr "请输入有效的电子邮箱地址。"
 
 msgid "please enter numbers only."
 msgstr "输入必须为数字。"
-
-msgid "This field is mandatory."
-msgstr ""
-
-msgid "The answer is too short."
-msgstr "此回答少于最低要求字数。"
 
 msgid "Recipient selection"
 msgstr "选定接收者"
@@ -1979,9 +2053,6 @@ msgstr "正在等待文件上传完成。"
 
 msgid "The following steps have errors:"
 msgstr "以下步骤出错："
-
-msgid "Welcome!"
-msgstr "欢迎！"
 
 msgid ""
 "The following step-by-step procedure will guide you through creating your "
@@ -2272,6 +2343,16 @@ msgid "Expiration alert for HTTPS certificate"
 msgstr "HTTPS证书逾期警报"
 
 msgid ""
+"The automatic HTTPS certificate renewal scheduled for today just failed."
+msgstr ""
+
+msgid "The system will keep trying."
+msgstr ""
+
+msgid "Failed HTTPS certificate renewal"
+msgstr ""
+
+msgid ""
 "This is an email to notify you that a custodian has authorized you to access"
 " to the whistleblowing identity for the submission {TipNum}."
 msgstr ""
@@ -2313,7 +2394,9 @@ msgstr "这是通知邮件：已提交的内容有了新消息。"
 msgid "New message"
 msgstr "新消息"
 
-msgid "You're receiving this email because you requested a password reset."
+msgid ""
+"You're receiving this email because a password reset has been requested for "
+"your account."
 msgstr ""
 
 msgid ""

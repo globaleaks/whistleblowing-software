@@ -28,7 +28,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-06-07 10:00+0000\n"
+"PO-Revision-Date: 2018-07-15 20:39+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Russian (http://www.transifex.com/otf/globaleaks/language/ru/)\n"
 "MIME-Version: 1.0\n"
@@ -669,8 +669,14 @@ msgstr ""
 msgid "Surname"
 msgstr ""
 
-msgid "Do not create the admin user"
-msgstr ""
+msgid "New"
+msgstr "Новый"
+
+msgid "Open"
+msgstr "Открыть"
+
+msgid "Closed"
+msgstr "Закрыть"
 
 msgid "Select the context of your submission:"
 msgstr "Выберите контекст для ваших материалов:"
@@ -707,8 +713,8 @@ msgstr "Лишить возможности публиковать матери�
 msgid "Enable insecure configuration without PGP encryption"
 msgstr "Включить небезопасную настройку без шифрования при помощи PGP"
 
-msgid "Danger"
-msgstr "Опасность"
+msgid "Warning"
+msgstr "Предупреждение"
 
 msgid ""
 "By enabling this option, the system will be storing the submitted files "
@@ -720,11 +726,6 @@ msgstr "Это происходит при недоступности возмо
 
 msgid "Disable messages that warn of missing encryption"
 msgstr "Отключить сообщения, предупреждающие об отсутствии шифровки"
-
-msgid ""
-"This setting affects the security of the users and must not be used in "
-"production."
-msgstr "Эта настройка влияет на безопасность пользователей и не может быть использована."
 
 msgid "Allow other websites to include the platform inside iframes"
 msgstr "Позволять другим веб-сайтам, вставлять элементы платформы GlobaLeaks в качестве плавающих фреймов."
@@ -795,6 +796,16 @@ msgstr "Доступ информатора ограничен по времен
 msgid "Tweak this setting only if you know what you are doing."
 msgstr "Изменяйте эту настройку только если знаете, что делаете."
 
+msgid "Password change interval"
+msgstr ""
+
+msgid ""
+"For security reasons, password changes are required at regular intervals."
+msgstr ""
+
+msgid "Set the value to 0 to disable this feature."
+msgstr ""
+
 msgid "Landing page"
 msgstr "Целевая страница"
 
@@ -854,16 +865,25 @@ msgstr ""
 msgid "Example:"
 msgstr "Пример:"
 
-msgid "Allow users to reset their password"
+msgid "Each entry must be separated with a comma."
 msgstr ""
 
-msgid "Warning"
-msgstr "Предупреждение"
+msgid "Allow users to reset their passwords"
+msgstr ""
 
 msgid ""
-"Allowing users to reset their password may reduce the security of the "
+"Allowing users to reset their passwords may reduce the security of the "
 "platform due to security becoming dependent on the security of user's email "
 "accounts."
+msgstr ""
+
+msgid "Enable users to upload their PGP keys"
+msgstr ""
+
+msgid "Enable multi-site login"
+msgstr ""
+
+msgid "Enable simplified login"
 msgstr ""
 
 msgid "Enable experimental features"
@@ -886,6 +906,27 @@ msgstr "Длинный URL"
 
 msgid "Add"
 msgstr "Добавить"
+
+msgid "Substatuses"
+msgstr ""
+
+msgid "Label"
+msgstr "Метка"
+
+msgid "This field is mandatory"
+msgstr "Это поле обязательно"
+
+msgid "Edit"
+msgstr "Изменить"
+
+msgid "Cancel"
+msgstr "Отмена"
+
+msgid "Submission statuses"
+msgstr ""
+
+msgid "Closing statuses"
+msgstr ""
 
 msgid "Logo"
 msgstr "Логотип"
@@ -953,20 +994,17 @@ msgstr "Контексты"
 msgid "Name"
 msgstr "Имя"
 
-msgid "Edit"
-msgstr "Изменить"
-
-msgid "Cancel"
-msgstr "Отмена"
-
-msgid "This field is mandatory"
-msgstr "Это поле обязательно"
-
 msgid "Questionnaire"
 msgstr "Опросник"
 
 msgid "Recipients"
 msgstr "Получатели"
+
+msgid "Submission expiration"
+msgstr ""
+
+msgid "days"
+msgstr "дн."
 
 msgid "Allow selection of this context through the context selector."
 msgstr "Текст, отображаемый перед контекстным селектором"
@@ -1014,21 +1052,6 @@ msgstr "Показать данные получателя на странице
 
 msgid "Let recipients upload files to whistleblowers"
 msgstr "Позволить получателям загружать файлы для информаторов"
-
-msgid "Disabled"
-msgstr "Отключено"
-
-msgid "Enabled"
-msgstr "Включено"
-
-msgid "Submission expiration, in days"
-msgstr "Истечение срока подачи материалов в количестве дней"
-
-msgid ""
-"For security reasons, as a matter of data retention policy, the platform "
-"automatically deletes submissions and their data after a certain amount of "
-"time."
-msgstr "По соображениям безопасности, касающихся политики хранения данных, платформа автоматически удалит материалы и их данные по прошествии определенного периода времени."
 
 msgid "Text shown on top of the interface for selecting recipients"
 msgstr "Текст, отображаемый над интерфейсом выбора получателей"
@@ -1107,6 +1130,12 @@ msgstr "Порт SMTP сервера"
 
 msgid "Transport Security"
 msgstr "Безопасность передачи"
+
+msgid "Require authentication"
+msgstr ""
+
+msgid "Disabled"
+msgstr "Отключено"
 
 msgid "When the option is re-enabled the spooled emails will be sent out."
 msgstr "Неотправленные email-сообщения будут поставлены в очередь до тех пор, пока эта опция не будет снова включена"
@@ -1259,6 +1288,9 @@ msgstr "Платформа поддерживает конфигурацию HTT
 msgid "The connection to the configured domain failed."
 msgstr "Не удалось установить соединение с указанным доменом."
 
+msgid "Enabled"
+msgstr "Включено"
+
 msgid "Running"
 msgstr "Запущен"
 
@@ -1270,6 +1302,9 @@ msgstr "Aвтоматическое продление"
 
 msgid "System message:"
 msgstr "Системное сообщение:"
+
+msgid "Danger"
+msgstr "Опасность"
 
 msgid ""
 "Allowing whistleblowers to connect over HTTPS preserves their privacy but "
@@ -1338,9 +1373,6 @@ msgstr "Уровень тревоги"
 msgid "Events"
 msgstr "События"
 
-msgid "Label"
-msgstr "Метка"
-
 msgid "Type"
 msgstr "Тип"
 
@@ -1395,11 +1427,8 @@ msgstr "Кнопка подсказки для добавления дополн
 msgid "Phone number"
 msgstr "Номер телефона"
 
-msgid "Clause"
-msgstr "Статья"
-
-msgid "Agreement Text"
-msgstr "Текст соглашения"
+msgid "Checkbox label"
+msgstr ""
 
 msgid "Layout orientation"
 msgstr "Ориентация раскладки"
@@ -1407,16 +1436,13 @@ msgstr "Ориентация раскладки"
 msgid "Subject answer visibility to custodian authorization"
 msgstr "Доступ к ответам только по разрешению кастодиана"
 
+msgid "Text shown upon negative answer"
+msgstr ""
+
 msgid "Prompt confirmation upon negative answer"
 msgstr "Вызвать подтверждение при получении отрицательного ответа."
 
-msgid "Title of the confirmation question upon negative answer"
-msgstr "Название вопроса о подтверждении при отрицательном ответе"
-
-msgid "Body of the confirmation question upon negative answer"
-msgstr "Текст вопроса о подтверждении при отрицательном ответе"
-
-msgid "Text of the final statement upon negative answer"
+msgid "Text shown upon confirmation"
 msgstr ""
 
 msgid "Options"
@@ -1430,6 +1456,9 @@ msgstr "Добавить новый вопрос:"
 
 msgid "Add question from template"
 msgstr "Добавить вопрос из шаблона"
+
+msgid "Duplicate"
+msgstr ""
 
 msgid "Steps"
 msgstr "Шаги"
@@ -1463,6 +1492,9 @@ msgstr "مخصوص گذارشات پر whistleblowers کے لئے اجازت ع�
 msgid "General settings"
 msgstr "Общие настройки "
 
+msgid "Case management"
+msgstr ""
+
 msgid "Network settings"
 msgstr "Настройки сети"
 
@@ -1472,7 +1504,16 @@ msgstr ""
 msgid "Allow users to sign up"
 msgstr ""
 
-msgid "Enable footer customization"
+msgid "Signup mode:"
+msgstr ""
+
+msgid "Record IP address and user agent of registered users"
+msgstr ""
+
+msgid "Do not create the admin user"
+msgstr ""
+
+msgid "Enable terms of service"
 msgstr ""
 
 msgid "Sites"
@@ -1490,7 +1531,10 @@ msgstr "Пароль по умолчанию:"
 msgid "The system forces users to change the password at first login."
 msgstr "Система принуждает пользователей изменять пароль при первоначальном входе."
 
-msgid "New Password"
+msgid "Reset password"
+msgstr "Сброс пароля"
+
+msgid "New password"
 msgstr "Новый пароль"
 
 msgid ""
@@ -1512,6 +1556,12 @@ msgstr "Удаление PGP-ключа"
 
 msgid "Set up encryption by providing a PGP public key"
 msgstr "Установить шифрование, предоставив открытый PGP-ключ"
+
+msgid "User has administrative access to the following features:"
+msgstr ""
+
+msgid "main"
+msgstr ""
 
 msgid "Request date"
 msgstr "Дата запроса"
@@ -1563,14 +1613,20 @@ msgstr "Пожалуйста, поддержите Hermes, сделав поже
 msgid "Forgot password?"
 msgstr ""
 
+msgid "Authentication failed"
+msgstr "Ошибка аутентификации"
+
+msgid "Site"
+msgstr "Участок сети"
+
+msgid "Back"
+msgstr "Назад"
+
 msgid "Please select your account:"
 msgstr "Укажите вашу учётную запись:"
 
 msgid "Now type your password, then click 'Log in':"
 msgstr "Теперь введите ваш пароль, затем нажмите \"Войти\":"
-
-msgid "Authentication failed"
-msgstr "Ошибка аутентификации"
 
 msgid "Are you sure?"
 msgstr "Вы уверены?"
@@ -1660,6 +1716,9 @@ msgstr "Информация о PGP-ключе:"
 
 msgid "Fingerprint"
 msgstr "Отпечаток"
+
+msgid "Enter a name for the copy"
+msgstr ""
 
 msgid "Add file"
 msgstr "Добавить файл"
@@ -1772,11 +1831,17 @@ msgstr "Шаг"
 msgid "Recipient list"
 msgstr "Список получателей"
 
+msgid "Submission status:"
+msgstr ""
+
 msgid "Attached files for the whistleblower"
 msgstr "Приложения для информатора"
 
 msgid "Upload a file:"
 msgstr "Выгрузить файл:"
+
+msgid "Site settings"
+msgstr ""
 
 msgid "Logout"
 msgstr "Выход"
@@ -1822,6 +1887,9 @@ msgstr "Действующий пароль"
 msgid "Old password confirmation required"
 msgstr "Необходимо подтверждение старого пароля"
 
+msgid "New Password"
+msgstr "Новый пароль"
+
 msgid "The new password must be different from the current one."
 msgstr "Новый пароль должен отличаться от старого."
 
@@ -1855,6 +1923,12 @@ msgid ""
 "A useful way to hide your key code is to write it down like a credit card "
 "number, i.e. by also including an expiration date."
 msgstr "Удобный способ скрыть ваш код доступа - это записать его, как номер кредитной карты, указав также срок действия."
+
+msgid "Welcome!"
+msgstr "Добро пожаловать!"
+
+msgid "User preferences"
+msgstr ""
 
 msgid ""
 "You have not set up your encryption key, so the files will not be encrypted "
@@ -1943,6 +2017,12 @@ msgstr ""
 msgid "Check your inbox to activate your account."
 msgstr ""
 
+msgid "This field is mandatory."
+msgstr "Это поле обязательно."
+
+msgid "The answer is too short."
+msgstr "Ответ очень короткий."
+
 msgid "The specified input is not valid:"
 msgstr "Следующие данные не действительны:"
 
@@ -1951,12 +2031,6 @@ msgstr "пожалуйста введите действительный адр�
 
 msgid "please enter numbers only."
 msgstr "пожалуйста введите только цифры."
-
-msgid "This field is mandatory."
-msgstr "Это поле обязательно."
-
-msgid "The answer is too short."
-msgstr "Ответ очень короткий."
 
 msgid "Recipient selection"
 msgstr "Выбор получателя"
@@ -1989,9 +2063,6 @@ msgstr "Происходит загрузка файлов."
 
 msgid "The following steps have errors:"
 msgstr "Допущены ошибки в следующих действиях:"
-
-msgid "Welcome!"
-msgstr "Добро пожаловать!"
 
 msgid ""
 "The following step-by-step procedure will guide you through creating your "
@@ -2282,6 +2353,16 @@ msgid "Expiration alert for HTTPS certificate"
 msgstr "Предупреждение об истечении срока действия сертификата HTTPS "
 
 msgid ""
+"The automatic HTTPS certificate renewal scheduled for today just failed."
+msgstr ""
+
+msgid "The system will keep trying."
+msgstr ""
+
+msgid "Failed HTTPS certificate renewal"
+msgstr ""
+
+msgid ""
 "This is an email to notify you that a custodian has authorized you to access"
 " to the whistleblowing identity for the submission {TipNum}."
 msgstr "Этим письмом мы уведомляем вас о том, что кастодиан предоставил Вам доступ к личности информатора материалов {TipNum]."
@@ -2323,7 +2404,9 @@ msgstr "Этим письмом мы оповещаем вас о новом с�
 msgid "New message"
 msgstr "Новое сообщение"
 
-msgid "You're receiving this email because you requested a password reset."
+msgid ""
+"You're receiving this email because a password reset has been requested for "
+"your account."
 msgstr ""
 
 msgid ""

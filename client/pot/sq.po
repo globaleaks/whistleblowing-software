@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-06-07 10:00+0000\n"
+"PO-Revision-Date: 2018-07-15 20:39+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Albanian (http://www.transifex.com/otf/globaleaks/language/sq/)\n"
 "MIME-Version: 1.0\n"
@@ -648,8 +648,14 @@ msgstr ""
 msgid "Surname"
 msgstr ""
 
-msgid "Do not create the admin user"
-msgstr ""
+msgid "New"
+msgstr "I ri"
+
+msgid "Open"
+msgstr "Hape"
+
+msgid "Closed"
+msgstr "Mbyllur"
 
 msgid "Select the context of your submission:"
 msgstr "Zgjidhni kontekstin e paraqitjes tuaj:"
@@ -686,8 +692,8 @@ msgstr "parashtresat Çaktivizo"
 msgid "Enable insecure configuration without PGP encryption"
 msgstr "Aktivizoni konfigurimin e pasigurt pa shifrimin PGP"
 
-msgid "Danger"
-msgstr "Rrezik"
+msgid "Warning"
+msgstr "paralajmërim"
 
 msgid ""
 "By enabling this option, the system will be storing the submitted files "
@@ -699,11 +705,6 @@ msgstr "Kjo ndodh sa herë që shifrimi s'është i mundshëm."
 
 msgid "Disable messages that warn of missing encryption"
 msgstr "Disable mesazheve që paralajmërojnë për encryption zhdukur"
-
-msgid ""
-"This setting affects the security of the users and must not be used in "
-"production."
-msgstr "Ky cilësim ndikon në sigurinë e përdoruesit dhe nuk duhet të përdoret në prodhim."
 
 msgid "Allow other websites to include the platform inside iframes"
 msgstr "Të lejojë faqet e internetit të tjera të përfshijë platformë brenda iframes"
@@ -774,6 +775,16 @@ msgstr ""
 msgid "Tweak this setting only if you know what you are doing."
 msgstr ""
 
+msgid "Password change interval"
+msgstr ""
+
+msgid ""
+"For security reasons, password changes are required at regular intervals."
+msgstr ""
+
+msgid "Set the value to 0 to disable this feature."
+msgstr ""
+
 msgid "Landing page"
 msgstr "Faqja e Destinimit"
 
@@ -833,16 +844,25 @@ msgstr ""
 msgid "Example:"
 msgstr "Shembull:"
 
-msgid "Allow users to reset their password"
+msgid "Each entry must be separated with a comma."
 msgstr ""
 
-msgid "Warning"
-msgstr "paralajmërim"
+msgid "Allow users to reset their passwords"
+msgstr ""
 
 msgid ""
-"Allowing users to reset their password may reduce the security of the "
+"Allowing users to reset their passwords may reduce the security of the "
 "platform due to security becoming dependent on the security of user's email "
 "accounts."
+msgstr ""
+
+msgid "Enable users to upload their PGP keys"
+msgstr ""
+
+msgid "Enable multi-site login"
+msgstr ""
+
+msgid "Enable simplified login"
 msgstr ""
 
 msgid "Enable experimental features"
@@ -865,6 +885,27 @@ msgstr "të gjatë URL"
 
 msgid "Add"
 msgstr "Shtoni"
+
+msgid "Substatuses"
+msgstr ""
+
+msgid "Label"
+msgstr "Titull"
+
+msgid "This field is mandatory"
+msgstr "Kjo fushë është e detyrueshme"
+
+msgid "Edit"
+msgstr "Redaktoni"
+
+msgid "Cancel"
+msgstr "Anulojeni"
+
+msgid "Submission statuses"
+msgstr ""
+
+msgid "Closing statuses"
+msgstr ""
 
 msgid "Logo"
 msgstr ""
@@ -932,20 +973,17 @@ msgstr "Kontekstet"
 msgid "Name"
 msgstr "Emri"
 
-msgid "Edit"
-msgstr "Redaktoni"
-
-msgid "Cancel"
-msgstr "Anulojeni"
-
-msgid "This field is mandatory"
-msgstr "Kjo fushë është e detyrueshme"
-
 msgid "Questionnaire"
 msgstr "pyetësor"
 
 msgid "Recipients"
 msgstr "Marrësit"
+
+msgid "Submission expiration"
+msgstr ""
+
+msgid "days"
+msgstr ""
 
 msgid "Allow selection of this context through the context selector."
 msgstr "Lejo zgjedhjen e këtë kontekst përmes përzgjedhës përmbajtjes."
@@ -993,21 +1031,6 @@ msgstr "Trego detajet e marrësit në faqen e statusit të dorëzimit"
 
 msgid "Let recipients upload files to whistleblowers"
 msgstr ""
-
-msgid "Disabled"
-msgstr "Paaftësuar"
-
-msgid "Enabled"
-msgstr "Mundësuar"
-
-msgid "Submission expiration, in days"
-msgstr "skadimit Paraqitja, në ditët e"
-
-msgid ""
-"For security reasons, as a matter of data retention policy, the platform "
-"automatically deletes submissions and their data after a certain amount of "
-"time."
-msgstr "Për arsye sigurie, si një çështje e politikës së ruajtje të të dhënave, platforma automatikisht fshin kërkesat dhe të dhënat e tyre pas një sasi të caktuar kohe."
 
 msgid "Text shown on top of the interface for selecting recipients"
 msgstr "Tekst treguar në krye të ndërfaqes për zgjedhjen e marrësit"
@@ -1086,6 +1109,12 @@ msgstr "Porta e shërbyesit SMTP "
 
 msgid "Transport Security"
 msgstr "Siguria e Transportit "
+
+msgid "Require authentication"
+msgstr ""
+
+msgid "Disabled"
+msgstr "Paaftësuar"
 
 msgid "When the option is re-enabled the spooled emails will be sent out."
 msgstr "Kur ky opsion është i riaktivizuar, e-postat e mbledhura do të dërgohen."
@@ -1238,6 +1267,9 @@ msgstr ""
 msgid "The connection to the configured domain failed."
 msgstr ""
 
+msgid "Enabled"
+msgstr "Mundësuar"
+
 msgid "Running"
 msgstr ""
 
@@ -1249,6 +1281,9 @@ msgstr ""
 
 msgid "System message:"
 msgstr ""
+
+msgid "Danger"
+msgstr "Rrezik"
 
 msgid ""
 "Allowing whistleblowers to connect over HTTPS preserves their privacy but "
@@ -1317,9 +1352,6 @@ msgstr "niveli i alarmit"
 msgid "Events"
 msgstr "Evenimentet"
 
-msgid "Label"
-msgstr "Titull"
-
 msgid "Type"
 msgstr "Lloji"
 
@@ -1374,11 +1406,8 @@ msgstr "Hint treguar në butonin për të shtuar një përgjigje shtesë"
 msgid "Phone number"
 msgstr "Numri i telefonit"
 
-msgid "Clause"
-msgstr "Klauzolë"
-
-msgid "Agreement Text"
-msgstr "Teksti i Marrëveshjes"
+msgid "Checkbox label"
+msgstr ""
 
 msgid "Layout orientation"
 msgstr "Orientimi Layout"
@@ -1386,16 +1415,13 @@ msgstr "Orientimi Layout"
 msgid "Subject answer visibility to custodian authorization"
 msgstr "Subject përgjigje shikimit të autorizimit të kujdestarisë"
 
+msgid "Text shown upon negative answer"
+msgstr ""
+
 msgid "Prompt confirmation upon negative answer"
 msgstr "konfirmim të menjëhershëm mbi pergjigje negative"
 
-msgid "Title of the confirmation question upon negative answer"
-msgstr "Titulli i çështjes konfirmimit pas përgjigjes negative"
-
-msgid "Body of the confirmation question upon negative answer"
-msgstr "Trupi i çështjes konfirmimit pas përgjigjes negative"
-
-msgid "Text of the final statement upon negative answer"
+msgid "Text shown upon confirmation"
 msgstr ""
 
 msgid "Options"
@@ -1409,6 +1435,9 @@ msgstr "Shto pyetje të re"
 
 msgid "Add question from template"
 msgstr "Shto pyetje nga template"
+
+msgid "Duplicate"
+msgstr ""
 
 msgid "Steps"
 msgstr ""
@@ -1442,6 +1471,9 @@ msgstr "Lejo marrësi të japë leje për informuesit në aplikimet specifike"
 msgid "General settings"
 msgstr "settings përgjithshme"
 
+msgid "Case management"
+msgstr ""
+
 msgid "Network settings"
 msgstr ""
 
@@ -1451,7 +1483,16 @@ msgstr ""
 msgid "Allow users to sign up"
 msgstr ""
 
-msgid "Enable footer customization"
+msgid "Signup mode:"
+msgstr ""
+
+msgid "Record IP address and user agent of registered users"
+msgstr ""
+
+msgid "Do not create the admin user"
+msgstr ""
+
+msgid "Enable terms of service"
 msgstr ""
 
 msgid "Sites"
@@ -1469,8 +1510,11 @@ msgstr ""
 msgid "The system forces users to change the password at first login."
 msgstr "Sistemi i shtrëngon përdoruesit që të ndryshojnë fjalëkalimin që kur futen për herë të parë."
 
-msgid "New Password"
-msgstr "Fjalëkalimi i Ri"
+msgid "Reset password"
+msgstr ""
+
+msgid "New password"
+msgstr "Fjalëkalim i ri"
 
 msgid ""
 "The chosen password is too weak. Make it more secure by adding special "
@@ -1491,6 +1535,12 @@ msgstr "Lëvizeni çelësin PGP "
 
 msgid "Set up encryption by providing a PGP public key"
 msgstr "Ngritur encryption, duke siguruar një çelës publik PGP"
+
+msgid "User has administrative access to the following features:"
+msgstr ""
+
+msgid "main"
+msgstr ""
 
 msgid "Request date"
 msgstr "date kërkesa"
@@ -1542,14 +1592,20 @@ msgstr "Ju lutemi mbështeteni Hermes-in, përmes faqes së saj të dhurimeve."
 msgid "Forgot password?"
 msgstr ""
 
+msgid "Authentication failed"
+msgstr "Autentifikimi Dështoi"
+
+msgid "Site"
+msgstr "Webfaqe"
+
+msgid "Back"
+msgstr "Mbrapa"
+
 msgid "Please select your account:"
 msgstr "Ju lutemi përzgjidhni llogarinë tuaj:"
 
 msgid "Now type your password, then click 'Log in':"
 msgstr "Tani shkruani fjalëkalimin tuaj dhe klikoni \"Hyni\":"
-
-msgid "Authentication failed"
-msgstr "Autentifikimi Dështoi"
 
 msgid "Are you sure?"
 msgstr "A je i sigurt?"
@@ -1638,6 +1694,9 @@ msgid "Details of the PGP key:"
 msgstr "Detajet e kyç PGP:"
 
 msgid "Fingerprint"
+msgstr ""
+
+msgid "Enter a name for the copy"
 msgstr ""
 
 msgid "Add file"
@@ -1751,10 +1810,16 @@ msgstr "Hap"
 msgid "Recipient list"
 msgstr "Lista marrësi"
 
+msgid "Submission status:"
+msgstr ""
+
 msgid "Attached files for the whistleblower"
 msgstr ""
 
 msgid "Upload a file:"
+msgstr ""
+
+msgid "Site settings"
 msgstr ""
 
 msgid "Logout"
@@ -1801,6 +1866,9 @@ msgstr "Fjalëkalimi i Tanishëm"
 msgid "Old password confirmation required"
 msgstr "Nevojitet konfirmimi i fjalëkalimit të vjetës"
 
+msgid "New Password"
+msgstr "Fjalëkalimi i Ri"
+
 msgid "The new password must be different from the current one."
 msgstr ""
 
@@ -1834,6 +1902,12 @@ msgid ""
 "A useful way to hide your key code is to write it down like a credit card "
 "number, i.e. by also including an expiration date."
 msgstr "Një mënyrë e vlefshme për të fshehur kodin e çelësit tuaj është që ta shkruani atë si të ishte një numër karte krediti; d.m.th. duke përfshirë edhe një datë skadimi."
+
+msgid "Welcome!"
+msgstr ""
+
+msgid "User preferences"
+msgstr "Parapëlqime përdoruesi"
 
 msgid ""
 "You have not set up your encryption key, so the files will not be encrypted "
@@ -1922,6 +1996,12 @@ msgstr ""
 msgid "Check your inbox to activate your account."
 msgstr ""
 
+msgid "This field is mandatory."
+msgstr ""
+
+msgid "The answer is too short."
+msgstr ""
+
 msgid "The specified input is not valid:"
 msgstr ""
 
@@ -1929,12 +2009,6 @@ msgid "please enter a valid email address."
 msgstr ""
 
 msgid "please enter numbers only."
-msgstr ""
-
-msgid "This field is mandatory."
-msgstr ""
-
-msgid "The answer is too short."
 msgstr ""
 
 msgid "Recipient selection"
@@ -1967,9 +2041,6 @@ msgid "Waiting for the file(s) to finish uploading."
 msgstr ""
 
 msgid "The following steps have errors:"
-msgstr ""
-
-msgid "Welcome!"
 msgstr ""
 
 msgid ""
@@ -2261,6 +2332,16 @@ msgid "Expiration alert for HTTPS certificate"
 msgstr ""
 
 msgid ""
+"The automatic HTTPS certificate renewal scheduled for today just failed."
+msgstr ""
+
+msgid "The system will keep trying."
+msgstr ""
+
+msgid "Failed HTTPS certificate renewal"
+msgstr ""
+
+msgid ""
 "This is an email to notify you that a custodian has authorized you to access"
 " to the whistleblowing identity for the submission {TipNum}."
 msgstr ""
@@ -2302,7 +2383,9 @@ msgstr "Kjo është një e-mail për të njoftuar ju një mesazh të ri në një
 msgid "New message"
 msgstr "mesazh i ri"
 
-msgid "You're receiving this email because you requested a password reset."
+msgid ""
+"You're receiving this email because a password reset has been requested for "
+"your account."
 msgstr ""
 
 msgid ""

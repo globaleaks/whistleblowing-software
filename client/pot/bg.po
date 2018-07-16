@@ -11,7 +11,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-06-07 10:00+0000\n"
+"PO-Revision-Date: 2018-07-15 20:39+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Bulgarian (http://www.transifex.com/otf/globaleaks/language/bg/)\n"
 "MIME-Version: 1.0\n"
@@ -652,8 +652,14 @@ msgstr "Неизбирано по подразбиране"
 msgid "Surname"
 msgstr "Фамилия"
 
-msgid "Do not create the admin user"
-msgstr ""
+msgid "New"
+msgstr "Нова"
+
+msgid "Open"
+msgstr "Отваряне"
+
+msgid "Closed"
+msgstr "Затворен"
 
 msgid "Select the context of your submission:"
 msgstr "Изберете контекста на подадения сигнал:"
@@ -690,8 +696,8 @@ msgstr "Забрана за подаване на сигнали"
 msgid "Enable insecure configuration without PGP encryption"
 msgstr "Активиране на незащитена конфигурация без PGP криптиране"
 
-msgid "Danger"
-msgstr "Опасност"
+msgid "Warning"
+msgstr "Предупреждение"
 
 msgid ""
 "By enabling this option, the system will be storing the submitted files "
@@ -703,11 +709,6 @@ msgstr "Това се случва, когато криптирането е н�
 
 msgid "Disable messages that warn of missing encryption"
 msgstr "Изключване на съобщения, които предупреждават за липсващо криптиране"
-
-msgid ""
-"This setting affects the security of the users and must not be used in "
-"production."
-msgstr "Тази настройка се отразява на сигурността на потребителите и не трябва да бъде използвана в истинския сайт."
 
 msgid "Allow other websites to include the platform inside iframes"
 msgstr "Разрешаване на други уебсайтове за включват платформата в iframes"
@@ -778,6 +779,16 @@ msgstr "От съображения за сигурност достъпът н�
 msgid "Tweak this setting only if you know what you are doing."
 msgstr "Променяйте тази настройки единствено ако знаете какво вършите."
 
+msgid "Password change interval"
+msgstr ""
+
+msgid ""
+"For security reasons, password changes are required at regular intervals."
+msgstr ""
+
+msgid "Set the value to 0 to disable this feature."
+msgstr ""
+
 msgid "Landing page"
 msgstr "Начална страница"
 
@@ -837,16 +848,25 @@ msgstr ""
 msgid "Example:"
 msgstr "Приме:"
 
-msgid "Allow users to reset their password"
+msgid "Each entry must be separated with a comma."
 msgstr ""
 
-msgid "Warning"
-msgstr "Предупреждение"
+msgid "Allow users to reset their passwords"
+msgstr ""
 
 msgid ""
-"Allowing users to reset their password may reduce the security of the "
+"Allowing users to reset their passwords may reduce the security of the "
 "platform due to security becoming dependent on the security of user's email "
 "accounts."
+msgstr ""
+
+msgid "Enable users to upload their PGP keys"
+msgstr ""
+
+msgid "Enable multi-site login"
+msgstr ""
+
+msgid "Enable simplified login"
 msgstr ""
 
 msgid "Enable experimental features"
@@ -869,6 +889,27 @@ msgstr "Дълъг интернет адрес"
 
 msgid "Add"
 msgstr "Добави"
+
+msgid "Substatuses"
+msgstr ""
+
+msgid "Label"
+msgstr "Етикет"
+
+msgid "This field is mandatory"
+msgstr "Това поне е задължително"
+
+msgid "Edit"
+msgstr "Редактирай"
+
+msgid "Cancel"
+msgstr "Откажи"
+
+msgid "Submission statuses"
+msgstr ""
+
+msgid "Closing statuses"
+msgstr ""
 
 msgid "Logo"
 msgstr "Лого"
@@ -936,20 +977,17 @@ msgstr "Теми"
 msgid "Name"
 msgstr "Име"
 
-msgid "Edit"
-msgstr "Редактирай"
-
-msgid "Cancel"
-msgstr "Откажи"
-
-msgid "This field is mandatory"
-msgstr "Това поне е задължително"
-
 msgid "Questionnaire"
 msgstr "Въпросник"
 
 msgid "Recipients"
 msgstr "Получатели"
+
+msgid "Submission expiration"
+msgstr ""
+
+msgid "days"
+msgstr "дни"
 
 msgid "Allow selection of this context through the context selector."
 msgstr "Разрешаване за избор на контекст през функцията избор на контекст."
@@ -997,21 +1035,6 @@ msgstr "Показване информация за получателите н
 
 msgid "Let recipients upload files to whistleblowers"
 msgstr "Разрешаване на получателите да качват файлове за източниците"
-
-msgid "Disabled"
-msgstr "Деактивирано"
-
-msgid "Enabled"
-msgstr "Активиран"
-
-msgid "Submission expiration, in days"
-msgstr "Изтичането на сигнала, в дни"
-
-msgid ""
-"For security reasons, as a matter of data retention policy, the platform "
-"automatically deletes submissions and their data after a certain amount of "
-"time."
-msgstr "От съображения за сигурност и като политика за запазване на информацията, платформата автоматично изтрива сигнали и информацията за тях след определен период от време."
 
 msgid "Text shown on top of the interface for selecting recipients"
 msgstr "Текстът, който се показва най-горе на интерфейсът за избор на получатели"
@@ -1090,6 +1113,12 @@ msgstr "SMTP порт на сървъра"
 
 msgid "Transport Security"
 msgstr "Сигурност предаването"
+
+msgid "Require authentication"
+msgstr ""
+
+msgid "Disabled"
+msgstr "Деактивирано"
 
 msgid "When the option is re-enabled the spooled emails will be sent out."
 msgstr "Неизпратените имейли ще бъдат изпратени, когато опцията е включена отново."
@@ -1242,6 +1271,9 @@ msgstr "Платформата поддържа конфиругация на HT
 msgid "The connection to the configured domain failed."
 msgstr "Връзката до настроеният домейн е неуспешна."
 
+msgid "Enabled"
+msgstr "Активиран"
+
 msgid "Running"
 msgstr "Работи"
 
@@ -1253,6 +1285,9 @@ msgstr "Автоматично подновяване"
 
 msgid "System message:"
 msgstr "Системно съобщение:"
+
+msgid "Danger"
+msgstr "Опасност"
 
 msgid ""
 "Allowing whistleblowers to connect over HTTPS preserves their privacy but "
@@ -1321,9 +1356,6 @@ msgstr "Ниво на тревогата"
 msgid "Events"
 msgstr "Събития"
 
-msgid "Label"
-msgstr "Етикет"
-
 msgid "Type"
 msgstr "Тип"
 
@@ -1378,11 +1410,8 @@ msgstr "Подсказка показана върху бутона за доб�
 msgid "Phone number"
 msgstr "Телефонен номер"
 
-msgid "Clause"
-msgstr "Клауза"
-
-msgid "Agreement Text"
-msgstr "Текст на споразумение"
+msgid "Checkbox label"
+msgstr ""
 
 msgid "Layout orientation"
 msgstr "Ориентация на визуализацията"
@@ -1390,17 +1419,14 @@ msgstr "Ориентация на визуализацията"
 msgid "Subject answer visibility to custodian authorization"
 msgstr "Видимост на отговорите за оторизация на попечителя, от касаещия го човек"
 
+msgid "Text shown upon negative answer"
+msgstr ""
+
 msgid "Prompt confirmation upon negative answer"
 msgstr "Изискване на потвърждение при отрицателен отговор"
 
-msgid "Title of the confirmation question upon negative answer"
-msgstr "Заглавие на диалогът за потвърждаване при негативен отговор на въпрос"
-
-msgid "Body of the confirmation question upon negative answer"
-msgstr "Тяло на диалогът за потвърждаване при негативен отговор на въпрос"
-
-msgid "Text of the final statement upon negative answer"
-msgstr "Текст при негативен отговор на крайното заявление"
+msgid "Text shown upon confirmation"
+msgstr ""
 
 msgid "Options"
 msgstr "Опции"
@@ -1413,6 +1439,9 @@ msgstr "Добавяне на нов въпрос"
 
 msgid "Add question from template"
 msgstr "Добавяне на въпрос от шаблон"
+
+msgid "Duplicate"
+msgstr ""
 
 msgid "Steps"
 msgstr "Стъкпки"
@@ -1446,6 +1475,9 @@ msgstr "Разрешаване на получателите да дават п�
 msgid "General settings"
 msgstr "Общи настройки"
 
+msgid "Case management"
+msgstr ""
+
 msgid "Network settings"
 msgstr "Мрежови настройки"
 
@@ -1455,7 +1487,16 @@ msgstr "Домейн използван за други сайтове"
 msgid "Allow users to sign up"
 msgstr "Разрешава на потребителите да се регистрират"
 
-msgid "Enable footer customization"
+msgid "Signup mode:"
+msgstr ""
+
+msgid "Record IP address and user agent of registered users"
+msgstr ""
+
+msgid "Do not create the admin user"
+msgstr ""
+
+msgid "Enable terms of service"
 msgstr ""
 
 msgid "Sites"
@@ -1473,8 +1514,11 @@ msgstr "Паролата по подразбиране е:"
 msgid "The system forces users to change the password at first login."
 msgstr "Системата изисква потребителя да промени паролата си при първото вписване."
 
-msgid "New Password"
-msgstr "Нова парола"
+msgid "Reset password"
+msgstr ""
+
+msgid "New password"
+msgstr ""
 
 msgid ""
 "The chosen password is too weak. Make it more secure by adding special "
@@ -1495,6 +1539,12 @@ msgstr "Премахване на PGP ключ"
 
 msgid "Set up encryption by providing a PGP public key"
 msgstr "Заложете криптиране като зададете PGP публичен ключ"
+
+msgid "User has administrative access to the following features:"
+msgstr ""
+
+msgid "main"
+msgstr ""
 
 msgid "Request date"
 msgstr "Дата на заявката"
@@ -1546,14 +1596,20 @@ msgstr "Моля, подкрепете Хермес през страницат�
 msgid "Forgot password?"
 msgstr ""
 
+msgid "Authentication failed"
+msgstr "Проверката за самоличност е неуспешна"
+
+msgid "Site"
+msgstr "Сайт"
+
+msgid "Back"
+msgstr "Назад"
+
 msgid "Please select your account:"
 msgstr "Моля изберете профила си:"
 
 msgid "Now type your password, then click 'Log in':"
 msgstr "Сега напишете паролата си и натиснете 'Вписване':"
-
-msgid "Authentication failed"
-msgstr "Проверката за самоличност е неуспешна"
 
 msgid "Are you sure?"
 msgstr "Сигурни ли сте?"
@@ -1643,6 +1699,9 @@ msgstr "Информация за PGP ключа:"
 
 msgid "Fingerprint"
 msgstr "Отпечатък"
+
+msgid "Enter a name for the copy"
+msgstr ""
 
 msgid "Add file"
 msgstr "Добавяне на файл"
@@ -1755,11 +1814,17 @@ msgstr "Стъпка"
 msgid "Recipient list"
 msgstr "Списък на получателите"
 
+msgid "Submission status:"
+msgstr ""
+
 msgid "Attached files for the whistleblower"
 msgstr "Прикачени файлове за източника"
 
 msgid "Upload a file:"
 msgstr "Качване на нов файл:"
+
+msgid "Site settings"
+msgstr ""
 
 msgid "Logout"
 msgstr "Отписване"
@@ -1805,6 +1870,9 @@ msgstr "Текуща парола"
 msgid "Old password confirmation required"
 msgstr "Нужно е потвърджение на старата парола"
 
+msgid "New Password"
+msgstr "Нова парола"
+
 msgid "The new password must be different from the current one."
 msgstr "Новата парола трябва да бъде различна от текущата."
 
@@ -1838,6 +1906,12 @@ msgid ""
 "A useful way to hide your key code is to write it down like a credit card "
 "number, i.e. by also including an expiration date."
 msgstr "Удобен начин да скриете кодът е да го запишете като номер на кредитна карта, примерно като добавите дата на изтичане."
+
+msgid "Welcome!"
+msgstr "Добре дошли!"
+
+msgid "User preferences"
+msgstr ""
 
 msgid ""
 "You have not set up your encryption key, so the files will not be encrypted "
@@ -1926,6 +2000,12 @@ msgstr "Вашата платформа за източници е почити 
 msgid "Check your inbox to activate your account."
 msgstr "Проверете пощенската си кутия, за да активирате профила си."
 
+msgid "This field is mandatory."
+msgstr "Това поне е задължително."
+
+msgid "The answer is too short."
+msgstr "Отговорът е твърде кратък."
+
 msgid "The specified input is not valid:"
 msgstr "Зададената информация не е валидна:"
 
@@ -1934,12 +2014,6 @@ msgstr "моля, въведете валиден имейл"
 
 msgid "please enter numbers only."
 msgstr "моля, въвдете само цифри."
-
-msgid "This field is mandatory."
-msgstr "Това поне е задължително."
-
-msgid "The answer is too short."
-msgstr "Отговорът е твърде кратък."
 
 msgid "Recipient selection"
 msgstr "Избор на получатели"
@@ -1972,9 +2046,6 @@ msgstr "Изчакване качването на на файла(овете)."
 
 msgid "The following steps have errors:"
 msgstr "Следните стъпки имат грешки:"
-
-msgid "Welcome!"
-msgstr "Добре дошли!"
 
 msgid ""
 "The following step-by-step procedure will guide you through creating your "
@@ -2265,6 +2336,16 @@ msgid "Expiration alert for HTTPS certificate"
 msgstr "Предупреждение за изтичащ HTTPS сертификат"
 
 msgid ""
+"The automatic HTTPS certificate renewal scheduled for today just failed."
+msgstr ""
+
+msgid "The system will keep trying."
+msgstr ""
+
+msgid "Failed HTTPS certificate renewal"
+msgstr ""
+
+msgid ""
 "This is an email to notify you that a custodian has authorized you to access"
 " to the whistleblowing identity for the submission {TipNum}."
 msgstr "Този имейл Ви уведомява, че попечителят Ви е разрешил достъпа до самоличността на изпращача на сингал {TipNum}."
@@ -2306,7 +2387,9 @@ msgstr "Този имейл ви уведомява, че имате ново с
 msgid "New message"
 msgstr "Ново съобщение"
 
-msgid "You're receiving this email because you requested a password reset."
+msgid ""
+"You're receiving this email because a password reset has been requested for "
+"your account."
 msgstr ""
 
 msgid ""

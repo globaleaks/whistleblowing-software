@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-06-07 10:00+0000\n"
+"PO-Revision-Date: 2018-07-15 20:39+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Slovenian (Slovenia) (http://www.transifex.com/otf/globaleaks/language/sl_SI/)\n"
 "MIME-Version: 1.0\n"
@@ -648,7 +648,13 @@ msgstr ""
 msgid "Surname"
 msgstr ""
 
-msgid "Do not create the admin user"
+msgid "New"
+msgstr "Novo"
+
+msgid "Open"
+msgstr "Odpri"
+
+msgid "Closed"
 msgstr ""
 
 msgid "Select the context of your submission:"
@@ -686,8 +692,8 @@ msgstr "Onemogoči prispevke"
 msgid "Enable insecure configuration without PGP encryption"
 msgstr "Omogoči nezaščiteno delovanje brez PGP šifriranja"
 
-msgid "Danger"
-msgstr "Nevarnost"
+msgid "Warning"
+msgstr "Opozorilo"
 
 msgid ""
 "By enabling this option, the system will be storing the submitted files "
@@ -699,11 +705,6 @@ msgstr "To se zgodi, kadar šifriranje ni na voljo."
 
 msgid "Disable messages that warn of missing encryption"
 msgstr "Onemogoči obvestila o manjkajoči enkripciji"
-
-msgid ""
-"This setting affects the security of the users and must not be used in "
-"production."
-msgstr ""
 
 msgid "Allow other websites to include the platform inside iframes"
 msgstr "Dovoli drugim spletnim stranem, da prikazujejo to platformo v iframe okvirjih."
@@ -774,6 +775,16 @@ msgstr ""
 msgid "Tweak this setting only if you know what you are doing."
 msgstr ""
 
+msgid "Password change interval"
+msgstr ""
+
+msgid ""
+"For security reasons, password changes are required at regular intervals."
+msgstr ""
+
+msgid "Set the value to 0 to disable this feature."
+msgstr ""
+
 msgid "Landing page"
 msgstr "Vstopna stran"
 
@@ -833,16 +844,25 @@ msgstr ""
 msgid "Example:"
 msgstr "Primer:"
 
-msgid "Allow users to reset their password"
+msgid "Each entry must be separated with a comma."
 msgstr ""
 
-msgid "Warning"
-msgstr "Opozorilo"
+msgid "Allow users to reset their passwords"
+msgstr ""
 
 msgid ""
-"Allowing users to reset their password may reduce the security of the "
+"Allowing users to reset their passwords may reduce the security of the "
 "platform due to security becoming dependent on the security of user's email "
 "accounts."
+msgstr ""
+
+msgid "Enable users to upload their PGP keys"
+msgstr ""
+
+msgid "Enable multi-site login"
+msgstr ""
+
+msgid "Enable simplified login"
 msgstr ""
 
 msgid "Enable experimental features"
@@ -865,6 +885,27 @@ msgstr ""
 
 msgid "Add"
 msgstr "Dodaj"
+
+msgid "Substatuses"
+msgstr ""
+
+msgid "Label"
+msgstr "Oznaka"
+
+msgid "This field is mandatory"
+msgstr "To polje je obvezno"
+
+msgid "Edit"
+msgstr "Uredi"
+
+msgid "Cancel"
+msgstr "Prekliči"
+
+msgid "Submission statuses"
+msgstr ""
+
+msgid "Closing statuses"
+msgstr ""
 
 msgid "Logo"
 msgstr ""
@@ -932,20 +973,17 @@ msgstr "Konteksti"
 msgid "Name"
 msgstr "Ime"
 
-msgid "Edit"
-msgstr "Uredi"
-
-msgid "Cancel"
-msgstr "Prekliči"
-
-msgid "This field is mandatory"
-msgstr "To polje je obvezno"
-
 msgid "Questionnaire"
 msgstr "Vprašalniki"
 
 msgid "Recipients"
 msgstr "Prejemniki"
+
+msgid "Submission expiration"
+msgstr ""
+
+msgid "days"
+msgstr ""
 
 msgid "Allow selection of this context through the context selector."
 msgstr ""
@@ -993,21 +1031,6 @@ msgstr ""
 
 msgid "Let recipients upload files to whistleblowers"
 msgstr ""
-
-msgid "Disabled"
-msgstr "Onemogočeno"
-
-msgid "Enabled"
-msgstr "Omogočeno"
-
-msgid "Submission expiration, in days"
-msgstr "Potek veljavnosti prispevka v dneh"
-
-msgid ""
-"For security reasons, as a matter of data retention policy, the platform "
-"automatically deletes submissions and their data after a certain amount of "
-"time."
-msgstr "Zaradi varnosti, kot predmet politike o varovanju podatkov, platforma samodejno briše prispevke in povezane podatke po določenem času."
 
 msgid "Text shown on top of the interface for selecting recipients"
 msgstr "Besedilo na vrhu vmesnika izbire prejemnikov"
@@ -1086,6 +1109,12 @@ msgstr "Vrata SMTP strežnika"
 
 msgid "Transport Security"
 msgstr "Varnost prenosa"
+
+msgid "Require authentication"
+msgstr ""
+
+msgid "Disabled"
+msgstr "Onemogočeno"
 
 msgid "When the option is re-enabled the spooled emails will be sent out."
 msgstr "Ko je možnost ponovno omogočena, bo e-pošta, ki je v čakanju, odposlana."
@@ -1238,6 +1267,9 @@ msgstr ""
 msgid "The connection to the configured domain failed."
 msgstr ""
 
+msgid "Enabled"
+msgstr "Omogočeno"
+
 msgid "Running"
 msgstr "Se izvaja"
 
@@ -1249,6 +1281,9 @@ msgstr ""
 
 msgid "System message:"
 msgstr ""
+
+msgid "Danger"
+msgstr "Nevarnost"
 
 msgid ""
 "Allowing whistleblowers to connect over HTTPS preserves their privacy but "
@@ -1317,9 +1352,6 @@ msgstr "Nivo alarma"
 msgid "Events"
 msgstr "Dogodki"
 
-msgid "Label"
-msgstr "Oznaka"
-
 msgid "Type"
 msgstr "Vrsta"
 
@@ -1374,11 +1406,8 @@ msgstr ""
 msgid "Phone number"
 msgstr "Telefonska številka"
 
-msgid "Clause"
-msgstr "Določba"
-
-msgid "Agreement Text"
-msgstr "Besedilo dogovora"
+msgid "Checkbox label"
+msgstr ""
 
 msgid "Layout orientation"
 msgstr ""
@@ -1386,16 +1415,13 @@ msgstr ""
 msgid "Subject answer visibility to custodian authorization"
 msgstr ""
 
+msgid "Text shown upon negative answer"
+msgstr ""
+
 msgid "Prompt confirmation upon negative answer"
 msgstr ""
 
-msgid "Title of the confirmation question upon negative answer"
-msgstr ""
-
-msgid "Body of the confirmation question upon negative answer"
-msgstr ""
-
-msgid "Text of the final statement upon negative answer"
+msgid "Text shown upon confirmation"
 msgstr ""
 
 msgid "Options"
@@ -1409,6 +1435,9 @@ msgstr "Dodaj vprašanje"
 
 msgid "Add question from template"
 msgstr "Dodaj vprašanje iz predloge"
+
+msgid "Duplicate"
+msgstr ""
 
 msgid "Steps"
 msgstr ""
@@ -1442,6 +1471,9 @@ msgstr "Omogoči prejemniku odobritev dostopa žvižgaču do izbranih prispevkov
 msgid "General settings"
 msgstr "Splošne nastavitve"
 
+msgid "Case management"
+msgstr ""
+
 msgid "Network settings"
 msgstr ""
 
@@ -1451,7 +1483,16 @@ msgstr ""
 msgid "Allow users to sign up"
 msgstr ""
 
-msgid "Enable footer customization"
+msgid "Signup mode:"
+msgstr ""
+
+msgid "Record IP address and user agent of registered users"
+msgstr ""
+
+msgid "Do not create the admin user"
+msgstr ""
+
+msgid "Enable terms of service"
 msgstr ""
 
 msgid "Sites"
@@ -1469,8 +1510,11 @@ msgstr ""
 msgid "The system forces users to change the password at first login."
 msgstr "Sistem prisili uporabnike k menjavi gesla ob prvi prijavi."
 
-msgid "New Password"
-msgstr "Novo geslo"
+msgid "Reset password"
+msgstr ""
+
+msgid "New password"
+msgstr ""
 
 msgid ""
 "The chosen password is too weak. Make it more secure by adding special "
@@ -1491,6 +1535,12 @@ msgstr "Odstrani PGP ključ"
 
 msgid "Set up encryption by providing a PGP public key"
 msgstr "Nastavi šifriranje z zagotovitvijo tvojega javnega PGP ključa"
+
+msgid "User has administrative access to the following features:"
+msgstr ""
+
+msgid "main"
+msgstr ""
 
 msgid "Request date"
 msgstr "Datum zahtevka"
@@ -1542,14 +1592,20 @@ msgstr "Prosimo, da podprete Hermes na naši strani za donacije."
 msgid "Forgot password?"
 msgstr ""
 
+msgid "Authentication failed"
+msgstr "Overitev ni uspela"
+
+msgid "Site"
+msgstr "Mesta"
+
+msgid "Back"
+msgstr "Nazaj"
+
 msgid "Please select your account:"
 msgstr "Izberite svoj račun:"
 
 msgid "Now type your password, then click 'Log in':"
 msgstr "Zdaj vpišite svoje geslo, nato kliknite \"Prijavi\":"
-
-msgid "Authentication failed"
-msgstr "Overitev ni uspela"
 
 msgid "Are you sure?"
 msgstr "Ste prepričani ?"
@@ -1639,6 +1695,9 @@ msgstr "Podrobnosti PGP ključa:"
 
 msgid "Fingerprint"
 msgstr "Odtis"
+
+msgid "Enter a name for the copy"
+msgstr ""
 
 msgid "Add file"
 msgstr "Dodaj datoteko"
@@ -1751,10 +1810,16 @@ msgstr "Korak"
 msgid "Recipient list"
 msgstr "Seznam prejemnikov"
 
+msgid "Submission status:"
+msgstr ""
+
 msgid "Attached files for the whistleblower"
 msgstr ""
 
 msgid "Upload a file:"
+msgstr ""
+
+msgid "Site settings"
 msgstr ""
 
 msgid "Logout"
@@ -1801,6 +1866,9 @@ msgstr "Trenutno geslo"
 msgid "Old password confirmation required"
 msgstr "Zahtevana je potrditev starega gesla"
 
+msgid "New Password"
+msgstr "Novo geslo"
+
 msgid "The new password must be different from the current one."
 msgstr ""
 
@@ -1834,6 +1902,12 @@ msgid ""
 "A useful way to hide your key code is to write it down like a credit card "
 "number, i.e. by also including an expiration date."
 msgstr ""
+
+msgid "Welcome!"
+msgstr ""
+
+msgid "User preferences"
+msgstr "Uporabniške nastavitve"
 
 msgid ""
 "You have not set up your encryption key, so the files will not be encrypted "
@@ -1922,6 +1996,12 @@ msgstr ""
 msgid "Check your inbox to activate your account."
 msgstr ""
 
+msgid "This field is mandatory."
+msgstr ""
+
+msgid "The answer is too short."
+msgstr ""
+
 msgid "The specified input is not valid:"
 msgstr "Vnos ni veljaven:"
 
@@ -1930,12 +2010,6 @@ msgstr "vpišite veljaven naslov elektronske pošte."
 
 msgid "please enter numbers only."
 msgstr "vpisujte samo številke."
-
-msgid "This field is mandatory."
-msgstr ""
-
-msgid "The answer is too short."
-msgstr ""
 
 msgid "Recipient selection"
 msgstr "Izbira prejemnika"
@@ -1967,9 +2041,6 @@ msgid "Waiting for the file(s) to finish uploading."
 msgstr ""
 
 msgid "The following steps have errors:"
-msgstr ""
-
-msgid "Welcome!"
 msgstr ""
 
 msgid ""
@@ -2261,6 +2332,16 @@ msgid "Expiration alert for HTTPS certificate"
 msgstr ""
 
 msgid ""
+"The automatic HTTPS certificate renewal scheduled for today just failed."
+msgstr ""
+
+msgid "The system will keep trying."
+msgstr ""
+
+msgid "Failed HTTPS certificate renewal"
+msgstr ""
+
+msgid ""
 "This is an email to notify you that a custodian has authorized you to access"
 " to the whistleblowing identity for the submission {TipNum}."
 msgstr ""
@@ -2302,7 +2383,9 @@ msgstr ""
 msgid "New message"
 msgstr "Novo sporočilo"
 
-msgid "You're receiving this email because you requested a password reset."
+msgid ""
+"You're receiving this email because a password reset has been requested for "
+"your account."
 msgstr ""
 
 msgid ""

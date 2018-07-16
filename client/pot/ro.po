@@ -17,7 +17,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-06-07 10:00+0000\n"
+"PO-Revision-Date: 2018-07-15 20:39+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Romanian (http://www.transifex.com/otf/globaleaks/language/ro/)\n"
 "MIME-Version: 1.0\n"
@@ -658,8 +658,14 @@ msgstr ""
 msgid "Surname"
 msgstr ""
 
-msgid "Do not create the admin user"
-msgstr ""
+msgid "New"
+msgstr "Nou"
+
+msgid "Open"
+msgstr "Deschide"
+
+msgid "Closed"
+msgstr "Închis"
 
 msgid "Select the context of your submission:"
 msgstr "Selectați contextul prezentării dumneavoastră:"
@@ -696,8 +702,8 @@ msgstr "depuneri Disable"
 msgid "Enable insecure configuration without PGP encryption"
 msgstr "Activează configurarea nesigură fără criptare PGP"
 
-msgid "Danger"
-msgstr "Pericol"
+msgid "Warning"
+msgstr "Avertizare"
 
 msgid ""
 "By enabling this option, the system will be storing the submitted files "
@@ -709,11 +715,6 @@ msgstr "Acest lucru se întâmplă de fiecare dată când criptarea nu este disp
 
 msgid "Disable messages that warn of missing encryption"
 msgstr "Dezactivează mesajele care avertizează de criptare lipsă"
-
-msgid ""
-"This setting affects the security of the users and must not be used in "
-"production."
-msgstr "Această setare afectează securitatea utilizatorilor și nu trebuie să fie utilizate în producție."
 
 msgid "Allow other websites to include the platform inside iframes"
 msgstr "Permite altor site-uri web pentru a include platforma in interiorul iframe"
@@ -784,6 +785,16 @@ msgstr "Din motive de siguranta accesul informatorului este pe cale de a fi bloc
 msgid "Tweak this setting only if you know what you are doing."
 msgstr "Modifica aceasta setare numai daca sti ce faci."
 
+msgid "Password change interval"
+msgstr ""
+
+msgid ""
+"For security reasons, password changes are required at regular intervals."
+msgstr ""
+
+msgid "Set the value to 0 to disable this feature."
+msgstr ""
+
 msgid "Landing page"
 msgstr "pagina de destinație"
 
@@ -843,16 +854,25 @@ msgstr ""
 msgid "Example:"
 msgstr "Exemplu:"
 
-msgid "Allow users to reset their password"
+msgid "Each entry must be separated with a comma."
 msgstr ""
 
-msgid "Warning"
-msgstr "Avertizare"
+msgid "Allow users to reset their passwords"
+msgstr ""
 
 msgid ""
-"Allowing users to reset their password may reduce the security of the "
+"Allowing users to reset their passwords may reduce the security of the "
 "platform due to security becoming dependent on the security of user's email "
 "accounts."
+msgstr ""
+
+msgid "Enable users to upload their PGP keys"
+msgstr ""
+
+msgid "Enable multi-site login"
+msgstr ""
+
+msgid "Enable simplified login"
 msgstr ""
 
 msgid "Enable experimental features"
@@ -875,6 +895,27 @@ msgstr "URL lung"
 
 msgid "Add"
 msgstr "Adaugă"
+
+msgid "Substatuses"
+msgstr ""
+
+msgid "Label"
+msgstr "Etichetă"
+
+msgid "This field is mandatory"
+msgstr "Acest câmp este obligatoriu "
+
+msgid "Edit"
+msgstr "Editare"
+
+msgid "Cancel"
+msgstr "Anulează"
+
+msgid "Submission statuses"
+msgstr ""
+
+msgid "Closing statuses"
+msgstr ""
 
 msgid "Logo"
 msgstr "Logo"
@@ -942,20 +983,17 @@ msgstr "contexte"
 msgid "Name"
 msgstr "Nume"
 
-msgid "Edit"
-msgstr "Editare"
-
-msgid "Cancel"
-msgstr "Anulează"
-
-msgid "This field is mandatory"
-msgstr "Acest câmp este obligatoriu "
-
 msgid "Questionnaire"
 msgstr "Chestionar"
 
 msgid "Recipients"
 msgstr "destinatari"
+
+msgid "Submission expiration"
+msgstr ""
+
+msgid "days"
+msgstr "zile"
 
 msgid "Allow selection of this context through the context selector."
 msgstr "Permite selectarea acest context, prin selectorul de context."
@@ -1003,21 +1041,6 @@ msgstr "Afișați detaliile beneficiarului pe pagina de stare a depunerii"
 
 msgid "Let recipients upload files to whistleblowers"
 msgstr ""
-
-msgid "Disabled"
-msgstr "invalid"
-
-msgid "Enabled"
-msgstr "Activat"
-
-msgid "Submission expiration, in days"
-msgstr "expirare de depunere, în zile"
-
-msgid ""
-"For security reasons, as a matter of data retention policy, the platform "
-"automatically deletes submissions and their data after a certain amount of "
-"time."
-msgstr "Din motive de securitate, ca o chestiune de politică de păstrare a datelor, platforma șterge automat observațiile și datele lor după o anumită perioadă de timp."
 
 msgid "Text shown on top of the interface for selecting recipients"
 msgstr "Textul afișat pe partea de sus a interfeței pentru selectarea destinatarilor"
@@ -1096,6 +1119,12 @@ msgstr "Port SMTP server"
 
 msgid "Transport Security"
 msgstr "Securitatea transporturilor"
+
+msgid "Require authentication"
+msgstr ""
+
+msgid "Disabled"
+msgstr "invalid"
 
 msgid "When the option is re-enabled the spooled emails will be sent out."
 msgstr "În cazul în care opțiunea este reactivat email-urile spooled vor fi trimise."
@@ -1248,6 +1277,9 @@ msgstr ""
 msgid "The connection to the configured domain failed."
 msgstr ""
 
+msgid "Enabled"
+msgstr "Activat"
+
 msgid "Running"
 msgstr "Rulează"
 
@@ -1259,6 +1291,9 @@ msgstr ""
 
 msgid "System message:"
 msgstr "Mesaj de sistem:"
+
+msgid "Danger"
+msgstr "Pericol"
 
 msgid ""
 "Allowing whistleblowers to connect over HTTPS preserves their privacy but "
@@ -1327,9 +1362,6 @@ msgstr "nivelul de alarmă"
 msgid "Events"
 msgstr "Evenimente"
 
-msgid "Label"
-msgstr "Etichetă"
-
 msgid "Type"
 msgstr "Tip"
 
@@ -1384,11 +1416,8 @@ msgstr "Sugestie afișat pe buton pentru a adăuga un răspuns suplimentar"
 msgid "Phone number"
 msgstr "Numar de telefon"
 
-msgid "Clause"
-msgstr "Clauză"
-
-msgid "Agreement Text"
-msgstr "acord Text"
+msgid "Checkbox label"
+msgstr ""
 
 msgid "Layout orientation"
 msgstr "orientarea de aspect"
@@ -1396,16 +1425,13 @@ msgstr "orientarea de aspect"
 msgid "Subject answer visibility to custodian authorization"
 msgstr "răspuns vizibilitate sub rezerva autorizării custode"
 
+msgid "Text shown upon negative answer"
+msgstr ""
+
 msgid "Prompt confirmation upon negative answer"
 msgstr "Confirmare promptă la un răspuns negativ"
 
-msgid "Title of the confirmation question upon negative answer"
-msgstr "Titlul întrebării confirmarea asupra răspunsului negativ"
-
-msgid "Body of the confirmation question upon negative answer"
-msgstr "Corpul întrebării o confirmare asupra răspunsului negativ"
-
-msgid "Text of the final statement upon negative answer"
+msgid "Text shown upon confirmation"
 msgstr ""
 
 msgid "Options"
@@ -1419,6 +1445,9 @@ msgstr "Adauga o intrebare noua"
 
 msgid "Add question from template"
 msgstr "Adăugați o întrebare de la șablon"
+
+msgid "Duplicate"
+msgstr ""
 
 msgid "Steps"
 msgstr ""
@@ -1452,6 +1481,9 @@ msgstr "Permite destinatarului să acorde permisiuni pentru informatorii postăr
 msgid "General settings"
 msgstr "Setări generale"
 
+msgid "Case management"
+msgstr ""
+
 msgid "Network settings"
 msgstr "Setări de rețea"
 
@@ -1461,7 +1493,16 @@ msgstr ""
 msgid "Allow users to sign up"
 msgstr ""
 
-msgid "Enable footer customization"
+msgid "Signup mode:"
+msgstr ""
+
+msgid "Record IP address and user agent of registered users"
+msgstr ""
+
+msgid "Do not create the admin user"
+msgstr ""
+
+msgid "Enable terms of service"
 msgstr ""
 
 msgid "Sites"
@@ -1479,8 +1520,11 @@ msgstr ""
 msgid "The system forces users to change the password at first login."
 msgstr "Utilizatorii forțează de sistem pentru a schimba parola la prima conectare."
 
-msgid "New Password"
-msgstr "Parolă Nouă"
+msgid "Reset password"
+msgstr ""
+
+msgid "New password"
+msgstr "Parola nouă"
 
 msgid ""
 "The chosen password is too weak. Make it more secure by adding special "
@@ -1501,6 +1545,12 @@ msgstr "Scoateți cheia PGP"
 
 msgid "Set up encryption by providing a PGP public key"
 msgstr "Creare criptare prin furnizarea unei chei publice PGP"
+
+msgid "User has administrative access to the following features:"
+msgstr ""
+
+msgid "main"
+msgstr ""
 
 msgid "Request date"
 msgstr "Data ceruta"
@@ -1552,14 +1602,20 @@ msgstr "Vă rugăm să sprijine Hermes prin intermediul paginii lor de donare."
 msgid "Forgot password?"
 msgstr ""
 
+msgid "Authentication failed"
+msgstr "Autentificare esuata"
+
+msgid "Site"
+msgstr "Sait"
+
+msgid "Back"
+msgstr "Înapoi"
+
 msgid "Please select your account:"
 msgstr "Vă rugăm să selectați contul:"
 
 msgid "Now type your password, then click 'Log in':"
 msgstr "Acum tastați parola, apoi faceți clic pe \"Conectare\":"
-
-msgid "Authentication failed"
-msgstr "Autentificare esuata"
 
 msgid "Are you sure?"
 msgstr "Esti sigur?"
@@ -1649,6 +1705,9 @@ msgstr "Detalii ale cheii PGP:"
 
 msgid "Fingerprint"
 msgstr "Amprenta"
+
+msgid "Enter a name for the copy"
+msgstr ""
 
 msgid "Add file"
 msgstr "Adauga fisier"
@@ -1761,11 +1820,17 @@ msgstr "Etapa"
 msgid "Recipient list"
 msgstr "lista de destinatari"
 
+msgid "Submission status:"
+msgstr ""
+
 msgid "Attached files for the whistleblower"
 msgstr "Fișiere atașate pentru informator"
 
 msgid "Upload a file:"
 msgstr "Încarcă un fișier:"
+
+msgid "Site settings"
+msgstr ""
 
 msgid "Logout"
 msgstr "Deconectare"
@@ -1811,6 +1876,9 @@ msgstr "Parolă Curentă"
 msgid "Old password confirmation required"
 msgstr "Confirmare parolă veche necesară"
 
+msgid "New Password"
+msgstr "Parolă Nouă"
+
 msgid "The new password must be different from the current one."
 msgstr "Parola noua trebuie sa fie diferita fata de cea actuala."
 
@@ -1844,6 +1912,12 @@ msgid ""
 "A useful way to hide your key code is to write it down like a credit card "
 "number, i.e. by also including an expiration date."
 msgstr "Un mod util de a ascunde codul cheie este să-l scrie în jos ca un număr de card de credit, și anume prin includerea, de asemenea, o dată de expirare."
+
+msgid "Welcome!"
+msgstr "Bine ați venit!"
+
+msgid "User preferences"
+msgstr ""
 
 msgid ""
 "You have not set up your encryption key, so the files will not be encrypted "
@@ -1932,6 +2006,12 @@ msgstr ""
 msgid "Check your inbox to activate your account."
 msgstr ""
 
+msgid "This field is mandatory."
+msgstr "Acest câmp este obligatoriu."
+
+msgid "The answer is too short."
+msgstr ""
+
 msgid "The specified input is not valid:"
 msgstr "Intrarea specificata nu este valabila:"
 
@@ -1940,12 +2020,6 @@ msgstr "Te rog introdu o adresa de email valida."
 
 msgid "please enter numbers only."
 msgstr "Te rog introdu numai numere."
-
-msgid "This field is mandatory."
-msgstr "Acest câmp este obligatoriu."
-
-msgid "The answer is too short."
-msgstr ""
 
 msgid "Recipient selection"
 msgstr "selecţia destinatarului"
@@ -1978,9 +2052,6 @@ msgstr "Se asteapta upload-ul fisierului(lor)."
 
 msgid "The following steps have errors:"
 msgstr "Urmatorii pasi au erori:"
-
-msgid "Welcome!"
-msgstr "Bine ați venit!"
 
 msgid ""
 "The following step-by-step procedure will guide you through creating your "
@@ -2271,6 +2342,16 @@ msgid "Expiration alert for HTTPS certificate"
 msgstr ""
 
 msgid ""
+"The automatic HTTPS certificate renewal scheduled for today just failed."
+msgstr ""
+
+msgid "The system will keep trying."
+msgstr ""
+
+msgid "Failed HTTPS certificate renewal"
+msgstr ""
+
+msgid ""
 "This is an email to notify you that a custodian has authorized you to access"
 " to the whistleblowing identity for the submission {TipNum}."
 msgstr ""
@@ -2312,7 +2393,9 @@ msgstr "Acesta este un e-mail pentru a vă înștiința despre un nou mesaj la o
 msgid "New message"
 msgstr "Mesaj nou"
 
-msgid "You're receiving this email because you requested a password reset."
+msgid ""
+"You're receiving this email because a password reset has been requested for "
+"your account."
 msgstr ""
 
 msgid ""

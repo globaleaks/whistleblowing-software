@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-06-07 10:00+0000\n"
+"PO-Revision-Date: 2018-07-15 20:39+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Korean (http://www.transifex.com/otf/globaleaks/language/ko/)\n"
 "MIME-Version: 1.0\n"
@@ -646,8 +646,14 @@ msgstr ""
 msgid "Surname"
 msgstr ""
 
-msgid "Do not create the admin user"
-msgstr ""
+msgid "New"
+msgstr "새 비밀번호"
+
+msgid "Open"
+msgstr "열기"
+
+msgid "Closed"
+msgstr "닫힘"
 
 msgid "Select the context of your submission:"
 msgstr "제출의 컨텍스트를 선택합니다 :"
@@ -684,8 +690,8 @@ msgstr "안 제출"
 msgid "Enable insecure configuration without PGP encryption"
 msgstr "PGP 암호화하지 않고 안전하지 않은 구성을 사용"
 
-msgid "Danger"
-msgstr "위험"
+msgid "Warning"
+msgstr "경고"
 
 msgid ""
 "By enabling this option, the system will be storing the submitted files "
@@ -697,11 +703,6 @@ msgstr "암호화를 사용할 때마다이 문제가 발생합니다."
 
 msgid "Disable messages that warn of missing encryption"
 msgstr "누락 된 암호화 경고 메시지를 해제"
-
-msgid ""
-"This setting affects the security of the users and must not be used in "
-"production."
-msgstr "이 설정은 사용자의 보안에 영향을 미치는 생산에 사용할 수 없습니다."
 
 msgid "Allow other websites to include the platform inside iframes"
 msgstr "다른 웹 사이트가 iframe 내부의 플랫폼을 포함 할 수 있도록 허용"
@@ -772,6 +773,16 @@ msgstr ""
 msgid "Tweak this setting only if you know what you are doing."
 msgstr ""
 
+msgid "Password change interval"
+msgstr ""
+
+msgid ""
+"For security reasons, password changes are required at regular intervals."
+msgstr ""
+
+msgid "Set the value to 0 to disable this feature."
+msgstr ""
+
 msgid "Landing page"
 msgstr "방문 페이지"
 
@@ -831,16 +842,25 @@ msgstr ""
 msgid "Example:"
 msgstr "예:"
 
-msgid "Allow users to reset their password"
+msgid "Each entry must be separated with a comma."
 msgstr ""
 
-msgid "Warning"
-msgstr "경고"
+msgid "Allow users to reset their passwords"
+msgstr ""
 
 msgid ""
-"Allowing users to reset their password may reduce the security of the "
+"Allowing users to reset their passwords may reduce the security of the "
 "platform due to security becoming dependent on the security of user's email "
 "accounts."
+msgstr ""
+
+msgid "Enable users to upload their PGP keys"
+msgstr ""
+
+msgid "Enable multi-site login"
+msgstr ""
+
+msgid "Enable simplified login"
 msgstr ""
 
 msgid "Enable experimental features"
@@ -863,6 +883,27 @@ msgstr "긴 URL"
 
 msgid "Add"
 msgstr "더하다"
+
+msgid "Substatuses"
+msgstr ""
+
+msgid "Label"
+msgstr "상표"
+
+msgid "This field is mandatory"
+msgstr "이 필드는 필수입니다"
+
+msgid "Edit"
+msgstr "편집하다"
+
+msgid "Cancel"
+msgstr "취소"
+
+msgid "Submission statuses"
+msgstr ""
+
+msgid "Closing statuses"
+msgstr ""
 
 msgid "Logo"
 msgstr "로고"
@@ -930,20 +971,17 @@ msgstr "컨텍스트"
 msgid "Name"
 msgstr "이름"
 
-msgid "Edit"
-msgstr "편집하다"
-
-msgid "Cancel"
-msgstr "취소"
-
-msgid "This field is mandatory"
-msgstr "이 필드는 필수입니다"
-
 msgid "Questionnaire"
 msgstr "질문 사항"
 
 msgid "Recipients"
 msgstr "받는 사람"
+
+msgid "Submission expiration"
+msgstr ""
+
+msgid "days"
+msgstr "일"
 
 msgid "Allow selection of this context through the context selector."
 msgstr "상황에 맞는 선택을 통해이 문맥의 선택을 허용합니다."
@@ -991,21 +1029,6 @@ msgstr "제출의 상태 페이지에받는 사람의 정보를보기"
 
 msgid "Let recipients upload files to whistleblowers"
 msgstr ""
-
-msgid "Disabled"
-msgstr "장애인"
-
-msgid "Enabled"
-msgstr "사용"
-
-msgid "Submission expiration, in days"
-msgstr "일 제출 만료,"
-
-msgid ""
-"For security reasons, as a matter of data retention policy, the platform "
-"automatically deletes submissions and their data after a certain amount of "
-"time."
-msgstr "보안상의 이유로, 데이터 보존 정책적으로 플랫폼은 일정한 시간이 지나면 자동 제출과 그 데이터를 삭제한다."
 
 msgid "Text shown on top of the interface for selecting recipients"
 msgstr "텍스트는 수신자를 선택하기위한 인터페이스의 상단에 도시"
@@ -1084,6 +1107,12 @@ msgstr "SMTP 서버 포트"
 
 msgid "Transport Security"
 msgstr "운송 보안"
+
+msgid "Require authentication"
+msgstr ""
+
+msgid "Disabled"
+msgstr "장애인"
 
 msgid "When the option is re-enabled the spooled emails will be sent out."
 msgstr "옵션이 다시 활성화 될 때 스풀 이메일이 전송됩니다."
@@ -1236,6 +1265,9 @@ msgstr ""
 msgid "The connection to the configured domain failed."
 msgstr ""
 
+msgid "Enabled"
+msgstr "사용"
+
 msgid "Running"
 msgstr ""
 
@@ -1247,6 +1279,9 @@ msgstr ""
 
 msgid "System message:"
 msgstr ""
+
+msgid "Danger"
+msgstr "위험"
 
 msgid ""
 "Allowing whistleblowers to connect over HTTPS preserves their privacy but "
@@ -1315,9 +1350,6 @@ msgstr "경보 수준"
 msgid "Events"
 msgstr "이벤트"
 
-msgid "Label"
-msgstr "상표"
-
 msgid "Type"
 msgstr "유형"
 
@@ -1372,11 +1404,8 @@ msgstr "추가 답변을 추가하는 버튼에 표시 힌트"
 msgid "Phone number"
 msgstr "전화 번호"
 
-msgid "Clause"
-msgstr "절"
-
-msgid "Agreement Text"
-msgstr "계약 텍스트"
+msgid "Checkbox label"
+msgstr ""
 
 msgid "Layout orientation"
 msgstr "레이아웃 방향"
@@ -1384,16 +1413,13 @@ msgstr "레이아웃 방향"
 msgid "Subject answer visibility to custodian authorization"
 msgstr "후견인 권한에 따라 응답 가시성"
 
+msgid "Text shown upon negative answer"
+msgstr ""
+
 msgid "Prompt confirmation upon negative answer"
 msgstr "부정적인 응답시 신속한 확인"
 
-msgid "Title of the confirmation question upon negative answer"
-msgstr "부정적인 응답시 확인 질문의 제목"
-
-msgid "Body of the confirmation question upon negative answer"
-msgstr "부정적인 응답시 확인 질문의 몸"
-
-msgid "Text of the final statement upon negative answer"
+msgid "Text shown upon confirmation"
 msgstr ""
 
 msgid "Options"
@@ -1407,6 +1433,9 @@ msgstr "새로운 질문을 추가"
 
 msgid "Add question from template"
 msgstr "템플릿에서 질문 추가"
+
+msgid "Duplicate"
+msgstr ""
 
 msgid "Steps"
 msgstr ""
@@ -1440,6 +1469,9 @@ msgstr "받는 사람이 특정 제출에 대한 내부 고발자에 대한 사�
 msgid "General settings"
 msgstr "일반 설정"
 
+msgid "Case management"
+msgstr ""
+
 msgid "Network settings"
 msgstr ""
 
@@ -1449,7 +1481,16 @@ msgstr ""
 msgid "Allow users to sign up"
 msgstr ""
 
-msgid "Enable footer customization"
+msgid "Signup mode:"
+msgstr ""
+
+msgid "Record IP address and user agent of registered users"
+msgstr ""
+
+msgid "Do not create the admin user"
+msgstr ""
+
+msgid "Enable terms of service"
 msgstr ""
 
 msgid "Sites"
@@ -1467,8 +1508,11 @@ msgstr ""
 msgid "The system forces users to change the password at first login."
 msgstr "시스템 강제로 사용자가 처음 로그인 할 때 암호를 변경합니다."
 
-msgid "New Password"
-msgstr "새 비밀번호"
+msgid "Reset password"
+msgstr ""
+
+msgid "New password"
+msgstr "새 패스워드:"
 
 msgid ""
 "The chosen password is too weak. Make it more secure by adding special "
@@ -1489,6 +1533,12 @@ msgstr "PGP 키를 제거"
 
 msgid "Set up encryption by providing a PGP public key"
 msgstr "PGP 공개 키를 제공하여 암호화를 설정"
+
+msgid "User has administrative access to the following features:"
+msgstr ""
+
+msgid "main"
+msgstr ""
 
 msgid "Request date"
 msgstr "요청 날짜"
@@ -1540,14 +1590,20 @@ msgstr "자신의 기부 페이지를 통해 헤르메스를 지원하십시오.
 msgid "Forgot password?"
 msgstr ""
 
+msgid "Authentication failed"
+msgstr "인증 실패"
+
+msgid "Site"
+msgstr "사이트"
+
+msgid "Back"
+msgstr "뒤로"
+
 msgid "Please select your account:"
 msgstr "계정을 선택하십시오 :"
 
 msgid "Now type your password, then click 'Log in':"
 msgstr "지금 비밀번호를 입력 한 후 '로그인'을 클릭합니다 :"
-
-msgid "Authentication failed"
-msgstr "인증 실패"
 
 msgid "Are you sure?"
 msgstr "확실합니까?"
@@ -1636,6 +1692,9 @@ msgid "Details of the PGP key:"
 msgstr "PGP 키의 세부 사항 :"
 
 msgid "Fingerprint"
+msgstr ""
+
+msgid "Enter a name for the copy"
 msgstr ""
 
 msgid "Add file"
@@ -1749,10 +1808,16 @@ msgstr "단계"
 msgid "Recipient list"
 msgstr "받는 사람 목록"
 
+msgid "Submission status:"
+msgstr ""
+
 msgid "Attached files for the whistleblower"
 msgstr ""
 
 msgid "Upload a file:"
+msgstr ""
+
+msgid "Site settings"
 msgstr ""
 
 msgid "Logout"
@@ -1799,6 +1864,9 @@ msgstr "현재 비밀번호"
 msgid "Old password confirmation required"
 msgstr "이전 암호 확인 필요"
 
+msgid "New Password"
+msgstr "새 비밀번호"
+
 msgid "The new password must be different from the current one."
 msgstr ""
 
@@ -1832,6 +1900,12 @@ msgid ""
 "A useful way to hide your key code is to write it down like a credit card "
 "number, i.e. by also including an expiration date."
 msgstr "키 코드를 숨길 수있는 유용한 방법은 또한 유효 기간을 포함하여 즉, 신용 카드 번호처럼 그것을 아래로 작성하는 것입니다."
+
+msgid "Welcome!"
+msgstr "환영합니다!"
+
+msgid "User preferences"
+msgstr ""
 
 msgid ""
 "You have not set up your encryption key, so the files will not be encrypted "
@@ -1920,6 +1994,12 @@ msgstr ""
 msgid "Check your inbox to activate your account."
 msgstr ""
 
+msgid "This field is mandatory."
+msgstr "이 필드는 필수입니다"
+
+msgid "The answer is too short."
+msgstr ""
+
 msgid "The specified input is not valid:"
 msgstr ""
 
@@ -1927,12 +2007,6 @@ msgid "please enter a valid email address."
 msgstr ""
 
 msgid "please enter numbers only."
-msgstr ""
-
-msgid "This field is mandatory."
-msgstr "이 필드는 필수입니다"
-
-msgid "The answer is too short."
 msgstr ""
 
 msgid "Recipient selection"
@@ -1966,9 +2040,6 @@ msgstr ""
 
 msgid "The following steps have errors:"
 msgstr ""
-
-msgid "Welcome!"
-msgstr "환영합니다!"
 
 msgid ""
 "The following step-by-step procedure will guide you through creating your "
@@ -2259,6 +2330,16 @@ msgid "Expiration alert for HTTPS certificate"
 msgstr ""
 
 msgid ""
+"The automatic HTTPS certificate renewal scheduled for today just failed."
+msgstr ""
+
+msgid "The system will keep trying."
+msgstr ""
+
+msgid "Failed HTTPS certificate renewal"
+msgstr ""
+
+msgid ""
 "This is an email to notify you that a custodian has authorized you to access"
 " to the whistleblowing identity for the submission {TipNum}."
 msgstr ""
@@ -2300,7 +2381,9 @@ msgstr "이는 기존의 제출에 새 메시지를 알려하는 이메일입니
 msgid "New message"
 msgstr "새로운 메시지"
 
-msgid "You're receiving this email because you requested a password reset."
+msgid ""
+"You're receiving this email because a password reset has been requested for "
+"your account."
 msgstr ""
 
 msgid ""

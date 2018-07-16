@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-06-07 10:00+0000\n"
+"PO-Revision-Date: 2018-07-15 20:39+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Tamil (http://www.transifex.com/otf/globaleaks/language/ta/)\n"
 "MIME-Version: 1.0\n"
@@ -647,7 +647,13 @@ msgstr ""
 msgid "Surname"
 msgstr ""
 
-msgid "Do not create the admin user"
+msgid "New"
+msgstr ""
+
+msgid "Open"
+msgstr "திறந்த"
+
+msgid "Closed"
 msgstr ""
 
 msgid "Select the context of your submission:"
@@ -685,8 +691,8 @@ msgstr "சமர்ப்பிப்புகளை முடக்கு"
 msgid "Enable insecure configuration without PGP encryption"
 msgstr "பிஜிபி குறியாக்க இல்லாமல் பாதுகாப்பற்ற உள்ளமைவு"
 
-msgid "Danger"
-msgstr "ஆபத்து"
+msgid "Warning"
+msgstr "எச்சரிக்கை"
 
 msgid ""
 "By enabling this option, the system will be storing the submitted files "
@@ -698,11 +704,6 @@ msgstr "குறியாக்க கிடைக்கவில்லை ப�
 
 msgid "Disable messages that warn of missing encryption"
 msgstr "காணாமல் குறியாக்க எச்சரிக்கும் செய்திகளை முடக்கு"
-
-msgid ""
-"This setting affects the security of the users and must not be used in "
-"production."
-msgstr "இந்த அமைப்பு செய்த பாதுகாப்பை பாதிக்கும் மற்றும் உற்பத்தியில் பயன்படுத்த கூடாது."
 
 msgid "Allow other websites to include the platform inside iframes"
 msgstr "மற்ற வலைத்தளங்களில் ஃபிரேம்களை உள்ளே மேடையில் சேர்க்க அனுமதிக்க"
@@ -773,6 +774,16 @@ msgstr ""
 msgid "Tweak this setting only if you know what you are doing."
 msgstr ""
 
+msgid "Password change interval"
+msgstr ""
+
+msgid ""
+"For security reasons, password changes are required at regular intervals."
+msgstr ""
+
+msgid "Set the value to 0 to disable this feature."
+msgstr ""
+
 msgid "Landing page"
 msgstr "இறங்கும் பக்கம்"
 
@@ -832,16 +843,25 @@ msgstr ""
 msgid "Example:"
 msgstr "உதாரணமாக:"
 
-msgid "Allow users to reset their password"
+msgid "Each entry must be separated with a comma."
 msgstr ""
 
-msgid "Warning"
-msgstr "எச்சரிக்கை"
+msgid "Allow users to reset their passwords"
+msgstr ""
 
 msgid ""
-"Allowing users to reset their password may reduce the security of the "
+"Allowing users to reset their passwords may reduce the security of the "
 "platform due to security becoming dependent on the security of user's email "
 "accounts."
+msgstr ""
+
+msgid "Enable users to upload their PGP keys"
+msgstr ""
+
+msgid "Enable multi-site login"
+msgstr ""
+
+msgid "Enable simplified login"
 msgstr ""
 
 msgid "Enable experimental features"
@@ -864,6 +884,27 @@ msgstr "நீண்ட URL"
 
 msgid "Add"
 msgstr "சேர்"
+
+msgid "Substatuses"
+msgstr ""
+
+msgid "Label"
+msgstr "லேபிள்"
+
+msgid "This field is mandatory"
+msgstr "இந்த துறையில் அத்தியாவசியமானதாகும்"
+
+msgid "Edit"
+msgstr "தொகு"
+
+msgid "Cancel"
+msgstr "நிராகரி"
+
+msgid "Submission statuses"
+msgstr ""
+
+msgid "Closing statuses"
+msgstr ""
 
 msgid "Logo"
 msgstr ""
@@ -931,20 +972,17 @@ msgstr "சூழல்"
 msgid "Name"
 msgstr "பெயர்"
 
-msgid "Edit"
-msgstr "தொகு"
-
-msgid "Cancel"
-msgstr "நிராகரி"
-
-msgid "This field is mandatory"
-msgstr "இந்த துறையில் அத்தியாவசியமானதாகும்"
-
 msgid "Questionnaire"
 msgstr "கேள்வித்தாள்"
 
 msgid "Recipients"
 msgstr "பெற்றவர்கள்"
+
+msgid "Submission expiration"
+msgstr ""
+
+msgid "days"
+msgstr ""
 
 msgid "Allow selection of this context through the context selector."
 msgstr "இந்த சூழலில் சூழலில் தேர்வுக்குழு மூலம் தேர்வு அனுமதிக்க."
@@ -992,21 +1030,6 @@ msgstr "சமர்ப்பிக்கும் நிலையை பக்�
 
 msgid "Let recipients upload files to whistleblowers"
 msgstr ""
-
-msgid "Disabled"
-msgstr "முடக்கப்பட்டது"
-
-msgid "Enabled"
-msgstr "இயக்கப்பட்டது"
-
-msgid "Submission expiration, in days"
-msgstr "சமர்ப்பிக்கும் காலாவதி, நாட்கள்"
-
-msgid ""
-"For security reasons, as a matter of data retention policy, the platform "
-"automatically deletes submissions and their data after a certain amount of "
-"time."
-msgstr "பாதுகாப்பு காரணங்களுக்காக, தரவு வைத்திருத்தல் கொள்கை ஒரு விஷயத்தை, மேடையில் தானாக சமர்ப்பிப்புகளை அவர்களின் தரவு நேரம் ஒரு குறிப்பிட்ட அளவு பிறகு நீக்குகிறது."
 
 msgid "Text shown on top of the interface for selecting recipients"
 msgstr "உரை பயனாளிகள் தெரிவுசெய்யப்பட்ட இடைமுகம் மேல் காட்டப்படும்"
@@ -1085,6 +1108,12 @@ msgstr "SMTP சர்வர் துறைமுக"
 
 msgid "Transport Security"
 msgstr "போக்குவரத்து பாதுகாப்பு"
+
+msgid "Require authentication"
+msgstr ""
+
+msgid "Disabled"
+msgstr "முடக்கப்பட்டது"
 
 msgid "When the option is re-enabled the spooled emails will be sent out."
 msgstr "விருப்பத்தை மீண்டும் செயல்படுத்தும் போது spooled மின்னஞ்சல்களை அனுப்பி வைக்கப்படும்."
@@ -1237,6 +1266,9 @@ msgstr ""
 msgid "The connection to the configured domain failed."
 msgstr ""
 
+msgid "Enabled"
+msgstr "இயக்கப்பட்டது"
+
 msgid "Running"
 msgstr ""
 
@@ -1248,6 +1280,9 @@ msgstr ""
 
 msgid "System message:"
 msgstr ""
+
+msgid "Danger"
+msgstr "ஆபத்து"
 
 msgid ""
 "Allowing whistleblowers to connect over HTTPS preserves their privacy but "
@@ -1316,9 +1351,6 @@ msgstr "அலார நிலை"
 msgid "Events"
 msgstr "நிகழ்வுகள்"
 
-msgid "Label"
-msgstr "லேபிள்"
-
 msgid "Type"
 msgstr "வகை"
 
@@ -1373,11 +1405,8 @@ msgstr "ஒரு கூடுதல் பதில் சேர்க்கு
 msgid "Phone number"
 msgstr "தொலைபேசி எண்"
 
-msgid "Clause"
-msgstr "உட்கூறு"
-
-msgid "Agreement Text"
-msgstr "ஒப்பந்தம் உரை"
+msgid "Checkbox label"
+msgstr ""
 
 msgid "Layout orientation"
 msgstr "லேஅவுட் நோக்குநிலை"
@@ -1385,16 +1414,13 @@ msgstr "லேஅவுட் நோக்குநிலை"
 msgid "Subject answer visibility to custodian authorization"
 msgstr "பாதுகாப்பாளர் அங்கீகாரம் உட்பட்டு பதில் தன்மை"
 
+msgid "Text shown upon negative answer"
+msgstr ""
+
 msgid "Prompt confirmation upon negative answer"
 msgstr "எதிர்மறை பதில் மீது உடனடியான உறுதிப்படுத்தல்"
 
-msgid "Title of the confirmation question upon negative answer"
-msgstr "எதிர்மறை பதில் மீது உறுதிப்படுத்தல் கேள்வி தலைப்பு"
-
-msgid "Body of the confirmation question upon negative answer"
-msgstr "எதிர்மறை பதில் மீது உறுதிப்படுத்தல் கேள்வி உடல்"
-
-msgid "Text of the final statement upon negative answer"
+msgid "Text shown upon confirmation"
 msgstr ""
 
 msgid "Options"
@@ -1408,6 +1434,9 @@ msgstr "புதிய கேள்வி சேர்க்க"
 
 msgid "Add question from template"
 msgstr "டெம்ப்ளேட் இருந்து கேள்வி சேர்"
+
+msgid "Duplicate"
+msgstr ""
 
 msgid "Steps"
 msgstr ""
@@ -1441,6 +1470,9 @@ msgstr "பெறுநர் குறிப்பிட்ட சமர்ப�
 msgid "General settings"
 msgstr "பொது அமைப்புகள்"
 
+msgid "Case management"
+msgstr ""
+
 msgid "Network settings"
 msgstr ""
 
@@ -1450,7 +1482,16 @@ msgstr ""
 msgid "Allow users to sign up"
 msgstr ""
 
-msgid "Enable footer customization"
+msgid "Signup mode:"
+msgstr ""
+
+msgid "Record IP address and user agent of registered users"
+msgstr ""
+
+msgid "Do not create the admin user"
+msgstr ""
+
+msgid "Enable terms of service"
 msgstr ""
 
 msgid "Sites"
@@ -1468,7 +1509,10 @@ msgstr ""
 msgid "The system forces users to change the password at first login."
 msgstr "அமைப்பு படைகள் செய்த முதல் உள்நுழைவு பாஸ்வேர்டை மாற்ற."
 
-msgid "New Password"
+msgid "Reset password"
+msgstr ""
+
+msgid "New password"
 msgstr "புதிய கடவுச்சொல்"
 
 msgid ""
@@ -1490,6 +1534,12 @@ msgstr "PGP சாவியை நீக்கவும்"
 
 msgid "Set up encryption by providing a PGP public key"
 msgstr "ஒரு பிஜிபி பொது விசையை வழங்குவதன் மூலம் குறியாக்க அமைக்கவும்"
+
+msgid "User has administrative access to the following features:"
+msgstr ""
+
+msgid "main"
+msgstr ""
 
 msgid "Request date"
 msgstr "கோரிக்கை தேதி"
@@ -1541,14 +1591,20 @@ msgstr "தங்கள் நன்கொடை பக்கம் வழி
 msgid "Forgot password?"
 msgstr ""
 
+msgid "Authentication failed"
+msgstr "அங்கீகரிப்பு தோல்வியுற்றது"
+
+msgid "Site"
+msgstr "தளம்"
+
+msgid "Back"
+msgstr "மீண்டும்"
+
 msgid "Please select your account:"
 msgstr "உங்கள் கணக்கு தேர்ந்தெடுக்கவும்:"
 
 msgid "Now type your password, then click 'Log in':"
 msgstr "இப்போது உங்கள் கடவுச்சொல்லை தட்டச்சு, பின்னர் 'நுழைய' கிளிக்:"
-
-msgid "Authentication failed"
-msgstr "அங்கீகரிப்பு தோல்வியுற்றது"
 
 msgid "Are you sure?"
 msgstr "நீ சொல்வது உறுதியா?"
@@ -1638,6 +1694,9 @@ msgstr "பிஜிபி முக்கிய விவரம்:"
 
 msgid "Fingerprint"
 msgstr "கைரேகை"
+
+msgid "Enter a name for the copy"
+msgstr ""
 
 msgid "Add file"
 msgstr "கோப்பு சேர்"
@@ -1750,10 +1809,16 @@ msgstr "படி"
 msgid "Recipient list"
 msgstr "பெறுநர் பட்டியலில்"
 
+msgid "Submission status:"
+msgstr ""
+
 msgid "Attached files for the whistleblower"
 msgstr ""
 
 msgid "Upload a file:"
+msgstr ""
+
+msgid "Site settings"
 msgstr ""
 
 msgid "Logout"
@@ -1800,6 +1865,9 @@ msgstr "தற்போதைய கடவுச்சொல்"
 msgid "Old password confirmation required"
 msgstr "பழைய கடவுச்சொல் உறுதிப்படுத்தல் அவசியம்"
 
+msgid "New Password"
+msgstr "புதிய கடவுச்சொல்"
+
 msgid "The new password must be different from the current one."
 msgstr ""
 
@@ -1833,6 +1901,12 @@ msgid ""
 "A useful way to hide your key code is to write it down like a credit card "
 "number, i.e. by also including an expiration date."
 msgstr "உங்கள் முக்கிய குறியீடு மறைக்க ஒரு பயனுள்ள வழியில் ஒரு கடன் அட்டை எண், மேலும் ஒரு காலாவதி தேதி உள்ளிட்ட மூலம் அதாவது போன்ற அதை எழுத வேண்டும்."
+
+msgid "Welcome!"
+msgstr ""
+
+msgid "User preferences"
+msgstr ""
 
 msgid ""
 "You have not set up your encryption key, so the files will not be encrypted "
@@ -1921,6 +1995,12 @@ msgstr ""
 msgid "Check your inbox to activate your account."
 msgstr ""
 
+msgid "This field is mandatory."
+msgstr ""
+
+msgid "The answer is too short."
+msgstr ""
+
 msgid "The specified input is not valid:"
 msgstr ""
 
@@ -1928,12 +2008,6 @@ msgid "please enter a valid email address."
 msgstr ""
 
 msgid "please enter numbers only."
-msgstr ""
-
-msgid "This field is mandatory."
-msgstr ""
-
-msgid "The answer is too short."
 msgstr ""
 
 msgid "Recipient selection"
@@ -1966,9 +2040,6 @@ msgid "Waiting for the file(s) to finish uploading."
 msgstr ""
 
 msgid "The following steps have errors:"
-msgstr ""
-
-msgid "Welcome!"
 msgstr ""
 
 msgid ""
@@ -2260,6 +2331,16 @@ msgid "Expiration alert for HTTPS certificate"
 msgstr ""
 
 msgid ""
+"The automatic HTTPS certificate renewal scheduled for today just failed."
+msgstr ""
+
+msgid "The system will keep trying."
+msgstr ""
+
+msgid "Failed HTTPS certificate renewal"
+msgstr ""
+
+msgid ""
 "This is an email to notify you that a custodian has authorized you to access"
 " to the whistleblowing identity for the submission {TipNum}."
 msgstr ""
@@ -2301,7 +2382,9 @@ msgstr "இது ஏற்கனவே உள்ள சமர்ப்பிப
 msgid "New message"
 msgstr "புதிய தகவல்"
 
-msgid "You're receiving this email because you requested a password reset."
+msgid ""
+"You're receiving this email because a password reset has been requested for "
+"your account."
 msgstr ""
 
 msgid ""

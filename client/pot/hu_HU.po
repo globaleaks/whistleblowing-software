@@ -21,7 +21,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-06-07 10:00+0000\n"
+"PO-Revision-Date: 2018-07-15 20:39+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Hungarian (Hungary) (http://www.transifex.com/otf/globaleaks/language/hu_HU/)\n"
 "MIME-Version: 1.0\n"
@@ -662,7 +662,13 @@ msgstr ""
 msgid "Surname"
 msgstr ""
 
-msgid "Do not create the admin user"
+msgid "New"
+msgstr ""
+
+msgid "Open"
+msgstr "Megnyitás"
+
+msgid "Closed"
 msgstr ""
 
 msgid "Select the context of your submission:"
@@ -700,8 +706,8 @@ msgstr "Feltöltéstek letiltása"
 msgid "Enable insecure configuration without PGP encryption"
 msgstr "Nem biztonságos konfiguráció engedélyezése PGP titkosítás nélkül"
 
-msgid "Danger"
-msgstr "Veszély"
+msgid "Warning"
+msgstr "Figyelem"
 
 msgid ""
 "By enabling this option, the system will be storing the submitted files "
@@ -713,11 +719,6 @@ msgstr "Ez történik, amikor a titkosítás nem elérhető."
 
 msgid "Disable messages that warn of missing encryption"
 msgstr "Tiltsa a hiányzó titkosításra figyelmeztető üzeneteket"
-
-msgid ""
-"This setting affects the security of the users and must not be used in "
-"production."
-msgstr "Ez a beállítás érinti a felhasználók biztonságát és nem használhatóak éles üzemben."
 
 msgid "Allow other websites to include the platform inside iframes"
 msgstr "A platform Iframe ablakba beillesztésének engedélyezése más oldalak számára "
@@ -788,6 +789,16 @@ msgstr "Biztonsági okokból az informátor hozzáférése lejár."
 msgid "Tweak this setting only if you know what you are doing."
 msgstr "Csak akkor nyúljon ehhez a beállításhoz ha tudja mit csinál."
 
+msgid "Password change interval"
+msgstr ""
+
+msgid ""
+"For security reasons, password changes are required at regular intervals."
+msgstr ""
+
+msgid "Set the value to 0 to disable this feature."
+msgstr ""
+
 msgid "Landing page"
 msgstr "Nyitóoldal"
 
@@ -847,16 +858,25 @@ msgstr ""
 msgid "Example:"
 msgstr "Példa:"
 
-msgid "Allow users to reset their password"
+msgid "Each entry must be separated with a comma."
 msgstr ""
 
-msgid "Warning"
-msgstr "Figyelem"
+msgid "Allow users to reset their passwords"
+msgstr ""
 
 msgid ""
-"Allowing users to reset their password may reduce the security of the "
+"Allowing users to reset their passwords may reduce the security of the "
 "platform due to security becoming dependent on the security of user's email "
 "accounts."
+msgstr ""
+
+msgid "Enable users to upload their PGP keys"
+msgstr ""
+
+msgid "Enable multi-site login"
+msgstr ""
+
+msgid "Enable simplified login"
 msgstr ""
 
 msgid "Enable experimental features"
@@ -879,6 +899,27 @@ msgstr "Hosszú URL"
 
 msgid "Add"
 msgstr "Hozzáadás"
+
+msgid "Substatuses"
+msgstr ""
+
+msgid "Label"
+msgstr "Cím"
+
+msgid "This field is mandatory"
+msgstr "Ez a mező kötelező"
+
+msgid "Edit"
+msgstr "Szerkesztés"
+
+msgid "Cancel"
+msgstr "Mégse"
+
+msgid "Submission statuses"
+msgstr ""
+
+msgid "Closing statuses"
+msgstr ""
 
 msgid "Logo"
 msgstr ""
@@ -946,20 +987,17 @@ msgstr "Kontextusok"
 msgid "Name"
 msgstr "Név"
 
-msgid "Edit"
-msgstr "Szerkesztés"
-
-msgid "Cancel"
-msgstr "Mégse"
-
-msgid "This field is mandatory"
-msgstr "Ez a mező kötelező"
-
 msgid "Questionnaire"
 msgstr "Kérdőívek"
 
 msgid "Recipients"
 msgstr "Címzettek"
+
+msgid "Submission expiration"
+msgstr ""
+
+msgid "days"
+msgstr ""
 
 msgid "Allow selection of this context through the context selector."
 msgstr "Ez a kontextus kiválasztásának engedélyezése a kontextus választón keresztül."
@@ -1007,21 +1045,6 @@ msgstr ""
 
 msgid "Let recipients upload files to whistleblowers"
 msgstr ""
-
-msgid "Disabled"
-msgstr "Leiltva"
-
-msgid "Enabled"
-msgstr "Engedélyezve"
-
-msgid "Submission expiration, in days"
-msgstr "Beadvány lejárat, napokban"
-
-msgid ""
-"For security reasons, as a matter of data retention policy, the platform "
-"automatically deletes submissions and their data after a certain amount of "
-"time."
-msgstr "Biztonsági okokból, mint egy adatmegőrzési irányelvi ügy, a platform automatikusan törli a beadványokat és azok adatait egy bizonyos idő után."
 
 msgid "Text shown on top of the interface for selecting recipients"
 msgstr ""
@@ -1100,6 +1123,12 @@ msgstr "SMTP kiszolgáló port"
 
 msgid "Transport Security"
 msgstr "Átvitel biztonsága"
+
+msgid "Require authentication"
+msgstr ""
+
+msgid "Disabled"
+msgstr "Leiltva"
 
 msgid "When the option is re-enabled the spooled emails will be sent out."
 msgstr "A küldésre váró emaileket a beállítás visszakapcsolása után újraküldjük."
@@ -1252,6 +1281,9 @@ msgstr ""
 msgid "The connection to the configured domain failed."
 msgstr ""
 
+msgid "Enabled"
+msgstr "Engedélyezve"
+
 msgid "Running"
 msgstr ""
 
@@ -1263,6 +1295,9 @@ msgstr ""
 
 msgid "System message:"
 msgstr ""
+
+msgid "Danger"
+msgstr "Veszély"
 
 msgid ""
 "Allowing whistleblowers to connect over HTTPS preserves their privacy but "
@@ -1331,9 +1366,6 @@ msgstr "Riasztási szint"
 msgid "Events"
 msgstr "Események"
 
-msgid "Label"
-msgstr "Cím"
-
 msgid "Type"
 msgstr "Típus"
 
@@ -1388,11 +1420,8 @@ msgstr "Tipp mutatása a gombon egy további válasz hozzáadásáért"
 msgid "Phone number"
 msgstr "Telefonszám"
 
-msgid "Clause"
-msgstr "Záradék"
-
-msgid "Agreement Text"
-msgstr "Szerződés szöveg"
+msgid "Checkbox label"
+msgstr ""
 
 msgid "Layout orientation"
 msgstr "Oldalelrendezés"
@@ -1400,16 +1429,13 @@ msgstr "Oldalelrendezés"
 msgid "Subject answer visibility to custodian authorization"
 msgstr "Tárgy válasz láthatósága gondnok jogosultságnak"
 
+msgid "Text shown upon negative answer"
+msgstr ""
+
 msgid "Prompt confirmation upon negative answer"
 msgstr "Azonnali értesítés negatív válaszról"
 
-msgid "Title of the confirmation question upon negative answer"
-msgstr "A megerősítő kérdés címe negatív válaszkor"
-
-msgid "Body of the confirmation question upon negative answer"
-msgstr "A megerősítő kérdés törzse negatív válaszkor"
-
-msgid "Text of the final statement upon negative answer"
+msgid "Text shown upon confirmation"
 msgstr ""
 
 msgid "Options"
@@ -1423,6 +1449,9 @@ msgstr "Új kérdés hozzáadása"
 
 msgid "Add question from template"
 msgstr "Kérdés hozzáadása sablonból"
+
+msgid "Duplicate"
+msgstr ""
 
 msgid "Steps"
 msgstr ""
@@ -1456,6 +1485,9 @@ msgstr "Engedélyezés a címzettnek, hogy jogosultságokat biztosítson a sziv�
 msgid "General settings"
 msgstr "Általános beállítások"
 
+msgid "Case management"
+msgstr ""
+
 msgid "Network settings"
 msgstr ""
 
@@ -1465,7 +1497,16 @@ msgstr ""
 msgid "Allow users to sign up"
 msgstr ""
 
-msgid "Enable footer customization"
+msgid "Signup mode:"
+msgstr ""
+
+msgid "Record IP address and user agent of registered users"
+msgstr ""
+
+msgid "Do not create the admin user"
+msgstr ""
+
+msgid "Enable terms of service"
 msgstr ""
 
 msgid "Sites"
@@ -1483,8 +1524,11 @@ msgstr ""
 msgid "The system forces users to change the password at first login."
 msgstr "A rendszer kényszeríti a felhasználót első bejelentkezéskor a jelszava cseréjére."
 
-msgid "New Password"
-msgstr "Új jelszó"
+msgid "Reset password"
+msgstr ""
+
+msgid "New password"
+msgstr ""
 
 msgid ""
 "The chosen password is too weak. Make it more secure by adding special "
@@ -1504,6 +1548,12 @@ msgid "Remove the PGP key"
 msgstr "PGP kulcs eltávolítása"
 
 msgid "Set up encryption by providing a PGP public key"
+msgstr ""
+
+msgid "User has administrative access to the following features:"
+msgstr ""
+
+msgid "main"
 msgstr ""
 
 msgid "Request date"
@@ -1556,14 +1606,20 @@ msgstr "Kérjük támogassa a Hermes-t a támogatói oldalán keresztül"
 msgid "Forgot password?"
 msgstr ""
 
+msgid "Authentication failed"
+msgstr "Az azonosítás nem sikerült"
+
+msgid "Site"
+msgstr ""
+
+msgid "Back"
+msgstr "vissza"
+
 msgid "Please select your account:"
 msgstr "Kérjük válassza ki fiókját:"
 
 msgid "Now type your password, then click 'Log in':"
 msgstr "Kérjük adja meg jelszavát majd kattinson a Belépés gombra:"
-
-msgid "Authentication failed"
-msgstr "Az azonosítás nem sikerült"
 
 msgid "Are you sure?"
 msgstr "Biztosan?"
@@ -1653,6 +1709,9 @@ msgstr "A PGP kulcs részletei:"
 
 msgid "Fingerprint"
 msgstr "Újjlenyomat:"
+
+msgid "Enter a name for the copy"
+msgstr ""
 
 msgid "Add file"
 msgstr "Fájl hozzáadása"
@@ -1765,10 +1824,16 @@ msgstr "Lépés"
 msgid "Recipient list"
 msgstr "Címzett lista"
 
+msgid "Submission status:"
+msgstr ""
+
 msgid "Attached files for the whistleblower"
 msgstr ""
 
 msgid "Upload a file:"
+msgstr ""
+
+msgid "Site settings"
 msgstr ""
 
 msgid "Logout"
@@ -1815,6 +1880,9 @@ msgstr "Jelenlegi jelszó"
 msgid "Old password confirmation required"
 msgstr "Régi jelszó megerősítése kötelező"
 
+msgid "New Password"
+msgstr "Új jelszó"
+
 msgid "The new password must be different from the current one."
 msgstr ""
 
@@ -1848,6 +1916,12 @@ msgid ""
 "A useful way to hide your key code is to write it down like a credit card "
 "number, i.e. by also including an expiration date."
 msgstr "A kulcs kódja elrejtéséhez jó ötlet lehet, ha leírja mint egy hitelkártya számot, azaz hozzáad egy lejárati dátumot is. "
+
+msgid "Welcome!"
+msgstr ""
+
+msgid "User preferences"
+msgstr ""
 
 msgid ""
 "You have not set up your encryption key, so the files will not be encrypted "
@@ -1936,6 +2010,12 @@ msgstr ""
 msgid "Check your inbox to activate your account."
 msgstr ""
 
+msgid "This field is mandatory."
+msgstr ""
+
+msgid "The answer is too short."
+msgstr ""
+
 msgid "The specified input is not valid:"
 msgstr ""
 
@@ -1943,12 +2023,6 @@ msgid "please enter a valid email address."
 msgstr ""
 
 msgid "please enter numbers only."
-msgstr ""
-
-msgid "This field is mandatory."
-msgstr ""
-
-msgid "The answer is too short."
 msgstr ""
 
 msgid "Recipient selection"
@@ -1981,9 +2055,6 @@ msgid "Waiting for the file(s) to finish uploading."
 msgstr ""
 
 msgid "The following steps have errors:"
-msgstr ""
-
-msgid "Welcome!"
 msgstr ""
 
 msgid ""
@@ -2275,6 +2346,16 @@ msgid "Expiration alert for HTTPS certificate"
 msgstr ""
 
 msgid ""
+"The automatic HTTPS certificate renewal scheduled for today just failed."
+msgstr ""
+
+msgid "The system will keep trying."
+msgstr ""
+
+msgid "Failed HTTPS certificate renewal"
+msgstr ""
+
+msgid ""
 "This is an email to notify you that a custodian has authorized you to access"
 " to the whistleblowing identity for the submission {TipNum}."
 msgstr ""
@@ -2316,7 +2397,9 @@ msgstr ""
 msgid "New message"
 msgstr "Új üzenet"
 
-msgid "You're receiving this email because you requested a password reset."
+msgid ""
+"You're receiving this email because a password reset has been requested for "
+"your account."
 msgstr ""
 
 msgid ""

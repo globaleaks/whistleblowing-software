@@ -11,7 +11,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-06-07 10:00+0000\n"
+"PO-Revision-Date: 2018-07-15 20:39+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Czech (http://www.transifex.com/otf/globaleaks/language/cs/)\n"
 "MIME-Version: 1.0\n"
@@ -652,8 +652,14 @@ msgstr "Nezvoleno ve výchozím nastavení"
 msgid "Surname"
 msgstr "Příjmení"
 
-msgid "Do not create the admin user"
-msgstr ""
+msgid "New"
+msgstr "Nové"
+
+msgid "Open"
+msgstr "Otevřít"
+
+msgid "Closed"
+msgstr "Zavrit"
 
 msgid "Select the context of your submission:"
 msgstr "Vyberte kontext pro vaše podání"
@@ -690,8 +696,8 @@ msgstr "Zakázat podání"
 msgid "Enable insecure configuration without PGP encryption"
 msgstr "Povolit nedůvěryhodné nastavení bez PGP šifrování"
 
-msgid "Danger"
-msgstr "Nebezpečí"
+msgid "Warning"
+msgstr "Varování"
 
 msgid ""
 "By enabling this option, the system will be storing the submitted files "
@@ -703,11 +709,6 @@ msgstr "Toto se stane kdykoliv je šifrování nedostupné."
 
 msgid "Disable messages that warn of missing encryption"
 msgstr "Vypnout zprávy varující před chybějícím šifrováním"
-
-msgid ""
-"This setting affects the security of the users and must not be used in "
-"production."
-msgstr "Toto nastavení ovlivňuje bezpečnost uživatelů a nemělo by být používáno na produkčních systémech."
 
 msgid "Allow other websites to include the platform inside iframes"
 msgstr "Povolit jiným stránkám zobrazovat části tohoto webu pomocí iframe."
@@ -778,6 +779,16 @@ msgstr "Přístup oznamovatele má z bezpečnostích důvodů časově omezenou 
 msgid "Tweak this setting only if you know what you are doing."
 msgstr "Toto nastavení neměnte, ledaže opravdu víte co děláte."
 
+msgid "Password change interval"
+msgstr ""
+
+msgid ""
+"For security reasons, password changes are required at regular intervals."
+msgstr ""
+
+msgid "Set the value to 0 to disable this feature."
+msgstr ""
+
 msgid "Landing page"
 msgstr "Vstupní stránka"
 
@@ -837,16 +848,25 @@ msgstr ""
 msgid "Example:"
 msgstr "Příklad:"
 
-msgid "Allow users to reset their password"
+msgid "Each entry must be separated with a comma."
 msgstr ""
 
-msgid "Warning"
-msgstr "Varování"
+msgid "Allow users to reset their passwords"
+msgstr ""
 
 msgid ""
-"Allowing users to reset their password may reduce the security of the "
+"Allowing users to reset their passwords may reduce the security of the "
 "platform due to security becoming dependent on the security of user's email "
 "accounts."
+msgstr ""
+
+msgid "Enable users to upload their PGP keys"
+msgstr ""
+
+msgid "Enable multi-site login"
+msgstr ""
+
+msgid "Enable simplified login"
 msgstr ""
 
 msgid "Enable experimental features"
@@ -869,6 +889,27 @@ msgstr "Dlouhé URL"
 
 msgid "Add"
 msgstr "Přidat"
+
+msgid "Substatuses"
+msgstr ""
+
+msgid "Label"
+msgstr "Štítek"
+
+msgid "This field is mandatory"
+msgstr "Toto pole je povinné"
+
+msgid "Edit"
+msgstr "Editovat"
+
+msgid "Cancel"
+msgstr "Zrušit"
+
+msgid "Submission statuses"
+msgstr ""
+
+msgid "Closing statuses"
+msgstr ""
 
 msgid "Logo"
 msgstr "Logo"
@@ -936,20 +977,17 @@ msgstr "Kontexty"
 msgid "Name"
 msgstr "Jméno"
 
-msgid "Edit"
-msgstr "Editovat"
-
-msgid "Cancel"
-msgstr "Zrušit"
-
-msgid "This field is mandatory"
-msgstr "Toto pole je povinné"
-
 msgid "Questionnaire"
 msgstr "Dotazník"
 
 msgid "Recipients"
 msgstr "Příjemci"
+
+msgid "Submission expiration"
+msgstr ""
+
+msgid "days"
+msgstr "dnů"
 
 msgid "Allow selection of this context through the context selector."
 msgstr "Povolit výběr tohoto kontextu prostřednictvím výběru."
@@ -997,21 +1035,6 @@ msgstr "Zobrazit detaily o příjemcích na stránce o stavu podání"
 
 msgid "Let recipients upload files to whistleblowers"
 msgstr "Povolit příjemcům nahrát soubory pro oznamovatele"
-
-msgid "Disabled"
-msgstr "Vypnuto"
-
-msgid "Enabled"
-msgstr "Zapnuto"
-
-msgid "Submission expiration, in days"
-msgstr "Expirace podání, ve dnech"
-
-msgid ""
-"For security reasons, as a matter of data retention policy, the platform "
-"automatically deletes submissions and their data after a certain amount of "
-"time."
-msgstr "Veškeré příspěvky a relevantní data jsou z důvodů bezpečnostní politiky uchovávání údajů (data retention) po jistém čase automaticky odmazávány."
 
 msgid "Text shown on top of the interface for selecting recipients"
 msgstr "Text zobrazený na vrchu stránky s výběrem příjemců"
@@ -1090,6 +1113,12 @@ msgstr "Port serveru SMTP"
 
 msgid "Transport Security"
 msgstr "Bezpečnost přenosu"
+
+msgid "Require authentication"
+msgstr ""
+
+msgid "Disabled"
+msgstr "Vypnuto"
 
 msgid "When the option is re-enabled the spooled emails will be sent out."
 msgstr "Neodeslané emaily budou ve frontě dokud nebude nastavení znovupovoleno."
@@ -1242,6 +1271,9 @@ msgstr "Platforma podporuje konfiguraci HTTPS prostřednictvím tohoto rozhraní
 msgid "The connection to the configured domain failed."
 msgstr "Připojení k nakonfigurované doméně se nezdařilo."
 
+msgid "Enabled"
+msgstr "Zapnuto"
+
 msgid "Running"
 msgstr "Běží"
 
@@ -1253,6 +1285,9 @@ msgstr "Automatické obnovení"
 
 msgid "System message:"
 msgstr "Systémová zpráva:"
+
+msgid "Danger"
+msgstr "Nebezpečí"
 
 msgid ""
 "Allowing whistleblowers to connect over HTTPS preserves their privacy but "
@@ -1321,9 +1356,6 @@ msgstr "ǔroveň varování"
 msgid "Events"
 msgstr "Události"
 
-msgid "Label"
-msgstr "Štítek"
-
 msgid "Type"
 msgstr "Typ"
 
@@ -1378,11 +1410,8 @@ msgstr "Nápověda objevující se na tlačítku pro přidání doplňující ot
 msgid "Phone number"
 msgstr "Telefonní číslo"
 
-msgid "Clause"
-msgstr "Dodatek"
-
-msgid "Agreement Text"
-msgstr "Text dohody"
+msgid "Checkbox label"
+msgstr ""
 
 msgid "Layout orientation"
 msgstr "Orientace"
@@ -1390,17 +1419,14 @@ msgstr "Orientace"
 msgid "Subject answer visibility to custodian authorization"
 msgstr "Vystavit viditelnost oprávnění ochránce"
 
+msgid "Text shown upon negative answer"
+msgstr ""
+
 msgid "Prompt confirmation upon negative answer"
 msgstr "Výzva k potvrzení záporné odpovědi"
 
-msgid "Title of the confirmation question upon negative answer"
-msgstr "Titulek dotazu na potvrzení záporné odpovědi"
-
-msgid "Body of the confirmation question upon negative answer"
-msgstr "Tělo dotazu na potvrzení záporné odpovědi"
-
-msgid "Text of the final statement upon negative answer"
-msgstr "Text závěrečného prohlášení při negativní odpovědi"
+msgid "Text shown upon confirmation"
+msgstr ""
 
 msgid "Options"
 msgstr "Volby"
@@ -1413,6 +1439,9 @@ msgstr "Přidat novou otázku"
 
 msgid "Add question from template"
 msgstr "Přidat otázku dle šablony"
+
+msgid "Duplicate"
+msgstr ""
 
 msgid "Steps"
 msgstr "Kroky"
@@ -1446,6 +1475,9 @@ msgstr "Povolit příjemci přiřazovat oprávnění oznamovatelům ke konkrétn
 msgid "General settings"
 msgstr "Hlavní nastavení"
 
+msgid "Case management"
+msgstr ""
+
 msgid "Network settings"
 msgstr "Nastavení sítě"
 
@@ -1455,7 +1487,16 @@ msgstr "Kořenová doména pro sekundární stránky"
 msgid "Allow users to sign up"
 msgstr "Povolit uživatelům registraci"
 
-msgid "Enable footer customization"
+msgid "Signup mode:"
+msgstr ""
+
+msgid "Record IP address and user agent of registered users"
+msgstr ""
+
+msgid "Do not create the admin user"
+msgstr ""
+
+msgid "Enable terms of service"
 msgstr ""
 
 msgid "Sites"
@@ -1473,8 +1514,11 @@ msgstr "Výchozí heslo je:"
 msgid "The system forces users to change the password at first login."
 msgstr "Systém vynutí u uživatele změnu hesla po prvním přihlášení."
 
-msgid "New Password"
-msgstr "Nové heslo"
+msgid "Reset password"
+msgstr ""
+
+msgid "New password"
+msgstr ""
 
 msgid ""
 "The chosen password is too weak. Make it more secure by adding special "
@@ -1495,6 +1539,12 @@ msgstr "Odstranení klíče PGP"
 
 msgid "Set up encryption by providing a PGP public key"
 msgstr "Nastavte šifrování poskytnutím veřejné části PGP klíče."
+
+msgid "User has administrative access to the following features:"
+msgstr ""
+
+msgid "main"
+msgstr ""
 
 msgid "Request date"
 msgstr "Datum požadavku"
@@ -1546,14 +1596,20 @@ msgstr "Podpořte, prosím,organizaci Hermes na jejich stránce pro dary."
 msgid "Forgot password?"
 msgstr ""
 
+msgid "Authentication failed"
+msgstr "Chyba autentizace"
+
+msgid "Site"
+msgstr "Stránky"
+
+msgid "Back"
+msgstr "Zpět"
+
 msgid "Please select your account:"
 msgstr "Vyberte, prosím, váš účet"
 
 msgid "Now type your password, then click 'Log in':"
 msgstr "Nyní vepište své heslo, po té stiskněte  přihlášení 'Log in':"
-
-msgid "Authentication failed"
-msgstr "Chyba autentizace"
 
 msgid "Are you sure?"
 msgstr "Jste si jistý?"
@@ -1643,6 +1699,9 @@ msgstr "Detaily PGP klíče:"
 
 msgid "Fingerprint"
 msgstr "Otisk klíče"
+
+msgid "Enter a name for the copy"
+msgstr ""
 
 msgid "Add file"
 msgstr "Přidat soubor"
@@ -1755,11 +1814,17 @@ msgstr "Krok"
 msgid "Recipient list"
 msgstr "Seznam příjemců"
 
+msgid "Submission status:"
+msgstr ""
+
 msgid "Attached files for the whistleblower"
 msgstr "Přiložené soubory pro oznamovatele."
 
 msgid "Upload a file:"
 msgstr "Nahrání souboru:"
+
+msgid "Site settings"
+msgstr ""
 
 msgid "Logout"
 msgstr "Odhlášení"
@@ -1805,6 +1870,9 @@ msgstr "Současné heslo"
 msgid "Old password confirmation required"
 msgstr "Požadováno potvrzení starého hesla"
 
+msgid "New Password"
+msgstr "Nové heslo"
+
 msgid "The new password must be different from the current one."
 msgstr "Nové heslo musí být rozdílné od stávajícího."
 
@@ -1838,6 +1906,12 @@ msgid ""
 "A useful way to hide your key code is to write it down like a credit card "
 "number, i.e. by also including an expiration date."
 msgstr "Užitečný způsob, jak si nenápadně poznamenat přístupový kód, je zapsat si ho jako číslo kreditní karty. Pro lepší dojem můžete doplnit datum expirace."
+
+msgid "Welcome!"
+msgstr "Vítejte!"
+
+msgid "User preferences"
+msgstr ""
 
 msgid ""
 "You have not set up your encryption key, so the files will not be encrypted "
@@ -1926,6 +2000,12 @@ msgstr "Vaše whistleblowing platforma je téměř hotova!"
 msgid "Check your inbox to activate your account."
 msgstr "Pro dokončení aktivace účtu zkontrolujte svou email schránku."
 
+msgid "This field is mandatory."
+msgstr "Toto pole je povinné."
+
+msgid "The answer is too short."
+msgstr "Odpověď je příliš krátká"
+
 msgid "The specified input is not valid:"
 msgstr "Zadaný vstup není validní:"
 
@@ -1934,12 +2014,6 @@ msgstr "Prosím vložte validní email adresu."
 
 msgid "please enter numbers only."
 msgstr "Vkládejte, prosím, pouze čísla."
-
-msgid "This field is mandatory."
-msgstr "Toto pole je povinné."
-
-msgid "The answer is too short."
-msgstr "Odpověď je příliš krátká"
 
 msgid "Recipient selection"
 msgstr "Výběr příjemce"
@@ -1972,9 +2046,6 @@ msgstr "čekáme na dokončení nahrávání souborů."
 
 msgid "The following steps have errors:"
 msgstr "Následující kroky mají chyby:"
-
-msgid "Welcome!"
-msgstr "Vítejte!"
 
 msgid ""
 "The following step-by-step procedure will guide you through creating your "
@@ -2265,6 +2336,16 @@ msgid "Expiration alert for HTTPS certificate"
 msgstr "Výstraha ohledně vypršení platnosti certifikátu HTTPS"
 
 msgid ""
+"The automatic HTTPS certificate renewal scheduled for today just failed."
+msgstr ""
+
+msgid "The system will keep trying."
+msgstr ""
+
+msgid "Failed HTTPS certificate renewal"
+msgstr ""
+
+msgid ""
 "This is an email to notify you that a custodian has authorized you to access"
 " to the whistleblowing identity for the submission {TipNum}."
 msgstr "Tímto emailem  Vás chceme informovat, že ochránce Vám povolil přístup k identitě oznamovatele pro pro podání {TipNum}."
@@ -2306,7 +2387,9 @@ msgstr "Toto je e-mailové upozornění o nové zprávě u existujícího přís
 msgid "New message"
 msgstr "Nová zpráva"
 
-msgid "You're receiving this email because you requested a password reset."
+msgid ""
+"You're receiving this email because a password reset has been requested for "
+"your account."
 msgstr ""
 
 msgid ""

@@ -10,7 +10,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-06-07 10:00+0000\n"
+"PO-Revision-Date: 2018-07-15 20:39+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Thai (http://www.transifex.com/otf/globaleaks/language/th/)\n"
 "MIME-Version: 1.0\n"
@@ -651,8 +651,14 @@ msgstr ""
 msgid "Surname"
 msgstr ""
 
-msgid "Do not create the admin user"
-msgstr ""
+msgid "New"
+msgstr "สร้างใหม่"
+
+msgid "Open"
+msgstr "เปิด"
+
+msgid "Closed"
+msgstr "ถูกปิด"
 
 msgid "Select the context of your submission:"
 msgstr ""
@@ -689,8 +695,8 @@ msgstr "ส่งปิดการใช้งาน"
 msgid "Enable insecure configuration without PGP encryption"
 msgstr "เปิดใช้งานการตั้งค่าที่ไม่ปลอดภัยโดยไม่มีการเข้ารหัส PGP"
 
-msgid "Danger"
-msgstr "อันตราย"
+msgid "Warning"
+msgstr ""
 
 msgid ""
 "By enabling this option, the system will be storing the submitted files "
@@ -702,11 +708,6 @@ msgstr "เรื่องนี้เกิดขึ้นเมื่อใด
 
 msgid "Disable messages that warn of missing encryption"
 msgstr ""
-
-msgid ""
-"This setting affects the security of the users and must not be used in "
-"production."
-msgstr "การตั้งค่านี้ส่งผลกระทบต่อความปลอดภัยของผู้ใช้และจะต้องไม่ถูกนำมาใช้ในการผลิต"
 
 msgid "Allow other websites to include the platform inside iframes"
 msgstr "อนุญาตให้เว็บไซต์อื่น ๆ ที่จะรวมถึงแพลตฟอร์มภายใน iframes"
@@ -777,6 +778,16 @@ msgstr ""
 msgid "Tweak this setting only if you know what you are doing."
 msgstr ""
 
+msgid "Password change interval"
+msgstr ""
+
+msgid ""
+"For security reasons, password changes are required at regular intervals."
+msgstr ""
+
+msgid "Set the value to 0 to disable this feature."
+msgstr ""
+
 msgid "Landing page"
 msgstr "หน้า Landing Page"
 
@@ -836,16 +847,25 @@ msgstr ""
 msgid "Example:"
 msgstr "ตัวอย่าง:"
 
-msgid "Allow users to reset their password"
+msgid "Each entry must be separated with a comma."
 msgstr ""
 
-msgid "Warning"
+msgid "Allow users to reset their passwords"
 msgstr ""
 
 msgid ""
-"Allowing users to reset their password may reduce the security of the "
+"Allowing users to reset their passwords may reduce the security of the "
 "platform due to security becoming dependent on the security of user's email "
 "accounts."
+msgstr ""
+
+msgid "Enable users to upload their PGP keys"
+msgstr ""
+
+msgid "Enable multi-site login"
+msgstr ""
+
+msgid "Enable simplified login"
 msgstr ""
 
 msgid "Enable experimental features"
@@ -868,6 +888,27 @@ msgstr "URL ยาว"
 
 msgid "Add"
 msgstr "เพิ่ม"
+
+msgid "Substatuses"
+msgstr ""
+
+msgid "Label"
+msgstr "ฉลาก"
+
+msgid "This field is mandatory"
+msgstr "ฟิลด์นี้มีผลบังคับใช้"
+
+msgid "Edit"
+msgstr "แก้ไข"
+
+msgid "Cancel"
+msgstr "ยกเลิก"
+
+msgid "Submission statuses"
+msgstr ""
+
+msgid "Closing statuses"
+msgstr ""
 
 msgid "Logo"
 msgstr ""
@@ -935,20 +976,17 @@ msgstr "บริบท"
 msgid "Name"
 msgstr "ชื่อ"
 
-msgid "Edit"
-msgstr "แก้ไข"
-
-msgid "Cancel"
-msgstr "ยกเลิก"
-
-msgid "This field is mandatory"
-msgstr "ฟิลด์นี้มีผลบังคับใช้"
-
 msgid "Questionnaire"
 msgstr "แบบสอบถาม"
 
 msgid "Recipients"
 msgstr "ผู้รับ"
+
+msgid "Submission expiration"
+msgstr ""
+
+msgid "days"
+msgstr ""
 
 msgid "Allow selection of this context through the context selector."
 msgstr "ให้สามารถเลือกบริบทนี้ผ่านการเลือกบริบท"
@@ -996,21 +1034,6 @@ msgstr "แสดงรายละเอียดของผู้รับใ
 
 msgid "Let recipients upload files to whistleblowers"
 msgstr ""
-
-msgid "Disabled"
-msgstr "พิการ"
-
-msgid "Enabled"
-msgstr "เปิดใช้งาน"
-
-msgid "Submission expiration, in days"
-msgstr "ส่งหมดอายุในวันที่"
-
-msgid ""
-"For security reasons, as a matter of data retention policy, the platform "
-"automatically deletes submissions and their data after a certain amount of "
-"time."
-msgstr "สำหรับเหตุผลด้านความปลอดภัยเป็นเรื่องของนโยบายการเก็บรักษาข้อมูลแพลตฟอร์มโดยอัตโนมัติลบส่งและข้อมูลของพวกเขาหลังจากที่จำนวนหนึ่งของเวลา"
 
 msgid "Text shown on top of the interface for selecting recipients"
 msgstr "ข้อความปรากฏที่ด้านบนของอินเตอร์เฟซสำหรับการเลือกผู้รับ"
@@ -1089,6 +1112,12 @@ msgstr "พอร์ตเซิร์ฟเวอร์ SMTP"
 
 msgid "Transport Security"
 msgstr "การรักษาความปลอดภัยการขนส่ง"
+
+msgid "Require authentication"
+msgstr ""
+
+msgid "Disabled"
+msgstr "พิการ"
 
 msgid "When the option is re-enabled the spooled emails will be sent out."
 msgstr "เมื่อตัวเลือกที่เป็นอีกครั้งที่เปิดใช้งานอีเมล spooled จะถูกส่งออก"
@@ -1241,6 +1270,9 @@ msgstr ""
 msgid "The connection to the configured domain failed."
 msgstr ""
 
+msgid "Enabled"
+msgstr "เปิดใช้งาน"
+
 msgid "Running"
 msgstr ""
 
@@ -1252,6 +1284,9 @@ msgstr ""
 
 msgid "System message:"
 msgstr ""
+
+msgid "Danger"
+msgstr "อันตราย"
 
 msgid ""
 "Allowing whistleblowers to connect over HTTPS preserves their privacy but "
@@ -1320,9 +1355,6 @@ msgstr "ระดับการเตือนภัย"
 msgid "Events"
 msgstr "เหตุการณ์ที่เกิดขึ้น"
 
-msgid "Label"
-msgstr "ฉลาก"
-
 msgid "Type"
 msgstr "ชนิด"
 
@@ -1377,11 +1409,8 @@ msgstr "คำแนะนำที่แสดงบนปุ่มสำหร
 msgid "Phone number"
 msgstr "หมายเลขโทรศัพท์"
 
-msgid "Clause"
-msgstr "ประโยค"
-
-msgid "Agreement Text"
-msgstr "ข้อตกลงข้อความ"
+msgid "Checkbox label"
+msgstr ""
 
 msgid "Layout orientation"
 msgstr "การวางแนวทางรูปแบบ"
@@ -1389,16 +1418,13 @@ msgstr "การวางแนวทางรูปแบบ"
 msgid "Subject answer visibility to custodian authorization"
 msgstr "คำตอบของการมองเห็นอาจมีการอนุมัติการปกครอง"
 
+msgid "Text shown upon negative answer"
+msgstr ""
+
 msgid "Prompt confirmation upon negative answer"
 msgstr "ยืนยันพร้อมรับคำบนลบคำตอบ"
 
-msgid "Title of the confirmation question upon negative answer"
-msgstr "ชื่อของคำถามยืนยันเมื่อลบคำตอบ"
-
-msgid "Body of the confirmation question upon negative answer"
-msgstr "ร่างกายของคำถามยืนยันเมื่อลบคำตอบ"
-
-msgid "Text of the final statement upon negative answer"
+msgid "Text shown upon confirmation"
 msgstr ""
 
 msgid "Options"
@@ -1412,6 +1438,9 @@ msgstr "เพิ่มคำถามใหม่"
 
 msgid "Add question from template"
 msgstr "เพิ่มคำถามจากแม่"
+
+msgid "Duplicate"
+msgstr ""
 
 msgid "Steps"
 msgstr ""
@@ -1445,6 +1474,9 @@ msgstr "อนุญาตให้ผู้รับการให้สิท
 msgid "General settings"
 msgstr "การตั้งค่าทั่วไป"
 
+msgid "Case management"
+msgstr ""
+
 msgid "Network settings"
 msgstr ""
 
@@ -1454,7 +1486,16 @@ msgstr ""
 msgid "Allow users to sign up"
 msgstr ""
 
-msgid "Enable footer customization"
+msgid "Signup mode:"
+msgstr ""
+
+msgid "Record IP address and user agent of registered users"
+msgstr ""
+
+msgid "Do not create the admin user"
+msgstr ""
+
+msgid "Enable terms of service"
 msgstr ""
 
 msgid "Sites"
@@ -1472,8 +1513,11 @@ msgstr ""
 msgid "The system forces users to change the password at first login."
 msgstr "ระบบจะบังคับให้ผู้ใช้เปลี่ยนรหัสผ่านในการเข้าสู่ระบบครั้งแรก"
 
-msgid "New Password"
-msgstr "รหัสผ่านใหม่"
+msgid "Reset password"
+msgstr ""
+
+msgid "New password"
+msgstr ""
 
 msgid ""
 "The chosen password is too weak. Make it more secure by adding special "
@@ -1494,6 +1538,12 @@ msgstr "ลบคีย์ PGP ที่"
 
 msgid "Set up encryption by providing a PGP public key"
 msgstr "ตั้งค่าการเข้ารหัสโดยการให้คีย์สาธารณะ PGP"
+
+msgid "User has administrative access to the following features:"
+msgstr ""
+
+msgid "main"
+msgstr ""
 
 msgid "Request date"
 msgstr "วันที่ขอ"
@@ -1545,14 +1595,20 @@ msgstr "กรุณาสนับสนุน Hermes ผ่านทางห�
 msgid "Forgot password?"
 msgstr ""
 
+msgid "Authentication failed"
+msgstr "รับรองความถูกต้องล้มเหลว"
+
+msgid "Site"
+msgstr "ไซต์"
+
+msgid "Back"
+msgstr "ย้อนกลับ"
+
 msgid "Please select your account:"
 msgstr "กรุณาเลือกบัญชีของคุณ:"
 
 msgid "Now type your password, then click 'Log in':"
 msgstr "ตอนนี้พิมพ์รหัสผ่านของคุณแล้วคลิก 'เข้าสู่ระบบ:"
-
-msgid "Authentication failed"
-msgstr "รับรองความถูกต้องล้มเหลว"
 
 msgid "Are you sure?"
 msgstr "คุณแน่ใจไหม?"
@@ -1641,6 +1697,9 @@ msgid "Details of the PGP key:"
 msgstr "รายละเอียดของคีย์ PGP ที่:"
 
 msgid "Fingerprint"
+msgstr ""
+
+msgid "Enter a name for the copy"
 msgstr ""
 
 msgid "Add file"
@@ -1754,10 +1813,16 @@ msgstr "ขั้นตอน"
 msgid "Recipient list"
 msgstr "รายชื่อผู้รับ"
 
+msgid "Submission status:"
+msgstr ""
+
 msgid "Attached files for the whistleblower"
 msgstr ""
 
 msgid "Upload a file:"
+msgstr ""
+
+msgid "Site settings"
 msgstr ""
 
 msgid "Logout"
@@ -1804,6 +1869,9 @@ msgstr "รหัสผ่านปัจจุบัน"
 msgid "Old password confirmation required"
 msgstr "ยืนยันรหัสผ่านเดิมที่จำเป็น"
 
+msgid "New Password"
+msgstr "รหัสผ่านใหม่"
+
 msgid "The new password must be different from the current one."
 msgstr ""
 
@@ -1837,6 +1905,12 @@ msgid ""
 "A useful way to hide your key code is to write it down like a credit card "
 "number, i.e. by also including an expiration date."
 msgstr "วิธีที่มีประโยชน์เพื่อซ่อนรหัสที่สำคัญของคุณคือการเขียนมันลงเช่นหมายเลขบัตรเครดิตเช่นโดยยังรวมถึงวันหมดอายุ"
+
+msgid "Welcome!"
+msgstr ""
+
+msgid "User preferences"
+msgstr ""
 
 msgid ""
 "You have not set up your encryption key, so the files will not be encrypted "
@@ -1925,6 +1999,12 @@ msgstr ""
 msgid "Check your inbox to activate your account."
 msgstr ""
 
+msgid "This field is mandatory."
+msgstr ""
+
+msgid "The answer is too short."
+msgstr ""
+
 msgid "The specified input is not valid:"
 msgstr ""
 
@@ -1932,12 +2012,6 @@ msgid "please enter a valid email address."
 msgstr ""
 
 msgid "please enter numbers only."
-msgstr ""
-
-msgid "This field is mandatory."
-msgstr ""
-
-msgid "The answer is too short."
 msgstr ""
 
 msgid "Recipient selection"
@@ -1970,9 +2044,6 @@ msgid "Waiting for the file(s) to finish uploading."
 msgstr ""
 
 msgid "The following steps have errors:"
-msgstr ""
-
-msgid "Welcome!"
 msgstr ""
 
 msgid ""
@@ -2264,6 +2335,16 @@ msgid "Expiration alert for HTTPS certificate"
 msgstr ""
 
 msgid ""
+"The automatic HTTPS certificate renewal scheduled for today just failed."
+msgstr ""
+
+msgid "The system will keep trying."
+msgstr ""
+
+msgid "Failed HTTPS certificate renewal"
+msgstr ""
+
+msgid ""
 "This is an email to notify you that a custodian has authorized you to access"
 " to the whistleblowing identity for the submission {TipNum}."
 msgstr ""
@@ -2305,7 +2386,9 @@ msgstr "นี่คืออีเมลไปแจ้งให้คุณท
 msgid "New message"
 msgstr "ข้อความใหม่"
 
-msgid "You're receiving this email because you requested a password reset."
+msgid ""
+"You're receiving this email because a password reset has been requested for "
+"your account."
 msgstr ""
 
 msgid ""
