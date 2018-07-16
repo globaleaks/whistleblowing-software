@@ -119,7 +119,7 @@ def db_create_user(session, state, tid, request, language):
         'can_edit_general_settings': request['can_edit_general_settings']
     })
 
-    if request['username']:
+    if not request['username']:
         user.username = user.id = uuid4()
 
     if request['password']:
