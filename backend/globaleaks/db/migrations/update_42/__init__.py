@@ -155,6 +155,9 @@ class MigrationScript(MigrationBase):
 
                 setattr(new_obj, key, getattr(old_obj, key))
 
+            if new_obj.username == '':
+                new_obj.username = new_obj.id
+
             self.session_new.add(new_obj)
 
             user_tenant = self.model_to['UserTenant']()
