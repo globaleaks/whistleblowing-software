@@ -1,3 +1,19 @@
+Changes in version 3.2.0 - 2018-07-16
+    Implement password reset feature (#113)
+    Implement possibility for Users to change General Settings (#2273)
+    Implement Submission states feature (#1416)
+    Implement multitenant login interface (#2357)
+    Implement simplified multisite login interface (#2360)
+
+    Addressed issues:
+    - https://gitgub.com/globaleaks/GlobaLeaks/issues/2266
+    - https://github.com/globaleaks/GlobaLeaks/issues/2287
+    - https://github.com/globaleaks/GlobaLeaks/issues/2313
+    - https://github.com/globaleaks/GlobaLeaks/issues/2314
+    - https://github.com/globaleaks/GlobaLeaks/issues/2317
+    - https://github.com/globaleaks/GlobaLeaks/issues/2325
+    - https://github.com/globaleaks/GlobaLeaks/issues/2345
+
 Changes in version 3.1.10 - 2018-07-08
     Bump python-acme to version 0.25.1
     The updated is required to make HTTPS certificate renewal to work
