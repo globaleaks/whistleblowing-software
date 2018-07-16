@@ -1,3 +1,6 @@
+Changes in version 3.2.1 - 2018-07-16
+    Apply minor bugfixing
+
 Changes in version 3.2.0 - 2018-07-16
     Implement password reset feature (#113)
     Implement possibility for Users to change General Settings (#2273)
