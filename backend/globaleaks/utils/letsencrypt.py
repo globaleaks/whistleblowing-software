@@ -1,19 +1,24 @@
-# -*- coding: utf-
+# -*- coding: utf-8
+import josepy
+import OpenSSL
+import re
+
 from datetime import datetime
 from acme import challenges, client, crypto_util, messages
 from functools import reduce
+from OpenSSL.crypto import FILETYPE_PEM, load_certificate, dump_certificate
 from six import text_type
 from six.moves import urllib
-
-import josepy
-import OpenSSL
-from OpenSSL.crypto import FILETYPE_PEM, load_certificate, dump_certificate
 
 from globaleaks.utils.utility import log
 
 class ChallTok:
     def __init__(self, tok):
         self.tok = tok
+
+def split_certificate_chain(full_chain_pem):
+    certificates = re.findall('-----BEGIN CERTIFICATE-----.*?-----END CERTIFICATE-----', full_chain_pem, re.DOTALL)
+    return certificates[0], ''.join(certificates[1:])
 
 def convert_asn1_date(asn1_bytes):
     return datetime.strptime(text_type(asn1_bytes, 'utf-8'), '%Y%m%d%H%M%SZ')
@@ -84,21 +89,6 @@ def run_acme_reg_to_finish(domain, accnt_key, priv_key, hostname, tmp_chall_dict
     cr = client.answer_challenge(challb, challb.response(client.net.key))
     log.debug('Acme CA responded to challenge request with: %s', cr)
 
-    # Wrap this step and log the failure particularly here because this is
-    # the expected point of failure for applications that are not reachable
-    # from the public internet.
     order = client.poll_and_finalize(order)
 
-    # ACME V2 returns a full chain certificate, and ACME doesn't ship with
-    # helper functions out of the box. Fortunately, searching through cerbot
-    # this is easily enough to do with pyOpenSSL
-
-    cert = load_certificate(FILETYPE_PEM, order.fullchain_pem)
-    cert_str = dump_certificate(FILETYPE_PEM, cert).decode()
-    chain_str = order.fullchain_pem[len(cert_str):].lstrip()
-
-    # pylint: disable=no-member
-    expr_date = convert_asn1_date(cert.get_notAfter())
-    log.info('Retrieved cert using ACME that expires on %s', expr_date)
-
-    return cert_str, chain_str
+    return split_certificate_chain(order.fullchain_pem)
