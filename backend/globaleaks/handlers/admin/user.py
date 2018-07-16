@@ -18,7 +18,7 @@ from globaleaks.rest import requests, errors
 from globaleaks.state import State
 from globaleaks.utils import security
 from globaleaks.utils.structures import fill_localized_keys, get_localized_values
-from globaleaks.utils.utility import datetime_now
+from globaleaks.utils.utility import datetime_now, uuid4
 
 
 def admin_serialize_receiver(session, receiver, user, language):
@@ -119,6 +119,9 @@ def db_create_user(session, state, tid, request, language):
         'can_edit_general_settings': request['can_edit_general_settings']
     })
 
+    if request['username']:
+        user.username = user.id = uuid4()
+
     if request['password']:
         password = request['password']
     elif user.role == 'receiver':
@@ -136,9 +139,6 @@ def db_create_user(session, state, tid, request, language):
     session.add(user)
 
     session.flush()
-
-    if not request['username']:
-        user.username = user.id
 
     db_create_usertenant_association(session, user.id, tid)
 
