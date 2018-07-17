@@ -22,7 +22,7 @@
     'organization_location4': '',
     'organization_number_employees': '',
     'organization_number_users': '',
-    'organizaion_site': '',
+    'organization_site': '',
     'hear_channel': '',
     'tos1': false,
     'tos2': false
