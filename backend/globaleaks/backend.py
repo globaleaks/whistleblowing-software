@@ -165,17 +165,18 @@ class Service(service.Service):
 
         tenant_cache = self.state.tenant_cache[1]
 
-        for port in Settings.bind_local_ports:
-            print("- [LOCAL HTTP]\t--> http://127.0.0.1:%d%s" % (port, Settings.api_prefix))
+        if self.state.settings.devel_mode:
+            for port in Settings.bind_local_ports:
+                print("- [HTTP]\t--> http://127.0.0.1:%d%s" % (port, Settings.api_prefix))
 
-        if self.state.tenant_cache[1].reachable_via_web:
+        elif self.state.tenant_cache[1].reachable_via_web:
             hostname = tenant_cache.hostname if tenant_cache.hostname else '0.0.0.0'
-            print("- [REMOTE HTTP]\t--> http://%s%s" % (hostname, Settings.api_prefix))
+            print("- [HTTP]\t--> http://%s%s" % (hostname, Settings.api_prefix))
             if tenant_cache.https_enabled:
-                print("- [REMOTE HTTPS]\t--> https://%s%s" % (hostname, Settings.api_prefix))
+                print("- [HTTPS]\t--> https://%s%s" % (hostname, Settings.api_prefix))
 
         if tenant_cache.onionservice:
-            print("- [REMOTE Tor]:\t--> http://%s%s" % (tenant_cache.onionservice, Settings.api_prefix))
+            print("- [Tor]:\t--> http://%s%s" % (tenant_cache.onionservice, Settings.api_prefix))
 
 try:
     application = service.Application('GLBackend')
