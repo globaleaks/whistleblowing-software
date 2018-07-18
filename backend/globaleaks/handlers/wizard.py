@@ -10,7 +10,7 @@ from globaleaks.handlers.base import BaseHandler
 from globaleaks.models import config, profiles
 from globaleaks.orm import transact
 from globaleaks.rest import requests, errors
-from globaleaks.utils.utility import log
+from globaleaks.utils.utility import datetime_now, log
 
 
 def db_wizard(session, state, tid, request, create_admin, client_using_tor, language):
@@ -56,8 +56,10 @@ def db_wizard(session, state, tid, request, create_admin, client_using_tor, lang
         admin_desc['role'] =u'admin'
         admin_desc['deletable'] = False
         admin_desc['pgp_key_remove'] = False
-        admin_desc['password_change_needed'] = False
-        db_create_user(session, state, tid, admin_desc, language)
+
+        admin_user = db_create_user(session, state, tid, admin_desc, language)
+        admin_user.password_change_needed = False
+        admin_user.password_change_date = datetime_now()
 
     receiver_desc = models.User().dict(language)
     receiver_desc['name'] = request['receiver_name']
