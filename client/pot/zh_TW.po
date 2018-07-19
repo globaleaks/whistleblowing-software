@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-07-15 20:39+0000\n"
-"Last-Translator: Hermes Center <info@hermescenter.org>\n"
+"PO-Revision-Date: 2018-07-17 06:13+0000\n"
+"Last-Translator: Chi-Hsun Tsai\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/otf/globaleaks/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -779,14 +779,14 @@ msgid "Tweak this setting only if you know what you are doing."
 msgstr "唯有知道自己在做什麼的情況下才進行此處設定的調整"
 
 msgid "Password change interval"
-msgstr ""
+msgstr "密碼變更間隔"
 
 msgid ""
 "For security reasons, password changes are required at regular intervals."
-msgstr ""
+msgstr "基於安全考量，密碼的變更需要有一段間隔時間。"
 
 msgid "Set the value to 0 to disable this feature."
-msgstr ""
+msgstr "將值設為 0  以取消此功能。"
 
 msgid "Landing page"
 msgstr "登陸頁面"
@@ -848,25 +848,25 @@ msgid "Example:"
 msgstr "例子："
 
 msgid "Each entry must be separated with a comma."
-msgstr ""
+msgstr "每一筆條目必須用逗號分隔。"
 
 msgid "Allow users to reset their passwords"
-msgstr ""
+msgstr "用戶可以重設其密碼"
 
 msgid ""
 "Allowing users to reset their passwords may reduce the security of the "
 "platform due to security becoming dependent on the security of user's email "
 "accounts."
-msgstr ""
+msgstr "若安全是建立於用戶的電子郵箱，讓用戶請求重設密碼可能會降低平台的安全性。"
 
 msgid "Enable users to upload their PGP keys"
-msgstr ""
+msgstr "讓用戶可以上傳自己的 PGP  密鑰"
 
 msgid "Enable multi-site login"
-msgstr ""
+msgstr "開啟多站台登入"
 
 msgid "Enable simplified login"
-msgstr ""
+msgstr "開啟簡易登入"
 
 msgid "Enable experimental features"
 msgstr "開啟示範性功能"
@@ -890,7 +890,7 @@ msgid "Add"
 msgstr "新增"
 
 msgid "Substatuses"
-msgstr ""
+msgstr "子狀態"
 
 msgid "Label"
 msgstr "標籤"
@@ -905,10 +905,10 @@ msgid "Cancel"
 msgstr "取消"
 
 msgid "Submission statuses"
-msgstr ""
+msgstr "提交狀態"
 
 msgid "Closing statuses"
-msgstr ""
+msgstr "即將關閉狀態"
 
 msgid "Logo"
 msgstr "Logo"
@@ -983,7 +983,7 @@ msgid "Recipients"
 msgstr "收件人"
 
 msgid "Submission expiration"
-msgstr ""
+msgstr "提交資料到期"
 
 msgid "days"
 msgstr "天"
@@ -1114,7 +1114,7 @@ msgid "Transport Security"
 msgstr "運送安全性"
 
 msgid "Require authentication"
-msgstr ""
+msgstr "請求驗證"
 
 msgid "Disabled"
 msgstr "關閉"
@@ -1410,7 +1410,7 @@ msgid "Phone number"
 msgstr "電話號碼"
 
 msgid "Checkbox label"
-msgstr ""
+msgstr "單選標籤"
 
 msgid "Layout orientation"
 msgstr "操作介面指引"
@@ -1419,13 +1419,13 @@ msgid "Subject answer visibility to custodian authorization"
 msgstr "答案的能見度限於保管人授權"
 
 msgid "Text shown upon negative answer"
-msgstr ""
+msgstr "否定答案會顯示的文字"
 
 msgid "Prompt confirmation upon negative answer"
 msgstr "在否定回答時彈出確認"
 
 msgid "Text shown upon confirmation"
-msgstr ""
+msgstr "肯定答案會顯示的文字"
 
 msgid "Options"
 msgstr "選項"
@@ -1440,7 +1440,7 @@ msgid "Add question from template"
 msgstr "在模版中新增問題"
 
 msgid "Duplicate"
-msgstr ""
+msgstr "重複"
 
 msgid "Steps"
 msgstr "步驟"
@@ -1475,7 +1475,7 @@ msgid "General settings"
 msgstr "通用設置"
 
 msgid "Case management"
-msgstr ""
+msgstr "案件管理"
 
 msgid "Network settings"
 msgstr "網路設定"
@@ -1487,16 +1487,16 @@ msgid "Allow users to sign up"
 msgstr "可接受新用戶註冊"
 
 msgid "Signup mode:"
-msgstr ""
+msgstr "註冊模式："
 
 msgid "Record IP address and user agent of registered users"
-msgstr ""
+msgstr "記錄註冊用戶的瀏覽器與 IP 地址"
 
 msgid "Do not create the admin user"
-msgstr ""
+msgstr "不要建立管理級用戶"
 
 msgid "Enable terms of service"
-msgstr ""
+msgstr "開啟服務條款"
 
 msgid "Sites"
 msgstr "網站"
@@ -1540,10 +1540,10 @@ msgid "Set up encryption by providing a PGP public key"
 msgstr "提供PGP公鑰來設定加密"
 
 msgid "User has administrative access to the following features:"
-msgstr ""
+msgstr "管理級的用戶可以有以下權限功能："
 
 msgid "main"
-msgstr ""
+msgstr "主要"
 
 msgid "Request date"
 msgstr "請求日期"
@@ -1552,13 +1552,13 @@ msgid "Authorization"
 msgstr "授權"
 
 msgid "The validation link is either incorrect or has expired."
-msgstr ""
+msgstr "驗證連結不正確或是已經過期。"
 
 msgid "Your new email address has been validated."
-msgstr ""
+msgstr "您的新電郵已通過驗證。"
 
 msgid "Before proceeding, please set a new password."
-msgstr ""
+msgstr "繼續之前，請設一個新密碼。"
 
 msgid "Submissions disabled"
 msgstr "提交功能取消"
@@ -1593,7 +1593,7 @@ msgid "Please support Hermes through their donation page."
 msgstr "透過捐款頁面支持 Hermes"
 
 msgid "Forgot password?"
-msgstr ""
+msgstr "忘記密碼？"
 
 msgid "Authentication failed"
 msgstr "認證失敗"
@@ -1700,7 +1700,7 @@ msgid "Fingerprint"
 msgstr "數位指紋　"
 
 msgid "Enter a name for the copy"
-msgstr ""
+msgstr "為此複本輸入名稱"
 
 msgid "Add file"
 msgstr "新增檔案"
@@ -1814,7 +1814,7 @@ msgid "Recipient list"
 msgstr "收件人清單"
 
 msgid "Submission status:"
-msgstr ""
+msgstr "提交狀態："
 
 msgid "Attached files for the whistleblower"
 msgstr "給吹哨者的附加檔案"
@@ -1823,7 +1823,7 @@ msgid "Upload a file:"
 msgstr "上傳檔案 :"
 
 msgid "Site settings"
-msgstr ""
+msgstr "站台設定"
 
 msgid "Logout"
 msgstr "登出"
@@ -1838,24 +1838,24 @@ msgid "These files have been attached to your submission by the recipients."
 msgstr "這些檔案是由你提交的收件者所附加的"
 
 msgid "The provided reset token is invalid or expired."
-msgstr ""
+msgstr "所提供的重設符記無效或是已過期。"
 
 msgid ""
 "Enter your account's username or your email address to request a password "
 "reset."
-msgstr ""
+msgstr "輸入您的帳戶名稱或電郵地址以請求重設密碼。"
 
 msgid "Request password reset"
-msgstr ""
+msgstr "請求重設密碼"
 
 msgid "Password reset feature is unavailable for admin users."
-msgstr ""
+msgstr "管理者用戶無法使用密碼重設功能。"
 
 msgid "Password reset requested."
-msgstr ""
+msgstr "已請求重設密碼。"
 
 msgid "Please check your email inbox for further instructions."
-msgstr ""
+msgstr "請檢查您的信箱取得進一步指示。"
 
 msgid "Validation of email address change in progress."
 msgstr "正在查驗電郵地址變更"
@@ -2274,7 +2274,7 @@ msgid ""
 msgstr "本郵件通知你，有人請求將你的電郵地址變更為 {NewEmailAddress}."
 
 msgid "Click the following link to validate this change: {HTTPSUrl}"
-msgstr ""
+msgstr "請點開下方的鍵連來驗證更動: {HTTPSUrl}"
 
 msgid ""
 "If you wish to validate your new email with Tor, you may use the following "
@@ -2336,13 +2336,13 @@ msgstr "HTTPS 證書啻"
 
 msgid ""
 "The automatic HTTPS certificate renewal scheduled for today just failed."
-msgstr ""
+msgstr "今天 HTTPS 證書自動更新剛剛失敗了。"
 
 msgid "The system will keep trying."
-msgstr ""
+msgstr "系統會繼續嘗試"
 
 msgid "Failed HTTPS certificate renewal"
-msgstr ""
+msgstr "HTTPS 證書更新失敗"
 
 msgid ""
 "This is an email to notify you that a custodian has authorized you to access"
@@ -2389,18 +2389,18 @@ msgstr "新訊息"
 msgid ""
 "You're receiving this email because a password reset has been requested for "
 "your account."
-msgstr ""
+msgstr "您會收到本郵件是因為您請求為帳戶重設密碼。"
 
 msgid ""
 "If you didn't make this request, you may safely ignore and delete this "
 "email."
-msgstr ""
+msgstr "若您沒有提出請求，請忽略和刪除本郵件。"
 
 msgid "You can confirm your request by clicking the following links:"
-msgstr ""
+msgstr "請點開下方連結來確認您的請求："
 
 msgid "Password reset instructions"
-msgstr ""
+msgstr "密碼重設指示"
 
 msgid ""
 "This is an email to inform you that your PGP key is expiring or has already "

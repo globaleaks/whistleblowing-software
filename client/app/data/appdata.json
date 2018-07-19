@@ -671,7 +671,7 @@
       "ur": "محترم{RecipientName}،\n\nThis is an email to notify you that a request has been made to change your email address to {NewEmailAddress}.\n\nClick the following link to validate this change: {HTTPSUrl}\n\nIf you wish to validate your new email with Tor, you may use the following link: {TorUrl}\nIf you didn't request this change, change your password and contact your system administrator.\n\nبہت نوازش، مخلص\n{NodeName}",
       "vi": "Kính gửi {RecipientName}\n\nThis is an email to notify you that a request has been made to change your email address to {NewEmailAddress}.\n\nClick the following link to validate this change: {HTTPSUrl}\n\nIf you wish to validate your new email with Tor, you may use the following link: {TorUrl}\nIf you didn't request this change, change your password and contact your system administrator.\n\nTrân trọng,\n{NodeName}",
       "zh_CN": "亲爱的 {RecipientName}，\n\nThis is an email to notify you that a request has been made to change your email address to {NewEmailAddress}.\n\nClick the following link to validate this change: {HTTPSUrl}\n\nIf you wish to validate your new email with Tor, you may use the following link: {TorUrl}\nIf you didn't request this change, change your password and contact your system administrator.\n\n亲切的问候，\n{NodeName}",
-      "zh_TW": "敬愛的 {RecipientName},\n\n本郵件通知你，有人請求將你的電郵地址變更為 {NewEmailAddress}.\n\nClick the following link to validate this change: {HTTPSUrl}\n\n若需要透過 Tor  網路來驗證新的電郵地址，可以使以下方的連結： {TorUrl}\n如果你並未作此請求，請儘快更新密碼並連絡通知系統管理者。\n\nKind regards,\n{NodeName}"
+      "zh_TW": "敬愛的 {RecipientName},\n\n本郵件通知你，有人請求將你的電郵地址變更為 {NewEmailAddress}.\n\n請點開下方的鍵連來驗證更動: {HTTPSUrl}\n\n若需要透過 Tor  網路來驗證新的電郵地址，可以使以下方的連結： {TorUrl}\n如果你並未作此請求，請儘快更新密碼並連絡通知系統管理者。\n\nKind regards,\n{NodeName}"
     },
     "email_validation_mail_title": {
       "ar": "Email change request",
@@ -1049,7 +1049,7 @@
       "ur": "محترم{RecipientName}،\n\nThe automatic HTTPS certificate renewal scheduled for today just failed.\n\nThe system will keep trying.\n\nختم ہونے کی تاریخ: {ExpirationDate}\n\nWithout a valid certificate, the platform will be accessible in a secure way only via Tor.\n\n{TorUrl}: میں ٹار کے ذریعے\nHTTPS کے ذریعے سے اوپر: {HTTPSUrl}\n\nبہت نوازش، مخلص\n{NodeName}",
       "vi": "Kính gửi {RecipientName}\n\nThe automatic HTTPS certificate renewal scheduled for today just failed.\n\nThe system will keep trying.\n\nNgày hết hạn: {ExpirationDate}\n\nWithout a valid certificate, the platform will be accessible in a secure way only via Tor.\n\nqua Tor tại: {TorUrl}\nthông qua HTTPS tại: {HTTPSUrl}\n\nTrân trọng,\n{NodeName}",
       "zh_CN": "亲爱的 {RecipientName}，\n\nThe automatic HTTPS certificate renewal scheduled for today just failed.\n\nThe system will keep trying.\n\n过期日期: {ExpirationDate}\n\n如无有效的证书，Tor 将是安全访问该平台唯一的方式。\n\n通过 Tor 上的：{TorUrl}\n通过HTTPS 上的：{HTTPSUrl}\n\n亲切的问候，\n{NodeName}",
-      "zh_TW": "敬愛的 {RecipientName},\n\nThe automatic HTTPS certificate renewal scheduled for today just failed.\n\nThe system will keep trying.\n\n到期日: {ExpirationDate}\n\n無有效的憑證，這個平台只能透過 Tor 的安全方式來接取使用。\n\n透過 Tor at: {TorUrl}\n透過HTTPS at: {HTTPSUrl}\n\nKind regards,\n{NodeName}"
+      "zh_TW": "敬愛的 {RecipientName},\n\n今天 HTTPS 證書自動更新剛剛失敗了。\n\n系統會繼續嘗試\n\n到期日: {ExpirationDate}\n\n無有效的憑證，這個平台只能透過 Tor 的安全方式來接取使用。\n\n透過 Tor at: {TorUrl}\n透過HTTPS at: {HTTPSUrl}\n\nKind regards,\n{NodeName}"
     },
     "https_certificate_renewal_failure_mail_title": {
       "ar": "Failed HTTPS certificate renewal",
@@ -1066,7 +1066,7 @@
       "es": "Failed HTTPS certificate renewal",
       "fa": "Failed HTTPS certificate renewal",
       "fi": "Failed HTTPS certificate renewal",
-      "fr": "Failed HTTPS certificate renewal",
+      "fr": "Échec de renouvellement du certificat HTTPS",
       "he": "Failed HTTPS certificate renewal",
       "hr_HR": "Failed HTTPS certificate renewal",
       "hu_HU": "Failed HTTPS certificate renewal",
@@ -1091,7 +1091,7 @@
       "ur": "Failed HTTPS certificate renewal",
       "vi": "Failed HTTPS certificate renewal",
       "zh_CN": "Failed HTTPS certificate renewal",
-      "zh_TW": "Failed HTTPS certificate renewal"
+      "zh_TW": "HTTPS 證書更新失敗"
     },
     "identity_access_authorized_mail_template": {
       "ar": "عزيزي {RecipientName},\n\nهذا هو البريد الالكتروني لإعلامك أن أمين الحفظ قد أذن لك بالوصول إلى هوية مبلغ هذا البلاغ {TipNum}.\n\nيكمن النفاذ إلى البلاغ:\nعبر تور في: {TorUrl}\nعبر HTTPS في: {HTTPSUrl}\n\nأطيب التحيّات،\n{NodeName}",
@@ -1553,7 +1553,7 @@
       "ur": "محترم{RecipientName}،\n\nYou're receiving this email because a password reset has been requested for your account.\n\nIf you didn't make this request, you may safely ignore and delete this email.\n\nYou can confirm your request by clicking the following links:\n{TorUrl}: میں ٹار کے ذریعے\nHTTPS کے ذریعے سے اوپر: {HTTPSUrl}\n\nبہت نوازش، مخلص\n{NodeName}",
       "vi": "Kính gửi {RecipientName}\n\nYou're receiving this email because a password reset has been requested for your account.\n\nIf you didn't make this request, you may safely ignore and delete this email.\n\nYou can confirm your request by clicking the following links:\nqua Tor tại: {TorUrl}\nthông qua HTTPS tại: {HTTPSUrl}\n\nTrân trọng,\n{NodeName}",
       "zh_CN": "亲爱的 {RecipientName}，\n\nYou're receiving this email because a password reset has been requested for your account.\n\nIf you didn't make this request, you may safely ignore and delete this email.\n\nYou can confirm your request by clicking the following links:\n通过 Tor 上的：{TorUrl}\n通过HTTPS 上的：{HTTPSUrl}\n\n亲切的问候，\n{NodeName}",
-      "zh_TW": "敬愛的 {RecipientName},\n\nYou're receiving this email because a password reset has been requested for your account.\n\nIf you didn't make this request, you may safely ignore and delete this email.\n\nYou can confirm your request by clicking the following links:\n透過 Tor at: {TorUrl}\n透過HTTPS at: {HTTPSUrl}\n\nKind regards,\n{NodeName}"
+      "zh_TW": "敬愛的 {RecipientName},\n\n您會收到本郵件是因為您請求為帳戶重設密碼。\n\n若您沒有提出請求，請忽略和刪除本郵件。\n\n請點開下方連結來確認您的請求：\n透過 Tor at: {TorUrl}\n透過HTTPS at: {HTTPSUrl}\n\nKind regards,\n{NodeName}"
     },
     "password_reset_validation_mail_title": {
       "ar": "Password reset instructions",
@@ -1595,7 +1595,7 @@
       "ur": "Password reset instructions",
       "vi": "Password reset instructions",
       "zh_CN": "Password reset instructions",
-      "zh_TW": "Password reset instructions"
+      "zh_TW": "密碼重設指示"
     },
     "pgp_alert_mail_template": {
       "ar": "عزيزي {RecipientName},\n\nهذا بريد إلكتروني لنحيطكم علما بأن صلوحية مفتاح PGP الخاص بك ستنتهي أو انتهت بالفعل.\n\nأنت مدعو لتمديد مدة صلاحية او تحديث المفتاح الموجود حاليا على المنصة او تحميل مفتاح جديد\n\n{PGPKeyInfo}\n\nبدون مفتاح PGP صالح، فإن النظام لن يكون قادرا على تشفير البيانات المقدمة إليك.\n\nأطيب التحيّات،\n{NodeName}",

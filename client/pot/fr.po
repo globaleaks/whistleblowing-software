@@ -38,7 +38,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-07-15 20:39+0000\n"
+"PO-Revision-Date: 2018-07-16 17:51+0000\n"
 "Last-Translator: French language coordinator <french.coordinator@rbox.me>\n"
 "Language-Team: French (http://www.transifex.com/otf/globaleaks/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -879,7 +879,7 @@ msgid "Each entry must be separated with a comma."
 msgstr "Chaque entrée doit être séparée par une virgule."
 
 msgid "Allow users to reset their passwords"
-msgstr ""
+msgstr "Autoriser les utilisateurs à réinitialiser leurs mots de passe"
 
 msgid ""
 "Allowing users to reset their passwords may reduce the security of the "
@@ -891,10 +891,10 @@ msgid "Enable users to upload their PGP keys"
 msgstr "Permettre aux utilisateurs de téléverser leurs clés PGP"
 
 msgid "Enable multi-site login"
-msgstr ""
+msgstr "Activer la connexion multisite"
 
 msgid "Enable simplified login"
-msgstr ""
+msgstr "Activer la connexion simplifiée"
 
 msgid "Enable experimental features"
 msgstr "Activer les fonctions expérimentales"
@@ -1011,7 +1011,7 @@ msgid "Recipients"
 msgstr "Destinataires"
 
 msgid "Submission expiration"
-msgstr ""
+msgstr "Expiration de l’envoi"
 
 msgid "days"
 msgstr "jours"
@@ -1571,7 +1571,7 @@ msgid "User has administrative access to the following features:"
 msgstr "L’utilisateur a un accès d’administration aux fonctions suivantes :"
 
 msgid "main"
-msgstr ""
+msgstr "principale"
 
 msgid "Request date"
 msgstr "Date de la demande"
@@ -2370,7 +2370,7 @@ msgid "The system will keep trying."
 msgstr "Le système continuera d’essayer."
 
 msgid "Failed HTTPS certificate renewal"
-msgstr ""
+msgstr "Échec de renouvellement du certificat HTTPS"
 
 msgid ""
 "This is an email to notify you that a custodian has authorized you to access"
