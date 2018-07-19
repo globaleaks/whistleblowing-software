@@ -1,8 +1,10 @@
     GLClient.controller('SignupCtrl', ['$scope', '$location', '$route', '$http', 'Authentication', 'CONSTANTS', 'DATA_COUNTRIES_ITALY_REGIONS', 'DATA_COUNTRIES_ITALY_PROVINCES', 'DATA_COUNTRIES_ITALY_CITIES',
                     function($scope, $location, $route, $http, Authentication, CONSTANTS, DATA_COUNTRIES_ITALY_REGIONS, DATA_COUNTRIES_ITALY_PROVINCES, DATA_COUNTRIES_ITALY_CITIES) {
-  $scope.data_countries_italy_regions = DATA_COUNTRIES_ITALY_REGIONS.query();
-  $scope.data_countries_italy_provinces = DATA_COUNTRIES_ITALY_PROVINCES.query();
-  $scope.data_countries_italy_cities = DATA_COUNTRIES_ITALY_CITIES.query();
+  if ($scope.node.signup_mode === 'whistleblowing.it') {
+    $scope.data_countries_italy_regions = DATA_COUNTRIES_ITALY_REGIONS.query();
+    $scope.data_countries_italy_provinces = DATA_COUNTRIES_ITALY_PROVINCES.query();
+    $scope.data_countries_italy_cities = DATA_COUNTRIES_ITALY_CITIES.query();
+  }
 
   $scope.email_regexp = CONSTANTS.email_regexp;
 

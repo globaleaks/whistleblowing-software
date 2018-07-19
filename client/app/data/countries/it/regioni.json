@@ -1,0 +1,101 @@
+[{
+  "id": "13",
+  "nome": "Abruzzo",
+  "latitudine": 42.354008,
+  "longitudine": 13.391992
+}, {
+  "id": "17",
+  "nome": "Basilicata",
+  "latitudine": 40.633333,
+  "longitudine": 15.800000
+}, {
+  "id": "18",
+  "nome": "Calabria",
+  "latitudine": 38.910000,
+  "longitudine": 16.587500
+}, {
+  "id": "15",
+  "nome": "Campania",
+  "latitudine": 40.833333,
+  "longitudine": 14.250000
+}, {
+  "id": "8",
+  "nome": "Emilia-Romagna",
+  "latitudine": 44.493889,
+  "longitudine": 11.342778
+}, {
+  "id": "6",
+  "nome": "Friuli-Venezia Giulia",
+  "latitudine": 45.636111,
+  "longitudine": 13.804167
+}, {
+  "id": "12",
+  "nome": "Lazio",
+  "latitudine": 41.893056,
+  "longitudine": 12.482778
+}, {
+  "id": "7",
+  "nome": "Liguria",
+  "latitudine": 44.411156,
+  "longitudine": 8.932661
+}, {
+  "id": "3",
+  "nome": "Lombardia",
+  "latitudine": 45.464161,
+  "longitudine": 9.190336
+}, {
+  "id": "11",
+  "nome": "Marche",
+  "latitudine": 43.616667,
+  "longitudine": 13.516667
+}, {
+  "id": "14",
+  "nome": "Molise",
+  "latitudine": 41.561000,
+  "longitudine": 14.668400
+}, {
+  "id": "1",
+  "nome": "Piemonte",
+  "latitudine": 45.066667,
+  "longitudine": 7.700000
+}, {
+  "id": "16",
+  "nome": "Puglia",
+  "latitudine": 41.125278,
+  "longitudine": 16.866667
+}, {
+  "id": "20",
+  "nome": "Sardegna",
+  "latitudine": 39.216667,
+  "longitudine": 9.116667
+}, {
+  "id": "19",
+  "nome": "Sicilia",
+  "latitudine": 38.115556,
+  "longitudine": 13.361389
+}, {
+  "id": "9",
+  "nome": "Toscana",
+  "latitudine": 43.771389,
+  "longitudine": 11.254167
+}, {
+  "id": "4",
+  "nome": "Trentino-Alto Adige/Südtirol",
+  "latitudine": 46.066667,
+  "longitudine": 11.116667
+}, {
+  "id": "10",
+  "nome": "Umbria",
+  "latitudine": 43.112100,
+  "longitudine": 12.388800
+}, {
+  "id": "2",
+  "nome": "Valle d'Aosta/Vallée d'Aoste",
+  "latitudine": 45.737222,
+  "longitudine": 7.320556
+}, {
+  "id": "5",
+  "nome": "Veneto",
+  "latitudine": 45.439722,
+  "longitudine": 12.331944
+}]
