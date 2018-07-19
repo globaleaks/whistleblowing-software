@@ -1,0 +1,24 @@
+<div class="row">
+  <div id="SignupTos1" class="col-md-12 form-group" data-ng-if="node.signup_tos1_enable">
+    <label>{{node.signup_tos1_title}}</label>
+    <div class="tos-text">{{node.signup_tos1_text}}</div>
+    <div class="checkbox" data-ng-class="{'has-error': signupForm.tos1.$error.required}">
+      <label>
+        <input name="tos1" type="checkbox" data-ng-model="signup.tos1" required/>
+        <span class="tos-checkbox-label">{{node.signup_tos1_checkbox_label}}</span>
+      </label>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div id="SignupTos2" class="col-md-12 form-group" data-ng-if="node.signup_tos1_enable">
+    <label>{{node.signup_tos2_title}}</label>
+    <div class="tos-text">{{node.signup_tos2_text}}</div>
+    <div class="checkbox" data-ng-class="{'has-error': signupForm.tos2.$error.required}">
+      <label>
+        <input name="tos2" type="checkbox" data-ng-model="signup.tos2" required/>
+        <span class="tos-checkbox-label">{{node.signup_tos2_checkbox_label}}</span>
+      </label>
+    </div>
+  </div>
+</div>
