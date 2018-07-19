@@ -1,5 +1,12 @@
-<div data-ng-switch="node.signup_mode">
-  <div data-ng-switch-default>
-    <div data-ng-include="'views/signup/modes/default.html'"></div>
+<div class="row">
+  <div class="col-md-6">
+    <div data-ng-switch="node.signup_mode">
+      <div data-ng-switch-when="whistleblowing.it">
+        <div data-ng-include="'views/signup/modes/whistleblowingit.html'"></div>
+      </div>
+      <div data-ng-switch-default>
+        <div data-ng-include="'views/signup/modes/default.html'"></div>
+      </div>
+    </div>
   </div>
 </div>

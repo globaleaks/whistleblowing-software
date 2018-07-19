@@ -1,5 +1,9 @@
-    GLClient.controller('SignupCtrl', ['$scope', '$location', '$route', '$http', 'Authentication', 'CONSTANTS',
-                    function($scope, $location, $route, $http, Authentication, CONSTANTS) {
+    GLClient.controller('SignupCtrl', ['$scope', '$location', '$route', '$http', 'Authentication', 'CONSTANTS', 'DATA_COUNTRIES_ITALY_REGIONS', 'DATA_COUNTRIES_ITALY_PROVINCES', 'DATA_COUNTRIES_ITALY_CITIES',
+                    function($scope, $location, $route, $http, Authentication, CONSTANTS, DATA_COUNTRIES_ITALY_REGIONS, DATA_COUNTRIES_ITALY_PROVINCES, DATA_COUNTRIES_ITALY_CITIES) {
+  $scope.data_countries_italy_regions = DATA_COUNTRIES_ITALY_REGIONS.query();
+  $scope.data_countries_italy_provinces = DATA_COUNTRIES_ITALY_PROVINCES.query();
+  $scope.data_countries_italy_cities = DATA_COUNTRIES_ITALY_CITIES.query();
+
   $scope.email_regexp = CONSTANTS.email_regexp;
 
   $scope.hostname = $location.search().hostname || '';
@@ -29,6 +33,10 @@
   };
 
   var completed = false;
+
+  $scope.updateSubdomain = function() {
+    $scope.signup.subdomain = $scope.signup.organization_name.replace(/[^\w]/gi, '').toLowerCase();
+  }
 
   $scope.complete = function() {
     if (completed) {

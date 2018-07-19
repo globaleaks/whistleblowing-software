@@ -1,1 +1,250 @@
-default.html
+<form name="signupForm" novalidate>
+  <div class="wizard-block" data-ng-show="step == 1">
+    <div class="row">
+      <div class="col-md-12">
+        <label class="title">Dati utente:</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6 form-group" data-ng-class="{'has-error': signupForm.name.$error.required}">
+        <label>Nome</label>
+        <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
+        <input name="name" class="form-control" data-ng-model="signup.name" type="text"
+               data-ng-attr-placeholder="Nome" required>
+      </div>
+      <div class="col-md-6 form-group" data-ng-class="{'has-error': signupForm.surname.$error.required}">
+        <label>Cognome</label>
+        <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
+        <input name="surname" class="form-control" data-ng-model="signup.surname" type="text"
+               data-ng-attr-placeholder="Cognome" required>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6 form-group">
+        <label>
+          <span>Email</span>
+          <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
+        </label>
+        <div data-ng-class="{'has-error': signupForm.email.$error.required || signupForm.email.$error.pattern}">
+          <div>
+            <input name="email" class="form-control" data-ng-model="signup.email" data-ng-attr-placeholder="Email" data-ng-pattern="email_regexp" type="text" required>
+            <div class="text-danger" data-ng-show="signupForm.email.$error.pattern">
+              <span data-translate>Invalid email address</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 form-group" data-ng-class="{'has-error': signupForm.phone.$error.required}">
+        <label>Telefono</label> <span class="text-danger"
+                                      uib-popover="{{'This field is mandatory' | translate}}"
+                                      popover-placement="right">*</span>
+        <input name="phone" class="form-control" data-ng-model="signup.phone" type="text"
+               data-ng-attr-placeholder="{{'Telefono' | translate}}" required>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6 form-group">
+        <label>Ruolo</label>
+        <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
+        <div data-ng-class="{'has-error': signupForm.role.$error.required}">
+          <select name="role" class="form-control" data-ng-model="signup.role" required>
+            <option value="option1">Direttore generale</option>
+            <option value="option2">Responsabile ICT</option>
+            <option value="option3">Responsabile internal audit</option>
+            <option value="option4">Responsabile prevenzione corruzione</option>
+            <option value="other">Altro</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-md-6 form-group">
+        <label>Come sei venuto a conoscienza del progetto?</label>
+        <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
+        <div data-ng-class="{'has-error': signupForm.hear_channel.$error.required}">
+          <select name="hear_channel" class="form-control" data-ng-model="signup.hear_channel" required>
+            <option value="option1">Convegno di settore</option>
+            <option value="option2">Media</option>
+            <option value="option3">Motori di ricerca</option>
+            <option value="option4">Passaparola</option>
+            <option value="option5">Social media</option>
+            <option value="other">Altro</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    </br>
+    <div class="row">
+      <div class="col-md-12">
+        <label class="title">Dati ente:</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6 form-group" data-ng-class="{'has-error': signupForm.organization_name.$error.required}">
+        <label>Nome</label>
+        <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
+        <input name="organization_name" class="form-control" data-ng-model="signup.organization_name" type="text" data-ng-attr-placeholder="{{'Nome' | translate}}" data-ng-change="updateSubdomain()" required>
+      </div>
+      <div class="col-md-6 form-group">
+        <label>Tipo</label>
+        <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
+        <div data-ng-class="{'has-error': signupForm.organization_type.$error.required}">
+          <select name="organization_type" class="form-control" data-ng-model="signup.organization_type" required>
+            <option value="L10">Agenzie ed Enti per il Turismo</option>
+            <option value="L19">Agenzie ed Enti Regionali del Lavoro</option>
+            <option value="L13">Agenzie ed Enti Regionali di Sviluppo Agricolo</option>
+            <option value="L2">Agenzie ed Enti Regionali per la Formazione, la Ricerca e l'Ambiente</option>
+            <option value="C10">Agenzie Fiscali</option>
+            <option value="L20">Agenzie Regionali e Provinciale per la Rappresentanza Negoziale</option>
+            <option value="L21">Agenzie Regionali per le Erogazioni in Agricoltura</option>
+            <option value="L22">Agenzie Regionali Sanitarie</option>
+            <option value="L15">Agenzie, Enti e Consorzi Pubblici per il Diritto allo Studio Universitario</option>
+            <option value="L1">Altri Enti Locali</option>
+            <option value="C13">Automobile Club Federati ACI</option>
+            <option value="C5">Autorita' Amministrative Indipendenti</option>
+            <option value="L23">Autorita' di Ambito Territoriale Ottimale</option>
+            <option value="L40">Autorita' di Bacino</option>
+            <option value="L11">Autorita' Portuali</option>
+            <option value="L39">Aziende e Consorzi Pubblici Territoriali per l'Edilizia Residenziale</option>
+            <option value="L46">Aziende ed Amministrazioni dello Stato ad Ordinamento Autonomo</option>
+            <option value="L8">Aziende Ospedaliere, Aziende Ospedaliere Universitarie, Policlinici e Istituti di Ricovero e Cura a Carattere Scientifico Pubblici</option>
+            <option value="L34">Aziende Pubbliche di Servizi alla Persona</option>
+            <option value="L7">Aziende Sanitarie Locali</option>
+            <option value="L35">Camere di Commercio, Industria, Artigianato e Agricoltura e loro Unioni Regionali</option>
+            <option value="L45">Citta' Metropolitane</option>
+            <option value="L6">Comuni e loro Consorzi e Associazioni</option>
+            <option value="L12">Comunita' Montane e loro Consorzi e Associazioni</option>
+            <option value="L24">Consorzi di Bacino Imbrifero Montano</option>
+            <option value="L28">Consorzi Interuniversitari di Ricerca</option>
+            <option value="L42">Consorzi per l'Area di Sviluppo Industriale</option>
+            <option value="L36">Consorzi tra Amministrazioni Locali</option>
+            <option value="L44">Enti di Regolazione dei Servizi Idrici e o dei Rifiuti</option>
+            <option value="C8">Enti e Istituzioni di Ricerca Pubblici</option>
+            <option value="SCECP">Enti Nazionali di Previdenza ed Assistenza Sociale in Conto Economico Consolidato</option>
+            <option value="C3">Enti Pubblici Non Economici</option>
+            <option value="C7">Enti Pubblici Produttori di Servizi Assistenziali, Ricreativi e Culturali </option>
+            <option value="C14">Federazioni Nazionali, Ordini, Collegi e Consigli Professionali</option>
+            <option value="L16">Fondazioni Lirico, Sinfoniche</option>
+            <option value="C11">Forze di Polizia ad Ordinamento Civile e Militare per la Tutela dell'Ordine e della Sicurezza Pubblica</option>
+            <option value="GPS">Gestori di Pubblici Servizi</option>
+            <option value="L33">Istituti di Istruzione Statale di Ogni Ordine e Grado</option>
+            <option value="C12">Istituti Zooprofilattici Sperimentali</option>
+            <option value="L43">Istituzioni per l'Alta Formazione Artistica, Musicale e Coreutica - AFAM</option>
+            <option value="C2">Organi Costituzionali e di Rilievo Costituzionale</option>
+            <option value="L38">Parchi Nazionali, Consorzi e Enti Gestori di Parchi e Aree Naturali Protette</option>
+            <option value="C1">Presidenza del Consiglio dei Ministri, Ministeri e Avvocatura dello Stato</option>
+            <option value="L5">Province e loro Consorzi e Associazioni</option>
+            <option value="L4">Regioni, Province Autonome e loro Consorzi e Associazioni</option>
+            <option value="SCEC">Societa' in Conto Economico Consolidato</option>
+            <option value="L31">Teatri Stabili ad Iniziativa Pubblica</option>
+            <option value="L18">Unioni di Comuni e loro Consorzi e Associazioni</option>
+            <option value="L17">Universita' e Istituti di Istruzione Universitaria Pubblici</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-8 form-group">
+        <label>
+          <span>Questo sarà sito di segnalazione del tuo ente:</span>
+          <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}"
+                popover-placement="right">*</span>
+        </label>
+        <div data-ng-class="{'has-error': signupForm.subdomain.$error.required || signupForm.subdomain.$error.pattern}">
+          <div class="input-group">
+            <span class="input-group-addon">https://</span>
+            <input name="subdomain" class="form-control" data-ng-model="signup.subdomain" type="text"
+                   data-ng-pattern="/^[a-z0-9]+$/" required
+                   subdomainvalidator>
+            <span class="input-group-addon">.{{node.rootdomain}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4 form-group">
+        <label>Regione</label>
+        <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
+        <div data-ng-class="{'has-error': signupForm.organization_location2.$error.required}">
+          <select name="organization_location2" class="form-control" data-ng-model="signup.organization_location2" data-ng-options="x.id as x.nome for x in data_countries_italy_regions" required></select>
+        </div>
+      </div>
+      <div class="col-md-4 form-group">
+        <label>Provincia</label>
+        <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
+        <div data-ng-class="{'has-error': signupForm.organization_location3.$error.required}">
+          <select name="organization_location3" class="form-control" data-ng-model="signup.organization_location3" data-ng-options="x.id as x.nome for x in data_countries_italy_provinces | filter:{'id_regione': signup.organization_location2}" data-ng-disabled="!signup.organization_location2" required></select>
+        </div>
+      </div>
+      <div class="col-md-4 form-group">
+        <label>Città</label>
+        <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
+        <div data-ng-class="{'has-error': signupForm.organization_location4.$error.required}">
+          <select name="organization_location4" class="form-control" data-ng-model="signup.organization_location4" data-ng-options="x.id as x.nome for x in data_countries_italy_cities | filter:{'id_provincia': signup.organization_location3}" data-ng-disabled="!signup.organization_location3" required></select>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6 form-group" data-ng-class="{'has-error': signupForm.organization_number_employees.$error.required}">
+        <label>Numero dipendenti</label>
+        <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
+        <div data-ng-class="{'has-error': signupForm.organization_number_employees.$error.required}">
+          <select name="organization_number_employees" class="form-control" data-ng-model="signup.organization_number_employees" required>
+            <option value="option1">0-15</option>
+            <option value="option2">15 - 100</option>
+            <option value="option3">100 - 1.000</option>
+            <option value="option4">1.000 - 5.000</option>
+            <option value="option5">5.000 - 10.000</option>
+            <option value="option6">&gt; 10.000</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6 form-group">
+        <label>Numero utenti</label>
+        <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
+        <div>Per utente si intende il bacino di riferimento dell’ente, per un comune sono i cittadini, per una ASL sono gli utenti del servizio sanitario di pertinenza, per l’università gli iscritti, etc</div>
+        <div data-ng-class="{'has-error': signupForm.organization_number_users.$error.required}">
+          <select name="organization_number_users" class="form-control" data-ng-model="signup.organization_number_users" required>
+            <option value="option1">0 - 500</option>
+            <option value="option2">500 - 5.000</option>
+            <option value="option3">5.000 - 50.000</option>
+            <option value="option4">50.000 - 100.000</option>
+            <option value="option5">100.000 - 500.000</option>
+            <option value="option6">&gt; 500.000</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6 form-group" data-ng-class="{'has-error': signupForm.organization_site.$error.required}">
+        <label>Sito ente</label>
+        <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
+        <input name="organization_site" class="form-control" data-ng-model="signup.organization_site" type="text" data-ng-attr-placeholder="{{'Sito ente' | translate}}" required>
+      </div>
+    </div>
+    </br>
+    <div data-ng-include="'views/signup/tos.html'"></div>
+    <div class="row">
+      <div class="col-md-12">
+        <button class="ButtonNext btn btn-success" data-ng-click="complete()"
+                data-ng-disabled="signupForm.$invalid">
+          <i class="glyphicon glyphicon glyphicon-ok-sign"></i>
+          <span data-translate>Complete</span>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="wizard-block" data-ng-show="step == 2">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="congratulations">
+          <div class="title1">
+            <span data-translate>Success!</span>
+            <span data-translate>Your whistleblowing platform is almost ready!</span>
+          </div>
+          <div data-translate>Check your inbox to activate your account.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
