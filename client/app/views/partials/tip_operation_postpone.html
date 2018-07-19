@@ -9,8 +9,7 @@
     <span data-translate>Are you sure that you want to postpone the submission expiration date?</span>
     <br />
     <span data-translate>By confirming, you will postpone the expiration date to:</span>
-    <span data-ng-if="tip.timetolive === -1" data-translate>Never</span>
-    <span data-ng-if="tip.timetolive !== -1">{{Utils.getPostponeDate(tip.timetolive) | date:'dd-MM-yyyy HH:mm'}}</span>
+    <span>{{args.Utils.getPostponeDate(args.contexts_by_id[args.tip.context_id].tip_timetolive) | date:'dd-MM-yyyy HH:mm'}}</span>
   </div>
 </div>
 <div class="modal-footer">
@@ -18,7 +17,7 @@
     <i class="glyphicon glyphicon-remove"></i>
     <span data-translate>Cancel</span>
   </span>
-  <span id="modal-action-ok" class="btn btn-danger" data-ng-click="ok()" data-ng-disabled="!tip">
+  <span id="modal-action-ok" class="btn btn-danger" data-ng-click="ok()">
     <i class="glyphicon glyphicon-ok"></i>
     <span data-translate>Confirm</span>
   </span>
