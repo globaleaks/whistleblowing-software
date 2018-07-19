@@ -195,12 +195,12 @@ GLClient.controller('TipCtrl',
         templateUrl: 'views/partials/tip_operation_delete.html',
         controller: 'TipOperationsCtrl',
         resolve: {
-          tip: function () {
-            return $scope.tip;
-          },
-          operation: function () {
-            return 'delete';
-          }
+          args: function () {
+            return {
+	      tip: $scope.tip,
+              operation: 'delete'
+            }
+	  }
         }
       });
     };
@@ -210,11 +210,13 @@ GLClient.controller('TipCtrl',
         templateUrl: 'views/partials/tip_operation_postpone.html',
         controller: 'TipOperationsCtrl',
         resolve: {
-          tip: function () {
-            return $scope.tip;
-          },
-          operation: function () {
-            return 'postpone_expiration';
+	  args: function() {
+            return {
+              tip: $scope.tip,
+              operation: 'postpone_expiration',
+              contexts_by_id: $scope.contexts_by_id,
+              Utils: $scope.Utils
+            }
           }
         }
       });
@@ -233,10 +235,9 @@ GLClient.controller('TipCtrl',
     };
 }]).
 controller('TipOperationsCtrl',
-  ['$scope', '$http', '$route', '$location', '$uibModalInstance', 'RTip', 'tip', 'operation',
-   function ($scope, $http, $route, $location, $uibModalInstance, Tip, tip, operation) {
-  $scope.tip = tip;
-  $scope.operation = operation;
+  ['$scope', '$http', '$route', '$location', '$uibModalInstance', 'args',
+   function ($scope, $http, $route, $location, $uibModalInstance, args) {
+  $scope.args = args;
 
   $scope.cancel = function () {
     $uibModalInstance.close();
@@ -245,17 +246,17 @@ controller('TipOperationsCtrl',
   $scope.ok = function () {
     $uibModalInstance.close();
 
-    if ($scope.operation === 'postpone_expiration') {
+    if ($scope.args.operation === 'postpone_expiration') {
       var req = {
         'operation': 'postpone_expiration',
         'args': {}
       };
 
-      return $http({method: 'PUT', url: 'rtip/' + tip.id, data: req}).then(function () {
+      return $http({method: 'PUT', url: 'rtip/' + args.tip.id, data: req}).then(function () {
         $route.reload();
       });
-    } else if ($scope.operation === 'delete') {
-      return $http({method: 'DELETE', url: 'rtip/' + $scope.tip.id, data:{}}).
+    } else if ($scope.args.operation === 'delete') {
+      return $http({method: 'DELETE', url: 'rtip/' + args.tip.id, data:{}}).
         then(function() {
           $location.url('/receiver/tips');
           $route.reload();

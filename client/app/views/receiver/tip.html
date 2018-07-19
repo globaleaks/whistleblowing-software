@@ -18,7 +18,7 @@
     </span>
 
     <span id="tip-action-postpone"
-          data-ng-if="preferences.can_postpone_expiration"
+	  data-ng-if="preferences.can_postpone_expiration && contexts_by_id[tip.context_id].tip_timetolive > 0"
           data-ng-click="tip_postpone()"
           uib-popover="{{'Postpone the expiration date' | translate}}"
           popover-placement="top"
