@@ -234,6 +234,15 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
   factory('FieldAttrs', ['$resource', function($resource) {
     return $resource('data/field_attrs.json');
 }]).
+  factory('DATA_COUNTRIES_ITALY_REGIONS', ['$resource', function($resource) {
+    return $resource('/data/countries/it/regioni.json');
+}]).
+  factory('DATA_COUNTRIES_ITALY_PROVINCES', ['$resource', function($resource) {
+    return $resource('/data/countries/it/province.json');
+}]).
+  factory('DATA_COUNTRIES_ITALY_CITIES', ['$resource', function($resource) {
+    return $resource('data/countries/it/comuni.json');
+}]).
   // In here we have all the functions that have to do with performing
   // submission requests to the backend
   factory('Submission', ['$q', 'GLResource', '$filter', '$location', '$rootScope', 'Authentication', 'TokenResource', 'SubmissionResource',
