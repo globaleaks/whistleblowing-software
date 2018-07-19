@@ -354,7 +354,7 @@ class APIResourceWrapper(Resource):
         request.client_ua = request.headers.get(b'user-agent', u'')
 
         request.language = text_type(self.detect_language(request))
-        if 'multilang' in request.args:
+        if b'multilang' in request.args:
             request.language = None
 
     def render(self, request):
