@@ -7,6 +7,8 @@
 
 import uuid
 
+from six import text_type
+
 from twisted.internet.defer import inlineCallbacks, returnValue
 
 from globaleaks import models, QUESTIONNAIRE_EXPORT_VERSION
@@ -18,7 +20,6 @@ from globaleaks.rest import requests
 from globaleaks.utils.structures import fill_localized_keys
 from globaleaks.utils.utility import datetime_to_ISO8601, datetime_now
 
-from six import text_type
 
 def db_get_questionnaire_list(session, tid, language):
     questionnaires = session.query(models.Questionnaire).filter(models.Questionnaire.tid.in_(set([1, tid])))
@@ -175,6 +176,7 @@ def duplicate_questionnaire(session, state, tid, questionnaire_id, new_name):
 
     db_create_questionnaire(session, state, tid, q, None)
 
+
 class QuestionnairesCollection(BaseHandler):
     check_roles = 'admin'
     cache_resource = True
@@ -227,6 +229,7 @@ class QuestionnaireInstance(BaseHandler):
         q['export_date'] = datetime_to_ISO8601(datetime_now())
         q['export_version'] = QUESTIONNAIRE_EXPORT_VERSION
         returnValue(q)
+
 
 class QuestionnareDuplication(BaseHandler):
     check_roles = 'admin'
