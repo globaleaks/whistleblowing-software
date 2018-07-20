@@ -48,16 +48,13 @@ def get_site_list(session):
 
 class SiteCollection(BaseHandler):
     check_roles = '*'
-    cache_resource = True
     root_tenant_only = True
 
     def get(self):
         """
         Return the list of registered tenants
         """
-        if 1 not in self.state.tenant_cache or \
-           not self.state.tenant_cache[1].enable_signup or \
-           self.state.tenant_cache[1].signup_mode != u'whistleblowing.it':
+        if 1 not in self.state.tenant_cache or not self.state.tenant_cache[1].multisite_login:
            return []
 
         return get_site_list()

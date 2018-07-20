@@ -1,5 +1,5 @@
-<div class="form-group" data-ng-if="vars.site === null">
-  <label>Select the site you want to log on:</label>
+<div class="form-group">
+  <label data-translate>Site:</label>
   <div class="row">
     <div class="col-md-12">
       <ui-select data-ng-model="selected.value" data-theme="bootstrap" data-on-select='selectSite($item)'>
@@ -17,20 +17,8 @@
 <div data-ng-if="vars.site !== null">
   <div data-ng-if="node.signup_mode !== 'whistleblowing.it'">
     <div class="form-group">
-      <label data-translate>Site</label>
-      <input class="form-control" name="label" data-ng-model="vars.site.label" type="text" disabled />
-    </div>
-
-    <div class="form-group">
       <label data-translate>Username</label>
       <input class="form-control" name="username" data-ng-model="loginUsername" type="text" required />
-    </div>
-  </div>
-
-  <div data-ng-if="node.signup_mode === 'whistleblowing.it'">
-    <div class="form-group">
-      <label data-translate>Username</label>
-      <input class="form-control" name="label" data-ng-model="vars.site.label" type="text" disabled />
     </div>
   </div>
 
@@ -43,10 +31,6 @@
     <i class="glyphicon glyphicon-log-in"></i>
     <span data-translate>Log in</span>
   </button>
-
-  <span id="back-button" class="btn btn-default" data-ng-if="node.root_tenant && vars.site" data-ng-click="vars.site = null">
-    <span data-translate>Back</span>
-  </span>
 
   <span id="forgot-button" data-ng-if="::node.enable_password_reset">
     <a class="btn btn-default" href="/#/login/passwordreset" data-translate>Forgot password?</a>

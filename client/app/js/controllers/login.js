@@ -38,7 +38,7 @@ function($scope, $location, $filter, Sites) {
 
 
     $scope.refreshSelectableSites = function(search) {
-      if (!$scope.sites || !search) {
+      if (!$scope.sites) {
         $scope.selectableSites = [];
         return;
       }
