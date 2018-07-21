@@ -47,20 +47,6 @@ class ConfigFactory(object):
         self._query_group()
         return {k: self.res[k].get_v() for k in self.res}
 
-    def clean_and_add(self):
-        actual = set([c[0] for c in self.session.query(Config.var_name).filter(Config.tid == self.tid)])
-        allowed = set(ConfigDescriptor.keys())
-        extra = list(actual - allowed)
-
-        if extra:
-            self.session.query(Config).filter(Config.tid == self.tid, Config.var_name.in_(extra)).delete(synchronize_session='fetch')
-
-        missing = list(allowed - actual)
-        for key in missing:
-            self.session.add(Config(self.tid, key, ConfigDescriptor[key].default))
-
-        return len(missing), len(extra)
-
 
 class ConfigL10NFactory(object):
     keys = []
@@ -202,11 +188,45 @@ class NotificationL10NFactory(ConfigL10NFactory):
         self.update_defaults(langs, l10n_data_src, reset=True)
 
 
-def update_defaults(session, tid, appdata):
-    session.query(Config).filter(Config.tid == tid, not_(Config.var_name.in_(ConfigDescriptor.keys()))).delete(synchronize_session='fetch')
+def add_new_lang(session, tid, lang_code, appdata_dict):
+    session.add(EnabledLanguage(tid, lang_code))
 
-    ConfigFactory(session, tid, 'node').clean_and_add()
-    ConfigFactory(session, tid, 'notification').clean_and_add()
+    NodeL10NFactory(session, tid).initialize(lang_code, appdata_dict['node'])
+    NotificationL10NFactory(session, tid).initialize(lang_code, appdata_dict['templates'])
+
+
+def get_default(default):
+    if callable(default):
+        return default()
+
+    return default
+
+
+def initialize_tenant_config(session, tid):
+    for var_name, desc in ConfigDescriptor.items():
+        session.add(Config(tid, var_name, get_default(desc.default)))
+
+
+def fix_tenant_config(session, tid):
+    '''
+    The function add new defined variables and remove variables not anymore defined
+    '''
+    actual = set([c[0] for c in session.query(Config.var_name).filter(Config.tid == tid)])
+    allowed = set(ConfigDescriptor.keys())
+    extra = list(actual - allowed)
+
+    if extra:
+        session.query(Config).filter(Config.tid == tid, Config.var_name.in_(extra)).delete(synchronize_session='fetch')
+
+    missing = list(allowed - actual)
+    for key in missing:
+        session.add(Config(tid, key, get_default(ConfigDescriptor[key].default)))
+
+    return len(missing), len(extra)
+
+
+def update_defaults(session, tid, appdata):
+    fix_tenant_config(session, tid)
 
     # Set the system version to the current aligned cfg
     ConfigFactory(session, tid, 'node').set_val(u'version', __version__)
@@ -218,20 +238,3 @@ def update_defaults(session, tid, appdata):
 
     NodeL10NFactory(session, tid).update_defaults(langs, appdata['node'])
     NotificationL10NFactory(session, tid).update_defaults(langs, appdata['templates'])
-
-
-def add_new_lang(session, tid, lang_code, appdata_dict):
-    session.add(EnabledLanguage(tid, lang_code))
-
-    NodeL10NFactory(session, tid).initialize(lang_code, appdata_dict['node'])
-    NotificationL10NFactory(session, tid).initialize(lang_code, appdata_dict['templates'])
-
-
-def system_cfg_init(session, tid):
-    for var_name, desc in ConfigDescriptor.items():
-        if callable(desc.default):
-            default = desc.default()
-        else:
-            default = desc.default
-
-        session.add(Config(tid, var_name, default))
