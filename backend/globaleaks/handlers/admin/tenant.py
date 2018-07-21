@@ -66,7 +66,7 @@ def db_preallocate(session, desc):
 def db_initialize(session, tid):
     appdata = load_appdata()
 
-    models.config.system_cfg_init(session, tid=tid)
+    models.config.initialize_tenant_config(session, tid=tid)
 
     models.config.add_new_lang(session, tid, u'en', appdata)
 
