@@ -1,8 +1,4 @@
 # -*- coding: utf-8
-#
-# mailutils
-# *********
-#
 # GlobaLeaks Utility used to handle Mail, format, exception, etc
 import email
 import sys
