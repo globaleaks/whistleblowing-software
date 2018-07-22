@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 from twisted.internet.defer import inlineCallbacks
+from globaleaks import models
+from globaleaks.models.config import set_config_variable
 from globaleaks.handlers import signup
-from globaleaks.models import config
 from globaleaks.orm import transact
 from globaleaks.rest import errors
 from globaleaks.tests import helpers
@@ -9,7 +10,7 @@ from globaleaks.tests import helpers
 
 @transact
 def enable_signup(session):
-    config.ConfigFactory(session, 1, 'node').set_val(u'enable_signup', True)
+    models.config.ConfigFactory(session, 1, 'node').set_val(u'enable_signup', True)
 
 
 class TestSignup(helpers.TestHandler):
@@ -35,8 +36,10 @@ class TestSignupActivation(helpers.TestHandler):
         return self.assertFailure(handler.get(u'valid_or_invalid'), errors.ForbiddenOperation)
 
     @inlineCallbacks
-    def test_get_with_valid_activation_token(self):
+    def test_get_with_valid_activation_token_mode_default(self):
         yield enable_signup()
+
+        yield self.test_model_count(models.User, 0)
 
         self._handler = signup.Signup
         handler = self.request(self.dummySignup)
@@ -46,7 +49,25 @@ class TestSignupActivation(helpers.TestHandler):
         handler = self.request(self.dummySignup)
         r = yield handler.get(r['signup']['activation_token'])
 
-        self.assertTrue('login_url_admin' in r)
+        yield self.test_model_count(models.User, 2)
+
+    @inlineCallbacks
+    def test_get_with_valid_activation_token_mode_whistleblowing_it(self):
+        yield enable_signup()
+
+        yield set_config_variable(1, u'signup_mode', u'whistleblowing.it')
+
+        yield self.test_model_count(models.User, 0)
+
+        self._handler = signup.Signup
+        handler = self.request(self.dummySignup)
+        r = yield handler.post()
+
+        self._handler = signup.SignupActivation
+        handler = self.request(self.dummySignup)
+        r = yield handler.get(r['signup']['activation_token'])
+
+        yield self.test_model_count(models.User, 1)
 
     @inlineCallbacks
     def test_get_with_invalid_activation_token(self):

@@ -51,6 +51,7 @@ from globaleaks.handlers.admin.tenant import create as create_tenant
 from globaleaks.handlers.admin.user import create_user, create_receiver_user
 from globaleaks.handlers.wizard import wizard
 from globaleaks.handlers.submission import create_submission
+from globaleaks.models.config import set_config_variable
 from globaleaks.rest.apicache import ApiCache
 from globaleaks.settings import Settings
 from globaleaks.state import State
@@ -144,7 +145,7 @@ def init_state():
 
 
 @transact
-def update_node_setting(session, var_name, value):
+def set_config_var(session, var_name, value):
     models.config.ConfigFactory(session, 1, 'node').set_val(var_name, value)
 
 
@@ -371,7 +372,7 @@ class TestGL(unittest.TestCase):
 
         allow_unencrypted = self.encryption_scenario in ['PLAINTEXT', 'MIXED']
 
-        yield update_node_setting(u'allow_unencrypted', allow_unencrypted)
+        yield set_config_variable(1, u'allow_unencrypted', allow_unencrypted)
 
         yield self.set_hostnames(1)
 
@@ -704,7 +705,7 @@ class TestGLWithPopulatedDB(TestGL):
         for i in range(1, self.population_of_tenants):
             name = 'tenant-' + str(i+1)
             t = yield create_tenant({'label': name, 'active': True, 'subdomain': name})
-            yield wizard(self.state, t['id'], self.dummyWizard, True, True, u'en')
+            yield wizard(self.state, t['id'], 'default', self.dummyWizard, True, u'en')
             yield self.set_hostnames(i+1)
 
         yield associate_users_of_first_tenant_to_second_tenant()
@@ -822,7 +823,6 @@ class TestGLWithPopulatedDB(TestGL):
     def set_itips_near_to_expire(self, session):
         date = datetime_now() + timedelta(hours=self.state.tenant_cache[1].notification.tip_expiration_threshold - 1)
         session.query(models.InternalTip).update({'expiration_date': date})
-
 
     @transact
     def set_contexts_timetolive(self, session, ttl):

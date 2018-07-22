@@ -13,7 +13,7 @@ from globaleaks.rest import requests, errors
 from globaleaks.utils.utility import datetime_now, log
 
 
-def db_wizard(session, state, tid, request, create_admin, client_using_tor, language):
+def db_wizard(session, state, tid, mode, request, client_using_tor, language):
     language = request['node_language']
 
     node = config.ConfigFactory(session, tid, 'node')
@@ -45,21 +45,20 @@ def db_wizard(session, state, tid, request, create_admin, client_using_tor, lang
 
     profiles.load_profile(session, tid, request['profile'])
 
-    if create_admin:
-        admin_desc = models.User().dict(language)
-        admin_desc['name'] = request['admin_name']
-        admin_desc['username'] = u'admin'
-        admin_desc['password'] = request['admin_password']
-        admin_desc['name'] = request['admin_name']
-        admin_desc['mail_address'] = request['admin_mail_address']
-        admin_desc['language'] = language
-        admin_desc['role'] =u'admin'
-        admin_desc['deletable'] = False
-        admin_desc['pgp_key_remove'] = False
+    admin_desc = models.User().dict(language)
+    admin_desc['name'] = request['admin_name']
+    admin_desc['username'] = u'admin'
+    admin_desc['password'] = request['admin_password']
+    admin_desc['name'] = request['admin_name']
+    admin_desc['mail_address'] = request['admin_mail_address']
+    admin_desc['language'] = language
+    admin_desc['role'] =u'admin'
+    admin_desc['deletable'] = False
+    admin_desc['pgp_key_remove'] = False
 
-        admin_user = db_create_user(session, state, tid, admin_desc, language)
-        admin_user.password_change_needed = False
-        admin_user.password_change_date = datetime_now()
+    admin_user = db_create_user(session, state, tid, admin_desc, language)
+    admin_user.password_change_needed = False
+    admin_user.password_change_date = datetime_now()
 
     receiver_desc = models.User().dict(language)
     receiver_desc['name'] = request['receiver_name']
@@ -70,22 +69,29 @@ def db_wizard(session, state, tid, request, create_admin, client_using_tor, lang
     receiver_desc['role'] =u'receiver'
     receiver_desc['deletable'] = True
     receiver_desc['pgp_key_remove'] = False
-    receiver_desc['can_edit_general_settings'] = not create_admin
 
-    _, receiver = db_create_receiver_user(session, state, tid, receiver_desc, language)
+    _, receiver_user = db_create_receiver_user(session, state, tid, receiver_desc, language)
 
     context_desc = models.Context().dict(language)
     context_desc['name'] = u'Default'
-    context_desc['receivers'] = [receiver.id]
+    context_desc['receivers'] = [receiver_user.id]
 
     db_create_context(session, state, tid, context_desc, language)
+
+    # Apply the specific fixes related to whistleblowing.it projects
+    if mode == u'whistleblowing.it':
+        # Delete the admin user
+        session.delete(admin_user)
+
+        # Enable the recipient user to configure platform general settings
+        receiver_user.can_edit_general_settings = True
 
     db_refresh_memory_variables(session, [tid])
 
 
 @transact
-def wizard(session, state, tid, request, create_admin, client_using_tor, language):
-    db_wizard(session, state, tid, request, create_admin, client_using_tor, language)
+def wizard(session, state, tid, mode, request, client_using_tor, language):
+    db_wizard(session, state, tid, mode, request, client_using_tor, language)
 
 
 class Wizard(BaseHandler):
@@ -99,4 +105,4 @@ class Wizard(BaseHandler):
         request = self.validate_message(self.request.content.read(),
                                         requests.WizardDesc)
 
-        return wizard(self.state, self.request.tid, request, True, self.request.client_using_tor, self.request.language)
+        return wizard(self.state, self.request.tid, u'default', request, self.request.client_using_tor, self.request.language)

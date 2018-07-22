@@ -120,27 +120,25 @@ def signup_activation(session, state, tid, token, language):
     if not session.query(models.Config).filter(models.Config.tid == signup.tid).count():
         db_initialize_tenant(session, signup.tid)
 
-        create_admin = not node.get_val(u'signup_no_admin_user')
+        signup_mode = node.get_val(u'signup_mode')
 
-        if create_admin:
-            signup.password_admin = generateRandomKey(16)
-
-        signup.password_recipient = generateRandomKey(16)
+        password_admin = generateRandomKey(16)
+        password_recipient = generateRandomKey(16)
 
         wizard = {
             'node_language': signup.language,
             'node_name': signup.subdomain,
             'admin_name': signup.name + ' ' + signup.surname,
-            'admin_password': signup.password_admin,
+            'admin_password': password_admin,
             'admin_mail_address': signup.email,
             'receiver_name': signup.name + ' ' + signup.surname,
-            'receiver_password': signup.password_recipient,
+            'receiver_password': password_recipient,
             'receiver_mail_address': signup.email,
             'profile': 'default',
             'enable_developers_exception_notification': True
         }
 
-        db_wizard(session, state, signup.tid, wizard, create_admin, False, language)
+        db_wizard(session, state, signup.tid, signup_mode, wizard, False, language)
 
         ids = [r[0] for r in session.query(models.User.id).filter(models.UserTenant.user_id == models.User.id,
                                                                   models.UserTenant.tenant_id == signup.tid)]
@@ -157,35 +155,6 @@ def signup_activation(session, state, tid, token, language):
         }
 
         state.format_and_send_mail(session, 1, {'mail_address': signup.email}, template_vars)
-
-    if session.query(models.Tenant).filter(models.Tenant.id == signup.tid).one_or_none() is not None:
-        admin = session.query(models.User).filter(models.User.role == u'admin',
-                                                  models.User.username == u'admin',
-                                                  models.UserTenant.user_id == models.User.id,
-                                                  models.UserTenant.tenant_id == signup.tid).one_or_none()
-
-        recipient = session.query(models.User).filter(models.User.role == u'receiver',
-                                                      models.User.username == u'recipient',
-                                                      models.UserTenant.user_id == models.User.id,
-                                                      models.UserTenant.tenant_id == signup.tid).one_or_none()
-
-        ret_dict = {
-            'platform_url': 'https://%s.%s' % (signup.subdomain, node.get_val(u'rootdomain')),
-            'login_url': 'https://%s.%s/#/login' % (signup.subdomain, node.get_val(u'rootdomain')),
-            'expiration_date': datetime_to_ISO8601(signup.registration_date + timedelta(days=7))
-        }
-
-        if admin is not None:
-            ret_dict['login_url_admin'] = 'https://%s.%s/#/login?token=%s' % (signup.subdomain, node.get_val(u'rootdomain'), admin.auth_token)
-            ret_dict['password_admin'] = signup.password_admin
-
-        if recipient is not None:
-            ret_dict['login_url_recipient'] = 'https://%s.%s/#/login?token=%s' % (signup.subdomain, node.get_val(u'rootdomain'), recipient.auth_token)
-            ret_dict['password_recipient'] = signup.password_recipient
-
-        return ret_dict
-
-    return {}
 
 
 class Signup(BaseHandler):

@@ -1,11 +1,8 @@
 # -*- coding: utf-8 -*-
-import uuid
-
 from sqlalchemy import not_
 
-from six import text_type
-
 from globaleaks import __version__
+from globaleaks.orm import transact
 from globaleaks.models import Config, ConfigL10N, EnabledLanguage
 from globaleaks.models.properties import *
 from globaleaks.models.config_desc import ConfigDescriptor, ConfigFilters
@@ -200,6 +197,15 @@ def get_default(default):
         return default()
 
     return default
+
+
+def db_set_config_variable(session, tid, var, val):
+    ConfigFactory(session, tid, 'node').set_val(var, val)
+
+
+@transact
+def set_config_variable(session, tid, var, val):
+    db_set_config_variable(session, tid, var, val)
 
 
 def initialize_tenant_config(session, tid):
