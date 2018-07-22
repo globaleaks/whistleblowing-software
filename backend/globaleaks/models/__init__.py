@@ -895,8 +895,11 @@ class _Signup(Model):
     organization_number_users = Column(UnicodeText, default=u'', nullable=False)
     hear_channel = Column(UnicodeText, default=u'', nullable=False)
     activation_token = Column(UnicodeText, nullable=False)
+
+    # Todo: this variables are now unused and could be removed at the next viable migration.
     password_admin = Column(UnicodeText, default=get_random_password, nullable=False)
     password_recipient = Column(UnicodeText, default=get_random_password, nullable=False)
+
     client_ip_address = Column(UnicodeText, default=u'', nullable=False)
     client_user_agent = Column(UnicodeText, default=u'', nullable=False)
     registration_date = Column(DateTime, default=datetime_now, nullable=False)

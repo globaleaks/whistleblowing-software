@@ -1,4 +1,7 @@
 # -*- coding: utf-8
+from six import text_type
+from six.moves.urllib.parse import urlunsplit # pylint: disable=import-error
+
 from twisted.internet.defer import inlineCallbacks, returnValue
 from twisted.web.client import readBody
 
@@ -6,14 +9,11 @@ from globaleaks.db import db_refresh_memory_variables
 from globaleaks.handlers.operation import OperationHandler
 from globaleaks.handlers.password_reset import generate_password_reset_token
 from globaleaks.models import Config
-from globaleaks.models.config import ConfigFactory
+from globaleaks.models.config import ConfigFactory, db_set_config_variable
 from globaleaks.orm import transact
 from globaleaks.rest import errors
 from globaleaks.utils.utility import is_common_net_error
 from globaleaks.jobs.onion_service import set_onion_service_info, get_onion_service_info
-
-from six import text_type
-from six.moves.urllib.parse import urlunsplit # pylint: disable=import-error
 
 
 @transact
@@ -45,7 +45,7 @@ def check_hostname(session, tid, input_hostname):
 
 @transact
 def set_config_variable(session, tid, var, val):
-    ConfigFactory(session, tid, 'node').set_val(var, val)
+    db_set_config_variable(session, tid, var, val)
 
     db_refresh_memory_variables(session, [tid])
 

@@ -57,8 +57,6 @@ controller('SignupActivationCtrl', ['$scope', '$location', '$http',
   var token = $location.search().token;
 
   if (token) {
-    $http.get('signup/' + token).then(function(response) {
-      $scope.data = response.data;
-    });
+    $http.get('signup/' + token);
   }
 }]);

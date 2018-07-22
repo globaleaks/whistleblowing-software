@@ -1,58 +1,10 @@
-<div data-ng-if="data">
-  <div class="row wizard-block">
-    <div class="col-md-12">
-      <div class="congratulations">
-        <div class="title1">
-          <span data-translate>Congratulations!</span>
-          <span data-translate>You have completed the platform activation.</span>
-        </div>
-        <div>
-          <span data-translate>Your whistleblowing platform is now accessible at:</span> <a href="{{data.platform_url}}">{{data.platform_url}}</a>
-        </div>
-        <br />
-        <div data-translate>Users' credentials:</div>
-        <br />
-        <table class="table table-condensed">
-          <thead>
-          <tr>
-            <th data-translate>Role</th>
-            <th data-translate>Username</th>
-            <th data-translate>Password</th>
-          </tr>
-          </thead>
-          <tbody>
-          <tr data-ng-if='data.password_admin'>
-            <td>Admin</td>
-            <td>admin</td>
-	    <td class="monospace">{{data.password_admin}}</td>
-          </tr>
-          <tr data-ng-if='data.password_recipient'>
-            <td>Recipient</td>
-            <td>recipient</td>
-	    <td class="monospace">{{data.password_recipient}}</td>
-          </tr>
-          </tbody>
-        </table>
-        <br />
-        <div>
-          <span data-translate>To log in, visit:</span> <a href="{{data.login_url}}">{{data.login_url}}</a>
-        </div>
-        <br />
-        <div>
-          <span data-translate>For the user documentation visit:</span> <a href="https://docs.globaleaks.org">https://docs.globaleaks.org</a>
-        </div>
-        <br />
-        <div>
-          <span data-translate>The platform will be automatically deleted on:</span> <span>{{data.expiration_date | date:'dd-MM-yyyy HH:mm'}}</span>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-md-12">
-      <div class="pager pull-right">
-        <button data-ng-if='data.login_url_admin' class="ButtonNext btn btn-primary" data-ng-click="Utils.openUrl(data.login_url_admin)" type="submit"><i class="glyphicon glyphicon-link"></i><span data-translate>Administration interface</span></button>
-        <button data-ng-if='data.login_url_recipient' class="ButtonNext btn btn-primary" data-ng-click="Utils.openUrl(data.login_url_recipient)" type="submit"><i class="glyphicon glyphicon-link"></i> <span data-translate>Recipient interface</span></button>
+<div class="row wizard-block">
+  <div class="col-md-12">
+    <div class="congratulations">
+      <div class="title1">
+        <span data-translate>Congratulations!</div>
+        <div data-translate>You have completed the platform activation.</div>
+        <div data-translate>Check your inbox for further instructions.</div>
       </div>
     </div>
   </div>
