@@ -8,6 +8,13 @@ from globaleaks.models.properties import *
 from globaleaks.models.config_desc import ConfigDescriptor, ConfigFilters
 
 
+# List of variables that on creation are set with the value
+# they have on the root tenant
+inherit_from_root_tenant = [
+  'default_questionnaire'
+]
+
+
 class ConfigFactory(object):
     """
     This factory depends on the following attributes set by the sub class:
@@ -206,8 +213,20 @@ def set_config_variable(session, tid, var, val):
 
 
 def initialize_tenant_config(session, tid):
-    for var_name, desc in ConfigDescriptor.items():
-        session.add(Config(tid, var_name, get_default(desc.default)))
+    variables = {}
+
+    # Initialization valid for any tenant
+    for name, desc in ConfigDescriptor.items():
+        variables[name] = get_default(desc.default)
+
+    if tid != 1:
+        # Initialization valid for secondary tenants
+        root_tenant_node = ConfigFactory(session, 1, 'node').serialize()
+        for name in inherit_from_root_tenant:
+            variables[name] = root_tenant_node[name]
+
+    for name, value in variables.items():
+        session.add(Config(tid, name, value))
 
 
 def fix_tenant_config(session, tid):
