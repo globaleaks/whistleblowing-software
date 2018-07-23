@@ -19,9 +19,7 @@ node_keywords = [
     '{TorUrl}',
     '{TorLoginUrl}',
     '{HTTPSUrl}',
-    '{HTTPSLoginUrl}',
-    '{AdminCredentials}',
-    '{RecipientCredentials}'
+    '{HTTPSLoginUrl}'
 ]
 
 context_keywords = [
@@ -92,6 +90,12 @@ software_update_keywords = [
     '{UpdateGuideUrl}',
 ]
 
+user_credentials_keywords = [
+    '{Role}',
+    '{Username}',
+    '{Password}'
+]
+
 platform_signup_keywords = [
     '{RecipientName}',
     '{ActivationUrl}',
@@ -100,7 +104,9 @@ platform_signup_keywords = [
     '{Surname}',
     '{Email}',
     '{UseCase}',
-    '{Language}'
+    '{Language}',
+    '{AdminCredentials}',
+    '{RecipientCredentials}'
 ]
 
 email_validation_keywords = [
@@ -185,12 +191,6 @@ class NodeKeyword(Keyword):
 
     def DocumentationUrl(self):
         return 'https://docs.globaleaks.org'
-
-    def AdminCredentials(self):
-        return '\n\n role: admin\n username: admin\n password: admin'
-
-    def RecipientCredentials(self):
-        return '\n\n role: recipient\n username: recipient\n password: recipient'
 
 
 class UserKeyword(Keyword):
@@ -492,6 +492,20 @@ class SoftwareUpdateKeyword(UserNodeKeyword):
         return 'https://www.globaleaks.org/r/upgrade-guide'
 
 
+class UserCredentials(Keyword):
+    keyword_list = user_credentials_keywords
+    data_keys = ['role', 'username', 'password']
+
+    def Role(self):
+        return '%s' % self.data['role']
+
+    def Username(self):
+        return '%s' % self.data['username']
+
+    def Password(self):
+        return '%s' % self.data['password']
+
+
 class PlatformSignupKeyword(NodeKeyword):
     keyword_list = NodeKeyword.keyword_list + platform_signup_keywords
     data_keys = NodeKeyword.data_keys + \
@@ -535,6 +549,26 @@ class PlatformSignupKeyword(NodeKeyword):
 
     def Language(self):
         return self.data['signup']['language']
+
+    def AdminCredentials(self):
+        data = {
+            'type': 'user_credentials',
+            'role': 'admin',
+            'username': 'admin',
+            'password': self.data['password_admin']
+        }
+
+        return Templating().format_template(self.data['notification']['user_credentials'], data) + '\n\n'
+
+    def RecipientCredentials(self):
+        data = {
+            'type': 'user_credentials',
+            'role': 'recipient',
+            'username': 'recipient',
+            'password': self.data['password_recipient']
+        }
+
+        return '\n\n' + Templating().format_template(self.data['notification']['user_credentials'], data)
 
 
 class AdminPlatformSignupKeyword(PlatformSignupKeyword):
@@ -601,7 +635,8 @@ supported_template_types = {
     u'activation': PlatformSignupKeyword,
     u'email_validation': EmailValidationKeyword,
     u'password_reset_validation': PasswordResetValidation,
-    u'password_reset_complete': PasswordResetComplete
+    u'password_reset_complete': PasswordResetComplete,
+    u'user_credentials': UserCredentials
 }
 
 

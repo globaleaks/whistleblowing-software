@@ -174,7 +174,8 @@ class NotificationL10NFactory(ConfigL10NFactory):
         u'password_reset_validation_mail_title',
         u'password_reset_validation_mail_template',
         u'password_reset_complete_mail_title',
-        u'password_reset_complete_mail_template'
+        u'password_reset_complete_mail_template',
+        u'user_credentials'
     ]
 
     def __init__(self, session, tid, *args, **kwargs):
