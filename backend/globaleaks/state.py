@@ -274,6 +274,7 @@ class StateClass(ObjectDict):
             if os.path.basename(v.filepath) == filename:
                 return self.TempUploadFiles.pop(k)
 
+
 def mail_exception_handler(etype, value, tback):
     """
     Formats traceback and exception data and emails the error,
@@ -316,6 +317,7 @@ def extract_exception_traceback_and_schedule_email(e):
         type, value, traceback = sys.exc_info()
 
     mail_exception_handler(type, value, traceback)
+
 
 # State is a singleton class exported once
 State = StateClass()
