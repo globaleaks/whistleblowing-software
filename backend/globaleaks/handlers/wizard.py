@@ -76,15 +76,31 @@ def db_wizard(session, state, tid, mode, request, client_using_tor, language):
     context_desc['name'] = u'Default'
     context_desc['receivers'] = [receiver_user.id]
 
-    db_create_context(session, state, tid, context_desc, language)
+    context = db_create_context(session, state, tid, context_desc, language)
 
     # Apply the specific fixes related to whistleblowing.it projects
     if mode == u'whistleblowing.it':
+        node.set_val(u'password_change_period', 365)
+        node.set_val(u'disable_key_code_hint', True)
+        node.set_val(u'disable_privacy_badge', True)
+        node.set_val(u'simplified_login', True)
+        node.set_val(u'reachable_via_web', True)
+        node.set_val(u'allow_unencrypted', True)
+        node.set_val(u'anonymize_outgoing_connections', True)
+        node.set_val(u'disable_encryption_warnings', True)
+        node.set_val(u'can_delete_submission', False)
+
         # Delete the admin user
         session.delete(admin_user)
 
         # Enable the recipient user to configure platform general settings
         receiver_user.can_edit_general_settings = True
+
+        # Set data retention policy to 18 months
+        context.tip_timetolive = 540
+
+        # Enable recipients to load files to the whistleblower
+        context.enable_rc_to_wb_files = True
 
     db_refresh_memory_variables(session, [tid])
 
