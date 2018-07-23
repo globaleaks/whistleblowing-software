@@ -16,17 +16,16 @@ class ConfigFactory(object):
         self.session = session
         self.tid = tid
         self.group = text_type(group)
-        self.res = None
         self.keys = ConfigFilters[group]
 
-    def _query_group(self):
-        self.res = {c.var_name: c for c in self.session.query(Config).filter(Config.tid == self.tid, Config.var_name.in_(ConfigFilters[self.group]))}
+    def get_all(self):
+        return {c.var_name: c for c in self.session.query(Config).filter(Config.tid == self.tid, Config.var_name.in_(ConfigFilters[self.group]))}
 
     def update(self, request):
-        self._query_group()
-
-        for key in (x for x in self.res if x in request):
-            self.res[key].set_v(request[key])
+        configs = self.get_all()
+        for k in configs:
+            if k in request:
+                configs[k].set_v(request[k])
 
     def get_cfg(self, var_name):
         return self.session.query(Config).filter(Config.tid == self.tid, Config.var_name == var_name).one()
@@ -35,14 +34,11 @@ class ConfigFactory(object):
         return self.get_cfg(var_name).get_v()
 
     def set_val(self, var_name, value):
-        if self.res is not None and var_name in self.res:
-            self.res[var_name].set_v(value)
-        else:
-            self.get_cfg(var_name).set_v(value)
+        self.get_cfg(var_name).set_v(value)
 
     def serialize(self):
-        self._query_group()
-        return {k: self.res[k].get_v() for k in self.res}
+        configs = self.get_all()
+        return {k: configs[k].get_v() for k in configs}
 
 
 class ConfigL10NFactory(object):
