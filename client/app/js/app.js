@@ -314,7 +314,7 @@ var GLClient = angular.module('GLClient', [
         header_title: 'Administration interface',
         header_subtitle: 'Advanced settings',
         resolve: {
-          resources: fetchResources('admin', ['node', 'shorturls']),
+          resources: fetchResources('admin', ['node', 'questionnaires', 'shorturls']),
         }
       }).
       when('/admin/overview', {
