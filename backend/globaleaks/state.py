@@ -87,8 +87,8 @@ class StateClass(ObjectDict):
         self.orm_tp = orm_tp
         orm.set_thread_pool(orm_tp)
 
-    def get_agent(self, tid=1):
-        if self.tenant_cache[tid].anonymize_outgoing_connections:
+    def get_agent(self):
+        if self.tenant_cache[1].anonymize_outgoing_connections:
             return get_tor_agent(self.settings.socks_host, self.settings.socks_port)
 
         return get_web_agent()
@@ -192,7 +192,7 @@ class StateClass(ObjectDict):
                        to_address,
                        self.tenant_cache[tid].name + ' - ' + subject,
                        body,
-                       self.tenant_cache[tid].anonymize_outgoing_connections,
+                       self.tenant_cache[1].anonymize_outgoing_connections,
                        self.settings.socks_host,
                        self.settings.socks_port)
 
