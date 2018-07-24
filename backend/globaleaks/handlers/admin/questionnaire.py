@@ -119,6 +119,7 @@ def duplicate_questionnaire(session, state, tid, questionnaire_id, new_name):
     """
     Duplicates a questionaire, assigning new IDs to all sub components
     """
+    id_map = {}
 
     q = db_get_questionnaire(session, tid, questionnaire_id, None, serialize_templates=False)
 
@@ -127,11 +128,10 @@ def duplicate_questionnaire(session, state, tid, questionnaire_id, new_name):
     q['id'] = text_type(uuid.uuid4())
 
     # Each step has a UUID that needs to be replaced
-    old_to_new_field_ids = {}
 
     def fix_field_pass_1(field):
         new_child_id = text_type(uuid.uuid4())
-        old_to_new_field_ids[field['id']] = new_child_id
+        id_map[field['id']] = new_child_id
         field['id'] = new_child_id
 
         # Rewrite the option ID if it exists
@@ -152,7 +152,8 @@ def duplicate_questionnaire(session, state, tid, questionnaire_id, new_name):
     def fix_field_pass_2(field):
         # Fix triggers references
         for option in field['options']:
-            option['trigger_field'] = old_to_new_field_ids[option['trigger_field']]
+            if option['trigger_field'] in id_map:
+                option['trigger_field'] = id_map[option['trigger_field']]
 
         # Recursion!
         for child in field['children']:
