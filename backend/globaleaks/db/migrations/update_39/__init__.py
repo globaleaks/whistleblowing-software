@@ -598,7 +598,7 @@ class MigrationScript(MigrationBase):
     def epilogue(self):
         self.fail_on_count_mismatch['ShortURL'] = False
 
-        self.session_new.add(self.model_to['Tenant']({'label': ''}))
+        self.session_new.add(self.model_to['Tenant']({'label': '', 'active': True}))
 
         questionnaires = self.session_old.query(self.model_from['ArchivedSchema']).filter(self.model_from['ArchivedSchema'].type == u'questionnaire')
         for q in self.session_old.query(self.model_from['ArchivedSchema']).filter(self.model_from['ArchivedSchema'].type == u'questionnaire'):
