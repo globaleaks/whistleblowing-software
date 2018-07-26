@@ -7,8 +7,7 @@ from globaleaks import models
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.rtip import db_postpone_expiration_date, db_delete_itip
 from globaleaks.handlers.submission import db_serialize_archived_preview_schema
-from globaleaks.handlers.user import db_user_update_user
-from globaleaks.handlers.user import user_serialize_user
+from globaleaks.handlers.user import db_user_update_user, user_serialize_user
 from globaleaks.orm import transact
 from globaleaks.rest import requests, errors
 from globaleaks.state import State
@@ -17,10 +16,7 @@ from globaleaks.utils.utility import datetime_to_ISO8601
 
 
 def receiver_serialize_receiver(session, tid, receiver, user, language):
-    user = session.query(models.User).filter(models.User.id == receiver.id,
-                                             models.UserTenant.user_id == receiver.id,
-                                             models.UserTenant.tenant_id == tid).one_or_none()
-
+    # take only contexts for the current tenant
     contexts = [x[0] for x in session.query(models.ReceiverContext.context_id) \
                                      .filter(models.ReceiverContext.receiver_id == receiver.id,
                                              models.UserTenant.user_id == receiver.id,
@@ -43,9 +39,7 @@ def receiver_serialize_receiver(session, tid, receiver, user, language):
 def get_receiver_settings(session, tid, receiver_id, language):
     receiver, user = session.query(models.Receiver, models.User) \
                             .filter(models.Receiver.id == receiver_id,
-                                    models.User.id == receiver_id,
-                                    models.UserTenant.user_id == receiver_id,
-                                    models.UserTenant.tenant_id == tid).one()
+                                    models.Receiver.id == models.User.id).one_or_none()
 
     return receiver_serialize_receiver(session, tid, receiver, user, language)
 
@@ -54,11 +48,9 @@ def get_receiver_settings(session, tid, receiver_id, language):
 def update_receiver_settings(session, state, tid, receiver_id, request, language):
     db_user_update_user(session, state, tid, receiver_id, request)
 
-    receiver, user = session.query(models.Receiver, models.User). \
-                           filter(models.Receiver.id == receiver_id,
-                                  models.User.id == receiver_id,
-                                  models.UserTenant.user_id == receiver_id,
-                                  models.UserTenant.tenant_id == tid).one_or_none()
+    receiver, user = session.query(models.Receiver, models.User) \
+                            .filter(models.Receiver.id == receiver_id,
+                                    models.Receiver.id == models.User.id).one_or_none()
 
     receiver.tip_notification = request['tip_notification']
 
@@ -85,9 +77,9 @@ def get_receivertip_list(session, tid, receiver_id, language):
     messages_by_rtip = {}
 
     for itip, archivedschema in session.query(models.InternalTip, models.ArchivedSchema) \
-                                     .filter(models.InternalTip.id.in_(itips_ids),
-                                             models.ArchivedSchema.hash == models.InternalTip.questionnaire_hash,
-                                             models.InternalTip.tid == tid):
+                                       .filter(models.InternalTip.id.in_(itips_ids),
+                                               models.ArchivedSchema.hash == models.InternalTip.questionnaire_hash,
+                                               models.InternalTip.tid == tid):
         itips_by_id[itip.id] = itip
         aqs_by_itip[itip.id] = archivedschema
 
