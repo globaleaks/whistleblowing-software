@@ -112,9 +112,7 @@ def db_user_update_user(session, state, tid, user_id, request):
 
     user = models.db_get(session,
                          models.User,
-                         models.User.id == user_id,
-                         models.UserTenant.user_id == user_id,
-                         models.UserTenant.tenant_id == tid)
+                         models.User.id == user_id)
 
     user.language = request.get('language', State.tenant_cache[tid].default_language)
     user.name = request['name']
