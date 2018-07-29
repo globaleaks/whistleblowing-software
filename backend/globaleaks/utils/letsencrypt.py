@@ -20,6 +20,7 @@ def split_certificate_chain(full_chain_pem):
     certificates = re.findall('-----BEGIN CERTIFICATE-----.*?-----END CERTIFICATE-----', full_chain_pem, re.DOTALL)
     return certificates[0], ''.join(certificates[1:])
 
+
 def convert_asn1_date(asn1_bytes):
     return datetime.strptime(text_type(asn1_bytes, 'utf-8'), '%Y%m%d%H%M%SZ')
 
@@ -34,10 +35,12 @@ def create_v2_client(directory_url, accnt_key):
 
     return acme
 
+
 def get_boulder_tos(directory_url, accnt_key):
     """Returns the TOS for Let's Encrypt from Boulder"""
     client = create_v2_client(directory_url, accnt_key)
     return client.directory.meta.terms_of_service
+
 
 def run_acme_reg_to_finish(domain, accnt_key, priv_key, hostname, tmp_chall_dict, directory_url):
     """Runs the entire process of ACME registeration"""
