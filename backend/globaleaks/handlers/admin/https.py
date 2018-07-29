@@ -39,6 +39,32 @@ def load_tls_dict_list(session):
     return [load_tls_dict(session, tid[0]) for tid in session.query(models.Tenant.id).filter(models.Tenant.active == True)]
 
 
+def db_create_acme_key(session, tid):
+    priv_fact = ConfigFactory(session, tid, 'node')
+
+    key = rsa.generate_private_key(
+        public_exponent=65537,
+        key_size=2048,
+        backend=default_backend()
+    )
+
+    key = priv_key.private_bytes(
+        encoding=serialization.Encoding.PEM,
+        format=serialization.PrivateFormat.PKCS8,
+        encryption_algorithm=serialization.NoEncryption(),
+    )
+
+    priv_fact.set_val(u'acme', True)
+    priv_fact.set_val(u'acme_accnt_key', key)
+
+    return key
+
+
+@transact
+def create_acme_key(session, tid):
+    return db_create_acme_key(session, tid)
+
+
 class FileResource(object):
     """
     An interface for interacting with files stored on disk or in the db
@@ -449,26 +475,7 @@ class AcmeAccntKeyRes:
     def create_file(session, cls, tid):
         log.info("Generating an ACME account key with %d bits" % Settings.key_bits)
 
-        priv_fact = ConfigFactory(session, tid, 'node')
-
-        # NOTE key size is hard coded to align with minimum CA requirements
-        # TODO change format to OpenSSL key to normalize types of keys used
-        priv_key = rsa.generate_private_key(
-            public_exponent=65537,
-            key_size=2048,
-            backend=default_backend())
-
-        log.debug("Saving the ACME key")
-        b = priv_key.private_bytes(
-                encoding=serialization.Encoding.PEM,
-                format=serialization.PrivateFormat.PKCS8,
-                encryption_algorithm=serialization.NoEncryption(),
-        )
-
-        priv_fact.set_val(u'acme', True)
-        priv_fact.set_val(u'acme_accnt_key', b)
-
-        return priv_key
+        return db_create_acme_key(session, tid)
 
 @transact
 def can_perform_acme_run(session, tid):
@@ -499,11 +506,13 @@ def db_acme_cert_issuance(session, tid):
     priv_fact = ConfigFactory(session, tid, 'node')
     hostname = State.tenant_cache[tid].hostname
 
-    raw_accnt_key = priv_fact.get_val(u'acme_accnt_key')
+    # Temporary fix for https://github.com/certbot/certbot/issues/6246
+    # raw_accnt_key = priv_fact.get_val(u'acme_accnt_key')
+    raw_accnt_key = db_create_acme_key(session, tid)
+
     accnt_key = serialization.load_pem_private_key(raw_accnt_key.encode(),
                                                    password=None,
                                                    backend=default_backend())
-
 
     priv_key = priv_fact.get_val(u'https_priv_key')
 
