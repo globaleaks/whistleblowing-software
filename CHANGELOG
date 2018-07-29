@@ -1,5 +1,12 @@
+Changes in version 3.2.4 - 2018-07-29
+    Fix reinitialization of missing tenant variables
+    Make it possible to configure the default questionnaire
+    Implement the first set of configurations for whistleblowing.it
+    Fix duplication of questionnaires in relation to field triggers
+    Fix serializations of users in relation to multitenancy
+
 Changes in version 3.2.3 - 2018-07-21
-    Apply minot bugfixing
+    Apply minor bugfixing
 
     Addresses issues:
     - https://github.com/globaleaks/GlobaLeaks/issues/2328
