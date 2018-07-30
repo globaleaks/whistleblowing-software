@@ -48,7 +48,7 @@ def db_create_acme_key(session, tid):
         backend=default_backend()
     )
 
-    key = priv_key.private_bytes(
+    key = key.private_bytes(
         encoding=serialization.Encoding.PEM,
         format=serialization.PrivateFormat.PKCS8,
         encryption_algorithm=serialization.NoEncryption(),
