@@ -68,7 +68,7 @@ def generateRandomSalt():
     # an exception). As B64 encoded data is always ASCII, this should be
     # able to go safely in and out of the database.
 
-    return str(base64.b64encode(os.urandom(16)))
+    return base64.b64encode(os.urandom(16)).decode()
 
 
 def generate_api_token():
