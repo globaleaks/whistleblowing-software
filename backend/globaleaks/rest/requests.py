@@ -560,6 +560,7 @@ WizardDesc = {
     'admin_password': text_type,
     'admin_mail_address': text_type,
     'receiver_name': text_type,
+    'receiver_password': text_type,
     'receiver_mail_address': text_type,
     'profile': r'^(default)$',
     'enable_developers_exception_notification': bool

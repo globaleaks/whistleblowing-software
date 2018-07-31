@@ -124,11 +124,8 @@ def db_create_user(session, state, tid, request, language):
 
     if request['password']:
         password = request['password']
-    elif user.role == 'receiver':
-        # code necessary because the user.role for recipient is receiver
-        password = 'recipient'
     else:
-        password = user.role
+        password = u'password'
 
     user.salt = security.generateRandomSalt()
     user.password = security.hash_password(password, user.salt)

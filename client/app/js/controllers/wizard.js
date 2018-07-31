@@ -54,6 +54,7 @@ GLClient.controller('WizardCtrl', ['$scope', '$location', '$route', '$http', 'Au
     'admin_name': '',
     'admin_mail_address': '',
     'receiver_name': '',
+    'receiver_password': '',
     'receiver_mail_address': '',
     'profile': 'default',
     'enable_developers_exception_notification': true
