@@ -23,7 +23,7 @@ class BaseJob(task.LoopingCall):
     def __init__(self):
         self.name = self.__class__.__name__
 
-        self.job = task.LoopingCall.__init__(self, self.run)
+        task.LoopingCall.__init__(self, self.run)
 
         self.clock = reactor
 
