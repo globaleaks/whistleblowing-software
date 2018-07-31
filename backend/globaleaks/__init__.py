@@ -8,10 +8,10 @@ __author__ = u'Random GlobaLeaks Developers'
 __email__ = u'info@globaleaks.org'
 __copyright__ = u'2011-2018 - Hermes Center for Transparency and Digital Human Rights - GlobaLeaks Project'
 __email__ = u'info@globaleaks.org'
-__version__ = u'3.2.6'
+__version__ = u'3.3.0'
 __license__ = u'AGPL-3.0'
 
-DATABASE_VERSION = 42
+DATABASE_VERSION = 43
 FIRST_DATABASE_VERSION_SUPPORTED = 24
 
 # Add new languages as they are supported here! To do this retrieve the name of
