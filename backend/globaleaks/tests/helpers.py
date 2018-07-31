@@ -426,6 +426,7 @@ class TestGL(unittest.TestCase):
             'admin_password': 'P4ssword',
             'admin_mail_address': 'evilaliv3@globaleaks.org',
             'receiver_name': 'Fabio Pietrosanti',
+            'receiver_password': 'P4ssword',
             'receiver_mail_address': 'naif@globaleaks.org',
             'profile': 'default',
             'enable_developers_exception_notification': True

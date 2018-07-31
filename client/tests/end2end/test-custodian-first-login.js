@@ -2,7 +2,7 @@ var temporary_password = "typ0drome@absurd.org";
 
 describe('receiver first login', function() {
   it('should redirect to /firstlogin upon successful authentication', function() {
-    browser.gl.utils.login_custodian('Custodian1', 'custodian', '/#/login', true);
+    browser.gl.utils.login_custodian('Custodian1', 'password', '/#/login', true);
   });
 
   it('should be able to change password from the default one', function() {
