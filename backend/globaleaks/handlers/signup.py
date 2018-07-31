@@ -118,7 +118,9 @@ def signup_activation(session, state, tid, token, language):
         return {}
 
     if not session.query(models.Config).filter(models.Config.tid == signup.tid).count():
-        db_initialize_tenant(session, signup.tid)
+        tenant = session.query(models.Tenant).filter(models.Tenant.id == signup.tid).one()
+
+        db_initialize_tenant(session, tenant)
 
         signup_mode = node.get_val(u'signup_mode')
 
