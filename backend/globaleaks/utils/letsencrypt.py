@@ -1,14 +1,10 @@
 # -*- coding: utf-8
 import josepy
-import OpenSSL
 import re
 
 from datetime import datetime
 from acme import challenges, client, crypto_util, messages
-from functools import reduce
-from OpenSSL.crypto import FILETYPE_PEM, load_certificate, dump_certificate
 from six import text_type
-from six.moves import urllib
 
 from globaleaks.utils.utility import log
 
