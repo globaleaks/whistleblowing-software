@@ -63,14 +63,16 @@ def db_preallocate(session, desc):
     return t
 
 
-def db_initialize(session, tid):
+def db_initialize(session, tenant):
+    tenant.active = True
+
     appdata = load_appdata()
 
-    models.config.initialize_tenant_config(session, tid=tid)
+    models.config.initialize_tenant_config(session, tid=tenant.id)
 
-    models.config.add_new_lang(session, tid, u'en', appdata)
+    models.config.add_new_lang(session, tenant.id, u'en', appdata)
 
-    initialize_submission_statuses(session, tid)
+    initialize_submission_statuses(session, tenant.id)
 
     file_descs = [
       (u'logo', 'data/logo.png'),
@@ -80,15 +82,13 @@ def db_initialize(session, tid):
     for file_desc in file_descs:
         with open(os.path.join(Settings.client_path, file_desc[1]), 'rb') as f:
             data = base64.b64encode(f.read())
-            file.db_add_file(session, tid, file_desc[0], u'', data)
+            file.db_add_file(session, tenant.id, file_desc[0], u'', data)
 
 
 def db_create(session, desc):
     t = db_preallocate(session, desc)
 
-    t.active = True
-
-    db_initialize(session, t.id)
+    db_initialize(session, t)
 
     db_refresh_memory_variables(session, [t.id])
 
@@ -122,7 +122,7 @@ def update(session, id, request):
 
     # A tenant created via signup but not activate may require initialization
     if not session.query(models.Config).filter(models.Config.tid == id).count():
-        db_initialize(session, id)
+        db_initialize(session, tenant)
 
     db_refresh_memory_variables(session, [id])
 
