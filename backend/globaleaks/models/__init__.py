@@ -659,7 +659,7 @@ class _InternalTip(Model):
 
     tid = Column(Integer, default=1, nullable=False)
 
-    encrypted = Column(Boolean, default=False, nullable=False)
+    content = Column(UnicodeText, default='')
 
     creation_date = Column(DateTime, default=datetime_now, nullable=False)
     update_date = Column(DateTime, default=datetime_now, nullable=False)
@@ -841,7 +841,7 @@ class _ReceiverTip(Model):
 
     id = Column(Unicode(36), primary_key=True, default=uuid4, nullable=False)
 
-    tip_key = Column(Unicode, default=u'', nullable=False)
+    crypto_tip_key = Column(Unicode, default=u'', nullable=False)
 
     internaltip_id = Column(Unicode(36), nullable=False)
     receiver_id = Column(Unicode(36), nullable=False)
@@ -896,10 +896,6 @@ class _Signup(Model):
     hear_channel = Column(UnicodeText, default=u'', nullable=False)
     activation_token = Column(UnicodeText, nullable=False)
 
-    # Todo: this variables are now unused and could be removed at the next viable migration.
-    password_admin = Column(UnicodeText, default=get_random_password, nullable=False)
-    password_recipient = Column(UnicodeText, default=get_random_password, nullable=False)
-
     client_ip_address = Column(UnicodeText, default=u'', nullable=False)
     client_user_agent = Column(UnicodeText, default=u'', nullable=False)
     registration_date = Column(DateTime, default=datetime_now, nullable=False)
@@ -912,7 +908,6 @@ class _Signup(Model):
                     'organization_location1', 'organization_location2', 'organization_location3', 'organization_location4',
                     'organization_number_employees', 'organization_number_users',
                     'hear_channel',
-                    'password_admin', 'password_recipient',
                     'client_ip_address', 'client_user_agent',
                     'activation_token']
 
@@ -1087,8 +1082,8 @@ class _User(Model):
 
     auth_token = Column(UnicodeText, default=get_auth_token, nullable=False)
 
-    enc_prv_key = Column(Unicode, default=u'', nullable=False)
-    enc_pub_key = Column(Unicode, default=u'', nullable=False)
+    crypto_prv_key = Column(Unicode, default=u'', nullable=False)
+    crypto_key = Column(Unicode, default=u'', nullable=False)
 
     can_edit_general_settings = Column(Boolean, default=False, nullable=False)
 
@@ -1187,10 +1182,9 @@ class _WhistleblowerTip(Model):
     tid = Column(Integer, default=1, nullable=False)
     receipt_hash = Column(Unicode(128), nullable=False)
 
-    wb_prv_key = Column(Unicode, default=u'', nullable=False)
-    wb_pub_key = Column(Unicode, default=u'', nullable=False)
-    wb_tip_key = Column(Unicode, default=u'', nullable=False)
-    enc_data = Column(Unicode, default=u'', nullable=False)
+    crypto_tip_key = Column(Unicode, default=u'', nullable=False)
+    crypto_prv_key = Column(Unicode, default=u'', nullable=False)
+    crypto_pub_key = Column(Unicode, default=u'', nullable=False)
 
     @declared_attr
     def __table_args__(cls): # pylint: disable=no-self-argument
