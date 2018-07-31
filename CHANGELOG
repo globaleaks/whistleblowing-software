@@ -1,3 +1,7 @@
+Changes in version 3.2.6 - 2018-07-31
+    Fix initialization of tenants at user signup
+    Fix initialization of user passwords
+
 Changes in version 3.2.5 - 2018-07-30
     Fix HTTPs certificates renewal
 
