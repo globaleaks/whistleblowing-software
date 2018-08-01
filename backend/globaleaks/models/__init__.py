@@ -915,7 +915,7 @@ class _Signup(Model):
 
     @declared_attr
     def __table_args__(cls): # pylint: disable=no-self-argument
-        return (ForeignKeyConstraint(['tid'], ['tenant.id'], ondelete='SET NULL', deferrable=True, initially='DEFERRED'),)
+        return (ForeignKeyConstraint(['tid'], ['tenant.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),)
 
 
 class _ShortURL(Model):
