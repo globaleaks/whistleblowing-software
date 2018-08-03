@@ -10,10 +10,6 @@ import os
 import re
 import sys
 
-if platform.system() != 'Windows':
-    import grp
-    import pwd
-
 # pylint: enable=no-name-in-module
 from optparse import OptionParser
 
@@ -174,7 +170,6 @@ class SettingsClass(object):
         self.maximum_namesize = 128
         self.maximum_textsize = 4096
 
-
         self.enable_api_cache = True
 
     def eval_paths(self):
@@ -228,31 +223,28 @@ class SettingsClass(object):
 
         if not self.validate_port(self.cmdline_options.socks_port):
             sys.exit(1)
+
         self.socks_port = self.cmdline_options.socks_port
 
-        if self.cmdline_options.user and self.cmdline_options.group:
-            self.user = self.cmdline_options.user
-            self.group = self.cmdline_options.group
+        if platform.system() != 'Windows':
+            if (self.cmdline_options.user and self.cmdline_options.group is None) or \
+               (self.cmdline_options.group and self.cmdline_options.user is None):
+                self.print_msg("Error: missing user or group option")
+                sys.exit(1)
 
-            if platform.system() != 'Windows':
+            if self.cmdline_options.user and self.cmdline_options.group:
+                import grp
+                import pwd
+
+                self.user = self.cmdline_options.user
+                self.group = self.cmdline_options.group
+
                 self.uid = pwd.getpwnam(self.cmdline_options.user).pw_uid
                 self.gid = grp.getgrnam(self.cmdline_options.group).gr_gid
-        elif self.cmdline_options.user:
-            # user selected: get also the associated group
-            self.user = self.cmdline_options.user
 
-            if platform.system() == 'Windows':
-                self.uid = pwd.getpwnam(self.cmdline_options.user).pw_uid
-                self.gid = pwd.getpwnam(self.cmdline_options.user).pw_gid
-        elif self.cmdline_options.group:
-            # group selected: keep the current user
-            self.group = self.cmdline_options.group
-            self.gid = grp.getgrnam(self.cmdline_options.group).gr_gid
-            self.uid = os.getuid()
-
-        if self.uid == 0 or self.gid == 0:
-            self.print_msg("Invalid user: cannot run as root")
-            sys.exit(1)
+            if self.uid == 0 or self.gid == 0:
+                self.print_msg("Invalid user: cannot run as root")
+                sys.exit(1)
 
         if self.cmdline_options.devel_mode:
             self.set_devel_mode()
@@ -290,6 +282,7 @@ class SettingsClass(object):
     def print_msg(self, *args):
         if not self.testing:
             print(*args)
+
 
 # Settings is a singleton class exported once
 Settings = SettingsClass()

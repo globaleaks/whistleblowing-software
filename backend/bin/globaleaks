@@ -70,11 +70,11 @@ Settings.parser.add_option("-r", "--socks-port", type="int",
 
 Settings.parser.add_option("-u", "--user", type="string",
     help="set the user to run as [default: current_user]",
-    dest="user")
+    dest="user", default=None)
 
 Settings.parser.add_option("-g", "--group", type="string",
     help="set the group to run as [default: current_user]",
-    dest="group")
+    dest="group", default=None)
 
 Settings.parser.add_option("-w", "--working-path", type="string",
     help="set the backend working directory",
