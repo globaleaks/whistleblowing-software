@@ -43,7 +43,7 @@
   <div data-ng-if="session.role === 'receiver' && contexts.length > 1">
     <label><span data-translate>Contexts</span></label>
     <ul data-ng-repeat="context_id in preferences.contexts">
-      <li data-ng-init="ctx = Utils.getContext(context_id)">{{::ctx.name}}</li>
+      <li>{{contexts_by_id[context_id].name}}</li>
     </ul>
   </div>
 
