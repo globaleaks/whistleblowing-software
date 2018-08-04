@@ -8,6 +8,7 @@ from six import text_type
 
 from globaleaks.utils.utility import log
 
+
 class ChallTok:
     def __init__(self, tok):
         self.tok = tok
@@ -27,15 +28,13 @@ def create_v2_client(directory_url, accnt_key):
     accnt_key = josepy.JWKRSA(key=accnt_key)
     net = client.ClientNetwork(accnt_key, user_agent="GlobaLeaks Let's Encrypt Client")
     directory = messages.Directory.from_json(net.get(directory_url).json())
-    acme = client.ClientV2(directory, net)
 
-    return acme
+    return client.ClientV2(directory, net)
 
 
 def get_boulder_tos(directory_url, accnt_key):
     """Returns the TOS for Let's Encrypt from Boulder"""
-    client = create_v2_client(directory_url, accnt_key)
-    return client.directory.meta.terms_of_service
+    return create_v2_client(directory_url, accnt_key).directory.meta.terms_of_service
 
 
 def run_acme_reg_to_finish(domain, accnt_key, priv_key, hostname, tmp_chall_dict, directory_url):
