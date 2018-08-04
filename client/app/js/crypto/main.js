@@ -20,17 +20,18 @@ angular.module('GLBrowserCrypto', [])
     }
   };
 }])
-.factory('glbcProofOfWork', ['$q', 'glbcUtil', function($q, glbcUtil) {
+.factory('glbcProofOfWork', ['$q', 'pgp', 'glbcUtil', function($q, pgp, glbcUtil) {
   // proofOfWork return the answer to the proof of work
   // { [challenge string] -> [ answer index] }
   var getWebCrypto = function() {
-    if (typeof window !== 'undefined') {
-      if (window.crypto) {
-        return window.crypto.subtle || window.crypto.webkitSubtle;
-      }
-      if (window.msCrypto) {
-        return window.msCrypto.subtle;
-      }
+    if (typeof window === 'undefined') {
+      return;
+    }
+
+    if (window.crypto) {
+      return window.crypto.subtle || window.crypto.webkitSubtle;
+    } else if (window.msCrypto) {
+      return window.msCrypto.subtle;
     }
   };
 
@@ -51,8 +52,14 @@ angular.module('GLBrowserCrypto', [])
       };
 
       var work = function() {
-        var hashme = glbcUtil.str2Uint8Array(str + i);
-        var damnIE = getWebCrypto().digest({name: "SHA-256"}, hashme);
+        var webCrypto = getWebCrypto();
+        var toHash = glbcUtil.str2Uint8Array(str + i);
+
+	if (webCrypto) {
+          var damnIE = webCrypto.digest({name: "SHA-256"}, toHash);
+	} else {
+          var damnIE = pgp.crypto.hash.sha256(toHash);
+	}
 
         if (damnIE.then !== undefined) {
           damnIE.then(xxx);
@@ -71,7 +78,7 @@ angular.module('GLBrowserCrypto', [])
 
     return {
       /**
-       * @decription checks to see if passed text is an ascii armored GPG
+       * @decription checks to see if passed text is an ascii armored PGP
        * public key. If so, the fnc returns true.
        * @param {String} textInput
        * @return {Bool}
