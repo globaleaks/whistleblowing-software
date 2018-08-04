@@ -515,7 +515,7 @@ class PlatformSignupKeyword(NodeKeyword):
         return 'http://' + self.data['signup']['subdomain'] + '.' + self.data['node']['onionservice'] + '/'
 
     def _HTTPSUrl(self):
-        return 'https://' + self.data['signup']['subdomain'] + '.' + self.data['node']['hostname'] + '/'
+        return 'https://' + self.data['signup']['subdomain'] + '.' + self.data['node']['rootdomain'] + '/'
 
     def RecipientName(self):
         return self.data['signup']['name'] + ' ' + self.data['signup']['surname']
