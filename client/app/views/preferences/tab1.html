@@ -40,10 +40,10 @@
   </div>
   <p data-ng-if="preferences.description !== ''"><label data-translate>Description</label> {{::preferences.description }}</p>
 
-  <div data-ng-if="session.role == 'receiver' && preferences.contexts.length">
+  <div data-ng-if="session.role == 'receiver'">
     <label><span data-translate>Contexts</span></label>
     <ul data-ng-repeat="context_id in preferences.contexts">
-      <li data-ng-init="ctx = Utils.getContext(context_id)"><span data-ng-if="ctx.name">{{::ctx.name}}</span>: {{::ctx.id}}</li>
+      <li data-ng-init="ctx = Utils.getContext(context_id)">{{::ctx.name}}</li>
     </ul>
   </div>
 
