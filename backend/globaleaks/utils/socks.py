@@ -12,8 +12,6 @@
 
 import struct
 
-from six import text_type
-
 from twisted.internet import defer, interfaces
 from twisted.internet.protocol import Protocol
 from twisted.protocols import tls

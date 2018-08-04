@@ -112,7 +112,6 @@ def db_create_user(session, state, tid, request, language):
         'state': u'enabled',
         'name': request['name'],
         'description': request['description'],
-        'name': request['name'],
         'language': language,
         'password_change_needed': request['password_change_needed'],
         'mail_address': request['mail_address'],

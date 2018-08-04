@@ -19,5 +19,5 @@ class TestShortURLCollection(helpers.TestHandlerWithPopulatedDB):
             req = self.get_dummy_shorturl(str(i))
             yield admin_shorturl.create_shorturl(1, req)
             handler = self.request(role='admin')
-            response = yield handler.get(text_type(req['shorturl']))
+            yield handler.get(text_type(req['shorturl']))
             self.assertEqual(handler.request.responseHeaders.getRawHeaders('location')[0], req['longurl'])

@@ -150,7 +150,7 @@ class TestNodeInstance(helpers.TestHandlerWithPopulatedDB):
         self.dummyNode['smtp_server'] = 'not.a.real.smtpserver'
 
         handler = self.request(self.dummyNode, role='receiver')
-        resp = yield handler.put()
+        yield handler.put()
 
         smtp_server = yield get_config_value(1, 'smtp_server')
         self.assertNotEqual('not.a.real.smtpserver', smtp_server)

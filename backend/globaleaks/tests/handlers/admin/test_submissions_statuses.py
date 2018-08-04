@@ -1,5 +1,3 @@
-"""Tests Submission status code"""
-
 # -*- coding: utf-8 -*-
 from twisted.internet.defer import inlineCallbacks
 
@@ -7,7 +5,6 @@ from globaleaks import models
 from globaleaks.handlers.admin import submission_statuses
 from globaleaks.orm import transact
 from globaleaks.tests import helpers
-from twisted.internet.defer import inlineCallbacks
 
 
 @transact
@@ -47,6 +44,7 @@ class SubmissionStatusCollectionDesc(helpers.TestHandlerWithPopulatedDB):
             'label': 'test_status',
             'presentation_order': 0
         }
+
         handler = self.request(data_request, role='admin')
         yield handler.post()
 
@@ -155,6 +153,7 @@ class SubmissionStatusInstanceDesc(helpers.TestHandlerWithPopulatedDB):
 
         session_status_count = yield count_submission_statuses(1)
         self.assertEqual(session_status_count, 3)
+
 
 class SubmissionSubStatusCollectionDesc(helpers.TestHandlerWithPopulatedDB):
     _handler = submission_statuses.SubmissionSubStatusCollection

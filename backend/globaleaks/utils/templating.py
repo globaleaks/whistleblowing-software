@@ -4,11 +4,9 @@
 # mainly in mail notifications.
 import collections
 import copy
-import re
 from six import text_type
 
 from globaleaks import __version__
-from globaleaks import models
 from globaleaks.rest import errors
 from globaleaks.utils.utility import ISO8601_to_pretty_str, ISO8601_to_day_str, \
     bytes_to_pretty_str

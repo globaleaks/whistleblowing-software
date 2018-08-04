@@ -16,7 +16,7 @@ try:
 except ImportError:
     zlib = None
 
-from six import text_type, binary_type
+from six import text_type
 
 __all__ = ["ZIP_STORED", "ZIP_DEFLATED", "ZipStream"]
 

@@ -5,7 +5,6 @@ from __future__ import print_function
 import sys
 from importlib import import_module
 
-import pip
 from setuptools import find_packages, setup
 from setuptools.command.test import test as _TestCommand
 

@@ -3,7 +3,6 @@ import os
 
 from sqlalchemy.exc import IntegrityError
 
-from twisted.python import failure
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import models
@@ -58,11 +57,6 @@ class TestQuestionnareDuplication(helpers.TestHandlerWithPopulatedDB):
     _handler = questionnaire.QuestionnareDuplication
 
     @transact
-    def get_questionnare_count(self, session):
-        """Gets a count of the questionnaires"""
-        return session.query(models.Questionnaire).count()
-
-    @transact
     def get_new_questionnare(self, session):
         """Returns first questionnare ID"""
         questionnare_obj = session.query(models.Questionnaire).filter(
@@ -70,15 +64,13 @@ class TestQuestionnareDuplication(helpers.TestHandlerWithPopulatedDB):
         session.expunge(questionnare_obj)
         return questionnare_obj
 
-    @inlineCallbacks
     def setUp(self):
-        yield helpers.TestHandlerWithPopulatedDB.setUp(self)
+        return helpers.TestHandlerWithPopulatedDB.setUp(self)
 
     @inlineCallbacks
     def test_duplicate_questionnaire(self):
         # Sanity check our base behavior
-        questionnaire_count = yield self.get_questionnare_count()
-        self.assertEqual(questionnaire_count, 1)
+        yield self.test_model_count(models.Questionnaire, 1)
 
         data_request = {
             'questionnaire_id': 'default',
@@ -86,10 +78,9 @@ class TestQuestionnareDuplication(helpers.TestHandlerWithPopulatedDB):
         }
 
         handler = self.request(data_request, role='admin')
-        response = yield handler.post()
+        yield handler.post()
 
-        questionnaire_count = yield self.get_questionnare_count()
-        self.assertEqual(questionnaire_count, 2)
+        yield self.test_model_count(models.Questionnaire, 2)
 
         new_questionnare = yield self.get_new_questionnare()
         self.assertEqual(new_questionnare.name, 'Duplicated Default')

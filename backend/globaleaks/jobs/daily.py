@@ -5,7 +5,7 @@ import fnmatch
 import os
 from datetime import timedelta
 
-from sqlalchemy import and_, not_
+from sqlalchemy import not_
 from sqlalchemy.sql.expression import func
 
 from twisted.internet.defer import inlineCallbacks

@@ -1,5 +1,4 @@
 # -*- coding: utf-8
-import random
 import time
 import platform
 
@@ -10,7 +9,7 @@ from sqlalchemy.orm import sessionmaker
 
 from twisted.internet import reactor
 from twisted.internet.threads import deferToThreadPool
-from globaleaks.utils.utility import datetime_now, deferred_sleep, log
+from globaleaks.utils.utility import deferred_sleep, log
 
 
 __DB_URI = 'sqlite:'

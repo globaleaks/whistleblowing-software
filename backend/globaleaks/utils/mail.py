@@ -1,6 +1,5 @@
 # -*- coding: utf-8
 # GlobaLeaks Utility used to handle Mail, format, exception, etc
-import email
 import sys
 
 if sys.version_info[0] == 2:
@@ -16,7 +15,7 @@ from email.mime.text import MIMEText
 
 from twisted.internet import reactor, defer
 from twisted.internet.endpoints import TCP4ClientEndpoint
-from twisted.mail.smtp import ESMTPSenderFactory, SMTPError
+from twisted.mail.smtp import ESMTPSenderFactory
 from twisted.protocols import tls
 
 from globaleaks import __version__

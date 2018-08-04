@@ -79,7 +79,7 @@ def run_acme_reg_to_finish(domain, accnt_key, priv_key, hostname, tmp_chall_dict
     if challb is None:
         raise Exception("HTTP01 challenge unavailable!")
 
-    response, chall_tok = challb.response_and_validation(client.net.key)
+    _, chall_tok = challb.response_and_validation(client.net.key)
     v = chall_body.chall.encode("token")
     log.info('Exposing challenge on %s', v)
     tmp_chall_dict.set(v, ChallTok(chall_tok))

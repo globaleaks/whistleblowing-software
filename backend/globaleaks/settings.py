@@ -13,9 +13,7 @@ import sys
 # pylint: enable=no-name-in-module
 from optparse import OptionParser
 
-from six import text_type
-
-from globaleaks import __version__, DATABASE_VERSION
+from globaleaks import __version__
 from globaleaks.orm import make_db_uri, set_db_uri
 from globaleaks.utils.singleton import Singleton
 from globaleaks.utils.utility import log

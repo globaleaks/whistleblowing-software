@@ -13,7 +13,7 @@ from globaleaks import models
 from globaleaks.jobs.base import LoopingJob
 from globaleaks.orm import transact
 from globaleaks.utils.pgp import PGPContext
-from globaleaks.utils.security import generateRandomKey, overwrite_and_remove
+from globaleaks.utils.security import generateRandomKey
 from globaleaks.settings import Settings
 from globaleaks.utils.utility import log
 
