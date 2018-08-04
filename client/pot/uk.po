@@ -22,7 +22,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-07-15 20:39+0000\n"
+"PO-Revision-Date: 2018-07-24 17:41+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/otf/globaleaks/language/uk/)\n"
 "MIME-Version: 1.0\n"
@@ -809,6 +809,9 @@ msgstr "Домашня Сторінка"
 msgid "Submission Page"
 msgstr "Сторінка подання матеріалів"
 
+msgid "Default questionnaire"
+msgstr ""
+
 msgid "Title of the submission page"
 msgstr "Заголовок сторінки подачі свідчень"
 
@@ -1504,9 +1507,6 @@ msgstr ""
 msgid "Record IP address and user agent of registered users"
 msgstr ""
 
-msgid "Do not create the admin user"
-msgstr ""
-
 msgid "Enable terms of service"
 msgstr ""
 
@@ -1610,11 +1610,14 @@ msgstr "Забули пароль?"
 msgid "Authentication failed"
 msgstr "Збій автентифікації"
 
-msgid "Site"
-msgstr "Сайт"
+msgid "Site:"
+msgstr ""
 
-msgid "Back"
-msgstr "Назад"
+msgid "Username:"
+msgstr "Ім'я користувача:"
+
+msgid "Password:"
+msgstr "Пароль:"
 
 msgid "Please select your account:"
 msgstr "Будь ласка, оберіть ваш обліковий запис:"
@@ -1963,20 +1966,14 @@ msgstr "Вітаємо!"
 msgid "You have completed the platform activation."
 msgstr ""
 
-msgid "Your whistleblowing platform is now accessible at:"
+msgid "Please check your inbox for further instructions."
 msgstr ""
 
-msgid "Users' credentials:"
+msgid "Your whistleblowing platform is almost ready!"
 msgstr ""
 
-msgid "To log in, visit:"
-msgstr "Щоб увійти, відвідайте:"
-
-msgid "For the user documentation visit:"
-msgstr ""
-
-msgid "The platform will be automatically deleted on:"
-msgstr ""
+msgid "Check your inbox to activate your account."
+msgstr "Перевірте свою поштову скриньку, щоб активувати обліковий запис."
 
 msgid "Sign up"
 msgstr "Зареєструватися"
@@ -2004,12 +2001,6 @@ msgstr "-Інше-"
 
 msgid "Complete"
 msgstr "Завершити"
-
-msgid "Your whistleblowing platform is almost ready!"
-msgstr ""
-
-msgid "Check your inbox to activate your account."
-msgstr "Перевірте свою поштову скриньку, щоб активувати обліковий запис."
 
 msgid "This field is mandatory."
 msgstr "Це поле є обов'язковим"
@@ -2169,6 +2160,21 @@ msgstr "Місцерозташування офісу на момент прав
 
 msgid "Dear {RecipientName},"
 msgstr "Шановний {RecipientName},"
+
+msgid "Your whistleblowing platform is now accessible at:"
+msgstr ""
+
+msgid "To log in, visit:"
+msgstr "Щоб увійти, відвідайте:"
+
+msgid "Users' credentials:"
+msgstr ""
+
+msgid "For the user documentation visit:"
+msgstr ""
+
+msgid "The platform will be automatically deleted on:"
+msgstr ""
 
 msgid "Kind regards,"
 msgstr "З повагою,"
@@ -2499,3 +2505,12 @@ msgstr "Інформатор сподівається, що саме Ви зве
 
 msgid "New submission"
 msgstr "Нове повідомлення"
+
+msgid "Role: {Role}"
+msgstr ""
+
+msgid "Username: {Username}"
+msgstr ""
+
+msgid "Password: {Password}"
+msgstr ""

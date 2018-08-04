@@ -5,8 +5,8 @@
 # Antonio de la Piedra <inactive+entactogenic@transifex.com>, 2013
 # B. K., 2015
 # B. K., 2015
-# carlos <cacu@espora.org>, 2015
-# carlos <cacu@espora.org>, 2015,2017
+# cacu <cacu@espora.org>, 2015
+# cacu <cacu@espora.org>, 2015,2017
 # Antonio de la Piedra <inactive+entactogenic@transifex.com>, 2013
 # Federico Scrinzi <fox91@anche.no>, 2013
 # Francisco Huerta <francisco.huerta@davinci-ti.es>, 2016
@@ -29,7 +29,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-07-15 20:39+0000\n"
+"PO-Revision-Date: 2018-07-24 17:41+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Spanish (http://www.transifex.com/otf/globaleaks/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -816,6 +816,9 @@ msgstr "Página principal"
 msgid "Submission Page"
 msgstr "Página de entregas"
 
+msgid "Default questionnaire"
+msgstr ""
+
 msgid "Title of the submission page"
 msgstr "Título de la página de entrega"
 
@@ -1511,9 +1514,6 @@ msgstr ""
 msgid "Record IP address and user agent of registered users"
 msgstr ""
 
-msgid "Do not create the admin user"
-msgstr ""
-
 msgid "Enable terms of service"
 msgstr ""
 
@@ -1617,11 +1617,14 @@ msgstr ""
 msgid "Authentication failed"
 msgstr "Autentificación fallida"
 
-msgid "Site"
-msgstr "Sitio"
+msgid "Site:"
+msgstr ""
 
-msgid "Back"
-msgstr "Atrás"
+msgid "Username:"
+msgstr "Nombre de usuario"
+
+msgid "Password:"
+msgstr "Contraseña:"
 
 msgid "Please select your account:"
 msgstr "Por favor, seleccione su cuenta:"
@@ -1970,20 +1973,14 @@ msgstr "¡Felicidades!"
 msgid "You have completed the platform activation."
 msgstr "Ha completado la activación de la plataforma."
 
-msgid "Your whistleblowing platform is now accessible at:"
-msgstr "Su plataforma para informantes está ahora accesible en:"
+msgid "Please check your inbox for further instructions."
+msgstr ""
 
-msgid "Users' credentials:"
-msgstr "Credenciales de los usuarios:"
+msgid "Your whistleblowing platform is almost ready!"
+msgstr "¡Su plataforma para informantes casi está lista!"
 
-msgid "To log in, visit:"
-msgstr "Para iniciar sesión, visite:"
-
-msgid "For the user documentation visit:"
-msgstr "Para la documentación de usuario visite:"
-
-msgid "The platform will be automatically deleted on:"
-msgstr "The platform will be automatically deleted on:"
+msgid "Check your inbox to activate your account."
+msgstr "Revise su bandeja de entrada para activar su cuenta"
 
 msgid "Sign up"
 msgstr "Registrarse"
@@ -2011,12 +2008,6 @@ msgstr "Otros"
 
 msgid "Complete"
 msgstr "Completar"
-
-msgid "Your whistleblowing platform is almost ready!"
-msgstr "¡Su plataforma para informantes casi está lista!"
-
-msgid "Check your inbox to activate your account."
-msgstr "Revise su bandeja de entrada para activar su cuenta"
 
 msgid "This field is mandatory."
 msgstr "Este campo es obligatorio."
@@ -2176,6 +2167,21 @@ msgstr "Unidad organizativa y ubicación del empleo en el momento del hecho info
 
 msgid "Dear {RecipientName},"
 msgstr "Estimado {RecipientName},"
+
+msgid "Your whistleblowing platform is now accessible at:"
+msgstr "Su plataforma para informantes está ahora accesible en:"
+
+msgid "To log in, visit:"
+msgstr "Para iniciar sesión, visite:"
+
+msgid "Users' credentials:"
+msgstr "Credenciales de los usuarios:"
+
+msgid "For the user documentation visit:"
+msgstr "Para la documentación de usuario visite:"
+
+msgid "The platform will be automatically deleted on:"
+msgstr "The platform will be automatically deleted on:"
 
 msgid "Kind regards,"
 msgstr "Saludos cordiales,"
@@ -2506,3 +2512,12 @@ msgstr "Se le pide que preste especial atención a la información y al material
 
 msgid "New submission"
 msgstr "Nueva entrega"
+
+msgid "Role: {Role}"
+msgstr ""
+
+msgid "Username: {Username}"
+msgstr ""
+
+msgid "Password: {Password}"
+msgstr ""

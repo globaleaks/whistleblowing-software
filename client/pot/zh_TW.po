@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-07-17 06:13+0000\n"
-"Last-Translator: Chi-Hsun Tsai\n"
+"PO-Revision-Date: 2018-07-24 17:41+0000\n"
+"Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/otf/globaleaks/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -797,6 +797,9 @@ msgstr "首頁"
 msgid "Submission Page"
 msgstr "提交頁面"
 
+msgid "Default questionnaire"
+msgstr ""
+
 msgid "Title of the submission page"
 msgstr "提交頁面的標題"
 
@@ -1492,9 +1495,6 @@ msgstr "註冊模式："
 msgid "Record IP address and user agent of registered users"
 msgstr "記錄註冊用戶的瀏覽器與 IP 地址"
 
-msgid "Do not create the admin user"
-msgstr "不要建立管理級用戶"
-
 msgid "Enable terms of service"
 msgstr "開啟服務條款"
 
@@ -1598,11 +1598,14 @@ msgstr "忘記密碼？"
 msgid "Authentication failed"
 msgstr "認證失敗"
 
-msgid "Site"
-msgstr "網站"
+msgid "Site:"
+msgstr ""
 
-msgid "Back"
-msgstr "返回"
+msgid "Username:"
+msgstr "使用者名稱："
+
+msgid "Password:"
+msgstr "密碼："
 
 msgid "Please select your account:"
 msgstr "請選擇你的帳號"
@@ -1951,20 +1954,14 @@ msgstr "恭喜！"
 msgid "You have completed the platform activation."
 msgstr "已完成平台的激活"
 
-msgid "Your whistleblowing platform is now accessible at:"
-msgstr "吹哨揭密平台已啟用:"
+msgid "Please check your inbox for further instructions."
+msgstr ""
 
-msgid "Users' credentials:"
-msgstr "用戶的證書:"
+msgid "Your whistleblowing platform is almost ready!"
+msgstr "吹哨揭密平台已接近完成！"
 
-msgid "To log in, visit:"
-msgstr "欲登入請到:"
-
-msgid "For the user documentation visit:"
-msgstr "使用文件在:"
-
-msgid "The platform will be automatically deleted on:"
-msgstr "平台會自動進行刪除:"
+msgid "Check your inbox to activate your account."
+msgstr "檢查信件來激活帳戶"
 
 msgid "Sign up"
 msgstr "註冊"
@@ -1992,12 +1989,6 @@ msgstr "其它"
 
 msgid "Complete"
 msgstr "完成"
-
-msgid "Your whistleblowing platform is almost ready!"
-msgstr "吹哨揭密平台已接近完成！"
-
-msgid "Check your inbox to activate your account."
-msgstr "檢查信件來激活帳戶"
 
 msgid "This field is mandatory."
 msgstr "此欄位為必填"
@@ -2157,6 +2148,21 @@ msgstr "報告實情時的工作組織單位與工作地點"
 
 msgid "Dear {RecipientName},"
 msgstr "敬愛的 {RecipientName},"
+
+msgid "Your whistleblowing platform is now accessible at:"
+msgstr "吹哨揭密平台已啟用:"
+
+msgid "To log in, visit:"
+msgstr "欲登入請到:"
+
+msgid "Users' credentials:"
+msgstr "用戶的證書:"
+
+msgid "For the user documentation visit:"
+msgstr "使用文件在:"
+
+msgid "The platform will be automatically deleted on:"
+msgstr "平台會自動進行刪除:"
 
 msgid "Kind regards,"
 msgstr "Kind regards,"
@@ -2487,3 +2493,12 @@ msgstr "請格外注意這裏的資料與材料，記住吹哨者往往因公共
 
 msgid "New submission"
 msgstr "新的提交"
+
+msgid "Role: {Role}"
+msgstr ""
+
+msgid "Username: {Username}"
+msgstr ""
+
+msgid "Password: {Password}"
+msgstr ""

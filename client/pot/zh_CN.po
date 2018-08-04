@@ -18,7 +18,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-07-15 20:39+0000\n"
+"PO-Revision-Date: 2018-07-24 17:41+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/otf/globaleaks/language/zh_CN/)\n"
 "MIME-Version: 1.0\n"
@@ -805,6 +805,9 @@ msgstr "主页"
 msgid "Submission Page"
 msgstr "提交页面"
 
+msgid "Default questionnaire"
+msgstr ""
+
 msgid "Title of the submission page"
 msgstr "提交页面的标题"
 
@@ -1500,9 +1503,6 @@ msgstr ""
 msgid "Record IP address and user agent of registered users"
 msgstr ""
 
-msgid "Do not create the admin user"
-msgstr ""
-
 msgid "Enable terms of service"
 msgstr ""
 
@@ -1606,11 +1606,14 @@ msgstr ""
 msgid "Authentication failed"
 msgstr "认证失败"
 
-msgid "Site"
-msgstr "网站"
+msgid "Site:"
+msgstr ""
 
-msgid "Back"
-msgstr "后退"
+msgid "Username:"
+msgstr "用户名"
+
+msgid "Password:"
+msgstr "密码："
 
 msgid "Please select your account:"
 msgstr "请选择您的账号："
@@ -1959,19 +1962,13 @@ msgstr "祝贺你！"
 msgid "You have completed the platform activation."
 msgstr "您已完成平台激活。"
 
-msgid "Your whistleblowing platform is now accessible at:"
-msgstr "您的举报平台现在可通过以下网址访问："
-
-msgid "Users' credentials:"
+msgid "Please check your inbox for further instructions."
 msgstr ""
 
-msgid "To log in, visit:"
-msgstr "登陆访问："
-
-msgid "For the user documentation visit:"
+msgid "Your whistleblowing platform is almost ready!"
 msgstr ""
 
-msgid "The platform will be automatically deleted on:"
+msgid "Check your inbox to activate your account."
 msgstr ""
 
 msgid "Sign up"
@@ -2000,12 +1997,6 @@ msgstr "其他"
 
 msgid "Complete"
 msgstr "完成"
-
-msgid "Your whistleblowing platform is almost ready!"
-msgstr ""
-
-msgid "Check your inbox to activate your account."
-msgstr ""
 
 msgid "This field is mandatory."
 msgstr ""
@@ -2165,6 +2156,21 @@ msgstr "报道事实的组织单位和工作地点"
 
 msgid "Dear {RecipientName},"
 msgstr "亲爱的 {RecipientName}，"
+
+msgid "Your whistleblowing platform is now accessible at:"
+msgstr "您的举报平台现在可通过以下网址访问："
+
+msgid "To log in, visit:"
+msgstr "登陆访问："
+
+msgid "Users' credentials:"
+msgstr ""
+
+msgid "For the user documentation visit:"
+msgstr ""
+
+msgid "The platform will be automatically deleted on:"
+msgstr ""
 
 msgid "Kind regards,"
 msgstr "亲切的问候，"
@@ -2495,3 +2501,12 @@ msgstr ""
 
 msgid "New submission"
 msgstr "新提交"
+
+msgid "Role: {Role}"
+msgstr ""
+
+msgid "Username: {Username}"
+msgstr ""
+
+msgid "Password: {Password}"
+msgstr ""

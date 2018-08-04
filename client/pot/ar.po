@@ -38,7 +38,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-07-15 20:39+0000\n"
+"PO-Revision-Date: 2018-07-24 17:41+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Arabic (http://www.transifex.com/otf/globaleaks/language/ar/)\n"
 "MIME-Version: 1.0\n"
@@ -825,6 +825,9 @@ msgstr "الصفحة الرئيسية"
 msgid "Submission Page"
 msgstr "صفحة الابلاغ"
 
+msgid "Default questionnaire"
+msgstr ""
+
 msgid "Title of the submission page"
 msgstr "عنوان صفحة الابلاغ"
 
@@ -1520,9 +1523,6 @@ msgstr ""
 msgid "Record IP address and user agent of registered users"
 msgstr ""
 
-msgid "Do not create the admin user"
-msgstr ""
-
 msgid "Enable terms of service"
 msgstr ""
 
@@ -1626,11 +1626,14 @@ msgstr ""
 msgid "Authentication failed"
 msgstr "فشلت المصادقة."
 
-msgid "Site"
-msgstr "الموقع"
+msgid "Site:"
+msgstr ""
 
-msgid "Back"
-msgstr "السابق"
+msgid "Username:"
+msgstr "اسم المستخدم :"
+
+msgid "Password:"
+msgstr "‮كلمة السر:"
 
 msgid "Please select your account:"
 msgstr "الرجاء اختيار حسابك"
@@ -1979,20 +1982,14 @@ msgstr "تهانينا!"
 msgid "You have completed the platform activation."
 msgstr "لقد أتممت تفعيل المنصة."
 
-msgid "Your whistleblowing platform is now accessible at:"
-msgstr "يمكن الآن الوصول إلى منصة الإبلاغ على:"
+msgid "Please check your inbox for further instructions."
+msgstr ""
 
-msgid "Users' credentials:"
-msgstr "اعتمادات المستخدمين:"
+msgid "Your whistleblowing platform is almost ready!"
+msgstr "منصة التبليغ الخاصة بك على وشك أن تكون جاهزة!"
 
-msgid "To log in, visit:"
-msgstr "لتسجيل الدخول، الرجاء زيارة:"
-
-msgid "For the user documentation visit:"
-msgstr "للاطلاع على وثائق المستخدم، الرجاء زيارة:"
-
-msgid "The platform will be automatically deleted on:"
-msgstr "سيتم حذف المنصة تلقائيا في:"
+msgid "Check your inbox to activate your account."
+msgstr "تحقق من بريدك الوارد لتفعيل حسابك."
 
 msgid "Sign up"
 msgstr "تسجيل"
@@ -2020,12 +2017,6 @@ msgstr "أخرى"
 
 msgid "Complete"
 msgstr "اكتمل"
-
-msgid "Your whistleblowing platform is almost ready!"
-msgstr "منصة التبليغ الخاصة بك على وشك أن تكون جاهزة!"
-
-msgid "Check your inbox to activate your account."
-msgstr "تحقق من بريدك الوارد لتفعيل حسابك."
 
 msgid "This field is mandatory."
 msgstr "هذا الحقل إلزامي."
@@ -2185,6 +2176,21 @@ msgstr "وحدة المنظمة و مكان العمل وقت الابلاغ ع�
 
 msgid "Dear {RecipientName},"
 msgstr "عزيزي {RecipientName},"
+
+msgid "Your whistleblowing platform is now accessible at:"
+msgstr "يمكن الآن الوصول إلى منصة الإبلاغ على:"
+
+msgid "To log in, visit:"
+msgstr "لتسجيل الدخول، الرجاء زيارة:"
+
+msgid "Users' credentials:"
+msgstr "اعتمادات المستخدمين:"
+
+msgid "For the user documentation visit:"
+msgstr "للاطلاع على وثائق المستخدم، الرجاء زيارة:"
+
+msgid "The platform will be automatically deleted on:"
+msgstr "سيتم حذف المنصة تلقائيا في:"
 
 msgid "Kind regards,"
 msgstr "أطيب التحيّات،"
@@ -2515,3 +2521,12 @@ msgstr "يرجى أن تولوا اهتماما خاصا بالمعلومات و
 
 msgid "New submission"
 msgstr "بلاغ جديد"
+
+msgid "Role: {Role}"
+msgstr ""
+
+msgid "Username: {Username}"
+msgstr ""
+
+msgid "Password: {Password}"
+msgstr ""

@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-07-15 20:39+0000\n"
+"PO-Revision-Date: 2018-07-24 17:41+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Norwegian Bokmål (Norway) (http://www.transifex.com/otf/globaleaks/language/nb_NO/)\n"
 "MIME-Version: 1.0\n"
@@ -794,6 +794,9 @@ msgstr "Hjemmeside"
 msgid "Submission Page"
 msgstr "Innsendelsesside"
 
+msgid "Default questionnaire"
+msgstr ""
+
 msgid "Title of the submission page"
 msgstr "Tittel for innsendelsesside"
 
@@ -1489,9 +1492,6 @@ msgstr ""
 msgid "Record IP address and user agent of registered users"
 msgstr ""
 
-msgid "Do not create the admin user"
-msgstr ""
-
 msgid "Enable terms of service"
 msgstr ""
 
@@ -1595,11 +1595,14 @@ msgstr ""
 msgid "Authentication failed"
 msgstr "Identitetsbekreftelse feilet"
 
-msgid "Site"
+msgid "Site:"
 msgstr ""
 
-msgid "Back"
-msgstr "Tilbake"
+msgid "Username:"
+msgstr "Brukernavn:"
+
+msgid "Password:"
+msgstr "Passord:"
 
 msgid "Please select your account:"
 msgstr "Velg din konto:"
@@ -1948,20 +1951,14 @@ msgstr "Gratulerer!"
 msgid "You have completed the platform activation."
 msgstr "Du har fullført plattformsaktiveringen."
 
-msgid "Your whistleblowing platform is now accessible at:"
-msgstr "Din fløyteblåserplattform er nå tilgjengelig på:"
+msgid "Please check your inbox for further instructions."
+msgstr ""
 
-msgid "Users' credentials:"
-msgstr "Brukeres identitetsdetaljer:"
+msgid "Your whistleblowing platform is almost ready!"
+msgstr "Din fløyteblåserplattform er nesten klar!"
 
-msgid "To log in, visit:"
-msgstr "For å logge inn, besøk:"
-
-msgid "For the user documentation visit:"
-msgstr "For brukerdokumentasjon, besøk:"
-
-msgid "The platform will be automatically deleted on:"
-msgstr "Plattformen vil bli slettet automatisk den:"
+msgid "Check your inbox to activate your account."
+msgstr "Sjekk din innboks for å aktivere kontoen din."
 
 msgid "Sign up"
 msgstr "Registrer deg"
@@ -1989,12 +1986,6 @@ msgstr "Annet"
 
 msgid "Complete"
 msgstr "Ferdig"
-
-msgid "Your whistleblowing platform is almost ready!"
-msgstr "Din fløyteblåserplattform er nesten klar!"
-
-msgid "Check your inbox to activate your account."
-msgstr "Sjekk din innboks for å aktivere kontoen din."
 
 msgid "This field is mandatory."
 msgstr "Dette inndatafeltet er påkrevd."
@@ -2154,6 +2145,21 @@ msgstr "Organisatorisk enhet og arbeidets stedvise plassering i det faktaen ble 
 
 msgid "Dear {RecipientName},"
 msgstr "Kjære {RecipientName},"
+
+msgid "Your whistleblowing platform is now accessible at:"
+msgstr "Din fløyteblåserplattform er nå tilgjengelig på:"
+
+msgid "To log in, visit:"
+msgstr "For å logge inn, besøk:"
+
+msgid "Users' credentials:"
+msgstr "Brukeres identitetsdetaljer:"
+
+msgid "For the user documentation visit:"
+msgstr "For brukerdokumentasjon, besøk:"
+
+msgid "The platform will be automatically deleted on:"
+msgstr "Plattformen vil bli slettet automatisk den:"
 
 msgid "Kind regards,"
 msgstr "Vennlig hilsen,"
@@ -2484,3 +2490,12 @@ msgstr "Du er bedt om å se spesielt nøye på informasjonen og innholdet i den.
 
 msgid "New submission"
 msgstr "Ny innsendelse"
+
+msgid "Role: {Role}"
+msgstr ""
+
+msgid "Username: {Username}"
+msgstr ""
+
+msgid "Password: {Password}"
+msgstr ""

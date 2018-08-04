@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-07-15 20:39+0000\n"
+"PO-Revision-Date: 2018-07-24 17:41+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Danish (http://www.transifex.com/otf/globaleaks/language/da/)\n"
 "MIME-Version: 1.0\n"
@@ -793,6 +793,9 @@ msgstr "Hjemmeside"
 msgid "Submission Page"
 msgstr "Indleveringsside"
 
+msgid "Default questionnaire"
+msgstr ""
+
 msgid "Title of the submission page"
 msgstr "Titel på indleveringssiden"
 
@@ -1488,9 +1491,6 @@ msgstr ""
 msgid "Record IP address and user agent of registered users"
 msgstr ""
 
-msgid "Do not create the admin user"
-msgstr "Undlad at oprette administrator-konto"
-
 msgid "Enable terms of service"
 msgstr ""
 
@@ -1594,11 +1594,14 @@ msgstr "Glemt password?"
 msgid "Authentication failed"
 msgstr "Godkendelse mislykkedes"
 
-msgid "Site"
-msgstr "Sted"
+msgid "Site:"
+msgstr ""
 
-msgid "Back"
-msgstr "Tilbage"
+msgid "Username:"
+msgstr "Brugernavn:"
+
+msgid "Password:"
+msgstr "Kodeord:"
 
 msgid "Please select your account:"
 msgstr "Vælg venligst din konto:"
@@ -1947,20 +1950,14 @@ msgstr "Tillykke!"
 msgid "You have completed the platform activation."
 msgstr "Du har gennemført aktivering af platformen."
 
-msgid "Your whistleblowing platform is now accessible at:"
-msgstr "Din whistleblowing-platform kan nu tilgås på:"
+msgid "Please check your inbox for further instructions."
+msgstr ""
 
-msgid "Users' credentials:"
-msgstr "Brugerens legitimationsoplysninger:"
+msgid "Your whistleblowing platform is almost ready!"
+msgstr "Din whistleblowing platform er næsten færdig!"
 
-msgid "To log in, visit:"
-msgstr "For at logge ind, gå til:"
-
-msgid "For the user documentation visit:"
-msgstr "For brugerdokumentation, gå til:"
-
-msgid "The platform will be automatically deleted on:"
-msgstr "Platformen vil blive automatisk slettet den:"
+msgid "Check your inbox to activate your account."
+msgstr "Tjek din indbakke for at aktivere din konto."
 
 msgid "Sign up"
 msgstr "Tilmeld"
@@ -1988,12 +1985,6 @@ msgstr "Andet"
 
 msgid "Complete"
 msgstr "Afslut"
-
-msgid "Your whistleblowing platform is almost ready!"
-msgstr "Din whistleblowing platform er næsten færdig!"
-
-msgid "Check your inbox to activate your account."
-msgstr "Tjek din indbakke for at aktivere din konto."
 
 msgid "This field is mandatory."
 msgstr "Dette felt er obligatorisk."
@@ -2153,6 +2144,21 @@ msgstr "Organisationsenhed og jobplacering på tidspunktet for de indrapportered
 
 msgid "Dear {RecipientName},"
 msgstr "Kære {RecipientName},"
+
+msgid "Your whistleblowing platform is now accessible at:"
+msgstr "Din whistleblowing-platform kan nu tilgås på:"
+
+msgid "To log in, visit:"
+msgstr "For at logge ind, gå til:"
+
+msgid "Users' credentials:"
+msgstr "Brugerens legitimationsoplysninger:"
+
+msgid "For the user documentation visit:"
+msgstr "For brugerdokumentation, gå til:"
+
+msgid "The platform will be automatically deleted on:"
+msgstr "Platformen vil blive automatisk slettet den:"
 
 msgid "Kind regards,"
 msgstr "Med venlig hilsen"
@@ -2483,3 +2489,12 @@ msgstr "Du skal være særlig opmærksom på oplysninger og materiale, der er in
 
 msgid "New submission"
 msgstr "Ny indsendelse"
+
+msgid "Role: {Role}"
+msgstr ""
+
+msgid "Username: {Username}"
+msgstr ""
+
+msgid "Password: {Password}"
+msgstr ""

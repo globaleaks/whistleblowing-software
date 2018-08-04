@@ -46,7 +46,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-07-15 20:39+0000\n"
+"PO-Revision-Date: 2018-07-24 17:41+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: German (http://www.transifex.com/otf/globaleaks/language/de/)\n"
 "MIME-Version: 1.0\n"
@@ -833,6 +833,9 @@ msgstr "Homepage"
 msgid "Submission Page"
 msgstr "Einreichungsseite"
 
+msgid "Default questionnaire"
+msgstr ""
+
 msgid "Title of the submission page"
 msgstr "Titel der Einreichungsseite"
 
@@ -1528,9 +1531,6 @@ msgstr ""
 msgid "Record IP address and user agent of registered users"
 msgstr ""
 
-msgid "Do not create the admin user"
-msgstr ""
-
 msgid "Enable terms of service"
 msgstr ""
 
@@ -1634,11 +1634,14 @@ msgstr ""
 msgid "Authentication failed"
 msgstr "Authentifizierung fehlgeschlagen"
 
-msgid "Site"
-msgstr "Webseite"
+msgid "Site:"
+msgstr ""
 
-msgid "Back"
-msgstr "Zurück"
+msgid "Username:"
+msgstr "Benutzername:"
+
+msgid "Password:"
+msgstr "&Passwort:"
 
 msgid "Please select your account:"
 msgstr "Bitte wählen Sie Ihr Konto aus:"
@@ -1987,19 +1990,13 @@ msgstr "Glückwunsch!"
 msgid "You have completed the platform activation."
 msgstr ""
 
-msgid "Your whistleblowing platform is now accessible at:"
+msgid "Please check your inbox for further instructions."
 msgstr ""
 
-msgid "Users' credentials:"
+msgid "Your whistleblowing platform is almost ready!"
 msgstr ""
 
-msgid "To log in, visit:"
-msgstr ""
-
-msgid "For the user documentation visit:"
-msgstr ""
-
-msgid "The platform will be automatically deleted on:"
+msgid "Check your inbox to activate your account."
 msgstr ""
 
 msgid "Sign up"
@@ -2028,12 +2025,6 @@ msgstr "Andere"
 
 msgid "Complete"
 msgstr "Vollständig"
-
-msgid "Your whistleblowing platform is almost ready!"
-msgstr ""
-
-msgid "Check your inbox to activate your account."
-msgstr ""
 
 msgid "This field is mandatory."
 msgstr "Dieses Feld ist obligatorisch."
@@ -2193,6 +2184,21 @@ msgstr "Organisationseinheit und Arbeitsplatz zum Zeitpunkt der gemeldeten Sache
 
 msgid "Dear {RecipientName},"
 msgstr "Sehr geehrte(r) {RecipientName},"
+
+msgid "Your whistleblowing platform is now accessible at:"
+msgstr ""
+
+msgid "To log in, visit:"
+msgstr ""
+
+msgid "Users' credentials:"
+msgstr ""
+
+msgid "For the user documentation visit:"
+msgstr ""
+
+msgid "The platform will be automatically deleted on:"
+msgstr ""
 
 msgid "Kind regards,"
 msgstr "Mit freundlichen Grüßen"
@@ -2523,3 +2529,12 @@ msgstr "Sie werden dazu angehalten, die darin enthaltenen Informationen und Mate
 
 msgid "New submission"
 msgstr "Neue Einreichung"
+
+msgid "Role: {Role}"
+msgstr ""
+
+msgid "Username: {Username}"
+msgstr ""
+
+msgid "Password: {Password}"
+msgstr ""

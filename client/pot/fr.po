@@ -38,7 +38,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-07-16 17:51+0000\n"
+"PO-Revision-Date: 2018-07-24 19:02+0000\n"
 "Last-Translator: French language coordinator <french.coordinator@rbox.me>\n"
 "Language-Team: French (http://www.transifex.com/otf/globaleaks/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -825,6 +825,9 @@ msgstr "Page d’accueil"
 msgid "Submission Page"
 msgstr "Page d’envoi"
 
+msgid "Default questionnaire"
+msgstr "Questionnaire par défaut"
+
 msgid "Title of the submission page"
 msgstr "Titre de la page d’envoi"
 
@@ -1520,9 +1523,6 @@ msgstr "Mode d’inscription :"
 msgid "Record IP address and user agent of registered users"
 msgstr "Enregistrer l’adresse IP et l’agent utilisateur des utilisateurs inscrits"
 
-msgid "Do not create the admin user"
-msgstr "Ne pas créer l’utilisateur admin"
-
 msgid "Enable terms of service"
 msgstr "Activer les conditions générales d’utilisation"
 
@@ -1626,11 +1626,14 @@ msgstr "Mot de passe oublié ?"
 msgid "Authentication failed"
 msgstr "Échec lors de l’authentification"
 
-msgid "Site"
-msgstr "Site"
+msgid "Site:"
+msgstr "Site :"
 
-msgid "Back"
-msgstr "Précédent"
+msgid "Username:"
+msgstr "Nom d’utilisateur :"
+
+msgid "Password:"
+msgstr "Mot de passe :"
 
 msgid "Please select your account:"
 msgstr "Veuillez sélectionner votre compte :"
@@ -1979,20 +1982,14 @@ msgstr "Félicitations !"
 msgid "You have completed the platform activation."
 msgstr "L’activation de la plateforme est maintenant terminée."
 
-msgid "Your whistleblowing platform is now accessible at:"
-msgstr "Il est maintenant possible d’accéder à votre plateforme de lancement d’alerte sur :"
+msgid "Please check your inbox for further instructions."
+msgstr "Veuillez vérifier votre boîte de réception pour de plus amples instructions."
 
-msgid "Users' credentials:"
-msgstr "Renseignements sur les utilisateurs :"
+msgid "Your whistleblowing platform is almost ready!"
+msgstr "Votre plateforme de lancement d’alerte est presque prête !"
 
-msgid "To log in, visit:"
-msgstr "Pour vous connecter, visiter :"
-
-msgid "For the user documentation visit:"
-msgstr "Pour consulter la documentation utilisateur, visiter :"
-
-msgid "The platform will be automatically deleted on:"
-msgstr "La plateforme sera supprimée automatiquement le :"
+msgid "Check your inbox to activate your account."
+msgstr "Vérifiez votre boîte de réception de courriels pour activer votre compte."
 
 msgid "Sign up"
 msgstr "Inscription"
@@ -2020,12 +2017,6 @@ msgstr "Autre"
 
 msgid "Complete"
 msgstr "Terminé"
-
-msgid "Your whistleblowing platform is almost ready!"
-msgstr "Votre plateforme de lancement d’alerte est presque prête !"
-
-msgid "Check your inbox to activate your account."
-msgstr "Vérifiez votre boîte de réception de courriels pour activer votre compte."
 
 msgid "This field is mandatory."
 msgstr "Ce champ est obligatoire."
@@ -2185,6 +2176,21 @@ msgstr "Unité organisationnelle et lieu d’emploi à l’époque du fait rappo
 
 msgid "Dear {RecipientName},"
 msgstr "Cher, chère {RecipientName},"
+
+msgid "Your whistleblowing platform is now accessible at:"
+msgstr "Il est maintenant possible d’accéder à votre plateforme de lancement d’alerte sur :"
+
+msgid "To log in, visit:"
+msgstr "Pour vous connecter, visiter :"
+
+msgid "Users' credentials:"
+msgstr "Renseignements sur les utilisateurs :"
+
+msgid "For the user documentation visit:"
+msgstr "Pour consulter la documentation utilisateur, visiter :"
+
+msgid "The platform will be automatically deleted on:"
+msgstr "La plateforme sera supprimée automatiquement le :"
 
 msgid "Kind regards,"
 msgstr "Salutations cordiales,"
@@ -2515,3 +2521,12 @@ msgstr "Il vous est demandé de prêter une attention particulière aux informat
 
 msgid "New submission"
 msgstr "Nouvel envoi"
+
+msgid "Role: {Role}"
+msgstr "Rôle : {Role}"
+
+msgid "Username: {Username}"
+msgstr "Nom d’utilisateur : {Username}"
+
+msgid "Password: {Password}"
+msgstr "Mot de passe : {Password}"

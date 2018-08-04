@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-07-15 20:39+0000\n"
+"PO-Revision-Date: 2018-07-24 17:41+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Korean (http://www.transifex.com/otf/globaleaks/language/ko/)\n"
 "MIME-Version: 1.0\n"
@@ -792,6 +792,9 @@ msgstr "홈 페이지"
 msgid "Submission Page"
 msgstr "제출 페이지"
 
+msgid "Default questionnaire"
+msgstr ""
+
 msgid "Title of the submission page"
 msgstr "제출 페이지의 제목"
 
@@ -1487,9 +1490,6 @@ msgstr ""
 msgid "Record IP address and user agent of registered users"
 msgstr ""
 
-msgid "Do not create the admin user"
-msgstr ""
-
 msgid "Enable terms of service"
 msgstr ""
 
@@ -1593,11 +1593,14 @@ msgstr ""
 msgid "Authentication failed"
 msgstr "인증 실패"
 
-msgid "Site"
-msgstr "사이트"
+msgid "Site:"
+msgstr ""
 
-msgid "Back"
-msgstr "뒤로"
+msgid "Username:"
+msgstr "사용자명:"
+
+msgid "Password:"
+msgstr "비밀번호:"
 
 msgid "Please select your account:"
 msgstr "계정을 선택하십시오 :"
@@ -1946,19 +1949,13 @@ msgstr "치하!"
 msgid "You have completed the platform activation."
 msgstr ""
 
-msgid "Your whistleblowing platform is now accessible at:"
+msgid "Please check your inbox for further instructions."
 msgstr ""
 
-msgid "Users' credentials:"
+msgid "Your whistleblowing platform is almost ready!"
 msgstr ""
 
-msgid "To log in, visit:"
-msgstr ""
-
-msgid "For the user documentation visit:"
-msgstr ""
-
-msgid "The platform will be automatically deleted on:"
+msgid "Check your inbox to activate your account."
 msgstr ""
 
 msgid "Sign up"
@@ -1987,12 +1984,6 @@ msgstr "그 외"
 
 msgid "Complete"
 msgstr "완료"
-
-msgid "Your whistleblowing platform is almost ready!"
-msgstr ""
-
-msgid "Check your inbox to activate your account."
-msgstr ""
 
 msgid "This field is mandatory."
 msgstr "이 필드는 필수입니다"
@@ -2152,6 +2143,21 @@ msgstr "보고 된 사실시 조직 단위 및 작업 위치"
 
 msgid "Dear {RecipientName},"
 msgstr "친애 %의 {RecipientName} 를,"
+
+msgid "Your whistleblowing platform is now accessible at:"
+msgstr ""
+
+msgid "To log in, visit:"
+msgstr ""
+
+msgid "Users' credentials:"
+msgstr ""
+
+msgid "For the user documentation visit:"
+msgstr ""
+
+msgid "The platform will be automatically deleted on:"
+msgstr ""
 
 msgid "Kind regards,"
 msgstr "종류 안부,"
@@ -2482,3 +2488,12 @@ msgstr ""
 
 msgid "New submission"
 msgstr "뉴 제출"
+
+msgid "Role: {Role}"
+msgstr ""
+
+msgid "Username: {Username}"
+msgstr ""
+
+msgid "Password: {Password}"
+msgstr ""

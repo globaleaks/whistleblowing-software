@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-07-15 20:39+0000\n"
-"Last-Translator: Hermes Center <info@hermescenter.org>\n"
+"PO-Revision-Date: 2018-08-02 13:17+0000\n"
+"Last-Translator: Panu Ahvenharju <panu.ahvenharju@gmail.com>\n"
 "Language-Team: Finnish (http://www.transifex.com/otf/globaleaks/language/fi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -231,7 +231,7 @@ msgid "Date"
 msgstr "Päivämäärä"
 
 msgid "Regular expression validator"
-msgstr ""
+msgstr "Säännöllisten lausekkeiden tarkistaja"
 
 msgid "Minimum number of input characters"
 msgstr "Minimi merkkimäärä"
@@ -273,7 +273,7 @@ msgid "Change your password"
 msgstr "Muuta salasanaasi"
 
 msgid "List of submissions"
-msgstr ""
+msgstr "Vihjeet"
 
 msgid "List of access requests to whistleblowers' identities"
 msgstr "Luettelo pyynnöistä"
@@ -424,7 +424,7 @@ msgid ""
 msgstr ""
 
 msgid "Disable notifications to administrators"
-msgstr "Estä ilmoitukset ylläpidolla"
+msgstr "Poista käytöstä ilmoitukset ylläpidolle"
 
 msgid "Disable notifications to custodians"
 msgstr "Poista käytöstä ilmoitukset valvojalle"
@@ -436,7 +436,7 @@ msgid "Score"
 msgstr "Pisteet"
 
 msgid "Trigger question"
-msgstr ""
+msgstr "Aseta jatkokysymys"
 
 msgid "Triggered by a score higher than:"
 msgstr ""
@@ -484,13 +484,13 @@ msgid "Turn on email notifications"
 msgstr "Sähköposti-ilmoitukset päälle"
 
 msgid "Enter an email address for the administrator"
-msgstr ""
+msgstr "Kirjoita ylläpitäjän sähköpostiosoite"
 
 msgid "Enter a password for the administrator"
-msgstr ""
+msgstr "Kirjoita ylläpitäjän salasana"
 
 msgid "Test configuration"
-msgstr ""
+msgstr "Testaa järjestelmää"
 
 msgid "Failed logins"
 msgstr "Epäonnistuneita kirjautumisia"
@@ -542,13 +542,13 @@ msgid ""
 msgstr ""
 
 msgid "The whistleblower can no longer access the submission"
-msgstr ""
+msgstr "Vihjeen lähettäjällä ei ole enää pääsyä vihjeen tietoihin"
 
 msgid "Warning!"
 msgstr "Varoitus!"
 
 msgid "You are running an unsupported and potentially vulnerable browser."
-msgstr ""
+msgstr "Käytössäsi on mahdollisesti suojaamaton selain, joka ei ole tuettu."
 
 msgid "You are strongly advised to download and install the Tor Browser."
 msgstr ""
@@ -565,7 +565,7 @@ msgid "This is the list of the other supported browsers:"
 msgstr "Muut tuetut selaimet:"
 
 msgid "System overview"
-msgstr ""
+msgstr "Järjestelmän yleiskuva"
 
 msgid "Stats"
 msgstr "Tilastot"
@@ -574,7 +574,7 @@ msgid "Activities"
 msgstr "Aktiviteetit"
 
 msgid "Submissions"
-msgstr ""
+msgstr "Saapuneet vihjeet"
 
 msgid "Users"
 msgstr "Käyttäjät"
@@ -583,7 +583,7 @@ msgid "From"
 msgstr "Lähettäjä"
 
 msgid "Number of downloads"
-msgstr ""
+msgstr "Latausten määrä"
 
 msgid "Error with file:"
 msgstr "Virhe tiedostossa:"
@@ -607,13 +607,13 @@ msgid "Sites management"
 msgstr ""
 
 msgid "Regenerate"
-msgstr ""
+msgstr "Luo uusi"
 
 msgid "Display options alphabetically"
-msgstr ""
+msgstr "Näytä valinnat aakkosjärjestyksessä"
 
 msgid "Enable email notifications for:"
-msgstr ""
+msgstr "Ota sähköpostiilmoitukset käyttöön:"
 
 msgid "Software updates"
 msgstr "Ohjelmistopäivitykset"
@@ -631,7 +631,7 @@ msgid "Use as default"
 msgstr "Käytä oletusarvona"
 
 msgid "Create your whistleblowing platform"
-msgstr ""
+msgstr "Luo oma vihjepalvelu"
 
 msgid "Collapse"
 msgstr "Tiivistä"
@@ -643,13 +643,13 @@ msgid "Select"
 msgstr "Valitse"
 
 msgid "Selected by default"
-msgstr ""
+msgstr "Valittu oletuksena"
 
 msgid "Unselected by default"
-msgstr ""
+msgstr "Ei valittu oletuksena"
 
 msgid "Surname"
-msgstr ""
+msgstr "Sukunimi"
 
 msgid "New"
 msgstr "Uusi"
@@ -664,7 +664,7 @@ msgid "Select the context of your submission:"
 msgstr "Valitse vihjeen aihe:"
 
 msgid "Warning! You are not anonymous."
-msgstr ""
+msgstr "Varoitus! Et ole anonyymi."
 
 msgid ""
 "Sending submissions over HTTPS exposes the act of doing so, but not the "
@@ -687,10 +687,10 @@ msgid "Your submission was successful."
 msgstr "Lähetyksesi onnistui."
 
 msgid "Submission status"
-msgstr ""
+msgstr "Lähetyksen tila"
 
 msgid "Disable submissions"
-msgstr ""
+msgstr "Poista vihjeiden lähettäminen käytöstä"
 
 msgid "Enable insecure configuration without PGP encryption"
 msgstr "Ota käyttöön turvattomat asetukset ilman PGP-salausta"
@@ -796,6 +796,9 @@ msgstr "Kotisivu"
 
 msgid "Submission Page"
 msgstr "Lähetyssivu"
+
+msgid "Default questionnaire"
+msgstr ""
 
 msgid "Title of the submission page"
 msgstr ""
@@ -1492,9 +1495,6 @@ msgstr ""
 msgid "Record IP address and user agent of registered users"
 msgstr ""
 
-msgid "Do not create the admin user"
-msgstr ""
-
 msgid "Enable terms of service"
 msgstr ""
 
@@ -1598,11 +1598,14 @@ msgstr ""
 msgid "Authentication failed"
 msgstr "Todentaminen epäonnistui"
 
-msgid "Site"
-msgstr "Sivusto"
+msgid "Site:"
+msgstr ""
 
-msgid "Back"
-msgstr "Takaisin"
+msgid "Username:"
+msgstr "Käyttäjätunnus:"
+
+msgid "Password:"
+msgstr "Salasana:"
 
 msgid "Please select your account:"
 msgstr "Valitse tilisi:"
@@ -1951,19 +1954,13 @@ msgstr "Onneksi olkoon!"
 msgid "You have completed the platform activation."
 msgstr ""
 
-msgid "Your whistleblowing platform is now accessible at:"
+msgid "Please check your inbox for further instructions."
 msgstr ""
 
-msgid "Users' credentials:"
+msgid "Your whistleblowing platform is almost ready!"
 msgstr ""
 
-msgid "To log in, visit:"
-msgstr ""
-
-msgid "For the user documentation visit:"
-msgstr ""
-
-msgid "The platform will be automatically deleted on:"
+msgid "Check your inbox to activate your account."
 msgstr ""
 
 msgid "Sign up"
@@ -1992,12 +1989,6 @@ msgstr "Muut"
 
 msgid "Complete"
 msgstr "Valmis"
-
-msgid "Your whistleblowing platform is almost ready!"
-msgstr ""
-
-msgid "Check your inbox to activate your account."
-msgstr ""
 
 msgid "This field is mandatory."
 msgstr "Tämä kenttä on pakollinen."
@@ -2049,7 +2040,7 @@ msgstr ""
 msgid ""
 "The following step-by-step procedure will guide you through creating your "
 "whistleblowing platform."
-msgstr "Tämän vaihe vaiheelta -opastuksen avulla voit ottaa Globaleaks-palvelun käyttöösi haluamillasi asetuksilla."
+msgstr "Tämän vaihe vaiheelta -opastuksen avulla voit ottaa vihjepalvelun käyttöösi haluamillasi asetuksilla."
 
 msgid "Please choose a configuration profile:"
 msgstr ""
@@ -2157,6 +2148,21 @@ msgstr ""
 
 msgid "Dear {RecipientName},"
 msgstr "Hyvä {RecipientName},"
+
+msgid "Your whistleblowing platform is now accessible at:"
+msgstr ""
+
+msgid "To log in, visit:"
+msgstr ""
+
+msgid "Users' credentials:"
+msgstr ""
+
+msgid "For the user documentation visit:"
+msgstr ""
+
+msgid "The platform will be automatically deleted on:"
+msgstr ""
 
 msgid "Kind regards,"
 msgstr "Ystävälliset terveiset,"
@@ -2326,7 +2332,7 @@ msgstr ""
 msgid ""
 "Without a valid certificate, the platform will be accessible in a secure way"
 " only via Tor."
-msgstr ""
+msgstr "Palvelun turvallinen käyttö ilman voimassa olevaa sertifikaattia on mahdollista ainoastaan Tor-selaimella."
 
 msgid "Log in to solve the issue."
 msgstr ""
@@ -2486,4 +2492,13 @@ msgid ""
 msgstr ""
 
 msgid "New submission"
+msgstr ""
+
+msgid "Role: {Role}"
+msgstr ""
+
+msgid "Username: {Username}"
+msgstr ""
+
+msgid "Password: {Password}"
 msgstr ""
