@@ -478,6 +478,7 @@ var GLClient = angular.module('GLClient', [
          "he": 'js/locale/angular-locale_he.js',
          "hr-hr": 'js/locale/angular-locale_hr-hr.js',
          "hr-hu": 'js/locale/angular-locale_hr-hu.js',
+         "id": 'js/locale/angular-locale_id.js',
          "it": 'js/locale/angular-locale_it.js',
          "ja": 'js/locale/angular-locale_ja.js',
          "ka": 'js/locale/angular-locale_ka.js',

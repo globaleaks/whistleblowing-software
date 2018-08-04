@@ -40,6 +40,7 @@ LANGUAGES_SUPPORTED = [
   {'code': 'he', 'name': 'Hebrew', 'native': u'\u05e2\u05d1\u05e8\u05d9\u05ea'},
   {'code': 'hr_HR', 'name': 'Croatian', 'native': u'Hrvatski'},
   {'code': 'hu_HU', 'name': 'Hungarian', 'native': u'Magyar'},
+  {'code': 'id', 'name': 'Indonesian', 'native': u'Indonesia'},
   {'code': 'it', 'name': 'Italian', 'native': u'Italiano'},
   {'code': 'ja', 'name': 'Japanese', 'native': u'\u65e5\u672c\u8a9e'},
   {'code': 'ka', 'name': 'Georgian', 'native': u'\u10e5\u10d0\u10e0\u10d7\u10e3\u10da\u10d8'},
