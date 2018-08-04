@@ -21,7 +21,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-07-15 20:39+0000\n"
+"PO-Revision-Date: 2018-07-24 17:41+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Portuguese (Portugal) (http://www.transifex.com/otf/globaleaks/language/pt_PT/)\n"
 "MIME-Version: 1.0\n"
@@ -808,6 +808,9 @@ msgstr "Página Principal"
 msgid "Submission Page"
 msgstr "Página de Submissão"
 
+msgid "Default questionnaire"
+msgstr ""
+
 msgid "Title of the submission page"
 msgstr "Título da página de submissão"
 
@@ -1503,9 +1506,6 @@ msgstr ""
 msgid "Record IP address and user agent of registered users"
 msgstr "Gravar endereço de IP e agente de utilizador dos utilizadores registados"
 
-msgid "Do not create the admin user"
-msgstr "Não criar utilizador administrador"
-
 msgid "Enable terms of service"
 msgstr ""
 
@@ -1609,11 +1609,14 @@ msgstr "Esqueceu-se da palavra-passe?"
 msgid "Authentication failed"
 msgstr "Falhou a autenticação"
 
-msgid "Site"
-msgstr "Site"
+msgid "Site:"
+msgstr ""
 
-msgid "Back"
-msgstr "Voltar"
+msgid "Username:"
+msgstr "Nome do Utilizador:"
+
+msgid "Password:"
+msgstr "Senha:"
 
 msgid "Please select your account:"
 msgstr "Selecione a sua conta:"
@@ -1962,20 +1965,14 @@ msgstr "Parabéns!"
 msgid "You have completed the platform activation."
 msgstr "Concluiu a ativação da plataforma."
 
-msgid "Your whistleblowing platform is now accessible at:"
-msgstr "A plataforma de denúncia está agora acessível em:"
+msgid "Please check your inbox for further instructions."
+msgstr ""
 
-msgid "Users' credentials:"
-msgstr "Credenciais do utilizador:"
+msgid "Your whistleblowing platform is almost ready!"
+msgstr "A plataforma de denúncia está quase pronta!"
 
-msgid "To log in, visit:"
-msgstr "Para iniciar a sessão, visite:"
-
-msgid "For the user documentation visit:"
-msgstr "Para a documentação do utilizador, visite:"
-
-msgid "The platform will be automatically deleted on:"
-msgstr "A plataforma será eliminada automaticamente em:"
+msgid "Check your inbox to activate your account."
+msgstr "Verifique a sua caixa de correio para ativar a sua conta."
 
 msgid "Sign up"
 msgstr "Registar"
@@ -2003,12 +2000,6 @@ msgstr "Outro"
 
 msgid "Complete"
 msgstr "Concluir"
-
-msgid "Your whistleblowing platform is almost ready!"
-msgstr "A plataforma de denúncia está quase pronta!"
-
-msgid "Check your inbox to activate your account."
-msgstr "Verifique a sua caixa de correio para ativar a sua conta."
 
 msgid "This field is mandatory."
 msgstr "Este campo é obrigatório."
@@ -2168,6 +2159,21 @@ msgstr "Organização, unidade e local de trabalho no momento do facto relatado"
 
 msgid "Dear {RecipientName},"
 msgstr "Caro {RecipientName},"
+
+msgid "Your whistleblowing platform is now accessible at:"
+msgstr "A plataforma de denúncia está agora acessível em:"
+
+msgid "To log in, visit:"
+msgstr "Para iniciar a sessão, visite:"
+
+msgid "Users' credentials:"
+msgstr "Credenciais do utilizador:"
+
+msgid "For the user documentation visit:"
+msgstr "Para a documentação do utilizador, visite:"
+
+msgid "The platform will be automatically deleted on:"
+msgstr "A plataforma será eliminada automaticamente em:"
 
 msgid "Kind regards,"
 msgstr "Com os melhores cumprimentos,"
@@ -2498,3 +2504,12 @@ msgstr "Deve prestar uma atenção especial à informação e material aqui cont
 
 msgid "New submission"
 msgstr "Nova submissão"
+
+msgid "Role: {Role}"
+msgstr ""
+
+msgid "Username: {Username}"
+msgstr ""
+
+msgid "Password: {Password}"
+msgstr ""

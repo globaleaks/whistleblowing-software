@@ -9,7 +9,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-07-15 20:39+0000\n"
+"PO-Revision-Date: 2018-07-24 17:41+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Azerbaijani (http://www.transifex.com/otf/globaleaks/language/az/)\n"
 "MIME-Version: 1.0\n"
@@ -796,6 +796,9 @@ msgstr "Ana Səhifə"
 msgid "Submission Page"
 msgstr "Təqdimat səhifəsi"
 
+msgid "Default questionnaire"
+msgstr ""
+
 msgid "Title of the submission page"
 msgstr "Təqdimat səhifəsinin adı"
 
@@ -1491,9 +1494,6 @@ msgstr ""
 msgid "Record IP address and user agent of registered users"
 msgstr ""
 
-msgid "Do not create the admin user"
-msgstr ""
-
 msgid "Enable terms of service"
 msgstr ""
 
@@ -1597,11 +1597,14 @@ msgstr ""
 msgid "Authentication failed"
 msgstr "Kimlik təsdiqləməsi uğursuzdur"
 
-msgid "Site"
-msgstr "Sayt"
+msgid "Site:"
+msgstr ""
 
-msgid "Back"
-msgstr "Geri"
+msgid "Username:"
+msgstr "İstifadəçi adı:"
+
+msgid "Password:"
+msgstr "Şifrə:"
 
 msgid "Please select your account:"
 msgstr "Xahiş edirik  hesabınızı seçəsiniz. "
@@ -1950,19 +1953,13 @@ msgstr "Təbriklər!"
 msgid "You have completed the platform activation."
 msgstr ""
 
-msgid "Your whistleblowing platform is now accessible at:"
+msgid "Please check your inbox for further instructions."
 msgstr ""
 
-msgid "Users' credentials:"
+msgid "Your whistleblowing platform is almost ready!"
 msgstr ""
 
-msgid "To log in, visit:"
-msgstr ""
-
-msgid "For the user documentation visit:"
-msgstr ""
-
-msgid "The platform will be automatically deleted on:"
+msgid "Check your inbox to activate your account."
 msgstr ""
 
 msgid "Sign up"
@@ -1991,12 +1988,6 @@ msgstr "Digər"
 
 msgid "Complete"
 msgstr "Tamamla"
-
-msgid "Your whistleblowing platform is almost ready!"
-msgstr ""
-
-msgid "Check your inbox to activate your account."
-msgstr ""
 
 msgid "This field is mandatory."
 msgstr "Məcburi sahədir."
@@ -2156,6 +2147,21 @@ msgstr "Fakt haqda məlumat verən zaman təşkilatın forması və iş yeri"
 
 msgid "Dear {RecipientName},"
 msgstr "Əziz {RecipientName}, "
+
+msgid "Your whistleblowing platform is now accessible at:"
+msgstr ""
+
+msgid "To log in, visit:"
+msgstr ""
+
+msgid "Users' credentials:"
+msgstr ""
+
+msgid "For the user documentation visit:"
+msgstr ""
+
+msgid "The platform will be automatically deleted on:"
+msgstr ""
 
 msgid "Kind regards,"
 msgstr "Xoş arzularla,"
@@ -2486,3 +2492,12 @@ msgstr "Buradakı məlumat və materiallara xüsusi diqqət yetirməyiniz xahiş
 
 msgid "New submission"
 msgstr "Yeni təqdimat"
+
+msgid "Role: {Role}"
+msgstr ""
+
+msgid "Username: {Username}"
+msgstr ""
+
+msgid "Password: {Password}"
+msgstr ""

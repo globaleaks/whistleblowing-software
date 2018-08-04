@@ -11,7 +11,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-07-15 20:39+0000\n"
+"PO-Revision-Date: 2018-07-24 17:41+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Czech (http://www.transifex.com/otf/globaleaks/language/cs/)\n"
 "MIME-Version: 1.0\n"
@@ -798,6 +798,9 @@ msgstr "Domovská stránka"
 msgid "Submission Page"
 msgstr "Stránka odeslání"
 
+msgid "Default questionnaire"
+msgstr ""
+
 msgid "Title of the submission page"
 msgstr "Titulek stránky s odesláním"
 
@@ -1493,9 +1496,6 @@ msgstr ""
 msgid "Record IP address and user agent of registered users"
 msgstr ""
 
-msgid "Do not create the admin user"
-msgstr ""
-
 msgid "Enable terms of service"
 msgstr ""
 
@@ -1599,11 +1599,14 @@ msgstr ""
 msgid "Authentication failed"
 msgstr "Chyba autentizace"
 
-msgid "Site"
-msgstr "Stránky"
+msgid "Site:"
+msgstr ""
 
-msgid "Back"
-msgstr "Zpět"
+msgid "Username:"
+msgstr "Uživatelské jméno:"
+
+msgid "Password:"
+msgstr "Heslo:"
 
 msgid "Please select your account:"
 msgstr "Vyberte, prosím, váš účet"
@@ -1952,20 +1955,14 @@ msgstr "Gratuluji!"
 msgid "You have completed the platform activation."
 msgstr "Právě jste dokončili aktivaci platformy."
 
-msgid "Your whistleblowing platform is now accessible at:"
-msgstr "Vaše whistleblowing platforma je dostupná na:"
+msgid "Please check your inbox for further instructions."
+msgstr ""
 
-msgid "Users' credentials:"
-msgstr "Uživatelské pověření"
+msgid "Your whistleblowing platform is almost ready!"
+msgstr "Vaše whistleblowing platforma je téměř hotova!"
 
-msgid "To log in, visit:"
-msgstr "Za účelem přihlášení navštivte:"
-
-msgid "For the user documentation visit:"
-msgstr "Uživatelskou dokumentaci naleznete na:"
-
-msgid "The platform will be automatically deleted on:"
-msgstr "Platforma bude automaticky smazána:"
+msgid "Check your inbox to activate your account."
+msgstr "Pro dokončení aktivace účtu zkontrolujte svou email schránku."
 
 msgid "Sign up"
 msgstr "Registrovat se"
@@ -1993,12 +1990,6 @@ msgstr "Další"
 
 msgid "Complete"
 msgstr "Dokončit"
-
-msgid "Your whistleblowing platform is almost ready!"
-msgstr "Vaše whistleblowing platforma je téměř hotova!"
-
-msgid "Check your inbox to activate your account."
-msgstr "Pro dokončení aktivace účtu zkontrolujte svou email schránku."
 
 msgid "This field is mandatory."
 msgstr "Toto pole je povinné."
@@ -2158,6 +2149,21 @@ msgstr "Organizační jednotka a lokalita v době podání"
 
 msgid "Dear {RecipientName},"
 msgstr "Vážený/á {RecipientName},"
+
+msgid "Your whistleblowing platform is now accessible at:"
+msgstr "Vaše whistleblowing platforma je dostupná na:"
+
+msgid "To log in, visit:"
+msgstr "Za účelem přihlášení navštivte:"
+
+msgid "Users' credentials:"
+msgstr "Uživatelské pověření"
+
+msgid "For the user documentation visit:"
+msgstr "Uživatelskou dokumentaci naleznete na:"
+
+msgid "The platform will be automatically deleted on:"
+msgstr "Platforma bude automaticky smazána:"
 
 msgid "Kind regards,"
 msgstr "S poděkováním,"
@@ -2488,3 +2494,12 @@ msgstr "Rádi by jsme, aby jste věnoval zvláštní pozornost informacím a mat
 
 msgid "New submission"
 msgstr "Nový příspěvek"
+
+msgid "Role: {Role}"
+msgstr ""
+
+msgid "Username: {Username}"
+msgstr ""
+
+msgid "Password: {Password}"
+msgstr ""

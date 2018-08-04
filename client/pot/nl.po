@@ -35,7 +35,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-07-15 20:39+0000\n"
+"PO-Revision-Date: 2018-07-24 17:41+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Dutch (http://www.transifex.com/otf/globaleaks/language/nl/)\n"
 "MIME-Version: 1.0\n"
@@ -822,6 +822,9 @@ msgstr "Startpagina"
 msgid "Submission Page"
 msgstr "Inzendingspagina"
 
+msgid "Default questionnaire"
+msgstr ""
+
 msgid "Title of the submission page"
 msgstr "Titel van de inzending-pagina"
 
@@ -1517,9 +1520,6 @@ msgstr ""
 msgid "Record IP address and user agent of registered users"
 msgstr ""
 
-msgid "Do not create the admin user"
-msgstr ""
-
 msgid "Enable terms of service"
 msgstr ""
 
@@ -1623,11 +1623,14 @@ msgstr ""
 msgid "Authentication failed"
 msgstr "Authenticatie is mislukt"
 
-msgid "Site"
-msgstr "Site"
+msgid "Site:"
+msgstr ""
 
-msgid "Back"
-msgstr "Terug"
+msgid "Username:"
+msgstr "Gebruikersnaam:"
+
+msgid "Password:"
+msgstr "Wachtwoord:"
 
 msgid "Please select your account:"
 msgstr "Selecteer je account:"
@@ -1976,19 +1979,13 @@ msgstr "Gefeliciteerd!"
 msgid "You have completed the platform activation."
 msgstr ""
 
-msgid "Your whistleblowing platform is now accessible at:"
+msgid "Please check your inbox for further instructions."
 msgstr ""
 
-msgid "Users' credentials:"
+msgid "Your whistleblowing platform is almost ready!"
 msgstr ""
 
-msgid "To log in, visit:"
-msgstr ""
-
-msgid "For the user documentation visit:"
-msgstr ""
-
-msgid "The platform will be automatically deleted on:"
+msgid "Check your inbox to activate your account."
 msgstr ""
 
 msgid "Sign up"
@@ -2017,12 +2014,6 @@ msgstr "Other"
 
 msgid "Complete"
 msgstr "Volledig"
-
-msgid "Your whistleblowing platform is almost ready!"
-msgstr ""
-
-msgid "Check your inbox to activate your account."
-msgstr ""
 
 msgid "This field is mandatory."
 msgstr "Dit veld is verplicht"
@@ -2182,6 +2173,21 @@ msgstr "Departement en locatie ten tijde van de misstand"
 
 msgid "Dear {RecipientName},"
 msgstr "Beste {RecipientName},"
+
+msgid "Your whistleblowing platform is now accessible at:"
+msgstr ""
+
+msgid "To log in, visit:"
+msgstr ""
+
+msgid "Users' credentials:"
+msgstr ""
+
+msgid "For the user documentation visit:"
+msgstr ""
+
+msgid "The platform will be automatically deleted on:"
+msgstr ""
 
 msgid "Kind regards,"
 msgstr "Met vriendelijke groet,"
@@ -2512,3 +2518,12 @@ msgstr ""
 
 msgid "New submission"
 msgstr "Nieuwe inzending"
+
+msgid "Role: {Role}"
+msgstr ""
+
+msgid "Username: {Username}"
+msgstr ""
+
+msgid "Password: {Password}"
+msgstr ""

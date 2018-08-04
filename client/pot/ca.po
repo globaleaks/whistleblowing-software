@@ -18,7 +18,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-07-15 20:39+0000\n"
+"PO-Revision-Date: 2018-07-24 17:41+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Catalan (http://www.transifex.com/otf/globaleaks/language/ca/)\n"
 "MIME-Version: 1.0\n"
@@ -805,6 +805,9 @@ msgstr "Pàgina d'inici"
 msgid "Submission Page"
 msgstr "Pàgina d'enviament"
 
+msgid "Default questionnaire"
+msgstr ""
+
 msgid "Title of the submission page"
 msgstr "Títol de la pàgina de l'entrega"
 
@@ -1500,9 +1503,6 @@ msgstr ""
 msgid "Record IP address and user agent of registered users"
 msgstr ""
 
-msgid "Do not create the admin user"
-msgstr "No creeu l'usuari admin"
-
 msgid "Enable terms of service"
 msgstr ""
 
@@ -1606,11 +1606,14 @@ msgstr ""
 msgid "Authentication failed"
 msgstr "Autentificació fallida"
 
-msgid "Site"
-msgstr "Lloc"
+msgid "Site:"
+msgstr ""
 
-msgid "Back"
-msgstr "Enrera"
+msgid "Username:"
+msgstr "Nom d'usuari:"
+
+msgid "Password:"
+msgstr "Contrasenya:"
 
 msgid "Please select your account:"
 msgstr "Si us plau, selecciona el teu compte:"
@@ -1959,20 +1962,14 @@ msgstr "Enhorabona!"
 msgid "You have completed the platform activation."
 msgstr "Ha completado la activación de la plataforma."
 
-msgid "Your whistleblowing platform is now accessible at:"
-msgstr "Su plataforma para informantes está ahora accesible en:"
+msgid "Please check your inbox for further instructions."
+msgstr ""
 
-msgid "Users' credentials:"
-msgstr "Credenciales de los usuarios:"
+msgid "Your whistleblowing platform is almost ready!"
+msgstr "¡Su plataforma para informantes casi está lista!"
 
-msgid "To log in, visit:"
-msgstr "Para iniciar sesión, visite:"
-
-msgid "For the user documentation visit:"
-msgstr "Para la documentación de usuario visite:"
-
-msgid "The platform will be automatically deleted on:"
-msgstr "The platform will be automatically deleted on:"
+msgid "Check your inbox to activate your account."
+msgstr "Check your inbox to activate your account."
 
 msgid "Sign up"
 msgstr "Registrar‐se"
@@ -2000,12 +1997,6 @@ msgstr "Altres"
 
 msgid "Complete"
 msgstr "Completar"
-
-msgid "Your whistleblowing platform is almost ready!"
-msgstr "¡Su plataforma para informantes casi está lista!"
-
-msgid "Check your inbox to activate your account."
-msgstr "Check your inbox to activate your account."
 
 msgid "This field is mandatory."
 msgstr "Aquest camp és obligatori."
@@ -2165,6 +2156,21 @@ msgstr "Unitat d'organització i localització de feina en el moment dels fets e
 
 msgid "Dear {RecipientName},"
 msgstr "Benvolgut/uda {RecipientName},"
+
+msgid "Your whistleblowing platform is now accessible at:"
+msgstr "Su plataforma para informantes está ahora accesible en:"
+
+msgid "To log in, visit:"
+msgstr "Para iniciar sesión, visite:"
+
+msgid "Users' credentials:"
+msgstr "Credenciales de los usuarios:"
+
+msgid "For the user documentation visit:"
+msgstr "Para la documentación de usuario visite:"
+
+msgid "The platform will be automatically deleted on:"
+msgstr "The platform will be automatically deleted on:"
 
 msgid "Kind regards,"
 msgstr "Rep una salutació cordial,"
@@ -2495,3 +2501,12 @@ msgstr "Se us demana que presteu especial atenció a la informació i al materia
 
 msgid "New submission"
 msgstr "Nou enviament"
+
+msgid "Role: {Role}"
+msgstr ""
+
+msgid "Username: {Username}"
+msgstr ""
+
+msgid "Password: {Password}"
+msgstr ""

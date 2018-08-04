@@ -11,7 +11,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-07-15 20:39+0000\n"
+"PO-Revision-Date: 2018-07-24 17:41+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Bulgarian (http://www.transifex.com/otf/globaleaks/language/bg/)\n"
 "MIME-Version: 1.0\n"
@@ -798,6 +798,9 @@ msgstr "Начална страница"
 msgid "Submission Page"
 msgstr "Страница за сведения"
 
+msgid "Default questionnaire"
+msgstr ""
+
 msgid "Title of the submission page"
 msgstr "Заглавие на страницата за подаване на сигнал"
 
@@ -1493,9 +1496,6 @@ msgstr ""
 msgid "Record IP address and user agent of registered users"
 msgstr ""
 
-msgid "Do not create the admin user"
-msgstr ""
-
 msgid "Enable terms of service"
 msgstr ""
 
@@ -1599,11 +1599,14 @@ msgstr ""
 msgid "Authentication failed"
 msgstr "Проверката за самоличност е неуспешна"
 
-msgid "Site"
-msgstr "Сайт"
+msgid "Site:"
+msgstr ""
 
-msgid "Back"
-msgstr "Назад"
+msgid "Username:"
+msgstr "Потребител:"
+
+msgid "Password:"
+msgstr "Парола:"
 
 msgid "Please select your account:"
 msgstr "Моля изберете профила си:"
@@ -1952,20 +1955,14 @@ msgstr "Поздравления!"
 msgid "You have completed the platform activation."
 msgstr "Завършихте активирането на платформата."
 
-msgid "Your whistleblowing platform is now accessible at:"
-msgstr "Вашата платформа за източници е достъпна на:"
+msgid "Please check your inbox for further instructions."
+msgstr ""
 
-msgid "Users' credentials:"
-msgstr "Потребителски креденции:"
+msgid "Your whistleblowing platform is almost ready!"
+msgstr "Вашата платформа за източници е почити готова!"
 
-msgid "To log in, visit:"
-msgstr "За вписване, моля, посетете:"
-
-msgid "For the user documentation visit:"
-msgstr "За потребителска документация посетете:"
-
-msgid "The platform will be automatically deleted on:"
-msgstr "Платформата ще бъде автоматично изтрита на:"
+msgid "Check your inbox to activate your account."
+msgstr "Проверете пощенската си кутия, за да активирате профила си."
 
 msgid "Sign up"
 msgstr "Регистриане"
@@ -1993,12 +1990,6 @@ msgstr "Други"
 
 msgid "Complete"
 msgstr "Завършено"
-
-msgid "Your whistleblowing platform is almost ready!"
-msgstr "Вашата платформа за източници е почити готова!"
-
-msgid "Check your inbox to activate your account."
-msgstr "Проверете пощенската си кутия, за да активирате профила си."
 
 msgid "This field is mandatory."
 msgstr "Това поне е задължително."
@@ -2158,6 +2149,21 @@ msgstr "Отдел и местоположение на работата за п
 
 msgid "Dear {RecipientName},"
 msgstr "Скъпи {RecipientName},"
+
+msgid "Your whistleblowing platform is now accessible at:"
+msgstr "Вашата платформа за източници е достъпна на:"
+
+msgid "To log in, visit:"
+msgstr "За вписване, моля, посетете:"
+
+msgid "Users' credentials:"
+msgstr "Потребителски креденции:"
+
+msgid "For the user documentation visit:"
+msgstr "За потребителска документация посетете:"
+
+msgid "The platform will be automatically deleted on:"
+msgstr "Платформата ще бъде автоматично изтрита на:"
 
 msgid "Kind regards,"
 msgstr "Поздрави, "
@@ -2488,3 +2494,12 @@ msgstr "Помолени сте да отделите специално вни�
 
 msgid "New submission"
 msgstr "Нов сигнал"
+
+msgid "Role: {Role}"
+msgstr ""
+
+msgid "Username: {Username}"
+msgstr ""
+
+msgid "Password: {Password}"
+msgstr ""

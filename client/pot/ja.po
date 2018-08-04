@@ -9,7 +9,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-07-15 20:39+0000\n"
+"PO-Revision-Date: 2018-07-24 17:41+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Japanese (http://www.transifex.com/otf/globaleaks/language/ja/)\n"
 "MIME-Version: 1.0\n"
@@ -796,6 +796,9 @@ msgstr "ホームページ"
 msgid "Submission Page"
 msgstr "提出ページ"
 
+msgid "Default questionnaire"
+msgstr ""
+
 msgid "Title of the submission page"
 msgstr "提出ページのタイトル"
 
@@ -1491,9 +1494,6 @@ msgstr ""
 msgid "Record IP address and user agent of registered users"
 msgstr ""
 
-msgid "Do not create the admin user"
-msgstr "adminユーザーを作成しない"
-
 msgid "Enable terms of service"
 msgstr ""
 
@@ -1597,11 +1597,14 @@ msgstr ""
 msgid "Authentication failed"
 msgstr "認証に失敗しました"
 
-msgid "Site"
-msgstr "サイト"
+msgid "Site:"
+msgstr ""
 
-msgid "Back"
-msgstr "戻る"
+msgid "Username:"
+msgstr "ユーザー名:"
+
+msgid "Password:"
+msgstr "パスワード："
 
 msgid "Please select your account:"
 msgstr "あなたのアカウントを選択してください:"
@@ -1950,20 +1953,14 @@ msgstr "おめでとうございます"
 msgid "You have completed the platform activation."
 msgstr "プラットフォームの有効化が完了しました。"
 
-msgid "Your whistleblowing platform is now accessible at:"
-msgstr "内部告発プラットフォームがアクセス可能になりました:"
+msgid "Please check your inbox for further instructions."
+msgstr ""
 
-msgid "Users' credentials:"
-msgstr "ユーザーの資格情報:"
+msgid "Your whistleblowing platform is almost ready!"
+msgstr "内部告発プラットフォームがもう少しで準備できます!"
 
-msgid "To log in, visit:"
-msgstr "ログインはこちら:"
-
-msgid "For the user documentation visit:"
-msgstr "ユーザードキュメントはこちら:"
-
-msgid "The platform will be automatically deleted on:"
-msgstr "プラットフォームは自動的に削除されます:"
+msgid "Check your inbox to activate your account."
+msgstr "メールを確認して、アカウントを有効にしてください。"
 
 msgid "Sign up"
 msgstr "登録"
@@ -1991,12 +1988,6 @@ msgstr "その他"
 
 msgid "Complete"
 msgstr "完了"
-
-msgid "Your whistleblowing platform is almost ready!"
-msgstr "内部告発プラットフォームがもう少しで準備できます!"
-
-msgid "Check your inbox to activate your account."
-msgstr "メールを確認して、アカウントを有効にしてください。"
 
 msgid "This field is mandatory."
 msgstr "このフィールドは必須です。"
@@ -2156,6 +2147,21 @@ msgstr "報告する事実の時点での所属、職場"
 
 msgid "Dear {RecipientName},"
 msgstr "{RecipientName} 様"
+
+msgid "Your whistleblowing platform is now accessible at:"
+msgstr "内部告発プラットフォームがアクセス可能になりました:"
+
+msgid "To log in, visit:"
+msgstr "ログインはこちら:"
+
+msgid "Users' credentials:"
+msgstr "ユーザーの資格情報:"
+
+msgid "For the user documentation visit:"
+msgstr "ユーザードキュメントはこちら:"
+
+msgid "The platform will be automatically deleted on:"
+msgstr "プラットフォームは自動的に削除されます:"
 
 msgid "Kind regards,"
 msgstr "敬具"
@@ -2486,3 +2492,12 @@ msgstr "あなたは、含まれる情報および資料に特に注意を払う
 
 msgid "New submission"
 msgstr "新しい提出"
+
+msgid "Role: {Role}"
+msgstr ""
+
+msgid "Username: {Username}"
+msgstr ""
+
+msgid "Password: {Password}"
+msgstr ""

@@ -10,7 +10,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-07-15 20:39+0000\n"
+"PO-Revision-Date: 2018-07-24 17:41+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Thai (http://www.transifex.com/otf/globaleaks/language/th/)\n"
 "MIME-Version: 1.0\n"
@@ -797,6 +797,9 @@ msgstr "หน้าแรก"
 msgid "Submission Page"
 msgstr "หน้าการส่ง"
 
+msgid "Default questionnaire"
+msgstr ""
+
 msgid "Title of the submission page"
 msgstr "ชื่อของเพจส่ง"
 
@@ -1492,9 +1495,6 @@ msgstr ""
 msgid "Record IP address and user agent of registered users"
 msgstr ""
 
-msgid "Do not create the admin user"
-msgstr ""
-
 msgid "Enable terms of service"
 msgstr ""
 
@@ -1598,11 +1598,14 @@ msgstr ""
 msgid "Authentication failed"
 msgstr "รับรองความถูกต้องล้มเหลว"
 
-msgid "Site"
-msgstr "ไซต์"
+msgid "Site:"
+msgstr ""
 
-msgid "Back"
-msgstr "ย้อนกลับ"
+msgid "Username:"
+msgstr "ชื่อผู้ใช้:"
+
+msgid "Password:"
+msgstr "รหัสผ่าน:"
 
 msgid "Please select your account:"
 msgstr "กรุณาเลือกบัญชีของคุณ:"
@@ -1951,19 +1954,13 @@ msgstr "ขอแสดงความยินดี!"
 msgid "You have completed the platform activation."
 msgstr ""
 
-msgid "Your whistleblowing platform is now accessible at:"
+msgid "Please check your inbox for further instructions."
 msgstr ""
 
-msgid "Users' credentials:"
+msgid "Your whistleblowing platform is almost ready!"
 msgstr ""
 
-msgid "To log in, visit:"
-msgstr ""
-
-msgid "For the user documentation visit:"
-msgstr ""
-
-msgid "The platform will be automatically deleted on:"
+msgid "Check your inbox to activate your account."
 msgstr ""
 
 msgid "Sign up"
@@ -1991,12 +1988,6 @@ msgid "Other"
 msgstr ""
 
 msgid "Complete"
-msgstr ""
-
-msgid "Your whistleblowing platform is almost ready!"
-msgstr ""
-
-msgid "Check your inbox to activate your account."
 msgstr ""
 
 msgid "This field is mandatory."
@@ -2157,6 +2148,21 @@ msgstr "องค์กรหน่วยงานและสถานที่
 
 msgid "Dear {RecipientName},"
 msgstr "เรียน {RecipientName}"
+
+msgid "Your whistleblowing platform is now accessible at:"
+msgstr ""
+
+msgid "To log in, visit:"
+msgstr ""
+
+msgid "Users' credentials:"
+msgstr ""
+
+msgid "For the user documentation visit:"
+msgstr ""
+
+msgid "The platform will be automatically deleted on:"
+msgstr ""
 
 msgid "Kind regards,"
 msgstr "ขอแสดงความนับถือ,"
@@ -2487,3 +2493,12 @@ msgstr ""
 
 msgid "New submission"
 msgstr "ส่งใหม่"
+
+msgid "Role: {Role}"
+msgstr ""
+
+msgid "Username: {Username}"
+msgstr ""
+
+msgid "Password: {Password}"
+msgstr ""

@@ -12,7 +12,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-07-15 20:39+0000\n"
+"PO-Revision-Date: 2018-07-24 17:41+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Vietnamese (http://www.transifex.com/otf/globaleaks/language/vi/)\n"
 "MIME-Version: 1.0\n"
@@ -799,6 +799,9 @@ msgstr "Trang chủ"
 msgid "Submission Page"
 msgstr "thông tin trang"
 
+msgid "Default questionnaire"
+msgstr ""
+
 msgid "Title of the submission page"
 msgstr "Tiêu đề của trang trình"
 
@@ -1494,9 +1497,6 @@ msgstr ""
 msgid "Record IP address and user agent of registered users"
 msgstr ""
 
-msgid "Do not create the admin user"
-msgstr ""
-
 msgid "Enable terms of service"
 msgstr ""
 
@@ -1600,11 +1600,14 @@ msgstr ""
 msgid "Authentication failed"
 msgstr "Quá trình xác thực đã thất bại"
 
-msgid "Site"
-msgstr "Trang web"
+msgid "Site:"
+msgstr ""
 
-msgid "Back"
-msgstr "Lùi"
+msgid "Username:"
+msgstr "Tên người dùng:"
+
+msgid "Password:"
+msgstr "Mật mã:"
 
 msgid "Please select your account:"
 msgstr "Vui lòng chọn tài khoản của bạn:"
@@ -1953,19 +1956,13 @@ msgstr "Chúc mừng"
 msgid "You have completed the platform activation."
 msgstr ""
 
-msgid "Your whistleblowing platform is now accessible at:"
+msgid "Please check your inbox for further instructions."
 msgstr ""
 
-msgid "Users' credentials:"
+msgid "Your whistleblowing platform is almost ready!"
 msgstr ""
 
-msgid "To log in, visit:"
-msgstr ""
-
-msgid "For the user documentation visit:"
-msgstr ""
-
-msgid "The platform will be automatically deleted on:"
+msgid "Check your inbox to activate your account."
 msgstr ""
 
 msgid "Sign up"
@@ -1994,12 +1991,6 @@ msgstr ""
 
 msgid "Complete"
 msgstr "Hoàn tất"
-
-msgid "Your whistleblowing platform is almost ready!"
-msgstr ""
-
-msgid "Check your inbox to activate your account."
-msgstr ""
 
 msgid "This field is mandatory."
 msgstr ""
@@ -2159,6 +2150,21 @@ msgstr "đơn vị tổ chức và vị trí công việc tại thời điểm t
 
 msgid "Dear {RecipientName},"
 msgstr "Kính gửi {RecipientName}"
+
+msgid "Your whistleblowing platform is now accessible at:"
+msgstr ""
+
+msgid "To log in, visit:"
+msgstr ""
+
+msgid "Users' credentials:"
+msgstr ""
+
+msgid "For the user documentation visit:"
+msgstr ""
+
+msgid "The platform will be automatically deleted on:"
+msgstr ""
 
 msgid "Kind regards,"
 msgstr "Trân trọng,"
@@ -2489,3 +2495,12 @@ msgstr ""
 
 msgid "New submission"
 msgstr "trình mới"
+
+msgid "Role: {Role}"
+msgstr ""
+
+msgid "Username: {Username}"
+msgstr ""
+
+msgid "Password: {Password}"
+msgstr ""

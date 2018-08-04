@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-07-15 20:39+0000\n"
+"PO-Revision-Date: 2018-07-24 17:41+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Georgian (http://www.transifex.com/otf/globaleaks/language/ka/)\n"
 "MIME-Version: 1.0\n"
@@ -791,6 +791,9 @@ msgstr "საწყისი გვერდი"
 msgid "Submission Page"
 msgstr "წარდგენის გვერდი"
 
+msgid "Default questionnaire"
+msgstr ""
+
 msgid "Title of the submission page"
 msgstr "დასახელება წარდგენის გვერდი"
 
@@ -1486,9 +1489,6 @@ msgstr ""
 msgid "Record IP address and user agent of registered users"
 msgstr ""
 
-msgid "Do not create the admin user"
-msgstr ""
-
 msgid "Enable terms of service"
 msgstr ""
 
@@ -1592,11 +1592,14 @@ msgstr ""
 msgid "Authentication failed"
 msgstr "ავთენტიფიკაცია ვერ"
 
-msgid "Site"
-msgstr "საიტი"
+msgid "Site:"
+msgstr ""
 
-msgid "Back"
-msgstr "უკან"
+msgid "Username:"
+msgstr "მომხმარებლის სახელი:"
+
+msgid "Password:"
+msgstr "პაროლი:"
 
 msgid "Please select your account:"
 msgstr "გთხოვთ, აირჩიოთ თქვენი ანგარიში:"
@@ -1945,19 +1948,13 @@ msgstr "გილოცავთ!"
 msgid "You have completed the platform activation."
 msgstr ""
 
-msgid "Your whistleblowing platform is now accessible at:"
+msgid "Please check your inbox for further instructions."
 msgstr ""
 
-msgid "Users' credentials:"
+msgid "Your whistleblowing platform is almost ready!"
 msgstr ""
 
-msgid "To log in, visit:"
-msgstr ""
-
-msgid "For the user documentation visit:"
-msgstr ""
-
-msgid "The platform will be automatically deleted on:"
+msgid "Check your inbox to activate your account."
 msgstr ""
 
 msgid "Sign up"
@@ -1985,12 +1982,6 @@ msgid "Other"
 msgstr "სხვა"
 
 msgid "Complete"
-msgstr ""
-
-msgid "Your whistleblowing platform is almost ready!"
-msgstr ""
-
-msgid "Check your inbox to activate your account."
 msgstr ""
 
 msgid "This field is mandatory."
@@ -2151,6 +2142,21 @@ msgstr "ორგანიზაცია ერთეული და სამ
 
 msgid "Dear {RecipientName},"
 msgstr "ძვირფასო {RecipientName}"
+
+msgid "Your whistleblowing platform is now accessible at:"
+msgstr ""
+
+msgid "To log in, visit:"
+msgstr ""
+
+msgid "Users' credentials:"
+msgstr ""
+
+msgid "For the user documentation visit:"
+msgstr ""
+
+msgid "The platform will be automatically deleted on:"
+msgstr ""
 
 msgid "Kind regards,"
 msgstr "კეთილი სურვილებით,"
@@ -2481,3 +2487,12 @@ msgstr ""
 
 msgid "New submission"
 msgstr "new წარდგენის"
+
+msgid "Role: {Role}"
+msgstr ""
+
+msgid "Username: {Username}"
+msgstr ""
+
+msgid "Password: {Password}"
+msgstr ""

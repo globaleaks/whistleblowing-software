@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-07-15 20:39+0000\n"
+"PO-Revision-Date: 2018-07-24 17:41+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Tamil (http://www.transifex.com/otf/globaleaks/language/ta/)\n"
 "MIME-Version: 1.0\n"
@@ -793,6 +793,9 @@ msgstr "முகப்பு பக்கம்"
 msgid "Submission Page"
 msgstr "சமர்ப்பிக்கும் பக்கம்"
 
+msgid "Default questionnaire"
+msgstr ""
+
 msgid "Title of the submission page"
 msgstr "சமர்ப்பிப்பு பக்கம் தலைப்பு"
 
@@ -1488,9 +1491,6 @@ msgstr ""
 msgid "Record IP address and user agent of registered users"
 msgstr ""
 
-msgid "Do not create the admin user"
-msgstr ""
-
 msgid "Enable terms of service"
 msgstr ""
 
@@ -1594,11 +1594,14 @@ msgstr ""
 msgid "Authentication failed"
 msgstr "அங்கீகரிப்பு தோல்வியுற்றது"
 
-msgid "Site"
-msgstr "தளம்"
+msgid "Site:"
+msgstr ""
 
-msgid "Back"
-msgstr "மீண்டும்"
+msgid "Username:"
+msgstr "பயனர்பெயர்:"
+
+msgid "Password:"
+msgstr "கடவுச்சொல்:"
 
 msgid "Please select your account:"
 msgstr "உங்கள் கணக்கு தேர்ந்தெடுக்கவும்:"
@@ -1947,19 +1950,13 @@ msgstr "வாழ்த்துக்கள்!"
 msgid "You have completed the platform activation."
 msgstr ""
 
-msgid "Your whistleblowing platform is now accessible at:"
+msgid "Please check your inbox for further instructions."
 msgstr ""
 
-msgid "Users' credentials:"
+msgid "Your whistleblowing platform is almost ready!"
 msgstr ""
 
-msgid "To log in, visit:"
-msgstr ""
-
-msgid "For the user documentation visit:"
-msgstr ""
-
-msgid "The platform will be automatically deleted on:"
+msgid "Check your inbox to activate your account."
 msgstr ""
 
 msgid "Sign up"
@@ -1987,12 +1984,6 @@ msgid "Other"
 msgstr ""
 
 msgid "Complete"
-msgstr ""
-
-msgid "Your whistleblowing platform is almost ready!"
-msgstr ""
-
-msgid "Check your inbox to activate your account."
 msgstr ""
 
 msgid "This field is mandatory."
@@ -2153,6 +2144,21 @@ msgstr "தகவல் உண்மையில் நேரத்தில் 
 
 msgid "Dear {RecipientName},"
 msgstr "அன்பே {RecipientName},"
+
+msgid "Your whistleblowing platform is now accessible at:"
+msgstr ""
+
+msgid "To log in, visit:"
+msgstr ""
+
+msgid "Users' credentials:"
+msgstr ""
+
+msgid "For the user documentation visit:"
+msgstr ""
+
+msgid "The platform will be automatically deleted on:"
+msgstr ""
 
 msgid "Kind regards,"
 msgstr "Kind regards,"
@@ -2483,3 +2489,12 @@ msgstr ""
 
 msgid "New submission"
 msgstr "புதிய சமர்ப்பிப்பு"
+
+msgid "Role: {Role}"
+msgstr ""
+
+msgid "Username: {Username}"
+msgstr ""
+
+msgid "Password: {Password}"
+msgstr ""
