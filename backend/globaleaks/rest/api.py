@@ -7,10 +7,9 @@
 import json
 import re
 import sys
-import types
 
 from six import text_type, binary_type
-from six.moves.urllib.parse import urlparse, urlsplit, urlunparse, urlunsplit # pylint: disable=import-error
+from six.moves.urllib.parse import urlsplit, urlunparse, urlunsplit # pylint: disable=import-error
 
 from twisted.internet import defer
 from twisted.internet.abstract import isIPAddress, isIPv6Address

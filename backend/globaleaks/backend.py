@@ -8,7 +8,7 @@ import traceback
 
 from twisted.application import service
 from twisted.internet import reactor, defer
-from twisted.python import failure, log as txlog, logfile as txlogfile
+from twisted.python import log as txlog, logfile as txlogfile
 from twisted.web.server import Site
 
 # this import seems unused but it is required in order to load the mocks

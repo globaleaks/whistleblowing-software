@@ -1,21 +1,11 @@
-
 # -*- coding: UTF-8
 #
 #   tenant
 #   *****
 # Implementation of the Tenant handlers
-import base64
-import os
-
 from globaleaks import models
-from globaleaks.db import db_refresh_memory_variables
-from globaleaks.db.appdata import load_appdata
-from globaleaks.handlers.admin import file
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.orm import transact
-from globaleaks.rest import requests
-from globaleaks.utils.utility import log
-from globaleaks.settings import Settings
 from globaleaks.state import State
 
 

@@ -2,9 +2,8 @@
 import io
 import gzip
 import json
-import types
 
-from six import text_type, binary_type
+from six import text_type
 
 from twisted.internet import defer
 

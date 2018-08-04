@@ -4,7 +4,6 @@ from twisted.internet.defer import inlineCallbacks
 from globaleaks.db import refresh_memory_variables
 from globaleaks.models import config
 from globaleaks.handlers.admin import tenant
-from globaleaks.state import State
 from globaleaks.orm import transact
 
 from globaleaks.tests import helpers

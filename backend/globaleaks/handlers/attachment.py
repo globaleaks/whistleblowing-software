@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
 #
 # Handler dealing with submissions file uploads and subsequent submissions attachments
-import os
-
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import models

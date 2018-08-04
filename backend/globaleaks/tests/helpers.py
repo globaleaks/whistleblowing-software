@@ -2,7 +2,6 @@
 """
 Utilities and basic TestCases.
 """
-import os
 import sys
 
 try: # Python 2
@@ -10,9 +9,6 @@ try: # Python 2
     sys.setdefaultencoding('utf8') # pylint: disable=no-member
 except NameError:
     pass # Python 3
-
-# pylint: disable=no-name-in-module
-from distutils import dir_util
 
 import base64
 import copy
@@ -23,6 +19,9 @@ import signal
 import six
 
 from datetime import timedelta
+
+# pylint: disable=no-name-in-module
+from distutils import dir_util
 
 from six import text_type, binary_type
 from six.moves.urllib.parse import urlsplit # pylint: disable=import-error

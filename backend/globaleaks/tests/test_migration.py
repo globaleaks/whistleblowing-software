@@ -8,17 +8,15 @@ for each version one an empty and a populated db must be sessiond in directories
 import os
 import shutil
 
-from sqlalchemy.orm import sessionmaker
+from twisted.trial import unittest
 
 from globaleaks import __version__, DATABASE_VERSION, FIRST_DATABASE_VERSION_SUPPORTED, models
-from globaleaks.db import migration, update_db
+from globaleaks.db import update_db
 from globaleaks.db.migrations import update_37
 from globaleaks.models import config
 from globaleaks.orm import get_session, make_db_uri, set_db_uri
-from globaleaks.rest import errors
 from globaleaks.settings import Settings
 from globaleaks.tests import helpers
-from twisted.trial import unittest
 
 
 class TestMigrationRoutines(unittest.TestCase):

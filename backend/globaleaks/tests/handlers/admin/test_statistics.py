@@ -5,8 +5,6 @@ from globaleaks import anomaly
 from globaleaks.handlers.admin import statistics
 from globaleaks.jobs.anomalies import Anomalies
 from globaleaks.jobs.statistics import Statistics
-from globaleaks.models import Stats
-from globaleaks.orm import transact
 from globaleaks.tests import helpers
 
 

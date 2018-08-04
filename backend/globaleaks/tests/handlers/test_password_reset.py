@@ -1,14 +1,12 @@
 # -*- coding: utf-8 -*-
-from datetime import datetime, timedelta
+from datetime import timedelta
 
-from six import text_type
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import models
 from globaleaks.orm import transact
 from globaleaks.handlers import password_reset
 from globaleaks.handlers.admin import receiver
-from globaleaks.rest import errors
 from globaleaks.tests import helpers
 from globaleaks.utils.utility import datetime_now
 from globaleaks.state import State

@@ -8,7 +8,6 @@
 import os
 from datetime import datetime, timedelta
 from random import SystemRandom
-from six import binary_type
 
 from globaleaks.rest import errors
 from globaleaks.utils.security import sha256, generateRandomKey

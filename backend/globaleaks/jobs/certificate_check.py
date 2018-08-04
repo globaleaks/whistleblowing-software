@@ -1,6 +1,4 @@
 # -*- coding: utf-8 -*-
-import acme
-
 from datetime import datetime, timedelta
 
 from OpenSSL.crypto import load_certificate, FILETYPE_PEM

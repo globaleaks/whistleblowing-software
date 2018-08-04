@@ -1,10 +1,10 @@
 # -*- coding: utf-8
-import os
 from six import text_type
 
-from globaleaks.utils.securetempfile import SecureTemporaryFile, SecureTemporaryFile
 from globaleaks.settings import Settings
 from globaleaks.tests import helpers
+from globaleaks.utils.securetempfile import SecureTemporaryFile
+
 
 class TestSecureTemporaryFiles(helpers.TestGL):
     def test_temporary_file(self):

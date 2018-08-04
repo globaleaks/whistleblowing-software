@@ -2,8 +2,6 @@
 from six import text_type
 from twisted.internet.defer import inlineCallbacks
 
-from globaleaks import models
-from globaleaks.orm import transact
 from globaleaks.state import State
 from globaleaks.handlers import user
 from globaleaks.handlers.admin import receiver
