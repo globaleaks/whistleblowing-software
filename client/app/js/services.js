@@ -1070,16 +1070,6 @@ factory('AdminUtils', ['AdminContextResource', 'AdminQuestionnaireResource', 'Ad
         return false;
       },
 
-      getContext: function(context_id) {
-        for (var i = 0; i < $rootScope.contexts.length; i++) {
-          var ctx = $rootScope.contexts[i];
-          if (ctx.id === context_id) {
-            return ctx;
-          }
-        }
-        throw new Error('Context not found');
-      },
-
       openConfirmableModalDialog: function(template, arg, scope) {
         scope = !scope ? $rootScope : scope;
 

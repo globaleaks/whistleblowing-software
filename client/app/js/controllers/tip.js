@@ -93,8 +93,7 @@ GLClient.controller('TipCtrl',
         }
 
         $scope.showWBFileWidget = function() {
-          var ctx = Utils.getContext(tip.context_id);
-          return ctx.enable_rc_to_wb_files && (tip.wbfiles.length > 0);
+          return $scope.contexts_by_id[tip.context_id].enable_rc_to_wb_files && (tip.wbfiles.length > 0);
         };
 
         $scope.downloadWBFile = function(file) {
@@ -145,8 +144,7 @@ GLClient.controller('TipCtrl',
         $scope.Utils.evalSubmissionStatus($scope.tip, $scope.submission_statuses);
 
         $scope.showWBFileUpload = function() {
-          var ctx = Utils.getContext(tip.context_id);
-          return ctx.enable_rc_to_wb_files;
+          return $scope.contexts_by_id[tip.context_id].enable_rc_to_wb_files;
         };
 
         $scope.tip_unencrypted = false;
