@@ -144,9 +144,9 @@
     <div class="col-md-8 form-group">
       <label>
         <span>Questo sarà sito di segnalazione del tuo ente:</span>
-        <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}"
-              popover-placement="right">*</span>
+        <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
       </label>
+      <div class="fieldDescription">Se vuoi, puoi modificare l’indirizzo per il whistleblowing del tuo ente indicato qui sotto.</div>
       <div data-ng-class="{'has-error': signupForm.subdomain.$error.required || signupForm.subdomain.$error.pattern}">
         <div class="input-group">
           <span class="input-group-addon">https://</span>
@@ -201,7 +201,7 @@
     <div class="col-md-6 form-group">
       <label>Numero utenti</label>
       <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
-      <div>Per utente si intende il bacino di riferimento dell’ente, per un comune sono i cittadini, per una ASL sono gli utenti del servizio sanitario di pertinenza, per l’università gli iscritti, etc</div>
+      <div class="fieldDescription">Per numero utenti si intende il bacino di riferimento dell’ente, per un comune sono i cittadini, per una ASL sono gli utenti del servizio sanitario di pertinenza, per l’università gli iscritti, etc</div>
       <div data-ng-class="{'has-error': signupForm.organization_number_users.$error.required}">
         <select name="organization_number_users" class="form-control" data-ng-model="signup.organization_number_users" required>
           <option value="option1">0 - 500</option>
