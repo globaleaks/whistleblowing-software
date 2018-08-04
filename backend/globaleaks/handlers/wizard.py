@@ -84,12 +84,14 @@ def db_wizard(session, state, tid, mode, request, client_using_tor, language):
         node.set_val(u'password_change_period', 365)
         node.set_val(u'disable_key_code_hint', True)
         node.set_val(u'disable_privacy_badge', True)
+        node.set_val(u'disable_donation_panel', True)
         node.set_val(u'simplified_login', True)
         node.set_val(u'reachable_via_web', True)
         node.set_val(u'allow_unencrypted', True)
         node.set_val(u'anonymize_outgoing_connections', True)
         node.set_val(u'disable_encryption_warnings', True)
         node.set_val(u'can_delete_submission', False)
+        node.set_val(u'enable_user_pgp_key_upload', False)
 
         # Delete the admin user
         session.delete(admin_user)
