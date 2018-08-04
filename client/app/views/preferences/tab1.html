@@ -47,7 +47,7 @@
     </ul>
   </div>
 
-  <div class="form-group">
+  <div class="form-group" data-ng-if="languages_enabled_selector.lenth > 1">
     <label data-translate>Language</label>
     <select class="form-control" data-ng-model="preferences.language" data-ng-options="item.code as item.native for item in languages_enabled_selector"></select>
   </div>
