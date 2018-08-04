@@ -11,7 +11,10 @@
 {
   color: #333;
   white-space: pre-wrap;
-  margin-bottom: 0.8em;
+}
+
+.fieldDescription {
+  font-size: 0.9em;
 }
 
 .contextCards, .receiverCards {
