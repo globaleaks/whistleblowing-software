@@ -41,6 +41,9 @@ class Service(service.Service):
         self.arw = APIResourceWrapper()
         self.api_factory = Site(self.arw, logFormatter=timedLogFormatter)
 
+        if not Settings.devel_mode:
+            self.api_factory.displayTracebacks = False
+
     def startService(self):
         mask = 0
         if Settings.devel_mode:
