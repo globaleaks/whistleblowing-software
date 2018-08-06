@@ -54,11 +54,12 @@ angular.module('GLBrowserCrypto', [])
       var work = function() {
         var webCrypto = getWebCrypto();
         var toHash = glbcUtil.str2Uint8Array(str + i);
+	var damnIE;
 
 	if (webCrypto) {
-          var damnIE = webCrypto.digest({name: "SHA-256"}, toHash);
+          damnIE = webCrypto.digest({name: "SHA-256"}, toHash);
 	} else {
-          var damnIE = pgp.crypto.hash.sha256(toHash);
+          damnIE = pgp.crypto.hash.sha256(toHash);
 	}
 
         if (damnIE.then !== undefined) {

@@ -1,47 +1,41 @@
 # -*- coding: utf-8
-import binascii
 import os
-import scrypt
+
+from twisted.trial import unittest
 
 from globaleaks.rest import errors
 from globaleaks.utils.security import generateRandomSalt, hash_password, check_password, directory_traversal_check
 from globaleaks.settings import Settings
 from globaleaks.tests import helpers
-from twisted.trial import unittest
 
+dummy_salt = generateRandomSalt()
 
 class TestPasswordManagement(unittest.TestCase):
     def test_pass_hash(self):
         dummy_password = "focaccina"
 
-        dummy_salt = generateRandomSalt()
-
-        sure_bin = scrypt.hash(dummy_password, dummy_salt)
-        sure = binascii.b2a_hex(sure_bin)
+        sure = hash_password(dummy_password, dummy_salt)
         not_sure = hash_password(dummy_password, dummy_salt)
         self.assertEqual(sure, not_sure)
 
     def test_valid_password(self):
         dummy_password = "http://blog.transparency.org/wp-content/uploads/2010/05/A2_Whistelblower_poster.jpg"
-        dummy_salt = generateRandomSalt()
 
-        hashed_once = binascii.b2a_hex(scrypt.hash(dummy_password, dummy_salt))
-        hashed_twice = binascii.b2a_hex(scrypt.hash(dummy_password, dummy_salt))
+        hashed_once = hash_password(dummy_password, dummy_salt)
+        hashed_twice = hash_password(dummy_password, dummy_salt)
         self.assertTrue(hashed_once, hashed_twice)
 
         self.assertTrue(check_password(dummy_password, dummy_salt, hashed_once))
 
     def test_check_password(self):
         password = 'testpassword'
-        salt = generateRandomSalt()
+        password_hash = hash_password(password, dummy_salt)
 
-        password_hash = binascii.b2a_hex(scrypt.hash(str(password), salt))
-
-        self.assertFalse(check_password('x', salt, password_hash))
+        self.assertFalse(check_password('x', dummy_salt, password_hash))
         self.assertFalse(check_password(password, 'x', password_hash))
-        self.assertFalse(check_password(password, salt, 'x'))
+        self.assertFalse(check_password(password, dummy_salt, 'x'))
 
-        self.assertTrue(check_password(password, salt, password_hash))
+        self.assertTrue(check_password(password, dummy_salt, password_hash))
 
 
 class TestFilesystemAccess(helpers.TestGL):
