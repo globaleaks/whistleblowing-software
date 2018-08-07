@@ -1,22 +1,23 @@
-<div data-ng-controller="CustodianIdentityAccessRequestsCtrl">
-  <div class="row">
-    <div class="col-md-12">
-      <span class="pull-left">
-        <span id="link-reload"
-              data-ng-click="reload()"
-              uib-popover="{{'Refresh page' | translate}}"
-              popover-placement="top"
-              class="btn btn-default">
-          <span class="glyphicon glyphicon-refresh"></span>
-        </span>
-      </span>
+<div class="row">
+  <div data-ng-controller="CustodianIdentityAccessRequestsCtrl">
+    <div class="row">
+      <div class="col-md-12">
+            <span class="pull-left">
+              <span id="link-reload"
+                    data-ng-click="reload()"
+                    uib-popover="{{'Refresh page' | translate}}"
+                    popover-placement="top"
+                    class="btn btn-default">
+                <span class="glyphicon glyphicon-refresh"></span>
+              </span>
+            </span>
+      </div>
     </div>
-  </div>
-  <br />
-  <div class="row">
-    <div class="col-md-12">
-      <table class="table table-condensed table-striped">
-        <thead>
+    <br />
+    <div class="row">
+      <div class="col-md-12">
+        <table class="table table-condensed table-striped">
+          <thead>
           <tr>
             <th data-translate>Request date</th>
             <th data-translate>Submission date</th>
@@ -24,8 +25,8 @@
             <th data-translate>Request motivation</th>
             <th data-translate>Authorization</th>
           </tr>
-        </thead>
-        <tbody>
+          </thead>
+          <tbody>
           <tr id="iar-{{$index}}" data-ng-repeat="iar in iars | filter:search">
             <td>{{iar.request_date | date:'dd-MM-yyyy HH:mm'}}</td>
             <td>{{iar.submission_date | date:'dd-MM-yyyy HH:mm'}}</td>
@@ -36,8 +37,9 @@
               <button class="btn btn-xs btn-danger" data-ng-click="file_denied_identity_access_reply(iar.id)" data-translate>Deny</button>
             </td>
           </tr>
-        </tbody>
-      </table>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 </div>

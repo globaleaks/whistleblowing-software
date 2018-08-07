@@ -171,7 +171,6 @@ controller('AdminAdvancedCtrl', ['$scope', '$uibModal', 'CONSTANTS',
     });
   }
 
-
   $scope.open_modal_allow_unencrypted = function() {
     if (!$scope.admin.node.allow_unencrypted) {
       return;

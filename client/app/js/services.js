@@ -47,12 +47,12 @@ angular.module('GLServices', ['ngResource']).
             self.session.auth_landing_page = '/admin/home';
             UserPreferences.get().$promise.then(initPreferences);
           } else if (self.session.role === 'custodian') {
-            self.session.homepage = '#/custodian/identityaccessrequests';
-            self.session.auth_landing_page = '/custodian/identityaccessrequests';
+            self.session.homepage = '#/custodian/home';
+            self.session.auth_landing_page = '/custodian/home';
             UserPreferences.get().$promise.then(initPreferences);
           } else if (self.session.role === 'receiver') {
-            self.session.homepage = '#/receiver/tips';
-            self.session.auth_landing_page = '/receiver/tips';
+            self.session.homepage = '#/receiver/home';
+            self.session.auth_landing_page = '/receiver/home';
             ReceiverPreferences.get().$promise.then(initPreferences);
           } else if (self.session.role === 'whistleblower') {
             self.session.auth_landing_page = '/status';
