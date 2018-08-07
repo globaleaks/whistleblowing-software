@@ -1,3 +1,6 @@
+Changes in version 3.3.1 - 2018-08-07
+    Apply py2/py3 compatibility fixes
+
 Changes in version 3.3.0 - 2018-08-06
     Fix SSRF issue on HTTPS Proxy
     Disable Error Stacktrace on production enviroment
