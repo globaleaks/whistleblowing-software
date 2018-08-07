@@ -23,7 +23,7 @@ distro='unknown'
 if platform.system() == 'Linux':
     distro = platform.linux_distribution()[2]
 
-    if distro != 'xenial':
+    if distro != 'bionic':
         print("WARNING: The long term supported platform is Ubuntu Bionic (18.04)")
         print("WARNING: It is recommended to use only this platform to ensure stability and security")
         print("WARNING: Read about Technical Requirements at: https://docs.globaleaks.org/en/latest/TechnicalRequirements.html")
