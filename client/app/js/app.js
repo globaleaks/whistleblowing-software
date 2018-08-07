@@ -260,6 +260,7 @@ var GLClient = angular.module('GLClient', [
         header_title: 'Administration interface',
         header_subtitle: '',
         resolve: {
+           access: requireAuth('admin'),
           resources: fetchResources('acl', ['manifest', 'node']),
         }
       }).
@@ -269,6 +270,7 @@ var GLClient = angular.module('GLClient', [
         header_title: 'Administration interface',
         header_subtitle: 'General settings',
         resolve: {
+          access: requireAuth('admin'),
           resources: fetchResources('acl', ['node']),
         }
       }).
@@ -278,6 +280,7 @@ var GLClient = angular.module('GLClient', [
         header_title: 'Administration interface',
         header_subtitle: 'Contexts',
         resolve: {
+          access: requireAuth('admin'),
           resources: fetchResources('admin', ['contexts', 'node', 'questionnaires', 'receivers']),
         }
       }).
@@ -287,6 +290,7 @@ var GLClient = angular.module('GLClient', [
         header_title: 'Administration interface',
         header_subtitle: 'Questionnaires',
         resolve: {
+          access: requireAuth('admin'),
           resources: fetchResources('admin', ['fieldtemplates', 'field_attrs', 'node', 'questionnaires']),
         }
       }).
@@ -296,6 +300,7 @@ var GLClient = angular.module('GLClient', [
         header_title: 'Administration interface',
         header_subtitle: 'Users',
         resolve: {
+          access: requireAuth('admin'),
           resources: fetchResources('admin', ['node', 'users']),
         }
       }).
@@ -305,6 +310,7 @@ var GLClient = angular.module('GLClient', [
         header_title: 'Administration interface',
         header_subtitle: 'Recipients',
         resolve: {
+          access: requireAuth('admin'),
           resources: fetchResources('admin', ['contexts', 'node', 'receivers']),
         }
       }).
@@ -314,6 +320,7 @@ var GLClient = angular.module('GLClient', [
         header_title: 'Administration interface',
         header_subtitle: 'Notification settings',
         resolve: {
+          access: requireAuth('admin'),
           resources: fetchResources('admin', ['node', 'notification']),
         }
       }).
@@ -323,6 +330,7 @@ var GLClient = angular.module('GLClient', [
         header_title: 'Administration interface',
         header_subtitle: 'Network settings',
         resolve: {
+          access: requireAuth('admin'),
           resources: fetchResources('admin', ['node']),
         }
       }).
@@ -332,6 +340,7 @@ var GLClient = angular.module('GLClient', [
         header_title: 'Administration interface',
         header_subtitle: 'Advanced settings',
         resolve: {
+          access: requireAuth('admin'),
           resources: fetchResources('admin', ['node', 'questionnaires', 'shorturls']),
         }
       }).
@@ -341,6 +350,7 @@ var GLClient = angular.module('GLClient', [
         header_title: 'Administration interface',
         header_subtitle: 'System overview',
         resolve: {
+          access: requireAuth('admin'),
           resources: fetchResources('admin', ['node', 'activities', 'anomalies', 'file_overview', 'jobs_overview', 'tip_overview', 'users']),
         }
       }).
@@ -350,6 +360,7 @@ var GLClient = angular.module('GLClient', [
         header_title: 'Administration interface',
         header_subtitle: 'Sites management',
         resolve: {
+          access: requireAuth('admin'),
           resources: fetchResources('admin', ['node', 'tenants']),
         }
       }).
@@ -359,6 +370,7 @@ var GLClient = angular.module('GLClient', [
         header_title: 'Administration interface',
         header_subtitle: 'Case management',
         resolve: {
+          access: requireAuth('admin'),
           resources: fetchResources('admin', ['node', 'submission_statuses']),
         }
       }).
@@ -377,6 +389,7 @@ var GLClient = angular.module('GLClient', [
         header_title: 'Custidian interface',
         header_subtitle: 'General settings',
         resolve: {
+          access: requireAuth('custodian'),
           resources: fetchResources('acl', ['node']),
         }
       }).
