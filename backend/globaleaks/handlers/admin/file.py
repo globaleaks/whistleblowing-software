@@ -70,16 +70,15 @@ class FileInstance(BaseHandler):
     upload_handler = True
 
     @inlineCallbacks
-    def permission_check(self):
+    def permission_check(self, id):
         if id == 'logo' and self.current_user.user_role != 'admin':
             yield self.can_edit_general_settings_or_raise()
-            raise errors.InvalidAuthentication
         elif not self.state.tenant_cache[self.request.tid]['enable_graphic_customization'] or self.current_user.user_role != 'admin':
             raise errors.InvalidAuthentication
 
     @inlineCallbacks
     def post(self, id):
-        yield self.permission_check()
+        yield self.permission_check(id)
 
         if id != 'custom':
             sf = self.state.get_tmp_file_by_name(self.uploaded_file['filename'])
@@ -98,7 +97,7 @@ class FileInstance(BaseHandler):
 
     @inlineCallbacks
     def delete(self, id):
-        yield self.permission_check()
+        yield self.permission_check(id)
 
         path = os.path.join(self.state.settings.files_path, id)
         directory_traversal_check(self.state.settings.files_path, path)
