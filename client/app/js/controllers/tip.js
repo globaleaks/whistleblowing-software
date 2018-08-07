@@ -195,10 +195,10 @@ GLClient.controller('TipCtrl',
         resolve: {
           args: function () {
             return {
-	      tip: $scope.tip,
+              tip: $scope.tip,
               operation: 'delete'
             }
-	  }
+          }
         }
       });
     };
@@ -208,7 +208,7 @@ GLClient.controller('TipCtrl',
         templateUrl: 'views/partials/tip_operation_postpone.html',
         controller: 'TipOperationsCtrl',
         resolve: {
-	  args: function() {
+          args: function() {
             return {
               tip: $scope.tip,
               operation: 'postpone_expiration',
