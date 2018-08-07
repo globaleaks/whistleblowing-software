@@ -1,4 +1,11 @@
-GLClient.controller('CustodianIdentityAccessRequestsCtrl', ['$scope',  '$http', '$route',  '$uibModal', 'IdentityAccessRequests',
+GLClient.controller('CustodianCtrl', ['$scope', '$location', function($scope, $location) {
+  // TODO convert this to a directive
+  // This is used for setting the current menu in the sidebar
+  var current_menu = $location.path().split('/').slice(-1);
+  $scope.active = {};
+  $scope.active[current_menu] = "active";
+}]).
+controller('CustodianIdentityAccessRequestsCtrl', ['$scope',  '$http', '$route',  '$uibModal', 'IdentityAccessRequests',
   function($scope, $http, $route, $uibModal, IdentityAccessRequests) {
   $scope.iars = IdentityAccessRequests.query();
 

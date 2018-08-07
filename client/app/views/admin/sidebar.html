@@ -1,82 +1,82 @@
 <ul class="nav nav-pills nav-stacked">
-  <li data-ng-class="active.home" data-ng-if="session.role === 'admin'">
+  <li data-ng-class="active.home">
     <a href="#/admin/home">
       <i class="glyphicon glyphicon-chevron-right"></i>
       <span data-translate>Home</span>
     </a>
   </li>
 
-  <li data-ng-class="active.content" data-ng-if="session.role === 'admin' || preferences.can_edit_general_settings">
+  <li data-ng-class="active.content">
     <a href="#/admin/content">
       <i class="glyphicon glyphicon-chevron-right"></i>
       <span data-translate>General settings</span>
     </a>
   </li>
 
-  <li data-ng-class="active.users" data-ng-if="session.role === 'admin'">
+  <li data-ng-class="active.users">
     <a href="#/admin/users">
       <i class="glyphicon glyphicon-chevron-right"></i>
       <span data-translate>Users</span>
     </a>
   </li>
 
-  <li data-ng-class="active.receivers" data-ng-if="session.role === 'admin'">
+  <li data-ng-class="active.receivers">
     <a href="#/admin/receivers">
       <i class="glyphicon glyphicon-chevron-right"></i>
       <span data-translate>Recipients</span>
     </a>
   </li>
 
-  <li data-ng-class="active.contexts" data-ng-if="session.role === 'admin'">
+  <li data-ng-class="active.contexts">
     <a href="#/admin/contexts">
       <i class="glyphicon glyphicon-chevron-right"></i>
       <span data-translate>Contexts</span>
     </a>
   </li>
 
-  <li data-ng-class="active.questionnaires" data-ng-if="session.role === 'admin'">
+  <li data-ng-class="active.questionnaires">
     <a href="#/admin/questionnaires">
       <i class="glyphicon glyphicon-chevron-right"></i>
       <span data-translate>Questionnaires</span>
     </a>
   </li>
 
-  <li data-ng-class="active.case_management" data-ng-if="session.role === 'admin'">
+  <li data-ng-class="active.case_management">
     <a href="#/admin/case_management">
       <i class="glyphicon glyphicon-chevron-right"></i>
       <span data-translate>Case management</span>
     </a>
   </li>
 
-  <li data-ng-class="active.mail" data-ng-if="session.role === 'admin'">
+  <li data-ng-class="active.mail">
     <a href="#/admin/mail">
       <i class="glyphicon glyphicon-chevron-right"></i>
       <span data-translate>Notification settings</span>
    </a>
   </li>
 
-  <li data-ng-class="active.network" data-ng-if="session.role === 'admin'">
+  <li data-ng-class="active.network">
     <a href="#/admin/network">
       <i class="glyphicon glyphicon-chevron-right"></i>
       <span data-translate>Network settings</span>
     </a>
   </li>
 
-  <li data-ng-class="active.tenants" data-ng-if="admin.node.root_tenant && session.role === 'admin'">
+  <li data-ng-class="active.tenants" data-ng-if="admin.node.root_tenant">
     <a href="#/admin/tenants">
       <i class="glyphicon glyphicon-chevron-right"></i>
       <span data-translate>Sites management</span>
     </a>
   </li>
 
-  <li data-ng-class="active.advanced_settings" data-ng-if="session.role === 'admin'">
+  <li data-ng-class="active.advanced_settings">
     <a href="#/admin/advanced_settings">
       <i class="glyphicon glyphicon-chevron-right"></i>
       <span data-translate>Advanced settings</span>
     </a>
   </li>
 
-  <li data-ng-class="active.overview" data-ng-if="session.role === 'admin'">
+  <li data-ng-class="active.overview">
     <a href="#/admin/overview">
       <i class="glyphicon glyphicon-chevron-right"></i>
       <span data-translate>System overview</span>

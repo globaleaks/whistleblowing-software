@@ -227,6 +227,24 @@ var GLClient = angular.module('GLClient', [
           access: requireAuth('*'),
         }
       }).
+      when('/receiver/home', {
+        templateUrl: 'views/receiver/home.html',
+        controller: 'ReceiverCtrl',
+        header_title: 'Recipient interface',
+        header_subtitle: '',
+        resolve: {
+          access: requireAuth('receiver'),
+        }
+      }).
+      when('/receiver/content', {
+        templateUrl: 'views/receiver/content.html',
+        controller: 'AdminCtrl',
+        header_title: 'Recipient interface',
+        header_subtitle: 'General settings',
+        resolve: {
+          resources: fetchResources('acl', ['node']),
+        }
+      }).
       when('/receiver/tips', {
         templateUrl: 'views/receiver/tips.html',
         controller: 'ReceiverTipsCtrl',
@@ -344,9 +362,27 @@ var GLClient = angular.module('GLClient', [
           resources: fetchResources('admin', ['node', 'submission_statuses']),
         }
       }).
+      when('/custodian/home', {
+        templateUrl: 'views/custodian/home.html',
+        controller: 'CustodianCtrl',
+        header_title: 'Custodian interface',
+        header_subtitle: '',
+        resolve: {
+          access: requireAuth('custodian'),
+        }
+      }).
+      when('/custodian/content', {
+        templateUrl: 'views/custodian/content.html',
+        controller: 'AdminCtrl',
+        header_title: 'Custidian interface',
+        header_subtitle: 'General settings',
+        resolve: {
+          resources: fetchResources('acl', ['node']),
+        }
+      }).
       when('/custodian/identityaccessrequests', {
         templateUrl: 'views/custodian/identity_access_requests.html',
-        header_title: 'Custodian of the identities',
+        header_title: 'Custodian interface',
         header_subtitle: "List of access requests to whistleblowers' identities",
         resolve: {
           access: requireAuth('custodian'),

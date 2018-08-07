@@ -1,4 +1,11 @@
-GLClient.controller('ReceiverTipsCtrl', ['$scope',  '$filter', '$http', '$route', '$location', '$uibModal', 'RTipExport', 'ReceiverTips',
+GLClient.controller('ReceiverCtrl', ['$scope', '$location', function($scope, $location) {
+  // TODO convert this to a directive
+  // This is used for setting the current menu in the sidebar
+  var current_menu = $location.path().split('/').slice(-1);
+  $scope.active = {};
+  $scope.active[current_menu] = "active";
+}]).
+controller('ReceiverTipsCtrl', ['$scope',  '$filter', '$http', '$route', '$location', '$uibModal', 'RTipExport', 'ReceiverTips',
   function($scope, $filter, $http, $route, $location, $uibModal, RTipExport, ReceiverTips) {
   $scope.search = undefined;
   $scope.currentPage = 1;
