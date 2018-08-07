@@ -89,10 +89,10 @@ class HTTPStreamProxyRequest(http.Request):
 
     def process(self):
         # process self.uri removing: scheme, netloc and fragment
-        split = urllib.parse.urlsplit(self.uri)
+        split = urllib.parse.urlsplit(self.uri.decode('utf-8'))
         self.uri = urllib.parse.urlunsplit(('', '', split[2], split[3], ''))
 
-        joined_url = urllib.parse.urljoin(self.channel.proxy_url.encode('utf-8'), self.uri)
+        joined_url = urllib.parse.urljoin(self.channel.proxy_url.encode('utf-8'), self.uri.encode('utf-8'))
 
         hdrs = self.requestHeaders
         hdrs.setRawHeaders(b'GL-Forwarded-For', [self.getClientIP()])
