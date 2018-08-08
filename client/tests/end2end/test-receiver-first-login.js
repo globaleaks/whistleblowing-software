@@ -13,7 +13,7 @@ describe('receiver first login', function() {
     element(by.model('preferences.password')).sendKeys(browser.gl.utils.vars['user_password']);
     element(by.model('preferences.check_password')).sendKeys(browser.gl.utils.vars['user_password']);
     element(by.css('[data-ng-click="save()"]')).click();
-    browser.gl.utils.waitForUrl('/receiver/tips');
+    browser.gl.utils.waitForUrl('/receiver/home');
   });
 
   it('should be able to login with the new password', function() {

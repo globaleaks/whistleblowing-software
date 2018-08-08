@@ -132,7 +132,7 @@ exports.login_receiver = function(username, password, url, firstlogin) {
     url = '/forcedpasswordchange';
   } else {
     url = url.split('#')[1];
-    url = url === '/login' ? '/receiver/tips' : url;
+    url = url === '/login' ? '/receiver/home' : url;
   }
 
   exports.waitForUrl(url);
@@ -152,7 +152,7 @@ exports.login_custodian = function(username, password, url, firstlogin) {
     url = '/forcedpasswordchange';
   } else {
     url = url.split('#')[1];
-    url = url === '/login' ? '/custodian/identityaccessrequests' : url;
+    url = url === '/login' ? '/custodian/home' : url;
   }
 
   exports.waitForUrl(url);

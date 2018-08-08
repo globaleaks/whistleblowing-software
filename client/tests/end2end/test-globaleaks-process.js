@@ -44,6 +44,7 @@ describe('globaLeaks process', function() {
     var label_2 = 'it\'s a trap!';
 
     browser.gl.utils.login_receiver();
+    browser.setLocation('/receiver/tips');
 
     element(by.id('tip-0')).evaluate('tip.id').then(function(id) {
      browser.gl.utils.logout('/login');
@@ -83,6 +84,7 @@ describe('globaLeaks process', function() {
 
   it('Recipient should be able to leave a comment to the whistleblower', function() {
     browser.gl.utils.login_receiver();
+    browser.setLocation('/receiver/tips');
 
     element(by.id('tip-0')).click().then(function() {
       element(by.model('tip.newCommentContent')).sendKeys(comment);
@@ -131,6 +133,7 @@ describe('globaLeaks process', function() {
 
   it('Recipient should be able to start a private discussion with the whistleblower', function() {
     browser.gl.utils.login_receiver();
+    browser.setLocation('/receiver/tips');
 
     element(by.id('tip-0')).click().then(function() {
       element(by.model('tip.newMessageContent')).sendKeys(message);
@@ -167,6 +170,7 @@ describe('globaLeaks process', function() {
     }
 
     browser.gl.utils.login_receiver();
+    browser.setLocation('/receiver/tips');
     element(by.id('tip-0')).click();
 
     browser.gl.utils.waitUntilPresent(by.id('tip-action-export'));
@@ -186,6 +190,7 @@ describe('globaLeaks process', function() {
 
   it('Recipient should be able to disable and renable email notifications', function() {
     browser.gl.utils.login_receiver();
+    browser.setLocation('/receiver/tips');
 
     element(by.id('tip-0')).click();
 
@@ -206,6 +211,7 @@ describe('globaLeaks process', function() {
 
   it('Recipient should be able to postpone all tips', function() {
     browser.gl.utils.login_receiver();
+    browser.setLocation('/receiver/tips');
 
     element.all(by.css('#tipListTableBody tr'))
         .evaluate('tip.expiration_date').then(function() {
@@ -224,6 +230,7 @@ describe('globaLeaks process', function() {
 
   it('Recipient should be able to postpone last submission from its tip page', function() {
     browser.gl.utils.login_receiver();
+    browser.setLocation('/receiver/tips');
 
     element(by.id('tip-0')).click();
     // Get the tip's original expiration date.
@@ -241,6 +248,7 @@ describe('globaLeaks process', function() {
 
   it('Recipient should be able to delete third submission from its tip page', function() {
     browser.gl.utils.login_receiver();
+    browser.setLocation('/receiver/tips');
 
     // Find the uuid of the first tip.
     element(by.id('tip-0')).click();
