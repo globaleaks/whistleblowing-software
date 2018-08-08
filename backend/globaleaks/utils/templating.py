@@ -4,11 +4,15 @@
 # mainly in mail notifications.
 import collections
 import copy
+
+from datetime import timedelta
+
 from six import text_type
 
 from globaleaks import __version__
 from globaleaks.rest import errors
-from globaleaks.utils.utility import ISO8601_to_pretty_str, ISO8601_to_day_str, \
+from globaleaks.utils.utility import datetime_to_pretty_str, \
+    ISO8601_to_datetime, ISO8601_to_pretty_str, ISO8601_to_day_str, \
     bytes_to_pretty_str
 
 node_keywords = [
@@ -96,6 +100,7 @@ user_credentials_keywords = [
 
 platform_signup_keywords = [
     '{RecipientName}',
+    '{ActivationRequest}',
     '{ActivationUrl}',
     '{ExpirationDate}',
     '{Name}',
@@ -506,8 +511,7 @@ class UserCredentials(Keyword):
 
 class PlatformSignupKeyword(NodeKeyword):
     keyword_list = NodeKeyword.keyword_list + platform_signup_keywords
-    data_keys = NodeKeyword.data_keys + \
-                ['signup', 'activation_url']
+    data_keys = NodeKeyword.data_keys + ['signup']
 
     def _TorUrl(self):
         return 'http://' + self.data['signup']['subdomain'] + '.' + self.data['node']['onionservice'] + '/'
@@ -518,11 +522,15 @@ class PlatformSignupKeyword(NodeKeyword):
     def RecipientName(self):
         return self.data['signup']['name'] + ' ' + self.data['signup']['surname']
 
+    def ActivationRequest(self):
+        return '/#/activation?token=' + self.data['signup']['activation_token']
+
     def ActivationUrl(self):
-        return self.data['activation_url']
+        return 'https://' + self.data['node']['rootdomain'] + self.ActivationRequest()
 
     def ExpirationDate(self):
-        return ISO8601_to_day_str(self.data['expiration_date'])
+        date = ISO8601_to_datetime(self.data['signup']['registration_date']) + timedelta(days=30)
+        return datetime_to_pretty_str(date)
 
     def Name(self):
         return self.data['signup']['name'] + ' ' + self.data['signup']['surname']

@@ -2,7 +2,6 @@
 #
 # Handlers implementing platform signup
 import copy
-from datetime import timedelta
 
 from globaleaks import models
 from globaleaks.handlers.admin.node import db_admin_serialize_node
@@ -67,12 +66,6 @@ def signup(session, state, tid, request, language):
 
     session.add(signup)
 
-    ret = {
-        'signup': serialize_signup(signup),
-        'activation_url': 'https://%s/#/activation?token=%s' % (node.get_val(u'rootdomain'), signup.activation_token),
-        'expiration_date': datetime_to_ISO8601(signup.registration_date + timedelta(days=30))
-    }
-
     # We need to send two emails
     #
     # The first one is sent to the platform owner with the activation email.
@@ -80,30 +73,30 @@ def signup(session, state, tid, request, language):
     # The second goes to the instance administrators notifying them that a new
     # platform has been added.
 
+    signup_dict = serialize_signup(signup)
+
     # Email 1 - Activation Link
-    template_vars = copy.deepcopy(ret)
-    template_vars.update({
+    template_vars = {
         'type': 'signup',
         'node': db_admin_serialize_node(session, 1, language),
         'notification': db_get_notification(session, 1, language),
-    })
+        'signup': signup_dict
+    }
 
     state.format_and_send_mail(session, 1, {'mail_address': signup.email}, template_vars)
 
     # Email 2 - Admin Notification
     for user_desc in db_get_admin_users(session, 1):
-        template_vars = copy.deepcopy(ret)
-        template_vars.update({
+        template_vars = {
             'type': 'admin_signup_alert',
             'signup': serialize_signup(signup),
             'node': db_admin_serialize_node(session, 1, user_desc['language']),
             'notification': db_get_notification(session, 1, user_desc['language']),
-            'user': user_desc
-        })
+            'user': user_desc,
+            'signup': signup_dict
+        }
 
         state.format_and_send_mail(session, 1, user_desc, template_vars)
-
-    return ret
 
 
 @transact
@@ -152,8 +145,6 @@ def signup_activation(session, state, tid, token, language):
             'node': db_admin_serialize_node(session, 1, language),
             'notification': db_get_notification(session, 1, language),
             'signup': serialize_signup(signup),
-            'activation_url': '',
-            'expiration_date': datetime_to_ISO8601(signup.registration_date + timedelta(days=30)),
             'password_admin': password_admin,
             'password_recipient': password_recipient
         }
