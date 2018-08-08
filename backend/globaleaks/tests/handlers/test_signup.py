@@ -13,6 +13,11 @@ def enable_signup(session):
     models.config.ConfigFactory(session, 1, 'node').set_val(u'enable_signup', True)
 
 
+@transact
+def get_signup_token(session):
+    return session.query(models.Signup.activation_token).first()[0]
+
+
 class TestSignup(helpers.TestHandler):
     _handler = signup.Signup
 
@@ -43,11 +48,12 @@ class TestSignupActivation(helpers.TestHandler):
 
         self._handler = signup.Signup
         handler = self.request(self.dummySignup)
-        r = yield handler.post()
+        yield handler.post()
 
         self._handler = signup.SignupActivation
         handler = self.request(self.dummySignup)
-        r = yield handler.get(r['signup']['activation_token'])
+        token = yield get_signup_token()
+        yield handler.get(token)
 
         yield self.test_model_count(models.User, 2)
 
@@ -65,8 +71,8 @@ class TestSignupActivation(helpers.TestHandler):
 
         self._handler = signup.SignupActivation
         handler = self.request(self.dummySignup)
-        r = yield handler.get(r['signup']['activation_token'])
-
+        token = yield get_signup_token()
+        yield handler.get(token)
         yield self.test_model_count(models.User, 1)
 
     @inlineCallbacks
