@@ -9,7 +9,7 @@ describe('receiver first login', function() {
     element(by.model('preferences.password')).sendKeys(temporary_password);
     element(by.model('preferences.check_password')).sendKeys(temporary_password);
     element(by.css('[data-ng-click="save()"]')).click();
-    browser.gl.utils.waitForUrl('/custodian/identityaccessrequests');
+    browser.gl.utils.waitForUrl('/custodian/home');
   });
 
   it('should be able to login with the new password', function() {
