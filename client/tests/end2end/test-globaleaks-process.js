@@ -40,8 +40,8 @@ describe('globaLeaks process', function() {
   });
 
   it('Recipient should be able to access and label the last submission', function() {
-    var label_1 = 'seems interesting.';
-    var label_2 = 'it\'s a trap!';
+    var label_1 = 'interesting!';
+    var label_2 = 'fake!';
 
     browser.gl.utils.login_receiver();
     browser.setLocation('/receiver/tips');
