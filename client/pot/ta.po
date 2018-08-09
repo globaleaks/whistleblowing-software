@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-07-24 17:41+0000\n"
+"PO-Revision-Date: 2018-08-09 13:58+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Tamil (http://www.transifex.com/otf/globaleaks/language/ta/)\n"
 "MIME-Version: 1.0\n"
@@ -92,6 +92,9 @@ msgstr "முரண்பாடுகள்"
 
 msgid "Preferences"
 msgstr "விருப்பத்தேர்வுகள்"
+
+msgid "Custodian interface"
+msgstr ""
 
 msgid "Recipient interface"
 msgstr "பெறுநரின் இடைமுகம்"
@@ -345,33 +348,6 @@ msgstr "தகவல் தெரிவிப்பவர் அடையாள�
 
 msgid "Templates"
 msgstr "டெம்ப்ளேட்கள்"
-
-msgid "Notification of new submission"
-msgstr "புதிய சமர்ப்பிக்கும் அறிவித்தல்"
-
-msgid "Notification of new comment"
-msgstr "புதிய கருத்து அறிவித்தல்"
-
-msgid "Notification of new message"
-msgstr "புதிய செய்தி அறிவித்தல்"
-
-msgid "Notification of new file attachment"
-msgstr "புதிய கோப்பு இணைப்பு அறிவித்தல்"
-
-msgid "Notification of PGP key expiration"
-msgstr "பிஜிபி முக்கிய முடிவுறும் அறிவித்தல்"
-
-msgid "Notification of anomaly"
-msgstr "ஒழுங்கின்மை அறிவித்தல்"
-
-msgid "Template for summary of contents in submission archive"
-msgstr "சமர்ப்பிப்பு காப்பகத்தில் பொருளடக்கம் டெம்ப்ளேட்"
-
-msgid "Email subject"
-msgstr "மின்னஞ்சல் பொருள்"
-
-msgid "Email body"
-msgstr "மின்னஞ்சல் உடல்"
 
 msgid "in seconds"
 msgstr "வினாடிகளில்"
@@ -1037,8 +1013,8 @@ msgstr ""
 msgid "Text shown on top of the interface for selecting recipients"
 msgstr "உரை பயனாளிகள் தெரிவுசெய்யப்பட்ட இடைமுகம் மேல் காட்டப்படும்"
 
-msgid "Welcome to the administration interface!"
-msgstr "நிர்வாகம் முகப்பை வரவேற்கிறோம்!"
+msgid "Welcome!"
+msgstr ""
 
 msgid ""
 "This interface may help you understand how the server can be configured and "
@@ -1139,11 +1115,11 @@ msgstr ""
 msgid "Template"
 msgstr "டெம்ப்ளேட்"
 
-msgid "Admin"
-msgstr "நிர்வாகம்"
-
 msgid "Roles enabled to use the platform without Tor:"
 msgstr ""
+
+msgid "Admin"
+msgstr "நிர்வாகம்"
 
 msgid "Recipient"
 msgstr "பெறுநரின்"
@@ -1547,6 +1523,9 @@ msgstr "கோரிக்கை தேதி"
 msgid "Authorization"
 msgstr "அங்கீகார"
 
+msgid "Identities"
+msgstr ""
+
 msgid "The validation link is either incorrect or has expired."
 msgstr ""
 
@@ -1565,9 +1544,9 @@ msgid ""
 msgstr "நீங்கள் தெரியாத இல்லாமல் சர்வர் இணைக்கப்பட்டால் இந்த சர்வர் அநாமதேய சமர்ப்பிப்புகளை மட்டுமே ஆதரிக்கிறது"
 
 msgid ""
-"Server temporarly unusable due to resource exhaustion; advise the Admin if "
+"Server temporarily unusable due to resource exhaustion; advise the Admin if "
 "you can."
-msgstr "சர்வர் சோர்வு ஆதார காரணமாக temporarly பயன்படுத்தப்படாமல்; உங்களால் நிர்வாகம் ஆலோசனை."
+msgstr ""
 
 msgid "This server is not configured."
 msgstr "இந்த சர்வர் உள்ளமைக்கப்படவில்லை."
@@ -1821,9 +1800,6 @@ msgstr ""
 msgid "Upload a file:"
 msgstr ""
 
-msgid "Site settings"
-msgstr ""
-
 msgid "Logout"
 msgstr "வெளியேறு"
 
@@ -1853,7 +1829,7 @@ msgstr ""
 msgid "Password reset requested."
 msgstr ""
 
-msgid "Please check your email inbox for further instructions."
+msgid "Please check your inbox for further instructions."
 msgstr ""
 
 msgid "Validation of email address change in progress."
@@ -1905,11 +1881,8 @@ msgid ""
 "number, i.e. by also including an expiration date."
 msgstr "உங்கள் முக்கிய குறியீடு மறைக்க ஒரு பயனுள்ள வழியில் ஒரு கடன் அட்டை எண், மேலும் ஒரு காலாவதி தேதி உள்ளிட்ட மூலம் அதாவது போன்ற அதை எழுத வேண்டும்."
 
-msgid "Welcome!"
-msgstr ""
-
-msgid "User preferences"
-msgstr ""
+msgid "Welcome to the administration interface!"
+msgstr "நிர்வாகம் முகப்பை வரவேற்கிறோம்!"
 
 msgid ""
 "You have not set up your encryption key, so the files will not be encrypted "
@@ -1948,9 +1921,6 @@ msgid "Congratulations!"
 msgstr "வாழ்த்துக்கள்!"
 
 msgid "You have completed the platform activation."
-msgstr ""
-
-msgid "Please check your inbox for further instructions."
 msgstr ""
 
 msgid "Your whistleblowing platform is almost ready!"

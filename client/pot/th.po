@@ -10,7 +10,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-07-24 17:41+0000\n"
+"PO-Revision-Date: 2018-08-09 13:58+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Thai (http://www.transifex.com/otf/globaleaks/language/th/)\n"
 "MIME-Version: 1.0\n"
@@ -96,6 +96,9 @@ msgstr "ความผิดปกติ"
 
 msgid "Preferences"
 msgstr "การตั้งค่า"
+
+msgid "Custodian interface"
+msgstr ""
 
 msgid "Recipient interface"
 msgstr "อินเตอร์เฟซของผู้รับ"
@@ -349,33 +352,6 @@ msgstr "อนุญาตให้เข้าถึงตัวตนของ
 
 msgid "Templates"
 msgstr "แม่แบบ"
-
-msgid "Notification of new submission"
-msgstr "แจ้งการส่งใหม่"
-
-msgid "Notification of new comment"
-msgstr "แจ้งความเห็นใหม่"
-
-msgid "Notification of new message"
-msgstr "แจ้งข้อความใหม่"
-
-msgid "Notification of new file attachment"
-msgstr "การแจ้งเตือนของสิ่งที่แนบไฟล์ใหม่"
-
-msgid "Notification of PGP key expiration"
-msgstr "แจ้ง PGP หมดอายุสำคัญ"
-
-msgid "Notification of anomaly"
-msgstr "แจ้งความผิดปกติ"
-
-msgid "Template for summary of contents in submission archive"
-msgstr "แม่แบบสำหรับการสรุปเนื้อหาในการเก็บส่ง"
-
-msgid "Email subject"
-msgstr "หัวข้อจดหมาย"
-
-msgid "Email body"
-msgstr "ร่างกายอีเมล์"
 
 msgid "in seconds"
 msgstr "ในไม่กี่วินาที"
@@ -1041,8 +1017,8 @@ msgstr ""
 msgid "Text shown on top of the interface for selecting recipients"
 msgstr "ข้อความปรากฏที่ด้านบนของอินเตอร์เฟซสำหรับการเลือกผู้รับ"
 
-msgid "Welcome to the administration interface!"
-msgstr "ยินดีต้อนรับสู่อินเตอร์เฟซการบริหาร!"
+msgid "Welcome!"
+msgstr ""
 
 msgid ""
 "This interface may help you understand how the server can be configured and "
@@ -1143,11 +1119,11 @@ msgstr ""
 msgid "Template"
 msgstr "แบบ"
 
-msgid "Admin"
-msgstr "ผู้ดูแลระบบ"
-
 msgid "Roles enabled to use the platform without Tor:"
 msgstr ""
+
+msgid "Admin"
+msgstr "ผู้ดูแลระบบ"
 
 msgid "Recipient"
 msgstr "ผู้รับ"
@@ -1551,6 +1527,9 @@ msgstr "วันที่ขอ"
 msgid "Authorization"
 msgstr "การอนุญาต"
 
+msgid "Identities"
+msgstr ""
+
 msgid "The validation link is either incorrect or has expired."
 msgstr ""
 
@@ -1569,9 +1548,9 @@ msgid ""
 msgstr "คุณกำลังเชื่อมต่อไปยังเซิร์ฟเวอร์โดยไม่ต้องเปิดเผยชื่อและเซิร์ฟเวอร์นี้รองรับเฉพาะการส่งที่ไม่ระบุชื่อ"
 
 msgid ""
-"Server temporarly unusable due to resource exhaustion; advise the Admin if "
+"Server temporarily unusable due to resource exhaustion; advise the Admin if "
 "you can."
-msgstr "เซิร์ฟเวอร์ชั่วคราวใช้ไม่ได้เนื่องจากทรัพยากรอ่อนเพลีย; ให้คำแนะนำการดูแลระบบถ้าคุณสามารถ"
+msgstr ""
 
 msgid "This server is not configured."
 msgstr "เซิร์ฟเวอร์นี้ไม่ได้กำหนดค่า"
@@ -1825,9 +1804,6 @@ msgstr ""
 msgid "Upload a file:"
 msgstr ""
 
-msgid "Site settings"
-msgstr ""
-
 msgid "Logout"
 msgstr "ออกจากระบบ"
 
@@ -1857,7 +1833,7 @@ msgstr ""
 msgid "Password reset requested."
 msgstr ""
 
-msgid "Please check your email inbox for further instructions."
+msgid "Please check your inbox for further instructions."
 msgstr ""
 
 msgid "Validation of email address change in progress."
@@ -1909,11 +1885,8 @@ msgid ""
 "number, i.e. by also including an expiration date."
 msgstr "วิธีที่มีประโยชน์เพื่อซ่อนรหัสที่สำคัญของคุณคือการเขียนมันลงเช่นหมายเลขบัตรเครดิตเช่นโดยยังรวมถึงวันหมดอายุ"
 
-msgid "Welcome!"
-msgstr ""
-
-msgid "User preferences"
-msgstr ""
+msgid "Welcome to the administration interface!"
+msgstr "ยินดีต้อนรับสู่อินเตอร์เฟซการบริหาร!"
 
 msgid ""
 "You have not set up your encryption key, so the files will not be encrypted "
@@ -1952,9 +1925,6 @@ msgid "Congratulations!"
 msgstr "ขอแสดงความยินดี!"
 
 msgid "You have completed the platform activation."
-msgstr ""
-
-msgid "Please check your inbox for further instructions."
 msgstr ""
 
 msgid "Your whistleblowing platform is almost ready!"

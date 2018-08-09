@@ -46,8 +46,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-07-24 17:41+0000\n"
-"Last-Translator: Hermes Center <info@hermescenter.org>\n"
+"PO-Revision-Date: 2018-08-09 13:58+0000\n"
+"Last-Translator: Jonas Köritz <jonas.koeritz@gmail.com>\n"
 "Language-Team: German (http://www.transifex.com/otf/globaleaks/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -132,6 +132,9 @@ msgstr "Anomalien"
 
 msgid "Preferences"
 msgstr "Einstellungen"
+
+msgid "Custodian interface"
+msgstr ""
 
 msgid "Recipient interface"
 msgstr "Empfängeroberfläche"
@@ -385,33 +388,6 @@ msgstr "Zugriff auf die Identität des Hinweisgebers genehmigen"
 
 msgid "Templates"
 msgstr "Vorlagen"
-
-msgid "Notification of new submission"
-msgstr "Benachrichtigung über neue Einreichung"
-
-msgid "Notification of new comment"
-msgstr "Benachrichtigung über neuen Kommentar"
-
-msgid "Notification of new message"
-msgstr "Benachrichtigung über neue Mitteilung"
-
-msgid "Notification of new file attachment"
-msgstr "Benachrichtigung über neuen Dateianhang"
-
-msgid "Notification of PGP key expiration"
-msgstr "Benachrichtigung über PGP-Schlüsselablauf"
-
-msgid "Notification of anomaly"
-msgstr "Benachrichtigung über Unregelmäßigkeit"
-
-msgid "Template for summary of contents in submission archive"
-msgstr "Vorlage für die Zusammenfassung des Inhalts im Einreichungsarchiv"
-
-msgid "Email subject"
-msgstr "E-Mail-Betreff"
-
-msgid "Email body"
-msgstr "E-Mail-Körper"
 
 msgid "in seconds"
 msgstr "in Sekunden"
@@ -1077,8 +1053,8 @@ msgstr "Erlaube Emfängern das Hochladen von Dateien für Hinweisgeber."
 msgid "Text shown on top of the interface for selecting recipients"
 msgstr "Auf der Oberseite der Schnittstelle angezeigter Text zur Auswahl von Empfängern"
 
-msgid "Welcome to the administration interface!"
-msgstr "Willkommen in der Administrationsoberfläche!"
+msgid "Welcome!"
+msgstr "Willkommen!"
 
 msgid ""
 "This interface may help you understand how the server can be configured and "
@@ -1179,11 +1155,11 @@ msgstr "Konfiguration testen"
 msgid "Template"
 msgstr "Vorlage"
 
-msgid "Admin"
-msgstr "Admin"
-
 msgid "Roles enabled to use the platform without Tor:"
 msgstr "Rollen aktiviert, um die Plattform ohne Tor zu benutzen:"
+
+msgid "Admin"
+msgstr "Admin"
 
 msgid "Recipient"
 msgstr "Empfänger"
@@ -1587,6 +1563,9 @@ msgstr "Anfragedatum"
 msgid "Authorization"
 msgstr "Autorisierung"
 
+msgid "Identities"
+msgstr "Identitäten"
+
 msgid "The validation link is either incorrect or has expired."
 msgstr ""
 
@@ -1605,9 +1584,9 @@ msgid ""
 msgstr "Sie versuchen, eine nicht anonyme Verbindung zu diesem server herzustellen. Dieser server.erlaubt nur anonyme Verbindungen. "
 
 msgid ""
-"Server temporarly unusable due to resource exhaustion; advise the Admin if "
+"Server temporarily unusable due to resource exhaustion; advise the Admin if "
 "you can."
-msgstr "Knoten infolge erschöpfter Ressourcen vorübergehend nicht nutzbar. Benachrichtigen Sie wenn möglich den Admin."
+msgstr ""
 
 msgid "This server is not configured."
 msgstr "Dieser Server ist nicht konfiguriert."
@@ -1861,9 +1840,6 @@ msgstr "Angehängte Dateien für den Hinweisgeber"
 msgid "Upload a file:"
 msgstr "Hochladen einer Datei:"
 
-msgid "Site settings"
-msgstr ""
-
 msgid "Logout"
 msgstr "Abmelden"
 
@@ -1893,7 +1869,7 @@ msgstr ""
 msgid "Password reset requested."
 msgstr ""
 
-msgid "Please check your email inbox for further instructions."
+msgid "Please check your inbox for further instructions."
 msgstr ""
 
 msgid "Validation of email address change in progress."
@@ -1945,11 +1921,8 @@ msgid ""
 "number, i.e. by also including an expiration date."
 msgstr "Eine praktische Möglichkeit Ihren Schlüssel-Code zu verstecken, ist ihn wie eine Kreditkartennummer aufzuschreiben, d.h. auch ein Ablaufdatum hinzuzufügen."
 
-msgid "Welcome!"
-msgstr "Willkommen!"
-
-msgid "User preferences"
-msgstr "Benutzereinstellungen"
+msgid "Welcome to the administration interface!"
+msgstr "Willkommen in der Administrationsoberfläche!"
 
 msgid ""
 "You have not set up your encryption key, so the files will not be encrypted "
@@ -1988,9 +1961,6 @@ msgid "Congratulations!"
 msgstr "Glückwunsch!"
 
 msgid "You have completed the platform activation."
-msgstr ""
-
-msgid "Please check your inbox for further instructions."
 msgstr ""
 
 msgid "Your whistleblowing platform is almost ready!"

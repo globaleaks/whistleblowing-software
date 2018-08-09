@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-07-24 17:41+0000\n"
+"PO-Revision-Date: 2018-08-09 13:58+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Georgian (http://www.transifex.com/otf/globaleaks/language/ka/)\n"
 "MIME-Version: 1.0\n"
@@ -90,6 +90,9 @@ msgstr "ანომალიების"
 
 msgid "Preferences"
 msgstr "პრიორიტეტები"
+
+msgid "Custodian interface"
+msgstr ""
 
 msgid "Recipient interface"
 msgstr "მიმღების ინტერფეისი"
@@ -344,33 +347,6 @@ msgstr "ავტორიზაცია ხელმისაწვდომ�
 msgid "Templates"
 msgstr "Templates"
 
-msgid "Notification of new submission"
-msgstr "შეტყობინება ახალი წარდგენის"
-
-msgid "Notification of new comment"
-msgstr "შეტყობინება ახალი კომენტარის დამატება"
-
-msgid "Notification of new message"
-msgstr "შეტყობინება ახალი გაგზავნა"
-
-msgid "Notification of new file attachment"
-msgstr "შეტყობინება ახალი ფაილი დანართი"
-
-msgid "Notification of PGP key expiration"
-msgstr "შეტყობინება PGP გასაღები გასვლის"
-
-msgid "Notification of anomaly"
-msgstr "შეტყობინება ანომალია"
-
-msgid "Template for summary of contents in submission archive"
-msgstr "თარგი შემაჯამებელი შინაარსი წარდგენის არქივი"
-
-msgid "Email subject"
-msgstr "ელ სათაური"
-
-msgid "Email body"
-msgstr "ელ ორგანოს"
-
 msgid "in seconds"
 msgstr "წამში"
 
@@ -616,7 +592,7 @@ msgid "Software problems"
 msgstr ""
 
 msgid "Disable"
-msgstr ""
+msgstr "გამორთვა"
 
 msgid "Remove"
 msgstr ""
@@ -1035,8 +1011,8 @@ msgstr ""
 msgid "Text shown on top of the interface for selecting recipients"
 msgstr "ტექსტი ნაჩვენები თავზე ინტერფეისი შერჩევის მიმღები"
 
-msgid "Welcome to the administration interface!"
-msgstr "მოგესალმებით ადმინისტრაციის ინტერფეისი!"
+msgid "Welcome!"
+msgstr ""
 
 msgid ""
 "This interface may help you understand how the server can be configured and "
@@ -1137,11 +1113,11 @@ msgstr ""
 msgid "Template"
 msgstr "თარგი"
 
-msgid "Admin"
-msgstr "admin"
-
 msgid "Roles enabled to use the platform without Tor:"
 msgstr ""
+
+msgid "Admin"
+msgstr "admin"
 
 msgid "Recipient"
 msgstr "მიმღები"
@@ -1545,6 +1521,9 @@ msgstr "მოთხოვნა თარიღი"
 msgid "Authorization"
 msgstr "ავტორიზაცია"
 
+msgid "Identities"
+msgstr ""
+
 msgid "The validation link is either incorrect or has expired."
 msgstr ""
 
@@ -1563,9 +1542,9 @@ msgid ""
 msgstr "თქვენ დამაკავშირებელი სერვერზე გარეშე ანონიმურობის და ამ სერვერზე მხარს უჭერს მხოლოდ ანონიმური წარდგინება"
 
 msgid ""
-"Server temporarly unusable due to resource exhaustion; advise the Admin if "
+"Server temporarily unusable due to resource exhaustion; advise the Admin if "
 "you can."
-msgstr "Server temporarly გამოუსადეგარია გამო რესურსების ამოწურვის; ვურჩევ ადმინ თუ შეგიძლია."
+msgstr ""
 
 msgid "This server is not configured."
 msgstr "სერვერზე არ კონფიგურაცია."
@@ -1819,9 +1798,6 @@ msgstr ""
 msgid "Upload a file:"
 msgstr ""
 
-msgid "Site settings"
-msgstr ""
-
 msgid "Logout"
 msgstr "გამოსვლა"
 
@@ -1851,7 +1827,7 @@ msgstr ""
 msgid "Password reset requested."
 msgstr ""
 
-msgid "Please check your email inbox for further instructions."
+msgid "Please check your inbox for further instructions."
 msgstr ""
 
 msgid "Validation of email address change in progress."
@@ -1903,11 +1879,8 @@ msgid ""
 "number, i.e. by also including an expiration date."
 msgstr "სასარგებლო იქნება დაფაროთ თქვენი გასაღები კოდი ჩავიწერე, როგორიცაა საკრედიტო ბარათის ნომერი, ანუ ასევე მათ შორის გასვლის თარიღი."
 
-msgid "Welcome!"
-msgstr ""
-
-msgid "User preferences"
-msgstr ""
+msgid "Welcome to the administration interface!"
+msgstr "მოგესალმებით ადმინისტრაციის ინტერფეისი!"
 
 msgid ""
 "You have not set up your encryption key, so the files will not be encrypted "
@@ -1946,9 +1919,6 @@ msgid "Congratulations!"
 msgstr "გილოცავთ!"
 
 msgid "You have completed the platform activation."
-msgstr ""
-
-msgid "Please check your inbox for further instructions."
 msgstr ""
 
 msgid "Your whistleblowing platform is almost ready!"

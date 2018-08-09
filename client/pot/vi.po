@@ -12,8 +12,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-07-24 17:41+0000\n"
-"Last-Translator: Hermes Center <info@hermescenter.org>\n"
+"PO-Revision-Date: 2018-08-09 13:58+0000\n"
+"Last-Translator: dich_tran <thnhan@gmail.com>\n"
 "Language-Team: Vietnamese (http://www.transifex.com/otf/globaleaks/language/vi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -98,6 +98,9 @@ msgstr "dị thường"
 
 msgid "Preferences"
 msgstr "Tùy biến"
+
+msgid "Custodian interface"
+msgstr ""
 
 msgid "Recipient interface"
 msgstr "giao diện người nhận"
@@ -351,33 +354,6 @@ msgstr "Phép truy cập đến danh tính của người tố giác"
 
 msgid "Templates"
 msgstr "Templates"
-
-msgid "Notification of new submission"
-msgstr "Thông báo về việc nộp hồ sơ mới"
-
-msgid "Notification of new comment"
-msgstr "Thông báo về việc bình luận mới"
-
-msgid "Notification of new message"
-msgstr "Thông báo về tin nhắn mới"
-
-msgid "Notification of new file attachment"
-msgstr "Thông báo về việc đính kèm tập tin mới"
-
-msgid "Notification of PGP key expiration"
-msgstr "Thông báo của PGP hết hạn chính"
-
-msgid "Notification of anomaly"
-msgstr "Thông báo về sự bất thường"
-
-msgid "Template for summary of contents in submission archive"
-msgstr "Mẫu tóm tắt các nội dung lưu trữ trong trình"
-
-msgid "Email subject"
-msgstr "Tiêu đề email"
-
-msgid "Email body"
-msgstr "Nội dung email"
 
 msgid "in seconds"
 msgstr "trong vài giây"
@@ -1043,8 +1019,8 @@ msgstr ""
 msgid "Text shown on top of the interface for selecting recipients"
 msgstr "Văn bản hiển thị trên đầu trang của giao diện để lựa chọn người nhận"
 
-msgid "Welcome to the administration interface!"
-msgstr "Chào mừng bạn đến giao diện quản trị!"
+msgid "Welcome!"
+msgstr "Chào mừng bạn!"
 
 msgid ""
 "This interface may help you understand how the server can be configured and "
@@ -1145,11 +1121,11 @@ msgstr ""
 msgid "Template"
 msgstr "Bản mẫu"
 
-msgid "Admin"
-msgstr "quản trị viên"
-
 msgid "Roles enabled to use the platform without Tor:"
 msgstr ""
+
+msgid "Admin"
+msgstr "quản trị viên"
 
 msgid "Recipient"
 msgstr "Người nhận"
@@ -1553,6 +1529,9 @@ msgstr "Ngày yêu cầu"
 msgid "Authorization"
 msgstr "cho phép"
 
+msgid "Identities"
+msgstr "Danh tính"
+
 msgid "The validation link is either incorrect or has expired."
 msgstr ""
 
@@ -1571,9 +1550,9 @@ msgid ""
 msgstr "Bạn đang kết nối đến máy chủ mà không cần giấu và máy chủ này chỉ hỗ trợ đệ trình ẩn danh"
 
 msgid ""
-"Server temporarly unusable due to resource exhaustion; advise the Admin if "
+"Server temporarily unusable due to resource exhaustion; advise the Admin if "
 "you can."
-msgstr "Máy chủ temporarly không sử dụng được do tài nguyên cạn kiệt; tư vấn quản trị nếu bạn có thể."
+msgstr ""
 
 msgid "This server is not configured."
 msgstr "Máy chủ này không được cấu hình."
@@ -1827,9 +1806,6 @@ msgstr ""
 msgid "Upload a file:"
 msgstr ""
 
-msgid "Site settings"
-msgstr ""
-
 msgid "Logout"
 msgstr "Đăng xuất"
 
@@ -1859,7 +1835,7 @@ msgstr ""
 msgid "Password reset requested."
 msgstr ""
 
-msgid "Please check your email inbox for further instructions."
+msgid "Please check your inbox for further instructions."
 msgstr ""
 
 msgid "Validation of email address change in progress."
@@ -1911,11 +1887,8 @@ msgid ""
 "number, i.e. by also including an expiration date."
 msgstr "Một cách hữu ích để giấu mã chính của bạn là viết nó xuống như một số thẻ tín dụng, tức là bằng cách cũng bao gồm cả ngày hết hạn."
 
-msgid "Welcome!"
-msgstr "Chào mừng bạn!"
-
-msgid "User preferences"
-msgstr ""
+msgid "Welcome to the administration interface!"
+msgstr "Chào mừng bạn đến giao diện quản trị!"
 
 msgid ""
 "You have not set up your encryption key, so the files will not be encrypted "
@@ -1954,9 +1927,6 @@ msgid "Congratulations!"
 msgstr "Chúc mừng"
 
 msgid "You have completed the platform activation."
-msgstr ""
-
-msgid "Please check your inbox for further instructions."
 msgstr ""
 
 msgid "Your whistleblowing platform is almost ready!"

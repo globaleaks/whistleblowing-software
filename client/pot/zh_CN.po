@@ -18,8 +18,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-07-24 17:41+0000\n"
-"Last-Translator: Hermes Center <info@hermescenter.org>\n"
+"PO-Revision-Date: 2018-08-09 13:58+0000\n"
+"Last-Translator: YF <yfdyh000@gmail.com>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/otf/globaleaks/language/zh_CN/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -104,6 +104,9 @@ msgstr "异常"
 
 msgid "Preferences"
 msgstr "首选项"
+
+msgid "Custodian interface"
+msgstr ""
 
 msgid "Recipient interface"
 msgstr "接收者界面"
@@ -357,33 +360,6 @@ msgstr "授权访问告密者的身份"
 
 msgid "Templates"
 msgstr "模板"
-
-msgid "Notification of new submission"
-msgstr "新提交通知"
-
-msgid "Notification of new comment"
-msgstr "新评论通知"
-
-msgid "Notification of new message"
-msgstr "新邮件通知"
-
-msgid "Notification of new file attachment"
-msgstr "新文件附件通知"
-
-msgid "Notification of PGP key expiration"
-msgstr "PGP 密钥过期通知"
-
-msgid "Notification of anomaly"
-msgstr "异常通知"
-
-msgid "Template for summary of contents in submission archive"
-msgstr "提交档案内容的摘要模板"
-
-msgid "Email subject"
-msgstr "邮件标题"
-
-msgid "Email body"
-msgstr "邮件正文"
 
 msgid "in seconds"
 msgstr "以秒计"
@@ -1049,8 +1025,8 @@ msgstr "允许接收人为揭发人上传文件"
 msgid "Text shown on top of the interface for selecting recipients"
 msgstr "在选择接收人界面上方显示的文本"
 
-msgid "Welcome to the administration interface!"
-msgstr "欢迎来到管理界面！"
+msgid "Welcome!"
+msgstr "欢迎！"
 
 msgid ""
 "This interface may help you understand how the server can be configured and "
@@ -1151,11 +1127,11 @@ msgstr "测试配置"
 msgid "Template"
 msgstr "模板"
 
-msgid "Admin"
-msgstr "管理员"
-
 msgid "Roles enabled to use the platform without Tor:"
 msgstr ""
+
+msgid "Admin"
+msgstr "管理员"
 
 msgid "Recipient"
 msgstr "接收者"
@@ -1559,6 +1535,9 @@ msgstr "请求日期"
 msgid "Authorization"
 msgstr "授权"
 
+msgid "Identities"
+msgstr "身份"
+
 msgid "The validation link is either incorrect or has expired."
 msgstr ""
 
@@ -1577,9 +1556,9 @@ msgid ""
 msgstr "你没有使用匿名身份连接到节点但是这个节点只支持匿名提交材料。"
 
 msgid ""
-"Server temporarly unusable due to resource exhaustion; advise the Admin if "
+"Server temporarily unusable due to resource exhaustion; advise the Admin if "
 "you can."
-msgstr "节点资源超限，暂时无法使用；请考虑通知管理员。"
+msgstr ""
 
 msgid "This server is not configured."
 msgstr "该节点未配置"
@@ -1833,9 +1812,6 @@ msgstr "发送给揭发人的附件"
 msgid "Upload a file:"
 msgstr "上传文件："
 
-msgid "Site settings"
-msgstr ""
-
 msgid "Logout"
 msgstr "注销"
 
@@ -1865,7 +1841,7 @@ msgstr ""
 msgid "Password reset requested."
 msgstr ""
 
-msgid "Please check your email inbox for further instructions."
+msgid "Please check your inbox for further instructions."
 msgstr ""
 
 msgid "Validation of email address change in progress."
@@ -1917,11 +1893,8 @@ msgid ""
 "number, i.e. by also including an expiration date."
 msgstr "隐藏您的关键代码有一个好用的方法，那就是把它写下来，并伪装成像是一个信用卡号码，比如也写上一个到期日。"
 
-msgid "Welcome!"
-msgstr "欢迎！"
-
-msgid "User preferences"
-msgstr "用户偏好"
+msgid "Welcome to the administration interface!"
+msgstr "欢迎来到管理界面！"
 
 msgid ""
 "You have not set up your encryption key, so the files will not be encrypted "
@@ -1961,9 +1934,6 @@ msgstr "祝贺你！"
 
 msgid "You have completed the platform activation."
 msgstr "您已完成平台激活。"
-
-msgid "Please check your inbox for further instructions."
-msgstr ""
 
 msgid "Your whistleblowing platform is almost ready!"
 msgstr ""

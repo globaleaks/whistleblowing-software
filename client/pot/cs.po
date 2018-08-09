@@ -11,8 +11,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-07-24 17:41+0000\n"
-"Last-Translator: Hermes Center <info@hermescenter.org>\n"
+"PO-Revision-Date: 2018-08-09 13:58+0000\n"
+"Last-Translator: jhajas <josef@hajas.net>\n"
 "Language-Team: Czech (http://www.transifex.com/otf/globaleaks/language/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -97,6 +97,9 @@ msgstr "Anomálie"
 
 msgid "Preferences"
 msgstr "Nastavení"
+
+msgid "Custodian interface"
+msgstr ""
 
 msgid "Recipient interface"
 msgstr "Rozhraní příjemce"
@@ -350,33 +353,6 @@ msgstr "Povolit přístup k identitě oznamovatelů"
 
 msgid "Templates"
 msgstr "Šablony"
-
-msgid "Notification of new submission"
-msgstr "Notifikace o novém podání"
-
-msgid "Notification of new comment"
-msgstr "Notifikace o novém komentáři"
-
-msgid "Notification of new message"
-msgstr "Notifikace o nové zprávě"
-
-msgid "Notification of new file attachment"
-msgstr "Notifikace o nové příloze"
-
-msgid "Notification of PGP key expiration"
-msgstr "Notifikace o expiraci PGP klíče"
-
-msgid "Notification of anomaly"
-msgstr "Oznámení o anomálii"
-
-msgid "Template for summary of contents in submission archive"
-msgstr "Šablona pro souhrn obsahu v archivu podání"
-
-msgid "Email subject"
-msgstr "Předmět emailu"
-
-msgid "Email body"
-msgstr "Obsah emailu"
 
 msgid "in seconds"
 msgstr "v sekundách"
@@ -1042,8 +1018,8 @@ msgstr "Povolit příjemcům nahrát soubory pro oznamovatele"
 msgid "Text shown on top of the interface for selecting recipients"
 msgstr "Text zobrazený na vrchu stránky s výběrem příjemců"
 
-msgid "Welcome to the administration interface!"
-msgstr "Vítejte v administračním rozhraní!"
+msgid "Welcome!"
+msgstr "Vítejte!"
 
 msgid ""
 "This interface may help you understand how the server can be configured and "
@@ -1144,11 +1120,11 @@ msgstr "Testovat konfiguraci"
 msgid "Template"
 msgstr "Šablona"
 
-msgid "Admin"
-msgstr "Admin"
-
 msgid "Roles enabled to use the platform without Tor:"
 msgstr "Role, kterým je dovoleno použití mimo Tor:"
+
+msgid "Admin"
+msgstr "Admin"
 
 msgid "Recipient"
 msgstr "Příjemce"
@@ -1552,6 +1528,9 @@ msgstr "Datum požadavku"
 msgid "Authorization"
 msgstr "Autorizace"
 
+msgid "Identities"
+msgstr "Identity"
+
 msgid "The validation link is either incorrect or has expired."
 msgstr ""
 
@@ -1570,9 +1549,9 @@ msgid ""
 msgstr "Připojujete se k nódu neanonymně. Tento server podporuje pouze anonymní podání."
 
 msgid ""
-"Server temporarly unusable due to resource exhaustion; advise the Admin if "
+"Server temporarily unusable due to resource exhaustion; advise the Admin if "
 "you can."
-msgstr "Server se dočasně nedostupný kvůli vyčerpání zdrojů; pokud můžete, informujte správce."
+msgstr ""
 
 msgid "This server is not configured."
 msgstr "Tento server není nakonfigurován."
@@ -1826,9 +1805,6 @@ msgstr "Přiložené soubory pro oznamovatele."
 msgid "Upload a file:"
 msgstr "Nahrání souboru:"
 
-msgid "Site settings"
-msgstr ""
-
 msgid "Logout"
 msgstr "Odhlášení"
 
@@ -1858,7 +1834,7 @@ msgstr ""
 msgid "Password reset requested."
 msgstr ""
 
-msgid "Please check your email inbox for further instructions."
+msgid "Please check your inbox for further instructions."
 msgstr ""
 
 msgid "Validation of email address change in progress."
@@ -1910,11 +1886,8 @@ msgid ""
 "number, i.e. by also including an expiration date."
 msgstr "Užitečný způsob, jak si nenápadně poznamenat přístupový kód, je zapsat si ho jako číslo kreditní karty. Pro lepší dojem můžete doplnit datum expirace."
 
-msgid "Welcome!"
-msgstr "Vítejte!"
-
-msgid "User preferences"
-msgstr ""
+msgid "Welcome to the administration interface!"
+msgstr "Vítejte v administračním rozhraní!"
 
 msgid ""
 "You have not set up your encryption key, so the files will not be encrypted "
@@ -1954,9 +1927,6 @@ msgstr "Gratuluji!"
 
 msgid "You have completed the platform activation."
 msgstr "Právě jste dokončili aktivaci platformy."
-
-msgid "Please check your inbox for further instructions."
-msgstr ""
 
 msgid "Your whistleblowing platform is almost ready!"
 msgstr "Vaše whistleblowing platforma je téměř hotova!"

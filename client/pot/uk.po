@@ -22,8 +22,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-07-24 17:41+0000\n"
-"Last-Translator: Hermes Center <info@hermescenter.org>\n"
+"PO-Revision-Date: 2018-08-09 13:58+0000\n"
+"Last-Translator: Андрій Бандура <andriykopanytsia@gmail.com>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/otf/globaleaks/language/uk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -108,6 +108,9 @@ msgstr "Аномальна активність "
 
 msgid "Preferences"
 msgstr "Налаштування"
+
+msgid "Custodian interface"
+msgstr ""
 
 msgid "Recipient interface"
 msgstr "Інтерфейс одержувача"
@@ -361,33 +364,6 @@ msgstr "Надати право доступу до інформації про 
 
 msgid "Templates"
 msgstr "Templates"
-
-msgid "Notification of new submission"
-msgstr "Повідомлення про нове свідчення"
-
-msgid "Notification of new comment"
-msgstr "Повідомлення про новий коментар"
-
-msgid "Notification of new message"
-msgstr "Повідомлення про новий лист"
-
-msgid "Notification of new file attachment"
-msgstr "Повідомлення про новий доданий файл"
-
-msgid "Notification of PGP key expiration"
-msgstr "Повідомлення про закінчення терміну дії PGP ключа"
-
-msgid "Notification of anomaly"
-msgstr "Повідомлення про аномільну активність"
-
-msgid "Template for summary of contents in submission archive"
-msgstr "Шаблон резюме змісту архіву повідомлення"
-
-msgid "Email subject"
-msgstr "Тема листа"
-
-msgid "Email body"
-msgstr "Контент листа"
 
 msgid "in seconds"
 msgstr "у секундах"
@@ -1053,8 +1029,8 @@ msgstr ""
 msgid "Text shown on top of the interface for selecting recipients"
 msgstr "Text shown on top of the interface for selecting recipients"
 
-msgid "Welcome to the administration interface!"
-msgstr "Welcome to the administration interface!"
+msgid "Welcome!"
+msgstr "Ласкаво просимо!"
 
 msgid ""
 "This interface may help you understand how the server can be configured and "
@@ -1155,11 +1131,11 @@ msgstr "Test the configuration"
 msgid "Template"
 msgstr "Template"
 
-msgid "Admin"
-msgstr "Адміністратор"
-
 msgid "Roles enabled to use the platform without Tor:"
 msgstr ""
+
+msgid "Admin"
+msgstr "Адміністратор"
 
 msgid "Recipient"
 msgstr "Одержувач"
@@ -1563,6 +1539,9 @@ msgstr "Дата запиту"
 msgid "Authorization"
 msgstr "Авторизація"
 
+msgid "Identities"
+msgstr "Сутності"
+
 msgid "The validation link is either incorrect or has expired."
 msgstr ""
 
@@ -1581,9 +1560,9 @@ msgid ""
 msgstr "Ви підключаєтеся до вузла без анонімності. Цей вузол підтримує тільки анонімну подачу матеріалів"
 
 msgid ""
-"Server temporarly unusable due to resource exhaustion; advise the Admin if "
+"Server temporarily unusable due to resource exhaustion; advise the Admin if "
 "you can."
-msgstr "Сервер тимчасово непрацює через перенавантаження; оповістіть про це адміністратора Хабардокс."
+msgstr ""
 
 msgid "This server is not configured."
 msgstr "Цей вузол не налаштований."
@@ -1837,9 +1816,6 @@ msgstr "Додані файли для інформатора"
 msgid "Upload a file:"
 msgstr "Завантажте файл:"
 
-msgid "Site settings"
-msgstr ""
-
 msgid "Logout"
 msgstr "Вихід"
 
@@ -1869,8 +1845,8 @@ msgstr ""
 msgid "Password reset requested."
 msgstr "Запит на скидання паролю надіслано."
 
-msgid "Please check your email inbox for further instructions."
-msgstr "Будь-ласка, перевірте вашу поштову скриньку для подальших інструкцій."
+msgid "Please check your inbox for further instructions."
+msgstr ""
 
 msgid "Validation of email address change in progress."
 msgstr "Перевірка зміни адреси електронної пошти в процесі."
@@ -1921,11 +1897,8 @@ msgid ""
 "number, i.e. by also including an expiration date."
 msgstr "Корисний спосіб приховати ключ наданий вам після подання матеріалів, це записати його у формі номеру кредитної картки, включаючи дату закінчення терміну дії."
 
-msgid "Welcome!"
-msgstr "Ласкаво просимо!"
-
-msgid "User preferences"
-msgstr "Налаштування користувача"
+msgid "Welcome to the administration interface!"
+msgstr "Welcome to the administration interface!"
 
 msgid ""
 "You have not set up your encryption key, so the files will not be encrypted "
@@ -1964,9 +1937,6 @@ msgid "Congratulations!"
 msgstr "Вітаємо!"
 
 msgid "You have completed the platform activation."
-msgstr ""
-
-msgid "Please check your inbox for further instructions."
 msgstr ""
 
 msgid "Your whistleblowing platform is almost ready!"

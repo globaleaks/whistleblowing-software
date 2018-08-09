@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-07-24 17:41+0000\n"
-"Last-Translator: Hermes Center <info@hermescenter.org>\n"
+"PO-Revision-Date: 2018-08-09 13:58+0000\n"
+"Last-Translator: Besnik <besnik@programeshqip.org>\n"
 "Language-Team: Albanian (http://www.transifex.com/otf/globaleaks/language/sq/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -93,6 +93,9 @@ msgstr "Anomalitë"
 
 msgid "Preferences"
 msgstr "Parapëlqimet"
+
+msgid "Custodian interface"
+msgstr ""
 
 msgid "Recipient interface"
 msgstr "Ndërfaqja e Marrësit"
@@ -346,33 +349,6 @@ msgstr "Autorizojë qasje në identitetin e Whistleblower së"
 
 msgid "Templates"
 msgstr "templates"
-
-msgid "Notification of new submission"
-msgstr "Njoftimi i dorëzimit të ri"
-
-msgid "Notification of new comment"
-msgstr "Njoftimi i koment të ri"
-
-msgid "Notification of new message"
-msgstr "Njoftimi i mesazhit të ri"
-
-msgid "Notification of new file attachment"
-msgstr "Njoftimi i lidhjes së re fotografi"
-
-msgid "Notification of PGP key expiration"
-msgstr "Njoftimi i skadimit kryesore PGP"
-
-msgid "Notification of anomaly"
-msgstr "Njoftimi i anomalisë"
-
-msgid "Template for summary of contents in submission archive"
-msgstr "Template për përmbledhjen e përmbajtjeve në arkivin e dorëzimit"
-
-msgid "Email subject"
-msgstr "Email subjekt"
-
-msgid "Email body"
-msgstr "trupi Email"
 
 msgid "in seconds"
 msgstr "në sekonda"
@@ -1038,8 +1014,8 @@ msgstr ""
 msgid "Text shown on top of the interface for selecting recipients"
 msgstr "Tekst treguar në krye të ndërfaqes për zgjedhjen e marrësit"
 
-msgid "Welcome to the administration interface!"
-msgstr "Mirë se vini në ndërfaqen e administratës!"
+msgid "Welcome!"
+msgstr ""
 
 msgid ""
 "This interface may help you understand how the server can be configured and "
@@ -1140,11 +1116,11 @@ msgstr ""
 msgid "Template"
 msgstr "shabllon"
 
-msgid "Admin"
-msgstr "Administratori"
-
 msgid "Roles enabled to use the platform without Tor:"
 msgstr ""
+
+msgid "Admin"
+msgstr "Administratori"
 
 msgid "Recipient"
 msgstr "Marrës"
@@ -1548,6 +1524,9 @@ msgstr "date kërkesa"
 msgid "Authorization"
 msgstr "autorizim"
 
+msgid "Identities"
+msgstr "Identitete"
+
 msgid "The validation link is either incorrect or has expired."
 msgstr ""
 
@@ -1566,9 +1545,9 @@ msgid ""
 msgstr "Ju po lidheni me shërbyesin pa qenë anonim, ndërkohë që ky shërbyes pranon vetëm parashtrime anonime"
 
 msgid ""
-"Server temporarly unusable due to resource exhaustion; advise the Admin if "
+"Server temporarily unusable due to resource exhaustion; advise the Admin if "
 "you can."
-msgstr "Shërbyesi është përkohësisht i papërdorshëm, për shkak të mbarimit të burimit; këshillojeni Administratorin nëse mundeni."
+msgstr ""
 
 msgid "This server is not configured."
 msgstr "Ky shërbyes s'është konfiguruar."
@@ -1822,9 +1801,6 @@ msgstr ""
 msgid "Upload a file:"
 msgstr ""
 
-msgid "Site settings"
-msgstr ""
-
 msgid "Logout"
 msgstr "Dilni"
 
@@ -1854,7 +1830,7 @@ msgstr ""
 msgid "Password reset requested."
 msgstr ""
 
-msgid "Please check your email inbox for further instructions."
+msgid "Please check your inbox for further instructions."
 msgstr ""
 
 msgid "Validation of email address change in progress."
@@ -1906,11 +1882,8 @@ msgid ""
 "number, i.e. by also including an expiration date."
 msgstr "Një mënyrë e vlefshme për të fshehur kodin e çelësit tuaj është që ta shkruani atë si të ishte një numër karte krediti; d.m.th. duke përfshirë edhe një datë skadimi."
 
-msgid "Welcome!"
-msgstr ""
-
-msgid "User preferences"
-msgstr "Parapëlqime përdoruesi"
+msgid "Welcome to the administration interface!"
+msgstr "Mirë se vini në ndërfaqen e administratës!"
 
 msgid ""
 "You have not set up your encryption key, so the files will not be encrypted "
@@ -1949,9 +1922,6 @@ msgid "Congratulations!"
 msgstr "Urime!"
 
 msgid "You have completed the platform activation."
-msgstr ""
-
-msgid "Please check your inbox for further instructions."
 msgstr ""
 
 msgid "Your whistleblowing platform is almost ready!"

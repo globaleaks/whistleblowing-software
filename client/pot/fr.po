@@ -38,7 +38,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-07-24 19:02+0000\n"
+"PO-Revision-Date: 2018-08-09 13:58+0000\n"
 "Last-Translator: French language coordinator <french.coordinator@rbox.me>\n"
 "Language-Team: French (http://www.transifex.com/otf/globaleaks/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -124,6 +124,9 @@ msgstr "Anomalies"
 
 msgid "Preferences"
 msgstr "Préférences"
+
+msgid "Custodian interface"
+msgstr ""
 
 msgid "Recipient interface"
 msgstr "Interface du destinataire"
@@ -377,33 +380,6 @@ msgstr "Autoriser l’accès à l’identité du lanceur d’alerte"
 
 msgid "Templates"
 msgstr "Modèles"
-
-msgid "Notification of new submission"
-msgstr "Notification d’un nouvel envoi"
-
-msgid "Notification of new comment"
-msgstr "Notification d’un nouveau commentaire"
-
-msgid "Notification of new message"
-msgstr "Notification d’un nouveau message"
-
-msgid "Notification of new file attachment"
-msgstr "Notification d’un nouvelle pièce jointe"
-
-msgid "Notification of PGP key expiration"
-msgstr "Notification d’expiration de la clé PGP"
-
-msgid "Notification of anomaly"
-msgstr "Notification d’anomalie"
-
-msgid "Template for summary of contents in submission archive"
-msgstr "Modèle de résumé de contenu dans la collection d’envois"
-
-msgid "Email subject"
-msgstr "Objet du courriel"
-
-msgid "Email body"
-msgstr "Corps du courriel"
 
 msgid "in seconds"
 msgstr "en secondes"
@@ -1069,8 +1045,8 @@ msgstr "Permettre aux destinataires de téléverser des fichiers pour les lanceu
 msgid "Text shown on top of the interface for selecting recipients"
 msgstr "Texte de sélection des destinataires, affiché en haut de l’interface"
 
-msgid "Welcome to the administration interface!"
-msgstr "Bienvenue sur l’interface d’administration !"
+msgid "Welcome!"
+msgstr "Bienvenue !"
 
 msgid ""
 "This interface may help you understand how the server can be configured and "
@@ -1171,11 +1147,11 @@ msgstr "Tester la configuration"
 msgid "Template"
 msgstr "Modèle"
 
-msgid "Admin"
-msgstr "Admin"
-
 msgid "Roles enabled to use the platform without Tor:"
 msgstr "Rôles pouvant utiliser la plateforme sans Tor :"
+
+msgid "Admin"
+msgstr "Admin"
 
 msgid "Recipient"
 msgstr "Destinataire"
@@ -1579,6 +1555,9 @@ msgstr "Date de la demande"
 msgid "Authorization"
 msgstr "Autorisation"
 
+msgid "Identities"
+msgstr "Identités"
+
 msgid "The validation link is either incorrect or has expired."
 msgstr "Soit le lien de validation est incorrect soit il est expiré."
 
@@ -1597,9 +1576,9 @@ msgid ""
 msgstr "Vous êtes connecté à ce serveur sans anonymat, mais il ne prend en charge que les envois anonymes."
 
 msgid ""
-"Server temporarly unusable due to resource exhaustion; advise the Admin if "
+"Server temporarily unusable due to resource exhaustion; advise the Admin if "
 "you can."
-msgstr "Le serveur a épuisé ses ressources et ne peut temporairement pas être utilisé ; avertissez l’administrateur si vous le pouvez."
+msgstr ""
 
 msgid "This server is not configured."
 msgstr "Ce serveur n’est pas configuré."
@@ -1853,9 +1832,6 @@ msgstr "Pièces jointes pour le lanceur d’alerte"
 msgid "Upload a file:"
 msgstr "Téléverser un fichier :"
 
-msgid "Site settings"
-msgstr "Paramètres du site"
-
 msgid "Logout"
 msgstr "Déconnexion"
 
@@ -1885,8 +1861,8 @@ msgstr "La fonction de réinitialisation du mot de passe n’est pas offerte pou
 msgid "Password reset requested."
 msgstr "Une réinitialisation de mot de passe a été demandée."
 
-msgid "Please check your email inbox for further instructions."
-msgstr "Veuillez vérifier votre boîte de réception de courriels pour de plus amples instructions."
+msgid "Please check your inbox for further instructions."
+msgstr "Veuillez vérifier votre boîte de réception pour de plus amples instructions."
 
 msgid "Validation of email address change in progress."
 msgstr "La validation du changement d’adresse courriel est en cours."
@@ -1937,11 +1913,8 @@ msgid ""
 "number, i.e. by also including an expiration date."
 msgstr "Une bonne manière de dissimuler votre code-clé est de le noter comme un numéro de carte de crédit, c.-à-d. en ajoutant une date d’expiration."
 
-msgid "Welcome!"
-msgstr "Bienvenue !"
-
-msgid "User preferences"
-msgstr "Préférences de l’utilisateur"
+msgid "Welcome to the administration interface!"
+msgstr "Bienvenue sur l’interface d’administration !"
 
 msgid ""
 "You have not set up your encryption key, so the files will not be encrypted "
@@ -1981,9 +1954,6 @@ msgstr "Félicitations !"
 
 msgid "You have completed the platform activation."
 msgstr "L’activation de la plateforme est maintenant terminée."
-
-msgid "Please check your inbox for further instructions."
-msgstr "Veuillez vérifier votre boîte de réception pour de plus amples instructions."
 
 msgid "Your whistleblowing platform is almost ready!"
 msgstr "Votre plateforme de lancement d’alerte est presque prête !"

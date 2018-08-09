@@ -13,7 +13,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-07-24 17:41+0000\n"
+"PO-Revision-Date: 2018-08-09 13:58+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Urdu (http://www.transifex.com/otf/globaleaks/language/ur/)\n"
 "MIME-Version: 1.0\n"
@@ -99,6 +99,9 @@ msgstr "بے ضابطگیاں"
 
 msgid "Preferences"
 msgstr "ترجیحات"
+
+msgid "Custodian interface"
+msgstr ""
 
 msgid "Recipient interface"
 msgstr "وصول کنندہ کا انٹرفیس"
@@ -352,33 +355,6 @@ msgstr "مخبر کی شناخت تک رسائی کی اجازت دیں"
 
 msgid "Templates"
 msgstr "سانچے"
-
-msgid "Notification of new submission"
-msgstr "نیا جمع کرانے کے بارے میں اہم اطلاع"
-
-msgid "Notification of new comment"
-msgstr "نیا تبصرہ کے بارے میں اہم اطلاع"
-
-msgid "Notification of new message"
-msgstr "نئے پیغام کے بارے میں اہم اطلاع"
-
-msgid "Notification of new file attachment"
-msgstr "نئی فائل اٹیچمنٹ کی اہم اطلاع"
-
-msgid "Notification of PGP key expiration"
-msgstr "PGP چابی کا وقت ختم ہونے کی اطلاع"
-
-msgid "Notification of anomaly"
-msgstr "خرابی کی اطلاع"
-
-msgid "Template for summary of contents in submission archive"
-msgstr "محفوظ شدہ دستاویزات میں جمع کرانے کے مندرجات کا خلاصہ کے لئے سانچہ"
-
-msgid "Email subject"
-msgstr "ای میل کے موضوع"
-
-msgid "Email body"
-msgstr "ای میل کے متن"
 
 msgid "in seconds"
 msgstr "سیکنڈوں میں"
@@ -1044,8 +1020,8 @@ msgstr ""
 msgid "Text shown on top of the interface for selecting recipients"
 msgstr "ہائے وصول کنندگان کے انتخاب کے لئے انٹرفیس کے سب سے اوپر پر دکھایا گیا"
 
-msgid "Welcome to the administration interface!"
-msgstr "انتظامیہ انٹرفیس میں خوش آمدید!"
+msgid "Welcome!"
+msgstr ""
 
 msgid ""
 "This interface may help you understand how the server can be configured and "
@@ -1146,11 +1122,11 @@ msgstr ""
 msgid "Template"
 msgstr "سانچے"
 
-msgid "Admin"
-msgstr "ایڈمن"
-
 msgid "Roles enabled to use the platform without Tor:"
 msgstr ""
+
+msgid "Admin"
+msgstr "ایڈمن"
 
 msgid "Recipient"
 msgstr "وصول کنندہ"
@@ -1554,6 +1530,9 @@ msgstr "تاریخ کی گذارش"
 msgid "Authorization"
 msgstr "کا اجازت"
 
+msgid "Identities"
+msgstr ""
+
 msgid "The validation link is either incorrect or has expired."
 msgstr ""
 
@@ -1572,9 +1551,9 @@ msgid ""
 msgstr "آپ اپنا نام ظاہر نہ کئے بغیر نوڈ سے منسلک ہیں اور یہ نوڈ صرف گمنام گذارشات کی تائید کرتی ہے۔"
 
 msgid ""
-"Server temporarly unusable due to resource exhaustion; advise the Admin if "
+"Server temporarily unusable due to resource exhaustion; advise the Admin if "
 "you can."
-msgstr "پیش کار وسائل کے زوال کی وجہ سے عارضی طور پر ناقابل استعمال ہے;اگر ہو سکے تو ایڈمن کو مشورہ دیجئے."
+msgstr ""
 
 msgid "This server is not configured."
 msgstr "یہ نوڈ مرتب نہیں ہے۔"
@@ -1828,9 +1807,6 @@ msgstr ""
 msgid "Upload a file:"
 msgstr ""
 
-msgid "Site settings"
-msgstr ""
-
 msgid "Logout"
 msgstr "لاگ آئوٹ"
 
@@ -1860,7 +1836,7 @@ msgstr ""
 msgid "Password reset requested."
 msgstr ""
 
-msgid "Please check your email inbox for further instructions."
+msgid "Please check your inbox for further instructions."
 msgstr ""
 
 msgid "Validation of email address change in progress."
@@ -1912,11 +1888,8 @@ msgid ""
 "number, i.e. by also including an expiration date."
 msgstr "اپنا کلیدی کوڈ خفیہ رکھنے کا بہترین طریقہ یہ ہے کہ اسے کریڈٹ کارڈ کے نمبروں کی طرز پر لکھیے، جس میں اس کے غیر مؤثر ہوجانے کی تاریخ بھی موجود ہو۔   "
 
-msgid "Welcome!"
-msgstr ""
-
-msgid "User preferences"
-msgstr ""
+msgid "Welcome to the administration interface!"
+msgstr "انتظامیہ انٹرفیس میں خوش آمدید!"
 
 msgid ""
 "You have not set up your encryption key, so the files will not be encrypted "
@@ -1955,9 +1928,6 @@ msgid "Congratulations!"
 msgstr "مبارک ہو!"
 
 msgid "You have completed the platform activation."
-msgstr ""
-
-msgid "Please check your inbox for further instructions."
 msgstr ""
 
 msgid "Your whistleblowing platform is almost ready!"
