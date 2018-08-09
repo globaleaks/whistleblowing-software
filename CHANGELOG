@@ -1,3 +1,9 @@
+Changes in version 3.3.2 - 2018-08-09
+    Add a landing homepage for both recipient and custodian users
+    Fix possibility of changing logo by recipient / custodian
+    Update npm dependencies to latest versions
+    Update translations
+
 Changes in version 3.3.1 - 2018-08-07
     Apply py2/py3 compatibility fixes
 
