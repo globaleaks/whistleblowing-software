@@ -88,8 +88,7 @@ describe('Test file upload/download consistency', function() {
       element.all(files_sel).each(function(btn, i) {
         btn.click();
         // TODO WARN fragile: dl list and meta_file_lst must align
-        var mfile = test_meta_files[i];
-        mfile.waitForDownloadAndVerifyCheckSum();
+        test_meta_files[i].waitForDownloadAndVerifyCheckSum();
       });
     });
   });
@@ -117,6 +116,7 @@ describe('Test file upload/download consistency', function() {
       browser.gl.utils.logout();
 
       browser.gl.utils.login_receiver('recipient', browser.gl.utils.vars['user_password']);
+      browser.setLocation('/receiver/tips');
       rec.viewMostRecentSubmission();
 
       var files_sel = by.cssContainingText("button", "download");
@@ -158,6 +158,7 @@ describe('Test file upload/download consistency', function() {
       receipt = r;
 
       browser.gl.utils.login_receiver('recipient', browser.gl.utils.vars['user_password']);
+      browser.setLocation('/receiver/tips');
 
       element(by.id('tip-0')).click();
 
