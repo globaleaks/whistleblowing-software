@@ -2,9 +2,9 @@ GLClient
 .controller('ForcedPasswordChangeCtrl', ['$scope', '$location', 'locationForce',
   function($scope, $location, locationForce) {
     $scope.save = function () {
-      locationForce.clear();
-
-      $scope.preferences.$update(function () {
+      return $scope.preferences.$update(function () {
+        $scope.session.password_change_needed = false;
+        locationForce.clear();
         $location.path($scope.session.auth_landing_page);
       });
     };
