@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-07-24 17:41+0000\n"
+"PO-Revision-Date: 2018-08-09 13:58+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Danish (http://www.transifex.com/otf/globaleaks/language/da/)\n"
 "MIME-Version: 1.0\n"
@@ -92,6 +92,9 @@ msgstr "Uregelmæssigheder"
 
 msgid "Preferences"
 msgstr "Indstillinger"
+
+msgid "Custodian interface"
+msgstr ""
 
 msgid "Recipient interface"
 msgstr "Modtagerinterface"
@@ -345,33 +348,6 @@ msgstr "Godkend adgang til whistleblowerens identitet"
 
 msgid "Templates"
 msgstr "Skabeloner"
-
-msgid "Notification of new submission"
-msgstr "Notifikation om ny indsendelse"
-
-msgid "Notification of new comment"
-msgstr "Notifikation om ny kommentar"
-
-msgid "Notification of new message"
-msgstr "Notifikation om ny besked"
-
-msgid "Notification of new file attachment"
-msgstr "Notifikation om ny vedhæftelse af fil"
-
-msgid "Notification of PGP key expiration"
-msgstr "Notifikation om udløb af PGP-nøgle"
-
-msgid "Notification of anomaly"
-msgstr "Notifikation om afvigelse"
-
-msgid "Template for summary of contents in submission archive"
-msgstr "Skabelon for indholdsoversigt i indsendelses-arkiv"
-
-msgid "Email subject"
-msgstr "Mail emnelinje"
-
-msgid "Email body"
-msgstr "Mail indhold"
 
 msgid "in seconds"
 msgstr "I sekunder"
@@ -1037,8 +1013,8 @@ msgstr "Tillad at modtagere kan uploade filer til whistleblowere"
 msgid "Text shown on top of the interface for selecting recipients"
 msgstr "Tekst der vises øverst på det interface hvor modtagere vælges"
 
-msgid "Welcome to the administration interface!"
-msgstr "Velkommen til administrationssiden!"
+msgid "Welcome!"
+msgstr "Velkommen!"
 
 msgid ""
 "This interface may help you understand how the server can be configured and "
@@ -1139,11 +1115,11 @@ msgstr "Test indstillingen"
 msgid "Template"
 msgstr "Skabelon"
 
-msgid "Admin"
-msgstr "Admin"
-
 msgid "Roles enabled to use the platform without Tor:"
 msgstr "Roller der er aktiveret så platformen kan anvendes uden Tor:"
+
+msgid "Admin"
+msgstr "Admin"
 
 msgid "Recipient"
 msgstr "Modtager"
@@ -1547,6 +1523,9 @@ msgstr "Anmod om dato"
 msgid "Authorization"
 msgstr "Autorisation"
 
+msgid "Identities"
+msgstr ""
+
 msgid "The validation link is either incorrect or has expired."
 msgstr "Bekræftelseslinket er ugyldig eller udløbet."
 
@@ -1565,9 +1544,9 @@ msgid ""
 msgstr "Du forbinder til serveren uden anonymitet og denne server tillader kun anonymiserede indsendelser"
 
 msgid ""
-"Server temporarly unusable due to resource exhaustion; advise the Admin if "
+"Server temporarily unusable due to resource exhaustion; advise the Admin if "
 "you can."
-msgstr "Severen er midlertidigt utilgængelig på grund af overbelastning. Underret administratoren hvis det er muligt."
+msgstr ""
 
 msgid "This server is not configured."
 msgstr "Serveren er ikke konfigureret"
@@ -1821,9 +1800,6 @@ msgstr "Vedhæftede filer til whistlebloweren"
 msgid "Upload a file:"
 msgstr "Upload en fil:"
 
-msgid "Site settings"
-msgstr ""
-
 msgid "Logout"
 msgstr "Log ud"
 
@@ -1853,8 +1829,8 @@ msgstr "Funktion til nulstilling af password er ikke tilgængelig for admin brug
 msgid "Password reset requested."
 msgstr "Der er anmodet om nulstilling af password."
 
-msgid "Please check your email inbox for further instructions."
-msgstr "Tjek din indbakke for yderligere instrukser."
+msgid "Please check your inbox for further instructions."
+msgstr ""
 
 msgid "Validation of email address change in progress."
 msgstr "Godkendelse af skift af mail adresse i gang."
@@ -1905,11 +1881,8 @@ msgid ""
 "number, i.e. by also including an expiration date."
 msgstr "En nyttig måde at skjule din nøglekode er at skrive den ned som nummeret på et kreditkort, dvs ved også at inkludere en udløbsdato."
 
-msgid "Welcome!"
-msgstr "Velkommen!"
-
-msgid "User preferences"
-msgstr ""
+msgid "Welcome to the administration interface!"
+msgstr "Velkommen til administrationssiden!"
 
 msgid ""
 "You have not set up your encryption key, so the files will not be encrypted "
@@ -1949,9 +1922,6 @@ msgstr "Tillykke!"
 
 msgid "You have completed the platform activation."
 msgstr "Du har gennemført aktivering af platformen."
-
-msgid "Please check your inbox for further instructions."
-msgstr ""
 
 msgid "Your whistleblowing platform is almost ready!"
 msgstr "Din whistleblowing platform er næsten færdig!"

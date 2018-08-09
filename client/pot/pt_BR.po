@@ -36,8 +36,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-07-24 17:41+0000\n"
-"Last-Translator: Hermes Center <info@hermescenter.org>\n"
+"PO-Revision-Date: 2018-08-09 13:58+0000\n"
+"Last-Translator: Diego Santos <diegospsi@opmbx.org>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/otf/globaleaks/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -122,6 +122,9 @@ msgstr "Anomalias"
 
 msgid "Preferences"
 msgstr "Preferências"
+
+msgid "Custodian interface"
+msgstr ""
 
 msgid "Recipient interface"
 msgstr "Interface de Destinatário"
@@ -375,33 +378,6 @@ msgstr "Autorizar acesso à identidade do delator"
 
 msgid "Templates"
 msgstr "Modelos"
-
-msgid "Notification of new submission"
-msgstr "Notificação de nova submissão"
-
-msgid "Notification of new comment"
-msgstr "Notificação de novo comentário"
-
-msgid "Notification of new message"
-msgstr "Notificação de nova mensagem"
-
-msgid "Notification of new file attachment"
-msgstr "Notificacao de novo arquivo anexado"
-
-msgid "Notification of PGP key expiration"
-msgstr "Notificação de expiração de chave PGP"
-
-msgid "Notification of anomaly"
-msgstr "Notificação de anomalia"
-
-msgid "Template for summary of contents in submission archive"
-msgstr "Template para sumário de conteúdos em arquivo de submissão"
-
-msgid "Email subject"
-msgstr "Assunto do e-mail"
-
-msgid "Email body"
-msgstr "Corpo do e-mail"
 
 msgid "in seconds"
 msgstr "em segundos"
@@ -1067,8 +1043,8 @@ msgstr ""
 msgid "Text shown on top of the interface for selecting recipients"
 msgstr "Texto mostrado no topo da interface para seleção de destinatários"
 
-msgid "Welcome to the administration interface!"
-msgstr "Bem-vindo à área de administração"
+msgid "Welcome!"
+msgstr "Bem vindo!"
 
 msgid ""
 "This interface may help you understand how the server can be configured and "
@@ -1169,11 +1145,11 @@ msgstr "Testar a configuração"
 msgid "Template"
 msgstr "Modelo"
 
-msgid "Admin"
-msgstr "Admin"
-
 msgid "Roles enabled to use the platform without Tor:"
 msgstr ""
+
+msgid "Admin"
+msgstr "Admin"
 
 msgid "Recipient"
 msgstr "Destinatário"
@@ -1577,6 +1553,9 @@ msgstr "Data da solicitação"
 msgid "Authorization"
 msgstr "Autorização"
 
+msgid "Identities"
+msgstr "Identidades"
+
 msgid "The validation link is either incorrect or has expired."
 msgstr ""
 
@@ -1595,9 +1574,9 @@ msgid ""
 msgstr "Você está se conectando a este dispositivo publicamente e este dispositivo suporta apenas submissões anônimas"
 
 msgid ""
-"Server temporarly unusable due to resource exhaustion; advise the Admin if "
+"Server temporarily unusable due to resource exhaustion; advise the Admin if "
 "you can."
-msgstr "Servidor temporariamente indisponível devido à exaustão de recursos; contate o Administrador se possível."
+msgstr ""
 
 msgid "This server is not configured."
 msgstr "Este nó não está configurado."
@@ -1851,9 +1830,6 @@ msgstr "Arquivos anexados pelo delator"
 msgid "Upload a file:"
 msgstr "Inserir um arquivo:"
 
-msgid "Site settings"
-msgstr ""
-
 msgid "Logout"
 msgstr "Sair"
 
@@ -1883,7 +1859,7 @@ msgstr ""
 msgid "Password reset requested."
 msgstr ""
 
-msgid "Please check your email inbox for further instructions."
+msgid "Please check your inbox for further instructions."
 msgstr ""
 
 msgid "Validation of email address change in progress."
@@ -1935,11 +1911,8 @@ msgid ""
 "number, i.e. by also including an expiration date."
 msgstr "Uma forma de esconder seu código chave é escrevê-lo como um número de cartão de crédito, isto é, incluindo também uma data de validade."
 
-msgid "Welcome!"
-msgstr "Bem vindo!"
-
-msgid "User preferences"
-msgstr "Preferências do usuário"
+msgid "Welcome to the administration interface!"
+msgstr "Bem-vindo à área de administração"
 
 msgid ""
 "You have not set up your encryption key, so the files will not be encrypted "
@@ -1978,9 +1951,6 @@ msgid "Congratulations!"
 msgstr "Parabéns!"
 
 msgid "You have completed the platform activation."
-msgstr ""
-
-msgid "Please check your inbox for further instructions."
 msgstr ""
 
 msgid "Your whistleblowing platform is almost ready!"

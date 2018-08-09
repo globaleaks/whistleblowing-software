@@ -22,8 +22,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-08-04 11:15+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2018-08-09 13:58+0000\n"
+"Last-Translator: Khairul Agasta <khairuldroids@gmail.com>\n"
 "Language-Team: Indonesian (http://www.transifex.com/otf/globaleaks/language/id/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -108,6 +108,9 @@ msgstr "Anomali"
 
 msgid "Preferences"
 msgstr "Preferensi"
+
+msgid "Custodian interface"
+msgstr ""
 
 msgid "Recipient interface"
 msgstr "Antarmuka penerima"
@@ -361,33 +364,6 @@ msgstr "Izinkan akses ke identitas informan publik "
 
 msgid "Templates"
 msgstr "Format "
-
-msgid "Notification of new submission"
-msgstr "notifikasi pengiriman baru"
-
-msgid "Notification of new comment"
-msgstr "Notifikasi komentar baru"
-
-msgid "Notification of new message"
-msgstr "Notifikasi pesan baru"
-
-msgid "Notification of new file attachment"
-msgstr "notifikasi lampiran berkas baru"
-
-msgid "Notification of PGP key expiration"
-msgstr "Notifikasi untuk masa akhir kunci PGP"
-
-msgid "Notification of anomaly"
-msgstr "Notifikasi anomali "
-
-msgid "Template for summary of contents in submission archive"
-msgstr "Format untuk ringkasan isi di arsip pengiriman"
-
-msgid "Email subject"
-msgstr "Subjek Surel"
-
-msgid "Email body"
-msgstr "Isi surel "
 
 msgid "in seconds"
 msgstr "dalam detik"
@@ -1053,8 +1029,8 @@ msgstr "Izinkan penerima menggunggah berkas kepada informan publik"
 msgid "Text shown on top of the interface for selecting recipients"
 msgstr "Teks yang terlihat di bagian atas antarmuka untuk memilih penerima"
 
-msgid "Welcome to the administration interface!"
-msgstr "Selamat datang di tampilan antarmuka administrasi."
+msgid "Welcome!"
+msgstr "Selamat datang!"
 
 msgid ""
 "This interface may help you understand how the server can be configured and "
@@ -1155,11 +1131,11 @@ msgstr "Mencoba konfigurasi"
 msgid "Template"
 msgstr "Format"
 
-msgid "Admin"
-msgstr "Admin"
-
 msgid "Roles enabled to use the platform without Tor:"
 msgstr " Peran yang diizinkan untuk menggunakan platform tanpa Tor:"
+
+msgid "Admin"
+msgstr "Admin"
 
 msgid "Recipient"
 msgstr "Penerima"
@@ -1563,6 +1539,9 @@ msgstr "Permintaan tanggal"
 msgid "Authorization"
 msgstr "Otorisasi"
 
+msgid "Identities"
+msgstr "Identitas"
+
 msgid "The validation link is either incorrect or has expired."
 msgstr "Tautan validasi tidak benar atau sudah berakhir."
 
@@ -1581,9 +1560,9 @@ msgid ""
 msgstr "Anda sudah terhubung dengan peladen tanpa anonimitas dan peladen ini hanya mendukung pengiriman anonim "
 
 msgid ""
-"Server temporarly unusable due to resource exhaustion; advise the Admin if "
+"Server temporarily unusable due to resource exhaustion; advise the Admin if "
 "you can."
-msgstr "Peladen sementara tidak dapat digunakan dikarenakan jaringan sibuk; beritahu admin jika Anda bisa "
+msgstr ""
 
 msgid "This server is not configured."
 msgstr "Peladen ini tidak dikonfigurasi "
@@ -1837,9 +1816,6 @@ msgstr "Lampiran berkas untuk informan publik "
 msgid "Upload a file:"
 msgstr "Mengunggah berkas: "
 
-msgid "Site settings"
-msgstr "Pengaturan situs "
-
 msgid "Logout"
 msgstr "Keluar"
 
@@ -1869,8 +1845,8 @@ msgstr "Fitur mengatur ulang kata sandi tidak tersedia untuk pengguna admin"
 msgid "Password reset requested."
 msgstr "Pengaturan ulang kata sandi telah diminta "
 
-msgid "Please check your email inbox for further instructions."
-msgstr "Mohon cek kotak masuk surel Anda untuk perintah lebih lanjut."
+msgid "Please check your inbox for further instructions."
+msgstr "Mohon cek kotak masuk anda untuk langkah lebih lanjut."
 
 msgid "Validation of email address change in progress."
 msgstr "Validasi perubahan alamat surel sedang berlangsung."
@@ -1921,11 +1897,8 @@ msgid ""
 "number, i.e. by also including an expiration date."
 msgstr "Cara yang baik menyembunyikan kode kunci Anda adalah untuk menulisnya seperti nomor kartu kredit, termasuk tanggal kadaluarsanya."
 
-msgid "Welcome!"
-msgstr "Selamat datang!"
-
-msgid "User preferences"
-msgstr "Preferensi pengguna"
+msgid "Welcome to the administration interface!"
+msgstr "Selamat datang di tampilan antarmuka administrasi."
 
 msgid ""
 "You have not set up your encryption key, so the files will not be encrypted "
@@ -1965,9 +1938,6 @@ msgstr "Selamat!"
 
 msgid "You have completed the platform activation."
 msgstr "Anda telah melengkapi platform aktivasi."
-
-msgid "Please check your inbox for further instructions."
-msgstr "Mohon cek kotak masuk anda untuk langkah lebih lanjut."
 
 msgid "Your whistleblowing platform is almost ready!"
 msgstr "Platform untuk Informan Publik anda hampir selesai!"

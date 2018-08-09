@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-07-24 17:41+0000\n"
-"Last-Translator: Hermes Center <info@hermescenter.org>\n"
+"PO-Revision-Date: 2018-08-09 13:58+0000\n"
+"Last-Translator: Pin Gu\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/otf/globaleaks/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -96,6 +96,9 @@ msgstr "異常"
 
 msgid "Preferences"
 msgstr "偏好"
+
+msgid "Custodian interface"
+msgstr ""
 
 msgid "Recipient interface"
 msgstr "收件者介面"
@@ -349,33 +352,6 @@ msgstr "授權讀取吹哨者的身份識別"
 
 msgid "Templates"
 msgstr "模版"
-
-msgid "Notification of new submission"
-msgstr "新提交通知"
-
-msgid "Notification of new comment"
-msgstr "新評論通知"
-
-msgid "Notification of new message"
-msgstr "新訊息通知"
-
-msgid "Notification of new file attachment"
-msgstr "新的檔案附件通知"
-
-msgid "Notification of PGP key expiration"
-msgstr "通知PGP金鑰的期限屆期"
-
-msgid "Notification of anomaly"
-msgstr "異常狀態的通知"
-
-msgid "Template for summary of contents in submission archive"
-msgstr "揭密檔案庫裏的內容摘要模版樣式"
-
-msgid "Email subject"
-msgstr "電子郵件主旨"
-
-msgid "Email body"
-msgstr "電子郵件內文"
 
 msgid "in seconds"
 msgstr "秒"
@@ -1041,8 +1017,8 @@ msgstr "可允許收件者上傳檔案給吹哨者"
 msgid "Text shown on top of the interface for selecting recipients"
 msgstr "在選擇收件人介面上方顯示的文字"
 
-msgid "Welcome to the administration interface!"
-msgstr "歡迎來到管理介面"
+msgid "Welcome!"
+msgstr "歡迎！"
 
 msgid ""
 "This interface may help you understand how the server can be configured and "
@@ -1143,11 +1119,11 @@ msgstr "測試設定"
 msgid "Template"
 msgstr "模版"
 
-msgid "Admin"
-msgstr "管理者"
-
 msgid "Roles enabled to use the platform without Tor:"
 msgstr "啟動角色可不透過 Tor 使用平台"
+
+msgid "Admin"
+msgstr "管理者"
 
 msgid "Recipient"
 msgstr "收件者"
@@ -1551,6 +1527,9 @@ msgstr "請求日期"
 msgid "Authorization"
 msgstr "授權"
 
+msgid "Identities"
+msgstr "身份"
+
 msgid "The validation link is either incorrect or has expired."
 msgstr "驗證連結不正確或是已經過期。"
 
@@ -1569,9 +1548,9 @@ msgid ""
 msgstr "你正連結到正常運行的伺服器上，它僅支援匿名的揭密提交"
 
 msgid ""
-"Server temporarly unusable due to resource exhaustion; advise the Admin if "
+"Server temporarily unusable due to resource exhaustion; advise the Admin if "
 "you can."
-msgstr "由於資源耗竭伺服器暫時停擺，如果可以請洽網管人員"
+msgstr ""
 
 msgid "This server is not configured."
 msgstr "伺服器尚未設定"
@@ -1825,9 +1804,6 @@ msgstr "給吹哨者的附加檔案"
 msgid "Upload a file:"
 msgstr "上傳檔案 :"
 
-msgid "Site settings"
-msgstr "站台設定"
-
 msgid "Logout"
 msgstr "登出"
 
@@ -1857,8 +1833,8 @@ msgstr "管理者用戶無法使用密碼重設功能。"
 msgid "Password reset requested."
 msgstr "已請求重設密碼。"
 
-msgid "Please check your email inbox for further instructions."
-msgstr "請檢查您的信箱取得進一步指示。"
+msgid "Please check your inbox for further instructions."
+msgstr ""
 
 msgid "Validation of email address change in progress."
 msgstr "正在查驗電郵地址變更"
@@ -1909,11 +1885,8 @@ msgid ""
 "number, i.e. by also including an expiration date."
 msgstr "保存鑰碼的有用作法是把它記到紙上，就如同信用卡，包括記下到期日資訊"
 
-msgid "Welcome!"
-msgstr "歡迎！"
-
-msgid "User preferences"
-msgstr "用戶偏好"
+msgid "Welcome to the administration interface!"
+msgstr "歡迎來到管理介面"
 
 msgid ""
 "You have not set up your encryption key, so the files will not be encrypted "
@@ -1953,9 +1926,6 @@ msgstr "恭喜！"
 
 msgid "You have completed the platform activation."
 msgstr "已完成平台的激活"
-
-msgid "Please check your inbox for further instructions."
-msgstr ""
 
 msgid "Your whistleblowing platform is almost ready!"
 msgstr "吹哨揭密平台已接近完成！"

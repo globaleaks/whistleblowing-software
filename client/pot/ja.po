@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-07-24 17:41+0000\n"
-"Last-Translator: Hermes Center <info@hermescenter.org>\n"
+"PO-Revision-Date: 2018-08-09 13:58+0000\n"
+"Last-Translator: g3600303 <g3600303@trbvm.com>\n"
 "Language-Team: Japanese (http://www.transifex.com/otf/globaleaks/language/ja/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -95,6 +95,9 @@ msgstr "異変"
 
 msgid "Preferences"
 msgstr "設定"
+
+msgid "Custodian interface"
+msgstr ""
 
 msgid "Recipient interface"
 msgstr "受信者インターフェース"
@@ -348,33 +351,6 @@ msgstr "内部告発者の身元へのアクセスを承認"
 
 msgid "Templates"
 msgstr "テンプレート"
-
-msgid "Notification of new submission"
-msgstr "新しい提出の通知"
-
-msgid "Notification of new comment"
-msgstr "新しいコメントの通知"
-
-msgid "Notification of new message"
-msgstr "新しいメッセージの通知"
-
-msgid "Notification of new file attachment"
-msgstr "新しい添付ファイルの通知"
-
-msgid "Notification of PGP key expiration"
-msgstr "PGP鍵期限切れの通知"
-
-msgid "Notification of anomaly"
-msgstr "異変の通知"
-
-msgid "Template for summary of contents in submission archive"
-msgstr "提出のアーカイブ内の、内容の概要のテンプレート"
-
-msgid "Email subject"
-msgstr "メールの件名"
-
-msgid "Email body"
-msgstr "メール本文"
 
 msgid "in seconds"
 msgstr "秒で"
@@ -1040,8 +1016,8 @@ msgstr "受信者が、内部告発者向けのファイルをアップロード
 msgid "Text shown on top of the interface for selecting recipients"
 msgstr "受信者を選択するインターフェイスの先頭に表示されるテキスト"
 
-msgid "Welcome to the administration interface!"
-msgstr "管理インターフェースへようこそ!"
+msgid "Welcome!"
+msgstr "ようこそ!"
 
 msgid ""
 "This interface may help you understand how the server can be configured and "
@@ -1142,11 +1118,11 @@ msgstr "設定のテスト"
 msgid "Template"
 msgstr "テンプレート"
 
-msgid "Admin"
-msgstr "管理者"
-
 msgid "Roles enabled to use the platform without Tor:"
 msgstr "Tor がなくてもプラットフォームを使用できる役割:"
+
+msgid "Admin"
+msgstr "管理者"
 
 msgid "Recipient"
 msgstr "受信者"
@@ -1550,6 +1526,9 @@ msgstr "リクエスト日"
 msgid "Authorization"
 msgstr "認証"
 
+msgid "Identities"
+msgstr "IDリスト"
+
 msgid "The validation link is either incorrect or has expired."
 msgstr ""
 
@@ -1568,9 +1547,9 @@ msgid ""
 msgstr "あなたは匿名性が無いままサーバーに接続しています。このサーバーは匿名による提出のみをサポートします。"
 
 msgid ""
-"Server temporarly unusable due to resource exhaustion; advise the Admin if "
+"Server temporarily unusable due to resource exhaustion; advise the Admin if "
 "you can."
-msgstr "リソースの消耗によりサーバーは一時的に利用できません。可能であれば管理者にご連絡ください。"
+msgstr ""
 
 msgid "This server is not configured."
 msgstr "このサーバーは設定されていません"
@@ -1824,9 +1803,6 @@ msgstr "内部告発者向けの添付ファイル"
 msgid "Upload a file:"
 msgstr "ファイルをアップロード："
 
-msgid "Site settings"
-msgstr ""
-
 msgid "Logout"
 msgstr "ログアウト"
 
@@ -1856,7 +1832,7 @@ msgstr ""
 msgid "Password reset requested."
 msgstr ""
 
-msgid "Please check your email inbox for further instructions."
+msgid "Please check your inbox for further instructions."
 msgstr ""
 
 msgid "Validation of email address change in progress."
@@ -1908,11 +1884,8 @@ msgid ""
 "number, i.e. by also including an expiration date."
 msgstr "あなたのキーコードを隠す有用な方法は、クレジットカード番号のように書き留めておくことです。有効期限も含めておきましょう。"
 
-msgid "Welcome!"
-msgstr "ようこそ!"
-
-msgid "User preferences"
-msgstr "ユーザー設定"
+msgid "Welcome to the administration interface!"
+msgstr "管理インターフェースへようこそ!"
 
 msgid ""
 "You have not set up your encryption key, so the files will not be encrypted "
@@ -1952,9 +1925,6 @@ msgstr "おめでとうございます"
 
 msgid "You have completed the platform activation."
 msgstr "プラットフォームの有効化が完了しました。"
-
-msgid "Please check your inbox for further instructions."
-msgstr ""
 
 msgid "Your whistleblowing platform is almost ready!"
 msgstr "内部告発プラットフォームがもう少しで準備できます!"

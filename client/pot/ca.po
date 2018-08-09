@@ -18,7 +18,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-07-24 17:41+0000\n"
+"PO-Revision-Date: 2018-08-09 13:58+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Catalan (http://www.transifex.com/otf/globaleaks/language/ca/)\n"
 "MIME-Version: 1.0\n"
@@ -104,6 +104,9 @@ msgstr "Anomalies"
 
 msgid "Preferences"
 msgstr "Preferències"
+
+msgid "Custodian interface"
+msgstr ""
 
 msgid "Recipient interface"
 msgstr "Interfície de destinatari"
@@ -357,33 +360,6 @@ msgstr "Autoritza l'accés a la identitat de l'informador"
 
 msgid "Templates"
 msgstr "Plantilles"
-
-msgid "Notification of new submission"
-msgstr "Notificació de nou lliurament"
-
-msgid "Notification of new comment"
-msgstr "Notificació de nou comentari"
-
-msgid "Notification of new message"
-msgstr "Notificació de nou missatge"
-
-msgid "Notification of new file attachment"
-msgstr "Notificació que s'ha adjuntat un arxiu"
-
-msgid "Notification of PGP key expiration"
-msgstr "Notificació que la clau PGP ha caducat"
-
-msgid "Notification of anomaly"
-msgstr "Notificació que hi ha hagut una anomalia"
-
-msgid "Template for summary of contents in submission archive"
-msgstr "Plantilla per al contingut de l'índex a l'hora de lliurar els arxius"
-
-msgid "Email subject"
-msgstr "Tema del correu electrònic"
-
-msgid "Email body"
-msgstr "Cos del correu electrònic"
 
 msgid "in seconds"
 msgstr "en segons"
@@ -1049,8 +1025,8 @@ msgstr "Permet als receptors carregar arxius per als informadors"
 msgid "Text shown on top of the interface for selecting recipients"
 msgstr "El text es mostra a sobre de la interfície per seleccionar els destinataris"
 
-msgid "Welcome to the administration interface!"
-msgstr "Benvinguts a la interfície d'administració!"
+msgid "Welcome!"
+msgstr "Welcome!"
 
 msgid ""
 "This interface may help you understand how the server can be configured and "
@@ -1151,11 +1127,11 @@ msgstr "Proveu la configuració"
 msgid "Template"
 msgstr "Plantilla"
 
-msgid "Admin"
-msgstr "Administrador"
-
 msgid "Roles enabled to use the platform without Tor:"
 msgstr "Rols que podeu usar la plataforma sense Tor:"
+
+msgid "Admin"
+msgstr "Administrador"
 
 msgid "Recipient"
 msgstr "Destinatari"
@@ -1559,6 +1535,9 @@ msgstr "Data de sol·licitud"
 msgid "Authorization"
 msgstr "Autorització"
 
+msgid "Identities"
+msgstr ""
+
 msgid "The validation link is either incorrect or has expired."
 msgstr "El vincle de validació és incorrecte o ha caducat."
 
@@ -1577,9 +1556,9 @@ msgid ""
 msgstr "S'està connectant al servidor de manera no anònima i aquest servidor només admet entregues anònimes"
 
 msgid ""
-"Server temporarly unusable due to resource exhaustion; advise the Admin if "
+"Server temporarily unusable due to resource exhaustion; advise the Admin if "
 "you can."
-msgstr "Servidor temporalment inutilitzable a causa de l'exhauriment dels recursos; avisa l'administrador si pots."
+msgstr ""
 
 msgid "This server is not configured."
 msgstr "Aquest servidor no està configurat."
@@ -1833,9 +1812,6 @@ msgstr "Els arxius adjunts per al informador"
 msgid "Upload a file:"
 msgstr "Pujar un fitxer:"
 
-msgid "Site settings"
-msgstr ""
-
 msgid "Logout"
 msgstr "Tanca sessió"
 
@@ -1865,7 +1841,7 @@ msgstr ""
 msgid "Password reset requested."
 msgstr ""
 
-msgid "Please check your email inbox for further instructions."
+msgid "Please check your inbox for further instructions."
 msgstr ""
 
 msgid "Validation of email address change in progress."
@@ -1917,11 +1893,8 @@ msgid ""
 "number, i.e. by also including an expiration date."
 msgstr "Un manera útil de recordar el codi és escriure'l com si fos el número d'una targeta de crèdit. A més, també pots incloure la data de caducitat."
 
-msgid "Welcome!"
-msgstr "Welcome!"
-
-msgid "User preferences"
-msgstr "Paràmetres d'usuari"
+msgid "Welcome to the administration interface!"
+msgstr "Benvinguts a la interfície d'administració!"
 
 msgid ""
 "You have not set up your encryption key, so the files will not be encrypted "
@@ -1961,9 +1934,6 @@ msgstr "Enhorabona!"
 
 msgid "You have completed the platform activation."
 msgstr "Ha completado la activación de la plataforma."
-
-msgid "Please check your inbox for further instructions."
-msgstr ""
 
 msgid "Your whistleblowing platform is almost ready!"
 msgstr "¡Su plataforma para informantes casi está lista!"

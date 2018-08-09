@@ -39,7 +39,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-07-24 17:41+0000\n"
+"PO-Revision-Date: 2018-08-09 13:58+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: English (http://www.transifex.com/otf/globaleaks/language/en/)\n"
 "MIME-Version: 1.0\n"
@@ -125,6 +125,9 @@ msgstr "Anomalies"
 
 msgid "Preferences"
 msgstr "Preferences"
+
+msgid "Custodian interface"
+msgstr "Custodian interface"
 
 msgid "Recipient interface"
 msgstr "Recipient interface"
@@ -378,33 +381,6 @@ msgstr "Authorize access to the whistleblower's identity"
 
 msgid "Templates"
 msgstr "Templates"
-
-msgid "Notification of new submission"
-msgstr "Notification of new submission"
-
-msgid "Notification of new comment"
-msgstr "Notification of new comment"
-
-msgid "Notification of new message"
-msgstr "Notification of new message"
-
-msgid "Notification of new file attachment"
-msgstr "Notification of new file attachment"
-
-msgid "Notification of PGP key expiration"
-msgstr "Notification of PGP key expiration"
-
-msgid "Notification of anomaly"
-msgstr "Notification of anomaly"
-
-msgid "Template for summary of contents in submission archive"
-msgstr "Template for summary of contents in submission archive"
-
-msgid "Email subject"
-msgstr "Email subject"
-
-msgid "Email body"
-msgstr "Email body"
 
 msgid "in seconds"
 msgstr "in seconds"
@@ -1070,8 +1046,8 @@ msgstr "Let recipients upload files to whistleblowers"
 msgid "Text shown on top of the interface for selecting recipients"
 msgstr "Text shown on top of the interface for selecting recipients"
 
-msgid "Welcome to the administration interface!"
-msgstr "Welcome to the administration interface!"
+msgid "Welcome!"
+msgstr "Welcome!"
 
 msgid ""
 "This interface may help you understand how the server can be configured and "
@@ -1172,11 +1148,11 @@ msgstr "Test the configuration"
 msgid "Template"
 msgstr "Template"
 
-msgid "Admin"
-msgstr "Admin"
-
 msgid "Roles enabled to use the platform without Tor:"
 msgstr "Roles enabled to use the platform without Tor:"
+
+msgid "Admin"
+msgstr "Admin"
 
 msgid "Recipient"
 msgstr "Recipient"
@@ -1580,6 +1556,9 @@ msgstr "Request date"
 msgid "Authorization"
 msgstr "Authorization"
 
+msgid "Identities"
+msgstr "Identities"
+
 msgid "The validation link is either incorrect or has expired."
 msgstr "The validation link is either incorrect or has expired."
 
@@ -1598,9 +1577,9 @@ msgid ""
 msgstr "You are connecting to the server without anonymity and this server supports only anonymous submissions"
 
 msgid ""
-"Server temporarly unusable due to resource exhaustion; advise the Admin if "
+"Server temporarily unusable due to resource exhaustion; advise the Admin if "
 "you can."
-msgstr "Server temporarly unusable due to resource exhaustion; advise the Admin if you can."
+msgstr "Server temporarily unusable due to resource exhaustion; advise the Admin if you can."
 
 msgid "This server is not configured."
 msgstr "This server is not configured."
@@ -1854,9 +1833,6 @@ msgstr "Attached files for the whistleblower"
 msgid "Upload a file:"
 msgstr "Upload a file:"
 
-msgid "Site settings"
-msgstr "Site settings"
-
 msgid "Logout"
 msgstr "Logout"
 
@@ -1886,8 +1862,8 @@ msgstr "Password reset feature is unavailable for admin users."
 msgid "Password reset requested."
 msgstr "Password reset requested."
 
-msgid "Please check your email inbox for further instructions."
-msgstr "Please check your email inbox for further instructions."
+msgid "Please check your inbox for further instructions."
+msgstr "Please check your inbox for further instructions."
 
 msgid "Validation of email address change in progress."
 msgstr "Validation of email address change in progress."
@@ -1938,11 +1914,8 @@ msgid ""
 "number, i.e. by also including an expiration date."
 msgstr "A useful way to hide your key code is to write it down like a credit card number, i.e. by also including an expiration date."
 
-msgid "Welcome!"
-msgstr "Welcome!"
-
-msgid "User preferences"
-msgstr "User preferences"
+msgid "Welcome to the administration interface!"
+msgstr "Welcome to the administration interface!"
 
 msgid ""
 "You have not set up your encryption key, so the files will not be encrypted "
@@ -1982,9 +1955,6 @@ msgstr "Congratulations!"
 
 msgid "You have completed the platform activation."
 msgstr "You have completed the platform activation."
-
-msgid "Please check your inbox for further instructions."
-msgstr "Please check your inbox for further instructions."
 
 msgid "Your whistleblowing platform is almost ready!"
 msgstr "Your whistleblowing platform is almost ready!"

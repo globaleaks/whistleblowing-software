@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-08-02 13:17+0000\n"
-"Last-Translator: Panu Ahvenharju <panu.ahvenharju@gmail.com>\n"
+"PO-Revision-Date: 2018-08-09 13:58+0000\n"
+"Last-Translator: Jarkko Nabb <syrinx78@gmail.com>\n"
 "Language-Team: Finnish (http://www.transifex.com/otf/globaleaks/language/fi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -96,6 +96,9 @@ msgstr "Poikkeavuudet"
 
 msgid "Preferences"
 msgstr "Asetukset"
+
+msgid "Custodian interface"
+msgstr ""
 
 msgid "Recipient interface"
 msgstr "Vastaanottajakäyttöliittymä"
@@ -350,33 +353,6 @@ msgstr "Salli pääsy vihjeen antajan henkilöllisyyteen"
 msgid "Templates"
 msgstr "Mallipohjat"
 
-msgid "Notification of new submission"
-msgstr "Ilmoitus uudesta julkaisusta"
-
-msgid "Notification of new comment"
-msgstr "Ilmoitus uudesta kommentista"
-
-msgid "Notification of new message"
-msgstr "Ilmoitus uudesta viestistä"
-
-msgid "Notification of new file attachment"
-msgstr "Ilmoitus uudesta liitteestä"
-
-msgid "Notification of PGP key expiration"
-msgstr "Ilmoitus PGP-avaimen erääntymisestä"
-
-msgid "Notification of anomaly"
-msgstr "Ilmoitus poikkeamasta"
-
-msgid "Template for summary of contents in submission archive"
-msgstr ""
-
-msgid "Email subject"
-msgstr "Sähköpostin otsikko"
-
-msgid "Email body"
-msgstr "Sähköpostin teksti"
-
 msgid "in seconds"
 msgstr "sekunneissa"
 
@@ -520,7 +496,7 @@ msgid "None"
 msgstr "Ei mitään"
 
 msgid "Regular expression"
-msgstr ""
+msgstr "Säännöllinen lauseke (regexp)"
 
 msgid "Label the submission"
 msgstr ""
@@ -619,7 +595,7 @@ msgid "Software updates"
 msgstr "Ohjelmistopäivitykset"
 
 msgid "Software problems"
-msgstr ""
+msgstr "Ohjelmisto-ongelmat"
 
 msgid "Disable"
 msgstr "Poista käytöstä"
@@ -722,7 +698,7 @@ msgid "Allow recipients to postpone expiration date of the submission"
 msgstr ""
 
 msgid "Allow recipients to delete submissions"
-msgstr ""
+msgstr "Salli vastaanottajien poistaa lähetettyjä vihjeitä"
 
 msgid ""
 "Allow recipients to grant permissions to whistleblowers on specific "
@@ -745,7 +721,7 @@ msgid "Disable the privacy panel"
 msgstr "Ota pois käytöstä yksityisyyskulkukortti"
 
 msgid "Enable disclaimer"
-msgstr ""
+msgstr "Ota käyttöön vastuuvapauslauseke"
 
 msgid "Title"
 msgstr "Otsikko"
@@ -760,10 +736,10 @@ msgid "Disable the key code hint"
 msgstr ""
 
 msgid "Disable the donation panel"
-msgstr ""
+msgstr "Ota pois käytöstä lahjoitusteksti"
 
 msgid "Enable CAPTCHA mechanism"
-msgstr ""
+msgstr "Ota käyttöön CAPTCHA-kuvavarmennus"
 
 msgid "Enable proof of work mechanism"
 msgstr ""
@@ -779,7 +755,7 @@ msgid "Tweak this setting only if you know what you are doing."
 msgstr ""
 
 msgid "Password change interval"
-msgstr ""
+msgstr "Salasanan vaihtoväli"
 
 msgid ""
 "For security reasons, password changes are required at regular intervals."
@@ -816,13 +792,13 @@ msgid "Title of the submission status page"
 msgstr ""
 
 msgid "Size limit for file attachments"
-msgstr ""
+msgstr "Liitetiedostojen kokorajoitus"
 
 msgid "Notify administrators of software problems"
-msgstr ""
+msgstr "Raportoi ohjelmisto-ongelmista palvelun ylläpitäjille"
 
 msgid "Notify developers of software problems"
-msgstr ""
+msgstr "Raportoi ohjelmisto-ongelmista palvelun kehittäjille"
 
 msgid ""
 "By enabling this feature, you will contribute to the development and "
@@ -842,7 +818,7 @@ msgid "Restrict privileged logins to specific IP addresses"
 msgstr ""
 
 msgid "Whitelisted IP addresses"
-msgstr ""
+msgstr "Sallitut IP-osoitteet"
 
 msgid "Either individual IP addresses or CIDR ranges are accepted here."
 msgstr ""
@@ -854,7 +830,7 @@ msgid "Each entry must be separated with a comma."
 msgstr ""
 
 msgid "Allow users to reset their passwords"
-msgstr ""
+msgstr "Salli käyttäjien nollata salasanansa"
 
 msgid ""
 "Allowing users to reset their passwords may reduce the security of the "
@@ -863,16 +839,16 @@ msgid ""
 msgstr ""
 
 msgid "Enable users to upload their PGP keys"
-msgstr ""
+msgstr "Salli käyttäjien omien PGP-avaimien tallentaminen"
 
 msgid "Enable multi-site login"
-msgstr ""
+msgstr "Salli samanaikainen kirjautuminen useaan järjestelmään"
 
 msgid "Enable simplified login"
-msgstr ""
+msgstr "Ota käyttöön helpotettu kirjautuminen"
 
 msgid "Enable experimental features"
-msgstr ""
+msgstr "Ota käyttöön koekäytössä olevat toiminnallisuudet"
 
 msgid ""
 "The experimental features may be less stable or even not work at all; enable"
@@ -938,7 +914,7 @@ msgid "Footer"
 msgstr "Alaviite"
 
 msgid "Favicon"
-msgstr ""
+msgstr "Favicon"
 
 msgid "Upload"
 msgstr "Lataa"
@@ -950,28 +926,28 @@ msgid "Upload custom file"
 msgstr "Lataa oma tiedosto"
 
 msgid "The file will be available at URL: /s/$filename"
-msgstr ""
+msgstr "Tiedosto on saatavilla osoitteessa /s/$filename"
 
 msgid "Language:"
 msgstr "Kieli:"
 
 msgid "Add custom text"
-msgstr ""
+msgstr "Lisää oma teksti"
 
 msgid "Custom text"
-msgstr ""
+msgstr "Oma teksti"
 
 msgid "Custom texts"
-msgstr ""
+msgstr "Omat tekstit"
 
 msgid "Original text"
 msgstr "Alkuperäisteksti"
 
 msgid "Original translation"
-msgstr ""
+msgstr "Alkuperäinen käännös"
 
 msgid "Custom translation"
-msgstr ""
+msgstr "Oma käännös"
 
 msgid "Contexts"
 msgstr "Aiheet"
@@ -1021,16 +997,16 @@ msgid "Enable comments"
 msgstr "Ota käyttöön kommentit"
 
 msgid "Allow whistleblowers to write comments"
-msgstr ""
+msgstr "Salli vihjeen antajien kirjoittaa kommentteja"
 
 msgid "Enable private messages"
 msgstr "Ota käyttöön yksityisviestit"
 
 msgid "Allow whistleblowers to send messages"
-msgstr ""
+msgstr "Salli vihjeen antajien lähettää viestejä"
 
 msgid "Let whistleblowers add attachments onto existing submissions"
-msgstr ""
+msgstr "Salli vihjeen antajien lisätä liitetiedostoja olemassaoleviin vihjeisiin"
 
 msgid "Show recipient details on the status page of the submission"
 msgstr ""
@@ -1041,8 +1017,8 @@ msgstr ""
 msgid "Text shown on top of the interface for selecting recipients"
 msgstr ""
 
-msgid "Welcome to the administration interface!"
-msgstr "Tervetuloa ylläpitokäyttöliittymään!"
+msgid "Welcome!"
+msgstr "Tervetuloa!"
 
 msgid ""
 "This interface may help you understand how the server can be configured and "
@@ -1093,10 +1069,10 @@ msgid "Follow the project on:"
 msgstr ""
 
 msgid "Software version:"
-msgstr ""
+msgstr "Ohjelmistoversio:"
 
 msgid "An update is available:"
-msgstr ""
+msgstr "Päivitys saatavilla:"
 
 msgid "SMTP name"
 msgstr "SMTP-nimi"
@@ -1143,11 +1119,11 @@ msgstr ""
 msgid "Template"
 msgstr "Mallipohja"
 
-msgid "Admin"
-msgstr "Ylläpitäjä"
-
 msgid "Roles enabled to use the platform without Tor:"
 msgstr ""
+
+msgid "Admin"
+msgstr "Ylläpitäjä"
 
 msgid "Recipient"
 msgstr "Vastaanottaja"
@@ -1193,7 +1169,7 @@ msgid "Enable"
 msgstr "Ota käyttöön"
 
 msgid "Country code"
-msgstr ""
+msgstr "Maakoodi"
 
 msgid "State"
 msgstr "Valtio"
@@ -1242,7 +1218,7 @@ msgid "Reset"
 msgstr "Nollaa"
 
 msgid "Select an option:"
-msgstr ""
+msgstr "Valitse:"
 
 msgid "Automatic configuration"
 msgstr ""
@@ -1311,7 +1287,7 @@ msgid "Tor Onion Service"
 msgstr ""
 
 msgid "Tor Browser download link"
-msgstr ""
+msgstr "Tor-selaimen latauslinkki"
 
 msgid "Anonymize outgoing connections"
 msgstr ""
@@ -1362,16 +1338,16 @@ msgid "Type"
 msgstr "Tyyppi"
 
 msgid "Single-line text input"
-msgstr ""
+msgstr "Yksirivinen tekstikenttä"
 
 msgid "Multi-line text input"
-msgstr ""
+msgstr "Monirivinen tekstikenttä"
 
 msgid "Multiple choice input"
-msgstr ""
+msgstr "Monivalinta"
 
 msgid "Selection box"
-msgstr ""
+msgstr "Valintalaatikko"
 
 msgid "Checkbox"
 msgstr "Valintaruutu"
@@ -1380,13 +1356,13 @@ msgid "Terms of service"
 msgstr "Käyttöehdot"
 
 msgid "Group of questions"
-msgstr ""
+msgstr "Kysymysryhmä"
 
 msgid "Row"
-msgstr ""
+msgstr "Rivi"
 
 msgid "Column"
-msgstr ""
+msgstr "Sarake"
 
 msgid "Width"
 msgstr "Leveys"
@@ -1404,7 +1380,7 @@ msgid "Accept multiple file uploads"
 msgstr "Hyväksy useiden tiedostojen siirto kerralla"
 
 msgid "Accept multiple answers"
-msgstr ""
+msgstr "Salli useita vastauksia"
 
 msgid "Hint shown on the button for adding an additional answer"
 msgstr ""
@@ -1413,7 +1389,7 @@ msgid "Phone number"
 msgstr "Puhelinnumero"
 
 msgid "Checkbox label"
-msgstr ""
+msgstr "Valintaruudun teksti"
 
 msgid "Layout orientation"
 msgstr ""
@@ -1443,7 +1419,7 @@ msgid "Add question from template"
 msgstr "Lisää kysymys mallipohjasta"
 
 msgid "Duplicate"
-msgstr ""
+msgstr "Monista"
 
 msgid "Steps"
 msgstr ""
@@ -1551,6 +1527,9 @@ msgstr ""
 msgid "Authorization"
 msgstr ""
 
+msgid "Identities"
+msgstr "Identiteetit"
+
 msgid "The validation link is either incorrect or has expired."
 msgstr ""
 
@@ -1558,7 +1537,7 @@ msgid "Your new email address has been validated."
 msgstr ""
 
 msgid "Before proceeding, please set a new password."
-msgstr ""
+msgstr "Määritä uusi salasana ennen kuin jatkat."
 
 msgid "Submissions disabled"
 msgstr "Ilmoitusten tekeminen ei mahdollista"
@@ -1569,7 +1548,7 @@ msgid ""
 msgstr "Olet yhdistänyt palvelimen ilman anonymiteettiä ja tämä solmu tukee vain nimettömiä lähetyksiä"
 
 msgid ""
-"Server temporarly unusable due to resource exhaustion; advise the Admin if "
+"Server temporarily unusable due to resource exhaustion; advise the Admin if "
 "you can."
 msgstr ""
 
@@ -1593,7 +1572,7 @@ msgid "Please support Hermes through their donation page."
 msgstr "Voit tukea Hermes-järjestöä heidän lahjoitussivunsa kautta."
 
 msgid "Forgot password?"
-msgstr ""
+msgstr "Unohtunut salasana?"
 
 msgid "Authentication failed"
 msgstr "Todentaminen epäonnistui"
@@ -1825,9 +1804,6 @@ msgstr ""
 msgid "Upload a file:"
 msgstr ""
 
-msgid "Site settings"
-msgstr ""
-
 msgid "Logout"
 msgstr "Kirjaudu ulos"
 
@@ -1857,7 +1833,7 @@ msgstr ""
 msgid "Password reset requested."
 msgstr ""
 
-msgid "Please check your email inbox for further instructions."
+msgid "Please check your inbox for further instructions."
 msgstr ""
 
 msgid "Validation of email address change in progress."
@@ -1909,11 +1885,8 @@ msgid ""
 "number, i.e. by also including an expiration date."
 msgstr "Hyödyllinen tapa piilottaa avainkoodisi on kirjoittaa se muistiin kuten luottokorttinumero, toisin sanoen sisällyttää myös vanhenemispäivämäärä."
 
-msgid "Welcome!"
-msgstr "Tervetuloa!"
-
-msgid "User preferences"
-msgstr "Käyttäjän asetukset"
+msgid "Welcome to the administration interface!"
+msgstr "Tervetuloa ylläpitokäyttöliittymään!"
 
 msgid ""
 "You have not set up your encryption key, so the files will not be encrypted "
@@ -1952,9 +1925,6 @@ msgid "Congratulations!"
 msgstr "Onneksi olkoon!"
 
 msgid "You have completed the platform activation."
-msgstr ""
-
-msgid "Please check your inbox for further instructions."
 msgstr ""
 
 msgid "Your whistleblowing platform is almost ready!"

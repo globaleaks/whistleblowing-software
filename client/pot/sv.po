@@ -20,8 +20,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-07-24 17:41+0000\n"
-"Last-Translator: Hermes Center <info@hermescenter.org>\n"
+"PO-Revision-Date: 2018-08-09 13:58+0000\n"
+"Last-Translator: leveebreaks\n"
 "Language-Team: Swedish (http://www.transifex.com/otf/globaleaks/language/sv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -106,6 +106,9 @@ msgstr "Anomalier"
 
 msgid "Preferences"
 msgstr "Inställningar"
+
+msgid "Custodian interface"
+msgstr ""
 
 msgid "Recipient interface"
 msgstr "Mottagargränssnitt"
@@ -359,33 +362,6 @@ msgstr "Tillåt åtkomst till whistleblowerens identitet"
 
 msgid "Templates"
 msgstr "Mallar"
-
-msgid "Notification of new submission"
-msgstr "Meddelande om ny inlämning"
-
-msgid "Notification of new comment"
-msgstr "Meddelande om ny kommentar"
-
-msgid "Notification of new message"
-msgstr "Meddelande om nytt meddelande"
-
-msgid "Notification of new file attachment"
-msgstr "Meddelande om ny bifogad fil"
-
-msgid "Notification of PGP key expiration"
-msgstr "Meddelande om PGP-nyckelens utgång"
-
-msgid "Notification of anomaly"
-msgstr "Meddelande om avvikelse"
-
-msgid "Template for summary of contents in submission archive"
-msgstr "Mall för sammanfattning av innehåll i inlämningsarkiv"
-
-msgid "Email subject"
-msgstr "E-postämne"
-
-msgid "Email body"
-msgstr ""
 
 msgid "in seconds"
 msgstr "i sekunder"
@@ -1051,8 +1027,8 @@ msgstr ""
 msgid "Text shown on top of the interface for selecting recipients"
 msgstr ""
 
-msgid "Welcome to the administration interface!"
-msgstr ""
+msgid "Welcome!"
+msgstr "Välkommen!"
 
 msgid ""
 "This interface may help you understand how the server can be configured and "
@@ -1153,11 +1129,11 @@ msgstr ""
 msgid "Template"
 msgstr "Mall"
 
-msgid "Admin"
-msgstr "Admin"
-
 msgid "Roles enabled to use the platform without Tor:"
 msgstr ""
+
+msgid "Admin"
+msgstr "Admin"
 
 msgid "Recipient"
 msgstr "Mottagare"
@@ -1561,6 +1537,9 @@ msgstr ""
 msgid "Authorization"
 msgstr ""
 
+msgid "Identities"
+msgstr "Identitet"
+
 msgid "The validation link is either incorrect or has expired."
 msgstr ""
 
@@ -1579,9 +1558,9 @@ msgid ""
 msgstr "Du ansluter dig till server. utan anonymitet, och den här server. stödjer bara tips som lämnas anonymt"
 
 msgid ""
-"Server temporarly unusable due to resource exhaustion; advise the Admin if "
+"Server temporarily unusable due to resource exhaustion; advise the Admin if "
 "you can."
-msgstr "Noden är tillfälligt oanvändbar på grund av låga resurser. Meddela administratören om du kan."
+msgstr ""
 
 msgid "This server is not configured."
 msgstr "Denna nod är inte konfigurerad."
@@ -1835,9 +1814,6 @@ msgstr ""
 msgid "Upload a file:"
 msgstr ""
 
-msgid "Site settings"
-msgstr ""
-
 msgid "Logout"
 msgstr "Logga ut"
 
@@ -1867,7 +1843,7 @@ msgstr ""
 msgid "Password reset requested."
 msgstr ""
 
-msgid "Please check your email inbox for further instructions."
+msgid "Please check your inbox for further instructions."
 msgstr ""
 
 msgid "Validation of email address change in progress."
@@ -1919,11 +1895,8 @@ msgid ""
 "number, i.e. by also including an expiration date."
 msgstr "Ett användbart sätt att dölja din kod är att skriva ner den som ett kreditkortsnummer, inklusive giltighetsdatum."
 
-msgid "Welcome!"
-msgstr "Välkommen!"
-
-msgid "User preferences"
-msgstr "Användarinställningar"
+msgid "Welcome to the administration interface!"
+msgstr ""
 
 msgid ""
 "You have not set up your encryption key, so the files will not be encrypted "
@@ -1962,9 +1935,6 @@ msgid "Congratulations!"
 msgstr "Grattis!"
 
 msgid "You have completed the platform activation."
-msgstr ""
-
-msgid "Please check your inbox for further instructions."
 msgstr ""
 
 msgid "Your whistleblowing platform is almost ready!"

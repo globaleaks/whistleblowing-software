@@ -25,8 +25,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-08-04 10:58+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2018-08-09 13:58+0000\n"
+"Last-Translator: Sebastiano Pistore <SebastianoPistore.info@protonmail.ch>\n"
 "Language-Team: Italian (http://www.transifex.com/otf/globaleaks/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -111,6 +111,9 @@ msgstr "Anomalie"
 
 msgid "Preferences"
 msgstr "Preferenze"
+
+msgid "Custodian interface"
+msgstr ""
 
 msgid "Recipient interface"
 msgstr "Interfaccia del ricevente"
@@ -364,33 +367,6 @@ msgstr "Autorizza l'accesso all'identità del whistleblower"
 
 msgid "Templates"
 msgstr "Modelli"
-
-msgid "Notification of new submission"
-msgstr "Notifica di nuova segnalazione"
-
-msgid "Notification of new comment"
-msgstr "Notifica di nuovo commento"
-
-msgid "Notification of new message"
-msgstr "Notifica di nuovo messaggio"
-
-msgid "Notification of new file attachment"
-msgstr "Notifica di nuovo file allegato"
-
-msgid "Notification of PGP key expiration"
-msgstr "Notifica di decadimento della chiave PGP"
-
-msgid "Notification of anomaly"
-msgstr "Notifica dell'anomalia"
-
-msgid "Template for summary of contents in submission archive"
-msgstr "Modello per il sommario dei contenuti nell'archivio segnalazioni"
-
-msgid "Email subject"
-msgstr "Soggetto del messaggio di posta elettronica"
-
-msgid "Email body"
-msgstr "Corpo del messaggio di posta elettronica"
 
 msgid "in seconds"
 msgstr "in secondi"
@@ -1056,8 +1032,8 @@ msgstr "Permetti ai riceventi di caricare file destinati al whistleblower"
 msgid "Text shown on top of the interface for selecting recipients"
 msgstr "Testo mostrato in cima all'interfaccia di selezione dei riceventi"
 
-msgid "Welcome to the administration interface!"
-msgstr "Benvenuto nell'interfaccia di amministrazione!"
+msgid "Welcome!"
+msgstr "Benvenuto!"
 
 msgid ""
 "This interface may help you understand how the server can be configured and "
@@ -1158,11 +1134,11 @@ msgstr "Prova la configurazione"
 msgid "Template"
 msgstr "Modello"
 
-msgid "Admin"
-msgstr "Amministratore"
-
 msgid "Roles enabled to use the platform without Tor:"
 msgstr "Ruoli abilitati all'uso della piattaforma senza Tor:"
+
+msgid "Admin"
+msgstr "Amministratore"
 
 msgid "Recipient"
 msgstr "Ricevente"
@@ -1566,6 +1542,9 @@ msgstr "Data della richiesta"
 msgid "Authorization"
 msgstr "Autorizzazione"
 
+msgid "Identities"
+msgstr "Identità"
+
 msgid "The validation link is either incorrect or has expired."
 msgstr "L'indirizzo di validazione è invalido o scaduto."
 
@@ -1584,9 +1563,9 @@ msgid ""
 msgstr "Ti stai connettendo a questo nodo in maniera non anonima,  ed esso supporta solo trasmissioni anonime"
 
 msgid ""
-"Server temporarly unusable due to resource exhaustion; advise the Admin if "
+"Server temporarily unusable due to resource exhaustion; advise the Admin if "
 "you can."
-msgstr "Il nodo è temporaneamente inutilizzabile a causa dell'esaurimento delle risorse; se potete avvisate l'Amministratore."
+msgstr ""
 
 msgid "This server is not configured."
 msgstr "Questo nodo non è configurato"
@@ -1840,9 +1819,6 @@ msgstr "Allega file destinati al whistleblower"
 msgid "Upload a file:"
 msgstr "Carica un file:"
 
-msgid "Site settings"
-msgstr "Configurazione del sito"
-
 msgid "Logout"
 msgstr "Esci"
 
@@ -1872,8 +1848,8 @@ msgstr "La funzionalità di password reset non è disponibile per gli utenti amm
 msgid "Password reset requested."
 msgstr "Richiesta di password reset completata."
 
-msgid "Please check your email inbox for further instructions."
-msgstr "Sei pregato di controllare la tua casella di posta per informazioni aggiuntive."
+msgid "Please check your inbox for further instructions."
+msgstr "Controlla la tua casella di posta in arrivo per informazioni aggiuntive."
 
 msgid "Validation of email address change in progress."
 msgstr "Validazione del cambio di email in corso."
@@ -1924,11 +1900,8 @@ msgid ""
 "number, i.e. by also including an expiration date."
 msgstr "Un modo efficace per nascondere il tuo key code è quello di appuntato come fosse una numero di una carta di credito ed ad esempio allegarci anche una data di scadenza."
 
-msgid "Welcome!"
-msgstr "Benvenuto!"
-
-msgid "User preferences"
-msgstr "Preferenze utente"
+msgid "Welcome to the administration interface!"
+msgstr "Benvenuto nell'interfaccia di amministrazione!"
 
 msgid ""
 "You have not set up your encryption key, so the files will not be encrypted "
@@ -1968,9 +1941,6 @@ msgstr "Congratulazioni!"
 
 msgid "You have completed the platform activation."
 msgstr "Hai completato l'attivazione della piattaforma."
-
-msgid "Please check your inbox for further instructions."
-msgstr "Controlla la tua casella di posta in arrivo per informazioni aggiuntive."
 
 msgid "Your whistleblowing platform is almost ready!"
 msgstr "La tua piattaforma di whistlebliowing è quasi pronta!"

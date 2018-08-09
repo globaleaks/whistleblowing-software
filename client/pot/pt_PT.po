@@ -21,7 +21,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-07-24 17:41+0000\n"
+"PO-Revision-Date: 2018-08-09 13:58+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Portuguese (Portugal) (http://www.transifex.com/otf/globaleaks/language/pt_PT/)\n"
 "MIME-Version: 1.0\n"
@@ -107,6 +107,9 @@ msgstr "Anomalias"
 
 msgid "Preferences"
 msgstr "Preferências"
+
+msgid "Custodian interface"
+msgstr ""
 
 msgid "Recipient interface"
 msgstr "Interface do destinatário"
@@ -360,33 +363,6 @@ msgstr "Autorizar o acesso à identidade do informador"
 
 msgid "Templates"
 msgstr "Modelos"
-
-msgid "Notification of new submission"
-msgstr "Notificação de nova submissão"
-
-msgid "Notification of new comment"
-msgstr "Notificação de novo comentário"
-
-msgid "Notification of new message"
-msgstr "Notificação de nova mensagem"
-
-msgid "Notification of new file attachment"
-msgstr "Notificação de novo anexo de ficheiro"
-
-msgid "Notification of PGP key expiration"
-msgstr "Notificação de expiração da chave PGP"
-
-msgid "Notification of anomaly"
-msgstr "Notificação de anomalia"
-
-msgid "Template for summary of contents in submission archive"
-msgstr "Modelo para o resumo dos conteúdos na submissão do arquivo"
-
-msgid "Email subject"
-msgstr "Assunto da mensagem"
-
-msgid "Email body"
-msgstr "Corpo da mensagem"
 
 msgid "in seconds"
 msgstr "em segundos"
@@ -1052,8 +1028,8 @@ msgstr "Permitir que os destinatários enviem ficheiros para os informadores"
 msgid "Text shown on top of the interface for selecting recipients"
 msgstr "O texto mostrado no topo da interface para os destinatários selecionados"
 
-msgid "Welcome to the administration interface!"
-msgstr "Bem-vindo à interface de admintração!"
+msgid "Welcome!"
+msgstr "Bem-vindo!"
 
 msgid ""
 "This interface may help you understand how the server can be configured and "
@@ -1154,11 +1130,11 @@ msgstr "Testar a configuração"
 msgid "Template"
 msgstr "Modelo"
 
-msgid "Admin"
-msgstr "Administrador"
-
 msgid "Roles enabled to use the platform without Tor:"
 msgstr "Funções ativadas para utilizar a plataforma sem o Tor:"
+
+msgid "Admin"
+msgstr "Administrador"
 
 msgid "Recipient"
 msgstr "Destinatário"
@@ -1562,6 +1538,9 @@ msgstr "Data do Pedido"
 msgid "Authorization"
 msgstr "Autorização"
 
+msgid "Identities"
+msgstr ""
+
 msgid "The validation link is either incorrect or has expired."
 msgstr "A hiperligação de validação está incorreta ou expirou."
 
@@ -1580,9 +1559,9 @@ msgid ""
 msgstr "Está a ligar-se ao servidor sem anonimato, mas o servidor admite apenas envio de comunicações anónimas."
 
 msgid ""
-"Server temporarly unusable due to resource exhaustion; advise the Admin if "
+"Server temporarily unusable due to resource exhaustion; advise the Admin if "
 "you can."
-msgstr "Servidor inutilizável temporariamente, devido a esgotamento dos recursos. Se puder, avise o administrador."
+msgstr ""
 
 msgid "This server is not configured."
 msgstr "Este servidor não está configurado."
@@ -1836,9 +1815,6 @@ msgstr "Ficheiros anexados para o informador"
 msgid "Upload a file:"
 msgstr "Envie um ficheiro:"
 
-msgid "Site settings"
-msgstr "Definições do site"
-
 msgid "Logout"
 msgstr "Terminar sessão"
 
@@ -1868,8 +1844,8 @@ msgstr "A funcionalidade de reposição da palavra-passe está indisponível par
 msgid "Password reset requested."
 msgstr "Solicitada a reposição da palavra--passe."
 
-msgid "Please check your email inbox for further instructions."
-msgstr "Por favor, verifique a sua caixa de correio para mais instruções."
+msgid "Please check your inbox for further instructions."
+msgstr ""
 
 msgid "Validation of email address change in progress."
 msgstr "Validação da alteração do endereço de e-mail em progresso."
@@ -1920,11 +1896,8 @@ msgid ""
 "number, i.e. by also including an expiration date."
 msgstr "Uma forma útil de esconder o seu código-chave é anotá-lo com se fosse um cartão de crédito, ou seja, incluindo também uma data de validade."
 
-msgid "Welcome!"
-msgstr "Bem-vindo!"
-
-msgid "User preferences"
-msgstr "Preferências do utilizador"
+msgid "Welcome to the administration interface!"
+msgstr "Bem-vindo à interface de admintração!"
 
 msgid ""
 "You have not set up your encryption key, so the files will not be encrypted "
@@ -1964,9 +1937,6 @@ msgstr "Parabéns!"
 
 msgid "You have completed the platform activation."
 msgstr "Concluiu a ativação da plataforma."
-
-msgid "Please check your inbox for further instructions."
-msgstr ""
 
 msgid "Your whistleblowing platform is almost ready!"
 msgstr "A plataforma de denúncia está quase pronta!"

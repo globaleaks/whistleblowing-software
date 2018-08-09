@@ -21,7 +21,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-07-24 17:41+0000\n"
+"PO-Revision-Date: 2018-08-09 13:58+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Hungarian (Hungary) (http://www.transifex.com/otf/globaleaks/language/hu_HU/)\n"
 "MIME-Version: 1.0\n"
@@ -107,6 +107,9 @@ msgstr "Rendellenességek"
 
 msgid "Preferences"
 msgstr "Preferenicák"
+
+msgid "Custodian interface"
+msgstr ""
 
 msgid "Recipient interface"
 msgstr "Címzett felület"
@@ -360,33 +363,6 @@ msgstr "Hozzáférés engedélyezése a szivárogtatók személyazonosságához"
 
 msgid "Templates"
 msgstr "Sablonok"
-
-msgid "Notification of new submission"
-msgstr "Új beadvány értesítése"
-
-msgid "Notification of new comment"
-msgstr "Ú hozzászólás értesítése"
-
-msgid "Notification of new message"
-msgstr "Új üzenet értesítése"
-
-msgid "Notification of new file attachment"
-msgstr "Új fájl melléklet értesítése"
-
-msgid "Notification of PGP key expiration"
-msgstr "PGP kulcs lejárat értesítése"
-
-msgid "Notification of anomaly"
-msgstr "Anomália értesítés"
-
-msgid "Template for summary of contents in submission archive"
-msgstr "Sablon a beadvány archívumban lévő tartalmak összefoglalásához"
-
-msgid "Email subject"
-msgstr "Email tárgy"
-
-msgid "Email body"
-msgstr "Levél törzs"
 
 msgid "in seconds"
 msgstr "másodpercekben"
@@ -1052,8 +1028,8 @@ msgstr ""
 msgid "Text shown on top of the interface for selecting recipients"
 msgstr ""
 
-msgid "Welcome to the administration interface!"
-msgstr "Üdvözöljük az adminisztrációs felületen!"
+msgid "Welcome!"
+msgstr ""
 
 msgid ""
 "This interface may help you understand how the server can be configured and "
@@ -1154,11 +1130,11 @@ msgstr ""
 msgid "Template"
 msgstr "Sablon"
 
-msgid "Admin"
-msgstr "Admin"
-
 msgid "Roles enabled to use the platform without Tor:"
 msgstr ""
+
+msgid "Admin"
+msgstr "Admin"
 
 msgid "Recipient"
 msgstr "Címzett"
@@ -1562,6 +1538,9 @@ msgstr "Kérés dátuma"
 msgid "Authorization"
 msgstr ""
 
+msgid "Identities"
+msgstr ""
+
 msgid "The validation link is either incorrect or has expired."
 msgstr ""
 
@@ -1580,9 +1559,9 @@ msgid ""
 msgstr "A kiszolgálóhoz anonim módon csatlakozik, ez a kiszolgáló csak névtelen beadványokat fogad el"
 
 msgid ""
-"Server temporarly unusable due to resource exhaustion; advise the Admin if "
+"Server temporarily unusable due to resource exhaustion; advise the Admin if "
 "you can."
-msgstr "A kiszolgáló átmenetileg nem használható erőforrás elfogyás miatt; jelezze az Adminisztrátornak, ha tudja."
+msgstr ""
 
 msgid "This server is not configured."
 msgstr "Ezt a kiszolgálót nem konfigurálták."
@@ -1836,9 +1815,6 @@ msgstr ""
 msgid "Upload a file:"
 msgstr ""
 
-msgid "Site settings"
-msgstr ""
-
 msgid "Logout"
 msgstr "Kilépés"
 
@@ -1868,7 +1844,7 @@ msgstr ""
 msgid "Password reset requested."
 msgstr ""
 
-msgid "Please check your email inbox for further instructions."
+msgid "Please check your inbox for further instructions."
 msgstr ""
 
 msgid "Validation of email address change in progress."
@@ -1920,11 +1896,8 @@ msgid ""
 "number, i.e. by also including an expiration date."
 msgstr "A kulcs kódja elrejtéséhez jó ötlet lehet, ha leírja mint egy hitelkártya számot, azaz hozzáad egy lejárati dátumot is. "
 
-msgid "Welcome!"
-msgstr ""
-
-msgid "User preferences"
-msgstr ""
+msgid "Welcome to the administration interface!"
+msgstr "Üdvözöljük az adminisztrációs felületen!"
 
 msgid ""
 "You have not set up your encryption key, so the files will not be encrypted "
@@ -1963,9 +1936,6 @@ msgid "Congratulations!"
 msgstr "Gratulálunk!"
 
 msgid "You have completed the platform activation."
-msgstr ""
-
-msgid "Please check your inbox for further instructions."
 msgstr ""
 
 msgid "Your whistleblowing platform is almost ready!"

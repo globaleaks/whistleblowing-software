@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-07-24 17:41+0000\n"
-"Last-Translator: Hermes Center <info@hermescenter.org>\n"
+"PO-Revision-Date: 2018-08-09 13:58+0000\n"
+"Last-Translator: SEPT____ <xpressengine3@mail.beo.kr>\n"
 "Language-Team: Korean (http://www.transifex.com/otf/globaleaks/language/ko/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -91,6 +91,9 @@ msgstr "이상"
 
 msgid "Preferences"
 msgstr "환경 설정"
+
+msgid "Custodian interface"
+msgstr ""
 
 msgid "Recipient interface"
 msgstr "받는 사람 인터페이스"
@@ -344,33 +347,6 @@ msgstr "고발자의 신원에 대한 액세스 권한을 부여"
 
 msgid "Templates"
 msgstr "템플릿"
-
-msgid "Notification of new submission"
-msgstr "새로운 제출 알림"
-
-msgid "Notification of new comment"
-msgstr "새 댓글 알림"
-
-msgid "Notification of new message"
-msgstr "새 메시지 알림"
-
-msgid "Notification of new file attachment"
-msgstr "새 첨부 파일의 알림"
-
-msgid "Notification of PGP key expiration"
-msgstr "PGP 키 만료의 통지"
-
-msgid "Notification of anomaly"
-msgstr "이상 알림"
-
-msgid "Template for summary of contents in submission archive"
-msgstr "제출 아카이브 내용의 요약을위한 템플릿"
-
-msgid "Email subject"
-msgstr "이메일 제목"
-
-msgid "Email body"
-msgstr "이메일 본문"
 
 msgid "in seconds"
 msgstr "초"
@@ -1036,8 +1012,8 @@ msgstr ""
 msgid "Text shown on top of the interface for selecting recipients"
 msgstr "텍스트는 수신자를 선택하기위한 인터페이스의 상단에 도시"
 
-msgid "Welcome to the administration interface!"
-msgstr "관리 인터페이스에 오신 것을 환영합니다!"
+msgid "Welcome!"
+msgstr "환영합니다!"
 
 msgid ""
 "This interface may help you understand how the server can be configured and "
@@ -1138,11 +1114,11 @@ msgstr ""
 msgid "Template"
 msgstr "주형"
 
-msgid "Admin"
-msgstr "관리자"
-
 msgid "Roles enabled to use the platform without Tor:"
 msgstr ""
+
+msgid "Admin"
+msgstr "관리자"
 
 msgid "Recipient"
 msgstr "받는 사람"
@@ -1546,6 +1522,9 @@ msgstr "요청 날짜"
 msgid "Authorization"
 msgstr "권한 부여"
 
+msgid "Identities"
+msgstr "신원"
+
 msgid "The validation link is either incorrect or has expired."
 msgstr ""
 
@@ -1564,9 +1543,9 @@ msgid ""
 msgstr "당신은 익명없이 서버에 연결하는이 서버는 익명 제출 지원"
 
 msgid ""
-"Server temporarly unusable due to resource exhaustion; advise the Admin if "
+"Server temporarily unusable due to resource exhaustion; advise the Admin if "
 "you can."
-msgstr "고갈 자원으로 인해 temporarly 사용할 수없는 서버; 당신이 할 수있는 경우에 관리를 조언한다."
+msgstr ""
 
 msgid "This server is not configured."
 msgstr "이 서버는 구성되어 있지 않습니다."
@@ -1820,9 +1799,6 @@ msgstr ""
 msgid "Upload a file:"
 msgstr ""
 
-msgid "Site settings"
-msgstr ""
-
 msgid "Logout"
 msgstr "로그 아웃"
 
@@ -1852,7 +1828,7 @@ msgstr ""
 msgid "Password reset requested."
 msgstr ""
 
-msgid "Please check your email inbox for further instructions."
+msgid "Please check your inbox for further instructions."
 msgstr ""
 
 msgid "Validation of email address change in progress."
@@ -1904,11 +1880,8 @@ msgid ""
 "number, i.e. by also including an expiration date."
 msgstr "키 코드를 숨길 수있는 유용한 방법은 또한 유효 기간을 포함하여 즉, 신용 카드 번호처럼 그것을 아래로 작성하는 것입니다."
 
-msgid "Welcome!"
-msgstr "환영합니다!"
-
-msgid "User preferences"
-msgstr ""
+msgid "Welcome to the administration interface!"
+msgstr "관리 인터페이스에 오신 것을 환영합니다!"
 
 msgid ""
 "You have not set up your encryption key, so the files will not be encrypted "
@@ -1947,9 +1920,6 @@ msgid "Congratulations!"
 msgstr "치하!"
 
 msgid "You have completed the platform activation."
-msgstr ""
-
-msgid "Please check your inbox for further instructions."
 msgstr ""
 
 msgid "Your whistleblowing platform is almost ready!"

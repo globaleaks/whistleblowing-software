@@ -38,8 +38,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-07-24 17:41+0000\n"
-"Last-Translator: Hermes Center <info@hermescenter.org>\n"
+"PO-Revision-Date: 2018-08-09 13:58+0000\n"
+"Last-Translator: ducki2p <ducki2p@gmail.com>\n"
 "Language-Team: Arabic (http://www.transifex.com/otf/globaleaks/language/ar/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -124,6 +124,9 @@ msgstr "الحالات الشاذّة"
 
 msgid "Preferences"
 msgstr "التفضيلات"
+
+msgid "Custodian interface"
+msgstr ""
 
 msgid "Recipient interface"
 msgstr " واجهة المتلقي"
@@ -377,33 +380,6 @@ msgstr "السماح بالنفاذ الى هوية المبلغ"
 
 msgid "Templates"
 msgstr "النماذج"
-
-msgid "Notification of new submission"
-msgstr "الاعلام عن بلاغ جديد"
-
-msgid "Notification of new comment"
-msgstr "الاعلام عن تعليق جديد"
-
-msgid "Notification of new message"
-msgstr "الاعلام عن رسالة جديدة"
-
-msgid "Notification of new file attachment"
-msgstr "الاعلام عن مرفق جديد"
-
-msgid "Notification of PGP key expiration"
-msgstr "الاعلام عن نهاية صلوحية مفتاح PGP"
-
-msgid "Notification of anomaly"
-msgstr "التنبيه بوضعية غير طبيعية"
-
-msgid "Template for summary of contents in submission archive"
-msgstr "نموذج لملخص محتويات أرشيف البلاغات"
-
-msgid "Email subject"
-msgstr "موضوع البريد الالكتروني"
-
-msgid "Email body"
-msgstr "جسم البريد الالكتروني"
 
 msgid "in seconds"
 msgstr "في ثواني"
@@ -1069,8 +1045,8 @@ msgstr "السماح للمتلقّين برفع ملفات للمبلغين."
 msgid "Text shown on top of the interface for selecting recipients"
 msgstr "النص الظّاهر في أعلى الواجهة لاختيار المتلقّين"
 
-msgid "Welcome to the administration interface!"
-msgstr "مرحبا بكم في واجهة الإدارة!"
+msgid "Welcome!"
+msgstr "مرحبا!"
 
 msgid ""
 "This interface may help you understand how the server can be configured and "
@@ -1171,11 +1147,11 @@ msgstr "ٌإختبر الضّبط"
 msgid "Template"
 msgstr "قالب"
 
-msgid "Admin"
-msgstr "مشرف"
-
 msgid "Roles enabled to use the platform without Tor:"
 msgstr "الجهات التي يسمح لها باستخدام المنصة بدون Tor"
+
+msgid "Admin"
+msgstr "مشرف"
 
 msgid "Recipient"
 msgstr "المتلقّي"
@@ -1579,6 +1555,9 @@ msgstr "تاريخ الطلب"
 msgid "Authorization"
 msgstr "تفويض"
 
+msgid "Identities"
+msgstr "الهويات"
+
 msgid "The validation link is either incorrect or has expired."
 msgstr ""
 
@@ -1597,9 +1576,9 @@ msgid ""
 msgstr "أنت تتصل بالخادم بطريقة لا تخفي هويتك. هذا الخادم يعمل فقط مع المتصلين و البلاغات المجهولة المصدر "
 
 msgid ""
-"Server temporarly unusable due to resource exhaustion; advise the Admin if "
+"Server temporarily unusable due to resource exhaustion; advise the Admin if "
 "you can."
-msgstr "لا يمكن استعمال الخادم مؤقّتا نظرا لنفاذ الموارد., استشر المشرف. ان أمكن"
+msgstr ""
 
 msgid "This server is not configured."
 msgstr "لم يتمّ تشكيل هذا العقدة"
@@ -1853,9 +1832,6 @@ msgstr "الملفات المرفقة للمبلغ"
 msgid "Upload a file:"
 msgstr "رفع ملف:"
 
-msgid "Site settings"
-msgstr ""
-
 msgid "Logout"
 msgstr "تسجيل الخروج"
 
@@ -1885,7 +1861,7 @@ msgstr ""
 msgid "Password reset requested."
 msgstr ""
 
-msgid "Please check your email inbox for further instructions."
+msgid "Please check your inbox for further instructions."
 msgstr ""
 
 msgid "Validation of email address change in progress."
@@ -1937,11 +1913,8 @@ msgid ""
 "number, i.e. by also including an expiration date."
 msgstr " طريقة مفيدة لإخفاء رمز المفتاح الخاص بك، هو أن تدوّنه مثل رقم بطاقة الائتمان ,أي مع تضمين تاريخ انتهاء صلاحية أيضا."
 
-msgid "Welcome!"
-msgstr "مرحبا!"
-
-msgid "User preferences"
-msgstr "تفضيلات المستخدم"
+msgid "Welcome to the administration interface!"
+msgstr "مرحبا بكم في واجهة الإدارة!"
 
 msgid ""
 "You have not set up your encryption key, so the files will not be encrypted "
@@ -1981,9 +1954,6 @@ msgstr "تهانينا!"
 
 msgid "You have completed the platform activation."
 msgstr "لقد أتممت تفعيل المنصة."
-
-msgid "Please check your inbox for further instructions."
-msgstr ""
 
 msgid "Your whistleblowing platform is almost ready!"
 msgstr "منصة التبليغ الخاصة بك على وشك أن تكون جاهزة!"

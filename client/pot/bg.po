@@ -11,7 +11,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-07-24 17:41+0000\n"
+"PO-Revision-Date: 2018-08-09 13:58+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Bulgarian (http://www.transifex.com/otf/globaleaks/language/bg/)\n"
 "MIME-Version: 1.0\n"
@@ -97,6 +97,9 @@ msgstr "Аномалии"
 
 msgid "Preferences"
 msgstr "Настройки"
+
+msgid "Custodian interface"
+msgstr ""
 
 msgid "Recipient interface"
 msgstr "Интерфейс на получателя"
@@ -350,33 +353,6 @@ msgstr "Упълномощаване на достъпа до самолично
 
 msgid "Templates"
 msgstr "Шаблони"
-
-msgid "Notification of new submission"
-msgstr "Известие за нов сигнал"
-
-msgid "Notification of new comment"
-msgstr "Известие за нов коментар"
-
-msgid "Notification of new message"
-msgstr "Известие за ново съобщение"
-
-msgid "Notification of new file attachment"
-msgstr "Известие за нов прикачен файл"
-
-msgid "Notification of PGP key expiration"
-msgstr "Известие за изтичащ PGP ключ"
-
-msgid "Notification of anomaly"
-msgstr "Известие за аномалия"
-
-msgid "Template for summary of contents in submission archive"
-msgstr "Шаблон за обобщението на съдържанието в архива на изпратени"
-
-msgid "Email subject"
-msgstr "Имейл относно"
-
-msgid "Email body"
-msgstr "Тяло на имейл"
 
 msgid "in seconds"
 msgstr "в секунди"
@@ -1042,8 +1018,8 @@ msgstr "Разрешаване на получателите да качват �
 msgid "Text shown on top of the interface for selecting recipients"
 msgstr "Текстът, който се показва най-горе на интерфейсът за избор на получатели"
 
-msgid "Welcome to the administration interface!"
-msgstr "Добре дошли в администраторския панел!"
+msgid "Welcome!"
+msgstr "Добре дошли!"
 
 msgid ""
 "This interface may help you understand how the server can be configured and "
@@ -1144,11 +1120,11 @@ msgstr "Тестване на конфигурацията"
 msgid "Template"
 msgstr "Шаблон"
 
-msgid "Admin"
-msgstr "Администратор"
-
 msgid "Roles enabled to use the platform without Tor:"
 msgstr "Ролите, които са активирани да използват платформата без Tor:"
+
+msgid "Admin"
+msgstr "Администратор"
 
 msgid "Recipient"
 msgstr "Получател"
@@ -1552,6 +1528,9 @@ msgstr "Дата на заявката"
 msgid "Authorization"
 msgstr "Резрешение"
 
+msgid "Identities"
+msgstr ""
+
 msgid "The validation link is either incorrect or has expired."
 msgstr ""
 
@@ -1570,9 +1549,9 @@ msgid ""
 msgstr "Свързвате се със сървър по не анонимен начин и този сървър поддържа единствено подаване на анонимен сигнал."
 
 msgid ""
-"Server temporarly unusable due to resource exhaustion; advise the Admin if "
+"Server temporarily unusable due to resource exhaustion; advise the Admin if "
 "you can."
-msgstr "Сървърът е временно еизползваем поради изчерпване на наличните ресурси; уведомете администраторът ако е това е възможно."
+msgstr ""
 
 msgid "This server is not configured."
 msgstr "Този сървър не е настроен."
@@ -1826,9 +1805,6 @@ msgstr "Прикачени файлове за източника"
 msgid "Upload a file:"
 msgstr "Качване на нов файл:"
 
-msgid "Site settings"
-msgstr ""
-
 msgid "Logout"
 msgstr "Отписване"
 
@@ -1858,7 +1834,7 @@ msgstr ""
 msgid "Password reset requested."
 msgstr ""
 
-msgid "Please check your email inbox for further instructions."
+msgid "Please check your inbox for further instructions."
 msgstr ""
 
 msgid "Validation of email address change in progress."
@@ -1910,11 +1886,8 @@ msgid ""
 "number, i.e. by also including an expiration date."
 msgstr "Удобен начин да скриете кодът е да го запишете като номер на кредитна карта, примерно като добавите дата на изтичане."
 
-msgid "Welcome!"
-msgstr "Добре дошли!"
-
-msgid "User preferences"
-msgstr ""
+msgid "Welcome to the administration interface!"
+msgstr "Добре дошли в администраторския панел!"
 
 msgid ""
 "You have not set up your encryption key, so the files will not be encrypted "
@@ -1954,9 +1927,6 @@ msgstr "Поздравления!"
 
 msgid "You have completed the platform activation."
 msgstr "Завършихте активирането на платформата."
-
-msgid "Please check your inbox for further instructions."
-msgstr ""
 
 msgid "Your whistleblowing platform is almost ready!"
 msgstr "Вашата платформа за източници е почити готова!"

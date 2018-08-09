@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-07-24 17:41+0000\n"
+"PO-Revision-Date: 2018-08-09 13:58+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Croatian (Croatia) (http://www.transifex.com/otf/globaleaks/language/hr_HR/)\n"
 "MIME-Version: 1.0\n"
@@ -94,6 +94,9 @@ msgstr "Anomalije"
 
 msgid "Preferences"
 msgstr "Postavke"
+
+msgid "Custodian interface"
+msgstr ""
 
 msgid "Recipient interface"
 msgstr "Sučelje primatelja"
@@ -347,33 +350,6 @@ msgstr "Dopusti pristup zviždačevom identitetu"
 
 msgid "Templates"
 msgstr "Predlošci"
-
-msgid "Notification of new submission"
-msgstr "Obavijest o novoj predaji"
-
-msgid "Notification of new comment"
-msgstr "Obavijest o novom komentaru"
-
-msgid "Notification of new message"
-msgstr "Obavijest o novoj poruci"
-
-msgid "Notification of new file attachment"
-msgstr "Obavijest o novom privitku"
-
-msgid "Notification of PGP key expiration"
-msgstr "Obavijest o isteku PGP ključa"
-
-msgid "Notification of anomaly"
-msgstr "Obavijest o anomaliji"
-
-msgid "Template for summary of contents in submission archive"
-msgstr "Predložak za sažetak sadržaja u arhivi predaja"
-
-msgid "Email subject"
-msgstr "Naslov email-a"
-
-msgid "Email body"
-msgstr "Poruka email-a"
 
 msgid "in seconds"
 msgstr "u sekundama"
@@ -1039,8 +1015,8 @@ msgstr ""
 msgid "Text shown on top of the interface for selecting recipients"
 msgstr "Tekst prikazan na vrhu sučelja za odabir primatelja"
 
-msgid "Welcome to the administration interface!"
-msgstr "Dobrodošli na administrativno sučelje!"
+msgid "Welcome!"
+msgstr ""
 
 msgid ""
 "This interface may help you understand how the server can be configured and "
@@ -1141,11 +1117,11 @@ msgstr "Testiraj konfiguraciju"
 msgid "Template"
 msgstr "Obrazac"
 
-msgid "Admin"
-msgstr "Administrator"
-
 msgid "Roles enabled to use the platform without Tor:"
 msgstr ""
+
+msgid "Admin"
+msgstr "Administrator"
 
 msgid "Recipient"
 msgstr "Primatelj"
@@ -1549,6 +1525,9 @@ msgstr "Datum zahtjeva"
 msgid "Authorization"
 msgstr "Autorizacija"
 
+msgid "Identities"
+msgstr ""
+
 msgid "The validation link is either incorrect or has expired."
 msgstr ""
 
@@ -1567,9 +1546,9 @@ msgid ""
 msgstr "Povezujete se s poslužiteljem bez anonimnosti, a ovaj poslužitelj podržava samo anonimne predaje"
 
 msgid ""
-"Server temporarly unusable due to resource exhaustion; advise the Admin if "
+"Server temporarily unusable due to resource exhaustion; advise the Admin if "
 "you can."
-msgstr "Poslužitelj privremeno nije iskoristiv zbog iscrpljenja resursa; javite administratoru ako možete."
+msgstr ""
 
 msgid "This server is not configured."
 msgstr "Ovaj poslužitelj nije konfiguriran."
@@ -1823,9 +1802,6 @@ msgstr "Privijene datoteke za zviždače"
 msgid "Upload a file:"
 msgstr ""
 
-msgid "Site settings"
-msgstr ""
-
 msgid "Logout"
 msgstr "Odjava"
 
@@ -1855,7 +1831,7 @@ msgstr ""
 msgid "Password reset requested."
 msgstr ""
 
-msgid "Please check your email inbox for further instructions."
+msgid "Please check your inbox for further instructions."
 msgstr ""
 
 msgid "Validation of email address change in progress."
@@ -1907,11 +1883,8 @@ msgid ""
 "number, i.e. by also including an expiration date."
 msgstr "Koristan način skrivanja ključa je da ga zapišete kao broj kreditne kartice, npr. također uključite datum isteka."
 
-msgid "Welcome!"
-msgstr ""
-
-msgid "User preferences"
-msgstr ""
+msgid "Welcome to the administration interface!"
+msgstr "Dobrodošli na administrativno sučelje!"
 
 msgid ""
 "You have not set up your encryption key, so the files will not be encrypted "
@@ -1950,9 +1923,6 @@ msgid "Congratulations!"
 msgstr "Čestitamo!"
 
 msgid "You have completed the platform activation."
-msgstr ""
-
-msgid "Please check your inbox for further instructions."
 msgstr ""
 
 msgid "Your whistleblowing platform is almost ready!"

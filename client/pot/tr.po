@@ -25,8 +25,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-07-24 17:41+0000\n"
-"Last-Translator: Hermes Center <info@hermescenter.org>\n"
+"PO-Revision-Date: 2018-08-09 13:58+0000\n"
+"Last-Translator: Emre Deniz\n"
 "Language-Team: Turkish (http://www.transifex.com/otf/globaleaks/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -111,6 +111,9 @@ msgstr "Anormallikler"
 
 msgid "Preferences"
 msgstr "Tercihler"
+
+msgid "Custodian interface"
+msgstr ""
 
 msgid "Recipient interface"
 msgstr "Alıcı arayüzü"
@@ -364,33 +367,6 @@ msgstr "İhbarcının kimliğine erişime izin ver"
 
 msgid "Templates"
 msgstr "Şablonlar"
-
-msgid "Notification of new submission"
-msgstr "Yeni gönderim bildirimi"
-
-msgid "Notification of new comment"
-msgstr "Yeni yorum bildirimi"
-
-msgid "Notification of new message"
-msgstr "Yeni mesaj bildirimi"
-
-msgid "Notification of new file attachment"
-msgstr "Yeni ek dosya bildirimi"
-
-msgid "Notification of PGP key expiration"
-msgstr "PGP anahtarının süre dolumu bildirimi"
-
-msgid "Notification of anomaly"
-msgstr "Anormallik bildirimi"
-
-msgid "Template for summary of contents in submission archive"
-msgstr "Gönderim arşivinin içerik özeti şablonu"
-
-msgid "Email subject"
-msgstr "E-posta konusu"
-
-msgid "Email body"
-msgstr "E-posta gövdesi"
 
 msgid "in seconds"
 msgstr "saniye"
@@ -1056,8 +1032,8 @@ msgstr ""
 msgid "Text shown on top of the interface for selecting recipients"
 msgstr ""
 
-msgid "Welcome to the administration interface!"
-msgstr "Yönetici arayüzüne hoşgeldiniz!"
+msgid "Welcome!"
+msgstr "Hoş Geldiniz!"
 
 msgid ""
 "This interface may help you understand how the server can be configured and "
@@ -1158,11 +1134,11 @@ msgstr ""
 msgid "Template"
 msgstr "Şablon"
 
-msgid "Admin"
-msgstr "Yönetici"
-
 msgid "Roles enabled to use the platform without Tor:"
 msgstr ""
+
+msgid "Admin"
+msgstr "Yönetici"
 
 msgid "Recipient"
 msgstr "Alıcı"
@@ -1566,6 +1542,9 @@ msgstr "Talep tarihi"
 msgid "Authorization"
 msgstr "İzin"
 
+msgid "Identities"
+msgstr "Kimlikler"
+
 msgid "The validation link is either incorrect or has expired."
 msgstr ""
 
@@ -1584,9 +1563,9 @@ msgid ""
 msgstr "Sisteme anonim olmadan bağlanıyorsunuz ve bu sistem sadece anonim gönderimleri destekliyor."
 
 msgid ""
-"Server temporarly unusable due to resource exhaustion; advise the Admin if "
+"Server temporarily unusable due to resource exhaustion; advise the Admin if "
 "you can."
-msgstr "Kaynak sıkıntısından dolayı sistem geçici kullanım dışıdır ; ulaşabiliyorsanız Yöneticiye bildiriniz."
+msgstr ""
 
 msgid "This server is not configured."
 msgstr "Bu sunucu yapılandırılmamış."
@@ -1840,9 +1819,6 @@ msgstr ""
 msgid "Upload a file:"
 msgstr "Bir dosya yükle:"
 
-msgid "Site settings"
-msgstr ""
-
 msgid "Logout"
 msgstr "Çıkış yap"
 
@@ -1872,7 +1848,7 @@ msgstr ""
 msgid "Password reset requested."
 msgstr ""
 
-msgid "Please check your email inbox for further instructions."
+msgid "Please check your inbox for further instructions."
 msgstr ""
 
 msgid "Validation of email address change in progress."
@@ -1924,11 +1900,8 @@ msgid ""
 "number, i.e. by also including an expiration date."
 msgstr "Anahtar kodunuzu saklamanın en kullanışlı yolu son geçerlilik tarihini de içeren kredi kartı görünümünde not etmektir."
 
-msgid "Welcome!"
-msgstr "Hoş Geldiniz!"
-
-msgid "User preferences"
-msgstr "Kullanıcı tercihleri"
+msgid "Welcome to the administration interface!"
+msgstr "Yönetici arayüzüne hoşgeldiniz!"
 
 msgid ""
 "You have not set up your encryption key, so the files will not be encrypted "
@@ -1967,9 +1940,6 @@ msgid "Congratulations!"
 msgstr "Tebrikler!"
 
 msgid "You have completed the platform activation."
-msgstr ""
-
-msgid "Please check your inbox for further instructions."
 msgstr ""
 
 msgid "Your whistleblowing platform is almost ready!"

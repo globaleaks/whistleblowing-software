@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-07-24 17:41+0000\n"
+"PO-Revision-Date: 2018-08-09 13:58+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Norwegian Bokmål (Norway) (http://www.transifex.com/otf/globaleaks/language/nb_NO/)\n"
 "MIME-Version: 1.0\n"
@@ -93,6 +93,9 @@ msgstr "Unormalheter"
 
 msgid "Preferences"
 msgstr "Innstillinger"
+
+msgid "Custodian interface"
+msgstr ""
 
 msgid "Recipient interface"
 msgstr "Mottaker-grensesnitt"
@@ -346,33 +349,6 @@ msgstr "Tillat tilgang til fløyteblåsers sanne identitet"
 
 msgid "Templates"
 msgstr "Maler"
-
-msgid "Notification of new submission"
-msgstr "Merknad om ny innsendelse"
-
-msgid "Notification of new comment"
-msgstr "Merknad om ny kommentar"
-
-msgid "Notification of new message"
-msgstr "Merknad om ny melding"
-
-msgid "Notification of new file attachment"
-msgstr "Merknad om nytt fil-vedlegg"
-
-msgid "Notification of PGP key expiration"
-msgstr "Merknad om utløp av PGP-nøkkel"
-
-msgid "Notification of anomaly"
-msgstr "Merknad om unormalitet"
-
-msgid "Template for summary of contents in submission archive"
-msgstr "Mal for filsammendrag av innhold i innsendelsesarkiv"
-
-msgid "Email subject"
-msgstr "e-postemne"
-
-msgid "Email body"
-msgstr "Meldingstekst for e-post"
 
 msgid "in seconds"
 msgstr "i sekunder"
@@ -1038,8 +1014,8 @@ msgstr "Tillat mottakere å laste opp filer til fløyteblåsere"
 msgid "Text shown on top of the interface for selecting recipients"
 msgstr "Tekst vist på toppen av grensesnittet for valg av mottakere"
 
-msgid "Welcome to the administration interface!"
-msgstr "Velkommen til administrasjonsgrensesnittet!"
+msgid "Welcome!"
+msgstr "Velkommen!"
 
 msgid ""
 "This interface may help you understand how the server can be configured and "
@@ -1140,11 +1116,11 @@ msgstr "Test oppsettet"
 msgid "Template"
 msgstr "Mal"
 
-msgid "Admin"
-msgstr "Admin"
-
 msgid "Roles enabled to use the platform without Tor:"
 msgstr "Disse rollene kreves for å bruke plattformen uten Tor:"
+
+msgid "Admin"
+msgstr "Admin"
 
 msgid "Recipient"
 msgstr "Mottaker"
@@ -1548,6 +1524,9 @@ msgstr "Forespør dato"
 msgid "Authorization"
 msgstr "Godkjenning"
 
+msgid "Identities"
+msgstr ""
+
 msgid "The validation link is either incorrect or has expired."
 msgstr ""
 
@@ -1566,9 +1545,9 @@ msgid ""
 msgstr "Din tilknytning til tjeneren er ikke anonym, denne tjeneren støtter bare anonyme innsendelser"
 
 msgid ""
-"Server temporarly unusable due to resource exhaustion; advise the Admin if "
+"Server temporarily unusable due to resource exhaustion; advise the Admin if "
 "you can."
-msgstr "Tjeneren er utilgjengelig, og  kan ikke nås på grunn av stor pågang; meld fra om dette til administratoren hvis du kan."
+msgstr ""
 
 msgid "This server is not configured."
 msgstr "Innstillinger for denne tjeneren har ikke blitt gjort enda."
@@ -1822,9 +1801,6 @@ msgstr "Vedlagte filer for fløyteblåseren"
 msgid "Upload a file:"
 msgstr "Last opp en fil:"
 
-msgid "Site settings"
-msgstr ""
-
 msgid "Logout"
 msgstr "Logg ut"
 
@@ -1854,7 +1830,7 @@ msgstr ""
 msgid "Password reset requested."
 msgstr ""
 
-msgid "Please check your email inbox for further instructions."
+msgid "Please check your inbox for further instructions."
 msgstr ""
 
 msgid "Validation of email address change in progress."
@@ -1906,11 +1882,8 @@ msgid ""
 "number, i.e. by also including an expiration date."
 msgstr "En mulig måte å gjemme koden din på er å hevde at det er et kredittkortnummer man har skrevet ned."
 
-msgid "Welcome!"
-msgstr "Velkommen!"
-
-msgid "User preferences"
-msgstr "Brukervalg"
+msgid "Welcome to the administration interface!"
+msgstr "Velkommen til administrasjonsgrensesnittet!"
 
 msgid ""
 "You have not set up your encryption key, so the files will not be encrypted "
@@ -1950,9 +1923,6 @@ msgstr "Gratulerer!"
 
 msgid "You have completed the platform activation."
 msgstr "Du har fullført plattformsaktiveringen."
-
-msgid "Please check your inbox for further instructions."
-msgstr ""
 
 msgid "Your whistleblowing platform is almost ready!"
 msgstr "Din fløyteblåserplattform er nesten klar!"

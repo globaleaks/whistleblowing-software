@@ -17,7 +17,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-07-24 17:41+0000\n"
+"PO-Revision-Date: 2018-08-09 13:58+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Hebrew (http://www.transifex.com/otf/globaleaks/language/he/)\n"
 "MIME-Version: 1.0\n"
@@ -103,6 +103,9 @@ msgstr "אנומליות"
 
 msgid "Preferences"
 msgstr "העדפות"
+
+msgid "Custodian interface"
+msgstr ""
 
 msgid "Recipient interface"
 msgstr "ממשק המקבל"
@@ -356,33 +359,6 @@ msgstr "תן הרשאת גישת הזהות של המתריע"
 
 msgid "Templates"
 msgstr "תבניות"
-
-msgid "Notification of new submission"
-msgstr "הודעה על הגשה החדשה"
-
-msgid "Notification of new comment"
-msgstr "הודעה על תגובה חדשה"
-
-msgid "Notification of new message"
-msgstr "הודעה על הודעה חדשה"
-
-msgid "Notification of new file attachment"
-msgstr "הודעה על קובץ מצורף החדש"
-
-msgid "Notification of PGP key expiration"
-msgstr "הודעה על פקיעת מפתח PGP"
-
-msgid "Notification of anomaly"
-msgstr "הודעה על אנומליה"
-
-msgid "Template for summary of contents in submission archive"
-msgstr "תבנית עבור סיכום של תוכן בארכיון הגשה"
-
-msgid "Email subject"
-msgstr "נושא האימייל"
-
-msgid "Email body"
-msgstr "גוף דוא\"ל"
 
 msgid "in seconds"
 msgstr "בשניות"
@@ -1048,8 +1024,8 @@ msgstr ""
 msgid "Text shown on top of the interface for selecting recipients"
 msgstr "טקסט המופיע על גבי הממשק לבחירת מקבלים"
 
-msgid "Welcome to the administration interface!"
-msgstr "ברוכים הבאים לממשק ניהול!"
+msgid "Welcome!"
+msgstr ""
 
 msgid ""
 "This interface may help you understand how the server can be configured and "
@@ -1150,11 +1126,11 @@ msgstr ""
 msgid "Template"
 msgstr "תבנית"
 
-msgid "Admin"
-msgstr "מנהל"
-
 msgid "Roles enabled to use the platform without Tor:"
 msgstr ""
+
+msgid "Admin"
+msgstr "מנהל"
 
 msgid "Recipient"
 msgstr "המקבל"
@@ -1558,6 +1534,9 @@ msgstr "תאריך בקשה"
 msgid "Authorization"
 msgstr "הרשאה"
 
+msgid "Identities"
+msgstr ""
+
 msgid "The validation link is either incorrect or has expired."
 msgstr ""
 
@@ -1576,9 +1555,9 @@ msgid ""
 msgstr "התחברת לצומת ללא אנונימיות והצומת הזה תומכת רק בהגשות אנונימים"
 
 msgid ""
-"Server temporarly unusable due to resource exhaustion; advise the Admin if "
+"Server temporarily unusable due to resource exhaustion; advise the Admin if "
 "you can."
-msgstr "השרת לא שמיש עקב חוסר משאבים; הודע לאדמין אם אתה יכול."
+msgstr ""
 
 msgid "This server is not configured."
 msgstr "צומת זו אינה מוגדרת."
@@ -1832,9 +1811,6 @@ msgstr ""
 msgid "Upload a file:"
 msgstr ""
 
-msgid "Site settings"
-msgstr ""
-
 msgid "Logout"
 msgstr "נתק"
 
@@ -1864,7 +1840,7 @@ msgstr ""
 msgid "Password reset requested."
 msgstr ""
 
-msgid "Please check your email inbox for further instructions."
+msgid "Please check your inbox for further instructions."
 msgstr ""
 
 msgid "Validation of email address change in progress."
@@ -1916,11 +1892,8 @@ msgid ""
 "number, i.e. by also including an expiration date."
 msgstr "דרך שימושית להסתיר את קוד המפתח שלך, היא לכתוב אותו כמו מספר כרטיס אשראי כלומר כוללת תאריך תפוגה."
 
-msgid "Welcome!"
-msgstr ""
-
-msgid "User preferences"
-msgstr "הגדרות משתמש"
+msgid "Welcome to the administration interface!"
+msgstr "ברוכים הבאים לממשק ניהול!"
 
 msgid ""
 "You have not set up your encryption key, so the files will not be encrypted "
@@ -1959,9 +1932,6 @@ msgid "Congratulations!"
 msgstr "מזל טוב!"
 
 msgid "You have completed the platform activation."
-msgstr ""
-
-msgid "Please check your inbox for further instructions."
 msgstr ""
 
 msgid "Your whistleblowing platform is almost ready!"
