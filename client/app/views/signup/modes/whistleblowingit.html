@@ -141,7 +141,7 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-md-8 form-group">
+    <div class="col-md-12 form-group">
       <label>
         <span>Questo sarà sito di segnalazione del tuo ente:</span>
         <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
@@ -182,35 +182,39 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-md-6 form-group" data-ng-class="{'has-error': signupForm.organization_number_employees.$error.required}">
+    <div class="col-md-12 form-group" data-ng-class="{'has-error': signupForm.organization_number_employees.$error.required}">
       <label>Numero dipendenti</label>
       <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
-      <div data-ng-class="{'has-error': signupForm.organization_number_employees.$error.required}">
-        <select name="organization_number_employees" class="form-control" data-ng-model="signup.organization_number_employees" required>
-          <option value="option1">0-15</option>
-          <option value="option2">15 - 100</option>
-          <option value="option3">100 - 1.000</option>
-          <option value="option4">1.000 - 5.000</option>
-          <option value="option5">5.000 - 10.000</option>
-          <option value="option6">&gt; 10.000</option>
-        </select>
+      <div class="row">
+        <div class="col-md-6" data-ng-class="{'has-error': signupForm.organization_number_employees.$error.required}">
+          <select name="organization_number_employees" class="form-control" data-ng-model="signup.organization_number_employees" required>
+            <option value="option1">0-15</option>
+            <option value="option2">15 - 100</option>
+            <option value="option3">100 - 1.000</option>
+            <option value="option4">1.000 - 5.000</option>
+            <option value="option5">5.000 - 10.000</option>
+            <option value="option6">&gt; 10.000</option>
+          </select>
+	</div>
       </div>
     </div>
   </div>
   <div class="row">
-    <div class="col-md-6 form-group">
+    <div class="col-md-12 form-group">
       <label>Numero utenti</label>
       <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
-      <div class="fieldDescription">Per numero utenti si intende il bacino di riferimento dell’ente, per un comune sono i cittadini, per una ASL sono gli utenti del servizio sanitario di pertinenza, per l’università gli iscritti, etc</div>
-      <div data-ng-class="{'has-error': signupForm.organization_number_users.$error.required}">
-        <select name="organization_number_users" class="form-control" data-ng-model="signup.organization_number_users" required>
-          <option value="option1">0 - 500</option>
-          <option value="option2">500 - 5.000</option>
-          <option value="option3">5.000 - 50.000</option>
-          <option value="option4">50.000 - 100.000</option>
-          <option value="option5">100.000 - 500.000</option>
-          <option value="option6">&gt; 500.000</option>
-        </select>
+      <div class="fieldDescription">Per numero utenti si intende il bacino di riferimento dell’ente, per un comune sono i cittadini, per una ASL sono gli utenti del servizio sanitario di pertinenza, per l’università gli iscritti, etc.</div>
+      <div class="row">
+        <div class="col-md-6" data-ng-class="{'has-error': signupForm.organization_number_users.$error.required}">
+          <select name="organization_number_users" class="form-control" data-ng-model="signup.organization_number_users" required>
+            <option value="option1">0 - 500</option>
+            <option value="option2">500 - 5.000</option>
+            <option value="option3">5.000 - 50.000</option>
+            <option value="option4">50.000 - 100.000</option>
+            <option value="option5">100.000 - 500.000</option>
+            <option value="option6">&gt; 500.000</option>
+          </select>
+	</div>
       </div>
     </div>
   </div>
