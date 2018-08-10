@@ -565,7 +565,6 @@ class PlatformSignupKeyword(NodeKeyword):
         }
 
         return Templating().format_template(self.data['notification']['user_credentials'], data) + '\n\n'
-
     def RecipientCredentials(self):
         data = {
             'type': 'user_credentials',
