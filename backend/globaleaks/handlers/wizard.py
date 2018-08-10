@@ -81,6 +81,7 @@ def db_wizard(session, state, tid, mode, request, client_using_tor, language):
 
     # Apply the specific fixes related to whistleblowing.it projects
     if mode == u'whistleblowing.it':
+        node.set_val(u'hostname', tenant.subdomain + '.' + 'whistleblowing.it')
         node.set_val(u'password_change_period', 365)
         node.set_val(u'disable_key_code_hint', True)
         node.set_val(u'disable_privacy_badge', True)
