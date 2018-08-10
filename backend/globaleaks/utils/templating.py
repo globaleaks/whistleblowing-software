@@ -526,7 +526,7 @@ class PlatformSignupKeyword(NodeKeyword):
         return '/#/activation?token=' + self.data['signup']['activation_token']
 
     def ActivationUrl(self):
-        return 'https://' + self.data['node']['rootdomain'] + self.ActivationRequest()
+        return 'https://' + self.data['node']['hostname'] + self.ActivationRequest()
 
     def ExpirationDate(self):
         date = ISO8601_to_datetime(self.data['signup']['registration_date']) + timedelta(days=30)
