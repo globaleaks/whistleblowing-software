@@ -6,14 +6,14 @@
   </div>
   <div id="LoginStatusBox" class="row" data-ng-if="Utils.showUserStatusBox()">
     <div class="pull-right">
-      <span id="LoginRoleText">
-        <label data-ng-if="session.role === 'whistleblower'" data-translate>Whistleblower</label>
-        <span data-ng-if="session.role !== 'whistleblower'" data-ng-switch="session.role">
-           <label>{{::preferences.name}}</label>
-           <span class="text-separator">(</span><a data-ng-href="{{session.homepage}}">{{session.role_l10n()}}</a><span class="text-separator">)</span>
-        </span>
+      <span id="HomeLinkBox" data-ng-if="session.role !== 'whistleblower'">
+        <label>{{::preferences.name}}</label>
+        <span class="text-separator">|</span>
+	<span>
+          <a data-ng-href="{{session.homepage}}" data-translate>Home</a>
+	</span>
       </span>
-     <span id="PreferencesLinkBox" data-ng-if="session.role != 'whistleblower'">
+      <span id="PreferencesLinkBox" data-ng-if="session.role === 'admin'">
        <span class="text-separator">|</span>
        <span>
          <a id="PreferencesLink" href="/#/preferences" data-translate>Preferences</a>
