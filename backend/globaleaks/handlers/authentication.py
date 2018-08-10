@@ -85,8 +85,7 @@ def login(session, tid, username, password, client_using_tor, client_ip, token='
     """
     user = None
 
-    tenant_condition = or_(and_(UserTenant.user_id == User.id, UserTenant.tenant_id == tid),
-                           and_(User.role == u'admin', UserTenant.user_id == User.id, UserTenant.tenant_id == 1))
+    tenant_condition = and_(UserTenant.user_id == User.id, UserTenant.tenant_id == tid)
 
     if token:
         user = session.query(User).filter(User.auth_token == token,
