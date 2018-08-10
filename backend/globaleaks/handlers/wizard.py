@@ -96,6 +96,9 @@ def db_wizard(session, state, tid, mode, request, client_using_tor, language):
         # Delete the admin user
         session.delete(admin_user)
 
+        # Set the recipient name equal to the node name
+        receiver_user.name = request['node_name']
+
         # Enable the recipient user to configure platform general settings
         receiver_user.can_edit_general_settings = True
 
