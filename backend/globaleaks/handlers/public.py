@@ -111,36 +111,45 @@ def db_serialize_node(session, tid, language):
     configured = session.query(models.ReceiverContext).filter(models.ReceiverContext.context_id == models.Context.id,
                                                               models.Context.tid == tid).count() > 0
 
-    node = ConfigFactory(session, tid, 'public_node').serialize()
-
-    ret_dict = {
-        'root_tenant': tid == 1,
-        'languages_enabled': models.EnabledLanguage.list(session, tid) if node['wizard_done'] else list(LANGUAGES_SUPPORTED_CODES),
-        'languages_supported': LANGUAGES_SUPPORTED,
-        'configured': configured,
-        'accept_submissions': State.accept_submissions,
-        'logo': db_get_file(session, tid, u'logo')
-    }
-
+    node_dict = ConfigFactory(session, tid, 'public_node').serialize()
     l10n_dict = NodeL10NFactory(session, tid).localized_dict(language)
+
+    ret_dict = merge_dicts(node_dict, l10n_dict)
+
+    ret_dict['root_tenant'] = tid == 1
+    ret_dict['languages_enabled'] = models.EnabledLanguage.list(session, tid) if node_dict['wizard_done'] else list(LANGUAGES_SUPPORTED_CODES)
+    ret_dict['languages_supported'] = LANGUAGES_SUPPORTED
+    ret_dict['configured'] = configured
+    ret_dict['accept_submissions'] = State.accept_submissions
+    ret_dict['logo'] = db_get_file(session, tid, u'logo')
 
     if tid != 1:
         root_tenant_node = ConfigFactory(session, 1, 'public_node')
-        ret_dict['enable_footer_customization'] = root_tenant_node.get_val(u'enable_footer_customization')
 
         if language not in models.EnabledLanguage.list(session, tid):
             language = root_tenant_node.get_val(u'default_language')
 
         root_tenant_l10n = NodeL10NFactory(session, tid)
-        l10n_dict['footer'] = root_tenant_l10n.get_val(u'footer', language)
 
-    ret_dict['favicon'] = ret_dict['css'] = ret_dict['script'] = ''
-    if tid == 1 or node['enable_graphic_customization']:
-        ret_dict['css'] = db_get_file(session, tid, u'css')
-        ret_dict['favicon'] = db_get_file(session, tid, u'favicon')
-        ret_dict['script'] = db_get_file(session, tid, u'script')
+        if not root_tenant_node.get_val(u'enable_footer_customization'):
+            ret_dict['footer'] = root_tenant_l10n.get_val(u'footer', language)
 
-    return merge_dicts(node, ret_dict, l10n_dict)
+        if ret_dict['preset'] == u'whistleblowing.it':
+            ret_dict['whistleblowing_question'] = root_tenant_l10n.get_val(u'whistleblowing_question', language)
+            ret_dict['whistleblowing_button'] = root_tenant_l10n.get_val(u'whistleblowing_button', language)
+            ret_dict['enable_disclaimer'] = root_tenant_node.get_val(u'enable_disclaimer')
+            ret_dict['disclaimer_title'] = root_tenant_l10n.get_val(u'disclaimer_title', language)
+            ret_dict['disclaimer_text'] = root_tenant_l10n.get_val(u'disclaimer_text', language)
+
+    if tid != 1 and not node_dict['enable_graphic_customization']:
+        tid = 1
+
+    ret_dict['css'] = db_get_file(session, tid, u'css')
+    ret_dict['favicon'] = db_get_file(session, tid, u'favicon')
+    ret_dict['script'] = db_get_file(session, tid, u'script')
+
+
+    return ret_dict
 
 
 def serialize_context(session, context, language, data=None):
