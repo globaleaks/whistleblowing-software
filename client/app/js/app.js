@@ -236,6 +236,15 @@ var GLClient = angular.module('GLClient', [
           access: requireAuth('receiver'),
         }
       }).
+      when('/receiver/preferences', {
+        templateUrl: 'views/receiver/preferences.html',
+        controller: 'ReceiverCtrl',
+        header_title: 'Preferences',
+        header_subtitle: '',
+        resolve: {
+          access: requireAuth('receiver'),
+        }
+      }).
       when('/receiver/content', {
         templateUrl: 'views/receiver/content.html',
         controller: 'AdminCtrl',
@@ -262,6 +271,16 @@ var GLClient = angular.module('GLClient', [
         resolve: {
            access: requireAuth('admin'),
           resources: fetchResources('acl', ['manifest', 'node']),
+        }
+      }).
+      when('/admin/preferences', {
+        templateUrl: 'views/admin/preferences.html',
+        controller: 'AdminCtrl',
+        header_title: 'Preferences',
+        header_subtitle: '',
+        resolve: {
+          access: requireAuth('admin'),
+	  resources: fetchResources('admin', ['node']),
         }
       }).
       when('/admin/content', {
@@ -383,6 +402,15 @@ var GLClient = angular.module('GLClient', [
           access: requireAuth('custodian'),
         }
       }).
+      when('/custodian/preferences', {
+        templateUrl: 'views/custodian/preferences.html',
+        controller: 'CustodianCtrl',
+        header_title: 'Preferences',
+        header_subtitle: '',
+        resolve: {
+          access: requireAuth('custodian'),
+        }
+      }).
       when('/custodian/content', {
         templateUrl: 'views/custodian/content.html',
         controller: 'AdminCtrl',
@@ -399,15 +427,6 @@ var GLClient = angular.module('GLClient', [
         header_subtitle: "List of access requests to whistleblowers' identities",
         resolve: {
           access: requireAuth('custodian'),
-        }
-      }).
-      when('/preferences', {
-        templateUrl: 'views/preferences.html',
-        controller: 'PreferencesCtrl',
-        header_title: 'Preferences',
-        header_subtitle: '',
-        resolve: {
-          access: requireAuth('*'),
         }
       }).
       when('/login', {
