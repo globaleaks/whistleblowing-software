@@ -136,7 +136,7 @@ class NodeInstance(BaseHandler):
             node = ('admin_node', requests.AdminNodeDesc)
         else:
             yield self.can_edit_general_settings_or_raise()
-            node = ('general_settings', requests.GeneralSettingsDesc)
+            node = ('general_settings', requests.SiteSettingsDesc)
 
         returnValue(node)
 
