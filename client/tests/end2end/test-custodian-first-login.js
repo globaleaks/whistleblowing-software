@@ -17,7 +17,7 @@ describe('receiver first login', function() {
   });
 
   it('should be able to change password accessing the user preferences', function() {
-    element(by.cssContainingText("a", "Preferences")).click();
+    element(by.cssContainingText("a", "User preferences")).click();
     element(by.cssContainingText("a", "Password")).click();
     element(by.model('preferences.old_password')).sendKeys(temporary_password);
     element(by.model('preferences.password')).sendKeys(browser.gl.utils.vars['user_password']);
