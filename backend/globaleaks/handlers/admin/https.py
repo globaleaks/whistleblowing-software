@@ -512,7 +512,10 @@ def db_acme_cert_issuance(session, tid):
     # raw_accnt_key = priv_fact.get_val(u'acme_accnt_key')
     raw_accnt_key = db_create_acme_key(session, tid)
 
-    accnt_key = serialization.load_pem_private_key(text_type(raw_accnt_key).encode('utf-8'),
+    if isinstance(raw_accnt_key, text_type):
+        raw_accnt_key = raw_accnt_key.encode()
+
+    accnt_key = serialization.load_pem_private_key(raw_accnt_key,
                                                    password=None,
                                                    backend=default_backend())
 
