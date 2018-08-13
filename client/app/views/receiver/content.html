@@ -2,11 +2,7 @@
   <div id="ConfigSidebarBox" class="col-md-3" data-ng-include="'views/receiver/sidebar.html'"></div>
   <div class="col-md-9">
     <form name="contentForm" data-ng-controller="AdminGeneralSettingsCtrl" novalidate>
-      <uib-tabset>
-        <uib-tab data-ng-repeat="tab in tabs" heading="{{tab.title | translate}}">
-          <div class="tab-content" data-ng-include="tab.template"></div>
-        </uib-tab>
-      </uib-tabset>
+      <div class="tab-content" data-ng-include="tabs[0].template"></div>
     </form>
   </div>
 </div>
