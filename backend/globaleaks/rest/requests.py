@@ -600,13 +600,10 @@ PasswordResetDesc = {
     'username_or_email': text_type
 }
 
-GeneralSettingsDesc = {
+SiteSettingsDesc = {
     'name': text_type,
     'header_title_homepage': text_type,
     'presentation': text_type,
-    'description': text_type,
-    'whistleblowing_question': text_type,
-    'whistleblowing_button': text_type,
     'footer': text_type
 }
 

@@ -24,14 +24,14 @@
       </div>
     </div>
 
-    <div class="form-group">
+    <div class="form-group" data-ng-if="session.role === 'admin'">
       <label data-translate>Question to solicit possible whistleblowers</label>
       <div>
         <textarea class="form-control" data-ng-model="admin.node.whistleblowing_question"></textarea>
       </div>
     </div>
 
-    <div class="form-group">
+    <div class="form-group" data-ng-if="session.role === 'admin'">
       <label data-translate>Whistleblowing button</label>
       <input class="form-control" data-ng-model="admin.node.whistleblowing_button" type="text" />
     </div>
