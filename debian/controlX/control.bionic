@@ -26,7 +26,7 @@ Depends:
  , iptables
  , lsb-base
  , python3:any
- , python3-acme
+ , python3-acme (>=0.25.1)
  , python3-debian
  , python3-openssl
  , python3-gnupg
