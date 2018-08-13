@@ -79,6 +79,8 @@ def db_wizard(session, state, tid, mode, request, client_using_tor, language):
 
     context = db_create_context(session, state, tid, context_desc, language)
 
+    node.set_val(u'preset', mode)
+
     # Apply the specific fixes related to whistleblowing.it projects
     if mode == u'whistleblowing.it':
         node.set_val(u'hostname', tenant.subdomain + '.' + 'whistleblowing.it')
