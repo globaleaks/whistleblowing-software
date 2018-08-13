@@ -250,6 +250,7 @@ def order_substatus_elements(session, handler, req_args, *args, **kwargs):
 class SubmissionStatusCollection(OperationHandler):
     """Handles submission statuses on the backend"""
     check_roles = 'admin'
+    invalidate_cache = True
 
     def get(self):
         return retrieve_all_submission_statuses(self.request.tid, self.request.language)
@@ -269,6 +270,7 @@ class SubmissionStatusCollection(OperationHandler):
 class SubmissionStatusInstance(BaseHandler):
     """Manipulates a specific submission status"""
     check_roles = 'admin'
+    invalidate_cache = True
 
     def put(self, submission_status_id):
         request = self.validate_message(self.request.content.read(),
@@ -285,6 +287,7 @@ class SubmissionStatusInstance(BaseHandler):
 class SubmissionSubStatusCollection(OperationHandler):
     """Manages substatuses for a given status"""
     check_roles = 'admin'
+    invalidate_cache = True
 
     @inlineCallbacks
     def get(self, submission_status_id):
@@ -307,6 +310,7 @@ class SubmissionSubStatusCollection(OperationHandler):
 class SubmissionSubStatusInstance(BaseHandler):
     """Manipulates a specific submission status"""
     check_roles = 'admin'
+    invalidate_cache = True
 
     def put(self, submission_status_id, submission_substatus_id):
         request = self.validate_message(self.request.content.read(),
