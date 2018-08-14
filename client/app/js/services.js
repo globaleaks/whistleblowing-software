@@ -611,7 +611,7 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
     return new GLResource('admin/submission_statuses/:id', {id: '@id'});
 }]).
 factory('AdminSubmissionSubStatusResource', ['GLResource', function(GLResource) {
-  return new GLResource('admin/submission_statuses/:submissionstate_id/substatuses/:id', {id: '@id', submissionstate_id: '@submissionstate_id'});
+  return new GLResource('admin/submission_statuses/:submissionstatus_id/substatuses/:id', {id: '@id', submissionstatus_id: '@submissionstatus_id'});
 }]).
 factory('AdminUserTenantAssociationResource', ['GLResource', function(GLResource) {
   return new GLResource('admin/users/:user_id/tenant_associations/:tenant_id', {user_id: '@user_id', tenant_id: '@tenant_id'});
