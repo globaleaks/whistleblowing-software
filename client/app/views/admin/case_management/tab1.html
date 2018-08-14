@@ -1,12 +1,12 @@
 <div data-ng-controller="AdminSubmissionStatusCtrl" class="adminConfigSection">
   <div class="editorTitle">
     <span data-translate>Submission statuses</span>
-    <button class="btn btn-xs btn-primary show-add-user-btn" data-ng-click="toggleAddState()">
+    <button class="btn btn-xs btn-primary show-add-user-btn" data-ng-click="toggleAddStatus()">
       <i class="glyphicon glyphicon-plus"></i>
       <span data-translate>Add</span>
     </button>
   </div>
-  <div class="adminConfigSection row" data-ng-controller="AdminSubmissionStatusAddCtrl" data-ng-if="showAddState">
+  <div class="adminConfigSection row" data-ng-controller="AdminSubmissionStatusAddCtrl" data-ng-if="showAddStatus">
     <div data-ng-form="newSubmissionStatus" class="addSubmissionStatus col-md-6" novalidate>
       <div class="form-group">
         <label>
@@ -18,7 +18,7 @@
         </div>
       </div>
       <div class="form-group">
-        <button id="add-btn" class="btn btn-primary" data-ng-disabled="newSubmissionStatus.$invalid" data-ng-click="addSubmissionStatus(); toggleAddState()"
+        <button id="add-btn" class="btn btn-primary" data-ng-disabled="newSubmissionStatus.$invalid" data-ng-click="addSubmissionStatus(); toggleAddStatus()"
           type="submit">
           <i class="glyphicon glyphicon-plus-sign"></i>
           <span data-translate>Add</span>
@@ -75,15 +75,15 @@
     </div>
   </div>
   <br /><br />
-  <div class="adminConfigSection" data-ng-controller="AdminSubmissionClosingStateCtrl">
+  <div class="adminConfigSection" data-ng-controller="AdminSubmissionClosingStatusCtrl">
     <div class="editorTitle">
       <span data-translate>Closing statuses</span>
-      <button class="btn btn-xs btn-primary show-add-user-btn" data-ng-click="toggleAddState()">
+      <button class="btn btn-xs btn-primary show-add-user-btn" data-ng-click="toggleAddStatus()">
         <i class="glyphicon glyphicon-plus"></i>
         <span data-translate>Add</span>
       </button>
     </div>
-    <div class="row" data-ng-if="showAddState" data-ng-controller="AdminSubmissionClosedSubStatusAddCtrl">
+    <div class="row" data-ng-if="showAddStatus" data-ng-controller="AdminSubmissionClosedSubStatusAddCtrl">
       <div data-ng-form="newClosedSubmissionSubStatus" class="addSubmissionStatus col-md-6" novalidate>
         <div class="form-group">
           <label>
@@ -95,7 +95,7 @@
           </div>
         </div>
         <div class="form-group">
-          <button id="add-btn" class="btn btn-primary" data-ng-disabled="newSubmissionStatus.$invalid" data-ng-click="addClosingSubmissionSubStatus(); toggleAddState()"
+          <button id="add-btn" class="btn btn-primary" data-ng-disabled="newSubmissionStatus.$invalid" data-ng-click="addClosingSubmissionSubStatus(); toggleAddStatus()"
             type="submit">
             <i class="glyphicon glyphicon-plus-sign"></i>
             <span data-translate>Add</span>
@@ -104,12 +104,12 @@
       </div>
     </div>
     <div class="row">
-      <div data-ng-repeat="substate in submissions_status.substatuses">
+      <div data-ng-repeat="substatus in submissions_status.substatuses">
         <div class="col-md-12" data-ng-controller="AdminSubmissionSubStatusEditorCtrl">
           <div class="configItem">
-            <div class="editorHeader row" data-ng-click="toggleSubstateEditing(); $event.stopPropagation();">
+            <div class="editorHeader row" data-ng-click="toggleSubstatusEditing(); $event.stopPropagation();">
               <span class="col-md-7 editorHeaderTitle">
-                <span class="substateLabel">{{substate.label}}</span>
+                <span class="substatusLabel">{{substatus.label}}</span>
               </span>
               <span class="col-md-5">
                 <span class="pull-right">
@@ -119,13 +119,13 @@
                   <button data-ng-if="!$last" class="btn btn-xs btn-primary" data-ng-click="moveSsDown($event, $index)" uib-popover="{{'Move down' | translate}}" popover-placement="left">
                     <i class="glyphicon glyphicon-menu-down"></i>
                   </button>
-                  <button class="btn btn-xs btn-default" data-ng-show="!substate_editing" data-ng-click="toggleSubstateEditing(); $event.stopPropagation();">
+                  <button class="btn btn-xs btn-default" data-ng-show="!substatus_editing" data-ng-click="toggleSubstatusEditing(); $event.stopPropagation();">
                     <span data-translate>Edit</span>
                   </button>
-                  <button class="btn btn-xs btn-success" data-ng-show="substate_editing" data-ng-click="save_submissions_substatuses(substate);">
+                  <button class="btn btn-xs btn-success" data-ng-show="substatus_editing" data-ng-click="save_submissions_substatuses(substatus);">
                     <span data-translate>Save</span>
                   </button>
-                  <button class="btn btn-xs btn-default" data-ng-show="substate_editing" data-ng-click="toggleSubstateEditing(); $event.stopPropagation();">
+                  <button class="btn btn-xs btn-default" data-ng-show="substatus_editing" data-ng-click="toggleSubstatusEditing(); $event.stopPropagation();">
                     <span data-translate>Cancel</span>
                   </button>
                   <button class="btn btn-xs btn-danger" data-ng-click="deleteSubSubmissionStatus(step); $event.stopPropagation();" uib-popover="{{Delete | translate}}"
@@ -135,13 +135,13 @@
                 </span>
               </span>
             </div>
-            <div data-ng-form="editStep" data-ng-if="substate_editing">
+            <div data-ng-form="editStep" data-ng-if="substatus_editing">
               <hr/>
               <div class="row">
                 <div class="form-group">
                   <div class="col-md-6">
                     <label data-translate>Label</label>
-                    <input class="form-control" data-ng-model="substate.label" type="text" required/>
+                    <input class="form-control" data-ng-model="substatus.label" type="text" required/>
                   </div>
                 </div>
               </div>

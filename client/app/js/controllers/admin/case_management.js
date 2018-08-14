@@ -7,17 +7,17 @@ GLClient.controller('AdminCaseManagementCtrl', ['$scope', function($scope){
   ];
 }]).controller('AdminSubmissionStatusCtrl', ['$scope',
   function ($scope) {
-    $scope.showAddState = false;
-    $scope.toggleAddState = function () {
-      $scope.showAddState = !$scope.showAddState;
+    $scope.showAddStatus = false;
+    $scope.toggleAddStatus = function () {
+      $scope.showAddStatus = !$scope.showAddStatus;
     };
 
     $scope.editableStatusesList = function() {
       var displayedStatuses = []
       for (var i = 0; i < $scope.admin.submission_statuses.length; i++) {
-        var state = $scope.admin.submission_statuses[i];
-        if (state.system_defined === false) {
-          displayedStatuses.push(state);
+        var status = $scope.admin.submission_statuses[i];
+        if (status.system_defined === false) {
+          displayedStatuses.push(status);
         }
       }
 
@@ -31,9 +31,9 @@ GLClient.controller('AdminCaseManagementCtrl', ['$scope', function($scope){
       $scope.editing = !$scope.editing;
     };
 
-    $scope.showAddSubstate = false;
-    $scope.toggleAddSubstate = function () {
-      $scope.showAddSubstate = !$scope.showAddSubstate;
+    $scope.showAddSubstatus = false;
+    $scope.toggleAddSubstatus = function () {
+      $scope.showAddSubstatus = !$scope.showAddSubstatus;
     };
 
     $scope.deleteSubmissionStatus = function() {
@@ -44,8 +44,8 @@ GLClient.controller('AdminCaseManagementCtrl', ['$scope', function($scope){
 
     function ss_idx(ss_id) {
       for (var i = 0; i < $scope.admin.submission_statuses.length; i++) {
-        var state = $scope.admin.submission_statuses[i];
-        if (state.id === ss_id) {
+        var status = $scope.admin.submission_statuses[i];
+        if (status.id === ss_id) {
           return i;
         }
       }
@@ -73,9 +73,9 @@ GLClient.controller('AdminCaseManagementCtrl', ['$scope', function($scope){
       var orig_index = ss_idx(statuses_list[index].id);
       var orig_target = ss_idx(statuses_list[target].id)
 
-      var moving_state = $scope.admin.submission_statuses[orig_index]
+      var moving_status = $scope.admin.submission_statuses[orig_index]
       $scope.admin.submission_statuses[orig_index] = $scope.admin.submission_statuses[orig_target];
-      $scope.admin.submission_statuses[orig_target] = moving_state;
+      $scope.admin.submission_statuses[orig_target] = moving_status;
 
       // Return only the ids we want to reorder
       var reordered_ids = {
@@ -119,25 +119,25 @@ GLClient.controller('AdminCaseManagementCtrl', ['$scope', function($scope){
   function () {
 }]).controller('AdminSubmissionSubStatusEditorCtrl', ['$scope', '$rootScope', '$http', 'Utils', 'AdminSubmissionSubStatusResource',
   function ($scope, $rootScope, $http, Utils, AdminSubmissionSubStatusResource) {
-    $scope.substate_editing = false;
-    $scope.toggleSubstateEditing = function () {
-      $scope.substate_editing = !$scope.substate_editing;
+    $scope.substatus_editing = false;
+    $scope.toggleSubstatusEditing = function () {
+      $scope.substatus_editing = !$scope.substatus_editing;
     }
 
     $scope.deleteSubSubmissionStatus = function() {
-      Utils.deleteDialog($scope.substate).then(function() {
+      Utils.deleteDialog($scope.substatus).then(function() {
         AdminSubmissionSubStatusResource.delete({
-          id: $scope.substate.id,
-          submissionstate_id: $scope.substate.submissionstate_id
+          id: $scope.substatus.id,
+          submissionstatus_id: $scope.substatus.submissionstatus_id
         }, function() {
-          var index = $scope.indexOf($scope.substate);
+          var index = $scope.submissions_status.substatuses.indexOf($scope.substatus);
           $scope.submissions_status.substatuses.splice(index, 1);
         });
       });
     }
 
-    $scope.save_submissions_substatuses = function (substate, cb) {
-      var updated_submissions_substatuses = new AdminSubmissionSubStatusResource(substate);
+    $scope.save_submissions_substatuses = function (substatus, cb) {
+      var updated_submissions_substatuses = new AdminSubmissionSubStatusResource(substatus);
       return Utils.update(updated_submissions_substatuses, cb);
     };
 
@@ -154,7 +154,7 @@ GLClient.controller('AdminCaseManagementCtrl', ['$scope', function($scope){
       }
 
       $scope.submissions_status.substatuses[index] = $scope.submissions_status.substatuses[target];
-      $scope.submissions_status.substatuses[target] = $scope.substate;
+      $scope.submissions_status.substatuses[target] = $scope.substatus;
 
       $http({
         method: 'PUT',
@@ -172,7 +172,7 @@ GLClient.controller('AdminCaseManagementCtrl', ['$scope', function($scope){
 
     $scope.addSubmissionSubStatus = function () {
       var new_submissions_substatuses = {
-        'label': $scope.new_substate.label,
+        'label': $scope.new_substatus.label,
         'presentation_order': $scope.presentation_order
       }
 
@@ -184,21 +184,21 @@ GLClient.controller('AdminCaseManagementCtrl', ['$scope', function($scope){
       })
     }
   }
-]).controller('AdminSubmissionClosingStateCtrl', ['$scope',
+]).controller('AdminSubmissionClosingStatusCtrl', ['$scope',
   function ($scope) {
     $scope.submissions_status = undefined;
 
-    $scope.showAddState = false;
+    $scope.showAddStatus = false;
 
-    $scope.toggleAddState = function () {
-      $scope.showAddState = !$scope.showAddState;
+    $scope.toggleAddStatus = function () {
+      $scope.showAddStatus = !$scope.showAddStatus;
     };
 
-    // Find the closed state from the statuses list so we can directly manipulate it
+    // Find the closed status from the statuses list so we can directly manipulate it
     for (var i = 0; i < $scope.admin.submission_statuses.length; i++) {
-      var state = $scope.admin.submission_statuses[i];
-      if (state.system_defined === true && state.system_usage === 'closed') {
-        $scope.submissions_status = state;
+      var status = $scope.admin.submission_statuses[i];
+      if (status.system_defined === true && status.system_usage === 'closed') {
+        $scope.submissions_status = status;
         return;
       }
     }
