@@ -1,6 +1,6 @@
 Parsley==1.2
 Twisted==16.6.0
-acme==0.25.1
+acme==0.26.0
 chardet==2.3.0
 cffi==1.9.1
 cryptography==1.9
