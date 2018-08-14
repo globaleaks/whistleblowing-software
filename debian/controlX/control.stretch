@@ -25,7 +25,7 @@ Depends:
  , haveged
  , iptables
  , python:any (>= 2.7.5-5~), python:any (<< 2.8)
- , python-acme (>= 0.25.1)
+ , python-acme (>= 0.26.0)
  , python-debian
  , python-openssl
  , python-gnupg
