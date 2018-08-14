@@ -280,7 +280,7 @@ var GLClient = angular.module('GLClient', [
         header_subtitle: '',
         resolve: {
           access: requireAuth('admin'),
-	  resources: fetchResources('admin', ['node']),
+          resources: fetchResources('admin', ['node']),
         }
       }).
       when('/admin/content', {
