@@ -203,45 +203,16 @@ directive('pgpPubkeyDisplay', ['$q', 'pgp', 'glbcKeyLib', function($q, pgp, glbc
 
     var key = res.keys[0];
 
-    var niceprint = niceFingerPrint(key.primaryKey.fingerprint);
-    var uids = extractAllUids(key);
-    var created = key.primaryKey.created;
-
     key.getExpirationTime().then(function(keyExpirationTime) {
       return defer.resolve({
-        user_info: uids,
-        fingerprint: niceprint,
-        created: created,
+        user_info: extractAllUids(key),
+        fingerprint: '0x' + key.primaryKey.getFingerprint().toUpperCase(),
+        created: key.primaryKey.created,
         expiration: keyExpirationTime,
       });
     });
 
     return defer.promise;
-  }
-
-  // niceFingerPrint produces the full key fingerprint in the standard
-  // 160 bit format. See: https://tools.ietf.org/html/rfc4880#section-12.2
-  function niceFingerPrint(print) {
-    if (typeof print !== 'string' && print.length !== 40) {
-      // Do nothing, the passed params are strange.
-      return print;
-    }
-
-    print = print.toUpperCase();
-
-    var nice = print[0];
-    for (var i = 1; i < 40; i++) {
-      // Insert a space every 4th octet
-      if (i % 4 === 0) {
-        nice += " ";
-      }
-      if (i % 20 === 0) {
-        nice += " ";
-      }
-      nice += print[i];
-    }
-
-    return nice;
   }
 
   // Returns all of the userId's found in the list of uids attached to the key.
