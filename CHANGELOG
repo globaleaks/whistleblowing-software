@@ -1,3 +1,12 @@
+Changes in version 3.3.4 - 2018-08-15
+    Add sidebar to users' preferences pages
+    Add dashboard for users and custodians (currtntly empty)
+    Revise platform settings that a recipient/custodian can edit
+    Revise configuration presets for whistleblowing.it mode
+    Fix submission status deletion (#2389)
+    Fix diplay of expiration date of HTTPS certificates
+    Fix display of fingerprint of PGP keys
+
 Changes in version 3.3.3 - 2018-08-10
     Add missing templates for refactored user homepage
 
