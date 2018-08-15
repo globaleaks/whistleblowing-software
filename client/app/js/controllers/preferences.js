@@ -3,11 +3,11 @@ GLClient.controller('PreferencesCtrl', ['$scope', '$q', '$rootScope', 'Utils', '
     $scope.tabs = [
       {
         title: "Preferences",
-        template: "views/preferences/tab1.html"
+        template: "views/partials/preferences/tab1.html"
       },
       {
         title: "Password",
-        template: "views/preferences/tab2.html"
+        template: "views/partials/preferences/tab2.html"
       }
     ];
 
