@@ -21,9 +21,6 @@ import platform
 from datetime import datetime, timedelta
 from six import text_type, binary_type
 
-if platform.system() == 'Windows':
-    import ctypes
-
 from twisted.internet import reactor
 from twisted.internet.defer import Deferred
 from twisted.internet.error import ConnectionLost, ConnectionRefusedError, DNSLookupError, TimeoutError
@@ -64,6 +61,7 @@ def get_disk_space(path):
     else:
         # statvfs not available on Windows; the only way to get it
         # without a new pypi dependency is to invoke ctypes voodoo
+        import ctypes
 
         abs_path = os.path.abspath(path)
         dir_path = os.path.dirname(abs_path)
