@@ -961,10 +961,7 @@ factory('AdminUtils', ['AdminContextResource', 'AdminQuestionnaireResource', 'Ad
       },
 
       attachCustomJS: function() {
-        if (angular.isUndefined($rootScope.node)) {
-          return false;
-        }
-        return this.isWhistleblowerPage() && angular.isDefined($rootScope.node.script);
+        return angular.isDefined($rootScope.node) && angular.isDefined($rootScope.node.script);
       },
 
       isWhistleblowerPage: function() {
