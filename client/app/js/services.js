@@ -16,8 +16,8 @@ angular.module('GLServices', ['ngResource']).
     };
   }]).
   factory('Authentication',
-    ['$filter', '$http', '$location', '$window', '$routeParams', '$rootScope', '$timeout', 'GLTranslate', 'locationForce', 'UserPreferences', 'ReceiverPreferences',
-    function($filter, $http, $location, $window, $routeParams, $rootScope, $timeout, GLTranslate, locationForce, UserPreferences, ReceiverPreferences) {
+    ['$filter', '$http', '$location', '$window', '$routeParams', '$rootScope', 'GLTranslate', 'locationForce', 'UserPreferences', 'ReceiverPreferences',
+    function($filter, $http, $location, $window, $routeParams, $rootScope, GLTranslate, locationForce, UserPreferences, ReceiverPreferences) {
       function Session(){
         var self = this;
 
