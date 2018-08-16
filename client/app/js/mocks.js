@@ -22,7 +22,7 @@ GLClient.mockEngine = (function() {
     var e = document.querySelector(selector);
     if (e) {
       if (typeof mock === "function") {
-        mock = mock(scope);
+        mock = mock(scope, e);
       }
 
       if (mock && e.innerHTML != mock) {
@@ -46,7 +46,7 @@ GLClient.mockEngine = (function() {
     for (path in callbacks) {
       if (path === '*' || path === current_path) {
         for (i=0; i<callbacks[path].length; i++) {
-          callbacks[path][i](scope);
+          callbacks[path][i](scope, e);
         }
       }
     }
