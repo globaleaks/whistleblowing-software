@@ -162,18 +162,7 @@
                     <label data-translate>Hostname</label>
                     <input name="name" class="form-control" data-ng-model="tenant.subdomain" type="text" subdomainvalidator required>
                   </div>
-                  <div class="form-group" data-ng-if="tenant.signup">
-                    <label>
-                      <span data-translate>Use case</span><span>: </span>
-                    </label>
-                    <span data-ng-switch="tenant.signup.use_case">
-                      <span data-ng-switch-when="anticorruption" data-translate>Anticorruption</span>
-                      <span data-ng-switch-when="corporate_compliance" data-translate>Corporate compliance</span>
-                      <span data-ng-switch-when="investigative_journalism" data-translate>Investigative journalism</span>
-                      <span data-ng-switch-when="civic_activism" data-translate>Civic activism</span>
-                      <span data-ng-switch-when="other">{{tenant.use_case_other}}</span>
-                    </span>
-                  </div>
+                  <div class="form-group" data-ng-if="tenant.signup" data-ng-include="'views/partials/signup.html'"></div>
                 </div>
               </div>
             </div>
