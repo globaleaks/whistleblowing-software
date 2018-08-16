@@ -73,7 +73,7 @@ def login_whistleblower(session, tid, receipt, client_using_tor):
 
     log.debug("Whistleblower login: Valid receipt")
 
-    wbtip.last_access = datetime_now()
+    wbtip.wb_last_access = datetime_now()
 
     return wbtip.id
 
