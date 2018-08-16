@@ -162,6 +162,7 @@
                     <label data-translate>Hostname</label>
                     <input name="name" class="form-control" data-ng-model="tenant.subdomain" type="text" subdomainvalidator required>
                   </div>
+                  <div class="form-group" data-ng-if="tenant.signup" data-ng-include="'views/partials/signup.html'"></div>
                 </div>
               </div>
             </div>
