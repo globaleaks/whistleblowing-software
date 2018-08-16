@@ -37,9 +37,9 @@ debuild -i -us -uc -b
 sudo mkdir -p /globaleaks/deb/
 sudo cp ../globaleaks*deb /globaleaks/deb/
 
-sudo curl http://http.us.debian.org/debian/pool/main/p/python-josepy/python-josepy_1.1.0-2_all.deb --output /globaleaks/deb/python-josepy_1.1.0-2_all.deb
-sudo curl http://http.us.debian.org/debian/pool/main/p/python-josepy/python3-josepy_1.1.0-2_all.deb --output /globaleaks/deb/python3-josepy_1.1.0-2_all.deb
-sudo curl http://http.us.debian.org/debian/pool/main/p/python-acme/python-acme_0.26.0-1_all.deb --output /globaleaks/deb/python-acme_0.26.0-1_all.deb
-sudo curl http://http.us.debian.org/debian/pool/main/p/python-acme/python3-acme_0.26.0-1_all.deb --output /globaleaks/deb/python3-acme_0.26.0-1_all.deb
+sudo curl http://ftp.us.debian.org/debian/pool/main/p/python-josepy/python-josepy_1.0.1-1~bpo9%2b1_all.deb --output /globaleaks/deb/python-josepy_1.0.1-1~bpo9%2b1_all.deb
+sudo curl http://ftp.us.debian.org/debian/pool/main/p/python-josepy/python3-josepy_1.0.1-1~bpo9%2b1_all.deb --output /globaleaks/deb/python3-josepy_1.0.1-1~bpo9%2b1_all.deb
+sudo curl http://ftp.us.debian.org/debian/pool/main/p/python-acme/python-acme_0.25.1-1~bpo9%2b1_all.deb --output /globaleaks/deb/python-acme_0.25.1-1~bpo9%2b1_all.deb
+sudo curl http://ftp.us.debian.org/debian/pool/main/p/python-acme/python3-acme_0.25.1-1~bpo9%2b1_all.deb --output /globaleaks/deb/python3-acme_0.25.1-1~bpo9%2b1_all.deb
 
 sudo ./scripts/install.sh --assume-yes --test
