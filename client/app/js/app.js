@@ -808,8 +808,6 @@ var GLClient = angular.module('GLClient', [
        }
     };
 
-    $rootScope.init();
-
     $rootScope.reload = function(new_path) {
       $rootScope.started = false;
       $rootScope.successes = [];
@@ -831,6 +829,8 @@ var GLClient = angular.module('GLClient', [
     var observer = new MutationObserver(applyMocks);
     var mocksRoot = document.querySelector('body');
     observer.observe(mocksRoot, config);
+
+    $rootScope.init();
 }]).
   factory("stacktraceService", function() {
     return({
