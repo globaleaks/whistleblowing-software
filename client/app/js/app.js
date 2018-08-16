@@ -782,10 +782,6 @@ var GLClient = angular.module('GLClient', [
           Utils.set_title();
         }
       }
-
-      if (GLClient.mockEngine) {
-        $timeout(function(){GLClient.mockEngine.run($rootScope)}, 0, false);
-      }
     });
 
     $rootScope.$on('$routeChangeError', function(event, current, previous, rejection) {
@@ -826,6 +822,15 @@ var GLClient = angular.module('GLClient', [
         }
       });
     };
+
+    var applyMocks = function() {
+      GLClient.mockEngine.run($rootScope);
+    }
+
+    var config = { attributes: false, childList: true, subtree: true };
+    var observer = new MutationObserver(applyMocks);
+    var mocksRoot = document.querySelector('body');
+    observer.observe(mocksRoot, config);
 }]).
   factory("stacktraceService", function() {
     return({
