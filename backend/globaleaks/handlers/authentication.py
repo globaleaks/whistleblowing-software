@@ -50,35 +50,35 @@ def random_login_delay():
 @transact
 def login_whistleblower(session, tid, receipt, client_using_tor):
     """
-    login_whistleblower returns the InternalTip.id
+    login_whistleblower returns a session
     """
     hashed_receipt = security.hash_password(receipt, State.tenant_cache[tid].receipt_salt)
-    wbtip, itip = session.query(WhistleblowerTip, InternalTip) \
-                         .filter(WhistleblowerTip.receipt_hash == text_type(hashed_receipt, 'utf-8'),
-                                 WhistleblowerTip.tid == tid,
-                                 InternalTip.id == WhistleblowerTip.id,
-                                 InternalTip.tid == WhistleblowerTip.tid).one_or_none()
+    result = session.query(WhistleblowerTip, InternalTip) \
+                    .filter(WhistleblowerTip.receipt_hash == text_type(hashed_receipt, 'utf-8'),
+                            WhistleblowerTip.tid == tid,
+                            InternalTip.id == WhistleblowerTip.id,
+                            InternalTip.tid == WhistleblowerTip.tid).first()
 
-    if wbtip is None:
+    if result is None:
         log.debug("Whistleblower login: Invalid receipt")
         Settings.failed_login_attempts += 1
         raise errors.InvalidAuthentication
+
+    wbtip, itip = result[0], result[1]
 
     if not client_using_tor and not State.tenant_cache[tid]['https_whistleblower']:
         log.err("Denied login request over clear Web for role 'whistleblower'")
         raise errors.TorNetworkRequired
 
-    log.debug("Whistleblower login: Valid receipt")
+    itip.wb_last_access = datetime_now()
 
-    wbtip.wb_last_access = datetime_now()
-
-    return wbtip.id
+    return new_session(tid, wbtip.id, 'whistleblower', False)
 
 
 @transact
 def login(session, tid, username, password, client_using_tor, client_ip, token=''):
     """
-    login returns a tuple (user_id, state, pcn)
+    login returns a session
     """
     user = None
 
@@ -128,11 +128,9 @@ def login(session, tid, username, password, client_using_tor, client_ip, token='
         if success is not True:
             raise errors.AccessLocationInvalid
 
-    log.debug("Login: Success (%s)" % user.role)
-
     user.last_login = datetime_now()
 
-    return user.id, user.state, user.role, user.password_change_needed
+    return new_session(tid, user.id, user.role, user.password_change_needed)
 
 
 @transact
@@ -168,31 +166,23 @@ class AuthenticationHandler(BaseHandler):
         if tid == 0:
              tid = self.request.tid
 
-        user_id, status, role, pcn = yield login(tid,
-                                                 request['username'],
-                                                 request['password'],
-                                                 self.request.client_using_tor,
-                                                 self.request.client_ip,
-                                                 request['token'])
-        if tid == self.request.tid:
-            session = new_session(self.request.tid, user_id, role, status)
+        session = yield login(tid,
+                              request['username'],
+                              request['password'],
+                              self.request.client_using_tor,
+                              self.request.client_ip,
+                              request['token'])
+
+        log.debug("Login: Success (%s)" % session.user_role)
+
+        if tid != self.request.tid:
+            token = yield get_multitenant_auth_token(session.user_id, tid)
 
             returnValue({
-                'session_id': session.id,
-                'role': session.user_role,
-                'user_id': session.user_id,
-                'session_expiration': int(session.getTime()),
-                'status': session.user_status,
-                'password_change_needed': pcn
+                'redirect': 'https://%s/#/login?token=%s' % (State.tenant_cache[tid].hostname, token)
             })
 
-        else:
-            token = yield get_multitenant_auth_token(user_id, tid)
-
-            if token:
-                returnValue({
-                    'redirect': 'https://%s/#/login?token=%s' % (State.tenant_cache[tid].hostname, token)
-                })
+        returnValue(session.serialize())
 
 
 class ReceiptAuthHandler(BaseHandler):
@@ -212,16 +202,11 @@ class ReceiptAuthHandler(BaseHandler):
         if delay:
             yield deferred_sleep(delay)
 
-        user_id = yield login_whistleblower(self.request.tid, receipt, self.request.client_using_tor)
+        session = yield login_whistleblower(self.request.tid, receipt, self.request.client_using_tor)
 
-        session = new_session(self.request.tid, user_id, 'whistleblower', 'Enabled')
+        log.debug("Login: Success (%s)" % session.user_role)
 
-        returnValue({
-            'session_id': session.id,
-            'role': session.user_role,
-            'user_id': session.user_id,
-            'session_expiration': int(session.getTime())
-        })
+        returnValue(session.serialize())
 
 
 class SessionHandler(BaseHandler):
@@ -234,14 +219,7 @@ class SessionHandler(BaseHandler):
         """
         Refresh and retrive session
         """
-        return {
-            'session_id': self.current_user.id,
-            'role': self.current_user.user_role,
-            'user_id': self.current_user.user_id,
-            'session_expiration': int(self.current_user.getTime()),
-            'status': self.current_user.user_status,
-            'password_change_needed': False
-        }
+        return self.current_user.serialize()
 
     def delete(self):
         """
@@ -261,7 +239,6 @@ class TenantAuthSwitchHandler(BaseHandler):
     def get(self, tid):
         token = yield get_multitenant_auth_token(self.current_user.user_id, tid)
 
-        if token:
-            returnValue({
-                'redirect': 'https://%s/#/login?token=%s' % (State.tenant_cache[tid].hostname, token)
-            })
+        returnValue({
+            'redirect': 'https://%s/#/login?token=%s' % (State.tenant_cache[tid].hostname, token)
+        })

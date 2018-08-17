@@ -94,17 +94,25 @@ class FileProducer(object):
 
 
 class Session(object):
-    expireCall = None # attached to object by tempDict
-
-    def __init__(self, tid, user_id, user_role, user_status):
+    def __init__(self, tid, user_id, user_role, pcn):
         self.id = generateRandomKey(42)
         self.tid = tid
         self.user_id = user_id
         self.user_role = user_role
-        self.user_status = user_status
+        self.pcn = pcn
+        self.expireCall = None
 
     def getTime(self):
-        return self.expireCall.getTime()
+        return self.expireCall.getTime() if self.expireCall else 0
+
+    def serialize(self):
+        return {
+            'session_id': self.id,
+            'role': self.user_role,
+            'user_id': self.user_id,
+            'session_expiration': self.getTime(),
+            'password_change_needed': self.pcn
+        }
 
 
 def new_session(tid, user_id, user_role, user_status):
