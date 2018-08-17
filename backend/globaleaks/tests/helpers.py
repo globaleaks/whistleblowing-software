@@ -255,7 +255,7 @@ BaseHandler.get_file_upload = get_file_upload
 
 def forge_request(uri=b'https://www.globaleaks.org/',
                   headers=None, body='', client_addr=None, method=b'GET',
-                  handler_cls=None, attached_file={}):
+                  attached_file={}):
     """
     Creates a twisted.web.Request compliant request that is from an external
     IP address.
@@ -906,7 +906,7 @@ class TestHandler(TestGLWithPopulatedDB):
                 user_id = self.dummyCustodianUser['id']
 
         if role is not None:
-            session = new_session(1, user_id, role, 'enabled')
+            session = new_session(1, user_id, role, False)
             handler.request.headers[b'x-session'] = session.id.encode()
 
         if handler.upload_handler:
