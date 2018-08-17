@@ -47,21 +47,18 @@ def random_login_delay():
     return 0
 
 
-def db_get_wbtip_by_receipt(session, tid, receipt):
-    hashed_receipt = security.hash_password(receipt, State.tenant_cache[tid].receipt_salt)
-    return session.query(InternalTip) \
-                  .filter(WhistleblowerTip.receipt_hash == text_type(hashed_receipt, 'utf-8'),
-                          WhistleblowerTip.tid == tid,
-                          InternalTip.id == WhistleblowerTip.id,
-                          InternalTip.tid == WhistleblowerTip.tid).one_or_none()
-
-
 @transact
 def login_whistleblower(session, tid, receipt, client_using_tor):
     """
     login_whistleblower returns the InternalTip.id
     """
-    wbtip = db_get_wbtip_by_receipt(session, tid, receipt)
+    hashed_receipt = security.hash_password(receipt, State.tenant_cache[tid].receipt_salt)
+    wbtip, itip = session.query(WhistleblowerTip, InternalTip) \
+                         .filter(WhistleblowerTip.receipt_hash == text_type(hashed_receipt, 'utf-8'),
+                                 WhistleblowerTip.tid == tid,
+                                 InternalTip.id == WhistleblowerTip.id,
+                                 InternalTip.tid == WhistleblowerTip.tid).one_or_none()
+
     if wbtip is None:
         log.debug("Whistleblower login: Invalid receipt")
         Settings.failed_login_attempts += 1

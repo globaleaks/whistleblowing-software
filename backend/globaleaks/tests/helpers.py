@@ -40,7 +40,6 @@ from globaleaks import db, models, orm, event, jobs, __version__, DATABASE_VERSI
 from globaleaks.db.appdata import load_appdata
 from globaleaks.orm import transact
 from globaleaks.handlers import rtip, wbtip
-from globaleaks.handlers.authentication import db_get_wbtip_by_receipt
 from globaleaks.handlers.base import BaseHandler, Sessions, new_session
 from globaleaks.handlers.admin.context import create_context, get_context
 from globaleaks.handlers.admin.field import db_create_field
@@ -627,23 +626,23 @@ class TestGL(unittest.TestCase):
 
     @transact
     def get_internalfiles_by_receipt(self, session, receipt):
-        wbtip = db_get_wbtip_by_receipt(session, 1, receipt)
+        hashed_receipt = security.hash_password(receipt, State.tenant_cache[1].receipt_salt)
+
         ifiles = session.query(models.InternalFile) \
-                      .filter(models.InternalFile.internaltip_id == wbtip.id,
-                              models.InternalTip.id == wbtip.id,
-                              models.InternalTip.tid == 1)
+                        .filter(models.InternalFile.internaltip_id == models.WhistleblowerTip.id,
+                                models.WhistleblowerTip.receipt_hash == text_type(hashed_receipt, 'utf-8'))
 
         return [models.serializers.serialize_ifile(session, ifile) for ifile in ifiles]
 
 
     @transact
     def get_receiverfiles_by_receipt(self, session, receipt):
-        wbtip = db_get_wbtip_by_receipt(session, 1, receipt)
+        hashed_receipt = security.hash_password(receipt, State.tenant_cache[1].receipt_salt)
+
         rfiles = session.query(models.ReceiverFile) \
-                      .filter(models.ReceiverFile.receivertip_id == models.ReceiverTip.id,
-                              models.ReceiverTip.internaltip_id == wbtip.id,
-                              models.InternalTip.id == wbtip.id,
-                              models.InternalTip.tid == 1)
+                        .filter(models.ReceiverFile.receivertip_id == models.ReceiverTip.id,
+                                models.ReceiverTip.internaltip_id == models.WhistleblowerTip.id,
+                                models.WhistleblowerTip.receipt_hash == text_type(hashed_receipt, 'utf-8'))
 
         return [models.serializers.serialize_rfile(session, 1, rfile) for rfile in rfiles]
 
