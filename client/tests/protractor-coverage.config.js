@@ -1,9 +1,9 @@
 var fs = require('fs');
-var specs = JSON.parse(fs.readFileSync('tests/end2end/specs.json'));
+var specs = JSON.parse(fs.readFileSync('tests/specs.json'));
 
 var tmp = [];
 for (var i=0; i<specs.length; i++) {
-  tmp.push('tests/end2end/' + specs[i]);
+  tmp.push('tests/' + specs[i]);
 }
 
 specs = tmp;

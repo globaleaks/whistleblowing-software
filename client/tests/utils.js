@@ -15,7 +15,7 @@ exports.vars = {
     'Date',
     'Group of questions'
   ],
-  'testFileDir': './tests/end2end/files'
+  'testFileDir': './tests/files'
 };
 
 browser.getCapabilities().then(function(capabilities) {

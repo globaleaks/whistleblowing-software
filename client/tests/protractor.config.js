@@ -1,46 +1,61 @@
 var fs = require('fs');
-var specs = JSON.parse(fs.readFileSync('tests/end2end/specs.json'));
+var specs = JSON.parse(fs.readFileSync('tests/specs.json'));
 
-var browser_capabilities = JSON.parse(process.env.SELENIUM_BROWSER_CAPABILITIES);
-browser_capabilities['name'] = 'GlobaLeaks-E2E';
-browser_capabilities['tunnel-identifier'] = process.env.TRAVIS_JOB_NUMBER;
-browser_capabilities['build'] = process.env.TRAVIS_BUILD_NUMBER;
-browser_capabilities['tags'] = [process.env.TRAVIS_BRANCH];
+// The test directory for downloaded files
+var tmpDir = '/tmp/globaleaks-downloads';
 
 exports.config = {
   framework: 'jasmine',
 
-  baseUrl: 'http://localhost:9000/',
+  baseUrl: 'http://127.0.0.1:8082/',
 
   troubleshoot: false,
-  directConnect: false,
-
-  sauceUser: process.env.SAUCE_USERNAME,
-  sauceKey: process.env.SAUCE_ACCESS_KEY,
-  sauceBuild: process.env.TRAVIS_BUILD_NUMBER,
-  capabilities: browser_capabilities,
+  directConnect: true,
 
   params: {
-    'testFileDownload': false,
+    'testFileDownload': true,
     'verifyFileDownload': false,
-    'tmpDir': '/tmp/globaleaks-download',
+    'tmpDir': tmpDir
   },
 
   specs: specs,
 
-  allScriptsTimeout: 360000,
+  capabilities: {
+    'browserName': 'chrome',
+    'chromeOptions': {
+      args: ['--window-size=1280,1024'],
+      prefs: {
+        'download': {
+          'prompt_for_download': false,
+          'default_directory': tmpDir
+        }
+      }
+    }
+  },
+
+  allScriptsTimeout: 60000,
 
   jasmineNodeOpts: {
     isVerbose: true,
     includeStackTrace: true,
-    defaultTimeoutInterval: 360000
+    defaultTimeoutInterval: 60000
   },
+
+  plugins: [
+    {
+      package: 'protractor-console-plugin',
+      failOnWarning: false,
+      failOnError: true,
+      logWarnings: true,
+      exclude: []
+    }
+  ],
 
   onPrepare: function() {
     browser.gl = {
       'utils': require('./utils.js'),
       'pages': require('./pages.js')
-    },
+    }
 
     browser.addMockModule('GLServices', function () {
       angular.module('GLServices').factory('Test', function () {

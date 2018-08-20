@@ -37,8 +37,7 @@ module.exports = function(grunt) {
         '!app/js/lib/*.js',
         '!app/js/locale/*.js',
         '!app/js/crypto/lib/*.js',
-        'tests/end2end/*.js',
-        'tests/api/*.js'
+        'tests/*.js'
       ]
     },
 
@@ -99,14 +98,6 @@ module.exports = function(grunt) {
       },
     },
 
-    browserify: {
-      unittest: {
-        files: {
-          'tests/unit/lib/unittest-bundle.js': 'tests/unit/unittest.js'
-        },
-      }
-    },
-
     useminPrepare: {
       html: [
         'tmp/index.html'
@@ -149,16 +140,6 @@ module.exports = function(grunt) {
         src: ['views/**/*.html'],
         dest: 'tmp/js/templates.js'
       }
-    },
-
-    mochaTest: {
-      test: {
-        options: {
-          timeout: 30000,
-          reporter: 'list',
-        },
-        src: ['tests/api/test.js'],
-      },
     },
 
     'string-replace': {
@@ -270,7 +251,7 @@ module.exports = function(grunt) {
     protractor_coverage: {
       local: {
         options: {
-          configFile: 'tests/end2end/protractor-coverage.config.js'
+          configFile: 'tests/protractor-coverage.config.js'
         }
       }
     },
@@ -300,7 +281,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-protractor-coverage');
   grunt.loadNpmTasks('grunt-string-replace');
   grunt.loadNpmTasks('grunt-usemin');
-  grunt.loadNpmTasks('grunt-mocha-test');
   grunt.loadNpmTasks("gruntify-eslint");
 
   var readNoTranslateStrings = function() {
