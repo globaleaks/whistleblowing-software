@@ -3,10 +3,10 @@
 # Alexandre Girard <transifex@alexgirard.com>, 2013-2014
 # marco calamari <marcoc@marcoc.it>, 2013
 # Charles Peltier <charles@cl-info.fr>, 2015
-# French language coordinator <french.coordinator@rbox.me>, 2015-2018
-# French language coordinator <french.coordinator@rbox.me>, 2016-2017
-# French language coordinator <french.coordinator@rbox.me>, 2016
-# French language coordinator <french.coordinator@rbox.me>, 2016
+# AO French coordinator <ao@localizationlab.org>, 2015-2018
+# AO French coordinator <ao@localizationlab.org>, 2016-2017
+# AO French coordinator <ao@localizationlab.org>, 2016
+# AO French coordinator <ao@localizationlab.org>, 2016
 # Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2013-2018
 # Hermes Center <info@hermescenter.org>, 2013,2016
 # Hermes Center <info@hermescenter.org>, 2013,2016
@@ -22,14 +22,14 @@
 # rike, 2014
 # Towinet, 2013-2015
 # Trans-fr, 2015
-# French language coordinator <french.coordinator@rbox.me>, 2015-2016
+# AO French coordinator <ao@localizationlab.org>, 2015-2016
 # rike, 2014
 # Yvette Agostini <mnemosyne@logioshermes.org>, 2015
 # Yvette Agostini <mnemosyne@logioshermes.org>, 2015
 # Xavier Lalu <xavier.lalu@carredinfo.fr>, 2013
 # Xavier Lalu <xavier.lalu@carredinfo.fr>, 2013
 # yahoe.001, 2015
-# French language coordinator <french.coordinator@rbox.me>, 2015
+# AO French coordinator <ao@localizationlab.org>, 2015
 # Yves Eudes <eudes@lemonde.fr>, 2014-2015
 # yvette.agostini <yvette.agostini@gmail.com>, 2013
 # Yvette Agostini <mnemosyne@logioshermes.org>, 2015
@@ -38,8 +38,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-08-09 13:58+0000\n"
-"Last-Translator: French language coordinator <french.coordinator@rbox.me>\n"
+"PO-Revision-Date: 2018-08-09 18:18+0000\n"
+"Last-Translator: AO French coordinator <ao@localizationlab.org>\n"
 "Language-Team: French (http://www.transifex.com/otf/globaleaks/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -126,7 +126,7 @@ msgid "Preferences"
 msgstr "Préférences"
 
 msgid "Custodian interface"
-msgstr ""
+msgstr "Interface des gardiens"
 
 msgid "Recipient interface"
 msgstr "Interface du destinataire"
@@ -1578,7 +1578,7 @@ msgstr "Vous êtes connecté à ce serveur sans anonymat, mais il ne prend en ch
 msgid ""
 "Server temporarily unusable due to resource exhaustion; advise the Admin if "
 "you can."
-msgstr ""
+msgstr "Le serveur a épuisé ses ressources et ne peut temporairement pas être utilisé ; avertissez l’administrateur si vous le pouvez."
 
 msgid "This server is not configured."
 msgstr "Ce serveur n’est pas configuré."
