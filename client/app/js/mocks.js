@@ -1,6 +1,5 @@
 GLClient.mockEngine = (function() {
   var mocks = {};
-  var callbacks = {};
 
   var addMock = function(path, selector, mock) {
     if(!(path in mocks)) {
@@ -8,14 +7,6 @@ GLClient.mockEngine = (function() {
     }
 
     mocks[path].push([selector, mock]);
-  };
-
-  var addCallback = function(path, callback) {
-    if(!(path in callbacks)) {
-      callbacks[path] = [];
-    }
-
-    callbacks[path].push(callback);
   };
 
   var applyMock = function (scope, selector, mock) {
@@ -42,18 +33,9 @@ GLClient.mockEngine = (function() {
         }
       }
     }
-
-    for (path in callbacks) {
-      if (path === '*' || path === current_path) {
-        for (i=0; i<callbacks[path].length; i++) {
-          callbacks[path][i](scope, e);
-        }
-      }
-    }
   };
 
   return {
-    addCallback: addCallback,
     addMock: addMock,
     run: run
   };
