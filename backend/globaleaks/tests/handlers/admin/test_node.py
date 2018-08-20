@@ -80,7 +80,6 @@ class TestNodeInstance(helpers.TestHandlerWithPopulatedDB):
                                 'version', 'version_db',
                                 'latest_version',
                                 'configured', 'wizard_done',
-                                'preset',
                                 'receipt_salt', 'languages_enabled',
                                 'root_tenant', 'https_possible',
                                 'hostname', 'onionservice',
