@@ -71,11 +71,12 @@ class TestAPI(TestGL):
     def test_status_codes_assigned(self):
         test_cases = [
             (b'GET', 200),
-            (b'POST', 405),
-            (b'PUT', 405),
-            (b'DELETE', 405),
-            (b'XXX', 405),
-            (b'', 405),
+            (b'HEAD', 200),
+            (b'POST', 501),
+            (b'PUT', 501),
+            (b'DELETE', 501),
+            (b'XXX', 501),
+            (b'', 501),
         ]
 
         for meth, status_code in test_cases:
