@@ -704,7 +704,7 @@ class TestGLWithPopulatedDB(TestGL):
         for i in range(1, self.population_of_tenants):
             name = 'tenant-' + str(i+1)
             t = yield create_tenant({'label': name, 'active': True, 'subdomain': name})
-            yield wizard(self.state, t['id'], 'default', self.dummyWizard, True, u'en')
+            yield wizard(self.state, t['id'], self.dummyWizard, True, u'en')
             yield self.set_hostnames(i+1)
 
         yield associate_users_of_first_tenant_to_second_tenant()

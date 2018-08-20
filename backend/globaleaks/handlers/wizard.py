@@ -13,7 +13,7 @@ from globaleaks.rest import requests, errors
 from globaleaks.utils.utility import datetime_now, log
 
 
-def db_wizard(session, state, tid, mode, request, client_using_tor, language):
+def db_wizard(session, state, tid, request, client_using_tor, language):
     language = request['node_language']
 
     node = config.ConfigFactory(session, tid, 'node')
@@ -23,10 +23,6 @@ def db_wizard(session, state, tid, mode, request, client_using_tor, language):
         raise errors.ForbiddenOperation
 
     db_update_enabled_languages(session, tid, [language], language)
-
-    if tid != 1:
-        tenant = models.db_get(session, models.Tenant, models.Tenant.id == tid)
-        tenant.label = request['node_name']
 
     node.set_val(u'name', request['node_name'])
     node.set_val(u'default_language', language)
@@ -79,6 +75,21 @@ def db_wizard(session, state, tid, mode, request, client_using_tor, language):
 
     context = db_create_context(session, state, tid, context_desc, language)
 
+    # Root tenants initialization terminates here
+
+    if tid == 1:
+        db_refresh_memory_variables(session, [tid])
+        return
+
+    # Secondary tenants initialization starts here
+
+    tenant = models.db_get(session, models.Tenant, models.Tenant.id == tid)
+    tenant.label = request['node_name']
+
+    root_node = config.ConfigFactory(session, 1, 'node')
+
+    mode = root_node.get_val(u'mode')
+
     node.set_val(u'mode', mode)
 
     # Apply the specific fixes related to whistleblowing.it projects
@@ -115,8 +126,8 @@ def db_wizard(session, state, tid, mode, request, client_using_tor, language):
 
 
 @transact
-def wizard(session, state, tid, mode, request, client_using_tor, language):
-    db_wizard(session, state, tid, mode, request, client_using_tor, language)
+def wizard(session, state, tid, request, client_using_tor, language):
+    db_wizard(session, state, tid, request, client_using_tor, language)
 
 
 class Wizard(BaseHandler):
@@ -130,4 +141,4 @@ class Wizard(BaseHandler):
         request = self.validate_message(self.request.content.read(),
                                         requests.WizardDesc)
 
-        return wizard(self.state, self.request.tid, u'default', request, self.request.client_using_tor, self.request.language)
+        return wizard(self.state, self.request.tid, request, self.request.client_using_tor, self.request.language)
