@@ -115,7 +115,7 @@ def signup_activation(session, state, tid, token, language):
 
         db_initialize_tenant(session, tenant)
 
-        signup_mode = node.get_val(u'signup_mode')
+        mode = node.get_val(u'mode')
 
         password_admin = generateRandomKey(16)
         password_recipient = generateRandomKey(16)
@@ -133,7 +133,7 @@ def signup_activation(session, state, tid, token, language):
             'enable_developers_exception_notification': True
         }
 
-        db_wizard(session, state, signup.tid, signup_mode, wizard, False, language)
+        db_wizard(session, state, signup.tid, mode, wizard, False, language)
 
         ids = [r[0] for r in session.query(models.User.id).filter(models.UserTenant.user_id == models.User.id,
                                                                   models.UserTenant.tenant_id == signup.tid)]

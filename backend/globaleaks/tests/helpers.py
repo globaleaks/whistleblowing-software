@@ -1133,7 +1133,7 @@ class MockDict:
             'enable_proof_of_work': False,
             'enable_experimental_features': False,
             'enable_signup': True,
-            'signup_mode': u'default',
+            'mode': u'default',
             'signup_fingerprint': False,
             'signup_no_admin_user': False,
             'signup_tos1_enable': False,
