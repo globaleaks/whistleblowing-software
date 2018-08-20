@@ -42,7 +42,7 @@ class MethodNotImplemented(GLException):
     respected by the data body in the HTTP request.
     """
     error_code = 2
-    status_code = 405 # Not Acceptable
+    status_code = 501 # Not implemented
 
     def __init__(self):
         self.reason = "Method not implemented"
