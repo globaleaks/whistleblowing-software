@@ -54,8 +54,8 @@ var validate_mandatory_headers = function(headers) {
   }
 };
 
-function res_404_or_405(url) {
-    return url == public_resources[4].url ? 404 : 405;
+function res_404_or_501(url) {
+    return url == public_resources[4].url ? 404 : 501;
 }
 
 public_resources.forEach(function(req){
@@ -91,10 +91,10 @@ public_resources.forEach(function(req){
 
 public_resources.forEach(function(req){
   describe('POST ' + req['url'], function(){
-    it('responds with 405', function(done){
+    it('responds with 501', function(done){
       app
       .post(req['url'])
-      .expect(res_404_or_405(req['url']))
+      .expect(res_404_or_501(req['url']))
       .end(function(err, res) {
         if (err) {
           return done(err);
@@ -112,7 +112,7 @@ public_resources.forEach(function(req){
     it('responds with ' + req[''], function(done){
       app
       .put(req['url'])
-      .expect(res_404_or_405(req['url']))
+      .expect(res_404_or_501(req['url']))
       .end(function(err, res) {
         if (err) {
           return done(err);
@@ -130,7 +130,7 @@ public_resources.forEach(function(req){
     it('responds with ' + req['status'], function(done){
       app
       .del(req['url'])
-      .expect(res_404_or_405(req['url']))
+      .expect(res_404_or_501(req['url']))
       .end(function(err, res) {
         if (err) {
           return done(err);
