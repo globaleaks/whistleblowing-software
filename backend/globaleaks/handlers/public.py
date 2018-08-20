@@ -121,13 +121,21 @@ def db_serialize_node(session, tid, language):
     ret_dict['languages_supported'] = LANGUAGES_SUPPORTED
     ret_dict['configured'] = configured
     ret_dict['accept_submissions'] = State.accept_submissions
+
     ret_dict['logo'] = db_get_file(session, tid, u'logo')
+    ret_dict['favicon'] = db_get_file(session, tid, u'favicon')
+    ret_dict['css'] = db_get_file(session, tid, u'css')
+    ret_dict['script'] = db_get_file(session, tid, u'script')
 
     if tid != 1:
         root_tenant_node = ConfigFactory(session, 1, 'public_node')
 
         if language not in models.EnabledLanguage.list(session, tid):
             language = root_tenant_node.get_val(u'default_language')
+
+        for x in [u'logo', u'favicon', u'css', u'scripts']:
+            if not ret_dict[x]:
+                ret_dict[x] = db_get_file(session, 1, x)
 
         root_tenant_l10n = NodeL10NFactory(session, tid)
 
@@ -140,14 +148,6 @@ def db_serialize_node(session, tid, language):
             ret_dict['enable_disclaimer'] = root_tenant_node.get_val(u'enable_disclaimer')
             ret_dict['disclaimer_title'] = root_tenant_l10n.get_val(u'disclaimer_title', language)
             ret_dict['disclaimer_text'] = root_tenant_l10n.get_val(u'disclaimer_text', language)
-
-    if tid != 1 and not node_dict['enable_graphic_customization']:
-        tid = 1
-
-    ret_dict['css'] = db_get_file(session, tid, u'css')
-    ret_dict['favicon'] = db_get_file(session, tid, u'favicon')
-    ret_dict['script'] = db_get_file(session, tid, u'script')
-
 
     return ret_dict
 
