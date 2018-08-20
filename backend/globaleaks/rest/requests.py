@@ -230,7 +230,7 @@ AdminNodeDesc = {
     'enable_proof_of_work': bool,
     'enable_experimental_features': bool,
     'enable_signup': bool,
-    'signup_mode': text_type,
+    'mode': text_type,
     'signup_fingerprint': bool,
     'signup_tos1_enable': bool,
     'signup_tos1_title': text_type,
