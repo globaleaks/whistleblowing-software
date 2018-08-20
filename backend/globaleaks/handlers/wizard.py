@@ -79,7 +79,7 @@ def db_wizard(session, state, tid, mode, request, client_using_tor, language):
 
     context = db_create_context(session, state, tid, context_desc, language)
 
-    node.set_val(u'preset', mode)
+    node.set_val(u'mode', mode)
 
     # Apply the specific fixes related to whistleblowing.it projects
     if mode == u'whistleblowing.it':

@@ -105,8 +105,6 @@ ConfigDescriptor = {
 
     u'wizard_done': Bool(default=False),
 
-    u'preset': Unicode(default=u''),
-
     u'disable_submissions': Bool(default=False),
     u'disable_privacy_badge': Bool(default=False),
     u'enable_disclaimer': Bool(default=False),
@@ -186,7 +184,6 @@ ConfigFilters = {
         u'can_grant_permissions',
         u'allow_indexing',
         u'wizard_done',
-        u'preset',
         u'disable_submissions',
         u'disable_privacy_badge',
         u'enable_disclaimer',
