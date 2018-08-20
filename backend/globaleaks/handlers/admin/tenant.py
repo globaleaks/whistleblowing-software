@@ -74,15 +74,16 @@ def db_initialize(session, tenant):
 
     initialize_submission_statuses(session, tenant.id)
 
-    file_descs = [
-      (u'logo', 'data/logo.png'),
-      (u'favicon', 'data/favicon.ico')
-    ]
+    if tenant.id == 1:
+        file_descs = [
+          (u'logo', 'data/logo.png'),
+          (u'favicon', 'data/favicon.ico')
+        ]
 
-    for file_desc in file_descs:
-        with open(os.path.join(Settings.client_path, file_desc[1]), 'rb') as f:
-            data = base64.b64encode(f.read())
-            file.db_add_file(session, tenant.id, file_desc[0], u'', data)
+        for file_desc in file_descs:
+            with open(os.path.join(Settings.client_path, file_desc[1]), 'rb') as f:
+                data = base64.b64encode(f.read())
+                file.db_add_file(session, tenant.id, file_desc[0], u'', data)
 
 
 def db_create(session, desc):
