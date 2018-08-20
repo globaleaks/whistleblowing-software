@@ -25,8 +25,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-08-09 13:58+0000\n"
-"Last-Translator: Sebastiano Pistore <SebastianoPistore.info@protonmail.ch>\n"
+"PO-Revision-Date: 2018-08-13 11:45+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Italian (http://www.transifex.com/otf/globaleaks/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -113,7 +113,7 @@ msgid "Preferences"
 msgstr "Preferenze"
 
 msgid "Custodian interface"
-msgstr ""
+msgstr "Interfaccia del custode"
 
 msgid "Recipient interface"
 msgstr "Interfaccia del ricevente"
@@ -1565,7 +1565,7 @@ msgstr "Ti stai connettendo a questo nodo in maniera non anonima,  ed esso suppo
 msgid ""
 "Server temporarily unusable due to resource exhaustion; advise the Admin if "
 "you can."
-msgstr ""
+msgstr "Il server è temporaneamente inutilizzabile a causa dell'esaurimento delle risorse; se potete avvisate l'Amministratore."
 
 msgid "This server is not configured."
 msgstr "Questo nodo non è configurato"

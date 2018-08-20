@@ -22,8 +22,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-08-09 13:58+0000\n"
-"Last-Translator: Khairul Agasta <khairuldroids@gmail.com>\n"
+"PO-Revision-Date: 2018-08-10 10:49+0000\n"
+"Last-Translator: ical\n"
 "Language-Team: Indonesian (http://www.transifex.com/otf/globaleaks/language/id/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -110,7 +110,7 @@ msgid "Preferences"
 msgstr "Preferensi"
 
 msgid "Custodian interface"
-msgstr ""
+msgstr "Tampilan petugas"
 
 msgid "Recipient interface"
 msgstr "Antarmuka penerima"
@@ -536,10 +536,10 @@ msgid "Warning!"
 msgstr "Peringatan!"
 
 msgid "You are running an unsupported and potentially vulnerable browser."
-msgstr "Anda sedang menjalankan peramban yang tidak direkomendasikan atau rentan."
+msgstr "Anda sedang menjalankan peramban yang tidak direkomendasikan atau rentan."
 
 msgid "You are strongly advised to download and install the Tor Browser."
-msgstr "Anda sangat disarankan untuk mengunduh dan memasang peramban Tor."
+msgstr "Anda sangat disarankan untuk mengunduh dan memasang Peramban Tor."
 
 msgid ""
 "The Tor Browser includes various privacy and security enhancements not "
@@ -547,7 +547,7 @@ msgid ""
 msgstr "Peramban Tor memiliki sejumlah privasi dan tingkat keamanan yang tidak dimiliki peramban lain. "
 
 msgid "Download the Tor Browser"
-msgstr "Unduh Tor Browser"
+msgstr "Unduh Peramban Tor"
 
 msgid "This is the list of the other supported browsers:"
 msgstr "Ini adalah daftar dari peramban lainnya yang didukung:"
@@ -660,7 +660,7 @@ msgid ""
 "the submission anonymous, which is strongly recommended.\\n\\nThis can be "
 "achieved with the use of the Tor Browser, providing anonymisation not found "
 "in other browsers like Internet Explorer, Firefox, Chrome, Opera etc."
-msgstr "Mengirim kiriman melalui HTTPS akan meyingkap tindakan tersebut, tapi tidak kontennya.\\n\\nJuga, menyembunyikan fakta bahwa Anda mengirim sesuatu yang membuat kiriman Anda anonim, dimana hal ini sangat direkomendasikan.\\n\\nHal ini dapat dicapai dengan menggunakan peramban Tor, menyediakan anonimitas yang tidak tersedia di peramban lain seperti Internet Explorer, Firefox, Chrome, Opera dsb."
+msgstr "Mengirim kiriman melalui HTTPS akan meyingkap tindakan tersebut, tapi tidak kontennya.\\n\\nJuga, menyembunyikan fakta bahwa Anda mengirim sesuatu yang membuat kiriman Anda anonim, dimana hal ini sangat direkomendasikan.\\n\\nHal ini dapat dicapai dengan menggunakan Peramban Tor, menyediakan anonimitas yang tidak tersedia di peramban lain seperti Internet Explorer, Firefox, Chrome, Opera dsb."
 
 msgid "Are you a whistleblower?"
 msgstr "Apakah Anda informan publik?"
@@ -1299,7 +1299,7 @@ msgid "Tor Onion Service"
 msgstr "Layanan Tor Onion"
 
 msgid "Tor Browser download link"
-msgstr "Tautan untuk mengunduh Tor Browser"
+msgstr "Tautan untuk mengunduh Peramban Tor"
 
 msgid "Anonymize outgoing connections"
 msgstr "Menganonimisasi koneksi keluar"
@@ -1562,7 +1562,7 @@ msgstr "Anda sudah terhubung dengan peladen tanpa anonimitas dan peladen ini han
 msgid ""
 "Server temporarily unusable due to resource exhaustion; advise the Admin if "
 "you can."
-msgstr ""
+msgstr "Peladen untuk sementara tidak dapat digunakan dikarenakan kelelahan sumber; beritahu kepada Admin bila Anda bisa."
 
 msgid "This server is not configured."
 msgstr "Peladen ini tidak dikonfigurasi "
@@ -1682,10 +1682,10 @@ msgstr "Sepertinya anda menulusuri situs ini tanpa tambahan privasi dan keamanan
 msgid ""
 "You are strongly advised to visit this site using the desktop app called Tor"
 " Browser, that protects your identity."
-msgstr "Anda sangat disarankan untuk mengunjungi situs ini menggunakan aplikasi komputer bernama Tor Browser, yang melindungi identitas anda."
+msgstr "Anda sangat disarankan untuk mengunjungi situs ini menggunakan aplikasi komputer bernama Peramban Tor, yang melindungi identitas Anda."
 
 msgid "Then, copy and paste the following address into the Tor Browser:"
-msgstr "Lalu, salin dan tempel alamat yang bersangkutan ke dalam Tor Browser:"
+msgstr "Lalu, salin dan tempel alamat yang bersangkutan ke dalam Peramban Tor:"
 
 msgid "Details of the PGP key:"
 msgstr "Detil dari kunci PGP:"
