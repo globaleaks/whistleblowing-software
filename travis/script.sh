@@ -62,12 +62,6 @@ if [ "$GLTEST" = "py2_test" ] || [ "$GLTEST" = "py3_test" ]; then
   cd $TRAVIS_BUILD_DIR/backend
   coverage run setup.py test
 
-  echo "Running API tests"
-  $TRAVIS_BUILD_DIR/backend/bin/globaleaks -z $TRAVIS_USR
-  sleep 3
-  cd $TRAVIS_BUILD_DIR/client
-  grunt mochaTest
-
   npm install -g istanbul
 
   echo "Running BrowserTesting locally collecting code coverage"
@@ -193,5 +187,5 @@ elif [[ $GLTEST =~ ^end2end-.* ]]; then
   $TRAVIS_BUILD_DIR/backend/bin/globaleaks -z $TRAVIS_USR
   sleep 5
   cd $TRAVIS_BUILD_DIR/client
-  node_modules/protractor/bin/protractor tests/end2end/protractor-sauce.config.js
+  node_modules/protractor/bin/protractor tests/protractor-sauce.config.js
 fi

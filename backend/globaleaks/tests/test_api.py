@@ -79,10 +79,23 @@ class TestAPI(TestGL):
             (b'', 501),
         ]
 
+        server_headers = [
+           ('X-Content-Type-Options', 'nosniff'),
+           ('Expires', '-1'),
+           ('Server', 'Globaleaks'),
+           ('Pragma', 'no-cache'),
+           ('Cache-control', 'no-cache, no-store, must-revalidate'),
+           ('Referrer-Policy', 'no-referrer'),
+           ('X-Frame-Options', 'sameorigin')
+	]
+
         for meth, status_code in test_cases:
             request = forge_request(uri=b"https://www.globaleaks.org/", method=meth)
             self.api.render(request)
             self.assertEqual(request.responseCode, status_code)
+            for headerName, expectedHeaderValue in server_headers:
+                returnedHeaderValue = request.responseHeaders.getRawHeaders(headerName)[0]
+                self.assertEqual(returnedHeaderValue, expectedHeaderValue)
 
     def test_request_state(self):
         url = b"https://www.globaleaks.org/"
