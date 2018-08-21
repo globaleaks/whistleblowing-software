@@ -129,8 +129,7 @@ def update_submission_status(session, tid, submission_status_id, request, langua
     if status is None:
         raise errors.ResourceNotFound
 
-    status = update_status_model_from_request(status, request, language)
-    session.merge(status)
+    update_status_model_from_request(status, request, language)
 
 
 @transact
@@ -185,8 +184,7 @@ def update_submission_substatus(session, tid, submission_status_id, substatus_id
     if substatus is None:
         raise errors.ResourceNotFound
 
-    substatus = update_substatus_model_from_request(substatus, request, language)
-    session.merge(substatus)
+    update_substatus_model_from_request(substatus, request, language)
 
 
 @transact
