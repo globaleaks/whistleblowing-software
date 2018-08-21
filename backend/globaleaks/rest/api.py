@@ -29,6 +29,7 @@ from globaleaks.handlers import custodian, \
                                 attachment, authentication, token, \
                                 export, l10n, wizard,\
                                 user, shorturl, \
+                                redirect, \
                                 robots, \
                                 signup, \
                                 site, \
@@ -178,6 +179,8 @@ api_spec = [
     (r'/s/(.+)', file.FileHandler),
     (r'(/u/.{1,255})', shorturl.ShortURL),
     (r'/l10n/(' + '|'.join(LANGUAGES_SUPPORTED_CODES) + ')', l10n.L10NHandler),
+
+    (r'^(/admin|/login|/submission)$', redirect.SpecialRedirectHandler),
 
     ## This handler attempts to route all non routed get requests
     (r'/([a-zA-Z0-9_\-\/\.\@]*)', staticfile.StaticFileHandler, {'path': Settings.client_path})
