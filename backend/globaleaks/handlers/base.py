@@ -370,7 +370,6 @@ class BaseHandler(object):
     def redirect(self, url):
         self.request.setResponseCode(301)
         self.request.setHeader(b'location', url)
-        self.request.finish()
 
     def write_file(self, filename, filepath):
         if not os.path.exists(filepath) or not os.path.isfile(filepath):
