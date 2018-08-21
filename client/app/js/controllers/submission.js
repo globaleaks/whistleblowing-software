@@ -5,7 +5,6 @@ GLClient.controller('SubmissionCtrl',
 
   $scope.fieldUtilities = fieldUtilities;
   $scope.context_id = $location.search().context || undefined;
-  $scope.receivers_ids = $location.search().receivers || [];
 
   $scope.navigation = -1;
 
@@ -38,10 +37,6 @@ GLClient.controller('SubmissionCtrl',
   $scope.singleStepForm = function() {
     return $scope.firstStepIndex() === $scope.lastStepIndex();
   };
-
-  if ($scope.receivers_ids) {
-    $scope.receivers_ids = angular.fromJson($scope.receivers_ids);
-  }
 
   $scope.contextsOrderPredicate = $scope.node.show_contexts_in_alphabetical_order ? 'name' : 'presentation_order';
 
@@ -249,7 +244,7 @@ GLClient.controller('SubmissionCtrl',
     return score;
   };
 
-  $scope.prepareSubmission = function(context, receivers_ids) {
+  $scope.prepareSubmission = function(context) {
     $scope.answers = {};
     $scope.uploads = {};
     $scope.field_id_map = fieldUtilities.build_field_id_map(context);
@@ -268,7 +263,7 @@ GLClient.controller('SubmissionCtrl',
       $scope.submission._submission.total_score = $scope.total_score;
     }, true);
 
-    $scope.submission.create(context.id, receivers_ids, function () {
+    $scope.submission.create(context.id, function () {
       startCountdown();
 
       if ($scope.submission._token.proof_of_work) {
@@ -392,7 +387,7 @@ GLClient.controller('SubmissionCtrl',
     // Watch for changes in certain variables
     $scope.$watch('selected_context', function () {
       if ($scope.submission && $scope.selected_context) {
-        $scope.prepareSubmission($scope.selected_context, $scope.receivers_ids);
+        $scope.prepareSubmission($scope.selected_context);
       }
     });
   });
