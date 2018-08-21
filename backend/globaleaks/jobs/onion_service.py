@@ -49,7 +49,12 @@ class OnionService(BaseJob):
     print_startup_error = True
     tor_conn = None
     hs_map = {}
-    startup_semaphore = dict()
+    startup_semaphore = {}
+
+    def reset(self):
+        self.tor_con = None
+        self.hs_map.clear()
+        self.startup_semaphore.clear()
 
     def stop(self):
         super(OnionService, self).stop()
@@ -160,12 +165,14 @@ class OnionService(BaseJob):
 
         control_socket = '/var/run/tor/control'
 
+        self.reset()
+
         def startup_callback(tor_conn):
             self.print_startup_error = True
             self.tor_conn = tor_conn
             self.tor_conn.protocol.on_disconnect = restart_deferred
 
-            log.debug('Successfully connected to Tor control port')
+            log.err('Successfully connected to Tor control port')
 
             return self.add_all_hidden_services()
 
