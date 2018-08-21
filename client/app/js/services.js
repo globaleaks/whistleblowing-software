@@ -284,7 +284,7 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
         return count;
       };
 
-      var setCurrentContextReceivers = function(context_id, receivers_ids) {
+      var setCurrentContextReceivers = function(context_id) {
         self.context = angular.copy($filter('filter')($rootScope.contexts, {"id": context_id})[0]);
 
         self.selected_receivers = {};
@@ -295,20 +295,11 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
 
             self.selected_receivers[receiver.id] = false;
 
-            if (receivers_ids.length) {
-              if (receivers_ids.indexOf(receiver.id) !== -1) {
-                if ((receiver.pgp_key_public !== '' || $rootScope.node.allow_unencrypted) ||
-                    receiver.configuration !== 'unselectable') {
-                  self.selected_receivers[receiver.id] = true;
-                }
-              }
-            } else {
-              if (receiver.pgp_key_public !== '' || $rootScope.node.allow_unencrypted) {
-                if (receiver.configuration === 'default') {
-                  self.selected_receivers[receiver.id] = self.context.select_all_receivers;
-                } else if (receiver.configuration === 'forcefully_selected') {
-                  self.selected_receivers[receiver.id] = true;
-                }
+            if (receiver.pgp_key_public !== '' || $rootScope.node.allow_unencrypted) {
+              if (receiver.configuration === 'default') {
+                self.selected_receivers[receiver.id] = self.context.select_all_receivers;
+              } else if (receiver.configuration === 'forcefully_selected') {
+                self.selected_receivers[receiver.id] = true;
               }
             }
           }
@@ -321,8 +312,8 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
        * Create a new submission based on the currently selected context.
        *
        * */
-      self.create = function(context_id, receivers_ids, cb) {
-        setCurrentContextReceivers(context_id, receivers_ids);
+      self.create = function(context_id, cb) {
+        setCurrentContextReceivers(context_id);
 
         self._submission = new SubmissionResource({
           context_id: self.context.id,
