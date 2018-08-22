@@ -1,3 +1,8 @@
+Changes in version 3.3.7 - 2018-08-22
+    Implement redirects for urls without the hashtag (#2160)
+    Reload Tor hidden services in case of failures on the Tor control port
+    Update translations
+
 Changes in version 3.3.6 - 2018-08-18
     Revise configuration presets for whistleblowing.it mode
     Update translations
