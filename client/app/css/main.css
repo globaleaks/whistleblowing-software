@@ -8,9 +8,13 @@ html {
 }
 
 body {
-  background-color: #FFF;
   position: relative;
   margin: 0;
+  font-family: Verdana, sans-serif;
+  line-height: 1.8;
+  color: #222;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 @media (min-width: 992px) {
@@ -177,10 +181,7 @@ html[dir="rtl"] #UserBox {
 /** Submission details **/
 
 .keycode {
-    text-align: center;
-}
-.keycode h2 {
-    font-family: sans-serif
+  text-align: center;
 }
 
 #PrivacyBadgeBox {
