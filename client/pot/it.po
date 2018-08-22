@@ -25,7 +25,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-08-13 11:45+0000\n"
+"PO-Revision-Date: 2018-08-22 06:59+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Italian (http://www.transifex.com/otf/globaleaks/language/it/)\n"
 "MIME-Version: 1.0\n"
@@ -643,13 +643,13 @@ msgid "Surname"
 msgstr "Cognome"
 
 msgid "New"
-msgstr "Nuovo"
+msgstr "Nuova"
 
 msgid "Open"
-msgstr "Apri"
+msgstr "Aperta"
 
 msgid "Closed"
-msgstr "Chiuso"
+msgstr "Chiusa"
 
 msgid "Select the context of your submission:"
 msgstr "Seleziona il contesto della tua segnalazione"
@@ -722,6 +722,9 @@ msgstr "Permetti ai riceventi di modificare i privilegi dei whistleblower su spe
 
 msgid "Enable search engines indexing"
 msgstr "Abilita l'indicizzazione da parte dei motori di ricerca"
+
+msgid "Description"
+msgstr "Descrizione"
 
 msgid "Enable custom privacy panel"
 msgstr "Abilita privacy panel personalizzato"
@@ -915,9 +918,6 @@ msgstr "Titolo della homepage"
 
 msgid "Presentation"
 msgstr "Presentazione"
-
-msgid "Description"
-msgstr "Descrizione"
 
 msgid "Question to solicit possible whistleblowers"
 msgstr "Domanda di sollecitazione alla segnalazione"
@@ -1465,8 +1465,8 @@ msgid ""
 "submissions"
 msgstr "Permetti al ricevente di modificare i privilegi dei whistleblower su specifiche segnalazioni"
 
-msgid "General settings"
-msgstr "Impostazioni generali"
+msgid "Site settings"
+msgstr "Impostazioni sito"
 
 msgid "Case management"
 msgstr "Gestione dei casi"
@@ -1474,14 +1474,14 @@ msgstr "Gestione dei casi"
 msgid "Network settings"
 msgstr "Impostazioni di rete"
 
+msgid "Mode:"
+msgstr "Modalità:"
+
 msgid "Root domain used for secondary sites"
 msgstr "Domini principale utilizzato dai siti secondari"
 
 msgid "Allow users to sign up"
 msgstr "Permetti agli utenti di registrarsi"
-
-msgid "Signup mode:"
-msgstr "Modalita di registrazione"
 
 msgid "Record IP address and user agent of registered users"
 msgstr "Registra gli indirizzi IP e lo user agent degli utenti registrati"
@@ -1544,6 +1544,9 @@ msgstr "Autorizzazione"
 
 msgid "Identities"
 msgstr "Identità"
+
+msgid "User preferences"
+msgstr "Preferenze utente"
 
 msgid "The validation link is either incorrect or has expired."
 msgstr "L'indirizzo di validazione è invalido o scaduto."
@@ -1677,6 +1680,33 @@ msgstr "La richiesta di upload supera la dimensione massima in MB"
 msgid "Success!"
 msgstr "Successo!"
 
+msgid "Validation of email address change in progress."
+msgstr "Validazione del cambio di email in corso."
+
+msgid "Please check your inbox for further instructions."
+msgstr "Controlla la tua casella di posta in arrivo per informazioni aggiuntive."
+
+msgid "Enable submission notification"
+msgstr "Abilita notifica delle segnalazioni"
+
+msgid "Current Password"
+msgstr "Password attuale"
+
+msgid "Old password confirmation required"
+msgstr "E' necessario confermare la vecchia password"
+
+msgid "New Password"
+msgstr "Nuova Password"
+
+msgid "The new password must be different from the current one."
+msgstr "La nuova password deve essere differente dalla password corrente."
+
+msgid "Type your new password again"
+msgstr "Digita ancora una volta la tua nuova password"
+
+msgid "The two passwords do not match"
+msgstr "Le due password non corrispondono"
+
 msgid ""
 "It appears that you are browsing this site without any extra privacy and "
 "security!"
@@ -1727,6 +1757,21 @@ msgid ""
 "The platform is still not configured for HTTPS connections and should "
 "therefore only be used for testing purposes."
 msgstr "La piattaforma non è ancora configurata per permettere connessioni HTTPS e dovrebbe essere usata solo per sperimentazione."
+
+msgid "Use case"
+msgstr "Caso d'uso"
+
+msgid "Anticorruption"
+msgstr "Anticorruzione"
+
+msgid "Corporate compliance"
+msgstr "Compliance aziendale"
+
+msgid "Investigative journalism"
+msgstr "Giornalismo d'inchiesta"
+
+msgid "Civic activism"
+msgstr "Attivismo civico"
 
 msgid "Send"
 msgstr "Invia"
@@ -1848,33 +1893,6 @@ msgstr "La funzionalità di password reset non è disponibile per gli utenti amm
 msgid "Password reset requested."
 msgstr "Richiesta di password reset completata."
 
-msgid "Please check your inbox for further instructions."
-msgstr "Controlla la tua casella di posta in arrivo per informazioni aggiuntive."
-
-msgid "Validation of email address change in progress."
-msgstr "Validazione del cambio di email in corso."
-
-msgid "Enable submission notification"
-msgstr "Abilita notifica delle segnalazioni"
-
-msgid "Current Password"
-msgstr "Password attuale"
-
-msgid "Old password confirmation required"
-msgstr "E' necessario confermare la vecchia password"
-
-msgid "New Password"
-msgstr "Nuova Password"
-
-msgid "The new password must be different from the current one."
-msgstr "La nuova password deve essere differente dalla password corrente."
-
-msgid "Type your new password again"
-msgstr "Digita ancora una volta la tua nuova password"
-
-msgid "The two passwords do not match"
-msgstr "Le due password non corrispondono"
-
 msgid "Thank you!"
 msgstr "Grazie!"
 
@@ -1899,9 +1917,6 @@ msgid ""
 "A useful way to hide your key code is to write it down like a credit card "
 "number, i.e. by also including an expiration date."
 msgstr "Un modo efficace per nascondere il tuo key code è quello di appuntato come fosse una numero di una carta di credito ed ad esempio allegarci anche una data di scadenza."
-
-msgid "Welcome to the administration interface!"
-msgstr "Benvenuto nell'interfaccia di amministrazione!"
 
 msgid ""
 "You have not set up your encryption key, so the files will not be encrypted "
@@ -1953,21 +1968,6 @@ msgstr "Iscriviti"
 
 msgid "Domain"
 msgstr "Dominio"
-
-msgid "Use case"
-msgstr "Caso d'uso"
-
-msgid "Anticorruption"
-msgstr "Anticorruzione"
-
-msgid "Corporate compliance"
-msgstr "Compliance aziendale"
-
-msgid "Investigative journalism"
-msgstr "Giornalismo d'inchiesta"
-
-msgid "Civic activism"
-msgstr "Attivismo civico"
 
 msgid "Other"
 msgstr "Altro"

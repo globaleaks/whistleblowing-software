@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-08-20 13:41+0000\n"
-"Last-Translator: Panu Ahvenharju\n"
+"PO-Revision-Date: 2018-08-22 06:53+0000\n"
+"Last-Translator: viljaminojonen <Viljami.Nojonen@live.com>\n"
 "Language-Team: Finnish (http://www.transifex.com/otf/globaleaks/language/fi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -708,6 +708,9 @@ msgstr "Salli vastaanottajien myöntää lupia vihjeiden lähettäjille"
 msgid "Enable search engines indexing"
 msgstr "Ota käyttöön hakukoneiden indeksointi"
 
+msgid "Description"
+msgstr "Kuvaus"
+
 msgid "Enable custom privacy panel"
 msgstr "Ota käyttöön oma yksityisyyskulkukortti"
 
@@ -900,9 +903,6 @@ msgstr "Otsikkoteksti"
 
 msgid "Presentation"
 msgstr "Esittely"
-
-msgid "Description"
-msgstr "Kuvaus"
 
 msgid "Question to solicit possible whistleblowers"
 msgstr "Vihjeenantajalle esitettävä kysymys palvelun etusivulla"
@@ -1450,8 +1450,8 @@ msgid ""
 "submissions"
 msgstr "Salli vastaanottajan myöntää vihjeiden lähettäjille vihjekohtaisia lupia"
 
-msgid "General settings"
-msgstr "Perusasetukset"
+msgid "Site settings"
+msgstr ""
 
 msgid "Case management"
 msgstr "Asiainhallinta"
@@ -1459,14 +1459,14 @@ msgstr "Asiainhallinta"
 msgid "Network settings"
 msgstr "Verkkoasetukset"
 
+msgid "Mode:"
+msgstr ""
+
 msgid "Root domain used for secondary sites"
 msgstr "Käytetään pääverkkotunnusta toissijaisille palveluille"
 
 msgid "Allow users to sign up"
 msgstr "Salli käyttäjien rekisteröityä palveluun"
-
-msgid "Signup mode:"
-msgstr "Rekisteröitymistila:"
 
 msgid "Record IP address and user agent of registered users"
 msgstr "Tallenna rekisteröityneiden käyttäjien IP-osoitteet ja selaintiedot (user agent)"
@@ -1529,6 +1529,9 @@ msgstr "Käyttölupa"
 
 msgid "Identities"
 msgstr "Identiteetit"
+
+msgid "User preferences"
+msgstr "Käyttäjän asetukset"
 
 msgid "The validation link is either incorrect or has expired."
 msgstr "Vahvistuslinkki on joko virheellinen tai vanhentunut."
@@ -1662,6 +1665,33 @@ msgstr "Pyyntö palvelimelle kopiontiin ylittää kokorajan"
 msgid "Success!"
 msgstr "Onnistui!"
 
+msgid "Validation of email address change in progress."
+msgstr "Sähköpostiosoitteen vaihtamisen vahvistaminen käynnissä."
+
+msgid "Please check your inbox for further instructions."
+msgstr "Lisäohjeita löydät sähköpostistasi."
+
+msgid "Enable submission notification"
+msgstr "Ota käyttöön vihjeiden ilmoitukset"
+
+msgid "Current Password"
+msgstr "Nykyinen salasana"
+
+msgid "Old password confirmation required"
+msgstr "Entinen salasanavahvistus vaadittu"
+
+msgid "New Password"
+msgstr "Uusi salasana"
+
+msgid "The new password must be different from the current one."
+msgstr "Uusi salasana ei voi olla sama kuin parhaillaan käytössä oleva."
+
+msgid "Type your new password again"
+msgstr "Kirjoita uusi salasana uudelleen"
+
+msgid "The two passwords do not match"
+msgstr "Annetut salasanat eivät vastaa toisiaan"
+
 msgid ""
 "It appears that you are browsing this site without any extra privacy and "
 "security!"
@@ -1712,6 +1742,21 @@ msgid ""
 "The platform is still not configured for HTTPS connections and should "
 "therefore only be used for testing purposes."
 msgstr "Järjestelmän HTTPS-asetuksia ei ole vielä määritetty, joten sen käyttöä suositellaan ainoastaan koekäytössä."
+
+msgid "Use case"
+msgstr "Käyttötapaus"
+
+msgid "Anticorruption"
+msgstr "Korruptionvastaisuus"
+
+msgid "Corporate compliance"
+msgstr "Yrityslainsäädännön noudattaminen"
+
+msgid "Investigative journalism"
+msgstr "Tutkiva journalismi"
+
+msgid "Civic activism"
+msgstr "Kansalaisaktivismi"
 
 msgid "Send"
 msgstr "Lähetä"
@@ -1833,33 +1878,6 @@ msgstr "Toiminto salasanan nollaamiseksi ei ole saatavilla ylläpitokäyttäjill
 msgid "Password reset requested."
 msgstr "Salasanan nollaus pyydetty."
 
-msgid "Please check your inbox for further instructions."
-msgstr "Lisäohjeita löydät sähköpostistasi."
-
-msgid "Validation of email address change in progress."
-msgstr "Sähköpostiosoitteen vaihtamisen vahvistaminen käynnissä."
-
-msgid "Enable submission notification"
-msgstr "Ota käyttöön vihjeiden ilmoitukset"
-
-msgid "Current Password"
-msgstr "Nykyinen salasana"
-
-msgid "Old password confirmation required"
-msgstr "Entinen salasanavahvistus vaadittu"
-
-msgid "New Password"
-msgstr "Uusi salasana"
-
-msgid "The new password must be different from the current one."
-msgstr "Uusi salasana ei voi olla sama kuin parhaillaan käytössä oleva."
-
-msgid "Type your new password again"
-msgstr "Kirjoita uusi salasana uudelleen"
-
-msgid "The two passwords do not match"
-msgstr "Annetut salasanat eivät vastaa toisiaan"
-
 msgid "Thank you!"
 msgstr "Kiitos!"
 
@@ -1884,9 +1902,6 @@ msgid ""
 "A useful way to hide your key code is to write it down like a credit card "
 "number, i.e. by also including an expiration date."
 msgstr "Hyödyllinen tapa piilottaa salainen numerosarjasi on kirjoittaa se muistiin kuten luottokorttinumero. Toisin sanoen, sinun kannattaa sisällyttää numerosarjan mukaan myös vanhentumispäivämäärä."
-
-msgid "Welcome to the administration interface!"
-msgstr "Tervetuloa!"
 
 msgid ""
 "You have not set up your encryption key, so the files will not be encrypted "
@@ -1938,21 +1953,6 @@ msgstr "Rekisteröidy"
 
 msgid "Domain"
 msgstr "Verkkotunnus"
-
-msgid "Use case"
-msgstr "Käyttötapaus"
-
-msgid "Anticorruption"
-msgstr "Korruptionvastaisuus"
-
-msgid "Corporate compliance"
-msgstr "Yrityslainsäädännön noudattaminen"
-
-msgid "Investigative journalism"
-msgstr "Tutkiva journalismi"
-
-msgid "Civic activism"
-msgstr "Kansalaisaktivismi"
 
 msgid "Other"
 msgstr "Muut"

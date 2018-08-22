@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-08-09 13:58+0000\n"
-"Last-Translator: Pin Gu\n"
+"PO-Revision-Date: 2018-08-22 06:53+0000\n"
+"Last-Translator: Chi-Hsun Tsai\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/otf/globaleaks/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -708,6 +708,9 @@ msgstr "允許收件者在某特定揭密事件上授權許可吹哨者"
 msgid "Enable search engines indexing"
 msgstr "可讓搜尋引擎進行索引"
 
+msgid "Description"
+msgstr "描述"
+
 msgid "Enable custom privacy panel"
 msgstr "啟用自定的隱私面版"
 
@@ -900,9 +903,6 @@ msgstr "網頁標題"
 
 msgid "Presentation"
 msgstr "呈現"
-
-msgid "Description"
-msgstr "描述"
 
 msgid "Question to solicit possible whistleblowers"
 msgstr "收集給潛在吹哨者的問題"
@@ -1450,8 +1450,8 @@ msgid ""
 "submissions"
 msgstr "允許收件者在某特定揭密事件上授權許可吹哨者"
 
-msgid "General settings"
-msgstr "通用設置"
+msgid "Site settings"
+msgstr "站台設定"
 
 msgid "Case management"
 msgstr "案件管理"
@@ -1459,14 +1459,14 @@ msgstr "案件管理"
 msgid "Network settings"
 msgstr "網路設定"
 
+msgid "Mode:"
+msgstr ""
+
 msgid "Root domain used for secondary sites"
 msgstr "二級網站使用的根域名"
 
 msgid "Allow users to sign up"
 msgstr "可接受新用戶註冊"
-
-msgid "Signup mode:"
-msgstr "註冊模式："
 
 msgid "Record IP address and user agent of registered users"
 msgstr "記錄註冊用戶的瀏覽器與 IP 地址"
@@ -1529,6 +1529,9 @@ msgstr "授權"
 
 msgid "Identities"
 msgstr "身份"
+
+msgid "User preferences"
+msgstr "用戶偏好"
 
 msgid "The validation link is either incorrect or has expired."
 msgstr "驗證連結不正確或是已經過期。"
@@ -1662,6 +1665,33 @@ msgstr "上傳的請求超出檔案大小上限"
 msgid "Success!"
 msgstr "成功!"
 
+msgid "Validation of email address change in progress."
+msgstr "正在查驗電郵地址變更"
+
+msgid "Please check your inbox for further instructions."
+msgstr ""
+
+msgid "Enable submission notification"
+msgstr "啟動提交通知"
+
+msgid "Current Password"
+msgstr "現用密碼"
+
+msgid "Old password confirmation required"
+msgstr "要求確認舊密碼"
+
+msgid "New Password"
+msgstr "新密碼"
+
+msgid "The new password must be different from the current one."
+msgstr "新密碼必須與舊密碼不同"
+
+msgid "Type your new password again"
+msgstr "重新輸入密碼"
+
+msgid "The two passwords do not match"
+msgstr "密碼不相符"
+
 msgid ""
 "It appears that you are browsing this site without any extra privacy and "
 "security!"
@@ -1712,6 +1742,21 @@ msgid ""
 "The platform is still not configured for HTTPS connections and should "
 "therefore only be used for testing purposes."
 msgstr "平台仍未設定好 HTTPS 連線,故應只能作測試目的使用"
+
+msgid "Use case"
+msgstr "使用案例"
+
+msgid "Anticorruption"
+msgstr "反貪腐"
+
+msgid "Corporate compliance"
+msgstr "企業遵法"
+
+msgid "Investigative journalism"
+msgstr "調查報導"
+
+msgid "Civic activism"
+msgstr "公民行動"
 
 msgid "Send"
 msgstr "送出"
@@ -1833,33 +1878,6 @@ msgstr "管理者用戶無法使用密碼重設功能。"
 msgid "Password reset requested."
 msgstr "已請求重設密碼。"
 
-msgid "Please check your inbox for further instructions."
-msgstr ""
-
-msgid "Validation of email address change in progress."
-msgstr "正在查驗電郵地址變更"
-
-msgid "Enable submission notification"
-msgstr "啟動提交通知"
-
-msgid "Current Password"
-msgstr "現用密碼"
-
-msgid "Old password confirmation required"
-msgstr "要求確認舊密碼"
-
-msgid "New Password"
-msgstr "新密碼"
-
-msgid "The new password must be different from the current one."
-msgstr "新密碼必須與舊密碼不同"
-
-msgid "Type your new password again"
-msgstr "重新輸入密碼"
-
-msgid "The two passwords do not match"
-msgstr "密碼不相符"
-
 msgid "Thank you!"
 msgstr "謝謝"
 
@@ -1884,9 +1902,6 @@ msgid ""
 "A useful way to hide your key code is to write it down like a credit card "
 "number, i.e. by also including an expiration date."
 msgstr "保存鑰碼的有用作法是把它記到紙上，就如同信用卡，包括記下到期日資訊"
-
-msgid "Welcome to the administration interface!"
-msgstr "歡迎來到管理介面"
 
 msgid ""
 "You have not set up your encryption key, so the files will not be encrypted "
@@ -1938,21 +1953,6 @@ msgstr "註冊"
 
 msgid "Domain"
 msgstr "網域名"
-
-msgid "Use case"
-msgstr "使用案例"
-
-msgid "Anticorruption"
-msgstr "反貪腐"
-
-msgid "Corporate compliance"
-msgstr "企業遵法"
-
-msgid "Investigative journalism"
-msgstr "調查報導"
-
-msgid "Civic activism"
-msgstr "公民行動"
 
 msgid "Other"
 msgstr "其它"

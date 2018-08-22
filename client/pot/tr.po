@@ -25,8 +25,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-08-17 04:09+0000\n"
-"Last-Translator: Kaya Zeren <kayazeren@gmail.com>\n"
+"PO-Revision-Date: 2018-08-22 06:53+0000\n"
+"Last-Translator: Mert Salih Kaplan <mail@mertskaplan.com>\n"
 "Language-Team: Turkish (http://www.transifex.com/otf/globaleaks/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -723,6 +723,9 @@ msgstr "Belirli gönderimlerde alıcıların ihbarcılara yetki vermesine izin v
 msgid "Enable search engines indexing"
 msgstr "Arama motoru dizinlemeyi etkinleştir"
 
+msgid "Description"
+msgstr "Açıklama"
+
 msgid "Enable custom privacy panel"
 msgstr "Özel gizlilik panelini etkinleştir"
 
@@ -915,9 +918,6 @@ msgstr "Anasayfa başlığı"
 
 msgid "Presentation"
 msgstr "Sunum"
-
-msgid "Description"
-msgstr "Açıklama"
 
 msgid "Question to solicit possible whistleblowers"
 msgstr "Daha fazla bilgi alabilmek için muhtemel ihbarcıları sorgulayın."
@@ -1465,8 +1465,8 @@ msgid ""
 "submissions"
 msgstr "Belirli gönderimlerde alıcının ihbarcılara yetki vermesine izin verin"
 
-msgid "General settings"
-msgstr "Genel ayarlar"
+msgid "Site settings"
+msgstr "Site ayarları"
 
 msgid "Case management"
 msgstr ""
@@ -1474,13 +1474,13 @@ msgstr ""
 msgid "Network settings"
 msgstr "Ağ Ayarları"
 
+msgid "Mode:"
+msgstr ""
+
 msgid "Root domain used for secondary sites"
 msgstr ""
 
 msgid "Allow users to sign up"
-msgstr ""
-
-msgid "Signup mode:"
 msgstr ""
 
 msgid "Record IP address and user agent of registered users"
@@ -1544,6 +1544,9 @@ msgstr "İzin"
 
 msgid "Identities"
 msgstr "Kimlikler"
+
+msgid "User preferences"
+msgstr "Kullanıcı tercihleri"
 
 msgid "The validation link is either incorrect or has expired."
 msgstr ""
@@ -1677,6 +1680,33 @@ msgstr "Yükleme talebi boyut sınırlarını aşıyor"
 msgid "Success!"
 msgstr "Başarılı!"
 
+msgid "Validation of email address change in progress."
+msgstr ""
+
+msgid "Please check your inbox for further instructions."
+msgstr ""
+
+msgid "Enable submission notification"
+msgstr "Gönderim bildirimlerini etkinleştir"
+
+msgid "Current Password"
+msgstr "Mevcut Şifre"
+
+msgid "Old password confirmation required"
+msgstr "Eski parola doğrulaması gerekli"
+
+msgid "New Password"
+msgstr "Yeni Parola"
+
+msgid "The new password must be different from the current one."
+msgstr "Yeni parola, geçerli paroladan farklı olmalıdır."
+
+msgid "Type your new password again"
+msgstr "Yeni şifrenizi tekrar girin"
+
+msgid "The two passwords do not match"
+msgstr "İki parola eşleşmiyor"
+
 msgid ""
 "It appears that you are browsing this site without any extra privacy and "
 "security!"
@@ -1726,6 +1756,21 @@ msgstr ""
 msgid ""
 "The platform is still not configured for HTTPS connections and should "
 "therefore only be used for testing purposes."
+msgstr ""
+
+msgid "Use case"
+msgstr ""
+
+msgid "Anticorruption"
+msgstr ""
+
+msgid "Corporate compliance"
+msgstr ""
+
+msgid "Investigative journalism"
+msgstr ""
+
+msgid "Civic activism"
 msgstr ""
 
 msgid "Send"
@@ -1848,33 +1893,6 @@ msgstr ""
 msgid "Password reset requested."
 msgstr ""
 
-msgid "Please check your inbox for further instructions."
-msgstr ""
-
-msgid "Validation of email address change in progress."
-msgstr ""
-
-msgid "Enable submission notification"
-msgstr "Gönderim bildirimlerini etkinleştir"
-
-msgid "Current Password"
-msgstr "Mevcut Şifre"
-
-msgid "Old password confirmation required"
-msgstr "Eski parola doğrulaması gerekli"
-
-msgid "New Password"
-msgstr "Yeni Parola"
-
-msgid "The new password must be different from the current one."
-msgstr "Yeni parola, geçerli paroladan farklı olmalıdır."
-
-msgid "Type your new password again"
-msgstr "Yeni şifrenizi tekrar girin"
-
-msgid "The two passwords do not match"
-msgstr "İki parola eşleşmiyor"
-
 msgid "Thank you!"
 msgstr "Teşekkürler!"
 
@@ -1899,9 +1917,6 @@ msgid ""
 "A useful way to hide your key code is to write it down like a credit card "
 "number, i.e. by also including an expiration date."
 msgstr "Anahtar kodunuzu saklamanın en kullanışlı yolu son geçerlilik tarihini de içeren kredi kartı görünümünde not etmektir."
-
-msgid "Welcome to the administration interface!"
-msgstr "Yönetici arayüzüne hoşgeldiniz!"
 
 msgid ""
 "You have not set up your encryption key, so the files will not be encrypted "
@@ -1953,21 +1968,6 @@ msgstr "Kayıt ol"
 
 msgid "Domain"
 msgstr "Alan Adı"
-
-msgid "Use case"
-msgstr ""
-
-msgid "Anticorruption"
-msgstr ""
-
-msgid "Corporate compliance"
-msgstr ""
-
-msgid "Investigative journalism"
-msgstr ""
-
-msgid "Civic activism"
-msgstr ""
 
 msgid "Other"
 msgstr "Diğer"

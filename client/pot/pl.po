@@ -18,8 +18,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-08-09 13:58+0000\n"
-"Last-Translator: sebx\n"
+"PO-Revision-Date: 2018-08-22 06:53+0000\n"
+"Last-Translator: Anna SOBOLEWSKA <sobolewska.a.m@gmail.com>\n"
 "Language-Team: Polish (http://www.transifex.com/otf/globaleaks/language/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -716,6 +716,9 @@ msgstr "Odbiorcy mogą nadawać uprawnienia sygnalistom do poszczególnych zgło
 msgid "Enable search engines indexing"
 msgstr "Włącz indeksowanie przez wyszukiwarki internetowe"
 
+msgid "Description"
+msgstr "Opis"
+
 msgid "Enable custom privacy panel"
 msgstr "Włącz własne ustawienia prywatności"
 
@@ -908,9 +911,6 @@ msgstr "Tytuł strony głównej"
 
 msgid "Presentation"
 msgstr "Prezentacja"
-
-msgid "Description"
-msgstr "Opis"
 
 msgid "Question to solicit possible whistleblowers"
 msgstr ""
@@ -1458,8 +1458,8 @@ msgid ""
 "submissions"
 msgstr "Odbiorca może nadawać uprawnienia sygnalistom do poszczególnych zgłoszeń"
 
-msgid "General settings"
-msgstr "Ustawienia ogólne"
+msgid "Site settings"
+msgstr "Ustawienia strony"
 
 msgid "Case management"
 msgstr ""
@@ -1467,13 +1467,13 @@ msgstr ""
 msgid "Network settings"
 msgstr "Ustawienia sieci"
 
+msgid "Mode:"
+msgstr ""
+
 msgid "Root domain used for secondary sites"
 msgstr ""
 
 msgid "Allow users to sign up"
-msgstr ""
-
-msgid "Signup mode:"
 msgstr ""
 
 msgid "Record IP address and user agent of registered users"
@@ -1537,6 +1537,9 @@ msgstr ""
 
 msgid "Identities"
 msgstr "Tożsamości"
+
+msgid "User preferences"
+msgstr "Ustawienia użytkownika"
 
 msgid "The validation link is either incorrect or has expired."
 msgstr ""
@@ -1670,6 +1673,33 @@ msgstr "Żądanie wysłania przekracza limit rozmiaru"
 msgid "Success!"
 msgstr "Sukces!"
 
+msgid "Validation of email address change in progress."
+msgstr ""
+
+msgid "Please check your inbox for further instructions."
+msgstr ""
+
+msgid "Enable submission notification"
+msgstr ""
+
+msgid "Current Password"
+msgstr "Aktualne hasło"
+
+msgid "Old password confirmation required"
+msgstr "Wymagane potwierdzenie starego hasła"
+
+msgid "New Password"
+msgstr "Nowe hasło"
+
+msgid "The new password must be different from the current one."
+msgstr ""
+
+msgid "Type your new password again"
+msgstr "Wpisz jeszcze raz swoje nowe hasło"
+
+msgid "The two passwords do not match"
+msgstr "Te dwa hasła nie są takie same"
+
 msgid ""
 "It appears that you are browsing this site without any extra privacy and "
 "security!"
@@ -1719,6 +1749,21 @@ msgstr ""
 msgid ""
 "The platform is still not configured for HTTPS connections and should "
 "therefore only be used for testing purposes."
+msgstr ""
+
+msgid "Use case"
+msgstr ""
+
+msgid "Anticorruption"
+msgstr ""
+
+msgid "Corporate compliance"
+msgstr ""
+
+msgid "Investigative journalism"
+msgstr ""
+
+msgid "Civic activism"
 msgstr ""
 
 msgid "Send"
@@ -1841,33 +1886,6 @@ msgstr ""
 msgid "Password reset requested."
 msgstr ""
 
-msgid "Please check your inbox for further instructions."
-msgstr ""
-
-msgid "Validation of email address change in progress."
-msgstr ""
-
-msgid "Enable submission notification"
-msgstr ""
-
-msgid "Current Password"
-msgstr "Aktualne hasło"
-
-msgid "Old password confirmation required"
-msgstr "Wymagane potwierdzenie starego hasła"
-
-msgid "New Password"
-msgstr "Nowe hasło"
-
-msgid "The new password must be different from the current one."
-msgstr ""
-
-msgid "Type your new password again"
-msgstr "Wpisz jeszcze raz swoje nowe hasło"
-
-msgid "The two passwords do not match"
-msgstr "Te dwa hasła nie są takie same"
-
 msgid "Thank you!"
 msgstr "Dziękuję!"
 
@@ -1892,9 +1910,6 @@ msgid ""
 "A useful way to hide your key code is to write it down like a credit card "
 "number, i.e. by also including an expiration date."
 msgstr ""
-
-msgid "Welcome to the administration interface!"
-msgstr "Witaj w Panelu Administracyjnym!"
 
 msgid ""
 "You have not set up your encryption key, so the files will not be encrypted "
@@ -1946,21 +1961,6 @@ msgstr "Zarejestruj się"
 
 msgid "Domain"
 msgstr "Domena"
-
-msgid "Use case"
-msgstr ""
-
-msgid "Anticorruption"
-msgstr ""
-
-msgid "Corporate compliance"
-msgstr ""
-
-msgid "Investigative journalism"
-msgstr ""
-
-msgid "Civic activism"
-msgstr ""
 
 msgid "Other"
 msgstr "Inne"

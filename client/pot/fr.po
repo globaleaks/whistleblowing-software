@@ -38,7 +38,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-08-09 18:18+0000\n"
+"PO-Revision-Date: 2018-08-22 06:53+0000\n"
 "Last-Translator: AO French coordinator <ao@localizationlab.org>\n"
 "Language-Team: French (http://www.transifex.com/otf/globaleaks/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -736,6 +736,9 @@ msgstr "Permettre aux destinataires de donner des permissions aux lanceurs d’a
 msgid "Enable search engines indexing"
 msgstr "Activer l’indexation par les moteurs de recherche"
 
+msgid "Description"
+msgstr "Description"
+
 msgid "Enable custom privacy panel"
 msgstr "Activer le volet de confidentialité personnalisée"
 
@@ -928,9 +931,6 @@ msgstr "Titre de la page d’accueil"
 
 msgid "Presentation"
 msgstr "Présentation"
-
-msgid "Description"
-msgstr "Description"
 
 msgid "Question to solicit possible whistleblowers"
 msgstr "Question pour attirer les lanceurs d’alerte potentiels"
@@ -1478,8 +1478,8 @@ msgid ""
 "submissions"
 msgstr "Permettre au destinataire de donner des permissions aux lanceurs d’alerte pour des envois spécifiques"
 
-msgid "General settings"
-msgstr "Paramètres généraux"
+msgid "Site settings"
+msgstr "Paramètres des sites"
 
 msgid "Case management"
 msgstr "Gestion des cas"
@@ -1487,14 +1487,14 @@ msgstr "Gestion des cas"
 msgid "Network settings"
 msgstr "Paramètres réseau"
 
+msgid "Mode:"
+msgstr ""
+
 msgid "Root domain used for secondary sites"
 msgstr "Domaine racine utilisé pour les sites secondaires"
 
 msgid "Allow users to sign up"
 msgstr "Permettre aux utilisateurs de s’inscrire"
-
-msgid "Signup mode:"
-msgstr "Mode d’inscription :"
 
 msgid "Record IP address and user agent of registered users"
 msgstr "Enregistrer l’adresse IP et l’agent utilisateur des utilisateurs inscrits"
@@ -1557,6 +1557,9 @@ msgstr "Autorisation"
 
 msgid "Identities"
 msgstr "Identités"
+
+msgid "User preferences"
+msgstr "Préférences de l’utilisateur"
 
 msgid "The validation link is either incorrect or has expired."
 msgstr "Soit le lien de validation est incorrect soit il est expiré."
@@ -1690,6 +1693,33 @@ msgstr "La demande de téléversement dépasse la limite de taille"
 msgid "Success!"
 msgstr "Vous avez réussi !"
 
+msgid "Validation of email address change in progress."
+msgstr "La validation du changement d’adresse courriel est en cours."
+
+msgid "Please check your inbox for further instructions."
+msgstr "Veuillez vérifier votre boîte de réception pour de plus amples instructions."
+
+msgid "Enable submission notification"
+msgstr "Activer la notification d’envoi"
+
+msgid "Current Password"
+msgstr "Mot de passe actuel"
+
+msgid "Old password confirmation required"
+msgstr "La confirmation de l’ancien mot de passe est exigée"
+
+msgid "New Password"
+msgstr "Nouveau mot de passe"
+
+msgid "The new password must be different from the current one."
+msgstr "Le nouveau mot de passe doit être différent de l’actuel."
+
+msgid "Type your new password again"
+msgstr "Saisissez votre nouveau mot de passe de nouveau"
+
+msgid "The two passwords do not match"
+msgstr "Les deux mots de passe ne correspondent pas"
+
 msgid ""
 "It appears that you are browsing this site without any extra privacy and "
 "security!"
@@ -1740,6 +1770,21 @@ msgid ""
 "The platform is still not configured for HTTPS connections and should "
 "therefore only be used for testing purposes."
 msgstr "La plateforme n’est toujours pas configurée pour les connexions HTTPS  et ne devrait être utilisée qu’à des fins de test."
+
+msgid "Use case"
+msgstr "Cas d’usage"
+
+msgid "Anticorruption"
+msgstr "Anticorruption"
+
+msgid "Corporate compliance"
+msgstr "Conformité des entreprises"
+
+msgid "Investigative journalism"
+msgstr "Journalisme d’enquête"
+
+msgid "Civic activism"
+msgstr "Activisme citoyen"
 
 msgid "Send"
 msgstr "Envoyer"
@@ -1861,33 +1906,6 @@ msgstr "La fonction de réinitialisation du mot de passe n’est pas offerte pou
 msgid "Password reset requested."
 msgstr "Une réinitialisation de mot de passe a été demandée."
 
-msgid "Please check your inbox for further instructions."
-msgstr "Veuillez vérifier votre boîte de réception pour de plus amples instructions."
-
-msgid "Validation of email address change in progress."
-msgstr "La validation du changement d’adresse courriel est en cours."
-
-msgid "Enable submission notification"
-msgstr "Activer la notification d’envoi"
-
-msgid "Current Password"
-msgstr "Mot de passe actuel"
-
-msgid "Old password confirmation required"
-msgstr "La confirmation de l’ancien mot de passe est exigée"
-
-msgid "New Password"
-msgstr "Nouveau mot de passe"
-
-msgid "The new password must be different from the current one."
-msgstr "Le nouveau mot de passe doit être différent de l’actuel."
-
-msgid "Type your new password again"
-msgstr "Saisissez votre nouveau mot de passe de nouveau"
-
-msgid "The two passwords do not match"
-msgstr "Les deux mots de passe ne correspondent pas"
-
 msgid "Thank you!"
 msgstr "Merci !"
 
@@ -1912,9 +1930,6 @@ msgid ""
 "A useful way to hide your key code is to write it down like a credit card "
 "number, i.e. by also including an expiration date."
 msgstr "Une bonne manière de dissimuler votre code-clé est de le noter comme un numéro de carte de crédit, c.-à-d. en ajoutant une date d’expiration."
-
-msgid "Welcome to the administration interface!"
-msgstr "Bienvenue sur l’interface d’administration !"
 
 msgid ""
 "You have not set up your encryption key, so the files will not be encrypted "
@@ -1966,21 +1981,6 @@ msgstr "Inscription"
 
 msgid "Domain"
 msgstr "Domaine"
-
-msgid "Use case"
-msgstr "Cas d’usage"
-
-msgid "Anticorruption"
-msgstr "Anticorruption"
-
-msgid "Corporate compliance"
-msgstr "Conformité des entreprises"
-
-msgid "Investigative journalism"
-msgstr "Journalisme d’enquête"
-
-msgid "Civic activism"
-msgstr "Activisme citoyen"
 
 msgid "Other"
 msgstr "Autre"

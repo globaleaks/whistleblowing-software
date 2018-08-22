@@ -28,8 +28,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-08-09 13:58+0000\n"
-"Last-Translator: Sergey Briskin\n"
+"PO-Revision-Date: 2018-08-22 06:53+0000\n"
+"Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Russian (http://www.transifex.com/otf/globaleaks/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -726,6 +726,9 @@ msgstr "Разрешить получателям предоставлять и�
 msgid "Enable search engines indexing"
 msgstr "Включить индексирование поисковых систем"
 
+msgid "Description"
+msgstr "Описание"
+
 msgid "Enable custom privacy panel"
 msgstr "Включить пользовательскую панель приватности"
 
@@ -918,9 +921,6 @@ msgstr "Заголовок домашней страницы"
 
 msgid "Presentation"
 msgstr "Презентация"
-
-msgid "Description"
-msgstr "Описание"
 
 msgid "Question to solicit possible whistleblowers"
 msgstr "Вопрос для потенциальных информаторов"
@@ -1468,8 +1468,8 @@ msgid ""
 "submissions"
 msgstr "مخصوص گذارشات پر whistleblowers کے لئے اجازت عطا کرنے کے وصول کنندہ کی اجازت دیں"
 
-msgid "General settings"
-msgstr "Общие настройки "
+msgid "Site settings"
+msgstr ""
 
 msgid "Case management"
 msgstr ""
@@ -1477,13 +1477,13 @@ msgstr ""
 msgid "Network settings"
 msgstr "Настройки сети"
 
+msgid "Mode:"
+msgstr ""
+
 msgid "Root domain used for secondary sites"
 msgstr ""
 
 msgid "Allow users to sign up"
-msgstr ""
-
-msgid "Signup mode:"
 msgstr ""
 
 msgid "Record IP address and user agent of registered users"
@@ -1547,6 +1547,9 @@ msgstr "Авторизация"
 
 msgid "Identities"
 msgstr "Идентификаторы"
+
+msgid "User preferences"
+msgstr ""
 
 msgid "The validation link is either incorrect or has expired."
 msgstr ""
@@ -1680,6 +1683,33 @@ msgstr "Запрос на загрузку файла на сервер прев
 msgid "Success!"
 msgstr "Успешно завершено!"
 
+msgid "Validation of email address change in progress."
+msgstr ""
+
+msgid "Please check your inbox for further instructions."
+msgstr ""
+
+msgid "Enable submission notification"
+msgstr "Включить уведомление о загрузке материала"
+
+msgid "Current Password"
+msgstr "Действующий пароль"
+
+msgid "Old password confirmation required"
+msgstr "Необходимо подтверждение старого пароля"
+
+msgid "New Password"
+msgstr "Новый пароль"
+
+msgid "The new password must be different from the current one."
+msgstr "Новый пароль должен отличаться от старого."
+
+msgid "Type your new password again"
+msgstr "Введите снова свой новый пароль"
+
+msgid "The two passwords do not match"
+msgstr "Введенные пароли не совпадают"
+
 msgid ""
 "It appears that you are browsing this site without any extra privacy and "
 "security!"
@@ -1730,6 +1760,21 @@ msgid ""
 "The platform is still not configured for HTTPS connections and should "
 "therefore only be used for testing purposes."
 msgstr "Платформа все еще не насторена на соединиения HTTPS и поэтому должна использоваться исключительно для тестирования."
+
+msgid "Use case"
+msgstr ""
+
+msgid "Anticorruption"
+msgstr ""
+
+msgid "Corporate compliance"
+msgstr ""
+
+msgid "Investigative journalism"
+msgstr ""
+
+msgid "Civic activism"
+msgstr ""
 
 msgid "Send"
 msgstr "Отправить"
@@ -1851,33 +1896,6 @@ msgstr ""
 msgid "Password reset requested."
 msgstr ""
 
-msgid "Please check your inbox for further instructions."
-msgstr ""
-
-msgid "Validation of email address change in progress."
-msgstr ""
-
-msgid "Enable submission notification"
-msgstr "Включить уведомление о загрузке материала"
-
-msgid "Current Password"
-msgstr "Действующий пароль"
-
-msgid "Old password confirmation required"
-msgstr "Необходимо подтверждение старого пароля"
-
-msgid "New Password"
-msgstr "Новый пароль"
-
-msgid "The new password must be different from the current one."
-msgstr "Новый пароль должен отличаться от старого."
-
-msgid "Type your new password again"
-msgstr "Введите снова свой новый пароль"
-
-msgid "The two passwords do not match"
-msgstr "Введенные пароли не совпадают"
-
 msgid "Thank you!"
 msgstr "Спасибо!"
 
@@ -1902,9 +1920,6 @@ msgid ""
 "A useful way to hide your key code is to write it down like a credit card "
 "number, i.e. by also including an expiration date."
 msgstr "Удобный способ скрыть ваш код доступа - это записать его, как номер кредитной карты, указав также срок действия."
-
-msgid "Welcome to the administration interface!"
-msgstr "Добро пожаловать в раздел администрирования!"
 
 msgid ""
 "You have not set up your encryption key, so the files will not be encrypted "
@@ -1956,21 +1971,6 @@ msgstr "Зарегистрироваться"
 
 msgid "Domain"
 msgstr "Домен"
-
-msgid "Use case"
-msgstr ""
-
-msgid "Anticorruption"
-msgstr ""
-
-msgid "Corporate compliance"
-msgstr ""
-
-msgid "Investigative journalism"
-msgstr ""
-
-msgid "Civic activism"
-msgstr ""
 
 msgid "Other"
 msgstr "Другие"

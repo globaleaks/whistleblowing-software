@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-08-09 13:58+0000\n"
-"Last-Translator: SEPT____ <xpressengine3@mail.beo.kr>\n"
+"PO-Revision-Date: 2018-08-22 06:53+0000\n"
+"Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Korean (http://www.transifex.com/otf/globaleaks/language/ko/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -703,6 +703,9 @@ msgstr "받는 사람이 특정 제출에 대한 내부 고발자에 대한 사�
 msgid "Enable search engines indexing"
 msgstr "검색 엔진의 색인을 사용하도록 설정"
 
+msgid "Description"
+msgstr "기술"
+
 msgid "Enable custom privacy panel"
 msgstr "사용자의 개인 정보 보호 패널 사용"
 
@@ -895,9 +898,6 @@ msgstr "홈페이지 제목"
 
 msgid "Presentation"
 msgstr "표시"
-
-msgid "Description"
-msgstr "기술"
 
 msgid "Question to solicit possible whistleblowers"
 msgstr "질문이 가능 고발자를 요청합니다"
@@ -1445,8 +1445,8 @@ msgid ""
 "submissions"
 msgstr "받는 사람이 특정 제출에 대한 내부 고발자에 대한 사용 권한을 부여 할 수 있도록 허용"
 
-msgid "General settings"
-msgstr "일반 설정"
+msgid "Site settings"
+msgstr ""
 
 msgid "Case management"
 msgstr ""
@@ -1454,13 +1454,13 @@ msgstr ""
 msgid "Network settings"
 msgstr ""
 
+msgid "Mode:"
+msgstr ""
+
 msgid "Root domain used for secondary sites"
 msgstr ""
 
 msgid "Allow users to sign up"
-msgstr ""
-
-msgid "Signup mode:"
 msgstr ""
 
 msgid "Record IP address and user agent of registered users"
@@ -1524,6 +1524,9 @@ msgstr "권한 부여"
 
 msgid "Identities"
 msgstr "신원"
+
+msgid "User preferences"
+msgstr ""
 
 msgid "The validation link is either incorrect or has expired."
 msgstr ""
@@ -1657,6 +1660,33 @@ msgstr "업로드 요구가 크기 제한을 초과"
 msgid "Success!"
 msgstr "성공!"
 
+msgid "Validation of email address change in progress."
+msgstr ""
+
+msgid "Please check your inbox for further instructions."
+msgstr ""
+
+msgid "Enable submission notification"
+msgstr "제출 통지를 사용"
+
+msgid "Current Password"
+msgstr "현재 비밀번호"
+
+msgid "Old password confirmation required"
+msgstr "이전 암호 확인 필요"
+
+msgid "New Password"
+msgstr "새 비밀번호"
+
+msgid "The new password must be different from the current one."
+msgstr ""
+
+msgid "Type your new password again"
+msgstr "새 암호를 다시 입력"
+
+msgid "The two passwords do not match"
+msgstr "두 암호가 일치하지 않습니다"
+
 msgid ""
 "It appears that you are browsing this site without any extra privacy and "
 "security!"
@@ -1706,6 +1736,21 @@ msgstr ""
 msgid ""
 "The platform is still not configured for HTTPS connections and should "
 "therefore only be used for testing purposes."
+msgstr ""
+
+msgid "Use case"
+msgstr ""
+
+msgid "Anticorruption"
+msgstr ""
+
+msgid "Corporate compliance"
+msgstr ""
+
+msgid "Investigative journalism"
+msgstr ""
+
+msgid "Civic activism"
 msgstr ""
 
 msgid "Send"
@@ -1828,33 +1873,6 @@ msgstr ""
 msgid "Password reset requested."
 msgstr ""
 
-msgid "Please check your inbox for further instructions."
-msgstr ""
-
-msgid "Validation of email address change in progress."
-msgstr ""
-
-msgid "Enable submission notification"
-msgstr "제출 통지를 사용"
-
-msgid "Current Password"
-msgstr "현재 비밀번호"
-
-msgid "Old password confirmation required"
-msgstr "이전 암호 확인 필요"
-
-msgid "New Password"
-msgstr "새 비밀번호"
-
-msgid "The new password must be different from the current one."
-msgstr ""
-
-msgid "Type your new password again"
-msgstr "새 암호를 다시 입력"
-
-msgid "The two passwords do not match"
-msgstr "두 암호가 일치하지 않습니다"
-
 msgid "Thank you!"
 msgstr "고맙습니다!"
 
@@ -1879,9 +1897,6 @@ msgid ""
 "A useful way to hide your key code is to write it down like a credit card "
 "number, i.e. by also including an expiration date."
 msgstr "키 코드를 숨길 수있는 유용한 방법은 또한 유효 기간을 포함하여 즉, 신용 카드 번호처럼 그것을 아래로 작성하는 것입니다."
-
-msgid "Welcome to the administration interface!"
-msgstr "관리 인터페이스에 오신 것을 환영합니다!"
 
 msgid ""
 "You have not set up your encryption key, so the files will not be encrypted "
@@ -1933,21 +1948,6 @@ msgstr "Sign up"
 
 msgid "Domain"
 msgstr "도메인"
-
-msgid "Use case"
-msgstr ""
-
-msgid "Anticorruption"
-msgstr ""
-
-msgid "Corporate compliance"
-msgstr ""
-
-msgid "Investigative journalism"
-msgstr ""
-
-msgid "Civic activism"
-msgstr ""
 
 msgid "Other"
 msgstr "그 외"

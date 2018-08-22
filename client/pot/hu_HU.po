@@ -21,7 +21,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-08-09 13:58+0000\n"
+"PO-Revision-Date: 2018-08-22 06:53+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Hungarian (Hungary) (http://www.transifex.com/otf/globaleaks/language/hu_HU/)\n"
 "MIME-Version: 1.0\n"
@@ -719,6 +719,9 @@ msgstr "Engedélyezés a címzetteknek, hogy jogosultságokat biztosítsanak a s
 msgid "Enable search engines indexing"
 msgstr "Keresőmotorok indexelésének engedélyezése"
 
+msgid "Description"
+msgstr "Leírás"
+
 msgid "Enable custom privacy panel"
 msgstr "Egyedi adatvédelmi panel engedélyezése"
 
@@ -911,9 +914,6 @@ msgstr "Honlap cím"
 
 msgid "Presentation"
 msgstr "Prezentáció"
-
-msgid "Description"
-msgstr "Leírás"
 
 msgid "Question to solicit possible whistleblowers"
 msgstr "Kiszivárogtatás kérdés"
@@ -1461,8 +1461,8 @@ msgid ""
 "submissions"
 msgstr "Engedélyezés a címzettnek, hogy jogosultságokat biztosítson a szivárogtatóknak különleges beadványoknál"
 
-msgid "General settings"
-msgstr "Általános beállítások"
+msgid "Site settings"
+msgstr ""
 
 msgid "Case management"
 msgstr ""
@@ -1470,13 +1470,13 @@ msgstr ""
 msgid "Network settings"
 msgstr ""
 
+msgid "Mode:"
+msgstr ""
+
 msgid "Root domain used for secondary sites"
 msgstr ""
 
 msgid "Allow users to sign up"
-msgstr ""
-
-msgid "Signup mode:"
 msgstr ""
 
 msgid "Record IP address and user agent of registered users"
@@ -1539,6 +1539,9 @@ msgid "Authorization"
 msgstr ""
 
 msgid "Identities"
+msgstr ""
+
+msgid "User preferences"
 msgstr ""
 
 msgid "The validation link is either incorrect or has expired."
@@ -1673,6 +1676,33 @@ msgstr "A feltöltés meghadja a megengedett limitet"
 msgid "Success!"
 msgstr "Sikerült!"
 
+msgid "Validation of email address change in progress."
+msgstr ""
+
+msgid "Please check your inbox for further instructions."
+msgstr ""
+
+msgid "Enable submission notification"
+msgstr "Beadvány értesítés engedélyezése"
+
+msgid "Current Password"
+msgstr "Jelenlegi jelszó"
+
+msgid "Old password confirmation required"
+msgstr "Régi jelszó megerősítése kötelező"
+
+msgid "New Password"
+msgstr "Új jelszó"
+
+msgid "The new password must be different from the current one."
+msgstr ""
+
+msgid "Type your new password again"
+msgstr "Gépelje be az új jelszavát újra"
+
+msgid "The two passwords do not match"
+msgstr "A két jelszó nem egyezik"
+
 msgid ""
 "It appears that you are browsing this site without any extra privacy and "
 "security!"
@@ -1722,6 +1752,21 @@ msgstr ""
 msgid ""
 "The platform is still not configured for HTTPS connections and should "
 "therefore only be used for testing purposes."
+msgstr ""
+
+msgid "Use case"
+msgstr ""
+
+msgid "Anticorruption"
+msgstr ""
+
+msgid "Corporate compliance"
+msgstr ""
+
+msgid "Investigative journalism"
+msgstr ""
+
+msgid "Civic activism"
 msgstr ""
 
 msgid "Send"
@@ -1844,33 +1889,6 @@ msgstr ""
 msgid "Password reset requested."
 msgstr ""
 
-msgid "Please check your inbox for further instructions."
-msgstr ""
-
-msgid "Validation of email address change in progress."
-msgstr ""
-
-msgid "Enable submission notification"
-msgstr "Beadvány értesítés engedélyezése"
-
-msgid "Current Password"
-msgstr "Jelenlegi jelszó"
-
-msgid "Old password confirmation required"
-msgstr "Régi jelszó megerősítése kötelező"
-
-msgid "New Password"
-msgstr "Új jelszó"
-
-msgid "The new password must be different from the current one."
-msgstr ""
-
-msgid "Type your new password again"
-msgstr "Gépelje be az új jelszavát újra"
-
-msgid "The two passwords do not match"
-msgstr "A két jelszó nem egyezik"
-
 msgid "Thank you!"
 msgstr "Köszönjük!"
 
@@ -1895,9 +1913,6 @@ msgid ""
 "A useful way to hide your key code is to write it down like a credit card "
 "number, i.e. by also including an expiration date."
 msgstr "A kulcs kódja elrejtéséhez jó ötlet lehet, ha leírja mint egy hitelkártya számot, azaz hozzáad egy lejárati dátumot is. "
-
-msgid "Welcome to the administration interface!"
-msgstr "Üdvözöljük az adminisztrációs felületen!"
 
 msgid ""
 "You have not set up your encryption key, so the files will not be encrypted "
@@ -1949,21 +1964,6 @@ msgstr ""
 
 msgid "Domain"
 msgstr "Domain"
-
-msgid "Use case"
-msgstr ""
-
-msgid "Anticorruption"
-msgstr ""
-
-msgid "Corporate compliance"
-msgstr ""
-
-msgid "Investigative journalism"
-msgstr ""
-
-msgid "Civic activism"
-msgstr ""
 
 msgid "Other"
 msgstr ""

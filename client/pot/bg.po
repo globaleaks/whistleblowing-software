@@ -11,7 +11,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-08-09 13:58+0000\n"
+"PO-Revision-Date: 2018-08-22 06:53+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Bulgarian (http://www.transifex.com/otf/globaleaks/language/bg/)\n"
 "MIME-Version: 1.0\n"
@@ -709,6 +709,9 @@ msgstr "Разрешаване на получателите да дават п�
 msgid "Enable search engines indexing"
 msgstr "Активиране на индексиране от търсещите машини"
 
+msgid "Description"
+msgstr "Описание"
+
 msgid "Enable custom privacy panel"
 msgstr "Активиране на потребителски панел за избирателна поверителност"
 
@@ -901,9 +904,6 @@ msgstr "Заглавие на началната страница"
 
 msgid "Presentation"
 msgstr "Презентация"
-
-msgid "Description"
-msgstr "Описание"
 
 msgid "Question to solicit possible whistleblowers"
 msgstr "Въпрос за привличане на бъдещи източници"
@@ -1451,8 +1451,8 @@ msgid ""
 "submissions"
 msgstr "Разрешаване на получателите да дават привилегии на източника за определен подаден сигнал"
 
-msgid "General settings"
-msgstr "Общи настройки"
+msgid "Site settings"
+msgstr ""
 
 msgid "Case management"
 msgstr ""
@@ -1460,14 +1460,14 @@ msgstr ""
 msgid "Network settings"
 msgstr "Мрежови настройки"
 
+msgid "Mode:"
+msgstr ""
+
 msgid "Root domain used for secondary sites"
 msgstr "Домейн използван за други сайтове"
 
 msgid "Allow users to sign up"
 msgstr "Разрешава на потребителите да се регистрират"
-
-msgid "Signup mode:"
-msgstr ""
 
 msgid "Record IP address and user agent of registered users"
 msgstr ""
@@ -1529,6 +1529,9 @@ msgid "Authorization"
 msgstr "Резрешение"
 
 msgid "Identities"
+msgstr ""
+
+msgid "User preferences"
 msgstr ""
 
 msgid "The validation link is either incorrect or has expired."
@@ -1663,6 +1666,33 @@ msgstr "Заявеният за качване файл превишава за�
 msgid "Success!"
 msgstr "Успех!"
 
+msgid "Validation of email address change in progress."
+msgstr ""
+
+msgid "Please check your inbox for further instructions."
+msgstr ""
+
+msgid "Enable submission notification"
+msgstr "Включване на известия за сигнала"
+
+msgid "Current Password"
+msgstr "Текуща парола"
+
+msgid "Old password confirmation required"
+msgstr "Нужно е потвърджение на старата парола"
+
+msgid "New Password"
+msgstr "Нова парола"
+
+msgid "The new password must be different from the current one."
+msgstr "Новата парола трябва да бъде различна от текущата."
+
+msgid "Type your new password again"
+msgstr "Напишете новата парола отново"
+
+msgid "The two passwords do not match"
+msgstr "Двете пароли не съвпадат"
+
 msgid ""
 "It appears that you are browsing this site without any extra privacy and "
 "security!"
@@ -1713,6 +1743,21 @@ msgid ""
 "The platform is still not configured for HTTPS connections and should "
 "therefore only be used for testing purposes."
 msgstr "Платформата все още не е конфигурираназа HTTPS връзки и би трябвало да бъде ползвана единствено за тестване."
+
+msgid "Use case"
+msgstr "Причина за ползване"
+
+msgid "Anticorruption"
+msgstr "Антикорупция"
+
+msgid "Corporate compliance"
+msgstr "Следване на вътрешните корпоративни правила"
+
+msgid "Investigative journalism"
+msgstr "Разлседващ журнализъм"
+
+msgid "Civic activism"
+msgstr "Граждански активизъм"
 
 msgid "Send"
 msgstr "Изпращане"
@@ -1834,33 +1879,6 @@ msgstr ""
 msgid "Password reset requested."
 msgstr ""
 
-msgid "Please check your inbox for further instructions."
-msgstr ""
-
-msgid "Validation of email address change in progress."
-msgstr ""
-
-msgid "Enable submission notification"
-msgstr "Включване на известия за сигнала"
-
-msgid "Current Password"
-msgstr "Текуща парола"
-
-msgid "Old password confirmation required"
-msgstr "Нужно е потвърджение на старата парола"
-
-msgid "New Password"
-msgstr "Нова парола"
-
-msgid "The new password must be different from the current one."
-msgstr "Новата парола трябва да бъде различна от текущата."
-
-msgid "Type your new password again"
-msgstr "Напишете новата парола отново"
-
-msgid "The two passwords do not match"
-msgstr "Двете пароли не съвпадат"
-
 msgid "Thank you!"
 msgstr "Блгагодарим Ви!"
 
@@ -1885,9 +1903,6 @@ msgid ""
 "A useful way to hide your key code is to write it down like a credit card "
 "number, i.e. by also including an expiration date."
 msgstr "Удобен начин да скриете кодът е да го запишете като номер на кредитна карта, примерно като добавите дата на изтичане."
-
-msgid "Welcome to the administration interface!"
-msgstr "Добре дошли в администраторския панел!"
 
 msgid ""
 "You have not set up your encryption key, so the files will not be encrypted "
@@ -1939,21 +1954,6 @@ msgstr "Регистриане"
 
 msgid "Domain"
 msgstr "Домейн"
-
-msgid "Use case"
-msgstr "Причина за ползване"
-
-msgid "Anticorruption"
-msgstr "Антикорупция"
-
-msgid "Corporate compliance"
-msgstr "Следване на вътрешните корпоративни правила"
-
-msgid "Investigative journalism"
-msgstr "Разлседващ журнализъм"
-
-msgid "Civic activism"
-msgstr "Граждански активизъм"
 
 msgid "Other"
 msgstr "Други"

@@ -22,8 +22,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-08-09 13:58+0000\n"
-"Last-Translator: Андрій Бандура <andriykopanytsia@gmail.com>\n"
+"PO-Revision-Date: 2018-08-22 06:53+0000\n"
+"Last-Translator: asteryx <asteryx82@gmail.com>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/otf/globaleaks/language/uk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -720,6 +720,9 @@ msgstr "Дозволити одержувачам обирати які типи
 msgid "Enable search engines indexing"
 msgstr "Включити індексацію пошуковими системами"
 
+msgid "Description"
+msgstr "Опис"
+
 msgid "Enable custom privacy panel"
 msgstr "Увімкнути значок конфіденційності"
 
@@ -912,9 +915,6 @@ msgstr "Назва домашньої сторінки"
 
 msgid "Presentation"
 msgstr "Презентація"
-
-msgid "Description"
-msgstr "Опис"
 
 msgid "Question to solicit possible whistleblowers"
 msgstr "Запитання до Інформатора"
@@ -1462,8 +1462,8 @@ msgid ""
 "submissions"
 msgstr "Дозволити одержувачу обирати які типи повідомлень можуть надсилати інформатори "
 
-msgid "General settings"
-msgstr "Загальні налаштування"
+msgid "Site settings"
+msgstr ""
 
 msgid "Case management"
 msgstr ""
@@ -1471,13 +1471,13 @@ msgstr ""
 msgid "Network settings"
 msgstr ""
 
+msgid "Mode:"
+msgstr ""
+
 msgid "Root domain used for secondary sites"
 msgstr ""
 
 msgid "Allow users to sign up"
-msgstr ""
-
-msgid "Signup mode:"
 msgstr ""
 
 msgid "Record IP address and user agent of registered users"
@@ -1541,6 +1541,9 @@ msgstr "Авторизація"
 
 msgid "Identities"
 msgstr "Сутності"
+
+msgid "User preferences"
+msgstr "Налаштування користувача"
 
 msgid "The validation link is either incorrect or has expired."
 msgstr ""
@@ -1674,6 +1677,33 @@ msgstr "Завантаження перевищує дозволений роз�
 msgid "Success!"
 msgstr "Успіх!"
 
+msgid "Validation of email address change in progress."
+msgstr "Перевірка зміни адреси електронної пошти в процесі."
+
+msgid "Please check your inbox for further instructions."
+msgstr ""
+
+msgid "Enable submission notification"
+msgstr "Увімкнути сповіщення про нові конфіденційні повідомлення"
+
+msgid "Current Password"
+msgstr "Поточний пароль"
+
+msgid "Old password confirmation required"
+msgstr "Вимагається підтвердження старого паролю"
+
+msgid "New Password"
+msgstr "Новий пароль"
+
+msgid "The new password must be different from the current one."
+msgstr "Новий пароль повинен відрізнятися від поточного."
+
+msgid "Type your new password again"
+msgstr "Введіть ваш пароль знову"
+
+msgid "The two passwords do not match"
+msgstr "Два паролі не збігаються"
+
 msgid ""
 "It appears that you are browsing this site without any extra privacy and "
 "security!"
@@ -1724,6 +1754,21 @@ msgid ""
 "The platform is still not configured for HTTPS connections and should "
 "therefore only be used for testing purposes."
 msgstr ""
+
+msgid "Use case"
+msgstr ""
+
+msgid "Anticorruption"
+msgstr "Антикорупція"
+
+msgid "Corporate compliance"
+msgstr "Відповідність корпоративним нормам"
+
+msgid "Investigative journalism"
+msgstr "Журналістські розслідування"
+
+msgid "Civic activism"
+msgstr "Громадська діяльність"
 
 msgid "Send"
 msgstr "Відправити"
@@ -1845,33 +1890,6 @@ msgstr ""
 msgid "Password reset requested."
 msgstr "Запит на скидання паролю надіслано."
 
-msgid "Please check your inbox for further instructions."
-msgstr ""
-
-msgid "Validation of email address change in progress."
-msgstr "Перевірка зміни адреси електронної пошти в процесі."
-
-msgid "Enable submission notification"
-msgstr "Увімкнути сповіщення про нові конфіденційні повідомлення"
-
-msgid "Current Password"
-msgstr "Поточний пароль"
-
-msgid "Old password confirmation required"
-msgstr "Вимагається підтвердження старого паролю"
-
-msgid "New Password"
-msgstr "Новий пароль"
-
-msgid "The new password must be different from the current one."
-msgstr "Новий пароль повинен відрізнятися від поточного."
-
-msgid "Type your new password again"
-msgstr "Введіть ваш пароль знову"
-
-msgid "The two passwords do not match"
-msgstr "Два паролі не збігаються"
-
 msgid "Thank you!"
 msgstr "Дякуємо!"
 
@@ -1896,9 +1914,6 @@ msgid ""
 "A useful way to hide your key code is to write it down like a credit card "
 "number, i.e. by also including an expiration date."
 msgstr "Корисний спосіб приховати ключ наданий вам після подання матеріалів, це записати його у формі номеру кредитної картки, включаючи дату закінчення терміну дії."
-
-msgid "Welcome to the administration interface!"
-msgstr "Welcome to the administration interface!"
 
 msgid ""
 "You have not set up your encryption key, so the files will not be encrypted "
@@ -1950,21 +1965,6 @@ msgstr "Зареєструватися"
 
 msgid "Domain"
 msgstr "Домен"
-
-msgid "Use case"
-msgstr ""
-
-msgid "Anticorruption"
-msgstr "Антикорупція"
-
-msgid "Corporate compliance"
-msgstr "Відповідність корпоративним нормам"
-
-msgid "Investigative journalism"
-msgstr "Журналістські розслідування"
-
-msgid "Civic activism"
-msgstr "Громадська діяльність"
 
 msgid "Other"
 msgstr "-Інше-"

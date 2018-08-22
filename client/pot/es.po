@@ -29,8 +29,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-08-09 13:58+0000\n"
-"Last-Translator: Edward Navarro\n"
+"PO-Revision-Date: 2018-08-22 06:53+0000\n"
+"Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Spanish (http://www.transifex.com/otf/globaleaks/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -727,6 +727,9 @@ msgstr "Permitir a los receptores conceder permisos a informantes en entregas co
 msgid "Enable search engines indexing"
 msgstr "Habilitar indexación por los motores de búsqueda"
 
+msgid "Description"
+msgstr "Descripción"
+
 msgid "Enable custom privacy panel"
 msgstr "Habilitar panel de privacidad personalizado"
 
@@ -919,9 +922,6 @@ msgstr "Título de la página principal"
 
 msgid "Presentation"
 msgstr "Presentación"
-
-msgid "Description"
-msgstr "Descripción"
 
 msgid "Question to solicit possible whistleblowers"
 msgstr "Pregunta a formular a posibles informantes"
@@ -1469,8 +1469,8 @@ msgid ""
 "submissions"
 msgstr "Permitir al receptor conceder permisos a informantes en entregas concretas"
 
-msgid "General settings"
-msgstr "Configuración general"
+msgid "Site settings"
+msgstr ""
 
 msgid "Case management"
 msgstr ""
@@ -1478,14 +1478,14 @@ msgstr ""
 msgid "Network settings"
 msgstr "Configuración de red"
 
+msgid "Mode:"
+msgstr ""
+
 msgid "Root domain used for secondary sites"
 msgstr "Dominio raíz usado para sitios secundarios"
 
 msgid "Allow users to sign up"
 msgstr "Permitir registrarse a los usuarios"
-
-msgid "Signup mode:"
-msgstr ""
 
 msgid "Record IP address and user agent of registered users"
 msgstr ""
@@ -1548,6 +1548,9 @@ msgstr "Autorización"
 
 msgid "Identities"
 msgstr "Identidades"
+
+msgid "User preferences"
+msgstr ""
 
 msgid "The validation link is either incorrect or has expired."
 msgstr ""
@@ -1681,6 +1684,33 @@ msgstr "La petición de subida excede el límite de volumen de datos"
 msgid "Success!"
 msgstr "¡Completada!"
 
+msgid "Validation of email address change in progress."
+msgstr ""
+
+msgid "Please check your inbox for further instructions."
+msgstr ""
+
+msgid "Enable submission notification"
+msgstr "Habilitar notificación de la entrega"
+
+msgid "Current Password"
+msgstr "Contraseña actual "
+
+msgid "Old password confirmation required"
+msgstr "Se requiere confirmación de la anterior contraseña"
+
+msgid "New Password"
+msgstr "Nueva contraseña"
+
+msgid "The new password must be different from the current one."
+msgstr "La nueva contraseña tiene que ser distinta de la actual."
+
+msgid "Type your new password again"
+msgstr "Escriba otra vez su nueva contraseña"
+
+msgid "The two passwords do not match"
+msgstr "Las dos contraseñas introducidas no coinciden"
+
 msgid ""
 "It appears that you are browsing this site without any extra privacy and "
 "security!"
@@ -1731,6 +1761,21 @@ msgid ""
 "The platform is still not configured for HTTPS connections and should "
 "therefore only be used for testing purposes."
 msgstr "La plataforma aún no está configurada para conexiones HTTPS y sólo se debe usar para propósitos de prueba."
+
+msgid "Use case"
+msgstr "Caso de uso"
+
+msgid "Anticorruption"
+msgstr "Anticorrupción"
+
+msgid "Corporate compliance"
+msgstr "Buenas prácticas corporativas"
+
+msgid "Investigative journalism"
+msgstr "Periodismo de investigación"
+
+msgid "Civic activism"
+msgstr "Activismo cívico"
 
 msgid "Send"
 msgstr "Enviar"
@@ -1852,33 +1897,6 @@ msgstr ""
 msgid "Password reset requested."
 msgstr ""
 
-msgid "Please check your inbox for further instructions."
-msgstr ""
-
-msgid "Validation of email address change in progress."
-msgstr ""
-
-msgid "Enable submission notification"
-msgstr "Habilitar notificación de la entrega"
-
-msgid "Current Password"
-msgstr "Contraseña actual "
-
-msgid "Old password confirmation required"
-msgstr "Se requiere confirmación de la anterior contraseña"
-
-msgid "New Password"
-msgstr "Nueva contraseña"
-
-msgid "The new password must be different from the current one."
-msgstr "La nueva contraseña tiene que ser distinta de la actual."
-
-msgid "Type your new password again"
-msgstr "Escriba otra vez su nueva contraseña"
-
-msgid "The two passwords do not match"
-msgstr "Las dos contraseñas introducidas no coinciden"
-
 msgid "Thank you!"
 msgstr "¡Gracias!"
 
@@ -1903,9 +1921,6 @@ msgid ""
 "A useful way to hide your key code is to write it down like a credit card "
 "number, i.e. by also including an expiration date."
 msgstr "Una forma útil de ocultar el código de su clave es escribirlo como si fuera un número de tarjeta de crédito, es decir, incluyendo también una fecha de caducidad."
-
-msgid "Welcome to the administration interface!"
-msgstr "¡Bienvenido a la interfaz de administración!"
 
 msgid ""
 "You have not set up your encryption key, so the files will not be encrypted "
@@ -1957,21 +1972,6 @@ msgstr "Registrarse"
 
 msgid "Domain"
 msgstr "Dominio"
-
-msgid "Use case"
-msgstr "Caso de uso"
-
-msgid "Anticorruption"
-msgstr "Anticorrupción"
-
-msgid "Corporate compliance"
-msgstr "Buenas prácticas corporativas"
-
-msgid "Investigative journalism"
-msgstr "Periodismo de investigación"
-
-msgid "Civic activism"
-msgstr "Activismo cívico"
 
 msgid "Other"
 msgstr "Otros"

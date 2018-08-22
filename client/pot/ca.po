@@ -18,8 +18,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-08-09 13:58+0000\n"
-"Last-Translator: Hermes Center <info@hermescenter.org>\n"
+"PO-Revision-Date: 2018-08-22 06:53+0000\n"
+"Last-Translator: escufi <escufi@gmail.com>\n"
 "Language-Team: Catalan (http://www.transifex.com/otf/globaleaks/language/ca/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -716,6 +716,9 @@ msgstr "Permet als destinataris concedir permisos als informadors sobre determin
 msgid "Enable search engines indexing"
 msgstr "Habilita els motors de cerca d'indexació"
 
+msgid "Description"
+msgstr "Descripció"
+
 msgid "Enable custom privacy panel"
 msgstr "Habilita distintiu personalitzat de privacitat"
 
@@ -908,9 +911,6 @@ msgstr "Títol de la pàgina d'inici"
 
 msgid "Presentation"
 msgstr "Presentació"
-
-msgid "Description"
-msgstr "Descripció"
 
 msgid "Question to solicit possible whistleblowers"
 msgstr "Pregunta per sol·licitar possibles informadors"
@@ -1458,8 +1458,8 @@ msgid ""
 "submissions"
 msgstr "Permet al destinatari concedir permisos als informadors sobre determinats enviaments"
 
-msgid "General settings"
-msgstr "Configuració general"
+msgid "Site settings"
+msgstr "Configuració del lloc"
 
 msgid "Case management"
 msgstr ""
@@ -1467,14 +1467,14 @@ msgstr ""
 msgid "Network settings"
 msgstr "Configuració de xarxa"
 
+msgid "Mode:"
+msgstr ""
+
 msgid "Root domain used for secondary sites"
 msgstr "Dominio raíz usado para sitios secundarios"
 
 msgid "Allow users to sign up"
 msgstr "Permitir registrarse a los usuarios"
-
-msgid "Signup mode:"
-msgstr ""
 
 msgid "Record IP address and user agent of registered users"
 msgstr ""
@@ -1537,6 +1537,9 @@ msgstr "Autorització"
 
 msgid "Identities"
 msgstr ""
+
+msgid "User preferences"
+msgstr "Paràmetres d'usuari"
 
 msgid "The validation link is either incorrect or has expired."
 msgstr "El vincle de validació és incorrecte o ha caducat."
@@ -1670,6 +1673,33 @@ msgstr "La petició de pujada preval sobre els límits de volum de dades"
 msgid "Success!"
 msgstr "Completat!"
 
+msgid "Validation of email address change in progress."
+msgstr "Validació del canvi d'adreça electrònica en progrés."
+
+msgid "Please check your inbox for further instructions."
+msgstr ""
+
+msgid "Enable submission notification"
+msgstr "Activa la notificació de l'entrega"
+
+msgid "Current Password"
+msgstr "Contrassenya actual"
+
+msgid "Old password confirmation required"
+msgstr "Es requereix confirmació de l'anterior contrassenya"
+
+msgid "New Password"
+msgstr "Nova contrassenya"
+
+msgid "The new password must be different from the current one."
+msgstr "La nova contrasenya ha de ser diferent de l'actual."
+
+msgid "Type your new password again"
+msgstr "Escriu una altra vegada la nova contrassenya"
+
+msgid "The two passwords do not match"
+msgstr "Les dues contrassenyes introduides no coincideixen"
+
 msgid ""
 "It appears that you are browsing this site without any extra privacy and "
 "security!"
@@ -1720,6 +1750,21 @@ msgid ""
 "The platform is still not configured for HTTPS connections and should "
 "therefore only be used for testing purposes."
 msgstr "La plataforma encara no està configurada per a connexions HTTPS i, per tant, només s'hauria d'utilitzar per fer proves."
+
+msgid "Use case"
+msgstr "Cas d'ús"
+
+msgid "Anticorruption"
+msgstr "Anticorrupción"
+
+msgid "Corporate compliance"
+msgstr "Buenas prácticas corporativas"
+
+msgid "Investigative journalism"
+msgstr "Investigative journalism"
+
+msgid "Civic activism"
+msgstr "Activismo cívico"
 
 msgid "Send"
 msgstr "Envia-ho"
@@ -1841,33 +1886,6 @@ msgstr ""
 msgid "Password reset requested."
 msgstr ""
 
-msgid "Please check your inbox for further instructions."
-msgstr ""
-
-msgid "Validation of email address change in progress."
-msgstr "Validació del canvi d'adreça electrònica en progrés."
-
-msgid "Enable submission notification"
-msgstr "Activa la notificació de l'entrega"
-
-msgid "Current Password"
-msgstr "Contrassenya actual"
-
-msgid "Old password confirmation required"
-msgstr "Es requereix confirmació de l'anterior contrassenya"
-
-msgid "New Password"
-msgstr "Nova contrassenya"
-
-msgid "The new password must be different from the current one."
-msgstr "La nova contrasenya ha de ser diferent de l'actual."
-
-msgid "Type your new password again"
-msgstr "Escriu una altra vegada la nova contrassenya"
-
-msgid "The two passwords do not match"
-msgstr "Les dues contrassenyes introduides no coincideixen"
-
 msgid "Thank you!"
 msgstr "Gràcies!"
 
@@ -1892,9 +1910,6 @@ msgid ""
 "A useful way to hide your key code is to write it down like a credit card "
 "number, i.e. by also including an expiration date."
 msgstr "Un manera útil de recordar el codi és escriure'l com si fos el número d'una targeta de crèdit. A més, també pots incloure la data de caducitat."
-
-msgid "Welcome to the administration interface!"
-msgstr "Benvinguts a la interfície d'administració!"
 
 msgid ""
 "You have not set up your encryption key, so the files will not be encrypted "
@@ -1946,21 +1961,6 @@ msgstr "Registrar‐se"
 
 msgid "Domain"
 msgstr "Domini"
-
-msgid "Use case"
-msgstr "Cas d'ús"
-
-msgid "Anticorruption"
-msgstr "Anticorrupción"
-
-msgid "Corporate compliance"
-msgstr "Buenas prácticas corporativas"
-
-msgid "Investigative journalism"
-msgstr "Investigative journalism"
-
-msgid "Civic activism"
-msgstr "Activismo cívico"
 
 msgid "Other"
 msgstr "Altres"
