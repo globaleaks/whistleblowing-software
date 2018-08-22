@@ -2,7 +2,7 @@
   <div data-ng-if="preferences.picture !== ''" class="imageThumbnail">
     <img class="receiverImg" alt="user picture" data-ng-src="{{::Utils.imgDataUri(preferences.picture)}}" /><br />
   </div>
-  <p id="UserName"><label><span data-translate>Username</span>:</label> {{::preferences.username }}</p>
+  <p id="Username"><label><span data-translate>Username</span>:</label> {{::preferences.username }}</p>
   <p id="Role"><label><span data-translate>Role</span>:</label> <span>{{::session.role_l10n()}}</span></p>
   <p id="Name"><label><span data-translate>Name</span>:</label>
     <span data-ng-if="!editingName">

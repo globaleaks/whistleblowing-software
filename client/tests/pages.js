@@ -4,7 +4,7 @@ exports.receiver = function() {
   };
 
   this.addPublicKey = function(pgp_key_path) {
-    browser.setLocation('preferences');
+    browser.setLocation('/receiver/preferences');
 
     if (browser.gl.utils.testFileUpload()) {
       browser.executeScript('angular.element(document.querySelector(\'input[type="file"]\')).attr("style", "visibility: visible;");');
