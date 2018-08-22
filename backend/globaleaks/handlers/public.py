@@ -133,7 +133,7 @@ def db_serialize_node(session, tid, language):
         if language not in models.EnabledLanguage.list(session, tid):
             language = root_tenant_node.get_val(u'default_language')
 
-        for x in [u'logo', u'favicon', u'css', u'scripts']:
+        for x in [u'logo', u'favicon', u'css', u'script']:
             if not ret_dict[x]:
                 ret_dict[x] = db_get_file(session, 1, x)
 
