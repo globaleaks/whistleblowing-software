@@ -202,6 +202,8 @@ class SettingsClass(object):
     def set_devel_mode(self):
         self.devel_mode = True
 
+        self.key_bits = 1024
+
         self.acme_directory_url = 'https://acme-staging-v02.api.letsencrypt.org/directory'
 
         self.pid_path = os.path.join(self.src_path, 'workingdir')
