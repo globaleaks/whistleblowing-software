@@ -11,6 +11,8 @@ if [ ! -z "$(ls -A /var/globaleaks 2>/dev/null)" ]; then
             --home /var/globaleaks \
             --shell /bin/false \
             --group \
+            --firstuid=500 \
+            --lastuid=999 \
             globaleaks
   fi
 
