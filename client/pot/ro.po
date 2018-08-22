@@ -17,8 +17,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-08-09 13:58+0000\n"
-"Last-Translator: drazvan\n"
+"PO-Revision-Date: 2018-08-22 06:53+0000\n"
+"Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Romanian (http://www.transifex.com/otf/globaleaks/language/ro/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -715,6 +715,9 @@ msgstr "Permite destinatarilor să acorde permisiuni pentru informatori postări
 msgid "Enable search engines indexing"
 msgstr "Activați motoarele de căutare de indexare"
 
+msgid "Description"
+msgstr "Descriere"
+
 msgid "Enable custom privacy panel"
 msgstr "Activați panoul de confidențialitate personalizat"
 
@@ -907,9 +910,6 @@ msgstr "din titlu ca pagină"
 
 msgid "Presentation"
 msgstr "Presentatie"
-
-msgid "Description"
-msgstr "Descriere"
 
 msgid "Question to solicit possible whistleblowers"
 msgstr "Întrebarea de a solicita posibilii informatori"
@@ -1457,8 +1457,8 @@ msgid ""
 "submissions"
 msgstr "Permite destinatarului să acorde permisiuni pentru informatorii postărilor specifice"
 
-msgid "General settings"
-msgstr "Setări generale"
+msgid "Site settings"
+msgstr ""
 
 msgid "Case management"
 msgstr ""
@@ -1466,13 +1466,13 @@ msgstr ""
 msgid "Network settings"
 msgstr "Setări de rețea"
 
+msgid "Mode:"
+msgstr ""
+
 msgid "Root domain used for secondary sites"
 msgstr ""
 
 msgid "Allow users to sign up"
-msgstr ""
-
-msgid "Signup mode:"
 msgstr ""
 
 msgid "Record IP address and user agent of registered users"
@@ -1536,6 +1536,9 @@ msgstr "Autorizare"
 
 msgid "Identities"
 msgstr "Identități"
+
+msgid "User preferences"
+msgstr ""
 
 msgid "The validation link is either incorrect or has expired."
 msgstr ""
@@ -1669,6 +1672,33 @@ msgstr "Cererea de încărcare depășește limita de dimensiune"
 msgid "Success!"
 msgstr "Succes!"
 
+msgid "Validation of email address change in progress."
+msgstr ""
+
+msgid "Please check your inbox for further instructions."
+msgstr ""
+
+msgid "Enable submission notification"
+msgstr "Activați notificarea în depunerea"
+
+msgid "Current Password"
+msgstr "Parolă Curentă"
+
+msgid "Old password confirmation required"
+msgstr "Confirmare parolă veche necesară"
+
+msgid "New Password"
+msgstr "Parolă Nouă"
+
+msgid "The new password must be different from the current one."
+msgstr "Parola noua trebuie sa fie diferita fata de cea actuala."
+
+msgid "Type your new password again"
+msgstr "Tastează parola din nou"
+
+msgid "The two passwords do not match"
+msgstr "Cele două parole nu se potrivesc"
+
 msgid ""
 "It appears that you are browsing this site without any extra privacy and "
 "security!"
@@ -1718,6 +1748,21 @@ msgstr ""
 msgid ""
 "The platform is still not configured for HTTPS connections and should "
 "therefore only be used for testing purposes."
+msgstr ""
+
+msgid "Use case"
+msgstr ""
+
+msgid "Anticorruption"
+msgstr ""
+
+msgid "Corporate compliance"
+msgstr ""
+
+msgid "Investigative journalism"
+msgstr ""
+
+msgid "Civic activism"
 msgstr ""
 
 msgid "Send"
@@ -1840,33 +1885,6 @@ msgstr ""
 msgid "Password reset requested."
 msgstr ""
 
-msgid "Please check your inbox for further instructions."
-msgstr ""
-
-msgid "Validation of email address change in progress."
-msgstr ""
-
-msgid "Enable submission notification"
-msgstr "Activați notificarea în depunerea"
-
-msgid "Current Password"
-msgstr "Parolă Curentă"
-
-msgid "Old password confirmation required"
-msgstr "Confirmare parolă veche necesară"
-
-msgid "New Password"
-msgstr "Parolă Nouă"
-
-msgid "The new password must be different from the current one."
-msgstr "Parola noua trebuie sa fie diferita fata de cea actuala."
-
-msgid "Type your new password again"
-msgstr "Tastează parola din nou"
-
-msgid "The two passwords do not match"
-msgstr "Cele două parole nu se potrivesc"
-
 msgid "Thank you!"
 msgstr "Mulțumesc!"
 
@@ -1891,9 +1909,6 @@ msgid ""
 "A useful way to hide your key code is to write it down like a credit card "
 "number, i.e. by also including an expiration date."
 msgstr "Un mod util de a ascunde codul cheie este să-l scrie în jos ca un număr de card de credit, și anume prin includerea, de asemenea, o dată de expirare."
-
-msgid "Welcome to the administration interface!"
-msgstr "Bine ați venit la interfața de administrare!"
 
 msgid ""
 "You have not set up your encryption key, so the files will not be encrypted "
@@ -1945,21 +1960,6 @@ msgstr ""
 
 msgid "Domain"
 msgstr "Domeniu"
-
-msgid "Use case"
-msgstr ""
-
-msgid "Anticorruption"
-msgstr ""
-
-msgid "Corporate compliance"
-msgstr ""
-
-msgid "Investigative journalism"
-msgstr ""
-
-msgid "Civic activism"
-msgstr ""
 
 msgid "Other"
 msgstr "Altul"

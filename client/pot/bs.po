@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-08-09 13:58+0000\n"
+"PO-Revision-Date: 2018-08-22 06:53+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Bosnian (http://www.transifex.com/otf/globaleaks/language/bs/)\n"
 "MIME-Version: 1.0\n"
@@ -704,6 +704,9 @@ msgstr "Dozvolite primaoci da odobri dozvolu za zviždača na konkretne argument
 msgid "Enable search engines indexing"
 msgstr "Omogućite indeksiranje od strane internet pretraživača"
 
+msgid "Description"
+msgstr "Opis"
+
 msgid "Enable custom privacy panel"
 msgstr "Omogućite prilagođeni panel privatnost"
 
@@ -896,9 +899,6 @@ msgstr "homepage naslov"
 
 msgid "Presentation"
 msgstr "Prezentacija"
-
-msgid "Description"
-msgstr "Opis"
 
 msgid "Question to solicit possible whistleblowers"
 msgstr "Pitanje je da traži moguće zviždača"
@@ -1446,8 +1446,8 @@ msgid ""
 "submissions"
 msgstr "Dozvolite primalac da odobri dozvolu za zviždača na konkretne argumente"
 
-msgid "General settings"
-msgstr "Opšta podešavanja"
+msgid "Site settings"
+msgstr ""
 
 msgid "Case management"
 msgstr ""
@@ -1455,13 +1455,13 @@ msgstr ""
 msgid "Network settings"
 msgstr ""
 
+msgid "Mode:"
+msgstr ""
+
 msgid "Root domain used for secondary sites"
 msgstr ""
 
 msgid "Allow users to sign up"
-msgstr ""
-
-msgid "Signup mode:"
 msgstr ""
 
 msgid "Record IP address and user agent of registered users"
@@ -1524,6 +1524,9 @@ msgid "Authorization"
 msgstr "autorizacija"
 
 msgid "Identities"
+msgstr ""
+
+msgid "User preferences"
 msgstr ""
 
 msgid "The validation link is either incorrect or has expired."
@@ -1658,6 +1661,33 @@ msgstr "Zahtjev upload premašuje ograničenje veličine"
 msgid "Success!"
 msgstr "Uspijeh!"
 
+msgid "Validation of email address change in progress."
+msgstr ""
+
+msgid "Please check your inbox for further instructions."
+msgstr ""
+
+msgid "Enable submission notification"
+msgstr "Omogući obavijest podnošenje"
+
+msgid "Current Password"
+msgstr "Trenutna lozinka"
+
+msgid "Old password confirmation required"
+msgstr "Potrebno je da unesete staru lozinku"
+
+msgid "New Password"
+msgstr "Nova lozinka"
+
+msgid "The new password must be different from the current one."
+msgstr ""
+
+msgid "Type your new password again"
+msgstr "Ponovo unesite vašu novu lozinku"
+
+msgid "The two passwords do not match"
+msgstr "Lozinke se ne podudaraju"
+
 msgid ""
 "It appears that you are browsing this site without any extra privacy and "
 "security!"
@@ -1707,6 +1737,21 @@ msgstr ""
 msgid ""
 "The platform is still not configured for HTTPS connections and should "
 "therefore only be used for testing purposes."
+msgstr ""
+
+msgid "Use case"
+msgstr ""
+
+msgid "Anticorruption"
+msgstr ""
+
+msgid "Corporate compliance"
+msgstr ""
+
+msgid "Investigative journalism"
+msgstr ""
+
+msgid "Civic activism"
 msgstr ""
 
 msgid "Send"
@@ -1829,33 +1874,6 @@ msgstr ""
 msgid "Password reset requested."
 msgstr ""
 
-msgid "Please check your inbox for further instructions."
-msgstr ""
-
-msgid "Validation of email address change in progress."
-msgstr ""
-
-msgid "Enable submission notification"
-msgstr "Omogući obavijest podnošenje"
-
-msgid "Current Password"
-msgstr "Trenutna lozinka"
-
-msgid "Old password confirmation required"
-msgstr "Potrebno je da unesete staru lozinku"
-
-msgid "New Password"
-msgstr "Nova lozinka"
-
-msgid "The new password must be different from the current one."
-msgstr ""
-
-msgid "Type your new password again"
-msgstr "Ponovo unesite vašu novu lozinku"
-
-msgid "The two passwords do not match"
-msgstr "Lozinke se ne podudaraju"
-
 msgid "Thank you!"
 msgstr "Hvala vam!"
 
@@ -1880,9 +1898,6 @@ msgid ""
 "A useful way to hide your key code is to write it down like a credit card "
 "number, i.e. by also including an expiration date."
 msgstr "Koristan način da se sakrije ključ kod je da ga zapisati kao broj kreditne kartice, odnosno uključujući i rok trajanja."
-
-msgid "Welcome to the administration interface!"
-msgstr "Dobrodošli na sučelje upravi!"
 
 msgid ""
 "You have not set up your encryption key, so the files will not be encrypted "
@@ -1933,21 +1948,6 @@ msgid "Sign up"
 msgstr ""
 
 msgid "Domain"
-msgstr ""
-
-msgid "Use case"
-msgstr ""
-
-msgid "Anticorruption"
-msgstr ""
-
-msgid "Corporate compliance"
-msgstr ""
-
-msgid "Investigative journalism"
-msgstr ""
-
-msgid "Civic activism"
 msgstr ""
 
 msgid "Other"

@@ -35,8 +35,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-08-09 13:58+0000\n"
-"Last-Translator: Nathan Follens\n"
+"PO-Revision-Date: 2018-08-22 06:53+0000\n"
+"Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Dutch (http://www.transifex.com/otf/globaleaks/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -733,6 +733,9 @@ msgstr "Ontvangers toestaan om klokkenluiders per tip rechten toe te wijzen"
 msgid "Enable search engines indexing"
 msgstr "Zoekmachine-indexering inschakelen"
 
+msgid "Description"
+msgstr "Omschrijving"
+
 msgid "Enable custom privacy panel"
 msgstr "Gepersonaliseerd privacy-paneel inschakelen"
 
@@ -925,9 +928,6 @@ msgstr "Titel van hoofdpagina"
 
 msgid "Presentation"
 msgstr "Presentatie"
-
-msgid "Description"
-msgstr "Omschrijving"
 
 msgid "Question to solicit possible whistleblowers"
 msgstr "Vraag om potentiële klokkenluiders aan te spreken"
@@ -1475,8 +1475,8 @@ msgid ""
 "submissions"
 msgstr "De ontvanger toestaan om per tip klokkenluiders rechten toe te wijzen"
 
-msgid "General settings"
-msgstr "Algemene instellingen"
+msgid "Site settings"
+msgstr ""
 
 msgid "Case management"
 msgstr ""
@@ -1484,13 +1484,13 @@ msgstr ""
 msgid "Network settings"
 msgstr "Netwerkinstellingen"
 
+msgid "Mode:"
+msgstr ""
+
 msgid "Root domain used for secondary sites"
 msgstr ""
 
 msgid "Allow users to sign up"
-msgstr ""
-
-msgid "Signup mode:"
 msgstr ""
 
 msgid "Record IP address and user agent of registered users"
@@ -1554,6 +1554,9 @@ msgstr "Autorisatie"
 
 msgid "Identities"
 msgstr "Identiteiten"
+
+msgid "User preferences"
+msgstr ""
 
 msgid "The validation link is either incorrect or has expired."
 msgstr ""
@@ -1687,6 +1690,33 @@ msgstr "De uploadaanvraag overstijgt de MB limiet"
 msgid "Success!"
 msgstr " Succes!"
 
+msgid "Validation of email address change in progress."
+msgstr ""
+
+msgid "Please check your inbox for further instructions."
+msgstr ""
+
+msgid "Enable submission notification"
+msgstr "Activeer meldingen in verband met meldingen"
+
+msgid "Current Password"
+msgstr "Huidig wachtwoord"
+
+msgid "Old password confirmation required"
+msgstr "Bevestiging van oud wachtwoord vereist"
+
+msgid "New Password"
+msgstr "Nieuw wachtwoord"
+
+msgid "The new password must be different from the current one."
+msgstr "Het nieuwe wachtwoord moet verschillen van het huidige."
+
+msgid "Type your new password again"
+msgstr "Typ je wachtwoord opnieuw"
+
+msgid "The two passwords do not match"
+msgstr "De wachtwoorden komen niet overeen"
+
 msgid ""
 "It appears that you are browsing this site without any extra privacy and "
 "security!"
@@ -1737,6 +1767,21 @@ msgid ""
 "The platform is still not configured for HTTPS connections and should "
 "therefore only be used for testing purposes."
 msgstr "Het platform is nog steeds niet geconfigureerd voor HTTPS verbindingen en mag daarom alleen worden gebruikt om te testen."
+
+msgid "Use case"
+msgstr ""
+
+msgid "Anticorruption"
+msgstr ""
+
+msgid "Corporate compliance"
+msgstr ""
+
+msgid "Investigative journalism"
+msgstr ""
+
+msgid "Civic activism"
+msgstr ""
 
 msgid "Send"
 msgstr "Verzend"
@@ -1858,33 +1903,6 @@ msgstr ""
 msgid "Password reset requested."
 msgstr ""
 
-msgid "Please check your inbox for further instructions."
-msgstr ""
-
-msgid "Validation of email address change in progress."
-msgstr ""
-
-msgid "Enable submission notification"
-msgstr "Activeer meldingen in verband met meldingen"
-
-msgid "Current Password"
-msgstr "Huidig wachtwoord"
-
-msgid "Old password confirmation required"
-msgstr "Bevestiging van oud wachtwoord vereist"
-
-msgid "New Password"
-msgstr "Nieuw wachtwoord"
-
-msgid "The new password must be different from the current one."
-msgstr "Het nieuwe wachtwoord moet verschillen van het huidige."
-
-msgid "Type your new password again"
-msgstr "Typ je wachtwoord opnieuw"
-
-msgid "The two passwords do not match"
-msgstr "De wachtwoorden komen niet overeen"
-
 msgid "Thank you!"
 msgstr "Bedankt!"
 
@@ -1909,9 +1927,6 @@ msgid ""
 "A useful way to hide your key code is to write it down like a credit card "
 "number, i.e. by also including an expiration date."
 msgstr "Een handige manier om uw sleutel code te verbergen, is om het op te schrijven zoals een creditcard nummer. Vergeet niet de vervaldatum erbij te schrijven."
-
-msgid "Welcome to the administration interface!"
-msgstr "Welkom op het beheersinterface!"
 
 msgid ""
 "You have not set up your encryption key, so the files will not be encrypted "
@@ -1963,21 +1978,6 @@ msgstr "Aanmelden"
 
 msgid "Domain"
 msgstr "Domein"
-
-msgid "Use case"
-msgstr ""
-
-msgid "Anticorruption"
-msgstr ""
-
-msgid "Corporate compliance"
-msgstr ""
-
-msgid "Investigative journalism"
-msgstr ""
-
-msgid "Civic activism"
-msgstr ""
 
 msgid "Other"
 msgstr "Other"

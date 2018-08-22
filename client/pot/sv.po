@@ -20,8 +20,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-08-09 13:58+0000\n"
-"Last-Translator: leveebreaks\n"
+"PO-Revision-Date: 2018-08-22 06:53+0000\n"
+"Last-Translator: Patrik Nilsson <asavartzeth@gmail.com>\n"
 "Language-Team: Swedish (http://www.transifex.com/otf/globaleaks/language/sv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -718,6 +718,9 @@ msgstr ""
 msgid "Enable search engines indexing"
 msgstr "Aktivera sökmotorindexering"
 
+msgid "Description"
+msgstr "Beskrivning"
+
 msgid "Enable custom privacy panel"
 msgstr "Aktivera eget integritetsemblem"
 
@@ -910,9 +913,6 @@ msgstr "Hemsidans rubrik"
 
 msgid "Presentation"
 msgstr "Presentation"
-
-msgid "Description"
-msgstr "Beskrivning"
 
 msgid "Question to solicit possible whistleblowers"
 msgstr "Visselblåsarfråga"
@@ -1460,8 +1460,8 @@ msgid ""
 "submissions"
 msgstr ""
 
-msgid "General settings"
-msgstr "Allmänna inställningar"
+msgid "Site settings"
+msgstr ""
 
 msgid "Case management"
 msgstr ""
@@ -1469,13 +1469,13 @@ msgstr ""
 msgid "Network settings"
 msgstr "Nätverksinställningar"
 
+msgid "Mode:"
+msgstr ""
+
 msgid "Root domain used for secondary sites"
 msgstr ""
 
 msgid "Allow users to sign up"
-msgstr ""
-
-msgid "Signup mode:"
 msgstr ""
 
 msgid "Record IP address and user agent of registered users"
@@ -1539,6 +1539,9 @@ msgstr ""
 
 msgid "Identities"
 msgstr "Identitet"
+
+msgid "User preferences"
+msgstr "Användarinställningar"
 
 msgid "The validation link is either incorrect or has expired."
 msgstr ""
@@ -1672,6 +1675,33 @@ msgstr "Uppladdningen går över maxgränsen för antalet MB"
 msgid "Success!"
 msgstr "Det fungerade!"
 
+msgid "Validation of email address change in progress."
+msgstr ""
+
+msgid "Please check your inbox for further instructions."
+msgstr ""
+
+msgid "Enable submission notification"
+msgstr ""
+
+msgid "Current Password"
+msgstr "Nuvarande lösenord"
+
+msgid "Old password confirmation required"
+msgstr "Kräv bekräftelse på gammalt lösenord"
+
+msgid "New Password"
+msgstr "Nytt lösenord"
+
+msgid "The new password must be different from the current one."
+msgstr ""
+
+msgid "Type your new password again"
+msgstr "Skriv ditt nya lösenord igen"
+
+msgid "The two passwords do not match"
+msgstr "De två lösenorden matchade inte"
+
 msgid ""
 "It appears that you are browsing this site without any extra privacy and "
 "security!"
@@ -1721,6 +1751,21 @@ msgstr ""
 msgid ""
 "The platform is still not configured for HTTPS connections and should "
 "therefore only be used for testing purposes."
+msgstr ""
+
+msgid "Use case"
+msgstr ""
+
+msgid "Anticorruption"
+msgstr ""
+
+msgid "Corporate compliance"
+msgstr ""
+
+msgid "Investigative journalism"
+msgstr ""
+
+msgid "Civic activism"
 msgstr ""
 
 msgid "Send"
@@ -1843,33 +1888,6 @@ msgstr ""
 msgid "Password reset requested."
 msgstr ""
 
-msgid "Please check your inbox for further instructions."
-msgstr ""
-
-msgid "Validation of email address change in progress."
-msgstr ""
-
-msgid "Enable submission notification"
-msgstr ""
-
-msgid "Current Password"
-msgstr "Nuvarande lösenord"
-
-msgid "Old password confirmation required"
-msgstr "Kräv bekräftelse på gammalt lösenord"
-
-msgid "New Password"
-msgstr "Nytt lösenord"
-
-msgid "The new password must be different from the current one."
-msgstr ""
-
-msgid "Type your new password again"
-msgstr "Skriv ditt nya lösenord igen"
-
-msgid "The two passwords do not match"
-msgstr "De två lösenorden matchade inte"
-
 msgid "Thank you!"
 msgstr "Tack!"
 
@@ -1894,9 +1912,6 @@ msgid ""
 "A useful way to hide your key code is to write it down like a credit card "
 "number, i.e. by also including an expiration date."
 msgstr "Ett användbart sätt att dölja din kod är att skriva ner den som ett kreditkortsnummer, inklusive giltighetsdatum."
-
-msgid "Welcome to the administration interface!"
-msgstr ""
 
 msgid ""
 "You have not set up your encryption key, so the files will not be encrypted "
@@ -1948,21 +1963,6 @@ msgstr "Registrera"
 
 msgid "Domain"
 msgstr "Domän"
-
-msgid "Use case"
-msgstr ""
-
-msgid "Anticorruption"
-msgstr ""
-
-msgid "Corporate compliance"
-msgstr ""
-
-msgid "Investigative journalism"
-msgstr ""
-
-msgid "Civic activism"
-msgstr ""
 
 msgid "Other"
 msgstr "Annat"

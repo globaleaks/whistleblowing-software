@@ -11,8 +11,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-08-09 13:58+0000\n"
-"Last-Translator: jhajas <josef@hajas.net>\n"
+"PO-Revision-Date: 2018-08-22 06:53+0000\n"
+"Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Czech (http://www.transifex.com/otf/globaleaks/language/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -709,6 +709,9 @@ msgstr "Povolit příjemcům přiřazovat oprávnění oznamovatelům ke konkré
 msgid "Enable search engines indexing"
 msgstr "Povolit vyhledávačům indexování."
 
+msgid "Description"
+msgstr "Popis"
+
 msgid "Enable custom privacy panel"
 msgstr "Povolit vlastní panel soukromí"
 
@@ -901,9 +904,6 @@ msgstr "Nadpis domovské stránky"
 
 msgid "Presentation"
 msgstr "Prezentace"
-
-msgid "Description"
-msgstr "Popis"
 
 msgid "Question to solicit possible whistleblowers"
 msgstr "Otázky pro získávání možných oznamovatelů"
@@ -1451,8 +1451,8 @@ msgid ""
 "submissions"
 msgstr "Povolit příjemci přiřazovat oprávnění oznamovatelům ke konkrétním podáním"
 
-msgid "General settings"
-msgstr "Hlavní nastavení"
+msgid "Site settings"
+msgstr ""
 
 msgid "Case management"
 msgstr ""
@@ -1460,14 +1460,14 @@ msgstr ""
 msgid "Network settings"
 msgstr "Nastavení sítě"
 
+msgid "Mode:"
+msgstr ""
+
 msgid "Root domain used for secondary sites"
 msgstr "Kořenová doména pro sekundární stránky"
 
 msgid "Allow users to sign up"
 msgstr "Povolit uživatelům registraci"
-
-msgid "Signup mode:"
-msgstr ""
 
 msgid "Record IP address and user agent of registered users"
 msgstr ""
@@ -1530,6 +1530,9 @@ msgstr "Autorizace"
 
 msgid "Identities"
 msgstr "Identity"
+
+msgid "User preferences"
+msgstr ""
 
 msgid "The validation link is either incorrect or has expired."
 msgstr ""
@@ -1663,6 +1666,33 @@ msgstr "Požadavek na upload přesahuje povolený limit MByte."
 msgid "Success!"
 msgstr "Úspěch!"
 
+msgid "Validation of email address change in progress."
+msgstr ""
+
+msgid "Please check your inbox for further instructions."
+msgstr ""
+
+msgid "Enable submission notification"
+msgstr "Povolit oznámení o příspěvcích"
+
+msgid "Current Password"
+msgstr "Současné heslo"
+
+msgid "Old password confirmation required"
+msgstr "Požadováno potvrzení starého hesla"
+
+msgid "New Password"
+msgstr "Nové heslo"
+
+msgid "The new password must be different from the current one."
+msgstr "Nové heslo musí být rozdílné od stávajícího."
+
+msgid "Type your new password again"
+msgstr "Zadejte své nové heslo"
+
+msgid "The two passwords do not match"
+msgstr "Obě hesla si neodpovídají"
+
 msgid ""
 "It appears that you are browsing this site without any extra privacy and "
 "security!"
@@ -1713,6 +1743,21 @@ msgid ""
 "The platform is still not configured for HTTPS connections and should "
 "therefore only be used for testing purposes."
 msgstr "Platforma stále není nakonfigurována pro připojení via HTTPS a měla by být použita pouze pro účely testování."
+
+msgid "Use case"
+msgstr "Případy použití"
+
+msgid "Anticorruption"
+msgstr "Protikorupční"
+
+msgid "Corporate compliance"
+msgstr "Dodržování předpisů"
+
+msgid "Investigative journalism"
+msgstr "Investigativní žurnalistika"
+
+msgid "Civic activism"
+msgstr "Občanský aktivismus"
 
 msgid "Send"
 msgstr "Odeslat"
@@ -1834,33 +1879,6 @@ msgstr ""
 msgid "Password reset requested."
 msgstr ""
 
-msgid "Please check your inbox for further instructions."
-msgstr ""
-
-msgid "Validation of email address change in progress."
-msgstr ""
-
-msgid "Enable submission notification"
-msgstr "Povolit oznámení o příspěvcích"
-
-msgid "Current Password"
-msgstr "Současné heslo"
-
-msgid "Old password confirmation required"
-msgstr "Požadováno potvrzení starého hesla"
-
-msgid "New Password"
-msgstr "Nové heslo"
-
-msgid "The new password must be different from the current one."
-msgstr "Nové heslo musí být rozdílné od stávajícího."
-
-msgid "Type your new password again"
-msgstr "Zadejte své nové heslo"
-
-msgid "The two passwords do not match"
-msgstr "Obě hesla si neodpovídají"
-
 msgid "Thank you!"
 msgstr "Děkuji Vám!"
 
@@ -1885,9 +1903,6 @@ msgid ""
 "A useful way to hide your key code is to write it down like a credit card "
 "number, i.e. by also including an expiration date."
 msgstr "Užitečný způsob, jak si nenápadně poznamenat přístupový kód, je zapsat si ho jako číslo kreditní karty. Pro lepší dojem můžete doplnit datum expirace."
-
-msgid "Welcome to the administration interface!"
-msgstr "Vítejte v administračním rozhraní!"
 
 msgid ""
 "You have not set up your encryption key, so the files will not be encrypted "
@@ -1939,21 +1954,6 @@ msgstr "Registrovat se"
 
 msgid "Domain"
 msgstr "Doména"
-
-msgid "Use case"
-msgstr "Případy použití"
-
-msgid "Anticorruption"
-msgstr "Protikorupční"
-
-msgid "Corporate compliance"
-msgstr "Dodržování předpisů"
-
-msgid "Investigative journalism"
-msgstr "Investigativní žurnalistika"
-
-msgid "Civic activism"
-msgstr "Občanský aktivismus"
 
 msgid "Other"
 msgstr "Další"

@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-08-09 13:58+0000\n"
+"PO-Revision-Date: 2018-08-22 06:53+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Croatian (Croatia) (http://www.transifex.com/otf/globaleaks/language/hr_HR/)\n"
 "MIME-Version: 1.0\n"
@@ -706,6 +706,9 @@ msgstr "Dozvoli primateljima da daju dopuštenja zviždačima na određenim pred
 msgid "Enable search engines indexing"
 msgstr "Omogući indeksiranje tražilica"
 
+msgid "Description"
+msgstr "Opis"
+
 msgid "Enable custom privacy panel"
 msgstr "Omogući prilagođenu ploču privatnosti"
 
@@ -898,9 +901,6 @@ msgstr "Naslov naslovne stranice"
 
 msgid "Presentation"
 msgstr "Prezentacija"
-
-msgid "Description"
-msgstr "Opis"
 
 msgid "Question to solicit possible whistleblowers"
 msgstr "Pitanje za prikupljanje mogućih zviždača"
@@ -1448,8 +1448,8 @@ msgid ""
 "submissions"
 msgstr "Dozvoli primatelju da daje dopuštenje zviždačima na određenim predajama"
 
-msgid "General settings"
-msgstr "Općenite postavke"
+msgid "Site settings"
+msgstr ""
 
 msgid "Case management"
 msgstr ""
@@ -1457,13 +1457,13 @@ msgstr ""
 msgid "Network settings"
 msgstr "Mrežne postavke"
 
+msgid "Mode:"
+msgstr ""
+
 msgid "Root domain used for secondary sites"
 msgstr ""
 
 msgid "Allow users to sign up"
-msgstr ""
-
-msgid "Signup mode:"
 msgstr ""
 
 msgid "Record IP address and user agent of registered users"
@@ -1526,6 +1526,9 @@ msgid "Authorization"
 msgstr "Autorizacija"
 
 msgid "Identities"
+msgstr ""
+
+msgid "User preferences"
 msgstr ""
 
 msgid "The validation link is either incorrect or has expired."
@@ -1660,6 +1663,33 @@ msgstr "Zahtjev za postavljanje premašuje ograničenja veličine"
 msgid "Success!"
 msgstr "Uspjeh!"
 
+msgid "Validation of email address change in progress."
+msgstr ""
+
+msgid "Please check your inbox for further instructions."
+msgstr ""
+
+msgid "Enable submission notification"
+msgstr "Omogući obavijesti o predaji"
+
+msgid "Current Password"
+msgstr "Trenutna lozinka"
+
+msgid "Old password confirmation required"
+msgstr "Potrebna je potvrda stare lozinke"
+
+msgid "New Password"
+msgstr "Nova lozinka"
+
+msgid "The new password must be different from the current one."
+msgstr "Nova lozinka mora biti različita od trenutne."
+
+msgid "Type your new password again"
+msgstr "Ponovno upišite svoju novu lozinku"
+
+msgid "The two passwords do not match"
+msgstr "Dvije lozinke se ne podudaraju"
+
 msgid ""
 "It appears that you are browsing this site without any extra privacy and "
 "security!"
@@ -1709,6 +1739,21 @@ msgstr ""
 msgid ""
 "The platform is still not configured for HTTPS connections and should "
 "therefore only be used for testing purposes."
+msgstr ""
+
+msgid "Use case"
+msgstr ""
+
+msgid "Anticorruption"
+msgstr ""
+
+msgid "Corporate compliance"
+msgstr ""
+
+msgid "Investigative journalism"
+msgstr ""
+
+msgid "Civic activism"
 msgstr ""
 
 msgid "Send"
@@ -1831,33 +1876,6 @@ msgstr ""
 msgid "Password reset requested."
 msgstr ""
 
-msgid "Please check your inbox for further instructions."
-msgstr ""
-
-msgid "Validation of email address change in progress."
-msgstr ""
-
-msgid "Enable submission notification"
-msgstr "Omogući obavijesti o predaji"
-
-msgid "Current Password"
-msgstr "Trenutna lozinka"
-
-msgid "Old password confirmation required"
-msgstr "Potrebna je potvrda stare lozinke"
-
-msgid "New Password"
-msgstr "Nova lozinka"
-
-msgid "The new password must be different from the current one."
-msgstr "Nova lozinka mora biti različita od trenutne."
-
-msgid "Type your new password again"
-msgstr "Ponovno upišite svoju novu lozinku"
-
-msgid "The two passwords do not match"
-msgstr "Dvije lozinke se ne podudaraju"
-
 msgid "Thank you!"
 msgstr "Hvala Vam!"
 
@@ -1882,9 +1900,6 @@ msgid ""
 "A useful way to hide your key code is to write it down like a credit card "
 "number, i.e. by also including an expiration date."
 msgstr "Koristan način skrivanja ključa je da ga zapišete kao broj kreditne kartice, npr. također uključite datum isteka."
-
-msgid "Welcome to the administration interface!"
-msgstr "Dobrodošli na administrativno sučelje!"
 
 msgid ""
 "You have not set up your encryption key, so the files will not be encrypted "
@@ -1936,21 +1951,6 @@ msgstr ""
 
 msgid "Domain"
 msgstr "Domena"
-
-msgid "Use case"
-msgstr ""
-
-msgid "Anticorruption"
-msgstr ""
-
-msgid "Corporate compliance"
-msgstr ""
-
-msgid "Investigative journalism"
-msgstr ""
-
-msgid "Civic activism"
-msgstr ""
 
 msgid "Other"
 msgstr ""

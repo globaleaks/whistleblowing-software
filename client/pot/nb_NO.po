@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-08-09 13:58+0000\n"
-"Last-Translator: Hermes Center <info@hermescenter.org>\n"
+"PO-Revision-Date: 2018-08-22 06:53+0000\n"
+"Last-Translator: The Mailpile Project <team@mailpile.is>\n"
 "Language-Team: Norwegian Bokmål (Norway) (http://www.transifex.com/otf/globaleaks/language/nb_NO/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -705,6 +705,9 @@ msgstr "Tillat mottakere å forære rettigheter til fløyteblåsere på gitte in
 msgid "Enable search engines indexing"
 msgstr "Skru på søkemotor-indeksering"
 
+msgid "Description"
+msgstr "Beskrivelse"
+
 msgid "Enable custom privacy panel"
 msgstr "Skru på egentilpasset personvernspanel"
 
@@ -897,9 +900,6 @@ msgstr "Hjemmesidens tittel"
 
 msgid "Presentation"
 msgstr "Presentasjon"
-
-msgid "Description"
-msgstr "Beskrivelse"
 
 msgid "Question to solicit possible whistleblowers"
 msgstr "Oppfordring til fløyteblåser"
@@ -1447,8 +1447,8 @@ msgid ""
 "submissions"
 msgstr "Tillat mottaker å forære rettigheter til fløyteblåsere på gitte innsendelser."
 
-msgid "General settings"
-msgstr "Hovedinnstillinger"
+msgid "Site settings"
+msgstr ""
 
 msgid "Case management"
 msgstr ""
@@ -1456,14 +1456,14 @@ msgstr ""
 msgid "Network settings"
 msgstr "Nettverksinnstillinger"
 
+msgid "Mode:"
+msgstr ""
+
 msgid "Root domain used for secondary sites"
 msgstr "Rotdomene brukt for sekundære sider"
 
 msgid "Allow users to sign up"
 msgstr "Tillat brukere å registrere seg"
-
-msgid "Signup mode:"
-msgstr ""
 
 msgid "Record IP address and user agent of registered users"
 msgstr ""
@@ -1526,6 +1526,9 @@ msgstr "Godkjenning"
 
 msgid "Identities"
 msgstr ""
+
+msgid "User preferences"
+msgstr "Brukervalg"
 
 msgid "The validation link is either incorrect or has expired."
 msgstr ""
@@ -1659,6 +1662,33 @@ msgstr "Opplastingsforespørselen overskrider størrelsesavgrensningen"
 msgid "Success!"
 msgstr "Suksess!"
 
+msgid "Validation of email address change in progress."
+msgstr "Bekreftelse av e-postendring underveis."
+
+msgid "Please check your inbox for further instructions."
+msgstr ""
+
+msgid "Enable submission notification"
+msgstr "Skru på innsendelsesmerknad"
+
+msgid "Current Password"
+msgstr "Gjeldende passord"
+
+msgid "Old password confirmation required"
+msgstr "Bekreftelse av gammelt passord påkrevd"
+
+msgid "New Password"
+msgstr "Nytt passord"
+
+msgid "The new password must be different from the current one."
+msgstr "Det nye passordet må være forskjellig fra det gamle."
+
+msgid "Type your new password again"
+msgstr "Skriv inn ditt nye passord igjen"
+
+msgid "The two passwords do not match"
+msgstr "De to passordene samsvarer ikke"
+
 msgid ""
 "It appears that you are browsing this site without any extra privacy and "
 "security!"
@@ -1709,6 +1739,21 @@ msgid ""
 "The platform is still not configured for HTTPS connections and should "
 "therefore only be used for testing purposes."
 msgstr "Plattformen er fremdeles ikke satt opp for HTTPS-tilkoblinger og burde bare brukes for testformål."
+
+msgid "Use case"
+msgstr "Bruksmønster"
+
+msgid "Anticorruption"
+msgstr "Antikorrupsjon"
+
+msgid "Corporate compliance"
+msgstr "Bedriftsretningslinjer"
+
+msgid "Investigative journalism"
+msgstr "Gravende journalistikk"
+
+msgid "Civic activism"
+msgstr "Sivil aktivisme"
 
 msgid "Send"
 msgstr "Send"
@@ -1830,33 +1875,6 @@ msgstr ""
 msgid "Password reset requested."
 msgstr ""
 
-msgid "Please check your inbox for further instructions."
-msgstr ""
-
-msgid "Validation of email address change in progress."
-msgstr "Bekreftelse av e-postendring underveis."
-
-msgid "Enable submission notification"
-msgstr "Skru på innsendelsesmerknad"
-
-msgid "Current Password"
-msgstr "Gjeldende passord"
-
-msgid "Old password confirmation required"
-msgstr "Bekreftelse av gammelt passord påkrevd"
-
-msgid "New Password"
-msgstr "Nytt passord"
-
-msgid "The new password must be different from the current one."
-msgstr "Det nye passordet må være forskjellig fra det gamle."
-
-msgid "Type your new password again"
-msgstr "Skriv inn ditt nye passord igjen"
-
-msgid "The two passwords do not match"
-msgstr "De to passordene samsvarer ikke"
-
 msgid "Thank you!"
 msgstr "Takk!"
 
@@ -1881,9 +1899,6 @@ msgid ""
 "A useful way to hide your key code is to write it down like a credit card "
 "number, i.e. by also including an expiration date."
 msgstr "En mulig måte å gjemme koden din på er å hevde at det er et kredittkortnummer man har skrevet ned."
-
-msgid "Welcome to the administration interface!"
-msgstr "Velkommen til administrasjonsgrensesnittet!"
 
 msgid ""
 "You have not set up your encryption key, so the files will not be encrypted "
@@ -1935,21 +1950,6 @@ msgstr "Registrer deg"
 
 msgid "Domain"
 msgstr "Domene"
-
-msgid "Use case"
-msgstr "Bruksmønster"
-
-msgid "Anticorruption"
-msgstr "Antikorrupsjon"
-
-msgid "Corporate compliance"
-msgstr "Bedriftsretningslinjer"
-
-msgid "Investigative journalism"
-msgstr "Gravende journalistikk"
-
-msgid "Civic activism"
-msgstr "Sivil aktivisme"
 
 msgid "Other"
 msgstr "Annet"

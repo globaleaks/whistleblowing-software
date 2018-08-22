@@ -18,8 +18,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-08-09 13:58+0000\n"
-"Last-Translator: YF <yfdyh000@gmail.com>\n"
+"PO-Revision-Date: 2018-08-22 06:53+0000\n"
+"Last-Translator: Nan Deng <monnand@gmail.com>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/otf/globaleaks/language/zh_CN/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -716,6 +716,9 @@ msgstr "允许接收者为告密者授予在特定提交上的权限"
 msgid "Enable search engines indexing"
 msgstr "启用搜索引擎索引"
 
+msgid "Description"
+msgstr "描述"
+
 msgid "Enable custom privacy panel"
 msgstr "启用自定义隐私面板"
 
@@ -908,9 +911,6 @@ msgstr "首页标题"
 
 msgid "Presentation"
 msgstr "介绍"
-
-msgid "Description"
-msgstr "描述"
 
 msgid "Question to solicit possible whistleblowers"
 msgstr "告密问题"
@@ -1458,8 +1458,8 @@ msgid ""
 "submissions"
 msgstr "允许该接收者为告密者授予在特定提交上的权限"
 
-msgid "General settings"
-msgstr "一般设置"
+msgid "Site settings"
+msgstr ""
 
 msgid "Case management"
 msgstr ""
@@ -1467,14 +1467,14 @@ msgstr ""
 msgid "Network settings"
 msgstr "网络设置"
 
+msgid "Mode:"
+msgstr ""
+
 msgid "Root domain used for secondary sites"
 msgstr ""
 
 msgid "Allow users to sign up"
 msgstr "允许用户登陆"
-
-msgid "Signup mode:"
-msgstr ""
 
 msgid "Record IP address and user agent of registered users"
 msgstr ""
@@ -1537,6 +1537,9 @@ msgstr "授权"
 
 msgid "Identities"
 msgstr "身份"
+
+msgid "User preferences"
+msgstr "用户偏好"
 
 msgid "The validation link is either incorrect or has expired."
 msgstr ""
@@ -1670,6 +1673,33 @@ msgstr "上传请求超过文件大小限制"
 msgid "Success!"
 msgstr "成功！"
 
+msgid "Validation of email address change in progress."
+msgstr ""
+
+msgid "Please check your inbox for further instructions."
+msgstr ""
+
+msgid "Enable submission notification"
+msgstr "启用提交通知"
+
+msgid "Current Password"
+msgstr "当前密码"
+
+msgid "Old password confirmation required"
+msgstr "旧密码确认请求"
+
+msgid "New Password"
+msgstr "新密码"
+
+msgid "The new password must be different from the current one."
+msgstr "新密码不能与当前密码相同。"
+
+msgid "Type your new password again"
+msgstr "请重新输入你的新密码"
+
+msgid "The two passwords do not match"
+msgstr "密码不匹配"
+
 msgid ""
 "It appears that you are browsing this site without any extra privacy and "
 "security!"
@@ -1719,6 +1749,21 @@ msgstr "此连接存在安全隐患。"
 msgid ""
 "The platform is still not configured for HTTPS connections and should "
 "therefore only be used for testing purposes."
+msgstr ""
+
+msgid "Use case"
+msgstr ""
+
+msgid "Anticorruption"
+msgstr "反贪腐"
+
+msgid "Corporate compliance"
+msgstr ""
+
+msgid "Investigative journalism"
+msgstr "调查新闻"
+
+msgid "Civic activism"
 msgstr ""
 
 msgid "Send"
@@ -1841,33 +1886,6 @@ msgstr ""
 msgid "Password reset requested."
 msgstr ""
 
-msgid "Please check your inbox for further instructions."
-msgstr ""
-
-msgid "Validation of email address change in progress."
-msgstr ""
-
-msgid "Enable submission notification"
-msgstr "启用提交通知"
-
-msgid "Current Password"
-msgstr "当前密码"
-
-msgid "Old password confirmation required"
-msgstr "旧密码确认请求"
-
-msgid "New Password"
-msgstr "新密码"
-
-msgid "The new password must be different from the current one."
-msgstr "新密码不能与当前密码相同。"
-
-msgid "Type your new password again"
-msgstr "请重新输入你的新密码"
-
-msgid "The two passwords do not match"
-msgstr "密码不匹配"
-
 msgid "Thank you!"
 msgstr "谢谢您！"
 
@@ -1892,9 +1910,6 @@ msgid ""
 "A useful way to hide your key code is to write it down like a credit card "
 "number, i.e. by also including an expiration date."
 msgstr "隐藏您的关键代码有一个好用的方法，那就是把它写下来，并伪装成像是一个信用卡号码，比如也写上一个到期日。"
-
-msgid "Welcome to the administration interface!"
-msgstr "欢迎来到管理界面！"
 
 msgid ""
 "You have not set up your encryption key, so the files will not be encrypted "
@@ -1946,21 +1961,6 @@ msgstr "注册"
 
 msgid "Domain"
 msgstr "域名"
-
-msgid "Use case"
-msgstr ""
-
-msgid "Anticorruption"
-msgstr "反贪腐"
-
-msgid "Corporate compliance"
-msgstr ""
-
-msgid "Investigative journalism"
-msgstr "调查新闻"
-
-msgid "Civic activism"
-msgstr ""
 
 msgid "Other"
 msgstr "其他"
