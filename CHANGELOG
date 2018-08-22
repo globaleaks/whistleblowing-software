@@ -1,3 +1,6 @@
+Changes in version 3.3.8 - 2018-08-22
+    Fix serialization of /public resource in secondary tenants
+
 Changes in version 3.3.7 - 2018-08-22
     Implement redirects for urls without the hashtag (#2160)
     Reload Tor hidden services in case of failures on the Tor control port

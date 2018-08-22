@@ -1,3 +1,9 @@
+globaleaks (3.3.8) stable; urgency=medium
+
+  * Nnew stable release
+
+ -- GlobaLeaks software signing key <info@globaleaks.org>  Wed, 22 Aug 2018 17:32:50 +0200
+
 globaleaks (3.3.7) stable; urgency=medium
 
   * New stable release
