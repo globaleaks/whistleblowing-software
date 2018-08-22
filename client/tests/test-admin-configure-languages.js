@@ -12,18 +12,18 @@ describe('admin configure languages', function() {
 
     element(by.model('GLTranslate.indirect.appLanguage')).element(by.xpath(".//*[text()='Deutsch']")).click();
 
-    expect(browser.isElementPresent(element(by.cssContainingText("a", "General settings")))).toBe(false);
-    expect(browser.isElementPresent(element(by.cssContainingText("a", "Allgemeine Einstellungen")))).toBe(true);
+    expect(browser.isElementPresent(element(by.cssContainingText("a", "Site settings")))).toBe(false);
+    expect(browser.isElementPresent(element(by.cssContainingText("a", "Seiteneinstellungen")))).toBe(true);
 
     element(by.model('GLTranslate.indirect.appLanguage')).element(by.xpath(".//*[text()='Italiano']")).click();
 
-    expect(browser.isElementPresent(element(by.cssContainingText("a", "Allgemeine Einstellungen")))).toBe(false);
-    expect(browser.isElementPresent(element(by.cssContainingText("a", "Impostazioni generali")))).toBe(true);
+    expect(browser.isElementPresent(element(by.cssContainingText("a", "Seiteneinstellungen")))).toBe(false);
+    expect(browser.isElementPresent(element(by.cssContainingText("a", "Impostazioni sito")))).toBe(true);
 
     element(by.model('GLTranslate.indirect.appLanguage')).element(by.xpath(".//*[text()='English']")).click();
 
-    expect(browser.isElementPresent(element(by.cssContainingText("a", "Impostazioni generali")))).toBe(false);
-    expect(browser.isElementPresent(element(by.cssContainingText("a", "General settings")))).toBe(true);
+    expect(browser.isElementPresent(element(by.cssContainingText("a", "Impostazioni sito")))).toBe(false);
+    expect(browser.isElementPresent(element(by.cssContainingText("a", "Site settings")))).toBe(true);
   });
 
   it('should configure default language', function() {
