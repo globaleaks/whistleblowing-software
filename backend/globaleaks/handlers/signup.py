@@ -114,7 +114,9 @@ def signup_activation(session, state, tid, token, language):
 
         db_initialize_tenant(session, tenant)
 
-        mode = node.get_val(u'mode')
+        mode = config.ConfigFactory(session, 1, 'node').get_val('mode')
+
+        config.ConfigFactory(session, tenant.id, 'node').set_val(u'mode', mode)
 
         password_admin = generateRandomKey(16)
         password_recipient = generateRandomKey(16)

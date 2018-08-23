@@ -86,11 +86,7 @@ def db_wizard(session, state, tid, request, client_using_tor, language):
     tenant = models.db_get(session, models.Tenant, models.Tenant.id == tid)
     tenant.label = request['node_name']
 
-    root_node = config.ConfigFactory(session, 1, 'node')
-
-    mode = root_node.get_val(u'mode')
-
-    node.set_val(u'mode', mode)
+    mode = node.get_val(u'mode')
 
     # Apply the specific fixes related to whistleblowing.it projects
     if mode == u'whistleblowing.it':
