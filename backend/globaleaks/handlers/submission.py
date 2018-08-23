@@ -97,7 +97,7 @@ def db_serialize_questionnaire_answers(session, tid, usertip, internaltip):
 
     for s in questionnaire:
         for f in s['children']:
-            if f['template_id'] == 'whistleblower_identity':
+            if f.get('template_id', '') == 'whistleblower_identity':
                 if isinstance(usertip, models.InternalTip) or \
                    f['attrs']['visibility_subject_to_authorization']['value'] is False or \
                    (isinstance(usertip, models.ReceiverTip) and usertip.can_access_whistleblower_identity):
