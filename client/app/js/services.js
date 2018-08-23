@@ -850,13 +850,15 @@ factory('AdminUtils', ['AdminContextResource', 'AdminQuestionnaireResource', 'Ad
           if (Authentication.keycode) {
             $rootScope.ht = $rootScope.node.header_title_receiptpage;
           } else {
-            $rootScope.ht = $filter('translate')("Login");
+            $rootScope.ht = "Login";
           }
         } else if (path.substr(0, statuspage.length) === statuspage) {
           $rootScope.ht = $rootScope.node.header_title_tippage;
         } else {
-          $rootScope.ht = $filter('translate')($rootScope.header_title);
+          $rootScope.ht = $rootScope.header_title;
         }
+
+	$rootScope.ht = $filter('translate')($rootScope.ht);
 
         $rootScope.pt = ($rootScope.ht !== '' && $rootScope.ht !== nodename) ? nodename + ' - ' + $rootScope.ht : nodename;
       },

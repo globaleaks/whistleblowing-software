@@ -147,19 +147,10 @@ html[dir="rtl"] #UserBox {
   float: left;
 }
 
-#PageTitle {
+#TitleBox {
   font-size: 2em;
   font-weight: bold;
   white-space: pre-wrap;
-}
-
-#PageSubtitle {
-  font-size: 2em;
-  font-weight: bold;
-}
-
-#PageTitle, #PageSubtitle, #PageSubtitleSeparator {
-  display: inline;
 }
 
 #LanguagePickerBox {
