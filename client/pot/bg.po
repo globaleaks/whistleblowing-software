@@ -11,7 +11,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-08-22 06:53+0000\n"
+"PO-Revision-Date: 2018-08-23 14:08+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Bulgarian (http://www.transifex.com/otf/globaleaks/language/bg/)\n"
 "MIME-Version: 1.0\n"
@@ -98,11 +98,8 @@ msgstr "Аномалии"
 msgid "Preferences"
 msgstr "Настройки"
 
-msgid "Custodian interface"
+msgid "User preferences"
 msgstr ""
-
-msgid "Recipient interface"
-msgstr "Интерфейс на получателя"
 
 msgid "Notification settings"
 msgstr "Настройки на известяванията"
@@ -118,6 +115,9 @@ msgstr "Файлът не е достъпен поради вътрешна гр
 
 msgid "file unavailable"
 msgstr "недостъпен файл"
+
+msgid "Recipient interface"
+msgstr "Интерфейс на получателя"
 
 msgid "Creation date"
 msgstr "Дата на създаване"
@@ -770,12 +770,6 @@ msgstr ""
 
 msgid "Landing page"
 msgstr "Начална страница"
-
-msgid "Home Page"
-msgstr "Начална страница"
-
-msgid "Submission Page"
-msgstr "Страница за сведения"
 
 msgid "Default questionnaire"
 msgstr ""
@@ -1529,9 +1523,6 @@ msgid "Authorization"
 msgstr "Резрешение"
 
 msgid "Identities"
-msgstr ""
-
-msgid "User preferences"
 msgstr ""
 
 msgid "The validation link is either incorrect or has expired."

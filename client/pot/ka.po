@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-08-22 06:53+0000\n"
+"PO-Revision-Date: 2018-08-23 14:08+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Georgian (http://www.transifex.com/otf/globaleaks/language/ka/)\n"
 "MIME-Version: 1.0\n"
@@ -91,11 +91,8 @@ msgstr "ანომალიების"
 msgid "Preferences"
 msgstr "პრიორიტეტები"
 
-msgid "Custodian interface"
+msgid "User preferences"
 msgstr ""
-
-msgid "Recipient interface"
-msgstr "მიმღების ინტერფეისი"
 
 msgid "Notification settings"
 msgstr "შეტყობინების პარამეტრები"
@@ -111,6 +108,9 @@ msgstr "ფაილი მიუწვდომელია შიდა შე
 
 msgid "file unavailable"
 msgstr "წარადგინოს unavailable"
+
+msgid "Recipient interface"
+msgstr "მიმღების ინტერფეისი"
 
 msgid "Creation date"
 msgstr "შექმნის თარიღი"
@@ -763,12 +763,6 @@ msgstr ""
 
 msgid "Landing page"
 msgstr "სადესანტო გვერდი"
-
-msgid "Home Page"
-msgstr "საწყისი გვერდი"
-
-msgid "Submission Page"
-msgstr "წარდგენის გვერდი"
 
 msgid "Default questionnaire"
 msgstr ""
@@ -1522,9 +1516,6 @@ msgid "Authorization"
 msgstr "ავტორიზაცია"
 
 msgid "Identities"
-msgstr ""
-
-msgid "User preferences"
 msgstr ""
 
 msgid "The validation link is either incorrect or has expired."

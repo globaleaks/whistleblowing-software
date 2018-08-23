@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-08-22 06:53+0000\n"
-"Last-Translator: Yusei Nishioka <nishiokay@gmail.com>\n"
+"PO-Revision-Date: 2018-08-23 14:08+0000\n"
+"Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Japanese (http://www.transifex.com/otf/globaleaks/language/ja/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -96,11 +96,8 @@ msgstr "異変"
 msgid "Preferences"
 msgstr "設定"
 
-msgid "Custodian interface"
-msgstr ""
-
-msgid "Recipient interface"
-msgstr "受信者インターフェース"
+msgid "User preferences"
+msgstr "ユーザー設定"
 
 msgid "Notification settings"
 msgstr "通知設定"
@@ -116,6 +113,9 @@ msgstr "内部エラーによりファイルは利用できません。"
 
 msgid "file unavailable"
 msgstr "利用不能なファイル"
+
+msgid "Recipient interface"
+msgstr "受信者インターフェース"
 
 msgid "Creation date"
 msgstr "作成日"
@@ -768,12 +768,6 @@ msgstr ""
 
 msgid "Landing page"
 msgstr "到達ページ"
-
-msgid "Home Page"
-msgstr "ホームページ"
-
-msgid "Submission Page"
-msgstr "提出ページ"
 
 msgid "Default questionnaire"
 msgstr ""
@@ -1528,9 +1522,6 @@ msgstr "認証"
 
 msgid "Identities"
 msgstr "IDリスト"
-
-msgid "User preferences"
-msgstr "ユーザー設定"
 
 msgid "The validation link is either incorrect or has expired."
 msgstr ""

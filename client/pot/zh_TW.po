@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-08-22 06:53+0000\n"
-"Last-Translator: Chi-Hsun Tsai\n"
+"PO-Revision-Date: 2018-08-23 14:08+0000\n"
+"Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/otf/globaleaks/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -97,11 +97,8 @@ msgstr "異常"
 msgid "Preferences"
 msgstr "偏好"
 
-msgid "Custodian interface"
-msgstr ""
-
-msgid "Recipient interface"
-msgstr "收件者介面"
+msgid "User preferences"
+msgstr "用戶偏好"
 
 msgid "Notification settings"
 msgstr "通知設定"
@@ -117,6 +114,9 @@ msgstr "檔案因內部錯誤無法取得"
 
 msgid "file unavailable"
 msgstr "檔案無法取得"
+
+msgid "Recipient interface"
+msgstr "收件者介面"
 
 msgid "Creation date"
 msgstr "建立日期"
@@ -769,12 +769,6 @@ msgstr "將值設為 0  以取消此功能。"
 
 msgid "Landing page"
 msgstr "登陸頁面"
-
-msgid "Home Page"
-msgstr "首頁"
-
-msgid "Submission Page"
-msgstr "提交頁面"
 
 msgid "Default questionnaire"
 msgstr ""
@@ -1529,9 +1523,6 @@ msgstr "授權"
 
 msgid "Identities"
 msgstr "身份"
-
-msgid "User preferences"
-msgstr "用戶偏好"
 
 msgid "The validation link is either incorrect or has expired."
 msgstr "驗證連結不正確或是已經過期。"

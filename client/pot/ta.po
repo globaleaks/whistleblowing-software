@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-08-22 06:53+0000\n"
+"PO-Revision-Date: 2018-08-23 14:08+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Tamil (http://www.transifex.com/otf/globaleaks/language/ta/)\n"
 "MIME-Version: 1.0\n"
@@ -93,11 +93,8 @@ msgstr "முரண்பாடுகள்"
 msgid "Preferences"
 msgstr "விருப்பத்தேர்வுகள்"
 
-msgid "Custodian interface"
+msgid "User preferences"
 msgstr ""
-
-msgid "Recipient interface"
-msgstr "பெறுநரின் இடைமுகம்"
 
 msgid "Notification settings"
 msgstr "அறிவித்தல் அமைப்புகளை"
@@ -113,6 +110,9 @@ msgstr "கோப்பு அகப்பிழையினால் கி�
 
 msgid "file unavailable"
 msgstr "கோப்பு கிடைக்கவில்லை"
+
+msgid "Recipient interface"
+msgstr "பெறுநரின் இடைமுகம்"
 
 msgid "Creation date"
 msgstr "உருவாக்கிய தேதி"
@@ -765,12 +765,6 @@ msgstr ""
 
 msgid "Landing page"
 msgstr "இறங்கும் பக்கம்"
-
-msgid "Home Page"
-msgstr "முகப்பு பக்கம்"
-
-msgid "Submission Page"
-msgstr "சமர்ப்பிக்கும் பக்கம்"
 
 msgid "Default questionnaire"
 msgstr ""
@@ -1524,9 +1518,6 @@ msgid "Authorization"
 msgstr "அங்கீகார"
 
 msgid "Identities"
-msgstr ""
-
-msgid "User preferences"
 msgstr ""
 
 msgid "The validation link is either incorrect or has expired."

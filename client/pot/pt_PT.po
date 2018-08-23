@@ -21,8 +21,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-08-22 06:53+0000\n"
-"Last-Translator: Manuela Silva <manuela.silva@sky.com>\n"
+"PO-Revision-Date: 2018-08-23 14:08+0000\n"
+"Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Portuguese (Portugal) (http://www.transifex.com/otf/globaleaks/language/pt_PT/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -108,11 +108,8 @@ msgstr "Anomalias"
 msgid "Preferences"
 msgstr "Preferências"
 
-msgid "Custodian interface"
-msgstr ""
-
-msgid "Recipient interface"
-msgstr "Interface do destinatário"
+msgid "User preferences"
+msgstr "Preferências do utilizador"
 
 msgid "Notification settings"
 msgstr "Configurações da notificação"
@@ -128,6 +125,9 @@ msgstr "O ficheiro está indisponível devido a um erro interno."
 
 msgid "file unavailable"
 msgstr "ficheiro indisponível"
+
+msgid "Recipient interface"
+msgstr "Interface do destinatário"
 
 msgid "Creation date"
 msgstr "Data de criação"
@@ -780,12 +780,6 @@ msgstr ""
 
 msgid "Landing page"
 msgstr "Página de destino"
-
-msgid "Home Page"
-msgstr "Página Principal"
-
-msgid "Submission Page"
-msgstr "Página de Submissão"
 
 msgid "Default questionnaire"
 msgstr ""
@@ -1540,9 +1534,6 @@ msgstr "Autorização"
 
 msgid "Identities"
 msgstr ""
-
-msgid "User preferences"
-msgstr "Preferências do utilizador"
 
 msgid "The validation link is either incorrect or has expired."
 msgstr "A hiperligação de validação está incorreta ou expirou."

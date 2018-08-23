@@ -25,8 +25,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-08-22 06:53+0000\n"
-"Last-Translator: Mert Salih Kaplan <mail@mertskaplan.com>\n"
+"PO-Revision-Date: 2018-08-23 14:08+0000\n"
+"Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Turkish (http://www.transifex.com/otf/globaleaks/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -112,11 +112,8 @@ msgstr "Anormallikler"
 msgid "Preferences"
 msgstr "Tercihler"
 
-msgid "Custodian interface"
-msgstr ""
-
-msgid "Recipient interface"
-msgstr "Alıcı arayüzü"
+msgid "User preferences"
+msgstr "Kullanıcı tercihleri"
 
 msgid "Notification settings"
 msgstr "Bildirim ayarları"
@@ -132,6 +129,9 @@ msgstr "Dahili bir hatadan dolayı dosya kullanılabilir değil."
 
 msgid "file unavailable"
 msgstr "Dosya kullanılamıyor"
+
+msgid "Recipient interface"
+msgstr "Alıcı arayüzü"
 
 msgid "Creation date"
 msgstr "Oluşturma tarihi"
@@ -784,12 +784,6 @@ msgstr ""
 
 msgid "Landing page"
 msgstr "Karşılama sayfası"
-
-msgid "Home Page"
-msgstr "Ana sayfa"
-
-msgid "Submission Page"
-msgstr "Gönderim sayfası"
 
 msgid "Default questionnaire"
 msgstr ""
@@ -1544,9 +1538,6 @@ msgstr "İzin"
 
 msgid "Identities"
 msgstr "Kimlikler"
-
-msgid "User preferences"
-msgstr "Kullanıcı tercihleri"
 
 msgid "The validation link is either incorrect or has expired."
 msgstr ""

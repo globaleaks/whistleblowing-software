@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-08-22 06:53+0000\n"
-"Last-Translator: brodul <brodul@gmx.com>\n"
+"PO-Revision-Date: 2018-08-23 14:08+0000\n"
+"Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Slovenian (Slovenia) (http://www.transifex.com/otf/globaleaks/language/sl_SI/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -94,11 +94,8 @@ msgstr "Anomalije"
 msgid "Preferences"
 msgstr "Možnosti"
 
-msgid "Custodian interface"
-msgstr ""
-
-msgid "Recipient interface"
-msgstr "Prejemnikov vmesnik"
+msgid "User preferences"
+msgstr "Uporabniške nastavitve"
 
 msgid "Notification settings"
 msgstr "Nastavitve obvestila"
@@ -114,6 +111,9 @@ msgstr "Ta datoteka ni dostopna zaradi interne napake."
 
 msgid "file unavailable"
 msgstr "nedostopna datoteka"
+
+msgid "Recipient interface"
+msgstr "Prejemnikov vmesnik"
 
 msgid "Creation date"
 msgstr "Datum vnosa"
@@ -766,12 +766,6 @@ msgstr ""
 
 msgid "Landing page"
 msgstr "Vstopna stran"
-
-msgid "Home Page"
-msgstr "Domača stran"
-
-msgid "Submission Page"
-msgstr "Stran naznanitve"
 
 msgid "Default questionnaire"
 msgstr ""
@@ -1526,9 +1520,6 @@ msgstr "Avtorizacija"
 
 msgid "Identities"
 msgstr ""
-
-msgid "User preferences"
-msgstr "Uporabniške nastavitve"
 
 msgid "The validation link is either incorrect or has expired."
 msgstr ""

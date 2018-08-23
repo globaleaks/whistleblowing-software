@@ -25,8 +25,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-08-22 06:59+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2018-08-23 14:08+0000\n"
+"Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Italian (http://www.transifex.com/otf/globaleaks/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -71,10 +71,10 @@ msgid "Add new questionnaire"
 msgstr "Aggiungi nuovo questionario"
 
 msgid "Home"
-msgstr "Pagina Iniziale"
+msgstr "Pagina iniziale"
 
 msgid "Home page"
-msgstr "Pagina Iniziale"
+msgstr "Pagina iniziale"
 
 msgid "Changelog"
 msgstr "Changelog"
@@ -112,11 +112,8 @@ msgstr "Anomalie"
 msgid "Preferences"
 msgstr "Preferenze"
 
-msgid "Custodian interface"
-msgstr "Interfaccia del custode"
-
-msgid "Recipient interface"
-msgstr "Interfaccia del ricevente"
+msgid "User preferences"
+msgstr "Preferenze utente"
 
 msgid "Notification settings"
 msgstr "Configurazione delle notifiche"
@@ -132,6 +129,9 @@ msgstr "Il file non e' disponibile a causa di un errore interno."
 
 msgid "file unavailable"
 msgstr "file non disponibile"
+
+msgid "Recipient interface"
+msgstr "Interfaccia del ricevente"
 
 msgid "Creation date"
 msgstr "Data di creazione"
@@ -784,12 +784,6 @@ msgstr "Imposta un valore di 0 per disabilitare questa funzionalità."
 
 msgid "Landing page"
 msgstr "Pagina iniziale"
-
-msgid "Home Page"
-msgstr "Pagina Iniziale"
-
-msgid "Submission Page"
-msgstr "Pagina di Segnalazione"
 
 msgid "Default questionnaire"
 msgstr "Questionario predefinito"
@@ -1544,9 +1538,6 @@ msgstr "Autorizzazione"
 
 msgid "Identities"
 msgstr "Identità"
-
-msgid "User preferences"
-msgstr "Preferenze utente"
 
 msgid "The validation link is either incorrect or has expired."
 msgstr "L'indirizzo di validazione è invalido o scaduto."

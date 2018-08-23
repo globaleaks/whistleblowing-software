@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-08-22 06:53+0000\n"
-"Last-Translator: The Mailpile Project <team@mailpile.is>\n"
+"PO-Revision-Date: 2018-08-23 14:08+0000\n"
+"Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Norwegian Bokmål (Norway) (http://www.transifex.com/otf/globaleaks/language/nb_NO/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -94,11 +94,8 @@ msgstr "Unormalheter"
 msgid "Preferences"
 msgstr "Innstillinger"
 
-msgid "Custodian interface"
-msgstr ""
-
-msgid "Recipient interface"
-msgstr "Mottaker-grensesnitt"
+msgid "User preferences"
+msgstr "Brukervalg"
 
 msgid "Notification settings"
 msgstr "Merknadsinnstillinger"
@@ -114,6 +111,9 @@ msgstr "Filen er utilgjengelig som følge av en intern feil."
 
 msgid "file unavailable"
 msgstr "fil utilgjengelig"
+
+msgid "Recipient interface"
+msgstr "Mottaker-grensesnitt"
 
 msgid "Creation date"
 msgstr "Opprettelsesdato"
@@ -766,12 +766,6 @@ msgstr ""
 
 msgid "Landing page"
 msgstr "Landingsside"
-
-msgid "Home Page"
-msgstr "Hjemmeside"
-
-msgid "Submission Page"
-msgstr "Innsendelsesside"
 
 msgid "Default questionnaire"
 msgstr ""
@@ -1526,9 +1520,6 @@ msgstr "Godkjenning"
 
 msgid "Identities"
 msgstr ""
-
-msgid "User preferences"
-msgstr "Brukervalg"
 
 msgid "The validation link is either incorrect or has expired."
 msgstr ""

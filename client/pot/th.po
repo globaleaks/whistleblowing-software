@@ -10,7 +10,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-08-22 06:53+0000\n"
+"PO-Revision-Date: 2018-08-23 14:08+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Thai (http://www.transifex.com/otf/globaleaks/language/th/)\n"
 "MIME-Version: 1.0\n"
@@ -97,11 +97,8 @@ msgstr "ความผิดปกติ"
 msgid "Preferences"
 msgstr "การตั้งค่า"
 
-msgid "Custodian interface"
+msgid "User preferences"
 msgstr ""
-
-msgid "Recipient interface"
-msgstr "อินเตอร์เฟซของผู้รับ"
 
 msgid "Notification settings"
 msgstr "การตั้งค่าการแจ้งเตือน"
@@ -117,6 +114,9 @@ msgstr "ไฟล์ที่ใช้งานไม่ได้เนื่อ
 
 msgid "file unavailable"
 msgstr "ยื่นไม่พร้อมใช้งาน"
+
+msgid "Recipient interface"
+msgstr "อินเตอร์เฟซของผู้รับ"
 
 msgid "Creation date"
 msgstr "วันที่สร้าง"
@@ -769,12 +769,6 @@ msgstr ""
 
 msgid "Landing page"
 msgstr "หน้า Landing Page"
-
-msgid "Home Page"
-msgstr "หน้าแรก"
-
-msgid "Submission Page"
-msgstr "หน้าการส่ง"
 
 msgid "Default questionnaire"
 msgstr ""
@@ -1528,9 +1522,6 @@ msgid "Authorization"
 msgstr "การอนุญาต"
 
 msgid "Identities"
-msgstr ""
-
-msgid "User preferences"
 msgstr ""
 
 msgid "The validation link is either incorrect or has expired."

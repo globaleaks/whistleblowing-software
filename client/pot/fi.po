@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-08-22 06:53+0000\n"
-"Last-Translator: viljaminojonen <Viljami.Nojonen@live.com>\n"
+"PO-Revision-Date: 2018-08-23 14:08+0000\n"
+"Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Finnish (http://www.transifex.com/otf/globaleaks/language/fi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -97,11 +97,8 @@ msgstr "Poikkeamat"
 msgid "Preferences"
 msgstr "Asetukset"
 
-msgid "Custodian interface"
-msgstr "Valvojan näkymä"
-
-msgid "Recipient interface"
-msgstr "Vastaanottajan näkymä"
+msgid "User preferences"
+msgstr "Käyttäjän asetukset"
 
 msgid "Notification settings"
 msgstr "Ilmoitusasetukset"
@@ -117,6 +114,9 @@ msgstr "Tiedosto ei ole saatavilla sisäisen virheen vuoksi."
 
 msgid "file unavailable"
 msgstr "tiedosto ei ole saatavilla"
+
+msgid "Recipient interface"
+msgstr "Vastaanottajan näkymä"
 
 msgid "Creation date"
 msgstr "Luontipäivämäärä"
@@ -769,12 +769,6 @@ msgstr "Ota toiminnallisuus pois käytöstä asettamalla arvoksi luku nolla (0).
 
 msgid "Landing page"
 msgstr "Aloitussivu"
-
-msgid "Home Page"
-msgstr "Kotisivu"
-
-msgid "Submission Page"
-msgstr "Vihjeen lähetys"
 
 msgid "Default questionnaire"
 msgstr "Oletuslomake"
@@ -1529,9 +1523,6 @@ msgstr "Käyttölupa"
 
 msgid "Identities"
 msgstr "Identiteetit"
-
-msgid "User preferences"
-msgstr "Käyttäjän asetukset"
 
 msgid "The validation link is either incorrect or has expired."
 msgstr "Vahvistuslinkki on joko virheellinen tai vanhentunut."
