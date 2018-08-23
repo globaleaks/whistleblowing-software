@@ -1,3 +1,8 @@
+Changes in version 3.3.9 - 2018-08-23
+    Add CSS selectors to simplify customization of Tip and Tip list pages
+    Apply set of UI simplifications folling whistleblowing.it review
+    Update translations
+
 Changes in version 3.3.8 - 2018-08-22
     Fix serialization of /public resource in secondary tenants
 
