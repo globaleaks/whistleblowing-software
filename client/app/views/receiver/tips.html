@@ -60,12 +60,12 @@
       <thead>
         <tr>
           <th></th>
-          <th>
+          <th class="TipInfoID">
             <span>
               <i class="glyphicon glyphicon-barcode"></i>
             </span>
           </th>
-          <th data-ng-if="contexts.length > 1">
+          <th class="TipInfoContext" data-ng-if="contexts.length > 1">
             <span data-ng-click="sortKey = 'context_name'; sortReverse = !sortReverse">
               <span data-translate>Context</span>
               <i class="glyphicon glyphicon-inbox"></i>
@@ -75,7 +75,7 @@
               </span>
             </span>
           </th>
-          <th>
+          <th class="TipInfoLabel">
             <span data-ng-click="sortKey = 'label'; sortReverse = !sortReverse">
               <i class="glyphicon glyphicon-tag"></i>
               <span data-translate>Label</span>
@@ -85,7 +85,7 @@
               </span>
             </span>
           </th>
-          <th>
+          <th class="TipInfoStatus">
             <span data-ng-click="sortKey = 'creation_date'; sortReverse = !sortReverse">
               <i class="glyphicon glyphicon-record"></i>
               <span data-translate>Submission status</span>
@@ -95,7 +95,7 @@
               </span>
             </span>
           </th>
-          <th>
+          <th class="TipInfoSubmissionDate">
             <span data-ng-click="sortKey = 'creation_date'; sortReverse = !sortReverse">
               <i class="glyphicon glyphicon-time"></i>
               <span data-translate>Submission date</span>
@@ -105,7 +105,7 @@
               </span>
             </span>
           </th>
-          <th>
+          <th class="TipInfoUpdateDate">
             <span data-ng-click="sortKey = 'update_date'; sortReverse = !sortReverse">
               <i class="glyphicon glyphicon-time"></i>
               <span data-translate>Last update</span>
@@ -115,7 +115,7 @@
               </span>
             </span>
           </th>
-          <th>
+          <th class="TipInfoExpirationDate">
             <span data-ng-click="sortKey = 'expiration_date'; sortReverse = !sortReverse">
               <i class="glyphicon glyphicon-hourglass"></i>
               <span data-translate>Expiration date</span>
@@ -125,10 +125,10 @@
               </span>
             </span>
           </th>
-          <th>
+          <th class="TipInfoReadReceipt">
             <i class="glyphicon glyphicon-eye-open"></i>
           </th>
-          <th>
+          <th class="TipInfoFilesCount">
             <span data-ng-click="sortKey = 'file_count'; sortReverse = !sortReverse">
               <i class="glyphicon glyphicon-file"></i>
               <span class="btn btn-xs" data-ng-show="sortKey == 'file_count'">
@@ -137,7 +137,7 @@
               </span>
             </span>
           </th>
-          <th>
+          <th class="TipInfoCommentsCount">
             <span data-ng-click="sortKey = 'comment_count'; sortReverse = !sortReverse">
               <i class="glyphicon glyphicon-comment"></i>
               <span class="btn btn-xs" data-ng-show="sortKey == 'comment_count'">
@@ -146,7 +146,7 @@
               </span>
             </span>
           </th>
-          <th>
+          <th class="TipInfoMessagesCount">
             <span data-ng-click="sortKey = 'message_count'; sortReverse = !sortReverse">
               <i class="glyphicon glyphicon-envelope"></i>
               <span class="btn btn-xs" data-ng-show="sortKey == 'message_count'">
@@ -155,13 +155,13 @@
               </span>
             </span>
           </th>
-          <th>
+          <th class="TipInfoPreview">
             <span>
               <i class="glyphicon glyphicon-list-alt"></i>
               <span data-translate>Preview</span>
             </span>
           </th>
-          <th data-ng-if="::node.enable_experimental_features">
+          <th class="TipInfoScore" data-ng-if="::node.enable_experimental_features">
             <span data-ng-click="$parent.sortKey = 'total_score'; sortReverse = !sortReverse">
               <i class="glyphicon glyphicon-flash"></i>
               <span data-translate>Score</span>
@@ -193,29 +193,29 @@
               </button>
             </span>
           </td>
-          <td class="tipID">#{{ tip.progressive }}</td>
-          <td data-ng-if="contexts.length > 1">{{::tip.context_name}}</td>
-          <td>{{::tip.label}}</td>
-	  <td><span>{{tip.submissionStatusStr}}</span></td>
-          <td>{{::tip.creation_date | date:'dd-MM-yyyy HH:mm'}}</td>
-          <td>{{::tip.update_date | date:'dd-MM-yyyy HH:mm'}}</td>
-          <td>
+          <td class="TipInfoID">#{{ tip.progressive }}</td>
+          <td class="TipInfoContext" data-ng-if="contexts.length > 1">{{::tip.context_name}}</td>
+          <td class="TipInfoLabel">{{::tip.label}}</td>
+	  <td class="TipInfoStatus"><span>{{tip.submissionStatusStr}}</span></td>
+          <td class="TipInfoSubmissionDate">{{::tip.creation_date | date:'dd-MM-yyyy HH:mm'}}</td>
+          <td class="TipInfoUpdateDate">{{::tip.update_date | date:'dd-MM-yyyy HH:mm'}}</td>
+          <td class="TipInfoExpirationDate">
             <span data-ng-if="!Utils.isNever(tip.expiration_date)">{{::tip.expiration_date | date:'dd-MM-yyyy HH:mm'}}</span>
             <span data-ng-if="Utils.isNever(tip.expiration_date)" data-translate>Never</span>
           </td>
-          <td>
+          <td class="TipInfoLastAccess">
             <i data-ng-if="tip.wb_last_access >= tip.update_date" class="glyphicon glyphicon-ok"
                 uib-popover="{{'The whistleblower has already read the latest update' | translate }} ({{tip.wb_last_access | date:'dd-MM-yyyy HH:mm'}})"></i>
             <i data-ng-if="tip.wb_last_access < tip.update_date" class="glyphicon glyphicon-remove"
                uib-popover="{{'The whistleblower has not read the latest update yet' | translate }}"></i>
           </td>
-          <td>{{::tip.file_count}}</td>
-          <td>{{::tip.comment_count}}</td>
-          <td>{{::tip.message_count}}</td>
-          <td>
+          <td class="TipInfoFilesCount">{{::tip.file_count}}</td>
+          <td class="TipInfoCommentCount">{{::tip.comment_count}}</td>
+          <td class="TipInfoMessageCount">{{::tip.message_count}}</td>
+          <td class="TipInfoPreview">
             <div data-ng-repeat="field in tip.preview_schema" data-ng-init="fieldAnswers = tip.preview; preview=true" data-ng-include="'views/partials/tip_field.html'"></div>
           </td>
-          <td data-ng-if="::node.enable_experimental_features">{{::tip.total_score}}</td>
+          <td class="TipInfoScore" data-ng-if="::node.enable_experimental_features">{{::tip.total_score}}</td>
         </tr>
       </tbody>
     </table>

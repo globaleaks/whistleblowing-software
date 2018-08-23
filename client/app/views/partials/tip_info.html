@@ -37,41 +37,41 @@
     <table class="table table-condensed table-striped">
       <thead>
       <tr>
-        <th data-ng-if="::session.role == 'receiver'">
+        <th class="TipInfoID" data-ng-if="::session.role == 'receiver'">
           <i class="glyphicon glyphicon-barcode"></i>
         </th>
-        <th>
+	<th class="TipInfoContext" data-ng-if="contexts.length > 1">
           <i class="glyphicon glyphicon-inbox"></i>
           <span data-translate>Context</span>
         </th>
-        <th>
+        <th class="TipInfoSubmissionDate">
           <i class="glyphicon glyphicon-time"></i>
           <span data-translate>Creation date</span>
         </th>
-        <th>
+        <th class="TipInfoLastUpdate">
           <i class="glyphicon glyphicon-time"></i>
           <span data-translate>Last update</span>
         </th>
-        <th>
+        <th class="TipInfoExpirationDate">
           <i class="glyphicon glyphicon-hourglass"></i>
           <span data-translate>Expiration date</span>
         </th>
-        <th data-ng-if="::session.role === 'receiver'">
+        <th class="TipInfoAccessExpiration" data-ng-if="::session.role === 'receiver'">
           <i class="glyphicon glyphicon-hourglass"></i>
           <span data-translate>Access expiration</span>
         </th>
-        <th data-ng-if="::session.role === 'receiver'">
+        <th class="TipInfoReadReceipt" data-ng-if="::session.role === 'receiver'">
           <i class="glyphicon glyphicon-eye-open"></i>
         </th>
-        <th>
+        <th class="TipInfoConnection">
           <i class="glyphicon glyphicon-send"></i>
           <span data-translate>Connection</span>
         </th>
-        <th>
+        <th class="TipInfoSubmissionStatus">
           <i class="glyphicon glyphicon-record"></i>
           <span data-translate>Submission status</span>
         </th>
-        <th data-ng-if="::session.role == 'receiver' && node.enable_experimental_features">
+        <th class="TipInfoScore" data-ng-if="::session.role == 'receiver' && node.enable_experimental_features">
           <i class="glyphicon glyphicon-flash"></i>
           <span data-translate>Score</span>
         </th>
@@ -79,15 +79,15 @@
       </thead>
       <tbody>
       <tr>
-        <td id="tipID" data-ng-if="::session.role == 'receiver'">#{{::tip.progressive}}</td>
-        <td>{{::tip.context.name}}</td>
-        <td>{{::tip.creation_date | date:'dd-MM-yyyy HH:mm'}}</td>
-        <td>{{::tip.update_date | date:'dd-MM-yyyy HH:mm'}}</td>
-        <td>
+        <td class="TipInfoID" data-ng-if="::session.role == 'receiver'">#{{::tip.progressive}}</td>
+	<td class="TipInfoContext" data-ng-if="contexts.length > 1">{{::tip.context.name}}</td>
+        <td class="TipInfoCreationDate">{{::tip.creation_date | date:'dd-MM-yyyy HH:mm'}}</td>
+        <td class="TipInfoUpdateDate">{{::tip.update_date | date:'dd-MM-yyyy HH:mm'}}</td>
+        <td class="TipInfoExpirationDate">
           <span data-ng-if="!Utils.isNever(tip.expiration_date)">{{::tip.expiration_date | date:'dd-MM-yyyy HH:mm'}}</span>
           <span data-ng-if="Utils.isNever(tip.expiration_date)" data-translate>Never</span>
         </td>
-        <td data-ng-if="::session.role === 'receiver'">
+        <td class="TipInfoAccessExpiration" data-ng-if="::session.role === 'receiver'">
             <span data-ng-if="!tip.wb_access_revoked"
                   uib-popover="{{'Unless the whistleblower checks the submission by this time, their access to it will expire.' | translate}}"
                   popover-placement="left">
@@ -98,13 +98,13 @@
                 uib-popover="{{'The whistleblower can no longer access the submission' | translate}}"
                 popover-placement="left" data-translate>Revoked</span>
         </td>
-        <td data-ng-if="::session.role == 'receiver'">
+        <td class="TipInfoLastAccess" data-ng-if="::session.role == 'receiver'">
           <i data-ng-if="tip.wb_last_access >= tip.update_date" class="glyphicon glyphicon-ok"
              uib-popover="{{'The whistleblower has already read the latest update' | translate }} ({{tip.wb_last_access | date:'dd-MM-yyyy HH:mm'}})"></i>
           <i data-ng-if="tip.wb_last_access < tip.update_date" class="glyphicon glyphicon-remove"
              uib-popover="{{'The whistleblower has not read the latest update yet' | translate }}"></i>
         </td>
-        <td>
+        <td class="TipInfoConnection">
             <span data-ng-if="tip.https"
                   class="label label-warning"
                   uib-popover="{{'The connection used to send this submission has been secured with HTTPS ensuring confidentiality.' | translate}}" popover-placement="left">HTTPS</span>
@@ -112,8 +112,8 @@
                 class="label label-success"
                 uib-popover="{{'The connection used to send this submission has been secured with Tor ensuring confidentiality and anonymity.' | translate}}" popover-placement="left">Tor</span>
         </td>
-        <td><span>{{tip.submissionStatusObj.label}}</span> <span data-ng-if="tip.submissionSubStatusObj">({{tip.submissionSubStatusObj.label}})</span></td>
-        <td data-ng-if="::session.role == 'receiver' && node.enable_experimental_features">{{::tip.total_score}}</td>
+        <td class="TipInfoSubmissionStatus"><span>{{tip.submissionStatusObj.label}}</span> <span data-ng-if="tip.submissionSubStatusObj">({{tip.submissionSubStatusObj.label}})</span></td>
+        <td class="TipInfoScore" data-ng-if="::session.role == 'receiver' && node.enable_experimental_features">{{::tip.total_score}}</td>
       </tr>
       </tbody>
     </table>
