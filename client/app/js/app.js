@@ -230,7 +230,7 @@ var GLClient = angular.module('GLClient', [
       when('/receiver/home', {
         templateUrl: 'views/receiver/home.html',
         controller: 'ReceiverCtrl',
-        header_title: 'Recipient interface',
+        header_title: 'Home',
         header_subtitle: '',
         resolve: {
           access: requireAuth('receiver'),
@@ -239,7 +239,7 @@ var GLClient = angular.module('GLClient', [
       when('/receiver/preferences', {
         templateUrl: 'views/receiver/preferences.html',
         controller: 'ReceiverCtrl',
-        header_title: 'Preferences',
+        header_title: 'User preferences',
         header_subtitle: '',
         resolve: {
           access: requireAuth('receiver'),
@@ -248,8 +248,8 @@ var GLClient = angular.module('GLClient', [
       when('/receiver/content', {
         templateUrl: 'views/receiver/content.html',
         controller: 'AdminCtrl',
-        header_title: 'Recipient interface',
-        header_subtitle: 'General settings',
+        header_title: 'Site settings',
+        header_subtitle: '',
         resolve: {
           resources: fetchResources('acl', ['node']),
         }
@@ -257,8 +257,8 @@ var GLClient = angular.module('GLClient', [
       when('/receiver/tips', {
         templateUrl: 'views/receiver/tips.html',
         controller: 'ReceiverTipsCtrl',
-        header_title: 'Recipient interface',
-        header_subtitle: 'List of submissions',
+        header_title: 'List of submissions',
+        header_subtitle: '',
         resolve: {
           access: requireAuth('receiver'),
         }
@@ -266,7 +266,7 @@ var GLClient = angular.module('GLClient', [
       when('/admin/home', {
         templateUrl: 'views/admin/home.html',
         controller: 'AdminCtrl',
-        header_title: 'Administration interface',
+        header_title: 'Home',
         header_subtitle: '',
         resolve: {
            access: requireAuth('admin'),
@@ -286,8 +286,8 @@ var GLClient = angular.module('GLClient', [
       when('/admin/content', {
         templateUrl: 'views/admin/content.html',
         controller: 'AdminCtrl',
-        header_title: 'Administration interface',
-        header_subtitle: 'General settings',
+        header_title: 'Site settings',
+        header_subtitle: '',
         resolve: {
           access: requireAuth('admin'),
           resources: fetchResources('acl', ['node']),
@@ -296,8 +296,8 @@ var GLClient = angular.module('GLClient', [
       when('/admin/contexts', {
         templateUrl: 'views/admin/contexts.html',
         controller: 'AdminCtrl',
-        header_title: 'Administration interface',
-        header_subtitle: 'Contexts',
+        header_title: 'Contexts',
+        header_subtitle: '',
         resolve: {
           access: requireAuth('admin'),
           resources: fetchResources('admin', ['contexts', 'node', 'questionnaires', 'receivers']),
@@ -306,8 +306,8 @@ var GLClient = angular.module('GLClient', [
       when('/admin/questionnaires', {
         templateUrl: 'views/admin/questionnaires.html',
         controller: 'AdminCtrl',
-        header_title: 'Administration interface',
-        header_subtitle: 'Questionnaires',
+        header_title: 'Questionnaires',
+        header_subtitle: '',
         resolve: {
           access: requireAuth('admin'),
           resources: fetchResources('admin', ['fieldtemplates', 'field_attrs', 'node', 'questionnaires']),
@@ -316,8 +316,8 @@ var GLClient = angular.module('GLClient', [
       when('/admin/users', {
         templateUrl: 'views/admin/users/main.html',
         controller: 'AdminCtrl',
-        header_title: 'Administration interface',
-        header_subtitle: 'Users',
+        header_title: 'Users',
+        header_subtitle: '',
         resolve: {
           access: requireAuth('admin'),
           resources: fetchResources('admin', ['node', 'users']),
@@ -326,8 +326,8 @@ var GLClient = angular.module('GLClient', [
       when('/admin/receivers', {
         templateUrl: 'views/admin/receivers.html',
         controller: 'AdminCtrl',
-        header_title: 'Administration interface',
-        header_subtitle: 'Recipients',
+        header_title: 'Recipients',
+        header_subtitle: '',
         resolve: {
           access: requireAuth('admin'),
           resources: fetchResources('admin', ['contexts', 'node', 'receivers']),
@@ -336,8 +336,8 @@ var GLClient = angular.module('GLClient', [
       when('/admin/mail', {
         templateUrl: 'views/admin/mail.html',
         controller: 'AdminCtrl',
-        header_title: 'Administration interface',
-        header_subtitle: 'Notification settings',
+        header_title: 'Notification settings',
+        header_subtitle: '',
         resolve: {
           access: requireAuth('admin'),
           resources: fetchResources('admin', ['node', 'notification']),
@@ -346,8 +346,8 @@ var GLClient = angular.module('GLClient', [
       when('/admin/network', {
         templateUrl: 'views/admin/network.html',
         controller: 'AdminCtrl',
-        header_title: 'Administration interface',
-        header_subtitle: 'Network settings',
+        header_title: 'Network settings',
+        header_subtitle: '',
         resolve: {
           access: requireAuth('admin'),
           resources: fetchResources('admin', ['node']),
@@ -356,8 +356,8 @@ var GLClient = angular.module('GLClient', [
       when('/admin/advanced_settings', {
         templateUrl: 'views/admin/advanced.html',
         controller: 'AdminCtrl',
-        header_title: 'Administration interface',
-        header_subtitle: 'Advanced settings',
+        header_title: 'Advanced settings',
+        header_subtitle: '',
         resolve: {
           access: requireAuth('admin'),
           resources: fetchResources('admin', ['node', 'questionnaires', 'shorturls']),
@@ -366,8 +366,8 @@ var GLClient = angular.module('GLClient', [
       when('/admin/overview', {
         templateUrl: 'views/admin/overview.html',
         controller: 'AdminCtrl',
-        header_title: 'Administration interface',
-        header_subtitle: 'System overview',
+        header_title: 'System overview',
+        header_subtitle: '',
         resolve: {
           access: requireAuth('admin'),
           resources: fetchResources('admin', ['node', 'activities', 'anomalies', 'file_overview', 'jobs_overview', 'tip_overview', 'users']),
@@ -376,8 +376,8 @@ var GLClient = angular.module('GLClient', [
       when('/admin/tenants', {
         templateUrl: 'views/admin/tenants.html',
         controller: 'AdminCtrl',
-        header_title: 'Administration interface',
-        header_subtitle: 'Sites management',
+        header_title: 'Sites management',
+        header_subtitle: '',
         resolve: {
           access: requireAuth('admin'),
           resources: fetchResources('admin', ['node', 'tenants']),
@@ -386,8 +386,8 @@ var GLClient = angular.module('GLClient', [
       when('/admin/case_management', {
         templateUrl: 'views/admin/case_management.html',
         controller: 'AdminCtrl',
-        header_title: 'Administration interface',
-        header_subtitle: 'Case management',
+        header_title: 'Case management',
+        header_subtitle: '',
         resolve: {
           access: requireAuth('admin'),
           resources: fetchResources('admin', ['node', 'submission_statuses']),
@@ -396,7 +396,7 @@ var GLClient = angular.module('GLClient', [
       when('/custodian/home', {
         templateUrl: 'views/custodian/home.html',
         controller: 'CustodianCtrl',
-        header_title: 'Custodian interface',
+        header_title: 'Home',
         header_subtitle: '',
         resolve: {
           access: requireAuth('custodian'),
@@ -405,7 +405,7 @@ var GLClient = angular.module('GLClient', [
       when('/custodian/preferences', {
         templateUrl: 'views/custodian/preferences.html',
         controller: 'CustodianCtrl',
-        header_title: 'Preferences',
+        header_title: 'User preferences',
         header_subtitle: '',
         resolve: {
           access: requireAuth('custodian'),
@@ -414,8 +414,8 @@ var GLClient = angular.module('GLClient', [
       when('/custodian/content', {
         templateUrl: 'views/custodian/content.html',
         controller: 'AdminCtrl',
-        header_title: 'Custidian interface',
-        header_subtitle: 'General settings',
+        header_title: 'Site settings',
+        header_subtitle: '',
         resolve: {
           access: requireAuth('custodian'),
           resources: fetchResources('acl', ['node']),
@@ -423,8 +423,8 @@ var GLClient = angular.module('GLClient', [
       }).
       when('/custodian/identityaccessrequests', {
         templateUrl: 'views/custodian/identity_access_requests.html',
-        header_title: 'Custodian interface',
-        header_subtitle: "List of access requests to whistleblowers' identities",
+        header_title: 'List of access requests to whistleblowers' identities',
+        header_subtitle: '',
         resolve: {
           access: requireAuth('custodian'),
         }
