@@ -90,7 +90,8 @@ ContentType = r'(.*)'
 AdminTenantDesc = {
     'label': text_type,
     'active': bool,
-    'subdomain': subdomain_regexp_or_empty,
+    'mode': text_type,
+    'subdomain': subdomain_regexp_or_empty
 }
 
 FileDesc = {
