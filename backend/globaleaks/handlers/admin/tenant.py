@@ -47,6 +47,7 @@ def serialize_tenant(session, tenant, signup=None):
         tc = State.tenant_cache[tenant.id]
         ret['hostname'] = tc.hostname
         ret['onionservice'] = tc.onionservice
+        ret['mode'] = tc.mode
 
     if signup is not None:
         ret['signup'] = serialize_signup(signup)
@@ -63,12 +64,12 @@ def db_preallocate(session, desc):
     return t
 
 
-def db_initialize(session, tenant):
+def db_initialize(session, tenant, mode):
     tenant.active = True
 
     appdata = load_appdata()
 
-    models.config.initialize_tenant_config(session, tid=tenant.id)
+    models.config.initialize_tenant_config(session, tenant.id, mode)
 
     models.config.add_new_lang(session, tenant.id, u'en', appdata)
 
@@ -89,7 +90,7 @@ def db_initialize(session, tenant):
 def db_create(session, desc):
     t = db_preallocate(session, desc)
 
-    db_initialize(session, t)
+    db_initialize(session, t, desc['mode'])
 
     db_refresh_memory_variables(session, [t.id])
 

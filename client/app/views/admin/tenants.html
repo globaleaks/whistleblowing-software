@@ -101,6 +101,13 @@
             </div>
           </div>
           <div class="form-group">
+            <label data-translate>Mode:</label>
+            <select name="type" class="form-control" data-ng-model="newTenant.mode" required>
+              <option value="default">default</option>
+              <option value="whistleblowing.it">whistleblowing.it</option>
+            </select>
+          </div>
+          <div class="form-group">
             <button id="add-btn" class="pull-left btn btn-primary" data-ng-disabled="newTenantForm.$invalid" data-ng-click="addTenant(); toggleAddTenant()" type="button">
               <i class="glyphicon glyphicon-plus-sign"></i>
               <span data-translate>Add</span>

@@ -794,6 +794,8 @@ factory('AdminUtils', ['AdminContextResource', 'AdminQuestionnaireResource', 'Ad
     new_tenant: function() {
       var tenant = new AdminTenantResource();
       tenant.active = true;
+      tenant.label = '';
+      tenant.mode = 'default';
       tenant.subdomain = '';
       return tenant;
     },

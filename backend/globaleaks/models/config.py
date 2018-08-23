@@ -212,7 +212,7 @@ def set_config_variable(session, tid, var, val):
     db_set_config_variable(session, tid, var, val)
 
 
-def initialize_tenant_config(session, tid):
+def initialize_tenant_config(session, tid, mode):
     variables = {}
 
     # Initialization valid for any tenant
@@ -221,6 +221,8 @@ def initialize_tenant_config(session, tid):
 
     if tid != 1:
         # Initialization valid for secondary tenants
+        variables['mode'] = mode
+
         root_tenant_node = ConfigFactory(session, 1, 'node').serialize()
         for name in inherit_from_root_tenant:
             variables[name] = root_tenant_node[name]

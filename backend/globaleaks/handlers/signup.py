@@ -112,11 +112,9 @@ def signup_activation(session, state, tid, token, language):
     if not session.query(models.Config).filter(models.Config.tid == signup.tid).count():
         tenant = session.query(models.Tenant).filter(models.Tenant.id == signup.tid).one()
 
-        db_initialize_tenant(session, tenant)
+        mode = node.get_val('mode')
 
-        mode = config.ConfigFactory(session, 1, 'node').get_val('mode')
-
-        config.ConfigFactory(session, tenant.id, 'node').set_val(u'mode', mode)
+        db_initialize_tenant(session, tenant, mode)
 
         password_admin = generateRandomKey(16)
         password_recipient = generateRandomKey(16)
