@@ -9,7 +9,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-08-22 06:53+0000\n"
+"PO-Revision-Date: 2018-08-23 14:08+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Azerbaijani (http://www.transifex.com/otf/globaleaks/language/az/)\n"
 "MIME-Version: 1.0\n"
@@ -96,11 +96,8 @@ msgstr "Anomaliyalar"
 msgid "Preferences"
 msgstr "Nizamlamalar"
 
-msgid "Custodian interface"
+msgid "User preferences"
 msgstr ""
-
-msgid "Recipient interface"
-msgstr "Alıcı paneli"
 
 msgid "Notification settings"
 msgstr "Xəbərdarlıq quraşdırmaları"
@@ -116,6 +113,9 @@ msgstr "Daxili xətaya görə fayl əlçatan deyil."
 
 msgid "file unavailable"
 msgstr "fayl yoxdur"
+
+msgid "Recipient interface"
+msgstr "Alıcı paneli"
 
 msgid "Creation date"
 msgstr "Yaradılma tarixi"
@@ -768,12 +768,6 @@ msgstr ""
 
 msgid "Landing page"
 msgstr "Daxil olma səhifəsi"
-
-msgid "Home Page"
-msgstr "Ana Səhifə"
-
-msgid "Submission Page"
-msgstr "Təqdimat səhifəsi"
 
 msgid "Default questionnaire"
 msgstr ""
@@ -1528,9 +1522,6 @@ msgstr "Səlahiyyətvermə"
 
 msgid "Identities"
 msgstr "Kimliklər"
-
-msgid "User preferences"
-msgstr ""
 
 msgid "The validation link is either incorrect or has expired."
 msgstr ""

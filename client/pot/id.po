@@ -22,8 +22,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-08-22 06:53+0000\n"
-"Last-Translator: Iwan Setiawan <stwn@duniasemu.org>\n"
+"PO-Revision-Date: 2018-08-23 14:08+0000\n"
+"Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Indonesian (http://www.transifex.com/otf/globaleaks/language/id/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -109,11 +109,8 @@ msgstr "Anomali"
 msgid "Preferences"
 msgstr "Preferensi"
 
-msgid "Custodian interface"
-msgstr "Tampilan petugas"
-
-msgid "Recipient interface"
-msgstr "Antarmuka penerima"
+msgid "User preferences"
+msgstr "Preferensi pengguna"
 
 msgid "Notification settings"
 msgstr "Pengaturan notifikasi"
@@ -129,6 +126,9 @@ msgstr "File tidak tersedia karena kesalahan internal."
 
 msgid "file unavailable"
 msgstr "file tidak tersedia"
+
+msgid "Recipient interface"
+msgstr "Antarmuka penerima"
 
 msgid "Creation date"
 msgstr "Tanggal pembuatan"
@@ -781,12 +781,6 @@ msgstr "Atur ke angka 0 untuk menonaktifkan fitur ini "
 
 msgid "Landing page"
 msgstr "Laman arahan"
-
-msgid "Home Page"
-msgstr "Laman Muka"
-
-msgid "Submission Page"
-msgstr "Halaman pengiriman "
 
 msgid "Default questionnaire"
 msgstr "Kuesioner bawaan "
@@ -1472,7 +1466,7 @@ msgid "Network settings"
 msgstr "Pengaturan jaringan"
 
 msgid "Mode:"
-msgstr ""
+msgstr "Mode:"
 
 msgid "Root domain used for secondary sites"
 msgstr "Domain awal yang digunakan untuk situs kedua"
@@ -1541,9 +1535,6 @@ msgstr "Otorisasi"
 
 msgid "Identities"
 msgstr "Identitas"
-
-msgid "User preferences"
-msgstr "Preferensi pengguna"
 
 msgid "The validation link is either incorrect or has expired."
 msgstr "Tautan validasi tidak benar atau sudah berakhir."

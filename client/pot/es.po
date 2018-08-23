@@ -29,7 +29,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-08-22 06:53+0000\n"
+"PO-Revision-Date: 2018-08-23 14:08+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Spanish (http://www.transifex.com/otf/globaleaks/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -116,11 +116,8 @@ msgstr "Anomalías"
 msgid "Preferences"
 msgstr "Preferencias"
 
-msgid "Custodian interface"
+msgid "User preferences"
 msgstr ""
-
-msgid "Recipient interface"
-msgstr "Interfaz del receptor"
 
 msgid "Notification settings"
 msgstr "Configuración de notificaciones"
@@ -136,6 +133,9 @@ msgstr "El fichero no está disponible debido a un error interno."
 
 msgid "file unavailable"
 msgstr "fichero no disponible"
+
+msgid "Recipient interface"
+msgstr "Interfaz del receptor"
 
 msgid "Creation date"
 msgstr "Fecha de creación"
@@ -788,12 +788,6 @@ msgstr ""
 
 msgid "Landing page"
 msgstr "Página de inicio"
-
-msgid "Home Page"
-msgstr "Página principal"
-
-msgid "Submission Page"
-msgstr "Página de entregas"
 
 msgid "Default questionnaire"
 msgstr ""
@@ -1548,9 +1542,6 @@ msgstr "Autorización"
 
 msgid "Identities"
 msgstr "Identidades"
-
-msgid "User preferences"
-msgstr ""
 
 msgid "The validation link is either incorrect or has expired."
 msgstr ""

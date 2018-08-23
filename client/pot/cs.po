@@ -11,7 +11,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-08-22 06:53+0000\n"
+"PO-Revision-Date: 2018-08-23 14:08+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Czech (http://www.transifex.com/otf/globaleaks/language/cs/)\n"
 "MIME-Version: 1.0\n"
@@ -98,11 +98,8 @@ msgstr "Anomálie"
 msgid "Preferences"
 msgstr "Nastavení"
 
-msgid "Custodian interface"
+msgid "User preferences"
 msgstr ""
-
-msgid "Recipient interface"
-msgstr "Rozhraní příjemce"
 
 msgid "Notification settings"
 msgstr "Nastavení notifikací"
@@ -118,6 +115,9 @@ msgstr "Soubor nedostupný kvůli interní chybě."
 
 msgid "file unavailable"
 msgstr "Soubor nedostupný"
+
+msgid "Recipient interface"
+msgstr "Rozhraní příjemce"
 
 msgid "Creation date"
 msgstr "Datum vytvoření"
@@ -770,12 +770,6 @@ msgstr ""
 
 msgid "Landing page"
 msgstr "Vstupní stránka"
-
-msgid "Home Page"
-msgstr "Domovská stránka"
-
-msgid "Submission Page"
-msgstr "Stránka odeslání"
 
 msgid "Default questionnaire"
 msgstr ""
@@ -1530,9 +1524,6 @@ msgstr "Autorizace"
 
 msgid "Identities"
 msgstr "Identity"
-
-msgid "User preferences"
-msgstr ""
 
 msgid "The validation link is either incorrect or has expired."
 msgstr ""

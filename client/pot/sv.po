@@ -20,8 +20,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-08-22 06:53+0000\n"
-"Last-Translator: Patrik Nilsson <asavartzeth@gmail.com>\n"
+"PO-Revision-Date: 2018-08-23 14:08+0000\n"
+"Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Swedish (http://www.transifex.com/otf/globaleaks/language/sv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -107,11 +107,8 @@ msgstr "Anomalier"
 msgid "Preferences"
 msgstr "Inställningar"
 
-msgid "Custodian interface"
-msgstr ""
-
-msgid "Recipient interface"
-msgstr "Mottagargränssnitt"
+msgid "User preferences"
+msgstr "Användarinställningar"
 
 msgid "Notification settings"
 msgstr "Aviseringsinställningar"
@@ -127,6 +124,9 @@ msgstr "Filen är otillgänglig på grund av ett internt fel."
 
 msgid "file unavailable"
 msgstr "fil otillgänglig"
+
+msgid "Recipient interface"
+msgstr "Mottagargränssnitt"
 
 msgid "Creation date"
 msgstr "Datum för skapande"
@@ -779,12 +779,6 @@ msgstr ""
 
 msgid "Landing page"
 msgstr "Startsida"
-
-msgid "Home Page"
-msgstr "Hemsida"
-
-msgid "Submission Page"
-msgstr "Postningssida"
 
 msgid "Default questionnaire"
 msgstr ""
@@ -1539,9 +1533,6 @@ msgstr ""
 
 msgid "Identities"
 msgstr "Identitet"
-
-msgid "User preferences"
-msgstr "Användarinställningar"
 
 msgid "The validation link is either incorrect or has expired."
 msgstr ""

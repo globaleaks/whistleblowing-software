@@ -12,7 +12,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-08-22 06:53+0000\n"
+"PO-Revision-Date: 2018-08-23 14:08+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Vietnamese (http://www.transifex.com/otf/globaleaks/language/vi/)\n"
 "MIME-Version: 1.0\n"
@@ -99,11 +99,8 @@ msgstr "dị thường"
 msgid "Preferences"
 msgstr "Tùy biến"
 
-msgid "Custodian interface"
+msgid "User preferences"
 msgstr ""
-
-msgid "Recipient interface"
-msgstr "giao diện người nhận"
 
 msgid "Notification settings"
 msgstr "Thiết lập thông báo"
@@ -119,6 +116,9 @@ msgstr "Các tập tin là không có sẵn do lỗi nội bộ."
 
 msgid "file unavailable"
 msgstr "nộp không có sẵn"
+
+msgid "Recipient interface"
+msgstr "giao diện người nhận"
 
 msgid "Creation date"
 msgstr "Ngày thành lập"
@@ -771,12 +771,6 @@ msgstr ""
 
 msgid "Landing page"
 msgstr "Trang đích"
-
-msgid "Home Page"
-msgstr "Trang chủ"
-
-msgid "Submission Page"
-msgstr "thông tin trang"
 
 msgid "Default questionnaire"
 msgstr ""
@@ -1531,9 +1525,6 @@ msgstr "cho phép"
 
 msgid "Identities"
 msgstr "Danh tính"
-
-msgid "User preferences"
-msgstr ""
 
 msgid "The validation link is either incorrect or has expired."
 msgstr ""

@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-08-22 06:53+0000\n"
+"PO-Revision-Date: 2018-08-23 14:08+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Korean (http://www.transifex.com/otf/globaleaks/language/ko/)\n"
 "MIME-Version: 1.0\n"
@@ -92,11 +92,8 @@ msgstr "이상"
 msgid "Preferences"
 msgstr "환경 설정"
 
-msgid "Custodian interface"
+msgid "User preferences"
 msgstr ""
-
-msgid "Recipient interface"
-msgstr "받는 사람 인터페이스"
 
 msgid "Notification settings"
 msgstr "알림 설정"
@@ -112,6 +109,9 @@ msgstr "이 파일은 내부 오류로 인해 사용할 수 없습니다."
 
 msgid "file unavailable"
 msgstr "사용할 수없는 파일"
+
+msgid "Recipient interface"
+msgstr "받는 사람 인터페이스"
 
 msgid "Creation date"
 msgstr "작성 날짜"
@@ -764,12 +764,6 @@ msgstr ""
 
 msgid "Landing page"
 msgstr "방문 페이지"
-
-msgid "Home Page"
-msgstr "홈 페이지"
-
-msgid "Submission Page"
-msgstr "제출 페이지"
 
 msgid "Default questionnaire"
 msgstr ""
@@ -1524,9 +1518,6 @@ msgstr "권한 부여"
 
 msgid "Identities"
 msgstr "신원"
-
-msgid "User preferences"
-msgstr ""
 
 msgid "The validation link is either incorrect or has expired."
 msgstr ""

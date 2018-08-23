@@ -17,7 +17,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-08-22 06:53+0000\n"
+"PO-Revision-Date: 2018-08-23 14:08+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Romanian (http://www.transifex.com/otf/globaleaks/language/ro/)\n"
 "MIME-Version: 1.0\n"
@@ -104,11 +104,8 @@ msgstr "Anomalii"
 msgid "Preferences"
 msgstr "Preferințe"
 
-msgid "Custodian interface"
+msgid "User preferences"
 msgstr ""
-
-msgid "Recipient interface"
-msgstr "interfaţă destinatar"
 
 msgid "Notification settings"
 msgstr "setările de notificare"
@@ -124,6 +121,9 @@ msgstr "Din cauza unei erori interne, fișierul nu este disponibil."
 
 msgid "file unavailable"
 msgstr "Document indisponibil"
+
+msgid "Recipient interface"
+msgstr "interfaţă destinatar"
 
 msgid "Creation date"
 msgstr "Data crearii"
@@ -776,12 +776,6 @@ msgstr ""
 
 msgid "Landing page"
 msgstr "pagina de destinație"
-
-msgid "Home Page"
-msgstr "Acasă "
-
-msgid "Submission Page"
-msgstr "Pagina de depunere"
 
 msgid "Default questionnaire"
 msgstr ""
@@ -1536,9 +1530,6 @@ msgstr "Autorizare"
 
 msgid "Identities"
 msgstr "Identități"
-
-msgid "User preferences"
-msgstr ""
 
 msgid "The validation link is either incorrect or has expired."
 msgstr ""

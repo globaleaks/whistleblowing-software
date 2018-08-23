@@ -13,7 +13,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-08-22 06:53+0000\n"
+"PO-Revision-Date: 2018-08-23 14:08+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Urdu (http://www.transifex.com/otf/globaleaks/language/ur/)\n"
 "MIME-Version: 1.0\n"
@@ -100,11 +100,8 @@ msgstr "بے ضابطگیاں"
 msgid "Preferences"
 msgstr "ترجیحات"
 
-msgid "Custodian interface"
+msgid "User preferences"
 msgstr ""
-
-msgid "Recipient interface"
-msgstr "وصول کنندہ کا انٹرفیس"
 
 msgid "Notification settings"
 msgstr "اطلاع کی ترتیبات"
@@ -120,6 +117,9 @@ msgstr "ایک داخلی خرابی کی وجہ سےفائل دستیاب نہ�
 
 msgid "file unavailable"
 msgstr "فائل دستیاب نہیں ہے"
+
+msgid "Recipient interface"
+msgstr "وصول کنندہ کا انٹرفیس"
 
 msgid "Creation date"
 msgstr "تاریخِ تخلیق"
@@ -772,12 +772,6 @@ msgstr ""
 
 msgid "Landing page"
 msgstr "صحفہِ آمد"
-
-msgid "Home Page"
-msgstr "ابتدائی صحفہ"
-
-msgid "Submission Page"
-msgstr "جمع کرانے کا صفحہ"
 
 msgid "Default questionnaire"
 msgstr ""
@@ -1531,9 +1525,6 @@ msgid "Authorization"
 msgstr "کا اجازت"
 
 msgid "Identities"
-msgstr ""
-
-msgid "User preferences"
 msgstr ""
 
 msgid "The validation link is either incorrect or has expired."

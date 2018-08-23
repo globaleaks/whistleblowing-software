@@ -15,7 +15,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-08-22 06:53+0000\n"
+"PO-Revision-Date: 2018-08-23 14:08+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Catalan (Valencian) (http://www.transifex.com/otf/globaleaks/language/ca%40valencia/)\n"
 "MIME-Version: 1.0\n"
@@ -102,11 +102,8 @@ msgstr "Anomalies"
 msgid "Preferences"
 msgstr "Preferències"
 
-msgid "Custodian interface"
+msgid "User preferences"
 msgstr ""
-
-msgid "Recipient interface"
-msgstr "Interfície de destinatari"
 
 msgid "Notification settings"
 msgstr "Configuracions de notificació"
@@ -122,6 +119,9 @@ msgstr "El fitxer no està disponible a causa d'un error intern."
 
 msgid "file unavailable"
 msgstr "fitxer no disponible"
+
+msgid "Recipient interface"
+msgstr "Interfície de destinatari"
 
 msgid "Creation date"
 msgstr "Data de creació"
@@ -774,12 +774,6 @@ msgstr ""
 
 msgid "Landing page"
 msgstr "Pàgina d'aterratge"
-
-msgid "Home Page"
-msgstr "Pàgina d'inici"
-
-msgid "Submission Page"
-msgstr "Pàgina d'enviament"
 
 msgid "Default questionnaire"
 msgstr ""
@@ -1533,9 +1527,6 @@ msgid "Authorization"
 msgstr "Autorització"
 
 msgid "Identities"
-msgstr ""
-
-msgid "User preferences"
 msgstr ""
 
 msgid "The validation link is either incorrect or has expired."

@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-08-22 06:53+0000\n"
-"Last-Translator: Besnik <besnik@programeshqip.org>\n"
+"PO-Revision-Date: 2018-08-23 14:08+0000\n"
+"Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Albanian (http://www.transifex.com/otf/globaleaks/language/sq/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -94,11 +94,8 @@ msgstr "Anomalitë"
 msgid "Preferences"
 msgstr "Parapëlqimet"
 
-msgid "Custodian interface"
-msgstr ""
-
-msgid "Recipient interface"
-msgstr "Ndërfaqja e Marrësit"
+msgid "User preferences"
+msgstr "Parapëlqime përdoruesi"
 
 msgid "Notification settings"
 msgstr "Konfigurimi i Njoftimit"
@@ -114,6 +111,9 @@ msgstr "Skedari s'është i disponueshëm, për shkak të një gabimi të brends
 
 msgid "file unavailable"
 msgstr "skedari s'është i disponueshëm"
+
+msgid "Recipient interface"
+msgstr "Ndërfaqja e Marrësit"
 
 msgid "Creation date"
 msgstr "Data e Krijimit"
@@ -766,12 +766,6 @@ msgstr ""
 
 msgid "Landing page"
 msgstr "Faqja e Destinimit"
-
-msgid "Home Page"
-msgstr "Kryefaqe"
-
-msgid "Submission Page"
-msgstr "Faqja për Paraqitje"
 
 msgid "Default questionnaire"
 msgstr ""
@@ -1526,9 +1520,6 @@ msgstr "autorizim"
 
 msgid "Identities"
 msgstr "Identitete"
-
-msgid "User preferences"
-msgstr "Parapëlqime përdoruesi"
 
 msgid "The validation link is either incorrect or has expired."
 msgstr ""
