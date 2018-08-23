@@ -5,6 +5,7 @@ import os
 
 from globaleaks import models
 from globaleaks.handlers.base import BaseHandler
+from globaleaks.models.config import ConfigFactory
 from globaleaks.orm import transact
 from globaleaks.rest import errors
 from globaleaks.utils.security import directory_traversal_check
@@ -18,6 +19,12 @@ def langfile_path(lang):
 
 @transact
 def get_l10n(session, tid, lang):
+    if tid != 1:
+        node = ConfigFactory(session, 1, 'public_node')
+
+        if node.get_val(u'mode') == u'whistleblowing.it':
+            tid = 1
+
     path = langfile_path(lang)
     directory_traversal_check(Settings.client_path, path)
 
