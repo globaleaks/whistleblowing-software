@@ -4,9 +4,7 @@
       <div id="LogoBox">
         <a href="/#{{ session ? session.auth_landing_page : '/' }}"><img class="img-responsive" alt="project logo" data-ng-src="{{Utils.imgDataUri(node.logo)}}" /></a>
       </div>
-      <div id="TitleBox">
-        <div id="PageTitle">{{ht}}</div><div id="PageSubtitle" data-ng-if="header_subtitle !== ''"><span id="PageSubtitleSeparator"> -</span> {{header_subtitle | translate}}</div>
-      </div>
+      <div id="TitleBox">{{ht}}</div>
     </div>
     <div id="HeaderBoxContentRight" class="col-md-5">
       <span id="UserBox" data-ng-include="'views/partials/user.html'"></span>

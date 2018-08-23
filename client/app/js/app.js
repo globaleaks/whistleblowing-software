@@ -159,7 +159,6 @@ var GLClient = angular.module('GLClient', [
         templateUrl: 'views/wizard/main.html',
         controller: 'WizardCtrl',
         header_title: 'Platform wizard',
-        header_subtitle: '',
         resolve: {
           access: allKinds(),
         }
@@ -168,7 +167,6 @@ var GLClient = angular.module('GLClient', [
         templateUrl: 'views/signup/main.html',
         controller: 'SignupCtrl',
         header_title: 'Create your whistleblowing platform',
-        header_subtitle: '',
         resolve: {
           access: allKinds(),
         }
@@ -177,7 +175,6 @@ var GLClient = angular.module('GLClient', [
         templateUrl: 'views/signup/activation.html',
         controller: 'SignupActivationCtrl',
         header_title: 'Create your whistleblowing platform',
-        header_subtitle: '',
         resolve: {
           access: allKinds(),
         }
@@ -186,7 +183,6 @@ var GLClient = angular.module('GLClient', [
         templateUrl: 'views/submission/main.html',
         controller: 'SubmissionCtrl',
         header_title: '',
-        header_subtitle: '',
         resolve: {
           access: noAuth(),
         }
@@ -195,7 +191,6 @@ var GLClient = angular.module('GLClient', [
         templateUrl: 'views/receipt.html',
         controller: 'ReceiptController',
         header_title: '',
-        header_subtitle: '',
         resolve: {
           access: noAuth(),
         }
@@ -204,7 +199,6 @@ var GLClient = angular.module('GLClient', [
         templateUrl: 'views/receiver/tip.html',
         controller: 'TipCtrl',
         header_title: '',
-        header_subtitle: '',
         resolve: {
           access: requireAuth('receiver'),
         }
@@ -213,7 +207,6 @@ var GLClient = angular.module('GLClient', [
         templateUrl: 'views/whistleblower/tip.html',
         controller: 'TipCtrl',
         header_title: '',
-        header_subtitle: '',
         resolve: {
           access: requireAuth('whistleblower'),
         }
@@ -222,7 +215,6 @@ var GLClient = angular.module('GLClient', [
         templateUrl: 'views/forced_password_change.html',
         controller: 'ForcedPasswordChangeCtrl',
         header_title: 'Change your password',
-        header_subtitle: '',
         resolve: {
           access: requireAuth('*'),
         }
@@ -231,7 +223,6 @@ var GLClient = angular.module('GLClient', [
         templateUrl: 'views/receiver/home.html',
         controller: 'ReceiverCtrl',
         header_title: 'Home',
-        header_subtitle: '',
         resolve: {
           access: requireAuth('receiver'),
         }
@@ -240,7 +231,6 @@ var GLClient = angular.module('GLClient', [
         templateUrl: 'views/receiver/preferences.html',
         controller: 'ReceiverCtrl',
         header_title: 'User preferences',
-        header_subtitle: '',
         resolve: {
           access: requireAuth('receiver'),
         }
@@ -249,7 +239,6 @@ var GLClient = angular.module('GLClient', [
         templateUrl: 'views/receiver/content.html',
         controller: 'AdminCtrl',
         header_title: 'Site settings',
-        header_subtitle: '',
         resolve: {
           resources: fetchResources('acl', ['node']),
         }
@@ -258,7 +247,6 @@ var GLClient = angular.module('GLClient', [
         templateUrl: 'views/receiver/tips.html',
         controller: 'ReceiverTipsCtrl',
         header_title: 'List of submissions',
-        header_subtitle: '',
         resolve: {
           access: requireAuth('receiver'),
         }
@@ -267,7 +255,6 @@ var GLClient = angular.module('GLClient', [
         templateUrl: 'views/admin/home.html',
         controller: 'AdminCtrl',
         header_title: 'Home',
-        header_subtitle: '',
         resolve: {
            access: requireAuth('admin'),
           resources: fetchResources('acl', ['manifest', 'node']),
@@ -277,7 +264,6 @@ var GLClient = angular.module('GLClient', [
         templateUrl: 'views/admin/preferences.html',
         controller: 'AdminCtrl',
         header_title: 'Preferences',
-        header_subtitle: '',
         resolve: {
           access: requireAuth('admin'),
           resources: fetchResources('admin', ['node']),
@@ -287,7 +273,6 @@ var GLClient = angular.module('GLClient', [
         templateUrl: 'views/admin/content.html',
         controller: 'AdminCtrl',
         header_title: 'Site settings',
-        header_subtitle: '',
         resolve: {
           access: requireAuth('admin'),
           resources: fetchResources('acl', ['node']),
@@ -297,7 +282,6 @@ var GLClient = angular.module('GLClient', [
         templateUrl: 'views/admin/contexts.html',
         controller: 'AdminCtrl',
         header_title: 'Contexts',
-        header_subtitle: '',
         resolve: {
           access: requireAuth('admin'),
           resources: fetchResources('admin', ['contexts', 'node', 'questionnaires', 'receivers']),
@@ -307,7 +291,6 @@ var GLClient = angular.module('GLClient', [
         templateUrl: 'views/admin/questionnaires.html',
         controller: 'AdminCtrl',
         header_title: 'Questionnaires',
-        header_subtitle: '',
         resolve: {
           access: requireAuth('admin'),
           resources: fetchResources('admin', ['fieldtemplates', 'field_attrs', 'node', 'questionnaires']),
@@ -317,7 +300,6 @@ var GLClient = angular.module('GLClient', [
         templateUrl: 'views/admin/users/main.html',
         controller: 'AdminCtrl',
         header_title: 'Users',
-        header_subtitle: '',
         resolve: {
           access: requireAuth('admin'),
           resources: fetchResources('admin', ['node', 'users']),
@@ -327,7 +309,6 @@ var GLClient = angular.module('GLClient', [
         templateUrl: 'views/admin/receivers.html',
         controller: 'AdminCtrl',
         header_title: 'Recipients',
-        header_subtitle: '',
         resolve: {
           access: requireAuth('admin'),
           resources: fetchResources('admin', ['contexts', 'node', 'receivers']),
@@ -337,7 +318,6 @@ var GLClient = angular.module('GLClient', [
         templateUrl: 'views/admin/mail.html',
         controller: 'AdminCtrl',
         header_title: 'Notification settings',
-        header_subtitle: '',
         resolve: {
           access: requireAuth('admin'),
           resources: fetchResources('admin', ['node', 'notification']),
@@ -347,7 +327,6 @@ var GLClient = angular.module('GLClient', [
         templateUrl: 'views/admin/network.html',
         controller: 'AdminCtrl',
         header_title: 'Network settings',
-        header_subtitle: '',
         resolve: {
           access: requireAuth('admin'),
           resources: fetchResources('admin', ['node']),
@@ -357,7 +336,6 @@ var GLClient = angular.module('GLClient', [
         templateUrl: 'views/admin/advanced.html',
         controller: 'AdminCtrl',
         header_title: 'Advanced settings',
-        header_subtitle: '',
         resolve: {
           access: requireAuth('admin'),
           resources: fetchResources('admin', ['node', 'questionnaires', 'shorturls']),
@@ -367,7 +345,6 @@ var GLClient = angular.module('GLClient', [
         templateUrl: 'views/admin/overview.html',
         controller: 'AdminCtrl',
         header_title: 'System overview',
-        header_subtitle: '',
         resolve: {
           access: requireAuth('admin'),
           resources: fetchResources('admin', ['node', 'activities', 'anomalies', 'file_overview', 'jobs_overview', 'tip_overview', 'users']),
@@ -377,7 +354,6 @@ var GLClient = angular.module('GLClient', [
         templateUrl: 'views/admin/tenants.html',
         controller: 'AdminCtrl',
         header_title: 'Sites management',
-        header_subtitle: '',
         resolve: {
           access: requireAuth('admin'),
           resources: fetchResources('admin', ['node', 'tenants']),
@@ -387,7 +363,6 @@ var GLClient = angular.module('GLClient', [
         templateUrl: 'views/admin/case_management.html',
         controller: 'AdminCtrl',
         header_title: 'Case management',
-        header_subtitle: '',
         resolve: {
           access: requireAuth('admin'),
           resources: fetchResources('admin', ['node', 'submission_statuses']),
@@ -397,7 +372,6 @@ var GLClient = angular.module('GLClient', [
         templateUrl: 'views/custodian/home.html',
         controller: 'CustodianCtrl',
         header_title: 'Home',
-        header_subtitle: '',
         resolve: {
           access: requireAuth('custodian'),
         }
@@ -406,7 +380,6 @@ var GLClient = angular.module('GLClient', [
         templateUrl: 'views/custodian/preferences.html',
         controller: 'CustodianCtrl',
         header_title: 'User preferences',
-        header_subtitle: '',
         resolve: {
           access: requireAuth('custodian'),
         }
@@ -415,7 +388,6 @@ var GLClient = angular.module('GLClient', [
         templateUrl: 'views/custodian/content.html',
         controller: 'AdminCtrl',
         header_title: 'Site settings',
-        header_subtitle: '',
         resolve: {
           access: requireAuth('custodian'),
           resources: fetchResources('acl', ['node']),
@@ -423,8 +395,7 @@ var GLClient = angular.module('GLClient', [
       }).
       when('/custodian/identityaccessrequests', {
         templateUrl: 'views/custodian/identity_access_requests.html',
-        header_title: 'List of access requests to whistleblowers' identities',
-        header_subtitle: '',
+        header_title: "List of access requests to whistleblowers' identities",
         resolve: {
           access: requireAuth('custodian'),
         }
@@ -433,7 +404,6 @@ var GLClient = angular.module('GLClient', [
         templateUrl: 'views/login/main.html',
         controller: 'LoginCtrl',
         header_title: 'Login',
-        header_subtitle: '',
         resolve: {
           access: noAuth(),
         }
@@ -442,7 +412,6 @@ var GLClient = angular.module('GLClient', [
         templateUrl: 'views/login/main.html',
         controller: 'LoginCtrl',
         header_title: 'Login',
-        header_subtitle: '',
         resolve: {
           access: noAuth(),
         }
@@ -451,7 +420,6 @@ var GLClient = angular.module('GLClient', [
         templateUrl: 'views/login/main.html',
         controller: 'LoginCtrl',
         header_title: 'Login',
-        header_subtitle: '',
         resolve: {
           access: noAuth(),
         }
@@ -460,7 +428,6 @@ var GLClient = angular.module('GLClient', [
         templateUrl: 'views/passwordreset/main.html',
         controller: 'PasswordResetCtrl',
         header_title: 'Request password reset',
-        header_subtitle: '',
         resolve: {
           access: noAuth()
         }
@@ -468,7 +435,6 @@ var GLClient = angular.module('GLClient', [
       when('/login/passwordreset/requested', {
         templateUrl: 'views/passwordreset/requested.html',
         header_title: 'Request password reset',
-        header_subtitle: '',
         resolve: {
           access: noAuth()
         }
@@ -476,7 +442,6 @@ var GLClient = angular.module('GLClient', [
       when('/login/passwordreset/failure', {
         templateUrl: 'views/passwordreset/failure.html',
         header_title: 'Request password reset',
-        header_subtitle: '',
         resolve: {
           access: noAuth()
         }
@@ -485,7 +450,6 @@ var GLClient = angular.module('GLClient', [
         templateUrl: 'views/email_validation_success.html',
         controller: 'EmailValidationCtrl',
         header_title: '',
-        header_subtitle: '',
         resolve: {
           access: noAuth(),
         }
@@ -494,7 +458,6 @@ var GLClient = angular.module('GLClient', [
         templateUrl: 'views/email_validation_failure.html',
         controller: 'EmailValidationCtrl',
         header_title: '',
-        header_subtitle: '',
         resolve: {
           access: noAuth(),
         }
@@ -503,7 +466,6 @@ var GLClient = angular.module('GLClient', [
         templateUrl: 'views/home.html',
         controller: 'HomeCtrl',
         header_title: '',
-        header_subtitle: '',
         resolve: {
           access: noAuth(),
         }
@@ -776,7 +738,6 @@ var GLClient = angular.module('GLClient', [
         $rootScope.successes = [];
         $rootScope.errors = [];
         $rootScope.header_title = current.$$route.header_title;
-        $rootScope.header_subtitle = current.$$route.header_subtitle;
 
         if ($rootScope.node) {
           Utils.set_title();
