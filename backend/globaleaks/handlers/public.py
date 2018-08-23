@@ -124,7 +124,7 @@ def db_serialize_node(session, tid, language):
 
     files = [u'logo', u'favicon', u'css', u'script']
     for x in files:
-        db_get_file(session, tid, x)
+        ret_dict[x] = db_get_file(session, tid, x)
 
     if tid != 1:
         root_tenant_node = ConfigFactory(session, 1, 'public_node')
