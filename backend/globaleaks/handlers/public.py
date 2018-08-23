@@ -122,10 +122,9 @@ def db_serialize_node(session, tid, language):
     ret_dict['configured'] = configured
     ret_dict['accept_submissions'] = State.accept_submissions
 
-    ret_dict['logo'] = db_get_file(session, tid, u'logo')
-    ret_dict['favicon'] = db_get_file(session, tid, u'favicon')
-    ret_dict['css'] = db_get_file(session, tid, u'css')
-    ret_dict['script'] = db_get_file(session, tid, u'script')
+    files = [u'logo', u'favicon', u'css', u'script']
+    for x in files:
+        db_get_file(session, tid, x)
 
     if tid != 1:
         root_tenant_node = ConfigFactory(session, 1, 'public_node')
@@ -133,7 +132,7 @@ def db_serialize_node(session, tid, language):
         if language not in models.EnabledLanguage.list(session, tid):
             language = root_tenant_node.get_val(u'default_language')
 
-        for x in [u'logo', u'favicon', u'css', u'script']:
+        for x in files:
             if not ret_dict[x]:
                 ret_dict[x] = db_get_file(session, 1, x)
 
@@ -142,7 +141,7 @@ def db_serialize_node(session, tid, language):
         if not root_tenant_node.get_val(u'enable_footer_customization'):
             ret_dict['footer'] = root_tenant_l10n.get_val(u'footer', language)
 
-        if ret_dict['mode'] == u'whistleblowing.it':
+        if ret_dict[u'mode') == u'whistleblowing.it':
             ret_dict['whistleblowing_question'] = root_tenant_l10n.get_val(u'whistleblowing_question', language)
             ret_dict['whistleblowing_button'] = root_tenant_l10n.get_val(u'whistleblowing_button', language)
             ret_dict['enable_disclaimer'] = root_tenant_node.get_val(u'enable_disclaimer')
