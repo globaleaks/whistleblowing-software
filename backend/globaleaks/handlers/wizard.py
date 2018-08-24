@@ -103,6 +103,7 @@ def db_wizard(session, state, tid, request, client_using_tor, language):
         node.set_val(u'can_delete_submission', False)
         node.set_val(u'enable_graphic_customization', False)
         node.set_val(u'enable_user_pgp_key_upload', False)
+        node.set_val(u'tor', False)
 
         # Delete the admin user
         session.delete(admin_user)
