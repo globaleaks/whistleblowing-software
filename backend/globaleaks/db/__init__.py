@@ -187,12 +187,7 @@ def db_refresh_memory_variables(session, to_refresh=None):
         db_set_cache_exception_delivery_list(session, State.tenant_cache[1])
 
         if State.tenant_cache[1].admin_api_token_digest:
-            api_id = session.query(models.User.id).filter(models.User.role == u'admin',
-                                                          models.UserTenant.user_id == models.User.id,
-                                                          models.UserTenant.tenant_id == 1) \
-                                                  .order_by(models.User.creation_date).first()
-            if api_id is not None:
-                State.api_token_session = Session(1, api_id, 'admin', 'enabled')
+            State.api_token_session = Session(1, 0, 'admin', False)
 
     rootdomain = State.tenant_cache[1].rootdomain
     root_onionservice = State.tenant_cache[1].onionservice
