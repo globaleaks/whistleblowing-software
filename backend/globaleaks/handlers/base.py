@@ -115,8 +115,8 @@ class Session(object):
         }
 
 
-def new_session(tid, user_id, user_role, user_status):
-    session = Session(tid, user_id, user_role, user_status)
+def new_session(tid, user_id, user_role):
+    session = Session(tid, user_id, user_role)
     Sessions.revoke_all_sessions(user_id)
     Sessions.set(session.id, session)
     return session
