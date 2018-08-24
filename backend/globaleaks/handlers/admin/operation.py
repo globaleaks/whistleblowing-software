@@ -94,10 +94,9 @@ class AdminOperationHandler(OperationHandler):
         yield self.state.onion_service_job.add_hidden_service(self.request.tid, u'', u'')
         yield self.state.onion_service_job.remove_unwanted_hidden_services()
 
-        # Return the new key
         onion_details = yield get_onion_service_info(self.request.tid)
         returnValue({
-            'onionservice': onion_details[0]
+            'onionservice': onion_details[1]
         })
 
     def operation_descriptors(self):

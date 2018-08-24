@@ -21,10 +21,12 @@ from globaleaks.mocks.txtorcon_mocks import EphemeralHiddenService
 __all__ = ['OnionService']
 
 
-@transact
-def list_onion_service_info(session):
-    return [db_get_onion_service_info(session, x[0])
-        for x in session.query(models.Tenant.id).filter(models.Tenant.active == True)]
+def db_get_onion_service_info(session, tid):
+    node = ConfigFactory(session, tid, 'node')
+    hostname = node.get_val(u'onionservice')
+    key = node.get_val(u'tor_onion_key')
+
+    return tid, hostname, key
 
 
 @transact
@@ -32,17 +34,20 @@ def get_onion_service_info(session, tid):
     return db_get_onion_service_info(session, tid)
 
 
-def db_get_onion_service_info(session, tid):
-    hostname = ConfigFactory(session, tid, 'node').get_val(u'onionservice')
-    key = ConfigFactory(session, tid, 'node').get_val(u'tor_onion_key')
-
-    return hostname, key, tid
+@transact
+def set_onion_service_info(session, tid, hostname, key):
+    node = ConfigFactory(session, tid, 'node')
+    node.set_val(u'onionservice', hostname)
+    node.set_val(u'tor_onion_key', key)
 
 
 @transact
-def set_onion_service_info(session, tid, hostname, key):
-    ConfigFactory(session, tid, 'node').set_val(u'onionservice', hostname)
-    ConfigFactory(session, tid, 'node').set_val(u'tor_onion_key', key)
+def list_onion_service_info(session):
+    return [db_get_onion_service_info(session, x[0])
+        for x in session.query(models.Tenant.id).filter(models.Tenant.active == True,
+                                                        models.Tenant.id == models.Config.tid,
+                                                        models.Config.var_name == u'tor',
+                                                        models.Config.value == True)]
 
 
 class OnionService(BaseJob):
@@ -72,7 +77,7 @@ class OnionService(BaseJob):
             return
 
         hostname_key_list = yield list_onion_service_info()
-        for hostname, key, tid in hostname_key_list:
+        for tid, hostname, key in hostname_key_list:
             if hostname not in self.hs_map:
                 yield self.add_hidden_service(tid, hostname, key)
 
