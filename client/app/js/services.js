@@ -103,12 +103,12 @@ angular.module('GLServices', ['ngResource']).
               self.loginInProgress = false;
             });
           } else if (token) {
-            return $http.post('authentication', {'tid': tid, 'username': '', 'password': '', 'token': token}).
+            return $http.post('tokenauth', {'tid': tid, 'token': token}).
             then(success_fn, function() {
               self.loginInProgress = false;
             });
           } else {
-            return $http.post('authentication', {'tid': tid, 'username': username, 'password': password, 'token': ''}).
+            return $http.post('authentication', {'tid': tid, 'username': username, 'password': password}).
             then(success_fn, function() {
               self.loginInProgress = false;
             });

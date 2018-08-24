@@ -66,6 +66,7 @@ api_spec = [
 
     ## Authentication Handlers ##
     (r'/authentication', authentication.AuthenticationHandler),
+    (r'/tokenauth', authentication.TokenAuthHandler),
     (r'/receiptauth', authentication.ReceiptAuthHandler),
     (r'/session', authentication.SessionHandler),
 

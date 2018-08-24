@@ -106,13 +106,16 @@ AuthDesc = {
     'tid': int,
     'username': text_type,
     'password': text_type,
+}
+
+TokenAuthDesc = {
+    'tid': int,
     'token': text_type
 }
 
 ReceiptAuthDesc = {
     'receipt': text_type
 }
-
 
 TokenReqDesc = {
     'type': token_type_regexp

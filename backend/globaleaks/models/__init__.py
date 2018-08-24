@@ -16,10 +16,6 @@ from globaleaks.utils.security import generateRandomKey
 from globaleaks.utils.utility import datetime_now, datetime_null, datetime_never, datetime_to_ISO8601
 
 
-def get_auth_token():
-    return text_type(generateRandomKey(32))
-
-
 def get_random_password():
     return text_type(generateRandomKey(16))
 
@@ -1080,7 +1076,7 @@ class _User(Model):
     password_change_needed = Column(Boolean, default=True, nullable=False)
     password_change_date = Column(DateTime, default=datetime_null, nullable=False)
 
-    auth_token = Column(UnicodeText, default=get_auth_token, nullable=False)
+    auth_token = Column(UnicodeText, default=u'', nullable=False)
 
     crypto_prv_key = Column(Unicode, default=u'', nullable=False)
     crypto_key = Column(Unicode, default=u'', nullable=False)
