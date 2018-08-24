@@ -14,7 +14,7 @@ class TestModels(helpers.TestGL):
         @transact
         def transaction(session):
             session.query(models.Config).filter(models.Config.tid == 1).delete()
-            config.initialize_tenant_config(session, 1)
+            config.initialize_tenant_config(session, 1, u'default')
 
         yield transaction()
 
