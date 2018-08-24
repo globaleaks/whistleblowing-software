@@ -9,12 +9,13 @@ from sqlalchemy import and_, or_
 from twisted.internet.defer import inlineCallbacks, returnValue
 
 from globaleaks.utils import security
-from globaleaks.handlers.base import BaseHandler, Sessions, new_session
-from globaleaks.models import InternalTip, User, UserTenant, WhistleblowerTip, get_auth_token
+from globaleaks.handlers.base import BaseHandler, Sessions
+from globaleaks.models import InternalTip, User, UserTenant, WhistleblowerTip
 from globaleaks.orm import transact
 from globaleaks.rest import errors, requests
 from globaleaks.settings import Settings
 from globaleaks.state import State
+from globaleaks.utils.security import generateRandomKey
 from globaleaks.utils.utility import datetime_now, deferred_sleep, log, parse_csv_ip_ranges_to_ip_networks
 
 
@@ -72,11 +73,11 @@ def login_whistleblower(session, tid, receipt, client_using_tor):
 
     itip.wb_last_access = datetime_now()
 
-    return new_session(tid, wbtip.id, 'whistleblower', False)
+    return Sessions.new(tid, wbtip.id, 'whistleblower', False)
 
 
 @transact
-def login(session, tid, username, password, client_using_tor, client_ip, token=''):
+def login(session, tid, username, password, client_using_tor, client_ip):
     """
     login returns a session
     """
@@ -84,17 +85,12 @@ def login(session, tid, username, password, client_using_tor, client_ip, token='
 
     tenant_condition = and_(UserTenant.user_id == User.id, UserTenant.tenant_id == tid)
 
-    if token:
-        user = session.query(User).filter(User.auth_token == token,
-                                          User.state != u'disabled',
-                                          tenant_condition).one_or_none()
-    else:
-        users = session.query(User).filter(User.username == username,
-                                           User.state != u'disabled',
-                                           tenant_condition).distinct()
-        for u in users:
-            if security.check_password(password, u.salt, u.password):
-                user = u
+    users = session.query(User).filter(User.username == username,
+                                       User.state != u'disabled',
+                                       tenant_condition).distinct()
+    for u in users:
+        if security.check_password(password, u.salt, u.password):
+            user = u
 
     if user is None:
         log.debug("Login: Invalid credentials")
@@ -130,21 +126,16 @@ def login(session, tid, username, password, client_using_tor, client_ip, token='
 
     user.last_login = datetime_now()
 
-    return new_session(tid, user.id, user.role, user.password_change_needed)
+    return Sessions.new(tid, user.id, user.role, user.password_change_needed)
 
 
 @transact
-def get_multitenant_auth_token(session, user_id, tid):
+def check_tenant_auth_switch(session, current_user, tid):
     # check that the user can really access the tenant requested
-    count = session.query(UserTenant).filter(UserTenant.user_id == user_id,
-                                             UserTenant.tenant_id == tid).count()
+    ut = session.query(UserTenant).filter(UserTenant.user_id == current_user.user_id,
+                                          UserTenant.tenant_id == tid).one()
 
-    if not count:
-        return u''
-
-    token = get_auth_token()
-    session.query(User.id).filter(User.id == user_id).update({'auth_token': token})
-    return token
+    return ut is not None
 
 
 class AuthenticationHandler(BaseHandler):
@@ -170,16 +161,49 @@ class AuthenticationHandler(BaseHandler):
                               request['username'],
                               request['password'],
                               self.request.client_using_tor,
-                              self.request.client_ip,
-                              request['token'])
+                              self.request.client_ip)
 
         log.debug("Login: Success (%s)" % session.user_role)
 
         if tid != self.request.tid:
-            token = yield get_multitenant_auth_token(session.user_id, tid)
-
             returnValue({
-                'redirect': 'https://%s/#/login?token=%s' % (State.tenant_cache[tid].hostname, token)
+                'redirect': 'https://%s/#/login?token=%s' % (State.tenant_cache[tid].hostname, session.id)
+            })
+
+        returnValue(session.serialize())
+
+
+class TokenAuthHandler(BaseHandler):
+    """
+    Login handler for admins and recipents and custodians
+    """
+    check_roles = 'unauthenticated'
+    uniform_answer_time = True
+
+    @inlineCallbacks
+    def post(self):
+        request = self.validate_message(self.request.content.read(), requests.TokenAuthDesc)
+
+        delay = random_login_delay()
+        if delay:
+            yield deferred_sleep(delay)
+
+        tid = int(request['tid'])
+        if tid == 0:
+             tid = self.request.tid
+
+        session = Sessions.get(request['token'])
+        if session is None or session.tid != tid:
+            Settings.failed_login_attempts += 1
+            raise errors.InvalidAuthentication
+
+        session = Sessions.regenerate(session.id)
+
+        log.debug("Login: Success (%s)" % session.user_role)
+
+        if tid != self.request.tid:
+            returnValue({
+                'redirect': 'https://%s/#/login?token=%s' % (State.tenant_cache[tid].hostname, session.id)
             })
 
         returnValue(session.serialize())
@@ -233,12 +257,13 @@ class TenantAuthSwitchHandler(BaseHandler):
     Login handler for switching tenant
     """
     check_roles = {'admin','receiver','custodian'}
-    uniform_answer_time = True
 
     @inlineCallbacks
     def get(self, tid):
-        token = yield get_multitenant_auth_token(self.current_user.user_id, tid)
+        check = yield check_tenant_auth_switch(self.current_user, tid)
+        if check:
+            session = Sessions.new(tid, self.current_user.user_id, self.current_user.user_role, self.current_user.pcn)
 
         returnValue({
-            'redirect': 'https://%s/#/login?token=%s' % (State.tenant_cache[tid].hostname, token)
+            'redirect': 'https://%s/#/login?token=%s' % (State.tenant_cache[tid].hostname, session.id)
         })

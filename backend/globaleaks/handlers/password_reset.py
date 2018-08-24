@@ -6,8 +6,7 @@ from sqlalchemy import or_
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import models
-from globaleaks.handlers.base import BaseHandler
-from globaleaks.models import get_auth_token
+from globaleaks.handlers.base import BaseHandler, Sessions
 from globaleaks.orm import transact
 from globaleaks.rest import requests
 from globaleaks.state import State
@@ -16,7 +15,7 @@ from globaleaks.utils.security import generateRandomKey
 
 
 @transact
-def validate_password_reset(session, state, tid, reset_token):
+def validate_password_reset(session, tid, reset_token):
     """Retrieves a user given a password reset validation token"""
     user = session.query(models.User).filter(
         models.User.reset_password_token == reset_token,
@@ -30,9 +29,10 @@ def validate_password_reset(session, state, tid, reset_token):
     user.reset_password_token = None
     user.reset_password_date = datetime_now()
     user.password_change_needed = True
-    user.auth_token = get_auth_token()
 
-    return user.auth_token
+    session = Sessions.new(tid, user.id, user.role, user.password_change_needed)
+
+    return session.id
 
 
 def db_generate_password_reset_token(session, state, tid, username_or_email, allow_admin_reset = False):
@@ -82,13 +82,12 @@ class PasswordResetHandler(BaseHandler):
         if State.tenant_cache[self.request.tid]['enable_password_reset'] is False:
             return
 
-        auth_token = yield validate_password_reset(self.state,
-                                                   self.request.tid,
+        auth_token = yield validate_password_reset(self.request.tid,
                                                    reset_token)
         if auth_token:
             self.redirect("/#/login?token=%s" % auth_token)
-
-        self.redirect(self.failure_url)
+        else:
+            self.redirect(self.failure_url)
 
     def post(self):
         if State.tenant_cache[self.request.tid]['enable_password_reset'] is False:
