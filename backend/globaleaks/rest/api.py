@@ -263,8 +263,9 @@ class APIResourceWrapper(Resource):
         return False
 
     def should_redirect_tor(self, request):
-        if request.client_using_tor and \
-            request.hostname not in [b'127.0.0.1'] + State.tenant_cache[request.tid].onionnames:
+        if len(State.tenant_cache[request.tid].onionnames) and \
+           request.client_using_tor and \
+           request.hostname not in [b'127.0.0.1'] + State.tenant_cache[request.tid].onionnames:
             return True
 
         return False
@@ -280,7 +281,7 @@ class APIResourceWrapper(Resource):
 
     def redirect_tor(self, request):
         _, _, path, query, frag = urlsplit(request.uri)
-        redirect_url = urlunsplit((b'http', State.tenant_cache[request.tid].onionservice.encode(), path, query, frag))
+        redirect_url = urlunsplit((b'http', State.tenant_cache[request.tid].onionnames[0].encode(), path, query, frag))
         self.redirect(request, redirect_url)
 
     def handle_exception(self, e, request):

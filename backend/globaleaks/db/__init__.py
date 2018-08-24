@@ -207,6 +207,12 @@ def db_refresh_memory_variables(session, to_refresh=None):
         if not tenant.active and tid != 1:
             continue
 
+        if State.tenant_cache[tid].hostname != '':
+            hostnames.append(State.tenant_cache[tid].hostname.encode())
+
+        if State.tenant_cache[tid].onionservice != '':
+            onionnames.append(State.tenant_cache[tid].onionservice.encode())
+
         if rootdomain != '':
             hostnames.append('p{}.{}'.format(tid, rootdomain).encode())
 
@@ -218,12 +224,6 @@ def db_refresh_memory_variables(session, to_refresh=None):
                 onionnames.append('{}.{}'.format(tenant.subdomain, rootdomain).encode())
             if root_onionservice != '':
                 onionnames.append('{}.{}'.format(tenant.subdomain, root_onionservice).encode())
-
-        if State.tenant_cache[tid].hostname != '':
-            hostnames.append(State.tenant_cache[tid].hostname.encode())
-
-        if State.tenant_cache[tid].onionservice != '':
-            onionnames.append(State.tenant_cache[tid].onionservice.encode())
 
         State.tenant_cache[tid].hostnames = hostnames
         State.tenant_cache[tid].onionnames = onionnames
