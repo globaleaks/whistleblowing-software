@@ -177,7 +177,7 @@ describe('globaLeaks process', function() {
 
     element(by.id('tip-action-export')).click();
 
-    element(by.css('.TipInfoID')).getText().then(function(t) {
+    element.all(by.css('.TipInfoID')).first().getText().then(function(t) {
       expect(t).toEqual(jasmine.any(String));
       if (!browser.gl.utils.verifyFileDownload()) {
         return;
@@ -234,11 +234,11 @@ describe('globaLeaks process', function() {
 
     element(by.id('tip-0')).click();
     // Get the tip's original expiration date.
-    element(by.css('.TipInfoID')).evaluate('tip.expiration_date').then(function() {
+    element.all(by.css('.TipInfoID')).first().evaluate('tip.expiration_date').then(function() {
       element(by.id('tip-action-postpone')).click();
       element(by.id('modal-action-ok')).click();
 
-      element(by.css('.TipInfoID')).evaluate('tip.expiration_date').then(function() {
+      element.all(by.css('.TipInfoID')).first().evaluate('tip.expiration_date').then(function() {
         // TODO
         // It is currently impossible to test that the expiration date is update because
         // during the same day of the submission a postpone will result in the same expiration date
