@@ -6,9 +6,10 @@ from sqlalchemy import or_
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import models
-from globaleaks.handlers.base import BaseHandler, Sessions
+from globaleaks.handlers.base import BaseHandler
 from globaleaks.orm import transact
 from globaleaks.rest import requests
+from globaleaks.sessions import Sessions
 from globaleaks.state import State
 from globaleaks.utils.utility import datetime_now
 from globaleaks.utils.security import generateRandomKey
