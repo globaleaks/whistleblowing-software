@@ -9,10 +9,11 @@ from sqlalchemy import and_, or_
 from twisted.internet.defer import inlineCallbacks, returnValue
 
 from globaleaks.utils import security
-from globaleaks.handlers.base import BaseHandler, Sessions
+from globaleaks.handlers.base import BaseHandler
 from globaleaks.models import InternalTip, User, UserTenant, WhistleblowerTip
 from globaleaks.orm import transact
 from globaleaks.rest import errors, requests
+from globaleaks.sessions import Sessions
 from globaleaks.settings import Settings
 from globaleaks.state import State
 from globaleaks.utils.security import generateRandomKey
