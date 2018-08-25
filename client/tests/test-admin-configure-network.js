@@ -1,8 +1,8 @@
 describe('admin configure https', function() {
   var files = {
-    priv_key: browser.gl.utils.makeTestFilePath('../../../../backend/globaleaks/tests/data/https/valid/priv_key.pem'),
-    cert: browser.gl.utils.makeTestFilePath('../../../../backend/globaleaks/tests/data/https/valid/cert.pem'),
-    chain: browser.gl.utils.makeTestFilePath('../../../..//backend/globaleaks/tests/data/https/valid/chain.pem'),
+    priv_key: browser.gl.utils.makeTestFilePath('../../../backend/globaleaks/tests/data/https/valid/priv_key.pem'),
+    cert: browser.gl.utils.makeTestFilePath('../../../backend/globaleaks/tests/data/https/valid/cert.pem'),
+    chain: browser.gl.utils.makeTestFilePath('../../../backend/globaleaks/tests/data/https/valid/chain.pem'),
   };
 
   it('should interact with all ui elements', function() {
