@@ -15,7 +15,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-08-23 14:08+0000\n"
+"PO-Revision-Date: 2018-08-25 16:42+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Greek (http://www.transifex.com/otf/globaleaks/language/el/)\n"
 "MIME-Version: 1.0\n"
@@ -1670,14 +1670,11 @@ msgstr "Παρακαλώ ελέγξτε τα εισερχόμενά σας γι�
 msgid "Enable submission notification"
 msgstr "Ενεργοποίηση ειδοποίησης υποβολής"
 
-msgid "Current Password"
-msgstr "Τρέχων κωδικός πρόσβασης"
+msgid "Current password"
+msgstr ""
 
 msgid "Old password confirmation required"
 msgstr "Χρειάζεται επιβεβαίωση του παλιού κωδικού πρόσβασης"
-
-msgid "New Password"
-msgstr "Νεος κωδικός πρόσβασης"
 
 msgid "The new password must be different from the current one."
 msgstr "Ο νέος κωδικός πρόσβασης θα πρέπει να είναι διαφορετικός από τον τρέχοντα."

@@ -10,7 +10,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-08-23 14:08+0000\n"
+"PO-Revision-Date: 2018-08-25 16:42+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/otf/globaleaks/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
@@ -1665,14 +1665,11 @@ msgstr ""
 msgid "Enable submission notification"
 msgstr "啟動提交通知"
 
-msgid "Current Password"
-msgstr "現用密碼"
+msgid "Current password"
+msgstr ""
 
 msgid "Old password confirmation required"
 msgstr "要求確認舊密碼"
-
-msgid "New Password"
-msgstr "新密碼"
 
 msgid "The new password must be different from the current one."
 msgstr "新密碼必須與舊密碼不同"
