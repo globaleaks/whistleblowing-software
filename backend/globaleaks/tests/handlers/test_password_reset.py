@@ -16,7 +16,7 @@ def set_reset_token(session, user_id, validation_token):
     user = models.db_get(session, models.User, models.User.id == user_id)
     user.change_email_date = datetime_now()
     user.reset_password_token = validation_token
-    session.commit()
+
 
 @transact
 def get_user(session, user_id):
