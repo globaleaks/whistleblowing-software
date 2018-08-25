@@ -1,7 +1,7 @@
 <form name="passwordChangeForm">
   <div class="form-group" data-ng-class="{'has-error': passwordChangeForm.oldpassword.$error.required}" data-ng-if='!session.password_change_needed'>
     <label>
-      <span data-translate>Current Password</span>
+      <span data-translate>Current password</span>
       <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
     </label>
     <input class="form-control" name="oldpassword" data-ng-model="preferences.old_password" type="password" autocomplete="off" required />
@@ -12,7 +12,7 @@
 
   <div class="form-group" data-ng-class="{'has-error': passwordChangeForm.password.$error.required || passwordChangeForm.password.$error.passwordStrength}">
     <label>
-      <span data-translate>New Password</span>
+      <span data-translate>New password</span>
       <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
     </label>
     <input class="form-control" name="password" data-ng-model="preferences.password" type="password" autocomplete="off" data-zxcvbn="passwordStrength" data-zx-min-score="3" required />
