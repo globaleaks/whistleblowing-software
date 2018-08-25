@@ -1,3 +1,7 @@
+Changes in version 3.3.11 - 2018-08-25
+    Update npm dependencies to latest versions
+    Update translations
+
 Changes in version 3.3.10 - 2018-08-24
     Fix serialization of fields of very old submissions missing field.template_id
     Fix serialization of public resource
