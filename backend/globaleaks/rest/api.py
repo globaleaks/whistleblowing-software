@@ -282,7 +282,7 @@ class APIResourceWrapper(Resource):
 
     def redirect_tor(self, request):
         _, _, path, query, frag = urlsplit(request.uri)
-        redirect_url = urlunsplit((b'http', State.tenant_cache[request.tid].onionnames[0].encode(), path, query, frag))
+        redirect_url = urlunsplit((b'http', State.tenant_cache[request.tid].onionnames[0], path, query, frag))
         self.redirect(request, redirect_url)
 
     def handle_exception(self, e, request):
