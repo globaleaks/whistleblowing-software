@@ -1076,6 +1076,7 @@ class _User(Model):
     password_change_needed = Column(Boolean, default=True, nullable=False)
     password_change_date = Column(DateTime, default=datetime_null, nullable=False)
 
+    # TODO: not anymore used - remove at next migration
     auth_token = Column(UnicodeText, default=u'', nullable=False)
 
     crypto_prv_key = Column(Unicode, default=u'', nullable=False)
