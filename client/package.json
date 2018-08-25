@@ -26,7 +26,7 @@
     "angular-ui-bootstrap": "2.5.6",
     "angular-zxcvbn": "3.2.2",
     "bootstrap-inline-rtl": "3.3.7",
-    "d3": "5.5.0",
+    "d3": "5.7.0",
     "openpgp": "3.1.2",
     "scrypt-async": "2.0.0",
     "stacktrace-js": "2.0.0",
@@ -35,7 +35,7 @@
   },
   "devDependencies": {
     "coveralls": "3.0.2",
-    "eslint": "5.3.0",
+    "eslint": "5.4.0",
     "gettext-parser": "2.0.0",
     "grunt": "1.0.3",
     "grunt-angular-templates": "1.1.0",
