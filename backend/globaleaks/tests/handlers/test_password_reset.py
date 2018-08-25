@@ -24,6 +24,7 @@ def get_user(session, user_id):
     session.expunge(user)
     return user
 
+
 class TestPasswordResetInstance(helpers.TestHandlerWithPopulatedDB):
     _handler = password_reset.PasswordResetHandler
 
@@ -52,11 +53,10 @@ class TestPasswordResetInstance(helpers.TestHandlerWithPopulatedDB):
 
         yield handler.get(u"token")
 
-        # Now we check the auth token has been set
+        # Check if the token was resetted
         user = yield get_user(self.rcvr_id)
-        self.assertNotEqual(user.auth_token, user_orig.auth_token)
+        self.assertEqual(user.reset_password_token, None)
 
-        # TODO: assess a mail has been created
 
     @inlineCallbacks
     def test_get_failure(self):
@@ -64,7 +64,6 @@ class TestPasswordResetInstance(helpers.TestHandlerWithPopulatedDB):
 
         handler = self.request()
 
-        # Get the original password being used
         user_orig = yield get_user(self.rcvr_id)
 
         yield set_reset_token(
@@ -74,11 +73,10 @@ class TestPasswordResetInstance(helpers.TestHandlerWithPopulatedDB):
 
         yield handler.get(u"wrong_token")
 
-        # Now we check the auth token has been set
+        # Check if the token was resetted
         user = yield get_user(self.rcvr_id)
-        self.assertEqual(user.auth_token, user_orig.auth_token)
+        self.assertNotEqual(user.reset_password_token, None)
 
-        # TODO: assess no mail has been created
 
     @inlineCallbacks
     def test_post(self):
@@ -91,6 +89,9 @@ class TestPasswordResetInstance(helpers.TestHandlerWithPopulatedDB):
 
         yield handler.post()
 
-        # Now we check if the token was update
+        # Check if the token has been issued
         user = yield get_user(self.rcvr_id)
         self.assertNotEqual(user.reset_password_token, None)
+
+        # Check that an mail has been created
+        yield self.test_model_count(models.Mail, 1)
