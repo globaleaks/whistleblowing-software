@@ -28,8 +28,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-08-23 14:08+0000\n"
-"Last-Translator: Hermes Center <info@hermescenter.org>\n"
+"PO-Revision-Date: 2018-08-25 16:42+0000\n"
+"Last-Translator: Andrey\n"
 "Language-Team: Russian (http://www.transifex.com/otf/globaleaks/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1683,14 +1683,11 @@ msgstr ""
 msgid "Enable submission notification"
 msgstr "Включить уведомление о загрузке материала"
 
-msgid "Current Password"
-msgstr "Действующий пароль"
+msgid "Current password"
+msgstr "Текущий пароль"
 
 msgid "Old password confirmation required"
 msgstr "Необходимо подтверждение старого пароля"
-
-msgid "New Password"
-msgstr "Новый пароль"
 
 msgid "The new password must be different from the current one."
 msgstr "Новый пароль должен отличаться от старого."

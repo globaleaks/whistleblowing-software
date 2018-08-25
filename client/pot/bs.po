@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-08-23 14:08+0000\n"
+"PO-Revision-Date: 2018-08-25 16:42+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Bosnian (http://www.transifex.com/otf/globaleaks/language/bs/)\n"
 "MIME-Version: 1.0\n"
@@ -1661,14 +1661,11 @@ msgstr ""
 msgid "Enable submission notification"
 msgstr "Omogući obavijest podnošenje"
 
-msgid "Current Password"
-msgstr "Trenutna lozinka"
+msgid "Current password"
+msgstr ""
 
 msgid "Old password confirmation required"
 msgstr "Potrebno je da unesete staru lozinku"
-
-msgid "New Password"
-msgstr "Nova lozinka"
 
 msgid "The new password must be different from the current one."
 msgstr ""

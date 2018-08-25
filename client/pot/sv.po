@@ -20,7 +20,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-08-23 14:08+0000\n"
+"PO-Revision-Date: 2018-08-25 16:42+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Swedish (http://www.transifex.com/otf/globaleaks/language/sv/)\n"
 "MIME-Version: 1.0\n"
@@ -1675,14 +1675,11 @@ msgstr ""
 msgid "Enable submission notification"
 msgstr ""
 
-msgid "Current Password"
-msgstr "Nuvarande lösenord"
+msgid "Current password"
+msgstr ""
 
 msgid "Old password confirmation required"
 msgstr "Kräv bekräftelse på gammalt lösenord"
-
-msgid "New Password"
-msgstr "Nytt lösenord"
 
 msgid "The new password must be different from the current one."
 msgstr ""

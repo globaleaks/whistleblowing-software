@@ -17,8 +17,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-08-23 14:08+0000\n"
-"Last-Translator: Hermes Center <info@hermescenter.org>\n"
+"PO-Revision-Date: 2018-08-25 16:42+0000\n"
+"Last-Translator: Licaon_Kter\n"
 "Language-Team: Romanian (http://www.transifex.com/otf/globaleaks/language/ro/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1672,14 +1672,11 @@ msgstr ""
 msgid "Enable submission notification"
 msgstr "Activați notificarea în depunerea"
 
-msgid "Current Password"
-msgstr "Parolă Curentă"
+msgid "Current password"
+msgstr "Parolă curentă"
 
 msgid "Old password confirmation required"
 msgstr "Confirmare parolă veche necesară"
-
-msgid "New Password"
-msgstr "Parolă Nouă"
 
 msgid "The new password must be different from the current one."
 msgstr "Parola noua trebuie sa fie diferita fata de cea actuala."

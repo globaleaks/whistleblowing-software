@@ -17,7 +17,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-08-23 14:08+0000\n"
+"PO-Revision-Date: 2018-08-25 16:42+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Hebrew (http://www.transifex.com/otf/globaleaks/language/he/)\n"
 "MIME-Version: 1.0\n"
@@ -497,7 +497,7 @@ msgid "Email address"
 msgstr "דואר אלקטרוני"
 
 msgid "Custom"
-msgstr ""
+msgstr "מותאם אישית"
 
 msgid "None"
 msgstr ""
@@ -1672,14 +1672,11 @@ msgstr ""
 msgid "Enable submission notification"
 msgstr "אפשר הודעת הגשה"
 
-msgid "Current Password"
-msgstr "סיסמא נוכחית"
+msgid "Current password"
+msgstr ""
 
 msgid "Old password confirmation required"
 msgstr "אישור סיסמא הישנה הנדרש"
-
-msgid "New Password"
-msgstr "סיסמא חדשה"
 
 msgid "The new password must be different from the current one."
 msgstr ""

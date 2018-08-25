@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-08-23 14:08+0000\n"
+"PO-Revision-Date: 2018-08-25 16:42+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Tamil (http://www.transifex.com/otf/globaleaks/language/ta/)\n"
 "MIME-Version: 1.0\n"
@@ -1661,14 +1661,11 @@ msgstr ""
 msgid "Enable submission notification"
 msgstr "சமர்ப்பிப்பு அறிவிப்பை இயக்கு"
 
-msgid "Current Password"
-msgstr "தற்போதைய கடவுச்சொல்"
+msgid "Current password"
+msgstr ""
 
 msgid "Old password confirmation required"
 msgstr "பழைய கடவுச்சொல் உறுதிப்படுத்தல் அவசியம்"
-
-msgid "New Password"
-msgstr "புதிய கடவுச்சொல்"
 
 msgid "The new password must be different from the current one."
 msgstr ""

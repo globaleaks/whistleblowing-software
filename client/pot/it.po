@@ -25,8 +25,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-08-23 14:08+0000\n"
-"Last-Translator: Hermes Center <info@hermescenter.org>\n"
+"PO-Revision-Date: 2018-08-25 16:42+0000\n"
+"Last-Translator: HostFat <hostfat@gmail.com>\n"
 "Language-Team: Italian (http://www.transifex.com/otf/globaleaks/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1680,14 +1680,11 @@ msgstr "Controlla la tua casella di posta in arrivo per informazioni aggiuntive.
 msgid "Enable submission notification"
 msgstr "Abilita notifica delle segnalazioni"
 
-msgid "Current Password"
+msgid "Current password"
 msgstr "Password attuale"
 
 msgid "Old password confirmation required"
 msgstr "E' necessario confermare la vecchia password"
-
-msgid "New Password"
-msgstr "Nuova Password"
 
 msgid "The new password must be different from the current one."
 msgstr "La nuova password deve essere differente dalla password corrente."
@@ -1949,7 +1946,7 @@ msgid "You have completed the platform activation."
 msgstr "Hai completato l'attivazione della piattaforma."
 
 msgid "Your whistleblowing platform is almost ready!"
-msgstr "La tua piattaforma di whistlebliowing è quasi pronta!"
+msgstr "La tua piattaforma di whistleblowing è quasi pronta!"
 
 msgid "Check your inbox to activate your account."
 msgstr "Controlla la tua casella di posta per attivare il tuo account."
