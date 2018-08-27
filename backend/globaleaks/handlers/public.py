@@ -136,12 +136,12 @@ def db_serialize_node(session, tid, language):
             if not ret_dict[x]:
                 ret_dict[x] = db_get_file(session, 1, x)
 
-        root_tenant_l10n = NodeL10NFactory(session, tid)
+        root_tenant_l10n = NodeL10NFactory(session, 1)
 
         if not root_tenant_node.get_val(u'enable_footer_customization'):
             ret_dict['footer'] = root_tenant_l10n.get_val(u'footer', language)
 
-        if ret_dict[u'mode'] == u'whistleblowing.it':
+        if ret_dict['mode'] == u'whistleblowing.it':
             ret_dict['whistleblowing_question'] = root_tenant_l10n.get_val(u'whistleblowing_question', language)
             ret_dict['whistleblowing_button'] = root_tenant_l10n.get_val(u'whistleblowing_button', language)
             ret_dict['enable_disclaimer'] = root_tenant_node.get_val(u'enable_disclaimer')
