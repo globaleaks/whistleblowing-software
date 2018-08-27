@@ -90,6 +90,8 @@ def db_wizard(session, state, tid, request, client_using_tor, language):
 
     # Apply the specific fixes related to whistleblowing.it projects
     if mode == u'whistleblowing.it':
+        root_tenant_node = config.ConfigFactory(session, 1, 'node')
+
         node.set_val(u'hostname', tenant.subdomain + '.' + 'whistleblowing.it')
         node.set_val(u'password_change_period', 365)
         node.set_val(u'disable_key_code_hint', True)
@@ -116,6 +118,8 @@ def db_wizard(session, state, tid, request, client_using_tor, language):
 
         # Set data retention policy to 18 months
         context.tip_timetolive = 540
+
+        context.questionnaire_id = root_tenant_node.get_val(u'default_questionnaire')
 
         # Enable recipients to load files to the whistleblower
         context.enable_rc_to_wb_files = True
