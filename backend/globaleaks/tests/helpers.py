@@ -144,11 +144,6 @@ def init_state():
 
 
 @transact
-def set_config_var(session, var_name, value):
-    models.config.ConfigFactory(session, 1, 'node').set_val(var_name, value)
-
-
-@transact
 def associate_users_of_first_tenant_to_second_tenant(session):
     users_of_tenant_1 = session.query(models.User).filter(models.User.tid == 1)
     for user in users_of_tenant_1:
