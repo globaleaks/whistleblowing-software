@@ -8,18 +8,15 @@ from globaleaks.rest import requests
 from globaleaks.utils.utility import datetime_to_ISO8601, datetime_now
 
 
-def serialize_identityaccessrequest(session, tid, identityaccessrequest):
+def serialize_identityaccessrequest(session, identityaccessrequest):
     itip, user = session.query(models.InternalTip, models.User) \
                       .filter(models.InternalTip.id == models.ReceiverTip.internaltip_id,
                               models.ReceiverTip.id == identityaccessrequest.receivertip_id,
-                              models.ReceiverTip.receiver_id == models.User.id,
-                              models.UserTenant.user_id == models.User.id,
-                              models.UserTenant.tenant_id == tid).one()
+                              models.User.id == models.ReceiverTip.receiver_id).one()
 
     reply_user = session.query(models.User) \
-                      .filter(models.User.id == identityaccessrequest.reply_user_id,
-                              models.UserTenant.user_id == models.User.id,
-                              models.UserTenant.tenant_id == tid).one_or_none()
+                        .filter(models.User.id == identityaccessrequest.reply_user_id).one_or_none()
+
     return {
         'id': identityaccessrequest.id,
         'receivertip_id': identityaccessrequest.receivertip_id,
@@ -34,14 +31,9 @@ def serialize_identityaccessrequest(session, tid, identityaccessrequest):
     }
 
 
-
-def db_get_identityaccessrequest_list(session, tid, rtip_id):
-    return [serialize_identityaccessrequest(session, tid, iar) for iar in session.query(models.IdentityAccessRequest).filter(models.IdentityAccessRequest.receivertip_id == rtip_id)]
-
-
 @transact
 def get_identityaccessrequest_list(session, tid):
-    return [serialize_identityaccessrequest(session, tid, iar)
+    return [serialize_identityaccessrequest(session, iar)
         for iar in session.query(models.IdentityAccessRequest).filter(models.IdentityAccessRequest.reply == u'pending',
                                                                       models.IdentityAccessRequest.receivertip_id == models.ReceiverTip.id,
                                                                       models.ReceiverTip.internaltip_id == models.InternalTip.id,
@@ -57,7 +49,7 @@ def get_identityaccessrequest(session, tid, identityaccessrequest_id):
                        models.InternalTip.tid == tid).one()
 
 
-    return serialize_identityaccessrequest(session, tid, iar)
+    return serialize_identityaccessrequest(session, iar)
 
 
 @transact
@@ -77,7 +69,7 @@ def update_identityaccessrequest(session, tid, user_id, identityaccessrequest_id
         if iar.reply == 'authorized':
             rtip.can_access_whistleblower_identity = True
 
-    return serialize_identityaccessrequest(session, tid, iar)
+    return serialize_identityaccessrequest(session, iar)
 
 
 class IdentityAccessRequestInstance(BaseHandler):

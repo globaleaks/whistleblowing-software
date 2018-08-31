@@ -9,7 +9,7 @@ from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import models
 from globaleaks.handlers.base import BaseHandler
-from globaleaks.handlers.custodian import serialize_identityaccessrequest, db_get_identityaccessrequest_list
+from globaleaks.handlers.custodian import serialize_identityaccessrequest
 from globaleaks.handlers.operation import OperationHandler
 from globaleaks.handlers.submission import serialize_usertip, db_update_submission_status
 from globaleaks.models import serializers
@@ -88,20 +88,24 @@ def serialize_comment(session, comment):
 
 
 def serialize_message(session, message):
+    receiver_involved = session.query(models.User) \
+                               .filter(models.User.id == models.ReceiverTip.receiver_id,
+                                       models.ReceiverTip.id == models.Message.receivertip_id,
+                                       models.Message.id == message.id).one()
+
     if message.type == 'whistleblower':
         author = 'Whistleblower'
     else:
-        author = session.query(models.User) \
-                        .filter(models.User.id == models.ReceiverTip.receiver_id,
-                                models.ReceiverTip.id == models.Message.receivertip_id,
-                                models.Message.id == message.id).one().name
+        author = receiver_involved.name
+
 
     return {
         'id': message.id,
         'author': author,
         'type': message.type,
         'creation_date': datetime_to_ISO8601(message.creation_date),
-        'content': message.content
+        'content': message.content,
+        'receiver_involved': receiver_involved.id
     }
 
 
@@ -113,11 +117,11 @@ def serialize_rtip(session, rtip, itip, language):
     ret['id'] = rtip.id
     ret['receiver_id'] = user_id
     ret['label'] = rtip.label
-    ret['comments'] = db_get_itip_comment_list(session, itip.tid, itip)
-    ret['messages'] = db_get_itip_message_list(session, itip.tid, rtip)
-    ret['rfiles'] = db_receiver_get_rfile_list(session, itip.tid, rtip.id)
-    ret['wbfiles'] = db_receiver_get_wbfile_list(session, itip.tid, itip.id)
-    ret['iars'] = db_get_identityaccessrequest_list(session, itip.tid, rtip.id)
+    ret['comments'] = db_get_itip_comment_list(session, itip.id)
+    ret['messages'] = db_get_itip_message_list(session, rtip.id)
+    ret['rfiles'] = db_receiver_get_rfile_list(session, rtip.id)
+    ret['wbfiles'] = db_receiver_get_wbfile_list(session, itip.id)
+    ret['iars'] = db_get_rtip_identityaccessrequest_list(session, rtip.id)
     ret['enable_notifications'] = bool(rtip.enable_notifications)
     return ret
 
@@ -151,17 +155,15 @@ def db_access_wbfile(session, tid, user_id, wbfile_id):
     return wbfile
 
 
-def db_receiver_get_rfile_list(session, tid, rtip_id):
+def db_receiver_get_rfile_list(session, rtip_id):
     rfiles = session.query(models.ReceiverFile) \
                     .filter(models.ReceiverFile.receivertip_id == models.ReceiverTip.id,
-                            models.ReceiverTip.id == rtip_id,
-                            models.ReceiverTip.internaltip_id == models.InternalTip.id,
-                            models.InternalTip.tid == tid)
+                            models.ReceiverTip.id == rtip_id)
 
     return [receiver_serialize_rfile(session, rfile) for rfile in rfiles]
 
 
-def db_receiver_get_wbfile_list(session, tid, itip_id):
+def db_receiver_get_wbfile_list(session, itip_id):
     rtips = session.query(models.ReceiverTip) \
                    .filter(models.ReceiverTip.internaltip_id == itip_id)
 
@@ -198,8 +200,8 @@ def register_wbfile_on_db(session, tid, rtip_id, uploaded_file):
 
 
 @transact
-def receiver_get_rfile_list(session, tid, rtip_id):
-    return db_receiver_get_rfile_list(session, tid, rtip_id)
+def receiver_get_rfile_list(session, rtip_id):
+    return db_receiver_get_rfile_list(session, rtip_id)
 
 
 def db_set_itip_open_if_new(session, tid, user_id, itip):
@@ -343,8 +345,8 @@ def get_rtip(session, tid, user_id, rtip_id, language):
     return db_get_rtip(session, tid, user_id, rtip_id, language)
 
 
-def db_get_itip_comment_list(session, tid, itip):
-    return [serialize_comment(session, comment) for comment in session.query(models.Comment).filter(models.Comment.internaltip_id == itip.id)]
+def db_get_itip_comment_list(session, itip_id):
+    return [serialize_comment(session, comment) for comment in session.query(models.Comment).filter(models.Comment.internaltip_id == itip_id)]
 
 
 @transact
@@ -357,7 +359,7 @@ def create_identityaccessrequest(session, tid, user_id, rtip_id, request):
     session.add(iar)
     session.flush()
 
-    return serialize_identityaccessrequest(session, tid, iar)
+    return serialize_identityaccessrequest(session, iar)
 
 
 @transact
@@ -377,8 +379,12 @@ def create_comment(session, tid, user_id, rtip_id, request):
     return serialize_comment(session, comment)
 
 
-def db_get_itip_message_list(session, tid, rtip):
-    return [serialize_message(session, message) for message in session.query(models.Message).filter(models.Message.receivertip_id == rtip.id)]
+def db_get_itip_message_list(session, rtip_id):
+    return [serialize_message(session, message) for message in session.query(models.Message).filter(models.Message.receivertip_id == rtip_id)]
+
+
+def db_get_rtip_identityaccessrequest_list(session, rtip_id):
+    return [serialize_identityaccessrequest(session, iar) for iar in session.query(models.IdentityAccessRequest).filter(models.IdentityAccessRequest.receivertip_id == rtip_id)]
 
 
 @transact
