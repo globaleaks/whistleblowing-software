@@ -114,17 +114,7 @@ GLClient.controller('TipCtrl',
 
         if (tip.receivers.length === 1 && tip.msg_receiver_selected === null) {
           tip.msg_receiver_selected = tip.msg_receivers_selector[0].key;
-        }
-
-        tip.updateMessages();
-
-        $scope.$watch('tip.msg_receiver_selected', function (newVal, oldVal) {
-          if (newVal && newVal !== oldVal) {
-            if ($scope.tip) {
-              $scope.tip.updateMessages();
-            }
-          }
-        }, true);
+        };
       });
 
     } else if ($scope.session.role === 'receiver') {

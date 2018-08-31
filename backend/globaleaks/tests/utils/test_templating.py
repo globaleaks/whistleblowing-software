@@ -32,7 +32,7 @@ class notifTemplateTest(helpers.TestGLWithPopulatedDB):
         data['messages'] = data['tip']['messages']
         data['message'] = data['messages'][0]
 
-        files = yield rtip.receiver_get_rfile_list(1, data['tip']['id'])
+        files = yield rtip.receiver_get_rfile_list(data['tip']['id'])
         data['file'] = files[0]
 
         for key in ['tip', 'comment', 'message', 'file']:

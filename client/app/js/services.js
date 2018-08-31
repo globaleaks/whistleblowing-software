@@ -507,8 +507,6 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
       self.tip = WBTipResource.get(function (tip) {
         tip.context = $rootScope.contexts_by_id[tip.context_id];
 
-        tip.messages = [];
-
         tip.msg_receiver_selected = null;
         tip.msg_receivers_selector = [];
 
@@ -539,14 +537,6 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
             tip.messages.unshift(newMessage);
             tip.localChange();
           });
-        };
-
-        tip.updateMessages = function () {
-          if (tip.msg_receiver_selected) {
-            WBTipMessageResource.query({id: tip.msg_receiver_selected}, function (messageCollection) {
-              tip.messages = messageCollection;
-            });
-          }
         };
 
         tip.localChange = function() {

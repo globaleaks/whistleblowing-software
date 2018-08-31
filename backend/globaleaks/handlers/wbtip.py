@@ -36,13 +36,13 @@ def wb_serialize_wbfile(session, wbfile):
     }
 
 
-def db_get_rfile_list(session, tid, itip_id):
+def db_get_rfile_list(session, itip_id):
     return [wb_serialize_ifile(session, ifile) for ifile in session.query(models.InternalFile) \
                                                                    .filter(models.InternalFile.internaltip_id == itip_id,
                                                                            models.InternalTip.id == itip_id)]
 
 
-def db_get_wbfile_list(session, tid, itip_id):
+def db_get_wbfile_list(session, itip_id):
     wbfiles = session.query(models.WhistleblowerFile) \
                      .filter(models.WhistleblowerFile.receivertip_id == models.ReceiverTip.id,
                              models.ReceiverTip.internaltip_id == itip_id)
@@ -54,7 +54,7 @@ def db_get_wbtip(session, tid, itip_id, language):
     itip = models.db_get(session,
                          models.InternalTip,
                          models.InternalTip.id == itip_id,
-                         models.InternalTip.tid == tid)
+                         models.InternalTip.tid)
 
     itip.wb_access_counter += 1
     itip.wb_last_access = datetime_now()
@@ -70,9 +70,10 @@ def get_wbtip(session, tid, itip_id, language):
 def serialize_wbtip(session, itip, language):
     ret = serialize_usertip(session, itip, itip, language)
 
-    ret['comments'] = db_get_itip_comment_list(session, itip.tid, itip)
-    ret['rfiles'] = db_get_rfile_list(session, itip.tid, itip.id)
-    ret['wbfiles'] = db_get_wbfile_list(session, itip.tid, itip.id)
+    ret['comments'] = db_get_itip_comment_list(session, itip.id)
+    ret['messages'] = db_get_itip_message_list(session, itip.id)
+    ret['rfiles'] = db_get_rfile_list(session, itip.id)
+    ret['wbfiles'] = db_get_wbfile_list(session, itip.id)
 
     return ret
 
@@ -93,16 +94,14 @@ def create_comment(session, tid, wbtip_id, request):
     return serialize_comment(session, comment)
 
 
-@transact
-def get_itip_message_list(session, tid, wbtip_id, receiver_id):
+def db_get_itip_message_list(session, wbtip_id):
     messages = session.query(models.Message) \
                       .filter(models.Message.receivertip_id == models.ReceiverTip.id,
-                              models.ReceiverTip.internaltip_id == wbtip_id,
-                              models.ReceiverTip.receiver_id == receiver_id,
-                              models.InternalTip.id == wbtip_id,
-                              models.InternalTip.tid == tid)
+                              models.ReceiverTip.internaltip_id == models.InternalTip.id,
+                              models.InternalTip.id == wbtip_id)
 
     return [serialize_message(session, message) for message in messages]
+
 
 @transact
 def create_message(session, tid, wbtip_id, receiver_id, request):
@@ -186,9 +185,6 @@ class WBTipMessageCollection(BaseHandler):
     Supports the creation of a new message for the requested receiver
     """
     check_roles = 'whistleblower'
-
-    def get(self, receiver_id):
-        return get_itip_message_list(self.request.tid, self.current_user.user_id, receiver_id)
 
     def post(self, receiver_id):
         request = self.validate_message(self.request.content.read(), requests.CommentDesc)

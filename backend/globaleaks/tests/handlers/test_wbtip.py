@@ -50,15 +50,6 @@ class TestWBTipMessageCollection(helpers.TestHandlerWithPopulatedDB):
         yield self.perform_full_submission_actions()
 
     @inlineCallbacks
-    def test_get(self):
-        wbtips_desc = yield self.get_wbtips()
-        for wbtip_desc in wbtips_desc:
-            handler = self.request(role='whistleblower', user_id = wbtip_desc['id'])
-
-            for rcvr_id in wbtip_desc['receivers_ids']:
-                yield handler.get(rcvr_id)
-
-    @inlineCallbacks
     def test_post(self):
         body = {
             'content' : "can you provide an evidence of what you are telling?",
