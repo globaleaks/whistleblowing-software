@@ -7,7 +7,7 @@ from globaleaks import models
 from globaleaks.handlers.admin.node import db_admin_serialize_node
 from globaleaks.handlers.admin.notification import db_get_notification
 from globaleaks.handlers.admin.tenant import db_preallocate as db_preallocate_tenant,\
-    db_initialize as db_initialize_tenant
+    db_initialize as db_initialize_tenant, db_refresh_memory_variables
 from globaleaks.handlers.admin.user import db_get_admin_users
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.wizard import db_wizard
@@ -148,13 +148,15 @@ def signup_activation(session, state, tid, token, language):
 
         state.format_and_send_mail(session, 1, {'mail_address': signup.email}, template_vars)
 
+    db_refresh_memory_variables(session, [1])
+
 
 class Signup(BaseHandler):
     """
     Signup handler
     """
     check_roles = 'unauthenticated'
-    invalidate_cache = True
+    invalidate_cache = False
     root_tenant_only = True
 
     def post(self):
@@ -173,13 +175,11 @@ class SignupActivation(BaseHandler):
   Signup handler
   """
   check_roles = 'unauthenticated'
-  invalidate_cache = True
+  invalidate_cache = False
+  root_tenant_only = True
 
   def get(self, token):
       ret = signup_activation(self.state, self.request.tid, token, self.request.language)
-
-      # invalidate also cache of tenant 1
-      apicache.ApiCache.invalidate(1)
 
       self.state.refresh_tenant_state()
 
