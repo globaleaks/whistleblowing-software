@@ -114,7 +114,7 @@ GLClient.controller('TipCtrl',
 
         if (tip.receivers.length === 1 && tip.msg_receiver_selected === null) {
           tip.msg_receiver_selected = tip.msg_receivers_selector[0].key;
-        };
+        }
       });
 
     } else if ($scope.session.role === 'receiver') {
