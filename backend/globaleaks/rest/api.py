@@ -494,6 +494,8 @@ class APIResourceWrapper(Resource):
         # same origin is needed in order to include svg and other html <object>
         if not State.tenant_cache[request.tid].allow_iframes_inclusion:
             request.setHeader(b'X-Frame-Options', b'sameorigin')
+        else:
+            request.setHeader(b'X-Frame-Options', b'deny')
 
         if request.client_using_tor is True:
             request.setHeader(b'x-check-tor', b'True')
