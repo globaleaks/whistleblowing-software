@@ -72,7 +72,11 @@ angular.module('GLServices', ['ngResource']).
             self.loginInProgress = false;
 
             if ('redirect' in response.data) {
-              $window.location.replace(response.data['redirect']);
+              if ($rootScope.embedded && $rootScope.node.allows_iframes_inclusion) {
+                $window.parent.postMessage({'cmd': 'redirect', 'data': response.data['redirect']}, '*');
+              } else {
+                $window.location.replace(response.data['redirect']);
+              }
             }
 
             self.set_session(response);
