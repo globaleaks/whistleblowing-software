@@ -25,8 +25,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-08-25 16:42+0000\n"
-"Last-Translator: HostFat <hostfat@gmail.com>\n"
+"PO-Revision-Date: 2018-08-28 23:09+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Italian (http://www.transifex.com/otf/globaleaks/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -405,7 +405,7 @@ msgid "Available disk space"
 msgstr "Spazio disco disponibile"
 
 msgid "Last update"
-msgstr "Ultimo aggioramento"
+msgstr "Ultimo aggiornamento"
 
 msgid "Custodian notification templates"
 msgstr "Modelli per le notifiche dei custodi"
@@ -1973,7 +1973,7 @@ msgid "The specified input is not valid:"
 msgstr "I dati inseriti non sono validi:"
 
 msgid "please enter a valid email address."
-msgstr "si prega di inserire un indirozzo email valido."
+msgstr "si prega di inserire un indirizzo email valido."
 
 msgid "please enter numbers only."
 msgstr "si prega di inserire solo numeri."

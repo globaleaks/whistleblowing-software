@@ -23,7 +23,7 @@
 # Jong-Dae Park <jdpark7@gmail.com>, 2013,2015
 # Gu Hong Min <placidmoon1@gmail.com>, 2015
 # Kunwoo Kim <crazyabtmath@naver.com>, 2015
-# LEE SI HYEONG <super2451894@gmail.com>, 2014
+# Sihyeong Lee <super2451894@gmail.com>, 2014
 # Matjaž Mozetič <m.mozetic@matmoz.si>, 2015-2016
 # Mustafa J. Kadhem <safi2266@gmail.com>, 2015
 # Paolo Valier, 2016
