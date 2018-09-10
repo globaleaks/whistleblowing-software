@@ -192,21 +192,6 @@ module.exports = function(grunt) {
             }
           ]
         }
-      },
-      pass3: {
-        files: {
-          'tmp/js/crypto/scrypt-async.worker.js': 'tmp/js/crypto/scrypt-async.worker.js'
-        },
-        options: {
-          replacements: [
-            {
-              pattern: 'scrypt-async.min.js',
-              replacement: function () {
-                return fileToDataURI('tmp/js/crypto/scrypt-async.min.js');
-              }
-            }
-          ]
-        }
       }
     },
 
