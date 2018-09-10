@@ -29,7 +29,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-08-25 16:42+0000\n"
+"PO-Revision-Date: 2018-08-25 19:27+0000\n"
 "Last-Translator: Zuhualime Akoochimoya\n"
 "Language-Team: Spanish (http://www.transifex.com/otf/globaleaks/language/es/)\n"
 "MIME-Version: 1.0\n"

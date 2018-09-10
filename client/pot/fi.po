@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-08-25 16:42+0000\n"
-"Last-Translator: translator42\n"
+"PO-Revision-Date: 2018-09-10 12:03+0000\n"
+"Last-Translator: outolumo <outolumo@gmail.com>\n"
 "Language-Team: Finnish (http://www.transifex.com/otf/globaleaks/language/fi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1445,7 +1445,7 @@ msgid ""
 msgstr "Salli vastaanottajan myöntää vihjeiden lähettäjille vihjekohtaisia lupia"
 
 msgid "Site settings"
-msgstr "Sivuston asetukset"
+msgstr "Palvelun asetukset"
 
 msgid "Case management"
 msgstr "Asiainhallinta"
@@ -1669,7 +1669,7 @@ msgid "Current password"
 msgstr "Nykyinen salasana"
 
 msgid "Old password confirmation required"
-msgstr "Entinen salasanavahvistus vaadittu"
+msgstr "Vahvistus vanhalla salasanalla vaadittu"
 
 msgid "The new password must be different from the current one."
 msgstr "Uusi salasana ei voi olla sama kuin parhaillaan käytössä oleva."

@@ -18,8 +18,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-08-25 16:42+0000\n"
-"Last-Translator: Sebas Vila <svilamarta@gmail.com>\n"
+"PO-Revision-Date: 2018-09-10 08:44+0000\n"
+"Last-Translator: Joan Bitlloch <joanbit@gmail.com>\n"
 "Language-Team: Catalan (http://www.transifex.com/otf/globaleaks/language/ca/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -766,20 +766,20 @@ msgid "Tweak this setting only if you know what you are doing."
 msgstr "Ajustar aquesta configuració només si sap el que està fent."
 
 msgid "Password change interval"
-msgstr ""
+msgstr "Periodicitat de canvi de contrasenya"
 
 msgid ""
 "For security reasons, password changes are required at regular intervals."
-msgstr ""
+msgstr "Per motius de seguretat, es requereixen canvis de contrasenya periòdicament."
 
 msgid "Set the value to 0 to disable this feature."
-msgstr ""
+msgstr "Establiu el valor a 0 per desactivar aquesta funció."
 
 msgid "Landing page"
 msgstr "Pàgina d'aterratge"
 
 msgid "Default questionnaire"
-msgstr ""
+msgstr "Qüestionari per defecte"
 
 msgid "Title of the submission page"
 msgstr "Títol de la pàgina de l'entrega"
@@ -832,25 +832,25 @@ msgid "Example:"
 msgstr "Exemple:"
 
 msgid "Each entry must be separated with a comma."
-msgstr ""
+msgstr "Cada entrada ha d'estar separada amb una coma."
 
 msgid "Allow users to reset their passwords"
-msgstr ""
+msgstr "Permet que els usuaris restableixin les seves contrasenyes"
 
 msgid ""
 "Allowing users to reset their passwords may reduce the security of the "
 "platform due to security becoming dependent on the security of user's email "
 "accounts."
-msgstr ""
+msgstr "Permetre que els usuaris restableixin les seves contrasenyes pot reduir la seguretat de la plataforma a causa que la seguretat depèn de la seguretat dels comptes de correu electrònic dels usuaris."
 
 msgid "Enable users to upload their PGP keys"
-msgstr ""
+msgstr "Permet que els usuaris carreguin les seves claus PGP"
 
 msgid "Enable multi-site login"
-msgstr ""
+msgstr "Permet l'inici de sessió simultani a diversos llocs"
 
 msgid "Enable simplified login"
-msgstr ""
+msgstr "Permet l'inici de sessió simplificat"
 
 msgid "Enable experimental features"
 msgstr "Activa els trets experimentals"
@@ -874,7 +874,7 @@ msgid "Add"
 msgstr "Afegeix"
 
 msgid "Substatuses"
-msgstr ""
+msgstr "Sub estatus"
 
 msgid "Label"
 msgstr "Etiqueta"
@@ -889,10 +889,10 @@ msgid "Cancel"
 msgstr "Cancel·la"
 
 msgid "Submission statuses"
-msgstr ""
+msgstr "Estatus d'enviament"
 
 msgid "Closing statuses"
-msgstr ""
+msgstr "Tancament dels estats"
 
 msgid "Logo"
 msgstr "Logotip"
@@ -964,7 +964,7 @@ msgid "Recipients"
 msgstr "Destinataris"
 
 msgid "Submission expiration"
-msgstr ""
+msgstr "Expiració de l'enviament"
 
 msgid "days"
 msgstr "dies"
@@ -1095,7 +1095,7 @@ msgid "Transport Security"
 msgstr "Seguretat del transport"
 
 msgid "Require authentication"
-msgstr ""
+msgstr "Requereix autenticació"
 
 msgid "Disabled"
 msgstr "Deshabilitat"
@@ -1391,7 +1391,7 @@ msgid "Phone number"
 msgstr "Número de telèfon"
 
 msgid "Checkbox label"
-msgstr ""
+msgstr "Etiqueta de la casella de verificació"
 
 msgid "Layout orientation"
 msgstr "Orientació de la maqueta"
@@ -1400,13 +1400,13 @@ msgid "Subject answer visibility to custodian authorization"
 msgstr "Visibilitat de la resposta subjecta a l'autorització del guardià"
 
 msgid "Text shown upon negative answer"
-msgstr ""
+msgstr "Text mostrat per la resposta negativa"
 
 msgid "Prompt confirmation upon negative answer"
 msgstr "Mostra la confirmació si hi ha una resposta negativa"
 
 msgid "Text shown upon confirmation"
-msgstr ""
+msgstr "Text que es mostra com a confirmació"
 
 msgid "Options"
 msgstr "Opcions"
@@ -1421,7 +1421,7 @@ msgid "Add question from template"
 msgstr "Afegeix una pregunta de la plantilla"
 
 msgid "Duplicate"
-msgstr ""
+msgstr "Duplicat"
 
 msgid "Steps"
 msgstr "Pasos"
@@ -1456,34 +1456,34 @@ msgid "Site settings"
 msgstr "Configuració del lloc"
 
 msgid "Case management"
-msgstr ""
+msgstr "Gestió de casos"
 
 msgid "Network settings"
 msgstr "Configuració de xarxa"
 
 msgid "Mode:"
-msgstr ""
+msgstr "Mode:"
 
 msgid "Root domain used for secondary sites"
-msgstr "Dominio raíz usado para sitios secundarios"
+msgstr "Domini arrel utilitzat per a llocs secundaris"
 
 msgid "Allow users to sign up"
-msgstr "Permitir registrarse a los usuarios"
+msgstr "Permetre als usuaris registrar-se"
 
 msgid "Record IP address and user agent of registered users"
-msgstr ""
+msgstr "Registrar l'adreça IP i l'agent d'usuari dels usuaris registrats"
 
 msgid "Enable terms of service"
-msgstr ""
+msgstr "Activa els termes del servei"
 
 msgid "Sites"
-msgstr "Sitios"
+msgstr "Llocs web"
 
 msgid "Active"
 msgstr "Activa"
 
 msgid "Inactive"
-msgstr "Inactivo"
+msgstr "Inactiu"
 
 msgid "The default password is:"
 msgstr "La contrasenya d'usuari per defecte és:"
@@ -1492,7 +1492,7 @@ msgid "The system forces users to change the password at first login."
 msgstr "El sistema obliga a canviar la contrasenya el primer cop que s'inicia sessió."
 
 msgid "Reset password"
-msgstr ""
+msgstr "Restablir contrasenya "
 
 msgid "New password"
 msgstr "Contrassenya nova"
@@ -1518,10 +1518,10 @@ msgid "Set up encryption by providing a PGP public key"
 msgstr "Estableix l'encriptació oferint una clau pública PGP"
 
 msgid "User has administrative access to the following features:"
-msgstr ""
+msgstr "L'usuari té accés administratiu a les següents funcions:"
 
 msgid "main"
-msgstr ""
+msgstr "principal"
 
 msgid "Request date"
 msgstr "Data de sol·licitud"
@@ -1530,7 +1530,7 @@ msgid "Authorization"
 msgstr "Autorització"
 
 msgid "Identities"
-msgstr ""
+msgstr "Identitats"
 
 msgid "The validation link is either incorrect or has expired."
 msgstr "El vincle de validació és incorrecte o ha caducat."
@@ -1539,7 +1539,7 @@ msgid "Your new email address has been validated."
 msgstr "S'ha validat la vostra nova adreça de correu electrònic."
 
 msgid "Before proceeding, please set a new password."
-msgstr ""
+msgstr "Abans de continuar, estableixi una nova contrasenya."
 
 msgid "Submissions disabled"
 msgstr "Enviaments deshabilitats"
@@ -1552,7 +1552,7 @@ msgstr "S'està connectant al servidor de manera no anònima i aquest servidor n
 msgid ""
 "Server temporarily unusable due to resource exhaustion; advise the Admin if "
 "you can."
-msgstr ""
+msgstr "Servidor temporalment in-utilitzable a causa de l'esgotament de recursos; avisi l'administrador si és possible."
 
 msgid "This server is not configured."
 msgstr "Aquest servidor no està configurat."
@@ -1574,13 +1574,13 @@ msgid "Please support Hermes through their donation page."
 msgstr "Si us plau, dóna suport a Hermes mitjançant la seva pàgina de donacions."
 
 msgid "Forgot password?"
-msgstr ""
+msgstr "Has oblidat la contrasenya?"
 
 msgid "Authentication failed"
 msgstr "Autentificació fallida"
 
 msgid "Site:"
-msgstr ""
+msgstr "Lloc web:"
 
 msgid "Username:"
 msgstr "Nom d'usuari:"
@@ -1668,7 +1668,7 @@ msgid "Validation of email address change in progress."
 msgstr "Validació del canvi d'adreça electrònica en progrés."
 
 msgid "Please check your inbox for further instructions."
-msgstr ""
+msgstr "Comproveu el vostre correu electrònic per obtenir més instruccions."
 
 msgid "Enable submission notification"
 msgstr "Activa la notificació de l'entrega"
@@ -1708,7 +1708,7 @@ msgid "Fingerprint"
 msgstr "empremta de validació de clau"
 
 msgid "Enter a name for the copy"
-msgstr ""
+msgstr "Introduïu un nom per a la còpia"
 
 msgid "Add file"
 msgstr "Afegeix un arxiu"
@@ -1837,7 +1837,7 @@ msgid "Recipient list"
 msgstr "Llista del destinatari"
 
 msgid "Submission status:"
-msgstr ""
+msgstr "Estat d'enviament:"
 
 msgid "Attached files for the whistleblower"
 msgstr "Els arxius adjunts per al informador"
@@ -1858,21 +1858,21 @@ msgid "These files have been attached to your submission by the recipients."
 msgstr "Aquests arxius s'han adjuntat al seu enviament per el receptor"
 
 msgid "The provided reset token is invalid or expired."
-msgstr ""
+msgstr "El token de restabliment proporcionat no és vàlid o està caducat."
 
 msgid ""
 "Enter your account's username or your email address to request a password "
 "reset."
-msgstr ""
+msgstr "Introduïu el nom d'usuari o la vostra adreça electrònica del vostre compte per sol·licitar la restauració de la contrasenya."
 
 msgid "Request password reset"
-msgstr ""
+msgstr "Sol·liciteu restablir la contrasenya"
 
 msgid "Password reset feature is unavailable for admin users."
-msgstr ""
+msgstr "La funció de restabliment de la contrasenya no està disponible per als usuaris administradors."
 
 msgid "Password reset requested."
-msgstr ""
+msgstr "S'ha sol·licitat la restauració de la contrasenya."
 
 msgid "Thank you!"
 msgstr "Gràcies!"
@@ -2308,13 +2308,13 @@ msgstr "Alerta de caducitat del certificat HTTPS"
 
 msgid ""
 "The automatic HTTPS certificate renewal scheduled for today just failed."
-msgstr ""
+msgstr "La renovació automàtica de certificats HTTPS programada per avui ha fallat."
 
 msgid "The system will keep trying."
-msgstr ""
+msgstr "El sistema continuarà intentant-ho."
 
 msgid "Failed HTTPS certificate renewal"
-msgstr ""
+msgstr "No s'ha pogut renovar el certificat HTTPS"
 
 msgid ""
 "This is an email to notify you that a custodian has authorized you to access"
@@ -2361,18 +2361,18 @@ msgstr "Nous missatge"
 msgid ""
 "You're receiving this email because a password reset has been requested for "
 "your account."
-msgstr ""
+msgstr "Heu rebut aquest correu electrònic perquè s'ha sol·licitat un restabliment de la contrasenya per al vostre compte."
 
 msgid ""
 "If you didn't make this request, you may safely ignore and delete this "
 "email."
-msgstr ""
+msgstr "Si no heu fet aquesta sol·licitud, podeu ignorar i suprimir aquest correu electrònic de manera segura."
 
 msgid "You can confirm your request by clicking the following links:"
-msgstr ""
+msgstr "Podeu confirmar la vostra sol·licitud fent clic als enllaços següents:"
 
 msgid "Password reset instructions"
-msgstr ""
+msgstr "Instruccions de restabliment de la contrasenya"
 
 msgid ""
 "This is an email to inform you that your PGP key is expiring or has already "
@@ -2408,7 +2408,7 @@ msgid "Notifications from {NodeName} have been temporarily suspended"
 msgstr "Les notificacions de {NodeName} s'han suspès temporalment"
 
 msgid "Click the link to activate the platform:"
-msgstr "Pulse el enlace para activar la plataforma:"
+msgstr "Feu clic a l'enllaç per activar la plataforma:"
 
 msgid "Activation"
 msgstr "Activació"
@@ -2461,10 +2461,10 @@ msgid "New submission"
 msgstr "Nou enviament"
 
 msgid "Role: {Role}"
-msgstr ""
+msgstr "Rol: {Role}"
 
 msgid "Username: {Username}"
-msgstr ""
+msgstr "Nom d'usuari: {Username}"
 
 msgid "Password: {Password}"
-msgstr ""
+msgstr "Contrasenya: {Password}"
