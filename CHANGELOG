@@ -1,3 +1,8 @@
+Changes in version 3.3.12 - 2018-09-10
+    Implement explicit deny x-frame-options to prevent iframe inclusion
+    Update npm dependencies to latest versions
+    Update translations
+
 Changes in version 3.3.11 - 2018-08-25
     Update npm dependencies to latest versions
     Update translations
