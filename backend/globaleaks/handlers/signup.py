@@ -14,7 +14,7 @@ from globaleaks.handlers.wizard import db_wizard
 from globaleaks.models import config
 from globaleaks.orm import transact
 from globaleaks.rest import requests, errors, apicache
-from globaleaks.utils.security import generateRandomKey
+from globaleaks.utils.crypto import generateRandomKey
 from globaleaks.utils.utility import datetime_to_ISO8601
 
 

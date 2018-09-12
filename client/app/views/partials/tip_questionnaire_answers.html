@@ -16,7 +16,7 @@
       </dt>
       <dd>
         <div div data-ng-repeat="field in step.children | orderBy:['y', 'x'] | filter:{ type: '!fileupload'}">
-          <span data-ng-init="fieldAnswers=tip.answers" data-ng-include="'views/partials/tip_field.html'"></span>
+          <span data-ng-init="fieldAnswers=tip.data.answers.value" data-ng-include="'views/partials/tip_field.html'"></span>
         </div>
       </dd>
     </div>

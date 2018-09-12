@@ -1,25 +1,39 @@
 # -*- coding: utf-8 -*-
 #
 # Handlerse dealing with submission interface
+import base64
 import copy
 import json
+import os
 
-from six import text_type
+from six import binary_type, text_type
 
 from globaleaks import models
 from globaleaks.handlers.admin.questionnaire import db_get_questionnaire
 from globaleaks.handlers.admin.submission_statuses import db_get_id_for_system_status
-
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.orm import transact
 from globaleaks.rest import errors, requests
-from globaleaks.utils.security import hash_password, sha256, generateRandomReceipt
 from globaleaks.state import State
+from globaleaks.utils.crypto import sha256, GCE
 from globaleaks.utils.structures import get_localized_values
 from globaleaks.utils.token import TokenList
 from globaleaks.utils.utility import get_expiration, \
     datetime_now, datetime_never, datetime_to_ISO8601
 from globaleaks.utils.log import log
+
+
+def decrypt_tip(user_key, tip_prv_key, tip):
+    tip_key = GCE.asymmetric_decrypt(user_key, tip_prv_key)
+
+    for k in ['answers', 'whistleblower_identity']:
+        if k in tip['data'] and tip['data'][k]['encrypted'] and tip['data'][k]['value']:
+            tip['data'][k]['value'] = json.loads(GCE.asymmetric_decrypt(tip_key, base64.b64decode(tip['data'][k]['value'].encode())).decode())
+
+    for x in tip['comments'] + tip['messages']:
+        x['content'] = GCE.asymmetric_decrypt(tip_key, base64.b64decode(x['content'].encode())).decode()
+
+    return tip
 
 
 def db_assign_submission_progressive(session, tid):
@@ -117,14 +131,15 @@ def db_serialize_questionnaire_answers(session, tid, usertip, internaltip):
 
         answers_by_group[answer.fieldanswergroup_id].append(answer)
 
-    for group in session.query(models.FieldAnswerGroup) \
-                      .filter(models.FieldAnswerGroup.fieldanswer_id.in_(all_answers_ids)) \
-                      .order_by(models.FieldAnswerGroup.number):
+    if all_answers_ids:
+        for group in session.query(models.FieldAnswerGroup) \
+                            .filter(models.FieldAnswerGroup.fieldanswer_id.in_(all_answers_ids)) \
+                            .order_by(models.FieldAnswerGroup.number):
 
-        if group.fieldanswer_id not in groups_by_answer:
-            groups_by_answer[group.fieldanswer_id] = []
+            if group.fieldanswer_id not in groups_by_answer:
+                groups_by_answer[group.fieldanswer_id] = []
 
-        groups_by_answer[group.fieldanswer_id].append(group)
+            groups_by_answer[group.fieldanswer_id].append(group)
 
     return db_serialize_questionnaire_answers_recursively(session, answers, answers_by_group, groups_by_answer)
 
@@ -241,11 +256,23 @@ def serialize_usertip(session, usertip, itip, language):
     ret = serialize_itip(session, itip, language)
     ret['id'] = usertip.id
     ret['internaltip_id'] = itip.id
-    ret['answers'] = db_serialize_questionnaire_answers(session, itip.tid, usertip, itip)
+
+    ret['data'] = {}
+    ret['data']['answers'] = {
+        'value': db_serialize_questionnaire_answers(session, itip.tid, usertip, itip),
+        'encrypted': False
+    }
+
+    for itd in session.query(models.InternalTipData).filter(models.InternalTipData.internaltip_id == itip.id):
+        ret['data'][itd.key] = {
+            'value': itd.value,
+            'encrypted': itd.encrypted
+        }
+
     return ret
 
 
-def db_create_receivertip(session, receiver, internaltip):
+def db_create_receivertip(session, receiver, internaltip, enc_key):
     """
     Create models.ReceiverTip for the required tier of models.Receiver.
     """
@@ -254,11 +281,17 @@ def db_create_receivertip(session, receiver, internaltip):
     receivertip = models.ReceiverTip()
     receivertip.internaltip_id = internaltip.id
     receivertip.receiver_id = receiver.id
+    receivertip.crypto_tip_prv_key = enc_key
 
     session.add(receivertip)
 
 
-def db_create_submission(session, tid, request, uploaded_files, client_using_tor):
+def db_create_submission(session, tid, request, token_id, client_using_tor):
+    # The get and use method will raise if the token is invalid
+    token = TokenList.pop(token_id)
+
+    token.use()
+
     answers = request['answers']
 
     context, questionnaire = session.query(models.Context, models.Questionnaire) \
@@ -272,66 +305,99 @@ def db_create_submission(session, tid, request, uploaded_files, client_using_tor
     questionnaire_hash = text_type(sha256(json.dumps(steps)))
     db_archive_questionnaire_schema(session, steps, questionnaire_hash)
 
-    submission = models.InternalTip()
-    submission.tid = tid
-    submission.status = db_get_id_for_system_status(session, tid, 'new')
+    itip = models.InternalTip()
+    itip.tid = tid
+    itip.status = db_get_id_for_system_status(session, tid, u'new')
 
-    submission.progressive = db_assign_submission_progressive(session, tid)
+    itip.progressive = db_assign_submission_progressive(session, tid)
 
     if context.tip_timetolive > 0:
-        submission.expiration_date = get_expiration(context.tip_timetolive)
+        itip.expiration_date = get_expiration(context.tip_timetolive)
     else:
-        submission.expiration_date = datetime_never()
+        itip.expiration_date = datetime_never()
 
     # this is get from the client as it the only possibility possible
     # that would fit with the end to end submission.
     # the score is only an indicator and not a critical information so we can accept to
     # be fooled by the malicious user.
-    submission.total_score = request['total_score']
+    itip.total_score = request['total_score']
 
     # The status https is used to keep track of the security level adopted by the whistleblower
-    submission.https = not client_using_tor
+    itip.https = not client_using_tor
 
-    submission.context_id = context.id
-    submission.enable_two_way_comments = context.enable_two_way_comments
-    submission.enable_two_way_messages = context.enable_two_way_messages
-    submission.enable_attachments = context.enable_attachments
+    itip.context_id = context.id
+    itip.enable_two_way_comments = context.enable_two_way_comments
+    itip.enable_two_way_messages = context.enable_two_way_messages
+    itip.enable_attachments = context.enable_attachments
 
     whistleblower_identity = session.query(models.Field) \
                                     .filter(models.Field.template_id == u'whistleblower_identity',
                                             models.Field.step_id == models.Step.id,
                                             models.Step.questionnaire_id == context.questionnaire_id).one_or_none()
 
-    submission.enable_whistleblower_identity = whistleblower_identity is not None
+    itip.enable_whistleblower_identity = whistleblower_identity is not None
 
-    if submission.enable_whistleblower_identity and request['identity_provided']:
-        submission.identity_provided = True
-        submission.identity_provided_date = datetime_now()
+    if itip.enable_whistleblower_identity and request['identity_provided']:
+        itip.identity_provided = True
+        itip.identity_provided_date = datetime_now()
 
-    submission.questionnaire_hash = questionnaire_hash
-    submission.preview = extract_answers_preview(steps, answers)
+    itip.questionnaire_hash = questionnaire_hash
+    itip.preview = extract_answers_preview(steps, answers)
 
-    session.add(submission)
+    session.add(itip)
     session.flush()
 
-    receipt = text_type(generateRandomReceipt())
+    receipt = text_= GCE.generate_receipt()
+    receipt_salt = State.tenant_cache[tid].receipt_salt
 
     wbtip = models.WhistleblowerTip()
-    wbtip.id = submission.id
-    wbtip.tid = submission.tid
-    wbtip.receipt_hash = hash_password(receipt, State.tenant_cache[tid].receipt_salt)
+    wbtip.id = itip.id
+    wbtip.tid = tid
+    wbtip.hash_alg = GCE.HASH
+    wbtip.receipt_hash = GCE.hash_password(receipt, receipt_salt)
+
+    crypto_is_available = State.tenant_cache[tid].encryption
+    if crypto_is_available:
+        users_count = session.query(models.User) \
+                             .filter(models.Receiver.id.in_(request['receivers']),
+                                     models.ReceiverContext.receiver_id == models.Receiver.id,
+                                     models.ReceiverContext.context_id == context.id,
+                                     models.User.id == models.Receiver.id,
+                                     models.User.crypto_prv_key != b'',
+                                     models.UserTenant.user_id == models.User.id,
+                                     models.UserTenant.tenant_id == tid).count()
+
+        crypto_is_available = users_count == len(request['receivers'])
+
+    if crypto_is_available:
+        crypto_tip_prv_key, itip.crypto_tip_pub_key = GCE.generate_keypair()
+        wb_key = GCE.derive_key(receipt.encode(), receipt_salt)
+        wb_prv_key, wb_pub_key = GCE.generate_keypair()
+        wbtip.crypto_prv_key = GCE.symmetric_encrypt(wb_key, wb_prv_key)
+        wbtip.crypto_pub_key = wb_pub_key
+        wbtip.crypto_tip_prv_key = GCE.asymmetric_encrypt(wb_pub_key, crypto_tip_prv_key)
+
+        itd = models.InternalTipData()
+        itd.internaltip_id = itip.id
+        itd.key = u'answers'
+        itd.value = base64.b64encode(GCE.asymmetric_encrypt(itip.crypto_tip_pub_key, json.dumps(answers).encode())).decode()
+        itd.encrypted = True
+        session.add(itd)
+
+    else:
+        db_save_questionnaire_answers(session, tid, itip.id, answers)
+
     session.add(wbtip)
 
-    db_save_questionnaire_answers(session, tid, submission.id, answers)
-
-    for filedesc in uploaded_files:
+    for filedesc in token.uploaded_files:
         new_file = models.InternalFile()
         new_file.tid = tid
+        new_file.encrypted = crypto_is_available
         new_file.name = filedesc['name']
         new_file.description = ""
         new_file.content_type = filedesc['type']
         new_file.size = filedesc['size']
-        new_file.internaltip_id = submission.id
+        new_file.internaltip_id = itip.id
         new_file.submission = filedesc['submission']
         new_file.filename = filedesc['filename']
         session.add(new_file)
@@ -350,11 +416,17 @@ def db_create_submission(session, tid, request, uploaded_files, client_using_tor
                                          models.User.id == models.Receiver.id,
                                          models.UserTenant.user_id == models.User.id,
                                          models.UserTenant.tenant_id == tid):
-        if user.pgp_key_public or State.tenant_cache[tid].allow_unencrypted:
-            db_create_receivertip(session, receiver, submission)
-            rtips_count += 1
+        if not crypto_is_available and not user.pgp_key_public and not State.tenant_cache[tid].allow_unencrypted:
+            continue
 
-    if rtips_count == 0:
+        _tip_key = b''
+        if crypto_is_available:
+            _tip_key = GCE.asymmetric_encrypt(user.crypto_pub_key, crypto_tip_prv_key)
+
+        db_create_receivertip(session, receiver, itip, _tip_key)
+        rtips_count += 1
+
+    if not rtips_count:
         raise errors.InputValidationError("need at least one recipient")
 
     log.debug("The finalized submission had created %d models.ReceiverTip(s)", rtips_count)
@@ -363,8 +435,8 @@ def db_create_submission(session, tid, request, uploaded_files, client_using_tor
 
 
 @transact
-def create_submission(session, tid, request, uploaded_files, client_using_tor):
-    return db_create_submission(session, tid, request, uploaded_files, client_using_tor)
+def create_submission(session, tid, request, token_id, client_using_tor):
+    return db_create_submission(session, tid, request, token_id, client_using_tor)
 
 
 class SubmissionInstance(BaseHandler):
@@ -379,16 +451,7 @@ class SubmissionInstance(BaseHandler):
         """
         request = self.validate_message(self.request.content.read(), requests.SubmissionDesc)
 
-        # The get and use method will raise if the token is invalid
-        token = TokenList.get(token_id)
-        token.use()
-
-        submission = create_submission(self.request.tid,
-                                       request,
-                                       token.uploaded_files,
-                                       self.request.client_using_tor)
-
-        # Delete the token only when a valid submission has been stored in the DB
-        TokenList.delete(token_id)
-
-        return submission
+        return create_submission(self.request.tid,
+                                 request,
+                                 token_id,
+                                 self.request.client_using_tor)

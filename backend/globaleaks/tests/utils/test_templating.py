@@ -24,7 +24,7 @@ class notifTemplateTest(helpers.TestGLWithPopulatedDB):
                 tip_id = tip['id']
                 break
 
-        data['tip'] = yield rtip.get_rtip(1, self.dummyReceiver_1['id'], tip_id, u'en')
+        data['tip'], _ = yield rtip.get_rtip(1, self.dummyReceiver_1['id'], tip_id, u'en')
 
         data['comments'] = data['tip']['comments']
         data['comment'] = data['comments'][0]

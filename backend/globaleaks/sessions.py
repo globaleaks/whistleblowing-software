@@ -1,16 +1,17 @@
 # -*- coding: utf-8 -*-
 
 from globaleaks.settings import Settings
-from globaleaks.utils.security import generateRandomKey
+from globaleaks.utils.crypto import generateRandomKey
 from globaleaks.utils.tempdict import TempDict
 
 class Session(object):
-    def __init__(self, tid, user_id, user_role, pcn):
+    def __init__(self, tid, user_id, user_role, pcn, cc):
         self.id = generateRandomKey(42)
         self.tid = tid
         self.user_id = user_id
         self.user_role = user_role
         self.pcn = pcn
+        self.cc = cc
         self.expireCall = None
 
     def getTime(self):
@@ -33,8 +34,8 @@ class SessionsFactory(TempDict):
             if v.user_id == user_id:
                 del self[k]
 
-    def new(self, tid, user_id, user_role, pcn):
-        session = Session(tid, user_id, user_role, pcn)
+    def new(self, tid, user_id, user_role, pcn, cc):
+        session = Session(tid, user_id, user_role, pcn, cc)
         self.revoke(user_id)
         self.set(session.id, session)
         return session

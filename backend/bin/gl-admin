@@ -18,12 +18,12 @@ import sys
 from datetime import datetime
 from six import text_type
 
-from globaleaks.utils import security
 from globaleaks.db import get_db_file
 from globaleaks.orm import make_db_uri, get_engine
 from globaleaks.models import config, config_desc
 from globaleaks.rest.requests import AdminNotificationDesc, AdminNodeDesc
 from globaleaks.settings import Settings
+from globaleaks.utils.crypto import GCE, generateRandomKey, generateApiToken
 
 
 def check_file(f):
@@ -120,9 +120,9 @@ def reset_pass(args):
 
     check_file(db_path)
 
-    salt = security.generateRandomSalt()
+    salt = GCE.generate_salt()
 
-    hashed_password = security.hash_password(args.password, salt)
+    hashed_password = GCE.hash_password(args.password, salt)
 
     QUERY = "UPDATE user SET salt=?, password=? WHERE username=? AND tid=?;"
 
@@ -211,7 +211,13 @@ def set_var(args, silent=False):
 def enable_api_token(args):
     args.varname = u'admin_api_token_digest'
 
-    token, args.value = security.generate_api_token()
+def generate_api_token():
+    """
+    creates an api token along with its corresponding hash digest.
+
+    :rtype: A `tuple` containing (digest `str`, token `str`)
+    """
+    token = args.value = generateApiToken()
 
     set_var(args, silent=True)
     print('The API token is: {}'.format(token))
@@ -255,7 +261,7 @@ add_db_path_arg(pw_p)
 pw_p.add_argument("--tid", help="the tenant id", default='1', type=int)
 pw_p.add_argument("username", help="the username used to login into GL")
 pw_p.add_argument("password", nargs="?", help="if not set a random password is generated",
-                  default=security.generateRandomKey(16))
+                  default=generateRandomKey(16))
 pw_p.set_defaults(func=reset_pass)
 
 rv_p = subp.add_parser("getvar", help="get database config variable")

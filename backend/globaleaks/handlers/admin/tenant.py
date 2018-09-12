@@ -20,9 +20,9 @@ from globaleaks.state import State
 
 
 def initialize_submission_statuses(session, tid):
-    for s in [{'label': {'en': 'New'}, 'system_usage': 'new'},
-              {'label': {'en': 'Open'}, 'system_usage':'open'},
-              {'label': {'en':' Closed'}, 'system_usage': 'closed'}]:
+    for s in [{'label': {'en': 'New'}, 'system_usage': u'new'},
+              {'label': {'en': 'Open'}, 'system_usage': u'open'},
+              {'label': {'en':' Closed'}, 'system_usage': u'closed'}]:
         state = models.SubmissionStatus()
         state.tid = tid
         state.label = s['label']
@@ -83,7 +83,7 @@ def db_initialize(session, tenant, mode):
 
         for file_desc in file_descs:
             with open(os.path.join(Settings.client_path, file_desc[1]), 'rb') as f:
-                data = base64.b64encode(f.read())
+                data = base64.b64encode(f.read()).decode()
                 file.db_add_file(session, tenant.id, file_desc[0], u'', data)
 
 

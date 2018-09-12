@@ -11,8 +11,8 @@ from globaleaks.orm import transact
 from globaleaks.rest import requests
 from globaleaks.sessions import Sessions
 from globaleaks.state import State
+from globaleaks.utils.crypto import generateRandomKey
 from globaleaks.utils.utility import datetime_now
-from globaleaks.utils.security import generateRandomKey
 
 
 @transact
@@ -31,7 +31,7 @@ def validate_password_reset(session, tid, reset_token):
     user.reset_password_date = datetime_now()
     user.password_change_needed = True
 
-    session = Sessions.new(tid, user.id, user.role, user.password_change_needed)
+    session = Sessions.new(tid, user.id, user.role, user.password_change_needed, '')
 
     return session.id
 

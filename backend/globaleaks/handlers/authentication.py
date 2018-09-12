@@ -8,7 +8,6 @@ from six import text_type, binary_type
 from sqlalchemy import and_, or_
 from twisted.internet.defer import inlineCallbacks, returnValue
 
-from globaleaks.utils import security
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.models import InternalTip, User, UserTenant, WhistleblowerTip
 from globaleaks.orm import transact
@@ -16,8 +15,9 @@ from globaleaks.rest import errors, requests
 from globaleaks.sessions import Sessions
 from globaleaks.settings import Settings
 from globaleaks.state import State
-from globaleaks.utils.utility import datetime_now, deferred_sleep, parse_csv_ip_ranges_to_ip_networks
+from globaleaks.utils.crypto import GCE
 from globaleaks.utils.log import log
+from globaleaks.utils.utility import datetime_now, deferred_sleep, parse_csv_ip_ranges_to_ip_networks
 
 
 def random_login_delay():
@@ -54,19 +54,27 @@ def login_whistleblower(session, tid, receipt, client_using_tor):
     """
     login_whistleblower returns a session
     """
-    hashed_receipt = security.hash_password(receipt, State.tenant_cache[tid].receipt_salt)
-    result = session.query(WhistleblowerTip, InternalTip) \
-                    .filter(WhistleblowerTip.receipt_hash == text_type(hashed_receipt, 'utf-8'),
+    x = None
+
+    algorithms = [x[0] for x in session.query(WhistleblowerTip.hash_alg).filter(WhistleblowerTip.tid == tid).distinct()]
+    if algorithms:
+        hashes = []
+        for alg in algorithms:
+            hashes.append(GCE.hash_password(receipt, State.tenant_cache[tid].receipt_salt, alg))
+
+        x  = session.query(WhistleblowerTip, InternalTip) \
+                    .filter(WhistleblowerTip.receipt_hash.in_(hashes),
                             WhistleblowerTip.tid == tid,
                             InternalTip.id == WhistleblowerTip.id,
-                            InternalTip.tid == WhistleblowerTip.tid).first()
+                            InternalTip.tid == WhistleblowerTip.tid).one_or_none()
 
-    if result is None:
+    if x is None:
         log.debug("Whistleblower login: Invalid receipt")
         Settings.failed_login_attempts += 1
         raise errors.InvalidAuthentication
 
-    wbtip, itip = result[0], result[1]
+    wbtip = x[0]
+    itip = x[1]
 
     if not client_using_tor and not State.tenant_cache[tid]['https_whistleblower']:
         log.err("Denied login request over clear Web for role 'whistleblower'")
@@ -74,7 +82,12 @@ def login_whistleblower(session, tid, receipt, client_using_tor):
 
     itip.wb_last_access = datetime_now()
 
-    return Sessions.new(tid, wbtip.id, 'whistleblower', False)
+    crypto_prv_key = ''
+    if State.tenant_cache[tid].encryption and wbtip.crypto_prv_key:
+        user_key = GCE.derive_key(receipt.encode('utf-8'), State.tenant_cache[tid].receipt_salt)
+        crypto_prv_key = GCE.symmetric_decrypt(user_key, wbtip.crypto_prv_key)
+
+    return Sessions.new(tid, wbtip.id, 'whistleblower', False, crypto_prv_key)
 
 
 @transact
@@ -90,7 +103,7 @@ def login(session, tid, username, password, client_using_tor, client_ip):
                                        User.state != u'disabled',
                                        tenant_condition).distinct()
     for u in users:
-        if security.check_password(password, u.salt, u.password):
+        if GCE.check_password(u.hash_alg, password, u.salt, u.password):
             user = u
 
     if user is None:
@@ -127,7 +140,12 @@ def login(session, tid, username, password, client_using_tor, client_ip):
 
     user.last_login = datetime_now()
 
-    return Sessions.new(tid, user.id, user.role, user.password_change_needed)
+    crypto_prv_key = ''
+    if State.tenant_cache[tid].encryption and user.crypto_prv_key:
+        user_key = GCE.derive_key(password.encode('utf-8'), user.salt)
+        crypto_prv_key = GCE.symmetric_decrypt(user_key, user.crypto_prv_key)
+
+    return Sessions.new(tid, user.id, user.role, user.password_change_needed, crypto_prv_key)
 
 
 @transact
@@ -263,7 +281,7 @@ class TenantAuthSwitchHandler(BaseHandler):
     def get(self, tid):
         check = yield check_tenant_auth_switch(self.current_user, tid)
         if check:
-            session = Sessions.new(tid, self.current_user.user_id, self.current_user.user_role, self.current_user.pcn)
+            session = Sessions.new(tid, self.current_user.user_id, self.current_user.user_role, self.current_user.pcn, self.current_user.cc)
 
         returnValue({
             'redirect': 'https://%s/#/login?token=%s' % (State.tenant_cache[tid].hostname, session.id)

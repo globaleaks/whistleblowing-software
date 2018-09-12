@@ -331,6 +331,7 @@ AdminFieldDesc = {
     'width': int,
     'required': bool,
     'preview': bool,
+    'encrypt': bool,
     'type': field_type_regexp,
     'attrs': dict,
     'options': [AdminFieldOptionDesc],

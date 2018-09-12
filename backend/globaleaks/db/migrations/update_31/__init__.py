@@ -222,7 +222,7 @@ class MigrationScript(MigrationBase):
 
                 new_file = self.model_to['File']()
                 with open(path, 'rb') as f:
-                    new_file.data = base64.b64encode(f.read())
+                    new_file.data = base64.b64encode(f.read()).decode()
 
                 self.session_new.add(new_file)
                 self.session_new.flush()
@@ -267,7 +267,7 @@ class MigrationScript(MigrationBase):
 
                     picture =  self.model_to['File']()
                     with open(img_path, 'r') as img_file:
-                        picture.data = base64.b64encode(img_file.read())
+                        picture.data = base64.b64encode(img_file.read()).decode()
 
                     self.session_new.add(picture)
                     new_obj.picture_id = picture.id

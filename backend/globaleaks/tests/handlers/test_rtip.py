@@ -17,6 +17,7 @@ class TestRTipInstance(helpers.TestHandlerWithPopulatedDB):
     def setUp(self):
         yield helpers.TestHandlerWithPopulatedDB.setUp(self)
         yield self.perform_full_submission_actions()
+        yield Delivery().run()
 
     @inlineCallbacks
     def test_get(self):
@@ -215,7 +216,7 @@ class TestRTipCommentCollection(helpers.TestHandlerWithPopulatedDB):
     @inlineCallbacks
     def test_post(self):
         body = {
-            'content': "can you provide an evidence of what you are telling?",
+            'content': u"can you provide an evidence of what you are telling?",
         }
 
         rtip_descs = yield self.get_rtips()
@@ -235,7 +236,7 @@ class TestReceiverMsgCollection(helpers.TestHandlerWithPopulatedDB):
     @inlineCallbacks
     def test_post(self):
         body = {
-            'content': "can you provide an evidence of what you are telling?",
+            'content': u"can you provide an evidence of what you are telling?",
         }
 
         rtip_descs = yield self.get_rtips()
@@ -272,7 +273,7 @@ class TestIdentityAccessRequestsCollection(helpers.TestHandlerWithPopulatedDB):
     @inlineCallbacks
     def test_post(self):
         body = {
-            'request_motivation': ''
+            'request_motivation': u''
         }
 
         rtip_descs = yield self.get_rtips()

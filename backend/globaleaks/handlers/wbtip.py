@@ -1,15 +1,21 @@
 # -*- coding: utf-8 -*-
 #
 # Handlers dealing with tip interface for whistleblowers (wbtip)
+import base64
+from twisted.internet.threads import deferToThread
+from twisted.internet.defer import inlineCallbacks, returnValue
+
 from globaleaks import models
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.rtip import serialize_comment, serialize_message, db_get_itip_comment_list, WBFileHandler
 from globaleaks.handlers.submission import serialize_usertip, \
-    db_save_questionnaire_answers, db_serialize_archived_questionnaire_schema
+    db_save_questionnaire_answers, db_serialize_archived_questionnaire_schema, decrypt_tip
 from globaleaks.orm import transact
 from globaleaks.rest import errors, requests
-from globaleaks.utils.utility import datetime_now, datetime_to_ISO8601
+from globaleaks.state import State
+from globaleaks.utils.crypto import GCE
 from globaleaks.utils.log import log
+from globaleaks.utils.utility import datetime_now, datetime_to_ISO8601
 
 
 def wb_serialize_ifile(ifile):
@@ -52,14 +58,15 @@ def db_get_wbfile_list(session, itip_id):
 
 
 def db_get_wbtip(session, itip_id, language):
-    itip = models.db_get(session,
-                         models.InternalTip,
-                         models.InternalTip.id == itip_id)
+    wbtip, itip = models.db_get(session,
+                                (models.WhistleblowerTip, models.InternalTip),
+                                models.WhistleblowerTip.id == models.InternalTip.id,
+                                models.InternalTip.id == itip_id)
 
     itip.wb_access_counter += 1
     itip.wb_last_access = datetime_now()
 
-    return serialize_wbtip(session, itip, language)
+    return serialize_wbtip(session, wbtip, itip, language), wbtip.crypto_tip_prv_key
 
 
 @transact
@@ -67,7 +74,7 @@ def get_wbtip(session, itip_id, language):
     return db_get_wbtip(session, itip_id, language)
 
 
-def serialize_wbtip(session, itip, language):
+def serialize_wbtip(session, wbtip, itip, language):
     ret = serialize_usertip(session, itip, itip, language)
 
     ret['comments'] = db_get_itip_comment_list(session, itip.id)
@@ -79,19 +86,33 @@ def serialize_wbtip(session, itip, language):
 
 
 @transact
-def create_comment(session, tid, wbtip_id, request):
-    internaltip = session.query(models.InternalTip).filter(models.InternalTip.id == wbtip_id, models.InternalTip.tid == tid)
+def create_comment(session, tid, wbtip_id, user_key, content):
+    wbtip, itip = session.query(models.WhistleblowerTip, models.InternalTip)\
+                         .filter(models.WhistleblowerTip.id == wbtip_id,
+                                 models.InternalTip.id == models.WhistleblowerTip.id,
+                                 models.InternalTip.tid == tid).one_or_none()
 
-    internaltip.update_date = internaltip.wb_last_access = datetime_now()
+    if wbtip is None:
+        raise errors.ModelNotFound(models.WhistleblowerTip)
+
+    itip.update_date = itip.wb_last_access = datetime_now()
 
     comment = models.Comment()
-    comment.content = request['content']
     comment.internaltip_id = wbtip_id
     comment.type = u'whistleblower'
+
+    if itip.crypto_tip_pub_key:
+        comment.content = base64.b64encode(GCE.asymmetric_encrypt(itip.crypto_tip_pub_key, content)).decode()
+    else:
+        comment.content = content
+
     session.add(comment)
     session.flush()
 
-    return serialize_comment(session, comment)
+    ret = serialize_comment(session, comment)
+    ret['content'] = content
+
+    return ret
 
 
 def db_get_itip_message_list(session, wbtip_id):
@@ -104,26 +125,35 @@ def db_get_itip_message_list(session, wbtip_id):
 
 
 @transact
-def create_message(session, tid, wbtip_id, receiver_id, request):
-    rtip_id, internaltip = session.query(models.ReceiverTip.id, models.InternalTip) \
-                                  .filter(models.ReceiverTip.internaltip_id == wbtip_id,
-                                          models.InternalTip.id == wbtip_id,
+def create_message(session, tid, wbtip_id, user_key, receiver_id, content):
+    wbtip, itip, rtip_id = session.query(models.WhistleblowerTip, models.InternalTip, models.ReceiverTip.id) \
+                                  .filter(models.WhistleblowerTip.id == wbtip_id,
+                                          models.ReceiverTip.internaltip_id == wbtip_id,
                                           models.ReceiverTip.receiver_id == receiver_id,
+                                          models.InternalTip.id == models.WhistleblowerTip.id,
                                           models.InternalTip.tid == tid).one_or_none()
 
-    if rtip_id is None:
-        raise errors.ModelNotFound(models.ReceiverTip)
+    if wbtip is None:
+        raise errors.ModelNotFound(models.WhistleblowerTip)
 
-    internaltip.update_date = internaltip.wb_last_access = datetime_now()
+    itip.update_date = itip.wb_last_access = datetime_now()
 
     msg = models.Message()
-    msg.content = request['content']
     msg.receivertip_id = rtip_id
     msg.type = u'whistleblower'
+
+    if itip.crypto_tip_pub_key:
+        msg.content = base64.b64encode(GCE.asymmetric_encrypt(itip.crypto_tip_pub_key, content)).decode()
+    else:
+        msg.content = content
+
     session.add(msg)
     session.flush()
 
-    return serialize_message(session, msg)
+    ret = serialize_message(session, msg)
+    ret['content'] = content
+
+    return ret
 
 
 @transact
@@ -159,8 +189,14 @@ class WBTipInstance(BaseHandler):
     """
     check_roles = 'whistleblower'
 
+    @inlineCallbacks
     def get(self):
-        return get_wbtip(self.current_user.user_id, self.request.language)
+        tip, crypto_tip_prv_key = yield get_wbtip(self.current_user.user_id, self.request.language)
+
+        if State.tenant_cache[self.request.tid].encryption and crypto_tip_prv_key:
+            tip = yield deferToThread(decrypt_tip, self.current_user.cc, crypto_tip_prv_key, tip)
+
+        returnValue(tip)
 
 
 class WBTipCommentCollection(BaseHandler):
@@ -174,7 +210,7 @@ class WBTipCommentCollection(BaseHandler):
 
     def post(self):
         request = self.validate_message(self.request.content.read(), requests.CommentDesc)
-        return create_comment(self.request.tid, self.current_user.user_id, request)
+        return create_comment(self.request.tid, self.current_user.user_id, self.current_user.cc, request['content'])
 
 
 class WBTipMessageCollection(BaseHandler):
@@ -189,12 +225,12 @@ class WBTipMessageCollection(BaseHandler):
     def post(self, receiver_id):
         request = self.validate_message(self.request.content.read(), requests.CommentDesc)
 
-        return create_message(self.request.tid, self.current_user.user_id, receiver_id, request)
+        return create_message(self.request.tid, self.current_user.user_id, self.current_user.cc, receiver_id, request['content'])
 
 
 class WBTipWBFileHandler(WBFileHandler):
     check_roles = 'whistleblower'
-    upload_handler = True
+    upload_handler = False
 
     def user_can_access(self, session, tid, wbfile):
         wbtip_id = session.query(models.InternalTip.id) \

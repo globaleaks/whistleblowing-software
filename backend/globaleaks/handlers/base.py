@@ -16,12 +16,13 @@ from twisted.internet.defer import inlineCallbacks, returnValue
 
 from globaleaks.event import track_handler
 from globaleaks.rest import errors, requests
+from globaleaks.utils.crypto import sha512
 from globaleaks.utils.securetempfile import SecureTemporaryFile
-from globaleaks.utils.security import sha512
+from globaleaks.utils.utility import datetime_now, deferred_sleep, log
 from globaleaks.sessions import Sessions
 from globaleaks.settings import Settings
-from globaleaks.utils.utility import datetime_now, deferred_sleep
 from globaleaks.utils.log import log
+from globaleaks.utils.utility import datetime_now, deferred_sleep
 
 # https://github.com/globaleaks/GlobaLeaks/issues/1601
 mimetypes.add_type('image/svg+xml', '.svg')
@@ -36,7 +37,7 @@ class FileProducer(object):
     Streaming producer for files
 
     @ivar request: The L{IRequest} to write the contents of the file to.
-    @ivar fileObject: The file the contents of which to write to the request.
+    @ivar fd: The file descriptor from which reading the content to be delivered
     """
     def __init__(self, request, fo):
         self.finish = defer.Deferred()
@@ -379,7 +380,6 @@ class BaseHandler(object):
 
         # Assert the input is okay and the api_token state is acceptable
         if self.request.tid != 1 or \
-           len(token) != Settings.api_token_len or \
            self.state.api_token_session is None or \
            not self.state.tenant_cache[self.request.tid].admin_api_token_digest:
             return
@@ -416,9 +416,11 @@ class BaseHandler(object):
         if mime_type is None:
             mime_type = 'application/octet-stream'
 
+        filename = self.request.args[b'flowFilename'][0].decode('utf-8')
+
         self.uploaded_file = {
             'date': datetime_now(),
-            'name': self.request.args[b'flowFilename'][0],
+            'name': filename,
             'type': mime_type,
             'size': total_file_size,
             'filename': os.path.basename(f.filepath),

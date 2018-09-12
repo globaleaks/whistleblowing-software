@@ -20,7 +20,7 @@ class TestQuestionnairesCollection(helpers.TestCollectionHandler):
         'model': Questionnaire,
         'create': questionnaire.create_questionnaire,
         'data': {
-            'name': 'test'
+            'name': u'test'
         }
     }
 
@@ -48,7 +48,7 @@ class TestQuestionnaireInstance(helpers.TestInstanceHandler):
         'model': Questionnaire,
         'create': questionnaire.create_questionnaire,
         'data': {
-            'name': 'test'
+            'name': u'test'
         }
     }
 
