@@ -113,8 +113,6 @@ class SettingsClass(object):
         self.key_bits = 2048
         self.csr_sign_bits = 512
 
-        self.api_token_len = 32
-
         self.notification_limit = 30
         self.jobs_operation_limit = 20
 

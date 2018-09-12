@@ -8,7 +8,7 @@ from globaleaks.orm import transact
 from globaleaks.rest import errors, requests
 from globaleaks.state import State
 from globaleaks.utils.pgp import PGPContext
-from globaleaks.utils.security import check_password, hash_password, generateRandomKey
+from globaleaks.utils.crypto import GCE, generateRandomKey
 from globaleaks.utils.structures import get_localized_values
 from globaleaks.utils.utility import datetime_to_ISO8601, datetime_now, datetime_null
 
@@ -95,7 +95,7 @@ def get_user_settings(session, tid, user_id, language):
     return user_serialize_user(session, user, language)
 
 
-def db_user_update_user(session, state, tid, user_id, request):
+def db_user_update_user(session, state, tid, user_session, request):
     """
     Updates the specified user.
     This version of the function is specific for users that with comparison with
@@ -112,7 +112,7 @@ def db_user_update_user(session, state, tid, user_id, request):
 
     user = models.db_get(session,
                          models.User,
-                         models.User.id == user_id)
+                         models.User.id == user_session.user_id)
 
     user.language = request.get('language', State.tenant_cache[tid].default_language)
     user.name = request['name']
@@ -123,13 +123,22 @@ def db_user_update_user(session, state, tid, user_id, request):
         if user.password_change_needed:
             user.password_change_needed = False
         else:
-            if not check_password(old_password,
-                                  user.salt,
-                                  user.password):
+            if not GCE.check_password(user.hash_alg,
+                                      old_password,
+                                      user.salt,
+                                      user.password):
                 raise errors.InvalidOldPassword
 
-        user.password = hash_password(new_password, user.salt)
+        user.hash_alg = GCE.HASH
+        user.password = GCE.hash_password(new_password, user.salt)
         user.password_change_date = datetime_now()
+
+        if State.tenant_cache[tid].encryption:
+            enc_key = GCE.derive_key(request['password'].encode(), user.salt)
+            if not user_session.cc:
+                user_session.cc, user.crypto_pub_key = GCE.generate_keypair()
+
+            user.crypto_prv_key = GCE.symmetric_encrypt(enc_key, user_session.cc)
 
     # If the email address changed, send a validation email
     if request['mail_address'] != user.mail_address:
@@ -158,8 +167,8 @@ def db_user_update_user(session, state, tid, user_id, request):
 
 
 @transact
-def update_user_settings(session, state, tid, user_id, request, language):
-    user = db_user_update_user(session, state, tid, user_id, request)
+def update_user_settings(session, state, tid, user_session, request, language):
+    user = db_user_update_user(session, state, tid, user_session, request)
 
     return user_serialize_user(session, user, language)
 
@@ -193,6 +202,6 @@ class UserInstance(BaseHandler):
 
         return update_user_settings(self.state,
                                     self.request.tid,
-                                    self.current_user.user_id,
+                                    self.current_user,
                                     request,
                                     self.request.language)

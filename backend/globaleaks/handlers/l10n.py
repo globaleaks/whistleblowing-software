@@ -8,8 +8,8 @@ from globaleaks.handlers.base import BaseHandler
 from globaleaks.models.config import ConfigFactory
 from globaleaks.orm import transact
 from globaleaks.rest import errors
-from globaleaks.utils.security import directory_traversal_check
 from globaleaks.settings import Settings
+from globaleaks.utils.fs import directory_traversal_check
 from globaleaks.utils.utility import read_json_file
 
 

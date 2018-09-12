@@ -45,11 +45,11 @@ def get_receiver_settings(session, tid, receiver_id, language):
 
 
 @transact
-def update_receiver_settings(session, state, tid, receiver_id, request, language):
-    db_user_update_user(session, state, tid, receiver_id, request)
+def update_receiver_settings(session, state, tid, user_session, request, language):
+    db_user_update_user(session, state, tid, user_session, request)
 
     receiver, user = session.query(models.Receiver, models.User) \
-                            .filter(models.Receiver.id == receiver_id,
+                            .filter(models.Receiver.id == user_session.user_id,
                                     models.Receiver.id == models.User.id).one_or_none()
 
     receiver.tip_notification = request['tip_notification']
@@ -174,7 +174,7 @@ class ReceiverInstance(BaseHandler):
 
         return update_receiver_settings(self.state,
                                         self.request.tid,
-                                        self.current_user.user_id,
+                                        self.current_user,
                                         request,
                                         self.request.language)
 

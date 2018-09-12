@@ -1,10 +1,15 @@
 # -*- coding: utf-8 -*-
 import os
 
+from cryptography.hazmat.backends import default_backend
 from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
+
 from six import text_type
 
-from globaleaks.utils.security import crypto_backend, generateRandomKey
+from globaleaks.utils.crypto import generateRandomKey
+
+crypto_backend = default_backend()
+
 
 class SecureTemporaryFile(object):
     file = None

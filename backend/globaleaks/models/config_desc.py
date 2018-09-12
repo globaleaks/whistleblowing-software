@@ -2,7 +2,7 @@
 from six import text_type
 
 from globaleaks import __version__, DATABASE_VERSION
-from globaleaks.utils.security import generateRandomSalt as salt
+from globaleaks.utils.crypto import GCE
 
 class Item:
     _type = None
@@ -31,7 +31,7 @@ class Bool(Item):
 
 ConfigDescriptor = {
     u'creation_date': Int(default=0),
-    u'receipt_salt': Unicode(default=salt),
+    u'receipt_salt': Unicode(default=GCE.generate_salt),
 
     u'version': Unicode(default=text_type(__version__)),
     u'version_db': Int(default=DATABASE_VERSION),
@@ -155,7 +155,9 @@ ConfigDescriptor = {
     u'ip_filter_authenticated_enable': Bool(default=False),
 
     u'enable_password_reset': Bool(default=False),
-    u'enable_user_pgp_key_upload': Bool(default=True)
+    u'enable_user_pgp_key_upload': Bool(default=True),
+
+    u'encryption': Bool(default=True)
 }
 
 ConfigFilters = {
@@ -237,7 +239,8 @@ ConfigFilters = {
         u'ip_filter_authenticated',
         u'ip_filter_authenticated_enable',
         u'enable_password_reset',
-        u'enable_user_pgp_key_upload'
+        u'enable_user_pgp_key_upload',
+        u'encryption'
     ]),
     'notification': set([
         u'smtp_server',

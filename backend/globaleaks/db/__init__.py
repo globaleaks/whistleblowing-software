@@ -16,7 +16,7 @@ from globaleaks.orm import transact, transact_sync, get_session, make_db_uri
 from globaleaks.sessions import Session
 from globaleaks.settings import Settings
 from globaleaks.state import State, TenantState
-from globaleaks.utils import security
+from globaleaks.utils import fs
 from globaleaks.utils.objectdict import ObjectDict
 from globaleaks.utils.log import log
 
@@ -115,7 +115,7 @@ def sync_clean_untracked_files(session):
             file_to_remove = os.path.join(Settings.attachments_path, filesystem_file)
             try:
                 log.debug('Removing untracked file: %s', file_to_remove)
-                security.overwrite_and_remove(file_to_remove)
+                fs.overwrite_and_remove(file_to_remove)
             except OSError:
                 log.err('Failed to remove untracked file', file_to_remove)
 
@@ -188,7 +188,7 @@ def db_refresh_memory_variables(session, to_refresh=None):
         db_set_cache_exception_delivery_list(session, State.tenant_cache[1])
 
         if State.tenant_cache[1].admin_api_token_digest:
-            State.api_token_session = Session(1, 0, 'admin', False)
+            State.api_token_session = Session(1, 0, 'admin', False, '')
 
     rootdomain = State.tenant_cache[1].rootdomain
     root_onionservice = State.tenant_cache[1].onionservice

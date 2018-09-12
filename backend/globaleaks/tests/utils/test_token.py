@@ -63,8 +63,7 @@ class TestToken(helpers.TestGL):
                 self.assertFalse(os.path.exists(filepath))
 
     def test_token_update_right_answer(self):
-        token = Token(1, 'submission')
-        token.solve()
+        token = self.getSolvedToken()
 
         token.human_captcha = {'question': '1 + 0', 'answer': 1, 'solved': False}
 
@@ -75,8 +74,7 @@ class TestToken(helpers.TestGL):
         self.assertTrue(token.human_captcha['solved'])
 
     def test_token_update_wrong_answer(self):
-        token = Token(1, 'submission')
-        token.solve()
+        token = self.getSolvedToken()
 
         token.human_captcha = {'question': 'XXX', 'answer': 1, 'solved': False}
 
@@ -86,8 +84,7 @@ class TestToken(helpers.TestGL):
         self.assertNotEqual(token.human_captcha['question'], 'XXX')
 
     def test_token_usage_limit(self):
-        token = Token(1, 'submission')
-        token.solve()
+        token = self.getSolvedToken()
 
         token.human_captcha = {'question': 'XXX', 'answer': 1, 'solved': False}
 
@@ -102,8 +99,7 @@ class TestToken(helpers.TestGL):
         self.assertRaises(errors.TokenFailure, token.use)
 
     def test_proof_of_work_wrong_answer(self):
-        token = Token(1, 'submission')
-        token.solve()
+        token = self.getSolvedToken()
 
         # Note, this solution works with two '00' at the end, if the
         # difficulty changes, also this dummy value has to.
@@ -114,8 +110,7 @@ class TestToken(helpers.TestGL):
         self.assertRaises(errors.TokenFailure, token.use)
 
     def test_proof_of_work_right_answer(self):
-        token = Token(1, 'submission')
-        token.solve()
+        token = self.getSolvedToken()
 
         # Note, this solution works with two '00' at the end, if the
         # difficulty changes, also this dummy value has to.

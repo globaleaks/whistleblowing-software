@@ -29,7 +29,7 @@
           "multi_entry_hint": {
             "en": ""
           },
-          "stats_enabled": false,
+          "encrypt": true,
           "required": true,
           "attrs": {
             "min_len": {
@@ -70,7 +70,7 @@
           "multi_entry_hint": {
             "en": ""
           },
-          "stats_enabled": false,
+          "encrypt": true,
           "required": true,
           "attrs": {
             "min_len": {
@@ -103,7 +103,7 @@
           "multi_entry_hint": {
             "en": ""
           },
-          "stats_enabled": false,
+          "encrypt": true,
           "required": false,
           "attrs": {},
           "options": [],
