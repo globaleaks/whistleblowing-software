@@ -28,6 +28,7 @@ Depends:
  , python3:any
  , python3-acme (>=0.25.1)
  , python3-debian
+ , python3-nacl
  , python3-openssl
  , python3-gnupg
  , python3-scrypt

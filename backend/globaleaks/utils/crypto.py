@@ -10,11 +10,11 @@ import struct
 # this library could be replaced later on in the project
 import scrypt
 
-from distutils.version import LooseVersion as V
+from distutils.version import LooseVersion as V # pylint: disable=no-name-in-module,import-error
 
 import nacl
 from nacl.encoding import RawEncoder
-if V('1.2') >= V('1.2'):
+if V(nacl.__version__) >= V('1.2'):
     from nacl.pwhash import argon2id # pylint: disable=no-name-in-module
     from nacl.public import SealedBox, PrivateKey, PublicKey # pylint: disable=no-name-in-module
     from nacl.secret import SecretBox
