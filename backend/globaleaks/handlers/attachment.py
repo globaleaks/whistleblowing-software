@@ -12,7 +12,7 @@ from globaleaks.utils.utility import datetime_now
 
 
 @transact
-def register_ifile_on_db(session, tid, uploaded_file, internaltip_id):
+def register_ifile_on_db(session, tid, internaltip_id, uploaded_file):
     now = datetime_now()
 
     session.query(models.InternalTip) \
@@ -20,13 +20,13 @@ def register_ifile_on_db(session, tid, uploaded_file, internaltip_id):
            .update({'update_date': now, 'wb_last_access': now})
 
     new_file = models.InternalFile()
-    new_file.tid = tid
     new_file.name = uploaded_file['name']
     new_file.content_type = uploaded_file['type']
     new_file.size = uploaded_file['size']
     new_file.internaltip_id = internaltip_id
     new_file.submission = uploaded_file['submission']
     new_file.filename = uploaded_file['filename']
+
     session.add(new_file)
 
     return serializers.serialize_ifile(session, new_file)
@@ -62,4 +62,5 @@ class PostSubmissionAttachment(SubmissionAttachment):
 
         self.uploaded_file['submission'] = False
 
-        yield register_ifile_on_db(self.request.tid, self.uploaded_file, itip_id)
+
+        yield register_ifile_on_db(self.request.tid, itip_id, self.uploaded_file)

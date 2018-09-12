@@ -10,11 +10,12 @@ from datetime import datetime, timedelta
 from random import SystemRandom
 
 from globaleaks.rest import errors
-from globaleaks.utils.security import sha256, generateRandomKey
 from globaleaks.state import State
+from globaleaks.utils.crypto import sha256, generateRandomKey, GCE
 from globaleaks.utils.tempdict import TempDict
 from globaleaks.utils.utility import datetime_now, datetime_to_ISO8601
 from globaleaks.utils.log import log
+
 
 
 class TokenListClass(TempDict):
@@ -48,7 +49,7 @@ TokenList = TokenListClass()
 class Token(object):
     MAX_USES = 30
 
-    def __init__(self, tid, token_kind="submission", uses=MAX_USES):
+    def __init__(self, tid, token_kind='submission', uses=MAX_USES):
         self.tid = tid
         self.id = generateRandomKey(42)
         self.kind = token_kind
@@ -183,20 +184,22 @@ class Token(object):
             if not self.proof_of_work['solved']:
                 self.generate_proof_of_work()
 
-        return self.human_captcha['solved'] and self.proof_of_work['solved']
+        if not self.human_captcha['solved'] or not self.proof_of_work['solved']:
+            return False
+
+        if self.kind == 'submission':
+            self.tip_key = GCE.generate_key()
+
+        return True
 
     def use(self):
         try:
             self.decrement()
             self.timedelta_check()
-        except errors.TokenFailure as e:
+        except errors.TokenFailure:
             # Unrecoverable failures so immediately delete the token.
             TokenList.delete(self.id)
-            raise e
+            raise
 
         if not self.human_captcha['solved'] or not self.proof_of_work['solved']:
             raise errors.TokenFailure("Token is not solved")
-
-    def solve(self):
-        self.human_captcha = {'solved': True}
-        self.proof_of_work = {'solved': True}

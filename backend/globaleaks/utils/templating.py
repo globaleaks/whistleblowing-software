@@ -320,7 +320,7 @@ class TipKeyword(UserNodeKeyword, ContextKeyword):
         return self.EventTime()
 
     def QuestionnaireAnswers(self):
-        return self.dump_questionnaire_answers(self.data['tip']['questionnaire'], self.data['tip']['answers'])
+        return self.dump_questionnaire_answers(self.data['tip']['questionnaire'], self.data['tip']['data']['answers']['value'])
 
     def Comments(self):
         comments = self.data.get('comments', [])

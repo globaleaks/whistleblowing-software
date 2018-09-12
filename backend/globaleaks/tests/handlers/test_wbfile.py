@@ -1,8 +1,11 @@
 # -*- coding: utf-8 -*-
 from globaleaks import models
 from globaleaks.handlers import wbtip, rtip
+from globaleaks.jobs.delivery import Delivery
 from globaleaks.tests import helpers
 from twisted.internet.defer import inlineCallbacks
+
+attachment=b'hello world'
 
 class TestWBFileWorkFlow(helpers.TestHandlerWithPopulatedDB):
     _handler = None
@@ -14,9 +17,10 @@ class TestWBFileWorkFlow(helpers.TestHandlerWithPopulatedDB):
         self._handler = rtip.WhistleblowerFileHandler
         rtips_desc = yield self.get_rtips()
         for rtip_desc in rtips_desc:
-            samplefile = {'filename': 'hi.txt', 'body': 'Hello, world!', 'content_type': 'application/bogan'}
-            handler = self.request(role='receiver', user_id = rtip_desc['receiver_id'], attached_file=samplefile)
+            handler = self.request(role='receiver', user_id = rtip_desc['receiver_id'], attached_file=attachment)
             yield handler.post(rtip_desc['id'])
+
+        yield Delivery().run()
 
         self._handler = wbtip.WBTipWBFileHandler
         wbtips_desc = yield self.get_wbtips()
@@ -25,6 +29,7 @@ class TestWBFileWorkFlow(helpers.TestHandlerWithPopulatedDB):
             for wbfile_desc in wbfiles_desc:
                 handler = self.request(role='whistleblower', user_id = wbtip_desc['id'])
                 yield handler.get(wbfile_desc['id'])
+                self.assertEqual(handler.request.getResponseBody(), attachment)
 
         self._handler = rtip.RTipWBFileHandler
         rtips_desc = yield self.get_rtips()

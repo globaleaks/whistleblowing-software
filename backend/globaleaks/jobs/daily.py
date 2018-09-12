@@ -18,7 +18,7 @@ from globaleaks.handlers.user import user_serialize_user
 from globaleaks.jobs.base import LoopingJob
 from globaleaks.orm import transact
 from globaleaks.state import State
-from globaleaks.utils.security import overwrite_and_remove
+from globaleaks.utils.fs import overwrite_and_remove
 from globaleaks.utils.templating import Templating
 from globaleaks.utils.utility import datetime_now, datetime_to_ISO8601, is_expired
 
@@ -148,9 +148,9 @@ class Daily(LoopingJob):
             yield self.commit_files_deletion(files_to_delete)
 
         # Delete the outdated AES files older than 1 day
-        files_to_remove = [f for f in os.listdir(self.state.settings.attachments_path) if fnmatch.fnmatch(f, '*.aes')]
+        files_to_remove = [f for f in os.listdir(self.state.settings.tmp_path) if fnmatch.fnmatch(f, '*.aes')]
         for f in files_to_remove:
-            path = os.path.join(self.state.settings.attachments_path, f)
+            path = os.path.join(self.state.settings.tmp_path, f)
             timestamp = datetime.datetime.fromtimestamp(os.path.getmtime(path))
             if is_expired(timestamp, days=1):
                 os.remove(path)

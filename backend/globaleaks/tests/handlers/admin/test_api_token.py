@@ -1,12 +1,13 @@
 # -*- coding: utf-8 -*-
+from twisted.internet.defer import inlineCallbacks
+
 from globaleaks import db
 from globaleaks.handlers.admin import shorturl
 from globaleaks.models.config import ConfigFactory
 from globaleaks.orm import transact
 from globaleaks.rest import errors
-from globaleaks.utils.security import generate_api_token
+from globaleaks.utils.crypto import generateApiToken
 from globaleaks.tests import helpers
-from twisted.internet.defer import inlineCallbacks
 
 
 @transact
@@ -19,7 +20,7 @@ class TestAPITokenEnabled(helpers.TestHandlerWithPopulatedDB):
 
     @inlineCallbacks
     def setUp(self):
-        self.api_tok, digest = generate_api_token()
+        self.api_tok, digest = generateApiToken()
         yield helpers.TestHandlerWithPopulatedDB.setUp(self)
         yield set_api_digest(digest)
         yield db.refresh_memory_variables()
@@ -49,7 +50,7 @@ class TestAPITokenDisabled(helpers.TestHandlerWithPopulatedDB):
     def test_deny_token(self):
         # The active component of this application is the placement of the api key
         # in the private memory copy. When that changes this test will break.
-        self.api_tok, digest = generate_api_token()
+        self.api_tok, digest = generateApiToken()
         yield set_api_digest(digest)
 
         shorturl_desc = self.get_dummy_shorturl()

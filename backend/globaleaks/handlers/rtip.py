@@ -1,26 +1,28 @@
 # -*- coding: utf-8 -*-
 #
 # Handlers dealing with tip interface for receivers (rtip)
+import base64
+import json
 import os
 
 from six import text_type
-from twisted.internet import threads
-from twisted.internet.defer import inlineCallbacks
+from twisted.internet.threads import deferToThread
+from twisted.internet.defer import inlineCallbacks, returnValue
 
 from globaleaks import models
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.custodian import serialize_identityaccessrequest
 from globaleaks.handlers.operation import OperationHandler
-from globaleaks.handlers.submission import serialize_usertip
+from globaleaks.handlers.submission import serialize_usertip, decrypt_tip
 from globaleaks.models import serializers
 from globaleaks.orm import transact
 from globaleaks.rest import errors, requests
 from globaleaks.settings import Settings
-from globaleaks.utils.security import directory_traversal_check
 from globaleaks.state import State
-from globaleaks.utils.utility import get_expiration, datetime_now, datetime_never, \
-    datetime_to_ISO8601
+from globaleaks.utils.crypto import GCE
+from globaleaks.utils.fs import directory_traversal_check
 from globaleaks.utils.log import log
+from globaleaks.utils.utility import get_expiration, datetime_now, datetime_never, datetime_to_ISO8601
 
 
 def db_update_submission_status(session, user_id, itip, submission_status_id, submission_substatus_id):
@@ -137,6 +139,7 @@ def serialize_rtip(session, rtip, itip, language):
     ret['wbfiles'] = db_receiver_get_wbfile_list(session, itip.id)
     ret['iars'] = db_get_rtip_identityaccessrequest_list(session, rtip.id)
     ret['enable_notifications'] = bool(rtip.enable_notifications)
+
     return ret
 
 
@@ -239,7 +242,7 @@ def db_get_rtip(session, tid, user_id, rtip_id, language):
     rtip.access_counter += 1
     rtip.last_access = datetime_now()
 
-    return serialize_rtip(session, rtip, itip, language)
+    return serialize_rtip(session, rtip, itip, language), rtip.crypto_tip_prv_key
 
 
 def db_mark_file_for_secure_deletion(session, relpath):
@@ -377,20 +380,28 @@ def create_identityaccessrequest(session, tid, user_id, rtip_id, request):
 
 
 @transact
-def create_comment(session, tid, user_id, rtip_id, request):
+def create_comment(session, tid, user_id, user_key, rtip_id, content):
     rtip, itip = db_access_rtip(session, tid, user_id, rtip_id)
 
     itip.update_date = rtip.last_access = datetime_now()
 
     comment = models.Comment()
-    comment.content = request['content']
     comment.internaltip_id = itip.id
     comment.type = u'receiver'
     comment.author_id = rtip.receiver_id
+
+    if itip.crypto_tip_pub_key:
+        comment.content = base64.b64encode(GCE.asymmetric_encrypt(itip.crypto_tip_pub_key, content)).decode()
+    else:
+        comment.content = content
+
     session.add(comment)
     session.flush()
 
-    return serialize_comment(session, comment)
+    ret = serialize_comment(session, comment)
+    ret['content'] = content
+
+    return ret
 
 
 def db_get_itip_message_list(session, rtip_id):
@@ -402,19 +413,26 @@ def db_get_rtip_identityaccessrequest_list(session, rtip_id):
 
 
 @transact
-def create_message(session, tid, user_id, rtip_id, request):
+def create_message(session, tid, user_id, user_key, rtip_id, content):
     rtip, itip = db_access_rtip(session, tid, user_id, rtip_id)
 
     itip.update_date = rtip.last_access = datetime_now()
 
     msg = models.Message()
-    msg.content = request['content']
     msg.receivertip_id = rtip.id
     msg.type = u'receiver'
+
+    if itip.crypto_tip_pub_key:
+        msg.content = base64.b64encode(GCE.asymmetric_encrypt(itip.crypto_tip_pub_key, content)).decode()
+    else:
+        msg.content = content
+
     session.add(msg)
     session.flush()
 
-    return serialize_message(session, msg)
+    ret = serialize_message(session, msg)
+    ret['content'] = content
+    return ret
 
 
 @transact
@@ -430,8 +448,14 @@ class RTipInstance(OperationHandler):
     """
     check_roles = 'receiver'
 
+    @inlineCallbacks
     def get(self, tip_id):
-        return get_rtip(self.request.tid, self.current_user.user_id, tip_id, self.request.language)
+        tip, crypto_tip_prv_key = yield get_rtip(self.request.tid, self.current_user.user_id, tip_id, self.request.language)
+
+        if State.tenant_cache[self.request.tid].encryption and crypto_tip_prv_key:
+            tip = yield deferToThread(decrypt_tip, self.current_user.cc, crypto_tip_prv_key, tip)
+
+        returnValue(tip)
 
     def operation_descriptors(self):
         return {
@@ -480,7 +504,7 @@ class RTipCommentCollection(BaseHandler):
     def post(self, tip_id):
         request = self.validate_message(self.request.content.read(), requests.CommentDesc)
 
-        return create_comment(self.request.tid, self.current_user.user_id, tip_id, request)
+        return create_comment(self.request.tid, self.current_user.user_id, self.current_user.cc, tip_id, request['content'])
 
 
 class ReceiverMsgCollection(BaseHandler):
@@ -492,7 +516,7 @@ class ReceiverMsgCollection(BaseHandler):
     def post(self, tip_id):
         request = self.validate_message(self.request.content.read(), requests.CommentDesc)
 
-        return create_message(self.request.tid, self.current_user.user_id, tip_id, request)
+        return create_message(self.request.tid, self.current_user.user_id, self.current_user.cc, tip_id, request['content'])
 
 
 class WhistleblowerFileHandler(BaseHandler):
@@ -518,22 +542,7 @@ class WhistleblowerFileHandler(BaseHandler):
     def post(self, tip_id):
         yield self.can_perform_action(self.request.tid, tip_id, self.uploaded_file['name'])
 
-        rtip = yield get_rtip(self.request.tid, self.current_user.user_id, tip_id, self.request.language)
-
-        # First: dump the file in the filesystem
-        filename = str.split(os.path.basename(self.uploaded_file['filename']), '.aes')[0] + '.plain'
-
-        dst = os.path.join(Settings.attachments_path, filename)
-
-        directory_traversal_check(Settings.attachments_path, dst)
-
-        yield threads.deferToThread(self.write_upload_plaintext_to_disk, dst)
-
-        self.uploaded_file['filename'] = filename
-        self.uploaded_file['creation_date'] = datetime_now()
-        self.uploaded_file['submission'] = False
-
-        yield register_wbfile_on_db(self.request.tid, rtip['id'], self.uploaded_file)
+        yield register_wbfile_on_db(self.request.tid, tip_id, self.uploaded_file)
 
         log.debug("Recorded new WhistleblowerFile %s", self.uploaded_file['name'])
 
@@ -551,26 +560,35 @@ class WBFileHandler(BaseHandler):
         pass
 
     @transact
-    def download_wbfile(self, session, tid, file_id):
-        wbfile = session.query(models.WhistleblowerFile) \
-                        .filter(models.WhistleblowerFile.id == file_id).one_or_none()
+    def download_wbfile(self, session, tid, user_id, file_id):
+        x = session.query(models.WhistleblowerFile, models.WhistleblowerTip) \
+                   .filter(models.WhistleblowerFile.id == file_id,
+                           models.WhistleblowerFile.receivertip_id == models.ReceiverTip.id,
+                           models.ReceiverTip.internaltip_id == models.WhistleblowerTip.id).one_or_none()
 
-        if wbfile is None or not self.user_can_access(session, tid, wbfile):
+        if x is None or not self.user_can_access(session, tid, x[0]):
             raise errors.ModelNotFound(models.WhistleblowerFile)
+
+        wbfile, wbtip = x[0], x[1]
 
         self.access_wbfile(session, wbfile)
 
-        return serializers.serialize_wbfile(session, tid, wbfile)
+        return serializers.serialize_wbfile(session, tid, wbfile), wbtip.crypto_tip_prv_key
 
     @inlineCallbacks
     def get(self, wbfile_id):
-        wbfile = yield self.download_wbfile(self.request.tid, wbfile_id)
+        wbfile, tip_prv_key = yield self.download_wbfile(self.request.tid, self.current_user.id, wbfile_id)
 
         filelocation = os.path.join(Settings.attachments_path, wbfile['filename'])
 
         directory_traversal_check(Settings.attachments_path, filelocation)
 
-        yield self.write_file_as_download(wbfile['name'], filelocation)
+        if tip_prv_key:
+            tip_prv_key = GCE.asymmetric_decrypt(self.current_user.cc, tip_prv_key)
+            fo = GCE.streaming_encryption_open('DECRYPT', tip_prv_key, filelocation)
+            yield self.write_file_as_download_fo(wbfile['name'], fo)
+        else:
+            yield self.write_file_as_download(wbfile['name'], filelocation)
 
 
 class RTipWBFileHandler(WBFileHandler):
@@ -608,33 +626,38 @@ class ReceiverFileDownload(BaseHandler):
 
     @transact
     def download_rfile(self, session, tid, user_id, file_id):
-        rfile, receiver_id = session.query(models.ReceiverFile, models.ReceiverTip.receiver_id) \
-                                    .filter(models.ReceiverFile.id == file_id,
-                                            models.ReceiverFile.receivertip_id == models.ReceiverTip.id,
-                                            models.ReceiverTip.receiver_id == user_id,
-                                            models.ReceiverTip.internaltip_id == models.InternalTip.id,
-                                            models.InternalTip.tid == tid).one()
+        rfile, rtip = session.query(models.ReceiverFile, models.ReceiverTip) \
+                             .filter(models.ReceiverFile.id == file_id,
+                                     models.ReceiverFile.receivertip_id == models.ReceiverTip.id,
+                                     models.ReceiverTip.receiver_id == user_id,
+                                     models.ReceiverTip.internaltip_id == models.InternalTip.id,
+                                     models.InternalTip.tid == tid).one()
 
         if not rfile:
             raise errors.ModelNotFound(models.ReceiverFile)
 
         log.debug("Download of file %s by receiver %s (%d)" %
-                  (rfile.internalfile_id, receiver_id, rfile.downloads))
+                  (rfile.internalfile_id, rtip.receiver_id, rfile.downloads))
 
         rfile.last_access = datetime_now()
         rfile.downloads += 1
 
-        return serializers.serialize_rfile(session, tid, rfile)
+        return serializers.serialize_rfile(session, tid, rfile), rtip.crypto_tip_prv_key
 
     @inlineCallbacks
     def get(self, rfile_id):
-        rfile = yield self.download_rfile(self.request.tid, self.current_user.user_id, rfile_id)
+        rfile, tip_prv_key = yield self.download_rfile(self.request.tid, self.current_user.user_id, rfile_id)
 
         filelocation = os.path.join(Settings.attachments_path, rfile['filename'])
 
         directory_traversal_check(Settings.attachments_path, filelocation)
 
-        yield self.write_file_as_download(rfile['name'], filelocation)
+        if tip_prv_key:
+            tip_prv_key = GCE.asymmetric_decrypt(self.current_user.cc, tip_prv_key)
+            fo = GCE.streaming_encryption_open('DECRYPT', tip_prv_key, filelocation)
+            yield self.write_file_as_download_fo(rfile['name'], fo)
+        else:
+            yield self.write_file_as_download(rfile['name'], filelocation)
 
 
 class IdentityAccessRequestsCollection(BaseHandler):

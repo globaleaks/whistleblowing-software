@@ -2,7 +2,7 @@
 import base64
 import os
 
-from six import text_type
+from six import binary_type, text_type
 
 from globaleaks import models
 from globaleaks.db.migrations.update import MigrationBase
@@ -214,7 +214,7 @@ class MigrationScript(MigrationBase):
             data = favicon_file.read()
             new_file = self.model_to['File']()
             new_file.id = u'favicon'
-            new_file.data = base64.b64encode(data)
+            new_file.data = base64.b64encode(data).decode()
             self.session_new.add(new_file)
             self.entries_count['File'] += 1
 
@@ -224,7 +224,7 @@ class MigrationScript(MigrationBase):
                 data = homepage_file.read()
                 new_file = self.model_to['File']()
                 new_file.id = u'homepage'
-                new_file.data = base64.b64encode(data)
+                new_file.data = base64.b64encode(data).decode()
                 self.session_new.add(new_file)
                 self.entries_count['File'] += 1
 
@@ -256,7 +256,11 @@ class MigrationScript(MigrationBase):
             self.session_new.add(self.model_to['Config']('notification', var_name, old_val))
 
         # Migrate private fields
-        self.session_new.add(self.model_to['Config']('private', 'receipt_salt', old_node.receipt_salt))
+        salt = old_node.receipt_salt
+        if isinstance(old_node.receipt_salt, binary_type):
+            salt = salt.decode()
+
+        self.session_new.add(self.model_to['Config']('private', 'receipt_salt', salt))
         self.session_new.add(self.model_to['Config']('private', 'smtp_password', old_notif.password))
 
         # Set old verions that will be then handled by the version update

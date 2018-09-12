@@ -2,12 +2,12 @@
 
 from globaleaks import __version__, DATABASE_VERSION
 from globaleaks.models.config_desc import Unicode, Int, Bool
-from globaleaks.utils.security import generateRandomSalt as salt
+from globaleaks.utils.crypto import GCE
 from globaleaks.utils.utility import datetime_null, iso_strf_time
 
 GLConfig_v_35 = {
     'private': {
-        'receipt_salt': Unicode(default=salt()), # is always customized
+        'receipt_salt': Unicode(default=GCE.generate_salt()),
         'smtp_password': Unicode(default=u'yes_you_really_should_change_me'),
 
         'version': Unicode(default=Unicode(__version__)),
