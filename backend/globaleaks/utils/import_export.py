@@ -26,7 +26,6 @@ DIRECT_TID_REFERENCES = [
     ('config', models.Config),
     ('config_l10n', models.ConfigL10N),
     ('context', models.Context),
-    ('counters', models.Counter),
     ('custom_texts', models.CustomTexts),
     ('enabledlanguages', models.EnabledLanguage),
     ('field', models.Field),
