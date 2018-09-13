@@ -80,16 +80,22 @@ def backup(args):
     print("Success: The archived backup was created at:", args.backuppath)
 
 def export_tenant(args):
-    session = get_session(make_db_uri(args.dbpath))
+    check_dir(args.dbpath)
+    db_version, db_path = get_db_file(args.dbpath)
+
+    session = get_session(make_db_uri(db_path))
     data = import_export.create_export_tarball(session, args.tid)
     with open(args.output, 'wb') as f:
         f.write(data)
     print("Written export tarball to " + args.output)
 
 def import_tenant(args):
+    check_dir(args.dbpath)
+    db_version, db_path = get_db_file(args.dbpath)
+
     with open(args.import_file, 'rb') as f:
         tarball_blob = f.read()
-    session = get_session(make_db_uri(args.dbpath))
+    session = get_session(make_db_uri(db_path))
     import_export.read_import_tarball(session, tarball_blob)
 
 def restore(args):

@@ -30,6 +30,7 @@ DIRECT_TID_REFERENCES = [
     ('enabledlanguages', models.EnabledLanguage),
     ('field', models.Field),
     ('file', models.File),
+    ('submissionstatus', models.SubmissionStatus),
     ('internaltip', models.InternalTip),
     ('mail', models.Mail),
     ('questionaire', models.Questionnaire),
@@ -49,10 +50,9 @@ IMPORT_ORDER = [
     'questionaire',
     'context',
     'step',
-    'counters',
     'custom_texts',
     'field',
-    'file',
+    'file',    
     'internaltip',
     'mail',
     'signup',
@@ -72,9 +72,13 @@ IMPORT_ORDER = [
     'receivercontext',
     'receivertip',
     'receiverfile',
+    'message',
     'identityaccessrequest',
     'userimg',
-    'whistleblowerfile'
+    'whistleblowerfile',
+    'submissionstatus',
+    'submissionsubstatus',
+    'submissionstatuschange'
 ]
 
 def row_serializator(session, rowset, output_list):
@@ -144,6 +148,7 @@ def collect_all_tenant_data(session, tid):
     user_ids = build_id_list(tenant_data['user'], 'id')
     questionaire_id = build_id_list(tenant_data['questionaire'], 'id')
     questionairehash_id = build_id_list(tenant_data['internaltip'], 'questionnaire_hash')
+    submission_status_ids = build_id_list(tenant_data['submissionstatus'], 'id')
 
     # ArchivedSchema
     tenant_data['archivedschema'] = collect_pk_relation(session, models.ArchivedSchema, questionairehash_id, 'hash')
@@ -206,6 +211,10 @@ def collect_all_tenant_data(session, tid):
     tenant_data['identityaccessrequest'] = collect_pk_relation(session, models.IdentityAccessRequest, receivertip_ids, 'id')
     print("  Serialized identityaccessrequest (" + str(len(tenant_data['identityaccessrequest'])) + " rows)")
 
+    # Message
+    tenant_data['message'] = collect_pk_relation(session, models.Message, receivertip_ids, 'id')
+    print("  Serialized message (" + str(len(tenant_data['message'])) + " rows)")
+
     # Step
     tenant_data['step'] = collect_pk_relation(session, models.Step, questionaire_id, 'questionnaire_id')
     print("  Serialized step (" + str(len(tenant_data['step'])) + " rows)")
@@ -214,10 +223,18 @@ def collect_all_tenant_data(session, tid):
     tenant_data['userimg'] = collect_pk_relation(session, models.UserImg, user_ids, 'id')
     print("  Serialized userimg (" + str(len(tenant_data['userimg'])) + " rows)")
 
-
     # WhistleblowerFile
     tenant_data['whistleblowerfile'] = collect_pk_relation(session, models.WhistleblowerFile, receivertip_ids, 'receivertip_id')
     print("  Serialized whistleblowerfile (" + str(len(tenant_data['whistleblowerfile'])) + " rows)")
+
+    # SubmissionSubStatus
+    tenant_data['submissionsubstatus'] = collect_pk_relation(session, models.SubmissionSubStatus, submission_status_ids, 'submissionstatus_id')
+    print("  Serialized submission_substatus (" + str(len(tenant_data['submissionsubstatus'])) + " rows)")
+
+    # SubmissionStatusChange
+    tenant_data['submissionstatuschange'] = collect_pk_relation(session, models.SubmissionStatusChange, internaltip_ids, 'internaltip_id')
+    print("  Serialized submissionstatuschange (" + str(len(tenant_data['submissionstatuschange'])) + " rows)")
+
 
     session.close()
     return tenant_data
