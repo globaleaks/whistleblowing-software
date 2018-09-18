@@ -24,9 +24,9 @@ class SecureTemporaryFile(object):
     def open(self, mode):
         if self.file is None:
            if mode == 'w':
-               self.file = open(self.filepath, 'ab+')
+               self.fd = open(self.filepath, 'ab+')
            else:
-               self.file = open(self.filepath, 'rb')
+               self.fd = open(self.filepath, 'rb')
                self.dec = self.cipher.decryptor()
 
         return self
@@ -35,16 +35,16 @@ class SecureTemporaryFile(object):
         if isinstance(data, text_type):
             data = data.encode('utf-8')
 
-        self.file.write(self.enc.update(data))
+        self.fd.write(self.enc.update(data))
 
     def finalize_write(self):
-        self.file.write(self.enc.finalize())
+        self.fd.write(self.enc.finalize())
 
     def read(self, c=None):
         if c is None:
-            data = self.file.read()
+            data = self.fd.read()
         else:
-            data = self.file.read(c)
+            data = self.fd.read(c)
 
         if data:
             return self.dec.update(data)
@@ -52,8 +52,9 @@ class SecureTemporaryFile(object):
         return self.dec.finalize()
 
     def close(self):
-        self.file.close()
-        self.file = None
+        if self.fd is not None:
+            self.fd.close()
+            self.fd = None
 
     def __enter__(self):
         return self
@@ -62,6 +63,8 @@ class SecureTemporaryFile(object):
         self.close()
 
     def __del__(self):
+        self.close()
+
         try:
             os.remove(self.filepath)
         except:
