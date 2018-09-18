@@ -40,14 +40,10 @@ class FileProducer(object):
     @ivar request: The L{IRequest} to write the contents of the file to.
     @ivar fileObject: The file the contents of which to write to the request.
     """
-    bufferSize = Settings.file_chunk_size
-
-    def __init__(self, request, filePath):
+    def __init__(self, request, fd):
         self.finish = defer.Deferred()
         self.request = request
-        self.fileSize = os.stat(filePath).st_size
-        self.fileObject = open(filePath, "rb")
-        self.bytesWritten = 0
+        self.fd = fd
 
     def start(self):
         self.request.registerProducer(self, False)
@@ -56,12 +52,10 @@ class FileProducer(object):
     def resumeProducing(self):
         try:
             if self.request is not None:
-                data = self.fileObject.read(self.bufferSize)
+                data = self.fd.read(Settings.file_chunk_size)
                 if data:
-                    self.bytesWritten += len(data)
                     self.request.write(data)
-
-                if self.bytesWritten == self.fileSize:
+                else:
                     self.stopProducing()
         except:
             pass
@@ -69,13 +63,15 @@ class FileProducer(object):
     def stopProducing(self):
         try:
             if self.request is not None:
-                self.fileObject.close()
                 self.request.unregisterProducer()
                 self.request.finish()
                 self.request = None
                 self.finish.callback(None)
         except:
             pass
+
+    def __del__(self):
+        self.fd.close()
 
 
 class BaseHandler(object):
@@ -339,7 +335,9 @@ class BaseHandler(object):
         if mime_type:
             self.request.setHeader(b'Content-Type', mime_type)
 
-        return FileProducer(self.request, filepath).start()
+        fd = open(filepath, 'rb')
+
+        return FileProducer(self.request, fd).start()
 
     def force_file_download(self, filename, filepath):
         if not os.path.exists(filepath) or not os.path.isfile(filepath):
@@ -349,7 +347,9 @@ class BaseHandler(object):
         self.request.setHeader(b'Content-Type', b'application/octet-stream')
         self.request.setHeader(b'Content-Disposition', 'attachment; filename="%s"' % filename)
 
-        return FileProducer(self.request, filepath).start()
+        fd = open(filepath, 'rb')
+
+        return FileProducer(self.request, fd).start()
 
     def get_current_user(self):
         api_session = self.get_api_session()
