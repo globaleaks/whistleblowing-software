@@ -13,7 +13,7 @@ from globaleaks.db import make_db_uri
 from globaleaks.models import Base
 from globaleaks.settings import Settings
 from globaleaks.orm import get_engine, get_session
-from globaleaks.utils.utility import fix_file_permissions
+from globaleaks.utils.utility import fix_file_permissions, log
 from globaleaks.utils.security import generateRandomKey, overwrite_and_remove
 
 # Allows for easy testing as a new root tenant
@@ -84,7 +84,6 @@ IMPORT_ORDER = [
 def row_serializator(session, rowset, output_list):
     '''Serializes and expunges a row for import into a clean DB'''
     for row in rowset:
-        session.expunge(row)
         output_list.append(row)
 
 def build_id_list(dataset, column_name):
@@ -100,14 +99,13 @@ def collect_pk_relation(session, model, pks, filter_column):
         filter_dict = { filter_column: pk}
         rows = session.query(model).filter_by(**filter_dict)
         for row in rows:
-            session.expunge(row)
             data.append(row)
 
     return data
 
 def collect_all_tenant_data(session, tid):
     '''Collects the tenant data into dictionary form ready for serialization
-       into a new database instance detaching the information from SQLAlchemy'''
+       into a new database instance detaching the information from the ORM'''
 
     tenant_data = {}
 
@@ -115,10 +113,9 @@ def collect_all_tenant_data(session, tid):
     tenant = session.query(models.Tenant).filter_by(id=tid).first()
 
     if tid == EXPORTED_TENANT_ID:
-        print("Importing Tenant: " + tenant.label)
+        log.info("Importing Tenant: " + tenant.label)
     else:
-        print("Exporting Tenant: " + tenant.label)
-    session.expunge(tenant)
+        log.info("Exporting Tenant: " + tenant.label)
 
     # Zero out the PK to note that this is special
     tenant.id = EXPORTED_TENANT_ID
@@ -136,7 +133,7 @@ def collect_all_tenant_data(session, tid):
             rows = session.query(element[1]).filter_by(tid=tid)
 
         row_serializator(session, rows, tenant_data[element[0]])
-        print("  Serialized " + element[0] + " (" + str(len(tenant_data[element[0]])) + " rows)")
+        log.info("  Serialized " + element[0] + " (" + str(len(tenant_data[element[0]])) + " rows)")
 
     # At thie point, things get more complex because we need to reference the existing data, and
     # go fishing for what we actually need.
@@ -152,19 +149,19 @@ def collect_all_tenant_data(session, tid):
 
     # ArchivedSchema
     tenant_data['archivedschema'] = collect_pk_relation(session, models.ArchivedSchema, questionairehash_id, 'hash')
-    print("  Serialized archivedschema (" + str(len(tenant_data['archivedschema'])) + " rows)")
+    log.info("  Serialized archivedschema (" + str(len(tenant_data['archivedschema'])) + " rows)")
     
     # Comment
     tenant_data['comment'] = collect_pk_relation(session, models.Comment, internaltip_ids, 'internaltip_id')
-    print("  Serialized comment (" + str(len(tenant_data['comment'])) + " rows)")
+    log.info("  Serialized comment (" + str(len(tenant_data['comment'])) + " rows)")
 
     # ContextImg
     tenant_data['contextimg'] = collect_pk_relation(session, models.ContextImg, context_ids, 'id')
-    print("  Serialized contextimg (" + str(len(tenant_data['contextimg'])) + " rows)")
+    log.info("  Serialized contextimg (" + str(len(tenant_data['contextimg'])) + " rows)")
 
     # FieldAnswer
     tenant_data['fieldanswer'] = collect_pk_relation(session, models.FieldAnswer, internaltip_ids, 'internaltip_id')
-    print("  Serialized fieldanswer (" + str(len(tenant_data['fieldanswer'])) + " rows)")
+    log.info("  Serialized fieldanswer (" + str(len(tenant_data['fieldanswer'])) + " rows)")
 
     # HACK ALERT: fieldanswer has a circular dependency on fieldanswergroup. To allow this to fly, we need
     # to create a version of fieldanswer with the FK nulled out, import that, and then override it
@@ -175,65 +172,65 @@ def collect_all_tenant_data(session, tid):
     # FieldAnswerGroup
     fieldanswer_ids = build_id_list(tenant_data['fieldanswer'], 'id')
     tenant_data['fieldanswergroup'] = collect_pk_relation(session, models.FieldAnswerGroup, fieldanswer_ids, 'fieldanswer_id')
-    print("  Serialized fieldanswergroup (" + str(len(tenant_data['fieldanswergroup'])) + " rows)")
+    log.info("  Serialized fieldanswergroup (" + str(len(tenant_data['fieldanswergroup'])) + " rows)")
 
     # FieldAttr
     tenant_data['fieldattr'] = collect_pk_relation(session, models.FieldAttr, field_ids, 'field_id')
-    print("  Serialized fieldattr (" + str(len(tenant_data['fieldattr'])) + " rows)")
+    log.info("  Serialized fieldattr (" + str(len(tenant_data['fieldattr'])) + " rows)")
 
     # FieldOption
     tenant_data['fieldoption'] = collect_pk_relation(session, models.FieldOption, field_ids, 'field_id')
-    print("  Serialized fieldoption (" + str(len(tenant_data['fieldoption'])) + " rows)")
+    log.info("  Serialized fieldoption (" + str(len(tenant_data['fieldoption'])) + " rows)")
 
     # InternalFile
     tenant_data['internalfile'] = collect_pk_relation(session, models.InternalFile, internaltip_ids, 'internaltip_id')
-    print("  Serialized internalfile (" + str(len(tenant_data['internalfile'])) + " rows)")
+    log.info("  Serialized internalfile (" + str(len(tenant_data['internalfile'])) + " rows)")
 
     # Receivers
     tenant_data['receiver'] = collect_pk_relation(session, models.Receiver, user_ids, 'id')
-    print("  Serialized receiver (" + str(len(tenant_data['receiver'])) + " rows)")
+    log.info("  Serialized receiver (" + str(len(tenant_data['receiver'])) + " rows)")
 
     # ReceiverContext
     tenant_data['receivercontext'] = collect_pk_relation(session, models.ReceiverContext, context_ids, 'context_id')
-    print("  Serialized receivercontext (" + str(len(tenant_data['receivercontext'])) + " rows)")
+    log.info("  Serialized receivercontext (" + str(len(tenant_data['receivercontext'])) + " rows)")
 
     # ReceiverTip
     tenant_data['receivertip'] = collect_pk_relation(session, models.ReceiverTip, internaltip_ids, 'internaltip_id')
-    print("  Serialized receivertip (" + str(len(tenant_data['receivertip'])) + " rows)")
+    log.info("  Serialized receivertip (" + str(len(tenant_data['receivertip'])) + " rows)")
 
     # ReceiverFiles
     internalfile_ids = build_id_list(tenant_data['internalfile'], 'id')
     tenant_data['receiverfile'] = collect_pk_relation(session, models.ReceiverFile, internalfile_ids, 'internalfile_id')
-    print("  Serialized receiverfile (" + str(len(tenant_data['receiverfile'])) + " rows)")
+    log.info("  Serialized receiverfile (" + str(len(tenant_data['receiverfile'])) + " rows)")
 
     # IdentityAccessRequest
     receivertip_ids = build_id_list(tenant_data['receivertip'], 'id')
     tenant_data['identityaccessrequest'] = collect_pk_relation(session, models.IdentityAccessRequest, receivertip_ids, 'id')
-    print("  Serialized identityaccessrequest (" + str(len(tenant_data['identityaccessrequest'])) + " rows)")
+    log.info("  Serialized identityaccessrequest (" + str(len(tenant_data['identityaccessrequest'])) + " rows)")
 
     # Message
     tenant_data['message'] = collect_pk_relation(session, models.Message, receivertip_ids, 'id')
-    print("  Serialized message (" + str(len(tenant_data['message'])) + " rows)")
+    log.info("  Serialized message (" + str(len(tenant_data['message'])) + " rows)")
 
     # Step
     tenant_data['step'] = collect_pk_relation(session, models.Step, questionaire_id, 'questionnaire_id')
-    print("  Serialized step (" + str(len(tenant_data['step'])) + " rows)")
+    log.info("  Serialized step (" + str(len(tenant_data['step'])) + " rows)")
 
     # UserImg
     tenant_data['userimg'] = collect_pk_relation(session, models.UserImg, user_ids, 'id')
-    print("  Serialized userimg (" + str(len(tenant_data['userimg'])) + " rows)")
+    log.info("  Serialized userimg (" + str(len(tenant_data['userimg'])) + " rows)")
 
     # WhistleblowerFile
     tenant_data['whistleblowerfile'] = collect_pk_relation(session, models.WhistleblowerFile, receivertip_ids, 'receivertip_id')
-    print("  Serialized whistleblowerfile (" + str(len(tenant_data['whistleblowerfile'])) + " rows)")
+    log.info("  Serialized whistleblowerfile (" + str(len(tenant_data['whistleblowerfile'])) + " rows)")
 
     # SubmissionSubStatus
     tenant_data['submissionsubstatus'] = collect_pk_relation(session, models.SubmissionSubStatus, submission_status_ids, 'submissionstatus_id')
-    print("  Serialized submission_substatus (" + str(len(tenant_data['submissionsubstatus'])) + " rows)")
+    log.info("  Serialized submission_substatus (" + str(len(tenant_data['submissionsubstatus'])) + " rows)")
 
     # SubmissionStatusChange
     tenant_data['submissionstatuschange'] = collect_pk_relation(session, models.SubmissionStatusChange, internaltip_ids, 'internaltip_id')
-    print("  Serialized submissionstatuschange (" + str(len(tenant_data['submissionstatuschange'])) + " rows)")
+    log.info("  Serialized submissionstatuschange (" + str(len(tenant_data['submissionstatuschange'])) + " rows)")
 
 
     session.close()
@@ -255,7 +252,7 @@ def write_tenant_to_fresh_db(tenant_data, db_path):
     engine.execute('PRAGMA auto_vacuum = FULL')
 
     Base.metadata.create_all(engine)
-    print("Initialized empty GlobaLeaks database at " + db_path)
+    log.info("Initialized empty GlobaLeaks database at " + db_path)
 
     session = get_session(make_db_uri(db_path))
     merge_tenant_data(session, tenant_data, EXPORTED_TENANT_ID)
@@ -305,7 +302,7 @@ def merge_tenant_data(session, tenant_data, tid=None):
     session.commit()
     session.close()
 
-def create_export_tarball(session, tid):
+def create_export_tarball(session, tid, output_file):
     '''Creates an export tarball, either as a file on disk, or in memory as a variable'''
 
     # Collect tenant data
@@ -321,33 +318,30 @@ def create_export_tarball(session, tid):
         with open(dirpath + "/EXPORT_FORMAT", 'w') as f:
             f.write(str(1))
 
-        output_file = io.BytesIO()
+        with open(output_file, 'wb') as f:
+            with tarfile.open(fileobj=f, mode='w:gz') as export_tarball:
+                export_tarball.add(dirpath + "/EXPORT_FORMAT", arcname="EXPORT_FORMAT")
+                export_tarball.add(dirpath + "/globaleaks.db", arcname="globaleaks.db")
 
-        with tarfile.open(fileobj=output_file, mode='w:gz') as export_tarball:
-            export_tarball.add(dirpath + "/EXPORT_FORMAT", arcname="EXPORT_FORMAT")
-            export_tarball.add(dirpath + "/globaleaks.db", arcname="globaleaks.db")
+                def process_files_for_tarball(fileset):
+                    for file_obj in fileset:
+                        tarball_file = "attachments/"+file_obj.filename
+                        file_to_read = os.path.join(Settings.attachments_path, file_obj.filename)
+                        try:
+                            export_tarball.add(file_to_read, arcname=tarball_file)
+                        except FileNotFoundError:
+                            # Reference files might not exist if the system
+                            # successfully encrypted them for all receivers
 
-            def process_files_for_tarball(fileset):
-                for file_obj in fileset:
-                    tarball_file = "attachments/"+file_obj.filename
-                    file_to_read = os.path.join(Settings.attachments_path, file_obj.filename)
-                    try:
-                        export_tarball.add(file_to_read, arcname=tarball_file)
-                    except FileNotFoundError:
-                        # Reference files might not exist if the system
-                        # successfully encrypted them for all receivers
+                            if hasattr(file_obj, 'status'):
+                                if file_obj.status == u'reference':
+                                    log.info("Reference file " + file_to_read + " not found, skipping.")
 
-                        if hasattr(file_obj, 'status'):
-                            if file_obj.status == u'reference':
-                                print("Reference file " + file_to_read + " not found, skipping.")
-
-            process_files_for_tarball(tenant_data['receiverfile'])
-            process_files_for_tarball(tenant_data['whistleblowerfile'])
+                process_files_for_tarball(tenant_data['receiverfile'])
+                process_files_for_tarball(tenant_data['whistleblowerfile'])
 
     finally:
         shutil.rmtree(dirpath)
-
-    return output_file.getvalue()
 
 def read_import_tarball(gl_session, tarball_blob):
     '''Reads a tarball in and imports it's tenant'''

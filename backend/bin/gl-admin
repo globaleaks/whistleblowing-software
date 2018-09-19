@@ -10,6 +10,7 @@ except NameError:
 import argparse
 import json
 import os
+import shutil
 import re
 import sqlite3
 import subprocess as sp
@@ -84,9 +85,8 @@ def export_tenant(args):
     db_version, db_path = get_db_file(args.dbpath)
 
     session = get_session(make_db_uri(db_path))
-    data = import_export.create_export_tarball(session, args.tid)
-    with open(args.output, 'wb') as f:
-        f.write(data)
+    output_file = import_export.create_export_tarball(session, args.tid, args.output)
+
     print("Written export tarball to " + args.output)
 
 def import_tenant(args):
