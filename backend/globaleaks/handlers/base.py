@@ -22,7 +22,6 @@ from globaleaks.sessions import Sessions
 from globaleaks.settings import Settings
 from globaleaks.utils.utility import datetime_now, deferred_sleep, log
 
-
 # https://github.com/globaleaks/GlobaLeaks/issues/1601
 mimetypes.add_type('image/svg+xml', '.svg')
 mimetypes.add_type('application/vnd.ms-fontobject', '.eot')
@@ -357,7 +356,7 @@ class BaseHandler(object):
         # Check for the session header
         session_id = self.request.headers.get(b'x-session')
         if session_id is None:
-            return None
+            return
 
         # Check that that provided session exists and is legit
 
@@ -366,10 +365,8 @@ class BaseHandler(object):
         # be a string while twisted returns headers in bytes
 
         session = Sessions.get(text_type(session_id, 'utf-8'))
-        if session is None or session.tid != self.request.tid:
-            return None
-
-        return session
+        if session is not None and session.tid == self.request.tid:
+            return session
 
     @property
     def current_user(self):
@@ -390,17 +387,16 @@ class BaseHandler(object):
            len(token) != Settings.api_token_len or \
            self.state.api_token_session is None or \
            not self.state.tenant_cache[self.request.tid].admin_api_token_digest:
-            return None
+            return
 
         stored_token_hash = self.state.tenant_cache[self.request.tid].admin_api_token_digest.encode()
 
         if constant_time.bytes_eq(sha512(token), stored_token_hash):
             return self.state.api_token_session
-        return None
 
     def process_file_upload(self):
         if b'flowFilename' not in self.request.args:
-            return None
+            return
 
         total_file_size = int(self.request.args[b'flowTotalSize'][0])
         flow_identifier = self.request.args[b'flowIdentifier'][0]
@@ -418,9 +414,7 @@ class BaseHandler(object):
         with f.open('w') as f:
             f.write(self.request.args[b'file'][0])
 
-            if self.request.args[b'flowChunkNumber'][0] != self.request.args[b'flowTotalChunks'][0]:
-                return None
-            else:
+            if self.request.args[b'flowChunkNumber'][0] == self.request.args[b'flowTotalChunks'][0]:
                 f.finalize_write()
 
         mime_type, _ = mimetypes.guess_type(text_type(self.request.args[b'flowFilename'][0], 'utf-8'))
@@ -457,7 +451,6 @@ class BaseHandler(object):
         finally:
             self.uploaded_file['path'] = destination
 
-    @inlineCallbacks
     def execution_check(self):
         self.request.execution_time = datetime.now() - self.request.start_time
 
@@ -472,7 +465,7 @@ class BaseHandler(object):
         if self.uniform_answer_time:
             needed_delay = (Settings.side_channels_guard - (self.request.execution_time.microseconds / 1000)) / 1000
             if needed_delay > 0:
-                yield deferred_sleep(needed_delay)
+                return deferred_sleep(needed_delay)
 
     @inlineCallbacks
     def can_edit_general_settings_or_raise(self):
