@@ -22,8 +22,6 @@ from globaleaks.sessions import Sessions
 from globaleaks.settings import Settings
 from globaleaks.utils.utility import datetime_now, deferred_sleep, log
 
-HANDLER_EXEC_TIME_THRESHOLD = 120
-
 
 # https://github.com/globaleaks/GlobaLeaks/issues/1601
 mimetypes.add_type('image/svg+xml', '.svg')
@@ -76,7 +74,7 @@ class FileProducer(object):
 
 class BaseHandler(object):
     check_roles = 'admin'
-    handler_exec_time_threshold = HANDLER_EXEC_TIME_THRESHOLD
+    handler_exec_time_threshold = 120
     uniform_answer_time = False
     cache_resource = False
     invalidate_global_cache = False
