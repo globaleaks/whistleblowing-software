@@ -11,7 +11,7 @@ from twisted.internet.defer import inlineCallbacks, returnValue
 from twisted.internet.threads import deferToThread
 
 from globaleaks import models
-from globaleaks.handlers.base import BaseHandler, HANDLER_EXEC_TIME_THRESHOLD
+from globaleaks.handlers.base import BaseHandler
 from globaleaks.models.config import ConfigFactory
 from globaleaks.orm import transact
 from globaleaks.rest import errors, requests
@@ -303,10 +303,6 @@ class FileHandler(BaseHandler):
         'chain': ChainFileRes,
         'csr': CsrFileRes,
     }
-
-    # TODO move generate_dh_params to priv_key file handler to free handler timing
-    # analysis on the mapped file resources.
-    handler_exec_time_threshold = 10*HANDLER_EXEC_TIME_THRESHOLD
 
     def get_file_res_or_raise(self, name):
         if name not in self.mapped_file_resources:
