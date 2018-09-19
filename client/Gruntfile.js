@@ -866,55 +866,10 @@ module.exports = function(grunt) {
   grunt.registerTask('build',
     ['clean', 'copy:sources', 'copy:build', 'includeExternalFiles', 'ngtemplates', 'useminPrepare', 'concat', 'usemin', 'string-replace', 'cleanupWorkingDirectory', 'compress']);
 
-  grunt.registerTask('generateCoverallsJson', function() {
-    var done = this.async();
-    var coveralls = require('coveralls');
-
-    coveralls.getBaseOptions(function(err, options) {
-      if (err) {
-        grunt.log.error("Failed to get options, with error: " + err);
-        return done(err);
-      }
-
-      var fileName = 'coverage/lcov.info';
-      fs.readFile(fileName, 'utf8', function(err, fileContent) {
-        if (err) {
-          grunt.log.error("Failed to read file '" + fileName + "', with error: " + err);
-          return done(err);
-        }
-
-        coveralls.convertLcovToCoveralls(fileContent, options, function(err, coverallsJson) {
-          if (err) {
-            grunt.log.error("Failed to convert '" + fileName + "' to coveralls: " + err);
-            return done(err);
-          }
-
-          // fix file paths so submitting this info with the python coverage works correctly on coveralls.
-          if (coverallsJson.source_files) {
-            coverallsJson.source_files.forEach(function(srcfile) {
-              srcfile.name = "../client/" + srcfile.name;
-            });
-          }
-
-          var dstpath = 'coverage/coveralls.json';
-          fs.writeFileSync(dstpath, JSON.stringify(coverallsJson, null, 2));
-
-          grunt.verbose.ok("Successfully converted " + fileName + " to coveralls json.");
-          done();
-        });
-      });
-    });
-  });
-
   grunt.registerTask('end2end-coverage-instrument', [
     'clean',
     'copy:sources',
     'copy:end2end_coverage',
     'instrument'
-  ]);
-
-  grunt.registerTask('end2end-coverage-report', [
-    'makeReport',
-    'generateCoverallsJson'
   ]);
 };
