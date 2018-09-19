@@ -3,12 +3,13 @@ dist: trusty
 sudo: required
 env:
   global:
-    - secure: Fd+dALSXhRgP44UaiED0xbJMHLxzON1Vcu6ufxDGgyl9NYepT0cfMGczLocfawc35ig++SyfytfpaPRhy3yG7WhNiBmpq+M1rec5MDKh/tFSKV/JOmLxbUIAxByIgTH39e+bY2El0h+vqiB12JiArahBzraYMYY+Xkty3Ysr+9o=
-    - secure: clvOWlojaHQMHGhrN+sG+jOVLAsGJQFpzlUBv+8tKNy+Xbv/XPOQvnzqFTCdRlHSd39wnwIQTwOCWaCYhEECEyqgpaxYlYpSPsUOmk12aSxfjH5YGdwFqZvqhw1rkBpaEyoLh4PT0d1oLeCcJvb0jNuU4YbYOtq7DIRJDih/hPg=
+    - secure: eEQ289kJu6Emje6PE40bb6YqgEfvoeZA+L+O18SQA0Xqcvf08Et6EwyPbM0iT0jgtcO5Z71YG2cWUs325yRecAiGvutBuUoWkSX9t7fblJnRHHpOVnSPTUPKqG+pFNlf+NlvnH0PUJ7zVFDI1MFMx7duJpIwu8vA7eMoQsyHDOU=
+    - secure: LGRZ99OhmNCZfFAiS7/p/0Rc2ku2fJGYlWnv/LKnurfQpWZ9RPeuha2sRkpgwnv+c7McJ5SgnLtxrpQ4nGJjyw0A5qeVIlauv/Wy++6nnVT4o9HApZ/ApEUj01jNNrZhxcGv3WrFxae2sUWX3h4+kyYYdedsO0DYwsJAtjCknPQ=
+    - secure: DVzp1ZdsOyrZhVv/fos6sTFQIVzPfgXVwb5QlWhtshQxn7P1gt1eWWlaHsz5GTGV9awrKWn2ULTguvAN6ltY4JBMEELanQsqJIIyennlRVzu2gMBpHbY5xXonsT2Ri7x+ZzYtwhYn47LXBsmV303z7WWki1OCGVGu3UH8azLMcU=
 matrix:
   fast_finish: true
   include:
-    - env: GLTEST='py3_test' TESTS_REQUIREMENTS='bionic' COVERALLS=true
+    - env: GLTEST='py3_test' TESTS_REQUIREMENTS='bionic' CODACY=true
       python: "3.6"
 
     - env: GLTEST='py2_test' TESTS_REQUIREMENTS='xenial'

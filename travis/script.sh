@@ -52,7 +52,7 @@ npm install -g grunt grunt-cli
 if [ "$GLTEST" = "py2_test" ] || [ "$GLTEST" = "py3_test" ]; then
   setupChrome
 
-  pip install coveralls==1.0b1
+  pip install coverage codacy-coverage
   sudo apt-get install -y python-coverage tor
 
   sudo usermod -aG debian-tor $USER
@@ -62,7 +62,7 @@ if [ "$GLTEST" = "py2_test" ] || [ "$GLTEST" = "py3_test" ]; then
   cd $TRAVIS_BUILD_DIR/backend
   coverage run setup.py test
 
-  npm install -g istanbul
+  npm install -g istanbul codacy-coverage
 
   echo "Running BrowserTesting locally collecting code coverage"
   cd $TRAVIS_BUILD_DIR/client
@@ -75,12 +75,15 @@ if [ "$GLTEST" = "py2_test" ] || [ "$GLTEST" = "py3_test" ]; then
   node_modules/protractor/bin/webdriver-manager update --gecko=false
 
   grunt protractor_coverage
-  grunt end2end-coverage-report
 
-  cd $TRAVIS_BUILD_DIR/backend
+  if [ -n "CODACY" ]; then
+    cd $TRAVIS_BUILD_DIR/backend
+    coverage xml
+    python-codacy-coverage -r coverage.xml -c $TRAVIS_COMMIT # Python
 
-  if [ -n "COVERALLS" ]; then
-    coveralls --merge=../client/coverage/coveralls.json
+    cd $TRAVIS_BUILD_DIR/client
+    grunt makeReport
+    cat coverage/lcov.info | codacy-coverage -c $TRAVIS_COMMIT # Javascript
   fi
 
 elif [ "$GLTEST" = "lint" ]; then
