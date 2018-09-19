@@ -1,11 +1,8 @@
 # -*- coding: utf-8 -*-
-try:
-    from BytesIO import BytesIO
-except ImportError:
-    from io import BytesIO
+from io import BytesIO
 
 import os
-import six
+from six import unichr, binary_type
 
 from twisted.internet.defer import inlineCallbacks
 from zipfile import ZipFile
@@ -19,11 +16,12 @@ class TestZipStream(helpers.TestGL):
     def setUp(self):
         yield helpers.TestGL.setUp(self)
 
-        self.unicode_seq = ''.join(six.unichr(x) for x in range(0x400, 0x40A))
+        self.unicode_seq = ''.join(unichr(x) for x in range(0x400, 0x40A))
 
         self.files = [
-          {'name': self.unicode_seq, 'buf': self.unicode_seq},
-          {'name': __file__, 'path': os.path.abspath(__file__)}
+          {'name': __file__, 'fo': open(os.path.abspath(__file__), 'rb')},
+          {'name': __file__, 'path': os.path.abspath(__file__)},
+          {'name': self.unicode_seq, 'fo': BytesIO(self.unicode_seq.encode('utf-8'))}
         ]
 
     def test_zipstream(self):

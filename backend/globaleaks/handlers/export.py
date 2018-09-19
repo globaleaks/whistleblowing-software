@@ -2,7 +2,9 @@
 #
 # API handling export of submissions
 import os
-from six import text_type
+
+from io import BytesIO
+from six import binary_type, text_type
 from twisted.internet.defer import Deferred, inlineCallbacks
 
 from globaleaks import models
@@ -45,9 +47,9 @@ def get_tip_export(session, tid, user_id, rtip_id, language):
 
     export_template = Templating().format_template(export_dict['notification']['export_template'], export_dict).encode('utf-8')
 
-    export_template = msdos_encode(text_type(export_template, 'utf-8'))
+    export_template = msdos_encode(text_type(export_template, 'utf-8')).encode('utf-8')
 
-    export_dict['files'].append({'buf': export_template, 'name': "data.txt"})
+    export_dict['files'].append({'fo': BytesIO(export_template), 'name': "data.txt"})
 
     for rfile in session.query(models.ReceiverFile).filter(models.ReceiverFile.receivertip_id == rtip_id):
         rfile.last_access = datetime_now()
