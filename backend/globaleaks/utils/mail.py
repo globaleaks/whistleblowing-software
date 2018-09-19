@@ -2,11 +2,9 @@
 # GlobaLeaks Utility used to handle Mail, format, exception, etc
 import sys
 
-if sys.version_info[0] == 2:
-    from six import StringIO
-    from email import Charset # pylint: disable=no-name-in-module
-else:
-    from io import BytesIO
+from io import BytesIO
+
+from six import binary_type
 
 from email import utils  # pylint: disable=no-name-in-module
 from email.header import Header
@@ -18,7 +16,6 @@ from twisted.internet.endpoints import TCP4ClientEndpoint
 from twisted.mail.smtp import ESMTPSenderFactory
 from twisted.protocols import tls
 
-from globaleaks import __version__
 from globaleaks.utils.socks import SOCKS5ClientEndpoint
 from globaleaks.utils.tls import TLSClientContextFactory
 from globaleaks.utils.utility import log
@@ -30,6 +27,7 @@ def MIME_mail_build(src_name, src_mail, dest_name, dest_mail, title, mail_body):
     # can't figure out a way to specify QP (quoted-printable) instead of base64 in
     # a way that doesn't modify global state. :-(
     if sys.version_info[0] == 2:
+        from email import Charset  # pylint: disable=no-name-in-module
         Charset.add_charset('utf-8', Charset.QP, Charset.QP, 'utf-8') # pylint: disable=undefined-variable, no-member
 
     # This example is of an email with text and html alternatives.
@@ -48,9 +46,11 @@ def MIME_mail_build(src_name, src_mail, dest_name, dest_mail, title, mail_body):
     multipart.attach(MIMEText(mail_body.encode('utf-8'), 'plain', 'UTF-8'))
 
     if sys.version_info[0] == 2:
-        return StringIO(multipart.as_string())
+        multipart_as_bytes = binary_type(multipart.as_string())
     else:
-        return BytesIO(multipart.as_bytes()) # pylint: disable=no-member
+        multipart_as_bytes = multipart.as_bytes() # pylint: disable=no-member
+
+    return BytesIO(multipart_as_bytes) # pylint: disable=no-member
 
 
 def sendmail(tid, smtp_host, smtp_port, security, authentication, username, password, from_name, from_address, to_address, subject, body, anonymize=True, socks_host='127.0.0.1', socks_port=9050):

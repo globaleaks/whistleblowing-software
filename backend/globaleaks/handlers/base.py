@@ -37,10 +37,10 @@ class FileProducer(object):
     @ivar request: The L{IRequest} to write the contents of the file to.
     @ivar fileObject: The file the contents of which to write to the request.
     """
-    def __init__(self, request, fd):
+    def __init__(self, request, fo):
         self.finish = defer.Deferred()
         self.request = request
-        self.fd = fd
+        self.fo = fo
 
     def start(self):
         self.request.registerProducer(self, False)
@@ -49,7 +49,7 @@ class FileProducer(object):
     def resumeProducing(self):
         try:
             if self.request is not None:
-                data = self.fd.read(Settings.file_chunk_size)
+                data = self.fo.read(Settings.file_chunk_size)
                 if data:
                     self.request.write(data)
                 else:
@@ -68,7 +68,7 @@ class FileProducer(object):
             pass
 
     def __del__(self):
-        self.fd.close()
+        self.fo.close()
 
 
 class BaseHandler(object):
@@ -320,10 +320,16 @@ class BaseHandler(object):
         self.request.setResponseCode(301)
         self.request.setHeader(b'location', url)
 
-    def write_file(self, filename, filepath):
+    def check_file_presence(self, filepath):
         if not os.path.exists(filepath) or not os.path.isfile(filepath):
             raise errors.ResourceNotFound()
 
+    def open_file(self, filepath):
+        self.check_file_presence(filepath)
+
+        return open(filepath, 'rb')
+
+    def write_file_fo(self, filename, fo):
         if filename.endswith('.gz'):
             self.request.setHeader(b'Content-encoding', b'gzip')
             filename = filename[:-3]
@@ -332,21 +338,22 @@ class BaseHandler(object):
         if mime_type:
             self.request.setHeader(b'Content-Type', mime_type)
 
-        fd = open(filepath, 'rb')
+        return FileProducer(self.request, fo).start()
 
-        return FileProducer(self.request, fd).start()
+    def write_file(self, filename, filepath):
+        fo = self.open_file(filepath)
+        return self.write_file_fo(filename, fo)
 
-    def force_file_download(self, filename, filepath):
-        if not os.path.exists(filepath) or not os.path.isfile(filepath):
-            raise errors.ResourceNotFound()
-
+    def write_file_as_download_fo(self, filename, fo):
         self.request.setHeader(b'X-Download-Options', b'noopen')
         self.request.setHeader(b'Content-Type', b'application/octet-stream')
         self.request.setHeader(b'Content-Disposition', 'attachment; filename="%s"' % filename)
 
-        fd = open(filepath, 'rb')
+        return FileProducer(self.request, fo).start()
 
-        return FileProducer(self.request, fd).start()
+    def write_file_as_download(self, filename, filepath):
+        fo = self.open_file(filepath)
+        return self.write_file_as_download_fo(filename, fo)
 
     def get_current_user(self):
         api_session = self.get_api_session()

@@ -556,7 +556,7 @@ class WBFileHandler(BaseHandler):
 
         directory_traversal_check(Settings.attachments_path, filelocation)
 
-        yield self.force_file_download(wbfile['name'], filelocation)
+        yield self.write_file_as_download(wbfile['name'], filelocation)
 
 
 class RTipWBFileHandler(WBFileHandler):
@@ -620,7 +620,7 @@ class ReceiverFileDownload(BaseHandler):
 
         directory_traversal_check(Settings.attachments_path, filelocation)
 
-        yield self.force_file_download(rfile['name'], filelocation)
+        yield self.write_file_as_download(rfile['name'], filelocation)
 
 
 class IdentityAccessRequestsCollection(BaseHandler):
