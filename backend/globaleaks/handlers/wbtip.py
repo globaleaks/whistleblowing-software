@@ -11,7 +11,7 @@ from globaleaks.rest import errors, requests
 from globaleaks.utils.utility import log, datetime_now, datetime_to_ISO8601
 
 
-def wb_serialize_ifile(session, ifile):
+def wb_serialize_ifile(ifile):
     return {
         'id': ifile.id,
         'creation_date': datetime_to_ISO8601(ifile.creation_date),
@@ -37,9 +37,9 @@ def wb_serialize_wbfile(session, wbfile):
 
 
 def db_get_rfile_list(session, itip_id):
-    return [wb_serialize_ifile(session, ifile) for ifile in session.query(models.InternalFile) \
-                                                                   .filter(models.InternalFile.internaltip_id == itip_id,
-                                                                           models.InternalTip.id == itip_id)]
+    return [wb_serialize_ifile(ifile) for ifile in session.query(models.InternalFile) \
+                                                          .filter(models.InternalFile.internaltip_id == itip_id,
+                                                                  models.InternalTip.id == itip_id)]
 
 
 def db_get_wbfile_list(session, itip_id):
@@ -50,11 +50,10 @@ def db_get_wbfile_list(session, itip_id):
     return [wb_serialize_wbfile(session, wbfile) for wbfile in wbfiles]
 
 
-def db_get_wbtip(session, tid, itip_id, language):
+def db_get_wbtip(session, itip_id, language):
     itip = models.db_get(session,
                          models.InternalTip,
-                         models.InternalTip.id == itip_id,
-                         models.InternalTip.tid)
+                         models.InternalTip.id == itip_id)
 
     itip.wb_access_counter += 1
     itip.wb_last_access = datetime_now()
@@ -63,8 +62,8 @@ def db_get_wbtip(session, tid, itip_id, language):
 
 
 @transact
-def get_wbtip(session, tid, itip_id, language):
-    return db_get_wbtip(session, tid, itip_id, language)
+def get_wbtip(session, itip_id, language):
+    return db_get_wbtip(session, itip_id, language)
 
 
 def serialize_wbtip(session, itip, language):
@@ -135,7 +134,7 @@ def update_identity_information(session, tid, tip_id, identity_field_id, identit
 
     aqs = session.query(models.ArchivedSchema).filter(models.ArchivedSchema.hash == internaltip.questionnaire_hash).one()
 
-    questionnaire = db_serialize_archived_questionnaire_schema(session, aqs.schema, language)
+    questionnaire = db_serialize_archived_questionnaire_schema(aqs.schema, language)
     for step in questionnaire:
         for field in step['children']:
             if field['id'] == identity_field_id and field['template_id'] == 'whistleblower_identity':
@@ -160,7 +159,7 @@ class WBTipInstance(BaseHandler):
     check_roles = 'whistleblower'
 
     def get(self):
-        return get_wbtip(self.request.tid, self.current_user.user_id, self.request.language)
+        return get_wbtip(self.current_user.user_id, self.request.language)
 
 
 class WBTipCommentCollection(BaseHandler):

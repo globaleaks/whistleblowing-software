@@ -1,7 +1,7 @@
 # -*- coding: UTF-8
 from globaleaks.db.migrations.update import MigrationBase
 from globaleaks.handlers.admin.tenant import initialize_submission_statuses
-from globaleaks.handlers.submission import db_update_submission_status
+from globaleaks.handlers.rtip import db_update_submission_status
 from globaleaks.models import Model
 from globaleaks.models.properties import *
 from globaleaks.utils.utility import datetime_now, datetime_null
@@ -182,4 +182,4 @@ class MigrationScript(MigrationBase):
                                                 .filter(self.model_to['SubmissionStatus'].tid == tenant.id,
                                                         self.model_to['SubmissionStatus'].system_usage == 'open').one()[0]
 
-                db_update_submission_status(self.session_new, tenant.id, u'', itip, open_status_id, u'')
+                db_update_submission_status(self.session_new, u'', itip, open_status_id, u'')

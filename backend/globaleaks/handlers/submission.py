@@ -50,7 +50,7 @@ def _db_serialize_archived_field_recursively(field, language):
     return get_localized_values(field, field, models.Field.localized_keys, language)
 
 
-def db_serialize_archived_questionnaire_schema(session, questionnaire_schema, language):
+def db_serialize_archived_questionnaire_schema(questionnaire_schema, language):
     questionnaire = copy.deepcopy(questionnaire_schema)
 
     for step in questionnaire:
@@ -63,7 +63,7 @@ def db_serialize_archived_questionnaire_schema(session, questionnaire_schema, la
     return questionnaire
 
 
-def db_serialize_archived_preview_schema(session, preview_schema, language):
+def db_serialize_archived_preview_schema(preview_schema, language):
     preview = copy.deepcopy(preview_schema)
 
     for field in preview:
@@ -87,7 +87,7 @@ def db_serialize_questionnaire_answers_recursively(session, answers, answers_by_
 
 def db_serialize_questionnaire_answers(session, tid, usertip, internaltip):
     aqs = session.query(models.ArchivedSchema).filter(models.ArchivedSchema.hash == internaltip.questionnaire_hash).one()
-    questionnaire = db_serialize_archived_questionnaire_schema(session, aqs.schema, State.tenant_cache[tid].default_language)
+    questionnaire = db_serialize_archived_questionnaire_schema(aqs.schema, State.tenant_cache[tid].default_language)
 
     answers = []
     answers_by_group = {}
@@ -220,7 +220,7 @@ def serialize_itip(session, internaltip, language):
         'expiration_date': datetime_to_ISO8601(internaltip.expiration_date),
         'progressive': internaltip.progressive,
         'context_id': internaltip.context_id,
-        'questionnaire': db_serialize_archived_questionnaire_schema(session, aq.schema, language),
+        'questionnaire': db_serialize_archived_questionnaire_schema(aq.schema, language),
         'receivers': db_get_itip_receiver_list(session, internaltip),
         'https': internaltip.https,
         'enable_two_way_comments': internaltip.enable_two_way_comments,
@@ -360,19 +360,6 @@ def db_create_submission(session, tid, request, uploaded_files, client_using_tor
     log.debug("The finalized submission had created %d models.ReceiverTip(s)", rtips_count)
 
     return {'receipt': receipt}
-
-
-def db_update_submission_status(session, tid, user_id, itip, submission_status_id, submission_substatus_id):
-    itip.status = submission_status_id
-    itip.substatus = submission_substatus_id or None
-
-    submission_status_change = models.SubmissionStatusChange()
-    submission_status_change.internaltip_id = itip.id
-    submission_status_change.status = submission_status_id
-    submission_status_change.substatus = submission_substatus_id or None
-    submission_status_change.changed_by = user_id
-
-    session.add(submission_status_change)
 
 
 @transact

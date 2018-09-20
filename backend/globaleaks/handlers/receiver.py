@@ -121,7 +121,7 @@ def get_receivertip_list(session, tid, receiver_id, language):
             'comment_count': comments_by_itip.get(internaltip.id, 0),
             'message_count': messages_by_rtip.get(rtip.id, 0),
             'https': internaltip.https,
-            'preview_schema': db_serialize_archived_preview_schema(session, archivedschema.preview, language),
+            'preview_schema': db_serialize_archived_preview_schema(archivedschema.preview, language),
             'preview': internaltip.preview,
             'total_score': internaltip.total_score,
             'label': rtip.label,
