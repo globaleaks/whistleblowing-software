@@ -173,89 +173,12 @@ directive('imageUpload', function () {
     controller: 'ImageUploadCtrl'
   };
 }).
-// pgpPubKeyDisplay displays the important details from a public key.
-directive('pgpPubkeyDisplay', ['$q', 'pgp', 'glbcKeyLib', function($q, pgp, glbcKeyLib) {
-  // Create object that displays relevant key details to the user. This function
-  // returns fingerprint, key id, creation date, and expiration date. If the parse
-  // fails the function returns undefined.
-  function pgpKeyDetails(armoredText) {
-    var defer = $q.defer();
-
-    if (typeof armoredText !== 'string') {
-      return defer.reject();
-    }
-
-    if (typeof armoredText !== 'string' || armoredText.substr(0,3) !== '---') {
-      return defer.reject();
-    }
-
-    // Catch the obivous errors and save time!
-    if (typeof armoredText !== 'string' || armoredText.substr(0,3) !== '---') {
-      return defer.reject();
-    }
-
-    var res = pgp.key.readArmored(armoredText);
-
-    if (angular.isDefined(res.err)) {
-      // There were errors. Bail out.
-      return defer.reject();
-    }
-
-    var key = res.keys[0];
-
-    key.getExpirationTime().then(function(keyExpirationTime) {
-      return defer.resolve({
-        user_info: extractAllUids(key),
-        fingerprint: '0x' + key.primaryKey.getFingerprint().toUpperCase(),
-        created: key.primaryKey.created,
-        expiration: keyExpirationTime,
-      });
-    });
-
-    return defer.promise;
-  }
-
-  // Returns all of the userId's found in the list of uids attached to the key.
-  function extractAllUids(key) {
-    var uids = [];
-    key.users.forEach(function(user) {
-      uids.push(user.userId.userid);
-    });
-    return uids;
-  }
-
-  return {
-    restrict: 'A',
-    templateUrl: 'views/partials/pubkey_display.html',
-    scope: {
-      keyStr: '=keyStr',
-
-    },
-    link: function(scope) {
-      scope.$watch('keyStr', function(newVal) {
-        if (!newVal) {
-          return;
-        }
-
-        glbcKeyLib.validPublicKey(newVal).then(function(result) {
-          if (result) {
-            pgpKeyDetails(newVal).then(function(result) {
-              if (result) {
-                scope.key_details = result;
-              }
-            });
-          }
-        });
-      });
-    },
-  };
-}]).
 // pgpPubkeyValidator binds to text-areas to provide input validation on user
 // input PGP public keys. Note that the directive attaches itself to the
 // containing form's ngModelController NOT the ngModel bound to the value of the
 // text-area itself. If the key word 'canBeEmpty' the pgp key validator is disabled
 // when the textarea's input is empty.
-directive('pgpPubkeyValidator', ['$q', 'glbcKeyLib', function($q, glbcKeyLib) {
+directive('pgpPubkeyValidator', function() {
   // scope is the directives scope
   // elem is a jqlite reference to the bound element
   // attrs is the list of directives on the element
@@ -264,17 +187,19 @@ directive('pgpPubkeyValidator', ['$q', 'glbcKeyLib', function($q, glbcKeyLib) {
     scope.canBeEmpty = scope.pgpPubkeyValidator === 'canBeEmpty';
 
     // modelValue is the models value, viewVal is displayed on the page.
-    ngModel.$asyncValidators.pgpPubKeyValidator = function(modelVal) {
+    ngModel.$validators.pgpPubKeyValidator = function(modelVal) {
       // Check for obvious problems.
       if (typeof modelVal !== 'string') {
         modelVal = '';
       }
 
+      modelVal = modelVal.trim();
+
       if (scope.canBeEmpty && modelVal === '') {
-        return $q.resolve(true);
+        return true;
       }
 
-      return glbcKeyLib.validPublicKey(modelVal);
+      return modelVal.startsWith("-----BEGIN PGP PUBLIC KEY BLOCK-----") && modelVal.endsWith("-----END PGP PUBLIC KEY BLOCK-----");
     };
   }
   // Return a Directive Definition Object for angular to compile
@@ -287,7 +212,7 @@ directive('pgpPubkeyValidator', ['$q', 'glbcKeyLib', function($q, glbcKeyLib) {
       pgpPubkeyValidator: '@',
     }
   };
-}]).
+}).
 directive('singleClick', [function() {
   return {
     restrict: 'A',

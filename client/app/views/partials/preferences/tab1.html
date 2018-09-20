@@ -59,17 +59,20 @@
 
   <div id="EditPGP" data-ng-form="pgpkeyForm" data-ng-if="node.enable_user_pgp_key_upload">
     <div data-ng-show="preferences.pgp_key_fingerprint !== ''">
-      <div class="form-group" pgp-pubkey-display key-str="preferences.pgp_key_public"></div>
-
+      <div class="form-group">
+        <label data-translate>Details of the PGP key:</label>
+        <p><span data-translate>Fingerprint</span>: <span>{{preferences.pgp_key_fingerprint}}</span></p>
+        <p><span data-translate>Expiration date</span>: {{preferences.pgp_key_expiration | date:"dd/MM/yyyy"}}</p>
+      </div>
       <div class="form-group">
         <input data-ng-model="preferences.pgp_key_remove" type="checkbox">
         <label data-translate>Remove the PGP key</label>
       </div>
     </div>
     <div data-ng-hide="preferences.pgp_key_fingerprint !== ''">
-      <div class="position-relative">
+      <div class="position-relative" data-ng-class="{'has-error': pgpkeyForm.$invalid}">
         <label data-translate>Set up encryption by providing a PGP public key</label>
-        <textarea data-pgp-pubkey-validator="canBeEmpty" class="form-control" data-ng-attr-placeholder="{{'Copy and paste the PGP public key here' | translate}}" data-ng-model="preferences.pgp_key_public"></textarea>
+	<textarea data-pgp-pubkey-validator="canBeEmpty" class="form-control" data-ng-attr-placeholder="{{'Copy and paste the PGP public key here' | translate}}" data-ng-model="preferences.pgp_key_public"></textarea>
         <label file-picker-input="loadPublicKeyFile(file)" data-label-text="{{'Select' | translate}}" class="btn btn-default textarea-btn"></label>
       </div>
     </div>

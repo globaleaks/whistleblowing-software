@@ -36,7 +36,6 @@ module.exports = function(grunt) {
         'app/js/**/*.js',
         '!app/js/lib/*.js',
         '!app/js/locale/*.js',
-        '!app/js/crypto/lib/*.js',
         'tests/*.js'
       ]
     },
@@ -53,8 +52,7 @@ module.exports = function(grunt) {
           { dest: 'app/fonts', cwd: '.', src: ['node_modules/bootstrap-inline-rtl/fonts/*'], expand: true, flatten: true },
           { dest: 'app/js/locale', cwd: '.', src: ['node_modules/angular-i18n/angular-locale*'], expand: true, flatten: true },
           { dest: 'app/js/lib/', cwd: '.', src: ['node_modules/stacktrace-js/dist/stacktrace.min.js'], expand: true, flatten: true },
-          { dest: 'app/js/lib/', cwd: '.', src: ['node_modules/scrypt-async/scrypt-async.min.js'], expand: true, flatten: true },
-          { dest: 'app/js/lib/', cwd: '.', src: ['node_modules/openpgp/dist/openpgp.min.js'], expand: true, flatten: true },
+          { dest: 'app/js/lib/', cwd: '.', src: ['node_modules/fast-sha256/sha256.min.js'], expand: true, flatten: true },
           { dest: 'app/js/lib/', cwd: '.', src: ['node_modules/angular/angular.min.js'], expand: true, flatten: true },
           { dest: 'app/js/lib/', cwd: '.', src: ['node_modules/angular-aria/angular-aria.min.js'], expand: true, flatten: true },
           { dest: 'app/js/lib/', cwd: '.', src: ['node_modules/angular-filter/dist/angular-filter.min.js'], expand: true, flatten: true },
@@ -73,10 +71,7 @@ module.exports = function(grunt) {
           { dest: 'app/js/lib/', cwd: '.', src: ['node_modules/zxcvbn/dist/zxcvbn.js'], expand: true, flatten: true },
           { dest: 'app/js/lib/', cwd: '.', src: ['node_modules/angular-zxcvbn/dist/angular-zxcvbn.js'], expand: true, flatten: true },
           { dest: 'app/js/lib/', cwd: '.', src: ['node_modules/angular-dynamic-locale/tmhDynamicLocale.min.js'], expand: true, flatten: true },
-          { dest: 'app/js/lib/', cwd: '.', src: ['node_modules/ui-select/dist/select.min.js'], expand: true, flatten: true },
-          { dest: 'app/js/crypto/lib/', cwd: '.', src: ['node_modules/openpgp/dist/openpgp.min.js'], expand: true, flatten: true },
-          { dest: 'app/js/crypto/lib/', cwd: '.', src: ['node_modules/openpgp/dist/openpgp.worker.min.js'], expand: true, flatten: true },
-          { dest: 'app/js/crypto/lib/', cwd: '.', src: ['node_modules/scrypt-async/scrypt-async.min.js'], expand: true, flatten: true }
+          { dest: 'app/js/lib/', cwd: '.', src: ['node_modules/ui-select/dist/select.min.js'], expand: true, flatten: true }
         ]
       },
       build: {
@@ -90,8 +85,7 @@ module.exports = function(grunt) {
               '**',
               '!js/**/*.js', // Don't copy scripts that will be instrumented,
               'js/lib/*.js', // and copy scripts that should not be instrumented.
-              'js/locale/*.js',
-              'js/crypto/lib/*.js'
+              'js/locale/*.js'
             ],
             expand: true
           }]
@@ -297,14 +291,11 @@ module.exports = function(grunt) {
     grunt.file.copy('tmp/js/scripts.js', 'build/js/scripts.js');
     grunt.file.copy('tmp/js/plugin.js', 'build/js/plugin.js');
 
-    grunt.file.mkdir('build/js/crypto/');
-    grunt.file.copy('tmp/js/crypto/scrypt-async.worker.js', 'build/js/crypto/scrypt-async.worker.js');
-
     var copy_fun = function(absdir, rootdir, subdir, filename) {
       grunt.file.copy(absdir, path.join('build/' + dirs[x], subdir || '', filename || ''));
     };
 
-    dirs = ['js/crypto/lib', 'l10n', 'data'];
+    dirs = ['l10n', 'data'];
     for (x in dirs) {
       grunt.file.recurse('tmp/' + dirs[x], copy_fun);
     }
