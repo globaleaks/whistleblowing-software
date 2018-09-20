@@ -11,7 +11,7 @@ from globaleaks import models
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.custodian import serialize_identityaccessrequest
 from globaleaks.handlers.operation import OperationHandler
-from globaleaks.handlers.submission import serialize_usertip, db_update_submission_status
+from globaleaks.handlers.submission import serialize_usertip
 from globaleaks.models import serializers
 from globaleaks.orm import transact
 from globaleaks.rest import errors, requests
@@ -20,6 +20,19 @@ from globaleaks.utils.security import directory_traversal_check
 from globaleaks.state import State
 from globaleaks.utils.utility import log, get_expiration, datetime_now, datetime_never, \
     datetime_to_ISO8601
+
+
+def db_update_submission_status(session, user_id, itip, submission_status_id, submission_substatus_id):
+    itip.status = submission_status_id
+    itip.substatus = submission_substatus_id or None
+
+    submission_status_change = models.SubmissionStatusChange()
+    submission_status_change.internaltip_id = itip.id
+    submission_status_change.status = submission_status_id
+    submission_status_change.substatus = submission_substatus_id or None
+    submission_status_change.changed_by = user_id
+
+    session.add(submission_status_change)
 
 
 def receiver_serialize_rfile(session, rfile):
@@ -214,7 +227,7 @@ def db_set_itip_open_if_new(session, tid, user_id, itip):
                               .filter(models.SubmissionStatus.tid == tid,
                                       models.SubmissionStatus.system_usage == 'open').one()[0]
 
-        db_update_submission_status(session, tid, user_id, itip, open_status_id, '')
+        db_update_submission_status(session, user_id, itip, open_status_id, '')
 
 
 def db_get_rtip(session, tid, user_id, rtip_id, language):
@@ -337,7 +350,7 @@ def set_receivertip_variable(session, tid, user_id, rtip_id, key, value):
 def update_tip_submission_status(session, tid, user_id, rtip_id, submission_status_uuid, submission_substatus_uuid):
     rtip, itip = db_access_rtip(session, tid, user_id, rtip_id)
 
-    db_update_submission_status(session, tid, user_id, itip, submission_status_uuid, submission_substatus_uuid)
+    db_update_submission_status(session, user_id, itip, submission_status_uuid, submission_substatus_uuid)
 
 
 @transact
@@ -539,7 +552,10 @@ class WBFileHandler(BaseHandler):
     @transact
     def download_wbfile(self, session, tid, user_id, file_id):
         wbfile = session.query(models.WhistleblowerFile) \
-                        .filter(models.WhistleblowerFile.id == file_id).one_or_none()
+                        .filter(models.WhistleblowerFile.id == file_id,
+                                models.WhistleblowerFile.receivertip_id == models.ReceiverTip.id,
+                                models.ReceiverTip.internaltip_id == models.InternalTip.id,
+                                models.InternalTip.id == user_id).one_or_none()
 
         if wbfile is None or not self.user_can_access(session, tid, wbfile):
             raise errors.ModelNotFound(models.WhistleblowerFile)
