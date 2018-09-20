@@ -27,7 +27,7 @@
     "angular-zxcvbn": "3.2.2",
     "bootstrap-inline-rtl": "3.3.7",
     "d3": "5.7.0",
-    "openpgp": "3.1.2",
+    "fast-sha256": "1.1.0",
     "stacktrace-js": "2.0.0",
     "ui-select": "0.19.8",
     "zxcvbn": "4.4.2"

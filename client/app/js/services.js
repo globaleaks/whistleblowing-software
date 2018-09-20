@@ -854,7 +854,7 @@ factory('AdminUtils', ['AdminContextResource', 'AdminQuestionnaireResource', 'Ad
           $rootScope.ht = $rootScope.header_title;
         }
 
-	$rootScope.ht = $filter('translate')($rootScope.ht);
+        $rootScope.ht = $filter('translate')($rootScope.ht);
 
         $rootScope.pt = ($rootScope.ht !== '' && $rootScope.ht !== nodename) ? nodename + ' - ' + $rootScope.ht : nodename;
       },
