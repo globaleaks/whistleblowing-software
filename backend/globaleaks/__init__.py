@@ -7,7 +7,8 @@ import operator
 __author__ = u'Random GlobaLeaks Developers'
 __email__ = u'info@globaleaks.org'
 __copyright__ = u'2011-2018 - Hermes Center for Transparency and Digital Human Rights - GlobaLeaks Project'
-__version__ = u'3.3.12'
+__email__ = u'info@globaleaks.org'
+__version__ = u'3.3.13'
 __license__ = u'AGPL-3.0'
 
 DATABASE_VERSION = 43

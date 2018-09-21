@@ -1,3 +1,11 @@
+Changes in version 3.3.13 - 2018-09-11
+    Start using Tor packages included in debian distributions
+    Reduce application footprint removing OpenPGP.js library from the client
+    Improve resiliency in relation to management of open file descriptors
+    Adopt Codacy coverage as code coverage tracking service in place of Coveralls
+    Rewrite ZipStream utilities enabling to read from open file descriptors
+    Update translations
+
 Changes in version 3.3.12 - 2018-09-10
     Implement explicit deny x-frame-options to prevent iframe inclusion
     Update npm dependencies to latest versions
