@@ -1,7 +1,7 @@
 # 
 # Translators:
 # Aesthese, 2016
-# Bo Elkjaer <eboe@dr.dk>, 2018
+# Bo Elkjaer <bo_elkjaer@riseup.net>, 2018
 # Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2018
 msgid ""
 msgstr ""
