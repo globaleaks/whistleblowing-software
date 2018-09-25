@@ -187,11 +187,15 @@ class MailGenerator(object):
             # to send the notification_limit_reached
             data['type'] = u'receiver_notification_limit_reached'
 
-        data['notification'] = self.serialize_config(session, 'notification', tid, data['user']['language'])
         data['node'] = self.serialize_config(session, 'node', tid, data['user']['language'])
 
         if not data['node']['allow_unencrypted'] and len(data['user']['pgp_key_public']) == 0:
             return
+
+        if data['node']['mode'] != u'whistleblower.it':
+            data['notification'] = self.serialize_config(session, 'notification', tid, data['user']['language'])
+        else:
+            data['notification'] = self.serialize_config(session, 'notification', 1, data['user']['language'])
 
         subject, body = Templating().get_mail_subject_and_body(data)
 
