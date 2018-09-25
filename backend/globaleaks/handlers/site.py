@@ -21,6 +21,7 @@ def serialize_site(session, tenant, signup=None):
 
     if tenant.id in State.tenant_cache:
         tc = State.tenant_cache[tenant.id]
+        ret['label'] = tc.name
         ret['hostname'] = tc.hostname
         ret['onionservice'] = tc.onionservice
 

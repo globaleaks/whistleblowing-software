@@ -119,9 +119,11 @@ def signup_activation(session, state, tid, token, language):
         password_admin = generateRandomKey(16)
         password_recipient = generateRandomKey(16)
 
+        node_name = signup.organization_name if signup.organization_name else signup.subdomain
+
         wizard = {
             'node_language': signup.language,
-            'node_name': signup.subdomain,
+            'node_name': node_name,
             'admin_name': signup.name + ' ' + signup.surname,
             'admin_password': password_admin,
             'admin_mail_address': signup.email,
