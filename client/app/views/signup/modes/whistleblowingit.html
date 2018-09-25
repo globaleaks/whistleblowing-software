@@ -170,14 +170,14 @@
       <label>Provincia</label>
       <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
       <div data-ng-class="{'has-error': signupForm.organization_location3.$error.required}">
-        <select name="organization_location3" class="form-control" data-ng-model="signup.organization_location3" data-ng-options="x.id as x.nome for x in data_countries_italy_provinces | filter:{'id_regione': signup.organization_location2}" data-ng-disabled="!signup.organization_location2" required></select>
+        <select name="organization_location3" class="form-control" data-ng-model="signup.organization_location3" data-ng-options="x.id as x.nome for x in data_countries_italy_provinces | filter:{'id_regione': signup.organization_location2}:true" data-ng-disabled="!signup.organization_location2" required></select>
       </div>
     </div>
     <div class="col-md-4 form-group">
       <label>Città</label>
       <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
       <div data-ng-class="{'has-error': signupForm.organization_location4.$error.required}">
-        <select name="organization_location4" class="form-control" data-ng-model="signup.organization_location4" data-ng-options="x.id as x.nome for x in data_countries_italy_cities | filter:{'id_provincia': signup.organization_location3}" data-ng-disabled="!signup.organization_location3" required></select>
+        <select name="organization_location4" class="form-control" data-ng-model="signup.organization_location4" data-ng-options="x.id as x.nome for x in data_countries_italy_cities | filter:{'id_provincia': signup.organization_location3}:true" data-ng-disabled="!signup.organization_location3" required></select>
       </div>
     </div>
   </div>
