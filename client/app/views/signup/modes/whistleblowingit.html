@@ -33,12 +33,15 @@
         </div>
       </div>
     </div>
-    <div class="col-md-6 form-group" data-ng-class="{'has-error': signupForm.phone.$error.required}">
+    <div class="col-md-6 form-group" data-ng-class="{'has-error': signupForm.phone.$invalid}">
       <label>Telefono</label> <span class="text-danger"
                                     uib-popover="{{'This field is mandatory' | translate}}"
                                     popover-placement="right">*</span>
       <input name="phone" class="form-control" data-ng-model="signup.phone" type="text"
-             data-ng-attr-placeholder="{{'Telefono' | translate}}" required>
+             data-ng-attr-placeholder="{{'Telefono' | translate}}" data-ng-pattern="phonenumber_regexp" required>
+      <div class="text-danger" data-ng-show="signupForm.phone.$error.pattern">
+        <span data-translate>Invalid phone number</span>
+      </div>
     </div>
   </div>
   <div class="row">
