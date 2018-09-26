@@ -7,6 +7,7 @@
   }
 
   $scope.email_regexp = CONSTANTS.email_regexp;
+  $scope.phonenumber_regexp = CONSTANTS.phonenumber_regexp;
 
   $scope.hostname = $location.search().hostname || '';
 
