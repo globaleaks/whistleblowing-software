@@ -220,8 +220,7 @@ class _Comment(Model):
 
     @declared_attr
     def __table_args__(cls): # pylint: disable=no-self-argument
-        return (ForeignKeyConstraint(['internaltip_id'], ['internaltip.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),
-                ForeignKeyConstraint(['author_id'], ['user.id'], ondelete='SET NULL', deferrable=True, initially='DEFERRED'),)
+        return (ForeignKeyConstraint(['internaltip_id'], ['internaltip.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),)
 
 
 class _Config(Model):
@@ -676,16 +675,12 @@ class _InternalTip(Model):
     wb_last_access = Column(DateTime, default=datetime_now, nullable=False)
     wb_access_counter = Column(Integer, default=0, nullable=False)
 
-    status = Column(Unicode(36), nullable=False)
+    status = Column(Unicode(36), nullable=True)
     substatus = Column(Unicode(36), nullable=True)
 
     @declared_attr
     def __table_args__(cls): # pylint: disable=no-self-argument
-        return (ForeignKeyConstraint(['tid'], ['tenant.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),
-                ForeignKeyConstraint(['context_id'], ['context.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),
-                ForeignKeyConstraint(['questionnaire_hash'], ['archivedschema.hash'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),
-                ForeignKeyConstraint(['status'], ['submissionstatus.id'], deferrable=True, initially='DEFERRED'),
-                ForeignKeyConstraint(['substatus'], ['submissionsubstatus.id'], deferrable=True, initially='DEFERRED'))
+        return (ForeignKeyConstraint(['tid'], ['tenant.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),)
 
 
 class _Mail(Model):
@@ -1027,10 +1022,7 @@ class _SubmissionStatusChange(Model):
 
     @declared_attr
     def __table_args__(cls): # pylint: disable=no-self-argument
-        return (ForeignKeyConstraint(['internaltip_id'], ['internaltip.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),
-                ForeignKeyConstraint(['status'], ['submissionstatus.id'], deferrable=True, initially='DEFERRED'),
-                ForeignKeyConstraint(['substatus'], ['submissionsubstatus.id'], deferrable=True, initially='DEFERRED'),
-                ForeignKeyConstraint(['changed_by'], ['user.id'], ondelete='SET NULL', deferrable=True, initially='DEFERRED'))
+        return (ForeignKeyConstraint(['internaltip_id'], ['internaltip.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),)
 
 
 class _Tenant(Model):
