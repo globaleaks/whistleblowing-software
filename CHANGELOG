@@ -1,4 +1,8 @@
-Changes in version 3.3.13 - 2018-09-11
+Changes in version 3.3.14 - 2018-09-27
+    Improve usability of wistleblowing.it signup form
+    Update translations
+
+Changes in version 3.3.13 - 2018-09-21
     Start using Tor packages included in debian distributions
     Reduce application footprint removing OpenPGP.js library from the client
     Improve resiliency in relation to management of open file descriptors
