@@ -431,8 +431,6 @@ class APIResourceWrapper(Resource):
             if self.handler.uploaded_file is None:
                return b''
 
-        d = defer.maybeDeferred(f, self.handler, *groups)
-
         @defer.inlineCallbacks
         def concludeHandlerFailure(err):
             yield self.handler.execution_check()
@@ -464,8 +462,7 @@ class APIResourceWrapper(Resource):
 
                 request.finish()
 
-        d.addErrback(concludeHandlerFailure)
-        d.addCallback(concludeHandlerSuccess)
+        defer.maybeDeferred(f, self.handler, *groups).addCallbacks(concludeHandlerSuccess, concludeHandlerFailure)
 
         return NOT_DONE_YET
 

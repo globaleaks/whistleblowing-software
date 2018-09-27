@@ -16,6 +16,4 @@ class TorExitSet(set):
             self.add(ip)
 
     def update(self, agent):
-        pageFetchedDeferred = get_page(agent, EXIT_ADDR_URL)
-        pageFetchedDeferred.addCallback(self.processData)
-        return pageFetchedDeferred
+        return get_page(agent, EXIT_ADDR_URL).addCallback(self.processData)

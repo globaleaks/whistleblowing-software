@@ -111,8 +111,7 @@ class HTTPStreamProxyRequest(http.Request):
         if prod is not None:
             proxy_d.addBoth(self.proxyUnregister)
 
-        proxy_d.addCallback(self.proxySuccess)
-        proxy_d.addErrback(self.proxyError)
+        proxy_d.addCallbacks(self.proxySuccess, self.proxyError)
 
         return NOT_DONE_YET
 

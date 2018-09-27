@@ -123,15 +123,9 @@ class OnionService(BaseJob):
 
             raise failure.value
 
-        d = ephs.add_to_tor(self.tor_conn.protocol)
+        self.startup_semaphore[tid] = ephs.add_to_tor(self.tor_conn.protocol)
 
-        # pylint: disable=no-member
-        d.addCallbacks(init_callback, init_errback)
-        # pylint: enable=no-member
-
-        self.startup_semaphore[tid] = d
-
-        return d
+        return self.statup_semaphore[tid].addCallbacks(init_callback, init_errback) #pylint: disable=no-member
 
     @defer.inlineCallbacks
     def remove_unwanted_hidden_services(self):
@@ -197,7 +191,6 @@ class OnionService(BaseJob):
             startup_errback(Exception('Unable to access %s; manual permission recheck needed' % control_socket))
             return
 
-        d = build_local_tor_connection(reactor)
-        d.addCallbacks(startup_callback, startup_errback)
+        build_local_tor_connection(reactor).addCallbacks(startup_callback, startup_errback)
 
         return restart_deferred
