@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-09-10 12:03+0000\n"
-"Last-Translator: outolumo <outolumo@gmail.com>\n"
+"PO-Revision-Date: 2018-09-27 21:26+0000\n"
+"Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Finnish (http://www.transifex.com/otf/globaleaks/language/fi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1503,6 +1503,12 @@ msgstr "Käyttäjä pakotetaan vaihtamaan salasanansa seuraavan kirjautumisen yh
 msgid "Language"
 msgstr "Kieli"
 
+msgid "Details of the PGP key:"
+msgstr "PGP-avaimen tiedot:"
+
+msgid "Fingerprint"
+msgstr "Sormenjälkitunniste"
+
 msgid "Remove the PGP key"
 msgstr "Poista PGP-avain"
 
@@ -1692,12 +1698,6 @@ msgstr "Suositelemme vahvasti käyttämään turvallista ja yksityisyytesi suoja
 
 msgid "Then, copy and paste the following address into the Tor Browser:"
 msgstr "Jatka sitten palvelun käyttöä kopioimalla ja liittämällä seuraava osoite asentamasi Tor-selaimen osoiteriville:"
-
-msgid "Details of the PGP key:"
-msgstr "PGP-avaimen tiedot:"
-
-msgid "Fingerprint"
-msgstr "Sormenjälkitunniste"
 
 msgid "Enter a name for the copy"
 msgstr "Kirjoita kopiolle nimi"
@@ -1947,6 +1947,9 @@ msgstr "Muut"
 
 msgid "Complete"
 msgstr "Valmis"
+
+msgid "Invalid phone number"
+msgstr ""
 
 msgid "This field is mandatory."
 msgstr "Pakollinen kenttä"

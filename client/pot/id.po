@@ -22,8 +22,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-09-13 10:21+0000\n"
-"Last-Translator: ical\n"
+"PO-Revision-Date: 2018-09-27 21:26+0000\n"
+"Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Indonesian (http://www.transifex.com/otf/globaleaks/language/id/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1515,6 +1515,12 @@ msgstr "Pengguna diharuskan untuk mengganti kata sandi pada akses berikutnya."
 msgid "Language"
 msgstr "Bahasa"
 
+msgid "Details of the PGP key:"
+msgstr "Detil dari kunci PGP:"
+
+msgid "Fingerprint"
+msgstr "Sidik jari"
+
 msgid "Remove the PGP key"
 msgstr "Menghapus kunci PGP "
 
@@ -1704,12 +1710,6 @@ msgstr "Anda sangat disarankan untuk mengunjungi situs ini menggunakan aplikasi 
 
 msgid "Then, copy and paste the following address into the Tor Browser:"
 msgstr "Lalu, salin dan tempel alamat yang bersangkutan ke dalam Peramban Tor:"
-
-msgid "Details of the PGP key:"
-msgstr "Detil dari kunci PGP:"
-
-msgid "Fingerprint"
-msgstr "Sidik jari"
 
 msgid "Enter a name for the copy"
 msgstr "Masukan nama untuk salinan"
@@ -1959,6 +1959,9 @@ msgstr "Lainnya"
 
 msgid "Complete"
 msgstr "Selesai"
+
+msgid "Invalid phone number"
+msgstr ""
 
 msgid "This field is mandatory."
 msgstr "Kolom ini wajib diisi."

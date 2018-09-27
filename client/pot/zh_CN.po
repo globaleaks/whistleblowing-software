@@ -18,7 +18,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-08-25 16:42+0000\n"
+"PO-Revision-Date: 2018-09-27 21:26+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/otf/globaleaks/language/zh_CN/)\n"
 "MIME-Version: 1.0\n"
@@ -1511,6 +1511,12 @@ msgstr "该用户将被强制在下次登录时更改其密码。"
 msgid "Language"
 msgstr "语言"
 
+msgid "Details of the PGP key:"
+msgstr "PGP 密钥的详细信息："
+
+msgid "Fingerprint"
+msgstr "指纹码"
+
 msgid "Remove the PGP key"
 msgstr "移除 PGP 密钥文件"
 
@@ -1700,12 +1706,6 @@ msgstr "我们强烈建议使用被称为 Tor 浏览器的桌面应用程序访�
 
 msgid "Then, copy and paste the following address into the Tor Browser:"
 msgstr "然后，复制并粘贴下列地址到已安装的 Tor 浏览器："
-
-msgid "Details of the PGP key:"
-msgstr "PGP 密钥的详细信息："
-
-msgid "Fingerprint"
-msgstr "指纹码"
 
 msgid "Enter a name for the copy"
 msgstr ""
@@ -1955,6 +1955,9 @@ msgstr "其他"
 
 msgid "Complete"
 msgstr "完成"
+
+msgid "Invalid phone number"
+msgstr ""
 
 msgid "This field is mandatory."
 msgstr ""

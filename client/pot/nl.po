@@ -35,8 +35,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-09-05 14:46+0000\n"
-"Last-Translator: Dennis Decoene <dennis.decoene@gmail.com>\n"
+"PO-Revision-Date: 2018-09-27 21:26+0000\n"
+"Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Dutch (http://www.transifex.com/otf/globaleaks/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1528,6 +1528,12 @@ msgstr "De gebruiker moet zijn wachtwoord veranderen bij een volgende login."
 msgid "Language"
 msgstr "Taal"
 
+msgid "Details of the PGP key:"
+msgstr "Details van de PGP-sleutel:"
+
+msgid "Fingerprint"
+msgstr "Vingerafdruk"
+
 msgid "Remove the PGP key"
 msgstr "Verwijder de PGP-sleutel"
 
@@ -1717,12 +1723,6 @@ msgstr "U wordt sterk aangeraden om deze website met de desktop-app genaamd Tor-
 
 msgid "Then, copy and paste the following address into the Tor Browser:"
 msgstr "Kopieer en plak vervolgens het volgende adres in de Tor-browser:"
-
-msgid "Details of the PGP key:"
-msgstr "Details van de PGP-sleutel:"
-
-msgid "Fingerprint"
-msgstr "Vingerafdruk"
 
 msgid "Enter a name for the copy"
 msgstr ""
@@ -1972,6 +1972,9 @@ msgstr "Other"
 
 msgid "Complete"
 msgstr "Volledig"
+
+msgid "Invalid phone number"
+msgstr ""
 
 msgid "This field is mandatory."
 msgstr "Dit veld is verplicht"

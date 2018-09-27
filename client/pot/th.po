@@ -10,7 +10,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-08-25 16:42+0000\n"
+"PO-Revision-Date: 2018-09-27 21:26+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Thai (http://www.transifex.com/otf/globaleaks/language/th/)\n"
 "MIME-Version: 1.0\n"
@@ -1503,6 +1503,12 @@ msgstr "ผู้ใช้จะถูกบังคับให้เปลี
 msgid "Language"
 msgstr "ภาษา"
 
+msgid "Details of the PGP key:"
+msgstr "รายละเอียดของคีย์ PGP ที่:"
+
+msgid "Fingerprint"
+msgstr ""
+
 msgid "Remove the PGP key"
 msgstr "ลบคีย์ PGP ที่"
 
@@ -1692,12 +1698,6 @@ msgstr "คุณจะได้รับคำแนะนำอย่างย
 
 msgid "Then, copy and paste the following address into the Tor Browser:"
 msgstr "จากนั้นคัดลอกและวางอยู่ต่อไปนี้ลงในเบราว์เซอร์ Tor:"
-
-msgid "Details of the PGP key:"
-msgstr "รายละเอียดของคีย์ PGP ที่:"
-
-msgid "Fingerprint"
-msgstr ""
 
 msgid "Enter a name for the copy"
 msgstr ""
@@ -1946,6 +1946,9 @@ msgid "Other"
 msgstr ""
 
 msgid "Complete"
+msgstr ""
+
+msgid "Invalid phone number"
 msgstr ""
 
 msgid "This field is mandatory."

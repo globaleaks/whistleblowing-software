@@ -25,7 +25,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-08-28 23:09+0000\n"
+"PO-Revision-Date: 2018-09-27 21:29+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Italian (http://www.transifex.com/otf/globaleaks/language/it/)\n"
 "MIME-Version: 1.0\n"
@@ -1518,6 +1518,12 @@ msgstr "L'utente sarà invitato a impostare una nuova password al prossimo acces
 msgid "Language"
 msgstr "Lingua"
 
+msgid "Details of the PGP key:"
+msgstr "Dettagli della chiave PGP:"
+
+msgid "Fingerprint"
+msgstr "Fingerprint"
+
 msgid "Remove the PGP key"
 msgstr "Rimuovi la chiave PGP."
 
@@ -1707,12 +1713,6 @@ msgstr "E' caldamente consigliato di visitare questo sito utilizzando l'applicaz
 
 msgid "Then, copy and paste the following address into the Tor Browser:"
 msgstr "Poi, una volta installato, copia ed incolla il seguente indirizzo all'intero del Tor Browser:"
-
-msgid "Details of the PGP key:"
-msgstr "Dettagli della chiave PGP:"
-
-msgid "Fingerprint"
-msgstr "Fingerprint"
 
 msgid "Enter a name for the copy"
 msgstr "Inserisci un nome per la copia"
@@ -1962,6 +1962,9 @@ msgstr "Altro"
 
 msgid "Complete"
 msgstr "Completa"
+
+msgid "Invalid phone number"
+msgstr "Numero di telefono non valido"
 
 msgid "This field is mandatory."
 msgstr "Questo campo è obbligatorio."

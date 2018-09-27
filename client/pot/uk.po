@@ -22,7 +22,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-08-25 16:42+0000\n"
+"PO-Revision-Date: 2018-09-27 21:26+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/otf/globaleaks/language/uk/)\n"
 "MIME-Version: 1.0\n"
@@ -1515,6 +1515,12 @@ msgstr "Користувач буде змушений змінити парол
 msgid "Language"
 msgstr "Мова"
 
+msgid "Details of the PGP key:"
+msgstr "Деталі ключа PGP:"
+
+msgid "Fingerprint"
+msgstr "Цифрові відбитки"
+
 msgid "Remove the PGP key"
 msgstr "Видалити PGP ключ"
 
@@ -1704,12 +1710,6 @@ msgstr "Ми настійно рекомендуємо вам відвідува
 
 msgid "Then, copy and paste the following address into the Tor Browser:"
 msgstr "Потім скопіюйте і вставте наступну адресу у встановленій Tor Browser:"
-
-msgid "Details of the PGP key:"
-msgstr "Деталі ключа PGP:"
-
-msgid "Fingerprint"
-msgstr "Цифрові відбитки"
 
 msgid "Enter a name for the copy"
 msgstr ""
@@ -1959,6 +1959,9 @@ msgstr "-Інше-"
 
 msgid "Complete"
 msgstr "Завершити"
+
+msgid "Invalid phone number"
+msgstr ""
 
 msgid "This field is mandatory."
 msgstr "Це поле є обов'язковим"

@@ -7,6 +7,7 @@
 # Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2015-2018
 # Hermes Center <info@hermescenter.org>, 2016
 # Hermes Center <info@hermescenter.org>, 2016
+# ION, 2018
 # Jakub Jakubiak <jakub.jakubiak@gmail.com>, 2014
 # zxcsd <jenisjpl@gmail.com>, 2015
 # Magdalenaem <magdalena.morawiecka1@gmail.com>, 2015
@@ -17,8 +18,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-08-25 16:42+0000\n"
-"Last-Translator: Hermes Center <info@hermescenter.org>\n"
+"PO-Revision-Date: 2018-09-27 21:33+0000\n"
+"Last-Translator: ION\n"
 "Language-Team: Hebrew (http://www.transifex.com/otf/globaleaks/language/he/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -33,19 +34,19 @@ msgid "Log in"
 msgstr "התחבר"
 
 msgid "Administration interface"
-msgstr " ממשק ניהול"
+msgstr " ממשק מינהל"
 
 msgid "Main configuration"
-msgstr "הגדרות עיקריות"
+msgstr "תצורה ראשית"
 
 msgid "Theme customization"
 msgstr "התאמה אישית של ערכת נושא"
 
 msgid "Languages"
-msgstr ""
+msgstr "שפות"
 
 msgid "Text customization"
-msgstr ""
+msgstr "התאמה אישית של מלל"
 
 msgid "Advanced settings"
 msgstr "הגדרות מתקדמות"
@@ -60,22 +61,22 @@ msgid "Questionnaires"
 msgstr "שאלונים"
 
 msgid "Add new questionnaire"
-msgstr "הוספת שאלון חדש"
+msgstr "הוסף שאלון חדש"
 
 msgid "Home"
-msgstr "דף הבית"
+msgstr "בית"
 
 msgid "Home page"
 msgstr "דף בית"
 
 msgid "Changelog"
-msgstr ""
+msgstr "יומן שינויים"
 
 msgid "License"
 msgstr "רשיון"
 
 msgid "Notification templates"
-msgstr "תבניות הודעות"
+msgstr "תבניות התראה"
 
 msgid "Recipient notification templates"
 msgstr "תבניות להודעות הנמען"
@@ -105,10 +106,10 @@ msgid "Preferences"
 msgstr "העדפות"
 
 msgid "User preferences"
-msgstr "הגדרות משתמש"
+msgstr "העדפות משתמש"
 
 msgid "Notification settings"
-msgstr "הגדרות הודעות"
+msgstr "הגדרות התראה"
 
 msgid "This recipient has configured the encryption key."
 msgstr " המקבל הזה מוגדר מפתח ההצפנה."
@@ -141,7 +142,7 @@ msgid "Comments"
 msgstr "הערות"
 
 msgid "Messages"
-msgstr "הודעות פרטיות"
+msgstr "הודעות"
 
 msgid "Select this recipient."
 msgstr "בחר מקבל"
@@ -168,19 +169,19 @@ msgid "CREDIT CARD"
 msgstr "כרטיס אשראי"
 
 msgid "YOUR NAME"
-msgstr "שם שלך"
+msgstr "שמך"
 
 msgid "Postpone the expiration date"
-msgstr "דחה מועד תפוגת טיפ"
+msgstr "דחה את תאריך התפוגה"
 
 msgid "Select all"
 msgstr "בחר הכל"
 
 msgid "Deselect all"
-msgstr "הסר בחירה מהכל"
+msgstr "בטל בחירת הכל"
 
 msgid "Refresh page"
-msgstr "דף רענן"
+msgstr "רענן דף"
 
 msgid "Context"
 msgstr "הקשר"
@@ -192,19 +193,19 @@ msgid "Private messages"
 msgstr "הודעות פרטיות"
 
 msgid "Preview"
-msgstr "תצוגה מקדימה"
+msgstr "הצג מראש"
 
 msgid "Move up"
 msgstr "הזז למעלה"
 
 msgid "Move down"
-msgstr "לרדת"
+msgstr "הזז למטה"
 
 msgid "Move left"
-msgstr "זוז שמאלה"
+msgstr "הזז שמאלה"
 
 msgid "Move right"
-msgstr "זוז ימינה"
+msgstr "הזז ימינה"
 
 msgid "Import"
 msgstr "יְבוּא"
@@ -226,16 +227,16 @@ msgid ""
 msgstr ""
 
 msgid "vertical"
-msgstr "אֲנָכִי"
+msgstr "אנכי"
 
 msgid "horizontal"
 msgstr "אופקי"
 
 msgid "Number"
-msgstr "Numer"
+msgstr "מספר"
 
 msgid "Email"
-msgstr "דואר אלקטרוני"
+msgstr "דוא\"ל"
 
 msgid "Date"
 msgstr "תאריך"
@@ -259,10 +260,10 @@ msgid "0 = auto"
 msgstr "0 = אוטומטי"
 
 msgid "-1 = unlimited"
-msgstr "-1 = ללא הגבלה"
+msgstr "-1 = בלתי מוגבל"
 
 msgid "True"
-msgstr "נָכוֹן"
+msgstr "נכון"
 
 msgid "False"
 msgstr "שֶׁקֶר"
@@ -274,10 +275,10 @@ msgid "No"
 msgstr "לא"
 
 msgid "Attachment"
-msgstr "הִתקַשְׁרוּת"
+msgstr "צרופה"
 
 msgid "Attachments"
-msgstr "קבצים מצורפים"
+msgstr "צרופות"
 
 msgid "Change your password"
 msgstr "שנה את סיסמתך"
@@ -289,13 +290,13 @@ msgid "List of access requests to whistleblowers' identities"
 msgstr "רשימה של בקשות גישת הזהויות \"שחושף את העוולות"
 
 msgid "User"
-msgstr "מִשׁתַמֵשׁ"
+msgstr "משתמש"
 
 msgid "Motivation"
 msgstr "מוֹטִיבָצִיָה"
 
 msgid "Status"
-msgstr "סטטוס"
+msgstr "מעמד"
 
 msgid "Request motivation"
 msgstr "מוטיבצית בקשה"
@@ -304,7 +305,7 @@ msgid "Reply motivation"
 msgstr "תגובת מוטיבציה"
 
 msgid "Request status"
-msgstr "מצב בקשה"
+msgstr "מעמד בקשה"
 
 msgid "Custodian"
 msgstr "אַפּוֹטרוֹפּוֹס"
@@ -322,7 +323,7 @@ msgid "Not available"
 msgstr "לא זמין"
 
 msgid "Access requested"
-msgstr "נדרש גישה"
+msgstr "דרושה גישה"
 
 msgid "Request access to the whistleblower's identity"
 msgstr "לבקשת גישה אל הזהות של המתריע"
@@ -331,7 +332,7 @@ msgid "Please write a motivation"
 msgstr "אנא לכתוב מוטיבציה"
 
 msgid "Reply to the request"
-msgstr "להשיב לבקשה"
+msgstr "השב אל הבקשה"
 
 msgid "Authorized"
 msgstr "מורשה"
@@ -340,7 +341,7 @@ msgid "Denied"
 msgstr "נדחה"
 
 msgid "Waiting for authorization"
-msgstr "ממתין לאישור"
+msgstr "ממתין לאימות"
 
 msgid "New request"
 msgstr "בקשה חדשה"
@@ -370,7 +371,7 @@ msgid "in days"
 msgstr "בימים"
 
 msgid "in characters"
-msgstr "באותיות"
+msgstr "בתווים"
 
 msgid "in megabytes"
 msgstr "במגה-בתים"
@@ -397,7 +398,7 @@ msgid "Available disk space"
 msgstr "שטח דיסק זמין"
 
 msgid "Last update"
-msgstr "העדכון אחרון"
+msgstr "עדכון אחרון"
 
 msgid "Custodian notification templates"
 msgstr "תבניות להודעות אפוטרופוס"
@@ -419,7 +420,7 @@ msgid "Score"
 msgstr "צִיוּן"
 
 msgid "Trigger question"
-msgstr "שאלת טריגר"
+msgstr "שאלת מעורר"
 
 msgid "Triggered by a score higher than:"
 msgstr "מופעל על ידי ציון גבוה יותר:"
@@ -428,13 +429,13 @@ msgid "Select the question to be triggered when this option is selected"
 msgstr "בחר את השאלה כדי להיות מופעלים כאשר אפשרות זו נבחרה"
 
 msgid "Message shown on top of the status page of the submission"
-msgstr "הודעה המוצג על גבי דף הסטטוס של ההגשה"
+msgstr "הודעה המופיעה בראש דף המעמד של ההגשה"
 
 msgid "Copy and paste the PGP public key here"
 msgstr "העתק והדבק את המפתח PGP הציבורי כאן"
 
 msgid "Password strength:"
-msgstr ""
+msgstr "חוזק סיסמה:"
 
 msgid "Weak"
 msgstr ""
@@ -470,16 +471,16 @@ msgid "Enter an email address for the administrator"
 msgstr ""
 
 msgid "Enter a password for the administrator"
-msgstr ""
+msgstr "הכנס סיסמה עבור המינהלן"
 
 msgid "Test configuration"
 msgstr ""
 
 msgid "Failed logins"
-msgstr "התחברויות שנכשלו"
+msgstr "התחברויות כושלות"
 
 msgid "Successful logins"
-msgstr "התחברויות מוצלחים"
+msgstr "התחברויות מוצלחות"
 
 msgid "Started submissions"
 msgstr "הגשות שהתחילו"
@@ -494,7 +495,7 @@ msgid "Input validation"
 msgstr ""
 
 msgid "Email address"
-msgstr "דואר אלקטרוני"
+msgstr "כתובת דוא\"ל"
 
 msgid "Custom"
 msgstr "מותאם אישית"
@@ -509,10 +510,10 @@ msgid "Label the submission"
 msgstr ""
 
 msgid "Activate"
-msgstr "הפעל"
+msgstr "שפעל"
 
 msgid "Search"
-msgstr "חיפוש"
+msgstr "חפש"
 
 msgid ""
 "This custom text is no longer displayed on the platform. The original text "
@@ -554,7 +555,7 @@ msgid "Stats"
 msgstr "סטטיסטיקה"
 
 msgid "Activities"
-msgstr "פעילות"
+msgstr "פעילויות"
 
 msgid "Submissions"
 msgstr "הגשות"
@@ -638,7 +639,7 @@ msgid "New"
 msgstr "חדש"
 
 msgid "Open"
-msgstr "פתח"
+msgstr "פתוח"
 
 msgid "Closed"
 msgstr "סגור"
@@ -647,7 +648,7 @@ msgid "Select the context of your submission:"
 msgstr ""
 
 msgid "Warning! You are not anonymous."
-msgstr "אַזהָרָה! אתה לא אנונימי."
+msgstr "אזהרה! אתה לא אלמוני."
 
 msgid ""
 "Sending submissions over HTTPS exposes the act of doing so, but not the "
@@ -670,16 +671,16 @@ msgid "Your submission was successful."
 msgstr "הגשתך הצליח."
 
 msgid "Submission status"
-msgstr ""
+msgstr "מעמד הגשה"
 
 msgid "Disable submissions"
-msgstr "שבת שליחות"
+msgstr "השבת הגשות"
 
 msgid "Enable insecure configuration without PGP encryption"
 msgstr "אפשר תצורה חסרת ביטחון ללא הצפנת PGP"
 
 msgid "Warning"
-msgstr "Warning"
+msgstr "אזהרה"
 
 msgid ""
 "By enabling this option, the system will be storing the submitted files "
@@ -793,7 +794,7 @@ msgid "Title of the receipt page"
 msgstr "כותרת של דף הקבלה"
 
 msgid "Title of the submission status page"
-msgstr "כותרת של דף סטטוס ההגשה"
+msgstr "כותרת של דף מעמד ההגשה"
 
 msgid "Size limit for file attachments"
 msgstr "גודל גבול עבור קבצים מצורפים"
@@ -816,7 +817,7 @@ msgid "Username"
 msgstr "שם משתמש"
 
 msgid "Password"
-msgstr "סיסמא"
+msgstr "סיסמה"
 
 msgid "Restrict privileged logins to specific IP addresses"
 msgstr ""
@@ -828,7 +829,7 @@ msgid "Either individual IP addresses or CIDR ranges are accepted here."
 msgstr ""
 
 msgid "Example:"
-msgstr "דוגמא:"
+msgstr "דוגמה:"
 
 msgid "Each entry must be separated with a comma."
 msgstr ""
@@ -864,16 +865,16 @@ msgid "Save"
 msgstr "שמור"
 
 msgid "Short URL"
-msgstr "לינק קצר"
+msgstr "URL קצר"
 
 msgid "Long URL"
-msgstr "כתובת ארוכה"
+msgstr "URL ארוך"
 
 msgid "Add"
 msgstr "הוסף"
 
 msgid "Substatuses"
-msgstr ""
+msgstr "תת־מעמדים"
 
 msgid "Label"
 msgstr "מדבקה"
@@ -882,22 +883,22 @@ msgid "This field is mandatory"
 msgstr "שדה חובה"
 
 msgid "Edit"
-msgstr "עריכה"
+msgstr "ערוך"
 
 msgid "Cancel"
 msgstr "בטל"
 
 msgid "Submission statuses"
-msgstr ""
+msgstr "מעמדי הגשה"
 
 msgid "Closing statuses"
-msgstr ""
+msgstr "מעמדי סגירה"
 
 msgid "Logo"
-msgstr "הסמליל של"
+msgstr "סמליל"
 
 msgid "Project name"
-msgstr "שם יוזמה"
+msgstr "שם מיזם"
 
 msgid "Homepage title"
 msgstr "כותרת עמוד הבית"
@@ -918,7 +919,7 @@ msgid "Favicon"
 msgstr ""
 
 msgid "Upload"
-msgstr "טען"
+msgstr "העלה"
 
 msgid "Download"
 msgstr "הורד"
@@ -1010,7 +1011,7 @@ msgid "Let whistleblowers add attachments onto existing submissions"
 msgstr ""
 
 msgid "Show recipient details on the status page of the submission"
-msgstr "הצג את פרטי הנמען בדף הסיווג של הגשת"
+msgstr "הראה את פרטי הנמען בדף המעמד של ההגשה"
 
 msgid "Let recipients upload files to whistleblowers"
 msgstr ""
@@ -1491,10 +1492,10 @@ msgid "The system forces users to change the password at first login."
 msgstr "המערכת מכריחה למשתמשים לשנות את הסיסמה בכניסה ראשונה."
 
 msgid "Reset password"
-msgstr ""
+msgstr "אפס סיסמה"
 
 msgid "New password"
-msgstr "סיסמא חדשה"
+msgstr "סיסמה חדשה"
 
 msgid ""
 "The chosen password is too weak. Make it more secure by adding special "
@@ -1510,6 +1511,12 @@ msgstr "המשתמש ייאלץ לשנות את הסיסמה שלו בכניסה
 msgid "Language"
 msgstr "שפה"
 
+msgid "Details of the PGP key:"
+msgstr "פרטים של מפתח PGP:"
+
+msgid "Fingerprint"
+msgstr "טביעת אצבע"
+
 msgid "Remove the PGP key"
 msgstr "הסר את מפתח PGP"
 
@@ -1520,7 +1527,7 @@ msgid "User has administrative access to the following features:"
 msgstr ""
 
 msgid "main"
-msgstr ""
+msgstr "ראשי"
 
 msgid "Request date"
 msgstr "תאריך בקשה"
@@ -1573,10 +1580,10 @@ msgid "Please support Hermes through their donation page."
 msgstr "אנא לתמוך בהרמס דרך דף התרומה שלהם."
 
 msgid "Forgot password?"
-msgstr ""
+msgstr "שכחת סיסמה?"
 
 msgid "Authentication failed"
-msgstr "אימות נכשלה"
+msgstr "אימות נכשל"
 
 msgid "Site:"
 msgstr ""
@@ -1591,7 +1598,7 @@ msgid "Please select your account:"
 msgstr "אנא בחר את החשבון"
 
 msgid "Now type your password, then click 'Log in':"
-msgstr "תקליד את סיסמתך ולחץ \"התחבר\""
+msgstr "הקלד כעת את סיסמתך, לאחר מכן לחץ על 'התחבר':"
 
 msgid "Are you sure?"
 msgstr "האם אתה בטוח?"
@@ -1608,10 +1615,10 @@ msgid ""
 msgstr "הזן את מספר נקודות שיוקצה כשאפשרות זו מסומנת:"
 
 msgid "Confirm"
-msgstr "אשר הארכה"
+msgstr "אשר"
 
 msgid "Are you human?"
-msgstr "האם אתה בן אנוש ?"
+msgstr "האם אתה אנושי?"
 
 msgid ""
 "We do not discriminate based on race and gender, but we do against computers"
@@ -1637,7 +1644,7 @@ msgid "Are you sure that you wish to continue?"
 msgstr "האם אתה בטוח שברצונך להמשיך?"
 
 msgid "Error!"
-msgstr "שְׁגִיאָה!"
+msgstr "שגיאה!"
 
 msgid "Internal server error"
 msgstr ""
@@ -1673,10 +1680,10 @@ msgid "Enable submission notification"
 msgstr "אפשר הודעת הגשה"
 
 msgid "Current password"
-msgstr ""
+msgstr "סיסמה נוכחית"
 
 msgid "Old password confirmation required"
-msgstr "אישור סיסמא הישנה הנדרש"
+msgstr "אישור סיסמה ישנה נדרש"
 
 msgid "The new password must be different from the current one."
 msgstr ""
@@ -1685,7 +1692,7 @@ msgid "Type your new password again"
 msgstr "הקלד את הסיסמה החדשה שוב"
 
 msgid "The two passwords do not match"
-msgstr "שתי סיסמאות אינן תואמות"
+msgstr "שתי הסיסמאות אינן תואמות"
 
 msgid ""
 "It appears that you are browsing this site without any extra privacy and "
@@ -1699,12 +1706,6 @@ msgstr "מומלץ מאוד לבקר באתר זה באמצעות תוכנה ש�
 
 msgid "Then, copy and paste the following address into the Tor Browser:"
 msgstr "לאחר מכן, העתק והדבק כתובת הבאה לדפדפן Tor המותקן:"
-
-msgid "Details of the PGP key:"
-msgstr "פרטים של מפתח PGP:"
-
-msgid "Fingerprint"
-msgstr "טביעת אצבע"
 
 msgid "Enter a name for the copy"
 msgstr ""
@@ -1836,7 +1837,7 @@ msgid "Recipient list"
 msgstr "רשימת נמענים"
 
 msgid "Submission status:"
-msgstr ""
+msgstr "מעמד הגשה:"
 
 msgid "Attached files for the whistleblower"
 msgstr ""
@@ -1865,13 +1866,13 @@ msgid ""
 msgstr ""
 
 msgid "Request password reset"
-msgstr ""
+msgstr "בקש איפוס סיסמה"
 
 msgid "Password reset feature is unavailable for admin users."
 msgstr ""
 
 msgid "Password reset requested."
-msgstr ""
+msgstr "איפוס סיסמה בוקש."
 
 msgid "Thank you!"
 msgstr "תודה לך!"
@@ -1955,6 +1956,9 @@ msgstr ""
 msgid "Complete"
 msgstr ""
 
+msgid "Invalid phone number"
+msgstr ""
+
 msgid "This field is mandatory."
 msgstr ""
 
@@ -2016,7 +2020,7 @@ msgid ""
 msgstr ""
 
 msgid "Confirm password"
-msgstr "אשר סיסמא"
+msgstr "אשר סיסמה"
 
 msgid "The default username is:"
 msgstr ""
@@ -2064,10 +2068,10 @@ msgid "Gender"
 msgstr "מִין"
 
 msgid "Male"
-msgstr "זָכָר"
+msgstr "זכר"
 
 msgid "Female"
-msgstr "נְקֵבָה"
+msgstr "נקבה"
 
 msgid "Other gender identity"
 msgstr ""
@@ -2088,10 +2092,10 @@ msgid "Address"
 msgstr "כתובת"
 
 msgid "Zip code / Postal code"
-msgstr "מיקוד / מיקוד"
+msgstr "מיקוד"
 
 msgid "Province"
-msgstr "מָחוֹז"
+msgstr "מחוז"
 
 msgid "Current job title"
 msgstr "תיאור המשרה הנוכחית"
@@ -2112,7 +2116,7 @@ msgid "Organization unit and job location at the time of the reported fact"
 msgstr "יחידת ארגון עבודת מיקום בעת עובדת הדיווח"
 
 msgid "Dear {RecipientName},"
-msgstr "{RecipientName} יקרים,"
+msgstr "{RecipientName} היקר,"
 
 msgid "Your whistleblowing platform is now accessible at:"
 msgstr ""
@@ -2164,7 +2168,7 @@ msgstr ""
 msgid ""
 "GlobaLeaks technology includes a server status checking component which will"
 " alert you in case something requires your attention."
-msgstr "טכנולוגית GlobaLeaks כוללת רכיב בדיקת מצב שרת אשר יתריע למקרה שמשהו דורש את תשומת לבכם."
+msgstr "טכנולוגית GlobaLeaks כוללת רכיב בדיקת מיצב שרת אשר יתריע למקרה שמשהו דורש את תשומת לבך."
 
 msgid ""
 "For more information, log in to the Administration interface and look at the"
@@ -2371,7 +2375,7 @@ msgid "You can confirm your request by clicking the following links:"
 msgstr ""
 
 msgid "Password reset instructions"
-msgstr ""
+msgstr "הוראות איפוס סיסמה"
 
 msgid ""
 "This is an email to inform you that your PGP key is expiring or has already "

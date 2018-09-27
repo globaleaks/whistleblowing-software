@@ -15,7 +15,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-08-25 16:42+0000\n"
+"PO-Revision-Date: 2018-09-27 21:26+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Greek (http://www.transifex.com/otf/globaleaks/language/el/)\n"
 "MIME-Version: 1.0\n"
@@ -1508,6 +1508,12 @@ msgstr "Ο χρήστης θα αναγκαστεί να αλλάξει τον �
 msgid "Language"
 msgstr "Γλώσσα "
 
+msgid "Details of the PGP key:"
+msgstr "Λεπτομέρειες του κλειδιού PGP:"
+
+msgid "Fingerprint"
+msgstr "Αποτύπωμα"
+
 msgid "Remove the PGP key"
 msgstr "Αφαίρεση κλειδιού PGP"
 
@@ -1697,12 +1703,6 @@ msgstr "Σας συνιστούμε να επισκεφτείτε αυτό το�
 
 msgid "Then, copy and paste the following address into the Tor Browser:"
 msgstr "Στη συνέχεια, αντιγράψτε και επικολλήστε την παρακάτω διεύθυνση στον περιηγητή Tor:"
-
-msgid "Details of the PGP key:"
-msgstr "Λεπτομέρειες του κλειδιού PGP:"
-
-msgid "Fingerprint"
-msgstr "Αποτύπωμα"
 
 msgid "Enter a name for the copy"
 msgstr "Εισαγωγή ονόματος για το αντίγραφο"
@@ -1952,6 +1952,9 @@ msgstr "Άλλο"
 
 msgid "Complete"
 msgstr "Ολοκλήρωση"
+
+msgid "Invalid phone number"
+msgstr ""
 
 msgid "This field is mandatory."
 msgstr "Αυτό το πεδίο είναι υποχρεωτικό."

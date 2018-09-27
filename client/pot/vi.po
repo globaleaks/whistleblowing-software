@@ -12,7 +12,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-08-25 16:42+0000\n"
+"PO-Revision-Date: 2018-09-27 21:26+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Vietnamese (http://www.transifex.com/otf/globaleaks/language/vi/)\n"
 "MIME-Version: 1.0\n"
@@ -1505,6 +1505,12 @@ msgstr "Người dùng sẽ buộc phải thay đổi mật khẩu của mình t
 msgid "Language"
 msgstr "ngôn ngữ"
 
+msgid "Details of the PGP key:"
+msgstr "Thông tin chi tiết của khóa PGP:"
+
+msgid "Fingerprint"
+msgstr ""
+
 msgid "Remove the PGP key"
 msgstr "Xóa bỏ khóa PGP"
 
@@ -1694,12 +1700,6 @@ msgstr "Bạn được khuyên nên ghé thăm trang web này bằng cách sử 
 
 msgid "Then, copy and paste the following address into the Tor Browser:"
 msgstr "Sau đó, sao chép và dán địa chỉ sau vào trình duyệt Tor:"
-
-msgid "Details of the PGP key:"
-msgstr "Thông tin chi tiết của khóa PGP:"
-
-msgid "Fingerprint"
-msgstr ""
 
 msgid "Enter a name for the copy"
 msgstr ""
@@ -1949,6 +1949,9 @@ msgstr ""
 
 msgid "Complete"
 msgstr "Hoàn tất"
+
+msgid "Invalid phone number"
+msgstr ""
 
 msgid "This field is mandatory."
 msgstr ""

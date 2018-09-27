@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-08-25 16:42+0000\n"
+"PO-Revision-Date: 2018-09-27 21:26+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Tamil (http://www.transifex.com/otf/globaleaks/language/ta/)\n"
 "MIME-Version: 1.0\n"
@@ -1499,6 +1499,12 @@ msgstr "அடுத்த முறை பயனர் உள்நுழைவ
 msgid "Language"
 msgstr "மொழி"
 
+msgid "Details of the PGP key:"
+msgstr "பிஜிபி முக்கிய விவரம்:"
+
+msgid "Fingerprint"
+msgstr "கைரேகை"
+
 msgid "Remove the PGP key"
 msgstr "PGP சாவியை நீக்கவும்"
 
@@ -1688,12 +1694,6 @@ msgstr "நீங்கள் வலுவாக உங்கள் அடைய
 
 msgid "Then, copy and paste the following address into the Tor Browser:"
 msgstr "பின்னர், நகல் மற்றும் தோர் உலாவி பின்வரும் முகவரியை ஒட்டவும்:"
-
-msgid "Details of the PGP key:"
-msgstr "பிஜிபி முக்கிய விவரம்:"
-
-msgid "Fingerprint"
-msgstr "கைரேகை"
 
 msgid "Enter a name for the copy"
 msgstr ""
@@ -1942,6 +1942,9 @@ msgid "Other"
 msgstr ""
 
 msgid "Complete"
+msgstr ""
+
+msgid "Invalid phone number"
 msgstr ""
 
 msgid "This field is mandatory."

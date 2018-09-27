@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-08-25 16:42+0000\n"
+"PO-Revision-Date: 2018-09-27 21:26+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Bosnian (http://www.transifex.com/otf/globaleaks/language/bs/)\n"
 "MIME-Version: 1.0\n"
@@ -1499,6 +1499,12 @@ msgstr "Korisnik će biti prisiljena da promeni lozinku na sljedeći prijava."
 msgid "Language"
 msgstr "Jezik"
 
+msgid "Details of the PGP key:"
+msgstr "Detalji o ključnim PGP:"
+
+msgid "Fingerprint"
+msgstr ""
+
 msgid "Remove the PGP key"
 msgstr "Uklanjanje PGP ključa"
 
@@ -1688,12 +1694,6 @@ msgstr "Strogo se preporučuje da posjetite ovaj sajt koristeći desktop aplikac
 
 msgid "Then, copy and paste the following address into the Tor Browser:"
 msgstr "Zatim, kopirajte i zalijepite na adresu u Tor Browser:"
-
-msgid "Details of the PGP key:"
-msgstr "Detalji o ključnim PGP:"
-
-msgid "Fingerprint"
-msgstr ""
 
 msgid "Enter a name for the copy"
 msgstr ""
@@ -1942,6 +1942,9 @@ msgid "Other"
 msgstr ""
 
 msgid "Complete"
+msgstr ""
+
+msgid "Invalid phone number"
 msgstr ""
 
 msgid "This field is mandatory."
