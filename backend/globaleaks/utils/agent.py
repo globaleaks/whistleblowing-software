@@ -24,8 +24,4 @@ def get_web_agent():
 
 
 def get_page(agent, url):
-    request = agent.request(b'GET', url)
-
-    request.addCallback(readBody)
-
-    return request
+    return agent.request(b'GET', url).addCallback(readBody)

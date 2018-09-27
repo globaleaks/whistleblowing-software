@@ -131,9 +131,7 @@ class BaseHandler(object):
                 self.state.refresh_tenant_state()
                 return data
 
-            d.addCallback(callback)
-
-            return d
+            return d.addCallback(callback)
 
         return wrapper
 
