@@ -9,7 +9,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-08-25 16:42+0000\n"
+"PO-Revision-Date: 2018-09-27 21:26+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Azerbaijani (http://www.transifex.com/otf/globaleaks/language/az/)\n"
 "MIME-Version: 1.0\n"
@@ -1502,6 +1502,12 @@ msgstr "İstifadəçi növbəti giriş zamanı şifrəsini dəyişməyə məcbur
 msgid "Language"
 msgstr "Dil"
 
+msgid "Details of the PGP key:"
+msgstr "PGP açarının detalları"
+
+msgid "Fingerprint"
+msgstr "Barmaq izi"
+
 msgid "Remove the PGP key"
 msgstr "PGP açarını sil"
 
@@ -1691,12 +1697,6 @@ msgstr "Tor Browser adlı kimliyinizi qoruyan masa üstü tətbiqini istifadə e
 
 msgid "Then, copy and paste the following address into the Tor Browser:"
 msgstr "Daha sonra Tor Brauzerə aşağıdakı ünvanı kopyalayıb yapışdırın:"
-
-msgid "Details of the PGP key:"
-msgstr "PGP açarının detalları"
-
-msgid "Fingerprint"
-msgstr "Barmaq izi"
 
 msgid "Enter a name for the copy"
 msgstr ""
@@ -1946,6 +1946,9 @@ msgstr "Digər"
 
 msgid "Complete"
 msgstr "Tamamla"
+
+msgid "Invalid phone number"
+msgstr ""
 
 msgid "This field is mandatory."
 msgstr "Məcburi sahədir."

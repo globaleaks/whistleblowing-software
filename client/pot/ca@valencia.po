@@ -15,7 +15,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-08-25 16:42+0000\n"
+"PO-Revision-Date: 2018-09-27 21:26+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Catalan (Valencian) (http://www.transifex.com/otf/globaleaks/language/ca%40valencia/)\n"
 "MIME-Version: 1.0\n"
@@ -1508,6 +1508,12 @@ msgstr "L'usuari es vorà forçat a canviar la contrasenya la propera vegada que
 msgid "Language"
 msgstr "Idioma"
 
+msgid "Details of the PGP key:"
+msgstr "Detalls de la clau PGP:"
+
+msgid "Fingerprint"
+msgstr "empremta de validació de clau"
+
 msgid "Remove the PGP key"
 msgstr "Elimina la clau PGP"
 
@@ -1697,12 +1703,6 @@ msgstr "Recomanem que visiteu aquesta web utilitzant una aplicació d'escriptori
 
 msgid "Then, copy and paste the following address into the Tor Browser:"
 msgstr "Després, còpie i enganxe l'adreça següent al Tor Browser instal·lat:"
-
-msgid "Details of the PGP key:"
-msgstr "Detalls de la clau PGP:"
-
-msgid "Fingerprint"
-msgstr "empremta de validació de clau"
 
 msgid "Enter a name for the copy"
 msgstr ""
@@ -1952,6 +1952,9 @@ msgstr "Altres"
 
 msgid "Complete"
 msgstr "Complet"
+
+msgid "Invalid phone number"
+msgstr ""
 
 msgid "This field is mandatory."
 msgstr "Aquest camp és obligatori."

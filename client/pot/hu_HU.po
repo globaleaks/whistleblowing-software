@@ -21,7 +21,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-08-25 16:42+0000\n"
+"PO-Revision-Date: 2018-09-27 21:26+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Hungarian (Hungary) (http://www.transifex.com/otf/globaleaks/language/hu_HU/)\n"
 "MIME-Version: 1.0\n"
@@ -1514,6 +1514,12 @@ msgstr "A felhasználó kényszeríve lesz, hogy megváltoztassa a jelszavát a 
 msgid "Language"
 msgstr "Nyelv:"
 
+msgid "Details of the PGP key:"
+msgstr "A PGP kulcs részletei:"
+
+msgid "Fingerprint"
+msgstr "Újjlenyomat:"
+
 msgid "Remove the PGP key"
 msgstr "PGP kulcs eltávolítása"
 
@@ -1703,12 +1709,6 @@ msgstr "Erősen ajánlott, hogy ezt az oldalt asztali gépről Tor böngészőve
 
 msgid "Then, copy and paste the following address into the Tor Browser:"
 msgstr "Utána másolja át a következő címet a telepített Tor Böngészőbe:"
-
-msgid "Details of the PGP key:"
-msgstr "A PGP kulcs részletei:"
-
-msgid "Fingerprint"
-msgstr "Újjlenyomat:"
 
 msgid "Enter a name for the copy"
 msgstr ""
@@ -1957,6 +1957,9 @@ msgid "Other"
 msgstr ""
 
 msgid "Complete"
+msgstr ""
+
+msgid "Invalid phone number"
 msgstr ""
 
 msgid "This field is mandatory."

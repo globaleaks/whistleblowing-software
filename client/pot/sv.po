@@ -20,7 +20,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-08-25 16:42+0000\n"
+"PO-Revision-Date: 2018-09-27 21:26+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Swedish (http://www.transifex.com/otf/globaleaks/language/sv/)\n"
 "MIME-Version: 1.0\n"
@@ -1513,6 +1513,12 @@ msgstr ""
 msgid "Language"
 msgstr "Språk"
 
+msgid "Details of the PGP key:"
+msgstr ""
+
+msgid "Fingerprint"
+msgstr "Fingeravtryck"
+
 msgid "Remove the PGP key"
 msgstr "Ta bort PGP-nyckel"
 
@@ -1702,12 +1708,6 @@ msgstr "Vi rekommenderar dig starkt att besöka den här sajten med programmet T
 
 msgid "Then, copy and paste the following address into the Tor Browser:"
 msgstr "Kopiera och klistra sen in följande adress i Tor Browser:"
-
-msgid "Details of the PGP key:"
-msgstr ""
-
-msgid "Fingerprint"
-msgstr "Fingeravtryck"
 
 msgid "Enter a name for the copy"
 msgstr ""
@@ -1957,6 +1957,9 @@ msgstr "Annat"
 
 msgid "Complete"
 msgstr "Klar"
+
+msgid "Invalid phone number"
+msgstr ""
 
 msgid "This field is mandatory."
 msgstr ""

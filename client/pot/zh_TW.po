@@ -10,7 +10,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-08-25 16:42+0000\n"
+"PO-Revision-Date: 2018-09-27 21:26+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/otf/globaleaks/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
@@ -1503,6 +1503,12 @@ msgstr "使用者將在下回登入時更改密碼"
 msgid "Language"
 msgstr "語言"
 
+msgid "Details of the PGP key:"
+msgstr " PGP 金鑰詳細資料"
+
+msgid "Fingerprint"
+msgstr "數位指紋　"
+
 msgid "Remove the PGP key"
 msgstr "移除 PGP 金鑰"
 
@@ -1692,12 +1698,6 @@ msgstr "強列建議當你瀏覧這個網站時使用 TOR 瀏覧器來保護你�
 
 msgid "Then, copy and paste the following address into the Tor Browser:"
 msgstr "然後在 TOR 瀏覧器上複制貼上以下的網址"
-
-msgid "Details of the PGP key:"
-msgstr " PGP 金鑰詳細資料"
-
-msgid "Fingerprint"
-msgstr "數位指紋　"
 
 msgid "Enter a name for the copy"
 msgstr "為此複本輸入名稱"
@@ -1947,6 +1947,9 @@ msgstr "其它"
 
 msgid "Complete"
 msgstr "完成"
+
+msgid "Invalid phone number"
+msgstr ""
 
 msgid "This field is mandatory."
 msgstr "此欄位為必填"

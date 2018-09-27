@@ -13,7 +13,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-08-25 16:42+0000\n"
+"PO-Revision-Date: 2018-09-27 21:26+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Urdu (http://www.transifex.com/otf/globaleaks/language/ur/)\n"
 "MIME-Version: 1.0\n"
@@ -1506,6 +1506,12 @@ msgstr "صارف اگلے لاگ ان پر اپنا پاس ورڈ تبدیل ک�
 msgid "Language"
 msgstr "زبان"
 
+msgid "Details of the PGP key:"
+msgstr "PGP چابی کی تفصیلات:"
+
+msgid "Fingerprint"
+msgstr ""
+
 msgid "Remove the PGP key"
 msgstr "پی جی پی  چابی کلید مٹادیں"
 
@@ -1695,12 +1701,6 @@ msgstr "آپ کو سختی سے ہدایت کی جاتی ہے کہ ڈیسک ٹا
 
 msgid "Then, copy and paste the following address into the Tor Browser:"
 msgstr "اس کے بعد، ٹور براؤزر انسٹال کرنے کے لیے ذیل میں دیے گئے ایڈریس کو نقل  اور چسپاں  کریں۔"
-
-msgid "Details of the PGP key:"
-msgstr "PGP چابی کی تفصیلات:"
-
-msgid "Fingerprint"
-msgstr ""
 
 msgid "Enter a name for the copy"
 msgstr ""
@@ -1949,6 +1949,9 @@ msgid "Other"
 msgstr ""
 
 msgid "Complete"
+msgstr ""
+
+msgid "Invalid phone number"
 msgstr ""
 
 msgid "This field is mandatory."

@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-08-25 16:42+0000\n"
+"PO-Revision-Date: 2018-09-27 21:26+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Korean (http://www.transifex.com/otf/globaleaks/language/ko/)\n"
 "MIME-Version: 1.0\n"
@@ -1498,6 +1498,12 @@ msgstr "사용자는 다음 로그인의 암호를 변경해야한다."
 msgid "Language"
 msgstr "언어"
 
+msgid "Details of the PGP key:"
+msgstr "PGP 키의 세부 사항 :"
+
+msgid "Fingerprint"
+msgstr ""
+
 msgid "Remove the PGP key"
 msgstr "PGP 키를 제거"
 
@@ -1687,12 +1693,6 @@ msgstr "당신은 강력하게 신원을 보호 토르 브라우저라는 데스
 
 msgid "Then, copy and paste the following address into the Tor Browser:"
 msgstr "그런 다음, 복사 토르 브라우저에 다음 주소를 붙여 넣기 :"
-
-msgid "Details of the PGP key:"
-msgstr "PGP 키의 세부 사항 :"
-
-msgid "Fingerprint"
-msgstr ""
 
 msgid "Enter a name for the copy"
 msgstr ""
@@ -1942,6 +1942,9 @@ msgstr "그 외"
 
 msgid "Complete"
 msgstr "완료"
+
+msgid "Invalid phone number"
+msgstr ""
 
 msgid "This field is mandatory."
 msgstr "이 필드는 필수입니다"

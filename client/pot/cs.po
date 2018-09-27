@@ -11,8 +11,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-09-04 21:10+0000\n"
-"Last-Translator: IDRASSI Mounir <mounir.idrassi@idrix.fr>\n"
+"PO-Revision-Date: 2018-09-27 21:26+0000\n"
+"Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Czech (http://www.transifex.com/otf/globaleaks/language/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1504,6 +1504,12 @@ msgstr "Uživatel bude bude muset po prvním přihlášení změnit heslo."
 msgid "Language"
 msgstr "Jazyk"
 
+msgid "Details of the PGP key:"
+msgstr "Detaily PGP klíče:"
+
+msgid "Fingerprint"
+msgstr "Otisk klíče"
+
 msgid "Remove the PGP key"
 msgstr "Odstranení klíče PGP"
 
@@ -1693,12 +1699,6 @@ msgstr "Důrazně se doporučuje k návštěvě těchto stránek použít deskto
 
 msgid "Then, copy and paste the following address into the Tor Browser:"
 msgstr "Pak zkopírujte a vložte následující adresy do Tor prohlížeče:"
-
-msgid "Details of the PGP key:"
-msgstr "Detaily PGP klíče:"
-
-msgid "Fingerprint"
-msgstr "Otisk klíče"
 
 msgid "Enter a name for the copy"
 msgstr ""
@@ -1948,6 +1948,9 @@ msgstr "Další"
 
 msgid "Complete"
 msgstr "Dokončit"
+
+msgid "Invalid phone number"
+msgstr ""
 
 msgid "This field is mandatory."
 msgstr "Toto pole je povinné."

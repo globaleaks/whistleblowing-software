@@ -17,8 +17,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-08-25 16:42+0000\n"
-"Last-Translator: Licaon_Kter\n"
+"PO-Revision-Date: 2018-09-27 21:26+0000\n"
+"Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Romanian (http://www.transifex.com/otf/globaleaks/language/ro/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1510,6 +1510,12 @@ msgstr "Utilizatorul va fi forțat să schimbe parola cu privire la următoarea 
 msgid "Language"
 msgstr "Limba"
 
+msgid "Details of the PGP key:"
+msgstr "Detalii ale cheii PGP:"
+
+msgid "Fingerprint"
+msgstr "Amprenta"
+
 msgid "Remove the PGP key"
 msgstr "Scoateți cheia PGP"
 
@@ -1699,12 +1705,6 @@ msgstr "Vi se recomandă să accesați acest site utilizând aplicația pentru d
 
 msgid "Then, copy and paste the following address into the Tor Browser:"
 msgstr "Apoi, copiați și inserați următoarea adresă în browser Tor:"
-
-msgid "Details of the PGP key:"
-msgstr "Detalii ale cheii PGP:"
-
-msgid "Fingerprint"
-msgstr "Amprenta"
 
 msgid "Enter a name for the copy"
 msgstr ""
@@ -1954,6 +1954,9 @@ msgstr "Altul"
 
 msgid "Complete"
 msgstr "Complet"
+
+msgid "Invalid phone number"
+msgstr ""
 
 msgid "This field is mandatory."
 msgstr "Acest câmp este obligatoriu."
