@@ -487,11 +487,9 @@ class APIResourceWrapper(Resource):
         if not State.tenant_cache[request.tid].allow_indexing:
             request.setHeader(b'X-Robots-Tag', b'noindex')
 
-        # to mitigate clickjaking attacks on iframes allowing only same origin
-        # same origin is needed in order to include svg and other html <object>
+        # to mitigate clickjaking attacks on iframes block iframe
+        # inclusion setting a deny policy on x-frame-options
         if not State.tenant_cache[request.tid].allow_iframes_inclusion:
-            request.setHeader(b'X-Frame-Options', b'sameorigin')
-        else:
             request.setHeader(b'X-Frame-Options', b'deny')
 
         if request.client_using_tor is True:
