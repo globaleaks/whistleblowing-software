@@ -86,7 +86,7 @@ class TestAPI(TestGL):
            ('Pragma', 'no-cache'),
            ('Cache-control', 'no-cache, no-store, must-revalidate'),
            ('Referrer-Policy', 'no-referrer'),
-           ('X-Frame-Options', 'sameorigin')
+           ('X-Frame-Options', 'deny')
 	]
 
         for meth, status_code in test_cases:
