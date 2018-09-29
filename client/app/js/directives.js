@@ -1,5 +1,5 @@
 angular.module('GLDirectives', []).
-  directive('textarea', function () {
+  directive('dynamicTextarea', function () {
     return {
       restrict: 'E',
       link: function postLink(scope, element, attrs) {
