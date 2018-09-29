@@ -13,10 +13,10 @@
                   data-ng-change="onAnswerUpdate(field, entry)"
                   data-ng-minlength="field.attrs.min_len.value"
                   maxlength="{{::maxlength}}"
-                  rows="3"
                   aria-label="{{::field.label}}"
                   data-ng-required="field.required_status"
-                  data-ng-attr-placeholder="{{field.placeholder}}"></textarea>
+                  data-ng-attr-placeholder="{{field.placeholder}}"
+                  dynamic-textarea></textarea>
         <div>
           <div data-ng-if="entry['value'].length && maxlength >= 0 && (maxlength - entry['value'].length) <= 50" class="float-right">{{entry['value'].length}}/{{maxlength}}</div>
         </div>
