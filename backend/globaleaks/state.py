@@ -180,6 +180,9 @@ class StateClass(ObjectDict):
            # during unit testing do not try to send the mail
            return defer.succeed(True)
 
+       if self.tenant_cache[tid].mode == u'whistleblowing.it':
+           tid = 1
+
        return sendmail(tid,
                        self.tenant_cache[tid].notification.smtp_server,
                        self.tenant_cache[tid].notification.smtp_port,
