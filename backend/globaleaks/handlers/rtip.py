@@ -185,7 +185,7 @@ def db_receiver_get_wbfile_list(session, itip_id):
     wbfiles = []
     if rtips_ids:
         wbfiles = session.query(models.WhistleblowerFile) \
-                        .filter(models.WhistleblowerFile.receivertip_id.in_(rtips_ids))
+                         .filter(models.WhistleblowerFile.receivertip_id.in_(rtips_ids))
 
     return [receiver_serialize_wbfile(session, wbfile) for wbfile in wbfiles]
 
@@ -550,12 +550,9 @@ class WBFileHandler(BaseHandler):
         pass
 
     @transact
-    def download_wbfile(self, session, tid, user_id, file_id):
+    def download_wbfile(self, session, tid, file_id):
         wbfile = session.query(models.WhistleblowerFile) \
-                        .filter(models.WhistleblowerFile.id == file_id,
-                                models.WhistleblowerFile.receivertip_id == models.ReceiverTip.id,
-                                models.ReceiverTip.internaltip_id == models.InternalTip.id,
-                                models.InternalTip.id == user_id).one_or_none()
+                        .filter(models.WhistleblowerFile.id == file_id).one_or_none()
 
         if wbfile is None or not self.user_can_access(session, tid, wbfile):
             raise errors.ModelNotFound(models.WhistleblowerFile)
@@ -566,7 +563,7 @@ class WBFileHandler(BaseHandler):
 
     @inlineCallbacks
     def get(self, wbfile_id):
-        wbfile = yield self.download_wbfile(self.request.tid, self.current_user.user_id, wbfile_id)
+        wbfile = yield self.download_wbfile(self.request.tid, wbfile_id)
 
         filelocation = os.path.join(Settings.attachments_path, wbfile['filename'])
 
