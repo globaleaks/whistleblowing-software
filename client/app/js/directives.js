@@ -249,12 +249,6 @@ directive('filePickerInput', function() {
     },
   };
 }).
-directive('requiredAsterisk', function() {
-  return {
-    restrict: 'A',
-    templateUrl: 'views/partials/required_asterisk.html',
-  }
-}).
 directive('releaseMsg', function() {
   return {
     restrict: 'A',
