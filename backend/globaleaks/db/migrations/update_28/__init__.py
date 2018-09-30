@@ -6,7 +6,7 @@ from globaleaks.models.properties import *
 
 class Field_v_27(Model):
     __tablename__ = 'field'
-    id = Column(Unicode(36), primary_key=True, default=uuid4, nullable=False)
+    id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
     x = Column(Integer)
     y = Column(Integer)
     width = Column(Integer)
@@ -20,7 +20,7 @@ class Field_v_27(Model):
     multi_entry_hint = Column(JSON)
     stats_enabled = Column(Boolean)
     activated_by_score = Column(Integer)
-    template_id = Column(Unicode(36))
+    template_id = Column(UnicodeText(36))
     type = Column(UnicodeText)
     instance = Column(UnicodeText)
     editable = Column(Boolean)
@@ -28,8 +28,8 @@ class Field_v_27(Model):
 
 class Step_v_27(Model):
     __tablename__ = 'step'
-    id = Column(Unicode(36), primary_key=True, default=uuid4, nullable=False)
-    context_id = Column(Unicode(36))
+    id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
+    context_id = Column(UnicodeText(36))
     label = Column(JSON)
     description = Column(JSON)
     presentation_order = Column(Integer)
@@ -37,8 +37,8 @@ class Step_v_27(Model):
 
 class FieldOption_v_27(Model):
     __tablename__ = 'fieldoption'
-    id = Column(Unicode(36), primary_key=True, default=uuid4, nullable=False)
-    field_id = Column(Unicode(36))
+    id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
+    field_id = Column(UnicodeText(36))
     presentation_order = Column(Integer)
     label = Column(JSON)
     score_points = Column(Integer)
@@ -47,15 +47,15 @@ class FieldOption_v_27(Model):
 class FieldField_v_27(Model):
     __tablename__ = 'field_field'
 
-    parent_id = Column(Unicode(36), primary_key=True)
-    child_id = Column(Unicode(36), primary_key=True)
+    parent_id = Column(UnicodeText(36), primary_key=True)
+    child_id = Column(UnicodeText(36), primary_key=True)
 
 
 class StepField_v_27(Model):
     __tablename__ = 'step_field'
 
-    step_id = Column(Unicode(36), primary_key=True)
-    field_id = Column(Unicode(36), primary_key=True)
+    step_id = Column(UnicodeText(36), primary_key=True)
+    field_id = Column(UnicodeText(36), primary_key=True)
 
 
 class MigrationScript(MigrationBase):

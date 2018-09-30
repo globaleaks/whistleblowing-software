@@ -50,7 +50,7 @@ def receiver_serialize_rfile(session, rfile):
             'name': ifile.name,
             'content_type': ifile.content_type,
             'creation_date': datetime_to_ISO8601(ifile.creation_date),
-            'size': int(ifile.size),
+            'size': ifile.size,
             'downloads': rfile.downloads
         }
 
@@ -63,7 +63,7 @@ def receiver_serialize_rfile(session, rfile):
         'name': ("%s.pgp" % ifile.name) if rfile.status == u'encrypted' else ifile.name,
         'content_type': ifile.content_type,
         'creation_date': datetime_to_ISO8601(ifile.creation_date),
-        'size': rfile.size,
+        'size': ifile.size,
         'downloads': rfile.downloads
     }
 

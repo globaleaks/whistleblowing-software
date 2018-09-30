@@ -33,23 +33,7 @@ def receiverfile_planning(session):
     receiverfiles_maps = {}
 
     for ifile in session.query(models.InternalFile).filter(models.InternalFile.new == True).order_by(models.InternalFile.creation_date):
-        if ifile.processing_attempts >= INTERNALFILES_HANDLE_RETRY_MAX:
-            ifile.new = False
-            log.err("Failed to handle receiverfiles creation for ifile %s (%d retries)",
-                    ifile.id, INTERNALFILES_HANDLE_RETRY_MAX)
-            continue
-
-        elif ifile.processing_attempts >= 1:
-            log.err("Failed to handle receiverfiles creation for ifile %s (retry %d/%d)",
-                    ifile.id, ifile.processing_attempts, INTERNALFILES_HANDLE_RETRY_MAX)
-
-
-        if ifile.processing_attempts:
-            log.debug("Starting handling receiverfiles creation for ifile %s retry %d/%d",
-                      ifile.id, ifile.processing_attempts, INTERNALFILES_HANDLE_RETRY_MAX)
-
-        ifile.processing_attempts += 1
-
+        ifile.new = False
         for rtip, user in session.query(models.ReceiverTip, models.User) \
                                  .filter(models.ReceiverTip.internaltip_id == ifile.internaltip_id,
                                          models.User.id == models.ReceiverTip.receiver_id):
@@ -57,7 +41,6 @@ def receiverfile_planning(session):
             receiverfile.internalfile_id = ifile.id
             receiverfile.receivertip_id = rtip.id
             receiverfile.filename = ifile.filename
-            receiverfile.size = ifile.size
             receiverfile.status = u'processing'
 
             # https://github.com/globaleaks/GlobaLeaks/issues/444
@@ -188,7 +171,6 @@ def update_internalfile_and_store_receiverfiles(session, receiverfiles_maps):
 
             rfile.status = rf['status']
             rfile.filename = rf['filename']
-            rfile.size = rf['size']
 
 
 class Delivery(LoopingJob):

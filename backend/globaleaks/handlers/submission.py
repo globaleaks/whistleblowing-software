@@ -60,7 +60,6 @@ def db_serialize_archived_questionnaire_schema(questionnaire_schema, language):
 
         get_localized_values(step, step, models.Step.localized_keys, language)
 
-
     return questionnaire
 
 

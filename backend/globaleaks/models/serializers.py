@@ -25,7 +25,7 @@ def serialize_rfile(session, tid, rfile):
         'id': rfile.id,
         'creation_date': datetime_to_ISO8601(ifile.creation_date),
         'name': ("%s.pgp" % ifile.name) if rfile.status == u'encrypted' else ifile.name,
-        'size': rfile.size,
+        'size': ifile.size,
         'content_type': ifile.content_type,
         'filename': rfile.filename,
         'downloads': rfile.downloads,

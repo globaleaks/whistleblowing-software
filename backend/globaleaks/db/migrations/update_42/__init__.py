@@ -10,17 +10,17 @@ from globaleaks.utils.utility import datetime_now, datetime_null
 class InternalTip_v_41(Model):
     __tablename__ = 'internaltip'
 
-    id = Column(Unicode(36), primary_key=True, default=uuid4, nullable=False)
+    id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
     tid = Column(Integer, default=1, nullable=False)
     encrypted = Column(Boolean, default=False, nullable=False)
-    wb_prv_key = Column(Unicode, default=u'', nullable=False)
-    wb_pub_key = Column(Unicode, default=u'', nullable=False)
-    wb_tip_key = Column(Unicode, default=u'', nullable=False)
-    enc_data = Column(Unicode, default=u'', nullable=False)
+    wb_prv_key = Column(UnicodeText, default=u'', nullable=False)
+    wb_pub_key = Column(UnicodeText, default=u'', nullable=False)
+    wb_tip_key = Column(UnicodeText, default=u'', nullable=False)
+    enc_data = Column(UnicodeText, default=u'', nullable=False)
     creation_date = Column(DateTime, default=datetime_now, nullable=False)
     update_date = Column(DateTime, default=datetime_now, nullable=False)
-    context_id = Column(Unicode(36), nullable=False)
-    questionnaire_hash = Column(Unicode(64), nullable=False)
+    context_id = Column(UnicodeText(36), nullable=False)
+    questionnaire_hash = Column(UnicodeText(64), nullable=False)
     preview = Column(JSON, nullable=False)
     progressive = Column(Integer, default=0, nullable=False)
     https = Column(Boolean, default=False, nullable=False)
@@ -32,7 +32,7 @@ class InternalTip_v_41(Model):
     enable_two_way_messages = Column(Boolean, default=True, nullable=False)
     enable_attachments = Column(Boolean, default=True, nullable=False)
     enable_whistleblower_identity = Column(Boolean, default=False, nullable=False)
-    receipt_hash = Column(Unicode(128), nullable=False)
+    receipt_hash = Column(UnicodeText(128), nullable=False)
     wb_last_access = Column(DateTime, default=datetime_now, nullable=False)
     wb_access_counter = Column(Integer, default=0, nullable=False)
 

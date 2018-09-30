@@ -6,9 +6,9 @@ from globaleaks.models.properties import *
 
 class InternalFile_v_25(Model):
     __tablename__ = 'internalfile'
-    id = Column(Unicode(36), primary_key=True, default=uuid4, nullable=False)
+    id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
     creation_date = Column(DateTime)
-    internaltip_id = Column(Unicode(36))
+    internaltip_id = Column(UnicodeText(36))
     name = Column(UnicodeText)
     file_path = Column(UnicodeText)
     content_type = Column(UnicodeText)
