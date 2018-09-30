@@ -50,11 +50,6 @@ function($scope, $location, $filter, Sites) {
         return item.label.toLowerCase().indexOf(search) !== -1 && item.id !== 1;
       });
 
-      if (ret.length > 10) {
-        $scope.selectableSites = [];
-        return;
-      }
-
       $scope.selectableSites = $filter('orderBy')(ret, 'label');
     }
 
