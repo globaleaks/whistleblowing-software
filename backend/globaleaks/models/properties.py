@@ -5,7 +5,7 @@ import json
 from six import text_type
 
 from sqlalchemy import Column, CheckConstraint, ForeignKeyConstraint, UniqueConstraint, types
-from sqlalchemy.types import Boolean, DateTime, Integer, Unicode, UnicodeText
+from sqlalchemy.types import Boolean, DateTime, Integer, LargeBinary, UnicodeText
 from sqlalchemy.ext.declarative import declarative_base, declared_attr
 from sqlalchemy.schema import ForeignKey
 

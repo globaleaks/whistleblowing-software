@@ -181,7 +181,6 @@ def get_dummy_field():
         'hint': u'field hint',
         'multi_entry': False,
         'multi_entry_hint': '',
-        'stats_enabled': False,
         'required': False,
         'attrs': {},
         'options': get_dummy_fieldoption_list(),

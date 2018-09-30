@@ -10,7 +10,7 @@ from globaleaks.settings import Settings
 
 class Node_v_30(Model):
     __tablename__ = 'node'
-    id = Column(Unicode(36), primary_key=True, default=uuid4, nullable=False)
+    id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
     version = Column(UnicodeText)
     version_db = Column(UnicodeText)
     name = Column(UnicodeText)
@@ -78,7 +78,7 @@ class Node_v_30(Model):
 
 class User_v_30(Model):
     __tablename__ = 'user'
-    id = Column(Unicode(36), primary_key=True, default=uuid4, nullable=False)
+    id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
     creation_date = Column(DateTime)
     username = Column(UnicodeText)
     password = Column(UnicodeText)
@@ -103,7 +103,7 @@ class User_v_30(Model):
 
 class Context_v_30(Model):
     __tablename__ = 'context'
-    id = Column(Unicode(36), primary_key=True, default=uuid4, nullable=False)
+    id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
     show_small_cards = Column(Boolean)
     show_context = Column(Boolean)
     show_recipients_details = Column(Boolean)
@@ -122,14 +122,14 @@ class Context_v_30(Model):
     status_page_message = Column(JSON)
     show_receivers_in_alphabetical_order = Column(Boolean)
     presentation_order = Column(Integer)
-    questionnaire_id = Column(Unicode(36), default=u'default')
+    questionnaire_id = Column(UnicodeText(36), default=u'default')
 
 
 class ReceiverTip_v_30(Model):
     __tablename__ = 'receivertip'
-    id = Column(Unicode(36), primary_key=True, default=uuid4, nullable=False)
-    internaltip_id = Column(Unicode(36))
-    receiver_id = Column(Unicode(36))
+    id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
+    internaltip_id = Column(UnicodeText(36))
+    receiver_id = Column(UnicodeText(36))
     last_access = Column(DateTime)
     access_counter = Column(Integer)
     label = Column(UnicodeText)
@@ -139,7 +139,7 @@ class ReceiverTip_v_30(Model):
 
 class Notification_v_30(Model):
     __tablename__ = 'notification'
-    id = Column(Unicode(36), primary_key=True, default=uuid4, nullable=False)
+    id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
     server = Column(UnicodeText)
     port = Column(Integer)
     username = Column(UnicodeText)
