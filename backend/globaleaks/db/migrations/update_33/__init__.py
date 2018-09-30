@@ -8,7 +8,7 @@ from globaleaks.utils.utility import datetime_now, datetime_null
 
 class Node_v_32(models.Model):
     __tablename__ = 'node'
-    id = Column(Unicode(36), primary_key=True, default=uuid4, nullable=False)
+    id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
     version = Column(UnicodeText, default=text_type(__version__))
     version_db = Column(UnicodeText, default=text_type(DATABASE_VERSION))
     name = Column(UnicodeText, default=u'')
@@ -97,11 +97,11 @@ class Node_v_32(models.Model):
 
 class InternalTip_v_32(models.Model):
     __tablename__ = 'internaltip'
-    id = Column(Unicode(36), primary_key=True, default=uuid4, nullable=False)
+    id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
     creation_date = Column(DateTime, default=datetime_now)
     update_date = Column(DateTime, default=datetime_now)
 
-    context_id = Column(Unicode(36))
+    context_id = Column(UnicodeText(36))
 
     questionnaire_hash = Column(UnicodeText)
     preview = Column(JSON)
@@ -123,8 +123,8 @@ class InternalTip_v_32(models.Model):
 
 class WhistleblowerTip_v_32(models.Model):
     __tablename__ = 'whistleblowertip'
-    id = Column(Unicode(36), primary_key=True, default=uuid4, nullable=False)
-    internaltip_id = Column(Unicode(36))
+    id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
+    internaltip_id = Column(UnicodeText(36))
     receipt_hash = Column(UnicodeText)
 
     last_access = Column(DateTime, default=datetime_now)
@@ -133,7 +133,7 @@ class WhistleblowerTip_v_32(models.Model):
 
 class User_v_32(models.Model):
     __tablename__ = 'user'
-    id = Column(Unicode(36), primary_key=True, default=uuid4, nullable=False)
+    id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
     creation_date = Column(DateTime, default=datetime_now)
     username = Column(UnicodeText)
     password = Column(UnicodeText)
@@ -155,7 +155,7 @@ class User_v_32(models.Model):
     pgp_key_public = Column(UnicodeText, default=u'')
     pgp_key_expiration = Column(DateTime, default=datetime_null)
     pgp_key_status = Column(UnicodeText, default=u'disabled')
-    img_id = Column(Unicode(36))
+    img_id = Column(UnicodeText(36))
 
 
 class MigrationScript(MigrationBase):

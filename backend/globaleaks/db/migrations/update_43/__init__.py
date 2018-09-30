@@ -8,7 +8,7 @@ from globaleaks.utils.utility import datetime_never, datetime_now, datetime_null
 class InternalTip_v_42(Model):
     __tablename__ = 'internaltip'
 
-    id = Column(Unicode(36), primary_key=True, default=uuid4, nullable=False)
+    id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
 
     tid = Column(Integer, default=1, nullable=False)
 
@@ -16,8 +16,8 @@ class InternalTip_v_42(Model):
 
     creation_date = Column(DateTime, default=datetime_now, nullable=False)
     update_date = Column(DateTime, default=datetime_now, nullable=False)
-    context_id = Column(Unicode(36), nullable=False)
-    questionnaire_hash = Column(Unicode(64), nullable=False)
+    context_id = Column(UnicodeText(36), nullable=False)
+    questionnaire_hash = Column(UnicodeText(64), nullable=False)
     preview = Column(JSON, nullable=False)
     progressive = Column(Integer, default=0, nullable=False)
     https = Column(Boolean, default=False, nullable=False)
@@ -33,16 +33,16 @@ class InternalTip_v_42(Model):
     wb_last_access = Column(DateTime, default=datetime_now, nullable=False)
     wb_access_counter = Column(Integer, default=0, nullable=False)
 
-    status = Column(Unicode(36), nullable=False)
-    substatus = Column(Unicode(36), nullable=True)
+    status = Column(UnicodeText(36), nullable=False)
+    substatus = Column(UnicodeText(36), nullable=True)
 
 
 class ReceiverTip_v_42(Model):
     __tablename__ = 'receivertip'
-    id = Column(Unicode(36), primary_key=True, default=uuid4, nullable=False)
-    tip_key = Column(Unicode, default=u'', nullable=False)
-    internaltip_id = Column(Unicode(36), nullable=False)
-    receiver_id = Column(Unicode(36), nullable=False)
+    id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
+    tip_key = Column(UnicodeText, default=u'', nullable=False)
+    internaltip_id = Column(UnicodeText(36), nullable=False)
+    receiver_id = Column(UnicodeText(36), nullable=False)
     last_access = Column(DateTime, default=datetime_null, nullable=False)
     access_counter = Column(Integer, default=0, nullable=False)
     label = Column(UnicodeText, default=u'', nullable=False)
@@ -89,12 +89,12 @@ class Signup_v_42(Model):
 
 class User_v_42(Model):
     __tablename__ = 'user'
-    id = Column(Unicode(36), primary_key=True, default=uuid4, nullable=False)
+    id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
     tid = Column(Integer, default=1, nullable=False)
     creation_date = Column(DateTime, default=datetime_now, nullable=False)
     username = Column(UnicodeText, default=u'', nullable=False)
     password = Column(UnicodeText, default=u'', nullable=False)
-    salt = Column(Unicode(24), nullable=False)
+    salt = Column(UnicodeText(24), nullable=False)
     name = Column(UnicodeText, default=u'', nullable=False)
     description = Column(JSON, default=dict, nullable=False)
     role = Column(UnicodeText, default=u'receiver', nullable=False)
@@ -105,8 +105,8 @@ class User_v_42(Model):
     password_change_needed = Column(Boolean, default=True, nullable=False)
     password_change_date = Column(DateTime, default=datetime_null, nullable=False)
     auth_token = Column(UnicodeText, default=u'', nullable=False)
-    enc_prv_key = Column(Unicode, default=u'', nullable=False)
-    enc_pub_key = Column(Unicode, default=u'', nullable=False)
+    enc_prv_key = Column(UnicodeText, default=u'', nullable=False)
+    enc_pub_key = Column(UnicodeText, default=u'', nullable=False)
     can_edit_general_settings = Column(Boolean, default=False, nullable=False)
     change_email_address = Column(UnicodeText, default=u'', nullable=False)
     change_email_token = Column(UnicodeText, unique=True, nullable=True)
@@ -121,14 +121,14 @@ class User_v_42(Model):
 class WhistleblowerTip_v_42(Model):
     __tablename__ = 'whistleblowertip'
 
-    id = Column(Unicode(36), primary_key=True, default=uuid4, nullable=False)
+    id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
     tid = Column(Integer, default=1, nullable=False)
-    receipt_hash = Column(Unicode(128), nullable=False)
+    receipt_hash = Column(UnicodeText(128), nullable=False)
 
-    wb_prv_key = Column(Unicode, default=u'', nullable=False)
-    wb_pub_key = Column(Unicode, default=u'', nullable=False)
-    wb_tip_key = Column(Unicode, default=u'', nullable=False)
-    enc_data = Column(Unicode, default=u'', nullable=False)
+    wb_prv_key = Column(UnicodeText, default=u'', nullable=False)
+    wb_pub_key = Column(UnicodeText, default=u'', nullable=False)
+    wb_tip_key = Column(UnicodeText, default=u'', nullable=False)
+    enc_data = Column(UnicodeText, default=u'', nullable=False)
 
 
 class MigrationScript(MigrationBase):

@@ -1,30 +1,39 @@
 # -*- coding: UTF-8
-import os
-
 from globaleaks.db.migrations.update import MigrationBase
 from globaleaks.models import Model
 from globaleaks.models.properties import *
-from globaleaks.utils.utility import datetime_now, datetime_null
+from globaleaks.utils.utility import datetime_never, datetime_now, datetime_null
 
 
-class InternalFile_v_40(Model):
-    __tablename__ = 'internalfile'
+class Field_v_44(Model):
+    __tablename__ = 'field'
     id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
-    creation_date = Column(DateTime, default=datetime_now, nullable=False)
-    internaltip_id = Column(UnicodeText(36), nullable=False)
-    name = Column(UnicodeText, nullable=False)
-    file_path = Column(UnicodeText, nullable=False)
-    content_type = Column(UnicodeText, nullable=False)
-    size = Column(Integer, nullable=False)
-    new = Column(Integer, default=True, nullable=False)
-    submission = Column(Integer, default = False, nullable=False)
-    processing_attempts = Column(Integer, default=0, nullable=False)
+    tid = Column(Integer, default=1, nullable=False)
+    x = Column(Integer, default=0, nullable=False)
+    y = Column(Integer, default=0, nullable=False)
+    width = Column(Integer, default=0, nullable=False)
+    label = Column(JSON, nullable=False)
+    description = Column(JSON, nullable=False)
+    hint = Column(JSON, nullable=False)
+    required = Column(Boolean, default=False, nullable=False)
+    preview = Column(Boolean, default=False, nullable=False)
+    multi_entry = Column(Boolean, default=False, nullable=False)
+    multi_entry_hint = Column(JSON, nullable=False)
+    stats_enabled = Column(Boolean, default=False, nullable=False)
+    triggered_by_score = Column(Integer, default=0, nullable=False)
+    template_id = Column(UnicodeText(36))
+    fieldgroup_id = Column(UnicodeText(36))
+    step_id = Column(UnicodeText(36))
+    type = Column(UnicodeText, default=u'inputbox', nullable=False)
+    instance = Column(UnicodeText, default=u'instance', nullable=False)
+    editable = Column(Boolean, default=True, nullable=False)
 
 
-class InternalTip_v_40(Model):
+class InternalTip_v_44(Model):
     __tablename__ = 'internaltip'
     id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
     tid = Column(Integer, default=1, nullable=False)
+    content = Column(UnicodeText, default=u'')
     creation_date = Column(DateTime, default=datetime_now, nullable=False)
     update_date = Column(DateTime, default=datetime_now, nullable=False)
     context_id = Column(UnicodeText(36), nullable=False)
@@ -40,25 +49,26 @@ class InternalTip_v_40(Model):
     enable_two_way_messages = Column(Boolean, default=True, nullable=False)
     enable_attachments = Column(Boolean, default=True, nullable=False)
     enable_whistleblower_identity = Column(Boolean, default=False, nullable=False)
-    receipt_hash = Column(UnicodeText(128), nullable=False)
     wb_last_access = Column(DateTime, default=datetime_now, nullable=False)
     wb_access_counter = Column(Integer, default=0, nullable=False)
+    status = Column(UnicodeText(36), nullable=False)
+    substatus = Column(UnicodeText(36), nullable=True)
 
 
-class ReceiverFile_v_40(Model):
+class ReceiverFile_v_44(Model):
     __tablename__ = 'receiverfile'
     id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
-    internalfile_id = Column(UnicodeText(36))
-    receivertip_id = Column(UnicodeText(36))
-    file_path = Column(UnicodeText)
-    size = Column(Integer)
-    downloads = Column(Integer, default=0)
-    last_access = Column(DateTime, default=datetime_null)
-    new = Column(Integer, default=True)
-    status = Column(UnicodeText)
+    internalfile_id = Column(UnicodeText(36), nullable=False)
+    receivertip_id = Column(UnicodeText(36), nullable=False)
+    filename = Column(UnicodeText(255), nullable=False)
+    size = Column(Integer, nullable=False)
+    downloads = Column(Integer, default=0, nullable=False)
+    last_access = Column(DateTime, default=datetime_null, nullable=False)
+    new = Column(Integer, default=True, nullable=False)
+    status = Column(UnicodeText, nullable=False)
 
 
-class ReceiverTip_v_40(Model):
+class ReceiverTip_v_44(Model):
     __tablename__ = 'receivertip'
     id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
     internaltip_id = Column(UnicodeText(36), nullable=False)
@@ -71,29 +81,14 @@ class ReceiverTip_v_40(Model):
     enable_notifications = Column(Boolean, default=True, nullable=False)
 
 
-class Signup_v_40(Model):
-    __tablename__ = 'signup'
-    id = Column(Integer, primary_key=True, nullable=False)
-    tid = Column(Integer, nullable=True)
-    subdomain = Column(UnicodeText, unique=True, nullable=False)
-    name = Column(UnicodeText, nullable=False)
-    surname = Column(UnicodeText, nullable=False)
-    email = Column(UnicodeText, nullable=False)
-    use_case = Column(UnicodeText, nullable=False)
-    use_case_other = Column(UnicodeText, nullable=False)
-    language = Column(UnicodeText, nullable=False)
-    activation_token = Column(UnicodeText, nullable=False)
-    registration_date = Column(DateTime, default=datetime_now, nullable=False)
-
-
-class User_v_40(Model):
+class User_v_44(Model):
     __tablename__ = 'user'
     id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
     tid = Column(Integer, default=1, nullable=False)
     creation_date = Column(DateTime, default=datetime_now, nullable=False)
     username = Column(UnicodeText, default=u'', nullable=False)
-    password = Column(UnicodeText, default=u'', nullable=False)
     salt = Column(UnicodeText(24), nullable=False)
+    password = Column(UnicodeText, default=u'', nullable=False)
     name = Column(UnicodeText, default=u'', nullable=False)
     description = Column(JSON, default=dict, nullable=False)
     role = Column(UnicodeText, default=u'receiver', nullable=False)
@@ -104,17 +99,23 @@ class User_v_40(Model):
     password_change_needed = Column(Boolean, default=True, nullable=False)
     password_change_date = Column(DateTime, default=datetime_null, nullable=False)
     auth_token = Column(UnicodeText, default=u'', nullable=False)
+    can_edit_general_settings = Column(Boolean, default=False, nullable=False)
+    change_email_address = Column(UnicodeText, default=u'', nullable=False)
+    change_email_token = Column(UnicodeText, unique=True, nullable=True)
+    change_email_date = Column(DateTime, default=datetime_never, nullable=False)
+    reset_password_token = Column(UnicodeText, unique=True, nullable=True)
+    reset_password_date = Column(UnicodeText, default=datetime_never, nullable=False)
     pgp_key_fingerprint = Column(UnicodeText, default=u'', nullable=False)
     pgp_key_public = Column(UnicodeText, default=u'', nullable=False)
     pgp_key_expiration = Column(DateTime, default=datetime_null, nullable=False)
 
 
-class WhistleblowerFile_v_40(Model):
+class WhistleblowerFile_v_44(Model):
     __tablename__ = 'whistleblowerfile'
     id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
     receivertip_id = Column(UnicodeText(36), nullable=False)
     name = Column(UnicodeText, nullable=False)
-    file_path = Column(UnicodeText, nullable=False)
+    filename = Column(UnicodeText(255), nullable=False)
     size = Column(Integer, nullable=False)
     content_type = Column(UnicodeText, nullable=False)
     downloads = Column(Integer, default=0, nullable=False)
@@ -123,67 +124,38 @@ class WhistleblowerFile_v_40(Model):
     description = Column(UnicodeText, nullable=False)
 
 
+class WhistleblowerTip_v_44(Model):
+    __tablename__ = 'whistleblowertip'
+    id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
+    tid = Column(Integer, default=1, nullable=False)
+    receipt_hash = Column(UnicodeText(128), nullable=False)
+
 
 class MigrationScript(MigrationBase):
-    def migrate_InternalTip(self):
-        tenants = self.session_old.query(self.model_from['Tenant'])
-        for tenant in tenants:
-            old_objs = self.session_old.query(self.model_from['InternalTip']) \
-                                       .filter(self.model_from['InternalTip'].tid == tenant.id) \
-                                       .order_by(self.model_from['InternalTip'].creation_date)
-            i = 0
-            for old_obj in old_objs:
-                i += 1
-                new_obj = self.model_to['InternalTip'](migrate=True)
-                for key in [c.key for c in new_obj.__table__.columns]:
-                    if key in ['encrypted', 'wb_prv_key', 'wb_pub_key', 'wb_tip_key', 'enc_data']:
-                        new_obj.encrypted = False
-                    elif key == 'progressive':
-                        new_obj.progressive = i
-                    else:
-                        setattr(new_obj, key, getattr(old_obj, key))
-
-                self.session_new.add(new_obj)
-
-    def migrate_InternalFile(self):
-        old_objs = self.session_old.query(self.model_from['InternalFile'])
+    def migrate_User(self):
+        old_objs = self.session_old.query(self.model_from['User'])
         for old_obj in old_objs:
-            new_obj = self.model_to['InternalFile'](migrate=True)
+            new_obj = self.model_to['User']()
             for key in [c.key for c in new_obj.__table__.columns]:
-                if key == 'filename':
-                    new_obj.filename = os.path.basename(old_obj.file_path)
+                if key == 'hash_alg':
+                    new_obj.hash_alg = 'SCRYPT'
+                elif key in ['crypto_pub_key', 'crypto_prv_key',]:
+                    continue
                 else:
                     setattr(new_obj, key, getattr(old_obj, key))
 
             self.session_new.add(new_obj)
 
-    def migrate_ReceiverFile(self):
-        old_objs = self.session_old.query(self.model_from['ReceiverFile'])
+    def migrate_WhistleblowerTip(self):
+        old_objs = self.session_old.query(self.model_from['WhistleblowerTip'])
         for old_obj in old_objs:
-            new_obj = self.model_to['ReceiverFile'](migrate=True)
+            new_obj = self.model_to['WhistleblowerTip']()
             for key in [c.key for c in new_obj.__table__.columns]:
-                if key == 'filename':
-                    new_obj.filename = os.path.basename(old_obj.file_path)
+                if key == 'hash_alg':
+                    new_obj.hash_alg = 'SCRYPT'
+                elif key in ['crypto_pub_key', 'crypto_prv_key', 'crypto_tip_prv_key']:
+                    continue
                 else:
                     setattr(new_obj, key, getattr(old_obj, key))
 
             self.session_new.add(new_obj)
-
-    def migrate_WhistleblowerFile(self):
-        old_objs = self.session_old.query(self.model_from['WhistleblowerFile'])
-        for old_obj in old_objs:
-            new_obj = self.model_to['WhistleblowerFile'](migrate=True)
-            for key in [c.key for c in new_obj.__table__.columns]:
-                if key == 'filename':
-                    new_obj.filename = os.path.basename(old_obj.file_path)
-                else:
-                    setattr(new_obj, key, getattr(old_obj, key))
-
-            self.session_new.add(new_obj)
-
-    def epilogue(self):
-        tenants = self.session_old.query(self.model_from['Tenant'])
-        for tenant in tenants:
-            count = self.session_old.query(self.model_from['InternalTip']).filter(self.model_from['InternalTip'].tid == tenant.id).count()
-            self.session_new.add(self.model_to['Config'](tenant.id, u'counter_submissions', count))
-            self.entries_count['Config'] += 1
