@@ -18,7 +18,6 @@ class BaseJob(task.LoopingCall):
     start_time = -1
     active = None
     last_executions = []
-    shutdown = False
 
     def __init__(self):
         self.name = self.__class__.__name__
@@ -35,11 +34,6 @@ class BaseJob(task.LoopingCall):
         task.LoopingCall.start(self, interval)
 
     def stop(self):
-        if self.shutdown:
-            return defer.succeed(None)
-
-        self.shutdown = True
-
         if self.running:
             task.LoopingCall.stop(self)
 
@@ -52,7 +46,7 @@ class BaseJob(task.LoopingCall):
         try:
             yield self.operation()
         except Exception as e:
-            if not self.shutdown:
+            if not self.state.shutdown:
                 self.on_error(e)
 
         self.end()
