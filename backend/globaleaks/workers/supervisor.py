@@ -22,7 +22,6 @@ class ProcessSupervisor(object):
         log.info("Starting process monitor")
 
         self.shutting_down = False
-        self.shutdown_d = defer.Deferred()
 
         self.start_time = datetime_now()
         self.tls_process_pool = []
@@ -75,9 +74,6 @@ class ProcessSupervisor(object):
     def maybe_launch_https_workers(self, session):
         self.db_maybe_launch_https_workers(session)
 
-    def launch_https_workers(self):
-        return defer.DeferredList([self.launch_worker() for _ in range(self.cpu_count)])
-
     def launch_worker(self):
         pp = HTTPSProcProtocol(self, self.tls_cfg)
         reactor.spawnProcess(pp, executable, [executable, self.worker_path], childFDs=pp.fd_map, env=os.environ)
@@ -87,78 +83,56 @@ class ProcessSupervisor(object):
 
         return pp.startup_promise
 
-    def handle_worker_death(self, pp, reason):
-        """
-        handle_worker_death accounts the worker's death and creates a new process
-        in its place if the reason for death is reasonable and we haven't
-        restarted the child an unreasonable number of times.
-        """
-        log.debug("Subprocess: %s exited with: %s", pp, reason)
-
-        self.tls_process_pool.pop(self.tls_process_pool.index(pp))
-
-        del pp
-
-        if self.should_spawn_child():
-            log.debug('Decided to respawn a child')
-            self.launch_worker()
-        elif self.last_one_out():
-            self.shutting_down = False
-            self.shutdown_d.callback(None)
-            self.shutdown_d = defer.Deferred()
-            log.info("Supervisor has turned off all children")
-        else:
-            log.debug("Not relaunching child process")
+    def launch_https_workers(self):
+        return defer.DeferredList([self.launch_worker() for _ in range(self.cpu_count)])
 
     def should_spawn_child(self):
-        if self.shutting_down:
-            return False
-
-        return len(self.tls_process_pool) < self.cpu_count
-
-    def last_one_out(self):
-        """
-        last_one_out captures the condition of the last shutdown process before
-        the process supervisor has closed all children.
-        """
-        return self.shutting_down and len(self.tls_process_pool) == 0
+        return not self.shutting_down and len(self.tls_process_pool) < self.cpu_count
 
     def is_running(self):
         return len(self.tls_process_pool) > 0
 
+    def handle_worker_death(self, pp, reason):
+        log.debug("Subprocess: %s exited with: %s", pp, reason)
+
+        if pp in self.tls_process_pool: self.tls_process_pool.remove(pp)
+
+        if self.should_spawn_child():
+            self.launch_worker()
+
     def get_status(self):
-        s = {
-            'msg': '',
+        if self.is_running():
+            msg = "Everything is running normally."
+        elif not self.should_spawn_child():
+            msg = "The supervisor will not create new workers"
+        else:
+            msg = "Nothing is being served"
+
+        return {
             'timestamp': datetime_to_ISO8601(datetime_now()),
-            'type': 'info'
+            'msg': msg
         }
 
-        if self.is_running():
-            m = "Everything is running normally."
-        elif not self.should_spawn_child():
-            m = "The supervisor will not create new workers"
-        else:
-            m = "Nothing is being served"
+    def reload(self):
+        log.debug('Reloading HTTPS configuration')
 
-        s['msg'] = m
-
-        return s
-
-    def shutdown(self, friendly=False):
-        log.debug('Starting shutdown of %d children', len(self.tls_process_pool))
-
-        # Handle condition where shutdown is called with no active children
-        if not self.is_running():
-            return defer.succeed(None)
-
-        self.shutting_down = True
-
-        sig = signal.SIGUSR2 if friendly else signal.SIGUSR1
-
-        for pp in self.tls_process_pool:
+        while self.tls_process_pool:
             try:
-                pp.transport.signalProcess(sig)
+                pp = self.tls_process_pool.pop(0)
+                pp.transport.signalProcess(signal.SIGUSR2)
             except OSError as e:
                 log.debug('Tried to signal: %d got: %s', pp.transport.pid, e)
 
-        return self.shutdown_d
+        self.launch_https_workers()
+
+    def shutdown(self):
+        log.debug('Starting HTTPS workes shutdown')
+
+        self.shutting_down = True
+
+        while self.tls_process_pool:
+            try:
+                pp = self.tls_process_pool.pop(0)
+                pp.transport.signalProcess(signal.SIGUSR1)
+            except OSError as e:
+                log.debug('Tried to signal: %d got: %s', pp.transport.pid, e)

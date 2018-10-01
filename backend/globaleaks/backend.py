@@ -86,17 +86,18 @@ class Service(service.Service):
         d = defer.Deferred()
 
         def _shutdown(_):
-            if not self._shutdown:
-                self._shutdown = True
-                self.state.orm_tp.stop()
-                d.callback(None)
+            if self._shutdown:
+                return
+
+            self._shutdown = True
+            self.state.orm_tp.stop()
+            d.callback(None)
 
         reactor.callLater(30, _shutdown, None)
 
-        d1 = self.state.process_supervisor.shutdown()
-        d2 = self.stop_jobs()
+        self.state.process_supervisor.shutdown()
 
-        defer.DeferredList([d1, d2]).addCallback(_shutdown)
+        self.stop_jobs().addBoth(_shutdown)
 
         return d
 

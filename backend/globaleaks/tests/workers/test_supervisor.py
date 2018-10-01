@@ -28,7 +28,7 @@ class TestProcessSupervisor(helpers.TestGL):
         yield test_tls.commit_valid_config()
 
     @inlineCallbacks
-    def test_init_with_no_launch(self):
+    def test_launch_and_shutdown(self):
         yield toggle_https(enabled=False)
         sock, fail = reserve_port_for_ip('127.0.0.1', 43434)
         self.assertIsNone(fail)
@@ -40,28 +40,9 @@ class TestProcessSupervisor(helpers.TestGL):
 
         self.assertFalse(p_s.is_running())
 
-        yield p_s.shutdown()
+        p_s.shutdown()
 
-        self.assertFalse(p_s.shutting_down)
-        self.assertFalse(p_s.is_running())
-
-
-    @inlineCallbacks
-    def test_init_with_launch(self):
-        yield toggle_https(enabled=True)
-        sock, fail = reserve_port_for_ip('localhost', 43434)
-        self.assertIsNone(fail)
-
-        ip, port = '127.0.0.1', 43435
-
-        p_s = supervisor.ProcessSupervisor([sock], ip, port)
-        yield p_s.maybe_launch_https_workers()
-
-        self.assertTrue(p_s.is_running())
-
-        yield p_s.shutdown()
-
-        self.assertFalse(p_s.shutting_down)
+        self.assertTrue(p_s.shutting_down)
         self.assertFalse(p_s.is_running())
 
 

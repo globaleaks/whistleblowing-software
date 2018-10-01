@@ -76,6 +76,8 @@ class StateClass(ObjectDict):
         self.set_orm_tp(ThreadPool(4, 16))
         self.TempUploadFiles = TempDict(timeout=3600)
 
+        self.shutdown = False
+
 
     def init_environment(self):
         os.umask(0o77)
@@ -251,11 +253,9 @@ class StateClass(ObjectDict):
 
             self.onion_service_job.remove_unwanted_hidden_services().addBoth(f) # pylint: disable=no-member
 
-        # Power cycle HTTPS processes
-        def g(*args):
-            return self.process_supervisor.maybe_launch_https_workers()
+        self.process_supervisor.shutdown()
 
-        self.process_supervisor.shutdown(friendly=True).addBoth(g)  # pylint: disable=no-member
+        self.process_supervisor.maybe_launch_https_workers()
 
     def format_and_send_mail(self, session, tid, user_desc, template_vars):
         subject, body = Templating().get_mail_subject_and_body(template_vars)
