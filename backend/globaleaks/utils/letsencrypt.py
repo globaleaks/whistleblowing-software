@@ -6,7 +6,7 @@ from datetime import datetime
 from acme import challenges, client, crypto_util, messages
 from six import text_type
 
-from globaleaks.utils.utility import log
+from globaleaks.utils.log import log
 
 
 class ChallTok:

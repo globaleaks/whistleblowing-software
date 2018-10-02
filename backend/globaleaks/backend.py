@@ -21,7 +21,8 @@ from globaleaks.settings import Settings
 from globaleaks.state import State
 from globaleaks.utils.process import disable_swap
 from globaleaks.utils.sock import listen_tcp_on_sock, reserve_port_for_ip
-from globaleaks.utils.utility import fix_file_permissions, drop_privileges, log, timedLogFormatter, GLLogObserver
+from globaleaks.utils.utility import fix_file_permissions, drop_privileges
+from globaleaks.utils.log import timedLogFormatter, LogObserver, log
 from globaleaks.workers.supervisor import ProcessSupervisor
 
 
@@ -194,7 +195,7 @@ try:
                                        rotateLength=Settings.log_file_size,
                                        maxRotatedFiles=Settings.num_log_files)
 
-        application.setComponent(txlog.ILogObserver, GLLogObserver(gl_logfile).emit)
+        application.setComponent(txlog.ILogObserver, LogObserver(gl_logfile).emit)
 
     Service().setServiceParent(application)
 except Exception as excep:

@@ -4,7 +4,7 @@ import re
 
 from globaleaks.db.migrations.update import MigrationBase
 from globaleaks.models.properties import *
-from globaleaks.utils.utility import log
+from globaleaks.utils.log import log
 
 TOR_DIR = '/var/globaleaks/torhs'
 

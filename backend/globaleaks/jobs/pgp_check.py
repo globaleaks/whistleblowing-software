@@ -13,8 +13,7 @@ from globaleaks.orm import transact
 from globaleaks.transactions import db_schedule_email
 from globaleaks.utils.templating import Templating
 from globaleaks.utils.utility import datetime_now, datetime_null
-from globaleaks.utils.utility import log
-
+from globaleaks.utils.log import log
 
 __all__ = ['PGPCheck']
 

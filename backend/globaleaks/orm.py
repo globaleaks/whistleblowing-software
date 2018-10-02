@@ -9,8 +9,8 @@ from sqlalchemy.orm import sessionmaker
 
 from twisted.internet import reactor
 from twisted.internet.threads import deferToThreadPool
-from globaleaks.utils.utility import deferred_sleep, log
-
+from globaleaks.utils.utility import deferred_sleep
+from globaleaks.utils.log import log
 
 __DB_URI = 'sqlite:'
 __THREAD_POOL = None

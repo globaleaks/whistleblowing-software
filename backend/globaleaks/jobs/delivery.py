@@ -15,7 +15,7 @@ from globaleaks.orm import transact
 from globaleaks.utils.pgp import PGPContext
 from globaleaks.utils.security import generateRandomKey
 from globaleaks.settings import Settings
-from globaleaks.utils.utility import log
+from globaleaks.utils.log import log
 
 __all__ = ['Delivery']
 

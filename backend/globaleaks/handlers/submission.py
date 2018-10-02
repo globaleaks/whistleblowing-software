@@ -17,8 +17,9 @@ from globaleaks.utils.security import hash_password, sha256, generateRandomRecei
 from globaleaks.state import State
 from globaleaks.utils.structures import get_localized_values
 from globaleaks.utils.token import TokenList
-from globaleaks.utils.utility import log, get_expiration, \
+from globaleaks.utils.utility import get_expiration, \
     datetime_now, datetime_never, datetime_to_ISO8601
+from globaleaks.utils.log import log
 
 
 def db_assign_submission_progressive(session, tid):

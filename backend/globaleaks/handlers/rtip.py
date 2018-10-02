@@ -18,8 +18,9 @@ from globaleaks.rest import errors, requests
 from globaleaks.settings import Settings
 from globaleaks.utils.security import directory_traversal_check
 from globaleaks.state import State
-from globaleaks.utils.utility import log, get_expiration, datetime_now, datetime_never, \
+from globaleaks.utils.utility import get_expiration, datetime_now, datetime_never, \
     datetime_to_ISO8601
+from globaleaks.utils.log import log
 
 
 def db_update_submission_status(session, user_id, itip, submission_status_id, submission_substatus_id):

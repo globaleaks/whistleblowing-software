@@ -319,6 +319,8 @@ class APIResourceWrapper(Resource):
         request.write(response.encode())
 
     def preprocess(self, request):
+        request.to_be_anonymized = True
+
         request.headers = request.getAllHeaders()
 
         # Twisted annoyingly different between Py2/Py3

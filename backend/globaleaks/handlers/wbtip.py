@@ -8,7 +8,8 @@ from globaleaks.handlers.submission import serialize_usertip, \
     db_save_questionnaire_answers, db_serialize_archived_questionnaire_schema
 from globaleaks.orm import transact
 from globaleaks.rest import errors, requests
-from globaleaks.utils.utility import log, datetime_now, datetime_to_ISO8601
+from globaleaks.utils.utility import datetime_now, datetime_to_ISO8601
+from globaleaks.utils.log import log
 
 
 def wb_serialize_ifile(ifile):

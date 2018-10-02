@@ -13,7 +13,9 @@ from globaleaks.rest import errors
 from globaleaks.utils.security import sha256, generateRandomKey
 from globaleaks.state import State
 from globaleaks.utils.tempdict import TempDict
-from globaleaks.utils.utility import log, datetime_now, datetime_to_ISO8601
+from globaleaks.utils.utility import datetime_now, datetime_to_ISO8601
+from globaleaks.utils.log import log
+
 
 class TokenListClass(TempDict):
     def __init__(self, *args, **kwds):

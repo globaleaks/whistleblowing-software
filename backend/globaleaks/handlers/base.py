@@ -20,7 +20,8 @@ from globaleaks.utils.securetempfile import SecureTemporaryFile
 from globaleaks.utils.security import sha512
 from globaleaks.sessions import Sessions
 from globaleaks.settings import Settings
-from globaleaks.utils.utility import datetime_now, deferred_sleep, log
+from globaleaks.utils.utility import datetime_now, deferred_sleep
+from globaleaks.utils.log import log
 
 # https://github.com/globaleaks/GlobaLeaks/issues/1601
 mimetypes.add_type('image/svg+xml', '.svg')

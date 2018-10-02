@@ -21,7 +21,8 @@ from globaleaks.utils.templating import Templating
 from globaleaks.utils.tor_exit_set import TorExitSet
 from globaleaks.utils.pgp import PGPContext
 from globaleaks.utils.security import sha256
-from globaleaks.utils.utility import datetime_now, log
+from globaleaks.utils.utility import datetime_now
+from globaleaks.utils.log import log
 from globaleaks.utils.tempdict import TempDict
 
 def getAlarm(state):

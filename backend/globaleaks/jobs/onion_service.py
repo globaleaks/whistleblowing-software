@@ -12,8 +12,7 @@ from globaleaks.jobs.base import BaseJob
 from globaleaks.models.config import ConfigFactory
 from globaleaks.orm import transact
 from globaleaks.state import State
-from globaleaks.utils.utility import log
-
+from globaleaks.utils.log import log
 
 from globaleaks.mocks.txtorcon_mocks import EphemeralHiddenService
 

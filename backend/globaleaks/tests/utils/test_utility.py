@@ -1,19 +1,13 @@
 # -*- coding: utf-8 -*-
-try:
-    from StringIO import StringIO
-except ImportError:
-    from io import StringIO
+from io import StringIO
 
 import ipaddress
 import re
-import sys
 from datetime import datetime
+from twisted.trial import unittest
 
 from globaleaks.utils import utility
 from globaleaks.rest import errors
-from twisted.python import log as twlog
-from twisted.python.failure import Failure
-from twisted.trial import unittest
 
 
 class TestUtility(unittest.TestCase):
@@ -29,33 +23,6 @@ class TestUtility(unittest.TestCase):
 
         for (i, o) in strs:
             self.assertEqual(utility.msdos_encode(i), o)
-
-    def test_log_encode_html_str(self):
-        self.assertEqual(utility.log_encode_html("<"), '&lt;')
-        self.assertEqual(utility.log_encode_html(">"), '&gt;')
-        self.assertEqual(utility.log_encode_html("'"), '&#39;')
-        self.assertEqual(utility.log_encode_html("/"), '&#47;')
-        self.assertEqual(utility.log_encode_html("\\"), '&#92;')
-
-        self.assertEqual(utility.log_encode_html("<>'/\\"), '&lt;&gt;&#39;&#47;&#92;')
-
-    def test_log_remove_escapes(self):
-        for c in map(chr, range(32)):
-            self.assertNotEqual(utility.log_remove_escapes(c), c)
-
-        for c in map(chr, range(127, 140)):
-            self.assertNotEqual(utility.log_remove_escapes(c), c)
-
-        start = ''.join(map(chr, range(32))) + ''.join(map(chr, range(127, 140)))
-
-        end = ''
-        for c in map(chr, range(32)):
-            end += utility.log_remove_escapes(c)
-
-        for c in map(chr, range(127, 140)):
-            end += utility.log_remove_escapes(c)
-
-        self.assertEqual(utility.log_remove_escapes(start), end)
 
     def test_uuid4(self):
         self.assertIsNotNone(re.match(r'([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})',
@@ -103,11 +70,6 @@ class TestUtility(unittest.TestCase):
         self.assertEqual(utility.bytes_to_pretty_str("20001"), "20KB")
         self.assertEqual(utility.bytes_to_pretty_str("1001"), "1KB")
 
-    def test_log(self):
-        utility.log.err("err")
-        utility.log.info("info")
-        utility.log.debug("debug")
-
     def test_ip_str_to_ip_networks(self):
         # This should return two objects, both in IPNetwork form
         ip_str = "192.168.1.1,10.0.0.0/8,::1,2001:db8::/32"
@@ -122,37 +84,3 @@ class TestUtility(unittest.TestCase):
         ip_str = ip_str + ",abcdef"
         with self.assertRaises(errors.InputValidationError):
             utility.parse_csv_ip_ranges_to_ip_networks(ip_str)
-
-class TestLogging(unittest.TestCase):
-    def setUp(self):
-        fake_std_out = StringIO()
-        self._stdout, sys.stdout = sys.stdout, fake_std_out
-
-    def tearDown(self):
-        sys.stdout = self._stdout
-
-    def test_log_emission(self):
-        output_buff = StringIO()
-
-        observer = utility.GLLogObserver(output_buff)
-        observer.start()
-
-        # Manually emit logs
-        e1 = {'time': 100000, 'message': 'x', 'system': 'ut'}
-        observer.emit(e1)
-
-        f = Failure(IOError('This is a mock failure'))
-        e2 = {'time': 100001, 'message': 'x', 'system': 'ut', 'failure': f}
-        observer.emit(e2)
-
-        twlog.err("error")
-
-        # Emit logs through twisted's interface. Import is required now b/c of stdout hack
-        observer.stop()
-
-        s = output_buff.getvalue()
-        # A bit of a mess, but this is the format we are expecting.
-        gex = r".+ \[ut\] x\n"
-        m = re.findall(gex, s)
-        self.assertTrue(len(m) == 2)
-        self.assertTrue(s.endswith("[-] &#39;error&#39;\n"))

@@ -5,7 +5,7 @@ import json
 
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.rest import requests
-from globaleaks.utils.utility import log
+from globaleaks.utils.log import log
 
 
 class ExceptionHandler(BaseHandler):

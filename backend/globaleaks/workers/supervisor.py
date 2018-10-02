@@ -9,7 +9,8 @@ from globaleaks.handlers.admin.https import load_tls_dict_list
 from globaleaks.models.config import ConfigFactory
 from globaleaks.orm import transact
 from globaleaks.utils import tls
-from globaleaks.utils.utility import log, datetime_now, datetime_to_ISO8601
+from globaleaks.utils.utility import datetime_now, datetime_to_ISO8601
+from globaleaks.utils.log import log
 from globaleaks.workers.process import HTTPSProcProtocol
 from twisted.internet import defer, reactor
 
