@@ -12,8 +12,8 @@ from globaleaks.state import State
 from globaleaks.rest.apicache import ApiCache
 from globaleaks.transactions import db_schedule_email
 from globaleaks.utils.templating import Templating
-from globaleaks.utils.utility import datetime_now, datetime_null, get_disk_space, is_expired, log
-
+from globaleaks.utils.utility import datetime_now, datetime_null, get_disk_space, is_expired
+from globaleaks.utils.log import log
 
 ANOMALY_MAP = {
     'started_submissions': 100,

@@ -8,7 +8,7 @@ from datetime import datetime
 from gnupg import GPG
 
 from globaleaks.rest import errors
-from globaleaks.utils.utility import log
+from globaleaks.utils.log import log
 
 
 class PGPContext(object):

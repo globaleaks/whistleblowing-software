@@ -11,7 +11,7 @@ from cryptography.hazmat.backends import default_backend
 from cryptography.hazmat.primitives import constant_time, hashes
 from globaleaks.rest import errors
 from globaleaks.settings import Settings
-from globaleaks.utils.utility import log
+from globaleaks.utils.log import log
 
 from six import text_type
 

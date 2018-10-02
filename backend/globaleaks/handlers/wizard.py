@@ -10,7 +10,8 @@ from globaleaks.handlers.base import BaseHandler
 from globaleaks.models import config, profiles
 from globaleaks.orm import transact
 from globaleaks.rest import requests, errors
-from globaleaks.utils.utility import datetime_now, log
+from globaleaks.utils.utility import datetime_now
+from globaleaks.utils.log import log
 
 
 def db_wizard(session, state, tid, request, client_using_tor, language):

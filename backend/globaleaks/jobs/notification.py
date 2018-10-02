@@ -14,8 +14,7 @@ from globaleaks.jobs.base import NetLoopingJob
 from globaleaks.orm import transact
 from globaleaks.utils.pgp import PGPContext
 from globaleaks.utils.templating import Templating
-from globaleaks.utils.utility import log
-
+from globaleaks.utils.log import log
 
 trigger_template_map = {
     'ReceiverTip': u'tip',

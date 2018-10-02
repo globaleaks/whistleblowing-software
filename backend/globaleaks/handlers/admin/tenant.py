@@ -14,7 +14,7 @@ from globaleaks.handlers.admin import file
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.orm import transact
 from globaleaks.rest import requests
-from globaleaks.utils.utility import log
+from globaleaks.utils.log import log
 from globaleaks.settings import Settings
 from globaleaks.state import State
 

@@ -3,7 +3,7 @@
 
 from globaleaks.jobs.base import NetLoopingJob
 from globaleaks.state import State
-from globaleaks.utils.utility import log
+from globaleaks.utils.log import log
 from twisted.internet.defer import inlineCallbacks
 
 

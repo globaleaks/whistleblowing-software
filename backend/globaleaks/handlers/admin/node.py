@@ -15,7 +15,9 @@ from globaleaks.models.config import ConfigFactory, NodeL10NFactory
 from globaleaks.orm import transact
 from globaleaks.rest import errors, requests
 from globaleaks.state import State
-from globaleaks.utils.utility import log, parse_csv_ip_ranges_to_ip_networks
+from globaleaks.utils.utility import parse_csv_ip_ranges_to_ip_networks
+from globaleaks.utils.log import log
+
 
 def db_admin_serialize_node(session, tid, language, config_node='admin_node'):
     config = ConfigFactory(session, tid, config_node).serialize()

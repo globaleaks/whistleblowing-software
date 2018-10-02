@@ -18,7 +18,8 @@ from globaleaks.settings import Settings
 from globaleaks.state import State, TenantState
 from globaleaks.utils import security
 from globaleaks.utils.objectdict import ObjectDict
-from globaleaks.utils.utility import log
+from globaleaks.utils.log import log
+
 
 def get_db_file(db_path):
     path = os.path.join(db_path, 'globaleaks.db')

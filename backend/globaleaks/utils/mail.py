@@ -18,7 +18,7 @@ from twisted.protocols import tls
 
 from globaleaks.utils.socks import SOCKS5ClientEndpoint
 from globaleaks.utils.tls import TLSClientContextFactory
-from globaleaks.utils.utility import log
+from globaleaks.utils.log import log
 
 
 def MIME_mail_build(src_name, src_mail, dest_name, dest_mail, title, mail_body):

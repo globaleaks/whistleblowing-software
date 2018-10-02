@@ -5,7 +5,8 @@ from twisted.internet.defer import inlineCallbacks
 from globaleaks.jobs.base import LoopingJob
 from globaleaks.models import Stats
 from globaleaks.orm import transact
-from globaleaks.utils.utility import datetime_now, log
+from globaleaks.utils.utility import datetime_now
+from globaleaks.utils.log import log
 
 
 def get_statistics(state):

@@ -4,7 +4,8 @@ import time
 from twisted.internet import task, defer, reactor
 
 from globaleaks.state import State, extract_exception_traceback_and_schedule_email
-from globaleaks.utils.utility import log, is_common_net_error
+from globaleaks.utils.utility import is_common_net_error
+from globaleaks.utils.log import log
 
 TRACK_LAST_N_EXECUTIONS = 10
 

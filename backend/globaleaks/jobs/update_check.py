@@ -12,7 +12,7 @@ from globaleaks.jobs.base import NetLoopingJob
 from globaleaks.models.config import ConfigFactory
 from globaleaks.orm import transact
 from globaleaks.utils.agent import get_page
-from globaleaks.utils.utility import log
+from globaleaks.utils.log import log
 
 DEB_PACKAGE_URL = b'https://deb.globaleaks.org/bionic/Packages'
 

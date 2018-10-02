@@ -58,7 +58,8 @@ from globaleaks.utils import security, tempdict, token, utility
 from globaleaks.utils.securetempfile import SecureTemporaryFile
 from globaleaks.utils.objectdict import ObjectDict
 from globaleaks.utils.utility import datetime_null, datetime_now, datetime_to_ISO8601, \
-    log, sum_dicts
+    sum_dicts
+from globaleaks.utils.log import log
 
 from globaleaks.workers import process
 from globaleaks.workers.supervisor import ProcessSupervisor
