@@ -1,10 +1,8 @@
 # -*- coding: utf-8
 # GlobaLeaks Utility used to handle Mail, format, exception, etc
-import sys
+import six
 
 from io import BytesIO
-
-from six import binary_type
 
 from email import utils  # pylint: disable=no-name-in-module
 from email.header import Header
@@ -26,7 +24,7 @@ def MIME_mail_build(src_name, src_mail, dest_name, dest_mail, title, mail_body):
     # base64, and instead use quoted-printable (for both subject and body).  I
     # can't figure out a way to specify QP (quoted-printable) instead of base64 in
     # a way that doesn't modify global state. :-(
-    if sys.version_info[0] == 2:
+    if six.PY2:
         from email import Charset  # pylint: disable=no-name-in-module
         Charset.add_charset('utf-8', Charset.QP, Charset.QP, 'utf-8') # pylint: disable=undefined-variable, no-member
 
@@ -45,8 +43,8 @@ def MIME_mail_build(src_name, src_mail, dest_name, dest_mail, title, mail_body):
 
     multipart.attach(MIMEText(mail_body.encode('utf-8'), 'plain', 'UTF-8'))
 
-    if sys.version_info[0] == 2:
-        multipart_as_bytes = binary_type(multipart.as_string())
+    if six.PY2:
+        multipart_as_bytes = six.binary_type(multipart.as_string())
     else:
         multipart_as_bytes = multipart.as_bytes() # pylint: disable=no-member
 
