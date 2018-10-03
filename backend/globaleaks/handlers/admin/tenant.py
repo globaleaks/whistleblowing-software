@@ -140,7 +140,6 @@ def delete(session, id):
 
 class TenantCollection(BaseHandler):
     check_roles = 'admin'
-    cache_resource = True
     root_tenant_only = True
     invalidate_cache = True
     invalidate_tenant_state = True
