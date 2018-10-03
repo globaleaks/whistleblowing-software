@@ -124,7 +124,7 @@ class OnionService(BaseJob):
 
         self.startup_semaphore[tid] = ephs.add_to_tor(self.tor_conn.protocol)
 
-        return self.statup_semaphore[tid].addCallbacks(init_callback, init_errback) #pylint: disable=no-member
+        return self.startup_semaphore[tid].addCallbacks(init_callback, init_errback) #pylint: disable=no-member
 
     @defer.inlineCallbacks
     def remove_unwanted_hidden_services(self):
