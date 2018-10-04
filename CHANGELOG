@@ -1,3 +1,8 @@
+Changes in version 3.4.1 - 2018-10-04
+    Revise configuration applied on whistleblowing.it
+    Fix defect on initialization of onion services present in 3.4.0
+    Disable caching for admin.tenants handler
+
 Changes in version 3.4.0 - 2018-09-30
     Revise foreign keys used in database schema
 
