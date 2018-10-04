@@ -178,8 +178,6 @@ def update_internalfile_and_store_receiverfiles(session, receiverfiles_maps):
         if ifile is None:
             continue
 
-        ifile.new = False
-
         # update filepath possibly changed in case of plaintext file needed
         ifile.filename = receiverfiles_map['ifile_name']
 
