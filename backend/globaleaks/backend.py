@@ -8,8 +8,8 @@ import traceback
 
 from twisted.application import service
 from twisted.internet import reactor, defer
-from twisted.python import log as txlog, logfile as txlogfile
-from twisted.web.server import Site
+from twisted.python.log import ILogObserver
+from twisted.web import server
 
 # this import seems unused but it is required in order to load the mocks
 import globaleaks.mocks.twisted_mocks # pylint: disable=W0611
@@ -19,10 +19,10 @@ from globaleaks.db import create_db, init_db, update_db, \
 from globaleaks.rest.api import APIResourceWrapper
 from globaleaks.settings import Settings
 from globaleaks.state import State
+from globaleaks.utils.log import log, openLogFile, timedLogFormatter, LogObserver
 from globaleaks.utils.process import disable_swap
 from globaleaks.utils.sock import listen_tcp_on_sock, reserve_port_for_ip
 from globaleaks.utils.utility import fix_file_permissions, drop_privileges
-from globaleaks.utils.log import timedLogFormatter, LogObserver, log
 from globaleaks.workers.supervisor import ProcessSupervisor
 
 
@@ -34,13 +34,22 @@ def fail_startup(excep):
         reactor.stop()
 
 
+class Site(server.Site):
+    def _openLogFile(self, path):
+        return openLogFile(path, Settings.log_file_size, Settings.num_log_files)
+
+
 class Service(service.Service):
     _shutdown = False
 
     def __init__(self):
         self.state = State
         self.arw = APIResourceWrapper()
-        self.api_factory = Site(self.arw, logFormatter=timedLogFormatter)
+
+        if Settings.nodaemon:
+            self.api_factory = Site(self.arw, logFormatter=timedLogFormatter)
+        else:
+            self.api_factory = Site(self.arw, logPath=Settings.accesslogfile, logFormatter=timedLogFormatter)
 
         if not Settings.devel_mode:
             self.api_factory.displayTracebacks = False
@@ -186,16 +195,9 @@ class Service(service.Service):
 try:
     application = service.Application('GLBackend')
 
-    if not Settings.nodaemon and Settings.logfile:
-        name = os.path.basename(Settings.logfile)
-        directory = os.path.dirname(Settings.logfile)
-
-        gl_logfile = txlogfile.LogFile(name,
-                                       directory,
-                                       rotateLength=Settings.log_file_size,
-                                       maxRotatedFiles=Settings.num_log_files)
-
-        application.setComponent(txlog.ILogObserver, LogObserver(gl_logfile).emit)
+    if not Settings.nodaemon:
+        logfile = openLogFile(Settings.logfile, Settings.log_file_size, Settings.num_log_files)
+        application.setComponent(ILogObserver, LogObserver(logfile).emit)
 
     Service().setServiceParent(application)
 except Exception as excep:

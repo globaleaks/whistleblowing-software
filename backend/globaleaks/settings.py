@@ -185,7 +185,7 @@ class SettingsClass(object):
         self.db_file_path = os.path.abspath(os.path.join(self.working_path, 'globaleaks.db'))
 
         self.logfile = os.path.abspath(os.path.join(self.log_path, 'globaleaks.log'))
-        self.httplogfile = os.path.abspath(os.path.join(self.log_path, "http.log"))
+        self.accesslogfile = os.path.abspath(os.path.join(self.log_path, "access.log"))
 
         # If we see that there is a custom build of GLClient, use that one.
         custom_client_path = '/var/globaleaks/client'

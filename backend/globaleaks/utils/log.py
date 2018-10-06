@@ -3,12 +3,13 @@ from __future__ import print_function, unicode_literals
 
 import codecs
 import logging
+import os
 import six
 import sys
 import traceback
 from datetime import datetime
 
-from twisted.python import log as twlog
+from twisted.python import log as txlog, logfile as txlogfile
 from twisted.python import util, failure
 from twisted.web.http import _escape
 
@@ -40,6 +41,16 @@ def log_remove_escapes(s):
             return string
 
 
+def openLogFile(logfile, max_file_size, rotated_log_files):
+    name = os.path.basename(logfile)
+    directory = os.path.dirname(logfile)
+
+    return txlogfile.LogFile(name,
+                             directory,
+                             rotateLength=max_file_size,
+                             maxRotatedFiles=rotated_log_files)
+
+
 def timedLogFormatter(timestamp, request):
     duration = -1
 
@@ -64,7 +75,7 @@ def timedLogFormatter(timestamp, request):
             tid=request.tid))
 
 
-class LogObserver(twlog.FileLogObserver):
+class LogObserver(txlog.FileLogObserver):
     """
     Tracks and logs exceptions generated within the application
     """
@@ -79,13 +90,13 @@ class LogObserver(twlog.FileLogObserver):
             e_t, e_v, e_tb = vf.type, vf.value, vf.getTracebackObject()
             sys.excepthook(e_t, e_v, e_tb)
 
-        text = twlog.textFromEventDict(eventDict)
+        text = txlog.textFromEventDict(eventDict)
         if text is None:
             return
 
         timeStr = self.formatTime(eventDict['time'])
         fmtDict = {'system': eventDict['system'], 'text': text.replace("\n", "\n\t")}
-        msgStr = twlog._safeFormat("[%(system)s] %(text)s\n", fmtDict)
+        msgStr = txlog._safeFormat("[%(system)s] %(text)s\n", fmtDict)
 
         util.untilConcludes(self.write, timeStr + ' ' + msgStr)
         util.untilConcludes(self.flush)
