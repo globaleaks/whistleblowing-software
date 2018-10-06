@@ -101,20 +101,9 @@ class BaseHandler(object):
             if self.state.tenant_cache[self.request.tid].basic_auth and not self.bypass_basic_auth:
                 self.basic_auth()
 
-            if '*' in roles:
-                return f(self, *args, **kwargs)
-
-            if 'unauthenticated' in roles:
-                if self.current_user:
-                    raise errors.InvalidAuthentication
-
-                return f(self, *args, **kwargs)
-
-            if not self.current_user:
-                raise errors.NotAuthenticated
-
-            if self.current_user.user_role in roles:
-                log.debug("Authentication OK (%s)", self.current_user.user_role)
+            if '*' in roles or \
+               'unauthenticated' in roles or \
+               (self.current_user and self.current_user.user_role in roles):
                 return f(self, *args, **kwargs)
 
             raise errors.InvalidAuthentication
