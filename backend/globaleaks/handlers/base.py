@@ -106,7 +106,7 @@ class BaseHandler(object):
                (self.current_user and self.current_user.user_role in roles):
                 return f(self, *args, **kwargs)
 
-            raise errors.InvalidAuthentication
+            raise errors.NotAuthenticated
 
         return wrapper
 
