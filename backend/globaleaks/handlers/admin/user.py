@@ -16,9 +16,9 @@ from globaleaks.handlers.user import parse_pgp_options, \
 from globaleaks.orm import transact
 from globaleaks.rest import requests, errors
 from globaleaks.state import State
-from globaleaks.utils import security
+from globaleaks.utils.crypto import GCE
 from globaleaks.utils.structures import fill_localized_keys, get_localized_values
-from globaleaks.utils.utility import datetime_now, uuid4
+from globaleaks.utils.utility import datetime_now, uuid4, log
 
 
 def admin_serialize_receiver(session, receiver, user, language):
@@ -126,8 +126,9 @@ def db_create_user(session, state, tid, request, language):
     else:
         password = u'password'
 
-    user.salt = security.generateRandomSalt()
-    user.password = security.hash_password(password, user.salt)
+    user.salt = GCE.generate_salt()
+    user.hash_alg = GCE.HASH
+    user.password = GCE.hash_password(password, user.salt)
 
     # The various options related in manage PGP keys are used here.
     parse_pgp_options(state, user, request)
@@ -160,8 +161,11 @@ def db_admin_update_user(session, state, tid, user_id, request, language):
 
     password = request['password']
     if password:
-        user.password = security.hash_password(password, user.salt)
+        user.hash_alg = GCE.HASH
+        user.password = GCE.hash_password(password, user.salt)
         user.password_change_date = datetime_now()
+        user.crypto_prv_key = b''
+        user.crypto_pub_key = b''
 
     # The various options related in manage PGP keys are used here.
     parse_pgp_options(state, user, request)
@@ -179,7 +183,9 @@ def admin_update_user(session, state, tid, user_id, request, language):
 
 def db_get_user(session, tid, user_id):
     user = session.query(models.User) \
-                  .filter(models.User.id == user_id, models.UserTenant.user_id == models.User.id, models.UserTenant.tenant_id == tid).one_or_none()
+                  .filter(models.User.id == user_id,
+                          models.UserTenant.user_id == models.User.id,
+                          models.UserTenant.tenant_id == tid).one_or_none()
 
 
     return user

@@ -6,7 +6,7 @@ from globaleaks.models.properties import *
 
 class Node_v_29(Model):
     __tablename__ = 'node'
-    id = Column(Unicode(36), primary_key=True, default=uuid4, nullable=False)
+    id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
     version = Column(UnicodeText)
     version_db = Column(UnicodeText)
     name = Column(UnicodeText)
@@ -73,7 +73,7 @@ class Node_v_29(Model):
 
 class Context_v_29(Model):
     __tablename__ = 'context'
-    id = Column(Unicode(36), primary_key=True, default=uuid4, nullable=False)
+    id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
     show_small_cards = Column(Boolean)
     show_context = Column(Boolean)
     show_steps_navigation_bar = Column(Boolean)
@@ -99,8 +99,8 @@ class Context_v_29(Model):
 
 class Step_v_29(Model):
     __tablename__ = 'step'
-    id = Column(Unicode(36), primary_key=True, default=uuid4, nullable=False)
-    context_id = Column(Unicode(36))
+    id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
+    context_id = Column(UnicodeText(36))
     label = Column(JSON)
     description = Column(JSON)
     presentation_order = Column(Integer)
@@ -109,8 +109,8 @@ class Step_v_29(Model):
 
 class FieldAnswer_v_29(Model):
     __tablename__ = 'fieldanswer'
-    id = Column(Unicode(36), primary_key=True, default=uuid4, nullable=False)
-    internaltip_id = Column(Unicode(36))
+    id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
+    internaltip_id = Column(UnicodeText(36))
     key = Column(UnicodeText, default=u'')
     is_leaf = Column(Boolean, default=True)
     value = Column(UnicodeText, default=u'')
@@ -118,16 +118,16 @@ class FieldAnswer_v_29(Model):
 
 class FieldAnswerGroup_v_29(Model):
     __tablename__ = 'fieldanswergroup'
-    id = Column(Unicode(36), primary_key=True, default=uuid4, nullable=False)
+    id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
     number = Column(Integer, default=0)
-    fieldanswer_id = Column(Unicode(36))
+    fieldanswer_id = Column(UnicodeText(36))
 
 
 class FieldAnswerGroupFieldAnswer_v_29(Model):
     __tablename__ = 'fieldanswergroup_fieldanswer'
 
-    fieldanswergroup_id = Column(Unicode(36), primary_key=True)
-    fieldanswer_id = Column(Unicode(36), primary_key=True)
+    fieldanswergroup_id = Column(UnicodeText(36), primary_key=True)
+    fieldanswer_id = Column(UnicodeText(36), primary_key=True)
 
 
 class MigrationScript(MigrationBase):

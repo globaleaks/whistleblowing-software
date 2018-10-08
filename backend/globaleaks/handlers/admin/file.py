@@ -13,7 +13,7 @@ from globaleaks import models
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.orm import transact
 from globaleaks.rest import errors
-from globaleaks.utils.security import directory_traversal_check
+from globaleaks.utils.fs import directory_traversal_check
 from globaleaks.utils.utility import uuid4
 
 @transact
@@ -85,7 +85,7 @@ class FileInstance(BaseHandler):
             with sf.open('r') as encrypted_file:
                 data = encrypted_file.read()
 
-            data = base64.b64encode(data)
+            data = base64.b64encode(data).decode()
             d = yield add_file(self.request.tid, id, u'', data)
         else:
             id = uuid4()

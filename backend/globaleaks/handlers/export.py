@@ -16,6 +16,7 @@ from globaleaks.handlers.rtip import db_access_rtip, serialize_rtip
 from globaleaks.handlers.user import user_serialize_user
 from globaleaks.orm import transact
 from globaleaks.settings import Settings
+from globaleaks.utils.crypto import GCE
 from globaleaks.utils.templating import Templating
 from globaleaks.utils.utility import msdos_encode, datetime_now
 from globaleaks.utils.zipstream import ZipStream
@@ -38,6 +39,7 @@ def get_tip_export(session, tid, user_id, rtip_id, language):
         'node': db_admin_serialize_node(session, tid, language),
         'notification': db_get_notification(session, tid, language),
         'tip': rtip_dict,
+        'crypto_tip_prv_key': rtip.crypto_tip_prv_key,
         'user': user_serialize_user(session, user, language),
         'context': admin_serialize_context(session, context, language),
         'comments': rtip_dict['comments'],
@@ -49,7 +51,7 @@ def get_tip_export(session, tid, user_id, rtip_id, language):
 
     export_template = msdos_encode(text_type(export_template, 'utf-8')).encode('utf-8')
 
-    export_dict['files'].append({'fo': BytesIO(export_template), 'name': "data.txt"})
+    export_dict['files'].append({'fo': BytesIO(export_template), 'name': 'data.txt', 'forged': True})
 
     for rfile in session.query(models.ReceiverFile).filter(models.ReceiverFile.receivertip_id == rtip_id):
         rfile.last_access = datetime_now()
@@ -57,6 +59,7 @@ def get_tip_export(session, tid, user_id, rtip_id, language):
         file_dict = models.serializers.serialize_rfile(session, tid, rfile)
         file_dict['name'] = 'files/' + file_dict['name']
         file_dict['path'] = os.path.join(Settings.attachments_path, file_dict['filename'])
+        file_dict['forged'] = False
         export_dict['files'].append(file_dict)
 
     for wf in session.query(models.WhistleblowerFile).filter(models.WhistleblowerFile.receivertip_id == models.ReceiverTip.id,
@@ -65,6 +68,7 @@ def get_tip_export(session, tid, user_id, rtip_id, language):
         file_dict = models.serializers.serialize_wbfile(session, tid, wf)
         file_dict['name'] = 'files_from_recipients/' + file_dict['name']
         file_dict['path'] = os.path.join(Settings.attachments_path, file_dict['filename'])
+        file_dict['forged'] = True # To be removed as soon it will be encrypted
         export_dict['files'].append(file_dict)
 
     return export_dict
@@ -127,6 +131,15 @@ class ExportHandler(BaseHandler):
                                           self.current_user.user_id,
                                           rtip_id,
                                           self.request.language)
+
+        if tip_export['crypto_tip_prv_key']:
+            for file_dict in tip_export['files']:
+                if file_dict['forged']:
+                    continue
+
+                tip_prv_key = GCE.asymmetric_decrypt(self.current_user.cc, tip_export['crypto_tip_prv_key'])
+                file_dict['fo'] = GCE.streaming_encryption_open('DECRYPT', tip_prv_key, file_dict['path'])
+                del file_dict['path']
 
         self.request.setHeader(b'X-Download-Options', b'noopen')
         self.request.setHeader(b'Content-Type', b'application/octet-stream')

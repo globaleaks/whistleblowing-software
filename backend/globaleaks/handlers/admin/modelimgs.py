@@ -29,7 +29,7 @@ def get_model_img(session, obj_key, obj_id):
 @transact
 def add_model_img(session, tid, obj_key, obj_id, data):
     model = model_map[obj_key]
-    data = base64.b64encode(data)
+    data = base64.b64encode(data).decode()
     img = session.query(model).filter(model.id == obj_id).one_or_none()
     if img is None:
         session.add(model({'id': obj_id, 'data': data}))

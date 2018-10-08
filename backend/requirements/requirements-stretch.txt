@@ -10,6 +10,7 @@ pyOpenSSL==16.2.0
 pyasn1==0.1.9
 pyasn1_modules==0.0.7
 pycparser==2.14
+pynacl==1.2
 python_debian==0.1.30
 python_gnupg==0.3.9
 requests==2.12.4

@@ -12,7 +12,7 @@ class TestFileInstance(helpers.TestHandler):
     @inlineCallbacks
     def test_post(self):
         handler = self.request()
-        yield self.assertFailure(handler.get(u'upload.pdf'), errors.ModelNotFound)
+        yield self.assertFailure(handler.get(u'upload.raw'), errors.ModelNotFound)
 
         self._handler = admin_file.FileInstance
         handler = self.request({}, role='admin')
@@ -20,6 +20,6 @@ class TestFileInstance(helpers.TestHandler):
 
         self._handler = file.FileHandler
         handler = self.request()
-        x = yield handler.get(u'upload.pdf')
+        x = yield handler.get(u'upload.raw')
 
         self.assertIsNone(x)

@@ -285,7 +285,7 @@ def serialize_field(session, tid, field, language, data=None, serialize_template
         'multi_entry': f_to_serialize.multi_entry,
         'required': field.required,
         'preview': field.preview,
-        'stats_enabled': field.stats_enabled,
+        'encrypt': field.encrypt,
         'attrs': attrs,
         'x': field.x,
         'y': field.y,

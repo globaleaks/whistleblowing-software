@@ -2,18 +2,18 @@
 import base64
 import os
 
-from six import text_type
+from six import binary_type, text_type
 
 from globaleaks import models
 from globaleaks.db.migrations.update import MigrationBase
-from globaleaks.db.migrations.update_34.config import GLConfig_v_35
+from globaleaks.db.migrations.update_34.config_desc import GLConfig_v_35
 from globaleaks.models.properties import *
 from globaleaks.settings import Settings
 from globaleaks.utils.utility import datetime_null, iso_strf_time
 
 class Node_v_33(models.Model):
     __tablename__ = 'node'
-    id = Column(Unicode(36), primary_key=True, default=uuid4, nullable=False)
+    id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
     version = Column(UnicodeText)
     version_db = Column(UnicodeText)
     name = Column(UnicodeText, default=u'')
@@ -111,7 +111,7 @@ class Node_v_33(models.Model):
 
 class Notification_v_33(models.Model):
     __tablename__ = 'notification'
-    id = Column(Unicode(36), primary_key=True, default=uuid4, nullable=False)
+    id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
     server = Column(UnicodeText, default=u'demo.globaleaks.org')
     port = Column(Integer, default=9267)
     username = Column(UnicodeText, default=u'hey_you_should_change_me')
@@ -214,7 +214,7 @@ class MigrationScript(MigrationBase):
             data = favicon_file.read()
             new_file = self.model_to['File']()
             new_file.id = u'favicon'
-            new_file.data = base64.b64encode(data)
+            new_file.data = base64.b64encode(data).decode()
             self.session_new.add(new_file)
             self.entries_count['File'] += 1
 
@@ -224,7 +224,7 @@ class MigrationScript(MigrationBase):
                 data = homepage_file.read()
                 new_file = self.model_to['File']()
                 new_file.id = u'homepage'
-                new_file.data = base64.b64encode(data)
+                new_file.data = base64.b64encode(data).decode()
                 self.session_new.add(new_file)
                 self.entries_count['File'] += 1
 
@@ -256,7 +256,11 @@ class MigrationScript(MigrationBase):
             self.session_new.add(self.model_to['Config']('notification', var_name, old_val))
 
         # Migrate private fields
-        self.session_new.add(self.model_to['Config']('private', 'receipt_salt', old_node.receipt_salt))
+        salt = old_node.receipt_salt
+        if isinstance(old_node.receipt_salt, binary_type):
+            salt = salt.decode()
+
+        self.session_new.add(self.model_to['Config']('private', 'receipt_salt', salt))
         self.session_new.add(self.model_to['Config']('private', 'smtp_password', old_notif.password))
 
         # Set old verions that will be then handled by the version update

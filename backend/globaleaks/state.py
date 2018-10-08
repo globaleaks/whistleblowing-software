@@ -16,6 +16,7 @@ from globaleaks import __version__, orm, models
 from globaleaks.settings import Settings
 from globaleaks.transactions import schedule_email
 from globaleaks.utils.agent import get_tor_agent, get_web_agent
+from globaleaks.utils.crypto import sha256
 from globaleaks.utils.log import log
 from globaleaks.utils.mail import sendmail
 from globaleaks.utils.objectdict import ObjectDict
@@ -26,6 +27,8 @@ from globaleaks.utils.tempdict import TempDict
 from globaleaks.utils.templating import Templating
 from globaleaks.utils.tor_exit_set import TorExitSet
 from globaleaks.utils.utility import datetime_now
+from globaleaks.utils.tempdict import TempDict
+
 
 def getAlarm(state):
     from globaleaks.anomaly import Alarm

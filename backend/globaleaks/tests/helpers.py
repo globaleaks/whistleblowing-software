@@ -36,6 +36,7 @@ from twisted.web.test.requesthelper import DummyRequest
 
 from . import TEST_DIR
 
+
 from globaleaks import db, models, orm, event, jobs, __version__, DATABASE_VERSION
 from globaleaks.db.appdata import load_appdata
 from globaleaks.orm import transact
@@ -54,9 +55,10 @@ from globaleaks.rest.apicache import ApiCache
 from globaleaks.sessions import Sessions
 from globaleaks.settings import Settings
 from globaleaks.state import State
-from globaleaks.utils import security, tempdict, token, utility
-from globaleaks.utils.securetempfile import SecureTemporaryFile
+from globaleaks.utils import tempdict, token, utility
+from globaleaks.utils.crypto import GCE
 from globaleaks.utils.objectdict import ObjectDict
+from globaleaks.utils.securetempfile import SecureTemporaryFile
 from globaleaks.utils.utility import datetime_null, datetime_now, datetime_to_ISO8601, \
     sum_dicts
 from globaleaks.utils.log import log
@@ -64,15 +66,39 @@ from globaleaks.utils.log import log
 from globaleaks.workers import process
 from globaleaks.workers.supervisor import ProcessSupervisor
 
-## constants
+GCE.ALGORITM_CONFIGURATION['KDF']['ARGON2']['OPSLIMIT'] = GCE.ALGORITM_CONFIGURATION['HASH']['ARGON2']['OPSLIMIT'] = 1
+GCE.ALGORITM_CONFIGURATION['HASH']['SCRYPT']['N'] = 1<<1
+
+################################################################################
+# BEGIN MOCKS NECESSARY FOR DETERMINISTIC ENCRYPTION
 VALID_PASSWORD1 = u'ACollectionOfDiplomaticHistorySince_1966_ToThe_Pr esentDay#'
 VALID_PASSWORD2 = VALID_PASSWORD1
-VALID_SALT1 = security.generateRandomSalt()
-VALID_SALT2 = security.generateRandomSalt()
-VALID_HASH1 = security.hash_password(VALID_PASSWORD1, VALID_SALT1)
-VALID_HASH2 = security.hash_password(VALID_PASSWORD2, VALID_SALT2)
+VALID_SALT1 = GCE.generate_salt()
+VALID_SALT2 = GCE.generate_salt()
+VALID_HASH1 = GCE.hash_password(VALID_PASSWORD1, VALID_SALT1)
+VALID_HASH2 = GCE.hash_password(VALID_PASSWORD2, VALID_SALT2)
 VALID_BASE64_IMG = 'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVQYV2NgYAAAAAMAAWgmWQ0AAAAASUVORK5CYII='
 INVALID_PASSWORD = u'antani'
+
+KEY = GCE.generate_key()
+USER_KEY = GCE.derive_key(VALID_PASSWORD1, VALID_SALT1)
+USER_PRV_KEY, USER_PUB_KEY = GCE.generate_keypair()
+USER_PRV_KEY_ENC = GCE.symmetric_encrypt(USER_KEY, USER_PRV_KEY)
+GCE_orig_generate_key = GCE.generate_key
+GCE_orig_generate_keypair = GCE.generate_keypair
+
+@staticmethod
+def GCE_mock_generate_key():
+    return KEY
+
+@staticmethod
+def GCE_mock_generate_keypair():
+    return USER_PRV_KEY, USER_PUB_KEY
+
+setattr(GCE, 'generate_key', GCE_mock_generate_key)
+setattr(GCE, 'generate_keypair', GCE_mock_generate_keypair)
+# END MOCKS NECESSARY FOR DETERMINISTIC ENCRYPTION
+################################################################################
 
 PGPKEYS = {}
 
@@ -138,10 +164,21 @@ def init_state():
     State.settings.enable_api_cache = False
     State.tenant_cache[1] = ObjectDict()
     State.tenant_cache[1].hostname = 'www.globaleaks.org'
+    State.tenant_cache[1].encryption = True
 
     State.init_environment()
 
     Sessions.clear()
+
+
+@transact
+def mock_users_keys(session):
+    for user in session.query(models.User):
+        user.password = VALID_HASH1
+        user.salt = VALID_SALT1
+        user.crypto_prv_key = USER_PRV_KEY_ENC
+        user.crypto_pub_key = USER_PUB_KEY
+
 
 
 @transact
@@ -181,7 +218,7 @@ def get_dummy_field():
         'hint': u'field hint',
         'multi_entry': False,
         'multi_entry_hint': '',
-        'stats_enabled': False,
+        'encrypt': False,
         'required': False,
         'attrs': {},
         'options': get_dummy_fieldoption_list(),
@@ -215,23 +252,25 @@ def get_dummy_fieldoption_list():
 files_count = 0
 
 
-def get_dummy_file(filename=None, content_type=None, content=None):
+def get_dummy_file(filename=None, content=None):
     global files_count
     files_count += 1
 
     if filename is None:
         filename = ''.join(six.unichr(x) for x in range(0x400, 0x40A)).join('-%d' % files_count)
 
-    content_type = 'application/octet'
+    content_type = u'application/octet'
 
-    content = base64.b64decode(VALID_BASE64_IMG)
+    if content is None:
+        content = base64.b64decode(VALID_BASE64_IMG)
 
     temporary_file = SecureTemporaryFile(Settings.tmp_path)
 
     with temporary_file.open('w') as f:
         f.write(content)
+        f.finalize_write()
 
-    State.TempUploadFiles[temporary_file.filepath] = temporary_file
+    State.TempUploadFiles[os.path.basename(temporary_file.filepath)] = temporary_file
 
     return {
         'date': datetime_now(),
@@ -251,8 +290,7 @@ BaseHandler.get_file_upload = get_file_upload
 
 
 def forge_request(uri=b'https://www.globaleaks.org/',
-                  headers=None, body='', client_addr=None, method=b'GET',
-                  attached_file={}):
+                  headers=None, body='', client_addr=None, method=b'GET'):
     """
     Creates a twisted.web.Request compliant request that is from an external
     IP address.
@@ -311,10 +349,6 @@ def forge_request(uri=b'https://www.globaleaks.org/',
         request.requestHeaders.setRawHeaders(k, [v])
 
     request.headers = request.getAllHeaders()
-
-    request.args = {}
-    if attached_file is not None:
-        request.args = {'file': [attached_file]}
 
     class fakeBody(object):
         def read(self):
@@ -489,6 +523,7 @@ class TestGL(unittest.TestCase):
         new_u['description'] = u''
         new_u['password'] = VALID_PASSWORD1
         new_u['state'] = u'enabled'
+        new_u['salt'] = VALID_SALT1
 
         return new_u
 
@@ -535,6 +570,15 @@ class TestGL(unittest.TestCase):
 
         return answers
 
+    def getToken(self, kind='submission'):
+        return token.Token(1, kind)
+
+    def getSolvedToken(self, kind='submission'):
+        t = self.getToken(kind)
+        t.human_captcha = {'solved': True}
+        t.proof_of_work = {'solved': True}
+        return t
+
     @inlineCallbacks
     def get_dummy_submission(self, context_id):
         """
@@ -558,8 +602,8 @@ class TestGL(unittest.TestCase):
             'answers': answers
         })
 
-    def get_dummy_file(self, filename=''):
-        return get_dummy_file(filename)
+    def get_dummy_file(self, filename='', content=None):
+        return get_dummy_file(filename, content)
 
     def get_dummy_shorturl(self, x = ''):
         return {
@@ -602,9 +646,10 @@ class TestGL(unittest.TestCase):
     @transact
     def get_wbtips(self, session):
         ret = []
-        for i in session.query(models.InternalTip) \
-                         .filter(models.InternalTip.tid == 1):
-            x = wbtip.serialize_wbtip(session, i, 'en')
+        for w, i in session.query(models.WhistleblowerTip, models.InternalTip) \
+                           .filter(models.WhistleblowerTip.id == models.InternalTip.id,
+                                   models.InternalTip.tid == 1):
+            x = wbtip.serialize_wbtip(session, w, i, 'en')
             x['receivers_ids'] = list(zip(*session.query(models.ReceiverTip.receiver_id) \
                                            .filter(models.ReceiverTip.internaltip_id == i.id,
                                                    models.InternalTip.id == i.id,
@@ -623,23 +668,23 @@ class TestGL(unittest.TestCase):
 
     @transact
     def get_internalfiles_by_receipt(self, session, receipt):
-        hashed_receipt = security.hash_password(receipt, State.tenant_cache[1].receipt_salt)
+        hashed_receipt = GCE.hash_password(receipt, State.tenant_cache[1].receipt_salt)
 
         ifiles = session.query(models.InternalFile) \
                         .filter(models.InternalFile.internaltip_id == models.WhistleblowerTip.id,
-                                models.WhistleblowerTip.receipt_hash == text_type(hashed_receipt, 'utf-8'))
+                                models.WhistleblowerTip.receipt_hash == hashed_receipt)
 
         return [models.serializers.serialize_ifile(session, ifile) for ifile in ifiles]
 
 
     @transact
     def get_receiverfiles_by_receipt(self, session, receipt):
-        hashed_receipt = security.hash_password(receipt, State.tenant_cache[1].receipt_salt)
+        hashed_receipt = GCE.hash_password(receipt, State.tenant_cache[1].receipt_salt)
 
         rfiles = session.query(models.ReceiverFile) \
                         .filter(models.ReceiverFile.receivertip_id == models.ReceiverTip.id,
                                 models.ReceiverTip.internaltip_id == models.WhistleblowerTip.id,
-                                models.WhistleblowerTip.receipt_hash == text_type(hashed_receipt, 'utf-8'))
+                                models.WhistleblowerTip.receipt_hash == hashed_receipt)
 
         return [models.serializers.serialize_rfile(session, 1, rfile) for rfile in rfiles]
 
@@ -683,6 +728,8 @@ class TestGLWithPopulatedDB(TestGL):
         self.dummyReceiverUser_2['id'] = self.dummyReceiver_2['id']
         receivers_ids = [self.dummyReceiver_1['id'], self.dummyReceiver_2['id']]
 
+        yield mock_users_keys()
+
         # fill_data/create_context
         self.dummyContext['receivers'] = receivers_ids
         self.dummyContext = yield create_context(self.state, 1, copy.deepcopy(self.dummyContext), 'en')
@@ -717,25 +764,14 @@ class TestGLWithPopulatedDB(TestGL):
         db_create_field(session, 1, reference_field, 'en')
 
     def perform_submission_start(self):
-        self.dummyToken = token.Token(1, 'submission')
-        self.dummyToken.solve()
+        return self.getSolvedToken()
 
-    def perform_submission_uploads(self):
+    def perform_submission_uploads(self, token):
         for _ in range(self.population_of_attachments):
-            dummyFile = self.get_dummy_file()
-
-            src = os.path.join(Settings.tmp_path,
-                               os.path.basename(dummyFile['filename']))
-
-            dst = os.path.join(Settings.attachments_path,
-                               os.path.basename(dummyFile['filename']))
-
-            shutil.move(src, dst)
-
-            self.dummyToken.associate_file(dummyFile)
+            token.associate_file(self.get_dummy_file())
 
     @inlineCallbacks
-    def perform_submission_actions(self):
+    def perform_submission_actions(self, token):
         self.dummySubmission['context_id'] = self.dummyContext['id']
         self.dummySubmission['receivers'] = self.dummyContext['receivers']
         self.dummySubmission['identity_provided'] = False
@@ -744,21 +780,13 @@ class TestGLWithPopulatedDB(TestGL):
 
         self.dummySubmission = yield create_submission(1,
                                                        self.dummySubmission,
-                                                       self.dummyToken.uploaded_files,
+                                                       token.id,
                                                        True)
 
     @inlineCallbacks
     def perform_post_submission_actions(self):
-        commentCreation = {
-            'content': 'comment!'
-        }
-
-        messageCreation = {
-            'content': 'message!'
-        }
-
         identityaccessrequestCreation = {
-            'request_motivation': 'request motivation'
+            'request_motivation': u'request motivation'
         }
 
         self.dummyRTips = yield self.get_rtips()
@@ -766,13 +794,15 @@ class TestGLWithPopulatedDB(TestGL):
         for rtip_desc in self.dummyRTips:
             yield rtip.create_comment(1,
                                       rtip_desc['receiver_id'],
+                                      USER_PRV_KEY,
                                       rtip_desc['id'],
-                                      commentCreation)
+                                      'comment')
 
             yield rtip.create_message(1,
                                       rtip_desc['receiver_id'],
+                                      USER_PRV_KEY,
                                       rtip_desc['id'],
-                                      messageCreation)
+                                      'message')
 
             yield rtip.create_identityaccessrequest(1,
                                                     rtip_desc['receiver_id'],
@@ -784,18 +814,23 @@ class TestGLWithPopulatedDB(TestGL):
         for wbtip_desc in self.dummyWBTips:
             yield wbtip.create_comment(1,
                                        wbtip_desc['id'],
-                                       commentCreation)
+                                       USER_PRV_KEY,
+                                       'comment')
 
             for receiver_id in wbtip_desc['receivers_ids']:
-                yield wbtip.create_message(1, wbtip_desc['id'], receiver_id, messageCreation)
+                yield wbtip.create_message(1,
+                                           wbtip_desc['id'],
+                                           USER_PRV_KEY,
+                                           receiver_id,
+                                           'message')
 
     @inlineCallbacks
     def perform_full_submission_actions(self):
         """Populates the DB with tips, comments, messages and files"""
         for x in range(self.population_of_submissions):
-            self.perform_submission_start()
-            self.perform_submission_uploads()
-            yield self.perform_submission_actions()
+            token = self.perform_submission_start()
+            self.perform_submission_uploads(token)
+            yield self.perform_submission_actions(token)
 
         yield self.perform_post_submission_actions()
 
@@ -803,9 +838,9 @@ class TestGLWithPopulatedDB(TestGL):
 
     @inlineCallbacks
     def perform_minimal_submission(self):
-        self.perform_submission_start()
-        self.perform_submission_uploads()
-        yield self.perform_submission_actions()
+        token = self.perform_submission_start()
+        self.perform_submission_uploads(token)
+        yield self.perform_submission_actions(token)
 
     @transact
     def force_wbtip_expiration(self, session):
@@ -863,8 +898,8 @@ class TestHandler(TestGLWithPopulatedDB):
 
     def request(self, body='', uri=b'https://www.globaleaks.org/',
                 user_id=None,  role=None, multilang=False, headers=None,
-                client_addr=None, method='GET', handler_cls=None,
-                attached_file={}, kwargs={}):
+                client_addr=None, handler_cls=None, attached_file=None,
+                kwargs={}):
         """
         Constructs a handler for preforming mock requests using the bag of params described below.
         """
@@ -877,8 +912,7 @@ class TestHandler(TestGLWithPopulatedDB):
                                 headers=headers,
                                 body=body,
                                 client_addr=client_addr,
-                                method=b'GET',
-                                attached_file=attached_file)
+                                method=b'GET')
 
         x = api.APIResourceWrapper()
         x.preprocess(request)
@@ -894,20 +928,33 @@ class TestHandler(TestGLWithPopulatedDB):
         if multilang:
             request.language = None
 
-        if user_id is None and role is not None:
+        if user_id is not None:
+            users = [self.dummyAdminUser, self.dummyReceiverUser_1, self.dummyReceiverUser_2, self.dummyCustodianUser]
+            for u in users:
+                if u['id'] == user_id:
+                    user = u
+                    break
+
+        elif user_id is None and role is not None:
             if role == 'admin':
+                user = self.dummyAdminUser
                 user_id = self.dummyAdminUser['id']
             elif role == 'receiver':
+                user = self.dummyReceiverUser_1
                 user_id = self.dummyReceiverUser_1['id']
             elif role == 'custodian':
+                user = self.dummyCustodianUser
                 user_id = self.dummyCustodianUser['id']
 
-        if role is not None:
-            session = Sessions.new(1, user_id, role, False)
+        if headers is not None and headers.get('x-session', None) is not None:
+            handler.request.headers[b'x-session'] = headers.get('x-session').encode()
+
+        elif role is not None:
+            session = Sessions.new(1, user_id, role, False, USER_PRV_KEY)
             handler.request.headers[b'x-session'] = session.id.encode()
 
         if handler.upload_handler:
-            handler.uploaded_file = self.get_dummy_file('upload.pdf')
+            handler.uploaded_file = self.get_dummy_file(u'upload.raw', attached_file)
 
         return handler
 
@@ -935,7 +982,6 @@ class TestCollectionHandler(TestHandler):
 
         if hasattr(handler, 'get'):
             yield handler.get()
-
 
     @inlineCallbacks
     def test_post(self):

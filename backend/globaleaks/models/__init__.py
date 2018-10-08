@@ -12,7 +12,7 @@ from globaleaks.models import config_desc
 from globaleaks.models.properties import *
 from globaleaks.orm import transact
 from globaleaks.rest import errors
-from globaleaks.utils.security import generateRandomKey
+from globaleaks.utils.crypto import generateRandomKey
 from globaleaks.utils.utility import datetime_now, datetime_null, datetime_never, datetime_to_ISO8601
 
 
@@ -70,6 +70,7 @@ class Model(object):
     """
     # initialize empty list for the base classes
     properties = []
+    binary_keys = []
     unicode_keys = []
     localized_keys = []
     int_keys = []
@@ -140,8 +141,7 @@ class Model(object):
                 setattr(self, k, values[k])
 
     def __setattr__(self, name, value):
-        # harder better faster stronger
-        if isinstance(value, binary_type):
+        if name not in self.binary_keys and isinstance(value, binary_type):
             value = text_type(value, 'utf-8')
 
         return super(Model, self).__setattr__(name, value)
@@ -170,6 +170,9 @@ class Model(object):
                 else:
                     ret[k] = ''
 
+            if isinstance(ret[k], binary_type):
+                ret[k] = text_type(ret[k])
+
         for k in self.list_keys:
             ret[k] = []
 
@@ -179,7 +182,7 @@ class Model(object):
 class _Anomalies(Model):
     __tablename__ = 'anomalies'
 
-    id = Column(Unicode(36), primary_key=True, default=uuid4, nullable=False)
+    id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
 
     tid = Column(Integer, default=1, nullable=False)
 
@@ -188,14 +191,14 @@ class _Anomalies(Model):
     events = Column(JSON, nullable=False)
 
     @declared_attr
-    def __table_args__(cls): # pylint: disable=no-self-argument
+    def __table_args__(self):
         return (ForeignKeyConstraint(['tid'], ['tenant.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),)
 
 
 class _ArchivedSchema(Model):
     __tablename__ = 'archivedschema'
 
-    hash = Column(Unicode(64), primary_key=True, nullable=False)
+    hash = Column(UnicodeText(64), primary_key=True, nullable=False)
 
     schema = Column(JSON, nullable=False)
     preview = Column(JSON, nullable=False)
@@ -209,24 +212,24 @@ class _Comment(Model):
     """
     __tablename__ = 'comment'
 
-    id = Column(Unicode(36), primary_key=True, default=uuid4, nullable=False)
+    id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
 
     creation_date = Column(DateTime, default=datetime_now, nullable=False)
-    internaltip_id = Column(Unicode(36), nullable=False)
-    author_id = Column(Unicode(36))
+    internaltip_id = Column(UnicodeText(36), nullable=False)
+    author_id = Column(UnicodeText(36))
     content = Column(UnicodeText, nullable=False)
     type = Column(UnicodeText, nullable=False)
     new = Column(Integer, default=True, nullable=False)
 
     @declared_attr
-    def __table_args__(cls): # pylint: disable=no-self-argument
+    def __table_args__(self):
         return (ForeignKeyConstraint(['internaltip_id'], ['internaltip.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),)
 
 
 class _Config(Model):
     __tablename__ = 'config'
     tid = Column(Integer, primary_key=True, default=1, nullable=False)
-    var_name = Column(Unicode(64), primary_key=True, nullable=False)
+    var_name = Column(UnicodeText(64), primary_key=True, nullable=False)
     value = Column(JSON, nullable=False)
     customized = Column(Boolean, default=False, nullable=False)
 
@@ -245,7 +248,7 @@ class _Config(Model):
         self.set_v(value)
 
     @declared_attr
-    def __table_args__(cls): # pylint: disable=no-self-argument
+    def __table_args__(self):
         return (ForeignKeyConstraint(['tid'], ['tenant.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),)
 
     def set_v(self, val):
@@ -272,13 +275,13 @@ class _ConfigL10N(Model):
     __tablename__ = 'config_l10n'
 
     tid = Column(Integer, primary_key=True, default=1, nullable=False)
-    lang = Column(Unicode(5), primary_key=True)
-    var_name = Column(Unicode(64), primary_key=True)
+    lang = Column(UnicodeText(5), primary_key=True)
+    var_name = Column(UnicodeText(64), primary_key=True)
     value = Column(UnicodeText)
     customized = Column(Boolean, default=False)
 
     @declared_attr
-    def __table_args__(cls): # pylint: disable=no-self-argument
+    def __table_args__(self):
         return (ForeignKeyConstraint(['tid', 'lang'], ['enabledlanguage.tid', 'enabledlanguage.name'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),)
 
     def __init__(self, tid=1, lang_code=None, var_name=None, value='', migrate=False):
@@ -303,7 +306,7 @@ class _Context(Model):
     """
     __tablename__ = 'context'
 
-    id = Column(Unicode(36), primary_key=True, default=uuid4, nullable=False)
+    id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
 
     tid = Column(Integer, default=1, nullable=False)
 
@@ -326,7 +329,7 @@ class _Context(Model):
     status_page_message = Column(JSON, default=dict, nullable=False)
     show_receivers_in_alphabetical_order = Column(Boolean, default=True, nullable=False)
     presentation_order = Column(Integer, default=0, nullable=False)
-    questionnaire_id = Column(Unicode(36), default=u'default', nullable=False)
+    questionnaire_id = Column(UnicodeText(36), default=u'default', nullable=False)
 
     unicode_keys = ['questionnaire_id']
 
@@ -356,7 +359,7 @@ class _Context(Model):
     list_keys = ['receivers']
 
     @declared_attr
-    def __table_args__(cls): # pylint: disable=no-self-argument
+    def __table_args__(self):
         return (ForeignKeyConstraint(['tid'], ['tenant.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),
                 ForeignKeyConstraint(['questionnaire_id'], ['questionnaire.id'], deferrable=True, initially='DEFERRED'))
 
@@ -367,14 +370,14 @@ class _ContextImg(Model):
     """
     __tablename__ = 'contextimg'
 
-    id = Column(Unicode(36), primary_key=True, default=uuid4, nullable=False)
+    id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
 
     data = Column(UnicodeText, nullable=False)
 
     unicode_keys = ['data']
 
     @declared_attr
-    def __table_args__(cls): # pylint: disable=no-self-argument
+    def __table_args__(self):
         return (ForeignKeyConstraint(['id'], ['context.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),)
 
 
@@ -384,18 +387,18 @@ class _CustomTexts(Model):
     """
     __tablename__ = 'customtexts'
 
-    id = Column(Unicode(36), primary_key=True, default=uuid4, nullable=False)
+    id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
 
     tid = Column(Integer, default=1, nullable=False)
 
-    lang = Column(Unicode(5), primary_key=True, nullable=False)
+    lang = Column(UnicodeText(5), primary_key=True, nullable=False)
     texts = Column(JSON, nullable=False)
 
     unicode_keys = ['lang']
     json_keys = ['texts']
 
     @declared_attr
-    def __table_args__(cls): # pylint: disable=no-self-argument
+    def __table_args__(self):
         return (ForeignKeyConstraint(['tid'], ['tenant.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),)
 
 
@@ -403,7 +406,7 @@ class _EnabledLanguage(Model):
     __tablename__ = 'enabledlanguage'
 
     tid = Column(Integer, primary_key=True, default=1, nullable=False)
-    name = Column(Unicode(5), primary_key=True, nullable=False)
+    name = Column(UnicodeText(5), primary_key=True, nullable=False)
 
     def __init__(self, tid=1, name=None, migrate=False):
         if migrate:
@@ -421,14 +424,14 @@ class _EnabledLanguage(Model):
         return [(lang.tid, lang.name) for lang in session.query(EnabledLanguage).filter(EnabledLanguage.tid.in_(tid_list))]
 
     @declared_attr
-    def __table_args__(cls): # pylint: disable=no-self-argument
+    def __table_args__(self):
         return (ForeignKeyConstraint(['tid'], ['tenant.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),)
 
 
 class _Field(Model):
     __tablename__ = 'field'
 
-    id = Column(Unicode(36), primary_key=True, default=uuid4, nullable=False)
+    id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
 
     tid = Column(Integer, default=1, nullable=False)
 
@@ -443,24 +446,25 @@ class _Field(Model):
     preview = Column(Boolean, default=False, nullable=False)
     multi_entry = Column(Boolean, default=False, nullable=False)
     multi_entry_hint = Column(JSON, nullable=False)
-    stats_enabled = Column(Boolean, default=False, nullable=False)
     triggered_by_score = Column(Integer, default=0, nullable=False)
 
-    template_id = Column(Unicode(36))
-    fieldgroup_id = Column(Unicode(36))
-    step_id = Column(Unicode(36))
+    encrypt = Column(Boolean, default=True, nullable=False)
+
+    template_id = Column(UnicodeText(36))
+    fieldgroup_id = Column(UnicodeText(36))
+    step_id = Column(UnicodeText(36))
 
     type = Column(UnicodeText, default=u'inputbox', nullable=False)
     instance = Column(UnicodeText, default=u'instance', nullable=False)
     editable = Column(Boolean, default=True, nullable=False)
 
     @declared_attr
-    def __table_args__(cls): # pylint: disable=no-self-argument
+    def __table_args__(self):
         return (ForeignKeyConstraint(['tid'], ['tenant.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),
                 ForeignKeyConstraint(['template_id'], ['field.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),
                 ForeignKeyConstraint(['fieldgroup_id'], ['field.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),
                 ForeignKeyConstraint(['step_id'], ['step.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),
-                CheckConstraint(cls.type.in_(['inputbox',
+                CheckConstraint(self.type.in_(['inputbox',
                                               'textarea',
                                               'multichoice',
                                               'selectbox',
@@ -473,23 +477,23 @@ class _Field(Model):
                                               'date',
                                               'email',
                                               'fieldgroup'])),
-                CheckConstraint(cls.instance.in_(['instance',
+                CheckConstraint(self.instance.in_(['instance',
                                                   'reference',
                                                   'template'])),)
 
     unicode_keys = ['type', 'instance', 'key']
     int_keys = ['x', 'y', 'width', 'triggered_by_score']
     localized_keys = ['label', 'description', 'hint', 'multi_entry_hint']
-    bool_keys = ['editable', 'multi_entry', 'preview', 'required', 'stats_enabled']
+    bool_keys = ['editable', 'multi_entry', 'preview', 'required', 'encrypt']
     optional_references = ['template_id', 'step_id', 'fieldgroup_id']
 
 
 class _FieldAttr(Model):
     __tablename__ = 'fieldattr'
 
-    id = Column(Unicode(36), primary_key=True, default=uuid4, nullable=False)
+    id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
 
-    field_id = Column(Unicode(36), nullable=False)
+    field_id = Column(UnicodeText(36), nullable=False)
     name = Column(UnicodeText, nullable=False)
     type = Column(UnicodeText, nullable=False)
     value = Column(JSON, nullable=False)
@@ -497,12 +501,12 @@ class _FieldAttr(Model):
     unicode_keys = ['field_id', 'name', 'type']
 
     @declared_attr
-    def __table_args__(cls): # pylint: disable=no-self-argument
+    def __table_args__(self):
         return (ForeignKeyConstraint(['field_id'], ['field.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),
-                CheckConstraint(cls.type.in_(['int',
-                                              'bool',
-                                              'unicode',
-                                              'localized'])))
+                CheckConstraint(self.type.in_(['int',
+                                               'bool',
+                                               'unicode',
+                                               'localized'])))
 
 
     def update(self, values=None):
@@ -526,10 +530,10 @@ class _FieldAttr(Model):
 class _FieldAnswer(Model):
     __tablename__ = 'fieldanswer'
 
-    id = Column(Unicode(36), primary_key=True, default=uuid4, nullable=False)
+    id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
 
-    internaltip_id = Column(Unicode(36), nullable=True)
-    fieldanswergroup_id = Column(Unicode(36), nullable=True)
+    internaltip_id = Column(UnicodeText(36), nullable=True)
+    fieldanswergroup_id = Column(UnicodeText(36), nullable=True)
     key = Column(UnicodeText, default=u'', nullable=False)
     is_leaf = Column(Boolean, default=True, nullable=False)
     value = Column(UnicodeText, default=u'', nullable=False)
@@ -538,7 +542,7 @@ class _FieldAnswer(Model):
     bool_keys = ['is_leaf']
 
     @declared_attr
-    def __table_args__(cls): # pylint: disable=no-self-argument
+    def __table_args__(self):
         return (ForeignKeyConstraint(['internaltip_id'], ['internaltip.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),
                 ForeignKeyConstraint(['fieldanswergroup_id'], ['fieldanswergroup.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'))
 
@@ -546,28 +550,28 @@ class _FieldAnswer(Model):
 class _FieldAnswerGroup(Model):
     __tablename__ = 'fieldanswergroup'
 
-    id = Column(Unicode(36), primary_key=True, default=uuid4, nullable=False)
+    id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
     number = Column(Integer, default=0, nullable=False)
-    fieldanswer_id = Column(Unicode(36), nullable=False)
+    fieldanswer_id = Column(UnicodeText(36), nullable=False)
 
     unicode_keys = ['fieldanswer_id']
     int_keys = ['number']
 
     @declared_attr
-    def __table_args__(cls): # pylint: disable=no-self-argument
+    def __table_args__(self):
         return (ForeignKeyConstraint(['fieldanswer_id'], ['fieldanswer.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),)
 
 
 class _FieldOption(Model):
     __tablename__ = 'fieldoption'
 
-    id = Column(Unicode(36), primary_key=True, default=uuid4, nullable=False)
+    id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
 
-    field_id = Column(Unicode(36), nullable=False)
+    field_id = Column(UnicodeText(36), nullable=False)
     presentation_order = Column(Integer, default=0, nullable=False)
     label = Column(JSON, nullable=False)
     score_points = Column(Integer, default=0, nullable=False)
-    trigger_field = Column(Unicode(36))
+    trigger_field = Column(UnicodeText(36))
 
     unicode_keys = ['field_id']
     int_keys = ['presentation_order', 'score_points']
@@ -575,7 +579,7 @@ class _FieldOption(Model):
     optional_references = ['trigger_field']
 
     @declared_attr
-    def __table_args__(cls): # pylint: disable=no-self-argument
+    def __table_args__(self):
         return (ForeignKeyConstraint(['field_id'], ['field.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),
                 ForeignKeyConstraint(['trigger_field'], ['field.id'], ondelete='SET NULL', deferrable=True, initially='DEFERRED'))
 
@@ -587,7 +591,7 @@ class _File(Model):
     __tablename__ = 'file'
 
     tid = Column(Integer, primary_key=True, default=1, nullable=False)
-    id = Column(Unicode(36), primary_key=True, default=uuid4, nullable=False)
+    id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
 
     name = Column(UnicodeText, default=u'', nullable=False)
     data = Column(UnicodeText, nullable=False)
@@ -595,7 +599,7 @@ class _File(Model):
     unicode_keys = ['data', 'name']
 
     @declared_attr
-    def __table_args__(cls): # pylint: disable=no-self-argument
+    def __table_args__(self):
         return (ForeignKeyConstraint(['tid'], ['tenant.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),)
 
 
@@ -606,18 +610,18 @@ class _IdentityAccessRequest(Model):
     """
     __tablename__ = 'identityaccessrequest'
 
-    id = Column(Unicode(36), primary_key=True, default=uuid4, nullable=False)
+    id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
 
-    receivertip_id = Column(Unicode(36), nullable=False)
+    receivertip_id = Column(UnicodeText(36), nullable=False)
     request_date = Column(DateTime, default=datetime_now, nullable=False)
     request_motivation = Column(UnicodeText, default=u'')
     reply_date = Column(DateTime, default=datetime_null, nullable=False)
-    reply_user_id = Column(Unicode(36), default=u'', nullable=False)
+    reply_user_id = Column(UnicodeText(36), default=u'', nullable=False)
     reply_motivation = Column(UnicodeText, default=u'', nullable=False)
     reply = Column(UnicodeText, default=u'pending', nullable=False)
 
     @declared_attr
-    def __table_args__(cls): # pylint: disable=no-self-argument
+    def __table_args__(self):
         return (ForeignKeyConstraint(['receivertip_id'], ['receivertip.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),)
 
 
@@ -627,20 +631,19 @@ class _InternalFile(Model):
     """
     __tablename__ = 'internalfile'
 
-    id = Column(Unicode(36), primary_key=True, default=uuid4, nullable=False)
+    id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
 
     creation_date = Column(DateTime, default=datetime_now, nullable=False)
-    internaltip_id = Column(Unicode(36), nullable=False)
+    internaltip_id = Column(UnicodeText(36), nullable=False)
     name = Column(UnicodeText, nullable=False)
-    filename = Column(Unicode(255), nullable=False)
+    filename = Column(UnicodeText(255), nullable=False)
     content_type = Column(UnicodeText, nullable=False)
     size = Column(Integer, nullable=False)
     new = Column(Integer, default=True, nullable=False)
     submission = Column(Integer, default = False, nullable=False)
-    processing_attempts = Column(Integer, default=0, nullable=False)
 
     @declared_attr
-    def __table_args__(cls): # pylint: disable=no-self-argument
+    def __table_args__(self):
         return (ForeignKeyConstraint(['internaltip_id'], ['internaltip.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),)
 
 
@@ -650,16 +653,15 @@ class _InternalTip(Model):
     """
     __tablename__ = 'internaltip'
 
-    id = Column(Unicode(36), primary_key=True, default=uuid4, nullable=False)
+    id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
 
     tid = Column(Integer, default=1, nullable=False)
 
-    content = Column(UnicodeText, default='')
-
     creation_date = Column(DateTime, default=datetime_now, nullable=False)
     update_date = Column(DateTime, default=datetime_now, nullable=False)
-    context_id = Column(Unicode(36), nullable=False)
-    questionnaire_hash = Column(Unicode(64), nullable=False)
+    context_id = Column(UnicodeText(36), nullable=False)
+    questionnaire_hash = Column(UnicodeText(64), nullable=False)
+
     preview = Column(JSON, nullable=False)
     progressive = Column(Integer, default=0, nullable=False)
     https = Column(Boolean, default=False, nullable=False)
@@ -675,12 +677,31 @@ class _InternalTip(Model):
     wb_last_access = Column(DateTime, default=datetime_now, nullable=False)
     wb_access_counter = Column(Integer, default=0, nullable=False)
 
-    status = Column(Unicode(36), nullable=True)
-    substatus = Column(Unicode(36), nullable=True)
+    status = Column(UnicodeText(36), nullable=True)
+    substatus = Column(UnicodeText(36), nullable=True)
+
+    crypto_tip_pub_key = Column(LargeBinary(32), default=b'', nullable=False)
+
+    binary_keys = ['crypto_tip_pub_key']
 
     @declared_attr
-    def __table_args__(cls): # pylint: disable=no-self-argument
+    def __table_args__(self):
         return (ForeignKeyConstraint(['tid'], ['tenant.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),)
+
+
+class _InternalTipData(Model):
+    __tablename__ = 'InternalTipData'
+
+    id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
+    internaltip_id = Column(UnicodeText(36), nullable=False)
+    creation_date = Column(DateTime, default=datetime_now, nullable=False)
+    key = Column(UnicodeText, nullable=False)
+    value = Column(JSON, nullable=False)
+    encrypted = Column(Boolean, default=False, nullable=False)
+
+    date_keys = ['creation_date']
+    unicode_keys = ['key']
+    json_keys = ['value']
 
 
 class _Mail(Model):
@@ -689,7 +710,7 @@ class _Mail(Model):
     """
     __tablename__ = 'mail'
 
-    id = Column(Unicode(36), primary_key=True, default=uuid4, nullable=False)
+    id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
 
     tid = Column(Integer, default=1, nullable=False)
 
@@ -702,7 +723,7 @@ class _Mail(Model):
     unicode_keys = ['address', 'subject', 'body']
 
     @declared_attr
-    def __table_args__(cls): # pylint: disable=no-self-argument
+    def __table_args__(self):
         return (ForeignKeyConstraint(['tid'], ['tenant.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),)
 
 
@@ -713,24 +734,24 @@ class _Message(Model):
     """
     __tablename__ = 'message'
 
-    id = Column(Unicode(36), primary_key=True, default=uuid4, nullable=False)
+    id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
 
     creation_date = Column(DateTime, default=datetime_now, nullable=False)
-    receivertip_id = Column(Unicode(36), nullable=False)
+    receivertip_id = Column(UnicodeText(36), nullable=False)
     content = Column(UnicodeText, nullable=False)
     type = Column(UnicodeText, nullable=False)
     new = Column(Integer, default=True, nullable=False)
 
     @declared_attr
-    def __table_args__(cls): # pylint: disable=no-self-argument
+    def __table_args__(self):
         return (ForeignKeyConstraint(['receivertip_id'], ['receivertip.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),
-                CheckConstraint(cls.type.in_(['receiver', 'whistleblower'])))
+                CheckConstraint(self.type.in_(['receiver', 'whistleblower'])))
 
 
 class _Questionnaire(Model):
     __tablename__ = 'questionnaire'
 
-    id = Column(Unicode(36), primary_key=True, default=uuid4, nullable=False)
+    id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
 
     tid = Column(Integer, default=1, nullable=False)
 
@@ -743,7 +764,7 @@ class _Questionnaire(Model):
     list_keys = ['steps']
 
     @declared_attr
-    def __table_args__(cls): # pylint: disable=no-self-argument
+    def __table_args__(self):
         return (ForeignKeyConstraint(['tid'], ['tenant.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),)
 
 
@@ -753,7 +774,7 @@ class _Receiver(Model):
     """
     __tablename__ = 'receiver'
 
-    id = Column(Unicode(36), primary_key=True, default=uuid4, nullable=False)
+    id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
 
     configuration = Column(UnicodeText, default=u'default', nullable=False)
     can_delete_submission = Column(Boolean, default=False, nullable=False)
@@ -762,9 +783,9 @@ class _Receiver(Model):
     tip_notification = Column(Boolean, default=True, nullable=False)
 
     @declared_attr
-    def __table_args__(cls): # pylint: disable=no-self-argument
+    def __table_args__(self):
         return (ForeignKeyConstraint(['id'], ['user.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),
-                CheckConstraint(cls.configuration.in_(['default', 'forcefully_selected', 'unselectable'])))
+                CheckConstraint(self.configuration.in_(['default', 'forcefully_selected', 'unselectable'])))
 
     unicode_keys = ['configuration']
 
@@ -784,8 +805,8 @@ class _ReceiverContext(Model):
     """
     __tablename__ = 'receiver_context'
 
-    context_id = Column(Unicode(36), primary_key=True, nullable=False)
-    receiver_id = Column(Unicode(36), primary_key=True, nullable=False)
+    context_id = Column(UnicodeText(36), primary_key=True, nullable=False)
+    receiver_id = Column(UnicodeText(36), primary_key=True, nullable=False)
 
     presentation_order = Column(Integer, default=0, nullable=False)
 
@@ -793,7 +814,7 @@ class _ReceiverContext(Model):
     int_keys = ['presentation_order']
 
     @declared_attr
-    def __table_args__(cls): # pylint: disable=no-self-argument
+    def __table_args__(self):
         return (ForeignKeyConstraint(['context_id'], ['context.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),
                 ForeignKeyConstraint(['receiver_id'], ['receiver.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'))
 
@@ -804,22 +825,21 @@ class _ReceiverFile(Model):
     """
     __tablename__ = 'receiverfile'
 
-    id = Column(Unicode(36), primary_key=True, default=uuid4, nullable=False)
+    id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
 
-    internalfile_id = Column(Unicode(36), nullable=False)
-    receivertip_id = Column(Unicode(36), nullable=False)
-    filename = Column(Unicode(255), nullable=False)
-    size = Column(Integer, nullable=False)
+    internalfile_id = Column(UnicodeText(36), nullable=False)
+    receivertip_id = Column(UnicodeText(36), nullable=False)
+    filename = Column(UnicodeText(255), nullable=False)
     downloads = Column(Integer, default=0, nullable=False)
     last_access = Column(DateTime, default=datetime_null, nullable=False)
-    new = Column(Integer, default=True, nullable=False)
-    status = Column(UnicodeText, nullable=False)
+    new = Column(Integer, default=True, nullable=True)
+    status = Column(UnicodeText, default=u'processing', nullable=False)
 
     @declared_attr
-    def __table_args__(cls): # pylint: disable=no-self-argument
+    def __table_args__(self):
         return (ForeignKeyConstraint(['internalfile_id'], ['internalfile.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),
                 ForeignKeyConstraint(['receivertip_id'], ['receivertip.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),
-                CheckConstraint(cls.status.in_(['processing', 'reference', 'encrypted', 'unavailable', 'nokey'])))
+                CheckConstraint(self.status.in_(['processing', 'reference', 'encrypted', 'unavailable', 'nokey'])))
 
 
 class _ReceiverTip(Model):
@@ -830,12 +850,10 @@ class _ReceiverTip(Model):
     """
     __tablename__ = 'receivertip'
 
-    id = Column(Unicode(36), primary_key=True, default=uuid4, nullable=False)
+    id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
 
-    crypto_tip_key = Column(Unicode, default=u'', nullable=False)
-
-    internaltip_id = Column(Unicode(36), nullable=False)
-    receiver_id = Column(Unicode(36), nullable=False)
+    internaltip_id = Column(UnicodeText(36), nullable=False)
+    receiver_id = Column(UnicodeText(36), nullable=False)
     last_access = Column(DateTime, default=datetime_null, nullable=False)
     access_counter = Column(Integer, default=0, nullable=False)
     label = Column(UnicodeText, default=u'', nullable=False)
@@ -843,12 +861,16 @@ class _ReceiverTip(Model):
     new = Column(Integer, default=True, nullable=False)
     enable_notifications = Column(Boolean, default=True, nullable=False)
 
+    crypto_tip_prv_key = Column(LargeBinary(72), default=b'', nullable=False)
+
+    binary_keys = ['crypto_tip_prv_key']
+
     unicode_keys = ['label']
 
     bool_keys = ['enable_notifications']
 
     @declared_attr
-    def __table_args__(cls): # pylint: disable=no-self-argument
+    def __table_args__(self):
         return (ForeignKeyConstraint(['receiver_id'], ['receiver.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),
                 ForeignKeyConstraint(['internaltip_id'], ['internaltip.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'))
 
@@ -856,7 +878,7 @@ class _ReceiverTip(Model):
 class _SecureFileDelete(Model):
     __tablename__ = 'securefiledelete'
 
-    id = Column(Unicode(36), primary_key=True, default=uuid4, nullable=False)
+    id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
 
     filepath = Column(UnicodeText, nullable=False)
 
@@ -905,7 +927,7 @@ class _Signup(Model):
     bool_keys = ['tos1', 'tos2']
 
     @declared_attr
-    def __table_args__(cls): # pylint: disable=no-self-argument
+    def __table_args__(self):
         return (ForeignKeyConstraint(['tid'], ['tenant.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),)
 
 
@@ -915,7 +937,7 @@ class _ShortURL(Model):
     """
     __tablename__ = 'shorturl'
 
-    id = Column(Unicode(36), primary_key=True, default=uuid4, nullable=False)
+    id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
 
     tid = Column(Integer, default=1, nullable=False)
 
@@ -925,16 +947,16 @@ class _ShortURL(Model):
     unicode_keys = ['shorturl', 'longurl']
 
     @declared_attr
-    def __table_args__(cls): # pylint: disable=no-self-argument
+    def __table_args__(self):
         return (ForeignKeyConstraint(['tid'], ['tenant.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),)
 
 
 class _Step(Model):
     __tablename__ = 'step'
 
-    id = Column(Unicode(36), primary_key=True, default=uuid4, nullable=False)
+    id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
 
-    questionnaire_id = Column(Unicode(36), nullable=True)
+    questionnaire_id = Column(UnicodeText(36), nullable=True)
     label = Column(JSON, nullable=False)
     description = Column(JSON, nullable=False)
     presentation_order = Column(Integer, default=0, nullable=False)
@@ -944,14 +966,14 @@ class _Step(Model):
     localized_keys = ['label', 'description']
 
     @declared_attr
-    def __table_args__(cls): # pylint: disable=no-self-argument
+    def __table_args__(self):
         return (ForeignKeyConstraint(['questionnaire_id'], ['questionnaire.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),)
 
 
 class _Stats(Model):
     __tablename__ = 'stats'
 
-    id = Column(Unicode(36), primary_key=True, default=uuid4, nullable=False)
+    id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
 
     tid = Column(Integer, default=1, nullable=False)
 
@@ -959,7 +981,7 @@ class _Stats(Model):
     summary = Column(JSON, nullable=False)
 
     @declared_attr
-    def __table_args__(cls): # pylint: disable=no-self-argument
+    def __table_args__(self):
         return (ForeignKeyConstraint(['tid'], ['tenant.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),)
 
 
@@ -969,7 +991,7 @@ class _SubmissionStatus(Model):
     """
     __tablename__ = 'submissionstatus'
 
-    id = Column(Unicode(36), primary_key=True, default=uuid4, nullable=False)
+    id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
     tid = Column(Integer, default=1, nullable=False)
     label = Column(JSON, nullable=False)
 
@@ -982,7 +1004,7 @@ class _SubmissionStatus(Model):
     int_keys = ['presentation_order']
 
     @declared_attr
-    def __table_args__(cls): # pylint: disable=no-self-argument
+    def __table_args__(self):
         return (ForeignKeyConstraint(['tid'], ['tenant.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),)
 
 
@@ -992,8 +1014,8 @@ class _SubmissionSubStatus(Model):
     """
     __tablename__ = 'submissionsubstatus'
 
-    id = Column(Unicode(36), primary_key=True, default=uuid4, nullable=False)
-    submissionstatus_id = Column(Unicode(36), nullable=False)
+    id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
+    submissionstatus_id = Column(UnicodeText(36), nullable=False)
     label = Column(JSON, nullable=False)
 
     presentation_order = Column(Integer, default=0, nullable=False)
@@ -1002,7 +1024,7 @@ class _SubmissionSubStatus(Model):
     int_keys = ['presentation_order']
 
     @declared_attr
-    def __table_args__(cls): # pylint: disable=no-self-argument
+    def __table_args__(self):
         return (ForeignKeyConstraint(['submissionstatus_id'], ['submissionstatus.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),)
 
 
@@ -1013,15 +1035,15 @@ class _SubmissionStatusChange(Model):
 
     __tablename__ = 'submissionstatuschange'
 
-    id = Column(Unicode(36), primary_key=True, default=uuid4, nullable=False)
-    internaltip_id = Column(Unicode(36), nullable=False)
-    status = Column(Unicode(36), nullable=False)
-    substatus = Column(Unicode(36), nullable=True)
+    id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
+    internaltip_id = Column(UnicodeText(36), nullable=False)
+    status = Column(UnicodeText(36), nullable=False)
+    substatus = Column(UnicodeText(36), nullable=True)
     changed_on = Column(DateTime, default=datetime_now, nullable=False)
-    changed_by = Column(Unicode(36), nullable=False)
+    changed_by = Column(UnicodeText(36), nullable=False)
 
     @declared_attr
-    def __table_args__(cls): # pylint: disable=no-self-argument
+    def __table_args__(self):
         return (ForeignKeyConstraint(['internaltip_id'], ['internaltip.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),)
 
 
@@ -1048,14 +1070,17 @@ class _User(Model):
     """
     __tablename__ = 'user'
 
-    id = Column(Unicode(36), primary_key=True, default=uuid4, nullable=False)
+    id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
 
     tid = Column(Integer, default=1, nullable=False)
 
     creation_date = Column(DateTime, default=datetime_now, nullable=False)
     username = Column(UnicodeText, default=u'', nullable=False)
+
+    salt = Column(UnicodeText(24), nullable=False)
+    hash_alg = Column(UnicodeText, default=u'SCRYPT', nullable=False)
     password = Column(UnicodeText, default=u'', nullable=False)
-    salt = Column(Unicode(24), nullable=False)
+
     name = Column(UnicodeText, default=u'', nullable=False)
     description = Column(JSON, default=dict, nullable=False)
 
@@ -1068,11 +1093,8 @@ class _User(Model):
     password_change_needed = Column(Boolean, default=True, nullable=False)
     password_change_date = Column(DateTime, default=datetime_null, nullable=False)
 
-    # TODO: not anymore used - remove at next migration
-    auth_token = Column(UnicodeText, default=u'', nullable=False)
-
-    crypto_prv_key = Column(Unicode, default=u'', nullable=False)
-    crypto_key = Column(Unicode, default=u'', nullable=False)
+    crypto_prv_key = Column(LargeBinary(72), default=b'', nullable=False)
+    crypto_pub_key = Column(LargeBinary(32), default=b'', nullable=False)
 
     can_edit_general_settings = Column(Boolean, default=False, nullable=False)
 
@@ -1089,9 +1111,12 @@ class _User(Model):
     pgp_key_expiration = Column(DateTime, default=datetime_null, nullable=False)
     # END of PGP key fields
 
+    binary_keys = ['crypto_prv_key', 'crypto_pub_key']
+
     unicode_keys = ['username', 'role', 'state',
                     'language', 'mail_address', 'name',
-                    'language', 'change_email_address']
+                    'language', 'change_email_address',
+                    'salt']
 
     localized_keys = ['description']
 
@@ -1100,11 +1125,11 @@ class _User(Model):
     date_keys = ['creation_date', 'last_login', 'password_change_date', 'pgp_key_expiration']
 
     @declared_attr
-    def __table_args__(cls): # pylint: disable=no-self-argument
+    def __table_args__(self):
         return (ForeignKeyConstraint(['tid'], ['tenant.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),
                 UniqueConstraint('tid', 'username'),
-                CheckConstraint(cls.role.in_(['admin','receiver', 'custodian'])),
-                CheckConstraint(cls.state.in_(['disabled', 'enabled'])))
+                CheckConstraint(self.role.in_(['admin','receiver', 'custodian'])),
+                CheckConstraint(self.state.in_(['disabled', 'enabled'])))
 
 
 class _UserTenant(Model):
@@ -1113,11 +1138,11 @@ class _UserTenant(Model):
     """
     __tablename__ = 'usertenant'
 
-    user_id = Column(Unicode(36), primary_key=True, default=uuid4, nullable=False)
+    user_id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
     tenant_id = Column(Integer, primary_key=True, default=1, nullable=False)
 
     @declared_attr
-    def __table_args__(cls): # pylint: disable=no-self-argument
+    def __table_args__(self):
         return (ForeignKeyConstraint(['user_id'], ['user.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),
                 ForeignKeyConstraint(['tenant_id'], ['tenant.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'))
 
@@ -1128,14 +1153,14 @@ class _UserImg(Model):
     """
     __tablename__ = 'userimg'
 
-    id = Column(Unicode(36), primary_key=True, default=uuid4, nullable=False)
+    id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
 
     data = Column(UnicodeText, nullable=False)
 
     unicode_keys = ['data']
 
     @declared_attr
-    def __table_args__(cls): # pylint: disable=no-self-argument
+    def __table_args__(self):
         return (ForeignKeyConstraint(['id'], ['user.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),)
 
 
@@ -1147,36 +1172,53 @@ class _WhistleblowerFile(Model):
     """
     __tablename__ = 'whistleblowerfile'
 
-    id = Column(Unicode(36), primary_key=True, default=uuid4, nullable=False)
+    id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
 
-    receivertip_id = Column(Unicode(36), nullable=False)
+    receivertip_id = Column(UnicodeText(36), nullable=False)
     name = Column(UnicodeText, nullable=False)
-    filename = Column(Unicode(255), nullable=False)
+    filename = Column(UnicodeText(255), nullable=False)
     size = Column(Integer, nullable=False)
     content_type = Column(UnicodeText, nullable=False)
     downloads = Column(Integer, default=0, nullable=False)
     creation_date = Column(DateTime, default=datetime_now, nullable=False)
     last_access = Column(DateTime, default=datetime_null, nullable=False)
     description = Column(UnicodeText, nullable=False)
+    new = Column(Integer, default=True, nullable=True)
 
     @declared_attr
-    def __table_args__(cls): # pylint: disable=no-self-argument
+    def __table_args__(self):
         return (ForeignKeyConstraint(['receivertip_id'], ['receivertip.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),)
+
+
+class _WhistleblowerIdentity(Model):
+    __tablename__ = 'whistlebloweridentity'
+
+    id = Column(UnicodeText(36), primary_key=True, nullable=False)
+    creation_date = Column(DateTime, default=datetime_now, nullable=False)
+    identity = Column(UnicodeText, default=u'', nullable=False)
+
+    @declared_attr
+    def __table_args__(self):
+        return (ForeignKeyConstraint(['id'], ['internaltip.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),)
 
 
 class _WhistleblowerTip(Model):
     __tablename__ = 'whistleblowertip'
 
-    id = Column(Unicode(36), primary_key=True, default=uuid4, nullable=False)
+    id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
     tid = Column(Integer, default=1, nullable=False)
-    receipt_hash = Column(Unicode(128), nullable=False)
+    receipt_hash = Column(UnicodeText(128), nullable=False)
 
-    crypto_tip_key = Column(Unicode, default=u'', nullable=False)
-    crypto_prv_key = Column(Unicode, default=u'', nullable=False)
-    crypto_pub_key = Column(Unicode, default=u'', nullable=False)
+    hash_alg = Column(UnicodeText, default=u'SCRYPT', nullable=False)
+
+    crypto_prv_key = Column(LargeBinary(72), default=b'', nullable=False)
+    crypto_pub_key = Column(LargeBinary(32), default=b'', nullable=False)
+    crypto_tip_prv_key = Column(LargeBinary(72), default=b'', nullable=False)
+
+    binary_keys = ['crypto_prv_key', 'crypto_pub_key', 'crypto_tip_prv_key']
 
     @declared_attr
-    def __table_args__(cls): # pylint: disable=no-self-argument
+    def __table_args__(self):
         return (UniqueConstraint('tid', 'receipt_hash'),
                 ForeignKeyConstraint(['id'], ['internaltip.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),
                 ForeignKeyConstraint(['tid'], ['tenant.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'))
@@ -1200,6 +1242,7 @@ class File(_File, Base): pass
 class IdentityAccessRequest(_IdentityAccessRequest, Base): pass
 class InternalFile(_InternalFile, Base): pass
 class InternalTip(_InternalTip, Base): pass
+class InternalTipData(_InternalTipData, Base): pass
 class Mail(_Mail, Base): pass
 class Message(_Message, Base): pass
 class Questionnaire(_Questionnaire, Base): pass

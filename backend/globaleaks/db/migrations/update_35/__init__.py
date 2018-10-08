@@ -8,7 +8,7 @@ from globaleaks.utils.utility import datetime_now, datetime_null
 
 class Context_v_34(models.Model):
     __tablename__ = 'context'
-    id = Column(Unicode(36), primary_key=True, default=uuid4, nullable=False)
+    id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
     show_small_receiver_cards = Column(Boolean, default=False)
     show_context = Column(Boolean, default=True)
     show_recipients_details = Column(Boolean, default=False)
@@ -27,24 +27,24 @@ class Context_v_34(models.Model):
     status_page_message = Column(JSON)
     show_receivers_in_alphabetical_order = Column(Boolean, default=False)
     presentation_order = Column(Integer, default=0)
-    questionnaire_id = Column(Unicode(36))
-    img_id = Column(Unicode(36))
+    questionnaire_id = Column(UnicodeText(36))
+    img_id = Column(UnicodeText(36))
 
 
 class WhistleblowerTip_v_34(models.Model):
     __tablename__ = 'whistleblowertip'
-    id = Column(Unicode(36), primary_key=True, default=uuid4, nullable=False)
-    internaltip_id = Column(Unicode(36))
+    id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
+    internaltip_id = Column(UnicodeText(36))
     receipt_hash = Column(UnicodeText)
     access_counter = Column(Integer, default=0)
 
 
 class InternalTip_v_34(models.Model):
     __tablename__ = 'internaltip'
-    id = Column(Unicode(36), primary_key=True, default=uuid4, nullable=False)
+    id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
     creation_date = Column(DateTime, default=datetime_now)
     update_date = Column(DateTime, default=datetime_now)
-    context_id = Column(Unicode(36))
+    context_id = Column(UnicodeText(36))
     questionnaire_hash = Column(UnicodeText)
     preview = Column(JSON)
     progressive = Column(Integer, default=0)
