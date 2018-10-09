@@ -33,6 +33,7 @@ from globaleaks.handlers import custodian, \
                                 robots, \
                                 signup, \
                                 site, \
+                                sitemap, \
                                 staticfile
 
 from globaleaks.handlers.admin import operation as admin_operation
@@ -176,7 +177,7 @@ api_spec = [
 
     ## Special Files Handlers##
     (r'/robots.txt', robots.RobotstxtHandler),
-    (r'/sitemap.xml', robots.SitemapHandler),
+    (r'/sitemap.xml', sitemap.SitemapHandler),
     (r'/s/(.+)', file.FileHandler),
     (r'(/u/.{1,255})', shorturl.ShortURL),
     (r'/l10n/(' + '|'.join(LANGUAGES_SUPPORTED_CODES) + ')', l10n.L10NHandler),
