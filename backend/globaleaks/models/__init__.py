@@ -448,22 +448,25 @@ class _Field(Model):
     multi_entry_hint = Column(JSON, nullable=False)
     triggered_by_score = Column(Integer, default=0, nullable=False)
 
-    encrypt = Column(Boolean, default=True, nullable=False)
-
-    template_id = Column(UnicodeText(36))
-    fieldgroup_id = Column(UnicodeText(36))
     step_id = Column(UnicodeText(36))
+    fieldgroup_id = Column(UnicodeText(36))
 
     type = Column(UnicodeText, default=u'inputbox', nullable=False)
     instance = Column(UnicodeText, default=u'instance', nullable=False)
     editable = Column(Boolean, default=True, nullable=False)
 
+    template_id = Column(UnicodeText(36))
+    template_override_id = Column(UnicodeText(36))
+
+    encrypt = Column(Boolean, default=True, nullable=False)
+
     @declared_attr
     def __table_args__(self):
         return (ForeignKeyConstraint(['tid'], ['tenant.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),
-                ForeignKeyConstraint(['template_id'], ['field.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),
-                ForeignKeyConstraint(['fieldgroup_id'], ['field.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),
                 ForeignKeyConstraint(['step_id'], ['step.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),
+                ForeignKeyConstraint(['fieldgroup_id'], ['field.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),
+                ForeignKeyConstraint(['template_id'], ['field.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),
+                ForeignKeyConstraint(['template_override_id'], ['field.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),
                 CheckConstraint(self.type.in_(['inputbox',
                                               'textarea',
                                               'multichoice',
