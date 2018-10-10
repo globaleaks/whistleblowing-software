@@ -390,7 +390,10 @@ AdminContextDesc = {
     'recipients_clarification': text_type,
     'status_page_message': text_type,
     'show_receivers_in_alphabetical_order': bool,
-    'questionnaire_id': key_regexp_or_empty
+    'questionnaire_id': key_regexp_or_empty,
+    'enable_additional_questionnaire': bool,
+    'additional_questionnaire_id': key_regexp_or_empty,
+    'additional_questionnaire_invite': text_type
 }
 
 AdminReceiverDesc = {
