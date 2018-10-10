@@ -1104,6 +1104,9 @@ class MockDict:
             'presentation_order': 0,
             'receivers': [],
             'questionnaire_id': u'default',
+            'enable_additional_questionnaire': False,
+            'additional_questionnaire_id': '',
+            'additional_questionnaire_invite': u'',
             'select_all_receivers': True,
             'tip_timetolive': 20,
             'maximum_selectable_receivers': 0,
@@ -1226,7 +1229,10 @@ class MockDict:
             'signup_tos1_agreement': u'',
             'signup_tos2_enable': False,
             'signup_tos2_clause': u'',
-            'signup_tos2_agreement': u''
+            'signup_tos2_agreement': u'',
+            'log_level': 'DEBUG',
+            'log_accesses_of_internal_users': False,
+            'encryption': False
         }
 
 

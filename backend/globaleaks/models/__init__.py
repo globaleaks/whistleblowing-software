@@ -330,10 +330,19 @@ class _Context(Model):
     show_receivers_in_alphabetical_order = Column(Boolean, default=True, nullable=False)
     presentation_order = Column(Integer, default=0, nullable=False)
     questionnaire_id = Column(UnicodeText(36), default=u'default', nullable=False)
+    enable_additional_questionnaire = Column(Boolean, default=False)
+    additional_questionnaire_id = Column(UnicodeText(36), default=u'default', nullable=False)
+    additional_questionnaire_invite = Column(JSON, default=dict, nullable=False)
 
-    unicode_keys = ['questionnaire_id']
+    unicode_keys = ['questionnaire_id', 'additional_questionnaire_id']
 
-    localized_keys = ['name', 'description', 'recipients_clarification', 'status_page_message']
+    localized_keys = [
+        'name',
+        'description',
+        'recipients_clarification',
+        'status_page_message',
+        'additional_questionnaire_invite'
+    ]
 
     int_keys = [
       'tip_timetolive',
@@ -353,7 +362,8 @@ class _Context(Model):
       'enable_two_way_comments',
       'enable_two_way_messages',
       'enable_attachments',
-      'enable_rc_to_wb_files'
+      'enable_rc_to_wb_files',
+      'enable_additional_questionnaire'
     ]
 
     list_keys = ['receivers']
