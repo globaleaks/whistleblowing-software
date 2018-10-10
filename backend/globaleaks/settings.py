@@ -27,13 +27,6 @@ possible_client_paths = [
     os.path.abspath(os.path.join(this_directory, '../../client/app/'))
 ]
 
-verbosity_dict = {
-    'DEBUG': logging.DEBUG,
-    'INFO': logging.INFO,
-    'WARNING': logging.WARNING,
-    'ERROR': logging.ERROR,
-    'CRITICAL': logging.CRITICAL
-}
 
 external_counted_events = {
     'new_submission': 0,
@@ -213,7 +206,7 @@ class SettingsClass(object):
         if self.cmdline_options.disable_swap:
             self.disable_swap = True
 
-        log.setloglevel(verbosity_dict[self.cmdline_options.loglevel])
+        log.setloglevel(self.cmdline_options.loglevel)
 
         self.bind_address = self.cmdline_options.ip
 

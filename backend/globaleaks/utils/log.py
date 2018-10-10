@@ -106,10 +106,16 @@ class Logger(object):
     """
     Customized LogPublisher
     """
-    loglevel = logging.ERROR
+    loglevel = logging.INFO
+
+    _verbosity_dict = {
+        'DEBUG': logging.DEBUG,
+        'INFO': logging.INFO,
+        'ERROR': logging.ERROR
+    }
 
     def setloglevel(self, loglevel):
-        self.loglevel = loglevel
+        self.loglevel = self._verbosity_dict[loglevel]
 
     def _print_logline(self, prefix, msg, *args, **kwargs):
         msg = (msg % args) if args else msg
