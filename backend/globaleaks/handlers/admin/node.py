@@ -114,8 +114,7 @@ def db_update_node(session, tid, request, language, config_node):
                                     request['default_language'])
 
     if language in models.EnabledLanguage.list(session, tid):
-        node_l10n = NodeL10NFactory(session, tid)
-        node_l10n.update(request, language)
+        NodeL10NFactory(session, tid).update(request, language)
 
     db_refresh_memory_variables(session, [tid])
 
