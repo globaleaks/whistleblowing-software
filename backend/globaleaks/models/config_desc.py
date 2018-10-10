@@ -157,6 +157,9 @@ ConfigDescriptor = {
     u'enable_password_reset': Bool(default=False),
     u'enable_user_pgp_key_upload': Bool(default=True),
 
+    u'log_level': Unicode(default=u'ERROR'),
+    u'log_accesses_of_internal_users': Bool(default=False),
+
     u'encryption': Bool(default=True)
 }
 
@@ -240,6 +243,8 @@ ConfigFilters = {
         u'ip_filter_authenticated_enable',
         u'enable_password_reset',
         u'enable_user_pgp_key_upload',
+        u'log_level',
+        u'log_accesses_of_internal_users',
         u'encryption'
     ]),
     'notification': set([

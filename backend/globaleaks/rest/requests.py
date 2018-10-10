@@ -273,7 +273,10 @@ AdminNodeDesc = {
     'ip_filter_authenticated_enable': bool,
     'ip_filter_authenticated': text_type,
     'enable_password_reset': bool,
-    'enable_user_pgp_key_upload': bool
+    'enable_user_pgp_key_upload': bool,
+    'log_level': text_type,
+    'log_accesses_of_internal_users': bool,
+    'encryption': bool
 }
 
 AdminNotificationDesc = merge_dicts({
