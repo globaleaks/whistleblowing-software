@@ -502,3 +502,9 @@ html[rtl] .float-right {
 .bold {
   font-weight: bold;
 }
+
+@media (min-width: 768px) {
+  .modal-lg .modal-dialog {
+    width: 600px;
+  }
+}

@@ -47,9 +47,7 @@ def admin_serialize_context(session, context, language):
         'presentation_order': context.presentation_order,
         'show_receivers_in_alphabetical_order': context.show_receivers_in_alphabetical_order,
         'questionnaire_id': context.questionnaire_id,
-        'enable_additional_questionnaire': context.enable_additional_questionnaire,
         'additional_questionnaire_id': context.additional_questionnaire_id,
-        'additional_questionnaire_invite': context.additional_questionnaire_invite,
         'receivers': receivers,
         'picture': picture
     }

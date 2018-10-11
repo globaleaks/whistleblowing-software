@@ -9,7 +9,8 @@ from globaleaks import models
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.rtip import serialize_comment, serialize_message, db_get_itip_comment_list, WBFileHandler
 from globaleaks.handlers.submission import serialize_usertip, \
-    db_save_questionnaire_answers, db_serialize_archived_questionnaire_schema, decrypt_tip
+    db_save_questionnaire_answers, db_serialize_archived_questionnaire_schema, decrypt_tip, \
+    db_set_internaltip_data, db_get_questionnaire, db_archive_questionnaire_schema
 from globaleaks.orm import transact
 from globaleaks.rest import errors, requests
 from globaleaks.state import State
@@ -179,6 +180,33 @@ def update_identity_information(session, tid, tip_id, identity_field_id, identit
                 return
 
 
+@transact
+def store_additional_questionnaire_answers(session, tid, tip_id, answers, language):
+    internaltip, questionnaire_id = session.query(models.InternalTip, models.Context.additional_questionnaire_id)\
+                                           .filter(models.InternalTip.id == tip_id,
+                                                   models.InternalTip.tid == tid,
+                                                   models.Context.id == models.InternalTip.context_id).one()
+
+    steps = db_get_questionnaire(session, tid, questionnaire_id, None)['steps']
+    hash = db_archive_questionnaire_schema(session, steps)
+
+    db_save_questionnaire_answers(session, tid, internaltip.id, answers)
+
+    db_set_internaltip_data(session,
+                            tip_id,
+                            'additional_questionnaire_hash',
+                            hash,
+                            False)
+
+    db_set_internaltip_data(session,
+                            tip_id,
+                            'provided_additional_questionnaire',
+                            True,
+                            False)
+
+    print(answers)
+
+
 class WBTipInstance(BaseHandler):
     """
     This interface expose the Whistleblower Tip.
@@ -260,3 +288,18 @@ class WBTipIdentityHandler(BaseHandler):
                                            request['identity_field_id'],
                                            request['identity_field_answers'],
                                            self.request.language)
+
+
+class WBTipAdditionalQuestionnaire(BaseHandler):
+    """
+    This is the interface that securely allows the whistleblower to fill the additional questionnaire
+    """
+    check_roles = 'whistleblower'
+
+    def post(self, tip_id):
+        request = self.validate_message(self.request.content.read(), requests.AdditionalQuestionnaireAnswers)
+
+        return store_additional_questionnaire_answers(self.request.tid,
+                                                      tip_id,
+                                                      request['answers'],
+                                                      self.request.language)

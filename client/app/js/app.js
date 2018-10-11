@@ -636,8 +636,17 @@ var GLClient = angular.module('GLClient', [
 
         $rootScope.submission_statuses = result.submission_statuses;
 
+        angular.forEach($rootScope.questionnaires_by_id, function(element, key) {
+          $rootScope.questionnaires_by_id[key].steps = $filter('orderBy')($rootScope.questionnaires_by_id[key].steps, 'presentation_order');
+        });
+
         angular.forEach($rootScope.contexts_by_id, function(element, key) {
           $rootScope.contexts_by_id[key].questionnaire = $rootScope.questionnaires_by_id[$rootScope.contexts_by_id[key].questionnaire_id];
+          console.log($rootScope.contexts_by_id[key].additional_questionnaire_id);
+          if ($rootScope.contexts_by_id[key].additional_questionnaire_id) {
+            $rootScope.contexts_by_id[key].additional_questionnaire = $rootScope.questionnaires_by_id[$rootScope.contexts_by_id[key].additional_questionnaire_id];
+            console.log($rootScope.contexts_by_id[key].additional_questionnaire.steps);
+          }
         });
 
         if (result.node.favicon) {

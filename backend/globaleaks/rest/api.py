@@ -105,6 +105,7 @@ api_spec = [
     (r'/wbtip/rfile', attachment.PostSubmissionAttachment),
     (r'/wbtip/wbfile/' + uuid_regexp, wbtip.WBTipWBFileHandler),
     (r'/wbtip/' + uuid_regexp + r'/provideidentityinformation', wbtip.WBTipIdentityHandler),
+    (r'/wbtip/' + uuid_regexp + r'/update', wbtip.WBTipAdditionalQuestionnaire),
 
     ## Receiver Handlers ##
     (r'/receiver/preferences', receiver.ReceiverInstance),

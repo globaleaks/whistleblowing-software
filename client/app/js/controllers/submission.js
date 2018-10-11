@@ -231,10 +231,7 @@ GLClient.controller('SubmissionCtrl',
   $scope.prepareSubmission = function(context) {
     $scope.answers = {};
     $scope.uploads = {};
-    $scope.field_id_map = fieldUtilities.build_field_id_map(context);
-
-    // iterations over steps require the steps array to be ordered
-    context.questionnaire.steps = $filter('orderBy')(context.questionnaire.steps, 'presentation_order');
+    $scope.field_id_map = fieldUtilities.build_field_id_map(context.questionnaire);
 
     angular.forEach(context.questionnaire.steps, function(step) {
       angular.forEach(step.children, function(field) {
@@ -371,6 +368,204 @@ GLClient.controller('SubmissionCtrl',
       }
     });
   });
+}]).
+controller('AdditionalQuestionnaireCtrl',
+    ['$http', '$route', '$scope', '$uibModalInstance', 'Utils', '$filter', '$location', '$interval', '$anchorScroll', 'tmhDynamicLocale', 'Submission', 'glbcProofOfWork', 'fieldUtilities',
+      function ($http, $route, $scope, $uibModalInstance, Utils, $filter, $location, $interval, $anchorScroll, tmhDynamicLocale, Submission, glbcProofOfWork, fieldUtilities) {
+  $scope.vars = {};
+
+  $scope.fieldUtilities = fieldUtilities;
+
+  $scope.selection = 0;
+  $scope.navigation = 0;
+
+  $scope.submitPressed = false;
+
+  $scope.total_score = 9007199254740991;
+
+  $scope.singleStepForm = function() {
+    return $scope.firstStepIndex() === $scope.lastStepIndex();
+  };
+
+  $scope.getCurrentStepIndex = function() {
+    return $scope.selection;
+  };
+
+  $scope.getCurrentStep = function() {
+    return $scope.tip.context.additional_questionnaire.steps[$scope.selection];
+  };
+
+  $scope.goToStep = function(index, bypassErrors) {
+    $scope.selection = index;
+    $anchorScroll('top');
+  };
+
+  $scope.firstStepIndex = function() {
+    return 0;
+  };
+
+  $scope.lastStepIndex = function() {
+    return $scope.tip.context.additional_questionnaire.steps.length - 1;
+  };
+
+  $scope.hasNextStep = function() {
+    return $scope.selection < $scope.lastStepIndex();
+  };
+
+  $scope.hasPreviousStep = function() {
+    return $scope.selection > $scope.firstStepIndex();
+  };
+
+  $scope.checkForInvalidFields = function() { return true; }
+
+  $scope.incrementStep = function() {
+    if ($scope.hasNextStep()) {
+      if ($scope.navigation < $scope.selection + 1) {
+        $scope.navigation = $scope.selection + 1;
+      }
+    }
+
+    if ($scope.hasNextStep()) {
+      $scope.vars.submissionForm.$dirty = false;
+      for (var i = $scope.selection + 1; i <= $scope.lastStepIndex(); i++) {
+        $scope.selection = i;
+        $anchorScroll('top');
+        break;
+      }
+    }
+  };
+
+  $scope.decrementStep = function() {
+    if ($scope.hasPreviousStep()) {
+      $scope.vars.submissionForm.$dirty = false;
+      for (var i = $scope.selection - 1; i >= $scope.firstStepIndex(); i--) {
+        $scope.selection = i;
+        $anchorScroll('top');
+      }
+    }
+  };
+
+  $scope.areReceiversSelected = function() {
+    return true;
+  };
+
+  $scope.submissionHasErrors = function() {
+    return false;
+  };
+
+  $scope.calculateScoreRecursively = function(field, entry) {
+    var score = 0;
+    var i;
+
+    if (['selectbox', 'multichoice'].indexOf(field.type) !== -1) {
+      for(i=0; i<field.options.length; i++) {
+        if (entry['value'] === field.options[i].id) {
+          score += field.options[i].score_points;
+        }
+      }
+    }
+
+    if (field.type === 'checkbox') {
+      for(i=0; i<field.options.length; i++) {
+        if (entry[field.options[i].id]) {
+          score += field.options[i].score_points;
+        }
+      }
+    }
+
+    angular.forEach(field.children, function(child) {
+      angular.forEach(entry[child.id], function(entry) {
+        score += $scope.calculateScoreRecursively(child, entry);
+      });
+    });
+
+    return score;
+  };
+
+  $scope.calculateScore = function() {
+    if (!$scope.node.enable_experimental_features) {
+      return 0;
+    }
+
+    var score = 0;
+
+    angular.forEach($scope.submission.context.questionnaire.steps, function(step) {
+      angular.forEach(step.children, function(field) {
+        angular.forEach($scope.answers[field.id], function(entry) {
+          score += $scope.calculateScoreRecursively(field, entry);
+        });
+      });
+    });
+
+    return score;
+  };
+
+  $scope.prepareSubmission = function() {
+    $scope.answers = {};
+    $scope.uploads = {};
+    $scope.field_id_map = fieldUtilities.build_field_id_map($scope.tip.context.additional_questionnaire);
+
+    angular.forEach($scope.tip.context.additional_questionnaire.steps, function(step) {
+      angular.forEach(step.children, function(field) {
+        $scope.answers[field.id] = [angular.copy(fieldUtilities.prepare_field_answers_structure(field))];
+      });
+    });
+  };
+
+  $scope.completeSubmission = function() {
+    $scope.submitPressed = true;
+
+    return $http.post('wbtip/' + $scope.tip.id + '/update',
+                      {'cmd': 'additional_questionnaire', 'answers': $scope.answers}).
+        then(function(){
+          $route.reload();
+        });
+  };
+
+
+  $scope.stepForm = function(index) {
+    if (index !== -1) {
+      return $scope.vars.submissionForm['step-' + index];
+    }
+  };
+
+  $scope.displayStepErrors = function(index) {
+    if (index !== -1) {
+      return $scope.stepForm(index).$invalid;
+    }
+  };
+
+  $scope.onAnswerUpdate = function(field, entry) {
+    if (field.type === 'inputbox' || field.type === 'textarea') {
+      field.required_status = (field.required || field.attrs.min_len.value > 0) && !entry['value'];
+    } else if (field.type === 'checkbox') {
+      if (!field.required) {
+        field.required_status = false;
+        return;
+      }
+
+      for (var i=0; i<field.options.length; i++) {
+        if (entry[field.options[i].id] && entry[field.options[i].id]) {
+          field.required_status = false;
+          return;
+        }
+      }
+
+      field.required_status = true;
+    } else {
+      field.required_status = field.required && !entry['value'];
+    }
+  }
+
+  $scope.displayErrors = function() {
+    return false;
+  };
+
+  $scope.cancel = function () {
+    $uibModalInstance.close();
+  };
+
+  $scope.prepareSubmission();
 }]).
 controller('SubmissionStepCtrl', ['$scope', '$filter', 'fieldUtilities',
   function($scope, $filter, fieldUtilities) {
