@@ -91,6 +91,10 @@
                     <select class="form-control" data-ng-model="context.questionnaire_id" data-ng-options="item.id as item.name for item in admin.questionnaires"></select>
                   </div>
                   <div class="form-group">
+                    <label data-translate>Additional questionnaire</label>
+                    <select class="form-control" data-ng-model="context.additional_questionnaire_id" data-ng-options="item.id as item.name for item in admin.questionnaires"></select>
+                  </div>
+                  <div class="form-group">
                     <label>
                       <span data-translate>Recipients</span>
                       <button class="btn btn-xs btn-primary add-receiver-btn" data-ng-click="toggleSelect()">

@@ -3,6 +3,8 @@
 # Handlers dealing with public API exporting main platform configuration/resources
 import copy
 
+from sqlalchemy import or_
+
 from globaleaks import models, LANGUAGES_SUPPORTED, LANGUAGES_SUPPORTED_CODES
 from globaleaks.handlers.admin.file import db_get_file
 from globaleaks.handlers.base import BaseHandler
@@ -177,6 +179,7 @@ def serialize_context(session, context, language, data=None):
         'enable_rc_to_wb_files': context.enable_rc_to_wb_files,
         'show_receivers_in_alphabetical_order': context.show_receivers_in_alphabetical_order,
         'questionnaire_id': context.questionnaire_id,
+        'additional_questionnaire_id': context.additional_questionnaire_id,
         'receivers': data['receivers'].get(context.id, []),
         'picture': data['imgs'].get(context.id, '')
     }
@@ -365,7 +368,8 @@ def db_get_public_context_list(session, tid, language):
 
 def db_get_questionnaire_list(session, tid, language):
     questionnaires = session.query(models.Questionnaire).filter(models.Questionnaire.tid.in_(set([1, tid])),
-                                                                models.Context.questionnaire_id == models.Questionnaire.id,
+                                                                or_(models.Context.questionnaire_id == models.Questionnaire.id,
+                                                                    models.Context.additional_questionnaire_id == models.Questionnaire.id),
                                                                 models.Context.id == models.ReceiverContext.context_id,
                                                                 models.Context.tid == tid)
 

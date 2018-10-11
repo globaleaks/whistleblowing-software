@@ -424,6 +424,8 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
 
       self.tip = RTipResource.get(tipID, function (tip) {
         tip.context = $rootScope.contexts_by_id[tip.context_id];
+        tip.questionnaire = $rootScope.questionnaires_by_id[tip.context.questionnaire_id];
+        tip.additional_questionnaire = $rootScope.questionnaires_by_id[tip.context.additional_questionnaire_id];
 
         tip.iars = $filter('orderBy')(tip.iars, 'request_date');
         tip.last_iar = tip.iars.length > 0 ? tip.iars[tip.iars.length - 1] : null;
@@ -501,8 +503,8 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
       });
     };
 }]).
-  factory('WBTip', ['$rootScope', 'WBTipResource', 'WBTipCommentResource', 'WBTipMessageResource',
-      function($rootScope, WBTipResource, WBTipCommentResource, WBTipMessageResource) {
+  factory('WBTip', ['$rootScope', '$filter', 'WBTipResource', 'WBTipCommentResource', 'WBTipMessageResource',
+      function($rootScope, $filter, WBTipResource, WBTipCommentResource, WBTipMessageResource) {
     return function(fn) {
       var self = this;
 
@@ -674,6 +676,7 @@ factory('AdminUtils', ['AdminContextResource', 'AdminQuestionnaireResource', 'Ad
       context.recipients_clarification = '';
       context.status_page_message = '';
       context.questionnaire_id = '';
+      context.additional_questionnaire_id = '';
       context.custodians = [];
       context.receivers = [];
       return context;
@@ -1215,8 +1218,8 @@ factory('AdminUtils', ['AdminContextResource', 'AdminQuestionnaireResource', 'Ad
         }
       };
 
-      var build_field_id_map = function(context) {
-        return context.questionnaire.steps.reduce(function(id_map, cur_step) {
+      var build_field_id_map = function(questionnaire) {
+        return questionnaire.steps.reduce(function(id_map, cur_step) {
           return cur_step.children.reduce(flatten_field, id_map);
         }, {});
       };

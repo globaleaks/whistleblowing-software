@@ -1,6 +1,6 @@
 GLClient.controller('TipCtrl',
-  ['$scope', '$location', '$route', '$routeParams', '$uibModal', '$http', 'Utils', 'Authentication', 'RTip', 'WBTip', 'ReceiverPreferences', 'RTipExport', 'RTipDownloadRFile', 'WBTipDownloadFile', 'fieldUtilities',
-  function($scope, $location, $route, $routeParams, $uibModal, $http, Utils, Authentication, RTip, WBTip, ReceiverPreferences, RTipExport, RTipDownloadRFile, WBTipDownloadFile, fieldUtilities) {
+  ['$scope', '$location', '$filter', '$route', '$routeParams', '$uibModal', '$http', 'Utils', 'Authentication', 'RTip', 'WBTip', 'ReceiverPreferences', 'RTipExport', 'RTipDownloadRFile', 'WBTipDownloadFile', 'fieldUtilities',
+  function($scope, $location, $filter, $route, $routeParams, $uibModal, $http, Utils, Authentication, RTip, WBTip, ReceiverPreferences, RTipExport, RTipDownloadRFile, WBTipDownloadFile, fieldUtilities) {
     $scope.fieldUtilities = fieldUtilities;
     $scope.tip_id = $routeParams.tip_id;
     $scope.target_file = '#';
@@ -79,6 +79,7 @@ GLClient.controller('TipCtrl',
       new WBTip(function(tip) {
         $scope.tip = tip;
         $scope.total_score = $scope.tip.total_score;
+
         $scope.ctx = 'wbtip';
         $scope.extractSpecialTipFields(tip);
 
@@ -210,6 +211,24 @@ GLClient.controller('TipCtrl',
       });
     };
 
+    $scope.tip_open_additional_questionnaire = function () {
+      $scope.answers = {};
+      $scope.uploads = {};
+
+      angular.forEach($scope.tip.context.additional_questionnaire.steps, function(step) {
+        angular.forEach(step.children, function(field) {
+          $scope.answers[field.id] = [angular.copy($scope.fieldUtilities.prepare_field_answers_structure(field))];
+        });
+      });
+
+      $uibModal.open({
+        templateUrl: 'views/partials/tip_additional_questionnaire_form.html',
+        controller: 'AdditionalQuestionnaireCtrl',
+        size: 'lg',
+        scope: $scope
+      });
+    };
+
     $scope.file_identity_access_request = function () {
       $uibModal.open({
         templateUrl: 'views/partials/tip_operation_file_identity_access_request.html',
@@ -221,6 +240,9 @@ GLClient.controller('TipCtrl',
         }
       });
     };
+
+    $scope.total_score = 0;
+
 }]).
 controller('TipOperationsCtrl',
   ['$scope', '$http', '$route', '$location', '$uibModalInstance', 'args',

@@ -4,9 +4,8 @@
 import base64
 import copy
 import json
-import os
 
-from six import binary_type, text_type
+from six import text_type
 
 from globaleaks import models
 from globaleaks.handlers.admin.questionnaire import db_get_questionnaire
@@ -33,6 +32,24 @@ def decrypt_tip(user_key, tip_prv_key, tip):
         x['content'] = GCE.asymmetric_decrypt(tip_key, base64.b64decode(x['content'].encode())).decode()
 
     return tip
+
+
+def db_set_internaltip_data(session, itip_id, key, value, encrypted):
+    itd = session.query(models.InternalTipData) \
+                 .filter(models.InternalTipData.internaltip_id == itip_id, models.InternalTipData.key == key).one_or_none()
+
+    if itd is None:
+        itd = models.InternalTipData()
+
+    itd.internaltip_id = itip_id
+    itd.key = key
+    itd.value = value
+    itd.encrypted = encrypted
+    session.add(itd)
+
+
+def db_get_internaltip_data(session, itip_id, key):
+    return session.query(models.InternalTipData).filter(models.InternalTipData.internaltip_id == itip_id, models.InternalTipData.key == key).one_or_none()
 
 
 def db_assign_submission_progressive(session, tid):
@@ -100,7 +117,14 @@ def db_serialize_questionnaire_answers_recursively(session, answers, answers_by_
 
 def db_serialize_questionnaire_answers(session, tid, usertip, internaltip):
     aqs = session.query(models.ArchivedSchema).filter(models.ArchivedSchema.hash == internaltip.questionnaire_hash).one()
-    questionnaire = db_serialize_archived_questionnaire_schema(aqs.schema, State.tenant_cache[tid].default_language)
+    x = db_serialize_archived_questionnaire_schema(aqs.schema, State.tenant_cache[tid].default_language)
+
+    additional_questionnaire_hash = db_get_internaltip_data(session, internaltip.id, 'additional_questionnaire_hash')
+    if additional_questionnaire_hash is not None:
+        additional_questionnaire_hash = additional_questionnaire_hash.value
+        aqs = session.query(models.ArchivedSchema).filter(models.ArchivedSchema.hash == additional_questionnaire_hash).one()
+        y = db_serialize_archived_questionnaire_schema(aqs.schema, State.tenant_cache[tid].default_language)
+        x.extend(y)
 
     answers = []
     answers_by_group = {}
@@ -108,7 +132,7 @@ def db_serialize_questionnaire_answers(session, tid, usertip, internaltip):
     all_answers_ids = []
     root_answers_ids = []
 
-    for s in questionnaire:
+    for s in x:
         for f in s['children']:
             if f.get('template_id', '') == 'whistleblower_identity':
                 if isinstance(usertip, models.InternalTip) or \
@@ -193,17 +217,20 @@ def extract_answers_preview(questionnaire, answers):
     return preview
 
 
-def db_archive_questionnaire_schema(session, questionnaire, questionnaire_hash):
-    if session.query(models.ArchivedSchema).filter(models.ArchivedSchema.hash == questionnaire_hash).count():
-        return
+def db_archive_questionnaire_schema(session, questionnaire):
+    hash = text_type(sha256(json.dumps(questionnaire)))
+    if session.query(models.ArchivedSchema).filter(models.ArchivedSchema.hash == hash).count():
+        return hash
 
     aqs = models.ArchivedSchema()
-    aqs.hash = questionnaire_hash
+    aqs.hash = hash
 
     aqs.schema = questionnaire
     aqs.preview = [f for s in questionnaire for f in s['children'] if f['preview']]
 
     session.add(aqs)
+
+    return hash
 
 
 def db_get_itip_receiver_list(session, itip):
@@ -296,8 +323,7 @@ def db_create_submission(session, tid, request, token, client_using_tor):
         raise errors.ModelNotFound(models.Context)
 
     steps = db_get_questionnaire(session, tid, questionnaire.id, None)['steps']
-    questionnaire_hash = text_type(sha256(json.dumps(steps)))
-    db_archive_questionnaire_schema(session, steps, questionnaire_hash)
+    questionnaire_hash = db_archive_questionnaire_schema(session, steps)
 
     itip = models.InternalTip()
     itip.tid = tid
@@ -371,13 +397,11 @@ def db_create_submission(session, tid, request, token, client_using_tor):
         wbtip.crypto_pub_key = wb_pub_key
         wbtip.crypto_tip_prv_key = GCE.asymmetric_encrypt(wb_pub_key, crypto_tip_prv_key)
 
-        itd = models.InternalTipData()
-        itd.internaltip_id = itip.id
-        itd.key = u'answers'
-        itd.value = base64.b64encode(GCE.asymmetric_encrypt(itip.crypto_tip_pub_key, json.dumps(answers).encode())).decode()
-        itd.encrypted = True
-        session.add(itd)
-
+        db_set_internaltip_data(session,
+                                itip.id,
+                                'answers',
+                                base64.b64encode(GCE.asymmetric_encrypt(itip.crypto_tip_pub_key, json.dumps(answers).encode())).decode(),
+                                True)
     else:
         db_save_questionnaire_answers(session, tid, itip.id, answers)
 

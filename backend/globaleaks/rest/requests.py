@@ -189,6 +189,11 @@ TipOpsDesc = {
     'args': dict
 }
 
+AdditionalQuestionnaireAnswers = {
+    'cmd': text_type,
+    'answers': dict
+}
+
 WhisleblowerIdentityAnswers = {
     'identity_field_id': uuid_regexp,
     'identity_field_answers': dict
@@ -359,11 +364,11 @@ AdminStepDescRaw['children'] = [AdminFieldDescRaw]
 AdminQuestionnaireDesc = {
     'id': key_regexp_or_empty,
     'name': text_type,
-    'steps': [AdminStepDesc]
+    'steps': list
 }
 
 AdminQuestionnaireDescRaw = get_multilang_request_format(AdminQuestionnaireDesc, models.Questionnaire.localized_keys)
-AdminQuestionnaireDescRaw['steps'] = [AdminStepDescRaw]
+AdminQuestionnaireDescRaw['steps'] = list
 
 AdminContextDesc = {
     'id': uuid_regexp_or_empty,
@@ -388,9 +393,7 @@ AdminContextDesc = {
     'status_page_message': text_type,
     'show_receivers_in_alphabetical_order': bool,
     'questionnaire_id': key_regexp_or_empty,
-    'enable_additional_questionnaire': bool,
-    'additional_questionnaire_id': key_regexp_or_empty,
-    'additional_questionnaire_invite': text_type
+    'additional_questionnaire_id': key_regexp_or_empty
 }
 
 AdminReceiverDesc = {
