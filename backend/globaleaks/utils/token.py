@@ -1,205 +1,108 @@
 # -*- coding: utf-8
-#
-# token
-#   *****
-#
-#   Implements a GlobaLeaks security token, to prevent resources exhaustion
-#   operation by anonymous user.
+# Implement a proof of work token to prevent resources exhaustion
 import os
 from datetime import datetime, timedelta
-from random import SystemRandom
 
-from globaleaks.rest import errors
-from globaleaks.state import State
 from globaleaks.utils.crypto import sha256, generateRandomKey, GCE
 from globaleaks.utils.tempdict import TempDict
 from globaleaks.utils.utility import datetime_now, datetime_to_ISO8601
-from globaleaks.utils.log import log
-
-
-
-class TokenListClass(TempDict):
-    def __init__(self, *args, **kwds):
-        TempDict.__init__(self, *args, **kwds)
-
-    def get_timeout(self):
-        return State.settings.submission_minimum_delay + \
-               State.settings.submission_maximum_ttl
-
-    def expireCallback(self, item):
-        for f in item.uploaded_files:
-            try:
-                path = os.path.abspath(os.path.join(State.settings.tmp_path, f['filename']))
-                if os.path.exists(path):
-                    os.remove(path)
-            except:
-                pass
-
-    def get(self, key):
-        ret = TempDict.get(self, key)
-        if ret is None:
-            raise errors.TokenFailure("Not found")
-
-        return ret
-
-
-TokenList = TokenListClass()
 
 
 class Token(object):
-    MAX_USES = 30
+    min_ttl = 1
+    max_ttl = 3600
 
-    def __init__(self, tid, token_kind='submission', uses=MAX_USES):
+    def __init__(self, tokenlist, tid, type='submission'):
+        self.tokenlist = tokenlist
         self.tid = tid
         self.id = generateRandomKey(42)
-        self.kind = token_kind
-        self.remaining_uses = uses
+        self.type = type
         self.creation_date = datetime.utcnow()
 
-        # Keeps track of the file uploaded associated
         self.uploaded_files = []
 
-        # The token challenges in their default state
-        self.human_captcha = {'solved': True}
-        self.generate_human_captcha()
-        self.proof_of_work = {'solved': True}
-        self.generate_proof_of_work()
-
-        TokenList.set(self.id, self)
-
-    def associate_file(self, fileinfo):
-        self.uploaded_files.append(fileinfo)
-
-    def __repr__(self):
-        test_desc = "challenges:"
-        dump_attr = ['human_captcha', 'proof_of_work']
-
-        for a in dump_attr:
-            test_desc = "%s %s=%s" % (test_desc, a, getattr(self, a))
-
-        token_string = "<Token %s for %s [%s]>" % (self.id, self.kind, test_desc)
-
-        return token_string
-
-    def serialize(self):
-        r = {
-            'id': self.id,
-            'creation_date': datetime_to_ISO8601(self.creation_date),
-            'remaining_uses': self.remaining_uses,
-            'type': self.kind,
-            'human_captcha': False,
-            'proof_of_work': False,
-            'human_captcha_answer': 0,
-            'proof_of_work_answer': 0
-        }
-
-        if not self.human_captcha['solved']:
-            r['human_captcha'] = self.human_captcha['question']
-
-        if not self.proof_of_work['solved']:
-            r['proof_of_work'] = self.proof_of_work['question']
-
-        return r
-
-    def generate_human_captcha(self):
-        if State.tenant_state[self.tid].Alarm.alarm_levels['activity'] >= 1 and State.tenant_cache[self.tid].enable_captcha:
-            random_a = SystemRandom().randrange(100)
-            random_b = SystemRandom().randrange(100)
-
-            self.human_captcha = {
-                'question': u"%d + %d" % (random_a, random_b),
-                'answer': random_a + random_b,
-                'solved': False
-            }
-
-    def generate_proof_of_work(self):
-        if State.tenant_cache[self.tid].enable_proof_of_work:
-            self.proof_of_work = {
-                'question': generateRandomKey(20),
-                'solved': False
-            }
+        self.solved = False
+        self.question = generateRandomKey(20)
 
     def timedelta_check(self):
-        """
-        timedelta_check verifies that the current time is between the start
-        validity time and the end validity time.
-        """
-        min_delay = State.settings.submission_minimum_delay
-
-        if State.settings.devel_mode:
-            min_delay = 0
-
-        max_ttl = State.settings.submission_maximum_ttl
-
         now = datetime_now()
-        start = (self.creation_date + timedelta(seconds=min_delay))
+        start = (self.creation_date + timedelta(seconds=self.min_ttl))
         if not start < now:
-            log.debug("creation + validity (%d) = %s < now %s, still too early", min_delay, start, now)
-            raise errors.TokenFailure("Too early to use this token")
+            raise Exception("TokenFalure: Too early to use this token")
 
-        end = (self.creation_date + timedelta(max_ttl))
+        end = (self.creation_date + timedelta(self.max_ttl))
         if now > end:
-            log.debug("creation + end_validity (%d) = %s > now %s, too late", max_ttl, start, now)
-            raise errors.TokenFailure("Too late to use this token")
+            raise Exception("TokenFailure: Too late to use this token")
 
-    def captcha_valid(self, request_answer):
-        if self.human_captcha['answer'] != request_answer:
-            return
-        self.human_captcha['solved'] = True
-
-    def proof_of_work_valid(self, request_answer):
-        """
-        :param resolved_proof_of_work: a string, that has to be an integer
-        :return:
-        """
-        HASH_ENDS_WITH = b'00'
-
-        resolved = "%s%d" % (self.proof_of_work['question'], request_answer)
+    def validate(self, answer):
+        resolved = "%s%d" % (self.question, answer)
         x = sha256(resolved.encode())
-        if not x.endswith(HASH_ENDS_WITH):
-            log.debug("Failed proof of work validation: expected '%s' at the end of the hash %s (seeds %s + %d)",
-                      HASH_ENDS_WITH, x, self.proof_of_work['question'], request_answer)
-            return
+        self.solved = x.endswith(b'00')
 
-        log.debug("Successful proof of work validation! got '%s' at the end of the hash %s (seeds %s + %d)",
-                  HASH_ENDS_WITH, x, self.proof_of_work['question'], request_answer)
+    def update(self, answer):
+        self.validate(answer)
 
-        self.proof_of_work['solved'] = True
-
-    def decrement(self):
-        self.remaining_uses -= 1
-        if self.remaining_uses < 0:
-            raise errors.TokenFailure("Token is no longer valid.")
-
-    def update(self, request):
-        self.decrement()
-
-        if not self.human_captcha['solved']:
-            self.captcha_valid(request['human_captcha_answer'])
-            if not self.human_captcha['solved']:
-                self.generate_human_captcha()
-
-        if not self.proof_of_work['solved']:
-            self.proof_of_work_valid(request['proof_of_work_answer'])
-            if not self.proof_of_work['solved']:
-                self.generate_proof_of_work()
-
-        if not self.human_captcha['solved'] or not self.proof_of_work['solved']:
+        if not self.solved:
             return False
 
-        if self.kind == 'submission':
+        if self.type == 'submission':
             self.tip_key = GCE.generate_key()
 
         return True
 
     def use(self):
         try:
-            self.decrement()
             self.timedelta_check()
-        except errors.TokenFailure:
+        except Exception as e:
             # Unrecoverable failures so immediately delete the token.
-            TokenList.delete(self.id)
+            self.tokenlist.delete(self.id)
             raise
 
-        if not self.human_captcha['solved'] or not self.proof_of_work['solved']:
-            raise errors.TokenFailure("Token is not solved")
+        if not self.solved:
+            raise Exception("TokenFailure: Token is not solved")
+
+    def associate_file(self, fileinfo):
+        self.uploaded_files.append(fileinfo)
+
+    def serialize(self):
+        return {
+            'id': self.id,
+            'creation_date': datetime_to_ISO8601(self.creation_date),
+            'type': self.type,
+            'question': self.question,
+            'solved': self.solved
+        }
+
+
+class TokenList(TempDict):
+    def __init__(self, file_path, *args, **kwds):
+        self.file_path = file_path
+        TempDict.__init__(self, *args, **kwds)
+
+    def set_file_path(self, file_path):
+        self.file_path = file_path
+
+    def get_timeout(self):
+        return Token.min_ttl + \
+               Token.max_ttl
+
+    def expireCallback(self, item):
+        for f in item.uploaded_files:
+            try:
+                path = os.path.abspath(os.path.join(self.file_path, f['filename']))
+                if os.path.exists(path):
+                    os.remove(path)
+            except Exception as e:
+                pass
+
+    def get(self, key):
+        ret = TempDict.get(self, key)
+        if ret is None:
+            raise Exception('TokenFailure: Invalid token')
+
+        return ret
+
+    def new(self, tid, type='submission'):
+        token = Token(self, tid, type)
+        self.set(token.id, token)
+        return token

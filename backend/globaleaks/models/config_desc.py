@@ -113,9 +113,6 @@ ConfigDescriptor = {
 
     u'counter_submissions': Int(default=0),
 
-    u'enable_captcha': Bool(default=True),
-    u'enable_proof_of_work': Bool(default=True),
-
     u'enable_signup': Bool(default=False),
     u'mode': Unicode(default=u'default'),
     u'signup_fingerprint': Bool(default=False),
@@ -202,8 +199,6 @@ ConfigFilters = {
         u'enable_graphic_customization',
         u'enable_footer_customization',
         u'counter_submissions',
-        u'enable_captcha',
-        u'enable_proof_of_work',
         u'enable_admin_exception_notification',
         u'enable_developers_exception_notification',
         u'enable_experimental_features',

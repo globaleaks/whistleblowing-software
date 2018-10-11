@@ -17,7 +17,6 @@ from globaleaks.rest import errors, requests
 from globaleaks.state import State
 from globaleaks.utils.crypto import sha256, GCE
 from globaleaks.utils.structures import get_localized_values
-from globaleaks.utils.token import TokenList
 from globaleaks.utils.utility import get_expiration, \
     datetime_now, datetime_never, datetime_to_ISO8601
 from globaleaks.utils.log import log
@@ -286,12 +285,7 @@ def db_create_receivertip(session, receiver, internaltip, enc_key):
     session.add(receivertip)
 
 
-def db_create_submission(session, tid, request, token_id, client_using_tor):
-    # The get and use method will raise if the token is invalid
-    token = TokenList.pop(token_id)
-
-    token.use()
-
+def db_create_submission(session, tid, request, token, client_using_tor):
     answers = request['answers']
 
     context, questionnaire = session.query(models.Context, models.Questionnaire) \
@@ -435,8 +429,8 @@ def db_create_submission(session, tid, request, token_id, client_using_tor):
 
 
 @transact
-def create_submission(session, tid, request, token_id, client_using_tor):
-    return db_create_submission(session, tid, request, token_id, client_using_tor)
+def create_submission(session, tid, request, token, client_using_tor):
+    return db_create_submission(session, tid, request, token, client_using_tor)
 
 
 class SubmissionInstance(BaseHandler):
@@ -451,7 +445,12 @@ class SubmissionInstance(BaseHandler):
         """
         request = self.validate_message(self.request.content.read(), requests.SubmissionDesc)
 
+        token = self.state.tokens.pop(token_id)
+
+        # The get and use method will raise if the token is invalid
+        token.use()
+
         return create_submission(self.request.tid,
                                  request,
-                                 token_id,
+                                 token,
                                  self.request.client_using_tor)

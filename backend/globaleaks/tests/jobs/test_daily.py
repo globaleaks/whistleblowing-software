@@ -67,7 +67,6 @@ class TestDaily(helpers.TestGLWithPopulatedDB):
     @transact
     def check4(self, session):
         self.assertTrue(os.listdir(Settings.attachments_path) == [])
-        self.assertTrue(os.listdir(Settings.tmp_path) == [])
 
         self.db_test_model_count(session, models.InternalTip, 0)
         self.db_test_model_count(session, models.ReceiverTip, 0)

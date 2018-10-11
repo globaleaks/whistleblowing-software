@@ -148,9 +148,6 @@ class SettingsClass(object):
 
         self.enable_input_length_checks = True
 
-        self.submission_minimum_delay = 3 # seconds
-        self.submission_maximum_ttl = 3600 # 1 hour
-
         self.mail_timeout = 15 # seconds
         self.mail_attempts_limit = 3 # per mail limit
 
@@ -160,6 +157,8 @@ class SettingsClass(object):
         self.maximum_textsize = 4096
 
         self.enable_api_cache = True
+
+        self.eval_paths()
 
     def eval_paths(self):
         self.config_file_path = '/etc/globaleaks'

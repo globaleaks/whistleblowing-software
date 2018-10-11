@@ -7,7 +7,6 @@ from globaleaks import models
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.models import serializers
 from globaleaks.orm import transact
-from globaleaks.utils.token import TokenList
 from globaleaks.utils.utility import datetime_now
 
 
@@ -40,7 +39,7 @@ class SubmissionAttachment(BaseHandler):
     upload_handler = True
 
     def post(self, token_id):
-        token = TokenList.get(token_id)
+        token = self.state.tokens.get(token_id)
 
         self.uploaded_file['submission'] = True
 

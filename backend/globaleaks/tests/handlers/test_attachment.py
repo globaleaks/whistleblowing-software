@@ -2,9 +2,7 @@
 import os
 
 from globaleaks.handlers import attachment
-from globaleaks.rest import errors
 from globaleaks.tests import helpers
-from globaleaks.utils import token
 from twisted.internet.defer import inlineCallbacks
 
 
@@ -13,28 +11,28 @@ class TestSubmissionAttachment(helpers.TestHandlerWithPopulatedDB):
 
     @inlineCallbacks
     def test_post_file_on_not_finalized_submission(self):
-        self.dummyToken = token.Token(1, 'submission')
-        self.dummyToken.proof_of_work = False
+        self.dummyToken = self.state.tokens.new(1, 'submission')
+        self.dummyToken.solved = True
 
         handler = self.request()
         yield handler.post(self.dummyToken.id)
 
     @inlineCallbacks
     def test_post_file_and_verify_deletion_after_token_expiration(self):
-        self.dummyToken = token.Token(1, 'submission')
-        self.dummyToken.proof_of_work = False
+        self.dummyToken = self.state.tokens.new(1, 'submission')
+        self.dummyToken.solved = True
 
         for _ in range(3):
             handler = self.request()
             yield handler.post(self.dummyToken.id)
 
-        token.TokenList.reactor.pump([1] * (token.TokenList.get_timeout() - 1))
+        self.state.tokens.reactor.pump([1] * (self.state.tokens.get_timeout() - 1))
 
         for f in self.dummyToken.uploaded_files:
             path = os.path.abspath(os.path.join(self.state.settings.tmp_path, f['filename']))
             self.assertTrue(os.path.exists(path))
 
-        token.TokenList.reactor.advance(1)
+        self.state.tokens.reactor.advance(1)
 
         for f in self.dummyToken.uploaded_files:
             path = os.path.abspath(os.path.join(self.state.settings.attachments_path, f['filename']))
@@ -42,7 +40,7 @@ class TestSubmissionAttachment(helpers.TestHandlerWithPopulatedDB):
 
     def test_post_file_on_unexistent_submission(self):
         handler = self.request()
-        self.assertRaises(errors.TokenFailure, handler.post, u'unexistent_submission')
+        self.assertRaises(Exception, handler.post, u'unexistent_submission')
 
 
 class TestPostSubmissionAttachment(helpers.TestHandlerWithPopulatedDB):

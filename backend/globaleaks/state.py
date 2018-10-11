@@ -25,6 +25,7 @@ from globaleaks.utils.security import sha256
 from globaleaks.utils.singleton import Singleton
 from globaleaks.utils.tempdict import TempDict
 from globaleaks.utils.templating import Templating
+from globaleaks.utils.token import TokenList
 from globaleaks.utils.tor_exit_set import TorExitSet
 from globaleaks.utils.utility import datetime_now
 from globaleaks.utils.tempdict import TempDict
@@ -82,12 +83,13 @@ class StateClass(ObjectDict):
 
         self.shutdown = False
 
-
     def init_environment(self):
         os.umask(0o77)
         self.settings.eval_paths()
         self.create_directories()
         self.cleaning_dead_files()
+
+        self.tokens = TokenList(self.settings.tmp_path)
 
     def set_orm_tp(self, orm_tp):
         self.orm_tp = orm_tp
