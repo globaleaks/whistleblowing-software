@@ -7,24 +7,17 @@
       </label>
     </div>
 
-    <div class="form-group">
+    <div class="form-group" data-ng-if="!admin.node.encryption">
       <label>
-        <input data-ng-model="admin.node.allow_unencrypted" data-ng-click="open_modal_allow_unencrypted()" type="checkbox" />
-        <span data-translate>Enable insecure configuration without PGP encryption</span>
+        <input data-ng-model="admin.node.encryption" type="checkbox" />
+        <span data-translate>Enable encryption</span>
       </label>
-      <div data-ng-if="admin.node.allow_unencrypted">
-        <div>
-          <span class="label label-warning" data-translate>Warning</span>
-          <span data-translate>By enabling this option, the system will be storing the submitted files unencrypted on your server.</span>
-	  <span data-translate>This happens whenever encryption is unavailable.</span>
-	</div>
-      </div>
     </div>
 
-    <div class="form-group">
+    <div class="form-group" data-ng-if="!admin.node.encryption">
       <label>
-        <input data-ng-model="admin.node.disable_encryption_warnings" type="checkbox" />
-        <span data-translate>Disable messages that warn of missing encryption</span>
+        <input data-ng-model="admin.node.allow_unencrypted" type="checkbox" />
+        <span data-translate>Enable the system to store data in plaintext when encryption is not available</span>
       </label>
     </div>
 

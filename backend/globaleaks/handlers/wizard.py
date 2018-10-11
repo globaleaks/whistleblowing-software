@@ -35,7 +35,6 @@ def db_wizard(session, state, tid, request, client_using_tor, language):
     node.set_val(u'reachable_via_web', not client_using_tor)
     node.set_val(u'allow_unencrypted', not client_using_tor)
     node.set_val(u'anonymize_outgoing_connections', client_using_tor)
-    node.set_val(u'disable_encryption_warnings', not client_using_tor)
 
     node_l10n = config.NodeL10NFactory(session, tid)
     node_l10n.set_val(u'header_title_homepage', language, request['node_name'])
@@ -102,7 +101,6 @@ def db_wizard(session, state, tid, request, client_using_tor, language):
         node.set_val(u'reachable_via_web', True)
         node.set_val(u'allow_unencrypted', True)
         node.set_val(u'anonymize_outgoing_connections', True)
-        node.set_val(u'disable_encryption_warnings', True)
         node.set_val(u'allow_iframes_inclusion', True)
         node.set_val(u'can_delete_submission', False)
         node.set_val(u'enable_graphic_customization', False)

@@ -1161,7 +1161,6 @@ class MockDict:
             'ahmia': False,
             'allow_indexing': False,
             'allow_unencrypted': True,
-            'disable_encryption_warnings': False,
             'allow_iframes_inclusion': False,
             'custom_homepage': False,
             'disable_submissions': False,

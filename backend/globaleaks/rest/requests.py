@@ -226,7 +226,6 @@ AdminNodeDesc = {
     'can_grant_permissions': bool,
     'allow_indexing': bool,
     'allow_unencrypted': bool,
-    'disable_encryption_warnings': bool,
     'allow_iframes_inclusion': bool,
     'disable_privacy_badge': bool,
     'disable_key_code_hint': bool,
