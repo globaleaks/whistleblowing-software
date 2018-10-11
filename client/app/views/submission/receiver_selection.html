@@ -11,10 +11,6 @@
         <div class="receiverCardTitle row">
           <div class="col-md-10">
             <label>
-              <span data-ng-if="!node.disable_encryption_warnings && receiver.configuration !== 'unselectable'">
-                <i data-ng-if="recipient.pgp_key_public !== ''" class="glyphicon glyphicon-certificate" uib-popover="{{'This recipient has configured the encryption key.' | translate}}" popover-placement="right"></i>
-                <i data-ng-if="recipient.pgp_key_public === ''" class="glyphicon glyphicon-warning-sign" uib-popover="{{'This recipient has not configured the encryption key.' | translate}}" popover-placement="right"></i>
-              </span>
               <span data-ng-if="receiver.configuration === 'unselectable'">
                 <i class="glyphicon glyphicon-ban-circle" uib-popover="{{'This recipient cannot be selected.' | translate}}" popover-placement="right"></i>
               </span>

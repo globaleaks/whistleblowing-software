@@ -94,7 +94,6 @@ ConfigDescriptor = {
     u'https_whistleblower': Bool(default=True),
     u'https_receiver': Bool(default=True),
     u'allow_unencrypted': Bool(default=False),
-    u'disable_encryption_warnings': Bool(default=False),
     u'allow_iframes_inclusion': Bool(default=False),
 
     u'can_postpone_expiration': Bool(default=True),
@@ -179,7 +178,6 @@ ConfigFilters = {
         u'https_whistleblower',
         u'https_receiver',
         u'allow_unencrypted',
-        u'disable_encryption_warnings',
         u'allow_iframes_inclusion',
         u'can_postpone_expiration',
         u'can_delete_submission',

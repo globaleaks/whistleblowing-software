@@ -171,21 +171,6 @@ controller('AdminAdvancedCtrl', ['$scope', '$uibModal', 'CONSTANTS',
     });
   }
 
-  $scope.open_modal_allow_unencrypted = function() {
-    if (!$scope.admin.node.allow_unencrypted) {
-      return;
-    }
-
-    var modalInstance = $uibModal.open({
-      templateUrl: 'views/partials/disable_encryption.html',
-      controller: 'ModalCtrl'
-    });
-
-    modalInstance.result.then(function(result){
-      $scope.admin.node.allow_unencrypted = result;
-    });
-  };
-
   $scope.shortener_shorturl_regexp = CONSTANTS.shortener_shorturl_regexp;
   $scope.shortener_longurl_regexp = CONSTANTS.shortener_longurl_regexp;
 
