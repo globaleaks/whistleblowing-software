@@ -3,7 +3,6 @@
 # Handler implementing pre/post submission tokens for implementing rate limiting on whistleblower operations
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.rest import errors, requests
-from globaleaks.utils.token import Token, TokenList
 
 
 class TokenCreate(BaseHandler):
@@ -27,13 +26,13 @@ class TokenCreate(BaseHandler):
         if request['type'] == 'submission' and not self.state.accept_submissions:
             raise errors.SubmissionDisabled
 
-        token = Token(self.request.tid, request['type'])
+        token = self.state.tokens.new(self.request.tid, request['type'])
 
         if not self.request.client_using_tor and (self.request.client_proto == 'http' and
                                                   self.request.hostname not in ['127.0.0.1', 'localhost']):
             # Due to https://github.com/globaleaks/GlobaLeaks/issues/2088 the proof of work if currently
             # implemented only over Tor and HTTPS that are the production conditions.
-            token.proof_of_work['solved'] = True
+            token.solved = True
 
         return token.serialize()
 
@@ -47,10 +46,10 @@ class TokenInstance(BaseHandler):
     def put(self, token_id):
         request = self.validate_message(self.request.content.read(), requests.TokenAnswerDesc)
 
-        token = TokenList.get(token_id)
+        token = self.state.tokens.get(token_id)
         if token is None or self.request.tid != token.tid:
             raise errors.InvalidAuthentication
 
-        token.update(request)
+        token.update(request['answer'])
 
         return token.serialize()

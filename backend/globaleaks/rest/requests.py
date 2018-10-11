@@ -122,8 +122,7 @@ TokenReqDesc = {
 }
 
 TokenAnswerDesc = {
-    'human_captcha_answer': int,
-    'proof_of_work_answer': int
+    'answer': int
 }
 
 SubmissionDesc = {
@@ -230,8 +229,6 @@ AdminNodeDesc = {
     'disable_submissions': bool,
     'multisite_login': bool,
     'simplified_login': bool,
-    'enable_captcha': bool,
-    'enable_proof_of_work': bool,
     'enable_experimental_features': bool,
     'enable_signup': bool,
     'mode': text_type,
@@ -461,8 +458,6 @@ NodeDesc = {
     'disable_key_code_hint': bool,
     'multisite_login': bool,
     'simplified_login': bool,
-    'enable_captcha': bool,
-    'enable_proof_of_work':  bool,
     'enable_custom_privacy_badge': bool,
     'custom_privacy_badge_text': text_type
 }

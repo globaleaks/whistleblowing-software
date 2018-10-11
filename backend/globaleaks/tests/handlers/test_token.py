@@ -2,7 +2,6 @@
 from globaleaks.jobs import anomalies
 from globaleaks.handlers import token
 from globaleaks.tests import helpers
-from globaleaks.utils.token import Token
 from twisted.internet.defer import inlineCallbacks
 
 
@@ -11,8 +10,6 @@ class Test_TokenCreate(helpers.TestHandlerWithPopulatedDB):
 
     def assert_default_token_values(self, token):
         self.assertEqual(token['type'], u'submission')
-        self.assertEqual(token['remaining_uses'], Token.MAX_USES)
-        self.assertEqual(token['human_captcha_answer'], 0)
 
     @inlineCallbacks
     def test_post(self):
@@ -35,12 +32,12 @@ class Test_TokenInstance(helpers.TestHandlerWithPopulatedDB):
         self.pollute_events()
         yield anomalies.Anomalies().run()
 
-        token = Token(1, 'submission')
-        token.human_captcha = {'question': 'XXX','answer': 1, 'solved': False}
-        token.proof_of_work['solved'] = True
+        token = self.state.tokens.new(1, 'submission')
+        token.solved = False
+        token.question = '7GJ4Sl37AEnP10Zk9p7q'
 
         request_payload = token.serialize()
-        request_payload['human_captcha_answer'] = 1
+        request_payload['answer'] = 26
 
         handler = self.request(request_payload)
 
@@ -48,30 +45,22 @@ class Test_TokenInstance(helpers.TestHandlerWithPopulatedDB):
 
         token.use()
 
-        self.assertFalse(response['human_captcha'])
-        self.assertTrue(token.human_captcha['solved'])
+        self.assertTrue(token.solved)
 
     @inlineCallbacks
     def test_put_wrong_answer(self):
         self.pollute_events()
         yield anomalies.Anomalies().run()
 
-        token = Token(1, 'submission')
-
-        orig_question = u'77+33'
-        token.human_captcha = {'question': orig_question,'answer': 1, 'solved': False}
+        token = self.state.tokens.new(1, 'submission')
+        token.solved = False
+        token.question = '7GJ4Sl37AEnP10Zk9p7q'
 
         request_payload = token.serialize()
-
-        request_payload['human_captcha_answer'] = 883
+        request_payload['answer'] = 0
 
         handler = self.request(request_payload)
-        new_token = yield handler.put(token.id)
 
-        self.assertFalse(token.human_captcha['solved'])
+        response = yield handler.put(token.id)
 
-        self.assertEqual(new_token['human_captcha'], token.human_captcha['question'])
-        self.assertNotEqual(new_token['human_captcha'], orig_question)
-
-        self.assertIsNot(new_token['human_captcha'], False)
-        self.assertNotIn('human_captcha_anwser', new_token)
+        self.assertRaises(Exception, token.use)

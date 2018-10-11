@@ -5,7 +5,6 @@ from globaleaks.models.config import set_config_variable
 from globaleaks.jobs import delivery
 from globaleaks.rest import errors
 from globaleaks.tests import helpers
-from globaleaks.utils.token import Token
 from twisted.internet.defer import inlineCallbacks, returnValue
 
 
@@ -103,7 +102,7 @@ class TestSubmissionTokenInteract(helpers.TestHandlerWithPopulatedDB):
         token = self.getToken()
         self.submission_desc = yield self.get_dummy_submission(self.dummyContext['id'])
         handler = self.request(self.submission_desc)
-        yield self.assertFailure(handler.put(token.id), errors.TokenFailure)
+        yield self.assertRaises(Exception, handler.put, token.id)
 
     @inlineCallbacks
     def test_token_reuse_blocked(self):
@@ -114,7 +113,7 @@ class TestSubmissionTokenInteract(helpers.TestHandlerWithPopulatedDB):
         token = self.getSolvedToken()
         yield handler.put(token.id)
 
-        yield self.assertFailure(handler.put(token.id), KeyError)
+        yield self.assertRaises(KeyError, handler.put, token.id)
 
 
 class TestSubmissionEncryptedScenarioOneKeyExpired(TestSubmissionEncryptedScenario):

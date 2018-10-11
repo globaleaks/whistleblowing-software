@@ -324,9 +324,7 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
           receivers: [],
           identity_provided: false,
           answers: {},
-          human_captcha_answer: 0,
-          proof_of_work_answer: 0,
-          graph_captcha_answer: "",
+          answer: 0,
           total_score: 0
         });
 

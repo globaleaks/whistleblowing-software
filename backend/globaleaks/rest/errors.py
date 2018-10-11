@@ -60,17 +60,6 @@ class InputValidationError(GLException):
         self.arguments = [error]
 
 
-class TokenFailure(GLException):
-    """
-    Some kind of reason to reject a submission Token
-    """
-    error_code = 4
-    status_code = 401 # Unauthorized
-
-    def __init__(self, reason):
-        self.reason = ("Unacceptable condition for usage of Token: %s" % reason)
-
-
 class HTTPAuthenticationRequired(GLException):
     """
     Basic Authentication Required

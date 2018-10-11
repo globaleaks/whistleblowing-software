@@ -130,6 +130,9 @@ log.debug = UTlog.mlog('D')
 log.info = UTlog.mlog('I')
 
 
+token.Token.min_ttl = 0
+
+
 class FakeThreadPool(object):
     """
     A fake L{twisted.python.threadpool.ThreadPool}, running functions inside
@@ -571,12 +574,11 @@ class TestGL(unittest.TestCase):
         return answers
 
     def getToken(self, kind='submission'):
-        return token.Token(1, kind)
+        return self.state.tokens.new(1, kind)
 
     def getSolvedToken(self, kind='submission'):
         t = self.getToken(kind)
-        t.human_captcha = {'solved': True}
-        t.proof_of_work = {'solved': True}
+        t.solved = True
         return t
 
     @inlineCallbacks
@@ -595,8 +597,7 @@ class TestGL(unittest.TestCase):
             'context_id': context_id,
             'receivers': context['receivers'],
             'files': [],
-            'human_captcha_answer': 0,
-            'proof_of_work_answer': 0,
+            'answer': 0,
             'identity_provided': False,
             'total_score': 0,
             'answers': answers
@@ -780,7 +781,7 @@ class TestGLWithPopulatedDB(TestGL):
 
         self.dummySubmission = yield create_submission(1,
                                                        self.dummySubmission,
-                                                       token.id,
+                                                       token,
                                                        True)
 
     @inlineCallbacks
@@ -1175,8 +1176,6 @@ class MockDict:
             'admin_language': u'en',
             'multisite_login': False,
             'simplified_login': False,
-            'enable_captcha': False,
-            'enable_proof_of_work': False,
             'enable_experimental_features': False,
             'enable_signup': True,
             'mode': u'default',

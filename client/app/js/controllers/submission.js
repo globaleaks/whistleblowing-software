@@ -12,22 +12,6 @@ GLClient.controller('SubmissionCtrl',
 
   $scope.total_score = 0;
 
-  function openProblemDialog() {
-    var args = { token: $scope.submission._token };
-
-    Utils.openConfirmableModalDialog('views/partials/captchas.html', args)
-      .then(function() { return args.token.$update(); })
-      .then(function(token) {
-        // Always refresh the token after a submission
-        $scope.submission._token = token;
-        if (token.human_captcha) {
-          // Reopen the captcha modal if the human_captcha is truthy which means
-          // it is unresolved.
-          openProblemDialog();
-        }
-      });
-  }
-
   $scope.selected_context = undefined;
 
   $scope.selectContext = function(context) {
@@ -266,9 +250,9 @@ GLClient.controller('SubmissionCtrl',
     $scope.submission.create(context.id, function () {
       startCountdown();
 
-      if ($scope.submission._token.proof_of_work) {
-        glbcProofOfWork.proofOfWork($scope.submission._token.proof_of_work).then(function(result) {
-          $scope.submission._token.proof_of_work_answer = result;
+      if ($scope.submission._token.question) {
+        glbcProofOfWork.proofOfWork($scope.submission._token.question).then(function(result) {
+          $scope.submission._token.answer = result;
           $scope.submission._token.$update(function(token) {
             $scope.submission._token = token;
             $scope.submission.pow = true;
@@ -276,10 +260,6 @@ GLClient.controller('SubmissionCtrl',
         });
       } else {
         $scope.submission.pow = true;
-      }
-
-      if ($scope.submission._token.human_captcha) {
-        openProblemDialog();
       }
 
       $scope.receiversOrderPredicate = $scope.submission.context.show_receivers_in_alphabetical_order ? 'name' : null;
