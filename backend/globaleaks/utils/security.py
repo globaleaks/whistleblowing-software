@@ -74,7 +74,7 @@ def generate_api_token():
 
     :rtype: A `tuple` containing (digest `str`, token `str`)
     """
-    token = generateRandomKey(Settings.api_token_len)
+    token = generateRandomKey(32)
     return token, sha512(token.encode())
 
 
