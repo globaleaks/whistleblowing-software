@@ -395,7 +395,7 @@ controller('AdditionalQuestionnaireCtrl',
     return $scope.tip.context.additional_questionnaire.steps[$scope.selection];
   };
 
-  $scope.goToStep = function(index, bypassErrors) {
+  $scope.goToStep = function(index) {
     $scope.selection = index;
     $anchorScroll('top');
   };
