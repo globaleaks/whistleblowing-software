@@ -642,10 +642,8 @@ var GLClient = angular.module('GLClient', [
 
         angular.forEach($rootScope.contexts_by_id, function(element, key) {
           $rootScope.contexts_by_id[key].questionnaire = $rootScope.questionnaires_by_id[$rootScope.contexts_by_id[key].questionnaire_id];
-          console.log($rootScope.contexts_by_id[key].additional_questionnaire_id);
           if ($rootScope.contexts_by_id[key].additional_questionnaire_id) {
             $rootScope.contexts_by_id[key].additional_questionnaire = $rootScope.questionnaires_by_id[$rootScope.contexts_by_id[key].additional_questionnaire_id];
-            console.log($rootScope.contexts_by_id[key].additional_questionnaire.steps);
           }
         });
 
