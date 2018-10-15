@@ -45,6 +45,8 @@ setupDependencies() {
   setupBackendDependencies
 }
 
+sudo apt-get update
+
 sudo iptables -t nat -A OUTPUT -o lo -p tcp --dport 9000 -j REDIRECT --to-port 8082
 
 npm install -g grunt grunt-cli
@@ -117,7 +119,6 @@ elif [ "$GLTEST" = "build_and_install" ]; then
   export chroot="/tmp/globaleaks_chroot/"
   mkdir -p "$chroot/build"
   sudo cp -R $TRAVIS_BUILD_DIR/ "$chroot/build"
-  sudo apt-get update
   sudo apt-get install -y debootstrap
   export LC_ALL=en_US.utf8
 
