@@ -261,8 +261,6 @@ GLClient.controller('SubmissionCtrl',
 
       $scope.receiversOrderPredicate = $scope.submission.context.show_receivers_in_alphabetical_order ? 'name' : null;
 
-      $scope.show_steps_navigation_bar = $scope.receiver_selection_step || $scope.submission.context.questionnaire.steps.length > 1;
-
       // --------------------------------------------------------------------------
       // fix steps numbering adding receiver selection step if neeeded
       $scope.receiver_selection_step = false;
@@ -273,6 +271,8 @@ GLClient.controller('SubmissionCtrl',
         $scope.receiver_selection_step = true;
         $scope.selection = -1;
       }
+
+      $scope.show_steps_navigation_bar = $scope.receiver_selection_step || $scope.submission.context.questionnaire.steps.length > 1;
     });
   };
 

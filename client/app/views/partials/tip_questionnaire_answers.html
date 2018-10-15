@@ -10,7 +10,7 @@
   </div>
   <div class="TipPageSectionContent panel-body" data-ng-show="!collapsed">
     <div data-ng-repeat="step in tip.context.questionnaire.steps | orderBy:'presentation_order'">
-      <dt id="step={{$index}}">
+      <dt id="step={{$index}}" data-ng-if="tip.context.questionnaire.steps.length > 1">
         <span data-translate>Step</span>
         <span>{{$index + 1}}: {{::step.label}}</span>
       </dt>

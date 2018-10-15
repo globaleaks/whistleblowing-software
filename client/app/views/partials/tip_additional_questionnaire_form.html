@@ -19,7 +19,6 @@
         <div data-ng-if="displayErrors()" data-ng-include="'views/submission/submission_error.html'"></div>
         <div data-ng-repeat="step in tip.context.additional_questionnaire.steps | orderBy:'presentation_order'" data-ng-controller="SubmissionStepCtrl">
           <div id="{{::stepId}}" data-ng-form="{{::stepId}}" class="SubmissionStep" data-ng-show="selection === $index">
-            <div id="StepTitle" data-ng-if="!show_steps_navigation_bar">{{::step.label}}</div>
             <div class="stepDescription" data-ng-if="step.description">{{step.description}}</div>
             <div data-ng-include="'views/submission/form.html'"></div>
           </div>
