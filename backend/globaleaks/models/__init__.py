@@ -310,6 +310,7 @@ class _Context(Model):
 
     tid = Column(Integer, default=1, nullable=False)
 
+    show_steps_navigation_interface = Column(Boolean, default=True, nullable=False)
     show_small_receiver_cards = Column(Boolean, default=False, nullable=False)
     show_context = Column(Boolean, default=True, nullable=False)
     show_recipients_details = Column(Boolean, default=False, nullable=False)
