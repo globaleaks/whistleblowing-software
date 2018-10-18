@@ -18,9 +18,9 @@ GLClient.controller('TipCtrl',
       return entry[$scope.field.id];
     };
 
-    $scope.extractSpecialTipFields = function(tip) {
-      for (var i=tip.questionnaire.length - 1; i>=0; i--) {
-        var step = tip.questionnaire[i];
+    $scope.preprocessTipAnswers = function(tip) {
+      for (var i=tip.questionnaires[0].steps.length - 1; i>=0; i--) {
+        var step = tip.questionnaires[0].steps[i];
         var j = step.children.length;
         while (j--) {
           if (step.children[j]['template_id'] === 'whistleblower_identity') {
@@ -81,17 +81,9 @@ GLClient.controller('TipCtrl',
         $scope.total_score = $scope.tip.total_score;
 
         $scope.ctx = 'wbtip';
-        $scope.extractSpecialTipFields(tip);
+        $scope.preprocessTipAnswers(tip);
 
         $scope.Utils.evalSubmissionStatus($scope.tip, $scope.submission_statuses);
-
-        $scope.tip_unencrypted = false;
-        for(var i = 0; i < tip.receivers.length; i++) {
-          if (tip.receivers[i].pgp_key_public === '') {
-            $scope.tip_unencrypted = true;
-            break;
-          }
-        }
 
         $scope.showWBFileWidget = function() {
           return $scope.contexts_by_id[tip.context_id].enable_rc_to_wb_files && (tip.wbfiles.length > 0);
@@ -125,7 +117,7 @@ GLClient.controller('TipCtrl',
         $scope.tip = tip;
         $scope.total_score = $scope.tip.total_score;
         $scope.ctx = 'rtip';
-        $scope.extractSpecialTipFields(tip);
+        $scope.preprocessTipAnswers(tip);
 
         $scope.exportTip = RTipExport;
         $scope.downloadRFile = RTipDownloadRFile;
@@ -137,14 +129,6 @@ GLClient.controller('TipCtrl',
         $scope.showWBFileUpload = function() {
           return $scope.contexts_by_id[tip.context_id].enable_rc_to_wb_files;
         };
-
-        $scope.tip_unencrypted = false;
-        for(var i = 0; i < tip.receivers.length; i++) {
-          if (tip.receivers[i].pgp_key_public === '') {
-            $scope.tip_unencrypted = true;
-            break;
-          }
-        }
       });
     }
 
@@ -215,7 +199,7 @@ GLClient.controller('TipCtrl',
       $scope.answers = {};
       $scope.uploads = {};
 
-      angular.forEach($scope.tip.context.additional_questionnaire.steps, function(step) {
+      angular.forEach($scope.tip.additional_questionnaire.steps, function(step) {
         angular.forEach(step.children, function(field) {
           $scope.answers[field.id] = [angular.copy($scope.fieldUtilities.prepare_field_answers_structure(field))];
         });

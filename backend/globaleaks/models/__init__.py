@@ -670,7 +670,6 @@ class _InternalTip(Model):
     creation_date = Column(DateTime, default=datetime_now, nullable=False)
     update_date = Column(DateTime, default=datetime_now, nullable=False)
     context_id = Column(UnicodeText(36), nullable=False)
-    questionnaire_hash = Column(UnicodeText(64), nullable=False)
 
     preview = Column(JSON, nullable=False)
     progressive = Column(Integer, default=0, nullable=False)
@@ -683,6 +682,8 @@ class _InternalTip(Model):
     enable_two_way_messages = Column(Boolean, default=True, nullable=False)
     enable_attachments = Column(Boolean, default=True, nullable=False)
     enable_whistleblower_identity = Column(Boolean, default=False, nullable=False)
+
+    additional_questionnaire_id = Column(UnicodeText(36))
 
     wb_last_access = Column(DateTime, default=datetime_now, nullable=False)
     wb_access_counter = Column(Integer, default=0, nullable=False)
@@ -699,20 +700,34 @@ class _InternalTip(Model):
         return (ForeignKeyConstraint(['tid'], ['tenant.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),)
 
 
+class _InternalTipAnswers(Model):
+    """
+    This is the internal representation of Tip Questionnaire Answers
+    """
+    __tablename__ = 'internaltipanswers'
+
+    internaltip_id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
+    questionnaire_id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
+    questionnaire_hash = Column(UnicodeText(64), nullable=False)
+    creation_date = Column(DateTime, default=datetime_now, nullable=False)
+    encrypted = Column(Boolean, default=False, nullable=False)
+    answers = Column(JSON, nullable=False)
+
+    @declared_attr
+    def __table_args__(self):
+        return (UniqueConstraint('internaltip_id', 'questionnaire_id'),
+                ForeignKeyConstraint(['internaltip_id'], ['internaltip.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'))
+
+
 class _InternalTipData(Model):
     __tablename__ = 'InternalTipData'
 
-    id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
-    internaltip_id = Column(UnicodeText(36), nullable=False)
+    internaltip_id = Column(UnicodeText(36), primary_key=True, nullable=False)
+    key = Column(UnicodeText, primary_key=True, nullable=False)
+
     creation_date = Column(DateTime, default=datetime_now, nullable=False)
-    key = Column(UnicodeText, nullable=False)
     value = Column(JSON, nullable=False)
     encrypted = Column(Boolean, default=False, nullable=False)
-
-    date_keys = ['creation_date']
-    unicode_keys = ['key']
-    json_keys = ['value']
-
 
     @declared_attr
     def __table_args__(self):
@@ -976,6 +991,7 @@ class _Step(Model):
     label = Column(JSON, nullable=False)
     description = Column(JSON, nullable=False)
     presentation_order = Column(Integer, default=0, nullable=False)
+    triggered_by_score = Column(Integer, default=0, nullable=False)
 
     unicode_keys = ['questionnaire_id']
     int_keys = ['presentation_order']
@@ -1258,6 +1274,7 @@ class File(_File, Base): pass
 class IdentityAccessRequest(_IdentityAccessRequest, Base): pass
 class InternalFile(_InternalFile, Base): pass
 class InternalTip(_InternalTip, Base): pass
+class InternalTipAnswers(_InternalTipAnswers, Base): pass
 class InternalTipData(_InternalTipData, Base): pass
 class Mail(_Mail, Base): pass
 class Message(_Message, Base): pass

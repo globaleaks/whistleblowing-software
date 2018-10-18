@@ -24,7 +24,11 @@ from globaleaks.utils.log import log
 def decrypt_tip(user_key, tip_prv_key, tip):
     tip_key = GCE.asymmetric_decrypt(user_key, tip_prv_key)
 
-    for k in ['answers', 'whistleblower_identity']:
+    for questionnaire in tip['questionnaires']:
+        questionnaire['answers'] = json.loads(GCE.asymmetric_decrypt(tip_key, base64.b64decode(questionnaire['answers'].encode())).decode())
+        print(questionnaire['answers'])
+
+    for k in ['whistleblower_identity']:
         if k in tip['data'] and tip['data'][k]['encrypted'] and tip['data'][k]['value']:
             tip['data'][k]['value'] = json.loads(GCE.asymmetric_decrypt(tip_key, base64.b64decode(tip['data'][k]['value'].encode())).decode())
 
@@ -32,6 +36,25 @@ def decrypt_tip(user_key, tip_prv_key, tip):
         x['content'] = GCE.asymmetric_decrypt(tip_key, base64.b64decode(x['content'].encode())).decode()
 
     return tip
+
+
+def db_set_internaltip_answers(session, itip_id, questionnaire_id, questionnaire_hash, answers, encrypted):
+    ita = session.query(models.InternalTipAnswers) \
+                 .filter(models.InternalTipAnswers.internaltip_id == itip_id, models.InternalTipAnswers.questionnaire_id == questionnaire_id).one_or_none()
+
+    if ita is None:
+        ita = models.InternalTipAnswers()
+
+    ita.internaltip_id = itip_id
+    ita.questionnaire_id = questionnaire_id
+    ita.questionnaire_hash = questionnaire_hash
+    ita.encrypted = encrypted
+    ita.answers = answers
+    session.add(ita)
+
+
+def db_get_internaltip_answers(session, itip_id):
+    return None
 
 
 def db_set_internaltip_data(session, itip_id, key, value, encrypted):
@@ -43,8 +66,9 @@ def db_set_internaltip_data(session, itip_id, key, value, encrypted):
 
     itd.internaltip_id = itip_id
     itd.key = key
-    itd.value = value
     itd.encrypted = encrypted
+
+    itd.value = value
     session.add(itd)
 
 
@@ -115,16 +139,13 @@ def db_serialize_questionnaire_answers_recursively(session, answers, answers_by_
     return ret
 
 
-def db_serialize_questionnaire_answers(session, tid, usertip, internaltip):
-    aqs = session.query(models.ArchivedSchema).filter(models.ArchivedSchema.hash == internaltip.questionnaire_hash).one()
-    x = db_serialize_archived_questionnaire_schema(aqs.schema, State.tenant_cache[tid].default_language)
+def db_serialize_questionnaire_answers(session, tid, internaltip):
+    aqss = session.query(models.ArchivedSchema).filter(models.ArchivedSchema.hash == models.InternalTipAnswers.questionnaire_hash,
+                                                       models.InternalTipAnswers.internaltip_id == internaltip.id)
 
-    additional_questionnaire_hash = db_get_internaltip_data(session, internaltip.id, 'additional_questionnaire_hash')
-    if additional_questionnaire_hash is not None:
-        additional_questionnaire_hash = additional_questionnaire_hash.value
-        aqs = session.query(models.ArchivedSchema).filter(models.ArchivedSchema.hash == additional_questionnaire_hash).one()
-        y = db_serialize_archived_questionnaire_schema(aqs.schema, State.tenant_cache[tid].default_language)
-        x.extend(y)
+    x = []
+    for aqs in aqss:
+        x.append(db_serialize_archived_questionnaire_schema(aqs.schema, State.tenant_cache[tid].default_language))
 
     answers = []
     answers_by_group = {}
@@ -132,14 +153,9 @@ def db_serialize_questionnaire_answers(session, tid, usertip, internaltip):
     all_answers_ids = []
     root_answers_ids = []
 
-    for s in x:
-        for f in s['children']:
-            if f.get('template_id', '') == 'whistleblower_identity':
-                if isinstance(usertip, models.InternalTip) or \
-                   f['attrs']['visibility_subject_to_authorization']['value'] is False or \
-                   (isinstance(usertip, models.ReceiverTip) and usertip.can_access_whistleblower_identity):
-                    root_answers_ids.append(f['id'])
-            else:
+    for q in x:
+        for s in q:
+            for f in s['children']:
                 root_answers_ids.append(f['id'])
 
     for answer in session.query(models.FieldAnswer) \
@@ -250,7 +266,17 @@ def db_get_itip_receiver_list(session, itip):
 
 
 def serialize_itip(session, internaltip, language):
-    aq = session.query(models.ArchivedSchema).filter(models.ArchivedSchema.hash == internaltip.questionnaire_hash).one()
+    x = session.query(models.InternalTipAnswers, models.ArchivedSchema) \
+               .filter(models.ArchivedSchema.hash == models.InternalTipAnswers.questionnaire_hash,
+                       models.InternalTipAnswers.internaltip_id == internaltip.id)
+
+    questionnaires = []
+    for ita, aqs in x:
+        questionnaires.append({
+            'id': ita.questionnaire_id,
+            'steps': db_serialize_archived_questionnaire_schema(aqs.schema, language),
+            'answers': ita.answers
+        })
 
     wb_access_revoked = session.query(models.WhistleblowerTip).filter(models.WhistleblowerTip.id == internaltip.id).count() == 0
 
@@ -261,15 +287,13 @@ def serialize_itip(session, internaltip, language):
         'expiration_date': datetime_to_ISO8601(internaltip.expiration_date),
         'progressive': internaltip.progressive,
         'context_id': internaltip.context_id,
-        'questionnaire': db_serialize_archived_questionnaire_schema(aq.schema, language),
-        'receivers': db_get_itip_receiver_list(session, internaltip),
+        'additional_questionnaire_id': internaltip.additional_questionnaire_id,
+        'questionnaires': questionnaires,
         'https': internaltip.https,
         'enable_two_way_comments': internaltip.enable_two_way_comments,
         'enable_two_way_messages': internaltip.enable_two_way_messages,
         'enable_attachments': internaltip.enable_attachments,
         'enable_whistleblower_identity': internaltip.enable_whistleblower_identity,
-        'identity_provided': internaltip.identity_provided,
-        'identity_provided_date': datetime_to_ISO8601(internaltip.identity_provided_date),
         'wb_last_access': datetime_to_ISO8601(internaltip.wb_last_access),
         'wb_access_revoked': wb_access_revoked,
         'total_score': internaltip.total_score,
@@ -284,10 +308,6 @@ def serialize_usertip(session, usertip, itip, language):
     ret['internaltip_id'] = itip.id
 
     ret['data'] = {}
-    ret['data']['answers'] = {
-        'value': db_serialize_questionnaire_answers(session, itip.tid, usertip, itip),
-        'encrypted': False
-    }
 
     for itd in session.query(models.InternalTipData).filter(models.InternalTipData.internaltip_id == itip.id):
         ret['data'][itd.key] = {
@@ -298,15 +318,17 @@ def serialize_usertip(session, usertip, itip, language):
     return ret
 
 
-def db_create_receivertip(session, receiver, internaltip, enc_key):
+def db_create_receivertip(session, receiver, internaltip, can_access_whistleblower_identity, enc_key):
     """
     Create models.ReceiverTip for the required tier of models.Receiver.
     """
     log.debug("Creating receivertip for receiver: %s", receiver.id)
+    print(can_access_whistleblower_identity)
 
     receivertip = models.ReceiverTip()
     receivertip.internaltip_id = internaltip.id
     receivertip.receiver_id = receiver.id
+    receivertip.can_access_whistleblower_identity = can_access_whistleblower_identity
     receivertip.crypto_tip_prv_key = enc_key
 
     session.add(receivertip)
@@ -322,6 +344,7 @@ def db_create_submission(session, tid, request, token, client_using_tor):
     if not context:
         raise errors.ModelNotFound(models.Context)
 
+
     steps = db_get_questionnaire(session, tid, questionnaire.id, None)['steps']
     questionnaire_hash = db_archive_questionnaire_schema(session, steps)
 
@@ -330,6 +353,8 @@ def db_create_submission(session, tid, request, token, client_using_tor):
     itip.status = db_get_id_for_system_status(session, tid, u'new')
 
     itip.progressive = db_assign_submission_progressive(session, tid)
+
+    itip.additional_questionnaire_id = context.additional_questionnaire_id
 
     if context.tip_timetolive > 0:
         itip.expiration_date = get_expiration(context.tip_timetolive)
@@ -350,18 +375,22 @@ def db_create_submission(session, tid, request, token, client_using_tor):
     itip.enable_two_way_messages = context.enable_two_way_messages
     itip.enable_attachments = context.enable_attachments
 
-    whistleblower_identity = session.query(models.Field) \
-                                    .filter(models.Field.template_id == u'whistleblower_identity',
-                                            models.Field.step_id == models.Step.id,
-                                            models.Step.questionnaire_id == context.questionnaire_id).one_or_none()
+    x = session.query(models.Field, models.FieldAttr.value) \
+               .filter(models.Field.template_id == u'whistleblower_identity',
+                       models.Field.step_id == models.Step.id,
+                       models.Step.questionnaire_id == context.questionnaire_id,
+                       models.FieldAttr.field_id == models.Field.id,
+                       models.FieldAttr.name == u'visibility_subject_to_authorization').one_or_none()
+
+    whistleblower_identity = None
+    can_access_whistleblower_identity = True
+
+    if x:
+        whistleblower_identity = x[0]
+        can_access_whistleblower_identity = not x[1]
 
     itip.enable_whistleblower_identity = whistleblower_identity is not None
 
-    if itip.enable_whistleblower_identity and request['identity_provided']:
-        itip.identity_provided = True
-        itip.identity_provided_date = datetime_now()
-
-    itip.questionnaire_hash = questionnaire_hash
     itip.preview = extract_answers_preview(steps, answers)
 
     session.add(itip)
@@ -377,6 +406,7 @@ def db_create_submission(session, tid, request, token, client_using_tor):
     wbtip.receipt_hash = GCE.hash_password(receipt, receipt_salt)
 
     crypto_is_available = State.tenant_cache[tid].encryption
+
     if crypto_is_available:
         users_count = session.query(models.User) \
                              .filter(models.Receiver.id.in_(request['receivers']),
@@ -397,13 +427,27 @@ def db_create_submission(session, tid, request, token, client_using_tor):
         wbtip.crypto_pub_key = wb_pub_key
         wbtip.crypto_tip_prv_key = GCE.asymmetric_encrypt(wb_pub_key, crypto_tip_prv_key)
 
-        db_set_internaltip_data(session,
-                                itip.id,
-                                'answers',
-                                base64.b64encode(GCE.asymmetric_encrypt(itip.crypto_tip_pub_key, json.dumps(answers).encode())).decode(),
-                                True)
+    if itip.enable_whistleblower_identity and request['identity_provided'] and answers[whistleblower_identity.id]:
+        wbi = answers[whistleblower_identity.id][0]
+        answers[whistleblower_identity.id] = ''
+
+        if crypto_is_available:
+            wbi = base64.b64encode(GCE.asymmetric_encrypt(itip.crypto_tip_pub_key, json.dumps(wbi).encode())).decode()
+
+        db_set_internaltip_data(session, itip.id, 'identity_provided', True, False)
+        db_set_internaltip_data(session, itip.id, 'whistleblower_identity', wbi, crypto_is_available)
+
+    if crypto_is_available:
+        answers = base64.b64encode(GCE.asymmetric_encrypt(itip.crypto_tip_pub_key, json.dumps(answers).encode())).decode()
     else:
         db_save_questionnaire_answers(session, tid, itip.id, answers)
+
+    db_set_internaltip_answers(session,
+                               itip.id,
+                               questionnaire.id,
+                               questionnaire_hash,
+                               answers,
+                               crypto_is_available)
 
     session.add(wbtip)
 
@@ -441,7 +485,7 @@ def db_create_submission(session, tid, request, token, client_using_tor):
         if crypto_is_available:
             _tip_key = GCE.asymmetric_encrypt(user.crypto_pub_key, crypto_tip_prv_key)
 
-        db_create_receivertip(session, receiver, itip, _tip_key)
+        db_create_receivertip(session, receiver, itip, can_access_whistleblower_identity, _tip_key)
         rtips_count += 1
 
     if not rtips_count:

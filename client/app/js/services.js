@@ -510,6 +510,8 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
 
       self.tip = WBTipResource.get(function (tip) {
         tip.context = $rootScope.contexts_by_id[tip.context_id];
+        tip.questionnaire = $rootScope.questionnaires_by_id[tip.context.questionnaire_id];
+        tip.additional_questionnaire = $rootScope.questionnaires_by_id[tip.context.additional_questionnaire_id];
 
         tip.msg_receiver_selected = null;
         tip.msg_receivers_selector = [];

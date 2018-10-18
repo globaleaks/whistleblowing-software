@@ -28,10 +28,10 @@
       </div>
       <div data-ng-if="iar.reply == 'denied'"><label data-translate>Reply motivation</label>:<span>{{tip.last_iarl.reply_motivation}}</span></div>
     </div>
-    <span data-ng-if="!internaltip.identity_provided" data-translate>Undeclared</span>
-    <div data-ng-if="tip.identity_provided && !whistleblower_identity_field.attrs.visibility_subject_to_authorization.value || (tip.last_iar && tip.last_iar.reply == 'authorized')">
+    <span data-ng-if="!tip.data.identity_provided" data-translate>Undeclared</span>
+    <div data-ng-if="tip.data.identity_provided && !whistleblower_identity_field.attrs.visibility_subject_to_authorization.value || (tip.last_iar && tip.last_iar.reply == 'authorized')">
       <dd data-ng-repeat="field in whistleblower_identity_field.children | orderBy:['y', 'x']">
-        <span data-ng-init="fieldAnswers=tip.answers[whistleblower_identity_field.id][0]" data-ng-include="'views/partials/tip_field.html'"></span>
+        <span data-ng-init="fieldAnswers=tip.data.whistleblower_identity.value" data-ng-include="'views/partials/tip_field.html'"></span>
       <dd>
     </div>
     <div data-ng-if="whistleblower_identity_field.attrs.visibility_subject_to_authorization.value && (!tip.last_iar || tip.last_iar.reply == 'denied')">
