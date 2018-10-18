@@ -30,7 +30,7 @@ profile usr.bin.globaleaks flags=(attach_disconnected) {
     /bin/sh ix,
     /bin/dash ix,
     /usr/bin/gpg{,1} ix,
-    /usr/bin/python{,2,2.7,3,3.[0-9]} ix,
+    /usr/bin/python{,2,2.7,3,3.[0-9]} ixr,
 
     /usr/ r,
     /usr/share/** r,
