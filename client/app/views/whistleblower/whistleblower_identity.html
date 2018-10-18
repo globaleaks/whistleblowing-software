@@ -2,10 +2,8 @@
   <div class="panel-heading" data-ng-click="collapsed = !collapsed; $event.stopPropagation();">
     <div>
       <span>
-        <span data-ng-switch="tip.identity_provided">
-          <span data-ng-switch-when="true">Identity</span>
-          <span data-ng-switch-when="false">{{whistleblower_identity_field.label}}</span>
-        </span>
+        <span data-ng-if="tip.data.whistleblower_identity" data-translate>Whistleblower identity</span>
+	<span data-ng-if="!tip.data.whistleblower_identity">{{whistleblower_identity_field.label}}</span>
         <span class="pull-right">
           <i data-ng-if="!collapsed" class="glyphicon glyphicon-collapse-down" uib-popover="{{'Collapse' | translate}}" popover-placement="left"></i>
           <i data-ng-if="collapsed" class="glyphicon glyphicon-fullscreen" uib-popover="{{'Expand' | translate}}" popover-placement="left"></i>
@@ -14,21 +12,19 @@
     </div>
   </div>
   <div class="TipPageSectionContent panel-body" data-ng-show="!collapsed">
-    <div data-ng-switch="tip.identity_provided">
-      <div data-ng-switch-when="true">
-        <dd data-ng-repeat="field in whistleblower_identity_field.children | orderBy:['y', 'x']">
-          <span data-ng-init="fieldAnswers=tip.answers[whistleblower_identity_field.id][0]" data-ng-include="'views/partials/tip_field.html'"></span>
-        <dd>
-      </div>
-      <div data-ng-switch-when="false">
-        <div data-ng-form="f" class="submissionFieldInput">
-          <div data-ng-include="'views/submission/fields/whistleblower_identity.html'"></div>
-          <div id="SubmitBox" data-ng-if="submission._submission.identity_provided">
-            <button id="SubmitButton" class="btn btn-success pull-right" data-ng-click="provideIdentityInformation(whistleblower_identity_field.id, answers);" data-ng-disabled="f.$invalid" type="submit">
-              <i id="SubmitIconOK" class="glyphicon glyphicon-ok"></i>
-              <span data-translate>Submit</span>
-            </button>
-          </div>
+    <div data-ng-if="tip.data.whistleblower_identity">
+      <dd data-ng-repeat="field in whistleblower_identity_field.children | orderBy:['y', 'x']">
+        <span data-ng-init="fieldAnswers=tip.data.whistleblower_identity.value" data-ng-include="'views/partials/tip_field.html'"></span>
+      <dd>
+    </div>
+    <div data-ng-if="!tip.data.whistleblower_identity">
+      <div data-ng-form="f" class="submissionFieldInput">
+        <div data-ng-include="'views/submission/fields/whistleblower_identity.html'"></div>
+	<div id="SubmitBox" data-ng-if="submission._submission.identity_provided">
+          <button id="SubmitButton" class="btn btn-success pull-right" data-ng-click="provideIdentityInformation(whistleblower_identity_field.id, answers)" data-ng-disabled="f.$invalid" type="submit">
+            <i id="SubmitIconOK" class="glyphicon glyphicon-ok"></i>
+            <span data-translate>Submit</span>
+          </button>
         </div>
       </div>
     </div>

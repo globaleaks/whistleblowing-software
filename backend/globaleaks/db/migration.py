@@ -37,7 +37,7 @@ from globaleaks.db.migrations.update_41 import InternalFile_v_40, InternalTip_v_
     Signup_v_40, User_v_40, WhistleblowerFile_v_40
 from globaleaks.db.migrations.update_42 import InternalTip_v_41, Signup_v_41
 from globaleaks.db.migrations.update_43 import InternalTip_v_42, ReceiverTip_v_42, Signup_v_42, User_v_42, WhistleblowerTip_v_42
-from globaleaks.db.migrations.update_45 import Field_v_44, InternalTip_v_44, ReceiverFile_v_44, ReceiverTip_v_44, User_v_44, WhistleblowerFile_v_44, WhistleblowerTip_v_44
+from globaleaks.db.migrations.update_45 import Context_v_44, Field_v_44, InternalTip_v_44, ReceiverFile_v_44, ReceiverTip_v_44, Step_v_44, User_v_44, WhistleblowerFile_v_44, WhistleblowerTip_v_44
 
 from globaleaks.orm import get_engine, get_session, make_db_uri
 from globaleaks.models import config, Base
@@ -52,7 +52,7 @@ migration_mapping = OrderedDict([
     ('Comment', [Comment_v_31, 0, 0, 0, 0, 0, 0, 0, Comment_v_38, 0, 0, 0, 0, 0, 0, models._Comment, 0, 0, 0, 0, 0, 0]),
     ('Config', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, Config_v_38, 0, 0, 0, 0, models._Config, 0, 0, 0, 0, 0, 0]),
     ('ConfigL10N', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, ConfigL10N_v_38, 0, 0, 0, 0, models._ConfigL10N, 0, 0, 0, 0, 0, 0]),
-    ('Context', [Context_v_26, 0, 0, Context_v_28, 0, Context_v_29, Context_v_30, Context_v_34, 0, 0, 0, Context_v_38, 0, 0, 0, models._Context, 0, 0, 0, 0, 0, 0]),
+    ('Context', [Context_v_26, 0, 0, Context_v_28, 0, Context_v_29, Context_v_30, Context_v_34, 0, 0, 0, Context_v_38, 0, 0, 0, Context_v_44, 0, 0, 0, 0, 0, models._Context]),
     ('ContextImg', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, models._ContextImg, 0, 0, 0, 0, 0, 0]),
     ('CustomTexts', [-1, -1, -1, -1, -1, -1, -1, -1, CustomTexts_v_38, 0, 0, 0, 0, 0, 0, models._CustomTexts, 0, 0, 0, 0, 0, 0]),
     ('EnabledLanguage', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, EnabledLanguage_v_38, 0, 0, 0, 0, models._EnabledLanguage, 0, 0, 0, 0, 0, 0]),
@@ -67,6 +67,7 @@ migration_mapping = OrderedDict([
     ('IdentityAccessRequest', [IdentityAccessRequest_v_38, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, models._IdentityAccessRequest, 0, 0, 0, 0, 0, 0]),
     ('InternalFile', [InternalFile_v_25, 0, InternalFile_v_38, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, InternalFile_v_40, 0, models._InternalFile, 0, 0, 0, 0]),
     ('InternalTip', [InternalTip_v_32, 0, 0, 0, 0, 0, 0, 0, 0, InternalTip_v_34, 0, InternalTip_v_38, 0, 0, 0, InternalTip_v_40, 0, InternalTip_v_41, InternalTip_v_42, InternalTip_v_44, 0, models._InternalTip]),
+    ('InternalTipAnswers', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, models._InternalTipAnswers]),
     ('InternalTipData', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, models._InternalTipData]),
     ('Mail', [-1, -1, Mail_v_38, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, models._Mail, 0, 0, 0, 0, 0, 0]),
     ('Message', [Message_v_31, 0, 0, 0, 0, 0, 0, 0, Message_v_38, 0, 0, 0, 0, 0, 0, models._Message, 0, 0, 0, 0, 0, 0]),
@@ -84,7 +85,7 @@ migration_mapping = OrderedDict([
     ('ShortURL', [-1, -1, ShortURL_v_38, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, models._ShortURL, 0, 0, 0, 0, 0, 0]),
     ('Signup', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, Signup_v_40, 0, Signup_v_41, Signup_v_42, models._Signup, 0, 0]),
     ('Stats', [Stats_v_38, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, models._Stats, 0, 0, 0, 0, 0, 0]),
-    ('Step', [Step_v_27, 0, 0, 0, Step_v_29, 0, Step_v_38, 0, 0, 0, 0, 0, 0, 0, 0, models._Step, 0, 0, 0, 0, 0, 0]),
+    ('Step', [Step_v_27, 0, 0, 0, Step_v_29, 0, Step_v_38, 0, 0, 0, 0, 0, 0, 0, 0, Step_v_44, 0, 0, 0, 0, 0, models._Step]),
     ('StepField', [StepField_v_27, 0, 0, 0, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1]),
     ('Tenant', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, models._Tenant, 0, 0, 0, 0, 0, 0]),
     ('User', [User_v_24, User_v_30, 0, 0, 0, 0, 0, User_v_31, User_v_32, User_v_38, 0, 0, 0, 0, 0, User_v_40, 0, User_v_42, 0, User_v_44, 0, models._User]),

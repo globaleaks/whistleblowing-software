@@ -125,7 +125,7 @@ class Daily(LoopingJob):
         session.query(models.Anomalies).filter(models.Anomalies.date < datetime_now() - timedelta(365)).delete(synchronize_session='fetch')
 
         # delete archived schemas not used by any existing submission
-        hashes = [x[0] for x in session.query(models.InternalTip.questionnaire_hash)]
+        hashes = [x[0] for x in session.query(models.InternalTipAnswers.questionnaire_hash)]
         if hashes:
             session.query(models.ArchivedSchema).filter(not_(models.ArchivedSchema.hash.in_(hashes))).delete(synchronize_session='fetch')
 

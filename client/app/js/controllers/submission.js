@@ -392,7 +392,7 @@ controller('AdditionalQuestionnaireCtrl',
   };
 
   $scope.getCurrentStep = function() {
-    return $scope.tip.context.additional_questionnaire.steps[$scope.selection];
+    return $scope.tip.additional_questionnaire.steps[$scope.selection];
   };
 
   $scope.goToStep = function(index) {
@@ -405,7 +405,7 @@ controller('AdditionalQuestionnaireCtrl',
   };
 
   $scope.lastStepIndex = function() {
-    return $scope.tip.context.additional_questionnaire.steps.length - 1;
+    return $scope.tip.additional_questionnaire.steps.length - 1;
   };
 
   $scope.hasNextStep = function() {
@@ -503,9 +503,9 @@ controller('AdditionalQuestionnaireCtrl',
   $scope.prepareSubmission = function() {
     $scope.answers = {};
     $scope.uploads = {};
-    $scope.field_id_map = fieldUtilities.build_field_id_map($scope.tip.context.additional_questionnaire);
+    $scope.field_id_map = fieldUtilities.build_field_id_map($scope.tip.additional_questionnaire);
 
-    angular.forEach($scope.tip.context.additional_questionnaire.steps, function(step) {
+    angular.forEach($scope.tip.additional_questionnaire.steps, function(step) {
       angular.forEach(step.children, function(field) {
         $scope.answers[field.id] = [angular.copy(fieldUtilities.prepare_field_answers_structure(field))];
       });

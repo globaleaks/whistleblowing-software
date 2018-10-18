@@ -78,7 +78,8 @@ def get_receivertip_list(session, tid, receiver_id, language):
 
     for itip, archivedschema in session.query(models.InternalTip, models.ArchivedSchema) \
                                        .filter(models.InternalTip.id.in_(itips_ids),
-                                               models.ArchivedSchema.hash == models.InternalTip.questionnaire_hash,
+                                               models.ArchivedSchema.hash == models.InternalTipAnswers.questionnaire_hash,
+                                               models.InternalTipAnswers.internaltip_id == models.InternalTip.id,
                                                models.InternalTip.tid == tid):
         itips_by_id[itip.id] = itip
         aqs_by_itip[itip.id] = archivedschema

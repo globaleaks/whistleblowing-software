@@ -2,6 +2,7 @@
 #
 # Handlers dealing with tip interface for whistleblowers (wbtip)
 import base64
+import json
 from twisted.internet.threads import deferToThread
 from twisted.internet.defer import inlineCallbacks, returnValue
 
@@ -10,7 +11,7 @@ from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.rtip import serialize_comment, serialize_message, db_get_itip_comment_list, WBFileHandler
 from globaleaks.handlers.submission import serialize_usertip, \
     db_save_questionnaire_answers, db_serialize_archived_questionnaire_schema, decrypt_tip, \
-    db_set_internaltip_data, db_get_questionnaire, db_archive_questionnaire_schema
+    db_set_internaltip_answers, db_get_questionnaire, db_archive_questionnaire_schema, db_set_internaltip_data
 from globaleaks.orm import transact
 from globaleaks.rest import errors, requests
 from globaleaks.state import State
@@ -158,53 +159,42 @@ def create_message(session, tid, wbtip_id, user_key, receiver_id, content):
 
 
 @transact
-def update_identity_information(session, tid, tip_id, identity_field_id, identity_field_answers, language):
-    internaltip = models.db_get(session, models.InternalTip, models.InternalTip.id == tip_id, models.InternalTip.tid == tid)
+def update_identity_information(session, tid, tip_id, identity_field_id, wbi, language):
+    itip = models.db_get(session, models.InternalTip, models.InternalTip.id == tip_id, models.InternalTip.tid == tid)
 
-    if internaltip.identity_provided:
-        return
+    if itip.crypto_tip_pub_key:
+        wbi = base64.b64encode(GCE.asymmetric_encrypt(itip.crypto_tip_pub_key, json.dumps(wbi).encode())).decode()
 
-    aqs = session.query(models.ArchivedSchema).filter(models.ArchivedSchema.hash == internaltip.questionnaire_hash).one()
+    db_set_internaltip_data(session, itip.id, 'identity_provided', True, False)
+    db_set_internaltip_data(session, itip.id, 'whistleblower_identity', wbi, True)
 
-    questionnaire = db_serialize_archived_questionnaire_schema(aqs.schema, language)
-    for step in questionnaire:
-        for field in step['children']:
-            if field['id'] == identity_field_id and field['template_id'] == 'whistleblower_identity':
-                db_save_questionnaire_answers(session, tid, internaltip.id,
-                                              {identity_field_id: [identity_field_answers]})
-                now = datetime_now()
-                internaltip.update_date = now
-                internaltip.wb_last_access = now
-                internaltip.identity_provided = True
-                internaltip.identity_provided_date = now
-                return
+    now = datetime_now()
+    itip.update_date = now
+    itip.wb_last_access = now
 
 
 @transact
 def store_additional_questionnaire_answers(session, tid, tip_id, answers, language):
-    internaltip, questionnaire_id = session.query(models.InternalTip, models.Context.additional_questionnaire_id)\
-                                           .filter(models.InternalTip.id == tip_id,
-                                                   models.InternalTip.tid == tid,
-                                                   models.Context.id == models.InternalTip.context_id).one()
+    internaltip = session.query(models.InternalTip) \
+                         .filter(models.InternalTip.id == tip_id,
+                                 models.InternalTip.tid == tid).one()
 
-    steps = db_get_questionnaire(session, tid, questionnaire_id, None)['steps']
-    hash = db_archive_questionnaire_schema(session, steps)
+    if not internaltip.additional_questionnaire_id:
+        return
+
+    steps = db_get_questionnaire(session, tid, internaltip.additional_questionnaire_id, None)['steps']
+    questionnaire_hash = db_archive_questionnaire_schema(session, steps)
 
     db_save_questionnaire_answers(session, tid, internaltip.id, answers)
 
-    db_set_internaltip_data(session,
-                            tip_id,
-                            'additional_questionnaire_hash',
-                            hash,
-                            False)
+    db_set_internaltip_answers(session,
+                               internaltip.id,
+                               internaltip.additional_questionnaire_id,
+                               questionnaire_hash,
+                               answers,
+                               False)
 
-    db_set_internaltip_data(session,
-                            tip_id,
-                            'provided_additional_questionnaire',
-                            True,
-                            False)
-
-    print(answers)
+    internaltip.additional_questionnaire_id = ''
 
 
 class WBTipInstance(BaseHandler):

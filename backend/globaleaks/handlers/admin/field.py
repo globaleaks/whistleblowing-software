@@ -73,9 +73,7 @@ def db_update_fieldattr(session, tid, field_id, attr_name, attr_dict, language):
     attr_dict['field_id'] = field_id
     attr_dict['tid'] = tid
 
-    if attr_dict['type'] == 'bool':
-        attr_dict['value'] = 'True' if attr_dict['value'] else 'False'
-    elif attr_dict['type'] == u'localized':
+    if attr_dict['type'] == u'localized':
         fill_localized_keys(attr_dict, ['value'], language)
 
     a = session.query(models.FieldAttr).filter(models.FieldAttr.field_id == field_id, models.FieldAttr.name == attr_name, models.FieldAttr.field_id == models.Field.id, models.Field.tid == tid).one_or_none()
