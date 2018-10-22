@@ -369,6 +369,9 @@ msgstr "in percentage"
 msgid "HTTPS settings"
 msgstr "HTTPS settings"
 
+msgid "URL shortener"
+msgstr "URL shortener"
+
 msgid "Anomaly detection thresholds"
 msgstr "Anomaly detection thresholds"
 
@@ -1789,12 +1792,6 @@ msgstr "Investigative journalism"
 msgid "Civic activism"
 msgstr "Civic activism"
 
-msgid "Additional questionnaire answers"
-msgstr "Additional questionnaire answers"
-
-msgid "Step"
-msgstr "Step"
-
 msgid "previous step"
 msgstr "previous step"
 
@@ -1843,12 +1840,6 @@ msgstr "Never"
 msgid "Revoked"
 msgstr "Revoked"
 
-msgid "{{tip.submissionStatusObj.label}}"
-msgstr "{{tip.submissionStatusObj.label}}"
-
-msgid "({{tip.submissionSubStatusObj.label}})"
-msgstr "({{tip.submissionSubStatusObj.label}})"
-
 msgid "Allow the whistleblower to send messages"
 msgstr "Allow the whistleblower to send messages"
 
@@ -1893,6 +1884,9 @@ msgstr ""
 
 msgid "Questionnaire answers"
 msgstr "Questionnaire answers"
+
+msgid "Step"
+msgstr "Step"
 
 msgid "Recipient list"
 msgstr "Recipient list"
