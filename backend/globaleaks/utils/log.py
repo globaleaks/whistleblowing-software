@@ -57,10 +57,10 @@ def timedLogFormatter(timestamp, request):
     if hasattr(request, 'start_time'):
         duration = timedelta_to_milliseconds(datetime.now() - request.start_time)
 
-    if request.to_be_anonymized:
-        client_ip = '[REMOVED_IP_ADDRESS]'
-        client_ua = '[REMOVED_USER_AGENT]'
-    else:
+    client_ip = '[REMOVED_IP_ADDRESS]'
+    client_ua = '[REMOVED_USER_AGENT]'
+
+    if hasattr(request, 'log_ip_and_ua'):
         client_ip = request.client_ip
         client_ua = request.client_ua
 
