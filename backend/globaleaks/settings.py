@@ -242,8 +242,6 @@ class SettingsClass(object):
         if self.cmdline_options.working_path:
             self.working_path = self.cmdline_options.working_path
 
-        self.api_prefix = self.cmdline_options.api_prefix
-
         if self.cmdline_options.client_path:
             self.client_path = os.path.abspath(os.path.join(self.src_path, self.cmdline_options.client_path))
 
