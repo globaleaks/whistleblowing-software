@@ -207,3 +207,8 @@ class MigrationScript(MigrationBase):
                     setattr(new_obj, key, getattr(old_obj, key))
 
             self.session_new.add(new_obj)
+
+    def epilogue(self):
+        if self.session_new.query(self.model_from['Tenant']).count() > 1:
+            config = self.session_old.query(self.model_from['Config']).filter(self.model_from['Config'].var_name == u'multisite')
+            config.value = True
