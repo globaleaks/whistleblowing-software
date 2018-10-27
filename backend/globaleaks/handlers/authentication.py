@@ -83,7 +83,7 @@ def login_whistleblower(session, tid, receipt, client_using_tor):
     itip.wb_last_access = datetime_now()
 
     crypto_prv_key = ''
-    if State.tenant_cache[tid].encryption and wbtip.crypto_prv_key:
+    if State.tenant_cache[1].encryption and wbtip.crypto_prv_key:
         user_key = GCE.derive_key(receipt.encode('utf-8'), State.tenant_cache[tid].receipt_salt)
         crypto_prv_key = GCE.symmetric_decrypt(user_key, wbtip.crypto_prv_key)
 
@@ -141,7 +141,7 @@ def login(session, tid, username, password, client_using_tor, client_ip):
     user.last_login = datetime_now()
 
     crypto_prv_key = ''
-    if State.tenant_cache[tid].encryption and user.crypto_prv_key:
+    if State.tenant_cache[1].encryption and user.crypto_prv_key:
         user_key = GCE.derive_key(password.encode('utf-8'), user.salt)
         crypto_prv_key = GCE.symmetric_decrypt(user_key, user.crypto_prv_key)
 
