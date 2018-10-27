@@ -176,7 +176,6 @@ class MigrationScript(MigrationBase):
 
             if new_obj.type == 'bool':
                 new_obj.value = new_obj.value == u'True'
-                print(isinstance(new_obj.value, bool))
 
             self.session_new.add(new_obj)
 
