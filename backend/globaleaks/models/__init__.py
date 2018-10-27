@@ -676,8 +676,6 @@ class _InternalTip(Model):
     https = Column(Boolean, default=False, nullable=False)
     total_score = Column(Integer, default=0, nullable=False)
     expiration_date = Column(DateTime, nullable=False)
-    identity_provided = Column(Boolean, default=False, nullable=False)
-    identity_provided_date = Column(DateTime, default=datetime_null, nullable=False)
     enable_two_way_comments = Column(Boolean, default=True, nullable=False)
     enable_two_way_messages = Column(Boolean, default=True, nullable=False)
     enable_attachments = Column(Boolean, default=True, nullable=False)
