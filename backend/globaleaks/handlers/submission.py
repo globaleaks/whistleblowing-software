@@ -396,7 +396,7 @@ def db_create_submission(session, tid, request, token, client_using_tor):
     session.add(itip)
     session.flush()
 
-    receipt = text_= GCE.generate_receipt()
+    receipt = GCE.generate_receipt()
     receipt_salt = State.tenant_cache[tid].receipt_salt
 
     wbtip = models.WhistleblowerTip()
