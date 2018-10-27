@@ -236,7 +236,6 @@ AdminNodeDesc = {
     'enable_experimental_features': bool,
     'enable_signup': bool,
     'mode': text_type,
-    'signup_fingerprint': bool,
     'signup_tos1_enable': bool,
     'signup_tos1_title': text_type,
     'signup_tos1_text': text_type,

@@ -114,7 +114,6 @@ ConfigDescriptor = {
 
     u'enable_signup': Bool(default=False),
     u'mode': Unicode(default=u'default'),
-    u'signup_fingerprint': Bool(default=False),
     u'signup_tos1_enable': Bool(default=False),
     u'signup_tos2_enable': Bool(default=False),
 
@@ -191,7 +190,6 @@ ConfigFilters = {
         u'disable_donation_panel',
         u'enable_signup',
         u'mode',
-        u'signup_fingerprint',
         u'signup_tos1_enable',
         u'signup_tos2_enable',
         u'enable_graphic_customization',
