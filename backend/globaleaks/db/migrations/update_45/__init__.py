@@ -167,6 +167,19 @@ class WhistleblowerTip_v_44(Model):
 
 
 class MigrationScript(MigrationBase):
+    def migrate_FieldAttr(self):
+        old_objs = self.session_old.query(self.model_from['FieldAttr'])
+        for old_obj in old_objs:
+            new_obj = self.model_to['FieldAttr']()
+            for key in [c.key for c in new_obj.__table__.columns]:
+                setattr(new_obj, key, getattr(old_obj, key))
+
+            if new_obj.type == 'bool':
+                new_obj.value = new_obj.value == u'True'
+                print(isinstance(new_obj.value, bool))
+
+            self.session_new.add(new_obj)
+
     def migrate_User(self):
         old_objs = self.session_old.query(self.model_from['User'])
         for old_obj in old_objs:
