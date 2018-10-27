@@ -83,7 +83,6 @@ class TestNodeInstance(helpers.TestHandlerWithPopulatedDB):
                                 'receipt_salt', 'languages_enabled',
                                 'root_tenant', 'https_possible',
                                 'hostname', 'onionservice',
-                                'signup_fingerprint',
                                 'tor',
                                 'encryption']:
                 continue
