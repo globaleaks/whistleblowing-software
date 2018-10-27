@@ -79,10 +79,6 @@ Settings.parser.add_option("-k", "--kill", type="int",
     help="signal to send to the current globaleaks process (if exists)",
     dest="kill", default=0)
 
-Settings.parser.add_option("-A", "--api-prefix", type='string',
-    help="specify an API prefix",
-    dest="api_prefix", default='')
-
 Settings.parser.add_option("-C", "--client-path", type='string',
     help="specify client path",
     dest="client_path", default=None)
