@@ -51,11 +51,6 @@ Settings.parser.add_option("-n", "--nodaemon", action='store_true',
     help="don't daemonize",
     dest="nodaemon", default=False)
 
-Settings.parser.add_option("-l", "--loglevel", type="choice",
-    choices=['ERROR', 'INFO', 'DEBUG'],
-    help="set log level [default: %default]",
-    dest="loglevel", default="INFO")
-
 Settings.parser.add_option("-i", "--ip", type="string",
     help="IP address used for listening [default: %default]",
     dest="ip", default=Settings.bind_address)

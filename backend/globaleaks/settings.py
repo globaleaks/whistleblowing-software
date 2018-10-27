@@ -205,8 +205,6 @@ class SettingsClass(object):
         if self.cmdline_options.disable_swap:
             self.disable_swap = True
 
-        log.setloglevel(self.cmdline_options.loglevel)
-
         self.bind_address = self.cmdline_options.ip
 
         self.socks_host = self.cmdline_options.socks_host

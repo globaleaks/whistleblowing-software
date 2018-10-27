@@ -190,6 +190,8 @@ def db_refresh_memory_variables(session, to_refresh=None):
         if State.tenant_cache[1].admin_api_token_digest:
             State.api_token_session = Session(1, 0, 'admin', False, '')
 
+        log.setloglevel(State.tenant_cache[1].log_level)
+
     rootdomain = State.tenant_cache[1].rootdomain
     root_onionservice = State.tenant_cache[1].onionservice
 

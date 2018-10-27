@@ -226,8 +226,7 @@ do_start()
     GLBACKEND_ARGS="--ip=${LISTENING_IP}
                     --user=${USERNAME}
                     --group=${GROUP}
-                    --working-path=${WORKING_DIR}
-                    --loglevel=${LOGLEVEL}"
+                    --working-path=${WORKING_DIR}"
 
     if [ "${API_PREFIX}" != "" ]; then
         GLBACKEND_ARGS+=" --api-prefix ${API_PREFIX}"

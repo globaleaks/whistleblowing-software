@@ -118,6 +118,9 @@ def db_update_node(session, tid, request, language, config_node):
 
     db_refresh_memory_variables(session, [tid])
 
+    if tid == 1:
+        log.setloglevel(node.get_val(u'log_level'))
+
     return db_admin_serialize_node(session, tid, language)
 
 

@@ -1,8 +1,3 @@
-# LOGLEVEL = [log_level]
-#   permits to configure the globaleaks debug loglevel
-#   DEBUG, INFO, ERROR
-LOGLEVEL=ERROR
-
 # USERNAME = [user_name]
 #   permits to configure the user privileges of the globaleaks process
 USERNAME=globaleaks
