@@ -405,7 +405,7 @@ def db_create_submission(session, tid, request, token, client_using_tor):
     wbtip.hash_alg = GCE.HASH
     wbtip.receipt_hash = GCE.hash_password(receipt, receipt_salt)
 
-    crypto_is_available = State.tenant_cache[tid].encryption
+    crypto_is_available = State.tenant_cache[1].encryption
 
     if crypto_is_available:
         users_count = session.query(models.User) \
