@@ -155,7 +155,8 @@ ConfigDescriptor = {
     u'log_level': Unicode(default=u'ERROR'),
     u'log_accesses_of_internal_users': Bool(default=True),
 
-    u'encryption': Bool(default=True)
+    u'encryption': Bool(default=True),
+    u'multisite': Bool(default=False)
 }
 
 ConfigFilters = {
@@ -236,7 +237,8 @@ ConfigFilters = {
         u'enable_user_pgp_key_upload',
         u'log_level',
         u'log_accesses_of_internal_users',
-        u'encryption'
+        u'encryption',
+        u'multisite'
     ]),
     'notification': set([
         u'smtp_server',
