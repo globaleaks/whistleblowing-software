@@ -2,6 +2,12 @@
 # This is the post installation script for globaleaks
 set -e
 
+#DEBHELPER#
+
+if [ "$1" == "upgrade" ] ; then
+  service globaleaks stop || true
+fi
+
 if [ ! -z "$(ls -A /var/globaleaks 2>/dev/null)" ]; then
   if ! id -u globaleaks >/dev/null 2>&1; then
     adduser --quiet \
