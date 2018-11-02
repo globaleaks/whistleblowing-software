@@ -9,7 +9,7 @@ from globaleaks.handlers.admin.user import admin_serialize_receiver
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.orm import transact
 from globaleaks.rest import requests
-from globaleaks.utils.structures import fill_localized_keys
+from globaleaks.models import fill_localized_keys
 
 
 @transact

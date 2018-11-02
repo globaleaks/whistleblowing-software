@@ -17,7 +17,7 @@ from globaleaks.orm import transact
 from globaleaks.rest import requests, errors
 from globaleaks.state import State
 from globaleaks.utils.crypto import GCE
-from globaleaks.utils.structures import fill_localized_keys, get_localized_values
+from globaleaks.models import fill_localized_keys, get_localized_values
 from globaleaks.utils.utility import datetime_now, uuid4, log
 
 

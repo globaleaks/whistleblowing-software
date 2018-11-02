@@ -13,7 +13,7 @@ from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.operation import OperationHandler
 from globaleaks.orm import transact
 from globaleaks.rest import requests, errors
-from globaleaks.utils.structures import fill_localized_keys, get_localized_values
+from globaleaks.models import fill_localized_keys, get_localized_values
 
 
 def admin_serialize_context(session, context, language):

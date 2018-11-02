@@ -13,7 +13,7 @@ from globaleaks.models.config import ConfigFactory, NodeL10NFactory
 from globaleaks.orm import transact
 from globaleaks.state import State
 from globaleaks.utils.sets import merge_dicts
-from globaleaks.utils.structures import get_localized_values
+from globaleaks.models import get_localized_values
 
 special_fields = ['whistleblower_identity']
 

@@ -13,7 +13,7 @@ from globaleaks.handlers.operation import OperationHandler
 from globaleaks.handlers.public import serialize_step
 from globaleaks.orm import transact
 from globaleaks.rest import requests, errors
-from globaleaks.utils.structures import fill_localized_keys
+from globaleaks.models import fill_localized_keys
 
 
 def db_create_step(session, tid, step_dict, language):

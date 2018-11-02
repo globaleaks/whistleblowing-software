@@ -17,7 +17,7 @@ from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.public import serialize_questionnaire
 from globaleaks.orm import transact
 from globaleaks.rest import requests
-from globaleaks.utils.structures import fill_localized_keys
+from globaleaks.models import fill_localized_keys
 from globaleaks.utils.utility import datetime_to_ISO8601, datetime_now
 
 

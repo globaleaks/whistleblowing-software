@@ -15,7 +15,7 @@ from globaleaks.orm import transact
 from globaleaks.rest import errors, requests
 from globaleaks.state import State
 from globaleaks.utils.crypto import sha256, GCE
-from globaleaks.utils.structures import get_localized_values
+from globaleaks.models import get_localized_values
 from globaleaks.utils.utility import get_expiration, \
     datetime_never, datetime_to_ISO8601
 from globaleaks.utils.log import log
