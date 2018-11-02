@@ -89,8 +89,8 @@ ContentType = r'(.*)'
 
 AdminTenantDesc = {
     'label': text_type,
-    'active': bool,
     'mode': text_type,
+    'active': bool,
     'subdomain': subdomain_regexp_or_empty
 }
 

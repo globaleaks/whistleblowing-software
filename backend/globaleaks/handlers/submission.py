@@ -17,7 +17,7 @@ from globaleaks.state import State
 from globaleaks.utils.crypto import sha256, GCE
 from globaleaks.utils.structures import get_localized_values
 from globaleaks.utils.utility import get_expiration, \
-    datetime_now, datetime_never, datetime_to_ISO8601
+    datetime_never, datetime_to_ISO8601
 from globaleaks.utils.log import log
 
 
@@ -26,7 +26,6 @@ def decrypt_tip(user_key, tip_prv_key, tip):
 
     for questionnaire in tip['questionnaires']:
         questionnaire['answers'] = json.loads(GCE.asymmetric_decrypt(tip_key, base64.b64decode(questionnaire['answers'].encode())).decode())
-        print(questionnaire['answers'])
 
     for k in ['whistleblower_identity']:
         if k in tip['data'] and tip['data'][k]['encrypted'] and tip['data'][k]['value']:
@@ -38,23 +37,18 @@ def decrypt_tip(user_key, tip_prv_key, tip):
     return tip
 
 
-def db_set_internaltip_answers(session, itip_id, questionnaire_id, questionnaire_hash, answers, encrypted):
+def db_set_internaltip_answers(session, itip_id, questionnaire_hash, answers, encrypted):
     ita = session.query(models.InternalTipAnswers) \
-                 .filter(models.InternalTipAnswers.internaltip_id == itip_id, models.InternalTipAnswers.questionnaire_id == questionnaire_id).one_or_none()
+                 .filter(models.InternalTipAnswers.internaltip_id == itip_id, models.InternalTipAnswers.questionnaire_hash == questionnaire_hash).one_or_none()
 
     if ita is None:
         ita = models.InternalTipAnswers()
 
     ita.internaltip_id = itip_id
-    ita.questionnaire_id = questionnaire_id
     ita.questionnaire_hash = questionnaire_hash
     ita.encrypted = encrypted
     ita.answers = answers
     session.add(ita)
-
-
-def db_get_internaltip_answers(session, itip_id):
-    return None
 
 
 def db_set_internaltip_data(session, itip_id, key, value, encrypted):
@@ -70,10 +64,6 @@ def db_set_internaltip_data(session, itip_id, key, value, encrypted):
 
     itd.value = value
     session.add(itd)
-
-
-def db_get_internaltip_data(session, itip_id, key):
-    return session.query(models.InternalTipData).filter(models.InternalTipData.internaltip_id == itip_id, models.InternalTipData.key == key).one_or_none()
 
 
 def db_assign_submission_progressive(session, tid):
@@ -125,62 +115,6 @@ def db_serialize_archived_preview_schema(preview_schema, language):
 
     return preview
 
-
-def db_serialize_questionnaire_answers_recursively(session, answers, answers_by_group, groups_by_answer):
-    ret = {}
-
-    for answer in answers:
-        if answer.is_leaf:
-            ret[answer.key] = answer.value
-        else:
-            ret[answer.key] = [db_serialize_questionnaire_answers_recursively(session, answers_by_group.get(group.id, []), answers_by_group, groups_by_answer)
-                                  for group in groups_by_answer.get(answer.id, [])]
-
-    return ret
-
-
-def db_serialize_questionnaire_answers(session, tid, internaltip):
-    aqss = session.query(models.ArchivedSchema).filter(models.ArchivedSchema.hash == models.InternalTipAnswers.questionnaire_hash,
-                                                       models.InternalTipAnswers.internaltip_id == internaltip.id)
-
-    x = []
-    for aqs in aqss:
-        x.append(db_serialize_archived_questionnaire_schema(aqs.schema, State.tenant_cache[tid].default_language))
-
-    answers = []
-    answers_by_group = {}
-    groups_by_answer = {}
-    all_answers_ids = []
-    root_answers_ids = []
-
-    for q in x:
-        for s in q:
-            for f in s['children']:
-                root_answers_ids.append(f['id'])
-
-    for answer in session.query(models.FieldAnswer) \
-                       .filter(models.FieldAnswer.internaltip_id == internaltip.id):
-        all_answers_ids.append(answer.id)
-
-        if answer.key in root_answers_ids:
-            answers.append(answer)
-
-        if answer.fieldanswergroup_id not in answers_by_group:
-            answers_by_group[answer.fieldanswergroup_id] = []
-
-        answers_by_group[answer.fieldanswergroup_id].append(answer)
-
-    if all_answers_ids:
-        for group in session.query(models.FieldAnswerGroup) \
-                            .filter(models.FieldAnswerGroup.fieldanswer_id.in_(all_answers_ids)) \
-                            .order_by(models.FieldAnswerGroup.number):
-
-            if group.fieldanswer_id not in groups_by_answer:
-                groups_by_answer[group.fieldanswer_id] = []
-
-            groups_by_answer[group.fieldanswer_id].append(group)
-
-    return db_serialize_questionnaire_answers_recursively(session, answers, answers_by_group, groups_by_answer)
 
 
 def db_save_questionnaire_answers(session, tid, internaltip_id, entries):
@@ -273,7 +207,6 @@ def serialize_itip(session, internaltip, language):
     questionnaires = []
     for ita, aqs in x:
         questionnaires.append({
-            'id': ita.questionnaire_id,
             'steps': db_serialize_archived_questionnaire_schema(aqs.schema, language),
             'answers': ita.answers
         })
@@ -323,7 +256,6 @@ def db_create_receivertip(session, receiver, internaltip, can_access_whistleblow
     Create models.ReceiverTip for the required tier of models.Receiver.
     """
     log.debug("Creating receivertip for receiver: %s", receiver.id)
-    print(can_access_whistleblower_identity)
 
     receivertip = models.ReceiverTip()
     receivertip.internaltip_id = internaltip.id
@@ -444,7 +376,6 @@ def db_create_submission(session, tid, request, token, client_using_tor):
 
     db_set_internaltip_answers(session,
                                itip.id,
-                               questionnaire.id,
                                questionnaire_hash,
                                answers,
                                crypto_is_available)

@@ -84,7 +84,8 @@ class TestNodeInstance(helpers.TestHandlerWithPopulatedDB):
                                 'root_tenant', 'https_possible',
                                 'hostname', 'onionservice',
                                 'tor',
-                                'encryption']:
+                                'encryption',
+                                'multisite']:
                 continue
 
             self.assertEqual(response[response_key],
