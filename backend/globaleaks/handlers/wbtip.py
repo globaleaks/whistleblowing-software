@@ -10,7 +10,7 @@ from globaleaks import models
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.rtip import serialize_comment, serialize_message, db_get_itip_comment_list, WBFileHandler
 from globaleaks.handlers.submission import serialize_usertip, \
-    db_save_questionnaire_answers, db_serialize_archived_questionnaire_schema, decrypt_tip, \
+    db_save_questionnaire_answers, decrypt_tip, \
     db_set_internaltip_answers, db_get_questionnaire, db_archive_questionnaire_schema, db_set_internaltip_data
 from globaleaks.orm import transact
 from globaleaks.rest import errors, requests
@@ -189,7 +189,6 @@ def store_additional_questionnaire_answers(session, tid, tip_id, answers, langua
 
     db_set_internaltip_answers(session,
                                internaltip.id,
-                               internaltip.additional_questionnaire_id,
                                questionnaire_hash,
                                answers,
                                False)

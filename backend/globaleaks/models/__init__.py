@@ -704,17 +704,15 @@ class _InternalTipAnswers(Model):
     """
     __tablename__ = 'internaltipanswers'
 
-    internaltip_id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
-    questionnaire_id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
-    questionnaire_hash = Column(UnicodeText(64), nullable=False)
+    internaltip_id = Column(UnicodeText(36), primary_key=True, default=uuid4)
+    questionnaire_hash = Column(UnicodeText(64), primary_key=True)
     creation_date = Column(DateTime, default=datetime_now, nullable=False)
     encrypted = Column(Boolean, default=False, nullable=False)
     answers = Column(JSON, nullable=False)
 
     @declared_attr
     def __table_args__(self):
-        return (UniqueConstraint('internaltip_id', 'questionnaire_id'),
-                ForeignKeyConstraint(['internaltip_id'], ['internaltip.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'))
+        return (ForeignKeyConstraint(['internaltip_id'], ['internaltip.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),)
 
 
 class _InternalTipData(Model):

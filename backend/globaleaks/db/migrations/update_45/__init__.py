@@ -1,5 +1,7 @@
 # -*- coding: UTF-8
+from globaleaks import models
 from globaleaks.db.migrations.update import MigrationBase
+from globaleaks.handlers.submission import db_set_internaltip_answers, db_set_internaltip_data
 from globaleaks.models import Model
 from globaleaks.models.properties import *
 from globaleaks.utils.utility import datetime_never, datetime_now, datetime_null
@@ -167,6 +169,50 @@ class WhistleblowerTip_v_44(Model):
 
 
 class MigrationScript(MigrationBase):
+    def db_serialize_questionnaire_answers_recursively(self, session, answers, answers_by_group, groups_by_answer):
+        ret = {}
+
+        for answer in answers:
+            if answer.is_leaf:
+                ret[answer.key] = answer.value
+            else:
+                ret[answer.key] = [
+                    self.db_serialize_questionnaire_answers_recursively(session, answers_by_group.get(group.id, []),
+                                                                        answers_by_group, groups_by_answer)
+                    for group in groups_by_answer.get(answer.id, [])]
+
+        return ret
+
+    def db_serialize_questionnaire_answers(self, session, tid, internaltip):
+        answers = []
+        answers_by_group = {}
+        groups_by_answer = {}
+        all_answers_ids = []
+
+        for answer in session.query(self.model_from['FieldAnswer']) \
+                             .filter(self.model_from['FieldAnswer'].internaltip_id == internaltip.id):
+            all_answers_ids.append(answer.id)
+
+            if answer.fieldanswergroup_id is None:
+                answers.append(answer)
+
+            if answer.fieldanswergroup_id not in answers_by_group:
+                answers_by_group[answer.fieldanswergroup_id] = []
+
+            answers_by_group[answer.fieldanswergroup_id].append(answer)
+
+        if all_answers_ids:
+            for group in session.query(models.FieldAnswerGroup) \
+                    .filter(models.FieldAnswerGroup.fieldanswer_id.in_(all_answers_ids)) \
+                    .order_by(models.FieldAnswerGroup.number):
+
+                if group.fieldanswer_id not in groups_by_answer:
+                    groups_by_answer[group.fieldanswer_id] = []
+
+                groups_by_answer[group.fieldanswer_id].append(group)
+
+        return self.db_serialize_questionnaire_answers_recursively(session, answers, answers_by_group, groups_by_answer)
+
     def migrate_FieldAttr(self):
         old_objs = self.session_old.query(self.model_from['FieldAttr'])
         for old_obj in old_objs:
@@ -186,7 +232,7 @@ class MigrationScript(MigrationBase):
             for key in [c.key for c in new_obj.__table__.columns]:
                 if key == 'hash_alg':
                     new_obj.hash_alg = 'SCRYPT'
-                elif key in ['crypto_pub_key', 'crypto_prv_key',]:
+                elif key in ['crypto_pub_key', 'crypto_prv_key']:
                     continue
                 else:
                     setattr(new_obj, key, getattr(old_obj, key))
@@ -211,3 +257,21 @@ class MigrationScript(MigrationBase):
         if self.session_new.query(self.model_from['Tenant']).count() > 1:
             config = self.session_old.query(self.model_from['Config']).filter(self.model_from['Config'].var_name == u'multisite')
             config.value = True
+
+        ids = [id[0] for id in self.session_old.query(self.model_from['Field'].id)\
+                                               .filter(self.model_from['Field'].template_id == u'whistleblower_identity')]
+
+        for internaltip in self.session_old.query(self.model_from['InternalTip']):
+            answers = self.db_serialize_questionnaire_answers(self.session_old, internaltip.tid, internaltip)
+
+            db_set_internaltip_answers(self.session_new,
+                                       internaltip.id,
+                                       internaltip.questionnaire_hash,
+                                       answers,
+                                       False)
+
+            for id in ids:
+                if id in answers:
+                    db_set_internaltip_data(self.session_new, internaltip.id, 'identity_provided', True, False)
+                    db_set_internaltip_data(self.session_new, internaltip.id, 'whistleblower_identity', answers[id], False)
+                    break
