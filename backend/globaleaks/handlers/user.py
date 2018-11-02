@@ -9,7 +9,7 @@ from globaleaks.rest import errors, requests
 from globaleaks.state import State
 from globaleaks.utils.pgp import PGPContext
 from globaleaks.utils.crypto import GCE, generateRandomKey
-from globaleaks.utils.structures import get_localized_values
+from globaleaks.models import get_localized_values
 from globaleaks.utils.utility import datetime_to_ISO8601, datetime_now, datetime_null
 
 

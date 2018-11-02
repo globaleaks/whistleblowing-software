@@ -9,7 +9,7 @@ from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.operation import OperationHandler
 from globaleaks.orm import transact
 from globaleaks.rest import requests
-from globaleaks.utils.structures import fill_localized_keys, get_localized_values
+from globaleaks.models import fill_localized_keys, get_localized_values
 
 
 def serialize_submission_status(session, row, language):

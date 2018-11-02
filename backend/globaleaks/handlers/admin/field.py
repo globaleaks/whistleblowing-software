@@ -12,7 +12,7 @@ from globaleaks.handlers.public import serialize_field
 from globaleaks.orm import transact
 from globaleaks.rest import errors, requests
 from globaleaks.settings import Settings
-from globaleaks.utils.structures import fill_localized_keys
+from globaleaks.models import fill_localized_keys
 from globaleaks.utils.utility import read_json_file
 
 
