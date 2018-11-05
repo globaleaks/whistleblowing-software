@@ -354,15 +354,16 @@ class BaseHandler(object):
         if session_id is None:
             return
 
-        # Check that that provided session exists and is legit
-
-        # We need to convert here to text_type as sessions generate a
-        # random string in text form. It seems sessions assume that it will
-        # be a string while twisted returns headers in bytes
-
         session = Sessions.get(text_type(session_id, 'utf-8'))
+
         if session is not None and session.tid == self.request.tid:
-            return session
+            self.request.current_user = session
+
+            if self.request.current_user.user_role != 'whistleblower' and \
+               self.state.tenant_cache[1].get(u'log_accesses_of_internal_users', False):
+                self.request.log_ip_and_ua = True
+
+        return session
 
     @property
     def current_user(self):

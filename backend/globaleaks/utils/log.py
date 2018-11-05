@@ -60,7 +60,7 @@ def timedLogFormatter(timestamp, request):
     client_ip = '[REMOVED_IP_ADDRESS]'
     client_ua = '[REMOVED_USER_AGENT]'
 
-    if hasattr(request, 'log_ip_and_ua'):
+    if request.log_ip_and_ua:
         client_ip = request.client_ip
         client_ua = request.client_ua
 
