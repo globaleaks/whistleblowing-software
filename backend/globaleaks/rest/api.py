@@ -363,9 +363,6 @@ class APIResourceWrapper(Resource):
         if b'multilang' in request.args:
             request.language = None
 
-        if State.tenant_cache[request.tid].get(u'log_accesses_of_internal_users', False):
-           request.log_ip_and_ua = True
-
     def render(self, request):
         """
         @param request: `twisted.web.Request`
@@ -373,8 +370,6 @@ class APIResourceWrapper(Resource):
         @return: empty `str` or `NOT_DONE_YET`
         """
         request_finished = [False]
-
-
 
         def _finish(ret):
             request_finished[0] = True

@@ -34,7 +34,14 @@ def fail_startup(excep):
         reactor.stop()
 
 
+class Request(server.Request):
+    current_user = None
+    log_ip_and_ua = False
+
+
 class Site(server.Site):
+    requestFactory = Request
+
     def _openLogFile(self, path):
         return openLogFile(path, Settings.log_file_size, Settings.num_log_files)
 
