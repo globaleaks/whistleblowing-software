@@ -15,8 +15,9 @@ from globaleaks.models.config import ConfigFactory, NodeL10NFactory
 from globaleaks.orm import transact
 from globaleaks.rest import errors, requests
 from globaleaks.state import State
-from globaleaks.utils.utility import parse_csv_ip_ranges_to_ip_networks
+from globaleaks.utils.crypto import GCE
 from globaleaks.utils.log import log
+from globaleaks.utils.utility import parse_csv_ip_ranges_to_ip_networks
 
 
 def db_admin_serialize_node(session, tid, language, config_node='admin_node'):
@@ -27,6 +28,7 @@ def db_admin_serialize_node(session, tid, language, config_node='admin_node'):
                                                               models.Context.tid).count() > 0
 
     misc_dict = {
+        'encryption_available': GCE.ENCRYPTION_AVAILABLE,
         'languages_supported': LANGUAGES_SUPPORTED,
         'languages_enabled': models.EnabledLanguage.list(session, tid),
         'configured': configured,
