@@ -155,7 +155,7 @@ ConfigDescriptor = {
     u'log_level': Unicode(default=u'ERROR'),
     u'log_accesses_of_internal_users': Bool(default=True),
 
-    u'encryption': Bool(default=True),
+    u'encryption': Bool(default=False),
     u'multisite': Bool(default=False)
 }
 

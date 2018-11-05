@@ -7,12 +7,14 @@
       </label>
     </div>
 
-    <div class="form-group" data-ng-if="admin.node.root_tenant && !admin.node.encryption">
+    <!--
+    <div class="form-group" data-ng-if="admin.node.root_tenant && admin.node.encryption_available && !admin.node.encryption">
       <label>
         <input data-ng-model="admin.node.encryption" type="checkbox" />
         <span data-translate>Enable encryption</span>
       </label>
     </div>
+    -->
 
     <div class="form-group" data-ng-if="!admin.node.encryption">
       <label>
