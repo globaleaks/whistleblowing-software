@@ -102,6 +102,8 @@ class LocalizationEngine(object):
             return translated_dict
         elif language in translated_dict:
             return translated_dict[language]
+        elif 'en' in translated_dict:
+            return translated_dict['en']
         else:
             return ""
 
