@@ -687,12 +687,11 @@ msgstr "Disable submissions"
 msgid "Enable encryption"
 msgstr "Enable encryption"
 
-msgid ""
-"Enable the system to store data in plaintext when encryption is not "
-"available"
-msgstr ""
-"Enable the system to store data in plaintext when encryption is not "
-"available"
+msgid "Allow the system to store data in plaintext when encryption is not available"
+msgstr "Allow the system to store data in plaintext when encryption is not available"
+
+msgid "Enable multisite feature"
+msgstr "Enable multisite feature"
 
 msgid "Allow other websites to include the platform inside iframes"
 msgstr "Allow other websites to include the platform inside iframes"
@@ -1512,9 +1511,6 @@ msgstr "Root domain used for secondary sites"
 
 msgid "Allow users to sign up"
 msgstr "Allow users to sign up"
-
-msgid "Record IP address and user agent of registered users"
-msgstr "Record IP address and user agent of registered users"
 
 msgid "Enable terms of service"
 msgstr "Enable terms of service"
