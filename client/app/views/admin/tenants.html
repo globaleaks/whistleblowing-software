@@ -138,10 +138,10 @@
               </div>
               <div class="col-md-6" data-ng-if="tenant.id > 1">
                 <span class="pull-right">
-                  <span data-ng-show="tenant.active && !$first" class="btn btn-xs btn-primary"
+                  <span data-ng-show="tenant.active" class="btn btn-xs btn-primary"
                     data-ng-click="toggleActivation($event)"
                     data-translate>Active</span>
-                  <span data-ng-hide="tenant.active || $first" class="btn btn-xs btn-warning"
+                  <span data-ng-hide="tenant.active" class="btn btn-xs btn-warning"
                     data-ng-click="toggleActivation($event)"
                     data-translate>Inactive</span>
                   <button class="btn btn-xs btn-default"
