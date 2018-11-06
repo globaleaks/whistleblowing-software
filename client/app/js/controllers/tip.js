@@ -53,8 +53,8 @@ GLClient.controller('TipCtrl',
 
           for (var k4=0; k4<step.children.length; k4++) {
             var field = step.children[k4];
-            for (var k5=0; k5<$scope.tip.answers[field.id].length; k5++) {
-              filterNotTriggeredField(field, $scope.tip.answers[field.id][k5]);
+            for (var k5=0; k5<$scope.tip.questionnaires[0].answers[field.id].length; k5++) {
+              filterNotTriggeredField(field, $scope.tip.questionnaires[0].answers[field.id][k5]);
             }
           }
         }
