@@ -2,7 +2,7 @@
   <span id="AssignSubmissionStatus">
     <label data-translate>Submission status:</label>
     <select id="assignSubmissionStatus" class="form-control" data-ng-model="tip.submissionStatusObj" data-ng-options="state as state.label | translate for state in ::submission_statuses.slice(1)" data-ng-change="updateSubmissionStatus()"></select>
-    <select id="assignSubmissionSubStatus" class="form-control" data-ng-model="tip.submissionSubStatusObj" data-ng-options="substate as substate.label | translate for substate in tip.submissionStatusObj.substatuses" data-ng-hide="tip.submissionStatusObj.substatuses.length === 0" data-ng-change="updateSubmissionStatus()">
+    <select id="assignSubmissionSubStatus" class="form-control" data-ng-model="tip.submissionSubStatusObj" data-ng-options="substate as substate.label | translate for substate in tip.submissionStatusObj.substatuses" data-ng-hide="!tip.submissionStatusObj.substatuses.length" data-ng-change="updateSubmissionStatus()">
       <option value="" data-translate></option>
     </select>
   </span>
