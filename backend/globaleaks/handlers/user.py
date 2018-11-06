@@ -130,6 +130,7 @@ def db_user_update_user(session, state, tid, user_session, request):
                 raise errors.InvalidOldPassword
 
         user.hash_alg = GCE.HASH
+        user.salt = GCE.generate_salt()
         user.password = GCE.hash_password(new_password, user.salt)
         user.password_change_date = datetime_now()
 

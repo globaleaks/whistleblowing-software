@@ -126,8 +126,8 @@ def db_create_user(session, state, tid, request, language):
     else:
         password = u'password'
 
-    user.salt = GCE.generate_salt()
     user.hash_alg = GCE.HASH
+    user.salt = GCE.generate_salt()
     user.password = GCE.hash_password(password, user.salt)
 
     # The various options related in manage PGP keys are used here.
@@ -162,6 +162,7 @@ def db_admin_update_user(session, state, tid, user_id, request, language):
     password = request['password']
     if password:
         user.hash_alg = GCE.HASH
+        user.salt = GCE.generate_salt()
         user.password = GCE.hash_password(password, user.salt)
         user.password_change_date = datetime_now()
         user.crypto_prv_key = b''
