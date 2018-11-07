@@ -5,7 +5,7 @@ import ipaddress
 
 from random import SystemRandom
 from six import text_type, binary_type
-from sqlalchemy import and_, or_
+from sqlalchemy import or_
 from twisted.internet.defer import inlineCallbacks, returnValue
 
 from globaleaks.handlers.base import BaseHandler
@@ -97,14 +97,14 @@ def login(session, tid, username, password, client_using_tor, client_ip):
     """
     user = None
 
-    tenant_condition = and_(UserTenant.user_id == User.id, UserTenant.tenant_id == tid)
-
     users = session.query(User).filter(User.username == username,
                                        User.state != u'disabled',
-                                       tenant_condition).distinct()
+                                       UserTenant.user_id == User.id,
+                                       UserTenant.tenant_id == tid).distinct()
     for u in users:
         if GCE.check_password(u.hash_alg, password, u.salt, u.password):
             user = u
+            break
 
     if user is None:
         log.debug("Login: Invalid credentials")
