@@ -11,7 +11,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-09-27 21:26+0000\n"
+"PO-Revision-Date: 2018-11-05 16:47+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Bulgarian (http://www.transifex.com/otf/globaleaks/language/bg/)\n"
 "MIME-Version: 1.0\n"
@@ -375,6 +375,9 @@ msgstr "в проценти"
 msgid "HTTPS settings"
 msgstr "HTTPS настройки"
 
+msgid "URL shortener"
+msgstr "Скъсител на интернет адреси"
+
 msgid "Anomaly detection thresholds"
 msgstr "Прагът на открити аномалии"
 
@@ -669,25 +672,21 @@ msgstr "Статус на сигнала"
 msgid "Disable submissions"
 msgstr "Забрана за подаване на сигнали"
 
-msgid "Enable insecure configuration without PGP encryption"
-msgstr "Активиране на незащитена конфигурация без PGP криптиране"
-
-msgid "Warning"
-msgstr "Предупреждение"
+msgid "Enable encryption"
+msgstr ""
 
 msgid ""
-"By enabling this option, the system will be storing the submitted files "
-"unencrypted on your server."
-msgstr "Ако активирате тази опция, системата ще съхранява получените файлове некриптирани на вашия сървър."
+"Allow the system to store data in plaintext when encryption is not available"
+msgstr ""
 
-msgid "This happens whenever encryption is unavailable."
-msgstr "Това се случва, когато криптирането е недостъпно"
-
-msgid "Disable messages that warn of missing encryption"
-msgstr "Изключване на съобщения, които предупреждават за липсващо криптиране"
+msgid "Enable multisite feature"
+msgstr ""
 
 msgid "Allow other websites to include the platform inside iframes"
 msgstr "Разрешаване на други уебсайтове за включват платформата в iframes"
+
+msgid "Warning"
+msgstr "Предупреждение"
 
 msgid ""
 "By enabling this option, you are allowing other websites to include the "
@@ -733,20 +732,11 @@ msgstr "Заглавие"
 msgid "Text"
 msgstr "Текст"
 
-msgid "Disable the security awareness panel"
-msgstr "Деактивирай панела за повишаване на сигурността"
-
 msgid "Disable the key code hint"
 msgstr "Деактивирай подсказването за ключова дума"
 
 msgid "Disable the donation panel"
 msgstr "Деактивиране на панелът за дарения"
-
-msgid "Enable CAPTCHA mechanism"
-msgstr "Включване на механизма CAPTCHA "
-
-msgid "Enable proof of work mechanism"
-msgstr "Включване на механизма доказателство за работа"
 
 msgid "Amount of days till whistleblower access expires"
 msgstr "Брой дни преди достъпът на източника да изтече"
@@ -843,6 +833,12 @@ msgid "Enable multi-site login"
 msgstr ""
 
 msgid "Enable simplified login"
+msgstr ""
+
+msgid "Logging level"
+msgstr ""
+
+msgid "Log accesses of internal users"
 msgstr ""
 
 msgid "Enable experimental features"
@@ -952,6 +948,9 @@ msgstr "Име"
 
 msgid "Questionnaire"
 msgstr "Въпросник"
+
+msgid "Additional questionnaire"
+msgstr ""
 
 msgid "Recipients"
 msgstr "Получатели"
@@ -1463,9 +1462,6 @@ msgstr "Домейн използван за други сайтове"
 msgid "Allow users to sign up"
 msgstr "Разрешава на потребителите да се регистрират"
 
-msgid "Record IP address and user agent of registered users"
-msgstr ""
-
 msgid "Enable terms of service"
 msgstr ""
 
@@ -1610,31 +1606,8 @@ msgstr "Въвеждане на броя точки, които да бъдат 
 msgid "Confirm"
 msgstr "Потвърждение"
 
-msgid "Are you human?"
-msgstr "Човек ли сте?"
-
-msgid ""
-"We do not discriminate based on race and gender, but we do against computers"
-" :)"
-msgstr "Не дискриминираме на остнова раса и пол, но дискриминираме срещу компютри :)"
-
-msgid ""
-"Just to prove you are human, please answer the following math challenge:"
-msgstr "За да докажете че сте човек, моля отговорете на следното математически задание:"
-
-msgid "I've solved the math challenge, hide this thing now!"
-msgstr "Реших задачата, разкрай това нещо от тук!"
-
 msgid "Please note that all the associated data will be permanently lost."
 msgstr "Моля, помнете, че всичката свързана информация ще бъде перманентно изтрита."
-
-msgid ""
-"This means that if the server running the platform were to be seized, it "
-"would be possible to extract the files that have been submitted."
-msgstr "Това означава, че ако сървърът, на който върви платформата бъде конфискуван, ще бъде възможно възстановяването на файлове, които са били прикачени."
-
-msgid "Are you sure that you wish to continue?"
-msgstr "Сигурни ли сте, че желеаете да продължите?"
 
 msgid "Error!"
 msgstr "Грешка!"
@@ -1746,6 +1719,18 @@ msgstr "Разлседващ журнализъм"
 
 msgid "Civic activism"
 msgstr "Граждански активизъм"
+
+msgid "previous step"
+msgstr "предната съпка"
+
+msgid "next step"
+msgstr "следващата стъпка"
+
+msgid "Submit"
+msgstr "Изпрати"
+
+msgid "Fill the additional questionnaire"
+msgstr ""
 
 msgid "Send"
 msgstr "Изпращане"
@@ -1893,29 +1878,6 @@ msgid ""
 msgstr "Удобен начин да скриете кодът е да го запишете като номер на кредитна карта, примерно като добавите дата на изтичане."
 
 msgid ""
-"You have not set up your encryption key, so the files will not be encrypted "
-"prior to being stored on the server."
-msgstr "Не сте заложини ключ за криптиране, така че файловете няма да бъдат криптирани преди запазването им на сървъра."
-
-msgid ""
-"This may lead to unintended access to the files by the server administrator "
-"or others in case the server is compromised."
-msgstr "Това може да доведе до нежелан достъп до файловете от администратора или от властите, при конфискуване на сървъра."
-
-msgid "Please configure your PGP keys in the recipient preferences page."
-msgstr "Моля, насгройте PGP ключвовете си и в страницата за настройки на получателя."
-
-msgid ""
-"One or more of the recipients of this submission has not configured a PGP "
-"key."
-msgstr "Един или повече от получателите на този сингал не са настроили своя PGP ключ."
-
-msgid ""
-"This means that the submitted files will be stored in plaintext on the "
-"server."
-msgstr "Това означава, че подадените файлове ще бъдат съхранени не криптирани на сървъра."
-
-msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."
 msgstr "Молба за достъп до самоличността на източника е получена от попечителя."
 
@@ -1969,15 +1931,6 @@ msgstr "моля, въвдете само цифри."
 
 msgid "Recipient selection"
 msgstr "Избор на получатели"
-
-msgid "previous step"
-msgstr "предната съпка"
-
-msgid "next step"
-msgstr "следващата стъпка"
-
-msgid "Submit"
-msgstr "Изпрати"
 
 msgid "Recipients selected:"
 msgstr "Избранит получатели:"

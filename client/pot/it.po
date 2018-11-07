@@ -15,7 +15,7 @@
 # Nick Skelsey, 2016
 # Pawel <mail@pawelzorzan.eu>, 2013
 # Pawel <mail@pawelzorzan.eu>, 2013
-# Rahma Sghaier <sghair.rahma@gmail.com>, 2017
+# Rima Sghaier <sghair.rahma@gmail.com>, 2017
 # Andrea Lusuardi <uovobw@gmail.com>, 2013
 # Yvette Agostini <mnemosyne@logioshermes.org>, 2015
 # yvette.agostini <yvette.agostini@gmail.com>, 2013
@@ -25,7 +25,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-09-27 21:29+0000\n"
+"PO-Revision-Date: 2018-11-05 16:50+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Italian (http://www.transifex.com/otf/globaleaks/language/it/)\n"
 "MIME-Version: 1.0\n"
@@ -389,6 +389,9 @@ msgstr "in percentuale"
 msgid "HTTPS settings"
 msgstr "Impostazioni HTTPS"
 
+msgid "URL shortener"
+msgstr "URL abbreviate"
+
 msgid "Anomaly detection thresholds"
 msgstr "Soglia di rilevamento anomalie"
 
@@ -683,25 +686,21 @@ msgstr "Stato della segnalazione"
 msgid "Disable submissions"
 msgstr "Disabilita le segnalazioni"
 
-msgid "Enable insecure configuration without PGP encryption"
-msgstr "Abilita configuratione insicura senza crittografia PGP"
-
-msgid "Warning"
-msgstr "Attenzione"
+msgid "Enable encryption"
+msgstr "Abilita la crittografia"
 
 msgid ""
-"By enabling this option, the system will be storing the submitted files "
-"unencrypted on your server."
-msgstr "Abilitando questa opzione il sistema memorizzerà i file inviati sul nodo in modalità non cifrata."
+"Allow the system to store data in plaintext when encryption is not available"
+msgstr "Permetti al sistema di memorizzare i dati in chiaro quando la crittograzia non  è disponibile"
 
-msgid "This happens whenever encryption is unavailable."
-msgstr "Ciò accade in caso non sia dispobile la crittografia."
-
-msgid "Disable messages that warn of missing encryption"
-msgstr "Disabilita i messaggi di avvertimento circa la mananza di crittografia"
+msgid "Enable multisite feature"
+msgstr "Abilita la funzionalità multisito"
 
 msgid "Allow other websites to include the platform inside iframes"
 msgstr "Permetti che altri siti possano includere la piattaforma dentro iframes"
+
+msgid "Warning"
+msgstr "Attenzione"
 
 msgid ""
 "By enabling this option, you are allowing other websites to include the "
@@ -747,20 +746,11 @@ msgstr "Titolo"
 msgid "Text"
 msgstr "testo"
 
-msgid "Disable the security awareness panel"
-msgstr "Disabilita il security awareness panel"
-
 msgid "Disable the key code hint"
 msgstr "Disabilita suggerimento circa il key code"
 
 msgid "Disable the donation panel"
 msgstr "Disabilita il pannello delle donazioni"
-
-msgid "Enable CAPTCHA mechanism"
-msgstr "Abilita l'uso dei CAPTCHA"
-
-msgid "Enable proof of work mechanism"
-msgstr "Abilita il meccanismo proof of work"
 
 msgid "Amount of days till whistleblower access expires"
 msgstr "Numero di giorni prima che la possibilità di accesso da parte del whistleblower scada"
@@ -858,6 +848,12 @@ msgstr "Abilita login multi-sito"
 
 msgid "Enable simplified login"
 msgstr "Abilita login semplificato"
+
+msgid "Logging level"
+msgstr "Livello di verbosità dei log"
+
+msgid "Log accesses of internal users"
+msgstr "Registra gli accessi degli utenti interni"
 
 msgid "Enable experimental features"
 msgstr "Abilità funzionalità sperimentali"
@@ -966,6 +962,9 @@ msgstr "Nome"
 
 msgid "Questionnaire"
 msgstr "Questionario"
+
+msgid "Additional questionnaire"
+msgstr "Questionario aggiuntivo"
 
 msgid "Recipients"
 msgstr "Riceventi"
@@ -1477,9 +1476,6 @@ msgstr "Domini principale utilizzato dai siti secondari"
 msgid "Allow users to sign up"
 msgstr "Permetti agli utenti di registrarsi"
 
-msgid "Record IP address and user agent of registered users"
-msgstr "Registra gli indirizzi IP e lo user agent degli utenti registrati"
-
 msgid "Enable terms of service"
 msgstr "Abilita i termini di servizio"
 
@@ -1624,31 +1620,8 @@ msgstr "Inserisci il numero di punti che devono essere assegnati quando questa o
 msgid "Confirm"
 msgstr "Conferma"
 
-msgid "Are you human?"
-msgstr "Sei un umano?"
-
-msgid ""
-"We do not discriminate based on race and gender, but we do against computers"
-" :)"
-msgstr "Non discutiamo sulla tua razza, sesso, genere, ma discriminiamo computer :)"
-
-msgid ""
-"Just to prove you are human, please answer the following math challenge:"
-msgstr "Dimostra giusto che sei un umano rispondendo alla seguente sfida matematica:"
-
-msgid "I've solved the math challenge, hide this thing now!"
-msgstr "Ho risolto il problema matematico, ora nascondi questa cosa!"
-
 msgid "Please note that all the associated data will be permanently lost."
 msgstr "Ṡi prega di notare che tutti i dati associati saranno persi."
-
-msgid ""
-"This means that if the server running the platform were to be seized, it "
-"would be possible to extract the files that have been submitted."
-msgstr "Questo significa che se il server su cui esegue la piattaforma fosse confiscato sarebbe possibile estrarre i file che vi sono stati inviati."
-
-msgid "Are you sure that you wish to continue?"
-msgstr "Sei sicuro di voler conferermare?"
 
 msgid "Error!"
 msgstr "Errore!"
@@ -1760,6 +1733,18 @@ msgstr "Giornalismo d'inchiesta"
 
 msgid "Civic activism"
 msgstr "Attivismo civico"
+
+msgid "previous step"
+msgstr "passo precedente"
+
+msgid "next step"
+msgstr "passo successivo"
+
+msgid "Submit"
+msgstr "Invia"
+
+msgid "Fill the additional questionnaire"
+msgstr "Compila il questionario aggiuntivo"
 
 msgid "Send"
 msgstr "Invia"
@@ -1907,29 +1892,6 @@ msgid ""
 msgstr "Un modo efficace per nascondere il tuo key code è quello di appuntato come fosse una numero di una carta di credito ed ad esempio allegarci anche una data di scadenza."
 
 msgid ""
-"You have not set up your encryption key, so the files will not be encrypted "
-"prior to being stored on the server."
-msgstr "Non hai configurato la tua chiave di cifratura, perciò i file non saranno cifrati prima di essere salvati nel server."
-
-msgid ""
-"This may lead to unintended access to the files by the server administrator "
-"or others in case the server is compromised."
-msgstr "Questo potrebbe comportare l'accesso indesiderato ai file da parte dell'amministratore del server o in caso di compromissione."
-
-msgid "Please configure your PGP keys in the recipient preferences page."
-msgstr "Siete pregati di configurare la vostra chiave PGP nella pagina di configurazione del ricevente"
-
-msgid ""
-"One or more of the recipients of this submission has not configured a PGP "
-"key."
-msgstr "Uno e più destinatari della segnalazione non ha configurato un chiave PGP."
-
-msgid ""
-"This means that the submitted files will be stored in plaintext on the "
-"server."
-msgstr "Questo significa che i file inviati verranno mantenuti non cifrati sul nodo."
-
-msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."
 msgstr "L'accesso all'identità del whistleblower è stato richiesto al custode."
 
@@ -1983,15 +1945,6 @@ msgstr "si prega di inserire solo numeri."
 
 msgid "Recipient selection"
 msgstr "Selezione del ricevente"
-
-msgid "previous step"
-msgstr "passo precedente"
-
-msgid "next step"
-msgstr "passo successivo"
-
-msgid "Submit"
-msgstr "Invia"
 
 msgid "Recipients selected:"
 msgstr "Riceventi selezionati"

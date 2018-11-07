@@ -22,7 +22,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-09-27 21:26+0000\n"
+"PO-Revision-Date: 2018-11-05 16:47+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/otf/globaleaks/language/uk/)\n"
 "MIME-Version: 1.0\n"
@@ -386,6 +386,9 @@ msgstr "у відсотках"
 msgid "HTTPS settings"
 msgstr "налаштування HTTPS"
 
+msgid "URL shortener"
+msgstr "URL shortener"
+
 msgid "Anomaly detection thresholds"
 msgstr "Anomaly detection thresholds"
 
@@ -680,25 +683,21 @@ msgstr "Статус подання"
 msgid "Disable submissions"
 msgstr "Відключити повідомлення"
 
-msgid "Enable insecure configuration without PGP encryption"
-msgstr "Дозволити незахищену конфігурацію без шифрування PGP"
-
-msgid "Warning"
-msgstr "Увага!"
+msgid "Enable encryption"
+msgstr ""
 
 msgid ""
-"By enabling this option, the system will be storing the submitted files "
-"unencrypted on your server."
-msgstr "При включенні цієї опції, система буде зберігати представлені файли у відкритому вигляді на вашому вузлі."
+"Allow the system to store data in plaintext when encryption is not available"
+msgstr ""
 
-msgid "This happens whenever encryption is unavailable."
-msgstr "Це відбувається щоразу, коли шифрування недоступнe."
-
-msgid "Disable messages that warn of missing encryption"
-msgstr "Відключити повідомлення, які попереджають про відсутніть шифрування"
+msgid "Enable multisite feature"
+msgstr ""
 
 msgid "Allow other websites to include the platform inside iframes"
 msgstr "Дозволити іншим сайтам підключати платформу, використовуючи iframes"
+
+msgid "Warning"
+msgstr "Увага!"
 
 msgid ""
 "By enabling this option, you are allowing other websites to include the "
@@ -744,20 +743,11 @@ msgstr "Назва"
 msgid "Text"
 msgstr "Текст"
 
-msgid "Disable the security awareness panel"
-msgstr "Відключити знак попередження про небезпеку"
-
 msgid "Disable the key code hint"
 msgstr "Disable the key code hint"
 
 msgid "Disable the donation panel"
 msgstr "Disable the donation panel"
-
-msgid "Enable CAPTCHA mechanism"
-msgstr "Enable CAPTCHA mechanism"
-
-msgid "Enable proof of work mechanism"
-msgstr "Enable proof of work mechanism"
 
 msgid "Amount of days till whistleblower access expires"
 msgstr "Кількість днів до закінчення терміну доступу інформатора"
@@ -854,6 +844,12 @@ msgid "Enable multi-site login"
 msgstr ""
 
 msgid "Enable simplified login"
+msgstr ""
+
+msgid "Logging level"
+msgstr ""
+
+msgid "Log accesses of internal users"
 msgstr ""
 
 msgid "Enable experimental features"
@@ -963,6 +959,9 @@ msgstr "Назва"
 
 msgid "Questionnaire"
 msgstr "Анкета із переліком питань"
+
+msgid "Additional questionnaire"
+msgstr ""
 
 msgid "Recipients"
 msgstr "Одержувачі"
@@ -1474,9 +1473,6 @@ msgstr ""
 msgid "Allow users to sign up"
 msgstr ""
 
-msgid "Record IP address and user agent of registered users"
-msgstr ""
-
 msgid "Enable terms of service"
 msgstr ""
 
@@ -1621,31 +1617,8 @@ msgstr "Enter the number of score points to be assigned when this option is sele
 msgid "Confirm"
 msgstr "Підтвердити відтермінування"
 
-msgid "Are you human?"
-msgstr "Ви людина?"
-
-msgid ""
-"We do not discriminate based on race and gender, but we do against computers"
-" :)"
-msgstr "Ми захіщаємось проти ботів"
-
-msgid ""
-"Just to prove you are human, please answer the following math challenge:"
-msgstr "Будь ласка дайте правильну відповідь:"
-
-msgid "I've solved the math challenge, hide this thing now!"
-msgstr "Я вирішив задачку, можна вже закрити це!"
-
 msgid "Please note that all the associated data will be permanently lost."
 msgstr "Зверніть увагу, що всі пов'язані з ним дані будуть безповоротно втрачені."
-
-msgid ""
-"This means that if the server running the platform were to be seized, it "
-"would be possible to extract the files that have been submitted."
-msgstr "Це означає, що у випадку конфіскації серверу платформи, файли збережені на сервері можуть попасти в руки небажаним особам."
-
-msgid "Are you sure that you wish to continue?"
-msgstr "Ви впевнені, що хочете продовжити?"
 
 msgid "Error!"
 msgstr "Помилка!"
@@ -1757,6 +1730,18 @@ msgstr "Журналістські розслідування"
 
 msgid "Civic activism"
 msgstr "Громадська діяльність"
+
+msgid "previous step"
+msgstr "Попередній крок"
+
+msgid "next step"
+msgstr "Наступний крок"
+
+msgid "Submit"
+msgstr "Надіслати"
+
+msgid "Fill the additional questionnaire"
+msgstr ""
 
 msgid "Send"
 msgstr "Відправити"
@@ -1904,29 +1889,6 @@ msgid ""
 msgstr "Корисний спосіб приховати ключ наданий вам після подання матеріалів, це записати його у формі номеру кредитної картки, включаючи дату закінчення терміну дії."
 
 msgid ""
-"You have not set up your encryption key, so the files will not be encrypted "
-"prior to being stored on the server."
-msgstr "Ви ще не налаштували ваші ключі шифрування, тому ваші файли зберігатимуться незашифрованими."
-
-msgid ""
-"This may lead to unintended access to the files by the server administrator "
-"or others in case the server is compromised."
-msgstr "Це може привести до непередбаченого доступу до файлів адміністратором сервера або інших акторів у випадку, якщо сервер компроментовано."
-
-msgid "Please configure your PGP keys in the recipient preferences page."
-msgstr "Будь ласка, налаштуйте свої ключі PGP на сторінці налаштувань одержувача."
-
-msgid ""
-"One or more of the recipients of this submission has not configured a PGP "
-"key."
-msgstr "Один або декілька одержувачів не налаштовали ключі PGP."
-
-msgid ""
-"This means that the submitted files will be stored in plaintext on the "
-"server."
-msgstr "Це означає, що надіслані файли зберігатимуться в простому текстовому форматі."
-
-msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."
 msgstr "Запит на інформацію про особу викривача було надіслано куратору"
 
@@ -1980,15 +1942,6 @@ msgstr "будь ласка, введіть лише цифри."
 
 msgid "Recipient selection"
 msgstr "Вибір одержувача"
-
-msgid "previous step"
-msgstr "Попередній крок"
-
-msgid "next step"
-msgstr "Наступний крок"
-
-msgid "Submit"
-msgstr "Надіслати"
 
 msgid "Recipients selected:"
 msgstr "Обрані одержувачі:"

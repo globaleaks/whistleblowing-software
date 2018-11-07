@@ -10,7 +10,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-09-27 21:26+0000\n"
+"PO-Revision-Date: 2018-11-05 16:47+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Thai (http://www.transifex.com/otf/globaleaks/language/th/)\n"
 "MIME-Version: 1.0\n"
@@ -56,13 +56,13 @@ msgid "Add new questionnaire"
 msgstr "เพิ่มแบบสอบถามใหม่"
 
 msgid "Home"
-msgstr ""
+msgstr "หน้าหลัก"
 
 msgid "Home page"
 msgstr ""
 
 msgid "Changelog"
-msgstr ""
+msgstr "สมุดบันทึกสิ่งของใหม่"
 
 msgid "License"
 msgstr "ลิขสิทธิ์"
@@ -374,6 +374,9 @@ msgstr "ในอัตราร้อยละ"
 msgid "HTTPS settings"
 msgstr "การตั้งค่า HTTPS"
 
+msgid "URL shortener"
+msgstr "URL ให้สั้นลง"
+
 msgid "Anomaly detection thresholds"
 msgstr "ความผิดปกติของเกณฑ์การตรวจสอบ"
 
@@ -490,10 +493,10 @@ msgid "Email address"
 msgstr "ที่อยู่อีเมล"
 
 msgid "Custom"
-msgstr ""
+msgstr "กรอกเอง"
 
 msgid "None"
-msgstr ""
+msgstr "ไม่มี"
 
 msgid "Regular expression"
 msgstr ""
@@ -505,7 +508,7 @@ msgid "Activate"
 msgstr "เปิดใช้งาน"
 
 msgid "Search"
-msgstr ""
+msgstr "ค้นหา"
 
 msgid ""
 "This custom text is no longer displayed on the platform. The original text "
@@ -668,25 +671,21 @@ msgstr ""
 msgid "Disable submissions"
 msgstr "ส่งปิดการใช้งาน"
 
-msgid "Enable insecure configuration without PGP encryption"
-msgstr "เปิดใช้งานการตั้งค่าที่ไม่ปลอดภัยโดยไม่มีการเข้ารหัส PGP"
-
-msgid "Warning"
+msgid "Enable encryption"
 msgstr ""
 
 msgid ""
-"By enabling this option, the system will be storing the submitted files "
-"unencrypted on your server."
-msgstr "โดยการเปิดใช้ตัวเลือกนี้ระบบจะจัดเก็บไฟล์ที่ส่งไม่ได้เข้ารหัสบนเซิร์ฟเวอร์ของคุณ"
+"Allow the system to store data in plaintext when encryption is not available"
+msgstr ""
 
-msgid "This happens whenever encryption is unavailable."
-msgstr "เรื่องนี้เกิดขึ้นเมื่อใดก็ตามที่เข้ารหัสไม่พร้อมใช้งาน"
-
-msgid "Disable messages that warn of missing encryption"
+msgid "Enable multisite feature"
 msgstr ""
 
 msgid "Allow other websites to include the platform inside iframes"
 msgstr "อนุญาตให้เว็บไซต์อื่น ๆ ที่จะรวมถึงแพลตฟอร์มภายใน iframes"
+
+msgid "Warning"
+msgstr "คำเตือน"
 
 msgid ""
 "By enabling this option, you are allowing other websites to include the "
@@ -732,20 +731,11 @@ msgstr "ชื่อเรื่อง"
 msgid "Text"
 msgstr "ข้อความ"
 
-msgid "Disable the security awareness panel"
-msgstr "ปิดการใช้งานแผงความตระหนักในการรักษาความปลอดภัย"
-
 msgid "Disable the key code hint"
 msgstr "ปิดการใช้งานคำใบ้รหัสคีย์"
 
 msgid "Disable the donation panel"
 msgstr "ปิดการใช้งานแผงบริจาค"
-
-msgid "Enable CAPTCHA mechanism"
-msgstr "เปิดใช้กลไก CAPTCHA"
-
-msgid "Enable proof of work mechanism"
-msgstr "เปิดใช้หลักฐานของกลไกการทำงาน"
 
 msgid "Amount of days till whistleblower access expires"
 msgstr ""
@@ -842,6 +832,12 @@ msgid "Enable multi-site login"
 msgstr ""
 
 msgid "Enable simplified login"
+msgstr ""
+
+msgid "Logging level"
+msgstr ""
+
+msgid "Log accesses of internal users"
 msgstr ""
 
 msgid "Enable experimental features"
@@ -951,6 +947,9 @@ msgstr "ชื่อ"
 
 msgid "Questionnaire"
 msgstr "แบบสอบถาม"
+
+msgid "Additional questionnaire"
+msgstr ""
 
 msgid "Recipients"
 msgstr "ผู้รับ"
@@ -1191,7 +1190,7 @@ msgid "Private Key"
 msgstr ""
 
 msgid "Generate"
-msgstr ""
+msgstr "สร้าง"
 
 msgid "Certificate Signing Request"
 msgstr ""
@@ -1317,7 +1316,7 @@ msgid "Submission"
 msgstr "การยอม"
 
 msgid "Path"
-msgstr ""
+msgstr "Path"
 
 msgid "Size"
 msgstr "ขนาด"
@@ -1462,9 +1461,6 @@ msgstr ""
 msgid "Allow users to sign up"
 msgstr ""
 
-msgid "Record IP address and user agent of registered users"
-msgstr ""
-
 msgid "Enable terms of service"
 msgstr ""
 
@@ -1507,7 +1503,7 @@ msgid "Details of the PGP key:"
 msgstr "รายละเอียดของคีย์ PGP ที่:"
 
 msgid "Fingerprint"
-msgstr ""
+msgstr "ลายนิ้วมือ"
 
 msgid "Remove the PGP key"
 msgstr "ลบคีย์ PGP ที่"
@@ -1609,31 +1605,8 @@ msgstr "ใส่จำนวนของจุดคะแนนจะได้
 msgid "Confirm"
 msgstr "ยืนยัน"
 
-msgid "Are you human?"
-msgstr "คุณเป็นมนุษย์?"
-
-msgid ""
-"We do not discriminate based on race and gender, but we do against computers"
-" :)"
-msgstr "เราจะไม่เลือกปฏิบัติบนพื้นฐานของเชื้อชาติและเพศ แต่ที่เราทำกับคอมพิวเตอร์ :)"
-
-msgid ""
-"Just to prove you are human, please answer the following math challenge:"
-msgstr "เพียงเพื่อพิสูจน์ว่าคุณเป็นมนุษย์โปรดตอบความท้าทายทางคณิตศาสตร์ต่อไปนี้:"
-
-msgid "I've solved the math challenge, hide this thing now!"
-msgstr "ฉันได้แก้ไขความท้าทายคณิตศาสตร์ปิดบังเรื่องนี้ในขณะนี้!"
-
 msgid "Please note that all the associated data will be permanently lost."
 msgstr ""
-
-msgid ""
-"This means that if the server running the platform were to be seized, it "
-"would be possible to extract the files that have been submitted."
-msgstr "ซึ่งหมายความว่าหากเซิร์ฟเวอร์ที่ใช้แพลตฟอร์มจะถูกยึดก็จะเป็นไปได้ที่จะดึงไฟล์ที่ได้รับการส่ง"
-
-msgid "Are you sure that you wish to continue?"
-msgstr "คุณแน่ใจหรือว่าคุณต้องการที่จะต่อหรือไม่?"
 
 msgid "Error!"
 msgstr "ข้อผิดพลาด!"
@@ -1744,6 +1717,18 @@ msgid "Investigative journalism"
 msgstr ""
 
 msgid "Civic activism"
+msgstr ""
+
+msgid "previous step"
+msgstr "ขั้นตอนก่อนหน้า"
+
+msgid "next step"
+msgstr "ขั้นตอนต่อไป"
+
+msgid "Submit"
+msgstr "เสนอ"
+
+msgid "Fill the additional questionnaire"
 msgstr ""
 
 msgid "Send"
@@ -1892,29 +1877,6 @@ msgid ""
 msgstr "วิธีที่มีประโยชน์เพื่อซ่อนรหัสที่สำคัญของคุณคือการเขียนมันลงเช่นหมายเลขบัตรเครดิตเช่นโดยยังรวมถึงวันหมดอายุ"
 
 msgid ""
-"You have not set up your encryption key, so the files will not be encrypted "
-"prior to being stored on the server."
-msgstr "คุณยังไม่ได้ตั้งค่าคีย์การเข้ารหัสของคุณเพื่อให้ไฟล์ที่จะไม่ได้รับการเข้ารหัสก่อนที่จะถูกเก็บไว้ในเซิร์ฟเวอร์"
-
-msgid ""
-"This may lead to unintended access to the files by the server administrator "
-"or others in case the server is compromised."
-msgstr "ซึ่งอาจนำไปสู่​​การเข้าถึงโดยไม่ได้ตั้งใจไปยังไฟล์โดยผู้ดูแลระบบเซิร์ฟเวอร์หรือคนอื่น ๆ ในกรณีที่เซิร์ฟเวอร์ที่ถูกบุกรุก"
-
-msgid "Please configure your PGP keys in the recipient preferences page."
-msgstr "กรุณาตั้งค่าคีย์ PGP ของคุณในหน้าการตั้งค่าของผู้รับ"
-
-msgid ""
-"One or more of the recipients of this submission has not configured a PGP "
-"key."
-msgstr "หนึ่งหรือมากกว่าของผู้รับการส่งนี้ยังไม่ได้กำหนดค่าคีย์ PGP"
-
-msgid ""
-"This means that the submitted files will be stored in plaintext on the "
-"server."
-msgstr "ซึ่งหมายความว่าไฟล์ที่ส่งมาจะถูกเก็บไว้ใน plaintext บนเซิร์ฟเวอร์"
-
-msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."
 msgstr "การเข้าถึงตัวตน whistleblower ที่ได้รับการร้องขอให้ผู้ปกครอง"
 
@@ -1968,15 +1930,6 @@ msgstr ""
 
 msgid "Recipient selection"
 msgstr "เลือกผู้รับ"
-
-msgid "previous step"
-msgstr "ขั้นตอนก่อนหน้า"
-
-msgid "next step"
-msgstr "ขั้นตอนต่อไป"
-
-msgid "Submit"
-msgstr "เสนอ"
 
 msgid "Recipients selected:"
 msgstr "ผู้รับเลือก:"

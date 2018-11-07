@@ -10,7 +10,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-09-27 21:26+0000\n"
+"PO-Revision-Date: 2018-11-05 16:47+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/otf/globaleaks/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
@@ -374,6 +374,9 @@ msgstr "百分比"
 msgid "HTTPS settings"
 msgstr "HTTPS 設定"
 
+msgid "URL shortener"
+msgstr "縮短網址"
+
 msgid "Anomaly detection thresholds"
 msgstr "異常偵測門檻"
 
@@ -668,25 +671,21 @@ msgstr "提交狀態"
 msgid "Disable submissions"
 msgstr "取消提交"
 
-msgid "Enable insecure configuration without PGP encryption"
-msgstr "允許無 PGP 加密的不安全設置"
-
-msgid "Warning"
-msgstr "警示"
+msgid "Enable encryption"
+msgstr ""
 
 msgid ""
-"By enabling this option, the system will be storing the submitted files "
-"unencrypted on your server."
-msgstr "啟用此選項，系統會將所提交檔案未加密地儲存在伺服器上。"
+"Allow the system to store data in plaintext when encryption is not available"
+msgstr ""
 
-msgid "This happens whenever encryption is unavailable."
-msgstr "當無加密功能時會發生此情況"
-
-msgid "Disable messages that warn of missing encryption"
-msgstr "取消警告失去加密的訊息通知"
+msgid "Enable multisite feature"
+msgstr ""
 
 msgid "Allow other websites to include the platform inside iframes"
 msgstr "讓其它網站能以網頁加框方式嵌入此平台"
+
+msgid "Warning"
+msgstr "警示"
 
 msgid ""
 "By enabling this option, you are allowing other websites to include the "
@@ -732,20 +731,11 @@ msgstr "標題"
 msgid "Text"
 msgstr "內文"
 
-msgid "Disable the security awareness panel"
-msgstr "取消安全提醒面板"
-
 msgid "Disable the key code hint"
 msgstr "取消鑰碼提示"
 
 msgid "Disable the donation panel"
 msgstr "取消捐款面板"
-
-msgid "Enable CAPTCHA mechanism"
-msgstr "啟動 CAPTCHA 機制"
-
-msgid "Enable proof of work mechanism"
-msgstr "啟動工作機制證明"
 
 msgid "Amount of days till whistleblower access expires"
 msgstr "吹哨者讀取使的到期剩餘天數"
@@ -843,6 +833,12 @@ msgstr "開啟多站台登入"
 
 msgid "Enable simplified login"
 msgstr "開啟簡易登入"
+
+msgid "Logging level"
+msgstr ""
+
+msgid "Log accesses of internal users"
+msgstr ""
 
 msgid "Enable experimental features"
 msgstr "開啟示範性功能"
@@ -951,6 +947,9 @@ msgstr "名字"
 
 msgid "Questionnaire"
 msgstr "問卷"
+
+msgid "Additional questionnaire"
+msgstr ""
 
 msgid "Recipients"
 msgstr "收件人"
@@ -1462,9 +1461,6 @@ msgstr "二級網站使用的根域名"
 msgid "Allow users to sign up"
 msgstr "可接受新用戶註冊"
 
-msgid "Record IP address and user agent of registered users"
-msgstr "記錄註冊用戶的瀏覽器與 IP 地址"
-
 msgid "Enable terms of service"
 msgstr "開啟服務條款"
 
@@ -1609,31 +1605,8 @@ msgstr "啟動此項功能時，請輸入被指定的得分點數數字"
 msgid "Confirm"
 msgstr "確認"
 
-msgid "Are you human?"
-msgstr "你不是機器人吧?"
-
-msgid ""
-"We do not discriminate based on race and gender, but we do against computers"
-" :)"
-msgstr "我們沒有種族或性別的偏見歧視，但我們對電腦的確小心翼翼 :)"
-
-msgid ""
-"Just to prove you are human, please answer the following math challenge:"
-msgstr "只是想確認你是真人，請回答下面數學挑戰問題："
-
-msgid "I've solved the math challenge, hide this thing now!"
-msgstr "我已解出這道數學題，把這些東西移開！"
-
 msgid "Please note that all the associated data will be permanently lost."
 msgstr "請注意所有相關的資料將會永久消失。"
-
-msgid ""
-"This means that if the server running the platform were to be seized, it "
-"would be possible to extract the files that have been submitted."
-msgstr "這表示如果運行這套軟體平台的伺服器被拿走，上面的資料檔案很可能被取出來"
-
-msgid "Are you sure that you wish to continue?"
-msgstr "你確定要繼續嗎？"
 
 msgid "Error!"
 msgstr "出錯"
@@ -1745,6 +1718,18 @@ msgstr "調查報導"
 
 msgid "Civic activism"
 msgstr "公民行動"
+
+msgid "previous step"
+msgstr "上一步"
+
+msgid "next step"
+msgstr "下一步"
+
+msgid "Submit"
+msgstr "送出"
+
+msgid "Fill the additional questionnaire"
+msgstr ""
 
 msgid "Send"
 msgstr "送出"
@@ -1892,29 +1877,6 @@ msgid ""
 msgstr "保存鑰碼的有用作法是把它記到紙上，就如同信用卡，包括記下到期日資訊"
 
 msgid ""
-"You have not set up your encryption key, so the files will not be encrypted "
-"prior to being stored on the server."
-msgstr "你尚未設定你的加密金鑰，所以這些放在伺服器上的檔案將不會先進行加密動作"
-
-msgid ""
-"This may lead to unintended access to the files by the server administrator "
-"or others in case the server is compromised."
-msgstr "伺服器被破壞將導致讓無權限的管理員或其它人可以讀取這些檔案。"
-
-msgid "Please configure your PGP keys in the recipient preferences page."
-msgstr "請在收件人偏好的頁面上設定你的 PGP 金鑰"
-
-msgid ""
-"One or more of the recipients of this submission has not configured a PGP "
-"key."
-msgstr "在此次提交中的一位或更多收件人仍未設定其 PGP 金鑰"
-
-msgid ""
-"This means that the submitted files will be stored in plaintext on the "
-"server."
-msgstr " 提交的檔案將以明文形式儲存在伺服器上"
-
-msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."
 msgstr "保管人要求取得吹哨者身份識別"
 
@@ -1968,15 +1930,6 @@ msgstr "請只輸入數字"
 
 msgid "Recipient selection"
 msgstr "選擇收件者"
-
-msgid "previous step"
-msgstr "上一步"
-
-msgid "next step"
-msgstr "下一步"
-
-msgid "Submit"
-msgstr "送出"
 
 msgid "Recipients selected:"
 msgstr "已選擇的收件者"

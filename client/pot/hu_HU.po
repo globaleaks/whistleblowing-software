@@ -21,7 +21,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-09-27 21:26+0000\n"
+"PO-Revision-Date: 2018-11-05 16:47+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Hungarian (Hungary) (http://www.transifex.com/otf/globaleaks/language/hu_HU/)\n"
 "MIME-Version: 1.0\n"
@@ -385,6 +385,9 @@ msgstr "százalékban"
 msgid "HTTPS settings"
 msgstr "HTTPS beállítások"
 
+msgid "URL shortener"
+msgstr "URL rövidítő"
+
 msgid "Anomaly detection thresholds"
 msgstr "Anomália érzékelés határértékek"
 
@@ -679,25 +682,21 @@ msgstr ""
 msgid "Disable submissions"
 msgstr "Feltöltéstek letiltása"
 
-msgid "Enable insecure configuration without PGP encryption"
-msgstr "Nem biztonságos konfiguráció engedélyezése PGP titkosítás nélkül"
-
-msgid "Warning"
-msgstr "Figyelem"
+msgid "Enable encryption"
+msgstr ""
 
 msgid ""
-"By enabling this option, the system will be storing the submitted files "
-"unencrypted on your server."
-msgstr "Ennek a funkciónak az engedélyezésével a rendszer a beküldött fájlokat titkosítás nélkül fogja tárolni az ön kiszolgálóján."
+"Allow the system to store data in plaintext when encryption is not available"
+msgstr ""
 
-msgid "This happens whenever encryption is unavailable."
-msgstr "Ez történik, amikor a titkosítás nem elérhető."
-
-msgid "Disable messages that warn of missing encryption"
-msgstr "Tiltsa a hiányzó titkosításra figyelmeztető üzeneteket"
+msgid "Enable multisite feature"
+msgstr ""
 
 msgid "Allow other websites to include the platform inside iframes"
 msgstr "A platform Iframe ablakba beillesztésének engedélyezése más oldalak számára "
+
+msgid "Warning"
+msgstr "Figyelem"
 
 msgid ""
 "By enabling this option, you are allowing other websites to include the "
@@ -743,20 +742,11 @@ msgstr ""
 msgid "Text"
 msgstr "Szöveg"
 
-msgid "Disable the security awareness panel"
-msgstr "A biztonság-tudatosság panel letiltása"
-
 msgid "Disable the key code hint"
 msgstr "A kulcskód tipp mutatása kikapcsolása"
 
 msgid "Disable the donation panel"
 msgstr "A támogatás panel tiltása"
-
-msgid "Enable CAPTCHA mechanism"
-msgstr "CAPTCHA mechanizmus engedélyezése"
-
-msgid "Enable proof of work mechanism"
-msgstr "Proof of work mechanizmus engedélyezése"
 
 msgid "Amount of days till whistleblower access expires"
 msgstr "Napok, amíg az informátor hozzáférése lejár"
@@ -853,6 +843,12 @@ msgid "Enable multi-site login"
 msgstr ""
 
 msgid "Enable simplified login"
+msgstr ""
+
+msgid "Logging level"
+msgstr ""
+
+msgid "Log accesses of internal users"
 msgstr ""
 
 msgid "Enable experimental features"
@@ -962,6 +958,9 @@ msgstr "Név"
 
 msgid "Questionnaire"
 msgstr "Kérdőívek"
+
+msgid "Additional questionnaire"
+msgstr ""
 
 msgid "Recipients"
 msgstr "Címzettek"
@@ -1473,9 +1472,6 @@ msgstr ""
 msgid "Allow users to sign up"
 msgstr ""
 
-msgid "Record IP address and user agent of registered users"
-msgstr ""
-
 msgid "Enable terms of service"
 msgstr ""
 
@@ -1620,31 +1616,8 @@ msgstr ""
 msgid "Confirm"
 msgstr "Hosszabbítás megerősítése"
 
-msgid "Are you human?"
-msgstr "Emberi lény vagy?"
-
-msgid ""
-"We do not discriminate based on race and gender, but we do against computers"
-" :)"
-msgstr "Nem diszkriminálunk rassz vagy nem alapján, csupán a számítógépek ellen vagyunk. :)"
-
-msgid ""
-"Just to prove you are human, please answer the following math challenge:"
-msgstr "Ahhoz, hogy meggyőződjünk róla, hogy Ön ember, kérjük oldja meg a következő matematikai feladványt:"
-
-msgid "I've solved the math challenge, hide this thing now!"
-msgstr "Megoldottam a matematikai feladványt, rejtsd el ezt a dolgot most!"
-
 msgid "Please note that all the associated data will be permanently lost."
 msgstr ""
-
-msgid ""
-"This means that if the server running the platform were to be seized, it "
-"would be possible to extract the files that have been submitted."
-msgstr "Ez azt jelenti, hogy ha a platformot futtató kiszolgáló le volt foglalva, akkor lehetséges lenne kibontani a beküldött fájlokat."
-
-msgid "Are you sure that you wish to continue?"
-msgstr "Biztos, hogy folytatni akarja?"
 
 msgid "Error!"
 msgstr "Hiba!"
@@ -1755,6 +1728,18 @@ msgid "Investigative journalism"
 msgstr ""
 
 msgid "Civic activism"
+msgstr ""
+
+msgid "previous step"
+msgstr "Vissza"
+
+msgid "next step"
+msgstr "Következő"
+
+msgid "Submit"
+msgstr "Küldés"
+
+msgid "Fill the additional questionnaire"
 msgstr ""
 
 msgid "Send"
@@ -1903,29 +1888,6 @@ msgid ""
 msgstr "A kulcs kódja elrejtéséhez jó ötlet lehet, ha leírja mint egy hitelkártya számot, azaz hozzáad egy lejárati dátumot is. "
 
 msgid ""
-"You have not set up your encryption key, so the files will not be encrypted "
-"prior to being stored on the server."
-msgstr "Nem állította be a titkosítási kulcsát, így a fájlok nem lesznek titkosítva, mielőtt tárolva lesznek a kiszolgálón."
-
-msgid ""
-"This may lead to unintended access to the files by the server administrator "
-"or others in case the server is compromised."
-msgstr "Ez szerver rendszergazdájának vagy a szerverlefoglalás esetén a fájlok nemkívánatos hozzáféréshez vezethet."
-
-msgid "Please configure your PGP keys in the recipient preferences page."
-msgstr "Kérem állítsa be a PGP kulcsait a címzett preferenciái oldalon."
-
-msgid ""
-"One or more of the recipients of this submission has not configured a PGP "
-"key."
-msgstr ""
-
-msgid ""
-"This means that the submitted files will be stored in plaintext on the "
-"server."
-msgstr "Ez azt jelenti, hogy a feltöltött fájlok plaintextben lesznek tárolva a csomóponton."
-
-msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."
 msgstr "A szivárogtatók személyazonosságához való hozzáférés kérelmezve a gondnoknak."
 
@@ -1979,15 +1941,6 @@ msgstr ""
 
 msgid "Recipient selection"
 msgstr "Címzett kiválasztása"
-
-msgid "previous step"
-msgstr "Vissza"
-
-msgid "next step"
-msgstr "Következő"
-
-msgid "Submit"
-msgstr "Küldés"
 
 msgid "Recipients selected:"
 msgstr "Kiválasztott címzettek:"

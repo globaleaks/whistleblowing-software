@@ -18,7 +18,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-09-27 21:26+0000\n"
+"PO-Revision-Date: 2018-11-05 16:47+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Polish (http://www.transifex.com/otf/globaleaks/language/pl/)\n"
 "MIME-Version: 1.0\n"
@@ -382,6 +382,9 @@ msgstr ""
 msgid "HTTPS settings"
 msgstr "ustawienia bezpiecznego połączenia HTTPS"
 
+msgid "URL shortener"
+msgstr ""
+
 msgid "Anomaly detection thresholds"
 msgstr ""
 
@@ -676,25 +679,21 @@ msgstr "Strona zgłoszeń"
 msgid "Disable submissions"
 msgstr "Wyłącz zgłaszanie"
 
-msgid "Enable insecure configuration without PGP encryption"
-msgstr "Włącz niezabezpieczoną konfigurację bez szyfrowania PGP"
-
-msgid "Warning"
-msgstr "Ostrzeżenie"
+msgid "Enable encryption"
+msgstr ""
 
 msgid ""
-"By enabling this option, the system will be storing the submitted files "
-"unencrypted on your server."
-msgstr "Uaktywniając tą opcję, system będzie zapisywał otrzymane pliki w twoim węźle w niezaszyfrowanym formacie."
+"Allow the system to store data in plaintext when encryption is not available"
+msgstr ""
 
-msgid "This happens whenever encryption is unavailable."
-msgstr "Widzisz to, bo szyfrowanie jest niedostępne."
-
-msgid "Disable messages that warn of missing encryption"
-msgstr "Wyłącz ostrzeganie o braku szyfrowania"
+msgid "Enable multisite feature"
+msgstr ""
 
 msgid "Allow other websites to include the platform inside iframes"
 msgstr "Pozwól innym stronom wyświetlać tę platformę w ramkach iframe"
+
+msgid "Warning"
+msgstr "Ostrzeżenie"
 
 msgid ""
 "By enabling this option, you are allowing other websites to include the "
@@ -740,20 +739,11 @@ msgstr "Tytuł"
 msgid "Text"
 msgstr "Tekst"
 
-msgid "Disable the security awareness panel"
-msgstr "Wyłącz panel zabezpieczeń"
-
 msgid "Disable the key code hint"
 msgstr "Wyłącz podpowiedź kodu dostępu"
 
 msgid "Disable the donation panel"
 msgstr "Wyłącz panel donacji"
-
-msgid "Enable CAPTCHA mechanism"
-msgstr "Włącz CAPTCHA"
-
-msgid "Enable proof of work mechanism"
-msgstr ""
 
 msgid "Amount of days till whistleblower access expires"
 msgstr "Liczba dni, po których wygaśnie dostęp sygnalisty"
@@ -850,6 +840,12 @@ msgid "Enable multi-site login"
 msgstr ""
 
 msgid "Enable simplified login"
+msgstr ""
+
+msgid "Logging level"
+msgstr ""
+
+msgid "Log accesses of internal users"
 msgstr ""
 
 msgid "Enable experimental features"
@@ -959,6 +955,9 @@ msgstr "Imię"
 
 msgid "Questionnaire"
 msgstr "Ankieta"
+
+msgid "Additional questionnaire"
+msgstr ""
 
 msgid "Recipients"
 msgstr "Odbiorcy"
@@ -1159,7 +1158,7 @@ msgid "I agree to the Terms of Service."
 msgstr ""
 
 msgid "Proceed"
-msgstr ""
+msgstr "Kontynuuj"
 
 msgid "Configuration completed. You can review the settings or enable it now."
 msgstr ""
@@ -1470,9 +1469,6 @@ msgstr ""
 msgid "Allow users to sign up"
 msgstr ""
 
-msgid "Record IP address and user agent of registered users"
-msgstr ""
-
 msgid "Enable terms of service"
 msgstr ""
 
@@ -1617,31 +1613,8 @@ msgstr ""
 msgid "Confirm"
 msgstr "Potwierdź Rozszerzenie"
 
-msgid "Are you human?"
-msgstr "Czy jesteś człowiekiem?"
-
-msgid ""
-"We do not discriminate based on race and gender, but we do against computers"
-" :)"
-msgstr ""
-
-msgid ""
-"Just to prove you are human, please answer the following math challenge:"
-msgstr "Aby potwierdzić, że jesteś człowiekiem, podaj proszę rozwiązanie następującego zadania matematycznego:"
-
-msgid "I've solved the math challenge, hide this thing now!"
-msgstr "Rozwiązałem zadanie, schowaj to teraz!"
-
 msgid "Please note that all the associated data will be permanently lost."
 msgstr ""
-
-msgid ""
-"This means that if the server running the platform were to be seized, it "
-"would be possible to extract the files that have been submitted."
-msgstr ""
-
-msgid "Are you sure that you wish to continue?"
-msgstr "Czy jesteś pewien że chcesz kontynuować?"
 
 msgid "Error!"
 msgstr "Błąd!"
@@ -1752,6 +1725,18 @@ msgid "Investigative journalism"
 msgstr ""
 
 msgid "Civic activism"
+msgstr ""
+
+msgid "previous step"
+msgstr "Poprzedni Krok"
+
+msgid "next step"
+msgstr "Następny Krok"
+
+msgid "Submit"
+msgstr "Wyślij"
+
+msgid "Fill the additional questionnaire"
 msgstr ""
 
 msgid "Send"
@@ -1900,29 +1885,6 @@ msgid ""
 msgstr ""
 
 msgid ""
-"You have not set up your encryption key, so the files will not be encrypted "
-"prior to being stored on the server."
-msgstr ""
-
-msgid ""
-"This may lead to unintended access to the files by the server administrator "
-"or others in case the server is compromised."
-msgstr "Może to umożliwić niezamierzony dostęp do plików przez administratora lub osób postronnych (w przypadku włamania się do serwera)."
-
-msgid "Please configure your PGP keys in the recipient preferences page."
-msgstr "Proszę skonfiguruj swoje klucze PGP na stronie ustawień odbiorcy."
-
-msgid ""
-"One or more of the recipients of this submission has not configured a PGP "
-"key."
-msgstr ""
-
-msgid ""
-"This means that the submitted files will be stored in plaintext on the "
-"server."
-msgstr "To oznacza,że załączone pliki będą zapisane w węźle bez szyfrowania, będą przechowywane w postaci zwykłego tekstu na węźle."
-
-msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."
 msgstr ""
 
@@ -1976,15 +1938,6 @@ msgstr ""
 
 msgid "Recipient selection"
 msgstr "Wybór Odbiorcy"
-
-msgid "previous step"
-msgstr "Poprzedni Krok"
-
-msgid "next step"
-msgstr "Następny Krok"
-
-msgid "Submit"
-msgstr "Wyślij"
 
 msgid "Recipients selected:"
 msgstr "Wybrani Odbiorcy:"

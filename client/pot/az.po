@@ -9,7 +9,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-09-27 21:26+0000\n"
+"PO-Revision-Date: 2018-11-05 16:47+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Azerbaijani (http://www.transifex.com/otf/globaleaks/language/az/)\n"
 "MIME-Version: 1.0\n"
@@ -373,6 +373,9 @@ msgstr "Faizlə"
 msgid "HTTPS settings"
 msgstr "HTTPS  tənzimləmələri "
 
+msgid "URL shortener"
+msgstr "URL qısaldıcısı"
+
 msgid "Anomaly detection thresholds"
 msgstr "Anomaliya aşkarlama hədləri "
 
@@ -667,25 +670,21 @@ msgstr "Göndəriş statusu"
 msgid "Disable submissions"
 msgstr "Təqdimatları sıradan çıxart"
 
-msgid "Enable insecure configuration without PGP encryption"
-msgstr "Təhlükəli quraşdırmanı PGP şifrələməsiz aktivləşdir"
-
-msgid "Warning"
-msgstr "Xəbərdarlıq"
+msgid "Enable encryption"
+msgstr ""
 
 msgid ""
-"By enabling this option, the system will be storing the submitted files "
-"unencrypted on your server."
-msgstr "Bu seçimi aktivləşdirməklə, sistem, təqdim edilən faylları serverinizdə şifrənməmiş saxlayır"
+"Allow the system to store data in plaintext when encryption is not available"
+msgstr ""
 
-msgid "This happens whenever encryption is unavailable."
-msgstr "Şifrələmə mümkün olmadıqda bu baş verir:"
-
-msgid "Disable messages that warn of missing encryption"
-msgstr "Şifrələmə çatışmazlığı barədə xəbərdarlıq mesajlarını sıradan çıxart"
+msgid "Enable multisite feature"
+msgstr ""
 
 msgid "Allow other websites to include the platform inside iframes"
 msgstr "Digər saytlara platformanı sətir içi çərçivələrə daxil etməsinə icazə verin."
+
+msgid "Warning"
+msgstr "Xəbərdarlıq"
 
 msgid ""
 "By enabling this option, you are allowing other websites to include the "
@@ -731,20 +730,11 @@ msgstr "Başlıq"
 msgid "Text"
 msgstr "Mətn"
 
-msgid "Disable the security awareness panel"
-msgstr "Təhlükəsizlik xəbərdarlıq panelini sıradan çıxart"
-
 msgid "Disable the key code hint"
 msgstr "Əsas açar işarəni sıradan çıxart"
 
 msgid "Disable the donation panel"
 msgstr "İanə lövhəsini sıradan çıxart"
-
-msgid "Enable CAPTCHA mechanism"
-msgstr "CAPTCHA mexanizmini aktivləşdirin"
-
-msgid "Enable proof of work mechanism"
-msgstr "İş dəlilləri mexanizmini aktivləşdirin"
 
 msgid "Amount of days till whistleblower access expires"
 msgstr "İnformasiya ötürənin girşinin etibarlı olacağı günlərin sayı"
@@ -841,6 +831,12 @@ msgid "Enable multi-site login"
 msgstr ""
 
 msgid "Enable simplified login"
+msgstr ""
+
+msgid "Logging level"
+msgstr ""
+
+msgid "Log accesses of internal users"
 msgstr ""
 
 msgid "Enable experimental features"
@@ -950,6 +946,9 @@ msgstr "Ad"
 
 msgid "Questionnaire"
 msgstr "Sorğu"
+
+msgid "Additional questionnaire"
+msgstr ""
 
 msgid "Recipients"
 msgstr "Qəbul edicilər"
@@ -1461,9 +1460,6 @@ msgstr ""
 msgid "Allow users to sign up"
 msgstr ""
 
-msgid "Record IP address and user agent of registered users"
-msgstr ""
-
 msgid "Enable terms of service"
 msgstr ""
 
@@ -1608,31 +1604,8 @@ msgstr "Seçim zamanı hesab nöqtələrinin nömrəsini təyin etmək üçün d
 msgid "Confirm"
 msgstr "Təsdiqlə"
 
-msgid "Are you human?"
-msgstr "Siz insansız?"
-
-msgid ""
-"We do not discriminate based on race and gender, but we do against computers"
-" :)"
-msgstr "Biz irq və cinsiyyətə görə ayrı-seçkilik etmirik, ancaq kompüterlərə qarşıyıq :)"
-
-msgid ""
-"Just to prove you are human, please answer the following math challenge:"
-msgstr "Robot olmadığınızı sübut etmək üçün, aşağıdakı  riyazi məsələyə cavab verin:"
-
-msgid "I've solved the math challenge, hide this thing now!"
-msgstr "Riyazi məsələni həll etdim, indi bunu gizlədin!"
-
 msgid "Please note that all the associated data will be permanently lost."
 msgstr "Xahiş edirik bütün əlaqəli məlumatların daimi olaraq silinəcəyini unutmayın."
-
-msgid ""
-"This means that if the server running the platform were to be seized, it "
-"would be possible to extract the files that have been submitted."
-msgstr "Platformanı işlədən server ələ keçirildiyi halda ixrac edilən faylları silmək mümkündür. "
-
-msgid "Are you sure that you wish to continue?"
-msgstr "Davam etmək istədiyinizə əminsiniz mi?"
 
 msgid "Error!"
 msgstr "Səhv!"
@@ -1743,6 +1716,18 @@ msgid "Investigative journalism"
 msgstr ""
 
 msgid "Civic activism"
+msgstr ""
+
+msgid "previous step"
+msgstr "öncəki addım"
+
+msgid "next step"
+msgstr "növbəti addım"
+
+msgid "Submit"
+msgstr "Göndər"
+
+msgid "Fill the additional questionnaire"
 msgstr ""
 
 msgid "Send"
@@ -1891,29 +1876,6 @@ msgid ""
 msgstr "Açar kodunuzu gizlətmək üçün faydalı yollardan biri kredit kartı nömrəsini son istifadə tarixi ilə yazmaqdır."
 
 msgid ""
-"You have not set up your encryption key, so the files will not be encrypted "
-"prior to being stored on the server."
-msgstr "Şifrələmə açarını qurmadığınız üçün fayllar serverdə saxlanılmamışdan qabaq şifrələnməyəcək. "
-
-msgid ""
-"This may lead to unintended access to the files by the server administrator "
-"or others in case the server is compromised."
-msgstr "Serverin təhlükəsizliyinin pozulması server admnistratorunun və digərlərinin istəmədən fayllara daxil olmasına səbəb ola bilər."
-
-msgid "Please configure your PGP keys in the recipient preferences page."
-msgstr "Xahiş edirik PGP açarlarını qəbul edici seçimlər səhifəsində quraşdırın"
-
-msgid ""
-"One or more of the recipients of this submission has not configured a PGP "
-"key."
-msgstr "Bu təqdimatın bir və ya daha çox qəbul edicisi PGP açarını quraşdırmayıb."
-
-msgid ""
-"This means that the submitted files will be stored in plaintext on the "
-"server."
-msgstr "Yəni, təqdim edilən fayllar serverdə sadə mətndə saxlanılacaq."
-
-msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."
 msgstr "Mühafizəçidən informasiya ötürənin kimliyinə giriş tələb olunur."
 
@@ -1967,15 +1929,6 @@ msgstr "xahiş edirik, yalnız rəqəmləri qeyd edin"
 
 msgid "Recipient selection"
 msgstr "Alıcı seçimi"
-
-msgid "previous step"
-msgstr "öncəki addım"
-
-msgid "next step"
-msgstr "növbəti addım"
-
-msgid "Submit"
-msgstr "Göndər"
 
 msgid "Recipients selected:"
 msgstr "Seçilmiş alıcılar:"

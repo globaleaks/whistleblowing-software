@@ -11,7 +11,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-09-27 21:26+0000\n"
+"PO-Revision-Date: 2018-11-05 16:47+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Czech (http://www.transifex.com/otf/globaleaks/language/cs/)\n"
 "MIME-Version: 1.0\n"
@@ -375,6 +375,9 @@ msgstr "v procentech"
 msgid "HTTPS settings"
 msgstr "Nastavení HTTPS"
 
+msgid "URL shortener"
+msgstr "Zkracovač URL"
+
 msgid "Anomaly detection thresholds"
 msgstr "Prahy detekce anomálií"
 
@@ -669,25 +672,21 @@ msgstr "Stav podáni"
 msgid "Disable submissions"
 msgstr "Zakázat podání"
 
-msgid "Enable insecure configuration without PGP encryption"
-msgstr "Povolit nedůvěryhodné nastavení bez PGP šifrování"
-
-msgid "Warning"
-msgstr "Varování"
+msgid "Enable encryption"
+msgstr ""
 
 msgid ""
-"By enabling this option, the system will be storing the submitted files "
-"unencrypted on your server."
-msgstr "Povolením této volby bude server ukládat odeslané soubory nezašifrované."
+"Allow the system to store data in plaintext when encryption is not available"
+msgstr ""
 
-msgid "This happens whenever encryption is unavailable."
-msgstr "Toto se stane kdykoliv je šifrování nedostupné."
-
-msgid "Disable messages that warn of missing encryption"
-msgstr "Vypnout zprávy varující před chybějícím šifrováním"
+msgid "Enable multisite feature"
+msgstr ""
 
 msgid "Allow other websites to include the platform inside iframes"
 msgstr "Povolit jiným stránkám zobrazovat části tohoto webu pomocí iframe."
+
+msgid "Warning"
+msgstr "Varování"
 
 msgid ""
 "By enabling this option, you are allowing other websites to include the "
@@ -733,20 +732,11 @@ msgstr "Název"
 msgid "Text"
 msgstr "Text"
 
-msgid "Disable the security awareness panel"
-msgstr "Zakázat panel povědomí o bezpečnosti"
-
 msgid "Disable the key code hint"
 msgstr "Vypnout nápovědu pro přístupový kód"
 
 msgid "Disable the donation panel"
 msgstr "Vypnout panel darů"
-
-msgid "Enable CAPTCHA mechanism"
-msgstr "Povolit ochranu CAPTCHA"
-
-msgid "Enable proof of work mechanism"
-msgstr "Povolit proof-of-work mechanismus"
 
 msgid "Amount of days till whistleblower access expires"
 msgstr "Počet dní do vypršení přístupu oznamovatele"
@@ -843,6 +833,12 @@ msgid "Enable multi-site login"
 msgstr ""
 
 msgid "Enable simplified login"
+msgstr ""
+
+msgid "Logging level"
+msgstr ""
+
+msgid "Log accesses of internal users"
 msgstr ""
 
 msgid "Enable experimental features"
@@ -952,6 +948,9 @@ msgstr "Jméno"
 
 msgid "Questionnaire"
 msgstr "Dotazník"
+
+msgid "Additional questionnaire"
+msgstr ""
 
 msgid "Recipients"
 msgstr "Příjemci"
@@ -1463,9 +1462,6 @@ msgstr "Kořenová doména pro sekundární stránky"
 msgid "Allow users to sign up"
 msgstr "Povolit uživatelům registraci"
 
-msgid "Record IP address and user agent of registered users"
-msgstr ""
-
 msgid "Enable terms of service"
 msgstr ""
 
@@ -1610,31 +1606,8 @@ msgstr "Zadejte počet bodů skóre pro přidělení, je-li tato volba zvolena:"
 msgid "Confirm"
 msgstr "Potvrdit"
 
-msgid "Are you human?"
-msgstr "Jste člověk?"
-
-msgid ""
-"We do not discriminate based on race and gender, but we do against computers"
-" :)"
-msgstr "Nediskriminujeme na základě rasy či genderu, jen nemáme rádi roboty:)"
-
-msgid ""
-"Just to prove you are human, please answer the following math challenge:"
-msgstr "Abyste prokázali, že jste lidské rasy, prosím vyřeště následující matematickou úlohu:"
-
-msgid "I've solved the math challenge, hide this thing now!"
-msgstr "Matematická úloha vyřešena, tak už to skryjte."
-
 msgid "Please note that all the associated data will be permanently lost."
 msgstr "Prosím, vezměte na vědomí, že všechna související data budou navždy smazána."
-
-msgid ""
-"This means that if the server running the platform were to be seized, it "
-"would be possible to extract the files that have been submitted."
-msgstr "To znamená, že pokud bude server provozující toto řešení zabaven, bude pravděpodobně možné z něj získat data v něm uložená."
-
-msgid "Are you sure that you wish to continue?"
-msgstr "Jste si jistí zda chcete pokračovat?"
 
 msgid "Error!"
 msgstr "Chyba!"
@@ -1746,6 +1719,18 @@ msgstr "Investigativní žurnalistika"
 
 msgid "Civic activism"
 msgstr "Občanský aktivismus"
+
+msgid "previous step"
+msgstr "Předchozí krok"
+
+msgid "next step"
+msgstr "Další krok"
+
+msgid "Submit"
+msgstr "Odeslat"
+
+msgid "Fill the additional questionnaire"
+msgstr ""
 
 msgid "Send"
 msgstr "Odeslat"
@@ -1893,29 +1878,6 @@ msgid ""
 msgstr "Užitečný způsob, jak si nenápadně poznamenat přístupový kód, je zapsat si ho jako číslo kreditní karty. Pro lepší dojem můžete doplnit datum expirace."
 
 msgid ""
-"You have not set up your encryption key, so the files will not be encrypted "
-"prior to being stored on the server."
-msgstr "Zatím jste nenastavili svůj šifrovací klíč. Veškeré nahrávané soubory tedy nebudou ukládány v zašifrované formě."
-
-msgid ""
-"This may lead to unintended access to the files by the server administrator "
-"or others in case the server is compromised."
-msgstr "To může vézt k nechtěnému přístupu k souborům adminsitrátorem serveru v případě sizingu, změny konfigurace  serveru."
-
-msgid "Please configure your PGP keys in the recipient preferences page."
-msgstr "Nakonfigurujte, prosím, na stránce nastavení příjemce Váš klíč PGP ."
-
-msgid ""
-"One or more of the recipients of this submission has not configured a PGP "
-"key."
-msgstr "Jeden nebo více příjemců nemá nakonfigurován PGP klíč."
-
-msgid ""
-"This means that the submitted files will be stored in plaintext on the "
-"server."
-msgstr "To znamená že předložené soubory budou uloženy na serveru v plaintextu."
-
-msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."
 msgstr "Ochránce byl požádán o přístup k identitě oznamovatele"
 
@@ -1969,15 +1931,6 @@ msgstr "Vkládejte, prosím, pouze čísla."
 
 msgid "Recipient selection"
 msgstr "Výběr příjemce"
-
-msgid "previous step"
-msgstr "Předchozí krok"
-
-msgid "next step"
-msgstr "Další krok"
-
-msgid "Submit"
-msgstr "Odeslat"
 
 msgid "Recipients selected:"
 msgstr "Vybraní příjemci:"

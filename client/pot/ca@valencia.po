@@ -15,7 +15,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-09-27 21:26+0000\n"
+"PO-Revision-Date: 2018-11-05 16:47+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Catalan (Valencian) (http://www.transifex.com/otf/globaleaks/language/ca%40valencia/)\n"
 "MIME-Version: 1.0\n"
@@ -379,6 +379,9 @@ msgstr "en percentatge"
 msgid "HTTPS settings"
 msgstr "configuracions en HTTPS"
 
+msgid "URL shortener"
+msgstr ""
+
 msgid "Anomaly detection thresholds"
 msgstr "Llindars de detecció d'anomalies"
 
@@ -673,25 +676,21 @@ msgstr "Estat de l'enviament"
 msgid "Disable submissions"
 msgstr "Deshabilita els enviaments"
 
-msgid "Enable insecure configuration without PGP encryption"
-msgstr "Habilita configuració insegura sense xifrat PGP"
-
-msgid "Warning"
-msgstr "Advertència"
+msgid "Enable encryption"
+msgstr ""
 
 msgid ""
-"By enabling this option, the system will be storing the submitted files "
-"unencrypted on your server."
-msgstr "Habilitant aquesta opció el sistema desarà els fitxers rebuts al servidor sense xifrar."
+"Allow the system to store data in plaintext when encryption is not available"
+msgstr ""
 
-msgid "This happens whenever encryption is unavailable."
-msgstr "Això passa en cas que el xifrat no estiga disponible."
-
-msgid "Disable messages that warn of missing encryption"
-msgstr "Deshabilita els missatges que adverteixen de la falta de xifratge"
+msgid "Enable multisite feature"
+msgstr ""
 
 msgid "Allow other websites to include the platform inside iframes"
 msgstr "Permet que altres webs incloguen la plataforma a l'interior d'Iframes"
+
+msgid "Warning"
+msgstr "Advertència"
 
 msgid ""
 "By enabling this option, you are allowing other websites to include the "
@@ -737,20 +736,11 @@ msgstr ""
 msgid "Text"
 msgstr ""
 
-msgid "Disable the security awareness panel"
-msgstr "Deshabilita el tauler de conscienciació de seguretat"
-
 msgid "Disable the key code hint"
 msgstr "Deshabilita l'indici del codi d'accés"
 
 msgid "Disable the donation panel"
 msgstr "Deshabilita el tauler de donació"
-
-msgid "Enable CAPTCHA mechanism"
-msgstr "Activa el mecanisme CAPTCHA"
-
-msgid "Enable proof of work mechanism"
-msgstr "Activa el mecanisme de prova de funcionament"
 
 msgid "Amount of days till whistleblower access expires"
 msgstr "Quantitat de dies fins que l'accés dels informadors expira"
@@ -847,6 +837,12 @@ msgid "Enable multi-site login"
 msgstr ""
 
 msgid "Enable simplified login"
+msgstr ""
+
+msgid "Logging level"
+msgstr ""
+
+msgid "Log accesses of internal users"
 msgstr ""
 
 msgid "Enable experimental features"
@@ -956,6 +952,9 @@ msgstr "Nom"
 
 msgid "Questionnaire"
 msgstr "Qüestionari"
+
+msgid "Additional questionnaire"
+msgstr ""
 
 msgid "Recipients"
 msgstr "Destinataris"
@@ -1467,9 +1466,6 @@ msgstr "Domini arrel usat per pàgines secundàries"
 msgid "Allow users to sign up"
 msgstr "Permet als usuaris connectar-se"
 
-msgid "Record IP address and user agent of registered users"
-msgstr ""
-
 msgid "Enable terms of service"
 msgstr ""
 
@@ -1614,31 +1610,8 @@ msgstr "Introdueix el nombre de punts que vols assignar quan aquesta opció esti
 msgid "Confirm"
 msgstr "Confirme"
 
-msgid "Are you human?"
-msgstr "Es vosté humà?"
-
-msgid ""
-"We do not discriminate based on race and gender, but we do against computers"
-" :)"
-msgstr "No discriminem per raça ni per sexe, però sí si es tracta d'un ordinador :-)"
-
-msgid ""
-"Just to prove you are human, please answer the following math challenge:"
-msgstr "Per demostrar-nos que és vosté una persona, per favor, resolga el repte matemàtic següent:"
-
-msgid "I've solved the math challenge, hide this thing now!"
-msgstr "Ja he solucionat el repte matemàtic, amagueu això ara mateix!"
-
 msgid "Please note that all the associated data will be permanently lost."
 msgstr "Recordeu que totes les dades associades es perden definitivament."
-
-msgid ""
-"This means that if the server running the platform were to be seized, it "
-"would be possible to extract the files that have been submitted."
-msgstr "Això vol dir que si algú prenguera el control del servidor de la plataforma, seria possible extreure els arxius que s'han lliurat."
-
-msgid "Are you sure that you wish to continue?"
-msgstr "Està segur que vol continuar?"
 
 msgid "Error!"
 msgstr "Error!"
@@ -1750,6 +1723,18 @@ msgstr "Periodisme d'investigació"
 
 msgid "Civic activism"
 msgstr "Activisme cívic"
+
+msgid "previous step"
+msgstr "Pas anterior"
+
+msgid "next step"
+msgstr "Pas següent"
+
+msgid "Submit"
+msgstr "Lliurament"
+
+msgid "Fill the additional questionnaire"
+msgstr ""
 
 msgid "Send"
 msgstr "Envie-ho"
@@ -1897,29 +1882,6 @@ msgid ""
 msgstr "Un manera útil d'amagar el codi és anotar-lo com si fóra el número d'una targeta de crèdit i, per exemple, afegir també una data de caducitat."
 
 msgid ""
-"You have not set up your encryption key, so the files will not be encrypted "
-"prior to being stored on the server."
-msgstr "No ha establit la clau d'encriptació, de manera que els arxius no seran xifrats abans de desar-los al servidor."
-
-msgid ""
-"This may lead to unintended access to the files by the server administrator "
-"or others in case the server is compromised."
-msgstr "Això pot comportar accessos imprevistos als fitxers per part de l'administrador del servidor, o també, de tercers en el cas que el servidor quedara compromés."
-
-msgid "Please configure your PGP keys in the recipient preferences page."
-msgstr "Per favor, configure les seues claus PGP a la pàgina de preferències del destinatari."
-
-msgid ""
-"One or more of the recipients of this submission has not configured a PGP "
-"key."
-msgstr "Algun dels destinataris d'aquest lliurament no ha configurat una clau PGP."
-
-msgid ""
-"This means that the submitted files will be stored in plaintext on the "
-"server."
-msgstr "Això significa que els fitxers enviats es desaran en text en clar al servidor."
-
-msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."
 msgstr "El responsable ha demanat l'accés a la identitat de l'informador."
 
@@ -1973,15 +1935,6 @@ msgstr "Per favor, introduisca només números."
 
 msgid "Recipient selection"
 msgstr "Seleccione el destinatari"
-
-msgid "previous step"
-msgstr "Pas anterior"
-
-msgid "next step"
-msgstr "Pas següent"
-
-msgid "Submit"
-msgstr "Lliurament"
 
 msgid "Recipients selected:"
 msgstr "Destinataris seleccionats:"

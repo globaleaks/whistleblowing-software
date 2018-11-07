@@ -35,7 +35,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-09-27 21:26+0000\n"
+"PO-Revision-Date: 2018-11-05 16:47+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Dutch (http://www.transifex.com/otf/globaleaks/language/nl/)\n"
 "MIME-Version: 1.0\n"
@@ -399,6 +399,9 @@ msgstr "percentage"
 msgid "HTTPS settings"
 msgstr "HTTPS-instellingen"
 
+msgid "URL shortener"
+msgstr "URL-shortener"
+
 msgid "Anomaly detection thresholds"
 msgstr "Drempels voor anomaliedetectie"
 
@@ -693,25 +696,21 @@ msgstr "Status inzending"
 msgid "Disable submissions"
 msgstr "Inzendingen uitschakelen"
 
-msgid "Enable insecure configuration without PGP encryption"
-msgstr "Activeer onveilige configuratie zonder PGP-versleuteling"
-
-msgid "Warning"
-msgstr "Waarschuwing"
+msgid "Enable encryption"
+msgstr ""
 
 msgid ""
-"By enabling this option, the system will be storing the submitted files "
-"unencrypted on your server."
-msgstr "Door deze optie te activeren zal het systeem de aangeleverde bestanden onversleuteld opslaan op je server."
+"Allow the system to store data in plaintext when encryption is not available"
+msgstr ""
 
-msgid "This happens whenever encryption is unavailable."
-msgstr "Dit gebeurt wanneer versleuteling niet beschikbaar is."
-
-msgid "Disable messages that warn of missing encryption"
-msgstr "Meldingen uitschakelen die waarschuwen voor ontbrekende versleuteling"
+msgid "Enable multisite feature"
+msgstr ""
 
 msgid "Allow other websites to include the platform inside iframes"
 msgstr "Gebruik van het platform door middel van iframes op andere websites toestaan"
+
+msgid "Warning"
+msgstr "Waarschuwing"
 
 msgid ""
 "By enabling this option, you are allowing other websites to include the "
@@ -757,20 +756,11 @@ msgstr "Titel"
 msgid "Text"
 msgstr "Tekst"
 
-msgid "Disable the security awareness panel"
-msgstr "Veiligheidsbewustzijn-paneel uitzetten"
-
 msgid "Disable the key code hint"
 msgstr "De sleutelcode-hint uitschakelen"
 
 msgid "Disable the donation panel"
 msgstr "Donatiebox uitschakelen"
-
-msgid "Enable CAPTCHA mechanism"
-msgstr "CAPTCHAS inschakelen"
-
-msgid "Enable proof of work mechanism"
-msgstr "'Proof-of-work'-mechanisme inschakelen"
 
 msgid "Amount of days till whistleblower access expires"
 msgstr "Het aantal dagen totdat de klokkenluider zijn toegang verloopt"
@@ -867,6 +857,12 @@ msgid "Enable multi-site login"
 msgstr ""
 
 msgid "Enable simplified login"
+msgstr ""
+
+msgid "Logging level"
+msgstr ""
+
+msgid "Log accesses of internal users"
 msgstr ""
 
 msgid "Enable experimental features"
@@ -976,6 +972,9 @@ msgstr "Naam"
 
 msgid "Questionnaire"
 msgstr "Vragenformulier"
+
+msgid "Additional questionnaire"
+msgstr ""
 
 msgid "Recipients"
 msgstr "Ontvangers"
@@ -1487,9 +1486,6 @@ msgstr ""
 msgid "Allow users to sign up"
 msgstr ""
 
-msgid "Record IP address and user agent of registered users"
-msgstr ""
-
 msgid "Enable terms of service"
 msgstr ""
 
@@ -1634,31 +1630,8 @@ msgstr "Voer het aantal scorepunten in die toegekend worden wanneer deze optie w
 msgid "Confirm"
 msgstr "Bevestig extentie"
 
-msgid "Are you human?"
-msgstr "Ben jij een mens?"
-
-msgid ""
-"We do not discriminate based on race and gender, but we do against computers"
-" :)"
-msgstr "We willen graag verifiëren of u geen computer bent :)"
-
-msgid ""
-"Just to prove you are human, please answer the following math challenge:"
-msgstr "Beantwoord alsjeblieft de volgende berekening:"
-
-msgid "I've solved the math challenge, hide this thing now!"
-msgstr "Ik heb de berekening voltooid, verberg de verificatie!"
-
 msgid "Please note that all the associated data will be permanently lost."
 msgstr "Let op, alle hiermee verbonden data gaat permanent verloren."
-
-msgid ""
-"This means that if the server running the platform were to be seized, it "
-"would be possible to extract the files that have been submitted."
-msgstr "Dit betekent dat indien de server waarop de platform draait in beslag wordt genomen, het mogelijk is om de ingezonden bestanden te extraheren."
-
-msgid "Are you sure that you wish to continue?"
-msgstr "Weet je zeker dat je door wilt gaan?"
 
 msgid "Error!"
 msgstr "Mislukt!"
@@ -1769,6 +1742,18 @@ msgid "Investigative journalism"
 msgstr ""
 
 msgid "Civic activism"
+msgstr ""
+
+msgid "previous step"
+msgstr "vorige stap"
+
+msgid "next step"
+msgstr "volgende stap"
+
+msgid "Submit"
+msgstr "Verstuur"
+
+msgid "Fill the additional questionnaire"
 msgstr ""
 
 msgid "Send"
@@ -1917,29 +1902,6 @@ msgid ""
 msgstr "Een handige manier om uw sleutel code te verbergen, is om het op te schrijven zoals een creditcard nummer. Vergeet niet de vervaldatum erbij te schrijven."
 
 msgid ""
-"You have not set up your encryption key, so the files will not be encrypted "
-"prior to being stored on the server."
-msgstr "Je hebt je versleutelingssleutel niet ingesteld, dus worden de bestanden niet versleuteld voordat deze worden opgeslagen op de server."
-
-msgid ""
-"This may lead to unintended access to the files by the server administrator "
-"or others in case the server is compromised."
-msgstr "Dit kan leiden tot onbedoelde toegang tot de bestanden door de serverbeheerder of bij inbeslagname van de server."
-
-msgid "Please configure your PGP keys in the recipient preferences page."
-msgstr "Configureer uw PGP-sleutels in de ontvanger voorkeurspagina."
-
-msgid ""
-"One or more of the recipients of this submission has not configured a PGP "
-"key."
-msgstr "Een of meerdere ontvangers van deze inzending hebben geen PGP-sleutel geconfigureerd."
-
-msgid ""
-"This means that the submitted files will be stored in plaintext on the "
-"server."
-msgstr "Dit betekent dat de ingediende dossiers worden opgeslagen als leesbare tekst op de server."
-
-msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."
 msgstr "De toezichthouder heeft een aanvraag ingediend om toegang te krijgen tot de identiteit van de klokkenluider."
 
@@ -1993,15 +1955,6 @@ msgstr "vul enkel getallen in."
 
 msgid "Recipient selection"
 msgstr "Ontvangerselectie"
-
-msgid "previous step"
-msgstr "vorige stap"
-
-msgid "next step"
-msgstr "volgende stap"
-
-msgid "Submit"
-msgstr "Verstuur"
 
 msgid "Recipients selected:"
 msgstr "Ontvangers geselecteerd:"

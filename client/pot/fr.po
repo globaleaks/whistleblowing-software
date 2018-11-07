@@ -18,7 +18,7 @@
 # marco calamari <marcoc@marcoc.it>, 2013
 # Myriam Gineste <yleane.myriam@gmail.com>, 2014
 # Pierre <prjolivet@yahoo.fr>, 2015
-# Rahma Sghaier <sghair.rahma@gmail.com>, 2016
+# Rima Sghaier <sghair.rahma@gmail.com>, 2016
 # rike, 2014
 # rike, 2014
 # Towinet, 2013-2015
@@ -39,7 +39,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-09-27 21:26+0000\n"
+"PO-Revision-Date: 2018-11-05 16:47+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: French (http://www.transifex.com/otf/globaleaks/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -403,6 +403,9 @@ msgstr "en pourcentage"
 msgid "HTTPS settings"
 msgstr "Paramètres HTTPS"
 
+msgid "URL shortener"
+msgstr "Réducteur d’URL"
+
 msgid "Anomaly detection thresholds"
 msgstr "Seuils de détection des anomalies"
 
@@ -636,7 +639,7 @@ msgid "Use as default"
 msgstr "Utiliser comme valeur par défaut"
 
 msgid "Create your whistleblowing platform"
-msgstr "Créer votre plateforme de lancement d’alerte"
+msgstr "Créez votre plateforme de lancement d’alerte"
 
 msgid "Collapse"
 msgstr "Réduire"
@@ -697,25 +700,21 @@ msgstr "État de l’envoi"
 msgid "Disable submissions"
 msgstr "Désactiver les envois"
 
-msgid "Enable insecure configuration without PGP encryption"
-msgstr "Activer la configuration non sécurisée sans chiffrement PGP"
-
-msgid "Warning"
-msgstr "Avertissement"
+msgid "Enable encryption"
+msgstr "Activer le chiffrement"
 
 msgid ""
-"By enabling this option, the system will be storing the submitted files "
-"unencrypted on your server."
-msgstr "En activant cette option, le système stockera sur votre serveur les fichiers envoyés sans les chiffrer."
+"Allow the system to store data in plaintext when encryption is not available"
+msgstr ""
 
-msgid "This happens whenever encryption is unavailable."
-msgstr "Cela se produit quand le chiffrement n’est pas proposé."
-
-msgid "Disable messages that warn of missing encryption"
-msgstr "Désactiver les avertissements en cas d’absence de chiffrement"
+msgid "Enable multisite feature"
+msgstr ""
 
 msgid "Allow other websites to include the platform inside iframes"
 msgstr "Permettre à d’autres sites Web d’inclure la plateforme à l’intérieur de cadres « iframes »"
+
+msgid "Warning"
+msgstr "Avertissement"
 
 msgid ""
 "By enabling this option, you are allowing other websites to include the "
@@ -761,20 +760,11 @@ msgstr "Titre"
 msgid "Text"
 msgstr "Texte"
 
-msgid "Disable the security awareness panel"
-msgstr "Désactiver la fenêtre de sensibilisation à la sécurité"
-
 msgid "Disable the key code hint"
 msgstr "Désactiver l’indice de code-clé"
 
 msgid "Disable the donation panel"
 msgstr "Désactiver le volet des dons"
-
-msgid "Enable CAPTCHA mechanism"
-msgstr "Activer un mécanisme CAPTCHA"
-
-msgid "Enable proof of work mechanism"
-msgstr "Activer un mécanisme de preuve de travail"
 
 msgid "Amount of days till whistleblower access expires"
 msgstr "Nombre de jours avant que l’accès du lanceur d’alerte ne soit expiré."
@@ -872,6 +862,12 @@ msgstr "Activer la connexion multisite"
 
 msgid "Enable simplified login"
 msgstr "Activer la connexion simplifiée"
+
+msgid "Logging level"
+msgstr "Niveau de journalisation"
+
+msgid "Log accesses of internal users"
+msgstr "Journaliser les accès des utilisateurs internes"
 
 msgid "Enable experimental features"
 msgstr "Activer les fonctions expérimentales"
@@ -980,6 +976,9 @@ msgstr "Nom"
 
 msgid "Questionnaire"
 msgstr "Questionnaire"
+
+msgid "Additional questionnaire"
+msgstr "Questionnaire supplémentaire"
 
 msgid "Recipients"
 msgstr "Destinataires"
@@ -1474,7 +1473,7 @@ msgid ""
 msgstr "Permettre au destinataire de donner des permissions aux lanceurs d’alerte pour des envois spécifiques"
 
 msgid "Site settings"
-msgstr "Paramètres des sites"
+msgstr "Paramètres du site"
 
 msgid "Case management"
 msgstr "Gestion des cas"
@@ -1490,9 +1489,6 @@ msgstr "Domaine racine utilisé pour les sites secondaires"
 
 msgid "Allow users to sign up"
 msgstr "Permettre aux utilisateurs de s’inscrire"
-
-msgid "Record IP address and user agent of registered users"
-msgstr "Enregistrer l’adresse IP et l’agent utilisateur des utilisateurs inscrits"
 
 msgid "Enable terms of service"
 msgstr "Activer les conditions générales d’utilisation"
@@ -1595,7 +1591,7 @@ msgstr "Cette plateforme utilise le logiciel GlobaLeaks, spécialement conçu po
 msgid ""
 "The software is developed by the non-profit Hermes Center for Transparency "
 "and Digital Human Rights."
-msgstr "Le logiciel est développé par le Centre Hermès pour la transparence et les droits humains numériques, sans but lucratif."
+msgstr "Le logiciel est développé par le Centre Hermès pour la transparence et les droits numériques de la personne, sans but lucratif."
 
 msgid "Please support Hermes through their donation page."
 msgstr "Veuillez encourager Hermès en visitant leur page de don."
@@ -1638,31 +1634,8 @@ msgstr "Saisir le nombre de points à attribuer lorsque cette option est choisie
 msgid "Confirm"
 msgstr "Confirmer"
 
-msgid "Are you human?"
-msgstr "Êtes-vous un être humain ?"
-
-msgid ""
-"We do not discriminate based on race and gender, but we do against computers"
-" :)"
-msgstr "Nous n’exerçons aucune discrimination d’après votre race, votre sexe, mais nous n’acceptons pas les ordinateurs :)"
-
-msgid ""
-"Just to prove you are human, please answer the following math challenge:"
-msgstr "Pour prouver que vous êtes un être humain, veuillez répondre au problème mathématique suivant :"
-
-msgid "I've solved the math challenge, hide this thing now!"
-msgstr "J’ai résolu le problème mathématique, cachez cela maintenant !"
-
 msgid "Please note that all the associated data will be permanently lost."
 msgstr "Veuillez prendre note que toutes les données associées seront irrémédiablement supprimées."
-
-msgid ""
-"This means that if the server running the platform were to be seized, it "
-"would be possible to extract the files that have been submitted."
-msgstr "Cela signifie que si le serveur exécutant GlobaLeaks devait être saisi, il serait possible d’extraire les fichiers transmis."
-
-msgid "Are you sure that you wish to continue?"
-msgstr "Voulez-vous vraiment poursuivre ?"
 
 msgid "Error!"
 msgstr "Erreur !"
@@ -1761,7 +1734,7 @@ msgid ""
 msgstr "La plateforme n’est toujours pas configurée pour les connexions HTTPS  et ne devrait être utilisée qu’à des fins de test."
 
 msgid "Use case"
-msgstr "Cas d’usage"
+msgstr "Cas d’utilisation"
 
 msgid "Anticorruption"
 msgstr "Anticorruption"
@@ -1774,6 +1747,18 @@ msgstr "Journalisme d’enquête"
 
 msgid "Civic activism"
 msgstr "Activisme citoyen"
+
+msgid "previous step"
+msgstr "étape précédente"
+
+msgid "next step"
+msgstr "étape suivante"
+
+msgid "Submit"
+msgstr "Envoyer"
+
+msgid "Fill the additional questionnaire"
+msgstr "Remplir le questionnaire supplémentaire"
 
 msgid "Send"
 msgstr "Envoyer"
@@ -1921,29 +1906,6 @@ msgid ""
 msgstr "Une bonne manière de dissimuler votre code-clé est de le noter comme un numéro de carte de crédit, c.-à-d. en ajoutant une date d’expiration."
 
 msgid ""
-"You have not set up your encryption key, so the files will not be encrypted "
-"prior to being stored on the server."
-msgstr "Vous n’avez pas configuré votre clé de chiffrement. Les fichiers ne seront donc pas chiffrés avant d’être stockés sur le serveur."
-
-msgid ""
-"This may lead to unintended access to the files by the server administrator "
-"or others in case the server is compromised."
-msgstr "Cela pourrait entraîner un accès non désiré aux fichiers par l’administrateur du serveur, ou par des tiers au cas où le serveur serait compromis."
-
-msgid "Please configure your PGP keys in the recipient preferences page."
-msgstr "Veuillez configurer vos clés PGP dans la page de préférences du destinataire."
-
-msgid ""
-"One or more of the recipients of this submission has not configured a PGP "
-"key."
-msgstr "Un ou plusieurs destinataires de cet envoi n’ont pas configuré de clé PGP."
-
-msgid ""
-"This means that the submitted files will be stored in plaintext on the "
-"server."
-msgstr "Cela signifie que les fichiers envoyés seront stockés en texte clair sur le serveur."
-
-msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."
 msgstr "L’accès à l’identité du lanceur d’alerte a été demandé au gardien. "
 
@@ -1978,7 +1940,7 @@ msgid "Complete"
 msgstr "Terminé"
 
 msgid "Invalid phone number"
-msgstr ""
+msgstr "Le numéro de téléphone est invalide"
 
 msgid "This field is mandatory."
 msgstr "Ce champ est obligatoire."
@@ -1997,15 +1959,6 @@ msgstr "veuillez ne saisir que des chiffres."
 
 msgid "Recipient selection"
 msgstr "Sélection du destinataire"
-
-msgid "previous step"
-msgstr "étape précédente"
-
-msgid "next step"
-msgstr "étape suivante"
-
-msgid "Submit"
-msgstr "Envoyer"
 
 msgid "Recipients selected:"
 msgstr "Destinataires sélectionnés :"
@@ -2143,13 +2096,13 @@ msgid "Your whistleblowing platform is now accessible at:"
 msgstr "Il est maintenant possible d’accéder à votre plateforme de lancement d’alerte sur :"
 
 msgid "To log in, visit:"
-msgstr "Pour vous connecter, visiter :"
+msgstr "Pour vous connecter, visitez :"
 
 msgid "Users' credentials:"
 msgstr "Renseignements sur les utilisateurs :"
 
 msgid "For the user documentation visit:"
-msgstr "Pour consulter la documentation utilisateur, visiter :"
+msgstr "Pour consulter la documentation utilisateur, visitez :"
 
 msgid "The platform will be automatically deleted on:"
 msgstr "La plateforme sera supprimée automatiquement le :"
@@ -2231,7 +2184,7 @@ msgid "Language: {Language}"
 msgstr "Langue : {Language}"
 
 msgid "Use case: {UseCase}"
-msgstr "Cas d’usage : {UseCase}"
+msgstr "Cas d’utilisation : {UseCase}"
 
 msgid "New whistleblowing site registered"
 msgstr "Un nouveau site de lancement d’alerte a été enregistré."
@@ -2432,7 +2385,7 @@ msgid "Notifications from {NodeName} have been temporarily suspended"
 msgstr "Les notifications provenant de {NodeName} ont été suspendues temporairement"
 
 msgid "Click the link to activate the platform:"
-msgstr "Cliquer sur le lien pour activer la plateforme :"
+msgstr "Cliquez sur le lien pour activer la plateforme :"
 
 msgid "Activation"
 msgstr "Activation"

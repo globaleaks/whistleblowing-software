@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-09-27 21:26+0000\n"
+"PO-Revision-Date: 2018-11-05 16:47+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Danish (http://www.transifex.com/otf/globaleaks/language/da/)\n"
 "MIME-Version: 1.0\n"
@@ -370,6 +370,9 @@ msgstr "I procent"
 msgid "HTTPS settings"
 msgstr "HTTPS indstillinger"
 
+msgid "URL shortener"
+msgstr ""
+
 msgid "Anomaly detection thresholds"
 msgstr "Grænseværdier for sporing af afvigelser"
 
@@ -664,25 +667,21 @@ msgstr "Status for indsendelsen"
 msgid "Disable submissions"
 msgstr "Deaktiver indsendelser"
 
-msgid "Enable insecure configuration without PGP encryption"
-msgstr "Aktiver usikker konfiguration uden PGP kryptering"
-
-msgid "Warning"
-msgstr "Advarsel"
+msgid "Enable encryption"
+msgstr ""
 
 msgid ""
-"By enabling this option, the system will be storing the submitted files "
-"unencrypted on your server."
-msgstr "Aktiveres denne mulighed vil systemet lagre indsendte filer ukrypteret på serveren."
+"Allow the system to store data in plaintext when encryption is not available"
+msgstr ""
 
-msgid "This happens whenever encryption is unavailable."
-msgstr "Dette sker, når kryptering ikke er tilgængelig."
-
-msgid "Disable messages that warn of missing encryption"
-msgstr "Deaktiver meddelelser der advarer om manglende kryptering"
+msgid "Enable multisite feature"
+msgstr ""
 
 msgid "Allow other websites to include the platform inside iframes"
 msgstr "Tillad andre websteder at inkludere platformen i iframes"
+
+msgid "Warning"
+msgstr "Advarsel"
 
 msgid ""
 "By enabling this option, you are allowing other websites to include the "
@@ -728,20 +727,11 @@ msgstr "Titel"
 msgid "Text"
 msgstr "Tekst"
 
-msgid "Disable the security awareness panel"
-msgstr "Deaktiver sikkerhedspanelet"
-
 msgid "Disable the key code hint"
 msgstr "Deaktiver nøglekode-hintet"
 
 msgid "Disable the donation panel"
 msgstr "Deaktiver donationspanelet"
-
-msgid "Enable CAPTCHA mechanism"
-msgstr "Aktiver CAPTCHA-mekanismen"
-
-msgid "Enable proof of work mechanism"
-msgstr "Aktiver proof-of-work mekanismen"
 
 msgid "Amount of days till whistleblower access expires"
 msgstr "Antal dage til whistleblowerens adgang udløber"
@@ -838,6 +828,12 @@ msgid "Enable multi-site login"
 msgstr ""
 
 msgid "Enable simplified login"
+msgstr ""
+
+msgid "Logging level"
+msgstr ""
+
+msgid "Log accesses of internal users"
 msgstr ""
 
 msgid "Enable experimental features"
@@ -947,6 +943,9 @@ msgstr "Navn"
 
 msgid "Questionnaire"
 msgstr "Spørgeskema"
+
+msgid "Additional questionnaire"
+msgstr ""
 
 msgid "Recipients"
 msgstr "Modtagere"
@@ -1458,9 +1457,6 @@ msgstr "Primært domænenavn der anvendes til underliggende sider"
 msgid "Allow users to sign up"
 msgstr "Tillad brugere at tilmelde sig"
 
-msgid "Record IP address and user agent of registered users"
-msgstr ""
-
 msgid "Enable terms of service"
 msgstr ""
 
@@ -1605,31 +1601,8 @@ msgstr "Indtast antallet af pointtal der kan tildeles når denne mulighed er val
 msgid "Confirm"
 msgstr "Bekræft"
 
-msgid "Are you human?"
-msgstr "Er du menneske?"
-
-msgid ""
-"We do not discriminate based on race and gender, but we do against computers"
-" :)"
-msgstr "Vi diskriminerer ikke på baggrund af race og køn, men vi gør mod computere :)"
-
-msgid ""
-"Just to prove you are human, please answer the following math challenge:"
-msgstr "Blot for at bevise, at du er menneske, beder vi dig løse følgende matematikopgave:"
-
-msgid "I've solved the math challenge, hide this thing now!"
-msgstr "Jeg har løst matematikopgaven, så skjul dimsen nu!"
-
 msgid "Please note that all the associated data will be permanently lost."
 msgstr "Vær opmærksom på, at alle tilknyttede data vil blive permanent slettet."
-
-msgid ""
-"This means that if the server running the platform were to be seized, it "
-"would be possible to extract the files that have been submitted."
-msgstr "Det betyder, at hvis serveren hvor platformen kører bliver beslaglagt, så vil det være muligt at få adgang til filer, der er blevet indleveret."
-
-msgid "Are you sure that you wish to continue?"
-msgstr "Er du sikker på, at du ønsker at fortsætte?"
 
 msgid "Error!"
 msgstr "Fejl!"
@@ -1741,6 +1714,18 @@ msgstr "Undersøgende journalistik"
 
 msgid "Civic activism"
 msgstr "Borgeraktivisme"
+
+msgid "previous step"
+msgstr "Forrige skridt"
+
+msgid "next step"
+msgstr "Næste skridt"
+
+msgid "Submit"
+msgstr "Indsend"
+
+msgid "Fill the additional questionnaire"
+msgstr ""
 
 msgid "Send"
 msgstr "Send"
@@ -1888,29 +1873,6 @@ msgid ""
 msgstr "En nyttig måde at skjule din nøglekode er at skrive den ned som nummeret på et kreditkort, dvs ved også at inkludere en udløbsdato."
 
 msgid ""
-"You have not set up your encryption key, so the files will not be encrypted "
-"prior to being stored on the server."
-msgstr "Du har ikke opsat en krypteringsnøgle, så filerne vil ikke blive krypteret før de bliver gemt på serveren."
-
-msgid ""
-"This may lead to unintended access to the files by the server administrator "
-"or others in case the server is compromised."
-msgstr "Det kan føre til utilsigtet adgang til filerne af serverens administrator eller andre i tilfælde af, at serveren bliver kompromitteret."
-
-msgid "Please configure your PGP keys in the recipient preferences page."
-msgstr "Venligst konfigurer din PGP nøgle på indstillingssiden for modtagere."
-
-msgid ""
-"One or more of the recipients of this submission has not configured a PGP "
-"key."
-msgstr "En eller flere modtagere af denne indsendelse har ikke konfigureret en PGP nøgle."
-
-msgid ""
-"This means that the submitted files will be stored in plaintext on the "
-"server."
-msgstr "Det betyder, at indsendte filer vil blive gemt i klartekst på serveren."
-
-msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."
 msgstr "Forespørgsel om whistleblowerens identitet er blevet videregivet til den tilsynsførende."
 
@@ -1964,15 +1926,6 @@ msgstr "Skriv venligst kun tal."
 
 msgid "Recipient selection"
 msgstr "Vælg modtagere"
-
-msgid "previous step"
-msgstr "Forrige skridt"
-
-msgid "next step"
-msgstr "Næste skridt"
-
-msgid "Submit"
-msgstr "Indsend"
 
 msgid "Recipients selected:"
 msgstr "Valgte modtagere:"
