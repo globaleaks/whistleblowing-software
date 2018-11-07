@@ -9,8 +9,8 @@
 # John Andersson <johnandersson86@hotmail.com>, 2015
 # Jonas Hedberg <jonas@hedberg2.se>, 2015
 # Jonatan Nyberg, 2018
-# Kristoffer Grundström <kristoffer.grundstrom1983@gmail.com>, 2014
-# Kristoffer Grundström <kristoffer.grundstrom1983@gmail.com>, 2014
+# Kristoffer Grundström <hamnisdude@gmail.com>, 2014
+# Kristoffer Grundström <hamnisdude@gmail.com>, 2014
 # Linus Malmgren <linus@malmgren.nu>, 2015
 # martinedstrom <martin@martinedstrom.com>, 2014
 # martinedstrom <martin@martinedstrom.com>, 2014
@@ -20,7 +20,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-09-27 21:26+0000\n"
+"PO-Revision-Date: 2018-11-05 16:47+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Swedish (http://www.transifex.com/otf/globaleaks/language/sv/)\n"
 "MIME-Version: 1.0\n"
@@ -384,6 +384,9 @@ msgstr "i procent"
 msgid "HTTPS settings"
 msgstr "HTTPS-inställningar"
 
+msgid "URL shortener"
+msgstr "URL-förkortare"
+
 msgid "Anomaly detection thresholds"
 msgstr ""
 
@@ -678,25 +681,21 @@ msgstr ""
 msgid "Disable submissions"
 msgstr ""
 
-msgid "Enable insecure configuration without PGP encryption"
-msgstr "Aktivera osäker konfiguration utan PGP-kryptering"
-
-msgid "Warning"
-msgstr "Varning"
+msgid "Enable encryption"
+msgstr ""
 
 msgid ""
-"By enabling this option, the system will be storing the submitted files "
-"unencrypted on your server."
-msgstr "Genom att aktivera detta val så kommer systemet att lagra de inskickade filerna okrypterat på din nod."
+"Allow the system to store data in plaintext when encryption is not available"
+msgstr ""
 
-msgid "This happens whenever encryption is unavailable."
-msgstr "Det här händer om krypteringen inte är tillgänglig."
-
-msgid "Disable messages that warn of missing encryption"
+msgid "Enable multisite feature"
 msgstr ""
 
 msgid "Allow other websites to include the platform inside iframes"
 msgstr ""
+
+msgid "Warning"
+msgstr "Varning"
 
 msgid ""
 "By enabling this option, you are allowing other websites to include the "
@@ -742,19 +741,10 @@ msgstr "Titel"
 msgid "Text"
 msgstr "Text"
 
-msgid "Disable the security awareness panel"
-msgstr "Inaktivera emblemet för säkerhetsmedvetenhet"
-
 msgid "Disable the key code hint"
 msgstr "Avaktivera kod hjälp"
 
 msgid "Disable the donation panel"
-msgstr ""
-
-msgid "Enable CAPTCHA mechanism"
-msgstr "Aktivera CAPTCHA-mekanism"
-
-msgid "Enable proof of work mechanism"
 msgstr ""
 
 msgid "Amount of days till whistleblower access expires"
@@ -852,6 +842,12 @@ msgid "Enable multi-site login"
 msgstr ""
 
 msgid "Enable simplified login"
+msgstr ""
+
+msgid "Logging level"
+msgstr ""
+
+msgid "Log accesses of internal users"
 msgstr ""
 
 msgid "Enable experimental features"
@@ -961,6 +957,9 @@ msgstr "Namn"
 
 msgid "Questionnaire"
 msgstr "Formulär"
+
+msgid "Additional questionnaire"
+msgstr ""
 
 msgid "Recipients"
 msgstr "Mottagare"
@@ -1472,9 +1471,6 @@ msgstr ""
 msgid "Allow users to sign up"
 msgstr ""
 
-msgid "Record IP address and user agent of registered users"
-msgstr ""
-
 msgid "Enable terms of service"
 msgstr ""
 
@@ -1619,31 +1615,8 @@ msgstr ""
 msgid "Confirm"
 msgstr "Bekräfta förlängning"
 
-msgid "Are you human?"
-msgstr "Är du en människa?"
-
-msgid ""
-"We do not discriminate based on race and gender, but we do against computers"
-" :)"
-msgstr "Vi bryr oss inte om din ras, din sexuella läggning eller ditt kön, men vi diskriminerar baserat på datorer :)"
-
-msgid ""
-"Just to prove you are human, please answer the following math challenge:"
-msgstr "Bara för att visa att du är en människa, var vänlig besvara den följande matematikfråga:"
-
-msgid "I've solved the math challenge, hide this thing now!"
-msgstr "Jag har löst matematik frågan, dölj detta nu!"
-
 msgid "Please note that all the associated data will be permanently lost."
 msgstr ""
-
-msgid ""
-"This means that if the server running the platform were to be seized, it "
-"would be possible to extract the files that have been submitted."
-msgstr ""
-
-msgid "Are you sure that you wish to continue?"
-msgstr "Är du säker på att du vill fortsätta?"
 
 msgid "Error!"
 msgstr "Fel!"
@@ -1754,6 +1727,18 @@ msgid "Investigative journalism"
 msgstr ""
 
 msgid "Civic activism"
+msgstr ""
+
+msgid "previous step"
+msgstr "Föregående steg"
+
+msgid "next step"
+msgstr "Nästa steg"
+
+msgid "Submit"
+msgstr "Skicka"
+
+msgid "Fill the additional questionnaire"
 msgstr ""
 
 msgid "Send"
@@ -1902,29 +1887,6 @@ msgid ""
 msgstr "Ett användbart sätt att dölja din kod är att skriva ner den som ett kreditkortsnummer, inklusive giltighetsdatum."
 
 msgid ""
-"You have not set up your encryption key, so the files will not be encrypted "
-"prior to being stored on the server."
-msgstr ""
-
-msgid ""
-"This may lead to unintended access to the files by the server administrator "
-"or others in case the server is compromised."
-msgstr "Det här kan leda till oavsiktlig åtkomst till filerna av server s administratör eller om servern fysiskt forslas bort"
-
-msgid "Please configure your PGP keys in the recipient preferences page."
-msgstr "Var god konfigurera dina PGP-nycklar i inställningarna för mottagare"
-
-msgid ""
-"One or more of the recipients of this submission has not configured a PGP "
-"key."
-msgstr "En eller flera av mottagarna av detta tips har inte ställt in sin PGP-nyckel."
-
-msgid ""
-"This means that the submitted files will be stored in plaintext on the "
-"server."
-msgstr "Detta betyder att de inskickade filerna kommer att lagras i vanlig text på server.."
-
-msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."
 msgstr ""
 
@@ -1978,15 +1940,6 @@ msgstr ""
 
 msgid "Recipient selection"
 msgstr "Val av mottagare"
-
-msgid "previous step"
-msgstr "Föregående steg"
-
-msgid "next step"
-msgstr "Nästa steg"
-
-msgid "Submit"
-msgstr "Skicka"
 
 msgid "Recipients selected:"
 msgstr "Valda mottagare:"

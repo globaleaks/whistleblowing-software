@@ -32,13 +32,13 @@
 # ArchLord, 2013-2014
 # Raed667 <shemada@gmail.com>, 2013-2015
 # Raed667 <shemada@gmail.com>, 2013
-# Rahma Sghaier <sghair.rahma@gmail.com>, 2015-2018
+# Rima Sghaier <sghair.rahma@gmail.com>, 2015-2018
 # zendegi <inactive+zendegi@transifex.com>, 2013
 # zendegi <inactive+zendegi@transifex.com>, 2013
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-09-27 21:26+0000\n"
+"PO-Revision-Date: 2018-11-05 16:47+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Arabic (http://www.transifex.com/otf/globaleaks/language/ar/)\n"
 "MIME-Version: 1.0\n"
@@ -402,6 +402,9 @@ msgstr "بالنسبة المئوية"
 msgid "HTTPS settings"
 msgstr "إعدادات HTTPS"
 
+msgid "URL shortener"
+msgstr "تقصير روابط URL"
+
 msgid "Anomaly detection thresholds"
 msgstr "عتبات كشف الانحرافات"
 
@@ -696,25 +699,21 @@ msgstr "حالة البلاغ"
 msgid "Disable submissions"
 msgstr "منع البلاغات"
 
-msgid "Enable insecure configuration without PGP encryption"
-msgstr "السماح بالإعدادات غير الآمنة بدون التشفير بنظام PGP"
-
-msgid "Warning"
-msgstr "تنبيه"
+msgid "Enable encryption"
+msgstr ""
 
 msgid ""
-"By enabling this option, the system will be storing the submitted files "
-"unencrypted on your server."
-msgstr "بتفعيل هذا الخيار سوف يتم حفظ الملفات بصورة غير مشفرة على الخادم الخاص بك."
+"Allow the system to store data in plaintext when encryption is not available"
+msgstr ""
 
-msgid "This happens whenever encryption is unavailable."
-msgstr "يحدث هذا عندما لا يتوفر التشفير."
-
-msgid "Disable messages that warn of missing encryption"
-msgstr "الغاء رسائل التحذير التي تظهر حين لا يتوفر التشفير"
+msgid "Enable multisite feature"
+msgstr ""
 
 msgid "Allow other websites to include the platform inside iframes"
 msgstr "السماح للمواقع الأخرى بادماج المنصّة داخل النوافذ المدمجة."
+
+msgid "Warning"
+msgstr "تنبيه"
 
 msgid ""
 "By enabling this option, you are allowing other websites to include the "
@@ -760,20 +759,11 @@ msgstr "العنوان"
 msgid "Text"
 msgstr "نص"
 
-msgid "Disable the security awareness panel"
-msgstr "تعطيل شارة التنبيه إلى السلامة"
-
 msgid "Disable the key code hint"
 msgstr "تعطيل مفتاح الإقتراح"
 
 msgid "Disable the donation panel"
 msgstr "تعطيل لوحة التبرع"
-
-msgid "Enable CAPTCHA mechanism"
-msgstr "تمكين آلية CAPTCHA"
-
-msgid "Enable proof of work mechanism"
-msgstr "تمكين آلية اثبات الفعاليّة"
 
 msgid "Amount of days till whistleblower access expires"
 msgstr "عدد الأيام حتى تنتهي صلوحية نفاذ المبلغ."
@@ -870,6 +860,12 @@ msgid "Enable multi-site login"
 msgstr ""
 
 msgid "Enable simplified login"
+msgstr ""
+
+msgid "Logging level"
+msgstr ""
+
+msgid "Log accesses of internal users"
 msgstr ""
 
 msgid "Enable experimental features"
@@ -979,6 +975,9 @@ msgstr "اسم"
 
 msgid "Questionnaire"
 msgstr "استبيان"
+
+msgid "Additional questionnaire"
+msgstr ""
 
 msgid "Recipients"
 msgstr "المتلقّون"
@@ -1490,9 +1489,6 @@ msgstr "النطاق الرئيسي المستخدم في المواقع الث�
 msgid "Allow users to sign up"
 msgstr "السماح للمستخدمين بالاشتراك"
 
-msgid "Record IP address and user agent of registered users"
-msgstr ""
-
 msgid "Enable terms of service"
 msgstr ""
 
@@ -1637,31 +1633,8 @@ msgstr "أدخل نقاط المجموع التي يتم تخصيصها عند �
 msgid "Confirm"
 msgstr "تأكيد "
 
-msgid "Are you human?"
-msgstr "هل أنت انسان؟"
-
-msgid ""
-"We do not discriminate based on race and gender, but we do against computers"
-" :)"
-msgstr "نحن لا نميّز على أساس العرق، الجنس، والنوع، لكننا نميّز ضد الحواسيب:)"
-
-msgid ""
-"Just to prove you are human, please answer the following math challenge:"
-msgstr "فقط لإثبات أنّك بشري، الرجاء الإجابة على التحدي الرياضيّ التالي:"
-
-msgid "I've solved the math challenge, hide this thing now!"
-msgstr "لقد قمت بحلّ التحدي الرياضيّ، إخف هذا الشيء الآن!"
-
 msgid "Please note that all the associated data will be permanently lost."
 msgstr "يرجى ملاحظة أنّه سيتم فقدان جميع البيانات المتعلقة بشكل دائم."
-
-msgid ""
-"This means that if the server running the platform were to be seized, it "
-"would be possible to extract the files that have been submitted."
-msgstr "هذا يعني أنّه اذا تمّ الاستيلاء على الخادم الذي يقوم بتشغيل المنصة سيكون من الممكن استخراج الملفات التي تمّ تقديمها."
-
-msgid "Are you sure that you wish to continue?"
-msgstr "هل أنت متأكد من أنك تريد المتابعة؟"
 
 msgid "Error!"
 msgstr "خطأ!"
@@ -1773,6 +1746,18 @@ msgstr "الصحافة الاستقصائية"
 
 msgid "Civic activism"
 msgstr "النشاط المدني"
+
+msgid "previous step"
+msgstr "الخطوة السابقة"
+
+msgid "next step"
+msgstr "الخطوة القادمة"
+
+msgid "Submit"
+msgstr "تقديم"
+
+msgid "Fill the additional questionnaire"
+msgstr ""
 
 msgid "Send"
 msgstr "إرسال"
@@ -1920,29 +1905,6 @@ msgid ""
 msgstr " طريقة مفيدة لإخفاء رمز المفتاح الخاص بك، هو أن تدوّنه مثل رقم بطاقة الائتمان ,أي مع تضمين تاريخ انتهاء صلاحية أيضا."
 
 msgid ""
-"You have not set up your encryption key, so the files will not be encrypted "
-"prior to being stored on the server."
-msgstr "لم تتم تهيئة مفتاح التشفير الخاصّ بك .لذا لن يتم تشفير الملفّات قبل تخزينها على الخادم."
-
-msgid ""
-"This may lead to unintended access to the files by the server administrator "
-"or others in case the server is compromised."
-msgstr "هذا قد يؤدي إلى وصول غير مرغوب فيه و غير مرخص به إلى ملفاتك من قبل المشرف على الخادم او آخرين في حالة الاستيلاء على الخادم ."
-
-msgid "Please configure your PGP keys in the recipient preferences page."
-msgstr "يرجى إعداد مفاتيح التشفير بنظام PGP الخاصة بك في صفحة تفضيلات المتلقّي."
-
-msgid ""
-"One or more of the recipients of this submission has not configured a PGP "
-"key."
-msgstr "واحد أو أكثر  من متلقّي هذا البلاغ لم يقم بتهيئة مفتاح التشفير بنظام PGP "
-
-msgid ""
-"This means that the submitted files will be stored in plaintext on the "
-"server."
-msgstr "هذا يعني أن الملفات التي تم تقديمها سوف تخزّن بدون تشفير على الخادم."
-
-msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."
 msgstr "تمّ طلب الحصول على هوية المبلغ من الوصيّ."
 
@@ -1996,15 +1958,6 @@ msgstr "الرجاء ادخال أرقام فقط."
 
 msgid "Recipient selection"
 msgstr "اختيار المتلقّي"
-
-msgid "previous step"
-msgstr "الخطوة السابقة"
-
-msgid "next step"
-msgstr "الخطوة القادمة"
-
-msgid "Submit"
-msgstr "تقديم"
 
 msgid "Recipients selected:"
 msgstr "المتلقّون المختارون :"

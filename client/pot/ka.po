@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-09-27 21:26+0000\n"
+"PO-Revision-Date: 2018-11-05 16:47+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Georgian (http://www.transifex.com/otf/globaleaks/language/ka/)\n"
 "MIME-Version: 1.0\n"
@@ -50,7 +50,7 @@ msgid "Add new questionnaire"
 msgstr "ახალი კითხვარი"
 
 msgid "Home"
-msgstr ""
+msgstr "Home"
 
 msgid "Home page"
 msgstr ""
@@ -368,6 +368,9 @@ msgstr "პროცენტული"
 msgid "HTTPS settings"
 msgstr "HTTPS პარამეტრები"
 
+msgid "URL shortener"
+msgstr "URL shortener"
+
 msgid "Anomaly detection thresholds"
 msgstr "ანომალიის გამოვლენის დევნება"
 
@@ -484,7 +487,7 @@ msgid "Email address"
 msgstr "ელექტრონული მისამართი"
 
 msgid "Custom"
-msgstr ""
+msgstr "მითითებული"
 
 msgid "None"
 msgstr ""
@@ -499,7 +502,7 @@ msgid "Activate"
 msgstr ""
 
 msgid "Search"
-msgstr ""
+msgstr "ძებნა"
 
 msgid ""
 "This custom text is no longer displayed on the platform. The original text "
@@ -595,7 +598,7 @@ msgid "Disable"
 msgstr "გამორთვა"
 
 msgid "Remove"
-msgstr ""
+msgstr "წაშლა"
 
 msgid "Use as default"
 msgstr ""
@@ -662,25 +665,21 @@ msgstr ""
 msgid "Disable submissions"
 msgstr "შეზღუდული შესაძლებლობების მქონე წარდგინება"
 
-msgid "Enable insecure configuration without PGP encryption"
-msgstr "ჩართვა არასაიმედო კონფიგურაციის გარეშე PGP დაშიფვრის"
-
-msgid "Warning"
-msgstr "გაფრთხილება"
+msgid "Enable encryption"
+msgstr ""
 
 msgid ""
-"By enabling this option, the system will be storing the submitted files "
-"unencrypted on your server."
-msgstr "საშუალებას მისცემს ამ ვარიანტს, სისტემა იქნება შენახვის წარმოდგენილი ფაილი Unencrypted თქვენს სერვერზე."
+"Allow the system to store data in plaintext when encryption is not available"
+msgstr ""
 
-msgid "This happens whenever encryption is unavailable."
-msgstr "ეს ხდება მაშინ, როდესაც კოდირების მიუწვდომელია."
-
-msgid "Disable messages that warn of missing encryption"
-msgstr "შეზღუდული შესაძლებლობების მქონე შეტყობინებები რომ გააფრთხილოს დაკარგული დაშიფვრის"
+msgid "Enable multisite feature"
+msgstr ""
 
 msgid "Allow other websites to include the platform inside iframes"
 msgstr "ნება სხვა საიტებზე მოიცავს პლატფორმა შიგნით iframes"
+
+msgid "Warning"
+msgstr "გაფრთხილება"
 
 msgid ""
 "By enabling this option, you are allowing other websites to include the "
@@ -726,20 +725,11 @@ msgstr ""
 msgid "Text"
 msgstr ""
 
-msgid "Disable the security awareness panel"
-msgstr "გამორთე უსაფრთხოების ცნობიერების პანელი"
-
 msgid "Disable the key code hint"
 msgstr "გამორთე გასაღები კოდი მინიშნება"
 
 msgid "Disable the donation panel"
 msgstr "გამორთე შემოწირულობის პანელი"
-
-msgid "Enable CAPTCHA mechanism"
-msgstr "ჩართვა CAPTCHA მექანიზმი"
-
-msgid "Enable proof of work mechanism"
-msgstr "ჩართვა მტკიცებულება მუშაობის მექანიზმი"
 
 msgid "Amount of days till whistleblower access expires"
 msgstr ""
@@ -836,6 +826,12 @@ msgid "Enable multi-site login"
 msgstr ""
 
 msgid "Enable simplified login"
+msgstr ""
+
+msgid "Logging level"
+msgstr ""
+
+msgid "Log accesses of internal users"
 msgstr ""
 
 msgid "Enable experimental features"
@@ -946,6 +942,9 @@ msgstr "სახელი"
 msgid "Questionnaire"
 msgstr "კითხვარი"
 
+msgid "Additional questionnaire"
+msgstr ""
+
 msgid "Recipients"
 msgstr "მიმღები"
 
@@ -1014,7 +1013,7 @@ msgid ""
 msgstr "ეს ინტერფეისი შეიძლება დაგეხმაროთ გაგება, თუ როგორ სერვერზე შეიძლება კონფიგურაცია და უზრუნველყოფს გარკვეული ინფორმაცია, თუ როგორ უნდა დაუკავშირდეთ სხვა GlobaLeaks წევრებს და ექსპერტები."
 
 msgid "Documentation"
-msgstr ""
+msgstr "დამხმარე მასალები"
 
 msgid ""
 "To properly organize your project, please read the following guidelines:"
@@ -1028,7 +1027,7 @@ msgid ""
 msgstr ""
 
 msgid "Contact"
-msgstr ""
+msgstr "კავშირი"
 
 msgid ""
 "If you need technical support, have general questions, or have new ideas for"
@@ -1456,9 +1455,6 @@ msgstr ""
 msgid "Allow users to sign up"
 msgstr ""
 
-msgid "Record IP address and user agent of registered users"
-msgstr ""
-
 msgid "Enable terms of service"
 msgstr ""
 
@@ -1603,31 +1599,8 @@ msgstr "შესვლის რაოდენობა ქულა რაო
 msgid "Confirm"
 msgstr "დაადასტურეთ"
 
-msgid "Are you human?"
-msgstr "ადამიანი ხარ?"
-
-msgid ""
-"We do not discriminate based on race and gender, but we do against computers"
-" :)"
-msgstr "ჩვენ არ დისკრიმინაციას ეფუძნება რასის და სქესის, მაგრამ ჩვენ წინააღმდეგ კომპიუტერი :)"
-
-msgid ""
-"Just to prove you are human, please answer the following math challenge:"
-msgstr "მხოლოდ იმის დასამტკიცებლად, რომ თქვენ ხართ ადამიანის, გთხოვთ პასუხი გასცეთ შემდეგ მათემატიკის გამოწვევა:"
-
-msgid "I've solved the math challenge, hide this thing now!"
-msgstr "მე მოგვარდება მათემატიკის გამოწვევა, დამალვა ეს ის არის!"
-
 msgid "Please note that all the associated data will be permanently lost."
 msgstr ""
-
-msgid ""
-"This means that if the server running the platform were to be seized, it "
-"would be possible to extract the files that have been submitted."
-msgstr "ეს იმას ნიშნავს, რომ თუ სერვერზე გაშვებული პლატფორმა უნდა წაართვა, ის იქნება შესაძლებელი ამონაწერი ფაილი რომელიც არ არის წარმოდგენილი."
-
-msgid "Are you sure that you wish to continue?"
-msgstr "დარწმუნებული ხართ, რომ გსურთ გაგრძელება?"
 
 msgid "Error!"
 msgstr "შეცდომა!"
@@ -1738,6 +1711,18 @@ msgid "Investigative journalism"
 msgstr ""
 
 msgid "Civic activism"
+msgstr ""
+
+msgid "previous step"
+msgstr "წინა ნაბიჯი"
+
+msgid "next step"
+msgstr "შემდეგი ნაბიჯი"
+
+msgid "Submit"
+msgstr "წარუდგინოს"
+
+msgid "Fill the additional questionnaire"
 msgstr ""
 
 msgid "Send"
@@ -1886,29 +1871,6 @@ msgid ""
 msgstr "სასარგებლო იქნება დაფაროთ თქვენი გასაღები კოდი ჩავიწერე, როგორიცაა საკრედიტო ბარათის ნომერი, ანუ ასევე მათ შორის გასვლის თარიღი."
 
 msgid ""
-"You have not set up your encryption key, so the files will not be encrypted "
-"prior to being stored on the server."
-msgstr "თქვენ არ შეიქმნა თქვენი დაშიფვრის გასაღები, ასე რომ ფაილი არ იქნება დაშიფრული ადრე მიმდინარეობს ინახება სერვერზე."
-
-msgid ""
-"This may lead to unintended access to the files by the server administrator "
-"or others in case the server is compromised."
-msgstr "ეს შეიძლება გამოიწვიოს გაუთვალისწინებელი ხელმისაწვდომობის ფაილი სერვერის მიერ ადმინისტრატორს ან სხვა შემთხვევაში სერვერზე დათმობაზე წავიდა."
-
-msgid "Please configure your PGP keys in the recipient preferences page."
-msgstr "დააკონფიგურირეთ PGP გასაღებები მიმღები პარამეტრების გვერდზე."
-
-msgid ""
-"One or more of the recipients of this submission has not configured a PGP "
-"key."
-msgstr "ერთი ან მეტი მიმღებთა ამ წარდგენის ჯერ არ შეუყვანია PGP გასაღები."
-
-msgid ""
-"This means that the submitted files will be stored in plaintext on the "
-"server."
-msgstr "ეს იმას ნიშნავს, რომ წარმოდგენილი ფაილი იქნება შენახული დაუცველი სერვერზე."
-
-msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."
 msgstr "ხელმისაწვდომობა მამხილებლის ვინაობა უკვე მოითხოვა მზრუნველი."
 
@@ -1962,15 +1924,6 @@ msgstr ""
 
 msgid "Recipient selection"
 msgstr "მიმღების შერჩევა"
-
-msgid "previous step"
-msgstr "წინა ნაბიჯი"
-
-msgid "next step"
-msgstr "შემდეგი ნაბიჯი"
-
-msgid "Submit"
-msgstr "წარუდგინოს"
 
 msgid "Recipients selected:"
 msgstr "მიმღები შეარჩია:"

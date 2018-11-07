@@ -1,12 +1,12 @@
 # 
 # Translators:
-# Aleksandar Todorović <aleksandar.todorovic@mail.ru>, 2015
+# Aleksandar Todorović (r3bl) <aleksandar@r3bl.me>, 2015
 # Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2016-2018
 # Kenan Efendic <kenan@occrp.org>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-09-27 21:26+0000\n"
+"PO-Revision-Date: 2018-11-05 16:47+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Bosnian (http://www.transifex.com/otf/globaleaks/language/bs/)\n"
 "MIME-Version: 1.0\n"
@@ -61,7 +61,7 @@ msgid "Changelog"
 msgstr ""
 
 msgid "License"
-msgstr ""
+msgstr "Licenca"
 
 msgid "Notification templates"
 msgstr "Predložak izvješća"
@@ -370,6 +370,9 @@ msgstr "u procentima"
 msgid "HTTPS settings"
 msgstr "postavke HTTPS"
 
+msgid "URL shortener"
+msgstr "URL Shortener"
+
 msgid "Anomaly detection thresholds"
 msgstr "Anomalija pragova detekcije"
 
@@ -498,7 +501,7 @@ msgid "Label the submission"
 msgstr ""
 
 msgid "Activate"
-msgstr ""
+msgstr "Aktiviraj"
 
 msgid "Search"
 msgstr ""
@@ -664,25 +667,21 @@ msgstr ""
 msgid "Disable submissions"
 msgstr "Onemogući podneske"
 
-msgid "Enable insecure configuration without PGP encryption"
-msgstr "Uključi nesigurno konfiguracija bez PGP enkripciju"
-
-msgid "Warning"
-msgstr "upozorenje"
+msgid "Enable encryption"
+msgstr ""
 
 msgid ""
-"By enabling this option, the system will be storing the submitted files "
-"unencrypted on your server."
-msgstr "Uključivanjem ove opcije, sustav će biti čuvanje dostavljene datoteke nešifrovanu na vašem serveru."
+"Allow the system to store data in plaintext when encryption is not available"
+msgstr ""
 
-msgid "This happens whenever encryption is unavailable."
-msgstr "Ovo se događa kada enkripcija nije omogućena"
-
-msgid "Disable messages that warn of missing encryption"
-msgstr "Onemogućiti poruke koje upozoravaju nedostaje enkripcije"
+msgid "Enable multisite feature"
+msgstr ""
 
 msgid "Allow other websites to include the platform inside iframes"
 msgstr "Dozvolite druge web stranice uključiti platformu unutar okvira"
+
+msgid "Warning"
+msgstr "upozorenje"
 
 msgid ""
 "By enabling this option, you are allowing other websites to include the "
@@ -728,20 +727,11 @@ msgstr ""
 msgid "Text"
 msgstr "Tekst"
 
-msgid "Disable the security awareness panel"
-msgstr "Onemogućiti panel svijesti sigurnosti"
-
 msgid "Disable the key code hint"
 msgstr "Onemogućiti ključ kod Hint"
 
 msgid "Disable the donation panel"
 msgstr "Onemogućite donacija panel"
-
-msgid "Enable CAPTCHA mechanism"
-msgstr "Uključi CAPTCHA mehanizam"
-
-msgid "Enable proof of work mechanism"
-msgstr "Uključi dokaz mehanizma rada"
 
 msgid "Amount of days till whistleblower access expires"
 msgstr ""
@@ -838,6 +828,12 @@ msgid "Enable multi-site login"
 msgstr ""
 
 msgid "Enable simplified login"
+msgstr ""
+
+msgid "Logging level"
+msgstr ""
+
+msgid "Log accesses of internal users"
 msgstr ""
 
 msgid "Enable experimental features"
@@ -947,6 +943,9 @@ msgstr "Ime"
 
 msgid "Questionnaire"
 msgstr "upitnik"
+
+msgid "Additional questionnaire"
+msgstr ""
 
 msgid "Recipients"
 msgstr "Primatelji"
@@ -1313,7 +1312,7 @@ msgid "Submission"
 msgstr "podnošenje"
 
 msgid "Path"
-msgstr ""
+msgstr "Path"
 
 msgid "Size"
 msgstr "Veličina"
@@ -1456,9 +1455,6 @@ msgid "Root domain used for secondary sites"
 msgstr ""
 
 msgid "Allow users to sign up"
-msgstr ""
-
-msgid "Record IP address and user agent of registered users"
 msgstr ""
 
 msgid "Enable terms of service"
@@ -1605,31 +1601,8 @@ msgstr "Unesite broj poena koji će biti dodeljen kada je ova opcija:"
 msgid "Confirm"
 msgstr "potvrditi"
 
-msgid "Are you human?"
-msgstr "Da li ste čovjek?"
-
-msgid ""
-"We do not discriminate based on race and gender, but we do against computers"
-" :)"
-msgstr "Mi ne diskriminaciju na temelju rase i pol, ali radimo protiv kompjutera :)"
-
-msgid ""
-"Just to prove you are human, please answer the following math challenge:"
-msgstr "Da dokažete da ste čovjek, molimo riješite sledjeći matematički izazov:"
-
-msgid "I've solved the math challenge, hide this thing now!"
-msgstr "Riješio sam matematički izazov, ukloni mi ovo sa monitora!"
-
 msgid "Please note that all the associated data will be permanently lost."
 msgstr ""
-
-msgid ""
-"This means that if the server running the platform were to be seized, it "
-"would be possible to extract the files that have been submitted."
-msgstr "To znači da ako server radi na platformi je da se oduzeti, to bi bilo moguće izdvojiti datoteke koje su dostavljeni."
-
-msgid "Are you sure that you wish to continue?"
-msgstr "Da li ste sigurni da želite da nastavite?"
 
 msgid "Error!"
 msgstr "Greška!"
@@ -1740,6 +1713,18 @@ msgid "Investigative journalism"
 msgstr ""
 
 msgid "Civic activism"
+msgstr ""
+
+msgid "previous step"
+msgstr "prethodni korak"
+
+msgid "next step"
+msgstr "sljedeći korak"
+
+msgid "Submit"
+msgstr "podnijeti"
+
+msgid "Fill the additional questionnaire"
 msgstr ""
 
 msgid "Send"
@@ -1888,29 +1873,6 @@ msgid ""
 msgstr "Koristan način da se sakrije ključ kod je da ga zapisati kao broj kreditne kartice, odnosno uključujući i rok trajanja."
 
 msgid ""
-"You have not set up your encryption key, so the files will not be encrypted "
-"prior to being stored on the server."
-msgstr "Nisi podesite ključ enkripcije, tako da datoteke neće biti encrypted prije nego što je čuvaju na serveru."
-
-msgid ""
-"This may lead to unintended access to the files by the server administrator "
-"or others in case the server is compromised."
-msgstr "Ovo može dovesti do nedozvoljenog pristupa datotekama od serverskog administratora ili drugih u slučaju da server bude kompromitovan."
-
-msgid "Please configure your PGP keys in the recipient preferences page."
-msgstr "Molimo vas da konfigurirati svoj ključeve PGP u stranici preferencije primaoca."
-
-msgid ""
-"One or more of the recipients of this submission has not configured a PGP "
-"key."
-msgstr "Jedan ili više primalaca ovoj tvrdnji nije napravio PGP ključ."
-
-msgid ""
-"This means that the submitted files will be stored in plaintext on the "
-"server."
-msgstr "To znači da će dostavljene datoteke pohraniti u tekst na serveru."
-
-msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."
 msgstr "Pristup identitet zviždač a je zatraženo da kastodi."
 
@@ -1964,15 +1926,6 @@ msgstr ""
 
 msgid "Recipient selection"
 msgstr "izbor primalac"
-
-msgid "previous step"
-msgstr "prethodni korak"
-
-msgid "next step"
-msgstr "sljedeći korak"
-
-msgid "Submit"
-msgstr "podnijeti"
 
 msgid "Recipients selected:"
 msgstr "Primatelji odabrani:"

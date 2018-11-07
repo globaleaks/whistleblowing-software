@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-09-27 21:26+0000\n"
-"Last-Translator: Hermes Center <info@hermescenter.org>\n"
+"PO-Revision-Date: 2018-11-07 10:13+0000\n"
+"Last-Translator: Naofumi <naofum@gmail.com>\n"
 "Language-Team: Japanese (http://www.transifex.com/otf/globaleaks/language/ja/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -373,6 +373,9 @@ msgstr "パーセントで"
 msgid "HTTPS settings"
 msgstr "HTTPS 設定"
 
+msgid "URL shortener"
+msgstr "URL 短縮"
+
 msgid "Anomaly detection thresholds"
 msgstr "異変を検出する閾値"
 
@@ -667,25 +670,21 @@ msgstr "提出ステータスページ"
 msgid "Disable submissions"
 msgstr "提出を無効にする"
 
-msgid "Enable insecure configuration without PGP encryption"
-msgstr "PGP暗号化のない、安全ではない設定を有効にする"
-
-msgid "Warning"
-msgstr "警告"
+msgid "Enable encryption"
+msgstr "暗号化を有効にする"
 
 msgid ""
-"By enabling this option, the system will be storing the submitted files "
-"unencrypted on your server."
-msgstr "このオプションを有効にすることで、システムは提出されたファイルを暗号化されていないままあなたのサーバーに保存することになります。"
+"Allow the system to store data in plaintext when encryption is not available"
+msgstr "暗号化が利用できない場合に、平文でシステムにデータを格納することを許可する"
 
-msgid "This happens whenever encryption is unavailable."
-msgstr "これは、暗号化が利用不可のときには常に起こります。"
-
-msgid "Disable messages that warn of missing encryption"
-msgstr "暗号化が見つからない警告のメッセージを無効にする"
+msgid "Enable multisite feature"
+msgstr "マルチサイト機能を有効にする"
 
 msgid "Allow other websites to include the platform inside iframes"
 msgstr "他のウェブサイトのインラインフレーム内にプラットフォームを含めることを許可する"
+
+msgid "Warning"
+msgstr "警告"
 
 msgid ""
 "By enabling this option, you are allowing other websites to include the "
@@ -723,7 +722,7 @@ msgid "Disable the privacy panel"
 msgstr "プライバシー・バッジを無効にする"
 
 msgid "Enable disclaimer"
-msgstr ""
+msgstr "免責事項を有効にする"
 
 msgid "Title"
 msgstr "タイトル"
@@ -731,20 +730,11 @@ msgstr "タイトル"
 msgid "Text"
 msgstr "テキスト"
 
-msgid "Disable the security awareness panel"
-msgstr "セキュリティ・アウェアネス・バッジを無効にする"
-
 msgid "Disable the key code hint"
 msgstr "キーコードのヒントを無効にする"
 
 msgid "Disable the donation panel"
 msgstr "寄付のパネルを無効にする"
-
-msgid "Enable CAPTCHA mechanism"
-msgstr "キャプチャ メカニズムを有効にする"
-
-msgid "Enable proof of work mechanism"
-msgstr "作業証明メカニズムを有効にする"
 
 msgid "Amount of days till whistleblower access expires"
 msgstr "内部告発者のアクセス有効期限が切れるまでの日数"
@@ -757,20 +747,20 @@ msgid "Tweak this setting only if you know what you are doing."
 msgstr "何を行うかを理解している場合にのみ、この設定を調整してください。"
 
 msgid "Password change interval"
-msgstr ""
+msgstr "パスワード変更間隔"
 
 msgid ""
 "For security reasons, password changes are required at regular intervals."
-msgstr ""
+msgstr "セキュリティ上の理由から、定期的にパスワードを変更する必要があります。"
 
 msgid "Set the value to 0 to disable this feature."
-msgstr ""
+msgstr "この機能を無効にするには、値を0に設定します。"
 
 msgid "Landing page"
 msgstr "到達ページ"
 
 msgid "Default questionnaire"
-msgstr ""
+msgstr "デフォルトのアンケート"
 
 msgid "Title of the submission page"
 msgstr "提出ページのタイトル"
@@ -811,37 +801,43 @@ msgid "Password"
 msgstr "パスワード"
 
 msgid "Restrict privileged logins to specific IP addresses"
-msgstr ""
+msgstr "特権ログインを特定のIPアドレスに制限する"
 
 msgid "Whitelisted IP addresses"
-msgstr ""
+msgstr "ホワイトリストIPアドレス"
 
 msgid "Either individual IP addresses or CIDR ranges are accepted here."
-msgstr ""
+msgstr "個々のIPアドレスまたはCIDRの範囲を入力することができます。"
 
 msgid "Example:"
 msgstr "例:"
 
 msgid "Each entry must be separated with a comma."
-msgstr ""
+msgstr "各入力はコンマで区切る必要があります。"
 
 msgid "Allow users to reset their passwords"
-msgstr ""
+msgstr "ユーザーによるパスワードのリセットを許可"
 
 msgid ""
 "Allowing users to reset their passwords may reduce the security of the "
 "platform due to security becoming dependent on the security of user's email "
 "accounts."
-msgstr ""
+msgstr "ユーザーがパスワードをリセットできるようにすると、セキュリティがユーザーの電子メールアカウントのセキュリティに依存するため、プラットフォームのセキュリティが低下する可能性があります。"
 
 msgid "Enable users to upload their PGP keys"
-msgstr ""
+msgstr "ユーザーがPGP鍵をアップロードできるようにする"
 
 msgid "Enable multi-site login"
-msgstr ""
+msgstr "マルチサイトログインを有効にする"
 
 msgid "Enable simplified login"
-msgstr ""
+msgstr "簡易ログインを有効にする"
+
+msgid "Logging level"
+msgstr "ログ取得レベル"
+
+msgid "Log accesses of internal users"
+msgstr "内部ユーザーのログアクセス"
 
 msgid "Enable experimental features"
 msgstr "実験的な機能を有効にする"
@@ -865,7 +861,7 @@ msgid "Add"
 msgstr "追加"
 
 msgid "Substatuses"
-msgstr ""
+msgstr "提出状況"
 
 msgid "Label"
 msgstr "ラベル"
@@ -880,10 +876,10 @@ msgid "Cancel"
 msgstr "キャンセル"
 
 msgid "Submission statuses"
-msgstr ""
+msgstr "提出状況"
 
 msgid "Closing statuses"
-msgstr ""
+msgstr "終了状況"
 
 msgid "Logo"
 msgstr "ロゴ"
@@ -951,11 +947,14 @@ msgstr "名前"
 msgid "Questionnaire"
 msgstr "アンケート"
 
+msgid "Additional questionnaire"
+msgstr "追加のアンケート"
+
 msgid "Recipients"
 msgstr "受信者"
 
 msgid "Submission expiration"
-msgstr ""
+msgstr "提出有効期限"
 
 msgid "days"
 msgstr "日"
@@ -1086,7 +1085,7 @@ msgid "Transport Security"
 msgstr "トランスポート・セキュリティ"
 
 msgid "Require authentication"
-msgstr ""
+msgstr "認証が必要"
 
 msgid "Disabled"
 msgstr "無効"
@@ -1382,7 +1381,7 @@ msgid "Phone number"
 msgstr "電話番号"
 
 msgid "Checkbox label"
-msgstr ""
+msgstr "チェックボックスラベル"
 
 msgid "Layout orientation"
 msgstr "レイアウトの向き"
@@ -1391,13 +1390,13 @@ msgid "Subject answer visibility to custodian authorization"
 msgstr "管理人の認証に回答が表示されるか否か"
 
 msgid "Text shown upon negative answer"
-msgstr ""
+msgstr "否定的な回答に表示されるテキスト"
 
 msgid "Prompt confirmation upon negative answer"
 msgstr "否定の回答時に、確認を表示"
 
 msgid "Text shown upon confirmation"
-msgstr ""
+msgstr "確認時に表示されるテキスト"
 
 msgid "Options"
 msgstr "オプション"
@@ -1412,7 +1411,7 @@ msgid "Add question from template"
 msgstr "質問をテンプレートから追加"
 
 msgid "Duplicate"
-msgstr ""
+msgstr "複製"
 
 msgid "Steps"
 msgstr "ステップ"
@@ -1444,16 +1443,16 @@ msgid ""
 msgstr "その受信者が、特定の提出の内部告発者に権限を付与することを許可します"
 
 msgid "Site settings"
-msgstr ""
+msgstr "サイト設定"
 
 msgid "Case management"
-msgstr ""
+msgstr "ケース管理"
 
 msgid "Network settings"
 msgstr "ネットワーク設定"
 
 msgid "Mode:"
-msgstr ""
+msgstr "モード:"
 
 msgid "Root domain used for secondary sites"
 msgstr "二番目のサイトで使用するルートドメイン"
@@ -1461,11 +1460,8 @@ msgstr "二番目のサイトで使用するルートドメイン"
 msgid "Allow users to sign up"
 msgstr "ユーザーによるサインアップを許可"
 
-msgid "Record IP address and user agent of registered users"
-msgstr ""
-
 msgid "Enable terms of service"
-msgstr ""
+msgstr "利用規約を有効にする"
 
 msgid "Sites"
 msgstr "サイト"
@@ -1483,10 +1479,10 @@ msgid "The system forces users to change the password at first login."
 msgstr "システムにより、ユーザーが最初のログイン時にパスワードを変更することを強制します。"
 
 msgid "Reset password"
-msgstr ""
+msgstr "パスワードをリセット"
 
 msgid "New password"
-msgstr ""
+msgstr "新しいパスワード"
 
 msgid ""
 "The chosen password is too weak. Make it more secure by adding special "
@@ -1515,10 +1511,10 @@ msgid "Set up encryption by providing a PGP public key"
 msgstr "PGP公開鍵を提供して暗号化を設定"
 
 msgid "User has administrative access to the following features:"
-msgstr ""
+msgstr "ユーザーは、次の機能への管理アクセス権があります:"
 
 msgid "main"
-msgstr ""
+msgstr "メイン"
 
 msgid "Request date"
 msgstr "リクエスト日"
@@ -1530,13 +1526,13 @@ msgid "Identities"
 msgstr "IDリスト"
 
 msgid "The validation link is either incorrect or has expired."
-msgstr ""
+msgstr "検証リンクが間違っているか、有効期限が切れています。"
 
 msgid "Your new email address has been validated."
-msgstr ""
+msgstr "新しいメールアドレスが検証されました。"
 
 msgid "Before proceeding, please set a new password."
-msgstr ""
+msgstr "次に進む前に、新しいパスワードを設定してください。"
 
 msgid "Submissions disabled"
 msgstr "提出は無効です"
@@ -1549,7 +1545,7 @@ msgstr "あなたは匿名性が無いままサーバーに接続しています
 msgid ""
 "Server temporarily unusable due to resource exhaustion; advise the Admin if "
 "you can."
-msgstr ""
+msgstr "リソースが枯渇したため一時的にサーバーを使用できません。 可能であれば管理者にご連絡ください。"
 
 msgid "This server is not configured."
 msgstr "このサーバーは設定されていません"
@@ -1571,13 +1567,13 @@ msgid "Please support Hermes through their donation page."
 msgstr "ぜひ寄付のページをご覧になり、Hermesをサポートしてください。"
 
 msgid "Forgot password?"
-msgstr ""
+msgstr "パスワードをお忘れですか?"
 
 msgid "Authentication failed"
 msgstr "認証に失敗しました"
 
 msgid "Site:"
-msgstr ""
+msgstr "サイト:"
 
 msgid "Username:"
 msgstr "ユーザー名:"
@@ -1608,31 +1604,8 @@ msgstr "このオプションが選択された場合に割り当てるスコア
 msgid "Confirm"
 msgstr "延期を確認"
 
-msgid "Are you human?"
-msgstr "あなたは人間ですか?"
-
-msgid ""
-"We do not discriminate based on race and gender, but we do against computers"
-" :)"
-msgstr "私たちは人種や性別に基づく差別はしませんが、コンピュータに対しては行います :)"
-
-msgid ""
-"Just to prove you are human, please answer the following math challenge:"
-msgstr "あなたが人間であることを証明するために、次の数のテストにお答えください:"
-
-msgid "I've solved the math challenge, hide this thing now!"
-msgstr "私は数のテストを解決しました。これを表示しません!"
-
 msgid "Please note that all the associated data will be permanently lost."
 msgstr "すべての関連データが完全に失われますのでご注意ください。"
-
-msgid ""
-"This means that if the server running the platform were to be seized, it "
-"would be possible to extract the files that have been submitted."
-msgstr "つまり、プラットフォームを実行しているサーバーが押収された場合、提出されたファイルを抽出することが可能になる場合があります。"
-
-msgid "Are you sure that you wish to continue?"
-msgstr "本当に続けたいですか?"
 
 msgid "Error!"
 msgstr "エラー!"
@@ -1662,16 +1635,16 @@ msgid "Success!"
 msgstr "成功!"
 
 msgid "Validation of email address change in progress."
-msgstr ""
+msgstr "メールアドレス変更の検証を処理しています。"
 
 msgid "Please check your inbox for further instructions."
-msgstr ""
+msgstr "詳しい手順については、受信トレイを確認してください。"
 
 msgid "Enable submission notification"
 msgstr "提出の通知を有効にする"
 
 msgid "Current password"
-msgstr ""
+msgstr "現在のパスワード"
 
 msgid "Old password confirmation required"
 msgstr "旧パスワードの確認が必要"
@@ -1699,7 +1672,7 @@ msgid "Then, copy and paste the following address into the Tor Browser:"
 msgstr "その上で、以下のアドレスをインストールされたTor Browserにコピー&ペーストしてください。"
 
 msgid "Enter a name for the copy"
-msgstr ""
+msgstr "コピーの名前を入力してください"
 
 msgid "Add file"
 msgstr "ファイルを追加"
@@ -1744,6 +1717,18 @@ msgstr "調査ジャーナリズム"
 
 msgid "Civic activism"
 msgstr "市民運動"
+
+msgid "previous step"
+msgstr "前のステップ"
+
+msgid "next step"
+msgstr "次のステップ"
+
+msgid "Submit"
+msgstr "提出"
+
+msgid "Fill the additional questionnaire"
+msgstr "追加のアンケートを入力してください"
 
 msgid "Send"
 msgstr "送信"
@@ -1828,7 +1813,7 @@ msgid "Recipient list"
 msgstr "受信者のリスト"
 
 msgid "Submission status:"
-msgstr ""
+msgstr "提出状況:"
 
 msgid "Attached files for the whistleblower"
 msgstr "内部告発者向けの添付ファイル"
@@ -1849,21 +1834,21 @@ msgid "These files have been attached to your submission by the recipients."
 msgstr "これらのファイルは、受信者によって提出に添付されています。"
 
 msgid "The provided reset token is invalid or expired."
-msgstr ""
+msgstr "指定されたリセットトークンが無効または期限切れです。"
 
 msgid ""
 "Enter your account's username or your email address to request a password "
 "reset."
-msgstr ""
+msgstr "パスワードの再設定をリクエストするには、アカウントのユーザー名またはメールアドレスを入力してください。"
 
 msgid "Request password reset"
-msgstr ""
+msgstr "パスワードの再設定をリクエスト"
 
 msgid "Password reset feature is unavailable for admin users."
-msgstr ""
+msgstr "管理者ユーザーはパスワードリセット機能を使用できません。"
 
 msgid "Password reset requested."
-msgstr ""
+msgstr "パスワードのリセットをリクエストしました。"
 
 msgid "Thank you!"
 msgstr "ありがとうございます!"
@@ -1891,29 +1876,6 @@ msgid ""
 msgstr "あなたのキーコードを隠す有用な方法は、クレジットカード番号のように書き留めておくことです。有効期限も含めておきましょう。"
 
 msgid ""
-"You have not set up your encryption key, so the files will not be encrypted "
-"prior to being stored on the server."
-msgstr "暗号化の鍵を設定していないので、ファイルはサーバーに暗号化されないまま保管されます。"
-
-msgid ""
-"This may lead to unintended access to the files by the server administrator "
-"or others in case the server is compromised."
-msgstr "これは、サーバーの管理者や、サーバーが侵入された場合には他人に、ファイルへの意図しないアクセスを許すことに繋がります。"
-
-msgid "Please configure your PGP keys in the recipient preferences page."
-msgstr "あなたのPGP鍵を受信者の設定ページで設定してください。"
-
-msgid ""
-"One or more of the recipients of this submission has not configured a PGP "
-"key."
-msgstr "この提出の受信者のうち誰かがPGP鍵を設定していません。"
-
-msgid ""
-"This means that the submitted files will be stored in plaintext on the "
-"server."
-msgstr "これは、提出されたファイルは平文でサーバーに保管されることを意味します。"
-
-msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."
 msgstr "内部告発者の身元へのアクセスを管理人にリクエストしました。"
 
@@ -1921,7 +1883,7 @@ msgid "Date of the request"
 msgstr "リクエスト日"
 
 msgid "Undeclared"
-msgstr ""
+msgstr "未定義"
 
 msgid "Congratulations!"
 msgstr "おめでとうございます"
@@ -1948,7 +1910,7 @@ msgid "Complete"
 msgstr "完了"
 
 msgid "Invalid phone number"
-msgstr ""
+msgstr "電話番号が正しくありません"
 
 msgid "This field is mandatory."
 msgstr "このフィールドは必須です。"
@@ -1967,15 +1929,6 @@ msgstr "数字のみで入力してください。"
 
 msgid "Recipient selection"
 msgstr "受信者の選択"
-
-msgid "previous step"
-msgstr "前のステップ"
-
-msgid "next step"
-msgstr "次のステップ"
-
-msgid "Submit"
-msgstr "提出"
 
 msgid "Recipients selected:"
 msgstr "選択された受信者:"
@@ -2065,7 +2018,7 @@ msgid "Female"
 msgstr "女性"
 
 msgid "Other gender identity"
-msgstr ""
+msgstr "その他の性同一性"
 
 msgid "Date of birth"
 msgstr "誕生日"
@@ -2128,7 +2081,7 @@ msgid "Kind regards,"
 msgstr "敬具"
 
 msgid "Access instructions"
-msgstr ""
+msgstr "アクセス方法"
 
 msgid ""
 "The number of activities recently detected appears to be higher than usual."
@@ -2183,7 +2136,7 @@ msgid "PGP key expiration alert"
 msgstr "PGP鍵期限切れアラート"
 
 msgid "A new whistleblowing site has been registered."
-msgstr ""
+msgstr "新しい告発サイトが登録されました。"
 
 msgid "Registration data:"
 msgstr "登録データ:"
@@ -2204,7 +2157,7 @@ msgid "Use case: {UseCase}"
 msgstr "ユースケース: {UseCase}"
 
 msgid "New whistleblowing site registered"
-msgstr ""
+msgstr "新しい告発サイトが登録されました。"
 
 msgid ""
 "This is a test email sent out from the platform's administrative interface."
@@ -2237,23 +2190,23 @@ msgstr "新しいコメント"
 msgid ""
 "This is an email to notify you that a request has been made to change your "
 "email address to {NewEmailAddress}."
-msgstr ""
+msgstr "これはあなたのメールアドレスを {NewEmailAddress} に変更するリクエストが行われたことを通知するメールです。"
 
 msgid "Click the following link to validate this change: {HTTPSUrl}"
-msgstr ""
+msgstr "この変更を有効にするには、次のリンクをクリックしてください: {HTTPSUrl}"
 
 msgid ""
 "If you wish to validate your new email with Tor, you may use the following "
 "link: {TorUrl}"
-msgstr ""
+msgstr "Torで新しいメールを検証したい場合は、次のリンクを使用してください: {TorUrl}"
 
 msgid ""
 "If you didn't request this change, change your password and contact your "
 "system administrator."
-msgstr ""
+msgstr "この変更をリクエストしていない場合は、パスワードを変更してシステム管理者に連絡してください。"
 
 msgid "Email change request"
-msgstr ""
+msgstr "メールアドレス変更リクエスト"
 
 msgid "From: {RecipientName}"
 msgstr "差出人: {RecipientName}"
@@ -2302,13 +2255,13 @@ msgstr "HTTPS 証明書期限切れアラート"
 
 msgid ""
 "The automatic HTTPS certificate renewal scheduled for today just failed."
-msgstr ""
+msgstr "今日予定されている自動HTTPS証明書更新が失敗しました。"
 
 msgid "The system will keep trying."
-msgstr ""
+msgstr "システムは再試行します。"
 
 msgid "Failed HTTPS certificate renewal"
-msgstr ""
+msgstr "HTTPS証明書の更新に失敗しました"
 
 msgid ""
 "This is an email to notify you that a custodian has authorized you to access"
@@ -2355,18 +2308,18 @@ msgstr "新しいメッセージ"
 msgid ""
 "You're receiving this email because a password reset has been requested for "
 "your account."
-msgstr ""
+msgstr "あなたのアカウントのパスワードの再設定がリクエストされたため、このメールが届きました。"
 
 msgid ""
 "If you didn't make this request, you may safely ignore and delete this "
 "email."
-msgstr ""
+msgstr "このリクエストをしていない場合は、このメールを無視して、メールを削除しても問題ありません。"
 
 msgid "You can confirm your request by clicking the following links:"
-msgstr ""
+msgstr "次のリンクをクリックするとリクエストを確認できます:"
 
 msgid "Password reset instructions"
-msgstr ""
+msgstr "パスワードのリセット手順"
 
 msgid ""
 "This is an email to inform you that your PGP key is expiring or has already "
@@ -2405,7 +2358,7 @@ msgid "Click the link to activate the platform:"
 msgstr "リンクをクリックしてプラットフォームを有効にしてください:"
 
 msgid "Activation"
-msgstr ""
+msgstr "アクティベーション"
 
 msgid "A software update is available."
 msgstr "ソフトウェアのアップデートが利用可能です"
@@ -2455,10 +2408,10 @@ msgid "New submission"
 msgstr "新しい提出"
 
 msgid "Role: {Role}"
-msgstr ""
+msgstr "役割: {Role}"
 
 msgid "Username: {Username}"
-msgstr ""
+msgstr "ユーザー名: {Username}"
 
 msgid "Password: {Password}"
-msgstr ""
+msgstr "パスワード: {Password}"

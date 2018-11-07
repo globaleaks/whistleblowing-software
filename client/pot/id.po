@@ -16,13 +16,14 @@
 # Marcel Oomens <mail@marceloomens.com>, 2018
 # Margaret Megan <megan_marg@yahoo.com>, 2017
 # Muhamad Miguel Adrian Pasha <m.miguel.ap@gmail.com>, 2018
+# Muhammad Yusuf <myusuffin@gmail.com>, 2018
 # nirel dede <nireldede2710@gmail.com>, 2018
 # Oenang Dewi <oenangdewi@gmail.com>, 2018
 # Ratna Ariyanti <ratna.ariyanti@gmail.com>, 2018
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-09-27 21:26+0000\n"
+"PO-Revision-Date: 2018-11-05 16:47+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Indonesian (http://www.transifex.com/otf/globaleaks/language/id/)\n"
 "MIME-Version: 1.0\n"
@@ -386,6 +387,9 @@ msgstr "dalam persentase"
 msgid "HTTPS settings"
 msgstr "Pengaturan HTTPS"
 
+msgid "URL shortener"
+msgstr ""
+
 msgid "Anomaly detection thresholds"
 msgstr "Batas deteksi anomali "
 
@@ -680,25 +684,21 @@ msgstr "Status pengiriman"
 msgid "Disable submissions"
 msgstr "Menonaktifkan kiriman"
 
-msgid "Enable insecure configuration without PGP encryption"
-msgstr "Aktifkan konfigurasi tidak aman tanpa enkripsi PGP"
-
-msgid "Warning"
-msgstr "Peringatan"
+msgid "Enable encryption"
+msgstr "Aktifkan enkripsi"
 
 msgid ""
-"By enabling this option, the system will be storing the submitted files "
-"unencrypted on your server."
-msgstr "Dengan mengaktifkan pilihan ini, sistem akan menyimpan berkas yang sudah dikirimkan secara tidak terenkripsi pada server Anda."
+"Allow the system to store data in plaintext when encryption is not available"
+msgstr ""
 
-msgid "This happens whenever encryption is unavailable."
-msgstr "Hal ini terjadi setiap kali enkripsi tidak tersedia."
-
-msgid "Disable messages that warn of missing encryption"
-msgstr "Menonaktifkan pesan yang memperingatkan enkripsi yang hilang"
+msgid "Enable multisite feature"
+msgstr ""
 
 msgid "Allow other websites to include the platform inside iframes"
 msgstr "Mengizinkan situs-situs lain menyertakan platform di dalam iframes"
+
+msgid "Warning"
+msgstr "Peringatan"
 
 msgid ""
 "By enabling this option, you are allowing other websites to include the "
@@ -744,20 +744,11 @@ msgstr "Judul"
 msgid "Text"
 msgstr "Teks"
 
-msgid "Disable the security awareness panel"
-msgstr "Menonaktifkan panel keamanan"
-
 msgid "Disable the key code hint"
 msgstr "Menonaktifkan petunjuk kata sandi"
 
 msgid "Disable the donation panel"
 msgstr "Menonaktifkan panel donasi"
-
-msgid "Enable CAPTCHA mechanism"
-msgstr "Mengaktifkan mekanisme CAPTCHA"
-
-msgid "Enable proof of work mechanism"
-msgstr "Mengaktifkan mekanisme kerja pembuktian "
 
 msgid "Amount of days till whistleblower access expires"
 msgstr "Waktu yang tersedia sebelum akses berakhir"
@@ -855,6 +846,12 @@ msgstr "Mengizinkan untuk masuk ke banyak situs"
 
 msgid "Enable simplified login"
 msgstr "Mengaktifkan metode masuk yang mudah"
+
+msgid "Logging level"
+msgstr ""
+
+msgid "Log accesses of internal users"
+msgstr "Akses log pengguna internal"
 
 msgid "Enable experimental features"
 msgstr "Mengaktifkan fitur-fitur eksperimental"
@@ -963,6 +960,9 @@ msgstr "Nama"
 
 msgid "Questionnaire"
 msgstr "Kuesioner"
+
+msgid "Additional questionnaire"
+msgstr "Kuesioner tambahan"
 
 msgid "Recipients"
 msgstr "Penerima"
@@ -1474,9 +1474,6 @@ msgstr "Domain awal yang digunakan untuk situs kedua"
 msgid "Allow users to sign up"
 msgstr "Mengizinkan pengguna untuk mendaftar"
 
-msgid "Record IP address and user agent of registered users"
-msgstr "Mencatat alamat IP dan agen pengguna yang terdaftar"
-
 msgid "Enable terms of service"
 msgstr "Mengaktifkan persyaratan layanan"
 
@@ -1621,31 +1618,8 @@ msgstr "masukkan jumlah poin nilai yang ditetapkan ketika pilihan ini dipilih."
 msgid "Confirm"
 msgstr "Konfirmasi"
 
-msgid "Are you human?"
-msgstr "Apakah Anda manusia ?"
-
-msgid ""
-"We do not discriminate based on race and gender, but we do against computers"
-" :)"
-msgstr "kami tidak melakukan diskriminasi berdasarkan ras dan jenis kelamin, tetapi kami melawan komputer :)"
-
-msgid ""
-"Just to prove you are human, please answer the following math challenge:"
-msgstr "hanya untuk membuktikan bahwa Anda manusia, tolong jawab tantangan matematika berikut:"
-
-msgid "I've solved the math challenge, hide this thing now!"
-msgstr "saya telah memecahkan tantangan matematika, sembunyikan hal ini sekarang!"
-
 msgid "Please note that all the associated data will be permanently lost."
 msgstr "Harap dicatat bahwa semua data yang terkait akan hilang secara permanen."
-
-msgid ""
-"This means that if the server running the platform were to be seized, it "
-"would be possible to extract the files that have been submitted."
-msgstr "Ini berarti bahwa jika peladen yang menjalankan platform itu disita, akan ada kemungkinan untuk mengekstrak file yang telah dikirimkan."
-
-msgid "Are you sure that you wish to continue?"
-msgstr "Apakah Anda yakin ingin melanjutkan?"
 
 msgid "Error!"
 msgstr "Gagal!"
@@ -1757,6 +1731,18 @@ msgstr "Jurnalisme investigasi"
 
 msgid "Civic activism"
 msgstr "Aktivis kewargakenegaraan"
+
+msgid "previous step"
+msgstr "Langkah sebelumnya"
+
+msgid "next step"
+msgstr "Langkah berikutnya"
+
+msgid "Submit"
+msgstr "Kirim"
+
+msgid "Fill the additional questionnaire"
+msgstr "Isi kuesioner tambahan"
 
 msgid "Send"
 msgstr "Kirim"
@@ -1904,29 +1890,6 @@ msgid ""
 msgstr "Cara yang baik menyembunyikan kode kunci Anda adalah untuk menulisnya seperti nomor kartu kredit, termasuk tanggal kadaluarsanya."
 
 msgid ""
-"You have not set up your encryption key, so the files will not be encrypted "
-"prior to being stored on the server."
-msgstr "Anda belum mengatur kunci enkripsi, sehingga berkas tidak akan terenkrispsi sebelum disimpan di peladen. "
-
-msgid ""
-"This may lead to unintended access to the files by the server administrator "
-"or others in case the server is compromised."
-msgstr "Ini akan menuju ke akses berkas yang tidak dikehendaki  oleh administrator peladen atau orang lain bila peladen diretas."
-
-msgid "Please configure your PGP keys in the recipient preferences page."
-msgstr "Mohon setel kunci PGP Anda di dalam halaman preferensi penerima."
-
-msgid ""
-"One or more of the recipients of this submission has not configured a PGP "
-"key."
-msgstr "Satu atau lebih penerima kiriman ini belum mengkonfigurasi kunci PGP."
-
-msgid ""
-"This means that the submitted files will be stored in plaintext on the "
-"server."
-msgstr "Artinya, berkas yang sudah dikirim akan disimpan dalam bentuk teks sederhana di peladen."
-
-msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."
 msgstr "Akses untuk identitas Informan Publik telah diminta oleh pihak otoritas"
 
@@ -1961,7 +1924,7 @@ msgid "Complete"
 msgstr "Selesai"
 
 msgid "Invalid phone number"
-msgstr ""
+msgstr "Nomor telepon salah"
 
 msgid "This field is mandatory."
 msgstr "Kolom ini wajib diisi."
@@ -1980,15 +1943,6 @@ msgstr "Mohon hanya masukkan nomor"
 
 msgid "Recipient selection"
 msgstr "Seleksi penerima"
-
-msgid "previous step"
-msgstr "Langkah sebelumnya"
-
-msgid "next step"
-msgstr "Langkah berikutnya"
-
-msgid "Submit"
-msgstr "Kirim"
 
 msgid "Recipients selected:"
 msgstr "Penerima yang terpilih:"

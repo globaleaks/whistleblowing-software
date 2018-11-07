@@ -1,12 +1,13 @@
 # 
 # Translators:
+# Bala Subramaniyan <balapandu222@hotmail.com>, 2018
 # Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2016-2017
 # git12a <git12@openmailbox.org>, 2015
 # Sivarajah Bagerathan <bagerathan@gmail.com>, 2013
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-09-27 21:26+0000\n"
+"PO-Revision-Date: 2018-11-05 16:47+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Tamil (http://www.transifex.com/otf/globaleaks/language/ta/)\n"
 "MIME-Version: 1.0\n"
@@ -31,10 +32,10 @@ msgid "Theme customization"
 msgstr "தீம் தனிப்பட்ட"
 
 msgid "Languages"
-msgstr ""
+msgstr "மொழிகள்"
 
 msgid "Text customization"
-msgstr ""
+msgstr "உரை தனிப்பயனாக்கம்"
 
 msgid "Advanced settings"
 msgstr "மேம்பட்ட அமைப்புக்கள்"
@@ -61,7 +62,7 @@ msgid "Changelog"
 msgstr "மாற்றம்குறிக்கும் கோப்பு"
 
 msgid "License"
-msgstr ""
+msgstr "உரிமம்"
 
 msgid "Notification templates"
 msgstr "அறிவித்தல் வார்ப்புருக்கள்"
@@ -94,7 +95,7 @@ msgid "Preferences"
 msgstr "விருப்பத்தேர்வுகள்"
 
 msgid "User preferences"
-msgstr ""
+msgstr "பயனர் விருப்பத்தேர்வுகள்"
 
 msgid "Notification settings"
 msgstr "அறிவித்தல் அமைப்புகளை"
@@ -212,7 +213,7 @@ msgstr "இந்த சமர்ப்பிப்பு அனுப்ப ப
 msgid ""
 "The connection used to send this submission has been secured with Tor "
 "ensuring confidentiality and anonymity."
-msgstr ""
+msgstr "இந்த சமர்ப்பிப்பை அனுப்ப பயன்படும் இணைப்பு, Tor என்பது இரகசியத்தன்மை மற்றும் தெரியாத தன்மையை உறுதிப்படுத்துகிறது."
 
 msgid "vertical"
 msgstr "செங்குத்து"
@@ -370,6 +371,9 @@ msgstr "சதவீதம் உள்ள"
 msgid "HTTPS settings"
 msgstr "HTTP அமைப்புகளை"
 
+msgid "URL shortener"
+msgstr "URL Shortener,"
+
 msgid "Anomaly detection thresholds"
 msgstr "ஒழுங்கின்மை கண்டறிதல் நிலையை"
 
@@ -447,10 +451,10 @@ msgid "Type of context selector:"
 msgstr "சூழல் தேர்வுக்குழு வகை:"
 
 msgid "Type to search…"
-msgstr ""
+msgstr "தேடுவதற்குத் தட்டச்சு செய்க ..."
 
 msgid "Silence email notifications"
-msgstr ""
+msgstr "மின்னஞ்சல் அறிவிப்புகளை மௌனம்"
 
 msgid "Turn on email notifications"
 msgstr ""
@@ -664,25 +668,21 @@ msgstr ""
 msgid "Disable submissions"
 msgstr "சமர்ப்பிப்புகளை முடக்கு"
 
-msgid "Enable insecure configuration without PGP encryption"
-msgstr "பிஜிபி குறியாக்க இல்லாமல் பாதுகாப்பற்ற உள்ளமைவு"
-
-msgid "Warning"
-msgstr "எச்சரிக்கை"
+msgid "Enable encryption"
+msgstr ""
 
 msgid ""
-"By enabling this option, the system will be storing the submitted files "
-"unencrypted on your server."
-msgstr "இந்த விருப்பத்தை இயக்குவதன் மூலம், அமைப்பு உங்கள் சர்வரில் மறைகுறியாக்கப்பட்ட சமர்ப்பிக்க கோப்புகளை சேமித்து வைக்கப்படும்."
+"Allow the system to store data in plaintext when encryption is not available"
+msgstr ""
 
-msgid "This happens whenever encryption is unavailable."
-msgstr "குறியாக்க கிடைக்கவில்லை போதெல்லாம் இது நடக்கும்."
-
-msgid "Disable messages that warn of missing encryption"
-msgstr "காணாமல் குறியாக்க எச்சரிக்கும் செய்திகளை முடக்கு"
+msgid "Enable multisite feature"
+msgstr ""
 
 msgid "Allow other websites to include the platform inside iframes"
 msgstr "மற்ற வலைத்தளங்களில் ஃபிரேம்களை உள்ளே மேடையில் சேர்க்க அனுமதிக்க"
+
+msgid "Warning"
+msgstr "எச்சரிக்கை"
 
 msgid ""
 "By enabling this option, you are allowing other websites to include the "
@@ -728,20 +728,11 @@ msgstr "தலைப்பு"
 msgid "Text"
 msgstr "உரை"
 
-msgid "Disable the security awareness panel"
-msgstr "பாதுகாப்பு விழிப்புணர்வு குழு முடக்கு"
-
 msgid "Disable the key code hint"
 msgstr "முக்கிய குறியீடு குறிப்பை முடக்கு"
 
 msgid "Disable the donation panel"
 msgstr "நன்கொடை குழு முடக்கு"
-
-msgid "Enable CAPTCHA mechanism"
-msgstr "அப்பாவி பொறிமுறையை இயக்கு"
-
-msgid "Enable proof of work mechanism"
-msgstr "வேலை பொறிமுறையை ஆதாரம் இயக்கு"
 
 msgid "Amount of days till whistleblower access expires"
 msgstr ""
@@ -838,6 +829,12 @@ msgid "Enable multi-site login"
 msgstr ""
 
 msgid "Enable simplified login"
+msgstr ""
+
+msgid "Logging level"
+msgstr ""
+
+msgid "Log accesses of internal users"
 msgstr ""
 
 msgid "Enable experimental features"
@@ -948,6 +945,9 @@ msgstr "பெயர்"
 msgid "Questionnaire"
 msgstr "கேள்வித்தாள்"
 
+msgid "Additional questionnaire"
+msgstr ""
+
 msgid "Recipients"
 msgstr "பெற்றவர்கள்"
 
@@ -1030,7 +1030,7 @@ msgid ""
 msgstr ""
 
 msgid "Contact"
-msgstr ""
+msgstr "தொடர்பு"
 
 msgid ""
 "If you need technical support, have general questions, or have new ideas for"
@@ -1313,7 +1313,7 @@ msgid "Submission"
 msgstr "சமர்ப்பிக்கும்"
 
 msgid "Path"
-msgstr ""
+msgstr "Path"
 
 msgid "Size"
 msgstr "அளவு"
@@ -1456,9 +1456,6 @@ msgid "Root domain used for secondary sites"
 msgstr ""
 
 msgid "Allow users to sign up"
-msgstr ""
-
-msgid "Record IP address and user agent of registered users"
 msgstr ""
 
 msgid "Enable terms of service"
@@ -1605,31 +1602,8 @@ msgstr "உள்ளிடவும் போது இந்த விரு
 msgid "Confirm"
 msgstr "உறுதிப்படுத்தவும்"
 
-msgid "Are you human?"
-msgstr "நீங்கள் மனிதனா?"
-
-msgid ""
-"We do not discriminate based on race and gender, but we do against computers"
-" :)"
-msgstr "நாம் இனம் மற்றும் பாலினம் அடிப்படையில் வேற்றுமையை இல்லை, ஆனால் நாம் கணினிகள் எதிராக செய்ய :)"
-
-msgid ""
-"Just to prove you are human, please answer the following math challenge:"
-msgstr "நீங்கள் மனித உள்ளன நிரூபிக்க, பின்வரும் கணித சவாலை பதில் தயவு செய்து:"
-
-msgid "I've solved the math challenge, hide this thing now!"
-msgstr "நான் கணித சவாலை தீர்க்கப்பட நான், இப்போது இந்த விஷயம் மறைக்க!"
-
 msgid "Please note that all the associated data will be permanently lost."
 msgstr ""
-
-msgid ""
-"This means that if the server running the platform were to be seized, it "
-"would be possible to extract the files that have been submitted."
-msgstr "இந்த மேடையில் இயங்கும் சர்வர் பறிமுதல் செய்ய வேண்டும் என்றால், அது சமர்ப்பிக்கப்பட்ட கோப்புகளை பிரித்தெடுக்க முடியும் என்று அர்த்தம்."
-
-msgid "Are you sure that you wish to continue?"
-msgstr "நீங்கள் தொடர விரும்புகிறீர்களா என்று உறுதியாக இருக்கிறீர்களா?"
 
 msgid "Error!"
 msgstr "பிழை!"
@@ -1740,6 +1714,18 @@ msgid "Investigative journalism"
 msgstr ""
 
 msgid "Civic activism"
+msgstr ""
+
+msgid "previous step"
+msgstr "முந்தைய படி"
+
+msgid "next step"
+msgstr "அடுத்த அடி"
+
+msgid "Submit"
+msgstr "சமர்ப்பி"
+
+msgid "Fill the additional questionnaire"
 msgstr ""
 
 msgid "Send"
@@ -1888,29 +1874,6 @@ msgid ""
 msgstr "உங்கள் முக்கிய குறியீடு மறைக்க ஒரு பயனுள்ள வழியில் ஒரு கடன் அட்டை எண், மேலும் ஒரு காலாவதி தேதி உள்ளிட்ட மூலம் அதாவது போன்ற அதை எழுத வேண்டும்."
 
 msgid ""
-"You have not set up your encryption key, so the files will not be encrypted "
-"prior to being stored on the server."
-msgstr "நீங்கள் உங்கள் குறியாக்க விசை அமைக்க வேண்டும் மாட்டேன் வரை, அதனால் கோப்புகள் சர்வரில் சேமித்து இதற்கு முன்னர் குறியாக்கம் முடியாது."
-
-msgid ""
-"This may lead to unintended access to the files by the server administrator "
-"or others in case the server is compromised."
-msgstr "இந்த வழக்கில் சர்வர் சமரசம் செய்து சர்வர் நிர்வாகி அல்லது மற்றவர்கள் கோப்புகளை திட்டமிடப்படாத அணுகல் வழிவகுக்கும்."
-
-msgid "Please configure your PGP keys in the recipient preferences page."
-msgstr "பெறுநர் விருப்பங்களை பக்கம் உங்கள் பிஜிபி விசைகள் கட்டமைக்க கொள்ளவும்."
-
-msgid ""
-"One or more of the recipients of this submission has not configured a PGP "
-"key."
-msgstr "இந்த சமர்ப்பிப்பு பெறுபவர்கள் ஒன்று அல்லது அதற்கு மேற்பட்ட ஒரு பிஜிபி முக்கிய கட்டமைக்கப்பட்ட இல்லை."
-
-msgid ""
-"This means that the submitted files will be stored in plaintext on the "
-"server."
-msgstr "இந்த சமர்ப்பிக்க கோப்புகளை சர்வரில் இயல்பு சேமிக்கப்படும் என்று அர்த்தம்."
-
-msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."
 msgstr "தகவல் தெரிவிப்பவர் அடையாளத்திற்கான அணுகல் பொறுப்பாளரான கேட்கப்பட்டுள்ளது."
 
@@ -1964,15 +1927,6 @@ msgstr ""
 
 msgid "Recipient selection"
 msgstr "பெறுநரின் தேர்வை"
-
-msgid "previous step"
-msgstr "முந்தைய படி"
-
-msgid "next step"
-msgstr "அடுத்த அடி"
-
-msgid "Submit"
-msgstr "சமர்ப்பி"
 
 msgid "Recipients selected:"
 msgstr "பெற்றவர்கள் தேர்வு:"

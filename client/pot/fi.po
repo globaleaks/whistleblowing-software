@@ -10,7 +10,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-09-27 21:26+0000\n"
+"PO-Revision-Date: 2018-11-05 16:47+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Finnish (http://www.transifex.com/otf/globaleaks/language/fi/)\n"
 "MIME-Version: 1.0\n"
@@ -374,6 +374,9 @@ msgstr "prosenteissa"
 msgid "HTTPS settings"
 msgstr "HTTPS asetukset"
 
+msgid "URL shortener"
+msgstr "Verkko-osoitelyhennin"
+
 msgid "Anomaly detection thresholds"
 msgstr "Poikkeaman havainnointikynnys"
 
@@ -668,25 +671,21 @@ msgstr "Vihjeen tila"
 msgid "Disable submissions"
 msgstr "Poista vihjeiden lähettäminen käytöstä"
 
-msgid "Enable insecure configuration without PGP encryption"
-msgstr "Ota käyttöön turvattomat asetukset ilman PGP-salausta"
-
-msgid "Warning"
-msgstr "Varoitus"
+msgid "Enable encryption"
+msgstr ""
 
 msgid ""
-"By enabling this option, the system will be storing the submitted files "
-"unencrypted on your server."
-msgstr "Tämän asetuksen ollessa käytössä järjestelmä tallentaa lähetetyt tiedostot salaamattomina palvelimellesi."
+"Allow the system to store data in plaintext when encryption is not available"
+msgstr ""
 
-msgid "This happens whenever encryption is unavailable."
-msgstr "Tätä tapahtuu silloin kun salausta ei ole saatavilla."
-
-msgid "Disable messages that warn of missing encryption"
-msgstr "Poista käytöstä varoitukset puuttuvasta salauksesta"
+msgid "Enable multisite feature"
+msgstr ""
 
 msgid "Allow other websites to include the platform inside iframes"
 msgstr "Salli muiden sivustojen upottaa palvelu iframes-toteutuksena omille verkkosivuilleen."
+
+msgid "Warning"
+msgstr "Varoitus"
 
 msgid ""
 "By enabling this option, you are allowing other websites to include the "
@@ -732,20 +731,11 @@ msgstr "Otsikko"
 msgid "Text"
 msgstr "Teksti"
 
-msgid "Disable the security awareness panel"
-msgstr "Ota pois käytöstä turvallisuuspaneeli"
-
 msgid "Disable the key code hint"
 msgstr "Poista käytöstä salaisen numerosarjan vinkki"
 
 msgid "Disable the donation panel"
 msgstr "Ota pois käytöstä lahjoitusteksti"
-
-msgid "Enable CAPTCHA mechanism"
-msgstr "Ota käyttöön CAPTCHA-kuvavarmennus"
-
-msgid "Enable proof of work mechanism"
-msgstr "Ota käyttöön työtodistusmekanismi (proof of work)"
 
 msgid "Amount of days till whistleblower access expires"
 msgstr "Päivien määrä, jolloin vihjeenantajan pääsy vihjeen tietoihin umpeutuu"
@@ -843,6 +833,12 @@ msgstr "Salli samanaikainen kirjautuminen useaan järjestelmään"
 
 msgid "Enable simplified login"
 msgstr "Ota käyttöön helpotettu kirjautuminen"
+
+msgid "Logging level"
+msgstr ""
+
+msgid "Log accesses of internal users"
+msgstr ""
 
 msgid "Enable experimental features"
 msgstr "Ota käyttöön koekäytössä olevat toiminnallisuudet"
@@ -951,6 +947,9 @@ msgstr "Käyttäjänimi"
 
 msgid "Questionnaire"
 msgstr "Vihjelomake"
+
+msgid "Additional questionnaire"
+msgstr ""
 
 msgid "Recipients"
 msgstr "Vastaanottajat"
@@ -1462,9 +1461,6 @@ msgstr "Käytetään pääverkkotunnusta toissijaisille palveluille"
 msgid "Allow users to sign up"
 msgstr "Salli käyttäjien rekisteröityä palveluun"
 
-msgid "Record IP address and user agent of registered users"
-msgstr "Tallenna rekisteröityneiden käyttäjien IP-osoitteet ja selaintiedot (user agent)"
-
 msgid "Enable terms of service"
 msgstr "Ota käyttöön palvelun käyttöehdot"
 
@@ -1609,31 +1605,8 @@ msgstr "Kysymykseen liitettävä pistemäärä tämän valinnan ollessa valittun
 msgid "Confirm"
 msgstr "Vahvista laajennus"
 
-msgid "Are you human?"
-msgstr "Oletko ihminen?"
-
-msgid ""
-"We do not discriminate based on race and gender, but we do against computers"
-" :)"
-msgstr "Luokittelemme ihmisiä ainoastaan heidän tietokoneidensa — emme etnisyyden, sukupuolen tai sukupuoli-identiteetin perusteella. :)"
-
-msgid ""
-"Just to prove you are human, please answer the following math challenge:"
-msgstr "Vastaa seuraavaan matemaattiseen tehtävään todistaaksesi, että olet ihminen:"
-
-msgid "I've solved the math challenge, hide this thing now!"
-msgstr "Olen ratkaissut matemaattisen tehtävän, joten piilota tämä kohta nyt!"
-
 msgid "Please note that all the associated data will be permanently lost."
 msgstr "Huomaa, että kaikki asiaan liittyvät tiedot poistetaan lopullisesti."
-
-msgid ""
-"This means that if the server running the platform were to be seized, it "
-"would be possible to extract the files that have been submitted."
-msgstr "Mikäli järjestelmä kaapataan tai se joutuu ulkopuolisten käsiin, palveluun lähetetyt tiedostot voidaan avata ja lukea."
-
-msgid "Are you sure that you wish to continue?"
-msgstr "Oletko varma, että haluat jatkaa?"
 
 msgid "Error!"
 msgstr "Virhe!"
@@ -1745,6 +1718,18 @@ msgstr "Tutkiva journalismi"
 
 msgid "Civic activism"
 msgstr "Kansalaisaktivismi"
+
+msgid "previous step"
+msgstr "Edellinen"
+
+msgid "next step"
+msgstr "Jatka"
+
+msgid "Submit"
+msgstr "Lähetä"
+
+msgid "Fill the additional questionnaire"
+msgstr ""
 
 msgid "Send"
 msgstr "Lähetä"
@@ -1892,29 +1877,6 @@ msgid ""
 msgstr "Hyödyllinen tapa piilottaa salainen numerosarjasi on kirjoittaa se muistiin kuten luottokorttinumero. Toisin sanoen, sinun kannattaa sisällyttää numerosarjan mukaan myös vanhentumispäivämäärä."
 
 msgid ""
-"You have not set up your encryption key, so the files will not be encrypted "
-"prior to being stored on the server."
-msgstr "Et ole määritellyt salausavaintasi, joten tiedostoja ei salata ennen palvelimelle tallentamista."
-
-msgid ""
-"This may lead to unintended access to the files by the server administrator "
-"or others in case the server is compromised."
-msgstr "Tämä voi johtaa palvelimen ylläpitäjän tai muiden tahattomaan pääsyyn tiedostoihin palvelimelle murtauduttaessa."
-
-msgid "Please configure your PGP keys in the recipient preferences page."
-msgstr "Määritä PGP-avaimesi vastaanottajien asetussivulla."
-
-msgid ""
-"One or more of the recipients of this submission has not configured a PGP "
-"key."
-msgstr "Yksi tai useampi tämän vihjeen vastaanottajista ei ole määritellyt PGP-avainta."
-
-msgid ""
-"This means that the submitted files will be stored in plaintext on the "
-"server."
-msgstr "Tämä tarkoittaa, että lähetetyt tiedostot tallennetaan tavallisena tekstinä solmuusi."
-
-msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."
 msgstr "Valvojalle on lähetetty pyyntö päästä vihjeen antajan henkilötietoihin."
 
@@ -1968,15 +1930,6 @@ msgstr "ole hyvä ja syötä vain numeroita."
 
 msgid "Recipient selection"
 msgstr "Vastaanottajan valinta"
-
-msgid "previous step"
-msgstr "Edellinen"
-
-msgid "next step"
-msgstr "Jatka"
-
-msgid "Submit"
-msgstr "Lähetä"
 
 msgid "Recipients selected:"
 msgstr "Valitsemasi vastaanottajat:"

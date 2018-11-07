@@ -12,7 +12,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-09-27 21:26+0000\n"
+"PO-Revision-Date: 2018-11-05 16:47+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Vietnamese (http://www.transifex.com/otf/globaleaks/language/vi/)\n"
 "MIME-Version: 1.0\n"
@@ -58,7 +58,7 @@ msgid "Add new questionnaire"
 msgstr "Thêm câu hỏi mới"
 
 msgid "Home"
-msgstr ""
+msgstr "Home"
 
 msgid "Home page"
 msgstr ""
@@ -376,6 +376,9 @@ msgstr "tỷ lệ phần trăm"
 msgid "HTTPS settings"
 msgstr "cài đặt HTTPS"
 
+msgid "URL shortener"
+msgstr "shortener URL"
+
 msgid "Anomaly detection thresholds"
 msgstr "Ngưỡng phát hiện bất thường"
 
@@ -492,10 +495,10 @@ msgid "Email address"
 msgstr "Địa chỉ email"
 
 msgid "Custom"
-msgstr ""
+msgstr "Tùy chỉnh"
 
 msgid "None"
-msgstr ""
+msgstr "Không có"
 
 msgid "Regular expression"
 msgstr ""
@@ -507,7 +510,7 @@ msgid "Activate"
 msgstr ""
 
 msgid "Search"
-msgstr ""
+msgstr "Tìm kiếm"
 
 msgid ""
 "This custom text is no longer displayed on the platform. The original text "
@@ -670,25 +673,21 @@ msgstr ""
 msgid "Disable submissions"
 msgstr "Vô hiệu hóa đệ trình"
 
-msgid "Enable insecure configuration without PGP encryption"
-msgstr "Kích hoạt cấu hình không an toàn mà không cần mã hóa PGP"
-
-msgid "Warning"
-msgstr "Cảnh báo"
+msgid "Enable encryption"
+msgstr ""
 
 msgid ""
-"By enabling this option, the system will be storing the submitted files "
-"unencrypted on your server."
-msgstr "Bằng cách cho phép tùy chọn này, hệ thống sẽ được lưu trữ các hồ sơ nộp không được mã hóa trên máy chủ của bạn."
+"Allow the system to store data in plaintext when encryption is not available"
+msgstr ""
 
-msgid "This happens whenever encryption is unavailable."
-msgstr "Điều này xảy ra bất cứ khi nào mã hóa là không có."
-
-msgid "Disable messages that warn of missing encryption"
-msgstr "Vô hiệu hóa tin nhắn cảnh báo về sự mã hóa mất tích"
+msgid "Enable multisite feature"
+msgstr ""
 
 msgid "Allow other websites to include the platform inside iframes"
 msgstr "Cho phép các trang web khác để bao gồm nền tảng bên trong iframe"
+
+msgid "Warning"
+msgstr "Cảnh báo"
 
 msgid ""
 "By enabling this option, you are allowing other websites to include the "
@@ -734,20 +733,11 @@ msgstr "Tiêu đề"
 msgid "Text"
 msgstr "Văn bản"
 
-msgid "Disable the security awareness panel"
-msgstr "Vô hiệu hóa bảng điều khiển nhận thức an ninh"
-
 msgid "Disable the key code hint"
 msgstr "Vô hiệu hóa các gợi ý mã chủ chốt"
 
 msgid "Disable the donation panel"
 msgstr "Vô hiệu hóa các bảng tặng"
-
-msgid "Enable CAPTCHA mechanism"
-msgstr "Kích hoạt cơ chế CAPTCHA"
-
-msgid "Enable proof of work mechanism"
-msgstr "Kích hoạt bằng chứng về cơ chế làm việc"
 
 msgid "Amount of days till whistleblower access expires"
 msgstr ""
@@ -844,6 +834,12 @@ msgid "Enable multi-site login"
 msgstr ""
 
 msgid "Enable simplified login"
+msgstr ""
+
+msgid "Logging level"
+msgstr ""
+
+msgid "Log accesses of internal users"
 msgstr ""
 
 msgid "Enable experimental features"
@@ -954,6 +950,9 @@ msgstr "Tên"
 msgid "Questionnaire"
 msgstr "Bảng câu hỏi"
 
+msgid "Additional questionnaire"
+msgstr ""
+
 msgid "Recipients"
 msgstr "Người nhận"
 
@@ -1022,7 +1021,7 @@ msgid ""
 msgstr "Giao diện này có thể giúp bạn hiểu làm thế nào các máy chủ có thể được cấu hình và cung cấp một số thông tin về làm thế nào để kết nối với người dùng GlobaLeaks khác và các chuyên gia."
 
 msgid "Documentation"
-msgstr ""
+msgstr "Tài liệu"
 
 msgid ""
 "To properly organize your project, please read the following guidelines:"
@@ -1036,7 +1035,7 @@ msgid ""
 msgstr ""
 
 msgid "Contact"
-msgstr ""
+msgstr "Liên hệ"
 
 msgid ""
 "If you need technical support, have general questions, or have new ideas for"
@@ -1162,7 +1161,7 @@ msgid "Review"
 msgstr ""
 
 msgid "Enable"
-msgstr ""
+msgstr "Cho phép"
 
 msgid "Country code"
 msgstr ""
@@ -1174,7 +1173,7 @@ msgid "City"
 msgstr "thành phố"
 
 msgid "Organization"
-msgstr ""
+msgstr "Tổ chức"
 
 msgid "Organizational unit"
 msgstr ""
@@ -1193,7 +1192,7 @@ msgid "Private Key"
 msgstr ""
 
 msgid "Generate"
-msgstr ""
+msgstr "Phát ra"
 
 msgid "Certificate Signing Request"
 msgstr ""
@@ -1319,7 +1318,7 @@ msgid "Submission"
 msgstr "Gợi Ý"
 
 msgid "Path"
-msgstr ""
+msgstr "Path"
 
 msgid "Size"
 msgstr "Kích thước"
@@ -1464,9 +1463,6 @@ msgstr ""
 msgid "Allow users to sign up"
 msgstr ""
 
-msgid "Record IP address and user agent of registered users"
-msgstr ""
-
 msgid "Enable terms of service"
 msgstr ""
 
@@ -1509,7 +1505,7 @@ msgid "Details of the PGP key:"
 msgstr "Thông tin chi tiết của khóa PGP:"
 
 msgid "Fingerprint"
-msgstr ""
+msgstr "Dấu vết riêng"
 
 msgid "Remove the PGP key"
 msgstr "Xóa bỏ khóa PGP"
@@ -1611,31 +1607,8 @@ msgstr "Nhập số lượng điểm số điểm được chỉ định khi tù
 msgid "Confirm"
 msgstr "Xác nhận"
 
-msgid "Are you human?"
-msgstr "Bạn có con người?"
-
-msgid ""
-"We do not discriminate based on race and gender, but we do against computers"
-" :)"
-msgstr "Chúng tôi không phân biệt đối xử dựa trên chủng tộc và giới tính, nhưng chúng tôi làm đối với máy tính :)"
-
-msgid ""
-"Just to prove you are human, please answer the following math challenge:"
-msgstr "Chỉ để chứng minh bạn là con người, hãy trả lời các thách thức toán sau đây:"
-
-msgid "I've solved the math challenge, hide this thing now!"
-msgstr "Tôi đã giải quyết các thách thức toán học, che giấu điều này ngay bây giờ!"
-
 msgid "Please note that all the associated data will be permanently lost."
 msgstr ""
-
-msgid ""
-"This means that if the server running the platform were to be seized, it "
-"would be possible to extract the files that have been submitted."
-msgstr "Điều này có nghĩa rằng nếu các máy chủ chạy nền tảng này đã được thu giữ, nó sẽ có thể để trích xuất các tập tin đã được gửi."
-
-msgid "Are you sure that you wish to continue?"
-msgstr "Bạn có chắc chắn rằng bạn muốn tiếp tục không?"
 
 msgid "Error!"
 msgstr "Lỗi!"
@@ -1746,6 +1719,18 @@ msgid "Investigative journalism"
 msgstr ""
 
 msgid "Civic activism"
+msgstr ""
+
+msgid "previous step"
+msgstr "bước trước"
+
+msgid "next step"
+msgstr "bước tiếp theo"
+
+msgid "Submit"
+msgstr "Đệ trình"
+
+msgid "Fill the additional questionnaire"
 msgstr ""
 
 msgid "Send"
@@ -1894,29 +1879,6 @@ msgid ""
 msgstr "Một cách hữu ích để giấu mã chính của bạn là viết nó xuống như một số thẻ tín dụng, tức là bằng cách cũng bao gồm cả ngày hết hạn."
 
 msgid ""
-"You have not set up your encryption key, so the files will not be encrypted "
-"prior to being stored on the server."
-msgstr "Bạn chưa thiết lập khóa mã hóa của bạn, do đó các tập tin sẽ không được mã hóa trước khi được lưu trữ trên máy chủ."
-
-msgid ""
-"This may lead to unintended access to the files by the server administrator "
-"or others in case the server is compromised."
-msgstr "Điều này có thể dẫn đến các truy cập không theo dự định đến các tập tin từ phía người quản trị máy chủ hoặc trong trường hợp máy chủ đang được duy trì."
-
-msgid "Please configure your PGP keys in the recipient preferences page."
-msgstr "Hãy cấu hình các phím PGP của bạn trong trang sở thích của người nhận."
-
-msgid ""
-"One or more of the recipients of this submission has not configured a PGP "
-"key."
-msgstr "Một hoặc nhiều người nhận trình này đã không được cấu hình một khóa PGP."
-
-msgid ""
-"This means that the submitted files will be stored in plaintext on the "
-"server."
-msgstr "Điều này có nghĩa rằng các tập tin trình sẽ được lưu trữ trong bản rõ trên máy chủ."
-
-msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."
 msgstr "Truy cập đến danh tính của người tố giác đã được yêu cầu để giám sát."
 
@@ -1970,15 +1932,6 @@ msgstr ""
 
 msgid "Recipient selection"
 msgstr "lựa chọn người nhận"
-
-msgid "previous step"
-msgstr "bước trước"
-
-msgid "next step"
-msgstr "bước tiếp theo"
-
-msgid "Submit"
-msgstr "Đệ trình"
 
 msgid "Recipients selected:"
 msgstr "Người nhận được lựa chọn:"

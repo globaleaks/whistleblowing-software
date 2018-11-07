@@ -13,12 +13,12 @@
 # Ping Yan, 2015
 # Qiaoyi Fang <selinaf1917@yahoo.com>, 2018
 # QinWeijie <qinweijie@live.com>, 2014
-# YF <yfdyh000@gmail.com>, 2015
+# YFdyh000 <yfdyh000@gmail.com>, 2015
 # 刘位, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-09-27 21:26+0000\n"
+"PO-Revision-Date: 2018-11-05 16:47+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/otf/globaleaks/language/zh_CN/)\n"
 "MIME-Version: 1.0\n"
@@ -382,6 +382,9 @@ msgstr "按百分比计"
 msgid "HTTPS settings"
 msgstr "HTTPS 设定"
 
+msgid "URL shortener"
+msgstr "短网址功能"
+
 msgid "Anomaly detection thresholds"
 msgstr "异常检测阈值"
 
@@ -676,25 +679,21 @@ msgstr "提交状态"
 msgid "Disable submissions"
 msgstr "禁用提交"
 
-msgid "Enable insecure configuration without PGP encryption"
-msgstr "启用没有 PGP 加密的不安全配置"
-
-msgid "Warning"
-msgstr "警告"
+msgid "Enable encryption"
+msgstr ""
 
 msgid ""
-"By enabling this option, the system will be storing the submitted files "
-"unencrypted on your server."
-msgstr "启用该功能后，系统将会在您的节点上以不加密的形式保存已提交的文件。"
+"Allow the system to store data in plaintext when encryption is not available"
+msgstr ""
 
-msgid "This happens whenever encryption is unavailable."
-msgstr "这个情况在无法加密时就会发生。"
-
-msgid "Disable messages that warn of missing encryption"
-msgstr "禁用无加密警告消息"
+msgid "Enable multisite feature"
+msgstr ""
 
 msgid "Allow other websites to include the platform inside iframes"
 msgstr "允许其他网站借 iframe 包含此网站内容。"
+
+msgid "Warning"
+msgstr "警告"
 
 msgid ""
 "By enabling this option, you are allowing other websites to include the "
@@ -740,20 +739,11 @@ msgstr "标题"
 msgid "Text"
 msgstr "文本"
 
-msgid "Disable the security awareness panel"
-msgstr "禁用安全警示徽章"
-
 msgid "Disable the key code hint"
 msgstr "禁用关键代码提示"
 
 msgid "Disable the donation panel"
 msgstr "禁用捐赠面板"
-
-msgid "Enable CAPTCHA mechanism"
-msgstr "启用验证码机制"
-
-msgid "Enable proof of work mechanism"
-msgstr "启用工作验证机制"
 
 msgid "Amount of days till whistleblower access expires"
 msgstr "揭发人访问权限到期天数"
@@ -850,6 +840,12 @@ msgid "Enable multi-site login"
 msgstr ""
 
 msgid "Enable simplified login"
+msgstr ""
+
+msgid "Logging level"
+msgstr ""
+
+msgid "Log accesses of internal users"
 msgstr ""
 
 msgid "Enable experimental features"
@@ -959,6 +955,9 @@ msgstr "名字"
 
 msgid "Questionnaire"
 msgstr "问卷"
+
+msgid "Additional questionnaire"
+msgstr ""
 
 msgid "Recipients"
 msgstr "接收者"
@@ -1470,9 +1469,6 @@ msgstr ""
 msgid "Allow users to sign up"
 msgstr "允许用户登陆"
 
-msgid "Record IP address and user agent of registered users"
-msgstr ""
-
 msgid "Enable terms of service"
 msgstr ""
 
@@ -1617,31 +1613,8 @@ msgstr "选中该选项时，请输入指定分数："
 msgid "Confirm"
 msgstr "确认延期"
 
-msgid "Are you human?"
-msgstr "您是人类吗？"
-
-msgid ""
-"We do not discriminate based on race and gender, but we do against computers"
-" :)"
-msgstr "我们不歧视你的种族、性别，但我们不接受电脑 :)"
-
-msgid ""
-"Just to prove you are human, please answer the following math challenge:"
-msgstr "为了证明您是人类，请回答下列数学题："
-
-msgid "I've solved the math challenge, hide this thing now!"
-msgstr "我解决了这个数学题，现在给我隐藏它吧！"
-
 msgid "Please note that all the associated data will be permanently lost."
 msgstr "注意：所有相关数据将永久删除。"
-
-msgid ""
-"This means that if the server running the platform were to be seized, it "
-"would be possible to extract the files that have been submitted."
-msgstr "如果平台所在服务器被查收，将无法提取已提交的文件。"
-
-msgid "Are you sure that you wish to continue?"
-msgstr "你确定你想要继续吗？"
 
 msgid "Error!"
 msgstr "错误！"
@@ -1752,6 +1725,18 @@ msgid "Investigative journalism"
 msgstr "调查新闻"
 
 msgid "Civic activism"
+msgstr ""
+
+msgid "previous step"
+msgstr "上一步"
+
+msgid "next step"
+msgstr "下一步"
+
+msgid "Submit"
+msgstr "提交"
+
+msgid "Fill the additional questionnaire"
 msgstr ""
 
 msgid "Send"
@@ -1900,29 +1885,6 @@ msgid ""
 msgstr "隐藏您的关键代码有一个好用的方法，那就是把它写下来，并伪装成像是一个信用卡号码，比如也写上一个到期日。"
 
 msgid ""
-"You have not set up your encryption key, so the files will not be encrypted "
-"prior to being stored on the server."
-msgstr "由于未设置加密密钥，在保存至服务器之前将不对文件加密。"
-
-msgid ""
-"This may lead to unintended access to the files by the server administrator "
-"or others in case the server is compromised."
-msgstr "一旦服务器被入侵了，可能导致文件被管理员或其他人意外访问到。"
-
-msgid "Please configure your PGP keys in the recipient preferences page."
-msgstr "请在接收者偏好设置页面配置你的PGP密钥。"
-
-msgid ""
-"One or more of the recipients of this submission has not configured a PGP "
-"key."
-msgstr "一个或多个收到这个提交的接收者没有配置PGP密钥。"
-
-msgid ""
-"This means that the submitted files will be stored in plaintext on the "
-"server."
-msgstr "这意味着提交的文件将以纯文本的格式存储在节点上。"
-
-msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."
 msgstr "获取揭发人身份的请求已发送至保管人。"
 
@@ -1976,15 +1938,6 @@ msgstr "输入必须为数字。"
 
 msgid "Recipient selection"
 msgstr "选定接收者"
-
-msgid "previous step"
-msgstr "上一步"
-
-msgid "next step"
-msgstr "下一步"
-
-msgid "Submit"
-msgstr "提交"
 
 msgid "Recipients selected:"
 msgstr "选择的接收者："

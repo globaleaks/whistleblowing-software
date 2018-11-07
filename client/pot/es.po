@@ -29,7 +29,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-09-27 21:26+0000\n"
+"PO-Revision-Date: 2018-11-05 16:47+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Spanish (http://www.transifex.com/otf/globaleaks/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -393,6 +393,9 @@ msgstr "en porcentaje"
 msgid "HTTPS settings"
 msgstr "Configuración HTTPS"
 
+msgid "URL shortener"
+msgstr "Acortador de URL"
+
 msgid "Anomaly detection thresholds"
 msgstr "Umbrales de detección de anomalías"
 
@@ -687,25 +690,21 @@ msgstr "Página de estado de la entrega"
 msgid "Disable submissions"
 msgstr "Deshabilitar entregas"
 
-msgid "Enable insecure configuration without PGP encryption"
-msgstr "Habilitar configuración insegura sin cifrado PGP"
-
-msgid "Warning"
-msgstr "Advertencia"
+msgid "Enable encryption"
+msgstr ""
 
 msgid ""
-"By enabling this option, the system will be storing the submitted files "
-"unencrypted on your server."
-msgstr "Al habilitar esta opción el sistema estará guardando sin cifrar en su nodo los ficheros enviados."
+"Allow the system to store data in plaintext when encryption is not available"
+msgstr ""
 
-msgid "This happens whenever encryption is unavailable."
-msgstr "Esto ocurre en caso de que el cifrado no esté disponible."
-
-msgid "Disable messages that warn of missing encryption"
-msgstr "Deshabilitar mensajes que adviertan de ausencia de cifrado"
+msgid "Enable multisite feature"
+msgstr ""
 
 msgid "Allow other websites to include the platform inside iframes"
 msgstr "Permitir a otros sitios web incluir la plataforma dentro de iframes"
+
+msgid "Warning"
+msgstr "Advertencia"
 
 msgid ""
 "By enabling this option, you are allowing other websites to include the "
@@ -751,20 +750,11 @@ msgstr "Título"
 msgid "Text"
 msgstr "Texto"
 
-msgid "Disable the security awareness panel"
-msgstr "Deshabilitar el indicador de seguridad"
-
 msgid "Disable the key code hint"
 msgstr "Deshabilitar la sugerencia del código de clave"
 
 msgid "Disable the donation panel"
 msgstr "Deshabilitar panel de donación"
-
-msgid "Enable CAPTCHA mechanism"
-msgstr "Habilitar mecanismo CAPTCHA"
-
-msgid "Enable proof of work mechanism"
-msgstr "Habilitar mecanismo de prueba de trabajo"
 
 msgid "Amount of days till whistleblower access expires"
 msgstr "Número de días hasta que el acceso del informante caduque"
@@ -861,6 +851,12 @@ msgid "Enable multi-site login"
 msgstr ""
 
 msgid "Enable simplified login"
+msgstr ""
+
+msgid "Logging level"
+msgstr ""
+
+msgid "Log accesses of internal users"
 msgstr ""
 
 msgid "Enable experimental features"
@@ -970,6 +966,9 @@ msgstr "Nombre"
 
 msgid "Questionnaire"
 msgstr "Cuestionario"
+
+msgid "Additional questionnaire"
+msgstr ""
 
 msgid "Recipients"
 msgstr "Receptores"
@@ -1481,9 +1480,6 @@ msgstr "Dominio raíz usado para sitios secundarios"
 msgid "Allow users to sign up"
 msgstr "Permitir registrarse a los usuarios"
 
-msgid "Record IP address and user agent of registered users"
-msgstr ""
-
 msgid "Enable terms of service"
 msgstr ""
 
@@ -1628,31 +1624,8 @@ msgstr "Introduzca el número de puntos que se asignarán en la puntuación cuan
 msgid "Confirm"
 msgstr "Confirmar"
 
-msgid "Are you human?"
-msgstr "¿Es usted un humano?"
-
-msgid ""
-"We do not discriminate based on race and gender, but we do against computers"
-" :)"
-msgstr "No discriminamos por raza, sexo o género, pero si lo hacemos con las computadoras :)"
-
-msgid ""
-"Just to prove you are human, please answer the following math challenge:"
-msgstr "Tan solo para probar que usted es humano, por favor. responda al siguiente reto matemático:"
-
-msgid "I've solved the math challenge, hide this thing now!"
-msgstr "He resuelto el reto matemático, ¡ahora oculte esta cosa!"
-
 msgid "Please note that all the associated data will be permanently lost."
 msgstr "Por favor, observe que todos los datos asociados se perderán de forma permanente"
-
-msgid ""
-"This means that if the server running the platform were to be seized, it "
-"would be possible to extract the files that have been submitted."
-msgstr "Esto significa que si el servidor que ejecuta la plataforma fuera capturado, sería posible extraer los ficheros que hayan sido entregados."
-
-msgid "Are you sure that you wish to continue?"
-msgstr "¿Está seguro de que desea continuar?"
 
 msgid "Error!"
 msgstr "¡Error!"
@@ -1764,6 +1737,18 @@ msgstr "Periodismo de investigación"
 
 msgid "Civic activism"
 msgstr "Activismo cívico"
+
+msgid "previous step"
+msgstr "paso anterior"
+
+msgid "next step"
+msgstr "paso siguiente"
+
+msgid "Submit"
+msgstr "Entregar"
+
+msgid "Fill the additional questionnaire"
+msgstr ""
 
 msgid "Send"
 msgstr "Enviar"
@@ -1911,29 +1896,6 @@ msgid ""
 msgstr "Una forma útil de ocultar el código de su clave es escribirlo como si fuera un número de tarjeta de crédito, es decir, incluyendo también una fecha de caducidad."
 
 msgid ""
-"You have not set up your encryption key, so the files will not be encrypted "
-"prior to being stored on the server."
-msgstr "No ha establecido su clave de cifrado, por tanto los ficheros no se cifrarán antes de ser almacenados en el servidor."
-
-msgid ""
-"This may lead to unintended access to the files by the server administrator "
-"or others in case the server is compromised."
-msgstr "Esto puede llevar a accesos imprevistos a los ficheros por parte del administrador del servidor, o en caso de captura del servidor."
-
-msgid "Please configure your PGP keys in the recipient preferences page."
-msgstr "Por favor, configure sus claves PGP en la página de preferencias del receptor."
-
-msgid ""
-"One or more of the recipients of this submission has not configured a PGP "
-"key."
-msgstr "Uno o más de los receptores de esta entrega no ha configurado una clave PGP."
-
-msgid ""
-"This means that the submitted files will be stored in plaintext on the "
-"server."
-msgstr "Esto significa que los ficheros enviados se guardaran sin cifrar en el nodo."
-
-msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."
 msgstr "Se ha solicitado al custodio acceso a la identidad del informante."
 
@@ -1987,15 +1949,6 @@ msgstr "por favor, introduzca únicamente números."
 
 msgid "Recipient selection"
 msgstr "Selección de receptor"
-
-msgid "previous step"
-msgstr "paso anterior"
-
-msgid "next step"
-msgstr "paso siguiente"
-
-msgid "Submit"
-msgstr "Entregar"
 
 msgid "Recipients selected:"
 msgstr "Receptores seleccionados:"

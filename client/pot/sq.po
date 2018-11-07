@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-09-27 21:26+0000\n"
+"PO-Revision-Date: 2018-11-05 16:47+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Albanian (http://www.transifex.com/otf/globaleaks/language/sq/)\n"
 "MIME-Version: 1.0\n"
@@ -371,6 +371,9 @@ msgstr "në përqindje"
 msgid "HTTPS settings"
 msgstr "settings HTTPS"
 
+msgid "URL shortener"
+msgstr "URL shortener"
+
 msgid "Anomaly detection thresholds"
 msgstr "Anomali zbulimin pragjet"
 
@@ -665,25 +668,21 @@ msgstr ""
 msgid "Disable submissions"
 msgstr "parashtresat Çaktivizo"
 
-msgid "Enable insecure configuration without PGP encryption"
-msgstr "Aktivizoni konfigurimin e pasigurt pa shifrimin PGP"
-
-msgid "Warning"
-msgstr "paralajmërim"
+msgid "Enable encryption"
+msgstr ""
 
 msgid ""
-"By enabling this option, the system will be storing the submitted files "
-"unencrypted on your server."
-msgstr "Duke aftësuar këtë mundësi, sistemi do t'i vendosë të shifruar skedarët e paraqitur, në shërbyesin tuaj."
+"Allow the system to store data in plaintext when encryption is not available"
+msgstr ""
 
-msgid "This happens whenever encryption is unavailable."
-msgstr "Kjo ndodh sa herë që shifrimi s'është i mundshëm."
-
-msgid "Disable messages that warn of missing encryption"
-msgstr "Disable mesazheve që paralajmërojnë për encryption zhdukur"
+msgid "Enable multisite feature"
+msgstr ""
 
 msgid "Allow other websites to include the platform inside iframes"
 msgstr "Të lejojë faqet e internetit të tjera të përfshijë platformë brenda iframes"
+
+msgid "Warning"
+msgstr "paralajmërim"
 
 msgid ""
 "By enabling this option, you are allowing other websites to include the "
@@ -729,20 +728,11 @@ msgstr "Titulli"
 msgid "Text"
 msgstr "Tekst"
 
-msgid "Disable the security awareness panel"
-msgstr "Paaftësoni panelin e ndërgjegjësimit mbi sigurinë"
-
 msgid "Disable the key code hint"
 msgstr "Paaftësoni sugjerimin e kodit të çelësit"
 
 msgid "Disable the donation panel"
 msgstr "Disable panelin donacion"
-
-msgid "Enable CAPTCHA mechanism"
-msgstr "Aktivizo mekanizëm CAPTCHA"
-
-msgid "Enable proof of work mechanism"
-msgstr "Aktivizo dëshmi të mekanizmit të punës"
 
 msgid "Amount of days till whistleblower access expires"
 msgstr ""
@@ -839,6 +829,12 @@ msgid "Enable multi-site login"
 msgstr ""
 
 msgid "Enable simplified login"
+msgstr ""
+
+msgid "Logging level"
+msgstr ""
+
+msgid "Log accesses of internal users"
 msgstr ""
 
 msgid "Enable experimental features"
@@ -948,6 +944,9 @@ msgstr "Emri"
 
 msgid "Questionnaire"
 msgstr "pyetësor"
+
+msgid "Additional questionnaire"
+msgstr ""
 
 msgid "Recipients"
 msgstr "Marrësit"
@@ -1314,7 +1313,7 @@ msgid "Submission"
 msgstr "Paraqitje"
 
 msgid "Path"
-msgstr ""
+msgstr "Shtegu"
 
 msgid "Size"
 msgstr "Përmasat"
@@ -1459,9 +1458,6 @@ msgstr ""
 msgid "Allow users to sign up"
 msgstr ""
 
-msgid "Record IP address and user agent of registered users"
-msgstr ""
-
 msgid "Enable terms of service"
 msgstr ""
 
@@ -1504,7 +1500,7 @@ msgid "Details of the PGP key:"
 msgstr "Detajet e kyç PGP:"
 
 msgid "Fingerprint"
-msgstr ""
+msgstr "Gjurma"
 
 msgid "Remove the PGP key"
 msgstr "Lëvizeni çelësin PGP "
@@ -1606,31 +1602,8 @@ msgstr "Shkruani numrin e pikave rezultati të caktuar kur ky opsion është zgj
 msgid "Confirm"
 msgstr "Konfirmoni Zgjatjen"
 
-msgid "Are you human?"
-msgstr "Jeni njeri?"
-
-msgid ""
-"We do not discriminate based on race and gender, but we do against computers"
-" :)"
-msgstr "Ne nuk diskriminojmë në bazë të racës dhe gjinisë, për e bëjmë këtë kundër kompjuterëve :)"
-
-msgid ""
-"Just to prove you are human, please answer the following math challenge:"
-msgstr "Thjesht për të provuar që jeni njeri, ju lutemi përgjigjuni sfidës matematike në vijim:"
-
-msgid "I've solved the math challenge, hide this thing now!"
-msgstr "E zgjidha sfidën matematike, fshiheni këtë gjë tani!"
-
 msgid "Please note that all the associated data will be permanently lost."
 msgstr ""
-
-msgid ""
-"This means that if the server running the platform were to be seized, it "
-"would be possible to extract the files that have been submitted."
-msgstr "Kjo do të thotë se në qoftë se serveri drejtimin platformë duhej të konfiskuar, do të ishte e mundur për të nxjerrë fotografi që janë paraqitur."
-
-msgid "Are you sure that you wish to continue?"
-msgstr "Jeni i sigurt se doni të vazhdoni?"
 
 msgid "Error!"
 msgstr "Error!"
@@ -1741,6 +1714,18 @@ msgid "Investigative journalism"
 msgstr ""
 
 msgid "Civic activism"
+msgstr ""
+
+msgid "previous step"
+msgstr "Konfigurimi i Mëparshëm"
+
+msgid "next step"
+msgstr "Hapi Tjetër"
+
+msgid "Submit"
+msgstr "Parashtroni"
+
+msgid "Fill the additional questionnaire"
 msgstr ""
 
 msgid "Send"
@@ -1889,29 +1874,6 @@ msgid ""
 msgstr "Një mënyrë e vlefshme për të fshehur kodin e çelësit tuaj është që ta shkruani atë si të ishte një numër karte krediti; d.m.th. duke përfshirë edhe një datë skadimi."
 
 msgid ""
-"You have not set up your encryption key, so the files will not be encrypted "
-"prior to being stored on the server."
-msgstr "Ju nuk e keni ngritur kyç tuaj encryption, kështu që dosjet nuk do të jetë i koduar para se të ruajtur në server."
-
-msgid ""
-"This may lead to unintended access to the files by the server administrator "
-"or others in case the server is compromised."
-msgstr "Kjo mund të çojë në qasjen e paqëllimtë tek skedarët, nga administratori i shërbyesit ose të tjerë, në rastin që shërbyesi komprometohet."
-
-msgid "Please configure your PGP keys in the recipient preferences page."
-msgstr "Ju lutemi konfiguroni çelësat tuaj PGP në faqen e parapëlqimeve të marrësit."
-
-msgid ""
-"One or more of the recipients of this submission has not configured a PGP "
-"key."
-msgstr "Një ose më shumë nga përfituesit e këtij dorëzimit nuk ka konfiguruar një çelës PGP."
-
-msgid ""
-"This means that the submitted files will be stored in plaintext on the "
-"server."
-msgstr "Kjo do të thotë se skedarët e parashtruar do të vendosen  me tekst normal në shërbyes."
-
-msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."
 msgstr "Qasja në identitetin e Whistleblower i është kërkuar të kujdestarit."
 
@@ -1965,15 +1927,6 @@ msgstr ""
 
 msgid "Recipient selection"
 msgstr "Përzgjedhja e marrësit"
-
-msgid "previous step"
-msgstr "Konfigurimi i Mëparshëm"
-
-msgid "next step"
-msgstr "Hapi Tjetër"
-
-msgid "Submit"
-msgstr "Parashtroni"
 
 msgid "Recipients selected:"
 msgstr "Marrësit e përzgjedhur:"

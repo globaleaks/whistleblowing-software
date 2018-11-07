@@ -17,7 +17,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-09-27 21:26+0000\n"
+"PO-Revision-Date: 2018-11-05 16:47+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Romanian (http://www.transifex.com/otf/globaleaks/language/ro/)\n"
 "MIME-Version: 1.0\n"
@@ -381,6 +381,9 @@ msgstr "în procente"
 msgid "HTTPS settings"
 msgstr "setările HTTPS"
 
+msgid "URL shortener"
+msgstr "URL-ul shortener"
+
 msgid "Anomaly detection thresholds"
 msgstr "praguri de detectare a anomaliilor"
 
@@ -675,25 +678,21 @@ msgstr ""
 msgid "Disable submissions"
 msgstr "depuneri Disable"
 
-msgid "Enable insecure configuration without PGP encryption"
-msgstr "Activează configurarea nesigură fără criptare PGP"
-
-msgid "Warning"
-msgstr "Avertizare"
+msgid "Enable encryption"
+msgstr ""
 
 msgid ""
-"By enabling this option, the system will be storing the submitted files "
-"unencrypted on your server."
-msgstr "Prin activarea acestei opțiuni, sistemul va fi stocarea fișierelor transmise necriptat pe server."
+"Allow the system to store data in plaintext when encryption is not available"
+msgstr ""
 
-msgid "This happens whenever encryption is unavailable."
-msgstr "Acest lucru se întâmplă de fiecare dată când criptarea nu este disponibilă."
-
-msgid "Disable messages that warn of missing encryption"
-msgstr "Dezactivează mesajele care avertizează de criptare lipsă"
+msgid "Enable multisite feature"
+msgstr ""
 
 msgid "Allow other websites to include the platform inside iframes"
 msgstr "Permite altor site-uri web pentru a include platforma in interiorul iframe"
+
+msgid "Warning"
+msgstr "Avertizare"
 
 msgid ""
 "By enabling this option, you are allowing other websites to include the "
@@ -739,20 +738,11 @@ msgstr "Titlu"
 msgid "Text"
 msgstr "Text"
 
-msgid "Disable the security awareness panel"
-msgstr "Dezactiva panoul de conștientizare de securitate"
-
 msgid "Disable the key code hint"
 msgstr "Dezactivați codul indiciu cheie"
 
 msgid "Disable the donation panel"
 msgstr "Dezactivați panoul de donare"
-
-msgid "Enable CAPTCHA mechanism"
-msgstr "Activați mecanismul CAPTCHA"
-
-msgid "Enable proof of work mechanism"
-msgstr "Activați dovada mecanismului de lucru"
 
 msgid "Amount of days till whistleblower access expires"
 msgstr "Numarul de zile pana la data expirarii accesului pentru informator."
@@ -849,6 +839,12 @@ msgid "Enable multi-site login"
 msgstr ""
 
 msgid "Enable simplified login"
+msgstr ""
+
+msgid "Logging level"
+msgstr ""
+
+msgid "Log accesses of internal users"
 msgstr ""
 
 msgid "Enable experimental features"
@@ -958,6 +954,9 @@ msgstr "Nume"
 
 msgid "Questionnaire"
 msgstr "Chestionar"
+
+msgid "Additional questionnaire"
+msgstr ""
 
 msgid "Recipients"
 msgstr "destinatari"
@@ -1469,9 +1468,6 @@ msgstr ""
 msgid "Allow users to sign up"
 msgstr ""
 
-msgid "Record IP address and user agent of registered users"
-msgstr ""
-
 msgid "Enable terms of service"
 msgstr ""
 
@@ -1616,31 +1612,8 @@ msgstr "Se indică numărul de puncte care urmează să fie atribuite atunci câ
 msgid "Confirm"
 msgstr "A confirma"
 
-msgid "Are you human?"
-msgstr "Ești om?"
-
-msgid ""
-"We do not discriminate based on race and gender, but we do against computers"
-" :)"
-msgstr "Noi nu discriminează pe bază de rasă și de gen, dar noi facem impotriva computerelor :)"
-
-msgid ""
-"Just to prove you are human, please answer the following math challenge:"
-msgstr "Doar pentru a dovedi că sunteți om, vă rugăm să răspundeți la următoarea provocare matematică:"
-
-msgid "I've solved the math challenge, hide this thing now!"
-msgstr "Am rezolvat provocarea matematica, ascunde acest lucru acum!"
-
 msgid "Please note that all the associated data will be permanently lost."
 msgstr "Luati va rog la cunostinta faptul ca toate datele asociate vor fi pierdute permanent."
-
-msgid ""
-"This means that if the server running the platform were to be seized, it "
-"would be possible to extract the files that have been submitted."
-msgstr "Acest lucru înseamnă că, în cazul în care serverul care rulează platforma urmau să fie confiscate, ar fi posibil pentru a extrage fișierele care au fost depuse."
-
-msgid "Are you sure that you wish to continue?"
-msgstr "Sunteți sigur că doriți să continuați?"
 
 msgid "Error!"
 msgstr "Eroare!"
@@ -1751,6 +1724,18 @@ msgid "Investigative journalism"
 msgstr ""
 
 msgid "Civic activism"
+msgstr ""
+
+msgid "previous step"
+msgstr "etapa anterioară"
+
+msgid "next step"
+msgstr "urmatorul pas"
+
+msgid "Submit"
+msgstr "A depune"
+
+msgid "Fill the additional questionnaire"
 msgstr ""
 
 msgid "Send"
@@ -1899,29 +1884,6 @@ msgid ""
 msgstr "Un mod util de a ascunde codul cheie este să-l scrie în jos ca un număr de card de credit, și anume prin includerea, de asemenea, o dată de expirare."
 
 msgid ""
-"You have not set up your encryption key, so the files will not be encrypted "
-"prior to being stored on the server."
-msgstr "N-ați configurat cheia de criptare, astfel încât fișierele nu vor fi criptate înainte de a fi stocate pe server."
-
-msgid ""
-"This may lead to unintended access to the files by the server administrator "
-"or others in case the server is compromised."
-msgstr "Acest lucru poate duce la accesul neintenționat la fișierele de către administratorul de server sau a altor persoane, în cazul în care serverul este compromis."
-
-msgid "Please configure your PGP keys in the recipient preferences page."
-msgstr "Vă rugăm să configurați cheile PGP în pagina de preferințe destinatar."
-
-msgid ""
-"One or more of the recipients of this submission has not configured a PGP "
-"key."
-msgstr "Unul sau mai mulți dintre destinatarii acestui argument nu a configurat o cheie PGP."
-
-msgid ""
-"This means that the submitted files will be stored in plaintext on the "
-"server."
-msgstr "Acest lucru înseamnă că dosarele depuse vor fi stocate în plaintext pe server."
-
-msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."
 msgstr "Accesul la identitatea informatorului a fost solicitată custode."
 
@@ -1975,15 +1937,6 @@ msgstr "Te rog introdu numai numere."
 
 msgid "Recipient selection"
 msgstr "selecţia destinatarului"
-
-msgid "previous step"
-msgstr "etapa anterioară"
-
-msgid "next step"
-msgstr "urmatorul pas"
-
-msgid "Submit"
-msgstr "A depune"
 
 msgid "Recipients selected:"
 msgstr "Destinatari selectați:"

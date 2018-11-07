@@ -25,7 +25,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-09-27 21:26+0000\n"
+"PO-Revision-Date: 2018-11-05 16:47+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Turkish (http://www.transifex.com/otf/globaleaks/language/tr/)\n"
 "MIME-Version: 1.0\n"
@@ -389,6 +389,9 @@ msgstr "yüzde"
 msgid "HTTPS settings"
 msgstr "HTTPS ayarları"
 
+msgid "URL shortener"
+msgstr "URL kısaltması"
+
 msgid "Anomaly detection thresholds"
 msgstr "Anormallik tespit sınırı"
 
@@ -683,25 +686,21 @@ msgstr ""
 msgid "Disable submissions"
 msgstr "Gönderimleri devre dışı bırak"
 
-msgid "Enable insecure configuration without PGP encryption"
-msgstr "PGP şifrelemesi olmaksızın güvensiz yapılandırmayı etkinleştir"
-
-msgid "Warning"
-msgstr "Uyarı"
+msgid "Enable encryption"
+msgstr ""
 
 msgid ""
-"By enabling this option, the system will be storing the submitted files "
-"unencrypted on your server."
-msgstr "Bu seçeneği etkinleştirmenizle; sistem eklenen dosyaları sunucuda şifresiz olarak saklayacak."
+"Allow the system to store data in plaintext when encryption is not available"
+msgstr ""
 
-msgid "This happens whenever encryption is unavailable."
-msgstr "Bu durum, şifreleme mümkün olmadığı zamanda gerçekleşir."
-
-msgid "Disable messages that warn of missing encryption"
-msgstr "Eksik şifrelemeleri uyaran mesajnları devre dışı bırak"
+msgid "Enable multisite feature"
+msgstr ""
 
 msgid "Allow other websites to include the platform inside iframes"
 msgstr "Diğer web sitelerinin platformu iframe içinde eklemelerine izin ver"
+
+msgid "Warning"
+msgstr "Uyarı"
 
 msgid ""
 "By enabling this option, you are allowing other websites to include the "
@@ -747,20 +746,11 @@ msgstr "Başlık"
 msgid "Text"
 msgstr "Metin"
 
-msgid "Disable the security awareness panel"
-msgstr "Güvenlik farkındalığı rozetini devre dışı bırak"
-
 msgid "Disable the key code hint"
 msgstr "Anahtar kodu ipucunu devre dışı bırak"
 
 msgid "Disable the donation panel"
 msgstr "Bağış panelini devre dışı bırak"
-
-msgid "Enable CAPTCHA mechanism"
-msgstr "CAPTHCA mekanizmasını etkin hale getir"
-
-msgid "Enable proof of work mechanism"
-msgstr "Çalışma kanıtı mekanizmasını etkin hale getir"
 
 msgid "Amount of days till whistleblower access expires"
 msgstr ""
@@ -857,6 +847,12 @@ msgid "Enable multi-site login"
 msgstr ""
 
 msgid "Enable simplified login"
+msgstr ""
+
+msgid "Logging level"
+msgstr ""
+
+msgid "Log accesses of internal users"
 msgstr ""
 
 msgid "Enable experimental features"
@@ -966,6 +962,9 @@ msgstr "Ad"
 
 msgid "Questionnaire"
 msgstr "Anket"
+
+msgid "Additional questionnaire"
+msgstr ""
 
 msgid "Recipients"
 msgstr "Alıcılar"
@@ -1477,9 +1476,6 @@ msgstr ""
 msgid "Allow users to sign up"
 msgstr ""
 
-msgid "Record IP address and user agent of registered users"
-msgstr ""
-
 msgid "Enable terms of service"
 msgstr ""
 
@@ -1624,31 +1620,8 @@ msgstr "Bu seçenek tercih edildiğinde tahsis edilecek puanların numarasını 
 msgid "Confirm"
 msgstr "Onayla"
 
-msgid "Are you human?"
-msgstr "İnsan mısınız?"
-
-msgid ""
-"We do not discriminate based on race and gender, but we do against computers"
-" :)"
-msgstr "Irk ve cinsiyet ayrımı yapmıyoruz fakat bilgisayarlara karşıyız :)"
-
-msgid ""
-"Just to prove you are human, please answer the following math challenge:"
-msgstr "İnsan olduğunuzu kanıtlamanız için, lütfen matematik sorusunu cevaplayın:"
-
-msgid "I've solved the math challenge, hide this thing now!"
-msgstr "Matematik sorusunu çözdüm, şimdi şu şeyi sakla!"
-
 msgid "Please note that all the associated data will be permanently lost."
 msgstr ""
-
-msgid ""
-"This means that if the server running the platform were to be seized, it "
-"would be possible to extract the files that have been submitted."
-msgstr "Bu şu anlama geliyor; eğer Globaleaks'i çalıştıran sunucuya el konulursa gönderilen dosyaların ele geçirilmesi mümkün olabilir."
-
-msgid "Are you sure that you wish to continue?"
-msgstr "Devam etmek istediğinizden emin misiniz?"
 
 msgid "Error!"
 msgstr "Hata!"
@@ -1759,6 +1732,18 @@ msgid "Investigative journalism"
 msgstr ""
 
 msgid "Civic activism"
+msgstr ""
+
+msgid "previous step"
+msgstr "Önceki Adım"
+
+msgid "next step"
+msgstr "Sonraki Adım"
+
+msgid "Submit"
+msgstr "Gönder"
+
+msgid "Fill the additional questionnaire"
 msgstr ""
 
 msgid "Send"
@@ -1907,29 +1892,6 @@ msgid ""
 msgstr "Anahtar kodunuzu saklamanın en kullanışlı yolu son geçerlilik tarihini de içeren kredi kartı görünümünde not etmektir."
 
 msgid ""
-"You have not set up your encryption key, so the files will not be encrypted "
-"prior to being stored on the server."
-msgstr "Şifreleme anahtarınızı yapılandırmadınız, bu yüzden dosyalar sunucuya yüklenmeden önce şifrelenmeyecek."
-
-msgid ""
-"This may lead to unintended access to the files by the server administrator "
-"or others in case the server is compromised."
-msgstr "Bu, sunucu risk altında olduğunda sunucu yöneticisi veya diğerleri tarafından dosyalara istenmedik erişime sebep olabilir."
-
-msgid "Please configure your PGP keys in the recipient preferences page."
-msgstr "Lütfen alıcı tercihleri sayfasında PGP anahtarlarınızı yapılandırın."
-
-msgid ""
-"One or more of the recipients of this submission has not configured a PGP "
-"key."
-msgstr "Bu gönderinin alıcılarından biri veya birkaçı bir PGP anahtarı yapılandırmamış."
-
-msgid ""
-"This means that the submitted files will be stored in plaintext on the "
-"server."
-msgstr "Bu gönderilen dosyaların sunucuda düz metin olarak saklanacağı anlamına gelmektedir."
-
-msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."
 msgstr "Koruyucu, ihbarcının kimliğine erişim talep etti"
 
@@ -1983,15 +1945,6 @@ msgstr "Lütfen yalnızca sayı girin."
 
 msgid "Recipient selection"
 msgstr "Alıcı seçimi"
-
-msgid "previous step"
-msgstr "Önceki Adım"
-
-msgid "next step"
-msgstr "Sonraki Adım"
-
-msgid "Submit"
-msgstr "Gönder"
 
 msgid "Recipients selected:"
 msgstr "Seçilen alıcılar:"

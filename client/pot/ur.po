@@ -13,7 +13,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-09-27 21:26+0000\n"
+"PO-Revision-Date: 2018-11-05 16:47+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Urdu (http://www.transifex.com/otf/globaleaks/language/ur/)\n"
 "MIME-Version: 1.0\n"
@@ -377,6 +377,9 @@ msgstr "فی صد میں"
 msgid "HTTPS settings"
 msgstr "HTTPS ترتیبات"
 
+msgid "URL shortener"
+msgstr "URL کا اختصار"
+
 msgid "Anomaly detection thresholds"
 msgstr "اسنگتی پتہ لگانے کی حد"
 
@@ -508,7 +511,7 @@ msgid "Activate"
 msgstr ""
 
 msgid "Search"
-msgstr ""
+msgstr "ڈھونڈیں"
 
 msgid ""
 "This custom text is no longer displayed on the platform. The original text "
@@ -671,25 +674,21 @@ msgstr ""
 msgid "Disable submissions"
 msgstr "غیر فعال گذارشات"
 
-msgid "Enable insecure configuration without PGP encryption"
-msgstr "پی جی پی خفیہ کاری کے بغیر غیر محفوظ تشکیل فعال کریں"
-
-msgid "Warning"
-msgstr "انتباہ"
+msgid "Enable encryption"
+msgstr ""
 
 msgid ""
-"By enabling this option, the system will be storing the submitted files "
-"unencrypted on your server."
-msgstr "یہ اختیار فعال کرنے سے سسٹم ارسال کردہ فائلیں آپ کے نوڈ پر بغیر اِنکرپشن کے زخیرہ کرے گا"
+"Allow the system to store data in plaintext when encryption is not available"
+msgstr ""
 
-msgid "This happens whenever encryption is unavailable."
-msgstr "ایسا خفیہ کاری کی عدم دستیابی کی صورت میں ہوتا ہے۔"
-
-msgid "Disable messages that warn of missing encryption"
-msgstr "خفیہ کاری کی غیر موجودگی کے پیغامات کو غیر فعال کریں"
+msgid "Enable multisite feature"
+msgstr ""
 
 msgid "Allow other websites to include the platform inside iframes"
 msgstr "دیگر ویب سائٹوں کے اندر iframes کی پلیٹ فارم میں شامل کرنے کی اجازت دیں"
+
+msgid "Warning"
+msgstr "انتباہ"
 
 msgid ""
 "By enabling this option, you are allowing other websites to include the "
@@ -735,20 +734,11 @@ msgstr "عنوان"
 msgid "Text"
 msgstr "متن"
 
-msgid "Disable the security awareness panel"
-msgstr "تحفظ سے متعلق آگاہی کا نشان غیر فعال کیجیے"
-
 msgid "Disable the key code hint"
 msgstr "کلیدی کوڈ کے اشارہ کو غیر فعال کریں"
 
 msgid "Disable the donation panel"
 msgstr "عطیہ پینل کو غیر فعال کریں"
-
-msgid "Enable CAPTCHA mechanism"
-msgstr "کیپچا کے طریقہ کار کو فعال کریں"
-
-msgid "Enable proof of work mechanism"
-msgstr "کے کام کے طریقہ کار کا ثبوت فعال"
 
 msgid "Amount of days till whistleblower access expires"
 msgstr ""
@@ -845,6 +835,12 @@ msgid "Enable multi-site login"
 msgstr ""
 
 msgid "Enable simplified login"
+msgstr ""
+
+msgid "Logging level"
+msgstr ""
+
+msgid "Log accesses of internal users"
 msgstr ""
 
 msgid "Enable experimental features"
@@ -955,6 +951,9 @@ msgstr "نام"
 msgid "Questionnaire"
 msgstr "سوالنامہ"
 
+msgid "Additional questionnaire"
+msgstr ""
+
 msgid "Recipients"
 msgstr "وصول کنندگان"
 
@@ -1037,7 +1036,7 @@ msgid ""
 msgstr ""
 
 msgid "Contact"
-msgstr ""
+msgstr "رابطہ"
 
 msgid ""
 "If you need technical support, have general questions, or have new ideas for"
@@ -1465,9 +1464,6 @@ msgstr ""
 msgid "Allow users to sign up"
 msgstr ""
 
-msgid "Record IP address and user agent of registered users"
-msgstr ""
-
 msgid "Enable terms of service"
 msgstr ""
 
@@ -1612,31 +1608,8 @@ msgstr "درج جب اس اختیار کو منتخب کیا جاتا ہے سک�
 msgid "Confirm"
 msgstr "تصدیق کی توسیع"
 
-msgid "Are you human?"
-msgstr "آپ انسان ہیں؟"
-
-msgid ""
-"We do not discriminate based on race and gender, but we do against computers"
-" :)"
-msgstr "ہم نسل اور جنس کی بنیاد پر تفریق نہیں کرتے، مگر ہم کمپیوٹر کے خلاف کرتے ہیں  :)"
-
-msgid ""
-"Just to prove you are human, please answer the following math challenge:"
-msgstr "آپ انسان ہیں بس ثابت کرنے کے لئے، براہ مہربانی درج ذیل ریاضی کے چیلنج کا جواب دیجئے:"
-
-msgid "I've solved the math challenge, hide this thing now!"
-msgstr "میں نے ریاضیکے چیلنج کو حل کیا ہے، یہ چیز اب چھپائیں!"
-
 msgid "Please note that all the associated data will be permanently lost."
 msgstr ""
-
-msgid ""
-"This means that if the server running the platform were to be seized, it "
-"would be possible to extract the files that have been submitted."
-msgstr "اس کا مطلب ہے کہ پلیٹ فارم چلانے سرور پر قبضہ کر لیا جائے کرنے کے لئے تھے تو، یہ فائلوں پیش کیا گیا ہے کہ نکالنے کے لئے ممکن ہو جائے گا."
-
-msgid "Are you sure that you wish to continue?"
-msgstr "کیا آپ واقعی جاری رکھنا چاہتے ہیں؟"
 
 msgid "Error!"
 msgstr "خرابی!"
@@ -1747,6 +1720,18 @@ msgid "Investigative journalism"
 msgstr ""
 
 msgid "Civic activism"
+msgstr ""
+
+msgid "previous step"
+msgstr "گزشتہ مرحلہ"
+
+msgid "next step"
+msgstr "اگلا مرحلہ"
+
+msgid "Submit"
+msgstr "جمع کرائیں"
+
+msgid "Fill the additional questionnaire"
 msgstr ""
 
 msgid "Send"
@@ -1895,29 +1880,6 @@ msgid ""
 msgstr "اپنا کلیدی کوڈ خفیہ رکھنے کا بہترین طریقہ یہ ہے کہ اسے کریڈٹ کارڈ کے نمبروں کی طرز پر لکھیے، جس میں اس کے غیر مؤثر ہوجانے کی تاریخ بھی موجود ہو۔   "
 
 msgid ""
-"You have not set up your encryption key, so the files will not be encrypted "
-"prior to being stored on the server."
-msgstr "آپ اپنے خفیہ کاری کلید سیٹ نہیں اپ، تو فائلوں کو سرور پر محفوظ کیا جا رہا ہے سے قبل مرموز نہیں ہوگا."
-
-msgid ""
-"This may lead to unintended access to the files by the server administrator "
-"or others in case the server is compromised."
-msgstr "جس کی وجہ سے  سرور ایڈمنسٹریٹر یا سرور غلط ہاتھوں میں پڑ جانے کی صورت میں دوسروں کی طرف سے فائلوں تک غیر ارادی رسائی ممکن ہوسکتی ہے۔ "
-
-msgid "Please configure your PGP keys in the recipient preferences page."
-msgstr "براہ مہربانی وصول کرنے والے کی ترجیحات کے صفحے میں آپ پی جی پی کی کلیدیں ترتیب دیجیے ."
-
-msgid ""
-"One or more of the recipients of this submission has not configured a PGP "
-"key."
-msgstr "اس جمع آوری کے وصول کنندگان میں سے ایک یا اس سے زیادہ ایک PGP کلید ترتیب دیا نہیں کیا ہے."
-
-msgid ""
-"This means that the submitted files will be stored in plaintext on the "
-"server."
-msgstr "اس کا مطلب یہ ہے کہ فائلوں کو نوڈ پر سادہ متن میں محفوظ کیا جائے گا ."
-
-msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."
 msgstr "مخبر کی شناخت تک رسائی نگرانی کرنے کی درخواست کی گئی ہے."
 
@@ -1971,15 +1933,6 @@ msgstr ""
 
 msgid "Recipient selection"
 msgstr "وصول کنندہ کا انتخاب"
-
-msgid "previous step"
-msgstr "گزشتہ مرحلہ"
-
-msgid "next step"
-msgstr "اگلا مرحلہ"
-
-msgid "Submit"
-msgstr "جمع کرائیں"
 
 msgid "Recipients selected:"
 msgstr " منتخب وصول کنندگان"
