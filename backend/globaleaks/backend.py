@@ -194,10 +194,10 @@ class Service(service.Service):
             hostname = tenant_cache.hostname if tenant_cache.hostname else '0.0.0.0'
             print("- [HTTP]\t--> http://%s" % (hostname))
             if tenant_cache.https_enabled:
-                print("- [HTTPS]\t--> https://%s%s" % hostname)
+                print("- [HTTPS]\t--> https://%s" % hostname)
 
         if tenant_cache.onionservice:
-            print("- [Tor]:\t--> http://%s%s" % tenant_cache.onionservice)
+            print("- [Tor]:\t--> http://%s" % tenant_cache.onionservice)
 
 try:
     application = service.Application('GLBackend')
