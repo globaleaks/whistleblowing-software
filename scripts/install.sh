@@ -303,7 +303,7 @@ if [ -d /globaleaks/deb ]; then
   DO "apt-get -y --allow-unauthenticated install globaleaks"
   DO "/etc/init.d/globaleaks restart"
 else
-  if [ ! -f /etc/apt/sources.list.d/globaleaks.list ]; then
+    echo "Updating GlobaLeaks apt source.list in /etc/apt/sources.list.d/globaleaks.list ..."
     echo "deb http://deb.globaleaks.org $DISTRO_CODENAME/" > /etc/apt/sources.list.d/globaleaks.list
   fi
   DO "apt-get update -y"
