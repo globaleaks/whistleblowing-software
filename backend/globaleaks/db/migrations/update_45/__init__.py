@@ -4,6 +4,7 @@ from globaleaks.db.migrations.update import MigrationBase
 from globaleaks.handlers.submission import db_set_internaltip_answers, db_set_internaltip_data
 from globaleaks.models import Model
 from globaleaks.models.properties import *
+from globaleaks.utils.crypto import GCE
 from globaleaks.utils.utility import datetime_never, datetime_now, datetime_null
 
 
@@ -276,8 +277,11 @@ class MigrationScript(MigrationBase):
 
     def epilogue(self):
         if self.session_new.query(self.model_from['Tenant']).count() > 1:
-            config = self.session_old.query(self.model_from['Config']).filter(self.model_from['Config'].var_name == u'multisite')
-            config.value = True
+            self.session_new.add(self.model_to['Config'](1, u'multisite', True))
+            self.entries_count['Config'] += 1
+
+        for c in self.session_new.query(self.model_to['Config']).filter(self.model_to['Config'].var_name == 'receipt_salt'):
+            c.value = GCE.generate_salt()
 
         ids = [id[0] for id in self.session_old.query(self.model_from['Field'].id)\
                                                .filter(self.model_from['Field'].template_id == u'whistleblower_identity')]
