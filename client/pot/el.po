@@ -15,7 +15,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-11-05 16:47+0000\n"
+"PO-Revision-Date: 2018-11-09 16:15+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Greek (http://www.transifex.com/otf/globaleaks/language/el/)\n"
 "MIME-Version: 1.0\n"
@@ -445,9 +445,6 @@ msgstr "Δεκτός"
 
 msgid "Strong"
 msgstr "Ισχυρός"
-
-msgid "Loading…"
-msgstr "Φορτώνει…"
 
 msgid "Text shown on top of the interface for selecting contexts"
 msgstr "Κείμενο που εμφανίζεται στην κορυφή της διεπαφής για την επιλογή θεματικών ενοτήτων"
@@ -1504,6 +1501,9 @@ msgstr "Ο χρήστης θα αναγκαστεί να αλλάξει τον �
 msgid "Language"
 msgstr "Γλώσσα "
 
+msgid "Enable email notifications"
+msgstr ""
+
 msgid "Details of the PGP key:"
 msgstr "Λεπτομέρειες του κλειδιού PGP:"
 
@@ -1645,9 +1645,6 @@ msgstr "Η επικύρωση της αλλαγής διεύθυνσης email �
 
 msgid "Please check your inbox for further instructions."
 msgstr "Παρακαλώ ελέγξτε τα εισερχόμενά σας για περαιτέρω πληροφορίες."
-
-msgid "Enable submission notification"
-msgstr "Ενεργοποίηση ειδοποίησης υποβολής"
 
 msgid "Current password"
 msgstr ""

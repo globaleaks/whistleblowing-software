@@ -39,8 +39,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-11-05 16:47+0000\n"
-"Last-Translator: Hermes Center <info@hermescenter.org>\n"
+"PO-Revision-Date: 2018-11-09 17:21+0000\n"
+"Last-Translator: AO <ao@localizationlab.org>\n"
 "Language-Team: French (http://www.transifex.com/otf/globaleaks/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -470,9 +470,6 @@ msgstr "Acceptable"
 msgid "Strong"
 msgstr "Robuste"
 
-msgid "Loading…"
-msgstr "Chargement…"
-
 msgid "Text shown on top of the interface for selecting contexts"
 msgstr "Texte de sélection des contextes, affiché en haut de l’interface"
 
@@ -705,10 +702,10 @@ msgstr "Activer le chiffrement"
 
 msgid ""
 "Allow the system to store data in plaintext when encryption is not available"
-msgstr ""
+msgstr "Autoriser le système à enregistrer les données en clair quand le chiffrement n’est pas proposé"
 
 msgid "Enable multisite feature"
-msgstr ""
+msgstr "Activer la fonction multisite"
 
 msgid "Allow other websites to include the platform inside iframes"
 msgstr "Permettre à d’autres sites Web d’inclure la plateforme à l’intérieur de cadres « iframes »"
@@ -1528,6 +1525,9 @@ msgstr "L’utilisateur sera forcé de changer le mot de passe lors de la procha
 msgid "Language"
 msgstr "Langue"
 
+msgid "Enable email notifications"
+msgstr "Activer les notifications par courriel"
+
 msgid "Details of the PGP key:"
 msgstr "Détails de la clé PGP :"
 
@@ -1669,9 +1669,6 @@ msgstr "La validation du changement d’adresse courriel est en cours."
 
 msgid "Please check your inbox for further instructions."
 msgstr "Veuillez vérifier votre boîte de réception pour de plus amples instructions."
-
-msgid "Enable submission notification"
-msgstr "Activer la notification d’envoi"
 
 msgid "Current password"
 msgstr "Mot de passe actuel"

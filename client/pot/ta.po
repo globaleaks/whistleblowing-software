@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-11-05 16:47+0000\n"
+"PO-Revision-Date: 2018-11-09 16:15+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Tamil (http://www.transifex.com/otf/globaleaks/language/ta/)\n"
 "MIME-Version: 1.0\n"
@@ -437,9 +437,6 @@ msgstr "ஏற்கக்கூடிய"
 
 msgid "Strong"
 msgstr "வலுவான"
-
-msgid "Loading…"
-msgstr "ஏற்றுகிறது ..."
 
 msgid "Text shown on top of the interface for selecting contexts"
 msgstr "உரை சூழல்களில் தேர்வு இடைமுகம் மேல் காட்டப்படும்"
@@ -1496,6 +1493,9 @@ msgstr "அடுத்த முறை பயனர் உள்நுழைவ
 msgid "Language"
 msgstr "மொழி"
 
+msgid "Enable email notifications"
+msgstr ""
+
 msgid "Details of the PGP key:"
 msgstr "பிஜிபி முக்கிய விவரம்:"
 
@@ -1637,9 +1637,6 @@ msgstr ""
 
 msgid "Please check your inbox for further instructions."
 msgstr ""
-
-msgid "Enable submission notification"
-msgstr "சமர்ப்பிப்பு அறிவிப்பை இயக்கு"
 
 msgid "Current password"
 msgstr ""

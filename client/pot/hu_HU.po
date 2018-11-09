@@ -21,7 +21,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-11-05 16:47+0000\n"
+"PO-Revision-Date: 2018-11-09 16:15+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Hungarian (Hungary) (http://www.transifex.com/otf/globaleaks/language/hu_HU/)\n"
 "MIME-Version: 1.0\n"
@@ -451,9 +451,6 @@ msgstr "Elfogadható"
 
 msgid "Strong"
 msgstr "Erős"
-
-msgid "Loading…"
-msgstr "Betöltés..."
 
 msgid "Text shown on top of the interface for selecting contexts"
 msgstr "A kontextus választó előtt megjelenő szöveg"
@@ -1510,6 +1507,9 @@ msgstr "A felhasználó kényszeríve lesz, hogy megváltoztassa a jelszavát a 
 msgid "Language"
 msgstr "Nyelv:"
 
+msgid "Enable email notifications"
+msgstr ""
+
 msgid "Details of the PGP key:"
 msgstr "A PGP kulcs részletei:"
 
@@ -1651,9 +1651,6 @@ msgstr ""
 
 msgid "Please check your inbox for further instructions."
 msgstr ""
-
-msgid "Enable submission notification"
-msgstr "Beadvány értesítés engedélyezése"
 
 msgid "Current password"
 msgstr ""

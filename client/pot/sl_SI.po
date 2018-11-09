@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-11-05 16:47+0000\n"
+"PO-Revision-Date: 2018-11-09 16:15+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Slovenian (Slovenia) (http://www.transifex.com/otf/globaleaks/language/sl_SI/)\n"
 "MIME-Version: 1.0\n"
@@ -437,9 +437,6 @@ msgstr "Sprejemljivo"
 
 msgid "Strong"
 msgstr "Močno"
-
-msgid "Loading…"
-msgstr "Nalagam..."
 
 msgid "Text shown on top of the interface for selecting contexts"
 msgstr ""
@@ -1496,6 +1493,9 @@ msgstr "Uporabnik bo pozvan k menjavi gesla ob naslednji prijavi."
 msgid "Language"
 msgstr "Jezik"
 
+msgid "Enable email notifications"
+msgstr ""
+
 msgid "Details of the PGP key:"
 msgstr "Podrobnosti PGP ključa:"
 
@@ -1637,9 +1637,6 @@ msgstr ""
 
 msgid "Please check your inbox for further instructions."
 msgstr ""
-
-msgid "Enable submission notification"
-msgstr "Omogoči obveščanje o prispevkih"
 
 msgid "Current password"
 msgstr ""

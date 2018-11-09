@@ -10,7 +10,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-11-05 16:47+0000\n"
+"PO-Revision-Date: 2018-11-09 16:15+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Finnish (http://www.transifex.com/otf/globaleaks/language/fi/)\n"
 "MIME-Version: 1.0\n"
@@ -440,9 +440,6 @@ msgstr "Hyväksyttävä"
 
 msgid "Strong"
 msgstr "Vahva"
-
-msgid "Loading…"
-msgstr "Ladataan…"
 
 msgid "Text shown on top of the interface for selecting contexts"
 msgstr "Sivun yläosan teksti aihetta valittaessa"
@@ -1499,6 +1496,9 @@ msgstr "Käyttäjä pakotetaan vaihtamaan salasanansa seuraavan kirjautumisen yh
 msgid "Language"
 msgstr "Kieli"
 
+msgid "Enable email notifications"
+msgstr ""
+
 msgid "Details of the PGP key:"
 msgstr "PGP-avaimen tiedot:"
 
@@ -1640,9 +1640,6 @@ msgstr "Sähköpostiosoitteen vaihtamisen vahvistaminen käynnissä."
 
 msgid "Please check your inbox for further instructions."
 msgstr "Lisäohjeita löydät sähköpostistasi."
-
-msgid "Enable submission notification"
-msgstr "Ota käyttöön vihjeiden ilmoitukset"
 
 msgid "Current password"
 msgstr "Nykyinen salasana"

@@ -12,7 +12,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-11-05 16:47+0000\n"
+"PO-Revision-Date: 2018-11-09 16:15+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Vietnamese (http://www.transifex.com/otf/globaleaks/language/vi/)\n"
 "MIME-Version: 1.0\n"
@@ -442,9 +442,6 @@ msgstr "Chấp nhận được"
 
 msgid "Strong"
 msgstr "Mạnh"
-
-msgid "Loading…"
-msgstr "Tải…"
 
 msgid "Text shown on top of the interface for selecting contexts"
 msgstr "Văn bản hiển thị trên đầu trang của giao diện để lựa chọn bối cảnh"
@@ -1501,6 +1498,9 @@ msgstr "Người dùng sẽ buộc phải thay đổi mật khẩu của mình t
 msgid "Language"
 msgstr "ngôn ngữ"
 
+msgid "Enable email notifications"
+msgstr ""
+
 msgid "Details of the PGP key:"
 msgstr "Thông tin chi tiết của khóa PGP:"
 
@@ -1642,9 +1642,6 @@ msgstr ""
 
 msgid "Please check your inbox for further instructions."
 msgstr ""
-
-msgid "Enable submission notification"
-msgstr "Kích hoạt tính năng thông báo nộp"
 
 msgid "Current password"
 msgstr ""
