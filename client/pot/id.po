@@ -23,7 +23,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-11-05 16:47+0000\n"
+"PO-Revision-Date: 2018-11-09 16:15+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Indonesian (http://www.transifex.com/otf/globaleaks/language/id/)\n"
 "MIME-Version: 1.0\n"
@@ -453,9 +453,6 @@ msgstr "Sedang"
 
 msgid "Strong"
 msgstr "Kuat"
-
-msgid "Loading…"
-msgstr "Memuat..."
 
 msgid "Text shown on top of the interface for selecting contexts"
 msgstr "Teks  tampil di atas antarmuka untuk memilih konteks "
@@ -1512,6 +1509,9 @@ msgstr "Pengguna diharuskan untuk mengganti kata sandi pada akses berikutnya."
 msgid "Language"
 msgstr "Bahasa"
 
+msgid "Enable email notifications"
+msgstr ""
+
 msgid "Details of the PGP key:"
 msgstr "Detil dari kunci PGP:"
 
@@ -1653,9 +1653,6 @@ msgstr "Validasi perubahan alamat surel sedang berlangsung."
 
 msgid "Please check your inbox for further instructions."
 msgstr "Mohon cek kotak masuk anda untuk langkah lebih lanjut."
-
-msgid "Enable submission notification"
-msgstr "Aktifkan notifikasi pengiriman"
 
 msgid "Current password"
 msgstr "Sandi saat ini"

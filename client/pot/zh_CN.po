@@ -18,7 +18,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-11-05 16:47+0000\n"
+"PO-Revision-Date: 2018-11-09 16:15+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/otf/globaleaks/language/zh_CN/)\n"
 "MIME-Version: 1.0\n"
@@ -448,9 +448,6 @@ msgstr "可接受"
 
 msgid "Strong"
 msgstr "强"
-
-msgid "Loading…"
-msgstr "加载中…"
 
 msgid "Text shown on top of the interface for selecting contexts"
 msgstr "在情境选择界面的上方显示文字"
@@ -1507,6 +1504,9 @@ msgstr "该用户将被强制在下次登录时更改其密码。"
 msgid "Language"
 msgstr "语言"
 
+msgid "Enable email notifications"
+msgstr ""
+
 msgid "Details of the PGP key:"
 msgstr "PGP 密钥的详细信息："
 
@@ -1648,9 +1648,6 @@ msgstr ""
 
 msgid "Please check your inbox for further instructions."
 msgstr ""
-
-msgid "Enable submission notification"
-msgstr "启用提交通知"
 
 msgid "Current password"
 msgstr ""

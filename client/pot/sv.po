@@ -20,7 +20,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-11-05 16:47+0000\n"
+"PO-Revision-Date: 2018-11-09 16:15+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Swedish (http://www.transifex.com/otf/globaleaks/language/sv/)\n"
 "MIME-Version: 1.0\n"
@@ -450,9 +450,6 @@ msgstr ""
 
 msgid "Strong"
 msgstr ""
-
-msgid "Loading…"
-msgstr "Laddar…"
 
 msgid "Text shown on top of the interface for selecting contexts"
 msgstr ""
@@ -1509,6 +1506,9 @@ msgstr ""
 msgid "Language"
 msgstr "Språk"
 
+msgid "Enable email notifications"
+msgstr ""
+
 msgid "Details of the PGP key:"
 msgstr ""
 
@@ -1649,9 +1649,6 @@ msgid "Validation of email address change in progress."
 msgstr ""
 
 msgid "Please check your inbox for further instructions."
-msgstr ""
-
-msgid "Enable submission notification"
 msgstr ""
 
 msgid "Current password"

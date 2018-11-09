@@ -11,7 +11,7 @@
 # Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2014-2018
 # João Paulo Macedo Batalha <joao.batalha@transparencia.pt>, 2015
 # Manuela Silva <inactive+h_manuela_rodsilva@transifex.com>, 2015-2016
-# MS, 2014-2018
+# MS <manuelarodsilva@gmail.com>, 2014-2018
 # Mónica Marques <coelho_monica75@hotmail.com>, 2017
 # Drew Melim <nokostya.translation@gmail.com>, 2014-2015
 # Nuno Duarte <inactive+nuno.passiano@transifex.com>, 2015
@@ -21,7 +21,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-11-05 16:47+0000\n"
+"PO-Revision-Date: 2018-11-09 16:15+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Portuguese (Portugal) (http://www.transifex.com/otf/globaleaks/language/pt_PT/)\n"
 "MIME-Version: 1.0\n"
@@ -451,9 +451,6 @@ msgstr "Aceitável"
 
 msgid "Strong"
 msgstr "Forte"
-
-msgid "Loading…"
-msgstr "A carregar..."
 
 msgid "Text shown on top of the interface for selecting contexts"
 msgstr "Texto mostrado no topo da interface para os contextos selecionados"
@@ -1510,6 +1507,9 @@ msgstr "O utilizador será forçado a alterar a palavra-passe no próximo iníci
 msgid "Language"
 msgstr "Idioma"
 
+msgid "Enable email notifications"
+msgstr ""
+
 msgid "Details of the PGP key:"
 msgstr "Detalhes da chave PGP:"
 
@@ -1651,9 +1651,6 @@ msgstr "Validação da alteração do endereço de e-mail em progresso."
 
 msgid "Please check your inbox for further instructions."
 msgstr ""
-
-msgid "Enable submission notification"
-msgstr "Ativar notificação de submissão"
 
 msgid "Current password"
 msgstr ""

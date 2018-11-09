@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-11-05 16:47+0000\n"
+"PO-Revision-Date: 2018-11-09 16:15+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Korean (http://www.transifex.com/otf/globaleaks/language/ko/)\n"
 "MIME-Version: 1.0\n"
@@ -435,9 +435,6 @@ msgstr "허용"
 
 msgid "Strong"
 msgstr "강한"
-
-msgid "Loading…"
-msgstr "로드 중 ..."
 
 msgid "Text shown on top of the interface for selecting contexts"
 msgstr "텍스트 컨텍스트를 선택하기위한 인터페이스의 상단에 도시"
@@ -1494,6 +1491,9 @@ msgstr "사용자는 다음 로그인의 암호를 변경해야한다."
 msgid "Language"
 msgstr "언어"
 
+msgid "Enable email notifications"
+msgstr ""
+
 msgid "Details of the PGP key:"
 msgstr "PGP 키의 세부 사항 :"
 
@@ -1635,9 +1635,6 @@ msgstr ""
 
 msgid "Please check your inbox for further instructions."
 msgstr ""
-
-msgid "Enable submission notification"
-msgstr "제출 통지를 사용"
 
 msgid "Current password"
 msgstr ""

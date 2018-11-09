@@ -10,7 +10,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-11-05 16:47+0000\n"
+"PO-Revision-Date: 2018-11-09 16:15+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Thai (http://www.transifex.com/otf/globaleaks/language/th/)\n"
 "MIME-Version: 1.0\n"
@@ -440,9 +440,6 @@ msgstr "ยอมรับได้"
 
 msgid "Strong"
 msgstr "แข็งแกร่ง"
-
-msgid "Loading…"
-msgstr ""
 
 msgid "Text shown on top of the interface for selecting contexts"
 msgstr ""
@@ -1499,6 +1496,9 @@ msgstr "ผู้ใช้จะถูกบังคับให้เปลี
 msgid "Language"
 msgstr "ภาษา"
 
+msgid "Enable email notifications"
+msgstr ""
+
 msgid "Details of the PGP key:"
 msgstr "รายละเอียดของคีย์ PGP ที่:"
 
@@ -1640,9 +1640,6 @@ msgstr ""
 
 msgid "Please check your inbox for further instructions."
 msgstr ""
-
-msgid "Enable submission notification"
-msgstr "เปิดใช้งานการแจ้งเตือนการส่ง"
 
 msgid "Current password"
 msgstr ""

@@ -29,7 +29,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-11-05 16:47+0000\n"
+"PO-Revision-Date: 2018-11-09 16:15+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Spanish (http://www.transifex.com/otf/globaleaks/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -459,9 +459,6 @@ msgstr "Aceptable"
 
 msgid "Strong"
 msgstr "Fuerte"
-
-msgid "Loading…"
-msgstr "Cargando..."
 
 msgid "Text shown on top of the interface for selecting contexts"
 msgstr "Texto mostrado en la parte superior de la interfaz para seleccionar contextos"
@@ -1518,6 +1515,9 @@ msgstr "El usuario será forzado a cambiar su contraseña en el próximo inicio 
 msgid "Language"
 msgstr "Idioma"
 
+msgid "Enable email notifications"
+msgstr ""
+
 msgid "Details of the PGP key:"
 msgstr "Detalles de la clave PGP:"
 
@@ -1659,9 +1659,6 @@ msgstr ""
 
 msgid "Please check your inbox for further instructions."
 msgstr ""
-
-msgid "Enable submission notification"
-msgstr "Habilitar notificación de la entrega"
 
 msgid "Current password"
 msgstr "Contraseña actual"

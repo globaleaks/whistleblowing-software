@@ -25,7 +25,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-11-05 16:50+0000\n"
+"PO-Revision-Date: 2018-11-09 19:29+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Italian (http://www.transifex.com/otf/globaleaks/language/it/)\n"
 "MIME-Version: 1.0\n"
@@ -455,9 +455,6 @@ msgstr "Accettabile"
 
 msgid "Strong"
 msgstr "Robusta"
-
-msgid "Loading…"
-msgstr "Caricamento..."
 
 msgid "Text shown on top of the interface for selecting contexts"
 msgstr "Testo mostrato prima dell'interfaccia per selezionare il contesto"
@@ -1514,6 +1511,9 @@ msgstr "L'utente sarà invitato a impostare una nuova password al prossimo acces
 msgid "Language"
 msgstr "Lingua"
 
+msgid "Enable email notifications"
+msgstr "Abilita le notifiche via email"
+
 msgid "Details of the PGP key:"
 msgstr "Dettagli della chiave PGP:"
 
@@ -1655,9 +1655,6 @@ msgstr "Validazione del cambio di email in corso."
 
 msgid "Please check your inbox for further instructions."
 msgstr "Controlla la tua casella di posta in arrivo per informazioni aggiuntive."
-
-msgid "Enable submission notification"
-msgstr "Abilita notifica delle segnalazioni"
 
 msgid "Current password"
 msgstr "Password attuale"

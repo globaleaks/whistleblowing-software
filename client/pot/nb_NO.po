@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-11-05 16:47+0000\n"
+"PO-Revision-Date: 2018-11-09 16:15+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Norwegian Bokmål (Norway) (http://www.transifex.com/otf/globaleaks/language/nb_NO/)\n"
 "MIME-Version: 1.0\n"
@@ -437,9 +437,6 @@ msgstr "Akseptabelt"
 
 msgid "Strong"
 msgstr "Sterkt"
-
-msgid "Loading…"
-msgstr "Laster…"
 
 msgid "Text shown on top of the interface for selecting contexts"
 msgstr "Tekst vist på toppen av grensesnittet for valg av bindeleddsinformasjon"
@@ -1496,6 +1493,9 @@ msgstr "Mottakeren vil tvinges til å endre passordet sitt ved neste innlogging.
 msgid "Language"
 msgstr "Språk"
 
+msgid "Enable email notifications"
+msgstr ""
+
 msgid "Details of the PGP key:"
 msgstr "Detaljer for PGP-nøkkel:"
 
@@ -1637,9 +1637,6 @@ msgstr "Bekreftelse av e-postendring underveis."
 
 msgid "Please check your inbox for further instructions."
 msgstr ""
-
-msgid "Enable submission notification"
-msgstr "Skru på innsendelsesmerknad"
 
 msgid "Current password"
 msgstr ""

@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-11-05 16:47+0000\n"
+"PO-Revision-Date: 2018-11-09 16:15+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Georgian (http://www.transifex.com/otf/globaleaks/language/ka/)\n"
 "MIME-Version: 1.0\n"
@@ -434,9 +434,6 @@ msgstr "მისაღები"
 
 msgid "Strong"
 msgstr "ძლიერი"
-
-msgid "Loading…"
-msgstr "Loading ..."
 
 msgid "Text shown on top of the interface for selecting contexts"
 msgstr "ტექსტი ნაჩვენები თავზე ინტერფეისი შერჩევის კონტექსტში"
@@ -1493,6 +1490,9 @@ msgstr "მომხმარებელი იძულებული იქ�
 msgid "Language"
 msgstr "ენა"
 
+msgid "Enable email notifications"
+msgstr ""
+
 msgid "Details of the PGP key:"
 msgstr "დეტალები PGP გასაღები:"
 
@@ -1634,9 +1634,6 @@ msgstr ""
 
 msgid "Please check your inbox for further instructions."
 msgstr ""
-
-msgid "Enable submission notification"
-msgstr "ჩართვა წარდგენის შეტყობინება"
 
 msgid "Current password"
 msgstr ""
