@@ -28,7 +28,7 @@ def receiver_serialize_receiver(session, tid, receiver, user, language):
         'can_postpone_expiration': State.tenant_cache[tid].can_postpone_expiration or receiver.can_postpone_expiration,
         'can_delete_submission': State.tenant_cache[tid].can_delete_submission or receiver.can_delete_submission,
         'can_grant_permissions': State.tenant_cache[tid].can_grant_permissions or receiver.can_grant_permissions,
-        'tip_notification': receiver.tip_notification,
+        'notification': user.notification,
         'contexts': contexts
     })
 
@@ -52,7 +52,7 @@ def update_receiver_settings(session, state, tid, user_session, request, languag
                             .filter(models.Receiver.id == user_session.user_id,
                                     models.Receiver.id == models.User.id).one_or_none()
 
-    receiver.tip_notification = request['tip_notification']
+    user.notification = request['notification']
 
     return receiver_serialize_receiver(session, tid, receiver, user, language)
 

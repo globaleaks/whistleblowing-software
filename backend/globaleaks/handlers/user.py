@@ -70,6 +70,7 @@ def user_serialize_user(session, user, language):
         'picture': picture,
         'can_edit_general_settings': user.can_edit_general_settings,
         'tid': user.tid,
+        'notification': user.notification,
         'usertenant_assocations': user_tenants
     }
 

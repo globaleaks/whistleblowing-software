@@ -781,6 +781,7 @@ factory('AdminUtils', ['AdminContextResource', 'AdminQuestionnaireResource', 'Ad
       user.pgp_key_public = '';
       user.pgp_key_expiration = '';
       user.language = 'en';
+      user.notification = true;
       return user;
     },
 

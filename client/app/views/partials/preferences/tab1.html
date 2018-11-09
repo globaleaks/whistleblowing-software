@@ -52,9 +52,9 @@
     <select class="form-control" data-ng-model="preferences.language" data-ng-options="item.code as item.native for item in languages_enabled_selector"></select>
   </div>
 
-  <div id="EnableNotifications" class="form-group" data-ng-if="session.role == 'receiver'">
-    <input data-ng-model="preferences.tip_notification" type="checkbox">
-    <label data-translate>Enable submission notification</label>
+  <div id="EnableNotifications" class="form-group">
+    <input data-ng-model="preferences.notification" type="checkbox">
+    <label data-translate>Enable email notifications</label>
   </div>
 
   <div id="EditPGP" data-ng-form="pgpkeyForm" data-ng-if="node.enable_user_pgp_key_upload">

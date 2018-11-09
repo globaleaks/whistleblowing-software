@@ -881,7 +881,6 @@ class _Receiver(Model):
     can_delete_submission = Column(Boolean, default=False, nullable=False)
     can_postpone_expiration = Column(Boolean, default=False, nullable=False)
     can_grant_permissions = Column(Boolean, default=False, nullable=False)
-    tip_notification = Column(Boolean, default=True, nullable=False)
 
     @declared_attr
     def __table_args__(self):
@@ -894,7 +893,6 @@ class _Receiver(Model):
         'can_delete_submission',
         'can_postpone_expiration',
         'can_grant_permissions',
-        'tip_notification',
     ]
 
     list_keys = ['contexts']
@@ -1207,6 +1205,8 @@ class _User(Model):
     reset_password_token = Column(UnicodeText, unique=True, nullable=True)
     reset_password_date = Column(UnicodeText, default=datetime_never, nullable=False)
 
+    notification = Column(Boolean, default=True, nullable=False)
+
     # BEGIN of PGP key fields
     pgp_key_fingerprint = Column(UnicodeText, default=u'', nullable=False)
     pgp_key_public = Column(UnicodeText, default=u'', nullable=False)
@@ -1222,7 +1222,7 @@ class _User(Model):
 
     localized_keys = ['description']
 
-    bool_keys = ['password_change_needed', 'can_edit_general_settings']
+    bool_keys = ['password_change_needed', 'can_edit_general_settings', 'notification']
 
     date_keys = ['creation_date', 'last_login', 'password_change_date', 'pgp_key_expiration']
 

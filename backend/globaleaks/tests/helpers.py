@@ -1084,7 +1084,8 @@ class MockDict:
             'pgp_key_public': u'',
             'pgp_key_expiration': u'1970-01-01 00:00:00.000000',
             'pgp_key_remove': False,
-            'can_edit_general_settings': False
+            'can_edit_general_settings': False,
+            'notification': True
         }
 
         self.dummyReceiver = copy.deepcopy(self.dummyUser)
@@ -1093,7 +1094,6 @@ class MockDict:
             'can_delete_submission': True,
             'can_postpone_expiration': True,
             'contexts': [],
-            'tip_notification': True,
             'configuration': 'default'
         })
 

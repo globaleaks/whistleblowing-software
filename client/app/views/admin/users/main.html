@@ -168,6 +168,10 @@
                     <label data-translate>Language</label>
                     <select class="form-control" data-ng-model="user.language" data-ng-options="item.code as item.name for item in languages_enabled_selector"></select>
                   </div>
+                  <div class="form-group">
+                    <input data-ng-model="user.notification" type="checkbox">
+                    <label data-translate>Enable email notifications</label>
+                  </div>
                 </div>
               </div>
               <div class="row">
