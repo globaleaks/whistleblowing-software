@@ -148,7 +148,8 @@ UserUserDesc = {
     'pgp_key_expiration': text_type,
     'pgp_key_public': text_type,
     'language': text_type,
-    'can_edit_general_settings': bool
+    'can_edit_general_settings': bool,
+    'notification': bool
 }
 
 AdminUserDesc = UserUserDesc # currently the same
@@ -166,7 +167,7 @@ ReceiverReceiverDesc = {
     'pgp_key_fingerprint': text_type,
     'pgp_key_expiration': text_type,
     'pgp_key_public': text_type,
-    'tip_notification': bool,
+    'notification': bool,
     'language': text_type
 }
 
@@ -399,7 +400,7 @@ AdminReceiverDesc = {
     'can_delete_submission': bool,
     'can_postpone_expiration': bool,
     'can_grant_permissions': bool,
-    'tip_notification': bool,
+    'notification': bool,
     'configuration': text_type
 }
 

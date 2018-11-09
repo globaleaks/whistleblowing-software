@@ -35,8 +35,7 @@ def admin_serialize_receiver(session, receiver, user, language):
         'can_postpone_expiration': receiver.can_postpone_expiration,
         'can_grant_permissions': receiver.can_grant_permissions,
         'mail_address': user.mail_address,
-        'configuration': receiver.configuration,
-        'tip_notification': receiver.tip_notification
+        'configuration': receiver.configuration
     })
 
     return get_localized_values(ret_dict, receiver, receiver.localized_keys, language)

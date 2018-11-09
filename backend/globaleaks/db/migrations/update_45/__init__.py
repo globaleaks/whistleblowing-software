@@ -83,6 +83,19 @@ class InternalTip_v_44(Model):
     substatus = Column(UnicodeText(36), nullable=True)
 
 
+class Receiver_v_44(Model):
+    __tablename__ = 'receiver'
+
+    id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
+
+    configuration = Column(UnicodeText, default=u'default', nullable=False)
+    can_delete_submission = Column(Boolean, default=False, nullable=False)
+    can_postpone_expiration = Column(Boolean, default=False, nullable=False)
+    can_grant_permissions = Column(Boolean, default=False, nullable=False)
+
+    tip_notification = Column(Boolean, default=True, nullable=False)
+
+
 class ReceiverFile_v_44(Model):
     __tablename__ = 'receiverfile'
     id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
@@ -226,16 +239,24 @@ class MigrationScript(MigrationBase):
             self.session_new.add(new_obj)
 
     def migrate_User(self):
+        receivers_by_id = {}
+        old_objs = self.session_old.query(self.model_from['Receiver'])
+        for old_obj in old_objs:
+            receivers_by_id[old_obj.id] = old_obj
+
         old_objs = self.session_old.query(self.model_from['User'])
         for old_obj in old_objs:
             new_obj = self.model_to['User']()
             for key in [c.key for c in new_obj.__table__.columns]:
                 if key == 'hash_alg':
                     new_obj.hash_alg = 'SCRYPT'
-                elif key in ['crypto_pub_key', 'crypto_prv_key']:
+                elif key in ['crypto_pub_key', 'crypto_prv_key', 'notification']:
                     continue
                 else:
                     setattr(new_obj, key, getattr(old_obj, key))
+
+            if old_obj.id in receivers_by_id:
+                new_obj.notification = receivers_by_id[old_obj.id].tip_notification
 
             self.session_new.add(new_obj)
 

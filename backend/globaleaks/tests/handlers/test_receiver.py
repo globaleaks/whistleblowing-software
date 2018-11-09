@@ -27,7 +27,7 @@ class TestUserInstance(helpers.TestHandlerWithPopulatedDB):
 
         response = yield handler.get()
 
-        response['tip_notification'] = False
+        response['notification'] = False
 
         handler = self.request(response, user_id = self.rcvr_id, role='receiver')
         yield handler.put()
