@@ -277,7 +277,8 @@ AdminNodeDesc = {
     'enable_user_pgp_key_upload': bool,
     'log_level': text_type,
     'log_accesses_of_internal_users': bool,
-    'encryption': bool
+    'encryption': bool,
+    'multisite': bool
 }
 
 AdminNotificationDesc = merge_dicts({

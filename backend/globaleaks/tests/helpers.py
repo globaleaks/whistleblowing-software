@@ -1226,7 +1226,8 @@ class MockDict:
             'signup_tos2_agreement': u'',
             'log_level': 'DEBUG',
             'log_accesses_of_internal_users': False,
-            'encryption': False
+            'encryption': False,
+            'multisite': False
         }
 
 
