@@ -190,11 +190,9 @@ class MigrationScript(MigrationBase):
             if answer.is_leaf:
                 ret[answer.key] = answer.value
             else:
-                ret[answer.key] = [
-                    self.db_serialize_questionnaire_answers_recursively(session, answers_by_group.get(group.id, []),
-                                                                        answers_by_group, groups_by_answer)
-                    for group in groups_by_answer.get(answer.id, [])]
-
+                for group in groups_by_answer.get(answer.id, []):
+                    ret[answer.key] = [self.db_serialize_questionnaire_answers_recursively(session, answers_by_group.get(group.id, []),
+                                                                        answers_by_group, groups_by_answer)]
         return ret
 
     def db_serialize_questionnaire_answers(self, session, tid, internaltip):
