@@ -516,15 +516,14 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
         tip.msg_receiver_selected = null;
         tip.msg_receivers_selector = [];
 
-        angular.forEach(tip.receivers, function(r1) {
-          angular.forEach($rootScope.receivers, function(r2) {
-            if (r2.id === r1.id) {
-              tip.msg_receivers_selector.push({
-                key: r2.id,
-                value: r2.name
-              });
-            }
-          });
+        angular.forEach(tip.receivers, function(r) {
+          if($rootScope.receivers_by_id[r.id]) {
+            r = $rootScope.receivers_by_id[r.id];
+            tip.msg_receivers_selector.push({
+              key: r.id,
+              value: r.name
+            });
+          }
         });
 
         tip.newComment = function(content) {
