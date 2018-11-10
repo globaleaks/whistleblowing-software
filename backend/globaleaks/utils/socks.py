@@ -16,16 +16,9 @@ from twisted.internet import defer, interfaces
 from twisted.internet.protocol import Protocol
 from twisted.protocols import tls
 from twisted.protocols.policies import ProtocolWrapper, WrappingFactory
-from twisted.python.failure import Failure
 from twisted.web.client import Agent, BrowserLikePolicyForHTTPS
 from twisted.web.iweb import IAgentEndpointFactory, IAgent, IPolicyForHTTPS
 from zope.interface import implementer, directlyProvides, providedBy
-
-
-class SOCKSError(Exception):
-    def __init__(self, value):
-        Exception.__init__(self)
-        self.code = value
 
 
 class SOCKS5ClientProtocol(ProtocolWrapper):
@@ -37,13 +30,13 @@ class SOCKS5ClientProtocol(ProtocolWrapper):
         self._buf = b''
         self.state = 0
 
-    def error(self, error):
+    def error(self):
         self.transport.abortConnection()
         self.transport = None
 
     def socks_state_0(self):
         # error state
-        self.error(SOCKSError(0x00))
+        self.error()
         return
 
     def socks_state_1(self):
@@ -52,7 +45,7 @@ class SOCKS5ClientProtocol(ProtocolWrapper):
 
         if self._buf[:2] != b"\x05\x00":
             # Anonymous access denied
-            self.error(Failure(SOCKSError(0x00)))
+            self.error()
             return
 
         self._buf = self._buf[2:]
@@ -65,7 +58,7 @@ class SOCKS5ClientProtocol(ProtocolWrapper):
             return
 
         if self._buf[:2] != b"\x05\x00":
-            self.error(Failure(SOCKSError(ord(self._buf[1]))))
+            self.error()
             return
 
         self._buf = self._buf[2:]
