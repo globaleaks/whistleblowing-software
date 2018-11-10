@@ -222,6 +222,7 @@ def serialize_itip(session, internaltip, language):
         'context_id': internaltip.context_id,
         'additional_questionnaire_id': internaltip.additional_questionnaire_id,
         'questionnaires': questionnaires,
+        'receivers': db_get_itip_receiver_list(session, internaltip),
         'https': internaltip.https,
         'enable_two_way_comments': internaltip.enable_two_way_comments,
         'enable_two_way_messages': internaltip.enable_two_way_messages,
