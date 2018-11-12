@@ -4,7 +4,7 @@ set -e
 
 #DEBHELPER#
 
-if [ "$1" == "upgrade" ] ; then
+if [ "$1" = "upgrade" ]; then
   service globaleaks stop || true
 fi
 
