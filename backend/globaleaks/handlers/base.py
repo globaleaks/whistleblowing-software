@@ -12,13 +12,11 @@ from datetime import datetime
 from cryptography.hazmat.primitives import constant_time
 from six import text_type, binary_type
 from twisted.internet import abstract, defer
-from twisted.internet.defer import inlineCallbacks, returnValue
 
 from globaleaks.event import track_handler
 from globaleaks.rest import errors, requests
 from globaleaks.utils.crypto import sha512
 from globaleaks.utils.securetempfile import SecureTemporaryFile
-from globaleaks.utils.utility import datetime_now, deferred_sleep, log
 from globaleaks.sessions import Sessions
 from globaleaks.settings import Settings
 from globaleaks.utils.log import log
@@ -458,21 +456,3 @@ class BaseHandler(object):
             needed_delay = (Settings.side_channels_guard - (self.request.execution_time.microseconds / 1000)) / 1000
             if needed_delay > 0:
                 return deferred_sleep(needed_delay)
-
-    @inlineCallbacks
-    def can_edit_general_settings_or_raise(self):
-        """Determines if this user has ACL permissions to edit general settings"""
-
-        from globaleaks.handlers.admin.user import get_user
-
-        if self.current_user.user_role == 'admin':
-            returnValue(True)
-        else:
-            # Get the full user so we can see what we can access
-            user = yield get_user(self.request.tid,
-                                  self.current_user.user_id,
-                                  self.request.language)
-            if user['can_edit_general_settings'] is True:
-                returnValue(True)
-
-        raise errors.InvalidAuthentication

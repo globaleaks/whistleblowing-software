@@ -5,7 +5,7 @@ from globaleaks.db import db_refresh_memory_variables
 from globaleaks.db.appdata import load_appdata
 from globaleaks.handlers.admin.node import admin_serialize_node
 from globaleaks.handlers.base import BaseHandler
-from globaleaks.handlers.user import get_user_settings
+from globaleaks.handlers.user import get_user
 from globaleaks.models.config import ConfigFactory, NotificationL10NFactory
 from globaleaks.orm import transact
 from globaleaks.rest import requests
@@ -87,9 +87,9 @@ class NotificationTestInstance(BaseHandler):
     @inlineCallbacks
     def post(self):
         tid = self.request.tid
-        user = yield get_user_settings(tid,
-                                       self.current_user.user_id,
-                                       State.tenant_cache[tid].default_language)
+        user = yield get_user(tid,
+                              self.current_user.user_id,
+                              State.tenant_cache[tid].default_language)
 
         language = user['language']
 
