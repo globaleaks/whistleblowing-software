@@ -1,6 +1,8 @@
 # -*- coding: utf-8
 #
 # Handlers dealing with user preferences
+from twisted.internet.defer import inlineCallbacks, returnValue
+
 from globaleaks import models
 from globaleaks.handlers.admin.modelimgs import db_get_model_img
 from globaleaks.handlers.base import BaseHandler
@@ -85,13 +87,18 @@ def serialize_usertenant_association(row):
     }
 
 
-@transact
-def get_user_settings(session, tid, user_id, language):
+def db_get_user(session, tid, user_id):
     user = models.db_get(session,
                          models.User,
                          models.User.id == user_id,
                          models.UserTenant.user_id == user_id,
                          models.UserTenant.tenant_id == tid)
+
+    return user
+
+@transact
+def get_user(session, tid, user_id, language):
+    user = db_get_user(session, tid, user_id)
 
     return user_serialize_user(session, user, language)
 
@@ -183,6 +190,22 @@ def db_get_usertenant_associations(session, user):
     return [serialize_usertenant_association(usertenant) for usertenant in usertenants]
 
 
+@inlineCallbacks
+def can_edit_general_settings_or_raise(handler):
+    """Determines if this user has ACL permissions to edit general settings"""
+    if handler.current_user.user_role == 'admin':
+        returnValue(True)
+    else:
+        # Get the full user so we can see what we can access
+        user = yield get_user(handler.request.tid,
+                              handler.current_user.user_id,
+                              handler.request.language)
+        if user['can_edit_general_settings'] is True:
+            returnValue(True)
+
+    raise errors.InvalidAuthentication
+
+
 class UserInstance(BaseHandler):
     """
     This handler allow users to modify some of their fields:
@@ -195,9 +218,9 @@ class UserInstance(BaseHandler):
     invalidate_cache = True
 
     def get(self):
-        return get_user_settings(self.request.tid,
-                                 self.current_user.user_id,
-                                 self.request.language)
+        return get_user(self.request.tid,
+                        self.current_user.user_id,
+                        self.request.language)
 
     def put(self):
         request = self.validate_message(self.request.content.read(), requests.UserUserDesc)

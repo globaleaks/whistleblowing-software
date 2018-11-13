@@ -9,7 +9,8 @@ from six import text_type
 from globaleaks import models
 from globaleaks.db import db_refresh_memory_variables
 from globaleaks.handlers.base import BaseHandler
-from globaleaks.handlers.user import parse_pgp_options, \
+from globaleaks.handlers.user import db_get_user, \
+                                     parse_pgp_options, \
                                      user_serialize_user, \
                                      serialize_usertenant_association
 
@@ -18,7 +19,7 @@ from globaleaks.rest import requests, errors
 from globaleaks.state import State
 from globaleaks.utils.crypto import GCE
 from globaleaks.models import fill_localized_keys, get_localized_values
-from globaleaks.utils.utility import datetime_now, uuid4, log
+from globaleaks.utils.utility import datetime_now, uuid4
 
 
 def admin_serialize_receiver(session, receiver, user, language):
@@ -180,21 +181,6 @@ def db_admin_update_user(session, state, tid, user_id, request, language):
 def admin_update_user(session, state, tid, user_id, request, language):
     return user_serialize_user(session, db_admin_update_user(session, state, tid, user_id, request, language), language)
 
-
-def db_get_user(session, tid, user_id):
-    user = session.query(models.User) \
-                  .filter(models.User.id == user_id,
-                          models.UserTenant.user_id == models.User.id,
-                          models.UserTenant.tenant_id == tid).one_or_none()
-
-
-    return user
-
-@transact
-def get_user(session, tid, user_id, language):
-    user = db_get_user(session, tid, user_id)
-
-    return user_serialize_user(session, user, language)
 
 
 @transact

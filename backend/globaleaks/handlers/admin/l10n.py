@@ -15,6 +15,7 @@ from twisted.internet.defer import inlineCallbacks, returnValue
 
 from globaleaks import models
 from globaleaks.handlers.base import BaseHandler
+from globaleaks.handlers.user import can_edit_general_settings_or_raise
 from globaleaks.orm import transact
 
 @transact
@@ -41,13 +42,13 @@ class AdminL10NHandler(BaseHandler):
 
     @inlineCallbacks
     def get(self, lang):
-        yield self.can_edit_general_settings_or_raise()
+        yield can_edit_general_settings_or_raise(self)
         result = yield get(self.request.tid, lang)
         returnValue(result)
 
     @inlineCallbacks
     def put(self, lang):
-        yield self.can_edit_general_settings_or_raise()
+        yield can_edit_general_settings_or_raise(self)
         content = self.request.content.read()
         if isinstance(content, binary_type):
             content = content.decode('utf-8')
@@ -57,6 +58,6 @@ class AdminL10NHandler(BaseHandler):
 
     @inlineCallbacks
     def delete(self, lang):
-        yield self.can_edit_general_settings_or_raise()
+        yield can_edit_general_settings_or_raise(self)
         result = yield models.delete(models.CustomTexts, models.CustomTexts.tid == self.request.tid, models.CustomTexts.lang == lang)
         returnValue(result)

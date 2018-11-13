@@ -11,6 +11,7 @@ from twisted.internet.defer import inlineCallbacks, returnValue
 
 from globaleaks import models
 from globaleaks.handlers.base import BaseHandler
+from globaleaks.handlers.user import can_edit_general_settings_or_raise
 from globaleaks.orm import transact
 from globaleaks.rest import errors
 from globaleaks.utils.fs import directory_traversal_check
@@ -72,7 +73,7 @@ class FileInstance(BaseHandler):
     @inlineCallbacks
     def permission_check(self, id):
         if id == 'logo' and self.current_user.user_role != 'admin':
-            yield self.can_edit_general_settings_or_raise()
+            yield can_edit_general_settings_or_raise(self)
         elif not self.state.tenant_cache[self.request.tid]['enable_graphic_customization'] or self.current_user.user_role != 'admin':
             raise errors.InvalidAuthentication
 

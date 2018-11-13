@@ -11,6 +11,7 @@ from globaleaks import models, utils, LANGUAGES_SUPPORTED_CODES, LANGUAGES_SUPPO
 from globaleaks.db import db_refresh_memory_variables
 from globaleaks.db.appdata import load_appdata
 from globaleaks.handlers.base import BaseHandler
+from globaleaks.handlers.user import can_edit_general_settings_or_raise
 from globaleaks.models.config import ConfigFactory, NodeL10NFactory
 from globaleaks.orm import transact
 from globaleaks.rest import errors, requests
@@ -141,7 +142,7 @@ class NodeInstance(BaseHandler):
         if self.current_user.user_role == 'admin':
             node = ('admin_node', requests.AdminNodeDesc)
         else:
-            yield self.can_edit_general_settings_or_raise()
+            yield can_edit_general_settings_or_raise(self)
             node = ('general_settings', requests.SiteSettingsDesc)
 
         returnValue(node)
