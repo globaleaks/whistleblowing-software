@@ -58,7 +58,6 @@ class FileProducer(object):
 
     def stopProducing(self):
         self.request.unregisterProducer()
-        self.request.write('')
         self.request.finish()
         self.request = None
         self.fo.close()
