@@ -11,7 +11,7 @@ import re
 from datetime import datetime
 from cryptography.hazmat.primitives import constant_time
 from six import text_type, binary_type
-from twisted.internet import defer
+from twisted.internet import abstract, defer
 from twisted.internet.defer import inlineCallbacks, returnValue
 
 from globaleaks.event import track_handler
@@ -49,28 +49,22 @@ class FileProducer(object):
         return self.finish
 
     def resumeProducing(self):
-        try:
-            if self.request is not None:
-                data = self.fo.read(Settings.file_chunk_size)
-                if data:
-                    self.request.write(data)
-                else:
-                    self.stopProducing()
-        except:
-            pass
+        if not self.request:
+            return
+
+        data = self.fo.read(abstract.FileDescriptor.bufferSize)
+        if data:
+            self.request.write(data)
+        else:
+            self.stopProducing()
 
     def stopProducing(self):
-        try:
-            if self.request is not None:
-                self.request.unregisterProducer()
-                self.request.finish()
-                self.request = None
-                self.finish.callback(None)
-        except:
-            pass
-
-    def __del__(self):
+        self.request.unregisterProducer()
+        self.request.write('')
+        self.request.finish()
+        self.request = None
         self.fo.close()
+        self.finish.callback(None)
 
 
 class BaseHandler(object):
@@ -440,7 +434,7 @@ class BaseHandler(object):
 
             with self.uploaded_file['body'].open('r') as encrypted_file, open(destination, 'wb') as plaintext_file:
                 while True:
-                    chunk = encrypted_file.read(4096)
+                    chunk = encrypted_file.read(abstract.FileDescriptor.bufferSize)
                     if not chunk:
                         break
 

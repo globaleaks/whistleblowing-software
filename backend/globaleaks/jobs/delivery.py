@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import os
 
+from twisted.internet import abstract
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import models
@@ -12,9 +13,6 @@ from globaleaks.settings import Settings
 from globaleaks.utils.log import log
 
 __all__ = ['Delivery']
-
-
-chunk_size = 16 * 1024
 
 
 @transact
@@ -101,7 +99,7 @@ def write_plaintext_file(sf, dest_path):
     try:
         with sf.open('rb') as encrypted_file, open(dest_path, "a+b") as plaintext_file:
             while True:
-                chunk = encrypted_file.read(chunk_size)
+                chunk = encrypted_file.read(abstract.FileDescriptor.bufferSize)
                 if not chunk:
                     break
                 plaintext_file.write(chunk)
@@ -112,11 +110,11 @@ def write_plaintext_file(sf, dest_path):
 
 def write_encrypted_file(key, sf, dest_path):
     try:
-        with sf.open('rb') as encrypted_file,\
+        with sf.open('rb') as encrypted_file, \
              GCE.streaming_encryption_open('ENCRYPT', key, dest_path) as seo:
-            chunk = encrypted_file.read(chunk_size)
+            chunk = encrypted_file.read(abstract.FileDescriptor.bufferSize)
             while (True):
-                x = encrypted_file.read(chunk_size)
+                x = encrypted_file.read(abstract.FileDescriptor.bufferSize)
                 if not x:
                     seo.encrypt_chunk(chunk, 1)
                     break
