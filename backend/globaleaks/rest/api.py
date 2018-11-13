@@ -462,6 +462,7 @@ class APIResourceWrapper(Resource):
 
                    request.write(ret)
 
+                print('aaaa')
                 request.finish()
 
         defer.maybeDeferred(f, self.handler, *groups).addCallbacks(concludeHandlerSuccess, concludeHandlerFailure)

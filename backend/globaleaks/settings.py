@@ -136,9 +136,6 @@ class SettingsClass(object):
         self.log_file_size = 1000000 # 1MB
         self.num_log_files = self.log_size / self.log_file_size
 
-        # size used while streaming files
-        self.file_chunk_size = 65535 # 64kb
-
         self.AES_key_id_regexp = u'[A-Za-z0-9]{16}'
         self.AES_file_regexp = r'(.*)\.aes'
         self.AES_file_regexp_comp = re.compile(self.AES_file_regexp)
@@ -152,9 +149,6 @@ class SettingsClass(object):
         self.mail_attempts_limit = 3 # per mail limit
 
         self.acme_directory_url = 'https://acme-v02.api.letsencrypt.org/directory'
-
-        self.maximum_namesize = 128
-        self.maximum_textsize = 4096
 
         self.enable_api_cache = True
 

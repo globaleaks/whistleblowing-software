@@ -5,6 +5,7 @@ import os
 
 from io import BytesIO
 from six import binary_type, text_type
+from twisted.internet import abstract
 from twisted.internet.defer import Deferred, inlineCallbacks
 
 from globaleaks import models
@@ -76,8 +77,6 @@ def get_tip_export(session, tid, user_id, rtip_id, language):
 
 class ZipStreamProducer(object):
     """Streaming producter for ZipStream"""
-    bufferSize = Settings.file_chunk_size
-
     def __init__(self, handler, zipstreamObject):
         self.finish = Deferred()
         self.handler = handler
@@ -88,18 +87,14 @@ class ZipStreamProducer(object):
         return self.finish
 
     def resumeProducing(self):
-        try:
-            if not self.handler:
-                return
+        if not self.handler:
+            return
 
-            data = self.zip_chunk()
-            if data:
-                self.handler.request.write(data)
-            else:
-                self.stopProducing()
-        except:
+        data = self.zip_chunk()
+        if data:
+            self.handler.request.write(data)
+        else:
             self.stopProducing()
-            raise
 
     def stopProducing(self):
         self.handler.request.unregisterProducer()
@@ -115,7 +110,7 @@ class ZipStreamProducer(object):
             if data:
                 chunk_size += len(data)
                 chunk.append(data)
-                if chunk_size >= Settings.file_chunk_size:
+                if chunk_size >= abstract.FileDescriptor.bufferSize:
                     return b''.join(chunk)
 
         return b''.join(chunk)
