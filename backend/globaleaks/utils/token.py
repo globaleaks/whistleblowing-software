@@ -45,7 +45,7 @@ class Token(object):
         if not self.solved:
             return False
 
-        if self.type == 'submission':
+        if self.type == 'submission' and GCE.ENCRYPTION_AVAILABLE:
             self.tip_key = GCE.generate_key()
 
         return True
