@@ -1,3 +1,6 @@
+Changes in version 3.5.1 - 2018-11-14:
+    Apply minor bugfixing
+
 Changes in version 3.5.0 - 2018-11-14
     Add implementation of Additinal Questionnaire feature (#1404)
     Implement access.log in Apache Combined Log Format (#2420)
