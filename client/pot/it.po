@@ -25,7 +25,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-11-09 19:29+0000\n"
+"PO-Revision-Date: 2018-11-14 15:34+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Italian (http://www.transifex.com/otf/globaleaks/language/it/)\n"
 "MIME-Version: 1.0\n"
@@ -101,7 +101,7 @@ msgid "no stats available for this hour."
 msgstr "nessuna statistica disponibile per l'ora corrente."
 
 msgid "no stats available for current hour; check activities page."
-msgstr "non ci sono statistiche per l'ora corrent; controlla la pagina delle attività."
+msgstr "non ci sono statistiche per l'ora corrente; controlla la pagina delle attività."
 
 msgid "Delete"
 msgstr "Cancella"
@@ -125,7 +125,7 @@ msgid "This recipient has not configured the encryption key."
 msgstr "Questo ricevente non ha configurato la chiave crittografica."
 
 msgid "The file is unavailable due to an internal error."
-msgstr "Il file non e' disponibile a causa di un errore interno."
+msgstr "Il file non è disponibile a causa di un errore interno."
 
 msgid "file unavailable"
 msgstr "file non disponibile"
@@ -466,7 +466,7 @@ msgid "Type of context selector:"
 msgstr "Tipo del selettore del contesto:"
 
 msgid "Type to search…"
-msgstr "Cerca ..."
+msgstr "Cerca …"
 
 msgid "Silence email notifications"
 msgstr "Disabilita email di notifica"
@@ -475,7 +475,7 @@ msgid "Turn on email notifications"
 msgstr "Abilita email di notifica"
 
 msgid "Enter an email address for the administrator"
-msgstr "Inserisci una indirizzo email per l'amministratore"
+msgstr "Inserisci un indirizzo email per l'amministratore"
 
 msgid "Enter a password for the administrator"
 msgstr "Inserisci una password per l'amministratore"
@@ -533,7 +533,7 @@ msgid ""
 msgstr "Se il whistleblower non controllerà la segnalazione entro questo termine, la sua possibilità di accesso scadrà. "
 
 msgid "The whistleblower can no longer access the submission"
-msgstr "Il whistleblower non può piu accedere alla segnalazione"
+msgstr "Il whistleblower non può più accedere alla segnalazione"
 
 msgid "Warning!"
 msgstr "Attenzione!"
@@ -684,11 +684,11 @@ msgid "Disable submissions"
 msgstr "Disabilita le segnalazioni"
 
 msgid "Enable encryption"
-msgstr "Abilita la crittografia"
+msgstr "Abilita la cifratura"
 
 msgid ""
 "Allow the system to store data in plaintext when encryption is not available"
-msgstr "Permetti al sistema di memorizzare i dati in chiaro quando la crittograzia non  è disponibile"
+msgstr "Permetti al sistema di memorizzare i dati in chiaro quando la cifratura non  è disponibile"
 
 msgid "Enable multisite feature"
 msgstr "Abilita la funzionalità multisito"
@@ -1028,7 +1028,7 @@ msgstr "Benvenuto!"
 msgid ""
 "This interface may help you understand how the server can be configured and "
 "provides some info on how to connect to other GlobaLeaks users and experts."
-msgstr "Questa interfaccia puo' aiutarti a capire come il Nodo può essere configurato e puo' fornirti alcune informazioni utili su come metterti in contatto con altri utenti ed esperti GlobaLeaks."
+msgstr "Questa interfaccia può aiutarti a capire come il Nodo può essere configurato e puo' fornirti alcune informazioni utili su come metterti in contatto con altri utenti ed esperti GlobaLeaks."
 
 msgid "Documentation"
 msgstr "Documentazione"
@@ -1060,7 +1060,7 @@ msgstr "Per contribuire allo sviluppo del software o segnalare un bug, aprire un
 msgid ""
 "If your non-profit needs support for investigative journalism, activism or a"
 " human rights defense project:"
-msgstr "Se la tua iniziativa no-profit necessita di supporto per giornalismo investigsativo, attivismo, o per un progetto di difesa dei diritti umani:"
+msgstr "Se la tua iniziativa no-profit necessita di supporto per giornalismo investigativo, attivismo, o per un progetto di difesa dei diritti umani:"
 
 msgid ""
 "For professional support and development of anti corruption and compliance "
@@ -1077,7 +1077,7 @@ msgid "Software version:"
 msgstr "Versione del software:"
 
 msgid "An update is available:"
-msgstr "E' disponibile un aggiornamento:"
+msgstr "È disponibile un aggiornamento:"
 
 msgid "SMTP name"
 msgstr "Nome SMTP"
@@ -1165,7 +1165,7 @@ msgid "Proceed"
 msgstr "Procedi"
 
 msgid "Configuration completed. You can review the settings or enable it now."
-msgstr "La configurazione è completa. E' possibile rivedere i parametri configurati o abilitare subito la configurazione."
+msgstr "La configurazione è completa. È possibile rivedere i parametri configurati o abilitare subito la configurazione."
 
 msgid "Review"
 msgstr "Rivedi"
@@ -1621,7 +1621,7 @@ msgid "Confirm"
 msgstr "Conferma"
 
 msgid "Please note that all the associated data will be permanently lost."
-msgstr "Ṡi prega di notare che tutti i dati associati saranno persi."
+msgstr "Si prega di notare che tutti i dati associati saranno persi."
 
 msgid "Error!"
 msgstr "Errore!"
@@ -1639,7 +1639,7 @@ msgid "Forbidden operation"
 msgstr "Operazione negata"
 
 msgid "The specified old password is not valid"
-msgstr "La password specificata in precedenza non e' valida"
+msgstr "La password specificata in precedenza non è valida"
 
 msgid "Resource can only be accessed via the Tor network"
 msgstr "La risorsa può essere acceduta solo all'interno della rete Tor"
@@ -1660,7 +1660,7 @@ msgid "Current password"
 msgstr "Password attuale"
 
 msgid "Old password confirmation required"
-msgstr "E' necessario confermare la vecchia password"
+msgstr "È necessario confermare la vecchia password"
 
 msgid "The new password must be different from the current one."
 msgstr "La nuova password deve essere differente dalla password corrente."
@@ -1679,7 +1679,7 @@ msgstr "Si rileva che tu stia navigando il sito senza alcuna protezione addizion
 msgid ""
 "You are strongly advised to visit this site using the desktop app called Tor"
 " Browser, that protects your identity."
-msgstr "E' caldamente consigliato di visitare questo sito utilizzando l'applicazione chiamata Tor Browser che protegge il tuo anonimato."
+msgstr "È caldamente consigliato di visitare questo sito utilizzando l'applicazione chiamata Tor Browser che protegge il tuo anonimato."
 
 msgid "Then, copy and paste the following address into the Tor Browser:"
 msgstr "Poi, una volta installato, copia ed incolla il seguente indirizzo all'intero del Tor Browser:"
@@ -1691,7 +1691,7 @@ msgid "Add file"
 msgstr "Aggiungi file"
 
 msgid "Uploading files…"
-msgstr "Caricamento dei file..."
+msgstr "Caricamento dei file…"
 
 msgid "Upload completed successfully!"
 msgstr "Caricamento completato con successo!"
@@ -1870,7 +1870,7 @@ msgid "Remember your key code for this submission."
 msgstr "Memorizza il tuo key code per la segnalazione."
 
 msgid "We will try to get back to you as soon as possible!"
-msgstr "Cercheremo di risponderti il piu presto possibile."
+msgstr "Cercheremo di risponderti il più presto possibile."
 
 msgid ""
 "Use the 16 digit key code to log in. It will allow you to view any messages "
@@ -2138,7 +2138,7 @@ msgstr "Rilevata anomalia su {NodeName}"
 msgid ""
 "This is an email to inform you that the PGP key of the following users is "
 "going to expire or has already expired:"
-msgstr "Questa email è per informarti che le chiavi PGP dei segueenti utenti stanno per scader o sono già scadute:"
+msgstr "Questa email è per informarti che le chiavi PGP dei seguenti utenti stanno per scadere o sono già scadute:"
 
 msgid ""
 "Without a valid PGP key, the system will not be able to send them encrypted "
@@ -2326,7 +2326,7 @@ msgstr "Ricevi questa email perché é stato richiesto un password reset per il 
 msgid ""
 "If you didn't make this request, you may safely ignore and delete this "
 "email."
-msgstr "Se non hai effetturato questa richiesta, puoi sempliemente ignorare questa email."
+msgstr "Se non hai effettuato questa richiesta, puoi semplicemente ignorare questa email."
 
 msgid "You can confirm your request by clicking the following links:"
 msgstr "Puoi confermare la tua richiesta cliccando i seguenti indirizzi:"
@@ -2342,12 +2342,12 @@ msgstr "Questa email è per informarti che la tua chiave PGP sta scadendo o è g
 msgid ""
 "You should extend its validity and update the key present on the platform, "
 "or upload a new key."
-msgstr "Dovresto estenderne la validita' ed aggiornare la chiave presente sulla piattaforma, o caricare una nuova chiave."
+msgstr "Dovresto estenderne la validità ed aggiornare la chiave presente sulla piattaforma, o caricare una nuova chiave."
 
 msgid ""
 "Without a valid PGP key, the system won't be able to encrypt data provided "
 "to you."
-msgstr "Senza una chiave PGP valida il sistema non potra' crittografare i dati provenienti da te."
+msgstr "Senza una chiave PGP valida il sistema non potrà crittografare i dati provenienti da te."
 
 msgid "It appears that {NodeName} is receiving a large number of requests."
 msgstr "Sembra che {NodeName} stia ricevendo un elevato numero di richieste."
@@ -2362,7 +2362,7 @@ msgid ""
 "If you don’t mind and would rather receive such a large number of email "
 "notifications anyhow, please contact your technical support to have them "
 "modify this setting accordingly."
-msgstr "Se non ti interesta e preferiresti comunque ricevere un elevato numero di notifiche email, contatta il tuo supporto tecnico chiedendo di cambiare questa configurazione."
+msgstr "Se non ti interessa e preferiresti comunque ricevere un elevato numero di notifiche email, contatta il tuo supporto tecnico chiedendo di cambiare questa configurazione."
 
 msgid "Notifications from {NodeName} have been temporarily suspended"
 msgstr "Le notifiche da {NodeName} sono state temporaneamente sospese"
@@ -2374,10 +2374,10 @@ msgid "Activation"
 msgstr "Attivazione"
 
 msgid "A software update is available."
-msgstr "E' disponibile un aggiornamento software."
+msgstr "È disponibile un aggiornamento software."
 
 msgid "It is good security practice to keep the platform up to date."
-msgstr "E' una buona pratica di sicurezza mantenere aggiornata la piattaforma."
+msgstr "È una buona pratica di sicurezza mantenere aggiornata la piattaforma."
 
 msgid "Installed version: {InstalledVersion}"
 msgstr "Versione installata: {InstalledVersion}"

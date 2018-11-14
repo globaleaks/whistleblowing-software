@@ -468,7 +468,7 @@
   "Force password change": "強制的にパスワードを変更する",
   "The user will be forced to change its password on next login.": "次回ログイン時に、受信者はパスワードを変更することを強制されます。",
   "Language": "言語",
-  "Enable email notifications": "Enable email notifications",
+  "Enable email notifications": "メール通知を有効にする",
   "Details of the PGP key:": "PGP鍵の詳細:",
   "Fingerprint": "フィンガープリント",
   "Remove the PGP key": "PGP鍵を削除",

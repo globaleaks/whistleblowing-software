@@ -18,6 +18,7 @@
 # Iván López Pérez <ioloo00@eresmas.com>, 2013
 # Lucrezia <luz.gatti@gmail.com>, 2013
 # Lucrezia <luz.gatti@gmail.com>, 2013
+# Manuel D. Serrat <manuel.serrat@antifraucv.es>, 2018
 # Nick Skelsey, 2016
 # Nick Skelsey, 2016
 # Lucrezia <luz.gatti@gmail.com>, 2013
@@ -29,8 +30,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-11-09 16:15+0000\n"
-"Last-Translator: Hermes Center <info@hermescenter.org>\n"
+"PO-Revision-Date: 2018-11-14 13:04+0000\n"
+"Last-Translator: Manuel D. Serrat <manuel.serrat@antifraucv.es>\n"
 "Language-Team: Spanish (http://www.transifex.com/otf/globaleaks/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -117,7 +118,7 @@ msgid "Preferences"
 msgstr "Preferencias"
 
 msgid "User preferences"
-msgstr ""
+msgstr "Preferencias de usuario"
 
 msgid "Notification settings"
 msgstr "Configuración de notificaciones"
@@ -688,14 +689,14 @@ msgid "Disable submissions"
 msgstr "Deshabilitar entregas"
 
 msgid "Enable encryption"
-msgstr ""
+msgstr "Activar cifrado"
 
 msgid ""
 "Allow the system to store data in plaintext when encryption is not available"
-msgstr ""
+msgstr "Permitir al sistema almacenar datos en texto plano cuando el cifrado no esté disponible"
 
 msgid "Enable multisite feature"
-msgstr ""
+msgstr "Activar las funcionalidades multi-sitio"
 
 msgid "Allow other websites to include the platform inside iframes"
 msgstr "Permitir a otros sitios web incluir la plataforma dentro de iframes"
@@ -764,20 +765,20 @@ msgid "Tweak this setting only if you know what you are doing."
 msgstr "Ajuste esta configuración sólo si sabe lo que está haciendo."
 
 msgid "Password change interval"
-msgstr ""
+msgstr "Intervalo de cambio de contraseña"
 
 msgid ""
 "For security reasons, password changes are required at regular intervals."
-msgstr ""
+msgstr "Por razones de seguridad, los cambios de contraseña se requieren a intervalos regulares."
 
 msgid "Set the value to 0 to disable this feature."
-msgstr ""
+msgstr "Fije el valor a 0 para desactivar esta funcionalidad."
 
 msgid "Landing page"
 msgstr "Página de inicio"
 
 msgid "Default questionnaire"
-msgstr ""
+msgstr "Cuestionario por defecto"
 
 msgid "Title of the submission page"
 msgstr "Título de la página de entrega"
@@ -818,43 +819,43 @@ msgid "Password"
 msgstr "Contraseña"
 
 msgid "Restrict privileged logins to specific IP addresses"
-msgstr ""
+msgstr "Restringir inicios de sesión privilegiados a direcciones IP específicas"
 
 msgid "Whitelisted IP addresses"
-msgstr ""
+msgstr "Direcciones IP en la lista blanca"
 
 msgid "Either individual IP addresses or CIDR ranges are accepted here."
-msgstr ""
+msgstr "Aquí se aceptan tanto direcciones IP como rangos CIDR."
 
 msgid "Example:"
 msgstr "Ejemplo:"
 
 msgid "Each entry must be separated with a comma."
-msgstr ""
+msgstr "Cada entrada debe separarse con una coma."
 
 msgid "Allow users to reset their passwords"
-msgstr ""
+msgstr "Permitir a los usuarios reinicializar sus contraseñas"
 
 msgid ""
 "Allowing users to reset their passwords may reduce the security of the "
 "platform due to security becoming dependent on the security of user's email "
 "accounts."
-msgstr ""
+msgstr "Permitir a los usuarios reinicializar sus contraseñas puede reducir la seguridad de la plataforma, al hacer depender ésta de la seguridad de las cuentas de correo de los usuarios."
 
 msgid "Enable users to upload their PGP keys"
-msgstr ""
+msgstr "Activar que los usuarios puedan subir sus claves PGP"
 
 msgid "Enable multi-site login"
-msgstr ""
+msgstr "Activar el inicio de sesión multi-sitio"
 
 msgid "Enable simplified login"
-msgstr ""
+msgstr "Activar el inicio de sesión simplificado"
 
 msgid "Logging level"
-msgstr ""
+msgstr "Nivel de log"
 
 msgid "Log accesses of internal users"
-msgstr ""
+msgstr "Registrar los accesos de los usuarios internos"
 
 msgid "Enable experimental features"
 msgstr "Habilitar características experimentales"
@@ -878,7 +879,7 @@ msgid "Add"
 msgstr "Añadir"
 
 msgid "Substatuses"
-msgstr ""
+msgstr "Subestatuses"
 
 msgid "Label"
 msgstr "Etiqueta"
@@ -893,10 +894,10 @@ msgid "Cancel"
 msgstr "Cancelar"
 
 msgid "Submission statuses"
-msgstr ""
+msgstr "Estados de las comunicaciones"
 
 msgid "Closing statuses"
-msgstr ""
+msgstr "Estados de cierre"
 
 msgid "Logo"
 msgstr "Logo"
@@ -965,13 +966,13 @@ msgid "Questionnaire"
 msgstr "Cuestionario"
 
 msgid "Additional questionnaire"
-msgstr ""
+msgstr "Cuestionario adicional"
 
 msgid "Recipients"
 msgstr "Receptores"
 
 msgid "Submission expiration"
-msgstr ""
+msgstr "Expiración de los envíos"
 
 msgid "days"
 msgstr "dias"
@@ -1102,7 +1103,7 @@ msgid "Transport Security"
 msgstr "Seguridad del transporte"
 
 msgid "Require authentication"
-msgstr ""
+msgstr "Requerir autenticación"
 
 msgid "Disabled"
 msgstr "Deshabilitado"
@@ -1398,7 +1399,7 @@ msgid "Phone number"
 msgstr "Número de teléfono"
 
 msgid "Checkbox label"
-msgstr ""
+msgstr "Etiqueta de checkbox"
 
 msgid "Layout orientation"
 msgstr "Orientación del esquema"
@@ -1407,13 +1408,13 @@ msgid "Subject answer visibility to custodian authorization"
 msgstr "Supeditar la visibilidad de la respuesta a la autorización del custodio"
 
 msgid "Text shown upon negative answer"
-msgstr ""
+msgstr "Texto a mostrar si la respuesta es negativa"
 
 msgid "Prompt confirmation upon negative answer"
 msgstr "Pedir confirmación para respuesta negativa"
 
 msgid "Text shown upon confirmation"
-msgstr ""
+msgstr "Texto a mostrar tras la confirmación"
 
 msgid "Options"
 msgstr "Opciones"
@@ -1428,7 +1429,7 @@ msgid "Add question from template"
 msgstr "Añadir pregunta de la plantilla"
 
 msgid "Duplicate"
-msgstr ""
+msgstr "Duplicar"
 
 msgid "Steps"
 msgstr "Pasos"
@@ -1460,16 +1461,16 @@ msgid ""
 msgstr "Permitir al receptor conceder permisos a informantes en entregas concretas"
 
 msgid "Site settings"
-msgstr ""
+msgstr "Propiedades del sitio"
 
 msgid "Case management"
-msgstr ""
+msgstr "Gestión de casos"
 
 msgid "Network settings"
 msgstr "Configuración de red"
 
 msgid "Mode:"
-msgstr ""
+msgstr "Modo:"
 
 msgid "Root domain used for secondary sites"
 msgstr "Dominio raíz usado para sitios secundarios"
@@ -1478,7 +1479,7 @@ msgid "Allow users to sign up"
 msgstr "Permitir registrarse a los usuarios"
 
 msgid "Enable terms of service"
-msgstr ""
+msgstr "Activar términos del servicio"
 
 msgid "Sites"
 msgstr "Sitios"
@@ -1516,7 +1517,7 @@ msgid "Language"
 msgstr "Idioma"
 
 msgid "Enable email notifications"
-msgstr ""
+msgstr "Activar notificaciones por correo electrónico"
 
 msgid "Details of the PGP key:"
 msgstr "Detalles de la clave PGP:"
@@ -1531,10 +1532,10 @@ msgid "Set up encryption by providing a PGP public key"
 msgstr "Establezca el cifrado proporcionando una clave pública PGP"
 
 msgid "User has administrative access to the following features:"
-msgstr ""
+msgstr "El usuario tiene derechos administrativos sobre las funcionalidades siguientes:"
 
 msgid "main"
-msgstr ""
+msgstr "principal"
 
 msgid "Request date"
 msgstr "Solicitar fecha"
@@ -1546,13 +1547,13 @@ msgid "Identities"
 msgstr "Identidades"
 
 msgid "The validation link is either incorrect or has expired."
-msgstr ""
+msgstr "El enlace de validación es incorrecto o ha expirado."
 
 msgid "Your new email address has been validated."
-msgstr ""
+msgstr "Su nueva dirección de correo electrónico ha sido validada."
 
 msgid "Before proceeding, please set a new password."
-msgstr ""
+msgstr "Antes de continuar, por favor establezca una nueva contraseña."
 
 msgid "Submissions disabled"
 msgstr "Entregas deshabilitadas."
@@ -1565,7 +1566,7 @@ msgstr "Se está conectando al servidor de forma no anónima y este nodo sólo s
 msgid ""
 "Server temporarily unusable due to resource exhaustion; advise the Admin if "
 "you can."
-msgstr ""
+msgstr "El servidor está temporalmente inutilizable debido al agotamiento de sus recursos; avise al Administrador si puede."
 
 msgid "This server is not configured."
 msgstr "Este nodo no está configurado."
@@ -1587,13 +1588,13 @@ msgid "Please support Hermes through their donation page."
 msgstr "Por favor, patrocine a Hermes a través de su página de donación."
 
 msgid "Forgot password?"
-msgstr ""
+msgstr "¿Ha olvidado la contraseña?"
 
 msgid "Authentication failed"
 msgstr "Autentificación fallida"
 
 msgid "Site:"
-msgstr ""
+msgstr "Sitio:"
 
 msgid "Username:"
 msgstr "Nombre de usuario"
@@ -1655,10 +1656,10 @@ msgid "Success!"
 msgstr "¡Completada!"
 
 msgid "Validation of email address change in progress."
-msgstr ""
+msgstr "El proceso de validación de la dirección de correo está en progreso."
 
 msgid "Please check your inbox for further instructions."
-msgstr ""
+msgstr "Por favor, compruebe su correo para más instrucciones."
 
 msgid "Current password"
 msgstr "Contraseña actual"
@@ -1689,7 +1690,7 @@ msgid "Then, copy and paste the following address into the Tor Browser:"
 msgstr "Luego, copie y pegue la siguiente dirección en el Navegador Tor:"
 
 msgid "Enter a name for the copy"
-msgstr ""
+msgstr "Introduzca un nombre para la copia"
 
 msgid "Add file"
 msgstr "Añadir fichero"
@@ -1745,7 +1746,7 @@ msgid "Submit"
 msgstr "Entregar"
 
 msgid "Fill the additional questionnaire"
-msgstr ""
+msgstr "Rellene el cuestionario adicional"
 
 msgid "Send"
 msgstr "Enviar"
@@ -1830,7 +1831,7 @@ msgid "Recipient list"
 msgstr "Lista de receptores"
 
 msgid "Submission status:"
-msgstr ""
+msgstr "Status del envío:"
 
 msgid "Attached files for the whistleblower"
 msgstr "Ficheros adjuntados por el informante"
@@ -1851,21 +1852,21 @@ msgid "These files have been attached to your submission by the recipients."
 msgstr "Estos ficheros han sido adjuntados a su entrega por los receptores."
 
 msgid "The provided reset token is invalid or expired."
-msgstr ""
+msgstr "El token provisto es inválido o ha expirado."
 
 msgid ""
 "Enter your account's username or your email address to request a password "
 "reset."
-msgstr ""
+msgstr "Introduzca el nombre de usuario o su dirección de correo para solicitar una reinicialización de contraseña."
 
 msgid "Request password reset"
-msgstr ""
+msgstr "Solicitar la reinicialización de contraseña"
 
 msgid "Password reset feature is unavailable for admin users."
-msgstr ""
+msgstr "La funcionalidad de reinicializar la contraseña no está disponible para usuarios administrativos."
 
 msgid "Password reset requested."
-msgstr ""
+msgstr "Solicitada la reinicialización de contraseña"
 
 msgid "Thank you!"
 msgstr "¡Gracias!"
@@ -1927,7 +1928,7 @@ msgid "Complete"
 msgstr "Completar"
 
 msgid "Invalid phone number"
-msgstr ""
+msgstr "Número de teléfono no válido."
 
 msgid "This field is mandatory."
 msgstr "Este campo es obligatorio."
@@ -2035,7 +2036,7 @@ msgid "Female"
 msgstr "Femenino"
 
 msgid "Other gender identity"
-msgstr ""
+msgstr "Otra identidad de género"
 
 msgid "Date of birth"
 msgstr "Fecha de nacimiento"
@@ -2168,7 +2169,7 @@ msgid "Email: {Email}"
 msgstr "Correo electrónico: {Email}"
 
 msgid "Language: {Language}"
-msgstr ""
+msgstr "Idioma: {Language}"
 
 msgid "Use case: {UseCase}"
 msgstr "Caso de uso: {UseCase}"
@@ -2207,23 +2208,23 @@ msgstr "Nuevo comentario"
 msgid ""
 "This is an email to notify you that a request has been made to change your "
 "email address to {NewEmailAddress}."
-msgstr ""
+msgstr "Éste es un mensaje de correo para notificarle que se ha hecho una solicitud de cambiar su dirección de correo electrónico a {NewEmailAddress}."
 
 msgid "Click the following link to validate this change: {HTTPSUrl}"
-msgstr ""
+msgstr "Haga clic en el enlace siguiente para validar este cambio: {HTTPSUrl}"
 
 msgid ""
 "If you wish to validate your new email with Tor, you may use the following "
 "link: {TorUrl}"
-msgstr ""
+msgstr "Si desea validar su nueva dirección de correo electrónico por Tor, puede usar el enlace siguiente: {TorUrl}"
 
 msgid ""
 "If you didn't request this change, change your password and contact your "
 "system administrator."
-msgstr ""
+msgstr "Si no ha solicitado este cambio, cambie su contraseña y contacte con el Administrador del sistema."
 
 msgid "Email change request"
-msgstr ""
+msgstr "Solicitud de cambio de dirección de correo"
 
 msgid "From: {RecipientName}"
 msgstr "De: {RecipientName}"
@@ -2272,13 +2273,13 @@ msgstr "Alerta de caducidad para el certificado HTTPS"
 
 msgid ""
 "The automatic HTTPS certificate renewal scheduled for today just failed."
-msgstr ""
+msgstr "La renovación automática del certificado HTTPS prevista para hoy ha fallado."
 
 msgid "The system will keep trying."
-msgstr ""
+msgstr "El sistema continuará intentándolo."
 
 msgid "Failed HTTPS certificate renewal"
-msgstr ""
+msgstr "Renovación del certificado fallada"
 
 msgid ""
 "This is an email to notify you that a custodian has authorized you to access"
@@ -2325,18 +2326,18 @@ msgstr "Nuevo mensaje"
 msgid ""
 "You're receiving this email because a password reset has been requested for "
 "your account."
-msgstr ""
+msgstr "Recibe este mensaje porque se ha solicitado una reinicialización de la contraseña de su cuenta."
 
 msgid ""
 "If you didn't make this request, you may safely ignore and delete this "
 "email."
-msgstr ""
+msgstr "Si no ha hecho esta solicitud, puede ignorar y borrar este mensaje tranquilamente."
 
 msgid "You can confirm your request by clicking the following links:"
-msgstr ""
+msgstr "Puede confirmar su solicitud haciendo clic en los enlaces siguientes:"
 
 msgid "Password reset instructions"
-msgstr ""
+msgstr "Instrucciones de reinicialización de contraseñas"
 
 msgid ""
 "This is an email to inform you that your PGP key is expiring or has already "
@@ -2425,10 +2426,10 @@ msgid "New submission"
 msgstr "Nueva entrega"
 
 msgid "Role: {Role}"
-msgstr ""
+msgstr "Rol: {Role}"
 
 msgid "Username: {Username}"
-msgstr ""
+msgstr "Nombre de usuario: {Username}"
 
 msgid "Password: {Password}"
-msgstr ""
+msgstr "Contraseña: {Password}"
