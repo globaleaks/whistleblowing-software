@@ -91,8 +91,11 @@ def serialize_comment(session, comment):
     if comment.type == 'whistleblower':
         author = 'Whistleblower'
     elif comment.author_id is not None:
-        author = session.query(models.User) \
-                        .filter(models.User.id == comment.author_id).one().name
+        _author = session.query(models.User) \
+                         .filter(models.User.id == comment.author_id).one_or_none()
+
+        if _author is not None:
+            author = _author.name
 
     return {
         'id': comment.id,
