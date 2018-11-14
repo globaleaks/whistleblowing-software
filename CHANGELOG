@@ -1,3 +1,17 @@
+Changes in version 3.5.0 - 2018-11-14
+    Add implementation of Additinal Questionnaire feature (#1404)
+    Implement access.log in Apache Combined Log Format (#2420)
+    Stop globaleaks process during preinst script (#2443)
+    Add crypto engine implementation (still not enabled)
+    Prepare database for the enabling of encryption
+    Update npm dependencies to latest versions
+    Update translations
+
+    Addressed issues:
+    - https://github.com/globaleaks/GlobaLeaks/issues/2334
+    - https://github.com/globaleaks/GlobaLeaks/issues/2426
+    - https://github.com/globaleaks/GlobaLeaks/issues/2450
+
 Changes in version 3.4.1 - 2018-10-04
     Revise configuration applied on whistleblowing.it
     Fix defect on initialization of onion services present in 3.4.0
