@@ -92,7 +92,9 @@
                   </div>
                   <div class="form-group">
                     <label data-translate>Additional questionnaire</label>
-                    <select class="form-control" data-ng-model="context.additional_questionnaire_id" data-ng-options="item.id as item.name for item in admin.questionnaires"></select>
+                    <select class="form-control" data-ng-model="context.additional_questionnaire_id" data-ng-options="item.id as item.name for item in admin.questionnaires" empty-option>
+                      <option value=""></option>
+		    </select>
                   </div>
                   <div class="form-group">
                     <label>
