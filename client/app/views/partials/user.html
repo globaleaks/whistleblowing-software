@@ -7,7 +7,7 @@
   <div id="LoginStatusBox" class="row" data-ng-if="Utils.showUserStatusBox()">
     <div class="pull-right">
       <span id="UsernameBox" data-ng-if="session.role !== 'whistleblower'">
-        <label>{{::preferences.name}}</label>
+        <label>{{preferences.name}}</label>
         <span class="text-separator">|</span>
       </span>
       <span id="HomeLinkBox" data-ng-if="session.role !== 'whistleblower'">
