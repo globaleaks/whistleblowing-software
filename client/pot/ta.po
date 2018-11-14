@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-11-09 16:15+0000\n"
-"Last-Translator: Hermes Center <info@hermescenter.org>\n"
+"PO-Revision-Date: 2018-11-14 06:59+0000\n"
+"Last-Translator: Bala Subramaniyan <balapandu222@hotmail.com>\n"
 "Language-Team: Tamil (http://www.transifex.com/otf/globaleaks/language/ta/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -454,16 +454,16 @@ msgid "Silence email notifications"
 msgstr "மின்னஞ்சல் அறிவிப்புகளை மௌனம்"
 
 msgid "Turn on email notifications"
-msgstr ""
+msgstr "மின்னஞ்சல் அறிவிப்புகளை இயக்கவும்"
 
 msgid "Enter an email address for the administrator"
-msgstr ""
+msgstr "நிர்வாகிக்கு மின்னஞ்சல் முகவரி உள்ளிடவும்"
 
 msgid "Enter a password for the administrator"
-msgstr ""
+msgstr "நிர்வாகிக்கு கடவுச்சொல்லை உள்ளிடவும்"
 
 msgid "Test configuration"
-msgstr ""
+msgstr "டெஸ்ட் கட்டமைப்பு"
 
 msgid "Failed logins"
 msgstr "தோல்வியடைந்தது உள் அனுமதிகள்"
@@ -478,25 +478,25 @@ msgid "Completed submissions"
 msgstr "நிறைவு சமர்ப்பிப்புகளை"
 
 msgid "Failed submissions"
-msgstr ""
+msgstr "சமர்ப்பிப்புகளை தோல்வியுற்றது"
 
 msgid "Input validation"
-msgstr ""
+msgstr "உள்ளீட்டு சரிபார்ப்பு"
 
 msgid "Email address"
 msgstr "மின்னஞ்சல் முகவரி"
 
 msgid "Custom"
-msgstr ""
+msgstr "விருப்ப"
 
 msgid "None"
 msgstr "எதுவுமில்லை"
 
 msgid "Regular expression"
-msgstr ""
+msgstr "வழக்கமான வெளிப்பாடு"
 
 msgid "Label the submission"
-msgstr ""
+msgstr "சமர்ப்பிப்புக்கு லேபிளிடுங்கள்"
 
 msgid "Activate"
 msgstr "செயல்படுத்தவும்"
@@ -507,24 +507,24 @@ msgstr "தேடு"
 msgid ""
 "This custom text is no longer displayed on the platform. The original text "
 "has either changed or been removed."
-msgstr ""
+msgstr "இந்த விருப்ப உரை மேடையில் காட்டப்படாது. மூல உரை மாற்றப்பட்டது அல்லது அகற்றப்பட்டது."
 
 msgid ""
 "Unless the whistleblower checks the submission by this time, their access to"
 " it will expire."
-msgstr ""
+msgstr "அம்பலப்படுத்தியவர் இந்த நேரத்தில் சமர்ப்பிப்பதை சரிபார்க்காமல், அவற்றின் அணுகல் காலாவதியாகும்."
 
 msgid "The whistleblower can no longer access the submission"
-msgstr ""
+msgstr "அம்பலப்படுத்தியவர் இனி சமர்ப்பிப்பதை அணுகல் முடியாது"
 
 msgid "Warning!"
 msgstr "கவனம்!"
 
 msgid "You are running an unsupported and potentially vulnerable browser."
-msgstr ""
+msgstr "நீங்கள் ஆதரிக்கப்படாத மற்றும் சாத்தியமுள்ள பாதிக்கக்கூடிய உலாவி இயக்கும்."
 
 msgid "You are strongly advised to download and install the Tor Browser."
-msgstr ""
+msgstr "Tor உலாவி ஐ பதிவிறக்கம் செய்து நிறுவவும் உங்களுக்கு வலுவாக அறிவுரை வழங்கப்படுகிறது."
 
 msgid ""
 "The Tor Browser includes various privacy and security enhancements not "
@@ -535,64 +535,64 @@ msgid "Download the Tor Browser"
 msgstr "தோர் உலாவி பதிவிறக்க"
 
 msgid "This is the list of the other supported browsers:"
-msgstr ""
+msgstr "இது மற்ற உலாவிகளின் பட்டியலாகும்:"
 
 msgid "System overview"
-msgstr ""
+msgstr "கணினி மேலோட்டம்"
 
 msgid "Stats"
-msgstr ""
+msgstr "புள்ளிவிவரங்கள்"
 
 msgid "Activities"
-msgstr ""
+msgstr "நடவடிக்கைகள்"
 
 msgid "Submissions"
 msgstr "சமர்ப்பிப்புகள்"
 
 msgid "Users"
-msgstr ""
+msgstr "பயனர்கள்"
 
 msgid "From"
-msgstr ""
+msgstr "இருந்து"
 
 msgid "Number of downloads"
-msgstr ""
+msgstr "பதிவிறக்க எண்ணிக்கை"
 
 msgid "Error with file:"
-msgstr ""
+msgstr "கோப்பு பிழை:"
 
 msgid "File size not accepted."
-msgstr ""
+msgstr "கோப்பு அளவு ஏற்றுக்கொள்ளப்படவில்லை."
 
 msgid "File type not accepted."
-msgstr ""
+msgstr "கோப்பு வகை ஏற்றுக்கொள்ளப்படவில்லை."
 
 msgid "Maximum file size is:"
-msgstr ""
+msgstr "கோப்பு கோப்பு அளவு:"
 
 msgid "Accepted file types are:"
-msgstr ""
+msgstr "ஏற்றுக்கொள்ளப்பட்ட கோப்பு வகைகள்:"
 
 msgid "Scheduled jobs"
-msgstr ""
+msgstr "திட்டமிடப்பட்ட வேலைகள்"
 
 msgid "Sites management"
-msgstr ""
+msgstr "தளங்கள் மேலாண்மை"
 
 msgid "Regenerate"
-msgstr ""
+msgstr "மீண்டும் உருவாக்கு"
 
 msgid "Display options alphabetically"
-msgstr ""
+msgstr "அகரவரிசை விருப்பத்தேர்வுகள்"
 
 msgid "Enable email notifications for:"
-msgstr ""
+msgstr "மின்னஞ்சல் அறிவிப்புகளை இயக்கவும்:"
 
 msgid "Software updates"
-msgstr ""
+msgstr "மென்பொருள் மேம்படுத்தல்கள்"
 
 msgid "Software problems"
-msgstr ""
+msgstr "மென்பொருள் பிரச்சினைகள்"
 
 msgid "Disable"
 msgstr "முடக்கு"
@@ -601,37 +601,37 @@ msgid "Remove"
 msgstr "நீக்கு"
 
 msgid "Use as default"
-msgstr ""
+msgstr "இயல்புநிலையாக பயன்படுத்தவும்"
 
 msgid "Create your whistleblowing platform"
-msgstr ""
+msgstr "உங்கள் விசிலடிக்கும் தளம் உருவாக்கவும்"
 
 msgid "Collapse"
-msgstr ""
+msgstr "சுருக்கு"
 
 msgid "Expand"
-msgstr ""
+msgstr "விரி"
 
 msgid "Select"
 msgstr "தேர்ந்தெடு"
 
 msgid "Selected by default"
-msgstr ""
+msgstr "முன்னிருப்பாக தேர்ந்தெடுக்கப்பட்டது"
 
 msgid "Unselected by default"
-msgstr ""
+msgstr "இயல்பாகவே தேர்ந்தெடுக்கப்பட்டது"
 
 msgid "Surname"
-msgstr ""
+msgstr "குடும்ப"
 
 msgid "New"
-msgstr ""
+msgstr "புதிய"
 
 msgid "Open"
 msgstr "திறந்த"
 
 msgid "Closed"
-msgstr ""
+msgstr "மூடப்பட்ட"
 
 msgid "Select the context of your submission:"
 msgstr "உங்கள் சமர்ப்பிப்பு சூழலில் தேர்வு:"
@@ -660,20 +660,20 @@ msgid "Your submission was successful."
 msgstr "உங்கள் சமர்ப்பிப்பு வெற்றியடைந்தது."
 
 msgid "Submission status"
-msgstr ""
+msgstr "சமர்ப்பிக்கும் நிலை"
 
 msgid "Disable submissions"
 msgstr "சமர்ப்பிப்புகளை முடக்கு"
 
 msgid "Enable encryption"
-msgstr ""
+msgstr "மறையாக்குதல் இயக்கு"
 
 msgid ""
 "Allow the system to store data in plaintext when encryption is not available"
 msgstr ""
 
 msgid "Enable multisite feature"
-msgstr ""
+msgstr "பன்முனை அம்சத்தை இயக்கு"
 
 msgid "Allow other websites to include the platform inside iframes"
 msgstr "மற்ற வலைத்தளங்களில் ஃபிரேம்களை உள்ளே மேடையில் சேர்க்க அனுமதிக்க"
@@ -717,7 +717,7 @@ msgid "Disable the privacy panel"
 msgstr "தனியுரிமை குழு முடக்கு"
 
 msgid "Enable disclaimer"
-msgstr ""
+msgstr "மறுதலிப்பை இயக்கு"
 
 msgid "Title"
 msgstr "தலைப்பு"
@@ -732,7 +732,7 @@ msgid "Disable the donation panel"
 msgstr "நன்கொடை குழு முடக்கு"
 
 msgid "Amount of days till whistleblower access expires"
-msgstr ""
+msgstr "அம்பலப்படுத்தியவர் அணுகல் காலாவதியாகும் வரை நாட்கள்"
 
 msgid ""
 "For security reasons the whistleblower access is subject to expiration."
@@ -820,19 +820,19 @@ msgid ""
 msgstr ""
 
 msgid "Enable users to upload their PGP keys"
-msgstr ""
+msgstr "தங்கள் PGP விசையைப் பதிவேற்ற பயனர்களை இயக்கு"
 
 msgid "Enable multi-site login"
-msgstr ""
+msgstr "பல தள உள்நுழைவை இயக்கவும்"
 
 msgid "Enable simplified login"
-msgstr ""
+msgstr "எளிய உள்நுழைவை இயக்கவும்"
 
 msgid "Logging level"
-msgstr ""
+msgstr "பதிவு நிலை"
 
 msgid "Log accesses of internal users"
-msgstr ""
+msgstr "உள் பயனர்களின் பதிவு அணுகல்"
 
 msgid "Enable experimental features"
 msgstr "சோதனை அம்சங்களை இயக்கு"
@@ -871,13 +871,13 @@ msgid "Cancel"
 msgstr "நிராகரி"
 
 msgid "Submission statuses"
-msgstr ""
+msgstr "சமர்ப்பிப்பு நிலைகள்"
 
 msgid "Closing statuses"
-msgstr ""
+msgstr "நிலைகளை மூடு"
 
 msgid "Logo"
-msgstr ""
+msgstr "சின்னம்"
 
 msgid "Project name"
 msgstr "திட்ட பெயர்"
@@ -898,7 +898,7 @@ msgid "Footer"
 msgstr "அடிக்குறிப்பு"
 
 msgid "Favicon"
-msgstr ""
+msgstr "ஃபேவிகானை"
 
 msgid "Upload"
 msgstr "பதிவேற்று"
@@ -916,22 +916,22 @@ msgid "Language:"
 msgstr "மொழி:"
 
 msgid "Add custom text"
-msgstr ""
+msgstr "தனிப்பயன் உரையைச் சேர்க்கவும்"
 
 msgid "Custom text"
-msgstr ""
+msgstr "தனிப்பயன் உரை"
 
 msgid "Custom texts"
-msgstr ""
+msgstr "விருப்ப நூல்கள்"
 
 msgid "Original text"
-msgstr ""
+msgstr "அசல் உரை"
 
 msgid "Original translation"
-msgstr ""
+msgstr "அசல் மொழிபெயர்ப்பு"
 
 msgid "Custom translation"
-msgstr ""
+msgstr "தனிப்பயன் மொழிபெயர்ப்பு"
 
 msgid "Contexts"
 msgstr "சூழல்"
@@ -943,16 +943,16 @@ msgid "Questionnaire"
 msgstr "கேள்வித்தாள்"
 
 msgid "Additional questionnaire"
-msgstr ""
+msgstr "கூடுதல் கேள்வித்தாள்"
 
 msgid "Recipients"
 msgstr "பெற்றவர்கள்"
 
 msgid "Submission expiration"
-msgstr ""
+msgstr "சமர்ப்பிப்பு காலாவதி"
 
 msgid "days"
-msgstr ""
+msgstr "நாட்களில்"
 
 msgid "Allow selection of this context through the context selector."
 msgstr "இந்த சூழலில் சூழலில் தேர்வுக்குழு மூலம் தேர்வு அனுமதிக்க."
@@ -993,19 +993,19 @@ msgid "Allow whistleblowers to send messages"
 msgstr "இம்மாதிரி செய்திகளை அனுப்ப அனுமதிக்க"
 
 msgid "Let whistleblowers add attachments onto existing submissions"
-msgstr ""
+msgstr "விசில்ப்ளேவர்கள் ஏற்கனவே உள்ள சமர்ப்பிப்புகளில் இணைப்புகளை சேர்க்கட்டும்"
 
 msgid "Show recipient details on the status page of the submission"
 msgstr "சமர்ப்பிக்கும் நிலையை பக்கம் பெறுநர் விவரங்களை காட்டு"
 
 msgid "Let recipients upload files to whistleblowers"
-msgstr ""
+msgstr "பெறுநர்கள் விசில்ப்ளேருக்கு கோப்புகளை பதிவேற்ற அனுமதிக்கவும்"
 
 msgid "Text shown on top of the interface for selecting recipients"
 msgstr "உரை பயனாளிகள் தெரிவுசெய்யப்பட்ட இடைமுகம் மேல் காட்டப்படும்"
 
 msgid "Welcome!"
-msgstr ""
+msgstr "வரவேற்பு!"
 
 msgid ""
 "This interface may help you understand how the server can be configured and "
@@ -1013,7 +1013,7 @@ msgid ""
 msgstr "இந்த இடைமுகம் நீங்கள் சர்வர் கட்டமைக்க மற்றும் பிற GlobaLeaks பயனர்கள் மற்றும் நிபுணர்கள் இணைக்க எப்படி சில தகவல் வழங்குகிறது முடியும் என்பதை புரிந்து கொள்ள உதவும்."
 
 msgid "Documentation"
-msgstr ""
+msgstr "ஆவணப்படுத்தல்"
 
 msgid ""
 "To properly organize your project, please read the following guidelines:"
@@ -1053,13 +1053,13 @@ msgid "Join our IRC chat channel on the irc.oftc.net network:"
 msgstr ""
 
 msgid "Follow the project on:"
-msgstr ""
+msgstr "திட்டத்தை பின்பற்றவும்:"
 
 msgid "Software version:"
 msgstr "மென்பொருள் பதிப்பு:"
 
 msgid "An update is available:"
-msgstr ""
+msgstr "புதுப்பிப்பு இருக்கிறது:"
 
 msgid "SMTP name"
 msgstr "SMTP, பெயர்"
@@ -1080,7 +1080,7 @@ msgid "Transport Security"
 msgstr "போக்குவரத்து பாதுகாப்பு"
 
 msgid "Require authentication"
-msgstr ""
+msgstr "அங்கீகரிப்பு தேவை"
 
 msgid "Disabled"
 msgstr "முடக்கப்பட்டது"
@@ -1101,13 +1101,13 @@ msgid "this configuration only applies to recipients"
 msgstr "இந்த கட்டமைப்பு மட்டுமே பெற்றவர்கள் பொருந்தும்"
 
 msgid "Test the configuration"
-msgstr ""
+msgstr "கட்டமைப்பு சோதனை"
 
 msgid "Template"
 msgstr "டெம்ப்ளேட்"
 
 msgid "Roles enabled to use the platform without Tor:"
-msgstr ""
+msgstr "Tor இல்லாமல் மேடையைப் பயன்படுத்துவதற்கான பங்களிப்புகள்:"
 
 msgid "Admin"
 msgstr "நிர்வாகம்"
@@ -1116,16 +1116,16 @@ msgid "Recipient"
 msgstr "பெறுநரின்"
 
 msgid "Whistleblower"
-msgstr ""
+msgstr "விசில் ப்ளோயர்"
 
 msgid "Hostname"
-msgstr ""
+msgstr "ஹோஸ்ட்பெயர்"
 
 msgid "Verify"
 msgstr "சரிபார்க்க"
 
 msgid "Invalid input format."
-msgstr ""
+msgstr "தவறான உள்ளீட்டு வடிவமைப்பு."
 
 msgid "Input should be similar to:"
 msgstr ""
@@ -1150,13 +1150,13 @@ msgid "Configuration completed. You can review the settings or enable it now."
 msgstr ""
 
 msgid "Review"
-msgstr ""
+msgstr "விமர்சனம்"
 
 msgid "Enable"
 msgstr "செயல்படுத்து"
 
 msgid "Country code"
-msgstr ""
+msgstr "நாட்டின் குறியீடு"
 
 msgid "State"
 msgstr "நிலை"
@@ -1168,7 +1168,7 @@ msgid "Organization"
 msgstr "நிறுவனம்"
 
 msgid "Organizational unit"
-msgstr ""
+msgstr "நிறுவன அலகு"
 
 msgid ""
 "This interface can generate a Private Key and a Certificate Signing Request."
@@ -1240,13 +1240,13 @@ msgid "Enabled"
 msgstr "இயக்கப்பட்டது"
 
 msgid "Running"
-msgstr ""
+msgstr "இயங்கும்"
 
 msgid "Not running"
-msgstr ""
+msgstr "இயங்கவில்லை"
 
 msgid "Auto-renewal"
-msgstr ""
+msgstr "ஆட்டோ புதுப்பித்தல்"
 
 msgid "System message:"
 msgstr ""
