@@ -4,6 +4,10 @@ GLClient.controller('AdminContextsCtrl',
   $scope.admin_receivers_by_id = $scope.Utils.array_to_map($scope.admin.receivers);
 
   $scope.save_context = function (context, cb) {
+    if (context.additional_questionnaire_id == null) {
+      context.additional_questionnaire_id = '';
+    }
+
     var updated_context = new AdminContextResource(context);
 
     return Utils.update(updated_context, cb);
