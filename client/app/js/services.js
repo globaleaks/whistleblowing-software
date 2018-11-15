@@ -678,7 +678,6 @@ factory('AdminUtils', ['AdminContextResource', 'AdminQuestionnaireResource', 'Ad
       context.status_page_message = '';
       context.questionnaire_id = '';
       context.additional_questionnaire_id = '';
-      context.custodians = [];
       context.receivers = [];
       return context;
     },
