@@ -127,7 +127,7 @@ class SNIMap(object):
         )
 
     def selectContext(self, connection):
-        common_name = connection.get_servername()
+        common_name = connection.get_servername().decode('utf-8')
 
         if common_name in self.mapping:
             newContext = self.mapping[common_name].getContext()
