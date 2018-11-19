@@ -278,9 +278,6 @@ class MigrationScript(MigrationBase):
             self.session_new.add(self.model_to['Config'](1, u'multisite', True))
             self.entries_count['Config'] += 1
 
-        for c in self.session_new.query(self.model_to['Config']).filter(self.model_to['Config'].var_name == 'receipt_salt'):
-            c.value = GCE.generate_salt()
-
         ids = [id[0] for id in self.session_old.query(self.model_from['Field'].id)\
                                                .filter(self.model_from['Field'].template_id == u'whistleblower_identity')]
 
