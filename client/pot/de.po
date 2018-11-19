@@ -46,7 +46,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-11-09 16:15+0000\n"
+"PO-Revision-Date: 2018-11-15 11:35+0000\n"
 "Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: German (http://www.transifex.com/otf/globaleaks/language/de/)\n"
 "MIME-Version: 1.0\n"
@@ -1760,6 +1760,9 @@ msgstr "nächster Schritt"
 
 msgid "Submit"
 msgstr "Einreichen"
+
+msgid "Recipients have requested you to fill an additional questionnaire."
+msgstr ""
 
 msgid "Fill the additional questionnaire"
 msgstr ""

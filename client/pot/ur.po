@@ -13,8 +13,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-11-09 16:15+0000\n"
-"Last-Translator: Hermes Center <info@hermescenter.org>\n"
+"PO-Revision-Date: 2018-11-15 16:35+0000\n"
+"Last-Translator: erinm\n"
 "Language-Team: Urdu (http://www.transifex.com/otf/globaleaks/language/ur/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -505,7 +505,7 @@ msgid "Label the submission"
 msgstr ""
 
 msgid "Activate"
-msgstr ""
+msgstr "فعال کیجیے"
 
 msgid "Search"
 msgstr "ڈھونڈیں"
@@ -1728,6 +1728,9 @@ msgstr "اگلا مرحلہ"
 msgid "Submit"
 msgstr "جمع کرائیں"
 
+msgid "Recipients have requested you to fill an additional questionnaire."
+msgstr ""
+
 msgid "Fill the additional questionnaire"
 msgstr ""
 
@@ -1762,7 +1765,7 @@ msgid "Connection"
 msgstr "کنکشن"
 
 msgid "Never"
-msgstr ""
+msgstr "کبھی نہیں"
 
 msgid "Revoked"
 msgstr ""
