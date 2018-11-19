@@ -185,7 +185,7 @@ class TestRTipInstance(helpers.TestHandlerWithPopulatedDB):
 
         self.assertEqual(len(rtip_descs), self.population_of_submissions * self.population_of_recipients - self.population_of_recipients)
 
-        yield self.test_model_count(models.SecureFileDelete, self.population_of_attachments)
+        yield self.test_model_count(models.SecureFileDelete, self.population_of_attachments * self.population_of_recipients)
 
 
     @inlineCallbacks
