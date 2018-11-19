@@ -137,10 +137,8 @@ def process_receiverfiles(state, receiverfiles_maps):
         filecode = filename.split('.')[0]
         plaintext_name = "%s.plain" % filecode
         encrypted_name = "%s.encrypted" % filecode
-        pgp_name = "%s.encrypted" % filecode
         plaintext_path = os.path.abspath(os.path.join(Settings.attachments_path, plaintext_name))
         encrypted_path = os.path.abspath(os.path.join(Settings.attachments_path, encrypted_name))
-        pgp_path = os.path.abspath(os.path.join(Settings.attachments_path, pgp_name))
 
         sf = state.get_tmp_file_by_name(filename)
 
@@ -154,12 +152,14 @@ def process_receiverfiles(state, receiverfiles_maps):
                 with sf.open('rb') as encrypted_file:
                     if rfileinfo['receiver']['pgp_key_public']:
                         try:
+                            pgp_name = "pgp_encrypted-%s" % generateRandomKey(16)
+                            pgp_path = os.path.abspath(os.path.join(Settings.attachments_path, pgp_name))
                             encrypt_file_with_pgp(state,
                                                   encrypted_file,
                                                   rfileinfo['receiver']['pgp_key_public'],
                                                   rfileinfo['receiver']['pgp_key_fingerprint'],
                                                   pgp_path)
-                            rfileinfo['filename'] = pgp_path
+                            rfileinfo['filename'] = pgp_name
                             rfileinfo['status'] = u'encrypted'
                         except Exception as excep:
                             log.err("%d# Unable to complete PGP encrypt for %s on %s: %s. marking the file as unavailable.",
