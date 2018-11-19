@@ -39,7 +39,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-11-09 17:21+0000\n"
+"PO-Revision-Date: 2018-11-15 15:00+0000\n"
 "Last-Translator: AO <ao@localizationlab.org>\n"
 "Language-Team: French (http://www.transifex.com/otf/globaleaks/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -1753,6 +1753,9 @@ msgstr "étape suivante"
 
 msgid "Submit"
 msgstr "Envoyer"
+
+msgid "Recipients have requested you to fill an additional questionnaire."
+msgstr "Les destinataires ont demandé à ce que vous remplissiez un questionnaire supplémentaire."
 
 msgid "Fill the additional questionnaire"
 msgstr "Remplir le questionnaire supplémentaire"

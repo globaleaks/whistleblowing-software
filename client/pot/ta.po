@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-11-14 06:59+0000\n"
+"PO-Revision-Date: 2018-11-16 06:18+0000\n"
 "Last-Translator: Bala Subramaniyan <balapandu222@hotmail.com>\n"
 "Language-Team: Tamil (http://www.transifex.com/otf/globaleaks/language/ta/)\n"
 "MIME-Version: 1.0\n"
@@ -670,7 +670,7 @@ msgstr "மறையாக்குதல் இயக்கு"
 
 msgid ""
 "Allow the system to store data in plaintext when encryption is not available"
-msgstr ""
+msgstr "மறையாக்குதல் கிடைக்காத போது, ​​தரவு சாண்ட்டெட்டில் சேமித்து வைக்க கணினி அனுமதிக்கவும்"
 
 msgid "Enable multisite feature"
 msgstr "பன்முனை அம்சத்தை இயக்கு"
@@ -1271,16 +1271,16 @@ msgid "Your browser will be redirected to the following URL."
 msgstr ""
 
 msgid "Tor Onion Service"
-msgstr ""
+msgstr "Tor Onion சேவை"
 
 msgid "Tor Browser download link"
-msgstr ""
+msgstr "Tor உலாவி பதிவிறக்க இணைப்பு"
 
 msgid "Anonymize outgoing connections"
-msgstr ""
+msgstr "வெளியேறும் இணைப்புகளை அநாமதேயப்படுத்து"
 
 msgid "Let the platform be reachable without Tor"
-msgstr ""
+msgstr "Tor இல்லாமல் மேடையில் அடையலாம்"
 
 msgid "Stats of the week:"
 msgstr "வாரம் விபரம்:"
@@ -1367,7 +1367,7 @@ msgid "Accept multiple file uploads"
 msgstr "பல கோப்பு பதிவேற்றங்கள் ஏற்கவும்"
 
 msgid "Accept multiple answers"
-msgstr ""
+msgstr "பல பதில்களை ஏற்கவும்"
 
 msgid "Hint shown on the button for adding an additional answer"
 msgstr "ஒரு கூடுதல் பதில் சேர்க்கும் பொத்தான் குறிப்பு"
@@ -1376,7 +1376,7 @@ msgid "Phone number"
 msgstr "தொலைபேசி எண்"
 
 msgid "Checkbox label"
-msgstr ""
+msgstr "சரிபார்க்கும் லேபிள்"
 
 msgid "Layout orientation"
 msgstr "லேஅவுட் நோக்குநிலை"
@@ -1385,19 +1385,19 @@ msgid "Subject answer visibility to custodian authorization"
 msgstr "பாதுகாப்பாளர் அங்கீகாரம் உட்பட்டு பதில் தன்மை"
 
 msgid "Text shown upon negative answer"
-msgstr ""
+msgstr "எதிர்மறை பதிலில் உரை காட்டப்பட்டுள்ளது"
 
 msgid "Prompt confirmation upon negative answer"
 msgstr "எதிர்மறை பதில் மீது உடனடியான உறுதிப்படுத்தல்"
 
 msgid "Text shown upon confirmation"
-msgstr ""
+msgstr "உறுதிப்படுத்தல் மீது உரை காட்டப்பட்டுள்ளது"
 
 msgid "Options"
 msgstr "விருப்பங்கள்"
 
 msgid "Questions"
-msgstr ""
+msgstr "கேள்விகள்"
 
 msgid "Add new question"
 msgstr "புதிய கேள்வி சேர்க்க"
@@ -1406,10 +1406,10 @@ msgid "Add question from template"
 msgstr "டெம்ப்ளேட் இருந்து கேள்வி சேர்"
 
 msgid "Duplicate"
-msgstr ""
+msgstr "நகல்"
 
 msgid "Steps"
-msgstr ""
+msgstr "படிகள்"
 
 msgid "Configuration"
 msgstr "கட்டமைப்பு"
@@ -1438,43 +1438,43 @@ msgid ""
 msgstr "பெறுநர் குறிப்பிட்ட சமர்ப்பிப்புகளை இம்மாதிரி செய்ய அனுமதிகளை வழங்க அனுமதி"
 
 msgid "Site settings"
-msgstr ""
+msgstr "தள அமைப்புகள்"
 
 msgid "Case management"
-msgstr ""
+msgstr "வழக்கு மேலாண்மை"
 
 msgid "Network settings"
-msgstr ""
+msgstr "நெட்வொர்க் அமைப்புகள்"
 
 msgid "Mode:"
-msgstr ""
+msgstr "முறை:"
 
 msgid "Root domain used for secondary sites"
-msgstr ""
+msgstr "இரண்டாம் தளங்களுக்கு ரூட் டொமைன் பயன்படுத்தப்படுகிறது"
 
 msgid "Allow users to sign up"
-msgstr ""
+msgstr "பயனர்களை டிஜிட்டல் கையெழுத்திட செய்ய அனுமதிக்கவும்"
 
 msgid "Enable terms of service"
-msgstr ""
+msgstr "சேவை விதிமுறைகளை இயக்கு"
 
 msgid "Sites"
-msgstr ""
+msgstr "தளங்கள்"
 
 msgid "Active"
-msgstr ""
+msgstr "செயலில்"
 
 msgid "Inactive"
-msgstr ""
+msgstr "செயல்படா"
 
 msgid "The default password is:"
-msgstr ""
+msgstr "முன்னிருப்பு கடவுச்சொல்:"
 
 msgid "The system forces users to change the password at first login."
 msgstr "அமைப்பு படைகள் செய்த முதல் உள்நுழைவு பாஸ்வேர்டை மாற்ற."
 
 msgid "Reset password"
-msgstr ""
+msgstr "கடவுச்சொல்லை மீட்டமைக்க"
 
 msgid "New password"
 msgstr "புதிய கடவுச்சொல்"
@@ -1494,7 +1494,7 @@ msgid "Language"
 msgstr "மொழி"
 
 msgid "Enable email notifications"
-msgstr ""
+msgstr "மின்னஞ்சல் அறிவிப்புகளை இயக்கு"
 
 msgid "Details of the PGP key:"
 msgstr "பிஜிபி முக்கிய விவரம்:"
@@ -1512,7 +1512,7 @@ msgid "User has administrative access to the following features:"
 msgstr ""
 
 msgid "main"
-msgstr ""
+msgstr "முக்கிய"
 
 msgid "Request date"
 msgstr "கோரிக்கை தேதி"
@@ -1521,7 +1521,7 @@ msgid "Authorization"
 msgstr "அங்கீகார"
 
 msgid "Identities"
-msgstr ""
+msgstr "அடையாளங்களை"
 
 msgid "The validation link is either incorrect or has expired."
 msgstr ""
@@ -1565,13 +1565,13 @@ msgid "Please support Hermes through their donation page."
 msgstr "தங்கள் நன்கொடை பக்கம் வழியாக ஹெர்ம்ஸ் ஆதரவு கொள்ளவும்."
 
 msgid "Forgot password?"
-msgstr ""
+msgstr "கடவுச்சொல்லை மறந்துவிட்டீர்களா?"
 
 msgid "Authentication failed"
 msgstr "அங்கீகரிப்பு தோல்வியுற்றது"
 
 msgid "Site:"
-msgstr ""
+msgstr "தள:"
 
 msgid "Username:"
 msgstr "பயனர்பெயர்:"
@@ -1589,7 +1589,7 @@ msgid "Are you sure?"
 msgstr "நீ சொல்வது உறுதியா?"
 
 msgid "The operation will reset the configuration and cannot be undone."
-msgstr ""
+msgstr "செயல்பாட்டை உள்ளமைவு மீட்டமைக்கும் மற்றும் செயல்தவிர்க்க முடியாது."
 
 msgid "Assign score points"
 msgstr "ஸ்கோர் புள்ளிகள் ஒதுக்க"
@@ -1609,16 +1609,16 @@ msgid "Error!"
 msgstr "பிழை!"
 
 msgid "Internal server error"
-msgstr ""
+msgstr "உள் சர்வர் பிழை"
 
 msgid "Error on input validation"
-msgstr ""
+msgstr "உள்ளீட்டு சரிபார்ப்பில் பிழை"
 
 msgid "Resource not found"
-msgstr ""
+msgstr "ஆதாரம் இல்லை"
 
 msgid "Forbidden operation"
-msgstr ""
+msgstr "தடைசெய்யப்பட்ட நடவடிக்கை"
 
 msgid "The specified old password is not valid"
 msgstr "குறிப்பிட்ட பழைய கடவுச்சொல் தவறானது"
@@ -1633,19 +1633,19 @@ msgid "Success!"
 msgstr "வெற்றி!"
 
 msgid "Validation of email address change in progress."
-msgstr ""
+msgstr "மின்னஞ்சல் முகவரி மாற்றுவதற்கான மாற்றம் முன்னேற்றம்."
 
 msgid "Please check your inbox for further instructions."
 msgstr ""
 
 msgid "Current password"
-msgstr ""
+msgstr "தற்போதைய கடவுச்சொல்"
 
 msgid "Old password confirmation required"
 msgstr "பழைய கடவுச்சொல் உறுதிப்படுத்தல் அவசியம்"
 
 msgid "The new password must be different from the current one."
-msgstr ""
+msgstr "புதிய கடவுச்சொல் தற்போதைய ஒன்றிலிருந்து வேறுபட்டதாக இருக்க வேண்டும்."
 
 msgid "Type your new password again"
 msgstr "உங்கள் புதிய கடவுச்சொல்லை மீண்டும் தட்டச்சு"
@@ -1667,13 +1667,13 @@ msgid "Then, copy and paste the following address into the Tor Browser:"
 msgstr "பின்னர், நகல் மற்றும் தோர் உலாவி பின்வரும் முகவரியை ஒட்டவும்:"
 
 msgid "Enter a name for the copy"
-msgstr ""
+msgstr "நகலுக்கு ஒரு பெயரை உள்ளிடவும்"
 
 msgid "Add file"
 msgstr "கோப்பு சேர்"
 
 msgid "Uploading files…"
-msgstr ""
+msgstr "கோப்புகளை பதிவேற்றுகிறது ..."
 
 msgid "Upload completed successfully!"
 msgstr "பதிவேற்றம் வெற்றிகரமாக நிறைவு!"
@@ -1688,10 +1688,10 @@ msgid "seconds"
 msgstr "விநாடிகள்"
 
 msgid "Size:"
-msgstr ""
+msgstr "அளவு:"
 
 msgid "The connection is not secure."
-msgstr ""
+msgstr "இணைப்பு பாதுகாப்பாக இல்லை."
 
 msgid ""
 "The platform is still not configured for HTTPS connections and should "
@@ -1699,19 +1699,19 @@ msgid ""
 msgstr ""
 
 msgid "Use case"
-msgstr ""
+msgstr "வழக்கு பயன்படுத்தவும்"
 
 msgid "Anticorruption"
-msgstr ""
+msgstr "ஊழல் எதிர்ப்பு"
 
 msgid "Corporate compliance"
-msgstr ""
+msgstr "பெருநிறுவன இணக்கம்"
 
 msgid "Investigative journalism"
-msgstr ""
+msgstr "விசாரணை பத்திரிகை"
 
 msgid "Civic activism"
-msgstr ""
+msgstr "குடிமக்கள் ஆர்வம்"
 
 msgid "previous step"
 msgstr "முந்தைய படி"
@@ -1722,8 +1722,11 @@ msgstr "அடுத்த அடி"
 msgid "Submit"
 msgstr "சமர்ப்பி"
 
+msgid "Recipients have requested you to fill an additional questionnaire."
+msgstr "கூடுதல் கேள்வித்தாள் நிரப்ப நிர்பந்திக்கப்பட்டவர்கள் உங்களிடம் கேட்டுள்ளனர்."
+
 msgid "Fill the additional questionnaire"
-msgstr ""
+msgstr "கூடுதல் கேள்வித்தாளை நிரப்புக"
 
 msgid "Send"
 msgstr "அனுப்பு"
@@ -1750,16 +1753,16 @@ msgid "Allow the whistleblower to add attachments to the submission"
 msgstr "தகவல் தெரிவிப்பவர் சமர்ப்பிப்பு இணைப்புகளை சேர்க்க அனுமதி"
 
 msgid "Access expiration"
-msgstr ""
+msgstr "அணுகல் காலாவதி"
 
 msgid "Connection"
 msgstr "இணைப்பு"
 
 msgid "Never"
-msgstr ""
+msgstr "ஒருபோதும்"
 
 msgid "Revoked"
-msgstr ""
+msgstr "திரும்பப்பெறப்பட்டது"
 
 msgid "Allow the whistleblower to send messages"
 msgstr "தகவல் தெரிவிப்பவர் செய்திகளை அனுப்ப அனுமதிக்க"
@@ -1808,10 +1811,10 @@ msgid "Recipient list"
 msgstr "பெறுநர் பட்டியலில்"
 
 msgid "Submission status:"
-msgstr ""
+msgstr "சமர்ப்பிக்கும் நிலை:"
 
 msgid "Attached files for the whistleblower"
-msgstr ""
+msgstr "விசில்ப்ளோயருக்கான இணைக்கப்பட்ட அம்பலப்படுத்தியவர்"
 
 msgid "Upload a file:"
 msgstr ""

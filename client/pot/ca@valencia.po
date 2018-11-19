@@ -16,8 +16,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-11-14 12:14+0000\n"
-"Last-Translator: Manuel D. Serrat <manuel.serrat@antifraucv.es>\n"
+"PO-Revision-Date: 2018-11-15 11:36+0000\n"
+"Last-Translator: Hermes Center <info@hermescenter.org>\n"
 "Language-Team: Catalan (Valencian) (http://www.transifex.com/otf/globaleaks/language/ca%40valencia/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1730,6 +1730,9 @@ msgstr "Pas següent"
 
 msgid "Submit"
 msgstr "Lliurament"
+
+msgid "Recipients have requested you to fill an additional questionnaire."
+msgstr ""
 
 msgid "Fill the additional questionnaire"
 msgstr "Emplene el qüestionari addicional"

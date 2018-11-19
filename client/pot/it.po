@@ -25,7 +25,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-11-14 15:34+0000\n"
+"PO-Revision-Date: 2018-11-15 13:18+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Italian (http://www.transifex.com/otf/globaleaks/language/it/)\n"
 "MIME-Version: 1.0\n"
@@ -1739,6 +1739,9 @@ msgstr "passo successivo"
 
 msgid "Submit"
 msgstr "Invia"
+
+msgid "Recipients have requested you to fill an additional questionnaire."
+msgstr "I riceventi ti richiedono di riempire un ultreriore questionario."
 
 msgid "Fill the additional questionnaire"
 msgstr "Compila il questionario aggiuntivo"
