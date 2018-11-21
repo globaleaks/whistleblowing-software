@@ -12,11 +12,11 @@ GLClient.controller('AdminUsersCtrl', ['$scope', 'AdminTenantResource',
       });
     }
 
-}]).controller('AdminUserEditorCtrl', ['$scope', '$rootScope', '$http', 'Utils', 'AdminUserResource',
-  function($scope, $rootScope, $http, Utils, AdminUserResource) {
+}]).controller('AdminUserEditorCtrl', ['$scope', '$rootScope', '$http', 'AdminUserResource',
+  function($scope, $rootScope, $http, AdminUserResource) {
     $scope.deleteUser = function() {
-      Utils.deleteDialog($scope.user).then(function() {
-        return Utils.deleteResource(AdminUserResource, $scope.admin.users, $scope.user);
+      $scope.Utils.deleteDialog($scope.user).then(function() {
+        return $scope.Utils.deleteResource(AdminUserResource, $scope.admin.users, $scope.user);
       });
     };
 
@@ -47,15 +47,15 @@ GLClient.controller('AdminUsersCtrl', ['$scope', 'AdminTenantResource',
     };
 
     $scope.updateUserImgUrl = function() {
-      $scope.userImgUrl = '/admin/users/' + $scope.user.id + '/img#' + Utils.randomFluff();
+      $scope.userImgUrl = '/admin/users/' + $scope.user.id + '/img#' + $scope.Utils.randomFluff();
     };
 
     $scope.updateUserImgUrl();
 
     $scope.loadPublicKeyFile = function(file) {
-      Utils.readFileAsText(file).then(function(txt) {
+      $scope.Utils.readFileAsText(file).then(function(txt) {
         $scope.user.pgp_key_public = txt;
-      }, Utils.displayErrorMsg);
+      }, $scope.Utils.displayErrorMsg);
     }
 
     $scope.resetUserPassword = function() {
@@ -126,15 +126,15 @@ function ($scope, $http, $filter) {
     })
   }
 }]).
-controller('AdminUserTenantAssociationEditorCtrl', ['$scope', '$rootScope', '$http', 'Utils', 'AdminUserTenantAssociationResource',
-function ($scope, $rootScope, $http, Utils, AdminUserTenantAssociationResource) {
+controller('AdminUserTenantAssociationEditorCtrl', ['$scope', '$rootScope', '$http', 'AdminUserTenantAssociationResource',
+function ($scope, $rootScope, $http, AdminUserTenantAssociationResource) {
   $scope.usertenant_association_editing = false;
   $scope.toggleUserTenantAssociationEditing = function () {
     $scope.usertenant_association_editing = !$scope.usertenant_association_editing;
   }
 
   $scope.deleteUserTenantAssociation = function() {
-    Utils.deleteDialog($scope.association).then(function() {
+    $scope.Utils.deleteDialog($scope.association).then(function() {
       AdminUserTenantAssociationResource.delete({
         user_id: $scope.user.id,
         tenant_id: $scope.association.tenant_id
@@ -152,7 +152,7 @@ controller('AdminUserAddCtrl', ['$scope',
     $scope.new_user = {};
 
     $scope.add_user = function() {
-      var user = new $scope.admin_utils.new_user();
+      var user = new $scope.AdminUtils.new_user();
 
       user.username = $scope.new_user.username !== undefined ? $scope.new_user.username : '';
       user.role = $scope.new_user.role;

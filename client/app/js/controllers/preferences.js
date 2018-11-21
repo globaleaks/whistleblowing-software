@@ -1,5 +1,5 @@
-GLClient.controller('PreferencesCtrl', ['$scope', '$q', '$rootScope', 'Utils', 'CONSTANTS',
-  function($scope, $q, $rootScope, Utils, CONSTANTS) {
+GLClient.controller('PreferencesCtrl', ['$scope', '$q', '$rootScope', 'CONSTANTS',
+  function($scope, $q, $rootScope, CONSTANTS) {
     $scope.tabs = [
       {
         title: "Preferences",
@@ -35,9 +35,9 @@ GLClient.controller('PreferencesCtrl', ['$scope', '$q', '$rootScope', 'Utils', '
     };
 
     $scope.loadPublicKeyFile = function(file) {
-      Utils.readFileAsText(file).then(function(txt) {
+      $scope.Utils.readFileAsText(file).then(function(txt) {
         $scope.preferences.pgp_key_public = txt;
-       }, Utils.displayErrorMsg);
+       }, $scope.Utils.displayErrorMsg);
     };
 }]);
 

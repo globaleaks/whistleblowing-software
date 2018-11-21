@@ -1,5 +1,5 @@
-GLClient.controller('AdminFieldEditorCtrl', ['$scope', '$uibModal', 'Utils',
-  function($scope, $uibModal, Utils) {
+GLClient.controller('AdminFieldEditorCtrl', ['$scope', '$uibModal',
+  function($scope, $uibModal) {
     $scope.editing = false;
     $scope.new_field = {};
 
@@ -55,7 +55,7 @@ GLClient.controller('AdminFieldEditorCtrl', ['$scope', '$uibModal', 'Utils',
 
     $scope.delField = function(field) {
       $scope.deleted_fields_ids.push(field.id);
-      return Utils.deleteResource($scope.fieldResource, $scope.fields, field);
+      return $scope.Utils.deleteResource($scope.fieldResource, $scope.fields, field);
     };
 
     $scope.showAddQuestion = $scope.showAddQuestionFromTemplate = false;
@@ -109,35 +109,35 @@ GLClient.controller('AdminFieldEditorCtrl', ['$scope', '$uibModal', 'Utils',
         }
       });
 
-      Utils.assignUniqueOrderIndex(field.options);
+      $scope.Utils.assignUniqueOrderIndex(field.options);
 
       updated_field = new $scope.fieldResource(field);
 
-      Utils.update(updated_field);
+      $scope.Utils.update(updated_field);
     };
 
     $scope.moveUpAndSave = function(elem) {
-      Utils.moveUp(elem);
+      $scope.Utils.moveUp(elem);
       $scope.save_field(elem);
     };
 
     $scope.moveDownAndSave = function(elem) {
-      Utils.moveDown(elem);
+      $scope.Utils.moveDown(elem);
       $scope.save_field(elem);
     };
 
     $scope.moveLeftAndSave = function(elem) {
-      Utils.moveLeft(elem);
+      $scope.Utils.moveLeft(elem);
       $scope.save_field(elem);
     };
 
     $scope.moveRightAndSave = function(elem) {
-      Utils.moveRight(elem);
+      $scope.Utils.moveRight(elem);
       $scope.save_field(elem);
     };
 
     $scope.add_field = function() {
-      var field = $scope.admin_utils.new_field('', $scope.field.id);
+      var field = $scope.AdminUtils.new_field('', $scope.field.id);
       field.label = $scope.new_field.label;
       field.type = $scope.new_field.type;
       field.attrs = $scope.admin.get_field_attrs(field.type);
@@ -156,7 +156,7 @@ GLClient.controller('AdminFieldEditorCtrl', ['$scope', '$uibModal', 'Utils',
     };
 
     $scope.add_field_from_template = function() {
-      var field = $scope.admin_utils.new_field('', $scope.field.id);
+      var field = $scope.AdminUtils.new_field('', $scope.field.id);
       field.template_id = $scope.new_field.template_id;
       field.instance = 'reference';
       field.y = $scope.newItemOrder($scope.field.children, 'y');
@@ -204,16 +204,16 @@ GLClient.controller('AdminFieldEditorCtrl', ['$scope', '$uibModal', 'Utils',
         return c;
       }
 
-      return Utils.openConfirmableModalDialog('views/partials/trigger_field.html', option, $scope);
+      return $scope.Utils.openConfirmableModalDialog('views/partials/trigger_field.html', option, $scope);
     };
 
     $scope.assignScorePointsDialog = function(option) {
-      return Utils.openConfirmableModalDialog('views/partials/assign_score_points.html', option, $scope);
+      return $scope.Utils.openConfirmableModalDialog('views/partials/assign_score_points.html', option, $scope);
     };
   }
 ]).
-controller('AdminFieldTemplatesCtrl', ['$scope', 'Utils', 'AdminFieldTemplateResource',
-  function($scope, Utils, AdminFieldTemplateResource) {
+controller('AdminFieldTemplatesCtrl', ['$scope', 'AdminFieldTemplateResource',
+  function($scope, AdminFieldTemplateResource) {
     $scope.fieldResource = AdminFieldTemplateResource;
     $scope.deleted_fields_ids = [];
 
@@ -227,7 +227,7 @@ controller('AdminFieldTemplatesAddCtrl', ['$scope',
     $scope.new_field = {};
 
     $scope.add_field = function() {
-      var field = $scope.admin_utils.new_field_template($scope.field ? $scope.field.id : '');
+      var field = $scope.AdminUtils.new_field_template($scope.field ? $scope.field.id : '');
       field.instance = 'template';
       field.label = $scope.new_field.label;
       field.type = $scope.new_field.type;

@@ -1,6 +1,6 @@
 angular.module('GLClient')
 .controller('TenantCtrl', ['$scope', function($scope) {
-  $scope.newTenant = new $scope.admin_utils.new_tenant();
+  $scope.newTenant = new $scope.AdminUtils.new_tenant();
 
   $scope.showAddTenant = false;
   $scope.toggleAddTenant = function() {
@@ -10,14 +10,14 @@ angular.module('GLClient')
   $scope.addTenant = function() {
     $scope.newTenant.$save(function(tenant){
       $scope.admin.tenants.push(tenant);
-      $scope.newTenant = new $scope.admin_utils.new_tenant();
+      $scope.newTenant = new $scope.AdminUtils.new_tenant();
     });
   }
 
   $scope.currentPage = 1;
   $scope.itemsPerPage = 20;
 }])
-.controller('TenantEditorCtrl', ['$scope', '$rootScope', 'Utils', 'AdminTenantResource', function($scope, $rootScope, Utils, AdminTenantResource) {
+.controller('TenantEditorCtrl', ['$scope', '$rootScope', 'AdminTenantResource', function($scope, $rootScope, AdminTenantResource) {
   var tenant = $scope.tenant;
 
   $scope.toggleEditing = function($event) {
@@ -48,8 +48,8 @@ angular.module('GLClient')
 
   $scope.deleteTenant = function($event) {
     $event.stopPropagation();
-    Utils.deleteDialog(tenant).then(function() {
-        return Utils.deleteResource(AdminTenantResource, $scope.admin.tenants, tenant);
+    $scope.Utils.deleteDialog(tenant).then(function() {
+        return $scope.Utils.deleteResource(AdminTenantResource, $scope.admin.tenants, tenant);
     });
   };
 }]);

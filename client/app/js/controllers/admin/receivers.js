@@ -1,5 +1,5 @@
-GLClient.controller('AdminReceiversCtrl', ['$scope', 'Utils', 'AdminReceiverResource',
-  function($scope, Utils, AdminReceiverResource) {
+GLClient.controller('AdminReceiversCtrl', ['$scope', 'AdminReceiverResource',
+  function($scope, AdminReceiverResource) {
   $scope.save_receiver = function(receiver, cb) {
     if (receiver.pgp_key_remove) {
       receiver.pgp_key_public = '';
@@ -12,7 +12,7 @@ GLClient.controller('AdminReceiversCtrl', ['$scope', 'Utils', 'AdminReceiverReso
 
     var updated_receiver = new AdminReceiverResource(receiver);
 
-    return Utils.update(updated_receiver, cb);
+    return $scope.Utils.update(updated_receiver, cb);
   };
 }]).
 controller('AdminReceiverEditorCtrl', ['$scope',

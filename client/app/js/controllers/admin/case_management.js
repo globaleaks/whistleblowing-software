@@ -24,8 +24,8 @@ GLClient.controller('AdminCaseManagementCtrl', ['$scope', function($scope){
       return displayedStatuses;
     }
   }
-]).controller('AdminSubmissionStatusEditorCtrl', ['$scope', '$rootScope', '$http', 'Utils', 'AdminSubmissionStatusResource',
-  function ($scope, $rootScope, $http, Utils, AdminSubmissionStatusResource) {
+]).controller('AdminSubmissionStatusEditorCtrl', ['$scope', '$rootScope', '$http', 'AdminSubmissionStatusResource',
+  function ($scope, $rootScope, $http, AdminSubmissionStatusResource) {
     $scope.editing = false;
     $scope.toggleEditing = function () {
       $scope.editing = !$scope.editing;
@@ -37,8 +37,8 @@ GLClient.controller('AdminCaseManagementCtrl', ['$scope', function($scope){
     };
 
     $scope.deleteSubmissionStatus = function() {
-      Utils.deleteDialog($scope.submissions_status).then(function() {
-        return Utils.deleteResource(AdminSubmissionStatusResource, $scope.admin.submission_statuses, $scope.submissions_status);
+      $scope.Utils.deleteDialog($scope.submissions_status).then(function() {
+        return $scope.Utils.deleteResource(AdminSubmissionStatusResource, $scope.admin.submission_statuses, $scope.submissions_status);
       });
     }
 
@@ -53,7 +53,7 @@ GLClient.controller('AdminCaseManagementCtrl', ['$scope', function($scope){
 
     $scope.save_submissions_status = function (context, cb) {
       var updated_submissions_status = new AdminSubmissionStatusResource(context);
-      return Utils.update(updated_submissions_status, cb);
+      return $scope.Utils.update(updated_submissions_status, cb);
     }
 
     $scope.moveUp = function(e, idx) { swap(e, idx, -1); };
@@ -117,15 +117,15 @@ GLClient.controller('AdminCaseManagementCtrl', ['$scope', function($scope){
     }
 }]).controller('AdminSubmissionSubStatusCtrl', [
   function () {
-}]).controller('AdminSubmissionSubStatusEditorCtrl', ['$scope', '$rootScope', '$http', 'Utils', 'AdminSubmissionSubStatusResource',
-  function ($scope, $rootScope, $http, Utils, AdminSubmissionSubStatusResource) {
+}]).controller('AdminSubmissionSubStatusEditorCtrl', ['$scope', '$rootScope', '$http', 'AdminSubmissionSubStatusResource',
+  function ($scope, $rootScope, $http, AdminSubmissionSubStatusResource) {
     $scope.substatus_editing = false;
     $scope.toggleSubstatusEditing = function () {
       $scope.substatus_editing = !$scope.substatus_editing;
     }
 
     $scope.deleteSubSubmissionStatus = function() {
-      Utils.deleteDialog($scope.substatus).then(function() {
+      $scope.Utils.deleteDialog($scope.substatus).then(function() {
         AdminSubmissionSubStatusResource.delete({
           id: $scope.substatus.id,
           submissionstatus_id: $scope.substatus.submissionstatus_id
@@ -138,7 +138,7 @@ GLClient.controller('AdminCaseManagementCtrl', ['$scope', function($scope){
 
     $scope.save_submissions_substatuses = function (substatus, cb) {
       var updated_submissions_substatuses = new AdminSubmissionSubStatusResource(substatus);
-      return Utils.update(updated_submissions_substatuses, cb);
+      return $scope.Utils.update(updated_submissions_substatuses, cb);
     };
 
     $scope.moveSsUp = function(e, idx) { swapSs(e, idx, -1); };

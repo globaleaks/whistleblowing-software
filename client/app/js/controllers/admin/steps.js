@@ -3,7 +3,7 @@ GLClient.controller('AdminStepAddCtrl', ['$scope',
     $scope.new_step = {};
 
     $scope.add_step = function() {
-      var step = new $scope.admin_utils.new_step($scope.questionnaire.id);
+      var step = new $scope.AdminUtils.new_step($scope.questionnaire.id);
       step.label = $scope.new_step.label;
       step.presentation_order = $scope.newItemOrder($scope.questionnaire.steps, 'presentation_order');
 
@@ -14,8 +14,8 @@ GLClient.controller('AdminStepAddCtrl', ['$scope',
     };
   }
 ]).
-controller('AdminStepEditorCtrl', ['$scope', '$rootScope', '$http', 'Utils', 'AdminStepResource', 'AdminFieldResource',
-  function($scope, $rootScope, $http, Utils, AdminStepResource, AdminFieldResource) {
+controller('AdminStepEditorCtrl', ['$scope', '$rootScope', '$http', 'AdminStepResource', 'AdminFieldResource',
+  function($scope, $rootScope, $http, AdminStepResource, AdminFieldResource) {
     $scope.editing = false;
     $scope.new_field = {};
     $scope.fields = $scope.step.children;
@@ -27,7 +27,7 @@ controller('AdminStepEditorCtrl', ['$scope', '$rootScope', '$http', 'Utils', 'Ad
 
     $scope.save_step = function(step) {
       var updated_step = new AdminStepResource(step);
-      return Utils.update(updated_step);
+      return $scope.Utils.update(updated_step);
     };
 
     $scope.showAddQuestion = $scope.showAddQuestionFromTemplate = false;
@@ -42,11 +42,11 @@ controller('AdminStepEditorCtrl', ['$scope', '$rootScope', '$http', 'Utils', 'Ad
     };
 
     $scope.delField = function(field) {
-      return Utils.deleteResource($scope.fieldResource, $scope.fields, field);
+      return $scope.Utils.deleteResource($scope.fieldResource, $scope.fields, field);
     };
 
     $scope.add_field = function() {
-      var field = $scope.admin_utils.new_field($scope.step.id, '');
+      var field = $scope.AdminUtils.new_field($scope.step.id, '');
       field.label = $scope.new_field.label;
       field.type = $scope.new_field.type;
       field.attrs = $scope.admin.get_field_attrs(field.type);
@@ -63,7 +63,7 @@ controller('AdminStepEditorCtrl', ['$scope', '$rootScope', '$http', 'Utils', 'Ad
     };
 
     $scope.add_field_from_template = function() {
-      var field = $scope.admin_utils.new_field($scope.step.id, '');
+      var field = $scope.AdminUtils.new_field($scope.step.id, '');
       field.template_id = $scope.new_field.template_id;
       field.instance = 'reference';
       field.y = $scope.newItemOrder($scope.fields, 'y');
