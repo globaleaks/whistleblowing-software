@@ -1,6 +1,6 @@
 GLClient.controller('AdminQuestionnaireCtrl',
-  ['$scope', '$http', '$route', 'Utils', 'AdminQuestionnaireResource',
-  function($scope, $http, $route, Utils, AdminQuestionnaireResource){
+  ['$scope', '$http', '$route', 'AdminQuestionnaireResource',
+  function($scope, $http, $route, AdminQuestionnaireResource){
   $scope.tabs = [
     {
       title:"Questionnaires",
@@ -33,7 +33,7 @@ GLClient.controller('AdminQuestionnaireCtrl',
   };
 
   $scope.importQuestionnaire = function(file) {
-    Utils.readFileAsText(file).then(function(txt) {
+    $scope.Utils.readFileAsText(file).then(function(txt) {
       return $http({
         method: 'POST',
         url: 'admin/questionnaires?multilang=1',
@@ -41,21 +41,21 @@ GLClient.controller('AdminQuestionnaireCtrl',
       })
     }).then(function() {
        $route.reload();
-    }, Utils.displayErrorMsg);
+    }, $scope.Utils.displayErrorMsg);
   };
 
   $scope.save_questionnaire = function(questionnaire, cb) {
     var updated_questionnaire = new AdminQuestionnaireResource(questionnaire);
 
-    return Utils.update(updated_questionnaire, cb);
+    return $scope.Utils.update(updated_questionnaire, cb);
   };
 
   $scope.delete_questionnaire = function(questionnaire) {
-    return Utils.deleteResource(AdminQuestionnaireResource, $scope.admin.questionnaires, questionnaire);
+    return $scope.Utils.deleteResource(AdminQuestionnaireResource, $scope.admin.questionnaires, questionnaire);
   };
 }]).
-controller('AdminQuestionnaireEditorCtrl', ['$scope', '$uibModal', '$http', 'Utils', 'FileSaver', 'AdminStepResource',
-  function($scope, $uibModal, $http, Utils, FileSaver, AdminStepResource) {
+controller('AdminQuestionnaireEditorCtrl', ['$scope', '$uibModal', '$http', 'FileSaver', 'AdminStepResource',
+  function($scope, $uibModal, $http, FileSaver, AdminStepResource) {
 
   $scope.editing = false;
 
@@ -69,7 +69,7 @@ controller('AdminQuestionnaireEditorCtrl', ['$scope', '$uibModal', '$http', 'Uti
   };
 
   $scope.delStep = function(step) {
-    return Utils.deleteResource(AdminStepResource, $scope.questionnaire.steps, step);
+    return $scope.Utils.deleteResource(AdminStepResource, $scope.questionnaire.steps, step);
   };
 
 
@@ -102,7 +102,7 @@ controller('AdminQuestionnaireAddCtrl', ['$scope', function($scope) {
   $scope.new_questionnaire = {};
 
   $scope.add_questionnaire = function() {
-    var questionnaire = new $scope.admin_utils.new_questionnaire();
+    var questionnaire = new $scope.AdminUtils.new_questionnaire();
 
     questionnaire.name = $scope.new_questionnaire.name;
 

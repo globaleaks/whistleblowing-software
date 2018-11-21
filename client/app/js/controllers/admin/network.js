@@ -1,4 +1,4 @@
-GLClient.controller('AdminNetworkCtrl', ['$scope', '$http', 'Utils', function($scope, $http, Utils) {
+GLClient.controller('AdminNetworkCtrl', ['$scope', '$http', function($scope, $http) {
   $scope.tabs = [
     {
       title:"HTTPS",
@@ -12,7 +12,7 @@ GLClient.controller('AdminNetworkCtrl', ['$scope', '$http', 'Utils', function($s
 
   $scope.setHostname = function() {
     $scope.verifyFailed = false;
-    Utils.setHostname($scope.admin.node.hostname)
+    $scope.Utils.setHostname($scope.admin.node.hostname)
   }
 
   $scope.verifyHostname = function() {
@@ -44,8 +44,8 @@ GLClient.controller('AdminNetworkCtrl', ['$scope', '$http', 'Utils', function($s
     });
   };
 }]).
-controller('AdminHTTPSConfigCtrl', ['$q', '$location', '$http', '$scope', '$uibModal', 'Utils', 'FileSaver', 'AdminTLSConfigResource', 'AdminTLSCfgFileResource', 'AdminAcmeResource',
-  function($q, $location, $http, $scope, $uibModal, Utils, FileSaver, tlsConfigResource, cfgFileResource, adminAcmeResource) {
+controller('AdminHTTPSConfigCtrl', ['$q', '$location', '$http', '$scope', '$uibModal', 'FileSaver', 'AdminTLSConfigResource', 'AdminTLSCfgFileResource', 'AdminAcmeResource',
+  function($q, $location, $http, $scope, $uibModal, FileSaver, tlsConfigResource, cfgFileResource, adminAcmeResource) {
   $scope.state = 0;
   $scope.menuState = 'setup';
   $scope.showHostnameSetter = false;
@@ -59,8 +59,8 @@ controller('AdminHTTPSConfigCtrl', ['$q', '$location', '$http', '$scope', '$uibM
   };
 
   $scope.saveNodeAndProceed = function() {
-    Utils.setHostname($scope.admin.node.hostname).then(function() {
-      Utils.update($scope.admin.node, function(){ $scope.setMenu('choice'); });
+    $scope.Utils.setHostname($scope.admin.node.hostname).then(function() {
+      $scope.Utils.update($scope.admin.node, function(){ $scope.setMenu('choice'); });
     })
   };
 
@@ -138,7 +138,7 @@ controller('AdminHTTPSConfigCtrl', ['$q', '$location', '$http', '$scope', '$uibM
   };
 
   $scope.postFile = function(file, resource) {
-    Utils.readFileAsText(file).then(function(str) {
+    $scope.Utils.readFileAsText(file).then(function(str) {
       resource.content = str;
       return resource.$save();
     }).then(refreshConfig);

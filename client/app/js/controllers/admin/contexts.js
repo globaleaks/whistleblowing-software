@@ -1,6 +1,6 @@
 GLClient.controller('AdminContextsCtrl',
-  ['$scope', 'Utils', 'AdminContextResource',
-  function($scope, Utils, AdminContextResource) {
+  ['$scope', 'AdminContextResource',
+  function($scope, AdminContextResource) {
   $scope.admin_receivers_by_id = $scope.Utils.array_to_map($scope.admin.receivers);
 
   $scope.save_context = function (context, cb) {
@@ -10,7 +10,7 @@ GLClient.controller('AdminContextsCtrl',
 
     var updated_context = new AdminContextResource(context);
 
-    return Utils.update(updated_context, cb);
+    return $scope.Utils.update(updated_context, cb);
   };
 
   $scope.showAddContext = false;
@@ -19,17 +19,17 @@ GLClient.controller('AdminContextsCtrl',
   };
 
   $scope.moveUpAndSave = function(elem) {
-    Utils.moveUp(elem);
+    $scope.Utils.moveUp(elem);
     $scope.save_context(elem);
   };
 
   $scope.moveDownAndSave = function(elem) {
-    Utils.moveDown(elem);
+    $scope.Utils.moveDown(elem);
     $scope.save_context(elem);
   };
 }]).
-controller('AdminContextEditorCtrl', ['$scope', '$rootScope', '$http', 'Utils', 'AdminContextResource',
-  function($scope, $rootScope, $http, Utils, AdminContextResource) {
+controller('AdminContextEditorCtrl', ['$scope', '$rootScope', '$http', 'AdminContextResource',
+  function($scope, $rootScope, $http, AdminContextResource) {
   $scope.editing = false;
 
   $scope.toggleEditing = function () {
@@ -89,14 +89,14 @@ controller('AdminContextEditorCtrl', ['$scope', '$rootScope', '$http', 'Utils', 
   };
 
   $scope.updateContextImgUrl = function() {
-    $scope.contextImgUrl = '/admin/contexts/' + $scope.context.id + '/img#' + Utils.randomFluff();
+    $scope.contextImgUrl = '/admin/contexts/' + $scope.context.id + '/img#' + $scope.Utils.randomFluff();
   };
 
   $scope.updateContextImgUrl();
 
   $scope.deleteContext = function() {
-    Utils.deleteDialog($scope.context).then(function() {
-      return Utils.deleteResource(AdminContextResource, $scope.admin.contexts, $scope.context);
+    $scope.Utils.deleteDialog($scope.context).then(function() {
+      return $scope.Utils.deleteResource(AdminContextResource, $scope.admin.contexts, $scope.context);
     });
   };
 }]).
@@ -118,7 +118,7 @@ controller('AdminContextAddCtrl', ['$scope', function($scope) {
   $scope.new_context = {};
 
   $scope.add_context = function() {
-    var context = new $scope.admin_utils.new_context();
+    var context = new $scope.AdminUtils.new_context();
 
     context.name = $scope.new_context.name;
     context.questionnaire_id = $scope.admin.node.default_questionnaire;

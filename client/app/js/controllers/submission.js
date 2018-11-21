@@ -1,6 +1,6 @@
 GLClient.controller('SubmissionCtrl',
-    ['$scope', 'Utils', '$filter', '$location', '$interval', '$anchorScroll', 'tmhDynamicLocale', 'Submission', 'glbcProofOfWork', 'fieldUtilities',
-      function ($scope, Utils, $filter, $location, $interval, $anchorScroll, tmhDynamicLocale, Submission, glbcProofOfWork, fieldUtilities) {
+    ['$scope', '$filter', '$location', '$interval', '$anchorScroll', 'tmhDynamicLocale', 'Submission', 'glbcProofOfWork', 'fieldUtilities',
+      function ($scope, $filter, $location, $interval, $anchorScroll, tmhDynamicLocale, Submission, glbcProofOfWork, fieldUtilities) {
   $scope.vars = {};
 
   $scope.fieldUtilities = fieldUtilities;
@@ -167,7 +167,7 @@ GLClient.controller('SubmissionCtrl',
   $scope.submissionHasErrors = function() {
     if (angular.isDefined($scope.vars.submissionForm)) {
       return $scope.vars.submissionForm.$invalid ||
-             Utils.isUploading($scope.uploads);
+             $scope.Utils.isUploading($scope.uploads);
     }
 
     return false;
@@ -370,8 +370,8 @@ GLClient.controller('SubmissionCtrl',
   });
 }]).
 controller('AdditionalQuestionnaireCtrl',
-    ['$http', '$route', '$scope', '$uibModalInstance', 'Utils', '$filter', '$location', '$interval', '$anchorScroll', 'tmhDynamicLocale', 'Submission', 'glbcProofOfWork', 'fieldUtilities',
-      function ($http, $route, $scope, $uibModalInstance, Utils, $filter, $location, $interval, $anchorScroll, tmhDynamicLocale, Submission, glbcProofOfWork, fieldUtilities) {
+    ['$http', '$route', '$scope', '$uibModalInstance', '$filter', '$location', '$interval', '$anchorScroll', 'tmhDynamicLocale', 'Submission', 'glbcProofOfWork', 'fieldUtilities',
+      function ($http, $route, $scope, $uibModalInstance, $filter, $location, $interval, $anchorScroll, tmhDynamicLocale, Submission, glbcProofOfWork, fieldUtilities) {
   $scope.vars = {};
 
   $scope.fieldUtilities = fieldUtilities;

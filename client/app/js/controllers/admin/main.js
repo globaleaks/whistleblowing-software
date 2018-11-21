@@ -1,7 +1,7 @@
 GLClient.
 controller('AdminCtrl',
-    ['$scope', '$route', '$location', '$filter', 'resources', 'Utils', 'AdminUtils', 'AdminNodeResource', 'UpdateService', 'CONSTANTS',
-    function($scope, $route, $location, $filter, resources, Utils, AdminUtils, AdminNodeResource, UpdateService, CONSTANTS) {
+    ['$scope', '$route', '$location', '$filter', 'resources', 'AdminNodeResource', 'UpdateService', 'CONSTANTS',
+    function($scope, $route, $location, $filter, resources, AdminNodeResource, UpdateService, CONSTANTS) {
   $scope.email_regexp = CONSTANTS.email_regexp;
   $scope.hostname_regexp = CONSTANTS.hostname_regexp;
   $scope.onionservice_regexp = CONSTANTS.onionservice_regexp;
@@ -15,12 +15,10 @@ controller('AdminCtrl',
 
   $scope.update_service = UpdateService;
 
-  $scope.admin_utils = AdminUtils;
-
   $scope.admin = resources;
 
   $scope.updateNode = function() {
-    Utils.update($scope.admin.node, function() { $scope.$emit("REFRESH"); });
+    $scope.Utils.update($scope.admin.node, function() { $scope.$emit("REFRESH"); });
   };
 
   $scope.newItemOrder = function(objects, key) {
@@ -177,7 +175,7 @@ controller('AdminAdvancedCtrl', ['$scope', '$uibModal', 'CONSTANTS',
   $scope.new_shorturl = {};
 
   $scope.add_shorturl = function() {
-    var shorturl = new $scope.admin_utils.new_shorturl();
+    var shorturl = new $scope.AdminUtils.new_shorturl();
 
     shorturl.shorturl = $scope.new_shorturl.shorturl;
     shorturl.longurl = $scope.new_shorturl.longurl;
@@ -199,8 +197,8 @@ controller('AdminShorturlEditCtrl', ['$scope', 'AdminShorturlResource',
       });
     };
 }]).
-controller('AdminMailCtrl', ['$scope', '$http', 'Utils', 'AdminNotificationResource',
-  function($scope, $http, Utils, AdminNotificationResource) {
+controller('AdminMailCtrl', ['$scope', '$http', 'AdminNotificationResource',
+  function($scope, $http, AdminNotificationResource) {
 
   $scope.text_templates = [
     'activation_mail_template',
