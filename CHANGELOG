@@ -1,3 +1,7 @@
+Changes in version 3.5.5 - 2018-11-21
+    Fix whistleblower authentication on systems with pynacl < 1.2
+    Enforce usage of pynacl >= 1.2 on Bionic and Stretch
+
 Changes in version 3.5.4 - 2018-11-19:
     Fix migration 45 in relation to existing whistleblower access
 
