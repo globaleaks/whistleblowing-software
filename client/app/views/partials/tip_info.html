@@ -110,7 +110,7 @@
                 class="label label-success"
                 uib-popover="{{'The connection used to send this submission has been secured with Tor ensuring confidentiality and anonymity.' | translate}}" popover-placement="left">Tor</span>
         </td>
-	<td class="TipInfoSubmissionStatus"><span>{{tip.submissionStatusObj.label}}</span><span data-ng-if="tip.submissionSubStatusObj"> ({{tip.submissionSubStatusObj.label}})</span></td>
+	<td class="TipInfoSubmissionStatus">{{tip.submissionStatusStr}}</td>
         <td class="TipInfoScore" data-ng-if="::session.role == 'receiver' && node.enable_experimental_features">{{::tip.total_score}}</td>
       </tr>
       </tbody>
