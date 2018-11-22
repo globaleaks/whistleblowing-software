@@ -24,8 +24,8 @@ GLClient.controller('AdminCaseManagementCtrl', ['$scope', function($scope){
       return displayedStatuses;
     }
   }
-]).controller('AdminSubmissionStatusEditorCtrl', ['$scope', '$rootScope', '$http', 'AdminSubmissionStatusResource',
-  function ($scope, $rootScope, $http, AdminSubmissionStatusResource) {
+]).controller('AdminSubmissionStatusEditorCtrl', ['$scope', '$http', 'AdminSubmissionStatusResource',
+  function ($scope, $http, AdminSubmissionStatusResource) {
     $scope.editing = false;
     $scope.toggleEditing = function () {
       $scope.editing = !$scope.editing;
@@ -117,8 +117,8 @@ GLClient.controller('AdminCaseManagementCtrl', ['$scope', function($scope){
     }
 }]).controller('AdminSubmissionSubStatusCtrl', [
   function () {
-}]).controller('AdminSubmissionSubStatusEditorCtrl', ['$scope', '$rootScope', '$http', 'AdminSubmissionSubStatusResource',
-  function ($scope, $rootScope, $http, AdminSubmissionSubStatusResource) {
+}]).controller('AdminSubmissionSubStatusEditorCtrl', ['$scope', '$http', 'AdminSubmissionSubStatusResource',
+  function ($scope, $http, AdminSubmissionSubStatusResource) {
     $scope.substatus_editing = false;
     $scope.toggleSubstatusEditing = function () {
       $scope.substatus_editing = !$scope.substatus_editing;
