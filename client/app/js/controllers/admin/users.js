@@ -126,8 +126,8 @@ function ($scope, $http, $filter) {
     })
   }
 }]).
-controller('AdminUserTenantAssociationEditorCtrl', ['$scope', '$rootScope', '$http', 'AdminUserTenantAssociationResource',
-function ($scope, $rootScope, $http, AdminUserTenantAssociationResource) {
+controller('AdminUserTenantAssociationEditorCtrl', ['$scope', '$http', 'AdminUserTenantAssociationResource',
+function ($scope, $http, AdminUserTenantAssociationResource) {
   $scope.usertenant_association_editing = false;
   $scope.toggleUserTenantAssociationEditing = function () {
     $scope.usertenant_association_editing = !$scope.usertenant_association_editing;
