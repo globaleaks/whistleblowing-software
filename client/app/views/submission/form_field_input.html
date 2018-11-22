@@ -18,7 +18,7 @@
                   data-ng-attr-placeholder="{{field.placeholder}}"
                   dynamic-textarea></textarea>
         <div>
-          <div data-ng-if="entry['value'].length && maxlength >= 0 && (maxlength - entry['value'].length) <= 50" class="float-right">{{entry['value'].length}}/{{maxlength}}</div>
+          <div data-ng-if="entry['value'].length && maxlength >= 0 && (maxlength - entry['value'].length) <= 50" class="pull-right">{{entry['value'].length}}/{{maxlength}}</div>
         </div>
         <div data-ng-class="{'has-error': field.required_status}">
           <span ng-show="f['input-' + entryIndex].$error.required" data-ng-class="{'text-danger': (f['input-' + entryIndex].$dirty || displayErrors())}" data-translate>This field is mandatory.</span>
@@ -124,8 +124,8 @@
               <span data-ng-switch-when="phonenumber" class="text-danger" data-translate>please enter numbers only.</span>
             </span>
           </div>
-          <div data-ng-if="entry['value'].length && maxlength >= 0 && (maxlength - entry['value'].length) <= 50" class="float-right">{{entry['value'].length}}/{{maxlength}}</div>
-          <div data-ng-if="field.required_status" class="float-left" data-ng-class="{'red-text': displayErrors()}">
+          <div data-ng-if="entry['value'].length && maxlength >= 0 && (maxlength - entry['value'].length) <= 50" class="pull-right">{{entry['value'].length}}/{{maxlength}}</div>
+          <div data-ng-if="field.required_status" class="pull-left" data-ng-class="{'red-text': displayErrors()}">
           </div>
           <span data-ng-show="f['input-' + entryIndex].$error.required" data-ng-class="{'text-danger': (f['input-' + entryIndex].$dirty || displayErrors())}" data-translate>This field is mandatory.</span>
           <span data-ng-show="f['input-' + entryIndex].$error.minlength" data-ng-class="{'text-danger': (f['input-' + entryIndex].$dirty || displayErrors())}" data-translate>The answer is too short.</span>
@@ -133,7 +133,7 @@
       </div>
     </div>
   </div>
-  <div data-ng-if="field.required_status" class="float-left" data-ng-class="{'red-text': displayErrors()}">
+  <div data-ng-if="field.required_status" class="pull-left" data-ng-class="{'red-text': displayErrors()}">
     <span data-ng-if="field.type !== 'inputbox' && field.type !== 'textarea'" data-translate>This field is mandatory.</span>
   </div>
 </div>

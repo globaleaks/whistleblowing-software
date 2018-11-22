@@ -1,12 +1,12 @@
 <div id="HeaderBoxContent" class="container-fluid">
   <div class="row">
-    <div id="HeaderBoxContentLeft" class="col-md-7">
+    <div class="col-md-7 pull-left">
       <div id="LogoBox">
         <a href="/#{{ session ? session.auth_landing_page : '/' }}"><img class="img-responsive" alt="project logo" data-ng-src="{{Utils.imgDataUri(node.logo)}}" /></a>
       </div>
       <div id="TitleBox">{{ht}}</div>
     </div>
-    <div id="HeaderBoxContentRight" class="col-md-5">
+    <div class="col-md-5 pull-right">
       <span id="UserBox" data-ng-include="'views/partials/user.html'"></span>
     </div>
   </div>
