@@ -13,8 +13,6 @@ body {
   font-family: Verdana, sans-serif;
   line-height: 1.8;
   color: #222;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
 @media (min-width: 992px) {
@@ -64,48 +62,12 @@ table {
   word-wrap: break-word;
 }
 
-.title1, .title2, .title3 {
-  margin-top: 0.8em;
-  margin-bottom: 0.8em;
-  line-height: 1.25em;
-}
-
-.title1 {
-  font-size: 1.3em;
-  font-weight: bold;
-}
-
-.title2 {
-  font-size: 1.2em;
-}
-
-.title3 {
-  font-size: 1.25em;
-}
-
 #HeaderBox {
   color: #FFF;
-  background: #428bca;
-  border-bottom: 1px solid #357ebd;
+  background-color: #428bca;
 }
 
-#HeaderBoxContentLeft {
-  float: left;
-}
-
-#HeaderBoxContentRight {
-  float: left;
-}
-
-html[dir="rtl"] #HeaderBoxContentLeft {
-  float: right;
-}
-
-html[dir="rtl"] #HeaderBoxContentRight {
-  float: left;
-}
-
-#HeaderBox:after, #HeaderBox:after {
+#HeaderBox:after {
   clear: both;
   content: "";
   display: block;
@@ -127,23 +89,6 @@ html[dir="rtl"] #HeaderBoxContentRight {
 
 #LogoBox {
   width: 16em;
-}
-
-#LogoBox, #TitleBox {
-  float: left;
-}
-
-html[dir="rtl"] #LogoBox,
-html[dir="rtl"] #TitleBox {
-  float: right;
-}
-
-#UserBox {
-  float: right;
-}
-
-html[dir="rtl"] #UserBox {
-  float: left;
 }
 
 #TitleBox {
@@ -168,8 +113,6 @@ html[dir="rtl"] #UserBox {
   border-radius: 5px;
 }
 
-/** Submission details **/
-
 .keycode {
   text-align: center;
 }
@@ -179,6 +122,25 @@ html[dir="rtl"] #UserBox {
   color: #FFF;
   font-size: 1em;
   padding: 0.8em 1.25em 0.8em 1.25em;
+}
+
+.title1, .title2, .title3 {
+  margin-top: 0.8em;
+  margin-bottom: 0.8em;
+  line-height: 1.25em;
+}
+
+.title1 {
+  font-size: 1.3em;
+  font-weight: bold;
+}
+
+.title2 {
+  font-size: 1.2em;
+}
+
+.title3 {
+  font-size: 1.1em;
 }
 
 .tab-content {
@@ -198,19 +160,11 @@ html[dir="rtl"] #UserBox {
   text-align: center;
 }
 
-html[dir] .imageUpload .changePictureButton, html[dir] .imageUpload .deletePictureButton {
+.imageUpload .changePictureButton, .imageUpload .deletePictureButton {
   position: absolute;
   bottom: 10px;
   text-align: center;
   z-index: 10;
-}
-
-html[dir='ltr'] .imageUpload .changePictureButton, html[dir='rtl'] .imageUpload .deletePictureButton {
-  left: 10px;
-}
-
-html[dir='rtl'] .imageUpload .changePictureButton, html[dir='ltr'] .imageUpload .deletePictureButton {
-  right: 10px;
 }
 
 .imageUploadThumbnail {
@@ -244,13 +198,10 @@ html[dir='rtl'] .imageUpload .changePictureButton, html[dir='ltr'] .imageUpload 
   z-index: 1;
 }
 
-/** Wizard **/
 .wizard-block {
   position: relative;
-  margin-top: 1em;
-  margin-bottom: 1em;
-  padding-top: 1em;
-  padding-bottom: 1em;
+  margin-top: 2em;
+  margin-bottom: 2em;
 }
 
 .wizard-block .title {
@@ -354,11 +305,6 @@ html[dir='rtl'] .imageUpload .changePictureButton, html[dir='ltr'] .imageUpload 
   min-width: 5em;
 }
 
-@-webkit-keyframes fadeinout {
-  0%,100% { opacity: 0; }
-  50% { opacity: 1; }
-}
-
 @keyframes fadeinout {
   0%,100% { opacity: 0; }
   50% { opacity: 1; }
@@ -420,19 +366,11 @@ textarea.form-control {
   top: 2.4em;
 }
 
-html[dir="ltr"] .textarea-btn {
-  right: 1em;
-}
-
-html[dir="rtl"] .textarea-btn {
-  left: 1em;
-}
-
 .file-upload input[type="file"] {
   display: none;
 }
 
-html[dir] .btn-circle {
+.btn-circle {
   width: 30px;
   height: 30px;
   text-align: center;
@@ -452,24 +390,8 @@ html[dir] .btn-circle {
   visibility: none;
 }
 
-html[dir] .badge-info {
+.badge-info {
   background-color: #337ab7;
-}
-
-.float-left {
-  float: left;
-}
-
-.float-right {
-  float: right;
-}
-
-html[rtl] .float-left {
-  float: right;
-}
-
-html[rtl] .float-right {
-  float: left;
 }
 
 .display-block {
@@ -507,4 +429,32 @@ html[rtl] .float-right {
   .modal-lg .modal-dialog {
     width: 600px;
   }
+}
+
+html[dir='ltr'] #LogoBox,
+html[dir='ltr'] #TitleBox,
+html[dir='rtl'] #UserBox {
+  float: left;
+}
+
+html[dir='rtl'] #LogoBox,
+html[dir='rtl'] #TitleBox,
+html[dir='ltr'] #UserBox {
+  float: right;
+}
+
+html[dir='ltr'] .textarea-btn {
+  right: 1em;
+}
+
+html[dir='rtl'] .textarea-btn {
+  left: 1em;
+}
+
+html[dir='ltr'] .imageUpload .changePictureButton, html[dir='rtl'] .imageUpload .deletePictureButton {
+  left: 10px;
+}
+
+html[dir='ltr'] .imageUpload .changePictureButton, html[dir='rtl'] .imageUpload .deletePictureButton {
+  right: 10px;
 }
