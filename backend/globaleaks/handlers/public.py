@@ -242,9 +242,7 @@ def serialize_field_attr(attr, language):
         'value': attr.value
     }
 
-    if attr.type == 'bool':
-        ret_dict['value'] = True if ret_dict['value'] == 'True' else False
-    elif attr.type == u'localized':
+    if attr.type == u'localized':
         get_localized_values(ret_dict, ret_dict, ['value'], language)
 
     return ret_dict
