@@ -215,6 +215,11 @@ if echo "$DISTRO_CODENAME" | grep -vqE "^bionic$" ; then
   prompt_for_continuation
 fi
 
+if [ ! -f /etc/timezone ]; then
+  echo "Etc/UTC" > /etc/timezone
+fi
+
+
 # stops globaleaks if it is running
 if ! ps aux | grep -q "[g]lobaleaks"; then
     DO "/etc/init.d/globaleaks stop"
