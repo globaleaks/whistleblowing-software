@@ -1,3 +1,7 @@
+Changes in version 3.5.6 - 2018-11-28
+    Fix file upload in relation to files bigger than 1MB
+    Fix configuration of boolan attributes of fields (#2463)
+
 Changes in version 3.5.5 - 2018-11-21
     Fix whistleblower authentication on systems with pynacl < 1.2
     Enforce usage of pynacl >= 1.2 on Bionic and Stretch
