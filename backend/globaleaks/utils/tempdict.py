@@ -33,35 +33,39 @@ class TempDict(OrderedDict):
         self[key] = item
 
     def get(self, key):
-        if key in self:
-            if self[key].expireCall is not None:
-                self[key].expireCall.reset(self.get_timeout())
+        if key not in self:
+            return
 
-            return self[key]
+        if self[key].expireCall is not None:
+            self[key].expireCall.reset(self.get_timeout())
 
-        return None
+        return self[key]
 
     def delete(self, key):
-        if key in self:
-            item = self.pop(key)
-            item.expireCall.cancel() # pylint: disable=no-member
-            self._expire(key)
-        else:
-            raise Exception("Failed to delete %s from %s" % (key, self.__class__))
+        if key not in self:
+            return
+
+        item = self.pop(key)
+        item.expireCall.cancel() # pylint: disable=no-member
+        self._expire(key)
 
 
     def _check_size_limit(self):
         size_limit = self.get_size_limit()
-        if size_limit is not None:
-            while len(self) >= size_limit:
-                # retrieves the oldest key in the OD
-                k = next(six.iterkeys(self))
-                self.delete(k)
+        if size_limit is None:
+            return
+
+        while len(self) >= size_limit:
+            # retrieves the oldest key in the OD
+            k = next(six.iterkeys(self))
+            self.delete(k)
 
     def _expire(self, key):
-        if key in self:
-            if self.expireCallback is not None:
-                # pylint: disable=not-callable
-                self.expireCallback(self[key])
+        if key not in self:
+            return
 
-            del self[key]
+        if self.expireCallback is not None:
+            # pylint: disable=not-callable
+            self.expireCallback(self[key])
+
+        del self[key]
