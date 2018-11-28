@@ -366,7 +366,7 @@ def try_to_enable_https(session, tid):
 
     ok, _ = cv.validate(db_cfg)
     if not ok:
-        raise errors.InvalidValidationError()
+        raise errors.InputValidationError()
 
     config.set_val(u'https_enabled', True)
     State.tenant_cache[tid].https_enabled = True
