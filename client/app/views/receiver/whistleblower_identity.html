@@ -30,16 +30,16 @@
     </div>
     <span data-ng-if="!tip.data.identity_provided" data-translate>Undeclared</span>
     <div data-ng-if="tip.data.identity_provided">
-        <div data-ng-if="!whistleblower_identity_field.attrs.visibility_subject_to_authorization.value || (tip.last_iar && tip.last_iar.reply == 'authorized')">
-        <dd data-ng-repeat="field in whistleblower_identity_field.children | orderBy:['y', 'x']">
-            <span data-ng-init="fieldAnswers=tip.data.whistleblower_identity.value" data-ng-include="'views/partials/tip_field.html'"></span>
-        <dd>
+      <div data-ng-if="!whistleblower_identity_field.attrs.visibility_subject_to_authorization.value || (tip.last_iar && tip.last_iar.reply == 'authorized')">
+        <div data-ng-repeat="field in whistleblower_identity_field.children | orderBy:['y', 'x']">
+          <span data-ng-init="fieldAnswers=tip.data.whistleblower_identity.value" data-ng-include="'views/partials/tip_field.html'"></span>
         </div>
-        <div data-ng-if="whistleblower_identity_field.attrs.visibility_subject_to_authorization.value && (!tip.last_iar || tip.last_iar.reply == 'denied')">
+      </div>
+      <div data-ng-if="whistleblower_identity_field.attrs.visibility_subject_to_authorization.value && (!tip.last_iar || tip.last_iar.reply == 'denied')">
         <a class="btn btn-primary" data-ng-click="file_identity_access_request()">
-            <span data-translate>Request access to the whistleblower's identity</span>
+          <span data-translate>Request access to the whistleblower's identity</span>
         </a>
-        </div>
+      </div>
     </div>
   </div>
 </div>
