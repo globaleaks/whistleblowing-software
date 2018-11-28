@@ -109,8 +109,7 @@ table {
 }
 
 #LogoBox img {
-  width: 100%;
-  border-radius: 5px;
+  max-height: 12em;
 }
 
 .keycode {
