@@ -216,6 +216,7 @@ class CtxValidator(object):
             self._validate(cfg, ctx, check_expiration)
         except Exception as err:
             return False, err
+
         return True, None
 
 
