@@ -159,7 +159,7 @@ table {
   text-align: center;
 }
 
-.imageUpload .changePictureButton, .imageUpload .deletePictureButton {
+html[dir] .imageUpload .changePictureButton, html[dir] .imageUpload .deletePictureButton {
   position: absolute;
   bottom: 10px;
   text-align: center;
@@ -369,16 +369,6 @@ textarea.form-control {
   display: none;
 }
 
-.btn-circle {
-  width: 30px;
-  height: 30px;
-  text-align: center;
-  padding: 6px 0;
-  font-size: 12px;
-  line-height: 1.428571429;
-  border-radius: 15px;
-}
-
 .glyphicon-none:before {
   content: "\2122";
   color: transparent !important;
@@ -428,6 +418,16 @@ textarea.form-control {
   .modal-lg .modal-dialog {
     width: 600px;
   }
+}
+
+html[dir] .btn-circle {
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  padding: 6px 0;
+  font-size: 12px;
+  line-height: 1.428571429;
+  border-radius: 15px;
 }
 
 html[dir='ltr'] #LogoBox,
