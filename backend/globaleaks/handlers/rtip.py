@@ -10,10 +10,14 @@ from twisted.internet.threads import deferToThread
 from twisted.internet.defer import inlineCallbacks, returnValue
 
 from globaleaks import models
+from globaleaks.handlers.admin.context import admin_serialize_context
+from globaleaks.handlers.admin.node import db_admin_serialize_node
+from globaleaks.handlers.admin.notification import db_get_notification
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.custodian import serialize_identityaccessrequest
 from globaleaks.handlers.operation import OperationHandler
 from globaleaks.handlers.submission import serialize_usertip, decrypt_tip
+from globaleaks.handlers.user import user_serialize_user
 from globaleaks.models import serializers
 from globaleaks.orm import transact
 from globaleaks.rest import errors, requests
@@ -22,6 +26,7 @@ from globaleaks.state import State
 from globaleaks.utils.crypto import GCE
 from globaleaks.utils.fs import directory_traversal_check
 from globaleaks.utils.log import log
+from globaleaks.utils.templating import Templating
 from globaleaks.utils.utility import get_expiration, datetime_now, datetime_never, datetime_to_ISO8601
 
 
@@ -374,13 +379,45 @@ def db_get_itip_comment_list(session, itip_id):
 
 @transact
 def create_identityaccessrequest(session, tid, user_id, rtip_id, request):
-    rtip, _ = db_access_rtip(session, tid, user_id, rtip_id)
+    rtip, itip = db_access_rtip(session, tid, user_id, rtip_id)
 
     iar = models.IdentityAccessRequest()
     iar.request_motivation = request['request_motivation']
     iar.receivertip_id = rtip.id
     session.add(iar)
     session.flush()
+
+    # TODO: manage email threshold for custodian user
+    user = session.query(models.User).get(user_id)
+    # is user wish to receive mail
+    if user.notification == 1:
+        data = {
+            'type': 'identity_access_request'
+        }
+        data['user'] = user_serialize_user(session, user, user.language)
+        data['tip'] = serialize_rtip(session, rtip, itip, user.language)
+        context = session.query(models.Context).filter(models.Context.id == itip.context_id, models.Context.tid == tid).one()
+        data['context'] = admin_serialize_context(session, context, user.language)
+        data['iar'] = serialize_identityaccessrequest(session, iar)
+        data['node'] = db_admin_serialize_node(session, tid, user.language)
+
+        if not data['node']['allow_unencrypted'] and len(user.pgp_key_public) == 0:
+            return
+
+        if data['node']['mode'] != u'whistleblowing.it':
+            data['notification'] = db_get_notification(session, tid, user.language)
+        else:
+            data['notification'] = db_get_notification(session, 1, user.language)
+
+        subject, body = Templating().get_mail_subject_and_body(data)
+
+        session.add(models.Mail({
+            'address': data['user']['mail_address'],
+            'subject': subject,
+            'body': body,
+            'tid': tid,
+        }))
+        session.flush()
 
     return serialize_identityaccessrequest(session, iar)
 
