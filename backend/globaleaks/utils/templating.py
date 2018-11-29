@@ -132,6 +132,14 @@ password_reset_complete_keyworlds = [
     '{NewPassword}'
 ]
 
+identity_access_request_keyworlds = [
+    '{RecipientName}',
+    '{TipNum}',
+    '{TorUrl}',
+    '{HTTPSUrl}',
+    '{NodeName}'
+]
+
 def indent(n=1):
     return '  ' * n
 
@@ -618,6 +626,20 @@ class PasswordResetComplete(UserNodeKeyword):
     def NewPassword(self):
         return self.data['new_password']
 
+class IdentityAccessRequestKeyword(UserNodeKeyword):
+    keyword_list = UserNodeKeyword.keyword_list + identity_access_request_keyworlds
+    data_keys =  UserNodeKeyword.data_keys + ['iar', 'tip', 'user']
+
+    def TipNum(self):
+        return str(self.data['tip']['id'])
+
+    def _TorUrl(self):
+        return 'http://' + self.data['node']['onionservice'] + '/#/custodian/identityaccessrequests/'
+
+    def _HTTPSUrl(self):
+        return 'https://' + self.data['node']['hostname'] + '/#/custodian/identityaccessrequests/'
+
+
 
 supported_template_types = {
     u'tip': TipKeyword,
@@ -641,7 +663,8 @@ supported_template_types = {
     u'email_validation': EmailValidationKeyword,
     u'password_reset_validation': PasswordResetValidation,
     u'password_reset_complete': PasswordResetComplete,
-    u'user_credentials': UserCredentials
+    u'user_credentials': UserCredentials,
+    u'identity_access_request': IdentityAccessRequestKeyword
 }
 
 
