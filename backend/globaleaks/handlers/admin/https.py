@@ -364,12 +364,12 @@ def try_to_enable_https(session, tid):
     db_cfg = load_tls_dict(session, tid)
     db_cfg['https_enabled'] = False
 
-    ok, err = cv.validate(db_cfg)
-    if ok:
-        config.set_val(u'https_enabled', True)
-        State.tenant_cache[tid].https_enabled = True
-    else:
-        raise err
+    ok, _ = cv.validate(db_cfg)
+    if not ok:
+        raise errors.InputValidationError()
+
+    config.set_val(u'https_enabled', True)
+    State.tenant_cache[tid].https_enabled = True
 
 
 @transact
@@ -454,9 +454,9 @@ class CSRFileHandler(FileHandler):
         db_cfg = load_tls_dict(session, tid)
 
         pkv = tls.PrivKeyValidator()
-        ok, err = pkv.validate(db_cfg)
-        if not ok or not err is None:
-            raise err
+        ok, _ = pkv.validate(db_cfg)
+        if not ok:
+            raise errors.InputValidationError()
 
         key_pair = db_cfg['ssl_key']
         try:

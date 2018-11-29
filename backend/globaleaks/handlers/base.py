@@ -401,8 +401,10 @@ class BaseHandler(object):
         with f.open('w') as f:
             f.write(self.request.args[b'file'][0])
 
-            if self.request.args[b'flowChunkNumber'][0] == self.request.args[b'flowTotalChunks'][0]:
-                f.finalize_write()
+            if self.request.args[b'flowChunkNumber'][0] != self.request.args[b'flowTotalChunks'][0]:
+                return None
+
+            f.finalize_write()
 
         mime_type, _ = mimetypes.guess_type(text_type(self.request.args[b'flowFilename'][0], 'utf-8'))
         if mime_type is None:
