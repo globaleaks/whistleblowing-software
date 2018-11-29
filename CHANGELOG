@@ -1,3 +1,9 @@
+Changes in version 3.5.8 - 2018-11-29
+    Fix visualization of logo preview
+
+Changes in version 3.5.7 - 2018-11-29
+    Add missing template home.html
+
 Changes in version 3.5.6 - 2018-11-28
     Fix file upload in relation to files bigger than 1MB
     Fix configuration of boolan attributes of fields (#2463)

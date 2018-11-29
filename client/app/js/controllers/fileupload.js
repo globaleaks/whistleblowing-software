@@ -65,7 +65,8 @@ controller('WBFileUploadCtrl', ['$scope', function($scope) {
     $flow.upload();
   };
 }]).
-controller('ImageUploadCtrl', ['$scope', '$rootScope', '$http', 'uploadUtils', function($scope, $rootScope, $http, uploadUtils) {
+controller('ImageUploadCtrl', ['$scope', '$rootScope', '$http', 'uploadUtils', 'Utils', function($scope, $rootScope, $http, uploadUtils, Utils) {
+  $scope.Utils = Utils;
   $scope.imageUploadObj = {};
 
   $scope.$on('flow::fileAdded', function (event, $flow, flowFile) {
