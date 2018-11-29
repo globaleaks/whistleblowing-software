@@ -1,3 +1,6 @@
+Changes in version 3.5.8 - 2018-11-29
+    Fix visualization of logo preview
+
 Changes in version 3.5.7 - 2018-11-29
     Add missing template home.html
 
