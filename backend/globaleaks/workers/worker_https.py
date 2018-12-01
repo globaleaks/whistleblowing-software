@@ -37,9 +37,9 @@ class HTTPSProcess(Process):
 
         for site_cfg in self.cfg['site_cfgs']:
             cv = ChainValidator()
-            ok, err = cv.validate(site_cfg, must_be_disabled=False, check_expiration=False)
-            if not ok or not err is None:
-                raise err
+            ok, _ = cv.validate(site_cfg, must_be_disabled=False, check_expiration=False)
+            if not ok:
+                raise Exception("Invalid HTTPS configuration")
 
         default_site = self.cfg['site_cfgs'].pop(0)
         sni_dict = {'DEFAULT': make_TLSContextFactory(default_site)}
