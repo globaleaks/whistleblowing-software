@@ -6,12 +6,6 @@
 .idea/
 .pybuild/
 
-appliance/data/*
-appliance/dist/*
-appliance/packer
-
-*.db
-*.py[co]
 backend/*_trial_temp*
 backend/build
 backend/glenv
@@ -28,9 +22,7 @@ debian/globaleaks/
 
 doc/_build
 
-client/app/components/
 client/app/fonts
 client/build/
-client/dest
 client/coverage
 client/node_modules/
