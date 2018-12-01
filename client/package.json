@@ -34,7 +34,7 @@
   },
   "devDependencies": {
     "eslint": "5.9.0",
-    "gettext-parser": "3.0.0",
+    "gettext-parser": "3.1.0",
     "grunt": "1.0.3",
     "grunt-angular-templates": "1.1.0",
     "grunt-confirm": "1.0.8",
@@ -48,11 +48,11 @@
     "grunt-usemin": "3.1.1",
     "gruntify-eslint": "5.0.0",
     "node-gettext": "2.0.0",
-    "npm-check-updates": "2.14.3",
+    "npm-check-updates": "2.15.0",
     "protractor": "5.4.1",
     "protractor-console-plugin": "0.1.1",
     "q": "1.5.1",
-    "superagent": "3.8.3",
+    "superagent": "4.0.0",
     "supertest": "3.3.0"
   }
 }
