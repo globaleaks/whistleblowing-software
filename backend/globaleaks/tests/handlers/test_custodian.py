@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from globaleaks.handlers import custodian
+from globaleaks.handlers import custodian, rtip
 from globaleaks.tests import helpers
 from twisted.internet.defer import inlineCallbacks
 
@@ -11,6 +11,15 @@ class TestIdentityAccessRequestInstance(helpers.TestHandlerWithPopulatedDB):
     def setUp(self):
         yield helpers.TestHandlerWithPopulatedDB.setUp(self)
         yield self.perform_full_submission_actions()
+
+        dummyRTips = yield self.get_rtips()
+
+        for rtip_desc in dummyRTips:
+            yield rtip.create_identityaccessrequest(1,
+                                                    rtip_desc['receiver_id'],
+                                                    rtip_desc['id'],
+                                                    {'request_motivation': u'request motivation'})
+
 
     @inlineCallbacks
     def test_get_new_identityaccessrequest(self):

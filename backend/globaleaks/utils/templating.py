@@ -631,7 +631,7 @@ class IdentityAccessRequestKeyword(UserNodeKeyword):
     data_keys =  UserNodeKeyword.data_keys + ['iar', 'tip', 'user']
 
     def TipNum(self):
-        return str(self.data['tip']['id'])
+        return str(self.data['tip']['progressive'])
 
     def _TorUrl(self):
         return 'http://' + self.data['node']['onionservice'] + '/#/custodian/identityaccessrequests/'
