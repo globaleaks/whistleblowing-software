@@ -1,5 +1,5 @@
-GLClient.controller('AdminFieldEditorCtrl', ['$scope', '$uibModal',
-  function($scope, $uibModal) {
+GLClient.controller('AdminFieldEditorCtrl', ['$scope',
+  function($scope) {
     $scope.editing = false;
     $scope.new_field = {};
 
