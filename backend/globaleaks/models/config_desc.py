@@ -284,6 +284,8 @@ ConfigFilters['public_node'] = ConfigFilters['admin_node'] - set([
     'basic_auth_username',
     'basic_auth_password',
     'default_timezone',
+    'ip_filter_authenticated',
+    'ip_filter_authenticated_enable',
     'threshold_free_disk_megabytes_high',
     'threshold_free_disk_megabytes_low',
     'threshold_free_disk_percentage_high',
