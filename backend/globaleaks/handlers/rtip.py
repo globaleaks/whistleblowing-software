@@ -377,32 +377,21 @@ def db_get_itip_comment_list(session, itip_id):
     return [serialize_comment(session, comment) for comment in session.query(models.Comment).filter(models.Comment.internaltip_id == itip_id)]
 
 
-@transact
-def create_identityaccessrequest(session, tid, user_id, rtip_id, request):
-    rtip, itip = db_access_rtip(session, tid, user_id, rtip_id)
+def db_create_identityaccessrequest_notifications(session, tid, itip, rtip, iar):
+    users = session.query(models.User).filter(models.User.role == u'custodian', models.User.notification == True)
+    for user in users:
+        node = db_admin_serialize_node(session, tid, user.language)
+        context = session.query(models.Context).filter(models.Context.id == itip.context_id, models.Context.tid == tid).one()
 
-    iar = models.IdentityAccessRequest()
-    iar.request_motivation = request['request_motivation']
-    iar.receivertip_id = rtip.id
-    session.add(iar)
-    session.flush()
-
-    # TODO: manage email threshold for custodian user
-    user = session.query(models.User).get(user_id)
-    # is user wish to receive mail
-    if user.notification == 1:
         data = {
             'type': 'identity_access_request'
         }
+
         data['user'] = user_serialize_user(session, user, user.language)
         data['tip'] = serialize_rtip(session, rtip, itip, user.language)
-        context = session.query(models.Context).filter(models.Context.id == itip.context_id, models.Context.tid == tid).one()
         data['context'] = admin_serialize_context(session, context, user.language)
         data['iar'] = serialize_identityaccessrequest(session, iar)
         data['node'] = db_admin_serialize_node(session, tid, user.language)
-
-        if not data['node']['allow_unencrypted'] and len(user.pgp_key_public) == 0:
-            return
 
         if data['node']['mode'] != u'whistleblowing.it':
             data['notification'] = db_get_notification(session, tid, user.language)
@@ -415,9 +404,21 @@ def create_identityaccessrequest(session, tid, user_id, rtip_id, request):
             'address': data['user']['mail_address'],
             'subject': subject,
             'body': body,
-            'tid': tid,
+            'tid': tid
         }))
-        session.flush()
+
+
+@transact
+def create_identityaccessrequest(session, tid, user_id, rtip_id, request):
+    rtip, itip = db_access_rtip(session, tid, user_id, rtip_id)
+
+    iar = models.IdentityAccessRequest()
+    iar.request_motivation = request['request_motivation']
+    iar.receivertip_id = rtip.id
+    session.add(iar)
+    session.flush()
+
+    db_create_identityaccessrequest_notifications(session, tid, itip, rtip, iar)
 
     return serialize_identityaccessrequest(session, iar)
 

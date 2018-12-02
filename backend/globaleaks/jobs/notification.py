@@ -188,9 +188,6 @@ class MailGenerator(object):
 
         data['node'] = self.serialize_config(session, 'node', tid, data['user']['language'])
 
-        if not data['node']['allow_unencrypted'] and len(data['user']['pgp_key_public']) == 0:
-            return
-
         if data['node']['mode'] != u'whistleblowing.it':
             data['notification'] = self.serialize_config(session, 'notification', tid, data['user']['language'])
         else:

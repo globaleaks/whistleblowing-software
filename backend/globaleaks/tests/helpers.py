@@ -786,10 +786,6 @@ class TestGLWithPopulatedDB(TestGL):
 
     @inlineCallbacks
     def perform_post_submission_actions(self):
-        identityaccessrequestCreation = {
-            'request_motivation': u'request motivation'
-        }
-
         self.dummyRTips = yield self.get_rtips()
 
         for rtip_desc in self.dummyRTips:
@@ -804,11 +800,6 @@ class TestGLWithPopulatedDB(TestGL):
                                       USER_PRV_KEY,
                                       rtip_desc['id'],
                                       'message')
-
-            yield rtip.create_identityaccessrequest(1,
-                                                    rtip_desc['receiver_id'],
-                                                    rtip_desc['id'],
-                                                    identityaccessrequestCreation)
 
         self.dummyWBTips = yield self.get_wbtips()
 
