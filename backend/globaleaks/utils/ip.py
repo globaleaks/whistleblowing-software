@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import ipaddress
 
 from six import text_type, binary_type
