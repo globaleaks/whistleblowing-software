@@ -1206,6 +1206,8 @@ class MockDict:
             'enable_developers_exception_notification': True,
             'ip_filter_authenticated': u'',
             'ip_filter_authenticated_enable': False,
+            'ip_filter_whistleblower': u'',
+            'ip_filter_whistleblower_enable': False,
             'counter_submissions': 0,
             'enable_password_reset': True,
             'enable_user_pgp_key_upload': False,

@@ -1,0 +1,54 @@
+import ipaddress
+
+from six import text_type, binary_type
+
+def parse_csv_ip_ranges_to_ip_networks(ip_str):
+    """Parse a list of IP addresses and/or CIDRs"""
+    try:
+        ip_str = text_type(ip_str)
+
+        ip_network_list = []
+
+        for ip_network_str in ip_str.split(','):
+            # We want to normalize to IPvXNetwork, so we can run in comparsions on
+            # IP ranges for authentications. However, we may get IP addresses, CIDR
+            # ranges, or garbage. Python does provide strict=True with the ipaddress
+            # methods; however, it will accept any integer is which *not* what we want
+            # so we need to handle this carefully.
+
+            # If it has a /, we'll assume it's a CIDR address, otherwise, a raw IP
+            if "/" in ip_network_str:
+                ip_net_obj = ipaddress.ip_network(ip_network_str, strict=True)
+                ip_network_list.append(ip_net_obj)
+            else:
+                # Let's try and see if we can work with this
+                ip_addr_obj = ipaddress.ip_address(ip_network_str)
+
+                # If we got here, it is, convert it to a proper /32 (or /128)
+                cidr_len = ip_addr_obj.max_prefixlen
+                ip_network = ipaddress.ip_network(ip_network_str + '/' + str(cidr_len))
+                ip_network_list.append(ip_network)
+
+        return ip_network_list
+
+    except:
+        return []
+
+
+
+def check_ip(client_ip, ip_filter):
+    try:
+        ip_networks = parse_csv_ip_ranges_to_ip_networks(ip_filter)
+
+        if isinstance(client_ip, binary_type):
+            client_ip = client_ip.decode()
+
+        client_ip_obj = ipaddress.ip_address(client_ip)
+
+        for ip_network in ip_networks:
+            if client_ip_obj in ip_network:
+                return True
+    except:
+        return False
+
+    return False

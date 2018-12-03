@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
 #
 # Handlers dealing with platform authentication
-import ipaddress
-
 from random import SystemRandom
 from six import text_type, binary_type
 from sqlalchemy import or_
@@ -16,8 +14,9 @@ from globaleaks.sessions import Sessions
 from globaleaks.settings import Settings
 from globaleaks.state import State
 from globaleaks.utils.crypto import GCE
+from globaleaks.utils.ip import check_ip
 from globaleaks.utils.log import log
-from globaleaks.utils.utility import datetime_now, deferred_sleep, parse_csv_ip_ranges_to_ip_networks
+from globaleaks.utils.utility import datetime_now, deferred_sleep
 
 
 def random_login_delay():
@@ -50,10 +49,14 @@ def random_login_delay():
 
 
 @transact
-def login_whistleblower(session, tid, receipt, client_using_tor):
+def login_whistleblower(session, tid, receipt, client_using_tor, client_ip):
     """
     login_whistleblower returns a session
     """
+    if (State.tenant_cache[tid]['ip_filter_whistleblower_enable'] and
+        not check_ip(client_ip, State.tenant_cache[tid]['ip_filter_whistleblower'])):
+        raise errors.AccessLocationInvalid
+
     x = None
 
     algorithms = [x[0] for x in session.query(WhistleblowerTip.hash_alg).filter(WhistleblowerTip.tid == tid).distinct()]
@@ -77,7 +80,7 @@ def login_whistleblower(session, tid, receipt, client_using_tor):
     itip = x[1]
 
     if not client_using_tor and not State.tenant_cache[tid]['https_whistleblower']:
-        log.err("Denied login request over clear Web for role 'whistleblower'")
+        log.err("Denied login request over Web for role 'whistleblower'")
         raise errors.TorNetworkRequired
 
     itip.wb_last_access = datetime_now()
@@ -90,11 +93,16 @@ def login_whistleblower(session, tid, receipt, client_using_tor):
     return Sessions.new(tid, wbtip.id, 'whistleblower', False, crypto_prv_key)
 
 
+
 @transact
 def login(session, tid, username, password, client_using_tor, client_ip):
     """
     login returns a session
     """
+    if (State.tenant_cache[tid]['ip_filter_authenticated_enable'] and
+        not check_ip(client_ip, State.tenant_cache[tid]['ip_filter_authenticated'])):
+        raise errors.AccessLocationInvalid
+
     user = None
 
     users = session.query(User).filter(User.username == username,
@@ -114,29 +122,6 @@ def login(session, tid, username, password, client_using_tor, client_ip):
     if not client_using_tor and not State.tenant_cache[tid]['https_' + user.role]:
         log.err("Denied login request over Web for role '%s'" % user.role)
         raise errors.TorNetworkRequired
-
-    # Check if we're doing IP address checks today
-    if State.tenant_cache[tid]['ip_filter_authenticated_enable']:
-        ip_networks = parse_csv_ip_ranges_to_ip_networks(
-            State.tenant_cache[tid]['ip_filter_authenticated']
-        )
-
-        if isinstance(client_ip, binary_type):
-            client_ip = client_ip.decode()
-
-        client_ip_obj = ipaddress.ip_address(client_ip)
-
-        # Safety check, we always allow localhost to log in
-        success = False
-        if client_ip_obj.is_loopback is True:
-            success = True
-
-        for ip_network in ip_networks:
-            if client_ip_obj in ip_network:
-                success = True
-
-        if success is not True:
-            raise errors.AccessLocationInvalid
 
     user.last_login = datetime_now()
 
@@ -194,7 +179,7 @@ class AuthenticationHandler(BaseHandler):
 
 class TokenAuthHandler(BaseHandler):
     """
-    Login handler for admins and recipents and custodians
+    Login handler for token based authentication
     """
     check_roles = 'unauthenticated'
     uniform_answer_time = True
@@ -245,7 +230,7 @@ class ReceiptAuthHandler(BaseHandler):
         if delay:
             yield deferred_sleep(delay)
 
-        session = yield login_whistleblower(self.request.tid, receipt, self.request.client_using_tor)
+        session = yield login_whistleblower(self.request.tid, receipt, self.request.client_using_tor, self.request.client_ip)
 
         log.debug("Login: Success (%s)" % session.user_role)
 

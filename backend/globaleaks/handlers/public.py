@@ -4,6 +4,7 @@
 import copy
 
 from sqlalchemy import or_
+from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import models, LANGUAGES_SUPPORTED, LANGUAGES_SUPPORTED_CODES
 from globaleaks.handlers.admin.file import db_get_file
@@ -12,6 +13,7 @@ from globaleaks.handlers.admin.submission_statuses import db_retrieve_all_submis
 from globaleaks.models.config import ConfigFactory, NodeL10NFactory
 from globaleaks.orm import transact
 from globaleaks.state import State
+from globaleaks.utils.ip import check_ip
 from globaleaks.utils.sets import merge_dicts
 from globaleaks.models import get_localized_values
 
@@ -122,7 +124,6 @@ def db_serialize_node(session, tid, language):
     ret_dict['languages_enabled'] = models.EnabledLanguage.list(session, tid) if node_dict['wizard_done'] else list(LANGUAGES_SUPPORTED_CODES)
     ret_dict['languages_supported'] = LANGUAGES_SUPPORTED
     ret_dict['configured'] = configured
-    ret_dict['accept_submissions'] = State.accept_submissions
 
     files = [u'logo', u'favicon', u'css', u'script']
     for x in files:
@@ -407,8 +408,17 @@ class PublicResource(BaseHandler):
     check_roles = '*'
     cache_resource = True
 
+    @inlineCallbacks
     def get(self):
         """
         Get all the public resources.
         """
-        return get_public_resources(self.request.tid, self.request.language)
+        ret = yield get_public_resources(self.request.tid, self.request.language)
+
+        ret['node']['accept_submissions'] = State.accept_submissions
+
+        if (self.state.tenant_cache[self.request.tid]['ip_filter_whistleblower_enable'] and
+            not check_ip(self.state.tenant_cache[self.request.tid]['ip_filter_whistleblower'], self.request.client_ip)):
+            ret['node']['accept_submissions'] = False
+
+        return ret
