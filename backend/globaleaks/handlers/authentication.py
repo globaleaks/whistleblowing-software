@@ -49,14 +49,10 @@ def random_login_delay():
 
 
 @transact
-def login_whistleblower(session, tid, receipt, client_using_tor, client_ip):
+def login_whistleblower(session, tid, receipt, client_using_tor):
     """
     login_whistleblower returns a session
     """
-    if (State.tenant_cache[tid]['ip_filter_whistleblower_enable'] and
-        not check_ip(client_ip, State.tenant_cache[tid]['ip_filter_whistleblower'])):
-        raise errors.AccessLocationInvalid
-
     x = None
 
     algorithms = [x[0] for x in session.query(WhistleblowerTip.hash_alg).filter(WhistleblowerTip.tid == tid).distinct()]
@@ -188,13 +184,17 @@ class TokenAuthHandler(BaseHandler):
     def post(self):
         request = self.validate_message(self.request.content.read(), requests.TokenAuthDesc)
 
-        delay = random_login_delay()
-        if delay:
-            yield deferred_sleep(delay)
-
         tid = int(request['tid'])
         if tid == 0:
              tid = self.request.tid
+
+        if (State.tenant_cache[tid]['ip_filter_authenticated_enable'] and
+            not check_ip(client_ip, State.tenant_cache[tid]['ip_filter_authenticated'])):
+            raise errors.AccessLocationInvalid
+
+        delay = random_login_delay()
+        if delay:
+            yield deferred_sleep(delay)
 
         session = Sessions.get(request['token'])
         if session is None or session.tid != tid:
@@ -224,13 +224,15 @@ class ReceiptAuthHandler(BaseHandler):
     def post(self):
         request = self.validate_message(self.request.content.read(), requests.ReceiptAuthDesc)
 
-        receipt = request['receipt']
+        if (State.tenant_cache[self.request.tid]['ip_filter_whistleblower_enable'] and
+            not check_ip(self.request.client_ip, State.tenant_cache[self.request.tid]['ip_filter_whistleblower'])):
+            raise errors.AccessLocationInvalid
 
         delay = random_login_delay()
         if delay:
             yield deferred_sleep(delay)
 
-        session = yield login_whistleblower(self.request.tid, receipt, self.request.client_using_tor, self.request.client_ip)
+        session = yield login_whistleblower(self.request.tid, request['receipt'], self.request.client_using_tor)
 
         log.debug("Login: Success (%s)" % session.user_role)
 
