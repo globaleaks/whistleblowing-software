@@ -148,6 +148,8 @@ ConfigDescriptor = {
 
     u'ip_filter_authenticated': Unicode(default=u''),
     u'ip_filter_authenticated_enable': Bool(default=False),
+    u'ip_filter_whistleblower': Unicode(default=u''),
+    u'ip_filter_whistleblower_enable': Bool(default=False),
 
     u'enable_password_reset': Bool(default=False),
     u'enable_user_pgp_key_upload': Bool(default=True),
@@ -233,6 +235,8 @@ ConfigFilters = {
         u'admin_api_token_digest',
         u'ip_filter_authenticated',
         u'ip_filter_authenticated_enable',
+        u'ip_filter_whistleblower',
+        u'ip_filter_whistleblower_enable',
         u'enable_password_reset',
         u'enable_user_pgp_key_upload',
         u'log_level',
@@ -286,6 +290,8 @@ ConfigFilters['public_node'] = ConfigFilters['admin_node'] - set([
     'default_timezone',
     'ip_filter_authenticated',
     'ip_filter_authenticated_enable',
+    'ip_filter_whistleblower',
+    'ip_filter_whistleblower_enable',
     'threshold_free_disk_megabytes_high',
     'threshold_free_disk_megabytes_low',
     'threshold_free_disk_percentage_high',

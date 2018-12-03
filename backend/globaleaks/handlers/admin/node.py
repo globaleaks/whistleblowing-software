@@ -17,8 +17,8 @@ from globaleaks.orm import transact
 from globaleaks.rest import errors, requests
 from globaleaks.state import State
 from globaleaks.utils.crypto import GCE
+from globaleaks.utils.ip import parse_csv_ip_ranges_to_ip_networks
 from globaleaks.utils.log import log
-from globaleaks.utils.utility import parse_csv_ip_ranges_to_ip_networks
 
 
 def db_admin_serialize_node(session, tid, language, config_node='admin_node'):
@@ -96,19 +96,19 @@ def db_update_node(session, tid, request, language, config_node):
 
     node.update(request)
 
-    if 'basic_auth' in request:
-        if request['basic_auth'] and request['basic_auth_username'] and request['basic_auth_password']:
-            node.set_val(u'basic_auth', True)
-            node.set_val(u'basic_auth_username', request['basic_auth_username'])
-            node.set_val(u'basic_auth_password', request['basic_auth_password'])
-        else:
-            node.set_val(u'basic_auth', False)
+    if 'basic_auth' in request and request['basic_auth_username'] and request['basic_auth_password']:
+        node.set_val(u'basic_auth', True)
+        node.set_val(u'basic_auth_username', request['basic_auth_username'])
+        node.set_val(u'basic_auth_password', request['basic_auth_password'])
+    else:
+        node.set_val(u'basic_auth', False)
 
     # Validate that IP addresses/ranges we're getting are goo
-    if 'ip_filter_authenticated' in request:
-        if request['ip_filter_authenticated_enable'] and request['ip_filter_authenticated']:
-            # Make sure we can validate and parse the whole thing
-            parse_csv_ip_ranges_to_ip_networks(request['ip_filter_authenticated'])
+    if 'ip_filter_authenticated' in request and request['ip_filter_authenticated_enable'] and request['ip_filter_authenticated']:
+        parse_csv_ip_ranges_to_ip_networks(request['ip_filter_authenticated'])
+
+    if 'ip_filter_whistleblower_enable' in request and request['ip_filter_whistleblower_enable'] and request['ip_filter_whistleblower']:
+        parse_csv_ip_ranges_to_ip_networks(request['ip_filter_whistleblower'])
 
     if 'languages_enabled' in request and 'default_language' in request:
         db_update_enabled_languages(session,

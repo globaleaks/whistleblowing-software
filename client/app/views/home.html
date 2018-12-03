@@ -12,11 +12,6 @@
       <div class="row" data-ng-show="!node.https_whistleblower && !connection.tor">
         <p class="text-danger" data-translate>You are connecting to the server without anonymity and this server supports only anonymous submissions</p>
       </div>
-      <div class="row" data-ng-show="!node.accept_submissions">
-        <p class="text-danger">
-          <span data-translate>Server temporarily unusable due to resource exhaustion; advise the Admin if you can.</span>
-        </p>
-      </div>
       <div class="row" data-ng-show="!node.disable_submissions && node.accept_submissions && (node.https_whistleblower || connection.tor)">
         <div id="WhistleblowerSubmitBox">
           <div id="WhistleblowerSubmitBoxHeader">{{::node.whistleblowing_question}}</div>

@@ -273,6 +273,8 @@ AdminNodeDesc = {
     'enable_developers_exception_notification': bool,
     'ip_filter_authenticated_enable': bool,
     'ip_filter_authenticated': text_type,
+    'ip_filter_whistleblower_enable': bool,
+    'ip_filter_whistleblower': text_type,
     'enable_password_reset': bool,
     'enable_user_pgp_key_upload': bool,
     'log_level': text_type,
