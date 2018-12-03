@@ -4,7 +4,7 @@
 import copy
 
 from sqlalchemy import or_
-from twisted.internet.defer import inlineCallbacks
+from twisted.internet.defer import inlineCallbacks, returnValue
 
 from globaleaks import models, LANGUAGES_SUPPORTED, LANGUAGES_SUPPORTED_CODES
 from globaleaks.handlers.admin.file import db_get_file
@@ -421,4 +421,4 @@ class PublicResource(BaseHandler):
             not check_ip(self.state.tenant_cache[self.request.tid]['ip_filter_whistleblower'], self.request.client_ip)):
             ret['node']['accept_submissions'] = False
 
-        return ret
+        returnValue(ret)
