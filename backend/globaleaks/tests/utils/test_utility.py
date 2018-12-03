@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 from io import StringIO
 
-import ipaddress
 import re
 from datetime import datetime
 from twisted.trial import unittest
@@ -69,18 +68,3 @@ class TestUtility(unittest.TestCase):
         self.assertEqual(utility.bytes_to_pretty_str("3000001"), "3MB")
         self.assertEqual(utility.bytes_to_pretty_str("20001"), "20KB")
         self.assertEqual(utility.bytes_to_pretty_str("1001"), "1KB")
-
-    def test_ip_str_to_ip_networks(self):
-        # This should return two objects, both in IPNetwork form
-        ip_str = "192.168.1.1,10.0.0.0/8,::1,2001:db8::/32"
-        ip_list = utility.parse_csv_ip_ranges_to_ip_networks(ip_str)
-        self.assertEqual(len(ip_list), 4)
-        self.assertIn(ipaddress.ip_network(u"192.168.1.1/32"), ip_list)
-        self.assertIn(ipaddress.ip_network(u"10.0.0.0/8"), ip_list)
-        self.assertIn(ipaddress.ip_network(u"::1/128"), ip_list)
-        self.assertIn(ipaddress.ip_network(u"2001:db8::/32"), ip_list)
-
-        # Now confirm we properly fail when garbage is appended
-        ip_str = ip_str + ",abcdef"
-        with self.assertRaises(errors.InputValidationError):
-            utility.parse_csv_ip_ranges_to_ip_networks(ip_str)
