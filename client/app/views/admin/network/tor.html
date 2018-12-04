@@ -34,9 +34,13 @@
 
           <div data-ng-show="admin.node.https_possible && admin.node.reachable_via_web">
             <div class="form-group">
-              <label data-translate>Roles enabled to use the platform without Tor:</label>
+              <label data-translate>Roles enabled to use the platform without Tor</label>
             </div>
             <table class="table table-bordered">
+              <thead>
+                <th data-translate>Role</th>
+                <th data-translate>Enabled</th>
+              </thead>
               <tbody>
                 <tr>
                   <td data-translate>Admin</td>

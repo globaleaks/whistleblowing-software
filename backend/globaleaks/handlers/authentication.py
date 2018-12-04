@@ -48,6 +48,16 @@ def random_login_delay():
     return 0
 
 
+def connection_check(client_ip, tid, role, client_using_tor):
+    ip_filter = State.tenant_cache[tid]['ip_filter'].get(role)
+    if (ip_filter and not check_ip(client_ip, ip_filter)):
+        raise errors.AccessLocationInvalid
+
+    https_allowed = State.tenant_cache[tid]['https_allowed'].get(role)
+    if (not https_allowed and not client_using_tor):
+        raise errors.TorNetworkRequired
+
+
 @transact
 def login_whistleblower(session, tid, receipt, client_using_tor):
     """
@@ -75,10 +85,6 @@ def login_whistleblower(session, tid, receipt, client_using_tor):
     wbtip = x[0]
     itip = x[1]
 
-    if not client_using_tor and not State.tenant_cache[tid]['https_whistleblower']:
-        log.err("Denied login request over Web for role 'whistleblower'")
-        raise errors.TorNetworkRequired
-
     itip.wb_last_access = datetime_now()
 
     crypto_prv_key = ''
@@ -95,10 +101,6 @@ def login(session, tid, username, password, client_using_tor, client_ip):
     """
     login returns a session
     """
-    if (State.tenant_cache[tid]['ip_filter_authenticated_enable'] and
-        not check_ip(client_ip, State.tenant_cache[tid]['ip_filter_authenticated'])):
-        raise errors.AccessLocationInvalid
-
     user = None
 
     users = session.query(User).filter(User.username == username,
@@ -115,9 +117,7 @@ def login(session, tid, username, password, client_using_tor, client_ip):
         Settings.failed_login_attempts += 1
         raise errors.InvalidAuthentication
 
-    if not client_using_tor and not State.tenant_cache[tid]['https_' + user.role]:
-        log.err("Denied login request over Web for role '%s'" % user.role)
-        raise errors.TorNetworkRequired
+    connection_check(client_ip, tid, user.role, client_using_tor)
 
     user.last_login = datetime_now()
 
@@ -188,10 +188,6 @@ class TokenAuthHandler(BaseHandler):
         if tid == 0:
              tid = self.request.tid
 
-        if (State.tenant_cache[tid]['ip_filter_authenticated_enable'] and
-            not check_ip(client_ip, State.tenant_cache[tid]['ip_filter_authenticated'])):
-            raise errors.AccessLocationInvalid
-
         delay = random_login_delay()
         if delay:
             yield deferred_sleep(delay)
@@ -200,6 +196,8 @@ class TokenAuthHandler(BaseHandler):
         if session is None or session.tid != tid:
             Settings.failed_login_attempts += 1
             raise errors.InvalidAuthentication
+
+        connection_check(self.request.client_ip, tid, session.user_role, self.request.client_using_tor)
 
         session = Sessions.regenerate(session.id)
 
@@ -224,9 +222,7 @@ class ReceiptAuthHandler(BaseHandler):
     def post(self):
         request = self.validate_message(self.request.content.read(), requests.ReceiptAuthDesc)
 
-        if (State.tenant_cache[self.request.tid]['ip_filter_whistleblower_enable'] and
-            not check_ip(self.request.client_ip, State.tenant_cache[self.request.tid]['ip_filter_whistleblower'])):
-            raise errors.AccessLocationInvalid
+        connection_check(self.request.client_ip, self.request.tid, 'whistleblower', self.request.client_using_tor)
 
         delay = random_login_delay()
         if delay:
