@@ -1,0 +1,57 @@
+<div class="panel panel-default">
+  <div class="panel-body">
+    <form name="adminIPAccessControlForm">
+      <div class="row">
+        <div class="col-md-12">
+          <div data-ng-show="admin.node.reachable_via_web">
+            <div class="form-group">
+              <label data-translate>Restrict access to specific IP addresses</label>
+            </div>
+            <table class="table table-bordered">
+              <thead>
+                <th data-translate>Role</th>
+                <th data-translate>Enabled</th>
+                <th data-translate>Whitelisted IP addresses</th>
+              </thead>
+              <tbody>
+                <tr>
+                  <td data-translate>Admin</td>
+                  <td><input data-ng-model="admin.node.ip_filter_admin_enable" type="checkbox"></td>
+                  <td><input data-ng-if="admin.node.ip_filter_admin_enable" class="form-control" name="ip_filter_list" data-ng-model="admin.node.ip_filter_admin" type="text" autocomplete="off" /></td>
+                </tr>
+                <tr>
+                  <td data-translate>Custodian</td>
+                  <td><input data-ng-model="admin.node.ip_filter_custodian_enable" type="checkbox"></td>
+                  <td><input data-ng-if="admin.node.ip_filter_custodian_enable" class="form-control" name="ip_filter_list" data-ng-model="admin.node.ip_filter_custodian" type="text" autocomplete="off" /></td>
+                </tr>
+                <tr>
+                  <td data-translate>Recipient</td>
+                  <td><input data-ng-model="admin.node.ip_filter_recipient_enable" type="checkbox"></td>
+                  <td><input data-ng-if="admin.node.ip_filter_recipient_enable" class="form-control" name="ip_filter_list" data-ng-model="admin.node.ip_filter_recipient" type="text" autocomplete="off" /></td>
+                </tr>
+                <tr>
+                  <td data-translate>Whistleblower</td>
+                  <td><input data-ng-model="admin.node.ip_filter_whistleblower_enable" type="checkbox"></td>
+                  <td><input data-ng-if="admin.node.ip_filter_whistleblower_enable" class="form-control" name="ip_filter_list" data-ng-model="admin.node.ip_filter_whistleblower" type="text" autocomplete="off" /></td>
+                </tr>
+              </tbody>
+            </table>
+            <div>
+              <div><span data-translate>Each entry must be separated with a comma.</span></div>
+              <div><span data-translate>Example:</span> <span>212.35.212.87,192.0.2.0/24,2001:db8::/32</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <hr />
+      <div class="row">
+        <div class="col-md-6">
+          <button id="AccessControlSave" class="btn btn-success" data-ng-disabled="adminIPAccessControlForm.$invalid" data-ng-click="Utils.update(admin.node)" type="submit">
+            <i class="glyphicon glyphicon-ok"></i>
+            <span data-translate>Save</span>
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

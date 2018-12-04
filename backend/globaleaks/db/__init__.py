@@ -154,6 +154,20 @@ def db_refresh_tenant_cache(session, tid_list):
     for tid, lang in models.EnabledLanguage.tid_list(session, tid_list):
         State.tenant_cache[tid].setdefault('languages_enabled', []).append(lang)
 
+    for tid in tid_list:
+        State.tenant_cache[tid]['ip_filter'] = {}
+        State.tenant_cache[tid]['https_allowed'] = {}
+
+        for x in [('admin', 'ip_filter_admin_enable', 'ip_filter_admin'),
+                  ('custodian', 'ip_filter_custodian_enable', 'ip_filter_custodian'),
+                  ('recipient', 'ip_filter_recipient_enable', 'ip_filter_recipient'),
+                  ('whistleblower', 'ip_filter_whistleblower_enable', 'ip_filter_whistleblower')]:
+            if State.tenant_cache[tid].get(x[1], False) and State.tenant_cache[1][x[2]]:
+                State.tenant_cache[tid]['ip_filter'][x[0]] = State.tenant_cache[1][x[2]]
+
+        for x in ['admin', 'custodian', 'receiver', 'whistleblower']:
+            State.tenant_cache[tid]['https_allowed'][x] = State.tenant_cache[tid].get('https_' + x, True)
+
 
 def db_refresh_memory_variables(session, to_refresh=None):
     tenant_map = {tenant.id:tenant for tenant in session.query(models.Tenant).filter(models.Tenant.active == True)}
@@ -200,10 +214,11 @@ def db_refresh_memory_variables(session, to_refresh=None):
             continue
 
         tenant = tenant_map[tid]
-        hostnames = []
-        onionnames = []
         if not tenant.active and tid != 1:
             continue
+
+        hostnames = []
+        onionnames = []
 
         if State.tenant_cache[tid].hostname != '':
             hostnames.append(State.tenant_cache[tid].hostname.encode())

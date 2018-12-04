@@ -65,7 +65,7 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
             'username': 'admin',
             'password': helpers.VALID_PASSWORD1
         })
-        State.tenant_cache[1]['https_admin'] = True
+        State.tenant_cache[1]['https_allowed']['admin'] = True
         response = yield handler.post()
         self.assertTrue('session_id' in response)
         self.assertEqual(len(Sessions), 1)
@@ -77,7 +77,7 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
             'username': 'admin',
             'password': helpers.VALID_PASSWORD1
         })
-        State.tenant_cache[1]['https_admin'] = False
+        State.tenant_cache[1]['https_allowed']['admin'] = False
         yield self.assertFailure(handler.post(), errors.TorNetworkRequired)
 
     @inlineCallbacks
@@ -152,8 +152,7 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
 
     @inlineCallbacks
     def test_login_reject_on_ip_filtering(self):
-        State.tenant_cache[1]['ip_filter_authenticated_enable'] = True
-        State.tenant_cache[1]['ip_filter_authenticated'] = '192.168.2.0/24'
+        State.tenant_cache[1]['ip_filter']['admin'] = '192.168.2.0/24'
 
         handler = self.request({
             'tid': 1,
@@ -164,8 +163,7 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
 
     @inlineCallbacks
     def test_login_success_on_ip_filtering(self):
-        State.tenant_cache[1]['ip_filter_authenticated_enable'] = True
-        State.tenant_cache[1]['ip_filter_authenticated'] = '192.168.2.0/24'
+        State.tenant_cache[1]['ip_filter']['admin'] = '192.168.2.0/24'
 
         handler = self.request({
             'tid': 1,
@@ -204,7 +202,7 @@ class TestReceiptAuth(helpers.TestHandlerWithPopulatedDB):
         handler = self.request({
             'receipt': self.dummySubmission['receipt']
         }, headers={'X-Tor2Web': 'whatever'})
-        State.tenant_cache[1]['https_whistleblower'] = True
+        State.tenant_cache[1]['https_allowed']['whistleblower'] = True
         response = yield handler.post()
         self.assertTrue('session_id' in response)
         self.assertEqual(len(Sessions), 1)
@@ -215,7 +213,7 @@ class TestReceiptAuth(helpers.TestHandlerWithPopulatedDB):
         handler = self.request({
             'receipt': self.dummySubmission['receipt']
         }, headers={'X-Tor2Web': 'whatever'})
-        State.tenant_cache[1]['https_whistleblower'] = False
+        State.tenant_cache[1]['https_allowed']['whistleblower'] = False
         yield self.assertFailure(handler.post(), errors.TorNetworkRequired)
 
     @inlineCallbacks

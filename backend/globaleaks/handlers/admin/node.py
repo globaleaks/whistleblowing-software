@@ -104,8 +104,8 @@ def db_update_node(session, tid, request, language, config_node):
         node.set_val(u'basic_auth', False)
 
     # Validate that IP addresses/ranges we're getting are goo
-    if 'ip_filter_authenticated' in request and request['ip_filter_authenticated_enable'] and request['ip_filter_authenticated']:
-        parse_csv_ip_ranges_to_ip_networks(request['ip_filter_authenticated'])
+    if 'ip_filter_admin' in request and request['ip_filter_admin_enable'] and request['ip_filter_admin']:
+        parse_csv_ip_ranges_to_ip_networks(request['ip_filter_admin'])
 
     if 'ip_filter_whistleblower_enable' in request and request['ip_filter_whistleblower_enable'] and request['ip_filter_whistleblower']:
         parse_csv_ip_ranges_to_ip_networks(request['ip_filter_whistleblower'])
