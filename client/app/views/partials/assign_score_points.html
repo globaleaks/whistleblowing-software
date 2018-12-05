@@ -6,8 +6,17 @@
 </div>
 <div class="modal-body">
   <span class="alert alert-default">
-    <span data-translate>Enter the number of score points to be assigned when this option is selected:</span>
-    <input id="score_points" class="form-control" data-ng-model="arg.score_points" type="number" />
+    <div>
+      <span data-translate>Type</span>
+      <select class="form-control" data-ng-model="arg.score_type" convert-to-number>
+        <option value="1" data-translate>Addition</option>
+        <option value="2" data-translate>Multiplier</option>
+      </select>
+    </span>
+    <div data-ng-if="arg.score_type !== 0">
+      <span data-translate>Value</span>
+      <input id="score_points" class="form-control" data-ng-model="arg.score_points" type="number" />
+    </div>
   </span>
 </div>
 <div class="modal-footer">
@@ -15,7 +24,7 @@
     <i class="glyphicon glyphicon-remove"></i>
     <span data-translate>Cancel</span>
   </a>
-  <a id="modal-action-ok" class="btn btn-danger" data-ng-click="arg.score_points = '0'; cancel()">
+  <a id="modal-action-ok" class="btn btn-danger" data-ng-click="arg.score_type = 0; arg.score_points = 0; cancel()">
     <i class="glyphicon glyphicon-ok"></i>
     <span data-translate>Reset</span>
   </a>

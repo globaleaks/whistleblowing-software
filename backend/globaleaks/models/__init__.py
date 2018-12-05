@@ -403,6 +403,9 @@ class _Context(Model):
     recipients_clarification = Column(JSON, default=dict, nullable=False)
     status_page_message = Column(JSON, default=dict, nullable=False)
     show_receivers_in_alphabetical_order = Column(Boolean, default=True, nullable=False)
+    enable_scoring_system = Column(Boolean, default=False, nullable=False)
+    score_threshold_high = Column(Integer, default=0, nullable=False)
+    score_threshold_medium = Column(Integer, default=0, nullable=False)
     presentation_order = Column(Integer, default=0, nullable=False)
     questionnaire_id = Column(UnicodeText(36), default=u'default', nullable=False)
     additional_questionnaire_id = Column(UnicodeText(36))
@@ -419,7 +422,9 @@ class _Context(Model):
     int_keys = [
       'tip_timetolive',
       'maximum_selectable_receivers',
-      'presentation_order'
+      'presentation_order',
+      'score_threasholds_high',
+      'score_threasholds_medium'
     ]
 
     bool_keys = [
@@ -434,7 +439,8 @@ class _Context(Model):
       'enable_two_way_comments',
       'enable_two_way_messages',
       'enable_attachments',
-      'enable_rc_to_wb_files'
+      'enable_rc_to_wb_files',
+      'enable_scoring_system'
     ]
 
     list_keys = ['receivers']
@@ -655,6 +661,7 @@ class _FieldOption(Model):
     presentation_order = Column(Integer, default=0, nullable=False)
     label = Column(JSON, nullable=False)
     score_points = Column(Integer, default=0, nullable=False)
+    score_type = Column(Integer, default=0, nullable=False)
     trigger_field = Column(UnicodeText(36))
 
     unicode_keys = ['field_id']
