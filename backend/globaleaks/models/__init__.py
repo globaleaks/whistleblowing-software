@@ -293,7 +293,7 @@ class _Comment(Model):
     author_id = Column(UnicodeText(36))
     content = Column(UnicodeText, nullable=False)
     type = Column(UnicodeText, nullable=False)
-    new = Column(Integer, default=True, nullable=False)
+    new = Column(Boolean, default=True, nullable=False)
 
     @declared_attr
     def __table_args__(self):
@@ -723,7 +723,7 @@ class _InternalFile(Model):
     filename = Column(UnicodeText(255), nullable=False)
     content_type = Column(UnicodeText, nullable=False)
     size = Column(Integer, nullable=False)
-    new = Column(Integer, default=True, nullable=False)
+    new = Column(Boolean, default=True, nullable=False)
     submission = Column(Integer, default = False, nullable=False)
 
     @declared_attr
@@ -841,7 +841,7 @@ class _Message(Model):
     receivertip_id = Column(UnicodeText(36), nullable=False)
     content = Column(UnicodeText, nullable=False)
     type = Column(UnicodeText, nullable=False)
-    new = Column(Integer, default=True, nullable=False)
+    new = Column(Boolean, default=True, nullable=False)
 
     @declared_attr
     def __table_args__(self):
@@ -931,7 +931,7 @@ class _ReceiverFile(Model):
     filename = Column(UnicodeText(255), nullable=False)
     downloads = Column(Integer, default=0, nullable=False)
     last_access = Column(DateTime, default=datetime_null, nullable=False)
-    new = Column(Integer, default=True, nullable=True)
+    new = Column(Boolean, default=True, nullable=True)
     status = Column(UnicodeText, default=u'processing', nullable=False)
 
     @declared_attr
@@ -957,7 +957,7 @@ class _ReceiverTip(Model):
     access_counter = Column(Integer, default=0, nullable=False)
     label = Column(UnicodeText, default=u'', nullable=False)
     can_access_whistleblower_identity = Column(Boolean, default=False, nullable=False)
-    new = Column(Integer, default=True, nullable=False)
+    new = Column(Boolean, default=True, nullable=False)
     enable_notifications = Column(Boolean, default=True, nullable=False)
 
     crypto_tip_prv_key = Column(LargeBinary(72), default=b'', nullable=False)
@@ -1285,7 +1285,7 @@ class _WhistleblowerFile(Model):
     creation_date = Column(DateTime, default=datetime_now, nullable=False)
     last_access = Column(DateTime, default=datetime_null, nullable=False)
     description = Column(UnicodeText, nullable=False)
-    new = Column(Integer, default=True, nullable=True)
+    new = Column(Boolean, default=True, nullable=True)
 
     @declared_attr
     def __table_args__(self):
