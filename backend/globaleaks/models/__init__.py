@@ -563,6 +563,7 @@ class _Field(Model):
                                               'fileupload',
                                               'number',
                                               'date',
+                                              'map',
                                               'fieldgroup'])),
                 CheckConstraint(self.instance.in_(['instance',
                                                   'reference',

@@ -34,7 +34,7 @@ GLClient.controller('AdminFieldEditorCtrl', ['$scope',
     };
 
     $scope.showConfiguration = function(field) {
-      if (['inputbox', 'textarea', 'checkbox', 'multichoice', 'selectbox', 'tos', 'date'].indexOf(field.type) > -1) {
+      if (['checkbox', 'date', 'inputbox', 'map', 'multichoice', 'selectbox', 'textarea', 'tos'].indexOf(field.type) > -1) {
         return true;
       }
 
@@ -46,7 +46,7 @@ GLClient.controller('AdminFieldEditorCtrl', ['$scope',
     };
 
     $scope.showOptions = function(field) {
-      if (['checkbox', 'selectbox', 'multichoice'].indexOf(field.type) > -1) {
+      if (['checkbox', 'selectbox', 'multichoice', 'map'].indexOf(field.type) > -1) {
         return true;
       }
 

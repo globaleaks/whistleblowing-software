@@ -94,6 +94,12 @@
           </label>
         </div>
       </div>
+      <div data-ng-switch-when="map">
+        <div id="{{::fieldEntry}}">
+          <div class="map"></div>
+          <input class="form-control inputelem" value="{{option_name}}" type="text" disabled></input>
+        </div>
+      </div>
       <div data-ng-switch-when="fileupload">
         <div id="{{::fieldEntry}}" data-ng-include="'views/partials/rfile_upload_button.html'"></div>
       </div>

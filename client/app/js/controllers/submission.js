@@ -594,9 +594,90 @@ controller('SubmissionFieldErrKeyCtrl', ['$scope',
       formFieldSel.focus();
     };
 }]).
-controller('SubmissionFormFieldCtrl', ['$scope',
-  function($scope) {
+controller('SubmissionFormFieldCtrl', ['$scope', 'topojson',
+  function($scope, topojson) {
     $scope.f = $scope[$scope.fieldFormVarName];
+
+    if ($scope.field.type == 'map') {
+        $scope.option_name = null;
+
+        d3.json($scope.field.attrs.topojson.value).then(function(json) {
+
+        var width = 384,
+            height = 240;
+
+        var projection = d3.geoMercator();
+        var path = d3.geoPath();
+
+        path.projection(projection);
+
+        var svg = d3.select('#' + $scope.fieldEntry).select('.map').append("svg").attr("width", width).attr("height", height);
+
+        var key = Object.keys(json.objects)[0];
+        var json = topojson.feature(json, json.objects[key]);
+
+        projection.scale(1).translate([0, 0]);
+
+        var b = path.bounds(json),
+            s = .95 / Math.max((b[1][0] - b[0][0]) / width, (b[1][1] - b[0][1]) / height),
+            t = [(width - s * (b[1][0] + b[0][0])) / 2, (height - s * (b[1][1] + b[0][1])) / 2];
+
+        projection.scale(s).translate(t);
+
+        var set = 0;
+        var clicked = null;
+
+        svg.selectAll('svg')
+           .data(json.features)
+           .enter().append("path")
+           .attr("class", "mapoutline")
+           .attr("d", path)
+           .on("mouseover", function(d) {
+             if (clicked != this) {
+               d3.select(this).attr("r", 5.5).style("fill", "#EEE");
+               $scope.option_name = d.properties.name;
+             }
+
+             $scope.$apply();
+           })
+           .on("mouseout", function(d) {
+             if (clicked != this) {
+               d3.select(this).attr("r", 5.5).style("fill", "#DDD");
+               $scope.option_name = '';
+             }
+
+             $scope.$apply();
+           })
+           .on("click", function(d) {
+             if ($scope.answers[$scope.field.id][0]['value'] != d.id) {
+               if (clicked !== null) {
+                 d3.select(clicked).attr("r", 5.5).style("fill", "#DDD");
+               }
+               clicked = this;
+               d3.select(this).attr("r", 10).style("fill", "red");
+               $scope.option_name = d.properties.name;
+               $scope.answers[$scope.field.id][0]['value'] = d.id;
+             } else {
+               d3.select(this).attr("r", 5.5).style("fill", "#DDD");
+               $scope.option_name = '';
+               $scope.answers[$scope.field.id][0]['value'] = '';
+             }
+             $scope.$apply();
+           });
+
+          svg.selectAll("text")
+          .data(json.features)
+          .enter()
+          .append("svg:circle")
+          .attr("fill", "#000").attr("r", 1.5)
+          .attr("cx", function(d){
+              return path.centroid(d)[0];
+          })
+          .attr("cy", function(d){
+              return  path.centroid(d)[1];
+          });
+      });
+    }
 }]).
 controller('SubmissionFieldEntryCtrl', ['$scope',
   function($scope) {

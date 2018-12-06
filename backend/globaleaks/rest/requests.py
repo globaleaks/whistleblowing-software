@@ -54,6 +54,7 @@ field_type_regexp                 = (r'^('
                                      'tos|'
                                      'fileupload|'
                                      'date|'
+                                     'map|'
                                      'fieldgroup)$')
 
 field_attr_type_regexp            = (r'^('
