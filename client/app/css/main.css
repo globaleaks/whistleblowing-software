@@ -457,3 +457,13 @@ html[dir='ltr'] .imageUpload .changePictureButton, html[dir='rtl'] .imageUpload 
 html[dir='ltr'] .imageUpload .changePictureButton, html[dir='rtl'] .imageUpload .deletePictureButton {
   right: 10px;
 }
+
+.feature {
+  fill: #ccc;
+}
+
+.mapoutline {
+  fill: #ddd;
+  stroke: #000;
+  stroke-width: 1.5px;
+}

@@ -28,6 +28,9 @@
     "min_date": {"type": "unicode", "value": ""},
     "max_date": {"type": "unicode", "value": ""}
  },
+  "map": {
+    "topojson": {"type": "unicode", "value": ""}
+ },
  "whistleblower_identity": {
    "visibility_subject_to_authorization": {"type":"bool", "value": false},
    "text_shown_upon_negative_answer": {"type":"localized", "value": ""},
