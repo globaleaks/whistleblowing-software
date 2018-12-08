@@ -433,6 +433,7 @@ class _Context(Model):
       'show_context',
       'show_recipients_details',
       'show_receivers_in_alphabetical_order',
+      'show_steps_navigation_interface',
       'allow_recipients_selection',
       'enable_comments',
       'enable_messages',

@@ -46,6 +46,7 @@ def admin_serialize_context(session, context, language):
         'enable_rc_to_wb_files': context.enable_rc_to_wb_files,
         'presentation_order': context.presentation_order,
         'show_receivers_in_alphabetical_order': context.show_receivers_in_alphabetical_order,
+        'show_steps_navigation_interface': context.show_steps_navigation_interface,
         'questionnaire_id': context.questionnaire_id,
         'additional_questionnaire_id': context.additional_questionnaire_id,
         'receivers': receivers,
