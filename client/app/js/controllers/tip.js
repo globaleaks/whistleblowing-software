@@ -51,10 +51,14 @@ GLClient.controller('TipCtrl',
             }
           };
 
-          for (var k4=0; k4<step.children.length; k4++) {
-            var field = step.children[k4];
-            for (var k5=0; k5<$scope.tip.questionnaires[0].answers[field.id].length; k5++) {
-              filterNotTriggeredField(field, $scope.tip.questionnaires[0].answers[field.id][k5]);
+          if (!$scope.isStepTriggered(step, $scope.tip.answers, $scope.tip.total_score)) {
+            tip.questionnaires[0].splice(i, 1);
+          } else {
+            for (var k4=0; k4<step.children.length; k4++) {
+              var field = step.children[k4];
+              for (var k5=0; k5<$scope.tip.questionnaires[0].answers[field.id].length; k5++) {
+                filterNotTriggeredField(field, $scope.tip.questionnaires[0].answers[field.id][k5]);
+              }
             }
           }
         }

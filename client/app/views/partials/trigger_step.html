@@ -2,12 +2,12 @@
   <button type="submit" class="close" aria-hidden="true" data-ng-click="cancel()">
     <i class="glyphicon glyphicon glyphicon-remove-circle"></i>
   </button>
-  <div class="modal-title" data-translate>Trigger question</div>
+  <div class="modal-title" data-translate>Trigger step</div>
 </div>
 <div class="modal-body">
   <div class="alert alert-default">
-    <div data-translate>Question</div>
-    <select class="form-control" data-ng-model="arg.trigger_field" data-ng-options="field.id as field.label for field in all_fields | orderBy:'label'"></select>
+    <div data-translate>Step</div>
+    <select class="form-control" data-ng-model="arg.trigger_step" data-ng-options="step.id as step.label for step in questionnaire.steps | orderBy:'label'"></select>
   </div>
 </div>
 <div class="modal-footer">
@@ -15,7 +15,7 @@
     <i class="glyphicon glyphicon-remove"></i>
     <span data-translate>Cancel</span>
   </a>
-  <a id="modal-action-ok" class="btn btn-danger" data-ng-click="arg.trigger_field = ''; cancel()">
+  <a id="modal-action-ok" class="btn btn-danger" data-ng-click="arg.trigger_step = ''; cancel()">
     <i class="glyphicon glyphicon-ok"></i>
     <span data-translate>Reset</span>
   </a>

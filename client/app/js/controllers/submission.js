@@ -83,7 +83,15 @@ GLClient.controller('SubmissionCtrl',
   };
 
   $scope.lastStepIndex = function() {
-    return $scope.selected_context.questionnaire.steps.length - 1;
+    var last_enabled = 0;
+
+    for (var i = 0; i < $scope.selected_context.questionnaire.steps.length; i++) {
+      if (fieldUtilities.isFieldTriggered($scope.selected_context.questionnaire.steps[i], $scope.answers, $scope.total_score)) {
+        last_enabled = i;
+      }
+    }
+
+    return last_enabled;
   };
 
   $scope.hasNextStep = function() {
@@ -429,9 +437,11 @@ controller('AdditionalQuestionnaireCtrl',
     if ($scope.hasNextStep()) {
       $scope.vars.submissionForm.$dirty = false;
       for (var i = $scope.selection + 1; i <= $scope.lastStepIndex(); i++) {
-        $scope.selection = i;
-        $anchorScroll('top');
-        break;
+        if (fieldUtilities.isFieldTriggered($scope.submission.context.questionnaire.steps[i], $scope.answers, $scope.total_score)) {
+          $scope.selection = i;
+          $anchorScroll('top');
+          break;
+        }
       }
     }
   };
@@ -440,9 +450,11 @@ controller('AdditionalQuestionnaireCtrl',
     if ($scope.hasPreviousStep()) {
       $scope.vars.submissionForm.$dirty = false;
       for (var i = $scope.selection - 1; i >= $scope.firstStepIndex(); i--) {
-        $scope.selection = i;
-        $anchorScroll('top');
-	break;
+        if (i === -1 || fieldUtilities.isFieldTriggered($scope.submission.context.questionnaire.steps[i], $scope.answers, $scope.total_score)) {
+          $scope.selection = i;
+          $anchorScroll('top');
+          break;
+        }
       }
     }
   };
