@@ -598,7 +598,7 @@ controller('SubmissionFormFieldCtrl', ['$scope', 'topojson',
   function($scope, topojson) {
     $scope.f = $scope[$scope.fieldFormVarName];
 
-    if ($scope.field.type == 'map') {
+    if ($scope.field.type == 'map' && $scope.field.attrs.topojson.value) {
         $scope.option_name = null;
 
         d3.json($scope.field.attrs.topojson.value).then(function(json) {
