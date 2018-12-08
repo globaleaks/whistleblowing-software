@@ -662,16 +662,18 @@ class _FieldOption(Model):
     score_points = Column(Integer, default=0, nullable=False)
     score_type = Column(Integer, default=0, nullable=False)
     trigger_field = Column(UnicodeText(36))
+    trigger_step = Column(UnicodeText(36))
 
     unicode_keys = ['field_id']
     int_keys = ['presentation_order', 'score_points']
     localized_keys = ['label']
-    optional_references = ['trigger_field']
+    optional_references = ['trigger_field', 'trigger_step']
 
     @declared_attr
     def __table_args__(self):
         return (ForeignKeyConstraint(['field_id'], ['field.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),
-                ForeignKeyConstraint(['trigger_field'], ['field.id'], ondelete='SET NULL', deferrable=True, initially='DEFERRED'))
+                ForeignKeyConstraint(['trigger_field'], ['field.id'], ondelete='SET NULL', deferrable=True, initially='DEFERRED'),
+                ForeignKeyConstraint(['trigger_step'], ['step.id'], ondelete='SET NULL', deferrable=True, initially='DEFERRED'))
 
 
 class _File(Model):
@@ -1068,7 +1070,7 @@ class _Step(Model):
     triggered_by_score = Column(Integer, default=0, nullable=False)
 
     unicode_keys = ['questionnaire_id']
-    int_keys = ['presentation_order']
+    int_keys = ['presentation_order', 'triggered_by_score']
     localized_keys = ['label', 'description']
 
     @declared_attr

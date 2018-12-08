@@ -224,7 +224,8 @@ def serialize_field_option(option, language):
         'presentation_order': option.presentation_order,
         'score_points': option.score_points,
         'score_type': option.score_type,
-        'trigger_field': option.trigger_field if option.trigger_field else ''
+        'trigger_field': option.trigger_field if option.trigger_field else '',
+        'trigger_step': option.trigger_step if option.trigger_step else ''
     }
 
     return get_localized_values(ret_dict, option, option.localized_keys, language)
@@ -311,6 +312,14 @@ def serialize_step(session, tid, step, language, serialize_templates=True):
     :param language: the language in which to localize data
     :return: a serialization of the object
     """
+    triggered_by_options = []
+    _triggered_by_options = session.query(models.FieldOption).filter(models.FieldOption.trigger_step == step.id)
+    for trigger in _triggered_by_options:
+        triggered_by_options.append({
+            'field': trigger.field_id,
+            'option': trigger.id
+        })
+
     children = session.query(models.Field).filter(models.Field.step_id == step.id)
 
     data = db_prepare_fields_serialization(session, children)
@@ -319,6 +328,8 @@ def serialize_step(session, tid, step, language, serialize_templates=True):
         'id': step.id,
         'questionnaire_id': step.questionnaire_id,
         'presentation_order': step.presentation_order,
+        'triggered_by_score': step.triggered_by_score,
+        'triggered_by_options': triggered_by_options,
         'children': [serialize_field(
             session, tid, f, language, data, serialize_templates=serialize_templates
         ) for f in children]

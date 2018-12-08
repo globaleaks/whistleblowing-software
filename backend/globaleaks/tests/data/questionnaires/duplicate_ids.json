@@ -35,7 +35,8 @@
               },
               "presentation_order": 0,
               "score_points": 0,
-              "trigger_field": ""
+              "trigger_field": "",
+              "trigger_step": ""
             },
             {
               "id": "e9cee72c-2c00-4e8d-b468-6f9cd70f1fb7",
@@ -44,7 +45,8 @@
               },
               "presentation_order": 1,
               "score_points": 0,
-              "trigger_field": ""
+              "trigger_field": "",
+              "trigger_step": ""
             },
             {
               "id": "c23121fb-51da-4128-8c57-bb1b6406f8e0",
@@ -53,7 +55,8 @@
               },
               "presentation_order": 2,
               "score_points": 0,
-              "trigger_field": ""
+              "trigger_field": "",
+              "trigger_step": ""
             },
             {
               "id": "8dd8351c-bded-4e6a-aa85-3b5b62a0a346",
@@ -62,7 +65,8 @@
               },
               "presentation_order": 3,
               "score_points": 0,
-              "trigger_field": ""
+              "trigger_field": "",
+              "trigger_step": ""
             }
           ],
           "preview": true,
@@ -87,6 +91,8 @@
       },
       "presentation_order": 0,
       "questionnaire_id": "b170589b-30d6-4ec1-ae52-18659b2a606b"
+      "triggered_by_options": [],
+      "triggered_by_score": 0
     },
     {
       "children": [
@@ -132,7 +138,9 @@
         "en": "final step"
       },
       "presentation_order": 1,
-      "questionnaire_id": "b170589b-30d6-4ec1-ae52-18659b2a606b"
+      "questionnaire_id": "b170589b-30d6-4ec1-ae52-18659b2a606b",
+      "triggered_by_options": [],
+      "triggered_by_score": 0
     }
   ],
   "steps_navigation_requires_completion": true
