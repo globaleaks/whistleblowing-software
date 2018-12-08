@@ -233,3 +233,24 @@ html[dir="ltr"] .question {
 html[dir="rtl"] .question {
   padding: 0 0.8em 0 0;
 }
+
+.feature {
+  fill: #ccc;
+}
+
+.mapoutline {
+  fill: #ddd;
+  stroke: #000;
+  stroke-width: 1.5px;
+}
+
+div.tooltip {
+  position: absolute;
+  text-align: center;
+  padding: 2px;
+  font: 1em;
+  background: #fff;
+  border: 0px;
+  font-weight: bold;
+  pointer-events: none;
+}
