@@ -423,8 +423,8 @@ class _Context(Model):
       'tip_timetolive',
       'maximum_selectable_receivers',
       'presentation_order',
-      'score_threasholds_high',
-      'score_threasholds_medium'
+      'score_threashold_high',
+      'score_threashold_medium'
     ]
 
     bool_keys = [
