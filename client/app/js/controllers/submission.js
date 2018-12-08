@@ -150,6 +150,7 @@ GLClient.controller('SubmissionCtrl',
       for (var i = $scope.selection - 1; i >= $scope.firstStepIndex(); i--) {
         $scope.selection = i;
         $anchorScroll('top');
+	break;
       }
     }
   };
@@ -441,6 +442,7 @@ controller('AdditionalQuestionnaireCtrl',
       for (var i = $scope.selection - 1; i >= $scope.firstStepIndex(); i--) {
         $scope.selection = i;
         $anchorScroll('top');
+	break;
       }
     }
   };
