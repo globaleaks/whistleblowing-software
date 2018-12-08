@@ -127,7 +127,7 @@
                </label>
               <input class="form-control" data-ng-model="field.width" type="number" min="0" max="12">
             </div>
-            <div class="form-group" data-ng-if="admin.node.enable_experimental_features">
+            <div class="form-group">
               <label data-translate>Triggered by a score higher than:</label>
               <input class="form-control" data-ng-model="field.triggered_by_score" type="number" min="0" max="1000">
             </div>
@@ -304,7 +304,7 @@
                           <i class="glyphicon glyphicon-asterisk"></i>
                         </button>
                       </span>
-                      <span data-ng-if="node.enable_experimental_features">
+                      <span>
                         <button class="btn btn-xs" data-ng-class="option.score_type !== 0 ? 'btn-warning' : 'btn-default'" data-ng-click="assignScorePointsDialog(option)" uib-popover="{{'Assign score points' | translate}}" popover-placement="left">
                           <i class="glyphicon glyphicon-flash"></i>
                           <span data-ng-if="option.score_type !== 0">

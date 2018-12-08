@@ -161,7 +161,7 @@
               <span data-translate>Preview</span>
             </span>
           </th>
-          <th class="TipInfoScore" data-ng-if="::node.enable_experimental_features">
+          <th class="TipInfoScore">
             <span data-ng-click="$parent.sortKey = 'total_score'; sortReverse = !sortReverse">
               <i class="glyphicon glyphicon-flash"></i>
               <span data-translate>Score</span>
@@ -215,7 +215,7 @@
           <td class="TipInfoPreview">
             <div data-ng-repeat="field in tip.preview_schema" data-ng-init="fieldAnswers = tip.preview; preview=true" data-ng-include="'views/partials/tip_field.html'"></div>
           </td>
-          <td class="TipInfoScore" data-ng-if="::node.enable_experimental_features">{{::tip.total_score}}</td>
+          <td class="TipInfoScore">{{::tip.total_score}}</td>
         </tr>
       </tbody>
     </table>
