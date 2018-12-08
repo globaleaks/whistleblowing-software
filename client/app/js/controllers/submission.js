@@ -601,12 +601,15 @@ controller('SubmissionFormFieldCtrl', ['$scope', 'topojson',
     $scope.f = $scope[$scope.fieldFormVarName];
 
     if ($scope.field.type == 'map' && $scope.field.attrs.topojson.value) {
-        $scope.option_name = null;
+      var width = 384,
+          height = 240;
 
-        d3.json($scope.field.attrs.topojson.value).then(function(json) {
+      $scope.clicked = null;
+      $scope.option_name = null;
 
-        var width = 384,
-            height = 240;
+      d3.json($scope.field.attrs.topojson.value).then(function(json) {
+        var key = Object.keys(json.objects)[0];
+        json = topojson.feature(json, json.objects[key]);
 
         var projection = d3.geoMercator();
         var path = d3.geoPath();
@@ -615,8 +618,7 @@ controller('SubmissionFormFieldCtrl', ['$scope', 'topojson',
 
         var svg = d3.select('#' + $scope.fieldEntry).select('.map').append("svg").attr("width", width).attr("height", height);
 
-        var key = Object.keys(json.objects)[0];
-        var json = topojson.feature(json, json.objects[key]);
+        var tooltip = d3.select("body").append("div").attr("class", "tooltip").style("opacity", 0);
 
         projection.scale(1).translate([0, 0]);
 
@@ -626,36 +628,41 @@ controller('SubmissionFormFieldCtrl', ['$scope', 'topojson',
 
         projection.scale(s).translate(t);
 
-        var set = 0;
-        var clicked = null;
-
         svg.selectAll('svg')
            .data(json.features)
            .enter().append("path")
            .attr("class", "mapoutline")
            .attr("d", path)
            .on("mouseover", function(d) {
-             if (clicked != this) {
-               d3.select(this).attr("r", 5.5).style("fill", "#EEE");
-               $scope.option_name = d.properties.name;
+              tooltip.transition()
+              .duration(200)
+              .style("opacity", .9);
+              tooltip.html(d.properties.name)
+              .style("left", (d3.event.pageX) + "px")
+              .style("top", (d3.event.pageY - 28) + "px");
+
+             if ($scope.clicked != this) {
+               d3.select(this).attr("r", 5.5).style("fill", "orange");
              }
 
              $scope.$apply();
            })
            .on("mouseout", function(d) {
-             if (clicked != this) {
+             tooltip.transition()
+             .duration(500)
+             .style("opacity", 0);
+             if ($scope.clicked != this) {
                d3.select(this).attr("r", 5.5).style("fill", "#DDD");
-               $scope.option_name = '';
              }
 
              $scope.$apply();
            })
            .on("click", function(d) {
              if ($scope.answers[$scope.field.id][0]['value'] != d.id) {
-               if (clicked !== null) {
-                 d3.select(clicked).attr("r", 5.5).style("fill", "#DDD");
+               if ($scope.clicked !== null) {
+                 d3.select($scope.clicked).attr("r", 5.5).style("fill", "#DDD");
                }
-               clicked = this;
+               $scope.clicked = this;
                d3.select(this).attr("r", 10).style("fill", "red");
                $scope.option_name = d.properties.name;
                $scope.answers[$scope.field.id][0]['value'] = d.id;
