@@ -665,7 +665,7 @@ class _FieldOption(Model):
     trigger_step = Column(UnicodeText(36), nullable=True)
 
     unicode_keys = ['field_id']
-    int_keys = ['presentation_order', 'score_points']
+    int_keys = ['presentation_order', 'score_type', 'score_points']
     localized_keys = ['label']
     optional_references = ['trigger_field', 'trigger_step']
 
