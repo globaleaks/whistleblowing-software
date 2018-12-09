@@ -311,6 +311,7 @@ AdminFieldOptionDesc = {
     'id': uuid_regexp_or_empty,
     'label': text_type,
     'presentation_order': int,
+    'score_type': int,
     'score_points': int,
     'trigger_field': uuid_regexp_or_empty,
     'trigger_step': uuid_regexp_or_empty
