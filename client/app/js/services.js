@@ -141,7 +141,7 @@ angular.module('GLServices', ['ngResource']).
           return loginUri;
         };
 
-        self.keycode = '';
+        self.receipt = '';
 
         self.logout = function() {
           locationForce.clear();
@@ -358,7 +358,8 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
 
         self._submission.$update(function(result){
           if (result) {
-            Authentication.keycode = self._submission.receipt;
+            Authentication.receipt = self._submission.receipt;
+            Authentication.level = self._submission.level;
             $location.url("/receipt");
           }
         });
@@ -845,7 +846,7 @@ factory('AdminUtils', ['AdminContextResource', 'AdminQuestionnaireResource', 'Ad
         } else if (path === '/submission') {
           $rootScope.ht = $rootScope.node.header_title_submissionpage;
         } else if (path === '/receipt') {
-          if (Authentication.keycode) {
+          if (Authentication.receipt) {
             $rootScope.ht = $rootScope.node.header_title_receiptpage;
           } else {
             $rootScope.ht = "Login";
