@@ -72,7 +72,7 @@ module.exports = function(grunt) {
           { dest: 'app/js/lib/', cwd: '.', src: ['node_modules/angular-zxcvbn/dist/angular-zxcvbn.js'], expand: true, flatten: true },
           { dest: 'app/js/lib/', cwd: '.', src: ['node_modules/angular-dynamic-locale/tmhDynamicLocale.min.js'], expand: true, flatten: true },
           { dest: 'app/js/lib/', cwd: '.', src: ['node_modules/ui-select/dist/select.min.js'], expand: true, flatten: true },
-          { dest: 'app/js/lib/', cwd: '.', src: ['node_modules/topojson/build/topojson.min.js'], expand: true, flatten: true}
+          { dest: 'app/js/lib/', cwd: '.', src: ['node_modules/topojson/dist/topojson.min.js'], expand: true, flatten: true}
         ]
       },
       build: {
