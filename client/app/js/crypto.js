@@ -1,12 +1,6 @@
 /* global Uint8Array */
 
-angular.module('GLBrowserCrypto', [])
-.factory('sha256', function() {
-  return window.sha256;
-})
-.factory('topojson', function() {
-  return window.topojson;
-})
+angular.module('GLCrypto', [])
 .factory('glbcUtil', function() {
   return {
     /**

@@ -69,7 +69,8 @@ var GLClient = angular.module('GLClient', [
     'GLServices',
     'GLDirectives',
     'GLFilters',
-    'GLBrowserCrypto'
+    'GLCrypto',
+    'GLLibs'
   ]).
   config(['$compileProvider',
           '$httpProvider',
