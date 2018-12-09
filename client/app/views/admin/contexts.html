@@ -208,6 +208,12 @@
                             </label>
                           </div>
                           <div class="form-group">
+                            <label class="inline-checkbox">
+                              <input data-ng-model="context.show_recipients_details" type="checkbox" />
+                              <span data-translate>Show recipient details on the status page of the submission</span>
+                            </label>
+                          </div>
+                          <div class="form-group">
                             <label data-translate>Text shown on top of the interface for selecting recipients</label>
                             <textarea name="description" class="form-control" data-ng-model="context.recipients_clarification"></textarea>
                           </div>
@@ -240,12 +246,6 @@
                           <label class="inline-checkbox">
                             <input data-ng-model="context.enable_attachments" type="checkbox" />
                             <span data-translate>Let whistleblowers add attachments onto existing submissions</span>
-                          </label>
-                        </div>
-                        <div class="form-group">
-                          <label class="inline-checkbox">
-                            <input data-ng-model="context.show_recipients_details" type="checkbox" />
-                            <span data-translate>Show recipient details on the status page of the submission</span>
                           </label>
                         </div>
                         <div class="form-group">
