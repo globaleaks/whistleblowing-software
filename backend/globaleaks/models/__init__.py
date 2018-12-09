@@ -661,8 +661,8 @@ class _FieldOption(Model):
     label = Column(JSON, nullable=False)
     score_points = Column(Integer, default=0, nullable=False)
     score_type = Column(Integer, default=0, nullable=False)
-    trigger_field = Column(UnicodeText(36))
-    trigger_step = Column(UnicodeText(36))
+    trigger_field = Column(UnicodeText(36), nullable=True)
+    trigger_step = Column(UnicodeText(36), nullable=True)
 
     unicode_keys = ['field_id']
     int_keys = ['presentation_order', 'score_points']
