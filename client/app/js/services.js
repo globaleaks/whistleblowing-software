@@ -359,7 +359,6 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
         self._submission.$update(function(result){
           if (result) {
             Authentication.receipt = self._submission.receipt;
-            Authentication.level = self._submission.level;
             $location.url("/receipt");
           }
         });

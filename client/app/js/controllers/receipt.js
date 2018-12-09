@@ -13,5 +13,4 @@ GLClient.controller('ReceiptController', ['$scope', 'Authentication',
 
     $scope.receipt = Authentication.receipt;
     $scope.formatted_receipt = format_receipt($scope.receipt);
-    $scope.level = Authentication.level;
 }]);

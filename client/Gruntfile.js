@@ -593,7 +593,7 @@ module.exports = function(grunt) {
 
     fs.writeFileSync("pot/en.po", gettextParser.po.compile(data), 'utf8');
 
-    console.log("Written " + data['translations'][''].length + " string to pot/en.po.");
+    console.log("Written " + Object.keys(data['translations']['']).length + " string to pot/en.po.");
   });
 
   grunt.registerTask('☠☠☠pushTranslationsSource☠☠☠', function() {
