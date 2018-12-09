@@ -22,14 +22,14 @@ angular.module('GLDirectives', []).
       }
     };
 }).
-  directive('keycodevalidator', function() {
+  directive('receiptvalidator', function() {
     return {
       require: 'ngModel',
       link: function(scope, elem, attrs, ngModel) {
-        ngModel.$setValidity('keycodevalidator', false);
+        ngModel.$setValidity('receiptvalidator', false);
         ngModel.$parsers.unshift(function(viewValue) {
           var result = '';
-          ngModel.$setValidity('keycodevalidator', false);
+          ngModel.$setValidity('receiptvalidator', false);
           viewValue = viewValue.replace(/\D/g,'');
           while (viewValue.length > 0) {
             result += viewValue.substring(0, 4);
@@ -44,7 +44,7 @@ angular.module('GLDirectives', []).
           }
           angular.element(elem).val(result);
           if (result.length === 19) {
-            ngModel.$setValidity('keycodevalidator', true);
+            ngModel.$setValidity('receiptvalidator', true);
           }
           return result;
         });

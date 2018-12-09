@@ -425,6 +425,14 @@ var GLClient = angular.module('GLClient', [
           access: noAuth(),
         }
       }).
+      when('/receiptlogin', {
+        templateUrl: 'views/login/receipt.html',
+        controller: 'LoginCtrl',
+        header_title: '',
+        resolve: {
+          access: noAuth(),
+        }
+      }).
       when('/login/passwordreset', {
         templateUrl: 'views/passwordreset/main.html',
         controller: 'PasswordResetCtrl',

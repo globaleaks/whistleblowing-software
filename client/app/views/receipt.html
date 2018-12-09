@@ -1,31 +1,32 @@
-<div id="ReceiptOutputBox" data-ng-if="formatted_keycode">
+<div>
   <div class="row">
     <p id="KeyCodeThanks1" data-translate>Thank you!</p>
     <p id="KeyCodeThanks2" data-translate>Your submission was successful.</p>
   </div>
-  <div class="row">
+  {{level}}
+  <div class="row" data-ng-if="formatted_receipt">
     <div id="KeyCodeBox" class="col-md-6">
       <div>
         <div class="col-md-2">
           <img width="64" height="64" text="key symbol" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAEFUlEQVR4Ae1aXYRVURSeqURERETM0xAxRE+lRPTaU0SJiCEihp6GYdLrEPOQKPcpekhERJRJKdFDopTJTSmlRJk0hkZ9X1qcs2ffuWudc+7+mbmLzzl337XXXt/a//vsgYG+9COwqiMwmDD7HfBtLzAMbAKGgI/AIvASeAvcA34CK0Z2gck08A74o8ACdG4Do8AGIFvZCc/vAhrSnXS+If8YsBbISibh7W+gEzFr+nPYYrdJXjbCwxuAlaBGn63hYMoR2ALnWFMaMlV12KpOphiE9XDqQY/JS9AYhORawqVA5CUI7A7JjAlHA5OXIDxFudFnBzZ97fwujjf5PIHyo8oZlN4kIastBp+VEEVY8BfA6nTT+qMu+0E3oUe/D8HuzYq2HyLffeA1wD0Bl8uHAa4jrPIYGfZYMzWh34IRa21+Rx4Omj7ZhkTuAaw2qc81SHBpo0SLs3PQH1F4ec1olz6w9QQVNlULeeqeVXrILsF53mL/fNH2muKPHr1zH2+ReShfVGb4Ab0rSl1RK/kTIgCbpWTl8w30LIccz5R2Ra3kT4gAWFdgFvIkZdUvrQVCBIBN2iKlJqrIaNUvBSxEAL4qSBRVOMVxrtcK1xgW+WxRbkKXXeAXYBmpOcdrZD+ULHapO6Yx3LTODAxaHZ1CnlJ/dZziOWKV5fVux06Qn+MoxRoA6vPUyHWYozjn8irniFwzWAdlZKkv22GiSgAkzwLyc09fdzvdqk+lugX2ayEU68luE0U4ss8CsYizXO4bokgK5DlesBsGlxTIs/ZLG6BQUUiFfNWDmFpxIvk2ELPPs2xOo9wyB5VUyD8C661BmaOwVMi34Mtyq8iexCUF8h/A7HhP2HUx2gR5jhl3gCrjBpe4/O4Q5ZJEU+RphzIMTAK8MMElcKeAMGBXAW6Hgzd3lPlPNOTpJAm9AnxkSETI43WJkBzPBwRDSzQiJWjIk7CQ4y5sHCjWajfykah1L1ZLngFwP25we8s+my15NkE672vOvjTqup+x2M+lZeA1H7GSl4BczodiZ0+rkpcgaL/2dPYg4j8a8hztqceFiG/En0V6lHka5dYSDXnW8kShFBKdBqT223innexES55EXwDuguQ00ljzK5681PQEyLriBsX9P8nflpoX8nxykXMgSUYGpzTkedDwCSiSl3fe7BgBopy/o9za8gQWhIzvyRFe5Ahe3K8zPLvPss8LKdauj7ikkXCxdnnnZuZ/nuzJg4fqHu8pKhaEA90FIOuaFz6aLzhzK4Ws735A6QKBRMV5cnNzC+CJa7E7OGrp/6waADLjSD+VPsXlPfQFgDevNPIeSueARY1yqjq+AGi6AMnvA/jMWtZ5vL+ONPbt4hKWn5Wlr8/j/RiQPXlw6Es/Av0IrPII/AW+DTcH8Te3CQAAAABJRU5ErkJggg==" />
         </div>
         <div class="col-md-10">
-          <span data-translate>Remember your key code for this submission.</span>
-          <div id="KeyCode">{{formatted_keycode}}</div>
+          <span data-translate>Remember your receipt for this submission.</span>
+          <div id="KeyCode">{{formatted_receipt}}</div>
         </div>
       </div>
       <div>
         <p data-translate>We will try to get back to you as soon as possible!</p>
-        <p data-translate>Use the 16 digit key code to log in. It will allow you to view any messages we sent you, and also to add extra info.</p>
+        <p data-translate>Use the 16 digit receipt to log in. It will allow you to view any messages we sent you, and also to add extra info.</p>
       </div>
       <div>
-        <button id="ReceiptButton" class="btn btn-default" data-ng-click="Authentication.login(0, 'whistleblower', keycode)" data-translate>View your submission</button>
+        <button id="ReceiptButton" class="btn btn-default" data-ng-click="Authentication.login(0, 'whistleblower', receipt)" data-translate>View your submission</button>
       </div>
     </div>
     <div class="col-md-6" data-ng-if="!node.disable_key_code_hint">
       <div id="KeyCodeHintBox">
-        <p data-translate>Hint: How to hide your key code</p>
-        <p data-translate>A useful way to hide your key code is to write it down like a credit card number, i.e. by also including an expiration date.</p>
+        <p data-translate>Hint: How to hide your receipt</p>
+        <p data-translate>A useful way to hide your receipt is to write it down like a credit card number, i.e. by also including an expiration date.</p>
         <p data-translate>Example:</p>
         <div class="row">
           <div class="col-md-5">
@@ -35,11 +36,4 @@
       </div>
     </div>
   </div>
-</div>
-<div id="ReceiptInputBox" data-ng-if="!formatted_keycode">
-  <div data-ng-if="!embedded">
-    <label>{{::node.whistleblowing_receipt_prompt}}</label>
-  </div>
-  <div data-ng-include="'views/partials/wb_login.html'"></div>
-  <div class="LoginErrorBoxHomepage alert alert-danger" data-ng-show="errors[0].code == 9" data-translate>The key code is either invalid or the submission has expired.</div>
 </div>
