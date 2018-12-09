@@ -260,6 +260,30 @@
                             <textarea name="description" class="form-control" data-ng-model="context.status_page_message"></textarea>
                           </div>
                         </div>
+                        <div class="form-group">
+                          <label class="inline-checkbox">
+                            <input data-ng-model="context.enable_scoring_system" type="checkbox" />
+                            <span data-translate>Enable scoring system</span>
+                          </label>
+                        </div>
+                        <div data-ng-if="context.enable_scoring_system" class="form-group well">
+                          <table class="table table-bordered">
+                            <thead>
+                              <th data-translate>Threshold</th>
+                              <th data-translate>Value</th>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <td data-translate>Medium</td>
+                                <td><input class="form-control" data-ng-model="context.score_threshold_medium" type="number" /></td>
+                              </tr>
+                              <tr>
+                                <td data-translate>High</td>
+                                <td><input class="form-control" data-ng-model="context.score_threshold_high" type="number" /></td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
                       </div>
                     </div>
                   </div>
