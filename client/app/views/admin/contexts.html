@@ -92,9 +92,9 @@
                   </div>
                   <div class="form-group">
                     <label data-translate>Additional questionnaire</label>
-		    <select class="form-control" data-ng-model="context.additional_questionnaire_id" data-ng-options="item.id as item.name for item in admin.questionnaires">
+                    <select class="form-control" data-ng-model="context.additional_questionnaire_id" data-ng-options="item.id as item.name for item in admin.questionnaires">
                       <option data-ng-if="context.additional_questionnaire_id" value=''></option>
-		    </select>
+                    </select>
                   </div>
                   <div class="form-group">
                     <label>
@@ -266,7 +266,7 @@
                 </div>
               </div>
               <hr />
-	      <div class="form-group">UUID: <a href="/#/submission?context={{context.id}}">{{context.id}}</a></div>
+              <div class="form-group">UUID: <a href="/#/submission?context={{context.id}}">{{context.id}}</a></div>
             </div>
           </div>
         </form>
