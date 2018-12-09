@@ -404,6 +404,7 @@ AdminContextDesc = {
     'presentation_order': int,
     'recipients_clarification': text_type,
     'status_page_message': text_type,
+    'show_steps_navigation_interface': bool,
     'show_receivers_in_alphabetical_order': bool,
     'questionnaire_id': key_regexp_or_empty,
     'additional_questionnaire_id': key_regexp_or_empty
