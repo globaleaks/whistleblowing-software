@@ -437,11 +437,11 @@ controller('AdditionalQuestionnaireCtrl',
     if ($scope.hasNextStep()) {
       $scope.vars.submissionForm.$dirty = false;
       for (var i = $scope.selection + 1; i <= $scope.lastStepIndex(); i++) {
-        if (fieldUtilities.isFieldTriggered($scope.submission.context.questionnaire.steps[i], $scope.answers, $scope.total_score)) {
-          $scope.selection = i;
-          $anchorScroll('top');
-          break;
-        }
+        //if (fieldUtilities.isFieldTriggered($scope.submission.context.questionnaire.steps[i], $scope.answers, $scope.total_score)) {
+        $scope.selection = i;
+        $anchorScroll('top');
+        break;
+        //}
       }
     }
   };
@@ -450,11 +450,11 @@ controller('AdditionalQuestionnaireCtrl',
     if ($scope.hasPreviousStep()) {
       $scope.vars.submissionForm.$dirty = false;
       for (var i = $scope.selection - 1; i >= $scope.firstStepIndex(); i--) {
-        if (i === -1 || fieldUtilities.isFieldTriggered($scope.submission.context.questionnaire.steps[i], $scope.answers, $scope.total_score)) {
-          $scope.selection = i;
-          $anchorScroll('top');
-          break;
-        }
+        //if (i === -1 || fieldUtilities.isFieldTriggered($scope.submission.context.questionnaire.steps[i], $scope.answers, $scope.total_score)) {
+        $scope.selection = i;
+        $anchorScroll('top');
+        break;
+        //}
       }
     }
   };

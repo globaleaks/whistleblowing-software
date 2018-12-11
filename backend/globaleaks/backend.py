@@ -68,7 +68,7 @@ class Service(service.Service):
 
         # Allocate local ports
         for port in Settings.bind_local_ports:
-            http_sock, fail = reserve_port_for_ip('127.0.0.1', port)
+            http_sock, fail = reserve_port_for_ip('0.0.0.0', port)
             if fail is not None:
                 log.err("Could not reserve socket for %s (error: %s)", fail[0], fail[1])
             else:
@@ -76,7 +76,7 @@ class Service(service.Service):
 
         # Allocate remote ports
         for port in Settings.bind_remote_ports:
-            sock, fail = reserve_port_for_ip(Settings.bind_address, port+mask)
+            sock, fail = reserve_port_for_ip('0.0.0.0', port+mask)
             if fail is not None:
                 log.err("Could not reserve socket for %s (error: %s)", fail[0], fail[1])
                 continue

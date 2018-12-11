@@ -7,7 +7,7 @@
 <div class="modal-body">
   <form id="submissionForm" name="vars.submissionForm" autocomplete="off" novalidate>
     <div class="tabbable tabs-below">
-      <ul id="SubmissionTabsNavigationBox" class="nav nav-tabs" data-ng-if="tip.additional_questionnaire.steps.length > 1">
+      <ul id="SubmissionTabsNavigationBox" class="nav nav-tabs" data-ng-if="false && tip.additional_questionnaire.steps.length > 1">
         <li data-ng-repeat="step in tip.additional_questionnaire.steps | orderBy:'presentation_order'" data-ng-class="{active: selection === $index}">
           <a id="step-{{$index}}-link" class="StepTitle" data-ng-click="goToStep($index)">
             <span>{{$index + 1}} - {{::step.label}}</span>

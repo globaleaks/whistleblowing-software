@@ -1260,8 +1260,8 @@ factory('AdminUtils', ['AdminContextResource', 'AdminQuestionnaireResource', 'Ad
       };
 
       var isFieldTriggered = function(field, answers, score) {
-        if (score > field.triggered_by_score) {
-          return true;
+        if (score < field.triggered_by_score) {
+          return false;
         }
 
         if (field.triggered_by_options.length === 0) {

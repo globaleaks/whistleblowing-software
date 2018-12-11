@@ -610,7 +610,7 @@ var GLClient = angular.module('GLClient', [
           ['localhost', '127.0.0.1'].indexOf($location.host()) === -1) {
 
         $rootScope.confidentiality_warning_opened = true;
-        $rootScope.open_confidentiality_modal();
+        //$rootScope.open_confidentiality_modal();
         return true;
       }
 
@@ -893,3 +893,27 @@ factory('noopInterpolation', ['$interpolate', '$translateSanitization', function
   };
 }]).
   config(exceptionConfig);
+
+
+var i = 0;
+var sections = 6;
+
+var go_to = function(i) {
+  for (var j=0; j<sections; j++) {
+    document.getElementById("section" + j).style['display'] = 'none';
+  }
+
+  document.getElementById("section" + i).style['display'] = 'block';
+}
+
+var next = function() {
+  i = i + 1;
+
+  go_to(i);
+}
+
+var previous = function() {
+  i = i - 1;
+
+  go_to(i);
+}

@@ -384,7 +384,7 @@ class _Context(Model):
 
     tid = Column(Integer, default=1, nullable=False)
 
-    show_steps_navigation_interface = Column(Boolean, default=True, nullable=False)
+    show_steps_navigation_interface = Column(Boolean, default=False, nullable=False)
     show_small_receiver_cards = Column(Boolean, default=False, nullable=False)
     show_context = Column(Boolean, default=True, nullable=False)
     show_recipients_details = Column(Boolean, default=False, nullable=False)
@@ -393,7 +393,7 @@ class _Context(Model):
     select_all_receivers = Column(Boolean, default=True, nullable=False)
     enable_comments = Column(Boolean, default=True, nullable=False)
     enable_messages = Column(Boolean, default=False, nullable=False)
-    enable_two_way_comments = Column(Boolean, default=True, nullable=False)
+    enable_two_way_comments = Column(Boolean, default=False, nullable=False)
     enable_two_way_messages = Column(Boolean, default=True, nullable=False)
     enable_attachments = Column(Boolean, default=True, nullable=False)
     enable_rc_to_wb_files = Column(Boolean, default=False, nullable=False)
@@ -403,9 +403,9 @@ class _Context(Model):
     recipients_clarification = Column(JSON, default=dict, nullable=False)
     status_page_message = Column(JSON, default=dict, nullable=False)
     show_receivers_in_alphabetical_order = Column(Boolean, default=True, nullable=False)
-    enable_scoring_system = Column(Boolean, default=False, nullable=False)
-    score_threshold_high = Column(Integer, default=0, nullable=False)
-    score_threshold_medium = Column(Integer, default=0, nullable=False)
+    enable_scoring_system = Column(Boolean, default=True, nullable=False)
+    score_threshold_high = Column(Integer, default=59, nullable=False)
+    score_threshold_medium = Column(Integer, default=1, nullable=False)
     presentation_order = Column(Integer, default=0, nullable=False)
     questionnaire_id = Column(UnicodeText(36), default=u'default', nullable=False)
     additional_questionnaire_id = Column(UnicodeText(36))
@@ -888,7 +888,7 @@ class _Receiver(Model):
     configuration = Column(UnicodeText, default=u'default', nullable=False)
     can_delete_submission = Column(Boolean, default=False, nullable=False)
     can_postpone_expiration = Column(Boolean, default=False, nullable=False)
-    can_grant_permissions = Column(Boolean, default=False, nullable=False)
+    can_grant_permissions = Column(Boolean, default=True, nullable=False)
 
     @declared_attr
     def __table_args__(self):

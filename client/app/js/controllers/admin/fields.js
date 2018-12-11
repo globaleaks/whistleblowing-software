@@ -73,6 +73,7 @@ GLClient.controller('AdminFieldEditorCtrl', ['$scope',
       var new_option = {
         'id': '',
         'label': '',
+        'score_type': 0,
         'score_points': 0,
         'trigger_field': '',
         'trigger_step': ''
