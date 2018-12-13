@@ -144,9 +144,12 @@ GLClient.controller('SubmissionCtrl',
 
     if ($scope.hasNextStep()) {
       $scope.vars.submissionForm.$dirty = false;
+      console.log($scope.selected_context);
       for (var i = $scope.selection + 1; i <= $scope.lastStepIndex(); i++) {
-        $scope.selection = i;
-        $anchorScroll('top');
+        if (fieldUtilities.isFieldTriggered($scope.selected_context.questionnaire.steps[i], $scope.answers, $scope.total_score)) {
+          $scope.selection = i;
+          $anchorScroll('top');
+        }
         break;
       }
     }
@@ -156,13 +159,14 @@ GLClient.controller('SubmissionCtrl',
     if ($scope.hasPreviousStep()) {
       $scope.vars.submissionForm.$dirty = false;
       for (var i = $scope.selection - 1; i >= $scope.firstStepIndex(); i--) {
-        $scope.selection = i;
-        $anchorScroll('top');
-	break;
+        if (i === -1 || fieldUtilities.isFieldTriggered($scope.selected_context.questionnaire.steps[i], $scope.answers, $scope.total_score)) {
+          $scope.selection = i;
+          $anchorScroll('top');
+        }
+        break;
       }
     }
   };
-
   $scope.areReceiversSelected = function() {
     for (var rec_id in $scope.submission.selected_receivers) {
       if ($scope.submission.selected_receivers[rec_id]) {
@@ -437,11 +441,9 @@ controller('AdditionalQuestionnaireCtrl',
     if ($scope.hasNextStep()) {
       $scope.vars.submissionForm.$dirty = false;
       for (var i = $scope.selection + 1; i <= $scope.lastStepIndex(); i++) {
-        if (fieldUtilities.isFieldTriggered($scope.submission.context.questionnaire.steps[i], $scope.answers, $scope.total_score)) {
-          $scope.selection = i;
-          $anchorScroll('top');
-          break;
-        }
+        $scope.selection = i;
+        $anchorScroll('top');
+        break;
       }
     }
   };
@@ -450,11 +452,9 @@ controller('AdditionalQuestionnaireCtrl',
     if ($scope.hasPreviousStep()) {
       $scope.vars.submissionForm.$dirty = false;
       for (var i = $scope.selection - 1; i >= $scope.firstStepIndex(); i--) {
-        if (i === -1 || fieldUtilities.isFieldTriggered($scope.submission.context.questionnaire.steps[i], $scope.answers, $scope.total_score)) {
-          $scope.selection = i;
-          $anchorScroll('top');
-          break;
-        }
+        $scope.selection = i;
+        $anchorScroll('top');
+        break;
       }
     }
   };
