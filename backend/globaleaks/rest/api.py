@@ -392,10 +392,18 @@ class APIResourceWrapper(Resource):
             self.redirect_https(request)
             return b''
 
+        request.path = request.path.decode('utf-8')
+
+        if request.tid == 1:
+            match = re.match(r'^/t/([0-9]+)(/.*)', request.path)
+            if match is not None:
+                groups = match.groups()
+                request.tid, request.path = int(groups[0]), groups[1]
+
         match = None
         for regexp, handler, args in self._registry:
             try:
-                match = regexp.match(request.path.decode('utf-8'))
+                match = regexp.match(request.path)
             except UnicodeDecodeError:
                 match = None
             if match:
