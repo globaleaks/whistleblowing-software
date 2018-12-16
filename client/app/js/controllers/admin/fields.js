@@ -74,8 +74,11 @@ GLClient.controller('AdminFieldEditorCtrl', ['$scope',
         'id': '',
         'label': '',
         'score_points': 0,
+        'score_type': 0,
         'trigger_field': '',
-        'trigger_step': ''
+        'trigger_field_inverted': false,
+        'trigger_step': '',
+        'trigger_field_inverted': false
       };
 
       new_option.presentation_order = $scope.newItemOrder($scope.field.options, 'presentation_order');
