@@ -76,7 +76,7 @@ exports.whistleblower = function() {
   this.viewReceipt = function(receipt) {
     browser.get('/#/');
 
-    return element(by.model('formatted_keycode')).sendKeys(receipt).then(function() {
+    return element(by.model('formatted_receipt')).sendKeys(receipt).then(function() {
       element(by.id('ReceiptButton')).click().then(function() {
         browser.gl.utils.waitForUrl('/status');
       });

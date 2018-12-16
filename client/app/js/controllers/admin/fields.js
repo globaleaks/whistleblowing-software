@@ -26,15 +26,15 @@ GLClient.controller('AdminFieldEditorCtrl', ['$scope',
         return 'inputbox_or_textarea';
       }
 
-      if (['checkbox', 'selectbox', 'multichoice'].indexOf(type) !== -1) {
-        return 'checkbox_selectbox_multichoice';
+      if (['checkbox', 'selectbox'].indexOf(type) !== -1) {
+        return 'checkbox_or_selectbox';
       }
 
       return type;
     };
 
     $scope.showConfiguration = function(field) {
-      if (['checkbox', 'date', 'inputbox', 'map', 'multichoice', 'selectbox', 'textarea', 'tos'].indexOf(field.type) > -1) {
+      if (['checkbox', 'date', 'inputbox', 'map', 'selectbox', 'textarea', 'tos'].indexOf(field.type) > -1) {
         return true;
       }
 
@@ -46,7 +46,7 @@ GLClient.controller('AdminFieldEditorCtrl', ['$scope',
     };
 
     $scope.showOptions = function(field) {
-      if (['checkbox', 'selectbox', 'multichoice', 'map'].indexOf(field.type) > -1) {
+      if (['checkbox', 'selectbox', 'map'].indexOf(field.type) > -1) {
         return true;
       }
 

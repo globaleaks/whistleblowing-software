@@ -215,7 +215,7 @@ def get_dummy_field():
         'step_id': '',
         'fieldgroup_id': '',
         'label': u'antani',
-        'type': u'multichoice',
+        'type': u'checkbox',
         'preview': False,
         'description': u'field description',
         'hint': u'field hint',
@@ -240,6 +240,7 @@ def get_dummy_fieldoption_list():
           'label': u'Cafe del mare',
           'presentation_order': 0,
           'score_points': 100,
+          'score_type': 0,
           'trigger_field': '',
           'trigger_step': ''
         },
@@ -247,7 +248,8 @@ def get_dummy_fieldoption_list():
           'id': u'feefbead-feef-bead-feef-feeffeefbead',
           'label': u'skrilx is here',
           'presentation_order': 0,
-          'score_points': 97.5,
+          'score_points': 97,
+          'score_type': 0,
           'trigger_field': '',
           'trigger_step': ''
         }
@@ -545,7 +547,7 @@ class TestGL(unittest.TestCase):
             value = {}
             for option in field['options']:
                 value[option['id']] = 'True'
-        elif field_type in ['selectbox', 'multichoice']:
+        elif field_type == 'selectbox':
             value = {'value': field['options'][0]['id']}
         elif field_type == 'date':
             value = {'value': datetime_to_ISO8601(datetime_now())}

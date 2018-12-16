@@ -665,6 +665,7 @@ factory('AdminUtils', ['AdminContextResource', 'AdminQuestionnaireResource', 'Ad
       context.show_recipients_details = false;
       context.allow_recipients_selection = false;
       context.show_receivers_in_alphabetical_order = true;
+      context.show_steps_navigation_interface = true;
       context.select_all_receivers = true;
       context.maximum_selectable_receivers = 0;
       context.show_small_receiver_cards = false;
@@ -678,6 +679,9 @@ factory('AdminUtils', ['AdminContextResource', 'AdminQuestionnaireResource', 'Ad
       context.status_page_message = '';
       context.questionnaire_id = '';
       context.additional_questionnaire_id = '';
+      context.enable_scoring_system = false;
+      context.score_threshold_medium = 0;
+      context.score_threshold_high = 0;
       context.receivers = [];
       return context;
     },

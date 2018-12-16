@@ -198,15 +198,13 @@ GLClient.controller('SubmissionCtrl',
     var score = 0;
     var i;
 
-    if (['selectbox', 'multichoice'].indexOf(field.type) !== -1) {
+    if (field.type === 'selectbox') {
       for(i=0; i<field.options.length; i++) {
         if (entry['value'] === field.options[i].id) {
           score += field.options[i].score_points;
         }
       }
-    }
-
-    if (field.type === 'checkbox') {
+    } else if (field.type === 'checkbox') {
       for(i=0; i<field.options.length; i++) {
         if (entry[field.options[i].id]) {
           score += field.options[i].score_points;
@@ -471,15 +469,13 @@ controller('AdditionalQuestionnaireCtrl',
     var score = 0;
     var i;
 
-    if (['selectbox', 'multichoice'].indexOf(field.type) !== -1) {
+    if (field.type == 'selectbox') {
       for(i=0; i<field.options.length; i++) {
         if (entry['value'] === field.options[i].id) {
           score += field.options[i].score_points;
         }
       }
-    }
-
-    if (field.type === 'checkbox') {
+    } else if (field.type === 'checkbox') {
       for(i=0; i<field.options.length; i++) {
         if (entry[field.options[i].id]) {
           score += field.options[i].score_points;

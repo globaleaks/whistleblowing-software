@@ -557,7 +557,6 @@ class _Field(Model):
                 ForeignKeyConstraint(['template_override_id'], ['field.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),
                 CheckConstraint(self.type.in_(['inputbox',
                                               'textarea',
-                                              'multichoice',
                                               'selectbox',
                                               'checkbox',
                                               'tos',

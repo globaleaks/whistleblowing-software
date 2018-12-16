@@ -25,14 +25,6 @@
           <span ng-show="f['input-' + entryIndex].$error.minlength" data-ng-class="{'text-danger': (f['input-' + entryIndex].$dirty || displayErrors())}" data-translate>The answer is too short.</span>
         </div>
     </div>
-      <div data-ng-switch-when="multichoice" data-ng-class="{'has-error': field.required_status}">
-        <div data-ng-class="{'radio': (field.attrs.layout_orientation.value != 'horizontal')}">
-          <label data-ng-class="{'radio-inline': (field.attrs.layout_orientation.value == 'horizontal')}" data-ng-repeat="option in field.options | orderBy:field.attrs.display_alphabetically.value ? 'label' : 'presentation_order'" name="{{'input-' +  entryIndex}}">
-            <input class="inputelem" type="radio" id="{{::fieldEntry}}-option-{{::$index}}" data-ng-model="entry['value']" data-ng-change="onAnswerUpdate(field, entry)" value="{{option.id}}" data-ng-required="field.required_status" />
-            <span>{{::option.label}}</span>
-          </label>
-        </div>
-      </div>
       <div data-ng-switch-when="selectbox" data-ng-class="{'has-error': field.required_status}">
         <select id="{{::fieldEntry}}" name="{{'input-' +  entryIndex}}" class="form-control inputelem" data-ng-model="entry['value']" data-ng-change="onAnswerUpdate(field, entry)" data-ng-required="field.required_status">
           <option style="display:none" value=""></option>

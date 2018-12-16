@@ -16,12 +16,6 @@
     </div>
   </span>
 
-  <span data-ng-switch-when="multichoice">
-    <div data-ng-repeat="option in field.options">
-      <span data-ng-if="entry['value'] == option.id">{{option.label}}</span>
-    </div>
-  </span>
-
   <span data-ng-switch-when="map">{{entry['value']}}</span>
 
   <span data-ng-switch-when="date">{{entry['value'] | date:'dd-MM-yyyy'}}</span>

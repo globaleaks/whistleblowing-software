@@ -81,8 +81,6 @@ class TestFieldInstance(helpers.TestHandler):
         self.assertEqual(field['id'], response['id'])
         self.assertEqual(3, response['x'])
         self.assertEqual(3, response['y'])
-        # assert that it is impossible to change field type
-        self.assertEqual(response['type'], 'multichoice')
 
         wrong_sample_field = helpers.get_dummy_field()
         values['instance'] = 'instance'
@@ -131,9 +129,6 @@ class TestFieldTemplateInstance(helpers.TestHandlerWithPopulatedDB):
         self.assertEqual(field['id'], response['id'])
         self.assertEqual(3, response['x'])
         self.assertEqual(3, response['y'])
-
-        # assert that the type is unchanged
-        self.assertEqual(response['type'], 'multichoice')
 
         wrong_sample_field = helpers.get_dummy_field()
         wrong_sample_field.update(type='nonexistingfieldtype')

@@ -200,8 +200,6 @@ def db_update_field(session, tid, field_id, field_dict, language):
 
     db_update_fieldattrs(session, tid, field.id, field_dict['attrs'], language)
 
-    # make not possible to change field type
-    field_dict['type'] = field.type
     if field_dict['instance'] != 'reference':
         db_update_fieldoptions(session, tid, field.id, field_dict['options'], language)
 

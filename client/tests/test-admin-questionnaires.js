@@ -12,7 +12,7 @@ describe('admin add, configure and delete questionnaires', function() {
     element.all(by.model('new_field.type')).first().element(by.xpath(".//*[text()='" + question_type + "']")).click();
     element.all(by.id('add-field-btn')).first().click();
 
-    if(['Checkbox', 'Multiple choice input', 'Selection box'].indexOf(question_type) === 0) {
+    if(['Checkbox', 'Selection box'].indexOf(question_type) === 0) {
       element.all(by.xpath(".//*[text()='" + question_type + "']")).get(1).click();
 
       for (var i=0; i<3; i++) {
