@@ -174,28 +174,20 @@ GLClient.controller('AdminFieldEditorCtrl', ['$scope',
     $scope.fieldIsMarkableSubjectToStats = $scope.isMarkableSubjectToStats($scope.field);
     $scope.fieldIsMarkableSubjectToPreview = $scope.isMarkableSubjectToPreview($scope.field);
 
-    function findParents(field_id, field_lst) {
-       for (var i = 0; i < field_lst.length; i++) {
-         var field = field_lst[i];
-         var pot = [field.id].concat(findParents(field_id, field.children));
-         if (pot.indexOf(field_id) > -1) {
-            return pot;
-         }
-       }
-       return [];
-    }
-
     $scope.triggerFieldDialog = function(option) {
       var t = [];
-      $scope.questionnaire.steps.forEach(function(step) {
-        step.children.forEach(function(f) {
-          t.push(f);
-          t = t.concat(enumerateChildren(f));
-        });
-      });
+      var direct_parents;
 
-      var direct_parents = findParents($scope.field.id, $scope.step.children);
-      $scope.all_fields = t.filter(function(f) { return direct_parents.indexOf(f.id) < 0; })
+      function findParents(field_id, field_lst) {
+        for (var i = 0; i < field_lst.length; i++) {
+          var field = field_lst[i];
+          var pot = [field.id].concat(findParents(field_id, field.children));
+          if (pot.indexOf(field_id) > -1) {
+             return pot;
+          }
+        }
+        return [];
+      }
 
       function enumerateChildren(field) {
         var c = [];
@@ -207,6 +199,21 @@ GLClient.controller('AdminFieldEditorCtrl', ['$scope',
         }
         return c;
       }
+
+      if($scope.step) {
+        $scope.questionnaire.steps.forEach(function(step) {
+          step.children.forEach(function(f) {
+            t.push(f);
+            t = t.concat(enumerateChildren(f));
+          });
+        });
+        direct_parents = findParents($scope.field.id, $scope.step.children);
+      } else {
+        t = $scope.fields;
+        direct_parents = findParents($scope.field.id, $scope.fields);
+      }
+
+      $scope.all_fields = t.filter(function(f) { return direct_parents.indexOf(f.id) < 0; });
 
       return $scope.Utils.openConfirmableModalDialog('views/partials/trigger_field.html', option, $scope);
     };

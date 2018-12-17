@@ -304,7 +304,7 @@
                           <i class="glyphicon glyphicon-asterisk"></i>
                         </button>
                       </span>
-                        <button class="btn btn-xs" data-ng-class="option.trigger_step !== '' ? 'btn-primary' : 'btn-default'" data-ng-click="triggerStepDialog(option)" uib-popover="{{'Trigger step' | translate}}" popover-placement="left">
+                        <button class="btn btn-xs" data-ng-if="$scope.questionnaire" data-ng-class="option.trigger_step !== '' ? 'btn-primary' : 'btn-default'" data-ng-click="triggerStepDialog(option)" uib-popover="{{'Trigger step' | translate}}" popover-placement="left">
                           <i class="glyphicon glyphicon-asterisk"></i>
                         </button>
                       </span>
