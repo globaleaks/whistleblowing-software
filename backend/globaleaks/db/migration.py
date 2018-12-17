@@ -39,6 +39,7 @@ from globaleaks.db.migrations.update_42 import InternalTip_v_41, Signup_v_41
 from globaleaks.db.migrations.update_43 import InternalTip_v_42, ReceiverTip_v_42, Signup_v_42, User_v_42, WhistleblowerTip_v_42
 from globaleaks.db.migrations.update_45 import Context_v_44, Field_v_44, InternalTip_v_44, Receiver_v_44, ReceiverFile_v_44, \
     ReceiverTip_v_44, Step_v_44, User_v_44, WhistleblowerFile_v_44, WhistleblowerTip_v_44
+from globaleaks.db.migrations.update_46 import Context_v_45, Field_v_45, FieldOption_v_45
 
 from globaleaks.orm import get_engine, get_session, make_db_uri
 from globaleaks.models import config, Base
@@ -53,17 +54,17 @@ migration_mapping = OrderedDict([
     ('Comment', [Comment_v_31, 0, 0, 0, 0, 0, 0, 0, Comment_v_38, 0, 0, 0, 0, 0, 0, models._Comment, 0, 0, 0, 0, 0, 0, 0]),
     ('Config', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, Config_v_38, 0, 0, 0, 0, models._Config, 0, 0, 0, 0, 0, 0, 0]),
     ('ConfigL10N', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, ConfigL10N_v_38, 0, 0, 0, 0, models._ConfigL10N, 0, 0, 0, 0, 0, 0, 0]),
-    ('Context', [Context_v_26, 0, 0, Context_v_28, 0, Context_v_29, Context_v_30, Context_v_34, 0, 0, 0, Context_v_38, 0, 0, 0, Context_v_44, 0, 0, 0, 0, 0, models._Context, 0]),
+    ('Context', [Context_v_26, 0, 0, Context_v_28, 0, Context_v_29, Context_v_30, Context_v_34, 0, 0, 0, Context_v_38, 0, 0, 0, Context_v_44, 0, 0, 0, 0, 0, Context_v_45, models._Context]),
     ('ContextImg', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, models._ContextImg, 0, 0, 0, 0, 0, 0, 0]),
     ('CustomTexts', [-1, -1, -1, -1, -1, -1, -1, -1, CustomTexts_v_38, 0, 0, 0, 0, 0, 0, models._CustomTexts, 0, 0, 0, 0, 0, 0, 0]),
     ('EnabledLanguage', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, EnabledLanguage_v_38, 0, 0, 0, 0, models._EnabledLanguage, 0, 0, 0, 0, 0, 0, 0]),
-    ('Field', [Field_v_27, 0, 0, 0, Field_v_37, 0, 0, 0, 0, 0, 0, 0, 0, 0, Field_v_38, Field_v_44, 0, 0, 0, 0, 0, models._Field, 0]),
+    ('Field', [Field_v_27, 0, 0, 0, Field_v_37, 0, 0, 0, 0, 0, 0, 0, 0, 0, Field_v_38, Field_v_44, 0, 0, 0, 0, 0, Field_v_45, models._Field]),
     ('FieldAnswer', [FieldAnswer_v_29, 0, 0, 0, 0, 0, FieldAnswer_v_38, 0, 0, 0, 0, 0, 0, 0, 0, models._FieldAnswer, 0, 0, 0, 0, 0, 0, 0]),
     ('FieldAnswerGroup', [FieldAnswerGroup_v_29, 0, 0, 0, 0, 0, FieldAnswerGroup_v_38, 0, 0, 0, 0, 0, 0, 0, 0, models._FieldAnswerGroup, 0, 0, 0, 0, 0, 0, 0]),
     ('FieldAnswerGroupFieldAnswer', [FieldAnswerGroupFieldAnswer_v_29, 0, 0, 0, 0, 0, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1]),
     ('FieldAttr', [FieldAttr_v_38, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, models._FieldAttr, 0, 0, 0, 0, 0, 0, 0]),
     ('FieldField', [FieldField_v_27, 0, 0, 0, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1]),
-    ('FieldOption', [FieldOption_v_27, 0, 0, 0, FieldOption_v_38, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, models._FieldOption, 0, 0, 0, 0, 0, 0, 0]),
+    ('FieldOption', [FieldOption_v_27, 0, 0, 0, FieldOption_v_38, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, FieldOption_v_45, 0, 0, 0, 0, 0, 0, models._FieldOption]),
     ('File', [-1, -1, -1, -1, -1, -1, -1, File_v_38, 0, 0, 0, 0, 0, 0, 0, models._File, 0, 0, 0, 0, 0, 0, 0]),
     ('IdentityAccessRequest', [IdentityAccessRequest_v_38, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, models._IdentityAccessRequest, 0, 0, 0, 0, 0, 0, 0]),
     ('InternalFile', [InternalFile_v_25, 0, InternalFile_v_38, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, InternalFile_v_40, 0, models._InternalFile, 0, 0, 0, 0, 0]),
@@ -178,6 +179,7 @@ def perform_migration(version):
 
     try:
         while version < DATABASE_VERSION:
+            print(version)
             old_db_file = os.path.abspath(os.path.join(tmpdir, 'old.db'))
             new_db_file = os.path.abspath(os.path.join(tmpdir, 'new.db'))
 

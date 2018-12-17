@@ -544,7 +544,7 @@ class _Field(Model):
     editable = Column(Boolean, default=True, nullable=False)
 
     template_id = Column(UnicodeText(36))
-    template_override_id = Column(UnicodeText(36))
+    template_override_id = Column(UnicodeText(36), nullable=True)
 
     encrypt = Column(Boolean, default=True, nullable=False)
 
@@ -554,7 +554,7 @@ class _Field(Model):
                 ForeignKeyConstraint(['step_id'], ['step.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),
                 ForeignKeyConstraint(['fieldgroup_id'], ['field.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),
                 ForeignKeyConstraint(['template_id'], ['field.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),
-                ForeignKeyConstraint(['template_override_id'], ['field.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),
+                #ForeignKeyConstraint(['template_override_id'], ['field.id'], ondelete='SET NULL', deferrable=True, initially='DEFERRED'),
                 CheckConstraint(self.type.in_(['inputbox',
                                               'textarea',
                                               'selectbox',
@@ -562,6 +562,7 @@ class _Field(Model):
                                               'tos',
                                               'fileupload',
                                               'number',
+                                              'email',
                                               'date',
                                               'map',
                                               'fieldgroup'])),
