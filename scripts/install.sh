@@ -216,7 +216,11 @@ if echo "$DISTRO_CODENAME" | grep -vqE "^bionic$" ; then
 fi
 
 if [ ! -f /etc/timezone ]; then
+  export DEBIAN_FRONTEND=noninteractive
+  apt-get install -y tzdata
   echo "Etc/UTC" > /etc/timezone
+  dpkg-reconfigure -f noninteractive tzdata
+  unset DEBIAN_FRONTEND
 fi
 
 
