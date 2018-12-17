@@ -52,6 +52,8 @@ field_type_regexp                 = (r'^('
                                      'checkbox|'
                                      'tos|'
                                      'fileupload|'
+                                     'number|'
+                                     'email|'
                                      'date|'
                                      'map|'
                                      'fieldgroup)$')
