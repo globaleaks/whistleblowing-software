@@ -144,7 +144,6 @@ GLClient.controller('SubmissionCtrl',
 
     if ($scope.hasNextStep()) {
       $scope.vars.submissionForm.$dirty = false;
-      console.log($scope.selected_context);
       for (var i = $scope.selection + 1; i <= $scope.lastStepIndex(); i++) {
         if (fieldUtilities.isFieldTriggered($scope.selected_context.questionnaire.steps[i], $scope.answers, $scope.total_score)) {
           $scope.selection = i;
@@ -642,24 +641,26 @@ controller('SubmissionFormFieldCtrl', ['$scope', 'topojson',
            .attr("class", "mapoutline")
            .attr("d", path)
            .on("mouseover", function(d) {
-              tooltip.transition()
-              .duration(200)
-              .style("opacity", .9);
-              tooltip.html(d.properties.name)
-              .style("left", (d3.event.pageX) + "px")
-              .style("top", (d3.event.pageY - 28) + "px");
+             tooltip.transition()
+                    .duration(200)
+                    .style("opacity", .9);
 
-             if ($scope.clicked != this) {
+             tooltip.html(d.properties.name)
+                    .style("left", (d3.event.pageX) + "px")
+                    .style("top", (d3.event.pageY - 28) + "px");
+
+             if ($scope.clicked !== this) {
                d3.select(this).attr("r", 5.5).style("fill", "orange");
              }
 
              $scope.$apply();
            })
-           .on("mouseout", function(d) {
+           .on("mouseout", function() {
              tooltip.transition()
-             .duration(500)
-             .style("opacity", 0);
-             if ($scope.clicked != this) {
+                    .duration(500)
+                    .style("opacity", 0);
+
+             if ($scope.clicked !== this) {
                d3.select(this).attr("r", 5.5).style("fill", "#DDD");
              }
 
