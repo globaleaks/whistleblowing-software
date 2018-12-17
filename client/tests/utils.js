@@ -7,7 +7,6 @@ exports.vars = {
   'field_types': [
     'Single-line text input',
     'Multi-line text input',
-    'Multiple choice input',
     'Selection box',
     'Checkbox',
     'Attachment',
