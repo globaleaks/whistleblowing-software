@@ -62,9 +62,7 @@ def delete(session, model, *args, **kwargs):
 
 class LocalizationEngine(object):
     """
-    This Class can manage all the localized strings inside
-    one Storm object. AKA: manage three language on a single
-    stone. Hell fucking yeah, History!
+    This Class can manage all the localized strings inside one ORM object
     """
 
     def __init__(self, keys):

@@ -162,7 +162,7 @@ def serialize_context(session, context, language, data=None):
     """
     Serialize context description
 
-    @param context: a valid Storm object
+    @param context: a valid ORM object
     @return: a dict describing the contexts available for submission,
         (e.g. checks if almost one receiver is associated)
     """

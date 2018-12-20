@@ -12,15 +12,7 @@ from globaleaks.utils.log import log
 
 
 class PGPContext(object):
-    """
-    PGP does not have a dedicated class, because one of the function is called inside a transact.
-    I'm not confident creating an object that operates on the filesystem knowing that
-    would be run also on the Storm cycle.
-    """
     def __init__(self, tempdirprefix=None):
-        """
-        every time is needed, a new keyring is created here.
-        """
         if tempdirprefix is None:
             tempdir = tempfile.mkdtemp()
         else:
