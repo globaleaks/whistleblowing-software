@@ -66,6 +66,8 @@ def db_prepare_fields_serialization(session, fields):
         fields_ids.append(f.id)
         if f.template_id is not None:
             fields_ids.append(f.template_id)
+        if f.template_override_id is not None:
+            fields_ids.append(f.template_override_id)
 
     tmp = copy.deepcopy(fields_ids)
     while tmp:
@@ -76,6 +78,8 @@ def db_prepare_fields_serialization(session, fields):
             tmp.append(f.id)
             if f.template_id is not None:
                 tmp.append(f.template_id)
+            if f.template_override_id is not None:
+                tmp.append(f.template_override_id)
 
             if f.fieldgroup_id not in ret['fields']:
                 ret['fields'][f.fieldgroup_id] = []
@@ -267,7 +271,9 @@ def serialize_field(session, tid, field, language, data=None, serialize_template
         data = db_prepare_fields_serialization(session, [field])
 
     f_to_serialize = field
-    if field.template_id is not None and serialize_templates is True:
+    if field.template_override_id is not None and serialize_templates is True:
+        f_to_serialize = session.query(models.Field).filter(models.Field.id == field.template_override_id).one_or_none()
+    elif field.template_id is not None and serialize_templates is True:
         f_to_serialize = session.query(models.Field).filter(models.Field.id == field.template_id).one_or_none()
 
     attrs = {}
@@ -288,6 +294,7 @@ def serialize_field(session, tid, field, language, data=None, serialize_template
         'editable': field.editable and field.tid == tid,
         'type': f_to_serialize.type,
         'template_id': field.template_id if field.template_id else '',
+        'template_override_id': field.template_override_id if field.template_override_id else '',
         'step_id': field.step_id if field.step_id else '',
         'fieldgroup_id': field.fieldgroup_id if field.fieldgroup_id else '',
         'multi_entry': f_to_serialize.multi_entry,

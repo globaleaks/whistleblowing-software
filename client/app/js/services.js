@@ -733,6 +733,7 @@ factory('AdminUtils', ['AdminContextResource', 'AdminQuestionnaireResource', 'Ad
       field.fieldgroup_id = fieldgroup_id;
       field.step_id = step_id;
       field.template_id = '';
+      field.template_override_id = '';
       field.triggered_by_score = 0;
       return field;
     },
@@ -761,6 +762,7 @@ factory('AdminUtils', ['AdminContextResource', 'AdminQuestionnaireResource', 'Ad
       field.fieldgroup_id = fieldgroup_id;
       field.step_id = '';
       field.template_id = '';
+      field.template_override_id = '';
       field.triggered_by_score = 0;
       return field;
     },

@@ -212,6 +212,7 @@ def db_update_field(session, tid, field_id, field_dict, language):
           'label': field_dict['label'],
           'hint': field_dict['hint'],
           'description': field_dict['description'],
+          'template_override_id': field_dict['template_override_id'],
           'x': field_dict['x'],
           'y': field_dict['y'],
           'width': field_dict['width'],

@@ -554,7 +554,7 @@ class _Field(Model):
                 ForeignKeyConstraint(['step_id'], ['step.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),
                 ForeignKeyConstraint(['fieldgroup_id'], ['field.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),
                 ForeignKeyConstraint(['template_id'], ['field.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),
-                #ForeignKeyConstraint(['template_override_id'], ['field.id'], ondelete='SET NULL', deferrable=True, initially='DEFERRED'),
+                ForeignKeyConstraint(['template_override_id'], ['field.id'], ondelete='SET NULL', deferrable=True, initially='DEFERRED'),
                 CheckConstraint(self.type.in_(['inputbox',
                                               'textarea',
                                               'selectbox',
@@ -574,7 +574,7 @@ class _Field(Model):
     int_keys = ['x', 'y', 'width', 'triggered_by_score']
     localized_keys = ['label', 'description', 'hint', 'multi_entry_hint']
     bool_keys = ['editable', 'multi_entry', 'preview', 'required', 'encrypt']
-    optional_references = ['template_id', 'step_id', 'fieldgroup_id']
+    optional_references = ['template_id', 'step_id', 'fieldgroup_id', 'template_override_id']
 
 
 class _FieldAttr(Model):

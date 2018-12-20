@@ -144,6 +144,10 @@
               <label data-translate>Triggered by a score higher than:</label>
               <input class="form-control" data-ng-model="field.triggered_by_score" type="number" min="0" max="1000">
             </div>
+            <div class="form-group" data-ng-if="field.template_id !== ''">
+              <label data-translate>Template override</label>
+              <input name="template_override_id" class="form-control" data-ng-model="field.template_override_id" type="text">
+            </div>
           </div>
         </div>
         <div class="row" data-ng-if="showConfiguration(field)">
@@ -359,6 +363,7 @@
             </div>
           </div>
         </div>
+        <div class="form-group">UUID: {{field.id}}</div>
       </div>
     </div>
   </div>

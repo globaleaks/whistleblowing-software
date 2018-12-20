@@ -334,6 +334,7 @@ AdminFieldDesc = {
     'instance': field_instance_regexp,
     'editable': bool,
     'template_id': key_regexp_or_empty,
+    'template_override_id': key_regexp_or_empty,
     'step_id': uuid_regexp_or_empty,
     'fieldgroup_id': key_regexp_or_empty,
     'label': text_type,
