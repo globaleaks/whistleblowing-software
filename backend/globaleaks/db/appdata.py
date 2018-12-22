@@ -8,7 +8,6 @@ from globaleaks import models
 from globaleaks.handlers.admin.field import db_create_field, db_add_field_attrs
 from globaleaks.handlers.admin.questionnaire import db_create_questionnaire
 from globaleaks.settings import Settings
-from globaleaks.state import State
 from globaleaks.utils.utility import read_json_file
 
 
@@ -29,7 +28,7 @@ def db_load_default_questionnaires(session):
     session.query(models.Step).filter(models.Step.questionnaire_id.in_(qids)).delete(synchronize_session='fetch')
 
     for questionnaire in questionnaires:
-        db_create_questionnaire(session, State, 1, questionnaire, None)
+        db_create_questionnaire(session, 1, questionnaire, None)
 
 
 def db_load_default_fields(session):

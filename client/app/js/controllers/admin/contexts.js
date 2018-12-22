@@ -1,7 +1,7 @@
 GLClient.controller('AdminContextsCtrl',
   ['$scope', 'AdminContextResource',
   function($scope, AdminContextResource) {
-  $scope.admin_receivers_by_id = $scope.Utils.array_to_map($scope.admin.receivers);
+  $scope.admin_receivers_by_id = $scope.Utils.array_to_map($scope.admin.users);
 
   $scope.save_context = function (context, cb) {
     if (context.additional_questionnaire_id == null) {

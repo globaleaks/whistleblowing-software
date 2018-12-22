@@ -14,32 +14,12 @@ from globaleaks.handlers.user import db_get_user, \
                                      user_serialize_user, \
                                      serialize_usertenant_association
 
+from globaleaks.models import fill_localized_keys, get_localized_values
 from globaleaks.orm import transact
 from globaleaks.rest import requests, errors
 from globaleaks.state import State
 from globaleaks.utils.crypto import GCE
-from globaleaks.models import fill_localized_keys, get_localized_values
 from globaleaks.utils.utility import datetime_now, uuid4
-
-
-def admin_serialize_receiver(session, receiver, user, language):
-    """
-    Serialize the specified receiver
-
-    :param language: the language in which to localize data
-    :return: a dictionary representing the serialization of the receiver
-    """
-    ret_dict = user_serialize_user(session, user, language)
-
-    ret_dict.update({
-        'can_delete_submission': receiver.can_delete_submission,
-        'can_postpone_expiration': receiver.can_postpone_expiration,
-        'can_grant_permissions': receiver.can_grant_permissions,
-        'mail_address': user.mail_address,
-        'configuration': receiver.configuration
-    })
-
-    return get_localized_values(ret_dict, receiver, receiver.localized_keys, language)
 
 
 def db_create_usertenant_association(session, user_id, tenant_id):
@@ -56,44 +36,11 @@ def create_usertenant_association(session, user_id, tenant_id):
 
 
 @transact
-def create_user(session, state, tid, request, language):
-    return user_serialize_user(session, db_create_user(session, state, tid, request, language), language)
+def create_user(session, tid, request, language):
+    return user_serialize_user(session, db_create_user(session, tid, request, language), language)
 
 
-def db_create_receiver_user(session, state, tid, request, language):
-    """
-    Creates a new receiver
-    Returns:
-        (dict) the receiver descriptor
-    """
-    fill_localized_keys(request, models.Receiver.localized_keys, language)
-
-    user = db_create_user(session, state, tid, request, language)
-
-    request['id'] = user.id
-
-    receiver = models.db_forge_obj(session, models.Receiver, request)
-
-    return receiver, user
-
-
-@transact
-def create_receiver_user(session, state, tid, request, language):
-    receiver, user = db_create_receiver_user(session, state, tid, request, language)
-    return admin_serialize_receiver(session, receiver, user, language)
-
-
-def create(state, tid, request, language):
-    if request['role'] not in ['admin', 'receiver', 'custodian']:
-        raise errors.InputValidationError
-
-    if request['role'] == 'receiver':
-        return create_receiver_user(state, tid, request, language)
-
-    return create_user(state, tid, request, language)
-
-
-def db_create_user(session, state, tid, request, language):
+def db_create_user(session, tid, request, language):
     request['tid'] = tid
 
     fill_localized_keys(request, models.User.localized_keys, language)
@@ -121,17 +68,16 @@ def db_create_user(session, state, tid, request, language):
     if not request['username']:
         user.username = user.id = uuid4()
 
+    password = u'password'
     if request['password']:
         password = request['password']
-    else:
-        password = u'password'
 
     user.hash_alg = GCE.HASH
     user.salt = GCE.generate_salt()
     user.password = GCE.hash_password(password, user.salt)
 
     # The various options related in manage PGP keys are used here.
-    parse_pgp_options(state, user, request)
+    parse_pgp_options(user, request)
 
     session.add(user)
 
@@ -142,7 +88,7 @@ def db_create_user(session, state, tid, request, language):
     return user
 
 
-def db_admin_update_user(session, state, tid, user_id, request, language):
+def db_admin_update_user(session, tid, user_id, request, language):
     """
     Updates the specified user.
     """
@@ -169,7 +115,7 @@ def db_admin_update_user(session, state, tid, user_id, request, language):
         user.crypto_pub_key = b''
 
     # The various options related in manage PGP keys are used here.
-    parse_pgp_options(state, user, request)
+    parse_pgp_options(user, request)
 
     if user.role == 'admin':
         db_refresh_memory_variables(session, [tid])
@@ -178,8 +124,8 @@ def db_admin_update_user(session, state, tid, user_id, request, language):
 
 
 @transact
-def admin_update_user(session, state, tid, user_id, request, language):
-    return user_serialize_user(session, db_admin_update_user(session, state, tid, user_id, request, language), language)
+def admin_update_user(session, tid, user_id, request, language):
+    return user_serialize_user(session, db_admin_update_user(session, tid, user_id, request, language), language)
 
 
 
@@ -192,10 +138,24 @@ def delete_user(session, tid, user_id):
 
 
 def db_get_admin_users(session, tid):
-    return [user_serialize_user(session, user, State.tenant_cache[tid].default_language)
-            for user in session.query(models.User).filter(models.User.role ==u'admin',
-                                                          models.UserTenant.user_id == models.User.id,
-                                                          models.UserTenant.tenant_id == tid)]
+    users = session.query(models.User).filter(models.User.role == u'admin',
+                                              models.UserTenant.user_id == models.User.id,
+                                              models.UserTenant.tenant_id == tid)
+
+    return [user_serialize_user(session, user, State.tenant_cache[tid].default_language) for user in users]
+
+
+@transact
+def get_receiver_list(session, tid, language):
+    """
+    Returns:
+        (list) the list of recipients
+    """
+    users = session.query(models.User).filter(models.User.role == u'receiver',
+                                              models.UserTenant.user_id == models.User.id,
+                                              models.UserTenant.tenant_id == tid)
+
+    return [user_serialize_user(session, user, language) for user in users]
 
 
 @transact
@@ -206,6 +166,7 @@ def get_user_list(session, tid, language):
     """
     users = session.query(models.User).filter(models.UserTenant.user_id == models.User.id,
                                               models.UserTenant.tenant_id == tid)
+
     return [user_serialize_user(session, user, language) for user in users]
 
 
@@ -225,9 +186,9 @@ class UsersCollection(BaseHandler):
         Create a new user
         """
         request = self.validate_message(self.request.content.read(),
-                                        requests.AdminUserDesc)
+                                        requests.UserUserDesc)
 
-        return create(self.state, self.request.tid, request, self.request.language)
+        return create_user(self.request.tid, request, self.request.language)
 
 
 class UserInstance(BaseHandler):
@@ -238,9 +199,9 @@ class UserInstance(BaseHandler):
         """
         Update the specified user.
         """
-        request = self.validate_message(self.request.content.read(), requests.AdminUserDesc)
+        request = self.validate_message(self.request.content.read(), requests.UserUserDesc)
 
-        return admin_update_user(self.state, self.request.tid, user_id, request, self.request.language)
+        return admin_update_user(self.request.tid, user_id, request, self.request.language)
 
     def delete(self, user_id):
         """

@@ -254,10 +254,8 @@ def serialize_usertip(session, usertip, itip, language):
 
 def db_create_receivertip(session, receiver, internaltip, can_access_whistleblower_identity, enc_key):
     """
-    Create models.ReceiverTip for the required tier of models.Receiver.
+    Create a receiver tip for the specified receiver
     """
-    log.debug("Creating receivertip for receiver: %s", receiver.id)
-
     receivertip = models.ReceiverTip()
     receivertip.internaltip_id = internaltip.id
     receivertip.receiver_id = receiver.id
@@ -342,10 +340,9 @@ def db_create_submission(session, tid, request, token, client_using_tor):
 
     if crypto_is_available:
         users_count = session.query(models.User) \
-                             .filter(models.Receiver.id.in_(request['receivers']),
-                                     models.ReceiverContext.receiver_id == models.Receiver.id,
+                             .filter(models.User.id.in_(request['receivers']),
+                                     models.ReceiverContext.receiver_id == models.User.id,
                                      models.ReceiverContext.context_id == context.id,
-                                     models.User.id == models.Receiver.id,
                                      models.User.crypto_prv_key != b'',
                                      models.UserTenant.user_id == models.User.id,
                                      models.UserTenant.tenant_id == tid).count()
@@ -403,13 +400,12 @@ def db_create_submission(session, tid, request, token, client_using_tor):
         raise errors.InputValidationError("selected an invalid number of recipients")
 
     rtips_count = 0
-    for receiver, user in session.query(models.Receiver, models.User) \
-                                 .filter(models.Receiver.id.in_(request['receivers']),
-                                         models.ReceiverContext.receiver_id == models.Receiver.id,
-                                         models.ReceiverContext.context_id == context.id,
-                                         models.User.id == models.Receiver.id,
-                                         models.UserTenant.user_id == models.User.id,
-                                         models.UserTenant.tenant_id == tid):
+    for user in session.query(models.User) \
+                       .filter(models.User.id.in_(request['receivers']),
+                               models.ReceiverContext.receiver_id == models.User.id,
+                               models.ReceiverContext.context_id == context.id,
+                               models.UserTenant.user_id == models.User.id,
+                               models.UserTenant.tenant_id == tid):
         if not crypto_is_available and not user.pgp_key_public and not State.tenant_cache[tid].allow_unencrypted:
             continue
 
@@ -417,7 +413,7 @@ def db_create_submission(session, tid, request, token, client_using_tor):
         if crypto_is_available:
             _tip_key = GCE.asymmetric_encrypt(user.crypto_pub_key, crypto_tip_prv_key)
 
-        db_create_receivertip(session, receiver, itip, can_access_whistleblower_identity, _tip_key)
+        db_create_receivertip(session, user, itip, can_access_whistleblower_identity, _tip_key)
         rtips_count += 1
 
     if not rtips_count:

@@ -106,10 +106,17 @@
             <div class="editor" data-ng-if="editing">
               <hr />
               <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-6">
                   <div class="form-group">
                     <div image-upload image-upload-model="user" image-upload-model-attr="picture" image-upload-url="{{'admin/users/' + user.id + '/img'}}"></div>
                   </div>
+                </div>
+                <div class="col-md-6" data-ng-show="admin.node.root_tenant && admin.node.enable_experimental_features && admin.tenants.length > 1">
+                  <div data-ng-include="'views/admin/users/usertenant_assocations.html'"></div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
                   <div class="form-group" data-ng-if="user.role !== 'receiver' || !node.simplified_login">
                     <label data-translate>Username</label>
                     <input class="form-control" name="username" data-ng-model="user.username" type="text" required />
@@ -197,6 +204,43 @@
                   </div>
                 </div>
               </div>
+              <div class="row" data-ng-show="user.role === 'receiver'">
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label data-translate>Configuration</label>
+                    <select class="form-control" data-ng-model="user.configuration">
+                      <option value="default" data-translate>Default</option>
+                      <option value="forcefully_selected" data-translate>Forcefully selected</option>
+                      <option value="unselectable" data-translate>Unselectable</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                      <input data-ng-model="user.can_postpone_expiration" type="checkbox" data-ng-disabled="node.can_postpone_expiration" />
+                      <label data-translate>Allow the recipient to postpone the submission expiration date</label>
+                      <div data-ng-show="node.can_postpone_expiration">
+                        <span class="label label-info" data-translate>Enabled</span>
+                        <span data-translate>The setting is enabled at a global level.</span>
+                      </div>
+                    </div>
+                  <div class="form-group">
+                      <input data-ng-model="user.can_delete_submission" type="checkbox" data-ng-disabled="node.can_delete_submission" />
+                      <label data-translate>Allow the recipient to delete submissions</label>
+                      <div data-ng-show="node.can_delete_submission">
+                        <span class="label label-info" data-translate>Enabled</span>
+                        <span data-translate>The setting is enabled at a global level.</span>
+                      </div>
+                    </div>
+                  <div class="form-group">
+                      <input data-ng-model="user.can_grant_permissions" type="checkbox" data-ng-disabled="can_grant_permissions" />
+                      <label data-translate>Allow the recipient to grant permissions to whistleblowers on specific submissions</label>
+                      <div data-ng-show="node.can_grant_permissions">
+                        <span class="label label-info" data-translate>Enabled</span>
+                        <span data-translate>The setting is enabled at a global level.</span>
+                      </div>
+                    </div>
+                  <hr />
+                </div>
+              </div>
               <div class="row" data-ng-show="user.role !== 'admin'">
                 <div class="col-md-12">
                   <label data-translate>User has administrative access to the following features:</label>
@@ -206,9 +250,7 @@
                   </div>
                 </div>
               </div>
-              <div class="row" data-ng-show="admin.node.enable_experimental_features && admin.tenants.length > 1">
-                <div class="col-md-12" data-ng-include="'views/admin/users/usertenant_assocations.html'"></div>
-              </div>
+              <div class="form-group">UUID: {{user.id}}</div>
             </div>
           </div>
         </form>

@@ -15,7 +15,7 @@ from globaleaks.models import get_localized_values
 from globaleaks.utils.utility import datetime_to_ISO8601, datetime_now, datetime_null
 
 
-def parse_pgp_options(state, user, request):
+def parse_pgp_options(user, request):
     """
     Used for parsing PGP key infos and fill related user configurations.
     """
@@ -24,7 +24,7 @@ def parse_pgp_options(state, user, request):
 
     k = None
     if not remove_key and pgp_key_public:
-        pgpctx = PGPContext(state.settings.tmp_path)
+        pgpctx = PGPContext(State.settings.tmp_path)
 
         k = pgpctx.load_key(pgp_key_public)
 
@@ -71,6 +71,10 @@ def user_serialize_user(session, user, language):
         'pgp_key_remove': False,
         'picture': picture,
         'can_edit_general_settings': user.can_edit_general_settings,
+        'can_delete_submission': user.can_delete_submission,
+        'can_postpone_expiration': user.can_postpone_expiration,
+        'can_grant_permissions': user.can_grant_permissions,
+        'recipient_configuration': user.recipient_configuration,
         'tid': user.tid,
         'notification': user.notification,
         'usertenant_assocations': user_tenants
@@ -103,7 +107,7 @@ def get_user(session, tid, user_id, language):
     return user_serialize_user(session, user, language)
 
 
-def db_user_update_user(session, state, tid, user_session, request):
+def db_user_update_user(session, tid, user_session, request):
     """
     Updates the specified user.
     This version of the function is specific for users that with comparison with
@@ -166,18 +170,18 @@ def db_user_update_user(session, state, tid, user_session, request):
             'notification': db_get_notification(session, tid, user.language)
         }
 
-        state.format_and_send_mail(session, tid, user_desc, template_vars)
+        State.format_and_send_mail(session, tid, user_desc, template_vars)
 
     # If the platform allows users to change PGP keys, process it
     if State.tenant_cache[tid]['enable_user_pgp_key_upload'] is True:
-        parse_pgp_options(state, user, request)
+        parse_pgp_options(user, request)
 
     return user
 
 
 @transact
-def update_user_settings(session, state, tid, user_session, request, language):
-    user = db_user_update_user(session, state, tid, user_session, request)
+def update_user_settings(session, tid, user_session, request, language):
+    user = db_user_update_user(session, tid, user_session, request)
 
     return user_serialize_user(session, user, language)
 
@@ -225,8 +229,7 @@ class UserInstance(BaseHandler):
     def put(self):
         request = self.validate_message(self.request.content.read(), requests.UserUserDesc)
 
-        return update_user_settings(self.state,
-                                    self.request.tid,
+        return update_user_settings(self.request.tid,
                                     self.current_user,
                                     request,
                                     self.request.language)

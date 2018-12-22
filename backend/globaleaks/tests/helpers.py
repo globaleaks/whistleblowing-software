@@ -47,7 +47,7 @@ from globaleaks.handlers.admin.field import db_create_field
 from globaleaks.handlers.admin.questionnaire import get_questionnaire, db_get_questionnaire
 from globaleaks.handlers.admin.step import create_step
 from globaleaks.handlers.admin.tenant import create as create_tenant
-from globaleaks.handlers.admin.user import create_user, create_receiver_user
+from globaleaks.handlers.admin.user import create_user
 from globaleaks.handlers.wizard import wizard
 from globaleaks.handlers.submission import create_submission
 from globaleaks.models.config import set_config_variable
@@ -212,6 +212,7 @@ def get_dummy_field():
         'instance': 'template',
         'editable': True,
         'template_id': '',
+        'template_override_id': '',
         'step_id': '',
         'fieldgroup_id': '',
         'label': u'antani',
@@ -721,15 +722,15 @@ class TestGLWithPopulatedDB(TestGL):
     @inlineCallbacks
     def fill_data(self):
         # fill_data/create_admin
-        self.dummyAdminUser = yield create_user(self.state, 1, copy.deepcopy(self.dummyAdminUser), 'en')
+        self.dummyAdminUser = yield create_user(1, copy.deepcopy(self.dummyAdminUser), 'en')
 
         # fill_data/create_custodian
-        self.dummyCustodianUser = yield create_user(self.state, 1, copy.deepcopy(self.dummyCustodianUser), 'en')
+        self.dummyCustodianUser = yield create_user(1, copy.deepcopy(self.dummyCustodianUser), 'en')
 
         # fill_data/create_receiver
-        self.dummyReceiver_1 = yield create_receiver_user(self.state, 1, copy.deepcopy(self.dummyReceiver_1), 'en')
+        self.dummyReceiver_1 = yield create_user(1, copy.deepcopy(self.dummyReceiver_1), 'en')
         self.dummyReceiverUser_1['id'] = self.dummyReceiver_1['id']
-        self.dummyReceiver_2 = yield create_receiver_user(self.state, 1, copy.deepcopy(self.dummyReceiver_2), 'en')
+        self.dummyReceiver_2 = yield create_user(1, copy.deepcopy(self.dummyReceiver_2), 'en')
         self.dummyReceiverUser_2['id'] = self.dummyReceiver_2['id']
         receivers_ids = [self.dummyReceiver_1['id'], self.dummyReceiver_2['id']]
 
@@ -737,7 +738,7 @@ class TestGLWithPopulatedDB(TestGL):
 
         # fill_data/create_context
         self.dummyContext['receivers'] = receivers_ids
-        self.dummyContext = yield create_context(self.state, 1, copy.deepcopy(self.dummyContext), 'en')
+        self.dummyContext = yield create_context(1, copy.deepcopy(self.dummyContext), 'en')
 
         self.dummyQuestionnaire = yield get_questionnaire(1, self.dummyContext['questionnaire_id'], 'en')
 
@@ -753,7 +754,7 @@ class TestGLWithPopulatedDB(TestGL):
         for i in range(1, self.population_of_tenants):
             name = 'tenant-' + str(i+1)
             t = yield create_tenant({'mode': 'default', 'label': name, 'active': True, 'subdomain': name})
-            yield wizard(self.state, t['id'], self.dummyWizard, True, u'en')
+            yield wizard(t['id'], self.dummyWizard, True, u'en')
             yield self.set_hostnames(i+1)
 
         yield associate_users_of_first_tenant_to_second_tenant()
@@ -972,7 +973,7 @@ class TestCollectionHandler(TestHandler):
 
         data = self.get_dummy_request()
 
-        yield self._test_desc['create'](self.state, 1, data, u'en')
+        yield self._test_desc['create'](1, data, u'en')
 
         handler = self.request(role='admin')
 
@@ -1007,7 +1008,7 @@ class TestInstanceHandler(TestHandler):
 
         data = self.get_dummy_request()
 
-        data = yield self._test_desc['create'](self.state, 1, data, u'en')
+        data = yield self._test_desc['create'](1, data, u'en')
 
         handler = self.request(data, role='admin')
 
@@ -1021,7 +1022,7 @@ class TestInstanceHandler(TestHandler):
 
         data = self.get_dummy_request()
 
-        data = yield self._test_desc['create'](self.state, 1, data, u'en')
+        data = yield self._test_desc['create'](1, data, u'en')
 
         for k, v in self._test_desc['data'].items():
             data[k] = v
@@ -1032,7 +1033,7 @@ class TestInstanceHandler(TestHandler):
             data = yield handler.put(data['id'])
 
             for k, v in self._test_desc['data'].items():
-                self.assertTrue(data[k], v)
+                self.assertEqual(data[k], v)
 
     @inlineCallbacks
     def test_delete(self):
@@ -1041,7 +1042,7 @@ class TestInstanceHandler(TestHandler):
 
         data = self.get_dummy_request()
 
-        data = yield self._test_desc['create'](self.state, 1, data, u'en')
+        data = yield self._test_desc['create'](1, data, u'en')
 
         handler = self.request(data, role='admin')
 

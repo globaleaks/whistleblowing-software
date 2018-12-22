@@ -5,7 +5,7 @@ from globaleaks import models
 from globaleaks.db import db_refresh_memory_variables
 from globaleaks.handlers.admin.context import db_create_context
 from globaleaks.handlers.admin.node import db_update_enabled_languages
-from globaleaks.handlers.admin.user import db_create_user, db_create_receiver_user
+from globaleaks.handlers.admin.user import db_create_user
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.models import config, profiles
 from globaleaks.orm import transact
@@ -14,7 +14,7 @@ from globaleaks.utils.utility import datetime_now
 from globaleaks.utils.log import log
 
 
-def db_wizard(session, state, tid, request, client_using_tor, language):
+def db_wizard(session, tid, request, client_using_tor, language):
     language = request['node_language']
 
     node = config.ConfigFactory(session, tid, 'node')
@@ -52,7 +52,7 @@ def db_wizard(session, state, tid, request, client_using_tor, language):
     admin_desc['deletable'] = False
     admin_desc['pgp_key_remove'] = False
 
-    admin_user = db_create_user(session, state, tid, admin_desc, language)
+    admin_user = db_create_user(session, tid, admin_desc, language)
     admin_user.password_change_needed = False
     admin_user.password_change_date = datetime_now()
 
@@ -67,13 +67,13 @@ def db_wizard(session, state, tid, request, client_using_tor, language):
     receiver_desc['deletable'] = True
     receiver_desc['pgp_key_remove'] = False
 
-    _, receiver_user = db_create_receiver_user(session, state, tid, receiver_desc, language)
+    receiver_user = db_create_user(session, tid, receiver_desc, language)
 
     context_desc = models.Context().dict(language)
     context_desc['name'] = u'Default'
     context_desc['receivers'] = [receiver_user.id]
 
-    context = db_create_context(session, state, tid, context_desc, language)
+    context = db_create_context(session, tid, context_desc, language)
 
     # Root tenants initialization terminates here
 
@@ -128,8 +128,8 @@ def db_wizard(session, state, tid, request, client_using_tor, language):
 
 
 @transact
-def wizard(session, state, tid, request, client_using_tor, language):
-    db_wizard(session, state, tid, request, client_using_tor, language)
+def wizard(session, tid, request, client_using_tor, language):
+    db_wizard(session, tid, request, client_using_tor, language)
 
 
 class Wizard(BaseHandler):
@@ -143,4 +143,4 @@ class Wizard(BaseHandler):
         request = self.validate_message(self.request.content.read(),
                                         requests.WizardDesc)
 
-        return wizard(self.state, self.request.tid, request, self.request.client_using_tor, self.request.language)
+        return wizard(self.request.tid, request, self.request.client_using_tor, self.request.language)

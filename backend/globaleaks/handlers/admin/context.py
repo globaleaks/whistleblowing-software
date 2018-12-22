@@ -136,7 +136,7 @@ def db_update_context(session, tid, context, request, language):
     return context
 
 
-def db_create_context(session, state, tid, request, language):
+def db_create_context(session, tid, request, language):
     request = fill_context_request(tid, request, language)
 
     check_context_questionnaire_association(session, tid, request['questionnaire_id'])
@@ -149,7 +149,7 @@ def db_create_context(session, state, tid, request, language):
 
 
 @transact
-def create_context(session, state, tid, request, language):
+def create_context(session, tid, request, language):
     """
     Creates a new context from the request of a client.
 
@@ -159,7 +159,7 @@ def create_context(session, state, tid, request, language):
     Returns:
         (dict) representing the configured context
     """
-    context = db_create_context(session, state, tid, request, language)
+    context = db_create_context(session, tid, request, language)
 
     return admin_serialize_context(session, context, language)
 
@@ -218,7 +218,7 @@ class ContextsCollection(OperationHandler):
         request = self.validate_message(self.request.content.read(),
                                         requests.AdminContextDesc)
 
-        return create_context(self.state, self.request.tid, request, self.request.language)
+        return create_context(self.request.tid, request, self.request.language)
 
     def operation_descriptors(self):
         return {

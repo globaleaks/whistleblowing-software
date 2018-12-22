@@ -100,4 +100,6 @@ text.axis-worktime {
 
 .selectionList {
   list-style-type: none;
+  overflow: auto;
+  max-height: 8em;
 }

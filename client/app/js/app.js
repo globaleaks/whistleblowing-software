@@ -121,7 +121,7 @@ var GLClient = angular.module('GLClient', [
     }
 
     function fetchResources(role, lst) {
-      return ['$q', 'Access', 'AdminContextResource', 'AdminQuestionnaireResource', 'AdminStepResource', 'AdminFieldResource', 'AdminFieldTemplateResource', 'AdminUserResource', 'AdminReceiverResource', 'AdminNodeResource', 'AdminNotificationResource', 'AdminShorturlResource', 'AdminTenantResource', 'FieldAttrs', 'ActivitiesCollection', 'AnomaliesCollection', 'TipOverview', 'FileOverview', 'JobsOverview', 'ManifestResource', 'AdminSubmissionStatusResource', function($q, Access, AdminContextResource, AdminQuestionnaireResource, AdminStepResource, AdminFieldResource, AdminFieldTemplateResource, AdminUserResource, AdminReceiverResource, AdminNodeResource, AdminNotificationResource, AdminShorturlResource, AdminTenantResource, FieldAttrs, ActivitiesCollection, AnomaliesCollection, TipOverview, FileOverview, JobsOverview, ManifestResource, AdminSubmissionStatusResource) {
+      return ['$q', 'Access', 'AdminContextResource', 'AdminQuestionnaireResource', 'AdminStepResource', 'AdminFieldResource', 'AdminFieldTemplateResource', 'AdminUserResource', 'AdminNodeResource', 'AdminNotificationResource', 'AdminShorturlResource', 'AdminTenantResource', 'FieldAttrs', 'ActivitiesCollection', 'AnomaliesCollection', 'TipOverview', 'FileOverview', 'JobsOverview', 'ManifestResource', 'AdminSubmissionStatusResource', function($q, Access, AdminContextResource, AdminQuestionnaireResource, AdminStepResource, AdminFieldResource, AdminFieldTemplateResource, AdminUserResource, AdminNodeResource, AdminNotificationResource, AdminShorturlResource, AdminTenantResource, FieldAttrs, ActivitiesCollection, AnomaliesCollection, TipOverview, FileOverview, JobsOverview, ManifestResource, AdminSubmissionStatusResource) {
         var resourcesPromises = {
           node: function() { return AdminNodeResource.get().$promise },
           manifest: function() { return ManifestResource.get().$promise; },
@@ -129,7 +129,6 @@ var GLClient = angular.module('GLClient', [
           field_attrs: function() { return FieldAttrs.get().$promise },
           fieldtemplates: function() { return AdminFieldTemplateResource.query().$promise },
           users: function() { return AdminUserResource.query().$promise },
-          receivers: function() { return AdminReceiverResource.query().$promise },
           notification: function() { return AdminNotificationResource.get().$promise },
           shorturls: function() { return AdminShorturlResource.query().$promise },
           tenants: function() { return AdminTenantResource.query().$promise },
@@ -285,7 +284,7 @@ var GLClient = angular.module('GLClient', [
         header_title: 'Contexts',
         resolve: {
           access: requireAuth('admin'),
-          resources: fetchResources('admin', ['contexts', 'node', 'questionnaires', 'receivers']),
+          resources: fetchResources('admin', ['contexts', 'node', 'questionnaires', 'users']),
         }
       }).
       when('/admin/questionnaires', {
@@ -304,15 +303,6 @@ var GLClient = angular.module('GLClient', [
         resolve: {
           access: requireAuth('admin'),
           resources: fetchResources('admin', ['node', 'users']),
-        }
-      }).
-      when('/admin/receivers', {
-        templateUrl: 'views/admin/receivers.html',
-        controller: 'AdminCtrl',
-        header_title: 'Recipients',
-        resolve: {
-          access: requireAuth('admin'),
-          resources: fetchResources('admin', ['contexts', 'node', 'receivers']),
         }
       }).
       when('/admin/mail', {

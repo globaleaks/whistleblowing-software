@@ -878,35 +878,6 @@ class _Questionnaire(Model):
         return (ForeignKeyConstraint(['tid'], ['tenant.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),)
 
 
-class _Receiver(Model):
-    """
-    This model keeps track of receivers settings.
-    """
-    __tablename__ = 'receiver'
-
-    id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
-
-    configuration = Column(UnicodeText, default=u'default', nullable=False)
-    can_delete_submission = Column(Boolean, default=False, nullable=False)
-    can_postpone_expiration = Column(Boolean, default=False, nullable=False)
-    can_grant_permissions = Column(Boolean, default=False, nullable=False)
-
-    @declared_attr
-    def __table_args__(self):
-        return (ForeignKeyConstraint(['id'], ['user.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),
-                CheckConstraint(self.configuration.in_(['default', 'forcefully_selected', 'unselectable'])))
-
-    unicode_keys = ['configuration']
-
-    bool_keys = [
-        'can_delete_submission',
-        'can_postpone_expiration',
-        'can_grant_permissions',
-    ]
-
-    list_keys = ['contexts']
-
-
 class _ReceiverContext(Model):
     """
     Class used to implement references between Receivers and Contexts
@@ -924,7 +895,7 @@ class _ReceiverContext(Model):
     @declared_attr
     def __table_args__(self):
         return (ForeignKeyConstraint(['context_id'], ['context.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),
-                ForeignKeyConstraint(['receiver_id'], ['receiver.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'))
+                ForeignKeyConstraint(['receiver_id'], ['user.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'))
 
 
 class _ReceiverFile(Model):
@@ -979,7 +950,7 @@ class _ReceiverTip(Model):
 
     @declared_attr
     def __table_args__(self):
-        return (ForeignKeyConstraint(['receiver_id'], ['receiver.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),
+        return (ForeignKeyConstraint(['receiver_id'], ['user.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),
                 ForeignKeyConstraint(['internaltip_id'], ['internaltip.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'))
 
 
@@ -1205,8 +1176,6 @@ class _User(Model):
     crypto_prv_key = Column(LargeBinary(72), default=b'', nullable=False)
     crypto_pub_key = Column(LargeBinary(32), default=b'', nullable=False)
 
-    can_edit_general_settings = Column(Boolean, default=False, nullable=False)
-
     change_email_address = Column(UnicodeText, default=u'', nullable=False)
     change_email_token = Column(UnicodeText, unique=True, nullable=True)
     change_email_date = Column(DateTime, default=datetime_never, nullable=False)
@@ -1215,6 +1184,12 @@ class _User(Model):
     reset_password_date = Column(UnicodeText, default=datetime_never, nullable=False)
 
     notification = Column(Boolean, default=True, nullable=False)
+
+    recipient_configuration = Column(UnicodeText, default=u'default', nullable=False)
+    can_delete_submission = Column(Boolean, default=False, nullable=False)
+    can_postpone_expiration = Column(Boolean, default=False, nullable=False)
+    can_grant_permissions = Column(Boolean, default=False, nullable=False)
+    can_edit_general_settings = Column(Boolean, default=False, nullable=False)
 
     # BEGIN of PGP key fields
     pgp_key_fingerprint = Column(UnicodeText, default=u'', nullable=False)
@@ -1227,11 +1202,16 @@ class _User(Model):
     unicode_keys = ['username', 'role', 'state',
                     'language', 'mail_address', 'name',
                     'language', 'change_email_address',
-                    'salt']
+                    'salt', 'recipient_configuration']
 
     localized_keys = ['description']
 
-    bool_keys = ['password_change_needed', 'can_edit_general_settings', 'notification']
+    bool_keys = ['password_change_needed'
+                 'notification',
+                 'can_edit_general_settings',
+                 'can_delete_submission',
+                 'can_postpone_expiration',
+                 'can_grant_permissions']
 
     date_keys = ['creation_date', 'last_login', 'password_change_date', 'pgp_key_expiration']
 
@@ -1240,7 +1220,8 @@ class _User(Model):
         return (ForeignKeyConstraint(['tid'], ['tenant.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),
                 UniqueConstraint('tid', 'username'),
                 CheckConstraint(self.role.in_(['admin','receiver', 'custodian'])),
-                CheckConstraint(self.state.in_(['disabled', 'enabled'])))
+                CheckConstraint(self.state.in_(['disabled', 'enabled'])),
+                CheckConstraint(self.recipient_configuration.in_(['default', 'forcefully_selected', 'unselectable'])))
 
 
 class _UserTenant(Model):
@@ -1358,7 +1339,6 @@ class InternalTipData(_InternalTipData, Base): pass
 class Mail(_Mail, Base): pass
 class Message(_Message, Base): pass
 class Questionnaire(_Questionnaire, Base): pass
-class Receiver(_Receiver, Base): pass
 class ReceiverContext(_ReceiverContext, Base): pass
 class ReceiverFile(_ReceiverFile, Base): pass
 class ReceiverTip(_ReceiverTip, Base): pass

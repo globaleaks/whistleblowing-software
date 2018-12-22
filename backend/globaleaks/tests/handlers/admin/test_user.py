@@ -2,7 +2,6 @@
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import models
-from globaleaks.handlers.admin import receiver
 from globaleaks.handlers.admin import user
 from globaleaks.tests import helpers
 
@@ -10,7 +9,7 @@ class TestAdminCollection(helpers.TestCollectionHandler):
     _handler = user.UsersCollection
     _test_desc = {
       'model': models.User,
-      'create': user.create,
+      'create': user.create_user,
       'data': {
           'role': 'admin',
           'name': u'Mario Rossi',
@@ -30,7 +29,7 @@ class TestAdminInstance(helpers.TestInstanceHandler):
     _handler = user.UserInstance
     _test_desc = {
       'model': models.User,
-      'create': user.create,
+      'create': user.create_user,
       'data': {
           'role': 'admin',
           'mail_address': 'admin@theguardian.com',
@@ -48,7 +47,7 @@ class TestAdminInstance(helpers.TestInstanceHandler):
 class TestReceiverCollection(TestAdminCollection):
     _test_desc = {
       'model': models.User,
-      'create': user.create,
+      'create': user.create_user,
       'data': {
           'name': u'Mario Rossi',
           'mail_address': 'receiver@theguardian.com',
@@ -60,19 +59,19 @@ class TestReceiverCollection(TestAdminCollection):
 class TestReceiverInstance(TestAdminInstance):
     _test_desc = {
       'model': models.User,
-      'create': user.create,
+      'create': user.create_user,
       'data': {
           'name': u'Mario Rossi',
           'mail_address': 'receiver@theguardian.com',
-          'language': 'en'
+          'language': 'en',
+          'can_delete_submission': False
       }
     }
-
 
 class TestCustodianCollection(TestAdminCollection):
     _test_desc = {
       'model': models.User,
-      'create': user.create,
+      'create': user.create_user,
       'data': {
           'role': 'custodian',
           'name': u'Mario Rossi',
@@ -85,7 +84,7 @@ class TestCustodianCollection(TestAdminCollection):
 class TestCustodianInstance(TestAdminCollection):
     _test_desc = {
       'model': models.User,
-      'create': user.create,
+      'create': user.create_user,
       'data': {
           'role': 'custodian',
           'mail_address': 'custodian@theguardian.com',
@@ -101,7 +100,7 @@ class UserTenantTestBaseClass(helpers.TestHandlerWithPopulatedDB):
     def setUp(self):
         yield helpers.TestHandlerWithPopulatedDB.setUp(self)
 
-        for r in (yield receiver.get_receiver_list(1, 'en')):
+        for r in (yield user.get_receiver_list(1, 'en')):
             if r['pgp_key_fingerprint'] == u'BFB3C82D1B5F6A94BDAC55C6E70460ABF9A4C8C1':
                 self.rcvr_id = r['id']
 

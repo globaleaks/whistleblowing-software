@@ -69,8 +69,7 @@ class Daily(LoopingJob):
                                                  .filter(models.InternalTip.tid == tid,
                                                          models.ReceiverTip.internaltip_id == models.InternalTip.id,
                                                          models.InternalTip.expiration_date < threshold,
-                                                         models.ReceiverTip.receiver_id == models.Receiver.id,
-                                                         models.Receiver.id == user.id)]
+                                                         models.ReceiverTip.receiver_id == user.id)]
 
                 if not len(itip_ids):
                     continue

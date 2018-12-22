@@ -14,7 +14,6 @@ describe('verify navigation of admin sections', function() {
     element(by.cssContainingText("ul li a", "Text customization")).click();
 
     element(by.cssContainingText("a", "Users")).click();
-    element(by.cssContainingText("a", "Recipients")).click();
     element(by.cssContainingText("a", "Contexts")).click();
     element(by.cssContainingText("a", "Questionnaires")).click();
 

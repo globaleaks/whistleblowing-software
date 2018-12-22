@@ -7,7 +7,7 @@ from globaleaks import models
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.rtip import db_postpone_expiration_date, db_delete_itip
 from globaleaks.handlers.submission import db_serialize_archived_preview_schema
-from globaleaks.handlers.user import db_user_update_user, user_serialize_user
+from globaleaks.handlers.user import db_get_user, db_user_update_user, user_serialize_user
 from globaleaks.orm import transact
 from globaleaks.rest import requests, errors
 from globaleaks.state import State
@@ -15,46 +15,38 @@ from globaleaks.models import get_localized_values
 from globaleaks.utils.utility import datetime_to_ISO8601
 
 
-def receiver_serialize_receiver(session, tid, receiver, user, language):
+def receiver_serialize_receiver(session, tid, user, language):
     # take only contexts for the current tenant
     contexts = [x[0] for x in session.query(models.ReceiverContext.context_id) \
-                                     .filter(models.ReceiverContext.receiver_id == receiver.id,
-                                             models.UserTenant.user_id == receiver.id,
+                                     .filter(models.ReceiverContext.receiver_id == user.id,
+                                             models.UserTenant.user_id == user.id,
                                              models.UserTenant.tenant_id == tid)]
 
     ret_dict = user_serialize_user(session, user, language)
 
     ret_dict.update({
-        'can_postpone_expiration': State.tenant_cache[tid].can_postpone_expiration or receiver.can_postpone_expiration,
-        'can_delete_submission': State.tenant_cache[tid].can_delete_submission or receiver.can_delete_submission,
-        'can_grant_permissions': State.tenant_cache[tid].can_grant_permissions or receiver.can_grant_permissions,
+        'can_postpone_expiration': State.tenant_cache[tid].can_postpone_expiration or user.can_postpone_expiration,
+        'can_delete_submission': State.tenant_cache[tid].can_delete_submission or user.can_delete_submission,
+        'can_grant_permissions': State.tenant_cache[tid].can_grant_permissions or user.can_grant_permissions,
         'notification': user.notification,
         'contexts': contexts
     })
 
-    return get_localized_values(ret_dict, receiver, receiver.localized_keys, language)
+    return ret_dict
 
 
 @transact
-def get_receiver_settings(session, tid, receiver_id, language):
-    receiver, user = session.query(models.Receiver, models.User) \
-                            .filter(models.Receiver.id == receiver_id,
-                                    models.Receiver.id == models.User.id).one_or_none()
+def get_receiver_settings(session, tid, user_id, language):
+    user = db_get_user(session, tid, user_id)
 
-    return receiver_serialize_receiver(session, tid, receiver, user, language)
+    return receiver_serialize_receiver(session, tid, user, language)
 
 
 @transact
-def update_receiver_settings(session, state, tid, user_session, request, language):
-    db_user_update_user(session, state, tid, user_session, request)
+def update_receiver_settings(session, tid, user_session, request, language):
+    user = db_user_update_user(session, tid, user_session, request)
 
-    receiver, user = session.query(models.Receiver, models.User) \
-                            .filter(models.Receiver.id == user_session.user_id,
-                                    models.Receiver.id == models.User.id).one_or_none()
-
-    user.notification = request['notification']
-
-    return receiver_serialize_receiver(session, tid, receiver, user, language)
+    return receiver_serialize_receiver(session, tid, user, language)
 
 
 @transact
@@ -135,7 +127,7 @@ def get_receivertip_list(session, tid, receiver_id, language):
 
 @transact
 def perform_tips_operation(session, tid, receiver_id, operation, rtips_ids):
-    receiver = session.query(models.Receiver).filter(models.Receiver.id == receiver_id).one()
+    receiver = models.db_get(session, models.User, models.User.id == receiver_id)
 
     can_postpone_expiration = State.tenant_cache[tid].can_postpone_expiration or receiver.can_postpone_expiration
     can_delete_submission = State.tenant_cache[tid].can_delete_submission or receiver.can_delete_submission
@@ -173,8 +165,7 @@ class ReceiverInstance(BaseHandler):
     def put(self):
         request = self.validate_message(self.request.content.read(), requests.ReceiverReceiverDesc)
 
-        return update_receiver_settings(self.state,
-                                        self.request.tid,
+        return update_receiver_settings(self.request.tid,
                                         self.current_user,
                                         request,
                                         self.request.language)

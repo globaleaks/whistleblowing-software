@@ -320,7 +320,7 @@ def delete_rtip(session, tid, user_id, rtip_id):
     """
     rtip, itip = db_access_rtip(session, tid, user_id, rtip_id)
 
-    receiver = models.db_get(session, models.Receiver, models.Receiver.id == rtip.receiver_id)
+    receiver = models.db_get(session, models.User, models.User.id == rtip.receiver_id)
 
     if not (State.tenant_cache[tid].can_delete_submission or
             receiver.can_delete_submission):
@@ -333,7 +333,7 @@ def delete_rtip(session, tid, user_id, rtip_id):
 def postpone_expiration_date(session, tid, user_id, rtip_id):
     rtip, itip = db_access_rtip(session, tid, user_id, rtip_id)
 
-    receiver = models.db_get(session, models.Receiver, models.Receiver.id == rtip.receiver_id)
+    receiver = models.db_get(session, models.User, models.User.id == rtip.receiver_id)
 
     if not (State.tenant_cache[tid].can_postpone_expiration or
             receiver.can_postpone_expiration):
@@ -346,7 +346,7 @@ def postpone_expiration_date(session, tid, user_id, rtip_id):
 def set_internaltip_variable(session, tid, user_id, rtip_id, key, value):
     rtip, itip = db_access_rtip(session, tid, user_id, rtip_id)
 
-    receiver = models.db_get(session, models.Receiver, models.Receiver.id == rtip.receiver_id)
+    receiver = models.db_get(session, models.User, models.User.id == rtip.receiver_id)
 
     if not (State.tenant_cache[tid].can_grant_permissions or
             receiver.can_grant_permissions):

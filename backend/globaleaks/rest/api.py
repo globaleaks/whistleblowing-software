@@ -48,7 +48,6 @@ from globaleaks.handlers.admin import node as admin_node
 from globaleaks.handlers.admin import notification as admin_notification
 from globaleaks.handlers.admin import overview as admin_overview
 from globaleaks.handlers.admin import questionnaire as admin_questionnaire
-from globaleaks.handlers.admin import receiver as admin_receiver
 from globaleaks.handlers.admin import shorturl as admin_shorturl
 from globaleaks.handlers.admin import statistics as admin_statistics
 from globaleaks.handlers.admin import step as admin_step
@@ -135,8 +134,6 @@ api_spec = [
     (r'/admin/questionnaires', admin_questionnaire.QuestionnairesCollection),
     (r'/admin/questionnaires/duplicate', admin_questionnaire.QuestionnareDuplication),
     (r'/admin/questionnaires/' + key_regexp, admin_questionnaire.QuestionnaireInstance),
-    (r'/admin/receivers', admin_receiver.ReceiversCollection),
-    (r'/admin/receivers/' + uuid_regexp, admin_receiver.ReceiverInstance),
     (r'/admin/notification', admin_notification.NotificationInstance),
     (r'/admin/notification/mail', admin_notification.NotificationTestInstance),
     (r'/admin/fields', admin_field.FieldsCollection),

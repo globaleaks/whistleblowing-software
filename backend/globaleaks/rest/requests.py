@@ -150,11 +150,13 @@ UserUserDesc = {
     'pgp_key_expiration': text_type,
     'pgp_key_public': text_type,
     'language': text_type,
+    'notification': bool,
     'can_edit_general_settings': bool,
-    'notification': bool
+    'can_delete_submission': bool,
+    'can_postpone_expiration': bool,
+    'can_grant_permissions': bool,
+    'recipient_configuration': text_type
 }
-
-AdminUserDesc = UserUserDesc # currently the same
 
 ReceiverReceiverDesc = {
     'username': text_type,
@@ -412,14 +414,6 @@ AdminContextDesc = {
     'additional_questionnaire_id': key_regexp_or_empty
 }
 
-AdminReceiverDesc = {
-    'id': uuid_regexp_or_empty,
-    'can_delete_submission': bool,
-    'can_postpone_expiration': bool,
-    'can_grant_permissions': bool,
-    'notification': bool,
-    'configuration': text_type
-}
 
 AdminTLSCertFilesConfigDesc = {
     'priv_key': text_type,

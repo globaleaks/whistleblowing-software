@@ -4,7 +4,7 @@ from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.state import State
 from globaleaks.handlers import user
-from globaleaks.handlers.admin import receiver
+from globaleaks.handlers import admin
 from globaleaks.rest import errors
 from globaleaks.tests import helpers
 
@@ -16,7 +16,7 @@ class TestUserInstance(helpers.TestHandlerWithPopulatedDB):
     def setUp(self):
         yield helpers.TestHandlerWithPopulatedDB.setUp(self)
 
-        for r in (yield receiver.get_receiver_list(1, 'en')):
+        for r in (yield admin.user.get_receiver_list(1, 'en')):
             if r['pgp_key_fingerprint'] == u'BFB3C82D1B5F6A94BDAC55C6E70460ABF9A4C8C1':
                 self.rcvr_id = r['id']
 

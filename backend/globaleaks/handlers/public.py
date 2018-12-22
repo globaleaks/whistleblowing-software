@@ -39,14 +39,11 @@ def db_prepare_contexts_serialization(session, contexts):
 
 
 def db_prepare_receivers_serialization(session, receivers):
-    data = {'users': {}, 'imgs': {}}
+    data = {'imgs': {}}
 
     receivers_ids = [r.id for r in receivers]
 
     if receivers_ids:
-        for o in session.query(models.User).filter(models.User.id.in_(receivers_ids)):
-            data['users'][o.id] = o
-
         for o in session.query(models.UserImg).filter(models.UserImg.id.in_(receivers_ids)):
             data['imgs'][o.id] = o.data
 
@@ -348,7 +345,7 @@ def serialize_step(session, tid, step, language, serialize_templates=True):
     return get_localized_values(ret_dict, step, step.localized_keys, language)
 
 
-def serialize_receiver(session, receiver, language, data=None):
+def serialize_receiver(session, user, language, data=None):
     """
     Serialize a receiver description
 
@@ -357,26 +354,21 @@ def serialize_receiver(session, receiver, language, data=None):
     :return: a serializtion of the object
     """
     if data is None:
-        data = db_prepare_receivers_serialization(session, [receiver])
-
-    user = data['users'][receiver.id]
+        data = db_prepare_receivers_serialization(session, [user])
 
     ret_dict = {
-        'id': receiver.id,
+        'id': user.id,
         'username': user.username,
         'name': user.name,
         'state': user.state,
-        'configuration': receiver.configuration,
-        'can_delete_submission': receiver.can_delete_submission,
-        'can_postpone_expiration': receiver.can_postpone_expiration,
-        'can_grant_permissions': receiver.can_grant_permissions,
+        'configuration': user.recipient_configuration,
+        'can_delete_submission': user.can_delete_submission,
+        'can_postpone_expiration': user.can_postpone_expiration,
+        'can_grant_permissions': user.can_grant_permissions,
         'picture': data['imgs'].get(user.id, '')
     }
 
-    # description and eventually other localized strings should be taken from user model
-    get_localized_values(ret_dict, user, ['description'], language)
-
-    return get_localized_values(ret_dict, receiver, receiver.localized_keys, language)
+    return get_localized_values(ret_dict, user, user.localized_keys, language)
 
 
 def db_get_public_context_list(session, tid, language):
@@ -399,10 +391,10 @@ def db_get_questionnaire_list(session, tid, language):
 
 
 def db_get_public_receiver_list(session, tid, language):
-    receivers = session.query(models.Receiver).filter(models.Receiver.id == models.User.id,
-                                                      models.User.state != u'disabled',
-                                                      models.UserTenant.user_id == models.User.id,
-                                                      models.UserTenant.tenant_id == tid)
+    receivers = session.query(models.User).filter(models.User.role == u'receiver',
+                                                  models.User.state != u'disabled',
+                                                  models.UserTenant.user_id == models.User.id,
+                                                  models.UserTenant.tenant_id == tid)
 
     data = db_prepare_receivers_serialization(session, receivers)
 

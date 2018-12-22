@@ -590,9 +590,6 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
   factory('AdminUserResource', ['GLResource', function(GLResource) {
     return new GLResource('admin/users/:id', {id: '@id'});
 }]).
-  factory('AdminReceiverResource', ['GLResource', function(GLResource) {
-    return new GLResource('admin/receivers/:id', {id: '@id'});
-}]).
   factory('AdminSubmissionStatusResource', ['GLResource', function(GLResource) {
     return new GLResource('admin/submission_statuses/:id', {id: '@id'});
 }]).
@@ -651,8 +648,8 @@ factory('AdminAcmeResource', ['GLResource', function(GLResource) {
 factory('AdminTLSCfgFileResource', ['GLResource', function(GLResource) {
     return new GLResource('admin/config/tls/files/:name', {name: '@name'});
 }]).
-factory('AdminUtils', ['AdminContextResource', 'AdminQuestionnaireResource', 'AdminStepResource', 'AdminFieldResource', 'AdminFieldTemplateResource', 'AdminUserResource', 'AdminReceiverResource', 'AdminNodeResource', 'AdminNotificationResource', 'AdminShorturlResource', 'AdminTenantResource',
-    function(AdminContextResource, AdminQuestionnaireResource, AdminStepResource, AdminFieldResource, AdminFieldTemplateResource, AdminUserResource, AdminReceiverResource, AdminNodeResource, AdminNotificationResource, AdminShorturlResource, AdminTenantResource) {
+factory('AdminUtils', ['AdminContextResource', 'AdminQuestionnaireResource', 'AdminStepResource', 'AdminFieldResource', 'AdminFieldTemplateResource', 'AdminUserResource', 'AdminNodeResource', 'AdminNotificationResource', 'AdminShorturlResource', 'AdminTenantResource',
+    function(AdminContextResource, AdminQuestionnaireResource, AdminStepResource, AdminFieldResource, AdminFieldTemplateResource, AdminUserResource, AdminNodeResource, AdminNotificationResource, AdminShorturlResource, AdminTenantResource) {
   return {
     new_context: function() {
       var context = new AdminContextResource();
