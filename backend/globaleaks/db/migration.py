@@ -179,7 +179,6 @@ def perform_migration(version):
 
     try:
         while version < DATABASE_VERSION:
-            print(version)
             old_db_file = os.path.abspath(os.path.join(tmpdir, 'old.db'))
             new_db_file = os.path.abspath(os.path.join(tmpdir, 'new.db'))
 
