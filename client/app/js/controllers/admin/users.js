@@ -158,8 +158,6 @@ controller('AdminUserAddCtrl', ['$scope',
       user.role = $scope.new_user.role;
       user.name = $scope.new_user.name;
       user.mail_address = $scope.new_user.email;
-      user.can_edit_general_settings = false;
-      user.presentation_order = $scope.newItemOrder($scope.admin.users, 'presentation_order');
 
       user.$save(function(new_user){
         $scope.admin.users.push(new_user);

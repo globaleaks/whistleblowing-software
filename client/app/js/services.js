@@ -783,6 +783,11 @@ factory('AdminUtils', ['AdminContextResource', 'AdminQuestionnaireResource', 'Ad
       user.pgp_key_expiration = '';
       user.language = 'en';
       user.notification = true;
+      user.recipient_configuration = 'default';
+      user.can_edit_general_settings = false;
+      user.can_delete_submission = false;
+      user.can_postpone_expiration = false;
+      user.can_grant_permissions = false;
       return user;
     },
 
