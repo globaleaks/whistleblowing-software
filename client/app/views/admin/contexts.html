@@ -9,7 +9,7 @@
           <span data-translate>Add</span>
         </button>
       </div>
-      <div class="adminConfigSection row" data-ng-controller="AdminContextAddCtrl" data-ng-if="showAddContext">
+      <div class="row" data-ng-controller="AdminContextAddCtrl" data-ng-if="showAddContext">
         <div data-ng-form="newContext" class="addContext col-md-6" novalidate>
           <div class="form-group">
             <label>
@@ -161,13 +161,6 @@
                   <div id="ContextAdvancedSettingsBox">
                     <div class="row" data-ng-show="show_advanced_settings">
                       <div class="col-md-6">
-                        <div class="form-group">
-                          <label class="inline-checkbox">
-                            <input data-ng-model="context.show_context" type="checkbox" />
-                            <span data-translate>Allow selection of this context through the context selector.</span>
-                          </label>
-                          <p data-translate>If disabled, submissions for this context will only be accessible through a direct link to it.</p>
-                        </div>
                         <div class="form-group">
                           <label class="inline-checkbox">
                             <input data-ng-model="context.show_steps_navigation_interface" type="checkbox" />

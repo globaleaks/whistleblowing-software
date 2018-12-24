@@ -9,55 +9,55 @@
           <span data-translate>Add</span>
         </button>
       </div>
-    </div>
-    <div class="adminConfigSection row" data-ng-controller="AdminUserAddCtrl" data-ng-if="showAddUser">
-      <div data-ng-form="newUser" class="addUser col-md-6" novalidate>
-        <div class="form-group">
-          <label data-translate>Role</label>
-          <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
-            <div data-ng-class="{'has-error': newUser.role.$error.required}">
-              <select name="role" class="form-control" data-ng-model="new_user.role" required>
-                <option value="admin" data-translate>Admin</option>
-                <option value="receiver" data-translate>Recipient</option>
-                <option value="custodian" data-translate>Custodian</option>
-              </select>
-            </div>
-          </div>
-          <div class="form-group" data-ng-if="new_user.role !== 'receiver' || !node.simplified_login">
-            <label data-translate>Username</label>
+      <div class="row" data-ng-controller="AdminUserAddCtrl" data-ng-show="showAddUser">
+        <div data-ng-form="newUser" class="addUser col-md-6" novalidate>
+          <div class="form-group">
+            <label data-translate>Role</label>
             <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
-            <div data-ng-class="{'has-error': newUser.username.$error.required}">
-              <input class="form-control" name="username" data-ng-model="new_user.username" type="text" required />
+              <div data-ng-class="{'has-error': newUser.role.$error.required}">
+                <select name="role" class="form-control" data-ng-model="new_user.role" required>
+                  <option value="admin" data-translate>Admin</option>
+                  <option value="receiver" data-translate>Recipient</option>
+                  <option value="custodian" data-translate>Custodian</option>
+                </select>
+              </div>
             </div>
-          </div>
-          <div class="form-group">
-            <label data-translate>Name</label>
-            <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
-            <div data-ng-class="{'has-error': newUser.name.$error.required}">
-              <input class="form-control" name="name" data-ng-model="new_user.name" type="text" required />
+            <div class="form-group" data-ng-if="new_user.role !== 'receiver' || !node.simplified_login">
+              <label data-translate>Username</label>
+              <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
+              <div data-ng-class="{'has-error': newUser.username.$error.required}">
+                <input class="form-control" name="username" data-ng-model="new_user.username" type="text" required />
+              </div>
             </div>
-          </div>
-          <div class="form-group">
-            <label data-translate>Email address</label>
-            <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
-            <div data-ng-class="{'has-error': newUser.email.$error}">
-              <input class="form-control" name="email" data-ng-model="new_user.email" data-ng-pattern="email_regexp" type="text" required />
+            <div class="form-group">
+              <label data-translate>Name</label>
+              <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
+              <div data-ng-class="{'has-error': newUser.name.$error.required}">
+                <input class="form-control" name="name" data-ng-model="new_user.name" type="text" required />
+              </div>
             </div>
-            <div class="text-danger" data-ng-show="newUser.email.$error.pattern" data-translate>Invalid email address</div>
-          </div>
-          <div class="form-group">
-            <label data-translate>Password</label>
-            <div>
-              <span data-translate>The default password is:</span>
-              <span class="label label-primary">password</span>
+            <div class="form-group">
+              <label data-translate>Email address</label>
+              <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right">*</span>
+              <div data-ng-class="{'has-error': newUser.email.$error}">
+                <input class="form-control" name="email" data-ng-model="new_user.email" data-ng-pattern="email_regexp" type="text" required />
+              </div>
+              <div class="text-danger" data-ng-show="newUser.email.$error.pattern" data-translate>Invalid email address</div>
             </div>
-            <div data-translate>The system forces users to change the password at first login.</div>
-          </div>
-          <div class="form-group">
-            <button id="add-btn" class="btn btn-primary" data-ng-disabled="newUser.$invalid" data-ng-click="add_user(); toggleAddUser()" type="submit">
-              <i class="glyphicon glyphicon-plus-sign"></i>
-              <span data-translate>Add</span>
-            </button>
+            <div class="form-group">
+              <label data-translate>Password</label>
+              <div>
+                <span data-translate>The default password is:</span>
+                <span class="label label-primary">password</span>
+              </div>
+              <div data-translate>The system forces users to change the password at first login.</div>
+            </div>
+            <div class="form-group">
+              <button id="add-btn" class="btn btn-primary" data-ng-disabled="newUser.$invalid" data-ng-click="add_user(); toggleAddUser()" type="submit">
+                <i class="glyphicon glyphicon-plus-sign"></i>
+                <span data-translate>Add</span>
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -204,7 +204,7 @@
                   </div>
                 </div>
               </div>
-              <div class="row" data-ng-show="user.role === 'receiver'">
+              <div class="row" data-ng-if="user.role === 'receiver'">
                 <div class="col-md-12">
                   <div class="form-group">
                     <label data-translate>Configuration</label>
@@ -217,7 +217,7 @@
                   <div class="form-group">
                       <input data-ng-model="user.can_postpone_expiration" type="checkbox" data-ng-disabled="node.can_postpone_expiration" />
                       <label data-translate>Allow the recipient to postpone the submission expiration date</label>
-                      <div data-ng-show="node.can_postpone_expiration">
+                      <div data-ng-if="node.can_postpone_expiration">
                         <span class="label label-info" data-translate>Enabled</span>
                         <span data-translate>The setting is enabled at a global level.</span>
                       </div>
@@ -225,7 +225,7 @@
                   <div class="form-group">
                       <input data-ng-model="user.can_delete_submission" type="checkbox" data-ng-disabled="node.can_delete_submission" />
                       <label data-translate>Allow the recipient to delete submissions</label>
-                      <div data-ng-show="node.can_delete_submission">
+                      <div data-ng-if="node.can_delete_submission">
                         <span class="label label-info" data-translate>Enabled</span>
                         <span data-translate>The setting is enabled at a global level.</span>
                       </div>
@@ -233,7 +233,7 @@
                   <div class="form-group">
                       <input data-ng-model="user.can_grant_permissions" type="checkbox" data-ng-disabled="can_grant_permissions" />
                       <label data-translate>Allow the recipient to grant permissions to whistleblowers on specific submissions</label>
-                      <div data-ng-show="node.can_grant_permissions">
+                      <div data-ng-if="node.can_grant_permissions">
                         <span class="label label-info" data-translate>Enabled</span>
                         <span data-translate>The setting is enabled at a global level.</span>
                       </div>
@@ -241,7 +241,7 @@
                   <hr />
                 </div>
               </div>
-              <div class="row" data-ng-show="user.role !== 'admin'">
+              <div class="row" data-ng-if="user.role !== 'admin'">
                 <div class="col-md-12">
                   <label data-translate>User has administrative access to the following features:</label>
                   <div class="form-group">
