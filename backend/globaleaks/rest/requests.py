@@ -414,7 +414,6 @@ AdminContextDesc = {
     'additional_questionnaire_id': key_regexp_or_empty
 }
 
-
 AdminTLSCertFilesConfigDesc = {
     'priv_key': text_type,
     'chain': text_type,

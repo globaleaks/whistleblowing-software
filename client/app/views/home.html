@@ -2,29 +2,23 @@
   <div id="NodeIntro" data-ng-if="node.presentation">{{::node.presentation}}</div>
 
   <div id="WhistleblowerBox" class="row">
-    <div data-ng-show="node.configured">
-      <div id="WhistleblowerSubmitBoxButton" class="row" data-ng-show="node.disable_submissions || !node.accept_submissions || (!node.https_whistleblower && !connection.tor)">
-        <button class="btn btn-danger disabled">
-          <i class="glyphicon glyphicon-ban-circle"></i>
-          <span data-translate>Submissions disabled</span>
-        </button>
-      </div>
-      <div class="row" data-ng-show="!node.https_whistleblower && !connection.tor">
-        <p class="text-danger" data-translate>You are connecting to the server without anonymity and this server supports only anonymous submissions</p>
-      </div>
-      <div class="row" data-ng-show="!node.disable_submissions && node.accept_submissions && (node.https_whistleblower || connection.tor)">
-        <div id="WhistleblowerSubmitBox">
-          <div id="WhistleblowerSubmitBoxHeader">{{::node.whistleblowing_question}}</div>
-          <div id="WhistleblowerSubmitBoxButton">
-            <button data-ng-click="evaluateDisclaimerModalOpening() || Utils.go('/submission')" class="btn btn-primary">{{::node.whistleblowing_button}}</button>
-          </div>
-        </div>
-        <div id="WhistleblowerReceiptBox" class="center-block" data-ng-include="'views/partials/wb_login_box.html'"></div>
-      </div>
+    <div id="WhistleblowerSubmitBoxButton" class="row" data-ng-show="node.disable_submissions || !node.accept_submissions || (!node.https_whistleblower && !connection.tor)">
+      <button class="btn btn-danger disabled">
+        <i class="glyphicon glyphicon-ban-circle"></i>
+        <span data-translate>Submissions disabled</span>
+      </button>
     </div>
-    <div data-ng-hide="node.configured">
-      <div class="title2" data-translate>This server is not configured.</div>
-      <div class="title3" data-translate>You will not be able to send a submission.</div>
+    <div class="row" data-ng-show="!node.https_whistleblower && !connection.tor">
+      <p class="text-danger" data-translate>You are connecting to the server without anonymity and this server supports only anonymous submissions</p>
+    </div>
+    <div class="row" data-ng-show="!node.disable_submissions && node.accept_submissions && (node.https_whistleblower || connection.tor)">
+      <div id="WhistleblowerSubmitBox">
+        <div id="WhistleblowerSubmitBoxHeader">{{::node.whistleblowing_question}}</div>
+        <div id="WhistleblowerSubmitBoxButton">
+          <button data-ng-click="evaluateDisclaimerModalOpening() || Utils.go('/submission')" class="btn btn-primary">{{::node.whistleblowing_button}}</button>
+        </div>
+      </div>
+      <div id="WhistleblowerReceiptBox" class="center-block" data-ng-include="'views/partials/wb_login_box.html'"></div>
     </div>
   </div>
 
