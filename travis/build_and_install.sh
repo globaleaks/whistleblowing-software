@@ -37,9 +37,12 @@ debuild -i -us -uc -b
 sudo mkdir -p /globaleaks/deb/
 sudo cp ../globaleaks*deb /globaleaks/deb/
 
-sudo curl http://ftp.us.debian.org/debian/pool/main/p/python-josepy/python-josepy_1.0.1-1~bpo9%2b1_all.deb --output /globaleaks/deb/python-josepy_1.0.1-1~bpo9%2b1_all.deb
-sudo curl http://ftp.us.debian.org/debian/pool/main/p/python-josepy/python3-josepy_1.0.1-1~bpo9%2b1_all.deb --output /globaleaks/deb/python3-josepy_1.0.1-1~bpo9%2b1_all.deb
-sudo curl http://ftp.us.debian.org/debian/pool/main/p/python-acme/python-acme_0.25.1-1~bpo9%2b1_all.deb --output /globaleaks/deb/python-acme_0.25.1-1~bpo9%2b1_all.deb
-sudo curl http://ftp.us.debian.org/debian/pool/main/p/python-acme/python3-acme_0.25.1-1~bpo9%2b1_all.deb --output /globaleaks/deb/python3-acme_0.25.1-1~bpo9%2b1_all.deb
+sudo curl https://deb.globaleaks.org/bionic/python-josepy_1.1.0-2~bpo9%2b1_all.deb --output /globaleaks/deb/python-josepy_1.1.0-2~bpo9%2b1_all.deb
+sudo curl https://deb.globaleaks.org/bionic/python3-josepy_1.1.0-2~bpo9%2b1_all.deb --output /globaleaks/deb/python3-josepy_1.1.0-2~bpo9%2b1_all.deb
+sudo curl https://deb.globaleaks.org/bionic/python-acme_0.28.0-1~bpo9%2b1_all.deb --output /globaleaks/deb/python-acme_0.28.0-1~bpo9%2b1_all.deb
+sudo curl https://deb.globaleaks.org/bionic/python3-acme_0.28.0-1~bpo9%2B1_all.deb --output /globaleaks/deb/python3-acme_0.28.0-1~bpo9%2B1_all.deb
+sudo curl https://deb.globaleaks.org/bionic/libsodium23_1.0.16-2~bpo9%2b1_i386.deb --output /globaleaks/deb/libsodium23_1.0.16-2~bpo9%2b1_i386.deb
+sudo curl https://deb.globaleaks.org/bionic/python-nacl_1.2.1-3~bpo9+3_i386.deb --output /globaleaks/deb/python-nacl_1.2.1-3~bpo9+3_i386.deb
+sudo curl https://deb.globaleaks.org/bionic/python3-nacl_1.2.1-3~bpo9+3_i386.deb --output /globaleaks/deb/python3-nacl_1.2.1-3~bpo9+3_i386.deb
 
 sudo ./scripts/install.sh --assume-yes --test
