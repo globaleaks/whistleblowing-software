@@ -110,6 +110,21 @@ class User_v_45(Model):
 
 
 class MigrationScript(MigrationBase):
+    def migrate_Context(self):
+        old_objs = self.session_old.query(self.model_from['Context'])
+        for old_obj in old_objs:
+            new_obj = self.model_to['Context']()
+            for key in [c.key for c in new_obj.__table__.columns]:
+                if key == 'status':
+                    new_obj.status = 1 if old_obj.show_context else 2
+                    continue
+                elif not hasattr(old_obj, key):
+                    continue
+
+                setattr(new_obj, key, getattr(old_obj, key))
+
+            self.session_new.add(new_obj)
+
     def migrate_Field(self):
         old_objs = self.session_old.query(self.model_from['Field'])
         for old_obj in old_objs:

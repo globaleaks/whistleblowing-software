@@ -161,11 +161,11 @@ def serialize_context(session, context, language, data=None):
     """
     ret_dict = {
         'id': context.id,
+        'status': context.status,
         'presentation_order': context.presentation_order,
         'tip_timetolive': context.tip_timetolive,
         'select_all_receivers': context.select_all_receivers,
         'maximum_selectable_receivers': context.maximum_selectable_receivers,
-        'show_context': context.show_context,
         'show_recipients_details': context.show_recipients_details,
         'allow_recipients_selection': context.allow_recipients_selection,
         'show_small_receiver_cards': context.show_small_receiver_cards,
@@ -368,7 +368,7 @@ def serialize_receiver(session, user, language, data=None):
 
 
 def db_get_public_context_list(session, tid, language):
-    contexts = session.query(models.Context).filter(models.Context.id == models.ReceiverContext.context_id,
+    contexts = session.query(models.Context).filter(models.Context.status > 0,
                                                     models.Context.tid == tid)
 
     data = db_prepare_contexts_serialization(session, contexts)
@@ -380,7 +380,7 @@ def db_get_questionnaire_list(session, tid, language):
     questionnaires = session.query(models.Questionnaire).filter(models.Questionnaire.tid.in_(set([1, tid])),
                                                                 or_(models.Context.questionnaire_id == models.Questionnaire.id,
                                                                     models.Context.additional_questionnaire_id == models.Questionnaire.id),
-                                                                models.Context.id == models.ReceiverContext.context_id,
+                                                                models.Context.status > 0,
                                                                 models.Context.tid == tid)
 
     return [serialize_questionnaire(session, tid, questionnaire, language) for questionnaire in questionnaires]

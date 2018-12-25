@@ -31,10 +31,10 @@ def admin_serialize_context(session, context, language):
 
     ret_dict = {
         'id': context.id,
+        'status': context.status,
         'tip_timetolive': context.tip_timetolive,
         'select_all_receivers': context.select_all_receivers,
         'maximum_selectable_receivers': context.maximum_selectable_receivers,
-        'show_context': context.show_context,
         'show_recipients_details': context.show_recipients_details,
         'allow_recipients_selection': context.allow_recipients_selection,
         'show_small_receiver_cards': context.show_small_receiver_cards,

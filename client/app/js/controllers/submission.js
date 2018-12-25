@@ -24,7 +24,7 @@ GLClient.controller('SubmissionCtrl',
 
   $scope.contextsOrderPredicate = $scope.node.show_contexts_in_alphabetical_order ? 'name' : 'presentation_order';
 
-  $scope.selectable_contexts = $filter('filter')($scope.contexts, {'show_context': true});
+  $scope.selectable_contexts = $filter('filter')($scope.contexts, {'status': 1});
   $scope.selectable_contexts = $filter('orderBy')($scope.selectable_contexts, $scope.contextsOrderPredicate);
 
   var startCountdown = function() {

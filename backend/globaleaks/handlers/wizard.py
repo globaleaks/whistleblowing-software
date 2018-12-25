@@ -70,6 +70,7 @@ def db_wizard(session, tid, request, client_using_tor, language):
     receiver_user = db_create_user(session, tid, receiver_desc, language)
 
     context_desc = models.Context().dict(language)
+    context_desc['status'] = 1
     context_desc['name'] = u'Default'
     context_desc['receivers'] = [receiver_user.id]
 

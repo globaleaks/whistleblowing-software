@@ -384,7 +384,6 @@ class _Context(Model):
 
     show_steps_navigation_interface = Column(Boolean, default=True, nullable=False)
     show_small_receiver_cards = Column(Boolean, default=False, nullable=False)
-    show_context = Column(Boolean, default=True, nullable=False)
     show_recipients_details = Column(Boolean, default=False, nullable=False)
     allow_recipients_selection = Column(Boolean, default=False, nullable=False)
     maximum_selectable_receivers = Column(Integer, default=0, nullable=False)
@@ -408,6 +407,9 @@ class _Context(Model):
     questionnaire_id = Column(UnicodeText(36), default=u'default', nullable=False)
     additional_questionnaire_id = Column(UnicodeText(36))
 
+    # status: 0(disabled), 1(enabled), 2(hidden)
+    status = Column(Integer, default=2, nullable=False)
+
     unicode_keys = ['questionnaire_id', 'additional_questionnaire_id']
 
     localized_keys = [
@@ -418,6 +420,7 @@ class _Context(Model):
     ]
 
     int_keys = [
+      'status',
       'tip_timetolive',
       'maximum_selectable_receivers',
       'presentation_order',

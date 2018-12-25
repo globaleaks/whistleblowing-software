@@ -83,6 +83,14 @@
                     <div class="text-danger" data-ng-show="editContext.name.$error.required" data-translate>This field is mandatory</div>
                   </div>
                   <div class="form-group">
+                    <label data-translate>Status</label>
+                    <select class="form-control" data-ng-model="context.status" convert-to-number>
+                      <option value="1" data-translate>Enabled</option>
+                      <option value="2" data-translate>Hidden</option>
+                      <option value="0" data-translate>Disabled</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
                     <label data-translate>Description</label>
                     <textarea name="description" class="form-control" data-ng-model="context.description"></textarea>
                   </div>
