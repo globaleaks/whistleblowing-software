@@ -154,9 +154,9 @@ class Daily(LoopingJob):
             if is_expired(timestamp, days=1):
                 os.remove(path)
 
-        # Delete the backups older than 15 days
-        for f in os.listdir(self.state.settings.backups_path):
-            path = os.path.join(self.state.settings.backups_path, f)
+        # Delete the update backups older than 15 days
+        for f in os.listdir(self.state.settings.update_path):
+            path = os.path.join(self.state.settings.update_path, f)
             timestamp = datetime.datetime.fromtimestamp(os.path.getmtime(path))
             if is_expired(timestamp, days=15):
                 os.remove(path)
