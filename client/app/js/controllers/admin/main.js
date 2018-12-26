@@ -167,6 +167,11 @@ controller('AdminAdvancedCtrl', ['$scope', '$uibModal', 'CONSTANTS',
       title:"Anomaly detection thresholds",
       template:"views/admin/advanced/tab3.html"
     });
+
+    $scope.tabs.push({
+      title: "Backups",
+      template: "views/admin/advanced/tab4.html"
+    });
   }
 
   $scope.shortener_shorturl_regexp = CONSTANTS.shortener_shorturl_regexp;

@@ -3,6 +3,7 @@ from six import text_type
 
 from globaleaks import __version__, DATABASE_VERSION
 from globaleaks.utils.crypto import GCE
+from globaleaks.utils.utility import uuid4
 
 class Item:
     _type = None
@@ -155,6 +156,16 @@ ConfigDescriptor = {
     u'ip_filter_whistleblower': Unicode(default=u''),
     u'ip_filter_whistleblower_enable': Bool(default=False),
 
+    u'backup': Bool(default=False),
+    u'backup_d': Int(default=3),
+    u'backup_w': Int(default=3),
+    u'backup_m': Int(default=3),
+    u'backup_remote': Bool(default=False),
+    u'backup_remote_server': Unicode(default=u''),
+    u'backup_remote_port': Int(default=22),
+    u'backup_remote_username': Unicode(default=u''),
+    u'backup_remote_password': Unicode(default=u''),
+
     u'enable_password_reset': Bool(default=False),
     u'enable_user_pgp_key_upload': Bool(default=True),
 
@@ -187,6 +198,7 @@ ConfigFilters = {
         u'allow_iframes_inclusion',
         u'can_postpone_expiration',
         u'can_delete_submission',
+
         u'can_grant_permissions',
         u'allow_indexing',
         u'wizard_done',
@@ -250,7 +262,16 @@ ConfigFilters = {
         u'log_level',
         u'log_accesses_of_internal_users',
         u'encryption',
-        u'multisite'
+        u'multisite',
+        u'backup',
+        u'backup_d',
+        u'backup_m',
+        u'backup_w',
+        u'backup_remote',
+        u'backup_remote_server',
+        u'backup_remote_port',
+        u'backup_remote_username',
+        u'backup_remote_password'
     ]),
     'notification': set([
         u'smtp_server',
@@ -309,8 +330,18 @@ ConfigFilters['public_node'] = ConfigFilters['admin_node'] - set([
     'threshold_free_disk_percentage_high',
     'threshold_free_disk_percentage_low',
     'anonymize_outgoing_connections',
-    'counter_submissions'
+    'counter_submissions',
+    'backup',
+    'backup_d',
+    'backup_w',
+    'backup_m',
+    'backup_remote',
+    'backup_remote_server',
+    'backup_remote_port',
+    'backup_remote_username',
+    'backup_remote_password'
 ])
+
 
 # Settings related to general settings
 ConfigFilters['general_settings'] = set([

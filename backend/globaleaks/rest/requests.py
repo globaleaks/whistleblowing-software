@@ -288,7 +288,16 @@ AdminNodeDesc = {
     'log_level': text_type,
     'log_accesses_of_internal_users': bool,
     'encryption': bool,
-    'multisite': bool
+    'multisite': bool,
+    'backup': bool,
+    'backup_d': int,
+    'backup_w': int,
+    'backup_m': int,
+    'backup_remote': bool,
+    'backup_server': text_type,
+    'backup_port': int,
+    'backup_username': text_type,
+    'backup_password': text_type
 }
 
 AdminNotificationDesc = merge_dicts({

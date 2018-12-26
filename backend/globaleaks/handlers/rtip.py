@@ -15,6 +15,7 @@ from globaleaks.handlers.admin.node import db_admin_serialize_node
 from globaleaks.handlers.admin.notification import db_get_notification
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.custodian import serialize_identityaccessrequest
+from globaleaks.handlers.file import db_mark_file_for_secure_deletion
 from globaleaks.handlers.operation import OperationHandler
 from globaleaks.handlers.submission import serialize_usertip, decrypt_tip
 from globaleaks.handlers.user import user_serialize_user
@@ -256,18 +257,6 @@ def db_get_rtip(session, tid, user_id, rtip_id, language):
     return serialize_rtip(session, rtip, itip, language), rtip.crypto_tip_prv_key
 
 
-def db_mark_file_for_secure_deletion(session, relpath):
-    abspath = os.path.join(Settings.attachments_path, relpath)
-
-    if not os.path.isfile(abspath):
-        log.err("Tried to permanently delete a non existent file: %s" % abspath)
-        return
-
-    secure_file_delete = models.SecureFileDelete()
-    secure_file_delete.filepath = abspath
-    session.add(secure_file_delete)
-
-
 def db_delete_itips_files(session, itips_ids):
     ifiles_ids = set()
     files_names = set()
@@ -289,14 +278,14 @@ def db_delete_itips_files(session, itips_ids):
             files_names.add(rfile_filename[0])
 
     for filename in files_names:
-        db_mark_file_for_secure_deletion(session, filename)
+        db_mark_file_for_secure_deletion(session, Settings.attachments_path, filename)
 
 
 def db_delete_itips(session, itips_ids):
     db_delete_itips_files(session, itips_ids)
 
     session.query(models.InternalTip) \
-         .filter(models.InternalTip.id.in_(itips_ids)).delete(synchronize_session='fetch')
+           .filter(models.InternalTip.id.in_(itips_ids)).delete(synchronize_session='fetch')
 
 
 def db_delete_itip(session, itip):
@@ -482,7 +471,7 @@ def create_message(session, tid, user_id, user_key, rtip_id, content):
 @transact
 def delete_wbfile(session, tid, user_id, file_id):
     wbfile = db_access_wbfile(session, tid, user_id, file_id)
-    db_mark_file_for_secure_deletion(session, wbfile.filename)
+    db_mark_file_for_secure_deletion(session, Settings.attachments_path, wbfile.filename)
     session.delete(wbfile)
 
 

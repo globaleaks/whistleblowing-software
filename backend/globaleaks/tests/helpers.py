@@ -1059,7 +1059,7 @@ class TestHandlerWithPopulatedDB(TestHandler):
 
 class MockDict:
     """
-    This class just create all the shit we need for emulate a GLNode
+    This class just create all the shit we need for emulate a Node
     """
     def __init__(self):
         self.dummyUser = {
@@ -1229,7 +1229,16 @@ class MockDict:
             'log_level': 'DEBUG',
             'log_accesses_of_internal_users': False,
             'encryption': False,
-            'multisite': False
+            'multisite': False,
+            'backup': False,
+            'backup_d': 3,
+            'backup_w': 3,
+            'backup_m': 3,
+            'backup_remote': False,
+            'backup_server': u'',
+            'backup_port': 22,
+            'backup_username': u'',
+            'backup_password': u''
         }
 
 

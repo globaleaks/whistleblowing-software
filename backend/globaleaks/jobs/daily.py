@@ -3,7 +3,8 @@
 import datetime
 import fnmatch
 import os
-from datetime import timedelta
+import time
+from datetime import datetime, timedelta
 
 from sqlalchemy import not_
 from sqlalchemy.sql.expression import func
@@ -13,12 +14,14 @@ from twisted.internet.defer import inlineCallbacks
 from globaleaks import models
 from globaleaks.handlers.admin.node import db_admin_serialize_node
 from globaleaks.handlers.admin.notification import db_get_notification
+from globaleaks.handlers.file import db_mark_file_for_secure_deletion
 from globaleaks.handlers.rtip import db_delete_itips
 from globaleaks.handlers.user import user_serialize_user
 from globaleaks.jobs.base import LoopingJob
 from globaleaks.orm import transact
-from globaleaks.state import State
+from globaleaks.utils.backup import backup_name, backup_type, get_records_to_delete
 from globaleaks.utils.fs import overwrite_and_remove
+from globaleaks.utils.tar import tardir
 from globaleaks.utils.templating import Templating
 from globaleaks.utils.utility import datetime_now, datetime_to_ISO8601, is_expired
 
@@ -34,12 +37,60 @@ class Daily(LoopingJob):
         current_time = datetime_now()
         return (3600 * 24) - (current_time.hour * 3600) - (current_time.minute * 60) - current_time.second
 
+    @transact
+    def daily_backup(self, session):
+        if not self.state.tenant_cache[1].backup:
+            return
+
+        timestamp = int(time.time())
+        backupfile = backup_name(self.state.tenant_cache[1].version, timestamp)
+        backupdst = os.path.join(self.state.settings.backup_path, backupfile)
+        backupsrc = self.state.settings.working_path
+        excluded_paths = [
+            self.state.settings.backup_path,
+            self.state.settings.update_path
+        ]
+
+        if session.query(models.Backup).filter(models.Backup.filename == backupfile).count():
+            return
+
+        tardir(backupdst, backupsrc, excluded_paths)
+
+        backup = models.Backup()
+        backup.filename = backupfile
+        backup.creation_date = datetime.utcfromtimestamp(timestamp)
+        backup.local = True
+        session.add(backup)
+
+    @transact
+    def check_backup_records_to_delete(self, session):
+        to_delete = []
+        backups = session.query(models.Backup)
+        d = self.state.tenant_cache[1].backup_d
+        w = self.state.tenant_cache[1].backup_w
+        m = self.state.tenant_cache[1].backup_m
+        for record in get_records_to_delete(d, w, m, backups):
+            record.delete = True
+            db_mark_file_for_secure_deletion(session, self.state.settings.backup_path, record.filename)
+
+            to_delete.append({
+                'id': record.id,
+                'filename': record.filename
+            })
+
+        return to_delete
+
+    @transact
+    def commit_deletion_of_backup_records(self, session, records_to_delete):
+        records_to_delete_ids = [r['id'] for r in records_to_delete]
+        session.query(models.Backup).filter(models.Backup.id.in_(records_to_delete_ids))
+
     def db_clean_expired_wbtips(self, session):
         """
         This function checks all the InternalTips and deletes the receipt if the delete threshold is exceeded
         """
         for tid in self.state.tenant_state:
-            threshold = datetime_now() - timedelta(days=State.tenant_cache[tid].wbtip_timetolive)
+            threshold = datetime_now() - timedelta(days=self.state.tenant_cache[tid].wbtip_timetolive)
 
             wbtips_ids = [r[0] for r in session.query(models.InternalTip.id) \
                                                .filter(models.InternalTip.tid == tid,
@@ -60,7 +111,7 @@ class Daily(LoopingJob):
 
     def db_check_for_expiring_submissions(self, session):
         for tid in self.state.tenant_state:
-            threshold = datetime_now() + timedelta(hours=State.tenant_cache[tid].notification.tip_expiration_threshold)
+            threshold = datetime_now() + timedelta(hours=self.state.tenant_cache[tid].notification.tip_expiration_threshold)
 
             for user in session.query(models.User).filter(models.User.role == u'receiver',
                                                           models.UserTenant.user_id == models.User.id,
@@ -103,10 +154,10 @@ class Daily(LoopingJob):
         """
         for tid in self.state.tenant_state:
             # if the expiration threshold is 0, ignore it
-            if State.tenant_cache[tid].password_change_period == 0:
+            if self.state.tenant_cache[tid].password_change_period == 0:
                 continue
 
-            threshold = datetime_now() - timedelta(days=State.tenant_cache[tid].password_change_period)
+            threshold = datetime_now() - timedelta(days=self.state.tenant_cache[tid].password_change_period)
 
             ids = [r[0] for r in session.query(models.User.id) \
                                         .join(models.UserTenant) \
@@ -150,7 +201,7 @@ class Daily(LoopingJob):
         files_to_remove = [f for f in os.listdir(self.state.settings.tmp_path) if fnmatch.fnmatch(f, '*.aes')]
         for f in files_to_remove:
             path = os.path.join(self.state.settings.tmp_path, f)
-            timestamp = datetime.datetime.fromtimestamp(os.path.getmtime(path))
+            timestamp = datetime.fromtimestamp(os.path.getmtime(path))
             if is_expired(timestamp, days=1):
                 overwrite_and_remove(path)
 
@@ -175,7 +226,12 @@ class Daily(LoopingJob):
 
     @inlineCallbacks
     def operation(self):
+        yield self.daily_backup()
+
+        to_delete = yield self.check_backup_records_to_delete()
+
+        yield self.commit_deletion_of_backup_records(to_delete)
+
         yield self.daily_clean()
 
         yield self.perform_secure_deletion_of_files()
-

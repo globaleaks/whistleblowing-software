@@ -278,6 +278,17 @@ class _ArchivedSchema(Model):
     unicode_keys = ['hash']
 
 
+class _Backup(Model):
+    __tablename__ = 'backup'
+
+    id = Column(Integer, primary_key=True, nullable=False)
+    creation_date = Column(DateTime, default=datetime_now, nullable=False)
+    filename = Column(UnicodeText, unique=True, nullable=False)
+    local = Column(Boolean, default=False, nullable=False)
+    remote = Column(Boolean, default=False, nullable=False)
+    delete = Column(Boolean, default=False, nullable=False)
+
+
 class _Comment(Model):
     """
     This table handle the comment collection, has an InternalTip referenced
@@ -1321,6 +1332,7 @@ class _WhistleblowerTip(Model):
 
 class Anomalies(_Anomalies, Base): pass
 class ArchivedSchema(_ArchivedSchema, Base): pass
+class Backup(_Backup, Base): pass
 class Comment(_Comment, Base): pass
 class Config(_Config, Base): pass
 class ConfigL10N(_ConfigL10N, Base): pass
