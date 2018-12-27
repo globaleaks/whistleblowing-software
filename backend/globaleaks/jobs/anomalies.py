@@ -4,7 +4,7 @@
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.anomaly import check_anomalies
-from globaleaks.jobs.base import LoopingJob
+from globaleaks.jobs.job import LoopingJob
 
 
 class Anomalies(LoopingJob):

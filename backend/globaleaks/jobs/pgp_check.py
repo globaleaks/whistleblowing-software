@@ -8,7 +8,7 @@ from globaleaks.handlers.admin.node import db_admin_serialize_node
 from globaleaks.handlers.admin.notification import db_get_notification
 from globaleaks.handlers.admin.user import db_get_admin_users
 from globaleaks.handlers.user import user_serialize_user
-from globaleaks.jobs.base import LoopingJob
+from globaleaks.jobs.job import LoopingJob
 from globaleaks.orm import transact
 from globaleaks.transactions import db_schedule_email
 from globaleaks.utils.templating import Templating

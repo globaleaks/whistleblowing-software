@@ -10,7 +10,7 @@ from globaleaks.utils.log import log
 TRACK_LAST_N_EXECUTIONS = 10
 
 
-class BaseJob(task.LoopingCall):
+class Job(task.LoopingCall):
     state = State
     interval = 1
     low_time = -1
@@ -92,7 +92,7 @@ class BaseJob(task.LoopingCall):
         extract_exception_traceback_and_schedule_email(excep)
 
 
-class LoopingJob(BaseJob):
+class LoopingJob(Job):
     interval = 60
 
     # The minimum interval (seconds) the job has taken to execute before an

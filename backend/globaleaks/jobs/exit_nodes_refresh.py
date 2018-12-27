@@ -1,7 +1,7 @@
 # -*- coding: utf-8
 # Implement refresh of the list of exit nodes IPs.
 
-from globaleaks.jobs.base import NetLoopingJob
+from globaleaks.jobs.job import NetLoopingJob
 from globaleaks.state import State
 from globaleaks.utils.log import log
 from twisted.internet.defer import inlineCallbacks

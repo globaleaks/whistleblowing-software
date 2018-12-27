@@ -121,7 +121,7 @@ class Service(service.Service):
     def start_jobs(self):
         from globaleaks.jobs import jobs_list
         from globaleaks.services import onion
-        from globaleaks.jobs.base import JobsMonitor
+        from globaleaks.jobs.job import JobsMonitor
 
         for job in jobs_list:
             self.state.jobs.append(job())

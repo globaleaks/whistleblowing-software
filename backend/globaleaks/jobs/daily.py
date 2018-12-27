@@ -17,7 +17,7 @@ from globaleaks.handlers.admin.notification import db_get_notification
 from globaleaks.handlers.file import db_mark_file_for_secure_deletion
 from globaleaks.handlers.rtip import db_delete_itips
 from globaleaks.handlers.user import user_serialize_user
-from globaleaks.jobs.base import LoopingJob
+from globaleaks.jobs.job import LoopingJob
 from globaleaks.orm import transact
 from globaleaks.utils.backup import backup_name, backup_type, get_records_to_delete
 from globaleaks.utils.fs import overwrite_and_remove

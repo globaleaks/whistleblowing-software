@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from globaleaks import models
-from globaleaks.jobs.base import LoopingJob
+from globaleaks.jobs.job import LoopingJob
 
 from globaleaks.tests import helpers
 

@@ -10,7 +10,7 @@ from globaleaks.handlers.admin.node import db_admin_serialize_node
 from globaleaks.handlers.admin.notification import db_get_notification
 from globaleaks.handlers.rtip import serialize_rtip, serialize_message, serialize_comment
 from globaleaks.handlers.user import user_serialize_user
-from globaleaks.jobs.base import NetLoopingJob
+from globaleaks.jobs.job import NetLoopingJob
 from globaleaks.orm import transact
 from globaleaks.utils.pgp import PGPContext
 from globaleaks.utils.templating import Templating

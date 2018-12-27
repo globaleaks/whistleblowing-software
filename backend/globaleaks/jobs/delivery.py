@@ -5,7 +5,7 @@ from twisted.internet import abstract
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import models
-from globaleaks.jobs.base import LoopingJob
+from globaleaks.jobs.job import LoopingJob
 from globaleaks.orm import transact
 from globaleaks.utils.crypto import generateRandomKey, GCE
 from globaleaks.utils.pgp import PGPContext

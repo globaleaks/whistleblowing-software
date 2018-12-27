@@ -8,7 +8,7 @@ from globaleaks import __version__
 from globaleaks.handlers.admin.node import db_admin_serialize_node
 from globaleaks.handlers.admin.notification import db_get_notification
 from globaleaks.handlers.admin.user import db_get_admin_users
-from globaleaks.jobs.base import NetLoopingJob
+from globaleaks.jobs.job import NetLoopingJob
 from globaleaks.models.config import ConfigFactory
 from globaleaks.orm import transact
 from globaleaks.utils.agent import get_page

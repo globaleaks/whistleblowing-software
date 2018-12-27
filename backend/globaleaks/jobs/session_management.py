@@ -1,6 +1,6 @@
 # -*- coding: utf-8
 # Implement reset of variables related to sessions
-from globaleaks.jobs.base import LoopingJob
+from globaleaks.jobs.job import LoopingJob
 
 __all__ = ['SessionManagement']
 

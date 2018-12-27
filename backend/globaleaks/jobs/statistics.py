@@ -2,7 +2,7 @@
 # Implement collection of statistics
 from twisted.internet.defer import inlineCallbacks
 
-from globaleaks.jobs.base import LoopingJob
+from globaleaks.jobs.job import LoopingJob
 from globaleaks.models import Stats
 from globaleaks.orm import transact
 from globaleaks.utils.utility import datetime_now
