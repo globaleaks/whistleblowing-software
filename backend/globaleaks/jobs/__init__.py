@@ -3,7 +3,6 @@ from globaleaks.jobs import anomalies, \
                             delivery, \
                             exit_nodes_refresh, \
                             notification, \
-                            onion_service, \
                             pgp_check, \
                             session_management, \
                             statistics, \
@@ -21,8 +20,4 @@ jobs_list = [
     statistics.Statistics,
     update_check.UpdateCheck,
     certificate_check.CertificateCheck,
-]
-
-services_list = [
-    onion_service.OnionService
 ]

@@ -13,7 +13,7 @@ from globaleaks.models.config import ConfigFactory, db_set_config_variable
 from globaleaks.orm import transact
 from globaleaks.rest import errors
 from globaleaks.utils.utility import is_common_net_error
-from globaleaks.jobs.onion_service import set_onion_service_info, get_onion_service_info
+from globaleaks.services.onion import set_onion_service_info, get_onion_service_info
 
 
 @transact

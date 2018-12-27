@@ -8,7 +8,7 @@ from twisted.internet import reactor, defer
 from globaleaks import models
 from globaleaks.db import refresh_memory_variables
 from globaleaks.rest.apicache import ApiCache
-from globaleaks.jobs.base import BaseJob
+from globaleaks.services.service import Service
 from globaleaks.models.config import ConfigFactory
 from globaleaks.orm import transact
 from globaleaks.state import State
@@ -49,7 +49,7 @@ def list_onion_service_info(session):
                                                         models.Config.value == True)]
 
 
-class OnionService(BaseJob):
+class OnionService(Service):
     print_startup_error = True
     tor_conn = None
     hs_map = {}
