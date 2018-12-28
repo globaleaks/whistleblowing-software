@@ -739,7 +739,7 @@ class _InternalFile(Model):
     creation_date = Column(DateTime, default=datetime_now, nullable=False)
     internaltip_id = Column(UnicodeText(36), nullable=False)
     name = Column(UnicodeText, nullable=False)
-    filename = Column(UnicodeText(255), nullable=False)
+    filename = Column(UnicodeText(255), unique=True, nullable=False)
     content_type = Column(UnicodeText, nullable=False)
     size = Column(Integer, nullable=False)
     new = Column(Boolean, default=True, nullable=False)
@@ -1278,7 +1278,7 @@ class _WhistleblowerFile(Model):
 
     receivertip_id = Column(UnicodeText(36), nullable=False)
     name = Column(UnicodeText, nullable=False)
-    filename = Column(UnicodeText(255), nullable=False)
+    filename = Column(UnicodeText(255), unique=True, nullable=False)
     size = Column(Integer, nullable=False)
     content_type = Column(UnicodeText, nullable=False)
     downloads = Column(Integer, default=0, nullable=False)
