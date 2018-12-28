@@ -51,12 +51,12 @@ class Daily(LoopingJob):
             self.state.settings.update_path
         ]
 
-        if session.query(models.Backup).filter(models.Backup.filename == backupfile).count():
-            return
-
         tardir(backupdst, backupsrc, excluded_paths)
 
-        backup = models.Backup()
+        backup = session.query(models.Backup).filter(models.Backup.filename == backupfile).one_or_none()
+        if backup is None:
+            backup = models.Backup()
+
         backup.filename = backupfile
         backup.creation_date = datetime.utcfromtimestamp(timestamp)
         backup.local = True
