@@ -132,7 +132,6 @@ class StateClass(ObjectDict):
                         self.settings.attachments_path,
                         self.settings.tmp_path,
                         self.settings.log_path,
-                        self.settings.update_path,
                         self.settings.backup_path]:
             self.create_directory(dirpath)
 

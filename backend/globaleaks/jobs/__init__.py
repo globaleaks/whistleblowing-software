@@ -1,5 +1,7 @@
 from globaleaks.jobs import anomalies, \
-                            daily, \
+                            backup, \
+                            certificate_check, \
+                            cleaning, \
                             delivery, \
                             exit_nodes_refresh, \
                             notification, \
@@ -11,7 +13,9 @@ from globaleaks.jobs import anomalies, \
 
 jobs_list = [
     anomalies.Anomalies,
-    daily.Daily,
+    backup.Backup,
+    certificate_check.CertificateCheck,
+    cleaning.Cleaning,
     delivery.Delivery,
     exit_nodes_refresh.ExitNodesRefresh,
     notification.Notification,
@@ -19,5 +23,4 @@ jobs_list = [
     session_management.SessionManagement,
     statistics.Statistics,
     update_check.UpdateCheck,
-    certificate_check.CertificateCheck,
 ]

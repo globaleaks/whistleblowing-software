@@ -19,7 +19,7 @@ from datetime import datetime
 from six import text_type
 
 from globaleaks.db import get_db_file
-from globaleaks.jobs.daily import db_perform_backup
+from globaleaks.jobs.backup import db_perform_backup
 from globaleaks.orm import get_session_from_dbpath
 from globaleaks.models import config, config_desc
 from globaleaks.rest.requests import AdminNotificationDesc, AdminNodeDesc

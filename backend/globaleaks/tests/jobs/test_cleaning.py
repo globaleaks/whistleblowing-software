@@ -2,7 +2,7 @@
 import os
 
 from globaleaks import models
-from globaleaks.jobs import daily, delivery
+from globaleaks.jobs import cleaning, delivery
 from globaleaks.orm import transact
 from globaleaks.settings import Settings
 from globaleaks.state import State
@@ -10,7 +10,7 @@ from globaleaks.tests import helpers
 from twisted.internet.defer import inlineCallbacks
 
 
-class TestDaily(helpers.TestGLWithPopulatedDB):
+class TestCleaning(helpers.TestGLWithPopulatedDB):
     @transact
     def check0(self, session):
         self.assertTrue(os.listdir(Settings.attachments_path) == [])
@@ -99,28 +99,28 @@ class TestDaily(helpers.TestGLWithPopulatedDB):
         # verify tip creation
         yield self.check1()
 
-        yield daily.Daily().run()
+        yield cleaning.Cleaning().run()
 
         # verify tips survive the scheduler if they are not expired
         yield self.check1()
 
         yield self.force_wbtip_expiration()
 
-        yield daily.Daily().run()
+        yield cleaning.Cleaning().run()
 
         # verify rtips survive the scheduler if the wbtip expires
         yield self.check2()
 
         yield self.set_itips_near_to_expire()
 
-        yield daily.Daily().run()
+        yield cleaning.Cleaning().run()
 
         # verify mail creation and that rtips survive the scheduler
         yield self.check3()
 
         yield self.force_itip_expiration()
 
-        yield daily.Daily().run()
+        yield cleaning.Cleaning().run()
 
         # verify cascade deletion when tips expire
         yield self.check4()
@@ -128,5 +128,5 @@ class TestDaily(helpers.TestGLWithPopulatedDB):
         # Make sure password resets actually happen
         State.tenant_cache[1]['password_change_period'] = 90
         yield self.set_passwords_ready_to_expire(1)
-        yield daily.Daily().run()
+        yield cleaning.Cleaning().run()
         yield self.check5()
