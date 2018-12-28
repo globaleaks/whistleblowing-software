@@ -44,6 +44,7 @@ else:
 
 
 from globaleaks import DATABASE_VERSION
+from globaleaks.jobs.daily import db_perform_backup
 from globaleaks.settings import Settings
 from globaleaks.state import State, mail_exception_handler
 

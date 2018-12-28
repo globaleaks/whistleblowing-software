@@ -19,6 +19,7 @@ __THREAD_POOL = None
 def make_db_uri(db_file):
     # ugly ugly hack to allow this to work properly on windows
     prefix = 'sqlite://'
+
     if platform.system() == 'Windows':
         # Specifically, the problem is SQLite is expecting a double-backslashed path
         # on Windows (i.e., c:\\dir\\db) despite this being a Python API. If anything
@@ -29,6 +30,7 @@ def make_db_uri(db_file):
         db_file = str(db_file).replace('\\', '\\\\')
     else:
         prefix += '//'
+
     return prefix + db_file
 
 
@@ -59,6 +61,11 @@ def get_engine(db_uri=None, foreign_keys=True):
 
 def get_session(db_uri=None, foreign_keys=True):
     return sessionmaker(bind=get_engine(db_uri, foreign_keys))()
+
+
+def get_session_from_dbpath(db_path=None, foreign_keys=True):
+    return get_session(make_db_uri(db_path), foreign_keys)
+
 
 
 def set_thread_pool(thread_pool):

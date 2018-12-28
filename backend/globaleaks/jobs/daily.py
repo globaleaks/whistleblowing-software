@@ -19,6 +19,7 @@ from globaleaks.handlers.rtip import db_delete_itips
 from globaleaks.handlers.user import user_serialize_user
 from globaleaks.jobs.job import LoopingJob
 from globaleaks.orm import transact
+from globaleaks.settings import Settings
 from globaleaks.utils.backup import backup_name, backup_type, get_records_to_delete
 from globaleaks.utils.fs import overwrite_and_remove
 from globaleaks.utils.tar import tardir
@@ -27,6 +28,23 @@ from globaleaks.utils.utility import datetime_now, datetime_to_ISO8601, is_expir
 
 
 __all__ = ['Daily']
+
+
+def db_perform_backup(session, version):
+    timestamp = int(time.time())
+    backupfile = backup_name(version, timestamp)
+    dst = os.path.join(Settings.backup_path, backupfile)
+
+    tardir(dst, Settings.working_path)
+
+    backup = session.query(models.Backup).filter(models.Backup.filename == backupfile).one_or_none()
+    if backup is None:
+        backup = models.Backup()
+
+    backup.filename = backupfile
+    backup.creation_date = datetime.utcfromtimestamp(timestamp)
+    backup.local = True
+    session.add(backup)
 
 
 class Daily(LoopingJob):
@@ -42,25 +60,9 @@ class Daily(LoopingJob):
         if not self.state.tenant_cache[1].backup:
             return
 
-        timestamp = int(time.time())
-        backupfile = backup_name(self.state.tenant_cache[1].version, timestamp)
-        backupdst = os.path.join(self.state.settings.backup_path, backupfile)
-        backupsrc = self.state.settings.working_path
-        excluded_paths = [
-            self.state.settings.backup_path,
-            self.state.settings.update_path
-        ]
-
-        tardir(backupdst, backupsrc, excluded_paths)
-
-        backup = session.query(models.Backup).filter(models.Backup.filename == backupfile).one_or_none()
-        if backup is None:
-            backup = models.Backup()
-
-        backup.filename = backupfile
-        backup.creation_date = datetime.utcfromtimestamp(timestamp)
-        backup.local = True
-        session.add(backup)
+        dst = os.path.join(self.state.settings.backup_path, backupfile)
+        src = self.state.settings.working_path
+        db_perform_backup(self.state.tenant_cache[1].version, dst, src)
 
     @transact
     def check_backup_records_to_delete(self, session):
@@ -203,13 +205,6 @@ class Daily(LoopingJob):
             path = os.path.join(self.state.settings.tmp_path, f)
             timestamp = datetime.fromtimestamp(os.path.getmtime(path))
             if is_expired(timestamp, days=1):
-                overwrite_and_remove(path)
-
-        # Delete the update backups older than 15 days
-        for f in os.listdir(self.state.settings.update_path):
-            path = os.path.join(self.state.settings.update_path, f)
-            timestamp = datetime.datetime.fromtimestamp(os.path.getmtime(path))
-            if is_expired(timestamp, days=15):
                 overwrite_and_remove(path)
 
     @transact

@@ -22,14 +22,5 @@ if [ ! -z "$(ls -A /var/globaleaks 2>/dev/null)" ]; then
             globaleaks
   fi
 
-  timestamp=$(date +%s)
-  version=`dpkg -s globaleaks | grep '^Version:' | cut -d ' ' -f2`
-  filepath=/var/globaleaks/backups/globaleaks-$version-$timestamp.tar.gz
-  echo "Detected existing instance of GlobaLeaks"
-  echo "Creating backup of /var/globaleaks ..."
-  mkdir -p /var/globaleaks/backups
-  chown globaleaks:globaleaks /var/globaleaks/backups
-  tar --exclude='/var/globaleaks/backups' -zcf $filepath /var/globaleaks
-  echo "Done."
-  echo "Backup available in: $filepath"
+  gl-admin backup
 fi
