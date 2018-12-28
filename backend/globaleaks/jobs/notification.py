@@ -10,7 +10,7 @@ from globaleaks.handlers.admin.node import db_admin_serialize_node
 from globaleaks.handlers.admin.notification import db_get_notification
 from globaleaks.handlers.rtip import serialize_rtip, serialize_message, serialize_comment
 from globaleaks.handlers.user import user_serialize_user
-from globaleaks.jobs.job import NetLoopingJob
+from globaleaks.jobs.job import LoopingJob
 from globaleaks.orm import transact
 from globaleaks.utils.pgp import PGPContext
 from globaleaks.utils.templating import Templating
@@ -270,7 +270,7 @@ def get_mails_from_the_pool(session):
     return ret
 
 
-class Notification(NetLoopingJob):
+class Notification(LoopingJob):
     interval = 5
     monitor_interval = 3 * 60
     mails_to_delete = []

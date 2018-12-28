@@ -2,7 +2,7 @@
 # Implement collection of statistics
 from twisted.internet.defer import inlineCallbacks
 
-from globaleaks.jobs.job import LoopingJob
+from globaleaks.jobs.job import HourlyJob
 from globaleaks.models import Stats
 from globaleaks.orm import transact
 from globaleaks.utils.utility import datetime_now
@@ -35,20 +35,15 @@ def save_statistics(session, start, end, stats):
         session.add(newstat)
 
 
-class Statistics(LoopingJob):
+class Statistics(HourlyJob):
     """
     Statistics collection scheduler run hourly
     """
-    interval = 3600
     monitor_interval = 5 * 60
 
-    def get_start_time(self):
-        current_time = datetime_now()
-        return 3600 - (current_time.minute * 60) - current_time.second
-
     def __init__(self):
+        HourlyJob.__init__(self)
         self.stats_collection_start_time = datetime_now()
-        LoopingJob.__init__(self)
 
     @inlineCallbacks
     def operation(self):

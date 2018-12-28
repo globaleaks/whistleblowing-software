@@ -4,8 +4,9 @@ import time
 from twisted.internet import task, defer, reactor
 
 from globaleaks.state import State, extract_exception_traceback_and_schedule_email
-from globaleaks.utils.utility import is_common_net_error
 from globaleaks.utils.log import log
+from globaleaks.utils.utility import datetime_now
+
 
 TRACK_LAST_N_EXECUTIONS = 10
 
@@ -27,8 +28,8 @@ class Job(task.LoopingCall):
 
         self.clock = reactor
 
-        delay = self.get_start_time()
-        delay = delay if delay > 1 else 1
+        delay = self.get_delay()
+        delay = delay if delay > 0 else 0
         self.clock.callLater(delay, self.start, self.interval)
 
     def start(self, interval):
@@ -83,7 +84,7 @@ class Job(task.LoopingCall):
     def operation(self):
         return
 
-    def get_start_time(self):
+    def get_delay(self):
         return 0
 
     def on_error(self, excep):
@@ -110,17 +111,19 @@ class LoopingJob(Job):
         extract_exception_traceback_and_schedule_email(excep)
 
 
-class NetLoopingJob(LoopingJob):
-    def on_error(self, excep):
-        """
-        Handles known errors that the twisted.web.client.Agent
-        can throw while connecting through their respective networks.
-        """
-        if is_common_net_error(State.tenant_cache[1], excep):
-            log.err('%s job failed on outgoing network connection with: %s', self.name, excep)
-            return
+class HourlyJob(LoopingJob):
+    interval = 3600
+    def get_delay(self):
+        current_time = datetime_now()
+        return 3600 - (current_time.minute * 60) - current_time.second
 
-        super(NetLoopingJob, self).on_error(excep)
+
+class DailyJob(LoopingJob):
+    interval = 24 * 3600
+
+    def get_delay(self):
+        current_time = datetime_now()
+        return (3600 * 24) - (current_time.hour * 3600) - (current_time.minute * 60) - current_time.second
 
 
 class JobsMonitor(LoopingJob):

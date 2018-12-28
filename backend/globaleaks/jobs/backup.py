@@ -8,7 +8,7 @@ from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import models
 from globaleaks.handlers.file import db_mark_file_for_secure_deletion
-from globaleaks.jobs.job import LoopingJob
+from globaleaks.jobs.job import DailyJob
 from globaleaks.orm import transact
 from globaleaks.settings import Settings
 from globaleaks.utils.backup import backup_name, backup_type, get_records_to_delete
@@ -36,13 +36,8 @@ def db_perform_backup(session, version):
     session.add(backup)
 
 
-class Backup(LoopingJob):
-    interval = 24 * 3600
+class Backup(DailyJob):
     monitor_interval = 5 * 60
-
-    def get_start_time(self):
-        current_time = datetime_now()
-        return (3600 * 24) - (current_time.hour * 3600) - (current_time.minute * 60) - current_time.second
 
     @transact
     def daily_backup(self, session):

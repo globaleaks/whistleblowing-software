@@ -8,7 +8,7 @@ from globaleaks.handlers.admin.node import db_admin_serialize_node
 from globaleaks.handlers.admin.notification import db_get_notification
 from globaleaks.handlers.admin.user import db_get_admin_users
 from globaleaks.handlers.user import user_serialize_user
-from globaleaks.jobs.job import LoopingJob
+from globaleaks.jobs.job import DailyJob
 from globaleaks.orm import transact
 from globaleaks.transactions import db_schedule_email
 from globaleaks.utils.templating import Templating
@@ -28,13 +28,8 @@ def db_get_expired_or_expiring_pgp_users(session, tids_list):
                                              models.UserTenant.tenant_id.in_(tids_list))
 
 
-class PGPCheck(LoopingJob):
-    interval = 24 * 3600
+class PGPCheck(DailyJob):
     monitor_interval = 5 * 60
-
-    def get_start_time(self):
-        current_time = datetime_now()
-        return (3600 * 24) - (current_time.hour * 3600) - (current_time.minute * 60) - current_time.second
 
     def prepare_admin_pgp_alerts(self, session, tid, expired_or_expiring):
         for user_desc in db_get_admin_users(session, tid):

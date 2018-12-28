@@ -1,7 +1,8 @@
 # -*- coding: utf-8
 # Implement refresh of the list of exit nodes IPs.
+from twisted.internet.defer import inlineCallbacks
 
-from globaleaks.jobs.job import NetLoopingJob
+from globaleaks.jobs.job import HourlyJob
 from globaleaks.state import State
 from globaleaks.utils.log import log
 from twisted.internet.defer import inlineCallbacks
@@ -10,9 +11,7 @@ from twisted.internet.defer import inlineCallbacks
 __all__ = ['ExitNodesRefresh']
 
 
-class ExitNodesRefresh(NetLoopingJob):
-    interval = 3600
-
+class ExitNodesRefresh(HourlyJob):
     @inlineCallbacks
     def operation(self):
         net_agent = self.state.get_agent()

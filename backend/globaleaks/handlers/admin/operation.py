@@ -12,7 +12,6 @@ from globaleaks.models import Config
 from globaleaks.models.config import ConfigFactory, db_set_config_variable
 from globaleaks.orm import transact, transact_wrap
 from globaleaks.rest import errors
-from globaleaks.utils.utility import is_common_net_error
 from globaleaks.services.onion import set_onion_service_info, get_onion_service_info
 
 
@@ -68,19 +67,12 @@ class AdminOperationHandler(OperationHandler):
 
         url = urlunsplit(('http', req_args['value'], 'robots.txt', None, None)).encode()
 
-        try:
-            resp = yield net_agent.request(b'GET', url)
-            body = yield readBody(resp)
+        resp = yield net_agent.request(b'GET', url)
+        body = yield readBody(resp)
 
-            server_h = resp.headers.getRawHeaders(b'Server', [None])[-1].lower()
-            if not body.startswith(b'User-agent: *') or server_h != b'globaleaks':
-                raise EnvironmentError('Response unexpected')
-
-        except Exception as e:
-            # Convert networking failures into a generic response
-            if is_common_net_error(self.state.tenant_cache[self.request.tid], e):
-                raise errors.ExternalResourceError()
-            raise e
+        server_h = resp.headers.getRawHeaders(b'Server', [None])[-1].lower()
+        if not body.startswith(b'User-agent: *') or server_h != b'globaleaks':
+            raise EnvironmentError('Response unexpected')
 
     def reset_user_password(self, req_args, *args, **kwargs):
         return generate_password_reset_token(self.state,
