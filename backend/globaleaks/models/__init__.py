@@ -16,10 +16,6 @@ from globaleaks.utils.crypto import generateRandomKey
 from globaleaks.utils.utility import datetime_now, datetime_null, datetime_never, datetime_to_ISO8601
 
 
-def get_random_password():
-    return text_type(generateRandomKey(16))
-
-
 def db_forge_obj(session, mock_class, mock_fields):
     obj = mock_class(mock_fields)
     session.add(obj)

@@ -9,13 +9,13 @@ from twisted.internet.defer import inlineCallbacks
 class TestSubmissionAttachment(helpers.TestHandlerWithPopulatedDB):
     _handler = attachment.SubmissionAttachment
 
-    @inlineCallbacks
     def test_post_file_on_not_finalized_submission(self):
         self.dummyToken = self.state.tokens.new(1, 'submission')
         self.dummyToken.solved = True
 
         handler = self.request()
-        yield handler.post(self.dummyToken.id)
+
+        return handler.post(self.dummyToken.id)
 
     @inlineCallbacks
     def test_post_file_and_verify_deletion_after_token_expiration(self):

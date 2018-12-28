@@ -8,8 +8,8 @@ from twisted.internet import threads, reactor
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.handlers.admin.https import load_tls_dict_list
-from globaleaks.models.config import ConfigFactory
-from globaleaks.orm import transact
+from globaleaks.models.config import db_set_config_variable
+from globaleaks.orm import transact_wrap
 from globaleaks.tests import helpers
 from globaleaks.tests.utils import test_tls
 from globaleaks.utils.sock import reserve_port_for_ip
@@ -17,19 +17,14 @@ from globaleaks.workers import supervisor
 from globaleaks.workers.worker_https import HTTPSProcess
 
 
-@transact
-def toggle_https(session, enabled):
-    ConfigFactory(session, 1, 'node').set_val(u'https_enabled', enabled)
-
 class TestProcessSupervisor(helpers.TestGL):
-    @inlineCallbacks
     def setUp(self):
         super(TestProcessSupervisor, self).setUp()
-        yield test_tls.commit_valid_config()
+        return test_tls.commit_valid_config()
 
     @inlineCallbacks
     def test_launch_and_shutdown(self):
-        yield toggle_https(enabled=False)
+        yield transact_wrap(db_set_config_variable, 1, 'https_enabled', False)
         sock, fail = reserve_port_for_ip('127.0.0.1', 43434)
         self.assertIsNone(fail)
 
@@ -46,12 +41,7 @@ class TestProcessSupervisor(helpers.TestGL):
         self.assertFalse(p_s.is_running())
 
 
-@transact
-def wrap_db_tx(session, f, *args, **kwargs):
-    return f(session, *args, **kwargs)
-
 class TestSubprocessRun(helpers.TestGL):
-
     @inlineCallbacks
     def setUp(self):
         super(TestSubprocessRun, self).setUp()
@@ -73,7 +63,8 @@ class TestSubprocessRun(helpers.TestGL):
             'tls_socket_fds': [sock.fileno() for sock in self.https_socks],
             'debug': False,
         }
-        valid_cfg['site_cfgs'] = yield wrap_db_tx(load_tls_dict_list)
+
+        valid_cfg['site_cfgs'] = yield transact_wrap(load_tls_dict_list)
 
         tmp = tempfile.TemporaryFile(mode='w')
         tmp.write(json.dumps(valid_cfg))

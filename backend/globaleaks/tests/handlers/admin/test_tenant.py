@@ -2,11 +2,11 @@
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.db import refresh_memory_variables
-from globaleaks.models import config
 from globaleaks.handlers.admin import tenant
-from globaleaks.orm import transact
-
+from globaleaks.models import config
+from globaleaks.orm import transact_wrap
 from globaleaks.tests import helpers
+
 
 def get_dummy_tenant_desc():
     return {
@@ -15,10 +15,6 @@ def get_dummy_tenant_desc():
         'mode': 'default',
         'subdomain': 'subdomain',
     }
-
-@transact
-def get_salt(session, tid):
-    return config.ConfigFactory(session, tid, 'node').get_val(u'receipt_salt')
 
 
 class TestTenantCollection(helpers.TestHandlerWithPopulatedDB):
@@ -38,21 +34,16 @@ class TestTenantCollection(helpers.TestHandlerWithPopulatedDB):
 
     @inlineCallbacks
     def test_post(self):
-        first = yield get_salt(1)
-
-        handler = self.request(get_dummy_tenant_desc(), role='admin')
-        r = yield handler.post()
-
-        second = yield get_salt(r['id'])
-
-        handler = self.request(get_dummy_tenant_desc(), role='admin')
-        r = yield handler.post()
-
-        third = yield get_salt(r['id'])
+        r = {}
+        for i in range(0, 3):
+            handler = self.request(get_dummy_tenant_desc(), role='admin')
+            t = yield handler.post()
+            r[i] = yield transact_wrap(config.db_get_config_variable, t['id'], 'receipt_salt')
 
         # Checks that the salt is actually modified from create to another
-        self.assertNotEqual(first, second)
-        self.assertNotEqual(second, third)
+        self.assertNotEqual(r[0], r[1])
+        self.assertNotEqual(r[1], r[2])
+        self.assertNotEqual(r[2], r[0])
 
 
 class TestTenantInstance(helpers.TestHandlerWithPopulatedDB):

@@ -69,7 +69,7 @@ def db_initialize(session, tenant, mode):
 
     appdata = load_appdata()
 
-    models.config.initialize_tenant_config(session, tenant.id, mode)
+    models.config.initialize_config(session, tenant.id, mode)
 
     models.config.add_new_lang(session, tenant.id, u'en', appdata)
 

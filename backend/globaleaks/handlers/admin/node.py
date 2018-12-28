@@ -12,7 +12,7 @@ from globaleaks.db import db_refresh_memory_variables
 from globaleaks.db.appdata import load_appdata
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.user import can_edit_general_settings_or_raise
-from globaleaks.models.config import ConfigFactory, NodeL10NFactory
+from globaleaks.models.config import ConfigFactory, ConfigL10NFactory
 from globaleaks.orm import transact
 from globaleaks.rest import errors, requests
 from globaleaks.state import State
@@ -22,7 +22,7 @@ from globaleaks.utils.log import log
 
 
 def db_admin_serialize_node(session, tid, language, config_node='admin_node'):
-    config = ConfigFactory(session, tid, config_node).serialize()
+    config = ConfigFactory(session, tid).serialize(config_node)
 
     # Contexts and Receivers relationship
     configured = session.query(models.ReceiverContext).filter(models.ReceiverContext.context_id == models.Context.id,
@@ -38,12 +38,12 @@ def db_admin_serialize_node(session, tid, language, config_node='admin_node'):
     }
 
     if tid != 1:
-        root_tenant_node = ConfigFactory(session, 1, 'node')
+        root_tenant_node = ConfigFactory(session, 1)
         misc_dict['version'] = root_tenant_node.get_val(u'version')
         misc_dict['latest_version'] = root_tenant_node.get_val(u'latest_version')
         misc_dict['enable_footer_customization'] = root_tenant_node.get_val(u'enable_footer_customization')
 
-    l10n_dict = NodeL10NFactory(session, tid).localized_dict(language)
+    l10n_dict = ConfigL10NFactory(session, tid).serialize('node', language)
 
     return utils.sets.merge_dicts(config, misc_dict, l10n_dict)
 
@@ -92,16 +92,16 @@ def db_update_node(session, tid, request, language, config_node):
     :param language: the language in which to localize data
     :return: a dictionary representing the serialization of the node
     """
-    node = ConfigFactory(session, tid, config_node)
+    config = ConfigFactory(session, tid)
 
-    node.update(request)
+    config.update('node', request)
 
     if 'basic_auth' in request and request['basic_auth_username'] and request['basic_auth_password']:
-        node.set_val(u'basic_auth', True)
-        node.set_val(u'basic_auth_username', request['basic_auth_username'])
-        node.set_val(u'basic_auth_password', request['basic_auth_password'])
+        config.set_val(u'basic_auth', True)
+        config.set_val(u'basic_auth_username', request['basic_auth_username'])
+        config.set_val(u'basic_auth_password', request['basic_auth_password'])
     else:
-        node.set_val(u'basic_auth', False)
+        config.set_val(u'basic_auth', False)
 
     # Validate that IP addresses/ranges we're getting are goo
     if 'ip_filter_admin' in request and request['ip_filter_admin_enable'] and request['ip_filter_admin']:
@@ -117,12 +117,12 @@ def db_update_node(session, tid, request, language, config_node):
                                     request['default_language'])
 
     if language in models.EnabledLanguage.list(session, tid):
-        NodeL10NFactory(session, tid).update(request, language)
+        ConfigL10NFactory(session, tid).update('node', request, language)
 
     db_refresh_memory_variables(session, [tid])
 
     if tid == 1:
-        log.setloglevel(node.get_val(u'log_level'))
+        log.setloglevel(config.get_val(u'log_level'))
 
     return db_admin_serialize_node(session, tid, language)
 

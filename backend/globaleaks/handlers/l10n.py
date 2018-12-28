@@ -20,9 +20,9 @@ def langfile_path(lang):
 @transact
 def get_l10n(session, tid, lang):
     if tid != 1:
-        node = ConfigFactory(session, 1, 'public_node')
+        config = ConfigFactory(session, 1)
 
-        if node.get_val(u'mode') == u'whistleblowing.it':
+        if config.get_val(u'mode') == u'whistleblowing.it':
             tid = 1
 
     path = langfile_path(lang)

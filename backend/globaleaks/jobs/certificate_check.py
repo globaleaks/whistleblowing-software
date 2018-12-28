@@ -44,7 +44,7 @@ class CertificateCheck(LoopingJob):
             self.cert_expiration_checks(session, tenant[0])
 
     def cert_expiration_checks(self, session, tid):
-        priv_fact = models.config.ConfigFactory(session, tid, 'node')
+        priv_fact = models.config.ConfigFactory(session, tid)
 
         if not priv_fact.get_val(u'https_enabled'):
             return

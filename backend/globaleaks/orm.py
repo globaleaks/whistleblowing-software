@@ -128,3 +128,8 @@ class transact(object):
 class transact_sync(transact):
     def run(self, function, *args, **kwargs):
         return function(*args, **kwargs)
+
+
+@transact
+def transact_wrap(session, f, *args, **kwargs):
+    return f(session, *args, **kwargs)

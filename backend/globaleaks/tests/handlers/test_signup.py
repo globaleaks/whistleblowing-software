@@ -1,16 +1,11 @@
 # -*- coding: utf-8 -*-
 from twisted.internet.defer import inlineCallbacks
 from globaleaks import models
-from globaleaks.models.config import set_config_variable
+from globaleaks.models.config import db_set_config_variable
 from globaleaks.handlers import signup
-from globaleaks.orm import transact
+from globaleaks.orm import transact, transact_wrap
 from globaleaks.rest import errors
 from globaleaks.tests import helpers
-
-
-@transact
-def enable_signup(session):
-    models.config.ConfigFactory(session, 1, 'node').set_val(u'enable_signup', True)
 
 
 @transact
@@ -27,7 +22,7 @@ class TestSignup(helpers.TestHandler):
 
     @inlineCallbacks
     def test_post_with_signup_enabled(self):
-        yield enable_signup()
+        yield transact_wrap(db_set_config_variable, 1, 'enable_signup', True)
 
         handler = self.request(self.dummySignup)
         yield handler.post()
@@ -42,7 +37,7 @@ class TestSignupActivation(helpers.TestHandler):
 
     @inlineCallbacks
     def test_get_with_valid_activation_token_mode_default(self):
-        yield enable_signup()
+        yield transact_wrap(db_set_config_variable, 1, 'enable_signup', True)
 
         yield self.test_model_count(models.User, 0)
 
@@ -59,9 +54,9 @@ class TestSignupActivation(helpers.TestHandler):
 
     @inlineCallbacks
     def test_get_with_valid_activation_token_mode_whistleblowing_it(self):
-        yield enable_signup()
+        yield transact_wrap(db_set_config_variable, 1, 'enable_signup', True)
 
-        yield set_config_variable(1, u'mode', u'whistleblowing.it')
+        yield transact_wrap(db_set_config_variable, 1, 'mode', u'whistleblowing.it')
 
         yield self.test_model_count(models.User, 0)
 
@@ -77,7 +72,7 @@ class TestSignupActivation(helpers.TestHandler):
 
     @inlineCallbacks
     def test_get_with_invalid_activation_token(self):
-        yield enable_signup()
+        yield transact_wrap(db_set_config_variable, 1, 'enable_signup', True)
 
         handler = self.request(self.dummySignup)
         r = yield handler.get(u'invalid')

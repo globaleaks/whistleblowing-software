@@ -8,7 +8,7 @@ from globaleaks.handlers.admin.node import db_update_enabled_languages
 from globaleaks.handlers.admin.user import db_create_user
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.models import config, profiles
-from globaleaks.orm import transact
+from globaleaks.orm import transact_wrap
 from globaleaks.rest import requests, errors
 from globaleaks.utils.utility import datetime_now
 from globaleaks.utils.log import log
@@ -17,7 +17,7 @@ from globaleaks.utils.log import log
 def db_wizard(session, tid, request, client_using_tor, language):
     language = request['node_language']
 
-    node = config.ConfigFactory(session, tid, 'node')
+    node = config.ConfigFactory(session, tid)
 
     if node.get_val(u'wizard_done'):
         log.err("DANGER: Wizard already initialized!", tid=tid)
@@ -36,7 +36,7 @@ def db_wizard(session, tid, request, client_using_tor, language):
     node.set_val(u'allow_unencrypted', not client_using_tor)
     node.set_val(u'anonymize_outgoing_connections', client_using_tor)
 
-    node_l10n = config.NodeL10NFactory(session, tid)
+    node_l10n = config.ConfigL10NFactory(session, tid)
     node_l10n.set_val(u'header_title_homepage', language, request['node_name'])
 
     profiles.load_profile(session, tid, request['profile'])
@@ -91,7 +91,7 @@ def db_wizard(session, tid, request, client_using_tor, language):
 
     # Apply the specific fixes related to whistleblowing.it projects
     if mode == u'whistleblowing.it':
-        root_tenant_node = config.ConfigFactory(session, 1, 'node')
+        root_tenant_node = config.ConfigFactory(session, 1)
 
         node.set_val(u'hostname', tenant.subdomain + '.' + 'whistleblowing.it')
         node.set_val(u'password_change_period', 365)
@@ -128,11 +128,6 @@ def db_wizard(session, tid, request, client_using_tor, language):
     db_refresh_memory_variables(session, [tid])
 
 
-@transact
-def wizard(session, tid, request, client_using_tor, language):
-    db_wizard(session, tid, request, client_using_tor, language)
-
-
 class Wizard(BaseHandler):
     """
     Setup Wizard handler
@@ -144,4 +139,4 @@ class Wizard(BaseHandler):
         request = self.validate_message(self.request.content.read(),
                                         requests.WizardDesc)
 
-        return wizard(self.request.tid, request, self.request.client_using_tor, self.request.language)
+        return transact_wrap(db_wizard, self.request.tid, request, self.request.client_using_tor, self.request.language)

@@ -19,7 +19,7 @@ DEB_PACKAGE_URL = b'https://deb.globaleaks.org/bionic/Packages'
 
 @transact
 def evaluate_update_notification(session, state, latest_version):
-    priv_fact = ConfigFactory(session, 1, 'node')
+    priv_fact = ConfigFactory(session, 1)
 
     stored_latest = priv_fact.get_val(u'latest_version')
 

@@ -39,7 +39,7 @@ from . import TEST_DIR
 
 from globaleaks import db, models, orm, event, jobs, __version__, DATABASE_VERSION
 from globaleaks.db.appdata import load_appdata
-from globaleaks.orm import transact
+from globaleaks.orm import transact, transact_wrap
 from globaleaks.handlers import rtip, wbtip
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.admin.context import create_context, get_context
@@ -48,9 +48,9 @@ from globaleaks.handlers.admin.questionnaire import get_questionnaire, db_get_qu
 from globaleaks.handlers.admin.step import create_step
 from globaleaks.handlers.admin.tenant import create as create_tenant
 from globaleaks.handlers.admin.user import create_user
-from globaleaks.handlers.wizard import wizard
+from globaleaks.handlers.wizard import db_wizard
 from globaleaks.handlers.submission import create_submission
-from globaleaks.models.config import set_config_variable
+from globaleaks.models.config import db_set_config_variable
 from globaleaks.rest.apicache import ApiCache
 from globaleaks.sessions import Sessions
 from globaleaks.settings import Settings
@@ -409,7 +409,7 @@ class TestGL(unittest.TestCase):
 
         allow_unencrypted = self.encryption_scenario in ['PLAINTEXT', 'MIXED']
 
-        yield set_config_variable(1, u'allow_unencrypted', allow_unencrypted)
+        yield transact_wrap(db_set_config_variable, 1, u'allow_unencrypted', allow_unencrypted)
 
         yield self.set_hostnames(1)
 
@@ -449,9 +449,8 @@ class TestGL(unittest.TestCase):
                  ('www.domain-b.com', 'cccccccccccccccc.onion')]
 
         hostname, onionservice = hosts[i - 1]
-        node_fact = models.config.ConfigFactory(session, i, 'node')
-        node_fact.set_val(u'hostname', hostname)
-        node_fact.set_val(u'onionservice', onionservice)
+        db_set_config_variable(session, i, 'hostname', hostname)
+        db_set_config_variable(session, i, 'onionservice', onionservice)
 
     def setUp_dummy(self):
         dummyStuff = MockDict()
@@ -754,7 +753,7 @@ class TestGLWithPopulatedDB(TestGL):
         for i in range(1, self.population_of_tenants):
             name = 'tenant-' + str(i+1)
             t = yield create_tenant({'mode': 'default', 'label': name, 'active': True, 'subdomain': name})
-            yield wizard(t['id'], self.dummyWizard, True, u'en')
+            yield transact_wrap(db_wizard, t['id'], self.dummyWizard, True, u'en')
             yield self.set_hostnames(i+1)
 
         yield associate_users_of_first_tenant_to_second_tenant()
@@ -879,19 +878,8 @@ class TestHandler(TestGLWithPopulatedDB):
     #  }
     #}
 
-    @inlineCallbacks
     def setUp(self):
-        # we bypass TestGLWith Populated DB to test against clean DB.
-        yield TestGL.setUp(self)
-
-        self.initialization()
-
-    def initialization(self):
-        # we need to reset settings.session to keep each test independent
-        Sessions.clear()
-
-        # we need to reset ApiCache to keep each test independent
-        ApiCache.invalidate()
+        return TestGL.setUp(self)
 
     def request(self, body='', uri=b'https://www.globaleaks.org/',
                 user_id=None,  role=None, multilang=False, headers=None,
@@ -1051,10 +1039,8 @@ class TestInstanceHandler(TestHandler):
 
 
 class TestHandlerWithPopulatedDB(TestHandler):
-    @inlineCallbacks
     def setUp(self):
-        yield TestGLWithPopulatedDB.setUp(self)
-        self.initialization()
+        return TestGLWithPopulatedDB.setUp(self)
 
 
 class MockDict:

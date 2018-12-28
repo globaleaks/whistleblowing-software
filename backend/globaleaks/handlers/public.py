@@ -10,7 +10,7 @@ from globaleaks import models, LANGUAGES_SUPPORTED, LANGUAGES_SUPPORTED_CODES
 from globaleaks.handlers.admin.file import db_get_file
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.admin.submission_statuses import db_retrieve_all_submission_statuses
-from globaleaks.models.config import ConfigFactory, NodeL10NFactory
+from globaleaks.models.config import ConfigFactory, ConfigL10NFactory
 from globaleaks.orm import transact
 from globaleaks.state import State
 from globaleaks.utils.ip import check_ip
@@ -113,8 +113,8 @@ def db_serialize_node(session, tid, language):
     Serialize node info.
     """
     # Contexts and Receivers relationship
-    node_dict = ConfigFactory(session, tid, 'public_node').serialize()
-    l10n_dict = NodeL10NFactory(session, tid).localized_dict(language)
+    node_dict = ConfigFactory(session, tid).serialize('public_node')
+    l10n_dict = ConfigL10NFactory(session, tid,).serialize('node', language)
 
     ret_dict = merge_dicts(node_dict, l10n_dict)
 
@@ -127,7 +127,7 @@ def db_serialize_node(session, tid, language):
         ret_dict[x] = db_get_file(session, tid, x)
 
     if tid != 1:
-        root_tenant_node = ConfigFactory(session, 1, 'public_node')
+        root_tenant_node = ConfigFactory(session, 1)
 
         if language not in models.EnabledLanguage.list(session, tid):
             language = root_tenant_node.get_val(u'default_language')

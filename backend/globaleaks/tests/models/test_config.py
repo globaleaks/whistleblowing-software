@@ -3,23 +3,20 @@ from globaleaks import models
 from globaleaks.models import config
 from globaleaks.orm import transact
 from globaleaks.tests import helpers
-from twisted.internet.defer import inlineCallbacks
 
 
 class TestModels(helpers.TestGL):
     initialize_test_database_using_archived_db = False
 
-    @inlineCallbacks
-    def test_initialize_tenant_config(self):
+    def test_initialize_config(self):
         @transact
         def transaction(session):
             session.query(models.Config).filter(models.Config.tid == 1).delete()
-            config.initialize_tenant_config(session, 1, u'default')
+            config.initialize_config(session, 1, u'default')
 
-        yield transaction()
+        return transaction()
 
-    @inlineCallbacks
-    def test_fix_tenant_config(self):
+    def test_config_update_defaults(self):
         @transact
         def transaction(session):
             # Rename 'name' variable with the effect of:
@@ -30,6 +27,6 @@ class TestModels(helpers.TestGL):
             # Delete a variable that requires initialization via a constructor
             session.query(models.Config).filter(models.Config.tid == 1, models.Config.var_name==u'receipt_salt').delete()
 
-            config.fix_tenant_config(session, 1)
+            config.ConfigFactory(session, 1).update_defaults()
 
-        yield transaction()
+        return transaction()

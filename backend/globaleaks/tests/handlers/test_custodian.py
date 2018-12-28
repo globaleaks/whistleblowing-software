@@ -54,7 +54,6 @@ class TestIdentityAccessRequestsCollection(helpers.TestHandlerWithPopulatedDB):
         yield helpers.TestHandlerWithPopulatedDB.setUp(self)
         yield self.perform_full_submission_actions()
 
-    @inlineCallbacks
     def test_get(self):
         handler = self.request(user_id=self.dummyCustodianUser['id'], role='custodian')
-        yield handler.get()
+        return handler.get()

@@ -5,7 +5,7 @@ from twisted.internet.defer import inlineCallbacks
 from globaleaks import models
 from globaleaks.db import db_refresh_memory_variables
 from globaleaks.jobs.certificate_check import CertificateCheck
-from globaleaks.models.config import ConfigFactory
+from globaleaks.models import config
 from globaleaks.orm import transact
 from globaleaks.state import State
 from globaleaks.tests import helpers
@@ -23,9 +23,8 @@ class TestCertificateCheck(helpers.TestGLWithPopulatedDB):
     def _setUp(self, session):
         valid_setup = test_tls.get_valid_setup()
 
-        config = ConfigFactory(session, 1, 'node')
-        config.set_val(u'https_cert', valid_setup['cert'])
-        config.set_val(u'https_enabled', True)
+        config.db_set_config_variable(session, 1, 'https_cert', valid_setup['cert'])
+        config.db_set_config_variable(session, 1, 'https_enabled', True)
 
         db_refresh_memory_variables(session)
 

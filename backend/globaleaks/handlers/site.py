@@ -28,13 +28,9 @@ def serialize_site(session, tenant, signup=None):
     return ret
 
 
-def db_get_site_list(session):
-    return [serialize_site(session, t) for t in session.query(models.Tenant).filter(models.Tenant.active == True)]
-
-
 @transact
 def get_site_list(session):
-    return db_get_site_list(session)
+    return [serialize_site(session, t) for t in session.query(models.Tenant).filter(models.Tenant.active == True)]
 
 
 class SiteCollection(BaseHandler):

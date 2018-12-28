@@ -43,7 +43,7 @@ class ProcessSupervisor(object):
         self.tls_cfg['tls_socket_fds'] = [ns.fileno() for ns in net_sockets]
 
     def db_maybe_launch_https_workers(self, session):
-        config = ConfigFactory(session, 1, 'node')
+        config = ConfigFactory(session, 1)
 
         # If root_tenant is disabled do not start https
         on = config.get_val(u'https_enabled')

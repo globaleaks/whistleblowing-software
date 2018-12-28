@@ -11,10 +11,6 @@ from globaleaks.orm import transact
 from globaleaks.tests import helpers
 from globaleaks.utils import tls
 
-class TestKeyGen(TestCase):
-    def test_dh_params(self):
-        pass
-
 
 def get_valid_setup():
     test_data_dir = os.path.join(helpers.DATA_DIR, 'https')
@@ -33,18 +29,19 @@ def get_valid_setup():
 
     return d
 
+
 @transact
 def commit_valid_config(session):
     cfg = get_valid_setup()
 
-    priv_fact = ConfigFactory(session, 1, 'node')
+    priv_fact = ConfigFactory(session, 1)
     priv_fact.set_val(u'https_dh_params', cfg['dh_params'])
     priv_fact.set_val(u'https_priv_key', cfg['key'])
     priv_fact.set_val(u'https_cert', cfg['cert'])
     priv_fact.set_val(u'https_chain', cfg['chain'])
     priv_fact.set_val(u'https_enabled', True)
 
-    ConfigFactory(session, 1, 'node').set_val(u'hostname', 'localhost:9999')
+    ConfigFactory(session, 1).set_val(u'hostname', 'localhost:9999')
 
 
 class TestObjectValidators(TestCase):

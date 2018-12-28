@@ -156,7 +156,6 @@ class TestRTipInstance(helpers.TestHandlerWithPopulatedDB):
     def test_put_silence_notify(self):
         rtip_descs = yield self.get_rtips()
         for rtip_desc in rtip_descs:
-
             operation = {
               'operation': 'set',
               'args': {

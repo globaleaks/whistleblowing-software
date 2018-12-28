@@ -177,7 +177,7 @@ ConfigDescriptor = {
 }
 
 ConfigFilters = {
-    'node': set([
+    'node': [
         u'name',
         u'admin_api_token_digest',
         u'basic_auth',
@@ -198,7 +198,6 @@ ConfigFilters = {
         u'allow_iframes_inclusion',
         u'can_postpone_expiration',
         u'can_delete_submission',
-
         u'can_grant_permissions',
         u'allow_indexing',
         u'wizard_done',
@@ -272,8 +271,8 @@ ConfigFilters = {
         u'backup_remote_port',
         u'backup_remote_username',
         u'backup_remote_password'
-    ]),
-    'notification': set([
+    ],
+    'notification': [
         u'smtp_server',
         u'smtp_port',
         u'smtp_username',
@@ -287,11 +286,11 @@ ConfigFilters = {
         u'disable_receiver_notification_emails',
         u'tip_expiration_threshold',
         u'notification_threshold_per_hour'
-    ])
+    ]
 }
 
 
-ConfigFilters['admin_node'] = ConfigFilters['node'] - set([
+ConfigFilters['admin_node'] = list(set(ConfigFilters['node']) - set([
     u'receipt_salt',
     u'acme_accnt_key',
     u'tor_onion_key',
@@ -302,15 +301,15 @@ ConfigFilters['admin_node'] = ConfigFilters['node'] - set([
     u'https_chain',
     u'https_dh_params',
     u'admin_api_token_digest'
-])
+]))
 
 
-ConfigFilters['admin_notification'] = ConfigFilters['notification'] - set([
+ConfigFilters['admin_notification'] = list(set(ConfigFilters['notification']) - set([
     u'smtp_password'
-])
+]))
 
 
-ConfigFilters['public_node'] = ConfigFilters['admin_node'] - set([
+ConfigFilters['public_node'] = list(set(ConfigFilters['admin_node']) - set([
     'version',
     'version_db',
     'basic_auth',
@@ -340,11 +339,11 @@ ConfigFilters['public_node'] = ConfigFilters['admin_node'] - set([
     'backup_remote_port',
     'backup_remote_username',
     'backup_remote_password'
-])
+]))
 
 
 # Settings related to general settings
-ConfigFilters['general_settings'] = set([
+ConfigFilters['general_settings'] = [
     'logo',
     'name',
     'header_title_homepage',
@@ -361,4 +360,86 @@ ConfigFilters['general_settings'] = set([
     'languages_enabled',
     'default_language',
     'languages_supported'
-])
+]
+
+
+ConfigL10NFilters = {
+    'node': [
+        u'description',
+        u'presentation',
+        u'footer',
+        u'disclaimer_title',
+        u'disclaimer_text',
+        u'whistleblowing_question',
+        u'whistleblowing_button',
+        u'whistleblowing_receipt_prompt',
+        u'custom_privacy_badge_text',
+        u'header_title_homepage',
+        u'header_title_submissionpage',
+        u'header_title_receiptpage',
+        u'header_title_tippage',
+        u'contexts_clarification',
+        u'signup_tos1_title',
+        u'signup_tos1_text',
+        u'signup_tos1_checkbox_label',
+        u'signup_tos2_title',
+        u'signup_tos2_text',
+        u'signup_tos2_checkbox_label'
+    ],
+
+    'notification': [
+        u'activation_mail_template',
+        u'activation_mail_title',
+        u'admin_anomaly_activities',
+        u'admin_anomaly_disk_high',
+        u'admin_anomaly_disk_low',
+        u'admin_anomaly_mail_template',
+        u'admin_anomaly_mail_title',
+        u'admin_pgp_alert_mail_template',
+        u'admin_pgp_alert_mail_title',
+        u'admin_signup_alert_mail_template',
+        u'admin_signup_alert_mail_title',
+        u'admin_test_mail_template',
+        u'admin_test_mail_title',
+        u'comment_mail_template',
+        u'comment_mail_title',
+        u'email_validation_mail_template',
+        u'email_validation_mail_title',
+        u'export_message_recipient',
+        u'export_message_whistleblower',
+        u'export_template',
+        u'file_mail_template',
+        u'file_mail_title',
+        u'https_certificate_expiration_mail_template',
+        u'https_certificate_expiration_mail_title',
+        u'https_certificate_renewal_failure_mail_template',
+        u'https_certificate_renewal_failure_mail_title',
+        u'identity_access_authorized_mail_template',
+        u'identity_access_authorized_mail_title',
+        u'identity_access_denied_mail_template',
+        u'identity_access_denied_mail_title',
+        u'identity_access_request_mail_template',
+        u'identity_access_request_mail_title',
+        u'identity_provided_mail_template',
+        u'identity_provided_mail_title',
+        u'message_mail_template',
+        u'message_mail_title',
+        u'password_reset_complete_mail_template',
+        u'password_reset_complete_mail_title',
+        u'password_reset_validation_mail_template',
+        u'password_reset_validation_mail_title',
+        u'pgp_alert_mail_template',
+        u'pgp_alert_mail_title',
+        u'receiver_notification_limit_reached_mail_template',
+        u'receiver_notification_limit_reached_mail_title',
+        u'signup_mail_template',
+        u'signup_mail_title',
+        u'software_update_available_mail_template',
+        u'software_update_available_mail_title',
+        u'tip_expiration_summary_mail_template',
+        u'tip_expiration_summary_mail_title',
+        u'tip_mail_template',
+        u'tip_mail_title',
+        u'user_credentials'
+    ]
+}

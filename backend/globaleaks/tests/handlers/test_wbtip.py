@@ -80,7 +80,6 @@ class WBTipIdentityHandler(helpers.TestHandlerWithPopulatedDB):
         #
         #  As improval we should load effectively a whistleblower_identity_field on the
         #  context and validate the update.
-
         body = {
           'identity_field_id': 'b1f82a33-8df1-43d2-b36f-da53f0000000',
           'identity_field_answers': {}

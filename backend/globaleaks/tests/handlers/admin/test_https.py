@@ -3,8 +3,8 @@ from OpenSSL import crypto, SSL
 from twisted.internet.defer import inlineCallbacks, returnValue
 
 from globaleaks.handlers.admin import https
-from globaleaks.models.config import ConfigFactory
-from globaleaks.orm import transact
+from globaleaks.models import config
+from globaleaks.orm import transact_wrap
 from globaleaks.rest import errors
 from globaleaks.state import State
 from globaleaks.tests import helpers
@@ -12,11 +12,12 @@ from globaleaks.tests.utils import test_tls
 from globaleaks.utils.letsencrypt import ChallTok
 
 
-@transact
-def set_init_params(session, dh_params, hostname='localhost:9999'):
-    ConfigFactory(session, 1, 'node').set_val(u'https_dh_params', dh_params)
-    ConfigFactory(session, 1, 'node').set_val(u'hostname', hostname)
-    State.tenant_cache[1].hostname = 'localhost:9999'
+@inlineCallbacks
+def set_init_params(tls_config):
+    hostname = 'localhost:9999'
+    yield transact_wrap(config.db_set_config_variable, 1, 'https_dh_params', tls_config['dh_params'])
+    yield transact_wrap(config.db_set_config_variable, 1, 'hostname', hostname)
+    State.tenant_cache[1].hostname = hostname
 
 
 class TestFileHandler(helpers.TestHandler):
@@ -24,10 +25,9 @@ class TestFileHandler(helpers.TestHandler):
 
     @inlineCallbacks
     def setUp(self):
-        yield super(TestFileHandler, self).setUp()
-
         self.valid_setup = test_tls.get_valid_setup()
-        yield set_init_params(self.valid_setup['dh_params'])
+        yield super(TestFileHandler, self).setUp()
+        yield set_init_params(self.valid_setup)
 
     @inlineCallbacks
     def get_and_check(self, name, is_set):
@@ -133,8 +133,7 @@ class TestConfigHandler(helpers.TestHandler):
     @inlineCallbacks
     def test_all_methods(self):
         valid_setup = test_tls.get_valid_setup()
-
-        yield set_init_params(valid_setup['dh_params'])
+        yield set_init_params(valid_setup)
         yield https.PrivKeyFileRes.create_file(1, valid_setup['key'])
         yield https.CertFileRes.create_file(1, valid_setup['cert'])
         yield https.ChainFileRes.create_file(1, valid_setup['chain'])
@@ -164,7 +163,7 @@ class TestCSRHandler(helpers.TestHandler):
         n = 'csr'
 
         valid_setup = test_tls.get_valid_setup()
-        yield set_init_params(valid_setup['dh_params'])
+        yield set_init_params(valid_setup)
         yield https.PrivKeyFileRes.create_file(1, valid_setup['key'])
         State.tenant_cache[1].hostname = 'notreal.ns.com'
 

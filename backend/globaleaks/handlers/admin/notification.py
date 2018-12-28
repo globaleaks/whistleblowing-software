@@ -6,7 +6,7 @@ from globaleaks.db.appdata import load_appdata
 from globaleaks.handlers.admin.node import admin_serialize_node
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.user import get_user
-from globaleaks.models.config import ConfigFactory, NotificationL10NFactory
+from globaleaks.models.config import ConfigFactory, ConfigL10NFactory
 from globaleaks.orm import transact
 from globaleaks.rest import requests
 from globaleaks.state import State
@@ -15,9 +15,9 @@ from globaleaks.utils.templating import Templating
 
 
 def admin_serialize_notification(session, tid, language):
-    config_dict = ConfigFactory(session, tid, 'admin_notification').serialize()
+    config_dict = ConfigFactory(session, tid).serialize('admin_notification')
 
-    conf_l10n_dict = NotificationL10NFactory(session, tid).localized_dict(language)
+    conf_l10n_dict = ConfigL10NFactory(session, tid).serialize('notification', language)
 
     cmd_flags = {
         'reset_templates': False,
@@ -39,17 +39,17 @@ def get_notification(session, tid, language):
 
 @transact
 def update_notification(session, tid, request, language):
-    notif = ConfigFactory(session, tid, 'notification')
+    config = ConfigFactory(session, tid)
     if request['smtp_password'] == '':
         del request['smtp_password']
 
-    notif.update(request)
+    config.update('notification', request)
 
-    notif_l10n = NotificationL10NFactory(session, tid)
-    notif_l10n.update(request, language)
+    config_l10n = ConfigL10NFactory(session, tid)
+    config_l10n.update('notification', request, language)
 
     if request.pop('reset_templates'):
-        notif_l10n.reset_templates(load_appdata())
+        config_l10n.reset('notification', load_appdata())
 
     db_refresh_memory_variables(session, [tid])
 

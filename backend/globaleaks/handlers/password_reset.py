@@ -36,7 +36,8 @@ def validate_password_reset(session, tid, reset_token):
     return session.id
 
 
-def db_generate_password_reset_token(session, state, tid, username_or_email, allow_admin_reset = False):
+@transact
+def generate_password_reset_token(session, state, tid, username_or_email, allow_admin_reset = False):
     from globaleaks.handlers.admin.notification import db_get_notification
     from globaleaks.handlers.admin.node import db_admin_serialize_node
     from globaleaks.handlers.user import user_serialize_user
@@ -68,15 +69,9 @@ def db_generate_password_reset_token(session, state, tid, username_or_email, all
         state.format_and_send_mail(session, tid, user_desc, template_vars)
 
 
-@transact
-def generate_password_reset_token(session, state, tid, username_or_email, allow_admin_reset = False):
-    """Generates a reset token against the backend, then send email to validate it"""
-    return db_generate_password_reset_token(session, state, tid, username_or_email, allow_admin_reset)
-
-
 class PasswordResetHandler(BaseHandler):
     check_roles = 'unauthenticated'
-    failure_url = "/#/login/passwordreset/failure"
+    redirect_url = "/#/login/passwordreset/failure"
 
     @inlineCallbacks
     def get(self, reset_token):
@@ -86,9 +81,9 @@ class PasswordResetHandler(BaseHandler):
         auth_token = yield validate_password_reset(self.request.tid,
                                                    reset_token)
         if auth_token:
-            self.redirect("/#/login?token=%s" % auth_token)
-        else:
-            self.redirect(self.failure_url)
+            self.redirect_url = "/#/login?token=%s" % auth_token
+
+        self.redirect(self.redirect_url)
 
     def post(self):
         if State.tenant_cache[self.request.tid]['enable_password_reset'] is False:

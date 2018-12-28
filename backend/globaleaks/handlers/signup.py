@@ -11,7 +11,7 @@ from globaleaks.handlers.admin.tenant import db_preallocate as db_preallocate_te
 from globaleaks.handlers.admin.user import db_get_admin_users
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.wizard import db_wizard
-from globaleaks.models import config
+from globaleaks.models.config import ConfigFactory
 from globaleaks.orm import transact
 from globaleaks.rest import requests, errors, apicache
 from globaleaks.utils.crypto import generateRandomKey
@@ -48,9 +48,9 @@ def serialize_signup(signup):
 
 @transact
 def signup(session, state, tid, request, language):
-    node = config.ConfigFactory(session, 1, 'node')
+    config = ConfigFactory(session, 1)
 
-    if not node.get_val(u'enable_signup'):
+    if not config.get_val(u'enable_signup'):
         raise errors.ForbiddenOperation
 
     request['activation_token'] = generateRandomKey(32)
@@ -100,9 +100,9 @@ def signup(session, state, tid, request, language):
 
 @transact
 def signup_activation(session, state, tid, token, language):
-    node = config.ConfigFactory(session, 1, 'node')
+    config = ConfigFactory(session, 1)
 
-    if not node.get_val(u'enable_signup'):
+    if not config.get_val(u'enable_signup'):
         raise errors.ForbiddenOperation
 
     signup = session.query(models.Signup).filter(models.Signup.activation_token == token).one_or_none()
@@ -112,7 +112,7 @@ def signup_activation(session, state, tid, token, language):
     if not session.query(models.Config).filter(models.Config.tid == signup.tid).count():
         tenant = session.query(models.Tenant).filter(models.Tenant.id == signup.tid).one()
 
-        mode = node.get_val('mode')
+        mode = config.get_val('mode')
 
         db_initialize_tenant(session, tenant, mode)
 

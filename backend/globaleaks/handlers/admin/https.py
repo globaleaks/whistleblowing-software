@@ -26,7 +26,7 @@ def load_tls_dict(session, tid):
     """
     A quick and dirty function to grab all of the tls config for use in subprocesses
     """
-    node = ConfigFactory(session, tid, 'node')
+    node = ConfigFactory(session, tid)
 
     return {
         'ssl_key': node.get_val(u'https_priv_key'),
@@ -43,7 +43,7 @@ def load_tls_dict_list(session):
 
 
 def db_create_acme_key(session, tid):
-    priv_fact = ConfigFactory(session, tid, 'node')
+    priv_fact = ConfigFactory(session, tid)
 
     key = rsa.generate_private_key(
         public_exponent=65537,
@@ -109,12 +109,12 @@ class FileResource(object):
     @staticmethod
     @transact
     def should_gen_dh_params(session, tid):
-        return ConfigFactory(session, tid, 'node').get_val(u'https_dh_params') == u''
+        return ConfigFactory(session, tid).get_val(u'https_dh_params') == u''
 
     @staticmethod
     @transact
     def save_dh_params(session, tid, dh_params):
-        ConfigFactory(session, tid, 'node').set_val(u'https_dh_params', dh_params)
+        ConfigFactory(session, tid).set_val(u'https_dh_params', dh_params)
 
     @classmethod
     @inlineCallbacks
@@ -137,7 +137,7 @@ class PrivKeyFileRes(FileResource):
         db_cfg = load_tls_dict(session, tid)
         db_cfg['ssl_key'] = raw_key
 
-        config = ConfigFactory(session, tid, 'node')
+        config = ConfigFactory(session, tid)
         pkv = cls.validator()
         ok, _ = pkv.validate(db_cfg)
         if ok:
@@ -149,7 +149,7 @@ class PrivKeyFileRes(FileResource):
     @staticmethod
     @transact
     def save_tls_key(session, tid, prv_key):
-        config = ConfigFactory(session, tid, 'node')
+        config = ConfigFactory(session, tid)
         config.set_val(u'https_priv_key', prv_key)
         config.set_val(u'https_priv_gen', True)
 
@@ -165,13 +165,13 @@ class PrivKeyFileRes(FileResource):
     @staticmethod
     @transact
     def delete_file(session, tid):
-        config = ConfigFactory(session, tid, 'node')
+        config = ConfigFactory(session, tid)
         config.set_val(u'https_priv_key', u'')
         config.set_val(u'https_priv_gen', False)
 
     @staticmethod
     def db_serialize(session, tid):
-        config = ConfigFactory(session, tid, 'node')
+        config = ConfigFactory(session, tid)
 
         return {
             'set': config.get_val(u'https_priv_key') != u'',
@@ -185,7 +185,7 @@ class CertFileRes(FileResource):
     @classmethod
     @transact
     def create_file(session, cls, tid, raw_cert):
-        config = ConfigFactory(session, tid, 'node')
+        config = ConfigFactory(session, tid)
 
         db_cfg = load_tls_dict(session, tid)
         db_cfg['ssl_cert'] = raw_cert
@@ -201,17 +201,17 @@ class CertFileRes(FileResource):
     @staticmethod
     @transact
     def delete_file(session, tid):
-        ConfigFactory(session, tid, 'node').set_val(u'https_cert', u'')
+        ConfigFactory(session, tid).set_val(u'https_cert', u'')
         State.tenant_cache[tid].https_cert = ''
 
     @staticmethod
     @transact
     def get_file(session, tid):
-        return ConfigFactory(session, tid, 'node').get_val(u'https_cert')
+        return ConfigFactory(session, tid).get_val(u'https_cert')
 
     @staticmethod
     def db_serialize(session, tid):
-        c = ConfigFactory(session, tid, 'node').get_val(u'https_cert')
+        c = ConfigFactory(session, tid).get_val(u'https_cert')
         if len(c) == 0:
             return {'name': 'cert', 'set': False}
 
@@ -232,7 +232,7 @@ class ChainFileRes(FileResource):
     @classmethod
     @transact
     def create_file(session, cls, tid, raw_chain):
-        config = ConfigFactory(session, tid, 'node')
+        config = ConfigFactory(session, tid)
 
         db_cfg = load_tls_dict(session, tid)
         db_cfg['ssl_intermediate'] = raw_chain
@@ -247,16 +247,16 @@ class ChainFileRes(FileResource):
     @staticmethod
     @transact
     def delete_file(session, tid):
-        ConfigFactory(session, tid, 'node').set_val(u'https_chain', u'')
+        ConfigFactory(session, tid).set_val(u'https_chain', u'')
 
     @staticmethod
     @transact
     def get_file(session, tid):
-        return ConfigFactory(session, tid, 'node').get_val(u'https_chain')
+        return ConfigFactory(session, tid).get_val(u'https_chain')
 
     @staticmethod
     def db_serialize(session, tid):
-        c = ConfigFactory(session, tid, 'node').get_val(u'https_chain')
+        c = ConfigFactory(session, tid).get_val(u'https_chain')
         if len(c) == 0:
             return {'name': 'chain', 'set': False}
 
@@ -275,23 +275,23 @@ class CsrFileRes(FileResource):
     @classmethod
     @transact
     def create_file(session, cls, tid, raw_csr):
-        ConfigFactory(session, tid, 'node').set_val(u'https_csr', raw_csr)
+        ConfigFactory(session, tid).set_val(u'https_csr', raw_csr)
 
         return True
 
     @staticmethod
     @transact
     def delete_file(session, tid):
-        ConfigFactory(session, tid, 'node').set_val(u'https_csr', u'')
+        ConfigFactory(session, tid).set_val(u'https_csr', u'')
 
     @staticmethod
     @transact
     def get_file(session, tid):
-        return ConfigFactory(session, tid, 'node').get_val(u'https_csr')
+        return ConfigFactory(session, tid).get_val(u'https_csr')
 
     @staticmethod
     def db_serialize(session, tid):
-        csr = ConfigFactory(session, tid, 'node').get_val(u'https_csr')
+        csr = ConfigFactory(session, tid).get_val(u'https_csr')
         return {'name': 'csr', 'set': len(csr) != 0}
 
 
@@ -341,7 +341,7 @@ class FileHandler(BaseHandler):
 
 @transact
 def serialize_https_config_summary(session, tid):
-    config = ConfigFactory(session, tid, 'node')
+    config = ConfigFactory(session, tid)
 
     file_summaries = {}
     for key, file_res_cls in FileHandler.mapped_file_resources.items():
@@ -358,7 +358,7 @@ def serialize_https_config_summary(session, tid):
 
 @transact
 def try_to_enable_https(session, tid):
-    config = ConfigFactory(session, tid, 'node')
+    config = ConfigFactory(session, tid)
 
     cv = tls.ChainValidator()
     db_cfg = load_tls_dict(session, tid)
@@ -374,13 +374,13 @@ def try_to_enable_https(session, tid):
 
 @transact
 def disable_https(session, tid):
-    ConfigFactory(session, tid, 'node').set_val(u'https_enabled', False)
+    ConfigFactory(session, tid).set_val(u'https_enabled', False)
     State.tenant_cache[tid].https_enabled = False
 
 
 @transact
 def reset_https_config(session, tid):
-    config = ConfigFactory(session, tid, 'node')
+    config = ConfigFactory(session, tid)
     config.set_val(u'https_enabled', False)
     config.set_val(u'https_priv_gen', False)
     config.set_val(u'https_priv_key', '')
@@ -478,7 +478,7 @@ class AcmeAccntKeyRes:
 
 @transact
 def can_perform_acme_run(session, tid):
-    config = ConfigFactory(session, tid, 'node')
+    config = ConfigFactory(session, tid)
     acme = config.get_val(u'acme')
     no_cert_set = config.get_val(u'https_cert') == u''
     return acme and no_cert_set
@@ -486,7 +486,7 @@ def can_perform_acme_run(session, tid):
 
 @transact
 def is_acme_configured(session, tid):
-    config = ConfigFactory(session, tid, 'node')
+    config = ConfigFactory(session, tid)
     acme = config.get_val(u'acme')
     cert_set = config.get_val(u'https_cert') != u''
     return acme and cert_set
@@ -494,7 +494,7 @@ def is_acme_configured(session, tid):
 
 @transact
 def can_perform_acme_renewal(session, tid):
-    priv_fact = ConfigFactory(session, tid, 'node')
+    priv_fact = ConfigFactory(session, tid)
     a = is_acme_configured(session, tid)
     b = priv_fact.get_val(u'https_enabled')
     c = priv_fact.get_val(u'https_cert')
@@ -502,7 +502,7 @@ def can_perform_acme_renewal(session, tid):
 
 
 def db_acme_cert_issuance(session, tid):
-    priv_fact = ConfigFactory(session, tid, 'node')
+    priv_fact = ConfigFactory(session, tid)
     hostname = State.tenant_cache[tid].hostname
 
     # Temporary fix for https://github.com/certbot/certbot/issues/6246

@@ -11,7 +11,7 @@ import copy
 
 from six import text_type
 from globaleaks import models
-from globaleaks.models.config import NotificationL10NFactory
+from globaleaks.models.config_desc import ConfigL10NFilters
 from globaleaks.utils.sets import merge_dicts
 
 
@@ -316,7 +316,7 @@ AdminNotificationDesc = merge_dicts({
     'notification_threshold_per_hour': int,
     'reset_templates': bool
   },
-  {k: text_type for k in NotificationL10NFactory.keys}
+  {k: text_type for k in ConfigL10NFilters['notification']}
 )
 
 AdminFieldOptionDesc = {

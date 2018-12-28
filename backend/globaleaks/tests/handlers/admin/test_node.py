@@ -4,7 +4,8 @@ from globaleaks import __version__
 from globaleaks import models
 from globaleaks.handlers.admin import node, user
 from globaleaks.orm import transact
-from globaleaks.models.config import NodeL10NFactory
+from globaleaks.models.config import ConfigL10NFactory
+from globaleaks.models.config_desc import ConfigL10NFilters
 from globaleaks.rest.errors import InputValidationError, InvalidAuthentication
 from globaleaks.tests import helpers
 from twisted.internet.defer import inlineCallbacks
@@ -62,7 +63,7 @@ class TestNodeInstance(helpers.TestHandlerWithPopulatedDB):
     def test_put_update_node(self):
         self.dummyNode['hostname'] = 'blogleaks.blogspot.com'
 
-        for attrname in NodeL10NFactory.keys:
+        for attrname in ConfigL10NFilters['node']:
             self.dummyNode[attrname] = stuff
 
         handler = self.request(self.dummyNode, role='admin')
@@ -86,7 +87,13 @@ class TestNodeInstance(helpers.TestHandlerWithPopulatedDB):
                                 'tor',
                                 'encryption',
                                 'encryption_available',
-                                'multisite']:
+                                'multisite',
+                                'backup',
+                                'backup_remote',
+                                'backup_remote_server',
+                                'backup_remote_port',
+                                'backup_remote_username',
+                                'backup_remote_password']:
                 continue
 
             self.assertEqual(response[response_key],

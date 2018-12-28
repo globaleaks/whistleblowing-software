@@ -10,4 +10,4 @@ def load_profile(session, tid, name):
     path = os.path.join(Settings.client_path, 'data/profiles', '{}.json'.format(name))
     prof = read_json_file(path)
 
-    ConfigFactory(session, tid, 'node').update(prof['node'])
+    ConfigFactory(session, tid).update('node', prof['node'])

@@ -100,6 +100,7 @@ def db_get_user(session, tid, user_id):
 
     return user
 
+
 @transact
 def get_user(session, tid, user_id, language):
     user = db_get_user(session, tid, user_id)

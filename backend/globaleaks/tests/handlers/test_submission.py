@@ -1,11 +1,13 @@
 # -*- coding: utf-8 -*-
+from twisted.internet.defer import inlineCallbacks, returnValue
+
 from globaleaks.handlers import authentication, wbtip
 from globaleaks.handlers.submission import SubmissionInstance
-from globaleaks.models.config import set_config_variable
+from globaleaks.models.config import db_set_config_variable
+from globaleaks.orm import transact_wrap
 from globaleaks.jobs import delivery
 from globaleaks.rest import errors
 from globaleaks.tests import helpers
-from twisted.internet.defer import inlineCallbacks, returnValue
 
 
 class TestSubmissionEncryptedScenario(helpers.TestHandlerWithPopulatedDB):
@@ -25,7 +27,7 @@ class TestSubmissionEncryptedScenario(helpers.TestHandlerWithPopulatedDB):
     @inlineCallbacks
     def setUp(self):
         yield helpers.TestHandlerWithPopulatedDB.setUp(self)
-        yield set_config_variable(1, 'encryption', False)
+        yield transact_wrap(db_set_config_variable, 1, 'encryption', False)
         self.state.tenant_cache[1].encryption = False
 
     @inlineCallbacks
