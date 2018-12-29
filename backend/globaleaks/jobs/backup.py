@@ -44,9 +44,7 @@ class Backup(DailyJob):
         if not self.state.tenant_cache[1].backup:
             return
 
-        dst = os.path.join(self.state.settings.backup_path, backupfile)
-        src = self.state.settings.working_path
-        db_perform_backup(self.state.tenant_cache[1].version, dst, src)
+        db_perform_backup(self.state.tenant_cache[1].version)
 
     @transact
     def check_backup_records_to_delete(self, session):

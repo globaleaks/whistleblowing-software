@@ -294,12 +294,13 @@ for i in range(DATABASE_VERSION - FIRST_DATABASE_VERSION_SUPPORTED + 1):
             mp[k] = []
 
         x = get_right_model(migration_mapping, k, FIRST_DATABASE_VERSION_SUPPORTED + i)
-        y = None
         if x is not None:
             class y(x, Bases[i]):
                 pass
 
-        mp[k].append(y)
+            mp[k].append(y)
+        else:
+            mp[k].append(None)
 
 
 migration_mapping = mp
