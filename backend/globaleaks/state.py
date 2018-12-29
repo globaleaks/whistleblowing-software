@@ -13,8 +13,9 @@ from twisted.python.failure import Failure
 from twisted.python.threadpool import ThreadPool
 
 from globaleaks import __version__, orm, models
+from globaleaks.orm import tw
 from globaleaks.settings import Settings
-from globaleaks.transactions import schedule_email
+from globaleaks.transactions import db_schedule_email
 from globaleaks.utils.agent import get_tor_agent, get_web_agent
 from globaleaks.utils.crypto import sha256
 from globaleaks.utils.log import log
@@ -249,7 +250,7 @@ class StateClass(ObjectDict):
                mail_body = pgpctx.encrypt_message(fingerprint, mail_body)
 
             # avoid waiting for the notification to send and instead rely on threads to handle it
-            schedule_email(1, mail_address, mail_subject, mail_body)
+            tw(db_schedule_email, 1, mail_address, mail_subject, mail_body)
 
     def refresh_tenant_state(self):
         # Remove selected onion services and add missing services
@@ -271,12 +272,7 @@ class StateClass(ObjectDict):
             fingerprint = pgpctx.load_key(user_desc['pgp_key_public'])['fingerprint']
             body = pgpctx.encrypt_message(fingerprint, body)
 
-        session.add(models.Mail({
-            'address': user_desc['mail_address'],
-            'subject': subject,
-            'body': body,
-            'tid': tid,
-        }))
+        db_schedule_email(session, tid, user_desc['mail_address'], subject, body)
 
     def get_tmp_file_by_name(self, filename):
         for k, v in self.TempUploadFiles.items():
