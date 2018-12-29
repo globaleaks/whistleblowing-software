@@ -4,7 +4,7 @@ from twisted.internet.defer import inlineCallbacks
 from globaleaks.db import refresh_memory_variables
 from globaleaks.handlers.admin import tenant
 from globaleaks.models import config
-from globaleaks.orm import transact_wrap
+from globaleaks.orm import tw
 from globaleaks.tests import helpers
 
 
@@ -38,7 +38,7 @@ class TestTenantCollection(helpers.TestHandlerWithPopulatedDB):
         for i in range(0, 3):
             handler = self.request(get_dummy_tenant_desc(), role='admin')
             t = yield handler.post()
-            r[i] = yield transact_wrap(config.db_get_config_variable, t['id'], 'receipt_salt')
+            r[i] = yield tw(config.db_get_config_variable, t['id'], 'receipt_salt')
 
         # Checks that the salt is actually modified from create to another
         self.assertNotEqual(r[0], r[1])

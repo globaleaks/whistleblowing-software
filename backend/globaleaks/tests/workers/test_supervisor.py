@@ -9,7 +9,7 @@ from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.handlers.admin.https import load_tls_dict_list
 from globaleaks.models.config import db_set_config_variable
-from globaleaks.orm import transact_wrap
+from globaleaks.orm import tw
 from globaleaks.tests import helpers
 from globaleaks.tests.utils import test_tls
 from globaleaks.utils.sock import reserve_port_for_ip
@@ -24,7 +24,7 @@ class TestProcessSupervisor(helpers.TestGL):
 
     @inlineCallbacks
     def test_launch_and_shutdown(self):
-        yield transact_wrap(db_set_config_variable, 1, 'https_enabled', False)
+        yield tw(db_set_config_variable, 1, 'https_enabled', False)
         sock, fail = reserve_port_for_ip('127.0.0.1', 43434)
         self.assertIsNone(fail)
 
@@ -64,7 +64,7 @@ class TestSubprocessRun(helpers.TestGL):
             'debug': False,
         }
 
-        valid_cfg['site_cfgs'] = yield transact_wrap(load_tls_dict_list)
+        valid_cfg['site_cfgs'] = yield tw(load_tls_dict_list)
 
         tmp = tempfile.TemporaryFile(mode='w')
         tmp.write(json.dumps(valid_cfg))

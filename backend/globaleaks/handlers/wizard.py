@@ -8,7 +8,7 @@ from globaleaks.handlers.admin.node import db_update_enabled_languages
 from globaleaks.handlers.admin.user import db_create_user
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.models import config, profiles
-from globaleaks.orm import transact_wrap
+from globaleaks.orm import tw
 from globaleaks.rest import requests, errors
 from globaleaks.utils.utility import datetime_now
 from globaleaks.utils.log import log
@@ -139,4 +139,4 @@ class Wizard(BaseHandler):
         request = self.validate_message(self.request.content.read(),
                                         requests.WizardDesc)
 
-        return transact_wrap(db_wizard, self.request.tid, request, self.request.client_using_tor, self.request.language)
+        return tw(db_wizard, self.request.tid, request, self.request.client_using_tor, self.request.language)

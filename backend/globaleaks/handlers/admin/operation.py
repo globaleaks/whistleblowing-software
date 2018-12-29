@@ -10,7 +10,7 @@ from globaleaks.handlers.operation import OperationHandler
 from globaleaks.handlers.password_reset import generate_password_reset_token
 from globaleaks.models import Config
 from globaleaks.models.config import ConfigFactory, db_set_config_variable
-from globaleaks.orm import transact, transact_wrap
+from globaleaks.orm import transact, tw
 from globaleaks.rest import errors
 from globaleaks.services.onion import set_onion_service_info, get_onion_service_info
 
@@ -59,7 +59,7 @@ class AdminOperationHandler(OperationHandler):
     @inlineCallbacks
     def set_hostname(self, req_args, *args, **kwargs):
         yield check_hostname(self.request.tid, req_args['value'])
-        yield transact_wrap(db_set_config_variable, self.request.tid, u'hostname', req_args['value'])
+        yield tw(db_set_config_variable, self.request.tid, u'hostname', req_args['value'])
 
     @inlineCallbacks
     def verify_hostname(self, req_args, *args, **kwargs):

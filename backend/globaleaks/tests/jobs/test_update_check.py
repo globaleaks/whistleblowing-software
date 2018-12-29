@@ -5,7 +5,7 @@ from twisted.internet.defer import inlineCallbacks, succeed
 from globaleaks import models
 from globaleaks.jobs.update_check import UpdateCheck
 from globaleaks.models import config
-from globaleaks.orm import transact_wrap
+from globaleaks.orm import tw
 from globaleaks.state import State
 from globaleaks.tests import helpers
 
@@ -34,7 +34,7 @@ class TestUpdateCheck(helpers.TestGLWithPopulatedDB):
     def test_refresh_works(self):
         State.tenant_cache[1].anonymize_outgoing_connections = False
 
-        yield transact_wrap(config.db_set_config_variable, 1, 'latest_version', '0.0.1')
+        yield tw(config.db_set_config_variable, 1, 'latest_version', '0.0.1')
         yield self.test_model_count(models.Mail, 0)
 
         def fetch_packages_file_mock(self):
@@ -44,6 +44,6 @@ class TestUpdateCheck(helpers.TestGLWithPopulatedDB):
 
         yield UpdateCheck().operation()
 
-        latest_version = yield transact_wrap(config.db_get_config_variable, 1, 'latest_version')
+        latest_version = yield tw(config.db_get_config_variable, 1, 'latest_version')
         self.assertEqual(latest_version, '2.0.1337')
         yield self.test_model_count(models.Mail, 1)

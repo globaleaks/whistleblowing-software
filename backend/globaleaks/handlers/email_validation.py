@@ -8,7 +8,7 @@ from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import models
 from globaleaks.handlers.base import BaseHandler
-from globaleaks.orm import transact_wrap
+from globaleaks.orm import tw
 from globaleaks.utils.utility import datetime_now
 
 
@@ -36,7 +36,7 @@ class EmailValidation(BaseHandler):
 
     @inlineCallbacks
     def get(self, validation_token):
-        check = yield transact_wrap(db_validate_address_change, validation_token)
+        check = yield tw(db_validate_address_change, validation_token)
         if not check:
             self.redirect_url = "/#/email/validation/failure"
 

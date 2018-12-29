@@ -4,7 +4,7 @@ from twisted.internet.defer import inlineCallbacks
 from globaleaks import db
 from globaleaks.handlers.admin import shorturl
 from globaleaks.models.config import db_set_config_variable
-from globaleaks.orm import transact_wrap
+from globaleaks.orm import tw
 from globaleaks.rest import errors
 from globaleaks.utils.crypto import generateApiToken
 from globaleaks.tests import helpers
@@ -17,7 +17,7 @@ class TestAPITokenEnabled(helpers.TestHandlerWithPopulatedDB):
     def setUp(self):
         self.api_tok, digest = generateApiToken()
         yield helpers.TestHandlerWithPopulatedDB.setUp(self)
-        yield transact_wrap(db_set_config_variable, 1, 'admin_api_token_digest', digest)
+        yield tw(db_set_config_variable, 1, 'admin_api_token_digest', digest)
         yield db.refresh_memory_variables()
 
     @inlineCallbacks
@@ -34,7 +34,7 @@ class TestAPITokenEnabled(helpers.TestHandlerWithPopulatedDB):
 
     @inlineCallbacks
     def tearDown(self):
-        yield transact_wrap(db_set_config_variable, 1, 'admin_api_token_digest', '')
+        yield tw(db_set_config_variable, 1, 'admin_api_token_digest', '')
         yield helpers.TestHandlerWithPopulatedDB.tearDown(self)
 
 
@@ -46,7 +46,7 @@ class TestAPITokenDisabled(helpers.TestHandlerWithPopulatedDB):
         # The active component of this application is the placement of the api key
         # in the private memory copy. When that changes this test will break.
         self.api_tok, digest = generateApiToken()
-        yield transact_wrap(db_set_config_variable, 1, 'admin_api_token_digest', '')
+        yield tw(db_set_config_variable, 1, 'admin_api_token_digest', '')
 
         shorturl_desc = self.get_dummy_shorturl()
         handler = self.request(shorturl_desc, headers={'x-api-token': self.api_tok})
@@ -54,5 +54,5 @@ class TestAPITokenDisabled(helpers.TestHandlerWithPopulatedDB):
 
     @inlineCallbacks
     def tearDown(self):
-        yield transact_wrap(db_set_config_variable, 1, 'admin_api_token_digest', '')
+        yield tw(db_set_config_variable, 1, 'admin_api_token_digest', '')
         yield helpers.TestHandlerWithPopulatedDB.tearDown(self)

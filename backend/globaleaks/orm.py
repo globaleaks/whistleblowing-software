@@ -138,5 +138,5 @@ class transact_sync(transact):
 
 
 @transact
-def transact_wrap(session, f, *args, **kwargs):
+def tw(session, f, *args, **kwargs):
     return f(session, *args, **kwargs)

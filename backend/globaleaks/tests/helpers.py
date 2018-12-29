@@ -39,7 +39,7 @@ from . import TEST_DIR
 
 from globaleaks import db, models, orm, event, jobs, __version__, DATABASE_VERSION
 from globaleaks.db.appdata import load_appdata
-from globaleaks.orm import transact, transact_wrap
+from globaleaks.orm import transact, tw
 from globaleaks.handlers import rtip, wbtip
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.admin.context import create_context, get_context
@@ -409,7 +409,7 @@ class TestGL(unittest.TestCase):
 
         allow_unencrypted = self.encryption_scenario in ['PLAINTEXT', 'MIXED']
 
-        yield transact_wrap(db_set_config_variable, 1, u'allow_unencrypted', allow_unencrypted)
+        yield tw(db_set_config_variable, 1, u'allow_unencrypted', allow_unencrypted)
 
         yield self.set_hostnames(1)
 
@@ -753,7 +753,7 @@ class TestGLWithPopulatedDB(TestGL):
         for i in range(1, self.population_of_tenants):
             name = 'tenant-' + str(i+1)
             t = yield create_tenant({'mode': 'default', 'label': name, 'active': True, 'subdomain': name})
-            yield transact_wrap(db_wizard, t['id'], self.dummyWizard, True, u'en')
+            yield tw(db_wizard, t['id'], self.dummyWizard, True, u'en')
             yield self.set_hostnames(i+1)
 
         yield associate_users_of_first_tenant_to_second_tenant()
