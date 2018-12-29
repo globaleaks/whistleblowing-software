@@ -113,6 +113,7 @@ class LoopingJob(Job):
 
 class HourlyJob(LoopingJob):
     interval = 3600
+
     def get_delay(self):
         current_time = datetime_now()
         return 3600 - (current_time.minute * 60) - current_time.second
