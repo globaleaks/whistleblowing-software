@@ -674,7 +674,7 @@ class _FieldOption(Model):
     trigger_step = Column(UnicodeText(36), nullable=True)
     trigger_step_inverted = Column(Boolean, default=False, nullable=False)
 
-    boolean = ['trigger_field_inverted', 'trigger_step_inverted']
+    bool_keys = ['trigger_field_inverted', 'trigger_step_inverted']
     unicode_keys = ['field_id']
     int_keys = ['presentation_order', 'score_type', 'score_points']
     localized_keys = ['label']
