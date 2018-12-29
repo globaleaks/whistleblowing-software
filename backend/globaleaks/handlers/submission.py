@@ -266,12 +266,16 @@ def db_create_receivertip(session, receiver, internaltip, can_access_whistleblow
 
 
 def db_create_submission(session, tid, request, token, client_using_tor):
+    if not request['receivers']:
+        raise errors.InputValidationError("need at least one recipient")
+
     answers = request['answers']
 
     context, questionnaire = session.query(models.Context, models.Questionnaire) \
                                     .filter(models.Context.id == request['context_id'],
                                             models.Questionnaire.id == models.Context.questionnaire_id,
                                             models.Questionnaire.tid.in_(set([1, tid]))).one_or_none()
+
     if not context:
         raise errors.ModelNotFound(models.Context)
 
@@ -341,11 +345,7 @@ def db_create_submission(session, tid, request, token, client_using_tor):
     if crypto_is_available:
         users_count = session.query(models.User) \
                              .filter(models.User.id.in_(request['receivers']),
-                                     models.ReceiverContext.receiver_id == models.User.id,
-                                     models.ReceiverContext.context_id == context.id,
-                                     models.User.crypto_prv_key != b'',
-                                     models.UserTenant.user_id == models.User.id,
-                                     models.UserTenant.tenant_id == tid).count()
+                                     models.User.crypto_prv_key != b'').count()
 
         crypto_is_available = users_count == len(request['receivers'])
 
@@ -399,13 +399,7 @@ def db_create_submission(session, tid, request, token, client_using_tor):
                     len(request['receivers']) > context.maximum_selectable_receivers:
         raise errors.InputValidationError("selected an invalid number of recipients")
 
-    rtips_count = 0
-    for user in session.query(models.User) \
-                       .filter(models.User.id.in_(request['receivers']),
-                               models.ReceiverContext.receiver_id == models.User.id,
-                               models.ReceiverContext.context_id == context.id,
-                               models.UserTenant.user_id == models.User.id,
-                               models.UserTenant.tenant_id == tid):
+    for user in session.query(models.User).filter(models.User.id.in_(request['receivers'])):
         if not crypto_is_available and not user.pgp_key_public and not State.tenant_cache[tid].allow_unencrypted:
             continue
 
@@ -414,12 +408,6 @@ def db_create_submission(session, tid, request, token, client_using_tor):
             _tip_key = GCE.asymmetric_encrypt(user.crypto_pub_key, crypto_tip_prv_key)
 
         db_create_receivertip(session, user, itip, can_access_whistleblower_identity, _tip_key)
-        rtips_count += 1
-
-    if not rtips_count:
-        raise errors.InputValidationError("need at least one recipient")
-
-    log.debug("The finalized submission had created %d models.ReceiverTip(s)", rtips_count)
 
     return {'receipt': receipt}
 
