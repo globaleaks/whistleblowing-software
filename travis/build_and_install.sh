@@ -41,8 +41,16 @@ sudo curl https://deb.globaleaks.org/bionic/python-josepy_1.1.0-2~bpo9%2b1_all.d
 sudo curl https://deb.globaleaks.org/bionic/python3-josepy_1.1.0-2~bpo9%2b1_all.deb --output /globaleaks/deb/python3-josepy_1.1.0-2~bpo9%2b1_all.deb
 sudo curl https://deb.globaleaks.org/bionic/python-acme_0.28.0-1~bpo9%2b1_all.deb --output /globaleaks/deb/python-acme_0.28.0-1~bpo9%2b1_all.deb
 sudo curl https://deb.globaleaks.org/bionic/python3-acme_0.28.0-1~bpo9%2B1_all.deb --output /globaleaks/deb/python3-acme_0.28.0-1~bpo9%2B1_all.deb
-sudo curl https://deb.globaleaks.org/bionic/libsodium23_1.0.16-2~bpo9%2b1_i386.deb --output /globaleaks/deb/libsodium23_1.0.16-2~bpo9%2b1_i386.deb
-sudo curl https://deb.globaleaks.org/bionic/python-nacl_1.2.1-3~bpo9+3_i386.deb --output /globaleaks/deb/python-nacl_1.2.1-3~bpo9+3_i386.deb
-sudo curl https://deb.globaleaks.org/bionic/python3-nacl_1.2.1-3~bpo9+3_i386.deb --output /globaleaks/deb/python3-nacl_1.2.1-3~bpo9+3_i386.deb
+
+#!/bin/bash -x
+if [ `uname -m` = 'x86_64' ]; then
+  sudo curl https://deb.globaleaks.org/bionic/libsodium23_1.0.16-2~bpo9%2b1_amd64.deb --output /globaleaks/deb/libsodium23_1.0.16-2~bpo9%2b1_amd64.deb
+  sudo curl https://deb.globaleaks.org/bionic/python-nacl_1.2.1-3~bpo9+3_amd64.deb --output /globaleaks/deb/python-nacl_1.2.1-3~bpo9+3_amd64.deb
+  sudo curl https://deb.globaleaks.org/bionic/python3-nacl_1.2.1-3~bpo9+3_amd64.deb --output /globaleaks/deb/python3-nacl_1.2.1-3~bpo9+3_amd64.deb
+else
+  sudo curl https://deb.globaleaks.org/bionic/libsodium23_1.0.16-2~bpo9%2b1_i386.deb --output /globaleaks/deb/libsodium23_1.0.16-2~bpo9%2b1_i386.deb
+  sudo curl https://deb.globaleaks.org/bionic/python-nacl_1.2.1-3~bpo9+3_i386.deb --output /globaleaks/deb/python-nacl_1.2.1-3~bpo9+3_i386.deb
+  sudo curl https://deb.globaleaks.org/bionic/python3-nacl_1.2.1-3~bpo9+3_i386.deb --output /globaleaks/deb/python3-nacl_1.2.1-3~bpo9+3_i386.deb
+fi
 
 sudo ./scripts/install.sh --assume-yes --test
