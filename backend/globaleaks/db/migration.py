@@ -51,6 +51,7 @@ from globaleaks.utils.log import log
 migration_mapping = OrderedDict([
     ('Anomalies', [-1, -1, -1, -1, -1, -1, Anomalies_v_38, 0, 0, 0, 0, 0, 0, 0, 0, models._Anomalies, 0, 0, 0, 0, 0, 0, 0]),
     ('ArchivedSchema', [ArchivedSchema_v_38, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, models._ArchivedSchema, 0, 0, 0, 0, 0, 0, 0]),
+    ('Backup', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, models._Backup]),
     ('Comment', [Comment_v_31, 0, 0, 0, 0, 0, 0, 0, Comment_v_38, 0, 0, 0, 0, 0, 0, models._Comment, 0, 0, 0, 0, 0, 0, 0]),
     ('Config', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, Config_v_38, 0, 0, 0, 0, models._Config, 0, 0, 0, 0, 0, 0, 0]),
     ('ConfigL10N', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, ConfigL10N_v_38, 0, 0, 0, 0, models._ConfigL10N, 0, 0, 0, 0, 0, 0, 0]),
@@ -293,13 +294,12 @@ for i in range(DATABASE_VERSION - FIRST_DATABASE_VERSION_SUPPORTED + 1):
             mp[k] = []
 
         x = get_right_model(migration_mapping, k, FIRST_DATABASE_VERSION_SUPPORTED + i)
+        y = None
         if x is not None:
             class y(x, Bases[i]):
                 pass
 
-            mp[k].append(y)
-        else:
-            mp[k].append(None)
+        mp[k].append(y)
 
 
 migration_mapping = mp
