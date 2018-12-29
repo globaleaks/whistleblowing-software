@@ -119,14 +119,6 @@ class NotAuthenticated(GLException):
     reason = "Not Authenticated"
 
 
-class ExternalResourceError(GLException):
-    error_code = 11
-    status_code = 400
-
-    def __init__(self, reason='External resource did not respond correctly'):
-        self.reason = reason
-
-
 class InvalidOldPassword(GLException):
     """
     Receiver or Node required the old password equal to the current password,
@@ -151,7 +143,7 @@ class FileTooBig(GLException):
     """
     Raised by GLHTTPConnection, when the uploaded file is bigger than acceptable
     """
-    error_code = 14
+    error_code = 13
     status_code = 400 # Bad Request
 
     def __init__(self, size_limit):
@@ -165,16 +157,17 @@ class DirectoryTraversalError(GLException):
     Blocked file operation out of the expected path
     """
     reason = "Blocked file operation out of the expected path"
-    error_code = 15
+    error_code = 14
     status_code = 403
 
 
 class SubmissionDisabled(GLException):
     reason = "Submissions are disabled"
-    error_code = 16
+    error_code = 15
     status_code = 503 # Service not available
+
 
 class AccessLocationInvalid(GLException):
     reason = "IP Address not allows to login from this location"
-    error_code = 17
+    error_code = 16
     status_code = 401

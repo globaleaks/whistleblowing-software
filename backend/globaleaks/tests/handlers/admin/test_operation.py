@@ -6,7 +6,7 @@ from globaleaks.tests import helpers
 from globaleaks.handlers.admin import user
 from globaleaks.tests.handlers.test_password_reset import get_user
 
-from twisted.internet import defer, reactor
+from twisted.internet import defer, error, reactor
 
 
 class TestHostnameConfig(helpers.TestHandler):
@@ -37,7 +37,7 @@ class TestHostnameConfig(helpers.TestHandler):
         yield self.pp.start_defer
 
         handler = self.request({'operation': 'verify_hostname', 'args': {'value': 'antani.gov'}}, role='admin')
-        yield self.assertFailure(handler.put(), errors.ExternalResourceError)
+        yield self.assertFailure(handler.put(), error.ConnectionRefusedError)
 
         handler = self.request({'operation': 'verify_hostname', 'args': {'value': 'localhost:43434'}}, role='admin')
         yield handler.put()
