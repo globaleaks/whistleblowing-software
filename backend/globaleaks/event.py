@@ -4,39 +4,11 @@ from globaleaks.state import State
 from globaleaks.utils.utility import datetime_now, datetime_to_ISO8601
 
 
-# follow the checker, they are executed from handlers/base.py
-# by prepare() and/or flush()
-
-def file_upload_check(uri):
-    # /submission/ + token_id + /file  = 59 bytes
-    return (len(uri) == 59 and uri.endswith(b'/file')) or uri == b'/wbtip/upload'
-
-
-def submission_check(uri):
-    # Precise len checks are needed to match only submission urls and not file ones
-    # that are like /submission/0SjnzrUhuKx89hePh5Tw9eR3D18ftFZVQG6MaiK1Dy/file
-    return uri.startswith(b'/submission') and (len(uri) == 54 or len(uri) == 11)
-
-
-def login_check(uri):
-    return uri == b'/authentication'
-
-
-def message_check(uri):
-    return uri.startswith(b'/wbtip/messages/') or uri.startswith(b'/rtip/messages/')
-
-
-def comment_check(uri):
-    return uri == b'/wbtip/comments' or uri.startswith(b'/rtip/comments')
-
-
 def failure_status_check(http_code):
-    # if code is missing is a failure because an Exception is raise before set
-    # the status.
     return http_code >= 400
 
 
-def ok_status_check(HTTP_code):
+def success_status_check(HTTP_code):
     return HTTP_code == 200
 
 
@@ -47,6 +19,13 @@ def created_status_check(http_code):
 def updated_status_check(http_code):
     return http_code == 202
 
+
+def login_check(uri):
+    return uri == b'/authentication'
+
+
+def submission_check(uri):
+    return uri.startswith(b'/submission') and (len(uri) == 11 or len(uri) == 54)
 
 events_monitored = [
     {
@@ -59,7 +38,7 @@ events_monitored = [
         'name': 'successful_logins',
         'handler_check': login_check,
         'method': 'POST',
-        'status_check': ok_status_check
+        'status_check': success_status_check
     },
     {
         'name': 'started_submissions',
@@ -78,24 +57,6 @@ events_monitored = [
         'handler_check': submission_check,
         'method': 'PUT',
         'status_check': failure_status_check
-    },
-    {
-        'name': 'comments',
-        'handler_check': comment_check,
-        'method': 'POST',
-        'status_check': created_status_check
-    },
-    {
-        'name': 'messages',
-        'handler_check': message_check,
-        'method': 'POST',
-        'status_check': created_status_check
-    },
-    {
-        'name': 'files',
-        'handler_check': file_upload_check,
-        'method': 'POST',
-        'status_check': ok_status_check
     }
 ]
 

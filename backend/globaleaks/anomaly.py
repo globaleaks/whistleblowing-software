@@ -21,9 +21,6 @@ ANOMALY_MAP = {
     'failed_submissions': 5,
     'failed_logins': 5,
     'successful_logins': 20,
-    'files': 30,
-    'comments': 30,
-    'messages': 30
 }
 
 
