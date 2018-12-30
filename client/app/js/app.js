@@ -293,7 +293,7 @@ var GLClient = angular.module('GLClient', [
         header_title: 'Questionnaires',
         resolve: {
           access: requireAuth('admin'),
-          resources: fetchResources('admin', ['fieldtemplates', 'field_attrs', 'node', 'questionnaires']),
+          resources: fetchResources('admin', ['fieldtemplates', 'field_attrs', 'node', 'questionnaires', 'users']),
         }
       }).
       when('/admin/users', {

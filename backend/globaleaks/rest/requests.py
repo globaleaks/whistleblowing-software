@@ -326,7 +326,10 @@ AdminFieldOptionDesc = {
     'score_type': int,
     'score_points': int,
     'trigger_field': uuid_regexp_or_empty,
-    'trigger_step': uuid_regexp_or_empty
+    'trigger_field_inverted': bool,
+    'trigger_step': uuid_regexp_or_empty,
+    'trigger_step_inverted': bool,
+    'trigger_receiver': list
 }
 
 AdminFieldOptionDescRaw = get_multilang_request_format(AdminFieldOptionDesc, models.FieldOption.localized_keys)

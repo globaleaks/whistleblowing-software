@@ -1,5 +1,7 @@
 GLClient.controller('AdminFieldEditorCtrl', ['$scope',
   function($scope) {
+    $scope.admin_receivers_by_id = $scope.Utils.array_to_map($scope.admin.users);
+
     $scope.editing = false;
     $scope.new_field = {};
 
@@ -78,7 +80,8 @@ GLClient.controller('AdminFieldEditorCtrl', ['$scope',
         'trigger_field': '',
         'trigger_field_inverted': false,
         'trigger_step': '',
-        'trigger_step_inverted': false
+        'trigger_step_inverted': false,
+	'trigger_receiver': []
       };
 
       new_option.presentation_order = $scope.newItemOrder($scope.field.options, 'presentation_order');
@@ -171,6 +174,15 @@ GLClient.controller('AdminFieldEditorCtrl', ['$scope',
       });
     };
 
+    $scope.moveReceiver = function(rec) {
+      $scope.context.receivers.push(rec.id);
+      $scope.showSelect = false;
+    };
+
+    $scope.receiverNotSelectedFilter = function(item) {
+      return $scope.context.receivers.indexOf(item.id) == -1;
+    };
+
     $scope.fieldIsMarkableSubjectToStats = $scope.isMarkableSubjectToStats($scope.field);
     $scope.fieldIsMarkableSubjectToPreview = $scope.isMarkableSubjectToPreview($scope.field);
 
@@ -220,6 +232,18 @@ GLClient.controller('AdminFieldEditorCtrl', ['$scope',
 
     $scope.triggerStepDialog = function(option) {
       return $scope.Utils.openConfirmableModalDialog('views/partials/trigger_step.html', option, $scope);
+    };
+
+    $scope.triggerReceiverDialog = function(option) {
+      $scope.moveReceiver = function(rec) {
+        option.trigger_receiver.push(rec.id);
+      };
+
+      $scope.receiverNotSelectedFilter = function(item) {
+        return option.trigger_receiver.indexOf(item.id) == -1;
+      };
+
+      return $scope.Utils.openConfirmableModalDialog('views/partials/trigger_receiver.html', option, $scope);
     };
 
     $scope.assignScorePointsDialog = function(option) {

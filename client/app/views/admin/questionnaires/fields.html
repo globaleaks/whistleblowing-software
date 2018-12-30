@@ -308,8 +308,14 @@
                           <i class="glyphicon glyphicon-asterisk"></i>
                         </button>
                       </span>
-                        <button class="btn btn-xs" data-ng-if="$scope.questionnaire" data-ng-class="option.trigger_step !== '' ? 'btn-primary' : 'btn-default'" data-ng-click="triggerStepDialog(option)" uib-popover="{{'Trigger step' | translate}}" popover-placement="left">
+                      <span>
+                        <button class="btn btn-xs" data-ng-if="questionnaire" data-ng-class="option.trigger_step !== '' ? 'btn-primary' : 'btn-default'" data-ng-click="triggerStepDialog(option)" uib-popover="{{'Trigger step' | translate}}" popover-placement="left">
                           <i class="glyphicon glyphicon-asterisk"></i>
+                        </button>
+                      </span>
+                      <span>
+                        <button class="btn btn-xs" data-ng-class="option.trigger_receiver.length ? 'btn-primary' : 'btn-default'" data-ng-click="triggerReceiverDialog(option)" uib-popover="{{'Set recipients' | translate}}" popover-placement="left">
+                          <i class="glyphicon glyphicon-user"></i>
                         </button>
                       </span>
                       <span>

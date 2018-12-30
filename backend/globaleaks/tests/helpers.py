@@ -243,7 +243,10 @@ def get_dummy_fieldoption_list():
           'score_points': 100,
           'score_type': 0,
           'trigger_field': '',
-          'trigger_step': ''
+          'trigger_field_inverted': False,
+          'trigger_step': '',
+          'trigger_step_inverted': False,
+          'trigger_receiver': []
         },
         {
           'id': u'feefbead-feef-bead-feef-feeffeefbead',
@@ -252,7 +255,10 @@ def get_dummy_fieldoption_list():
           'score_points': 97,
           'score_type': 0,
           'trigger_field': '',
-          'trigger_step': ''
+          'trigger_field_inverted': False,
+          'trigger_step': '',
+          'trigger_step_inverted': False,
+          'trigger_receiver': []
         }
     ]
 
