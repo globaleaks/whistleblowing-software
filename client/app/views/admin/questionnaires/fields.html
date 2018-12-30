@@ -179,14 +179,28 @@
                 <input data-ng-model="field.attrs.regexp.value" type="text" class="form-control" data-ng-disabled="!field.editable" />
               </div>
             </div>
-            <div data-ng-if="field.type === 'tos'">
+            <div data-ng-if="field.type === 'tos'" data-ng-disabled="!field.editable">
               <div class="form-group">
                 <label data-translate>Text</label>
-                <textarea data-ng-model="field.attrs.text.value" class="form-control" data-ng-disabled="!field.editable"></textarea>
+                <textarea data-ng-model="field.attrs.text.value" class="form-control"></textarea>
               </div>
               <div class="form-group">
                 <label data-translate>Checkbox label</label>
-                <input data-ng-model="field.attrs.checkbox_label.value" type="text" class="form-control" data-ng-disabled="!field.editable" />
+                <input data-ng-model="field.attrs.checkbox_label.value" type="text" class="form-control" />
+              </div>
+              <div class="form-group">
+                <input data-ng-model="field.attrs.attachment.value" type="checkbox" />
+                <label data-translate>Attachment</label>
+              </div>
+              <div data-ng-if="field.attrs.attachment.value" class="nested">
+                <div class="form-group">
+                  <label data-translate>Text</label>
+                  <input data-ng-model="field.attrs.attachment_text.value" type="text" class="form-control" />
+                </div>
+                <div class="form-group">
+                  <label>URL</label>
+                  <input data-ng-model="field.attrs.attachment_url.value" type="text" class="form-control" />
+                </div>
               </div>
             </div>
             <div data-ng-if="field.type === 'map'">

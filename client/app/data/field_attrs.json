@@ -17,7 +17,10 @@
  },
   "tos": {
     "text": {"type": "localized", "value": ""},
-    "checkbox_label": {"type": "localized", "value": ""}
+    "checkbox_label": {"type": "localized", "value": ""},
+    "attachment": {"type": "bool", "value": false},
+    "attachment_text": {"type": "localized", "value": ""},
+    "attachment_url": {"type": "unicode", "value": ""}
  },
   "date": {
     "min_date": {"type": "unicode", "value": ""},
