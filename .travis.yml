@@ -115,8 +115,6 @@ before_install:
 install: true
 script:
   - $TRAVIS_BUILD_DIR/travis/script.sh
-deploy:
-  provider: script
-  script:
+after_success:
     - $TRAVIS_BUILD_DIR/docker/build.sh
     - $TRAVIS_BUILD_DIR/docker/push.sh
