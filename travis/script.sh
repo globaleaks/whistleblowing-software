@@ -101,6 +101,9 @@ elif [ "$GLTEST" = "lint" ]; then
   cd $TRAVIS_BUILD_DIR/client
   grunt eslint
 
+elif [ "$GLTEST" = "docker" ]; then
+  cd $TRAVIS_BUILD_DIR/docker && ./build.sh
+
 elif [ "$GLTEST" = "build_and_install" ]; then
   function atexit {
     if [[ ! $? -eq 0 && -f /var/globaleaks/log/globaleaks.log ]]; then
