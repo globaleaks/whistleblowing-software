@@ -120,5 +120,3 @@ deploy:
   script:
     - $TRAVIS_BUILD_DIR/docker/build.sh
     - $TRAVIS_BUILD_DIR/docker/push.sh
-  on:
-    tags: true
