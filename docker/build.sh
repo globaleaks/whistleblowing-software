@@ -1,2 +1,2 @@
-#!/bin/bash
-docker build -t globaleaks/globaleaks:latest .
+#!/bin/bash -e
+docker build -t "$DOCKER_IMAGE_NAME:latest" .
