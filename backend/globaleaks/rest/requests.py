@@ -294,10 +294,10 @@ AdminNodeDesc = {
     'backup_w': int,
     'backup_m': int,
     'backup_remote': bool,
-    'backup_server': text_type,
-    'backup_port': int,
-    'backup_username': text_type,
-    'backup_password': text_type
+    'backup_remote_server': text_type,
+    'backup_remote_port': int,
+    'backup_remote_username': text_type,
+    'backup_remote_password': text_type
 }
 
 AdminNotificationDesc = merge_dicts({
