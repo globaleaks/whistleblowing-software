@@ -1227,10 +1227,10 @@ class MockDict:
             'backup_w': 3,
             'backup_m': 3,
             'backup_remote': False,
-            'backup_server': u'',
-            'backup_port': 22,
-            'backup_username': u'',
-            'backup_password': u''
+            'backup_remote_server': u'',
+            'backup_remote_port': 22,
+            'backup_remote_username': u'',
+            'backup_remote_password': u''
         }
 
 

@@ -44,7 +44,7 @@ class Backup(DailyJob):
         if not self.state.tenant_cache[1].backup:
             return
 
-        db_perform_backup(self.state.tenant_cache[1].version)
+        db_perform_backup(session, self.state.tenant_cache[1].version)
 
     @transact
     def check_backup_records_to_delete(self, session):
