@@ -10,7 +10,7 @@ Users' credentials:
 {AdminCredentials}
 {RecipientCredentials}
 
-For the user documentation visit:
+For the user documentation, visit:
 {DocumentationUrl}
 
 The platform will be automatically deleted on:
