@@ -193,7 +193,7 @@
               </button>
             </span>
           </td>
-          <td class="TipInfoID">#{{ tip.progressive }}</td>
+          <td class="TipInfoID">#{{::tip.progressive}}</td>
           <td class="TipInfoContext" data-ng-if="contexts.length > 1">{{::tip.context_name}}</td>
           <td class="TipInfoLabel">{{::tip.label}}</td>
 	  <td class="TipInfoStatus"><span>{{tip.submissionStatusStr}}</span></td>
