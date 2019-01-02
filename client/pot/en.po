@@ -61,12 +61,6 @@ msgstr "License"
 msgid "Notification templates"
 msgstr "Notification templates"
 
-msgid "Recipient notification templates"
-msgstr "Recipient notification templates"
-
-msgid "Admin notification templates"
-msgstr "Admin notification templates"
-
 msgid "Missing data"
 msgstr "Missing data"
 
@@ -1633,8 +1627,8 @@ msgstr "Please note that all the associated data will be permanently lost."
 msgid "Welcome!"
 msgstr "Welcome!"
 
-msgid "If you want to read the software documentation:"
-msgstr "If you want to read the software documentation:"
+msgid "For the user documentation visit:"
+msgstr "For the user documentation visit:"
 
 msgid ""
 "If you need technical support, have general questions, or have new ideas "
@@ -1652,10 +1646,10 @@ msgstr ""
 
 msgid ""
 "If your non-profit needs support for investigative journalism, activism or "
-"a human rights defense project:"
+"a human rights defense project: "
 msgstr ""
 "If your non-profit needs support for investigative journalism, activism or "
-"a human rights defense project:"
+"a human rights defense project: "
 
 msgid ""
 "For professional support and development of anti corruption and compliance "
@@ -2165,8 +2159,8 @@ msgstr "To log in, visit:"
 msgid "Users' credentials:"
 msgstr "Users' credentials:"
 
-msgid "For the user documentation visit:"
-msgstr "For the user documentation visit:"
+msgid "For the user documentation, visit:"
+msgstr "For the user documentation, visit:"
 
 msgid "The platform will be automatically deleted on:"
 msgstr "The platform will be automatically deleted on:"
