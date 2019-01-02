@@ -790,7 +790,8 @@ class _InternalTip(Model):
 
     @declared_attr
     def __table_args__(self):
-        return (ForeignKeyConstraint(['tid'], ['tenant.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),)
+        return (ForeignKeyConstraint(['tid'], ['tenant.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),
+                UniqueConstraint('tid', 'progressive'))
 
 
 class _InternalTipAnswers(Model):
