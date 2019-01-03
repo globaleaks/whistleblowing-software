@@ -288,6 +288,7 @@ AdminNodeDesc = {
     'log_level': text_type,
     'log_accesses_of_internal_users': bool,
     'encryption': bool,
+    '2fa': bool,
     'multisite': bool,
     'backup': bool,
     'backup_d': int,

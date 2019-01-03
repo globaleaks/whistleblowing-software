@@ -159,7 +159,7 @@ class MigrationScript(MigrationBase):
             receiver = self.session_old.query(self.model_from['Receiver']).filter(self.model_from['Receiver'].id == old_obj.id).one_or_none()
             new_obj = self.model_to['User']()
             for key in [c.key for c in new_obj.__table__.columns]:
-                if key in ['can_delete_submission', 'can_grant_permissions', 'can_postpone_expiration']:
+                if key in ['can_delete_submission', 'can_grant_permissions', 'can_postpone_expiration', 'twofactor_auth', 'twofactor_time']:
                     if receiver is not None:
                         setattr(new_obj, key, getattr(receiver, key))
                     continue

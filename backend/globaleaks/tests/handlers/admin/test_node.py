@@ -87,6 +87,7 @@ class TestNodeInstance(helpers.TestHandlerWithPopulatedDB):
                                 'tor',
                                 'encryption',
                                 'encryption_available',
+                                '2fa',
                                 'multisite',
                                 'backup',
                                 'backup_remote',

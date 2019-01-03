@@ -260,7 +260,9 @@ controller('AdminMailCtrl', ['$scope', '$http', 'AdminNotificationResource',
     'tip_expiration_summary_mail_title',
     'tip_mail_template',
     'tip_mail_title',
-    'user_credentials'
+    'user_credentials',
+    '2fa_mail_template',
+    '2fa_mail_title',
   ];
 
   $scope.tabs = [

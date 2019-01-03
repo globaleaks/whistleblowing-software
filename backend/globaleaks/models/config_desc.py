@@ -156,6 +156,8 @@ ConfigDescriptor = {
     u'ip_filter_whistleblower': Unicode(default=u''),
     u'ip_filter_whistleblower_enable': Bool(default=False),
 
+    u'2fa': Bool(default=False),
+
     u'backup': Bool(default=False),
     u'backup_d': Int(default=3),
     u'backup_w': Int(default=3),
@@ -261,6 +263,7 @@ ConfigFilters = {
         u'log_level',
         u'log_accesses_of_internal_users',
         u'encryption',
+        u'2fa',
         u'multisite',
         u'backup',
         u'backup_d',
@@ -330,6 +333,8 @@ ConfigFilters['public_node'] = list(set(ConfigFilters['admin_node']) - set([
     'threshold_free_disk_percentage_low',
     'anonymize_outgoing_connections',
     'counter_submissions',
+    'encryption',
+    '2fa',
     'backup',
     'backup_d',
     'backup_w',
@@ -440,6 +445,8 @@ ConfigL10NFilters = {
         u'tip_expiration_summary_mail_title',
         u'tip_mail_template',
         u'tip_mail_title',
-        u'user_credentials'
+        u'user_credentials',
+        u'2fa_mail_template',
+        u'2fa_mail_title'
     ]
 }
