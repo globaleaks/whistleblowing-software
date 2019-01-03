@@ -168,7 +168,7 @@ def extract_answers_preview(questionnaire, answers):
 
 
 def db_archive_questionnaire_schema(session, questionnaire):
-    hash = text_type(sha256(json.dumps(questionnaire)))
+    hash = text_type(sha256(json.dumps(questionnaire, sort_keys=True)))
     if session.query(models.ArchivedSchema).filter(models.ArchivedSchema.hash == hash).count():
         return hash
 
