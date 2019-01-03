@@ -50,11 +50,18 @@ def get_engine(db_uri=None, foreign_keys=True):
 
     engine = create_engine(db_uri, connect_args={'timeout': 30})
 
-    if foreign_keys:
-        def on_connect(conn, record):
+    @event.listens_for(engine, "connect")
+    def do_connect(conn, connection_record):
+        # disable pysqlite's emitting of the BEGIN statement entirely.
+        # also stops it from emitting COMMIT before any DDL.
+        conn.isolation_level = None
+
+        if foreign_keys:
             conn.execute('pragma foreign_keys=ON')
 
-        event.listen(engine, 'connect', on_connect)
+    @event.listens_for(engine, "begin")
+    def do_begin(conn):
+        conn.execute("BEGIN")
 
     return engine
 
