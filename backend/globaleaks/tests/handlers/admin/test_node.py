@@ -17,7 +17,7 @@ stuff = u"³²¼½¬¼³²"
 def set_receiver_acl_flag_true(session, rcvr_id):
     rcvr = session.query(models.User).filter_by(id=rcvr_id).first()
     rcvr.can_edit_general_settings = True
-    session.commit()
+
 
 @transact
 def get_config_value(session, tid, config_key):
