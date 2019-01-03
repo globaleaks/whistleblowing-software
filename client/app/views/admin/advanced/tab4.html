@@ -1,0 +1,78 @@
+  <div class="col-md-6">
+    <div class="form-group">
+      <label>
+        <input data-ng-model="admin.node.backup" type="checkbox" />
+        <span data-translate>Enable automatic backups</span>
+      </label>
+    </div>
+
+    <div data-ng-if="admin.node.backup" class="well">
+      <div class="row">
+        <div class="col-md-4 form-group">
+          <label data-translate>Daily</label>
+          <input class="form-control" data-ng-model="admin.node.backup_d" type="number" min="0" />
+        </div>
+
+        <div class="col-md-4 form-group">
+          <label data-translate>Weekly</label>
+          <input class="form-control" data-ng-model="admin.node.backup_w" type="number" min="0" />
+        </div>
+
+        <div class="col-md-4  form-group">
+          <label data-translate>Montly</label>
+          <input class="form-control" data-ng-model="admin.node.backup_m" type="number" min="0" />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>
+          <input data-ng-model="admin.node.backup_remote" type="checkbox" />
+          <span data-translate>Remote</span>
+        </label>
+      </div>
+
+      <div data-ng-if="admin.node.backup_remote">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label data-translate>Server</label>
+              <input class="form-control" data-ng-model="admin.node.backup_remote_server" type="text" />
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="form-group">
+              <label data-translate>Port</label>
+              <input class="form-control" data-ng-model="admin.node.backup_remote_port" type="number" min="1" />
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label data-translate>Username</label>
+              <input class="form-control" data-ng-model="admin.node.backup_remote_username" type="text" />
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="form-group">
+              <label data-translate>Password</label>
+              <input class="form-control" data-ng-model="admin.node.backup_remote_password" type="password" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <button class="btn btn-success"
+              data-ng-disabled="advancedForm.$invalid"
+              data-ng-click="updateNode()" type="submit">
+        <i class="glyphicon glyphicon-ok"></i>
+        <span data-translate>Save</span>
+      </button>
+    </div>
+  </div>
+</div>

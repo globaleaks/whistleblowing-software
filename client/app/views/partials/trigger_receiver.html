@@ -1,0 +1,46 @@
+<div class="modal-header">
+  <button type="submit" class="close" aria-hidden="true" data-ng-click="cancel()">
+    <i class="glyphicon glyphicon glyphicon-remove-circle"></i>
+  </button>
+  <div class="modal-title" data-translate>Set recipients</div>
+</div>
+<div class="modal-body">
+  <div class="alert alert-default">
+    <div data-translate>Recipients</div>
+    <ui-select data-ng-model="selected.value" data-theme="bootstrap" data-on-select='moveReceiver($item)'>
+      <ui-select-match data-ng-attr-placeholder="{{'Type to search…' | translate}}">
+        <span data-ng-bind="$select.selected.name"></span>
+      </ui-select-match>
+      <ui-select-choices data-repeat="user in admin.users | filter: {role: 'receiver', name: $selected.search} | filter:receiverNotSelectedFilter">
+        <span data-ng-bind-html="user.name | highlight: $select.search"></span>
+      </ui-select-choices>
+    </ui-select>
+    <div data-ng-if="arg.trigger_receiver">
+      <br />
+      <ol class="selectionList">
+        <li data-ng-repeat="user in arg.trigger_receiver">
+          <span class="action-btns">
+            <span data-ng-click="arg.trigger_receiver.splice(0, arg.trigger_receiver.length)" uib-popover="{{'Remove' | translate}}">
+              <i class="glyphicon glyphicon-remove"></i>
+            </span>
+          </span>
+          <span>{{admin_receivers_by_id[user].name}}</span>
+        </li>
+      </ol>
+    </div>
+  </div>
+</div>
+<div class="modal-footer">
+  <a id="modal-action-cancel" class="btn btn-default" data-ng-click="cancel()">
+    <i class="glyphicon glyphicon-remove"></i>
+    <span data-translate>Cancel</span>
+  </a>
+  <a id="modal-action-ok" class="btn btn-danger" data-ng-click="arg.trigger_receiver = []; cancel()">
+    <i class="glyphicon glyphicon-ok"></i>
+    <span data-translate>Reset</span>
+  </a>
+  <a id="modal-action-ok" class="btn btn-primary" data-ng-click="ok()">
+    <i class="glyphicon glyphicon-ok"></i>
+    <span data-translate>Confirm</span>
+  </a>
+</div>
