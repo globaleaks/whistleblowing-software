@@ -1,0 +1,9 @@
+version: "3"
+services:
+    globaleaks:
+      container_name: globaleaks
+      build: .
+      image: globaleaks/globaleaks
+      ports:
+        - '80:80'
+        - '443:443'
