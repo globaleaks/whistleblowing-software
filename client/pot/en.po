@@ -1627,8 +1627,8 @@ msgstr "Please note that all the associated data will be permanently lost."
 msgid "Welcome!"
 msgstr "Welcome!"
 
-msgid "For the user documentation visit:"
-msgstr "For the user documentation visit:"
+msgid "For the user documentation, visit:"
+msgstr "For the user documentation, visit:"
 
 msgid ""
 "If you need technical support, have general questions, or have new ideas "
@@ -2158,9 +2158,6 @@ msgstr "To log in, visit:"
 
 msgid "Users' credentials:"
 msgstr "Users' credentials:"
-
-msgid "For the user documentation, visit:"
-msgstr "For the user documentation, visit:"
 
 msgid "The platform will be automatically deleted on:"
 msgstr "The platform will be automatically deleted on:"
