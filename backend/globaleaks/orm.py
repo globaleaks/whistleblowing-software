@@ -1,11 +1,11 @@
 # -*- coding: utf-8
 import time
 import platform
+import random
 
 from sqlalchemy import create_engine, event
 from sqlalchemy.exc import OperationalError
 from sqlalchemy.orm import sessionmaker
-
 
 from twisted.internet import reactor
 from twisted.internet.threads import deferToThreadPool
@@ -13,6 +13,8 @@ from twisted.internet.threads import deferToThreadPool
 
 __DB_URI = 'sqlite:'
 __THREAD_POOL = None
+
+TRANSACTION_RETRIES = 10
 
 
 def make_db_uri(db_file):
@@ -112,6 +114,7 @@ class transact(object):
         passing the store to it.
         """
         session = get_session()
+        retries = 0
 
         try:
             while True:
@@ -128,7 +131,12 @@ class transact(object):
                     if "database is locked" not in str(e):
                         raise
 
-                    time.sleep(0.1)
+                    retries += 1
+
+                    if retries >= TRANSACTION_RETRIES:
+                        raise Exception("Transaction failed with too many retries")
+
+                    time.sleep(0.2 * random.uniform(1, 2 ** retries))
                 except:
                     session.rollback()
                     raise
