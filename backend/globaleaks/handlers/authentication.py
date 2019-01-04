@@ -132,6 +132,11 @@ def login(session, tid, username, password, client_using_tor, client_ip):
 @transact
 def check_tenant_auth_switch(session, current_user, tid):
     # check that the user can really access the tenant requested
+
+    # grant users of the root tenant access to every tenant
+    if current_user.tid == 1:
+        return True
+
     ut = session.query(UserTenant).filter(UserTenant.user_id == current_user.user_id,
                                           UserTenant.tenant_id == tid).one()
 
