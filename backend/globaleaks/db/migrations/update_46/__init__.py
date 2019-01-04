@@ -69,6 +69,19 @@ class Field_v_45(Model):
     encrypt = Column(Boolean, default=True, nullable=False)
 
 
+class InternalFile_v_45(Model):
+    __tablename__ = 'internalfile'
+    id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
+    creation_date = Column(DateTime, default=datetime_now, nullable=False)
+    internaltip_id = Column(UnicodeText(36), nullable=False)
+    name = Column(UnicodeText, nullable=False)
+    filename = Column(UnicodeText(255), nullable=False)
+    content_type = Column(UnicodeText, nullable=False)
+    size = Column(Integer, nullable=False)
+    new = Column(Integer, default=True, nullable=False)
+    submission = Column(Integer, default = False, nullable=False)
+
+
 class InternalTip_v_45(Model):
     __tablename__ = 'internaltip'
     id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
@@ -190,6 +203,22 @@ class MigrationScript(MigrationBase):
                 new_obj.progressive = db_assign_submission_progressive(self.session_new, new_obj.tid)
 
             ids[new_obj.progressive] = True
+
+            self.session_new.add(new_obj)
+
+    def migrate_InternalFile(self):
+        filenames = {}
+        old_objs = self.session_old.query(self.model_from['InternalFile'])
+        for old_obj in old_objs:
+            if old_obj.filename in filenames:
+                self.entries_count['InternalFile'] -= 1
+                continue
+
+            filenames[old_obj.filename] = True
+
+            new_obj = self.model_to['InternalFile']()
+            for key in [c.key for c in new_obj.__table__.columns]:
+                setattr(new_obj, key, getattr(old_obj, key))
 
             self.session_new.add(new_obj)
 
