@@ -267,10 +267,11 @@ class TenantAuthSwitchHandler(BaseHandler):
 
     @inlineCallbacks
     def get(self, tid):
+        tid = int(tid)
         check = yield check_tenant_auth_switch(self.current_user, tid)
         if check:
             session = Sessions.new(tid, self.current_user.user_id, self.current_user.user_role, self.current_user.pcn, self.current_user.cc)
 
         returnValue({
-            'redirect': 'https://%s/#/login?token=%s' % (State.tenant_cache[tid].hostname, session.id)
+            'redirect': '/t/%d/#/login?token=%s' % (tid, session.id)
         })

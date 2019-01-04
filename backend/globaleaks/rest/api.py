@@ -58,6 +58,7 @@ from globaleaks.rest import apicache, requests, errors
 from globaleaks.settings import Settings
 from globaleaks.state import State, extract_exception_traceback_and_schedule_email
 
+tid_regexp = r'([0-9]+)'
 uuid_regexp = r'([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})'
 key_regexp = r'([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}|[a-z_]{0,100})'
 
@@ -69,6 +70,7 @@ api_spec = [
     (r'/tokenauth', authentication.TokenAuthHandler),
     (r'/receiptauth', authentication.ReceiptAuthHandler),
     (r'/session', authentication.SessionHandler),
+    (r'/tenantauthswitch/' + tid_regexp, authentication.TenantAuthSwitchHandler),
 
     ## Public API ##
     (r'/public', public.PublicResource),

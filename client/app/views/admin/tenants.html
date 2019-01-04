@@ -144,6 +144,9 @@
                   <span data-ng-hide="tenant.active" class="btn btn-xs btn-warning"
                     data-ng-click="toggleActivation($event)"
                     data-translate>Inactive</span>
+                  <span data-ng-sh1ow="tenant.active" class="btn btn-xs btn-primary"
+                    data-ng-click=" configureTenant($event, tenant.id)"
+                    data-translate>Configure</span>
                   <button class="btn btn-xs btn-default"
                     data-ng-show="!editing"
                     data-ng-click="toggleEditing($event)">

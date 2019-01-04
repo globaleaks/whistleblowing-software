@@ -17,7 +17,8 @@ angular.module('GLClient')
   $scope.currentPage = 1;
   $scope.itemsPerPage = 20;
 }])
-.controller('TenantEditorCtrl', ['$scope', '$rootScope', 'AdminTenantResource', function($scope, $rootScope, AdminTenantResource) {
+.controller('TenantEditorCtrl', ['$scope', '$rootScope', '$http', '$window', 'AdminTenantResource',
+  function($scope, $rootScope, $http, $window, AdminTenantResource) {
   var tenant = $scope.tenant;
 
   $scope.toggleEditing = function($event) {
@@ -39,6 +40,13 @@ angular.module('GLClient')
     tenant.$update();
   };
 
+  $scope.configureTenant = function($event, tid) {
+    $event.stopPropagation();
+    return $http.get('/tenantauthswitch/' + tid).then(function(x){
+      return $window.open(x.data.redirect);
+    });
+  };
+
   $scope.saveTenant = function() {
     tenant.subdomain = angular.isDefined(tenant.subdomain) ? tenant.subdomain : '';
     tenant.$update().then(function() {
@@ -49,7 +57,7 @@ angular.module('GLClient')
   $scope.deleteTenant = function($event) {
     $event.stopPropagation();
     $scope.Utils.deleteDialog(tenant).then(function() {
-        return $scope.Utils.deleteResource(AdminTenantResource, $scope.admin.tenants, tenant);
+      return $scope.Utils.deleteResource(AdminTenantResource, $scope.admin.tenants, tenant);
     });
   };
 }]);
