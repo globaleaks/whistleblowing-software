@@ -16,11 +16,11 @@ ENV TORLOGDIR=/var/log/tor
 
 RUN mkdir -m 02755 "$TORPIDDIR" && chown debian-tor:debian-tor "$TORPIDDIR"
 RUN chmod 02750 "$TORLOGDIR" && chown debian-tor:adm "$TORLOGDIR"
-ADD torrc /etc/tor/torrc
+ADD data/torrc /etc/tor/torrc
 
 VOLUME [ "/var/globaleaks/" ]
 EXPOSE 80
 EXPOSE 443
 
-COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+ADD data/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 CMD ["/usr/bin/supervisord"]
