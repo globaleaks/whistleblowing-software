@@ -1,11 +1,21 @@
 # GlobaLeaks Docker Image (experimental)
 
-## Build
+## With Docker CLI
 
-    docker build -t gl .
+Build the image with:
 
-## Run
+    docker build -t globaleaks/globaleaks .
 
-    docker run --rm -it -p '8080:80' -p '443:443' gl
+Run the built image with:
 
-Go to http://localhost:8080
+    docker run --rm -it -p '80:80' -p '443:443' globaleaks/globaleaks
+
+## With docker-compose
+
+Build and run with:
+
+    docker-compose up --build
+
+## Access
+
+Go to http://localhost and follow the setup wizard.
