@@ -1,13 +1,12 @@
 #!/bin/bash -e
 
+DOCKER_IMAGE_NAME=globaleaks/globaleaks
+
+if [ -z ${DOCKER_IMAGE_TAG+x} ]; then
+  DOCKER_IMAGE_TAG=latest
+fi
+
 # Login on Docker Hub
 echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
 
-# Push release tag or devel branch
-if [ -n "$TRAVIS_TAG" ]; then
-  docker tag "$DOCKER_IMAGE_NAME:latest" "$DOCKER_IMAGE_NAME:$TRAVIS_TAG"
-  docker push "$DOCKER_IMAGE_NAME:$TRAVIS_TAG"
-elif [ "$TRAVIS_BRANCH" == "devel" ]; then
-  docker tag "$DOCKER_IMAGE_NAME:latest" "$DOCKER_IMAGE_NAME:$TRAVIS_BRANCH"
-  docker push "$DOCKER_IMAGE_NAME:$TRAVIS_BRANCH"
-fi
+docker push "$DOCKER_IMAGE_NAME:$DOCKER_IMAGE_TAG"
