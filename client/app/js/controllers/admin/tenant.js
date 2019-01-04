@@ -1,6 +1,16 @@
 angular.module('GLClient')
-.controller('TenantCtrl', ['$scope', function($scope) {
+.controller('TenantCtrl', ['$scope', '$filter', function($scope, $filter) {
+  $scope.search = undefined;
+  $scope.currentPage = 1;
+  $scope.itemsPerPage = 20;
+
   $scope.newTenant = new $scope.AdminUtils.new_tenant();
+
+  $scope.$watch('search', function (value) {
+    if (value != undefined) {
+      $scope.currentPage = 1;
+    }
+  });
 
   $scope.showAddTenant = false;
   $scope.toggleAddTenant = function() {
@@ -13,9 +23,6 @@ angular.module('GLClient')
       $scope.newTenant = new $scope.AdminUtils.new_tenant();
     });
   }
-
-  $scope.currentPage = 1;
-  $scope.itemsPerPage = 20;
 }])
 .controller('TenantEditorCtrl', ['$scope', '$rootScope', '$http', '$window', 'AdminTenantResource',
   function($scope, $rootScope, $http, $window, AdminTenantResource) {
