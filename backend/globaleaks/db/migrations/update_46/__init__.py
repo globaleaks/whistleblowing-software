@@ -1,4 +1,5 @@
 # -*- coding: UTF-8
+from globaleaks.handlers.submission import db_assign_submission_progressive
 from globaleaks.models import Model
 from globaleaks.models.properties import *
 from globaleaks.db.migrations.update import MigrationBase
@@ -66,6 +67,30 @@ class Field_v_45(Model):
     template_id = Column(UnicodeText(36))
     template_override_id = Column(UnicodeText(36))
     encrypt = Column(Boolean, default=True, nullable=False)
+
+
+class InternalTip_v_45(Model):
+    __tablename__ = 'internaltip'
+    id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
+    tid = Column(Integer, default=1, nullable=False)
+    creation_date = Column(DateTime, default=datetime_now, nullable=False)
+    update_date = Column(DateTime, default=datetime_now, nullable=False)
+    context_id = Column(UnicodeText(36), nullable=False)
+    preview = Column(JSON, nullable=False)
+    progressive = Column(Integer, default=0, nullable=False)
+    https = Column(Boolean, default=False, nullable=False)
+    total_score = Column(Integer, default=0, nullable=False)
+    expiration_date = Column(DateTime, nullable=False)
+    enable_two_way_comments = Column(Boolean, default=True, nullable=False)
+    enable_two_way_messages = Column(Boolean, default=True, nullable=False)
+    enable_attachments = Column(Boolean, default=True, nullable=False)
+    enable_whistleblower_identity = Column(Boolean, default=False, nullable=False)
+    additional_questionnaire_id = Column(UnicodeText(36))
+    wb_last_access = Column(DateTime, default=datetime_now, nullable=False)
+    wb_access_counter = Column(Integer, default=0, nullable=False)
+    status = Column(UnicodeText(36), nullable=True)
+    substatus = Column(UnicodeText(36), nullable=True)
+    crypto_tip_pub_key = Column(LargeBinary(32), default=b'', nullable=False)
 
 
 class Receiver_v_45(Model):
@@ -153,19 +178,36 @@ class MigrationScript(MigrationBase):
 
             self.session_new.add(new_obj)
 
+    def migrate_InternalTip(self):
+        ids = {}
+        old_objs = self.session_old.query(self.model_from['InternalTip'])
+        for old_obj in old_objs:
+            new_obj = self.model_to['InternalTip']()
+            for key in [c.key for c in new_obj.__table__.columns]:
+                setattr(new_obj, key, getattr(old_obj, key))
+
+            if new_obj.progressive in ids:
+                new_obj.progressive = db_assign_submission_progressive(self.session_new, new_obj.tid)
+
+            ids[new_obj.progressive] = True
+
+            self.session_new.add(new_obj)
+
     def migrate_User(self):
         old_objs = self.session_old.query(self.model_from['User'])
         for old_obj in old_objs:
             receiver = self.session_old.query(self.model_from['Receiver']).filter(self.model_from['Receiver'].id == old_obj.id).one_or_none()
             new_obj = self.model_to['User']()
             for key in [c.key for c in new_obj.__table__.columns]:
-                if key in ['can_delete_submission', 'can_grant_permissions', 'can_postpone_expiration', 'twofactor_auth', 'twofactor_time']:
+                if key in ['can_delete_submission', 'can_grant_permissions', 'can_postpone_expiration']:
                     if receiver is not None:
                         setattr(new_obj, key, getattr(receiver, key))
                     continue
                 elif key == 'recipient_configuration':
                     if receiver is not None:
                         setattr(new_obj, key, receiver.configuration)
+                    continue
+                elif key in ['twofactor_auth', 'twofactor_time']:
                     continue
 
                 setattr(new_obj, key, getattr(old_obj, key))
