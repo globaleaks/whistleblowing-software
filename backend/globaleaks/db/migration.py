@@ -274,8 +274,6 @@ def perform_migration(version):
         path = os.path.join(Settings.working_path, 'db')
         if os.path.exists(path):
             shutil.rmtree(path)
-    except Exception as e:
-        print(e)
 
     finally:
         # Always cleanup the temporary directory used for the migration
