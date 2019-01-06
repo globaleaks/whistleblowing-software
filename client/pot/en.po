@@ -1463,6 +1463,9 @@ msgstr "Active"
 msgid "Inactive"
 msgstr "Inactive"
 
+msgid "Configure"
+msgstr "Configure"
+
 msgid "The default password is:"
 msgstr "The default password is:"
 
@@ -1646,10 +1649,10 @@ msgstr ""
 
 msgid ""
 "If your non-profit needs support for investigative journalism, activism or "
-"a human rights defense project: "
+"a human rights defense project:"
 msgstr ""
 "If your non-profit needs support for investigative journalism, activism or "
-"a human rights defense project: "
+"a human rights defense project:"
 
 msgid ""
 "For professional support and development of anti corruption and compliance "
