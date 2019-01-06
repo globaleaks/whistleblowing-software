@@ -1,5 +1,5 @@
 angular.module('GLClient')
-.controller('TenantCtrl', ['$scope', '$filter', function($scope, $filter) {
+.controller('TenantCtrl', ['$scope', function($scope) {
   $scope.search = undefined;
   $scope.currentPage = 1;
   $scope.itemsPerPage = 20;
