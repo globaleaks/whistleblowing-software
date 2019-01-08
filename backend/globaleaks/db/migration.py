@@ -39,7 +39,7 @@ from globaleaks.db.migrations.update_42 import InternalTip_v_41, Signup_v_41
 from globaleaks.db.migrations.update_43 import InternalTip_v_42, ReceiverTip_v_42, Signup_v_42, User_v_42, WhistleblowerTip_v_42
 from globaleaks.db.migrations.update_45 import Context_v_44, Field_v_44, InternalTip_v_44, Receiver_v_44, ReceiverFile_v_44, \
     ReceiverTip_v_44, Step_v_44, User_v_44, WhistleblowerFile_v_44, WhistleblowerTip_v_44
-from globaleaks.db.migrations.update_46 import Context_v_45, Field_v_45, FieldOption_v_45, InternalFile_v_45, InternalTip_v_45, Receiver_v_45, User_v_45
+from globaleaks.db.migrations.update_46 import Config_v_45, ConfigL10N_v_45, Context_v_45, Field_v_45, FieldOption_v_45, InternalFile_v_45, InternalTip_v_45, Receiver_v_45, User_v_45
 
 from globaleaks.orm import get_engine, get_session, make_db_uri
 from globaleaks.models import config, Base
@@ -53,8 +53,8 @@ migration_mapping = OrderedDict([
     ('ArchivedSchema', [ArchivedSchema_v_38, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, models._ArchivedSchema, 0, 0, 0, 0, 0, 0, 0]),
     ('Backup', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, models._Backup]),
     ('Comment', [Comment_v_31, 0, 0, 0, 0, 0, 0, 0, Comment_v_38, 0, 0, 0, 0, 0, 0, models._Comment, 0, 0, 0, 0, 0, 0, 0]),
-    ('Config', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, Config_v_38, 0, 0, 0, 0, models._Config, 0, 0, 0, 0, 0, 0, 0]),
-    ('ConfigL10N', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, ConfigL10N_v_38, 0, 0, 0, 0, models._ConfigL10N, 0, 0, 0, 0, 0, 0, 0]),
+    ('Config', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, Config_v_38, 0, 0, 0, 0, Config_v_45, 0, 0, 0, 0, 0, 0, models._Config]),
+    ('ConfigL10N', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, ConfigL10N_v_38, 0, 0, 0, 0, ConfigL10N_v_45, 0, 0, 0, 0, 0, 0, models._ConfigL10N]),
     ('Context', [Context_v_26, 0, 0, Context_v_28, 0, Context_v_29, Context_v_30, Context_v_34, 0, 0, 0, Context_v_38, 0, 0, 0, Context_v_44, 0, 0, 0, 0, 0, Context_v_45, models._Context]),
     ('ContextImg', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, models._ContextImg, 0, 0, 0, 0, 0, 0, 0]),
     ('CustomTexts', [-1, -1, -1, -1, -1, -1, -1, -1, CustomTexts_v_38, 0, 0, 0, 0, 0, 0, models._CustomTexts, 0, 0, 0, 0, 0, 0, 0]),

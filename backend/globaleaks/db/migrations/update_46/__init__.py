@@ -1,9 +1,68 @@
 # -*- coding: UTF-8
 from globaleaks.handlers.submission import db_assign_submission_progressive
-from globaleaks.models import Model
+from globaleaks.models import config_desc, Model
 from globaleaks.models.properties import *
 from globaleaks.db.migrations.update import MigrationBase
 from globaleaks.utils.utility import datetime_never, datetime_now, datetime_null
+
+
+class Config_v_45(Model):
+    __tablename__ = 'config'
+    tid = Column(Integer, primary_key=True, default=1, nullable=False)
+    var_name = Column(UnicodeText(64), primary_key=True, nullable=False)
+    value = Column(JSON, nullable=False)
+    customized = Column(Boolean, default=False, nullable=False)
+
+    def __init__(self, values=None, migrate=False):
+        if values is None or migrate:
+            return
+
+        self.tid = values['tid']
+        self.var_name = text_type(values['var_name'])
+        self.set_v(values['value'])
+
+    def set_v(self, val):
+        desc = config_desc.ConfigDescriptor[self.var_name]
+        if val is None:
+            val = desc._type()
+
+        if isinstance(desc, config_desc.Unicode) and isinstance(val, binary_type):
+            val = text_type(val, 'utf-8')
+
+        if not isinstance(val, desc._type):
+            raise ValueError("Cannot assign %s with %s" % (self, type(val)))
+
+        if self.value != val:
+            self.value = val
+
+            if self.value is not None:
+                self.customized = True
+
+
+class ConfigL10N_v_45(Model):
+    __tablename__ = 'config_l10n'
+    tid = Column(Integer, primary_key=True, default=1, nullable=False)
+    lang = Column(UnicodeText(5), primary_key=True)
+    var_name = Column(UnicodeText(64), primary_key=True)
+    value = Column(UnicodeText)
+    customized = Column(Boolean, default=False)
+
+    def __init__(self, values=None, migrate=False):
+        if values is None or migrate:
+            return
+
+        self.tid = values['tid']
+        self.lang = text_type(values['lang'])
+        self.var_name = text_type(values['var_name'])
+        self.value = text_type(values['value'])
+
+    def set_v(self, value):
+        value = text_type(value)
+        if self.value != value:
+            self.value = value
+
+            if self.value is not None:
+                self.customized = True
 
 
 class Context_v_45(Model):
@@ -148,6 +207,38 @@ class User_v_45(Model):
 
 
 class MigrationScript(MigrationBase):
+    def migrate_Config(self):
+        old_objs = self.session_old.query(self.model_from['Config'])
+        for old_obj in old_objs:
+            new_obj = self.model_to['Config']()
+            for key in [c.key for c in new_obj.__table__.columns]:
+                if key == 'update_date':
+                    if old_obj.customized:
+                        new_obj.update_date = datetime_now()
+                    else:
+                        new_obj.update_date = datetime_null()
+
+                else:
+                    setattr(new_obj, key, getattr(old_obj, key))
+
+            self.session_new.add(new_obj)
+
+    def migrate_ConfigL10N(self):
+        old_objs = self.session_old.query(self.model_from['ConfigL10N'])
+        for old_obj in old_objs:
+            new_obj = self.model_to['ConfigL10N']()
+            for key in [c.key for c in new_obj.__table__.columns]:
+                if key == 'update_date':
+                    if old_obj.customized:
+                        new_obj.update_date = datetime_now()
+                    else:
+                        new_obj.update_date = datetime_null()
+
+                else:
+                    setattr(new_obj, key, getattr(old_obj, key))
+
+            self.session_new.add(new_obj)
+
     def migrate_Context(self):
         old_objs = self.session_old.query(self.model_from['Context'])
         for old_obj in old_objs:

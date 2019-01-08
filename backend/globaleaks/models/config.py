@@ -5,6 +5,7 @@ from globaleaks import __version__
 from globaleaks.models import Config, ConfigL10N, EnabledLanguage
 from globaleaks.models.properties import *
 from globaleaks.models.config_desc import ConfigDescriptor, ConfigFilters, ConfigL10NFilters
+from globaleaks.utils.utility import datetime_null
 
 
 # List of variables that on creation are set with the value
@@ -84,12 +85,14 @@ class ConfigL10NFactory(object):
             c_map[key].set_v(data[key])
 
     def update_defaults(self, group, langs, data, reset=False):
+        null = datetime_null()
+
         for lang in langs:
             old_keys = []
 
             for cfg in self.get_all(group, lang):
                 old_keys.append(cfg.var_name)
-                if (not cfg.customized or reset) and cfg.var_name in data:
+                if (cfg.update_date != null or reset) and cfg.var_name in data:
                     cfg.value = data[cfg.var_name][lang]
 
             ConfigL10NFactory.initialize(self, list(set(ConfigL10NFilters[group]) - set(old_keys)), lang, data)

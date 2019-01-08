@@ -310,7 +310,7 @@ class _Config(Model):
     tid = Column(Integer, primary_key=True, default=1, nullable=False)
     var_name = Column(UnicodeText(64), primary_key=True, nullable=False)
     value = Column(JSON, nullable=False)
-    customized = Column(Boolean, default=False, nullable=False)
+    update_date = Column(Boolean, default=datetime_null, nullable=False)
 
     def __init__(self, values=None, migrate=False):
         """
@@ -342,8 +342,10 @@ class _Config(Model):
             raise ValueError("Cannot assign %s with %s" % (self, type(val)))
 
         if self.value != val:
+            if self.value != None:
+                self.update_date = datetime_now()
+
             self.value = val
-            self.customized = True
 
     def get_v(self):
         return self.value
@@ -355,8 +357,8 @@ class _ConfigL10N(Model):
     tid = Column(Integer, primary_key=True, default=1, nullable=False)
     lang = Column(UnicodeText(5), primary_key=True)
     var_name = Column(UnicodeText(64), primary_key=True)
-    value = Column(UnicodeText)
-    customized = Column(Boolean, default=False)
+    value = Column(UnicodeText, nullable=False)
+    update_date = Column(Boolean, default=datetime_null, nullable=False)
 
     @declared_attr
     def __table_args__(self):
@@ -374,8 +376,10 @@ class _ConfigL10N(Model):
     def set_v(self, value):
         value = text_type(value)
         if self.value != value:
+            if self.value != None:
+                self.update_date = datetime_now()
+
             self.value = value
-            self.customized = True
 
 
 class _Context(Model):
