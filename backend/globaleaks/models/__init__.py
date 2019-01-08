@@ -341,10 +341,9 @@ class _Config(Model):
         if not isinstance(val, desc._type):
             raise ValueError("Cannot assign %s with %s" % (self, type(val)))
 
-        if self.value is not None:
+        if self.value != val:
+            self.value = val
             self.customized = True
-
-        self.value = val
 
     def get_v(self):
         return self.value
