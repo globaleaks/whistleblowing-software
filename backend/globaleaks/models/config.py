@@ -57,7 +57,7 @@ class ConfigFactory(object):
 
         missing = list(allowed - actual)
         for key in missing:
-            self.session.add(Config(self.tid, key, get_default(ConfigDescriptor[key].default)))
+            self.session.add(Config({'tid': self.tid, 'var_name': key, 'value': get_default(ConfigDescriptor[key].default)}))
 
 
 class ConfigL10NFactory(object):
@@ -68,7 +68,7 @@ class ConfigL10NFactory(object):
     def initialize(self, keys, lang, data):
         for key in keys:
             value = data[key][lang] if key in data else ''
-            self.session.add(ConfigL10N(self.tid, lang, key, value))
+            self.session.add(ConfigL10N({'tid': self.tid, 'lang': lang, 'var_name': key, 'value': value}))
 
     def get_all(self, group, lang):
         return [r for r in self.session.query(ConfigL10N).filter(ConfigL10N.tid == self.tid, ConfigL10N.lang == lang, ConfigL10N.var_name.in_(list(ConfigL10NFilters[group])))]
@@ -134,7 +134,7 @@ def initialize_config(session, tid, mode):
             variables[name] = root_tenant_node[name]
 
     for name, value in variables.items():
-        session.add(Config(tid, name, value))
+        session.add(Config({'tid': tid, 'var_name': name, 'value': value}))
 
 
 def add_new_lang(session, tid, lang, appdata_dict):

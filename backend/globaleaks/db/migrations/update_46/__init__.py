@@ -254,6 +254,6 @@ class MigrationScript(MigrationBase):
                 continue
 
             for c in ['admin', 'custodian', 'receiver']:
-                self.session_new.add(self.model_to['Config'](t.id, u'ip_filter_' + c + '_enable', a[0]))
-                self.session_new.add(self.model_to['Config'](t.id, u'ip_filter_' + c, b[0]))
+                self.session_new.add(self.model_to['Config']({'tid': t.id, 'var_name': u'ip_filter_' + c + '_enable', 'value': a[0]}))
+                self.session_new.add(self.model_to['Config']({'tid': t.id, 'var_name': u'ip_filter_' + c, 'value': b[0]}))
                 self.entries_count['Config'] += 2

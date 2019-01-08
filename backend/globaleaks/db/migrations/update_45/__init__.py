@@ -275,7 +275,7 @@ class MigrationScript(MigrationBase):
 
     def epilogue(self):
         if self.session_new.query(self.model_from['Tenant']).count() > 1:
-            self.session_new.add(self.model_to['Config'](1, u'multisite', True))
+            self.session_new.add(self.model_to['Config']({'tid': 1, 'var_name': u'multisite', 'value': True}))
             self.entries_count['Config'] += 1
 
         ids = [id[0] for id in self.session_old.query(self.model_from['Field'].id)\

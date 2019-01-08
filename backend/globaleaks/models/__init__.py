@@ -312,19 +312,19 @@ class _Config(Model):
     value = Column(JSON, nullable=False)
     customized = Column(Boolean, default=False, nullable=False)
 
-    def __init__(self, tid=1, name=None, value=None, migrate=False):
+    def __init__(self, values=None, migrate=False):
         """
         :param value:    This input is passed directly into set_v
         :param migrate:  Added to comply with models.Model constructor which is
                          used to copy every field returned by the ORM from the db
                          from an old_obj to a new one.
         """
-        if migrate:
+        if values is None or migrate:
             return
 
-        self.tid = tid
-        self.var_name = text_type(name)
-        self.set_v(value)
+        self.tid = values['tid']
+        self.var_name = text_type(values['var_name'])
+        self.set_v(values['value'])
 
     @declared_attr
     def __table_args__(self):
@@ -362,14 +362,14 @@ class _ConfigL10N(Model):
     def __table_args__(self):
         return (ForeignKeyConstraint(['tid', 'lang'], ['enabledlanguage.tid', 'enabledlanguage.name'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),)
 
-    def __init__(self, tid=1, lang_code=None, var_name=None, value='', migrate=False):
-        if migrate:
+    def __init__(self, values=None, migrate=False):
+        if values is None or migrate:
             return
 
-        self.tid = tid
-        self.lang = text_type(lang_code)
-        self.var_name = text_type(var_name)
-        self.value = text_type(value)
+        self.tid = values['tid']
+        self.lang = text_type(values['lang'])
+        self.var_name = text_type(values['var_name'])
+        self.value = text_type(values['value'])
 
     def set_v(self, value):
         value = text_type(value)

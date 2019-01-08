@@ -185,5 +185,5 @@ class MigrationScript(MigrationBase):
         tenants = self.session_old.query(self.model_from['Tenant'])
         for tenant in tenants:
             count = self.session_old.query(self.model_from['InternalTip']).filter(self.model_from['InternalTip'].tid == tenant.id).count()
-            self.session_new.add(self.model_to['Config'](tenant.id, u'counter_submissions', count))
+            self.session_new.add(self.model_to['Config']({'tid': tenant.id, 'var_name': u'counter_submissions', 'value': count}))
             self.entries_count['Config'] += 1
