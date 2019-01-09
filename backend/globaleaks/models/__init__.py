@@ -347,9 +347,6 @@ class _Config(Model):
 
             self.value = val
 
-    def get_v(self):
-        return self.value
-
 
 class _ConfigL10N(Model):
     __tablename__ = 'config_l10n'

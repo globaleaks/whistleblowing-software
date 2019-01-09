@@ -146,10 +146,10 @@ def db_refresh_tenant_cache(session, tid_list):
         tenant_cache = State.tenant_cache[cfg.tid]
 
         if cfg.var_name in ConfigFilters['node']:
-            tenant_cache[cfg.var_name] = cfg.get_v()
+            tenant_cache[cfg.var_name] = cfg.value
         elif cfg.var_name in ConfigFilters['notification']:
             tenant_cache.setdefault('notification', ObjectDict())
-            tenant_cache['notification'][cfg.var_name] = cfg.get_v()
+            tenant_cache['notification'][cfg.var_name] = cfg.value
 
     for tid, lang in models.EnabledLanguage.tid_list(session, tid_list):
         State.tenant_cache[tid].setdefault('languages_enabled', []).append(lang)

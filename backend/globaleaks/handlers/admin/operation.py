@@ -34,9 +34,9 @@ def check_hostname(session, tid, input_hostname):
         if input_hostname.endswith(v):
             raise errors.InputValidationError('Hostname contains a forbidden origin')
 
-    existing_hostnames = {h.get_v() for h in session.query(Config) \
-                                                    .filter(Config.tid != tid,
-                                                            Config.var_name == u'hostname')}
+    existing_hostnames = {h.value for h in session.query(Config) \
+                                                  .filter(Config.tid != tid,
+                                                          Config.var_name == u'hostname')}
 
     if input_hostname in existing_hostnames:
         raise errors.InputValidationError('Hostname already reserved')

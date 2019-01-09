@@ -39,14 +39,14 @@ class ConfigFactory(object):
         return self.session.query(Config).filter(Config.tid == self.tid, Config.var_name == var_name).one()
 
     def get_val(self, var_name):
-        return self.get_cfg(var_name).get_v()
+        return self.get_cfg(var_name).value
 
     def set_val(self, var_name, value):
         self.get_cfg(var_name).set_v(value)
 
     def serialize(self, group):
         configs = self.get_all(group)
-        return {k: configs[k].get_v() for k in configs}
+        return {k: configs[k].value for k in configs}
 
     def update_defaults(self):
         actual = set([c[0] for c in self.session.query(Config.var_name).filter(Config.tid == self.tid)])

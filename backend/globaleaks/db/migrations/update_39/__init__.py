@@ -78,12 +78,6 @@ class Config_v_38(Model):
             self.customized = True
             self.value = {'v': val}
 
-    def get_v(self):
-        return self.value['v']
-
-    def __repr__(self):
-        return "<Config: %s.%s>" % (self.var_group, self.var_name)
-
 
 class ConfigL10N_v_38(Model):
     __tablename__ = 'config_l10n'
