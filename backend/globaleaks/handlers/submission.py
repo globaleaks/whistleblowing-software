@@ -293,8 +293,6 @@ def db_create_submission(session, tid, request, token, client_using_tor):
 
     if context.tip_timetolive > 0:
         itip.expiration_date = get_expiration(context.tip_timetolive)
-    else:
-        itip.expiration_date = datetime_never()
 
     # this is get from the client as it the only possibility possible
     # that would fit with the end to end submission.

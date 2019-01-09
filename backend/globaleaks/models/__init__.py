@@ -13,7 +13,7 @@ from globaleaks.models.properties import *
 from globaleaks.orm import transact
 from globaleaks.rest import errors
 from globaleaks.utils.crypto import generateRandomKey
-from globaleaks.utils.utility import datetime_now, datetime_null, datetime_never, datetime_to_ISO8601
+from globaleaks.utils.utility import datetime_now, datetime_never, datetime_null, datetime_to_ISO8601
 
 
 def db_forge_obj(session, mock_class, mock_fields):
@@ -770,7 +770,7 @@ class _InternalTip(Model):
     progressive = Column(Integer, default=0, nullable=False)
     https = Column(Boolean, default=False, nullable=False)
     total_score = Column(Integer, default=0, nullable=False)
-    expiration_date = Column(DateTime, nullable=False)
+    expiration_date = Column(DateTime, default=datetime_never, nullable=False)
     enable_two_way_comments = Column(Boolean, default=True, nullable=False)
     enable_two_way_messages = Column(Boolean, default=True, nullable=False)
     enable_attachments = Column(Boolean, default=True, nullable=False)
@@ -1175,7 +1175,7 @@ class _User(Model):
     password = Column(UnicodeText, default=u'', nullable=False)
 
     twofactor_auth = Column(Integer, nullable=True)
-    twofactor_time = Column(DateTime, default=datetime_never, nullable=False)
+    twofactor_time = Column(DateTime, default=datetime_null, nullable=False)
 
     name = Column(UnicodeText, default=u'', nullable=False)
     description = Column(JSON, default=dict, nullable=False)
@@ -1194,10 +1194,10 @@ class _User(Model):
 
     change_email_address = Column(UnicodeText, default=u'', nullable=False)
     change_email_token = Column(UnicodeText, unique=True, nullable=True)
-    change_email_date = Column(DateTime, default=datetime_never, nullable=False)
+    change_email_date = Column(DateTime, default=datetime_null, nullable=False)
 
     reset_password_token = Column(UnicodeText, unique=True, nullable=True)
-    reset_password_date = Column(UnicodeText, default=datetime_never, nullable=False)
+    reset_password_date = Column(UnicodeText, default=datetime_null, nullable=False)
 
     notification = Column(Boolean, default=True, nullable=False)
 
