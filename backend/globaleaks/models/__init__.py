@@ -310,7 +310,11 @@ class _Config(Model):
     tid = Column(Integer, primary_key=True, default=1, nullable=False)
     var_name = Column(UnicodeText(64), primary_key=True, nullable=False)
     value = Column(JSON, nullable=False)
-    update_date = Column(Boolean, default=datetime_null, nullable=False)
+    update_date = Column(DateTime, default=datetime_null, nullable=False)
+
+    @declared_attr
+    def __table_args__(self):
+        return (ForeignKeyConstraint(['tid'], ['tenant.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),)
 
     def __init__(self, values=None, migrate=False):
         """
@@ -325,10 +329,6 @@ class _Config(Model):
         self.tid = values['tid']
         self.var_name = text_type(values['var_name'])
         self.set_v(values['value'])
-
-    @declared_attr
-    def __table_args__(self):
-        return (ForeignKeyConstraint(['tid'], ['tenant.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),)
 
     def set_v(self, val):
         desc = config_desc.ConfigDescriptor[self.var_name]
@@ -355,7 +355,7 @@ class _ConfigL10N(Model):
     lang = Column(UnicodeText(5), primary_key=True)
     var_name = Column(UnicodeText(64), primary_key=True)
     value = Column(UnicodeText, nullable=False)
-    update_date = Column(Boolean, default=datetime_null, nullable=False)
+    update_date = Column(DateTime, default=datetime_null, nullable=False)
 
     @declared_attr
     def __table_args__(self):
