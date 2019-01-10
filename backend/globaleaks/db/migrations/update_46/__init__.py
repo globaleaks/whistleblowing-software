@@ -1,8 +1,9 @@
 # -*- coding: UTF-8
+from six import binary_type
+from globaleaks.db.migrations.update import MigrationBase
 from globaleaks.handlers.submission import db_assign_submission_progressive
 from globaleaks.models import config_desc, Model
 from globaleaks.models.properties import *
-from globaleaks.db.migrations.update import MigrationBase
 from globaleaks.utils.utility import datetime_never, datetime_now, datetime_null
 
 
