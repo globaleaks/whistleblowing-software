@@ -51,8 +51,8 @@ GLClient.controller('TipCtrl',
             }
           };
 
-          if (!$scope.isStepTriggered(step, $scope.tip.answers, $scope.tip.total_score)) {
-            tip.questionnaires[0].splice(i, 1);
+          if (!$scope.isFieldTriggered(step, $scope.tip.answers, $scope.tip.total_score)) {
+            tip.questionnaires[0].steps.splice(i, 1);
           } else {
             for (var k4=0; k4<step.children.length; k4++) {
               var field = step.children[k4];
