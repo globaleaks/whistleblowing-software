@@ -1,0 +1,2 @@
+Authentication code: {{AuthenticationCode}}
+The authentication code is valid for 5 minutes.
