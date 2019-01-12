@@ -311,25 +311,51 @@ GLClient.controller('SubmissionCtrl',
     }
   };
 
+  $scope.replaceReceivers = function(receivers) {
+    $scope.submission.selected_receivers = {};
+    for(var i=0; i<receivers.length; i++) {
+      $scope.submission.selected_receivers[receivers[i]] = true;
+    }
+  }
+
   $scope.onAnswerUpdate = function(field, entry) {
+    /* Block related to updating required status */
     if (field.type === 'inputbox' || field.type === 'textarea') {
       field.required_status = (field.required || field.attrs.min_len.value > 0) && !entry['value'];
     } else if (field.type === 'checkbox') {
       if (!field.required) {
         field.required_status = false;
-        return;
-      }
-
-      for (var i=0; i<field.options.length; i++) {
-        if (entry[field.options[i].id] && entry[field.options[i].id]) {
-          field.required_status = false;
-          return;
+      } else {
+        for (var i=0; i<field.options.length; i++) {
+          if (entry[field.options[i].id] && entry[field.options[i].id]) {
+            field.required_status = false;
+            break;
+          }
         }
-      }
 
-      field.required_status = true;
+        field.required_status = true;
+      }
     } else {
       field.required_status = field.required && !entry['value'];
+    }
+
+    /* Block related to evaluate receivers triggers */
+    if (field.type === 'checkbox' || field.type === 'selectbox') {
+      for (var i=0; i<field.options.length; i++) {
+	if(field.type === 'checkbox') {
+          if(entry[field.options[i].id] && entry[field.options[i].id]) {
+            if (field.options[i].trigger_receiver.length) {
+              $scope.replaceReceivers(field.options[i].trigger_receiver);
+            }
+          }
+        } else {
+	  if (field.options[i].id === entry['value']) {
+            if (field.options[i].trigger_receiver.length) {
+              $scope.replaceReceivers(field.options[i].trigger_receiver);
+            }
+          }
+        }
+      }
     }
   }
 
