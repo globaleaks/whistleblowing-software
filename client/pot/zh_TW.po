@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-11-15 11:36+0000\n"
-"Last-Translator: Hermes Center <info@hermescenter.org>\n"
+"PO-Revision-Date: 2019-01-12 14:02+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/otf/globaleaks/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -69,12 +69,6 @@ msgstr "版權"
 
 msgid "Notification templates"
 msgstr "通知模版"
-
-msgid "Recipient notification templates"
-msgstr "收件者通知模版"
-
-msgid "Admin notification templates"
-msgstr "管理者通知模版"
 
 msgid "Missing data"
 msgstr "遺失的資料"
@@ -420,9 +414,6 @@ msgstr "發起問題"
 msgid "Triggered by a score higher than:"
 msgstr "當分數高於: 　開始啟動"
 
-msgid "Select the question to be triggered when this option is selected"
-msgstr "當選中此項目時，被選中的問題要啟動"
-
 msgid "Message shown on top of the status page of the submission"
 msgstr "訊息顯示在揭密提交狀態頁上方"
 
@@ -669,14 +660,14 @@ msgid "Disable submissions"
 msgstr "取消提交"
 
 msgid "Enable encryption"
-msgstr ""
+msgstr "啟用加密功能"
 
 msgid ""
 "Allow the system to store data in plaintext when encryption is not available"
-msgstr ""
+msgstr "若無法加密時，可讓系統明文儲存資料"
 
 msgid "Enable multisite feature"
-msgstr ""
+msgstr "啟用多個網站功能"
 
 msgid "Allow other websites to include the platform inside iframes"
 msgstr "讓其它網站能以網頁加框方式嵌入此平台"
@@ -728,8 +719,8 @@ msgstr "標題"
 msgid "Text"
 msgstr "內文"
 
-msgid "Disable the key code hint"
-msgstr "取消鑰碼提示"
+msgid "Disable the receipt hint"
+msgstr "取消收件人提示"
 
 msgid "Disable the donation panel"
 msgstr "取消捐款面板"
@@ -758,7 +749,7 @@ msgid "Landing page"
 msgstr "登陸頁面"
 
 msgid "Default questionnaire"
-msgstr ""
+msgstr "預設的問卷"
 
 msgid "Title of the submission page"
 msgstr "提交頁面的標題"
@@ -798,21 +789,6 @@ msgstr "用戶名"
 msgid "Password"
 msgstr "密碼"
 
-msgid "Restrict privileged logins to specific IP addresses"
-msgstr "僅授權特定 IP 地址方可以登錄"
-
-msgid "Whitelisted IP addresses"
-msgstr "IP 地址白名單"
-
-msgid "Either individual IP addresses or CIDR ranges are accepted here."
-msgstr "無效的 IP 地址或 CIDR 範圍不被接受。"
-
-msgid "Example:"
-msgstr "例子："
-
-msgid "Each entry must be separated with a comma."
-msgstr "每一筆條目必須用逗號分隔。"
-
 msgid "Allow users to reset their passwords"
 msgstr "用戶可以重設其密碼"
 
@@ -832,10 +808,10 @@ msgid "Enable simplified login"
 msgstr "開啟簡易登入"
 
 msgid "Logging level"
-msgstr ""
+msgstr "登入層級"
 
 msgid "Log accesses of internal users"
-msgstr ""
+msgstr "內部用戶的登入存取"
 
 msgid "Enable experimental features"
 msgstr "開啟示範性功能"
@@ -857,6 +833,27 @@ msgstr "長網址"
 
 msgid "Add"
 msgstr "新增"
+
+msgid "Enable automatic backups"
+msgstr ""
+
+msgid "Daily"
+msgstr ""
+
+msgid "Weekly"
+msgstr ""
+
+msgid "Montly"
+msgstr ""
+
+msgid "Remote"
+msgstr "遠端"
+
+msgid "Server"
+msgstr "伺服器"
+
+msgid "Port"
+msgstr "埠"
 
 msgid "Substatuses"
 msgstr "子狀態"
@@ -942,11 +939,20 @@ msgstr "內文"
 msgid "Name"
 msgstr "名字"
 
+msgid "Enabled"
+msgstr "啟用"
+
+msgid "Hidden"
+msgstr "隱藏"
+
+msgid "Disabled"
+msgstr "關閉"
+
 msgid "Questionnaire"
 msgstr "問卷"
 
 msgid "Additional questionnaire"
-msgstr ""
+msgstr "其它的問卷"
 
 msgid "Recipients"
 msgstr "收件人"
@@ -957,13 +963,8 @@ msgstr "提交資料到期"
 msgid "days"
 msgstr "天"
 
-msgid "Allow selection of this context through the context selector."
-msgstr "透過內文選取器可選擇這部份內文"
-
-msgid ""
-"If disabled, submissions for this context will only be accessible through a "
-"direct link to it."
-msgstr "如果取消它，提交的揭密內文將只能透過直接的連結來讀取"
+msgid "Show the questionnaire navigation interface"
+msgstr "顯示問卷引界面"
 
 msgid "Allow whistleblowers to select their recipients"
 msgstr "允許吹哨者選擇其收件者"
@@ -983,6 +984,12 @@ msgstr "以字母次序顯示收件者"
 msgid "Show small recipient cards on submission interface"
 msgstr "在揭密提交介面下顯示小型收件者名卡"
 
+msgid "Show recipient details on the status page of the submission"
+msgstr "在揭密提交狀態頁上方顯示收件者狀態詳情"
+
+msgid "Text shown on top of the interface for selecting recipients"
+msgstr "在選擇收件人介面上方顯示的文字"
+
 msgid "Enable comments"
 msgstr "開啟評論功能"
 
@@ -998,65 +1005,23 @@ msgstr "允許吹哨者傳送訊息"
 msgid "Let whistleblowers add attachments onto existing submissions"
 msgstr "允許吹哨者對已有的提交資料新加附件"
 
-msgid "Show recipient details on the status page of the submission"
-msgstr "在揭密提交狀態頁上方顯示收件者狀態詳情"
-
 msgid "Let recipients upload files to whistleblowers"
 msgstr "可允許收件者上傳檔案給吹哨者"
 
-msgid "Text shown on top of the interface for selecting recipients"
-msgstr "在選擇收件人介面上方顯示的文字"
+msgid "Enable scoring system"
+msgstr "啟用評分系統"
 
-msgid "Welcome!"
-msgstr "歡迎！"
+msgid "Threshold"
+msgstr "門檻"
 
-msgid ""
-"This interface may help you understand how the server can be configured and "
-"provides some info on how to connect to other GlobaLeaks users and experts."
-msgstr "這個介面可以幫助你了解如何設定伺服器，並提供如何與其它GlobaLeaks 用戶與專家連結等相關資訊"
+msgid "Value"
+msgstr "值"
 
-msgid "Documentation"
-msgstr "文檔"
+msgid "Medium"
+msgstr "媒體"
 
-msgid ""
-"To properly organize your project, please read the following guidelines:"
-msgstr "適當地介紹你的專案，請閱讀以下指引:"
-
-msgid "Remember to provide proper security advice to Whistleblowers:"
-msgstr "記得提供給吹哨揭密者適當的安全建議"
-
-msgid ""
-"To learn more about GlobaLeaks Security you can read the following document:"
-msgstr "進一步了解 Globaleak 安全設定，可參考以下文件："
-
-msgid "Contact"
-msgstr "嬖"
-
-msgid ""
-"If you need technical support, have general questions, or have new ideas for"
-" the software:"
-msgstr "若需要技術支援、有使用問題或是對此軟體有什麼新想法："
-
-msgid ""
-"If you want to contribute to software development or report a bug, please "
-"open an issue in our ticketing system:"
-msgstr "若願意貢獻軟體開發或是回報程式臭蟲，請在我們的票號系統下提交一份問題："
-
-msgid ""
-"If your non-profit needs support for investigative journalism, activism or a"
-" human rights defense project:"
-msgstr "如果你的非營利工作支援調查報導、社會行動或是人權捍衛方案："
-
-msgid ""
-"For professional support and development of anti corruption and compliance "
-"projects contact the social enterprise maintaining GlobaLeaks:"
-msgstr "要專業支援與發展反貪腐合規方案，可聯絡營運維護GlobaLeaks的社會企業："
-
-msgid "Join our IRC chat channel on the irc.oftc.net network:"
-msgstr "加入我們在 irc.oftc.net 網路的IRC 聊天頻道 :"
-
-msgid "Follow the project on:"
-msgstr "關注這個專案："
+msgid "High"
+msgstr "高"
 
 msgid "Software version:"
 msgstr "軟體版本:"
@@ -1085,9 +1050,6 @@ msgstr "運送安全性"
 msgid "Require authentication"
 msgstr "請求驗證"
 
-msgid "Disabled"
-msgstr "關閉"
-
 msgid "When the option is re-enabled the spooled emails will be sent out."
 msgstr "當這個選項重新啟用，排存的電子郵件將會被寄送出去"
 
@@ -1108,18 +1070,6 @@ msgstr "測試設定"
 
 msgid "Template"
 msgstr "模版"
-
-msgid "Roles enabled to use the platform without Tor:"
-msgstr "啟動角色可不透過 Tor 使用平台"
-
-msgid "Admin"
-msgstr "管理者"
-
-msgid "Recipient"
-msgstr "收件者"
-
-msgid "Whistleblower"
-msgstr "吹哨揭密者"
 
 msgid "Hostname"
 msgstr "主機名稱"
@@ -1148,6 +1098,9 @@ msgstr "我同意這份服務个款"
 
 msgid "Proceed"
 msgstr "進行"
+
+msgid "Congratulations!"
+msgstr "恭喜！"
 
 msgid "Configuration completed. You can review the settings or enable it now."
 msgstr "設定完成。你現在可以檢視相關設定或是啟動它了。"
@@ -1239,9 +1192,6 @@ msgstr "這個平台透過此介面支援 HTTPS "
 msgid "The connection to the configured domain failed."
 msgstr "連線到設定的域名失敗了"
 
-msgid "Enabled"
-msgstr "啟用"
-
 msgid "Running"
 msgstr "執行"
 
@@ -1261,6 +1211,30 @@ msgid ""
 "Allowing whistleblowers to connect over HTTPS preserves their privacy but "
 "not their anonymity."
 msgstr "可讓吹哨揭弊者透過連接 HTTPS 來保護其隱私但這無法保持匿名。"
+
+msgid "Restrict access to specific IP addresses"
+msgstr "限特定 IP 地址之讀取"
+
+msgid "Role"
+msgstr "角色"
+
+msgid "Whitelisted IP addresses"
+msgstr "IP 地址白名單"
+
+msgid "Admin"
+msgstr "管理者"
+
+msgid "Recipient"
+msgstr "收件者"
+
+msgid "Whistleblower"
+msgstr "吹哨揭密者"
+
+msgid "Each entry must be separated with a comma."
+msgstr "每一筆條目必須用逗號分隔。"
+
+msgid "Example:"
+msgstr "例子："
 
 msgid "Attention!"
 msgstr "注𨐌"
@@ -1285,6 +1259,9 @@ msgstr "匿名化對外連線 "
 msgid "Let the platform be reachable without Tor"
 msgstr "讓平台可以不透過 Tor 來訪問"
 
+msgid "Roles enabled to use the platform without Tor"
+msgstr "啟動角須透用 Tor 使用平台"
+
 msgid "Stats of the week:"
 msgstr "一週統計:"
 
@@ -1302,9 +1279,6 @@ msgstr "事件"
 
 msgid "Response time"
 msgstr "回應時間"
-
-msgid "Role"
-msgstr "角色"
 
 msgid "Last access"
 msgstr "最近讀取"
@@ -1333,9 +1307,6 @@ msgstr "單行文字輸入"
 msgid "Multi-line text input"
 msgstr "多行文字輸入"
 
-msgid "Multiple choice input"
-msgstr "多選項輸入"
-
 msgid "Selection box"
 msgstr "複選項"
 
@@ -1344,6 +1315,9 @@ msgstr "單選項"
 
 msgid "Terms of service"
 msgstr "服務條款"
+
+msgid "Map"
+msgstr "地圖"
 
 msgid "Group of questions"
 msgstr "問題題組"
@@ -1375,14 +1349,14 @@ msgstr "接受多個答案"
 msgid "Hint shown on the button for adding an additional answer"
 msgstr "按鍵上顯示其它答案的提示"
 
+msgid "Template override"
+msgstr ""
+
 msgid "Phone number"
 msgstr "電話號碼"
 
 msgid "Checkbox label"
 msgstr "單選標籤"
-
-msgid "Layout orientation"
-msgstr "操作介面指引"
 
 msgid "Subject answer visibility to custodian authorization"
 msgstr "答案的能見度限於保管人授權"
@@ -1399,6 +1373,12 @@ msgstr "肯定答案會顯示的文字"
 msgid "Options"
 msgstr "選項"
 
+msgid "Addition"
+msgstr "此外"
+
+msgid "Multiplier"
+msgstr "乘數"
+
 msgid "Questions"
 msgstr "問題"
 
@@ -1414,32 +1394,6 @@ msgstr "重複"
 msgid "Steps"
 msgstr "步驟"
 
-msgid "Configuration"
-msgstr "設定"
-
-msgid "Default"
-msgstr "預設"
-
-msgid "Forcefully selected"
-msgstr "強迫選擇"
-
-msgid "Unselectable"
-msgstr "不能選擇"
-
-msgid "Allow the recipient to postpone the submission expiration date"
-msgstr "允許收件者延後提交的截止日期"
-
-msgid "The setting is enabled at a global level."
-msgstr "此為全域設定"
-
-msgid "Allow the recipient to delete submissions"
-msgstr "允許收件者刪除提交"
-
-msgid ""
-"Allow the recipient to grant permissions to whistleblowers on specific "
-"submissions"
-msgstr "允許收件者在某特定揭密事件上授權許可吹哨者"
-
 msgid "Site settings"
 msgstr "站台設定"
 
@@ -1450,7 +1404,7 @@ msgid "Network settings"
 msgstr "網路設定"
 
 msgid "Mode:"
-msgstr ""
+msgstr "模式："
 
 msgid "Root domain used for secondary sites"
 msgstr "二級網站使用的根域名"
@@ -1469,6 +1423,9 @@ msgstr "活躍中的"
 
 msgid "Inactive"
 msgstr "靜止狀態的"
+
+msgid "Configure"
+msgstr "設定"
 
 msgid "The default password is:"
 msgstr "預設的密碼是:"
@@ -1497,7 +1454,7 @@ msgid "Language"
 msgstr "語言"
 
 msgid "Enable email notifications"
-msgstr ""
+msgstr "開啟郵件通知選項"
 
 msgid "Details of the PGP key:"
 msgstr " PGP 金鑰詳細資料"
@@ -1510,6 +1467,32 @@ msgstr "移除 PGP 金鑰"
 
 msgid "Set up encryption by providing a PGP public key"
 msgstr "提供PGP公鑰來設定加密"
+
+msgid "Configuration"
+msgstr "設定"
+
+msgid "Default"
+msgstr "預設"
+
+msgid "Forcefully selected"
+msgstr "強迫選擇"
+
+msgid "Unselectable"
+msgstr "不能選擇"
+
+msgid "Allow the recipient to postpone the submission expiration date"
+msgstr "允許收件者延後提交的截止日期"
+
+msgid "The setting is enabled at a global level."
+msgstr "此為全域設定"
+
+msgid "Allow the recipient to delete submissions"
+msgstr "允許收件者刪除提交"
+
+msgid ""
+"Allow the recipient to grant permissions to whistleblowers on specific "
+"submissions"
+msgstr "允許收件者在某特定揭密事件上授權許可吹哨者"
 
 msgid "User has administrative access to the following features:"
 msgstr "管理級的用戶可以有以下權限功能："
@@ -1544,17 +1527,6 @@ msgid ""
 msgstr "你正連結到正常運行的伺服器上，它僅支援匿名的揭密提交"
 
 msgid ""
-"Server temporarily unusable due to resource exhaustion; advise the Admin if "
-"you can."
-msgstr ""
-
-msgid "This server is not configured."
-msgstr "伺服器尚未設定"
-
-msgid "You will not be able to send a submission."
-msgstr "你將無法提交資料"
-
-msgid ""
 "This platform makes use of GlobaLeaks software specifically designed to "
 "protect the identity for submitter and recipient in the exchange of content."
 msgstr "本平台使用 GlobaLeaks 軟體，是特別設計來保護上傳者與收件者的身份，保護他們交換資料的內容。"
@@ -1574,7 +1546,10 @@ msgid "Authentication failed"
 msgstr "認證失敗"
 
 msgid "Site:"
-msgstr ""
+msgstr "網站:"
+
+msgid "The receipt is either invalid or the submission has expired."
+msgstr "收件人可能無效或是提交已過期"
 
 msgid "Username:"
 msgstr "使用者名稱："
@@ -1597,16 +1572,43 @@ msgstr "這項操作還重置設定且無法回復。"
 msgid "Assign score points"
 msgstr "指定得分點數"
 
-msgid ""
-"Enter the number of score points to be assigned when this option is "
-"selected:"
-msgstr "啟動此項功能時，請輸入被指定的得分點數數字"
-
 msgid "Confirm"
 msgstr "確認"
 
 msgid "Please note that all the associated data will be permanently lost."
 msgstr "請注意所有相關的資料將會永久消失。"
+
+msgid "Welcome!"
+msgstr "歡迎！"
+
+msgid "For the user documentation, visit:"
+msgstr ""
+
+msgid ""
+"If you need technical support, have general questions, or have new ideas for"
+" the software:"
+msgstr "若需要技術支援、有使用問題或是對此軟體有什麼新想法："
+
+msgid ""
+"If you want to contribute to software development or report a bug, please "
+"open an issue in our ticketing system:"
+msgstr "若願意貢獻軟體開發或是回報程式臭蟲，請在我們的票號系統下提交一份問題："
+
+msgid ""
+"If your non-profit needs support for investigative journalism, activism or a"
+" human rights defense project:"
+msgstr "如果你的非營利工作支援調查報導、社會行動或是人權捍衛方案："
+
+msgid ""
+"For professional support and development of anti corruption and compliance "
+"projects contact the social enterprise maintaining GlobaLeaks:"
+msgstr "要專業支援與發展反貪腐合規方案，可聯絡營運維護GlobaLeaks的社會企業："
+
+msgid "Join our IRC chat channel on the irc.oftc.net network:"
+msgstr "加入我們在 irc.oftc.net 網路的IRC 聊天頻道 :"
+
+msgid "Follow the project on:"
+msgstr "關注這個專案："
 
 msgid "Error!"
 msgstr "出錯"
@@ -1639,10 +1641,10 @@ msgid "Validation of email address change in progress."
 msgstr "正在查驗電郵地址變更"
 
 msgid "Please check your inbox for further instructions."
-msgstr ""
+msgstr "請檢查您的信箱取得進一步指示。"
 
 msgid "Current password"
-msgstr ""
+msgstr "現用密碼"
 
 msgid "Old password confirmation required"
 msgstr "要求確認舊密碼"
@@ -1726,10 +1728,10 @@ msgid "Submit"
 msgstr "送出"
 
 msgid "Recipients have requested you to fill an additional questionnaire."
-msgstr ""
+msgstr "收件者已請求您填寫另一份問卷。"
 
 msgid "Fill the additional questionnaire"
-msgstr ""
+msgstr "填寫其它的問卷"
 
 msgid "Send"
 msgstr "送出"
@@ -1822,6 +1824,15 @@ msgstr "給吹哨者的附加檔案"
 msgid "Upload a file:"
 msgstr "上傳檔案 :"
 
+msgid "Question"
+msgstr "問題"
+
+msgid "Inverted"
+msgstr "翻倒"
+
+msgid "Trigger step"
+msgstr "觸發步驟"
+
 msgid "Logout"
 msgstr "登出"
 
@@ -1854,27 +1865,27 @@ msgstr "已請求重設密碼。"
 msgid "Thank you!"
 msgstr "謝謝"
 
-msgid "Remember your key code for this submission."
-msgstr "記住你此次提交的鑰碼"
+msgid "Remember your receipt for this submission."
+msgstr "記住本次提交的票號收據"
 
 msgid "We will try to get back to you as soon as possible!"
 msgstr "我們將會盡快地回覆你"
 
 msgid ""
-"Use the 16 digit key code to log in. It will allow you to view any messages "
+"Use the 16 digit receipt to log in. It will allow you to view any messages "
 "we sent you, and also to add extra info."
-msgstr "使用16數字鑰碼來登入，它可以讓你檢視我們給你的訊息以及新增額外資訊"
+msgstr "使用此 16 碼收據登入，可查看我們給你的留言以及添加其它資訊。"
 
 msgid "View your submission"
 msgstr "檢視你的揭密提交"
 
-msgid "Hint: How to hide your key code"
-msgstr "提示:如何隱藏你的鑰碼"
+msgid "Hint: How to hide your receipt"
+msgstr "提示：如何隱藏收件人"
 
 msgid ""
-"A useful way to hide your key code is to write it down like a credit card "
+"A useful way to hide your receipt is to write it down like a credit card "
 "number, i.e. by also including an expiration date."
-msgstr "保存鑰碼的有用作法是把它記到紙上，就如同信用卡，包括記下到期日資訊"
+msgstr "最好收藏收據票號的方式是寫成如信用卡號資訊, 例如還包括到期日。"
 
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."
@@ -1885,9 +1896,6 @@ msgstr "提出要求的日期"
 
 msgid "Undeclared"
 msgstr "未作宣告的"
-
-msgid "Congratulations!"
-msgstr "恭喜！"
 
 msgid "You have completed the platform activation."
 msgstr "已完成平台的激活"
@@ -1911,7 +1919,7 @@ msgid "Complete"
 msgstr "完成"
 
 msgid "Invalid phone number"
-msgstr ""
+msgstr "無效的電話號碼"
 
 msgid "This field is mandatory."
 msgstr "此欄位為必填"
@@ -2071,9 +2079,6 @@ msgstr "欲登入請到:"
 
 msgid "Users' credentials:"
 msgstr "用戶的證書:"
-
-msgid "For the user documentation visit:"
-msgstr "使用文件在:"
 
 msgid "The platform will be automatically deleted on:"
 msgstr "平台會自動進行刪除:"
@@ -2409,10 +2414,10 @@ msgid "New submission"
 msgstr "新的提交"
 
 msgid "Role: {Role}"
-msgstr ""
+msgstr "角色: {Role}"
 
 msgid "Username: {Username}"
-msgstr ""
+msgstr "用戶名: {Username}"
 
 msgid "Password: {Password}"
-msgstr ""
+msgstr "密碼: {Password}"

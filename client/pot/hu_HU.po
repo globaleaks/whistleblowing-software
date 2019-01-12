@@ -3,9 +3,9 @@
 # benewfy <benewfy@gmail.com>, 2015
 # benewfy <benewfy@gmail.com>, 2015-2016
 # Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2014,2017-2018
-# Hermes Center <info@hermescenter.org>, 2013
-# Hermes Center <info@hermescenter.org>, 2013
-# Hermes Center <info@hermescenter.org>, 2013
+# b33a4006134bb6ee62b30fc0fac5cec6, 2013
+# b33a4006134bb6ee62b30fc0fac5cec6, 2013
+# b33a4006134bb6ee62b30fc0fac5cec6, 2013
 # Kiss-Kálmán Dániel <kisskalmandaniel@gmail.com>, 2014
 # Kiss-Kálmán Dániel <kisskalmandaniel@gmail.com>, 2014
 # Marietta Le <marietta@boun.cr>, 2013
@@ -21,8 +21,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-11-15 11:36+0000\n"
-"Last-Translator: Hermes Center <info@hermescenter.org>\n"
+"PO-Revision-Date: 2019-01-12 14:02+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Hungarian (Hungary) (http://www.transifex.com/otf/globaleaks/language/hu_HU/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -80,12 +80,6 @@ msgstr "Licensz"
 
 msgid "Notification templates"
 msgstr "Értesítési sablonok"
-
-msgid "Recipient notification templates"
-msgstr "Címzett értesítési sablonok"
-
-msgid "Admin notification templates"
-msgstr "Adminisztrátor értesítési sablonok"
 
 msgid "Missing data"
 msgstr "Hiányzó adat"
@@ -431,9 +425,6 @@ msgstr "Trigger kérdés"
 msgid "Triggered by a score higher than:"
 msgstr "Kiváltotta egy pontszám ami nagyobb, mint:"
 
-msgid "Select the question to be triggered when this option is selected"
-msgstr ""
-
 msgid "Message shown on top of the status page of the submission"
 msgstr "Üzenet, ami az beküldés állapota oldal tetején kerül megjelenítésre"
 
@@ -739,8 +730,8 @@ msgstr ""
 msgid "Text"
 msgstr "Szöveg"
 
-msgid "Disable the key code hint"
-msgstr "A kulcskód tipp mutatása kikapcsolása"
+msgid "Disable the receipt hint"
+msgstr ""
 
 msgid "Disable the donation panel"
 msgstr "A támogatás panel tiltása"
@@ -809,21 +800,6 @@ msgstr "Felhasználónév"
 msgid "Password"
 msgstr "Jelszó"
 
-msgid "Restrict privileged logins to specific IP addresses"
-msgstr ""
-
-msgid "Whitelisted IP addresses"
-msgstr ""
-
-msgid "Either individual IP addresses or CIDR ranges are accepted here."
-msgstr ""
-
-msgid "Example:"
-msgstr "Példa:"
-
-msgid "Each entry must be separated with a comma."
-msgstr ""
-
 msgid "Allow users to reset their passwords"
 msgstr ""
 
@@ -868,6 +844,27 @@ msgstr "Hosszú URL"
 
 msgid "Add"
 msgstr "Hozzáadás"
+
+msgid "Enable automatic backups"
+msgstr ""
+
+msgid "Daily"
+msgstr ""
+
+msgid "Weekly"
+msgstr ""
+
+msgid "Montly"
+msgstr ""
+
+msgid "Remote"
+msgstr ""
+
+msgid "Server"
+msgstr ""
+
+msgid "Port"
+msgstr ""
 
 msgid "Substatuses"
 msgstr ""
@@ -953,6 +950,15 @@ msgstr "Kontextusok"
 msgid "Name"
 msgstr "Név"
 
+msgid "Enabled"
+msgstr "Engedélyezve"
+
+msgid "Hidden"
+msgstr ""
+
+msgid "Disabled"
+msgstr "Leiltva"
+
 msgid "Questionnaire"
 msgstr "Kérdőívek"
 
@@ -968,13 +974,8 @@ msgstr ""
 msgid "days"
 msgstr ""
 
-msgid "Allow selection of this context through the context selector."
-msgstr "Ez a kontextus kiválasztásának engedélyezése a kontextus választón keresztül."
-
-msgid ""
-"If disabled, submissions for this context will only be accessible through a "
-"direct link to it."
-msgstr "Ha letiltva, akkor a beadványok ehhez a kontextushoz csak direkt linken keresztül lesznek elérhetőek."
+msgid "Show the questionnaire navigation interface"
+msgstr ""
 
 msgid "Allow whistleblowers to select their recipients"
 msgstr "A szivárogtató kiválaszthatja a címzetteket"
@@ -994,6 +995,12 @@ msgstr "A címzettek megjelenítése betűrendben"
 msgid "Show small recipient cards on submission interface"
 msgstr "Kis címzett kártyák mutatása a beadvány felületen"
 
+msgid "Show recipient details on the status page of the submission"
+msgstr ""
+
+msgid "Text shown on top of the interface for selecting recipients"
+msgstr ""
+
 msgid "Enable comments"
 msgstr "Megjegyzések engedélyezése"
 
@@ -1009,64 +1016,22 @@ msgstr "A szivárogtatónak az üzenetek  írásának engedélyezése"
 msgid "Let whistleblowers add attachments onto existing submissions"
 msgstr "Engedélyezi a szivárogtatóknak, hogy mellékleteket adjanak hozzá létező beadványokhoz"
 
-msgid "Show recipient details on the status page of the submission"
-msgstr ""
-
 msgid "Let recipients upload files to whistleblowers"
 msgstr ""
 
-msgid "Text shown on top of the interface for selecting recipients"
+msgid "Enable scoring system"
 msgstr ""
 
-msgid "Welcome!"
+msgid "Threshold"
 msgstr ""
 
-msgid ""
-"This interface may help you understand how the server can be configured and "
-"provides some info on how to connect to other GlobaLeaks users and experts."
-msgstr "Ez a felület segít abban, hogy megismerje a kiszolgáló konfigurációját és azt, hogyan léphet kapcsolatba más GlobaLeaks felhasználókkal és szakértőkkel."
-
-msgid "Documentation"
-msgstr "Dokumentáció"
-
-msgid ""
-"To properly organize your project, please read the following guidelines:"
-msgstr "Hogy megfelelően szervezze projektjét, olvassa el a következő útmutatókat:"
-
-msgid "Remember to provide proper security advice to Whistleblowers:"
-msgstr "Ne felejtsen el megfelelő biztonsági tanácsokat adni a Szivárogtatóknak:"
-
-msgid ""
-"To learn more about GlobaLeaks Security you can read the following document:"
+msgid "Value"
 msgstr ""
 
-msgid "Contact"
-msgstr "Kapcsolat"
-
-msgid ""
-"If you need technical support, have general questions, or have new ideas for"
-" the software:"
+msgid "Medium"
 msgstr ""
 
-msgid ""
-"If you want to contribute to software development or report a bug, please "
-"open an issue in our ticketing system:"
-msgstr ""
-
-msgid ""
-"If your non-profit needs support for investigative journalism, activism or a"
-" human rights defense project:"
-msgstr ""
-
-msgid ""
-"For professional support and development of anti corruption and compliance "
-"projects contact the social enterprise maintaining GlobaLeaks:"
-msgstr ""
-
-msgid "Join our IRC chat channel on the irc.oftc.net network:"
-msgstr ""
-
-msgid "Follow the project on:"
+msgid "High"
 msgstr ""
 
 msgid "Software version:"
@@ -1096,9 +1061,6 @@ msgstr "Átvitel biztonsága"
 msgid "Require authentication"
 msgstr ""
 
-msgid "Disabled"
-msgstr "Leiltva"
-
 msgid "When the option is re-enabled the spooled emails will be sent out."
 msgstr "A küldésre váró emaileket a beállítás visszakapcsolása után újraküldjük."
 
@@ -1119,18 +1081,6 @@ msgstr ""
 
 msgid "Template"
 msgstr "Sablon"
-
-msgid "Roles enabled to use the platform without Tor:"
-msgstr ""
-
-msgid "Admin"
-msgstr "Admin"
-
-msgid "Recipient"
-msgstr "Címzett"
-
-msgid "Whistleblower"
-msgstr "Szivárogtató"
 
 msgid "Hostname"
 msgstr ""
@@ -1159,6 +1109,9 @@ msgstr ""
 
 msgid "Proceed"
 msgstr "Tovább"
+
+msgid "Congratulations!"
+msgstr "Gratulálunk!"
 
 msgid "Configuration completed. You can review the settings or enable it now."
 msgstr ""
@@ -1250,9 +1203,6 @@ msgstr ""
 msgid "The connection to the configured domain failed."
 msgstr ""
 
-msgid "Enabled"
-msgstr "Engedélyezve"
-
 msgid "Running"
 msgstr ""
 
@@ -1272,6 +1222,30 @@ msgid ""
 "Allowing whistleblowers to connect over HTTPS preserves their privacy but "
 "not their anonymity."
 msgstr ""
+
+msgid "Restrict access to specific IP addresses"
+msgstr ""
+
+msgid "Role"
+msgstr "Szerep"
+
+msgid "Whitelisted IP addresses"
+msgstr ""
+
+msgid "Admin"
+msgstr "Admin"
+
+msgid "Recipient"
+msgstr "Címzett"
+
+msgid "Whistleblower"
+msgstr "Szivárogtató"
+
+msgid "Each entry must be separated with a comma."
+msgstr ""
+
+msgid "Example:"
+msgstr "Példa:"
 
 msgid "Attention!"
 msgstr ""
@@ -1296,6 +1270,9 @@ msgstr ""
 msgid "Let the platform be reachable without Tor"
 msgstr ""
 
+msgid "Roles enabled to use the platform without Tor"
+msgstr ""
+
 msgid "Stats of the week:"
 msgstr "A hét statisztikái"
 
@@ -1313,9 +1290,6 @@ msgstr "Esemény"
 
 msgid "Response time"
 msgstr "Válaszidő"
-
-msgid "Role"
-msgstr "Szerep"
 
 msgid "Last access"
 msgstr "Legutóbbi hozzáférés"
@@ -1344,9 +1318,6 @@ msgstr "Egysoros szövegbevitel"
 msgid "Multi-line text input"
 msgstr "Többsoros szövegbevitel"
 
-msgid "Multiple choice input"
-msgstr "Több választásos bevitel"
-
 msgid "Selection box"
 msgstr "Választómező"
 
@@ -1355,6 +1326,9 @@ msgstr "Jelölőnégyzet"
 
 msgid "Terms of service"
 msgstr "Használati feltételek"
+
+msgid "Map"
+msgstr ""
 
 msgid "Group of questions"
 msgstr "Kérdések csoportja"
@@ -1386,14 +1360,14 @@ msgstr ""
 msgid "Hint shown on the button for adding an additional answer"
 msgstr "Tipp mutatása a gombon egy további válasz hozzáadásáért"
 
+msgid "Template override"
+msgstr ""
+
 msgid "Phone number"
 msgstr "Telefonszám"
 
 msgid "Checkbox label"
 msgstr ""
-
-msgid "Layout orientation"
-msgstr "Oldalelrendezés"
 
 msgid "Subject answer visibility to custodian authorization"
 msgstr "Tárgy válasz láthatósága gondnok jogosultságnak"
@@ -1410,6 +1384,12 @@ msgstr ""
 msgid "Options"
 msgstr "Beállítások"
 
+msgid "Addition"
+msgstr ""
+
+msgid "Multiplier"
+msgstr ""
+
 msgid "Questions"
 msgstr ""
 
@@ -1424,32 +1404,6 @@ msgstr ""
 
 msgid "Steps"
 msgstr ""
-
-msgid "Configuration"
-msgstr "Konfiguráció"
-
-msgid "Default"
-msgstr "Alapértelmezett"
-
-msgid "Forcefully selected"
-msgstr "Erőteljesen kiválasztva"
-
-msgid "Unselectable"
-msgstr "Nem kiválasztható"
-
-msgid "Allow the recipient to postpone the submission expiration date"
-msgstr ""
-
-msgid "The setting is enabled at a global level."
-msgstr "Ez a beállítás a rendszer szintjén van bekapcsolva. "
-
-msgid "Allow the recipient to delete submissions"
-msgstr "A címzettek számára engedélyezi a beküldések törlését"
-
-msgid ""
-"Allow the recipient to grant permissions to whistleblowers on specific "
-"submissions"
-msgstr "Engedélyezés a címzettnek, hogy jogosultságokat biztosítson a szivárogtatóknak különleges beadványoknál"
 
 msgid "Site settings"
 msgstr ""
@@ -1479,6 +1433,9 @@ msgid "Active"
 msgstr ""
 
 msgid "Inactive"
+msgstr ""
+
+msgid "Configure"
 msgstr ""
 
 msgid "The default password is:"
@@ -1522,6 +1479,32 @@ msgstr "PGP kulcs eltávolítása"
 msgid "Set up encryption by providing a PGP public key"
 msgstr ""
 
+msgid "Configuration"
+msgstr "Konfiguráció"
+
+msgid "Default"
+msgstr "Alapértelmezett"
+
+msgid "Forcefully selected"
+msgstr "Erőteljesen kiválasztva"
+
+msgid "Unselectable"
+msgstr "Nem kiválasztható"
+
+msgid "Allow the recipient to postpone the submission expiration date"
+msgstr ""
+
+msgid "The setting is enabled at a global level."
+msgstr "Ez a beállítás a rendszer szintjén van bekapcsolva. "
+
+msgid "Allow the recipient to delete submissions"
+msgstr "A címzettek számára engedélyezi a beküldések törlését"
+
+msgid ""
+"Allow the recipient to grant permissions to whistleblowers on specific "
+"submissions"
+msgstr "Engedélyezés a címzettnek, hogy jogosultságokat biztosítson a szivárogtatóknak különleges beadványoknál"
+
 msgid "User has administrative access to the following features:"
 msgstr ""
 
@@ -1555,17 +1538,6 @@ msgid ""
 msgstr "A kiszolgálóhoz anonim módon csatlakozik, ez a kiszolgáló csak névtelen beadványokat fogad el"
 
 msgid ""
-"Server temporarily unusable due to resource exhaustion; advise the Admin if "
-"you can."
-msgstr ""
-
-msgid "This server is not configured."
-msgstr "Ezt a kiszolgálót nem konfigurálták."
-
-msgid "You will not be able to send a submission."
-msgstr "Nem fog tudni dokumentumot feltölteni."
-
-msgid ""
 "This platform makes use of GlobaLeaks software specifically designed to "
 "protect the identity for submitter and recipient in the exchange of content."
 msgstr ""
@@ -1585,6 +1557,9 @@ msgid "Authentication failed"
 msgstr "Az azonosítás nem sikerült"
 
 msgid "Site:"
+msgstr ""
+
+msgid "The receipt is either invalid or the submission has expired."
 msgstr ""
 
 msgid "Username:"
@@ -1608,15 +1583,42 @@ msgstr ""
 msgid "Assign score points"
 msgstr ""
 
-msgid ""
-"Enter the number of score points to be assigned when this option is "
-"selected:"
-msgstr ""
-
 msgid "Confirm"
 msgstr "Hosszabbítás megerősítése"
 
 msgid "Please note that all the associated data will be permanently lost."
+msgstr ""
+
+msgid "Welcome!"
+msgstr ""
+
+msgid "For the user documentation, visit:"
+msgstr ""
+
+msgid ""
+"If you need technical support, have general questions, or have new ideas for"
+" the software:"
+msgstr ""
+
+msgid ""
+"If you want to contribute to software development or report a bug, please "
+"open an issue in our ticketing system:"
+msgstr ""
+
+msgid ""
+"If your non-profit needs support for investigative journalism, activism or a"
+" human rights defense project:"
+msgstr ""
+
+msgid ""
+"For professional support and development of anti corruption and compliance "
+"projects contact the social enterprise maintaining GlobaLeaks:"
+msgstr ""
+
+msgid "Join our IRC chat channel on the irc.oftc.net network:"
+msgstr ""
+
+msgid "Follow the project on:"
 msgstr ""
 
 msgid "Error!"
@@ -1833,6 +1835,15 @@ msgstr ""
 msgid "Upload a file:"
 msgstr ""
 
+msgid "Question"
+msgstr ""
+
+msgid "Inverted"
+msgstr ""
+
+msgid "Trigger step"
+msgstr "Trigger lépés"
+
 msgid "Logout"
 msgstr "Kilépés"
 
@@ -1865,27 +1876,27 @@ msgstr ""
 msgid "Thank you!"
 msgstr "Köszönjük!"
 
-msgid "Remember your key code for this submission."
-msgstr "Jegyezze meg a beküldéséhez tartózó kulcs kódot."
+msgid "Remember your receipt for this submission."
+msgstr ""
 
 msgid "We will try to get back to you as soon as possible!"
 msgstr "Visszajelzünk, amilyen korán csak lehet!"
 
 msgid ""
-"Use the 16 digit key code to log in. It will allow you to view any messages "
+"Use the 16 digit receipt to log in. It will allow you to view any messages "
 "we sent you, and also to add extra info."
-msgstr "Használja ezt a 16 jegyü kulcs kódot a belépéshez, ahhoz, hogy megtekinthesse az üzeneteket amiket küldünk, vagy ha szeretne hozzáadni még valamit, akkor meg tudj tenni."
+msgstr ""
 
 msgid "View your submission"
 msgstr "Beküldés áttekintése"
 
-msgid "Hint: How to hide your key code"
-msgstr "Tipp: hogyan rejtse el a kulcs kódot"
+msgid "Hint: How to hide your receipt"
+msgstr ""
 
 msgid ""
-"A useful way to hide your key code is to write it down like a credit card "
+"A useful way to hide your receipt is to write it down like a credit card "
 "number, i.e. by also including an expiration date."
-msgstr "A kulcs kódja elrejtéséhez jó ötlet lehet, ha leírja mint egy hitelkártya számot, azaz hozzáad egy lejárati dátumot is. "
+msgstr ""
 
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."
@@ -1896,9 +1907,6 @@ msgstr "A kérés dátuma"
 
 msgid "Undeclared"
 msgstr ""
-
-msgid "Congratulations!"
-msgstr "Gratulálunk!"
 
 msgid "You have completed the platform activation."
 msgstr ""
@@ -2081,9 +2089,6 @@ msgid "To log in, visit:"
 msgstr ""
 
 msgid "Users' credentials:"
-msgstr ""
-
-msgid "For the user documentation visit:"
 msgstr ""
 
 msgid "The platform will be automatically deleted on:"

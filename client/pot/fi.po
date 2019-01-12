@@ -5,13 +5,13 @@
 # John Wild <ac@elephantleague.org>, 2015
 # Jorma Karvonen <karvonen.jorma@gmail.com>, 2015,2017
 # Juha Nurmi <juha.nurmi@ahmia.fi>, 2015
-# Panu Ahvenharju, 2018
+# Panu Ahvenharju, 2018-2019
 # Sami Kuusisto <sami@6sto.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-11-15 11:35+0000\n"
-"Last-Translator: Hermes Center <info@hermescenter.org>\n"
+"PO-Revision-Date: 2019-01-12 14:02+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Finnish (http://www.transifex.com/otf/globaleaks/language/fi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -69,12 +69,6 @@ msgstr "Lisenssi"
 
 msgid "Notification templates"
 msgstr "Ilmoituspohjat"
-
-msgid "Recipient notification templates"
-msgstr "Vastaanottajien ilmoituspohjat"
-
-msgid "Admin notification templates"
-msgstr "Ylläpidon ilmoituspohjat"
 
 msgid "Missing data"
 msgstr "Puuttuvat tiedot"
@@ -375,7 +369,7 @@ msgid "HTTPS settings"
 msgstr "HTTPS asetukset"
 
 msgid "URL shortener"
-msgstr "Verkko-osoitelyhennin"
+msgstr "Käytä lyhennettyä verkko-osoitetta"
 
 msgid "Anomaly detection thresholds"
 msgstr "Poikkeaman havainnointikynnys"
@@ -419,9 +413,6 @@ msgstr "Aseta jatkokysymys"
 
 msgid "Triggered by a score higher than:"
 msgstr "Käytetään pistemäärän ollessa korkeampi kuin:"
-
-msgid "Select the question to be triggered when this option is selected"
-msgstr "Valitse tätä valintaa seuraava kysymys"
 
 msgid "Message shown on top of the status page of the submission"
 msgstr "Vihjeen tila -sivun yläreunassa näytettävä viesti"
@@ -669,14 +660,14 @@ msgid "Disable submissions"
 msgstr "Poista vihjeiden lähettäminen käytöstä"
 
 msgid "Enable encryption"
-msgstr ""
+msgstr "Käytä salausta"
 
 msgid ""
 "Allow the system to store data in plaintext when encryption is not available"
-msgstr ""
+msgstr "Salli järjestelmän tallentaa salaamattomat tiedot tekstimuotoisena"
 
 msgid "Enable multisite feature"
-msgstr ""
+msgstr "Ota käyttöön samanaikainen kirjautuminen useaan järjestelmään"
 
 msgid "Allow other websites to include the platform inside iframes"
 msgstr "Salli muiden sivustojen upottaa palvelu iframes-toteutuksena omille verkkosivuilleen."
@@ -728,8 +719,8 @@ msgstr "Otsikko"
 msgid "Text"
 msgstr "Teksti"
 
-msgid "Disable the key code hint"
-msgstr "Poista käytöstä salaisen numerosarjan vinkki"
+msgid "Disable the receipt hint"
+msgstr "Poista kuittivinkki käytöstä"
 
 msgid "Disable the donation panel"
 msgstr "Ota pois käytöstä lahjoitusteksti"
@@ -770,7 +761,7 @@ msgid "Show contexts in alphabetical order"
 msgstr "Näytä aiheet aakkosjärjestyksessä"
 
 msgid "Title of the receipt page"
-msgstr "Kuittaussivun otsikko"
+msgstr "Kuittisivun otsikko"
 
 msgid "Title of the submission status page"
 msgstr "Vihjeen tila -sivun otsikko"
@@ -798,21 +789,6 @@ msgstr "Käyttäjätunnus"
 msgid "Password"
 msgstr "Salasana"
 
-msgid "Restrict privileged logins to specific IP addresses"
-msgstr "Rajoita palveluun kirjautumiset tiettyyn IP-avaruuteen"
-
-msgid "Whitelisted IP addresses"
-msgstr "Sallitut IP-osoitteet"
-
-msgid "Either individual IP addresses or CIDR ranges are accepted here."
-msgstr "Kirjoita joko yksittäinen IP-osoite tai luokaton reititys (CIDR)."
-
-msgid "Example:"
-msgstr "Esimerkiksi:"
-
-msgid "Each entry must be separated with a comma."
-msgstr "Käytä erotusmerkkinä pilkkua "
-
 msgid "Allow users to reset their passwords"
 msgstr "Salli käyttäjien nollata salasanansa"
 
@@ -832,10 +808,10 @@ msgid "Enable simplified login"
 msgstr "Ota käyttöön helpotettu kirjautuminen"
 
 msgid "Logging level"
-msgstr ""
+msgstr "Kirjautumistaso"
 
 msgid "Log accesses of internal users"
-msgstr ""
+msgstr "Tallenna sisäisten käyttäjien kirjautumiset"
 
 msgid "Enable experimental features"
 msgstr "Ota käyttöön koekäytössä olevat toiminnallisuudet"
@@ -857,6 +833,27 @@ msgstr "Pitkä verkko-osoite"
 
 msgid "Add"
 msgstr "Lisää uusi"
+
+msgid "Enable automatic backups"
+msgstr "Ota käyttöön automaattiset varmuuskopiot"
+
+msgid "Daily"
+msgstr "Päivittäin"
+
+msgid "Weekly"
+msgstr "Viikoittain"
+
+msgid "Montly"
+msgstr "Kuukausittain"
+
+msgid "Remote"
+msgstr "Etä"
+
+msgid "Server"
+msgstr "Palvelin"
+
+msgid "Port"
+msgstr "Portti"
 
 msgid "Substatuses"
 msgstr "Välitilat"
@@ -942,11 +939,20 @@ msgstr "Aiheet"
 msgid "Name"
 msgstr "Käyttäjänimi"
 
+msgid "Enabled"
+msgstr "Käytössä"
+
+msgid "Hidden"
+msgstr "Piilotettu"
+
+msgid "Disabled"
+msgstr "Otettu pois käytöstä"
+
 msgid "Questionnaire"
 msgstr "Vihjelomake"
 
 msgid "Additional questionnaire"
-msgstr ""
+msgstr "Täydentävä vihjelomake"
 
 msgid "Recipients"
 msgstr "Vastaanottajat"
@@ -957,13 +963,8 @@ msgstr "Vihjeen vanhentumispäivämäärä"
 msgid "days"
 msgstr "päivää"
 
-msgid "Allow selection of this context through the context selector."
-msgstr "Tämä aihe voidaan valita aiheenvalintavalikosta"
-
-msgid ""
-"If disabled, submissions for this context will only be accessible through a "
-"direct link to it."
-msgstr "Jos poistettu käytöstä, tämän aiheen vihjeisiin pääsee ainoastaan suoran linkin kautta."
+msgid "Show the questionnaire navigation interface"
+msgstr "Näytä vihjelomakkeen navigaationäkymä"
 
 msgid "Allow whistleblowers to select their recipients"
 msgstr "Salli vihjeenantajien valita vastaanottajansa"
@@ -983,6 +984,12 @@ msgstr "Näytä vastaanottajat aakkosjärjestyksessä"
 msgid "Show small recipient cards on submission interface"
 msgstr "Näytä vastaanottajat pieninä kortteina vihjeenkirjoitusnäkymässä"
 
+msgid "Show recipient details on the status page of the submission"
+msgstr "Näytä vastaanottajan tiedot Vihjeen tila -sivulla"
+
+msgid "Text shown on top of the interface for selecting recipients"
+msgstr "Sivun yläosan teksti vastaanottajia valittaessa"
+
 msgid "Enable comments"
 msgstr "Ota käyttöön kommentit"
 
@@ -998,65 +1005,23 @@ msgstr "Salli vihjeenantajien lähettää viestejä"
 msgid "Let whistleblowers add attachments onto existing submissions"
 msgstr "Salli vihjeen antajien lisätä liitetiedostoja olemassaoleviin vihjeisiin"
 
-msgid "Show recipient details on the status page of the submission"
-msgstr "Näytä vastaanottajan tiedot Vihjeen tila -sivulla"
-
 msgid "Let recipients upload files to whistleblowers"
 msgstr "Salli vastaanottajien lähettää tiedostoja vihjeiden lähettäjille"
 
-msgid "Text shown on top of the interface for selecting recipients"
-msgstr "Sivun yläosan teksti vastaanottajia valittaessa"
+msgid "Enable scoring system"
+msgstr "Ota käyttöön pisteytysjärjestelmä"
 
-msgid "Welcome!"
-msgstr "Tervetuloa!"
+msgid "Threshold"
+msgstr "Kynnysarvo"
 
-msgid ""
-"This interface may help you understand how the server can be configured and "
-"provides some info on how to connect to other GlobaLeaks users and experts."
-msgstr "Näistä ohjeista saat tietoa, kuinka voit räätälöidä järjestelmän asetukset vastaamaan tarpeitasi parhaalla mahdollisella tavalla. Kohdasta Tekninen tuki ja yhteystiedot löydät apua ongelmatilanteisiin ja yhteyden muihin GlobaLeaks-yhteisön jäseniin ja asiantuntijoihin."
+msgid "Value"
+msgstr "Arvo"
 
-msgid "Documentation"
-msgstr "Ohjeet"
+msgid "Medium"
+msgstr "Keskitaso"
 
-msgid ""
-"To properly organize your project, please read the following guidelines:"
-msgstr "Jotta osaisit järjestää aloitteesi oikein, lue seuraavat ohjeet:"
-
-msgid "Remember to provide proper security advice to Whistleblowers:"
-msgstr "Muista antaa kunnollisia turvallisuusneuvoja vihjeidenantajille:"
-
-msgid ""
-"To learn more about GlobaLeaks Security you can read the following document:"
-msgstr "Lisätietoa GlobaLeaksin tietoturvasta voit lukea oheisesta dokumentista: "
-
-msgid "Contact"
-msgstr "Tekninen tuki ja yhteystiedot"
-
-msgid ""
-"If you need technical support, have general questions, or have new ideas for"
-" the software:"
-msgstr "Jos tarvitset teknistä tukea, sinulla on jokin palvelun käyttöön liittyvä kysymys tai uusi idea, vieraile osoitteessa "
-
-msgid ""
-"If you want to contribute to software development or report a bug, please "
-"open an issue in our ticketing system:"
-msgstr "Jos haluat olla mukana ohjelmiston kehittämisessä tai ilmoittaa palvelun käyttöön liittyvästä virhetilanteesta, ole hyvä ja lähetä kuvaus parannusehdotuksesta tai virhetilanteesta kirjausjärjestelmäämme: "
-
-msgid ""
-"If your non-profit needs support for investigative journalism, activism or a"
-" human rights defense project:"
-msgstr "Mikäli voittoa tavoittelematon organisaatiosi tarvitsee tukea tutkivaan journalismiin, aktivismiin tai projektiin ihmisoikeuksien puolustamiseksi: "
-
-msgid ""
-"For professional support and development of anti corruption and compliance "
-"projects contact the social enterprise maintaining GlobaLeaks:"
-msgstr "Jos tarvitset asiantuntijatukea kehittäessäsi projektia korruption tai muun laittoman toiminnan kitkemiseksi, ota yhteyttä yhteiskunnalliseen GlobaLeaks-ohjelmistoa ylläpitävään yritykseen:"
-
-msgid "Join our IRC chat channel on the irc.oftc.net network:"
-msgstr "Liity keskusteluun IRC-kanavallemme osoitteessa irc.oftc.net:"
-
-msgid "Follow the project on:"
-msgstr "Seuraa projektia osoitteessa "
+msgid "High"
+msgstr "Korkea"
 
 msgid "Software version:"
 msgstr "Käytössä oleva ohjelmistoversio:"
@@ -1085,9 +1050,6 @@ msgstr "Siirtoturvallisuus"
 msgid "Require authentication"
 msgstr "Edellytä tunnistautumista"
 
-msgid "Disabled"
-msgstr "Otettu pois käytöstä"
-
 msgid "When the option is re-enabled the spooled emails will be sent out."
 msgstr "Kun tämä valitsin otetaan uudelleen käyttöön, puskuroidut sähköpostiviestit lähetetään liikkeelle."
 
@@ -1108,18 +1070,6 @@ msgstr "Suorita järjestelmätestaus"
 
 msgid "Template"
 msgstr "Mallipohja"
-
-msgid "Roles enabled to use the platform without Tor:"
-msgstr "Roolit, joiden sallitaan käyttää palvelua ilman Tor-selainta:"
-
-msgid "Admin"
-msgstr "Ylläpitäjä"
-
-msgid "Recipient"
-msgstr "Vastaanottaja"
-
-msgid "Whistleblower"
-msgstr "Vihjeenantaja"
 
 msgid "Hostname"
 msgstr "Tietokoneen nimi"
@@ -1148,6 +1098,9 @@ msgstr "Hyväksyn käyttöehdot"
 
 msgid "Proceed"
 msgstr "Jatka"
+
+msgid "Congratulations!"
+msgstr "Onneksi olkoon!"
 
 msgid "Configuration completed. You can review the settings or enable it now."
 msgstr "Palvelun asetukset on nyt määritetty. Voit tarkastella juuri niitä tai ottaa ne samantien käyttöön."
@@ -1239,9 +1192,6 @@ msgstr "Voit määrittää järjestelmän HTTPS-asetukset tässä näkymässä."
 msgid "The connection to the configured domain failed."
 msgstr "Yhteys järjestelmäasetuksissa määritettyyn verkkotunnukseen (domain) epäonnistui."
 
-msgid "Enabled"
-msgstr "Käytössä"
-
 msgid "Running"
 msgstr "Käynnissä"
 
@@ -1261,6 +1211,30 @@ msgid ""
 "Allowing whistleblowers to connect over HTTPS preserves their privacy but "
 "not their anonymity."
 msgstr "Mikäli vihjeen lähettäjien sallitaan käyttää HTTPS-yhteyttä, heidän yksityisyytensä pysyy turvassa mutta anonymiteetti ei."
+
+msgid "Restrict access to specific IP addresses"
+msgstr "Estä pääsy tietyistä IP-osoitteista"
+
+msgid "Role"
+msgstr "Rooli"
+
+msgid "Whitelisted IP addresses"
+msgstr "Sallitut IP-osoitteet"
+
+msgid "Admin"
+msgstr "Ylläpitäjä"
+
+msgid "Recipient"
+msgstr "Vastaanottaja"
+
+msgid "Whistleblower"
+msgstr "Vihjeenantaja"
+
+msgid "Each entry must be separated with a comma."
+msgstr "Käytä erotusmerkkinä pilkkua "
+
+msgid "Example:"
+msgstr "Esimerkiksi:"
 
 msgid "Attention!"
 msgstr "Huomio!"
@@ -1285,6 +1259,9 @@ msgstr "Anonymisoi yhteydet ulospäin"
 msgid "Let the platform be reachable without Tor"
 msgstr "Salli palvelun käyttö ilman Tor-selainta"
 
+msgid "Roles enabled to use the platform without Tor"
+msgstr "Palvelua ilman Tor-selainta käyttävät roolit"
+
 msgid "Stats of the week:"
 msgstr "Viikkotilasto:"
 
@@ -1302,9 +1279,6 @@ msgstr "Tapahtuma"
 
 msgid "Response time"
 msgstr "Vastausaika"
-
-msgid "Role"
-msgstr "Rooli"
 
 msgid "Last access"
 msgstr "Viimeksi luettu"
@@ -1333,9 +1307,6 @@ msgstr "Yksirivinen tekstikenttä"
 msgid "Multi-line text input"
 msgstr "Monirivinen tekstikenttä"
 
-msgid "Multiple choice input"
-msgstr "Monivalinta"
-
 msgid "Selection box"
 msgstr "Valintalaatikko"
 
@@ -1344,6 +1315,9 @@ msgstr "Valintaruutu"
 
 msgid "Terms of service"
 msgstr "Käyttöehdot"
+
+msgid "Map"
+msgstr "Kartta"
 
 msgid "Group of questions"
 msgstr "Kysymysryhmä"
@@ -1375,14 +1349,14 @@ msgstr "Salli useita vastauksia"
 msgid "Hint shown on the button for adding an additional answer"
 msgstr "Painikkeen yhteydessä näytettävä vinkki lisäkysymystä lisättäessä"
 
+msgid "Template override"
+msgstr "Mallipohjan korvaus"
+
 msgid "Phone number"
 msgstr "Puhelinnumero"
 
 msgid "Checkbox label"
 msgstr "Valintaruudun teksti"
-
-msgid "Layout orientation"
-msgstr "Sivupohjan tyyppi"
 
 msgid "Subject answer visibility to custodian authorization"
 msgstr "Vastauksen näkyvyys riippuu valvojan luvasta"
@@ -1399,6 +1373,12 @@ msgstr "Vahvistuksen yhteydessä näytettävä teksti"
 msgid "Options"
 msgstr "Valinnat"
 
+msgid "Addition"
+msgstr "Lisäys"
+
+msgid "Multiplier"
+msgstr "Kerroin"
+
 msgid "Questions"
 msgstr "Kysymykset"
 
@@ -1413,32 +1393,6 @@ msgstr "Monista"
 
 msgid "Steps"
 msgstr "Vaiheet"
-
-msgid "Configuration"
-msgstr "Asetukset"
-
-msgid "Default"
-msgstr "Oletus"
-
-msgid "Forcefully selected"
-msgstr "Aina päällä (ei voi muuttaa)"
-
-msgid "Unselectable"
-msgstr "Ei valittavissa"
-
-msgid "Allow the recipient to postpone the submission expiration date"
-msgstr "Salli vastaanottajan siirtää vihjeen vanhentumispäivämäärää myöhemmäksi"
-
-msgid "The setting is enabled at a global level."
-msgstr "Asetus on otettu käyttöön globaalisti."
-
-msgid "Allow the recipient to delete submissions"
-msgstr "Salli vastaanottajan poistaa vihjeitä"
-
-msgid ""
-"Allow the recipient to grant permissions to whistleblowers on specific "
-"submissions"
-msgstr "Salli vastaanottajan myöntää vihjeiden lähettäjille vihjekohtaisia lupia"
 
 msgid "Site settings"
 msgstr "Palvelun asetukset"
@@ -1470,6 +1424,9 @@ msgstr "Aktiivinen"
 msgid "Inactive"
 msgstr "Ei toiminnassa"
 
+msgid "Configure"
+msgstr "Aseta"
+
 msgid "The default password is:"
 msgstr "Oletussalasana:"
 
@@ -1497,7 +1454,7 @@ msgid "Language"
 msgstr "Kieli"
 
 msgid "Enable email notifications"
-msgstr ""
+msgstr "Ota käyttöön sähköposti-ilmoitukset"
 
 msgid "Details of the PGP key:"
 msgstr "PGP-avaimen tiedot:"
@@ -1510,6 +1467,32 @@ msgstr "Poista PGP-avain"
 
 msgid "Set up encryption by providing a PGP public key"
 msgstr "Määritä salaus PGP-avaimella"
+
+msgid "Configuration"
+msgstr "Asetukset"
+
+msgid "Default"
+msgstr "Oletus"
+
+msgid "Forcefully selected"
+msgstr "Aina päällä (ei voi muuttaa)"
+
+msgid "Unselectable"
+msgstr "Ei valittavissa"
+
+msgid "Allow the recipient to postpone the submission expiration date"
+msgstr "Salli vastaanottajan siirtää vihjeen vanhentumispäivämäärää myöhemmäksi"
+
+msgid "The setting is enabled at a global level."
+msgstr "Asetus on otettu käyttöön globaalisti."
+
+msgid "Allow the recipient to delete submissions"
+msgstr "Salli vastaanottajan poistaa vihjeitä"
+
+msgid ""
+"Allow the recipient to grant permissions to whistleblowers on specific "
+"submissions"
+msgstr "Salli vastaanottajan myöntää vihjeiden lähettäjille vihjekohtaisia lupia"
 
 msgid "User has administrative access to the following features:"
 msgstr "Käyttäjällä on ylläpito-oikeudet seuraaviin toimintoihin:"
@@ -1544,17 +1527,6 @@ msgid ""
 msgstr "Olet yhdistänyt palvelimen ilman anonymiteettiä ja tämä solmu tukee vain nimettömiä lähetyksiä"
 
 msgid ""
-"Server temporarily unusable due to resource exhaustion; advise the Admin if "
-"you can."
-msgstr "Palvelu on väliaikaisesti pois käytöstä riittämättömien resurssien vuoksi. Mikäli mahdollista, ota yhteyttä palvelun ylläpitäjään."
-
-msgid "This server is not configured."
-msgstr "Tätä solmua ei ole asetettu"
-
-msgid "You will not be able to send a submission."
-msgstr "Et voi lähettää vihjettä."
-
-msgid ""
 "This platform makes use of GlobaLeaks software specifically designed to "
 "protect the identity for submitter and recipient in the exchange of content."
 msgstr "Tämä palvelu käyttää GlobaLeaks-ohjelmistoa, joka on varta vasten suunniteltu suojaamaan viestien lähettäjiä ja vastaanottajia henkilöllisyyden paljastumiselta vaihdettaessa vuodettavaa materiaalia."
@@ -1575,6 +1547,9 @@ msgstr "Tunnistautuminen epäonnistui"
 
 msgid "Site:"
 msgstr "Palvelu:"
+
+msgid "The receipt is either invalid or the submission has expired."
+msgstr "Kuitti on virheellinen tai lähetys on vanhentunut"
 
 msgid "Username:"
 msgstr "Käyttäjätunnus:"
@@ -1597,16 +1572,43 @@ msgstr "Tämä toiminto palauttaa järjestelmän alkuperäiset asetukset eikä s
 msgid "Assign score points"
 msgstr "Käytä pisteytystä"
 
-msgid ""
-"Enter the number of score points to be assigned when this option is "
-"selected:"
-msgstr "Kysymykseen liitettävä pistemäärä tämän valinnan ollessa valittuna:"
-
 msgid "Confirm"
 msgstr "Vahvista laajennus"
 
 msgid "Please note that all the associated data will be permanently lost."
 msgstr "Huomaa, että kaikki asiaan liittyvät tiedot poistetaan lopullisesti."
+
+msgid "Welcome!"
+msgstr "Tervetuloa!"
+
+msgid "For the user documentation, visit:"
+msgstr "Käyttöohjeet löydät osoitteesta: "
+
+msgid ""
+"If you need technical support, have general questions, or have new ideas for"
+" the software:"
+msgstr "Jos tarvitset teknistä tukea, sinulla on jokin palvelun käyttöön liittyvä kysymys tai uusi idea, vieraile osoitteessa "
+
+msgid ""
+"If you want to contribute to software development or report a bug, please "
+"open an issue in our ticketing system:"
+msgstr "Jos haluat olla mukana ohjelmiston kehittämisessä tai ilmoittaa palvelun käyttöön liittyvästä virhetilanteesta, ole hyvä ja lähetä kuvaus parannusehdotuksesta tai virhetilanteesta kirjausjärjestelmäämme: "
+
+msgid ""
+"If your non-profit needs support for investigative journalism, activism or a"
+" human rights defense project:"
+msgstr "Mikäli voittoa tavoittelematon organisaatiosi tarvitsee tukea tutkivaan journalismiin, aktivismiin tai projektiin ihmisoikeuksien puolustamiseksi: "
+
+msgid ""
+"For professional support and development of anti corruption and compliance "
+"projects contact the social enterprise maintaining GlobaLeaks:"
+msgstr "Jos tarvitset asiantuntijatukea kehittäessäsi projektia korruption tai muun laittoman toiminnan kitkemiseksi, ota yhteyttä yhteiskunnalliseen GlobaLeaks-ohjelmistoa ylläpitävään yritykseen:"
+
+msgid "Join our IRC chat channel on the irc.oftc.net network:"
+msgstr "Liity keskusteluun IRC-kanavallemme osoitteessa irc.oftc.net:"
+
+msgid "Follow the project on:"
+msgstr "Seuraa projektia osoitteessa "
 
 msgid "Error!"
 msgstr "Virhe!"
@@ -1726,10 +1728,10 @@ msgid "Submit"
 msgstr "Lähetä"
 
 msgid "Recipients have requested you to fill an additional questionnaire."
-msgstr ""
+msgstr "Vastaanottajat ovat pyytäneet sinua täyttämään täydentävän vihjelomakkeen"
 
 msgid "Fill the additional questionnaire"
-msgstr ""
+msgstr "Täytä täydentävä vihjelomake"
 
 msgid "Send"
 msgstr "Lähetä"
@@ -1822,6 +1824,15 @@ msgstr "Vihjeen antajaan liitetyt tiedostot"
 msgid "Upload a file:"
 msgstr "Lähetä tiedosto:"
 
+msgid "Question"
+msgstr "Kysymys"
+
+msgid "Inverted"
+msgstr "Käänteinen"
+
+msgid "Trigger step"
+msgstr "Määritä vaiheen ehto"
+
 msgid "Logout"
 msgstr "Kirjaudu ulos"
 
@@ -1854,27 +1865,27 @@ msgstr "Salasanan nollaus pyydetty."
 msgid "Thank you!"
 msgstr "Kiitos!"
 
-msgid "Remember your key code for this submission."
-msgstr "Säilytä tämän vihjeen salainen numerosarja."
+msgid "Remember your receipt for this submission."
+msgstr "Muista tämän lähetyksen kuitti"
 
 msgid "We will try to get back to you as soon as possible!"
 msgstr "Otamme teihin yhteyttä mahdollisimman pian!"
 
 msgid ""
-"Use the 16 digit key code to log in. It will allow you to view any messages "
+"Use the 16 digit receipt to log in. It will allow you to view any messages "
 "we sent you, and also to add extra info."
-msgstr "Käytä kirjautumiseen saamaasi 16-merkkistä salaista numerosarjaa. Näin pääset katsomaan kaikki sinulle lähetetyt viestit sekä lisäämään vihjeeseen lisätietoja."
+msgstr "Käytä kirjautumiseen 16-merkkistä kuittinumerosarjaa. Näin pääset katsomaan kaikki sinulle lähetetyt viestit sekä lisäämään vihjeeseen lisätietoja."
 
 msgid "View your submission"
 msgstr "Tarkastele omaa vihjettä"
 
-msgid "Hint: How to hide your key code"
-msgstr "Vinkki: kuinka käsitellä salaista numerosarjaa turvallisesti"
+msgid "Hint: How to hide your receipt"
+msgstr "Vinkki: kuinka käsitellä kuittinumerosarjaa turvallisesti"
 
 msgid ""
-"A useful way to hide your key code is to write it down like a credit card "
+"A useful way to hide your receipt is to write it down like a credit card "
 "number, i.e. by also including an expiration date."
-msgstr "Hyödyllinen tapa piilottaa salainen numerosarjasi on kirjoittaa se muistiin kuten luottokorttinumero. Toisin sanoen, sinun kannattaa sisällyttää numerosarjan mukaan myös vanhentumispäivämäärä."
+msgstr "Kätevä tapa käsitellä salaista kuittinumerosarjaa turvallisesti on kirjoittaa se muistiin kuten luottokorttinumero. Toisin sanoen, sinun kannattaa sisällyttää numerosarjan yhteyteen myös vanhentumispäivämäärä."
 
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."
@@ -1885,9 +1896,6 @@ msgstr "Pyynnön päivämäärä"
 
 msgid "Undeclared"
 msgstr "Ei ilmoitettu"
-
-msgid "Congratulations!"
-msgstr "Onneksi olkoon!"
 
 msgid "You have completed the platform activation."
 msgstr "Vihjepalvelun aktivointi on valmis."
@@ -1911,7 +1919,7 @@ msgid "Complete"
 msgstr "Valmis"
 
 msgid "Invalid phone number"
-msgstr ""
+msgstr "Puhelinnumero ei kelpaa"
 
 msgid "This field is mandatory."
 msgstr "Pakollinen kenttä"
@@ -2071,9 +2079,6 @@ msgstr "Mene osoitteeseen kirjautuaksesi: "
 
 msgid "Users' credentials:"
 msgstr "Käyttäjien kirjautumistiedot: "
-
-msgid "For the user documentation visit:"
-msgstr "Käyttöopas löytyy osoitteesta: "
 
 msgid "The platform will be automatically deleted on:"
 msgstr "Päivämäärä, jolloin palvelu tuhotaan automaattisesti: "

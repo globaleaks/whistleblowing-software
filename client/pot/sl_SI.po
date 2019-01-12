@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-11-15 11:36+0000\n"
-"Last-Translator: Hermes Center <info@hermescenter.org>\n"
+"PO-Revision-Date: 2019-01-12 14:02+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Slovenian (Slovenia) (http://www.transifex.com/otf/globaleaks/language/sl_SI/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -66,12 +66,6 @@ msgstr ""
 
 msgid "Notification templates"
 msgstr "Predloge obvestil"
-
-msgid "Recipient notification templates"
-msgstr "Predloga obvestila prejemniku"
-
-msgid "Admin notification templates"
-msgstr "Predloga obvestila administratorju"
 
 msgid "Missing data"
 msgstr "Manjkajoči podatki"
@@ -417,9 +411,6 @@ msgstr ""
 msgid "Triggered by a score higher than:"
 msgstr ""
 
-msgid "Select the question to be triggered when this option is selected"
-msgstr ""
-
 msgid "Message shown on top of the status page of the submission"
 msgstr ""
 
@@ -725,8 +716,8 @@ msgstr ""
 msgid "Text"
 msgstr "Besedilo"
 
-msgid "Disable the key code hint"
-msgstr "Onemogoči nasvet o ključu"
+msgid "Disable the receipt hint"
+msgstr ""
 
 msgid "Disable the donation panel"
 msgstr "Onemogoči prošnjo za donacijo"
@@ -795,21 +786,6 @@ msgstr "Uporabniško ime"
 msgid "Password"
 msgstr "Geslo"
 
-msgid "Restrict privileged logins to specific IP addresses"
-msgstr ""
-
-msgid "Whitelisted IP addresses"
-msgstr ""
-
-msgid "Either individual IP addresses or CIDR ranges are accepted here."
-msgstr ""
-
-msgid "Example:"
-msgstr "Primer:"
-
-msgid "Each entry must be separated with a comma."
-msgstr ""
-
 msgid "Allow users to reset their passwords"
 msgstr ""
 
@@ -854,6 +830,27 @@ msgstr ""
 
 msgid "Add"
 msgstr "Dodaj"
+
+msgid "Enable automatic backups"
+msgstr ""
+
+msgid "Daily"
+msgstr ""
+
+msgid "Weekly"
+msgstr ""
+
+msgid "Montly"
+msgstr ""
+
+msgid "Remote"
+msgstr ""
+
+msgid "Server"
+msgstr "Strežnik"
+
+msgid "Port"
+msgstr "Vrata"
 
 msgid "Substatuses"
 msgstr ""
@@ -939,6 +936,15 @@ msgstr "Konteksti"
 msgid "Name"
 msgstr "Ime"
 
+msgid "Enabled"
+msgstr "Omogočeno"
+
+msgid "Hidden"
+msgstr ""
+
+msgid "Disabled"
+msgstr "Onemogočeno"
+
 msgid "Questionnaire"
 msgstr "Vprašalniki"
 
@@ -954,12 +960,7 @@ msgstr ""
 msgid "days"
 msgstr ""
 
-msgid "Allow selection of this context through the context selector."
-msgstr ""
-
-msgid ""
-"If disabled, submissions for this context will only be accessible through a "
-"direct link to it."
+msgid "Show the questionnaire navigation interface"
 msgstr ""
 
 msgid "Allow whistleblowers to select their recipients"
@@ -980,6 +981,12 @@ msgstr "Pokaži prejemnike po abecednem redu"
 msgid "Show small recipient cards on submission interface"
 msgstr "Prikaži majhne kartice prejemnikov v vmesniku za naznanitve"
 
+msgid "Show recipient details on the status page of the submission"
+msgstr ""
+
+msgid "Text shown on top of the interface for selecting recipients"
+msgstr "Besedilo na vrhu vmesnika izbire prejemnikov"
+
 msgid "Enable comments"
 msgstr "Omogoči komentarje"
 
@@ -995,65 +1002,23 @@ msgstr "Dovoli žvižgačem pošiljanje sporočil"
 msgid "Let whistleblowers add attachments onto existing submissions"
 msgstr ""
 
-msgid "Show recipient details on the status page of the submission"
-msgstr ""
-
 msgid "Let recipients upload files to whistleblowers"
 msgstr ""
 
-msgid "Text shown on top of the interface for selecting recipients"
-msgstr "Besedilo na vrhu vmesnika izbire prejemnikov"
-
-msgid "Welcome!"
+msgid "Enable scoring system"
 msgstr ""
 
-msgid ""
-"This interface may help you understand how the server can be configured and "
-"provides some info on how to connect to other GlobaLeaks users and experts."
-msgstr "S tega vmesnika lahko pridobite informacije, kako nastaviti svoje vozlišče ter kje lahko poiščete preostale uporabnike GlobaLeaksa in eksperte. "
-
-msgid "Documentation"
-msgstr "Dokumentacija"
-
-msgid ""
-"To properly organize your project, please read the following guidelines:"
-msgstr "Da bi bolje organizirali svoj projekt, prosimo, da preberete spodnja priporočila:"
-
-msgid "Remember to provide proper security advice to Whistleblowers:"
-msgstr "Ne pozabite poučiti žvižgačev o njihovi varnosti:"
-
-msgid ""
-"To learn more about GlobaLeaks Security you can read the following document:"
+msgid "Threshold"
 msgstr ""
 
-msgid "Contact"
-msgstr "Kontakt"
-
-msgid ""
-"If you need technical support, have general questions, or have new ideas for"
-" the software:"
+msgid "Value"
 msgstr ""
 
-msgid ""
-"If you want to contribute to software development or report a bug, please "
-"open an issue in our ticketing system:"
+msgid "Medium"
 msgstr ""
 
-msgid ""
-"If your non-profit needs support for investigative journalism, activism or a"
-" human rights defense project:"
-msgstr ""
-
-msgid ""
-"For professional support and development of anti corruption and compliance "
-"projects contact the social enterprise maintaining GlobaLeaks:"
-msgstr ""
-
-msgid "Join our IRC chat channel on the irc.oftc.net network:"
-msgstr ""
-
-msgid "Follow the project on:"
-msgstr ""
+msgid "High"
+msgstr "Visok"
 
 msgid "Software version:"
 msgstr "Verzija programa:"
@@ -1082,9 +1047,6 @@ msgstr "Varnost prenosa"
 msgid "Require authentication"
 msgstr ""
 
-msgid "Disabled"
-msgstr "Onemogočeno"
-
 msgid "When the option is re-enabled the spooled emails will be sent out."
 msgstr "Ko je možnost ponovno omogočena, bo e-pošta, ki je v čakanju, odposlana."
 
@@ -1105,18 +1067,6 @@ msgstr "Preizkus nastavitev"
 
 msgid "Template"
 msgstr "Predloga"
-
-msgid "Roles enabled to use the platform without Tor:"
-msgstr ""
-
-msgid "Admin"
-msgstr "Admin"
-
-msgid "Recipient"
-msgstr "Prejemnik"
-
-msgid "Whistleblower"
-msgstr "Žvižgač"
 
 msgid "Hostname"
 msgstr ""
@@ -1145,6 +1095,9 @@ msgstr ""
 
 msgid "Proceed"
 msgstr "Nadaljuj"
+
+msgid "Congratulations!"
+msgstr "Čestitamo!"
 
 msgid "Configuration completed. You can review the settings or enable it now."
 msgstr ""
@@ -1236,9 +1189,6 @@ msgstr ""
 msgid "The connection to the configured domain failed."
 msgstr ""
 
-msgid "Enabled"
-msgstr "Omogočeno"
-
 msgid "Running"
 msgstr "Se izvaja"
 
@@ -1258,6 +1208,30 @@ msgid ""
 "Allowing whistleblowers to connect over HTTPS preserves their privacy but "
 "not their anonymity."
 msgstr ""
+
+msgid "Restrict access to specific IP addresses"
+msgstr ""
+
+msgid "Role"
+msgstr "Vloga"
+
+msgid "Whitelisted IP addresses"
+msgstr ""
+
+msgid "Admin"
+msgstr "Admin"
+
+msgid "Recipient"
+msgstr "Prejemnik"
+
+msgid "Whistleblower"
+msgstr "Žvižgač"
+
+msgid "Each entry must be separated with a comma."
+msgstr ""
+
+msgid "Example:"
+msgstr "Primer:"
 
 msgid "Attention!"
 msgstr ""
@@ -1282,6 +1256,9 @@ msgstr ""
 msgid "Let the platform be reachable without Tor"
 msgstr ""
 
+msgid "Roles enabled to use the platform without Tor"
+msgstr ""
+
 msgid "Stats of the week:"
 msgstr "Statistika tedna:"
 
@@ -1299,9 +1276,6 @@ msgstr "Dogodek"
 
 msgid "Response time"
 msgstr "Odzivni čas"
-
-msgid "Role"
-msgstr "Vloga"
 
 msgid "Last access"
 msgstr "Zadnji dostop"
@@ -1330,9 +1304,6 @@ msgstr ""
 msgid "Multi-line text input"
 msgstr ""
 
-msgid "Multiple choice input"
-msgstr ""
-
 msgid "Selection box"
 msgstr ""
 
@@ -1340,6 +1311,9 @@ msgid "Checkbox"
 msgstr "Potrditveno polje"
 
 msgid "Terms of service"
+msgstr ""
+
+msgid "Map"
 msgstr ""
 
 msgid "Group of questions"
@@ -1372,13 +1346,13 @@ msgstr ""
 msgid "Hint shown on the button for adding an additional answer"
 msgstr ""
 
+msgid "Template override"
+msgstr ""
+
 msgid "Phone number"
 msgstr "Telefonska številka"
 
 msgid "Checkbox label"
-msgstr ""
-
-msgid "Layout orientation"
 msgstr ""
 
 msgid "Subject answer visibility to custodian authorization"
@@ -1396,6 +1370,12 @@ msgstr ""
 msgid "Options"
 msgstr "Možnosti"
 
+msgid "Addition"
+msgstr ""
+
+msgid "Multiplier"
+msgstr ""
+
 msgid "Questions"
 msgstr ""
 
@@ -1410,32 +1390,6 @@ msgstr ""
 
 msgid "Steps"
 msgstr ""
-
-msgid "Configuration"
-msgstr "Nastavitve"
-
-msgid "Default"
-msgstr "Privzeto"
-
-msgid "Forcefully selected"
-msgstr ""
-
-msgid "Unselectable"
-msgstr "Neizberljivo"
-
-msgid "Allow the recipient to postpone the submission expiration date"
-msgstr ""
-
-msgid "The setting is enabled at a global level."
-msgstr "Nastavitev je omogočena na globalni ravni."
-
-msgid "Allow the recipient to delete submissions"
-msgstr ""
-
-msgid ""
-"Allow the recipient to grant permissions to whistleblowers on specific "
-"submissions"
-msgstr "Omogoči prejemniku odobritev dostopa žvižgaču do izbranih prispevkov"
 
 msgid "Site settings"
 msgstr ""
@@ -1466,6 +1420,9 @@ msgstr ""
 
 msgid "Inactive"
 msgstr ""
+
+msgid "Configure"
+msgstr "Oblikovanje"
 
 msgid "The default password is:"
 msgstr ""
@@ -1508,6 +1465,32 @@ msgstr "Odstrani PGP ključ"
 msgid "Set up encryption by providing a PGP public key"
 msgstr "Nastavi šifriranje z zagotovitvijo tvojega javnega PGP ključa"
 
+msgid "Configuration"
+msgstr "Nastavitve"
+
+msgid "Default"
+msgstr "Privzeto"
+
+msgid "Forcefully selected"
+msgstr ""
+
+msgid "Unselectable"
+msgstr "Neizberljivo"
+
+msgid "Allow the recipient to postpone the submission expiration date"
+msgstr ""
+
+msgid "The setting is enabled at a global level."
+msgstr "Nastavitev je omogočena na globalni ravni."
+
+msgid "Allow the recipient to delete submissions"
+msgstr ""
+
+msgid ""
+"Allow the recipient to grant permissions to whistleblowers on specific "
+"submissions"
+msgstr "Omogoči prejemniku odobritev dostopa žvižgaču do izbranih prispevkov"
+
 msgid "User has administrative access to the following features:"
 msgstr ""
 
@@ -1541,17 +1524,6 @@ msgid ""
 msgstr "Z vozliščem se povezujete neanonimno, toda to vozlišče podpira zgolj anonimne naznanitve."
 
 msgid ""
-"Server temporarily unusable due to resource exhaustion; advise the Admin if "
-"you can."
-msgstr ""
-
-msgid "This server is not configured."
-msgstr "Vozlišče ni nastavljeno."
-
-msgid "You will not be able to send a submission."
-msgstr "Ne boste mogli poslati naznanitve."
-
-msgid ""
 "This platform makes use of GlobaLeaks software specifically designed to "
 "protect the identity for submitter and recipient in the exchange of content."
 msgstr ""
@@ -1571,6 +1543,9 @@ msgid "Authentication failed"
 msgstr "Overitev ni uspela"
 
 msgid "Site:"
+msgstr ""
+
+msgid "The receipt is either invalid or the submission has expired."
 msgstr ""
 
 msgid "Username:"
@@ -1594,15 +1569,42 @@ msgstr ""
 msgid "Assign score points"
 msgstr ""
 
-msgid ""
-"Enter the number of score points to be assigned when this option is "
-"selected:"
-msgstr ""
-
 msgid "Confirm"
 msgstr "Potrdi razširitev"
 
 msgid "Please note that all the associated data will be permanently lost."
+msgstr ""
+
+msgid "Welcome!"
+msgstr ""
+
+msgid "For the user documentation, visit:"
+msgstr ""
+
+msgid ""
+"If you need technical support, have general questions, or have new ideas for"
+" the software:"
+msgstr ""
+
+msgid ""
+"If you want to contribute to software development or report a bug, please "
+"open an issue in our ticketing system:"
+msgstr ""
+
+msgid ""
+"If your non-profit needs support for investigative journalism, activism or a"
+" human rights defense project:"
+msgstr ""
+
+msgid ""
+"For professional support and development of anti corruption and compliance "
+"projects contact the social enterprise maintaining GlobaLeaks:"
+msgstr ""
+
+msgid "Join our IRC chat channel on the irc.oftc.net network:"
+msgstr ""
+
+msgid "Follow the project on:"
 msgstr ""
 
 msgid "Error!"
@@ -1819,6 +1821,15 @@ msgstr ""
 msgid "Upload a file:"
 msgstr ""
 
+msgid "Question"
+msgstr ""
+
+msgid "Inverted"
+msgstr ""
+
+msgid "Trigger step"
+msgstr ""
+
 msgid "Logout"
 msgstr "Odjavi"
 
@@ -1851,25 +1862,25 @@ msgstr ""
 msgid "Thank you!"
 msgstr "Hvala!"
 
-msgid "Remember your key code for this submission."
-msgstr "Zapomnite si kodo tega prispevka."
+msgid "Remember your receipt for this submission."
+msgstr ""
 
 msgid "We will try to get back to you as soon as possible!"
 msgstr ""
 
 msgid ""
-"Use the 16 digit key code to log in. It will allow you to view any messages "
+"Use the 16 digit receipt to log in. It will allow you to view any messages "
 "we sent you, and also to add extra info."
 msgstr ""
 
 msgid "View your submission"
 msgstr "Oglejte  si svojo naznanitev"
 
-msgid "Hint: How to hide your key code"
-msgstr "Namig, kako skriti vašo šifro ključa"
+msgid "Hint: How to hide your receipt"
+msgstr ""
 
 msgid ""
-"A useful way to hide your key code is to write it down like a credit card "
+"A useful way to hide your receipt is to write it down like a credit card "
 "number, i.e. by also including an expiration date."
 msgstr ""
 
@@ -1882,9 +1893,6 @@ msgstr "Datum zahtevka"
 
 msgid "Undeclared"
 msgstr ""
-
-msgid "Congratulations!"
-msgstr "Čestitamo!"
 
 msgid "You have completed the platform activation."
 msgstr ""
@@ -2067,9 +2075,6 @@ msgid "To log in, visit:"
 msgstr ""
 
 msgid "Users' credentials:"
-msgstr ""
-
-msgid "For the user documentation visit:"
 msgstr ""
 
 msgid "The platform will be automatically deleted on:"

@@ -5,8 +5,8 @@
 # DarLink <darlink@gmail.com>, 2015
 # DarLink <darlink@gmail.com>, 2015
 # Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2015-2018
-# Hermes Center <info@hermescenter.org>, 2016
-# Hermes Center <info@hermescenter.org>, 2016
+# b33a4006134bb6ee62b30fc0fac5cec6, 2016
+# b33a4006134bb6ee62b30fc0fac5cec6, 2016
 # ION, 2018
 # Jakub Jakubiak <jakub.jakubiak@gmail.com>, 2014
 # zxcsd <jenisjpl@gmail.com>, 2015
@@ -18,8 +18,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-11-15 11:35+0000\n"
-"Last-Translator: Hermes Center <info@hermescenter.org>\n"
+"PO-Revision-Date: 2019-01-12 14:02+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Hebrew (http://www.transifex.com/otf/globaleaks/language/he/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -77,12 +77,6 @@ msgstr "רשיון"
 
 msgid "Notification templates"
 msgstr "תבניות התראה"
-
-msgid "Recipient notification templates"
-msgstr "תבניות להודעות הנמען"
-
-msgid "Admin notification templates"
-msgstr "תבניות להודעות Admin"
 
 msgid "Missing data"
 msgstr "נתונים חסרים"
@@ -428,9 +422,6 @@ msgstr "שאלת מעורר"
 msgid "Triggered by a score higher than:"
 msgstr "מופעל על ידי ציון גבוה יותר:"
 
-msgid "Select the question to be triggered when this option is selected"
-msgstr "בחר את השאלה כדי להיות מופעלים כאשר אפשרות זו נבחרה"
-
 msgid "Message shown on top of the status page of the submission"
 msgstr "הודעה המופיעה בראש דף המעמד של ההגשה"
 
@@ -736,8 +727,8 @@ msgstr "כותרת"
 msgid "Text"
 msgstr "טקסט"
 
-msgid "Disable the key code hint"
-msgstr "השבת את רמז קוד המפתח"
+msgid "Disable the receipt hint"
+msgstr ""
 
 msgid "Disable the donation panel"
 msgstr "השבת את לוח התרומה"
@@ -806,21 +797,6 @@ msgstr "שם משתמש"
 msgid "Password"
 msgstr "סיסמה"
 
-msgid "Restrict privileged logins to specific IP addresses"
-msgstr ""
-
-msgid "Whitelisted IP addresses"
-msgstr ""
-
-msgid "Either individual IP addresses or CIDR ranges are accepted here."
-msgstr ""
-
-msgid "Example:"
-msgstr "דוגמה:"
-
-msgid "Each entry must be separated with a comma."
-msgstr ""
-
 msgid "Allow users to reset their passwords"
 msgstr ""
 
@@ -865,6 +841,27 @@ msgstr "URL ארוך"
 
 msgid "Add"
 msgstr "הוסף"
+
+msgid "Enable automatic backups"
+msgstr ""
+
+msgid "Daily"
+msgstr ""
+
+msgid "Weekly"
+msgstr ""
+
+msgid "Montly"
+msgstr ""
+
+msgid "Remote"
+msgstr ""
+
+msgid "Server"
+msgstr "שרת"
+
+msgid "Port"
+msgstr "פתחה"
 
 msgid "Substatuses"
 msgstr "תת־מעמדים"
@@ -950,6 +947,15 @@ msgstr "הקשרים"
 msgid "Name"
 msgstr "שם"
 
+msgid "Enabled"
+msgstr "מאופשר"
+
+msgid "Hidden"
+msgstr "מוסתר"
+
+msgid "Disabled"
+msgstr "כבוי"
+
 msgid "Questionnaire"
 msgstr "שְׁאֵלוֹן"
 
@@ -965,13 +971,8 @@ msgstr ""
 msgid "days"
 msgstr "ימים"
 
-msgid "Allow selection of this context through the context selector."
-msgstr "אפשר בחירה של בהקשר זה דרך בהקשר הבורר."
-
-msgid ""
-"If disabled, submissions for this context will only be accessible through a "
-"direct link to it."
-msgstr "אם מושבת, הגשות בהקשר זה תהיינה נגישות רק דרך קישור ישיר אליו."
+msgid "Show the questionnaire navigation interface"
+msgstr ""
 
 msgid "Allow whistleblowers to select their recipients"
 msgstr "אפשר שחושפים את עוולות כדי לבחור נמענים שלהם"
@@ -991,6 +992,12 @@ msgstr "מקבלי הצג לפי סדר אלפביתי"
 msgid "Show small recipient cards on submission interface"
 msgstr "הראה כרטיסי נמען בממשק שליחה"
 
+msgid "Show recipient details on the status page of the submission"
+msgstr "הראה את פרטי הנמען בדף המעמד של ההגשה"
+
+msgid "Text shown on top of the interface for selecting recipients"
+msgstr "טקסט המופיע על גבי הממשק לבחירת מקבלים"
+
 msgid "Enable comments"
 msgstr "אפשר הערות"
 
@@ -1006,65 +1013,23 @@ msgstr "אפשר שחושף את העוולות לשלוח הודעות"
 msgid "Let whistleblowers add attachments onto existing submissions"
 msgstr ""
 
-msgid "Show recipient details on the status page of the submission"
-msgstr "הראה את פרטי הנמען בדף המעמד של ההגשה"
-
 msgid "Let recipients upload files to whistleblowers"
 msgstr ""
 
-msgid "Text shown on top of the interface for selecting recipients"
-msgstr "טקסט המופיע על גבי הממשק לבחירת מקבלים"
-
-msgid "Welcome!"
-msgstr "ברוך הבא!"
-
-msgid ""
-"This interface may help you understand how the server can be configured and "
-"provides some info on how to connect to other GlobaLeaks users and experts."
-msgstr "ממשק זה עשוי לעזור לך להבין כיצד הצומת יכולה להיות מוגדרת ומספקת קצת מידע על איך להתחבר למשתמשים ומומחי GlobaLeaks אחרים."
-
-msgid "Documentation"
-msgstr "תיעוד"
-
-msgid ""
-"To properly organize your project, please read the following guidelines:"
-msgstr "לארגן היוזמה שלך כמו שצריך, אנא קראו את ההנחיות הבאות:"
-
-msgid "Remember to provide proper security advice to Whistleblowers:"
-msgstr "זכור לספק ייעוץ אבטחה נאות להתרעות:"
-
-msgid ""
-"To learn more about GlobaLeaks Security you can read the following document:"
+msgid "Enable scoring system"
 msgstr ""
 
-msgid "Contact"
-msgstr "צור קשר"
-
-msgid ""
-"If you need technical support, have general questions, or have new ideas for"
-" the software:"
+msgid "Threshold"
 msgstr ""
 
-msgid ""
-"If you want to contribute to software development or report a bug, please "
-"open an issue in our ticketing system:"
+msgid "Value"
 msgstr ""
 
-msgid ""
-"If your non-profit needs support for investigative journalism, activism or a"
-" human rights defense project:"
-msgstr ""
+msgid "Medium"
+msgstr "בינוני"
 
-msgid ""
-"For professional support and development of anti corruption and compliance "
-"projects contact the social enterprise maintaining GlobaLeaks:"
-msgstr ""
-
-msgid "Join our IRC chat channel on the irc.oftc.net network:"
-msgstr ""
-
-msgid "Follow the project on:"
-msgstr ""
+msgid "High"
+msgstr "גבוהה"
 
 msgid "Software version:"
 msgstr "גרסת תוכנה:"
@@ -1093,9 +1058,6 @@ msgstr "אבטחת תחבורה"
 msgid "Require authentication"
 msgstr ""
 
-msgid "Disabled"
-msgstr "כבוי"
-
 msgid "When the option is re-enabled the spooled emails will be sent out."
 msgstr "כאשר האפשרות יופעל מחדש המיילים הנגללים יישלחו."
 
@@ -1116,18 +1078,6 @@ msgstr "בחן את התצורה"
 
 msgid "Template"
 msgstr "תבנית"
-
-msgid "Roles enabled to use the platform without Tor:"
-msgstr ""
-
-msgid "Admin"
-msgstr "מינהלן"
-
-msgid "Recipient"
-msgstr "מקבל"
-
-msgid "Whistleblower"
-msgstr "חושף שחיתות"
 
 msgid "Hostname"
 msgstr "שם מארח"
@@ -1156,6 +1106,9 @@ msgstr "אני מסכים אל תנאיי השירות."
 
 msgid "Proceed"
 msgstr "המשך"
+
+msgid "Congratulations!"
+msgstr "מזל טוב!"
 
 msgid "Configuration completed. You can review the settings or enable it now."
 msgstr ""
@@ -1247,9 +1200,6 @@ msgstr ""
 msgid "The connection to the configured domain failed."
 msgstr ""
 
-msgid "Enabled"
-msgstr "מאופשר"
-
 msgid "Running"
 msgstr "רץ"
 
@@ -1269,6 +1219,30 @@ msgid ""
 "Allowing whistleblowers to connect over HTTPS preserves their privacy but "
 "not their anonymity."
 msgstr ""
+
+msgid "Restrict access to specific IP addresses"
+msgstr ""
+
+msgid "Role"
+msgstr "תפקיד"
+
+msgid "Whitelisted IP addresses"
+msgstr ""
+
+msgid "Admin"
+msgstr "מינהלן"
+
+msgid "Recipient"
+msgstr "מקבל"
+
+msgid "Whistleblower"
+msgstr "חושף שחיתות"
+
+msgid "Each entry must be separated with a comma."
+msgstr ""
+
+msgid "Example:"
+msgstr "דוגמה:"
 
 msgid "Attention!"
 msgstr ""
@@ -1293,6 +1267,9 @@ msgstr ""
 msgid "Let the platform be reachable without Tor"
 msgstr ""
 
+msgid "Roles enabled to use the platform without Tor"
+msgstr ""
+
 msgid "Stats of the week:"
 msgstr "סטטיסטיקות השבוע"
 
@@ -1310,9 +1287,6 @@ msgstr "אירוע"
 
 msgid "Response time"
 msgstr "זמן תגובה"
-
-msgid "Role"
-msgstr "תפקיד"
 
 msgid "Last access"
 msgstr "גישה אחרונה"
@@ -1341,9 +1315,6 @@ msgstr "קלט טקסט של שורה אחת"
 msgid "Multi-line text input"
 msgstr "קלט טקסט רב-קוי"
 
-msgid "Multiple choice input"
-msgstr "קלט אמריקאיות"
-
 msgid "Selection box"
 msgstr "תיבת בחירה"
 
@@ -1352,6 +1323,9 @@ msgstr "תיבת סימון"
 
 msgid "Terms of service"
 msgstr "תנאי שירות"
+
+msgid "Map"
+msgstr ""
 
 msgid "Group of questions"
 msgstr "קבוצת שאלות"
@@ -1383,14 +1357,14 @@ msgstr "קבל תשובות רבות"
 msgid "Hint shown on the button for adding an additional answer"
 msgstr "רמז הנראה על הכפתור עבור הוספה של תשובה נוספת"
 
+msgid "Template override"
+msgstr ""
+
 msgid "Phone number"
 msgstr "מספר טלפון"
 
 msgid "Checkbox label"
 msgstr "תווית של תיבת סימון"
-
-msgid "Layout orientation"
-msgstr "אוריינטציה פריסה"
 
 msgid "Subject answer visibility to custodian authorization"
 msgstr "נראות תשובה בכפופות אישור אפוטרופוס"
@@ -1407,6 +1381,12 @@ msgstr ""
 msgid "Options"
 msgstr "אפשרויות"
 
+msgid "Addition"
+msgstr ""
+
+msgid "Multiplier"
+msgstr ""
+
 msgid "Questions"
 msgstr "שאלות"
 
@@ -1421,32 +1401,6 @@ msgstr "שכפל"
 
 msgid "Steps"
 msgstr "צעדים"
-
-msgid "Configuration"
-msgstr "הגדרות"
-
-msgid "Default"
-msgstr "מחדל"
-
-msgid "Forcefully selected"
-msgstr "נבחר בכוח"
-
-msgid "Unselectable"
-msgstr "לא ניתן לבחור"
-
-msgid "Allow the recipient to postpone the submission expiration date"
-msgstr "לאפשר לנמען לדחות את תאריך תפוגת ההגשה"
-
-msgid "The setting is enabled at a global level."
-msgstr "ההגדרות הופעלו ברמה גלובלית."
-
-msgid "Allow the recipient to delete submissions"
-msgstr "לאפשר לנמען למחוק הגשות"
-
-msgid ""
-"Allow the recipient to grant permissions to whistleblowers on specific "
-"submissions"
-msgstr "לאפשר לנמען להעניק הרשאות שחושפים את עוולות על הגשות ספציפיות"
 
 msgid "Site settings"
 msgstr "הגדרות אתר"
@@ -1477,6 +1431,9 @@ msgstr "פעיל"
 
 msgid "Inactive"
 msgstr "בלתי פעיל"
+
+msgid "Configure"
+msgstr "תצר"
 
 msgid "The default password is:"
 msgstr "סיסמת ברירת המחדל היא:"
@@ -1519,6 +1476,32 @@ msgstr "הסר את מפתח PGP"
 msgid "Set up encryption by providing a PGP public key"
 msgstr "הגדרת הצפנה על ידי מתן מפתח ציבורי PGP"
 
+msgid "Configuration"
+msgstr "הגדרות"
+
+msgid "Default"
+msgstr "מחדל"
+
+msgid "Forcefully selected"
+msgstr "נבחר בכוח"
+
+msgid "Unselectable"
+msgstr "לא ניתן לבחור"
+
+msgid "Allow the recipient to postpone the submission expiration date"
+msgstr "לאפשר לנמען לדחות את תאריך תפוגת ההגשה"
+
+msgid "The setting is enabled at a global level."
+msgstr "ההגדרות הופעלו ברמה גלובלית."
+
+msgid "Allow the recipient to delete submissions"
+msgstr "לאפשר לנמען למחוק הגשות"
+
+msgid ""
+"Allow the recipient to grant permissions to whistleblowers on specific "
+"submissions"
+msgstr "לאפשר לנמען להעניק הרשאות שחושפים את עוולות על הגשות ספציפיות"
+
 msgid "User has administrative access to the following features:"
 msgstr ""
 
@@ -1552,17 +1535,6 @@ msgid ""
 msgstr "התחברת לצומת ללא אנונימיות והצומת הזה תומכת רק בהגשות אנונימים"
 
 msgid ""
-"Server temporarily unusable due to resource exhaustion; advise the Admin if "
-"you can."
-msgstr ""
-
-msgid "This server is not configured."
-msgstr "שרת זה אינו מוגדר."
-
-msgid "You will not be able to send a submission."
-msgstr "לא תוכל לשלוח הגשה."
-
-msgid ""
 "This platform makes use of GlobaLeaks software specifically designed to "
 "protect the identity for submitter and recipient in the exchange of content."
 msgstr ""
@@ -1583,6 +1555,9 @@ msgstr "אימות נכשל"
 
 msgid "Site:"
 msgstr "אתר:"
+
+msgid "The receipt is either invalid or the submission has expired."
+msgstr ""
 
 msgid "Username:"
 msgstr "שם משתמש:"
@@ -1605,15 +1580,42 @@ msgstr ""
 msgid "Assign score points"
 msgstr "הקצאת נקודות ציון"
 
-msgid ""
-"Enter the number of score points to be assigned when this option is "
-"selected:"
-msgstr "הזן את מספר נקודות שיוקצה כשאפשרות זו מסומנת:"
-
 msgid "Confirm"
 msgstr "אשר"
 
 msgid "Please note that all the associated data will be permanently lost."
+msgstr ""
+
+msgid "Welcome!"
+msgstr "ברוך הבא!"
+
+msgid "For the user documentation, visit:"
+msgstr ""
+
+msgid ""
+"If you need technical support, have general questions, or have new ideas for"
+" the software:"
+msgstr ""
+
+msgid ""
+"If you want to contribute to software development or report a bug, please "
+"open an issue in our ticketing system:"
+msgstr ""
+
+msgid ""
+"If your non-profit needs support for investigative journalism, activism or a"
+" human rights defense project:"
+msgstr ""
+
+msgid ""
+"For professional support and development of anti corruption and compliance "
+"projects contact the social enterprise maintaining GlobaLeaks:"
+msgstr ""
+
+msgid "Join our IRC chat channel on the irc.oftc.net network:"
+msgstr ""
+
+msgid "Follow the project on:"
 msgstr ""
 
 msgid "Error!"
@@ -1830,6 +1832,15 @@ msgstr "קבצים מצורפים עבור חושף השחיתות"
 msgid "Upload a file:"
 msgstr "העלה קובץ:"
 
+msgid "Question"
+msgstr ""
+
+msgid "Inverted"
+msgstr ""
+
+msgid "Trigger step"
+msgstr "צעד טריגר"
+
 msgid "Logout"
 msgstr "נתק"
 
@@ -1862,27 +1873,27 @@ msgstr "איפוס סיסמה בוקש."
 msgid "Thank you!"
 msgstr "תודה לך!"
 
-msgid "Remember your key code for this submission."
-msgstr "זכור את קוד המפתח שלך להגשה זו."
+msgid "Remember your receipt for this submission."
+msgstr ""
 
 msgid "We will try to get back to you as soon as possible!"
 msgstr "ננסה לחזור אליכם בהקדם האפשרי!"
 
 msgid ""
-"Use the 16 digit key code to log in. It will allow you to view any messages "
+"Use the 16 digit receipt to log in. It will allow you to view any messages "
 "we sent you, and also to add extra info."
-msgstr "השתמש בקוד 16 ספרות לכניסה ולראות אילו הודעות נשלח לך, או אם אתה יכול לחשוב על כל דבר אחר ששכחת"
+msgstr ""
 
 msgid "View your submission"
 msgstr "הצג הגשתך"
 
-msgid "Hint: How to hide your key code"
-msgstr "רמז: איך להסתיר את קוד המפתח שלך"
+msgid "Hint: How to hide your receipt"
+msgstr ""
 
 msgid ""
-"A useful way to hide your key code is to write it down like a credit card "
+"A useful way to hide your receipt is to write it down like a credit card "
 "number, i.e. by also including an expiration date."
-msgstr "דרך שימושית להסתיר את קוד המפתח שלך, היא לכתוב אותו כמו מספר כרטיס אשראי כלומר כוללת תאריך תפוגה."
+msgstr ""
 
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."
@@ -1893,9 +1904,6 @@ msgstr "תאריך הבקשה"
 
 msgid "Undeclared"
 msgstr ""
-
-msgid "Congratulations!"
-msgstr "מזל טוב!"
 
 msgid "You have completed the platform activation."
 msgstr ""
@@ -2078,9 +2086,6 @@ msgid "To log in, visit:"
 msgstr ""
 
 msgid "Users' credentials:"
-msgstr ""
-
-msgid "For the user documentation visit:"
 msgstr ""
 
 msgid "The platform will be automatically deleted on:"

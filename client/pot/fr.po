@@ -1,7 +1,7 @@
 # 
 # Translators:
 # Alexandre Girard <transifex@alexgirard.com>, 2013-2014
-# AO <ao@localizationlab.org>, 2018
+# AO <ao@localizationlab.org>, 2018-2019
 # marco calamari <marcoc@marcoc.it>, 2013
 # Charles Peltier <charles@cl-info.fr>, 2015
 # AO <ao@localizationlab.org>, 2015-2018
@@ -9,9 +9,9 @@
 # AO <ao@localizationlab.org>, 2016
 # AO <ao@localizationlab.org>, 2016
 # Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2013-2018
-# Hermes Center <info@hermescenter.org>, 2013,2016
-# Hermes Center <info@hermescenter.org>, 2013,2016
-# Hermes Center <info@hermescenter.org>, 2013
+# b33a4006134bb6ee62b30fc0fac5cec6, 2013,2016
+# b33a4006134bb6ee62b30fc0fac5cec6, 2013,2016
+# b33a4006134bb6ee62b30fc0fac5cec6, 2013
 # Jean-Yves Toumit <saiolar-c@yahoo.fr>, 2013
 # Jean-Yves Toumit <saiolar-c@yahoo.fr>, 2013
 # kwadronaut <kwadronaut@autistici.org>, 2015
@@ -39,8 +39,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-11-15 15:00+0000\n"
-"Last-Translator: AO <ao@localizationlab.org>\n"
+"PO-Revision-Date: 2019-01-12 14:02+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: French (http://www.transifex.com/otf/globaleaks/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -98,12 +98,6 @@ msgstr "Licence"
 
 msgid "Notification templates"
 msgstr "Modèles de notification"
-
-msgid "Recipient notification templates"
-msgstr "Modèles de notification des destinataires"
-
-msgid "Admin notification templates"
-msgstr "Modèles de notification de l’administrateur."
 
 msgid "Missing data"
 msgstr "Données manquantes"
@@ -449,9 +443,6 @@ msgstr "Déclencher une question"
 msgid "Triggered by a score higher than:"
 msgstr "Déclenché par un pointage supérieur à  :"
 
-msgid "Select the question to be triggered when this option is selected"
-msgstr "Choisir la question qui sera déclenchée par la sélection de cette option"
-
 msgid "Message shown on top of the status page of the submission"
 msgstr "Message affiché en haut de la page d’état de l’envoi"
 
@@ -757,8 +748,8 @@ msgstr "Titre"
 msgid "Text"
 msgstr "Texte"
 
-msgid "Disable the key code hint"
-msgstr "Désactiver l’indice de code-clé"
+msgid "Disable the receipt hint"
+msgstr "Désactiver l’indice de reçu"
 
 msgid "Disable the donation panel"
 msgstr "Désactiver le volet des dons"
@@ -827,21 +818,6 @@ msgstr "Nom d’utilisateur"
 msgid "Password"
 msgstr "Mot de passe"
 
-msgid "Restrict privileged logins to specific IP addresses"
-msgstr "Restreindre les connexions privilégiées à des adresses IP précises"
-
-msgid "Whitelisted IP addresses"
-msgstr "Adresses IP sur liste blanche"
-
-msgid "Either individual IP addresses or CIDR ranges are accepted here."
-msgstr "Des adresses IP particulières ou des plages de routage interdomaine sans classes (CIDR) peuvent être saisies ici."
-
-msgid "Example:"
-msgstr "Exemple :"
-
-msgid "Each entry must be separated with a comma."
-msgstr "Chaque entrée doit être séparée par une virgule."
-
 msgid "Allow users to reset their passwords"
 msgstr "Autoriser les utilisateurs à réinitialiser leurs mots de passe"
 
@@ -886,6 +862,27 @@ msgstr "URL longue"
 
 msgid "Add"
 msgstr "Ajouter"
+
+msgid "Enable automatic backups"
+msgstr "Activer les sauvegardes automatiques"
+
+msgid "Daily"
+msgstr "Quotidiennes"
+
+msgid "Weekly"
+msgstr "Hebdomadaires"
+
+msgid "Montly"
+msgstr "Mensuelles"
+
+msgid "Remote"
+msgstr "Distantes"
+
+msgid "Server"
+msgstr "Serveur"
+
+msgid "Port"
+msgstr "Port"
 
 msgid "Substatuses"
 msgstr "Sous-états"
@@ -971,6 +968,15 @@ msgstr "Contextes"
 msgid "Name"
 msgstr "Nom"
 
+msgid "Enabled"
+msgstr "Activé"
+
+msgid "Hidden"
+msgstr "Caché"
+
+msgid "Disabled"
+msgstr "Désactivé"
+
 msgid "Questionnaire"
 msgstr "Questionnaire"
 
@@ -986,13 +992,8 @@ msgstr "Expiration de l’envoi"
 msgid "days"
 msgstr "jours"
 
-msgid "Allow selection of this context through the context selector."
-msgstr "Permettre le choix de ce contexte grâce au sélecteur de contextes."
-
-msgid ""
-"If disabled, submissions for this context will only be accessible through a "
-"direct link to it."
-msgstr "Si cette option est désactivée. les envois pour ce contexte ne seront accessibles que par un lien direct."
+msgid "Show the questionnaire navigation interface"
+msgstr "Afficher l’interface de navigation du questionnaire"
 
 msgid "Allow whistleblowers to select their recipients"
 msgstr "Permettre aux lanceurs d’alerte de choisir leurs destinataires"
@@ -1012,6 +1013,12 @@ msgstr "Montrer les destinataires par ordre alphabétique"
 msgid "Show small recipient cards on submission interface"
 msgstr "Montrer des petites cartes sur les destinataires dans l’interface d’envoi."
 
+msgid "Show recipient details on the status page of the submission"
+msgstr "Montrer les détails concernant les destinataires sur la page d’état de l’envoi"
+
+msgid "Text shown on top of the interface for selecting recipients"
+msgstr "Texte de sélection des destinataires, affiché en haut de l’interface"
+
 msgid "Enable comments"
 msgstr "Activer les commentaires"
 
@@ -1027,65 +1034,23 @@ msgstr "Permettre aux lanceurs d’alerte d’envoyer des messages"
 msgid "Let whistleblowers add attachments onto existing submissions"
 msgstr "Permettre aux lanceurs d’alerte d’ajouter des fichiers joints aux envois existants"
 
-msgid "Show recipient details on the status page of the submission"
-msgstr "Montrer les détails concernant les destinataires sur la page d’état de l’envoi"
-
 msgid "Let recipients upload files to whistleblowers"
 msgstr "Permettre aux destinataires de téléverser des fichiers pour les lanceurs d’alerte"
 
-msgid "Text shown on top of the interface for selecting recipients"
-msgstr "Texte de sélection des destinataires, affiché en haut de l’interface"
+msgid "Enable scoring system"
+msgstr "Activer le système d’évaluation"
 
-msgid "Welcome!"
-msgstr "Bienvenue !"
+msgid "Threshold"
+msgstr "Seuil"
 
-msgid ""
-"This interface may help you understand how the server can be configured and "
-"provides some info on how to connect to other GlobaLeaks users and experts."
-msgstr "Cette interface pourrait vous aider à comprendre la configuration du serveur, et vous fournir des informations sur la façon de contacter d’autres utilisateurs ainsi que des experts de GlobaLeaks."
+msgid "Value"
+msgstr "Valeur"
 
-msgid "Documentation"
-msgstr "Documentation"
+msgid "Medium"
+msgstr "Moyen"
 
-msgid ""
-"To properly organize your project, please read the following guidelines:"
-msgstr "Afin d’organiser correctement votre projet, veuillez lire les directives suivantes :"
-
-msgid "Remember to provide proper security advice to Whistleblowers:"
-msgstr "Pensez à fournir des conseils de sécurité appropriés aux lanceurs d’alerte :"
-
-msgid ""
-"To learn more about GlobaLeaks Security you can read the following document:"
-msgstr "Pour en apprendre davantage au sujet de la sécurité de GlobaLeaks, vous pouvez lire le document suivant :"
-
-msgid "Contact"
-msgstr "Contact"
-
-msgid ""
-"If you need technical support, have general questions, or have new ideas for"
-" the software:"
-msgstr "Si vous souhaitez obtenir du soutien technique, si avez des questions d’ordre général ou une nouvelle idée pour le logiciel :"
-
-msgid ""
-"If you want to contribute to software development or report a bug, please "
-"open an issue in our ticketing system:"
-msgstr "Si vous souhaitez participer au développement logiciel ou signaler un bogue, veuillez créer un billet de problème sur notre système de suivi :"
-
-msgid ""
-"If your non-profit needs support for investigative journalism, activism or a"
-" human rights defense project:"
-msgstr "Si votre OSBL a besoin de soutien pour un projet de journalisme d’enquête, d’activisme ou de défense des droits de la personne :"
-
-msgid ""
-"For professional support and development of anti corruption and compliance "
-"projects contact the social enterprise maintaining GlobaLeaks:"
-msgstr "Pour un soutien professionnel et le développement de projets anticorruptions et de conformité, contactez l’entreprise sociale qui maintient GlobaLeaks :"
-
-msgid "Join our IRC chat channel on the irc.oftc.net network:"
-msgstr "Rejoignez notre canal de clavardage IRC sur le réseau irc.oftc.net :"
-
-msgid "Follow the project on:"
-msgstr "Suivez le projet sur :"
+msgid "High"
+msgstr "Élevé"
 
 msgid "Software version:"
 msgstr "Version du logiciel :"
@@ -1114,9 +1079,6 @@ msgstr "Sécurité du transport"
 msgid "Require authentication"
 msgstr "Exiger une authentification"
 
-msgid "Disabled"
-msgstr "Désactivé"
-
 msgid "When the option is re-enabled the spooled emails will be sent out."
 msgstr "Les courriels en attente seront envoyés à la réactivation de cette option."
 
@@ -1137,18 +1099,6 @@ msgstr "Tester la configuration"
 
 msgid "Template"
 msgstr "Modèle"
-
-msgid "Roles enabled to use the platform without Tor:"
-msgstr "Rôles pouvant utiliser la plateforme sans Tor :"
-
-msgid "Admin"
-msgstr "Admin"
-
-msgid "Recipient"
-msgstr "Destinataire"
-
-msgid "Whistleblower"
-msgstr "Lanceur d’alerte"
 
 msgid "Hostname"
 msgstr "Nom d’hôte"
@@ -1177,6 +1127,9 @@ msgstr "J’accepte les conditions générales d’utilisation."
 
 msgid "Proceed"
 msgstr "Continuer"
+
+msgid "Congratulations!"
+msgstr "Félicitations !"
 
 msgid "Configuration completed. You can review the settings or enable it now."
 msgstr "La configuration est terminée. Vous pouvez vérifier les paramètres ou l’activer maintenant."
@@ -1268,9 +1221,6 @@ msgstr "La plateforme prend en charge la configuration de HTTPS par cette interf
 msgid "The connection to the configured domain failed."
 msgstr "Échec de connexion au domaine configuré."
 
-msgid "Enabled"
-msgstr "Activé"
-
 msgid "Running"
 msgstr "Fonctionne"
 
@@ -1290,6 +1240,30 @@ msgid ""
 "Allowing whistleblowers to connect over HTTPS preserves their privacy but "
 "not their anonymity."
 msgstr "Permettre aux lanceurs d’alerte de se connecter par HTTPS assure la protection de leurs renseignements personnels, mais pas leur anonymat."
+
+msgid "Restrict access to specific IP addresses"
+msgstr "Réserver l’accès à des adresses IP précises"
+
+msgid "Role"
+msgstr "Rôle"
+
+msgid "Whitelisted IP addresses"
+msgstr "Adresses IP sur liste blanche"
+
+msgid "Admin"
+msgstr "Administrateur"
+
+msgid "Recipient"
+msgstr "Destinataire"
+
+msgid "Whistleblower"
+msgstr "Lanceur d’alerte"
+
+msgid "Each entry must be separated with a comma."
+msgstr "Chaque entrée doit être séparée par une virgule."
+
+msgid "Example:"
+msgstr "Exemple :"
 
 msgid "Attention!"
 msgstr "Attention !"
@@ -1314,6 +1288,9 @@ msgstr "Anonymiser les connexions sortantes"
 msgid "Let the platform be reachable without Tor"
 msgstr "Permettre l’accès à la plateforme sans Tor"
 
+msgid "Roles enabled to use the platform without Tor"
+msgstr "Rôles pouvant utiliser la plateforme sans Tor"
+
 msgid "Stats of the week:"
 msgstr "Statistiques hebdomadaires :"
 
@@ -1331,9 +1308,6 @@ msgstr "Événement"
 
 msgid "Response time"
 msgstr "Temps de réponse"
-
-msgid "Role"
-msgstr "Rôle"
 
 msgid "Last access"
 msgstr "Dernier accès"
@@ -1362,9 +1336,6 @@ msgstr "Saisie de texte d’une ligne"
 msgid "Multi-line text input"
 msgstr "Saisie de texte multiligne"
 
-msgid "Multiple choice input"
-msgstr "Saisie à choix multiple"
-
 msgid "Selection box"
 msgstr "Case de sélection"
 
@@ -1373,6 +1344,9 @@ msgstr "Case à cocher "
 
 msgid "Terms of service"
 msgstr "Conditions générales d’utilisation "
+
+msgid "Map"
+msgstr "Carte"
 
 msgid "Group of questions"
 msgstr "Groupe de questions"
@@ -1404,14 +1378,14 @@ msgstr "Accepter des réponses multiples"
 msgid "Hint shown on the button for adding an additional answer"
 msgstr "Indication d’ajout de réponse supplémentaire, apparaissant sur le bouton"
 
+msgid "Template override"
+msgstr "Remplacement du modèle"
+
 msgid "Phone number"
 msgstr "Numéro de téléphone"
 
 msgid "Checkbox label"
 msgstr "Étiquette de la case à cocher"
-
-msgid "Layout orientation"
-msgstr "Orientation de la mise en page"
 
 msgid "Subject answer visibility to custodian authorization"
 msgstr "Soumettre la visibilité des réponses à l’autorisation des gardiens"
@@ -1428,6 +1402,12 @@ msgstr "Texte affiché après confirmation"
 msgid "Options"
 msgstr "Options"
 
+msgid "Addition"
+msgstr "Addition"
+
+msgid "Multiplier"
+msgstr "Multiplicateur"
+
 msgid "Questions"
 msgstr "Questions"
 
@@ -1442,32 +1422,6 @@ msgstr "Dupliquer"
 
 msgid "Steps"
 msgstr "Étapes"
-
-msgid "Configuration"
-msgstr "Configuration"
-
-msgid "Default"
-msgstr "Valeur par défaut"
-
-msgid "Forcefully selected"
-msgstr "Sélectionné de force"
-
-msgid "Unselectable"
-msgstr "Non sélectionnable"
-
-msgid "Allow the recipient to postpone the submission expiration date"
-msgstr "Autoriser les destinataires à repousser la date d’expiration des envois"
-
-msgid "The setting is enabled at a global level."
-msgstr "Le paramètre est activé globalement."
-
-msgid "Allow the recipient to delete submissions"
-msgstr "Permettre aux destinataires de supprimer des envois"
-
-msgid ""
-"Allow the recipient to grant permissions to whistleblowers on specific "
-"submissions"
-msgstr "Permettre au destinataire de donner des permissions aux lanceurs d’alerte pour des envois spécifiques"
 
 msgid "Site settings"
 msgstr "Paramètres du site"
@@ -1498,6 +1452,9 @@ msgstr "Actif"
 
 msgid "Inactive"
 msgstr "Inactif"
+
+msgid "Configure"
+msgstr "Configurer"
 
 msgid "The default password is:"
 msgstr "Le mot de passe par défaut :"
@@ -1540,6 +1497,32 @@ msgstr "Supprimer la clé PGP"
 msgid "Set up encryption by providing a PGP public key"
 msgstr "Configurer le chiffrement en fournissant une clé publique PGP"
 
+msgid "Configuration"
+msgstr "Configuration"
+
+msgid "Default"
+msgstr "Valeur par défaut"
+
+msgid "Forcefully selected"
+msgstr "Sélectionné de force"
+
+msgid "Unselectable"
+msgstr "Non sélectionnable"
+
+msgid "Allow the recipient to postpone the submission expiration date"
+msgstr "Autoriser les destinataires à repousser la date d’expiration des envois"
+
+msgid "The setting is enabled at a global level."
+msgstr "Le paramètre est activé globalement."
+
+msgid "Allow the recipient to delete submissions"
+msgstr "Permettre aux destinataires de supprimer des envois"
+
+msgid ""
+"Allow the recipient to grant permissions to whistleblowers on specific "
+"submissions"
+msgstr "Permettre au destinataire de donner des permissions aux lanceurs d’alerte pour des envois spécifiques"
+
 msgid "User has administrative access to the following features:"
 msgstr "L’utilisateur a un accès d’administration aux fonctions suivantes :"
 
@@ -1573,17 +1556,6 @@ msgid ""
 msgstr "Vous êtes connecté à ce serveur sans anonymat, mais il ne prend en charge que les envois anonymes."
 
 msgid ""
-"Server temporarily unusable due to resource exhaustion; advise the Admin if "
-"you can."
-msgstr "Le serveur a épuisé ses ressources et ne peut temporairement pas être utilisé ; avertissez l’administrateur si vous le pouvez."
-
-msgid "This server is not configured."
-msgstr "Ce serveur n’est pas configuré."
-
-msgid "You will not be able to send a submission."
-msgstr "Vous ne pourrez pas transmettre un envoi."
-
-msgid ""
 "This platform makes use of GlobaLeaks software specifically designed to "
 "protect the identity for submitter and recipient in the exchange of content."
 msgstr "Cette plateforme utilise le logiciel GlobaLeaks, spécialement conçu pour protéger l’identité de l’expéditeur et du destinataire lors d’échanges d’informations."
@@ -1604,6 +1576,9 @@ msgstr "Échec lors de l’authentification"
 
 msgid "Site:"
 msgstr "Site :"
+
+msgid "The receipt is either invalid or the submission has expired."
+msgstr "Soit le reçu est invalide soit votre envoi a expiré."
 
 msgid "Username:"
 msgstr "Nom d’utilisateur :"
@@ -1626,16 +1601,43 @@ msgstr "L’opération réinitialisera la configuration et ne peut pas être ann
 msgid "Assign score points"
 msgstr "Assigner un pointage"
 
-msgid ""
-"Enter the number of score points to be assigned when this option is "
-"selected:"
-msgstr "Saisir le nombre de points à attribuer lorsque cette option est choisie :"
-
 msgid "Confirm"
 msgstr "Confirmer"
 
 msgid "Please note that all the associated data will be permanently lost."
 msgstr "Veuillez prendre note que toutes les données associées seront irrémédiablement supprimées."
+
+msgid "Welcome!"
+msgstr "Bienvenue !"
+
+msgid "For the user documentation, visit:"
+msgstr "Pour consulter la documentation utilisateur, visitez :"
+
+msgid ""
+"If you need technical support, have general questions, or have new ideas for"
+" the software:"
+msgstr "Si vous souhaitez obtenir du soutien technique, si avez des questions d’ordre général ou une nouvelle idée pour le logiciel :"
+
+msgid ""
+"If you want to contribute to software development or report a bug, please "
+"open an issue in our ticketing system:"
+msgstr "Si vous souhaitez participer au développement logiciel ou signaler un bogue, veuillez créer un billet de problème sur notre système de suivi :"
+
+msgid ""
+"If your non-profit needs support for investigative journalism, activism or a"
+" human rights defense project:"
+msgstr "Si votre OSBL a besoin de soutien pour un projet de journalisme d’enquête, d’activisme ou de défense des droits de la personne :"
+
+msgid ""
+"For professional support and development of anti corruption and compliance "
+"projects contact the social enterprise maintaining GlobaLeaks:"
+msgstr "Pour un soutien professionnel et le développement de projets anticorruptions et de conformité, contactez l’entreprise sociale qui maintient GlobaLeaks :"
+
+msgid "Join our IRC chat channel on the irc.oftc.net network:"
+msgstr "Rejoignez notre canal de clavardage IRC sur le réseau irc.oftc.net :"
+
+msgid "Follow the project on:"
+msgstr "Suivez le projet sur :"
 
 msgid "Error!"
 msgstr "Erreur !"
@@ -1851,11 +1853,20 @@ msgstr "Pièces jointes pour le lanceur d’alerte"
 msgid "Upload a file:"
 msgstr "Téléverser un fichier :"
 
+msgid "Question"
+msgstr "Question"
+
+msgid "Inverted"
+msgstr "Inversée"
+
+msgid "Trigger step"
+msgstr "Déclencher une étape"
+
 msgid "Logout"
 msgstr "Déconnexion"
 
 msgid "The key code is either invalid or the submission has expired."
-msgstr "Votre code-clé est invalide, ou votre envoi a expiré."
+msgstr "Le code-clé est invalide ou l’envoi a expiré."
 
 msgid "Files attached by recipients"
 msgstr "Pièces jointes par les destinataires"
@@ -1883,27 +1894,27 @@ msgstr "Une réinitialisation de mot de passe a été demandée."
 msgid "Thank you!"
 msgstr "Merci !"
 
-msgid "Remember your key code for this submission."
-msgstr "Souvenez-vous de votre code-clé pour cet envoi."
+msgid "Remember your receipt for this submission."
+msgstr "Souvenez-vous de votre reçu pour cet envoi."
 
 msgid "We will try to get back to you as soon as possible!"
 msgstr "Nous essaierons de vous contacter dès que possible !"
 
 msgid ""
-"Use the 16 digit key code to log in. It will allow you to view any messages "
+"Use the 16 digit receipt to log in. It will allow you to view any messages "
 "we sent you, and also to add extra info."
-msgstr "Utilisez le code-clé à 16 chiffres pour vous connecter. Vous pourrez ainsi lire les messages que nous vous avons envoyés, et aussi ajouter des informations complémentaires."
+msgstr "Utilisez le reçu à 16 chiffres pour vous connecter. Il vous permettra de lire les messages que nous vous avons envoyés, et aussi d’ajouter des renseignements complémentaires."
 
 msgid "View your submission"
 msgstr "Visualisez votre envoi"
 
-msgid "Hint: How to hide your key code"
-msgstr "Astuce : comment cacher votre code-clé"
+msgid "Hint: How to hide your receipt"
+msgstr "Astuce : Comment cacher votre reçu ?"
 
 msgid ""
-"A useful way to hide your key code is to write it down like a credit card "
+"A useful way to hide your receipt is to write it down like a credit card "
 "number, i.e. by also including an expiration date."
-msgstr "Une bonne manière de dissimuler votre code-clé est de le noter comme un numéro de carte de crédit, c.-à-d. en ajoutant une date d’expiration."
+msgstr "Une bonne manière de cacher votre reçu est de le noter comme un numéro de carte de crédit, c.-à-d. en ajoutant aussi une date d’expiration."
 
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."
@@ -1914,9 +1925,6 @@ msgstr "Date de la demande"
 
 msgid "Undeclared"
 msgstr "Non déclarée"
-
-msgid "Congratulations!"
-msgstr "Félicitations !"
 
 msgid "You have completed the platform activation."
 msgstr "L’activation de la plateforme est maintenant terminée."
@@ -2100,9 +2108,6 @@ msgstr "Pour vous connecter, visitez :"
 
 msgid "Users' credentials:"
 msgstr "Renseignements sur les utilisateurs :"
-
-msgid "For the user documentation visit:"
-msgstr "Pour consulter la documentation utilisateur, visitez :"
 
 msgid "The platform will be automatically deleted on:"
 msgstr "La plateforme sera supprimée automatiquement le :"

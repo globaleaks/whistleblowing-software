@@ -11,7 +11,7 @@
 # Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2017-2018
 # Helen Zhang <helen13zhang@gmail.com>, 2018
 # Ibnu Daru Aji, 2015
-# ical, 2018
+# ical, 2018-2019
 # Imron Fauzi <imronfauzi@gmail.com>, 2015
 # Marcel Oomens <mail@marceloomens.com>, 2018
 # Margaret Megan <megan_marg@yahoo.com>, 2017
@@ -23,8 +23,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-11-15 11:35+0000\n"
-"Last-Translator: Hermes Center <info@hermescenter.org>\n"
+"PO-Revision-Date: 2019-01-12 14:02+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Indonesian (http://www.transifex.com/otf/globaleaks/language/id/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -82,12 +82,6 @@ msgstr "Lisensi"
 
 msgid "Notification templates"
 msgstr "Format pemberitahuan"
-
-msgid "Recipient notification templates"
-msgstr "Format notifikasi penerima"
-
-msgid "Admin notification templates"
-msgstr "Format notifikasi admin"
 
 msgid "Missing data"
 msgstr "Data hilang"
@@ -388,7 +382,7 @@ msgid "HTTPS settings"
 msgstr "Pengaturan HTTPS"
 
 msgid "URL shortener"
-msgstr ""
+msgstr "Pemendek URL"
 
 msgid "Anomaly detection thresholds"
 msgstr "Batas deteksi anomali "
@@ -432,9 +426,6 @@ msgstr "Pertanyaan pemicu"
 
 msgid "Triggered by a score higher than:"
 msgstr "Dipicu oleh nilai yang lebih tinggi dari:"
-
-msgid "Select the question to be triggered when this option is selected"
-msgstr "Pilih pertanyaan yang akan muncul jika pilihan ini terpilih."
 
 msgid "Message shown on top of the status page of the submission"
 msgstr "Pesan tampil di atas halaman status pengiriman"
@@ -686,10 +677,10 @@ msgstr "Aktifkan enkripsi"
 
 msgid ""
 "Allow the system to store data in plaintext when encryption is not available"
-msgstr ""
+msgstr "Izinkan sistem untuk menyimpan data dalam bentuk plaintext ketika enkripsi tidak tersedia"
 
 msgid "Enable multisite feature"
-msgstr ""
+msgstr "Aktifkan fitur multi situs"
 
 msgid "Allow other websites to include the platform inside iframes"
 msgstr "Mengizinkan situs-situs lain menyertakan platform di dalam iframes"
@@ -741,8 +732,8 @@ msgstr "Judul"
 msgid "Text"
 msgstr "Teks"
 
-msgid "Disable the key code hint"
-msgstr "Menonaktifkan petunjuk kata sandi"
+msgid "Disable the receipt hint"
+msgstr "Nonaktifkan petunjuk tanda terima"
 
 msgid "Disable the donation panel"
 msgstr "Menonaktifkan panel donasi"
@@ -811,21 +802,6 @@ msgstr "Nama Pengguna"
 msgid "Password"
 msgstr "Kata sandi"
 
-msgid "Restrict privileged logins to specific IP addresses"
-msgstr "Membatasi login tertentu untuk alamat IP khusus "
-
-msgid "Whitelisted IP addresses"
-msgstr "Alamat-alamat IP yang di daftarputihkan "
-
-msgid "Either individual IP addresses or CIDR ranges are accepted here."
-msgstr "Alamat IP pribadi atau jarak CIDR dapat diterima disini "
-
-msgid "Example:"
-msgstr "Contoh:"
-
-msgid "Each entry must be separated with a comma."
-msgstr "Setiap masukan harus dipisahkan dengan koma."
-
 msgid "Allow users to reset their passwords"
 msgstr "Mengizinkan pengguna untuk mengatur ulang kata sandi mereka"
 
@@ -845,7 +821,7 @@ msgid "Enable simplified login"
 msgstr "Mengaktifkan metode masuk yang mudah"
 
 msgid "Logging level"
-msgstr ""
+msgstr "Tingkat pencatatan"
 
 msgid "Log accesses of internal users"
 msgstr "Akses log pengguna internal"
@@ -870,6 +846,27 @@ msgstr "URL panjang"
 
 msgid "Add"
 msgstr "Tambahkan"
+
+msgid "Enable automatic backups"
+msgstr "Aktifkan backup otomatis"
+
+msgid "Daily"
+msgstr "Harian"
+
+msgid "Weekly"
+msgstr "Mingguan"
+
+msgid "Montly"
+msgstr ""
+
+msgid "Remote"
+msgstr "Remote "
+
+msgid "Server"
+msgstr "Server"
+
+msgid "Port"
+msgstr "Port"
 
 msgid "Substatuses"
 msgstr "Sub status"
@@ -955,6 +952,15 @@ msgstr "Konteks"
 msgid "Name"
 msgstr "Nama"
 
+msgid "Enabled"
+msgstr "aktifkan"
+
+msgid "Hidden"
+msgstr "Tersembunyi"
+
+msgid "Disabled"
+msgstr "Menonaktifkan"
+
 msgid "Questionnaire"
 msgstr "Kuesioner"
 
@@ -970,13 +976,8 @@ msgstr "Waktu berakhir pengiriman"
 msgid "days"
 msgstr "hari"
 
-msgid "Allow selection of this context through the context selector."
-msgstr "Izinkan pilihan konteks ini melalui pemilih konteks"
-
-msgid ""
-"If disabled, submissions for this context will only be accessible through a "
-"direct link to it."
-msgstr "Jika dinonaktifkan, pengiriman untuk konteks ini hanya dapat diakses melalui tautan langsung."
+msgid "Show the questionnaire navigation interface"
+msgstr ""
 
 msgid "Allow whistleblowers to select their recipients"
 msgstr "izinkan informan publik untuk memilih penerima"
@@ -996,6 +997,12 @@ msgstr "Tunjukkan penerima-penerima berdasarkan susunan abjad"
 msgid "Show small recipient cards on submission interface"
 msgstr "Tunjukkan profil penerima pada laman antarmuka pengiriman"
 
+msgid "Show recipient details on the status page of the submission"
+msgstr "Tunjukkan detil penerima di halaman status pengiriman"
+
+msgid "Text shown on top of the interface for selecting recipients"
+msgstr "Teks yang terlihat di bagian atas antarmuka untuk memilih penerima"
+
 msgid "Enable comments"
 msgstr "Aktifkan komentar"
 
@@ -1011,65 +1018,23 @@ msgstr "Mengizinkan informan publik untuk mengirim pesan"
 msgid "Let whistleblowers add attachments onto existing submissions"
 msgstr "Izinkan whistleblowers menambah lampiran pada kiriman yang sudah ada"
 
-msgid "Show recipient details on the status page of the submission"
-msgstr "Tunjukkan detil penerima di halaman status pengiriman"
-
 msgid "Let recipients upload files to whistleblowers"
 msgstr "Izinkan penerima menggunggah berkas kepada informan publik"
 
-msgid "Text shown on top of the interface for selecting recipients"
-msgstr "Teks yang terlihat di bagian atas antarmuka untuk memilih penerima"
+msgid "Enable scoring system"
+msgstr "Aktifkan sistem pencetakan skor"
 
-msgid "Welcome!"
-msgstr "Selamat datang!"
+msgid "Threshold"
+msgstr "Batas"
 
-msgid ""
-"This interface may help you understand how the server can be configured and "
-"provides some info on how to connect to other GlobaLeaks users and experts."
-msgstr "Antarmuka ini dapat membantu Anda memahami bagaimana peladen dapat dikonfigurasi dan memberikan informasi bagaimana agar terhubung ke pengguna GlobalLeaks dan tenaga ahli lainnya."
+msgid "Value"
+msgstr "Nilai"
 
-msgid "Documentation"
-msgstr "Dokumentasi"
+msgid "Medium"
+msgstr "Sedang"
 
-msgid ""
-"To properly organize your project, please read the following guidelines:"
-msgstr "Untuk mengatur proyek anda secara tepat, bacalah panduan berikut:"
-
-msgid "Remember to provide proper security advice to Whistleblowers:"
-msgstr "Ingatlah untuk memberikan nasihat keamanan yang benar kepada Informan publik."
-
-msgid ""
-"To learn more about GlobaLeaks Security you can read the following document:"
-msgstr "Untuk mempelajari lebih lanjut perihal GlobaLeaks Security, Anda dapat membaca dokumen berikut:"
-
-msgid "Contact"
-msgstr "Kontak"
-
-msgid ""
-"If you need technical support, have general questions, or have new ideas for"
-" the software:"
-msgstr "Jika Anda membutuhkan dukungan teknis, memiliki pertanyaan umum, atau ide baru untuk perangkat lunak:"
-
-msgid ""
-"If you want to contribute to software development or report a bug, please "
-"open an issue in our ticketing system:"
-msgstr "Jika Anda ingin memberikan kontribusi untuk pengembangan perangkat lunak atau melaporkan sebuah gangguan, bukalah sebuah isu pada sistem tiket kami."
-
-msgid ""
-"If your non-profit needs support for investigative journalism, activism or a"
-" human rights defense project:"
-msgstr "Jika organisasi nirlaba Anda mendukung jurnalisme investigasi, aktivisme atau proyek perlindungan hak asasi manusia:"
-
-msgid ""
-"For professional support and development of anti corruption and compliance "
-"projects contact the social enterprise maintaining GlobaLeaks:"
-msgstr "Untuk bantuan profesional dan pengembangan proyek pengumpulan dan anti korupsi, kontak perusahaan sosial yang menangani GlobaLeaks:"
-
-msgid "Join our IRC chat channel on the irc.oftc.net network:"
-msgstr "Bergabunglah dengan kanal percakapan IRC kami di jaringan irc.oftc.net"
-
-msgid "Follow the project on:"
-msgstr "Tetap ikuti proyek:"
+msgid "High"
+msgstr "Tinggi"
 
 msgid "Software version:"
 msgstr "Versi perangkat lunak: "
@@ -1098,9 +1063,6 @@ msgstr "Keamanan Transpor"
 msgid "Require authentication"
 msgstr "Autentikasi dibutuhkan"
 
-msgid "Disabled"
-msgstr "Menonaktifkan"
-
 msgid "When the option is re-enabled the spooled emails will be sent out."
 msgstr "Bila pilihan diaktifkan ulang, surel yang tersimpan akan dikirimkan."
 
@@ -1121,18 +1083,6 @@ msgstr "Mencoba konfigurasi"
 
 msgid "Template"
 msgstr "Format"
-
-msgid "Roles enabled to use the platform without Tor:"
-msgstr " Peran yang diizinkan untuk menggunakan platform tanpa Tor:"
-
-msgid "Admin"
-msgstr "Admin"
-
-msgid "Recipient"
-msgstr "Penerima"
-
-msgid "Whistleblower"
-msgstr "Informan publik"
 
 msgid "Hostname"
 msgstr "Nama host"
@@ -1161,6 +1111,9 @@ msgstr "Saya setuju dengan Persyaratan Layanan."
 
 msgid "Proceed"
 msgstr "Lanjutkan"
+
+msgid "Congratulations!"
+msgstr "Selamat!"
 
 msgid "Configuration completed. You can review the settings or enable it now."
 msgstr "Konfigurasi selesai. Anda dapat mengulas pengaturan atau mengaktifkannya sekarang."
@@ -1252,9 +1205,6 @@ msgstr "Platform mendukung konfigurasi HTTPS melalui antarmuka ini. "
 msgid "The connection to the configured domain failed."
 msgstr "Koneksi ke domain yang terkonfigurasi gagal. "
 
-msgid "Enabled"
-msgstr "aktifkan"
-
 msgid "Running"
 msgstr "menjalankan"
 
@@ -1274,6 +1224,30 @@ msgid ""
 "Allowing whistleblowers to connect over HTTPS preserves their privacy but "
 "not their anonymity."
 msgstr "Mengizinkan informan publik terhubung melalui HTTPS menjaga privasi mereka, tetapi tidak membuat mereka menjadi anonim"
+
+msgid "Restrict access to specific IP addresses"
+msgstr "Batasi akses ke alamat IP tertentu"
+
+msgid "Role"
+msgstr "Peran"
+
+msgid "Whitelisted IP addresses"
+msgstr "Alamat-alamat IP yang di daftarputihkan "
+
+msgid "Admin"
+msgstr "Admin"
+
+msgid "Recipient"
+msgstr "Penerima"
+
+msgid "Whistleblower"
+msgstr "Informan publik"
+
+msgid "Each entry must be separated with a comma."
+msgstr "Setiap masukan harus dipisahkan dengan koma."
+
+msgid "Example:"
+msgstr "Contoh:"
 
 msgid "Attention!"
 msgstr "perhatian!"
@@ -1298,6 +1272,9 @@ msgstr "Menganonimisasi koneksi keluar"
 msgid "Let the platform be reachable without Tor"
 msgstr "Perbolehkan platform diakses tanpa menggunakan Tor"
 
+msgid "Roles enabled to use the platform without Tor"
+msgstr " Peran yang diizinkan untuk menggunakan platform tanpa Tor"
+
 msgid "Stats of the week:"
 msgstr "Statistik minggu ini:"
 
@@ -1315,9 +1292,6 @@ msgstr "Peristiwa"
 
 msgid "Response time"
 msgstr "Waktu respon"
-
-msgid "Role"
-msgstr "Peran"
 
 msgid "Last access"
 msgstr "Akses terakhir"
@@ -1346,9 +1320,6 @@ msgstr "Masukkan teks sebaris"
 msgid "Multi-line text input"
 msgstr "Masukkan teks lebih dari satu baris"
 
-msgid "Multiple choice input"
-msgstr "Masukkan pilihan ganda"
-
 msgid "Selection box"
 msgstr "Kotak pilihan"
 
@@ -1357,6 +1328,9 @@ msgstr "Kotak centang"
 
 msgid "Terms of service"
 msgstr "Persyaratan layanan"
+
+msgid "Map"
+msgstr "Peta"
 
 msgid "Group of questions"
 msgstr "Sekelompok pertanyaan"
@@ -1388,14 +1362,14 @@ msgstr "Menerima banyak jawaban"
 msgid "Hint shown on the button for adding an additional answer"
 msgstr "Petunjuk ditampilkan pada tombol untuk tambahan jawaban"
 
+msgid "Template override"
+msgstr "Penggantian templat"
+
 msgid "Phone number"
 msgstr "Nomor telepon"
 
 msgid "Checkbox label"
 msgstr "Nama kotak centang"
-
-msgid "Layout orientation"
-msgstr "Orientasi tata letak"
 
 msgid "Subject answer visibility to custodian authorization"
 msgstr "Visibilitas jawaban subyek kepada petugas otorisasi"
@@ -1412,6 +1386,12 @@ msgstr "Teks ditampilkan atas konfirmasi "
 msgid "Options"
 msgstr "Opsi"
 
+msgid "Addition"
+msgstr "Tambahan"
+
+msgid "Multiplier"
+msgstr "Pengganda"
+
 msgid "Questions"
 msgstr "Pertanyaan"
 
@@ -1426,32 +1406,6 @@ msgstr "Menggandakan"
 
 msgid "Steps"
 msgstr "Langkah"
-
-msgid "Configuration"
-msgstr "Konfigurasi"
-
-msgid "Default"
-msgstr "Bawaan"
-
-msgid "Forcefully selected"
-msgstr "Secara paksa dipilih"
-
-msgid "Unselectable"
-msgstr "Tidak dapat dipilih"
-
-msgid "Allow the recipient to postpone the submission expiration date"
-msgstr "Mengizinkan penerima menunda waktu kedaluwarsa pada pengiriman."
-
-msgid "The setting is enabled at a global level."
-msgstr "Pengaturan ini diaktifkan pada level global."
-
-msgid "Allow the recipient to delete submissions"
-msgstr "Mengizinkan penerima untuk menghapus kiriman"
-
-msgid ""
-"Allow the recipient to grant permissions to whistleblowers on specific "
-"submissions"
-msgstr "Izinkan penerima memberikan izin kepada informan publik pada pengiriman tertentu"
 
 msgid "Site settings"
 msgstr "Pengaturan situs "
@@ -1483,6 +1437,9 @@ msgstr "Aktif"
 msgid "Inactive"
 msgstr "Tidak aktif"
 
+msgid "Configure"
+msgstr "Konfigurasikan"
+
 msgid "The default password is:"
 msgstr "Kata sandi bawaan adalah:"
 
@@ -1510,7 +1467,7 @@ msgid "Language"
 msgstr "Bahasa"
 
 msgid "Enable email notifications"
-msgstr ""
+msgstr "Aktifkan notifikasi surel"
 
 msgid "Details of the PGP key:"
 msgstr "Detil dari kunci PGP:"
@@ -1523,6 +1480,32 @@ msgstr "Menghapus kunci PGP "
 
 msgid "Set up encryption by providing a PGP public key"
 msgstr "Memasang enkripsi dengan menyediakan kunci publik PGP"
+
+msgid "Configuration"
+msgstr "Konfigurasi"
+
+msgid "Default"
+msgstr "Bawaan"
+
+msgid "Forcefully selected"
+msgstr "Secara paksa dipilih"
+
+msgid "Unselectable"
+msgstr "Tidak dapat dipilih"
+
+msgid "Allow the recipient to postpone the submission expiration date"
+msgstr "Mengizinkan penerima menunda waktu kedaluwarsa pada pengiriman."
+
+msgid "The setting is enabled at a global level."
+msgstr "Pengaturan ini diaktifkan pada level global."
+
+msgid "Allow the recipient to delete submissions"
+msgstr "Mengizinkan penerima untuk menghapus kiriman"
+
+msgid ""
+"Allow the recipient to grant permissions to whistleblowers on specific "
+"submissions"
+msgstr "Izinkan penerima memberikan izin kepada informan publik pada pengiriman tertentu"
 
 msgid "User has administrative access to the following features:"
 msgstr "Pengguna mempunyai akses administratif untuk beberapa fitur berikut:"
@@ -1557,17 +1540,6 @@ msgid ""
 msgstr "Anda sudah terhubung dengan peladen tanpa anonimitas dan peladen ini hanya mendukung pengiriman anonim "
 
 msgid ""
-"Server temporarily unusable due to resource exhaustion; advise the Admin if "
-"you can."
-msgstr "Peladen untuk sementara tidak dapat digunakan dikarenakan kelelahan sumber; beritahu kepada Admin bila Anda bisa."
-
-msgid "This server is not configured."
-msgstr "Peladen ini tidak dikonfigurasi "
-
-msgid "You will not be able to send a submission."
-msgstr "Anda tidak akan bisa mengirimkan sebuah kiriman."
-
-msgid ""
 "This platform makes use of GlobaLeaks software specifically designed to "
 "protect the identity for submitter and recipient in the exchange of content."
 msgstr "Format ini menggunakan perangkat lunak GlobaLeaks yang secara khusus dirancang untuk melindungi identitas pengirim dan penerima dalam pertukaran konten."
@@ -1588,6 +1560,9 @@ msgstr "Autentikasi gagal"
 
 msgid "Site:"
 msgstr "Situs:"
+
+msgid "The receipt is either invalid or the submission has expired."
+msgstr "Tanda terima salah atau submisinya sudah kedaluwarsa"
 
 msgid "Username:"
 msgstr "Nama Pengguna:"
@@ -1610,16 +1585,43 @@ msgstr "Pekerjaan akan mengatur ulang konfigurasi dan tidak dapat diulang kembal
 msgid "Assign score points"
 msgstr "Menentukan poin skor "
 
-msgid ""
-"Enter the number of score points to be assigned when this option is "
-"selected:"
-msgstr "masukkan jumlah poin nilai yang ditetapkan ketika pilihan ini dipilih."
-
 msgid "Confirm"
 msgstr "Konfirmasi"
 
 msgid "Please note that all the associated data will be permanently lost."
 msgstr "Harap dicatat bahwa semua data yang terkait akan hilang secara permanen."
+
+msgid "Welcome!"
+msgstr "Selamat datang!"
+
+msgid "For the user documentation, visit:"
+msgstr "Untuk dokumentasi pengguna, kunjungi:"
+
+msgid ""
+"If you need technical support, have general questions, or have new ideas for"
+" the software:"
+msgstr "Jika Anda membutuhkan dukungan teknis, memiliki pertanyaan umum, atau ide baru untuk perangkat lunak:"
+
+msgid ""
+"If you want to contribute to software development or report a bug, please "
+"open an issue in our ticketing system:"
+msgstr "Jika Anda ingin memberikan kontribusi untuk pengembangan perangkat lunak atau melaporkan sebuah gangguan, bukalah sebuah isu pada sistem tiket kami."
+
+msgid ""
+"If your non-profit needs support for investigative journalism, activism or a"
+" human rights defense project:"
+msgstr "Jika organisasi nirlaba Anda mendukung jurnalisme investigasi, aktivisme atau proyek perlindungan hak asasi manusia:"
+
+msgid ""
+"For professional support and development of anti corruption and compliance "
+"projects contact the social enterprise maintaining GlobaLeaks:"
+msgstr "Untuk bantuan profesional dan pengembangan proyek pengumpulan dan anti korupsi, kontak perusahaan sosial yang menangani GlobaLeaks:"
+
+msgid "Join our IRC chat channel on the irc.oftc.net network:"
+msgstr "Bergabunglah dengan kanal percakapan IRC kami di jaringan irc.oftc.net"
+
+msgid "Follow the project on:"
+msgstr "Tetap ikuti proyek:"
 
 msgid "Error!"
 msgstr "Gagal!"
@@ -1739,7 +1741,7 @@ msgid "Submit"
 msgstr "Kirim"
 
 msgid "Recipients have requested you to fill an additional questionnaire."
-msgstr ""
+msgstr "Penerima meminta Anda untuk mengisi kuesioner tambahan."
 
 msgid "Fill the additional questionnaire"
 msgstr "Isi kuesioner tambahan"
@@ -1835,6 +1837,15 @@ msgstr "Lampiran berkas untuk informan publik "
 msgid "Upload a file:"
 msgstr "Mengunggah berkas: "
 
+msgid "Question"
+msgstr "Pertanyaan"
+
+msgid "Inverted"
+msgstr "Terbalik"
+
+msgid "Trigger step"
+msgstr "Memicu langkah"
+
 msgid "Logout"
 msgstr "Keluar"
 
@@ -1867,27 +1878,27 @@ msgstr "Pengaturan ulang kata sandi telah diminta "
 msgid "Thank you!"
 msgstr "Terima kasih!"
 
-msgid "Remember your key code for this submission."
-msgstr "Ingatlah kode kunci Anda pada kiriman ini."
+msgid "Remember your receipt for this submission."
+msgstr "Ingat tanda terima Anda untuk kiriman ini"
 
 msgid "We will try to get back to you as soon as possible!"
 msgstr "Kami akan menghubungi Anda kembali secepatnya!"
 
 msgid ""
-"Use the 16 digit key code to log in. It will allow you to view any messages "
+"Use the 16 digit receipt to log in. It will allow you to view any messages "
 "we sent you, and also to add extra info."
-msgstr "Gunakan 16 digit kode kunci untuk masuk. Anda akan dapat melihat setiap pesan yang kami kirimkan dan juga untuk menambah informasi tambahan."
+msgstr "Gunakan 16 angka tanda terima untuk masuk. Anda akan dapat melihat setiap pesan yang kami kirimkan dan juga untuk menambah informasi tambahan."
 
 msgid "View your submission"
 msgstr "Melihat kiriman Anda"
 
-msgid "Hint: How to hide your key code"
-msgstr "Petunjuk: Bagaimana menyembunyikan kode kunci Anda"
+msgid "Hint: How to hide your receipt"
+msgstr "Petunjuk: Bagaimana menyembunyikan tanda terima Anda"
 
 msgid ""
-"A useful way to hide your key code is to write it down like a credit card "
+"A useful way to hide your receipt is to write it down like a credit card "
 "number, i.e. by also including an expiration date."
-msgstr "Cara yang baik menyembunyikan kode kunci Anda adalah untuk menulisnya seperti nomor kartu kredit, termasuk tanggal kadaluarsanya."
+msgstr "Cara yang baik untuk menyembunyikan tanda terima Anda adalah dengan menuliskannya seperti nomor kartu kredit, termasuk tanggal kedaluwarsanya. "
 
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."
@@ -1898,9 +1909,6 @@ msgstr "Tanggal permintaan"
 
 msgid "Undeclared"
 msgstr "Tidak dideklarasikan"
-
-msgid "Congratulations!"
-msgstr "Selamat!"
 
 msgid "You have completed the platform activation."
 msgstr "Anda telah melengkapi platform aktivasi."
@@ -2084,9 +2092,6 @@ msgstr "untuk masuk, kunjungi:"
 
 msgid "Users' credentials:"
 msgstr "Jaminan pengguna:"
-
-msgid "For the user documentation visit:"
-msgstr "untuk dokumentasi pengguna, kunjungi:"
 
 msgid "The platform will be automatically deleted on:"
 msgstr "platform akan dihapus secara otomatis pada:"

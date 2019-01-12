@@ -7,10 +7,10 @@
 # Annie Bridges <anniebridges90@gmail.com>, 2014
 # Dina Solveig Jalkanen, 2017
 # Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2014,2016-2018
-# Hermes Center <info@hermescenter.org>, 2013,2016
-# Hermes Center <info@hermescenter.org>, 2013
-# Hermes Center <info@hermescenter.org>, 2013
-# Kristina Tyskiewicz <savannah5k@yahoo.com>, 2016-2017
+# b33a4006134bb6ee62b30fc0fac5cec6, 2013,2016
+# b33a4006134bb6ee62b30fc0fac5cec6, 2013
+# b33a4006134bb6ee62b30fc0fac5cec6, 2013
+# Kristina Tyskiewicz <savannah5k@yahoo.com>, 2016-2017,2019
 # Lowrider <pams@imail.ru>, 2015
 # Muhammad Ishaq <ishaq@kahaf.com>, 2014
 # Muhammad Ishfaq Khan <ishfaqkhanniazi@gmail.com>, 2014
@@ -28,8 +28,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-11-15 11:36+0000\n"
-"Last-Translator: Hermes Center <info@hermescenter.org>\n"
+"PO-Revision-Date: 2019-01-12 14:02+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Russian (http://www.transifex.com/otf/globaleaks/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -88,12 +88,6 @@ msgstr "Лицензия"
 msgid "Notification templates"
 msgstr "Шаблоны уведомлений"
 
-msgid "Recipient notification templates"
-msgstr "Шаблоны уведомлений получателей"
-
-msgid "Admin notification templates"
-msgstr "Шаблоны уведомлений администратора"
-
 msgid "Missing data"
 msgstr "Отсутствуют данные"
 
@@ -116,7 +110,7 @@ msgid "Preferences"
 msgstr "Настройки"
 
 msgid "User preferences"
-msgstr ""
+msgstr "Настройки пользователя"
 
 msgid "Notification settings"
 msgstr "Настройки уведомлений"
@@ -438,9 +432,6 @@ msgstr "Инициировать вопрос"
 msgid "Triggered by a score higher than:"
 msgstr "Инициируется оценкой выше:"
 
-msgid "Select the question to be triggered when this option is selected"
-msgstr "Выберите вопрос запускающийся выбором этой опции"
-
 msgid "Message shown on top of the status page of the submission"
 msgstr "Сообщение отображается в верхней части страницы подачи материалов"
 
@@ -625,25 +616,25 @@ msgid "Use as default"
 msgstr "Использовать по умолчанию"
 
 msgid "Create your whistleblowing platform"
-msgstr ""
+msgstr "Создайте платформу информатора"
 
 msgid "Collapse"
-msgstr ""
+msgstr "Закрыть"
 
 msgid "Expand"
-msgstr ""
+msgstr "Открыть"
 
 msgid "Select"
 msgstr "Выбрать"
 
 msgid "Selected by default"
-msgstr ""
+msgstr "Выбранный по умолчанию"
 
 msgid "Unselected by default"
-msgstr ""
+msgstr "Не выбранный по умолчанию"
 
 msgid "Surname"
-msgstr ""
+msgstr "Фамилия"
 
 msgid "New"
 msgstr "Новый"
@@ -687,14 +678,14 @@ msgid "Disable submissions"
 msgstr "Лишить возможности публиковать материалы"
 
 msgid "Enable encryption"
-msgstr ""
+msgstr "Включить шифрование"
 
 msgid ""
 "Allow the system to store data in plaintext when encryption is not available"
-msgstr ""
+msgstr "Разрешить системе сохранить информацию в обычном текстовом формате, когда шифрование невозможно"
 
 msgid "Enable multisite feature"
-msgstr ""
+msgstr "Включить настройку мульти-сайтов"
 
 msgid "Allow other websites to include the platform inside iframes"
 msgstr "Позволять другим веб-сайтам, вставлять элементы платформы GlobaLeaks в качестве плавающих фреймов."
@@ -746,8 +737,8 @@ msgstr "Заголовок"
 msgid "Text"
 msgstr "Текст"
 
-msgid "Disable the key code hint"
-msgstr "Отключение подсказки для кода доступа"
+msgid "Disable the receipt hint"
+msgstr ""
 
 msgid "Disable the donation panel"
 msgstr "Отключить панель пожертвований"
@@ -763,11 +754,11 @@ msgid "Tweak this setting only if you know what you are doing."
 msgstr "Изменяйте эту настройку только если знаете, что делаете."
 
 msgid "Password change interval"
-msgstr ""
+msgstr "Интервал для смены пароля"
 
 msgid ""
 "For security reasons, password changes are required at regular intervals."
-msgstr ""
+msgstr "По причинам безопасности смена пароля необходима по регулярным интервалам"
 
 msgid "Set the value to 0 to disable this feature."
 msgstr ""
@@ -797,7 +788,7 @@ msgid "Size limit for file attachments"
 msgstr "Ограничение в размере для приложений"
 
 msgid "Notify administrators of software problems"
-msgstr ""
+msgstr "Уведомите администраторов о проблемах программного обеспечения"
 
 msgid "Notify developers of software problems"
 msgstr "Известить разработчиков о проблемах в программе. "
@@ -815,21 +806,6 @@ msgstr "Имя пользователя"
 
 msgid "Password"
 msgstr "Пароль"
-
-msgid "Restrict privileged logins to specific IP addresses"
-msgstr ""
-
-msgid "Whitelisted IP addresses"
-msgstr ""
-
-msgid "Either individual IP addresses or CIDR ranges are accepted here."
-msgstr ""
-
-msgid "Example:"
-msgstr "Пример:"
-
-msgid "Each entry must be separated with a comma."
-msgstr ""
 
 msgid "Allow users to reset their passwords"
 msgstr ""
@@ -875,6 +851,27 @@ msgstr "Длинный URL"
 
 msgid "Add"
 msgstr "Добавить"
+
+msgid "Enable automatic backups"
+msgstr ""
+
+msgid "Daily"
+msgstr "Ежедневно"
+
+msgid "Weekly"
+msgstr "Еженедельно"
+
+msgid "Montly"
+msgstr ""
+
+msgid "Remote"
+msgstr "Удаленные"
+
+msgid "Server"
+msgstr "Сервер"
+
+msgid "Port"
+msgstr "Порт"
 
 msgid "Substatuses"
 msgstr ""
@@ -960,6 +957,15 @@ msgstr "Контексты"
 msgid "Name"
 msgstr "Имя"
 
+msgid "Enabled"
+msgstr "Включено"
+
+msgid "Hidden"
+msgstr "Скрытый"
+
+msgid "Disabled"
+msgstr "Отключено"
+
 msgid "Questionnaire"
 msgstr "Опросник"
 
@@ -975,13 +981,8 @@ msgstr ""
 msgid "days"
 msgstr "дн."
 
-msgid "Allow selection of this context through the context selector."
-msgstr "Текст, отображаемый перед контекстным селектором"
-
-msgid ""
-"If disabled, submissions for this context will only be accessible through a "
-"direct link to it."
-msgstr "Если настройка выключена, подача документов по этой теме доступна только по прямой ссылке к ней."
+msgid "Show the questionnaire navigation interface"
+msgstr ""
 
 msgid "Allow whistleblowers to select their recipients"
 msgstr "Разрешить осведомителям выбирать получателей"
@@ -1001,6 +1002,12 @@ msgstr "Сортировать получателей в алфавитном п
 msgid "Show small recipient cards on submission interface"
 msgstr "Показать значки получателей при выборе материалов"
 
+msgid "Show recipient details on the status page of the submission"
+msgstr "Показать данные получателя на странице состояния подачи материалов"
+
+msgid "Text shown on top of the interface for selecting recipients"
+msgstr "Текст, отображаемый над интерфейсом выбора получателей"
+
 msgid "Enable comments"
 msgstr "Включить комментарии"
 
@@ -1016,65 +1023,23 @@ msgstr "Разрешить информаторам отправлять соо�
 msgid "Let whistleblowers add attachments onto existing submissions"
 msgstr "Разрешить информаторам добавлять приложения к поданным документам"
 
-msgid "Show recipient details on the status page of the submission"
-msgstr "Показать данные получателя на странице состояния подачи материалов"
-
 msgid "Let recipients upload files to whistleblowers"
 msgstr "Позволить получателям загружать файлы для информаторов"
 
-msgid "Text shown on top of the interface for selecting recipients"
-msgstr "Текст, отображаемый над интерфейсом выбора получателей"
+msgid "Enable scoring system"
+msgstr ""
 
-msgid "Welcome!"
-msgstr "Добро пожаловать!"
+msgid "Threshold"
+msgstr ""
 
-msgid ""
-"This interface may help you understand how the server can be configured and "
-"provides some info on how to connect to other GlobaLeaks users and experts."
-msgstr "Этот интерфейс сможет помочь вам настроить Узел и предоставит информацию о процессе подключения к другим пользователям GlobaLeaks  и специалистам."
+msgid "Value"
+msgstr "Значение"
 
-msgid "Documentation"
-msgstr "Документация"
+msgid "Medium"
+msgstr "Средний"
 
-msgid ""
-"To properly organize your project, please read the following guidelines:"
-msgstr "Для того, чтобы корректно сформулировать свою инициативу, ознакомьтесь, пожалуйста, со следующими правилами:"
-
-msgid "Remember to provide proper security advice to Whistleblowers:"
-msgstr "Не забудьте проконсультировать по вопросам безопасности информаторов:"
-
-msgid ""
-"To learn more about GlobaLeaks Security you can read the following document:"
-msgstr "Для более полного изучения вопросов безопасности GlobaLeaks, ознакомьтесь со следующим документом:"
-
-msgid "Contact"
-msgstr "Контакты"
-
-msgid ""
-"If you need technical support, have general questions, or have new ideas for"
-" the software:"
-msgstr "Если вам необходима техническая поддержка, у вас возникли общие вопросы, есть предложения для программного обеспечения:"
-
-msgid ""
-"If you want to contribute to software development or report a bug, please "
-"open an issue in our ticketing system:"
-msgstr "Если Вы хотите участвовать в разработке программного обеспечения или сообщить об ошибке, пожалуйста, отправьте запрос в нашу систему поддержки:"
-
-msgid ""
-"If your non-profit needs support for investigative journalism, activism or a"
-" human rights defense project:"
-msgstr "Если ваша некоммерческая организация нуждается в поддержке журналистских расследований, активисма или проекта по защите прав человека:"
-
-msgid ""
-"For professional support and development of anti corruption and compliance "
-"projects contact the social enterprise maintaining GlobaLeaks:"
-msgstr "Для профессиональной поддержки и развития антикоррупционных проектов и проектов мониторинга, обратитесь в общественное предприятие, ответственное за поддержку платформы GlobaLeaks:"
-
-msgid "Join our IRC chat channel on the irc.oftc.net network:"
-msgstr "Присоединяйтесь к нашему IRC-каналу на сети irc.oftc.net:"
-
-msgid "Follow the project on:"
-msgstr "Следите за развитием проекта:"
+msgid "High"
+msgstr "Высокий"
 
 msgid "Software version:"
 msgstr "Версия программного обеспечения:"
@@ -1103,9 +1068,6 @@ msgstr "Безопасность передачи"
 msgid "Require authentication"
 msgstr ""
 
-msgid "Disabled"
-msgstr "Отключено"
-
 msgid "When the option is re-enabled the spooled emails will be sent out."
 msgstr "Неотправленные email-сообщения будут поставлены в очередь до тех пор, пока эта опция не будет снова включена"
 
@@ -1126,18 +1088,6 @@ msgstr "Проверить конфигурацию"
 
 msgid "Template"
 msgstr "Шаблон"
-
-msgid "Roles enabled to use the platform without Tor:"
-msgstr "Кому позволен доступ к платформе без Tor:"
-
-msgid "Admin"
-msgstr "Администратор"
-
-msgid "Recipient"
-msgstr "Получатель"
-
-msgid "Whistleblower"
-msgstr "Информатор"
 
 msgid "Hostname"
 msgstr "Имя хоста"
@@ -1166,6 +1116,9 @@ msgstr "Я согласна с условиями использования."
 
 msgid "Proceed"
 msgstr "Продолжить"
+
+msgid "Congratulations!"
+msgstr "Поздравляем!"
 
 msgid "Configuration completed. You can review the settings or enable it now."
 msgstr "Конфигурация завершена. Вы можете просмотреть настройки или запустить программу."
@@ -1257,9 +1210,6 @@ msgstr "Платформа поддерживает конфигурацию HTT
 msgid "The connection to the configured domain failed."
 msgstr "Не удалось установить соединение с указанным доменом."
 
-msgid "Enabled"
-msgstr "Включено"
-
 msgid "Running"
 msgstr "Запущен"
 
@@ -1279,6 +1229,30 @@ msgid ""
 "Allowing whistleblowers to connect over HTTPS preserves their privacy but "
 "not their anonymity."
 msgstr "Соединение по HTTPS гарантирует конфиденциальность информаторов, но не анонимность."
+
+msgid "Restrict access to specific IP addresses"
+msgstr ""
+
+msgid "Role"
+msgstr "Роль"
+
+msgid "Whitelisted IP addresses"
+msgstr ""
+
+msgid "Admin"
+msgstr "Администратор"
+
+msgid "Recipient"
+msgstr "Получатель"
+
+msgid "Whistleblower"
+msgstr "Информатор"
+
+msgid "Each entry must be separated with a comma."
+msgstr ""
+
+msgid "Example:"
+msgstr "Пример:"
 
 msgid "Attention!"
 msgstr "Внимание!"
@@ -1303,6 +1277,9 @@ msgstr "Анонимизировать исходящие соединения"
 msgid "Let the platform be reachable without Tor"
 msgstr "Позволить доступ к платформе без Tor"
 
+msgid "Roles enabled to use the platform without Tor"
+msgstr ""
+
 msgid "Stats of the week:"
 msgstr "Статистика за неделю:"
 
@@ -1320,9 +1297,6 @@ msgstr "Событие"
 
 msgid "Response time"
 msgstr "Время ответа"
-
-msgid "Role"
-msgstr "Роль"
 
 msgid "Last access"
 msgstr "Последний доступ"
@@ -1351,9 +1325,6 @@ msgstr "Однострочный ввод текста"
 msgid "Multi-line text input"
 msgstr "Многострочный ввод текста"
 
-msgid "Multiple choice input"
-msgstr "Ввод с множественным выбором"
-
 msgid "Selection box"
 msgstr "Поле выбора"
 
@@ -1362,6 +1333,9 @@ msgstr "Флажок"
 
 msgid "Terms of service"
 msgstr "Условия использования"
+
+msgid "Map"
+msgstr ""
 
 msgid "Group of questions"
 msgstr "Группа вопросов"
@@ -1393,14 +1367,14 @@ msgstr ""
 msgid "Hint shown on the button for adding an additional answer"
 msgstr "Кнопка подсказки для добавления дополнительного ответа"
 
+msgid "Template override"
+msgstr ""
+
 msgid "Phone number"
 msgstr "Номер телефона"
 
 msgid "Checkbox label"
 msgstr ""
-
-msgid "Layout orientation"
-msgstr "Ориентация раскладки"
 
 msgid "Subject answer visibility to custodian authorization"
 msgstr "Доступ к ответам только по разрешению кастодиана"
@@ -1417,6 +1391,12 @@ msgstr ""
 msgid "Options"
 msgstr "Параметры"
 
+msgid "Addition"
+msgstr ""
+
+msgid "Multiplier"
+msgstr ""
+
 msgid "Questions"
 msgstr "Вопросы"
 
@@ -1431,32 +1411,6 @@ msgstr ""
 
 msgid "Steps"
 msgstr "Шаги"
-
-msgid "Configuration"
-msgstr "Настройка"
-
-msgid "Default"
-msgstr "По умолчанию"
-
-msgid "Forcefully selected"
-msgstr "Выбрано по требованию"
-
-msgid "Unselectable"
-msgstr "Не выделяемо"
-
-msgid "Allow the recipient to postpone the submission expiration date"
-msgstr "Разрешить получателю откладывать истечение срока действия подачи материалов"
-
-msgid "The setting is enabled at a global level."
-msgstr "Функция включена на глобальном уровене."
-
-msgid "Allow the recipient to delete submissions"
-msgstr "Разрешить получателю удалять материалы"
-
-msgid ""
-"Allow the recipient to grant permissions to whistleblowers on specific "
-"submissions"
-msgstr "مخصوص گذارشات پر whistleblowers کے لئے اجازت عطا کرنے کے وصول کنندہ کی اجازت دیں"
 
 msgid "Site settings"
 msgstr ""
@@ -1487,6 +1441,9 @@ msgstr "Активно"
 
 msgid "Inactive"
 msgstr "Неактивный"
+
+msgid "Configure"
+msgstr "Настроить"
 
 msgid "The default password is:"
 msgstr "Пароль по умолчанию:"
@@ -1529,6 +1486,32 @@ msgstr "Удаление PGP-ключа"
 msgid "Set up encryption by providing a PGP public key"
 msgstr "Установить шифрование, предоставив открытый PGP-ключ"
 
+msgid "Configuration"
+msgstr "Настройка"
+
+msgid "Default"
+msgstr "По умолчанию"
+
+msgid "Forcefully selected"
+msgstr "Выбрано по требованию"
+
+msgid "Unselectable"
+msgstr "Не выделяемо"
+
+msgid "Allow the recipient to postpone the submission expiration date"
+msgstr "Разрешить получателю откладывать истечение срока действия подачи материалов"
+
+msgid "The setting is enabled at a global level."
+msgstr "Функция включена на глобальном уровене."
+
+msgid "Allow the recipient to delete submissions"
+msgstr "Разрешить получателю удалять материалы"
+
+msgid ""
+"Allow the recipient to grant permissions to whistleblowers on specific "
+"submissions"
+msgstr "مخصوص گذارشات پر whistleblowers کے لئے اجازت عطا کرنے کے وصول کنندہ کی اجازت دیں"
+
 msgid "User has administrative access to the following features:"
 msgstr ""
 
@@ -1562,17 +1545,6 @@ msgid ""
 msgstr "Вы присоединяетесь к узлу не анонимно, данный узел поддерживает только анонимные материалы"
 
 msgid ""
-"Server temporarily unusable due to resource exhaustion; advise the Admin if "
-"you can."
-msgstr ""
-
-msgid "This server is not configured."
-msgstr "Этот узел не настроен."
-
-msgid "You will not be able to send a submission."
-msgstr "Вы не сможете произвести подачу документа."
-
-msgid ""
 "This platform makes use of GlobaLeaks software specifically designed to "
 "protect the identity for submitter and recipient in the exchange of content."
 msgstr "Эта платформа использует ПО GlobaLeaks, которое специально разработано для того, чтобы защитить личности отправителя и получателя при передаче информации."
@@ -1592,6 +1564,9 @@ msgid "Authentication failed"
 msgstr "Ошибка аутентификации"
 
 msgid "Site:"
+msgstr ""
+
+msgid "The receipt is either invalid or the submission has expired."
 msgstr ""
 
 msgid "Username:"
@@ -1615,16 +1590,43 @@ msgstr "Эта операция необратимо сбросит настро
 msgid "Assign score points"
 msgstr "Оценить"
 
-msgid ""
-"Enter the number of score points to be assigned when this option is "
-"selected:"
-msgstr "Количество баллов при выборе этого варианта:"
-
 msgid "Confirm"
 msgstr "Подтвердите расширение"
 
 msgid "Please note that all the associated data will be permanently lost."
 msgstr "Пожалуйста, имейте ввиду, что все связанные данные будут окончательно удалены."
+
+msgid "Welcome!"
+msgstr "Добро пожаловать!"
+
+msgid "For the user documentation, visit:"
+msgstr ""
+
+msgid ""
+"If you need technical support, have general questions, or have new ideas for"
+" the software:"
+msgstr "Если вам необходима техническая поддержка, у вас возникли общие вопросы, есть предложения для программного обеспечения:"
+
+msgid ""
+"If you want to contribute to software development or report a bug, please "
+"open an issue in our ticketing system:"
+msgstr "Если Вы хотите участвовать в разработке программного обеспечения или сообщить об ошибке, пожалуйста, отправьте запрос в нашу систему поддержки:"
+
+msgid ""
+"If your non-profit needs support for investigative journalism, activism or a"
+" human rights defense project:"
+msgstr "Если ваша некоммерческая организация нуждается в поддержке журналистских расследований, активисма или проекта по защите прав человека:"
+
+msgid ""
+"For professional support and development of anti corruption and compliance "
+"projects contact the social enterprise maintaining GlobaLeaks:"
+msgstr "Для профессиональной поддержки и развития антикоррупционных проектов и проектов мониторинга, обратитесь в общественное предприятие, ответственное за поддержку платформы GlobaLeaks:"
+
+msgid "Join our IRC chat channel on the irc.oftc.net network:"
+msgstr "Присоединяйтесь к нашему IRC-каналу на сети irc.oftc.net:"
+
+msgid "Follow the project on:"
+msgstr "Следите за развитием проекта:"
 
 msgid "Error!"
 msgstr "Ошибка!"
@@ -1840,6 +1842,15 @@ msgstr "Приложения для информатора"
 msgid "Upload a file:"
 msgstr "Выгрузить файл:"
 
+msgid "Question"
+msgstr ""
+
+msgid "Inverted"
+msgstr ""
+
+msgid "Trigger step"
+msgstr "Инициировать следующее действие"
+
 msgid "Logout"
 msgstr "Выход"
 
@@ -1872,27 +1883,27 @@ msgstr ""
 msgid "Thank you!"
 msgstr "Спасибо!"
 
-msgid "Remember your key code for this submission."
-msgstr "Запомните ваш код доступа к этой подаче материала."
+msgid "Remember your receipt for this submission."
+msgstr ""
 
 msgid "We will try to get back to you as soon as possible!"
 msgstr "Мы постараемся связаться с вами в ближайшее время!"
 
 msgid ""
-"Use the 16 digit key code to log in. It will allow you to view any messages "
+"Use the 16 digit receipt to log in. It will allow you to view any messages "
 "we sent you, and also to add extra info."
-msgstr "Используйте 16-значный код доступа для входа. Это позволит вам просматривать все наши сообщения, а также добавлять дополнительную информацию."
+msgstr ""
 
 msgid "View your submission"
 msgstr "Просмотреть ваш материал"
 
-msgid "Hint: How to hide your key code"
-msgstr "Совет: Как скрыть ваш код доступа"
+msgid "Hint: How to hide your receipt"
+msgstr ""
 
 msgid ""
-"A useful way to hide your key code is to write it down like a credit card "
+"A useful way to hide your receipt is to write it down like a credit card "
 "number, i.e. by also including an expiration date."
-msgstr "Удобный способ скрыть ваш код доступа - это записать его, как номер кредитной карты, указав также срок действия."
+msgstr ""
 
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."
@@ -1903,9 +1914,6 @@ msgstr "Дата запроса"
 
 msgid "Undeclared"
 msgstr ""
-
-msgid "Congratulations!"
-msgstr "Поздравляем!"
 
 msgid "You have completed the platform activation."
 msgstr ""
@@ -2088,9 +2096,6 @@ msgid "To log in, visit:"
 msgstr ""
 
 msgid "Users' credentials:"
-msgstr ""
-
-msgid "For the user documentation visit:"
 msgstr ""
 
 msgid "The platform will be automatically deleted on:"

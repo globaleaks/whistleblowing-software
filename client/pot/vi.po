@@ -4,16 +4,16 @@
 # Anh Phan <vietnamesel10n@gmail.com>, 2013-2014
 # Dong Quoc <huynhquocdong@gmail.com>, 2018
 # Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2014,2016-2018
-# Hermes Center <info@hermescenter.org>, 2013
-# Hermes Center <info@hermescenter.org>, 2013
-# Hermes Center <info@hermescenter.org>, 2013
+# b33a4006134bb6ee62b30fc0fac5cec6, 2013
+# b33a4006134bb6ee62b30fc0fac5cec6, 2013
+# b33a4006134bb6ee62b30fc0fac5cec6, 2013
 # Anh Phan <vietnamesel10n@gmail.com>, 2013
 # Anh Phan <vietnamesel10n@gmail.com>, 2013
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-11-15 11:36+0000\n"
-"Last-Translator: Hermes Center <info@hermescenter.org>\n"
+"PO-Revision-Date: 2019-01-12 14:02+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Vietnamese (http://www.transifex.com/otf/globaleaks/language/vi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -71,12 +71,6 @@ msgstr "Giấy phép"
 
 msgid "Notification templates"
 msgstr "Mẫu thông báo"
-
-msgid "Recipient notification templates"
-msgstr "mẫu thông báo người nhận"
-
-msgid "Admin notification templates"
-msgstr "mẫu thông báo quản trị"
 
 msgid "Missing data"
 msgstr "Dữ liệu bị mất"
@@ -422,9 +416,6 @@ msgstr "câu hỏi kích hoạt"
 msgid "Triggered by a score higher than:"
 msgstr "Kích hoạt bởi một số điểm cao hơn:"
 
-msgid "Select the question to be triggered when this option is selected"
-msgstr "Chọn câu hỏi để được kích hoạt khi tùy chọn này được chọn"
-
 msgid "Message shown on top of the status page of the submission"
 msgstr "Tin nhắn hiển thị trên đầu trang trạng thái của các trình"
 
@@ -730,8 +721,8 @@ msgstr "Tiêu đề"
 msgid "Text"
 msgstr "Văn bản"
 
-msgid "Disable the key code hint"
-msgstr "Vô hiệu hóa các gợi ý mã chủ chốt"
+msgid "Disable the receipt hint"
+msgstr ""
 
 msgid "Disable the donation panel"
 msgstr "Vô hiệu hóa các bảng tặng"
@@ -800,21 +791,6 @@ msgstr "Người dùng"
 msgid "Password"
 msgstr "Mật khẩu"
 
-msgid "Restrict privileged logins to specific IP addresses"
-msgstr ""
-
-msgid "Whitelisted IP addresses"
-msgstr ""
-
-msgid "Either individual IP addresses or CIDR ranges are accepted here."
-msgstr ""
-
-msgid "Example:"
-msgstr "Thí dụ:"
-
-msgid "Each entry must be separated with a comma."
-msgstr ""
-
 msgid "Allow users to reset their passwords"
 msgstr ""
 
@@ -859,6 +835,27 @@ msgstr "URL long"
 
 msgid "Add"
 msgstr "Thêm"
+
+msgid "Enable automatic backups"
+msgstr ""
+
+msgid "Daily"
+msgstr ""
+
+msgid "Weekly"
+msgstr ""
+
+msgid "Montly"
+msgstr ""
+
+msgid "Remote"
+msgstr ""
+
+msgid "Server"
+msgstr "Máy chủ"
+
+msgid "Port"
+msgstr "Cổng"
 
 msgid "Substatuses"
 msgstr ""
@@ -944,6 +941,15 @@ msgstr "Nội dung"
 msgid "Name"
 msgstr "Tên"
 
+msgid "Enabled"
+msgstr "Bật"
+
+msgid "Hidden"
+msgstr "Ẩn"
+
+msgid "Disabled"
+msgstr "Tàn tật"
+
 msgid "Questionnaire"
 msgstr "Bảng câu hỏi"
 
@@ -959,13 +965,8 @@ msgstr ""
 msgid "days"
 msgstr "ngày"
 
-msgid "Allow selection of this context through the context selector."
-msgstr "Cho phép lựa chọn các bối cảnh này thông qua việc chọn bối cảnh."
-
-msgid ""
-"If disabled, submissions for this context will only be accessible through a "
-"direct link to it."
-msgstr "Nếu vô hiệu hóa, gửi cho bối cảnh này sẽ chỉ có thể truy cập thông qua một liên kết trực tiếp với nó."
+msgid "Show the questionnaire navigation interface"
+msgstr ""
 
 msgid "Allow whistleblowers to select their recipients"
 msgstr "Cho phép người tố cáo để chọn người nhận họ"
@@ -985,6 +986,12 @@ msgstr "Hiện người nhận trong thứ tự chữ cái"
 msgid "Show small recipient cards on submission interface"
 msgstr "Hiện thẻ nhận nhỏ về giao diện trình"
 
+msgid "Show recipient details on the status page of the submission"
+msgstr "Hiển thị chi tiết người nhận trên trang trạng thái của trình"
+
+msgid "Text shown on top of the interface for selecting recipients"
+msgstr "Văn bản hiển thị trên đầu trang của giao diện để lựa chọn người nhận"
+
 msgid "Enable comments"
 msgstr "Cho phép nhận xét"
 
@@ -1000,65 +1007,23 @@ msgstr "Cho phép người tố cáo để gửi tin nhắn"
 msgid "Let whistleblowers add attachments onto existing submissions"
 msgstr ""
 
-msgid "Show recipient details on the status page of the submission"
-msgstr "Hiển thị chi tiết người nhận trên trang trạng thái của trình"
-
 msgid "Let recipients upload files to whistleblowers"
 msgstr ""
 
-msgid "Text shown on top of the interface for selecting recipients"
-msgstr "Văn bản hiển thị trên đầu trang của giao diện để lựa chọn người nhận"
-
-msgid "Welcome!"
-msgstr "Chào mừng bạn!"
-
-msgid ""
-"This interface may help you understand how the server can be configured and "
-"provides some info on how to connect to other GlobaLeaks users and experts."
-msgstr "Giao diện này có thể giúp bạn hiểu làm thế nào các máy chủ có thể được cấu hình và cung cấp một số thông tin về làm thế nào để kết nối với người dùng GlobaLeaks khác và các chuyên gia."
-
-msgid "Documentation"
-msgstr "Tài liệu"
-
-msgid ""
-"To properly organize your project, please read the following guidelines:"
-msgstr "Tổ chức tốt dự án của bạn, xin vui lòng đọc các hướng dẫn sau đây:"
-
-msgid "Remember to provide proper security advice to Whistleblowers:"
-msgstr "Hãy nhớ để cung cấp tư vấn bảo mật thích hợp để người tố cáo:"
-
-msgid ""
-"To learn more about GlobaLeaks Security you can read the following document:"
+msgid "Enable scoring system"
 msgstr ""
 
-msgid "Contact"
-msgstr "Liên hệ"
-
-msgid ""
-"If you need technical support, have general questions, or have new ideas for"
-" the software:"
+msgid "Threshold"
 msgstr ""
 
-msgid ""
-"If you want to contribute to software development or report a bug, please "
-"open an issue in our ticketing system:"
-msgstr ""
+msgid "Value"
+msgstr "Giá trị"
 
-msgid ""
-"If your non-profit needs support for investigative journalism, activism or a"
-" human rights defense project:"
-msgstr ""
+msgid "Medium"
+msgstr "Vừa phải"
 
-msgid ""
-"For professional support and development of anti corruption and compliance "
-"projects contact the social enterprise maintaining GlobaLeaks:"
-msgstr ""
-
-msgid "Join our IRC chat channel on the irc.oftc.net network:"
-msgstr ""
-
-msgid "Follow the project on:"
-msgstr ""
+msgid "High"
+msgstr "Cao"
 
 msgid "Software version:"
 msgstr "Phiên bản phần mềm:"
@@ -1087,9 +1052,6 @@ msgstr "Chuyển dữ liệu an toàn"
 msgid "Require authentication"
 msgstr ""
 
-msgid "Disabled"
-msgstr "Tàn tật"
-
 msgid "When the option is re-enabled the spooled emails will be sent out."
 msgstr "Không thể gửi được email khi tùy chọn chưa được bật."
 
@@ -1110,18 +1072,6 @@ msgstr ""
 
 msgid "Template"
 msgstr "Bản mẫu"
-
-msgid "Roles enabled to use the platform without Tor:"
-msgstr ""
-
-msgid "Admin"
-msgstr "quản trị viên"
-
-msgid "Recipient"
-msgstr "Người nhận"
-
-msgid "Whistleblower"
-msgstr "Người tố giác"
 
 msgid "Hostname"
 msgstr ""
@@ -1150,6 +1100,9 @@ msgstr ""
 
 msgid "Proceed"
 msgstr "Tiếp tục"
+
+msgid "Congratulations!"
+msgstr "Chúc mừng"
 
 msgid "Configuration completed. You can review the settings or enable it now."
 msgstr ""
@@ -1241,9 +1194,6 @@ msgstr ""
 msgid "The connection to the configured domain failed."
 msgstr ""
 
-msgid "Enabled"
-msgstr "Bật"
-
 msgid "Running"
 msgstr ""
 
@@ -1263,6 +1213,30 @@ msgid ""
 "Allowing whistleblowers to connect over HTTPS preserves their privacy but "
 "not their anonymity."
 msgstr ""
+
+msgid "Restrict access to specific IP addresses"
+msgstr ""
+
+msgid "Role"
+msgstr "Vai trò"
+
+msgid "Whitelisted IP addresses"
+msgstr ""
+
+msgid "Admin"
+msgstr "quản trị viên"
+
+msgid "Recipient"
+msgstr "Người nhận"
+
+msgid "Whistleblower"
+msgstr "Người tố giác"
+
+msgid "Each entry must be separated with a comma."
+msgstr ""
+
+msgid "Example:"
+msgstr "Thí dụ:"
 
 msgid "Attention!"
 msgstr ""
@@ -1287,6 +1261,9 @@ msgstr ""
 msgid "Let the platform be reachable without Tor"
 msgstr ""
 
+msgid "Roles enabled to use the platform without Tor"
+msgstr ""
+
 msgid "Stats of the week:"
 msgstr "Thống kê của tuần:"
 
@@ -1304,9 +1281,6 @@ msgstr "Biến cố"
 
 msgid "Response time"
 msgstr "Thời gian đáp ứng"
-
-msgid "Role"
-msgstr "Vai trò"
 
 msgid "Last access"
 msgstr ""
@@ -1335,9 +1309,6 @@ msgstr "nhập văn bản single-line"
 msgid "Multi-line text input"
 msgstr "đầu vào văn bản nhiều dòng"
 
-msgid "Multiple choice input"
-msgstr "Nhiều lựa chọn đầu vào"
-
 msgid "Selection box"
 msgstr "hộp lựa chọn"
 
@@ -1346,6 +1317,9 @@ msgstr "checkbox"
 
 msgid "Terms of service"
 msgstr "Điều khoản dịch vụ"
+
+msgid "Map"
+msgstr ""
 
 msgid "Group of questions"
 msgstr "Nhóm các câu hỏi"
@@ -1377,14 +1351,14 @@ msgstr ""
 msgid "Hint shown on the button for adding an additional answer"
 msgstr "Gợi ý được hiển thị trên nút để thêm một câu trả lời khác"
 
+msgid "Template override"
+msgstr ""
+
 msgid "Phone number"
 msgstr "Số điện thoại"
 
 msgid "Checkbox label"
 msgstr ""
-
-msgid "Layout orientation"
-msgstr "định hướng bố trí"
 
 msgid "Subject answer visibility to custodian authorization"
 msgstr "câu trả lời tầm nhìn phải xin phép giám sát"
@@ -1401,6 +1375,12 @@ msgstr ""
 msgid "Options"
 msgstr "Tùy chọn"
 
+msgid "Addition"
+msgstr ""
+
+msgid "Multiplier"
+msgstr ""
+
 msgid "Questions"
 msgstr ""
 
@@ -1415,32 +1395,6 @@ msgstr ""
 
 msgid "Steps"
 msgstr ""
-
-msgid "Configuration"
-msgstr "Cấu hình"
-
-msgid "Default"
-msgstr "Mặc định"
-
-msgid "Forcefully selected"
-msgstr "mạnh mẽ chọn"
-
-msgid "Unselectable"
-msgstr "Unselectable"
-
-msgid "Allow the recipient to postpone the submission expiration date"
-msgstr "Cho phép người nhận để hoãn ngày hết hạn nộp hồ sơ"
-
-msgid "The setting is enabled at a global level."
-msgstr "Thiết lập này được kích hoạt ở mức độ toàn cầu."
-
-msgid "Allow the recipient to delete submissions"
-msgstr "Cho phép người nhận để xóa bài nộp"
-
-msgid ""
-"Allow the recipient to grant permissions to whistleblowers on specific "
-"submissions"
-msgstr "Cho phép người nhận để cấp quyền cho người tố cáo về đệ trình cụ thể"
 
 msgid "Site settings"
 msgstr ""
@@ -1471,6 +1425,9 @@ msgstr ""
 
 msgid "Inactive"
 msgstr ""
+
+msgid "Configure"
+msgstr "Cấu hình"
 
 msgid "The default password is:"
 msgstr ""
@@ -1513,6 +1470,32 @@ msgstr "Xóa bỏ khóa PGP"
 msgid "Set up encryption by providing a PGP public key"
 msgstr "Thiết lập mã hóa bằng cách cung cấp một khóa công khai PGP"
 
+msgid "Configuration"
+msgstr "Cấu hình"
+
+msgid "Default"
+msgstr "Mặc định"
+
+msgid "Forcefully selected"
+msgstr "mạnh mẽ chọn"
+
+msgid "Unselectable"
+msgstr "Unselectable"
+
+msgid "Allow the recipient to postpone the submission expiration date"
+msgstr "Cho phép người nhận để hoãn ngày hết hạn nộp hồ sơ"
+
+msgid "The setting is enabled at a global level."
+msgstr "Thiết lập này được kích hoạt ở mức độ toàn cầu."
+
+msgid "Allow the recipient to delete submissions"
+msgstr "Cho phép người nhận để xóa bài nộp"
+
+msgid ""
+"Allow the recipient to grant permissions to whistleblowers on specific "
+"submissions"
+msgstr "Cho phép người nhận để cấp quyền cho người tố cáo về đệ trình cụ thể"
+
 msgid "User has administrative access to the following features:"
 msgstr ""
 
@@ -1546,17 +1529,6 @@ msgid ""
 msgstr "Bạn đang kết nối đến máy chủ mà không cần giấu và máy chủ này chỉ hỗ trợ đệ trình ẩn danh"
 
 msgid ""
-"Server temporarily unusable due to resource exhaustion; advise the Admin if "
-"you can."
-msgstr ""
-
-msgid "This server is not configured."
-msgstr "Máy chủ này không được cấu hình."
-
-msgid "You will not be able to send a submission."
-msgstr "Bạn sẽ không thể thực hiện việc đệ trình."
-
-msgid ""
 "This platform makes use of GlobaLeaks software specifically designed to "
 "protect the identity for submitter and recipient in the exchange of content."
 msgstr ""
@@ -1576,6 +1548,9 @@ msgid "Authentication failed"
 msgstr "Quá trình xác thực đã thất bại"
 
 msgid "Site:"
+msgstr ""
+
+msgid "The receipt is either invalid or the submission has expired."
 msgstr ""
 
 msgid "Username:"
@@ -1599,15 +1574,42 @@ msgstr ""
 msgid "Assign score points"
 msgstr "Gán thêm điểm"
 
-msgid ""
-"Enter the number of score points to be assigned when this option is "
-"selected:"
-msgstr "Nhập số lượng điểm số điểm được chỉ định khi tùy chọn này được chọn:"
-
 msgid "Confirm"
 msgstr "Xác nhận"
 
 msgid "Please note that all the associated data will be permanently lost."
+msgstr ""
+
+msgid "Welcome!"
+msgstr "Chào mừng bạn!"
+
+msgid "For the user documentation, visit:"
+msgstr ""
+
+msgid ""
+"If you need technical support, have general questions, or have new ideas for"
+" the software:"
+msgstr ""
+
+msgid ""
+"If you want to contribute to software development or report a bug, please "
+"open an issue in our ticketing system:"
+msgstr ""
+
+msgid ""
+"If your non-profit needs support for investigative journalism, activism or a"
+" human rights defense project:"
+msgstr ""
+
+msgid ""
+"For professional support and development of anti corruption and compliance "
+"projects contact the social enterprise maintaining GlobaLeaks:"
+msgstr ""
+
+msgid "Join our IRC chat channel on the irc.oftc.net network:"
+msgstr ""
+
+msgid "Follow the project on:"
 msgstr ""
 
 msgid "Error!"
@@ -1824,6 +1826,15 @@ msgstr ""
 msgid "Upload a file:"
 msgstr ""
 
+msgid "Question"
+msgstr ""
+
+msgid "Inverted"
+msgstr ""
+
+msgid "Trigger step"
+msgstr "bước kích hoạt"
+
 msgid "Logout"
 msgstr "Đăng xuất"
 
@@ -1856,27 +1867,27 @@ msgstr ""
 msgid "Thank you!"
 msgstr "Cảm ơn bạn!"
 
-msgid "Remember your key code for this submission."
-msgstr "Ghi mã khóa của bạn cho việc gửi này."
+msgid "Remember your receipt for this submission."
+msgstr ""
 
 msgid "We will try to get back to you as soon as possible!"
 msgstr "Chúng tôi sẽ cố gắng để lấy lại cho bạn càng sớm càng tốt!"
 
 msgid ""
-"Use the 16 digit key code to log in. It will allow you to view any messages "
+"Use the 16 digit receipt to log in. It will allow you to view any messages "
 "we sent you, and also to add extra info."
-msgstr "Sử dụng 16 chữ số mã chủ chốt để đăng nhập. Nó sẽ cho phép bạn xem bất kỳ thông điệp chúng tôi gửi cho bạn, và cũng để thêm thông tin thêm."
+msgstr ""
 
 msgid "View your submission"
 msgstr "Xem trình của bạn"
 
-msgid "Hint: How to hide your key code"
-msgstr "Gợi ý: Làm thế nào để giấu mã chìa khóa của bạn"
+msgid "Hint: How to hide your receipt"
+msgstr ""
 
 msgid ""
-"A useful way to hide your key code is to write it down like a credit card "
+"A useful way to hide your receipt is to write it down like a credit card "
 "number, i.e. by also including an expiration date."
-msgstr "Một cách hữu ích để giấu mã chính của bạn là viết nó xuống như một số thẻ tín dụng, tức là bằng cách cũng bao gồm cả ngày hết hạn."
+msgstr ""
 
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."
@@ -1887,9 +1898,6 @@ msgstr "Ngày của yêu cầu"
 
 msgid "Undeclared"
 msgstr ""
-
-msgid "Congratulations!"
-msgstr "Chúc mừng"
 
 msgid "You have completed the platform activation."
 msgstr ""
@@ -2072,9 +2080,6 @@ msgid "To log in, visit:"
 msgstr ""
 
 msgid "Users' credentials:"
-msgstr ""
-
-msgid "For the user documentation visit:"
 msgstr ""
 
 msgid "The platform will be automatically deleted on:"

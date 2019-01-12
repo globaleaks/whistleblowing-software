@@ -1,8 +1,8 @@
 # 
 # Translators:
 # Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2014-2015,2017-2018
-# Hermes Center <info@hermescenter.org>, 2016
-# Hermes Center <info@hermescenter.org>, 2016
+# b33a4006134bb6ee62b30fc0fac5cec6, 2016
+# b33a4006134bb6ee62b30fc0fac5cec6, 2016
 # Ingo Dettmar <ingo.dettmar@gmail.com>, 2014,2017
 # Ingo Dettmar <ingo.dettmar@gmail.com>, 2014
 # Narumol Sinhaseni <narumolss@hotmail.com>, 2014
@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-11-15 11:36+0000\n"
-"Last-Translator: Hermes Center <info@hermescenter.org>\n"
+"PO-Revision-Date: 2019-01-12 14:02+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Thai (http://www.transifex.com/otf/globaleaks/language/th/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -69,12 +69,6 @@ msgstr "ลิขสิทธิ์"
 
 msgid "Notification templates"
 msgstr "แม่แบบการแจ้งเตือน"
-
-msgid "Recipient notification templates"
-msgstr "แม่แบบการแจ้งเตือนผู้รับ"
-
-msgid "Admin notification templates"
-msgstr "แม่แบบการแจ้งเตือนผู้ดูแลระบบ"
 
 msgid "Missing data"
 msgstr "ข้อมูลที่หายไป"
@@ -420,9 +414,6 @@ msgstr "คำถาม Trigger"
 msgid "Triggered by a score higher than:"
 msgstr "เรียกโดยคะแนนที่สูงกว่า:"
 
-msgid "Select the question to be triggered when this option is selected"
-msgstr "เลือกคำถามที่จะเรียกเมื่อเลือกตัวเลือกนี้"
-
 msgid "Message shown on top of the status page of the submission"
 msgstr "ข้อความแสดงด้านบนของหน้าสถานะของการส่ง"
 
@@ -728,8 +719,8 @@ msgstr "ชื่อเรื่อง"
 msgid "Text"
 msgstr "ข้อความ"
 
-msgid "Disable the key code hint"
-msgstr "ปิดการใช้งานคำใบ้รหัสคีย์"
+msgid "Disable the receipt hint"
+msgstr ""
 
 msgid "Disable the donation panel"
 msgstr "ปิดการใช้งานแผงบริจาค"
@@ -798,21 +789,6 @@ msgstr "ชื่อผู้ใช้"
 msgid "Password"
 msgstr "รหัสผ่าน"
 
-msgid "Restrict privileged logins to specific IP addresses"
-msgstr ""
-
-msgid "Whitelisted IP addresses"
-msgstr ""
-
-msgid "Either individual IP addresses or CIDR ranges are accepted here."
-msgstr ""
-
-msgid "Example:"
-msgstr "ตัวอย่าง:"
-
-msgid "Each entry must be separated with a comma."
-msgstr ""
-
 msgid "Allow users to reset their passwords"
 msgstr ""
 
@@ -857,6 +833,27 @@ msgstr "URL ยาว"
 
 msgid "Add"
 msgstr "เพิ่ม"
+
+msgid "Enable automatic backups"
+msgstr ""
+
+msgid "Daily"
+msgstr ""
+
+msgid "Weekly"
+msgstr ""
+
+msgid "Montly"
+msgstr ""
+
+msgid "Remote"
+msgstr ""
+
+msgid "Server"
+msgstr "เซิร์ฟเวอร์"
+
+msgid "Port"
+msgstr "พอร์ต"
 
 msgid "Substatuses"
 msgstr ""
@@ -942,6 +939,15 @@ msgstr "บริบท"
 msgid "Name"
 msgstr "ชื่อ"
 
+msgid "Enabled"
+msgstr "เปิดใช้งาน"
+
+msgid "Hidden"
+msgstr ""
+
+msgid "Disabled"
+msgstr "พิการ"
+
 msgid "Questionnaire"
 msgstr "แบบสอบถาม"
 
@@ -957,13 +963,8 @@ msgstr ""
 msgid "days"
 msgstr ""
 
-msgid "Allow selection of this context through the context selector."
-msgstr "ให้สามารถเลือกบริบทนี้ผ่านการเลือกบริบท"
-
-msgid ""
-"If disabled, submissions for this context will only be accessible through a "
-"direct link to it."
-msgstr "หากปิดการใช้งานส่งสำหรับบริบทนี้เท่านั้นที่จะสามารถเข้าถึงได้ผ่านการเชื่อมโยงโดยตรงกับมัน"
+msgid "Show the questionnaire navigation interface"
+msgstr ""
 
 msgid "Allow whistleblowers to select their recipients"
 msgstr "อนุญาตให้โบเลือกผู้รับของพวกเขา"
@@ -983,6 +984,12 @@ msgstr "แสดงผู้รับตามลำดับตัวอัก
 msgid "Show small recipient cards on submission interface"
 msgstr "แสดงบัตรผู้รับเล็ก ๆ บนอินเตอร์เฟซการส่ง"
 
+msgid "Show recipient details on the status page of the submission"
+msgstr "แสดงรายละเอียดของผู้รับในหน้าสถานะของการส่ง"
+
+msgid "Text shown on top of the interface for selecting recipients"
+msgstr "ข้อความปรากฏที่ด้านบนของอินเตอร์เฟซสำหรับการเลือกผู้รับ"
+
 msgid "Enable comments"
 msgstr "เปิดใช้งานการแสดงความคิดเห็น"
 
@@ -998,65 +1005,23 @@ msgstr "อนุญาตให้โบการส่งข้อความ
 msgid "Let whistleblowers add attachments onto existing submissions"
 msgstr ""
 
-msgid "Show recipient details on the status page of the submission"
-msgstr "แสดงรายละเอียดของผู้รับในหน้าสถานะของการส่ง"
-
 msgid "Let recipients upload files to whistleblowers"
 msgstr ""
 
-msgid "Text shown on top of the interface for selecting recipients"
-msgstr "ข้อความปรากฏที่ด้านบนของอินเตอร์เฟซสำหรับการเลือกผู้รับ"
-
-msgid "Welcome!"
+msgid "Enable scoring system"
 msgstr ""
 
-msgid ""
-"This interface may help you understand how the server can be configured and "
-"provides some info on how to connect to other GlobaLeaks users and experts."
-msgstr "อินเตอร์เฟซนี้อาจช่วยให้คุณเข้าใจวิธีการที่เซิร์ฟเวอร์สามารถกำหนดค่าและให้ข้อมูลบางอย่างเกี่ยวกับวิธีการเชื่อมต่อกับผู้ใช้งาน GlobaLeaks อื่น ๆ และผู้เชี่ยวชาญ"
-
-msgid "Documentation"
+msgid "Threshold"
 msgstr ""
 
-msgid ""
-"To properly organize your project, please read the following guidelines:"
-msgstr "ที่จะต้องจัดระเบียบโครงการของคุณโปรดอ่านคำแนะนำต่อไปนี้:"
-
-msgid "Remember to provide proper security advice to Whistleblowers:"
-msgstr "อย่าลืมที่จะให้คำแนะนำที่เหมาะสมในการรักษาความปลอดภัยโบ:"
-
-msgid ""
-"To learn more about GlobaLeaks Security you can read the following document:"
+msgid "Value"
 msgstr ""
 
-msgid "Contact"
-msgstr "ผู้ติดต่อ"
-
-msgid ""
-"If you need technical support, have general questions, or have new ideas for"
-" the software:"
+msgid "Medium"
 msgstr ""
 
-msgid ""
-"If you want to contribute to software development or report a bug, please "
-"open an issue in our ticketing system:"
-msgstr ""
-
-msgid ""
-"If your non-profit needs support for investigative journalism, activism or a"
-" human rights defense project:"
-msgstr ""
-
-msgid ""
-"For professional support and development of anti corruption and compliance "
-"projects contact the social enterprise maintaining GlobaLeaks:"
-msgstr ""
-
-msgid "Join our IRC chat channel on the irc.oftc.net network:"
-msgstr ""
-
-msgid "Follow the project on:"
-msgstr ""
+msgid "High"
+msgstr "สูง"
 
 msgid "Software version:"
 msgstr "ซอฟต์แวร์รุ่น:"
@@ -1085,9 +1050,6 @@ msgstr "การรักษาความปลอดภัยการขน
 msgid "Require authentication"
 msgstr ""
 
-msgid "Disabled"
-msgstr "พิการ"
-
 msgid "When the option is re-enabled the spooled emails will be sent out."
 msgstr "เมื่อตัวเลือกที่เป็นอีกครั้งที่เปิดใช้งานอีเมล spooled จะถูกส่งออก"
 
@@ -1108,18 +1070,6 @@ msgstr ""
 
 msgid "Template"
 msgstr "แบบ"
-
-msgid "Roles enabled to use the platform without Tor:"
-msgstr ""
-
-msgid "Admin"
-msgstr "ผู้ดูแลระบบ"
-
-msgid "Recipient"
-msgstr "ผู้รับ"
-
-msgid "Whistleblower"
-msgstr "ผู้แจ้งเบาะแส"
 
 msgid "Hostname"
 msgstr ""
@@ -1148,6 +1098,9 @@ msgstr ""
 
 msgid "Proceed"
 msgstr "ดำเนิน"
+
+msgid "Congratulations!"
+msgstr "ขอแสดงความยินดี!"
 
 msgid "Configuration completed. You can review the settings or enable it now."
 msgstr ""
@@ -1239,9 +1192,6 @@ msgstr ""
 msgid "The connection to the configured domain failed."
 msgstr ""
 
-msgid "Enabled"
-msgstr "เปิดใช้งาน"
-
 msgid "Running"
 msgstr ""
 
@@ -1261,6 +1211,30 @@ msgid ""
 "Allowing whistleblowers to connect over HTTPS preserves their privacy but "
 "not their anonymity."
 msgstr ""
+
+msgid "Restrict access to specific IP addresses"
+msgstr ""
+
+msgid "Role"
+msgstr "บทบาท"
+
+msgid "Whitelisted IP addresses"
+msgstr ""
+
+msgid "Admin"
+msgstr "ผู้ดูแลระบบ"
+
+msgid "Recipient"
+msgstr "ผู้รับ"
+
+msgid "Whistleblower"
+msgstr "ผู้แจ้งเบาะแส"
+
+msgid "Each entry must be separated with a comma."
+msgstr ""
+
+msgid "Example:"
+msgstr "ตัวอย่าง:"
 
 msgid "Attention!"
 msgstr ""
@@ -1285,6 +1259,9 @@ msgstr ""
 msgid "Let the platform be reachable without Tor"
 msgstr ""
 
+msgid "Roles enabled to use the platform without Tor"
+msgstr ""
+
 msgid "Stats of the week:"
 msgstr "สถิติของสัปดาห์:"
 
@@ -1302,9 +1279,6 @@ msgstr "เหตุการณ์"
 
 msgid "Response time"
 msgstr "เวลาตอบสนอง"
-
-msgid "Role"
-msgstr "บทบาท"
 
 msgid "Last access"
 msgstr ""
@@ -1333,9 +1307,6 @@ msgstr "ป้อนข้อความบรรทัดเดียว"
 msgid "Multi-line text input"
 msgstr "ใส่ข้อความหลายบรรทัด"
 
-msgid "Multiple choice input"
-msgstr "การป้อนข้อมูลหลายตัวเลือก"
-
 msgid "Selection box"
 msgstr "เลือกกล่อง"
 
@@ -1344,6 +1315,9 @@ msgstr "ช่องทำเครื่องหมาย"
 
 msgid "Terms of service"
 msgstr "เงื่อนไขการให้บริการ"
+
+msgid "Map"
+msgstr ""
 
 msgid "Group of questions"
 msgstr "กลุ่มคำถาม"
@@ -1375,14 +1349,14 @@ msgstr ""
 msgid "Hint shown on the button for adding an additional answer"
 msgstr "คำแนะนำที่แสดงบนปุ่มสำหรับการเพิ่มคำตอบเพิ่มเติม"
 
+msgid "Template override"
+msgstr ""
+
 msgid "Phone number"
 msgstr "หมายเลขโทรศัพท์"
 
 msgid "Checkbox label"
 msgstr ""
-
-msgid "Layout orientation"
-msgstr "การวางแนวทางรูปแบบ"
 
 msgid "Subject answer visibility to custodian authorization"
 msgstr "คำตอบของการมองเห็นอาจมีการอนุมัติการปกครอง"
@@ -1399,6 +1373,12 @@ msgstr ""
 msgid "Options"
 msgstr "ตัวเลือก"
 
+msgid "Addition"
+msgstr ""
+
+msgid "Multiplier"
+msgstr ""
+
 msgid "Questions"
 msgstr ""
 
@@ -1413,32 +1393,6 @@ msgstr ""
 
 msgid "Steps"
 msgstr ""
-
-msgid "Configuration"
-msgstr "องค์ประกอบ"
-
-msgid "Default"
-msgstr "ค่าเริ่มต้น"
-
-msgid "Forcefully selected"
-msgstr "เลือกอย่างแข็งขัน"
-
-msgid "Unselectable"
-msgstr "Unselectable"
-
-msgid "Allow the recipient to postpone the submission expiration date"
-msgstr "อนุญาตให้ผู้รับที่จะเลื่อนวันหมดอายุการส่ง"
-
-msgid "The setting is enabled at a global level."
-msgstr "การตั้งค่าเปิดใช้งานในระดับโลก"
-
-msgid "Allow the recipient to delete submissions"
-msgstr "อนุญาตให้ผู้รับลบส่ง"
-
-msgid ""
-"Allow the recipient to grant permissions to whistleblowers on specific "
-"submissions"
-msgstr "อนุญาตให้ผู้รับการให้สิทธิ์กับโบในการส่งที่เฉพาะเจาะจง"
 
 msgid "Site settings"
 msgstr ""
@@ -1469,6 +1423,9 @@ msgstr ""
 
 msgid "Inactive"
 msgstr ""
+
+msgid "Configure"
+msgstr "กำหนดค่า"
 
 msgid "The default password is:"
 msgstr ""
@@ -1511,6 +1468,32 @@ msgstr "ลบคีย์ PGP ที่"
 msgid "Set up encryption by providing a PGP public key"
 msgstr "ตั้งค่าการเข้ารหัสโดยการให้คีย์สาธารณะ PGP"
 
+msgid "Configuration"
+msgstr "องค์ประกอบ"
+
+msgid "Default"
+msgstr "ค่าเริ่มต้น"
+
+msgid "Forcefully selected"
+msgstr "เลือกอย่างแข็งขัน"
+
+msgid "Unselectable"
+msgstr "Unselectable"
+
+msgid "Allow the recipient to postpone the submission expiration date"
+msgstr "อนุญาตให้ผู้รับที่จะเลื่อนวันหมดอายุการส่ง"
+
+msgid "The setting is enabled at a global level."
+msgstr "การตั้งค่าเปิดใช้งานในระดับโลก"
+
+msgid "Allow the recipient to delete submissions"
+msgstr "อนุญาตให้ผู้รับลบส่ง"
+
+msgid ""
+"Allow the recipient to grant permissions to whistleblowers on specific "
+"submissions"
+msgstr "อนุญาตให้ผู้รับการให้สิทธิ์กับโบในการส่งที่เฉพาะเจาะจง"
+
 msgid "User has administrative access to the following features:"
 msgstr ""
 
@@ -1544,17 +1527,6 @@ msgid ""
 msgstr "คุณกำลังเชื่อมต่อไปยังเซิร์ฟเวอร์โดยไม่ต้องเปิดเผยชื่อและเซิร์ฟเวอร์นี้รองรับเฉพาะการส่งที่ไม่ระบุชื่อ"
 
 msgid ""
-"Server temporarily unusable due to resource exhaustion; advise the Admin if "
-"you can."
-msgstr ""
-
-msgid "This server is not configured."
-msgstr "เซิร์ฟเวอร์นี้ไม่ได้กำหนดค่า"
-
-msgid "You will not be able to send a submission."
-msgstr "คุณจะไม่สามารถที่จะส่งส่ง"
-
-msgid ""
 "This platform makes use of GlobaLeaks software specifically designed to "
 "protect the identity for submitter and recipient in the exchange of content."
 msgstr ""
@@ -1574,6 +1546,9 @@ msgid "Authentication failed"
 msgstr "รับรองความถูกต้องล้มเหลว"
 
 msgid "Site:"
+msgstr ""
+
+msgid "The receipt is either invalid or the submission has expired."
 msgstr ""
 
 msgid "Username:"
@@ -1597,15 +1572,42 @@ msgstr ""
 msgid "Assign score points"
 msgstr "กำหนดจุดคะแนน"
 
-msgid ""
-"Enter the number of score points to be assigned when this option is "
-"selected:"
-msgstr "ใส่จำนวนของจุดคะแนนจะได้รับมอบหมายเมื่อเลือกตัวเลือกนี้:"
-
 msgid "Confirm"
 msgstr "ยืนยัน"
 
 msgid "Please note that all the associated data will be permanently lost."
+msgstr ""
+
+msgid "Welcome!"
+msgstr ""
+
+msgid "For the user documentation, visit:"
+msgstr ""
+
+msgid ""
+"If you need technical support, have general questions, or have new ideas for"
+" the software:"
+msgstr ""
+
+msgid ""
+"If you want to contribute to software development or report a bug, please "
+"open an issue in our ticketing system:"
+msgstr ""
+
+msgid ""
+"If your non-profit needs support for investigative journalism, activism or a"
+" human rights defense project:"
+msgstr ""
+
+msgid ""
+"For professional support and development of anti corruption and compliance "
+"projects contact the social enterprise maintaining GlobaLeaks:"
+msgstr ""
+
+msgid "Join our IRC chat channel on the irc.oftc.net network:"
+msgstr ""
+
+msgid "Follow the project on:"
 msgstr ""
 
 msgid "Error!"
@@ -1822,6 +1824,15 @@ msgstr ""
 msgid "Upload a file:"
 msgstr ""
 
+msgid "Question"
+msgstr ""
+
+msgid "Inverted"
+msgstr ""
+
+msgid "Trigger step"
+msgstr "ขั้นตอนที่ทริกเกอร์"
+
 msgid "Logout"
 msgstr "ออกจากระบบ"
 
@@ -1854,27 +1865,27 @@ msgstr ""
 msgid "Thank you!"
 msgstr "ขอขอบคุณ!"
 
-msgid "Remember your key code for this submission."
-msgstr "จำรหัสสำคัญของคุณสำหรับการส่งนี้"
+msgid "Remember your receipt for this submission."
+msgstr ""
 
 msgid "We will try to get back to you as soon as possible!"
 msgstr "เราจะพยายามที่จะได้รับกลับมาให้คุณโดยเร็วที่สุดเท่าที่เป็นไปได้!"
 
 msgid ""
-"Use the 16 digit key code to log in. It will allow you to view any messages "
+"Use the 16 digit receipt to log in. It will allow you to view any messages "
 "we sent you, and also to add extra info."
-msgstr "ใช้ 16 บาทรหัสกุญแจสำคัญในการเข้าสู่ระบบ. มันจะช่วยให้คุณดูข้อความใด ๆ ที่เราส่งถึงคุณและยังเพิ่มข้อมูลพิเศษ"
+msgstr ""
 
 msgid "View your submission"
 msgstr "ดูการส่งของคุณ"
 
-msgid "Hint: How to hide your key code"
-msgstr "คำแนะนำ: วิธีการซ่อนรหัสที่สำคัญของคุณ"
+msgid "Hint: How to hide your receipt"
+msgstr ""
 
 msgid ""
-"A useful way to hide your key code is to write it down like a credit card "
+"A useful way to hide your receipt is to write it down like a credit card "
 "number, i.e. by also including an expiration date."
-msgstr "วิธีที่มีประโยชน์เพื่อซ่อนรหัสที่สำคัญของคุณคือการเขียนมันลงเช่นหมายเลขบัตรเครดิตเช่นโดยยังรวมถึงวันหมดอายุ"
+msgstr ""
 
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."
@@ -1885,9 +1896,6 @@ msgstr "วันของการร้องขอ"
 
 msgid "Undeclared"
 msgstr ""
-
-msgid "Congratulations!"
-msgstr "ขอแสดงความยินดี!"
 
 msgid "You have completed the platform activation."
 msgstr ""
@@ -2070,9 +2078,6 @@ msgid "To log in, visit:"
 msgstr ""
 
 msgid "Users' credentials:"
-msgstr ""
-
-msgid "For the user documentation visit:"
 msgstr ""
 
 msgid "The platform will be automatically deleted on:"

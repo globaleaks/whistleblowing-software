@@ -2,15 +2,15 @@
 # Translators:
 # Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2015-2018
 # Masayuki Hatta <mhatta@mhatta.org>, 2014
-# Naofumi <naofum@gmail.com>, 2015-2018
+# Naofumi <naofum@gmail.com>, 2015-2019
 # Naofumi <naofum@gmail.com>, 2015
 # Suguru Hirahara, 2013
 # Suguru Hirahara, 2013
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-11-16 09:32+0000\n"
-"Last-Translator: Naofumi <naofum@gmail.com>\n"
+"PO-Revision-Date: 2019-01-12 14:02+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Japanese (http://www.transifex.com/otf/globaleaks/language/ja/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -68,12 +68,6 @@ msgstr "ライセンス"
 
 msgid "Notification templates"
 msgstr "通知のテンプレート"
-
-msgid "Recipient notification templates"
-msgstr "受信者の通知テンプレート"
-
-msgid "Admin notification templates"
-msgstr "管理者の通知テンプレート"
 
 msgid "Missing data"
 msgstr "データがありません"
@@ -419,9 +413,6 @@ msgstr "トリガーの質問"
 msgid "Triggered by a score higher than:"
 msgstr "スコアが次より高いためトリガーされました:"
 
-msgid "Select the question to be triggered when this option is selected"
-msgstr "このオプションを選択したときにトリガーされる質問を選択します"
-
 msgid "Message shown on top of the status page of the submission"
 msgstr "提出のステータスページの上部に表示されるメッセージ"
 
@@ -727,8 +718,8 @@ msgstr "タイトル"
 msgid "Text"
 msgstr "テキスト"
 
-msgid "Disable the key code hint"
-msgstr "キーコードのヒントを無効にする"
+msgid "Disable the receipt hint"
+msgstr "受領番号のヒントを無効にする"
 
 msgid "Disable the donation panel"
 msgstr "寄付のパネルを無効にする"
@@ -797,21 +788,6 @@ msgstr "ユーザー名"
 msgid "Password"
 msgstr "パスワード"
 
-msgid "Restrict privileged logins to specific IP addresses"
-msgstr "特権ログインを特定のIPアドレスに制限する"
-
-msgid "Whitelisted IP addresses"
-msgstr "ホワイトリストIPアドレス"
-
-msgid "Either individual IP addresses or CIDR ranges are accepted here."
-msgstr "個々のIPアドレスまたはCIDRの範囲を入力することができます。"
-
-msgid "Example:"
-msgstr "例:"
-
-msgid "Each entry must be separated with a comma."
-msgstr "各入力はコンマで区切る必要があります。"
-
 msgid "Allow users to reset their passwords"
 msgstr "ユーザーによるパスワードのリセットを許可"
 
@@ -856,6 +832,27 @@ msgstr "長い URL"
 
 msgid "Add"
 msgstr "追加"
+
+msgid "Enable automatic backups"
+msgstr "自動バックアップを有効にする"
+
+msgid "Daily"
+msgstr "毎日"
+
+msgid "Weekly"
+msgstr "毎週"
+
+msgid "Montly"
+msgstr "毎月"
+
+msgid "Remote"
+msgstr "リモート"
+
+msgid "Server"
+msgstr "サーバー"
+
+msgid "Port"
+msgstr "ポート"
 
 msgid "Substatuses"
 msgstr "提出状況"
@@ -941,6 +938,15 @@ msgstr "コンテキスト"
 msgid "Name"
 msgstr "名前"
 
+msgid "Enabled"
+msgstr "有効"
+
+msgid "Hidden"
+msgstr "非表示"
+
+msgid "Disabled"
+msgstr "無効"
+
 msgid "Questionnaire"
 msgstr "アンケート"
 
@@ -956,13 +962,8 @@ msgstr "提出有効期限"
 msgid "days"
 msgstr "日"
 
-msgid "Allow selection of this context through the context selector."
-msgstr "コンテキストセレクターを通して、このコンテキストの選択を許可する。"
-
-msgid ""
-"If disabled, submissions for this context will only be accessible through a "
-"direct link to it."
-msgstr "無効にした場合、このコンテキストの提出は、その直接リンクを介してのみアクセスできます。"
+msgid "Show the questionnaire navigation interface"
+msgstr "アンケートのナビゲーションインターフェースを表示"
 
 msgid "Allow whistleblowers to select their recipients"
 msgstr "内部告発者が、受信者を選択することを許可"
@@ -982,6 +983,12 @@ msgstr "受信者をアルファベット順に表示"
 msgid "Show small recipient cards on submission interface"
 msgstr "提出インターフェースに小さな受信者カードを表示"
 
+msgid "Show recipient details on the status page of the submission"
+msgstr "提出のステータスページで受信者の詳細を表示する"
+
+msgid "Text shown on top of the interface for selecting recipients"
+msgstr "受信者を選択するインターフェイスの先頭に表示されるテキスト"
+
 msgid "Enable comments"
 msgstr "コメントを有効にする"
 
@@ -997,65 +1004,23 @@ msgstr "内部告発者が、メッセージを送信することを許可"
 msgid "Let whistleblowers add attachments onto existing submissions"
 msgstr "内部告発者が、既存の提出に添付ファイルを追加することを許可"
 
-msgid "Show recipient details on the status page of the submission"
-msgstr "提出のステータスページで受信者の詳細を表示する"
-
 msgid "Let recipients upload files to whistleblowers"
 msgstr "受信者が、内部告発者向けのファイルをアップロードすることを許可します"
 
-msgid "Text shown on top of the interface for selecting recipients"
-msgstr "受信者を選択するインターフェイスの先頭に表示されるテキスト"
+msgid "Enable scoring system"
+msgstr "スコアリングシステムを有効にする"
 
-msgid "Welcome!"
-msgstr "ようこそ!"
+msgid "Threshold"
+msgstr "しきい値"
 
-msgid ""
-"This interface may help you understand how the server can be configured and "
-"provides some info on how to connect to other GlobaLeaks users and experts."
-msgstr "このインターフェースは、あなたがサーバーをどのように設定できるか理解するのに役立ちます。また、他のGlobaLeaksユーザーや専門家とつながるための情報を提供します。"
+msgid "Value"
+msgstr "値"
 
-msgid "Documentation"
-msgstr "文書"
+msgid "Medium"
+msgstr "ミディアム"
 
-msgid ""
-"To properly organize your project, please read the following guidelines:"
-msgstr "あなたのプロジェクトを適切に組織するために、以下のガイドラインをお読みください。"
-
-msgid "Remember to provide proper security advice to Whistleblowers:"
-msgstr "内部告発者にセキュリティに関して適切なアドバイスを提供するのを忘れないでください。"
-
-msgid ""
-"To learn more about GlobaLeaks Security you can read the following document:"
-msgstr "GlobaLeaksのセキュリティに関する詳細は、以下の文書をお読みください。"
-
-msgid "Contact"
-msgstr "連絡先"
-
-msgid ""
-"If you need technical support, have general questions, or have new ideas for"
-" the software:"
-msgstr "技術サポートが必要な場合、一般的な質問がある場合、またはソフトウェアの新しいアイデアをお持ちの場合:"
-
-msgid ""
-"If you want to contribute to software development or report a bug, please "
-"open an issue in our ticketing system:"
-msgstr "ソフトウェア開発に貢献したり、バグを報告したい場合は、チケットシステムで問題を開いてください:"
-
-msgid ""
-"If your non-profit needs support for investigative journalism, activism or a"
-" human rights defense project:"
-msgstr "あなたの非営利団体が調査ジャーナリズム、行動主義、または人権侵害プロジェクトのサポートを必要とする場合:"
-
-msgid ""
-"For professional support and development of anti corruption and compliance "
-"projects contact the social enterprise maintaining GlobaLeaks:"
-msgstr "腐敗防止およびコンプライアンスプロジェクトのプロフェッショナルサポートおよび開発は、GlobaLeaks をメンテナンスしているソーシャル企業にご連絡ください:"
-
-msgid "Join our IRC chat channel on the irc.oftc.net network:"
-msgstr "irc.oftc.net ネットワークの IRC チャットチャンネルにご参加ください:"
-
-msgid "Follow the project on:"
-msgstr "プロジェクトをフォローしてください:"
+msgid "High"
+msgstr "高い"
 
 msgid "Software version:"
 msgstr "ソフトウェア バージョン:"
@@ -1084,9 +1049,6 @@ msgstr "トランスポート・セキュリティ"
 msgid "Require authentication"
 msgstr "認証が必要"
 
-msgid "Disabled"
-msgstr "無効"
-
 msgid "When the option is re-enabled the spooled emails will be sent out."
 msgstr "オプションが再有効化された場合、スプールされたメールが送られます。"
 
@@ -1107,18 +1069,6 @@ msgstr "設定のテスト"
 
 msgid "Template"
 msgstr "テンプレート"
-
-msgid "Roles enabled to use the platform without Tor:"
-msgstr "Tor がなくてもプラットフォームを使用できる役割:"
-
-msgid "Admin"
-msgstr "管理者"
-
-msgid "Recipient"
-msgstr "受信者"
-
-msgid "Whistleblower"
-msgstr "内部告発者"
 
 msgid "Hostname"
 msgstr "ホスト名"
@@ -1147,6 +1097,9 @@ msgstr "利用規約に同意します。"
 
 msgid "Proceed"
 msgstr "続行"
+
+msgid "Congratulations!"
+msgstr "おめでとうございます"
 
 msgid "Configuration completed. You can review the settings or enable it now."
 msgstr "設定は完了です。 設定を確認するか、今すぐ有効にすることができます。"
@@ -1238,9 +1191,6 @@ msgstr "このインタフェースを介して、プラットフォームは HT
 msgid "The connection to the configured domain failed."
 msgstr "設定したドメイン名への接続に失敗しました。"
 
-msgid "Enabled"
-msgstr "有効"
-
 msgid "Running"
 msgstr "実行中"
 
@@ -1260,6 +1210,30 @@ msgid ""
 "Allowing whistleblowers to connect over HTTPS preserves their privacy but "
 "not their anonymity."
 msgstr "内部通報者が HTTPS 経由で接続できるようにすると、プライバシーは保持されますが、匿名性は維持されません。"
+
+msgid "Restrict access to specific IP addresses"
+msgstr "特定のIPアドレスにアクセスを制限する"
+
+msgid "Role"
+msgstr "役割"
+
+msgid "Whitelisted IP addresses"
+msgstr "ホワイトリストIPアドレス"
+
+msgid "Admin"
+msgstr "管理者"
+
+msgid "Recipient"
+msgstr "受信者"
+
+msgid "Whistleblower"
+msgstr "内部告発者"
+
+msgid "Each entry must be separated with a comma."
+msgstr "各入力はコンマで区切る必要があります。"
+
+msgid "Example:"
+msgstr "例:"
 
 msgid "Attention!"
 msgstr "注意!"
@@ -1284,6 +1258,9 @@ msgstr "発信の接続を匿名化"
 msgid "Let the platform be reachable without Tor"
 msgstr "Tor がなくてもプラットフォームが到達するようにする"
 
+msgid "Roles enabled to use the platform without Tor"
+msgstr "Torを使用せずにプラットフォームを使用できる役割"
+
 msgid "Stats of the week:"
 msgstr "週の統計:"
 
@@ -1301,9 +1278,6 @@ msgstr "イベント"
 
 msgid "Response time"
 msgstr "レスポンス時間"
-
-msgid "Role"
-msgstr "役割"
 
 msgid "Last access"
 msgstr "最終アクセス"
@@ -1332,9 +1306,6 @@ msgstr "1 行のテキスト入力"
 msgid "Multi-line text input"
 msgstr "複数行のテキスト入力"
 
-msgid "Multiple choice input"
-msgstr "複数選択入力"
-
 msgid "Selection box"
 msgstr "選択ボックス"
 
@@ -1343,6 +1314,9 @@ msgstr "チェックボックス"
 
 msgid "Terms of service"
 msgstr "利用規約"
+
+msgid "Map"
+msgstr "マップ"
 
 msgid "Group of questions"
 msgstr "質問のグループ"
@@ -1374,14 +1348,14 @@ msgstr "複数の回答を受け付ける"
 msgid "Hint shown on the button for adding an additional answer"
 msgstr "追加の回答を追加するボタンにヒントを表示します"
 
+msgid "Template override"
+msgstr "テンプレートの上書き"
+
 msgid "Phone number"
 msgstr "電話番号"
 
 msgid "Checkbox label"
 msgstr "チェックボックスラベル"
-
-msgid "Layout orientation"
-msgstr "レイアウトの向き"
 
 msgid "Subject answer visibility to custodian authorization"
 msgstr "管理人の認証に回答が表示されるか否か"
@@ -1398,6 +1372,12 @@ msgstr "確認時に表示されるテキスト"
 msgid "Options"
 msgstr "オプション"
 
+msgid "Addition"
+msgstr "追加"
+
+msgid "Multiplier"
+msgstr "乗数"
+
 msgid "Questions"
 msgstr "質問"
 
@@ -1412,32 +1392,6 @@ msgstr "複製"
 
 msgid "Steps"
 msgstr "ステップ"
-
-msgid "Configuration"
-msgstr "設定"
-
-msgid "Default"
-msgstr "デフォルト"
-
-msgid "Forcefully selected"
-msgstr "強制的に選択"
-
-msgid "Unselectable"
-msgstr "選択不可"
-
-msgid "Allow the recipient to postpone the submission expiration date"
-msgstr "受信者が提出の有効期限を延期することを許可する"
-
-msgid "The setting is enabled at a global level."
-msgstr "設定は全体で有効になります。"
-
-msgid "Allow the recipient to delete submissions"
-msgstr "受信者が提出を削除することを許可する"
-
-msgid ""
-"Allow the recipient to grant permissions to whistleblowers on specific "
-"submissions"
-msgstr "その受信者が、特定の提出の内部告発者に権限を付与することを許可します"
 
 msgid "Site settings"
 msgstr "サイト設定"
@@ -1468,6 +1422,9 @@ msgstr "アクティブ"
 
 msgid "Inactive"
 msgstr "非アクティブ"
+
+msgid "Configure"
+msgstr "設定"
 
 msgid "The default password is:"
 msgstr "デフォルトのパスワードは:"
@@ -1510,6 +1467,32 @@ msgstr "PGP鍵を削除"
 msgid "Set up encryption by providing a PGP public key"
 msgstr "PGP公開鍵を提供して暗号化を設定"
 
+msgid "Configuration"
+msgstr "設定"
+
+msgid "Default"
+msgstr "デフォルト"
+
+msgid "Forcefully selected"
+msgstr "強制的に選択"
+
+msgid "Unselectable"
+msgstr "選択不可"
+
+msgid "Allow the recipient to postpone the submission expiration date"
+msgstr "受信者が提出の有効期限を延期することを許可する"
+
+msgid "The setting is enabled at a global level."
+msgstr "設定は全体で有効になります。"
+
+msgid "Allow the recipient to delete submissions"
+msgstr "受信者が提出を削除することを許可する"
+
+msgid ""
+"Allow the recipient to grant permissions to whistleblowers on specific "
+"submissions"
+msgstr "その受信者が、特定の提出の内部告発者に権限を付与することを許可します"
+
 msgid "User has administrative access to the following features:"
 msgstr "ユーザーは、次の機能への管理アクセス権があります:"
 
@@ -1543,17 +1526,6 @@ msgid ""
 msgstr "あなたは匿名性が無いままサーバーに接続しています。このサーバーは匿名による提出のみをサポートします。"
 
 msgid ""
-"Server temporarily unusable due to resource exhaustion; advise the Admin if "
-"you can."
-msgstr "リソースが枯渇したため一時的にサーバーを使用できません。 可能であれば管理者にご連絡ください。"
-
-msgid "This server is not configured."
-msgstr "このサーバーは設定されていません"
-
-msgid "You will not be able to send a submission."
-msgstr "提出物を送ることはできません"
-
-msgid ""
 "This platform makes use of GlobaLeaks software specifically designed to "
 "protect the identity for submitter and recipient in the exchange of content."
 msgstr "このプラットフォームはコンテンツの交換において、提出者と受信者の身元の保護を特別に用意したGlobaLeaksソフトウェアを使用します。"
@@ -1574,6 +1546,9 @@ msgstr "認証に失敗しました"
 
 msgid "Site:"
 msgstr "サイト:"
+
+msgid "The receipt is either invalid or the submission has expired."
+msgstr "受領番号が無効であるか、提出が有効期限切れです。"
 
 msgid "Username:"
 msgstr "ユーザー名:"
@@ -1596,16 +1571,43 @@ msgstr "操作によって設定がリセットされ、元に戻すことはで
 msgid "Assign score points"
 msgstr "スコアポイントを割り当て"
 
-msgid ""
-"Enter the number of score points to be assigned when this option is "
-"selected:"
-msgstr "このオプションが選択された場合に割り当てるスコアポイントの数を入力してください:"
-
 msgid "Confirm"
 msgstr "延期を確認"
 
 msgid "Please note that all the associated data will be permanently lost."
 msgstr "すべての関連データが完全に失われますのでご注意ください。"
+
+msgid "Welcome!"
+msgstr "ようこそ!"
+
+msgid "For the user documentation, visit:"
+msgstr "ユーザードキュメントはこちら:"
+
+msgid ""
+"If you need technical support, have general questions, or have new ideas for"
+" the software:"
+msgstr "技術サポートが必要な場合、一般的な質問がある場合、またはソフトウェアの新しいアイデアをお持ちの場合:"
+
+msgid ""
+"If you want to contribute to software development or report a bug, please "
+"open an issue in our ticketing system:"
+msgstr "ソフトウェア開発に貢献したり、バグを報告したい場合は、チケットシステムで問題を開いてください:"
+
+msgid ""
+"If your non-profit needs support for investigative journalism, activism or a"
+" human rights defense project:"
+msgstr "あなたの非営利団体が調査ジャーナリズム、行動主義、または人権侵害プロジェクトのサポートを必要とする場合:"
+
+msgid ""
+"For professional support and development of anti corruption and compliance "
+"projects contact the social enterprise maintaining GlobaLeaks:"
+msgstr "腐敗防止およびコンプライアンスプロジェクトのプロフェッショナルサポートおよび開発は、GlobaLeaks をメンテナンスしているソーシャル企業にご連絡ください:"
+
+msgid "Join our IRC chat channel on the irc.oftc.net network:"
+msgstr "irc.oftc.net ネットワークの IRC チャットチャンネルにご参加ください:"
+
+msgid "Follow the project on:"
+msgstr "プロジェクトをフォローしてください:"
 
 msgid "Error!"
 msgstr "エラー!"
@@ -1821,6 +1823,15 @@ msgstr "内部告発者向けの添付ファイル"
 msgid "Upload a file:"
 msgstr "ファイルをアップロード："
 
+msgid "Question"
+msgstr "質問"
+
+msgid "Inverted"
+msgstr "反転"
+
+msgid "Trigger step"
+msgstr "トリガーのステップ"
+
 msgid "Logout"
 msgstr "ログアウト"
 
@@ -1853,27 +1864,27 @@ msgstr "パスワードのリセットをリクエストしました。"
 msgid "Thank you!"
 msgstr "ありがとうございます!"
 
-msgid "Remember your key code for this submission."
-msgstr "この提出に関するあなたのキーコードを覚えておいてください。"
+msgid "Remember your receipt for this submission."
+msgstr "この提出に関する受領番号を覚えておいてください。"
 
 msgid "We will try to get back to you as soon as possible!"
 msgstr "できるだけ早くあなたが戻ってこられますように!"
 
 msgid ""
-"Use the 16 digit key code to log in. It will allow you to view any messages "
+"Use the 16 digit receipt to log in. It will allow you to view any messages "
 "we sent you, and also to add extra info."
-msgstr "16桁のキーコードを使用してログインください。私たちがあなたに送信したメッセージを表示したり、追加の情報を入力することができます。"
+msgstr "16桁の受領番号を使用してログインください。私たちがあなたに送信したメッセージを表示したり、追加の情報を入力することができます。"
 
 msgid "View your submission"
 msgstr "あなたの提出を見る"
 
-msgid "Hint: How to hide your key code"
-msgstr "ヒント: キーコードを隠すには"
+msgid "Hint: How to hide your receipt"
+msgstr "ヒント: 受領番号を隠すには"
 
 msgid ""
-"A useful way to hide your key code is to write it down like a credit card "
+"A useful way to hide your receipt is to write it down like a credit card "
 "number, i.e. by also including an expiration date."
-msgstr "あなたのキーコードを隠す有用な方法は、クレジットカード番号のように書き留めておくことです。有効期限も含めておきましょう。"
+msgstr "あなたの受領番号を隠す有用な方法は、クレジットカード番号のように書き留めておくことです。有効期限も含めておきましょう。"
 
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."
@@ -1884,9 +1895,6 @@ msgstr "リクエスト日"
 
 msgid "Undeclared"
 msgstr "未定義"
-
-msgid "Congratulations!"
-msgstr "おめでとうございます"
 
 msgid "You have completed the platform activation."
 msgstr "プラットフォームの有効化が完了しました。"
@@ -2070,9 +2078,6 @@ msgstr "ログインはこちら:"
 
 msgid "Users' credentials:"
 msgstr "ユーザーの資格情報:"
-
-msgid "For the user documentation visit:"
-msgstr "ユーザードキュメントはこちら:"
 
 msgid "The platform will be automatically deleted on:"
 msgstr "プラットフォームは自動的に削除されます:"

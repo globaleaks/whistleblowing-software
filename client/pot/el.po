@@ -15,8 +15,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-11-15 11:35+0000\n"
-"Last-Translator: Hermes Center <info@hermescenter.org>\n"
+"PO-Revision-Date: 2019-01-12 14:02+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Greek (http://www.transifex.com/otf/globaleaks/language/el/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -74,12 +74,6 @@ msgstr "Άδεια"
 
 msgid "Notification templates"
 msgstr "Πρότυπα ειδοποίησης"
-
-msgid "Recipient notification templates"
-msgstr "Πρότυπα ειδοποιήσεων παραλήπτη"
-
-msgid "Admin notification templates"
-msgstr "Πρότυπα ειδοποίησης διαχειριστή "
 
 msgid "Missing data"
 msgstr "Ελλειπή δεδομένα"
@@ -425,9 +419,6 @@ msgstr "Ενεργοποιούμενη ερώτηση"
 msgid "Triggered by a score higher than:"
 msgstr "Ενεργοποιείται με βαθμολογία μεγαλύτερη από:"
 
-msgid "Select the question to be triggered when this option is selected"
-msgstr "Επιλέξτε την ερώτηση που πρέπει να ενεργοποιείται όταν επιλέγεται αυτή η επιλογή"
-
 msgid "Message shown on top of the status page of the submission"
 msgstr "Μήνυμα που εμφανίζεται στην κορυφή της σελίδας κατάστασης της υποβολής"
 
@@ -733,8 +724,8 @@ msgstr "Τίτλος"
 msgid "Text"
 msgstr "Κείμενο"
 
-msgid "Disable the key code hint"
-msgstr "Απενεργοποίηση της συμβουλής κωδικού - κλειδί"
+msgid "Disable the receipt hint"
+msgstr ""
 
 msgid "Disable the donation panel"
 msgstr "Απενεργοποιήστε το πάνελ δωρεών"
@@ -803,21 +794,6 @@ msgstr "Όνομα Χρήστη"
 msgid "Password"
 msgstr "Κωδικός Πρόσβασης"
 
-msgid "Restrict privileged logins to specific IP addresses"
-msgstr "Περιορισμός συνδέσεων με αυξημένα δικαιώματα από συγκεκριμένες διευθύνσεις IP"
-
-msgid "Whitelisted IP addresses"
-msgstr "Εγκεκριμένες διευθύνσεις IP"
-
-msgid "Either individual IP addresses or CIDR ranges are accepted here."
-msgstr "Είτε μεμονωμένες διευθύνσεις IP είτε εύρη CIDR είναι αποδεκτά εδώ."
-
-msgid "Example:"
-msgstr "Παράδειγμα:"
-
-msgid "Each entry must be separated with a comma."
-msgstr "Κάθε καταχώρηση θα πρέπει να χωρίζεται από την προηγούμενη με ένα κόμμα."
-
 msgid "Allow users to reset their passwords"
 msgstr "Να επιτρέπεται στους χρήστες να επαναφέρουν τους κωδικούς πρόσβασής τους"
 
@@ -862,6 +838,27 @@ msgstr "Μακρύ URL"
 
 msgid "Add"
 msgstr "Προσθήκη"
+
+msgid "Enable automatic backups"
+msgstr ""
+
+msgid "Daily"
+msgstr "Καθημερινά"
+
+msgid "Weekly"
+msgstr "Εβδομαδιαία"
+
+msgid "Montly"
+msgstr ""
+
+msgid "Remote"
+msgstr "Απομακρυσμένο"
+
+msgid "Server"
+msgstr "Διακομιστής"
+
+msgid "Port"
+msgstr "Θύρα"
 
 msgid "Substatuses"
 msgstr "Υπό-καταστάσεις"
@@ -947,6 +944,15 @@ msgstr "Θεματικές ενότητες"
 msgid "Name"
 msgstr "Όνομα"
 
+msgid "Enabled"
+msgstr "Ενεργοποιημένο"
+
+msgid "Hidden"
+msgstr "Κρυφός"
+
+msgid "Disabled"
+msgstr "Απενεργοποιημένο"
+
 msgid "Questionnaire"
 msgstr "Ερωτηματολόγιο"
 
@@ -962,13 +968,8 @@ msgstr "Λήξη υποβολής"
 msgid "days"
 msgstr "ημέρες"
 
-msgid "Allow selection of this context through the context selector."
-msgstr "Να επιτρέπεται η επιλογή αυτής της θεματικής ενότητας μέσω του επιλογέα θεματικών ενοτήτων."
-
-msgid ""
-"If disabled, submissions for this context will only be accessible through a "
-"direct link to it."
-msgstr "Αν απενεργοποιηθεί, υποβολές για αυτή τη θεματική ενότητα θα είναι προσβάσιμες μόνο μέσω ενός απευθείας σύνδεσμου."
+msgid "Show the questionnaire navigation interface"
+msgstr ""
 
 msgid "Allow whistleblowers to select their recipients"
 msgstr "Να επιτρέπεται στους πληροφοριοδότες να επιλέγουν τους παραλήπτες τους"
@@ -988,6 +989,12 @@ msgstr "Εμφάνιση παραληπτών σε αλφαβητική σειρ
 msgid "Show small recipient cards on submission interface"
 msgstr "Προβολή μικρογραφιών καρτών παραληπτών στην διεπαφή υποβολής"
 
+msgid "Show recipient details on the status page of the submission"
+msgstr "Εμφάνιση λεπτομερειών παραλήπτη στη σελίδα κατάστασης της υποβολής"
+
+msgid "Text shown on top of the interface for selecting recipients"
+msgstr "Κείμενο που εμφανίζεται στο πάνω μέρος της διασύνδεσης για την επιλογή των παραληπτών"
+
 msgid "Enable comments"
 msgstr "Ενεργοποίηση σχολίων"
 
@@ -1003,65 +1010,23 @@ msgstr "Να επιτρέπεται στους πληροφοριοδότες ν
 msgid "Let whistleblowers add attachments onto existing submissions"
 msgstr "Να επιτρέπεται στους πληροφοριοδότες να προσθέτουν συνημμένα σε υπάρχουσες υποβολές"
 
-msgid "Show recipient details on the status page of the submission"
-msgstr "Εμφάνιση λεπτομερειών παραλήπτη στη σελίδα κατάστασης της υποβολής"
-
 msgid "Let recipients upload files to whistleblowers"
 msgstr "Να επιτρέπεται στους παραλήπτες να ανεβάζουν αρχεία για τους πληροφοριοδότες"
 
-msgid "Text shown on top of the interface for selecting recipients"
-msgstr "Κείμενο που εμφανίζεται στο πάνω μέρος της διασύνδεσης για την επιλογή των παραληπτών"
+msgid "Enable scoring system"
+msgstr ""
 
-msgid "Welcome!"
-msgstr "Καλώς ήρθατε!"
+msgid "Threshold"
+msgstr ""
 
-msgid ""
-"This interface may help you understand how the server can be configured and "
-"provides some info on how to connect to other GlobaLeaks users and experts."
-msgstr "Αυτή η διεπαφή μπορεί να σας βοηθήσει να κατανοήσετε τον τρόπο που ο διακομιστής μπορεί να παραμετροποιηθεί, και παρέχει πληροφορίες για τον τρόπο διασύνδεσης με άλλους χρήστες και ειδικούς του GlobaLeaks."
+msgid "Value"
+msgstr "Τιμή"
 
-msgid "Documentation"
-msgstr "Τεκμηρίωση"
+msgid "Medium"
+msgstr "Μεσαίο"
 
-msgid ""
-"To properly organize your project, please read the following guidelines:"
-msgstr "Για να οργανώσετε κατάλληλα το σχέδιό σας, παρακαλώ διαβάστε τις παρακάτω οδηγίες: "
-
-msgid "Remember to provide proper security advice to Whistleblowers:"
-msgstr "Θυμηθείτε να παρέχετε σωστές συμβουλές ασφάλειας στους πληροφοριοδότες:"
-
-msgid ""
-"To learn more about GlobaLeaks Security you can read the following document:"
-msgstr "Για να μάθετε περισσότερα σχετικά με την ασφάλεια του GlobaLeaks μπορείτε να διαβάσετε το ακόλουθο έγγραφο:"
-
-msgid "Contact"
-msgstr "Επαφή"
-
-msgid ""
-"If you need technical support, have general questions, or have new ideas for"
-" the software:"
-msgstr "Αν χρειάζεστε τεχνική υποστήριξη, έχετε γενικές ερωτήσεις ή νέες ιδέες για το λογισμικό:"
-
-msgid ""
-"If you want to contribute to software development or report a bug, please "
-"open an issue in our ticketing system:"
-msgstr "Αν θέλετε να συνεισφέρετε στην ανάπτυξη λογισμικού ή να αναφέρετε κάποιο σφάλμα παρακαλώ ανοίξτε ένα νέο ζήτημα στο σύστημα ζητημάτων:"
-
-msgid ""
-"If your non-profit needs support for investigative journalism, activism or a"
-" human rights defense project:"
-msgstr "Αν ο μη κερδοσκοπικός οργανισμός σας χρειάζεται υποστήριξη σε δημοσιογραφική έρευνα, ακτιβισμό ή σε έργο υπεράσπισης ανθρωπίνων δικαιωμάτων:"
-
-msgid ""
-"For professional support and development of anti corruption and compliance "
-"projects contact the social enterprise maintaining GlobaLeaks:"
-msgstr "Για επαγγελματική υποστήριξη και ανάπτυξη έργων συμμόρφωσης και κατά της διαφθοράς, επικοινωνήστε με την κοινωνική επιχείρηση που συντηρεί το GlobaLeaks:"
-
-msgid "Join our IRC chat channel on the irc.oftc.net network:"
-msgstr "Συνδεθείτε στο κανάλι μας στο IRC, στο δίκτυο irc.oftc.net:"
-
-msgid "Follow the project on:"
-msgstr "Ακολουθήστε το project στο:"
+msgid "High"
+msgstr "Υψηλό"
 
 msgid "Software version:"
 msgstr "Έκδοση λογισμικού:"
@@ -1090,9 +1055,6 @@ msgstr "Ασφάλεια Μεταφορών"
 msgid "Require authentication"
 msgstr "Να απαιτείται αυθεντικοποίηση"
 
-msgid "Disabled"
-msgstr "Απενεργοποιημένο"
-
 msgid "When the option is re-enabled the spooled emails will be sent out."
 msgstr "Τα μη απεσταλμένα μηνύματα ηλεκτρονικού ταχυδρομείου θα αποσταλούν όταν η επιλογή επαναενεργοποιηθεί."
 
@@ -1113,18 +1075,6 @@ msgstr "Δοκιμή ρυθμίσεων"
 
 msgid "Template"
 msgstr "Πρότυπο"
-
-msgid "Roles enabled to use the platform without Tor:"
-msgstr "Ρόλοι στους οποίους επιτρέπεται η χρήση της πλατφόρμας χωρίς Tor:"
-
-msgid "Admin"
-msgstr "Διαχειριστής"
-
-msgid "Recipient"
-msgstr "Παραλήπτης"
-
-msgid "Whistleblower"
-msgstr "Πληροφοριοδότης"
 
 msgid "Hostname"
 msgstr "Όνομα κεντρικού υπολογιστή"
@@ -1153,6 +1103,9 @@ msgstr "Συμφωνώ με τους όρους χρήσης."
 
 msgid "Proceed"
 msgstr "Συνέχεια"
+
+msgid "Congratulations!"
+msgstr "Συγχαρητήρια!"
 
 msgid "Configuration completed. You can review the settings or enable it now."
 msgstr "Η παραμετροποίηση ολοκληρώθηκε. Μπορείτε να επαναθεωρήσετε τις ρυθμίσεις ή να την ενεργοποιήσετε τώρα."
@@ -1244,9 +1197,6 @@ msgstr "Η πλατφόρμα υποστηρίζει την παραμετροπ
 msgid "The connection to the configured domain failed."
 msgstr "Η σύνδεση στον ρυθμισμένο ιστότοπο απέτυχε."
 
-msgid "Enabled"
-msgstr "Ενεργοποιημένο"
-
 msgid "Running"
 msgstr "Εκτελείται"
 
@@ -1266,6 +1216,30 @@ msgid ""
 "Allowing whistleblowers to connect over HTTPS preserves their privacy but "
 "not their anonymity."
 msgstr "Το να επιτρέπεται στους πληροφοριοδότες να συνδέονται μέσω HTTPS διατηρεί την ιδιωτικότητά τους, αλλά όχι την ανωνυμία τους."
+
+msgid "Restrict access to specific IP addresses"
+msgstr ""
+
+msgid "Role"
+msgstr "Ρόλος"
+
+msgid "Whitelisted IP addresses"
+msgstr "Εγκεκριμένες διευθύνσεις IP"
+
+msgid "Admin"
+msgstr "Διαχειριστής"
+
+msgid "Recipient"
+msgstr "Παραλήπτης"
+
+msgid "Whistleblower"
+msgstr "Πληροφοριοδότης"
+
+msgid "Each entry must be separated with a comma."
+msgstr "Κάθε καταχώρηση θα πρέπει να χωρίζεται από την προηγούμενη με ένα κόμμα."
+
+msgid "Example:"
+msgstr "Παράδειγμα:"
 
 msgid "Attention!"
 msgstr "Προσοχή!"
@@ -1290,6 +1264,9 @@ msgstr "Ανωνυμοποίηση εξερχόμενων συνδέσεων"
 msgid "Let the platform be reachable without Tor"
 msgstr "Να επιτρέπεται η πρόσβαση στην πλατφόρμα χωρίς Tor"
 
+msgid "Roles enabled to use the platform without Tor"
+msgstr ""
+
 msgid "Stats of the week:"
 msgstr "Στατιστικά της εβδομάδας:"
 
@@ -1307,9 +1284,6 @@ msgstr "Συμβάν"
 
 msgid "Response time"
 msgstr "Χρόνος απόκρισης"
-
-msgid "Role"
-msgstr "Ρόλος"
 
 msgid "Last access"
 msgstr "Τελευταία πρόσβαση"
@@ -1338,9 +1312,6 @@ msgstr "Εισαγωγή μονής γραμμής κειμένου"
 msgid "Multi-line text input"
 msgstr "Εισαγωγή πολλαπλών γραμμών κειμένου"
 
-msgid "Multiple choice input"
-msgstr "Εισαγωγή πολλαπλής επιλογής"
-
 msgid "Selection box"
 msgstr "Κουτί επιλογής"
 
@@ -1349,6 +1320,9 @@ msgstr "Checkbox"
 
 msgid "Terms of service"
 msgstr "Όροι χρήσης"
+
+msgid "Map"
+msgstr ""
 
 msgid "Group of questions"
 msgstr "Ομάδα των ερωτήσεων"
@@ -1380,14 +1354,14 @@ msgstr "Αποδοχή πολλαπλών απαντήσεων"
 msgid "Hint shown on the button for adding an additional answer"
 msgstr "Η συμβουλή που θα φαίνεται στο κουμπί για την προσθήκη επιπλέον απάντησης"
 
+msgid "Template override"
+msgstr ""
+
 msgid "Phone number"
 msgstr "Αριθμός τηλεφώνου"
 
 msgid "Checkbox label"
 msgstr "Ετικέτα κουτιού"
-
-msgid "Layout orientation"
-msgstr "Προσανατολισμός διάταξης"
 
 msgid "Subject answer visibility to custodian authorization"
 msgstr "Ορατότητα απάντησης θέματος στην έγκριση θεματοφύλακα"
@@ -1404,6 +1378,12 @@ msgstr "Κείμενο που εμφανίζεται με την επιβεβα�
 msgid "Options"
 msgstr "Επιλογές "
 
+msgid "Addition"
+msgstr ""
+
+msgid "Multiplier"
+msgstr ""
+
 msgid "Questions"
 msgstr "Ερωτήσεις"
 
@@ -1418,32 +1398,6 @@ msgstr "Αντιγραφή"
 
 msgid "Steps"
 msgstr "Βήματα"
-
-msgid "Configuration"
-msgstr "Διαμόρφωση "
-
-msgid "Default"
-msgstr "Προεπιλογή"
-
-msgid "Forcefully selected"
-msgstr "Υποχρεωτικά επιλεγμένο"
-
-msgid "Unselectable"
-msgstr "Μη επιλεγμένο "
-
-msgid "Allow the recipient to postpone the submission expiration date"
-msgstr "Να επιτρέπεται στον παραλήπτη να αναβάλει την ημερομηνία λήξης υποβολής"
-
-msgid "The setting is enabled at a global level."
-msgstr "Η ρύθμιση είναι ενεργοποιημένη σε παγκόσμιο επίπεδο. "
-
-msgid "Allow the recipient to delete submissions"
-msgstr "Να επιτρέπεται στον παραλήπτη να διαγράψει υποβολές"
-
-msgid ""
-"Allow the recipient to grant permissions to whistleblowers on specific "
-"submissions"
-msgstr "Να επιτρέπεται στον παραλήπτη να χορηγεί άδειες στους πληροφοριοδότες για συγκεκριμένα αιτήματα"
 
 msgid "Site settings"
 msgstr "Ρυθμίσεις ιστοσελίδας"
@@ -1474,6 +1428,9 @@ msgstr "Ενεργό"
 
 msgid "Inactive"
 msgstr "Μη ενεργό"
+
+msgid "Configure"
+msgstr "Διαμόρφωση "
 
 msgid "The default password is:"
 msgstr "Ο προκαθορισμένος κωδικός πρόσβασης είναι:"
@@ -1516,6 +1473,32 @@ msgstr "Αφαίρεση κλειδιού PGP"
 msgid "Set up encryption by providing a PGP public key"
 msgstr "Ρυθμίστε την κρυπτογράφηση παρέχοντας ένα δημόσιο κλειδί PGP"
 
+msgid "Configuration"
+msgstr "Διαμόρφωση "
+
+msgid "Default"
+msgstr "Προεπιλογή"
+
+msgid "Forcefully selected"
+msgstr "Υποχρεωτικά επιλεγμένο"
+
+msgid "Unselectable"
+msgstr "Μη επιλεγμένο "
+
+msgid "Allow the recipient to postpone the submission expiration date"
+msgstr "Να επιτρέπεται στον παραλήπτη να αναβάλει την ημερομηνία λήξης υποβολής"
+
+msgid "The setting is enabled at a global level."
+msgstr "Η ρύθμιση είναι ενεργοποιημένη σε παγκόσμιο επίπεδο. "
+
+msgid "Allow the recipient to delete submissions"
+msgstr "Να επιτρέπεται στον παραλήπτη να διαγράψει υποβολές"
+
+msgid ""
+"Allow the recipient to grant permissions to whistleblowers on specific "
+"submissions"
+msgstr "Να επιτρέπεται στον παραλήπτη να χορηγεί άδειες στους πληροφοριοδότες για συγκεκριμένα αιτήματα"
+
 msgid "User has administrative access to the following features:"
 msgstr "Ο χρήστης έχει πρόσβαση διαχειριστή στις ακόλουθες λειτουργίες:"
 
@@ -1549,17 +1532,6 @@ msgid ""
 msgstr "Συνδέεστε χωρίς ανωνυμία σε κόμβο που υποστηρίζει μόνο ανώνυμες υποβολές"
 
 msgid ""
-"Server temporarily unusable due to resource exhaustion; advise the Admin if "
-"you can."
-msgstr ""
-
-msgid "This server is not configured."
-msgstr "Αυτός ο κόμβος δεν έχει ρυθμιστεί."
-
-msgid "You will not be able to send a submission."
-msgstr "Δεν θα μπορείτε να στείλετε υποβολή."
-
-msgid ""
 "This platform makes use of GlobaLeaks software specifically designed to "
 "protect the identity for submitter and recipient in the exchange of content."
 msgstr "Αυτή η πλατφόρμα χρησιμοποιεί το λογισμικό GlobaLeaks, που είναι ειδικά σχεδιασμένο για να προστατεύει την ταυτότητα του υποβολέα και του παραλήπτη στην ανταλλαγή περιεχομένου."
@@ -1580,6 +1552,9 @@ msgstr "Αποτυχία πιστοποίησης"
 
 msgid "Site:"
 msgstr "Ιστοσελίδα:"
+
+msgid "The receipt is either invalid or the submission has expired."
+msgstr ""
 
 msgid "Username:"
 msgstr "Όνομα χρήστη:"
@@ -1602,16 +1577,43 @@ msgstr "Αυτή η ενέργεια θα επαναφέρει τις ρυθμί
 msgid "Assign score points"
 msgstr "Ανάθεση πόντων βαθμολογίας"
 
-msgid ""
-"Enter the number of score points to be assigned when this option is "
-"selected:"
-msgstr "Εισάγετε τον αριθμό των πόντων βαθμολογίας που θα ανατίθενται όταν η επιλογή αυτή είναι ενεργή:"
-
 msgid "Confirm"
 msgstr "Επιβεβαίωση"
 
 msgid "Please note that all the associated data will be permanently lost."
 msgstr "Παρακαλούμε σημειώστε ότι όλα τα σχετικά δεδομένα θα χαθούν οριστικά."
+
+msgid "Welcome!"
+msgstr "Καλώς ήρθατε!"
+
+msgid "For the user documentation, visit:"
+msgstr ""
+
+msgid ""
+"If you need technical support, have general questions, or have new ideas for"
+" the software:"
+msgstr "Αν χρειάζεστε τεχνική υποστήριξη, έχετε γενικές ερωτήσεις ή νέες ιδέες για το λογισμικό:"
+
+msgid ""
+"If you want to contribute to software development or report a bug, please "
+"open an issue in our ticketing system:"
+msgstr "Αν θέλετε να συνεισφέρετε στην ανάπτυξη λογισμικού ή να αναφέρετε κάποιο σφάλμα παρακαλώ ανοίξτε ένα νέο ζήτημα στο σύστημα ζητημάτων:"
+
+msgid ""
+"If your non-profit needs support for investigative journalism, activism or a"
+" human rights defense project:"
+msgstr "Αν ο μη κερδοσκοπικός οργανισμός σας χρειάζεται υποστήριξη σε δημοσιογραφική έρευνα, ακτιβισμό ή σε έργο υπεράσπισης ανθρωπίνων δικαιωμάτων:"
+
+msgid ""
+"For professional support and development of anti corruption and compliance "
+"projects contact the social enterprise maintaining GlobaLeaks:"
+msgstr "Για επαγγελματική υποστήριξη και ανάπτυξη έργων συμμόρφωσης και κατά της διαφθοράς, επικοινωνήστε με την κοινωνική επιχείρηση που συντηρεί το GlobaLeaks:"
+
+msgid "Join our IRC chat channel on the irc.oftc.net network:"
+msgstr "Συνδεθείτε στο κανάλι μας στο IRC, στο δίκτυο irc.oftc.net:"
+
+msgid "Follow the project on:"
+msgstr "Ακολουθήστε το project στο:"
 
 msgid "Error!"
 msgstr "Σφάλμα!"
@@ -1827,6 +1829,15 @@ msgstr "Συνημμένα αρχεία για τον πληροφοριοδότ
 msgid "Upload a file:"
 msgstr "Ανεβάστε ένα αρχείο:"
 
+msgid "Question"
+msgstr ""
+
+msgid "Inverted"
+msgstr ""
+
+msgid "Trigger step"
+msgstr "βήμα σκανδάλη"
+
 msgid "Logout"
 msgstr "Αποσύνδεση"
 
@@ -1859,27 +1870,27 @@ msgstr "Η επαναφορά του κωδικού πρόσβασης αιτή�
 msgid "Thank you!"
 msgstr "Ευχαριστούμε!"
 
-msgid "Remember your key code for this submission."
-msgstr "Θυμηθείτε τον κωδικο - κλειδί σας για αυτή την υποβολή."
+msgid "Remember your receipt for this submission."
+msgstr ""
 
 msgid "We will try to get back to you as soon as possible!"
 msgstr "Θα προσπαθήσουμε να επικοινωνήσουμε μαζί σας το συντομότερο δυνατόν!"
 
 msgid ""
-"Use the 16 digit key code to log in. It will allow you to view any messages "
+"Use the 16 digit receipt to log in. It will allow you to view any messages "
 "we sent you, and also to add extra info."
-msgstr "Χρησιμοποιήστε τον 16ψήφιο κωδικό - κλειδί για να συνδεθείτε. Θα σας επιτρέψει να δείτε όλα τα μηνύματα που σας στείλαμε, και επίσης να προσθέσετε επιπλέον πληροφορίες."
+msgstr ""
 
 msgid "View your submission"
 msgstr "Δείτε την υποβολή σας"
 
-msgid "Hint: How to hide your key code"
-msgstr "Συμβουλή: Πώς να κρύψετε τον κωδικό - κλειδί σας"
+msgid "Hint: How to hide your receipt"
+msgstr ""
 
 msgid ""
-"A useful way to hide your key code is to write it down like a credit card "
+"A useful way to hide your receipt is to write it down like a credit card "
 "number, i.e. by also including an expiration date."
-msgstr "Ένας χρήσιμος τρόπος για να κρύψετε τον κωδικό - κλειδί σας είναι να τον γράψετε σαν να ήταν αριθμός πιστωτικής κάρτας, για παράδειγμα γράφοντας επίσης μια ημερομηνία λήξης."
+msgstr ""
 
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."
@@ -1890,9 +1901,6 @@ msgstr "Ημερομηνία υποβολής της αίτησης"
 
 msgid "Undeclared"
 msgstr "Αδήλωτη"
-
-msgid "Congratulations!"
-msgstr "Συγχαρητήρια!"
 
 msgid "You have completed the platform activation."
 msgstr "Ολοκληρώσατε την ενεργοποίηση της πλατφόρμας"
@@ -2076,9 +2084,6 @@ msgstr "Για να συνδεθείτε, επισκεφτείτε:"
 
 msgid "Users' credentials:"
 msgstr "Διαπιστευτήρια χρηστών:"
-
-msgid "For the user documentation visit:"
-msgstr "Για την τεκμηρίωση χρηστών, επισκεφτείτε:"
 
 msgid "The platform will be automatically deleted on:"
 msgstr "Η πλατφόρμα θα διαγραφτεί αυτόματα στις:"

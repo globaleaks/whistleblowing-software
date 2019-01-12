@@ -1898,9 +1898,6 @@ msgstr "Question"
 msgid "Inverted"
 msgstr "Inverted"
 
-msgid "Set recipients"
-msgstr "Set recipients"
-
 msgid "Trigger step"
 msgstr "Trigger step"
 
@@ -2149,6 +2146,15 @@ msgstr "Job responsibility (role) at the time of the reported fact"
 
 msgid "Organization unit and job location at the time of the reported fact"
 msgstr "Organization unit and job location at the time of the reported fact"
+
+msgid "Authentication code: {{AuthenticationCode}}"
+msgstr "Authentication code: {{AuthenticationCode}}"
+
+msgid "The authentication code is valid for 5 minutes."
+msgstr "The authentication code is valid for 5 minutes."
+
+msgid "Authentication Code"
+msgstr "Authentication Code"
 
 msgid "Dear {RecipientName},"
 msgstr "Dear {RecipientName},"

@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2018-11-15 11:35+0000\n"
-"Last-Translator: Hermes Center <info@hermescenter.org>\n"
+"PO-Revision-Date: 2019-01-12 14:02+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Korean (http://www.transifex.com/otf/globaleaks/language/ko/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -64,12 +64,6 @@ msgstr "라이센스"
 
 msgid "Notification templates"
 msgstr "알림 템플릿"
-
-msgid "Recipient notification templates"
-msgstr "받는 사람 알림 템플릿"
-
-msgid "Admin notification templates"
-msgstr "관리자 알림 템플릿"
 
 msgid "Missing data"
 msgstr "누락 된 데이터"
@@ -415,9 +409,6 @@ msgstr "트리거 질문"
 msgid "Triggered by a score higher than:"
 msgstr "보다 높은 점수 트리거 :"
 
-msgid "Select the question to be triggered when this option is selected"
-msgstr "이 옵션이 선택 될 때 발생되는 문제를 선택"
-
 msgid "Message shown on top of the status page of the submission"
 msgstr "메시지 제출의 상태 페이지의 상단에 표시"
 
@@ -723,8 +714,8 @@ msgstr "제목"
 msgid "Text"
 msgstr "텍스트"
 
-msgid "Disable the key code hint"
-msgstr "키 코드 힌트를 사용하지 않도록 설정"
+msgid "Disable the receipt hint"
+msgstr ""
 
 msgid "Disable the donation panel"
 msgstr "기부 패널을 사용하지 않도록 설정"
@@ -793,21 +784,6 @@ msgstr "사용자 이름"
 msgid "Password"
 msgstr "암호"
 
-msgid "Restrict privileged logins to specific IP addresses"
-msgstr ""
-
-msgid "Whitelisted IP addresses"
-msgstr ""
-
-msgid "Either individual IP addresses or CIDR ranges are accepted here."
-msgstr ""
-
-msgid "Example:"
-msgstr "예:"
-
-msgid "Each entry must be separated with a comma."
-msgstr ""
-
 msgid "Allow users to reset their passwords"
 msgstr ""
 
@@ -852,6 +828,27 @@ msgstr "긴 URL"
 
 msgid "Add"
 msgstr "더하다"
+
+msgid "Enable automatic backups"
+msgstr ""
+
+msgid "Daily"
+msgstr ""
+
+msgid "Weekly"
+msgstr ""
+
+msgid "Montly"
+msgstr ""
+
+msgid "Remote"
+msgstr ""
+
+msgid "Server"
+msgstr "서버"
+
+msgid "Port"
+msgstr "포트"
 
 msgid "Substatuses"
 msgstr ""
@@ -937,6 +934,15 @@ msgstr "컨텍스트"
 msgid "Name"
 msgstr "이름"
 
+msgid "Enabled"
+msgstr "사용"
+
+msgid "Hidden"
+msgstr "숨김"
+
+msgid "Disabled"
+msgstr "장애인"
+
 msgid "Questionnaire"
 msgstr "질문 사항"
 
@@ -952,13 +958,8 @@ msgstr ""
 msgid "days"
 msgstr "일"
 
-msgid "Allow selection of this context through the context selector."
-msgstr "상황에 맞는 선택을 통해이 문맥의 선택을 허용합니다."
-
-msgid ""
-"If disabled, submissions for this context will only be accessible through a "
-"direct link to it."
-msgstr "사용할 경우,이 문맥에 제출 만에 직접 링크를 통해 액세스 할 수 있습니다."
+msgid "Show the questionnaire navigation interface"
+msgstr ""
 
 msgid "Allow whistleblowers to select their recipients"
 msgstr "제보자는 자신의 수신자를 선택할 수 있습니다"
@@ -978,6 +979,12 @@ msgstr "알파벳 순서로 표시받는 사람"
 msgid "Show small recipient cards on submission interface"
 msgstr "제출 인터페이스에 작은받는 카드보기"
 
+msgid "Show recipient details on the status page of the submission"
+msgstr "제출의 상태 페이지에받는 사람의 정보를보기"
+
+msgid "Text shown on top of the interface for selecting recipients"
+msgstr "텍스트는 수신자를 선택하기위한 인터페이스의 상단에 도시"
+
 msgid "Enable comments"
 msgstr "코멘트를 활성화"
 
@@ -993,65 +1000,23 @@ msgstr "제보자 메시지를 보낼 수 있도록 허용"
 msgid "Let whistleblowers add attachments onto existing submissions"
 msgstr ""
 
-msgid "Show recipient details on the status page of the submission"
-msgstr "제출의 상태 페이지에받는 사람의 정보를보기"
-
 msgid "Let recipients upload files to whistleblowers"
 msgstr ""
 
-msgid "Text shown on top of the interface for selecting recipients"
-msgstr "텍스트는 수신자를 선택하기위한 인터페이스의 상단에 도시"
-
-msgid "Welcome!"
-msgstr "환영합니다!"
-
-msgid ""
-"This interface may help you understand how the server can be configured and "
-"provides some info on how to connect to other GlobaLeaks users and experts."
-msgstr "이 인터페이스는 서버 구성 및 다른 GlobaLeaks 사용자와 전문가에 연결하는 방법에 대한 몇 가지 정보를 제공 할 수있는 방법을 이해하는 데 도움이 될 수 있습니다."
-
-msgid "Documentation"
-msgstr "문서"
-
-msgid ""
-"To properly organize your project, please read the following guidelines:"
-msgstr "제대로 프로젝트를 구성하려면 다음 지침을 참조하십시오 :"
-
-msgid "Remember to provide proper security advice to Whistleblowers:"
-msgstr "제보자에 적절한 보안 조언을 제공해야합니다 :"
-
-msgid ""
-"To learn more about GlobaLeaks Security you can read the following document:"
+msgid "Enable scoring system"
 msgstr ""
 
-msgid "Contact"
-msgstr "연락하기"
-
-msgid ""
-"If you need technical support, have general questions, or have new ideas for"
-" the software:"
+msgid "Threshold"
 msgstr ""
 
-msgid ""
-"If you want to contribute to software development or report a bug, please "
-"open an issue in our ticketing system:"
-msgstr ""
+msgid "Value"
+msgstr "값"
 
-msgid ""
-"If your non-profit needs support for investigative journalism, activism or a"
-" human rights defense project:"
-msgstr ""
+msgid "Medium"
+msgstr "중간"
 
-msgid ""
-"For professional support and development of anti corruption and compliance "
-"projects contact the social enterprise maintaining GlobaLeaks:"
-msgstr ""
-
-msgid "Join our IRC chat channel on the irc.oftc.net network:"
-msgstr ""
-
-msgid "Follow the project on:"
-msgstr ""
+msgid "High"
+msgstr "높음"
 
 msgid "Software version:"
 msgstr "소프트웨어 버전 :"
@@ -1080,9 +1045,6 @@ msgstr "운송 보안"
 msgid "Require authentication"
 msgstr ""
 
-msgid "Disabled"
-msgstr "장애인"
-
 msgid "When the option is re-enabled the spooled emails will be sent out."
 msgstr "옵션이 다시 활성화 될 때 스풀 이메일이 전송됩니다."
 
@@ -1103,18 +1065,6 @@ msgstr ""
 
 msgid "Template"
 msgstr "주형"
-
-msgid "Roles enabled to use the platform without Tor:"
-msgstr ""
-
-msgid "Admin"
-msgstr "관리자"
-
-msgid "Recipient"
-msgstr "받는 사람"
-
-msgid "Whistleblower"
-msgstr ""
 
 msgid "Hostname"
 msgstr ""
@@ -1143,6 +1093,9 @@ msgstr ""
 
 msgid "Proceed"
 msgstr "발하다"
+
+msgid "Congratulations!"
+msgstr "치하!"
 
 msgid "Configuration completed. You can review the settings or enable it now."
 msgstr ""
@@ -1234,9 +1187,6 @@ msgstr ""
 msgid "The connection to the configured domain failed."
 msgstr ""
 
-msgid "Enabled"
-msgstr "사용"
-
 msgid "Running"
 msgstr ""
 
@@ -1256,6 +1206,30 @@ msgid ""
 "Allowing whistleblowers to connect over HTTPS preserves their privacy but "
 "not their anonymity."
 msgstr ""
+
+msgid "Restrict access to specific IP addresses"
+msgstr ""
+
+msgid "Role"
+msgstr "역할"
+
+msgid "Whitelisted IP addresses"
+msgstr ""
+
+msgid "Admin"
+msgstr "관리자"
+
+msgid "Recipient"
+msgstr "받는 사람"
+
+msgid "Whistleblower"
+msgstr ""
+
+msgid "Each entry must be separated with a comma."
+msgstr ""
+
+msgid "Example:"
+msgstr "예:"
 
 msgid "Attention!"
 msgstr ""
@@ -1280,6 +1254,9 @@ msgstr ""
 msgid "Let the platform be reachable without Tor"
 msgstr ""
 
+msgid "Roles enabled to use the platform without Tor"
+msgstr ""
+
 msgid "Stats of the week:"
 msgstr "일주일의 통계 :"
 
@@ -1297,9 +1274,6 @@ msgstr "행사"
 
 msgid "Response time"
 msgstr "응답 시간"
-
-msgid "Role"
-msgstr "역할"
 
 msgid "Last access"
 msgstr ""
@@ -1328,9 +1302,6 @@ msgstr "한 줄의 텍스트 입력"
 msgid "Multi-line text input"
 msgstr "멀티 라인 텍스트 입력"
 
-msgid "Multiple choice input"
-msgstr "여러 선택 입력"
-
 msgid "Selection box"
 msgstr "선택 상자"
 
@@ -1339,6 +1310,9 @@ msgstr "확인란"
 
 msgid "Terms of service"
 msgstr "서비스 약관"
+
+msgid "Map"
+msgstr ""
 
 msgid "Group of questions"
 msgstr "질문 그룹"
@@ -1370,14 +1344,14 @@ msgstr ""
 msgid "Hint shown on the button for adding an additional answer"
 msgstr "추가 답변을 추가하는 버튼에 표시 힌트"
 
+msgid "Template override"
+msgstr ""
+
 msgid "Phone number"
 msgstr "전화 번호"
 
 msgid "Checkbox label"
 msgstr ""
-
-msgid "Layout orientation"
-msgstr "레이아웃 방향"
 
 msgid "Subject answer visibility to custodian authorization"
 msgstr "후견인 권한에 따라 응답 가시성"
@@ -1394,6 +1368,12 @@ msgstr ""
 msgid "Options"
 msgstr "옵션"
 
+msgid "Addition"
+msgstr ""
+
+msgid "Multiplier"
+msgstr ""
+
 msgid "Questions"
 msgstr ""
 
@@ -1408,32 +1388,6 @@ msgstr ""
 
 msgid "Steps"
 msgstr ""
-
-msgid "Configuration"
-msgstr "구성"
-
-msgid "Default"
-msgstr "태만"
-
-msgid "Forcefully selected"
-msgstr "강제로 선택"
-
-msgid "Unselectable"
-msgstr "하거나 선택"
-
-msgid "Allow the recipient to postpone the submission expiration date"
-msgstr "받는 사람이 제출 기한을 연기 할 수 있도록 허용"
-
-msgid "The setting is enabled at a global level."
-msgstr "설정은 글로벌 수준에서 사용할 수 있습니다."
-
-msgid "Allow the recipient to delete submissions"
-msgstr "받는 사람이 제출을 삭제할 수"
-
-msgid ""
-"Allow the recipient to grant permissions to whistleblowers on specific "
-"submissions"
-msgstr "받는 사람이 특정 제출에 대한 내부 고발자에 대한 사용 권한을 부여 할 수 있도록 허용"
 
 msgid "Site settings"
 msgstr ""
@@ -1464,6 +1418,9 @@ msgstr "활성"
 
 msgid "Inactive"
 msgstr ""
+
+msgid "Configure"
+msgstr "구성"
 
 msgid "The default password is:"
 msgstr ""
@@ -1506,6 +1463,32 @@ msgstr "PGP 키를 제거"
 msgid "Set up encryption by providing a PGP public key"
 msgstr "PGP 공개 키를 제공하여 암호화를 설정"
 
+msgid "Configuration"
+msgstr "구성"
+
+msgid "Default"
+msgstr "태만"
+
+msgid "Forcefully selected"
+msgstr "강제로 선택"
+
+msgid "Unselectable"
+msgstr "하거나 선택"
+
+msgid "Allow the recipient to postpone the submission expiration date"
+msgstr "받는 사람이 제출 기한을 연기 할 수 있도록 허용"
+
+msgid "The setting is enabled at a global level."
+msgstr "설정은 글로벌 수준에서 사용할 수 있습니다."
+
+msgid "Allow the recipient to delete submissions"
+msgstr "받는 사람이 제출을 삭제할 수"
+
+msgid ""
+"Allow the recipient to grant permissions to whistleblowers on specific "
+"submissions"
+msgstr "받는 사람이 특정 제출에 대한 내부 고발자에 대한 사용 권한을 부여 할 수 있도록 허용"
+
 msgid "User has administrative access to the following features:"
 msgstr ""
 
@@ -1539,17 +1522,6 @@ msgid ""
 msgstr "당신은 익명없이 서버에 연결하는이 서버는 익명 제출 지원"
 
 msgid ""
-"Server temporarily unusable due to resource exhaustion; advise the Admin if "
-"you can."
-msgstr ""
-
-msgid "This server is not configured."
-msgstr "이 서버는 구성되어 있지 않습니다."
-
-msgid "You will not be able to send a submission."
-msgstr "당신은 제출을 보낼 수 없습니다."
-
-msgid ""
 "This platform makes use of GlobaLeaks software specifically designed to "
 "protect the identity for submitter and recipient in the exchange of content."
 msgstr ""
@@ -1569,6 +1541,9 @@ msgid "Authentication failed"
 msgstr "인증 실패"
 
 msgid "Site:"
+msgstr ""
+
+msgid "The receipt is either invalid or the submission has expired."
 msgstr ""
 
 msgid "Username:"
@@ -1592,15 +1567,42 @@ msgstr ""
 msgid "Assign score points"
 msgstr "점수 포인트를 할당"
 
-msgid ""
-"Enter the number of score points to be assigned when this option is "
-"selected:"
-msgstr "이 옵션이 선택되면 점수 포인트의 수가 할당 될 입력"
-
 msgid "Confirm"
 msgstr "확인"
 
 msgid "Please note that all the associated data will be permanently lost."
+msgstr ""
+
+msgid "Welcome!"
+msgstr "환영합니다!"
+
+msgid "For the user documentation, visit:"
+msgstr ""
+
+msgid ""
+"If you need technical support, have general questions, or have new ideas for"
+" the software:"
+msgstr ""
+
+msgid ""
+"If you want to contribute to software development or report a bug, please "
+"open an issue in our ticketing system:"
+msgstr ""
+
+msgid ""
+"If your non-profit needs support for investigative journalism, activism or a"
+" human rights defense project:"
+msgstr ""
+
+msgid ""
+"For professional support and development of anti corruption and compliance "
+"projects contact the social enterprise maintaining GlobaLeaks:"
+msgstr ""
+
+msgid "Join our IRC chat channel on the irc.oftc.net network:"
+msgstr ""
+
+msgid "Follow the project on:"
 msgstr ""
 
 msgid "Error!"
@@ -1817,6 +1819,15 @@ msgstr ""
 msgid "Upload a file:"
 msgstr ""
 
+msgid "Question"
+msgstr ""
+
+msgid "Inverted"
+msgstr ""
+
+msgid "Trigger step"
+msgstr "트리거 단계"
+
 msgid "Logout"
 msgstr "로그 아웃"
 
@@ -1849,27 +1860,27 @@ msgstr ""
 msgid "Thank you!"
 msgstr "고맙습니다!"
 
-msgid "Remember your key code for this submission."
-msgstr "이 제출 키 코드를 기억하십시오."
+msgid "Remember your receipt for this submission."
+msgstr ""
 
 msgid "We will try to get back to you as soon as possible!"
 msgstr "우리는 가능한 한 빨리 다시 연락을 시도합니다!"
 
 msgid ""
-"Use the 16 digit key code to log in. It will allow you to view any messages "
+"Use the 16 digit receipt to log in. It will allow you to view any messages "
 "we sent you, and also to add extra info."
-msgstr "로그인 할 수있는 16 자리의 키 코드를 사용합니다. 그것은 당신이 우리가 보낸 모든 메시지를 볼 수 있습니다, 또한 여분의 정보를 추가 할 수 있습니다."
+msgstr ""
 
 msgid "View your submission"
 msgstr "제출보기"
 
-msgid "Hint: How to hide your key code"
-msgstr "힌트 : 어떻게 키 코드를 숨기려면"
+msgid "Hint: How to hide your receipt"
+msgstr ""
 
 msgid ""
-"A useful way to hide your key code is to write it down like a credit card "
+"A useful way to hide your receipt is to write it down like a credit card "
 "number, i.e. by also including an expiration date."
-msgstr "키 코드를 숨길 수있는 유용한 방법은 또한 유효 기간을 포함하여 즉, 신용 카드 번호처럼 그것을 아래로 작성하는 것입니다."
+msgstr ""
 
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."
@@ -1880,9 +1891,6 @@ msgstr "요청 일자"
 
 msgid "Undeclared"
 msgstr ""
-
-msgid "Congratulations!"
-msgstr "치하!"
 
 msgid "You have completed the platform activation."
 msgstr ""
@@ -2065,9 +2073,6 @@ msgid "To log in, visit:"
 msgstr ""
 
 msgid "Users' credentials:"
-msgstr ""
-
-msgid "For the user documentation visit:"
 msgstr ""
 
 msgid "The platform will be automatically deleted on:"
