@@ -92,7 +92,12 @@
       <div data-ng-switch-when="map">
         <div id="{{::fieldEntry}}">
           <div class="map"></div>
-          <input class="form-control inputelem" value="{{option_name}}" type="text" disabled></input>
+          <div class="input-group">
+            <select id="{{::fieldEntry}}" name="{{'input-' +  entryIndex}}" class="form-control inputelem" data-ng-model="entry['value']" data-ng-change="field.attrs.topojson.set(entry['value'])" data-ng-required="field.required_status">
+              <option data-ng-repeat="option in field.attrs.topojson.features | orderBy:'properties.name'" value="{{option.id}}">{{::option.properties.name}}</option>
+            </select>
+            <span class="input-group-addon" data-ng-click="entry['value']=''; field.attrs.topojson.reset()" data-ng-disabled="!entry['value']"><span class="glyphicon glyphicon-remove-circle"></span></span>
+          </div>
         </div>
       </div>
       <div data-ng-switch-when="fileupload">

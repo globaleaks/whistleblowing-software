@@ -638,11 +638,34 @@ controller('SubmissionFormFieldCtrl', ['$scope', 'topojson',
           height = 240;
 
       $scope.clicked = null;
-      $scope.option_name = null;
+
+      $scope.field.attrs.topojson.reset = function() {
+        $scope.fieldEntry['value'] = '';
+        $scope.clicked = null;
+
+        for(var i=0; i<$scope.field.attrs.topojson.paths.length; i++) {
+          d3.select($scope.field.attrs.topojson.paths[i]).attr("r", 5.5).style("fill", "#DDD");
+        }
+      }
+
+      $scope.field.attrs.topojson.set = function(id) {
+        $scope.clicked = null;
+        for(var i=0; i<$scope.field.attrs.topojson.paths.length; i++) {
+          var path = $scope.field.attrs.topojson.paths[i];
+          if(path.__data__.id === id) {
+           $scope.clicked = path;
+           d3.select(path).attr("r", 10).style("fill", "red");
+          } else {
+           d3.select(path).attr("r", 5.5).style("fill", "#DDD");
+          }
+        }
+      }
 
       d3.json($scope.field.attrs.topojson.value).then(function(json) {
         var key = Object.keys(json.objects)[0];
         json = topojson.feature(json, json.objects[key]);
+
+        $scope.field.attrs.topojson.features = json.features;
 
         var projection = d3.geoMercator();
         var path = d3.geoPath();
@@ -663,7 +686,9 @@ controller('SubmissionFormFieldCtrl', ['$scope', 'topojson',
 
         svg.selectAll('svg')
            .data(json.features)
-           .enter().append("path")
+           .enter()
+           .append("path")
+           .call(function(d){ $scope.field.attrs.topojson.paths = d._groups[0]; })
            .attr("class", "mapoutline")
            .attr("d", path)
            .on("mouseover", function(d) {
@@ -699,11 +724,9 @@ controller('SubmissionFormFieldCtrl', ['$scope', 'topojson',
                }
                $scope.clicked = this;
                d3.select(this).attr("r", 10).style("fill", "red");
-               $scope.option_name = d.properties.name;
                $scope.answers[$scope.field.id][0]['value'] = d.id;
              } else {
                d3.select(this).attr("r", 5.5).style("fill", "#DDD");
-               $scope.option_name = '';
                $scope.answers[$scope.field.id][0]['value'] = '';
              }
              $scope.$apply();
