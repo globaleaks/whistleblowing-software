@@ -7,8 +7,7 @@
              type="text"
              data-ng-model="admin.node.hostname"
              data-ng-pattern="hostname_regexp"
-             data-ng-class="{'has-error': adminNetForm.hostname.$error.pattern}">
-      </input>
+             data-ng-class="{'has-error': adminNetForm.hostname.$error.pattern}" />
       <span class="input-group-btn">
         <button class="btn btn-primary" data-ng-disabled="admin.node.hostname === ''" data-ng-click="verifyHostname()" data-translate>Verify</button>
         <button class="btn btn-success" data-ng-disabled="admin.node.hostname === ''" data-ng-click="setHostname()" data-translate>Save</button>

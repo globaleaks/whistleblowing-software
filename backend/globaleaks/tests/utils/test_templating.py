@@ -2,6 +2,7 @@
 from twisted.internet.defer import inlineCallbacks
 from globaleaks.handlers import admin, rtip, user
 from globaleaks.jobs.delivery import Delivery
+from globaleaks.orm import tw
 from globaleaks.tests import helpers
 from globaleaks.utils.templating import Templating, supported_template_types
 
@@ -16,8 +17,8 @@ class notifTemplateTest(helpers.TestGLWithPopulatedDB):
         data['type'] = 'tip'
         data['user'] = yield user.get_user(1, self.dummyReceiver_1['id'], u'en')
         data['context'] = yield admin.context.get_context(1, self.dummyContext['id'], u'en')
-        data['notification'] = yield admin.notification.get_notification(1, u'en')
-        data['node'] = yield admin.node.admin_serialize_node(1, u'en')
+        data['notification'] = yield tw(admin.notification.db_get_notification, 1, u'en')
+        data['node'] = yield tw(admin.node.db_admin_serialize_node, 1, u'en')
 
         for tip in self.dummyRTips:
             if tip['receiver_id'] == self.dummyReceiver_1['id']:

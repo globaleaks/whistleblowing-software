@@ -3,11 +3,11 @@ from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.db import db_refresh_memory_variables
 from globaleaks.db.appdata import load_appdata
-from globaleaks.handlers.admin.node import admin_serialize_node
+from globaleaks.handlers.admin.node import db_admin_serialize_node
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.user import get_user
 from globaleaks.models.config import ConfigFactory, ConfigL10NFactory
-from globaleaks.orm import transact
+from globaleaks.orm import transact, tw
 from globaleaks.rest import requests
 from globaleaks.state import State
 from globaleaks.utils.sets import merge_dicts
@@ -30,11 +30,6 @@ def admin_serialize_notification(session, tid, language):
 
 def db_get_notification(session, tid, language):
     return admin_serialize_notification(session, tid, language)
-
-
-@transact
-def get_notification(session, tid, language):
-    return db_get_notification(session, tid, language)
 
 
 @transact
@@ -63,7 +58,7 @@ class NotificationInstance(BaseHandler):
     check_roles = 'admin'
 
     def get(self):
-        return get_notification(self.request.tid, self.request.language)
+        return tw(db_get_notification, self.request.tid, self.request.language)
 
     def put(self):
         """
@@ -95,8 +90,8 @@ class NotificationTestInstance(BaseHandler):
 
         data = {
             'type': 'admin_test',
-            'node': (yield admin_serialize_node(tid, language)),
-            'notification': (yield get_notification(tid, language)),
+            'node': (yield tw(db_admin_serialize_node, tid, language)),
+            'notification': (yield tw(db_get_notification, tid, language)),
             'user': user,
         }
 

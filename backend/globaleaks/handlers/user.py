@@ -84,7 +84,7 @@ def user_serialize_user(session, user, language):
 
 
 def serialize_usertenant_association(row):
-    '''Serializes the UserTenant associations'''
+    """Serializes the UserTenant associations"""
     return {
         'user_id': row.user_id,
         'tenant_id': row.tenant_id

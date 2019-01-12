@@ -490,7 +490,6 @@ class MigrationScript(MigrationBase):
             self.session_new.add(new_obj)
 
     def migrate_InternalTip(self):
-        used_presentation_order = []
         old_objs = self.session_old.query(self.model_from['InternalTip'])
         for old_obj in old_objs:
             new_obj = self.model_to['InternalTip']()
@@ -594,7 +593,6 @@ class MigrationScript(MigrationBase):
 
         self.session_new.add(self.model_to['Tenant']({'label': '', 'active': True}))
 
-        questionnaires = self.session_old.query(self.model_from['ArchivedSchema']).filter(self.model_from['ArchivedSchema'].type == u'questionnaire')
         for q in self.session_old.query(self.model_from['ArchivedSchema']).filter(self.model_from['ArchivedSchema'].type == u'questionnaire'):
             p = self.session_old.query(self.model_from['ArchivedSchema']).filter(self.model_from['ArchivedSchema'].hash == q.hash,
                                                                            self.model_from['ArchivedSchema'].type == u'preview').one()

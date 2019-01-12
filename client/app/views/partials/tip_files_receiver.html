@@ -25,10 +25,9 @@
             <tr id="file-{{$index}}" data-ng-repeat="file in tip.rfiles">
               <td>{{::file.name}}</td>
               <td data-ng-show="file.status != 'unavailable'">
-                <button class="tip-action-download-file"
+                <button class="btn btn-default tip-action-download-file"
                         uib-popover="{{'Download' | translate}}"
                         popover-placement="top"
-                        class="btn btn-default"
                         data-ng-click="downloadRFile(file)">
                   <i class="glyphicon glyphicon-download"></i>
                   <span data-translate>download</span>

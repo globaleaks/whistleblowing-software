@@ -59,7 +59,7 @@ def connection_check(client_ip, tid, role, client_using_tor):
 
 
 @transact
-def login_whistleblower(session, tid, receipt, client_using_tor):
+def login_whistleblower(session, tid, receipt):
     """
     login_whistleblower returns a session
     """
@@ -233,7 +233,7 @@ class ReceiptAuthHandler(BaseHandler):
         if delay:
             yield deferred_sleep(delay)
 
-        session = yield login_whistleblower(self.request.tid, request['receipt'], self.request.client_using_tor)
+        session = yield login_whistleblower(self.request.tid, request['receipt'])
 
         log.debug("Login: Success (%s)" % session.user_role)
 

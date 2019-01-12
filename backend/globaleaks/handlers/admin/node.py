@@ -13,7 +13,7 @@ from globaleaks.db.appdata import load_appdata
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.user import can_edit_general_settings_or_raise
 from globaleaks.models.config import ConfigFactory, ConfigL10NFactory
-from globaleaks.orm import transact
+from globaleaks.orm import transact, tw
 from globaleaks.rest import errors, requests
 from globaleaks.state import State
 from globaleaks.utils.crypto import GCE
@@ -48,11 +48,6 @@ def db_admin_serialize_node(session, tid, language, config_node='admin_node'):
     return utils.sets.merge_dicts(config, misc_dict, l10n_dict)
 
 
-@transact
-def admin_serialize_node(session, tid, language, config_node='admin_node'):
-    return db_admin_serialize_node(session, tid, language, config_node)
-
-
 def db_update_enabled_languages(session, tid, languages_enabled, default_language):
     cur_enabled_langs = models.EnabledLanguage.list(session, tid)
     new_enabled_langs = [text_type(y) for y in languages_enabled]
@@ -79,12 +74,8 @@ def db_update_enabled_languages(session, tid, languages_enabled, default_languag
         session.query(models.User).filter(models.User.tid == tid, models.User.language.in_(to_remove)).update({'language': default_language}, synchronize_session='fetch')
         session.query(models.EnabledLanguage).filter(models.EnabledLanguage.tid == tid, models.EnabledLanguage.name.in_(to_remove)).delete(synchronize_session='fetch')
 
-@transact
-def update_enabled_languages(session, tid, languages_enabled, default_language):
-    return db_update_enabled_languages(session, tid, languages_enabled, default_language)
 
-
-def db_update_node(session, tid, request, language, config_node):
+def db_update_node(session, tid, request, language):
     """
     Update and serialize the node infos
 
@@ -127,10 +118,6 @@ def db_update_node(session, tid, request, language, config_node):
     return db_admin_serialize_node(session, tid, language)
 
 
-@transact
-def update_node(*args):
-    return db_update_node(*args)
-
 class NodeInstance(BaseHandler):
     check_roles =  {'admin', 'receiver', 'custodian'}
     cache_resource = True
@@ -154,9 +141,10 @@ class NodeInstance(BaseHandler):
         """
 
         config_node = yield self.determine_allow_config_filter()
-        serialized_node = yield admin_serialize_node(self.request.tid,
-                                                     self.request.language,
-                                                     config_node=config_node[0])
+        serialized_node = yield tw(db_admin_serialize_node,
+                                   self.request.tid,
+                                   self.request.language,
+                                   config_node=config_node[0])
         returnValue(serialized_node)
 
     @inlineCallbacks
@@ -170,8 +158,8 @@ class NodeInstance(BaseHandler):
         request = yield self.validate_message(self.request.content.read(),
                                               config_node[1])
 
-        serialized_node = yield update_node(self.request.tid,
-                                            request,
-                                            self.request.language,
-                                            config_node[0])
+        serialized_node = yield tw(db_update_node,
+                                   self.request.tid,
+                                   request,
+                                   self.request.language)
         returnValue(serialized_node)

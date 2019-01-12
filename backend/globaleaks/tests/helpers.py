@@ -919,22 +919,12 @@ class TestHandler(TestGLWithPopulatedDB):
         if multilang:
             request.language = None
 
-        if user_id is not None:
-            users = [self.dummyAdminUser, self.dummyReceiverUser_1, self.dummyReceiverUser_2, self.dummyCustodianUser]
-            for u in users:
-                if u['id'] == user_id:
-                    user = u
-                    break
-
-        elif user_id is None and role is not None:
+        if user_id is None and role is not None:
             if role == 'admin':
-                user = self.dummyAdminUser
                 user_id = self.dummyAdminUser['id']
             elif role == 'receiver':
-                user = self.dummyReceiverUser_1
                 user_id = self.dummyReceiverUser_1['id']
             elif role == 'custodian':
-                user = self.dummyCustodianUser
                 user_id = self.dummyCustodianUser['id']
 
         if headers is not None and headers.get('x-session', None) is not None:
@@ -1212,12 +1202,6 @@ class MockDict:
             'counter_submissions': 0,
             'enable_password_reset': True,
             'enable_user_pgp_key_upload': False,
-            'signup_tos1_enable': False,
-            'signup_tos1_clause': u'',
-            'signup_tos1_agreement': u'',
-            'signup_tos2_enable': False,
-            'signup_tos2_clause': u'',
-            'signup_tos2_agreement': u'',
             'log_level': 'DEBUG',
             'log_accesses_of_internal_users': False,
             'encryption': False,
