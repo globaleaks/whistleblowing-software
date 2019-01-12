@@ -319,6 +319,8 @@ GLClient.controller('SubmissionCtrl',
   }
 
   $scope.onAnswerUpdate = function(field, entry) {
+    var i;
+
     /* Block related to updating required status */
     if (field.type === 'inputbox' || field.type === 'textarea') {
       field.required_status = (field.required || field.attrs.min_len.value > 0) && !entry['value'];
@@ -326,7 +328,7 @@ GLClient.controller('SubmissionCtrl',
       if (!field.required) {
         field.required_status = false;
       } else {
-        for (var i=0; i<field.options.length; i++) {
+        for (i=0; i<field.options.length; i++) {
           if (entry[field.options[i].id] && entry[field.options[i].id]) {
             field.required_status = false;
             break;
@@ -341,7 +343,7 @@ GLClient.controller('SubmissionCtrl',
 
     /* Block related to evaluate receivers triggers */
     if (field.type === 'checkbox' || field.type === 'selectbox') {
-      for (var i=0; i<field.options.length; i++) {
+      for (i=0; i<field.options.length; i++) {
 	if(field.type === 'checkbox') {
           if(entry[field.options[i].id] && entry[field.options[i].id]) {
             if (field.options[i].trigger_receiver.length) {
@@ -349,7 +351,7 @@ GLClient.controller('SubmissionCtrl',
             }
           }
         } else {
-	  if (field.options[i].id === entry['value']) {
+          if (field.options[i].id === entry['value']) {
             if (field.options[i].trigger_receiver.length) {
               $scope.replaceReceivers(field.options[i].trigger_receiver);
             }
