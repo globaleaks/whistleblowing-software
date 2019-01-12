@@ -3,9 +3,9 @@ import calendar
 from datetime import datetime, timedelta
 
 
-def backup_name(version, timestamp):
+def backup_name(version, id, timestamp):
     backup_date = datetime.fromtimestamp(timestamp).strftime("%Y_%m_%d")
-    return "%s_%d_%s.tar.gz" % (backup_date, timestamp, version)
+    return "%s_%s_%d_%s.tar.gz" % (backup_date, id, timestamp, version)
 
 
 def backup_type(date):

@@ -72,12 +72,13 @@ def backup(args):
 
     session = get_session_from_dbpath(db_path)
 
+    id = config.db_get_config_variable(session, 1, 'id')
     software_version = config.db_get_config_variable(session, 1, 'version')
 
     if LooseVersion(software_version) < LooseVersion('3.5.9'):
         return
 
-    db_perform_backup(session, software_version)
+    db_perform_backup(session, software_version, id)
 
     session.close()
 

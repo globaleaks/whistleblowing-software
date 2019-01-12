@@ -19,9 +19,9 @@ from globaleaks.utils.utility import datetime_now, datetime_to_ISO8601, is_expir
 __all__ = ['Backup']
 
 
-def db_perform_backup(session, version):
+def db_perform_backup(session, version, id):
     timestamp = int(time.time())
-    backupfile = backup_name(version, timestamp)
+    backupfile = backup_name(version, id, timestamp)
     dst = os.path.join(Settings.backup_path, backupfile)
 
     tardir(dst, Settings.working_path)
@@ -44,7 +44,7 @@ class Backup(DailyJob):
         if not self.state.tenant_cache[1].backup:
             return
 
-        db_perform_backup(session, self.state.tenant_cache[1].version)
+        db_perform_backup(session, self.state.tenant_cache[1].version, self.state.tenant_cache[1].id)
 
     @transact
     def check_backup_records_to_delete(self, session):
