@@ -1174,9 +1174,6 @@ class _User(Model):
     hash_alg = Column(UnicodeText, default=u'SCRYPT', nullable=False)
     password = Column(UnicodeText, default=u'', nullable=False)
 
-    twofactor_auth = Column(Integer, nullable=True)
-    twofactor_time = Column(DateTime, default=datetime_null, nullable=False)
-
     name = Column(UnicodeText, default=u'', nullable=False)
     description = Column(JSON, default=dict, nullable=False)
 

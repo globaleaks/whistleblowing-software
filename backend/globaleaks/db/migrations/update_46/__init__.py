@@ -328,8 +328,6 @@ class MigrationScript(MigrationBase):
                     if receiver is not None:
                         setattr(new_obj, key, receiver.configuration)
                     continue
-                elif key in ['twofactor_auth', 'twofactor_time']:
-                    continue
 
                 setattr(new_obj, key, getattr(old_obj, key))
 
