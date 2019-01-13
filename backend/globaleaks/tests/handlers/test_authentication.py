@@ -23,7 +23,8 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
         handler = self.request({
             'tid': 1,
             'username': 'admin',
-            'password': helpers.VALID_PASSWORD1
+            'password': helpers.VALID_PASSWORD1,
+            'authcode': ''
         })
         response = yield handler.post()
         self.assertTrue('session_id' in response)
@@ -34,7 +35,8 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
         handler = self.request({
             'tid': 2,
             'username': 'admin',
-            'password': helpers.VALID_PASSWORD1
+            'password': helpers.VALID_PASSWORD1,
+            'authcode': ''
         })
 
         response = yield handler.post()
@@ -46,7 +48,8 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
         handler = self.request({
             'tid': 1,
             'username': 'admin',
-            'password': helpers.VALID_PASSWORD1
+            'password': helpers.VALID_PASSWORD1,
+            'authcode': ''
         })
 
         response = yield handler.post()
@@ -63,7 +66,8 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
         handler = self.request({
             'tid': 1,
             'username': 'admin',
-            'password': helpers.VALID_PASSWORD1
+            'password': helpers.VALID_PASSWORD1,
+            'authcode': ''
         })
         State.tenant_cache[1]['https_allowed']['admin'] = True
         response = yield handler.post()
@@ -75,7 +79,8 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
         handler = self.request({
             'tid': 1,
             'username': 'admin',
-            'password': helpers.VALID_PASSWORD1
+            'password': helpers.VALID_PASSWORD1,
+            'authcode': ''
         })
         State.tenant_cache[1]['https_allowed']['admin'] = False
         yield self.assertFailure(handler.post(), errors.TorNetworkRequired)
@@ -85,7 +90,8 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
         handler = self.request({
             'tid': 1,
             'username': 'admin',
-            'password': 'INVALIDPASSWORD'
+            'password': 'INVALIDPASSWORD',
+            'authcode': ''
         })
 
         yield self.assertFailure(handler.post(), errors.InvalidAuthentication)
@@ -95,7 +101,8 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
         handler = self.request({
             'tid': 1,
             'username': 'admin',
-            'password': 'INVALIDPASSWORD'
+            'password': 'INVALIDPASSWORD',
+            'authcode': ''
         })
 
         failed_login = 5
@@ -109,7 +116,8 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
         handler = self.request({
             'tid': 1,
             'username': 'admin',
-            'password': helpers.VALID_PASSWORD1
+            'password': helpers.VALID_PASSWORD1,
+            'authcode': ''
         })
 
         r1 = yield handler.post()
@@ -123,7 +131,8 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
         auth_handler = self.request({
             'tid': 1,
             'username': 'receiver1',
-            'password': helpers.VALID_PASSWORD1
+            'password': helpers.VALID_PASSWORD1,
+            'authcode': ''
         })
 
         r1 = yield auth_handler.post()
@@ -156,7 +165,8 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
         handler = self.request({
             'tid': 1,
             'username': 'admin',
-            'password': helpers.VALID_PASSWORD1
+            'password': helpers.VALID_PASSWORD1,
+            'authcode': ''
         }, client_addr=IPv4Address('TCP', '192.168.1.1', 12345))
         yield self.assertFailure(handler.post(), errors.AccessLocationInvalid)
 
@@ -167,7 +177,8 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
         handler = self.request({
             'tid': 1,
             'username': 'admin',
-            'password': helpers.VALID_PASSWORD1
+            'password': helpers.VALID_PASSWORD1,
+            'authcode': ''
         }, client_addr=IPv4Address('TCP', '192.168.2.1', 12345))
         response = yield handler.post()
         self.assertTrue('session_id' in response)
@@ -262,6 +273,7 @@ class TestSessionHandler(helpers.TestHandlerWithPopulatedDB):
             'tid': 1,
             'username': 'admin',
             'password': helpers.VALID_PASSWORD1,
+            'authcode': '',
             'token': ''
         })
 

@@ -60,13 +60,22 @@ class InputValidationError(GLException):
         self.arguments = [error]
 
 
+class TwoFactorAuthCodeRequired(GLException):
+    """
+    Error signaling need for two factor auth token
+    """
+    reason = "Two Factor authentication required"
+    error_code = 4
+    status_code = 401
+
+
 class HTTPAuthenticationRequired(GLException):
     """
     Basic Authentication Required
     """
     reason = "Basic Authentication Required"
     error_code = 5
-    status_code = 401 # Not Found
+    status_code = 401
 
 
 class ResourceNotFound(GLException):
@@ -126,6 +135,15 @@ class InvalidOldPassword(GLException):
     """
     reason = "The specified old password is not valid"
     error_code = 12
+    status_code = 406
+
+
+class InvalidTwoFactorAuthCode(GLException):
+    """
+    Error signaling that the inserted two factor auth token is wrong
+    """
+    reason = "Two Factor authentication required"
+    error_code = 13
     status_code = 406
 
 

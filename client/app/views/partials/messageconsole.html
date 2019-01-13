@@ -1,4 +1,4 @@
-<div data-ng-repeat="error in errors" data-ng-show="error.code != 9">
+<div data-ng-repeat="error in errors" data-ng-show="error.code != 9 && error.code != 13">
   <div data-uib-alert class="alert-danger" close="closeAlert(errors, $index)" dismiss-on-timeout="3000">
     <!--
       We skip authentication errors (9) that are handled by the request interceptor.

@@ -849,9 +849,11 @@ var GLClient = angular.module('GLClient', [
          /* 10: Not Authenticated */
          if (error.code === 10) {
            $rootScope.Authentication.loginRedirect(false);
-         }
-
-         $rootScope.errors.push(error);
+         } else if (error.code === 4) {
+           $rootScope.Authentication.authcoderequired = true;
+         } else {
+           $rootScope.errors.push(error);
+	 }
        }
 
        return $q.reject(response);

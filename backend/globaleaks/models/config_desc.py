@@ -157,7 +157,7 @@ ConfigDescriptor = {
     u'ip_filter_whistleblower': Unicode(default=u''),
     u'ip_filter_whistleblower_enable': Bool(default=False),
 
-    u'2fa': Bool(default=False),
+    u'two_factor_auth': Bool(default=False),
 
     u'backup': Bool(default=False),
     u'backup_d': Int(default=3),
@@ -265,7 +265,7 @@ ConfigFilters = {
         u'log_level',
         u'log_accesses_of_internal_users',
         u'encryption',
-        u'2fa',
+        u'two_factor_auth',
         u'multisite',
         u'backup',
         u'backup_d',
@@ -338,7 +338,7 @@ ConfigFilters['public_node'] = list(set(ConfigFilters['admin_node']) - set([
     'anonymize_outgoing_connections',
     'counter_submissions',
     'encryption',
-    '2fa',
+    'two_factor_auth',
     'backup',
     'backup_d',
     'backup_w',

@@ -5,7 +5,8 @@ from random import SystemRandom
 from six import text_type, binary_type
 from sqlalchemy import or_
 from twisted.internet.defer import inlineCallbacks, returnValue
-
+from globaleaks.handlers.admin.node import db_admin_serialize_node
+from globaleaks.handlers.admin.notification import db_get_notification
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.models import InternalTip, User, UserTenant, WhistleblowerTip
 from globaleaks.orm import transact
@@ -13,10 +14,12 @@ from globaleaks.rest import errors, requests
 from globaleaks.sessions import Sessions
 from globaleaks.settings import Settings
 from globaleaks.state import State
+from globaleaks.twofactor import TwoFactorTokens
 from globaleaks.utils.crypto import GCE
 from globaleaks.utils.ip import check_ip
 from globaleaks.utils.log import log
-from globaleaks.utils.utility import datetime_now, deferred_sleep
+from globaleaks.utils.templating import Templating
+from globaleaks.utils.utility import datetime_now, datetime_null, deferred_sleep
 
 
 def random_login_delay():
@@ -97,7 +100,7 @@ def login_whistleblower(session, tid, receipt):
 
 
 @transact
-def login(session, tid, username, password, client_using_tor, client_ip):
+def login(session, tid, username, password, authcode, client_using_tor, client_ip):
     """
     login returns a session
     """
@@ -118,6 +121,32 @@ def login(session, tid, username, password, client_using_tor, client_ip):
         raise errors.InvalidAuthentication
 
     connection_check(client_ip, tid, user.role, client_using_tor)
+
+    if State.tenant_cache[1].two_factor_auth and user.last_login != datetime_null():
+        token = TwoFactorTokens.get(user.id)
+
+        if token is not None and authcode != '':
+            if token.token == authcode:
+                TwoFactorTokens.revoke(user.id)
+            else:
+                raise errors.InvalidTwoFactorAuthCode
+
+        elif token is None and authcode == '':
+            token = TwoFactorTokens.new(user.id)
+
+            data = {
+                'type': '2fa',
+                'authcode': str(token.token)
+            }
+
+            data['node'] = db_admin_serialize_node(session, tid, user.language)
+            data['notification'] = db_get_notification(session, tid, user.language)
+
+            subject, body = Templating().get_mail_subject_and_body(data)
+            State.sendmail(1, user.mail_address, subject, body)
+            raise errors.TwoFactorAuthCodeRequired
+        else:
+            raise errors.TwoFactorAuthCodeRequired
 
     user.last_login = datetime_now()
 
@@ -165,6 +194,7 @@ class AuthenticationHandler(BaseHandler):
         session = yield login(tid,
                               request['username'],
                               request['password'],
+                              request['authcode'],
                               self.request.client_using_tor,
                               self.request.client_ip)
 

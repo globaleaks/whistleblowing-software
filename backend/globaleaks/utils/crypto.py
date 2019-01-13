@@ -56,6 +56,10 @@ def generateApiToken():
     return token, sha512(token.encode())
 
 
+def generate2FA():
+    return ''.join(random.SystemRandom().choice(string.digits) for _ in range(8))
+
+
 def generateRandomKey(N):
     """
     Return a random key of N characters in a-zA-Z0-9

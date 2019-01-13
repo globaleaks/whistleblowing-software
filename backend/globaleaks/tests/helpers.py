@@ -1205,7 +1205,7 @@ class MockDict:
             'log_level': 'DEBUG',
             'log_accesses_of_internal_users': False,
             'encryption': False,
-            '2fa': False,
+            'two_factor_auth': False,
             'multisite': False,
             'backup': False,
             'backup_d': 3,

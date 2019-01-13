@@ -64,7 +64,11 @@ angular.module('GLServices', ['ngResource']).
           }
         }
 
-        self.login = function(tid, username, password, token, cb) {
+        self.login = function(tid, username, password, authcode, token, cb) {
+          console.log(authcode);
+          if (!authcode) {
+            authcode = '';
+          }
           self.loginInProgress = true;
 
           var success_fn = function(response) {
@@ -112,7 +116,7 @@ angular.module('GLServices', ['ngResource']).
               self.loginInProgress = false;
             });
           } else {
-            return $http.post('authentication', {'tid': tid, 'username': username, 'password': password}).
+            return $http.post('authentication', {'tid': tid, 'username': username, 'password': password, 'authcode': authcode}).
             then(success_fn, function() {
               self.loginInProgress = false;
             });

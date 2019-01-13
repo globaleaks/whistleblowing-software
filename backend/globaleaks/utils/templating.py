@@ -140,6 +140,10 @@ identity_access_request_keywords = [
     '{NodeName}'
 ]
 
+two_factor_auth_keywords = [
+    '{AuthCode}'
+]
+
 def indent(n=1):
     return '  ' * n
 
@@ -626,6 +630,7 @@ class PasswordResetComplete(UserNodeKeyword):
     def NewPassword(self):
         return self.data['new_password']
 
+
 class IdentityAccessRequestKeyword(UserNodeKeyword):
     keyword_list = UserNodeKeyword.keyword_list + identity_access_request_keywords
     data_keys =  UserNodeKeyword.data_keys + ['iar', 'tip', 'user']
@@ -638,6 +643,14 @@ class IdentityAccessRequestKeyword(UserNodeKeyword):
 
     def _HTTPSUrl(self):
         return 'https://' + self.data['node']['hostname'] + '/#/custodian/identityaccessrequests/'
+
+
+class TwoFactorAuthKeyword(NodeKeyword):
+    keyword_list = NodeKeyword.keyword_list + two_factor_auth_keywords
+    data_keys = ['authcode']
+
+    def AuthCode(self):
+        return self.data['authcode']
 
 
 
@@ -664,7 +677,8 @@ supported_template_types = {
     u'password_reset_validation': PasswordResetValidation,
     u'password_reset_complete': PasswordResetComplete,
     u'user_credentials': UserCredentials,
-    u'identity_access_request': IdentityAccessRequestKeyword
+    u'identity_access_request': IdentityAccessRequestKeyword,
+    u'2fa': TwoFactorAuthKeyword
 }
 
 

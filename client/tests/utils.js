@@ -104,8 +104,8 @@ exports.waitForFile = function (filename, timeout) {
 
 exports.login_admin = function() {
   browser.get('/#/admin');
-  element(by.model('loginUsername')).sendKeys('admin');
-  element(by.model('loginPassword')).sendKeys(exports.vars['user_password']);
+  element(by.model('loginData.loginUsername')).sendKeys('admin');
+  element(by.model('loginData.loginPassword')).sendKeys(exports.vars['user_password']);
   element(by.id('login-button')).click();
   exports.waitForUrl('/admin/home');
 };
@@ -123,8 +123,8 @@ exports.login_receiver = function(username, password, url, firstlogin) {
   url = url === undefined ? '/#/login' : url;
 
   browser.get(url);
-  element(by.model('loginUsername')).sendKeys(username);
-  element(by.model('loginPassword')).sendKeys(password);
+  element(by.model('loginData.loginUsername')).sendKeys(username);
+  element(by.model('loginData.loginPassword')).sendKeys(password);
   element(by.id('login-button')).click();
 
   if (firstlogin) {
@@ -143,8 +143,8 @@ exports.login_custodian = function(username, password, url, firstlogin) {
   url = url === undefined ? '/#/login' : url;
 
   browser.get(url);
-  element(by.model('loginUsername')).sendKeys(username);
-  element(by.model('loginPassword')).sendKeys(password);
+  element(by.model('loginData.loginUsername')).sendKeys(username);
+  element(by.model('loginData.loginPassword')).sendKeys(password);
   element(by.id('login-button')).click();
 
   if (firstlogin) {

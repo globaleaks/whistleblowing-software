@@ -1,5 +1,11 @@
 GLClient.controller('LoginCtrl', ['$scope', '$location', '$filter', 'Sites',
 function($scope, $location, $filter, Sites) {
+  $scope.loginData = {
+	  loginUsername: '',
+	  loginPassword: '',
+	  loginAuthCode: ''
+  };
+
   // If already logged in, just go to the landing page.
   if ($scope.session !== undefined && $scope.session.auth_landing_page) {
     $location.path($scope.session.auth_landing_page);
@@ -21,7 +27,7 @@ function($scope, $location, $filter, Sites) {
 
   var token = $location.search().token;
   if (token) {
-    $scope.Authentication.login(0, '', '', token);
+    $scope.Authentication.login(0, '', '', '', '', token);
     return;
   }
 

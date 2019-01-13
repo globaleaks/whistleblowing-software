@@ -108,6 +108,7 @@ AuthDesc = {
     'tid': int,
     'username': text_type,
     'password': text_type,
+    'authcode': text_type
 }
 
 TokenAuthDesc = {
@@ -288,7 +289,7 @@ AdminNodeDesc = {
     'log_level': text_type,
     'log_accesses_of_internal_users': bool,
     'encryption': bool,
-    '2fa': bool,
+    'two_factor_auth': bool,
     'multisite': bool,
     'backup': bool,
     'backup_d': int,

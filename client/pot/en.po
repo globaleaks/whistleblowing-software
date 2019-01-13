@@ -681,6 +681,9 @@ msgstr "Allow the system to store data in plaintext when encryption is not avail
 msgid "Enable multisite feature"
 msgstr "Enable multisite feature"
 
+msgid "Enable two factor authentication"
+msgstr "Enable two factor authentication"
+
 msgid "Allow other websites to include the platform inside iframes"
 msgstr "Allow other websites to include the platform inside iframes"
 
@@ -1588,6 +1591,9 @@ msgstr ""
 msgid "Please support Hermes through their donation page."
 msgstr "Please support Hermes through their donation page."
 
+msgid "Check your inbox and enter the Authentication Code you received."
+msgstr "Check your inbox and enter the Authentication Code you received."
+
 msgid "Forgot password?"
 msgstr "Forgot password?"
 
@@ -2147,8 +2153,8 @@ msgstr "Job responsibility (role) at the time of the reported fact"
 msgid "Organization unit and job location at the time of the reported fact"
 msgstr "Organization unit and job location at the time of the reported fact"
 
-msgid "Authentication code: {{AuthenticationCode}}"
-msgstr "Authentication code: {{AuthenticationCode}}"
+msgid "Authentication Code: {AuthCode}"
+msgstr "Authentication Code: {AuthCode}"
 
 msgid "The authentication code is valid for 5 minutes."
 msgstr "The authentication code is valid for 5 minutes."

@@ -6,6 +6,9 @@
       <div id="LoginError" class="alert alert-danger" data-ng-show="errors[0].code === 9">
         <span data-translate>Authentication failed</span>
       </div>
+      <div id="LoginError" class="alert alert-danger" data-ng-show="errors[0].code === 13">
+        <span data-translate>The code is either invalid or expired.</span>
+      </div>
     </form>
   </div>
 </div>
