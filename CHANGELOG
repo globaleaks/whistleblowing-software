@@ -1,3 +1,24 @@
+Changes in version 3.6.0 - 2018-01-13
+    Add IP filtering check to TokenAuthHandler (#1211)
+    Address issue #2469 removing private IP information from the public API
+    Implement notifications of custodian events (#1464)
+    Implement Location question by using a Graphical Map Selector and TopoJSON (#1407)
+    Make it possible to configure explicitly context as Enabled, Disabled, Hidden
+    Make it possible to configure enabled context with 0 static recipients assigned
+    Make it possible to dyniamically change recipients based on questionnaire answers (#2477)
+    Extend Terms of Service field to make it possible to configure an attachment (#2478)
+    Implement email based two factor authentication) (#2481)
+    Create database support for tracking backups
+    Refactor automatic on update backups to use the database
+    Prepare routines for automatic jobs; functionality currently disabled that will be finalized
+    with the possibility of automatically saving backups on a remote scp server (#528)
+    Fix ORM integration in relation to concurrency and transactions where some submissions id were
+    found to be dupliated.
+    Refactor Config variables in order to track the date of their change
+    Implement Docker scripts (experimental)
+    Update npm dependencies to latest versions
+    Update translations
+
 Changes in version 3.5.8 - 2018-11-29
     Fix visualization of logo preview
 
