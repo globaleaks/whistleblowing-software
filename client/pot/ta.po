@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-01-12 14:02+0000\n"
+"PO-Revision-Date: 2019-01-13 14:35+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Tamil (http://www.transifex.com/otf/globaleaks/language/ta/)\n"
 "MIME-Version: 1.0\n"
@@ -665,6 +665,9 @@ msgstr "மறையாக்குதல் கிடைக்காத போ�
 
 msgid "Enable multisite feature"
 msgstr "பன்முனை அம்சத்தை இயக்கு"
+
+msgid "Enable two factor authentication"
+msgstr ""
 
 msgid "Allow other websites to include the platform inside iframes"
 msgstr "மற்ற வலைத்தளங்களில் ஃபிரேம்களை உள்ளே மேடையில் சேர்க்க அனுமதிக்க"
@@ -1539,8 +1542,14 @@ msgstr "தங்கள் நன்கொடை பக்கம் வழி
 msgid "Forgot password?"
 msgstr "கடவுச்சொல்லை மறந்துவிட்டீர்களா?"
 
+msgid "Check your inbox and enter the authentication code you received."
+msgstr ""
+
 msgid "Authentication failed"
 msgstr "அங்கீகரிப்பு தோல்வியுற்றது"
+
+msgid "The code is either invalid or expired."
+msgstr ""
 
 msgid "Site:"
 msgstr "தள:"
@@ -2064,6 +2073,15 @@ msgstr "வேலை பொறுப்பை (பங்கு) அறிவ�
 
 msgid "Organization unit and job location at the time of the reported fact"
 msgstr "தகவல் உண்மையில் நேரத்தில் அமைப்பு அலகு மற்றும் வேலை இடம்"
+
+msgid "Authentication code: {AuthCode}"
+msgstr ""
+
+msgid "The authentication code is valid for 5 minutes."
+msgstr ""
+
+msgid "Authentication code"
+msgstr ""
 
 msgid "Dear {RecipientName},"
 msgstr "அன்பே {RecipientName},"

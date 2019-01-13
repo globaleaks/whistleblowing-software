@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-01-12 14:02+0000\n"
+"PO-Revision-Date: 2019-01-13 14:35+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Albanian (http://www.transifex.com/otf/globaleaks/language/sq/)\n"
 "MIME-Version: 1.0\n"
@@ -664,6 +664,9 @@ msgid ""
 msgstr ""
 
 msgid "Enable multisite feature"
+msgstr ""
+
+msgid "Enable two factor authentication"
 msgstr ""
 
 msgid "Allow other websites to include the platform inside iframes"
@@ -1539,8 +1542,14 @@ msgstr "Ju lutemi mbështeteni Hermes-in, përmes faqes së saj të dhurimeve."
 msgid "Forgot password?"
 msgstr ""
 
+msgid "Check your inbox and enter the authentication code you received."
+msgstr ""
+
 msgid "Authentication failed"
 msgstr "Autentifikimi Dështoi"
+
+msgid "The code is either invalid or expired."
+msgstr ""
 
 msgid "Site:"
 msgstr ""
@@ -2064,6 +2073,15 @@ msgstr "Përgjegjësia Job (roli) në kohën e faktit raportuar"
 
 msgid "Organization unit and job location at the time of the reported fact"
 msgstr "njësi organizative dhe vendin e punës në kohën e faktit raportuar"
+
+msgid "Authentication code: {AuthCode}"
+msgstr ""
+
+msgid "The authentication code is valid for 5 minutes."
+msgstr ""
+
+msgid "Authentication code"
+msgstr ""
 
 msgid "Dear {RecipientName},"
 msgstr "Dear {RecipientName},"

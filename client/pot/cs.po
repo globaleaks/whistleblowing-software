@@ -13,7 +13,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-01-12 14:02+0000\n"
+"PO-Revision-Date: 2019-01-13 14:35+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Czech (http://www.transifex.com/otf/globaleaks/language/cs/)\n"
 "MIME-Version: 1.0\n"
@@ -671,6 +671,9 @@ msgstr "Umožněte systému ukládat data do otevřeného textu, pokud šifrová
 
 msgid "Enable multisite feature"
 msgstr "Povolit funkci multisite "
+
+msgid "Enable two factor authentication"
+msgstr ""
 
 msgid "Allow other websites to include the platform inside iframes"
 msgstr "Povolit jiným stránkám zobrazovat části tohoto webu pomocí iframe."
@@ -1545,8 +1548,14 @@ msgstr "Podpořit organizaci Hermes můžete na jejich darovací stránce."
 msgid "Forgot password?"
 msgstr "Zapoměl(a) jste heslo? "
 
+msgid "Check your inbox and enter the authentication code you received."
+msgstr ""
+
 msgid "Authentication failed"
 msgstr "Chyba ověření"
+
+msgid "The code is either invalid or expired."
+msgstr ""
 
 msgid "Site:"
 msgstr "Stránka:"
@@ -2070,6 +2079,15 @@ msgstr "Pracovní odpovědnost (role) v době oznamovaného jednání"
 
 msgid "Organization unit and job location at the time of the reported fact"
 msgstr "Organizační jednotka a lokalita v době oznamovaného jednání"
+
+msgid "Authentication code: {AuthCode}"
+msgstr ""
+
+msgid "The authentication code is valid for 5 minutes."
+msgstr ""
+
+msgid "Authentication code"
+msgstr ""
 
 msgid "Dear {RecipientName},"
 msgstr "Vážený/á {RecipientName},"

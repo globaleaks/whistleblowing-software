@@ -329,6 +329,6 @@
     "{HTTPSUrl}"
   ],
   "2fa_mail_template": [
-    "{AuthenticationCode}"
+    "{AuthCode}"
   ]
 }

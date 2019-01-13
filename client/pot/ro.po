@@ -17,7 +17,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-01-12 14:02+0000\n"
+"PO-Revision-Date: 2019-01-13 14:35+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Romanian (http://www.transifex.com/otf/globaleaks/language/ro/)\n"
 "MIME-Version: 1.0\n"
@@ -674,6 +674,9 @@ msgid ""
 msgstr ""
 
 msgid "Enable multisite feature"
+msgstr ""
+
+msgid "Enable two factor authentication"
 msgstr ""
 
 msgid "Allow other websites to include the platform inside iframes"
@@ -1549,8 +1552,14 @@ msgstr "Vă rugăm să sprijine Hermes prin intermediul paginii lor de donare."
 msgid "Forgot password?"
 msgstr ""
 
+msgid "Check your inbox and enter the authentication code you received."
+msgstr ""
+
 msgid "Authentication failed"
 msgstr "Autentificare esuata"
+
+msgid "The code is either invalid or expired."
+msgstr ""
 
 msgid "Site:"
 msgstr ""
@@ -2074,6 +2083,15 @@ msgstr "Responsabilitatea de muncă (rol), în momentul faptului raportat"
 
 msgid "Organization unit and job location at the time of the reported fact"
 msgstr "Unitate de organizare și locație de locuri de muncă la momentul faptului raportat"
+
+msgid "Authentication code: {AuthCode}"
+msgstr ""
+
+msgid "The authentication code is valid for 5 minutes."
+msgstr ""
+
+msgid "Authentication code"
+msgstr ""
 
 msgid "Dear {RecipientName},"
 msgstr "Buna {RecipientName},"

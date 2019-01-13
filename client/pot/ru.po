@@ -28,7 +28,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-01-12 14:02+0000\n"
+"PO-Revision-Date: 2019-01-13 14:35+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Russian (http://www.transifex.com/otf/globaleaks/language/ru/)\n"
 "MIME-Version: 1.0\n"
@@ -686,6 +686,9 @@ msgstr "Разрешить системе сохранить информаци�
 
 msgid "Enable multisite feature"
 msgstr "Включить настройку мульти-сайтов"
+
+msgid "Enable two factor authentication"
+msgstr ""
 
 msgid "Allow other websites to include the platform inside iframes"
 msgstr "Позволять другим веб-сайтам, вставлять элементы платформы GlobaLeaks в качестве плавающих фреймов."
@@ -1560,8 +1563,14 @@ msgstr "Пожалуйста, поддержите Hermes, сделав поже
 msgid "Forgot password?"
 msgstr ""
 
+msgid "Check your inbox and enter the authentication code you received."
+msgstr ""
+
 msgid "Authentication failed"
 msgstr "Ошибка аутентификации"
+
+msgid "The code is either invalid or expired."
+msgstr ""
 
 msgid "Site:"
 msgstr ""
@@ -2085,6 +2094,15 @@ msgstr "Служебные обязанности (роль) во время с�
 
 msgid "Organization unit and job location at the time of the reported fact"
 msgstr "Текущая организационная единица и место работы во время событий, изложенных в материале"
+
+msgid "Authentication code: {AuthCode}"
+msgstr ""
+
+msgid "The authentication code is valid for 5 minutes."
+msgstr ""
+
+msgid "Authentication code"
+msgstr ""
 
 msgid "Dear {RecipientName},"
 msgstr "Дорогой(ая) {RecipientName},"

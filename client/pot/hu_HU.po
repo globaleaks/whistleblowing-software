@@ -21,7 +21,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-01-12 14:02+0000\n"
+"PO-Revision-Date: 2019-01-13 14:35+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Hungarian (Hungary) (http://www.transifex.com/otf/globaleaks/language/hu_HU/)\n"
 "MIME-Version: 1.0\n"
@@ -678,6 +678,9 @@ msgid ""
 msgstr ""
 
 msgid "Enable multisite feature"
+msgstr ""
+
+msgid "Enable two factor authentication"
 msgstr ""
 
 msgid "Allow other websites to include the platform inside iframes"
@@ -1553,8 +1556,14 @@ msgstr "Kérjük támogassa a Hermes-t a támogatói oldalán keresztül"
 msgid "Forgot password?"
 msgstr ""
 
+msgid "Check your inbox and enter the authentication code you received."
+msgstr ""
+
 msgid "Authentication failed"
 msgstr "Az azonosítás nem sikerült"
+
+msgid "The code is either invalid or expired."
+msgstr ""
 
 msgid "Site:"
 msgstr ""
@@ -2078,6 +2087,15 @@ msgstr "Munka felelőssége (szerepe) a bejelentett tény idejében"
 
 msgid "Organization unit and job location at the time of the reported fact"
 msgstr "Szervezeti egység és munka helye a bejelentett tény idejében"
+
+msgid "Authentication code: {AuthCode}"
+msgstr ""
+
+msgid "The authentication code is valid for 5 minutes."
+msgstr ""
+
+msgid "Authentication code"
+msgstr ""
 
 msgid "Dear {RecipientName},"
 msgstr "Kedves {RecipientName},"

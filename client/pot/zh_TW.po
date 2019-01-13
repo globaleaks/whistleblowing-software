@@ -10,7 +10,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-01-12 14:02+0000\n"
+"PO-Revision-Date: 2019-01-13 14:35+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/otf/globaleaks/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
@@ -668,6 +668,9 @@ msgstr "若無法加密時，可讓系統明文儲存資料"
 
 msgid "Enable multisite feature"
 msgstr "啟用多個網站功能"
+
+msgid "Enable two factor authentication"
+msgstr ""
 
 msgid "Allow other websites to include the platform inside iframes"
 msgstr "讓其它網站能以網頁加框方式嵌入此平台"
@@ -1542,8 +1545,14 @@ msgstr "透過捐款頁面支持 Hermes"
 msgid "Forgot password?"
 msgstr "忘記密碼？"
 
+msgid "Check your inbox and enter the authentication code you received."
+msgstr ""
+
 msgid "Authentication failed"
 msgstr "認證失敗"
+
+msgid "The code is either invalid or expired."
+msgstr ""
 
 msgid "Site:"
 msgstr "網站:"
@@ -2067,6 +2076,15 @@ msgstr "報告實情時的工作職責"
 
 msgid "Organization unit and job location at the time of the reported fact"
 msgstr "報告實情時的工作組織單位與工作地點"
+
+msgid "Authentication code: {AuthCode}"
+msgstr ""
+
+msgid "The authentication code is valid for 5 minutes."
+msgstr ""
+
+msgid "Authentication code"
+msgstr ""
 
 msgid "Dear {RecipientName},"
 msgstr "敬愛的 {RecipientName},"

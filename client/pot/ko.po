@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-01-12 14:02+0000\n"
+"PO-Revision-Date: 2019-01-13 14:35+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Korean (http://www.transifex.com/otf/globaleaks/language/ko/)\n"
 "MIME-Version: 1.0\n"
@@ -662,6 +662,9 @@ msgid ""
 msgstr ""
 
 msgid "Enable multisite feature"
+msgstr ""
+
+msgid "Enable two factor authentication"
 msgstr ""
 
 msgid "Allow other websites to include the platform inside iframes"
@@ -1537,8 +1540,14 @@ msgstr "자신의 기부 페이지를 통해 헤르메스를 지원하십시오.
 msgid "Forgot password?"
 msgstr ""
 
+msgid "Check your inbox and enter the authentication code you received."
+msgstr ""
+
 msgid "Authentication failed"
 msgstr "인증 실패"
+
+msgid "The code is either invalid or expired."
+msgstr ""
 
 msgid "Site:"
 msgstr ""
@@ -2062,6 +2071,15 @@ msgstr "보고 된 사실 당시의 작업 책임 (역할)"
 
 msgid "Organization unit and job location at the time of the reported fact"
 msgstr "보고 된 사실시 조직 단위 및 작업 위치"
+
+msgid "Authentication code: {AuthCode}"
+msgstr ""
+
+msgid "The authentication code is valid for 5 minutes."
+msgstr ""
+
+msgid "Authentication code"
+msgstr ""
 
 msgid "Dear {RecipientName},"
 msgstr "친애 %의 {RecipientName} 를,"
