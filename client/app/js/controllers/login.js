@@ -1,9 +1,9 @@
 GLClient.controller('LoginCtrl', ['$scope', '$location', '$filter', 'Sites',
 function($scope, $location, $filter, Sites) {
   $scope.loginData = {
-	  loginUsername: '',
-	  loginPassword: '',
-	  loginAuthCode: ''
+    loginUsername: '',
+    loginPassword: '',
+    loginAuthCode: ''
   };
 
   // If already logged in, just go to the landing page.

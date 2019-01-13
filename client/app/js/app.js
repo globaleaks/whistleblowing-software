@@ -853,7 +853,7 @@ var GLClient = angular.module('GLClient', [
            $rootScope.Authentication.authcoderequired = true;
          } else {
            $rootScope.errors.push(error);
-	 }
+         }
        }
 
        return $q.reject(response);
