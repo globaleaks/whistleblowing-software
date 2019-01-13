@@ -119,20 +119,20 @@ email_validation_keywords = [
     '{TorUrl}'
 ]
 
-password_reset_validation_keyworlds = [
+password_reset_validation_keywords = [
     '{RecipientName}',
     '{TorUrl}',
     '{HTTPSUrl}',
     '{NodeName}'
 ]
 
-password_reset_complete_keyworlds = [
+password_reset_complete_keywords = [
     '{RecipientName}',
     '{NodeName}',
     '{NewPassword}'
 ]
 
-identity_access_request_keyworlds = [
+identity_access_request_keywords = [
     '{RecipientName}',
     '{TipNum}',
     '{TorUrl}',
@@ -605,7 +605,7 @@ class EmailValidationKeyword(UserNodeKeyword):
 
 
 class PasswordResetValidation(UserNodeKeyword):
-    keyword_list = NodeKeyword.keyword_list + password_reset_validation_keyworlds
+    keyword_list = NodeKeyword.keyword_list + password_reset_validation_keywords
 
     data_keys = NodeKeyword.data_keys + \
         ['reset_token']
@@ -618,7 +618,7 @@ class PasswordResetValidation(UserNodeKeyword):
 
 
 class PasswordResetComplete(UserNodeKeyword):
-    keyword_list = NodeKeyword.keyword_list + password_reset_complete_keyworlds
+    keyword_list = NodeKeyword.keyword_list + password_reset_complete_keywords
 
     data_keys = NodeKeyword.data_keys + \
         ['new_password']
@@ -627,7 +627,7 @@ class PasswordResetComplete(UserNodeKeyword):
         return self.data['new_password']
 
 class IdentityAccessRequestKeyword(UserNodeKeyword):
-    keyword_list = UserNodeKeyword.keyword_list + identity_access_request_keyworlds
+    keyword_list = UserNodeKeyword.keyword_list + identity_access_request_keywords
     data_keys =  UserNodeKeyword.data_keys + ['iar', 'tip', 'user']
 
     def TipNum(self):
