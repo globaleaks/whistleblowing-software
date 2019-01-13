@@ -7,7 +7,7 @@ env:
   global:
   - secure: EVObCafLubboW7PQ69OhLI9qSMWDUYuL8EvXCX2MsBzlgX1W6cc62IJbKV87EHOnu/2KgHXYNVYN4rmydVbOU+nMHwtryf8+utNcyuDp40kKoNjWhWue++AheXgAjUt1lON4/kiZ5gxEupQeEXDPvP/5LrUuDUEQRwJa6pbivD8=
   - secure: KOpU31rbmwrjGovRX769F9H1/+KdtB5KJfMKIMRZPTeaH/zrlUDaTh9lBOkAFD1S/0nagsrXIUq9e9PJD3pEWze09VUK0mivCl96/ZXFt605UJXSKgWvZNJdRLexzwPhHd/MDzbMqTfrAlN6x9OSA5uIOaGzaQSZjkXjed8IkRk=
-  - secure: Kn/nR0p3tchf6ZlTs5gnVMhVrzGcbzJv9Wi8/xZSS1K0GcCoJHvRy/WmKnLSVvVNxGidC2VO3ZYpKccg6GR0ISHBYJHGXsOzGlTr8aRxalNukbXFZdVimBAcvIIbQAdx+X7JAq8U8bOFynIi1btjWzigG3BCBYruXlPjEXduuB4=
+  - secure: MWsPYunBeYxPHk5zngCHe6K67FQc6Da9EL17vd2dLEOqePD3VPI+wVdfUDzwkdc7pslM3/JNUroMtCiVkLi7TBNH37hZ5TN1/lG/5kyqobMkm8xLInrrUOhSgvL566nRBb5QMsIMO4+yg7tQHR0EwHHjAOaI0Yw/2F2WgEZN3TU=
 #Tokens order: sauce_username, sauce_token, codacy_project_token
 matrix:
   fast_finish: true
