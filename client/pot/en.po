@@ -1591,14 +1591,17 @@ msgstr ""
 msgid "Please support Hermes through their donation page."
 msgstr "Please support Hermes through their donation page."
 
-msgid "Check your inbox and enter the Authentication Code you received."
-msgstr "Check your inbox and enter the Authentication Code you received."
-
 msgid "Forgot password?"
 msgstr "Forgot password?"
 
+msgid "Check your inbox and enter the authentication code you received."
+msgstr "Check your inbox and enter the authentication code you received."
+
 msgid "Authentication failed"
 msgstr "Authentication failed"
+
+msgid "The code is either invalid or expired."
+msgstr "The code is either invalid or expired."
 
 msgid "Site:"
 msgstr "Site:"
@@ -2153,14 +2156,14 @@ msgstr "Job responsibility (role) at the time of the reported fact"
 msgid "Organization unit and job location at the time of the reported fact"
 msgstr "Organization unit and job location at the time of the reported fact"
 
-msgid "Authentication Code: {AuthCode}"
-msgstr "Authentication Code: {AuthCode}"
+msgid "Authentication code: {AuthCode}"
+msgstr "Authentication code: {AuthCode}"
 
 msgid "The authentication code is valid for 5 minutes."
 msgstr "The authentication code is valid for 5 minutes."
 
-msgid "Authentication Code"
-msgstr "Authentication Code"
+msgid "Authentication code"
+msgstr "Authentication code"
 
 msgid "Dear {RecipientName},"
 msgstr "Dear {RecipientName},"
