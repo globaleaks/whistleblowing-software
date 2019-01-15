@@ -27,7 +27,7 @@ function($scope, $location, $filter, Sites) {
 
   var token = $location.search().token;
   if (token) {
-    $scope.Authentication.login(0, '', '', '', '', token);
+    $scope.Authentication.login(0, '', '', '', token);
     return;
   }
 
