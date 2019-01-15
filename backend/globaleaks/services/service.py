@@ -1,7 +1,7 @@
 # -*- coding: utf-8
 import time
 
-from twisted.internet import task, defer, reactor
+from twisted.internet import task, defer
 
 from globaleaks.state import State, extract_exception_traceback_and_schedule_email
 from globaleaks.utils.log import log
@@ -14,8 +14,6 @@ class Service(task.LoopingCall):
         self.name = self.__class__.__name__
 
         task.LoopingCall.__init__(self, self.run)
-
-        self.clock = reactor
 
         self.start(0)
 
