@@ -17,6 +17,8 @@ class Service(task.LoopingCall):
 
         self.clock = reactor
 
+        self.start(0)
+
     def stop(self):
         if self.running:
             task.LoopingCall.stop(self)
