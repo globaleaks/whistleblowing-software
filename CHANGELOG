@@ -1,3 +1,7 @@
+Changes in version 3.6.1 - 2018-01-15
+    Fix initialization of Tor Hidden Service
+    Fix clientside logic of the multitenant auth switch
+
 Changes in version 3.6.0 - 2018-01-13
     Add IP filtering check to TokenAuthHandler (#1211)
     Address issue #2469 removing private IP information from the public API
