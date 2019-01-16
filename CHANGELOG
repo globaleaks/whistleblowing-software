@@ -1,3 +1,6 @@
+Changes in version 3.6.2 - 2018-01-16
+    Revert transaction changes included in 3.6.0 that seems to cause instability
+
 Changes in version 3.6.1 - 2018-01-15
     Fix initialization of Tor Hidden Service
     Fix clientside logic of the multitenant auth switch
