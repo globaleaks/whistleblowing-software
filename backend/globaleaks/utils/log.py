@@ -51,7 +51,7 @@ def openLogFile(logfile, max_file_size, rotated_log_files):
                              maxRotatedFiles=rotated_log_files)
 
 
-def timedLogFormatter(timestamp, request):
+def logFormatter(timestamp, request):
     duration = -1
 
     if hasattr(request, 'start_time'):
@@ -73,6 +73,10 @@ def timedLogFormatter(timestamp, request):
             length=request.sentLength,
             user_agent=_escape(client_ua),
             tid=request.tid))
+
+
+def timedLogFormatter(timestamp, request):
+    return timestamp + ' ' + logFormatter(timestamp, request)
 
 
 class LogObserver(txlog.FileLogObserver):
