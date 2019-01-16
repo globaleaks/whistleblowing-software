@@ -14,7 +14,7 @@ from twisted.internet.threads import deferToThreadPool
 __DB_URI = 'sqlite:'
 __THREAD_POOL = None
 
-TRANSACTION_RETRIES = 10
+TRANSACTION_RETRIES = 20
 
 
 def make_db_uri(db_file):
