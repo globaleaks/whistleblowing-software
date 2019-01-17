@@ -92,7 +92,7 @@ class ConfigL10NFactory(object):
 
             for cfg in self.get_all(group, lang):
                 old_keys.append(cfg.var_name)
-                if (cfg.update_date != null or reset) and cfg.var_name in data:
+                if (cfg.update_date == null or reset) and cfg.var_name in data:
                     cfg.value = data[cfg.var_name][lang]
 
             ConfigL10NFactory.initialize(self, list(set(ConfigL10NFilters[group]) - set(old_keys)), lang, data)
