@@ -16,12 +16,10 @@ import subprocess as sp
 import sys
 
 from datetime import datetime
-from distutils.version import LooseVersion
 from six import text_type
 
 from globaleaks.db import get_db_file
-from globaleaks.jobs.backup import db_perform_backup
-from globaleaks.orm import get_session_from_dbpath
+from globaleaks.orm import make_db_uri, get_engine
 from globaleaks.models import config, config_desc
 from globaleaks.rest.requests import AdminNotificationDesc, AdminNodeDesc
 from globaleaks.settings import Settings
@@ -45,6 +43,12 @@ def check_dir(d):
         sys.exit(1)
 
 
+def default_backup_path():
+    t = datetime.now().strftime("%y_%m_%d")
+    name = "globaleaks_backup_{}.tar.gz".format(t)
+    return os.path.join("/tmp", name)
+
+
 def is_gl_running():
     try:
         with open(Settings.pidfile_path, 'r') as fd:
@@ -59,32 +63,50 @@ def is_gl_running():
 
 
 def backup(args):
-    check_dir(args.dbpath)
-    db_version, db_path = get_db_file(args.dbpath)
-
     workdir = args.workdir
     check_dir(workdir)
 
     must_stop = is_gl_running()
 
     if must_stop: sp.check_call("service globaleaks stop", shell=True)
+    print("Creating an archive backup of the globaleaks setup. . .")
     p_head, p_tail = os.path.split(args.workdir)
 
-    session = get_session_from_dbpath(db_path)
+    sp.check_call(["tar", "-zcf", args.backuppath, "--exclude='backups'", "-C", args.workdir, '.'])
 
-    id = config.db_get_config_variable(session, 1, 'id')
-    software_version = config.db_get_config_variable(session, 1, 'version')
+    if must_stop: sp.check_call("service globaleaks start", shell=True)
+    print("Success: The archived backup was created at:", args.backuppath)
 
-    if LooseVersion(software_version) < LooseVersion('3.5.9'):
-        return
 
-    db_perform_backup(session, software_version, id)
+def restore(args):
+    check_dir(args.workdir)
 
-    session.close()
+    check_file(args.backuppath)
+
+    print("\n", "-"*72)
+    print("WARNING this command will DELETE everything currently in {}".format(args.workdir))
+    print("-"*72)
+    ans = input("Are you sure that you want to continue? [y/n] ")
+    if not ans == "y":
+        sys.exit(0)
+    print("-"*72)
+
+    must_stop = is_gl_running()
+    if must_stop: sp.check_call("service globaleaks stop", shell=True)
+    print("Deleting {} . . .".format(args.workdir))
+
+    p_head, p_tail = os.path.split(args.workdir)
+
+    # TODO remove workdir str fmt
+    sp.check_call("find %s -type f -exec shred -vzn 3 {} \;" % args.workdir, shell=True)
+    #sp.check_call(["rm", "-rf", args.workdir])
+
+    print("Extracting the archive {}".format(args.backuppath))
+    sp.check_call(["tar", "-xf", args.backuppath, "-C", '/var/globaleaks'])
 
     if must_stop: sp.check_call("service globaleaks start", shell=True)
 
-    print("Success: The archived backup was created at:", Settings.backup_path)
+    print("Success! globaleaks has been restored from a backup")
 
 
 def reset_pass(args):
@@ -187,7 +209,6 @@ def set_var(args, silent=False):
 def enable_api_token(args):
     args.varname = u'admin_api_token_digest'
 
-
 def generate_api_token():
     """
     creates an api token along with its corresponding hash digest.
@@ -199,7 +220,6 @@ def generate_api_token():
     set_var(args, silent=True)
     print('The API token is: {}'.format(token))
     print('You now have the only copy, keep it somewhere safe.')
-
 
 def disable_api_token(args):
     args.varname = u'admin_api_token_digest'
@@ -221,10 +241,18 @@ parser = argparse.ArgumentParser(prog="gl-admin",
 subp = parser.add_subparsers(title="commands")
 
 bck_p = subp.add_parser("backup", help="create a backup of the setup")
-add_db_path_arg(bck_p)
 bck_p.add_argument("-w", "--workdir", help="the location of dynamic globaleaks content",
                    default=Settings.working_path)
+bck_p.add_argument("backuppath", nargs="?", help="the path and name of the backup",
+                   default=default_backup_path())
 bck_p.set_defaults(func=backup)
+
+res_p = subp.add_parser("restore", help="restore a backup of the setup")
+res_p.add_argument("-w", "--workdir", help="the location of dynamic gl content",
+                   default=Settings.working_path)
+res_p.add_argument("backuppath", nargs="?", help="the path and name of the backup",
+                   default=default_backup_path())
+res_p.set_defaults(func=restore)
 
 pw_p = subp.add_parser("resetpass", help="reset a user's password")
 add_db_path_arg(pw_p)
