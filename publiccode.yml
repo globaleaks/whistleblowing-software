@@ -1,0 +1,45 @@
+name: GlobaLeaks
+releaseDate: '2019-01-16'
+publiccode-yaml-version: '0.1'
+url: 'https://github.com/globaleaks/GlobaLeaks'
+applicationSuite: GlobaLeaks
+landingURL: 'https://github.com/globaleaks/GlobaLeaks'
+softwareVersion: 3.6.2
+softwareType: standalone
+developmentStatus: stable
+platforms:
+  - linux
+tags:
+  - whistleblowing
+maintenance:
+  type: community
+  contacts:
+    - name: Giovanni Pellerano
+      email: giovanni.pellerano@hermescenter.org
+      phone: '+3289590046'
+      affiliation: CTO at Hermes Center for Transparency and Digital Human Rights
+legal:
+  license: AGPLV3
+  mainCopyrightOwner: >-
+    Hermes Center for Transparency and Digital Humand Rights, Whistleblowing
+    Solutions I.S. S.r.l.
+  authorsFile: 'https://github.com/globaleaks/GlobaLeaks/blob/master/AUTHORS'
+  repoOwner: Hermes Center for Transparency and Digital Human Rights
+it:
+  conforme:
+    sicuro: 'yes'
+    accessibile: 'yes'
+    interoperabile: 'yes'
+    privacy: 'yes'
+description:
+  eng:
+    shortDescription: 'GlobaLeaks - The Open-Source Whistleblowing Software '
+    documentation: 'https://docs.globaleaks.org'
+    freeTags:
+      - whistleblowing
+    longDescription: >-
+      <p><a href="https://www.globaleaks.org/" rel="nofollow">GlobaLeaks</a> is
+      open-source / free software intended to enable secure and anonymous
+      whistleblowing initiatives developed by the <a
+      href="https://www.hermescenter.org/" rel="nofollow">Hermes Center for
+      Transparency and Digital Human Rights</a>.</p>
