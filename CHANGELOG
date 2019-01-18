@@ -1,3 +1,6 @@
+Changes in version 3.6.4 - 2018-01-18
+    Fix typ0 preventing visualization of questionnair navigation interface with steps names
+
 changes in version 3.6.3 - 2018-01-17
     Fix issue causing reset of internationalized texts on update
 
