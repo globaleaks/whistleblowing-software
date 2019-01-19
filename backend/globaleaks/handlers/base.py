@@ -69,53 +69,19 @@ class BaseHandler(object):
     handler_exec_time_threshold = 120
     uniform_answer_time = False
     cache_resource = False
-    invalidate_global_cache = False
     invalidate_cache = False
-    invalidate_tenant_state = False
     bypass_basic_auth = False
     root_tenant_only = False
     upload_handler = False
     uploaded_file = None
     require_multisite = False
+    refresh_connection_handpoints = False
 
     def __init__(self, state, request):
         self.name = type(self).__name__
         self.state = state
         self.request = request
         self.request.start_time = datetime.now()
-
-    @staticmethod
-    def decorator_authentication(f, roles):
-        """
-        Decorator for authenticated sessions.
-        """
-        def wrapper(self, *args, **kwargs):
-            if self.state.tenant_cache[self.request.tid].basic_auth and not self.bypass_basic_auth:
-                self.basic_auth()
-
-            if '*' in roles or \
-               'unauthenticated' in roles or \
-               (self.current_user and self.current_user.user_role in roles):
-                return f(self, *args, **kwargs)
-
-            raise errors.NotAuthenticated
-
-        return wrapper
-
-    @staticmethod
-    def decorator_invalidate_tenant_state(f):
-        """
-        Decorator for invalidation of tenant state
-        """
-        def wrapper(self, *args, **kwargs):
-            d = defer.maybeDeferred(f, self, *args, **kwargs)
-            def callback(data):
-                self.state.refresh_tenant_state()
-                return data
-
-            return d.addCallback(callback)
-
-        return wrapper
 
     def basic_auth(self):
         msg = None

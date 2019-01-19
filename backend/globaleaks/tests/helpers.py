@@ -51,7 +51,8 @@ from globaleaks.handlers.admin.user import create_user
 from globaleaks.handlers.wizard import db_wizard
 from globaleaks.handlers.submission import create_submission
 from globaleaks.models.config import db_set_config_variable
-from globaleaks.rest.apicache import ApiCache
+from globaleaks.rest import decorators
+from globaleaks.rest.cache import Cache
 from globaleaks.sessions import Sessions
 from globaleaks.settings import Settings
 from globaleaks.state import State
@@ -911,7 +912,7 @@ class TestHandler(TestGLWithPopulatedDB):
         if not getattr(handler_cls, 'decorated', False):
             for method in ['get', 'post', 'put', 'delete']:
                 if getattr(handler_cls, method, None) is not None:
-                    api.decorate_method(handler_cls, method)
+                    decorators.decorate_method(handler_cls, method)
                     handler_cls.decorated = True
 
         handler = handler_cls(self.state, request, **kwargs)

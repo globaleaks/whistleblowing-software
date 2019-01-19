@@ -9,7 +9,7 @@ from globaleaks.handlers.admin.notification import db_get_notification
 from globaleaks.handlers.admin.user import db_get_admin_users
 from globaleaks.orm import transact
 from globaleaks.state import State
-from globaleaks.rest.apicache import ApiCache
+from globaleaks.rest.cache import Cache
 from globaleaks.transactions import db_schedule_email
 from globaleaks.utils.templating import Templating
 from globaleaks.utils.utility import datetime_now, datetime_null, get_disk_space, is_expired
@@ -219,7 +219,7 @@ class Alarm(object):
                      old_accept_submissions, accept_submissions)
 
             # Must invalidate the cache here becuase accept_subs served in /public has changed
-            ApiCache.invalidate()
+            Cache.invalidate()
 
 
 @inlineCallbacks

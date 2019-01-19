@@ -78,5 +78,4 @@ class CertificateCheck(LoopingJob):
 
         if self.should_restart_https:
             self.should_restart_https = False
-            yield self.state.process_supervisor.shutdown()
-            yield self.state.process_supervisor.maybe_launch_https_workers()
+            yield self.state.process_supervisor.reload()

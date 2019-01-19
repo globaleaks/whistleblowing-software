@@ -13,7 +13,7 @@ from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.wizard import db_wizard
 from globaleaks.models.config import ConfigFactory
 from globaleaks.orm import transact
-from globaleaks.rest import requests, errors, apicache
+from globaleaks.rest import requests, errors, cache
 from globaleaks.utils.crypto import generateRandomKey
 from globaleaks.utils.utility import datetime_to_ISO8601
 
@@ -178,10 +178,7 @@ class SignupActivation(BaseHandler):
   check_roles = 'unauthenticated'
   invalidate_cache = False
   root_tenant_only = True
+  refresh_connection_endpoints = True
 
   def get(self, token):
-      ret = signup_activation(self.state, self.request.tid, token, self.request.language)
-
-      self.state.refresh_tenant_state()
-
-      return ret
+      return signup_activation(self.state, self.request.tid, token, self.request.language)

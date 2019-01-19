@@ -252,7 +252,7 @@ class StateClass(ObjectDict):
             # avoid waiting for the notification to send and instead rely on threads to handle it
             tw(db_schedule_email, 1, mail_address, mail_subject, mail_body)
 
-    def refresh_tenant_state(self):
+    def refresh_connection_handpoints(self):
         # Remove selected onion services and add missing services
         if self.onion_service_job is not None:
             def f(*args):
@@ -260,9 +260,7 @@ class StateClass(ObjectDict):
 
             self.onion_service_job.remove_unwanted_hidden_services().addBoth(f) # pylint: disable=no-member
 
-        self.process_supervisor.shutdown()
-
-        self.process_supervisor.maybe_launch_https_workers()
+        self.process_supervisor.reload()
 
     def format_and_send_mail(self, session, tid, user_desc, template_vars):
         subject, body = Templating().get_mail_subject_and_body(template_vars)

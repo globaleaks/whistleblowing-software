@@ -54,7 +54,7 @@ from globaleaks.handlers.admin import step as admin_step
 from globaleaks.handlers.admin import tenant as admin_tenant
 from globaleaks.handlers.admin import user as admin_user
 from globaleaks.handlers.admin import submission_statuses as admin_submission_statuses
-from globaleaks.rest import apicache, requests, errors
+from globaleaks.rest import cache, decorators, requests, errors
 from globaleaks.settings import Settings
 from globaleaks.state import State, extract_exception_traceback_and_schedule_email
 
@@ -188,31 +188,6 @@ api_spec = [
     (r'/([a-zA-Z0-9_\-\/\.\@]*)', staticfile.StaticFileHandler, {'path': Settings.client_path})
 ]
 
-
-def decorate_method(h, method):
-    value = getattr(h, 'check_roles')
-    if isinstance(value, str):
-        value = {value}
-
-    f = getattr(h, method)
-
-    if State.settings.enable_api_cache:
-        if method == 'get':
-            if h.cache_resource:
-                f = apicache.decorator_cache_get(f)
-
-        else:
-            if h.invalidate_global_cache or h.invalidate_cache:
-                f = apicache.decorator_cache_invalidate(f)
-
-            if h.invalidate_tenant_state:
-               f = getattr(h, 'decorator_invalidate_tenant_state')(f)
-
-    f = getattr(h, 'decorator_authentication')(f, value)
-
-    setattr(h, method, f)
-
-
 class APIResourceWrapper(Resource):
     _registry = None
     isLeaf = True
@@ -240,7 +215,7 @@ class APIResourceWrapper(Resource):
                 handler._decorated = True
                 for m in ['get', 'put', 'post', 'delete']:
                     if hasattr(handler, m):
-                        decorate_method(handler, m)
+                        decorators.decorate_method(handler, m)
 
             self._registry.append((re.compile(pattern), handler, args))
 

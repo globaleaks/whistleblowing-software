@@ -7,7 +7,7 @@ from twisted.internet import reactor, defer
 
 from globaleaks import models
 from globaleaks.db import refresh_memory_variables
-from globaleaks.rest.apicache import ApiCache
+from globaleaks.rest.cache import Cache
 from globaleaks.services.service import Service
 from globaleaks.models.config import ConfigFactory
 from globaleaks.orm import transact
@@ -110,7 +110,7 @@ class OnionService(Service):
                 tid_list = list(set([1, tid]))
 
                 for x in tid_list:
-                    ApiCache().invalidate(x)
+                    Cache().invalidate(x)
 
                 yield refresh_memory_variables(tid_list)
 
