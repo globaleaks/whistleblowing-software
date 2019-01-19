@@ -328,14 +328,13 @@ GLClient.controller('SubmissionCtrl',
       if (!field.required) {
         field.required_status = false;
       } else {
+        field.required_status = true;
         for (i=0; i<field.options.length; i++) {
-          if (entry[field.options[i].id] && entry[field.options[i].id]) {
+          if (entry[field.options[i].id]) {
             field.required_status = false;
             break;
           }
         }
-
-        field.required_status = true;
       }
     } else {
       field.required_status = field.required && !entry['value'];
