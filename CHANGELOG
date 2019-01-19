@@ -1,17 +1,21 @@
-Changes in version 3.6.4 - 2018-01-18
+Changes in version 3.6.5 - 2019-01-19
+    Fix validation of required questions of type checkbox
+    Bypass HTTPS restart when a new tenant is created
+
+Changes in version 3.6.4 - 2019-01-18
     Fix typ0 preventing visualization of questionnair navigation interface with steps names
 
-changes in version 3.6.3 - 2018-01-17
+changes in version 3.6.3 - 2019-01-17
     Fix issue causing reset of internationalized texts on update
 
-Changes in version 3.6.2 - 2018-01-16
+Changes in version 3.6.2 - 2019-01-16
     Revert transaction changes included in 3.6.0 that seems to cause instability
 
-Changes in version 3.6.1 - 2018-01-15
+Changes in version 3.6.1 - 2019-01-15
     Fix initialization of Tor Hidden Service
     Fix clientside logic of the multitenant auth switch
 
-Changes in version 3.6.0 - 2018-01-13
+Changes in version 3.6.0 - 2019-01-13
     Add IP filtering check to TokenAuthHandler (#1211)
     Address issue #2469 removing private IP information from the public API
     Implement notifications of custodian events (#1464)
