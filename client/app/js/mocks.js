@@ -27,7 +27,7 @@ GLClient.mockEngine = (function() {
     var path, i;
 
     for (path in mocks) {
-      if (path === '*' || path === current_path) {
+      if (path === "*" || path === current_path) {
         for (i=0; i<mocks[path].length; i++) {
           applyMock(scope, mocks[path][i][0], mocks[path][i][1]);
         }

@@ -1,7 +1,7 @@
 /* global Uint8Array */
 
-angular.module('GLCrypto', [])
-.factory('glbcUtil', function() {
+angular.module("GLCrypto", [])
+.factory("glbcUtil", function() {
   return {
     /**
      * @param {String} str
@@ -16,11 +16,11 @@ angular.module('GLCrypto', [])
     }
   };
 })
-.factory('glbcProofOfWork', ['$q', 'sha256', 'glbcUtil', function($q, sha256, glbcUtil) {
+.factory("glbcProofOfWork", ["$q", "sha256", "glbcUtil", function($q, sha256, glbcUtil) {
   // proofOfWork return the answer to the proof of work
   // { [challenge string] -> [ answer index] }
   var getWebCrypto = function() {
-    if (typeof window === 'undefined') {
+    if (typeof window === "undefined") {
       return;
     }
 

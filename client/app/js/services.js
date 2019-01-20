@@ -1,13 +1,13 @@
-angular.module('GLServices', ['ngResource']).
-  factory('Test', function () {
+angular.module("GLServices", ["ngResource"]).
+  factory("Test", function () {
     return false;
   }).
-  factory('GLResource', ['$resource', function($resource) {
+  factory("GLResource", ["$resource", function($resource) {
     return function(url, params, actions) {
       var defaults = {
-        get:    {method: 'get'},
-        query:  {method: 'get', isArray: true},
-        update: {method: 'put'}
+        get:    {method: "get"},
+        query:  {method: "get", isArray: true},
+        update: {method: "put"}
       };
 
       actions = angular.extend(defaults, actions);
@@ -15,8 +15,8 @@ angular.module('GLServices', ['ngResource']).
       return $resource(url, params, actions);
     };
   }]).
-  factory('Authentication',
-    ['$filter', '$http', '$location', '$window', '$routeParams', '$rootScope', 'GLTranslate', 'locationForce', 'UserPreferences', 'ReceiverPreferences',
+  factory("Authentication",
+    ["$filter", "$http", "$location", "$window", "$routeParams", "$rootScope", "GLTranslate", "locationForce", "UserPreferences", "ReceiverPreferences",
     function($filter, $http, $location, $window, $routeParams, $rootScope, GLTranslate, locationForce, UserPreferences, ReceiverPreferences) {
       function Session(){
         var self = this;
@@ -27,14 +27,14 @@ angular.module('GLServices', ['ngResource']).
           response = response.data;
 
           self.session = {
-            'id': response.session_id,
-            'user_id': response.user_id,
-            'username': response.username,
-            'role': response.role,
-            'state': response.state,
-            'password_change_needed': response.password_change_needed,
-            'homepage': '',
-            'auth_landing_page': '',
+            "id": response.session_id,
+            "user_id": response.user_id,
+            "username": response.username,
+            "role": response.role,
+            "state": response.state,
+            "password_change_needed": response.password_change_needed,
+            "homepage": "",
+            "auth_landing_page": "",
           };
 
           function initPreferences(prefs) {
@@ -42,25 +42,25 @@ angular.module('GLServices', ['ngResource']).
             GLTranslate.addUserPreference(prefs.language);
           }
 
-          if (self.session.role === 'admin') {
-            self.session.homepage = '#/admin/home';
-            self.session.auth_landing_page = '/admin/home';
+          if (self.session.role === "admin") {
+            self.session.homepage = "#/admin/home";
+            self.session.auth_landing_page = "/admin/home";
             UserPreferences.get().$promise.then(initPreferences);
-          } else if (self.session.role === 'custodian') {
-            self.session.homepage = '#/custodian/home';
-            self.session.auth_landing_page = '/custodian/home';
+          } else if (self.session.role === "custodian") {
+            self.session.homepage = "#/custodian/home";
+            self.session.auth_landing_page = "/custodian/home";
             UserPreferences.get().$promise.then(initPreferences);
-          } else if (self.session.role === 'receiver') {
-            self.session.homepage = '#/receiver/home';
-            self.session.auth_landing_page = '/receiver/home';
+          } else if (self.session.role === "receiver") {
+            self.session.homepage = "#/receiver/home";
+            self.session.auth_landing_page = "/receiver/home";
             ReceiverPreferences.get().$promise.then(initPreferences);
-          } else if (self.session.role === 'whistleblower') {
-            self.session.auth_landing_page = '/status';
-            self.session.homepage = '#/status';
+          } else if (self.session.role === "whistleblower") {
+            self.session.auth_landing_page = "/status";
+            self.session.homepage = "#/status";
           }
 
           self.session.role_l10n = function() {
-            return $filter('translate')(self.session.role.charAt(0).toUpperCase() + self.session.role.substr(1));
+            return $filter("translate")(self.session.role.charAt(0).toUpperCase() + self.session.role.substr(1));
           }
         }
 
@@ -71,11 +71,11 @@ angular.module('GLServices', ['ngResource']).
             // reset login status before returning
             self.loginInProgress = false;
 
-            if ('redirect' in response.data) {
+            if ("redirect" in response.data) {
               if ($rootScope.embedded && $rootScope.node.allows_iframes_inclusion) {
-                $window.parent.postMessage({'cmd': 'redirect', 'data': response.data['redirect']}, '*');
+                $window.parent.postMessage({"cmd": "redirect", "data": response.data["redirect"]}, "*");
               } else {
-                $window.location.replace(response.data['redirect']);
+                $window.location.replace(response.data["redirect"]);
               }
             }
 
@@ -87,32 +87,32 @@ angular.module('GLServices', ['ngResource']).
               // Override the auth_landing_page if a password change is needed
               if (self.session.password_change_needed) {
                 // Pushes ui to the ForcedPasswordChangeCtrl
-                locationForce.set('/forcedpasswordchange');
+                locationForce.set("/forcedpasswordchange");
               } else {
                 $location.path(self.session.auth_landing_page);
               }
             }
 
-            $location.search('');
+            $location.search("");
 
             if (cb){
               return cb();
             }
           };
 
-          if (username === 'whistleblower') {
-            password = password.replace(/\D/g,'');
-            return $http.post('receiptauth', {'receipt': password}).
+          if (username === "whistleblower") {
+            password = password.replace(/\D/g,"");
+            return $http.post("receiptauth", {"receipt": password}).
             then(success_fn, function() {
               self.loginInProgress = false;
             });
           } else if (token) {
-            return $http.post('tokenauth', {'tid': tid, 'token': token}).
+            return $http.post("tokenauth", {"tid": tid, "token": token}).
             then(success_fn, function() {
               self.loginInProgress = false;
             });
           } else {
-            return $http.post('authentication', {'tid': tid, 'username': username, 'password': password, 'authcode': authcode}).
+            return $http.post("authentication", {"tid": tid, "username": username, "password": password, "authcode": authcode}).
             then(success_fn, function() {
               self.loginInProgress = false;
             });
@@ -123,25 +123,25 @@ angular.module('GLServices', ['ngResource']).
           var loginUri = "/login";
 
           if (role === undefined ) {
-            if (path === '/status') {
-              loginUri = '/';
-            } else if (path.indexOf('/admin') === 0) {
-              loginUri = '/admin';
-            } else if (path.indexOf('/custodian') === 0) {
-              loginUri = '/login';
+            if (path === "/status") {
+              loginUri = "/";
+            } else if (path.indexOf("/admin") === 0) {
+              loginUri = "/admin";
+            } else if (path.indexOf("/custodian") === 0) {
+              loginUri = "/login";
             }
-          } else if (role === 'whistleblower') {
-            loginUri = ('/');
-          } else if (role === 'admin') {
-            loginUri = '/admin';
-          } else if (role === 'custodian') {
-            loginUri = '/login';
+          } else if (role === "whistleblower") {
+            loginUri = ("/");
+          } else if (role === "admin") {
+            loginUri = "/admin";
+          } else if (role === "custodian") {
+            loginUri = "/login";
           }
 
           return loginUri;
         };
 
-        self.receipt = '';
+        self.receipt = "";
 
         self.logout = function() {
           locationForce.clear();
@@ -150,7 +150,7 @@ angular.module('GLServices', ['ngResource']).
             self.loginRedirect(true);
           };
 
-          $http.delete('session').then(logoutPerformed,
+          $http.delete("session").then(logoutPerformed,
                                        logoutPerformed);
         };
 
@@ -167,7 +167,7 @@ angular.module('GLServices', ['ngResource']).
           if (source_path !== redirect_path) {
             $location.path(redirect_path);
             if (!isLogout) {
-              $location.search('src=' + source_path);
+              $location.search("src=" + source_path);
             }
           }
         };
@@ -177,18 +177,18 @@ angular.module('GLServices', ['ngResource']).
             return false;
           }
           var r = self.session.role;
-          return (r === 'admin' || r === 'receiver' || r === 'custodian');
+          return (r === "admin" || r === "receiver" || r === "custodian");
         };
 
         self.get_headers = function() {
           var h = {};
 
           if (self.session) {
-            h['X-Session'] = self.session.id;
+            h["X-Session"] = self.session.id;
           }
 
           if (GLTranslate.indirect.appLanguage !== null) {
-            h['GL-Language'] = GLTranslate.indirect.appLanguage;
+            h["GL-Language"] = GLTranslate.indirect.appLanguage;
           }
 
           return h;
@@ -216,7 +216,7 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
       // backend flags and the only way to know for sure if a given op will
       // work is to test
 
-      if (Authentication.session && (role === '*' || role === 'acl' || Authentication.session.role === role)) {
+      if (Authentication.session && (role === "*" || role === "acl" || Authentication.session.role === role)) {
         return $q.resolve(Access.OK);
       } else {
         return $q.reject(Access.FORBIDDEN);
@@ -226,30 +226,30 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
 
   return Access;
 }]).
-  factory('PublicResource', ['GLResource', function(GLResource) {
-    return new GLResource('public');
+  factory("PublicResource", ["GLResource", function(GLResource) {
+    return new GLResource("public");
 }]).
-  factory('TokenResource', ['GLResource', function(GLResource) {
-    return new GLResource('token/:id', {id: '@id'});
+  factory("TokenResource", ["GLResource", function(GLResource) {
+    return new GLResource("token/:id", {id: "@id"});
 }]).
-  factory('SubmissionResource', ['GLResource', function(GLResource) {
-    return new GLResource('submission/:id', {id: '@token_id'});
+  factory("SubmissionResource", ["GLResource", function(GLResource) {
+    return new GLResource("submission/:id", {id: "@token_id"});
 }]).
-  factory('FieldAttrs', ['$resource', function($resource) {
-    return $resource('data/field_attrs.json');
+  factory("FieldAttrs", ["$resource", function($resource) {
+    return $resource("data/field_attrs.json");
 }]).
-  factory('DATA_COUNTRIES_ITALY_REGIONS', ['$resource', function($resource) {
-    return $resource('/data/countries/it/regioni.json');
+  factory("DATA_COUNTRIES_ITALY_REGIONS", ["$resource", function($resource) {
+    return $resource("/data/countries/it/regioni.json");
 }]).
-  factory('DATA_COUNTRIES_ITALY_PROVINCES', ['$resource', function($resource) {
-    return $resource('/data/countries/it/province.json');
+  factory("DATA_COUNTRIES_ITALY_PROVINCES", ["$resource", function($resource) {
+    return $resource("/data/countries/it/province.json");
 }]).
-  factory('DATA_COUNTRIES_ITALY_CITIES', ['$resource', function($resource) {
-    return $resource('data/countries/it/comuni.json');
+  factory("DATA_COUNTRIES_ITALY_CITIES", ["$resource", function($resource) {
+    return $resource("data/countries/it/comuni.json");
 }]).
   // In here we have all the functions that have to do with performing
   // submission requests to the backend
-  factory('Submission', ['$q', 'GLResource', '$filter', '$location', '$rootScope', 'Authentication', 'TokenResource', 'SubmissionResource',
+  factory("Submission", ["$q", "GLResource", "$filter", "$location", "$rootScope", "Authentication", "TokenResource", "SubmissionResource",
       function($q, GLResource, $filter, $location, $rootScope, Authentication, TokenResource, SubmissionResource) {
 
     return function(fn) {
@@ -289,7 +289,7 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
       };
 
       var setCurrentContextReceivers = function(context_id) {
-        self.context = angular.copy($filter('filter')($rootScope.contexts, {"id": context_id})[0]);
+        self.context = angular.copy($filter("filter")($rootScope.contexts, {"id": context_id})[0]);
 
         self.selected_receivers = {};
         self.receivers = [];
@@ -299,10 +299,10 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
 
             self.selected_receivers[receiver.id] = false;
 
-            if (receiver.pgp_key_public !== '' || $rootScope.node.allow_unencrypted) {
-              if (receiver.configuration === 'default') {
+            if (receiver.pgp_key_public !== "" || $rootScope.node.allow_unencrypted) {
+              if (receiver.configuration === "default") {
                 self.selected_receivers[receiver.id] = self.context.select_all_receivers;
-              } else if (receiver.configuration === 'forcefully_selected') {
+              } else if (receiver.configuration === "forcefully_selected") {
                 self.selected_receivers[receiver.id] = true;
               }
             }
@@ -328,7 +328,7 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
           total_score: 0
         });
 
-        self._token = new TokenResource({'type': 'submission'}).$save(function(token) {
+        self._token = new TokenResource({"type": "submission"}).$save(function(token) {
           self._token = token;
           self._submission.token_id = self._token.id;
 
@@ -368,56 +368,56 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
       fn(self);
     };
 }]).
-  factory('RTipResource', ['GLResource', function(GLResource) {
-    return new GLResource('rtip/:id', {id: '@id'});
+  factory("RTipResource", ["GLResource", function(GLResource) {
+    return new GLResource("rtip/:id", {id: "@id"});
 }]).
-  factory('RTipCommentResource', ['GLResource', function(GLResource) {
-    return new GLResource('rtip/:id/comments', {id: '@id'});
+  factory("RTipCommentResource", ["GLResource", function(GLResource) {
+    return new GLResource("rtip/:id/comments", {id: "@id"});
 }]).
-  factory('RTipMessageResource', ['GLResource', function(GLResource) {
-    return new GLResource('rtip/:id/messages', {id: '@id'});
+  factory("RTipMessageResource", ["GLResource", function(GLResource) {
+    return new GLResource("rtip/:id/messages", {id: "@id"});
 }]).
-  factory('RTipIdentityAccessRequestResource', ['GLResource', function(GLResource) {
-    return new GLResource('rtip/:id/identityaccessrequests', {id: '@id'});
+  factory("RTipIdentityAccessRequestResource", ["GLResource", function(GLResource) {
+    return new GLResource("rtip/:id/identityaccessrequests", {id: "@id"});
 }]).
-  factory('RTipDownloadRFile', ['$http', 'FileSaver', function($http, FileSaver) {
+  factory("RTipDownloadRFile", ["$http", "FileSaver", function($http, FileSaver) {
     return function(file) {
       return $http({
-        method: 'GET',
-        url: 'rtip/rfile/' + file.id,
-        responseType: 'blob',
+        method: "GET",
+        url: "rtip/rfile/" + file.id,
+        responseType: "blob",
       }).then(function (response) {
         FileSaver.saveAs(response.data, file.name);
       });
     };
 }]).
-  factory('RTipWBFileResource', ['GLResource', function(GLResource) {
-    return new GLResource('rtip/wbfile/:id', {id: '@id'});
+  factory("RTipWBFileResource", ["GLResource", function(GLResource) {
+    return new GLResource("rtip/wbfile/:id", {id: "@id"});
 }]).
-  factory('RTipDownloadWBFile', ['$http', 'FileSaver', function($http, FileSaver) {
+  factory("RTipDownloadWBFile", ["$http", "FileSaver", function($http, FileSaver) {
     return function(file) {
       return $http({
-        method: 'GET',
-        url: 'rtip/wbfile/' + file.id,
-        responseType: 'blob',
+        method: "GET",
+        url: "rtip/wbfile/" + file.id,
+        responseType: "blob",
       }).then(function (response) {
         FileSaver.saveAs(response.data, file.name);
       });
     };
 }]).
-  factory('RTipExport', ['$http', '$filter', 'FileSaver', function($http, $filter, FileSaver) {
+  factory("RTipExport", ["$http", "$filter", "FileSaver", function($http, $filter, FileSaver) {
     return function(tip) {
       $http({
-        method: 'GET',
-        url: 'rtip/' + tip.id + '/export',
-        responseType: 'blob',
+        method: "GET",
+        url: "rtip/" + tip.id + "/export",
+        responseType: "blob",
       }).then(function (response) {
-        var filename = 'submission-' + tip.progressive + '.zip';
+        var filename = "submission-" + tip.progressive + ".zip";
         FileSaver.saveAs(response.data, filename);
       });
     };
 }]).
-  factory('RTip', ['$rootScope', '$http', '$filter', 'RTipResource', 'RTipMessageResource', 'RTipCommentResource',
+  factory("RTip", ["$rootScope", "$http", "$filter", "RTipResource", "RTipMessageResource", "RTipCommentResource",
           function($rootScope, $http, $filter, RTipResource, RTipMessageResource, RTipCommentResource) {
     return function(tipID, fn) {
       var self = this;
@@ -427,7 +427,7 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
         tip.questionnaire = $rootScope.questionnaires_by_id[tip.context.questionnaire_id];
         tip.additional_questionnaire = $rootScope.questionnaires_by_id[tip.context.additional_questionnaire_id];
 
-        tip.iars = $filter('orderBy')(tip.iars, 'request_date');
+        tip.iars = $filter("orderBy")(tip.iars, "request_date");
         tip.last_iar = tip.iars.length > 0 ? tip.iars[tip.iars.length - 1] : null;
 
         tip.newComment = function(content) {
@@ -450,24 +450,24 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
 
         tip.operation = function(operation, args) {
           var req = {
-            'operation': operation,
-            'args': args
+            "operation": operation,
+            "args": args
           };
 
-          return $http({method: 'PUT', url: 'rtip/' + tip.id, data: req});
+          return $http({method: "PUT", url: "rtip/" + tip.id, data: req});
         };
 
         tip.updateLabel = function(label) {
-          return tip.operation('update_label', {'value': label}).then(function () {
-            tip['label'] = label;
+          return tip.operation("update_label", {"value": label}).then(function () {
+            tip["label"] = label;
           });
         };
 
         tip.updateSubmissionStatus = function() {
           var status = tip.submissionStatusObj.id;
-          var substatus = tip.submissionSubStatusObj ? tip.submissionSubStatusObj.id : '';
-          return tip.operation('update_status', {'status': status,
-                                                 'substatus': substatus}).then(function () {
+          var substatus = tip.submissionSubStatusObj ? tip.submissionSubStatusObj.id : "";
+          return tip.operation("update_status", {"status": status,
+                                                 "substatus": substatus}).then(function () {
             tip.status = status;
             tip.substatus = substatus;
           });
@@ -483,27 +483,27 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
       });
     };
 }]).
-  factory('WBTipResource', ['GLResource', function(GLResource) {
-    return new GLResource('wbtip');
+  factory("WBTipResource", ["GLResource", function(GLResource) {
+    return new GLResource("wbtip");
 }]).
-  factory('WBTipCommentResource', ['GLResource', function(GLResource) {
-    return new GLResource('wbtip/comments');
+  factory("WBTipCommentResource", ["GLResource", function(GLResource) {
+    return new GLResource("wbtip/comments");
 }]).
-  factory('WBTipMessageResource', ['GLResource', function(GLResource) {
-    return new GLResource('wbtip/messages/:id', {id: '@id'});
+  factory("WBTipMessageResource", ["GLResource", function(GLResource) {
+    return new GLResource("wbtip/messages/:id", {id: "@id"});
 }]).
-  factory('WBTipDownloadFile', ['$http', 'FileSaver', function($http, FileSaver) {
+  factory("WBTipDownloadFile", ["$http", "FileSaver", function($http, FileSaver) {
     return function(file) {
       return $http({
-        method: 'GET',
-        url: 'wbtip/wbfile/' + file.id,
-        responseType: 'blob',
+        method: "GET",
+        url: "wbtip/wbfile/" + file.id,
+        responseType: "blob",
       }).then(function (response) {
         FileSaver.saveAs(response.data, file.name);
       });
     };
 }]).
-  factory('WBTip', ['$rootScope', '$filter', 'WBTipResource', 'WBTipCommentResource', 'WBTipMessageResource',
+  factory("WBTip", ["$rootScope", "$filter", "WBTipResource", "WBTipCommentResource", "WBTipMessageResource",
       function($rootScope, $filter, WBTipResource, WBTipCommentResource, WBTipMessageResource) {
     return function(fn) {
       var self = this;
@@ -554,55 +554,55 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
       });
     };
 }]).
-  factory('ReceiverPreferences', ['GLResource', function(GLResource) {
-    return new GLResource('receiver/preferences');
+  factory("ReceiverPreferences", ["GLResource", function(GLResource) {
+    return new GLResource("receiver/preferences");
 }]).
-  factory('ReceiverTips', ['GLResource', function(GLResource) {
-    return new GLResource('receiver/tips');
+  factory("ReceiverTips", ["GLResource", function(GLResource) {
+    return new GLResource("receiver/tips");
 }]).
-  factory('IdentityAccessRequests', ['GLResource', function(GLResource) {
-    return new GLResource('custodian/identityaccessrequests');
+  factory("IdentityAccessRequests", ["GLResource", function(GLResource) {
+    return new GLResource("custodian/identityaccessrequests");
 }]).
-  factory('ManifestResource', ['$resource', function($resource) {
-    return new $resource('admin/manifest');
+  factory("ManifestResource", ["$resource", function($resource) {
+    return new $resource("admin/manifest");
 }]).
-  factory('AdminContextResource', ['GLResource', function(GLResource) {
-    return new GLResource('admin/contexts/:id', {id: '@id'});
+  factory("AdminContextResource", ["GLResource", function(GLResource) {
+    return new GLResource("admin/contexts/:id", {id: "@id"});
 }]).
-  factory('AdminQuestionnaireResource', ['GLResource', function(GLResource) {
-    return new GLResource('admin/questionnaires/:id', {id: '@id'});
+  factory("AdminQuestionnaireResource", ["GLResource", function(GLResource) {
+    return new GLResource("admin/questionnaires/:id", {id: "@id"});
 }]).
-  factory('AdminStepResource', ['GLResource', function(GLResource) {
-    return new GLResource('admin/steps/:id', {id: '@id'});
+  factory("AdminStepResource", ["GLResource", function(GLResource) {
+    return new GLResource("admin/steps/:id", {id: "@id"});
 }]).
-  factory('AdminFieldResource', ['GLResource', function(GLResource) {
-    return new GLResource('admin/fields/:id',{id: '@id'});
+  factory("AdminFieldResource", ["GLResource", function(GLResource) {
+    return new GLResource("admin/fields/:id",{id: "@id"});
 }]).
-  factory('AdminFieldTemplateResource', ['GLResource', function(GLResource) {
-    return new GLResource('admin/fieldtemplates/:id', {id: '@id'});
+  factory("AdminFieldTemplateResource", ["GLResource", function(GLResource) {
+    return new GLResource("admin/fieldtemplates/:id", {id: "@id"});
 }]).
-  factory('AdminShorturlResource', ['GLResource', function(GLResource) {
-    return new GLResource('admin/shorturls/:id', {id: '@id'});
+  factory("AdminShorturlResource", ["GLResource", function(GLResource) {
+    return new GLResource("admin/shorturls/:id", {id: "@id"});
 }]).
-  factory('AdminTenantResource', ['GLResource', function(GLResource) {
-    return new GLResource('admin/tenants/:id', {id: '@id'});
+  factory("AdminTenantResource", ["GLResource", function(GLResource) {
+    return new GLResource("admin/tenants/:id", {id: "@id"});
 }]).
-  factory('AdminUserResource', ['GLResource', function(GLResource) {
-    return new GLResource('admin/users/:id', {id: '@id'});
+  factory("AdminUserResource", ["GLResource", function(GLResource) {
+    return new GLResource("admin/users/:id", {id: "@id"});
 }]).
-  factory('AdminSubmissionStatusResource', ['GLResource', function(GLResource) {
-    return new GLResource('admin/submission_statuses/:id', {id: '@id'});
+  factory("AdminSubmissionStatusResource", ["GLResource", function(GLResource) {
+    return new GLResource("admin/submission_statuses/:id", {id: "@id"});
 }]).
-factory('AdminSubmissionSubStatusResource', ['GLResource', function(GLResource) {
-  return new GLResource('admin/submission_statuses/:submissionstatus_id/substatuses/:id', {id: '@id', submissionstatus_id: '@submissionstatus_id'});
+factory("AdminSubmissionSubStatusResource", ["GLResource", function(GLResource) {
+  return new GLResource("admin/submission_statuses/:submissionstatus_id/substatuses/:id", {id: "@id", submissionstatus_id: "@submissionstatus_id"});
 }]).
-factory('AdminUserTenantAssociationResource', ['GLResource', function(GLResource) {
-  return new GLResource('admin/users/:user_id/tenant_associations/:tenant_id', {user_id: '@user_id', tenant_id: '@tenant_id'});
+factory("AdminUserTenantAssociationResource", ["GLResource", function(GLResource) {
+  return new GLResource("admin/users/:user_id/tenant_associations/:tenant_id", {user_id: "@user_id", tenant_id: "@tenant_id"});
 }]).
-factory('Sites', ['GLResource', function(GLResource) {
-    return new GLResource('sites');
+factory("Sites", ["GLResource", function(GLResource) {
+    return new GLResource("sites");
 }]).
-service('UpdateService', [function() {
+service("UpdateService", [function() {
   return {
     new_data: function(installed_version, latest_version) {
       this.latest_version = latest_version;
@@ -614,10 +614,10 @@ service('UpdateService', [function() {
     latest_version: undefined,
   }
 }]).
-  factory('AdminNodeResource', ['GLResource', 'UpdateService', function(GLResource, UpdateService) {
-    return new GLResource('admin/node', {}, {
+  factory("AdminNodeResource", ["GLResource", "UpdateService", function(GLResource, UpdateService) {
+    return new GLResource("admin/node", {}, {
       get: {
-        method: 'get',
+        method: "get",
         interceptor: {
           response: function(response) {
             UpdateService.new_data(response.resource.version, response.resource.latest_version);
@@ -627,36 +627,36 @@ service('UpdateService', [function() {
       },
   });
 }]).
-  factory('AdminNotificationResource', ['GLResource', function(GLResource) {
-    return new GLResource('admin/notification');
+  factory("AdminNotificationResource", ["GLResource", function(GLResource) {
+    return new GLResource("admin/notification");
 }]).
-  factory('AdminL10NResource', ['GLResource', function(GLResource) {
-    return new GLResource('admin/l10n/:lang', {lang: '@lang'});
+  factory("AdminL10NResource", ["GLResource", function(GLResource) {
+    return new GLResource("admin/l10n/:lang", {lang: "@lang"});
 }]).
-factory('AdminTLSConfigResource', ['GLResource', function(GLResource) {
-    return new GLResource('admin/config/tls', {}, {
-        'enable':  { method: 'POST', params: {}},
-        'disable': { method: 'PUT', params: {}},
+factory("AdminTLSConfigResource", ["GLResource", function(GLResource) {
+    return new GLResource("admin/config/tls", {}, {
+        "enable":  { method: "POST", params: {}},
+        "disable": { method: "PUT", params: {}},
     });
 }]).
-factory('AdminTLSCertFileResource', ['GLResource', function(GLResource) {
-    return new GLResource('admin/config/tls/files');
+factory("AdminTLSCertFileResource", ["GLResource", function(GLResource) {
+    return new GLResource("admin/config/tls/files");
 }]).
-factory('AdminAcmeResource', ['GLResource', function(GLResource) {
-    return new GLResource('/admin/config/acme/run');
+factory("AdminAcmeResource", ["GLResource", function(GLResource) {
+    return new GLResource("/admin/config/acme/run");
 }]).
-factory('AdminTLSCfgFileResource', ['GLResource', function(GLResource) {
-    return new GLResource('admin/config/tls/files/:name', {name: '@name'});
+factory("AdminTLSCfgFileResource", ["GLResource", function(GLResource) {
+    return new GLResource("admin/config/tls/files/:name", {name: "@name"});
 }]).
-factory('AdminUtils', ['AdminContextResource', 'AdminQuestionnaireResource', 'AdminStepResource', 'AdminFieldResource', 'AdminFieldTemplateResource', 'AdminUserResource', 'AdminNodeResource', 'AdminNotificationResource', 'AdminShorturlResource', 'AdminTenantResource',
+factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "AdminStepResource", "AdminFieldResource", "AdminFieldTemplateResource", "AdminUserResource", "AdminNodeResource", "AdminNotificationResource", "AdminShorturlResource", "AdminTenantResource",
     function(AdminContextResource, AdminQuestionnaireResource, AdminStepResource, AdminFieldResource, AdminFieldTemplateResource, AdminUserResource, AdminNodeResource, AdminNotificationResource, AdminShorturlResource, AdminTenantResource) {
   return {
     new_context: function() {
       var context = new AdminContextResource();
-      context.id = '';
+      context.id = "";
       context.status = 2;
-      context.name = '';
-      context.description = '';
+      context.name = "";
+      context.description = "";
       context.presentation_order = 0;
       context.tip_timetolive = 15;
       context.show_recipients_details = false;
@@ -672,10 +672,10 @@ factory('AdminUtils', ['AdminContextResource', 'AdminQuestionnaireResource', 'Ad
       context.enable_two_way_messages = true;
       context.enable_attachments = true;
       context.enable_rc_to_wb_files = false;
-      context.recipients_clarification = '';
-      context.status_page_message = '';
-      context.questionnaire_id = '';
-      context.additional_questionnaire_id = '';
+      context.recipients_clarification = "";
+      context.status_page_message = "";
+      context.questionnaire_id = "";
+      context.additional_questionnaire_id = "";
       context.enable_scoring_system = false;
       context.score_threshold_medium = 0;
       context.score_threshold_high = 0;
@@ -685,9 +685,9 @@ factory('AdminUtils', ['AdminContextResource', 'AdminQuestionnaireResource', 'Ad
 
     new_questionnaire: function() {
       var questionnaire = new AdminQuestionnaireResource();
-      questionnaire.id = '';
-      questionnaire.key = '';
-      questionnaire.name = '';
+      questionnaire.id = "";
+      questionnaire.key = "";
+      questionnaire.name = "";
       questionnaire.steps = [];
       questionnaire.editable = true;
       return questionnaire;
@@ -695,9 +695,9 @@ factory('AdminUtils', ['AdminContextResource', 'AdminQuestionnaireResource', 'Ad
 
     new_step: function(questionnaire_id) {
       var step = new AdminStepResource();
-      step.id = '';
-      step.label = '';
-      step.description = '';
+      step.id = "";
+      step.label = "";
+      step.description = "";
       step.presentation_order = 0;
       step.children = [];
       step.questionnaire_id = questionnaire_id;
@@ -707,17 +707,17 @@ factory('AdminUtils', ['AdminContextResource', 'AdminQuestionnaireResource', 'Ad
 
     new_field: function(step_id, fieldgroup_id) {
       var field = new AdminFieldResource();
-      field.id = '';
-      field.key = '';
-      field.instance = 'instance';
+      field.id = "";
+      field.key = "";
+      field.instance = "instance";
       field.editable = true;
-      field.descriptor_id = '';
-      field.label = '';
-      field.type = 'inputbox';
-      field.description = '';
-      field.hint = '';
+      field.descriptor_id = "";
+      field.label = "";
+      field.type = "inputbox";
+      field.description = "";
+      field.hint = "";
       field.multi_entry = false;
-      field.multi_entry_hint = '';
+      field.multi_entry_hint = "";
       field.required = false;
       field.preview = false;
       field.encrypt = true;
@@ -729,24 +729,24 @@ factory('AdminUtils', ['AdminContextResource', 'AdminQuestionnaireResource', 'Ad
       field.children = [];
       field.fieldgroup_id = fieldgroup_id;
       field.step_id = step_id;
-      field.template_id = '';
-      field.template_override_id = '';
+      field.template_id = "";
+      field.template_override_id = "";
       field.triggered_by_score = 0;
       return field;
     },
 
     new_field_template: function (fieldgroup_id) {
       var field = new AdminFieldTemplateResource();
-      field.id = '';
-      field.key = '';
-      field.instance = 'template';
+      field.id = "";
+      field.key = "";
+      field.instance = "template";
       field.editable = true;
-      field.label = '';
-      field.type = 'inputbox';
-      field.description = '';
-      field.hint = '';
+      field.label = "";
+      field.type = "inputbox";
+      field.description = "";
+      field.hint = "";
       field.multi_entry = false;
-      field.multi_entry_hint = '';
+      field.multi_entry_hint = "";
       field.required = false;
       field.preview = false;
       field.encrypt = false;
@@ -757,33 +757,33 @@ factory('AdminUtils', ['AdminContextResource', 'AdminQuestionnaireResource', 'Ad
       field.width = 0;
       field.children = [];
       field.fieldgroup_id = fieldgroup_id;
-      field.step_id = '';
-      field.template_id = '';
-      field.template_override_id = '';
+      field.step_id = "";
+      field.template_id = "";
+      field.template_override_id = "";
       field.triggered_by_score = 0;
       return field;
     },
 
     new_user: function () {
       var user = new AdminUserResource();
-      user.id = '';
-      user.username = '';
-      user.role = 'receiver';
-      user.state = 'enable';
-      user.password = '';
-      user.old_password = '';
+      user.id = "";
+      user.username = "";
+      user.role = "receiver";
+      user.state = "enable";
+      user.password = "";
+      user.old_password = "";
       user.password_change_needed = true;
-      user.state = 'enabled';
-      user.name = '';
-      user.description = '';
-      user.mail_address = '';
-      user.pgp_key_fingerprint = '';
+      user.state = "enabled";
+      user.name = "";
+      user.description = "";
+      user.mail_address = "";
+      user.pgp_key_fingerprint = "";
       user.pgp_key_remove = false;
-      user.pgp_key_public = '';
-      user.pgp_key_expiration = '';
-      user.language = 'en';
+      user.pgp_key_public = "";
+      user.pgp_key_expiration = "";
+      user.language = "en";
       user.notification = true;
-      user.recipient_configuration = 'default';
+      user.recipient_configuration = "default";
       user.can_edit_general_settings = false;
       user.can_delete_submission = false;
       user.can_postpone_expiration = false;
@@ -798,41 +798,41 @@ factory('AdminUtils', ['AdminContextResource', 'AdminQuestionnaireResource', 'Ad
     new_tenant: function() {
       var tenant = new AdminTenantResource();
       tenant.active = true;
-      tenant.label = '';
-      tenant.mode = 'default';
-      tenant.subdomain = '';
+      tenant.label = "";
+      tenant.mode = "default";
+      tenant.subdomain = "";
       return tenant;
     },
   };
 }]).
-  factory('UserPreferences', ['GLResource', function(GLResource) {
-    return new GLResource('preferences', {}, {'update': {method: 'PUT'}});
+  factory("UserPreferences", ["GLResource", function(GLResource) {
+    return new GLResource("preferences", {}, {"update": {method: "PUT"}});
 }]).
-  factory('TipOverview', ['GLResource', function(GLResource) {
-    return new GLResource('admin/overview/tips');
+  factory("TipOverview", ["GLResource", function(GLResource) {
+    return new GLResource("admin/overview/tips");
 }]).
-  factory('FileOverview', ['GLResource', function(GLResource) {
-    return new GLResource('admin/overview/files');
+  factory("FileOverview", ["GLResource", function(GLResource) {
+    return new GLResource("admin/overview/files");
 }]).
-  factory('JobsOverview', ['GLResource', function(GLResource) {
-    return new GLResource('admin/jobs');
+  factory("JobsOverview", ["GLResource", function(GLResource) {
+    return new GLResource("admin/jobs");
 }]).
-  factory('StatsCollection', ['GLResource', function(GLResource) {
-    return new GLResource('admin/stats/:week_delta', {week_delta: '@week_delta'}, {});
+  factory("StatsCollection", ["GLResource", function(GLResource) {
+    return new GLResource("admin/stats/:week_delta", {week_delta: "@week_delta"}, {});
 }]).
-  factory('AnomaliesCollection', ['GLResource', function(GLResource) {
-    return new GLResource('admin/anomalies');
+  factory("AnomaliesCollection", ["GLResource", function(GLResource) {
+    return new GLResource("admin/anomalies");
 }]).
-  factory('ActivitiesCollection', ['GLResource', function(GLResource) {
-    return new GLResource('admin/activities/details');
+  factory("ActivitiesCollection", ["GLResource", function(GLResource) {
+    return new GLResource("admin/activities/details");
 }]).
-  factory('Files', ['GLResource', function(GLResource) {
-    return new GLResource('admin/files');
+  factory("Files", ["GLResource", function(GLResource) {
+    return new GLResource("admin/files");
 }]).
-  factory('DefaultL10NResource', ['GLResource', function(GLResource) {
-    return new GLResource('l10n/:lang.json', {lang: '@lang'});
+  factory("DefaultL10NResource", ["GLResource", function(GLResource) {
+    return new GLResource("l10n/:lang.json", {lang: "@lang"});
 }]).
-  factory('Utils', ['$rootScope', '$http', '$q', '$location', '$filter', '$sce', '$uibModal', '$window', 'Authentication',
+  factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$sce", "$uibModal", "$window", "Authentication",
   function($rootScope, $http, $q, $location, $filter, $sce, $uibModal, $window, Authentication) {
     return {
       array_to_map: function(array) {
@@ -844,15 +844,15 @@ factory('AdminUtils', ['AdminContextResource', 'AdminQuestionnaireResource', 'Ad
       },
 
       set_title: function() {
-        var nodename = $rootScope.node.name ? $rootScope.node.name : 'Globaleaks';
+        var nodename = $rootScope.node.name ? $rootScope.node.name : "Globaleaks";
         var path = $location.path();
-        var statuspage = '/status';
+        var statuspage = "/status";
 
-        if (path === '/') {
+        if (path === "/") {
           $rootScope.ht = $rootScope.node.header_title_homepage;
-        } else if (path === '/submission') {
+        } else if (path === "/submission") {
           $rootScope.ht = $rootScope.node.header_title_submissionpage;
-        } else if (path === '/receipt') {
+        } else if (path === "/receipt") {
           if (Authentication.receipt) {
             $rootScope.ht = $rootScope.node.header_title_receiptpage;
           } else {
@@ -864,27 +864,27 @@ factory('AdminUtils', ['AdminContextResource', 'AdminQuestionnaireResource', 'Ad
           $rootScope.ht = $rootScope.header_title;
         }
 
-        $rootScope.ht = $filter('translate')($rootScope.ht);
+        $rootScope.ht = $filter("translate")($rootScope.ht);
 
-        $rootScope.pt = ($rootScope.ht !== '' && $rootScope.ht !== nodename) ? nodename + ' - ' + $rootScope.ht : nodename;
+        $rootScope.pt = ($rootScope.ht !== "" && $rootScope.ht !== nodename) ? nodename + " - " + $rootScope.ht : nodename;
       },
 
       route_check: function() {
         if (!$rootScope.node.wizard_done) {
-          $location.path('/wizard');
+          $location.path("/wizard");
         }
 
-        if ($location.path() === '/') {
+        if ($location.path() === "/") {
           if ($rootScope.node.enable_signup === true) {
-            $location.path('/signup');
+            $location.path("/signup");
           }
 
-          else if ($rootScope.node.landing_page === 'submissionpage') {
-            $location.path('/submission');
+          else if ($rootScope.node.landing_page === "submissionpage") {
+            $location.path("/submission");
           }
         }
 
-        if ($location.path() === '/submission' &&
+        if ($location.path() === "/submission" &&
             !$rootScope.connection.tor &&
             !$rootScope.node.https_whistleblower) {
           $location.path("/");
@@ -892,13 +892,13 @@ factory('AdminUtils', ['AdminContextResource', 'AdminQuestionnaireResource', 'Ad
       },
 
       getXOrderProperty: function() {
-        return 'x';
+        return "x";
       },
 
       getYOrderProperty: function(elem) {
-        var key = 'presentation_order';
+        var key = "presentation_order";
         if (elem[key] === undefined) {
-          key = 'y';
+          key = "y";
         }
         return key;
       },
@@ -911,9 +911,9 @@ factory('AdminUtils', ['AdminContextResource', 'AdminQuestionnaireResource', 'Ad
         // https://github.com/globaleaks/GlobaLeaks/issues/2079
         // https://developer.mozilla.org/en-US/docs/Web/API/WindowBase64/Base64_encoding_and_decoding
         // Going backwards: from bytestream, to percent-encoding, to original string.
-        return decodeURIComponent(atob(str).split('').map(function(c) {
-          return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
-        }).join(''));
+        return decodeURIComponent(atob(str).split("").map(function(c) {
+          return "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2);
+        }).join(""));
       },
 
       iframeCheck: function() {
@@ -925,7 +925,7 @@ factory('AdminUtils', ['AdminContextResource', 'AdminQuestionnaireResource', 'Ad
       },
 
       base64ToTrustedScriptUrl: function(base64_data) {
-        return $sce.trustAsResourceUrl('data:application/javascript;base64,' + base64_data);
+        return $sce.trustAsResourceUrl("data:application/javascript;base64," + base64_data);
       },
 
       update: function (model, cb, errcb) {
@@ -952,11 +952,11 @@ factory('AdminUtils', ['AdminContextResource', 'AdminQuestionnaireResource', 'Ad
       },
 
       imgDataUri: function(data) {
-        if (data === '') {
-          data = 'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8Xw8AAoMBgDTD2qgAAAAASUVORK5CYII=';
+        if (data === "") {
+          data = "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8Xw8AAoMBgDTD2qgAAAAASUVORK5CYII=";
         }
 
-        return 'data:image/png;base64,' + data;
+        return "data:image/png;base64," + data;
       },
 
       attachCustomJS: function() {
@@ -965,23 +965,23 @@ factory('AdminUtils', ['AdminContextResource', 'AdminQuestionnaireResource', 'Ad
 
       isWhistleblowerPage: function() {
         var path = $location.path();
-        return (path === '/' ||
-                path === '/start' ||
-                path === '/submission' ||
-                path === '/receipt' ||
-                path === '/status');
+        return (path === "/" ||
+                path === "/start" ||
+                path === "/submission" ||
+                path === "/receipt" ||
+                path === "/status");
       },
 
       classExtension: function() {
         return {
-          'ext-public': this.isWhistleblowerPage(),
-          'ext-authenticated': Authentication.hasUserRole(),
-          'ext-embedded': $rootScope.embedded,
+          "ext-public": this.isWhistleblowerPage(),
+          "ext-authenticated": Authentication.hasUserRole(),
+          "ext-embedded": $rootScope.embedded,
         };
       },
 
       showLoginForm: function () {
-        return $location.path() === '/submission';
+        return $location.path() === "/submission";
       },
 
       showUserStatusBox: function() {
@@ -996,10 +996,10 @@ factory('AdminUtils', ['AdminContextResource', 'AdminQuestionnaireResource', 'Ad
 
       showFilePreview: function(content_type) {
         var content_types = [
-          'image/gif',
-          'image/jpeg',
-          'image/png',
-          'image/bmp'
+          "image/gif",
+          "image/jpeg",
+          "image/png",
+          "image/bmp"
         ];
 
         return content_types.indexOf(content_type) > -1;
@@ -1040,7 +1040,7 @@ factory('AdminUtils', ['AdminContextResource', 'AdminQuestionnaireResource', 'Ad
         var key = this.getYOrderProperty(elements[0]);
         if (elements.length) {
           var i = 0;
-          elements = $filter('orderBy')(elements, key);
+          elements = $filter("orderBy")(elements, key);
           angular.forEach(elements, function (element) {
             element[key] = i;
             i += 1;
@@ -1050,10 +1050,10 @@ factory('AdminUtils', ['AdminContextResource', 'AdminQuestionnaireResource', 'Ad
 
       getUploadStatus: function(uploads) {
         if (uploads.progress() != 1) {
-          return 'uploading';
+          return "uploading";
         }
 
-        return 'finished';
+        return "finished";
       },
 
       isUploading: function(uploads) {
@@ -1071,8 +1071,8 @@ factory('AdminUtils', ['AdminContextResource', 'AdminQuestionnaireResource', 'Ad
 
         var modal = $uibModal.open({
           templateUrl: template,
-          controller: 'ConfirmableDialogCtrl',
-          backdrop: 'static',
+          controller: "ConfirmableDialogCtrl",
+          backdrop: "static",
           keyboard: false,
           scope: scope,
           resolve: {
@@ -1086,7 +1086,7 @@ factory('AdminUtils', ['AdminContextResource', 'AdminQuestionnaireResource', 'Ad
       },
 
       deleteDialog: function(obj) {
-        return this.openConfirmableModalDialog('views/partials/delete_dialog.html', obj);
+        return this.openConfirmableModalDialog("views/partials/delete_dialog.html", obj);
       },
 
       deleteResource: function(factory, list, res) {
@@ -1135,9 +1135,9 @@ factory('AdminUtils', ['AdminContextResource', 'AdminQuestionnaireResource', 'Ad
 
       displayErrorMsg: function(reason) {
         var error = {
-          'message': 'local-failure',
-          'arguments': [reason],
-          'code': 10,
+          "message": "local-failure",
+          "arguments": [reason],
+          "code": 10,
         };
         $rootScope.errors.push(error);
       },
@@ -1158,56 +1158,56 @@ factory('AdminUtils', ['AdminContextResource', 'AdminQuestionnaireResource', 'Ad
           }
         }
 
-        tip.submissionStatusStr = $filter('translate')(tip.submissionStatusObj.label);
+        tip.submissionStatusStr = $filter("translate")(tip.submissionStatusObj.label);
         if (tip.submissionSubStatusObj) {
-          tip.submissionStatusStr += '(' + $filter('translate')(tip.submissionStatusObj.label) + ')';
+          tip.submissionStatusStr += "(" + $filter("translate")(tip.submissionStatusObj.label) + ")";
         }
       },
 
       openUrl: function(url) {
-        $window.open(url, '_blank');
+        $window.open(url, "_blank");
       },
 
       setHostname: function(hostname) {
         var req = {
-          'operation': 'set_hostname',
-          'args': {
-            'value': hostname
+          "operation": "set_hostname",
+          "args": {
+            "value": hostname
           }
         };
 
-        return $http({method: 'PUT', url: 'admin/config', data: req});
+        return $http({method: "PUT", url: "admin/config", data: req});
       },
     }
 }]).
-  factory('fieldUtilities', ['$filter', 'CONSTANTS', function($filter, CONSTANTS) {
+  factory("fieldUtilities", ["$filter", "CONSTANTS", function($filter, CONSTANTS) {
       var getValidator = function(field) {
         var validators = {
-          'custom': field.attrs.regexp.value,
-          'none': '',
-          'email': CONSTANTS.email_regexp,
-          'number': CONSTANTS.number_regexp,
-          'phonenumber': CONSTANTS.phonenumber_regexp,
+          "custom": field.attrs.regexp.value,
+          "none": "",
+          "email": CONSTANTS.email_regexp,
+          "number": CONSTANTS.number_regexp,
+          "phonenumber": CONSTANTS.phonenumber_regexp,
         };
 
         return validators[field.attrs.input_validation.value];
       };
 
       var minY = function(arr) {
-        return $filter('min')($filter('map')(arr, 'y'));
+        return $filter("min")($filter("map")(arr, "y"));
       };
 
       var splitRows = function(fields) {
-        var rows = $filter('groupBy')(fields, 'y');
-        rows = $filter('toArray')(rows);
-        rows = $filter('orderBy')(rows, minY);
+        var rows = $filter("groupBy")(fields, "y");
+        rows = $filter("toArray")(rows);
+        rows = $filter("orderBy")(rows, minY);
         return rows;
       };
 
       var prepare_field_answers_structure = function(field) {
         if (field.answers_structure === undefined) {
           field.answer_structure = {};
-          if (field.type === 'fieldgroup') {
+          if (field.type === "fieldgroup") {
             angular.forEach(field.children, function(child) {
               field.answer_structure[child.id] = [prepare_field_answers_structure(child)];
             });
@@ -1234,15 +1234,15 @@ factory('AdminUtils', ['AdminContextResource', 'AdminQuestionnaireResource', 'Ad
       };
 
       var underscore = function(s) {
-        return s.replace(new RegExp('-', 'g'), '_');
+        return s.replace(new RegExp("-", "g"), "_");
       };
 
       var stepFormName = function(id) {
-        return 'stepForm_' + underscore(id);
+        return "stepForm_" + underscore(id);
       };
 
       var fieldFormName = function(id) {
-        return 'fieldForm_' + underscore(id);
+        return "fieldForm_" + underscore(id);
       };
 
       var findField = function(answers_obj, field_id) {
@@ -1303,7 +1303,7 @@ factory('AdminUtils', ['AdminContextResource', 'AdminQuestionnaireResource', 'Ad
         isFieldTriggered: isFieldTriggered
       };
 }]).
-  constant('CONSTANTS', {
+  constant("CONSTANTS", {
      /* The email regexp restricts email addresses to less than 400 chars. See #1215 */
      "email_regexp": /^([\w+-.]){0,100}[\w]{1,100}@([\w+-.]){0,100}[\w]{1,100}$/,
      "number_regexp": /^\d+$/,
@@ -1315,7 +1315,7 @@ factory('AdminUtils', ['AdminContextResource', 'AdminQuestionnaireResource', 'Ad
      "shortener_longurl_regexp": /\/[a-z0-9#=_&?/-]{1,255}$/,
      "uuid_regexp": /^([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})$/
 }).
-  factory('GLTranslate', ['$translate', '$location','tmhDynamicLocale',
+  factory("GLTranslate", ["$translate", "$location","tmhDynamicLocale",
   function($translate, $location, tmhDynamicLocale) {
 
   // facts are (un)defined in order of importance to the factory.
@@ -1332,11 +1332,11 @@ factory('AdminUtils', ['AdminContextResource', 'AdminQuestionnaireResource', 'Ad
 
   // Country codes with multiple languages or an '_XX' extension
   var problemLangs = {
-    'zh': ['CN', 'TW'],
-    'pt': ['BR', 'PT'],
-    'nb': 'NO',
-    'hr': 'HR',
-    'hu': 'HU',
+    "zh": ["CN", "TW"],
+    "pt": ["BR", "PT"],
+    "nb": "NO",
+    "hr": "HR",
+    "hu": "HU",
   };
 
   var indirect = {
@@ -1361,8 +1361,8 @@ factory('AdminUtils', ['AdminContextResource', 'AdminQuestionnaireResource', 'Ad
 
   // normalizeLang attempts to map input language strings to the transifex format.
   function normalizeLang(s) {
-    if (typeof s !== 'string') {
-      return '';
+    if (typeof s !== "string") {
+      return "";
     }
 
     if (s.length !== 2 && s.length !== 5) {
@@ -1378,9 +1378,9 @@ factory('AdminUtils', ['AdminContextResource', 'AdminQuestionnaireResource', 'Ad
       var t = problemLangs[iso_lang];
       if (t instanceof Array) {
         // We do not know which extension to use, so just use the most popular one.
-        return iso_lang + '_' + t[0];
+        return iso_lang + "_" + t[0];
       }
-      return iso_lang + '_' + t;
+      return iso_lang + "_" + t;
 
     } else {
       return iso_lang;
@@ -1388,7 +1388,7 @@ factory('AdminUtils', ['AdminContextResource', 'AdminQuestionnaireResource', 'Ad
   }
 
   function validLang(inp) {
-    if (typeof inp !== 'string') {
+    if (typeof inp !== "string") {
       return false;
     }
 
@@ -1404,7 +1404,7 @@ factory('AdminUtils', ['AdminContextResource', 'AdminQuestionnaireResource', 'Ad
   function updateTranslationServices(lang) {
     // Set text direction for languages that read from right to left.
     var useRightToLeft = ["ar", "fa", "he", "ur"].indexOf(lang) !== -1;
-    document.getElementsByTagName("html")[0].setAttribute('dir', useRightToLeft ? 'rtl' : 'ltr');
+    document.getElementsByTagName("html")[0].setAttribute("dir", useRightToLeft ? "rtl" : "ltr");
 
     // Update the $translate module to use the new language.
     $translate.use(lang).then(function() {
@@ -1416,7 +1416,7 @@ factory('AdminUtils', ['AdminContextResource', 'AdminQuestionnaireResource', 'Ad
     var t = lang;
     if (lang.length === 5) {
       // Angular-i18n's format is typically 'zh-tw'
-      t = lang.replace('_', '-').toLowerCase();
+      t = lang.replace("_", "-").toLowerCase();
     }
 
     tmhDynamicLocale.set(t);

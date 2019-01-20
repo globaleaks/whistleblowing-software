@@ -1,5 +1,5 @@
-GLClient.controller('AdminQuestionnaireCtrl',
-  ['$scope', '$http', '$route', 'AdminQuestionnaireResource',
+GLClient.controller("AdminQuestionnaireCtrl",
+  ["$scope", "$http", "$route", "AdminQuestionnaireResource",
   function($scope, $http, $route, AdminQuestionnaireResource){
   $scope.tabs = [
     {
@@ -35,8 +35,8 @@ GLClient.controller('AdminQuestionnaireCtrl',
   $scope.importQuestionnaire = function(file) {
     $scope.Utils.readFileAsText(file).then(function(txt) {
       return $http({
-        method: 'POST',
-        url: 'admin/questionnaires?multilang=1',
+        method: "POST",
+        url: "admin/questionnaires?multilang=1",
         data: txt,
       })
     }).then(function() {
@@ -54,7 +54,7 @@ GLClient.controller('AdminQuestionnaireCtrl',
     return $scope.Utils.deleteResource(AdminQuestionnaireResource, $scope.admin.questionnaires, questionnaire);
   };
 }]).
-controller('AdminQuestionnaireEditorCtrl', ['$scope', '$uibModal', '$http', 'FileSaver', 'AdminStepResource',
+controller("AdminQuestionnaireEditorCtrl", ["$scope", "$uibModal", "$http", "FileSaver", "AdminStepResource",
   function($scope, $uibModal, $http, FileSaver, AdminStepResource) {
 
   $scope.editing = false;
@@ -75,14 +75,14 @@ controller('AdminQuestionnaireEditorCtrl', ['$scope', '$uibModal', '$http', 'Fil
 
   $scope.duplicate_questionnaire = function(questionnaire) {
     $uibModal.open({
-      templateUrl: 'views/partials/questionnaire_duplication.html',
-      controller: 'QuestionaireOperationsCtrl',
+      templateUrl: "views/partials/questionnaire_duplication.html",
+      controller: "QuestionaireOperationsCtrl",
       resolve: {
         questionnaire: function () {
           return questionnaire;
         },
         operation: function () {
-          return 'duplicate';
+          return "duplicate";
         }
       }
     });
@@ -90,15 +90,15 @@ controller('AdminQuestionnaireEditorCtrl', ['$scope', '$uibModal', '$http', 'Fil
 
   $scope.exportQuestionnaire = function(obj) {
     $http({
-      method: 'GET',
-      url: 'admin/questionnaires/' + obj.id,
-      responseType: 'blob',
+      method: "GET",
+      url: "admin/questionnaires/" + obj.id,
+      responseType: "blob",
     }).then(function (response) {
-      FileSaver.saveAs(response.data, obj.name + '.json');
+      FileSaver.saveAs(response.data, obj.name + ".json");
     });
   };
 }]).
-controller('AdminQuestionnaireAddCtrl', ['$scope', function($scope) {
+controller("AdminQuestionnaireAddCtrl", ["$scope", function($scope) {
   $scope.new_questionnaire = {};
 
   $scope.add_questionnaire = function() {
@@ -112,8 +112,8 @@ controller('AdminQuestionnaireAddCtrl', ['$scope', function($scope) {
     });
   };
 }]).
-controller('QuestionaireOperationsCtrl',
-  ['$scope', '$http', '$route', '$location', '$uibModalInstance', 'questionnaire', 'operation',
+controller("QuestionaireOperationsCtrl",
+  ["$scope", "$http", "$route", "$location", "$uibModalInstance", "questionnaire", "operation",
    function ($scope, $http, $route, $location, $uibModalInstance, questionnaire, operation) {
   $scope.questionnaire = questionnaire;
   $scope.operation = operation;
@@ -125,9 +125,9 @@ controller('QuestionaireOperationsCtrl',
   $scope.ok = function () {
     $uibModalInstance.close();
 
-    if ($scope.operation === 'duplicate') {
+    if ($scope.operation === "duplicate") {
       $http.post(
-        'admin/questionnaires/duplicate',
+        "admin/questionnaires/duplicate",
         {
           questionnaire_id: $scope.questionnaire.id,
           new_name: $scope.duplicate_questionnaire.name

@@ -1,4 +1,4 @@
-GLClient.controller('AdminFieldEditorCtrl', ['$scope',
+GLClient.controller("AdminFieldEditorCtrl", ["$scope",
   function($scope) {
     $scope.admin_receivers_by_id = $scope.Utils.array_to_map($scope.admin.users);
 
@@ -16,31 +16,31 @@ GLClient.controller('AdminFieldEditorCtrl', ['$scope',
     };
 
     $scope.isMarkableSubjectToStats = function(field) {
-      return (['inputbox', 'textarea', 'fieldgroup'].indexOf(field.type) === -1);
+      return (["inputbox", "textarea", "fieldgroup"].indexOf(field.type) === -1);
     };
 
     $scope.isMarkableSubjectToPreview = function(field) {
-      return (['fieldgroup', 'fileupload'].indexOf(field.type) === -1);
+      return (["fieldgroup", "fileupload"].indexOf(field.type) === -1);
     };
 
     $scope.typeSwitch = function (type) {
-      if (['inputbox', 'textarea'].indexOf(type) !== -1) {
-        return 'inputbox_or_textarea';
+      if (["inputbox", "textarea"].indexOf(type) !== -1) {
+        return "inputbox_or_textarea";
       }
 
-      if (['checkbox', 'selectbox'].indexOf(type) !== -1) {
-        return 'checkbox_or_selectbox';
+      if (["checkbox", "selectbox"].indexOf(type) !== -1) {
+        return "checkbox_or_selectbox";
       }
 
       return type;
     };
 
     $scope.showConfiguration = function(field) {
-      if (['checkbox', 'date', 'inputbox', 'map', 'selectbox', 'textarea', 'tos'].indexOf(field.type) > -1) {
+      if (["checkbox", "date", "inputbox", "map", "selectbox", "textarea", "tos"].indexOf(field.type) > -1) {
         return true;
       }
 
-      if (field.instance === 'template' && (['whistleblower_identity'].indexOf(field.id) > -1)) {
+      if (field.instance === "template" && (["whistleblower_identity"].indexOf(field.id) > -1)) {
         return true;
       }
 
@@ -48,7 +48,7 @@ GLClient.controller('AdminFieldEditorCtrl', ['$scope',
     };
 
     $scope.showOptions = function(field) {
-      if (['checkbox', 'selectbox', 'map'].indexOf(field.type) > -1) {
+      if (["checkbox", "selectbox", "map"].indexOf(field.type) > -1) {
         return true;
       }
 
@@ -73,18 +73,18 @@ GLClient.controller('AdminFieldEditorCtrl', ['$scope',
 
     $scope.addOption = function () {
       var new_option = {
-        'id': '',
-        'label': '',
-        'score_points': 0,
-        'score_type': 0,
-        'trigger_field': '',
-        'trigger_field_inverted': false,
-        'trigger_step': '',
-        'trigger_step_inverted': false,
-	'trigger_receiver': []
+        "id": "",
+        "label": "",
+        "score_points": 0,
+        "score_type": 0,
+        "trigger_field": "",
+        "trigger_field_inverted": false,
+        "trigger_step": "",
+        "trigger_step_inverted": false,
+	"trigger_receiver": []
       };
 
-      new_option.presentation_order = $scope.newItemOrder($scope.field.options, 'presentation_order');
+      new_option.presentation_order = $scope.newItemOrder($scope.field.options, "presentation_order");
 
       $scope.field.options.push(new_option);
     };
@@ -112,7 +112,7 @@ GLClient.controller('AdminFieldEditorCtrl', ['$scope',
 
       field.options.forEach(function(option) {
         if ($scope.deleted_fields_ids.indexOf(option.trigger_field) !== -1) {
-          option.trigger_field = '';
+          option.trigger_field = "";
         }
       });
 
@@ -144,15 +144,15 @@ GLClient.controller('AdminFieldEditorCtrl', ['$scope',
     };
 
     $scope.add_field = function() {
-      var field = $scope.AdminUtils.new_field('', $scope.field.id);
+      var field = $scope.AdminUtils.new_field("", $scope.field.id);
       field.label = $scope.new_field.label;
       field.type = $scope.new_field.type;
       field.attrs = $scope.admin.get_field_attrs(field.type);
-      field.y = $scope.newItemOrder($scope.field.children, 'y');
+      field.y = $scope.newItemOrder($scope.field.children, "y");
 
       field.instance = $scope.field.instance;
 
-      if (field.type === 'fileupload') {
+      if (field.type === "fileupload") {
         field.multi_entry = true;
       }
 
@@ -163,10 +163,10 @@ GLClient.controller('AdminFieldEditorCtrl', ['$scope',
     };
 
     $scope.add_field_from_template = function() {
-      var field = $scope.AdminUtils.new_field('', $scope.field.id);
+      var field = $scope.AdminUtils.new_field("", $scope.field.id);
       field.template_id = $scope.new_field.template_id;
-      field.instance = 'reference';
-      field.y = $scope.newItemOrder($scope.field.children, 'y');
+      field.instance = "reference";
+      field.y = $scope.newItemOrder($scope.field.children, "y");
 
       field.$save(function(new_field){
         $scope.field.children.push(new_field);
@@ -227,11 +227,11 @@ GLClient.controller('AdminFieldEditorCtrl', ['$scope',
 
       $scope.all_fields = t.filter(function(f) { return direct_parents.indexOf(f.id) < 0; });
 
-      return $scope.Utils.openConfirmableModalDialog('views/partials/trigger_field.html', option, $scope);
+      return $scope.Utils.openConfirmableModalDialog("views/partials/trigger_field.html", option, $scope);
     };
 
     $scope.triggerStepDialog = function(option) {
-      return $scope.Utils.openConfirmableModalDialog('views/partials/trigger_step.html', option, $scope);
+      return $scope.Utils.openConfirmableModalDialog("views/partials/trigger_step.html", option, $scope);
     };
 
     $scope.triggerReceiverDialog = function(option) {
@@ -243,15 +243,15 @@ GLClient.controller('AdminFieldEditorCtrl', ['$scope',
         return option.trigger_receiver.indexOf(item.id) == -1;
       };
 
-      return $scope.Utils.openConfirmableModalDialog('views/partials/trigger_receiver.html', option, $scope);
+      return $scope.Utils.openConfirmableModalDialog("views/partials/trigger_receiver.html", option, $scope);
     };
 
     $scope.assignScorePointsDialog = function(option) {
-      return $scope.Utils.openConfirmableModalDialog('views/partials/assign_score_points.html', option, $scope);
+      return $scope.Utils.openConfirmableModalDialog("views/partials/assign_score_points.html", option, $scope);
     };
   }
 ]).
-controller('AdminFieldTemplatesCtrl', ['$scope', 'AdminFieldTemplateResource',
+controller("AdminFieldTemplatesCtrl", ["$scope", "AdminFieldTemplateResource",
   function($scope, AdminFieldTemplateResource) {
     $scope.fieldResource = AdminFieldTemplateResource;
     $scope.deleted_fields_ids = [];
@@ -261,13 +261,13 @@ controller('AdminFieldTemplatesCtrl', ['$scope', 'AdminFieldTemplateResource',
     });
   }
 ]).
-controller('AdminFieldTemplatesAddCtrl', ['$scope',
+controller("AdminFieldTemplatesAddCtrl", ["$scope",
   function($scope) {
     $scope.new_field = {};
 
     $scope.add_field = function() {
-      var field = $scope.AdminUtils.new_field_template($scope.field ? $scope.field.id : '');
-      field.instance = 'template';
+      var field = $scope.AdminUtils.new_field_template($scope.field ? $scope.field.id : "");
+      field.instance = "template";
       field.label = $scope.new_field.label;
       field.type = $scope.new_field.type;
       field.attrs = $scope.admin.get_field_attrs(field.type);

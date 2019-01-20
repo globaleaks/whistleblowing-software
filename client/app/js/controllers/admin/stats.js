@@ -1,4 +1,4 @@
-GLClient.controller('StatisticsCtrl', ['$scope', '$filter', 'StatsCollection',
+GLClient.controller("StatisticsCtrl", ["$scope", "$filter", "StatsCollection",
   function($scope, $filter, StatsCollection) {
     $scope.week_delta = 0;
     $scope.blob = {};
@@ -118,15 +118,15 @@ GLClient.controller('StatisticsCtrl', ['$scope', '$filter', 'StatsCollection',
       heatMap.transition().duration(600)
           .style("fill", function(d) {
               if (d.valid === -1) {
-                  return 'white';
+                  return "white";
               }
 
               if (d.valid === -2) {
-                  return 'yellow';
+                  return "yellow";
               }
 
               if (d.valid === -3) {
-                  return 'red';
+                  return "red";
               }
 
               return colorScale(d.value);
@@ -135,13 +135,13 @@ GLClient.controller('StatisticsCtrl', ['$scope', '$filter', 'StatsCollection',
       heatMap.append("title").text(function(d) {
           // if strings are updated here remember to update client/translation.html to push them on transifex
           if (d.valid === -1) {
-              return '';
+              return "";
           } else if (d.valid === -2) {
-              return $filter('translate')('Missing data') + ':\n' + $filter('translate')('no stats available for the future.');
+              return $filter("translate")("Missing data") + ":\n" + $filter("translate")("no stats available for the future.");
           } else if (d.valid === -3) {
-              return $filter('translate')('Missing data') + ':\n' + $filter('translate')('no stats available for current hour; check activities page.');
+              return $filter("translate")("Missing data") + ":\n" + $filter("translate")("no stats available for current hour; check activities page.");
           } else {
-              return $filter('translate')('Activities') + ': ' + d.value;
+              return $filter("translate")("Activities") + ": " + d.value;
           }
       });
 

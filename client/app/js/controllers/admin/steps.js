@@ -1,11 +1,11 @@
-GLClient.controller('AdminStepAddCtrl', ['$scope',
+GLClient.controller("AdminStepAddCtrl", ["$scope",
   function($scope) {
     $scope.new_step = {};
 
     $scope.add_step = function() {
       var step = new $scope.AdminUtils.new_step($scope.questionnaire.id);
       step.label = $scope.new_step.label;
-      step.presentation_order = $scope.newItemOrder($scope.questionnaire.steps, 'presentation_order');
+      step.presentation_order = $scope.newItemOrder($scope.questionnaire.steps, "presentation_order");
 
       step.$save(function(new_step){
         $scope.questionnaire.steps.push(new_step);
@@ -14,7 +14,7 @@ GLClient.controller('AdminStepAddCtrl', ['$scope',
     };
   }
 ]).
-controller('AdminStepEditorCtrl', ['$scope', '$rootScope', '$http', 'AdminStepResource', 'AdminFieldResource',
+controller("AdminStepEditorCtrl", ["$scope", "$rootScope", "$http", "AdminStepResource", "AdminFieldResource",
   function($scope, $rootScope, $http, AdminStepResource, AdminFieldResource) {
     $scope.editing = false;
     $scope.new_field = {};
@@ -46,13 +46,13 @@ controller('AdminStepEditorCtrl', ['$scope', '$rootScope', '$http', 'AdminStepRe
     };
 
     $scope.add_field = function() {
-      var field = $scope.AdminUtils.new_field($scope.step.id, '');
+      var field = $scope.AdminUtils.new_field($scope.step.id, "");
       field.label = $scope.new_field.label;
       field.type = $scope.new_field.type;
       field.attrs = $scope.admin.get_field_attrs(field.type);
-      field.y = $scope.newItemOrder($scope.fields, 'y');
+      field.y = $scope.newItemOrder($scope.fields, "y");
 
-      if (field.type === 'fileupload') {
+      if (field.type === "fileupload") {
         field.multi_entry = true;
       }
 
@@ -63,10 +63,10 @@ controller('AdminStepEditorCtrl', ['$scope', '$rootScope', '$http', 'AdminStepRe
     };
 
     $scope.add_field_from_template = function() {
-      var field = $scope.AdminUtils.new_field($scope.step.id, '');
+      var field = $scope.AdminUtils.new_field($scope.step.id, "");
       field.template_id = $scope.new_field.template_id;
-      field.instance = 'reference';
-      field.y = $scope.newItemOrder($scope.fields, 'y');
+      field.instance = "reference";
+      field.y = $scope.newItemOrder($scope.fields, "y");
 
       field.$save(function(new_field) {
         $scope.fields.push(new_field);
@@ -88,13 +88,13 @@ controller('AdminStepEditorCtrl', ['$scope', '$rootScope', '$http', 'AdminStepRe
       $scope.questionnaire.steps[index] = a;
 
       $http({
-        method: 'PUT',
-        url: '/admin/steps',
+        method: "PUT",
+        url: "/admin/steps",
         data: {
-          'operation': 'order_elements',
-          'args': {
-            'ids': $scope.questionnaire.steps.map(function(s) { return s.id; }),
-            'questionnaire_id': $scope.questionnaire.id,
+          "operation": "order_elements",
+          "args": {
+            "ids": $scope.questionnaire.steps.map(function(s) { return s.id; }),
+            "questionnaire_id": $scope.questionnaire.id,
            },
         },
       }).then(function() {

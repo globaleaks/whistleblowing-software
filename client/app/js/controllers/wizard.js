@@ -1,8 +1,8 @@
-GLClient.controller('WizardCtrl', ['$scope', '$location', '$route', '$http', 'Authentication', 'GLTranslate', 'CONSTANTS',
+GLClient.controller("WizardCtrl", ["$scope", "$location", "$route", "$http", "Authentication", "GLTranslate", "CONSTANTS",
                     function($scope, $location, $route, $http, Authentication, GLTranslate, CONSTANTS) {
   /* if the wizard has been already performed redirect to the homepage */
   if ($scope.node.wizard_done) {
-    $location.path('/');
+    $location.path("/");
     return;
   }
 
@@ -19,21 +19,21 @@ GLClient.controller('WizardCtrl', ['$scope', '$location', '$route', '$http', 'Au
 
     completed = true;
 
-    $http.post('wizard', $scope.wizard).then(function() {
+    $http.post("wizard", $scope.wizard).then(function() {
       $scope.step += 1;
     });
   };
 
   $scope.goToAdminInterface = function() {
-    Authentication.login(0, 'admin', $scope.wizard.admin_password, '', '', function() {
+    Authentication.login(0, "admin", $scope.wizard.admin_password, "", "", function() {
       $scope.reload("/admin/home");
     });
   };
 
   $scope.config_profiles = [
     {
-      name:  'default',
-      title: 'Default',
+      name:  "default",
+      title: "Default",
       active: true
     }
   ];
@@ -48,15 +48,15 @@ GLClient.controller('WizardCtrl', ['$scope', '$location', '$route', '$http', 'Au
   };
 
   $scope.wizard = {
-    'node_language': GLTranslate.indirect.appLanguage,
-    'node_name': '',
-    'admin_password': '',
-    'admin_name': '',
-    'admin_mail_address': '',
-    'receiver_name': '',
-    'receiver_password': '',
-    'receiver_mail_address': '',
-    'profile': 'default',
-    'enable_developers_exception_notification': true
+    "node_language": GLTranslate.indirect.appLanguage,
+    "node_name": "",
+    "admin_password": "",
+    "admin_name": "",
+    "admin_mail_address": "",
+    "receiver_name": "",
+    "receiver_password": "",
+    "receiver_mail_address": "",
+    "profile": "default",
+    "enable_developers_exception_notification": true
   };
 }]);

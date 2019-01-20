@@ -1,11 +1,11 @@
-GLClient.controller('ReceiverCtrl', ['$scope', '$location', function($scope, $location) {
+GLClient.controller("ReceiverCtrl", ["$scope", "$location", function($scope, $location) {
   // TODO convert this to a directive
   // This is used for setting the current menu in the sidebar
-  var current_menu = $location.path().split('/').slice(-1);
+  var current_menu = $location.path().split("/").slice(-1);
   $scope.active = {};
   $scope.active[current_menu] = "active";
 }]).
-controller('ReceiverTipsCtrl', ['$scope',  '$filter', '$http', '$route', '$location', '$uibModal', 'RTipExport', 'ReceiverTips',
+controller("ReceiverTipsCtrl", ["$scope",  "$filter", "$http", "$route", "$location", "$uibModal", "RTipExport", "ReceiverTips",
   function($scope, $filter, $http, $route, $location, $uibModal, RTipExport, ReceiverTips) {
   $scope.search = undefined;
   $scope.currentPage = 1;
@@ -21,10 +21,10 @@ controller('ReceiverTipsCtrl', ['$scope',  '$filter', '$http', '$route', '$locat
 
   $scope.filteredTips = $scope.tips;
 
-  $scope.$watch('search', function (value) {
+  $scope.$watch("search", function (value) {
     if (value != undefined) {
       $scope.currentPage = 1;
-      $scope.filteredTips = $filter('filter')($scope.tips, value);
+      $scope.filteredTips = $filter("filter")($scope.tips, value);
     }
   });
 
@@ -58,14 +58,14 @@ controller('ReceiverTipsCtrl', ['$scope',  '$filter', '$http', '$route', '$locat
 
   $scope.tip_delete_all = function () {
     $uibModal.open({
-      templateUrl: 'views/partials/tip_operation_delete_selected.html',
-      controller: 'TipBulkOperationsCtrl',
+      templateUrl: "views/partials/tip_operation_delete_selected.html",
+      controller: "TipBulkOperationsCtrl",
       resolve: {
         selected_tips: function () {
           return $scope.selected_tips;
         },
         operation: function() {
-          return 'delete';
+          return "delete";
         }
       }
     });
@@ -73,20 +73,20 @@ controller('ReceiverTipsCtrl', ['$scope',  '$filter', '$http', '$route', '$locat
 
   $scope.tip_postpone_all = function () {
     $uibModal.open({
-      templateUrl: 'views/partials/tip_operation_postpone_selected.html',
-      controller: 'TipBulkOperationsCtrl',
+      templateUrl: "views/partials/tip_operation_postpone_selected.html",
+      controller: "TipBulkOperationsCtrl",
       resolve: {
         selected_tips: function () {
           return $scope.selected_tips;
         },
         operation: function() {
-          return 'postpone';
+          return "postpone";
         }
       }
     });
   };
 }]).
-controller('TipBulkOperationsCtrl', ['$scope', '$http', '$route', '$location', '$uibModalInstance', 'selected_tips', 'operation',
+controller("TipBulkOperationsCtrl", ["$scope", "$http", "$route", "$location", "$uibModalInstance", "selected_tips", "operation",
   function ($scope, $http, $route, $location, $uibModalInstance, selected_tips, operation) {
   $scope.selected_tips = selected_tips;
   $scope.operation = operation;
@@ -98,13 +98,13 @@ controller('TipBulkOperationsCtrl', ['$scope', '$http', '$route', '$location', '
   $scope.ok = function () {
      $uibModalInstance.close();
 
-    if (['postpone', 'delete'].indexOf(operation) === -1) {
+    if (["postpone", "delete"].indexOf(operation) === -1) {
       return;
     }
 
-    return $http({method: 'PUT', url: 'rtip/operations', data:{
-      'operation': $scope.operation,
-      'rtips': $scope.selected_tips
+    return $http({method: "PUT", url: "rtip/operations", data:{
+      "operation": $scope.operation,
+      "rtips": $scope.selected_tips
     }}).then(function(){
       $scope.selected_tips = [];
       $route.reload();

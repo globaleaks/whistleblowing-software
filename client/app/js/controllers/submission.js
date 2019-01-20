@@ -1,5 +1,5 @@
-GLClient.controller('SubmissionCtrl',
-    ['$scope', '$filter', '$location', '$interval', '$anchorScroll', 'tmhDynamicLocale', 'Submission', 'glbcProofOfWork', 'fieldUtilities',
+GLClient.controller("SubmissionCtrl",
+    ["$scope", "$filter", "$location", "$interval", "$anchorScroll", "tmhDynamicLocale", "Submission", "glbcProofOfWork", "fieldUtilities",
       function ($scope, $filter, $location, $interval, $anchorScroll, tmhDynamicLocale, Submission, glbcProofOfWork, fieldUtilities) {
   $scope.vars = {};
 
@@ -22,10 +22,10 @@ GLClient.controller('SubmissionCtrl',
     return $scope.firstStepIndex() === $scope.lastStepIndex();
   };
 
-  $scope.contextsOrderPredicate = $scope.node.show_contexts_in_alphabetical_order ? 'name' : 'presentation_order';
+  $scope.contextsOrderPredicate = $scope.node.show_contexts_in_alphabetical_order ? "name" : "presentation_order";
 
-  $scope.selectable_contexts = $filter('filter')($scope.contexts, {'status': 1});
-  $scope.selectable_contexts = $filter('orderBy')($scope.selectable_contexts, $scope.contextsOrderPredicate);
+  $scope.selectable_contexts = $filter("filter")($scope.contexts, {"status": 1});
+  $scope.selectable_contexts = $filter("orderBy")($scope.selectable_contexts, $scope.contextsOrderPredicate);
 
   var startCountdown = function() {
     $scope.submission.wait = true;
@@ -51,7 +51,7 @@ GLClient.controller('SubmissionCtrl',
   };
 
   $scope.switch_selection = function (receiver) {
-    if (receiver.configuration !== 'default' || (!$scope.node.allow_unencrypted && receiver.pgp_key_public === '')) {
+    if (receiver.configuration !== "default" || (!$scope.node.allow_unencrypted && receiver.pgp_key_public === "")) {
       return;
     }
 
@@ -75,7 +75,7 @@ GLClient.controller('SubmissionCtrl',
     }
 
     $scope.selection = index;
-    $anchorScroll('top');
+    $anchorScroll("top");
   };
 
   $scope.firstStepIndex = function() {
@@ -113,12 +113,12 @@ GLClient.controller('SubmissionCtrl',
   $scope.checkForInvalidFields = function() {
     for(var i = 0; i <= $scope.selection; i++) {
       // find the first invalid element
-      var form = document.getElementById('step-' + i);
-      var firstInvalid = form.querySelector('.inputelem.ng-invalid');
+      var form = document.getElementById("step-" + i);
+      var firstInvalid = form.querySelector(".inputelem.ng-invalid");
 
       // if we find one, set focus
       if (firstInvalid) {
-        $anchorScroll('top');
+        $anchorScroll("top");
         return false;
       }
     }
@@ -134,7 +134,7 @@ GLClient.controller('SubmissionCtrl',
     }
 
     if (!$scope.areReceiversSelected() && $scope.selection === $scope.receiver_selection_step_index) {
-      $anchorScroll('top');
+      $anchorScroll("top");
       return;
     }
 
@@ -147,7 +147,7 @@ GLClient.controller('SubmissionCtrl',
       for (var i = $scope.selection + 1; i <= $scope.lastStepIndex(); i++) {
         if (fieldUtilities.isFieldTriggered($scope.selected_context.questionnaire.steps[i], $scope.answers, $scope.total_score)) {
           $scope.selection = i;
-          $anchorScroll('top');
+          $anchorScroll("top");
         }
         break;
       }
@@ -160,7 +160,7 @@ GLClient.controller('SubmissionCtrl',
       for (var i = $scope.selection - 1; i >= $scope.firstStepIndex(); i--) {
         if (i === -1 || fieldUtilities.isFieldTriggered($scope.selected_context.questionnaire.steps[i], $scope.answers, $scope.total_score)) {
           $scope.selection = i;
-          $anchorScroll('top');
+          $anchorScroll("top");
         }
         break;
       }
@@ -190,20 +190,20 @@ GLClient.controller('SubmissionCtrl',
       return;
     }
 
-    return 'submission/' + $scope.submission._token.id + '/file';
+    return "submission/" + $scope.submission._token.id + "/file";
   };
 
   $scope.calculateScoreRecursively = function(field, entry) {
     var score = 0;
     var i;
 
-    if (field.type === 'selectbox') {
+    if (field.type === "selectbox") {
       for(i=0; i<field.options.length; i++) {
-        if (entry['value'] === field.options[i].id) {
+        if (entry["value"] === field.options[i].id) {
           score += field.options[i].score_points;
         }
       }
-    } else if (field.type === 'checkbox') {
+    } else if (field.type === "checkbox") {
       for(i=0; i<field.options.length; i++) {
         if (entry[field.options[i].id]) {
           score += field.options[i].score_points;
@@ -249,7 +249,7 @@ GLClient.controller('SubmissionCtrl',
       });
     });
 
-    $scope.$watch('answers', function() {
+    $scope.$watch("answers", function() {
       $scope.total_score = $scope.calculateScore();
       $scope.submission._submission.total_score = $scope.total_score;
     }, true);
@@ -269,7 +269,7 @@ GLClient.controller('SubmissionCtrl',
         $scope.submission.pow = true;
       }
 
-      $scope.receiversOrderPredicate = $scope.submission.context.show_receivers_in_alphabetical_order ? 'name' : null;
+      $scope.receiversOrderPredicate = $scope.submission.context.show_receivers_in_alphabetical_order ? "name" : null;
 
       // --------------------------------------------------------------------------
       // fix steps numbering adding receiver selection step if neeeded
@@ -290,7 +290,7 @@ GLClient.controller('SubmissionCtrl',
     $scope.submitPressed = true;
 
     if (!$scope.areReceiversSelected() || !$scope.checkForInvalidFields()) {
-      $anchorScroll('top');
+      $anchorScroll("top");
       return;
     }
 
@@ -301,7 +301,7 @@ GLClient.controller('SubmissionCtrl',
 
   $scope.stepForm = function(index) {
     if (index !== -1) {
-      return $scope.vars.submissionForm['step-' + index];
+      return $scope.vars.submissionForm["step-" + index];
     }
   };
 
@@ -322,9 +322,9 @@ GLClient.controller('SubmissionCtrl',
     var i;
 
     /* Block related to updating required status */
-    if (field.type === 'inputbox' || field.type === 'textarea') {
-      field.required_status = (field.required || field.attrs.min_len.value > 0) && !entry['value'];
-    } else if (field.type === 'checkbox') {
+    if (field.type === "inputbox" || field.type === "textarea") {
+      field.required_status = (field.required || field.attrs.min_len.value > 0) && !entry["value"];
+    } else if (field.type === "checkbox") {
       if (!field.required) {
         field.required_status = false;
       } else {
@@ -337,20 +337,20 @@ GLClient.controller('SubmissionCtrl',
         }
       }
     } else {
-      field.required_status = field.required && !entry['value'];
+      field.required_status = field.required && !entry["value"];
     }
 
     /* Block related to evaluate receivers triggers */
-    if (field.type === 'checkbox' || field.type === 'selectbox') {
+    if (field.type === "checkbox" || field.type === "selectbox") {
       for (i=0; i<field.options.length; i++) {
-	if(field.type === 'checkbox') {
+	if(field.type === "checkbox") {
           if(entry[field.options[i].id] && entry[field.options[i].id]) {
             if (field.options[i].trigger_receiver.length) {
               $scope.replaceReceivers(field.options[i].trigger_receiver);
             }
           }
         } else {
-          if (field.options[i].id === entry['value']) {
+          if (field.options[i].id === entry["value"]) {
             if (field.options[i].trigger_receiver.length) {
               $scope.replaceReceivers(field.options[i].trigger_receiver);
             }
@@ -388,7 +388,7 @@ GLClient.controller('SubmissionCtrl',
     var context = null;
 
     if ($scope.context_id) {
-      context = $filter('filter')($scope.contexts,
+      context = $filter("filter")($scope.contexts,
                                   {"id": $scope.context_id})[0];
     } else if ($scope.selectable_contexts.length === 1) {
       context = $scope.selectable_contexts[0];
@@ -399,15 +399,15 @@ GLClient.controller('SubmissionCtrl',
     }
 
     // Watch for changes in certain variables
-    $scope.$watch('selected_context', function () {
+    $scope.$watch("selected_context", function () {
       if ($scope.submission && $scope.selected_context) {
         $scope.prepareSubmission($scope.selected_context);
       }
     });
   });
 }]).
-controller('AdditionalQuestionnaireCtrl',
-    ['$http', '$route', '$scope', '$uibModalInstance', '$filter', '$location', '$interval', '$anchorScroll', 'tmhDynamicLocale', 'Submission', 'glbcProofOfWork', 'fieldUtilities',
+controller("AdditionalQuestionnaireCtrl",
+    ["$http", "$route", "$scope", "$uibModalInstance", "$filter", "$location", "$interval", "$anchorScroll", "tmhDynamicLocale", "Submission", "glbcProofOfWork", "fieldUtilities",
       function ($http, $route, $scope, $uibModalInstance, $filter, $location, $interval, $anchorScroll, tmhDynamicLocale, Submission, glbcProofOfWork, fieldUtilities) {
   $scope.vars = {};
 
@@ -434,7 +434,7 @@ controller('AdditionalQuestionnaireCtrl',
 
   $scope.goToStep = function(index) {
     $scope.selection = index;
-    $anchorScroll('top');
+    $anchorScroll("top");
   };
 
   $scope.firstStepIndex = function() {
@@ -466,7 +466,7 @@ controller('AdditionalQuestionnaireCtrl',
       $scope.vars.submissionForm.$dirty = false;
       for (var i = $scope.selection + 1; i <= $scope.lastStepIndex(); i++) {
         $scope.selection = i;
-        $anchorScroll('top');
+        $anchorScroll("top");
         break;
       }
     }
@@ -477,7 +477,7 @@ controller('AdditionalQuestionnaireCtrl',
       $scope.vars.submissionForm.$dirty = false;
       for (var i = $scope.selection - 1; i >= $scope.firstStepIndex(); i--) {
         $scope.selection = i;
-        $anchorScroll('top');
+        $anchorScroll("top");
         break;
       }
     }
@@ -495,13 +495,13 @@ controller('AdditionalQuestionnaireCtrl',
     var score = 0;
     var i;
 
-    if (field.type == 'selectbox') {
+    if (field.type == "selectbox") {
       for(i=0; i<field.options.length; i++) {
-        if (entry['value'] === field.options[i].id) {
+        if (entry["value"] === field.options[i].id) {
           score += field.options[i].score_points;
         }
       }
-    } else if (field.type === 'checkbox') {
+    } else if (field.type === "checkbox") {
       for(i=0; i<field.options.length; i++) {
         if (entry[field.options[i].id]) {
           score += field.options[i].score_points;
@@ -551,8 +551,8 @@ controller('AdditionalQuestionnaireCtrl',
   $scope.completeSubmission = function() {
     $scope.submitPressed = true;
 
-    return $http.post('wbtip/' + $scope.tip.id + '/update',
-                      {'cmd': 'additional_questionnaire', 'answers': $scope.answers}).
+    return $http.post("wbtip/" + $scope.tip.id + "/update",
+                      {"cmd": "additional_questionnaire", "answers": $scope.answers}).
         then(function(){
           $route.reload();
         });
@@ -561,7 +561,7 @@ controller('AdditionalQuestionnaireCtrl',
 
   $scope.stepForm = function(index) {
     if (index !== -1) {
-      return $scope.vars.submissionForm['step-' + index];
+      return $scope.vars.submissionForm["step-" + index];
     }
   };
 
@@ -572,9 +572,9 @@ controller('AdditionalQuestionnaireCtrl',
   };
 
   $scope.onAnswerUpdate = function(field, entry) {
-    if (field.type === 'inputbox' || field.type === 'textarea') {
-      field.required_status = (field.required || field.attrs.min_len.value > 0) && !entry['value'];
-    } else if (field.type === 'checkbox') {
+    if (field.type === "inputbox" || field.type === "textarea") {
+      field.required_status = (field.required || field.attrs.min_len.value > 0) && !entry["value"];
+    } else if (field.type === "checkbox") {
       if (!field.required) {
         field.required_status = false;
         return;
@@ -589,7 +589,7 @@ controller('AdditionalQuestionnaireCtrl',
 
       field.required_status = true;
     } else {
-      field.required_status = field.required && !entry['value'];
+      field.required_status = field.required && !entry["value"];
     }
   }
 
@@ -603,10 +603,10 @@ controller('AdditionalQuestionnaireCtrl',
 
   $scope.prepareSubmission();
 }]).
-controller('SubmissionStepCtrl', ['$scope', '$filter', 'fieldUtilities',
+controller("SubmissionStepCtrl", ["$scope", "$filter", "fieldUtilities",
   function($scope, $filter, fieldUtilities) {
   $scope.fields = $scope.step.children;
-  $scope.stepId = 'step-' + $scope.$index;
+  $scope.stepId = "step-" + $scope.$index;
 
   $scope.rows = fieldUtilities.splitRows($scope.fields);
 
@@ -614,34 +614,34 @@ controller('SubmissionStepCtrl', ['$scope', '$filter', 'fieldUtilities',
     opened: false,
   };
 }]).
-controller('SubmissionFieldErrKeyCtrl', ['$scope',
+controller("SubmissionFieldErrKeyCtrl", ["$scope",
   function($scope) {
-    var pre = 'fieldForm_';
+    var pre = "fieldForm_";
 
     var f_id =  $scope.err.$name;
-    f_id = f_id.substring(0, f_id.indexOf('$'));
-    f_id = f_id.slice(pre.length).replace(new RegExp('_', 'g'), '-');
+    f_id = f_id.substring(0, f_id.indexOf("$"));
+    f_id = f_id.slice(pre.length).replace(new RegExp("_", "g"), "-");
     $scope.field = $scope.field_id_map[f_id];
 
     $scope.goToQuestion = function() {
-      var form = document.getElementById('step-' + $scope.selection);
-      var s = 'div[data-ng-form="' + $scope.err.$name + '"] .ng-invalid';
+      var form = document.getElementById("step-" + $scope.selection);
+      var s = "div[data-ng-form=\"" + $scope.err.$name + "\"] .ng-invalid";
       var formFieldSel = form.querySelector(s);
       formFieldSel.focus();
     };
 }]).
-controller('SubmissionFormFieldCtrl', ['$scope', 'topojson',
+controller("SubmissionFormFieldCtrl", ["$scope", "topojson",
   function($scope, topojson) {
     $scope.f = $scope[$scope.fieldFormVarName];
 
-    if ($scope.field.type == 'map' && $scope.field.attrs.topojson.value) {
+    if ($scope.field.type == "map" && $scope.field.attrs.topojson.value) {
       var width = 384,
           height = 240;
 
       $scope.clicked = null;
 
       $scope.field.attrs.topojson.reset = function() {
-        $scope.fieldEntry['value'] = '';
+        $scope.fieldEntry["value"] = "";
         $scope.clicked = null;
 
         for(var i=0; i<$scope.field.attrs.topojson.paths.length; i++) {
@@ -673,7 +673,7 @@ controller('SubmissionFormFieldCtrl', ['$scope', 'topojson',
 
         path.projection(projection);
 
-        var svg = d3.select('#' + $scope.fieldEntry).select('.map').append("svg").attr("width", width).attr("height", height);
+        var svg = d3.select("#" + $scope.fieldEntry).select(".map").append("svg").attr("width", width).attr("height", height);
 
         var tooltip = d3.select("body").append("div").attr("class", "tooltip").style("opacity", 0);
 
@@ -685,7 +685,7 @@ controller('SubmissionFormFieldCtrl', ['$scope', 'topojson',
 
         projection.scale(s).translate(t);
 
-        svg.selectAll('svg')
+        svg.selectAll("svg")
            .data(json.features)
            .enter()
            .append("path")
@@ -719,16 +719,16 @@ controller('SubmissionFormFieldCtrl', ['$scope', 'topojson',
              $scope.$apply();
            })
            .on("click", function(d) {
-             if ($scope.answers[$scope.field.id][0]['value'] != d.id) {
+             if ($scope.answers[$scope.field.id][0]["value"] != d.id) {
                if ($scope.clicked !== null) {
                  d3.select($scope.clicked).attr("r", 5.5).style("fill", "#DDD");
                }
                $scope.clicked = this;
                d3.select(this).attr("r", 10).style("fill", "red");
-               $scope.answers[$scope.field.id][0]['value'] = d.id;
+               $scope.answers[$scope.field.id][0]["value"] = d.id;
              } else {
                d3.select(this).attr("r", 5.5).style("fill", "#DDD");
-               $scope.answers[$scope.field.id][0]['value'] = '';
+               $scope.answers[$scope.field.id][0]["value"] = "";
              }
              $scope.$apply();
            });
@@ -747,12 +747,12 @@ controller('SubmissionFormFieldCtrl', ['$scope', 'topojson',
       });
     }
 }]).
-controller('SubmissionFieldEntryCtrl', ['$scope',
+controller("SubmissionFieldEntryCtrl", ["$scope",
   function($scope) {
-    $scope.fieldEntry = $scope.fieldId + '-input-' + $scope.$index;
+    $scope.fieldEntry = $scope.fieldId + "-input-" + $scope.$index;
 }]).
-controller('SubmissionFieldCtrl', ['$scope', 'fieldUtilities', function ($scope, fieldUtilities) {
-  $scope.fieldFormVarName = fieldUtilities.fieldFormName($scope.field.id + '$' + $scope.$index);
+controller("SubmissionFieldCtrl", ["$scope", "fieldUtilities", function ($scope, fieldUtilities) {
+  $scope.fieldFormVarName = fieldUtilities.fieldFormName($scope.field.id + "$" + $scope.$index);
 
   $scope.getClass = function(field, row_length) {
     if (field.width !== 0) {
@@ -780,7 +780,7 @@ controller('SubmissionFieldCtrl', ['$scope', 'fieldUtilities', function ($scope,
 
   // If the field is type 'date' attach an option configurator for the
   // uib-datepicker modal.
-  if ($scope.field.type === 'date') {
+  if ($scope.field.type === "date") {
     var options = {
       showWeeks: false, // Just a sample option
     };
@@ -796,7 +796,7 @@ controller('SubmissionFieldCtrl', ['$scope', 'fieldUtilities', function ($scope,
     $scope.dateOptions = options;
   }
 
-  if ($scope.field.type === 'inputbox') {
+  if ($scope.field.type === "inputbox") {
     $scope.validator = fieldUtilities.getValidator($scope.field);
   }
 
@@ -822,5 +822,5 @@ controller('SubmissionFieldCtrl', ['$scope', 'fieldUtilities', function ($scope,
     return false;
   };
 
-  $scope.fieldId = $scope.stepId + '-field-' + $scope.fieldRow + '-' + $scope.fieldCol;
+  $scope.fieldId = $scope.stepId + "-field-" + $scope.fieldRow + "-" + $scope.fieldCol;
 }]);

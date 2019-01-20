@@ -1,6 +1,6 @@
 GLClient.
-controller('AdminCtrl',
-    ['$scope', '$route', '$location', '$filter', 'resources', 'AdminNodeResource', 'UpdateService', 'CONSTANTS',
+controller("AdminCtrl",
+    ["$scope", "$route", "$location", "$filter", "resources", "AdminNodeResource", "UpdateService", "CONSTANTS",
     function($scope, $route, $location, $filter, resources, AdminNodeResource, UpdateService, CONSTANTS) {
   $scope.email_regexp = CONSTANTS.email_regexp;
   $scope.hostname_regexp = CONSTANTS.hostname_regexp;
@@ -9,7 +9,7 @@ controller('AdminCtrl',
 
   // TODO convert this to a directive
   // This is used for setting the current menu in the sidebar
-  var current_menu = $location.path().split('/').slice(-1);
+  var current_menu = $location.path().split("/").slice(-1);
   $scope.active = {};
   $scope.active[current_menu] = "active";
 
@@ -36,7 +36,7 @@ controller('AdminCtrl',
     return max + 1;
   };
 }]).
-controller('AdminGeneralSettingsCtrl', ['$scope', '$filter', '$http', 'Files', 'AdminL10NResource', 'DefaultL10NResource',
+controller("AdminGeneralSettingsCtrl", ["$scope", "$filter", "$http", "Files", "AdminL10NResource", "DefaultL10NResource",
   function($scope, $filter, $http, Files, AdminL10NResource, DefaultL10NResource){
   $scope.tabs = [
     {
@@ -45,7 +45,7 @@ controller('AdminGeneralSettingsCtrl', ['$scope', '$filter', '$http', 'Files', '
     }
   ];
 
-  if ($scope.session.role === 'admin') {
+  if ($scope.session.role === "admin") {
     $scope.tabs = $scope.tabs.concat([
       {
         title: "Theme customization",
@@ -64,23 +64,23 @@ controller('AdminGeneralSettingsCtrl', ['$scope', '$filter', '$http', 'Files', '
 
   $scope.admin_files = [
       {
-        'title': 'CSS',
-        'varname': 'css',
-        'filename': 'custom_stylesheet.css',
-        'type': 'css',
-        'size': '1048576'
+        "title": "CSS",
+        "varname": "css",
+        "filename": "custom_stylesheet.css",
+        "type": "css",
+        "size": "1048576"
       },
       {
-        'title': 'JavaScript',
-        'varname': 'script',
-        'filename': 'custom_script.js',
-        'type': 'js',
-        'size': '1048576'
+        "title": "JavaScript",
+        "varname": "script",
+        "filename": "custom_script.js",
+        "type": "js",
+        "size": "1048576"
       }
   ];
 
   $scope.vars = {
-    'language_to_customize': $scope.node.default_language
+    "language_to_customize": $scope.node.default_language
   };
 
   $scope.get_l10n = function(lang) {
@@ -88,8 +88,8 @@ controller('AdminGeneralSettingsCtrl', ['$scope', '$filter', '$http', 'Files', '
       return;
     }
 
-    $scope.custom_texts = AdminL10NResource.get({'lang': lang});
-    DefaultL10NResource.get({'lang': lang}, function(default_texts) {
+    $scope.custom_texts = AdminL10NResource.get({"lang": lang});
+    DefaultL10NResource.get({"lang": lang}, function(default_texts) {
       var list = [];
       for (var key in default_texts) {
         if (default_texts.hasOwnProperty(key)) {
@@ -97,12 +97,12 @@ controller('AdminGeneralSettingsCtrl', ['$scope', '$filter', '$http', 'Files', '
           if (value.length > 150) {
             value = value.substr(0, 150) + "...";
           }
-          list.push({'key': key, 'value': value});
+          list.push({"key": key, "value": value});
         }
       }
 
       $scope.default_texts = default_texts;
-      $scope.custom_texts_selector = $filter('orderBy')(list, 'value');
+      $scope.custom_texts_selector = $filter("orderBy")(list, "value");
     });
   };
 
@@ -143,13 +143,13 @@ controller('AdminGeneralSettingsCtrl', ['$scope', '$filter', '$http', 'Files', '
 
   $scope.update_files();
 }]).
-controller('AdminHomeCtrl', ['$scope', function($scope) {
+controller("AdminHomeCtrl", ["$scope", function($scope) {
   $scope.displayNum = 10;
   $scope.showMore = function() {
     $scope.displayNum = undefined;
   }
 }]).
-controller('AdminAdvancedCtrl', ['$scope', '$uibModal', 'CONSTANTS',
+controller("AdminAdvancedCtrl", ["$scope", "$uibModal", "CONSTANTS",
   function($scope, $uibModal, CONSTANTS){
   $scope.tabs = [
     {
@@ -193,7 +193,7 @@ controller('AdminAdvancedCtrl', ['$scope', '$uibModal', 'CONSTANTS',
     });
   };
 }]).
-controller('AdminShorturlEditCtrl', ['$scope', 'AdminShorturlResource',
+controller("AdminShorturlEditCtrl", ["$scope", "AdminShorturlResource",
   function($scope, AdminShorturlResource) {
     $scope.delete_shorturl = function(shorturl) {
       AdminShorturlResource.delete({
@@ -204,65 +204,65 @@ controller('AdminShorturlEditCtrl', ['$scope', 'AdminShorturlResource',
       });
     };
 }]).
-controller('AdminMailCtrl', ['$scope', '$http', 'AdminNotificationResource',
+controller("AdminMailCtrl", ["$scope", "$http", "AdminNotificationResource",
   function($scope, $http, AdminNotificationResource) {
 
   $scope.text_templates = [
-    'activation_mail_template',
-    'activation_mail_title',
-    'admin_anomaly_activities',
-    'admin_anomaly_disk_high',
-    'admin_anomaly_disk_low',
-    'admin_anomaly_mail_template',
-    'admin_anomaly_mail_title',
-    'admin_pgp_alert_mail_template',
-    'admin_pgp_alert_mail_title',
-    'admin_signup_alert_mail_template',
-    'admin_signup_alert_mail_title',
-    'admin_test_mail_template',
-    'admin_test_mail_title',
-    'comment_mail_template',
-    'comment_mail_title',
-    'email_validation_mail_template',
-    'email_validation_mail_title',
-    'export_message_recipient',
-    'export_message_whistleblower',
-    'export_template',
-    'file_mail_template',
-    'file_mail_title',
-    'https_certificate_expiration_mail_template',
-    'https_certificate_expiration_mail_title',
-    'https_certificate_renewal_failure_mail_template',
-    'https_certificate_renewal_failure_mail_title',
-    'identity_access_authorized_mail_template',
-    'identity_access_authorized_mail_title',
-    'identity_access_denied_mail_template',
-    'identity_access_denied_mail_title',
-    'identity_access_request_mail_template',
-    'identity_access_request_mail_title',
-    'identity_provided_mail_template',
-    'identity_provided_mail_title',
-    'message_mail_template',
-    'message_mail_title',
-    'password_reset_complete_mail_template',
-    'password_reset_complete_mail_title',
-    'password_reset_validation_mail_template',
-    'password_reset_validation_mail_title',
-    'pgp_alert_mail_template',
-    'pgp_alert_mail_title',
-    'receiver_notification_limit_reached_mail_template',
-    'receiver_notification_limit_reached_mail_title',
-    'signup_mail_template',
-    'signup_mail_title',
-    'software_update_available_mail_template',
-    'software_update_available_mail_title',
-    'tip_expiration_summary_mail_template',
-    'tip_expiration_summary_mail_title',
-    'tip_mail_template',
-    'tip_mail_title',
-    'user_credentials',
-    '2fa_mail_template',
-    '2fa_mail_title',
+    "activation_mail_template",
+    "activation_mail_title",
+    "admin_anomaly_activities",
+    "admin_anomaly_disk_high",
+    "admin_anomaly_disk_low",
+    "admin_anomaly_mail_template",
+    "admin_anomaly_mail_title",
+    "admin_pgp_alert_mail_template",
+    "admin_pgp_alert_mail_title",
+    "admin_signup_alert_mail_template",
+    "admin_signup_alert_mail_title",
+    "admin_test_mail_template",
+    "admin_test_mail_title",
+    "comment_mail_template",
+    "comment_mail_title",
+    "email_validation_mail_template",
+    "email_validation_mail_title",
+    "export_message_recipient",
+    "export_message_whistleblower",
+    "export_template",
+    "file_mail_template",
+    "file_mail_title",
+    "https_certificate_expiration_mail_template",
+    "https_certificate_expiration_mail_title",
+    "https_certificate_renewal_failure_mail_template",
+    "https_certificate_renewal_failure_mail_title",
+    "identity_access_authorized_mail_template",
+    "identity_access_authorized_mail_title",
+    "identity_access_denied_mail_template",
+    "identity_access_denied_mail_title",
+    "identity_access_request_mail_template",
+    "identity_access_request_mail_title",
+    "identity_provided_mail_template",
+    "identity_provided_mail_title",
+    "message_mail_template",
+    "message_mail_title",
+    "password_reset_complete_mail_template",
+    "password_reset_complete_mail_title",
+    "password_reset_validation_mail_template",
+    "password_reset_validation_mail_title",
+    "pgp_alert_mail_template",
+    "pgp_alert_mail_title",
+    "receiver_notification_limit_reached_mail_template",
+    "receiver_notification_limit_reached_mail_title",
+    "signup_mail_template",
+    "signup_mail_title",
+    "software_update_available_mail_template",
+    "software_update_available_mail_title",
+    "tip_expiration_summary_mail_template",
+    "tip_expiration_summary_mail_title",
+    "tip_mail_template",
+    "tip_mail_title",
+    "user_credentials",
+    "2fa_mail_template",
+    "2fa_mail_title",
   ];
 
   $scope.tabs = [
@@ -278,8 +278,8 @@ controller('AdminMailCtrl', ['$scope', '$http', 'AdminNotificationResource',
 
   var sendTestMail = function() {
     return $http({
-      method: 'POST',
-      url: '/admin/notification/mail',
+      method: "POST",
+      url: "/admin/notification/mail",
     });
   };
 
@@ -288,7 +288,7 @@ controller('AdminMailCtrl', ['$scope', '$http', 'AdminNotificationResource',
     .$promise.then(function() { return sendTestMail(); }, function() { });
   };
 }]).
-controller('AdminReviewModalCtrl', ['$scope', '$uibModalInstance', 'targetFunc',
+controller("AdminReviewModalCtrl", ["$scope", "$uibModalInstance", "targetFunc",
   function($scope, $uibModalInstance, targetFunc) {
   $scope.cancel = $uibModalInstance.close;
 

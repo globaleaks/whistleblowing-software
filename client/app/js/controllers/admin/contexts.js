@@ -1,11 +1,11 @@
-GLClient.controller('AdminContextsCtrl',
-  ['$scope', 'AdminContextResource',
+GLClient.controller("AdminContextsCtrl",
+  ["$scope", "AdminContextResource",
   function($scope, AdminContextResource) {
   $scope.admin_receivers_by_id = $scope.Utils.array_to_map($scope.admin.users);
 
   $scope.save_context = function (context, cb) {
     if (context.additional_questionnaire_id == null) {
-      context.additional_questionnaire_id = '';
+      context.additional_questionnaire_id = "";
     }
 
     var updated_context = new AdminContextResource(context);
@@ -28,7 +28,7 @@ GLClient.controller('AdminContextsCtrl',
     $scope.save_context(elem);
   };
 }]).
-controller('AdminContextEditorCtrl', ['$scope', '$rootScope', '$http', 'AdminContextResource',
+controller("AdminContextEditorCtrl", ["$scope", "$rootScope", "$http", "AdminContextResource",
   function($scope, $rootScope, $http, AdminContextResource) {
   $scope.editing = false;
 
@@ -48,11 +48,11 @@ controller('AdminContextEditorCtrl', ['$scope', '$rootScope', '$http', 'AdminCon
     $scope.admin.contexts[target] = $scope.context;
 
     $http({
-      method: 'PUT',
-      url: '/admin/contexts',
+      method: "PUT",
+      url: "/admin/contexts",
       data: {
-        'operation': 'order_elements',
-        'args': {'ids': $scope.admin.contexts.map(function(c) { return c.id; })},
+        "operation": "order_elements",
+        "args": {"ids": $scope.admin.contexts.map(function(c) { return c.id; })},
       },
     }).then(function() {
       $rootScope.successes.push({});
@@ -89,7 +89,7 @@ controller('AdminContextEditorCtrl', ['$scope', '$rootScope', '$http', 'AdminCon
   };
 
   $scope.updateContextImgUrl = function() {
-    $scope.contextImgUrl = '/admin/contexts/' + $scope.context.id + '/img#' + $scope.Utils.randomFluff();
+    $scope.contextImgUrl = "/admin/contexts/" + $scope.context.id + "/img#" + $scope.Utils.randomFluff();
   };
 
   $scope.updateContextImgUrl();
@@ -100,7 +100,7 @@ controller('AdminContextEditorCtrl', ['$scope', '$rootScope', '$http', 'AdminCon
     });
   };
 }]).
-controller('AdminContextReceiverSelectorCtrl', ['$scope', function($scope) {
+controller("AdminContextReceiverSelectorCtrl", ["$scope", function($scope) {
   $scope.moveUp = function(idx) { swap(idx, -1); };
   $scope.moveDown = function(idx) { swap(idx, 1); };
 
@@ -114,7 +114,7 @@ controller('AdminContextReceiverSelectorCtrl', ['$scope', function($scope) {
     }
   }
 }]).
-controller('AdminContextAddCtrl', ['$scope', function($scope) {
+controller("AdminContextAddCtrl", ["$scope", function($scope) {
   $scope.new_context = {};
 
   $scope.add_context = function() {
@@ -122,7 +122,7 @@ controller('AdminContextAddCtrl', ['$scope', function($scope) {
 
     context.name = $scope.new_context.name;
     context.questionnaire_id = $scope.admin.node.default_questionnaire;
-    context.presentation_order = $scope.newItemOrder($scope.admin.contexts, 'presentation_order');
+    context.presentation_order = $scope.newItemOrder($scope.admin.contexts, "presentation_order");
 
     context.$save(function(new_context){
       $scope.admin.contexts.push(new_context);

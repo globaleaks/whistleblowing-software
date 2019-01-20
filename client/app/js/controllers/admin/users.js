@@ -1,4 +1,4 @@
-GLClient.controller('AdminUsersCtrl', ['$scope', 'AdminTenantResource',
+GLClient.controller("AdminUsersCtrl", ["$scope", "AdminTenantResource",
   function($scope, AdminTenantResource) {
     $scope.showAddUser = false;
     $scope.toggleAddUser = function() {
@@ -12,7 +12,7 @@ GLClient.controller('AdminUsersCtrl', ['$scope', 'AdminTenantResource',
       });
     }
 
-}]).controller('AdminUserEditorCtrl', ['$scope', '$rootScope', '$http', 'AdminUserResource',
+}]).controller("AdminUserEditorCtrl", ["$scope", "$rootScope", "$http", "AdminUserResource",
   function($scope, $rootScope, $http, AdminUserResource) {
     $scope.deleteUser = function() {
       $scope.Utils.deleteDialog($scope.user).then(function() {
@@ -34,20 +34,20 @@ GLClient.controller('AdminUsersCtrl', ['$scope', 'AdminTenantResource',
     $scope.saveUser = function() {
       var user = $scope.user;
       if (user.pgp_key_remove) {
-        user.pgp_key_public = '';
+        user.pgp_key_public = "";
       }
 
-      if (user.pgp_key_public !== undefined && user.pgp_key_public !== '') {
+      if (user.pgp_key_public !== undefined && user.pgp_key_public !== "") {
         user.pgp_key_remove = false;
       }
 
       user.$update(function(){
-        $rootScope.successes.push({message: 'Success!'});
+        $rootScope.successes.push({message: "Success!"});
       });
     };
 
     $scope.updateUserImgUrl = function() {
-      $scope.userImgUrl = '/admin/users/' + $scope.user.id + '/img#' + $scope.Utils.randomFluff();
+      $scope.userImgUrl = "/admin/users/" + $scope.user.id + "/img#" + $scope.Utils.randomFluff();
     };
 
     $scope.updateUserImgUrl();
@@ -60,17 +60,17 @@ GLClient.controller('AdminUsersCtrl', ['$scope', 'AdminTenantResource',
 
     $scope.resetUserPassword = function() {
       $http.put(
-        'admin/config', {
-          'operation': 'reset_user_password',
-          'args': {
-            'value': $scope.user.username
+        "admin/config", {
+          "operation": "reset_user_password",
+          "args": {
+            "value": $scope.user.username
           }
       }).then(function() {
-        $rootScope.successes.push({message: 'Success!'});
+        $rootScope.successes.push({message: "Success!"});
       })
     }
 }]).
-controller('AdminUserTenantAssociationAddCtrl', ['$scope', '$http', '$filter',
+controller("AdminUserTenantAssociationAddCtrl", ["$scope", "$http", "$filter",
 function ($scope, $http, $filter) {
   $scope.refreshAvailableTenants = function(filter) {
     var tenantList = [];
@@ -103,7 +103,7 @@ function ($scope, $http, $filter) {
     }
 
     if (filter) {
-      tenantList = $filter('filter')(tenantList, filter);
+      tenantList = $filter("filter")(tenantList, filter);
     }
 
     $scope.availableTenants = tenantList;
@@ -115,18 +115,18 @@ function ($scope, $http, $filter) {
 
   $scope.addUserTenantAssociation = function (tenant) {
     var new_submission_substate = {
-      'tenant_id':tenant.id
+      "tenant_id":tenant.id
     }
 
     $http.post(
-      '/admin/users/' + $scope.user.id + '/tenant_associations',
+      "/admin/users/" + $scope.user.id + "/tenant_associations",
       new_submission_substate
     ).then(function (result) {
       $scope.user.usertenant_assocations.push(result.data);
     })
   }
 }]).
-controller('AdminUserTenantAssociationEditorCtrl', ['$scope', '$http', 'AdminUserTenantAssociationResource',
+controller("AdminUserTenantAssociationEditorCtrl", ["$scope", "$http", "AdminUserTenantAssociationResource",
 function ($scope, $http, AdminUserTenantAssociationResource) {
   $scope.usertenant_association_editing = false;
   $scope.toggleUserTenantAssociationEditing = function () {
@@ -147,14 +147,14 @@ function ($scope, $http, AdminUserTenantAssociationResource) {
   }
 
 }]).
-controller('AdminUserAddCtrl', ['$scope',
+controller("AdminUserAddCtrl", ["$scope",
   function($scope) {
     $scope.new_user = {};
 
     $scope.add_user = function() {
       var user = new $scope.AdminUtils.new_user();
 
-      user.username = $scope.new_user.username !== undefined ? $scope.new_user.username : '';
+      user.username = $scope.new_user.username !== undefined ? $scope.new_user.username : "";
       user.role = $scope.new_user.role;
       user.name = $scope.new_user.name;
       user.mail_address = $scope.new_user.email;

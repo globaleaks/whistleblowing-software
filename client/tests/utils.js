@@ -1,30 +1,30 @@
-var fs = require('fs');
-var path = require('path');
-var crypto = require('crypto');
+var fs = require("fs");
+var path = require("path");
+var crypto = require("crypto");
 
 exports.vars = {
-  'user_password': 'ACollectionOfDiplomaticHistorySince_1966_ToThe_Pr esentDay#',
-  'field_types': [
-    'Single-line text input',
-    'Multi-line text input',
-    'Selection box',
-    'Checkbox',
-    'Attachment',
-    'Terms of service',
-    'Date',
-    'Group of questions'
+  "user_password": "ACollectionOfDiplomaticHistorySince_1966_ToThe_Pr esentDay#",
+  "field_types": [
+    "Single-line text input",
+    "Multi-line text input",
+    "Selection box",
+    "Checkbox",
+    "Attachment",
+    "Terms of service",
+    "Date",
+    "Group of questions"
   ],
-  'testFileDir': './tests/files'
+  "testFileDir": "./tests/files"
 };
 
 browser.getCapabilities().then(function(capabilities) {
-  var platformName = capabilities.get('platformName') || capabilities.get('platform');
+  var platformName = capabilities.get("platformName") || capabilities.get("platform");
   platformName = platformName.toLowerCase();
 
-  var browserName = capabilities.get('browserName').toLowerCase();
+  var browserName = capabilities.get("browserName").toLowerCase();
 
   exports.isMobile = function() {
-    return (['android', 'ios'].indexOf(platformName) !== -1);
+    return (["android", "ios"].indexOf(platformName) !== -1);
   };
 
   exports.testFileUpload = function() {
@@ -32,7 +32,7 @@ browser.getCapabilities().then(function(capabilities) {
       return false;
     }
 
-    return (['chrome', 'firefox', 'internet explorer', 'microsoftedge'].indexOf(browserName) !== -1);
+    return (["chrome", "firefox", "internet explorer", "microsoftedge"].indexOf(browserName) !== -1);
   };
 
   exports.testFileDownload = function() {
@@ -44,7 +44,7 @@ browser.getCapabilities().then(function(capabilities) {
       return false;
     }
 
-    return ((['chrome'].indexOf(browserName) !== -1) && platformName === 'linux');
+    return ((["chrome"].indexOf(browserName) !== -1) && platformName === "linux");
   };
 
   exports.verifyFileDownload = function() {
@@ -80,7 +80,7 @@ exports.waitForUrl = function (url, timeout) {
   browser.waitForAngular();
   return browser.wait(function() {
     return browser.getCurrentUrl().then(function(current_url) {
-      current_url = current_url.split('#')[1];
+      current_url = current_url.split("#")[1];
       return (current_url === url);
     });
   }, t);
@@ -103,63 +103,63 @@ exports.waitForFile = function (filename, timeout) {
 };
 
 exports.login_admin = function() {
-  browser.get('/#/admin');
-  element(by.model('loginData.loginUsername')).sendKeys('admin');
-  element(by.model('loginData.loginPassword')).sendKeys(exports.vars['user_password']);
-  element(by.id('login-button')).click();
-  exports.waitForUrl('/admin/home');
+  browser.get("/#/admin");
+  element(by.model("loginData.loginUsername")).sendKeys("admin");
+  element(by.model("loginData.loginPassword")).sendKeys(exports.vars["user_password"]);
+  element(by.id("login-button")).click();
+  exports.waitForUrl("/admin/home");
 };
 
 exports.login_whistleblower = function(receipt) {
-  browser.get('/#/');
-  element(by.model('formatted_receipt')).sendKeys(receipt);
-  element(by.id('ReceiptButton')).click();
-  exports.waitForUrl('/status');
+  browser.get("/#/");
+  element(by.model("formatted_receipt")).sendKeys(receipt);
+  element(by.id("ReceiptButton")).click();
+  exports.waitForUrl("/status");
 }
 
 exports.login_receiver = function(username, password, url, firstlogin) {
-  username = username === undefined ? 'recipient' : username;
-  password = password === undefined ? exports.vars['user_password'] : password;
-  url = url === undefined ? '/#/login' : url;
+  username = username === undefined ? "recipient" : username;
+  password = password === undefined ? exports.vars["user_password"] : password;
+  url = url === undefined ? "/#/login" : url;
 
   browser.get(url);
-  element(by.model('loginData.loginUsername')).sendKeys(username);
-  element(by.model('loginData.loginPassword')).sendKeys(password);
-  element(by.id('login-button')).click();
+  element(by.model("loginData.loginUsername")).sendKeys(username);
+  element(by.model("loginData.loginPassword")).sendKeys(password);
+  element(by.id("login-button")).click();
 
   if (firstlogin) {
-    url = '/forcedpasswordchange';
+    url = "/forcedpasswordchange";
   } else {
-    url = url.split('#')[1];
-    url = url === '/login' ? '/receiver/home' : url;
+    url = url.split("#")[1];
+    url = url === "/login" ? "/receiver/home" : url;
   }
 
   exports.waitForUrl(url);
 };
 
 exports.login_custodian = function(username, password, url, firstlogin) {
-  username = username === undefined ? 'Custodian1' : username;
-  password = password === undefined ? exports.vars['user_password'] : password;
-  url = url === undefined ? '/#/login' : url;
+  username = username === undefined ? "Custodian1" : username;
+  password = password === undefined ? exports.vars["user_password"] : password;
+  url = url === undefined ? "/#/login" : url;
 
   browser.get(url);
-  element(by.model('loginData.loginUsername')).sendKeys(username);
-  element(by.model('loginData.loginPassword')).sendKeys(password);
-  element(by.id('login-button')).click();
+  element(by.model("loginData.loginUsername")).sendKeys(username);
+  element(by.model("loginData.loginPassword")).sendKeys(password);
+  element(by.id("login-button")).click();
 
   if (firstlogin) {
-    url = '/forcedpasswordchange';
+    url = "/forcedpasswordchange";
   } else {
-    url = url.split('#')[1];
-    url = url === '/login' ? '/custodian/home' : url;
+    url = url.split("#")[1];
+    url = url === "/login" ? "/custodian/home" : url;
   }
 
   exports.waitForUrl(url);
 };
 
 exports.logout = function(redirect_url) {
-  redirect_url = redirect_url === undefined ? '/' : redirect_url;
-  element(by.id('LogoutLink')).click();
+  redirect_url = redirect_url === undefined ? "/" : redirect_url;
+  element(by.id("LogoutLink")).click();
   exports.waitForUrl(redirect_url);
 };
 
@@ -184,7 +184,7 @@ exports.makeSavedFilePath = function(name) {
 };
 
 exports.checksum = function(input) {
-  return crypto.createHash('sha1').update(input, 'utf8').digest('hex');
+  return crypto.createHash("sha1").update(input, "utf8").digest("hex");
 };
 
 exports.testFileEquality = function(a_path, b_path) {

@@ -1,4 +1,4 @@
-GLClient.controller('PreferencesCtrl', ['$scope', '$q', '$rootScope', 'CONSTANTS',
+GLClient.controller("PreferencesCtrl", ["$scope", "$q", "$rootScope", "CONSTANTS",
   function($scope, $q, $rootScope, CONSTANTS) {
     $scope.tabs = [
       {
@@ -25,11 +25,11 @@ GLClient.controller('PreferencesCtrl', ['$scope', '$q', '$rootScope', 'CONSTANTS
 
     $scope.save = function() {
       if ($scope.preferences.pgp_key_remove) {
-        $scope.preferences.pgp_key_public = '';
+        $scope.preferences.pgp_key_public = "";
       }
 
       $scope.preferences.$update(function() {
-        $rootScope.successes.push({message: 'Updated your preferences!'});
+        $rootScope.successes.push({message: "Updated your preferences!"});
         $scope.reload()
       });
     };
@@ -41,7 +41,7 @@ GLClient.controller('PreferencesCtrl', ['$scope', '$q', '$rootScope', 'CONSTANTS
     };
 }]);
 
-GLClient.controller('EmailValidationCtrl', [
+GLClient.controller("EmailValidationCtrl", [
   function() {
 
 }]);

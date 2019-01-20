@@ -1,70 +1,70 @@
-describe('admin configure advanced settings', function() {
-  it('should perform main configuration', function() {
-    browser.setLocation('admin/advanced_settings');
+describe("admin configure advanced settings", function() {
+  it("should perform main configuration", function() {
+    browser.setLocation("admin/advanced_settings");
     element(by.cssContainingText("a", "Main configuration")).click();
 
     // enable experimental features that by default are disabled
-    element(by.model('admin.node.enable_experimental_features')).click();
+    element(by.model("admin.node.enable_experimental_features")).click();
 
     // save settings
-    element.all(by.css('[data-ng-click="updateNode()"]'));
+    element.all(by.css("[data-ng-click=\"updateNode()\"]"));
   });
 
-  it('should configure short urls', function() {
-    browser.setLocation('admin/advanced_settings');
+  it("should configure short urls", function() {
+    browser.setLocation("admin/advanced_settings");
     element(by.cssContainingText("a", "URL shortener")).click();
 
     for (var i = 0; i < 3; i++) {
-      element(by.model('new_shorturl.shorturl')).sendKeys('shorturl-' + i.toString());
-      element(by.model('new_shorturl.longurl')).sendKeys('/longurl');
+      element(by.model("new_shorturl.shorturl")).sendKeys("shorturl-" + i.toString());
+      element(by.model("new_shorturl.longurl")).sendKeys("/longurl");
       element(by.cssContainingText("button", "Add")).click();
       element.all(by.cssContainingText("button", "Delete")).first().click();
     }
   });
 
-  it('should configure advanced settings', function() {
-    browser.setLocation('admin/advanced_settings');
+  it("should configure advanced settings", function() {
+    browser.setLocation("admin/advanced_settings");
     element(by.cssContainingText("a", "Anomaly detection thresholds")).click();
 
-    expect(element(by.model('admin.node.threshold_free_disk_percentage_high')).getAttribute('value')).toEqual('3');
+    expect(element(by.model("admin.node.threshold_free_disk_percentage_high")).getAttribute("value")).toEqual("3");
 
-    element(by.model('admin.node.threshold_free_disk_percentage_high')).clear().sendKeys('4');
+    element(by.model("admin.node.threshold_free_disk_percentage_high")).clear().sendKeys("4");
 
     // save settings
-    element.all(by.css('[data-ng-click="updateNode()"]')).last().click().then(function() {
-      expect(element(by.model('admin.node.threshold_free_disk_percentage_high')).getAttribute('value')).toEqual('4');
+    element.all(by.css("[data-ng-click=\"updateNode()\"]")).last().click().then(function() {
+      expect(element(by.model("admin.node.threshold_free_disk_percentage_high")).getAttribute("value")).toEqual("4");
     });
   });
 });
 
-describe('admin disable submissions', function() {
-  it('should disable submission', function() {
-    browser.setLocation('admin/advanced_settings');
+describe("admin disable submissions", function() {
+  it("should disable submission", function() {
+    browser.setLocation("admin/advanced_settings");
     element(by.cssContainingText("a", "Main configuration")).click();
 
-    element(by.model('admin.node.disable_submissions')).click();
+    element(by.model("admin.node.disable_submissions")).click();
 
     // save settings
-    element.all(by.css('[data-ng-click="updateNode()"]')).first().click().then(function() {
-      expect(element(by.model('admin.node.disable_submissions')).isSelected()).toBeTruthy();
+    element.all(by.css("[data-ng-click=\"updateNode()\"]")).first().click().then(function() {
+      expect(element(by.model("admin.node.disable_submissions")).isSelected()).toBeTruthy();
     });
 
-    browser.get('/#/');
+    browser.get("/#/");
 
     expect(browser.isElementPresent(element(by.cssContainingText("span", "Submissions disabled")))).toBe(true);
 
     browser.gl.utils.login_admin();
 
-    browser.setLocation('admin/advanced_settings');
+    browser.setLocation("admin/advanced_settings");
 
-    element(by.model('admin.node.disable_submissions')).click();
+    element(by.model("admin.node.disable_submissions")).click();
 
     // save settings
-    element.all(by.css('[data-ng-click="updateNode()"]')).first().click().then(function() {
-      expect(element(by.model('admin.node.disable_submissions')).isSelected()).toBeFalsy();
+    element.all(by.css("[data-ng-click=\"updateNode()\"]")).first().click().then(function() {
+      expect(element(by.model("admin.node.disable_submissions")).isSelected()).toBeFalsy();
     });
 
-    browser.get('/#/');
+    browser.get("/#/");
 
     expect(browser.isElementPresent(element(by.cssContainingText("button", "Blow the whistle")))).toBe(true);
 

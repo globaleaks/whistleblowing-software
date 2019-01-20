@@ -1,39 +1,39 @@
-var fs = require('fs');
-var specs = JSON.parse(fs.readFileSync('tests/specs.json'));
+var fs = require("fs");
+var specs = JSON.parse(fs.readFileSync("tests/specs.json"));
 
 var tmp = [];
 for (var i=0; i<specs.length; i++) {
-  tmp.push('tests/' + specs[i]);
+  tmp.push("tests/" + specs[i]);
 }
 
 specs = tmp;
 
 // The test directory for downloaded files
-var tmpDir = '/tmp/globaleaks-downloads';
+var tmpDir = "/tmp/globaleaks-downloads";
 
 exports.config = {
-  framework: 'jasmine',
+  framework: "jasmine",
 
-  baseUrl: 'http://127.0.0.1:8082/',
+  baseUrl: "http://127.0.0.1:8082/",
 
   troubleshoot: false,
   directConnect: true,
 
   params: {
-    'testFileDownload': true,
-    'verifyFileDownload': false,
-    'tmpDir': tmpDir
+    "testFileDownload": true,
+    "verifyFileDownload": false,
+    "tmpDir": tmpDir
   },
 
   specs: specs,
 
   capabilities: {
-    'browserName': 'chrome',
-    'chromeOptions': {
+    "browserName": "chrome",
+    "chromeOptions": {
       prefs: {
-        'download': {
-          'prompt_for_download': false,
-          'default_directory': tmpDir
+        "download": {
+          "prompt_for_download": false,
+          "default_directory": tmpDir
         }
       }
     }
@@ -49,19 +49,19 @@ exports.config = {
 
   onPrepare: function() {
     browser.gl = {
-      'utils': require('./utils.js'),
-      'pages': require('./pages.js')
+      "utils": require("./utils.js"),
+      "pages": require("./pages.js")
     }
 
-    browser.addMockModule('GLServices', function () {
-      angular.module('GLServices').factory('Test', function () {
+    browser.addMockModule("GLServices", function () {
+      angular.module("GLServices").factory("Test", function () {
         return true;
       });
     });
 
-    browser.addMockModule('disableTooltips', function() {
-      angular.module('disableTooltips', []).config(['$uibTooltipProvider', function($uibTooltipProvider) {
-        $uibTooltipProvider.options({appendToBody: true, trigger: 'none', enable: false});
+    browser.addMockModule("disableTooltips", function() {
+      angular.module("disableTooltips", []).config(["$uibTooltipProvider", function($uibTooltipProvider) {
+        $uibTooltipProvider.options({appendToBody: true, trigger: "none", enable: false});
         $uibTooltipProvider.options = function() {};
       }]);
     });

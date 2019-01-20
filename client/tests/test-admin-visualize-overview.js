@@ -1,5 +1,5 @@
-describe('verify navigation of admin overview sections', function() {
-  it('should should navigate through overview sections', function() {
+describe("verify navigation of admin overview sections", function() {
+  it("should should navigate through overview sections", function() {
     browser.gl.utils.login_admin();
 
     element(by.cssContainingText("a", "System overview")).click();

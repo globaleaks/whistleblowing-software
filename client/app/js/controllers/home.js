@@ -1,3 +1,3 @@
-GLClient.controller('HomeCtrl', [function () {
+GLClient.controller("HomeCtrl", [function () {
 
 }]);

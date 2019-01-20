@@ -1,9 +1,9 @@
-GLClient.controller('TipCtrl',
-  ['$scope', '$location', '$filter', '$route', '$routeParams', '$uibModal', '$http', 'Authentication', 'RTip', 'WBTip', 'ReceiverPreferences', 'RTipExport', 'RTipDownloadRFile', 'WBTipDownloadFile', 'fieldUtilities',
+GLClient.controller("TipCtrl",
+  ["$scope", "$location", "$filter", "$route", "$routeParams", "$uibModal", "$http", "Authentication", "RTip", "WBTip", "ReceiverPreferences", "RTipExport", "RTipDownloadRFile", "WBTipDownloadFile", "fieldUtilities",
   function($scope, $location, $filter, $route, $routeParams, $uibModal, $http, Authentication, RTip, WBTip, ReceiverPreferences, RTipExport, RTipDownloadRFile, WBTipDownloadFile, fieldUtilities) {
     $scope.fieldUtilities = fieldUtilities;
     $scope.tip_id = $routeParams.tip_id;
-    $scope.target_file = '#';
+    $scope.target_file = "#";
 
     $scope.answers = {};
     $scope.uploads = {};
@@ -23,7 +23,7 @@ GLClient.controller('TipCtrl',
         var step = tip.questionnaires[0].steps[i];
         var j = step.children.length;
         while (j--) {
-          if (step.children[j]['template_id'] === 'whistleblower_identity') {
+          if (step.children[j]["template_id"] === "whistleblower_identity") {
             $scope.whistleblower_identity_field = step.children[j];
             step.children.splice(j, 1);
             $scope.fields = $scope.whistleblower_identity_field.children;
@@ -74,17 +74,17 @@ GLClient.controller('TipCtrl',
     };
 
     $scope.filterFields = function(field) {
-      return field.type !== 'fileupload';
+      return field.type !== "fileupload";
     };
 
-    if ($scope.session.role === 'whistleblower') {
-      $scope.fileupload_url = 'wbtip/rfile';
+    if ($scope.session.role === "whistleblower") {
+      $scope.fileupload_url = "wbtip/rfile";
 
       new WBTip(function(tip) {
         $scope.tip = tip;
         $scope.total_score = $scope.tip.total_score;
 
-        $scope.ctx = 'wbtip';
+        $scope.ctx = "wbtip";
         $scope.preprocessTipAnswers(tip);
 
         $scope.Utils.evalSubmissionStatus($scope.tip, $scope.submission_statuses);
@@ -102,8 +102,8 @@ GLClient.controller('TipCtrl',
         $scope.submission._submission = tip;
 
         $scope.provideIdentityInformation = function(identity_field_id, identity_field_answers) {
-          return $http.post('wbtip/' + $scope.tip.id + '/provideidentityinformation',
-                            {'identity_field_id': identity_field_id, 'identity_field_answers': identity_field_answers}).
+          return $http.post("wbtip/" + $scope.tip.id + "/provideidentityinformation",
+                            {"identity_field_id": identity_field_id, "identity_field_answers": identity_field_answers}).
               then(function(){
                 $route.reload();
               });
@@ -114,19 +114,19 @@ GLClient.controller('TipCtrl',
         }
       });
 
-    } else if ($scope.session.role === 'receiver') {
+    } else if ($scope.session.role === "receiver") {
       $scope.preferences = ReceiverPreferences.get();
 
       new RTip({id: $scope.tip_id}, function(tip) {
         $scope.tip = tip;
         $scope.total_score = $scope.tip.total_score;
-        $scope.ctx = 'rtip';
+        $scope.ctx = "rtip";
         $scope.preprocessTipAnswers(tip);
 
         $scope.exportTip = RTipExport;
         $scope.downloadRFile = RTipDownloadRFile;
 
-        $scope.showEditLabelInput = $scope.tip.label === '';
+        $scope.showEditLabelInput = $scope.tip.label === "";
 
         $scope.Utils.evalSubmissionStatus($scope.tip, $scope.submission_statuses);
 
@@ -153,29 +153,29 @@ GLClient.controller('TipCtrl',
 
     $scope.newComment = function() {
       $scope.tip.newComment($scope.tip.newCommentContent);
-      $scope.tip.newCommentContent = '';
+      $scope.tip.newCommentContent = "";
     };
 
     $scope.newMessage = function() {
       $scope.tip.newMessage($scope.tip.newMessageContent);
-      $scope.tip.newMessageContent = '';
+      $scope.tip.newMessageContent = "";
     };
 
     $scope.tip_notify = function(enable) {
-      return $scope.tip.operation('set', {'key': 'enable_notifications', 'value': enable}).then(function() {
+      return $scope.tip.operation("set", {"key": "enable_notifications", "value": enable}).then(function() {
         $scope.tip.enable_notifications = enable;
       });
     };
 
     $scope.tip_delete = function () {
       $uibModal.open({
-        templateUrl: 'views/partials/tip_operation_delete.html',
-        controller: 'TipOperationsCtrl',
+        templateUrl: "views/partials/tip_operation_delete.html",
+        controller: "TipOperationsCtrl",
         resolve: {
           args: function () {
             return {
               tip: $scope.tip,
-              operation: 'delete'
+              operation: "delete"
             }
           }
         }
@@ -184,13 +184,13 @@ GLClient.controller('TipCtrl',
 
     $scope.tip_postpone = function () {
       $uibModal.open({
-        templateUrl: 'views/partials/tip_operation_postpone.html',
-        controller: 'TipOperationsCtrl',
+        templateUrl: "views/partials/tip_operation_postpone.html",
+        controller: "TipOperationsCtrl",
         resolve: {
           args: function() {
             return {
               tip: $scope.tip,
-              operation: 'postpone_expiration',
+              operation: "postpone_expiration",
               contexts_by_id: $scope.contexts_by_id,
               Utils: $scope.Utils
             }
@@ -210,17 +210,17 @@ GLClient.controller('TipCtrl',
       });
 
       $uibModal.open({
-        templateUrl: 'views/partials/tip_additional_questionnaire_form.html',
-        controller: 'AdditionalQuestionnaireCtrl',
-        size: 'lg',
+        templateUrl: "views/partials/tip_additional_questionnaire_form.html",
+        controller: "AdditionalQuestionnaireCtrl",
+        size: "lg",
         scope: $scope
       });
     };
 
     $scope.file_identity_access_request = function () {
       $uibModal.open({
-        templateUrl: 'views/partials/tip_operation_file_identity_access_request.html',
-        controller: 'IdentityAccessRequestCtrl',
+        templateUrl: "views/partials/tip_operation_file_identity_access_request.html",
+        controller: "IdentityAccessRequestCtrl",
         resolve: {
           tip: function () {
             return $scope.tip;
@@ -232,8 +232,8 @@ GLClient.controller('TipCtrl',
     $scope.total_score = 0;
 
 }]).
-controller('TipOperationsCtrl',
-  ['$scope', '$http', '$route', '$location', '$uibModalInstance', 'args',
+controller("TipOperationsCtrl",
+  ["$scope", "$http", "$route", "$location", "$uibModalInstance", "args",
    function ($scope, $http, $route, $location, $uibModalInstance, args) {
   $scope.args = args;
 
@@ -244,25 +244,25 @@ controller('TipOperationsCtrl',
   $scope.ok = function () {
     $uibModalInstance.close();
 
-    if ($scope.args.operation === 'postpone_expiration') {
+    if ($scope.args.operation === "postpone_expiration") {
       var req = {
-        'operation': 'postpone_expiration',
-        'args': {}
+        "operation": "postpone_expiration",
+        "args": {}
       };
 
-      return $http({method: 'PUT', url: 'rtip/' + args.tip.id, data: req}).then(function () {
+      return $http({method: "PUT", url: "rtip/" + args.tip.id, data: req}).then(function () {
         $route.reload();
       });
-    } else if ($scope.args.operation === 'delete') {
-      return $http({method: 'DELETE', url: 'rtip/' + args.tip.id, data:{}}).
+    } else if ($scope.args.operation === "delete") {
+      return $http({method: "DELETE", url: "rtip/" + args.tip.id, data:{}}).
         then(function() {
-          $location.url('/receiver/tips');
+          $location.url("/receiver/tips");
           $route.reload();
         });
     }
   };
 }]).
-controller('RTipWBFileUploadCtrl', ['$scope', 'Authentication', 'RTipDownloadWBFile', 'RTipWBFileResource', function($scope, Authentication, RTipDownloadWBFile, RTipWBFileResource) {
+controller("RTipWBFileUploadCtrl", ["$scope", "Authentication", "RTipDownloadWBFile", "RTipWBFileResource", function($scope, Authentication, RTipDownloadWBFile, RTipWBFileResource) {
   var reloadUI = function (){ $scope.reload(); };
 
   $scope.downloadWBFile = function(f) {
@@ -274,11 +274,11 @@ controller('RTipWBFileUploadCtrl', ['$scope', 'Authentication', 'RTipDownloadWBF
   };
 
   $scope.deleteWBFile = function(f) {
-    RTipWBFileResource.remove({'id':f.id}).$promise.finally(reloadUI);
+    RTipWBFileResource.remove({"id":f.id}).$promise.finally(reloadUI);
   };
 }]).
-controller('WBTipFileDownloadCtrl', ['$scope', '$uibModalInstance', 'WBTipDownloadFile', 'file', 'tip', function($scope, $uibModalInstance, WBTipDownloadFile, file, tip) {
-  $scope.ctx = 'download';
+controller("WBTipFileDownloadCtrl", ["$scope", "$uibModalInstance", "WBTipDownloadFile", "file", "tip", function($scope, $uibModalInstance, WBTipDownloadFile, file, tip) {
+  $scope.ctx = "download";
   $scope.file = file;
   $scope.tip = tip;
   $scope.ok = function() {
@@ -290,8 +290,8 @@ controller('WBTipFileDownloadCtrl', ['$scope', '$uibModalInstance', 'WBTipDownlo
     $uibModalInstance.close();
   };
 }]).
-controller('IdentityAccessRequestCtrl',
-  ['$scope', '$http', '$route', '$uibModalInstance', 'tip',
+controller("IdentityAccessRequestCtrl",
+  ["$scope", "$http", "$route", "$uibModalInstance", "tip",
    function ($scope, $http, $route, $uibModalInstance, tip) {
   $scope.tip = tip;
 
@@ -302,7 +302,7 @@ controller('IdentityAccessRequestCtrl',
   $scope.ok = function () {
     $uibModalInstance.close();
 
-    return $http.post('rtip/' + tip.id + '/identityaccessrequests', {'request_motivation': $scope.request_motivation}).
+    return $http.post("rtip/" + tip.id + "/identityaccessrequests", {"request_motivation": $scope.request_motivation}).
         then(function(){
           $route.reload();
         });

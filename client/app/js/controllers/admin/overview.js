@@ -1,4 +1,4 @@
-GLClient.controller('AdminOverviewCtrl', ['$scope', function($scope){
+GLClient.controller("AdminOverviewCtrl", ["$scope", function($scope){
   $scope.tabs = [
     {
       title:"Stats",

@@ -1,5 +1,5 @@
 GLClient
-.controller('ForcedPasswordChangeCtrl', ['$scope', '$location', 'locationForce',
+.controller("ForcedPasswordChangeCtrl", ["$scope", "$location", "locationForce",
   function($scope, $location, locationForce) {
     $scope.save = function () {
       return $scope.preferences.$update(function () {
@@ -9,7 +9,7 @@ GLClient
       });
     };
 }])
-.factory('locationForce', ['$location', '$rootScope', function($location,  $rootScope) {
+.factory("locationForce", ["$location", "$rootScope", function($location,  $rootScope) {
   var forcedLocation = null;
   var deregister = function() {};
 

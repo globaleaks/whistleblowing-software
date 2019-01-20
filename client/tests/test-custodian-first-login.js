@@ -1,27 +1,27 @@
 var temporary_password = "typ0drome@absurd.org";
 
-describe('receiver first login', function() {
-  it('should redirect to /firstlogin upon successful authentication', function() {
-    browser.gl.utils.login_custodian('Custodian1', 'password', '/#/login', true);
+describe("receiver first login", function() {
+  it("should redirect to /firstlogin upon successful authentication", function() {
+    browser.gl.utils.login_custodian("Custodian1", "password", "/#/login", true);
   });
 
-  it('should be able to change password from the default one', function() {
-    element(by.model('preferences.password')).sendKeys(temporary_password);
-    element(by.model('preferences.check_password')).sendKeys(temporary_password);
-    element(by.css('[data-ng-click="save()"]')).click();
-    browser.gl.utils.waitForUrl('/custodian/home');
+  it("should be able to change password from the default one", function() {
+    element(by.model("preferences.password")).sendKeys(temporary_password);
+    element(by.model("preferences.check_password")).sendKeys(temporary_password);
+    element(by.css("[data-ng-click=\"save()\"]")).click();
+    browser.gl.utils.waitForUrl("/custodian/home");
   });
 
-  it('should be able to login with the new password', function() {
-    browser.gl.utils.login_custodian('Custodian1', temporary_password, '/#/login', false);
+  it("should be able to login with the new password", function() {
+    browser.gl.utils.login_custodian("Custodian1", temporary_password, "/#/login", false);
   });
 
-  it('should be able to change password accessing the user preferences', function() {
+  it("should be able to change password accessing the user preferences", function() {
     element(by.cssContainingText("a", "User preferences")).click();
     element(by.cssContainingText("a", "Password")).click();
-    element(by.model('preferences.old_password')).sendKeys(temporary_password);
-    element(by.model('preferences.password')).sendKeys(browser.gl.utils.vars['user_password']);
-    element(by.model('preferences.check_password')).sendKeys(browser.gl.utils.vars['user_password']);
-    browser.gl.utils.clickFirstDisplayed(by.css('[data-ng-click="save()"]'));
+    element(by.model("preferences.old_password")).sendKeys(temporary_password);
+    element(by.model("preferences.password")).sendKeys(browser.gl.utils.vars["user_password"]);
+    element(by.model("preferences.check_password")).sendKeys(browser.gl.utils.vars["user_password"]);
+    browser.gl.utils.clickFirstDisplayed(by.css("[data-ng-click=\"save()\"]"));
   });
 });

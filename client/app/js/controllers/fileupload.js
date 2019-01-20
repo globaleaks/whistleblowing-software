@@ -1,4 +1,4 @@
-GLClient.factory('uploadUtils', ['$filter', function($filter) {
+GLClient.factory("uploadUtils", ["$filter", function($filter) {
   // Utils shared across file upload controllers and directives
 
   function endsWith(subjectString, searchString) {
@@ -11,7 +11,7 @@ GLClient.factory('uploadUtils', ['$filter', function($filter) {
   }
 
   return {
-    'validFilename': function(filename, types) {
+    "validFilename": function(filename, types) {
       for (var i = 0; i < types.length; i++) {
         var s = filename.toLowerCase();
         if (endsWith(s, types[i])) {
@@ -21,31 +21,31 @@ GLClient.factory('uploadUtils', ['$filter', function($filter) {
       return false;
     },
 
-    'translateInvalidSizeErr': function(filename, maxSize) {
-      var strs = ['Error with file:', 'File size not accepted.', 'Maximum file size is:'];
+    "translateInvalidSizeErr": function(filename, maxSize) {
+      var strs = ["Error with file:", "File size not accepted.", "Maximum file size is:"];
       angular.forEach(strs, function(s, i) {
-        strs[i] = $filter('translate')(s);
+        strs[i] = $filter("translate")(s);
       });
-      return strs[0] + ' ' + filename + ' - ' + strs[1] + ' ' + strs[2] + ' ' + $filter('byteFmt')(maxSize, 2);
+      return strs[0] + " " + filename + " - " + strs[1] + " " + strs[2] + " " + $filter("byteFmt")(maxSize, 2);
     },
 
-    'translateInvalidTypeErr': function(filename, validTypes) {
+    "translateInvalidTypeErr": function(filename, validTypes) {
       var uppercaseTypes = [];
       for (var i=0; i<validTypes.length; i++) {
         uppercaseTypes.push(validTypes[i].toUpperCase());
       }
-      var strs = ['Error with file:', 'File type not accepted.', 'Accepted file types are:'];
+      var strs = ["Error with file:", "File type not accepted.", "Accepted file types are:"];
       angular.forEach(strs, function(s, i) {
-        strs[i] = $filter('translate')(s);
+        strs[i] = $filter("translate")(s);
       });
-      return strs[0] + ' ' + filename + ' - ' + strs[1] + ' ' + strs[2] + ' ' + uppercaseTypes;
+      return strs[0] + " " + filename + " - " + strs[1] + " " + strs[2] + " " + uppercaseTypes;
     },
   };
 }]).
-controller('RFileUploadCtrl', ['$scope', function($scope) {
+controller("RFileUploadCtrl", ["$scope", function($scope) {
   $scope.disabled = false;
 
-  $scope.$on('flow::fileAdded', function () {
+  $scope.$on("flow::fileAdded", function () {
     $scope.file_error_msgs = [];
 
     if ($scope.field !== undefined && !$scope.field.multi_entry) {
@@ -55,21 +55,21 @@ controller('RFileUploadCtrl', ['$scope', function($scope) {
     }
   });
 }]).
-controller('WBFileUploadCtrl', ['$scope', function($scope) {
+controller("WBFileUploadCtrl", ["$scope", function($scope) {
   $scope.file_upload_description = "";
 
   $scope.beginUpload = function($files, $event, $flow) {
     $scope.file_error_msgs = [];
 
-    $flow.opts.query = {'description': $scope.file_upload_description};
+    $flow.opts.query = {"description": $scope.file_upload_description};
     $flow.upload();
   };
 }]).
-controller('ImageUploadCtrl', ['$scope', '$rootScope', '$http', 'uploadUtils', 'Utils', function($scope, $rootScope, $http, uploadUtils, Utils) {
+controller("ImageUploadCtrl", ["$scope", "$rootScope", "$http", "uploadUtils", "Utils", function($scope, $rootScope, $http, uploadUtils, Utils) {
   $scope.Utils = Utils;
   $scope.imageUploadObj = {};
 
-  $scope.$on('flow::fileAdded', function (event, $flow, flowFile) {
+  $scope.$on("flow::fileAdded", function (event, $flow, flowFile) {
     $scope.file_error_msgs = [];
     var validSize = $rootScope.node.maximum_filesize * 1024 * 1024;
     if (flowFile.size > validSize) {
@@ -80,10 +80,10 @@ controller('ImageUploadCtrl', ['$scope', '$rootScope', '$http', 'uploadUtils', '
 
   $scope.deletePicture = function() {
     $http({
-      method: 'DELETE',
+      method: "DELETE",
       url: $scope.imageUploadUrl,
     }).then(function() {
-      $scope.imageUploadModel[$scope.imageUploadModelAttr] = '';
+      $scope.imageUploadModel[$scope.imageUploadModelAttr] = "";
       $scope.imageUploadObj.flow.files = [];
     });
   };

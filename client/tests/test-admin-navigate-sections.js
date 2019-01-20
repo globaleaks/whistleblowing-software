@@ -1,8 +1,8 @@
-describe('verify navigation of admin sections', function() {
+describe("verify navigation of admin sections", function() {
   // Even if not performing real checks this test at least verify to be able to perform the
   // navigation of the admin section without triggering any exception
 
-  it('should should navigate through admin sections', function() {
+  it("should should navigate through admin sections", function() {
     element.all(by.cssContainingText("a", "Home")).first().click();
     element(by.cssContainingText("ul li a", "Changelog")).click();
     element(by.cssContainingText("ul li a", "License")).click();
