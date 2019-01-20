@@ -7,7 +7,7 @@ angular.module("GLClient")
   $scope.newTenant = new $scope.AdminUtils.new_tenant();
 
   $scope.$watch("search", function (value) {
-    if (value != undefined) {
+    if (value !== undefined) {
       $scope.currentPage = 1;
     }
   });
@@ -34,7 +34,7 @@ angular.module("GLClient")
   };
 
   $scope.isRemovableTenant = function() {
-    return tenant.id != 1;
+    return tenant.id !== 1;
   };
 
   $scope.isCurrentTenant = function() {

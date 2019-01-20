@@ -1049,7 +1049,7 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
       },
 
       getUploadStatus: function(uploads) {
-        if (uploads.progress() != 1) {
+        if (uploads.progress() !== 1) {
           return "uploading";
         }
 
@@ -1058,7 +1058,7 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
 
       isUploading: function(uploads) {
         for (var key in uploads) {
-          if (uploads[key].files.length > 0 && uploads[key].progress() != 1) {
+          if (uploads[key].files.length > 0 && uploads[key].progress() !== 1) {
             return true;
           }
         }
@@ -1149,7 +1149,7 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
 
             var substatuses = submission_statuses[i].substatuses;
             for (var j = 0; j < substatuses.length; j++) {
-              if (substatuses[j].id == tip.substatus) {
+              if (substatuses[j].id === tip.substatus) {
                 tip.submissionSubStatusObj = substatuses[j];
                 break;
               }

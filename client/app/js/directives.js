@@ -135,7 +135,9 @@ directive("extendFlowValidTypes", ["uploadUtils", function(uploadUtils) {
       scope.$on("flow::fileAdded", function(event, _, flowFile) {
 
         if (!uploadUtils.validFilename(flowFile.name, validTypes)) {
-          if (scope.file_error_msgs === undefined) scope.file_error_msgs = [];
+          if (scope.file_error_msgs === undefined) {
+            scope.file_error_msgs = [];
+          }
           var errMsg = uploadUtils.translateInvalidTypeErr(flowFile.name, validTypes);
           scope.file_error_msgs.push(errMsg);
           event.preventDefault();
@@ -152,7 +154,9 @@ directive("extendFlowValidSize", ["uploadUtils", function(uploadUtils) {
       var validSize = parseInt(scope.$eval(iAttrs.extendFlowValidSize));
       scope.$on("flow::fileAdded", function(event, _, flowFile) {
         if (flowFile.size > validSize) {
-          if (scope.file_error_msgs == undefined) scope.file_error_msgs = [];
+          if (scope.file_error_msgs === undefined) {
+            scope.file_error_msgs = [];
+          }
           var errMsg = uploadUtils.translateInvalidSizeErr(flowFile.name, validSize);
           scope.file_error_msgs.push(errMsg);
           event.preventDefault();
@@ -269,10 +273,10 @@ directive("convertToNumber", function() {
     require: "ngModel",
     link: function(scope, element, attrs, ngModel) {
       ngModel.$parsers.push(function(val) {
-        return val != null ? parseInt(val, 10) : null;
+        return val !== null ? parseInt(val, 10) : null;
       });
       ngModel.$formatters.push(function(val) {
-        return val != null ? "" + val : null;
+        return val !== null ? "" + val : null;
       });
     }
   };

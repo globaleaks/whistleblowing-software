@@ -22,7 +22,7 @@ controller("ReceiverTipsCtrl", ["$scope",  "$filter", "$http", "$route", "$locat
   $scope.filteredTips = $scope.tips;
 
   $scope.$watch("search", function (value) {
-    if (value != undefined) {
+    if (value !== undefined) {
       $scope.currentPage = 1;
       $scope.filteredTips = $filter("filter")($scope.tips, value);
     }

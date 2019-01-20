@@ -77,7 +77,9 @@ GLClient.controller("AdminCaseManagementCtrl", ["$scope", function($scope){
       // Return only the ids we want to reorder
       var reordered_ids = {
         "ids": $scope.admin.submission_statuses.map(function(c) {
-          if (c.system_defined === false) return c.id;
+          if (c.system_defined === false) {
+            return c.id;
+          }
         }).filter(function (c) {
           if (c !== null) {
             return c;

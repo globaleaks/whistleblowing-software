@@ -619,8 +619,9 @@ module.exports = function(grunt) {
         gt.setLocale(lang_code);
 
         for (var i = 0; i < strings.length; i++) {
-          if (strings[i] === "")
+          if (strings[i] === "") {
             continue;
+          }
 
           translations[strings[i]] = str_unescape(gt.gettext(str_escape(strings[i])));
         }
@@ -785,7 +786,7 @@ module.exports = function(grunt) {
 
     function checkIfRightTagsUsed(variables, lang, text, template_name, expected_tags) {
       expected_tags.forEach(function(tag) {
-        if (text.indexOf(tag) == -1) {
+        if (text.indexOf(tag) === -1) {
           recordFailure(template_name, lang, text, "missing expected tag: " + tag);
         }
       });

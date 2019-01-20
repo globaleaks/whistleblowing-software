@@ -4,7 +4,7 @@ GLClient.controller("AdminContextsCtrl",
   $scope.admin_receivers_by_id = $scope.Utils.array_to_map($scope.admin.users);
 
   $scope.save_context = function (context, cb) {
-    if (context.additional_questionnaire_id == null) {
+    if (context.additional_questionnaire_id === null) {
       context.additional_questionnaire_id = "";
     }
 
@@ -85,7 +85,7 @@ controller("AdminContextEditorCtrl", ["$scope", "$rootScope", "$http", "AdminCon
   };
 
   $scope.receiverNotSelectedFilter = function(item) {
-    return $scope.context.receivers.indexOf(item.id) == -1;
+    return $scope.context.receivers.indexOf(item.id) === -1;
   };
 
   $scope.updateContextImgUrl = function() {

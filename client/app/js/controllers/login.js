@@ -18,7 +18,7 @@ function($scope, $location, $filter, Sites) {
   } else if ($location.path() === "/multisitelogin" && $scope.node.multisite_login) {
     $scope.login_template = "views/login/multisite.html";
 
-    if ($scope.node.mode == "whistleblowing.it") {
+    if ($scope.node.mode === "whistleblowing.it") {
       $scope.loginUsername = "recipient";
     }
   } else {

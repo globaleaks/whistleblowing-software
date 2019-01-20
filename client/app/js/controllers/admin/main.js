@@ -115,7 +115,7 @@ controller("AdminGeneralSettingsCtrl", ["$scope", "$filter", "$http", "Files", "
   };
 
   $scope.langNotEnabledFilter = function(lang_obj) {
-    return $scope.admin.node.languages_enabled.indexOf(lang_obj.code) == -1;
+    return $scope.admin.node.languages_enabled.indexOf(lang_obj.code) === -1;
   };
 
   $scope.enableLanguage = function(lang_obj) {

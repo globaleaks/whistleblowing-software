@@ -16,7 +16,7 @@ GLClient.mockEngine = (function() {
         mock = mock(scope, e);
       }
 
-      if (mock && e.innerHTML != mock) {
+      if (mock && e.innerHTML !== mock) {
         e.innerHTML = mock;
       }
     }

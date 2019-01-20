@@ -495,7 +495,7 @@ controller("AdditionalQuestionnaireCtrl",
     var score = 0;
     var i;
 
-    if (field.type == "selectbox") {
+    if (field.type === "selectbox") {
       for(i=0; i<field.options.length; i++) {
         if (entry["value"] === field.options[i].id) {
           score += field.options[i].score_points;
@@ -634,7 +634,7 @@ controller("SubmissionFormFieldCtrl", ["$scope", "topojson",
   function($scope, topojson) {
     $scope.f = $scope[$scope.fieldFormVarName];
 
-    if ($scope.field.type == "map" && $scope.field.attrs.topojson.value) {
+    if ($scope.field.type === "map" && $scope.field.attrs.topojson.value) {
       var width = 384,
           height = 240;
 
@@ -719,7 +719,7 @@ controller("SubmissionFormFieldCtrl", ["$scope", "topojson",
              $scope.$apply();
            })
            .on("click", function(d) {
-             if ($scope.answers[$scope.field.id][0]["value"] != d.id) {
+             if ($scope.answers[$scope.field.id][0]["value"] !== d.id) {
                if ($scope.clicked !== null) {
                  d3.select($scope.clicked).attr("r", 5.5).style("fill", "#DDD");
                }

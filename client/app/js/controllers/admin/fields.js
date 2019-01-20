@@ -180,7 +180,7 @@ GLClient.controller("AdminFieldEditorCtrl", ["$scope",
     };
 
     $scope.receiverNotSelectedFilter = function(item) {
-      return $scope.context.receivers.indexOf(item.id) == -1;
+      return $scope.context.receivers.indexOf(item.id) === -1;
     };
 
     $scope.fieldIsMarkableSubjectToStats = $scope.isMarkableSubjectToStats($scope.field);
@@ -240,7 +240,7 @@ GLClient.controller("AdminFieldEditorCtrl", ["$scope",
       };
 
       $scope.receiverNotSelectedFilter = function(item) {
-        return option.trigger_receiver.indexOf(item.id) == -1;
+        return option.trigger_receiver.indexOf(item.id) === -1;
       };
 
       return $scope.Utils.openConfirmableModalDialog("views/partials/trigger_receiver.html", option, $scope);
