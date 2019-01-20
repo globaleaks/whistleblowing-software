@@ -49,21 +49,7 @@ class ConfigL10N_v_45(Model):
     customized = Column(Boolean, default=False)
 
     def __init__(self, values=None, migrate=False):
-        if values is None or migrate:
-            return
-
-        self.tid = values['tid']
-        self.lang = text_type(values['lang'])
-        self.var_name = text_type(values['var_name'])
-        self.value = text_type(values['value'])
-
-    def set_v(self, value):
-        value = text_type(value)
-        if self.value != value:
-            self.value = value
-
-            if self.value is not None:
-                self.customized = True
+        return
 
 
 class Context_v_45(Model):
