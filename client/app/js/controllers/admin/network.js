@@ -105,16 +105,16 @@ controller('AdminHTTPSConfigCtrl', ['$q', '$location', '$http', '$scope', '$uibM
 
   tlsConfigResource.get({}).$promise.then($scope.parseTLSConfig);
 
-  $scope.invertExpertStatus = function() {
-    $scope.show_expert_status = !$scope.show_expert_status;
-    return refreshConfig();
-  };
-
   function refreshConfig() {
     return tlsConfigResource.get().$promise.then($scope.parseTLSConfig);
   }
 
   $scope.refreshCfg = refreshConfig;
+
+  $scope.invertExpertStatus = function() {
+    $scope.show_expert_status = !$scope.show_expert_status;
+    return refreshConfig();
+  };
 
   $scope.file_resources = {
     priv_key: new cfgFileResource({name: 'priv_key'}),

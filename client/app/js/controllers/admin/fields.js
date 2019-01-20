@@ -89,9 +89,6 @@ GLClient.controller('AdminFieldEditorCtrl', ['$scope',
       $scope.field.options.push(new_option);
     };
 
-    $scope.moveOptionUp = function(idx) { swapOption(idx, -1); };
-    $scope.moveOptionDown = function(idx) { swapOption(idx, 1); };
-
     function swapOption(index, n) {
       var target = index + n;
       if (target < 0 || target >= $scope.field.options.length) {
@@ -102,6 +99,9 @@ GLClient.controller('AdminFieldEditorCtrl', ['$scope',
       $scope.field.options[target] = b;
       $scope.field.options[index] = a;
     }
+
+    $scope.moveOptionUp = function(idx) { swapOption(idx, -1); };
+    $scope.moveOptionDown = function(idx) { swapOption(idx, 1); };
 
     $scope.delOption = function(option) {
       $scope.field.options.splice($scope.field.options.indexOf(option), 1);

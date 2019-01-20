@@ -74,9 +74,6 @@ controller('AdminStepEditorCtrl', ['$scope', '$rootScope', '$http', 'AdminStepRe
       });
     };
 
-    $scope.moveUp = function(e, idx) { swap(e, idx, -1); };
-    $scope.moveDown = function(e, idx) { swap(e, idx, 1); };
-
     function swap($event, index, n) {
       $event.stopPropagation();
 
@@ -104,5 +101,8 @@ controller('AdminStepEditorCtrl', ['$scope', '$rootScope', '$http', 'AdminStepRe
         $rootScope.successes.push({});
       });
     }
+
+    $scope.moveUp = function(e, idx) { swap(e, idx, -1); };
+    $scope.moveDown = function(e, idx) { swap(e, idx, 1); };
   }
 ]);

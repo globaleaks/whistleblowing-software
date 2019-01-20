@@ -36,9 +36,6 @@ controller('AdminContextEditorCtrl', ['$scope', '$rootScope', '$http', 'AdminCon
     $scope.editing = !$scope.editing;
   };
 
-  $scope.moveUp = function(e, idx) { swap(e, idx, -1); };
-  $scope.moveDown = function(e, idx) { swap(e, idx, 1); };
-
   function swap($event, index, n) {
     $event.stopPropagation();
 
@@ -61,6 +58,9 @@ controller('AdminContextEditorCtrl', ['$scope', '$rootScope', '$http', 'AdminCon
       $rootScope.successes.push({});
     });
   }
+
+  $scope.moveUp = function(e, idx) { swap(e, idx, -1); };
+  $scope.moveDown = function(e, idx) { swap(e, idx, 1); };
 
   $scope.showSelect = false;
   $scope.toggleSelect = function() {
