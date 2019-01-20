@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
-from io import StringIO
-
 import re
 import sys
+
+from io import StringIO
 
 from twisted.python import log as twlog
 from twisted.python.failure import Failure

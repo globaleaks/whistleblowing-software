@@ -11,9 +11,10 @@ from globaleaks.handlers.user import user_serialize_user
 from globaleaks.jobs.job import DailyJob
 from globaleaks.orm import transact
 from globaleaks.transactions import db_schedule_email
+from globaleaks.utils.log import log
 from globaleaks.utils.templating import Templating
 from globaleaks.utils.utility import datetime_now, datetime_null
-from globaleaks.utils.log import log
+
 
 __all__ = ['PGPCheck']
 

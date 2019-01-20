@@ -4,12 +4,13 @@ from datetime import timedelta
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import models
-from globaleaks.orm import transact
 from globaleaks.handlers import password_reset
 from globaleaks.handlers.admin import user
+from globaleaks.orm import transact
+from globaleaks.state import State
 from globaleaks.tests import helpers
 from globaleaks.utils.utility import datetime_now
-from globaleaks.state import State
+
 
 @transact
 def set_reset_token(session, user_id, validation_token):

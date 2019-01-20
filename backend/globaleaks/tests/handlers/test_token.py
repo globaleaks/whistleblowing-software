@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
-from globaleaks.jobs import anomalies
-from globaleaks.handlers import token
-from globaleaks.tests import helpers
 from twisted.internet.defer import inlineCallbacks
+
+from globaleaks.handlers import token
+from globaleaks.jobs import anomalies
+from globaleaks.tests import helpers
 
 
 class Test_TokenCreate(helpers.TestHandlerWithPopulatedDB):

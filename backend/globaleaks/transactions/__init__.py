@@ -3,7 +3,6 @@
 ORM Transactions definitions.
 """
 from globaleaks import models
-from globaleaks.orm import transact
 
 
 def db_schedule_email(session, tid, address, subject, body):

@@ -2,7 +2,6 @@
 # Implementation of the daily operations.
 import fnmatch
 import os
-import time
 from datetime import datetime, timedelta
 
 from sqlalchemy import not_
@@ -18,9 +17,7 @@ from globaleaks.handlers.rtip import db_delete_itips
 from globaleaks.handlers.user import user_serialize_user
 from globaleaks.jobs.job import HourlyJob
 from globaleaks.orm import transact
-from globaleaks.settings import Settings
 from globaleaks.utils.fs import overwrite_and_remove
-from globaleaks.utils.tar import tardir
 from globaleaks.utils.templating import Templating
 from globaleaks.utils.utility import datetime_now, datetime_to_ISO8601, is_expired
 

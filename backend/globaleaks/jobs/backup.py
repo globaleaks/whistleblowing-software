@@ -13,7 +13,6 @@ from globaleaks.orm import transact
 from globaleaks.settings import Settings
 from globaleaks.utils.backup import backup_name, backup_type, get_records_to_delete
 from globaleaks.utils.tar import tardir
-from globaleaks.utils.utility import datetime_now, datetime_to_ISO8601, is_expired
 
 
 __all__ = ['Backup']

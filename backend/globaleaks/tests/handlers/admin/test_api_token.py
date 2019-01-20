@@ -6,8 +6,8 @@ from globaleaks.handlers.admin import shorturl
 from globaleaks.models.config import db_set_config_variable
 from globaleaks.orm import tw
 from globaleaks.rest import errors
-from globaleaks.utils.crypto import generateApiToken
 from globaleaks.tests import helpers
+from globaleaks.utils.crypto import generateApiToken
 
 
 class TestAPITokenEnabled(helpers.TestHandlerWithPopulatedDB):

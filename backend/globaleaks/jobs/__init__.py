@@ -9,7 +9,6 @@ from globaleaks.jobs import anomalies, \
                             session_management, \
                             statistics, \
                             update_check, \
-                            certificate_check
 
 jobs_list = [
     anomalies.Anomalies,

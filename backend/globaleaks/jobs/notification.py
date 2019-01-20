@@ -12,9 +12,10 @@ from globaleaks.handlers.rtip import serialize_rtip, serialize_message, serializ
 from globaleaks.handlers.user import user_serialize_user
 from globaleaks.jobs.job import LoopingJob
 from globaleaks.orm import transact
+from globaleaks.utils.log import log
 from globaleaks.utils.pgp import PGPContext
 from globaleaks.utils.templating import Templating
-from globaleaks.utils.log import log
+
 
 trigger_template_map = {
     'ReceiverTip': u'tip',

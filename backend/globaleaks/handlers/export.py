@@ -4,7 +4,7 @@
 import os
 
 from io import BytesIO
-from six import binary_type, text_type
+from six import text_type
 from twisted.internet import abstract
 from twisted.internet.defer import Deferred, inlineCallbacks
 

@@ -1,9 +1,8 @@
 # -*- coding: utf-8 -*-
-from io import BytesIO
-
 import os
-from six import unichr, binary_type
 
+from io import BytesIO
+from six import unichr
 from twisted.internet.defer import inlineCallbacks
 from zipfile import ZipFile
 

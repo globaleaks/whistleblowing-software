@@ -1,6 +1,4 @@
 # -*- coding: utf-8 -*-
-
-from globaleaks.settings import Settings
 from globaleaks.utils.crypto import generate2FA
 from globaleaks.utils.tempdict import TempDict
 

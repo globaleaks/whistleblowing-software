@@ -5,7 +5,6 @@ from twisted.internet.defer import inlineCallbacks
 from globaleaks.jobs.job import HourlyJob
 from globaleaks.state import State
 from globaleaks.utils.log import log
-from twisted.internet.defer import inlineCallbacks
 
 
 __all__ = ['ExitNodesRefresh']

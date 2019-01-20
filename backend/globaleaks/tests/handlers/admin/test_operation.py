@@ -1,9 +1,9 @@
 # -*- coding: utf-8
 from globaleaks.handlers.admin.operation import AdminOperationHandler
+from globaleaks.handlers.admin import user
 from globaleaks.rest import errors
 from globaleaks.state import State
 from globaleaks.tests import helpers
-from globaleaks.handlers.admin import user
 from globaleaks.tests.handlers.test_password_reset import get_user
 
 from twisted.internet import defer, reactor

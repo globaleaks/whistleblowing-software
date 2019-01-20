@@ -11,14 +11,14 @@ from globaleaks import models
 from globaleaks.handlers.admin.questionnaire import db_get_questionnaire
 from globaleaks.handlers.admin.submission_statuses import db_get_id_for_system_status
 from globaleaks.handlers.base import BaseHandler
+from globaleaks.models import get_localized_values
 from globaleaks.orm import transact
 from globaleaks.rest import errors, requests
 from globaleaks.state import State
 from globaleaks.utils.crypto import sha256, GCE
-from globaleaks.models import get_localized_values
+from globaleaks.utils.log import log
 from globaleaks.utils.utility import get_expiration, \
     datetime_never, datetime_to_ISO8601
-from globaleaks.utils.log import log
 
 
 def decrypt_tip(user_key, tip_prv_key, tip):

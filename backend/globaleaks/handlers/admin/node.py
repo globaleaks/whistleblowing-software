@@ -13,7 +13,7 @@ from globaleaks.db.appdata import load_appdata
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.user import can_edit_general_settings_or_raise
 from globaleaks.models.config import ConfigFactory, ConfigL10NFactory
-from globaleaks.orm import transact, tw
+from globaleaks.orm import tw
 from globaleaks.rest import errors, requests
 from globaleaks.state import State
 from globaleaks.utils.crypto import GCE

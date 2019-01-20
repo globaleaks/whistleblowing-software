@@ -1,7 +1,7 @@
 # -*- coding: utf-8
-import time
 import platform
 import random
+import time
 
 from sqlalchemy import create_engine, event
 from sqlalchemy.exc import OperationalError

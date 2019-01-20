@@ -1,12 +1,10 @@
 # -*- coding: utf-8 -*-
-from io import StringIO
-
 import re
 from datetime import datetime
 from twisted.trial import unittest
 
-from globaleaks.utils import utility
 from globaleaks.rest import errors
+from globaleaks.utils import utility
 
 
 class TestUtility(unittest.TestCase):

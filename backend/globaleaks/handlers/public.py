@@ -10,12 +10,12 @@ from globaleaks import models, LANGUAGES_SUPPORTED, LANGUAGES_SUPPORTED_CODES
 from globaleaks.handlers.admin.file import db_get_file
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.admin.submission_statuses import db_retrieve_all_submission_statuses
+from globaleaks.models import get_localized_values
 from globaleaks.models.config import ConfigFactory, ConfigL10NFactory
 from globaleaks.orm import transact
 from globaleaks.state import State
 from globaleaks.utils.ip import check_ip
 from globaleaks.utils.sets import merge_dicts
-from globaleaks.models import get_localized_values
 
 special_fields = ['whistleblower_identity']
 

@@ -11,7 +11,6 @@ from globaleaks.handlers.user import db_get_user, db_user_update_user, user_seri
 from globaleaks.orm import transact
 from globaleaks.rest import requests, errors
 from globaleaks.state import State
-from globaleaks.models import get_localized_values
 from globaleaks.utils.utility import datetime_to_ISO8601
 
 

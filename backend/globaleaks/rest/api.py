@@ -36,7 +36,6 @@ from globaleaks.handlers import custodian, \
                                 sitemap, \
                                 staticfile
 
-from globaleaks.handlers.admin import operation as admin_operation
 from globaleaks.handlers.admin import context as admin_context
 from globaleaks.handlers.admin import field as admin_field
 from globaleaks.handlers.admin import file as admin_file
@@ -46,6 +45,7 @@ from globaleaks.handlers.admin import manifest as admin_manifest
 from globaleaks.handlers.admin import modelimgs as admin_modelimgs
 from globaleaks.handlers.admin import node as admin_node
 from globaleaks.handlers.admin import notification as admin_notification
+from globaleaks.handlers.admin import operation as admin_operation
 from globaleaks.handlers.admin import overview as admin_overview
 from globaleaks.handlers.admin import questionnaire as admin_questionnaire
 from globaleaks.handlers.admin import shorturl as admin_shorturl

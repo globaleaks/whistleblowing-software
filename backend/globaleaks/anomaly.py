@@ -8,12 +8,12 @@ from globaleaks.handlers.admin.node import db_admin_serialize_node
 from globaleaks.handlers.admin.notification import db_get_notification
 from globaleaks.handlers.admin.user import db_get_admin_users
 from globaleaks.orm import transact
-from globaleaks.state import State
 from globaleaks.rest.cache import Cache
+from globaleaks.state import State
 from globaleaks.transactions import db_schedule_email
+from globaleaks.utils.log import log
 from globaleaks.utils.templating import Templating
 from globaleaks.utils.utility import datetime_now, datetime_null, get_disk_space, is_expired
-from globaleaks.utils.log import log
 
 ANOMALY_MAP = {
     'started_submissions': 100,

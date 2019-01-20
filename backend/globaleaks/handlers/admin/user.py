@@ -14,7 +14,7 @@ from globaleaks.handlers.user import db_get_user, \
                                      user_serialize_user, \
                                      serialize_usertenant_association
 
-from globaleaks.models import fill_localized_keys, get_localized_values
+from globaleaks.models import fill_localized_keys
 from globaleaks.orm import transact
 from globaleaks.rest import requests, errors
 from globaleaks.state import State

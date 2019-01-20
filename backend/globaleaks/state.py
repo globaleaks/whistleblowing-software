@@ -12,7 +12,7 @@ from twisted.python import logfile as txlogfile
 from twisted.python.failure import Failure
 from twisted.python.threadpool import ThreadPool
 
-from globaleaks import __version__, orm, models
+from globaleaks import __version__, orm
 from globaleaks.orm import tw
 from globaleaks.settings import Settings
 from globaleaks.transactions import db_schedule_email
@@ -22,14 +22,12 @@ from globaleaks.utils.log import log
 from globaleaks.utils.mail import sendmail
 from globaleaks.utils.objectdict import ObjectDict
 from globaleaks.utils.pgp import PGPContext
-from globaleaks.utils.security import sha256
 from globaleaks.utils.singleton import Singleton
 from globaleaks.utils.tempdict import TempDict
 from globaleaks.utils.templating import Templating
 from globaleaks.utils.token import TokenList
 from globaleaks.utils.tor_exit_set import TorExitSet
 from globaleaks.utils.utility import datetime_now
-from globaleaks.utils.tempdict import TempDict
 
 
 def getAlarm(state):

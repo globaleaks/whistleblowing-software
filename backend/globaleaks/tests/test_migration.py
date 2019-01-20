@@ -10,7 +10,7 @@ import shutil
 
 from twisted.trial import unittest
 
-from globaleaks import __version__, DATABASE_VERSION, FIRST_DATABASE_VERSION_SUPPORTED, models
+from globaleaks import DATABASE_VERSION, FIRST_DATABASE_VERSION_SUPPORTED, models
 from globaleaks.db import update_db
 from globaleaks.db.migrations import update_37
 from globaleaks.models import config

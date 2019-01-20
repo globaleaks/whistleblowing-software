@@ -2,8 +2,6 @@
 #
 # Handlers dealing with platform authentication
 from random import SystemRandom
-from six import text_type, binary_type
-from sqlalchemy import or_
 from twisted.internet.defer import inlineCallbacks, returnValue
 from globaleaks.handlers.admin.node import db_admin_serialize_node
 from globaleaks.handlers.admin.notification import db_get_notification

@@ -17,6 +17,7 @@ from globaleaks.rest import errors
 from globaleaks.utils.fs import directory_traversal_check
 from globaleaks.utils.utility import uuid4
 
+
 @transact
 def get_files(session, tid):
     ret = []

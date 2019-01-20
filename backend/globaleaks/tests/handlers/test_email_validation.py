@@ -1,12 +1,10 @@
 # -*- coding: utf-8 -*-
-from datetime import timedelta
-
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import models
-from globaleaks.orm import transact
 from globaleaks.handlers import email_validation
 from globaleaks.handlers.admin import user
+from globaleaks.orm import transact
 from globaleaks.tests import helpers
 from globaleaks.utils.utility import datetime_now
 

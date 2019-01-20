@@ -17,8 +17,8 @@ from globaleaks.sessions import Session
 from globaleaks.settings import Settings
 from globaleaks.state import State, TenantState
 from globaleaks.utils import fs
-from globaleaks.utils.objectdict import ObjectDict
 from globaleaks.utils.log import log
+from globaleaks.utils.objectdict import ObjectDict
 
 
 def get_db_file(db_path):

@@ -2,7 +2,6 @@
 #
 # Handlers dealing with tip interface for receivers (rtip)
 import base64
-import json
 import os
 
 from six import text_type

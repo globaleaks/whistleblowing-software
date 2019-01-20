@@ -52,7 +52,6 @@ from globaleaks.handlers.wizard import db_wizard
 from globaleaks.handlers.submission import create_submission
 from globaleaks.models.config import db_set_config_variable
 from globaleaks.rest import decorators
-from globaleaks.rest.cache import Cache
 from globaleaks.sessions import Sessions
 from globaleaks.settings import Settings
 from globaleaks.state import State

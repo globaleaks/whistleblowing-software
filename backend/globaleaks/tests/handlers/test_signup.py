@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 from twisted.internet.defer import inlineCallbacks
 from globaleaks import models
-from globaleaks.models.config import db_set_config_variable
 from globaleaks.handlers import signup
+from globaleaks.models.config import db_set_config_variable
 from globaleaks.orm import transact, tw
 from globaleaks.rest import errors
 from globaleaks.tests import helpers

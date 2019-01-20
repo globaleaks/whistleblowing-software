@@ -9,10 +9,10 @@ from sqlalchemy.sql.expression import not_
 from globaleaks import models
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.public import serialize_field
+from globaleaks.models import fill_localized_keys
 from globaleaks.orm import transact
 from globaleaks.rest import errors, requests
 from globaleaks.settings import Settings
-from globaleaks.models import fill_localized_keys
 from globaleaks.utils.utility import read_json_file
 
 

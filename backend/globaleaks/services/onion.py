@@ -7,10 +7,10 @@ from twisted.internet import reactor, defer
 
 from globaleaks import models
 from globaleaks.db import refresh_memory_variables
-from globaleaks.rest.cache import Cache
-from globaleaks.services.service import Service
 from globaleaks.models.config import ConfigFactory
 from globaleaks.orm import transact
+from globaleaks.rest.cache import Cache
+from globaleaks.services.service import Service
 from globaleaks.state import State
 from globaleaks.utils.log import log
 

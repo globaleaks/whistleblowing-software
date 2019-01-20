@@ -6,11 +6,11 @@ import random
 import string
 import struct
 
+from distutils.version import LooseVersion as V # pylint: disable=no-name-in-module,import-error
+
 # python-scrypt is still used because not all the versions of pynacl/cryptography includes it
 # this library could be replaced later on in the project
 import scrypt
-
-from distutils.version import LooseVersion as V # pylint: disable=no-name-in-module,import-error
 
 import nacl
 from nacl.encoding import RawEncoder

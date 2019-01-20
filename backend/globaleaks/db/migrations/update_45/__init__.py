@@ -4,7 +4,6 @@ from globaleaks.db.migrations.update import MigrationBase
 from globaleaks.handlers.submission import db_set_internaltip_answers, db_set_internaltip_data
 from globaleaks.models import Model
 from globaleaks.models.properties import *
-from globaleaks.utils.crypto import GCE
 from globaleaks.utils.utility import datetime_never, datetime_now, datetime_null
 
 

@@ -7,10 +7,10 @@ from twisted.internet.defer import inlineCallbacks
 from globaleaks import models
 from globaleaks.jobs.job import LoopingJob
 from globaleaks.orm import transact
-from globaleaks.utils.crypto import generateRandomKey, GCE
-from globaleaks.utils.pgp import PGPContext
 from globaleaks.settings import Settings
+from globaleaks.utils.crypto import generateRandomKey, GCE
 from globaleaks.utils.log import log
+from globaleaks.utils.pgp import PGPContext
 
 __all__ = ['Delivery']
 

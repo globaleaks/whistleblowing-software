@@ -2,10 +2,9 @@
 from six import text_type
 from twisted.internet.defer import inlineCallbacks
 
-from globaleaks.state import State
-from globaleaks.handlers import user
-from globaleaks.handlers import admin
+from globaleaks.handlers import admin, user
 from globaleaks.rest import errors
+from globaleaks.state import State
 from globaleaks.tests import helpers
 
 

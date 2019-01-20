@@ -1,11 +1,8 @@
 # -*- coding: utf-8 -*-
-import io
 import gzip
-import json
+import io
 
 from six import text_type
-
-from twisted.internet import defer
 
 
 def gzipdata(data):

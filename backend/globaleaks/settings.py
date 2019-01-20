@@ -4,9 +4,8 @@
 from __future__ import print_function
 
 import getpass
-import platform
-import logging
 import os
+import platform
 import re
 import sys
 
@@ -16,7 +15,6 @@ from optparse import OptionParser
 from globaleaks import __version__
 from globaleaks.orm import make_db_uri, set_db_uri
 from globaleaks.utils.singleton import Singleton
-from globaleaks.utils.log import log
 
 this_directory = os.path.dirname(__file__)
 

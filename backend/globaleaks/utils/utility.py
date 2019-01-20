@@ -9,9 +9,9 @@ import glob
 import io
 import json
 import os
+import platform
 import re
 import uuid
-import platform
 from datetime import datetime, timedelta
 from six import text_type, binary_type
 

@@ -13,8 +13,8 @@ from globaleaks.handlers.admin.user import db_get_admin_users
 from globaleaks.jobs.job import LoopingJob
 from globaleaks.orm import transact
 from globaleaks.utils import letsencrypt
-from globaleaks.utils.utility import datetime_to_ISO8601
 from globaleaks.utils.log import log
+from globaleaks.utils.utility import datetime_to_ISO8601
 
 
 class CertificateCheck(LoopingJob):

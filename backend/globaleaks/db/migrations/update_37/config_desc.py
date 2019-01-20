@@ -1,7 +1,6 @@
 # -*- encoding: utf-8 -*-
-
-from globaleaks.models.config_desc import Unicode, Int, Bool
 from globaleaks import __version__, DATABASE_VERSION
+from globaleaks.models.config_desc import Unicode, Int, Bool
 from globaleaks.utils.crypto import GCE
 from globaleaks.utils.utility import datetime_null, iso_strf_time
 

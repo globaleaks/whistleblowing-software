@@ -2,8 +2,8 @@
 import os
 from datetime import datetime
 
-from globaleaks.utils.pgp import PGPContext
 from globaleaks.tests import helpers
+from globaleaks.utils.pgp import PGPContext
 
 
 class TestPGP(helpers.TestGL):

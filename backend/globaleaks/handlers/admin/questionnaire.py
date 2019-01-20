@@ -15,9 +15,9 @@ from globaleaks import models, QUESTIONNAIRE_EXPORT_VERSION
 from globaleaks.handlers.admin.step import db_create_step
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.public import serialize_questionnaire
+from globaleaks.models import fill_localized_keys
 from globaleaks.orm import transact
 from globaleaks.rest import requests
-from globaleaks.models import fill_localized_keys
 from globaleaks.utils.utility import datetime_to_ISO8601, datetime_now
 
 

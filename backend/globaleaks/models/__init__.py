@@ -12,7 +12,6 @@ from globaleaks.models import config_desc
 from globaleaks.models.properties import *
 from globaleaks.orm import transact
 from globaleaks.rest import errors
-from globaleaks.utils.crypto import generateRandomKey
 from globaleaks.utils.utility import datetime_now, datetime_never, datetime_null, datetime_to_ISO8601
 
 

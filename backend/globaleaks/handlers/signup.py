@@ -1,8 +1,6 @@
 # -*- coding: utf-8
 #
 # Handlers implementing platform signup
-import copy
-
 from globaleaks import models
 from globaleaks.handlers.admin.node import db_admin_serialize_node
 from globaleaks.handlers.admin.notification import db_get_notification
@@ -13,7 +11,7 @@ from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.wizard import db_wizard
 from globaleaks.models.config import ConfigFactory
 from globaleaks.orm import transact
-from globaleaks.rest import requests, errors, cache
+from globaleaks.rest import requests, errors
 from globaleaks.utils.crypto import generateRandomKey
 from globaleaks.utils.utility import datetime_to_ISO8601
 

@@ -45,8 +45,8 @@ from globaleaks.orm import get_engine, get_session, make_db_uri
 from globaleaks.models import config, Base
 from globaleaks.models.config import ConfigFactory
 from globaleaks.settings import Settings
-from globaleaks.utils.security import overwrite_and_remove
 from globaleaks.utils.log import log
+from globaleaks.utils.security import overwrite_and_remove
 
 migration_mapping = OrderedDict([
     ('Anomalies', [-1, -1, -1, -1, -1, -1, Anomalies_v_38, 0, 0, 0, 0, 0, 0, 0, 0, models._Anomalies, 0, 0, 0, 0, 0, 0, 0]),
