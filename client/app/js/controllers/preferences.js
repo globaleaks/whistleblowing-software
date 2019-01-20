@@ -30,7 +30,7 @@ GLClient.controller("PreferencesCtrl", ["$scope", "$q", "$rootScope", "CONSTANTS
 
       $scope.preferences.$update(function() {
         $rootScope.successes.push({message: "Updated your preferences!"});
-        $scope.reload()
+        $scope.reload();
       });
     };
 

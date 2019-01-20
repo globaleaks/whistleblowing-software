@@ -59,7 +59,7 @@ function($scope, $location, $filter, Sites) {
       });
 
       $scope.selectableSites = $filter("orderBy")(ret, "label");
-    }
+    };
 
     $scope.refreshSelectableSites();
   }

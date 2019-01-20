@@ -316,7 +316,7 @@ GLClient.controller("SubmissionCtrl",
     for(var i=0; i<receivers.length; i++) {
       $scope.submission.selected_receivers[receivers[i]] = true;
     }
-  }
+  };
 
   $scope.onAnswerUpdate = function(field, entry) {
     var i;
@@ -358,7 +358,7 @@ GLClient.controller("SubmissionCtrl",
         }
       }
     }
-  }
+  };
 
   $scope.displayErrors = function() {
     if (!($scope.navigation > $scope.selection || $scope.submitPressed || $scope.submission.done)) {
@@ -453,7 +453,7 @@ controller("AdditionalQuestionnaireCtrl",
     return $scope.selection > $scope.firstStepIndex();
   };
 
-  $scope.checkForInvalidFields = function() { return true; }
+  $scope.checkForInvalidFields = function() { return true; };
 
   $scope.incrementStep = function() {
     if ($scope.hasNextStep()) {
@@ -591,7 +591,7 @@ controller("AdditionalQuestionnaireCtrl",
     } else {
       field.required_status = field.required && !entry["value"];
     }
-  }
+  };
 
   $scope.displayErrors = function() {
     return false;
@@ -647,7 +647,7 @@ controller("SubmissionFormFieldCtrl", ["$scope", "topojson",
         for(var i=0; i<$scope.field.attrs.topojson.paths.length; i++) {
           d3.select($scope.field.attrs.topojson.paths[i]).attr("r", 5.5).style("fill", "#DDD");
         }
-      }
+      };
 
       $scope.field.attrs.topojson.set = function(id) {
         $scope.clicked = null;
@@ -660,7 +660,7 @@ controller("SubmissionFormFieldCtrl", ["$scope", "topojson",
            d3.select(path).attr("r", 5.5).style("fill", "#DDD");
           }
         }
-      }
+      };
 
       d3.json($scope.field.attrs.topojson.value).then(function(json) {
         var key = Object.keys(json.objects)[0];

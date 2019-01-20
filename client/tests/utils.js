@@ -115,7 +115,7 @@ exports.login_whistleblower = function(receipt) {
   element(by.model("formatted_receipt")).sendKeys(receipt);
   element(by.id("ReceiptButton")).click();
   exports.waitForUrl("/status");
-}
+};
 
 exports.login_receiver = function(username, password, url, firstlogin) {
   username = username === undefined ? "recipient" : username;
@@ -171,7 +171,7 @@ exports.clickFirstDisplayed = function(selector) {
   });
 
   displayedElems.first().click();
-}
+};
 
 // Utility Functions for handling File operations
 

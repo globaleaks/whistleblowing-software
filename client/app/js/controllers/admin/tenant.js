@@ -22,7 +22,7 @@ angular.module("GLClient")
       $scope.admin.tenants.push(tenant);
       $scope.newTenant = new $scope.AdminUtils.new_tenant();
     });
-  }
+  };
 }])
 .controller("TenantEditorCtrl", ["$scope", "$rootScope", "$http", "$window", "AdminTenantResource",
   function($scope, $rootScope, $http, $window, AdminTenantResource) {
@@ -59,7 +59,7 @@ angular.module("GLClient")
     tenant.$update().then(function() {
       $rootScope.successes.push({});
     });
-  }
+  };
 
   $scope.deleteTenant = function($event) {
     $event.stopPropagation();

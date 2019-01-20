@@ -11,5 +11,5 @@ GLClient.controller("PasswordResetCtrl", ["$scope", "$location", "$http",
   $scope.submit = function() {
     $http.post("reset/password", $scope.data);
     $location.path("/login/passwordreset/requested");
-  }
+  };
 }]);

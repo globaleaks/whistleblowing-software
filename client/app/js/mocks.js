@@ -20,7 +20,7 @@ GLClient.mockEngine = (function() {
         e.innerHTML = mock;
       }
     }
-  }
+  };
 
   var run = function(scope) {
     var current_path = document.location.pathname + document.location.hash;

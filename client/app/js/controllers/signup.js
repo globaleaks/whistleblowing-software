@@ -39,7 +39,7 @@
 
   $scope.updateSubdomain = function() {
     $scope.signup.subdomain = $scope.signup.organization_name.replace(/[^\w]/gi, "").toLowerCase();
-  }
+  };
 
   $scope.complete = function() {
     if (completed) {

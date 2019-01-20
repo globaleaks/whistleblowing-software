@@ -16,8 +16,8 @@ GLClient.controller("AdminNetworkCtrl", ["$scope", "$http", function($scope, $ht
 
   $scope.setHostname = function() {
     $scope.verifyFailed = false;
-    $scope.Utils.setHostname($scope.admin.node.hostname)
-  }
+    $scope.Utils.setHostname($scope.admin.node.hostname);
+  };
 
   $scope.verifyHostname = function() {
     $scope.verifyFailed = false;
@@ -41,7 +41,7 @@ GLClient.controller("AdminNetworkCtrl", ["$scope", "$http", function($scope, $ht
     var req = {
       "operation": "reset_onion_private_key",
       "args": {}
-    }
+    };
 
     return $http({method: "PUT", url: "admin/config", data: req}).then(function(response) {
       $scope.admin.node.onionservice = response.data.onionservice;
@@ -65,7 +65,7 @@ controller("AdminHTTPSConfigCtrl", ["$q", "$location", "$http", "$scope", "$uibM
   $scope.saveNodeAndProceed = function() {
     $scope.Utils.setHostname($scope.admin.node.hostname).then(function() {
       $scope.Utils.update($scope.admin.node, function(){ $scope.setMenu("choice"); });
-    })
+    });
   };
 
   $scope.parseTLSConfig = function(tlsConfig) {
@@ -80,7 +80,7 @@ controller("AdminHTTPSConfigCtrl", ["$q", "$location", "$http", "$scope", "$uibM
       }
 
       if (tlsConfig.files.cert.set) {
-        t = 2
+        t = 2;
       }
 
       if (tlsConfig.files.chain.set) {
@@ -271,7 +271,7 @@ controller("AdminHTTPSConfigCtrl", ["$q", "$location", "$http", "$scope", "$uibM
         targetFunc: function() { return targetFunc; },
       },
     });
-  }
+  };
 }])
 .controller("disableInputModalCtrl", ["$scope", function($scope) {
   $scope.$resolve.modal_open.resolve();

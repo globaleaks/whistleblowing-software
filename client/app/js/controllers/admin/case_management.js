@@ -13,7 +13,7 @@ GLClient.controller("AdminCaseManagementCtrl", ["$scope", function($scope){
     };
 
     $scope.editableStatusesList = function() {
-      var displayedStatuses = []
+      var displayedStatuses = [];
       for (var i = 0; i < $scope.admin.submission_statuses.length; i++) {
         var status = $scope.admin.submission_statuses[i];
         if (status.system_defined === false) {
@@ -22,7 +22,7 @@ GLClient.controller("AdminCaseManagementCtrl", ["$scope", function($scope){
       }
 
       return displayedStatuses;
-    }
+    };
   }
 ]).controller("AdminSubmissionStatusEditorCtrl", ["$scope", "$http", "AdminSubmissionStatusResource",
   function ($scope, $http, AdminSubmissionStatusResource) {
@@ -40,7 +40,7 @@ GLClient.controller("AdminCaseManagementCtrl", ["$scope", function($scope){
       $scope.Utils.deleteDialog($scope.submissions_status).then(function() {
         return $scope.Utils.deleteResource(AdminSubmissionStatusResource, $scope.admin.submission_statuses, $scope.submissions_status);
       });
-    }
+    };
 
     function ss_idx(ss_id) {
       for (var i = 0; i < $scope.admin.submission_statuses.length; i++) {
@@ -54,7 +54,7 @@ GLClient.controller("AdminCaseManagementCtrl", ["$scope", function($scope){
     $scope.save_submissions_status = function (context, cb) {
       var updated_submissions_status = new AdminSubmissionStatusResource(context);
       return $scope.Utils.update(updated_submissions_status, cb);
-    }
+    };
 
     function swap($event, index, n) {
       $event.stopPropagation();
@@ -68,9 +68,9 @@ GLClient.controller("AdminCaseManagementCtrl", ["$scope", function($scope){
 
       // Because the base data structure and the one we display don't match ...
       var orig_index = ss_idx(statuses_list[index].id);
-      var orig_target = ss_idx(statuses_list[target].id)
+      var orig_target = ss_idx(statuses_list[target].id);
 
-      var moving_status = $scope.admin.submission_statuses[orig_index]
+      var moving_status = $scope.admin.submission_statuses[orig_index];
       $scope.admin.submission_statuses[orig_index] = $scope.admin.submission_statuses[orig_target];
       $scope.admin.submission_statuses[orig_target] = moving_status;
 
@@ -83,7 +83,7 @@ GLClient.controller("AdminCaseManagementCtrl", ["$scope", function($scope){
             return c;
           }
         })
-      }
+      };
 
       $http({
         method: "PUT",
@@ -106,7 +106,7 @@ GLClient.controller("AdminCaseManagementCtrl", ["$scope", function($scope){
       var new_submissions_status = {
         "label": $scope.new_submissions_status.label,
         "presentation_order": presentation_order
-      }
+      };
 
       $http.post(
         "/admin/submission_statuses",
@@ -114,7 +114,7 @@ GLClient.controller("AdminCaseManagementCtrl", ["$scope", function($scope){
       ).then(function (result) {
         $scope.admin.submission_statuses.push(result.data);
       });
-    }
+    };
 }]).controller("AdminSubmissionSubStatusCtrl", [
   function () {
 }]).controller("AdminSubmissionSubStatusEditorCtrl", ["$scope", "$http", "AdminSubmissionSubStatusResource",
@@ -122,7 +122,7 @@ GLClient.controller("AdminCaseManagementCtrl", ["$scope", function($scope){
     $scope.substatus_editing = false;
     $scope.toggleSubstatusEditing = function () {
       $scope.substatus_editing = !$scope.substatus_editing;
-    }
+    };
 
     $scope.deleteSubSubmissionStatus = function() {
       $scope.Utils.deleteDialog($scope.substatus).then(function() {
@@ -134,7 +134,7 @@ GLClient.controller("AdminCaseManagementCtrl", ["$scope", function($scope){
           $scope.submissions_status.substatuses.splice(index, 1);
         });
       });
-    }
+    };
 
     $scope.save_submissions_substatuses = function (substatus, cb) {
       var updated_submissions_substatuses = new AdminSubmissionSubStatusResource(substatus);
@@ -161,7 +161,7 @@ GLClient.controller("AdminCaseManagementCtrl", ["$scope", function($scope){
         url: "/admin/submission_statuses/" + $scope.submissions_status.id + "/substatuses",
         data: {
           "operation": "order_elements",
-          "args":  {"ids" : $scope.submissions_status.substatuses.map(function(c) { return c.id })}
+          "args":  {"ids" : $scope.submissions_status.substatuses.map(function(c) { return c.id; })}
         },
       });
     }
@@ -174,15 +174,15 @@ GLClient.controller("AdminCaseManagementCtrl", ["$scope", function($scope){
       var new_submissions_substatuses = {
         "label": $scope.new_substatus.label,
         "presentation_order": $scope.presentation_order
-      }
+      };
 
       $http.post(
         "/admin/submission_statuses/" + $scope.submissions_status.id + "/substatuses",
         new_submissions_substatuses
       ).then(function (result) {
         $scope.submissions_status.substatuses.push(result.data);
-      })
-    }
+      });
+    };
   }
 ]).controller("AdminSubmissionClosingStatusCtrl", ["$scope",
   function ($scope) {
@@ -212,7 +212,7 @@ GLClient.controller("AdminCaseManagementCtrl", ["$scope", function($scope){
       var new_submissions_substatuses = {
         "label": $scope.new_closed_submissions_substatuses.label,
         "presentation_order": $scope.closed_ss_presentation_order
-      }
+      };
 
       $http.post(
         "/admin/submission_statuses/" + $scope.submissions_status.id + "/substatuses",
@@ -220,6 +220,6 @@ GLClient.controller("AdminCaseManagementCtrl", ["$scope", function($scope){
       ).then(function (result) {
         $scope.submissions_status.substatuses.push(result.data);
       });
-    }
+    };
   }
-])
+]);

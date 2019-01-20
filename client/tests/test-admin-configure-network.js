@@ -24,7 +24,7 @@ describe("admin configure https", function() {
 
     element(by.cssContainingText("button", "Proceed")).click();
 
-    element(by.id("HTTPSManualMode")).click()
+    element(by.id("HTTPSManualMode")).click();
 
     // Generate key
     pk_panel.element(by.cssContainingText("button", "Generate")).click();
@@ -59,7 +59,7 @@ describe("admin configure https", function() {
 
     element(by.cssContainingText("button", "Proceed")).click();
 
-    element(by.id("HTTPSManualMode")).click()
+    element(by.id("HTTPSManualMode")).click();
 
     if (browser.gl.utils.testFileUpload()) {
       // Upload key

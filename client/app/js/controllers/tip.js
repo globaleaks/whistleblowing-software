@@ -176,7 +176,7 @@ GLClient.controller("TipCtrl",
             return {
               tip: $scope.tip,
               operation: "delete"
-            }
+            };
           }
         }
       });
@@ -193,7 +193,7 @@ GLClient.controller("TipCtrl",
               operation: "postpone_expiration",
               contexts_by_id: $scope.contexts_by_id,
               Utils: $scope.Utils
-            }
+            };
           }
         }
       });

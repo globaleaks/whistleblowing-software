@@ -123,35 +123,35 @@ var GLClient = angular.module("GLClient", [
     function fetchResources(role, lst) {
       return ["$q", "Access", "AdminContextResource", "AdminQuestionnaireResource", "AdminStepResource", "AdminFieldResource", "AdminFieldTemplateResource", "AdminUserResource", "AdminNodeResource", "AdminNotificationResource", "AdminShorturlResource", "AdminTenantResource", "FieldAttrs", "ActivitiesCollection", "AnomaliesCollection", "TipOverview", "FileOverview", "JobsOverview", "ManifestResource", "AdminSubmissionStatusResource", function($q, Access, AdminContextResource, AdminQuestionnaireResource, AdminStepResource, AdminFieldResource, AdminFieldTemplateResource, AdminUserResource, AdminNodeResource, AdminNotificationResource, AdminShorturlResource, AdminTenantResource, FieldAttrs, ActivitiesCollection, AnomaliesCollection, TipOverview, FileOverview, JobsOverview, ManifestResource, AdminSubmissionStatusResource) {
         var resourcesPromises = {
-          node: function() { return AdminNodeResource.get().$promise },
+          node: function() { return AdminNodeResource.get().$promise; },
           manifest: function() { return ManifestResource.get().$promise; },
-          contexts: function() { return AdminContextResource.query().$promise },
-          field_attrs: function() { return FieldAttrs.get().$promise },
-          fieldtemplates: function() { return AdminFieldTemplateResource.query().$promise },
-          users: function() { return AdminUserResource.query().$promise },
-          notification: function() { return AdminNotificationResource.get().$promise },
-          shorturls: function() { return AdminShorturlResource.query().$promise },
-          tenants: function() { return AdminTenantResource.query().$promise },
-          activities: function() { return ActivitiesCollection.query().$promise },
-          anomalies: function() { return AnomaliesCollection.query().$promise },
-          tip_overview: function() { return TipOverview.query().$promise },
-          file_overview: function() { return FileOverview.query().$promise },
-          jobs_overview: function() { return JobsOverview.query().$promise },
-          questionnaires: function() { return AdminQuestionnaireResource.query().$promise },
-          submission_statuses: function() { return AdminSubmissionStatusResource.query().$promise },
-        }
+          contexts: function() { return AdminContextResource.query().$promise; },
+          field_attrs: function() { return FieldAttrs.get().$promise; },
+          fieldtemplates: function() { return AdminFieldTemplateResource.query().$promise; },
+          users: function() { return AdminUserResource.query().$promise; },
+          notification: function() { return AdminNotificationResource.get().$promise; },
+          shorturls: function() { return AdminShorturlResource.query().$promise; },
+          tenants: function() { return AdminTenantResource.query().$promise; },
+          activities: function() { return ActivitiesCollection.query().$promise; },
+          anomalies: function() { return AnomaliesCollection.query().$promise; },
+          tip_overview: function() { return TipOverview.query().$promise; },
+          file_overview: function() { return FileOverview.query().$promise; },
+          jobs_overview: function() { return JobsOverview.query().$promise; },
+          questionnaires: function() { return AdminQuestionnaireResource.query().$promise; },
+          submission_statuses: function() { return AdminSubmissionStatusResource.query().$promise; },
+        };
 
         return Access.isAuthenticated(role).then(function() {
           var promises = {};
 
           for (var i = 0; i < lst.length; i++) {
-             var name = lst[i]
+             var name = lst[i];
              promises[name] = resourcesPromises[name]();
           }
 
           return $q.all(promises);
         });
-      }]
+      }];
     }
 
     $routeProvider.
@@ -605,7 +605,7 @@ var GLClient = angular.module("GLClient", [
       }
 
       return false;
-    }
+    };
 
     $rootScope.evaluateDisclaimerModalOpening = function () {
       if ($rootScope.node.enable_disclaimer && !$rootScope.disclaimer_opened) {
@@ -615,7 +615,7 @@ var GLClient = angular.module("GLClient", [
       }
 
       return false;
-    }
+    };
 
     $rootScope.init = function () {
       return PublicResource.get(function(result, getResponseHeaders) {
@@ -656,7 +656,7 @@ var GLClient = angular.module("GLClient", [
         $rootScope.connection = {
           "https": $location.protocol() === "https",
           "tor": false
-        }
+        };
 
         // Tor detection and enforcing of usage of HS if users are using Tor
         if ($location.host().match(/^[a-z0-9]{16}\.onion$/)) {
@@ -793,7 +793,7 @@ var GLClient = angular.module("GLClient", [
 
     var applyMocks = function() {
       GLClient.mockEngine.run($rootScope);
-    }
+    };
 
     var config = { attributes: false, childList: true, subtree: true };
     var observer = new MutationObserver(applyMocks);

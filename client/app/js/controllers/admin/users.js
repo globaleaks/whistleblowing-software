@@ -56,7 +56,7 @@ GLClient.controller("AdminUsersCtrl", ["$scope", "AdminTenantResource",
       $scope.Utils.readFileAsText(file).then(function(txt) {
         $scope.user.pgp_key_public = txt;
       }, $scope.Utils.displayErrorMsg);
-    }
+    };
 
     $scope.resetUserPassword = function() {
       $http.put(
@@ -67,8 +67,8 @@ GLClient.controller("AdminUsersCtrl", ["$scope", "AdminTenantResource",
           }
       }).then(function() {
         $rootScope.successes.push({message: "Success!"});
-      })
-    }
+      });
+    };
 }]).
 controller("AdminUserTenantAssociationAddCtrl", ["$scope", "$http", "$filter",
 function ($scope, $http, $filter) {
@@ -87,7 +87,7 @@ function ($scope, $http, $filter) {
       /* Same if user is already associated */
       var already_associated = false;
       for (var j = 0; j < $scope.user.usertenant_assocations.length; j++) {
-        var t_assoc = $scope.user.usertenant_assocations[j]
+        var t_assoc = $scope.user.usertenant_assocations[j];
         if (t_assoc.tenant_id === tenant.id) {
           already_associated = true;
           break;
@@ -107,7 +107,7 @@ function ($scope, $http, $filter) {
     }
 
     $scope.availableTenants = tenantList;
-  }
+  };
 
   if ($scope.node.root_tenant) {
     $scope.refreshAvailableTenants();
@@ -116,22 +116,22 @@ function ($scope, $http, $filter) {
   $scope.addUserTenantAssociation = function (tenant) {
     var new_submission_substate = {
       "tenant_id":tenant.id
-    }
+    };
 
     $http.post(
       "/admin/users/" + $scope.user.id + "/tenant_associations",
       new_submission_substate
     ).then(function (result) {
       $scope.user.usertenant_assocations.push(result.data);
-    })
-  }
+    });
+  };
 }]).
 controller("AdminUserTenantAssociationEditorCtrl", ["$scope", "$http", "AdminUserTenantAssociationResource",
 function ($scope, $http, AdminUserTenantAssociationResource) {
   $scope.usertenant_association_editing = false;
   $scope.toggleUserTenantAssociationEditing = function () {
     $scope.usertenant_association_editing = !$scope.usertenant_association_editing;
-  }
+  };
 
   $scope.deleteUserTenantAssociation = function() {
     $scope.Utils.deleteDialog($scope.association).then(function() {
@@ -144,7 +144,7 @@ function ($scope, $http, AdminUserTenantAssociationResource) {
         $scope.refreshAvailableTenants();
       });
     });
-  }
+  };
 
 }]).
 controller("AdminUserAddCtrl", ["$scope",

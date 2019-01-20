@@ -119,7 +119,7 @@ controller("AdminGeneralSettingsCtrl", ["$scope", "$filter", "$http", "Files", "
   };
 
   $scope.enableLanguage = function(lang_obj) {
-    $scope.admin.node.languages_enabled.push(lang_obj.code)
+    $scope.admin.node.languages_enabled.push(lang_obj.code);
   };
 
   $scope.removeLang = function(idx, lang_code) {
@@ -147,7 +147,7 @@ controller("AdminHomeCtrl", ["$scope", function($scope) {
   $scope.displayNum = 10;
   $scope.showMore = function() {
     $scope.displayNum = undefined;
-  }
+  };
 }]).
 controller("AdminAdvancedCtrl", ["$scope", "$uibModal", "CONSTANTS",
   function($scope, $uibModal, CONSTANTS){

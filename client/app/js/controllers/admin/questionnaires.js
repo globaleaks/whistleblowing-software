@@ -38,7 +38,7 @@ GLClient.controller("AdminQuestionnaireCtrl",
         method: "POST",
         url: "admin/questionnaires?multilang=1",
         data: txt,
-      })
+      });
     }).then(function() {
        $route.reload();
     }, $scope.Utils.displayErrorMsg);

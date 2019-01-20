@@ -61,8 +61,8 @@ angular.module("GLServices", ["ngResource"]).
 
           self.session.role_l10n = function() {
             return $filter("translate")(self.session.role.charAt(0).toUpperCase() + self.session.role.substr(1));
-          }
-        }
+          };
+        };
 
         self.login = function(tid, username, password, authcode, token, cb) {
           self.loginInProgress = true;
@@ -475,7 +475,7 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
 
         tip.localChange = function() {
           tip.update_date = (new Date()).toISOString();
-        }
+        };
 
         if (fn) {
           fn(tip);
@@ -546,7 +546,7 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
 
         tip.localChange = function() {
           tip.update_date = (new Date()).toISOString();
-        }
+        };
 
         if (fn) {
           fn(tip);
@@ -612,7 +612,7 @@ service("UpdateService", [function() {
     },
     update_needed: false,
     latest_version: undefined,
-  }
+  };
 }]).
   factory("AdminNodeResource", ["GLResource", "UpdateService", function(GLResource, UpdateService) {
     return new GLResource("admin/node", {}, {
@@ -1178,7 +1178,7 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
 
         return $http({method: "PUT", url: "admin/config", data: req});
       },
-    }
+    };
 }]).
   factory("fieldUtilities", ["$filter", "CONSTANTS", function($filter, CONSTANTS) {
       var getValidator = function(field) {
