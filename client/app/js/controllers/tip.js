@@ -18,10 +18,24 @@ GLClient.controller("TipCtrl",
       return entry[$scope.field.id];
     };
 
+    var filterNotTriggeredField = function(field, answers) {
+      for(var i=field.children.length - 1; i>=0; i--) {
+        var f = field.children[i];
+        if (!$scope.isFieldTriggered(f, answers[f.id], $scope.tip.total_score)) {
+          field.children.splice(i, 1);
+        } else {
+          for (var j=0; j<answers[f.id].length; j++) {
+            filterNotTriggeredField(f, answers[f.id]);
+          }
+        }
+      }
+    };
+
     $scope.preprocessTipAnswers = function(tip) {
-      for (var i=tip.questionnaires[0].steps.length - 1; i>=0; i--) {
+      var i, j, k;
+      for (i=tip.questionnaires[0].steps.length - 1; i>=0; i--) {
         var step = tip.questionnaires[0].steps[i];
-        var j = step.children.length;
+        j = step.children.length;
         while (j--) {
           if (step.children[j]["template_id"] === "whistleblower_identity") {
             $scope.whistleblower_identity_field = step.children[j];
@@ -30,34 +44,21 @@ GLClient.controller("TipCtrl",
             $scope.rows = fieldUtilities.splitRows($scope.fields);
             $scope.field = $scope.whistleblower_identity_field;
 
-            for (var k1 = 0; k1 < $scope.field.children.length; k1++) {
-              var child = $scope.field.children[k1];
+            for (k = 0; k < $scope.field.children.length; k++) {
+              var child = $scope.field.children[k];
               $scope.answers[child.id] = [angular.copy(fieldUtilities.prepare_field_answers_structure(child))];
             }
           }
         }
 
         if ($scope.node.enable_experimental_features) {
-          var filterNotTriggeredField = function(field, answers) {
-            for(var k2=field.children.length - 1; k2>=0; k2--) {
-              var f = field.children[k2];
-              if (!$scope.isFieldTriggered(f, answers[f.id], $scope.tip.total_score)) {
-                field.children.splice(k2, 1);
-              } else {
-                for (var k3=0; k3<answers[f.id].length; k3++) {
-                  filterNotTriggeredField(f, answers[f.id]);
-                }
-              }
-            }
-          };
-
           if (!$scope.isFieldTriggered(step, $scope.tip.answers, $scope.tip.total_score)) {
             tip.questionnaires[0].steps.splice(i, 1);
           } else {
-            for (var k4=0; k4<step.children.length; k4++) {
-              var field = step.children[k4];
-              for (var k5=0; k5<$scope.tip.questionnaires[0].answers[field.id].length; k5++) {
-                filterNotTriggeredField(field, $scope.tip.questionnaires[0].answers[field.id][k5]);
+            for (j=0; j<step.children.length; j++) {
+              var field = step.children[i];
+              for (k=0; k<$scope.tip.questionnaires[0].answers[field.id].length; k++) {
+                filterNotTriggeredField(field, $scope.tip.questionnaires[0].answers[field.id][k]);
               }
             }
           }
