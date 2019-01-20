@@ -23,6 +23,7 @@
     },
     "rules": {
         "comma-dangle": 0,
+        "eqeqeq": "error",
         "linebreak-style": [
             "error",
             "unix"
