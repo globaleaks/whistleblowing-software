@@ -86,7 +86,6 @@ def signup(session, state, tid, request, language):
     for user_desc in db_get_admin_users(session, 1):
         template_vars = {
             'type': 'admin_signup_alert',
-            'signup': serialize_signup(signup),
             'node': db_admin_serialize_node(session, 1, user_desc['language']),
             'notification': db_get_notification(session, 1, user_desc['language']),
             'user': user_desc,
