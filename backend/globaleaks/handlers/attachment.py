@@ -61,5 +61,4 @@ class PostSubmissionAttachment(SubmissionAttachment):
 
         self.uploaded_file['submission'] = False
 
-
         yield register_ifile_on_db(self.request.tid, itip_id, self.uploaded_file)

@@ -9,7 +9,7 @@ import re
 import sys
 
 from six import text_type, binary_type
-from six.moves.urllib.parse import urlsplit, urlunparse, urlunsplit # pylint: disable=import-error
+from six.moves.urllib.parse import urlsplit, urlunparse, urlunsplit  # pylint: disable=import-error
 
 from twisted.internet import defer
 from twisted.internet.abstract import isIPAddress, isIPv6Address
@@ -99,7 +99,7 @@ api_spec = [
     (r'/rtip/rfile/' + uuid_regexp, rtip.ReceiverFileDownload),
     (r'/rtip/wbfile/' + uuid_regexp, rtip.RTipWBFileHandler),
 
-    ## Whistleblower Tip Handlers
+    # Whistleblower Tip Handlers
     (r'/wbtip', wbtip.WBTipInstance),
     (r'/wbtip/comments', wbtip.WBTipCommentCollection),
     (r'/wbtip/messages/' + uuid_regexp, wbtip.WBTipMessageCollection),
@@ -116,10 +116,10 @@ api_spec = [
     (r'/custodian/identityaccessrequests', custodian.IdentityAccessRequestsCollection),
     (r'/custodian/identityaccessrequest/' + uuid_regexp, custodian.IdentityAccessRequestInstance),
 
-    ## Email Validation Handler
+    # Email Validation Handler
     (r'/email/validation/(.+)', email_validation.EmailValidation),
 
-    ## Reset Password Handler
+    # Reset Password Handler
     (r'/reset/password', password_reset.PasswordResetHandler),
     (r'/reset/password/(.+)', password_reset.PasswordResetHandler),
 
@@ -184,9 +184,10 @@ api_spec = [
 
     (r'^(/admin|/login|/submission)$', redirect.SpecialRedirectHandler),
 
-    ## This handler attempts to route all non routed get requests
+    # This handler attempts to route all non routed get requests
     (r'/([a-zA-Z0-9_\-\/\.\@]*)', staticfile.StaticFileHandler, {'path': Settings.client_path})
 ]
+
 
 class APIResourceWrapper(Resource):
     _registry = None
@@ -224,10 +225,10 @@ class APIResourceWrapper(Resource):
         tenant_hostname = State.tenant_cache[request.tid].hostname
 
         if isinstance(hostname, binary_type):
-             hostname = request.hostname.decode('utf-8')
+            hostname = request.hostname.decode('utf-8')
 
         if isinstance(hostname, binary_type):
-             hostname = State.tenant_cache[request.tid].hostname.decode('utf-8')
+            hostname = State.tenant_cache[request.tid].hostname.decode('utf-8')
 
         if ((hostname.endswith(State.tenant_cache[1].rootdomain) and
              State.tenant_cache[1].https_enabled) or
@@ -413,7 +414,7 @@ class APIResourceWrapper(Resource):
         if self.handler.upload_handler and method == 'post':
             self.handler.process_file_upload()
             if self.handler.uploaded_file is None:
-               return b''
+                return b''
 
         @defer.inlineCallbacks
         def concludeHandlerFailure(err):
@@ -435,14 +436,14 @@ class APIResourceWrapper(Resource):
 
             if not request_finished[0]:
                 if ret is not None:
-                   if isinstance(ret, (dict, list)):
-                       ret = json.dumps(ret, separators=(',', ':'))
-                       request.setHeader(b'content-type', b'application/json')
+                    if isinstance(ret, (dict, list)):
+                        ret = json.dumps(ret, separators=(',', ':'))
+                        request.setHeader(b'content-type', b'application/json')
 
-                   if isinstance(ret, text_type):
-                       ret = ret.encode()
+                    if isinstance(ret, text_type):
+                        ret = ret.encode()
 
-                   request.write(ret)
+                    request.write(ret)
 
                 request.finish()
 
@@ -480,7 +481,6 @@ class APIResourceWrapper(Resource):
             request.setHeader(b'x-check-tor', b'True')
         else:
             request.setHeader(b'x-check-tor', b'False')
-
 
     def parse_accept_language_header(self, request):
         if b'accept-language' in request.headers:

@@ -41,14 +41,14 @@ def get_disk_anomaly_conditions(free_workdir_bytes, total_workdir_bytes):
     # list of bad conditions ordered starting from the worst case scenario
     return [
         {
-            'condition': free_disk_megabytes <= State.tenant_cache[1].threshold_free_disk_megabytes_high or \
+            'condition': free_disk_megabytes <= State.tenant_cache[1].threshold_free_disk_megabytes_high or
                          free_disk_percentage <= State.tenant_cache[1].threshold_free_disk_percentage_high,
             'info_msg': info_msg_0,
             'alarm_level': 2,
             'accept_submissions': False
         },
         {
-            'condition': free_disk_megabytes <= State.tenant_cache[1].threshold_free_disk_megabytes_low or \
+            'condition': free_disk_megabytes <= State.tenant_cache[1].threshold_free_disk_megabytes_low or
                          free_disk_percentage <= State.tenant_cache[1].threshold_free_disk_percentage_low,
             'info_msg': info_msg_1,
             'alarm_level': 1,

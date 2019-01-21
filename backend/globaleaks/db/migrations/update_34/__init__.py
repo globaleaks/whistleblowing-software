@@ -11,6 +11,7 @@ from globaleaks.models.properties import *
 from globaleaks.settings import Settings
 from globaleaks.utils.utility import datetime_null, iso_strf_time
 
+
 class Node_v_33(models.Model):
     __tablename__ = 'node'
     id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
@@ -275,7 +276,7 @@ class MigrationScript(MigrationBase):
         for name in old_obj.localized_keys:
             xx_json_dict = getattr(old_obj, name, {})
             if xx_json_dict is None:
-                xx_json_dict = {} # protects against Nones in early db versions
+                xx_json_dict = {}  # protects against Nones in early db versions
             app_data_item = new_obj_appdata.get(name, {})
             for lang in langs_enabled:
                 val = xx_json_dict.get(lang, None)
@@ -286,7 +287,7 @@ class MigrationScript(MigrationBase):
                 elif val is None and val_def != "":
                     # This is the reset of the new default
                     val_f = val_def
-                else: # val is None and val_def == ""
+                else:  # val is None and val_def == ""
                     val_f = ""
 
                 s = self.model_to['ConfigL10N'](lang, old_obj.__tablename__, name, val_f)

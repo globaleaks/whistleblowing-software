@@ -1,6 +1,7 @@
 # -*- coding: UTF-8
 from globaleaks.db.migrations.update import MigrationBase
 
+
 class MigrationScript(MigrationBase):
     def migrate_Config(self):
         old_objs = self.session_old.query(self.model_from['Config'])

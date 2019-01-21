@@ -24,8 +24,8 @@ def admin_serialize_context(session, context, language):
     :param language: the language in which to localize data.
     :return: a dictionary representing the serialization of the context.
     """
-    receivers = [r[0] for r in session.query(models.ReceiverContext.receiver_id) \
-                                      .filter(models.ReceiverContext.context_id == context.id) \
+    receivers = [r[0] for r in session.query(models.ReceiverContext.receiver_id)
+                                      .filter(models.ReceiverContext.context_id == context.id)
                                       .order_by(models.ReceiverContext.presentation_order)]
     picture = db_get_model_img(session, 'contexts', context.id)
 
@@ -190,7 +190,7 @@ def update_context(session, tid, context_id, request, language):
 def order_elements(session, handler, req_args, *args, **kwargs):
     ctxs = session.query(models.Context).filter(models.Context.tid == handler.request.tid)
 
-    id_dict = { ctx.id: ctx for ctx in ctxs }
+    id_dict = {ctx.id: ctx for ctx in ctxs}
     ids = req_args['ids']
 
     if len(ids) != len(id_dict) or set(ids) != set(id_dict):

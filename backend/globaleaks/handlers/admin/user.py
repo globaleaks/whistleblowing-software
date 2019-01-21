@@ -128,7 +128,6 @@ def admin_update_user(session, tid, user_id, request, language):
     return user_serialize_user(session, db_admin_update_user(session, tid, user_id, request, language), language)
 
 
-
 @transact
 def delete_user(session, tid, user_id):
     user = db_get_user(session, tid, user_id)

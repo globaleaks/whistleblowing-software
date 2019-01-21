@@ -192,7 +192,7 @@ class TestObjectValidators(TestCase):
             self.cfg['ssl_cert'] = f.read()
 
         #ok, err = chn_v.validate(self.cfg)
-        #self.assertFalse(ok)
+        # self.assertFalse(ok)
         #self.assertTrue(isinstance(err, tls.ValidationException))
 
         ok, err = chn_v.validate(self.cfg, check_expiration=False)

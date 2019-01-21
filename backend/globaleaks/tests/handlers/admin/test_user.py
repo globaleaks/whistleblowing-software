@@ -5,6 +5,7 @@ from globaleaks import models
 from globaleaks.handlers.admin import user
 from globaleaks.tests import helpers
 
+
 class TestAdminCollection(helpers.TestCollectionHandler):
     _handler = user.UsersCollection
     _test_desc = {
@@ -67,6 +68,7 @@ class TestReceiverInstance(TestAdminInstance):
           'can_delete_submission': False
       }
     }
+
 
 class TestCustodianCollection(TestAdminCollection):
     _test_desc = {

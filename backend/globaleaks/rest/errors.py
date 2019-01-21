@@ -29,7 +29,7 @@ class InternalServerError(GLException):
     The context_id used does not exist in the database.
     """
     error_code = 1
-    status_code = 500 # Internal Server Error
+    status_code = 500  # Internal Server Error
 
     def __init__(self, error_str):
         self.reason = "InternalServerError [%s]" % error_str
@@ -42,7 +42,7 @@ class MethodNotImplemented(GLException):
     respected by the data body in the HTTP request.
     """
     error_code = 2
-    status_code = 501 # Not implemented
+    status_code = 501  # Not implemented
 
     def __init__(self):
         self.reason = "Method not implemented"
@@ -53,7 +53,7 @@ class InputValidationError(GLException):
     Error on input validation
     """
     error_code = 3
-    status_code = 406 # Not Acceptable
+    status_code = 406  # Not Acceptable
 
     def __init__(self, error=''):
         self.reason = "Invalid Input [%s]" % error
@@ -84,7 +84,7 @@ class ResourceNotFound(GLException):
     """
     reason = "Resource not found"
     error_code = 6
-    status_code = 404 # Not Found
+    status_code = 404  # Not Found
 
 
 class ModelNotFound(ResourceNotFound):
@@ -105,7 +105,7 @@ class ForbiddenOperation(GLException):
     """
     reason = "Operation Forbidden"
     error_code = 8
-    status_code = 403 # Forbidden
+    status_code = 403  # Forbidden
 
 
 class InvalidAuthentication(GLException):
@@ -114,7 +114,7 @@ class InvalidAuthentication(GLException):
     """
     reason = "Authentication Failed"
     error_code = 9
-    status_code = 401 # Unauthorized
+    status_code = 401  # Unauthorized
 
 
 class NotAuthenticated(GLException):
@@ -124,7 +124,7 @@ class NotAuthenticated(GLException):
     only if users has show knowledge of good credentials.
     """
     error_code = 10
-    status_code = 412 # Precondition Failed
+    status_code = 412  # Precondition Failed
     reason = "Not Authenticated"
 
 
@@ -154,7 +154,7 @@ class TorNetworkRequired(GLException):
     """
     reason = "Resource can be accessed only within Tor network"
     error_code = 13
-    status_code = 403 # Forbidden
+    status_code = 403  # Forbidden
 
 
 class FileTooBig(GLException):
@@ -162,7 +162,7 @@ class FileTooBig(GLException):
     Raised by GLHTTPConnection, when the uploaded file is bigger than acceptable
     """
     error_code = 13
-    status_code = 400 # Bad Request
+    status_code = 400  # Bad Request
 
     def __init__(self, size_limit):
         self.reason = ("Provided file upload overcomes size limits (%d Mb)" %
@@ -182,7 +182,7 @@ class DirectoryTraversalError(GLException):
 class SubmissionDisabled(GLException):
     reason = "Submissions are disabled"
     error_code = 15
-    status_code = 503 # Service not available
+    status_code = 503  # Service not available
 
 
 class AccessLocationInvalid(GLException):

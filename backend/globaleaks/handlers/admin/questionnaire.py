@@ -50,7 +50,7 @@ def db_get_questionnaire(session, tid, questionnaire_id, language, serialize_tem
 
 
 @transact
-def get_questionnaire(session, tid, questionnaire_id, language,serialize_templates=True):
+def get_questionnaire(session, tid, questionnaire_id, language, serialize_templates=True):
     return db_get_questionnaire(session, tid, questionnaire_id, language, serialize_templates=serialize_templates)
 
 

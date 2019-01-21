@@ -42,7 +42,6 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
         response = yield handler.post()
         self.assertTrue('redirect' in response)
 
-
     @inlineCallbacks
     def test_successful_multitenant_login_switch(self):
         handler = self.request({

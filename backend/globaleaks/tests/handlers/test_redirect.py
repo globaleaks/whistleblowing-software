@@ -6,6 +6,7 @@ from globaleaks.tests import helpers
 
 specials = ['/admin', '/login', '/submission']
 
+
 class TestSpecialRedirectHandler(helpers.TestHandler):
     _handler = redirect.SpecialRedirectHandler
 

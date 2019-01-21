@@ -17,8 +17,8 @@ def db_get_model_img(session, obj_key, obj_id):
     img =  session.query(model).filter(model.id == obj_id).one_or_none()
     if img is None:
         return ''
-    else:
-        return img.data
+
+    return img.data
 
 
 @transact

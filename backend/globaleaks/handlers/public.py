@@ -302,7 +302,7 @@ def serialize_field(session, tid, field, language, data=None, serialize_template
         'y': field.y,
         'width': field.width,
         'triggered_by_score': field.triggered_by_score,
-        'triggered_by_options':  triggered_by_options,
+        'triggered_by_options': triggered_by_options,
         'options': [serialize_field_option(o, language) for o in data['options'].get(f_to_serialize.id, [])],
         'children': [serialize_field(session, tid, f, language) for f in data['fields'].get(f_to_serialize.id, [])]
     }

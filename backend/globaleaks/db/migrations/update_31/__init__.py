@@ -291,7 +291,6 @@ class MigrationScript(MigrationBase):
 
             self.session_new.add(new_obj)
 
-
     def migrate_ReceiverTip(self):
         old_objs = self.session_old.query(self.model_from['ReceiverTip'])
         for old_obj in old_objs:

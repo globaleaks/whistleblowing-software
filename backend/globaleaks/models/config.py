@@ -14,6 +14,7 @@ inherit_from_root_tenant = [
   'default_questionnaire'
 ]
 
+
 def get_default(default):
     if callable(default):
         return default()
@@ -76,10 +77,10 @@ class ConfigL10NFactory(object):
 
     def serialize(self, group, lang):
         rows = self.get_all(group, lang)
-        return {c.var_name : c.value for c in rows if c.var_name in ConfigL10NFilters[group]}
+        return {c.var_name: c.value for c in rows if c.var_name in ConfigL10NFilters[group]}
 
     def update(self, group, data, lang):
-        c_map = {c.var_name : c for c in self.get_all(group, lang)}
+        c_map = {c.var_name: c for c in self.get_all(group, lang)}
 
         for key in (x for x in ConfigL10NFilters[group] if x in data):
             c_map[key].set_v(data[key])

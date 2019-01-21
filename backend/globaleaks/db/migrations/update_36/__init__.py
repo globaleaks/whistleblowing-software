@@ -1,9 +1,10 @@
 # -*- coding: utf-8
 from six import text_type
-from six.moves.urllib.parse import urlparse # pylint: disable=import-error
+from six.moves.urllib.parse import urlparse  # pylint: disable=import-error
 
 from globaleaks.db.migrations.update import MigrationBase
 from globaleaks.models.properties import *
+
 
 class MigrationScript(MigrationBase):
     def epilogue(self):

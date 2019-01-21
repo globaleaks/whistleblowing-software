@@ -46,7 +46,7 @@ def wb_serialize_wbfile(session, wbfile):
 
 
 def db_get_rfile_list(session, itip_id):
-    return [wb_serialize_ifile(ifile) for ifile in session.query(models.InternalFile) \
+    return [wb_serialize_ifile(ifile) for ifile in session.query(models.InternalFile)
                                                           .filter(models.InternalFile.internaltip_id == itip_id,
                                                                   models.InternalTip.id == itip_id)]
 

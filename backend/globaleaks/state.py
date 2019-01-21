@@ -183,29 +183,28 @@ class StateClass(ObjectDict):
         self.stats_collection_start_time = datetime_now()
 
     def sendmail(self, tid, to_address, subject, body):
-       if self.settings.testing:
-           # during unit testing do not try to send the mail
-           return defer.succeed(True)
+        if self.settings.testing:
+            # during unit testing do not try to send the mail
+            return defer.succeed(True)
 
-       if self.tenant_cache[tid].mode == u'whistleblowing.it':
-           tid = 1
+        if self.tenant_cache[tid].mode == u'whistleblowing.it':
+            tid = 1
 
-       return sendmail(tid,
-                       self.tenant_cache[tid].notification.smtp_server,
-                       self.tenant_cache[tid].notification.smtp_port,
-                       self.tenant_cache[tid].notification.smtp_security,
-                       self.tenant_cache[tid].notification.smtp_authentication,
-                       self.tenant_cache[tid].notification.smtp_username,
-                       self.tenant_cache[tid].notification.smtp_password,
-                       self.tenant_cache[tid].notification.smtp_source_name,
-                       self.tenant_cache[tid].notification.smtp_source_email,
-                       to_address,
-                       self.tenant_cache[tid].name + ' - ' + subject,
-                       body,
-                       self.tenant_cache[1].anonymize_outgoing_connections,
-                       self.settings.socks_host,
-                       self.settings.socks_port)
-
+        return sendmail(tid,
+                        self.tenant_cache[tid].notification.smtp_server,
+                        self.tenant_cache[tid].notification.smtp_port,
+                        self.tenant_cache[tid].notification.smtp_security,
+                        self.tenant_cache[tid].notification.smtp_authentication,
+                        self.tenant_cache[tid].notification.smtp_username,
+                        self.tenant_cache[tid].notification.smtp_password,
+                        self.tenant_cache[tid].notification.smtp_source_name,
+                        self.tenant_cache[tid].notification.smtp_source_email,
+                        to_address,
+                        self.tenant_cache[tid].name + ' - ' + subject,
+                        body,
+                        self.tenant_cache[1].anonymize_outgoing_connections,
+                        self.settings.socks_host,
+                        self.settings.socks_port)
 
     def schedule_exception_email(self, exception_text, *args):
         if not hasattr(self.tenant_cache[1], 'notification'):
@@ -224,7 +223,7 @@ class StateClass(ObjectDict):
 
         self.exceptions[sha256_hash] += 1
         if self.exceptions[sha256_hash] > 5:
-            log.err("Exception mail suppressed for (%s) [reason: threshold exceeded]",  sha256_hash)
+            log.err("Exception mail suppressed for (%s) [reason: threshold exceeded]", sha256_hash)
             return
 
         self.exceptions_email_count += 1
@@ -232,7 +231,7 @@ class StateClass(ObjectDict):
         mail_subject = "GlobaLeaks Exception"
         delivery_list = self.tenant_cache[1].notification.exception_delivery_list
 
-        mail_body = text_type("Platform: %s\nHost: %s (%s)\nVersion: %s\n\n%s" \
+        mail_body = text_type("Platform: %s\nHost: %s (%s)\nVersion: %s\n\n%s"
                           % (self.tenant_cache[1].name,
                              self.tenant_cache[1].hostname,
                              self.tenant_cache[1].onionservice,
@@ -243,9 +242,9 @@ class StateClass(ObjectDict):
             # Opportunisticly encrypt the mail body. NOTE that mails will go out
             # unencrypted if one address in the list does not have a public key set.
             if pgp_key_public:
-               pgpctx = PGPContext(self.settings.tmp_path)
-               fingerprint = pgpctx.load_key(pgp_key_public)['fingerprint']
-               mail_body = pgpctx.encrypt_message(fingerprint, mail_body)
+                pgpctx = PGPContext(self.settings.tmp_path)
+                fingerprint = pgpctx.load_key(pgp_key_public)['fingerprint']
+                mail_body = pgpctx.encrypt_message(fingerprint, mail_body)
 
             # avoid waiting for the notification to send and instead rely on threads to handle it
             tw(db_schedule_email, 1, mail_address, mail_subject, mail_body)
@@ -256,7 +255,7 @@ class StateClass(ObjectDict):
             def f(*args):
                 return self.onion_service_job.add_all_hidden_services()
 
-            self.onion_service_job.remove_unwanted_hidden_services().addBoth(f) # pylint: disable=no-member
+            self.onion_service_job.remove_unwanted_hidden_services().addBoth(f)  # pylint: disable=no-member
 
         self.process_supervisor.reload()
 

@@ -11,7 +11,7 @@ from twisted.python.log import ILogObserver
 from twisted.web import server
 
 # this import seems unused but it is required in order to load the mocks
-import globaleaks.mocks.twisted_mocks # pylint: disable=W0611
+import globaleaks.mocks.twisted_mocks  # pylint: disable=W0611
 
 from globaleaks.db import create_db, init_db, update_db, \
     sync_refresh_memory_variables, sync_clean_untracked_files
@@ -27,7 +27,7 @@ from globaleaks.workers.supervisor import ProcessSupervisor
 
 def fail_startup(excep):
     log.err("ERROR: Cannot start GlobaLeaks. Please manually examine the exception.")
-    log.err("EXCEPTION: %s",  excep)
+    log.err("EXCEPTION: %s", excep)
     log.debug('TRACE: %s', traceback.format_exc(excep))
     if reactor.running:
         reactor.stop()
@@ -198,6 +198,7 @@ class Service(service.Service):
 
         if tenant_cache.onionservice:
             print("- [Tor]:\t--> http://%s" % tenant_cache.onionservice)
+
 
 try:
     application = service.Application('GLBackend')

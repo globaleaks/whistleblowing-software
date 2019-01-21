@@ -12,6 +12,7 @@ from OpenSSL.SSL import Connection
 from twisted.internet.interfaces import IOpenSSLServerConnectionCreator
 from zope.interface import implementer
 
+
 class _NegotiationData(object):
     """
     A container for the negotiation data.
@@ -50,6 +51,7 @@ class _ContextProxy(object):
     values of the NPN/ALPN callbacks, to ensure that they get set appropriately
     if a context is swapped out during connection setup.
     """
+
     def __init__(self, original, factory):
         self._obj = original
         self._factory = factory
@@ -88,6 +90,7 @@ class _ConnectionProxy(object):
     A basic proxy for an OpenSSL Connection object that returns a ContextProxy
     wrapping the actual OpenSSL Context whenever it's asked for.
     """
+
     def __init__(self, original, factory):
         self._obj = original
         self._factory = factory

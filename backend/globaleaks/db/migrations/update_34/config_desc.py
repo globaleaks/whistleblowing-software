@@ -36,7 +36,7 @@ GLConfig_v_35 = {
         'disable_custodian_notification_emails': Bool(default=False),
         'disable_receiver_notification_emails': Bool(default=False),
 
-        'tip_expiration_threshold': Int(default=72), # Hours
+        'tip_expiration_threshold': Int(default=72),  # Hours
         'notification_threshold_per_hour': Int(default=20),
 
         'exception_email_address': Unicode(default=u'globaleaks-stackexception@lists.globaleaks.org'),
@@ -71,7 +71,7 @@ GLConfig_v_35 = {
         'disable_encryption_warnings': Bool(default=False),
         'allow_iframes_inclusion': Bool(default=False),
         'submission_minimum_delay': Int(default=10),
-        'submission_maximum_ttl': Int(default=10800), # Seconds
+        'submission_maximum_ttl': Int(default=10800),  # Seconds
 
         # privileges of receivers
         'can_postpone_expiration': Bool(default=False),
@@ -103,7 +103,7 @@ GLConfig_v_35 = {
         'show_small_context_cards': Bool(default=False),
         'show_contexts_in_alphabetical_order': Bool(default=False),
 
-        'wbtip_timetolive': Int(default=90), # Days
+        'wbtip_timetolive': Int(default=90),  # Days
 
         'threshold_free_disk_megabytes_high': Int(default=200),
         'threshold_free_disk_megabytes_medium': Int(default=500),

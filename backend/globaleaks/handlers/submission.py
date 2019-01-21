@@ -116,7 +116,6 @@ def db_serialize_archived_preview_schema(preview_schema, language):
     return preview
 
 
-
 def db_save_questionnaire_answers(session, tid, internaltip_id, entries):
     ret = []
 
@@ -278,7 +277,6 @@ def db_create_submission(session, tid, request, token, client_using_tor):
 
     if not context:
         raise errors.ModelNotFound(models.Context)
-
 
     steps = db_get_questionnaire(session, tid, questionnaire.id, None)['steps']
     questionnaire_hash = db_archive_questionnaire_schema(session, steps)

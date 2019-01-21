@@ -21,35 +21,35 @@ class TestUserInstance(helpers.TestHandlerWithPopulatedDB):
 
     @inlineCallbacks
     def test_get(self):
-        handler = self.request(user_id = self.rcvr_id, role='receiver')
+        handler = self.request(user_id=self.rcvr_id, role='receiver')
 
         yield handler.get()
 
     @inlineCallbacks
     def test_put_change_password(self):
-        handler = self.request(user_id = self.rcvr_id, role='receiver')
+        handler = self.request(user_id=self.rcvr_id, role='receiver')
 
         response = yield handler.get()
         response['password'] = 'new 1337 password!'
         response['old_password'] = helpers.VALID_PASSWORD1
 
-        handler = self.request(response, user_id = self.rcvr_id, role='receiver')
+        handler = self.request(response, user_id=self.rcvr_id, role='receiver')
         yield handler.put()
 
     @inlineCallbacks
     def test_put_with_remove_pgp_flag_true(self):
-        handler = self.request(user_id = self.rcvr_id, role='receiver')
+        handler = self.request(user_id=self.rcvr_id, role='receiver')
 
         response = yield handler.get()
 
         response['pgp_key_remove'] = True
 
-        handler = self.request(response, user_id = self.rcvr_id, role='receiver')
+        handler = self.request(response, user_id=self.rcvr_id, role='receiver')
         yield handler.put()
 
     @inlineCallbacks
     def test_handler_update_key(self):
-        handler = self.request(user_id = self.rcvr_id, role='receiver')
+        handler = self.request(user_id=self.rcvr_id, role='receiver')
 
         response = yield handler.get()
 
@@ -88,7 +88,7 @@ class TestUserInstance(helpers.TestHandlerWithPopulatedDB):
 
     @inlineCallbacks
     def test_load_malformed_key(self):
-        handler = self.request(user_id = self.rcvr_id, role='receiver')
+        handler = self.request(user_id=self.rcvr_id, role='receiver')
 
         response = yield handler.get()
 
@@ -99,7 +99,7 @@ class TestUserInstance(helpers.TestHandlerWithPopulatedDB):
 
     @inlineCallbacks
     def test_change_name(self):
-        handler = self.request(user_id = self.rcvr_id, role='receiver')
+        handler = self.request(user_id=self.rcvr_id, role='receiver')
 
         response = yield handler.get()
         response['name'] = "Test Name"
@@ -110,7 +110,7 @@ class TestUserInstance(helpers.TestHandlerWithPopulatedDB):
 
     @inlineCallbacks
     def test_start_email_change_process(self):
-        handler = self.request(user_id = self.rcvr_id, role='receiver')
+        handler = self.request(user_id=self.rcvr_id, role='receiver')
 
         response = yield handler.get()
 
@@ -132,7 +132,7 @@ class TestUserInstance(helpers.TestHandlerWithPopulatedDB):
     @inlineCallbacks
     def test_confirm_user_pgp_disable_works(self):
         State.tenant_cache[1]['enable_user_pgp_key_upload'] = False
-        handler = self.request(user_id = self.rcvr_id, role='receiver')
+        handler = self.request(user_id=self.rcvr_id, role='receiver')
 
         response = yield handler.get()
 

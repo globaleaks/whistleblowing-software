@@ -26,7 +26,7 @@ def MIME_mail_build(src_name, src_mail, dest_name, dest_mail, title, mail_body):
     # a way that doesn't modify global state. :-(
     if six.PY2:
         from email import Charset  # pylint: disable=no-name-in-module
-        Charset.add_charset('utf-8', Charset.QP, Charset.QP, 'utf-8') # pylint: disable=undefined-variable, no-member
+        Charset.add_charset('utf-8', Charset.QP, Charset.QP, 'utf-8')  # pylint: disable=undefined-variable, no-member
 
     # This example is of an email with text and html alternatives.
     multipart = MIMEMultipart('alternative')
@@ -46,9 +46,9 @@ def MIME_mail_build(src_name, src_mail, dest_name, dest_mail, title, mail_body):
     if six.PY2:
         multipart_as_bytes = six.binary_type(multipart.as_string())
     else:
-        multipart_as_bytes = multipart.as_bytes() # pylint: disable=no-member
+        multipart_as_bytes = multipart.as_bytes()  # pylint: disable=no-member
 
-    return BytesIO(multipart_as_bytes) # pylint: disable=no-member
+    return BytesIO(multipart_as_bytes)  # pylint: disable=no-member
 
 
 def sendmail(tid, smtp_host, smtp_port, security, authentication, username, password, from_name, from_address, to_address, subject, body, anonymize=True, socks_host='127.0.0.1', socks_port=9050):

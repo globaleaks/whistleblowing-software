@@ -13,6 +13,7 @@ class ChallTok:
     def __init__(self, tok):
         self.tok = tok
 
+
 def split_certificate_chain(full_chain_pem):
     certificates = re.findall('-----BEGIN CERTIFICATE-----.*?-----END CERTIFICATE-----', full_chain_pem, re.DOTALL)
     return certificates[0], ''.join(certificates[1:])
@@ -70,8 +71,8 @@ def run_acme_reg_to_finish(domain, accnt_key, priv_key, hostname, tmp_chall_dict
 
     # authrz is a list of Authorization resources, we need to find the
     # HTTP-01 challenge and use it
-    for auth_req in authzr: # pylint: disable=not-an-iterable
-       for chall_body in auth_req.body.challenges:
+    for auth_req in authzr:  # pylint: disable=not-an-iterable
+        for chall_body in auth_req.body.challenges:
             if isinstance(chall_body.chall, challenges.HTTP01):
                 challb = chall_body
                 break

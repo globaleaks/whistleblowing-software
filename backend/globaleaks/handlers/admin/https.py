@@ -300,7 +300,7 @@ class FileHandler(BaseHandler):
 
     mapped_file_resources = {
         'priv_key': PrivKeyFileRes,
-        'cert':  CertFileRes,
+        'cert': CertFileRes,
         'chain': ChainFileRes,
         'csr': CsrFileRes,
     }
@@ -431,13 +431,13 @@ class CSRFileHandler(FileHandler):
 
         desc = request['content']
         csr_fields = {
-                'C':  desc['country'].upper(),
+                'C': desc['country'].upper(),
                 'ST': desc['province'],
-                'L':  desc['city'],
-                'O':  desc['company'],
+                'L': desc['city'],
+                'O': desc['company'],
                 'OU': desc['department'],
                 'CN': State.tenant_cache[self.request.tid].hostname,
-                'emailAddress': desc['email'], # TODO use current admin user mail
+                'emailAddress': desc['email'],  # TODO use current admin user mail
         }
 
         csr_txt = yield self.perform_action(self.request.tid, csr_fields)
@@ -475,6 +475,7 @@ class AcmeAccntKeyRes:
         log.info("Generating an ACME account key with %d bits" % Settings.key_bits)
 
         return db_create_acme_key(session, tid)
+
 
 @transact
 def can_perform_acme_run(session, tid):

@@ -67,7 +67,7 @@ class CfgFDProcProtocol(ProcessProtocol):
         self.cfg = json.dumps(cfg)
         self.cfg_fd = cfg_fd
 
-        self.fd_map = {0:'r', cfg_fd:'w'}
+        self.fd_map = {0: 'r', cfg_fd: 'w'}
 
         self.startup_promise = defer.Deferred()
 

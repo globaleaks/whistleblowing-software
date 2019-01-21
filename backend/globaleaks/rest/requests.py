@@ -69,6 +69,7 @@ identityaccessreply_regexp        = (r'^('
                                      'authorized|'
                                      'denied)$')
 
+
 class SkipSpecificValidation:
     pass
 
@@ -305,7 +306,7 @@ AdminNodeDesc = {
 AdminNotificationDesc = merge_dicts({
     'smtp_server': text_type,
     'smtp_port': int,
-    'smtp_security': text_type, # 'TLS' or 'SSL' only
+    'smtp_security': text_type,  # 'TLS' or 'SSL' only
     'smtp_authentication': bool,
     'smtp_username': text_type,
     'smtp_password': text_type,

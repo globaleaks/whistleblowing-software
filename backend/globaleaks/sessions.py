@@ -4,6 +4,7 @@ from globaleaks.settings import Settings
 from globaleaks.utils.crypto import generateRandomKey
 from globaleaks.utils.tempdict import TempDict
 
+
 class Session(object):
     def __init__(self, tid, user_id, user_role, pcn, cc):
         self.id = generateRandomKey(42)
@@ -29,6 +30,7 @@ class Session(object):
 
 class SessionsFactory(TempDict):
     """Extends TempDict to provide session management functions ontop of temp session keys"""
+
     def revoke(self, user_id):
         for k, v in list(self.items()):
             if v.user_id == user_id:

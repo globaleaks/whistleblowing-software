@@ -28,11 +28,11 @@ class SecureTemporaryFile(object):
 
     def open(self, mode):
         if self.file is None:
-           if mode == 'w':
-               self.fd = open(self.filepath, 'ab+')
-           else:
-               self.fd = open(self.filepath, 'rb')
-               self.dec = self.cipher.decryptor()
+            if mode == 'w':
+                self.fd = open(self.filepath, 'ab+')
+            else:
+                self.fd = open(self.filepath, 'rb')
+                self.dec = self.cipher.decryptor()
 
         return self
 

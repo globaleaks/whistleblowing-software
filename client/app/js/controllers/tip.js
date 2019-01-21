@@ -81,7 +81,7 @@ GLClient.controller("TipCtrl",
     if ($scope.session.role === "whistleblower") {
       $scope.fileupload_url = "wbtip/rfile";
 
-      new WBTip(function(tip) {
+      $scope.tip = new WBTip(function(tip) {
         $scope.tip = tip;
         $scope.total_score = $scope.tip.total_score;
 
@@ -118,7 +118,7 @@ GLClient.controller("TipCtrl",
     } else if ($scope.session.role === "receiver") {
       $scope.preferences = ReceiverPreferences.get();
 
-      new RTip({id: $scope.tip_id}, function(tip) {
+      $scope.tip = new RTip({id: $scope.tip_id}, function(tip) {
         $scope.tip = tip;
         $scope.total_score = $scope.tip.total_score;
         $scope.ctx = "rtip";

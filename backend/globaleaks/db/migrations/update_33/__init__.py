@@ -6,6 +6,7 @@ from globaleaks.db.migrations.update import MigrationBase
 from globaleaks.models.properties import *
 from globaleaks.utils.utility import datetime_now, datetime_null
 
+
 class Node_v_32(models.Model):
     __tablename__ = 'node'
     id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)

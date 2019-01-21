@@ -4,11 +4,11 @@ Utilities and basic TestCases.
 """
 import sys
 
-try: # Python 2
-    reload(sys) # pylint: disable=undefined-variable
-    sys.setdefaultencoding('utf8') # pylint: disable=no-member
+try:  # Python 2
+    reload(sys)  # pylint: disable=undefined-variable
+    sys.setdefaultencoding('utf8')  # pylint: disable=no-member
 except NameError:
-    pass # Python 3
+    pass  # Python 3
 
 import base64
 import copy
@@ -24,7 +24,7 @@ from datetime import timedelta
 from distutils import dir_util
 
 from six import text_type, binary_type
-from six.moves.urllib.parse import urlsplit # pylint: disable=import-error
+from six.moves.urllib.parse import urlsplit  # pylint: disable=import-error
 
 from twisted.internet import defer, task
 from twisted.internet.address import IPv4Address
@@ -87,13 +87,16 @@ USER_PRV_KEY_ENC = GCE.symmetric_encrypt(USER_KEY, USER_PRV_KEY)
 GCE_orig_generate_key = GCE.generate_key
 GCE_orig_generate_keypair = GCE.generate_keypair
 
+
 @staticmethod
 def GCE_mock_generate_key():
     return KEY
 
+
 @staticmethod
 def GCE_mock_generate_keypair():
     return USER_PRV_KEY, USER_PUB_KEY
+
 
 setattr(GCE, 'generate_key', GCE_mock_generate_key)
 setattr(GCE, 'generate_keypair', GCE_mock_generate_keypair)
@@ -108,8 +111,10 @@ for filename in os.listdir(kp):
     with open(os.path.join(kp, filename)) as pgp_file:
         PGPKEYS[filename] = text_type(pgp_file.read())
 
+
 def deferred_sleep_mock(seconds):
     return
+
 
 utility.deferred_sleep = deferred_sleep_mock
 
@@ -124,6 +129,7 @@ class UTlog:
                 f.write('[{}] {}\n'.format(flag, msg))
 
         return log
+
 
 log.err = UTlog.mlog('E')
 log.debug = UTlog.mlog('D')
@@ -181,7 +187,6 @@ def mock_users_keys(session):
         user.salt = VALID_SALT1
         user.crypto_prv_key = USER_PRV_KEY_ENC
         user.crypto_pub_key = USER_PUB_KEY
-
 
 
 @transact
@@ -297,8 +302,10 @@ def get_dummy_file(filename=None, content=None):
         'submission': False
     }
 
+
 def get_file_upload(self):
     return get_dummy_file()
+
 
 BaseHandler.get_file_upload = get_file_upload
 
@@ -314,7 +321,7 @@ def forge_request(uri=b'https://www.globaleaks.org/',
 
     _, host, path, query, frag = urlsplit(uri)
 
-    x = host.split (b':')
+    x = host.split(b':')
     if len(x) > 1:
         port = int(x[1])
     else:
@@ -382,7 +389,6 @@ def forge_request(uri=b'https://www.globaleaks.org/',
     request.content = fakeBody()
 
     return request
-
 
 
 class TestGL(unittest.TestCase):
@@ -616,7 +622,7 @@ class TestGL(unittest.TestCase):
     def get_dummy_file(self, filename='', content=None):
         return get_dummy_file(filename, content)
 
-    def get_dummy_shorturl(self, x = ''):
+    def get_dummy_shorturl(self, x=''):
         return {
           'shorturl': 'shorturl' + str(x),
           'longurl': '/longurl' + str(x)
@@ -661,7 +667,7 @@ class TestGL(unittest.TestCase):
                            .filter(models.WhistleblowerTip.id == models.InternalTip.id,
                                    models.InternalTip.tid == 1):
             x = wbtip.serialize_wbtip(session, w, i, 'en')
-            x['receivers_ids'] = list(zip(*session.query(models.ReceiverTip.receiver_id) \
+            x['receivers_ids'] = list(zip(*session.query(models.ReceiverTip.receiver_id)
                                            .filter(models.ReceiverTip.internaltip_id == i.id,
                                                    models.InternalTip.id == i.id,
                                                    models.InternalTip.tid == 1)))[0]
@@ -671,7 +677,7 @@ class TestGL(unittest.TestCase):
 
     @transact
     def get_wbfiles(self, session, wbtip_id):
-        return [{'id': wbfile.id} for wbfile in session.query(models.WhistleblowerFile) \
+        return [{'id': wbfile.id} for wbfile in session.query(models.WhistleblowerFile)
                                                      .filter(models.WhistleblowerFile.receivertip_id == models.ReceiverTip.id,
                                                              models.ReceiverTip.internaltip_id == wbtip_id,
                                                              models.InternalTip.id == wbtip_id,
@@ -686,7 +692,6 @@ class TestGL(unittest.TestCase):
                                 models.WhistleblowerTip.receipt_hash == hashed_receipt)
 
         return [models.serializers.serialize_ifile(session, ifile) for ifile in ifiles]
-
 
     @transact
     def get_receiverfiles_by_receipt(self, session, receipt):
@@ -870,25 +875,26 @@ class TestGLWithPopulatedDB(TestGL):
                 'password_change_needed': False,
             })
 
+
 class TestHandler(TestGLWithPopulatedDB):
     """
     :attr _handler: handler class to be tested
     """
     _handler = None
     _test_desc = {}
-    #_test_desc = {
+    # _test_desc = {
     #  'model': Context
     #  'create': context.create_context
     #  'data': {
     #
     #  }
-    #}
+    # }
 
     def setUp(self):
         return TestGL.setUp(self)
 
     def request(self, body='', uri=b'https://www.globaleaks.org/',
-                user_id=None,  role=None, multilang=False, headers=None,
+                user_id=None, role=None, multilang=False, headers=None,
                 client_addr=None, handler_cls=None, attached_file=None,
                 kwargs={}):
         """
@@ -943,7 +949,7 @@ class TestHandler(TestGLWithPopulatedDB):
         """
         Constructs a request_dec parser of a handler that uses a safe_set in its serialization
         """
-        return {k : v for k, v in request_desc.items() if k in safe_set}
+        return {k: v for k, v in request_desc.items() if k in safe_set}
 
     def get_dummy_request(self):
         return self._test_desc['model']().dict(u'en')
@@ -1043,6 +1049,7 @@ class MockDict:
     """
     This class just create all the shit we need for emulate a Node
     """
+
     def __init__(self):
         self.dummyUser = {
             'id': '',

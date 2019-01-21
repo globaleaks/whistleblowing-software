@@ -59,7 +59,6 @@ class TestPasswordResetInstance(helpers.TestHandlerWithPopulatedDB):
         user = yield get_user(self.rcvr_id)
         self.assertEqual(user.reset_password_token, None)
 
-
     @inlineCallbacks
     def test_get_failure(self):
         State.tenant_cache[1]['enable_password_reset'] = True
@@ -78,7 +77,6 @@ class TestPasswordResetInstance(helpers.TestHandlerWithPopulatedDB):
         # Check if the token was resetted
         user = yield get_user(self.rcvr_id)
         self.assertNotEqual(user.reset_password_token, None)
-
 
     @inlineCallbacks
     def test_post(self):

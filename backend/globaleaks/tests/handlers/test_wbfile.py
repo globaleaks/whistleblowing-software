@@ -7,6 +7,7 @@ from twisted.internet.defer import inlineCallbacks
 
 attachment=b'hello world'
 
+
 class TestWBFileWorkFlow(helpers.TestHandlerWithPopulatedDB):
     _handler = None
 
@@ -17,7 +18,7 @@ class TestWBFileWorkFlow(helpers.TestHandlerWithPopulatedDB):
         self._handler = rtip.WhistleblowerFileHandler
         rtips_desc = yield self.get_rtips()
         for rtip_desc in rtips_desc:
-            handler = self.request(role='receiver', user_id = rtip_desc['receiver_id'], attached_file=attachment)
+            handler = self.request(role='receiver', user_id=rtip_desc['receiver_id'], attached_file=attachment)
             yield handler.post(rtip_desc['id'])
 
         yield Delivery().run()
@@ -27,7 +28,7 @@ class TestWBFileWorkFlow(helpers.TestHandlerWithPopulatedDB):
         for wbtip_desc in wbtips_desc:
             wbfiles_desc = yield self.get_wbfiles(wbtip_desc['id'])
             for wbfile_desc in wbfiles_desc:
-                handler = self.request(role='whistleblower', user_id = wbtip_desc['id'])
+                handler = self.request(role='whistleblower', user_id=wbtip_desc['id'])
                 yield handler.get(wbfile_desc['id'])
                 self.assertEqual(handler.request.getResponseBody(), attachment)
 
@@ -41,7 +42,7 @@ class TestWBFileWorkFlow(helpers.TestHandlerWithPopulatedDB):
 
                 self.assertEqual(wbfile_desc['description'], 'description')
 
-                handler = self.request(role='receiver', user_id = rtip_desc['receiver_id'])
+                handler = self.request(role='receiver', user_id=rtip_desc['receiver_id'])
                 yield handler.delete(wbfile_desc['id'])
 
                 deleted_wbfiles_ids.append(wbfile_desc['id'])

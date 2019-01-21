@@ -122,7 +122,6 @@ def serialize_message(session, message):
     else:
         author = receiver_involved.name
 
-
     return {
         'id': message.id,
         'author': author,
@@ -500,7 +499,6 @@ class RTipInstance(OperationHandler):
                                                                     'substatus': text_type})
         }
 
-
     def set_tip_val(self, req_args, tip_id, *args, **kwargs):
         value = req_args['value']
         key = req_args['key']
@@ -636,7 +634,7 @@ class RTipWBFileHandler(WBFileHandler):
                                         models.ReceiverTip.internaltip_id == models.InternalTip.id,
                                         models.InternalTip.tid == tid).one()[0]
 
-        users_ids = [x[0] for x in session.query(models.ReceiverTip.receiver_id) \
+        users_ids = [x[0] for x in session.query(models.ReceiverTip.receiver_id)
                                           .filter(models.ReceiverTip.internaltip_id == internaltip_id,
                                                   models.ReceiverTip.internaltip_id == models.InternalTip.id,
                                                   models.InternalTip.tid == tid)]

@@ -6,6 +6,7 @@ from globaleaks.db.migrations.update import MigrationBase
 from globaleaks.models.properties import *
 from globaleaks.utils.utility import datetime_now, datetime_null
 
+
 class Node_v_31(models.Model):
     __tablename__ = 'node'
     id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
@@ -105,7 +106,7 @@ class User_v_31(models.Model):
     pgp_key_fingerprint = Column(UnicodeText, default=u'')
     pgp_key_public = Column(UnicodeText, default=u'')
     pgp_key_expiration = Column(DateTime, default=datetime_null)
-    pgp_key_status = Column(UnicodeText, default=u'disabled') # 'disabled', 'enabled'
+    pgp_key_status = Column(UnicodeText, default=u'disabled')  # 'disabled', 'enabled'
     img_id = Column(UnicodeText(36))
 
 

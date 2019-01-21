@@ -7,6 +7,7 @@ from globaleaks.handlers.admin import shorturl as admin_shorturl
 from globaleaks.rest import errors
 from globaleaks.tests import helpers
 
+
 class TestShortURLCollection(helpers.TestHandlerWithPopulatedDB):
     _handler = shorturl.ShortURL
 

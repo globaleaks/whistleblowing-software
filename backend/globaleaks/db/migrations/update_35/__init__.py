@@ -59,6 +59,7 @@ class InternalTip_v_34(models.Model):
     enable_whistleblower_identity = Column(Boolean, default=False)
     wb_last_access = Column(DateTime, default=datetime_now)
 
+
 class MigrationScript(MigrationBase):
     def migrate_Context(self):
         old_objs = self.session_old.query(self.model_from['Context'])

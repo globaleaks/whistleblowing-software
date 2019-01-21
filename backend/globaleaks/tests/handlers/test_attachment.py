@@ -52,5 +52,5 @@ class TestPostSubmissionAttachment(helpers.TestHandlerWithPopulatedDB):
 
         wbtips_desc = yield self.get_wbtips()
         for wbtip_desc in wbtips_desc:
-            handler = self.request(role='whistleblower', user_id = wbtip_desc['id'])
+            handler = self.request(role='whistleblower', user_id=wbtip_desc['id'])
             yield handler.post()

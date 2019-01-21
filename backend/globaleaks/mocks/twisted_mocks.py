@@ -28,6 +28,7 @@ def mock_HTTPPageGetter_timeout(self, data):
     This mock is required to fix tx bug #8318 with patch introduced in 16.2.0
     self.transport.abortConnection() is used in place of self.transport.loseConnection()
     """
+
     def timeout(self):
         self.quietLoss = True
         self.transport.abortConnection()

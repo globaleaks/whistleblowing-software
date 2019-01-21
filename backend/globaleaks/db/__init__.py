@@ -170,7 +170,7 @@ def db_refresh_tenant_cache(session, tid_list):
 
 
 def db_refresh_memory_variables(session, to_refresh=None):
-    tenant_map = {tenant.id:tenant for tenant in session.query(models.Tenant).filter(models.Tenant.active == True)}
+    tenant_map = {tenant.id: tenant for tenant in session.query(models.Tenant).filter(models.Tenant.active == True)}
 
     existing_tids = set(tenant_map.keys())
     cached_tids = set(State.tenant_state.keys())
@@ -241,7 +241,7 @@ def db_refresh_memory_variables(session, to_refresh=None):
         State.tenant_cache[tid].hostnames = hostnames
         State.tenant_cache[tid].onionnames = onionnames
 
-        State.tenant_hostname_id_map.update({h:tid for h in hostnames + onionnames})
+        State.tenant_hostname_id_map.update({h: tid for h in hostnames + onionnames})
 
 
 @transact

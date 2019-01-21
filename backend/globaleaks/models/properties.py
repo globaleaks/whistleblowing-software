@@ -12,6 +12,7 @@ from sqlalchemy.schema import ForeignKey
 from globaleaks.utils.utility import uuid4
 # pylint: enable=unused-import
 
+
 class JSON(types.TypeDecorator):
     """Stores and retrieves JSON as TEXT."""
     impl = types.UnicodeText

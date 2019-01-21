@@ -101,7 +101,7 @@ class LoopingJob(Job):
     # after the first exception another will be generated.
     monitor_interval = 60
     monitor_period = 5 * 60
-    last_monitor_check_failed = 0 # Epoch start
+    last_monitor_check_failed = 0  # Epoch start
 
     def on_error(self, excep):
         error = "Job %s died with runtime %.4f [low: %.4f, high: %.4f]" % \

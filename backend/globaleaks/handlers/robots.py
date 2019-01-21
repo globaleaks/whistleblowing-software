@@ -6,6 +6,7 @@ from six import binary_type
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.state import State
 
+
 class RobotstxtHandler(BaseHandler):
     check_roles = '*'
 

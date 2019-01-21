@@ -9,18 +9,18 @@ from globaleaks.state import State
 
 
 def decorator_authentication(f, roles):
-     def wrapper(self, *args, **kwargs):
-         if self.state.tenant_cache[self.request.tid].basic_auth and not self.bypass_basic_auth:
-             self.basic_auth()
+    def wrapper(self, *args, **kwargs):
+        if self.state.tenant_cache[self.request.tid].basic_auth and not self.bypass_basic_auth:
+            self.basic_auth()
 
-         if '*' in roles or \
-             'unauthenticated' in roles or \
-             (self.current_user and self.current_user.user_role in roles):
-             return f(self, *args, **kwargs)
+        if '*' in roles or \
+            'unauthenticated' in roles or \
+            (self.current_user and self.current_user.user_role in roles):
+            return f(self, *args, **kwargs)
 
-         raise errors.NotAuthenticated
+        raise errors.NotAuthenticated
 
-     return wrapper
+    return wrapper
 
 
 def decorator_cache_get(f):
@@ -63,15 +63,16 @@ def decorator_cache_invalidate(f):
 
 
 def decorator_refresh_connection_handpoints(f):
-     def wrapper(self, *args, **kwargs):
-         d = defer.maybeDeferred(f, self, *args, **kwargs)
-         def callback(data):
-             self.state.refresh_connection_handpoints()
-             return data
+    def wrapper(self, *args, **kwargs):
+        d = defer.maybeDeferred(f, self, *args, **kwargs)
 
-         return d.addCallback(callback)
+        def callback(data):
+            self.state.refresh_connection_handpoints()
+            return data
 
-     return wrapper
+        return d.addCallback(callback)
+
+    return wrapper
 
 
 def decorate_method(h, method):

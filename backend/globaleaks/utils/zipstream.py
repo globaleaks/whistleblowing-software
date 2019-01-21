@@ -22,21 +22,21 @@ ZIP_DEFLATED = 8
 # Here are some struct module formats for reading headers
 structEndArchive = b"<4s4H2lH"     # 9 items, end of archive, 22 bytes
 stringEndArchive = b"PK\005\006"   # magic number for end of archive record
-structCentralDir = b"<4s4B4HLLL5HLl"# 19 items, central directory, 46 bytes
+structCentralDir = b"<4s4B4HLLL5HLl"  # 19 items, central directory, 46 bytes
 stringCentralDir = b"PK\001\002"   # magic number for central directory
 structFileHeader = b"<4s2B4HlLL2H"  # 12 items, file header record, 30 bytes
 stringFileHeader = b"PK\003\004"   # magic number for file header
-structEndArchive64Locator = b"<4slql" # 4 items, locate Zip64 header, 20 bytes
-stringEndArchive64Locator = b"PK\x06\x07" # magic token for locator header
-structEndArchive64 = b"<4sqhhllqqqq" # 10 items, end of archive (Zip64), 56 bytes
-stringEndArchive64 = b"PK\x06\x06" # magic token for Zip64 header
-stringDataDescriptor = b"PK\x07\x08" # magic number for data descriptor
+structEndArchive64Locator = b"<4slql"  # 4 items, locate Zip64 header, 20 bytes
+stringEndArchive64Locator = b"PK\x06\x07"  # magic token for locator header
+structEndArchive64 = b"<4sqhhllqqqq"  # 10 items, end of archive (Zip64), 56 bytes
+stringEndArchive64 = b"PK\x06\x06"  # magic token for Zip64 header
+stringDataDescriptor = b"PK\x07\x08"  # magic number for data descriptor
 
 
 class ZipInfo(object):
     """Class with attributes describing each file in the ZIP archive."""
 
-    def __init__(self, filename="NoName", date_time=(1980,1,1,0,0,0), compression=ZIP_DEFLATED):
+    def __init__(self, filename="NoName", date_time=(1980, 1, 1, 0, 0, 0), compression=ZIP_DEFLATED):
         # Convert filename to bytes before we work with it
         self.orig_filename = filename   # Original file name in archive
 
@@ -54,7 +54,7 @@ class ZipInfo(object):
         self.filename = filename         # Normalized file name
         self.date_time = date_time       # year, month, day, hour, min, sec
         # Standard values:
-        self.compress_type = compression # Type of compression for the file
+        self.compress_type = compression  # Type of compression for the file
         self.comment = b""                # Comment for each file
         self.extra = b""                  # ZIP extra data
 
@@ -122,8 +122,8 @@ class ZipInfo(object):
             fmt = b'<hhqq'
             extra = extra + struct.pack(fmt,
                     1, struct.calcsize(fmt)-4, file_size, compress_size)
-            file_size = 0xffffffff # -1
-            compress_size = 0xffffffff # -1
+            file_size = 0xffffffff  # -1
+            compress_size = 0xffffffff  # -1
             self.extract_version = max(45, self.extract_version)
             self.create_version = max(45, self.extract_version)
 
@@ -136,6 +136,7 @@ class ZipInfo(object):
                  len(filename), len(extra))
 
         return header + filename + extra
+
 
 class ZipStream(object):
     def __init__(self, files):
@@ -229,7 +230,7 @@ class ZipStream(object):
         data = []
         count = 0
         pos1 = self.data_ptr
-        for zinfo in self.filelist: # write central directory
+        for zinfo in self.filelist:  # write central directory
             count += 1
             dt = zinfo.date_time
             dosdate = (dt[0] - 1980) << 9 | dt[1] << 5 | dt[2]
@@ -238,8 +239,8 @@ class ZipStream(object):
             if zinfo.file_size > ZIP64_LIMIT or zinfo.compress_size > ZIP64_LIMIT:
                 extra.append(zinfo.file_size)
                 extra.append(zinfo.compress_size)
-                file_size = 0xffffffff     #-1
-                compress_size = 0xffffffff #-1
+                file_size = 0xffffffff  # -1
+                compress_size = 0xffffffff  # -1
             else:
                 file_size = zinfo.file_size
                 compress_size = zinfo.compress_size
@@ -253,7 +254,7 @@ class ZipStream(object):
             extra_data = zinfo.extra
             if extra:
                 # Append a ZIP64 field to the extra's
-                extra_data = struct.pack('<hh' + 'q'*len(extra),1, 8*len(extra), *extra) + extra_data
+                extra_data = struct.pack('<hh' + 'q'*len(extra), 1, 8*len(extra), *extra) + extra_data
                 extract_version = max(45, zinfo.extract_version)
                 create_version = max(45, zinfo.create_version)
             else:

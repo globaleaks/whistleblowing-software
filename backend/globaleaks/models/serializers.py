@@ -33,6 +33,8 @@ def serialize_rfile(session, tid, rfile):
     }
 
 # WhistleblowerFile
+
+
 def serialize_wbfile(session, tid, wbfile):
     receiver_id = session.query(models.ReceiverTip.receiver_id) \
                          .filter(models.ReceiverTip.id == wbfile.receivertip_id).one()

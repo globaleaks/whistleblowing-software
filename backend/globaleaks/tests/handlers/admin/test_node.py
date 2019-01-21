@@ -12,6 +12,7 @@ from globaleaks.tests import helpers
 # special guest:
 stuff = u"³²¼½¬¼³²"
 
+
 @transact
 def set_receiver_acl_flag_true(session, rcvr_id):
     rcvr = session.query(models.User).filter_by(id=rcvr_id).first()
@@ -22,6 +23,7 @@ def set_receiver_acl_flag_true(session, rcvr_id):
 def get_config_value(session, tid, config_key):
     config_value = session.query(models.Config).filter_by(var_name=config_key, tid=tid).first()
     return config_value.value
+
 
 class TestNodeInstance(helpers.TestHandlerWithPopulatedDB):
     _handler = node.NodeInstance

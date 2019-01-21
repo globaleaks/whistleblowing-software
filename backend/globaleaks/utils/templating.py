@@ -144,6 +144,7 @@ two_factor_auth_keywords = [
     '{AuthCode}'
 ]
 
+
 def indent(n=1):
     return '  ' * n
 
@@ -577,6 +578,7 @@ class PlatformSignupKeyword(NodeKeyword):
         }
 
         return Templating().format_template(self.data['notification']['user_credentials'], data) + '\n\n'
+
     def RecipientCredentials(self):
         data = {
             'type': 'user_credentials',
@@ -651,7 +653,6 @@ class TwoFactorAuthKeyword(NodeKeyword):
 
     def AuthCode(self):
         return self.data['authcode']
-
 
 
 supported_template_types = {

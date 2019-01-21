@@ -9,6 +9,7 @@ class MigrationBase(object):
     """
     This is the base class used by every Updater
     """
+
     def __init__(self, migration_mapping, start_version, session_old, session_new):
         self.appdata = load_appdata()
 
@@ -53,7 +54,7 @@ class MigrationBase(object):
     def epilogue(self):
         pass
 
-    def migrate_model_key(self, old_obj, new_obj, key, old_key = None):
+    def migrate_model_key(self, old_obj, new_obj, key, old_key=None):
         """
         Migrate an existing model key allowing key name change
         """

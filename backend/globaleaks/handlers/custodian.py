@@ -48,7 +48,6 @@ def get_identityaccessrequest(session, tid, identityaccessrequest_id):
                        models.ReceiverTip.internaltip_id == models.InternalTip.id,
                        models.InternalTip.tid == tid).one()
 
-
     return serialize_identityaccessrequest(session, iar)
 
 

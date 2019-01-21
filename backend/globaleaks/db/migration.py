@@ -247,17 +247,17 @@ def perform_migration(version):
 
             for model_name, _ in migration_mapping.items():
                 if migration_script.model_from[model_name] is not None and migration_script.model_to[model_name] is not None:
-                     count = session_verify.query(migration_script.model_to[model_name]).count()
-                     if migration_script.entries_count[model_name] != count:
-                         if migration_script.fail_on_count_mismatch[model_name]:
-                             raise AssertionError("Integrity check failed on count equality for table %s: %d != %d" % \
-                                                  (model_name, count, migration_script.entries_count[model_name]))
-                         else:
-                             log.info(" * %s table migrated (entries count changed from %d to %d)" % \
-                                                  (model_name, migration_script.entries_count[model_name], count))
-                     else:
-                         log.info(" * %s table migrated (%d entry(s))" % \
-                                              (model_name, migration_script.entries_count[model_name]))
+                    count = session_verify.query(migration_script.model_to[model_name]).count()
+                    if migration_script.entries_count[model_name] != count:
+                        if migration_script.fail_on_count_mismatch[model_name]:
+                            raise AssertionError("Integrity check failed on count equality for table %s: %d != %d" %
+                                                 (model_name, count, migration_script.entries_count[model_name]))
+                        else:
+                            log.info(" * %s table migrated (entries count changed from %d to %d)" %
+                                                 (model_name, migration_script.entries_count[model_name], count))
+                    else:
+                        log.info(" * %s table migrated (%d entry(s))" %
+                                             (model_name, migration_script.entries_count[model_name]))
 
             version += 1
 

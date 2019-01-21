@@ -113,7 +113,7 @@ def write_encrypted_file(key, sf, dest_path):
         with sf.open('rb') as encrypted_file, \
              GCE.streaming_encryption_open('ENCRYPT', key, dest_path) as seo:
             chunk = encrypted_file.read(abstract.FileDescriptor.bufferSize)
-            while (True):
+            while True:
                 x = encrypted_file.read(abstract.FileDescriptor.bufferSize)
                 if not x:
                     seo.encrypt_chunk(chunk, 1)

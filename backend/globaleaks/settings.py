@@ -130,8 +130,8 @@ class SettingsClass(object):
 
         # Limit for log sizes and number of log files
         # https://github.com/globaleaks/GlobaLeaks/issues/1578
-        self.log_size = 10000000 # 10MB
-        self.log_file_size = 1000000 # 1MB
+        self.log_size = 10000000  # 10MB
+        self.log_file_size = 1000000  # 1MB
         self.num_log_files = self.log_size / self.log_file_size
 
         self.AES_key_id_regexp = u'[A-Za-z0-9]{16}'
@@ -143,8 +143,8 @@ class SettingsClass(object):
 
         self.enable_input_length_checks = True
 
-        self.mail_timeout = 15 # seconds
-        self.mail_attempts_limit = 3 # per mail limit
+        self.mail_timeout = 15  # seconds
+        self.mail_attempts_limit = 3  # per mail limit
 
         self.acme_directory_url = 'https://acme-v02.api.letsencrypt.org/directory'
 

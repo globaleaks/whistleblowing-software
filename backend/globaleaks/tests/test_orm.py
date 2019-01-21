@@ -12,7 +12,7 @@ class TestORM(helpers.TestGL):
     def _verify_pragmas(self, session):
         # Verify setting enabled in the sqlite db
         self.assertEqual(session.execute("PRAGMA foreign_keys").fetchone()[0], 1)  # ON
-        self.assertEqual(session.execute("PRAGMA secure_delete").fetchone()[0], 1) # ON
+        self.assertEqual(session.execute("PRAGMA secure_delete").fetchone()[0], 1)  # ON
         self.assertEqual(session.execute("PRAGMA auto_vacuum").fetchone()[0], 1)   # FULL
 
     @transact

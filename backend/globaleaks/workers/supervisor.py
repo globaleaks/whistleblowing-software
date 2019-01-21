@@ -20,6 +20,7 @@ class ProcessSupervisor(object):
     """
     A supervisor for all subprocesses that the main globaleaks process can launch
     """
+
     def __init__(self, net_sockets, proxy_ip, proxy_port):
         log.info("Starting process monitor")
 

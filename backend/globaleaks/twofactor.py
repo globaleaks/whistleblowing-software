@@ -2,6 +2,7 @@
 from globaleaks.utils.crypto import generate2FA
 from globaleaks.utils.tempdict import TempDict
 
+
 class TwoFactorToken(object):
     def __init__(self, user_id):
         self.id = user_id
@@ -11,6 +12,7 @@ class TwoFactorToken(object):
 
 class TwoFactorTokensFactory(TempDict):
     """Extends TempDict to provide session management functions ontop of temp session keys"""
+
     def revoke(self, user_id):
         try:
             del self[user_id]
@@ -24,4 +26,4 @@ class TwoFactorTokensFactory(TempDict):
         return token
 
 
-TwoFactorTokens = TwoFactorTokensFactory(timeout=5 * 60) # 5 minutes
+TwoFactorTokens = TwoFactorTokensFactory(timeout=5 * 60)  # 5 minutes

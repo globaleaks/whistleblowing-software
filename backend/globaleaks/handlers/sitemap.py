@@ -5,6 +5,7 @@ from globaleaks.handlers.base import BaseHandler
 from globaleaks.rest import errors
 from globaleaks.state import State
 
+
 class SitemapHandler(BaseHandler):
     check_roles = '*'
 

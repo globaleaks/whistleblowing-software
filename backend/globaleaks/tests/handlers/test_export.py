@@ -5,6 +5,7 @@ from globaleaks.jobs.delivery import Delivery
 from globaleaks.tests import helpers
 from twisted.internet.defer import inlineCallbacks
 
+
 class TestExportHandler(helpers.TestHandlerWithPopulatedDB):
     complex_field_population = True
     _handler = export.ExportHandler

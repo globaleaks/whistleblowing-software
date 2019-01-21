@@ -2,6 +2,7 @@
 from twisted.trial import unittest
 from globaleaks.utils.objectdict import ObjectDict
 
+
 class TestUtility(unittest.TestCase):
 
     def test_object_dict(self):

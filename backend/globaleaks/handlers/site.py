@@ -42,6 +42,6 @@ class SiteCollection(BaseHandler):
         Return the list of registered tenants
         """
         if 1 not in self.state.tenant_cache or not self.state.tenant_cache[1].multisite_login:
-           return []
+            return []
 
         return get_site_list()

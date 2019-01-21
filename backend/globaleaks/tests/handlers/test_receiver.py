@@ -24,13 +24,13 @@ class TestUserInstance(helpers.TestHandlerWithPopulatedDB):
 
     @inlineCallbacks
     def test_disable_tip_notification(self):
-        handler = self.request(user_id = self.rcvr_id, role='receiver')
+        handler = self.request(user_id=self.rcvr_id, role='receiver')
 
         response = yield handler.get()
 
         response['notification'] = False
 
-        handler = self.request(response, user_id = self.rcvr_id, role='receiver')
+        handler = self.request(response, user_id=self.rcvr_id, role='receiver')
         yield handler.put()
 
 
@@ -79,7 +79,7 @@ class TestTipsOperations(helpers.TestHandlerWithPopulatedDB):
             'rtips': rtips_ids
         }
 
-        handler = self.request(data_request, user_id = self.dummyReceiver_1['id'], role='receiver')
+        handler = self.request(data_request, user_id=self.dummyReceiver_1['id'], role='receiver')
         yield handler.put()
 
         rtips = yield receiver.get_receivertip_list(1, self.dummyReceiver_1['id'], 'en')
@@ -100,7 +100,7 @@ class TestTipsOperations(helpers.TestHandlerWithPopulatedDB):
             'rtips': rtips_ids
         }
 
-        handler = self.request(data_request, user_id = self.dummyReceiver_1['id'], role='receiver')
+        handler = self.request(data_request, user_id=self.dummyReceiver_1['id'], role='receiver')
         yield handler.put()
 
         rtips = yield receiver.get_receivertip_list(1, self.dummyReceiver_1['id'], 'en')

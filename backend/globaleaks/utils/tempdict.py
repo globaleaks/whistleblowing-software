@@ -8,6 +8,7 @@ from twisted.internet import reactor as _reactor
 # needed in order to allow UT override
 reactor = _reactor
 
+
 class TempDict(OrderedDict):
     expireCallback = None
 
@@ -46,9 +47,8 @@ class TempDict(OrderedDict):
             return
 
         item = self.pop(key)
-        item.expireCall.cancel() # pylint: disable=no-member
+        item.expireCall.cancel()  # pylint: disable=no-member
         self._expire(key)
-
 
     def _check_size_limit(self):
         size_limit = self.get_size_limit()

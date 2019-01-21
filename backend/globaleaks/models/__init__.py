@@ -50,6 +50,7 @@ def db_delete(session, model, *args, **kwargs):
     else:
         session.query(model).filter(*args, **kwargs).delete(synchronize_session='fetch')
 
+
 @transact
 def delete(session, model, *args, **kwargs):
     return db_delete(session, model, *args, **kwargs)
@@ -604,7 +605,6 @@ class _FieldAttr(Model):
                                                'unicode',
                                                'localized'])))
 
-
     def update(self, values=None):
         super(_FieldAttr, self).update(values)
 
@@ -744,7 +744,7 @@ class _InternalFile(Model):
     content_type = Column(UnicodeText, nullable=False)
     size = Column(Integer, nullable=False)
     new = Column(Boolean, default=True, nullable=False)
-    submission = Column(Integer, default = False, nullable=False)
+    submission = Column(Integer, default=False, nullable=False)
 
     @declared_attr
     def __table_args__(self):
@@ -1092,7 +1092,7 @@ class _SubmissionStatus(Model):
 
     presentation_order = Column(Integer, default=0, nullable=False)
 
-    localized_keys = [ 'label']
+    localized_keys = ['label']
     int_keys = ['presentation_order']
 
     @declared_attr
@@ -1112,7 +1112,7 @@ class _SubmissionSubStatus(Model):
 
     presentation_order = Column(Integer, default=0, nullable=False)
 
-    localized_keys = [ 'label']
+    localized_keys = ['label']
     int_keys = ['presentation_order']
 
     @declared_attr
@@ -1231,7 +1231,7 @@ class _User(Model):
     def __table_args__(self):
         return (ForeignKeyConstraint(['tid'], ['tenant.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),
                 UniqueConstraint('tid', 'username'),
-                CheckConstraint(self.role.in_(['admin','receiver', 'custodian'])),
+                CheckConstraint(self.role.in_(['admin', 'receiver', 'custodian'])),
                 CheckConstraint(self.state.in_(['disabled', 'enabled'])),
                 CheckConstraint(self.recipient_configuration.in_(['default', 'forcefully_selected', 'unselectable'])))
 
@@ -1329,43 +1329,123 @@ class _WhistleblowerTip(Model):
 
 
 class Anomalies(_Anomalies, Base): pass
+
+
 class ArchivedSchema(_ArchivedSchema, Base): pass
+
+
 class Backup(_Backup, Base): pass
+
+
 class Comment(_Comment, Base): pass
+
+
 class Config(_Config, Base): pass
+
+
 class ConfigL10N(_ConfigL10N, Base): pass
+
+
 class Context(_Context, Base): pass
+
+
 class ContextImg(_ContextImg, Base): pass
+
+
 class CustomTexts(_CustomTexts, Base): pass
+
+
 class EnabledLanguage(_EnabledLanguage, Base): pass
+
+
 class Field(_Field, Base): pass
+
+
 class FieldAttr(_FieldAttr, Base): pass
+
+
 class FieldAnswer(_FieldAnswer, Base): pass
+
+
 class FieldAnswerGroup(_FieldAnswerGroup, Base): pass
+
+
 class FieldOption(_FieldOption, Base): pass
+
+
 class File(_File, Base): pass
+
+
 class IdentityAccessRequest(_IdentityAccessRequest, Base): pass
+
+
 class InternalFile(_InternalFile, Base): pass
+
+
 class InternalTip(_InternalTip, Base): pass
+
+
 class InternalTipAnswers(_InternalTipAnswers, Base): pass
+
+
 class InternalTipData(_InternalTipData, Base): pass
+
+
 class Mail(_Mail, Base): pass
+
+
 class Message(_Message, Base): pass
+
+
 class Questionnaire(_Questionnaire, Base): pass
+
+
 class ReceiverContext(_ReceiverContext, Base): pass
+
+
 class ReceiverFile(_ReceiverFile, Base): pass
+
+
 class ReceiverTip(_ReceiverTip, Base): pass
+
+
 class SecureFileDelete(_SecureFileDelete, Base): pass
+
+
 class ShortURL(_ShortURL, Base): pass
+
+
 class Signup(_Signup, Base): pass
+
+
 class SubmissionStatus(_SubmissionStatus, Base): pass
+
+
 class SubmissionSubStatus(_SubmissionSubStatus, Base): pass
+
+
 class SubmissionStatusChange(_SubmissionStatusChange, Base): pass
+
+
 class Stats(_Stats, Base): pass
+
+
 class Step(_Step, Base): pass
+
+
 class Tenant(_Tenant, Base): pass
+
+
 class User(_User, Base): pass
+
+
 class UserImg(_UserImg, Base): pass
+
+
 class UserTenant(_UserTenant, Base): pass
+
+
 class WhistleblowerFile(_WhistleblowerFile, Base): pass
+
+
 class WhistleblowerTip(_WhistleblowerTip, Base): pass

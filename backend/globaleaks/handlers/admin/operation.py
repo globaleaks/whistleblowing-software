@@ -1,6 +1,6 @@
 # -*- coding: utf-8
 from six import text_type
-from six.moves.urllib.parse import urlunsplit # pylint: disable=import-error
+from six.moves.urllib.parse import urlunsplit  # pylint: disable=import-error
 
 from twisted.internet.defer import inlineCallbacks, returnValue
 from twisted.web.client import readBody
@@ -34,7 +34,7 @@ def check_hostname(session, tid, input_hostname):
         if input_hostname.endswith(v):
             raise errors.InputValidationError('Hostname contains a forbidden origin')
 
-    existing_hostnames = {h.value for h in session.query(Config) \
+    existing_hostnames = {h.value for h in session.query(Config)
                                                   .filter(Config.tid != tid,
                                                           Config.var_name == u'hostname')}
 

@@ -22,6 +22,7 @@ from globaleaks.utils.templating import Templating
 from globaleaks.utils.utility import msdos_encode, datetime_now
 from globaleaks.utils.zipstream import ZipStream
 
+
 @transact
 def get_tip_export(session, tid, user_id, rtip_id, language):
     rtip, itip = db_access_rtip(session, tid, user_id, rtip_id)
@@ -69,7 +70,7 @@ def get_tip_export(session, tid, user_id, rtip_id, language):
         file_dict = models.serializers.serialize_wbfile(session, tid, wf)
         file_dict['name'] = 'files_from_recipients/' + file_dict['name']
         file_dict['path'] = os.path.join(Settings.attachments_path, file_dict['filename'])
-        file_dict['forged'] = True # To be removed as soon it will be encrypted
+        file_dict['forged'] = True  # To be removed as soon it will be encrypted
         export_dict['files'].append(file_dict)
 
     return export_dict
@@ -77,6 +78,7 @@ def get_tip_export(session, tid, user_id, rtip_id, language):
 
 class ZipStreamProducer(object):
     """Streaming producter for ZipStream"""
+
     def __init__(self, handler, zipstreamObject):
         self.finish = Deferred()
         self.handler = handler

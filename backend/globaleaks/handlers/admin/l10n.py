@@ -18,20 +18,22 @@ from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.user import can_edit_general_settings_or_raise
 from globaleaks.orm import transact
 
+
 @transact
 def get(session, tid, lang):
     texts = session.query(models.CustomTexts).filter(models.CustomTexts.tid == tid, models.CustomTexts.lang == lang).one_or_none()
     if texts is None:
         return {}
-    else:
-        return texts.texts
+
+    return texts.texts
+
 
 
 @transact
 def update(session, tid, lang, request):
     texts = session.query(models.CustomTexts).filter(models.CustomTexts.tid == tid, models.CustomTexts.lang == lang).one_or_none()
     if texts is None:
-        session.add(models.CustomTexts({'tid':tid, 'lang': lang, 'texts': request}))
+        session.add(models.CustomTexts({'tid': tid, 'lang': lang, 'texts': request}))
     else:
         texts.texts = request
 

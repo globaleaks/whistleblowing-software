@@ -134,7 +134,7 @@ class TestFieldTemplateInstance(helpers.TestHandlerWithPopulatedDB):
         wrong_sample_field.update(type='nonexistingfieldtype')
         handler = self.request(wrong_sample_field, role='admin')
 
-        self.assertRaises(errors.InputValidationError,  handler.put, field['id'])
+        self.assertRaises(errors.InputValidationError, handler.put, field['id'])
 
     @inlineCallbacks
     def test_delete(self):

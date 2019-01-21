@@ -5,6 +5,7 @@ from globaleaks import __version__, DATABASE_VERSION
 from globaleaks.utils.crypto import GCE
 from globaleaks.utils.utility import uuid4
 
+
 class Item:
     _type = None
 
@@ -19,7 +20,7 @@ class Unicode(Item):
         if 'default' not in kwargs:
             kwargs['default'] = u''
 
-        Item.__init__(self,  *args, **kwargs)
+        Item.__init__(self, *args, **kwargs)
 
 
 class Int(Item):
@@ -68,7 +69,7 @@ ConfigDescriptor = {
     u'disable_custodian_notification_emails': Bool(default=False),
     u'disable_receiver_notification_emails': Bool(default=False),
 
-    u'tip_expiration_threshold': Int(default=72), # Hours
+    u'tip_expiration_threshold': Int(default=72),  # Hours
     u'notification_threshold_per_hour': Int(default=20),
 
     u'enable_admin_exception_notification': Bool(default=False),
@@ -134,8 +135,8 @@ ConfigDescriptor = {
     u'show_small_context_cards': Bool(default=False),
     u'show_contexts_in_alphabetical_order': Bool(default=True),
 
-    u'password_change_period': Int(default=90), # Days
-    u'wbtip_timetolive': Int(default=90), # Days
+    u'password_change_period': Int(default=90),  # Days
+    u'wbtip_timetolive': Int(default=90),  # Days
 
     u'threshold_free_disk_megabytes_high': Int(default=200),
     u'threshold_free_disk_megabytes_low': Int(default=1000),

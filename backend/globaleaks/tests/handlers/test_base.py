@@ -16,6 +16,7 @@ class BaseHandlerMock(BaseHandler):
     def get(self):
         return
 
+
 class TestBaseHandler(helpers.TestHandlerWithPopulatedDB):
     _handler = BaseHandlerMock
 

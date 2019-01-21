@@ -126,7 +126,7 @@ class SOCKS5ClientFactory(WrappingFactory):
 
     def clientConnectionFailed(self, connector, reason):
         if not self.canceled:
-           self.deferred.errback(reason)
+            self.deferred.errback(reason)
 
     def clientConnectionLost(self, connector, reason):
         pass

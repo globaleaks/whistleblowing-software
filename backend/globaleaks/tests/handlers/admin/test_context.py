@@ -3,6 +3,7 @@ from globaleaks.handlers.admin import context
 from globaleaks.models import Context
 from globaleaks.tests import helpers
 
+
 class TestContextsCollection(helpers.TestCollectionHandler):
     _handler = context.ContextsCollection
     _test_desc = {

@@ -16,9 +16,10 @@ class TestWBTipInstance(helpers.TestHandlerWithPopulatedDB):
     def test_get(self):
         wbtips_desc = yield self.get_wbtips()
         for wbtip_desc in wbtips_desc:
-            handler = self.request(role='whistleblower', user_id = wbtip_desc['id'])
+            handler = self.request(role='whistleblower', user_id=wbtip_desc['id'])
 
             yield handler.get()
+
 
 class TestWBTipCommentCollection(helpers.TestHandlerWithPopulatedDB):
     _handler = wbtip.WBTipCommentCollection
@@ -31,12 +32,12 @@ class TestWBTipCommentCollection(helpers.TestHandlerWithPopulatedDB):
     @inlineCallbacks
     def test_post(self):
         body = {
-            'content' : "can you provide an evidence of what you are telling?"
+            'content': "can you provide an evidence of what you are telling?"
         }
 
         wbtips_desc = yield self.get_wbtips()
         for wbtip_desc in wbtips_desc:
-            handler = self.request(body, role='whistleblower', user_id = wbtip_desc['id'])
+            handler = self.request(body, role='whistleblower', user_id=wbtip_desc['id'])
 
             yield handler.post()
 
@@ -52,12 +53,12 @@ class TestWBTipMessageCollection(helpers.TestHandlerWithPopulatedDB):
     @inlineCallbacks
     def test_post(self):
         body = {
-            'content' : "can you provide an evidence of what you are telling?"
+            'content': "can you provide an evidence of what you are telling?"
         }
 
         wbtips_desc = yield self.get_wbtips()
         for wbtip_desc in wbtips_desc:
-            handler = self.request(body, role='whistleblower', user_id = wbtip_desc['id'])
+            handler = self.request(body, role='whistleblower', user_id=wbtip_desc['id'])
 
             for rcvr_id in wbtip_desc['receivers_ids']:
                 yield handler.post(rcvr_id)
@@ -73,7 +74,7 @@ class WBTipIdentityHandler(helpers.TestHandlerWithPopulatedDB):
 
     @inlineCallbacks
     def test_put(self):
-        #FIXME:
+        # FIXME:
         #  The current test simply update a not existing field rising the code coverage
         #  and testing that all goes well even if a wrong id is provided or the feature
         #  is not enable.
@@ -87,6 +88,6 @@ class WBTipIdentityHandler(helpers.TestHandlerWithPopulatedDB):
 
         wbtips_desc = yield self.get_wbtips()
         for wbtip_desc in wbtips_desc:
-            handler = self.request(body, role='whistleblower', user_id = wbtip_desc['id'])
+            handler = self.request(body, role='whistleblower', user_id=wbtip_desc['id'])
 
             yield handler.post(wbtip_desc['id'])

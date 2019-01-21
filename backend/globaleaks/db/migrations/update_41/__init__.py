@@ -17,7 +17,7 @@ class InternalFile_v_40(Model):
     content_type = Column(UnicodeText, nullable=False)
     size = Column(Integer, nullable=False)
     new = Column(Integer, default=True, nullable=False)
-    submission = Column(Integer, default = False, nullable=False)
+    submission = Column(Integer, default=False, nullable=False)
     processing_attempts = Column(Integer, default=0, nullable=False)
 
 
@@ -121,7 +121,6 @@ class WhistleblowerFile_v_40(Model):
     creation_date = Column(DateTime, default=datetime_now, nullable=False)
     last_access = Column(DateTime, default=datetime_null, nullable=False)
     description = Column(UnicodeText, nullable=False)
-
 
 
 class MigrationScript(MigrationBase):

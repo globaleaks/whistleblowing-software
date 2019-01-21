@@ -37,6 +37,7 @@ class FileProducer(object):
     @ivar request: The L{IRequest} to write the contents of the file to.
     @ivar fd: The file descriptor from which reading the content to be delivered
     """
+
     def __init__(self, request, fo):
         self.finish = defer.Deferred()
         self.request = request
@@ -217,7 +218,7 @@ class BaseHandler(object):
 
             for key, value in message_template.items():
                 if key not in jmessage:
-                    log.debug("Key %s expected but missing!",  key)
+                    log.debug("Key %s expected but missing!", key)
                     log.debug("Received schema %s - Expected %s",
                               jmessage.keys(), message_template.keys())
                     raise errors.InputValidationError("Missing key %s" % key)
@@ -226,9 +227,8 @@ class BaseHandler(object):
                     log.err("Expected key: %s type validation failure", key)
                     raise errors.InputValidationError("Key (%s) double validation failure" % key)
 
-                if isinstance(message_template[key], dict) or isinstance(message_template[key], list):
-                    if message_template[key]:
-                        BaseHandler.validate_jmessage(jmessage[key], message_template[key])
+                if isinstance(message_template[key], (dict, list)) and message_template[key]:
+                    BaseHandler.validate_jmessage(jmessage[key], message_template[key])
 
                 success_check += 1
 

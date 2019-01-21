@@ -1,4 +1,4 @@
-#i -*- coding: UTF-8
+# -*- coding: UTF-8
 import os
 import shutil
 
@@ -11,6 +11,7 @@ from globaleaks.models import config_desc
 from globaleaks.models.properties import *
 from globaleaks.settings import Settings
 from globaleaks.utils.utility import datetime_now
+
 
 class Anomalies_v_38(Model):
     __tablename__ = 'anomalies'
@@ -128,6 +129,7 @@ class Context_v_38(Model):
     questionnaire_id = Column(UnicodeText(36))
     img_id = Column(UnicodeText(36))
 
+
 class CustomTexts_v_38(Model):
     __tablename__ = 'customtexts'
     lang = Column(UnicodeText, primary_key=True)
@@ -244,7 +246,7 @@ class InternalFile_v_38(Model):
     content_type = Column(UnicodeText)
     size = Column(Integer)
     new = Column(Integer, default=True)
-    submission = Column(Integer, default = False)
+    submission = Column(Integer, default=False)
     processing_attempts = Column(Integer, default=0)
 
 

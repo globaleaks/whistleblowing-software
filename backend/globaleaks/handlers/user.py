@@ -187,7 +187,6 @@ def update_user_settings(session, tid, user_session, request, language):
     return user_serialize_user(session, user, language)
 
 
-
 def db_get_usertenant_associations(session, user):
     usertenants = session.query(models.UserTenant) \
                          .filter(models.UserTenant.user_id == user.id)

@@ -72,6 +72,7 @@ class SubmissionStatusCollectionDesc(helpers.TestHandlerWithPopulatedDB):
         substatus = check_status['substatuses'].pop()
         self.assertEqual(substatus['label'], "Test1")
 
+
 class SubmissionStatusInstanceDesc(helpers.TestHandlerWithPopulatedDB):
     _handler = submission_statuses.SubmissionStatusInstance
 
@@ -182,6 +183,7 @@ class SubmissionSubStatusCollectionDesc(helpers.TestHandlerWithPopulatedDB):
 
         submission_status = yield submission_statuses.retrieve_specific_submission_status(1, new_status_id, u'en')
         self.assertEqual(len(submission_status['substatuses']), 1)
+
 
 class SubmissionSubStatusInstanceDesc(helpers.TestHandlerWithPopulatedDB):
     _handler = submission_statuses.SubmissionSubStatusInstance

@@ -28,7 +28,7 @@ class BodyStreamer(protocol.Protocol):
 @implementer(IBodyProducer)
 class BodyProducer(object):
 
-    BUF_MAX_SIZE = 64 * 1024 # TODO Use the hardcoded value for buf max size
+    BUF_MAX_SIZE = 64 * 1024  # TODO Use the hardcoded value for buf max size
     length = 0
     bytes_written = 0
 

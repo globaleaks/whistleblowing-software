@@ -6,7 +6,7 @@ import random
 import string
 import struct
 
-from distutils.version import LooseVersion as V # pylint: disable=no-name-in-module,import-error
+from distutils.version import LooseVersion as V  # pylint: disable=no-name-in-module,import-error
 
 # python-scrypt is still used because not all the versions of pynacl/cryptography includes it
 # this library could be replaced later on in the project
@@ -15,8 +15,8 @@ import scrypt
 import nacl
 from nacl.encoding import RawEncoder
 if V(nacl.__version__) >= V('1.2'):
-    from nacl.pwhash import argon2id # pylint: disable=no-name-in-module
-    from nacl.public import SealedBox, PrivateKey, PublicKey # pylint: disable=no-name-in-module
+    from nacl.pwhash import argon2id  # pylint: disable=no-name-in-module
+    from nacl.public import SealedBox, PrivateKey, PublicKey  # pylint: disable=no-name-in-module
     from nacl.secret import SecretBox
     from nacl.utils import random as nacl_random
 
@@ -89,7 +89,6 @@ if V(nacl.__version__) >= V('1.2'):
                             opslimit=GCE.ALGORITM_CONFIGURATION['HASH']['ARGON2']['OPSLIMIT'],
                             memlimit=GCE.ALGORITM_CONFIGURATION['HASH']['ARGON2']['MEMLIMIT'])
         return text_type(base64.b64encode(hash))
-
 
     class _StreamingEncryptionObject(object):
         def __init__(self, mode, user_key, filepath):
@@ -173,17 +172,17 @@ class GCE(object):
     ALGORITM_CONFIGURATION = {
         'KDF': {
             'ARGON2': {
-                'MEMLIMIT': 1 << 27, # 128MB
+                'MEMLIMIT': 1 << 27,  # 128MB
                 'OPSLIMIT': 17
             }
         },
         'HASH': {
             'ARGON2': {
-                'MEMLIMIT': 1 << 27, # 128MB
+                'MEMLIMIT': 1 << 27,  # 128MB
                 'OPSLIMIT': 16
             },
             'SCRYPT': {
-                'N': 1 << 14 # Value used in old protocol
+                'N': 1 << 14  # Value used in old protocol
             }
         }
     }

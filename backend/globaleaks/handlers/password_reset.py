@@ -37,7 +37,7 @@ def validate_password_reset(session, tid, reset_token):
 
 
 @transact
-def generate_password_reset_token(session, state, tid, username_or_email, allow_admin_reset = False):
+def generate_password_reset_token(session, state, tid, username_or_email, allow_admin_reset=False):
     from globaleaks.handlers.admin.notification import db_get_notification
     from globaleaks.handlers.admin.node import db_admin_serialize_node
     from globaleaks.handlers.user import user_serialize_user

@@ -125,7 +125,7 @@ class InternalFile_v_45(Model):
     content_type = Column(UnicodeText, nullable=False)
     size = Column(Integer, nullable=False)
     new = Column(Integer, default=True, nullable=False)
-    submission = Column(Integer, default = False, nullable=False)
+    submission = Column(Integer, default=False, nullable=False)
 
 
 class InternalTip_v_45(Model):

@@ -1,4 +1,4 @@
-#######i -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 # Implement the notification of new submissions
 import copy
 
@@ -219,7 +219,7 @@ class MailGenerator(object):
                 if cache_item.notification.disable_receiver_notification_emails:
                     silent_tids.append(tid)
 
-            if len(silent_tids):
+            if silent_tids:
                 for x in session.query(models.ReceiverTip).filter(models.ReceiverTip.internaltip_id == models.InternalTip.id,
                                                                   models.InternalTip.tid.in_(silent_tids)):
                     x.new = False
@@ -246,6 +246,7 @@ class MailGenerator(object):
                 }
 
                 getattr(self, 'process_%s' % trigger)(session, element, data)
+
 
 @transact
 def delete_sent_mails(session, mail_ids):

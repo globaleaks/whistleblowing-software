@@ -35,12 +35,12 @@ class Cleaning(HourlyJob):
         for tid in self.state.tenant_state:
             threshold = datetime_now() - timedelta(days=self.state.tenant_cache[tid].wbtip_timetolive)
 
-            wbtips_ids = [r[0] for r in session.query(models.InternalTip.id) \
+            wbtips_ids = [r[0] for r in session.query(models.InternalTip.id)
                                                .filter(models.InternalTip.tid == tid,
                                                        models.InternalTip.wb_last_access < threshold)]
 
             if wbtips_ids:
-                session.query(models.WhistleblowerTip).filter(models.WhistleblowerTip.id.in_(wbtips_ids)).delete(synchronize_session = 'fetch')
+                session.query(models.WhistleblowerTip).filter(models.WhistleblowerTip.id.in_(wbtips_ids)).delete(synchronize_session='fetch')
 
     def db_clean_expired_itips(self, session):
         """
@@ -59,7 +59,7 @@ class Cleaning(HourlyJob):
             for user in session.query(models.User).filter(models.User.role == u'receiver',
                                                           models.UserTenant.user_id == models.User.id,
                                                           models.UserTenant.tenant_id == tid):
-                itip_ids = [id[0] for id in session.query(models.InternalTip.id) \
+                itip_ids = [id[0] for id in session.query(models.InternalTip.id)
                                                  .filter(models.InternalTip.tid == tid,
                                                          models.ReceiverTip.internaltip_id == models.InternalTip.id,
                                                          models.InternalTip.expiration_date < threshold,
@@ -102,8 +102,8 @@ class Cleaning(HourlyJob):
 
             threshold = datetime_now() - timedelta(days=self.state.tenant_cache[tid].password_change_period)
 
-            ids = [r[0] for r in session.query(models.User.id) \
-                                        .join(models.UserTenant) \
+            ids = [r[0] for r in session.query(models.User.id)
+                                        .join(models.UserTenant)
                                         .filter(models.User.password_change_date < threshold,
                                                 models.UserTenant.user_id == models.User.id,
                                                 models.UserTenant.tenant_id == tid)]

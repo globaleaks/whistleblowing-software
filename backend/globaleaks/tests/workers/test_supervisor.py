@@ -68,7 +68,7 @@ class TestSubprocessRun(helpers.TestGL):
 
         tmp = tempfile.TemporaryFile(mode='w')
         tmp.write(json.dumps(valid_cfg))
-        tmp.seek(0,0)
+        tmp.seek(0, 0)
         tmp_fd = tmp.fileno()
 
         self.http_process = HTTPSProcess(fd=tmp_fd)

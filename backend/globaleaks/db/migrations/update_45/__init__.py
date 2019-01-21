@@ -277,7 +277,7 @@ class MigrationScript(MigrationBase):
             self.session_new.add(self.model_to['Config']({'tid': 1, 'var_name': u'multisite', 'value': True}))
             self.entries_count['Config'] += 1
 
-        ids = [id[0] for id in self.session_old.query(self.model_from['Field'].id)\
+        ids = [id[0] for id in self.session_old.query(self.model_from['Field'].id)
                                                .filter(self.model_from['Field'].template_id == u'whistleblower_identity')]
 
         for internaltip in self.session_old.query(self.model_from['InternalTip']):

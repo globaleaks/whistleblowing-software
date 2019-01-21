@@ -6,6 +6,7 @@ import sys
 from globaleaks.rest import errors
 from globaleaks.utils.utility import log
 
+
 def overwrite_and_remove(absolutefpath, iterations_number=1):
     """
     Overwrite the file with all_zeros, all_ones, random patterns

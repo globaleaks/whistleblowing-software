@@ -96,7 +96,6 @@ def login_whistleblower(session, tid, receipt):
     return Sessions.new(tid, wbtip.id, 'whistleblower', False, crypto_prv_key)
 
 
-
 @transact
 def login(session, tid, username, password, authcode, client_using_tor, client_ip):
     """
@@ -187,7 +186,7 @@ class AuthenticationHandler(BaseHandler):
 
         tid = int(request['tid'])
         if tid == 0:
-             tid = self.request.tid
+            tid = self.request.tid
 
         session = yield login(tid,
                               request['username'],
@@ -219,7 +218,7 @@ class TokenAuthHandler(BaseHandler):
 
         tid = int(request['tid'])
         if tid == 0:
-             tid = self.request.tid
+            tid = self.request.tid
 
         delay = random_login_delay()
         if delay:
@@ -272,7 +271,7 @@ class SessionHandler(BaseHandler):
     """
     Session handler for authenticated users
     """
-    check_roles = {'admin','receiver','custodian','whistleblower'}
+    check_roles = {'admin', 'receiver', 'custodian', 'whistleblower'}
 
     def get(self):
         """
@@ -291,7 +290,7 @@ class TenantAuthSwitchHandler(BaseHandler):
     """
     Login handler for switching tenant
     """
-    check_roles = {'admin','receiver','custodian'}
+    check_roles = {'admin', 'receiver', 'custodian'}
 
     @inlineCallbacks
     def get(self, tid):

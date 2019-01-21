@@ -27,6 +27,7 @@ def login_check(uri):
 def submission_check(uri):
     return uri.startswith(b'/submission') and (len(uri) == 11 or len(uri) == 54)
 
+
 events_monitored = [
     {
         'name': 'failed_logins',
@@ -70,6 +71,7 @@ class Event(object):
     - Anomaly check is based on those elements.
     - Real-time analysis is based on these, too.
     """
+
     def __init__(self, event_obj, request_time):
         self.event_type = event_obj['name']
         self.creation_date = datetime_now()

@@ -83,6 +83,7 @@ class LogObserver(txlog.FileLogObserver):
     """
     Tracks and logs exceptions generated within the application
     """
+
     def emit(self, eventDict):
         """
         Handles formatting system log messages along with incrementing the objs

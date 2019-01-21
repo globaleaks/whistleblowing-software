@@ -169,13 +169,13 @@ class Signup(BaseHandler):
 
 
 class SignupActivation(BaseHandler):
-  """
-  Signup handler
-  """
-  check_roles = 'unauthenticated'
-  invalidate_cache = False
-  root_tenant_only = True
-  refresh_connection_endpoints = True
+    """
+    Signup handler
+    """
+    check_roles = 'unauthenticated'
+    invalidate_cache = False
+    root_tenant_only = True
+    refresh_connection_endpoints = True
 
-  def get(self, token):
-      return signup_activation(self.state, self.request.tid, token, self.request.language)
+    def get(self, token):
+        return signup_activation(self.state, self.request.tid, token, self.request.language)

@@ -67,7 +67,6 @@ def get_session_from_dbpath(db_path=None, foreign_keys=True):
     return get_session(make_db_uri(db_path), foreign_keys)
 
 
-
 def set_thread_pool(thread_pool):
     global __THREAD_POOL
     __THREAD_POOL = thread_pool
@@ -82,6 +81,7 @@ class transact(object):
     """
     Class decorator for managing transactions.
     """
+
     def __init__(self, method):
         self.method = method
         self.instance = None

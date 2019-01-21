@@ -15,4 +15,4 @@ class TestManifestHandler(helpers.TestHandler):
         response = yield handler.get()
 
         for k in ['changelog', 'version', 'license']:
-           self.assertTrue(k in response)
+            self.assertTrue(k in response)

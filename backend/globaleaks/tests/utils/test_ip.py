@@ -5,6 +5,7 @@ from twisted.trial import unittest
 
 from globaleaks.utils import ip
 
+
 class TestIPUtils(unittest.TestCase):
     def test_parse_csv_ip_ranges_to_ip_networks(self):
         ip_str = "192.168.1.1,10.0.0.0/8,::1,2001:db8::/32"

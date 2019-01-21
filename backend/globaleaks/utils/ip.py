@@ -3,6 +3,7 @@ import ipaddress
 
 from six import text_type, binary_type
 
+
 def parse_csv_ip_ranges_to_ip_networks(ip_str):
     """Parse a list of IP addresses and/or CIDRs"""
     try:
@@ -34,7 +35,6 @@ def parse_csv_ip_ranges_to_ip_networks(ip_str):
 
     except:
         return []
-
 
 
 def check_ip(client_ip, ip_filter):

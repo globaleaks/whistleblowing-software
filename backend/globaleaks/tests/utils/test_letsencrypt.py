@@ -5,6 +5,7 @@ from globaleaks.tests import helpers
 from globaleaks.utils import letsencrypt
 from twisted.trial.unittest import TestCase
 
+
 class TestRunAcmeReg(TestCase):
     def test_format_asn1_date(self):
         s = b'20170827153000Z'

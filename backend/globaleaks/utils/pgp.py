@@ -76,7 +76,7 @@ class PGPContext(object):
         if not encrypted_obj.ok:
             raise errors.InputValidationError
 
-        return encrypted_obj,  os.stat(output_path).st_size
+        return encrypted_obj, os.stat(output_path).st_size
 
     def encrypt_message(self, key_fingerprint, plaintext):
         """

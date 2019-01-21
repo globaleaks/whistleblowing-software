@@ -23,7 +23,7 @@ class TestRTipInstance(helpers.TestHandlerWithPopulatedDB):
     def test_get(self):
         rtip_descs = yield self.get_rtips()
         for rtip_desc in rtip_descs:
-            handler = self.request(role='receiver', user_id = rtip_desc['receiver_id'])
+            handler = self.request(role='receiver', user_id=rtip_desc['receiver_id'])
             yield handler.get(rtip_desc['id'])
 
     @inlineCallbacks
@@ -41,7 +41,7 @@ class TestRTipInstance(helpers.TestHandlerWithPopulatedDB):
               'args': {}
             }
 
-            handler = self.request(operation, role='receiver', user_id = rtip_desc['receiver_id'])
+            handler = self.request(operation, role='receiver', user_id=rtip_desc['receiver_id'])
             yield handler.put(rtip_desc['id'])
             self.assertEqual(handler.request.code, 200)
 
@@ -64,14 +64,13 @@ class TestRTipInstance(helpers.TestHandlerWithPopulatedDB):
               'args': {}
             }
 
-            handler = self.request(operation, role='receiver', user_id = rtip_desc['receiver_id'])
+            handler = self.request(operation, role='receiver', user_id=rtip_desc['receiver_id'])
             yield handler.put(rtip_desc['id'])
             self.assertEqual(handler.request.code, 200)
 
         rtip_descs = yield self.get_rtips()
         for rtip_desc in rtip_descs:
             self.assertTrue(rtip_desc['expiration_date'] == '3000-01-01T00:00:00Z')
-
 
     @inlineCallbacks
     def switch_enabler(self, key):
@@ -85,7 +84,7 @@ class TestRTipInstance(helpers.TestHandlerWithPopulatedDB):
                 }
             }
 
-            handler = self.request(operation, role='receiver', user_id = rtip_desc['receiver_id'])
+            handler = self.request(operation, role='receiver', user_id=rtip_desc['receiver_id'])
             yield handler.put(rtip_desc['id'])
             self.assertEqual(handler.request.code, 200)
 
@@ -100,7 +99,7 @@ class TestRTipInstance(helpers.TestHandlerWithPopulatedDB):
                 }
             }
 
-            handler = self.request(operation, role='receiver', user_id = rtip_desc['receiver_id'])
+            handler = self.request(operation, role='receiver', user_id=rtip_desc['receiver_id'])
             yield handler.put(rtip_desc['id'])
             self.assertEqual(handler.request.code, 200)
 
@@ -115,7 +114,7 @@ class TestRTipInstance(helpers.TestHandlerWithPopulatedDB):
                 }
             }
 
-            handler = self.request(operation, role='receiver', user_id = rtip_desc['receiver_id'])
+            handler = self.request(operation, role='receiver', user_id=rtip_desc['receiver_id'])
             yield handler.put(rtip_desc['id'])
             self.assertEqual(handler.request.code, 200)
 
@@ -145,7 +144,7 @@ class TestRTipInstance(helpers.TestHandlerWithPopulatedDB):
               }
             }
 
-            handler = self.request(operation, role='receiver', user_id = rtip_desc['receiver_id'])
+            handler = self.request(operation, role='receiver', user_id=rtip_desc['receiver_id'])
             yield handler.put(rtip_desc['id'])
             self.assertEqual(handler.request.code, 200)
 
@@ -164,7 +163,7 @@ class TestRTipInstance(helpers.TestHandlerWithPopulatedDB):
               }
             }
 
-            handler = self.request(operation, role='receiver', user_id = rtip_desc['receiver_id'])
+            handler = self.request(operation, role='receiver', user_id=rtip_desc['receiver_id'])
             yield handler.put(rtip_desc['id'])
             self.assertEqual(handler.request.code, 200)
 
@@ -177,7 +176,7 @@ class TestRTipInstance(helpers.TestHandlerWithPopulatedDB):
         self.assertEqual(len(rtip_descs), self.population_of_submissions * self.population_of_recipients)
 
         # we delete the first and then we verify that the second does not exist anymore
-        handler = self.request(role='receiver', user_id = rtip_descs[0]['receiver_id'])
+        handler = self.request(role='receiver', user_id=rtip_descs[0]['receiver_id'])
         yield handler.delete(rtip_descs[0]['id'])
 
         rtip_descs = yield self.get_rtips()
@@ -186,13 +185,12 @@ class TestRTipInstance(helpers.TestHandlerWithPopulatedDB):
 
         yield self.test_model_count(models.SecureFileDelete, self.population_of_attachments * self.population_of_recipients)
 
-
     @inlineCallbacks
     def test_delete_unexistent_tip_by_existent_and_logged_receiver(self):
         rtip_descs = yield self.get_rtips()
 
         for rtip_desc in rtip_descs:
-            handler = self.request(role='receiver', user_id = rtip_desc['receiver_id'])
+            handler = self.request(role='receiver', user_id=rtip_desc['receiver_id'])
             yield self.assertFailure(handler.delete(u"unexistent_tip"), errors.ModelNotFound)
 
     @inlineCallbacks
@@ -200,7 +198,7 @@ class TestRTipInstance(helpers.TestHandlerWithPopulatedDB):
         rtip_descs = yield self.get_rtips()
 
         for rtip_desc in rtip_descs:
-            handler = self.request(role='receiver', user_id = rtip_desc['receiver_id'])
+            handler = self.request(role='receiver', user_id=rtip_desc['receiver_id'])
             yield self.assertFailure(handler.delete(u"unexistent_tip"), errors.ModelNotFound)
 
 
@@ -220,7 +218,7 @@ class TestRTipCommentCollection(helpers.TestHandlerWithPopulatedDB):
 
         rtip_descs = yield self.get_rtips()
         for rtip_desc in rtip_descs:
-            handler = self.request(body, role='receiver', user_id = rtip_desc['receiver_id'])
+            handler = self.request(body, role='receiver', user_id=rtip_desc['receiver_id'])
             yield handler.post(rtip_desc['id'])
 
 
@@ -240,7 +238,7 @@ class TestReceiverMsgCollection(helpers.TestHandlerWithPopulatedDB):
 
         rtip_descs = yield self.get_rtips()
         for rtip_desc in rtip_descs:
-            handler = self.request(body, role='receiver', user_id = rtip_desc['receiver_id'])
+            handler = self.request(body, role='receiver', user_id=rtip_desc['receiver_id'])
             yield handler.post(rtip_desc['id'])
 
 
@@ -256,7 +254,7 @@ class TestReceiverFileDownload(helpers.TestHandlerWithPopulatedDB):
         for rtip_desc in rtip_descs:
             rfiles_desc = yield self.get_rfiles(rtip_desc['id'])
             for rfile_desc in rfiles_desc:
-                handler = self.request(role='receiver', user_id = rtip_desc['receiver_id'])
+                handler = self.request(role='receiver', user_id=rtip_desc['receiver_id'])
                 yield handler.get(rfile_desc['id'])
                 self.assertNotEqual(handler.request.getResponseBody(), '')
 
@@ -277,5 +275,5 @@ class TestIdentityAccessRequestsCollection(helpers.TestHandlerWithPopulatedDB):
 
         rtip_descs = yield self.get_rtips()
         for rtip_desc in rtip_descs:
-            handler = self.request(body, role='receiver', user_id = rtip_desc['receiver_id'])
+            handler = self.request(body, role='receiver', user_id=rtip_desc['receiver_id'])
             yield handler.post(rtip_desc['id'])

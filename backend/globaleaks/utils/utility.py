@@ -71,6 +71,7 @@ def drop_privileges(user, uid, gid):
     else:
         log.err("Unable to securely drop permissions on Windows")
 
+
 def fix_file_permissions(path, uid, gid, dchmod, fchmod):
     """
     Recursively fix file permissions on a given path
@@ -110,7 +111,7 @@ def sum_dicts(*dicts):
 
 
 def every_language_dict(default_text=''):
-    return {code : default_text for code in LANGUAGES_SUPPORTED_CODES}
+    return {code: default_text for code in LANGUAGES_SUPPORTED_CODES}
 
 
 def deferred_sleep(timeout):
@@ -184,14 +185,14 @@ def datetime_to_ISO8601(date):
     if date is None:
         date = datetime_null()
 
-    return date.isoformat() + "Z" # Z means that the date is in UTC
+    return date.isoformat() + "Z"  # Z means that the date is in UTC
 
 
 def ISO8601_to_datetime(isodate):
     """
     convert an ISO8601 date into a datetime
     """
-    isodate = isodate[:19] # we srip the eventual Z at the end
+    isodate = isodate[:19]  # we srip the eventual Z at the end
 
     return datetime.strptime(isodate, "%Y-%m-%dT%H:%M:%S")
 
@@ -234,7 +235,7 @@ def ISO8601_to_pretty_str(isodate, tz=0):
                     day=int(isodate[8:10]),
                     hour=int(isodate[11:13]),
                     minute=int(isodate[14:16]),
-                    second=int(isodate[17:19]) )
+                    second=int(isodate[17:19]))
 
     if tz != 0:
         tz_i, tz_d = divmod(tz, 1)

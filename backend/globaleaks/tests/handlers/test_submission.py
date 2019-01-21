@@ -149,6 +149,7 @@ class TestSubmissionMixedScenario(TestSubmissionEncryptedScenario):
         'reference': 3
     }
 
+
 class TestSubmissionPlaintextScenario(TestSubmissionEncryptedScenario):
     encryption_scenario = 'PLAINTEXT'
 
