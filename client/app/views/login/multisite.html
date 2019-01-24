@@ -45,7 +45,7 @@
     <input class="form-control" name="authcode" data-ng-model="loginData.loginAuthCode" type="text" required />
   </div>
 
-  <button id="login-button" class="btn btn-success" data-ng-disabled="Authentication.loginInProgress || loginForm.$invalid" data-ng-click="Authentication.login(0, loginData.loginUsername, loginData.loginPassword, loginData.loginAuthCode)" type="submit">
+  <button id="login-button" class="btn btn-success" data-ng-disabled="Authentication.loginInProgress || loginForm.$invalid" data-ng-click="Authentication.login(0, loginData.loginUsername, loginData.loginPassword)" type="submit">
     <i class="glyphicon glyphicon-log-in"></i>
     <span data-translate>Log in</span>
   </button>
