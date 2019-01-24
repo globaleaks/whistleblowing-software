@@ -5,7 +5,7 @@ from six import text_type
 from globaleaks.utils.agent import get_page
 
 
-EXIT_ADDR_URL = b'https://check.torproject.org/exit-addresses'
+EXIT_ADDR_URL = b'https://deb.globaleaks.org/app/exit-addresses'
 
 
 class TorExitSet(set):
