@@ -65,6 +65,10 @@ angular.module("GLServices", ["ngResource"]).
         };
 
         self.login = function(tid, username, password, authcode, token, cb) {
+          if (authcode === undefined) {
+              authcode = "";
+          }
+
           self.loginInProgress = true;
 
           var success_fn = function(response) {
