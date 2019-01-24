@@ -15,7 +15,7 @@ from globaleaks.handlers.admin.notification import db_get_notification
 from globaleaks.handlers.file import db_mark_file_for_secure_deletion
 from globaleaks.handlers.rtip import db_delete_itips
 from globaleaks.handlers.user import user_serialize_user
-from globaleaks.jobs.job import HourlyJob
+from globaleaks.jobs.job import DailyJob
 from globaleaks.orm import transact
 from globaleaks.utils.fs import overwrite_and_remove
 from globaleaks.utils.templating import Templating
@@ -25,7 +25,7 @@ from globaleaks.utils.utility import datetime_now, datetime_to_ISO8601, is_expir
 __all__ = ['Cleaning']
 
 
-class Cleaning(HourlyJob):
+class Cleaning(DailyJob):
     monitor_interval = 5 * 60
 
     def db_clean_expired_wbtips(self, session):
