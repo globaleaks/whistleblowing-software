@@ -1,3 +1,8 @@
+Changes in version 3.6.6 - 2019-01-24
+    Fix issues on authentication when 2FA is disabled
+    Reduce period of Cleaning and Certificate Check to be daily
+    Downgrade angular to 1.7.5 to solve #2495
+
 Changes in version 3.6.5 - 2019-01-19
     Fix validation of required questions of type checkbox
     Bypass HTTPS restart when a new tenant is created
