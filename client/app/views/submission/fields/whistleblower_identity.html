@@ -5,17 +5,16 @@
   </div>
   <br /><br />
   <div data-ng-if="field.attrs.prompt_confirmation_upon_negative_answer.value">
-  <div data-ng-if="submission._submission.identity_provided === false && vars.confirmation_upon_negative_answer === undefined" class="alert alert-warning" data-ng-class="{'has-error': f['whistleblower_identity_radio_2'].$error.required}">
-    <div>{{field.attrs.text_shown_upon_negative_answer.value}}</div>
-    <div data-ng-if="field.attrs.prompt_confirmation_upon_negative_answer"
-      <div data-ng-class="{'has-error': f['whistleblower_identity_radio_2'].$error.required}">
-        <label class="radio-inline"><input class="inputelem" type="radio" name="whistleblower_identity_radio_2" data-ng-value="true" data-ng-model="vars.confirmation_upon_negative_answer" data-ng-change="submission._submission.identity_provided = false" /><span data-translate>Yes</span></label>
-        <label class="radio-inline"><input class="inputelem" type="radio" name="whistleblower_identity_radio_2" data-ng-value="false" data-ng-model="vars.confirmation_upon_negative_answer" data-ng-change="submission._submission.identity_provided = true" /><span data-translate>No</span></label>
+    <div data-ng-if="submission._submission.identity_provided === false && vars.confirmation_upon_negative_answer === undefined" class="alert alert-warning" data-ng-class="{'has-error': f['whistleblower_identity_radio_2'].$error.required}">
+      <div>{{field.attrs.text_shown_upon_negative_answer.value}}</div>
+      <div data-ng-if="field.attrs.prompt_confirmation_upon_negative_answer">
+        <div data-ng-class="{'has-error': f['whistleblower_identity_radio_2'].$error.required}">
+          <label class="radio-inline"><input class="inputelem" type="radio" name="whistleblower_identity_radio_2" data-ng-value="true" data-ng-model="vars.confirmation_upon_negative_answer" data-ng-change="submission._submission.identity_provided = false" /><span data-translate>Yes</span></label>
+          <label class="radio-inline"><input class="inputelem" type="radio" name="whistleblower_identity_radio_2" data-ng-value="false" data-ng-model="vars.confirmation_upon_negative_answer" data-ng-change="submission._submission.identity_provided = true" /><span data-translate>No</span></label>
+        </div>
       </div>
     </div>
-  </div>
-  <div data-ng-if="vars.confirmation_upon_negative_answer === true" class="alert alert-warning">
-    <label>{{field.attrs.text_of_final_statement_upon_negative_answer.value}}</label>
+    <div data-ng-if="vars.confirmation_upon_negative_answer === true" class="alert alert-warning">{{field.attrs.text_of_final_statement_upon_negative_answer.value}}</div>
   </div>
   <div data-ng-if="submission._submission.identity_provided === true">
     <div data-ng-include="'views/submission/form.html'"></div>
