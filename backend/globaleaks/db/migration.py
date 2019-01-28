@@ -11,6 +11,7 @@ from globaleaks import __version__, models, \
     DATABASE_VERSION, FIRST_DATABASE_VERSION_SUPPORTED, LANGUAGES_SUPPORTED_CODES
 from globaleaks.db.appdata import db_update_defaults, load_appdata
 
+from globaleaks.db.migrations.fixes import db_fix_config
 from globaleaks.db.migrations.update_25 import User_v_24, SecureFileDelete_v_24
 from globaleaks.db.migrations.update_26 import InternalFile_v_25
 from globaleaks.db.migrations.update_27 import Node_v_26, Context_v_26, Notification_v_26
@@ -139,6 +140,8 @@ def perform_data_update(db_file):
                 config.update_defaults(session, tid, appdata)
 
             db_update_defaults(session)
+
+            db_fix_config(session)
 
             cfg.set_val(u'version', __version__)
             cfg.set_val(u'latest_version', __version__)
