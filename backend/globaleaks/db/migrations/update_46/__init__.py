@@ -300,6 +300,22 @@ class MigrationScript(MigrationBase):
 
             self.session_new.add(new_obj)
 
+    def migrate_WhistleblowerFile(self):
+        filenames = {}
+        old_objs = self.session_old.query(self.model_from['WhistleblowerFile'])
+        for old_obj in old_objs:
+            if old_obj.filename in filenames:
+                self.entries_count['WhistleblowerFile'] -= 1
+                continue
+
+            filenames[old_obj.filename] = True
+
+            new_obj = self.model_to['WhistleblowerFile']()
+            for key in [c.key for c in new_obj.__table__.columns]:
+                setattr(new_obj, key, getattr(old_obj, key))
+
+            self.session_new.add(new_obj)
+
     def migrate_User(self):
         old_objs = self.session_old.query(self.model_from['User'])
         for old_obj in old_objs:
