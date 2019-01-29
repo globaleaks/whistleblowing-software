@@ -1,3 +1,6 @@
+Changes in version 3.6.9 - 2019-01-29
+    Fix migration 46 in relation to duplicated whistleblowerfile names
+
 Changes in version 3.6.8 - 2019-01-28
     Fix issue #2498
 
