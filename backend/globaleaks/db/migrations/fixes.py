@@ -4,6 +4,7 @@ import os
 
 from globaleaks.models import Config
 
+
 def db_fix_salt(session):
     items = session.query(Config).filter(Config.var_name == u'receipt_salt')
     for item in items:
@@ -12,8 +13,6 @@ def db_fix_salt(session):
                 item.value = base64.b64encode(os.urandom(16)).decode()
         except:
             item.value = base64.b64encode(os.urandom(16)).decode()
-
-    print(len(item.value))
 
 
 def db_fix_config(session):
