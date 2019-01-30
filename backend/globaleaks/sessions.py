@@ -31,14 +31,14 @@ class Session(object):
 class SessionsFactory(TempDict):
     """Extends TempDict to provide session management functions ontop of temp session keys"""
 
-    def revoke(self, user_id):
+    def revoke(self, tid, user_id):
         for k, v in list(self.items()):
-            if v.user_id == user_id:
+            if v.tid == tid and v.user_id == user_id:
                 del self[k]
 
     def new(self, tid, user_id, user_role, pcn, cc):
+        self.revoke(tid, user_id)
         session = Session(tid, user_id, user_role, pcn, cc)
-        self.revoke(user_id)
         self.set(session.id, session)
         return session
 
