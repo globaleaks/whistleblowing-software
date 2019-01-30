@@ -1,3 +1,3 @@
-The available disk space is {FreeMemory} of {TotalMemory}.
+{FreeMemory} of {TotalMemory} available diskspace used.
 
 The server cannot guarantee that a new submission can be stored, so submissions have been disabled.
