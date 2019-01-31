@@ -75,9 +75,6 @@ class PasswordResetHandler(BaseHandler):
 
     @inlineCallbacks
     def get(self, reset_token):
-        if State.tenant_cache[self.request.tid]['enable_password_reset'] is False:
-            return
-
         auth_token = yield validate_password_reset(self.request.tid,
                                                    reset_token)
         if auth_token:
