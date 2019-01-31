@@ -23,7 +23,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-01-13 14:35+0000\n"
+"PO-Revision-Date: 2019-01-30 08:51+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Indonesian (http://www.transifex.com/otf/globaleaks/language/id/)\n"
 "MIME-Version: 1.0\n"
@@ -683,7 +683,7 @@ msgid "Enable multisite feature"
 msgstr "Aktifkan fitur multi situs"
 
 msgid "Enable two factor authentication"
-msgstr ""
+msgstr "Aktifkan otentikasi 2 faktor"
 
 msgid "Allow other websites to include the platform inside iframes"
 msgstr "Mengizinkan situs-situs lain menyertakan platform di dalam iframes"
@@ -980,7 +980,7 @@ msgid "days"
 msgstr "hari"
 
 msgid "Show the questionnaire navigation interface"
-msgstr ""
+msgstr "Tampilkan antarmuka navigasi kuesioner"
 
 msgid "Allow whistleblowers to select their recipients"
 msgstr "izinkan informan publik untuk memilih penerima"
@@ -1559,13 +1559,13 @@ msgid "Forgot password?"
 msgstr "Lupa sandi?"
 
 msgid "Check your inbox and enter the authentication code you received."
-msgstr ""
+msgstr "Cek kotak masuk Anda dan masukkan kode otentikasi yang Anda terima."
 
 msgid "Authentication failed"
 msgstr "Autentikasi gagal"
 
 msgid "The code is either invalid or expired."
-msgstr ""
+msgstr "Kode tidak sah atau kedaluwarsa."
 
 msgid "Site:"
 msgstr "Situs:"
@@ -2091,13 +2091,13 @@ msgid "Organization unit and job location at the time of the reported fact"
 msgstr "Unit organisasi dan lokasi kerja pada saat fakta dilaporkan"
 
 msgid "Authentication code: {AuthCode}"
-msgstr ""
+msgstr "Kode Otentikasi: {AuthCode}"
 
 msgid "The authentication code is valid for 5 minutes."
-msgstr ""
+msgstr "Kode otentikasi berlaku selama 5 menit."
 
 msgid "Authentication code"
-msgstr ""
+msgstr "Kode otentikasi"
 
 msgid "Dear {RecipientName},"
 msgstr "yang terhormat {RecipientName},"
@@ -2135,6 +2135,9 @@ msgstr "Periksa isu untuk menentukan apakah itu sah atau tidak"
 
 msgid "The activities with unusual stats are:"
 msgstr "Kegiatan dengan statistik yang tidak biasa adalah:"
+
+msgid "The available disk space is {FreeMemory} of {TotalMemory}."
+msgstr ""
 
 msgid ""
 "The server cannot guarantee that a new submission can be stored, so "

@@ -1,5 +1,6 @@
 # 
 # Translators:
+# Arda Büyükkaya <ardabuyukkaya@protonmail.com>, 2019
 # cerberus23 <hemlockii@riseup.net>, 2013
 # cerberus23 <hemlockii@riseup.net>, 2013
 # cerberus23 <hemlockii@riseup.net>, 2013
@@ -25,7 +26,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-01-13 14:35+0000\n"
+"PO-Revision-Date: 2019-01-30 08:51+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Turkish (http://www.transifex.com/otf/globaleaks/language/tr/)\n"
 "MIME-Version: 1.0\n"
@@ -448,16 +449,16 @@ msgid "Strong"
 msgstr "Güçlü"
 
 msgid "Text shown on top of the interface for selecting contexts"
-msgstr ""
+msgstr "Arayüz de en üstünde yer alan metin içerik seçmek için dir"
 
 msgid "Show small context cards on submission interface"
-msgstr ""
+msgstr "Gönderen kısmında arayüz de küçük içerik kartlarını göster."
 
 msgid "Type of context selector:"
-msgstr ""
+msgstr "İçerik seçicinin türü:"
 
 msgid "Type to search…"
-msgstr ""
+msgstr "Aramak için yazın..."
 
 msgid "Silence email notifications"
 msgstr "E-posta bilgilendirmelerini sessize al"
@@ -490,7 +491,7 @@ msgid "Failed submissions"
 msgstr "Başarısız gönderimler"
 
 msgid "Input validation"
-msgstr ""
+msgstr "Giriş doğrulama"
 
 msgid "Email address"
 msgstr "E-posta Adresi"
@@ -502,7 +503,7 @@ msgid "None"
 msgstr "Hiçbiri"
 
 msgid "Regular expression"
-msgstr ""
+msgstr "Düzenli ifade"
 
 msgid "Label the submission"
 msgstr "Gönderimi etiketle"
@@ -516,24 +517,24 @@ msgstr "Ara"
 msgid ""
 "This custom text is no longer displayed on the platform. The original text "
 "has either changed or been removed."
-msgstr ""
+msgstr "Bu özel metin artık platformda görüntülenmiyor. Orijinal metin değiştirildi veya kaldırıldı."
 
 msgid ""
 "Unless the whistleblower checks the submission by this time, their access to"
 " it will expire."
-msgstr ""
+msgstr "İhbarcı, bu zamana kadar başvuruyu kontrol etmediği sürece, erişim hakkı sona erecektir."
 
 msgid "The whistleblower can no longer access the submission"
-msgstr ""
+msgstr "İhbarcı, artık gönderime erişim sağlayamaz."
 
 msgid "Warning!"
 msgstr "Uyarı!"
 
 msgid "You are running an unsupported and potentially vulnerable browser."
-msgstr ""
+msgstr "Desteklenmeyen ve potansiyel olarak güvenlik açığı olan bir tarayıcı da çalışıyorsunuz."
 
 msgid "You are strongly advised to download and install the Tor Browser."
-msgstr ""
+msgstr "Tor Browser indirip kurmanız önemle tavsiye edilir."
 
 msgid ""
 "The Tor Browser includes various privacy and security enhancements not "
@@ -544,10 +545,10 @@ msgid "Download the Tor Browser"
 msgstr "Tor Browser İndir"
 
 msgid "This is the list of the other supported browsers:"
-msgstr ""
+msgstr "Bu, desteklenen diğer tarayıcıların listesidir:"
 
 msgid "System overview"
-msgstr ""
+msgstr "Sistem görünümü"
 
 msgid "Stats"
 msgstr "İstatistikler"
@@ -565,10 +566,10 @@ msgid "From"
 msgstr "Kimden"
 
 msgid "Number of downloads"
-msgstr ""
+msgstr "İndirme sayısı"
 
 msgid "Error with file:"
-msgstr ""
+msgstr "Dosya ile hata:"
 
 msgid "File size not accepted."
 msgstr "Dosya boyutu kabul edilmedi."
@@ -583,25 +584,25 @@ msgid "Accepted file types are:"
 msgstr "Kabul edilen dosya türleri:"
 
 msgid "Scheduled jobs"
-msgstr ""
+msgstr "Planlanmış işler"
 
 msgid "Sites management"
-msgstr ""
+msgstr "Site yönetimi"
 
 msgid "Regenerate"
-msgstr ""
+msgstr "canlandırmak"
 
 msgid "Display options alphabetically"
-msgstr ""
+msgstr "Seçenekleri alfabetik olarak görüntüleme"
 
 msgid "Enable email notifications for:"
-msgstr ""
+msgstr "Şunun için e-posta bildirimlerini etkinleştir:"
 
 msgid "Software updates"
-msgstr ""
+msgstr "Yazılım güncellemeleri"
 
 msgid "Software problems"
-msgstr ""
+msgstr "Yazılım problemleri"
 
 msgid "Disable"
 msgstr "Devre Dışı Bırak"
@@ -610,28 +611,28 @@ msgid "Remove"
 msgstr "Sil"
 
 msgid "Use as default"
-msgstr ""
+msgstr "Varsayılan olarak kullan"
 
 msgid "Create your whistleblowing platform"
-msgstr ""
+msgstr "İhbar platformunuzu oluşturun"
 
 msgid "Collapse"
-msgstr ""
+msgstr "Çöküş"
 
 msgid "Expand"
-msgstr ""
+msgstr "genişletmek"
 
 msgid "Select"
 msgstr "Seç"
 
 msgid "Selected by default"
-msgstr ""
+msgstr "Varsayılan olarak seçildi"
 
 msgid "Unselected by default"
-msgstr ""
+msgstr "Varsayılan olarak seçilmemiş"
 
 msgid "Surname"
-msgstr ""
+msgstr "Soyad"
 
 msgid "New"
 msgstr "Yeni"
@@ -643,7 +644,7 @@ msgid "Closed"
 msgstr "Kapatıldı"
 
 msgid "Select the context of your submission:"
-msgstr ""
+msgstr "Gönderiminizin içeriğini seçin:"
 
 msgid "Warning! You are not anonymous."
 msgstr "Dikkat! Anonim değilsiniz."
@@ -669,13 +670,13 @@ msgid "Your submission was successful."
 msgstr "Gönderiminiz başarıyla tamamlandı."
 
 msgid "Submission status"
-msgstr ""
+msgstr "Gönderme durumu"
 
 msgid "Disable submissions"
 msgstr "Gönderimleri devre dışı bırak"
 
 msgid "Enable encryption"
-msgstr ""
+msgstr "Şifrelemeyi etkinleştir"
 
 msgid ""
 "Allow the system to store data in plaintext when encryption is not available"
@@ -2137,6 +2138,9 @@ msgstr ""
 
 msgid "The activities with unusual stats are:"
 msgstr "Alışılmadık istatistik içeren etkinlikler şunlar:"
+
+msgid "The available disk space is {FreeMemory} of {TotalMemory}."
+msgstr ""
 
 msgid ""
 "The server cannot guarantee that a new submission can be stored, so "

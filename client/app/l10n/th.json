@@ -667,6 +667,7 @@
   "This could be a sign of an attack (for example, someone flooding your server with bogus information) or just a usage spike due to an increased visibility of your project.": "นี้อาจเป็นสัญญาณของการโจมตี (ตัวอย่างเช่นคนที่น้ำท่วมเซิร์ฟเวอร์ของคุณด้วยข้อมูลปลอม) หรือเพียงแค่การขัดขวางการใช้งานเนื่องจากการมองเห็นเพิ่มขึ้นของโครงการของคุณ",
   "Examine the issue to determine whether it is legitimate or not.": "Examine the issue to determine whether it is legitimate or not.",
   "The activities with unusual stats are:": "กิจกรรมที่มีสถิติที่ผิดปกติคือ:",
+  "The available disk space is {FreeMemory} of {TotalMemory}.": "The available disk space is {FreeMemory} of {TotalMemory}.",
   "The server cannot guarantee that a new submission can be stored, so submissions have been disabled.": "เซิร์ฟเวอร์ไม่สามารถรับประกันได้ว่าการส่งใหม่ที่สามารถเก็บไว้เพื่อการส่งถูกปิดใช้งาน",
   "Please consider asking your technical support to create more disk space on the server.": "Please consider asking your technical support to create more disk space on the server.",
   "GlobaLeaks technology includes a server status checking component which will alert you in case something requires your attention.": "เทคโนโลยี GlobaLeaks รวมถึงสถานะของเซิร์ฟเวอร์ตรวจสอบชิ้นส่วนซึ่งจะแจ้งเตือนคุณในกรณีที่สิ่งที่ต้องให้ความสนใจของคุณ",

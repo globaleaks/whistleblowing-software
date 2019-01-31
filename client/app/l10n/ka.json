@@ -667,6 +667,7 @@
   "This could be a sign of an attack (for example, someone flooding your server with bogus information) or just a usage spike due to an increased visibility of your project.": "ეს შეიძლება იყოს ნიშანი თავდასხმა (მაგალითად, ვინმე დატბორილი თქვენი სერვერზე ყალბი ინფორმაციის), ან უბრალოდ გამოყენება spike გამო გაზრდილი ხილვადობა თქვენი პროექტი.",
   "Examine the issue to determine whether it is legitimate or not.": "Examine the issue to determine whether it is legitimate or not.",
   "The activities with unusual stats are:": "საქმიანობის უჩვეულო სტატისტიკის არიან:",
+  "The available disk space is {FreeMemory} of {TotalMemory}.": "The available disk space is {FreeMemory} of {TotalMemory}.",
   "The server cannot guarantee that a new submission can be stored, so submissions have been disabled.": "სერვერზე ვერ უზრუნველყოფს, რომ ახალი წარდგენა შეიძლება შენახული, ასე რომ წარდგინება გაუქმებულია.",
   "Please consider asking your technical support to create more disk space on the server.": "Please consider asking your technical support to create more disk space on the server.",
   "GlobaLeaks technology includes a server status checking component which will alert you in case something requires your attention.": "GlobaLeaks ტექნოლოგია მოიცავს სერვერის სტატუსი შემოწმების კომპონენტი, რომელიც იქნება გაფრთხილება იმ შემთხვევაში თუ რამე მოითხოვს თქვენი ყურადღება.",

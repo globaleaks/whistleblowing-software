@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-01-13 14:35+0000\n"
+"PO-Revision-Date: 2019-01-30 08:51+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Croatian (Croatia) (http://www.transifex.com/otf/globaleaks/language/hr_HR/)\n"
 "MIME-Version: 1.0\n"
@@ -2120,6 +2120,9 @@ msgstr "Pregledajte problem kako bi utvrdili ako je legitiman ili ne."
 
 msgid "The activities with unusual stats are:"
 msgstr "Aktivnosti s neobičnom statiskom su:"
+
+msgid "The available disk space is {FreeMemory} of {TotalMemory}."
+msgstr ""
 
 msgid ""
 "The server cannot guarantee that a new submission can be stored, so "

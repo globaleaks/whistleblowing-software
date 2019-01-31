@@ -667,6 +667,7 @@
   "This could be a sign of an attack (for example, someone flooding your server with bogus information) or just a usage spike due to an increased visibility of your project.": "Dette kan indikere angrep (eksempelvis at noen oversvømmer tjeneren med ugyldig informasjon) eller bare en brå økning i aktivitetsnivået på grunn av naturlige årsaker(, som synligheten til ditt prosjekt).",
   "Examine the issue to determine whether it is legitimate or not.": "Undersøk problemet for å bestemme hvorvidt det er legitimt eller skadelig.",
   "The activities with unusual stats are:": "Hendelsesforløpet med uvanlige attributter er:",
+  "The available disk space is {FreeMemory} of {TotalMemory}.": "The available disk space is {FreeMemory} of {TotalMemory}.",
   "The server cannot guarantee that a new submission can be stored, so submissions have been disabled.": "Tjeneren kan ikke garantere for at nye innsendelser kan lagres, derfor har innsendelser blitt avskrudd.",
   "Please consider asking your technical support to create more disk space on the server.": "Overvei å spørre din tekniske brukerstøtte om å frigjøre eller legge til mer diskplass på tjeneren.",
   "GlobaLeaks technology includes a server status checking component which will alert you in case something requires your attention.": "Globaleaks-teknologi innheholder en komponent som sjekker statusen til tjeneren, denne vil holde deg underrettet om noe skulle behøve din oppmerksomhet.",

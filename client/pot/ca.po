@@ -9,7 +9,7 @@
 # Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2014-2018
 # b33a4006134bb6ee62b30fc0fac5cec6, 2016
 # b33a4006134bb6ee62b30fc0fac5cec6, 2016
-# Joan Bitlloch <joanbit@gmail.com>, 2017-2018
+# Joan Bitlloch <joanbit@gmail.com>, 2017-2019
 # Josep Anton Rius <j.rius.cat@gmail.com>, 2016
 # Maddish Falzoni <maddish@xnet-x.net>, 2016
 # Nick Skelsey, 2016
@@ -18,7 +18,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-01-13 14:35+0000\n"
+"PO-Revision-Date: 2019-01-30 08:51+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Catalan (http://www.transifex.com/otf/globaleaks/language/ca/)\n"
 "MIME-Version: 1.0\n"
@@ -678,7 +678,7 @@ msgid "Enable multisite feature"
 msgstr "Activa la característica multisite"
 
 msgid "Enable two factor authentication"
-msgstr ""
+msgstr "Activa l'autenticació de dues passes"
 
 msgid "Allow other websites to include the platform inside iframes"
 msgstr "Permet que altres webs incloguin la plataforma a l'interior d'Iframes"
@@ -846,19 +846,19 @@ msgid "Add"
 msgstr "Afegeix"
 
 msgid "Enable automatic backups"
-msgstr ""
+msgstr "Activa les còpies de seguretat automàtiques "
 
 msgid "Daily"
-msgstr ""
+msgstr "Diàriament"
 
 msgid "Weekly"
-msgstr ""
+msgstr "Setmanalment"
 
 msgid "Montly"
-msgstr ""
+msgstr "Mensualment"
 
 msgid "Remote"
-msgstr ""
+msgstr "Remot"
 
 msgid "Server"
 msgstr "Servidor"
@@ -1361,7 +1361,7 @@ msgid "Hint shown on the button for adding an additional answer"
 msgstr "Toc que es mostra al botó per afegir una resposta més"
 
 msgid "Template override"
-msgstr ""
+msgstr "Sobreescriu la plantilla"
 
 msgid "Phone number"
 msgstr "Número de telèfon"
@@ -1554,13 +1554,13 @@ msgid "Forgot password?"
 msgstr "Has oblidat la contrasenya?"
 
 msgid "Check your inbox and enter the authentication code you received."
-msgstr ""
+msgstr "Comproveu el vostre correu i introduïu el codi d'autenticació que heu rebut."
 
 msgid "Authentication failed"
 msgstr "Autentificació fallida"
 
 msgid "The code is either invalid or expired."
-msgstr ""
+msgstr "El codi és invàlid o l'enviament ha expirat."
 
 msgid "Site:"
 msgstr "Lloc web:"
@@ -1599,7 +1599,7 @@ msgid "Welcome!"
 msgstr "Welcome!"
 
 msgid "For the user documentation, visit:"
-msgstr ""
+msgstr "Per a la documentació d'usuari visiti:"
 
 msgid ""
 "If you need technical support, have general questions, or have new ideas for"
@@ -1845,7 +1845,7 @@ msgid "Question"
 msgstr "Pregunta"
 
 msgid "Inverted"
-msgstr ""
+msgstr "Invertit"
 
 msgid "Trigger step"
 msgstr "Pas detonant"
@@ -2086,13 +2086,13 @@ msgid "Organization unit and job location at the time of the reported fact"
 msgstr "Unitat d'organització i localització de feina en el moment dels fets esmentats"
 
 msgid "Authentication code: {AuthCode}"
-msgstr ""
+msgstr "Codi d'autenticació: {AuthCode}"
 
 msgid "The authentication code is valid for 5 minutes."
-msgstr ""
+msgstr "El codi d'autenticació és vàlid durant 5 minuts."
 
 msgid "Authentication code"
-msgstr ""
+msgstr "Codi d'autenticació"
 
 msgid "Dear {RecipientName},"
 msgstr "Benvolgut/uda {RecipientName},"
@@ -2130,6 +2130,9 @@ msgstr "Examine el asunto para determinar si es legítimo o no."
 
 msgid "The activities with unusual stats are:"
 msgstr "Les activitats amb estadístiques inusuals són les següents:"
+
+msgid "The available disk space is {FreeMemory} of {TotalMemory}."
+msgstr ""
 
 msgid ""
 "The server cannot guarantee that a new submission can be stored, so "

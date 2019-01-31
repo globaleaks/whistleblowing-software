@@ -667,6 +667,7 @@
   "This could be a sign of an attack (for example, someone flooding your server with bogus information) or just a usage spike due to an increased visibility of your project.": "Tämä voi olla merkki hyökkäyksestä (esim. joku lataa palvelimellesi tekaistua materiaalia) tai vain käyttöpiikki johtuen palvelusi kasvaneesta huomiosta.",
   "Examine the issue to determine whether it is legitimate or not.": "Tutki aihetta ottaaksesi selville onko se laillinen vai ei.",
   "The activities with unusual stats are:": "Epätavallisten tapahtumien tiedot:",
+  "The available disk space is {FreeMemory} of {TotalMemory}.": "The available disk space is {FreeMemory} of {TotalMemory}.",
   "The server cannot guarantee that a new submission can be stored, so submissions have been disabled.": "Palvelin ei pysty varmistamaan uusien vihjeiden tallentamista, joten vihjeiden lähettäminen on poistettu käytöstä.",
   "Please consider asking your technical support to create more disk space on the server.": "Ole hyvä ja harkitse pyytäväsi palvelun teknistä tukea kasvattamaan järjestelmän sallimaa levytilaa.",
   "GlobaLeaks technology includes a server status checking component which will alert you in case something requires your attention.": "GlobaLeaksin teknologia tarkkailee jatkuvasti järjestelmän tilaa ja varoittaa sinua heti, mikäli jokin vaatii huomiotasi.",

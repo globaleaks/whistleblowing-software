@@ -20,6 +20,7 @@
 # Philipp Hug <philipp@hug.cx>, 2013
 # Pierre <prjolivet@yahoo.fr>, 2015
 # QinWeijie <qinweijie@live.com>, 2014
+# Raf Rasenberg <raf@webconexus.nl>, 2019
 # rike, 2014
 # rike, 2014
 # Sebastian <sebix+transifex@sebix.at>, 2014,2016-2017
@@ -46,7 +47,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-01-13 14:35+0000\n"
+"PO-Revision-Date: 2019-01-30 08:51+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: German (http://www.transifex.com/otf/globaleaks/language/de/)\n"
 "MIME-Version: 1.0\n"
@@ -1911,7 +1912,7 @@ msgid "Thank you!"
 msgstr "Vielen Dank!"
 
 msgid "Remember your receipt for this submission."
-msgstr ""
+msgstr "Merken Sie sich Ihren Schlüsselcode für diese Einreichung."
 
 msgid "We will try to get back to you as soon as possible!"
 msgstr "Wir versuchen dir so schnell wie möglich zu antworten!"
@@ -1919,7 +1920,7 @@ msgstr "Wir versuchen dir so schnell wie möglich zu antworten!"
 msgid ""
 "Use the 16 digit receipt to log in. It will allow you to view any messages "
 "we sent you, and also to add extra info."
-msgstr ""
+msgstr "Verwenden Sie den 16-stelligen Zahlencode, um sich einzuloggen. Anschließend können Sie die Mitteilungen sehen, die wir Ihnen geschickt haben, und zusätzliche Informationen hinzufügen."
 
 msgid "View your submission"
 msgstr "Ihre Einreichung ansehen"
@@ -1930,7 +1931,7 @@ msgstr ""
 msgid ""
 "A useful way to hide your receipt is to write it down like a credit card "
 "number, i.e. by also including an expiration date."
-msgstr ""
+msgstr "Eine praktische Möglichkeit Ihren Schlüssel-Code zu verstecken, ist ihn wie eine Kreditkartennummer aufzuschreiben, d.h. auch ein Ablaufdatum hinzuzufügen."
 
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."
@@ -2158,6 +2159,9 @@ msgstr ""
 
 msgid "The activities with unusual stats are:"
 msgstr "Die Aktivitäten mit ungewöhnlichen Statistiken sind:"
+
+msgid "The available disk space is {FreeMemory} of {TotalMemory}."
+msgstr ""
 
 msgid ""
 "The server cannot guarantee that a new submission can be stored, so "

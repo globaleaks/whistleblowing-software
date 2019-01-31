@@ -25,7 +25,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-01-13 14:36+0000\n"
+"PO-Revision-Date: 2019-01-31 17:56+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Italian (http://www.transifex.com/otf/globaleaks/language/it/)\n"
 "MIME-Version: 1.0\n"
@@ -2137,6 +2137,9 @@ msgstr "Esamina la situazione per determinare se sia o meno legittima."
 
 msgid "The activities with unusual stats are:"
 msgstr "Le attività che presentano statistiche inusuali sono:"
+
+msgid "The available disk space is {FreeMemory} of {TotalMemory}."
+msgstr "Lo spazio disco disponibile è di su {FreeMemory} su un totale di {TotalMemory}."
 
 msgid ""
 "The server cannot guarantee that a new submission can be stored, so "

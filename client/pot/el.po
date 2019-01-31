@@ -1,6 +1,6 @@
 # 
 # Translators:
-# Adrian Pappas <pappasadrian@gmail.com>, 2018
+# Adrian Pappas <pappasadrian@gmail.com>, 2018-2019
 # annapapa1980 <anpapath3@gmail.com>, 2015
 # annapapa1980 <anpapath3@gmail.com>, 2015
 # Elektra M. <safiragon@yahoo.gr>, 2017
@@ -15,7 +15,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-01-13 14:35+0000\n"
+"PO-Revision-Date: 2019-01-30 08:51+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Greek (http://www.transifex.com/otf/globaleaks/language/el/)\n"
 "MIME-Version: 1.0\n"
@@ -665,7 +665,7 @@ msgid "Disable submissions"
 msgstr "Απενεργοποίηση υποβολών"
 
 msgid "Enable encryption"
-msgstr ""
+msgstr "Ενεργοποίηση κρυπτογράφησης"
 
 msgid ""
 "Allow the system to store data in plaintext when encryption is not available"
@@ -675,7 +675,7 @@ msgid "Enable multisite feature"
 msgstr ""
 
 msgid "Enable two factor authentication"
-msgstr ""
+msgstr "Ενεργοποίηση πιστοποίησης δυο παραγόντων"
 
 msgid "Allow other websites to include the platform inside iframes"
 msgstr "Επιτρέψτε σε άλλες ιστοσελίδες να συμπεριλαμβάνουν την πλατφόρμα μέσω iframes."
@@ -960,7 +960,7 @@ msgid "Questionnaire"
 msgstr "Ερωτηματολόγιο"
 
 msgid "Additional questionnaire"
-msgstr ""
+msgstr "Επιπλέον ερωτηματολόγιο"
 
 msgid "Recipients"
 msgstr "Παραλήπτες"
@@ -1221,7 +1221,7 @@ msgid ""
 msgstr "Το να επιτρέπεται στους πληροφοριοδότες να συνδέονται μέσω HTTPS διατηρεί την ιδιωτικότητά τους, αλλά όχι την ανωνυμία τους."
 
 msgid "Restrict access to specific IP addresses"
-msgstr ""
+msgstr "Περιορισμός πρόσβασης σε συγκεκριμένες διευθύνσεις IP"
 
 msgid "Role"
 msgstr "Ρόλος"
@@ -1325,7 +1325,7 @@ msgid "Terms of service"
 msgstr "Όροι χρήσης"
 
 msgid "Map"
-msgstr ""
+msgstr "Χάρτης"
 
 msgid "Group of questions"
 msgstr "Ομάδα των ερωτήσεων"
@@ -1462,7 +1462,7 @@ msgid "Language"
 msgstr "Γλώσσα "
 
 msgid "Enable email notifications"
-msgstr ""
+msgstr "Ενεργοποίηση ειδοποιήσεων μέσω email"
 
 msgid "Details of the PGP key:"
 msgstr "Λεπτομέρειες του κλειδιού PGP:"
@@ -1658,7 +1658,7 @@ msgid "Please check your inbox for further instructions."
 msgstr "Παρακαλώ ελέγξτε τα εισερχόμενά σας για περαιτέρω πληροφορίες."
 
 msgid "Current password"
-msgstr ""
+msgstr "Τρέχων κωδικός πρόσβασης"
 
 msgid "Old password confirmation required"
 msgstr "Χρειάζεται επιβεβαίωση του παλιού κωδικού πρόσβασης"
@@ -1839,7 +1839,7 @@ msgid "Upload a file:"
 msgstr "Ανεβάστε ένα αρχείο:"
 
 msgid "Question"
-msgstr ""
+msgstr "Ερώτηση"
 
 msgid "Inverted"
 msgstr ""
@@ -1933,7 +1933,7 @@ msgid "Complete"
 msgstr "Ολοκλήρωση"
 
 msgid "Invalid phone number"
-msgstr ""
+msgstr "Μη έγκυρος αριθμός τηλεφώνου"
 
 msgid "This field is mandatory."
 msgstr "Αυτό το πεδίο είναι υποχρεωτικό."
@@ -2089,7 +2089,7 @@ msgid "The authentication code is valid for 5 minutes."
 msgstr ""
 
 msgid "Authentication code"
-msgstr ""
+msgstr "Κωδικός αυθεντικοποίησης"
 
 msgid "Dear {RecipientName},"
 msgstr "Αγαπητέ/ή {RecipientName},"
@@ -2127,6 +2127,9 @@ msgstr "Εξετάστε το ζήτημα για να καθορίσετε αν
 
 msgid "The activities with unusual stats are:"
 msgstr "Οι δραστηριότητες με ασυνήθιστα στατιστικά είναι:"
+
+msgid "The available disk space is {FreeMemory} of {TotalMemory}."
+msgstr ""
 
 msgid ""
 "The server cannot guarantee that a new submission can be stored, so "

@@ -21,7 +21,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-01-13 14:35+0000\n"
+"PO-Revision-Date: 2019-01-30 08:51+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Portuguese (Portugal) (http://www.transifex.com/otf/globaleaks/language/pt_PT/)\n"
 "MIME-Version: 1.0\n"
@@ -1521,7 +1521,7 @@ msgid "Authorization"
 msgstr "Autorização"
 
 msgid "Identities"
-msgstr ""
+msgstr "Identidades"
 
 msgid "The validation link is either incorrect or has expired."
 msgstr "A hiperligação de validação está incorreta ou expirou."
@@ -2133,6 +2133,9 @@ msgstr "Examine o problema para determinar se é ou não legítimo."
 
 msgid "The activities with unusual stats are:"
 msgstr "As atividades com estatísticas pouco habituais são:"
+
+msgid "The available disk space is {FreeMemory} of {TotalMemory}."
+msgstr ""
 
 msgid ""
 "The server cannot guarantee that a new submission can be stored, so "

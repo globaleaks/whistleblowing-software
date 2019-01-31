@@ -5,7 +5,7 @@
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013
-# trendspotter <j.podhorecky@volny.cz>, 2018
+# trendspotter <j.podhorecky@volny.cz>, 2018-2019
 # Lenka Ježková <lenka.jezkova@oziveni.cz>, 2019
 # Miroslav Kučera <mkucera66@seznam.cz>, 2013-2017
 # Mr Higgins, 2016-2018
@@ -13,7 +13,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-01-13 14:35+0000\n"
+"PO-Revision-Date: 2019-01-30 08:51+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Czech (http://www.transifex.com/otf/globaleaks/language/cs/)\n"
 "MIME-Version: 1.0\n"
@@ -673,7 +673,7 @@ msgid "Enable multisite feature"
 msgstr "Povolit funkci multisite "
 
 msgid "Enable two factor authentication"
-msgstr ""
+msgstr "Povolit dvoufaktorové ověřování"
 
 msgid "Allow other websites to include the platform inside iframes"
 msgstr "Povolit jiným stránkám zobrazovat části tohoto webu pomocí iframe."
@@ -1549,13 +1549,13 @@ msgid "Forgot password?"
 msgstr "Zapoměl(a) jste heslo? "
 
 msgid "Check your inbox and enter the authentication code you received."
-msgstr ""
+msgstr "Zkontrolujte doručenou poštu a zadejte ověřovací kód který vám přišel."
 
 msgid "Authentication failed"
 msgstr "Chyba ověření"
 
 msgid "The code is either invalid or expired."
-msgstr ""
+msgstr "Kód je neplatný nebo vypršel."
 
 msgid "Site:"
 msgstr "Stránka:"
@@ -2081,13 +2081,13 @@ msgid "Organization unit and job location at the time of the reported fact"
 msgstr "Organizační jednotka a lokalita v době oznamovaného jednání"
 
 msgid "Authentication code: {AuthCode}"
-msgstr ""
+msgstr "Autentifikační kód: {AuthCode}"
 
 msgid "The authentication code is valid for 5 minutes."
-msgstr ""
+msgstr "Autentifikační kód je platný po dobu 5 minut."
 
 msgid "Authentication code"
-msgstr ""
+msgstr "Autentifikační kód"
 
 msgid "Dear {RecipientName},"
 msgstr "Vážený/á {RecipientName},"
@@ -2125,6 +2125,9 @@ msgstr "Prozkoumat hlášení za účelem zjištění zda je legitimní."
 
 msgid "The activities with unusual stats are:"
 msgstr "Aktivity s neobvyklou statistikou:"
+
+msgid "The available disk space is {FreeMemory} of {TotalMemory}."
+msgstr ""
 
 msgid ""
 "The server cannot guarantee that a new submission can be stored, so "

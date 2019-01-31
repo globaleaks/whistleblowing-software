@@ -1,7 +1,7 @@
 # 
 # Translators:
 # Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2014-2015,2017-2018
-# Ivo, 2015-2018
+# Ivo, 2015-2019
 # Kaloyan Doichinov, 2014
 # Kaloyan Doichinov, 2014
 # niko <niko@tightwax.com>, 2013
@@ -11,7 +11,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-01-13 14:35+0000\n"
+"PO-Revision-Date: 2019-01-30 08:51+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Bulgarian (http://www.transifex.com/otf/globaleaks/language/bg/)\n"
 "MIME-Version: 1.0\n"
@@ -671,7 +671,7 @@ msgid "Enable multisite feature"
 msgstr "Активиране на мулти-сайтова функционалност"
 
 msgid "Enable two factor authentication"
-msgstr ""
+msgstr "Активиране на двуфакторово удостоверение"
 
 msgid "Allow other websites to include the platform inside iframes"
 msgstr "Разрешаване на други уебсайтове за включват платформата в iframes"
@@ -839,19 +839,19 @@ msgid "Add"
 msgstr "Добави"
 
 msgid "Enable automatic backups"
-msgstr ""
+msgstr "Активиране на автоматично архивиране"
 
 msgid "Daily"
-msgstr ""
+msgstr "Дневно"
 
 msgid "Weekly"
-msgstr ""
+msgstr "Седмично"
 
 msgid "Montly"
-msgstr ""
+msgstr "Месечно"
 
 msgid "Remote"
-msgstr ""
+msgstr "Отдалечено"
 
 msgid "Server"
 msgstr "Сървър"
@@ -1354,7 +1354,7 @@ msgid "Hint shown on the button for adding an additional answer"
 msgstr "Подсказка показана върху бутона за добавяне на допълнителен отговор"
 
 msgid "Template override"
-msgstr ""
+msgstr "Презаписване на шаблона"
 
 msgid "Phone number"
 msgstr "Телефонен номер"
@@ -1547,13 +1547,13 @@ msgid "Forgot password?"
 msgstr "Забравена парола?"
 
 msgid "Check your inbox and enter the authentication code you received."
-msgstr ""
+msgstr "Проверете входящата си кутия и въведете кодът за удостоверение."
 
 msgid "Authentication failed"
 msgstr "Проверката за самоличност е неуспешна"
 
 msgid "The code is either invalid or expired."
-msgstr ""
+msgstr "Кодът е невалиден или изтекъл."
 
 msgid "Site:"
 msgstr "Сайт:"
@@ -1592,7 +1592,7 @@ msgid "Welcome!"
 msgstr "Добре дошли!"
 
 msgid "For the user documentation, visit:"
-msgstr ""
+msgstr "За потребителска документация, посетете:"
 
 msgid ""
 "If you need technical support, have general questions, or have new ideas for"
@@ -1838,7 +1838,7 @@ msgid "Question"
 msgstr "Въпрос"
 
 msgid "Inverted"
-msgstr ""
+msgstr "Обърнат"
 
 msgid "Trigger step"
 msgstr "Стъпка в резултат на отговор"
@@ -2079,13 +2079,13 @@ msgid "Organization unit and job location at the time of the reported fact"
 msgstr "Отдел и местоположение на работата за периода на подадения сигнал"
 
 msgid "Authentication code: {AuthCode}"
-msgstr ""
+msgstr "Код за удостоверение: {AuthCode}"
 
 msgid "The authentication code is valid for 5 minutes."
-msgstr ""
+msgstr "Кодът за удостоверение е валиден за 5 минути."
 
 msgid "Authentication code"
-msgstr ""
+msgstr "Код за удостоверение"
 
 msgid "Dear {RecipientName},"
 msgstr "Скъпи {RecipientName},"
@@ -2123,6 +2123,9 @@ msgstr "Разгледайте проблема, за да решите дали
 
 msgid "The activities with unusual stats are:"
 msgstr "Дейности с необикновена статистика са:"
+
+msgid "The available disk space is {FreeMemory} of {TotalMemory}."
+msgstr ""
 
 msgid ""
 "The server cannot guarantee that a new submission can be stored, so "

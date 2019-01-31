@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-01-13 14:35+0000\n"
+"PO-Revision-Date: 2019-01-30 08:51+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Tamil (http://www.transifex.com/otf/globaleaks/language/ta/)\n"
 "MIME-Version: 1.0\n"
@@ -2119,6 +2119,9 @@ msgstr "அது சட்டபூர்வமானதா இல்லைய�
 
 msgid "The activities with unusual stats are:"
 msgstr "அசாதாரண புள்ளிவிவரங்கள் நடவடிக்கைகள் உள்ளன:"
+
+msgid "The available disk space is {FreeMemory} of {TotalMemory}."
+msgstr ""
 
 msgid ""
 "The server cannot guarantee that a new submission can be stored, so "

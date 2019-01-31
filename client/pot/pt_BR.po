@@ -37,7 +37,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-01-13 14:35+0000\n"
+"PO-Revision-Date: 2019-01-30 08:51+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/otf/globaleaks/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
@@ -697,7 +697,7 @@ msgid "Enable multisite feature"
 msgstr "Ativar recurso multisite"
 
 msgid "Enable two factor authentication"
-msgstr ""
+msgstr "Ativar autenticação por dois fatores"
 
 msgid "Allow other websites to include the platform inside iframes"
 msgstr "Permitir outros sites da web a incluir a plataforma dentro de iframes"
@@ -1573,13 +1573,13 @@ msgid "Forgot password?"
 msgstr "Esqueceu a senha?"
 
 msgid "Check your inbox and enter the authentication code you received."
-msgstr ""
+msgstr "Verifique sua caixa de entrada e insira o código de autenticação recebido."
 
 msgid "Authentication failed"
 msgstr "Falha na Autenticação"
 
 msgid "The code is either invalid or expired."
-msgstr ""
+msgstr "O código é inválido ou expirou."
 
 msgid "Site:"
 msgstr "Site:"
@@ -2105,13 +2105,13 @@ msgid "Organization unit and job location at the time of the reported fact"
 msgstr "Unidade de setor e lugar de exercício do cargo no momento dos fatos relatados"
 
 msgid "Authentication code: {AuthCode}"
-msgstr ""
+msgstr "Código de Autenticação: {AuthCode}"
 
 msgid "The authentication code is valid for 5 minutes."
 msgstr "O código de autenticação é válido por 5 minutos."
 
 msgid "Authentication code"
-msgstr ""
+msgstr "Código de Autenticação"
 
 msgid "Dear {RecipientName},"
 msgstr "Prezado/a {RecipientName},"
@@ -2149,6 +2149,9 @@ msgstr "Examine o problema para determinar se é legítimo ou não."
 
 msgid "The activities with unusual stats are:"
 msgstr "As atividades com estatísticas incomuns são:"
+
+msgid "The available disk space is {FreeMemory} of {TotalMemory}."
+msgstr ""
 
 msgid ""
 "The server cannot guarantee that a new submission can be stored, so "

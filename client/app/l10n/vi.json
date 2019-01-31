@@ -667,6 +667,7 @@
   "This could be a sign of an attack (for example, someone flooding your server with bogus information) or just a usage spike due to an increased visibility of your project.": "Đây có thể là một dấu hiệu của một cuộc tấn công (ví dụ, một người nào đó tràn ngập máy chủ của bạn với thông tin không có thật) hoặc chỉ một cành sử dụng do một tầm nhìn tăng của dự án của bạn.",
   "Examine the issue to determine whether it is legitimate or not.": "Examine the issue to determine whether it is legitimate or not.",
   "The activities with unusual stats are:": "Các hoạt động với chỉ số bình thường là:",
+  "The available disk space is {FreeMemory} of {TotalMemory}.": "The available disk space is {FreeMemory} of {TotalMemory}.",
   "The server cannot guarantee that a new submission can be stored, so submissions have been disabled.": "Các máy chủ không thể đảm bảo rằng một trình mới có thể được lưu trữ, vì vậy đệ trình đã được vô hiệu hóa.",
   "Please consider asking your technical support to create more disk space on the server.": "Please consider asking your technical support to create more disk space on the server.",
   "GlobaLeaks technology includes a server status checking component which will alert you in case something requires your attention.": "công nghệ GlobaLeaks bao gồm một thành phần kiểm tra tình trạng server đó sẽ cảnh báo bạn trong trường hợp đòi hỏi sự chú ý của bạn.",

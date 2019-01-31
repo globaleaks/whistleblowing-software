@@ -667,6 +667,7 @@
   "This could be a sign of an attack (for example, someone flooding your server with bogus information) or just a usage spike due to an increased visibility of your project.": "这可能是一次攻击的标志（例如：有人用洪泛的虚假信息充斥你的服务器），或者只是由于你的项目曝光率提升而导致的突发使用量。",
   "Examine the issue to determine whether it is legitimate or not.": "Examine the issue to determine whether it is legitimate or not.",
   "The activities with unusual stats are:": "不寻常的活动统计如下：",
+  "The available disk space is {FreeMemory} of {TotalMemory}.": "The available disk space is {FreeMemory} of {TotalMemory}.",
   "The server cannot guarantee that a new submission can be stored, so submissions have been disabled.": "服务器不能保证一个新的提交可以被存储，因此提交已被禁用。",
   "Please consider asking your technical support to create more disk space on the server.": "请考虑请求您的技术支持增加更多服务器磁盘空间。",
   "GlobaLeaks technology includes a server status checking component which will alert you in case something requires your attention.": "GlobaLeaks 技术包括服务器状态检测组件，它会在某些需要您注意的情况发生时提醒您。",

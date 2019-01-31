@@ -31,7 +31,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-01-13 14:35+0000\n"
+"PO-Revision-Date: 2019-01-30 08:51+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Spanish (http://www.transifex.com/otf/globaleaks/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -691,7 +691,7 @@ msgid "Enable multisite feature"
 msgstr "Activar las funcionalidades multi-sitio"
 
 msgid "Enable two factor authentication"
-msgstr ""
+msgstr "Habilitar autentificación de doble factor"
 
 msgid "Allow other websites to include the platform inside iframes"
 msgstr "Permitir a otros sitios web incluir la plataforma dentro de iframes"
@@ -1072,7 +1072,7 @@ msgid "Transport Security"
 msgstr "Seguridad del transporte"
 
 msgid "Require authentication"
-msgstr "Requerir autenticación"
+msgstr "Requerir autentificación"
 
 msgid "When the option is re-enabled the spooled emails will be sent out."
 msgstr "Los correos no enviados podrán ser transferidos cuando la opción vuelva a habilitarse"
@@ -1567,13 +1567,13 @@ msgid "Forgot password?"
 msgstr "¿Ha olvidado la contraseña?"
 
 msgid "Check your inbox and enter the authentication code you received."
-msgstr ""
+msgstr "Comprueba tu bandeja de entrada e ingresa el código de autentificación recibido."
 
 msgid "Authentication failed"
 msgstr "Autentificación fallida"
 
 msgid "The code is either invalid or expired."
-msgstr ""
+msgstr "El código es inválido o ha expirado."
 
 msgid "Site:"
 msgstr "Sitio:"
@@ -2099,13 +2099,13 @@ msgid "Organization unit and job location at the time of the reported fact"
 msgstr "Unidad organizativa y ubicación del empleo en el momento del hecho informado"
 
 msgid "Authentication code: {AuthCode}"
-msgstr ""
+msgstr "Código de autentificación: {AuthCode}"
 
 msgid "The authentication code is valid for 5 minutes."
-msgstr ""
+msgstr "El cófigo de autentificación es válido por 5 minutos."
 
 msgid "Authentication code"
-msgstr ""
+msgstr "Código de autentificación"
 
 msgid "Dear {RecipientName},"
 msgstr "Estimado {RecipientName},"
@@ -2143,6 +2143,9 @@ msgstr "Examine el asunto para determinar si es legítimo o no."
 
 msgid "The activities with unusual stats are:"
 msgstr "Las actividades con estadísticas inusuales son:"
+
+msgid "The available disk space is {FreeMemory} of {TotalMemory}."
+msgstr ""
 
 msgid ""
 "The server cannot guarantee that a new submission can be stored, so "

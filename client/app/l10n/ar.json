@@ -667,6 +667,7 @@
   "This could be a sign of an attack (for example, someone flooding your server with bogus information) or just a usage spike due to an increased visibility of your project.": "هذا يمكن أن يكون علامة على وجود هجوم (على سبيل المثال، شخص ما يرسل بكثافة معلومات وهمية الى المشغل الخاص بك) أو مجرد ارتفاع الاستخدام نظرا لزيادة رؤية مشروعك.",
   "Examine the issue to determine whether it is legitimate or not.": "الرجاء دراسة المسألة لتحديد ما إذا كانت مشروعة أم لا.",
   "The activities with unusual stats are:": "الأنشطة ذات الاحصائيات غير عادية هي:",
+  "The available disk space is {FreeMemory} of {TotalMemory}.": "The available disk space is {FreeMemory} of {TotalMemory}.",
   "The server cannot guarantee that a new submission can be stored, so submissions have been disabled.": "لا يمكن للخادم ضمان أن البلاغ الجديد يمكن تخزينه، لذلك تم تعطيل التقديمات.",
   "Please consider asking your technical support to create more disk space on the server.": "يرجى طلب إضافة المزيد من المساحة للقرص المشغل من الدعم الفني.",
   "GlobaLeaks technology includes a server status checking component which will alert you in case something requires your attention.": "وتشمل تكنولوجيا GlobaLeaks عنصر فحص لحالة السيرفر الذي سوف ينبهك في حالة حدوث أمر يتطلب انتباهكم.",

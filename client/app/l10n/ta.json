@@ -667,6 +667,7 @@
   "This could be a sign of an attack (for example, someone flooding your server with bogus information) or just a usage spike due to an increased visibility of your project.": "இது உங்கள் திட்டத்தின் ஒரு தன்மை அதிகரித்ததால் அல்லது ஒரு பயன்பாடு ஸ்பைக் தாக்குதல் (போலி தகவல்களை உங்கள் சர்வரை யாரோ உதாரணமாக,) ஒரு அடையாளம் இருக்க முடியும்.",
   "Examine the issue to determine whether it is legitimate or not.": "அது சட்டபூர்வமானதா இல்லையா என்பதை தீர்மானிக்க இதனைப் படியுங்கள்.",
   "The activities with unusual stats are:": "அசாதாரண புள்ளிவிவரங்கள் நடவடிக்கைகள் உள்ளன:",
+  "The available disk space is {FreeMemory} of {TotalMemory}.": "The available disk space is {FreeMemory} of {TotalMemory}.",
   "The server cannot guarantee that a new submission can be stored, so submissions have been disabled.": "எனவே சமர்ப்பிப்புகளை முடக்கப்பட்டுள்ளன சர்வர், ஒரு புதிய சமர்ப்பிப்பு சேமிக்க முடியும் என்று உத்தரவாதம் அளிக்க முடியாது.",
   "Please consider asking your technical support to create more disk space on the server.": "சேவையகத்தில் அதிக வட்டு இடத்தை உருவாக்க உங்கள் தொழில்நுட்ப ஆதரவைக் கேட்கவும்.",
   "GlobaLeaks technology includes a server status checking component which will alert you in case something requires your attention.": "GlobaLeaks தொழில்நுட்பம் வழக்கில் ஏதாவது உங்கள் கவனம் தேவை நீங்கள் எச்சரிக்கும் ஒரு சர்வர் சோதிக்கும்போது கூறு அடங்கும்.",

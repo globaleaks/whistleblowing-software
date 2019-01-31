@@ -9,7 +9,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-01-13 14:35+0000\n"
+"PO-Revision-Date: 2019-01-30 08:51+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Japanese (http://www.transifex.com/otf/globaleaks/language/ja/)\n"
 "MIME-Version: 1.0\n"
@@ -1545,13 +1545,13 @@ msgid "Forgot password?"
 msgstr "パスワードをお忘れですか?"
 
 msgid "Check your inbox and enter the authentication code you received."
-msgstr ""
+msgstr "メールを確認して、受け取った認証コードを入力してください。"
 
 msgid "Authentication failed"
 msgstr "認証に失敗しました"
 
 msgid "The code is either invalid or expired."
-msgstr ""
+msgstr "コードが正しくないか、有効期限切れです。"
 
 msgid "Site:"
 msgstr "サイト:"
@@ -2077,13 +2077,13 @@ msgid "Organization unit and job location at the time of the reported fact"
 msgstr "報告する事実の時点での所属、職場"
 
 msgid "Authentication code: {AuthCode}"
-msgstr ""
+msgstr "認証コード: {AuthCode}"
 
 msgid "The authentication code is valid for 5 minutes."
 msgstr "認証コードは 5 分間有効です。"
 
 msgid "Authentication code"
-msgstr ""
+msgstr "認証コード"
 
 msgid "Dear {RecipientName},"
 msgstr "{RecipientName} 様"
@@ -2121,6 +2121,9 @@ msgstr "問題が正当なものかどうかを調べます。"
 
 msgid "The activities with unusual stats are:"
 msgstr "異常な統計の活動は次のとおりです:"
+
+msgid "The available disk space is {FreeMemory} of {TotalMemory}."
+msgstr ""
 
 msgid ""
 "The server cannot guarantee that a new submission can be stored, so "

@@ -667,6 +667,7 @@
   "This could be a sign of an attack (for example, someone flooding your server with bogus information) or just a usage spike due to an increased visibility of your project.": "Ez lehet egy támadás jele (például: valaki elárasztja a kiszolgálót hamis információval), vagy csak egy használati kiugrás a projektje megnövekedett látogatottsága miatt.",
   "Examine the issue to determine whether it is legitimate or not.": "Examine the issue to determine whether it is legitimate or not.",
   "The activities with unusual stats are:": "A tevékenységek szokatlan statisztikával:",
+  "The available disk space is {FreeMemory} of {TotalMemory}.": "The available disk space is {FreeMemory} of {TotalMemory}.",
   "The server cannot guarantee that a new submission can be stored, so submissions have been disabled.": "A szerver nem garantálja egy új benyújtás tárolását, így a benyújtások le vannak tiltva.",
   "Please consider asking your technical support to create more disk space on the server.": "Please consider asking your technical support to create more disk space on the server.",
   "GlobaLeaks technology includes a server status checking component which will alert you in case something requires your attention.": "A GlobaLeaks technológia tartalmaz egy szerver állapot ellenőrző összetevőt, ami riasztja, amennyiben valami a figyelmét igényli.",

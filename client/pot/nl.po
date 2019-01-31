@@ -27,6 +27,7 @@
 # Niels ten Oever <niels@digitaldissidents.org>, 2013
 # Niels ten Oever <niels@digitaldissidents.org>, 2013
 # Teun Gautier <gautier@groene.nl>, 2013
+# Raf Rasenberg <raf@webconexus.nl>, 2019
 # Robin van der Vliet <info@robinvandervliet.nl>, 2015
 # Midgard, 2015
 # tempuser1234 <c1160321@trbvm.com>, 2014
@@ -35,7 +36,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-01-13 14:35+0000\n"
+"PO-Revision-Date: 2019-01-30 08:51+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Dutch (http://www.transifex.com/otf/globaleaks/language/nl/)\n"
 "MIME-Version: 1.0\n"
@@ -1900,7 +1901,7 @@ msgid "Thank you!"
 msgstr "Bedankt!"
 
 msgid "Remember your receipt for this submission."
-msgstr ""
+msgstr "Onthoud de code voor jouw inzending."
 
 msgid "We will try to get back to you as soon as possible!"
 msgstr "We zullen proberen je zo spoedig mogelijk te helpen!"
@@ -1908,18 +1909,18 @@ msgstr "We zullen proberen je zo spoedig mogelijk te helpen!"
 msgid ""
 "Use the 16 digit receipt to log in. It will allow you to view any messages "
 "we sent you, and also to add extra info."
-msgstr ""
+msgstr "Gebruik de 16 cijferige code om in te loggen. Hiermee heb je de mogelijkheid berichten te bekijken die wij verstuurd hebben naar jou, en je kunt tevens extra informatie toevoegen"
 
 msgid "View your submission"
 msgstr "Bekijk je inzending"
 
 msgid "Hint: How to hide your receipt"
-msgstr ""
+msgstr "Tip: Hoe onthoud ik deze sleutel code"
 
 msgid ""
 "A useful way to hide your receipt is to write it down like a credit card "
 "number, i.e. by also including an expiration date."
-msgstr ""
+msgstr "Een handige manier om dit te onthouden is door het op te schrijven in de vorm van een creditcard nummer. Vergeet niet de vervaldatum erbij te schrijven."
 
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."
@@ -2147,6 +2148,9 @@ msgstr ""
 
 msgid "The activities with unusual stats are:"
 msgstr "De gebeurtenissen met ongebruikelijke statistieken zijn:"
+
+msgid "The available disk space is {FreeMemory} of {TotalMemory}."
+msgstr ""
 
 msgid ""
 "The server cannot guarantee that a new submission can be stored, so "

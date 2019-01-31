@@ -667,6 +667,7 @@
   "This could be a sign of an attack (for example, someone flooding your server with bogus information) or just a usage spike due to an increased visibility of your project.": "Ovo bi mogao biti znak napada (primjerice, netko poplavljuje Vaš poslužitelj lažnim informacijama) ili samo skok u broju korisnika zbog povećane vidljivosti Vašeg projekta.",
   "Examine the issue to determine whether it is legitimate or not.": "Pregledajte problem kako bi utvrdili ako je legitiman ili ne.",
   "The activities with unusual stats are:": "Aktivnosti s neobičnom statiskom su:",
+  "The available disk space is {FreeMemory} of {TotalMemory}.": "The available disk space is {FreeMemory} of {TotalMemory}.",
   "The server cannot guarantee that a new submission can be stored, so submissions have been disabled.": "Poslužitelj ne može garantirati da će nove predaje biti pohranjene stoga su predaje onemogućene.",
   "Please consider asking your technical support to create more disk space on the server.": "Molimo pitajte svoju tehničku podršku da Vam poveća diskovni prostor na poslužitelju.",
   "GlobaLeaks technology includes a server status checking component which will alert you in case something requires your attention.": "GlobaLeaks tehnologija uključuje komponentu provjere stanja poslužitelja koja će Vas upozoriti u slučaju da nešto zahtjeva Vašu pozornost.",

@@ -7,7 +7,7 @@
 # Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2015-2018
 # b33a4006134bb6ee62b30fc0fac5cec6, 2016
 # b33a4006134bb6ee62b30fc0fac5cec6, 2016
-# ION, 2018
+# ION, 2018-2019
 # Jakub Jakubiak <jakub.jakubiak@gmail.com>, 2014
 # zxcsd <jenisjpl@gmail.com>, 2015
 # Magdalenaem <magdalena.morawiecka1@gmail.com>, 2015
@@ -18,7 +18,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-01-13 14:35+0000\n"
+"PO-Revision-Date: 2019-01-30 08:51+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Hebrew (http://www.transifex.com/otf/globaleaks/language/he/)\n"
 "MIME-Version: 1.0\n"
@@ -73,7 +73,7 @@ msgid "Changelog"
 msgstr "יומן שינויים"
 
 msgid "License"
-msgstr "רשיון"
+msgstr "רישיון"
 
 msgid "Notification templates"
 msgstr "תבניות התראה"
@@ -157,7 +157,7 @@ msgid "Platform wizard"
 msgstr "אשף פלטפורמה"
 
 msgid "Step-by-step setup"
-msgstr "התקנה צעד-אחר-צעד"
+msgstr "הגדרה צעד־אחר־צעד"
 
 msgid "CREDIT CARD"
 msgstr "כרטיס אשראי"
@@ -202,10 +202,10 @@ msgid "Move right"
 msgstr "הזז ימינה"
 
 msgid "Import"
-msgstr "יְבוּא"
+msgstr "ייבא"
 
 msgid "Export"
-msgstr "יְצוּא"
+msgstr "ייצא"
 
 msgid "Save all"
 msgstr "שמור הכל"
@@ -257,10 +257,10 @@ msgid "-1 = unlimited"
 msgstr "-1 = בלתי מוגבל"
 
 msgid "True"
-msgstr "נכון"
+msgstr "אמת"
 
 msgid "False"
-msgstr "שֶׁקֶר"
+msgstr "שקר"
 
 msgid "Yes"
 msgstr "כן"
@@ -287,16 +287,16 @@ msgid "User"
 msgstr "משתמש"
 
 msgid "Motivation"
-msgstr "מוֹטִיבָצִיָה"
+msgstr ""
 
 msgid "Status"
 msgstr "מעמד"
 
 msgid "Request motivation"
-msgstr "מוטיבצית בקשה"
+msgstr ""
 
 msgid "Reply motivation"
-msgstr "תגובת מוטיבציה"
+msgstr ""
 
 msgid "Request status"
 msgstr "מעמד בקשה"
@@ -341,7 +341,7 @@ msgid "New request"
 msgstr "בקשה חדשה"
 
 msgid "Authorize"
-msgstr "לְאַשֵׁר"
+msgstr "הרשה"
 
 msgid "Deny"
 msgstr "לְהַכּחִישׁ"
@@ -368,7 +368,7 @@ msgid "in characters"
 msgstr "בתווים"
 
 msgid "in megabytes"
-msgstr "במגה-בתים"
+msgstr "במגה־בתים"
 
 msgid "in percentage"
 msgstr "באחוזים"
@@ -414,7 +414,7 @@ msgid "Disable notifications to recipients"
 msgstr "השבת הודעות לנמענים"
 
 msgid "Score"
-msgstr "צִיוּן"
+msgstr "ניקוד"
 
 msgid "Trigger question"
 msgstr "שאלת מעורר"
@@ -459,7 +459,7 @@ msgid "Turn on email notifications"
 msgstr "הפעל התראות דוא\"ל"
 
 msgid "Enter an email address for the administrator"
-msgstr ""
+msgstr "הכנס כתובת דוא\"ל עבור המינהלן"
 
 msgid "Enter a password for the administrator"
 msgstr "הכנס סיסמה עבור המינהלן"
@@ -474,13 +474,13 @@ msgid "Successful logins"
 msgstr "התחברויות מוצלחות"
 
 msgid "Started submissions"
-msgstr "הגשות שהתחילו"
+msgstr "הגשות מותחלות"
 
 msgid "Completed submissions"
-msgstr "הגשות שהושלמו"
+msgstr "הגשות מושלמות"
 
 msgid "Failed submissions"
-msgstr ""
+msgstr "הגשות נכשלות"
 
 msgid "Input validation"
 msgstr ""
@@ -534,7 +534,7 @@ msgid ""
 msgstr "דפדפן Tor כולל פרטיות שונות ושיפורי אבטחה שאינם קיימים בדפדפנים אחרים."
 
 msgid "Download the Tor Browser"
-msgstr "הורד דפדפן Tor"
+msgstr "הורד את דפדפן Tor"
 
 msgid "This is the list of the other supported browsers:"
 msgstr ""
@@ -561,7 +561,7 @@ msgid "Number of downloads"
 msgstr "מספר הורדות"
 
 msgid "Error with file:"
-msgstr ""
+msgstr "שגיאה עם קובץ:"
 
 msgid "File size not accepted."
 msgstr ""
@@ -576,13 +576,13 @@ msgid "Accepted file types are:"
 msgstr ""
 
 msgid "Scheduled jobs"
-msgstr ""
+msgstr "עבודות מתוזמנות"
 
 msgid "Sites management"
-msgstr ""
+msgstr "ניהול אתרים"
 
 msgid "Regenerate"
-msgstr ""
+msgstr "חולל מחדש"
 
 msgid "Display options alphabetically"
 msgstr ""
@@ -609,10 +609,10 @@ msgid "Create your whistleblowing platform"
 msgstr ""
 
 msgid "Collapse"
-msgstr ""
+msgstr "צמצם"
 
 msgid "Expand"
-msgstr ""
+msgstr "הרחב"
 
 msgid "Select"
 msgstr "בחר"
@@ -636,7 +636,7 @@ msgid "Closed"
 msgstr "סגור"
 
 msgid "Select the context of your submission:"
-msgstr ""
+msgstr "בחר את ההקשר של ההגשה שלך:"
 
 msgid "Warning! You are not anonymous."
 msgstr "אזהרה! אתה לא אלמוני."
@@ -659,7 +659,7 @@ msgid "Have you already filed a submission? Enter your key code."
 msgstr "האם כבר הגשת הגשה? הזן את קוד המפתח שלך."
 
 msgid "Your submission was successful."
-msgstr "הגשתך הצליח."
+msgstr "הגשתך הצליחה."
 
 msgid "Submission status"
 msgstr "מעמד הגשה"
@@ -801,7 +801,7 @@ msgid "Password"
 msgstr "סיסמה"
 
 msgid "Allow users to reset their passwords"
-msgstr ""
+msgstr "התר למשתמשים לאפס את סיסמאותיהם"
 
 msgid ""
 "Allowing users to reset their passwords may reduce the security of the "
@@ -846,16 +846,16 @@ msgid "Add"
 msgstr "הוסף"
 
 msgid "Enable automatic backups"
-msgstr ""
+msgstr "אפשר גיבויים אוטומטיים"
 
 msgid "Daily"
-msgstr ""
+msgstr "יומי"
 
 msgid "Weekly"
-msgstr ""
+msgstr "שבועי"
 
 msgid "Montly"
-msgstr ""
+msgstr "חודשי"
 
 msgid "Remote"
 msgstr ""
@@ -870,10 +870,10 @@ msgid "Substatuses"
 msgstr "תת־מעמדים"
 
 msgid "Label"
-msgstr "מדבקה"
+msgstr "תווית"
 
 msgid "This field is mandatory"
-msgstr "שדה חובה"
+msgstr "שדה זה הוא חובה"
 
 msgid "Edit"
 msgstr "ערוך"
@@ -942,7 +942,7 @@ msgid "Original translation"
 msgstr "תרגום מקורי"
 
 msgid "Custom translation"
-msgstr ""
+msgstr "תרגום מותאם אישית"
 
 msgid "Contexts"
 msgstr "הקשרים"
@@ -957,7 +957,7 @@ msgid "Hidden"
 msgstr "מוסתר"
 
 msgid "Disabled"
-msgstr "כבוי"
+msgstr "מושבת"
 
 msgid "Questionnaire"
 msgstr "שְׁאֵלוֹן"
@@ -969,7 +969,7 @@ msgid "Recipients"
 msgstr "מקבלים"
 
 msgid "Submission expiration"
-msgstr ""
+msgstr "תפוגת הגשה"
 
 msgid "days"
 msgstr "ימים"
@@ -1005,13 +1005,13 @@ msgid "Enable comments"
 msgstr "אפשר הערות"
 
 msgid "Allow whistleblowers to write comments"
-msgstr "אפשר שחושף את העוולות לכתוב תגובות"
+msgstr ""
 
 msgid "Enable private messages"
 msgstr "אפשר הודעות פרטיות"
 
 msgid "Allow whistleblowers to send messages"
-msgstr "אפשר שחושף את העוולות לשלוח הודעות"
+msgstr ""
 
 msgid "Let whistleblowers add attachments onto existing submissions"
 msgstr ""
@@ -1020,13 +1020,13 @@ msgid "Let recipients upload files to whistleblowers"
 msgstr ""
 
 msgid "Enable scoring system"
-msgstr ""
+msgstr "אפשר מערכת ניקוד"
 
 msgid "Threshold"
-msgstr ""
+msgstr "סף"
 
 msgid "Value"
-msgstr ""
+msgstr "ערך"
 
 msgid "Medium"
 msgstr "בינוני"
@@ -1129,7 +1129,7 @@ msgid "State"
 msgstr "מחוז"
 
 msgid "City"
-msgstr "עִיר"
+msgstr "עיר"
 
 msgid "Organization"
 msgstr "ארגון"
@@ -1160,10 +1160,10 @@ msgid "Certificate"
 msgstr ""
 
 msgid "Valid until:"
-msgstr ""
+msgstr "תקף עד:"
 
 msgid "Issuer:"
-msgstr ""
+msgstr "מנפיק:"
 
 msgid "Intermediate Certificates"
 msgstr ""
@@ -1328,7 +1328,7 @@ msgid "Terms of service"
 msgstr "תנאי שירות"
 
 msgid "Map"
-msgstr ""
+msgstr "מפה"
 
 msgid "Group of questions"
 msgstr "קבוצת שאלות"
@@ -1424,7 +1424,7 @@ msgid "Allow users to sign up"
 msgstr "התר למשתמשים להירשם"
 
 msgid "Enable terms of service"
-msgstr ""
+msgstr "אפשר תנאיי שירות"
 
 msgid "Sites"
 msgstr "אתרים"
@@ -1480,10 +1480,10 @@ msgid "Set up encryption by providing a PGP public key"
 msgstr "הגדרת הצפנה על ידי מתן מפתח ציבורי PGP"
 
 msgid "Configuration"
-msgstr "הגדרות"
+msgstr "תצורה"
 
 msgid "Default"
-msgstr "מחדל"
+msgstr "ברירת מחדל"
 
 msgid "Forcefully selected"
 msgstr "נבחר בכוח"
@@ -1631,16 +1631,16 @@ msgid "Error!"
 msgstr "שגיאה!"
 
 msgid "Internal server error"
-msgstr ""
+msgstr "שגיאת שרת פנימית"
 
 msgid "Error on input validation"
 msgstr ""
 
 msgid "Resource not found"
-msgstr ""
+msgstr "משאב לא נמצא"
 
 msgid "Forbidden operation"
-msgstr ""
+msgstr "פעולה אסורה"
 
 msgid "The specified old password is not valid"
 msgstr "הסיסמה הישנה שצוינה אינה חוקית"
@@ -1842,7 +1842,7 @@ msgid "Upload a file:"
 msgstr "העלה קובץ:"
 
 msgid "Question"
-msgstr ""
+msgstr "שאלה"
 
 msgid "Inverted"
 msgstr ""
@@ -1851,7 +1851,7 @@ msgid "Trigger step"
 msgstr "צעד טריגר"
 
 msgid "Logout"
-msgstr "נתק"
+msgstr "התנתק"
 
 msgid "The key code is either invalid or the submission has expired."
 msgstr "קוד המפתח לא חוקי או ההגשה פגה."
@@ -1993,16 +1993,16 @@ msgid "Confirm password"
 msgstr "אשר סיסמה"
 
 msgid "The default username is:"
-msgstr ""
+msgstr "שם משתמש ברירת המחדל הוא:"
 
 msgid "License Agreement"
-msgstr "הסכם רשיון"
+msgstr "הסכם רישיון"
 
 msgid "Please review the license terms before proceeding."
-msgstr ""
+msgstr "אנא סקור את תנאי הרישיון לפני המשכה."
 
 msgid "I have read and agree to the terms of the License Agreement."
-msgstr ""
+msgstr "קראתי ואני מסכים אל התנאים של הסכם הרישיון."
 
 msgid "You have completed the platform wizard."
 msgstr "אתה בהצלחה סיימת את אשף הפלטפורמה."
@@ -2086,13 +2086,13 @@ msgid "Organization unit and job location at the time of the reported fact"
 msgstr "יחידת ארגון עבודת מיקום בעת עובדת הדיווח"
 
 msgid "Authentication code: {AuthCode}"
-msgstr ""
+msgstr "קוד אימות: {AuthCode}"
 
 msgid "The authentication code is valid for 5 minutes."
 msgstr ""
 
 msgid "Authentication code"
-msgstr ""
+msgstr "קוד אימות"
 
 msgid "Dear {RecipientName},"
 msgstr "{RecipientName} היקר,"
@@ -2130,6 +2130,9 @@ msgstr ""
 
 msgid "The activities with unusual stats are:"
 msgstr "הפעילות עם נתונים סטטיסטיים לא רגילים הן:"
+
+msgid "The available disk space is {FreeMemory} of {TotalMemory}."
+msgstr ""
 
 msgid ""
 "The server cannot guarantee that a new submission can be stored, so "
@@ -2253,7 +2256,7 @@ msgid "Date: {SubmissionDate}"
 msgstr "תאריך: {SubmissionDate}"
 
 msgid "Label: {TipLabel}"
-msgstr "לייבל: {TipLabel}"
+msgstr "תווית: {TipLabel}"
 
 msgid "Context: {ContextName}"
 msgstr "הקשר: {ContextName}"
@@ -2384,7 +2387,7 @@ msgid ""
 msgstr "אם לא אכפת לך ואת מעדיפה לקבל מספר כה גדול של הודעות דוא\"ל בכל מקרה, אנא פנה לתמיכה הטכנית שלך כדי לקבל אותם לשנות הגדרה זו בהתאם."
 
 msgid "Notifications from {NodeName} have been temporarily suspended"
-msgstr "התראות מ- {NodeName} הושעו זמנית"
+msgstr "התראות מאת {NodeName} הושעו זמנית"
 
 msgid "Click the link to activate the platform:"
 msgstr ""

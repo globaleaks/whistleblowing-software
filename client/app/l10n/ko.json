@@ -667,6 +667,7 @@
   "This could be a sign of an attack (for example, someone flooding your server with bogus information) or just a usage spike due to an increased visibility of your project.": "이것은 아니면 그냥 사용 급증으로 인해 프로젝트의 증가 가시성 (당신의 가짜 정보를 서버에 홍수 사람, 예를 들면) 공격의 표적이 될 수 있습니다.",
   "Examine the issue to determine whether it is legitimate or not.": "Examine the issue to determine whether it is legitimate or not.",
   "The activities with unusual stats are:": "특이한 통계와 활동은 다음과 같습니다 :",
+  "The available disk space is {FreeMemory} of {TotalMemory}.": "The available disk space is {FreeMemory} of {TotalMemory}.",
   "The server cannot guarantee that a new submission can be stored, so submissions have been disabled.": "제출이 중지되었습니다 있도록 서버는 새 제출이 저장 될 수 있음을 보증하지 않습니다.",
   "Please consider asking your technical support to create more disk space on the server.": "Please consider asking your technical support to create more disk space on the server.",
   "GlobaLeaks technology includes a server status checking component which will alert you in case something requires your attention.": "GlobaLeaks 기술은 무엇인가주의가 필요한 경우에 당신을 경고하는 서버 상태 확인 구성 요소가 포함되어 있습니다.",
