@@ -1222,7 +1222,10 @@ class MockDict:
             'backup_remote_server': u'',
             'backup_remote_port': 22,
             'backup_remote_username': u'',
-            'backup_remote_password': u''
+            'backup_remote_password': u'',
+            'basic_auth': False,
+            'basic_auth_username': u'',
+            'basic_auth_password': u''
         }
 
 

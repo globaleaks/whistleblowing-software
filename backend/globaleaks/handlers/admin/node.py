@@ -87,7 +87,7 @@ def db_update_node(session, tid, request, language):
 
     config.update('node', request)
 
-    if request['basic_auth'] and request['basic_auth_username'] and request['basic_auth_password']:
+    if 'basic_auth' in request and request['basic_auth'] and request['basic_auth_username'] and request['basic_auth_password']:
         config.set_val(u'basic_auth', True)
         config.set_val(u'basic_auth_username', request['basic_auth_username'])
         config.set_val(u'basic_auth_password', request['basic_auth_password'])
