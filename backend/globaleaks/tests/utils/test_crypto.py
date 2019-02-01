@@ -21,6 +21,12 @@ class TestCryptoUtils(helpers.TestGL):
         prv_key_enc = GCE.symmetric_encrypt(key, prv_key)
         self.assertEqual(prv_key, GCE.symmetric_decrypt(key, prv_key_enc))
 
+    def test_export_import_key(self):
+        x1, _ = GCE.generate_keypair()
+        x2 = GCE.export_private_key(x1)
+        x3 = GCE.import_private_key(x2)
+        self.assertEqual(x1, x3._private_key)
+
     def test_derive_key(self):
         GCE.derive_key(password, salt)
 

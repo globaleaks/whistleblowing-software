@@ -13,13 +13,12 @@ from distutils.version import LooseVersion as V  # pylint: disable=no-name-in-mo
 import scrypt
 
 import nacl
-from nacl.encoding import RawEncoder
 if V(nacl.__version__) >= V('1.2'):
+    from nacl.encoding import RawEncoder, HexEncoder
     from nacl.pwhash import argon2id  # pylint: disable=no-name-in-module
     from nacl.public import SealedBox, PrivateKey, PublicKey  # pylint: disable=no-name-in-module
     from nacl.secret import SecretBox
     from nacl.utils import random as nacl_random
-
 
 from cryptography.hazmat.backends import default_backend
 from cryptography.hazmat.primitives import constant_time, hashes
@@ -267,6 +266,14 @@ class GCE(object):
 
             return prv_key.encode(RawEncoder), \
                    prv_key.public_key.encode(RawEncoder)
+
+        @staticmethod
+        def import_private_key(private_key):
+            return PrivateKey(private_key, HexEncoder)
+
+        @staticmethod
+        def export_private_key(private_key):
+            return PrivateKey(private_key, RawEncoder).encode(HexEncoder).decode('utf-8')
 
         @staticmethod
         def symmetric_encrypt(key, data):
