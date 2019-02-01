@@ -57,6 +57,15 @@
     <label data-translate>Enable email notifications</label>
   </div>
 
+  <div class="form-group" data-ng-if="preferences.cc">
+    <div>
+      <label data-translate>Encryption key</label>
+      <span data-ng-show="showEncryptionKey" data-ng-click="toggleShowEncryptionKey()" class="label label-default" data-translate>Hide</span>
+      <span data-ng-hide="showEncryptionKey" data-ng-click="toggleShowEncryptionKey()" class="label label-default" data-translate>Show</span>
+    </div>
+    <div data-ng-show="showEncryptionKey">{{preferences.cc}}</div>
+  </div>
+
   <div id="EditPGP" data-ng-form="pgpkeyForm" data-ng-if="node.enable_user_pgp_key_upload">
     <div data-ng-show="preferences.pgp_key_fingerprint !== ''">
       <div class="form-group">

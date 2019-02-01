@@ -6,12 +6,12 @@ from twisted.internet.defer import inlineCallbacks, returnValue
 from globaleaks import models
 from globaleaks.handlers.admin.modelimgs import db_get_model_img
 from globaleaks.handlers.base import BaseHandler
+from globaleaks.models import get_localized_values
 from globaleaks.orm import transact
 from globaleaks.rest import errors, requests
 from globaleaks.state import State
 from globaleaks.utils.pgp import PGPContext
 from globaleaks.utils.crypto import GCE, generateRandomKey
-from globaleaks.models import get_localized_values
 from globaleaks.utils.utility import datetime_to_ISO8601, datetime_now, datetime_null
 
 
@@ -221,10 +221,18 @@ class UserInstance(BaseHandler):
     check_roles = {'admin', 'receiver', 'custodian'}
     invalidate_cache = True
 
+    @inlineCallbacks
     def get(self):
-        return get_user(self.request.tid,
-                        self.current_user.user_id,
-                        self.request.language)
+        user = yield get_user(self.request.tid,
+                              self.current_user.user_id,
+                              self.request.language)
+
+        user['cc'] = ''
+        if self.current_user.cc:
+            user['cc'] = GCE.export_private_key(self.current_user.cc)
+
+        return user
+
 
     def put(self):
         request = self.validate_message(self.request.content.read(), requests.UserUserDesc)

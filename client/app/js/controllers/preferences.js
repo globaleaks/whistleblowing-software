@@ -14,13 +14,18 @@ GLClient.controller("PreferencesCtrl", ["$scope", "$q", "$rootScope", "CONSTANTS
     $scope.email_regexp = CONSTANTS.email_regexp;
     $scope.editingName = false;
     $scope.editingEmail = false;
+    $scope.showEncryptionKey = false;
 
     $scope.toggleNameEditing = function () {
-      $scope.editingName = $scope.editingName ^ 1;
+      $scope.editingName = !$scope.editingName;
     };
 
     $scope.toggleEmailAddressEditing = function() {
-      $scope.editingEmailAddress = $scope.editingEmailAddress ^ 1;
+      $scope.editingEmailAddress = !$scope.editingEmailAddress;
+    };
+
+    $scope.toggleShowEncryptionKey = function() {
+      $scope.showEncryptionKey = !$scope.showEncryptionKey;
     };
 
     $scope.save = function() {
