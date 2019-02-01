@@ -29,12 +29,10 @@ angular.module("GLServices", ["ngResource"]).
           self.session = {
             "id": response.session_id,
             "user_id": response.user_id,
-            "username": response.username,
             "role": response.role,
-            "state": response.state,
             "password_change_needed": response.password_change_needed,
             "homepage": "",
-            "auth_landing_page": "",
+            "auth_landing_page": ""
           };
 
           function initPreferences(prefs) {
