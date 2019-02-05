@@ -8,12 +8,14 @@
   <div class="alert alert-default">
     <div data-translate>Step</div>
     <select class="form-control" data-ng-model="arg.trigger_step" data-ng-options="step.id as step.label for step in questionnaire.steps | orderBy:'label'"></select>
+    <!--
     <div>
       <label>
         <input data-ng-model="arg.trigger_step_inverted" type="checkbox" />
         <span data-translate>Inverted</span>
       </label>
     </div>
+    -->
   </div>
 </div>
 <div class="modal-footer">

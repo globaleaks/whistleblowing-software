@@ -8,12 +8,14 @@
   <div class="alert alert-default">
     <div data-translate>Question</div>
     <select class="form-control" data-ng-model="arg.trigger_field" data-ng-options="field.id as field.label for field in all_fields | orderBy:'label'"></select>
+    <!--
     <div>
       <label>
         <input data-ng-model="arg.trigger_field_inverted" type="checkbox" />
         <span data-translate>Inverted</span>
       </label>
     </div>
+    -->
   </div>
 </div>
 <div class="modal-footer">
