@@ -10,10 +10,10 @@
     "max_len": {"type": "int", "value": "-1"}
  },
   "checkbox": {
-    "display_alphabetically": {"type": "bool", "value": true }
+    "display_alphabetically": {"type": "bool", "value": false }
  },
   "selectbox": {
-    "display_alphabetically": {"type": "bool", "value": true }
+    "display_alphabetically": {"type": "bool", "value": false }
  },
   "tos": {
     "text": {"type": "localized", "value": ""},
