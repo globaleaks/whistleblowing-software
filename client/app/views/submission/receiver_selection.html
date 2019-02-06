@@ -7,15 +7,10 @@
   </div>
   <div id="ReceiverSelectionBox" class="row">
     <div data-ng-repeat="receiver in submission.receivers | orderBy:receiversOrderPredicate" id="receiver-{{$index}}" data-ng-class="{'col-md-6': !submission.context.show_small_receiver_cards, 'col-md-3': submission.context.show_small_receiver_cards}" data-ng-click="switch_selection(receiver)">
-      <div class="receiverCard" data-ng-class="{'selected': submission.selected_receivers[receiver.id] && receiver.recipient_configuration !== 'forcefully_selected', 'forcefullySelected': receiver.recipient_configuration === 'forcefully_selected', 'disabled': receiver.recipient_configuration === 'unselectable' || (!node.allow_unencrypted && receiver.pgp_key_public === '')}">
+      <div class="receiverCard" data-ng-class="{'selected': submission.selected_receivers[receiver.id] && receiver.recipient_configuration !== 'forcefully_selected', 'forcefullySelected': receiver.recipient_configuration === 'forcefully_selected', 'disabled': (!node.allow_unencrypted && receiver.pgp_key_public === '')}">
         <div class="receiverCardTitle row">
           <div class="col-md-10">
-            <label>
-              <span data-ng-if="receiver.recipient_configuration === 'unselectable'">
-                <i class="glyphicon glyphicon-ban-circle" uib-popover="{{'This recipient cannot be selected.' | translate}}" popover-placement="right"></i>
-              </span>
-              <span>&nbsp;{{::receiver.name}}</span>
-            </label>
+            <label>{{::receiver.name}}</label>
           </div>
           <div class="col-md-1" data-ng-if="receiver.pgp_key_public !== '' || node.allow_unencrypted">
             <div data-ng-if="submission.selected_receivers[receiver.id]">
@@ -29,9 +24,6 @@
             <div data-ng-if="!submission.selected_receivers[receiver.id]">
               <div data-ng-if="receiver.recipient_configuration === 'default'">
                 <i class="glyphicon glyphicon-unchecked" uib-popover="{{'Select this recipient.' | translate}}" popover-placement="right"></i>
-              </div>
-              <div data-ng-if="receiver.recipient_configuration === 'unselectable'">
-                <i class="glyphicon glyphicon-unchecked" uib-popover="{{'This recipient cannot be selected.' | translate}}" popover-placement="right"></i>
               </div>
             </div>
           </div>

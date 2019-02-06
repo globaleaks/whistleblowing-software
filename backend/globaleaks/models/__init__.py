@@ -1233,7 +1233,7 @@ class _User(Model):
                 UniqueConstraint('tid', 'username'),
                 CheckConstraint(self.role.in_(['admin', 'receiver', 'custodian'])),
                 CheckConstraint(self.state.in_(['disabled', 'enabled'])),
-                CheckConstraint(self.recipient_configuration.in_(['default', 'forcefully_selected', 'unselectable'])))
+                CheckConstraint(self.recipient_configuration.in_(['default', 'forcefully_selected'])))
 
 
 class _UserTenant(Model):
