@@ -32,7 +32,7 @@ from globaleaks.db.migrations.update_39 import \
     FieldOption_v_38, File_v_38, IdentityAccessRequest_v_38, \
     InternalFile_v_38, InternalTip_v_38, Mail_v_38, Message_v_38, \
     Questionnaire_v_38, Receiver_v_38, ReceiverContext_v_38, \
-    ReceiverFile_v_38, ReceiverTip_v_38, ShortURL_v_38, Stats_v_38, \
+    ReceiverFile_v_38, ReceiverTip_v_38, ShortURL_v_38, \
     Step_v_38, User_v_38, WhistleblowerFile_v_38, WhistleblowerTip_v_38
 from globaleaks.db.migrations.update_41 import InternalFile_v_40, InternalTip_v_40, ReceiverFile_v_40, ReceiverTip_v_40, \
     Signup_v_40, User_v_40, WhistleblowerFile_v_40
@@ -88,7 +88,7 @@ migration_mapping = OrderedDict([
     ('SubmissionStatusChange', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, models._SubmissionStatusChange, 0, 0, 0, 0]),
     ('ShortURL', [-1, -1, ShortURL_v_38, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, models._ShortURL, 0, 0, 0, 0, 0, 0, 0]),
     ('Signup', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, Signup_v_40, 0, Signup_v_41, Signup_v_42, models._Signup, 0, 0, 0]),
-    ('Stats', [Stats_v_38, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, models._Stats, 0, 0, 0, 0, 0, 0, 0]),
+    ('Stats', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, models._Stats, 0, 0, 0, 0, 0, 0, 0]),
     ('Step', [Step_v_27, 0, 0, 0, Step_v_29, 0, Step_v_38, 0, 0, 0, 0, 0, 0, 0, 0, Step_v_44, 0, 0, 0, 0, 0, models._Step, 0]),
     ('StepField', [StepField_v_27, 0, 0, 0, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1]),
     ('Tenant', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, models._Tenant, 0, 0, 0, 0, 0, 0, 0]),

@@ -332,14 +332,6 @@ class ShortURL_v_38(Model):
     longurl = Column(UnicodeText)
 
 
-class Stats_v_38(Model):
-    __tablename__ = 'stats'
-    id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
-    start = Column(DateTime)
-    summary = Column(JSON)
-    free_disk_space = Column(Integer)
-
-
 class Step_v_38(Model):
     __tablename__ = 'step'
     id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
