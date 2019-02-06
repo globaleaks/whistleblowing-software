@@ -186,6 +186,11 @@ def set_var(args, silent=False):
 
     check_file(db_path)
     try:
+        if args.value == 'True':
+            args.value = True
+        elif args.value == 'False':
+            args.value = False
+
         value = json.dumps(args.value)
 
         QUERY = "UPDATE config SET value=? WHERE var_name=? AND tid=?;"
