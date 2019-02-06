@@ -20,7 +20,6 @@ from six import text_type
 
 from globaleaks.db import get_db_file
 from globaleaks.orm import make_db_uri, get_engine
-from globaleaks.models import config, config_desc
 from globaleaks.rest.requests import AdminNotificationDesc, AdminNodeDesc
 from globaleaks.settings import Settings
 from globaleaks.utils.crypto import GCE, generateRandomKey, generateApiToken
@@ -171,10 +170,6 @@ def get_var(args):
         # will fail
         print("ERROR")
         raise e
-
-
-def select_cfg_factory(varname):
-    return factCls, item, config_desc.ConfigDescriptor[varname]
 
 
 def set_var(args, silent=False):
