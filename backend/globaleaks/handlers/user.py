@@ -231,7 +231,7 @@ class UserInstance(BaseHandler):
         if self.current_user.cc:
             user['cc'] = GCE.export_private_key(self.current_user.cc)
 
-        return user
+        returnValue(user)
 
 
     def put(self):
