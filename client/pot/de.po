@@ -47,8 +47,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-01-30 08:51+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2019-02-06 17:21+0000\n"
+"Last-Translator: erinm\n"
 "Language-Team: German (http://www.transifex.com/otf/globaleaks/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -172,9 +172,6 @@ msgstr "Diesen Empfänger auswählen."
 
 msgid "Unselect this recipient."
 msgstr "Diesen Empfänger abwählen."
-
-msgid "This recipient cannot be selected."
-msgstr "Dieser Empfänger kann nicht ausgewählt werden."
 
 msgid "This recipient cannot be deselected."
 msgstr "Dieser Empfänger kann nicht abgewählt werden."
@@ -1338,6 +1335,9 @@ msgstr "Alarmstufe"
 msgid "Events"
 msgstr "Ereignisse"
 
+msgid "Question"
+msgstr "Frage"
+
 msgid "Type"
 msgstr "Typ"
 
@@ -1517,9 +1517,6 @@ msgstr "Standard"
 msgid "Forcefully selected"
 msgstr "Zwingend ausgewählt"
 
-msgid "Unselectable"
-msgstr "Nicht auswählbar"
-
 msgid "Allow the recipient to postpone the submission expiration date"
 msgstr "Lassen Sie den Empfänger die Einreichung Verfallsdatum zu verschieben"
 
@@ -1688,6 +1685,15 @@ msgstr ""
 
 msgid "Please check your inbox for further instructions."
 msgstr ""
+
+msgid "Encryption key"
+msgstr "Verschlüsselungsschlüssel"
+
+msgid "Hide"
+msgstr "Verstecken"
+
+msgid "Show"
+msgstr "Anzeigen"
 
 msgid "Current password"
 msgstr "Aktuelles Passwort"
@@ -1869,9 +1875,6 @@ msgstr "Angehängte Dateien für den Hinweisgeber"
 
 msgid "Upload a file:"
 msgstr "Hochladen einer Datei:"
-
-msgid "Question"
-msgstr "Frage"
 
 msgid "Inverted"
 msgstr "Invertiert"
@@ -2159,9 +2162,6 @@ msgstr ""
 
 msgid "The activities with unusual stats are:"
 msgstr "Die Aktivitäten mit ungewöhnlichen Statistiken sind:"
-
-msgid "The available disk space is {FreeMemory} of {TotalMemory}."
-msgstr ""
 
 msgid ""
 "The server cannot guarantee that a new submission can be stored, so "

@@ -36,8 +36,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-01-30 08:51+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2019-02-06 17:21+0000\n"
+"Last-Translator: Nathan Follens\n"
 "Language-Team: Dutch (http://www.transifex.com/otf/globaleaks/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -161,9 +161,6 @@ msgstr "Deze ontvanger selecteren."
 
 msgid "Unselect this recipient."
 msgstr "Deze ontvanger deselecteren."
-
-msgid "This recipient cannot be selected."
-msgstr "Deze ontvanger kan niet worden geselecteerd."
 
 msgid "This recipient cannot be deselected."
 msgstr "Deze ontvanger kan niet worden gedeselecteerd."
@@ -1327,6 +1324,9 @@ msgstr "Alarmniveau"
 msgid "Events"
 msgstr "Gebeurtenis"
 
+msgid "Question"
+msgstr ""
+
 msgid "Type"
 msgstr "Type"
 
@@ -1506,9 +1506,6 @@ msgstr "Standaard"
 msgid "Forcefully selected"
 msgstr "Actief geselecteerd"
 
-msgid "Unselectable"
-msgstr "Onselecteerbaar"
-
 msgid "Allow the recipient to postpone the submission expiration date"
 msgstr "De ontvanger mag de einddatum van de inzending uitstellen"
 
@@ -1677,6 +1674,15 @@ msgstr ""
 
 msgid "Please check your inbox for further instructions."
 msgstr ""
+
+msgid "Encryption key"
+msgstr ""
+
+msgid "Hide"
+msgstr "Verberg"
+
+msgid "Show"
+msgstr "Tonen"
 
 msgid "Current password"
 msgstr "Huidig wachtwoord"
@@ -1858,9 +1864,6 @@ msgstr "Bijlage voor de klokkenluider"
 
 msgid "Upload a file:"
 msgstr "Upload een bestand:"
-
-msgid "Question"
-msgstr ""
 
 msgid "Inverted"
 msgstr ""
@@ -2148,9 +2151,6 @@ msgstr ""
 
 msgid "The activities with unusual stats are:"
 msgstr "De gebeurtenissen met ongebruikelijke statistieken zijn:"
-
-msgid "The available disk space is {FreeMemory} of {TotalMemory}."
-msgstr ""
 
 msgid ""
 "The server cannot guarantee that a new submission can be stored, so "

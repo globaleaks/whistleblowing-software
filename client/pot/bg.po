@@ -11,8 +11,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-01-30 08:51+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2019-02-06 17:21+0000\n"
+"Last-Translator: erinm\n"
 "Language-Team: Bulgarian (http://www.transifex.com/otf/globaleaks/language/bg/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -136,9 +136,6 @@ msgstr "Избиране на този получател."
 
 msgid "Unselect this recipient."
 msgstr "Премахване избора на този получател."
-
-msgid "This recipient cannot be selected."
-msgstr "Този получател не може да бъде избран."
 
 msgid "This recipient cannot be deselected."
 msgstr "Изборът на този получател не може да бъде премахнат."
@@ -1302,6 +1299,9 @@ msgstr "Ниво на тревогата"
 msgid "Events"
 msgstr "Събития"
 
+msgid "Question"
+msgstr "Въпрос"
+
 msgid "Type"
 msgstr "Тип"
 
@@ -1481,9 +1481,6 @@ msgstr "По подразбиране"
 msgid "Forcefully selected"
 msgstr "Задължително избрани "
 
-msgid "Unselectable"
-msgstr "Не избераеми"
-
 msgid "Allow the recipient to postpone the submission expiration date"
 msgstr "Разрешаване на получателя да отложи датата на изтичане на сигнал"
 
@@ -1652,6 +1649,15 @@ msgstr "Тече валидация за промяна на имейл адре
 
 msgid "Please check your inbox for further instructions."
 msgstr "Моля, проверете входящата си кутия за допълнителни инструкции."
+
+msgid "Encryption key"
+msgstr ""
+
+msgid "Hide"
+msgstr "Скрий"
+
+msgid "Show"
+msgstr "Покажи"
 
 msgid "Current password"
 msgstr "Текуща парола"
@@ -1833,9 +1839,6 @@ msgstr "Прикачени файлове за източника"
 
 msgid "Upload a file:"
 msgstr "Качване на нов файл:"
-
-msgid "Question"
-msgstr "Въпрос"
 
 msgid "Inverted"
 msgstr "Обърнат"
@@ -2123,9 +2126,6 @@ msgstr "Разгледайте проблема, за да решите дали
 
 msgid "The activities with unusual stats are:"
 msgstr "Дейности с необикновена статистика са:"
-
-msgid "The available disk space is {FreeMemory} of {TotalMemory}."
-msgstr ""
 
 msgid ""
 "The server cannot guarantee that a new submission can be stored, so "

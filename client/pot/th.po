@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-01-30 08:51+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2019-02-06 17:21+0000\n"
+"Last-Translator: erinm\n"
 "Language-Team: Thai (http://www.transifex.com/otf/globaleaks/language/th/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -135,9 +135,6 @@ msgstr "เลือกผู้รับนี้"
 
 msgid "Unselect this recipient."
 msgstr "ยกเลิกการเลือกผู้รับนี้"
-
-msgid "This recipient cannot be selected."
-msgstr "ผู้รับรายนี้ไม่สามารถเลือกได้"
 
 msgid "This recipient cannot be deselected."
 msgstr "ผู้รับนี้ไม่สามารถยกเลิก"
@@ -1301,6 +1298,9 @@ msgstr "ระดับการเตือนภัย"
 msgid "Events"
 msgstr "เหตุการณ์ที่เกิดขึ้น"
 
+msgid "Question"
+msgstr ""
+
 msgid "Type"
 msgstr "ชนิด"
 
@@ -1480,9 +1480,6 @@ msgstr "ค่าเริ่มต้น"
 msgid "Forcefully selected"
 msgstr "เลือกอย่างแข็งขัน"
 
-msgid "Unselectable"
-msgstr "Unselectable"
-
 msgid "Allow the recipient to postpone the submission expiration date"
 msgstr "อนุญาตให้ผู้รับที่จะเลื่อนวันหมดอายุการส่ง"
 
@@ -1650,6 +1647,15 @@ msgid "Validation of email address change in progress."
 msgstr ""
 
 msgid "Please check your inbox for further instructions."
+msgstr ""
+
+msgid "Encryption key"
+msgstr ""
+
+msgid "Hide"
+msgstr "ซ่อน"
+
+msgid "Show"
 msgstr ""
 
 msgid "Current password"
@@ -1831,9 +1837,6 @@ msgid "Attached files for the whistleblower"
 msgstr ""
 
 msgid "Upload a file:"
-msgstr ""
-
-msgid "Question"
 msgstr ""
 
 msgid "Inverted"
@@ -2122,9 +2125,6 @@ msgstr ""
 
 msgid "The activities with unusual stats are:"
 msgstr "กิจกรรมที่มีสถิติที่ผิดปกติคือ:"
-
-msgid "The available disk space is {FreeMemory} of {TotalMemory}."
-msgstr ""
 
 msgid ""
 "The server cannot guarantee that a new submission can be stored, so "

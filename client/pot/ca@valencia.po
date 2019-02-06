@@ -16,7 +16,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-01-30 08:51+0000\n"
+"PO-Revision-Date: 2019-02-06 17:21+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Catalan (Valencian) (http://www.transifex.com/otf/globaleaks/language/ca%40valencia/)\n"
 "MIME-Version: 1.0\n"
@@ -141,9 +141,6 @@ msgstr "Seleccione aquest destinatari."
 
 msgid "Unselect this recipient."
 msgstr "Desseleccione aquest destinatari."
-
-msgid "This recipient cannot be selected."
-msgstr "Aquest destinatari no pot ser seleccionat."
 
 msgid "This recipient cannot be deselected."
 msgstr "Aquest destinatari no pot ser desseleccionat."
@@ -1307,6 +1304,9 @@ msgstr "Alarma"
 msgid "Events"
 msgstr "Esdeveniments"
 
+msgid "Question"
+msgstr ""
+
 msgid "Type"
 msgstr "Tipus"
 
@@ -1486,9 +1486,6 @@ msgstr "Predeterminat"
 msgid "Forcefully selected"
 msgstr "Obligatòriament seleccionats"
 
-msgid "Unselectable"
-msgstr "No seleccionable"
-
 msgid "Allow the recipient to postpone the submission expiration date"
 msgstr "Permet al destinatari pospondre la data d'expiració de l'enviament"
 
@@ -1657,6 +1654,15 @@ msgstr "Validació del canvi de contrasenya en progrés."
 
 msgid "Please check your inbox for further instructions."
 msgstr "Per favor, comprove el seu correu per a més instruccions."
+
+msgid "Encryption key"
+msgstr ""
+
+msgid "Hide"
+msgstr ""
+
+msgid "Show"
+msgstr ""
 
 msgid "Current password"
 msgstr " Contrasenya actual"
@@ -1838,9 +1844,6 @@ msgstr "Els arxius adjunts per a l'informador"
 
 msgid "Upload a file:"
 msgstr "Pujar un fitxer:"
-
-msgid "Question"
-msgstr ""
 
 msgid "Inverted"
 msgstr ""
@@ -2128,9 +2131,6 @@ msgstr "Examine el asunto para determinar si es legítimo o no."
 
 msgid "The activities with unusual stats are:"
 msgstr "Les activitats amb estadístiques inusuals són les següents:"
-
-msgid "The available disk space is {FreeMemory} of {TotalMemory}."
-msgstr ""
 
 msgid ""
 "The server cannot guarantee that a new submission can be stored, so "

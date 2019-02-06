@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-01-30 08:51+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2019-02-06 17:21+0000\n"
+"Last-Translator: erinm\n"
 "Language-Team: Japanese (http://www.transifex.com/otf/globaleaks/language/ja/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -134,9 +134,6 @@ msgstr "この受信者を選択"
 
 msgid "Unselect this recipient."
 msgstr "この受信者の選択を外す"
-
-msgid "This recipient cannot be selected."
-msgstr "この受信者は選択できません。"
 
 msgid "This recipient cannot be deselected."
 msgstr "この受信者の選択は解除できません。"
@@ -1300,6 +1297,9 @@ msgstr "警告レベル"
 msgid "Events"
 msgstr "イベント"
 
+msgid "Question"
+msgstr "質問"
+
 msgid "Type"
 msgstr "タイプ"
 
@@ -1479,9 +1479,6 @@ msgstr "デフォルト"
 msgid "Forcefully selected"
 msgstr "強制的に選択"
 
-msgid "Unselectable"
-msgstr "選択不可"
-
 msgid "Allow the recipient to postpone the submission expiration date"
 msgstr "受信者が提出の有効期限を延期することを許可する"
 
@@ -1650,6 +1647,15 @@ msgstr "メールアドレス変更の検証を処理しています。"
 
 msgid "Please check your inbox for further instructions."
 msgstr "詳しい手順については、受信トレイを確認してください。"
+
+msgid "Encryption key"
+msgstr "暗号化鍵"
+
+msgid "Hide"
+msgstr "非表示"
+
+msgid "Show"
+msgstr "表示"
 
 msgid "Current password"
 msgstr "現在のパスワード"
@@ -1831,9 +1837,6 @@ msgstr "内部告発者向けの添付ファイル"
 
 msgid "Upload a file:"
 msgstr "ファイルをアップロード："
-
-msgid "Question"
-msgstr "質問"
 
 msgid "Inverted"
 msgstr "反転"
@@ -2121,9 +2124,6 @@ msgstr "問題が正当なものかどうかを調べます。"
 
 msgid "The activities with unusual stats are:"
 msgstr "異常な統計の活動は次のとおりです:"
-
-msgid "The available disk space is {FreeMemory} of {TotalMemory}."
-msgstr ""
 
 msgid ""
 "The server cannot guarantee that a new submission can be stored, so "

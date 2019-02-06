@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-01-30 08:51+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2019-02-06 17:21+0000\n"
+"Last-Translator: ferhad.necef\n"
 "Language-Team: Azerbaijani (http://www.transifex.com/otf/globaleaks/language/az/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -134,9 +134,6 @@ msgstr "Bu alıcını seç."
 
 msgid "Unselect this recipient."
 msgstr "Bu alıcını seçmə."
-
-msgid "This recipient cannot be selected."
-msgstr "Bu alıcı seçilə bilməz."
 
 msgid "This recipient cannot be deselected."
 msgstr "Bu alıcı seçilməyə bilməz."
@@ -1300,6 +1297,9 @@ msgstr "Siqnal səviyyəsi"
 msgid "Events"
 msgstr "Tədbirlər"
 
+msgid "Question"
+msgstr ""
+
 msgid "Type"
 msgstr "Tip"
 
@@ -1479,9 +1479,6 @@ msgstr "Önseçili"
 msgid "Forcefully selected"
 msgstr "Zorla seçilmiş"
 
-msgid "Unselectable"
-msgstr "Seçilə bilməyən"
-
 msgid "Allow the recipient to postpone the submission expiration date"
 msgstr "Qəbul ediciyə təqdimatın sona çatma tarixini təxirə salmasına icazə verin"
 
@@ -1650,6 +1647,15 @@ msgstr ""
 
 msgid "Please check your inbox for further instructions."
 msgstr ""
+
+msgid "Encryption key"
+msgstr ""
+
+msgid "Hide"
+msgstr "Gizlətmək"
+
+msgid "Show"
+msgstr "Göstər"
 
 msgid "Current password"
 msgstr ""
@@ -1831,9 +1837,6 @@ msgstr "İnformasiya ötürən üçün əlavə edilmiş fayllar"
 
 msgid "Upload a file:"
 msgstr "Yeni fayl yüklə:"
-
-msgid "Question"
-msgstr ""
 
 msgid "Inverted"
 msgstr ""
@@ -2121,9 +2124,6 @@ msgstr ""
 
 msgid "The activities with unusual stats are:"
 msgstr "Qeyri-adi statistikası olan fəaliyyətlər:"
-
-msgid "The available disk space is {FreeMemory} of {TotalMemory}."
-msgstr ""
 
 msgid ""
 "The server cannot guarantee that a new submission can be stored, so "

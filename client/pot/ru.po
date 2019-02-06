@@ -28,8 +28,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-01-30 08:51+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2019-02-06 17:21+0000\n"
+"Last-Translator: erinm\n"
 "Language-Team: Russian (http://www.transifex.com/otf/globaleaks/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -153,9 +153,6 @@ msgstr "Выбор получателя"
 
 msgid "Unselect this recipient."
 msgstr "Отмена выбора получателя."
-
-msgid "This recipient cannot be selected."
-msgstr "Получатель не может быть выбран"
 
 msgid "This recipient cannot be deselected."
 msgstr "Получатель не может быть отменен."
@@ -1319,6 +1316,9 @@ msgstr "Уровень тревоги"
 msgid "Events"
 msgstr "События"
 
+msgid "Question"
+msgstr ""
+
 msgid "Type"
 msgstr "Тип"
 
@@ -1498,9 +1498,6 @@ msgstr "По умолчанию"
 msgid "Forcefully selected"
 msgstr "Выбрано по требованию"
 
-msgid "Unselectable"
-msgstr "Не выделяемо"
-
 msgid "Allow the recipient to postpone the submission expiration date"
 msgstr "Разрешить получателю откладывать истечение срока действия подачи материалов"
 
@@ -1669,6 +1666,15 @@ msgstr ""
 
 msgid "Please check your inbox for further instructions."
 msgstr ""
+
+msgid "Encryption key"
+msgstr ""
+
+msgid "Hide"
+msgstr "Скрыть"
+
+msgid "Show"
+msgstr "Показать"
 
 msgid "Current password"
 msgstr "Текущий пароль"
@@ -1850,9 +1856,6 @@ msgstr "Приложения для информатора"
 
 msgid "Upload a file:"
 msgstr "Выгрузить файл:"
-
-msgid "Question"
-msgstr ""
 
 msgid "Inverted"
 msgstr ""
@@ -2140,9 +2143,6 @@ msgstr ""
 
 msgid "The activities with unusual stats are:"
 msgstr "Активность с нетипичной статистикой:"
-
-msgid "The available disk space is {FreeMemory} of {TotalMemory}."
-msgstr ""
 
 msgid ""
 "The server cannot guarantee that a new submission can be stored, so "

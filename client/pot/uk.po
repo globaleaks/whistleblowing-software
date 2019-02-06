@@ -22,8 +22,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-01-30 08:51+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2019-02-06 17:21+0000\n"
+"Last-Translator: erinm\n"
 "Language-Team: Ukrainian (http://www.transifex.com/otf/globaleaks/language/uk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -147,9 +147,6 @@ msgstr "Обрати цього одержувача."
 
 msgid "Unselect this recipient."
 msgstr "Не обирати цього одержувача."
-
-msgid "This recipient cannot be selected."
-msgstr "Наразі не можна обрати цього одержувача."
 
 msgid "This recipient cannot be deselected."
 msgstr "Цього одрежувача не можна виключити зі списку."
@@ -1313,6 +1310,9 @@ msgstr "Поріг сигналу небезпеки"
 msgid "Events"
 msgstr "Події"
 
+msgid "Question"
+msgstr ""
+
 msgid "Type"
 msgstr "Тип"
 
@@ -1492,9 +1492,6 @@ msgstr "За замовчуванням"
 msgid "Forcefully selected"
 msgstr "Обрано за замовчуванням без права змін"
 
-msgid "Unselectable"
-msgstr "Неможливо вибрати"
-
 msgid "Allow the recipient to postpone the submission expiration date"
 msgstr "Дозволити одержувачам відтерміновувати видалення матеріалів."
 
@@ -1663,6 +1660,15 @@ msgstr "Перевірка зміни адреси електронної пош
 
 msgid "Please check your inbox for further instructions."
 msgstr ""
+
+msgid "Encryption key"
+msgstr "Ключ шифрування"
+
+msgid "Hide"
+msgstr "Приховати"
+
+msgid "Show"
+msgstr "Показати"
 
 msgid "Current password"
 msgstr "Поточний пароль"
@@ -1844,9 +1850,6 @@ msgstr "Додані файли для інформатора"
 
 msgid "Upload a file:"
 msgstr "Завантажте файл:"
-
-msgid "Question"
-msgstr ""
 
 msgid "Inverted"
 msgstr ""
@@ -2134,9 +2137,6 @@ msgstr ""
 
 msgid "The activities with unusual stats are:"
 msgstr "Активність з незвичайною статистикою:"
-
-msgid "The available disk space is {FreeMemory} of {TotalMemory}."
-msgstr ""
 
 msgid ""
 "The server cannot guarantee that a new submission can be stored, so "

@@ -17,8 +17,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-01-30 08:51+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2019-02-06 17:21+0000\n"
+"Last-Translator: erinm\n"
 "Language-Team: Romanian (http://www.transifex.com/otf/globaleaks/language/ro/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -142,9 +142,6 @@ msgstr "Selectați acest destinatar."
 
 msgid "Unselect this recipient."
 msgstr "Deselectezi acestui destinatar."
-
-msgid "This recipient cannot be selected."
-msgstr "Acest destinatar nu poate fi selectată."
 
 msgid "This recipient cannot be deselected."
 msgstr "Acest destinatar nu poate fi deselectată."
@@ -1308,6 +1305,9 @@ msgstr "nivelul de alarmă"
 msgid "Events"
 msgstr "Evenimente"
 
+msgid "Question"
+msgstr ""
+
 msgid "Type"
 msgstr "Tip"
 
@@ -1487,9 +1487,6 @@ msgstr "Mod implicit"
 msgid "Forcefully selected"
 msgstr "selectat cu forța"
 
-msgid "Unselectable"
-msgstr "neselectabil"
-
 msgid "Allow the recipient to postpone the submission expiration date"
 msgstr "Permite destinatarului să amâne data de expirare a depunerii"
 
@@ -1658,6 +1655,15 @@ msgstr ""
 
 msgid "Please check your inbox for further instructions."
 msgstr ""
+
+msgid "Encryption key"
+msgstr ""
+
+msgid "Hide"
+msgstr "Ascunde"
+
+msgid "Show"
+msgstr "Arată"
 
 msgid "Current password"
 msgstr "Parolă curentă"
@@ -1839,9 +1845,6 @@ msgstr "Fișiere atașate pentru informator"
 
 msgid "Upload a file:"
 msgstr "Încarcă un fișier:"
-
-msgid "Question"
-msgstr ""
 
 msgid "Inverted"
 msgstr ""
@@ -2129,9 +2132,6 @@ msgstr ""
 
 msgid "The activities with unusual stats are:"
 msgstr "Activitatile cu statistici neobisnuite sunt:"
-
-msgid "The available disk space is {FreeMemory} of {TotalMemory}."
-msgstr ""
 
 msgid ""
 "The server cannot guarantee that a new submission can be stored, so "

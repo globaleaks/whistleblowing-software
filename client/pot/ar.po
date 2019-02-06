@@ -38,8 +38,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-01-30 08:51+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2019-02-06 17:21+0000\n"
+"Last-Translator: erinm\n"
 "Language-Team: Arabic (http://www.transifex.com/otf/globaleaks/language/ar/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -163,9 +163,6 @@ msgstr "اختيار هذا المتلقي."
 
 msgid "Unselect this recipient."
 msgstr "إلغاء اختيار هذا المتلقي."
-
-msgid "This recipient cannot be selected."
-msgstr "لا يمكن اختيار هذا المستقبل."
 
 msgid "This recipient cannot be deselected."
 msgstr "لا يمكن عدم اختيار هذا المتلقي."
@@ -1329,6 +1326,9 @@ msgstr "مستوى الإنذار"
 msgid "Events"
 msgstr "الأحداث"
 
+msgid "Question"
+msgstr ""
+
 msgid "Type"
 msgstr "نوع"
 
@@ -1508,9 +1508,6 @@ msgstr "الافتراضي"
 msgid "Forcefully selected"
 msgstr "مختارة بالقوّة"
 
-msgid "Unselectable"
-msgstr "غير قابل للاختيار"
-
 msgid "Allow the recipient to postpone the submission expiration date"
 msgstr "السماح للمتلقّي بتأجيل تاريخ انتهاء صلاحية الابلاغ"
 
@@ -1679,6 +1676,15 @@ msgstr ""
 
 msgid "Please check your inbox for further instructions."
 msgstr ""
+
+msgid "Encryption key"
+msgstr ""
+
+msgid "Hide"
+msgstr "إخفاء"
+
+msgid "Show"
+msgstr "عرض"
 
 msgid "Current password"
 msgstr "كلمة السر الحالية"
@@ -1860,9 +1866,6 @@ msgstr "الملفات المرفقة للمبلغ"
 
 msgid "Upload a file:"
 msgstr "رفع ملف:"
-
-msgid "Question"
-msgstr ""
 
 msgid "Inverted"
 msgstr ""
@@ -2150,9 +2153,6 @@ msgstr "الرجاء دراسة المسألة لتحديد ما إذا كانت
 
 msgid "The activities with unusual stats are:"
 msgstr "الأنشطة ذات الاحصائيات غير عادية هي:"
-
-msgid "The available disk space is {FreeMemory} of {TotalMemory}."
-msgstr ""
 
 msgid ""
 "The server cannot guarantee that a new submission can be stored, so "

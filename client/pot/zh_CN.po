@@ -19,8 +19,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-01-30 08:51+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2019-02-06 17:21+0000\n"
+"Last-Translator: YFdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/otf/globaleaks/language/zh_CN/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -144,9 +144,6 @@ msgstr "选择这个接收者。"
 
 msgid "Unselect this recipient."
 msgstr "取消选择这个接收者。"
-
-msgid "This recipient cannot be selected."
-msgstr "无法选定此接收者。"
 
 msgid "This recipient cannot be deselected."
 msgstr "无法取消此接收者。"
@@ -1310,6 +1307,9 @@ msgstr "警戒等级"
 msgid "Events"
 msgstr "事件"
 
+msgid "Question"
+msgstr ""
+
 msgid "Type"
 msgstr "种类"
 
@@ -1489,9 +1489,6 @@ msgstr "默认"
 msgid "Forcefully selected"
 msgstr "强行选择"
 
-msgid "Unselectable"
-msgstr "禁止选定"
-
 msgid "Allow the recipient to postpone the submission expiration date"
 msgstr "允许接收人延长提交截止日期"
 
@@ -1660,6 +1657,15 @@ msgstr ""
 
 msgid "Please check your inbox for further instructions."
 msgstr ""
+
+msgid "Encryption key"
+msgstr "加密密钥"
+
+msgid "Hide"
+msgstr "隐藏"
+
+msgid "Show"
+msgstr "显示"
 
 msgid "Current password"
 msgstr ""
@@ -1841,9 +1847,6 @@ msgstr "发送给揭发人的附件"
 
 msgid "Upload a file:"
 msgstr "上传文件："
-
-msgid "Question"
-msgstr ""
 
 msgid "Inverted"
 msgstr "倒排"
@@ -2131,9 +2134,6 @@ msgstr ""
 
 msgid "The activities with unusual stats are:"
 msgstr "不寻常的活动统计如下："
-
-msgid "The available disk space is {FreeMemory} of {TotalMemory}."
-msgstr ""
 
 msgid ""
 "The server cannot guarantee that a new submission can be stored, so "

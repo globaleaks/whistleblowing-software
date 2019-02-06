@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-01-30 08:51+0000\n"
+"PO-Revision-Date: 2019-02-06 17:21+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Bosnian (http://www.transifex.com/otf/globaleaks/language/bs/)\n"
 "MIME-Version: 1.0\n"
@@ -131,9 +131,6 @@ msgstr "Odaberite ovaj primaoca."
 
 msgid "Unselect this recipient."
 msgstr "Deselektujete ovo primaoca."
-
-msgid "This recipient cannot be selected."
-msgstr "Ovo primalac ne može biti izabran."
 
 msgid "This recipient cannot be deselected."
 msgstr "Ovo primalac ne može se poništiti."
@@ -1297,6 +1294,9 @@ msgstr "nivo alarm"
 msgid "Events"
 msgstr "Događaji"
 
+msgid "Question"
+msgstr ""
+
 msgid "Type"
 msgstr "Tip"
 
@@ -1476,9 +1476,6 @@ msgstr "Uobičajeno"
 msgid "Forcefully selected"
 msgstr "snažno izabrane"
 
-msgid "Unselectable"
-msgstr "Unselectable"
-
 msgid "Allow the recipient to postpone the submission expiration date"
 msgstr "Dozvolite primalac da odloži podnošenje isteka roka"
 
@@ -1646,6 +1643,15 @@ msgid "Validation of email address change in progress."
 msgstr ""
 
 msgid "Please check your inbox for further instructions."
+msgstr ""
+
+msgid "Encryption key"
+msgstr ""
+
+msgid "Hide"
+msgstr ""
+
+msgid "Show"
 msgstr ""
 
 msgid "Current password"
@@ -1827,9 +1833,6 @@ msgid "Attached files for the whistleblower"
 msgstr ""
 
 msgid "Upload a file:"
-msgstr ""
-
-msgid "Question"
 msgstr ""
 
 msgid "Inverted"
@@ -2118,9 +2121,6 @@ msgstr ""
 
 msgid "The activities with unusual stats are:"
 msgstr "Aktivnosti sa neobičnim statistike su:"
-
-msgid "The available disk space is {FreeMemory} of {TotalMemory}."
-msgstr ""
 
 msgid ""
 "The server cannot guarantee that a new submission can be stored, so "

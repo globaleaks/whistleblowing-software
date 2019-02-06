@@ -21,7 +21,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-01-30 08:51+0000\n"
+"PO-Revision-Date: 2019-02-06 17:21+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Hungarian (Hungary) (http://www.transifex.com/otf/globaleaks/language/hu_HU/)\n"
 "MIME-Version: 1.0\n"
@@ -146,9 +146,6 @@ msgstr "Ez a címzett kiválasztása."
 
 msgid "Unselect this recipient."
 msgstr "Ez a címzett kiválasztásának törlése."
-
-msgid "This recipient cannot be selected."
-msgstr "Ezt a címzettet nem lehet kiválasztani."
 
 msgid "This recipient cannot be deselected."
 msgstr "Ezt a címzettet nem lehet törölni a kiválasztásból."
@@ -1312,6 +1309,9 @@ msgstr "Riasztási szint"
 msgid "Events"
 msgstr "Események"
 
+msgid "Question"
+msgstr ""
+
 msgid "Type"
 msgstr "Típus"
 
@@ -1491,9 +1491,6 @@ msgstr "Alapértelmezett"
 msgid "Forcefully selected"
 msgstr "Erőteljesen kiválasztva"
 
-msgid "Unselectable"
-msgstr "Nem kiválasztható"
-
 msgid "Allow the recipient to postpone the submission expiration date"
 msgstr ""
 
@@ -1661,6 +1658,15 @@ msgid "Validation of email address change in progress."
 msgstr ""
 
 msgid "Please check your inbox for further instructions."
+msgstr ""
+
+msgid "Encryption key"
+msgstr ""
+
+msgid "Hide"
+msgstr ""
+
+msgid "Show"
 msgstr ""
 
 msgid "Current password"
@@ -1842,9 +1848,6 @@ msgid "Attached files for the whistleblower"
 msgstr ""
 
 msgid "Upload a file:"
-msgstr ""
-
-msgid "Question"
 msgstr ""
 
 msgid "Inverted"
@@ -2133,9 +2136,6 @@ msgstr ""
 
 msgid "The activities with unusual stats are:"
 msgstr "A tevékenységek szokatlan statisztikával:"
-
-msgid "The available disk space is {FreeMemory} of {TotalMemory}."
-msgstr ""
 
 msgid ""
 "The server cannot guarantee that a new submission can be stored, so "

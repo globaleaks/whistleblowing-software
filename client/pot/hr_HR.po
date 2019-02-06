@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-01-30 08:51+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2019-02-06 17:21+0000\n"
+"Last-Translator: erinm\n"
 "Language-Team: Croatian (Croatia) (http://www.transifex.com/otf/globaleaks/language/hr_HR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -133,9 +133,6 @@ msgstr "Označi ovog primatelja."
 
 msgid "Unselect this recipient."
 msgstr "Odznači ovog primatelja."
-
-msgid "This recipient cannot be selected."
-msgstr "Ovaj primatelj ne može biti odabran."
 
 msgid "This recipient cannot be deselected."
 msgstr "Ovaj primatelj ne može biti odznačen."
@@ -1299,6 +1296,9 @@ msgstr "Razina upozorenja"
 msgid "Events"
 msgstr "Događaji"
 
+msgid "Question"
+msgstr ""
+
 msgid "Type"
 msgstr "Tip"
 
@@ -1478,9 +1478,6 @@ msgstr "Zadano"
 msgid "Forcefully selected"
 msgstr "Prisilno odabrani"
 
-msgid "Unselectable"
-msgstr "Nije moguće odabrati"
-
 msgid "Allow the recipient to postpone the submission expiration date"
 msgstr "Dopusti primateljima da odgode datum isteka predaje"
 
@@ -1649,6 +1646,15 @@ msgstr "Ovjera email adrese u tijeku."
 
 msgid "Please check your inbox for further instructions."
 msgstr "Molimo pogledajte svoj sandučić ulazne pošte za daljnje instrukcije."
+
+msgid "Encryption key"
+msgstr ""
+
+msgid "Hide"
+msgstr "Sakrij"
+
+msgid "Show"
+msgstr ""
 
 msgid "Current password"
 msgstr "Trenutna lozinka"
@@ -1830,9 +1836,6 @@ msgstr "Privijene datoteke za zviždače"
 
 msgid "Upload a file:"
 msgstr "Postavite datoteku:"
-
-msgid "Question"
-msgstr ""
 
 msgid "Inverted"
 msgstr ""
@@ -2120,9 +2123,6 @@ msgstr "Pregledajte problem kako bi utvrdili ako je legitiman ili ne."
 
 msgid "The activities with unusual stats are:"
 msgstr "Aktivnosti s neobičnom statiskom su:"
-
-msgid "The available disk space is {FreeMemory} of {TotalMemory}."
-msgstr ""
 
 msgid ""
 "The server cannot guarantee that a new submission can be stored, so "

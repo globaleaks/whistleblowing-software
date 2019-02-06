@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-01-30 08:51+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2019-02-06 17:21+0000\n"
+"Last-Translator: erinm\n"
 "Language-Team: Tamil (http://www.transifex.com/otf/globaleaks/language/ta/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -132,9 +132,6 @@ msgstr "இந்த பெறுநர் தேர்ந்தெடுக்�
 
 msgid "Unselect this recipient."
 msgstr "இந்த பெறுநர் தேர்வை நீக்கவும்."
-
-msgid "This recipient cannot be selected."
-msgstr "இந்த பெறுநர் தேர்வு செய்ய முடியாது."
 
 msgid "This recipient cannot be deselected."
 msgstr "இந்த பெறுநர் தேர்வுநீக்கிய முடியாது."
@@ -1298,6 +1295,9 @@ msgstr "அலார நிலை"
 msgid "Events"
 msgstr "நிகழ்வுகள்"
 
+msgid "Question"
+msgstr "கேள்வி"
+
 msgid "Type"
 msgstr "வகை"
 
@@ -1477,9 +1477,6 @@ msgstr "இயல்புநிலை"
 msgid "Forcefully selected"
 msgstr "கட்டாயப்படுத்தி தேர்வு"
 
-msgid "Unselectable"
-msgstr "Unselectable"
-
 msgid "Allow the recipient to postpone the submission expiration date"
 msgstr "பெறுநர் சமர்ப்பிப்பு காலாவதி தேதி ஒத்தி அனுமதி"
 
@@ -1648,6 +1645,15 @@ msgstr "மின்னஞ்சல் முகவரி மாற்றுவ�
 
 msgid "Please check your inbox for further instructions."
 msgstr "கூடுதல் வழிமுறைகளுக்கு உங்கள் இன்பாக்ஸை சோதனையிடு."
+
+msgid "Encryption key"
+msgstr ""
+
+msgid "Hide"
+msgstr "மறை"
+
+msgid "Show"
+msgstr ""
 
 msgid "Current password"
 msgstr "தற்போதைய கடவுச்சொல்"
@@ -1829,9 +1835,6 @@ msgstr "விசில்ப்ளோயருக்கான இணைக்�
 
 msgid "Upload a file:"
 msgstr "கோப்பு பதிவேற்று:"
-
-msgid "Question"
-msgstr "கேள்வி"
 
 msgid "Inverted"
 msgstr "தலைகீழ்"
@@ -2119,9 +2122,6 @@ msgstr "அது சட்டபூர்வமானதா இல்லைய�
 
 msgid "The activities with unusual stats are:"
 msgstr "அசாதாரண புள்ளிவிவரங்கள் நடவடிக்கைகள் உள்ளன:"
-
-msgid "The available disk space is {FreeMemory} of {TotalMemory}."
-msgstr ""
 
 msgid ""
 "The server cannot guarantee that a new submission can be stored, so "

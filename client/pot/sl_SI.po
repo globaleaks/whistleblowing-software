@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-01-30 08:51+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2019-02-06 17:21+0000\n"
+"Last-Translator: erinm\n"
 "Language-Team: Slovenian (Slovenia) (http://www.transifex.com/otf/globaleaks/language/sl_SI/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -132,9 +132,6 @@ msgstr "Izberi tega prejemnika."
 
 msgid "Unselect this recipient."
 msgstr "Odstrani tega prejemnika."
-
-msgid "This recipient cannot be selected."
-msgstr "Ta prejemnik ne more biti izbran."
 
 msgid "This recipient cannot be deselected."
 msgstr "Ta prejemnik ne more biti odstranjen."
@@ -1298,6 +1295,9 @@ msgstr "Nivo alarma"
 msgid "Events"
 msgstr "Dogodki"
 
+msgid "Question"
+msgstr ""
+
 msgid "Type"
 msgstr "Vrsta"
 
@@ -1477,9 +1477,6 @@ msgstr "Privzeto"
 msgid "Forcefully selected"
 msgstr ""
 
-msgid "Unselectable"
-msgstr "Neizberljivo"
-
 msgid "Allow the recipient to postpone the submission expiration date"
 msgstr ""
 
@@ -1648,6 +1645,15 @@ msgstr ""
 
 msgid "Please check your inbox for further instructions."
 msgstr ""
+
+msgid "Encryption key"
+msgstr ""
+
+msgid "Hide"
+msgstr ""
+
+msgid "Show"
+msgstr "Show"
 
 msgid "Current password"
 msgstr ""
@@ -1828,9 +1834,6 @@ msgid "Attached files for the whistleblower"
 msgstr ""
 
 msgid "Upload a file:"
-msgstr ""
-
-msgid "Question"
 msgstr ""
 
 msgid "Inverted"
@@ -2118,9 +2121,6 @@ msgid "Examine the issue to determine whether it is legitimate or not."
 msgstr ""
 
 msgid "The activities with unusual stats are:"
-msgstr ""
-
-msgid "The available disk space is {FreeMemory} of {TotalMemory}."
 msgstr ""
 
 msgid ""

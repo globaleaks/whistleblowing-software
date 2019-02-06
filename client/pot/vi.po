@@ -12,8 +12,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-01-30 08:51+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2019-02-06 17:21+0000\n"
+"Last-Translator: erinm\n"
 "Language-Team: Vietnamese (http://www.transifex.com/otf/globaleaks/language/vi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -137,9 +137,6 @@ msgstr "Chọn người nhận này."
 
 msgid "Unselect this recipient."
 msgstr "Bỏ chọn nhận này."
-
-msgid "This recipient cannot be selected."
-msgstr "Người nhận này không thể được lựa chọn."
 
 msgid "This recipient cannot be deselected."
 msgstr "Người nhận này không thể bị hủy bỏ."
@@ -1303,6 +1300,9 @@ msgstr "mức báo động"
 msgid "Events"
 msgstr "Sự kiện"
 
+msgid "Question"
+msgstr ""
+
 msgid "Type"
 msgstr "Loại"
 
@@ -1482,9 +1482,6 @@ msgstr "Mặc định"
 msgid "Forcefully selected"
 msgstr "mạnh mẽ chọn"
 
-msgid "Unselectable"
-msgstr "Unselectable"
-
 msgid "Allow the recipient to postpone the submission expiration date"
 msgstr "Cho phép người nhận để hoãn ngày hết hạn nộp hồ sơ"
 
@@ -1653,6 +1650,15 @@ msgstr ""
 
 msgid "Please check your inbox for further instructions."
 msgstr ""
+
+msgid "Encryption key"
+msgstr ""
+
+msgid "Hide"
+msgstr "Dấu"
+
+msgid "Show"
+msgstr "Hiển thị"
 
 msgid "Current password"
 msgstr ""
@@ -1833,9 +1839,6 @@ msgid "Attached files for the whistleblower"
 msgstr ""
 
 msgid "Upload a file:"
-msgstr ""
-
-msgid "Question"
 msgstr ""
 
 msgid "Inverted"
@@ -2124,9 +2127,6 @@ msgstr ""
 
 msgid "The activities with unusual stats are:"
 msgstr "Các hoạt động với chỉ số bình thường là:"
-
-msgid "The available disk space is {FreeMemory} of {TotalMemory}."
-msgstr ""
 
 msgid ""
 "The server cannot guarantee that a new submission can be stored, so "

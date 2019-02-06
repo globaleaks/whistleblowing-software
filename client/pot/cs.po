@@ -13,8 +13,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-01-30 08:51+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2019-02-06 17:21+0000\n"
+"Last-Translator: erinm\n"
 "Language-Team: Czech (http://www.transifex.com/otf/globaleaks/language/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -138,9 +138,6 @@ msgstr "Vybrat tohoto příjemce."
 
 msgid "Unselect this recipient."
 msgstr "Zrušit výběr tohoto příjemce."
-
-msgid "This recipient cannot be selected."
-msgstr "Tento příjemce nemůže být vybrán."
 
 msgid "This recipient cannot be deselected."
 msgstr "Tento příjemce nemůže být odebrán."
@@ -1304,6 +1301,9 @@ msgstr "Úroveň varování"
 msgid "Events"
 msgstr "Události"
 
+msgid "Question"
+msgstr "Otázka"
+
 msgid "Type"
 msgstr "Typ"
 
@@ -1483,9 +1483,6 @@ msgstr "Výchozí"
 msgid "Forcefully selected"
 msgstr "Nastaveno administrátorem"
 
-msgid "Unselectable"
-msgstr "Nevybratelné"
-
 msgid "Allow the recipient to postpone the submission expiration date"
 msgstr "Povolit příjemci odložit datum expirace podání"
 
@@ -1654,6 +1651,15 @@ msgstr "Ověření změny e-mailové adresy probíhá."
 
 msgid "Please check your inbox for further instructions."
 msgstr "Prosím, zkontrolujte doručenou poštu pro další postup."
+
+msgid "Encryption key"
+msgstr ""
+
+msgid "Hide"
+msgstr "Skrýt"
+
+msgid "Show"
+msgstr "Ukázat"
 
 msgid "Current password"
 msgstr "Současné heslo"
@@ -1835,9 +1841,6 @@ msgstr "Přiložené soubory pro oznamovatele."
 
 msgid "Upload a file:"
 msgstr "Nahrání souboru:"
-
-msgid "Question"
-msgstr "Otázka"
 
 msgid "Inverted"
 msgstr "Obrácený"
@@ -2125,9 +2128,6 @@ msgstr "Prozkoumat hlášení za účelem zjištění zda je legitimní."
 
 msgid "The activities with unusual stats are:"
 msgstr "Aktivity s neobvyklou statistikou:"
-
-msgid "The available disk space is {FreeMemory} of {TotalMemory}."
-msgstr ""
 
 msgid ""
 "The server cannot guarantee that a new submission can be stored, so "

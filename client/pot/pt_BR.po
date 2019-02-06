@@ -37,8 +37,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-01-30 08:51+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2019-02-06 17:21+0000\n"
+"Last-Translator: erinm\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/otf/globaleaks/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -162,9 +162,6 @@ msgstr "Selecionar este destinatário."
 
 msgid "Unselect this recipient."
 msgstr "Desmarque este destinatário."
-
-msgid "This recipient cannot be selected."
-msgstr "Este destinatário não pode ser selecionado."
 
 msgid "This recipient cannot be deselected."
 msgstr "Este destinatário não pode ser desmarcado."
@@ -1328,6 +1325,9 @@ msgstr "Nível de alarme"
 msgid "Events"
 msgstr "Eventos"
 
+msgid "Question"
+msgstr "Questão"
+
 msgid "Type"
 msgstr "Tipo"
 
@@ -1507,9 +1507,6 @@ msgstr "Padrão"
 msgid "Forcefully selected"
 msgstr "Forçosamente selecionado"
 
-msgid "Unselectable"
-msgstr "Não selecionável"
-
 msgid "Allow the recipient to postpone the submission expiration date"
 msgstr "Permitir o destinatário a postergar a data de expiração da submissão"
 
@@ -1678,6 +1675,15 @@ msgstr "Validation of email address change in progress."
 
 msgid "Please check your inbox for further instructions."
 msgstr "Por favor, verifique sua caixa de entrada para mais instruções."
+
+msgid "Encryption key"
+msgstr ""
+
+msgid "Hide"
+msgstr "Ocultar"
+
+msgid "Show"
+msgstr "Mostrar"
 
 msgid "Current password"
 msgstr "Senha atual"
@@ -1859,9 +1865,6 @@ msgstr "Arquivos anexados pelo delator"
 
 msgid "Upload a file:"
 msgstr "Inserir um arquivo:"
-
-msgid "Question"
-msgstr "Questão"
 
 msgid "Inverted"
 msgstr "Invertida"
@@ -2149,9 +2152,6 @@ msgstr "Examine o problema para determinar se é legítimo ou não."
 
 msgid "The activities with unusual stats are:"
 msgstr "As atividades com estatísticas incomuns são:"
-
-msgid "The available disk space is {FreeMemory} of {TotalMemory}."
-msgstr ""
 
 msgid ""
 "The server cannot guarantee that a new submission can be stored, so "

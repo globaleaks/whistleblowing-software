@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-01-30 08:51+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2019-02-06 17:21+0000\n"
+"Last-Translator: erinm\n"
 "Language-Team: Finnish (http://www.transifex.com/otf/globaleaks/language/fi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -135,9 +135,6 @@ msgstr "Valitse tämä vastaanottaja."
 
 msgid "Unselect this recipient."
 msgstr "Poista tämä vastaanottaja."
-
-msgid "This recipient cannot be selected."
-msgstr "Tätä vastaanottajaa ei voi valita."
 
 msgid "This recipient cannot be deselected."
 msgstr "Tätä vastaanottajaa ei voida poistaa."
@@ -1301,6 +1298,9 @@ msgstr "Hälytystaso"
 msgid "Events"
 msgstr "Tapahtumat"
 
+msgid "Question"
+msgstr "Kysymys"
+
 msgid "Type"
 msgstr "Tyyppi"
 
@@ -1480,9 +1480,6 @@ msgstr "Oletus"
 msgid "Forcefully selected"
 msgstr "Aina päällä (ei voi muuttaa)"
 
-msgid "Unselectable"
-msgstr "Ei valittavissa"
-
 msgid "Allow the recipient to postpone the submission expiration date"
 msgstr "Salli vastaanottajan siirtää vihjeen vanhentumispäivämäärää myöhemmäksi"
 
@@ -1651,6 +1648,15 @@ msgstr "Sähköpostiosoitteen vaihtamisen vahvistaminen käynnissä."
 
 msgid "Please check your inbox for further instructions."
 msgstr "Lisäohjeita löydät sähköpostistasi."
+
+msgid "Encryption key"
+msgstr ""
+
+msgid "Hide"
+msgstr "Piilota"
+
+msgid "Show"
+msgstr "Näytä"
 
 msgid "Current password"
 msgstr "Nykyinen salasana"
@@ -1832,9 +1838,6 @@ msgstr "Vihjeen antajaan liitetyt tiedostot"
 
 msgid "Upload a file:"
 msgstr "Lähetä tiedosto:"
-
-msgid "Question"
-msgstr "Kysymys"
 
 msgid "Inverted"
 msgstr "Käänteinen"
@@ -2122,9 +2125,6 @@ msgstr "Tutki aihetta ottaaksesi selville onko se laillinen vai ei."
 
 msgid "The activities with unusual stats are:"
 msgstr "Epätavallisten tapahtumien tiedot:"
-
-msgid "The available disk space is {FreeMemory} of {TotalMemory}."
-msgstr ""
 
 msgid ""
 "The server cannot guarantee that a new submission can be stored, so "
