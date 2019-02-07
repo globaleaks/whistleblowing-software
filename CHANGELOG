@@ -1,3 +1,20 @@
+Changes in version 3.6.12 - 2019-02-07
+    Fix deactivation of conditional steps
+    Fix gl-admin fixing the possibility to set boolean values
+    During migrations drop Statistics for nodes using db version < 38
+    Remove unused configuration 'unselectable' of recipients
+    Fix usage of variable recipient_configuration
+    Hide inverted triggers configuration that are still not fully implemented
+    Hide steps errors when the steps navigation interface is hidden
+    By default show selectbox options in configuration-order
+    Correct danish language native name (#2508)
+    Fix whitelisted ip addresses configuration for recipients (#2507)
+    Make it possible to read and backup the encryption key from the user preferences
+    Extend GCE to make it possible to export and import an existing encryption key
+    Bump npm dependencies to latest stables versions
+    Add Galician translation
+    Update translations
+
 Changes in version 3.6.11 - 2019-01-31
     Fix possibility for administrators to issue user password reset
     Fix bug in the disabling of HTTP basic authentication
