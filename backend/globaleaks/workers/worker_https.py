@@ -1,4 +1,7 @@
 # -*- coding: utf-8 -*-
+"""
+This module defines HTTPS workers
+"""
 import os
 import sys
 
