@@ -39,4 +39,4 @@ GLClient.mockEngine = (function() {
     addMock: addMock,
     run: run
   };
-})();
+}());
