@@ -31,4 +31,3 @@ class StaticFileHandler(BaseHandler):
             return self.write_file(filename, abspath)
         else:
             raise errors.ResourceNotFound()
-

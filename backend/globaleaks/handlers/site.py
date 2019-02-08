@@ -1,7 +1,4 @@
-# -*- coding: UTF-8
-#
-#   tenant
-#   *****
+# -*- coding: utf-8 -*-
 # Implementation of the Tenant handlers
 from globaleaks import models
 from globaleaks.handlers.base import BaseHandler

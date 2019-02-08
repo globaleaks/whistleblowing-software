@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # Handle manipulation of submission statuses
 from six import text_type
 
@@ -323,4 +324,3 @@ class SubmissionSubStatusInstance(BaseHandler):
         yield models.delete(models.SubmissionSubStatus,
                             models.SubmissionSubStatus.submissionstatus_id == submission_status_id,
                             models.SubmissionSubStatus.id == submission_substatus_id)
-
