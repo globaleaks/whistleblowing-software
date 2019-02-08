@@ -1,3 +1,7 @@
+Changes in version 3.6.13 - 2019-02-08
+    Fix issue #2512
+    Fix possibility for the whistleblower to select its own recipients
+
 Changes in version 3.6.12 - 2019-02-07
     Fix deactivation of conditional steps
     Fix gl-admin fixing the possibility to set boolean values
