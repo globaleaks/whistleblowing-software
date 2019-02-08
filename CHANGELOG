@@ -1,3 +1,8 @@
+Changes in version 3.6.14 - 2019-02-08
+    Fix visualization of questionnaire answers of type multichoice
+    (fix necessary for the correct visualization of old submissions)
+    Fix minor lint errors
+
 Changes in version 3.6.13 - 2019-02-08
     Fix issue #2512
     Fix possibility for the whistleblower to select its own recipients
