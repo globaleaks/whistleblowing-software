@@ -160,7 +160,7 @@ def db_refresh_tenant_cache(session, tid_list):
 
         for x in [('admin', 'ip_filter_admin_enable', 'ip_filter_admin'),
                   ('custodian', 'ip_filter_custodian_enable', 'ip_filter_custodian'),
-                  ('recipient', 'ip_filter_receiver_enable', 'ip_filter_receiver'),
+                  ('receiver', 'ip_filter_receiver_enable', 'ip_filter_receiver'),
                   ('whistleblower', 'ip_filter_whistleblower_enable', 'ip_filter_whistleblower')]:
             if State.tenant_cache[tid].get(x[1], False) and State.tenant_cache[1][x[2]]:
                 State.tenant_cache[tid]['ip_filter'][x[0]] = State.tenant_cache[1][x[2]]
