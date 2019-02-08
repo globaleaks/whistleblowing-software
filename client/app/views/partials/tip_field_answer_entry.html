@@ -10,7 +10,7 @@
     </ul>
   </span>
 
-  <span data-ng-switch-when="selectbox">
+  <span data-ng-switch-when="selectbox|multichoice" data-ng-switch-when-separator="|">
     <div data-ng-repeat="option in field.options">
       <span data-ng-if="entry['value'] == option.id">{{option.label}}</span>
     </div>
