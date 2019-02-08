@@ -360,7 +360,7 @@ def serialize_receiver(session, user, language, data=None):
         'username': user.username,
         'name': user.name,
         'state': user.state,
-        'configuration': user.recipient_configuration,
+        'recipient_configuration': user.recipient_configuration,
         'can_delete_submission': user.can_delete_submission,
         'can_postpone_expiration': user.can_postpone_expiration,
         'can_grant_permissions': user.can_grant_permissions,
