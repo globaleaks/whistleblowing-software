@@ -98,7 +98,8 @@ class ProcessSupervisor(object):
     def handle_worker_death(self, pp, reason):
         log.debug("Subprocess: %s exited with: %s", pp, reason)
 
-        if pp in self.tls_process_pool: self.tls_process_pool.remove(pp)
+        if pp in self.tls_process_pool:
+            self.tls_process_pool.remove(pp)
 
         if self.should_spawn_child():
             self.launch_worker()
