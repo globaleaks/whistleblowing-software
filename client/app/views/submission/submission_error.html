@@ -11,7 +11,7 @@
         <span data-translate>Waiting for the file(s) to finish uploading.</span>&nbsp;
         <i class="glyphicon glyphicon-refresh gly-spin"></i>
       </div>
-      <div data-ng-if="submission.context.show_steps_navigation_interface && !singleStepForm() and (!areReceiversSelected() || vars.submissionForm.$invalid)">
+      <div data-ng-if="submission.context.show_steps_navigation_interface && !singleStepForm() && (!areReceiversSelected() || vars.submissionForm.$invalid)">
         <p data-translate>The following steps have errors:</p>
         <ul>
           <li data-ng-if="!areReceiversSelected()" class="err-link" data-ng-click="goToStep(receiver_selection_step_index)" data-translate>Recipient selection</li>

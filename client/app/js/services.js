@@ -302,9 +302,9 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
             self.selected_receivers[receiver.id] = false;
 
             if (receiver.pgp_key_public !== "" || $rootScope.node.allow_unencrypted) {
-              if (receiver.configuration === "default") {
+              if (receiver.recipient_configuration === "default") {
                 self.selected_receivers[receiver.id] = self.context.select_all_receivers;
-              } else if (receiver.configuration === "forcefully_selected") {
+              } else if (receiver.recipient_configuration === "forcefully_selected") {
                 self.selected_receivers[receiver.id] = true;
               }
             }
