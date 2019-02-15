@@ -303,7 +303,7 @@ GLClient.controller("SubmissionCtrl",
         $scope.updateAnswers(field, field.children);
       });
     });
-  }
+  };
 
   $scope.onAnswerUpdate = function(field, entry) {
     var i;
@@ -348,7 +348,7 @@ GLClient.controller("SubmissionCtrl",
     /* Block related to evaluate receivers triggers */
     if (field.type === "checkbox" || field.type === "selectbox") {
       for (i=0; i<field.options.length; i++) {
-	    if(field.type === "checkbox") {
+        if(field.type === "checkbox") {
           if(entry[field.options[i].id] && entry[field.options[i].id]) {
              if (field.options[i].trigger_receiver.length) {
                $scope.replaceReceivers(field.options[i].trigger_receiver);
