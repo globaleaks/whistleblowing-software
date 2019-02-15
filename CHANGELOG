@@ -1,3 +1,6 @@
+Changes in version 3.6.17 - 2019-02-15
+    Fix issue #2506
+
 Changes in version 3.6.16 - 2019-02-14
     Fix clean deb install over an existing migrated /var/globaleaks
 
