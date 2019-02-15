@@ -1,4 +1,6 @@
-# 
+# Translators:
+# danimaribeiro <danimaribeiro@gmail.com>, 2015-2016
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015-2016
 # Translators:
 # Aleš <ales.petan@digital.si>, 2016
 # Delo <prevajalci.delo@delo.si>, 2014

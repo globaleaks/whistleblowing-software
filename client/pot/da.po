@@ -1,4 +1,6 @@
-# 
+# Translators:
+# danimaribeiro <danimaribeiro@gmail.com>, 2015-2016
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015-2016
 # Translators:
 # Aesthese, 2016
 # Bo Elkjaer <bo_elkjaer@riseup.net>, 2018

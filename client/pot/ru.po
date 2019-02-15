@@ -1,4 +1,6 @@
-# 
+# Translators:
+# danimaribeiro <danimaribeiro@gmail.com>, 2015-2016
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015-2016
 # Translators:
 # Alex Railean <ralienpp@gmail.com>, 2017
 # AlexVox, 2013

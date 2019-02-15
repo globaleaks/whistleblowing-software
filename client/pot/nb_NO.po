@@ -1,4 +1,6 @@
-# 
+# Translators:
+# danimaribeiro <danimaribeiro@gmail.com>, 2015-2016
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015-2016
 # Translators:
 # Allan Nordhøy <epost@anotheragency.no>, 2014-2015
 # Allan Nordhøy <epost@anotheragency.no>, 2014-2018

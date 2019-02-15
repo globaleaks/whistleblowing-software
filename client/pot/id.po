@@ -1,4 +1,6 @@
-# 
+# Translators:
+# danimaribeiro <danimaribeiro@gmail.com>, 2015-2016
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015-2016
 # Translators:
 # Andrea Bras, 2018
 # Andre Julian <andrejulian30@gmail.com>, 2016-2017
@@ -23,8 +25,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-02-06 17:21+0000\n"
-"Last-Translator: erinm\n"
+"PO-Revision-Date: 2019-02-07 14:25+0000\n"
+"Last-Translator: ical\n"
 "Language-Team: Indonesian (http://www.transifex.com/otf/globaleaks/language/id/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1663,7 +1665,7 @@ msgid "Please check your inbox for further instructions."
 msgstr "Mohon cek kotak masuk anda untuk langkah lebih lanjut."
 
 msgid "Encryption key"
-msgstr ""
+msgstr "Kunci enkripsi"
 
 msgid "Hide"
 msgstr "Sembunyikan"

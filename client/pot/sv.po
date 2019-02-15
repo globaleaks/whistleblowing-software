@@ -1,4 +1,6 @@
-# 
+# Translators:
+# danimaribeiro <danimaribeiro@gmail.com>, 2015-2016
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015-2016
 # Translators:
 # ester.a <ester@virtualroad.org>, 2014
 # ester.a <ester@virtualroad.org>, 2014-2015

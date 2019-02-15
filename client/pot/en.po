@@ -1,4 +1,6 @@
-# 
+# Translators:
+# danimaribeiro <danimaribeiro@gmail.com>, 2015-2016
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015-2016
 # Translators:
 # Accounts-Payable - Alkemics, 2015
 # Antonio Trueba, 2016
@@ -36,6 +38,7 @@
 # Seo. Junmin <inactive+trans_alice@transifex.com>, 2015
 # seungil <luck8778@gmail.com>, 2014
 # SEUNGWON <baeksw0620@gmail.com>, 2014
+# Sihyeong Lee <super2451894@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"

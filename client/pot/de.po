@@ -1,4 +1,6 @@
-# 
+# Translators:
+# danimaribeiro <danimaribeiro@gmail.com>, 2015-2016
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015-2016
 # Translators:
 # Charles Peltier <charles@cl-info.fr>, 2015
 # Ettore Atalan <atalanttore@googlemail.com>, 2014-2019

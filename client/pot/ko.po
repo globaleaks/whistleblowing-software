@@ -1,4 +1,6 @@
-# 
+# Translators:
+# danimaribeiro <danimaribeiro@gmail.com>, 2015-2016
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015-2016
 # Translators:
 # Changkyoon Kim <ocnblu@gmail.com>, 2015
 # Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2016-2018

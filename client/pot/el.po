@@ -1,4 +1,6 @@
-# 
+# Translators:
+# danimaribeiro <danimaribeiro@gmail.com>, 2015-2016
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015-2016
 # Translators:
 # Adrian Pappas <pappasadrian@gmail.com>, 2018-2019
 # annapapa1980 <anpapath3@gmail.com>, 2015

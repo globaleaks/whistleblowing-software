@@ -1,4 +1,6 @@
-# 
+# Translators:
+# danimaribeiro <danimaribeiro@gmail.com>, 2015-2016
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015-2016
 # Translators:
 # Andrea Lusuardi <uovobw@gmail.com>, 2013
 # marco calamari <marcoc@marcoc.it>, 2013
@@ -25,8 +27,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-02-06 17:21+0000\n"
-"Last-Translator: erinm\n"
+"PO-Revision-Date: 2019-02-12 16:33+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Italian (http://www.transifex.com/otf/globaleaks/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1665,7 +1667,7 @@ msgid "Please check your inbox for further instructions."
 msgstr "Controlla la tua casella di posta in arrivo per informazioni aggiuntive."
 
 msgid "Encryption key"
-msgstr ""
+msgstr "Chiave crittografica"
 
 msgid "Hide"
 msgstr "Nascosto"

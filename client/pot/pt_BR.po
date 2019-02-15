@@ -1,4 +1,6 @@
-# 
+# Translators:
+# danimaribeiro <danimaribeiro@gmail.com>, 2015-2016
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015-2016
 # Translators:
 # Alexandre Pacheco Vieira <apvieira57@hotmail.com>, 2015
 # Alex Luís Silva <alex.mooca@hotmail.com>, 2014-2015
@@ -37,8 +39,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2019-02-06 17:21+0000\n"
-"Last-Translator: erinm\n"
+"PO-Revision-Date: 2019-02-15 04:20+0000\n"
+"Last-Translator: Chacal Exodius\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/otf/globaleaks/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1677,7 +1679,7 @@ msgid "Please check your inbox for further instructions."
 msgstr "Por favor, verifique sua caixa de entrada para mais instruções."
 
 msgid "Encryption key"
-msgstr ""
+msgstr "Chave de Criptografia"
 
 msgid "Hide"
 msgstr "Ocultar"

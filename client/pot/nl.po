@@ -1,4 +1,6 @@
-# 
+# Translators:
+# danimaribeiro <danimaribeiro@gmail.com>, 2015-2016
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015-2016
 # Translators:
 # Anne Mügge <info@numijneigenwebsite.nl>, 2016-2017
 # Barend <b.vanrijn@me.com>, 2015

@@ -1,4 +1,6 @@
-# 
+# Translators:
+# danimaribeiro <danimaribeiro@gmail.com>, 2015-2016
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015-2016
 # Translators:
 # Arda Büyükkaya <ardabuyukkaya@protonmail.com>, 2019
 # cerberus23 <hemlockii@riseup.net>, 2013

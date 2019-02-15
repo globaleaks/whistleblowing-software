@@ -1,4 +1,6 @@
-# 
+# Translators:
+# danimaribeiro <danimaribeiro@gmail.com>, 2015-2016
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015-2016
 # Translators:
 # ِAbu <elsahookie@gmail.com>, 2013
 # amine_Acess <amine@accessnow.org>, 2013

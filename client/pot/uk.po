@@ -1,4 +1,6 @@
-# 
+# Translators:
+# danimaribeiro <danimaribeiro@gmail.com>, 2015-2016
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015-2016
 # Translators:
 # Annie Bridges <anniebridges90@gmail.com>, 2014
 # Bogdan Lytvynovskyi <bogdan.lytvynovskyi@gmail.com>, 2014
