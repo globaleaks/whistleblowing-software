@@ -1,5 +1,5 @@
 <div class="Question" data-ng-form="{{fieldFormVarName}}">
-  <div data-ng-controller="SubmissionFormFieldCtrl" data-ng-switch="field.template_id" data-ng-init="onAnswerUpdate(field, entry)">
+  <div data-ng-controller="SubmissionFormFieldCtrl" data-ng-switch="field.template_id">
     <div data-ng-switch-when="whistleblower_identity">
       <div data-ng-include="'views/submission/fields/whistleblower_identity.html'"></div>
     </div>

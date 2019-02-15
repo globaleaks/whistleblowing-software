@@ -291,7 +291,7 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
       };
 
       var setCurrentContextReceivers = function(context_id) {
-        self.context = angular.copy($filter("filter")($rootScope.contexts, {"id": context_id})[0]);
+        self.context = $rootScope.contexts_by_id[context_id];
 
         self.selected_receivers = {};
         self.receivers = [];
@@ -1269,16 +1269,24 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
         return r;
       };
 
-      var isFieldTriggered = function(field, answers, score) {
+      var isFieldTriggered = function(parent, field, answers, score) {
+        var i;
+
+        if (parent !== null && !parent.enabled) {
+          return false;
+        }
+
         if (field.triggered_by_score > score) {
+          field.enabled = false;
           return false;
         }
 
         if (field.triggered_by_options.length === 0) {
+          field.enabled = true;
           return true;
         }
 
-        for (var i=0; i < field.triggered_by_options.length; i++) {
+        for (i=0; i < field.triggered_by_options.length; i++) {
           var trigger_obj = field.triggered_by_options[i];
           var answers_field = findField(answers, trigger_obj.field);
           if (answers_field === undefined) {
@@ -1288,10 +1296,12 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
           // Check if triggering field is in answers object
           if (trigger_obj.option === answers_field.value ||
               (answers_field.hasOwnProperty(trigger_obj.option) && answers_field[trigger_obj.option])) {
+            field.enabled = true;
             return true;
           }
         }
 
+        field.enabled = false;
         return false;
       };
 
