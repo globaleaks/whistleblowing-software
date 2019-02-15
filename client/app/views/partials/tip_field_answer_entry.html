@@ -2,7 +2,7 @@
   <span data-ng-switch-when="checkbox">
     <ul data-ng-repeat="(k, v) in entry">
       <div data-ng-repeat="option in field.options">
-        <div data-ng-if="k == option.id && v == 'True'">
+        <div data-ng-if="k === option.id && v === true">
           <i class="glyphicon glyphicon-check"></i>
           <span>{{option.label}}</span>
         </div>
@@ -12,7 +12,7 @@
 
   <span data-ng-switch-when="selectbox|multichoice" data-ng-switch-when-separator="|">
     <div data-ng-repeat="option in field.options">
-      <span data-ng-if="entry['value'] == option.id">{{option.label}}</span>
+      <span data-ng-if="entry['value'] === option.id">{{option.label}}</span>
     </div>
   </span>
 
@@ -21,8 +21,8 @@
   <span data-ng-switch-when="date">{{entry['value'] | date:'dd-MM-yyyy'}}</span>
 
   <span data-ng-switch-when="tos">
-    <i data-ng-if="entry['value'] == 'True'" class="glyphicon glyphicon-check"></i>
-    <i data-ng-if="entry['value'] == 'False'" class="glyphicon glyphicon-unchecked"></i>
+    <i data-ng-if="entry['value'] === 'True'" class="glyphicon glyphicon-check"></i>
+    <i data-ng-if="entry['value'] === 'False'" class="glyphicon glyphicon-unchecked"></i>
   </span>
 
   <span data-ng-switch-when="fieldgroup">
