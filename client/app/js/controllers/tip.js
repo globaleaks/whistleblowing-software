@@ -21,9 +21,11 @@ GLClient.controller("TipCtrl",
     var filterNotTriggeredField = function(field, answers) {
       for(var i=field.children.length - 1; i>=0; i--) {
         var f = field.children[i];
-        if (!$scope.isFieldTriggered(f, answers[f.id], $scope.tip.total_score)) {
+        if (!$scope.isFieldTriggered(field, f, answers[f.id], $scope.tip.total_score)) {
+          field.enabled = false;
           field.children.splice(i, 1);
         } else {
+          field.enabled = true;
           for (var j=0; j<answers[f.id].length; j++) {
             filterNotTriggeredField(f, answers[f.id]);
           }
@@ -52,9 +54,11 @@ GLClient.controller("TipCtrl",
         }
 
         if ($scope.node.enable_experimental_features) {
-          if (!$scope.isFieldTriggered(step, $scope.tip.answers, $scope.tip.total_score)) {
+          if (!$scope.isFieldTriggered(null, step, $scope.tip.answers, $scope.tip.total_score)) {
+            step.enabled = false;
             tip.questionnaires[0].steps.splice(i, 1);
           } else {
+            step.enabled = true;
             for (j=0; j<step.children.length; j++) {
               var field = step.children[i];
               for (k=0; k<$scope.tip.questionnaires[0].answers[field.id].length; k++) {
