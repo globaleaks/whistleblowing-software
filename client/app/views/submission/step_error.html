@@ -1,6 +1,6 @@
-<div data-ng-if="displayStepErrors(selection)">
+<div data-ng-if="displayStepErrors(navigation)">
   <p data-translate>In this step the answers to the following questions are either missing or invalid:</p>
-  <span data-ng-repeat="(key, errors) in stepForm(selection).$error track by $index">
+  <span data-ng-repeat="(key, errors) in stepForm(navigation).$error track by $index">
     <ul data-ng-repeat="err in errors">
       <li data-ng-controller="SubmissionFieldErrKeyCtrl" data-ng-click="goToQuestion()" class="err-link">{{field.label}}</li>
     </ul>

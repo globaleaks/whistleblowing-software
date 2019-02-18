@@ -61,11 +61,11 @@ GLClient.controller("SubmissionCtrl",
   };
 
   $scope.getCurrentStepIndex = function() {
-    return $scope.selection;
+    return $scope.navigation;
   };
 
   $scope.getCurrentStep = function() {
-    return $scope.submission.context.questionnaire.steps[$scope.selection];
+    return $scope.submission.context.questionnaire.steps[$scope.navigation];
   };
 
   $scope.goToStep = function(index, bypassErrors) {
@@ -74,7 +74,7 @@ GLClient.controller("SubmissionCtrl",
       return;
     }
 
-    $scope.selection = index;
+    $scope.navigation = index;
     $anchorScroll("top");
   };
 
@@ -99,7 +99,7 @@ GLClient.controller("SubmissionCtrl",
       return false;
     }
 
-    return $scope.selection < $scope.lastStepIndex();
+    return $scope.navigation < $scope.lastStepIndex();
   };
 
   $scope.hasPreviousStep = function() {
@@ -107,11 +107,11 @@ GLClient.controller("SubmissionCtrl",
       return false;
     }
 
-    return $scope.selection > $scope.firstStepIndex();
+    return $scope.navigation > $scope.firstStepIndex();
   };
 
   $scope.checkForInvalidFields = function() {
-    for(var i = 0; i <= $scope.selection; i++) {
+    for(var i = 0; i <= $scope.navigation; i++) {
       // find the first invalid element
       var form = document.getElementById("step-" + i);
       var firstInvalid = form.querySelector(".inputelem.ng-invalid");
@@ -127,29 +127,23 @@ GLClient.controller("SubmissionCtrl",
   };
 
   $scope.incrementStep = function() {
-    if ($scope.hasNextStep()) {
-      if ($scope.navigation < $scope.selection + 1) {
-        $scope.navigation = $scope.selection + 1;
-      }
-    }
-
-    if (!$scope.areReceiversSelected() && $scope.selection === $scope.receiver_selection_step_index) {
+    if (!$scope.areReceiversSelected() && $scope.navigation === $scope.receiver_selection_step_index) {
       $anchorScroll("top");
       return;
     }
 
-    if ($scope.selection > -1 && !$scope.checkForInvalidFields()) {
+    if ($scope.navigation > -1 && !$scope.checkForInvalidFields()) {
       return;
     }
 
     if ($scope.hasNextStep()) {
       $scope.vars.submissionForm.$dirty = false;
-      for (var i = $scope.selection + 1; i <= $scope.lastStepIndex(); i++) {
+      for (var i = $scope.navigation + 1; i <= $scope.lastStepIndex(); i++) {
         if (fieldUtilities.isFieldTriggered(null, $scope.selected_context.questionnaire.steps[i], $scope.answers, $scope.total_score)) {
-          $scope.selection = i;
+          $scope.navigation = i;
           $anchorScroll("top");
+          break;
         }
-        break;
       }
     }
   };
@@ -157,9 +151,9 @@ GLClient.controller("SubmissionCtrl",
   $scope.decrementStep = function() {
     if ($scope.hasPreviousStep()) {
       $scope.vars.submissionForm.$dirty = false;
-      for (var i = $scope.selection - 1; i >= $scope.firstStepIndex(); i--) {
+      for (var i = $scope.navigation - 1; i >= $scope.firstStepIndex(); i--) {
         if (i === -1 || fieldUtilities.isFieldTriggered(null, $scope.selected_context.questionnaire.steps[i], $scope.answers, $scope.total_score)) {
-          $scope.selection = i;
+          $scope.navigation = i;
           $anchorScroll("top");
         }
         break;
@@ -225,11 +219,11 @@ GLClient.controller("SubmissionCtrl",
       // fix steps numbering adding receiver selection step if neeeded
       $scope.receiver_selection_step = false;
       $scope.receiver_selection_step_index = -1;
-      $scope.selection = 0;
+      $scope.navigation = 0;
 
       if ($scope.submission.context.allow_recipients_selection) {
         $scope.receiver_selection_step = true;
-        $scope.selection = -1;
+        $scope.navigation = -1;
       }
 
       $scope.show_steps_navigation_bar = $scope.receiver_selection_step || $scope.submission.context.questionnaire.steps.length > 1;
@@ -287,6 +281,8 @@ GLClient.controller("SubmissionCtrl",
   };
 
   $scope.updateAnswers = function(parent, list) {
+    var entry, i;
+
     angular.forEach(list, function(field) {
       if (fieldUtilities.isFieldTriggered(parent, field, $scope.answers, $scope.total_score)) {
         field.enabled = true;
@@ -302,10 +298,57 @@ GLClient.controller("SubmissionCtrl",
       angular.forEach(list, function(field) {
         $scope.updateAnswers(field, field.children);
       });
+
+      if (!(field.id in $scope.answers) || !($scope.answers[field.id].length)) {
+        if (field.required) {
+          field.required_status = false;
+        }
+        return;
+      }
+
+      entry = $scope.answers[field.id][0];
+
+      /* Block related to updating required status */
+      if (field.type === "inputbox" || field.type === "textarea") {
+        field.required_status = (field.required || field.attrs.min_len.value > 0) && !entry["value"];
+      } else if (field.type === "checkbox") {
+        if (!field.required) {
+          field.required_status = false;
+        } else {
+          field.required_status = true;
+          for (i=0; i<field.options.length; i++) {
+            if (entry[field.options[i].id]) {
+              field.required_status = false;
+              break;
+            }
+          }
+        }
+      } else {
+        field.required_status = field.required && !entry["value"];
+      }
+
+      /* Block related to evaluate receivers triggers */
+      if (field.type === "checkbox" || field.type === "selectbox") {
+        for (i=0; i<field.options.length; i++) {
+          if(field.type === "checkbox") {
+            if(entry[field.options[i].id] && entry[field.options[i].id]) {
+               if (field.options[i].trigger_receiver.length) {
+                 $scope.replaceReceivers(field.options[i].trigger_receiver);
+              }
+            }
+          } else {
+            if (field.options[i].id === entry["value"]) {
+              if (field.options[i].trigger_receiver.length) {
+                $scope.replaceReceivers(field.options[i].trigger_receiver);
+              }
+            }
+          }
+        }
+      }
     });
   };
 
-  $scope.onAnswerUpdate = function(field, entry) {
+  $scope.onAnswerUpdate = function() {
     var i;
 
     $scope.total_score = 0;
@@ -321,52 +364,10 @@ GLClient.controller("SubmissionCtrl",
     });
 
     $scope.submission._submission.total_score = $scope.total_score;
-
-    if (!(field && entry)) {
-      return;
-    }
-
-    /* Block related to updating required status */
-    if (field.type === "inputbox" || field.type === "textarea") {
-      field.required_status = (field.required || field.attrs.min_len.value > 0) && !entry["value"];
-    } else if (field.type === "checkbox") {
-      if (!field.required) {
-        field.required_status = false;
-      } else {
-        field.required_status = true;
-        for (i=0; i<field.options.length; i++) {
-          if (entry[field.options[i].id]) {
-            field.required_status = false;
-            break;
-          }
-        }
-      }
-    } else {
-      field.required_status = field.required && !entry["value"];
-    }
-
-    /* Block related to evaluate receivers triggers */
-    if (field.type === "checkbox" || field.type === "selectbox") {
-      for (i=0; i<field.options.length; i++) {
-        if(field.type === "checkbox") {
-          if(entry[field.options[i].id] && entry[field.options[i].id]) {
-             if (field.options[i].trigger_receiver.length) {
-               $scope.replaceReceivers(field.options[i].trigger_receiver);
-            }
-          }
-        } else {
-          if (field.options[i].id === entry["value"]) {
-            if (field.options[i].trigger_receiver.length) {
-              $scope.replaceReceivers(field.options[i].trigger_receiver);
-            }
-          }
-        }
-      }
-    }
   };
 
   $scope.displayErrors = function() {
-    if (!($scope.navigation > $scope.selection || $scope.submitPressed || $scope.submission.done)) {
+    if (!($scope.submitPressed || $scope.submission.done)) {
       return false;
     }
 
@@ -378,7 +379,7 @@ GLClient.controller("SubmissionCtrl",
       return true;
     }
 
-    if ($scope.displayStepErrors($scope.selection)) {
+    if ($scope.displayStepErrors($scope.navigation)) {
       return true;
     }
 
@@ -419,7 +420,6 @@ controller("AdditionalQuestionnaireCtrl",
 
   $scope.fieldUtilities = fieldUtilities;
 
-  $scope.selection = 0;
   $scope.navigation = 0;
 
   $scope.submitPressed = false;
@@ -431,15 +431,15 @@ controller("AdditionalQuestionnaireCtrl",
   };
 
   $scope.getCurrentStepIndex = function() {
-    return $scope.selection;
+    return $scope.navigation;
   };
 
   $scope.getCurrentStep = function() {
-    return $scope.tip.additional_questionnaire.steps[$scope.selection];
+    return $scope.tip.additional_questionnaire.steps[$scope.navigation];
   };
 
   $scope.goToStep = function(index) {
-    $scope.selection = index;
+    $scope.navigation = index;
     $anchorScroll("top");
   };
 
@@ -452,26 +452,20 @@ controller("AdditionalQuestionnaireCtrl",
   };
 
   $scope.hasNextStep = function() {
-    return $scope.selection < $scope.lastStepIndex();
+    return $scope.navigation < $scope.lastStepIndex();
   };
 
   $scope.hasPreviousStep = function() {
-    return $scope.selection > $scope.firstStepIndex();
+    return $scope.navigation > $scope.firstStepIndex();
   };
 
   $scope.checkForInvalidFields = function() { return true; };
 
   $scope.incrementStep = function() {
     if ($scope.hasNextStep()) {
-      if ($scope.navigation < $scope.selection + 1) {
-        $scope.navigation = $scope.selection + 1;
-      }
-    }
-
-    if ($scope.hasNextStep()) {
       $scope.vars.submissionForm.$dirty = false;
-      for (var i = $scope.selection + 1; i <= $scope.lastStepIndex(); i++) {
-        $scope.selection = i;
+      for (var i = $scope.navigation + 1; i <= $scope.lastStepIndex(); i++) {
+        $scope.navigation = i;
         $anchorScroll("top");
         break;
       }
@@ -481,8 +475,8 @@ controller("AdditionalQuestionnaireCtrl",
   $scope.decrementStep = function() {
     if ($scope.hasPreviousStep()) {
       $scope.vars.submissionForm.$dirty = false;
-      for (var i = $scope.selection - 1; i >= $scope.firstStepIndex(); i--) {
-        $scope.selection = i;
+      for (var i = $scope.navigation - 1; i >= $scope.firstStepIndex(); i--) {
+        $scope.navigation = i;
         $anchorScroll("top");
         break;
       }
@@ -585,7 +579,7 @@ controller("SubmissionFieldErrKeyCtrl", ["$scope",
     $scope.field = $scope.field_id_map[f_id];
 
     $scope.goToQuestion = function() {
-      var form = document.getElementById("step-" + $scope.selection);
+      var form = document.getElementById("step-" + $scope.navigation);
       var s = "div[data-ng-form=\"" + $scope.err.$name + "\"] .ng-invalid";
       var formFieldSel = form.querySelector(s);
       formFieldSel.focus();
