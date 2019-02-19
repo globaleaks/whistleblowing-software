@@ -1,3 +1,9 @@
+Changes in version 3.6.20 - 2019-02-19
+    Revise fix for issue #2506
+    Address issue #2515
+    Bump npm dependencies to latest stable versions
+    Update translations
+
 Changes in version 3.6.19 - 2019-02-19
     Revise fix for issue #2506
 
@@ -35,7 +41,7 @@ Changes in version 3.6.12 - 2019-02-07
     Fix whitelisted ip addresses configuration for recipients (#2507)
     Make it possible to read and backup the encryption key from the user preferences
     Extend GCE to make it possible to export and import an existing encryption key
-    Bump npm dependencies to latest stables versions
+    Bump npm dependencies to latest stable versions
     Add Galician translation
     Update translations
 
