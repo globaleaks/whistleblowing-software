@@ -5,7 +5,7 @@ GLClient.controller("SubmissionCtrl",
 
   $scope.fieldUtilities = fieldUtilities;
   $scope.context_id = $location.search().context || undefined;
-  $scope.context = undefined
+  $scope.context = undefined;
 
   $scope.navigation = -1;
 
